@@ -14,7 +14,7 @@ endif # HAVE_NLS
 appicondir = $(datadir)/pixmaps
 appicon_DATA = extras/logos/naev.png
 Graphicsdir = $(datadir)/applications
-Graphics_DATA = naev.desktop
+Graphics_DATA = naikari.desktop
 appdatadir = $(datadir)/appdata
 appdata_DATA = naev.appdata.xml
 dist_pkgdata_DATA = naev-confupdate.sh
@@ -31,7 +31,7 @@ NAEV	     = $(PACKAGE)$(EXEEXT)
 VERSIONFILE = VERSION
 LANGUAGEFILE = $(top_srcdir)/dat/LANGUAGES
 
-EXTRA_DIST = build/config.rpath LICENSE extras naev.desktop naev.appdata.xml
+EXTRA_DIST = build/config.rpath LICENSE extras naikari.desktop naev.appdata.xml
 CLEANFILES = $(DATA_ARCHIVE) $(NAEV) $(VERSIONFILE) $(LANGUAGEFILE)
 
 if HAVE_NLS

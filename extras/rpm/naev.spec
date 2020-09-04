@@ -1,5 +1,5 @@
 %define version  0.4.2
-%define name     naev
+%define name     naikari
 %define dataname %{name}-data
 %define release  %mkrel 1
 
@@ -9,7 +9,7 @@ Release: %{release}
 Summary: 2D space trading and combat game
 Group: Games/Arcade 
 License: GPLv3+
-URL: http://code.google.com/p/naev/
+URL: https://naikari.github.io
 
 Source0: http://naev.googlecode.com/files/%{name}-%{version}.tar.bz2
 Source1: naev.png
@@ -42,7 +42,7 @@ amounts of lore accompanying everything from planets to equipment.
 Group: Games/Arcade
 License: GPLv3+ AND GPLv3 AND GPLv2+ AND Public Domain AND CC-by 3.0 AND CC-by-sa 3.0
 Summary: Data files for %{name}
-Requires: naev
+Requires: naikari
 BuildArch: noarch
 
 %description -n %{dataname}
@@ -87,7 +87,7 @@ rm -rf %{buildroot}
 %attr(755,root,root) %{_bindir}/naev
 
 %{_mandir}/man6/naev.6.*
-%{_datadir}/applications/naev.desktop
+%{_datadir}/applications/naikari.desktop
 %{_iconsdir}/naev32.png
 
 %files -n %{dataname}
