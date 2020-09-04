@@ -1364,7 +1364,7 @@ static void opt_needRestart (void)
 
    /* Values. */
    opt_restart = 1;
-   s           = _("Restart Naev for changes to take effect.");
+   s           = _("Restart Naikari for changes to take effect.");
 
    /* Modify widgets. */
    window_modifyText( opt_windows[ OPT_WIN_GAMEPLAY ], "txtRestart", s );

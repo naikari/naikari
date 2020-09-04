@@ -278,7 +278,9 @@ static void info_setGui( unsigned int wid, char* str )
    /* In case there are none. */
    if (guis == NULL) {
       WARN(_("No GUI available."));
-      dialogue_alert( _("There are no GUI available, this means something went wrong somewhere. Inform the Naev maintainer.") );
+      dialogue_alert(
+         _("There are no GUI available, this means something went wrong"
+            " somewhere. Inform the Naikari maintainer.") );
       return;
    }
 

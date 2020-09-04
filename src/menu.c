@@ -626,7 +626,7 @@ int menu_askQuit (void)
 
    /* Ask if should quit. */
    menu_Open( MENU_ASKQUIT );
-   if (dialogue_YesNoRaw( _("Quit Naev"), _("Are you sure you want to quit Naev?") )) {
+   if (dialogue_YesNoRaw( _("Quit Naikari"), _("Are you sure you want to quit Naikari?") )) {
       exit_game();
       return 1;
    }

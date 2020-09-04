@@ -890,7 +890,7 @@ int conf_saveConfig ( const char* file )
       old = NULL;
 
       /* Write a nice header for new configuration files */
-      conf_saveComment(_("Naev configuration file"));
+      conf_saveComment(_("Naikari configuration file"));
       conf_saveEmptyLine();
    }
 
@@ -902,11 +902,11 @@ int conf_saveConfig ( const char* file )
 
    /* Header. */
    conf_saveComment(GENERATED_START_COMMENT);
-   conf_saveComment(_("The contents of this section will be rewritten by Naev!"));
+   conf_saveComment(_("The contents of this section will be rewritten by Naikari!"));
    conf_saveEmptyLine();
 
    /* ndata. */
-   conf_saveComment(_("The location of Naev's data pack, usually called 'ndata'"));
+   conf_saveComment(_("The location of Naikari's data pack, usually called 'ndata'"));
    conf_saveString("data",conf.ndata);
    conf_saveEmptyLine();
 
@@ -949,7 +949,7 @@ int conf_saveConfig ( const char* file )
 
    /* Window. */
    conf_saveComment(_("The window size or screen resolution"));
-   conf_saveComment(_("Set both of these to 0 to make Naev try the desktop resolution"));
+   conf_saveComment(_("Set both of these to 0 to make Naikari try the desktop resolution"));
    if (conf.explicit_dim) {
       conf_saveInt("width",conf.width);
       conf_saveInt("height",conf.height);
@@ -964,7 +964,7 @@ int conf_saveConfig ( const char* file )
    conf_saveFloat("scalefactor",conf.scalefactor);
    conf_saveEmptyLine();
 
-   conf_saveComment(_("Run Naev in full-screen mode"));
+   conf_saveComment(_("Run Naikari in full-screen mode"));
    conf_saveBool("fullscreen",conf.fullscreen);
    conf_saveEmptyLine();
 
@@ -1064,7 +1064,7 @@ int conf_saveConfig ( const char* file )
    conf_saveEmptyLine();
 
    /* Fonts. */
-   conf_saveComment(_("Font sizes (in pixels) for Naev"));
+   conf_saveComment(_("Font sizes (in pixels) for Naikari"));
    conf_saveComment(_("Warning, setting to other than the default can cause visual glitches!"));
    conf_saveComment(_("Console default: 10"));
    conf_saveInt("font_size_console",conf.font_size_console);

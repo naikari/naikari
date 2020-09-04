@@ -55,7 +55,7 @@ static int macos_userLibraryDir ( NSString *kind, char *res, size_t n )
       NSHomeDirectory(),
       @"/Library/",
       kind,
-      @"/org.naev.Naev/"
+      @"/org.naikari.Naikari/"
    ] componentsJoinedByString:@""];
    return macos_writeString( path, res, n );
 }

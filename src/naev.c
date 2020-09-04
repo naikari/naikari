@@ -463,7 +463,7 @@ int main( int argc, char** argv )
             execv(argv[0], argv);
          }
          else { /* I sincerely hope this else is never hit. */
-            dialogue_alert( _("The update script encountered an error. Please exit Naev and move your config and save files manually:\n\n"
+            dialogue_alert( _("The update script encountered an error. Please exit Naikari and move your config and save files manually:\n\n"
                   "\ar%s/%s\a0 =>\n   \ag%s\a0\n\n"
                   "\ar%s/%s\a0 =>\n   \ag%s\a0\n\n"
                   "\ar%s/%s\a0 =>\n   \ag%snebula/\a0\n\n"),
@@ -495,12 +495,12 @@ int main( int argc, char** argv )
          || (strcmp(conf.lastversion, naev_version(0)) != 0) ) {
       conf.lastversion = strdup( naev_version(0) );
       dialogue_msg(
-         _("Welcome to Naev"),
-         _("Welcome to Naev version %s, and thank you for playing! We hope you"
-            " enjoy this game and all it has to offer. This is a passion"
-            " project developed exclusively by volunteers and it gives us all"
-            " great joy to know that there are others who love this game as"
-            " much as we do!\n"
+         _("Welcome to Naikari"),
+         _("Welcome to Naikari version %s, and thank you for playing! We hope"
+            " you enjoy this game and all it has to offer. This is a passion"
+            " project, based on another passion project (Naev), and ultimately"
+            " developed exclusively by volunteers. It gives us great joy to"
+            " know that there are others who love this game as much as we do!\n"
             "    Of course, please note that this is an incomplete game. You"
             " will encounter dead ends to storylines, missing storylines, and"
             " possibly even some bugs, although we try to keep those to a"
@@ -509,8 +509,8 @@ int main( int argc, char** argv )
             " hope to one day finish this massive project on our hands."
             " Perhaps you could become one of us, who knows?\n"
             "    For more information about the game and its development"
-            " state, take a look at naev.org; it has all the relevant links."
-            " And again, thank you for playing!"), conf.lastversion );
+            " state, take a look at naikari.github.io; it has all the relevant"
+            " links. And again, thank you for playing!"), conf.lastversion );
    }
 
    /* primary loop */
@@ -1469,7 +1469,7 @@ static void debug_sigHandler( int sig, siginfo_t *info, void *unused )
    num      = backtrace(buf, 64);
    symbols  = backtrace_symbols(buf, num);
 
-   DEBUG( _("Naev received %s!"),
+   DEBUG( _("Naikari received %s!"),
          debug_sigCodeToStr(info->si_signo, info->si_code) );
    for (i=0; i<num; i++) {
       if (abfd != NULL)

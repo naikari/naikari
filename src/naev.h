@@ -33,7 +33,7 @@
 #include <math.h>
 
 
-#define APPNAME            "Naev" /**< Application name. */
+#define APPNAME            "Naikari" /**< Application name. */
 
 #define ABS(x)             (((x)<0)?-(x):(x)) /**< Returns absolute value. */
 #define FABS(x)            (((x)<0.)?-(x):(x)) /**< Returns float absolute value. */

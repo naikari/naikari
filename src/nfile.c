@@ -142,7 +142,7 @@ const char* nfile_dataPath (void)
 #if HAS_MACOS
         if (macos_dataPath( naev_dataPath, PATH_MAX ) != 0) {
            WARN(_("Cannot determine data path, using current directory."));
-           nsnprintf( naev_dataPath, PATH_MAX, "./naev/" );
+           nsnprintf( naev_dataPath, PATH_MAX, "./naikari/" );
         }
 #elif HAS_UNIX
         char *path = xdgGetRelativeHome( "XDG_DATA_HOME", "/.local/share" );
@@ -151,7 +151,7 @@ const char* nfile_dataPath (void)
             path = strdup(".");
         }
 
-        nsnprintf( naev_dataPath, PATH_MAX, "%s/naev/", path );
+        nsnprintf( naev_dataPath, PATH_MAX, "%s/naikari/", path );
 
         if (path != NULL) {
             free (path);
@@ -162,7 +162,7 @@ const char* nfile_dataPath (void)
          WARN(_("%%APPDATA%% isn't set, using current directory."));
          path = ".";
       }
-      nsnprintf( naev_dataPath, PATH_MAX, "%s/naev/", path );
+      nsnprintf( naev_dataPath, PATH_MAX, "%s/naikari/", path );
 #else
 #error _("Feature needs implementation on this Operating System for Naev to work.")
 #endif
@@ -174,7 +174,7 @@ const char* nfile_dataPath (void)
 
 static char naev_configPath[PATH_MAX] = "\0"; /**< Store Naev's config path. */
 /**
- * @brief Gets Naev's config path (for user preferences such as conf.lua)
+ * @brief Gets Naikari's config path (for user preferences such as conf.lua)
  *
  *    @return The xdg config path.
  */
@@ -189,7 +189,7 @@ const char* nfile_configPath (void)
 #if HAS_MACOS
         if (macos_configPath( naev_configPath, PATH_MAX ) != 0) {
            WARN(_("Cannot determine config path, using current directory."));
-           nsnprintf( naev_configPath, PATH_MAX, "./naev/" );
+           nsnprintf( naev_configPath, PATH_MAX, "./naikari/" );
         }
 #elif HAS_UNIX
         char *path = xdgGetRelativeHome( "XDG_CONFIG_HOME", "/.config" );
@@ -198,7 +198,7 @@ const char* nfile_configPath (void)
             path = strdup(".");
         }
 
-        nsnprintf( naev_configPath, PATH_MAX, "%s/naev/", path );
+        nsnprintf( naev_configPath, PATH_MAX, "%s/naikari/", path );
 
         if (path != NULL) {
             free (path);
@@ -209,7 +209,7 @@ const char* nfile_configPath (void)
          WARN(_("%%APPDATA%% isn't set, using current directory."));
          path = ".";
       }
-      nsnprintf( naev_configPath, PATH_MAX, "%s/naev/", path );
+      nsnprintf( naev_configPath, PATH_MAX, "%s/naikari/", path );
 #else
 #error "Feature needs implementation on this Operating System for Naev to work."
 #endif
@@ -236,7 +236,7 @@ const char* nfile_cachePath (void)
 #if HAS_MACOS
         if (macos_cachePath( naev_cachePath, PATH_MAX ) != 0) {
            WARN(_("Cannot determine cache path, using current directory."));
-           nsnprintf( naev_cachePath, PATH_MAX, "./naev/" );
+           nsnprintf( naev_cachePath, PATH_MAX, "./naikari/" );
         }
 #elif HAS_UNIX
         char *path = xdgGetRelativeHome( "XDG_CACHE_HOME", "/.cache" );
@@ -245,7 +245,7 @@ const char* nfile_cachePath (void)
             path = strdup(".");
         }
 
-        nsnprintf( naev_cachePath, PATH_MAX, "%s/naev/", path );
+        nsnprintf( naev_cachePath, PATH_MAX, "%s/naikari/", path );
 
         if (path != NULL) {
             free (path);
@@ -256,9 +256,9 @@ const char* nfile_cachePath (void)
          WARN(_("%%APPDATA%% isn't set, using current directory."));
          path = ".";
       }
-      nsnprintf( naev_cachePath, PATH_MAX, "%s/naev/", path );
+      nsnprintf( naev_cachePath, PATH_MAX, "%s/naikari/", path );
 #else
-#error "Feature needs implementation on this Operating System for Naev to work."
+#error "Feature needs implementation on this Operating System for Naikari to work."
 #endif
     }
 
