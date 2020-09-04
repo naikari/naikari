@@ -642,7 +642,7 @@
        - sirius_fyrra_f1.png
        - sirius_fyrra_f2.png
        - sirius_fyrra_m1.png
-- Layla Marchant, based on components by Nihilos:
+- The Diligent Circle, based on components by Nihilos:
    license: CC-by 3.0
    portraits:
      - dvaered:
@@ -886,10 +886,12 @@
    spfx:
      - expm2.png
      - expl2.png
-- Scaatis:
-   license: CC-by 3.0
+- The Diligent Circle:
+   license: CC-by-sa 3.0
    root:
       - Naev.png
+- Scaatis:
+   license: CC-by 3.0
    gui:
      - slim
      - slimv2
@@ -971,7 +973,7 @@
    outfit:
      store:
        - brushedGUI.png
-- Layla Marchant, based on work by Scaatis:
+- The Diligent Circle, based on work by Scaatis:
    license: CC-by 3.0
    gui:
      brushed:
@@ -980,7 +982,7 @@
        - frame_planet_top.png
        - outfit.png
        - speedDouble.png
-- Layla Marchant, based on work from Vega Strike and work by Enigmatic:
+- The Diligent Circle, based on work from Vega Strike and work by Enigmatic:
    license: GPLv3
    map:
       - proteron.png
