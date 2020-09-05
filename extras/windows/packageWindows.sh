@@ -1,10 +1,10 @@
 #!/bin/bash
-# WINDOWS PACKAGING SCRIPT FOR NAEV
+# WINDOWS PACKAGING SCRIPT FOR NAIKARI
 # Requires NSIS, and python3-pip to be installed
 #
-# This script should be run after compiling Naev
+# This script should be run after compiling Naikari
 # It detects the current environment, and builds the appropriate NSIS installer
-# into the root naev directory.
+# into the root naikari directory.
 #
 
 # Checks if argument(s) are valid
@@ -27,8 +27,8 @@ fi
 
 # Check if we are running in the right place
 
-if [[ ! -f "naev.6" ]]; then
-    echo "Please run from Naev root directory."
+if [[ ! -f "naikari.6" ]]; then
+    echo "Please run from Naikari root directory."
     exit -1
 fi
 
@@ -109,13 +109,13 @@ mkdir -p extras/windows/installer/bin
 # Collect DLLs
  
 if [[ $ARCH == "32" ]]; then
-for fn in `mingw-ldd naev.exe --dll-lookup-dirs /mingw32/bin | grep -i "mingw32" | cut -f1 -d"/" --complement`; do
+for fn in `mingw-ldd naikari.exe --dll-lookup-dirs /mingw32/bin | grep -i "mingw32" | cut -f1 -d"/" --complement`; do
     fp="/"$fn
     echo "copying $fp to staging area"
     cp $fp extras/windows/installer/bin
 done
 elif [[ $ARCH == "64" ]]; then
-for fn in `mingw-ldd naev.exe --dll-lookup-dirs /mingw64/bin | grep -i "mingw64" | cut -f1 -d"/" --complement`; do
+for fn in `mingw-ldd naikari.exe --dll-lookup-dirs /mingw64/bin | grep -i "mingw64" | cut -f1 -d"/" --complement`; do
     fp="/"$fn
     echo "copying $fp to staging area"
     cp $fp extras/windows/installer/bin
@@ -126,11 +126,11 @@ else
     exit -1
 fi
 
-echo "copying naev binary to staging area"
+echo "copying naikari binary to staging area"
 if [[ $NIGHTLY == true ]]; then
-cp src/naev.exe extras/windows/installer/bin/naev-$VERSION-$BUILD_DATE-win$ARCH.exe
+cp src/naikari.exe extras/windows/installer/bin/naikari-$VERSION-$BUILD_DATE-win$ARCH.exe
 elif [[ $NIGHTLY == false ]]; then
-cp src/naev.exe extras/windows/installer/bin/naev-$VERSION-win$ARCH.exe
+cp src/naikari.exe extras/windows/installer/bin/naikari-$VERSION-win$ARCH.exe
 else
     echo "Cannot think of another movie quote."
     echo "Something went wrong while copying binary to staging area."
@@ -141,28 +141,28 @@ fi
 
 if [[ $NIGHTLY == true ]]; then
     if [[ $BETA == true ]]; then 
-        makensis -DVERSION=$BASEVER.0 -DVERSION_SUFFIX=-beta.$BETAVER-$BUILD_DATE -DARCH=$ARCH -DRELEASE=nightly extras/windows/installer/naev.nsi
+        makensis -DVERSION=$BASEVER.0 -DVERSION_SUFFIX=-beta.$BETAVER-$BUILD_DATE -DARCH=$ARCH -DRELEASE=nightly extras/windows/installer/naikari.nsi
     elif [[ $BETA == false ]]; then 
-        makensis -DVERSION=$VERSION -DVERSION_SUFFIX=-$BUILD_DATE -DARCH=$ARCH -DRELEASE=nightly extras/windows/installer/naev.nsi
+        makensis -DVERSION=$VERSION -DVERSION_SUFFIX=-$BUILD_DATE -DARCH=$ARCH -DRELEASE=nightly extras/windows/installer/naikari.nsi
     else
         echo "Something went wrong determining if this is a beta or not."
     fi
     
 
 # Move installer to root directory
-mv extras/windows/installer/naev-$VERSION-$BUILD_DATE-win$ARCH.exe naev-win$ARCH.exe
+mv extras/windows/installer/naikari-$VERSION-$BUILD_DATE-win$ARCH.exe naikari-win$ARCH.exe
 
 elif [[ $NIGHTLY == false ]]; then
     if [[ $BETA == true ]]; then 
-        makensis -DVERSION=$BASEVER.0 -DVERSION_SUFFIX=-beta.$BETAVER -DARCH=$ARCH -DRELEASE=v$BASEVER.0-beta.$BETAVER extras/windows/installer/naev.nsi
+        makensis -DVERSION=$BASEVER.0 -DVERSION_SUFFIX=-beta.$BETAVER -DARCH=$ARCH -DRELEASE=v$BASEVER.0-beta.$BETAVER extras/windows/installer/naikari.nsi
     elif [[ $BETA == false ]]; then 
-        makensis -DVERSION=$VERSION -DVERSION_SUFFIX= -DARCH=$ARCH -DRELEASE=v$VERSION extras/windows/installer/naev.nsi
+        makensis -DVERSION=$VERSION -DVERSION_SUFFIX= -DARCH=$ARCH -DRELEASE=v$VERSION extras/windows/installer/naikari.nsi
     else
         echo "Something went wrong determining if this is a beta or not."
     fi
 
 # Move installer to root directory
-mv extras/windows/installer/naev-$VERSION-win$ARCH.exe naev-win$ARCH.exe
+mv extras/windows/installer/naikari-$VERSION-win$ARCH.exe naikari-win$ARCH.exe
 else
     echo "Cannot think of another movie quote.. again."
     echo "Something went wrong.."
@@ -175,12 +175,12 @@ echo "Successfully built Windows Installer for win$ARCH"
 
 if [[ $NIGHTLY == true ]]; then
 cd extras/windows/installer/bin
-zip ../../../../naev-win$ARCH.zip *.*
+zip ../../../../naikari-win$ARCH.zip *.*
 cd ../../../../
 
 elif [[ $NIGHTLY == false ]]; then
 cd extras/windows/installer/bin
-zip ../../../../naev-win$ARCH.zip *.*
+zip ../../../../naikari-win$ARCH.zip *.*
 cd ../../../../
 
 else

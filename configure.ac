@@ -2,11 +2,11 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.61])
-AC_INIT([naev],
+AC_INIT([naikari],
         [0.8.-3],
-        [https://github.com/naev/naev/issues],
-        [naev],
-        [https://naev.org/])
+        [https://github.com/naikari/naikari/issues],
+        [naikari],
+        [https://naikari.github.io])
 AC_CONFIG_SRCDIR([src/naev.c])
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -422,28 +422,28 @@ AS_IF([test "x$enable_debug" != "xno"], [
 
 case "$host" in
   *-linux*)
-    GLOBAL_LIBS="$NAEV_LIBS -lm" # feels so wrong
+    GLOBAL_LIBS="$NAIKARI_LIBS -lm" # feels so wrong
     ;;
   *-mingw*)
-    GLOBAL_LIBS="$NAEV_LIBS -lwsock32"
+    GLOBAL_LIBS="$NAIKARI_LIBS -lwsock32"
     ;;
 esac
 
 AC_SUBST([GLOBAL_CFLAGS])
 AC_SUBST([GLOBAL_LIBS])
 
-# naev
+# naikari
 WIDGET_LIBS="\$(top_builddir)/src/tk/widget/libwidget.a"
 
-NAEV_CFLAGS="$GLOBAL_CFLAGS"
-NAEV_LIBS="$GLOBAL_LIBS $WIDGET_LIBS"
+NAIKARI_CFLAGS="$GLOBAL_CFLAGS"
+NAIKARI_LIBS="$GLOBAL_LIBS $WIDGET_LIBS"
 
 # glad requires libdl on non-Windows platforms
 case "$host" in
   *-mingw*)
     ;;
   *)
-    NAEV_LIBS="$NAEV_LIBS -ldl"
+    NAIKARI_LIBS="$NAIKARI_LIBS -ldl"
     ;;
 esac
 
@@ -454,7 +454,7 @@ AS_IF([test "x$enable_debug" != "xno"], [
      case "$host" in
        *-linux-gnu)
          AC_DEFINE([HAS_BFD], 1, [Define to 1 to enable bfd backtrace code])
-         NAEV_LIBS="$NAEV_LIBS -lbfd -liberty -rdynamic -ldl"
+         NAIKARI_LIBS="$NAIKARI_LIBS -lbfd -liberty -rdynamic -ldl"
          ;;
      esac
   ])
@@ -463,47 +463,47 @@ AS_IF([test "x$enable_debug" = "xparanoid"], [
   AC_DEFINE([DEBUG_PARANOID], 1, [Define to 1 to enable paranoid debug code])
 ])
 
-NAEV_CFLAGS="$NAEV_CFLAGS $CSPARSE_CFLAGS $SDL_CFLAGS $XML_CFLAGS \
+NAIKARI_CFLAGS="$NAIKARI_CFLAGS $CSPARSE_CFLAGS $SDL_CFLAGS $XML_CFLAGS \
     $FREETYPE_CFLAGS $FONTCONFIG_CFLAGS $LUA_CFLAGS $VORBIS_CFLAGS $VORBISFILE_CFLAGS \
     $PNG_CFLAGS $ZIP_CFLAGS $OPENGL_CFLAGS"
 
-NAEV_LIBS="$NAEV_LIBS $CSPARSE_LIBS $SDL_LIBS $XML_LIBS \
+NAIKARI_LIBS="$NAIKARI_LIBS $CSPARSE_LIBS $SDL_LIBS $XML_LIBS \
     $FREETYPE_LIBS $FONTCONFIG_LIBS $LUA_LIBS $VORBIS_LIBS $VORBISFILE_LIBS \
     $PNG_LIBS $ZIP_LIBS $OPENGL_LIBS"
 
 AS_IF([test "x$have_openal" = "xyes"], [
-  NAEV_CFLAGS="$NAEV_CFLAGS $OPENAL_CFLAGS"
-  NAEV_LIBS="$NAEV_LIBS $OPENAL_LIBS"
+  NAIKARI_CFLAGS="$NAIKARI_CFLAGS $OPENAL_CFLAGS"
+  NAIKARI_LIBS="$NAIKARI_LIBS $OPENAL_LIBS"
 ])
 
 AS_IF([test "x$have_sdlmixer" = "xyes"], [
-  NAEV_CFLAGS="$NAEV_CFLAGS $SDLMIXER_CFLAGS"
-  NAEV_LIBS="$NAEV_LIBS $SDLMIXER_LIBS"
+  NAIKARI_CFLAGS="$NAIKARI_CFLAGS $SDLMIXER_CFLAGS"
+  NAIKARI_LIBS="$NAIKARI_LIBS $SDLMIXER_LIBS"
 ])
 
 case "$host" in
   *-mingw*)
-    NAEV_LIBS="$NAEV_LIBS -mwindows"
+    NAIKARI_LIBS="$NAIKARI_LIBS -mwindows"
     ;;
   *-darwin*)
-    NAEV_LIBS="$NAEV_LIBS -framework Foundation"
+    NAIKARI_LIBS="$NAIKARI_LIBS -framework Foundation"
     ;;
 esac
 
-# This is a list of in-tree static libs that naev depends on.  It is used by
+# This is a list of in-tree static libs that naikari depends on.  It is used by
 # automake to detect when the binary needs recompiling after a library has been
 # changed.
-NAEV_DEPENDENCIES="$WIDGET_LIBS"
+NAIKARI_DEPENDENCIES="$WIDGET_LIBS"
 AS_IF([test "x$used_lua" = "xinternal"], [
-   NAEV_DEPENDENCIES="$NAEV_DEPENDENCIES $LUA_LIBS"
+   NAIKARI_DEPENDENCIES="$NAIKARI_DEPENDENCIES $LUA_LIBS"
 ])
 AS_IF([test "x$used_csparse" = "xinternal"], [
-   NAEV_DEPENDENCIES="$NAEV_DEPENDENCIES $CSPARSE_LIBS"
+   NAIKARI_DEPENDENCIES="$NAIKARI_DEPENDENCIES $CSPARSE_LIBS"
 ])
 
-AC_SUBST([NAEV_CFLAGS])
-AC_SUBST([NAEV_LIBS])
-AC_SUBST([NAEV_DEPENDENCIES])
+AC_SUBST([NAIKARI_CFLAGS])
+AC_SUBST([NAIKARI_LIBS])
+AC_SUBST([NAIKARI_DEPENDENCIES])
 
 # liblua
 LIBLUA_CFLAGS="$GLOBAL_CFLAGS"

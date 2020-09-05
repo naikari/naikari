@@ -1,6 +1,6 @@
 noinst_LIBRARIES = libwidget.a
 
-AM_CFLAGS = $(NAEV_CFLAGS)
+AM_CFLAGS = $(NAIKARI_CFLAGS)
 
 libwidget_a_SOURCES = \
 	button.c \

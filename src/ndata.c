@@ -494,7 +494,7 @@ static void ndata_testVersion (void)
          ERR( _("Please get a compatible ndata version!") );
 
       if (ABS(diff) > 1)
-         WARN( _("Naev will probably crash now as the versions are probably not compatible.") );
+         WARN( _("Naikari will probably crash now as the versions are probably not compatible.") );
    }
 }
 

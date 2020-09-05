@@ -1,7 +1,7 @@
-![Nightly Release](https://github.com/naev/naev/workflows/Nightly%20Release/badge.svg) ![CI](https://github.com/naev/naev/workflows/CI/badge.svg)
+![Nightly Release](https://github.com/naikari/naikari/workflows/Nightly%20Release/badge.svg) ![CI](https://github.com/naikari/naikari/workflows/CI/badge.svg)
 # NAEV README
 
-Naev is a 2D space trading and combat game, taking inspiration from the Escape
+Naikari is a 2D space trading and combat game, taking inspiration from the Escape
 Velocity series, among others.
 
 You pilot a space ship from a top-down perspective, and are more or less free
@@ -13,8 +13,8 @@ accompanying everything from planets to equipment.
 
 ## DEPENDENCIES
 
-Naev's dependencies are intended to be relatively common. In addition to
-an OpenGL-capable graphics card and driver, Naev requires the following:
+Naikari's dependencies are intended to be relatively common. In addition to
+an OpenGL-capable graphics card and driver, Naikari requires the following:
 * SDL 2
 * libxml2
 * freetype2
@@ -44,7 +44,7 @@ libvorbis-dev binutils-dev libzip-dev libiberty-dev autopoint intltool libfontco
 
 ### Other \*nix 
 
-See https://github.com/naev/naev/wiki/Compiling-on-*nix for package lists for several
+See https://github.com/naikari/naikari/wiki/Compiling-on-*nix for package lists for several
 distributions.
 
 ## COMPILING
@@ -62,7 +62,7 @@ will tell you what it supports.
 
 ## INSTALLATION
 
-Naev currently supports make install which will install everything that
+Naikari currently supports make install which will install everything that
 is needed.
 
 If you wish to create a .desktop for your desktop environment, logos
@@ -70,7 +70,7 @@ from 16x16 to 256x256 can be found in `extras/logos/`.
 
 ## WINDOWS
 
-See https://github.com/naev/naev/wiki/Compiling-on-Windows for how to compile on windows.
+See https://github.com/naikari/naikari/wiki/Compiling-on-Windows for how to compile on windows.
 
 ## UPDATING PO FILES
 
@@ -92,6 +92,6 @@ Please take a look at the FAQ (linked below) before submitting a new
 bug report, as it covers a number of common gameplay questions and
 common issues.
 
-If Naev is crashing during gameplay, please file a bug report after
-reading https://github.com/naev/naev/wiki/Bugs
+If Naikari is crashing during gameplay, please file a bug report after
+reading https://github.com/naikari/naikari/wiki/Bugs
 

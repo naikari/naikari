@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-if [[ ! -f "naev.6" ]]; then
-   echo "Please run from Naev root directory."
+if [[ ! -f "naikari.6" ]]; then
+   echo "Please run from Naikari root directory."
    exit -1
 fi
 

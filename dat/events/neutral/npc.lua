@@ -254,7 +254,6 @@ msg_mdone =                {{"Nebula Satellite", _([["Heard some reckless scient
 -- This text will be said by NPCs once the player has completed the event in question.
 -- Make sure the messages are always faction neutral.
 msg_edone =                {{"Animal trouble", _([["What? You had rodents sabotage your ship? Man, you're lucky to be alive. If it had hit the wrong power line..."]])},
-                              {"Naev Needs You!", _([["What do you mean, the world ended and then the creator of the universe came and fixed it? What kind of illegal substance are you on?"]])},
                            }
 
 

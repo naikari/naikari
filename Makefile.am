@@ -12,27 +12,26 @@ DIST_SUBDIRS += po
 endif # HAVE_NLS
 
 appicondir = $(datadir)/pixmaps
-appicon_DATA = extras/logos/naev.png
+appicon_DATA = extras/logos/naikari.png
 Graphicsdir = $(datadir)/applications
 Graphics_DATA = naikari.desktop
 appdatadir = $(datadir)/appdata
-appdata_DATA = naev.appdata.xml
-dist_pkgdata_DATA = naev-confupdate.sh
+appdata_DATA = naikari.appdata.xml
 
-dist_man6_MANS = naev.6
-dist_doc_DATA = AUTHORS README TODO LICENSE
+dist_man6_MANS = naikari.6
+dist_doc_DATA = AUTHORS Readme.md LICENSE
 
 DATA_ARCHIVE = ndata.zip
 if HAVE_UTILS
 MKSPR      = utils/mkspr/mkspr$(EXEEXT)
 endif
-NAEV	     = $(PACKAGE)$(EXEEXT)
+NAIKARI	     = $(PACKAGE)$(EXEEXT)
 
 VERSIONFILE = VERSION
 LANGUAGEFILE = $(top_srcdir)/dat/LANGUAGES
 
-EXTRA_DIST = build/config.rpath LICENSE extras naikari.desktop naev.appdata.xml
-CLEANFILES = $(DATA_ARCHIVE) $(NAEV) $(VERSIONFILE) $(LANGUAGEFILE)
+EXTRA_DIST = build/config.rpath LICENSE extras naikari.desktop naikari.appdata.xml
+CLEANFILES = $(DATA_ARCHIVE) $(NAIKARI) $(VERSIONFILE) $(LANGUAGEFILE)
 
 if HAVE_NLS
 XMLBASE     = $(wildcard dat/*.xml)
@@ -46,7 +45,7 @@ endif # HAVE_NLS
 
 .PHONY: pot docs utils help install-ndata soundtrack
 
-all-local: $(NAEV) pot $(VERSIONFILE)
+all-local: $(NAIKARI) pot $(VERSIONFILE)
 
 if HAVE_NLS
 $(XMLPOT): $(XMLFILES) $(TRANSLATIONITS)
@@ -54,7 +53,7 @@ $(XMLPOT): $(XMLFILES) $(TRANSLATIONITS)
 	@echo "ITSTOOL $@"
 
 if HAVE_DATA
-pot: $(LANGUAGEFILE) $(XMLPOT) $(NAEV)
+pot: $(LANGUAGEFILE) $(XMLPOT) $(NAIKARI)
 	$(MAKE) -C po $(PACKAGE).pot
 
 $(LANGUAGEFILE): po/LINGUAS
@@ -64,15 +63,15 @@ pot:
 endif # HAVE_DATA
 
 else # HAVE_NLS
-pot: $(XMLPOT) $(NAEV)
+pot: $(XMLPOT) $(NAIKARI)
 	@echo "***"
 	@echo "*** You must have NLS enabled to compile translation files"
 	@echo "***"
 endif # HAVE_NLS
 
-$(NAEV):
-	@echo "  LN    $(NAEV)"
-	$(LN_S) "src/$(NAEV)" "$(NAEV)"
+$(NAIKARI):
+	@echo "  LN    $(NAIKARI)"
+	$(LN_S) "src/$(NAIKARI)" "$(NAIKARI)"
 
 $(VERSIONFILE): src/config.h
 	echo $(VERSION) > $@
@@ -90,7 +89,7 @@ if HAVE_DATA
 $(DATA_ARCHIVE): $(VERSIONFILE)
 	@echo " ZIP   $(DATA_ARCHIVE)"
 	cd "$(top_srcdir)" && \
-    zip -0r "$(abs_top_builddir)/$(DATA_ARCHIVE)" AUTHORS $(VERSIONFILE) naev-confupdate.sh dat/
+    zip -0r "$(abs_top_builddir)/$(DATA_ARCHIVE)" AUTHORS $(VERSIONFILE) dat/
 else # HAVE_DATA
 $(DATA_ARCHIVE):
 	@echo "***"
@@ -121,9 +120,9 @@ uninstall-hook:
 docs:
 	$(MAKE) -C docs
 
-soundtrack: naev-$(VERSION)-soundtrack.zip
+soundtrack: naikari-$(VERSION)-soundtrack.zip
 
-naev-$(VERSION)-soundtrack.zip: utils/soundtrack.py dat/snd/soundtrack.yaml
+naikari-$(VERSION)-soundtrack.zip: utils/soundtrack.py dat/snd/soundtrack.yaml
 	./utils/soundtrack.py
 
 help:
@@ -133,7 +132,7 @@ help:
 	@echo "       docs - creates the doxygen documentation"
 	@echo " soundtrack - creates the soundtrack zip file"
 	@echo "      clean - removes binaries and object files"
-	@echo "    install - installs naev"
+	@echo "    install - installs Naikari"
 	@echo "  uninstall - removes previously installed files"
 	@echo "  dist-gzip - creates a source tarball with gzip compression"
 	@echo " dist-bzip2 - creates a source tarball with bzip2 compression"

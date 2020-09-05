@@ -63,7 +63,6 @@ dat/events/cinematic/DvdFLFbattle.lua
 dat/events/dvaered/warlords_battle.lua
 dat/events/flf/derelict.lua
 dat/events/flf/flf_catastrophe.lua
-dat/events/naev_needs_YOU.lua
 dat/events/neutral/animaltrouble.lua
 dat/events/neutral/baron_comm.lua
 dat/events/neutral/baron_flintley.lua
@@ -267,6 +266,8 @@ dat/missions/tutorial/tutorial.lua
 dat/missions/zalek/common.lua
 dat/missions/zalek/neburesearch/neburesearch_00.lua
 dat/missions/zalek/neburesearch/neburesearch_01.lua
+dat/missions/zalek/neburesearch/neburesearch_02.lua
+dat/missions/zalek/neburesearch/neburesearch_03.lua
 dat/missions/zalek/sciencegonewrong/00_sciwrong.lua
 dat/missions/zalek/sciencegonewrong/01_sciwrong.lua
 dat/missions/zalek/sciencegonewrong/02_sciwrong.lua

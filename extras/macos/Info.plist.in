@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-	<string>naev</string>
+	<string>naikari</string>
 	<key>CFBundleIconFile</key>
-	<string>naev.icns</string>
+	<string>naikari.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.naev.Naev</string>
+	<string>org.naikari.Naikari</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
