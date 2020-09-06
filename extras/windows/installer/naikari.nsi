@@ -5,7 +5,7 @@
 Unicode true
 ;Version, Arch, Icon and URL
 ;!define VERSION "0.8.0"
-;!define VERSION_SUFFIX "-beta1" ; This string can be used for betas and release candidates.
+;!define VERSION_SUFFIX "-beta.1" ; This string can be used for betas and release candidates.
 ;!define ARCH "32"
 !define URL "https://naikari.github.io"
 !define MUI_ICON "..\..\logos\logo.ico"
@@ -88,12 +88,12 @@ Var StartMenuFolder
 
 Var PortID
 
-Section "Naikari Engine" BinarySection
+Section "Naikari Engine and Data" BinarySection
 
    SectionIn RO
 
    SetOutPath "$INSTDIR"
-   File bin\*.*
+   File /r bin\*
    File ..\..\logos\logo.ico
    
    IntOp $PortID $PortID & ${SF_SELECTED}
@@ -128,18 +128,6 @@ Section "Naikari Engine" BinarySection
    File "datapath.lua"
    ${EndUnless}
 
-SectionEnd
-
-Section "Naikari Data (Download)" DataSection
-   dwn:
-    AddSize 331538 ;Size (kB) of Naikari ndata
-    ;use inetc due to the fact that NSISdl cannot download via HTTPS   
-    inetc::get "http://github.com/naikari/naikari/releases/download/${RELEASE}/ndata-${VERSION}${VERSION_SUFFIX}.zip" "ndata.zip"
-    Pop $R0 ;Get the return value
-      StrCmp $R0 "OK" skip
-        MessageBox MB_YESNO|MB_ICONEXCLAMATION "Download failed due to: $R0$\n$\nPlease note that naikari won't work until you download ndata.zip and put it in the same folder as naikari-${VERSION}${VERSION_SUFFIX}-win${ARCH}.exe.$\n$\nRetry?" IDNO skip
-      Goto dwn
-   skip:
 SectionEnd
 
 Section /o "Do a portable install" Portable
@@ -177,8 +165,7 @@ FunctionEnd
 
    ;Assign descriptions to sections
    !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-      !insertmacro MUI_DESCRIPTION_TEXT ${BinarySection} "Naikari engine. Requires ndata.zip to run."
-      !insertmacro MUI_DESCRIPTION_TEXT ${DataSection} "Provides all content and media."
+      !insertmacro MUI_DESCRIPTION_TEXT ${BinarySection} "Naikari engine and data."
      !insertmacro MUI_DESCRIPTION_TEXT ${Portable} "Perform a portable install. No uninstaller or registry entries are created and you can run off a pen drive"
    !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
@@ -188,12 +175,8 @@ FunctionEnd
 Section "Uninstall"
 
    Delete "$INSTDIR\Uninstall.exe"
-   Delete "$INSTDIR\naikari-${VERSION}${VERSION_SUFFIX}-win${ARCH}.exe"
-   Delete "$INSTDIR\logo.ico"
-   Delete "$INSTDIR\ndata.zip"
-   Delete "$INSTDIR\*.dll"
-   Delete "$INSTDIR\stderr.txt"
-   Delete "$INSTDIR\stdout.txt"
+   Delete "$INSTDIR\*"
+   RMDir /r "$INSTDIR\dat"
    RMDir "$INSTDIR"
 
    !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
