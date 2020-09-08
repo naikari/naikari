@@ -121,6 +121,45 @@ jobs:
         name: linux-x86-64
         path: ${{ github.workspace }}/dist/release/tar/linux-x86-64.tar.gz
 
+  "Linux-x86_64-SteamRuntime":
+    runs-on: ubuntu-latest
+
+    container:
+      image: dosowisko/steam-runtime-amd64
+      volumes:
+        - ${{ github.workspace }}:${{ github.workspace }}
+        
+    steps:
+    - name: Clone Naikari Repository 
+      run: |
+        git clone https://github.com/naikari/naikari.git ${{ github.workspace }}
+
+    - name: Install Additional Build Dependencies
+      run: |
+        sudo apt-get -y install autoconf-archive intltool itstool
+
+    - name: Build Naikari for Steam on Linux64
+      run: |
+        cd ${{ github.workspace }}
+        ./autogen.sh
+        ./configure --disable-debug --without-libzip --build=x86_64-linux-gnu
+        make -j$(nproc --all)
+      env:
+        CFLAGS: "-O3 -std=gnu11"
+
+    - name: Collect Steam Linux64 Release
+      run: |
+        mkdir -p ${{ github.workspace }}/dist/release/
+
+        mv ${{ github.workspace }}/src/naikari ${{ github.workspace }}/dist/release/naikari.x64
+        chmod +x ${{ github.workspace }}/dist/release/naikari.x64
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: steam-x86-64
+        path: ${{ github.workspace }}/dist/release/naikari.x64
+
   "macOS":
     runs-on: macos-latest
 
@@ -239,7 +278,76 @@ jobs:
 
   "Generate-Soundtrack":
       runs-on: ubuntu-latest
-      needs: [Linux-x86_64, Windows-MinGW64, macOS, Generate-Source]
+
+      steps:
+      - name: Update APT Cache
+        run: |
+          sudo apt-get update
+
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get install \
+            build-essential \
+            automake \
+            autoconf-archive \
+            libsdl2-dev \
+            libsdl2-mixer-dev \
+            libsdl2-image-dev \
+            libgl1-mesa-dev \
+            libxml2-dev \
+            libfontconfig1-dev \
+            libfreetype6-dev \
+            libpng-dev \
+            libopenal-dev \
+            libvorbis-dev \
+            binutils-dev \
+            libzip-dev \
+            libiberty-dev \
+            gettext \
+            ffmpeg \
+            autopoint \
+            intltool \
+            itstool
+      
+      - name: Generate Soundtrack
+        run: |
+          pip3 install mutagen
+
+      - name: Checkout Naikari Repository 
+        uses: actions/checkout@v2
+
+      - name: Generate Soundtrack
+        run: |
+          ./autogen.sh
+          ./configure
+          make VERSION
+          make soundtrack
+
+      - name: Prepare soundtrack files
+        run: |
+          make VERSION
+          VERSION="$(cat VERSION)"
+
+          mkdir -p dist/{release,soundtrack,temp}
+
+          unzip naikari-$VERSION-soundtrack.zip -d dist/temp
+          cp extras/steam/naikari_soundtrack_cover.png dist/temp
+          cp extras/steam/naikari_soundtrack_cover.png dist/soundtrack
+          ./utils/convertToMP3.sh -i dist/temp -f ogg -o dist/soundtrack
+          cd dist/temp
+          zip ../release/soundtrack.zip *.ogg naikari_soundtrack_cover.png
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: soundtrack
+          path: |
+            ${{ github.workspace }}/dist/release/*
+            ${{ github.workspace }}/dist/soundtrack/*
+
+  "Upload-Release":
+      runs-on: ubuntu-latest
+      needs: [Linux-x86_64, Windows-MinGW64, macOS, Generate-Source, Generate-Soundtrack]
       if: ${{ github.repository == 'naikari/naikari' }}
 
       steps:
@@ -271,20 +379,14 @@ jobs:
             intltool \
             itstool
 
-      - name: Install Python Dependencies
-        run: |
-          pip3 install mutagen
-
       - name: Checkout Naikari Repository 
         uses: actions/checkout@v2
 
-      - name: Generate ndata
+      - name: Get VERSION
         run: |
           ./autogen.sh
           ./configure
           make VERSION
-          make "soundtrack"
-          mv *.zip soundtrack.zip
 
       - name: Create Release Staging Area
         run: |
@@ -309,97 +411,7 @@ jobs:
           mv dist/macos/naikari-macos.zip dist/release/naikari-$VERSION-macos.zip
           mv dist/win64/naikari-win64.exe dist/release/naikari-$VERSION-win64.exe
           mv dist/source/source.tar.gz dist/release/naikari-$VERSION-source.tar.gz
-
-      - name: Upload Release Assets
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
-          files: |
-            ${{ github.workspace }}/dist/release/*
-
-  "Upload-Release":
-      runs-on: ubuntu-latest
-      needs: [Linux-x86_64, Windows-MinGW64, macOS]
-      if: ${{ github.repository == 'naikari/naikari' }}
-
-      steps:
-      - name: Update APT Cache
-        run: |
-          sudo apt-get update
-          
-      - name: Install Build Dependencies
-        run: |
-          sudo apt-get install \
-            build-essential \
-            automake \
-            autoconf-archive \
-            libsdl2-dev \
-            libsdl2-mixer-dev \
-            libsdl2-image-dev \
-            libgl1-mesa-dev \
-            libxml2-dev \
-            libfontconfig1-dev \
-            libfreetype6-dev \
-            libpng-dev \
-            libopenal-dev \
-            libvorbis-dev \
-            binutils-dev \
-            libzip-dev \
-            libiberty-dev \
-            gettext \
-            autopoint \
-            intltool \
-            itstool
-
-      - name: Checkout Naikari Repository 
-        uses: actions/checkout@v2
-        
-      - name: Get VERSION
-        run: |
-          ./autogen.sh
-          ./configure
-          make VERSION
-
-      - name: Create Release Staging Area
-        run: |
-          mkdir -p ${{ github.workspace }}/dist/steam/ndata
-
-      - name: Make data
-        run: |
-          ./autogen.sh
-          ./configure
-          make pot
-          cp -r dat/ dist/steam/ndata
-          cp AUTHORS dist/steam/ndata
-          cp VERSION dist/steam/ndata
-
-      - name: Download Build Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          path: ${{ github.workspace }}/dist/steam
-          
-      - name: Collect files for distribution
-        run: |
-          mkdir -p dist
-
-          VERSION="$(cat VERSION)"
-           # Get version, negative minors mean betas
-          if [[ -n $(echo "${VERSION}" | grep "-") ]]; then
-              BASEVER=$(echo "${VERSION}" | sed 's/\.-.*//')
-              BETAVER=$(echo "${VERSION}" | sed 's/.*-//')
-              VERSION="${BASEVER}.0-beta.${BETAVER}"
-          fi
-
-          mv temp/linux-x86-64/naikari-linux-x86-64 dist/naikari-$VERSION-linux-x86-64
-          mv temp/linux-x86-32/naikari-linux-x86-32 dist/naikari-$VERSION-linux-x86-32
-          mv temp/macos/naikari-macos.zip dist/naikari-$VERSION-macos.zip
-          mv temp/win64/naikari-win64.exe dist/naikari-$VERSION-win64.exe
-          mv temp/win64/naikari-win64.zip dist/naikari-$VERSION-win64.zip
-          mv temp/win32/naikari-win32.exe dist/naikari-$VERSION-win32.exe
-          mv temp/win32/naikari-win32.zip dist/naikari-$VERSION-win32.zip
-          mv temp/source/source.tar.bz2 dist/naikari-$VERSION-source.tar.bz2
-          mv temp/ndata/ndata.zip dist/ndata-$VERSION.zip
+          mv dist/soundtrack/release/soundtrack.zip dist/release/naikari-$VERSION-soundtrack.zip
 
       - name: Upload Release Assets
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -407,4 +419,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            ${{ github.workspace }}/dist/*
+            ${{ github.workspace }}/dist/release/*
