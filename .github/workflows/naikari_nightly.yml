@@ -280,6 +280,7 @@ jobs:
         run: |
           ./autogen.sh
           ./configure
+          echo "Get version..."
           make VERSION
 
       - name: Create Release Staging Area
@@ -302,11 +303,16 @@ jobs:
               BETAVER=$(echo "${VERSION}" | sed 's/.*-//')
               VERSION="${BASEVER}.0-beta.${BETAVER}"
           fi
+          echo "Version number is $VERSION."
 
           mv dist/linux-x86-64/linux-x86-64.tar.gz dist/release/naikari-$VERSION-$BUILD_DATE-linux-x86-64.tar.gz
+          echo "Moved Linux build"
           mv dist/macos/naikari-macos.zip dist/release/naikari-$VERSION-$BUILD_DATE-macos.zip
+          echo "Moved MacOS build"
           mv dist/win64/naikari-win64.exe dist/release/naikari-$VERSION-$BUILD_DATE-win64.exe
+          echo "Moved Windows build"
           mv dist/source/source.tar.gz dist/release/naikari-$VERSION-$BUILD_DATE-source.tar.gz
+          echo "Moved source"
 
       - name: Upload Release Assets
         uses: "marvinpinto/action-automatic-releases@latest"
