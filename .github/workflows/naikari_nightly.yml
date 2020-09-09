@@ -305,6 +305,8 @@ jobs:
 
           mv dist/linux-x86-64/linux-x86-64.tar.gz dist/release/naikari-$VERSION-$BUILD_DATE-linux-x86-64.tar.gz
           mv dist/macos/naikari-macos.zip dist/release/naikari-$VERSION-$BUILD_DATE-macos.zip
+          ls dist
+          ls dist/win64
           mv dist/win64/naikari-win64.exe dist/release/naikari-$VERSION-$BUILD_DATE-win64.exe
           mv dist/source/source.tar.gz dist/release/naikari-$VERSION-$BUILD_DATE-source.tar.gz
 
