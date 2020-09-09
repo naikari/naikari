@@ -127,7 +127,7 @@ if [[ $NIGHTLY == true ]]; then
     
 
 # Move installer to distribution directory
-mv extras/windows/installer/naev-$VERSION-$BUILD_DATE-win$ARCH.exe dist/release/naev-win$ARCH.exe
+mv extras/windows/installer/naikari-$VERSION-$BUILD_DATE-win$ARCH.exe dist/release/naikari-win$ARCH.exe
 
 elif [[ $NIGHTLY == false ]]; then
     if [[ $BETA == true ]]; then 
@@ -158,3 +158,4 @@ echo "Successfully packaged zipped folder for win$ARCH"
 
 echo "Cleaning up staging area"
 rm -rf extras/windows/installer/bin
+
