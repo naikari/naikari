@@ -28,7 +28,7 @@ BuildRequires: libjpeg-devel
 BuildRequires: libSDL_image-devel
 
 %description
-NAEV is a 2D space trading and combat game, taking inspiration from the
+Naikari is a 2D space trading and combat game, taking inspiration from the
 Escape Velocity series.
 
 You pilot a space ship from a top-down perspective, and are more or less
@@ -46,7 +46,7 @@ Requires: naikari
 BuildArch: noarch
 
 %description -n %{dataname}
-NAEV is a 2D space trading and combat game, taking inspiration from the
+Naikari is a 2D space trading and combat game, taking inspiration from the
 Escape Velocity series.
 
 This is the data file.

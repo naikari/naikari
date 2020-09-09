@@ -18,13 +18,13 @@ BEGIN
 	BEGIN
 		BLOCK "040004b0"
 		BEGIN
-			VALUE "Comments", "http://naev.org/"
-			VALUE "CompanyName", "Naev Team"
-			VALUE "FileDescription", "Naev: Sea of Darkness"
-			VALUE "InternalName", "naev"
+			VALUE "Comments", "https://naikari.github.io"
+			VALUE "CompanyName", "Naikari Team"
+			VALUE "FileDescription", "Naikari: Sea of Darkness"
+			VALUE "InternalName", "naikari"
 			VALUE "LegalCopyright", "Copyright (C) 2006-2017"
-			VALUE "OriginalFilename", "naev.exe"
-			VALUE "ProductName", "Naev: Sea of Darkness"
+			VALUE "OriginalFilename", "naikari.exe"
+			VALUE "ProductName", "Naikari: Sea of Darkness"
 			VALUE "ProductVersion", "0.7.0"
 		END
 	END
