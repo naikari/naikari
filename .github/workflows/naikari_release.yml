@@ -121,45 +121,6 @@ jobs:
         name: linux-x86-64
         path: ${{ github.workspace }}/dist/release/tar/linux-x86-64.tar.gz
 
-  "Linux-x86_64-SteamRuntime":
-    runs-on: ubuntu-latest
-
-    container:
-      image: dosowisko/steam-runtime-amd64
-      volumes:
-        - ${{ github.workspace }}:${{ github.workspace }}
-        
-    steps:
-    - name: Clone Naikari Repository 
-      run: |
-        git clone https://github.com/naikari/naikari.git ${{ github.workspace }}
-
-    - name: Install Additional Build Dependencies
-      run: |
-        sudo apt-get -y install autoconf-archive intltool itstool
-
-    - name: Build Naikari for Steam on Linux64
-      run: |
-        cd ${{ github.workspace }}
-        ./autogen.sh
-        ./configure --disable-debug --without-libzip --build=x86_64-linux-gnu
-        make -j$(nproc --all)
-      env:
-        CFLAGS: "-O3 -std=gnu11"
-
-    - name: Collect Steam Linux64 Release
-      run: |
-        mkdir -p ${{ github.workspace }}/dist/release/
-
-        mv ${{ github.workspace }}/src/naikari ${{ github.workspace }}/dist/release/naikari.x64
-        chmod +x ${{ github.workspace }}/dist/release/naikari.x64
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: steam-x86-64
-        path: ${{ github.workspace }}/dist/release/naikari.x64
-
   "macOS":
     runs-on: macos-latest
 
@@ -331,11 +292,9 @@ jobs:
           mkdir -p dist/{release,soundtrack,temp}
 
           unzip naikari-$VERSION-soundtrack.zip -d dist/temp
-          cp extras/steam/naikari_soundtrack_cover.png dist/temp
-          cp extras/steam/naikari_soundtrack_cover.png dist/soundtrack
           ./utils/convertToMP3.sh -i dist/temp -f ogg -o dist/soundtrack
           cd dist/temp
-          zip ../release/soundtrack.zip *.ogg naikari_soundtrack_cover.png
+          zip ../release/soundtrack.zip *.ogg
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
