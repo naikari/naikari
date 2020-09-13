@@ -171,10 +171,9 @@ int pilot_inRange( const Pilot *p, double x, double y )
  *
  *    @param p Pilot who is trying to check to see if other is in sensor range.
  *    @param target Target of p to check to see if is in sensor range.
- *    @param[out] dist2 Distance squared of the two pilots. Set to NULL if you're not interested.
  *    @return 1 if they are in range, 0 if they aren't and -1 if they are detected fuzzily.
  */
-int pilot_inRangePilot( const Pilot *p, const Pilot *target, double *dist2)
+int pilot_inRangePilot( const Pilot *p, const Pilot *target )
 {
    double d, sense;
 
@@ -186,7 +185,6 @@ int pilot_inRangePilot( const Pilot *p, const Pilot *target, double *dist2)
 
    /* Get distance. */
    d = vect_dist2( &p->solid->pos, &target->solid->pos );
-   if (dist2 != NULL) *dist2 = d;
 
    sense = sensor_curRange * p->ew_detect;
    if (d * target->ew_evasion < sense)
