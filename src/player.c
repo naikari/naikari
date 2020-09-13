@@ -1959,6 +1959,10 @@ void player_targetHostile (void)
       if (!pilot_validTarget( player.p, pilot_stack[i] ))
          continue;
 
+      /* Must be within "known" range. */
+      if (pilot_inRangePilot(pilot_stack[i], player.p) <= 0)
+         continue;
+
       /* Must be hostile. */
       if (pilot_isHostile(pilot_stack[i])) {
          td = vect_dist2(&pilot_stack[i]->solid->pos, &player.p->solid->pos);

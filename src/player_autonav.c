@@ -542,7 +542,7 @@ int player_autonavShouldResetSpeed (void)
    pstk = pilot_getAll( &n );
    for (i=0; i<n; i++) {
       if ( ( pstk[i]->id != PLAYER_ID ) && pilot_isHostile( pstk[i] )
-            && pilot_inRangePilot( player.p, pstk[i] )
+            && ( pilot_inRangePilot(player.p, pstk[i]) > 0 )
             && !pilot_isDisabled( pstk[i] ) ) {
          hostiles = 1;
          break;
