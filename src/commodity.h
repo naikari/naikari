@@ -18,7 +18,7 @@
 typedef int64_t credits_t;
 #define CREDITS_MAX        INT64_MAX
 #define CREDITS_MIN        INT64_MIN
-#define CREDITS_PRI        PRIu64
+#define CREDITS_PRI        PRIi64
 
 /**
  * @struct CommodityModifier
