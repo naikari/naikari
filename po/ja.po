@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/naev/naev/issues/\n"
-"POT-Creation-Date: 2020-09-03 12:45-0400\n"
+"POT-Creation-Date: 2020-09-13 22:07-0400\n"
 "PO-Revision-Date: 2017-07-13 08:52+0900\n"
 "Last-Translator:  <bobbens@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2639,112 +2639,6 @@ msgstr ""
 #. Spawn Dvaered ships
 #.
 #. <?xml version='1.0' encoding='utf8'?>
-#. <event name="Naev Needs You!">
-#. <trigger>land</trigger>
-#. <chance>8</chance>
-#. <flags>
-#. <unique />
-#. </flags>
-#. </event>
-#. --
-#.
-#.
-#. EVENT TITLE: Naev Needs You!
-#. DESCRIPTION:
-#. An event that pops up to encourage new players to contribute to the project.
-#.
-#. Mission Stages:
-#. [1]   The player gets a glimpse of the creators of the universe at work.
-#.
-#.
-#.
-#. localization stuff, translators would work here
-#. This section stores the strings (text) for the event.
-#. Stage one: something goes wrong in fabric of reality.
-#: ../dat/events/naev_needs_YOU.lua:29
-msgid "Naev received SIGSEGV (address not mapped to object)!"
-msgstr ""
-
-#: ../dat/events/naev_needs_YOU.lua:30
-msgid ""
-"As you step out of your ship, the sunlight suddenly flickers. The local star "
-"in the sky turns blue, then a deep purple, and then goes dark. The whole "
-"planet plunges into darkness.\n"
-"    Then a voice speaks, louder than an earthquake. It seems to echo inside "
-"your bones and from the very center of the galaxy. \"Oh crap...\" it says.\n"
-"    Another voice laughs musically, as if world itself were singing. "
-"\"bobbens, did you just destroy the universe, again?\"\n"
-"    \"Mmmm, hold on,\" the first voice rumbles. \"...SIGSEGV... libc start "
-"main+0xe5... ah ha!  There's the problem.\"  You feel something fundamental "
-"in the fabric of reality change. The sensation is like sneezing and "
-"hiccuping at the same time. \"There, that should fix it.\"\n"
-"    A window opens in the darkness, infinitely far away and infinitely "
-"large. A face peeps down at you from the height of eternity.\n"
-"    \"Everything all right in there?\""
-msgstr ""
-
-#. yes/no choice
-#. If yes, the voice of the creator speaks to you:
-#. If no, the voice of the creator speaks to you:
-#: ../dat/events/naev_needs_YOU.lua:38 ../dat/events/naev_needs_YOU.lua:46
-msgid "The voice of the creator"
-msgstr ""
-
-#: ../dat/events/naev_needs_YOU.lua:39
-msgid ""
-"\"Good. Sorry for the inconvenience. Please don't worry, I'll have reality "
-"reloaded again in just a sec.\"\n"
-"    The creator turns to go, then pauses.\n"
-"    \"By the way, we're working hard on improving life, the universe, and "
-"all that, but we're a bit short handed. If you like this existence but think "
-"the details could be improved, the universe creation team could use your "
-"help. We'd be especially happy to see you if you have any special skill in "
-"drawing planets, designing ships, scripting the underlying laws of nature, "
-"or composing the music of the spheres. For information on how to contribute, "
-"just point your web-of-reality browser to naev.org.\"\n"
-"    The watchmaker lifts his eyes up beyond your frame of reference and "
-"smiles.\n"
-"    \"OK then. Pushed. And we're back in 3... 2... 1...\""
-msgstr ""
-
-#: ../dat/events/naev_needs_YOU.lua:47
-msgid ""
-"\"Oh sorry about that. We're working hard on improving life, the universe, "
-"and all that, but the team is a bit short handed. Don't worry, I'll have "
-"reality reloaded again in just a sec.\"\n"
-"    The creator turns to go, then pauses.\n"
-"    \"I tell you what: the universe creation team could really use your "
-"help. If you have any special skill in drawing planets, designing ships, "
-"scripting the underlying laws of nature, or composing the music of the "
-"spheres we'd be especially happy to see you. For information on how to "
-"contribute, just point your web-of-reality browser to naev.org.\"\n"
-"    The watchmaker lifts his eyes up beyond your frame of reference and "
-"smiles.\n"
-"    \"OK then. Pushed. And we're back in 3... 2... 1...\""
-msgstr ""
-
-#. Event should only occur if player has played a bit.
-#. Create an eerie atmosphere by cutting off the background music and substituting something spooky
-#. disabled until difficulties with the music api are sorted out
-#. The big programmer in the sky looks in to ask the player a question
-#. if the answer is 'yes'
-#. Mission ends with a little comment after blasting off.
-#. hook.takeoff( "enter_system")
-#. if the answer is 'no', not much different from 'yes'
-#. Mission ends with a little comment after blasting off.
-#. hook.takeoff( "enter_system")
-#. everything returns to normal
-#.
-#. -- A gracenote.  Not sure the player will make the connection of the message with the event.
-#. function enter_system()
-#.
-#. player.msg( "Well, that was weird")
-#. evt.finish( true)
-#.
-#. end
-#.
-#.
-#. <?xml version='1.0' encoding='utf8'?>
 #. <event name="Animal trouble">
 #. <trigger>enter</trigger>
 #. <chance>20</chance>
@@ -5263,12 +5157,6 @@ msgid ""
 "If it had hit the wrong power line...\""
 msgstr ""
 
-#: ../dat/events/neutral/npc.lua:257
-msgid ""
-"\"What do you mean, the world ended and then the creator of the universe "
-"came and fixed it? What kind of illegal substance are you on?\""
-msgstr ""
-
 #. Logic to decide what to spawn, if anything.
 #. TODO: Do not spawn any NPCs on restricted assets.
 #. Chance of a jump point message showing up. As this gradually goes
@@ -6908,7 +6796,7 @@ msgstr "出発"
 #. Kills of the faction's allies
 #. Missions done for the faction's enemies
 #. Missions done for the faction's allies
-#: ../dat/factions/standing/skel.lua:27 ../src/info.c:696
+#: ../dat/factions/standing/skel.lua:27 ../src/info.c:698
 msgid "Legend"
 msgstr ""
 
@@ -7100,8 +6988,8 @@ msgstr ""
 #: ../src/dev_sysedit.c:1866 ../src/dev_sysedit.c:1899
 #: ../src/dev_sysedit.c:1905 ../src/dev_uniedit.c:973 ../src/dev_uniedit.c:1148
 #: ../src/dev_uniedit.c:1372 ../src/dev_uniedit.c:1437 ../src/equipment.c:133
-#: ../src/equipment.c:1640 ../src/info.c:331 ../src/info.c:756
-#: ../src/info.c:1059 ../src/input.c:555 ../src/land_outfits.c:382
+#: ../src/equipment.c:1640 ../src/info.c:333 ../src/info.c:758
+#: ../src/info.c:1061 ../src/input.c:555 ../src/land_outfits.c:382
 #: ../src/land_outfits.c:397 ../src/land_outfits.c:430
 #: ../src/land_outfits.c:608 ../src/land_outfits.c:753
 #: ../src/land_outfits.c:842 ../src/land_shipyard.c:155
@@ -8475,7 +8363,8 @@ msgstr ""
 #: ../dat/missions/dvaered/assault_on_unicorn.lua:31
 #: ../dat/missions/shark/sh07_pirates.lua:59
 #: ../dat/missions/sirius/achack/achack02.lua:46
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:41
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:42
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:37
 msgid "Mission accomplished"
 msgstr ""
 
@@ -9257,7 +9146,6 @@ msgstr ""
 msgid "Lure out the FLF"
 msgstr ""
 
-#. Add mission
 #: ../dat/missions/dvaered/dv_antiflf02.lua:91
 #: ../dat/missions/dvaered/dv_antiflf03.lua:98
 #: ../dat/missions/dvaered/dv_diversion.lua:76
@@ -9276,8 +9164,8 @@ msgstr ""
 #: ../dat/missions/pirate/patrol.lua:68
 #: ../dat/missions/proteron/dissbounty_dead.lua:90
 #: ../dat/missions/soromid/comingout/srm_comingout6.lua:70
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:101
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:102
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:105
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:106
 #, lua-format
 msgid "Fly to the %s system"
 msgstr ""
@@ -9598,7 +9486,7 @@ msgstr ""
 #: ../dat/missions/dvaered/dv_antiflf03.lua:101
 #: ../dat/missions/empire/collective/ec06.lua:42
 #: ../dat/missions/empire/shipping/es01.lua:39
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:104
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:108
 #: ../dat/missions/zalek/sciencegonewrong/01_sciwrong.lua:66
 #, lua-format
 msgid "Return to %s in the %s system"
@@ -10730,7 +10618,8 @@ msgstr ""
 #: ../dat/missions/empire/collective/ec05.lua:60
 #: ../dat/missions/empire/collective/ec06.lua:44
 #: ../dat/missions/neutral/nebu_satellite.lua:42
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:37
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:38
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:36
 msgid "Bar"
 msgstr ""
 
@@ -11381,6 +11270,7 @@ msgstr ""
 #: ../dat/missions/empire/longdistanceshipping/es_longdistancecargo.lua:46
 #: ../dat/missions/neutral/cargo_rush.lua:81
 #: ../dat/missions/pirate/pir_cargo.lua:39
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:87
 #, lua-format
 msgid ""
 "Fly to %s in the %s system before %s\n"
@@ -15878,7 +15768,7 @@ msgid "Room for the box"
 msgstr ""
 
 #: ../dat/missions/neutral/diy-nerds.lua:122
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:38
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:39
 msgid "Departure"
 msgstr ""
 
@@ -16900,6 +16790,7 @@ msgstr ""
 #: ../dat/missions/neutral/foodbiz/deliverlove.lua:52
 #: ../dat/missions/soromid/comingout/srm_comingout4.lua:81
 #: ../dat/missions/soromid/comingout/srm_comingout4.lua:82
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:52
 #, lua-format
 msgid "Fly to %s in the %s system."
 msgstr ""
@@ -27609,7 +27500,7 @@ msgid "All of the traders have been killed. You are a terrible escort."
 msgstr ""
 
 #: ../dat/missions/trader/trader_escort.lua:72
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:68
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:69
 msgid "You abandoned your mission!"
 msgstr ""
 
@@ -27982,6 +27873,7 @@ msgstr ""
 msgid "Nebula Research"
 msgstr ""
 
+#. Checks to see if the player has a za'lek ship.
 #.
 #. <mission name="Novice Nebula Research">
 #. <flags>
@@ -28010,7 +27902,7 @@ msgstr ""
 #.
 #.
 #.
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:33
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:34
 #, lua-format
 msgid ""
 "\"Hello there! You are a pilot, right? For my project I require a ship that "
@@ -28022,7 +27914,7 @@ msgid ""
 "mentioned in the acknowledgment section of my next paper!\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:35
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:36
 msgid ""
 "\"Hold up! Look, the problem is that my grant was not permitted to the "
 "extent that I asked for. Those simpletons cut my funds because they just "
@@ -28033,7 +27925,7 @@ msgid ""
 "use some work. So why don't you just help me out here?\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:37
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:38
 #, lua-format
 msgid ""
 "As you enter your ship you notice dozens of cables of various colors "
@@ -28051,7 +27943,7 @@ msgid ""
 "idea."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:40
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:41
 #, lua-format
 msgid ""
 "The student enters your cockpit as you arrive in the %s system. \"Greetings, "
@@ -28065,7 +27957,7 @@ msgid ""
 "here.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:42
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:43
 msgid ""
 "Suddenly you lose control of your ship. Apparently most core systems were "
 "shut down. Something drains your ship's energy and there are black outs in "
@@ -28075,20 +27967,33 @@ msgid ""
 "was a mistake from the very first moment."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:44
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:45
 #, lua-format
 msgid ""
 "You breathe a sigh of relief. It seems you're still alive. You try not to "
 "glare at Robert Hofer, but apparently aren't particularly successful "
 "considering his response. \"Sorry for causing trouble. I'm not quite "
 "familiar with the electronics of this ship type. You really should fly a "
-"Za'lek ship instead. Those are so much better!\n"
+"Za'lek ship instead. Those are so much better!\"\n"
 "    \"I should investigate the damage it caused to the armor once we land. "
 "But first we must go to the %s system. Don't worry, the blackout will not "
 "occur again!\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:46
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:47
+#, lua-format
+msgid ""
+"You breathe a sigh of relief. It seems you're still alive. You try not to "
+"glare at Robert Hofer, but apparently aren't particularly successful "
+"considering his response. \"Sorry for causing trouble. I seem to have "
+"underestimated the polarity feedback loop granularity. If it weren't for "
+"your Za'lek ship the problem would have been much worse!\"\n"
+"    \"I should investigate the damage it caused to the armor once we land. "
+"But first we must go to the %s system. Don't worry, the blackout will not "
+"occur again!\""
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:49
 #, lua-format
 msgid ""
 "The student has already removed all the cables and sensors inside your ship "
@@ -28105,33 +28010,33 @@ msgstr ""
 
 #. mission variables
 #. Spaceport bar stuff
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:61
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:64
 msgid "A young scientist"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:62
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:65
 msgid ""
 "You see a young scientist talking with some pilots, apparently without "
 "success."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:66
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:69
 msgid "Science Needs You"
 msgstr ""
 
 #. Check for cargo space
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:70
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:73
 msgid "\"Sorry, I need a ship with more cargo space than you have.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:79
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:82
 #, lua-format
 msgid ""
 "\"Great! I'll start loading the sensors into your ship right away. We should "
 "be ready to take off soon.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:84
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:87
 #, lua-format
 msgid ""
 "\"So it is not a problem at all? I'm still a student and spent all funds I "
@@ -28142,38 +28047,40 @@ msgstr ""
 
 #. Add cargo
 #. Set up mission information
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:92
+#. Add mission
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:95
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:103
 msgid "Novice Nebula Research"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:94
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:97
 #, lua-format
 msgid "%s and the gratitude of a student"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:95
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:98
 msgid ""
 "You have been asked by a Za'lek student to fly into the Nebula for some kind "
 "of research."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:122
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:126
 msgid "You helped a Za'lek student to collect sensor data in the Nebula."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:128
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:132
 msgid "A Mess On Your Ship"
 msgstr ""
 
 #. Cancel autonav.
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:184
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:192
 #, lua-format
 msgid ""
 "You arrive in the %s system and Robert Hofer tells you that he will let you "
 "know when his scan is complete. This had better not cause another blackout..."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:191
+#: ../dat/missions/zalek/neburesearch/neburesearch_00.lua:199
 #, lua-format
 msgid "\"OK, my measurements are complete! Let's go back to %s.\""
 msgstr ""
@@ -28205,22 +28112,23 @@ msgstr ""
 #.
 #.
 #.
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:32
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:33
 msgid "You see a scientist who is apparently looking for someone."
 msgstr ""
 
 #. Mission info stuff
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:33
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:74
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:34
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:75
 msgid "Advanced Nebula Research"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:34
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:35
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:34
 #, lua-format
 msgid "%s"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:35
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:36
 #, lua-format
 msgid ""
 "Escort the transport ship to the %s in the %s system. Make sure to stay "
@@ -28228,16 +28136,16 @@ msgid ""
 "safely."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:39
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:40
 msgid "Trouble inbound"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:40
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:41
 #, fuzzy
 msgid "Scans complete"
 msgstr "生成完了！"
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:43
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:44
 #, lua-format
 msgid ""
 "\"Captain %s if I'm not mistaken? Well met. I heared you recently helped one "
@@ -28249,7 +28157,7 @@ msgid ""
 "willing to assist us intead?\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:45
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:46
 #, lua-format
 msgid ""
 "\"While the data recorded by Robert is of good quality he seems to have "
@@ -28265,14 +28173,14 @@ msgid ""
 "expedition.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:47
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:48
 #, lua-format
 msgid ""
 "\"Please follow us, %s. Make sure to jump to the next system after we jumped "
 "out. We'll have to land on some planets on our way to refuel.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:48
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:49
 msgid ""
 "Suddenly your comm system turns on, receiving a conversation between the "
 "ship you are escorting and a Dvaered patrol ship.\n"
@@ -28286,7 +28194,7 @@ msgid ""
 "sensors. Your intentions are obvious. Prepare for your ship being boarded.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:53
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:54
 msgid ""
 "Dr. Mensing  pauses, apparently choosing her words with care.\n"
 "    \"Fine, do whatever you want. Our reasoning is obviously beyond the "
@@ -28295,7 +28203,7 @@ msgid ""
 "heading straight towards the transporter."
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:55
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:56
 #, lua-format
 msgid ""
 "\"The situation would have escalated anyway.\" argues Dr. Mensing, this time "
@@ -28306,7 +28214,7 @@ msgid ""
 "    I'm counting on you, %s. Please help us.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:58
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:59
 #, lua-format
 msgid ""
 "After leaving the ship you meet up with Dr. Mensing who hands you over a "
@@ -28316,11 +28224,11 @@ msgid ""
 "understand the cause for the Sol nebula's volatility.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:61
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:62
 msgid "A short break"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:62
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:63
 #, lua-format
 msgid ""
 "Once you are done with the refuel operations, you meet Dr. Mensing on her "
@@ -28334,68 +28242,530 @@ msgid ""
 "\"Let's head back to %s. Our own measurements are completed by now.\""
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:66
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:67
 msgid "The transporter was destroyed!"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:67
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:68
 msgid ""
 "The transporter was destroyed and all scientists died! Even worse, you "
 "failed science!"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:69
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:70
 msgid ""
 "You have landed, abandoning your mission to escort the transport ship. You "
 "failed science miserably!"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:70
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:71
 msgid "We're under attack!"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:75
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:76
 #, fuzzy, lua-format
 msgid "Escort the transport ship to %s in the %s system."
 msgstr "%dの恒星系を読み込んだ"
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:76
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:77
 #, fuzzy, lua-format
 msgid "Land on %s in the %s system."
 msgstr "%dの恒星系を読み込んだ"
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:77
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:78
 #, fuzzy, lua-format
 msgid "Fly back to %s in the %s system."
 msgstr "%dの恒星系を読み込んだ"
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:79
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:80
 msgid "You helped Dr. Mensing to collect sensor data of the PSO nebula."
 msgstr ""
 
 #. 800k
 #. Spaceport bar stuff
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:90
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:91
 #: ../dat/missions/zalek/sciencegonewrong/00_sciwrong.lua:98
 msgid "A scientist"
 msgstr ""
 
 #. Set up mission information
 #. This variable holds the system the player is supposed to jump to NEXT.
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:153
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:154
 msgid ""
 "MISSION FAILED! You jumped into the wrong system. You failed science "
 "miserably!"
 msgstr ""
 
-#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:173
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:174
 msgid ""
 "MISSION FAILED! You jumped before the transport ship you were escorting."
 msgstr ""
 
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:241
+#, lua-format
+msgid "%s has jumped to %s."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:249
+#, lua-format
+msgid "%s has landed on %s."
+msgstr ""
+
 #. Shuts him up for at least 5s.
 #. Hack to make ambushes more reliable.
+#: ../dat/missions/zalek/neburesearch/neburesearch_01.lua:293
+msgid "Research Shuttle"
+msgstr ""
+
 #. Handle the destruction of the transporter. Abort the mission.
+#.
+#. <?xml version='1.0' encoding='utf8'?>
+#. <mission name="Emergency of Immediate Inspiration">
+#. <flags>
+#. <unique />
+#. </flags>
+#. <avail>
+#. <priority>4</priority>
+#. <done>Advanced Nebula Research</done>
+#. <chance>30</chance>
+#. <location>Bar</location>
+#. <faction>Empire</faction>
+#. <cond>system.get("Gamma Polaris"):jumpDist() &lt; 3 and planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"</cond>
+#. </avail>
+#. </mission>
+#. --
+#.
+#.
+#. Mission: Emergency of Immediate Inspiration
+#.
+#. Description: Take Dr. Mensing to Jorla as fast as possible!
+#.
+#. Difficulty: Easy
+#.
+#. --
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:32
+msgid "It appears she wants to talk with you."
+msgstr ""
+
+#. Mission info stuff
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:33
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:51
+msgid "Emergency of Immediate Inspiration"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:35
+#, fuzzy, lua-format
+msgid "Take Dr. Mensing to %s in the %s system as fast as possible!"
+msgstr "%dの恒星系を読み込んだ"
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:38
+#, lua-format
+msgid ""
+"\"Well met, %s! In fact, it's a lucky coincidence that we meet. You see, I'm "
+"in dire need of your service. I'm here on a... conference of sorts, not a "
+"real one. We are obligated to present the newest results of our research to "
+"scientists of the Empire once per period - even though these simpletons lack "
+"the skills to understand our works! It's just a pointless ritual anyway. But "
+"I just got an ingenious idea on how to prevent the volatile Sol nebula from "
+"disrupting ship shields! I will spare you with the details - to ensure my "
+"idea is not going to be stolen, nothing personal. You can never be sure who "
+"is listening.\"\n"
+"    \"Anyway, you have to take me back to my lab on %s in the %s system "
+"immediately! I'd also pay %s if necessary.\""
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:40
+#, lua-format
+msgid ""
+"\"Splendid! I'd like to start with my work as soon as possible, so please "
+"hurry! Off to %s we go!\"\n"
+"    With that being said she drags you out of the bar. When realizing that "
+"she actually does not know on which landing pad your ship is parked she lets "
+"you loose and orders you to lead the way."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:42
+#, lua-format
+msgid ""
+"\"Finally! I can't await getting started. Before I forget -\" She hands you "
+"over a credit chip worth %s.\n"
+"    %s"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:44
+#, lua-format
+msgid ""
+"\"That took long enough! I can't await getting started. I doubt you deserve "
+"full payment. I'll rather give you a reduced payment of %s for educational "
+"reasons.\" She hands you over a credit chip.\n"
+"    %s"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:46
+msgid ""
+"\"There's actually another thing I've almost forgotten. I also have to "
+"attend another conference very soon on behalf of professor Voges who "
+"obviously is very busy with some project he would not tell me about. But I "
+"don't want to go there - my research is far too important! So could you "
+"instead bring Robert there? You remember the student you helped out "
+"recently? I'm sure he will do the presentation just fine! I'll tell him to "
+"meet you in the bar as soon as possible!\"\n"
+"    With that being said Dr. Mensing leaves you immediately without waiting "
+"for your answer. It appears you should head to the bar to meet up with the "
+"student."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:54
+msgid "You brought Dr. Mensing back from a Empire scientific conference."
+msgstr ""
+
+#. mission variables
+#. 400k
+#. Spaceport bar stuff
+#: ../dat/missions/zalek/neburesearch/neburesearch_02.lua:73
+msgid "Dr. Mensing"
+msgstr ""
+
+#. Set up mission information
+#.
+#. <?xml version='1.0' encoding='utf8'?>
+#. <mission name="The Substitute Speaker">
+#. <flags>
+#. <unique />
+#. </flags>
+#. <avail>
+#. <priority>4</priority>
+#. <done>Emergency of Immediate Inspiration</done>
+#. <chance>100</chance>
+#. <location>Bar</location>
+#. <planet>Jorla</planet>
+#. </avail>
+#. </mission>
+#. --
+#.
+#.
+#. Mission: The Substitute Speaker
+#.
+#. Description: The player has to impersonate a scientist and give a scientific talk.
+#.
+#. Difficulty: Easy
+#.
+#. --
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:31
+msgid "The student is already awaiting you."
+msgstr ""
+
+#. Mission info stuff
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:32
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:86
+msgid "The Substitute Speaker"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:33
+#, fuzzy, lua-format
+msgid "Fly to %s in the %s system before %s and give a scientific talk."
+msgstr "%dの恒星系を読み込んだ"
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:34
+msgid "a reputation as scientist (?)"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:35
+#, lua-format
+msgid "Arriving on %s"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:36
+msgid "On your way to the institute"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:37
+msgid "Tactical Retreat"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:38
+msgid "Scientific Talk"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:39
+msgid "Lab Coat Shop"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:40
+msgid "Time to visit the institute"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:41
+#, lua-format
+msgid ""
+"You join the student and explain him that Dr. Mensing actually hasn't told "
+"you what you are supposed to do.\n"
+"    \"Ah, right. There is a conference on %s in the %s system soon. Actually "
+"she is supposed to be the substitution for professor Voges. He is absent for "
+"weeks by now. No one knows what he is doing on Ruadan. Anyway, back to "
+"topic. You have to bring me there as ersatz-substitution for Dr. Mensing as "
+"she got seriously ill. But you already know that as you brought her here.\"\n"
+"    You tell him that she looked perfectly fine and said she wants to "
+"conduct her research instead of going to the conference.\n"
+"    \"WHAT?? It was MY idea, initially! She just wants to kick me out! I bet "
+"she thinks she could just pull it off entirely without me to be the only "
+"author! No way she could ever achieve that!\"\n"
+"    \"%s, you have to go to the conference instead! What do you mean you "
+"don't know anything about science? How about this, I just give you my "
+"presentation and while you're on the way I type the exact text I'd recite "
+"during my talk and send it to you. Just recite it on my behalf and it's "
+"going to be fine!\""
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:46
+msgid ""
+"\"No time for discussions, sorry. While we're talking Dr. Mensing is trying "
+"to get an advantage! I have no time to lose!\"\n"
+"    He stands up and searches his pockets for something. \"Here, the "
+"presentation,\" he says and hands you a small data chip. He further adds, "
+"\"And don't be too late!\" before rushing out of the bar in a hurry. Wait a "
+"minute, you haven't agreed to accept the mission!"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:48
+#, lua-format
+msgid ""
+"You arrived on %s on time. There is even some time left to prepare your "
+"talk. During the flight you threw a glance at the presentation on the data "
+"chip but you haven't managed to figure out the meaning of it. How is this "
+"supposed to work out??\n"
+"    Your thoughts are interrupted by an incoming message from the student. "
+"\"As promised I'm sending you the text you have to recite. I hope you "
+"appreciate the time I wasted on typing that down. I haven't considered that "
+"you'll have to answer questions after the talk, though. Do what every good "
+"scientist does and just talk about some random stuff that sounds like it may "
+"be related to the question. I'm sure you'll do it just fine. Good luck!\" "
+"This message is followed by what you assume is the text you have to recite."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:50
+msgid ""
+"This is too much! You better leave before doing anything embarrassing or "
+"humiliating."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:51
+msgid ""
+"You decide to learn your text rather than simply reciting the text. It "
+"turned out to be the right decision because you haven't ever seen most of "
+"those words."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:52
+msgid ""
+"You decide to explore the spaceport. There are a couple of shops here which "
+"may sell something useful for your mission."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:53
+#, lua-format
+msgid ""
+"You enter a shop that sells only lab coats. The assortment of lab coats is "
+"impressive: lab coats of all colors, different materials, and cuts. There "
+"are distinct sections for casual and working lab coats. Whatever the "
+"difference is, it is too subtle for you to grasp. You settle on a \"business"
+"\" lab coat because something formal is probably suitable for your talk. The "
+"price tag reads %s. %s"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:54
+#, lua-format
+msgid ""
+"While walking through a store selling electronics you notice a pair of "
+"glasses with integrated displays. You could use them to display the text you "
+"are supposed to recite. They are rather expensive though, %s. %s"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:55
+msgid "You return to your ship."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:56
+msgid "It's time to go to the institute."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:57
+msgid ""
+"You make your way to the institute where you are supposed to give the talk, "
+"following the signs. On arriving you ask around where you should head to for "
+"your talk. Apparently you were already awaited. You are lead to a rather "
+"small seminar room. Finally you are ready to give your talk and a few "
+"scientist take seat. Actually you expected more than 17 listener. Maybe this "
+"talk is not such a big deal as you expected. They wouldn't just send you to "
+"an important presentation, right?"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:58
+msgid ""
+"It is just now that you realize that you're the only person now wearing a "
+"lab coat. That's a nightmare! Well, maybe it would be for a scientist?"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:59
+msgid "Wearing a lab coat you blend in nicely with your audience."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:60
+#, lua-format
+msgid ""
+"%s\n"
+"    You start reciting the text you got from the student. You realize that "
+"you should have learned the text as some of the occurring terms are "
+"difficult to pronounce correctly."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:62
+#, lua-format
+msgid ""
+"%s\n"
+"    You start reciting the text you got from the student. It turned out "
+"learning your text was the right choice. Some of the occurring terms are "
+"difficult to pronounce correctly."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:64
+#, lua-format
+msgid ""
+"%s\n"
+"    You start reciting the text you got from the student. With the text "
+"being displayed on your glasses you don't have to look down on a paper to "
+"read the text, but some of the occurring terms are difficult to pronounce "
+"correctly."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:66
+msgid ""
+"Finally you are finished with your text and sigh in relief. After a brief "
+"applause someone raises his hand. Apparently he wants to ask a question. "
+"What should you do?"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:67
+msgid "You haven't understood the question, not even a single word."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:68
+msgid ""
+"You decide to run towards the closest door and leave the building as fast as "
+"possible. You continue running until you reach the spaceport and enter your "
+"ship. You can't be the first one running from a talk, right?"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:69
+msgid ""
+"You try to avoid the question. The scientist seems to be upset. There are no "
+"further questions. Apparently there is another talk that starts very soon so "
+"people hurry off. You manage to leave without gaining much attention and "
+"return to your ship. Enough science for today!"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:71
+msgid "Start learning your text"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:72
+msgid "Take off immediately"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:73
+msgid "Return to your ship"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:74
+msgid "Run!"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:75
+msgid "Go to the institute"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:76
+msgid "Explore the space port"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:77
+msgid "Buy a lab coat"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:78
+msgid "Visit the electronics store"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:79
+msgid "It's an open question."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:80
+msgid "This is a good question."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:82
+msgid "You were too late. You're never going to be a great scientist!"
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:89
+#, lua-format
+msgid ""
+"You gave a scientific talk in %s. Did anyone noticed you're not a scientist?"
+msgstr ""
+
+#. mission variables
+#. 25k
+#. 40k
+#. Spaceport bar stuff
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:107
+msgid "Robert"
+msgstr ""
+
+#. Set up mission information
+#. 100STU per tick
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:151
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:153
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:181
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:183
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:187
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:189
+msgid "You wonder what to do..."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:201
+msgid ""
+"Apparently this is too expensive for you. Looks like you have to give your "
+"talk without a lab coat."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:203
+msgid "Will you buy the lab coat?"
+msgstr ""
+
+#. buttons
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:203
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:212
+#: ../src/dialogue.c:384
+msgid "Yes"
+msgstr "はい"
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:203
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:212
+#: ../src/dialogue.c:386
+msgid "No"
+msgstr "いいえ"
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:210
+msgid "Apparently this is too expensive for you."
+msgstr ""
+
+#: ../dat/missions/zalek/neburesearch/neburesearch_03.lua:212
+msgid "Will you buy the glasses?"
+msgstr ""
+
+#. Date hook
+#. Case missed second deadline
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <mission name="The one with the Shopping">
@@ -32799,7 +33169,7 @@ msgstr ""
 
 #. (itstool) path: Start/name
 #: dat/start.xml:3
-msgid "Sea of Darkness"
+msgid "Imperial Storm"
 msgstr ""
 
 #. (itstool) path: player/ship
@@ -38984,13 +39354,13 @@ msgstr ""
 msgid "%s does not respond."
 msgstr ""
 
-#: ../src/comm.c:386 ../src/console.c:603 ../src/dev_sysedit.c:1334
+#: ../src/comm.c:386 ../src/console.c:611 ../src/dev_sysedit.c:1334
 #: ../src/dev_sysedit.c:1442 ../src/dev_sysedit.c:1504
 #: ../src/dev_sysedit.c:1701 ../src/dev_sysedit.c:1876
 #: ../src/dev_sysedit.c:1958 ../src/dev_uniedit.c:1034
 #: ../src/dev_uniedit.c:1246 ../src/dev_uniedit.c:1494 ../src/info.c:231
-#: ../src/info.c:302 ../src/info.c:388 ../src/info.c:494 ../src/info.c:726
-#: ../src/info.c:906 ../src/info.c:994 ../src/info.c:1321
+#: ../src/info.c:304 ../src/info.c:390 ../src/info.c:496 ../src/info.c:728
+#: ../src/info.c:908 ../src/info.c:996 ../src/info.c:1323
 #: ../src/land_outfits.c:162 ../src/map.c:291 ../src/map_find.c:1095
 #: ../src/map_system.c:195
 msgid "Close"
@@ -39307,7 +39677,7 @@ msgstr ""
 
 #. Write a nice header for new configuration files
 #: ../src/conf.c:893
-msgid "Naev configuration file"
+msgid "Naikari configuration file"
 msgstr ""
 
 #: ../src/conf.c:899
@@ -39315,12 +39685,12 @@ msgid "Not saving configuration."
 msgstr ""
 
 #: ../src/conf.c:905
-msgid "The contents of this section will be rewritten by Naev!"
+msgid "The contents of this section will be rewritten by Naikari!"
 msgstr ""
 
 #. ndata.
 #: ../src/conf.c:909
-msgid "The location of Naev's data pack, usually called 'ndata'"
+msgid "The location of Naikari's data pack, usually called 'ndata'"
 msgstr ""
 
 #. Language.
@@ -39374,7 +39744,7 @@ msgid "The window size or screen resolution"
 msgstr ""
 
 #: ../src/conf.c:952
-msgid "Set both of these to 0 to make Naev try the desktop resolution"
+msgid "Set both of these to 0 to make Naikari try the desktop resolution"
 msgstr ""
 
 #: ../src/conf.c:962
@@ -39386,7 +39756,7 @@ msgid "This is used to lower the rendering resolution, and scale to the above"
 msgstr ""
 
 #: ../src/conf.c:967
-msgid "Run Naev in full-screen mode"
+msgid "Run Naikari in full-screen mode"
 msgstr ""
 
 #: ../src/conf.c:971
@@ -39488,7 +39858,7 @@ msgstr ""
 
 #. Fonts.
 #: ../src/conf.c:1067
-msgid "Font sizes (in pixels) for Naev"
+msgid "Font sizes (in pixels) for Naikari"
 msgstr ""
 
 #: ../src/conf.c:1068
@@ -39590,16 +39960,16 @@ msgid ""
 "copying your backup configuration over your current configuration."
 msgstr ""
 
-#: ../src/console.c:161
+#: ../src/console.c:155
 #, c-format
 msgid "Warning: %s\n"
 msgstr "注意：%s\n"
 
-#: ../src/console.c:541
+#: ../src/console.c:549
 msgid "Error printing results."
 msgstr ""
 
-#: ../src/console.c:581
+#: ../src/console.c:589
 msgid "\agWelcome to the Lua console!"
 msgstr "\ag%sへようこそ！"
 
@@ -40039,7 +40409,7 @@ msgid "Dialogue counter not in sync!"
 msgstr ""
 
 #. create the window
-#: ../src/dialogue.c:141 ../src/naev.c:431
+#: ../src/dialogue.c:141
 msgid "Warning"
 msgstr "注意"
 
@@ -40049,15 +40419,6 @@ msgstr "注意"
 #: ../src/options.c:869 ../src/options.c:1235
 msgid "OK"
 msgstr "了解"
-
-#. buttons
-#: ../src/dialogue.c:384
-msgid "Yes"
-msgstr "はい"
-
-#: ../src/dialogue.c:386
-msgid "No"
-msgstr "いいえ"
 
 #: ../src/dialogue.c:415
 msgid "Unknown button clicked in YesNo dialogue!"
@@ -40936,35 +41297,35 @@ msgstr ""
 msgid "No GUI available."
 msgstr ""
 
-#: ../src/info.c:281
+#: ../src/info.c:282
 msgid ""
 "There are no GUI available, this means something went wrong somewhere. "
-"Inform the Naev maintainer."
+"Inform the Naikari maintainer."
 msgstr ""
 
 #. window
-#: ../src/info.c:286 ../src/info.c:329
+#: ../src/info.c:288 ../src/info.c:331
 msgid "Select GUI"
 msgstr ""
 
-#: ../src/info.c:304 ../src/load.c:348
+#: ../src/info.c:306 ../src/load.c:348
 msgid "Load"
 msgstr "ロード"
 
-#: ../src/info.c:308
+#: ../src/info.c:310
 msgid "Override GUI"
 msgstr ""
 
-#: ../src/info.c:335
+#: ../src/info.c:337
 msgid "GUI Override is not set."
 msgstr ""
 
-#: ../src/info.c:336
+#: ../src/info.c:338
 #, c-format
 msgid "Enable GUI Override and change GUI to '%s'?"
 msgstr ""
 
-#: ../src/info.c:393
+#: ../src/info.c:395
 msgid ""
 "Name:\n"
 "Model:\n"
@@ -40988,7 +41349,7 @@ msgid ""
 "Stats:\n"
 msgstr ""
 
-#: ../src/info.c:438
+#: ../src/info.c:440
 #, c-format
 msgid ""
 "%s\n"
@@ -41012,119 +41373,119 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../src/info.c:499
+#: ../src/info.c:501
 msgid "Automatically handle weapons"
 msgstr ""
 
-#: ../src/info.c:501
+#: ../src/info.c:503
 msgid "Enable instant mode (only for weapons)"
 msgstr ""
 
-#: ../src/info.c:504
+#: ../src/info.c:506
 msgid "Only shoot weapons that are in range"
 msgstr ""
 
-#: ../src/info.c:507
+#: ../src/info.c:509
 msgid "Dogfight aiming helper"
 msgstr ""
 
-#: ../src/info.c:603
+#: ../src/info.c:605
 msgid ""
 "Are you sure you want to enable automatic weapon groups for the ship?\n"
 "\n"
 "This will overwrite all manually-tweaked weapons groups."
 msgstr ""
 
-#: ../src/info.c:646
+#: ../src/info.c:648
 msgid "You can not set all your weapon sets to fire groups!"
 msgstr ""
 
-#: ../src/info.c:700
+#: ../src/info.c:702
 msgid "Outfit that can be activated"
 msgstr ""
 
-#: ../src/info.c:704
+#: ../src/info.c:706
 msgid "Secondary Weapon (Right click toggles)"
 msgstr ""
 
-#: ../src/info.c:708
+#: ../src/info.c:710
 msgid "Primary Weapon (Left click toggles)"
 msgstr ""
 
-#: ../src/info.c:728
+#: ../src/info.c:730
 msgid "Jettison"
 msgstr ""
 
-#: ../src/info.c:809 ../src/info.c:1087
+#: ../src/info.c:811 ../src/info.c:1089
 msgid "Abort Mission"
 msgstr ""
 
-#: ../src/info.c:810 ../src/info.c:1088
+#: ../src/info.c:812 ../src/info.c:1090
 msgid "Are you sure you want to abort this mission?"
 msgstr ""
 
-#: ../src/info.c:826
+#: ../src/info.c:828
 #, c-format
 msgid "Cargo '%d' does not belong to any active mission."
 msgstr ""
 
-#: ../src/info.c:996
+#: ../src/info.c:998
 msgid "Abort"
 msgstr ""
 
-#: ../src/info.c:1002
+#: ../src/info.c:1004
 msgid "Reward:"
 msgstr ""
 
 #. no missions
 #. Make sure you have missions.
-#: ../src/info.c:1040 ../src/info.c:1058 ../src/land.c:619 ../src/land.c:687
+#: ../src/info.c:1042 ../src/info.c:1060 ../src/land.c:619 ../src/land.c:687
 #: ../src/land.c:723
 msgid "No Missions"
 msgstr ""
 
-#: ../src/info.c:1061
+#: ../src/info.c:1063
 msgid "You currently have no active missions."
 msgstr ""
 
-#: ../src/info.c:1226
+#: ../src/info.c:1228
 msgid ""
 "You are currently viewing all logs in the selected log type. Please select a "
 "log title to delete."
 msgstr ""
 
-#: ../src/info.c:1231
+#: ../src/info.c:1233
 #, c-format
 msgid ""
 "This will delete ALL \"%s\" log entries. This operation cannot be undone. "
 "Are you sure?"
 msgstr ""
 
-#: ../src/info.c:1264
+#: ../src/info.c:1266
 msgid "Log message"
 msgstr ""
 
-#: ../src/info.c:1323 ../src/load.c:350
+#: ../src/info.c:1325 ../src/load.c:350
 msgid "Delete"
 msgstr ""
 
-#: ../src/info.c:1326
+#: ../src/info.c:1328
 msgid "View Entry"
 msgstr ""
 
-#: ../src/info.c:1329
+#: ../src/info.c:1331
 msgid "Add Entry"
 msgstr ""
 
-#: ../src/info.c:1335
+#: ../src/info.c:1337
 msgid "Select log type:"
 msgstr ""
 
-#: ../src/info.c:1339
+#: ../src/info.c:1341
 msgid "Select log title:"
 msgstr ""
 
-#: ../src/info.c:1343
+#: ../src/info.c:1345
 msgid "Log entries:"
 msgstr ""
 
@@ -42273,9 +42634,9 @@ msgstr ""
 #: ../src/load.c:439
 #, c-format
 msgid ""
-"Save game '%s' version does not match Naev version:\n"
+"Save game '%s' version does not match Naikari version:\n"
 "   Save version: \ar%s\a0\n"
-"   Naev version: %s\n"
+"   Naikari version: %s\n"
 "Are you sure you want to load this game? It may lose data."
 msgstr ""
 
@@ -42852,14 +43213,15 @@ msgid "Exit Game"
 msgstr "終了"
 
 #: ../src/menu.c:629
-msgid "Quit Naev"
+msgid "Quit Naikari"
 msgstr ""
 
 #: ../src/menu.c:629
-msgid "Are you sure you want to quit Naev?"
+#, fuzzy
+msgid "Are you sure you want to quit Naikari?"
 msgstr "Naevを終了しますか？"
 
-#: ../src/mission.c:116 ../src/nlua_player.c:1119 ../src/nlua_player.c:1148
+#: ../src/mission.c:116 ../src/nlua_player.c:1121 ../src/nlua_player.c:1150
 #, c-format
 msgid "Mission '%s' not found in stack"
 msgstr ""
@@ -43105,73 +43467,19 @@ msgstr ""
 msgid "Unable to initialize the Nebula subsystem!"
 msgstr ""
 
-#: ../src/naev.c:431
-#, c-format
-msgid ""
-"Your configuration files are in a deprecated location and must be migrated:\n"
-"   \ar%s\a0\n"
-"\n"
-"The update script can likely be found in your Naev data directory:\n"
-"   \ar%s\a0\n"
-"\n"
-"Would you like to run it automatically?"
-msgstr ""
-
-#: ../src/naev.c:456
-#, c-format
-msgid ""
-"The update script was not found at:\n"
-"\ar%s\a0\n"
-"\n"
-"Please locate and run it manually."
-msgstr ""
-
-#: ../src/naev.c:461
-msgid "Update Completed"
-msgstr ""
-
-#: ../src/naev.c:462
-msgid "Configuration files were successfully migrated. Naev will now restart."
-msgstr ""
-
-#. I sincerely hope this else is never hit.
-#: ../src/naev.c:466
-#, c-format
-msgid ""
-"The update script encountered an error. Please exit Naev and move your "
-"config and save files manually:\n"
-"\n"
-"\ar%s/%s\a0 =>\n"
-"   \ag%s\a0\n"
-"\n"
-"\ar%s/%s\a0 =>\n"
-"   \ag%s\a0\n"
-"\n"
-"\ar%s/%s\a0 =>\n"
-"   \ag%snebula/\a0\n"
-"\n"
-msgstr ""
-
-#: ../src/naev.c:477
-#, c-format
-msgid ""
-"To manually migrate your configuration files please exit Naev and run the "
-"update script, likely found in your Naev data directory:\n"
-"   \ar%s/naev-confupdate.sh\a0"
-msgstr ""
-
-#: ../src/naev.c:498
+#: ../src/naev.c:434
 #, fuzzy
-msgid "Welcome to Naev"
+msgid "Welcome to Naikari"
 msgstr "\ag%sへようこそ！"
 
-#: ../src/naev.c:499
+#: ../src/naev.c:435
 #, c-format
 msgid ""
-"Welcome to Naev version %s, and thank you for playing! We hope you enjoy "
-"this game and all it has to offer. This is a passion project developed "
-"exclusively by volunteers and it gives us all great joy to know that there "
-"are others who love this game as much as we do!\n"
+"Welcome to Naikari version %s, and thank you for playing! We hope you enjoy "
+"this game and all it has to offer. This is a passion project, based on "
+"another passion project (Naev), and ultimately developed exclusively by "
+"volunteers. It gives us great joy to know that there are others who love "
+"this game as much as we do!\n"
 "    Of course, please note that this is an incomplete game. You will "
 "encounter dead ends to storylines, missing storylines, and possibly even "
 "some bugs, although we try to keep those to a minimum of course. So be "
@@ -43179,219 +43487,219 @@ msgid ""
 "on this game every day and hope to one day finish this massive project on "
 "our hands. Perhaps you could become one of us, who knows?\n"
 "    For more information about the game and its development state, take a "
-"look at naev.org; it has all the relevant links. And again, thank you for "
-"playing!"
+"look at naikari.github.io; it has all the relevant links. And again, thank "
+"you for playing!"
 msgstr ""
 
-#: ../src/naev.c:607
+#: ../src/naev.c:543
 msgid "No loading screens found!"
 msgstr ""
 
 #. order is very important as they're interdependent
-#: ../src/naev.c:722
+#: ../src/naev.c:658
 msgid "Loading Commodities..."
 msgstr "商品読み込み中…"
 
 #. dep for space
-#: ../src/naev.c:724
+#: ../src/naev.c:660
 msgid "Loading Factions..."
 msgstr "党派読み込み中…"
 
 #. dep for fleet, space, missions, AI
-#: ../src/naev.c:726
+#: ../src/naev.c:662
 msgid "Loading AI..."
 msgstr "人工知能読み込み中…"
 
 #. dep for fleets
-#: ../src/naev.c:728
+#: ../src/naev.c:664
 msgid "Loading Missions..."
 msgstr "ミッション読み込み中…"
 
 #. no dep
-#: ../src/naev.c:730
+#: ../src/naev.c:666
 msgid "Loading Events..."
 msgstr "イベント読み込み中"
 
 #. no dep
-#: ../src/naev.c:732
+#: ../src/naev.c:668
 msgid "Loading Special Effects..."
 msgstr "特撮エフェクト読み込み中…"
 
 #. no dep
-#: ../src/naev.c:734
+#: ../src/naev.c:670
 msgid "Loading Damage Types..."
 msgstr "ダメージ読み込み中…"
 
 #. no dep
-#: ../src/naev.c:736
+#: ../src/naev.c:672
 msgid "Loading Outfits..."
 msgstr "モド読み込み中…"
 
 #. dep for ships
-#: ../src/naev.c:738
+#: ../src/naev.c:674
 msgid "Loading Ships..."
 msgstr "宇宙船読み込み中…"
 
 #. dep for fleet
-#: ../src/naev.c:740
+#: ../src/naev.c:676
 msgid "Loading Fleets..."
 msgstr "フリーと読み込み中…"
 
 #. dep for space
-#: ../src/naev.c:742
+#: ../src/naev.c:678
 msgid "Loading Techs..."
 msgstr "技術読み込み中…"
 
 #. dep for space
-#: ../src/naev.c:744
+#: ../src/naev.c:680
 msgid "Loading the Universe..."
 msgstr "宇宙読み込み中…"
 
-#: ../src/naev.c:746
+#: ../src/naev.c:682
 #, fuzzy
 msgid "Loading the UniDiffs..."
 msgstr "宇宙読み込み中…"
 
-#: ../src/naev.c:748
+#: ../src/naev.c:684
 msgid "Populating Maps..."
 msgstr "地図書き込み中…"
 
 #. Initialize player stuff.
-#: ../src/naev.c:754
+#: ../src/naev.c:690
 msgid "Loading Completed!"
 msgstr "ロード完了"
 
-#: ../src/naev.c:931
+#: ../src/naev.c:867
 msgid "clock_gettime failed, disabling posix time."
 msgstr ""
 
-#: ../src/naev.c:956
+#: ../src/naev.c:892
 msgid "clock_gettime failed!"
 msgstr ""
 
-#: ../src/naev.c:1160
+#: ../src/naev.c:1096
 msgid "PAUSED"
 msgstr "中止"
 
-#: ../src/naev.c:1186
+#: ../src/naev.c:1122
 msgid "Icon (icon.png) not found!"
 msgstr ""
 
-#: ../src/naev.c:1194
+#: ../src/naev.c:1130
 msgid "Unable to load icon.png!"
 msgstr ""
 
-#: ../src/naev.c:1243
+#: ../src/naev.c:1179
 msgid " debug"
 msgstr ""
 
-#: ../src/naev.c:1270
+#: ../src/naev.c:1206
 msgid "Version format is too long!"
 msgstr ""
 
-#: ../src/naev.c:1282
+#: ../src/naev.c:1218
 msgid "Version has too many '.'."
 msgstr ""
 
-#: ../src/naev.c:1346
+#: ../src/naev.c:1282
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr ""
 
-#: ../src/naev.c:1356
+#: ../src/naev.c:1292
 msgid "SDL is newer than compiled version"
 msgstr ""
 
-#: ../src/naev.c:1358
+#: ../src/naev.c:1294
 msgid "SDL is older than compiled version."
 msgstr ""
 
-#: ../src/naev.c:1374
+#: ../src/naev.c:1310
 msgid "SIGFPE (raised by program)"
 msgstr ""
 
-#: ../src/naev.c:1375
+#: ../src/naev.c:1311
 msgid "SIGFPE (integer divide by zero)"
 msgstr ""
 
-#: ../src/naev.c:1376
+#: ../src/naev.c:1312
 msgid "SIGFPE (integer overflow)"
 msgstr ""
 
-#: ../src/naev.c:1377
+#: ../src/naev.c:1313
 msgid "SIGFPE (floating-point divide by zero)"
 msgstr ""
 
-#: ../src/naev.c:1378
+#: ../src/naev.c:1314
 msgid "SIGFPE (floating-point overflow)"
 msgstr ""
 
-#: ../src/naev.c:1379
+#: ../src/naev.c:1315
 msgid "SIGFPE (floating-point underflow)"
 msgstr ""
 
-#: ../src/naev.c:1380
+#: ../src/naev.c:1316
 msgid "SIGFPE (floating-point inexact result)"
 msgstr ""
 
-#: ../src/naev.c:1381
+#: ../src/naev.c:1317
 msgid "SIGFPE (floating-point invalid operation)"
 msgstr ""
 
-#: ../src/naev.c:1382
+#: ../src/naev.c:1318
 msgid "SIGFPE (subscript out of range)"
 msgstr ""
 
-#: ../src/naev.c:1383
+#: ../src/naev.c:1319
 msgid "SIGFPE"
 msgstr ""
 
-#: ../src/naev.c:1387
+#: ../src/naev.c:1323
 msgid "SIGSEGV (raised by program)"
 msgstr ""
 
-#: ../src/naev.c:1388
+#: ../src/naev.c:1324
 msgid "SIGSEGV (address not mapped to object)"
 msgstr ""
 
-#: ../src/naev.c:1389
+#: ../src/naev.c:1325
 msgid "SIGSEGV (invalid permissions for mapped object)"
 msgstr ""
 
-#: ../src/naev.c:1390
+#: ../src/naev.c:1326
 msgid "SIGSEGV"
 msgstr ""
 
-#: ../src/naev.c:1394
+#: ../src/naev.c:1330
 msgid "SIGABRT (raised by program)"
 msgstr ""
 
-#: ../src/naev.c:1395
+#: ../src/naev.c:1331
 msgid "SIGABRT"
 msgstr ""
 
-#: ../src/naev.c:1472
+#: ../src/naev.c:1408
 #, c-format
-msgid "Naev received %s!"
+msgid "Naikari received %s!"
 msgstr ""
 
-#: ../src/naev.c:1480
+#: ../src/naev.c:1416
 msgid "Report this to project maintainer with the backtrace."
 msgstr ""
 
-#: ../src/naev.c:1526
+#: ../src/naev.c:1462
 msgid "Unable to set up SIGSEGV signal handler."
 msgstr ""
 
-#: ../src/naev.c:1529
+#: ../src/naev.c:1465
 msgid "Unable to set up SIGFPE signal handler."
 msgstr ""
 
-#: ../src/naev.c:1532
+#: ../src/naev.c:1468
 msgid "Unable to set up SIGABRT signal handler."
 msgstr ""
 
-#: ../src/naev.c:1533
+#: ../src/naev.c:1469
 msgid "BFD backtrace catching enabled."
 msgstr ""
 
@@ -43451,7 +43759,7 @@ msgstr ""
 
 #: ../src/ndata.c:497
 msgid ""
-"Naev will probably crash now as the versions are probably not compatible."
+"Naikari will probably crash now as the versions are probably not compatible."
 msgstr ""
 
 #: ../src/ndata.c:730 ../src/ndata.c:809
@@ -43637,7 +43945,7 @@ msgstr ""
 msgid "Failed to create new Lua state."
 msgstr ""
 
-#: ../src/nlua.c:431 ../src/nlua.c:432
+#: ../src/nlua.c:426
 #, c-format
 msgid "include(): %s not found in ndata."
 msgstr ""
@@ -43657,7 +43965,7 @@ msgid "Commodity '%s' not found!"
 msgstr ""
 
 #: ../src/nlua_commodity.c:275 ../src/nlua_commodity.c:311
-#: ../src/nlua_player.c:1254 ../src/nlua_player.c:1272
+#: ../src/nlua_player.c:1256 ../src/nlua_player.c:1274
 #, c-format
 msgid "Planet '%s' does not belong to a system."
 msgstr ""
@@ -43921,71 +44229,71 @@ msgstr ""
 msgid "Planet '%s' can't find system '%s'"
 msgstr ""
 
-#: ../src/nlua_player.c:531
+#: ../src/nlua_player.c:533
 msgid "Second parameter to cinematics should be a table of options or omitted!"
 msgstr ""
 
-#: ../src/nlua_player.c:610
+#: ../src/nlua_player.c:612
 msgid "Player must be landed to force takeoff."
 msgstr ""
 
-#: ../src/nlua_player.c:686
+#: ../src/nlua_player.c:688
 msgid "Must be landed to set the active land window."
 msgstr ""
 
-#: ../src/nlua_player.c:793
+#: ../src/nlua_player.c:795
 #, c-format
 msgid "Player does not own a ship named '%s'"
 msgstr ""
 
-#: ../src/nlua_player.c:906 ../src/nlua_player.c:969
+#: ../src/nlua_player.c:908 ../src/nlua_player.c:971
 #, c-format
 msgid "Outfit '%s' not found."
 msgstr ""
 
-#: ../src/nlua_player.c:1008
+#: ../src/nlua_player.c:1010
 msgid ""
 "Must be landed to add a new ship to the player without specifying planet to "
 "add to!"
 msgstr ""
 
-#: ../src/nlua_player.c:1017
+#: ../src/nlua_player.c:1019
 #, c-format
 msgid "Planet '%s' not found!"
 msgstr ""
 
-#: ../src/nlua_player.c:1029
+#: ../src/nlua_player.c:1031
 msgid "Player must be landed to add a ship without location parameter."
 msgstr ""
 
-#: ../src/nlua_player.c:1036
+#: ../src/nlua_player.c:1038
 #, c-format
 msgid "Ship '%s' not found."
 msgstr ""
 
-#: ../src/nlua_player.c:1174 ../src/nlua_player.c:1204
+#: ../src/nlua_player.c:1176 ../src/nlua_player.c:1206
 #, c-format
 msgid "Event '%s' not found in stack"
 msgstr ""
 
-#: ../src/nlua_player.c:1236
+#: ../src/nlua_player.c:1238
 msgid "Can not teleport the player while landed!"
 msgstr ""
 
-#: ../src/nlua_player.c:1238
+#: ../src/nlua_player.c:1240
 msgid "Can not teleport the player while the comm is open!"
 msgstr ""
 
-#: ../src/nlua_player.c:1240
+#: ../src/nlua_player.c:1242
 msgid "Can not teleport the player while they are boarded!"
 msgstr ""
 
-#: ../src/nlua_player.c:1263
+#: ../src/nlua_player.c:1265
 #, c-format
 msgid "'%s' is not a valid teleportation target."
 msgstr ""
 
-#: ../src/nlua_player.c:1282
+#: ../src/nlua_player.c:1284
 #, c-format
 msgid "System '%s' does not exist."
 msgstr ""
@@ -44603,7 +44911,7 @@ msgid "Minimize on focus loss"
 msgstr ""
 
 #: ../src/options.c:1367
-msgid "Restart Naev for changes to take effect."
+msgid "Restart Naikari for changes to take effect."
 msgstr ""
 
 #: ../src/options.c:1418
@@ -45588,192 +45896,192 @@ msgid "\apAutonav continuing until destination (%d jump left)."
 msgid_plural "\apAutonav continuing until destination (%d jumps left)."
 msgstr[0] ""
 
-#: ../src/player.c:2102
+#: ../src/player.c:2106
 msgid "Aborting screenshot"
 msgstr ""
 
 #. in case the crap system breaks :)
-#: ../src/player.c:2115
+#: ../src/player.c:2119
 msgid "You have reached the maximum amount of screenshots [999]"
 msgstr ""
 
 #. now proceed to take the screenshot
-#: ../src/player.c:2120
+#: ../src/player.c:2124
 #, c-format
 msgid "Taking screenshot [%03d]..."
 msgstr ""
 
-#: ../src/player.c:2154
+#: ../src/player.c:2158
 #, c-format
 msgid "\ar%s is out of comm range, unable to contact."
 msgstr ""
 
-#: ../src/player.c:2178 ../src/player.c:2201
+#: ../src/player.c:2182 ../src/player.c:2205
 msgid "\arNo target selected to hail."
 msgstr ""
 
-#: ../src/player.c:2229
+#: ../src/player.c:2233
 msgid "\arYou haven't been hailed by any pilots."
 msgstr ""
 
-#: ../src/player.c:2250
+#: ../src/player.c:2254
 msgid "\apMouse flying enabled."
 msgstr ""
 
-#: ../src/player.c:2256
+#: ../src/player.c:2260
 msgid "\arMouse flying disabled."
 msgstr ""
 
-#: ../src/player.c:2493
+#: ../src/player.c:2497
 #, c-format
 msgid "Player ship '%s' not found in stack"
 msgstr ""
 
-#: ../src/player.c:2935
+#: ../src/player.c:2939
 msgid "Escort is undeployed"
 msgstr ""
 
-#: ../src/player.c:3153
+#: ../src/player.c:3157
 msgid "Found mission cargo without associated mission."
 msgstr ""
 
-#: ../src/player.c:3154
+#: ../src/player.c:3158
 msgid "Please reload save game to remove the dead cargo."
 msgstr ""
 
-#: ../src/player.c:3333
+#: ../src/player.c:3337
 #, c-format
 msgid "Outfit '%s' was saved but does not exist!"
 msgstr ""
 
-#: ../src/player.c:3343
+#: ../src/player.c:3347
 #, c-format
 msgid "Outfit '%s' was saved without quantity!"
 msgstr ""
 
-#: ../src/player.c:3363
+#: ../src/player.c:3367
 msgid "Player ship does not exist!"
 msgstr ""
 
-#: ../src/player.c:3366
+#: ../src/player.c:3370
 msgid "Player has no other ships, giving starting ship."
 msgstr ""
 
-#: ../src/player.c:3377
+#: ../src/player.c:3381
 #, c-format
 msgid "Giving player ship '%s'."
 msgstr ""
 
-#: ../src/player.c:3383
+#: ../src/player.c:3387
 msgid "Something went horribly wrong, player does not exist after load..."
 msgstr ""
 
-#: ../src/player.c:3390
+#: ../src/player.c:3394
 msgid "Save has no time information, setting to start information."
 msgstr ""
 
-#: ../src/player.c:3399
+#: ../src/player.c:3403
 #, c-format
 msgid ""
 "Player starts out in non-existent or invalid planet '%s',trying to find a "
 "suitable one instead."
 msgstr ""
 
-#: ../src/player.c:3429
+#: ../src/player.c:3433
 #, c-format
 msgid "Could not find a planet satisfying criteria %d."
 msgstr ""
 
-#: ../src/player.c:3433
+#: ../src/player.c:3437
 msgid "Could not find a suitable planet. Choosing a random planet."
 msgstr ""
 
-#: ../src/player.c:3485
+#: ../src/player.c:3489
 #, c-format
 msgid "Mission '%s' doesn't seem to exist anymore, removing from save."
 msgstr ""
 
-#: ../src/player.c:3513
+#: ../src/player.c:3517
 #, c-format
 msgid "Event '%s' doesn't seem to exist anymore, removing from save."
 msgstr ""
 
-#: ../src/player.c:3565
+#: ../src/player.c:3569
 #, c-format
 msgid "Escort has invalid type '%s'."
 msgstr ""
 
-#: ../src/player.c:3589
+#: ../src/player.c:3593
 #, c-format
 msgid ""
 "Outfit '%s' does not fit designated slot on player's pilot '%s', adding to "
 "stock."
 msgstr ""
 
-#: ../src/player.c:3597
+#: ../src/player.c:3601
 #, c-format
 msgid "Outfit '%s' does not fit on player's pilot '%s', adding to stock."
 msgstr ""
 
-#: ../src/player.c:3619
+#: ../src/player.c:3623
 msgid "Empty ship slot node found, skipping."
 msgstr ""
 
-#: ../src/player.c:3693
+#: ../src/player.c:3697
 #, c-format
 msgid "Player ship '%s' not found!"
 msgstr ""
 
-#: ../src/player.c:3745 ../src/player.c:3763 ../src/player.c:3781
+#: ../src/player.c:3749 ../src/player.c:3767 ../src/player.c:3785
 msgid "Outfit slot out of range, not adding."
 msgstr ""
 
-#: ../src/player.c:3803
+#: ../src/player.c:3807
 #, c-format
 msgid "Unknown commodity '%s' detected, removing."
 msgstr ""
 
-#: ../src/player.c:3827
+#: ../src/player.c:3831
 #, c-format
 msgid ""
 "Player ship '%s' failed slot validity check , removing all outfits and "
 "adding to stock."
 msgstr ""
 
-#: ../src/player.c:3887
+#: ../src/player.c:3891
 #, c-format
 msgid ""
 "Player ship '%s' has unknown node '%s' in 'weaponsets' (expected "
 "'weaponset')."
 msgstr ""
 
-#: ../src/player.c:3895
+#: ../src/player.c:3899
 #, c-format
 msgid "Player ship '%s' missing 'id' tag for weapon set."
 msgstr ""
 
-#: ../src/player.c:3901
+#: ../src/player.c:3905
 #, c-format
 msgid "Player ship '%s' has invalid weapon set id '%d' [max %d]."
 msgstr ""
 
-#: ../src/player.c:3921
+#: ../src/player.c:3925
 #, c-format
 msgid "Player ship '%s' missing 'type' tag for weapon set."
 msgstr ""
 
-#: ../src/player.c:3935
+#: ../src/player.c:3939
 #, c-format
 msgid ""
 "Player ship '%s' has unknown 'weaponset' child node '%s' (expected 'weapon')."
 msgstr ""
 
-#: ../src/player.c:3943
+#: ../src/player.c:3947
 #, c-format
 msgid "Player ship '%s' missing 'level' tag for weapon set weapon."
 msgstr ""
 
-#: ../src/player.c:3950
+#: ../src/player.c:3954
 #, c-format
 msgid "Player ship '%s' has invalid weapon id %d [max %d]."
 msgstr ""

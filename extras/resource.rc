@@ -20,11 +20,11 @@ BEGIN
 		BEGIN
 			VALUE "Comments", "https://naikari.github.io"
 			VALUE "CompanyName", "Naikari Team"
-			VALUE "FileDescription", "Naikari: Sea of Darkness"
+			VALUE "FileDescription", "Naikari: Imperial Storm"
 			VALUE "InternalName", "naikari"
-			VALUE "LegalCopyright", "Copyright (C) 2006-2017"
+			VALUE "LegalCopyright", "Copyright (C) 2006-2020"
 			VALUE "OriginalFilename", "naikari.exe"
-			VALUE "ProductName", "Naikari: Sea of Darkness"
+			VALUE "ProductName", "Naikari: Imperial Storm"
 			VALUE "ProductVersion", "0.7.0"
 		END
 	END
