@@ -179,57 +179,8 @@ function ambush()
    playerclass = player.pilot():ship():class()
    badguys = {}
 
-   if playerclass == "Scout" or playerclass == "Fighter"
-         or playerclass == "Drone" or playerclass == "Heavy Drone"
-         or playerclass == "Luxury Yacht" or playerclass == "Yacht"
-         or palyerclass == "Courier" then
-      if rnd.rnd() < 0.7 then
-         interceptors()
-      else
-         hvy_intercept()
-      end
+   littleofall()
 
-      elseif playerclass == "Bomber" then
-
-      local rand = rnd.rnd()
-      if rand < 0.5 then
-         hvy_intercept()
-      elseif  rand < 0.8 then
-         interceptors()
-      else
-         corvette()
-      end
-
-      elseif playerclass == "Freighter" then  --what a strange idea to use a Mule in this situation...
-
-      if rnd.rnd() < 0.6 then
-         corvette()
-      else
-         cruiser()
-      end
-
-      elseif playerclass == "Corvette" or playerclass == "Destroyer" then
-
-      local rand = rnd.rnd()
-      if rand < 0.6 then
-         cruiser()
-      elseif rand < 0.8 then
-         corvette()
-      else
-         hvy_intercept()
-      end
-
-      elseif playerclass == "Cruiser" or playerclass == "Armored Transport" or playerclass == "Carrier" then
-
-      if rnd.rnd() < 0.7 then
-         bombers()
-      else
-         hvy_intercept()
-      end
-
-   else --The fact you don't have a ship class in the list doesn't means you're safe !
-      littleofall()
-   end
    --and a Llama for variety :
    if rnd.rnd() < 0.5 then
       add_llama()
