@@ -140,14 +140,6 @@ jobs:
     needs: [Windows-MinGW64, macOS, Linux-x86_64]
 
     steps:
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2.0.3
-      with:
-        key: ${{ secrets.SSH_KEY }}
-        name: id_rsa # optional
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
-      if: ${{ github.event_name == 'push' && github.repository == 'naikari/naikari' }}
-
     - name: Update APT Cache
       run: |
         sudo apt-get update
@@ -186,11 +178,7 @@ jobs:
         ./autogen.sh
         ./configure
         make -C docs lua
-    
-    - name: Upload Lua Documentation
-      run: rsync -e "ssh -o 'StrictHostKeyChecking no'" -rv --delete docs/html/ travis@iandouglasscott.com:/srv/naikaridoc
-      if: ${{ github.event_name == 'push' && github.repository == 'naikari/naikari' }}
-
+        
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
