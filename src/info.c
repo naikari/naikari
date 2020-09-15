@@ -402,7 +402,7 @@ static void info_openShip( unsigned int wid )
          "Thrust:\n"
          "Speed:\n"
          "Turn:\n"
-         "Time Dilation:\n"
+         "Time Compression:\n"
          "\n"
          "Absorption:\n"
          "Shield:\n"
@@ -447,7 +447,7 @@ static void ship_update( unsigned int wid )
          "%.0f kN/tonne\n"
          "%.0f m/s (max %.0f m/s)\n"
          "%.0f deg/s\n"
-         "%.0f%%\n" /* Time Dilation (dt_default) */
+         "%.0f%%\n" /* Time Compression (dt_default) */
          "\n"
          "%.0f%%\n" /* Absorbption */
          "%.0f / %.0f MJ (%.1f MW)\n" /* Shield */

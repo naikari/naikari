@@ -658,7 +658,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                    "Thrust: %.0f kN/tonne    "
                    "Speed: %.0f m/s\n"
                    "Turn: %.0f deg/s    "
-                   "Time Dilation: %.0f%%\n"
+                   "Time Compression: %.0f%%\n"
                    "Absorption: %.0f%% damage\n"
                    "Shield: %.0f MJ (%.1f MW)    "
                    "Armour: %.0f MJ (%.1f MW)\n"

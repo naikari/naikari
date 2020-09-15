@@ -291,7 +291,7 @@ void equipment_open( unsigned int wid )
       "Thrust:\n"
       "Speed:\n"
       "Turn:\n"
-      "Time Dilation:\n"
+      "Time Compression:\n"
       "\n"
       "Absorption:\n"
       "Shield:\n"
