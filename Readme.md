@@ -42,10 +42,10 @@ libgl1-mesa-dev libxml2-dev libfreetype6-dev libpng-dev libopenal-dev \
 libvorbis-dev binutils-dev libzip-dev libiberty-dev autopoint intltool libfontconfig-dev itstool autoconf-archive
 ```
 
-### Other \*nix 
+### Other Linux 
 
-See https://github.com/naikari/naikari/wiki/Compiling-on-*nix for package lists for several
-distributions.
+See https://github.com/naikari/naikari/wiki/Compiling-on-Linux for
+package lists for several distributions.
 
 ## COMPILING
 
@@ -92,6 +92,5 @@ Please take a look at the FAQ (linked below) before submitting a new
 bug report, as it covers a number of common gameplay questions and
 common issues.
 
-If Naikari is crashing during gameplay, please file a bug report after
-reading https://github.com/naikari/naikari/wiki/Bugs
+If Naikari is crashing during gameplay, please file a bug report.
 
