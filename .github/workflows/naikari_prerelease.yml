@@ -43,7 +43,6 @@ jobs:
         name: win64
         path: |
           ${{ github.workspace }}/dist/release/naikari-win64.exe
-          ${{ github.workspace }}/dist/release/naikari-win64.zip
 
   "Linux-x86_64":
     runs-on: ubuntu-latest
