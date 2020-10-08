@@ -9,7 +9,7 @@ FILEFLAGSMASK 0x17L
 #else
 	FILEFLAGS 0x2L
 #endif
-FILEVERSION 0,6,0,0
+FILEVERSION 0,8,0,0
 FILEOS 0x4L
 FILETYPE 0x1L
 FILESUBTYPE 0x0L
@@ -25,7 +25,7 @@ BEGIN
 			VALUE "LegalCopyright", "Copyright (C) 2006-2020"
 			VALUE "OriginalFilename", "naikari.exe"
 			VALUE "ProductName", "Naikari: Imperial Storm"
-			VALUE "ProductVersion", "0.7.0"
+			VALUE "ProductVersion", "0.8.0"
 		END
 	END
 	BLOCK "VarFileInfo"

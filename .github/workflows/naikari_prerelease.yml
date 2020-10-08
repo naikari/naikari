@@ -20,15 +20,15 @@ jobs:
       with:
         msystem: MINGW64
         update: true
-        install: mingw-w64-x86_64-libtool mingw-w64-x86_64-toolchain mingw-w64-x86_64-gcc mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_mixer mingw-w64-x86_64-SDL2_image mingw-w64-x86_64-libxml2 mingw-w64-x86_64-libpng mingw-w64-x86_64-openal mingw-w64-x86_64-libvorbis mingw-w64-x86_64-binutils mingw-w64-x86_64-fontconfig mingw-w64-x86_64-freetype mingw-w64-x86_64-libzip mingw-w64-x86_64-gettext mingw-w64-x86_64-luajit mingw-w64-x86_64-nsis libtool autoconf autoconf-archive automake automake-wrapper git gettext pkgconfig make intltool itstool zip unzip python3-pip
+        install: mingw-w64-x86_64-libtool mingw-w64-x86_64-toolchain mingw-w64-x86_64-gcc mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_mixer mingw-w64-x86_64-SDL2_image mingw-w64-x86_64-libxml2 mingw-w64-x86_64-libpng mingw-w64-x86_64-openal mingw-w64-x86_64-libvorbis mingw-w64-x86_64-binutils mingw-w64-x86_64-fontconfig mingw-w64-x86_64-freetype mingw-w64-x86_64-gettext mingw-w64-x86_64-luajit mingw-w64-x86_64-nsis libtool autoconf autoconf-archive automake automake-wrapper git gettext pkgconfig make intltool zip unzip python3-pip itstool
 
-    - name: Checkout Naikari Repository 
+    - name: Checkout Naikari Repository
       uses: actions/checkout@v2
 
     - name: Build Naikari on Win64
       run: |
         ./autogen.sh
-        ./configure --disable-debug --without-libzip
+        ./configure --disable-debug
         make -j$(nproc --all)
       env:
         CFLAGS: "-O3"
@@ -73,16 +73,15 @@ jobs:
           libiberty-dev \
           gettext \
           autopoint \
-          intltool \
-          itstool
+          intltool
 
-    - name: Checkout Naikari Repository 
+    - name: Checkout Naikari Repository
       uses: actions/checkout@v2
 
     - name: Build Naikari on Linux64
       run: |
         ./autogen.sh
-        ./configure --disable-debug --without-libzip --build=x86_64-linux-gnu --host=x86_64-linux-gnu
+        ./configure --disable-debug --build=x86_64-linux-gnu --host=x86_64-linux-gnu
         make -j$(nproc --all)
       env:
         CFLAGS: "-O3"
@@ -91,14 +90,14 @@ jobs:
       run: |
         chmod +x src/naikari
 
-        VERSION="$(cat VERSION)"
+        VERSION="$(cat dat/VERSION)"
 
         # Get version, negative minors mean betas
         if [[ -n $(echo "${VERSION}" | grep "-") ]]; then
           BASEVER=$(echo "${VERSION}" | sed 's/\.-.*//')
           BETAVER=$(echo "${VERSION}" | sed 's/.*-//')
           VERSION="${BASEVER}.0-beta.${BETAVER}"
-        fi 
+        fi
 
         mkdir -p dist/release/naikari-$VERSION-linux-x86-64
         mkdir -p dist/release/tar
@@ -107,8 +106,6 @@ jobs:
         chmod +x dist/release/naikari-$VERSION-linux-x86-64/naikari-$VERSION-linux-x86-64
 
         cp -r dat/ dist/release/naikari-$VERSION-linux-x86-64
-        cp AUTHORS dist/release/naikari-$VERSION-linux-x86-64
-        cp VERSION dist/release/naikari-$VERSION-linux-x86-64
 
         cd dist/release
         tar -czvf linux-x86-64.tar.gz naikari-$VERSION-linux-x86-64
@@ -137,37 +134,34 @@ jobs:
           fontconfig \
           luajit \
           intltool \
-          itstool \
           sdl2 \
           sdl2_mixer \
           sdl2_image \
           openal-soft
-          
+
     - name: Remove Homebrew Perl
       run: |
         brew uninstall --ignore-dependencies perl
         
-    - name: Checkout Naikari Repository 
+    - name: Checkout Naikari Repository
       uses: actions/checkout@v2
 
     - name: Build Naikari on MacOS
       run: |
         # PKGCONFIG configuration for OpenAL
         export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openal-soft/lib/pkgconfig"
-        
+
         ./autogen.sh
-        ./configure --disable-debug --without-libzip
+        ./configure --disable-debug
         make -j$(sysctl -n hw.logicalcpu)
       env:
         CFLAGS: "-O3 -mmacosx-version-min=10.7"
-    
+
     - name: Package MacOS Release
       run: |
         mkdir -p dist/release
 
         ./extras/macos/bundle.sh
-        cp AUTHORS Naikari.app/Contents/Resources/
-        cp VERSION Naikari.app/Contents/Resources/
         cp -r dat/ Naikari.app/Contents/Resources/dat/
         zip -r dist/release/naikari-macos.zip Naikari.app/*
 
@@ -202,14 +196,12 @@ jobs:
             libopenal-dev \
             libvorbis-dev \
             binutils-dev \
-            libzip-dev \
             libiberty-dev \
             gettext \
             autopoint \
-            intltool \
-            itstool
+            intltool
 
-      - name: Checkout Naikari Repository 
+      - name: Checkout Naikari Repository
         uses: actions/checkout@v2
 
       - name: Generate source archive
@@ -221,12 +213,12 @@ jobs:
       - name: Check if source archive is valid
         run: |
           # This currently doesn't work correctly.
-          # make distcheck 
+          # make distcheck
 
       - name: Prepare source artifact
         run: |
-          make VERSION
-          VERSION="$(cat VERSION)"
+          make dat/VERSION
+          VERSION="$(cat dat/VERSION)"
           mkdir -p dist/release
           mv naikari-$VERSION.tar.gz dist/release/source.tar.gz
 
@@ -263,21 +255,19 @@ jobs:
             libopenal-dev \
             libvorbis-dev \
             binutils-dev \
-            libzip-dev \
             libiberty-dev \
             gettext \
             autopoint \
-            intltool \
-            itstool
+            intltool
 
-      - name: Checkout Naikari Repository 
+      - name: Checkout Naikari Repository
         uses: actions/checkout@v2
 
       - name: Get VERSION
         run: |
           ./autogen.sh
           ./configure
-          make VERSION
+          make dat/VERSION
 
       - name: Create Release Staging Area
         run: |
@@ -287,10 +277,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: ${{ github.workspace }}/dist
-          
+
       - name: Collect files for distribution
         run: |
-          VERSION="$(cat VERSION)"
+          VERSION="$(cat dat/VERSION)"
            # Get version, negative minors mean betas
           if [[ -n $(echo "${VERSION}" | grep "-") ]]; then
               BASEVER=$(echo "${VERSION}" | sed 's/\.-.*//')

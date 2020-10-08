@@ -12,11 +12,9 @@ AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build])
 
-AM_PO_SUBDIRS
-
 AM_GNU_GETTEXT([external])
-#AM_GNU_GETTEXT_VERSION([0.19.8])
-AM_GNU_GETTEXT_VERSION([0.18])
+# Currently steam packages 0.19.7 which is the limiting factor here
+AM_GNU_GETTEXT_VERSION([0.19.7])
 GETTEXT_PACKAGE=${PACKAGE_NAME}
 AC_SUBST(GETTEXT_PACKAGE)
 
@@ -87,12 +85,7 @@ AS_IF([test -z "$CUT"],[
 AC_CHECK_PROG([DOXYGEN], [doxygen], [doxygen])
 AC_CHECK_PROG([LDOC], [ldoc], [ldoc])
 AC_CHECK_PROG([GIT], [git], [git])
-AS_IF([test "x$USE_NLS" == "xyes"], [
-   AC_CHECK_PROG([ITSTOOL], [itstool], [itstool])
-   AS_IF([test -z "$ITSTOOL"],[
-      AC_ERROR([itstool not found])
-   ])
-])
+AC_CHECK_PROG([ITSTOOL], [itstool], [itstool])
 
 #
 # Checks for build environment
@@ -215,21 +208,6 @@ AC_ARG_WITH([sdlmixer],
   ])
 AC_MSG_RESULT([$with_sdlmixer])
 
-# --with-libzip
-AC_MSG_CHECKING([whether to use libzip])
-AC_ARG_WITH([libzip],
-  AC_HELP_STRING([--with-libzip],
-     [use libzip for ndata (default: yes)]), [
-    AS_IF([test "x$withval" = "xyes"], [
-      with_libzip=yes
-    ], [
-      with_libzip=no
-    ])
-  ], [
-    with_libzip=yes
-  ])
-AC_MSG_RESULT([$with_libzip])
-
 # --with-fontconfig
 AC_MSG_CHECKING([whether to use fontconfig])
 AC_ARG_WITH([fontconfig],
@@ -266,26 +244,14 @@ AC_ARG_ENABLE([lua],
   ])
 AC_MSG_RESULT([$used_lua])
 
-# --with-ndata
-ndata_path="$datadir/$PACKAGE_NAME/ndata"
-expand_variable ndata_path
-
-AC_MSG_CHECKING([for path to ndata])
-AC_ARG_WITH([ndata-path],
-  AC_HELP_STRING([--with-ndata-path=PATH], [path to the ndata file]),
-  [ndata_path="$withval"], [])
-AC_MSG_RESULT([$ndata_path])
-AS_IF([test -z "$ndata_path" || test "x$ndata_path" = "xyes"], [
-  AC_ERROR([The data path must be explicitly specified])
-])
-AC_SUBST([ndata_path])
-
 #
 # Checks for libraries.
 #
 
 # "Newish" GCC
 AC_CHECK_HEADERS([stdalign.h])
+AC_CHECK_DECLS([setenv])
+AC_CHECK_DECLS([_putenv_s]) # Windows only alternative to setenv
 
 # SDL
 AM_PATH_SDL2(2.0.0, [], [
@@ -311,11 +277,6 @@ PKG_CHECK_MODULES([VORBISFILE], [vorbisfile])
 
 # libpng
 PKG_CHECK_MODULES([PNG], [libpng])
-
-# libzip
-AS_IF([test "x$with_libzip" = "xyes"], [
-  PKG_CHECK_MODULES([ZIP], [libzip])
-])
 
 # lua
 case "$used_lua" in
@@ -412,8 +373,7 @@ case "$host" in
 esac
 
 # global
-GLOBAL_CFLAGS="-include \"\$(top_builddir)/src/config.h\""
-GLOBAL_CFLAGS="$GLOBAL_CFLAGS -I\"\$(top_srcdir)/src\""
+GLOBAL_CFLAGS="-include \"\$(top_builddir)/src/config.h\" -I\"\$(top_srcdir)/src\" -DPKGDATADIR=\\\"\$(pkgdatadir)\\\""
 GLOBAL_LIBS=
 
 AS_IF([test "x$enable_debug" != "xno"], [
@@ -465,11 +425,11 @@ AS_IF([test "x$enable_debug" = "xparanoid"], [
 
 NAIKARI_CFLAGS="$NAIKARI_CFLAGS $CSPARSE_CFLAGS $SDL_CFLAGS $XML_CFLAGS \
     $FREETYPE_CFLAGS $FONTCONFIG_CFLAGS $LUA_CFLAGS $VORBIS_CFLAGS $VORBISFILE_CFLAGS \
-    $PNG_CFLAGS $ZIP_CFLAGS $OPENGL_CFLAGS"
+    $PNG_CFLAGS $OPENGL_CFLAGS"
 
 NAIKARI_LIBS="$NAIKARI_LIBS $CSPARSE_LIBS $SDL_LIBS $XML_LIBS \
     $FREETYPE_LIBS $FONTCONFIG_LIBS $LUA_LIBS $VORBIS_LIBS $VORBISFILE_LIBS \
-    $PNG_LIBS $ZIP_LIBS $OPENGL_LIBS"
+    $PNG_LIBS $OPENGL_LIBS"
 
 AS_IF([test "x$have_openal" = "xyes"], [
   NAIKARI_CFLAGS="$NAIKARI_CFLAGS $OPENAL_CFLAGS"
@@ -609,11 +569,6 @@ AS_IF([test "x$with_fontconfig" = "xyes"], [
   AC_DEFINE([USE_FONTCONFIG], 1, [Define to 1 if using fontconfig])
 ])
 
-# USE_LIBZIP
-AS_IF([test "x$with_libzip" = "xyes"], [
-  AC_DEFINE([USE_LIBZIP], 1, [Define to 1 if using libzip])
-])
-
 # Operating system
 case "$host" in
   *-linux*)
@@ -631,10 +586,6 @@ case "$host" in
     have_macos=yes
     ;;
 esac
-
-# NDATA_DEF
-AC_DEFINE_UNQUOTED([NDATA_DEF], ["$ndata_path"],
-      [Define to the path to the data file])
 
 # GIT_COMMIT
 AS_IF([test -n "$GIT_COMMIT"], [
@@ -658,6 +609,7 @@ AM_CONDITIONAL([HAVE_MKSPR], [test "x$have_mkspr" = "xyes"])
 AM_CONDITIONAL([LUA_INTERNAL], [test "x$used_lua" = "xinternal"])
 AM_CONDITIONAL([CSPARSE_INTERNAL], [test "x$used_csparse" = "xinternal"])
 AM_CONDITIONAL([HAVE_NLS], [test "x$USE_NLS" = "xyes" && test -d "$srcdir/po"])
+AM_CONDITIONAL([HAVE_ITSTOOL], [test -n "$ITSTOOL"])
 # AC_CHECK_FILE breaks cross-compiling, so we check directly
 AM_CONDITIONAL([HAVE_SHADERS_C_GEN], [test -f "$srcdir/src/shaders_c_gen.c"])
 #AC_CHECK_FILE([$srcdir/src/shaders_c_gen.c],
@@ -693,7 +645,6 @@ AC_OUTPUT
 
 echo
 AC_MSG_NOTICE([prefix:       $prefix])
-AC_MSG_NOTICE([ndata:        $ndata_path])
 echo
 AC_MSG_NOTICE([sound backends:])
 AC_MSG_NOTICE([  OpenAL:     $have_openal])
@@ -703,7 +654,6 @@ AC_MSG_NOTICE([lib:])
 AC_MSG_NOTICE([  csparse:    $used_csparse])
 AC_MSG_NOTICE([  fontconfig: $with_fontconfig])
 AC_MSG_NOTICE([  lua:        $used_lua])
-AC_MSG_NOTICE([  libzip:     $with_libzip])
 echo
 AC_MSG_NOTICE([utils:        $have_utils])
 AC_MSG_NOTICE([  mkspr:      $have_mkspr])
@@ -716,4 +666,3 @@ AS_IF([test "x$enable_debug" != "xno"], [
        ;;
    esac
 ])
-

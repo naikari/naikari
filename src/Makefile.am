@@ -45,6 +45,7 @@ CODE_SOURCE = \
 	dev_mapedit.c \
 	dialogue.c \
 	economy.c \
+	env.c \
 	equipment.c \
 	escort.c \
 	event.c \
@@ -115,7 +116,6 @@ CODE_SOURCE = \
 	nlua_var.c \
 	nlua_vec2.c \
 	nmath.c \
-	nondata.c \
 	nopenal.c \
 	npng.c \
 	npc.c \
@@ -123,7 +123,6 @@ CODE_SOURCE = \
 	ntime.c \
 	nxml.c \
 	nxml_lua.c \
-	nzip.c \
 	opengl.c \
 	opengl_matrix.c \
 	opengl_render.c \
@@ -192,6 +191,7 @@ CODE_SOURCE = \
 	dev_mapedit.h \
 	dialogue.h \
 	economy.h \
+	env.h \
 	equipment.h \
 	escort.h \
 	event.h \
@@ -274,7 +274,6 @@ CODE_SOURCE = \
 	ntime.h \
 	nxml.h \
 	nxml_lua.h \
-	nzip.h \
 	opengl.h \
 	opengl_matrix.h \
 	opengl_render.h \

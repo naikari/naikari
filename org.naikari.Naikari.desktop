@@ -2,10 +2,8 @@
 Type=Application
 Name=Naikari
 GenericName=Naikari
-Comment=2D action/rpg space trading combat game
+Comment=2-D space-trading sandbox game, forked from the Naev project
 Icon=naikari
 Exec=naikari
 Categories=Game;AdventureGame;
 Terminal=false
-Keywords=2D;action;rpg;space;trading;combat;game;
-Name[en_US]=naikari.desktop

@@ -1,9 +1,11 @@
+dat/ai/advertiser.lua
 dat/ai/baddie.lua
 dat/ai/baddie_norun.lua
 dat/ai/base.lua
 dat/ai/civilian.lua
 dat/ai/collective.lua
 dat/ai/collective_norun.lua
+dat/ai/distress_behaviour.lua
 dat/ai/dummy.lua
 dat/ai/dvaered.lua
 dat/ai/dvaered_norun.lua
@@ -36,6 +38,7 @@ dat/ai/independent.lua
 dat/ai/mercenary.lua
 dat/ai/miner.lua
 dat/ai/noidle.lua
+dat/ai/personality/advertiser.lua
 dat/ai/personality/civilian.lua
 dat/ai/personality/miner.lua
 dat/ai/personality/patrol.lua
@@ -295,7 +298,6 @@ dat/scripts/prng.lua
 dat/scripts/proximity.lua
 dat/scripts/selectiveclear.lua
 dat/snd/music.lua
-po/xml.pot
 src/ai.c
 src/array.c
 src/background.c
@@ -321,6 +323,7 @@ src/dev_system.c
 src/dev_uniedit.c
 src/dialogue.c
 src/economy.c
+src/env.c
 src/equipment.c
 src/escort.c
 src/event.c
@@ -391,7 +394,6 @@ src/nlua_tk.c
 src/nlua_var.c
 src/nlua_vec2.c
 src/nmath.c
-src/nondata.c
 src/nopenal.c
 src/npc.c
 src/npng.c
@@ -399,7 +401,6 @@ src/nstring.c
 src/ntime.c
 src/nxml.c
 src/nxml_lua.c
-src/nzip.c
 src/opengl.c
 src/opengl_matrix.c
 src/opengl_render.c
@@ -453,3 +454,4 @@ src/toolkit.c
 src/unidiff.c
 src/utf8.c
 src/weapon.c
+po/xml.pot

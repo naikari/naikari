@@ -507,6 +507,7 @@ unsigned int window_createFlags( const char* name,
 
    wdw->id           = wid;
    wdw->name         = strdup(name);
+   wdw->displayname  = _(wdw->name);
 
    /* Safe defaults. */
    wdw->idgen        = -1;
@@ -941,7 +942,7 @@ void window_destroyWidget( unsigned int wid, const char* wgtname )
          break;
 
    if (wgt == NULL) {
-      WARN(_("Widget '%s' not found in window '%s'"), wgtname, wdw->name );
+      WARN(_("Widget '%s' not found in window '%s'"), wgtname, wdw->displayname );
       return;
    }
 
@@ -1255,7 +1256,7 @@ static void window_renderBorder( Window* w )
       gl_printMidRaw( &gl_defFont, w->w,
             x,
             y + w->h - 20.,
-            &cFontWhite, w->name );
+            &cFontWhite, w->displayname );
       return;
    }
 
@@ -1269,7 +1270,7 @@ static void window_renderBorder( Window* w )
    gl_printMidRaw( &gl_defFont, w->w,
          x,
          y + w->h - 20.,
-         &cFontWhite, w->name );
+         &cFontWhite, w->displayname );
 }
 
 
@@ -1299,7 +1300,7 @@ void window_render( Window *w )
     * widgets
     */
    for (wgt=w->widgets; wgt!=NULL; wgt=wgt->next)
-      if (wgt->render != NULL)
+      if ((wgt->render != NULL) && !wgt_isFlag(wgt, WGT_FLAG_KILL))
          wgt->render( wgt, x, y );
 
    /*
@@ -1307,7 +1308,7 @@ void window_render( Window *w )
     */
    if (w->focus != -1) {
       wgt = toolkit_getFocus( w );
-      if (wgt == NULL)
+      if ((wgt == NULL) || wgt_isFlag(wgt, WGT_FLAG_KILL))
          return;
       x  += wgt->x;
       y  += wgt->y;
@@ -1340,7 +1341,7 @@ void window_renderOverlay( Window *w )
     * overlays
     */
    for (wgt=w->widgets; wgt!=NULL; wgt=wgt->next)
-      if (wgt->renderOverlay != NULL)
+      if ((wgt->renderOverlay != NULL) && !wgt_isFlag(wgt, WGT_FLAG_KILL))
          wgt->renderOverlay( wgt, x, y );
 }
 
@@ -1641,7 +1642,7 @@ static int toolkit_mouseEventWidget( Window *w, Widget *wgt,
                if (wgt->dat.btn.fptr==NULL)
                   DEBUG(_("Toolkit: Button '%s' of Window '%s' "
                         "doesn't have a function trigger"),
-                        wgt->name, w->name );
+                        wgt->name, w->displayname );
                else {
                   (*wgt->dat.btn.fptr)(w->id, wgt->name);
                   ret = 1;

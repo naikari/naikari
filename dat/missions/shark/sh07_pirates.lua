@@ -31,7 +31,7 @@
 require "pilot/pirate.lua"
 require "numstring.lua"
 require "jumpdist.lua"
-require "dat/missions/shark/common.lua"
+require "missions/shark/common.lua"
 
 
 title = {}
@@ -65,7 +65,7 @@ text[5] = _([[Smith awaits your arrival at the spaceport. When you exit your shi
 -- Mission details
 misn_title = _("The Last Detail")
 misn_reward = _("%s credits")
-misn_desc = _("Nexus Shipyard has tasked you with killing four pirates.")
+misn_desc = _("Nexus Shipyards has tasked you with killing four pirates.")
 
 -- NPC
 npc_desc[1] = _("Arnold Smith")

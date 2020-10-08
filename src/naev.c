@@ -44,60 +44,61 @@
 #endif /* HAS_LINUX && HAS_BFD && defined(DEBUGGING) */
 
 /* local */
-#include "conf.h"
-#include "physics.h"
-#include "opengl.h"
-#include "font.h"
-#include "ship.h"
-#include "pilot.h"
-#include "fleet.h"
-#include "player.h"
-#include "input.h"
-#include "joystick.h"
-#include "space.h"
-#include "rng.h"
 #include "ai.h"
-#include "outfit.h"
-#include "weapon.h"
-#include "faction.h"
-#include "nxml.h"
-#include "toolkit.h"
-#include "pause.h"
-#include "sound.h"
-#include "music.h"
-#include "spfx.h"
-#include "damagetype.h"
-#include "economy.h"
-#include "menu.h"
-#include "mission.h"
-#include "nlua_misn.h"
-#include "nfile.h"
-#include "nebula.h"
-#include "unidiff.h"
-#include "ndata.h"
-#include "gui.h"
-#include "news.h"
-#include "nlua_var.h"
-#include "map.h"
-#include "map_system.h"
-#include "event.h"
-#include "cond.h"
-#include "land.h"
-#include "tech.h"
-#include "hook.h"
-#include "npc.h"
-#include "console.h"
-#include "npng.h"
-#include "dev.h"
 #include "background.h"
 #include "camera.h"
-#include "map_overlay.h"
-#include "start.h"
-#include "threadpool.h"
-#include "load.h"
-#include "options.h"
+#include "cond.h"
+#include "conf.h"
+#include "console.h"
+#include "damagetype.h"
+#include "dev.h"
 #include "dialogue.h"
+#include "economy.h"
+#include "env.h"
+#include "event.h"
+#include "faction.h"
+#include "fleet.h"
+#include "font.h"
+#include "gui.h"
+#include "hook.h"
+#include "input.h"
+#include "joystick.h"
+#include "land.h"
+#include "load.h"
+#include "map.h"
+#include "map_overlay.h"
+#include "map_system.h"
+#include "menu.h"
+#include "mission.h"
+#include "music.h"
+#include "ndata.h"
+#include "nebula.h"
+#include "news.h"
+#include "nfile.h"
+#include "nlua_misn.h"
+#include "nlua_var.h"
+#include "npc.h"
+#include "npng.h"
+#include "nxml.h"
+#include "opengl.h"
+#include "options.h"
+#include "outfit.h"
+#include "pause.h"
+#include "physics.h"
+#include "pilot.h"
+#include "player.h"
+#include "rng.h"
+#include "ship.h"
 #include "slots.h"
+#include "sound.h"
+#include "space.h"
+#include "spfx.h"
+#include "start.h"
+#include "tech.h"
+#include "threadpool.h"
+#include "toolkit.h"
+#include "unidiff.h"
+#include "weapon.h"
 
 #if defined ENABLE_NLS && ENABLE_NLS
 #include <locale.h>
@@ -176,7 +177,9 @@ void naev_quit (void)
  */
 int main( int argc, char** argv )
 {
-   char buf[PATH_MAX];
+   char buf[PATH_MAX], langbuf[PATH_MAX], *lang;
+
+   env_detect( argv );
 
    if (!log_isTerminal())
       log_copy(1);
@@ -197,19 +200,26 @@ int main( int argc, char** argv )
     * numeric type of the locale. */
    setlocale( LC_ALL, "" );
    setlocale( LC_NUMERIC, "C" ); /* Disable numeric locale part. */
-   bindtextdomain( PACKAGE_NAME, LOCALEDIR );
+   /* We haven't loaded the ndata yet, so just try a path quickly. */
+   nsnprintf( langbuf, sizeof(langbuf), "%s/"GETTEXT_PATH, naev_binary() );
+   bindtextdomain( PACKAGE_NAME, langbuf );
    //bindtextdomain("naev", "po/");
    textdomain( PACKAGE_NAME );
 #endif /* defined ENABLE_NLS && ENABLE_NLS */
 
    /* Save the binary path. */
-   binary_path = strdup(argv[0]);
+   binary_path = strdup( env.argv0 );
 
    /* Print the version */
    LOG( " %s v%s (%s)", APPNAME, naev_version(0), HOST );
 #ifdef GIT_COMMIT
    DEBUG( _(" git HEAD at %s"), GIT_COMMIT );
 #endif /* GIT_COMMIT */
+
+   if ( env.isAppImage )
+      LOG( "AppImage detected. Running from: %s", env.appdir );
+   else
+      DEBUG( "AppImage not detected." );
 
    /* Initializes SDL for possible warnings. */
    SDL_Init(0);
@@ -222,7 +232,7 @@ int main( int argc, char** argv )
 
 #if HAS_UNIX
    /* Set window class and name. */
-   setenv("SDL_VIDEO_X11_WMCLASS", APPNAME, 0);
+   nsetenv("SDL_VIDEO_X11_WMCLASS", APPNAME, 0);
 #endif /* HAS_UNIX */
 
    /* Must be initialized before input_init is called. */
@@ -259,24 +269,11 @@ int main( int argc, char** argv )
    conf_parseCLIPath( argc, argv );
 
    /* Create the home directory if needed. */
-   if (nfile_dirMakeExist("%s", nfile_configPath()))
+   if ( nfile_dirMakeExist( nfile_configPath() ) )
       WARN( _("Unable to create config directory '%s'"), nfile_configPath());
 
    /* Set the configuration. */
    nsnprintf(buf, PATH_MAX, "%s"CONF_FILE, nfile_configPath());
-
-#if HAS_MACOS
-   /* TODO get rid of this cruft ASAP. */
-   char oldconfig[PATH_MAX] = "";
-   if (!nfile_fileExists( buf )) {
-      char *home = SDL_getenv( "HOME" );
-      if (home != NULL) {
-         nsnprintf( oldconfig, PATH_MAX, "%s/.config/naev/"CONF_FILE, home );
-         if (!nfile_fileExists( oldconfig ))
-            oldconfig[0] = '\0';
-      }
-   }
-#endif /* HAS_MACOS */
 
    conf_loadConfig(buf); /* Lua to parse the configuration file */
    conf_parseCLI( argc, argv ); /* parse CLI arguments */
@@ -288,19 +285,6 @@ int main( int argc, char** argv )
    else
       log_purge();
 
-#if defined ENABLE_NLS && ENABLE_NLS
-   /* Try to set the language again if Naev is attempting to override the locale stuff.
-    * This is done late because this is the first stage at which we have the conf file
-    * fully loaded. */
-   if (conf.language != NULL) {
-      setlocale( LC_ALL, (strcmp(conf.language,"en")==0) ? "C" : conf.language );
-      setlocale( LC_NUMERIC, "C" ); /* Disable numeric locale part. */
-      bindtextdomain( PACKAGE_NAME, LOCALEDIR );
-      textdomain( PACKAGE_NAME );
-      DEBUG(_("Reset language to \"%s\""), conf.language);
-   }
-#endif /* defined ENABLE_NLS && ENABLE_NLS */
-
    /* Enable FPU exceptions. */
 #if defined(HAVE_FEENABLEEXCEPT) && defined(DEBUGGING)
    if (conf.fpu_except)
@@ -310,6 +294,29 @@ int main( int argc, char** argv )
    /* Open data. */
    if (ndata_open() != 0)
       ERR( _("Failed to open ndata.") );
+
+#if defined ENABLE_NLS && ENABLE_NLS
+   /* Try to set the language again if Naev is attempting to override the locale stuff.
+    * This is done late because this is the first stage at which we have the conf file
+    * fully loaded. */
+   if (conf.language == NULL)
+      lang = "";
+   else if (strcmp(conf.language,"en")==0)
+      lang = "C";
+   else
+      lang = conf.language;
+   nsetenv( "LANGUAGE", lang, 1 );
+   /*
+   if (setlocale( LC_ALL, lang )==NULL)
+      WARN(_("Unable to set the locale to '%s'!"), lang );
+   */
+   if (setlocale( LC_NUMERIC, "C" )==NULL) /* Disable numeric locale part. */
+      WARN(_("Unable to set LC_NUMERIC to 'C'!"));
+   nsnprintf( langbuf, sizeof(langbuf), "%s/"GETTEXT_PATH, ndata_getPath() );
+   bindtextdomain( PACKAGE_NAME, langbuf );
+   textdomain( PACKAGE_NAME );
+   DEBUG(_("Reset language to \"%s\""), lang);
+#endif /* defined ENABLE_NLS && ENABLE_NLS */
 
    /* Load the start info. */
    if (start_load())

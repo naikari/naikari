@@ -11,50 +11,64 @@ SUBDIRS += po
 DIST_SUBDIRS += po
 endif # HAVE_NLS
 
-appicondir = $(datadir)/pixmaps
+appicondir = $(datadir)/icons/hicolor/256x256/apps
 appicon_DATA = extras/logos/naikari.png
 Graphicsdir = $(datadir)/applications
-Graphics_DATA = naikari.desktop
-appdatadir = $(datadir)/appdata
-appdata_DATA = naikari.appdata.xml
+Graphics_DATA = org.naikari.Naikari.desktop
+appdatadir = $(datadir)/metainfo
+appdata_DATA = org.naikari.Naikari.appdata.xml
 
-dist_man6_MANS = naikari.6
-dist_doc_DATA = AUTHORS Readme.md LICENSE
-nobase_dist_pkgdata_DATA = dat/* po/*
+dist_man6_MANS = naev.6
+dist_doc_DATA = README TODO LICENSE
 
 if HAVE_UTILS
-MKSPR      = utils/mkspr/mkspr$(EXEEXT)
+MKSPR      = $(top_srcdir)/utils/mkspr/mkspr$(EXEEXT)
 endif
-NAIKARI	     = $(PACKAGE)$(EXEEXT)
+NAIKARI	     = $(top_srcdir)/$(PACKAGE)$(EXEEXT)
 
-VERSIONFILE = VERSION
+VERSIONFILE = $(top_srcdir)/dat/VERSION
+LICENSEFILE = $(top_srcdir)/dat/LICENSE
 LANGUAGEFILE = $(top_srcdir)/dat/LANGUAGES
 
-EXTRA_DIST = build/config.rpath LICENSE extras naikari.desktop naikari.appdata.xml
-CLEANFILES = $(NAIKARI) $(VERSIONFILE) $(LANGUAGEFILE)
+EXTRA_DIST = build/config.rpath LICENSE extras org.naikari.Naikari.desktop org.naikari.Naikari.appdata.xml
+CLEANFILES = $(NAIKARI) $(VERSIONFILE) $(LANGUAGEFILE) $(LICENSEFILE)
 
 if HAVE_NLS
-XMLBASE     = $(wildcard dat/*.xml)
-XMLOUTFITS  = $(wildcard dat/outfits/*/*.xml)
-XMLSHIPS    = $(wildcard dat/ships/*.xml)
-XMLFILES    = $(XMLBASE) $(XMLSHIPS) $(XMLOUTFITS)
-TRANSLATIONITS = $(top_srcdir)/po/translation.its
+XMLFILES    = $(top_srcdir)/po/POTFILES_XML.in
+TRANSLATIONITS = $(top_srcdir)/po/its/translation.its
 XMLPOT      = $(top_srcdir)/po/xml.pot
 CLEANFILES += $(XMLPOT)
 endif # HAVE_NLS
 
-.PHONY: pot docs utils help install-ndata soundtrack
+.PHONY: data pot docs utils help install-ndata soundtrack
 
-all-local: $(NAIKARI) pot $(VERSIONFILE)
+all-local: $(NAIKARI) data
+
+data: pot $(VERSIONFILE) $(LICENSEFILE)
+
+$(LICENSEFILE): LICENSE
+	@echo "  CP    $<"
+	cp $< $@
 
 if HAVE_NLS
+if HAVE_ITSTOOL
+# On windows it seems like '\r' are leaking into filenames and breaking the
+# following command, so we use lots of ugly tr instead ¯\_(ツ)_/¯
+# xargs -a $(XMLFILES) $(ITSTOOL) -i $(TRANSLATIONITS) > $@
 $(XMLPOT): $(XMLFILES) $(TRANSLATIONITS)
-	$(ITSTOOL) -i $(TRANSLATIONITS) $(XMLFILES) > $@
 	@echo "ITSTOOL $@"
+	cat $(XMLFILES) | tr '\n' '\0' | tr -d '\r' | xargs -0 $(ITSTOOL) -i $(TRANSLATIONITS) > $@
+else # HAVE_ITSTOOL
+$(XMLPOT): $(XMLFILES) $(TRANSLATIONITS)
+	@echo "XGETTEXT $@"
+	$(XGETTEXT) --from-code=UTF-8 --its=$(TRANSLATIONITS) -f $(XMLFILES) -o $@
+endif # HAVE_ITSTOOL
 
 if HAVE_DATA
-pot: $(LANGUAGEFILE) $(XMLPOT) $(NAIKARI)
+pot: $(XMLPOT) $(LANGUAGEFILE)
+	$(MAKE) -C po
 	$(MAKE) -C po $(PACKAGE).pot
+	./utils/gettext.sh
 
 $(LANGUAGEFILE): po/LINGUAS
 	tail -n +2 $< > $@
@@ -63,7 +77,7 @@ pot:
 endif # HAVE_DATA
 
 else # HAVE_NLS
-pot: $(XMLPOT) $(NAIKARI)
+pot:
 	@echo "***"
 	@echo "*** You must have NLS enabled to compile translation files"
 	@echo "***"
@@ -74,7 +88,7 @@ $(NAIKARI):
 	$(LN_S) "src/$(NAIKARI)" "$(NAIKARI)"
 
 $(VERSIONFILE): src/config.h
-	echo $(VERSION) > $@
+	@echo $(VERSION) > $@
 
 if HAVE_UTILS
 utils: $(MKSPR)
@@ -84,6 +98,9 @@ $(MKSPR):
 else # HAVE_UTILS
 utils:
 endif # HAVE_UTILS
+
+install-data-local:
+	(cd $(top_srcdir)/dat; find . -type f -exec install -Dm 644 "{}" "$(pkgdatadir)/dat/{}" \;)
 
 uninstall-hook:
 	echo " rm -rf '$(DESTDIR)$(pkgdatadir)'"; \
@@ -102,7 +119,6 @@ naikari-$(VERSION)-soundtrack.zip: utils/soundtrack.py dat/snd/soundtrack.yaml
 help:
 	@echo "Possible targets are:"
 	@echo "        all - builds everything"
-	@echo "  ndata.zip - creates the ndata file"
 	@echo "       docs - creates the doxygen documentation"
 	@echo " soundtrack - creates the soundtrack zip file"
 	@echo "      clean - removes binaries and object files"
