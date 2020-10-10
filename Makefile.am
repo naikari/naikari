@@ -18,7 +18,7 @@ Graphics_DATA = org.naikari.Naikari.desktop
 appdatadir = $(datadir)/metainfo
 appdata_DATA = org.naikari.Naikari.appdata.xml
 
-dist_man6_MANS = naev.6
+dist_man6_MANS = naikari.6
 dist_doc_DATA = README TODO LICENSE
 
 if HAVE_UTILS

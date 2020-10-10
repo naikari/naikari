@@ -2,7 +2,7 @@
 
 ROOT=${1-$(pwd)}
 
-if [[ ! -f "$ROOT/naev.6" ]]; then
+if [[ ! -f "$ROOT/naikari.6" ]]; then
    echo "Please run from Naikari root directory, or run with update-po.sh [source_root]"
    exit -1
 fi
