@@ -19,7 +19,7 @@ appdatadir = $(datadir)/metainfo
 appdata_DATA = org.naikari.Naikari.appdata.xml
 
 dist_man6_MANS = naikari.6
-dist_doc_DATA = README TODO LICENSE
+dist_doc_DATA = Readme.md LICENSE
 
 if HAVE_UTILS
 MKSPR      = $(top_srcdir)/utils/mkspr/mkspr$(EXEEXT)
