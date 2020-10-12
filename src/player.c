@@ -1946,12 +1946,12 @@ void player_targetSet( unsigned int id )
 void player_targetHostile (void)
 {
    unsigned int tp;
-   int i;
    double d, td;
+   int inRange;
 
    tp = PLAYER_ID;
    d  = 0;
-   for (i=0; i<pilot_nstack; i++) {
+   for (int i=0; i<pilot_nstack; i++) {
       /* Shouldn't be disabled. */
       if (pilot_isDisabled(pilot_stack[i]))
          continue;
@@ -1962,8 +1962,8 @@ void player_targetHostile (void)
 
       /* Must be hostile. */
       if (pilot_isHostile(pilot_stack[i])) {
-         td = vect_dist2(&pilot_stack[i]->solid->pos, &player.p->solid->pos);
-         if ((tp == PLAYER_ID) || (td < d)) {
+         inRange = pilot_inRangePilot(pilot_stack[i], player.p, &td);
+         if (tp == PLAYER_ID || (inRange == 1 && td < d)) {
             d  = td;
             tp = pilot_stack[i]->id;
          }
