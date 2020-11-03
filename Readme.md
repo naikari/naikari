@@ -52,8 +52,7 @@ package lists for several distributions.
 Run:
 
 ```
-bash
-meson setup build .
+meson setup builddir .
 cd build
 meson compile
 ```
