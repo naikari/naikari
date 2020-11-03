@@ -81,8 +81,8 @@ following commands:
 
 ```
 meson compile potfiles # only necessary if files have been added or removed
-meson compile naev-pot
-meson compile naev-update-po
+meson compile naikari-pot
+meson compile naikari-update-po
 ```
 
 Again, you will only ever need to do this if you are a developer.
