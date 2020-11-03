@@ -1,4 +1,4 @@
-project('naev', 'c',
+project('naikari', 'c',
    version : '0.8.0-beta.3',
    default_options : [
       'warning_level=1',
@@ -8,7 +8,7 @@ project('naev', 'c',
    ],
    meson_version: '>=0.55.0')
 
-issue_address = 'https://github.com/naev/naev/issues'
+issue_address = 'https://github.com/naikari/naikari/issues'
 copyright_holder = 'Naev Dev Team'
 
 # Tools
@@ -42,7 +42,7 @@ if buildExec.disabled() == false
 
    ndata_path = get_option('ndata_path')
    if ndata_path == ''
-      ndata_path = get_option('datadir') / 'naev'
+      ndata_path = get_option('datadir') / 'naikari'
    endif
    summary('NData Path', ndata_path, section: 'Features')
 
@@ -200,7 +200,7 @@ if buildExec.disabled() == false
    naev_source += shader_source
 
    naev_bin = executable(
-      'naev',
+      'naikari',
       naev_source,
       include_directories: include_dirs,
       dependencies: naev_deps,
@@ -210,13 +210,12 @@ if buildExec.disabled() == false
    install_data(
       'LICENSE',
       'README',
-      install_dir: get_option('datadir') / 'doc/naev'
+      install_dir: get_option('datadir') / 'doc/naikari'
    )
 
    install_data(
-      'naev-confupdate.sh',
-      'extras/logos/naev.png',
-      install_dir: get_option('datadir') / 'naev'
+      'extras/logos/naikari.png',
+      install_dir: get_option('datadir') / 'naikari'
    )
 
    install_subdir(
@@ -225,27 +224,27 @@ if buildExec.disabled() == false
    )
 
    if host_machine.system() not in ['windows', 'cygwin', 'emscripten', 'android', 'darwin']        
-         metainfo_file = 'org.naev.naev.metainfo.xml'
+         metainfo_file = 'org.naikari.naikari.metainfo.xml'
 
          if (ascli_exe.found())
          # Create desktop-entry file from metainfo
          custom_target('gen-desktop-entry',
             input : [metainfo_file],
-            output : ['org.naev.naev.desktop'],
+            output : ['org.naikari.naikari.desktop'],
             command : [ascli_exe, 'make-desktop-file', '@INPUT@', '@OUTPUT@'],
             install: true,
             install_dir: join_paths (get_option ('datadir'), 'applications')
          )
          else
-            install_data('org.naev.naev.desktop', install_dir: join_paths (get_option ('datadir'), 'applications'))
+            install_data('org.naikari.naikari.desktop', install_dir: join_paths (get_option ('datadir'), 'applications'))
          endif
 
          install_data(metainfo_file, install_dir: get_option('datadir') / 'metainfo')
 
-      install_data(['extras/logos/logo16.png', 'extras/logos/logo32.png', 'extras/logos/logo64.png', 'extras/logos/logo128.png', 'extras/logos/naev.png'],
-             rename : ['16x16/apps/naev.png', '32x32/apps/naev.png', '64x64/apps/naev.png', '128x128/apps/naev.png', '256x256/apps/naev.png'],
+      install_data(['extras/logos/logo16.png', 'extras/logos/logo32.png', 'extras/logos/logo64.png', 'extras/logos/logo128.png', 'extras/logos/naikari.png'],
+             rename : ['16x16/apps/naikari.png', '32x32/apps/naikari.png', '64x64/apps/naikari.png', '128x128/apps/naikari.png', '256x256/apps/naikari.png'],
              install_dir: get_option('datadir') / 'icons/hicolor')
-      install_man('naev.6')
+      install_man('naikari.6')
       
    endif
 
@@ -266,7 +265,7 @@ custom_target(
       '--output', '@OUTPUT0@'
    ],
    output: [
-      'naev-' + meson.project_version() + '-soundtrack.zip',
-      'naev-' + meson.project_version() + '-soundtrack.csv'
+      'naikari-' + meson.project_version() + '-soundtrack.zip',
+      'naikari-' + meson.project_version() + '-soundtrack.csv'
    ]
 )

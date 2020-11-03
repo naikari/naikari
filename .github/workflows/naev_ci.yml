@@ -133,7 +133,6 @@ jobs:
     - name: Extract Source
       run: |
         mkdir source
-        ls
         tar -xf naikari-*.tar.xz -C source --strip 1
 
     - name: Meson Setup
