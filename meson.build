@@ -209,7 +209,6 @@ if buildExec.disabled() == false
 
    install_data(
       'LICENSE',
-      'README',
       install_dir: get_option('datadir') / 'doc/naikari'
    )
 
