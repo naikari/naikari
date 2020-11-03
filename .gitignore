@@ -88,9 +88,18 @@ src/shaders_c_gen
 /.cproject
 /.project
 
+meson-bin/
+
 bin/
 utils/starmap/*.svg
 utils/starmap/*.png
 utils/starmap/*.jpg
 utils/starmap/*.log
 /compile_commands.json
+/.clangd/
+*.ninja_deps
+*.ninja_log
+builddir/
+/subprojects/*
+!/subprojects/packagefiles
+!/subprojects/*.wrap

@@ -41,6 +41,7 @@
 #include "SDL.h"
 #include "SDL_mutex.h"
 
+#include "attributes.h"
 #include "conf.h"
 #include "env.h"
 #include "log.h"
@@ -52,7 +53,6 @@
 
 
 #define NDATA_PATHNAME  "dat" /**< Generic ndata file name. */
-
 
 #define NDATA_SRC_CWD     0 /**< Current working directory. (debug builds only) */
 #define NDATA_SRC_USER    1 /**< User defined directory. */
@@ -112,16 +112,16 @@ int ndata_setPath( const char *path )
 
       switch ( ndata_source ) {
       case NDATA_SRC_CWD:
-         if (ndata_isndata( "." )) {
-            ndata_dir    = strdup( "." );
+         if ( ndata_isndata( NDATA_PATHNAME ) ) {
+            ndata_dir    = strdup( NDATA_PATHNAME );
             ndata_source = NDATA_SRC_CWD;
             break;
          }
-         __attribute__( ( fallthrough ) );
+         FALLTHROUGH;
       case NDATA_SRC_USER:
          // This already didn't work out when we checked the provided path.
       case NDATA_SRC_DEFAULT:
-         if ( env.isAppImage && nfile_concatPaths( buf, PATH_MAX, env.appdir, NDATA_PATHNAME ) >= 0 && ndata_isndata( buf ) ) {
+         if ( env.isAppImage && nfile_concatPaths( buf, PATH_MAX, env.appdir, PKGDATADIR, NDATA_PATHNAME ) >= 0 && ndata_isndata( buf ) ) {
             ndata_dir    = strdup( buf );
             ndata_source = NDATA_SRC_DEFAULT;
             break;
@@ -132,7 +132,7 @@ int ndata_setPath( const char *path )
             ndata_source = NDATA_SRC_DEFAULT;
             break;
          }
-         __attribute__( ( fallthrough ) );
+         FALLTHROUGH;
       case NDATA_SRC_BINARY:
          nfile_concatPaths( buf, PATH_MAX, nfile_dirname(naev_binary()), NDATA_PATHNAME );
          if ( ndata_isndata( buf ) ) {
@@ -140,7 +140,7 @@ int ndata_setPath( const char *path )
             ndata_source = NDATA_SRC_BINARY;
             break;
          }
-         __attribute__( ( fallthrough ) );
+         FALLTHROUGH;
       default:
          // Couldn't find ndata
          return -1;
@@ -190,30 +190,21 @@ static int ndata_isndata( const char *dir )
  */
 static void ndata_testVersion (void)
 {
-   int ret;
-   size_t size;
-   int version[3];
-   char *buf;
+   size_t i, size;
+   char *buf, cbuf[PATH_MAX];
    int diff;
 
    /* Parse version. */
    buf = ndata_read( "VERSION", &size );
-   ret = naev_versionParse( version, buf, (int)size );
-   free(buf);
-   if (ret != 0) {
-      WARN(_("Problem reading VERSION file from ndata!"));
-      return;
-   }
-
-   diff = naev_versionCompare( version );
+   for (i=0; i<MIN(size,PATH_MAX-1); i++)
+      cbuf[i] = buf[i];
+   cbuf[MIN(size-1,PATH_MAX-1)] = '\0';
+   diff = naev_versionCompare( cbuf );
    if (diff != 0) {
       WARN( _("ndata version inconsistancy with this version of Naev!") );
-      WARN( _("Expected ndata version %d.%d.%d got %d.%d.%d."),
-            VMAJOR, VMINOR, VREV, version[0], version[1], version[2] );
-
+      WARN( _("Expected ndata version %s got %s."), VERSION, cbuf );
       if (ABS(diff) > 2)
          ERR( _("Please get a compatible ndata version!") );
-
       if (ABS(diff) > 1)
          WARN( _("Naikari will probably crash now as the versions are probably not compatible.") );
    }

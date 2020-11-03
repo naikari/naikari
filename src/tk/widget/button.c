@@ -44,7 +44,7 @@ static void btn_updateHotkey( Widget *btn );
 void window_addButtonKey( const unsigned int wid,
                        const int x, const int y,
                        const int w, const int h,
-                       char* name, char* display,
+                       const char* name, const char* display,
                        void (*call) (unsigned int wgt, char* wdwname),
                        SDL_Keycode key )
 {
@@ -104,7 +104,7 @@ void window_addButtonKey( const unsigned int wid,
 void window_addButton( const unsigned int wid,
                        const int x, const int y,
                        const int w, const int h,
-                       char* name, char* display,
+                       const char* name, const char* display,
                        void (*call) (unsigned int wgt, char* wdwname) )
 {
    window_addButtonKey( wid, x, y, w, h, name, display, call, 0 );
@@ -139,7 +139,7 @@ static Widget* btn_get( const unsigned int wid, const char* name )
  *    @param wid ID of the window to get widget from.
  *    @param name Name of the button to disable.
  */
-void window_disableButton( const unsigned int wid, char* name )
+void window_disableButton( const unsigned int wid, const char* name )
 {
    Widget *wgt;
    Window *wdw;
@@ -164,7 +164,7 @@ void window_disableButton( const unsigned int wid, char* name )
  *    @param wid ID of the window to get widget from.
  *    @param name Name of the button to disable.
  */
-void window_disableButtonSoft( const unsigned int wid, char *name )
+void window_disableButtonSoft( const unsigned int wid, const char *name )
 {
    Widget *wgt;
 
@@ -184,7 +184,7 @@ void window_disableButtonSoft( const unsigned int wid, char *name )
  *    @param wid ID of the window to get widget from.
  *    @param name Name of the button to enable.
  */
-void window_enableButton( const unsigned int wid, char *name )
+void window_enableButton( const unsigned int wid, const char *name )
 {
    Widget *wgt;
 
@@ -206,7 +206,7 @@ void window_enableButton( const unsigned int wid, char *name )
  *    @param name Name of the button to change caption.
  *    @param display New caption to display.
  */
-void window_buttonCaption( const unsigned int wid, char *name, char *display )
+void window_buttonCaption( const unsigned int wid, const char *name, const char *display )
 {
 
    Widget *wgt;
@@ -259,7 +259,7 @@ static void btn_updateHotkey( Widget *btn )
    display[match] = '\0'; /* Cuts the string into two. */
 
    /* Copy both parts and insert the character in the middle. */
-   nsnprintf( buf, sizeof(buf), "%s\an%c\a0%s", display, target, &display[match+1] );
+   nsnprintf( buf, sizeof(buf), "%s\aw%c\a0%s", display, target, &display[match+1] );
 
    /* Should never be NULL. */
    free(btn->dat.btn.display);
@@ -301,7 +301,7 @@ static int btn_key( Widget* btn, SDL_Keycode key, SDL_Keymod mod )
  */
 static void btn_render( Widget* btn, double bx, double by )
 {
-   const glColour *c, *fc;
+   const glColour *c, *fc, *outline;
    double x, y;
 
    x = bx + btn->x;
@@ -309,21 +309,23 @@ static void btn_render( Widget* btn, double bx, double by )
 
    /* set the colours */
    if (btn->dat.btn.disabled) {
-      c  = toolkit_colDark;
+      c  = &cGrey25;
       fc = &cGrey80;
+      outline = &cGrey25;
    }
    else {
-      fc = &cFontWhite;
+      fc = &cGrey80;
+      outline = &cGrey60;
       switch (btn->status) {
          case WIDGET_STATUS_MOUSEOVER:
-            c  = toolkit_colLight;
+            c  = &cGrey20;
             break;
          case WIDGET_STATUS_MOUSEDOWN:
-            c  = &cGrey30;
+            c  = &cGrey10;
             break;
          case WIDGET_STATUS_NORMAL:
          default:
-            c  = &cGrey50;
+            c  = &cGrey25;
       }
    }
 
@@ -331,14 +333,14 @@ static void btn_render( Widget* btn, double bx, double by )
    toolkit_drawRect( x, y, btn->w, btn->h, c, NULL );
 
    /* inner outline */
-   toolkit_drawOutline( x, y, btn->w, btn->h, 0., toolkit_colLight, NULL );
+   toolkit_drawOutline( x, y, btn->w, btn->h, 0., outline, NULL );
    /* outer outline */
-   toolkit_drawOutline( x, y, btn->w, btn->h, 1., &cBlack, NULL );
+   toolkit_drawOutline( x, y, btn->w, btn->h, 1., outline, NULL );
 
    gl_printMidRaw( &gl_smallFont, (int)btn->w,
          bx + btn->x,
          by + btn->y + (btn->h - gl_smallFont.h)/2.,
-         fc, btn->dat.btn.display );
+         fc, -1., btn->dat.btn.display );
 }
 
 

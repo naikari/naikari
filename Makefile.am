@@ -14,9 +14,9 @@ endif # HAVE_NLS
 appicondir = $(datadir)/icons/hicolor/256x256/apps
 appicon_DATA = extras/logos/naikari.png
 Graphicsdir = $(datadir)/applications
-Graphics_DATA = org.naikari.Naikari.desktop
+Graphics_DATA = org.naikari.naikari.desktop
 appdatadir = $(datadir)/metainfo
-appdata_DATA = org.naikari.Naikari.appdata.xml
+appdata_DATA = org.naikari.naikari.metainfo.xml
 
 dist_man6_MANS = naikari.6
 dist_doc_DATA = Readme.md LICENSE
@@ -30,7 +30,7 @@ VERSIONFILE = $(top_srcdir)/dat/VERSION
 LICENSEFILE = $(top_srcdir)/dat/LICENSE
 LANGUAGEFILE = $(top_srcdir)/dat/LANGUAGES
 
-EXTRA_DIST = build/config.rpath LICENSE extras org.naikari.Naikari.desktop org.naikari.Naikari.appdata.xml
+EXTRA_DIST = build/config.rpath LICENSE extras org.naikari.naikari.desktop org.naikari.naikari.metainfo.xml
 CLEANFILES = $(NAIKARI) $(VERSIONFILE) $(LANGUAGEFILE) $(LICENSEFILE)
 
 if HAVE_NLS
@@ -100,7 +100,7 @@ utils:
 endif # HAVE_UTILS
 
 install-data-local:
-	(cd $(top_srcdir)/dat; find . -type f -exec install -Dm 644 "{}" "$(pkgdatadir)/dat/{}" \;)
+	(cd $(top_srcdir)/dat; find . -type f -exec install -Dm 644 "{}" "$(DESTDIR)$(pkgdatadir)/dat/{}" \;)
 
 uninstall-hook:
 	echo " rm -rf '$(DESTDIR)$(pkgdatadir)'"; \

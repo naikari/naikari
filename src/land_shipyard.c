@@ -98,6 +98,7 @@ void shipyard_open( unsigned int wid )
    window_addButtonKey( wid, off -= 20+bw, 20,
          bw, bh, "btnFindShips",
          _("Find Ships"), shipyard_find, SDLK_f );
+   (void)off;
 
    /* target gfx */
    window_addRect( wid, -41, -50,
@@ -110,41 +111,41 @@ void shipyard_open( unsigned int wid )
          shipyard_renderSlots, NULL, NULL );
 
    /* stat text */
-   window_addText( wid, -40, -SHIP_TARGET_H-60-70-20, 128, 400, 0, "txtStats",
+   window_addText( wid, -40, -SHIP_TARGET_H-60-70-20, 128, -SHIP_TARGET_H-60-70-20-20+h-bh, 0, "txtStats",
          &gl_smallFont, NULL, NULL );
 
    /* text */
-   buf = _("Model:\n"
-         "Class:\n"
-         "Fabricator:\n"
-         "Crew:\n"
+   buf = _("\anModel:\n\a0"
+         "\anClass:\n\a0"
+         "\anFabricator:\n\a0"
+         "\anCrew:\n\a0"
          "\n"
-         "CPU:\n"
-         "Mass:\n"
-         "Thrust:\n"
-         "Speed:\n"
-         "Turn:\n"
-         "Time Compression:\n"
+         "\anCPU:\n\a0"
+         "\anMass:\n\a0"
+         "\anThrust:\n\a0"
+         "\anSpeed:\n\a0"
+         "\anTurn:\n\a0"
+         "\anTime Dilation:\n\a0"
          "\n"
-         "Absorption:\n"
-         "Shield:\n"
-         "Armour:\n"
-         "Energy:\n"
-         "Cargo Space:\n"
-         "Fuel:\n"
-         "Fuel Use:\n"
-         "Price:\n"
-         "Money:\n"
-         "License:\n");
+         "\anAbsorption:\n\a0"
+         "\anShield:\n\a0"
+         "\anArmour:\n\a0"
+         "\anEnergy:\n\a0"
+         "\anCargo Space:\n\a0"
+         "\anFuel:\n\a0"
+         "\anFuel Use:\n\a0"
+         "\anPrice:\n\a0"
+         "\anMoney:\n\a0"
+         "\anLicense:\n\a0");
    th = gl_printHeightRaw( &gl_smallFont, 100, buf );
    y  = -55;
    window_addText( wid, 40+iw+20, y,
          100, th, 0, "txtSDesc", &gl_smallFont, NULL, buf );
    window_addText( wid, 40+iw+20+100, y,
-         w-(40+iw+20+100)-20, th, 0, "txtDDesc", &gl_smallFont, NULL, NULL );
+         w-SHIP_TARGET_W-40-(40+iw+20+100), th, 0, "txtDDesc", &gl_smallFont, NULL, NULL );
    y -= th;
    window_addText( wid, 20+iw+40, y,
-         w-(20+iw+40) - 180, 185, 0, "txtDescription",
+         w-(20+iw+40) - 180, y-20+h-bh, 0, "txtDescription",
          &gl_smallFont, NULL, NULL );
 
    /* set up the ships to buy/sell */
@@ -168,7 +169,7 @@ void shipyard_open( unsigned int wid )
       free(ships);
    }
    window_addImageArray( wid, 20, 20,
-         iw, ih, "iarShipyard", 96., 96.,
+         iw, ih, "iarShipyard", 128., 128.,
          cships, nships, shipyard_update, shipyard_rmouse );
 
    /* write the shipyard stuff */
@@ -328,7 +329,6 @@ static void shipyard_find( unsigned int wid, char* str )
  * @brief Player right-clicks on a ship.
  *    @param wid Window player is buying ship from.
  *    @param widget_name Name of the window. (unused)
- *    @param shipname Name of the ship the player wants to buy. (unused)
  */
 static void shipyard_rmouse( unsigned int wid, char* widget_name )
 {
@@ -386,8 +386,9 @@ static void shipyard_buy( unsigned int wid, char* str )
 /**
  * @brief Makes sure it's valid to buy a ship.
  *    @param shipname Ship being bought.
+ *    @param planet Where the player is shopping.
  */
-int shipyard_canBuy ( char *shipname, Planet *planet )
+int shipyard_canBuy( const char *shipname, Planet *planet )
 {
    Ship* ship;
    ship = ship_get( shipname );
@@ -415,7 +416,7 @@ int shipyard_canBuy ( char *shipname, Planet *planet )
  * @brief Makes sure it's valid to sell a ship.
  *    @param shipname Ship being sold.
  */
-int can_sell( char* shipname )
+int can_sell( const char *shipname )
 {
    int failure = 0;
    if (strcmp( shipname, player.p->name )==0) { /* Already on-board. */
@@ -430,7 +431,7 @@ int can_sell( char* shipname )
  * @brief Makes sure it's valid to change ships.
  *    @param shipname Ship being changed to.
  */
-int can_swap( char* shipname )
+int can_swap( const char *shipname )
 {
    int failure = 0;
    Ship* ship;
@@ -458,7 +459,7 @@ int can_swap( char* shipname )
  * @brief Makes sure it's valid to buy a ship, trading the old one in simultaneously.
  *    @param shipname Ship being bought.
  */
-int shipyard_canTrade( char* shipname )
+int shipyard_canTrade( const char *shipname )
 {
    int failure = 0;
    Ship* ship;

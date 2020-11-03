@@ -46,7 +46,7 @@ void commodity_exchange_open( unsigned int wid )
    int w, h;
    int iw, ih;
 
-  
+
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_COMMODITY);
 
@@ -55,45 +55,45 @@ void commodity_exchange_open( unsigned int wid )
 
    /* Calculate image array dimensions. */
    /* Window size minus right column size minus space on left and right */
-   iw = w-LAND_BUTTON_WIDTH-3*20;
+   iw = w-LAND_BUTTON_WIDTH-3*20-80;
    ih = h - 60;
 
    /* buttons */
-   window_addButtonKey( wid, -20, 20,
-         LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnCommodityClose",
-         _("Take Off"), land_buttonTakeoff, SDLK_t );
-   window_addButtonKey( wid, -40-((LAND_BUTTON_WIDTH-20)/2), 20*2 + LAND_BUTTON_HEIGHT,
-         (LAND_BUTTON_WIDTH-20)/2, LAND_BUTTON_HEIGHT, "btnCommodityBuy",
+   window_addButtonKey( wid, -40-((LAND_BUTTON_WIDTH-20)/2)-40, 20*2 + LAND_BUTTON_HEIGHT,
+         (LAND_BUTTON_WIDTH-20)/2+40, LAND_BUTTON_HEIGHT, "btnCommodityBuy",
          _("Buy"), commodity_buy, SDLK_b );
    window_addButtonKey( wid, -20, 20*2 + LAND_BUTTON_HEIGHT,
-         (LAND_BUTTON_WIDTH-20)/2, LAND_BUTTON_HEIGHT, "btnCommoditySell",
+         (LAND_BUTTON_WIDTH-20)/2+40, LAND_BUTTON_HEIGHT, "btnCommoditySell",
          _("Sell"), commodity_sell, SDLK_s );
+   window_addButtonKey( wid, -20, 20,
+         LAND_BUTTON_WIDTH+80, LAND_BUTTON_HEIGHT, "btnCommodityClose",
+         _("Take Off"), land_buttonTakeoff, SDLK_t );
 
       /* cust draws the modifier : # of tons one click buys or sells */
-   window_addCust( wid, -20, 46 + 2*LAND_BUTTON_HEIGHT,
+   window_addCust( wid, -20-40, 46 + 2*LAND_BUTTON_HEIGHT,
          (LAND_BUTTON_WIDTH-20)/2, gl_smallFont.h + 6, "cstMod",
          0, commodity_renderMod, NULL, NULL );
 
    /* store gfx */
-   window_addRect( wid, 20+iw+20+(LAND_BUTTON_WIDTH-128)/2, -40,
+   window_addRect( wid, 20+iw+20+(LAND_BUTTON_WIDTH-128)/2+40, -40,
          128, 128, "rctStore", &cBlack, 0 );
-   window_addImage( wid, 20+iw+20+(LAND_BUTTON_WIDTH-128)/2, -40,
+   window_addImage( wid, 20+iw+20+(LAND_BUTTON_WIDTH-128)/2+40, -40,
          128, 128, "imgStore", NULL, 1 );
 
    /* text */
-   window_addText( wid, -20, -190, LAND_BUTTON_WIDTH, 100, 0,
+   window_addText( wid, -20, -190, LAND_BUTTON_WIDTH+80, 100, 0,
          "txtSInfo", &gl_smallFont, NULL,
-         _("You have:\n"
-           "Purchased at:\n"
-           "Market Price:\n"
-           "Free Space:\n"
-           "Money:\n"
-           "Av price here:\n"
-           "Av price all:") );
-   window_addText( wid, -20, -190, LAND_BUTTON_WIDTH/2, 100, 0,
+         _("\anYou have\a0\n"
+           "\anPurchased at\a0\n"
+           "\anMarket Price\a0\n"
+           "\anFree Space\a0\n"
+           "\anMoney\a0\n"
+           "\anAv price here\a0\n"
+           "\anAv price all\a0") );
+   window_addText( wid, -20, -190, LAND_BUTTON_WIDTH/2 + 40, 100, 0,
          "txtDInfo", &gl_smallFont, NULL, NULL );
-   window_addText( wid, -40, -300, LAND_BUTTON_WIDTH-20,
-         h-140-LAND_BUTTON_HEIGHT, 0,
+   window_addText( wid, -40, -300, LAND_BUTTON_WIDTH-20 + 80,
+         -300 - (46 + 2*LAND_BUTTON_HEIGHT) + h - (gl_smallFont.h + 6), 0,
          "txtDesc", &gl_smallFont, NULL, NULL );
 
    /* goods list */
@@ -114,7 +114,7 @@ void commodity_exchange_open( unsigned int wid )
 
    /* set up the goods to buy/sell */
    window_addImageArray( wid, 20, 20,
-         iw, ih, "iarTrade", 64, 64,
+         iw, ih, "iarTrade", 128, 128,
          cgoods, ngoods, commodity_update, commodity_update );
 
    /* Set default keyboard focuse to the list */
@@ -170,21 +170,16 @@ void commodity_update( unsigned int wid, char* str )
       nsnprintf( buf2, 80, _("%"PRIu64" credits"),com->lastPurchasePrice);
    credits2str( buf3, player.p->credits, 2 );
    nsnprintf( buf, PATH_MAX,
-         _("%d tonnes\n"
-         "%s\n"
-         "%"PRIu64" credits\n"
-         "%d tonnes\n"
-         "%s credits\n"
-         "%"PRIu64" ± %.1f\n"
-         "%"PRIu64" ± %.1f\n"),
-         owned,
-         buf2,     
-         planet_commodityPrice( land_planet, com ),
-         pilot_cargoFree(player.p),
-         buf3,
-         mean, std,
-         globalmean,globalstd );
-   
+              _( "%d tonnes\n"
+                 "%s\n"
+                 "%" PRIu64 " credits\n"
+                 "%d tonnes\n"
+                 "%s credits\n"
+                 "%" PRIu64 " ± %.1f\n"
+                 "%" PRIu64 " ± %.1f\n" ),
+              owned, buf2, planet_commodityPrice( land_planet, com ), pilot_cargoFree( player.p ), buf3, mean, std,
+              globalmean, globalstd );
+
    window_modifyText( wid, "txtDInfo", buf );
    nsnprintf( buf, PATH_MAX,
          "%s\n"
@@ -207,7 +202,7 @@ void commodity_update( unsigned int wid, char* str )
 }
 
 
-int commodity_canBuy( char *name )
+int commodity_canBuy( const char *name )
 {
    int failure;
    unsigned int q, price;
@@ -233,7 +228,7 @@ int commodity_canBuy( char *name )
 }
 
 
-int commodity_canSell( char *name )
+int commodity_canSell( const char *name )
 {
    int failure;
 
@@ -261,7 +256,7 @@ void commodity_buy( unsigned int wid, char* str )
    unsigned int q;
    credits_t price;
    HookParam hparam[3];
-   
+
    /* Get selected. */
    q     = commodity_getMod();
    comname = toolkit_getImageArray( wid, "iarTrade" );
@@ -302,7 +297,7 @@ void commodity_sell( unsigned int wid, char* str )
    unsigned int q;
    credits_t price;
    HookParam hparam[3];
-   
+
    /* Get parameters. */
    q     = commodity_getMod();
    comname = toolkit_getImageArray( wid, "iarTrade" );
@@ -356,6 +351,7 @@ int commodity_getMod (void)
  *    @param by Base Y position to render at.
  *    @param w Width to render at.
  *    @param h Height to render at.
+ *    @param data Unused.
  */
 void commodity_renderMod( double bx, double by, double w, double h, void *data )
 {

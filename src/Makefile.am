@@ -141,13 +141,13 @@ CODE_SOURCE = \
 	pilot_hook.c \
 	pilot_outfit.c \
 	pilot_weapon.c \
-	plasmaf.c \
 	player.c \
 	player_autonav.c \
 	player_gui.c \
 	queue.c \
 	rng.c \
 	save.c \
+	semver.c \
 	shaders.gen.c \
 	ship.c \
 	shiplog.c \
@@ -293,13 +293,13 @@ CODE_SOURCE = \
 	pilot_hook.h \
 	pilot_outfit.h \
 	pilot_weapon.h \
-	plasmaf.h \
 	player.h \
 	player_autonav.h \
 	player_gui.h \
 	queue.h \
 	rng.h \
 	save.h \
+	semver.h \
 	shaders.gen.h \
 	ship.h \
 	shiplog.h \

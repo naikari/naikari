@@ -81,8 +81,6 @@ extern int show_fps;
 extern int max_fps;
 extern int indjoystick;
 extern char* namjoystick;
-/* from player.c */
-extern const char *keybind_info[][3]; /* keybindings */
 /* from input.c */
 extern unsigned int input_afterburnSensitivity;
 
@@ -409,7 +407,7 @@ int conf_loadConfig ( const char* file )
       /* Sound. */
       conf_loadString( lEnv, "sound_backend", conf.sound_backend );
       conf_loadInt( lEnv, "snd_voices", conf.snd_voices );
-      conf.snd_voices = MAX( 16, conf.snd_voices ); /* Must be at least 16. */
+      conf.snd_voices = MAX( VOICES_MIN, conf.snd_voices ); /* Must be at least 16. */
       conf_loadBool( lEnv, "snd_pilotrel", conf.snd_pilotrel );
       conf_loadBool( lEnv, "al_efx", conf.al_efx );
       conf_loadInt( lEnv, "al_bufsize", conf.al_bufsize );
@@ -551,19 +549,10 @@ int conf_loadConfig ( const char* file )
 
                /* Set modifier, probably should be able to handle two at a time. */
                if (mod != NULL) {
-                  /* The "rctrl/lctrl" friends are for compat with 0.4.0 and older, remove around 0.5.0 or so. */
                   if      (strcmp(mod,"ctrl")==0)    m = NMOD_CTRL;
-                  else if (strcmp(mod,"lctrl")==0)   m = NMOD_CTRL; /* compat. */
-                  else if (strcmp(mod,"rctrl")==0)   m = NMOD_CTRL; /* compat. */
                   else if (strcmp(mod,"shift")==0)   m = NMOD_SHIFT;
-                  else if (strcmp(mod,"lshift")==0)  m = NMOD_SHIFT; /* compat. */
-                  else if (strcmp(mod,"rshift")==0)  m = NMOD_SHIFT; /* compat. */
                   else if (strcmp(mod,"alt")==0)     m = NMOD_ALT;
-                  else if (strcmp(mod,"lalt")==0)    m = NMOD_ALT; /* compat. */
-                  else if (strcmp(mod,"ralt")==0)    m = NMOD_ALT; /* compat. */
                   else if (strcmp(mod,"meta")==0)    m = NMOD_META;
-                  else if (strcmp(mod,"lmeta")==0)   m = NMOD_META; /* compat. */
-                  else if (strcmp(mod,"rmeta")==0)   m = NMOD_META; /* compat. */
                   else if (strcmp(mod,"any")==0)     m = NMOD_ALL;
                   else if (strcmp(mod,"none")==0)    m = NMOD_NONE;
                   else {
@@ -732,8 +721,11 @@ void conf_parseCLI( int argc, char** argv )
    }
 
    /** @todo handle multiple ndata. */
-   if (optind < argc)
+   if (optind < argc) {
+      if (conf.ndata != NULL)
+         free(conf.ndata);
       conf.ndata = strdup( argv[ optind ] );
+   }
 }
 
 
@@ -975,11 +967,11 @@ int conf_saveConfig ( const char* file )
    conf_saveBool("fullscreen",conf.fullscreen);
    conf_saveEmptyLine();
 
-   conf_saveComment(_("Use video modesetting when fullscreen is enabled (SDL2-only)"));
+   conf_saveComment(_("Use video modesetting when fullscreen is enabled"));
    conf_saveBool("modesetting",conf.modesetting);
    conf_saveEmptyLine();
 
-   conf_saveComment(_("Minimize on focus loss (SDL2-only)"));
+   conf_saveComment(_("Minimize on focus loss"));
    conf_saveBool("minimize",conf.minimize);
    conf_saveEmptyLine();
 

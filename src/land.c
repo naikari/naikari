@@ -166,7 +166,7 @@ int land_doneLoading (void)
  * @brief Makes sure it's valid to change ships in the equipment view.
  *    @param shipname Ship being changed to.
  */
-int can_swapEquipment( char* shipname )
+int can_swapEquipment( const char *shipname )
 {
    int failure = 0;
    Pilot *newship;
@@ -199,7 +199,7 @@ int can_swapEquipment( char* shipname )
  *    @param name Name of the ship, outfit or commodity being acted upon.
  *    @param type Type of action.
  */
-int land_errDialogue( char* name, char* type )
+int land_errDialogue( const char *name, char *type )
 {
    errorlist_ptr = NULL;
    if (strcmp(type,"tradeShip")==0)
@@ -568,15 +568,15 @@ static void misn_open( unsigned int wid )
          _("Date:\n"
          "Free Space:"));
    window_addText( wid, w/2 + 110, y,
-         w/2 - 90, 40, 0,
+         w/2 - 130, 40, 0,
          "txtDate", NULL, NULL, NULL );
    y -= 2 * gl_defFont.h + 50;
    window_addText( wid, w/2 + 10, y,
          w/2 - 30, 20, 0,
-         "txtReward", &gl_smallFont, NULL, _("Reward: None") );
+         "txtReward", &gl_smallFont, NULL, _("\anReward:\a0 None") );
    y -= 20;
    window_addText( wid, w/2 + 10, y,
-         w/2 - 30, h/2-90, 0,
+         w/2 - 30, y - 40 + h - 2*LAND_BUTTON_HEIGHT, 0,
          "txtDesc", &gl_smallFont, NULL, NULL );
 
    /* map */
@@ -721,7 +721,7 @@ static void misn_update( unsigned int wid, char* str )
 
    active_misn = toolkit_getList( wid, "lstMission" );
    if (strcmp(active_misn,_("No Missions"))==0) {
-      window_modifyText( wid, "txtReward", _("Reward: None") );
+      window_modifyText( wid, "txtReward", _("\anReward:\a0 None") );
       window_modifyText( wid, "txtDesc",
             _("There are no missions available here.") );
       window_disableButton( wid, "btnAcceptMission" );
@@ -732,7 +732,7 @@ static void misn_update( unsigned int wid, char* str )
    mission_sysComputerMark( misn );
    if (misn->markers != NULL)
       map_center( system_getIndex( misn->markers[0].sys )->name );
-   nsnprintf( txt, sizeof(txt), _("Reward: %s"), misn->reward );
+   nsnprintf( txt, sizeof(txt), _("\anReward:\a0 %s"), misn->reward );
    window_modifyText( wid, "txtReward", txt );
    window_modifyText( wid, "txtDesc", misn->desc );
    window_enableButton( wid, "btnAcceptMission" );
@@ -1003,7 +1003,7 @@ void land_genWindows( int load, int changetab )
          npc_generate(); /* Generate bar npc. */
    }
 
-   
+
    /* 4) Create other tabs. */
 #define should_open(s, w) \
    (planet_hasService(land_planet, s) && (!land_tabGenerated(w)))
@@ -1067,7 +1067,7 @@ void land_genWindows( int load, int changetab )
 /**
  * @brief Sets the land window tab.
  *
- *    @param Tab to set like LAND_WINDOW_COMMODITY.
+ *    @param window Tab to set like LAND_WINDOW_COMMODITY.
  *    @return 0 on success.
  */
 int land_setWindow( int window )
@@ -1109,7 +1109,7 @@ void land( Planet* p, int load )
 
    /* Average economy prices that player has seen */
    economy_averageSeenPrices( p );
-   
+
    /* Clear the NPC. */
    npc_clear();
 

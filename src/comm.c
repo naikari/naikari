@@ -93,7 +93,6 @@ int comm_openPilot( unsigned int pilot )
    const char *msg;
    char c;
    unsigned int wid;
-   int run;
    Pilot *p;
    HookParam hparam[2];
 
@@ -159,9 +158,8 @@ int comm_openPilot( unsigned int pilot )
    hparam[0].type       = HOOK_PARAM_PILOT;
    hparam[0].u.lp       = p->id;
    hparam[1].type       = HOOK_PARAM_SENTINEL;
-   run = 0;
-   run += hooks_runParam( "hail", hparam );
-   run += pilot_runHook( comm_pilot, PILOT_HOOK_HAIL );
+   hooks_runParam( "hail", hparam );
+   pilot_runHook( comm_pilot, PILOT_HOOK_HAIL );
 
    /* Close window if necessary. */
    if (comm_commClose) {
@@ -363,8 +361,6 @@ static unsigned int comm_open( glTexture *gfx, int faction,
             -30 - (GRAPHIC_HEIGHT-gh)/2,
             gw, gh, "imgGFX", comm_graphic, 0 );
    }
-   else
-      gh = gw = 0;
 
    /* Faction logo. */
    if (logo != NULL) {
@@ -375,11 +371,11 @@ static unsigned int comm_open( glTexture *gfx, int faction,
 
    /* Name. */
    window_addText( wid, 19 + namex, -30 - GRAPHIC_HEIGHT - y + font->h*2 + 10,
-         GRAPHIC_WIDTH - logow, 20, 0, "txtName", font, &cWhite, name );
+         GRAPHIC_WIDTH - namex - logow, 20, 0, "txtName", font, &cWhite, name );
 
    /* Standing. */
    window_addText( wid, 19 + standx, -30 - GRAPHIC_HEIGHT - y + font->h + 5,
-         GRAPHIC_WIDTH - logow, 20, 0, "txtStanding", font, c, stand );
+         GRAPHIC_WIDTH - standx - logow, 20, 0, "txtStanding", font, c, stand );
 
    /* Buttons. */
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,

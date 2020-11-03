@@ -46,7 +46,7 @@
 #endif /* HAVE_STDALIGN_H */
 
 #ifdef DEBUGGING
-#define SENTINEL ((int)0xbabecafe) /**< Badass sentinel. */
+#define ARRAY_SENTINEL ((int)0xbabecafe) /**< Badass sentinel. */
 #endif
 
 /**
@@ -90,7 +90,7 @@ __inline__ static _private_container *_array_private_container(void *a)
    _private_container *c = (_private_container *)a - 1;
 
 #ifdef DEBUGGING
-   assert("Sentinel not found. Use array_create() to create the array." && (c->_sentinel == SENTINEL));
+   assert("Sentinel not found. Use array_create() to create the array." && (c->_sentinel == ARRAY_SENTINEL));
 #endif
 
    return c;
@@ -121,6 +121,7 @@ __inline__ static void *_array_end_helper(void *a, size_t e_size)
  * @brief Creates a new dynamic array of `basic_type' with an initial capacity
  *
  *    @param basic_type Type of the array to create.
+ *    @param capacity Initial size.
  */
 #define array_create_size(basic_type, capacity) \
       ((basic_type *)(_array_create_helper(sizeof(basic_type), capacity)))
@@ -184,28 +185,28 @@ __inline__ static void *_array_end_helper(void *a, size_t e_size)
 /**
  * @brief Returns number of elements in the array.
  *
- *    @param ptr_array Array being manipulated.
+ *    @param array Array being manipulated.
  *    @return The size of the array (number of elements).
  */
 #define array_size(array) (_array_private_container(array)->_size)
 /**
  * @brief Returns number of elements reserved.
  *
- *    @param ptr_array Array being manipulated.
+ *    @param array Array being manipulated.
  *    @return The size of the array (memory usage).
  */
 #define array_reserved(array) (_array_private_container(array)->_reserved)
 /**
  * @brief Returns a pointer to the beginning of the reserved memory space.
  *
- *    @param ptr_array Array being manipulated.
+ *    @param array Array being manipulated.
  *    @return Beginning of memory space.
  */
 #define array_begin(array) (array)
 /**
  * @brief Returns a pointer to the end of the reserved memory space.
  *
- *    @param ptr_array Array being manipulated.
+ *    @param array Array being manipulated.
  *    @return End of memory space.
  */
 #define array_end(array) ((__typeof__(array))_array_end_helper((array), sizeof((array)[0])))

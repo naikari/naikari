@@ -32,6 +32,7 @@
 
 #include "opengl.h"
 
+#include "SDL_error.h"
 #include "naev.h"
 
 #include <stdlib.h>
@@ -82,7 +83,7 @@ static int intel_vendor = 0;
  */
 /* gl */
 static int gl_setupAttributes (void);
-static int gl_setupFullscreen( unsigned int *flags );
+static int gl_setupFullscreen (void);
 static int gl_createWindow( unsigned int flags );
 static int gl_getGLInfo (void);
 static int gl_defState (void);
@@ -217,23 +218,9 @@ int SDL_SavePNG( SDL_Surface *surface, const char *file )
  *    @param minor Minor version to check.
  *    @return True if major and minor version are met.
  */
-static double gl_contextVersion = -1.;
 GLboolean gl_hasVersion( int major, int minor )
 {
-   const char *p;
-   double f;
-
-   if (gl_contextVersion < 0.) {
-      p = (const char*) glGetString(GL_VERSION);
-
-      /* Get version and compare version. */
-      gl_contextVersion = atof(p);
-   }
-
-   f  = (double) major;
-   f += 0.1 * (double) minor;
-
-   if (f <= gl_contextVersion)
+   if (GLVersion.major >= major && GLVersion.minor >= minor)
       return GL_TRUE;
    return GL_FALSE;
 }
@@ -317,10 +304,9 @@ static int gl_setupAttributes (void)
 /**
  * @brief Tries to set up fullscreen environment.
  *
- *    @param flags Flags to modify.
  *    @return 0 on success.
  */
-static int gl_setupFullscreen( unsigned int *flags )
+static int gl_setupFullscreen (void)
 {
    int i, j, off, toff, supported;
 
@@ -333,7 +319,6 @@ static int gl_setupFullscreen( unsigned int *flags )
       gl_screen.h = gl_screen.desktop_h;
    }
 
-   (void) flags;
    SDL_DisplayMode mode;
    int n = SDL_GetNumDisplayModes( 0 );
 
@@ -385,18 +370,13 @@ static int gl_setupFullscreen( unsigned int *flags )
 static int gl_createWindow( unsigned int flags )
 {
    int ret;
-   int w, h;
 
    /* Create the window. */
    gl_screen.window = SDL_CreateWindow( APPNAME,
          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
          SCREEN_W, SCREEN_H, flags | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
    if (gl_screen.window == NULL)
-      ERR(_("Unable to create window!"));
-
-   /* Reinitialize resolution parameters. */
-   if (flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
-      SDL_GetWindowSize( gl_screen.window, &w, &h );
+      ERR(_("Unable to create window! %s"), SDL_GetError());
 
    /* Set focus loss behaviour. */
    SDL_SetHint( SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS,
@@ -405,7 +385,7 @@ static int gl_createWindow( unsigned int flags )
    /* Create the OpenGL context, note we don't need an actual renderer. */
    gl_screen.context = SDL_GL_CreateContext( gl_screen.window );
    if (!gl_screen.context)
-      ERR(_("Unable to create OpenGL context!"));
+      ERR(_("Unable to create OpenGL context! %s"), SDL_GetError());
 
    /* Set Vsync. */
    if (conf.vsync) {
@@ -595,7 +575,7 @@ int gl_init (void)
 
    /* See if should set up fullscreen. */
    if (conf.fullscreen)
-      gl_setupFullscreen( &flags );
+      gl_setupFullscreen();
 
    /* Create the window. */
    gl_createWindow( flags );
@@ -603,6 +583,9 @@ int gl_init (void)
    /* Load extensions. */
    if (!gladLoadGLLoader(SDL_GL_GetProcAddress))
       ERR("Unable to load OpenGL using GLAD");
+
+   if ( !GLAD_GL_VERSION_3_1 )
+      WARN( "Naev requires OpenGL 3.1, but got OpenGL %d.%d!", GLVersion.major, GLVersion.minor );
 
    /* Some OpenGL options. */
    glClearColor( 0., 0., 0., 1. );
@@ -642,10 +625,10 @@ int gl_init (void)
 }
 
 /**
- * @brief Handles a window resize and resets gl_screen parametes.
+ * @brief Handles a window resize and resets gl_screen parameters.
  *
- *    @param w New width.
- *    @param h New height.
+ *    @param w New real/drawable width.
+ *    @param h New real/drawable height.
  */
 void gl_resize( int w, int h )
 {
@@ -717,7 +700,7 @@ void gl_defViewport (void)
 
 
 /**
- * @Brief Translates the window position to screen position.
+ * @brief Translates the window position to screen position.
  */
 void gl_windowToScreenPos( int *sx, int *sy, int wx, int wy )
 {
@@ -727,7 +710,7 @@ void gl_windowToScreenPos( int *sx, int *sy, int wx, int wy )
 
 
 /**
- * @Brief Translates the screen position to windos position.
+ * @brief Translates the screen position to windos position.
  */
 void gl_screenToWindowPos( int *wx, int *wy, int sx, int sy )
 {

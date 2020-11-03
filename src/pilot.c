@@ -173,6 +173,7 @@ unsigned int pilot_getNextID( const unsigned int id, int mode )
  * @brief Gets the previous pilot based on ID.
  *
  *    @param id ID of the current pilot.
+ *    @param mode Method to use when cycling.  0 is normal, 1 is hostiles.
  *    @return ID of previous pilot or PLAYER_ID if no previous pilot.
  */
 unsigned int pilot_getPrevID( const unsigned int id, int mode )
@@ -268,6 +269,10 @@ static int pilot_validEnemy( const Pilot* p, const Pilot* target )
    if (pilot_isDisabled(target))
       return 0;
 
+   /* Shouldn't be invincible. */
+   if (pilot_isFlag( target, PILOT_INVINCIBLE ))
+      return 0;
+
    /* Must be a valid target. */
    if (!pilot_validTarget( p, target ))
       return 0;
@@ -347,7 +352,7 @@ unsigned int pilot_getNearestEnemy_size( const Pilot* p, double target_mass_LB, 
  *    @param p Pilot to get the nearest enemy of.
  *    @param mass_factor parameter for target mass (0-1, 0.5 = current mass)
  *    @param health_factor parameter for target shields/armour (0-1, 0.5 = current health)
- *    @param dps_factor parameter for target dps (0-1, 0.5 = current dps)
+ *    @param damage_factor parameter for target dps (0-1, 0.5 = current dps)
  *    @param range_factor weighting for range (typically >> 1)
  *    @return ID of their nearest enemy.
  */
@@ -626,7 +631,7 @@ int pilot_isHostile( const Pilot *p )
          && (pilot_isFlag( p, PILOT_HOSTILE ) ||
             areEnemies( FACTION_PLAYER, p->faction ) ) )
       return 1;
-   
+
    return 0;
 }
 
@@ -707,7 +712,7 @@ double pilot_face( Pilot* p, const double dir )
 /**
  * @brief Causes the pilot to turn around and brake.
  *
- *    @param Pilot to brake.
+ *    @param p Pilot to brake.
  *    @return 1 when braking has finished.
  */
 int pilot_brake( Pilot *p )
@@ -858,7 +863,7 @@ int pilot_interceptPos( Pilot *p, double x, double y )
 /**
  * @brief Begins active cooldown, reducing hull and outfit temperatures.
  *
- *    @param Pilot that should cool down.
+ *    @param p Pilot that should cool down.
  */
 void pilot_cooldown( Pilot *p )
 {
@@ -920,8 +925,8 @@ void pilot_cooldown( Pilot *p )
 /**
  * @brief Terminates active cooldown.
  *
- *    @param Pilot to stop cooling.
- *    @param Reason for the termination.
+ *    @param p Pilot to stop cooling.
+ *    @param reason Reason for the termination.
  */
 void pilot_cooldownEnd( Pilot *p, const char *reason )
 {
@@ -1782,7 +1787,7 @@ void pilot_renderOverlay( Pilot* p, const double dt )
          gl_renderRect( dx-2., dy-2., p->comm_msgWidth+4., gl_defFont.h+4., &cBlackHilight );
 
          /* Display text. */
-         gl_printRaw( NULL, dx, dy, &c, p->comm_msg );
+         gl_printRaw( NULL, dx, dy, &c, -1., p->comm_msg );
       }
    }
 }
@@ -2520,9 +2525,9 @@ credits_t pilot_modCredits( Pilot *p, credits_t amount )
        * -2,147,483,648, which ABS will try to convert to 2,147,483,648.
        * Problem is, that value would be represented like this in
        * binary:
-       * 
+       *
        * 10000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-       * 
+       *
        * Which is actually -2,147,483,648, causing the condition
        * ABS(amount) >= p->credits to return false (since -2,147,483,648
        * is less than any amount of credits the player could have). */
@@ -2604,6 +2609,7 @@ void pilot_init( Pilot* pilot, Ship* ship, const char* name, int faction, const 
    p = 0;
    for (i=0; i<pilot->outfit_nstructure; i++) {
       pilot->outfits[p] = &pilot->outfit_structure[i];
+      pilot->outfits[ p ]->id    = p;
       pilot->outfits[p]->sslot = &ship->outfit_structure[i];
       pilot->outfits[p]->weapset = -1;
       if (ship->outfit_structure[i].data != NULL)
@@ -2612,6 +2618,7 @@ void pilot_init( Pilot* pilot, Ship* ship, const char* name, int faction, const 
    }
    for (i=0; i<pilot->outfit_nutility; i++) {
       pilot->outfits[p] = &pilot->outfit_utility[i];
+      pilot->outfits[ p ]->id    = p;
       pilot->outfits[p]->sslot = &ship->outfit_utility[i];
       pilot->outfits[p]->weapset = -1;
       if (ship->outfit_utility[i].data != NULL)
@@ -2620,14 +2627,12 @@ void pilot_init( Pilot* pilot, Ship* ship, const char* name, int faction, const 
    }
    for (i=0; i<pilot->outfit_nweapon; i++) {
       pilot->outfits[p] = &pilot->outfit_weapon[i];
+      pilot->outfits[ p ]->id  = p;
       pilot->outfits[p]->sslot = &ship->outfit_weapon[i];
       if (ship->outfit_weapon[i].data != NULL)
          pilot_addOutfitRaw( pilot, ship->outfit_weapon[i].data, pilot->outfits[p] );
       p++;
    }
-   /* Second pass set ID. */
-   for (i=0; i<pilot->noutfits; i++)
-      pilot->outfits[i]->id = i;
 
    /* cargo - must be set before calcStats */
    pilot->cargo_free = pilot->ship->cap_cargo; /* should get redone with calcCargo */
@@ -2878,7 +2883,7 @@ void pilot_choosePoint( Vector2d *vp, Planet **planet, JumpPoint **jump, int lf,
    if (cur_system->njumps > 0) {
       for (i=0; i<cur_system->njumps; i++) {
          /* The jump into the system must not be exit-only, and unless
-          * ignore_rules is set, must also be non-hidden 
+          * ignore_rules is set, must also be non-hidden
           * (excepted if the pilot is guerilla) and have faction
           * presence matching the pilot's on the remote side.
           */
@@ -2939,8 +2944,6 @@ void pilot_choosePoint( Vector2d *vp, Planet **planet, JumpPoint **jump, int lf,
  */
 void pilot_free( Pilot* p )
 {
-   int i;
-
    /* Clear up pilot hooks. */
    pilot_clearHooks(p);
 
@@ -2981,11 +2984,7 @@ void pilot_free( Pilot* p )
    if (p->mounted != NULL)
       free(p->mounted);
 
-   /* Free escorts. */
-   for (i=0; i<p->nescorts; i++)
-      free(p->escorts[i].ship);
-   if (p->escorts)
-      free(p->escorts);
+   escort_freeList(p);
 
    /* Free comm message. */
    if (p->comm_msg != NULL)
@@ -3264,6 +3263,7 @@ void pilot_clearTimers( Pilot *pilot )
 /**
  * @brief Gets the relative size(shipmass) between the current pilot and the specified target
  *
+ *    @param cur_pilot the current pilot
  *    @param p the pilot whose mass we will compare
  *    @return A number from 0 to 1 mapping the relative masses
  */
@@ -3369,6 +3369,7 @@ credits_t pilot_worth( const Pilot *p )
  *
  * @param p Pilot to send message
  * @param reciever Pilot to recieve it
+ * @param type Type of message.
  * @param idx Index of data on lua stack or 0
  */
 void pilot_msg(Pilot *p, Pilot *reciever, const char *type, unsigned int idx)

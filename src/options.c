@@ -54,9 +54,6 @@ static int opt_restart = 0;
 /*
  * External stuff.
  */
-extern const char *keybind_info[][3]; /**< from input.c */
-
-
 static const char *opt_selectedKeybind; /**< Selected keybinding. */
 static int opt_lastKeyPress = 0; /**< Last keypress. */
 
@@ -215,6 +212,7 @@ static char** lang_list( int *n )
          ls[(*n)++] = strdup( &buf[j] );
       j=i+1;
    }
+   free(buf);
 
    return ls;
 }
@@ -562,7 +560,7 @@ static void opt_keybinds( unsigned int wid )
    /* Text stuff. */
    window_addText( wid, 20+lw+20, -40, w-(20+lw+20), 30, 1, "txtName",
          NULL, NULL, NULL );
-   window_addText( wid, 20+lw+20, -90, w-(20+lw+20), h-70-60-bh,
+   window_addText( wid, 20+lw+20, -90, w-(20+lw+20), h-170-3*bh,
          0, "txtDesc", &gl_smallFont, NULL, NULL );
 
    /* Generate the list. */
@@ -574,11 +572,10 @@ static void opt_keybinds( unsigned int wid )
  * @brief Generates the keybindings list.
  *
  *    @param wid Window to update.
- *    @param regen Whether to destroy and recreate the widget.
  */
 static void menuKeybinds_genList( unsigned int wid )
 {
-   int i, j, l, p;
+   int         j, l, p;
    char **str, mod_text[64];
    SDL_Keycode key;
    KeybindType type;
@@ -591,9 +588,8 @@ static void menuKeybinds_genList( unsigned int wid )
    menuKeybinds_getDim( wid, &w, &h, &lw, &lh, NULL, NULL );
 
    /* Create the list. */
-   for (i=0; keybind_info[i][0] != NULL; i++);
-   str = malloc(sizeof(char*) * i);
-   for (j=0; j < i; j++) {
+   str = malloc( sizeof( char * ) * input_numbinds );
+   for ( j = 0; j < input_numbinds; j++ ) {
       l = 64;
       str[j] = malloc(l);
       key = input_getKeybind( keybind_info[j][0], &type, &mod );
@@ -613,6 +609,7 @@ static void menuKeybinds_genList( unsigned int wid )
                   p += nsnprintf( &mod_text[p], sizeof(mod_text)-p, "alt+" );
                if (mod & NMOD_META)
                   p += nsnprintf( &mod_text[p], sizeof(mod_text)-p, "meta+" );
+               (void)p;
             }
 
             /* SDL_GetKeyName returns lowercase which is ugly. */
@@ -655,8 +652,7 @@ static void menuKeybinds_genList( unsigned int wid )
       window_destroyWidget( wid, "lstKeybinds" );
    }
 
-   window_addList( wid, 20, -40, lw, lh, "lstKeybinds",
-         str, i, 0, menuKeybinds_update );
+   window_addList( wid, 20, -40, lw, lh, "lstKeybinds", str, input_numbinds, 0, menuKeybinds_update );
 
    if (regen) {
       toolkit_setListPos( wid, "lstKeybinds", pos );
@@ -797,7 +793,6 @@ static void opt_keyDefaults( unsigned int wid, char *str )
  *
  *    @param wid Window calling the callback.
  *    @param str Name of the widget calling the callback.
- *    @param type 0 for sound, 1 for audio.
  */
 static void opt_setAudioLevel( unsigned int wid, char *str )
 {
@@ -1114,7 +1109,7 @@ static int opt_setKeyEvent( unsigned int wid, SDL_Event *event )
             case SDL_HAT_LEFT:
                type = KEYBIND_JHAT_LEFT;
                break;
-            case SDL_HAT_RIGHT: 
+            case SDL_HAT_RIGHT:
                type = KEYBIND_JHAT_RIGHT;
                break;
             default:
@@ -1276,8 +1271,10 @@ static void opt_video( unsigned int wid )
       for (k=0; k<nres; k++)
          if (strcmp( res[k], res[nres] )==0)
             break;
-      if (k<nres)
+      if (k<nres) {
+         free( res[nres] );
          continue;
+      }
 
       /* Add as default if necessary and increment. */
       if ((mode.w == conf.width) && (mode.h == conf.height))
@@ -1387,31 +1384,13 @@ static void opt_videoRes( unsigned int wid, char *str )
 static int opt_videoSave( unsigned int wid, char *str )
 {
    (void) str;
-   int i, j, s;
-   char *inp, buf[16], width[16], height[16];
-   int w, h, f, fullscreen;
+   char *inp, buf[16];
+   int ret, w, h, f, fullscreen;
 
    /* Handle resolution. */
    inp = window_getInput( wid, "inpRes" );
-   memset( width, '\0', sizeof(width) );
-   memset( height, '\0', sizeof(height) );
-   j = 0;
-   s = 0;
-   for (i=0; i<16; i++) {
-      if (isdigit(inp[i])) {
-         if (j==0)
-            width[s++] = inp[i];
-         else
-            height[s++] = inp[i];
-      }
-      else {
-         j++;
-         s = 0;
-      }
-   }
-   w = atoi(width);
-   h = atoi(height);
-   if ((w==0) || (h==0)) {
+   ret = sscanf( inp, " %d %*[^0-9] %d", &w, &h );
+   if (ret != 2 || w <= 0 || h <= 0) {
       dialogue_alert( _("Height/Width invalid. Should be formatted like 1024x768.") );
       return 1;
    }
@@ -1468,7 +1447,7 @@ static int opt_videoSave( unsigned int wid, char *str )
             opt_needRestart();
          else if (!fullscreen) {
             SDL_SetWindowSize( gl_screen.window, w, h );
-            naev_resize( w, h );
+            naev_resize();
             SDL_SetWindowPosition( gl_screen.window,
                   SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED );
 
@@ -1497,7 +1476,7 @@ static int opt_videoSave( unsigned int wid, char *str )
       /* Restore previous resolution. */
       if ((w != rw) || (h != rw)) {
          SDL_SetWindowSize( gl_screen.window, rw, rh );
-         naev_resize( rw, rh );
+         naev_resize();
          SDL_SetWindowPosition( gl_screen.window,
                SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED );
       }
@@ -1606,7 +1585,6 @@ static void opt_videoDefaults( unsigned int wid, char *str )
  *
  *    @param wid Window calling the callback.
  *    @param str Name of the widget calling the callback.
- *    @param type 0 for sound, 1 for audio.
  */
 static void opt_setScalefactor( unsigned int wid, char *str )
 {

@@ -2,11 +2,19 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.61])
+<<<<<<< HEAD
 AC_INIT([naikari],
         [0.8.-3],
         [https://github.com/naikari/naikari/issues],
         [naikari],
         [https://naikari.github.io])
+=======
+AC_INIT([naev],
+        [0.8.0-beta.3],
+        [https://github.com/naev/naev/issues],
+        [naev],
+        [https://naev.org/])
+>>>>>>> e19762812074e7ad66f812a53e775640097eddb2
 AC_CONFIG_SRCDIR([src/naev.c])
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -353,7 +361,7 @@ case "$host" in
 esac
 
 # global
-GLOBAL_CFLAGS="-include \"\$(top_builddir)/src/config.h\" -I\"\$(top_srcdir)/src\" -DPKGDATADIR=\\\"\$(pkgdatadir)\\\""
+GLOBAL_CFLAGS="-include \"\$(top_builddir)/src/config.h\" -include \"\$(top_builddir)/src/attributes.h\" -I\"\$(top_srcdir)/src\" -DPKGDATADIR=\\\"\$(pkgdatadir)\\\""
 GLOBAL_LIBS=
 
 AS_IF([test "x$enable_debug" != "xno"], [
@@ -518,19 +526,6 @@ AS_IF([test -n "$GIT" && test -d "$srcdir/.git"], [
 #
 # Defines in config.h
 #
-
-# Version variables
-VMAJOR=$(echo "$VERSION" | cut -d. -f1)
-VMINOR=$(echo "$VERSION" | cut -d. -f2)
-VREV=$(echo "$VERSION" | cut -d. -f3)
-
-AC_DEFINE_UNQUOTED([VMAJOR], [$VMAJOR], [Define to the major version component])
-AC_DEFINE_UNQUOTED([VMINOR], [$VMINOR], [Define to the minor version component])
-AC_DEFINE_UNQUOTED([VREV], [$VREV], [Define to the revision version component])
-
-AC_SUBST([VMAJOR])
-AC_SUBST([VMINOR])
-AC_SUBST([VREV])
 
 AC_DEFINE_UNQUOTED([HOST], ["$host"], [Host triple])
 

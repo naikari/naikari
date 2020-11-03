@@ -59,9 +59,18 @@ static char input_text              = 0; /**< Current character. */
 /*
  * default outline colours
  */
-const glColour* toolkit_colLight = &cGrey60; /**< Light outline colour. */
-const glColour* toolkit_col      = &cGrey40; /**< Normal outline colour. */
-const glColour* toolkit_colDark  = &cGrey20; /**< Dark outline colour. */
+const glColour* toolkit_colLight = &cGrey25; /**< Light outline colour. */
+const glColour* toolkit_col      = &cGrey20; /**< Normal outline colour. */
+const glColour* toolkit_colDark  = &cGrey10; /**< Dark outline colour. */
+
+/*
+ * Tab colors
+ */
+const glColour* tab_active = &cGrey20; /**< Light outline colour. */
+const glColour* tab_activeB = &cGrey10; /**< Light outline colour. */
+const glColour* tab_inactive      = &cGrey15; /**< Normal outline colour. */
+const glColour* tab_inactiveB      = &cGrey10; /**< Normal outline colour. */
+const glColour* tab_background  = &cBlack; /**< Dark outline colour. */
 
 
 /*
@@ -139,6 +148,7 @@ void toolkit_setPos( Window *wdw, Widget *wgt, int x, int y )
 /**
  * @brief Moves a window to the specified coordinates.
  *
+ *    @param wdw Window to move.
  *    @param x X position.
  *    @param y Y position.
  */
@@ -172,6 +182,7 @@ void toolkit_setWindowPos( Window *wdw, int x, int y )
 /**
  * @brief Moves a window to the specified coordinates.
  *
+ *    @param wid ID of the window to move.
  *    @param x X position.
  *    @param y Y position.
  */
@@ -192,6 +203,7 @@ void window_move( unsigned int wid, int x, int y )
  * @brief Allocates room for a new widget.
  *
  *    @param w Window to create widget in.
+ *    @param name Name of the widget to create.
  *    @return Newly allocated widget.
  */
 Widget* window_newWidget( Window* w, const char *name )
@@ -432,7 +444,7 @@ int window_exists( const char* wdwname )
 /**
  * @brief Checks to see if a window with a certain ID exists.
  *
- *    @param wdwname Name of the window to check.
+ *    @param wid ID of the window to check.
  *    @return 1 if it exists, 0 if it doesn't.
  */
 int window_existsID( const unsigned int wid )
@@ -550,16 +562,19 @@ unsigned int window_createFlags( const char* name,
             toolkit_expose( wcur, 0 ); /* wcur is hidden */
       }
 
-      wlast = NULL;
-      for (wcur = windows; wcur != NULL; wcur = wcur->next) {
-         if ((strcmp(wcur->name,name)==0) && !window_isFlag(wcur, WINDOW_KILL) &&
-               !window_isFlag(wcur, WINDOW_NOFOCUS))
-            WARN(_("Window with name '%s' already exists!"),wcur->name);
-         wlast = wcur;
+      wlast = windows;
+      while ( 1 ) {
+         if ( ( strcmp( wlast->name, name ) == 0 ) && !window_isFlag( wlast, WINDOW_KILL )
+              && !window_isFlag( wlast, WINDOW_NOFOCUS ) )
+            WARN( _( "Window with name '%s' already exists!" ), wlast->name );
+
+         if ( wlast->next == NULL )
+            break;
+
+         wlast = wlast->next;
       }
 
-      if (wlast != NULL)
-         wlast->next = wdw;
+      wlast->next = wdw;
    }
 
    return wid;
@@ -614,7 +629,7 @@ unsigned int window_getParent( unsigned int wid )
  * This function is called when the window is closed.
  *
  *    @param wid Window to set close function of.
- *    @param Function to trigger when window is closed, parameter is window id
+ *    @param fptr Function to trigger when window is closed, parameter is window id
  *           and name.
  */
 void window_onClose( unsigned int wid, void (*fptr)(unsigned int,char*) )
@@ -866,7 +881,7 @@ void window_destroy( const unsigned int wid )
 /**
  * @brief Kills the window.
  *
- *    @param wid ID of window to destroy.
+ *    @param wdw Window to destroy.
  */
 static void window_kill( Window *wdw )
 {
@@ -1207,7 +1222,7 @@ void toolkit_drawAltText( int bx, int by, const char *alt )
    glColour c2;
 
    /* Get dimensions. */
-   w = 200;
+   w = 250;
    h = gl_printHeightRaw( &gl_smallFont, w, alt );
 
    /* Choose position. */
@@ -1219,17 +1234,17 @@ void toolkit_drawAltText( int bx, int by, const char *alt )
    }
 
    /* Set colours. */
-   c.r = cGrey80.r;
-   c.g = cGrey80.g;
-   c.b = cGrey80.b;
-   c.a = 0.8;
-   c2.r = cGrey30.r;
-   c2.g = cGrey30.g;
-   c2.b = cGrey30.b;
+   c.r = cGrey20.r;
+   c.g = cGrey20.g;
+   c.b = cGrey20.b;
+   c.a = 0.9;
+   c2.r = cGrey10.r;
+   c2.g = cGrey10.g;
+   c2.b = cGrey10.b;
    c2.a = 0.7;
-   toolkit_drawRect( x-1, y-5, w+6, h+6, &c2, NULL );
-   toolkit_drawRect( x-3, y-3, w+6, h+6, &c, NULL );
-   gl_printTextRaw( &gl_smallFont, w, h, x, y, &cFontWhite, alt );
+   toolkit_drawRect( x+1, y+1, w+18, h+18, &c2, NULL );
+   toolkit_drawRect( x, y, w+18, h+18, &c, NULL );
+   gl_printTextRaw( &gl_smallFont, w , h, x + 9, y + 9, &cFontWhite, -1., alt );
 }
 
 
@@ -1256,7 +1271,7 @@ static void window_renderBorder( Window* w )
       gl_printMidRaw( &gl_defFont, w->w,
             x,
             y + w->h - 20.,
-            &cFontWhite, w->displayname );
+            &cFontWhite, -1., w->displayname );
       return;
    }
 
@@ -1270,7 +1285,7 @@ static void window_renderBorder( Window* w )
    gl_printMidRaw( &gl_defFont, w->w,
          x,
          y + w->h - 20.,
-         &cFontWhite, w->displayname );
+         &cFontWhite, -1., w->displayname );
 }
 
 
@@ -1314,7 +1329,7 @@ void window_render( Window *w )
       y  += wgt->y;
       wid = wgt->w;
       hei = wgt->h;
-      toolkit_drawOutline( x, y, wid, hei, 3, &cBlack, NULL );
+      toolkit_drawOutline( x, y, wid, hei, 3, &cGrey30, NULL );
    }
 }
 
@@ -1518,7 +1533,7 @@ Uint32 toolkit_inputTranslateCoords( Window *w, SDL_Event *event,
 /**
  * @brief Handles the mouse events.
  *
- *    @param wdw Window receiving the mouse event.
+ *    @param w Window receiving the mouse event.
  *    @param event Mouse event to handle.
  */
 static int toolkit_mouseEvent( Window *w, SDL_Event* event )
@@ -1553,6 +1568,10 @@ static int toolkit_mouseEvent( Window *w, SDL_Event* event )
  *    @param w Window to which widget belongs.
  *    @param wgt Widget receiving event.
  *    @param event Event received by the window.
+ *    @param x X coordinate in window space.
+ *    @param y Y coordinate in window space.
+ *    @param rx Relative X movement (only valid for motion).
+ *    @param ry Relative Y movement (only valid for motion).
  */
 static int toolkit_mouseEventWidget( Window *w, Widget *wgt,
       SDL_Event *event, int x, int y, int rx, int ry )
@@ -1698,7 +1717,7 @@ static SDL_Keymod toolkit_mapMod( SDL_Keycode key )
  *
  *    @param key Key to register as down.
  */
-static void toolkit_regKey( SDL_Keycode key, SDL_Keycode c )
+static void toolkit_regKey( SDL_Keycode key )
 {
    SDL_Keymod mod;
 
@@ -1713,7 +1732,7 @@ static void toolkit_regKey( SDL_Keycode key, SDL_Keycode c )
       input_key         = key;
       input_keyTime     = SDL_GetTicks();
       input_keyCounter  = 0;
-      input_text        = nstd_checkascii(c) ? c : 0;
+      input_text        = nstd_checkascii(key) ? key : 0;
    }
 }
 
@@ -1766,7 +1785,7 @@ static int toolkit_keyEvent( Window *wdw, SDL_Event* event )
 
    /* Hack to simulate key repetition */
    if (event->type == SDL_KEYDOWN)
-      toolkit_regKey(key, key);
+      toolkit_regKey(key);
    else if (event->type == SDL_KEYUP)
       toolkit_unregKey(key);
 
@@ -1790,10 +1809,10 @@ static int toolkit_keyEvent( Window *wdw, SDL_Event* event )
    }
 
    /* Handle button hotkeys. */
-   for (wgt=wdw->widgets; wgt!=NULL; wgt=wgt->next)
-      if ((wgt->type == WIDGET_BUTTON) && (wgt->dat.btn.key != 0) &&
-            (wgt->dat.btn.key == input_key))
-         return (wgt->keyevent( wgt, SDLK_RETURN, input_mod ));
+   for ( wgt = wdw->widgets; wgt != NULL; wgt = wgt->next )
+      if ( ( wgt->type == WIDGET_BUTTON ) && ( wgt->dat.btn.key != 0 ) && ( wgt->dat.btn.key == input_key )
+           && wgt->keyevent != NULL )
+         return ( wgt->keyevent( wgt, SDLK_RETURN, input_mod ) );
 
    /* Handle other cases where event might be used by the window. */
    switch (key) {
@@ -1949,7 +1968,7 @@ void toolkit_update (void)
 /**
  * @brief Exposes or hides a window and notifies its widgets.
  *
- *    @param wgt Widget to change exposure of.
+ *    @param wdw Window to change exposure of.
  *    @param expose Whether exposing or hiding.
  */
 static void toolkit_expose( Window *wdw, int expose )
@@ -2193,7 +2212,7 @@ static Widget* toolkit_getFocus( Window *wdw )
  * @brief Sets the focused widget in a window.
  *
  *    @param wid ID of the window to get widget from.
- *    @param name Name of the widget to set focus to.
+ *    @param wgtname Name of the widget to set focus to.
  */
 void window_setFocus( const unsigned int wid, const char* wgtname )
 {

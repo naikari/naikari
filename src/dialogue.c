@@ -283,6 +283,7 @@ void dialogue_msgRaw( const char* caption, const char *msg )
  *
  *    @param caption Window title.
  *    @param msg Message to display.
+ *    @param img Path of the image file (*.png) to display.
  *    @param width Width of the image. Negative uses image width.
  *    @param height Height of the image. Negative uses image height.
  */
@@ -864,7 +865,7 @@ static int toolkit_loop( int *loop_done )
          }
          else if (event.type == SDL_WINDOWEVENT &&
                event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            naev_resize( event.window.data1, event.window.data2 );
+            naev_resize();
             continue;
          }
 
