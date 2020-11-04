@@ -27,7 +27,7 @@ if genCDoc.disabled() == false
             output     : doxy_output,
             command    : [doxygen, doxyfile],
             install    : true,
-            install_dir: 'doc/naev')
+            install_dir: 'doc/naikari')
     endif
 endif
 summary('C', is_variable('cdoc'), section: 'Documentation', bool_yn: true)
@@ -59,7 +59,7 @@ if genLDoc.disabled() == false
             '-s', meson.source_root() / 'docs/lua',
             '@PRIVATE_DIR@'],
             install: true,
-            install_dir: 'doc/naev')
+            install_dir: 'doc/naikari')
     endif
 endif
 summary('Lua', is_variable('ldoc'), section: 'Documentation', bool_yn: true)
