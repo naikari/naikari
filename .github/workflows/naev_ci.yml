@@ -330,14 +330,6 @@ jobs:
         sh $MESON install -C build
         tar -cvf ${{ github.workspace }}/naikari-docs-${{ github.sha }}.tar ${{ env.DESTDIR }}/usr/local/doc/naikari
 
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2.0.3
-      with:
-        key: ${{ secrets.SSH_KEY }}
-        name: id_rsa # optional
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
-      if: ${{ github.event_name == 'push' && github.repository == 'naikari/naikari' }}
-
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
