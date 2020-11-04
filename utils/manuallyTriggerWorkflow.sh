@@ -25,5 +25,5 @@ curl \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
   -H "Authorization: token $TOKEN" \
-  https://api.github.com/repos/naev/naev/dispatches \
+  https://api.github.com/repos/naikari/naikari/dispatches \
   -d '{"event_type":"manual-nightly"}'

@@ -99,7 +99,7 @@ if __name__=="__main__":
         # Get version information
         with open(os.path.join(args.source_dir, 'dat/VERSION'), 'r') as f:
             version = f.read().strip()
-        output = f"naev-{version}-soundtrack"
+        output = f"naikari-{version}-soundtrack"
 
     print(f"Generating {output}.zip")
 

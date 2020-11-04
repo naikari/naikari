@@ -68,7 +68,7 @@ echo "MESON WRAPPER PATH: $MESON"
 
 OLDDISTDIR=$DISTDIR
 unset DESTDIR
-export DESTDIR="$BUILDOUTPUT/Naev.AppDir"
+export DESTDIR="$BUILDOUTPUT/Naikari.AppDir"
 
 # Setup AppImage Build Directory
 
@@ -88,7 +88,7 @@ sh $MESON install -C $BUILDPATH
 # (I hate this but otherwise linuxdeploy fails on systems that generate the desktop file)
 
 rm $DESTDIR/usr/share/applications/*.desktop
-cp $SOURCEROOT/org.naev.naev.desktop $DESTDIR/usr/share/applications/
+cp $SOURCEROOT/org.naikari.naikari.desktop $DESTDIR/usr/share/applications/
 
 # Set ARCH of AppImage
 export ARCH=$(arch)
@@ -106,7 +106,7 @@ GLIBC="$(ldd --version | grep -Po "(\d+\.)+\d+" | sed -n '1p')"
 # Make output dir (if it does not exist)
 mkdir -p $BUILDOUTPUT/out
 
-export OUTPUT="$BUILDOUTPUT/out/naev-$VERSION-lin64-glibc-$GLIBC.AppImage"
+export OUTPUT="$BUILDOUTPUT/out/naikari-$VERSION-lin64-glibc-$GLIBC.AppImage"
 
 # Get linuxdeploy's AppImage
 linuxdeploy="$BUILDPATH/linuxdeploy-x86_64.AppImage"
