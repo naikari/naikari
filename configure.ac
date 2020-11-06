@@ -2,19 +2,11 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.61])
-<<<<<<< HEAD
 AC_INIT([naikari],
-        [0.8.-3],
+        [0.8.0-beta.3],
         [https://github.com/naikari/naikari/issues],
         [naikari],
         [https://naikari.github.io])
-=======
-AC_INIT([naev],
-        [0.8.0-beta.3],
-        [https://github.com/naev/naev/issues],
-        [naev],
-        [https://naev.org/])
->>>>>>> e19762812074e7ad66f812a53e775640097eddb2
 AC_CONFIG_SRCDIR([src/naev.c])
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_MACRO_DIR([m4])
