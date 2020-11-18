@@ -226,7 +226,7 @@ if buildExec.disabled() == false
 
    configure_file(
       input: 'utils/build/naev.sh',
-      output: 'naev.sh',
+      output: 'naikari.sh',
       configuration: {
          'source_root': meson.source_root(),
          'naev_bin' : naev_bin.full_path()
