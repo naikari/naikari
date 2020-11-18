@@ -20,7 +20,7 @@
 --[[misn title - the return]]
 --[[after smuggling a small arms shipment to the an'ku system,
    the player is asked to deliver a message to a "shady character"
-   on the wringer in the suna system.]]
+   on the wringer in the Suna system.]]
    
 require "numstring.lua"
 require "missions/sirius/common.lua"
@@ -48,7 +48,6 @@ misn_title = _("The Return")
 npc_name = _("A Tall Man")
 bar_desc = _("A tall man sitting at a table littered with papers.")
 misn_desc = _("Shaman of Nasin has hired you to deliver the message to %s in the %s system.")
-misn_reward = _("%s credits")
 osd = {}
 osd[1] = _("Fly to %s in the %s system and deliver the message")
 
@@ -64,7 +63,7 @@ function create()
    targetasset, targetsystem = planet.get("The Wringer")
    --set the mission stuff
    misn.setTitle(misn_title)
-   misn.setReward(misn_reward:format(numstring(reward)))
+   misn.setReward(creditstring(reward))
    misn.setNPC(npc_name, "sirius/unique/shaman")
    misn.setDesc(bar_desc)
 
@@ -97,7 +96,7 @@ function landing()
       player.pay(reward)
       misn.cargoRm(message)
       misn_tracker = misn_tracker + 1
-      faction.modPlayer("Nasin",5) --once again, the nasin like the fact that we are helping the nasin.
+      faction.modPlayer("Nasin",5) --once again, the Nasin like the fact that we are helping the Nasin.
       var.push("heretic_misn_tracker",misn_tracker)
       srs_addHereticLog( log_text )
       misn.finish(true)

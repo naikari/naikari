@@ -384,7 +384,7 @@ function hail()
 end
 
 -- Function that tries to misspell whatever string is passed to it.
--- TODO support unicode to a certain point
+-- TODO support Unicode to a certain point
 function mangle(intext)
    local outtext = intext
    

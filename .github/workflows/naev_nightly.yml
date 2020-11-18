@@ -89,16 +89,9 @@ jobs:
       run: |
         chmod +x src/naikari
 
-        BUILD_DATE="$(date +%m_%d_%Y)"
+        BUILD_DATE="$(date +%Y%m%d)"
 
         VERSION="$(cat dat/VERSION)"
-
-        # Get version, negative minors mean betas
-        if [[ -n $(echo "${VERSION}" | grep "-") ]]; then
-          BASEVER=$(echo "${VERSION}" | sed 's/\.-.*//')
-          BETAVER=$(echo "${VERSION}" | sed 's/.*-//')
-          VERSION="${BASEVER}.0-beta.${BETAVER}"
-        fi
 
         mkdir -p dist/release/naikari-$VERSION-$BUILD_DATE-linux-x86-64
         mkdir -p dist/release/tar
@@ -225,15 +218,7 @@ jobs:
 
       - name: Collect files for distribution
         run: |
-          BUILD_DATE="$(date +%m_%d_%Y)"
-
-          VERSION="$(cat dat/VERSION)"
-           # Get version, negative minors mean betas
-          if [[ -n $(echo "${VERSION}" | grep "-") ]]; then
-              BASEVER=$(echo "${VERSION}" | sed 's/\.-.*//')
-              BETAVER=$(echo "${VERSION}" | sed 's/.*-//')
-              VERSION="${BASEVER}.0-beta.${BETAVER}"
-          fi
+          BUILD_DATE="$(date +%Y%m%d)"
 
           mv dist/linux-x86-64/linux-x86-64.tar.gz dist/release/naikari-$VERSION-$BUILD_DATE-linux-x86-64.tar.gz
           mv dist/win64/naikari-win64.exe dist/release/naikari-$VERSION-$BUILD_DATE-win64.exe

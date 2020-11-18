@@ -301,7 +301,7 @@ void load_loadGameMenu (void)
    int i, n, len;
 
    /* window */
-   wid = window_create( "Load Game", -1, -1, LOAD_WIDTH, LOAD_HEIGHT );
+   wid = window_create( "wdwLoadGameMenu", _("Load Game"), -1, -1, LOAD_WIDTH, LOAD_HEIGHT );
    window_setAccept( wid, load_menu_load );
    window_setCancel( wid, load_menu_close );
 
@@ -336,7 +336,7 @@ void load_loadGameMenu (void)
 
    window_addList( wid, 20, -50,
          LOAD_WIDTH-200-60, LOAD_HEIGHT-110,
-         "lstSaves", names, n, 0, load_menu_update );
+         "lstSaves", names, n, 0, load_menu_update, load_menu_load );
 
    /* Buttons */
    window_addButtonKey( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
@@ -416,7 +416,7 @@ static void load_menu_load( unsigned int wdw, char *str )
    int n;
    int diff;
 
-   wid = window_get( "Load Game" );
+   wid = window_get( "wdwLoadGameMenu" );
    save = toolkit_getList( wid, "lstSaves" );
 
    if (strcmp(save,_("None")) == 0)
@@ -463,7 +463,7 @@ static void load_menu_delete( unsigned int wdw, char *str )
    nsave_t *ns;
    int n;
 
-   wid = window_get( "Load Game" );
+   wid = window_get( "wdwLoadGameMenu" );
    save = toolkit_getList( wid, "lstSaves" );
 
    if (strcmp(save,"None") == 0)
@@ -539,7 +539,7 @@ int load_gameDiff( const char* file )
 
    /* Make sure it exists. */
    if (!nfile_fileExists(file)) {
-      dialogue_alert( _("Savegame file seems to have been deleted.") );
+      dialogue_alert( _("Saved game file seems to have been deleted.") );
       return -1;
    }
 
@@ -562,7 +562,7 @@ int load_gameDiff( const char* file )
 err_doc:
    xmlFreeDoc(doc);
 err:
-   WARN( _("Savegame '%s' invalid!"), file);
+   WARN( _("Saved game '%s' invalid!"), file);
    return -1;
 }
 
@@ -582,7 +582,7 @@ int load_game( const char* file, int version_diff )
 
    /* Make sure it exists. */
    if (!nfile_fileExists(file)) {
-      dialogue_alert( _("Savegame file seems to have been deleted.") );
+      dialogue_alert( _("Saved game file seems to have been deleted.") );
       return -1;
    }
 
@@ -660,7 +660,7 @@ int load_game( const char* file, int version_diff )
 err_doc:
    xmlFreeDoc(doc);
 err:
-   WARN( _("Savegame '%s' invalid!"), file);
+   WARN( _("Saved game '%s' invalid!"), file);
    return -1;
 }
 

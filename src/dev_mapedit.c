@@ -105,7 +105,7 @@ static void mapedit_buttonZoom( unsigned int wid, char* str );
 static void mapedit_render( double bx, double by, double w, double h, void *data );
 /*static void mapedit_renderOverlay( double bx, double by, double bw, double bh, void* data );*/
 static int mapedit_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data );
+      double w, double h, double xr, double yr, void *data );
 /* Button functions. */
 static void mapedit_close( unsigned int wid, char *wgt );
 static void mapedit_btnOpen( unsigned int wid_unused, char *unused );
@@ -161,7 +161,7 @@ void mapedit_open( unsigned int wid_unused, char *unused )
    mapedit_ypos   = 0.;
 
    /* Create the window. */
-   wid = window_create( "Map Outfit Editor", -1, -1, -1, -1 );
+   wid = window_create( "wdwMapOutfitEditor", _("Map Outfit Editor"), -1, -1, -1, -1 );
    window_handleKeys( wid, mapedit_keys );
    mapedit_wid = wid;
 
@@ -418,7 +418,7 @@ static void mapedit_render( double bx, double by, double w, double h, void *data
  * @brief System editor custom widget mouse handling.
  */
 static int mapedit_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data )
+      double w, double h, double xr, double yr, void *data )
 {
    (void) wid;
    (void) data;
@@ -527,11 +527,11 @@ static int mapedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
          /* Handle dragging. */
          if (mapedit_drag) {
             /* axis is inverted */
-            mapedit_xpos -= event->motion.xrel;
-            mapedit_ypos += event->motion.yrel;
+            mapedit_xpos -= xr;
+            mapedit_ypos += yr;
 
             /* Update mouse movement. */
-            mapedit_moved += ABS( event->motion.xrel ) + ABS( event->motion.yrel );
+            mapedit_moved += ABS(xr) + ABS(yr);
          }
          break;
    }
@@ -743,7 +743,7 @@ void mapedit_saveMapMenu_open (void)
    //WARN("Entering function.");
 
    /* window */
-   wid = window_create( "Save to Map Outfit", -1, -1, MAPEDIT_SAVE_WIDTH, MAPEDIT_SAVE_HEIGHT );
+   wid = window_create( "wdwSavetoMapOutfit", _("Save to Map Outfit"), -1, -1, MAPEDIT_SAVE_WIDTH, MAPEDIT_SAVE_HEIGHT );
    mapedit_widSave = wid;
 
    /* Default actions */
@@ -822,7 +822,7 @@ void mapedit_saveMapMenu_open (void)
    /* Create list : must be created after inpFileName, inpMapName, inpDescription and txtLoadedNumSystems */
    window_addList( mapedit_widSave, 20, -50,
          MAPEDIT_SAVE_WIDTH-MAPEDIT_SAVE_TXT_WIDTH-60, MAPEDIT_SAVE_HEIGHT-40-40,
-         "lstMapOutfits", names, n, iCurrent, mapedit_saveMapMenu_update );
+         "lstMapOutfits", names, n, iCurrent, mapedit_saveMapMenu_update, mapedit_saveMapMenu_save );
 
    /* Debug log */
    //WARN("Creating buttons.");
@@ -856,7 +856,7 @@ void mapedit_loadMapMenu_open (void)
    //WARN("Entering function.");
 
    /* window */
-   wid = window_create( "Open Map Outfit", -1, -1, MAPEDIT_OPEN_WIDTH, MAPEDIT_OPEN_HEIGHT );
+   wid = window_create( "wdwOpenMapOutfit", _("Open Map Outfit"), -1, -1, MAPEDIT_OPEN_WIDTH, MAPEDIT_OPEN_HEIGHT );
    mapedit_widLoad = wid;
 
    /* Default actions */
@@ -895,7 +895,7 @@ void mapedit_loadMapMenu_open (void)
 
    window_addList( mapedit_widLoad, 20, -50,
          MAPEDIT_OPEN_WIDTH-MAPEDIT_OPEN_TXT_WIDTH-60, MAPEDIT_OPEN_HEIGHT-110,
-         "lstMapOutfits", names, n, 0, mapedit_loadMapMenu_update );
+         "lstMapOutfits", names, n, 0, mapedit_loadMapMenu_update, mapedit_loadMapMenu_load );
 
    /* Debug log */
    //WARN("Creating buttons.");

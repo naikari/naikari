@@ -50,7 +50,7 @@ refusetitle = _("Refusal")
 refusetext = _([["I guess we'll need to find another pilot."]])
 
 wintitle = _("You Won!")
-wintext = _([[A man in a suit and tie takes you up onto a stage. A large nametag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of %s!" He hands you one of those fake oversized cheques for the audience, and then a credit chip with the actual prize money on it.]])
+wintext = _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of %s!" He hands you one of those fake oversized cheques for the audience, and then a credit chip with the actual prize money on it.]])
 
 ftitle[1] = _("Illegal ship!")
 ftext[1] = _([["You have switched to a ship that's not allowed in this race. Mission failed."]])
@@ -69,7 +69,6 @@ NPCname = _("A laid back person")
 NPCdesc = _("You see a laid back person, who appears to be one of the locals, looking around the bar, apparently in search of a suitable pilot.")
 
 misndesc = _("You're participating in another race!")
-misnreward = _("%s credits")
 
 OSDtitle = _("Racing Skills 2")
 OSD = {}
@@ -123,7 +122,7 @@ function accept ()
          credits = credits_hard
          tk.msg(title[6], text[6])
       end
-      misn.setReward(misnreward:format(numstring(credits)))
+      misn.setReward(creditstring(credits))
       hook.takeoff("takeoff")
       else
       tk.msg(refusetitle, refusetext)

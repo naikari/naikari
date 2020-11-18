@@ -24,14 +24,14 @@ dist_doc_DATA = Readme.md LICENSE
 if HAVE_UTILS
 MKSPR      = $(top_srcdir)/utils/mkspr/mkspr$(EXEEXT)
 endif
-NAIKARI	     = $(top_srcdir)/$(PACKAGE)$(EXEEXT)
+NAEV	     = $(top_srcdir)/$(PACKAGE)$(EXEEXT)
 
 VERSIONFILE = $(top_srcdir)/dat/VERSION
 LICENSEFILE = $(top_srcdir)/dat/LICENSE
 LANGUAGEFILE = $(top_srcdir)/dat/LANGUAGES
 
 EXTRA_DIST = build/config.rpath LICENSE extras org.naikari.naikari.desktop org.naikari.naikari.metainfo.xml
-CLEANFILES = $(NAIKARI) $(VERSIONFILE) $(LANGUAGEFILE) $(LICENSEFILE)
+CLEANFILES = $(NAEV) $(VERSIONFILE) $(LANGUAGEFILE) $(LICENSEFILE)
 
 if HAVE_NLS
 XMLFILES    = $(top_srcdir)/po/POTFILES_XML.in
@@ -42,7 +42,7 @@ endif # HAVE_NLS
 
 .PHONY: data pot docs utils help install-ndata soundtrack
 
-all-local: $(NAIKARI) data
+all-local: $(NAEV) data
 
 data: pot $(VERSIONFILE) $(LICENSEFILE)
 
@@ -57,18 +57,18 @@ if HAVE_ITSTOOL
 # xargs -a $(XMLFILES) $(ITSTOOL) -i $(TRANSLATIONITS) > $@
 $(XMLPOT): $(XMLFILES) $(TRANSLATIONITS)
 	@echo "ITSTOOL $@"
-	cat $(XMLFILES) | tr '\n' '\0' | tr -d '\r' | xargs -0 $(ITSTOOL) -i $(TRANSLATIONITS) > $@
+	cat $(XMLFILES) | sed 's@^@$(top_srcdir)/@' | tr '\n' '\0' | tr -d '\r' | xargs -0 $(ITSTOOL) -i $(TRANSLATIONITS) > $@
 else # HAVE_ITSTOOL
 $(XMLPOT): $(XMLFILES) $(TRANSLATIONITS)
 	@echo "XGETTEXT $@"
-	$(XGETTEXT) --from-code=UTF-8 --its=$(TRANSLATIONITS) -f $(XMLFILES) -o $@
+	$(XGETTEXT) --from-code=UTF-8 --its=$(TRANSLATIONITS) -f $(XMLFILES) -D $(top_srcdir) -o $@
 endif # HAVE_ITSTOOL
 
 if HAVE_DATA
 pot: $(XMLPOT) $(LANGUAGEFILE)
 	$(MAKE) -C po
 	$(MAKE) -C po $(PACKAGE).pot
-	./utils/gettext.sh
+	$(top_srcdir)/utils/gettext.sh $(top_srcdir)
 
 $(LANGUAGEFILE): po/LINGUAS
 	tail -n +2 $< > $@
@@ -83,9 +83,9 @@ pot:
 	@echo "***"
 endif # HAVE_NLS
 
-$(NAIKARI):
-	@echo "  LN    $(NAIKARI)"
-	$(LN_S) "src/$(NAIKARI)" "$(NAIKARI)"
+$(NAEV):
+	@echo "  LN    $(NAEV)"
+	$(LN_S) "src/$(NAEV)" "$(NAEV)"
 
 $(VERSIONFILE): src/config.h
 	@echo $(VERSION) > $@
@@ -113,8 +113,8 @@ docs:
 
 soundtrack: naikari-$(VERSION)-soundtrack.zip
 
-naikari-$(VERSION)-soundtrack.zip: utils/soundtrack.py dat/snd/soundtrack.yaml
-	./utils/soundtrack.py
+naikari-$(VERSION)-soundtrack.zip: $(top_srcdir)/utils/soundtrack.py dat/snd/soundtrack.yaml
+	$(top_srcdir)/utils/soundtrack.py --source-dir=$(top_srcdir)
 
 help:
 	@echo "Possible targets are:"

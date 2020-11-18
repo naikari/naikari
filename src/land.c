@@ -689,7 +689,7 @@ static void misn_genList( unsigned int wid, int first )
    }
    window_addList( wid, 20, -40,
          w/2 - 30, h/2 - 35,
-         "lstMission", misn_names, j, 0, misn_update );
+         "lstMission", misn_names, j, 0, misn_update, misn_accept );
 
    /* Restore focus. */
    window_setFocus( wid, focused );
@@ -915,7 +915,7 @@ void land_genWindows( int load, int changetab )
    regen = landed;
 
    /* Create window. */
-   if ((gl_screen.rw < 1024) || (gl_screen.rh < 768)) {
+   if (SCREEN_W < 1024 || SCREEN_H < 768) {
       w = -1; /* Fullscreen. */
       h = -1;
    }
@@ -923,7 +923,7 @@ void land_genWindows( int load, int changetab )
       w = 800 + 0.5 * (SCREEN_W - 800);
       h = 600 + 0.5 * (SCREEN_H - 600);
    }
-   land_wid = window_create( p->name, -1, -1, w, h );
+   land_wid = window_create( "wdwLand", _(p->name), -1, -1, w, h );
    window_onClose( land_wid, land_cleanupWindow );
 
    /* Set window map to invalid. */
@@ -1449,7 +1449,7 @@ void land_cleanup (void)
    mission_ncomputer = 0;
 
    /* Clean up bar missions. */
-   npc_freeAll();
+   npc_clear();
 
    /* Clean up rescue Lua. */
    if (rescue_env != LUA_NOREF) {

@@ -49,7 +49,7 @@ static unsigned int starCnt = 1;
 glTexture **bgImages; /**< nebula and star textures */
 unsigned int nBgImgs; /** number of images */
 
-#define MAP_SYSTEM_WDWNAME "System map"
+#define MAP_SYSTEM_WDWNAME "wdwSystemMap"
 #define MAPSYS_OUTFITS "mapSysOutfits"
 #define MAPSYS_SHIPS "mapSysShips"
 #define MAPSYS_TRADE "mapSysTrade"
@@ -75,7 +75,7 @@ void map_system_updateSelected( unsigned int wid );
 static void map_system_render( double bx, double by, double w, double h, void *data );
 /* Mouse. */
 static int map_system_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data );
+      double w, double h, double rx, double ry, void *data );
 /* Misc. */
 static int map_system_keyHandler( unsigned int wid, SDL_Keycode key, SDL_Keymod mod );
 void map_system_show( int wid, int x, int y, int w, int h);
@@ -184,7 +184,7 @@ void map_system_open( int sys_selected )
    h = MAX(540, SCREEN_H - 140);
 
    /* create the window. */
-   wid = window_create( MAP_SYSTEM_WDWNAME, -1, -1, w, h );
+   wid = window_create( MAP_SYSTEM_WDWNAME, _("System Map"), -1, -1, w, h );
    window_setCancel( wid, map_system_close );
    window_handleKeys( wid, map_system_keyHandler );
    window_addText( wid, 40, h-30, 160, 20, 1, "txtSysname",
@@ -486,7 +486,7 @@ static void map_system_render( double bx, double by, double w, double h, void *d
             if ( sys_isKnown( sys->jumps[i].target ) ) {
                infopos+=nsnprintf( &infobuf[infopos], PATH_MAX-infopos, "     %s\n", sys->jumps[i].target->name );
             } else {
-               infopos+=nsnprintf( &infobuf[infopos], PATH_MAX-infopos, _("     Unkown system\n") );
+               infopos+=nsnprintf( &infobuf[infopos], PATH_MAX-infopos, _("     Unknown system\n") );
             }
             (void)infopos;
          }
@@ -527,7 +527,7 @@ static void map_system_render( double bx, double by, double w, double h, void *d
         /* show some additional information */
         infocnt=nsnprintf( infobuf, sizeof(infobuf), "%s\n"
                          "%s\n%s\n%s\n%s\n%s\n%s\n%s",
-                          planet_hasService( p, PLANET_SERVICE_LAND) ? ("This system is landable") : _("This system is not landable"),
+                          planet_hasService( p, PLANET_SERVICE_LAND) ? _("This system is landable") : _("This system is not landable"),
                           planet_hasService( p, PLANET_SERVICE_INHABITED) ? _("This system is inhabited") : _("This system is not inhabited"),
                           planet_hasService( p, PLANET_SERVICE_REFUEL) ? _("You can refuel here") : _("You cannot refuel here"),
                           planet_hasService( p, PLANET_SERVICE_BAR) ? _("This system has a bar") : _("This system does not have a bar"),
@@ -563,9 +563,11 @@ static void map_system_render( double bx, double by, double w, double h, void *d
  *    @param h Height of the widget.
  */
 static int map_system_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data )
+      double w, double h, double rx, double ry, void *data )
 {
    (void) data;
+   (void) rx;
+   (void) ry;
    int offset;
    switch (event->type) {
    case SDL_MOUSEBUTTONDOWN:

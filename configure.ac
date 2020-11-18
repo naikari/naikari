@@ -75,6 +75,8 @@ AC_PROG_OBJC
 AC_PROG_LN_S
 AC_PROG_RANLIB
 AM_PROG_AR
+# Should be AX_PROG_CC_FOR_BUILD -- except Steam builds occur in a paleozoic environment where that doesn't work.
+AX_CC_FOR_BUILD
 PKG_PROG_PKG_CONFIG
 
 AC_CHECK_PROG([CUT], [cut], [cut])
@@ -362,10 +364,10 @@ AS_IF([test "x$enable_debug" != "xno"], [
 
 case "$host" in
   *-linux*)
-    GLOBAL_LIBS="$NAIKARI_LIBS -lm" # feels so wrong
+    GLOBAL_LIBS="$NAEV_LIBS -lm" # feels so wrong
     ;;
   *-mingw*)
-    GLOBAL_LIBS="$NAIKARI_LIBS -lwsock32"
+    GLOBAL_LIBS="$NAEV_LIBS -lwsock32"
     ;;
 esac
 
@@ -375,15 +377,15 @@ AC_SUBST([GLOBAL_LIBS])
 # naikari
 WIDGET_LIBS="\$(top_builddir)/src/tk/widget/libwidget.a"
 
-NAIKARI_CFLAGS="$GLOBAL_CFLAGS"
-NAIKARI_LIBS="$GLOBAL_LIBS $WIDGET_LIBS"
+NAEV_CFLAGS="$GLOBAL_CFLAGS"
+NAEV_LIBS="$GLOBAL_LIBS $WIDGET_LIBS"
 
 # glad requires libdl on non-Windows platforms
 case "$host" in
   *-mingw*)
     ;;
   *)
-    NAIKARI_LIBS="$NAIKARI_LIBS -ldl"
+    NAEV_LIBS="$NAEV_LIBS -ldl"
     ;;
 esac
 
@@ -394,7 +396,7 @@ AS_IF([test "x$enable_debug" != "xno"], [
      case "$host" in
        *-linux-gnu)
          AC_DEFINE([HAS_BFD], 1, [Define to 1 to enable bfd backtrace code])
-         NAIKARI_LIBS="$NAIKARI_LIBS -lbfd -liberty -rdynamic -ldl"
+         NAEV_LIBS="$NAEV_LIBS -lbfd -liberty -rdynamic -ldl"
          ;;
      esac
   ])
@@ -403,47 +405,47 @@ AS_IF([test "x$enable_debug" = "xparanoid"], [
   AC_DEFINE([DEBUG_PARANOID], 1, [Define to 1 to enable paranoid debug code])
 ])
 
-NAIKARI_CFLAGS="$NAIKARI_CFLAGS $CSPARSE_CFLAGS $SDL_CFLAGS $XML_CFLAGS \
+NAEV_CFLAGS="$NAEV_CFLAGS $CSPARSE_CFLAGS $SDL_CFLAGS $XML_CFLAGS \
     $FREETYPE_CFLAGS $LUA_CFLAGS $VORBIS_CFLAGS $VORBISFILE_CFLAGS \
     $PNG_CFLAGS $OPENGL_CFLAGS"
 
-NAIKARI_LIBS="$NAIKARI_LIBS $CSPARSE_LIBS $SDL_LIBS $XML_LIBS \
+NAEV_LIBS="$NAEV_LIBS $CSPARSE_LIBS $SDL_LIBS $XML_LIBS \
     $FREETYPE_LIBS $LUA_LIBS $VORBIS_LIBS $VORBISFILE_LIBS \
     $PNG_LIBS $OPENGL_LIBS"
 
 AS_IF([test "x$have_openal" = "xyes"], [
-  NAIKARI_CFLAGS="$NAIKARI_CFLAGS $OPENAL_CFLAGS"
-  NAIKARI_LIBS="$NAIKARI_LIBS $OPENAL_LIBS"
+  NAEV_CFLAGS="$NAEV_CFLAGS $OPENAL_CFLAGS"
+  NAEV_LIBS="$NAEV_LIBS $OPENAL_LIBS"
 ])
 
 AS_IF([test "x$have_sdlmixer" = "xyes"], [
-  NAIKARI_CFLAGS="$NAIKARI_CFLAGS $SDLMIXER_CFLAGS"
-  NAIKARI_LIBS="$NAIKARI_LIBS $SDLMIXER_LIBS"
+  NAEV_CFLAGS="$NAEV_CFLAGS $SDLMIXER_CFLAGS"
+  NAEV_LIBS="$NAEV_LIBS $SDLMIXER_LIBS"
 ])
 
 case "$host" in
   *-mingw*)
-    NAIKARI_LIBS="$NAIKARI_LIBS -mwindows"
+    NAEV_LIBS="$NAEV_LIBS -mwindows"
     ;;
   *-darwin*)
-    NAIKARI_LIBS="$NAIKARI_LIBS -framework Foundation"
+    NAEV_LIBS="$NAEV_LIBS -framework Foundation"
     ;;
 esac
 
 # This is a list of in-tree static libs that naikari depends on.  It is used by
 # automake to detect when the binary needs recompiling after a library has been
 # changed.
-NAIKARI_DEPENDENCIES="$WIDGET_LIBS"
+NAEV_DEPENDENCIES="$WIDGET_LIBS"
 AS_IF([test "x$used_lua" = "xinternal"], [
-   NAIKARI_DEPENDENCIES="$NAIKARI_DEPENDENCIES $LUA_LIBS"
+   NAEV_DEPENDENCIES="$NAEV_DEPENDENCIES $LUA_LIBS"
 ])
 AS_IF([test "x$used_csparse" = "xinternal"], [
-   NAIKARI_DEPENDENCIES="$NAIKARI_DEPENDENCIES $CSPARSE_LIBS"
+   NAEV_DEPENDENCIES="$NAEV_DEPENDENCIES $CSPARSE_LIBS"
 ])
 
-AC_SUBST([NAIKARI_CFLAGS])
-AC_SUBST([NAIKARI_LIBS])
-AC_SUBST([NAIKARI_DEPENDENCIES])
+AC_SUBST([NAEV_CFLAGS])
+AC_SUBST([NAEV_LIBS])
+AC_SUBST([NAEV_DEPENDENCIES])
 
 # liblua
 LIBLUA_CFLAGS="$GLOBAL_CFLAGS"
@@ -518,6 +520,19 @@ AS_IF([test -n "$GIT" && test -d "$srcdir/.git"], [
 #
 # Defines in config.h
 #
+
+# Cut out the numeric fields from our SemVer <major>.<minor>.<rev>[-pre_release][+build] for OS versioning.
+VMAJOR=$(echo "$VERSION" | cut -d. -f1)
+VMINOR=$(echo "$VERSION" | cut -d. -f2)
+VREV=$(echo "$VERSION" | cut -d. -f3 | sed "s/[[+-]].*//")
+
+AC_DEFINE_UNQUOTED([VMAJOR], [$VMAJOR], [Define to the major version component])
+AC_DEFINE_UNQUOTED([VMINOR], [$VMINOR], [Define to the minor version component])
+AC_DEFINE_UNQUOTED([VREV], [$VREV], [Define to the revision version component])
+
+AC_SUBST([VMAJOR])
+AC_SUBST([VMINOR])
+AC_SUBST([VREV])
 
 AC_DEFINE_UNQUOTED([HOST], ["$host"], [Host triple])
 

@@ -122,7 +122,7 @@ static void uniedit_buttonZoom( unsigned int wid, char* str );
 static void uniedit_render( double bx, double by, double w, double h, void *data );
 static void uniedit_renderOverlay( double bx, double by, double bw, double bh, void* data );
 static int uniedit_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data );
+      double w, double h, double rx, double ry, void *data );
 /* Button functions. */
 static void uniedit_close( unsigned int wid, char *wgt );
 static void uniedit_save( unsigned int wid_unused, char *unused );
@@ -166,7 +166,7 @@ void uniedit_open( unsigned int wid_unused, char *unused )
    uniedit_ypos   = 0.;
 
    /* Create the window. */
-   wid = window_create( "Universe Editor", -1, -1, -1, -1 );
+   wid = window_create( "wdwUniverseEditor", _("Universe Editor"), -1, -1, -1, -1 );
    window_handleKeys( wid, uniedit_keys );
    uniedit_wid = wid;
 
@@ -448,7 +448,7 @@ static void uniedit_renderOverlay( double bx, double by, double bw, double bh, v
  * @brief System editor custom widget mouse handling.
  */
 static int uniedit_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data )
+      double w, double h, double rx, double ry, void *data )
 {
    (void) wid;
    (void) data;
@@ -601,22 +601,22 @@ static int uniedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
          /* Handle dragging. */
          if (uniedit_drag) {
             /* axis is inverted */
-            uniedit_xpos -= event->motion.xrel;
-            uniedit_ypos += event->motion.yrel;
+            uniedit_xpos -= rx;
+            uniedit_ypos += ry;
 
             /* Update mouse movement. */
-            uniedit_moved += ABS( event->motion.xrel ) + ABS( event->motion.yrel );
+            uniedit_moved += ABS(rx) + ABS(ry);
          }
          else if (uniedit_dragSys && (uniedit_nsys > 0)) {
             if ((uniedit_moved > UNIEDIT_MOVE_THRESHOLD) || (SDL_GetTicks() - uniedit_dragTime > UNIEDIT_DRAG_THRESHOLD)) {
                for (i=0; i<uniedit_nsys; i++) {
-                  uniedit_sys[i]->pos.x += ((double)event->motion.xrel) / uniedit_zoom;
-                  uniedit_sys[i]->pos.y -= ((double)event->motion.yrel) / uniedit_zoom;
+                  uniedit_sys[i]->pos.x += rx / uniedit_zoom;
+                  uniedit_sys[i]->pos.y -= ry / uniedit_zoom;
                }
             }
 
             /* Update mouse movement. */
-            uniedit_moved += ABS( event->motion.xrel ) + ABS( event->motion.yrel );
+            uniedit_moved += ABS(rx) + ABS(ry);
          }
          break;
    }
@@ -1004,7 +1004,7 @@ static void uniedit_findSys (void)
    x = 40;
 
    /* Create the window. */
-   wid = window_create( "Find Systems and Assets", x, -1, UNIEDIT_FIND_WIDTH, UNIEDIT_FIND_HEIGHT );
+   wid = window_create( "wdwFindSystemsandAssets", _("Find Systems and Assets"), x, -1, UNIEDIT_FIND_WIDTH, UNIEDIT_FIND_HEIGHT );
    uniedit_widFind = wid;
 
    x = 20;
@@ -1139,7 +1139,7 @@ static void uniedit_findShowResults( unsigned int wid, map_find_t *found, int n 
    /* Add list. */
    h = UNIEDIT_FIND_HEIGHT + y - BUTTON_HEIGHT - 30;
    window_addList( wid, 20, y, UNIEDIT_FIND_WIDTH-40, h,
-         "lstResults", str, n, 0, uniedit_centerSystem );
+         "lstResults", str, n, 0, uniedit_centerSystem, NULL );
 }
 
 
@@ -1215,7 +1215,7 @@ static void uniedit_editSys (void)
    sys   = uniedit_sys[0];
 
    /* Create the window. */
-   wid = window_create( "Star System Property Editor", -1, -1, UNIEDIT_EDIT_WIDTH, UNIEDIT_EDIT_HEIGHT );
+   wid = window_create( "wdwStarSystemPropertyEditor", _("Star System Property Editor"), -1, -1, UNIEDIT_EDIT_WIDTH, UNIEDIT_EDIT_HEIGHT );
    uniedit_widEdit = wid;
    window_setCancel( wid, uniedit_editSysClose );
 
@@ -1358,7 +1358,7 @@ static void uniedit_editGenList( unsigned int wid )
    /* Add list. */
    h = UNIEDIT_EDIT_HEIGHT+y-20 - 2*(BUTTON_HEIGHT+20);
    window_addList( wid, 20, y, UNIEDIT_EDIT_WIDTH-40, h,
-         "lstAssets", str, j, 0, NULL );
+         "lstAssets", str, j, 0, NULL, NULL );
    y -= h + 20;
 
    /* Add buttons if needed. */
@@ -1460,7 +1460,7 @@ static void uniedit_btnEditAddAsset( unsigned int parent, char *unused )
    }
 
    /* Create the window. */
-   wid = window_create( _("Add a Virtual Asset"), -1, -1, UNIEDIT_EDIT_WIDTH, UNIEDIT_EDIT_HEIGHT );
+   wid = window_create( "wdwAddaVirtualAsset", _("Add a Virtual Asset"), -1, -1, UNIEDIT_EDIT_WIDTH, UNIEDIT_EDIT_HEIGHT );
    window_setCancel( wid, window_close );
 
    /* Add virtual asset list. */
@@ -1471,7 +1471,7 @@ static void uniedit_btnEditAddAsset( unsigned int parent, char *unused )
          str[j++] = strdup( p[i].name );
    h = UNIEDIT_EDIT_HEIGHT-60-(BUTTON_HEIGHT+20);
    window_addList( wid, 20, -40, UNIEDIT_EDIT_WIDTH-40, h,
-         "lstAssets", str, j, 0, NULL );
+         "lstAssets", str, j, 0, NULL, NULL );
 
    /* Close button. */
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,

@@ -42,7 +42,6 @@ require "missions/empire/common.lua"
 -- Mission details
 bar_desc = _("Commander Soldner is waiting for you.")
 misn_title = _("Empire VIP Rescue")
-misn_reward = _("%s credits")
 misn_desc = {}
 misn_desc[1] = _("Rescue the VIP from a transport ship in the %s system")
 misn_desc[2] = _("Return to %s in the %s system with the VIP")
@@ -103,7 +102,7 @@ function accept ()
    misn_stage = 0
    reward = 750000
    misn.setTitle(misn_title)
-   misn.setReward( string.format( misn_reward, numstring(reward) ) )
+   misn.setReward( creditstring(reward) )
    misn.setDesc( string.format( misn_desc[1], destsys:name() ) )
 
    -- Flavour text and mini-briefing
@@ -183,7 +182,7 @@ function enter ()
       p:attack( player.pilot() )
       
       -- Now Dvaered
-      -- They will jump together with you in the system at the jumppoint. (A.)
+      -- They will jump together with you in the system at the jump point. (A.)
       p = pilot.add( "Dvaered Med Force", nil, prevsys )
       for k,v in ipairs(p) do
          v:setFriendly()

@@ -51,13 +51,13 @@
 #define INFO_WIN_STAND     5
 #define INFO_WIN_SHIPLOG   6
 static const char *info_names[INFO_WINDOWS] = {
-   "Main",
-   "Ship",
-   "Weapons",
-   "Cargo",
-   "Missions",
-   "Standings",
-   "Ship log"
+   N_("Main"),
+   N_("Ship"),
+   N_("Weapons"),
+   N_("Cargo"),
+   N_("Missions"),
+   N_("Standings"),
+   N_("Ship log"),
 }; /**< Name of the tab windows. */
 
 
@@ -101,6 +101,7 @@ static void weapons_inrange( unsigned int wid, char *str );
 static void aim_lines( unsigned int wid, char *str );
 static void weapons_renderLegend( double bx, double by, double bw, double bh, void* data );
 static void info_openStandings( unsigned int wid );
+static void info_shiplogView( unsigned int wid, char *str );
 static void standings_update( unsigned int wid, char* str );
 static void cargo_genList( unsigned int wid );
 static void cargo_update( unsigned int wid, char* str );
@@ -117,6 +118,8 @@ static void info_openShipLog( unsigned int wid );
 void menu_info( int window )
 {
    int w, h;
+   size_t i;
+   char **names;
 
    /* Not under manual control. */
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ))
@@ -133,12 +136,15 @@ void menu_info( int window )
    h = 600;
 
    /* Create the window. */
-   info_wid = window_create( N_("Info"), -1, -1, w, h );
+   info_wid = window_create( "wdwInfo", _("Info"), -1, -1, w, h );
    window_setCancel( info_wid, info_close );
 
    /* Create tabbed window. */
+   names = calloc( sizeof(char*), sizeof(info_names)/sizeof(char*) );
+   for (i=0; i<sizeof(info_names)/sizeof(char*); i++)
+      names[i] = gettext(info_names[i]);
    info_windows = window_addTabbedWindow( info_wid, -1, -1, -1, -1, "tabInfo",
-         INFO_WINDOWS, info_names, 0 );
+         INFO_WINDOWS, (const char**)names, 0 );
 
    /* Open the subwindows. */
    info_openMain(       info_windows[ INFO_WIN_MAIN ] );
@@ -243,11 +249,12 @@ static void info_openMain( unsigned int wid )
      licenses = malloc(sizeof(char*) * nlicenses);
      for (i=0; i<nlicenses; i++)
         licenses[i] = strdup(buf[i]);
+      qsort( licenses, nlicenses, sizeof(char*), strsort );
    }
    window_addText( wid, -20, -40, w-80-200-40-40, 20, 1, "txtList",
          NULL, NULL, _("Licenses") );
    window_addList( wid, -20, -70, w-80-200-40-40, h-110-BUTTON_HEIGHT,
-         "lstLicenses", licenses, (nlicenses || 1), 0, NULL );
+         "lstLicenses", licenses, MAX(nlicenses, 1), 0, NULL, NULL );
 }
 
 
@@ -291,7 +298,7 @@ static void info_setGui( unsigned int wid, char* str )
    }
 
    /* window */
-   wid = window_create( N_("Select GUI"), -1, -1, SETGUI_WIDTH, SETGUI_HEIGHT );
+   wid = window_create( "wdwSetGUI", _("Select GUI"), -1, -1, SETGUI_WIDTH, SETGUI_HEIGHT );
    window_setCancel( wid, setgui_close );
 
    /* Copy GUI. */
@@ -302,7 +309,7 @@ static void info_setGui( unsigned int wid, char* str )
    /* List */
    window_addList( wid, 20, -50,
          SETGUI_WIDTH-BUTTON_WIDTH/2 - 60, SETGUI_HEIGHT-110,
-         "lstGUI", gui_copy, nguis, 0, NULL );
+         "lstGUI", gui_copy, nguis, 0, NULL, NULL );
    toolkit_setList( wid, "lstGUI", gui_pick() );
 
    /* buttons */
@@ -334,7 +341,7 @@ static void setgui_load( unsigned int wdw, char *str )
    char *gui;
    int wid;
 
-   wid = window_get( "Select GUI" );
+   wid = window_get( "wdwSetGUI" );
    gui = toolkit_getList( wid, "lstGUI" );
    if (strcmp(gui,_("None")) == 0)
       return;
@@ -562,7 +569,7 @@ static void weapons_genList( unsigned int wid )
    window_addList( wid, 20+180+20, -40,
          w - (20+180+20+20), 180,
          "lstWeapSets", buf, PILOT_WEAPON_SETS,
-         0, weapons_update );
+         0, weapons_update, NULL );
 
    /* Restore position. */
    if (n >= 0)
@@ -607,7 +614,7 @@ static void weapons_autoweap( unsigned int wid, char *str )
 
    /* Run autoweapons if needed. */
    if (state) {
-      sure = dialogue_YesNoRaw( ("Enable autoweapons?"),
+      sure = dialogue_YesNoRaw( _("Enable autoweapons?"),
             _("Are you sure you want to enable automatic weapon groups for the "
             "ship?\n\nThis will overwrite all manually-tweaked weapons groups.") );
       if (!sure) {
@@ -778,7 +785,7 @@ static void cargo_genList( unsigned int wid )
    }
    window_addList( wid, 20, -40,
          w - 40, h - BUTTON_HEIGHT - 80,
-         "lstCargo", buf, nbuf, 0, cargo_update );
+         "lstCargo", buf, nbuf, 0, cargo_update, NULL );
 }
 /**
  * @brief Updates the player's cargo in the cargo menu.
@@ -936,7 +943,7 @@ static void info_openStandings( unsigned int wid )
 
    /* Display list. */
    window_addList( wid, 20, -40, lw, h-60,
-         "lstStandings", str, n, 0, standings_update );
+         "lstStandings", str, n, 0, standings_update, NULL );
 }
 
 
@@ -1050,7 +1057,7 @@ static void mission_menu_genList( unsigned int wid, int first )
    }
    window_addList( wid, 20, -40,
          300, h-340,
-         "lstMission", misn_names, j, 0, mission_menu_update );
+         "lstMission", misn_names, j, 0, mission_menu_update, NULL );
 }
 /**
  * @brief Updates the mission menu mission information based on what's selected.
@@ -1158,7 +1165,7 @@ static void shiplog_menu_update( unsigned int wid, char* str )
             selectedLog = 0;
          window_addList( wid, 20, 60 + BUTTON_HEIGHT  + LOGSPACING / 2,
                          w-40, LOGSPACING / 4,
-                         "lstLogs", logs, nlogs, 0, shiplog_menu_update );
+                         "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL );
          
          toolkit_setListPos( wid, "lstLogs", selectedLog );
          regenerateEntries=1;
@@ -1170,7 +1177,7 @@ static void shiplog_menu_update( unsigned int wid, char* str )
          shiplog_listLog(logIDs[selectedLog], logTypes[selectedLogType], &nentries, &logentries,1);
          window_addList( wid, 20, 40 + BUTTON_HEIGHT,
                          w-40, LOGSPACING / 2-20,
-                         "lstLogEntries", logentries, nentries, 0, shiplog_menu_update );
+                         "lstLogEntries", logentries, nentries, 0, shiplog_menu_update, info_shiplogView );
          toolkit_setListPos( wid, "lstLogEntries", 0 );
          
       }
@@ -1216,13 +1223,13 @@ static void shiplog_menu_genList( unsigned int wid, int first )
    logWidgetsReady=0;
    window_addList( wid, 20, 80 + BUTTON_HEIGHT + 3*LOGSPACING/4 ,
                    w-40, LOGSPACING / 4,
-         "lstLogType", logTypes, ntypes, 0, shiplog_menu_update );
+         "lstLogType", logTypes, ntypes, 0, shiplog_menu_update, NULL );
    window_addList( wid, 20, 60 + BUTTON_HEIGHT + LOGSPACING / 2,
                    w-40, LOGSPACING / 4,
-         "lstLogs", logs, nlogs, 0, shiplog_menu_update );
+         "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL );
    window_addList( wid, 20, 40 + BUTTON_HEIGHT,
                    w-40, LOGSPACING / 2-20,
-                   "lstLogEntries", logentries, nentries, 0, shiplog_menu_update );
+                   "lstLogEntries", logentries, nentries, 0, shiplog_menu_update, info_shiplogView );
    logWidgetsReady=1;
 }
 
@@ -1289,7 +1296,7 @@ static void info_shiplogAdd( unsigned int wid, char *str )
 
    logname = toolkit_getList( wid, "lstLogs" );
    if ( ( logname == NULL ) || ( strcmp( "All", logname ) == 0 ) ) {
-      tmp = dialogue_inputRaw( "Add a log entry", 0, 4096, "Add an entry to your diary:" );
+      tmp = dialogue_inputRaw( _("Add a log entry"), 0, 4096, _("Add an entry to your diary:") );
       if ( ( tmp != NULL ) && ( strlen(tmp) > 0 ) ) {
          if ( shiplog_getID( "Diary" ) == -1 )
               shiplog_create( "Diary", "Your Diary", "Diary", 0, 0 );
@@ -1297,13 +1304,13 @@ static void info_shiplogAdd( unsigned int wid, char *str )
          free( tmp );
       }
    } else {
-      tmp = dialogue_input( "Add a log entry", 0, 4096, "Add an entry to the log titled '%s':", logname );
+      tmp = dialogue_input( _("Add a log entry"), 0, 4096, _("Add an entry to the log titled '%s':"), logname );
       if ( ( tmp != NULL ) && ( strlen(tmp) > 0 ) ) {
          logid = shiplog_getIdOfLogOfType( logTypes[selectedLogType], selectedLog-1 );
          if ( logid >= 0 )
             shiplog_appendByID( logid, tmp );
          else
-            dialogue_msgRaw( "Cannot add log", "Cannot find this log!  Something went wrong here!" );
+            dialogue_msgRaw( _("Cannot add log"), _("Cannot find this log!  Something went wrong here!") );
          free( tmp );
       }
    }

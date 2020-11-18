@@ -304,7 +304,7 @@ static int tk_merchantOutfit( lua_State *L )
    }
 
    /* Create window. */
-   if ((gl_screen.rw < 1024) || (gl_screen.rh < 768)) {
+   if (SCREEN_W < 1024 || SCREEN_H < 768) {
       w = -1; /* Fullscreen. */
       h = -1;
    }
@@ -312,7 +312,7 @@ static int tk_merchantOutfit( lua_State *L )
       w = 800 + 0.5 * (SCREEN_W - 800);
       h = 600 + 0.5 * (SCREEN_H - 600);
    }
-   wid = window_create( name, -1, -1, w, h );
+   wid = window_create( "wdwMerchantOutfit", name, -1, -1, w, h );
    outfits_open( wid, outfits, noutfits );
 
    return 0;

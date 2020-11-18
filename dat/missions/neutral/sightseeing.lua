@@ -72,7 +72,6 @@ pay_s_nolux_text[3] = _("Most of the passengers enjoyed your tour, but one parti
 
 -- Mission details
 misn_title  = _("Sightseeing in the %s System")
-misn_reward = _("%s credits")
 misn_desc   = _("Several passengers wish to go off-world and go on a sightseeing tour. Navigate to specified attractions in the %s system.")
 
 -- Messages
@@ -86,7 +85,7 @@ ssmsg[2] = _("The wide-eyed passengers mutter with astonishment.")
 ssmsg[3] = _("The passengers faces are pressed up against the windows of your ship.")
 ssmsg[4] = _("Everyone seems like they're having a good time.")
 ssmsg[5] = _("A collective gasp of wonder travels through the cabin.")
-ssmsg[6] = _("A sense of terror and mystery engulfs the passengers as they contemplate their existance above the skies.")
+ssmsg[6] = _("A sense of terror and mystery engulfs the passengers as they contemplate their existence above the skies.")
 ssmsg[7] = _("Truly a sight to behold for the passengers.")
 
 osd_title  = _("Sightseeing")
@@ -152,7 +151,7 @@ function create ()
    -- Set mission details
    misn.setTitle( misn_title:format( missys:name() ) )
    misn.setDesc( misn_desc:format( missys:name() ) )
-   misn.setReward( misn_reward:format( numstring( credits ) ) )
+   misn.setReward( creditstring( credits ) )
    marker = misn.markerAdd( missys, "computer" )
 end
 
@@ -161,7 +160,7 @@ function accept ()
    if player.pilot():ship():class() ~= "Luxury Yacht" then
       if tk.yesno( nolux_title, nolux_text:format( numstring(credits_nolux) ) ) then
          nolux_known = true
-         misn.setReward( misn_reward:format( numstring( credits_nolux ) ) )
+         misn.setReward( creditstring( credits_nolux ) )
       else
          misn.finish()
       end

@@ -109,7 +109,7 @@ static void sysedit_renderSprite( glTexture *gfx, double bx, double by, double x
       int sx, int sy, const glColour *c, int selected, const char *caption );
 static void sysedit_renderOverlay( double bx, double by, double bw, double bh, void* data );
 static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data );
+      double w, double h, double xr, double yr, void *data );
 /* Button functions. */
 static void sysedit_close( unsigned int wid, char *wgt );
 static void sysedit_btnNew( unsigned int wid_unused, char *unused );
@@ -179,7 +179,7 @@ void sysedit_open( StarSystem *sys )
 
    /* Create the window. */
    nsnprintf( buf, sizeof(buf), _("%s - Star System Editor"), sys->name );
-   wid = window_create( buf, -1, -1, -1, -1 );
+   wid = window_create( "wdwSysEdit", buf, -1, -1, -1, -1 );
    window_handleKeys( wid, sysedit_keys );
    sysedit_wid = wid;
 
@@ -832,7 +832,7 @@ static void sysedit_renderOverlay( double bx, double by, double bw, double bh, v
  * @brief System editor custom widget mouse handling.
  */
 static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
-      double w, double h, void *data )
+      double w, double h, double xr, double yr, void *data )
 {
    (void) wid;
    (void) data;
@@ -1054,11 +1054,11 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
          /* Handle dragging. */
          if (sysedit_drag) {
             /* axis is inverted */
-            sysedit_xpos -= event->motion.xrel;
-            sysedit_ypos += event->motion.yrel;
+            sysedit_xpos -= xr;
+            sysedit_ypos += yr;
 
             /* Update mouse movement. */
-            sysedit_moved += ABS( event->motion.xrel ) + ABS( event->motion.yrel );
+            sysedit_moved += ABS(xr) + ABS(yr);
          }
          /* Dragging selection around. */
          else if (sysedit_dragSel && (sysedit_nselect > 0)) {
@@ -1068,21 +1068,21 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   /* Planets. */
                   if (sysedit_select[i].type == SELECT_PLANET) {
                      p = sys->planets[ sysedit_select[i].u.planet ];
-                     p->pos.x += ((double)event->motion.xrel) / sysedit_zoom;
-                     p->pos.y -= ((double)event->motion.yrel) / sysedit_zoom;
+                     p->pos.x += xr / sysedit_zoom;
+                     p->pos.y -= yr / sysedit_zoom;
                   }
                   /* Jump point. */
                   else if (sysedit_select[i].type == SELECT_JUMPPOINT) {
                      jp         = &sys->jumps[ sysedit_select[i].u.jump ];
                      jp->flags &= ~(JP_AUTOPOS);
-                     jp->pos.x += ((double)event->motion.xrel) / sysedit_zoom;
-                     jp->pos.y -= ((double)event->motion.yrel) / sysedit_zoom;
+                     jp->pos.x += xr / sysedit_zoom;
+                     jp->pos.y -= yr / sysedit_zoom;
                   }
                }
             }
 
             /* Update mouse movement. */
-            sysedit_moved += ABS( event->motion.xrel ) + ABS( event->motion.yrel );
+            sysedit_moved += ABS(xr) + ABS(yr);
          }
          break;
    }
@@ -1219,7 +1219,7 @@ static void sysedit_selectRm( Select_t *sel )
          return;
       }
    }
-   WARN(_("Trying to unselect item that is not in selection!"));
+   WARN(_("Trying to deselect item that is not in selection!"));
 }
 
 
@@ -1248,7 +1248,7 @@ static void sysedit_editPnt( void )
 
    /* Create the window. */
    nsnprintf(title, sizeof(title), _("Planet Property Editor - %s"), p->name);
-   wid = window_create( title, -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
+   wid = window_create( "wdwSysEditPnt", title, -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
    sysedit_widEdit = wid;
 
    window_setCancel( wid, sysedit_editPntClose );
@@ -1410,7 +1410,7 @@ static void sysedit_editJump( void )
    j = &sysedit_sys->jumps[ sysedit_select[0].u.jump ];
 
    /* Create the window. */
-   wid = window_create( _("Jump Point Editor"), -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
+   wid = window_create( "wdwJumpPointEditor", _("Jump Point Editor"), -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
    sysedit_widEdit = wid;
 
    bw = (SYSEDIT_EDIT_WIDTH - 40 - 15 * 3) / 4.;
@@ -1503,7 +1503,7 @@ static void sysedit_planetDesc( unsigned int wid, char *unused )
 
    /* Create the window. */
    nsnprintf(title, sizeof(title), _("Planet Information - %s"), p->name);
-   wid = window_create( title, -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
+   wid = window_create( "wdwPlanetDesc", title, -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
    window_setCancel( wid, window_close );
 
    x = 20;
@@ -1627,7 +1627,7 @@ static void sysedit_genServicesList( unsigned int wid )
             have[j++] = strdup( planet_getServiceName( i ) );
 
    /* Add list. */
-   window_addList( wid, x, y, w, h, "lstServicesHave", have, j, 0, NULL );
+   window_addList( wid, x, y, w, h, "lstServicesHave", have, j, 0, NULL, sysedit_btnRmService );
    x += w + 15;
 
    /* Add list of services the planet lacks. */
@@ -1641,7 +1641,7 @@ static void sysedit_genServicesList( unsigned int wid )
             lack[j++] = strdup( planet_getServiceName(i) );
 
    /* Add list. */
-   window_addList( wid, x, y, w, h, "lstServicesLacked", lack, j, 0, NULL );
+   window_addList( wid, x, y, w, h, "lstServicesLacked", lack, j, 0, NULL, sysedit_btnAddService );
 
    /* Restore positions. */
    if (hpos != -1 && lpos != -1) {
@@ -1682,7 +1682,7 @@ static void sysedit_btnRmService( unsigned int wid, char *unused )
    char *selected;
    Planet *p;
 
-   selected = toolkit_getList( wid, "lstServicesHave" );
+   selected = toolkit_getList( wid, "nstServicesHave" );
    if ((selected==NULL) || (strcmp(selected,_("None"))==0))
       return;
 
@@ -1707,7 +1707,7 @@ static void sysedit_btnTechEdit( unsigned int wid, char *unused )
    int y, w, bw;
 
    /* Create the window. */
-   wid = window_create( _("Planet Tech Editor"), -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
+   wid = window_create( "wdwPlanetTechEditor", _("Planet Tech Editor"), -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
    window_setCancel( wid, window_close );
 
    w = (SYSEDIT_EDIT_WIDTH - 40 - 15) / 2.;
@@ -1766,7 +1766,7 @@ static void sysedit_genTechList( unsigned int wid )
    }
 
    /* Add list. */
-   window_addList( wid, x, y, w, h, "lstTechsHave", have, n, 0, NULL );
+   window_addList( wid, x, y, w, h, "lstTechsHave", have, n, 0, NULL, sysedit_btnRmTech );
    x += w + 15;
 
    /* Omit the techs that the planet already has from the list.  */
@@ -1799,7 +1799,7 @@ static void sysedit_genTechList( unsigned int wid )
       lack = tech_getAllItemNames( &n );
 
    /* Add list. */
-   window_addList( wid, x, y, w, h, "lstTechsLacked", lack, n, 0, NULL );
+   window_addList( wid, x, y, w, h, "lstTechsLacked", lack, n, 0, NULL, sysedit_btnAddTech );
 
    /* Restore positions. */
    if (hpos != -1 && lpos != -1) {
@@ -1871,7 +1871,7 @@ static void sysedit_btnFaction( unsigned int wid_unused, char *unused )
    char **str;
 
    /* Create the window. */
-   wid = window_create( _("Modify Faction"), -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
+   wid = window_create( "wdwModifyFaction", _("Modify Faction"), -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
    window_setCancel( wid, window_close );
 
    /* Generate factions list. */
@@ -1886,7 +1886,7 @@ static void sysedit_btnFaction( unsigned int wid_unused, char *unused )
    y = 20 + BUTTON_HEIGHT + 15;
    h = SYSEDIT_EDIT_HEIGHT - y - 30;
    window_addList( wid, 20, -40, SYSEDIT_EDIT_WIDTH-40, h,
-         "lstFactions", str, j, 0, NULL );
+         "lstFactions", str, j, 0, NULL, sysedit_btnFactionSet );
 
    /* Close button. */
    window_addButton( wid, -20, 20, bw, BUTTON_HEIGHT,
@@ -1964,7 +1964,7 @@ static void sysedit_planetGFX( unsigned int wid_unused, char *wgt )
    p = sysedit_sys->planets[ sysedit_select[0].u.planet ];
    /* Create the window. */
    nsnprintf( buf, sizeof(buf), _("%s - Planet Properties"), p->name );
-   wid = window_create( buf, -1, -1, -1, -1 );
+   wid = window_create( "wdwPlanetGFX", buf, -1, -1, -1, -1 );
    window_dimWindow( wid, &w, &h );
 
    window_setCancel( wid, sysedit_btnGFXClose );
