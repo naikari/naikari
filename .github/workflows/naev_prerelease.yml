@@ -216,6 +216,8 @@ jobs:
 
       - name: Collect files for distribution
         run: |
+          VERSION="$(cat dat/VERSION)"
+
           mv dist/linux-x86-64/linux-x86-64.tar.gz dist/release/naikari-$VERSION-linux-x86-64.tar.gz
           mv dist/win64/naikari-win64.exe dist/release/naikari-$VERSION-win64.exe
           mv dist/source/source.tar.gz dist/release/naikari-$VERSION-source.tar.gz
