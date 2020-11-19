@@ -5,8 +5,8 @@ bin_PROGRAMS = naikari
 AM_CFLAGS = $(NAEV_CFLAGS)
 AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"
 CLEANFILES =
-naev_LDADD = $(NAEV_LIBS) $(LIBINTL)
-naev_DEPENDENCIES = $(NAEV_DEPENDENCIES)
+naikari_LDADD = $(NAEV_LIBS) $(LIBINTL)
+naikari_DEPENDENCIES = $(NAEV_DEPENDENCIES)
 
 
 if HAVE_SHADERS_C_GEN
@@ -21,7 +21,7 @@ BUILT_SOURCES = shaders.gen.c shaders.gen.h
 endif
 
 
-naev_SOURCES = \
+naikari_SOURCES = \
 	ai.c \
 	array.c \
 	background.c \
@@ -322,7 +322,7 @@ naev_SOURCES = \
 	weapon.h
 
 if HAVE_WINDRES
-nodist_naev_SOURCES = ../extras/windows/resource.rc
+nodist_naikari_SOURCES = ../extras/windows/resource.rc
 CLEANFILES += ../extras/windows/naev.exe.manifest ../extras/windows/resource.rc
 ../extras/windows/naev.exe.manifest: ../extras/windows/resource.rc.in
 	../config.status -q --file=$@
@@ -333,5 +333,5 @@ CLEANFILES += ../extras/windows/naev.exe.manifest ../extras/windows/resource.rc
 endif
 
 if HAVE_MACOS
-naev_SOURCES += glue_macos.m
+naikari_SOURCES += glue_macos.m
 endif
