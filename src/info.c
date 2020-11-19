@@ -455,9 +455,9 @@ static void ship_update( unsigned int wid )
          "%s\n"
          "%d\n"
          "\n"
-         "%.0f tonnes\n"
+         "%.0f t\n"
          "%s average\n"
-         "%.0f kN/tonne\n"
+         "%.0f kN/t\n"
          "%.0f m/s (max %.0f m/s)\n"
          "%.0f deg/s\n"
          "%.0f%%\n" /* Time Compression (dt_default) */
@@ -466,7 +466,7 @@ static void ship_update( unsigned int wid )
          "%.0f / %.0f MJ (%.1f MW)\n" /* Shield */
          "%.0f / %.0f MJ (%.1f MW)\n" /* Armour */
          "%.0f / %.0f MJ (%.1f MW)\n" /* Energy */
-         "%d / %d tonnes\n"
+         "%d / %d t\n"
          "%d / %d units (%d jumps)\n"
          "\n"),
          /* Generic */

@@ -622,7 +622,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
       nsnprintf( infobuf, PATH_MAX,
                  _("%s\n\n%s\n\n%s\n\n"
                    "\anOwned:\a0 %d    \anSlot: \a0%s    \anSize: \a0%s\n"
-                   "\anMass:\a0    %.0f tonnes     \anPrice:\a0 %s\n"
+                   "\anMass:\a0    %.0f t     \anPrice:\a0 %s\n"
                    "\anLicense:\a0 %s"),
                  (outfit->name),
                  (outfit->description),
