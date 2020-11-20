@@ -467,7 +467,7 @@ static void ship_update( unsigned int wid )
          "%.0f / %.0f MJ (%.1f MW)\n" /* Armour */
          "%.0f / %.0f MJ (%.1f MW)\n" /* Energy */
          "%d / %d t\n"
-         "%d / %d units (%d jumps)\n"
+         "%d / %d hL (%d jumps)\n"
          "\n"),
          /* Generic */
          player.p->name,

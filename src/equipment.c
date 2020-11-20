@@ -1573,7 +1573,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "\a%c%s%.0f\a0 MJ (\a%c%s%.1f\a0 MW)\n"
          "\a%c%s%.0f\a0 MJ (\a%c%s%.1f\a0 MW)\n"
          "%d / \a%c%s%d\a0 t\n"
-         "%d units (%d jumps)\n"
+         "%d hL (%d jumps)\n"
          "\n"
          "\a%c%s\a0"),
          /* Generic. */

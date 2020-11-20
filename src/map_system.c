@@ -657,8 +657,8 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                    "\anArmour:\a0 %.0f MJ (%.1f MW)\n"
                    "\anEnergy:\a0 %.0f MJ (%.1f MW)\n"
                    "\anCargo Space:\a0 %.0f t\n"
-                   "\anFuel:\a0 %d units  "
-                   "\anFuel Use:\a0 %d units\n"
+                   "\anFuel:\a0 %d hL  "
+                   "\anFuel Use:\a0 %d hL\n"
                    "\anPrice:\a0 %s  "
                    "\anLicense:\a0 %s\n"
                    "%s"),

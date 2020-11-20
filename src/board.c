@@ -494,7 +494,7 @@ static void board_update( unsigned int wdw )
    }
    else {
       if (j < PATH_MAX)
-         j += snprintf( &str[ j ], PATH_MAX - j, ngettext( "%d unit\n", "%d units\n", p->fuel ), p->fuel );
+         j += snprintf( &str[ j ], PATH_MAX - j, ngettext( "%d hL\n", "%d hL\n", p->fuel ), p->fuel );
    }
 
    /* Missiles */
