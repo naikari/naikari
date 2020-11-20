@@ -1,128 +1,114 @@
 #!/bin/bash
-# RELEASE SCRIPT FOR NAIKARI
+# RELEASE SCRIPT FOR NAEV Soon (tm)
 #
-# This script attempts to compile and build different parts of Naikari
-# automatically in order to prepare for a new release. Files will  be written
-# to the "dist/" directory.
+# This script attempts to compile and build different parts of Naev
+# automatically in order to prepare for a new release. 
+#
+# Pass in [-d] [-n] (set this for nightly builds) -s <SOURCEROOT> (Sets location of source) -b <BUILDROOT> (Sets location of build directory) -o <BUILDOUTPUT> (Dist output directory) -r <RUNNER> (must be specified)
 
-if [[ ! -f "naikari.6" ]]; then
-   echo "Please run from Naikari root directory."
-   exit -1
+# All outputs will be within pwd if nothing is passed in
+
+set -e
+
+# Defaults
+NIGHTLY="false"
+
+while getopts dns:b:o:r: OPTION "$@"; do
+    case $OPTION in
+    d)
+        set -x
+        ;;
+    n)
+        NIGHTLY="true"
+        ;;
+    s)
+        SOURCEROOT="${OPTARG}"
+        ;;
+    b)
+        BUILDPATH="${OPTARG}"
+        ;;
+    o)
+        BUILDOUTPUT="${OPTARG}"
+        ;;
+    r)
+        RUNNER="${OPTARG}"
+        ;;
+    esac
+done
+
+if [[ -z "$SOURCEROOT" || -z "$BUILDPATH" || -z "$BUILDOUTPUT" || -z "$RUNNER" ]]; then
+    echo "usage: `basename $0` [-d] [-n] (set this for nightly builds) -s <SOURCEROOT> (Sets location of source) -b <BUILDROOT> (Sets location of build directory) -o <BUILDOUTPUT> (Dist output directory) -r <RUNNER> (must be specified)"
+    exit 1
 fi
 
-NAIKARIDIR="$(pwd)"
-OUTPUTDIR="${NAIKARIDIR}/dist/"
-LOGFILE="release.log"
-THREADS="-j$(nproc --all)"
-
-COMPILED=""
-FAILED=""
-SKIPPED=""
-
-function log {
-   echo
-   echo
-   echo "====================================="
-   echo "$1"
-   echo "====================================="
-   return 0
-}
 
 function get_version {
-   VERSION="$(cat ${NAIKARIDIR}/VERSION)"
-   # Get version, negative minors mean betas
-   if [[ -n $(echo "${VERSION}" | grep "-") ]]; then
-      BASEVER=$(echo "${VERSION}" | sed 's/\.-.*//')
-      BETAVER=$(echo "${VERSION}" | sed 's/.*-//')
-      VERSION="${BASEVER}.0-beta.${BETAVER}"
+   if [ -f "$SOURCEROOT/dat/VERSION" ]; then
+       export VERSION="$(<"$SOURCEROOT/dat/VERSION")"
+   else
+       echo "The VERSION file is missing from $SOURCEROOT."
+       exit -1
    fi
+
    return 0
 }
 
-function make_generic {
-   log "Compiling $2"
-   make distclean
-   ./autogen.sh
-   ./configure $1
-   make ${THREADS}
-   get_version
-   if [[ -f src/naikari ]]; then
-      mv src/naikari "${OUTPUTDIR}/naikari-${VERSION}-$2"
-      COMPILED="$COMPILED $2"
-      return 0
+function make_appimage {
+   if [[ "$NIGHTLY" == "true" ]]; then
+      sh "$SOURCEROOT/utils/buildAppImage.sh" -n -s "$SOURCEROOT" -b "$BUILDPATH/appimage" -o "$BUILDOUTPUT"
    else
-      FAILED="$FAILED $2"
-      return 1
+      sh "$SOURCEROOT/utils/buildAppImage.sh" -s "$SOURCEROOT" -b "$BUILDPATH/appimage" -o "$BUILDOUTPUT"
    fi
 }
 
-function make_win32 {
-   # Openal isabled due to issues while compiling.. not sure what is up.
-   make_generic "--host=i686-w64-mingw32.static --enable-lua=internal --with-openal=no" "win32"
-}
-
-function make_win64 {
-   make_generic "--host=x86_64-w64-mingw32.static --enable-lua=internal" "win64"
-}
-
-function make_linux_64 {
-   make_generic "--enable-lua=internal" "linux-x86-64"
-}
-
-function make_source {
-   log "Making source bzip2"
-   VERSIONRAW="$(cat ${NAIKARIDIR}/VERSION)"
-   make dist-bzip2
-   if [[ -f "naikari-${VERSIONRAW}.tar.bz2" ]]; then
-      get_version
-      mv "naikari-${VERSIONRAW}.tar.bz2" "dist/naikari-${VERSION}-source.tar.bz2"
-      COMPILED="$COMPILED source"
-      return 0
+function make_windows {
+   if [[ "$NIGHTLY" == "true" ]]; then
+      sh "$SOURCEROOT/extras/windows/packageWindows.sh" -n -s "$SOURCEROOT" -b "$BUILDPATH" -o "$BUILDOUTPUT"
    else
-      FAILED="$FAILED source"
-      return 1
+      sh "$SOURCEROOT/extras/windows/packageWindows.sh" -s "$SOURCEROOT" -b "$BUILDPATH" -o "$BUILDOUTPUT"
    fi
 }
 
-function make_ndata {
-   log "Making ndata"
-   get_version
-   make "ndata.zip"
-   if [[ -f "ndata.zip" ]]; then
-      mv "ndata.zip" "${OUTPUTDIR}/ndata-${VERSION}.zip"
-      COMPILED="$COMPILED ndata"
-      return 0
+function make_macos {
+   echo "WIP, this will be implemented in the near future."
+}
+
+function make_steam {
+   if [[ $RUNNER == "Windows" ]]; then
+      echo "TODO!"
+   elif [[ $RUNNER == "macOS" ]]; then
+      echo "Nothing to do!"
+   elif [[ $RUNNER == "Linux" ]]; then
+      echo "TODO!"
    else
-      FAILED="$FAILED ndata"
-      return 1
+      echo "Invalid Runner name, did you pass in runner.os?"
+   fi
+}
+
+function make_itch {
+   if [[ $RUNNER == "Windows" ]]; then
+      echo "TODO!"
+   elif [[ $RUNNER == "macOS" ]]; then
+      echo "Nothing to do!"
+   elif [[ $RUNNER == "Linux" ]]; then
+      echo "TODO!"
+   else
+      echo "Invalid Runner name, did you pass in runner.os?"
    fi
 }
 
 # Create output dirdectory if necessary
-test -d "${OUTPUTDIR}" || mkdir "${OUTPUTDIR}"
+mkdir -p "$BUILDOUTPUT"
 
-# Set up log
-rm -f "${LOGFILE}"
-touch "${LOGFILE}"
-
-# Preparation
-make distclean
-./autogen.sh
-./configure --enable-lua=internal
-make VERSION
-
-# Make stuff
-make_source          >> "${LOGFILE}" 2>&1
-make_ndata           >> "${LOGFILE}" 2>&1
-make_win32           >> "${LOGFILE}" 2>&1
-make_win64           >> "${LOGFILE}" 2>&1
-make_linux_64        >> "${LOGFILE}" 2>&1
-
-log "COMPILED"
-for i in ${COMPILED[@]}; do echo "$i"; done
-
-log "SKIPPED"
-for i in ${SKIPPED[@]}; do echo "$i"; done
-
-log "FAILED"
-for i in ${FAILED[@]}; do echo "$i"; done
+# Build Release stuff
+if [[ $RUNNER == "Windows" ]]; then
+   make_windows
+   make_steam
+elif [[ $RUNNER == "macOS" ]]; then
+   make_macos
+elif [[ $RUNNER == "Linux" ]]; then
+   make_appimage
+   make_steam
+else
+   echo "Invalid Runner name, did you pass in runner.os?"
+fi
