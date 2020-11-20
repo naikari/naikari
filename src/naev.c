@@ -1156,7 +1156,7 @@ binary_comparison (int x, int y) {
  *
  *    @return positive if version is newer or negative if version is older.
  */
-int naev_versionCompare( char *version )
+int naev_versionCompare( const char *version )
 {
    int res;
    semver_t sv;
