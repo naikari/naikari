@@ -73,42 +73,16 @@ function make_macos {
    echo "WIP, this will be implemented in the near future."
 }
 
-function make_steam {
-   if [[ $RUNNER == "Windows" ]]; then
-      echo "TODO!"
-   elif [[ $RUNNER == "macOS" ]]; then
-      echo "Nothing to do!"
-   elif [[ $RUNNER == "Linux" ]]; then
-      echo "TODO!"
-   else
-      echo "Invalid Runner name, did you pass in runner.os?"
-   fi
-}
-
-function make_itch {
-   if [[ $RUNNER == "Windows" ]]; then
-      echo "TODO!"
-   elif [[ $RUNNER == "macOS" ]]; then
-      echo "Nothing to do!"
-   elif [[ $RUNNER == "Linux" ]]; then
-      echo "TODO!"
-   else
-      echo "Invalid Runner name, did you pass in runner.os?"
-   fi
-}
-
 # Create output dirdectory if necessary
 mkdir -p "$BUILDOUTPUT"
 
 # Build Release stuff
 if [[ $RUNNER == "Windows" ]]; then
    make_windows
-   make_steam
 elif [[ $RUNNER == "macOS" ]]; then
    make_macos
 elif [[ $RUNNER == "Linux" ]]; then
    make_appimage
-   make_steam
 else
    echo "Invalid Runner name, did you pass in runner.os?"
 fi
