@@ -986,6 +986,10 @@
    license: GPLv3
    map:
       - proteron.png
+- The Diligent Circle, based on work from Josh Combs:
+   license: CC-by-sa 3.0
+   map:
+     - nebula.png
 - Nikola Whallon <6.saturn.6@gmail.com>:
    license: GPLv3 / CC-by 3
    planet:
@@ -1021,8 +1025,6 @@
      - nebula31.png
      - nebula32.png
      - nebula33.png
-   map:
-     - nebula.png
 - Galileus:
    license: CC-by-sa 3.0
    loading:
@@ -1452,11 +1454,11 @@
    intro:
      - faster_than_light.png
      - first_steps_into_space.png
-- diligentcircle (based on work by Unnamed <https://opengameart.org/users/unnamed> and Ingo Ruhnke):
+- The Diligent Circle (based on work by Unnamed <https://opengameart.org/users/unnamed> and Ingo Ruhnke):
    license: GPLv3
    intro:
      - reign_of_daedris.png
-- diligentcircle (based on work by ShinyOgre <https://opengameart.org/users/shinyogre> and Vega Strike):
+- The Diligent Circle (based on work by ShinyOgre <https://opengameart.org/users/shinyogre> and Vega Strike):
    license: GPLv3
    intro:
      - questions.png
