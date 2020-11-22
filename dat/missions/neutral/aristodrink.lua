@@ -219,7 +219,7 @@ end
 
 function isPrevPlanet ( passedPlanet )
    for i = 1, #prevPlanets, 1 do
-      if prevPlanets[i]:name() == passedPlanet:name() then
+      if prevPlanets[i] == passedPlanet then
          return true
       end
    end
