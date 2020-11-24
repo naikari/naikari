@@ -1525,7 +1525,7 @@ void player_land (void)
          }
       }
       else /* No shoes, no shirt, no lifeforms, no service. */
-         player_message( _("\apReady to land on %s."), _(planet->name) );
+         player_message( _("\aRReady to land on %s."), _(planet->name) );
 
       player_setFlag(PLAYER_LANDACK);
       if (!silent)
@@ -1803,7 +1803,7 @@ int player_jump (void)
    else if (i == -3)
       player_message(_("\arYou do not have enough fuel to hyperspace jump."));
    else {
-      player_message(_("\apPreparing for hyperspace."));
+      player_message(_("\aRPreparing for hyperspace."));
       /* Stop acceleration noise. */
       player_accelOver();
       /* Stop possible shooting. */
@@ -1879,13 +1879,13 @@ void player_brokeHyperspace (void)
    /* Disable autonavigation if arrived. */
    if (player_isFlag(PLAYER_AUTONAV)) {
       if (player.p->nav_hyperspace == -1) {
-         player_message( _("\apAutonav arrived at the %s system."), _(cur_system->name) );
+         player_message( _("\aRAutonav arrived at the %s system."), _(cur_system->name) );
          player_autonavEnd();
       }
       else {
          player_message( ngettext(
-                  "\apAutonav continuing until destination (%d jump left).",
-                  "\apAutonav continuing until destination (%d jumps left).",
+                  "\aRAutonav continuing until destination (%d jump left).",
+                  "\aRAutonav continuing until destination (%d jumps left).",
                   map_npath),
                map_npath );
       }
@@ -1976,8 +1976,8 @@ void player_targetHostile (void)
 
       /* Must be hostile. */
       if (pilot_isHostile(pilot_stack[i])) {
-         inRange = pilot_inRangePilot(pilot_stack[i], player.p, &td);
-         if (tp == PLAYER_ID || (inRange == 1 && td < d)) {
+         inRange = pilot_inRangePilot(player.p, pilot_stack[i], &td);
+         if (tp == PLAYER_ID || ((inRange == 1) && (td < d))) {
             d  = td;
             tp = pilot_stack[i]->id;
          }
@@ -2262,7 +2262,7 @@ void player_toggleMouseFly(void)
 {
    if (!player_isFlag(PLAYER_MFLY)) {
       input_mouseShow();
-      player_message(_("\apMouse flying enabled."));
+      player_message(_("\aRMouse flying enabled."));
       player_setFlag(PLAYER_MFLY);
    }
    else {
@@ -3259,7 +3259,7 @@ static Planet* player_parse( xmlNodePtr parent )
    xmlNodePtr node, cur;
    int q;
    Outfit *o;
-   int i, map_overlay;
+   int i, map_overlay_enabled;
    StarSystem *sys;
    double a, r;
    Pilot *old_ship;
@@ -3276,7 +3276,7 @@ static Planet* player_parse( xmlNodePtr parent )
    /* Safe defaults. */
    planet      = NULL;
    time_set    = 0;
-   map_overlay = 0;
+   map_overlay_enabled = 0;
 
    player.dt_mod = 1.; /* For old saves. */
 
@@ -3296,8 +3296,8 @@ static Planet* player_parse( xmlNodePtr parent )
       xmlr_ulong(node, "credits", player_creds);
       xmlr_strd(node, "gui", player.gui);
       xmlr_int(node, "guiOverride", player.guiOverride);
-      xmlr_int(node, "mapOverlay", map_overlay);
-      ovr_setOpen(map_overlay);
+      xmlr_int(node, "mapOverlay", map_overlay_enabled);
+      ovr_setOpen(map_overlay_enabled);
 
       /* Time. */
       if (xml_isNode(node,"time")) {
@@ -3311,7 +3311,7 @@ static Planet* player_parse( xmlNodePtr parent )
             xmlr_float(cur, "Remainder", rem);
          } while (xml_nextNode(cur));
          if ((cycles < 0) || (periods < 0) || (seconds < 0) || (rem<0.))
-            WARN("Malformed time in save game!");
+            WARN(_("Malformed time in save game!"));
          ntime_setR( cycles, periods, seconds, rem );
          if ((cycles >= 0) || (periods >= 0) || (seconds >= 0))
             time_set = 1;
@@ -3399,6 +3399,7 @@ static Planet* player_parse( xmlNodePtr parent )
       return NULL;
    }
 
+   /* Reset player speed */
    player.speed = 1;
 
    /* set global thingies */
@@ -3766,7 +3767,10 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
                   free(q);
                }
                if ((n<0) || (n >= ship->outfit_nstructure)) {
-                  WARN(_("Outfit slot out of range, not adding."));
+                  name = xml_get(cur);
+                  o = outfit_get(name);
+                  player_addOutfit( o, 1 );
+                  WARN(_("Outfit slot out of range, not adding to ship."));
                   continue;
                }
                player_parseShipSlot( cur, ship, &ship->outfit_structure[n] );

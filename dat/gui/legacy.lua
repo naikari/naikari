@@ -153,7 +153,7 @@ function update_cargo ()
       if v.q == 0 then
          misc_cargo = misc_cargo .. v.name
       else
-         misc_cargo = misc_cargo .. string.format( "%d"  .. "t %s", v.q, v.name )
+         misc_cargo = misc_cargo .. string.format( "%d"  .. "t %s", v.q, _(v.name) )
       end
       if v.m then
          misc_cargo = misc_cargo .. "*"
@@ -203,7 +203,7 @@ function render_nav ()
       gfx.print( nil, _("Landing"), nav_x, y, col_console, nav_w, true )
       y = y - 5 - smallfont_h
       if nav_pnt ~= nil then
-         str = nav_pnt:name()
+         str = _(nav_pnt:name())
          col = col_white
       else
          str = _("Off")
@@ -215,7 +215,7 @@ function render_nav ()
       y = y - 5 - smallfont_h
       if nav_hyp ~= nil then
          if nav_hyp:known() then
-            str = nav_hyp:name()
+            str = _(nav_hyp:name())
          else
             str = _("Unknown")
          end
@@ -254,7 +254,7 @@ end
 function render_weapon ()
    col = col_console
    ws_name, ws = pp:weapset()
-   gfx.print( nil, ws_name, weapon_x, weapon_y-25, col, weapon_w, true )
+   gfx.print( nil, _(ws_name), weapon_x, weapon_y-25, col, weapon_w, true )
    --[[
    local sec, amm, rdy = pp:secondary()
    if sec ~= nil then
@@ -265,10 +265,10 @@ function render_weapon ()
          col = col_gray
       end
       if amm ~= nil then
-         gfx.print( nil, sec, weapon_x, weapon_y-17, col, weapon_w, true )
+         gfx.print( nil, _(sec), weapon_x, weapon_y-17, col, weapon_w, true )
          gfx.print( true, string.format("%d", amm), weapon_x, weapon_y-32, col_gray, weapon_w, true )
       else
-         gfx.print( nil, sec, weapon_x, weapon_y-25, col, weapon_w, true )
+         gfx.print( nil, _(sec), weapon_x, weapon_y-25, col, weapon_w, true )
       end
    else
       gfx.print( nil, _("Secondary"), weapon_x, weapon_y-17, col_console, weapon_w, true )
@@ -323,14 +323,14 @@ function render_target ()
    if not scan then
       name = _("Unknown")
    else
-      name = ptarget:name()
+      name = _(ptarget:name())
    end
    local w = gfx.printDim( nil, name )
    gfx.print( w > target_w, name, target_x, target_y-13, col, target_w )
 
    -- Display faction
    if scan and target_fact ~= nil and target_fact:known() then
-      local faction = target_fact:name()
+      local faction = _(target_fact:name())
       local w = gfx.printDim( nil, faction )
       gfx.print( true, faction, target_x, target_y-26, col_white, target_w )
    end
