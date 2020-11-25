@@ -71,7 +71,7 @@ endif # HAVE_ITSTOOL
 if HAVE_DATA
 pot: $(CREDITSPOT) $(XMLPOT) $(LANGUAGEFILE)
 	$(MAKE) -C po
-	$(MAKE) -C po naev_src.pot
+	$(MAKE) -C po naikari_src.pot
 	$(XGETTEXT) --from-code=UTF-8 -o $(NAEVPOT) $(NAEVSRCPOT) $(XMLPOT) $(CREDITSPOT)
 	$(top_srcdir)/utils/gettext.sh $(top_builddir)
 
