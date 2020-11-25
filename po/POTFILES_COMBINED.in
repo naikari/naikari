@@ -299,7 +299,6 @@ dat/scripts/prng.lua
 dat/scripts/proximity.lua
 dat/scripts/selectiveclear.lua
 dat/snd/music.lua
-po/credits.pot
 src/ai.c
 src/ai.h
 src/array.c
@@ -2699,3 +2698,4 @@ dat/ssys/zintar.xml
 dat/ssys/zylex.xml
 dat/start.xml
 dat/tech.xml
+po/credits.pot
