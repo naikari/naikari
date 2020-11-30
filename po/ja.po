@@ -10638,10 +10638,17 @@ msgstr ""
 msgid "Return to %s"
 msgstr ""
 
-#: dat/missions/empire/collective/ec03.lua:63
+#: dat/missions/empire/collective/ec03.lua:69
 #, lua-format
-msgid "Destroy at least %d drones (%d remaining)"
-msgstr ""
+msgid "Destroy at least %d drone"
+msgid_plural "Destroy at least %d drones"
+msgstr[0] ""
+
+#: dat/missions/empire/collective/ec03.lua:73
+#, lua-format
+msgid "%d remaining"
+msgid_plural "%d remaining"
+msgstr[0] ""
 
 #: dat/missions/empire/collective/ec03.lua:65
 msgid ""
@@ -33296,6 +33303,12 @@ msgstr ""
 msgid "\"On my way.\""
 msgstr ""
 
+#: src/commodity.c:129
+#, c-format
+msgid "%d tonne"
+msgid_plural "%d tonnes"
+msgstr[0] ""
+
 #: src/commodity.c:135
 #, c-format
 msgid "Commodity '%s' not found in stack"
@@ -36402,7 +36415,7 @@ msgid ""
 "N/A tonnes\n"
 "\n"
 "N/A ¤\n"
-"%d tonnes\n"
+"%s\n"
 "%s\n"
 "N/A ¤\n"
 "N/A ¤"
@@ -36415,10 +36428,10 @@ msgstr ""
 #: src/land_trade.c:173
 #, c-format
 msgid ""
-"%d tonnes\n"
+"%s\n"
 "%s\n"
 "%s/t\n"
-"%d tonnes\n"
+"%s\n"
 "%s\n"
 "%s/t ± %s/t\n"
 "%s/t ± %s/t\n"
@@ -36950,8 +36963,9 @@ msgstr ""
 
 #: src/map_system.c:721
 #, c-format
-msgid "\anYou have:\a0 %d tonnes\n"
-msgstr ""
+msgid "\anYou have:\a0 %d tonne\n"
+msgid_plural "\anYou have:\a0 %d tonnes\n"
+msgstr[0] ""
 
 #: src/map_system.c:721
 #, c-format
