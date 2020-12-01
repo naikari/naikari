@@ -1,6 +1,8 @@
 ![Nightly Release](https://github.com/naikari/naikari/workflows/Nightly%20Release/badge.svg) ![CI](https://github.com/naikari/naikari/workflows/CI/badge.svg)
 # NAIKARI README
 
+![Naikari](https://naikari.github.io/images/logo.png)
+
 Naikari is a 2D space trading and combat game, taking inspiration from the Escape
 Velocity series, among others.
 
