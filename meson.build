@@ -1,7 +1,7 @@
 project('naikari', 'c',
    version : '0.8.0-beta.3',
    default_options : [
-      'warning_level=1',
+      'warning_level=2',
       'optimization=g',
       'c_std=gnu11',
       'werror=false'
