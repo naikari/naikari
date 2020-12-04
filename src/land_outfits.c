@@ -342,9 +342,10 @@ static void outfits_genList( unsigned int wid )
          tabfilters[active], filtertext );
    coutfits = outfits_imageArrayCells( iar_outfits[active], &noutfits );
 
+   /* TODO make the size of the outfits dependent on resolution? */
    window_addImageArray( wid, 20, 20,
-         iw, ih - 34, OUTFITS_IAR, 128, 128,
-         coutfits, noutfits, outfits_update, outfits_rmouse );
+         iw, ih - 34, OUTFITS_IAR, 96, 96,
+         coutfits, noutfits, outfits_update, outfits_rmouse, NULL );
 
    /* write the outfits stuff */
    outfits_update( wid, NULL );
