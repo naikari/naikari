@@ -463,8 +463,6 @@
      - plam.png
 - Josiah Schwartfeger:
    license: CC-by 3.0
-   root:
-      - icon.png
    outfit:
      - store:
        - fuel_pod.png
@@ -1136,6 +1134,8 @@
        - turreted_fury_launcher.png
 - Unnamed:
    license: CC-by-sa 3.0
+   root:
+      - icon.png
    outfit:
      space:
        - convulsion.png
