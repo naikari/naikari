@@ -69,6 +69,33 @@ const glColour cSilver     = { .r=0.75, .g=0.75, .b=0.75, .a=1. }; /**< Silver *
 const glColour cAqua       = { .r=0.00, .g=0.75, .b=1.00, .a=1. }; /**< Aqua */
 
 
+/* https://personal.sron.nl/~pault/ */
+/* Dark qualitative scheme  */
+const glColour cDQDarkBlue = {  .r=34./255.,  .g=34./255.,  .b=85./255., .a=1. };
+const glColour cDQDarkCyan = {  .r=34./255.,  .g=85./255.,  .b=85./255., .a=1. };
+const glColour cDQDarkGreen= {  .r=34./255.,  .g=85./255.,  .b=34./255., .a=1. };
+const glColour cDQDarkYellow={ .r=102./255., .g=102./255.,  .b=51./255., .a=1. };
+const glColour cDQDarkRed  = { .r=102./255.,  .g=51./255.,  .b=51./255., .a=1. };
+const glColour cDQDarkGrey = {  .r=85./255.,  .g=85./255.,  .b=85./255., .a=1. };
+/* High-constrast qualitative */
+const glColour cHQWhite    = { .r=255./255., .g=255./255., .b=255./255., .a=1. };
+const glColour cHQYellow   = { .r=221./255., .g=170./255.,  .b=51./255., .a=1. };
+const glColour cHQRed      = { .r=187./255.,  .g=85./255., .b=102./255., .a=1. };
+const glColour cHQBlue     = {   .r=0./255.,  .g=68./255., .b=136./255., .a=1. };
+const glColour cHQBlack    = {   .r=0./255.,   .g=0./255.,   .b=0./255., .a=1. };
+/* Muted qualitative colors */
+const glColour cQIndigo    = {  .r=51./255.,  .g=34./255., .b=136./255., .a=1. };
+const glColour cQCyan      = { .r=136./255., .g=204./255., .b=238./255., .a=1. };
+const glColour cQTeal      = {  .r=68./255., .g=170./255., .b=153./255., .a=1. };
+const glColour cQGreen     = {  .r=17./255., .g=119./255.,  .b=51./255., .a=1. };
+const glColour cQOlive     = { .r=153./255., .g=153./255.,  .b=51./255., .a=1. };
+const glColour cQSand      = { .r=221./255., .g=204./255., .b=119./255., .a=1. };
+const glColour cQRose      = { .r=204./255., .g=102./255., .b=119./255., .a=1. };
+const glColour cQWine      = { .r=136./255.,  .g=34./255.,  .b=85./255., .a=1. };
+const glColour cQPurple    = { .r=170./255.,  .g=68./255., .b=153./255., .a=1. };
+const glColour cQPaleGrey  = { .r=221./255., .g=221./255., .b=221./255., .a=1. };
+
+
 /*
  * game specific
  */
