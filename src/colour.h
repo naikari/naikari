@@ -62,32 +62,6 @@ extern const glColour cGold;
 extern const glColour cSilver;
 extern const glColour cAqua;
 
-/* https://personal.sron.nl/~pault/ */
-/* Dark qualitative scheme  */
-extern const glColour cDQDarkBlue;
-extern const glColour cDQDarkCyan;
-extern const glColour cDQDarkGreen;
-extern const glColour cDQDarkYellow;
-extern const glColour cDQDarkRed;
-extern const glColour cDQDarkGrey;
-/* High-constrast qualitative */
-extern const glColour cHQWhite;
-extern const glColour cHQYellow;
-extern const glColour cHQRed;
-extern const glColour cHQBlue;
-extern const glColour cHQBlack;
-/* Muted qualitative colors */
-extern const glColour cQIndigo;
-extern const glColour cQCyan;
-extern const glColour cQTeal;
-extern const glColour cQGreen;
-extern const glColour cQOlive;
-extern const glColour cQSand;
-extern const glColour cQRose;
-extern const glColour cQWine;
-extern const glColour cQPurple;
-extern const glColour cQPaleGrey;
-
 /*
  * game specific
  */

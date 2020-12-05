@@ -139,7 +139,7 @@ static void lst_render( Widget* lst, double bx, double by )
    /* draw selected item background */
    toolkit_drawRect( x + 1, y - 1 + lst->h -
          (1 + lst->dat.lst.selected - lst->dat.lst.pos)*CELLHEIGHT,
-         w-1, CELLHEIGHT, &cDQDarkGreen, NULL );
+         w-1, CELLHEIGHT, &cHilight, NULL );
 
    /* draw content */
    tx = x + 6.;
