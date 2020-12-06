@@ -82,14 +82,14 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ runner.os == 'Linux' }}
       with:
-        name: naev-meson-dist-${{ github.sha }}
+        name: naikari-meson-dist-${{ github.sha }}
         path: ${{ github.workspace }}/dist/meson-dist/*
         if-no-files-found: error
         
     - name: Extract Source
       run: |
         mkdir source
-        tar -xf dist/meson-dist/naev-*.tar.xz -C source --strip 1
+        tar -xf dist/meson-dist/naikari-*.tar.xz -C source --strip 1
       working-directory: "${{ github.workspace }}"
 
     - name: Meson Setup
@@ -232,14 +232,14 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ runner.os == 'Linux' }}
       with:
-        name: naev-autotools-dist-${{ github.sha }}
-        path: ${{ github.workspace }}/repo/naev-*.tar.gz
+        name: naikari-autotools-dist-${{ github.sha }}
+        path: ${{ github.workspace }}/repo/naikari-*.tar.gz
         if-no-files-found: error
 
     - name: Extract Source
       run: |
         mkdir source
-        tar -xf repo/naev-*.tar.gz -C source --strip 1
+        tar -xf repo/naikari-*.tar.gz -C source --strip 1
       working-directory: ${{ github.workspace }}
 
     - name: Autotools Setup
@@ -329,7 +329,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ (success() || steps.mesonCompile.outcome == 'failure' || steps.autotoolsCompile.outcome == 'failure') }}
       with:
-        name: naev-${{ github.sha }}-${{ matrix.buildtype }}AppImageBuild-log
+        name: naikari-${{ github.sha }}-${{ matrix.buildtype }}AppImageBuild-log
         path: ${{ github.workspace }}/appImageBuildLog.txt
         if-no-files-found: ignore
 
