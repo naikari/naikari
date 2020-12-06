@@ -31,7 +31,7 @@ naev_deps = []
 
 ndata_path = get_option('ndata_path')
 if ndata_path == ''
-   ndata_path = get_option('datadir') / 'naev'
+   ndata_path = get_option('datadir') / 'naikari'
 endif
 summary('NData Path', ndata_path, section: 'Features')
 
@@ -213,7 +213,7 @@ if buildExec.disabled() == false
       windows = import('windows')
       icon = files('extras/logos/logo.ico')
       res_include = include_directories('extras/logos')
-      win_manifest = configure_file(input: 'extras/windows/naev.exe.manifest.in', output: 'naev.exe.manifest', configuration: config_data)
+      win_manifest = configure_file(input: 'extras/windows/naikari.exe.manifest.in', output: 'naikari.exe.manifest', configuration: config_data)
       win_rc = configure_file(input: 'extras/windows/resource.rc.in', output: 'resource.rc', configuration: config_data)
       naev_source += windows.compile_resources(win_rc, depend_files: [win_manifest, icon], include_directories: res_include)
    endif
