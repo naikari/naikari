@@ -7,7 +7,7 @@
 #  define PLAYER_H
 
 
-#include "attributes.h"
+#include "nstring.h"
 #include "pilot.h"
 
 /** Player flag enum. */
@@ -151,7 +151,7 @@ void player_render( double dt );
  * Message stuff, in gui.c
  */
 void player_messageToggle( int enable );
-FORMAT( printf, 1, 2 )void player_message( const char *fmt, ... );
+PRINTF_FORMAT( 1, 2 )void player_message( const char *fmt, ... );
 void player_messageRaw ( const char *str );
 
 /*
