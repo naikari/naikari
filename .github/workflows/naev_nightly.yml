@@ -167,8 +167,6 @@ jobs:
       matrix:
         include:
           - releasetype: github
-          - releasetype: steam
-          - releasetype: itch
             
     runs-on: ubuntu-latest
     needs: [Generate_Source, Build_Naev_Release]
@@ -178,27 +176,6 @@ jobs:
       - name: Create Release Staging and Output Areas
         run: |
           mkdir -p {temp,dist/{staging,out/{lin64,win64}}}
-          
-      - name: Update APT Cache
-        if: ${{ matrix.releasetype == 'steam' }}
-        run: |
-          sudo add-apt-repository multiverse
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-
-      - name: Install SteamCMD
-        if: ${{ matrix.releasetype == 'steam' }}
-        run: |
-          echo steamcmd steam/question select "I AGREE" | sudo debconf-set-selections
-          sudo apt-get install lib32gcc1 libsdl2-2.0-0:i386 steamcmd
-          
-      - name: Install Butler
-        if: ${{ matrix.releasetype == 'itch' }}
-        run: |
-          wget -O temp/butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-          unzip temp/butler.zip
-          chmod +x butler
-          ./butler -V
 
       - name: Download Artifacts
         uses: actions/download-artifact@v2
