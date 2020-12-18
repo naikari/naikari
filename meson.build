@@ -1,5 +1,5 @@
 project('naikari', 'c',
-   version : '0.8.0-beta.3',
+   version : '0.8.1-alpha',
    default_options : [
       'warning_level=2',
       'optimization=g',
@@ -9,7 +9,7 @@ project('naikari', 'c',
    meson_version: '>=0.55.0')
 
 issue_address = 'https://github.com/naikari/naikari/issues'
-copyright_holder = 'Naev Dev Team'
+copyright_holder = 'Naikari Dev Team'
 
 # Tools
 cc = meson.get_compiler('c')
