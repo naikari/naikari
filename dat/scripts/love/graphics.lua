@@ -2,12 +2,18 @@
 -- Love2d Graphics for Naev!
 --]]
 local class = require 'class'
+local love = require 'love'
 local object = require 'love.object'
 local filesystem = require 'love.filesystem'
+local love_math = require 'love.math'
 
-local graphics = {}
-graphics._bgcol = naev.colour.new( 0, 0, 0, 1 )
-graphics._fgcol = naev.colour.new( 1, 1, 1, 1 )
+local graphics = {
+   _bgcol = naev.colour.new( 0, 0, 0, 1 ),
+   _fgcol = naev.colour.new( 1, 1, 1, 1 ),
+   _wraph = "clamp",
+   _wrapv = "clamp",
+   _wrapd = "clamp",
+}
 
 -- Helper functions
 local function _mode(m)
@@ -16,8 +22,12 @@ local function _mode(m)
    else   error( string.format(_("Unknown fill mode '%s'"), mode ) )
    end
 end
-local function _xy( x, y, w, h )
-   return love.x+graphics._dx+x, love.y+(love.h-y-h-graphics._dy)
+local function _xy( gx, gy, gw, gh )
+   local x, y = graphics._T[1]:transformPoint( gx, gy )
+   local w, h = graphics._T[1]:transformDim( gw, gh )
+   -- Issue here is that our coordinate system y-axis is upside-down so
+   -- we have to compensate.
+   return  love.x+x, love.y+(love.h-y-h), w, h
 end
 local function _gcol( c )
    local r, g, b = c:rgb()
@@ -118,10 +128,7 @@ function graphics.Image:_draw( ... )
       tw = q.w
       th = q.h
    end
-   w = w*sx --* graphics._sx
-   h = h*sy --* graphics._sy
-   --y = y - (h*(1-sy)) -- correct scaling
-   x,y = _xy(x,y,w,h)
+   x,y,w,h = _xy(x,y,w*sx,h*sy)
    naev.gfx.renderTexRaw( self.tex, x, y, w*tw, h*th, 1, 1, tx, ty, tw, th, graphics._fgcol, r )
 end
 
@@ -140,6 +147,27 @@ function graphics.newQuad( x, y, width, height, sw, sh )
    q.quad = true
    return q
 end
+
+
+--[[
+-- Transformation class
+--]]
+function graphics.origin()
+   graphics._T = { love_math.newTransform() }
+end
+function graphics.push()
+   local t = graphics._T[1]
+   table.insert( graphics._T, 1, t:clone() )
+end
+function graphics.pop()
+   table.remove( graphics._T, 1 )
+   if graphics._T[1] == nil then
+      graphics._T[1] = love.math.newTransform()
+   end
+end
+function graphics.translate( dx, dy ) graphics._T[1]:translate( dx, dy ) end
+function graphics.scale( sx, sy ) graphics._T[1]:scale( sx, sy ) end
+function graphics.rotate( angle ) graphics._T[1]:rotate( angle ) end
 
 
 --[[
@@ -175,23 +203,6 @@ end
 function graphics.getDimensions() return love.w, love.h end
 function graphics.getWidth()  return love.w end
 function graphics.getHeight() return love.h end
-function graphics.origin()
-   -- TODO this translation/scaling stuff has to be done properly using
-   -- homography matrices. Probably should employ src/opengl_matrix.c
-   graphics._dx = 0
-   graphics._dy = 0
-   graphics._sx = 1
-   graphics._sy = 1
-end
-function graphics.translate( dx, dy )
-   graphics._dx = graphics._dx + dx
-   graphics._dy = graphics._dy + dy
-end
-function graphics.scale( sx, sy )
-   sy = sy or sx
-   graphics._sx = graphics._sx * sx
-   graphics._sy = graphics._sy * sy
-end
 function graphics.getBackgroundColor() return _gcol( graphics._bgcol ) end
 function graphics.setBackgroundColor( red, green, blue, alpha )
    graphics._bgcol = _scol( red, green, blue, alpha )
@@ -231,22 +242,25 @@ function graphics.clear( ... )
       local a = arg[1][1] or 1
       col = _scol( r, g, b, a )
    end
-   naev.gfx.renderRect( love.x, love.y, love.w, love.h, col )
+   -- Minor optimization: just render when there is non-transparent color
+   if col:alpha()>0 then
+      naev.gfx.renderRect( love.x, love.y, love.w, love.h, col )
+   end
 end
 function graphics.draw( drawable, ... )
    drawable:_draw( ... )
 end
 function graphics.rectangle( mode, x, y, width, height )
-   x,y = _xy(x,y,width,height)
-   naev.gfx.renderRect( x, y, width, height, graphics._fgcol, _mode(mode) )
+   x,y,w,h = _xy(x,y,width,height)
+   naev.gfx.renderRect( x, y, w, h, graphics._fgcol, _mode(mode) )
 end
 function graphics.circle( mode, x, y, radius )
    x,y = _xy(x,y,0,0)
    naev.gfx.renderCircle( x, y, radius, graphics._fgcol, _mode(mode) )
 end
 function graphics.print( text, x, y )
-   x,y = _xy(x,y,limit,graphics._font.height)
-   naev.gfx.printf( graphics._font.font, text, x, y, graphics._fgcol )
+   -- We have to specify limit so we just put a ridiculously large value
+   graphics.printf( text, x, y, 1e6, "left" )
 end
 function graphics.printf( text, ... )
    local arg = {...}
@@ -316,10 +330,21 @@ function graphics.newFont( ... )
 
    local f = graphics.Font.new()
    f.font = naev.font.new( filename, size )
+   f.filename = filename
    f.height= f.font:height()
    f.lineheight = f.height*1.5 -- Naev default
    f:setFilter( graphics._minfilter, graphics._magfilter )
    return f
+end
+function graphics.Font:setFallbacks( ... )
+   local arg = {...}
+   for k,v in ipairs(arg) do
+      local filename = v.filename
+      print( filename )
+      if not self.font:addFallback( filename ) then
+         error(_("failed to set fallback font"))
+      end
+   end
 end
 function graphics.Font:getWrap( text, wraplimit )
    local wrapped, maxw = naev.gfx.printfWrap( self.font, text, wraplimit )
@@ -330,6 +355,7 @@ function graphics.Font:getWrap( text, wraplimit )
    return maxw, wrappedtext
 end
 function graphics.Font:getHeight() return self.height end
+function graphics.Font:getWidth( text ) return self.font:width( text ) end
 function graphics.Font:getLineHeight() return self.lineheight end
 function graphics.Font:setLineHeight( height ) self.lineheight = height end
 function graphics.Font:getFilter() return self.min, self.mag, self.anisotropy end
@@ -355,9 +381,70 @@ end
 --]]
 graphics.Shader = class.inheritsFrom( object.Object )
 graphics.Shader._type = "Shader"
-function graphics.newShader( code )
-   love._unimplemented()
-   return graphics.Shader.new()
+function graphics.newShader( pixelcode, vertexcode )
+   love._unimplemented() -- Not finished yet
+   local prepend = [[
+#version 140
+// Syntax sugar
+#define Image           sampler2D
+#define ArrayImage      sampler2DArray
+#define VolumeImage     sampler3D
+#define Texel           texture
+#define love_PixelColor gl_FragColor
+#define love_Position   gl_Position
+#define love_PixelCoord (vec2(gl_FragCoord.x, (gl_FragCoord.y * love_ScreenSize.z) + love_ScreenSize.w))
+
+// Uniforms shared by pixel and vertex shaders
+uniform mat4 ViewSpaceFromLocal;
+uniform mat4 ClipSpaceFromView;
+uniform mat4 ClipSpaceFromLocal;
+uniform mat3 ViewNormalFromLocal;
+uniform vec4 love_ScreenSize;
+
+// Compatibility
+#define TransformMatrix             ViewSpaceFromLocal
+#define ProjectionMatrix            ClipSpaceFromView
+#define TransformProjectionMatrix   ClipSpaceFromLocal
+#define NormalMatrix                ViewNormalFromLocal
+]]
+   local frag = [[
+#define PIXEL
+uniform sampler2D MainTex;
+
+in vec4 VaryingTexCoord;
+in vec4 VaryingColor;
+
+vec4 effect( vec4 vcolor, Image tex, vec2 texcoord, vec2 pixcoord );
+
+void main(void) {
+   love_PixelColor = effect( VaryingColor, MainTex, VaryingTexCoord.st, love_PixelCoord );
+}
+]]
+   local vert = [[
+#define VERTEX
+in vec4 VertexPosition;
+in vec4 VertexTexCoord;
+in vec4 VertexColor;
+in vec4 ConstantColor;
+
+out vec4 VaryingTexCoord;
+out vec4 VaryingColor;
+
+vec4 position( mat4 clipSpaceFromLocal, vec4 localPosition );
+
+void main(void) {
+    VaryingTexCoord  = VertexTexCoord;
+    VaryingColor     = ConstantColor;
+    love_Position    = position( ClipSpaceFromLocal, VertexPosition );
+}
+]]
+   local s = graphics.Shader.new()
+   s.shader = naev.shader.new(
+         prepend..frag..pixelcode,
+         prepend..vert..vertexcode )
+end
+function graphics.setShader( shader )
+   graphics._shader = shader or graphics._shader_default
 end
 
 
@@ -381,12 +468,24 @@ function graphics.setBlendMode( mode )
 end
 
 
--- Reset coordinate system
+-- Set some sane defaults.
+local _pixelcode = [[
+vec4 effect( vec4 color, Image tex, vec2 texture_coords, vec2 screen_coords )
+{
+   vec4 texcolor = Texel(tex, texture_coords);
+   return texcolor * color;
+}
+]]
+local _vertexcode = [[
+vec4 position( mat4 transform_projection, vec4 vertex_position )
+{
+   return transform_projection * vertex_position;
+}
+]]
 graphics.setDefaultFilter( "linear", "linear", 1 )
 graphics.setNewFont( 12 )
 graphics.origin()
-graphics._wraph = "clamp"
-graphics._wrapv = "clamp"
-graphics._wrapd = "clamp"
+--graphics._shader_default = graphics.newShader( _pixelcode, _vertexcode )
+--graphics.setShader( graphics._shader_default )
 
 return graphics
