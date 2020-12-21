@@ -66,7 +66,7 @@
 /* Currently our fonts/Cabin-SemiBold.otf lacks many fairly standard glyphs, so we are falling back to
  * the monospace font which has better coverage.
  * TODO solve this issue in a sane way. */
-#define FONT_PATH_PREFIX         "dat/fonts/"
+#define FONT_PATH_PREFIX         "fonts/"
 #define FONT_DEFAULT_PATH        N_("Cabin-SemiBold.otf,NanumBarunGothicBold.ttf,SourceCodePro-Semibold.ttf") /**< Default font path. */
 #define FONT_MONOSPACE_PATH      N_("SourceCodePro-Semibold.ttf,D2CodingBold.ttf") /**< Default monospace font path. */
 
@@ -93,7 +93,6 @@ void ndata_close (void);
 /*
  * General.
  */
-int ndata_check( const char* path );
 int ndata_setPath( const char* path );
 const char* ndata_getPath (void);
 const char* ndata_name (void);
@@ -101,11 +100,8 @@ const char* ndata_name (void);
 /*
  * Individual file functions.
  */
-int ndata_exists( const char* filename );
 void* ndata_read( const char* filename, size_t *filesize );
-char** ndata_list( const char *path, size_t* nfiles );
 char** ndata_listRecursive( const char *path );
-void ndata_sortName( char **files, size_t nfiles );
 
 
 /*

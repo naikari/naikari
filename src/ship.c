@@ -13,21 +13,21 @@
 
 #include "naev.h"
 
-#include "nstring.h"
 #include <limits.h>
+#include "physfs.h"
 
-#include "nxml.h"
-
+#include "array.h"
+#include "colour.h"
+#include "conf.h"
 #include "log.h"
 #include "ndata.h"
-#include "toolkit.h"
-#include "array.h"
-#include "conf.h"
+#include "nfile.h"
 #include "npng.h"
-#include "colour.h"
+#include "nstring.h"
+#include "nxml.h"
 #include "shipstats.h"
 #include "slots.h"
-#include "nfile.h"
+#include "toolkit.h"
 #include "unistd.h"
 
 
@@ -610,7 +610,7 @@ static int ship_loadPLG( Ship *temp, char *buf )
    nsnprintf( file, sl, "%s%s.xml", SHIP_POLYGON_PATH, buf );
 
    /* See if the file does exist. */
-   if (!ndata_exists(file)) {
+   if (!PHYSFS_exists(file)) {
       WARN(_("%s xml collision polygon does not exist!\n \
                Please use the script 'polygon_from_sprite.py' if sprites are used,\n \
                And 'polygonSTL.py' if 3D model is used in game.\n \
@@ -1100,14 +1100,15 @@ int ships_load (void)
    /* Validity. */
    ss_check();
 
-   ship_files = ndata_list( SHIP_DATA_PATH, &nfiles );
+   ship_files = PHYSFS_enumerateFiles( SHIP_DATA_PATH );
+   for (nfiles=0; ship_files[nfiles]!=NULL; nfiles++) {}
 
    /* Initialize stack if needed. */
    if (ship_stack == NULL) {
       ship_stack = array_create_size(Ship, nfiles);
    }
 
-   for (i=0; i<(int)nfiles; i++) {
+   for (i=0; ship_files[i]!=NULL; i++) {
 
       /* Get the file name .*/
       sl   = strlen(SHIP_DATA_PATH)+strlen(ship_files[i])+1;
@@ -1150,9 +1151,7 @@ int ships_load (void)
    DEBUG( ngettext( "Loaded %d Ship", "Loaded %d Ships", array_size(ship_stack) ), array_size(ship_stack) );
 
    /* Clean up. */
-   for (i=0; i<(int)nfiles; i++)
-      free( ship_files[i] );
-   free( ship_files );
+   PHYSFS_freeList( ship_files );
 
    return 0;
 }

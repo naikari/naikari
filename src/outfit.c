@@ -20,22 +20,23 @@
 #include "nstring.h"
 #include <stdlib.h>
 
-#include "nxml.h"
+#include "physfs.h"
 #include "SDL_thread.h"
 
+#include "array.h"
+#include "conf.h"
+#include "damagetype.h"
 #include "log.h"
+#include "mapData.h"
 #include "ndata.h"
 #include "nfile.h"
-#include "spfx.h"
-#include "array.h"
-#include "ship.h"
-#include "conf.h"
-#include "pilot_heat.h"
 #include "nstring.h"
+#include "nxml.h"
 #include "pilot.h"
-#include "damagetype.h"
+#include "pilot_heat.h"
+#include "ship.h"
 #include "slots.h"
-#include "mapData.h"
+#include "spfx.h"
 #include "unistd.h"
 
 
@@ -1056,7 +1057,7 @@ static int outfit_loadPLG( Outfit *temp, char *buf, unsigned int bolt )
    nsnprintf( file, sl, "%s%s.xml", OUTFIT_POLYGON_PATH, buf );
 
    /* See if the file does exist. */
-   if (!ndata_exists(file)) {
+   if (!PHYSFS_exists(file)) {
       WARN(_("%s xml collision polygon does not exist!\n \
                Please use the script 'polygon_from_sprite.py' \
 that can be found in Naev's artwork repo."), file);
@@ -2415,16 +2416,15 @@ int outfit_load (void)
 int outfit_mapParse (void)
 {
    Outfit *o;
-   size_t i, len, bufsize, nfiles;
+   size_t i, len, bufsize;
    char *buf;
    xmlNodePtr node, cur;
    xmlDocPtr doc;
    char **map_files;
    char *file, *n;
 
-   map_files = ndata_list( MAP_DATA_PATH, &nfiles );
-   for (i=0; i<nfiles; i++) {
-
+   map_files = PHYSFS_enumerateFiles( MAP_DATA_PATH );
+   for (i=0; map_files[i]!=NULL; i++) {
       len  = strlen(MAP_DATA_PATH)+strlen(map_files[i])+2;
       file = malloc( len );
       nsnprintf( file, len, "%s%s", MAP_DATA_PATH, map_files[i] );
@@ -2474,9 +2474,7 @@ int outfit_mapParse (void)
    }
 
    /* Clean up. */
-   for (i=0; i<nfiles; i++)
-      free( map_files[i] );
-   free( map_files );
+   PHYSFS_freeList( map_files );
 
    return 0;
 }

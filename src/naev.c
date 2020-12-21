@@ -17,6 +17,7 @@
  * includes
  */
 /* localised global */
+#include "physfs.h"
 #include "SDL.h"
 
 #include "SDL_error.h"
@@ -191,6 +192,11 @@ int main( int argc, char** argv )
 
    /* Save the binary path. */
    binary_path = strdup( env.argv0 );
+   if( PHYSFS_init( naev_binary() ) == 0 ) {
+      ERR( "PhysicsFS initialization failed: %s",
+            PHYSFS_getErrorByCode( PHYSFS_getLastErrorCode() ) );
+      return -1;
+   }
 
 #if defined ENABLE_NLS && ENABLE_NLS
    /* Set up locales. */
@@ -526,6 +532,8 @@ int main( int argc, char** argv )
    /* Clean up parser. */
    xmlCleanupParser();
 
+   PHYSFS_deinit();
+
    /* Clean up signal handler. */
    debug_sigClose();
 
@@ -545,13 +553,13 @@ int main( int argc, char** argv )
  */
 void loadscreen_load (void)
 {
-   unsigned int i;
    char file_path[PATH_MAX];
    char **loadscreens;
    size_t nload;
 
    /* Count the loading screens */
-   loadscreens = ndata_list( GFX_PATH"loading/", &nload );
+   loadscreens = PHYSFS_enumerateFiles( GFX_PATH"loading/" );
+   for (nload=0; loadscreens[nload]!=NULL; nload++) {}
 
    /* Must have loading screens */
    if (nload==0) {
@@ -571,9 +579,7 @@ void loadscreen_load (void)
    background_initStars( 1000 );
 
    /* Clean up. */
-   for (i=0; i<nload; i++)
-      free(loadscreens[i]);
-   free(loadscreens);
+   PHYSFS_freeList( loadscreens );
 }
 
 

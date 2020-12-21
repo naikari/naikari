@@ -35,6 +35,7 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "physfs.h"
 #include "SDL.h"
 #include "SDL_mutex.h"
 
@@ -142,6 +143,11 @@ int ndata_setPath( const char *path )
       }
    }
 
+   if( PHYSFS_mount( ndata_dir, NULL, 0 ) == 0 ) {
+      WARN( "PhysicsFS mount failed: %s",
+            PHYSFS_getErrorByCode( PHYSFS_getLastErrorCode() ) );
+      return -1;
+   }
    LOG( _( "Found ndata: %s" ), ndata_dir );
    ndata_testVersion();
 
@@ -230,6 +236,9 @@ int ndata_open (void)
  */
 void ndata_close (void)
 {
+   if( PHYSFS_unmount( ndata_dir ) == 0 )
+      WARN( "PhysicsFS unmount failed: %s",
+            PHYSFS_getErrorByCode( PHYSFS_getLastErrorCode() ) );
    free( ndata_dir );
    ndata_dir = NULL;
 
@@ -249,16 +258,6 @@ void ndata_close (void)
 const char* ndata_name (void)
 {
    return start_name();
-}
-
-/**
- * @brief Checks to see if a file is in the NDATA.
- *    @param filename Name of the file to check.
- *    @return 1 if the file exists, 0 otherwise.
- */
-int ndata_exists( const char *filename )
-{
-   return nfile_fileExists( ndata_dir, filename );
 }
 
 
@@ -315,17 +314,6 @@ SDL_RWops *ndata_rwops( const char* filename )
 
 
 /**
- * @brief Gets a list of files in the ndata that are direct children of a path.
- *
- *    @sa nfile_readDir
- */
-char **ndata_list( const char *path, size_t *nfiles )
-{
-   return nfile_readDir( nfiles, ndata_dir, path );
-}
-
-
-/**
  * @brief Gets a list of files in the ndata below a certain path.
  *
  *    @sa nfile_readDirRecursive
@@ -334,20 +322,3 @@ char **ndata_listRecursive( const char *path )
 {
    return nfile_readDirRecursive( ndata_dir, path );
 }
-
-
-/**
- * @brief Sorts the files by name.
- *
- * Meant to be used directly by ndata_list.
- *
- *    @param files Filenames to sort.
- *    @param nfiles Number of files to sort.
- */
-void ndata_sortName( char **files, size_t nfiles )
-{
-   qsort( files, nfiles, sizeof(char*), strsort );
-}
-
-
-

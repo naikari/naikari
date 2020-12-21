@@ -26,6 +26,9 @@ an OpenGL-capable graphics card and driver, Naikari requires the following:
 * binutils
 * intltool
 
+If you're cross-compiling for Windows, you must install this soft dependency:
+* [physfs](https://icculus.org/physfs/), example package name mingw-w64-physfs
+
 
 ### Ubuntu
 
