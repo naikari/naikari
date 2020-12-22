@@ -7,11 +7,6 @@
 #  define NDATA_H
 
 
-#include <stdint.h>
-
-#include "SDL.h"
-
-
 /*
  * Define various paths
  */
@@ -80,7 +75,6 @@
 #define FACTIONS_PATH            "factions/"
 #define GETTEXT_PATH             "gettext/" /* Doesn't use ndata functions. */
 #define BACKGROUND_PATH          "bkg/"
-#define LANGUAGES_PATH           "LANGUAGES"
 #define INTRO_PATH               "intro"
 #define RESCUE_PATH              "rescue.lua"
 
@@ -102,12 +96,6 @@ const char* ndata_name (void);
  */
 void* ndata_read( const char* filename, size_t *filesize );
 char** ndata_listRecursive( const char *path );
-
-
-/*
- * RWops.
- */
-SDL_RWops *ndata_rwops( const char* filename );
 
 
 #endif /* NDATA_H */

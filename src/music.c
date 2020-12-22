@@ -9,22 +9,23 @@
  */
 
 
-#include "music.h"
-
-#include "naev.h"
-
-#include "physfs.h"
+/** @cond */
+#include "physfsrwops.h"
 #include "SDL.h"
 
-#include "music_openal.h"
+#include "naev.h"
+/** @endcond */
 
-#include "nlua.h"
-#include "nluadef.h"
-#include "nlua_var.h"
-#include "nlua_music.h"
-#include "log.h"
-#include "ndata.h"
+#include "music.h"
+
 #include "conf.h"
+#include "log.h"
+#include "music_openal.h"
+#include "ndata.h"
+#include "nlua.h"
+#include "nlua_music.h"
+#include "nlua_var.h"
+#include "nluadef.h"
 #include "nstring.h"
 
 
@@ -315,7 +316,7 @@ int music_load( const char* name )
    music_name  = strdup(name);
    music_start = SDL_GetTicks();
    nsnprintf( filename, PATH_MAX, MUSIC_PATH"%s"MUSIC_SUFFIX, name);
-   rw = ndata_rwops( filename );
+   rw = PHYSFSRWOPS_openRead( filename );
    if (rw == NULL) {
       WARN(_("Music '%s' not found."), filename);
       return -1;

@@ -20,28 +20,31 @@
  *  5) dirname(argv[0])/ndata* (binary path)
  */
 
-#include "ndata.h"
-
-#include "naev.h"
+/** @cond */
 #include <limits.h>
+#include <stdarg.h>
 #include <stdlib.h>
-
+#include <string.h>
 #if HAS_WIN32
 #include <windows.h>
 #endif /* HAS_WIN32 */
-#if HAS_MACOS
-#include "glue_macos.h"
-#endif /* HAS_MACOS */
-#include <stdarg.h>
-#include <string.h>
 
 #include "physfs.h"
 #include "SDL.h"
 #include "SDL_mutex.h"
 
+#include "naev.h"
+/** @endcond */
+
+#include "ndata.h"
+
+#include "array.h"
 #include "attributes.h"
 #include "conf.h"
 #include "env.h"
+#if HAS_MACOS
+#include "glue_macos.h"
+#endif /* HAS_MACOS */
 #include "log.h"
 #include "nfile.h"
 #include "npng.h"
@@ -69,7 +72,6 @@
  */
 static char      *ndata_dir        = NULL; /**< ndata directory name. */
 static SDL_mutex *ndata_lock       = NULL; /**< Lock for ndata creation. */
-static int        ndata_loadedfile = 0;    /**< Already loaded a file? */
 static int        ndata_source     = NDATA_SRC_SEARCH_START;
 
 
@@ -78,6 +80,7 @@ static int        ndata_source     = NDATA_SRC_SEARCH_START;
  */
 static void ndata_testVersion (void);
 static int ndata_isndata( const char *path );
+static int ndata_enumerateCallback( void* data, const char* origdir, const char* fname );
 
 
 /**
@@ -274,7 +277,6 @@ void* ndata_read( const char* filename, size_t *filesize )
 
    buf = nfile_readFile( filesize, ndata_dir, filename );
    if ( buf != NULL ) {
-      ndata_loadedfile = 1;
       return buf;
    }
 
@@ -286,39 +288,56 @@ void* ndata_read( const char* filename, size_t *filesize )
 
 
 /**
- * @brief Creates an rwops from a file in the ndata.
+ * @brief Lists all the visible files in a directory, at any depth.
  *
- *    @param filename Name of the file to create rwops of.
- *    @return rwops that accesses the file in the ndata.
- */
-SDL_RWops *ndata_rwops( const char* filename )
-{
-   char       path[ PATH_MAX ];
-   SDL_RWops *rw;
-
-   if ( nfile_concatPaths( path, PATH_MAX, ndata_dir, filename ) < 0 ) {
-      WARN( _( "Unable to open file '%s': file path too long." ), filename );
-      return NULL;
-   }
-
-   rw = SDL_RWFromFile( path, "rb" );
-   if ( rw != NULL ) {
-      ndata_loadedfile = 1;
-      return rw;
-   }
-
-   /* Wasn't able to open the file. */
-   WARN( _( "Unable to open file '%s': not found." ), filename );
-   return NULL;
-}
-
-
-/**
- * @brief Gets a list of files in the ndata below a certain path.
+ * Will sort by path, and (unlike underlying PhysicsFS) make sure to list each file path only once.
  *
- *    @sa nfile_readDirRecursive
+ *    @return Array of (allocated) file paths relative to base_dir.
  */
 char **ndata_listRecursive( const char *path )
 {
-   return nfile_readDirRecursive( ndata_dir, path );
+   char **files;
+   int i;
+
+   files = array_create( char * );
+   PHYSFS_enumerate( path, ndata_enumerateCallback, &files );
+   /* Ensure unique. PhysicsFS can enumerate a path twice if it's in multiple components of a union. */
+   qsort( files, array_size(files), sizeof(char*), strsort );
+   for (i=0; i+1<array_size(files); i++)
+      if (strcmp(files[i], files[i+1]) == 0) {
+         free( files[i] );
+         array_erase( &files, &files[i], &files[i+1] );
+      }
+   return files;
+}
+
+/**
+ * @brief The PHYSFS_EnumerateCallback for ndata_listRecursive
+ */
+static int ndata_enumerateCallback( void* data, const char* origdir, const char* fname )
+{
+   char *path;
+   const char *fmt;
+   size_t dir_len, path_size;
+   PHYSFS_Stat stat;
+
+   dir_len = strlen( origdir );
+   path_size = dir_len + strlen( fname ) + 2;
+   path = malloc( path_size );
+   fmt = dir_len && origdir[dir_len-1]=='/' ? "%s%s" : "%s/%s";
+   nsnprintf( path, path_size, fmt, origdir, fname );
+   if (!PHYSFS_stat( path, &stat )) {
+      WARN( _("PhysicsFS: Cannot stat %s: %s"), path,
+            PHYSFS_getErrorByCode( PHYSFS_getLastErrorCode() ) );
+      free( path );
+   }
+   else if (stat.filetype == PHYSFS_FILETYPE_REGULAR)
+      array_push_back( (char***)data, path );
+   else if (stat.filetype == PHYSFS_FILETYPE_DIRECTORY ) {
+      PHYSFS_enumerate( path, ndata_enumerateCallback, data );
+      free( path );
+   }
+   else
+      free( path );
+   return PHYSFS_ENUM_OK;
 }

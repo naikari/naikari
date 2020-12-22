@@ -13,20 +13,12 @@
  * @brief Controls the overall game flow: data loading/unloading and game loop.
  */
 
-/*
- * includes
- */
-/* localised global */
-#include "physfs.h"
+/** @cond */
+#include "physfsrwops.h"
 #include "SDL.h"
-
 #include "SDL_error.h"
-#include "log.h" /* for DEBUGGING */
+
 #include "naev.h"
-
-
-/* global */
-#include "nstring.h" /* strdup */
 
 #if HAS_POSIX
 #include <time.h>
@@ -37,6 +29,10 @@
 #include <fenv.h>
 #endif /* defined(HAVE_FENV_H) && defined(DEBUGGING) && defined(_GNU_SOURCE) */
 
+#if defined ENABLE_NLS && ENABLE_NLS
+#include <locale.h>
+#endif /* defined ENABLE_NLS && ENABLE_NLS */
+
 #if HAS_LINUX && HAS_BFD && defined(DEBUGGING)
 #include <signal.h>
 #include <execinfo.h>
@@ -45,8 +41,8 @@
 #include <bfd.h>
 #include <assert.h>
 #endif /* HAS_LINUX && HAS_BFD && defined(DEBUGGING) */
+/** @endcond */
 
-/* local */
 #include "ai.h"
 #include "background.h"
 #include "camera.h"
@@ -68,6 +64,7 @@
 #include "joystick.h"
 #include "land.h"
 #include "load.h"
+#include "log.h"
 #include "map.h"
 #include "map_overlay.h"
 #include "map_system.h"
@@ -82,6 +79,7 @@
 #include "nlua_var.h"
 #include "npc.h"
 #include "npng.h"
+#include "nstring.h"
 #include "nxml.h"
 #include "opengl.h"
 #include "options.h"
@@ -91,6 +89,7 @@
 #include "pilot.h"
 #include "player.h"
 #include "rng.h"
+#include "semver.h"
 #include "ship.h"
 #include "slots.h"
 #include "sound.h"
@@ -102,11 +101,6 @@
 #include "toolkit.h"
 #include "unidiff.h"
 #include "weapon.h"
-#include "semver.h"
-
-#if defined ENABLE_NLS && ENABLE_NLS
-#include <locale.h>
-#endif /* defined ENABLE_NLS && ENABLE_NLS */
 
 #define CONF_FILE       "conf.lua" /**< Configuration file by default. */
 #define VERSION_FILE    "VERSION" /**< Version file by default. */
@@ -198,7 +192,7 @@ int main( int argc, char** argv )
       return -1;
    }
 
-#if defined ENABLE_NLS && ENABLE_NLS
+#if ENABLE_NLS
    /* Set up locales. */
    /* When using locales with difference in '.' and ',' for splitting numbers it
     * causes pretty much everything to blow up, so we must refer from loading the
@@ -208,9 +202,8 @@ int main( int argc, char** argv )
    /* We haven't loaded the ndata yet, so just try a path quickly. */
    nsnprintf( langbuf, sizeof(langbuf), "%s/"GETTEXT_PATH, nfile_dirname(naev_binary()) );
    bindtextdomain( PACKAGE_NAME, langbuf );
-   //bindtextdomain("naev", "po/");
    textdomain( PACKAGE_NAME );
-#endif /* defined ENABLE_NLS && ENABLE_NLS */
+#endif /* ENABLE_NLS */
 
    /* Parse version. */
    if (semver_parse( VERSION, &version_binary ))
@@ -501,12 +494,8 @@ int main( int argc, char** argv )
    gl_freeFont(&gl_smallFont);
    gl_freeFont(&gl_defFontMono);
 
-   /* Close data. */
-   ndata_close();
-   start_cleanup();
-
-   /* Destroy conf. */
-   conf_cleanup(); /* Frees some memory the configuration allocated. */
+   start_cleanup(); /* Cleanup from start.c, not the first cleanup step. :) */
+   conf_cleanup(); /* Free some memory the configuration allocated. */
 
    /* exit subsystems */
    cli_exit(); /* Clean up the console. */
@@ -522,6 +511,8 @@ int main( int argc, char** argv )
    gl_exit(); /* Kills video output */
    sound_exit(); /* Kills the sound */
    news_exit(); /* Destroys the news. */
+
+   ndata_close(); /* Free PhysicsFS resources. */
 
    /* Free the icon. */
    if (naev_icon)
@@ -1105,7 +1096,7 @@ static void window_caption (void)
    npng_t *npng;
 
    /* Load icon. */
-   rw = ndata_rwops( GFX_PATH"icon.png" );
+   rw = PHYSFSRWOPS_openRead( GFX_PATH"icon.png" );
    if (rw == NULL) {
       WARN( _("Icon (icon.png) not found!") );
       return;

@@ -12,16 +12,16 @@
  */
 
 
-#include "outfit.h"
+/** @cond */
+#include <math.h>
+#include <stdlib.h>
+#include "SDL_thread.h"
+#include "physfs.h"
 
 #include "naev.h"
+/** @endcond */
 
-#include <math.h>
-#include "nstring.h"
-#include <stdlib.h>
-
-#include "physfs.h"
-#include "SDL_thread.h"
+#include "outfit.h"
 
 #include "array.h"
 #include "conf.h"
@@ -30,6 +30,7 @@
 #include "mapData.h"
 #include "ndata.h"
 #include "nfile.h"
+#include "nstring.h"
 #include "nstring.h"
 #include "nxml.h"
 #include "pilot.h"
@@ -1039,7 +1040,6 @@ static int outfit_parseDamage( Damage *dmg, xmlNodePtr node )
  */
 static int outfit_loadPLG( Outfit *temp, char *buf, unsigned int bolt )
 {
-   size_t bufsize;
    char *file;
    int sl;
    CollPoly *polygon;
@@ -1066,12 +1066,9 @@ that can be found in Naev's artwork repo."), file);
    }
 
    /* Load the XML. */
-   buf  = ndata_read( file, &bufsize );
-   doc  = xmlParseMemory( buf, bufsize );
-   free(buf);
+   doc  = xml_parsePhysFS( file );
 
    if (doc == NULL) {
-      WARN(_("%s file is invalid xml!"), file);
       free(file);
       return 0;
    }
@@ -2108,16 +2105,11 @@ static int outfit_parse( Outfit* temp, const char* file )
    char *prop;
    const char *cprop;
    int group, m, l;
-   size_t bufsize;
    ShipStatList *ll;
-   char *buf = ndata_read( file, &bufsize );
 
-   xmlDocPtr doc = xmlParseMemory( buf, bufsize );
-   if (doc == NULL) {
-      WARN(_("%s file is invalid xml!"),file);
-      free(buf);
+   xmlDocPtr doc = xml_parsePhysFS( file );
+   if (doc == NULL)
       return -1;
-   }
 
    parent = doc->xmlChildrenNode; /* first system node */
    if (parent == NULL) {
@@ -2309,7 +2301,6 @@ if (o) WARN( _("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< 
 #undef MELEMENT
 
    xmlFreeDoc(doc);
-   free(buf);
 
    return 0;
 }
@@ -2416,8 +2407,7 @@ int outfit_load (void)
 int outfit_mapParse (void)
 {
    Outfit *o;
-   size_t i, len, bufsize;
-   char *buf;
+   size_t i, len;
    xmlNodePtr node, cur;
    xmlDocPtr doc;
    char **map_files;
@@ -2429,12 +2419,10 @@ int outfit_mapParse (void)
       file = malloc( len );
       nsnprintf( file, len, "%s%s", MAP_DATA_PATH, map_files[i] );
 
-      buf = ndata_read( file, &bufsize );
-      doc = xmlParseMemory( buf, bufsize );
+      doc = xml_parsePhysFS( file );
       if (doc == NULL) {
          WARN(_("%s file is invalid xml!"), file);
          free(file);
-         free(buf);
          continue;
       }
 
@@ -2443,7 +2431,6 @@ int outfit_mapParse (void)
          WARN( _("Malformed '%s' file: does not contain elements"), OUTFIT_DATA_PATH );
          free(file);
          xmlFreeDoc(doc);
-         free(buf);
          continue;
       }
 
@@ -2453,7 +2440,6 @@ int outfit_mapParse (void)
       if (!outfit_isMap(o)) { /* If its not a map, we don't care. */
          free(file);
          xmlFreeDoc(doc);
-         free(buf);
          continue;
       }
 
@@ -2470,7 +2456,6 @@ int outfit_mapParse (void)
       /* Clean up. */
       free(file);
       xmlFreeDoc(doc);
-      free(buf);
    }
 
    /* Clean up. */
