@@ -33,8 +33,10 @@
 #include "utf8.h"
 
 
-#define FONT_DISTANCE_FIELD_BORDER  2 /**< Border of the distance field. */
-#define FONT_DISTANCE_FIELD_SIZE   64 /**< Size to render the fonts at. */
+/* TODO figure out how much border is theoretically necessary to avoid bleed
+ * from adjacent characters. */
+#define FONT_DISTANCE_FIELD_BORDER 5 /**< Border of the distance field. */
+#define FONT_DISTANCE_FIELD_SIZE   (64-FONT_DISTANCE_FIELD_BORDER*2) /**< Size to render the fonts at. */
 #define HASH_LUT_SIZE 512 /**< Size of glyph look up table. */
 #define DEFAULT_TEXTURE_SIZE 1024 /**< Default size of texture caches for glyphs. */
 #define MAX_ROWS 64 /**< Max number of rows per texture cache. */
@@ -88,6 +90,7 @@ typedef struct glFontGlyph_s {
  */
 typedef struct font_char_s {
    GLubyte *data; /**< Data of the character. */
+   GLfloat *dataf; /**< Float data of the character. */
    int w; /**< Width. */
    int h; /**< Height. */
    int off_x; /**< X offset when rendering. */
@@ -273,8 +276,12 @@ static int gl_fontAddGlyphTex( glFontStash *stsh, font_char_t *ch, glFontGlyph *
    /* Upload data. */
    glBindTexture( GL_TEXTURE_2D, tex->id );
    glPixelStorei(GL_UNPACK_ALIGNMENT,1);
-   glTexSubImage2D( GL_TEXTURE_2D, 0, gr->x, gr->y, ch->w, ch->h,
-         GL_RED, GL_UNSIGNED_BYTE, ch->data );
+   if (ch->dataf != NULL)
+      glTexSubImage2D( GL_TEXTURE_2D, 0, gr->x, gr->y, ch->w, ch->h,
+            GL_RED, GL_FLOAT, ch->dataf );
+   else
+      glTexSubImage2D( GL_TEXTURE_2D, 0, gr->x, gr->y, ch->w, ch->h,
+            GL_RED, GL_UNSIGNED_BYTE, ch->data );
 
    /* Check for error. */
    gl_checkErr();
@@ -1102,6 +1109,8 @@ static int font_makeChar( glFontStash *stsh, font_char_t *c, uint32_t ch )
       h = bitmap.rows;
 
       /* Store data. */
+      c->data = NULL;
+      c->dataf = NULL;
       if (bitmap.buffer == NULL) {
          /* Space characters tend to have no buffer. */
          b = 0;
@@ -1120,13 +1129,13 @@ static int font_makeChar( glFontStash *stsh, font_char_t *c, uint32_t ch )
             for (u=0; u<w; u++)
                buffer[ (b+v)*rw+(b+u) ] = bitmap.buffer[ v*w+u ];
          /* Compute signed fdistance field with buffered glyph. */
-         c->data = make_distance_mapb( buffer, rw, rh );
+         c->dataf = make_distance_mapbf( buffer, rw, rh );
          free( buffer );
       }
       c->w     = rw;
       c->h     = rh;
       c->off_x = slot->bitmap_left-b;
-      c->off_y = slot->bitmap_top -b;
+      c->off_y = slot->bitmap_top +b;
       c->adv_x = (GLfloat)slot->advance.x / 64.;
       c->adv_y = (GLfloat)slot->advance.y / 64.;
 
@@ -1548,7 +1557,7 @@ static int gl_fontstashAddFallback( glFontStash* stsh, const char *fname )
    if (FT_IS_SCALABLE(face)) {
       if (FT_Set_Char_Size( face,
                0, /* Same as width. */
-               (FONT_DISTANCE_FIELD_SIZE-FONT_DISTANCE_FIELD_BORDER*2) * 64,
+               FONT_DISTANCE_FIELD_SIZE * 64,
                96, /* Create at 96 DPI */
                96)) /* Create at 96 DPI */
          WARN(_("FT_Set_Char_Size failed."));
