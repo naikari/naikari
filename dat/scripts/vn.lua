@@ -71,10 +71,7 @@ function vn.draw()
    -- Textbox
    local font = vn.textbox_font
    -- Draw background
-   local x = vn.textbox_x
-   local y = vn.textbox_y
-   local w = vn.textbox_w
-   local h = vn.textbox_h
+   local x, y, w, h = vn.textbox_x, vn.textbox_y, vn.textbox_w, vn.textbox_h
    local bw = 20
    local bh = 20
    _draw_bg( x, y, w, h, vn.textbox_bg )
@@ -281,10 +278,26 @@ end
 vn.StateWait ={}
 function vn.StateWait.new()
    local s = vn.State.new()
+   s._init = vn.StateWait._init
+   s._draw = vn.StateWait._draw
    s._click = _finish
    s._key = _finish
    s._type = "Wait"
    return s
+end
+function vn.StateWait:_init()
+   local x, y, w, h = vn.textbox_x, vn.textbox_y, vn.textbox_w, vn.textbox_h
+   local font = vn.namebox_font
+   self._font = font
+   self._text = ">"
+   self._w = font:getWidth( self._text )
+   self._h = font:getHeight()
+   self._x = x+w-10-self._w
+   self._y = y+h-10-self._h
+end
+function vn.StateWait:_draw()
+   love.graphics.setColor( vn._bufcol )
+   love.graphics.print( self._text, self._font, self._x, self._y )
 end
 --[[
 -- Menu
