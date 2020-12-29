@@ -211,7 +211,7 @@ static int texL_new( lua_State *L )
          NLUA_ERROR( L, _("Spritesheet dimensions must be positive") );
       if (ld->type != LUADATA_NUMBER)
          NLUA_ERROR( L, _("Data has invalid type for texture") );
-      if (w*h*ld->elem*4 > ld->size)
+      if (w*h*ld->elem*4 != ld->size)
          NLUA_ERROR( L, _("Texture dimensions don't match data size!") );
       tex = gl_loadImageData( (void*)ld->data, w, h, w, sx, sy );
       if (tex==NULL)
@@ -341,11 +341,11 @@ static int texL_readData( lua_State *L )
       for (j=0; j<surface->w; j++) {
          pix = get_pixel( surface, j, i );
          SDL_GetRGBA( pix, surface->format, &r, &g, &b, &a );
-         size_t pos = 4*(i*surface->w+j);
-         data[ pos+0 ] = (float)r;
-         data[ pos+1 ] = (float)g;
-         data[ pos+2 ] = (float)b;
-         data[ pos+3 ] = (float)a;
+         size_t pos = 4*((surface->h-i-1)*surface->w+j);
+         data[ pos+0 ] = ((float)r)/255.;
+         data[ pos+1 ] = ((float)g)/255.;
+         data[ pos+2 ] = ((float)b)/255.;
+         data[ pos+3 ] = ((float)a)/255.;
       }
    }
    SDL_UnlockSurface( surface );
