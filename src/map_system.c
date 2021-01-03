@@ -652,7 +652,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                    "\n%s\n\n"
                    "#nFabricator:#0 %s    "
                    "#nCrew:#0 %d\n"
-                   "#nCPU:#0 %.0f teraflops    "
+                   "#nCPU:#0 %.0f TFLOPS    "
                    "#nMass:#0 %.0f t\n"
                    "#nThrust:#0 %.0f kN/t    "
                    "#nSpeed:#0 %.0f m/s\n"
