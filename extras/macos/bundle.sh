@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# After building Naikari, run this script from the toplevel source directory to
-# create Naikari.app.
-# FIXME: The real instructions are more like: cd to Meson build directory, fix bugs in script, use script.
+# MACOS PACKAGING SCRIPT FOR NAEV
+# This script should be run after compiling Naev.
+#
+# Pass in [-d] [-n] (set this for nightly builds) -s <SOURCEROOT> (Sets location of source) -b <BUILDROOT> (Sets location of build directory) -o <BUILDOUTPUT> (Dist output directory)
 
 # This script assumes the environment we set up in Travis, and copies the
 # dependencies to the bundle. These are:
@@ -11,21 +12,48 @@
 
 set -e
 
+# Defaults
+SOURCEROOT="$(pwd)"
+BUILDPATH="$(pwd)/build"
+NIGHTLY="false"
+BUILDOUTPUT="$(pwd)/dist"
+
+while getopts dns:b:o: OPTION "$@"; do
+    case $OPTION in
+    d)
+        set -x
+        ;;
+    n)
+        NIGHTLY="true"
+        ;;
+    s)
+        SOURCEROOT="${OPTARG}"
+        ;;
+    b)
+        BUILDPATH="${OPTARG}"
+        ;;
+    o)
+        BUILDOUTPUT="${OPTARG}"
+        ;;
+        
+    esac
+done
+
 # Clean previous build.
-rm -fr Naikari.app
+rm -fr "${BUILDOUTPUT}"/Naikari.app
 
 # Build basic structure.
-mkdir -p Naikari.app/Contents/{MacOS,Resources,Frameworks}/
-cp extras/macos/Info.plist Naikari.app/Contents/
-cp extras/macos/naikari.icns Naikari.app/Contents/Resources/
-cp src/naikari Naikari.app/Contents/MacOS/
+mkdir -p "${BUILDOUTPUT}"/Naikari.app/Contents/{MacOS,Resources,Frameworks}/
+cp "${SOURCEROOT}"/extras/macos/Info.plist "${BUILDOUTPUT}"/Naikari.app/Contents/
+cp "${SOURCEROOT}"/extras/macos/naikari.icns "${BUILDOUTPUT}"/Naikari.app/Contents/Resources/
+cp "${BUILDPATH}"/naikari "${BUILDOUTPUT}"/Naikari.app/Contents/MacOS/
 
 # Find all Homebrew dependencies (from /usr/local),
 # and descend to find deps of deps.
 prev_deps=""
-# Gather Naikari direct dependencies.
+# Gather Naev direct dependencies.
 deps="$(
-  otool -L src/naikari |
+  otool -L "${BUILDPATH}"/naikari |
     perl -ne '/(\/usr\/local\/.+.dylib)/ && print "$1\n"'
 )"
 # Iterate while the deps array keeps changing.
@@ -50,7 +78,7 @@ echo "Bundling Homebrew dependencies:"
 echo $deps | tr " " "\n"
 
 # Bundle the Homebrew dependencies.
-install -m 0644 $deps Naikari.app/Contents/Frameworks
+install -m 0644 $deps "${BUILDOUTPUT}"/Naikari.app/Contents/Frameworks
 
 # We need to fix the dylib paths, changing them to use @rpath.
 # Collect -change args here for install_name_tool.
@@ -59,19 +87,19 @@ for dep in $deps; do
   change_args+=" -change $dep @rpath/$(basename $dep)"
 done
 
-# Apply changes to the Naikari executable, and add the rpath entry.
+# Apply changes to the Naev executable, and add the rpath entry.
 install_name_tool $change_args \
   -add_rpath @executable_path/../Frameworks \
-  Naikari.app/Contents/MacOS/naikari
+  "${BUILDOUTPUT}"/Naikari.app/Contents/MacOS/naikari
 
 # Apply changes to bundled dylibs too, and set their dylib ID.
-for dep in Naikari.app/Contents/Frameworks/*.dylib; do
+for dep in "${BUILDOUTPUT}"/Naikari.app/Contents/Frameworks/*.dylib; do
   install_name_tool $change_args \
     -id @rpath/$(basename $dep) \
     $dep
 done
 
 # Strip headers, especially from the SDL2 framework.
-find Naikari.app -name Headers -prune | xargs rm -r
+find "${BUILDOUTPUT}"/Naikari.app -name Headers -prune | xargs rm -r
 
-echo "Successfully created Naikari.app"
+echo "Successfully created "${BUILDOUTPUT}"/Naikari.app"

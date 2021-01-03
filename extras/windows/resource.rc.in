@@ -24,7 +24,7 @@ BEGIN
 			VALUE "CompanyName", "Naikari Team"
 			VALUE "FileDescription", "Naikari: Imperial Storm"
 			VALUE "InternalName", "naikari"
-			VALUE "LegalCopyright", "Copyright (C) 2006-2020"
+			VALUE "LegalCopyright", "Copyright (C) 2006-2021"
 			VALUE "OriginalFilename", "naikari.exe"
 			VALUE "ProductName", "Naikari: Imperial Storm"
 			VALUE "ProductVersion", "@VMAJOR@.@VMINOR@.@VREV@"

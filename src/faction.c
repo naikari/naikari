@@ -240,7 +240,7 @@ int faction_setKnown( int id, int state )
  *    @param f Faction to get the name of.
  *    @return Name of the faction (internal/English).
  */
-char* faction_name( int f )
+const char* faction_name( int f )
 {
    if (!faction_isFaction(f)) {
       WARN(_("Faction id '%d' is invalid."),f);
@@ -260,7 +260,7 @@ char* faction_name( int f )
  *    @param f Faction to get the name of.
  *    @return Name of the faction (in player's native language).
  */
-char* faction_shortname( int f )
+const char* faction_shortname( int f )
 {
    if (!faction_isFaction(f)) {
       WARN(_("Faction id '%d' is invalid."),f);
@@ -284,7 +284,7 @@ char* faction_shortname( int f )
  *    @param f Faction to get the name of.
  *    @return The faction's long name (in player's native language).
  */
-char* faction_longname( int f )
+const char* faction_longname( int f )
 {
    if (!faction_isFaction(f)) {
       WARN(_("Faction id '%d' is invalid."),f);
@@ -983,7 +983,7 @@ const glColour* faction_getColour( int f )
 /**
  * @brief Gets the faction character associated to its standing with the player.
  *
- * Use this to do something like "\a%c", faction_getColourChar( some_faction ) in the
+ * Use this to do something like "#%c", faction_getColourChar( some_faction ) in the
  *  font print routines.
  *
  *    @param f Faction to get the colour of based on player's standing.
@@ -1561,7 +1561,7 @@ int factions_load (void)
 
    xmlFreeDoc(doc);
 
-   DEBUG( ngettext( "Loaded %d Faction", "Loaded %d Factions", faction_nstack ), faction_nstack );
+   DEBUG( n_( "Loaded %d Faction", "Loaded %d Factions", faction_nstack ), faction_nstack );
 
    return 0;
 }
