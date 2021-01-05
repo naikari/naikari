@@ -124,6 +124,7 @@ jobs:
       - name: Meson Compile
         run: |
           meson compile -C build
+          meson compile -C build naev-gmo
 
       - name: Build Windows Installer
         run: |
