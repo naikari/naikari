@@ -74,7 +74,6 @@ jobs:
           tar -xf source.tar.xz -C source --strip 1
 
       - name: Compile AppImage
-        id: appimageCompile
         run: |
           ./source/utils/buildAppImage.sh -m -s "source" -b "build" -o "${{ env.DESTDIR }}"
         env:
@@ -137,6 +136,70 @@ jobs:
           path: ${{ github.workspace }}/dist/out/*
           if-no-files-found: error
 
+  "Darwin_Naev_Release":
+    needs: "Package_Source"
+    runs-on: macos-10.15
+
+    steps:
+      - name: Install Homebrew Packages
+        run: |
+          brew update
+          # Library installation is a work in progress. This way results in a build that requires >=10.15.
+          # TODO: install compatible ones and set MACOSX_DEPLOYMENT_TARGET.
+          brew install \
+            openal-soft \
+            intltool \
+            libvorbis \
+            luajit \
+            sdl2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - name: Install Meson and Ninja via pip
+        run: |
+          pip install meson ninja
+
+      - name: Get Source
+        uses: actions/download-artifact@v2
+        with:
+          name: naikari-dist
+
+      - name: Extract Source
+        run: |
+          mkdir source
+          tar -xf source.tar.xz -C source --strip 1
+
+      - name: Meson Setup
+        run: |
+          meson setup build source \
+              --native-file='source/utils/build/macos.ini' \
+              --buildtype=release \
+              --pkg-config-path=/usr/local/opt/openal-soft/lib/pkgconfig \
+              -Db_lto=true \
+              -Dauto_features=enabled \
+              -Ddocs_c=disabled \
+              -Ddocs_lua=disabled
+
+      - name: Meson Compile
+        run: |
+          meson compile -C build
+          meson compile -C build naev-gmo
+
+      - name: Build macOS Installer
+        run: |
+          ./source/extras/macos/bundle.py -s "source" -b "build" -o "$(pwd)/dist"
+          pushd dist/out
+          zip -r naikari-macos.zip Naikari.app/*
+          popd
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: naikari-macos
+          path: ${{ github.workspace }}/dist/out/*.zip
+          if-no-files-found: error
+
   "Upload_Naev_Release":
     strategy:
       fail-fast: true
@@ -150,13 +213,14 @@ jobs:
         Package_Source,
         Linux_Naev_Release,
         Windows_Naev_Release,
+        Darwin_Naev_Release,
       ]
     if: ${{ github.repository == 'naikari/naikari' }}
 
     steps:
       - name: Create Release Staging and Output Areas
         run: |
-          mkdir -p {temp,dist/{staging,out/{lin64,win64,soundtrack}}}
+          mkdir -p {temp,dist/{staging,out/{lin64,macos,win64,soundtrack}}}
 
       - name: Download Artifacts
         uses: actions/download-artifact@v2
@@ -171,8 +235,9 @@ jobs:
           SUFFIX="$VERSION"
 
           mv dist/staging/naikari-linux-x86-64/*.AppImage dist/out/naikari-$SUFFIX-linux-x86-64.AppImage
+          mv dist/staging/naikari-macos/*.zip dist/out/naikari-$SUFFIX-macos.zip
           mv dist/staging/naikari-win64/naikari*.exe dist/out/naikari-$SUFFIX-win64.exe
-          mv dist/staging/naikari-dist/source.tar.gz dist/out/naikari-$SUFFIX-source.tar.xz
+          mv dist/staging/naikari-dist/source.tar.xz dist/out/naikari-$SUFFIX-source.tar.xz
           mv dist/staging/naikari-soundtrack/naikari-*-soundtrack.zip dist/out/naikari-$SUFFIX-soundtrack.zip
 
           chmod +x dist/out/naikari-$SUFFIX-linux-x86-64.AppImage
