@@ -65,12 +65,12 @@ package lists for several distributions.
 
 Run:
 
-```
-bash
+```bash
+git submodule init
+git submodule update
 meson setup builddir .
 cd builddir
 meson compile
-meson compile naev-gmo  # To make non-English translations available
 ./naikari.sh
 ```
 
@@ -89,13 +89,23 @@ from 16x16 to 256x256 can be found in `extras/logos/`.
 
 See https://github.com/naikari/naikari/wiki/Compiling-on-Windows for how to compile on windows.
 
+## UPDATING ART ASSETS
+
+Art assets are partially stored in the naev-artwork-production repository and
+sometimes are updated. For that reason, it is recommended to periodically
+update the submodules with the following command.
+
+```bash
+git submodule update
+```
+
 ## UPDATING PO FILES
 
 If you are a developer, you may need to update translation files as
 text is modified. You can update all translation files with the
 following commands:
 
-```
+```bash
 meson compile potfiles # only necessary if files have been added or removed
 meson compile naikari-pot
 meson compile naikari-update-po

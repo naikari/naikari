@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: projectsynchro/synchros_sexy_docker_images:naev-ubuntu1604
+      image: "ghcr.io/projectsynchro/naev-ubuntu1604:latest"
 
     steps:
       - name: Checkout Naev Repository
@@ -25,34 +25,35 @@ jobs:
 
       - name: Package Dist
         run: |
-          meson setup build source -Dexecutable=disabled -Ddocs_c=disabled -Ddocs_lua=disabled
+          meson setup build source -Dnightly=false -Dexecutable=disabled -Ddocs_c=disabled -Ddocs_lua=disabled
           meson dist -C build --no-tests --include-subprojects
 
       - name: Collect Artifacts
         run: |
-          mv build/meson-dist/naikari-*.tar.xz dist/out/source.tar.xz
-          cp source/CHANGELOG dist/out
-          cp source/dat/VERSION dist/out
+          mkdir -p build/dist
+          mv build/meson-dist/naikari-*.tar.xz build/dist/source.tar.xz
+          cp source/CHANGELOG build/dist
+          cp source/dat/VERSION build/dist
 
       - name: Upload Source Artifact
         uses: actions/upload-artifact@v2
         with:
           name: naikari-dist
-          path: ${{ github.workspace }}/dist/out/source.tar.xz
+          path: ${{ github.workspace }}/build/dist/source.tar.xz
           if-no-files-found: error
 
       - name: Upload Version Artifact
         uses: actions/upload-artifact@v2
         with:
           name: naikari-version
-          path: ${{ github.workspace }}/dist/out/VERSION
+          path: ${{ github.workspace }}/build/dist/VERSION
           if-no-files-found: error
 
       - name: Upload Changelog Artifact
         uses: actions/upload-artifact@v2
         with:
           name: naikari-changelog
-          path: ${{ github.workspace }}/dist/out/CHANGELOG
+          path: ${{ github.workspace }}/build/dist/CHANGELOG
           if-no-files-found: error
 
   "Linux_Naev_Release":
@@ -60,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: projectsynchro/synchros_sexy_docker_images:naev-ubuntu1604
+      image: "ghcr.io/projectsynchro/naev-ubuntu1604:latest"
 
     steps:
       - name: Get Source
@@ -75,7 +76,7 @@ jobs:
 
       - name: Compile AppImage
         run: |
-          ./source/utils/buildAppImage.sh -m -s "source" -b "build" -o "${{ env.DESTDIR }}"
+          ./source/utils/buildAppImage.sh -m -s "source" -b "build"
         env:
           APPIMAGE_EXTRACT_AND_RUN: 1
 
@@ -83,23 +84,16 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: naikari-linux-x86-64
-          path: "${{ env.DESTDIR }}/out/*.AppImage"
+          path: "${{ github.workspace }}/build/dist/*.AppImage"
 
   "Windows_Naev_Release":
     needs: "Package_Source"
     runs-on: ubuntu-latest
 
-    env:
-      WINEPREFIX: "/tmp/.wine"
-
     container:
-      image: projectsynchro/synchros_sexy_docker_images:naev-windows
+      image: "ghcr.io/projectsynchro/naev-windows:latest"
 
     steps:
-      - name: Container-specific setup
-        run: |
-          echo /usr/lib/mxe/usr/bin >> $GITHUB_PATH
-
       - name: Get Source
         uses: actions/download-artifact@v2
         with:
@@ -113,69 +107,12 @@ jobs:
       - name: Meson Setup
         run: |
           meson setup build source \
-            --cross-file='source/utils/build/windows_cross_mxe.ini' \
-            --buildtype=release \
-            -Db_lto=true \
-            -Dauto_features=enabled \
-            -Ddocs_c=disabled \
-            -Ddocs_lua=disabled
-
-      - name: Meson Compile
-        run: |
-          meson compile -C build
-          meson compile -C build naev-gmo
-
-      - name: Build Windows Installer
-        run: |
-          ./source/extras/windows/packageWindows.sh -s "source" -b "build" -o "$(pwd)/dist"
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: naikari-win64
-          path: ${{ github.workspace }}/dist/out/*
-          if-no-files-found: error
-
-  "Darwin_Naev_Release":
-    needs: "Package_Source"
-    runs-on: macos-10.15
-
-    steps:
-      - name: Install Homebrew Packages
-        run: |
-          brew update
-          # Library installation is a work in progress. This way results in a build that requires >=10.15.
-          # TODO: install compatible ones and set MACOSX_DEPLOYMENT_TARGET.
-          brew install \
-            openal-soft \
-            intltool \
-            libvorbis \
-            luajit \
-            sdl2
-
-      - name: Setup Python
-        uses: actions/setup-python@v2
-
-      - name: Install Meson and Ninja via pip
-        run: |
-          pip install meson ninja
-
-      - name: Get Source
-        uses: actions/download-artifact@v2
-        with:
-          name: naikari-dist
-
-      - name: Extract Source
-        run: |
-          mkdir source
-          tar -xf source.tar.xz -C source --strip 1
-
-      - name: Meson Setup
-        run: |
-          meson setup build source \
-              --native-file='source/utils/build/macos.ini' \
+              --prefix="$(pwd)"/source/extras/windows/installer \
+              --bindir=bin \
+              -Dndata_path=bin \
+              --cross-file='source/utils/build/windows_cross_mxe.ini' \
               --buildtype=release \
-              --pkg-config-path=/usr/local/opt/openal-soft/lib/pkgconfig \
+              -Dnightly=false \
               -Db_lto=true \
               -Dauto_features=enabled \
               -Ddocs_c=disabled \
@@ -184,20 +121,64 @@ jobs:
       - name: Meson Compile
         run: |
           meson compile -C build
-          meson compile -C build naev-gmo
 
-      - name: Build macOS Installer
+      - name: Meson Install
         run: |
-          ./source/extras/macos/bundle.py -s "source" -b "build" -o "$(pwd)/dist"
-          pushd dist/out
+          meson install -C build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: naikari-win64
+          path: ${{ github.workspace }}/build/dist/*
+          if-no-files-found: error
+
+  "Darwin_Naev_Release":
+    needs: "Package_Source"
+    runs-on: ubuntu-latest
+    container:
+      image: "ghcr.io/projectsynchro/naev-macos:latest"
+
+    steps:
+      - name: Get Source
+        uses: actions/download-artifact@v2
+        with:
+          name: naikari-dist
+
+      - name: Extract Source
+        run: |
+          mkdir source
+          tar -xf source.tar.xz -C source --strip 1
+
+      - name: Meson Setup
+        run: |
+          meson setup build source \
+              --prefix="$(pwd)"/build/dist/Naikari.app \
+              --bindir=Contents/MacOS \
+              -Dndata_path=Contents/Resources \
+              --cross-file='source/utils/build/macos_cross_osxcross.ini' \
+              --buildtype=release \
+              -Dnightly=false \
+              -Db_lto=true \
+              -Dauto_features=enabled \
+              -Ddocs_c=disabled \
+              -Ddocs_lua=disabled
+
+      - name: Meson Compile
+        run: |
+          meson compile -C build
+
+      - name: Meson Install
+        run: |
+          meson install -C build
+          cd build/dist
           zip -r naikari-macos.zip Naikari.app/*
-          popd
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: naikari-macos
-          path: ${{ github.workspace }}/dist/out/*.zip
+          path: ${{ github.workspace }}/build/dist/*.zip
           if-no-files-found: error
 
   "Upload_Naev_Release":
@@ -220,33 +201,33 @@ jobs:
     steps:
       - name: Create Release Staging and Output Areas
         run: |
-          mkdir -p {temp,dist/{staging,out/{lin64,macos,win64,soundtrack}}}
+          mkdir -p temp build/{staging,dist/{lin64,macos,win64,soundtrack}}
 
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          path: ${{ github.workspace }}/dist/staging
+          path: ${{ github.workspace }}/build/staging
 
       - name: Build Github Release
         if: ${{ matrix.releasetype == 'github' }}
         run: |
           BUILD_DATE="$(date +%Y%m%d)"
-          VERSION="$(<"dist/staging/naikari-version/VERSION")"
+          VERSION="$(<"build/staging/naikari-version/VERSION")"
           SUFFIX="$VERSION"
 
-          mv dist/staging/naikari-linux-x86-64/*.AppImage dist/out/naikari-$SUFFIX-linux-x86-64.AppImage
-          mv dist/staging/naikari-macos/*.zip dist/out/naikari-$SUFFIX-macos.zip
-          mv dist/staging/naikari-win64/naikari*.exe dist/out/naikari-$SUFFIX-win64.exe
-          mv dist/staging/naikari-dist/source.tar.xz dist/out/naikari-$SUFFIX-source.tar.xz
-          mv dist/staging/naikari-soundtrack/naikari-*-soundtrack.zip dist/out/naikari-$SUFFIX-soundtrack.zip
+          mv build/staging/naikari-linux-x86-64/*.AppImage build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
+          mv build/staging/naikari-macos/*.zip build/dist/naikari-$SUFFIX-macos.zip
+          mv build/staging/naikari-win64/naikari*.exe build/dist/naikari-$SUFFIX-win64.exe
+          mv build/staging/naikari-dist/source.tar.xz build/dist/naikari-$SUFFIX-source.tar.xz
+          mv build/staging/naikari-soundtrack/naikari-*-soundtrack.zip build/dist/naikari-$SUFFIX-soundtrack.zip
 
-          chmod +x dist/out/naikari-$SUFFIX-linux-x86-64.AppImage
+          chmod +x build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
 
       - name: Upload Github Release
         uses: ncipollo/release-action@v1
         if: ${{ matrix.releasetype == 'github' }}
         with:
-          artifacts: "dist/out/*.*"
-          bodyFile: "dist/staging/naikari-changelog/CHANGELOG"
+          artifacts: "build/dist/*.*"
+          bodyFile: "build/staging/naikari-changelog/CHANGELOG"
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false

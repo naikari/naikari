@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
-# MACOS PACKAGING SCRIPT FOR NAEV
-# This script should be run after compiling Naev.
-
-# This script assumes a dependency must be bundled (with priority over any installations the end user might have) if either
+# MACOS INSTALL SCRIPT FOR NAEV
+# This script is called by "meson install" if building for macOS.
+# It assumes a dependency must be bundled (with priority over any installations the end user might have) if either
 # | it's in a known Homebrew or osxcross path (LOCAL_LIB_ROOTS below)
 # | it's relative to the rpath (Meson subproject / embedded lib)
 
-import argparse
 import os
 import shutil
 import subprocess
@@ -17,36 +15,15 @@ LOCAL_LIB_ROOTS = ('/opt/local', '/usr/lib/osxcross', '/usr/local')
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--debug", help="Trace the script's actions.", action="store_true")
-    parser.add_argument("-n", "--nightly", help="Set this for nightly builds.", action="store_true")
-    parser.add_argument("-s", "--sourceroot", help="Set this to the repo location.", default=os.path.abspath('.'))
-    parser.add_argument("-b", "--buildroot", help="Set this to the build location.", default=os.path.abspath('build'))
-    parser.add_argument("-o", "--buildoutput", help="Set location for dist output.", default=os.path.abspath('dist'))
-    args = parser.parse_args()
+    app_path = os.environ['MESON_INSTALL_DESTDIR_PREFIX']
 
-    trace.enabled = args.debug
-    app_path = f'{args.buildoutput}/out/Naev.app'
-
-    #Clean previous build.
-    trace(shutil.rmtree, app_path, ignore_errors=True)
-
-    # Build basic structure.
-    for subdir in 'MacOS', 'Resources', 'Frameworks':
-        trace(os.makedirs, f'{app_path}/Contents/{subdir}')
-    trace(shutil.copy, f'{args.buildroot}/Info.plist', f'{app_path}/Contents')
-    trace(shutil.copy, f'{args.sourceroot}/extras/macos/naev.icns', f'{app_path}/Contents/Resources')
+    # Create a directory for dynamic libraries.
+    # Docs allege Contents/Resources/lib is more idiomatic, but bundle.sh chose here.
+    trace(shutil.rmtree, f'{app_path}/Contents/Frameworks', ignore_errors=True)
+    trace(os.makedirs, f'{app_path}/Contents/Frameworks')
 
     # Gather Naev and dependencies.
-    trace(copy_with_deps, f'{args.buildroot}/naev', app_path, dest='Contents/MacOS')
-
-    # Strip headers, especially from the SDL2 framework.
-    trace(subprocess.check_call, ['find', app_path, '-name', 'Headers', '-prune', '-exec', 'rm', '-r', '{}', '+'])
-
-    # Install data.
-    trace(shutil.copytree, f'{args.sourceroot}/dat', f'{app_path}/Contents/Resources/dat')
-    trace(subprocess.check_call, [f'{args.sourceroot}/utils/package-po.sh',
-        '-b', args.buildroot, '-o', f'{app_path}/Contents/Resources'])
+    trace(copy_with_deps, f'{os.environ["MESON_BUILD_ROOT"]}/naev', app_path, dest='Contents/MacOS')
 
     print(f'Successfully created {app_path}')
 
@@ -55,24 +32,17 @@ def trace(f, *args, **kwargs):
     """ Run the given function on the given arguments. In debug mode, print the function call.
         (Indent if we trace while running a traced function.) """
 
-    trace.depth += 1
-    try:
-        if trace.enabled:
-            # HACK: when tracing a function call, use unittest.mock to construct a pretty-printable version.
-            # HACK: when tracing subprocess shell commands, format them because it's unreadable otherwise.
-            if f.__module__ == 'subprocess' and len(args) == 1:
-                from subprocess import list2cmdline
-                print(f'[{trace.depth}]', '$', list2cmdline(args[0]))
-            else:
-                from unittest import mock
-                call = getattr(mock.call, f.__name__)(*args, **kwargs)
-                pretty = str(call).replace('call.', '', 1)
-                print(f'[{trace.depth}]', pretty)
-        return f(*args, **kwargs)
-    finally:
-        trace.depth -= 1
-trace.depth = 0
-trace.enabled = False
+    if os.getenv('MESON_INSTALL_QUIET') is None:
+        # HACK: when tracing a function call, use unittest.mock to construct a pretty-printable version.
+        # HACK: when tracing subprocess shell commands, format them because it's unreadable otherwise.
+        if f.__module__ == 'subprocess' and len(args) == 1:
+            from subprocess import list2cmdline
+            print('$', list2cmdline(args[0]))
+        else:
+            from unittest import mock
+            call = getattr(mock.call, f.__name__)(*args, **kwargs)
+            print(str(call).replace('call.', '', 1))
+    return f(*args, **kwargs)
 
 
 def copy_with_deps(bin_src, app_path, dest='Contents/Frameworks', exe_rpaths=None):
@@ -80,6 +50,7 @@ def copy_with_deps(bin_src, app_path, dest='Contents/Frameworks', exe_rpaths=Non
     bin_name = os.path.basename(bin_src)
     bin_dst = os.path.join(app_path, dest, bin_name)
 
+    os.makedirs(os.path.dirname(bin_dst), exist_ok=True)
     trace(shutil.copy, bin_src, bin_dst)
 
     dylibs, rpaths = otool_results(bin_src)

@@ -705,6 +705,9 @@ void main_loop( int update )
       update_all(); /* update game */
    }
 
+   /* Safe hook should be run every frame regardless of whether game is paused or not. */
+   hooks_run( "safe" );
+
    /*
     * Handle render.
     */
@@ -753,9 +756,6 @@ void naev_resize (void)
 
    /* Resets the overlay dimensions. */
    ovr_refresh();
-
-   if (nebu_isLoaded())
-      nebu_vbo_init();
 
    /* Re-center windows. */
    toolkit_reposition();
