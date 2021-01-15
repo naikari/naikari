@@ -194,7 +194,7 @@ if buildExec.disabled() == false
       add_languages('objc', native: false)
       configure_file(input: 'extras/macos/Info.plist.in', output: 'Info.plist', configuration: config_data,
          install: true, install_dir: 'Contents')
-      install_data('extras/macos/naev.icns', install_dir: ndata_path)
+      install_data('extras/macos/naikari.icns', install_dir: ndata_path)
       naev_source += mac_source
       naev_deps += dependency('Foundation', required: true )
    endif
