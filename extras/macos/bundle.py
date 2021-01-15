@@ -23,7 +23,7 @@ def main():
     trace(os.makedirs, f'{app_path}/Contents/Frameworks')
 
     # Gather Naev and dependencies.
-    trace(copy_with_deps, f'{os.environ["MESON_BUILD_ROOT"]}/naev', app_path, dest='Contents/MacOS')
+    trace(copy_with_deps, f'{os.environ["MESON_BUILD_ROOT"]}/naikari', app_path, dest='Contents/MacOS')
 
     print(f'Successfully created {app_path}')
 
@@ -61,7 +61,7 @@ def copy_with_deps(bin_src, app_path, dest='Contents/Frameworks', exe_rpaths=Non
         exe_rpaths = list(rpaths)
 
     change_cmd = [host_program('install_name_tool')]
-    if bin_dst.endswith('/naev'):
+    if bin_dst.endswith('/naikari'):
         change_cmd.extend(['-add_rpath', '@executable_path/../Frameworks'])
     if bin_dst.endswith('.dylib'):
         change_cmd.extend(['-id', f'@rpath/{bin_name}'])
