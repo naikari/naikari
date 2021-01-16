@@ -143,7 +143,7 @@ jobs:
       - name: Meson Setup
         run: |
           meson setup build source \
-              --prefix="$(pwd)"/build/dist/Naev.app \
+              --prefix="$(pwd)"/build/dist/Naikari.app \
               --bindir=Contents/MacOS \
               -Dndata_path=Contents/Resources \
               --cross-file='source/utils/build/macos_cross_osxcross.ini' \
