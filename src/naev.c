@@ -17,6 +17,7 @@
 #include "physfsrwops.h"
 #include "SDL.h"
 #include "SDL_error.h"
+#include "SDL_image.h"
 
 #include "naev.h"
 
@@ -76,7 +77,6 @@
 #include "nlua_misn.h"
 #include "nlua_var.h"
 #include "npc.h"
-#include "npng.h"
 #include "nstring.h"
 #include "nxml.h"
 #include "opengl.h"
@@ -468,6 +468,7 @@ int main( int argc, char** argv )
    if (naev_icon)
       SDL_FreeSurface(naev_icon);
 
+   IMG_Quit(); /* quits SDL_image */
    SDL_Quit(); /* quits SDL */
 
    /* Clean up parser. */
@@ -1040,7 +1041,6 @@ static void window_caption (void)
 {
    char buf[PATH_MAX];
    SDL_RWops *rw;
-   npng_t *npng;
 
    /* Load icon. */
    rw = PHYSFSRWOPS_openRead( GFX_PATH"icon.png" );
@@ -1048,10 +1048,7 @@ static void window_caption (void)
       WARN( _("Icon (icon.png) not found!") );
       return;
    }
-   npng        = npng_open( rw );
-   naev_icon   = npng_readSurface( npng, 0, 0 );
-   npng_close( npng );
-   SDL_RWclose( rw );
+   naev_icon   = IMG_Load_RW( rw, 1 );
    if (naev_icon == NULL) {
       WARN( _("Unable to load icon.png!") );
       return;
