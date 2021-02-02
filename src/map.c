@@ -45,7 +45,6 @@
 
 /* map decorator stack */
 static MapDecorator* decorator_stack = NULL; /**< Contains all the map decorators. */
-static int decorator_nstack       = 0; /**< Number of map decorators in the stack. */
 
 static double map_zoom        = 1.; /**< Zoom of the map. */
 static double map_xpos        = 0.; /**< Map X position. */
@@ -59,8 +58,7 @@ static int cur_commod         = -1; /**< Current commodity selected. */
 static int cur_commod_mode    = 0; /**< 0 for difference, 1 for cost. */
 static int commod_counter = 0; /**< used to fade back in the faction smudges */
 static Commodity **commod_known = NULL; /**< index of known commodities */
-static int nmap_modes = 0; /**< number of map modes (depends on number of commodities) */
-static char** map_modes = NULL; /**< Holds the names of the different map modes. */
+static char** map_modes = NULL; /**< Array (array.h) of the map modes' names, e.g. "Gold: Cost". */
 static int listMapModeVisible = 0; /**< Whether the map mode list widget is visible. */
 static double commod_av_gal_price = 0; /**< Average price across the galaxy. */
 /* VBO. */
@@ -72,8 +70,6 @@ static gl_vbo *marker_vbo = NULL;
  */
 /* space.c */
 extern StarSystem *systems_stack;
-extern int systems_nstack;
-extern int faction_nstack;
 
 /*land.c*/
 extern int landed;
@@ -146,11 +142,10 @@ void map_exit (void)
    gl_freeTexture( gl_faction_disk );
 
    if (decorator_stack != NULL) {
-      for (i=0; i<decorator_nstack; i++)
+      for (i=0; i<array_size(decorator_stack); i++)
          gl_freeTexture( decorator_stack[i].image );
-      free( decorator_stack );
+      array_free( decorator_stack );
       decorator_stack = NULL;
-      decorator_nstack = 0;
    }
 }
 
@@ -346,7 +341,7 @@ static void map_update_commod_av_price()
    if ( cur_commod_mode !=0 ) {
       double totPrice = 0;
       int totPriceCnt = 0;
-      for (i=0; i<systems_nstack; i++) {
+      for (i=0; i<array_size(systems_stack); i++) {
          sys = system_getIndex( i );
 
          /* if system is not known, reachable, or marked. and we are not in the editor */
@@ -894,7 +889,7 @@ void map_renderDecorators( double x, double y, int editor)
    double cc = cos ( commod_counter / 200. * M_PI );
    ccol.a = 2./3.*cc;
 
-   for (i=0; i<decorator_nstack; i++) {
+   for (i=0; i<array_size(decorator_stack); i++) {
 
       decorator = &decorator_stack[i];
 
@@ -905,7 +900,7 @@ void map_renderDecorators( double x, double y, int editor)
       visible=0;
 
       if (!editor) {
-         for (j=0; j<systems_nstack && visible==0; j++) {
+         for (j=0; j<array_size(systems_stack) && visible==0; j++) {
             sys = system_getIndex( j );
 
             if (!sys_isKnown(sys))
@@ -950,7 +945,7 @@ void map_renderFactionDisks( double x, double y, int editor)
    /* Fade in the disks to allow toggling between commodity and nothing */
    double cc = cos ( commod_counter / 200. * M_PI );
 
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
 
       /* System has no faction, or isn't known and we aren't in the editor. */
@@ -995,7 +990,7 @@ void map_renderJumps( double x, double y, int editor)
    /* Generate smooth lines. */
    glLineWidth( CLAMP(1., 4., 2. * map_zoom)*gl_screen.scale );
 
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
 
       if (!sys_isKnown(sys) && !editor)
@@ -1070,7 +1065,7 @@ void map_renderSystems( double bx, double by, double x, double y,
    StarSystem *sys;
    double tx, ty;
 
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
 
       /* if system is not known, reachable, or marked. and we are not in the editor */
@@ -1181,7 +1176,7 @@ void map_renderNames( double bx, double by, double x, double y,
    int i, j;
    char buf[32];
 
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
 
       /* Skip system. */
@@ -1204,7 +1199,7 @@ void map_renderNames( double bx, double by, double x, double y,
    if (!editor || (map_zoom <= 1.0))
       return;
 
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
       for (j=0; j<sys->njumps; j++) {
          jsys = sys->jumps[j].target;
@@ -1238,7 +1233,7 @@ static void map_renderMarkers( double x, double y, double r, double a )
    int i, j, n, m;
    StarSystem *sys;
 
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
 
       /* We only care about marked now. */
@@ -1291,7 +1286,7 @@ static void map_renderSysBlack(double bx, double by, double x,double y, double w
    double tx,ty;
    glColour ccol;
 
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
 
       /* if system is not known, reachable, or marked. and we are not in the editor */
@@ -1386,7 +1381,7 @@ void map_renderCommod( double bx, double by, double x, double y,
             return;
          }
       }
-      for (i=0; i<systems_nstack; i++) {
+      for (i=0; i<array_size(systems_stack); i++) {
          sys = system_getIndex( i );
 
          /* if system is not known, reachable, or marked. and we are not in the editor */
@@ -1448,7 +1443,7 @@ void map_renderCommod( double bx, double by, double x, double y,
       /*First calculate av price in all systems */
       /* This has already been done in map_update_commod_av_price */
       /* Now display the costs */
-      for (i=0; i<systems_nstack; i++) {
+      for (i=0; i<array_size(systems_stack); i++) {
          sys = system_getIndex( i );
 
          /* if system is not known, reachable, or marked. and we are not in the editor */
@@ -1624,7 +1619,7 @@ static int map_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
          my -= h/2 - map_ypos;
          map_drag = 1;
 
-         for (i=0; i<systems_nstack; i++) {
+         for (i=0; i<array_size(systems_stack); i++) {
             sys = system_getIndex( i );
 
             /* must be reachable */
@@ -1712,7 +1707,7 @@ static void map_genModeList(void)
    if ( commod_known == NULL )
       commod_known = malloc(sizeof(Commodity*) * commodity_getN());
    memset(commod_known,0,sizeof(Commodity*)*commodity_getN());
-   for (i=0; i<systems_nstack; i++) {
+   for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
       for ( j=0 ; j<sys->nplanets; j++) {
          p=sys->planets[j];
@@ -1733,24 +1728,21 @@ static void map_genModeList(void)
          }
       }
    }
-   if ( map_modes != NULL ) {
-      for ( i=0 ; i<nmap_modes ; i++)
-         free( map_modes[i] );
-      free ( map_modes );
-   }
-   nmap_modes = 2*totGot + 1;
-   map_modes = calloc( sizeof(char*), nmap_modes );
-   map_modes[0] = strdup(_("Travel (Default)"));
+   for ( i=0; i<array_size(map_modes); i++)
+      free( map_modes[i] );
+   array_free ( map_modes );
+   map_modes = array_create_size( char*, 2*totGot + 1 );
+   array_push_back( &map_modes, strdup(_("Travel (Default)")) );
 
    odd_template = _("%s: Cost");
    even_template = _("%s: Trade");
    for ( i=0; i<totGot; i++ ) {
       commod_text = _(commod_known[i]->name);
       l = strlen(odd_template) + strlen(commod_text) - 2 /*"%s"*/ + 1 /* '\0' */;
-      map_modes[ 2*i + 1 ] = malloc(l);
+      array_push_back( &map_modes, malloc(l) );
       nsnprintf( map_modes[2*i+1], l, odd_template, commod_text );
       l = strlen(even_template) + strlen(commod_text) - 2 /*"%s"*/ + 1 /* '\0' */;
-      map_modes[ 2*i + 2 ] = malloc(l);
+      array_push_back( &map_modes, malloc(l) );
       nsnprintf( map_modes[2*i+2], l, even_template, commod_text );
    }
 }
@@ -1811,7 +1803,7 @@ static void map_buttonCommodity( unsigned int wid, char* str )
          cur_commod_mode_last = cur_commod_mode;
          cur_commod = -1;
       }
-      if ( cur_commod >= (nmap_modes-1)/2 )
+      if ( cur_commod >= (array_size(map_modes)-1)/2 )
          cur_commod = -1;
       /* And hide the list if it was visible. */
       if ( listMapModeVisible) {
@@ -1826,8 +1818,8 @@ static void map_buttonCommodity( unsigned int wid, char* str )
          listMapModeVisible = 0;
          window_destroyWidget( wid, "lstMapMode" );
       } else {/* show the list widget */
-         this_map_modes = calloc( sizeof(char*), nmap_modes );
-         for (int i=0; i<nmap_modes;i++) {
+         this_map_modes = calloc( sizeof(char*), array_size(map_modes) );
+         for (int i=0; i<array_size(map_modes);i++) {
             this_map_modes[i]=strdup(map_modes[i]);
          }
          listMapModeVisible = 2;
@@ -1837,7 +1829,7 @@ static void map_buttonCommodity( unsigned int wid, char* str )
             defpos = cur_commod*2 + 2 - cur_commod_mode;
 
          window_addList( wid, -10, 60, 200, 200, "lstMapMode",
-                         this_map_modes, nmap_modes, defpos, map_modeUpdate, NULL );
+                         this_map_modes, array_size(map_modes), defpos, map_modeUpdate, NULL );
       }
    }
 }
@@ -1851,12 +1843,10 @@ static void map_window_close( unsigned int wid, char *str )
    int i;
    free ( commod_known );
    commod_known = NULL;
-   if ( map_modes != NULL ) {
-      for ( i=0; i<nmap_modes; i++ )
-         free ( map_modes[i] );
-      free ( map_modes );
-      map_modes = NULL;
-   }
+   for ( i=0; i<array_size(map_modes); i++ )
+      free ( map_modes[i] );
+   array_free ( map_modes );
+   map_modes = NULL;
    cur_commod = -1;
    window_close(wid,str);
 }
@@ -2533,6 +2523,8 @@ int map_load (void)
    xmlNodePtr node;
    xmlDocPtr doc;
 
+   decorator_stack = array_create( MapDecorator );
+
    /* Load the file. */
    doc = xml_parsePhysFS( MAP_DECORATOR_DATA_PATH );
    if (doc == NULL)
@@ -2553,13 +2545,8 @@ int map_load (void)
    do {
       xml_onlyNodes(node);
       if (xml_isNode(node, "decorator")) {
-
-         /* Make room for decorators. */
-         decorator_stack = realloc(decorator_stack,
-               sizeof(MapDecorator)*(++decorator_nstack));
-
          /* Load decorator. */
-         map_decorator_parse(&decorator_stack[decorator_nstack-1], node);
+         map_decorator_parse( &array_grow(&decorator_stack), node );
 
       }
       else
@@ -2568,7 +2555,7 @@ int map_load (void)
 
    xmlFreeDoc(doc);
 
-   DEBUG( n_( "Loaded %d map decorator", "Loaded %d map decorators", decorator_nstack ), decorator_nstack );
+   DEBUG( n_( "Loaded %d map decorator", "Loaded %d map decorators", array_size(decorator_stack) ), array_size(decorator_stack) );
 
    return 0;
 }

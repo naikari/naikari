@@ -10,6 +10,8 @@
 
 
 /** @cond */
+#include "physfs.h"
+
 #include "naev.h"
 /** @endcond */
 
@@ -27,7 +29,7 @@
 #include "menu.h"
 #include "mission.h"
 #include "news.h"
-#include "nfile.h"
+#include "ndata.h"
 #include "nlua_var.h"
 #include "nstring.h"
 #include "nxml.h"
@@ -45,9 +47,16 @@
 #define BUTTON_HEIGHT   30 /**< Button height. */
 
 
+/**
+ * @brief Struct containing a file's name and stat structure.
+ */
+typedef struct filedata {
+   char *name;
+   PHYSFS_Stat stat;
+} filedata_t;
+
+
 static nsave_t *load_saves = NULL; /**< Array of save.s */
-
-
 extern int save_loaded; /**< From save.c */
 
 
@@ -82,10 +91,15 @@ static void load_menu_load( unsigned int wdw, char *str );
 static void load_menu_delete( unsigned int wdw, char *str );
 static int load_load( nsave_t *save, const char *path );
 static int load_gameInternal( const char* file, const char* version );
+static int load_enumerateCallback( void* data, const char* origdir, const char* fname );
+static int load_sortCompare( const void *p1, const void *p2 );
+static xmlDocPtr load_xml_parsePhysFS( const char* filename );
 
 
 /**
  * @brief Loads an individual save.
+ * @param[out] save Structure to populate.
+ * @param path PhysicsFS path (i.e., relative path starting with "saves/").
  */
 static int load_load( nsave_t *save, const char *path )
 {
@@ -96,7 +110,7 @@ static int load_load( nsave_t *save, const char *path )
    memset( save, 0, sizeof(nsave_t) );
 
    /* Load the XML. */
-   doc   = xmlParseFile(path);
+   doc = load_xml_parsePhysFS( path );
    if (doc == NULL) {
       WARN( _("Unable to parse save path '%s'."), path);
       return -1;
@@ -174,49 +188,35 @@ static int load_load( nsave_t *save, const char *path )
  */
 int load_refresh (void)
 {
-   char **files, buf[PATH_MAX], *tmp;
-   size_t nfiles, i, len;
-   int ok;
+   char buf[PATH_MAX];
+   filedata_t *files, tmp;
+   size_t len;
+   int i, ok;
    nsave_t *ns;
 
    if (load_saves != NULL)
       load_free();
 
    /* load the saves */
-   files      = nfile_readDir( &nfiles, nfile_dataPath(), "saves" );
-   load_saves = array_create_size( nsave_t, nfiles );
+   files = array_create( filedata_t );
+   PHYSFS_enumerate( "saves", load_enumerateCallback, &files );
+   qsort(files, array_size(files), sizeof(filedata_t), load_sortCompare);
 
-   for (i=0; i<nfiles; i++) {
-      len = strlen(files[i]);
-
-      /* no save or backup save extension */
-      if (((len < 5) || strcmp(&files[i][len-3],".ns")) &&
-            ((len < 12) || strcmp(&files[i][len-10],".ns.backup"))) {
-         free(files[i]);
-         memmove( &files[i], &files[i+1], sizeof(char*) * (nfiles-i-1) );
-         nfiles--;
-         i--;
-      }
-   }
-
-   /* Make sure files are none. */
-   if (files == NULL)
-      return 0;
-   if (nfiles == 0) {
-      free( files );
+   if (array_size(files) == 0) {
+      array_free( files );
       return 0;
    }
 
    /* Make sure backups are after saves. */
-   for (i=0; i<nfiles-1; i++) {
-      len = strlen( files[i] );
+   for (i=0; i<array_size(files)-1; i++) {
+      len = strlen( files[i].name );
 
       /* Only interested in swapping backup with file after it if it's not backup. */
-      if ((len < 12) || strcmp( &files[i][len-10],".ns.backup" ))
+      if ((len < 12) || strcmp( &files[i].name[len-10],".ns.backup" ))
          continue;
 
       /* Don't match. */
-      if (strncmp( files[i], files[i+1], (len-10) ))
+      if (strncmp( files[i].name, files[i+1].name, len-10 ))
          continue;
 
       /* Swap around. */
@@ -228,10 +228,11 @@ int load_refresh (void)
    /* Allocate and parse. */
    ok = 0;
    ns = NULL;
-   for (i=0; i<nfiles; i++) {
+   load_saves = array_create_size( nsave_t, array_size(files) );
+   for (i=0; i<array_size(files); i++) {
       if (!ok)
          ns = &array_grow( &load_saves );
-      nsnprintf( buf, sizeof(buf), "%ssaves/%s", nfile_dataPath(), files[i] );
+      nsnprintf( buf, sizeof(buf), "saves/%s", files[i].name );
       ok = load_load( ns, buf );
    }
 
@@ -240,11 +241,66 @@ int load_refresh (void)
       array_resize( &load_saves, array_size(load_saves)-1 );
 
    /* Clean up memory. */
-   for (i=0; i<nfiles; i++)
-      free(files[i]);
-   free(files);
+   for (i=0; i<array_size(files); i++)
+      free( files[i].name );
+   array_free( files );
 
    return 0;
+}
+
+
+/**
+ * @brief The PHYSFS_EnumerateCallback for load_refresh
+ */
+static int load_enumerateCallback( void* data, const char* origdir, const char* fname )
+{
+   char *path;
+   const char *fmt;
+   size_t dir_len, name_len, path_size;
+   filedata_t *tmp;
+   PHYSFS_Stat stat;
+
+   dir_len = strlen( origdir );
+   name_len = strlen( fname );
+
+   /* no save or backup save extension? */
+   if ((name_len < 5 || strcmp( &fname[name_len-3], ".ns" )) && (name_len < 12 || strcmp( &fname[name_len-10], ".ns.backup" )))
+      return PHYSFS_ENUM_OK;
+
+   path_size = dir_len + name_len + 2;
+   path = malloc( path_size );
+   fmt = dir_len && origdir[dir_len-1]=='/' ? "%s%s" : "%s/%s";
+   nsnprintf( path, path_size, fmt, origdir, fname );
+   if (!PHYSFS_stat( path, &stat ))
+      WARN( _("PhysicsFS: Cannot stat %s: %s"), path,
+            PHYSFS_getErrorByCode( PHYSFS_getLastErrorCode() ) );
+   else if (stat.filetype == PHYSFS_FILETYPE_REGULAR) {
+      tmp = &array_grow( (filedata_t**)data );
+      tmp->name = strdup( fname );
+      tmp->stat = stat;
+   }
+
+   free( path );
+   return PHYSFS_ENUM_OK;
+}
+
+
+/**
+ * @brief qsort compare function for files.
+ */
+static int load_sortCompare( const void *p1, const void *p2 )
+{
+   filedata_t *f1, *f2;
+
+   f1 = (filedata_t*) p1;
+   f2 = (filedata_t*) p2;
+
+   if (f1->stat.modtime > f2->stat.modtime)
+      return -1;
+   else if (f1->stat.modtime < f2->stat.modtime)
+      return +1;
+
+   return strcmp( f1->name, f2->name );
 }
 
 
@@ -256,34 +312,26 @@ void load_free (void)
    int i;
    nsave_t *ns;
 
-   if (load_saves != NULL) {
-      for (i=0; i<array_size(load_saves); i++) {
-         ns = &load_saves[i];
-         free(ns->path);
-         free(ns->name);
-         free(ns->version);
-         free(ns->data);
-         free(ns->planet);
-         free(ns->shipname);
-         free(ns->shipmodel);
-      }
-      array_free( load_saves );
+   for (i=0; i<array_size(load_saves); i++) {
+      ns = &load_saves[i];
+      free(ns->path);
+      free(ns->name);
+      free(ns->version);
+      free(ns->data);
+      free(ns->planet);
+      free(ns->shipname);
+      free(ns->shipmodel);
    }
+   array_free( load_saves );
    load_saves = NULL;
 }
 
 
 /**
- * @brief Gets the list of loaded saves.
+ * @brief Gets the array (array.h) of loaded saves.
  */
-nsave_t *load_getList( int *n )
+const nsave_t *load_getList (void)
 {
-   if (load_saves == NULL) {
-      *n = 0;
-      return NULL;
-   }
-
-   *n = array_size( load_saves );
    return load_saves;
 }
 
@@ -294,7 +342,7 @@ void load_loadGameMenu (void)
 {
    unsigned int wid;
    char **names, buf[PATH_MAX];
-   nsave_t *nslist, *ns;
+   nsave_t *ns;
    int i, n, len;
 
    /* window */
@@ -306,11 +354,11 @@ void load_loadGameMenu (void)
    load_refresh();
 
    /* load the saves */
-   nslist = load_getList( &n );
+   n = array_size( load_saves );
    if (n > 0) {
       names = malloc( sizeof(char*)*n );
       for (i=0; i<n; i++) {
-         ns       = &nslist[i];
+         ns       = &load_saves[i];
          len      = strlen(ns->path);
          if (strcmp(&ns->path[len-10],".ns.backup")==0) {
             nsnprintf( buf, sizeof(buf), _("%s #r(Backup)#0"), ns->name );
@@ -363,7 +411,6 @@ static void load_menu_update( unsigned int wid, char *str )
    (void) str;
    int pos;
    nsave_t *ns;
-   int n;
    char *save;
    char buf[256], credits[ECON_CRED_STRLEN], date[64];
 
@@ -374,8 +421,7 @@ static void load_menu_update( unsigned int wid, char *str )
 
    /* Get position. */
    pos = toolkit_getListPos( wid, "lstSaves" );
-   ns  = load_getList( &n );
-   ns  = &ns[pos];
+   ns  = &load_saves[pos];
 
    /* Display text. */
    credits2str( credits, ns->credits, 2 );
@@ -409,8 +455,6 @@ static void load_menu_load( unsigned int wdw, char *str )
    (void)str;
    char *save;
    int wid, pos;
-   nsave_t *ns;
-   int n;
    int diff;
 
    wid = window_get( "wdwLoadGameMenu" );
@@ -420,17 +464,16 @@ static void load_menu_load( unsigned int wdw, char *str )
       return;
 
    pos = toolkit_getListPos( wid, "lstSaves" );
-   ns  = load_getList( &n );
 
    /* Check version. */
-   diff = naev_versionCompare( ns[pos].version );
+   diff = naev_versionCompare( load_saves[pos].version );
    if (ABS(diff) >= 2) {
       if (!dialogue_YesNo( _("Save game version mismatch"),
             _("Save game '%s' version does not match Naikari version:\n"
             "   Save version: #r%s#0\n"
             "   Naikari version: %s\n"
             "Are you sure you want to load this game? It may lose data."),
-            save, ns->version, VERSION ))
+            save, load_saves[pos].version, VERSION ))
          return;
    }
 
@@ -441,7 +484,7 @@ static void load_menu_load( unsigned int wdw, char *str )
    menu_main_close();
 
    /* Try to load the game. */
-   if (load_game( &ns[pos] )) {
+   if (load_game( &load_saves[pos] )) {
       /* Failed so reopen both. */
       menu_main();
       load_loadGameMenu();
@@ -457,8 +500,6 @@ static void load_menu_delete( unsigned int wdw, char *str )
    (void)str;
    char *save;
    int wid, pos;
-   nsave_t *ns;
-   int n;
 
    wid = window_get( "wdwLoadGameMenu" );
    save = toolkit_getList( wid, "lstSaves" );
@@ -472,8 +513,7 @@ static void load_menu_delete( unsigned int wdw, char *str )
 
    /* Remove it. */
    pos = toolkit_getListPos( wid, "lstSaves" );
-   ns  = load_getList( &n );
-   remove( ns[pos].path ); /* remove is portable and will call unlink on linux. */
+   PHYSFS_delete( load_saves[pos].path );
 
    /* need to reload the menu */
    load_menu_close(wdw, NULL);
@@ -526,7 +566,7 @@ static void load_compatSlots (void)
 /**
  * @brief Loads the diffs from game file.
  *
- *    @param file File that contains the new game.
+ *    @param file PhysicsFS path (i.e., relative path starting with "saves/").
  *    @return 0 on success.
  */
 int load_gameDiff( const char* file )
@@ -535,13 +575,13 @@ int load_gameDiff( const char* file )
    xmlDocPtr doc;
 
    /* Make sure it exists. */
-   if (!nfile_fileExists(file)) {
+   if (!PHYSFS_exists( file )) {
       dialogue_alert( _("Saved game file seems to have been deleted.") );
       return -1;
    }
 
    /* Load the XML. */
-   doc   = xmlParseFile(file);
+   doc = load_xml_parsePhysFS( file );
    if (doc == NULL)
       goto err;
    node  = doc->xmlChildrenNode; /* base node */
@@ -567,7 +607,7 @@ err:
 /**
  * @brief Loads the game from a file.
  *
- *    @param file File that contains the new game.
+ *    @param file PhysicsFS path (i.e., relative path starting with "saves/").
  *    @return 0 on success
  */
 int load_gameFile( const char *file )
@@ -591,7 +631,7 @@ int load_game( nsave_t *ns )
 /**
  * @brief Actually loads a new game.
  *
- *    @param file File that contains the new game.
+ *    @param file PhysicsFS path (i.e., relative path starting with "saves/").
  *    @param version Version string of game to load.
  *    @return 0 on success.
  */
@@ -603,13 +643,13 @@ static int load_gameInternal( const char* file, const char* version )
    int version_diff = (version!=NULL) ? naev_versionCompare(version) : 0;
 
    /* Make sure it exists. */
-   if (!nfile_fileExists(file)) {
+   if (!PHYSFS_exists( file )) {
       dialogue_alert( _("Saved game file seems to have been deleted.") );
       return -1;
    }
 
    /* Load the XML. */
-   doc   = xmlParseFile(file);
+   doc = load_xml_parsePhysFS( file );
    if (doc == NULL)
       goto err;
    node  = doc->xmlChildrenNode; /* base node */
@@ -688,3 +728,13 @@ err:
 }
 
 
+/**
+ * @brief Temporary (hopefully) wrapper around xml_parsePhysFS in support of gzipped XML (like .ns files).
+ */
+static xmlDocPtr load_xml_parsePhysFS( const char* filename )
+{
+   char buf[PATH_MAX];
+
+   nsnprintf( buf, sizeof(buf), "%s/%s", PHYSFS_getWriteDir(), filename);
+   return xmlParseFile( buf );
+}

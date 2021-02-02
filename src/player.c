@@ -11,6 +11,7 @@
 
 /** @cond */
 #include <stdlib.h>
+#include "physfs.h"
 
 #include "naev.h"
 /** @endcond */
@@ -77,7 +78,6 @@ static char *player_message_noland = NULL; /**< No landing message (when PLAYER_
  * Licenses.
  */
 static char **player_licenses = NULL; /**< Licenses player has. */
-static int player_nlicenses   = 0; /**< Number of licenses player has. */
 
 
 /*
@@ -111,9 +111,6 @@ static PlayerShip_t* player_stack   = NULL;  /**< Stack of ships player has. */
  * player outfit stack - outfits he has
  */
 static PlayerOutfit_t *player_outfits  = NULL;  /**< Outfits player has. */
-static int player_noutfits             = 0;     /**< Number of outfits player has. */
-static int player_moutfits             = 0;     /**< Current allocated memory. */
-#define OUTFIT_CHUNKSIZE               32       /**< Allocation chunk size. */
 
 
 /*
@@ -147,7 +144,6 @@ static int events_ndone  = 0; /**< Number of completed events. */
  * Extern stuff for player ships.
  */
 extern Pilot** pilot_stack;
-extern int pilot_nstack;
 
 
 /*
@@ -201,6 +197,8 @@ int player_init (void)
 {
    if (player_stack==NULL)
       player_stack = array_create( PlayerShip_t );
+   if (player_outfits==NULL)
+      player_outfits = array_create( PlayerOutfit_t );
    player_initSound();
    return 0;
 }
@@ -266,8 +264,8 @@ void player_new (void)
       return;
    }
 
-   nsnprintf( buf, sizeof(buf), "%ssaves/%s.ns", nfile_dataPath(), player.name);
-   if (nfile_fileExists(buf)) {
+   nsnprintf( buf, sizeof(buf), "saves/%s.ns", player.name);
+   if (PHYSFS_exists( buf )) {
       r = dialogue_YesNo(_("Overwrite"),
             _("You already have a pilot named %s. Overwrite?"),player.name);
       if (r==0) { /* no */
@@ -338,6 +336,8 @@ static int player_newMake (void)
 
    if (player_stack==NULL)
       player_stack = array_create( PlayerShip_t );
+   if (player_outfits==NULL)
+      player_outfits = array_create( PlayerOutfit_t );
 
    /* Time. */
    ntime_set( start_date() );
@@ -569,7 +569,7 @@ void player_swapShip( const char *shipname )
 
       /* now swap the players */
       player_stack[i].p = player.p;
-      for (j=0; j<pilot_nstack; j++) /* find pilot in stack to swap */
+      for (j=0; j<array_size(pilot_stack); j++) /* find pilot in stack to swap */
          if (pilot_stack[j] == player.p) {
             player.p         = ship;
             pilot_stack[j] = ship;
@@ -706,17 +706,14 @@ void player_cleanup (void)
    ovr_setOpen(0);
 
    /* clean up the stack */
-   if (player_stack != NULL)
-      for (i=0; i<array_size(player_stack); i++)
-         pilot_free(player_stack[i].p);
+   for (i=0; i<array_size(player_stack); i++)
+      pilot_free(player_stack[i].p);
    array_free(player_stack);
    player_stack = NULL;
    /* nothing left */
 
-   free(player_outfits);
+   array_free(player_outfits);
    player_outfits  = NULL;
-   player_noutfits = 0;
-   player_moutfits = 0;
 
    free(missions_done);
    missions_done = NULL;
@@ -729,13 +726,10 @@ void player_cleanup (void)
    events_mdone = 0;
 
    /* Clean up licenses. */
-   if (player_nlicenses > 0) {
-      for (i=0; i<player_nlicenses; i++)
-         free(player_licenses[i]);
-      free(player_licenses);
-      player_licenses = NULL;
-      player_nlicenses = 0;
-   }
+   for (i=0; i<array_size(player_licenses); i++)
+      free(player_licenses[i]);
+   array_free(player_licenses);
+   player_licenses = NULL;
 
    /* Clear claims. */
    claim_clear();
@@ -1857,7 +1851,7 @@ void player_brokeHyperspace (void)
    map_jump();
 
    /* Add persisted pilots */
-   for (i=0; i<pilot_nstack; i++) {
+   for (i=0; i<array_size(pilot_stack); i++) {
       if ((pilot_stack[i] != player.p) &&
             (pilot_isFlag(pilot_stack[i], PILOT_PERSIST))) {
          space_calcJumpInPos( cur_system, sys, &pilot_stack[i]->solid->pos, &pilot_stack[i]->solid->vel, &pilot_stack[i]->solid->dir );
@@ -1954,7 +1948,7 @@ void player_targetHostile (void)
 
    tp = PLAYER_ID;
    d  = 0;
-   for (int i=0; i<pilot_nstack; i++) {
+   for (int i=0; i<array_size(pilot_stack); i++) {
       /* Shouldn't be disabled. */
       if (pilot_isDisabled(pilot_stack[i]))
          continue;
@@ -2102,16 +2096,15 @@ void player_screenshot (void)
 {
    char filename[PATH_MAX];
 
-   if (nfile_dirMakeExist(nfile_dataPath()) < 0 || nfile_dirMakeExist(nfile_dataPath(), "screenshots") < 0) {
+   if (PHYSFS_mkdir("screenshots") == 0) {
       WARN(_("Aborting screenshot"));
       return;
    }
 
    /* Try to find current screenshots. */
    for ( ; screenshot_cur < 1000; screenshot_cur++) {
-      nsnprintf( filename, PATH_MAX, "%sscreenshots/screenshot%03d.png",
-            nfile_dataPath(), screenshot_cur );
-      if (!nfile_fileExists( filename ))
+      nsnprintf( filename, PATH_MAX, "screenshots/screenshot%03d.png", screenshot_cur );
+      if (!PHYSFS_exists( filename ))
          break;
    }
 
@@ -2136,7 +2129,7 @@ static void player_checkHail (void)
    Pilot *p;
 
    /* See if a pilot is hailing. */
-   for (i=0; i<pilot_nstack; i++) {
+   for (i=0; i<array_size(pilot_stack); i++) {
       p = pilot_stack[i];
 
       /* Must be hailing. */
@@ -2220,27 +2213,23 @@ void player_autohail (void)
       return;
 
    /* Find pilot to autohail. */
-   for (i=0; i<pilot_nstack; i++) {
+   for (i=0; i<array_size(pilot_stack); i++) {
       p = pilot_stack[i];
 
       /* Must be hailing. */
-      if (pilot_isFlag(p, PILOT_HAILING))
-         break;
+      if (pilot_isFlag(p, PILOT_HAILING)) {
+         /* Try to hail. */
+         pilot_setTarget( player.p, p->id );
+         gui_setTarget();
+         player_hail();
+
+         /* Clear hails if none found. */
+         player_checkHail();
+         return;
+      }
    }
 
-   /* Not found any. */
-   if (i >= pilot_nstack) {
-      player_message(_("#rYou haven't been hailed by any pilots."));
-      return;
-   }
-
-   /* Try to hail. */
-   pilot_setTarget( player.p, p->id );
-   gui_setTarget();
-   player_hail();
-
-   /* Clear hails if none found. */
-   player_checkHail();
+   player_message(_("#rYou haven't been hailed by any pilots."));
 }
 
 
@@ -2415,9 +2404,6 @@ int player_ships( char** sships, glTexture** tships )
 {
    int i;
 
-   if (array_size(player_stack) == 0)
-      return 0;
-
    /* Sort. */
    player_shipsSort();
 
@@ -2432,14 +2418,10 @@ int player_ships( char** sships, glTexture** tships )
 
 
 /**
- * @brief Gets all of the player's ships.
- *
- *    @param[out] n Number of star systems gotten.
- *    @return The player's ships.
+ * @brief Gets the array (array.h) of the player's ships.
  */
-const PlayerShip_t* player_getShipStack( int *n )
+const PlayerShip_t* player_getShipStack (void)
 {
-   *n = array_size(player_stack);
    return player_stack;
 }
 
@@ -2525,7 +2507,7 @@ int player_outfitOwned( const Outfit* o )
       return 1;
 
    /* Try to find it. */
-   for (i=0; i<player_noutfits; i++)
+   for (i=0; i<array_size(player_outfits); i++)
       if (player_outfits[i].o == o)
          return player_outfits[i].q;
 
@@ -2567,15 +2549,11 @@ static int player_outfitCompare( const void *arg1, const void *arg2 )
 
 
 /**
- * @brief Returns the player's outfits.
- *
- *    @param[out] n Number of distinct outfits (not total quantity).
- *    @return Outfits the player owns.
+ * @brief Gets an array (array.h) of the player's outfits.
  */
-const PlayerOutfit_t* player_getOutfits( int *n )
+const PlayerOutfit_t* player_getOutfits (void)
 {
-   *n = player_noutfits;
-   return (const PlayerOutfit_t*) player_outfits;
+   return player_outfits;
 }
 
 
@@ -2592,17 +2570,17 @@ int player_getOutfitsFiltered( Outfit **outfits,
 {
    int i;
 
-   if (player_noutfits == 0)
+   if (array_size(player_outfits) == 0)
       return 0;
 
    /* We'll sort. */
-   qsort( player_outfits, player_noutfits,
+   qsort( player_outfits, array_size(player_outfits),
          sizeof(PlayerOutfit_t), player_outfitCompare );
 
-   for (i=0; i<player_noutfits; i++)
+   for (i=0; i<array_size(player_outfits); i++)
       outfits[i] = (Outfit*)player_outfits[i].o;
 
-   return outfits_filter( outfits, player_noutfits, filter, name );
+   return outfits_filter( outfits, array_size(player_outfits), filter, name );
 }
 
 
@@ -2613,7 +2591,7 @@ int player_getOutfitsFiltered( Outfit **outfits,
  */
 int player_numOutfits (void)
 {
-   return player_noutfits;
+   return array_size(player_outfits);
 }
 
 
@@ -2627,6 +2605,7 @@ int player_numOutfits (void)
 int player_addOutfit( const Outfit *o, int quantity )
 {
    int i;
+   PlayerOutfit_t *po;
 
    /* Validity check. */
    if (quantity == 0)
@@ -2657,7 +2636,7 @@ int player_addOutfit( const Outfit *o, int quantity )
    }
 
    /* Try to find it. */
-   for (i=0; i<player_noutfits; i++) {
+   for (i=0; i<array_size(player_outfits); i++) {
       if (player_outfits[i].o == o) {
          player_outfits[i].q  += quantity;
          return quantity;
@@ -2665,19 +2644,11 @@ int player_addOutfit( const Outfit *o, int quantity )
    }
 
    /* Allocate if needed. */
-   player_noutfits++;
-   if (player_noutfits > player_moutfits) {
-      if (player_moutfits == 0)
-         player_moutfits = OUTFIT_CHUNKSIZE;
-      else
-         player_moutfits *= 2;
-      player_outfits   = realloc( player_outfits,
-            sizeof(PlayerOutfit_t) * player_moutfits );
-   }
+   po = &array_grow( &player_outfits );
 
    /* Add the outfit. */
-   player_outfits[player_noutfits-1].o = o;
-   player_outfits[player_noutfits-1].q = quantity;
+   po->o = o;
+   po->q = quantity;
    return quantity;
 }
 
@@ -2694,18 +2665,15 @@ int player_rmOutfit( const Outfit *o, int quantity )
    int i, q;
 
    /* Try to find it. */
-   for (i=0; i<player_noutfits; i++) {
+   for (i=0; i<array_size(player_outfits); i++) {
       if (player_outfits[i].o == o) {
          /* See how many to remove. */
          q = MIN( player_outfits[i].q, quantity );
          player_outfits[i].q -= q;
 
          /* See if must remove element. */
-         if (player_outfits[i].q <= 0) {
-            player_noutfits--;
-            memmove( &player_outfits[i], &player_outfits[i+1],
-                  sizeof(PlayerOutfit_t) * (player_noutfits-i) );
-         }
+         if (player_outfits[i].q <= 0)
+            array_erase( &player_outfits, &player_outfits[i], &player_outfits[i+1] );
 
          /* Return removed outfits. */
          return q;
@@ -2800,10 +2768,10 @@ int player_eventAlreadyDone( int id )
 int player_hasLicense( char *license )
 {
    int i;
-   if (!license) /* Null input. */
+   if (license == NULL)
       return 1;
 
-   for (i=0; i<player_nlicenses; i++)
+   for (i=0; i<array_size(player_licenses); i++)
       if (strcmp(license, player_licenses[i])==0)
          return 1;
 
@@ -2818,26 +2786,19 @@ int player_hasLicense( char *license )
  */
 void player_addLicense( char *license )
 {
-   /* Player already has license. */
    if (player_hasLicense(license))
       return;
-
-   /* Add the license. */
-   player_nlicenses++;
-   player_licenses = realloc( player_licenses, sizeof(char*)*player_nlicenses );
-   player_licenses[player_nlicenses-1] = strdup(license);
+   if (player_licenses == NULL)
+      player_licenses = array_create( char* );
+   array_push_back( &player_licenses, strdup(license) );
 }
 
 
 /**
- * @brief Gets the player's licenses.
- *
- *    @param nlicenses Amount of licenses the player has.
- *    @return Name of the licenses he has.
+ * @brief Gets the array (array.h) of license names in the player's inventory.
  */
-char **player_getLicenses( int *nlicenses )
+char **player_getLicenses ()
 {
-   *nlicenses = player_nlicenses;
    return player_licenses;
 }
 
@@ -2982,7 +2943,7 @@ static int player_saveEscorts( xmlTextWriterPtr writer )
 int player_save( xmlTextWriterPtr writer )
 {
    char **guis;
-   int i, n;
+   int i;
    MissionData *m;
    const char *ev;
    int cycles, periods, seconds;
@@ -3021,14 +2982,14 @@ int player_save( xmlTextWriterPtr writer )
 
    /* GUIs. */
    xmlw_startElem(writer,"guis");
-   guis = player_guiList( &n );
-   for (i=0; i<n; i++)
+   guis = player_guiList();
+   for (i=0; i<array_size(guis); i++)
       xmlw_elem(writer,"gui","%s",guis[i]);
    xmlw_endElem(writer); /* "guis" */
 
    /* Outfits. */
    xmlw_startElem(writer,"outfits");
-   for (i=0; i<player_noutfits; i++) {
+   for (i=0; i<array_size(player_outfits); i++) {
       xmlw_startElem(writer, "outfit");
       xmlw_attr(writer, "quantity", "%d", player_outfits[i].q);
       xmlw_str(writer, "%s", player_outfits[i].o->name);
@@ -3038,7 +2999,7 @@ int player_save( xmlTextWriterPtr writer )
 
    /* Licenses. */
    xmlw_startElem(writer, "licenses");
-   for (i=0; i<player_nlicenses; i++)
+   for (i=0; i<array_size(player_licenses); i++)
       xmlw_elem(writer, "license", "%s", player_licenses[i]);
    xmlw_endElem(writer); /* "licenses" */
 
@@ -3224,6 +3185,8 @@ Planet* player_load( xmlNodePtr parent )
 
    if (player_stack==NULL)
       player_stack = array_create( PlayerShip_t );
+   if (player_outfits==NULL)
+      player_outfits = array_create( PlayerOutfit_t );
 
    node = parent->xmlChildrenNode;
    do {

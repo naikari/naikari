@@ -181,8 +181,7 @@ function enter()
       angle = rnd.rnd() * 360
       pos = vec2.newP(sysrad, angle)
 
-      baddie = pilot.addRaw( "Gawain","dummy", nil, "Thugs" )
-      baddie:rename(gawname)
+      baddie = pilot.add( "Gawain", "Thugs", nil, gawname, "dummy" )
       baddie:setHostile()
       baddie:setHilight()
       baddie:control()
@@ -212,9 +211,9 @@ function enter()
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      baddie = pilot.add( "Pirate Kestrel", "pirate_norun", vec2.new(0,0))[1]
-      ancestor = pilot.add( "Pirate Ancestor", nil, vec2.new(100,0))[1]
-      hyena = pilot.add( "Pirate Hyena", nil, vec2.new(0,100))[1]
+      baddie = pilot.add( "Pirate Kestrel", "Pirate", vec2.new(0,0), nil, "pirate_norun" )
+      ancestor = pilot.add( "Pirate Ancestor", "Pirate", vec2.new(100,0) )
+      hyena = pilot.add( "Hyena", "Pirate", vec2.new(0,100), _("Pirate Hyena") )
 
       baddie:rename(kername1)
       baddie:setHilight()
@@ -226,10 +225,10 @@ function enter()
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      baddie = pilot.add( "Pirate Kestrel", "pirate_norun", vec2.new(0,0))[1]
-      ancestor = pilot.add( "Pirate Ancestor", nil, vec2.new(100,0))[1]
-      shark = pilot.add( "Pirate Shark", nil, vec2.new(0,100))[1]
-      hyena = pilot.add( "Pirate Hyena", nil, vec2.new(100,100))[1]
+      baddie = pilot.add( "Pirate Kestrel", "Pirate", vec2.new(0,0), nil, "pirate_norun" )
+      ancestor = pilot.add( "Pirate Ancestor", "Pirate", vec2.new(100,0) )
+      shark = pilot.add( "Pirate Shark", "Pirate", vec2.new(0,100) )
+      hyena = pilot.add( "Hyena", "Pirate", vec2.new(100,100), _("Pirate Hyena") )
 
       baddie:rename(kername2)
       baddie:setHilight()
@@ -241,12 +240,12 @@ function enter()
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      baddie = pilot.add( "Goddard Goddard", "pirate_norun", vec2.new(0,0))[1] --Faction's ships come with upgraded weaponry
+      baddie = pilot.add( "Goddard", "Goddard", vec2.new(0,0), _("Goddard Goddard"), "pirate_norun" ) --Faction's ships come with upgraded weaponry
       baddie:setFaction("Pirate")
       baddie:changeAI( "pirate" )
 
-      ancestor = pilot.add( "Pirate Ancestor", nil, vec2.new(100,0))[1]
-      hyena = pilot.add( "Pirate Hyena", nil, vec2.new(0,100))[1]
+      ancestor = pilot.add( "Pirate Ancestor", "Pirate", vec2.new(100,0) )
+      hyena = pilot.add( "Hyena", "Pirate", vec2.new(0,100), _("Pirate Hyena") )
 
       baddie:rename(godname)
       baddie:setHilight()

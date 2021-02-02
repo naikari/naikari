@@ -117,27 +117,40 @@ update the submodules with the following command.
 git submodule update
 ```
 
-You can also set this to be done automatically on git pull with the following command:
+You can also set this to be done automatically on git pull with the following
+command:
 
 ```bash
 git config submodule.recurse true
 ```
 
-Afterwards, every time you perform a `git pull`, it will also update the artwork submodule.
+Afterwards, every time you perform a `git pull`, it will also update the
+artwork submodule.
 
-## UPDATING PO FILES
+## TRANSLATION
+
+Naev supports unicode and gettext since version 0.8.0.
+
+### ONLINE TRANSLATION
+
+Naev is incorporated into Weblate. You can easily translate directly with a web
+interface to your chosen language at
+https://hosted.weblate.org/projects/naev/naev/ .
+
+### MANUAL TRANSLATION
 
 If you are a developer, you may need to update translation files as
 text is modified. You can update all translation files with the
 following commands:
 
 ```bash
-meson compile potfiles # only necessary if files have been added or removed
-meson compile naikari-pot
-meson compile naikari-update-po
+meson compile potfiles        # necessary if files have been added or removed
+meson compile naev-pot        # necessary if translatable strings changed
+meson compile naev-update-po  # necessary outside the main line, where Weblate handles it
 ```
 
-Again, you will only ever need to do this if you are a developer.
+This wil allow you to edit the translation files in `po/` manually to modify
+translations.
 
 ## CRASHES & PROBLEMS
 

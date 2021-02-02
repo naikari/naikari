@@ -59,7 +59,7 @@ land_text = _([["Excellent! The landing was successful. Melendez Corporation use
 
 bar_text = _([["This is the Spaceport Bar, where you can read the latest news (as you can see on your right at the moment), but more importantly, you can meet other pilots, civilians, and more! Click on someone at the bar and then click on the Approach button to approach them. I recommend regularly talking to bar patrons, at least early on. There may be pilots among them who may have useful tips for you!"]])
 
-mission_text = _([["This is the Mission Computer, where you can find basic missions in the official mission database. Missions are how you make your living as a pilot, so I recommend you check this screen often to see where the money-making opportunities are! You can see that each mission is given a brief summary, and by clicking them, you well be able to see more information about the mission. Since many missions involve cargo, you can also see how much free space is available in your ship in the top-right.
+mission_text = _([["This is the Mission Computer, where you can find basic missions in the official mission database. Missions are how you make your living as a pilot, so I recommend you check this screen often to see where the money-making opportunities are! You can see that each mission is given a brief summary, and by clicking them, you will be able to see more information about the mission. Since many missions involve cargo, you can also see how much free space is available in your ship in the top-right.
     "When picking missions, pay attention to how much they pay. You'll want to strike a balance of choosing missions that you're capable of doing, but getting paid as much as possible to do them. Once you've chosen a mission, click the 'Accept Mission' button on the bottom-right and it will be added to your active missions, which you can review via the Info screen by pressing %s."]])
 
 outfits_text = _([["This is the Outfitter, where you can buy new outfits to make your Melendez Corporation starship even better! You can fit your ship with new weapons, extra cargo space, more powerful core systems, and more! Regional maps which can help you explore the galaxy more easily can also be purchased here, as well as licenses required for higher-end weaponry and starships (for example, you will require a Large Civilian Vessel License to purchase our top-of-the-line Melendez Mule Bulk Cargo Starhip, widely sought after for its unmatched cargo capacity).
@@ -168,7 +168,7 @@ function timer ()
 
    if stage == 1 then
       if system.cur() == missys
-            and player.pilot():pos():dist( start_planet:pos() ) <= start_planet_r then
+            and player.pos():dist( start_planet:pos() ) <= start_planet_r then
          stage = 2
          misn.osdActive( 2 )
 
@@ -179,7 +179,7 @@ function timer ()
       end
    elseif stage == 4 then
       if system.cur() == missys
-            and player.pilot():pos():dist(dest_planet:pos()) <= dest_planet_r then
+            and player.pos():dist(dest_planet:pos()) <= dest_planet_r then
          stage = 5
          misn.osdActive( 4 )
          tk.msg( tutorial_title, combat_text:format(
@@ -292,7 +292,7 @@ end
 
 
 function spawn_drone ()
-   local p = pilot.addRaw( "Hyena", "baddie_norun", dest_planet, "Dummy" )
+   local p = pilot.add( "Hyena", "Dummy", dest_planet, _("Practice Drone"), "baddie_norun" )
    p:rmOutfit( "all" )
    p:rmOutfit( "cores" )
    p:addOutfit( "Previous Generation Small Systems" )
@@ -304,7 +304,6 @@ function spawn_drone ()
    p:setTemp( 0 )
    p:setFuel( true )
 
-   p:rename( _("Practice Drone") )
    p:setHostile()
    p:setVisplayer()
    p:setHilight()
