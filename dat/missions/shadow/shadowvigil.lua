@@ -66,7 +66,7 @@ disable_title = _("The Pill of Silence")
 disable_text = _([[After managing to bypass the ship's security system, you enter the cockpit and notice that the fighter has been sabotaged and might soon explode: you have little time to find and capture the pilot. You head to the living cabin. As you cross the access hatch, you see him, floating weightlessly close to the floor. As he turns his livid face towards yours, you find yourself horrified by the awful mask of pain on his face. His bulging, bloodshot eyes stare at you, as if they wanted to pierce your skin. His twisted mouth splits a repugnant creamy fluid as he starts to speak, in a groan:
    "Good job out there. Hum. But, you see? You won't catch me alive. Oh, no. The pill of silence will make sure of that. Hmf. It looks painful, doesn't it? You know what? It's even worse than it looks. I guarantee it. Gbf. Oh, it makes me throw up... I'm sorry about that."
    You approach the man, and ask him why he killed the diplomats. "You have no idea what is going on, right? Uh. Let me tell you something: they are coming! And they won't show any mercy. Oooh! They're so close! They're far worse than your darkest nightmares! And one day they'll get you. That day, you will envy... You will envy my vomit-eating agony! Sooooo much!"
-   The man stops speaking and moving. His grimacing face still turned towards you makes you wonder if he's fully dead, but in absence of any response, you first think about leaving the ship as soon as possible before it explodes. You then decide instead to take the opportunity to loot around a bit, and finally go back to your ship with what looks like a fancy vacuum cleaner.]])
+   The man stops speaking and moving. His grimacing face still turned towards you makes you wonder if he's fully dead, but in absence of any response, you first think about leaving the ship as soon as possible before it explodes.]])
 
 wrongsystitle = _("You diverged!")
 wrongsystext = _([[You have jumped to the wrong system! You are no longer part of the mission to escort the diplomat.]])
@@ -649,7 +649,6 @@ function board_escort( pilot )
    if not boarded_escort then
       tk.msg( disable_title, disable_text )
       player.unboard()
-      player.addOutfit("Vacuum Cleaner?")
       pilot:setHealth(0, 0) -- Make ship explode
       boarded_escort = true
    end
