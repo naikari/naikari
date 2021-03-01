@@ -8,6 +8,7 @@
  <class>Cruiser</class>
  <price>7000000</price>
  <time_mod>1.75</time_mod>
+ <trail_generator x="-60" y="0" h="0">zalekXL</trail_generator>
  <fabricator>Za'lek Fabricators</fabricator>
  <license>Heavy Combat Vessel License</license>
  <description>A mighty ship, the Mephisto has grand energy and shielding management, and its shields allow it to shrug off a lot of abuse. A core of these ships can reduce even powerful fleets to slag in short order.</description>
@@ -31,7 +32,6 @@
   <weapon size="large" x="-15" y="0" h="7" />
   <weapon size="large" x="-33" y="0" h="7" />
   <utility size="large" prop="systems" exclusive="1" required="1">Unicorp PT-1000 Core System</utility>
->>>>>>> bbf484def4edf1dd98247c42099b1f6e9405a0ae
   <utility size="large" />
   <utility size="large" />
   <utility size="large" />

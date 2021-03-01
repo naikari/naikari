@@ -291,6 +291,7 @@ static int gl_createWindow( unsigned int flags )
    }
 
    /* Finish getting attributes. */
+   gl_screen.current_fbo = 0; /* No FBO set. */
    SDL_GL_GetAttribute( SDL_GL_DEPTH_SIZE, &gl_screen.depth );
    gl_activated = 1; /* Opengl is now activated. */
 
@@ -328,9 +329,8 @@ static int gl_getGLInfo (void)
          gl_screen.r, gl_screen.g, gl_screen.b, gl_screen.a,
          gl_has(OPENGL_DOUBLEBUF) ? _("yes") : _("no"),
          gl_screen.fsaa, gl_screen.tex_max);
-   DEBUG(_("vsync: %s, mm: %s, compress: %s"),
+   DEBUG(_("vsync: %s, compress: %s"),
          gl_has(OPENGL_VSYNC) ? _("yes") : _("no"),
-         gl_texHasMipmaps() ? _("yes") : _("no"),
          gl_texHasCompress() ? _("yes") : _("no"));
    DEBUG(_("Renderer: %s"), glGetString(GL_RENDERER));
    DEBUG(_("Version: %s"), glGetString(GL_VERSION));
@@ -462,6 +462,7 @@ int gl_init (void)
    if (!gladLoadGLLoader(SDL_GL_GetProcAddress))
       ERR("Unable to load OpenGL using GLAD");
 
+   /* We are interested in 3.1 because it drops all the deprecated stuff. */
    if ( !GLAD_GL_VERSION_3_1 )
       WARN( "Naev requires OpenGL 3.1, but got OpenGL %d.%d!", GLVersion.major, GLVersion.minor );
 

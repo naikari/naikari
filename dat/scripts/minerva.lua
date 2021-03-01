@@ -4,6 +4,7 @@
 local vn = require 'vn'
 local colour = require 'colour'
 local portrait = require 'portrait'
+require 'numstring'
 
 local minerva = {
    -- Main Characters
@@ -54,14 +55,33 @@ local minerva = {
    },
 }
 
--- Helpers to create main characters
-function minerva.vn_cyborg_chicken()
-   return vn.Character.new( minerva.chicken.name,
-         { image=minerva.chicken.image, color=minerva.chicken.colour } )
+local function _merge_tables( p, params )
+   params = params or {}
+   for k,v in pairs(params) do p[k] = v end
+   return p
 end
-function minerva.vn_maikki()
+
+-- Helpers to create main characters
+function minerva.vn_cyborg_chicken( params )
+   return vn.Character.new( minerva.chicken.name,
+         _merge_tables( {
+            image=minerva.chicken.image,
+            color=minerva.chicken.colour,
+         }, params) )
+end
+function minerva.vn_maikki( params )
    return vn.Character.new( minerva.maikki.name,
-         { image=minerva.maikki.image, color=minerva.maikki.colour } )
+         _merge_tables( {
+            image=minerva.maikki.image,
+            color=minerva.maikki.colour,
+         }, params) )
+end
+function minerva.vn_terminal( params )
+   return vn.Character.new( minerva.terminal.name,
+         _merge_tables( {
+            image=minerva.terminal.image,
+            color=minerva.terminal.colour,
+         }, params) )
 end
 
 -- Token stuff
@@ -80,6 +100,12 @@ function minerva.tokens_pay( amount )
       v = var.peek( "minerva_tokens_gained" ) or 0
       var.push( "minerva_tokens_gained", v+amount )
    end
+end
+function minerva.tokens_str( amount )
+   return gettext.ngettext(
+      "#p%s Minerva Token#0",
+      "#p%s Minerva Tokens#0", amount ):format(
+         numstring(amount) )
 end
 
 -- Maikki stuff
