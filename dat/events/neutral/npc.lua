@@ -13,7 +13,6 @@
 
 require "events/tutorial/tutorial_common"
 local portrait = require "portrait"
-local vn = require 'vn'
 
 -- List of inhabited planets where there will be NO generic NPCs
 blacklist = {
@@ -479,12 +478,7 @@ function talkNPC(id)
       npcdata.func()
    end
 
-   vn.clear()
-   vn.scene()
-   local npc = vn.newCharacter( npcdata.name, { image=npcdata.image } )
-   vn.transition()
-   npc( npcdata.msg )
-   vn.run()
+   tk.msg( "", npcdata.msg )
 
    -- Reduce jump message chance
    var.push( "npc_jm_chance", math.max( jm_chance - 0.025, jm_chance_min ) )
