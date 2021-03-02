@@ -29,18 +29,46 @@ vec4 position( mat4 transform_projection, vec4 vertex_position )
 }
 ]]
 
+local function _shader2canvas( shader, image, w, h, sx, sy )
+   sx = sx or 1
+   sy = sy or sx
+   -- Render to image
+   local newcanvas = graphics.newCanvas( w, h )
+   local oldcanvas = graphics.getCanvas()
+   local oldshader = graphics.getShader()
+   graphics.setCanvas( newcanvas )
+   graphics.clear( 0, 0, 0, 0 )
+   graphics.setShader( shader )
+   image:draw( 0, 0, 0, sx, sy )
+   graphics.setShader( oldshader )
+   graphics.setCanvas( oldcanvas )
+
+   return newcanvas
+end
+
+--[[
+-- @brief Renders a shader to a canvas.
+--
+--    @param shader Shader to render.
+--    @param width Width of the canvas to create (or nil for fullscreen).
+--    @param height Height of the canvas to create (or nil for fullscreen).
+--]]
+function love_shaders.shader2canvas( shader, width, height )
+   local lw, lh = naev.gfx.dim()
+   width = width or lw
+   height = height or lh
+   return _shader2canvas( shader, love_shaders.img, width, height, width, height )
+end
+
 function love_shaders.paper( width, height, sharpness )
-   if width==nil then
-      width, height = naev.gfx.dim()
-   end
    sharpness = sharpness or 1
-   local pixelcode = [[
+   local pixelcode = string.format([[
 precision highp float;
 
 #include "lib/simplex.glsl"
 
-uniform float u_r;
-uniform float u_sharp;
+const float u_r = %f;
+const float u_sharp = %f;
 
 vec4 effect( vec4 color, Image tex, vec2 uv, vec2 px )
 {
@@ -56,24 +84,34 @@ vec4 effect( vec4 color, Image tex, vec2 uv, vec2 px )
 
    return texcolor;
 }
-]]
-
+]], love_math.random(), sharpness )
    local shader = graphics.newShader( pixelcode, _vertexcode )
-   shader:send( "u_r", love_math.random() )
-   shader:send( "u_sharp", sharpness );
+   return love_shaders.shader2canvas( shader, width, height )
+end
 
-   -- Render to image
-   local paperbg = graphics.newCanvas( width, height )
-   local oldcanvas = graphics.getCanvas()
-   local oldshader = graphics.getShader()
-   graphics.setCanvas( paperbg )
-   graphics.clear( 1, 1, 1, 1 )
-   graphics.setShader( shader )
-   love_shaders.img:draw( 0, 0, 0, width, height )
-   graphics.setShader( oldshader )
-   graphics.setCanvas( oldcanvas )
-
-   return paperbg
+-- TODO fix this...
+function love_shaders.blur( image, kernel_size )
+   kernel_size = kernel_size or 5
+   kernel_size = 0
+   local pixelcode = [[
+precision highp float;
+#include "lib/blur.glsl"
+uniform vec2 u_blurdir;
+uniform vec2 wh;
+vec4 effect( vec4 color, Image tex, vec2 uv, vec2 px )
+{
+   vec4 texcolor = blur13( tex, uv, wh, u_blurdir );
+   return texcolor;
+}
+]]
+   local shader = graphics.newShader( pixelcode, _vertexcode )
+   local w, h = image:getDimensions()
+   shader:send( "wh", w, h )
+   shader:send( "u_blurdir", kernel_size, 0 )
+   local pass1 = _shader2canvas( shader, image, w, h )
+   shader:send( "u_blurdir", 0, kernel_size )
+   local pass2 = _shader2canvas( shader, pass1, w, h )
+   return pass1
 end
 
 function love_shaders.oldify( noise )
@@ -291,5 +329,112 @@ vec4 effect( vec4 color, Image tex, vec2 uv, vec2 px ) {
    end
    return shader
 end
+
+
+function love_shaders.steam( strength, speed )
+   strength = strength or 1.0
+   speed = speed or 1.0
+   local pixelcode = string.format([[
+#include "lib/math.glsl"
+#include "lib/simplex.glsl"
+
+uniform float u_time;
+
+const float strength = %f;
+const float speed    = %f;
+const float u_r      = %f;
+
+vec4 effect( vec4 color, Image tex, vec2 uv, vec2 px )
+{
+   vec4 texcolor = color * texture2D( tex, uv );
+
+   vec2 offset = vec2( 50.0*sin( M_PI*u_time * 0.001 * speed ), -0.3*u_time*speed );
+
+   float n = 0.0;
+   for (float i=1.0; i<4.0; i=i+1.0) {
+      float m = pow( 2.0, i );
+      n += snoise( offset +  px * strength * 0.0015 * m + 1000.0 * u_r ) * (1.0 / m);
+   }
+
+   texcolor.a *= 0.68 + 0.3 * n;
+
+   return color * texcolor;
+}
+]], strength, speed, love_math.random() )
+
+   local shader = graphics.newShader( pixelcode, _vertexcode )
+   shader._dt = 1000 * love_math.random()
+   shader.update = function (self, dt)
+      self._dt = self._dt + dt
+      self:send( "u_time", self._dt )
+   end
+   return shader
+end
+
+
+function love_shaders.aura( color, strength )
+   color = color or {1, 0, 0}
+   strength = strength or 1
+   local pixelcode = string.format([[
+#include "lib/math.glsl"
+#include "lib/blur.glsl"
+#include "lib/simplex.glsl"
+#include "lib/blend.glsl"
+
+uniform float u_time;
+//uniform Image blurtex;
+
+const vec3 basecolor = vec3( %f, %f, %f );
+const float strength = %f;
+const float u_r = %f;
+
+vec4 effect( vec4 color, Image tex, vec2 uv, vec2 px )
+{
+
+   const float blur = 10.0;
+   vec4 blurcolor;
+   blurcolor  = blur9( tex, uv, love_ScreenSize.xy, vec2(blur, 0) );
+   blurcolor += blur9( tex, uv, love_ScreenSize.xy, vec2(0, blur) );
+   blurcolor += blur9( tex, uv, love_ScreenSize.xy, vec2(blur, blur)*M_SQRT1_2 );
+   blurcolor += blur9( tex, uv, love_ScreenSize.xy, vec2(blur, -blur)*M_SQRT1_2 );
+   blurcolor += blur9( tex, uv, love_ScreenSize.xy, vec2(-blur, blur)*M_SQRT1_2 );
+   blurcolor += blur9( tex, uv, love_ScreenSize.xy, vec2(-blur, -blur)*M_SQRT1_2 );
+   blurcolor *= 1.0/6.0;
+
+   if (blurcolor.a <= 0.0)
+      return vec4(0.0);
+
+   //vec4 blurcolor = texture2D( blurtex, uv );
+   vec4 texcolor = texture2D( tex, uv );
+
+   const float speed = 1.0;
+   const float strength = 1.0;
+   vec2 offset = vec2( 50.0*sin( M_PI*u_time * 0.001 * speed ), -3.0*u_time*speed );
+
+   float n = 0.0;
+   for (float i=1.0; i<4.0; i=i+1.0) {
+      float m = pow( 2.0, i );
+      n += snoise( offset +  px * strength * 0.009 * m + 1000.0 * u_r ) * (1.0 / m);
+   }
+   n = 0.5*n + 0.5;
+
+   blurcolor.a = 1.0-2.0*distance( 0.5, blurcolor.a );
+   blurcolor.a *= n;
+
+   texcolor.rgb = blendScreen( texcolor.rgb, basecolor, blurcolor.a );
+   texcolor.a = max( texcolor.a, blurcolor.a );
+   return color * texcolor;
+}
+]], color[1], color[2], color[3], strength, love_math.random() )
+
+   local shader = graphics.newShader( pixelcode, _vertexcode )
+   shader._dt = 1000 * love_math.random()
+   shader.update = function (self, dt)
+      self._dt = self._dt + dt
+      self:send( "u_time", self._dt )
+   end
+   return shader
+end
+
 
 return love_shaders

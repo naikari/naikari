@@ -207,7 +207,7 @@ end
 function graphics.pop()
    table.remove( graphics._T, 1 )
    if graphics._T[1] == nil then
-      graphics._T[1] = love.math.newTransform()
+      graphics._T[1] = love_math.newTransform()
    end
 end
 function graphics.translate( dx, dy ) graphics._T[1]:translate( dx, dy ) end
@@ -482,7 +482,6 @@ in vec4 VaryingColor;
 in vec2 VaryingPosition;
 out vec4 color_out;
 
-// TODO this is still wrong with canvases :/
 vec2 love_getPixelCoord() {
    vec2 uv = love_ScreenSize.xy * (0.5*VaryingPosition+0.5);
    uv.y = uv.y * love_ScreenSize.z + love_ScreenSize.w;
@@ -554,11 +553,9 @@ graphics.Canvas = class.inheritsFrom( object.Drawable )
 graphics.Canvas._type = "Canvas"
 function graphics.newCanvas( width, height, settings )
    local c = graphics.Canvas.new()
-   if not width then
-      local nw, nh, ns = naev.gfx.dim()
-      width = nw
-      height= nh
-   end
+   local nw, nh, ns = naev.gfx.dim()
+   width  = width or nw
+   height = height or nh
    c.canvas = naev.canvas.new( width, height )
    c.w = width
    c.h = height

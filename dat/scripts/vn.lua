@@ -50,6 +50,7 @@ local function _setdefaults()
    vn._default._postshader = nil
    vn._default._draw_fg = nil
    vn._default._draw_bg = nil
+   vn._default._updatefunc = nil
    -- These are implicitly dependent on lw, lh, so should be recalculated with the above.
    vn._canvas = graphics.newCanvas()
    vn._prevcanvas = graphics.newCanvas()
@@ -191,10 +192,8 @@ local function _draw()
       -- Draw canvas
       graphics.setCanvas( prevcanvas )
       graphics.setShader( vn._postshader )
-      vn.setColor( {1, 1, 1, 1} ) -- TODO: Really?
-      graphics.setBlendMode( "alpha", "premultiplied" )
+      vn.setColor( {1, 1, 1, 1} )
       vn._canvas:draw( 0, 0 )
-      graphics.setBlendMode( "alpha" )
       graphics.setShader()
    end
 end
@@ -236,6 +235,16 @@ function vn.update(dt)
       if c.shader and c.shader.update then
          c.shader:update(dt)
       end
+   end
+
+   -- Update shader if necessary
+   if vn._postshader and vn._postshader.update then
+      vn._postshader:update( dt )
+   end
+
+   -- Custom update function
+   if vn._updatefunc then
+      vn._updatefunc(dt)
    end
 
    local s = vn._states[ vn._state ]
@@ -318,11 +327,6 @@ end
 function vn.State:update( dt )
    self:_update( dt )
    vn._checkDone()
-
-   -- Update shader if necessary
-   if vn._postshader and vn._postshader.update then
-      vn._postshader:update( dt )
-   end
 end
 function vn.State:mousepressed( mx, my, button )
    self:_mousepressed( mx, my, button )
@@ -802,7 +806,7 @@ function vn.Character.new( who, params )
          if img == nil then
             error(string.format(_("vn: character image '%s' not found!"),pimage))
          end
-      elseif pimage:type()=="ImageData" then
+      elseif pimage._type=="ImageData" then
          img = graphics.newImage( pimage )
       else
          img = pimage
@@ -818,13 +822,9 @@ function vn.Character.new( who, params )
    return c
 end
 function vn.Character:rename( newname )
-   vn._checkstarted()
-   local s = vn.State.new()
-   s._init = function (state)
+   vn.func( function (state)
       self.displayname = newname
-      _finish(state)
-   end
-   table.insert( vn._states, s )
+   end )
 end
 --[[
 -- @brief Creates a new character.
@@ -1090,6 +1090,10 @@ function vn.setForeground( drawfunc )
    vn._draw_fg = drawfunc
 end
 
+function vn.setUpdateFunc( updatefunc )
+   vn._updatefunc = updatefunc
+end
+
 function vn._jump( label )
    for k,v in ipairs(vn._states) do
       if v:type() == "Label" and v.label == label then
@@ -1169,6 +1173,7 @@ function vn.clear()
       "_postshader",
       "_draw_fg",
       "_draw_bg",
+      "_updatefunc",
    }
 
    _setdefaults()
