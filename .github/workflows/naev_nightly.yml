@@ -177,6 +177,10 @@ jobs:
           - releasetype: github
 
     runs-on: ubuntu-latest
+
+    container:
+      image: "ghcr.io/projectsynchro/naev-linux-lts:latest"
+
     needs:
       [
         Package_Source,
