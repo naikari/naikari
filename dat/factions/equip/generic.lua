@@ -8,7 +8,7 @@ equip_classCargo = {
    ["Scout"] = .05,
    ["Courier"] = .8,
    ["Freighter"] = .8,
-   ["Armoured Transport"] = .8,
+   ["Armored Transport"] = .8,
    ["Fighter"] = .1,
    ["Bomber"] = .1,
    ["Corvette"] = .15,
@@ -1189,7 +1189,7 @@ function equip_generic( p )
 
    -- Add cargo
    local pb = equip_classCargo[class]
-   if rnd.rnd() < pb then
+   if pb ~= nil and rnd.rnd() < pb then
       local avail_cargo = commodity.getStandard()
 
       if #avail_cargo > 0 then
