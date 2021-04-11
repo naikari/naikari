@@ -1189,7 +1189,7 @@ function equip_generic( p )
 
    -- Add cargo
    local pb = equip_classCargo[class]
-   if pb ~= nil and rnd.rnd() < pb then
+   if rnd.rnd() < pb then
       local avail_cargo = commodity.getStandard()
 
       if #avail_cargo > 0 then
