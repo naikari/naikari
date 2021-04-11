@@ -52,23 +52,6 @@ system_events = {
       title = _("House Za'lek Central Station"),
       subtitle = _("Bastion of Knowledge"),
    },
-   Taiomi = {
-      type = "enter",
-      name = "disc_taiomi",
-      title = _("Taiomi"),
-      subtitle = _("Ship Graveyard"),
-   },
-   Limbo = {
-      -- Discover will not work if the planet is found through maps
-      --type = "discover",
-      --asset = planet.get("Minerva Station"),
-      type = "distance",
-      dist = 5000,
-      pos  = planet.get("Minerva Station"):pos(),
-      name = "disc_minerva",
-      title = _("Minerva Station"),
-      subtitle = _("Gambler's Paradise"),
-   },
    Haven = {
       type = "enter",
       name = "disc_haven",
