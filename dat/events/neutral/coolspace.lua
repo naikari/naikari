@@ -45,14 +45,6 @@ function endevent () evt.finish() end
 -- Taiomi, Ship Graveyard
 --]]
 function taiomi_init ()
-   -- Music is fixed
-   -- TODO make this not be a horrible hack :/
-   music.stop()
-   song = audio.new('snd/sounds/songs/inca-spa.ogg')
-   song:setLooping( true )
-   song:play()
-
-
    -- Create particles and buffer
    local density = 200*200
    buffer = 500
@@ -136,9 +128,9 @@ function taiomi_init ()
 
    -- Special
    wing = {
-      x = 200,
-      y = 100,
-      i = lg.newImage( 'gfx/spfx/derelict_goddard_wing.png' ),
+      x = 100,
+      y = 150,
+      i = lg.newImage( 'gfx/spfx/derelict_goddard_wing.webp' ),
       s = 2,
    }
 
@@ -147,6 +139,47 @@ function taiomi_init ()
    hook.renderbg( "taiomi_renderbg" )
    hook.renderfg( "taiomi_renderfg" )
    hook.update( "taiomi_update" )
+
+   -- Create a canvas background
+   local function add_bkg( n, move, scale, g, salpha, sbeta )
+      n = n or 100000
+      move = move or 0.03
+      scale = scale or 1.5
+      g = g or 0.5
+      salpha = salpha or 5
+      sbeta = sbeta or 3
+      local w = 2048
+      local h = 2048
+      local cvs = lg.newCanvas( w, h )
+      lg.setCanvas( cvs )
+      lg.clear( 0, 0, 0, 0 )
+      lg.setColor( g, g, g, 1 )
+      local a = math.rad( 20 + 10 * rnd.rnd() )
+      local c = math.cos(a)
+      local s = math.sin(a)
+      for i = 1,100000 do
+         local p = parts_create()
+         p.s = 1 / (salpha + sbeta*rnd.rnd())
+         local xr = 0.8 * naev.rnd.threesigma()
+         local yr = 0.7 * naev.rnd.threesigma()
+         local x = xr*c-yr*s
+         local y = xr*c+yr*s
+         p.x = w*(x+3) / 6
+         p.y = h*(y+3) / 6
+         lg.draw( p.i.i, p.q, p.x, p.y, 0, p.s )
+      end
+      lg.setCanvas()
+      naev.bkg.image( cvs.t.tex, 0, 0, move, scale )
+   end
+   -- Create three layers using parallax, this lets us cut down significantly
+   -- on the number of ships we have to render to create them
+   add_bkg( 333, 0.03, 1.5, 0.5, 6, 3 )
+   add_bkg( 333, 0.05, 1.5, 0.6, 5, 3 )
+   add_bkg( 333, 0.08, 1.5, 0.7, 4, 3 )
+
+   -- Standard nebula (prng would generate the same one)
+   local neb = tex.open( "gfx/bkg/nebula23.webp" )
+   bkg.image( neb, 377, 1344, 0.013, 1.9 )
 end
 function taiomi_update ()
    -- Calculate player motion
