@@ -397,7 +397,9 @@ function graphics.setScissor( x, y, width, height )
       width = width or love.w
       height = height or love.h
 
-      y = love.h - y - height
+      if graphics._canvas == nil then
+         y = love.h - y - height
+      end
       naev.gfx.setScissor( love.x+x, love.y+y, width, height )
    else
       x = 0
@@ -423,7 +425,8 @@ function graphics.newFont( ... )
    local filename, size
    if type(arg[1])=="string" then
       -- newFont( filename, size )
-      filename = filesystem.newFile( arg[1] ):getFilename() -- Trick to set path
+      filename = arg[1]
+      --filename = filesystem.newFile( arg[1] ):getFilename() -- Trick to set path
       size = arg[2] or 12
    else
       -- newFont( size )
@@ -432,8 +435,7 @@ function graphics.newFont( ... )
    end
 
    local f = graphics.Font.new()
-   f.font = naev.font.new( filename, size )
-   f.filename = filename
+   f.font, f.filename, f.prefix = naev.font.new( filename, size )
    f.height= f.font:height()
    f.lineheight = f.height*1.5 -- Naev default
    f:setFilter( graphics._minfilter, graphics._magfilter )
@@ -443,8 +445,7 @@ end
 function graphics.Font:setFallbacks( ... )
    local arg = {...}
    for k,v in ipairs(arg) do
-      local filename = v.filename
-      if not self.font:addFallback( filename ) then
+      if not self.font:addFallback( v.filename, v.prefix ) then
          error(_("failed to set fallback font"))
       end
    end
