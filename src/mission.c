@@ -497,7 +497,7 @@ void mission_cleanup( Mission* misn )
    /* Hooks and missions. */
    if (misn->id != 0) {
       hook_rmMisnParent( misn->id ); /* remove existing hooks */
-      npc_rm_parentMission( misn ); /* remove existing npc */
+      npc_rm_parentMission( misn->id ); /* remove existing npc */
    }
 
    /* Cargo. */
@@ -525,6 +525,7 @@ void mission_cleanup( Mission* misn )
    free(misn->reward);
    gl_freeTexture(misn->portrait);
    free(misn->npc);
+   free(misn->npc_desc);
 
    /* Markers. */
    array_free( misn->markers );

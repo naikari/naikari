@@ -353,7 +353,7 @@ static int misn_setReward( lua_State *L )
  *  - "computer": Mission computer marker.<br/>
  *
  *    @luatparam System sys System to mark.
- *    @luatparam string type Colouring scheme to use.
+ *    @luatparam[opt="high"] string type Colouring scheme to use.
  *    @luatreturn number A marker ID to be used with markerMove and markerRm.
  * @luafunc markerAdd
  */
@@ -367,7 +367,7 @@ static int misn_markerAdd( lua_State *L )
 
    /* Check parameters. */
    sys   = luaL_checksystem( L, 1 );
-   stype = luaL_checkstring( L, 2 );
+   stype = luaL_optstring( L, 2, "high" );
 
    /* Handle types. */
    if (strcmp(stype, "computer")==0)
@@ -495,12 +495,13 @@ static int misn_markerRm( lua_State *L )
  *
  *    @luatparam string name Name of the NPC.
  *    @luatparam string portrait File name of the portrait to use for the NPC.
+ *    @luatparam string desc Description of the NPC to use.
  * @luafunc setNPC
  */
 static int misn_setNPC( lua_State *L )
 {
    char buf[PATH_MAX];
-   const char *name, *str;
+   const char *name, *str, *desc;
    Mission *cur_mission;
 
    cur_mission = misn_getFromLua(L);
@@ -511,6 +512,9 @@ static int misn_setNPC( lua_State *L )
    free(cur_mission->npc);
    cur_mission->npc = NULL;
 
+   free(cur_mission->npc_desc);
+   cur_mission->npc_desc = NULL;
+
    /* For no parameters just leave having freed NPC. */
    if (lua_gettop(L) == 0)
       return 0;
@@ -518,9 +522,11 @@ static int misn_setNPC( lua_State *L )
    /* Get parameters. */
    name = luaL_checkstring(L,1);
    str  = luaL_checkstring(L,2);
+   desc = luaL_checkstring(L,3);
 
-   /* Set NPC name. */
+   /* Set NPC name and description. */
    cur_mission->npc = strdup(name);
+   cur_mission->npc_desc = strdup(desc);
 
    /* Set portrait. */
    snprintf( buf, sizeof(buf), GFX_PATH"portraits/%s", str );
@@ -865,8 +871,6 @@ static int misn_osdGetActiveItem( lua_State *L )
 /**
  * @brief Adds an NPC.
  *
- * @note Do not use this at all in the "create" function. Use setNPC, setDesc and the "accept" function instead.
- *
  * @usage npc_id = misn.npcAdd( "my_func", "Mr. Test", "none.png", "A test." ) -- Creates an NPC.
  *
  *    @luatparam string func Name of the function to run when approaching, gets passed the npc_id when called.
@@ -904,7 +908,10 @@ static int misn_npcAdd( lua_State *L )
    cur_mission = misn_getFromLua(L);
 
    /* Add npc. */
-   id = npc_add_mission( cur_mission, func, name, priority, portrait, desc, (bg==NULL) ? bg :background );
+   id = npc_add_mission( cur_mission->id, func, name, priority, portrait, desc, (bg==NULL) ? bg :background );
+
+   /* Regenerate bar. */
+   bar_regen();
 
    /* Return ID. */
    if (id > 0) {
@@ -931,7 +938,10 @@ static int misn_npcRm( lua_State *L )
 
    id = luaL_checklong(L, 1);
    cur_mission = misn_getFromLua(L);
-   ret = npc_rm_mission( id, cur_mission );
+   ret = npc_rm_mission( id, cur_mission->id );
+
+   /* Regenerate bar. */
+   bar_regen();
 
    if (ret != 0)
       NLUA_ERROR(L, _("Invalid NPC ID!"));
