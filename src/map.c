@@ -977,38 +977,6 @@ void map_renderFactionDisks( double x, double y, int editor)
                tx - sw/2, ty - sh/2, sw, sh,
                0., 0., gl_faction_disk->srw, gl_faction_disk->srw, &c, 0.);
       }
-
-      /* Draw background. */
-      /* TODO draw asteroids too! */
-      if (sys->nebu_density > 0.) {
-         sw = (50. + sys->nebu_density * 50. / 1000.) * map_zoom;
-         sh = sw;
-
-         /* Set the vertex. */
-         projection = gl_view_matrix;
-         projection = gl_Matrix4_Translate(projection, tx-sw/2., ty-sh/2., 0);
-         projection = gl_Matrix4_Scale(projection, sw, sh, 1);
-
-         /* Start the program. */
-         glUseProgram(shaders.nebula_map.program);
-
-         /* Set shader uniforms. */
-         glUniform1f(shaders.nebula_map.hue, sys->nebu_hue);
-         gl_Matrix4_Uniform(shaders.nebula_map.projection, projection);
-         glUniform1f(shaders.nebula_map.eddy_scale, map_zoom );
-         glUniform1f(shaders.nebula_map.time, map_nebu_dt / 10.0);
-         glUniform2f(shaders.nebula_map.globalpos, sys->pos.x, sys->pos.y );
-
-         /* Draw. */
-         glEnableVertexAttribArray( shaders.nebula_map.vertex );
-         gl_vboActivateAttribOffset( gl_squareVBO, shaders.nebula_map.vertex, 0, 2, GL_FLOAT, 0 );
-         glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
-
-         /* Clean up. */
-         glDisableVertexAttribArray( shaders.nebula_map.vertex );
-         glUseProgram(0);
-         gl_checkErr();
-      }
    }
 }
 
