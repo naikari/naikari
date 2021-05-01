@@ -99,13 +99,13 @@ void ndata_setupWriteDir (void)
    }
 #if MACOS
    /* For historical reasons predating physfs adoption, this case is different. */
-   PHYSFS_setWriteDir( PHYSFS_getPrefDir( ".", "org.naev.Naev" ) );
+   PHYSFS_setWriteDir( PHYSFS_getPrefDir( ".", "org.naikari.Naikari" ) );
 #else
-   PHYSFS_setWriteDir( PHYSFS_getPrefDir( ".", "naev" ) );
+   PHYSFS_setWriteDir( PHYSFS_getPrefDir( ".", "naikari" ) );
 #endif /* MACOS */
    if (PHYSFS_getWriteDir() == NULL) {
       WARN(_("Cannot determine data path, using current directory."));
-      PHYSFS_setWriteDir( "./naev/" );
+      PHYSFS_setWriteDir( "./naikari/" );
    }
 }
 
