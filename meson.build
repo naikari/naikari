@@ -1,5 +1,5 @@
 project('naikari', 'c',
-   version : '0.8.1-alpha',
+   version : '0.1-alpha',
    default_options : [
       'warning_level=2',
       'optimization=g',
