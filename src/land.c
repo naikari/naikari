@@ -820,14 +820,7 @@ void land_updateMainTab (void)
    Outfit *o;
    uint64_t p = land_planet->population;
 
-   if (p > (uint64_t)10e9)
-      snprintf( pop, sizeof(pop), _("%lu biillion"), p / (uint64_t)1e9 );
-   else if (p > (uint64_t)10e6)
-      snprintf( pop, sizeof(pop), _("%lu million"), p / (uint64_t)1e6 );
-   else if (p > (uint64_t)10e3)
-      snprintf( pop, sizeof(pop), _("%lu thousand"), p / (uint64_t)1e3 );
-   else
-      snprintf( pop, sizeof(pop), "%lu", p );
+   snprintf( pop, sizeof(pop), n_("%lu person", "%lu people", p), p );
 
    /* Update credits. */
    tonnes2str( tons, player.p->cargo_free );
@@ -836,7 +829,7 @@ void land_updateMainTab (void)
          _("%s (%s system)\n"
          "%s (%s-class)\n"
          "%s\n"
-         "roughly %s\n"
+         "%s\n"
          "\n"
          "%s\n"
          "%s"),
