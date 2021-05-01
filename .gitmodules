@@ -1,6 +1,3 @@
 [submodule "extras/windows/mingw-bundledlls"]
 	path = extras/windows/mingw-bundledlls
 	url = https://github.com/mpreisler/mingw-bundledlls.git
-[submodule "artwork"]
-	path = artwork
-	url = https://github.com/naev/naev-artwork-production.git
