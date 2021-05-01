@@ -1,3 +1,6 @@
 [submodule "extras/windows/mingw-bundledlls"]
 	path = extras/windows/mingw-bundledlls
 	url = https://github.com/mpreisler/mingw-bundledlls.git
+[submodule "artwork"]
+	path = artwork
+	url = git@github.com:naikari/naikari-artwork-production.git
