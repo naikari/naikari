@@ -727,7 +727,7 @@ static void misn_update( unsigned int wid, char* str )
    /* Update date stuff. */
    buf = ntime_pretty( 0, 2 );
    snprintf( txt, sizeof(txt), n_(
-            "%s\n%d Tonne", "%s\n%d Tonnes", player.p->cargo_free),
+            "%s\n%d t", "%s\n%d t", player.p->cargo_free),
          buf, player.p->cargo_free );
    free(buf);
    window_modifyText( wid, "txtDate", txt );
