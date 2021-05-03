@@ -94,12 +94,12 @@ void commodity_exchange_open( unsigned int wid )
            "#nMoney:#0\n"
            "#nAverage price here:#0\n"
            "#nAverage price all:#0");
-   infoHeight = gl_printHeightRaw(&gl_smallFont, LAND_BUTTON_WIDTH+80, bufSInfo);
+   infoHeight = gl_printHeightRaw(&gl_defFont, LAND_BUTTON_WIDTH+80, bufSInfo);
    window_addText( wid, 40 + iw, -60 - titleHeight, 200, infoHeight, 0,
-         "txtSInfo", &gl_smallFont, NULL, bufSInfo );
+         "txtSInfo", &gl_defFont, NULL, bufSInfo );
    window_addText( wid, 40 + iw + 224, -60 - titleHeight,
          dw - (200 + 20+192), infoHeight, 0,
-         "txtDInfo", &gl_smallFont, NULL, NULL );
+         "txtDInfo", &gl_defFont, NULL, NULL );
 
    window_addText( wid, 40 + iw, MIN(-80-titleHeight-infoHeight, -192-60),
          dw, h - (80+titleHeight+infoHeight) - (40+LAND_BUTTON_HEIGHT), 0,
