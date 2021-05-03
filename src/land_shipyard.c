@@ -79,7 +79,7 @@ void shipyard_open( unsigned int wid )
    window_dimWindow( wid, &w, &h );
 
    /* Calculate image array dimensions. */
-   iw = 704 + (w - LAND_WIDTH);
+   iw = 429 + (w - LAND_WIDTH);
    ih = h - 60;
 
    /* Left padding + per-button padding * nbuttons */
@@ -111,12 +111,12 @@ void shipyard_open( unsigned int wid )
          SHIP_TARGET_W, SHIP_TARGET_H, "imgTarget", NULL, 1 );
 
    /* slot types */
-   window_addCust( wid, -20, -SHIP_TARGET_H-35, 148, 80, "cstSlots", 0.,
+   window_addCust( wid, -20, -SHIP_TARGET_H-35, 224, 80, "cstSlots", 0.,
          shipyard_renderSlots, NULL, NULL );
 
    /* stat text */
-   window_addText( wid, -4, -SHIP_TARGET_H-40-70-20, 164, -SHIP_TARGET_H-60-70-20+h-bh, 0, "txtStats",
-         &gl_smallFont, NULL, NULL );
+   window_addText( wid, -4, -SHIP_TARGET_H-40-70-20, 240, -SHIP_TARGET_H-60-70-20+h-bh, 0, "txtStats",
+         &gl_defFont, NULL, NULL );
 
    /* text */
    buf = _("#nModel:\n#0"
@@ -141,12 +141,12 @@ void shipyard_open( unsigned int wid )
          "#nPrice:\n#0"
          "#nMoney:\n#0"
          "#nLicense:\n#0");
-   th = gl_printHeightRaw( &gl_smallFont, 106, buf );
+   th = gl_printHeightRaw( &gl_defFont, 180, buf );
    y  = -35;
    window_addText( wid, 20+iw+20, y,
-         106, th, 0, "txtSDesc", &gl_smallFont, NULL, buf );
-   window_addText( wid, 20+iw+20+106, y,
-         w-SHIP_TARGET_W-40-(20+iw+20+106), th, 0, "txtDDesc", &gl_smallFont, NULL, NULL );
+         180, th, 0, "txtSDesc", &gl_defFont, NULL, buf );
+   window_addText( wid, 20+iw+20+180, y,
+         w-SHIP_TARGET_W-40-(20+iw+20+180), th, 0, "txtDDesc", &gl_defFont, NULL, NULL );
    y -= th;
    window_addText( wid, 20+iw+20, y,
          w-(20+iw+20) - (SHIP_TARGET_W+40), y-20+h-bh, 0, "txtDescription",
@@ -588,7 +588,7 @@ static void shipyard_renderSlots( double bx, double by, double bw, double bh, vo
 
    /* Draw rotated text. */
    y -= 10+5;
-   gl_print( &gl_smallFont, bx, y, &cFontWhite, _("Slots:") );
+   gl_print( &gl_defFont, bx, y, &cFontWhite, _("Slots:") );
 
    x = bx + 10.;
    w = bw - 10.;
