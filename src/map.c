@@ -942,7 +942,6 @@ void map_renderFactionDisks( double x, double y, int editor)
    double tx, ty, presence;
    /* Fade in the disks to allow toggling between commodity and nothing */
    double cc = cos ( commod_counter / 200. * M_PI );
-   gl_Matrix4 projection;
 
    /* Update timer. */
    map_nebu_dt += naev_getrealdt();
@@ -1137,9 +1136,9 @@ static void map_renderPath( double x, double y, double a )
          x1 = x + sys1->pos.x * map_zoom;
          y1 = y + sys1->pos.y * map_zoom;
          w0 = w1 = MIN( map_zoom, 1.5 ) / hypot( x0-x1, y0-y1 );
-         w0 *= jcur >= 1 ? 4 : 2;
+         w0 *= jcur >= 1 ? 8 : 4;
          jcur--;
-         w1 *= jcur >= 1 ? 4 : 2;
+         w1 *= jcur >= 1 ? 8 : 4;
 
          /* Draw the lines. */
          for (k=0; k<3*2; k++) {
