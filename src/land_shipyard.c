@@ -79,7 +79,7 @@ void shipyard_open( unsigned int wid )
    window_dimWindow( wid, &w, &h );
 
    /* Calculate image array dimensions. */
-   iw = 429 + (w - LAND_WIDTH);
+   iw = 428 + (w - LAND_WIDTH);
    ih = h - 60;
 
    /* Left padding + per-button padding * nbuttons */
