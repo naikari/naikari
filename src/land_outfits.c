@@ -191,10 +191,10 @@ void outfits_open( unsigned int wid, Outfit **outfits )
    window_addText( wid, 20 + iw + 20, -40,
          w - (20 + iw + 20) - 200 - 20, 160, 0, "txtOutfitName", &gl_defFont, NULL, NULL );
    window_addText( wid, 20 + iw + 20, -40 - gl_defFont.h - 30,
-         w - (20 + iw + 20) - 200 - 20, 320, 0, "txtDescShort", &gl_smallFont, NULL, NULL );
+         w - (20 + iw + 20) - 200 - 20, 320, 0, "txtDescShort", &gl_defFont, NULL, NULL );
 
    window_addText( wid, 20 + iw + 20, 0,
-         90, 160, 0, "txtSDesc", &gl_smallFont, NULL,
+         90, 160, 0, "txtSDesc", &gl_defFont, NULL,
          _("#nOwned:#0\n"
          "\n"
          "#nSlot:#0\n"
@@ -205,7 +205,7 @@ void outfits_open( unsigned int wid, Outfit **outfits )
          "#nMoney:#0\n"
          "#nLicense:#0\n") );
    window_addText( wid, 20 + iw + 20 + 90, 0,
-         w - (20 + iw + 20 + 90), 160, 0, "txtDDesc", &gl_smallFont, NULL, NULL );
+         w - (20 + iw + 20 + 90), 160, 0, "txtDDesc", &gl_defFont, NULL, NULL );
    window_addText( wid, 20 + iw + 20, 0,
          w-(iw+80), h, /* TODO: Size exactly and resize instead of moving? */
 	 0, "txtDescription", &gl_smallFont, NULL, NULL );
@@ -449,10 +449,10 @@ void outfits_update( unsigned int wid, char* str )
    window_modifyText( wid, "txtDDesc", buf );
    window_modifyText( wid, "txtOutfitName", _(outfit->name) );
    window_modifyText( wid, "txtDescShort", outfit->desc_short );
-   th = gl_printHeightRaw( &gl_smallFont, w - (20 + iw + 20) - 200 - 20, outfit->desc_short );
+   th = gl_printHeightRaw( &gl_defFont, w - (20 + iw + 20) - 200 - 20, outfit->desc_short );
    window_moveWidget( wid, "txtSDesc", 20+iw+20, -40-th-30-32 );
    window_moveWidget( wid, "txtDDesc", 20+iw+20+90, -40-th-30-32 );
-   th += gl_printHeightRaw( &gl_smallFont, w - (20 + iw + 20) - 200 - 20, buf );
+   th += gl_printHeightRaw( &gl_defFont, w - (20 + iw + 20) - 200 - 20, buf );
    th = MAX( th, 192 );
    window_moveWidget( wid, "txtDescription", 20+iw+20, -40-th-30-32 );
 }
