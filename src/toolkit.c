@@ -1374,11 +1374,11 @@ void toolkit_drawAltText( int bx, int by, const char *alt )
 
    /* Get dimensions. */
    w = 250;
-   h = gl_printHeightRaw( &gl_smallFont, w, alt );
+   h = gl_printHeightRaw( &gl_defFont, w, alt );
 
    /* Choose position. */
    x = bx + 10.;
-   y = by - h - gl_smallFont.h - 10.;
+   y = by - h - gl_defFont.h - 10.;
    if (y < 10.)
       y += -y+10.;
    if (x+w+10. > SCREEN_W)
@@ -1395,7 +1395,7 @@ void toolkit_drawAltText( int bx, int by, const char *alt )
    c2.a = 0.7;
    toolkit_drawRect( x+1, y+1, w+18, h+18, &c2, NULL );
    toolkit_drawRect( x, y, w+18, h+18, &c, NULL );
-   gl_printTextRaw( &gl_smallFont, w , h, x + 9, y + 9, 0, &cFontWhite, -1., alt );
+   gl_printTextRaw( &gl_defFont, w , h, x + 9, y + 9, 0, &cFontWhite, -1., alt );
 }
 
 
