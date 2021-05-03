@@ -43,7 +43,7 @@
 #define BIG_ICONS_DEFAULT                    1     /**< Whether to display BIGGER icons. */
 #define FONT_SIZE_CONSOLE_DEFAULT            10    /**< Default console font size. */
 #define FONT_SIZE_INTRO_DEFAULT              18    /**< Default intro font size. */
-#define FONT_SIZE_DEF_DEFAULT                12    /**< Default font size. */
+#define FONT_SIZE_DEF_DEFAULT                14    /**< Default font size. */
 #define FONT_SIZE_SMALL_DEFAULT              11    /**< Default small font size. */
 /* Audio options */
 #define VOICES_DEFAULT                       128   /**< Amount of voices to use. */
