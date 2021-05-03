@@ -150,13 +150,13 @@ void dialogue_alert( const char *fmt, ... )
       va_end(ap);
    }
 
-   h = gl_printHeightRaw( &gl_smallFont, 260, msg );
+   h = gl_printHeightRaw( &gl_defFont, 260, msg );
 
    /* create the window */
    wdw = window_create( "dlgAlert", _("Warning"), -1, -1, 300, 90 + h );
    window_setData( wdw, &done );
    window_addText( wdw, 20, -30, 260, h,  0, "txtAlert",
-         &gl_smallFont, NULL, msg );
+         &gl_defFont, NULL, msg );
    window_addButton( wdw, 135, 20, 50, 30, "btnOK", _("OK"),
          dialogue_close );
 
@@ -182,7 +182,7 @@ static glFont* dialogue_getSize( const char* title,
 
    /* Get title length. */
    titlelen = gl_printWidthRaw( &gl_defFont, title );
-   msglen = gl_printWidthRaw( &gl_smallFont, msg );
+   msglen = gl_printWidthRaw( &gl_defFont, msg );
 
    /* Try widths from 300 to 800 in 50 px increments.
     * Each subsequent width gets an additional line, following this table:
@@ -200,7 +200,7 @@ static glFont* dialogue_getSize( const char* title,
    w = MAX(w, titlelen+40); /* Expand width if the title is long. */
 
    /* Now we look at proportion. */
-   font = &gl_smallFont;
+   font = &gl_defFont;
    h = gl_printHeightRaw( font, w-40, msg );
 
 
@@ -481,7 +481,7 @@ char* dialogue_inputRaw( const char* title, int min, int max, const char *msg )
    int h, done;
 
    /* get text height */
-   h = gl_printHeightRaw( &gl_smallFont, 200, msg );
+   h = gl_printHeightRaw( &gl_defFont, 200, msg );
 
    /* create window */
    input_dialogue.input_wid = window_create( "dlgInput", title, -1, -1, 240, h+140 );
@@ -490,7 +490,7 @@ char* dialogue_inputRaw( const char* title, int min, int max, const char *msg )
    window_setCancel( input_dialogue.input_wid, dialogue_cancel );
    /* text */
    window_addText( input_dialogue.input_wid, 30, -30, 200, h,  0, "txtInput",
-         &gl_smallFont, NULL, msg );
+         &gl_defFont, NULL, msg );
    /* input */
    window_addInput( input_dialogue.input_wid, 20, -50-h, 200, 20, "inpInput", max, 1, NULL );
    window_setInputFilter( input_dialogue.input_wid, "inpInput", "/" ); /* Remove illegal stuff. */
