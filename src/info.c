@@ -234,7 +234,7 @@ static void info_openMain( unsigned int wid )
          "\n"
          "%s\n"
          "%s\n"
-         "%d (%d jumps)\n"
+         "%d (%d %s)\n"
          "\n"
          "%.1f hours\n"
          "%.0f\n"
@@ -245,6 +245,7 @@ static void info_openMain( unsigned int wid )
          creds,
          player.p->name,
          player.p->fuel, pilot_getJumps(player.p),
+         n_( "jump", "jumps", pilot_getJumps(player.p) ),
          player.time_played / 3600.,
          player.dmg_done_shield + player.dmg_done_armour,
          player.dmg_taken_shield + player.dmg_taken_armour,
@@ -490,7 +491,7 @@ static void ship_update( unsigned int wid )
          "%.0f / %.0f MJ (%.1f MW)\n" /* Armour */
          "%.0f / %.0f MJ (%.1f MW)\n" /* Energy */
          "%d / %d t\n"
-         "%d / %d hL (%d jumps)\n"
+         "%d / %d hL (%d %s)\n"
          "\n"),
          /* Generic */
          player.p->name,
@@ -510,7 +511,8 @@ static void ship_update( unsigned int wid )
          player.p->armour, player.p->armour_max, player.p->armour_regen,
          player.p->energy, player.p->energy_max, player.p->energy_regen,
          pilot_cargoUsed( player.p ), cargo,
-         player.p->fuel, player.p->fuel_max, pilot_getJumps(player.p));
+         player.p->fuel, player.p->fuel_max,
+         pilot_getJumps(player.p), n_( "jump", "jumps", pilot_getJumps(player.p) ));
    equipment_shipStats( &buf[len], sizeof(buf)-len, player.p, 1 );
    window_modifyText( wid, "txtDDesc", buf );
    free( hyp_delay );
