@@ -586,11 +586,11 @@ static void misn_open( unsigned int wid )
    y -= 2 * gl_defFont.h + 50;
    window_addText( wid, w/2 + 10, y,
          w/2 - 30, 20, 0,
-         "txtReward", &gl_smallFont, NULL, _("#nReward:#0 None") );
-   y -= 20;
+         "txtReward", &gl_defFont, NULL, _("#nReward:#0 None") );
+   y -= 2 * gl_defFont.h + 20;
    window_addText( wid, w/2 + 10, y,
          w/2 - 30, y - 40 + h - 2*LAND_BUTTON_HEIGHT, 0,
-         "txtDesc", &gl_smallFont, NULL, NULL );
+         "txtDesc", &gl_defFont, NULL, NULL );
 
    /* map */
    map_show( wid, 20, 20,
