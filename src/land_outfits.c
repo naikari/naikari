@@ -190,20 +190,18 @@ void outfits_open( unsigned int wid, Outfit **outfits )
    /* the descriptive text */
    window_addText( wid, 20 + iw + 20, -40,
          w - (20 + iw + 20) - 200 - 20, 160, 0, "txtOutfitName", &gl_defFont, NULL, NULL );
-   window_addText( wid, 20 + iw + 20, -40 - gl_defFont.h - 30,
+   window_addText( wid, 20 + iw + 20, -40 - gl_defFont.h - 20,
          w - (20 + iw + 20) - 200 - 20, 320, 0, "txtDescShort", &gl_defFont, NULL, NULL );
 
    window_addText( wid, 20 + iw + 20, 0,
          90, 160, 0, "txtSDesc", &gl_defFont, NULL,
          _("#nOwned:#0\n"
-         "\n"
          "#nSlot:#0\n"
          "#nSize:#0\n"
          "#nMass:#0\n"
-         "\n"
          "#nPrice:#0\n"
          "#nMoney:#0\n"
-         "#nLicense:#0\n") );
+         "#nLicense:#0") );
    window_addText( wid, 20 + iw + 20 + 90, 0,
          w - (20 + iw + 20 + 90), 160, 0, "txtDDesc", &gl_defFont, NULL, NULL );
    window_addText( wid, 20 + iw + 20, 0,
@@ -374,23 +372,21 @@ void outfits_update( unsigned int wid, char* str )
       window_disableButton( wid, "btnSellOutfit" );
       snprintf( buf, sizeof(buf),
             _("N/A\n"
-            "\n"
             "N/A\n"
             "N/A\n"
             "N/A\n"
-            "\n"
             "N/A\n"
             "N/A\n"
-            "N/A\n") );
+            "N/A") );
       window_modifyText( wid, "txtDDesc", buf );
       window_modifyText( wid, "txtOutfitName", _("None") );
       window_modifyText( wid, "txtDescShort", NULL );
       window_modifyText( wid, "txtDescription", NULL );
       /* Reposition. */
       th = 64;
-      window_moveWidget( wid, "txtSDesc", 20+iw+20, -40-th-30-32 );
-      window_moveWidget( wid, "txtDDesc", 20+iw+20+90, -40-th-30-32 );
-      window_moveWidget( wid, "txtDescription", 20+iw+20, -240-32);
+      window_moveWidget( wid, "txtSDesc", 20+iw+20, -40-gl_defFont.h-20-th-20 );
+      window_moveWidget( wid, "txtDDesc", 20+iw+20+90, -40-gl_defFont.h-20-th-20 );
+      window_moveWidget( wid, "txtDescription", 20+iw+20, -40-gl_defFont.h-20-th-20-20);
       return;
    }
 
@@ -431,14 +427,12 @@ void outfits_update( unsigned int wid, char* str )
 
    snprintf( buf, sizeof(buf),
          _("%d\n"
-         "\n"
          "%s\n"
          "%s\n"
          "%.0f t\n"
-         "\n"
          "%s\n"
          "%s\n"
-         "%s\n"),
+         "%s"),
          player_outfitOwned(outfit),
          _(outfit_slotName(outfit)),
          _(outfit_slotSize(outfit)),
@@ -450,11 +444,11 @@ void outfits_update( unsigned int wid, char* str )
    window_modifyText( wid, "txtOutfitName", _(outfit->name) );
    window_modifyText( wid, "txtDescShort", outfit->desc_short );
    th = gl_printHeightRaw( &gl_defFont, w - (20 + iw + 20) - 200 - 20, outfit->desc_short );
-   window_moveWidget( wid, "txtSDesc", 20+iw+20, -40-th-30-32 );
-   window_moveWidget( wid, "txtDDesc", 20+iw+20+90, -40-th-30-32 );
+   window_moveWidget( wid, "txtSDesc", 20+iw+20, -40-gl_defFont.h-20-th-20 );
+   window_moveWidget( wid, "txtDDesc", 20+iw+20+90, -40-gl_defFont.h-20-th-20 );
    th += gl_printHeightRaw( &gl_defFont, w - (20 + iw + 20) - 200 - 20, buf );
    th = MAX( th, 192 );
-   window_moveWidget( wid, "txtDescription", 20+iw+20, -40-th-30-32 );
+   window_moveWidget( wid, "txtDescription", 20+iw+20, -40-gl_defFont.h-20-th-20-20 );
 }
 
 
