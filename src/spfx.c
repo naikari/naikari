@@ -74,10 +74,6 @@ extern unsigned int haptic_query; /**< From joystick.c */
 static int haptic_rumble         = -1; /**< Haptic rumble effect ID. */
 static SDL_HapticEffect haptic_rumbleEffect; /**< Haptic rumble effect. */
 static double haptic_lastUpdate  = 0.; /**< Timer to update haptic effect again. */
-/* damage effect */
-static unsigned int damage_shader_pp_id = 0; /**< ID of the post-processing shader (0 when disabled) */
-static LuaShader_t damage_shader; /**< Shader to use. */
-static double damage_strength = 0.; /**< Damage shader strength intensity. */
 
 
 /*
@@ -92,7 +88,6 @@ static TrailSpec* trailSpec_getRaw( const char* name );
  * Misc functions.
  */
 static void spfx_updateShake( double dt );
-static void spfx_updateDamage( double dt );
 
 
 
@@ -293,11 +288,6 @@ int spfx_load (void)
    /*
     * Misc shaders.
     */
-   memset( &damage_shader, 0, sizeof(LuaShader_t) );
-   damage_shader.program       = shaders.damage.program;
-   damage_shader.VertexPosition= shaders.damage.VertexPosition;
-   damage_shader.ClipSpaceFromLocal = shaders.damage.ClipSpaceFromLocal;
-   damage_shader.MainTex       = shaders.damage.MainTex;
 
    /* Stacks. */
    spfx_stack_front = array_create( SPFX );
@@ -441,9 +431,6 @@ void spfx_update( const double dt, const double real_dt )
 
    /* Shake. */
    spfx_updateShake( dt );
-
-   /* Damage. */
-   spfx_updateDamage( dt );
 }
 
 
@@ -533,30 +520,6 @@ static void spfx_updateShake( double dt )
    glUniform2f( shaders.shake.shake_pos, shake_pos.x / SCREEN_W, shake_pos.y / SCREEN_H );
    glUniform2f( shaders.shake.shake_vel, shake_vel.x / SCREEN_W, shake_vel.y / SCREEN_H );
    glUniform1f( shaders.shake.shake_force, shake_force_mean );
-   glUseProgram( 0 );
-
-   gl_checkErr();
-}
-
-
-static void spfx_updateDamage( double dt )
-{
-   /* Must still be on. */
-   if (damage_shader_pp_id == 0)
-      return;
-
-   /* Decrement and turn off if necessary. */
-   damage_strength -= DAMAGE_DECAY * dt;
-   if (damage_strength < 0.) {
-      damage_strength = 0.;
-      render_postprocessRm( damage_shader_pp_id );
-      damage_shader_pp_id = 0;
-      return;
-   }
-
-   /* Set the uniform. */
-   glUseProgram( shaders.damage.program );
-   glUniform1f( shaders.damage.damage_strength, damage_strength );
    glUseProgram( 0 );
 
    gl_checkErr();
@@ -785,23 +748,6 @@ void spfx_shake( double mod )
    /* Create the shake. */
    if (shake_shader_pp_id==0)
       shake_shader_pp_id = render_postprocessAdd( &shake_shader, PP_LAYER_GAME, 99 );
-}
-
-
-/**
- * @brief Increases the current damage level.
- *
- * Damage will decay over time.
- *
- *    @param mod Modifier to increase the level by.
- */
-void spfx_damage( double mod )
-{
-   damage_strength = MIN( 1.0, damage_strength + mod );
-
-   /* Create the damage. */
-   if (damage_shader_pp_id==0)
-      damage_shader_pp_id = render_postprocessAdd( &damage_shader, PP_LAYER_FINAL, 98 );
 }
 
 

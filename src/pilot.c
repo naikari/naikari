@@ -1498,7 +1498,6 @@ double pilot_hit( Pilot* p, const Solid* w, const unsigned int shooter,
       if (p->id == PLAYER_ID) { /* a bit of shaking */
          dam_mod = tdarmour/p->armour_max;
          spfx_shake( SHAKE_MAX*dam_mod );
-         spfx_damage( dam_mod );
       }
    }
 
