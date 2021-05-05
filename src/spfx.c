@@ -47,8 +47,6 @@
 
 #define HAPTIC_UPDATE_INTERVAL   0.1 /**< Time between haptic updates. */
 
-#define DAMAGE_DECAY    0.5 /**< Rate at which the damage strength goes down. */
-
 
 /* Trail stuff. */
 #define TRAIL_UPDATE_DT       0.05
@@ -477,7 +475,7 @@ static void spfx_updateShake( double dt )
    /* The shake decays over time */
    forced = 0;
    if (shake_force_mod > 0.) {
-      shake_force_mod -= SHAKE_DECAY*dt;
+      shake_force_mod -= SPFX_SHAKE_DECAY*dt;
       if (shake_force_mod < 0.)
          shake_force_mod   = 0.;
       else
@@ -740,7 +738,7 @@ static void spfx_trail_draw( const Trail_spfx* trail )
 void spfx_shake( double mod )
 {
    /* Add the modifier. */
-   shake_force_mod = MIN( SHAKE_MAX, shake_force_mod+mod );
+   shake_force_mod = MIN( SPFX_SHAKE_MAX, shake_force_mod + SPFX_SHAKE_MOD*mod );
 
    /* Rumble if it wasn't rumbling before. */
    spfx_hapticRumble(mod);
@@ -797,15 +795,15 @@ static void spfx_hapticRumble( double mod )
    if (haptic_rumble >= 0) {
 
       /* Not time to update yet. */
-      if ((haptic_lastUpdate > 0.) || (shake_shader_pp_id==0) || (mod > SHAKE_MAX/3.))
+      if ((haptic_lastUpdate > 0.) || (shake_shader_pp_id==0) || (mod > SPFX_SHAKE_MAX/3.))
          return;
 
       /* Stop the effect if it was playing. */
       SDL_HapticStopEffect( haptic, haptic_rumble );
 
       /* Get length and magnitude. */
-      len = 1000. * shake_force_mod / SHAKE_DECAY;
-      mag = 32767. * (shake_force_mod / SHAKE_MAX);
+      len = 1000. * shake_force_mod / SPFX_SHAKE_DECAY;
+      mag = 32767. * (shake_force_mod / SPFX_SHAKE_MAX);
 
       /* Update the effect. */
       efx = &haptic_rumbleEffect;

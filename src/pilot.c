@@ -1692,7 +1692,7 @@ void pilot_explode( double x, double y, double radius, const Damage *dmg, const 
 
          /* Shock wave from the explosion. */
          if (p->id == PILOT_PLAYER)
-            spfx_shake( pow2(ddmg.damage) / pow2(100.) * SHAKE_MAX );
+            spfx_shake( pow2(ddmg.damage) / pow2(100.) );
       }
    }
 }
@@ -2164,7 +2164,7 @@ void pilot_update( Pilot* pilot, const double dt )
             pilot_afterburnOver(pilot);
          else {
             if (pilot->id == PLAYER_ID)
-               spfx_shake( 0.75*SHAKE_DECAY * dt); /* shake goes down at quarter speed */
+               spfx_shake( 0.75*SPFX_SHAKE_DECAY * dt); /* shake goes down at quarter speed */
             efficiency = pilot_heatEfficiencyMod( pilot->afterburner->heat_T,
                   pilot->afterburner->outfit->u.afb.heat_base,
                   pilot->afterburner->outfit->u.afb.heat_cap );
