@@ -134,7 +134,7 @@ static const ShipStatsLookup ss_lookup[] = {
    DI_ELEM( SS_TYPE_D_MASS,               mass_mod,            gettext_noop("Ship Mass") ),
    D__ELEM( SS_TYPE_D_ENGINE_LIMIT_REL,   engine_limit_rel,    gettext_noop("Engine Mass Limit") ),
    D__ELEM( SS_TYPE_D_LOOT_MOD,           loot_mod,            gettext_noop("Boarding Bonus") ),
-   D__ELEM( SS_TYPE_D_TIME_MOD,           time_mod,            gettext_noop("Time Constant") ),
+   DI_ELEM( SS_TYPE_D_TIME_MOD,           time_mod,            gettext_noop("Time Constant") ),
 
    A__ELEM( SS_TYPE_A_ENERGY_FLAT,        energy_flat,         gettext_noop("Energy Capacity") ),
    AI_ELEM( SS_TYPE_A_ENERGY_REGEN_FLAT,  energy_usage,        gettext_noop("Energy Usage") ),
