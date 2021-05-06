@@ -1808,7 +1808,7 @@ void pilot_renderOverlay( Pilot* p, const double dt )
  *    @param pilot Pilot to update.
  *    @param dt Current delta tick.
  */
-void pilot_update( Pilot* pilot, double dt )
+void pilot_update( Pilot* pilot, const double dt )
 {
    int i, cooling, nchg;
    int ammo_threshold;
@@ -1821,9 +1821,6 @@ void pilot_update( Pilot* pilot, double dt )
    Damage dmg;
    double stress_falloff;
    double efficiency, thrust;
-
-   /* Modify the dt with speedup. */
-   dt *= pilot->stats.time_speedup;
 
    /* Check target validity. */
    if (pilot->target != pilot->id) {
