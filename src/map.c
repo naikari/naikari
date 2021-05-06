@@ -1066,7 +1066,7 @@ void map_renderFactionDisks( double x, double y, int editor, double alpha )
 /**
  * @brief Renders the faction disks.
  */
-void map_renderSystemEnviroment( double x, double y, int editor, double alpha )
+void map_renderSystemEnvironment( double x, double y, int editor, double alpha )
 {
    int i;
    StarSystem *sys;
