@@ -11,8 +11,8 @@
   <priority>3</priority>
  </general>
  <specific type="modification">
-  <cargo>4</cargo>
-  <absorb>4</absorb>
+  <cargo>5</cargo>
+  <absorb>2</absorb>
   <armour>45</armour>
   <armour_regen>0</armour_regen>
   <ew_hide>0</ew_hide>

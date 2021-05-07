@@ -13,7 +13,6 @@
  <fabricator>Melendez Corp.</fabricator>
  <description>The Koala is your standard cargo vessel. It's a small ship with little weapon space but a decent amount of cargo space. Good for the entrepreneur working his way to a vast space trade empire.</description>
  <health>
-  <absorb>8</absorb>
   <armour>110</armour>
   <armour_regen>0</armour_regen>
  </health>
@@ -26,7 +25,7 @@
  <slots>
   <weapon size="small" x="11" y="0" h="-7" />
   <weapon size="small" x="-5" y="0" h="3" />
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-100 Core System</utility>
+  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-18 Core System</utility>
   <utility size="small" />
   <utility size="small" />
   <structure size="small" prop="engines" exclusive="1" required="1">Unicorp Hawk 300 Engine</structure>
