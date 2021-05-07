@@ -1961,13 +1961,7 @@ void player_targetPrev( int mode )
 void player_targetClear (void)
 {
    gui_forceBlink();
-   if (player.p->target == PLAYER_ID && (preemption == 1 || player.p->nav_planet == -1)
-         && !pilot_isFlag(player.p, PILOT_HYP_PREP)) {
-      player.p->nav_hyperspace = -1;
-      player_hyperspacePreempt(0);
-      map_clear();
-   }
-   else if (player.p->target == PLAYER_ID)
+   if (player.p->target == PLAYER_ID)
       player_targetPlanetSet( -1 );
    else
       player_targetSet( PLAYER_ID );
