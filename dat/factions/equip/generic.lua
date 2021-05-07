@@ -552,15 +552,9 @@ equip_classOutfits_structurals = {
          varied = true, probability = {
             ["Nanobond Plating"] = 3, ["Shield Capacitor IV"] = 2,
          };
-<<<<<<< HEAD
-         "Biometal Armor", "Nanobond Plating", "Large Fuel Pod",
-         "Battery III", "Shield Capacitor III", "Shield Capacitor IV"
-      }
-=======
-         "Large Fuel Pod", "Biometal Armour", "Nanobond Plating",
+         "Large Fuel Pod", "Biometal Armor", "Nanobond Plating",
          "Battery III", "Shield Capacitor III", "Shield Capacitor IV",
       },
->>>>>>> 8995de709061456598cf3e6de1700e7da16eda64
    },
    ["Carrier"] = {
       {
@@ -568,15 +562,9 @@ equip_classOutfits_structurals = {
             ["Nanobond Plating"] = 6, ["Shield Capacitor IV"] = 4,
             ["Large Fuel Pod"] = 3, ["Biometal Armor"] = 2
          };
-<<<<<<< HEAD
-         "Biometal Armor", "Nanobond Plating", "Large Fuel Pod",
-         "Battery III", "Shield Capacitor III", "Shield Capacitor IV"
-      }
-=======
-         "Large Fuel Pod", "Biometal Armour", "Nanobond Plating",
+         "Large Fuel Pod", "Biometal Armor", "Nanobond Plating",
          "Battery III", "Shield Capacitor III", "Shield Capacitor IV",
       },
->>>>>>> 8995de709061456598cf3e6de1700e7da16eda64
    },
    ["Drone"] = {
       {
