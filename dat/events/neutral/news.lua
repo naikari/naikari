@@ -18,9 +18,9 @@ header_table = {}
 
 header_table["Generic"] = _("We bring you the latest news in the galaxy.")
 header_table["Independent"] = _("Welcome to Universal News Feed. All the headlines all the time.")
-header_table["Empire"] = _("Welcome to the Empire News Centre.")
-header_table["Dvaered"] = _("Welcome to the Dvaered News Centre. All that happens. In simple words. So you can understand.")
-header_table["Goddard"] = _("Welcome to Goddard News Centre. We bring you the news from around the Empire.")
+header_table["Empire"] = _("Welcome to the Empire News Center.")
+header_table["Dvaered"] = _("Welcome to the Dvaered News Center. All that happens. In simple words. So you can understand.")
+header_table["Goddard"] = _("Welcome to Goddard News Center. We bring you the news from around the Empire.")
 header_table["Pirate"] = _("Pirate News. News that matters.") 
 header_table["Sirius"] = _("Sirius News Reel. Words of the Sirichana for all.")
 header_table["FLF"] = _("The word of the Free Resistance.")
@@ -60,7 +60,7 @@ greet_table["Proteron"] =     {""
                               }
 greet_table["Za'lek"] =       {""
                               }
-greet_table["Soromid"] =      {_("Genetically tailoured for you.")
+greet_table["Soromid"] =      {_("Genetically tailored for you.")
                               }
 greet_table["Thurion"] =      {""
                               }
@@ -121,11 +121,11 @@ articles["Generic"] = {
    --]]
    {
       tag = N_("Eyeteeth Back in Fashion"),
-      desc = _("Despite the advice of dentists, eyetooth caps have come into vogue again. Young people throughout the inhabited worlds use home kits to strip a layer of enamel from their teeth in favour of a binding of quartz, granite, or even flint.")
+      desc = _("Despite the advice of dentists, eyetooth caps have come into vogue again. Young people throughout the inhabited worlds use home kits to strip a layer of enamel from their teeth in favor of a binding of quartz, granite, or even flint.")
    },
    {
       tag = N_("Everyone Loves a SuperChimp"),
-      desc = _("For dozens of cycles used only as menial labourers, now SuperChimps are being widely adopted as domestic companions. Enhanced primates make an affectionate, intelligent pet, or a low-cost servant.")
+      desc = _("For dozens of cycles used only as menial laborers, now SuperChimps are being widely adopted as domestic companions. Enhanced primates make an affectionate, intelligent pet, or a low-cost servant.")
    },
    {
       tag = N_("Admiral's Ball a Triumph"),
@@ -327,7 +327,7 @@ articles["Empire"] = {
       desc = _("Recent studies show that reports of piracy on Trader vessels have gone down by up to 40% in some sectors. This is a demonstration of the Empire's commitment to eradicating piracy.")
    },
    {
-      tag = N_("Nexus Contract Finalised"),
+      tag = N_("Nexus Contract Finalized"),
       desc = _("The Empire agreed to terms with shipbuilder Nexus for a new generation of military craft. The deal extends the partnership with the government for another 10 cycles.")
    },
    --[[
@@ -358,7 +358,7 @@ articles["Empire"] = {
    },
    {
       tag = N_("Remembering the Past"),
-      desc = _("The Emperor has scheduled a new monument to be constructed on Emperor's Fist in honour of all those dead in the Incident.")
+      desc = _("The Emperor has scheduled a new monument to be constructed on Emperor's Fist in honor of all those dead in the Incident.")
    },
 }
 
@@ -377,7 +377,7 @@ articles["Frontier"] = {
       desc = _("As many as two of every hundred votes counted after the recent polling decaperiod may be falsified, an ombudsman reports. The opposition party demanded the election be annulled.")
    },
    {
-      tag = N_("Empire Relies on Prison Labour"),
+      tag = N_("Empire Relies on Prison Labor"),
       desc = _("A recent report by the Soromid House Ways and Means Committee suggests infrastructure may be too dependent the on the incarcerated population.")
    },
    {

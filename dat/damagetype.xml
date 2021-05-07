@@ -33,7 +33,7 @@
   <armour>0.05</armour>
   <knockback>0</knockback>
  </dtype>
- <dtype name="armourbreaker">
+ <dtype name="armorbreaker">
   <shield>0.5</shield>
   <armour>1.5</armour>
   <knockback>0.5</knockback>

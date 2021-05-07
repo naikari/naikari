@@ -78,7 +78,7 @@ lore_text[3] = _([[You ask Major Tam to continue his story about when he used to
 
 question[4] = _("Ask news from Hamfresser")
 lore_text[4] = _([["Oh, the captain is doing well. He spent a few periods at the hospital, but it was not so serious. About the other ones, I'm not too sure. I don't know them very well actually, they are more like statistics to me. I know it's bad, but hey, I have so many things to think about right now.
-   "Oh, and we went to the funerals of the one who died, the private Amadeus Tronk, officially killed in training, of course. It was nice. Leblanc's squadron has made an aerial meeting with a mace rocket concerto for the occasion, and we organized a fight to death between a convicted criminal and a gladiator in General Klank's private arena. The role of it is to honour the memory of the dead warrior, and also to have some fun."]])
+   "Oh, and we went to the funerals of the one who died, the private Amadeus Tronk, officially killed in training, of course. It was nice. Leblanc's squadron has made an aerial meeting with a mace rocket concerto for the occasion, and we organized a fight to death between a convicted criminal and a gladiator in General Klank's private arena. The role of it is to honor the memory of the dead warrior, and also to have some fun."]])
 
 
 located_title = _("Enemies located")

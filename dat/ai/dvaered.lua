@@ -17,8 +17,8 @@ function create ()
       mem.bribe_no = _("\"I shall especially enjoy your death.\"")
    else
       bribe_no = {
-            _("\"You insult my honour.\""),
-            _("\"I find your lack of honour disturbing.\""),
+            _("\"You insult my honor.\""),
+            _("\"I find your lack of honor disturbing.\""),
             _("\"You disgust me.\""),
             _("\"Bribery carries a harsh penalty.\""),
             _("\"House Dvaered does not lower itself to common scum.\"")

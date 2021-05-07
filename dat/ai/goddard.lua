@@ -14,8 +14,8 @@ function create ()
 
    -- Bribing
    bribe_no = {
-         _("\"You insult my honour.\""),
-         _("\"I find your lack of honour disturbing.\""),
+         _("\"You insult my honor.\""),
+         _("\"I find your lack of honor disturbing.\""),
          _("\"You disgust me.\""),
          _("\"Bribery carries a harsh penalty.\""),
          _("\"House Goddard does not lower itself to common scum.\"")
@@ -28,7 +28,7 @@ function create ()
       standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )
       if standing > 60 then mem.refuel = mem.refuel * 0.7 end
-      mem.refuel_msg = string.format( _("\"I could do you the favour of refueling for the price of %s.\""),
+      mem.refuel_msg = string.format( _("\"I could do you the favor of refueling for the price of %s.\""),
             creditstring(mem.refuel) )
    end
 
