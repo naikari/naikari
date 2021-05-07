@@ -270,9 +270,9 @@ void player_autonavAbort( const char *reason )
 
    if (player_isFlag(PLAYER_AUTONAV)) {
       if (reason != NULL)
-         player_message(_("#rAutonav: aborted due to '%s'!"), reason);
+         player_message(_("#rAutonav aborted: %s"), reason);
       else
-         player_message(_("#rAutonav: aborted!"));
+         player_message(_("#rAutonav aborted"));
       player_rmFlag(PLAYER_AUTONAV);
 
       /* Get rid of acceleration. */
