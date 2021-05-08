@@ -635,7 +635,7 @@ static int playerL_cinematics( lua_State *L )
  */
 static int playerL_damageSPFX( lua_State *L )
 {
-   double spfx_mod = luaL_checknumber(L,1);
+   (void) L;
    return 0;
 }
 
