@@ -83,6 +83,7 @@ static int pilotL_velocity( lua_State *L );
 static int pilotL_dir( lua_State *L );
 static int pilotL_ew( lua_State *L );
 static int pilotL_temp( lua_State *L );
+static int pilotL_mass( lua_State *L );
 static int pilotL_faction( lua_State *L );
 static int pilotL_spaceworthy( lua_State *L );
 static int pilotL_setPosition( lua_State *L );
@@ -177,6 +178,7 @@ static const luaL_Reg pilotL_methods[] = {
    { "dir", pilotL_dir },
    { "ew", pilotL_ew },
    { "temp", pilotL_temp },
+   { "mass", pilotL_mass },
    { "cooldown", pilotL_cooldown },
    { "faction", pilotL_faction },
    { "spaceworthy", pilotL_spaceworthy },
@@ -1807,6 +1809,22 @@ static int pilotL_temp( lua_State *L )
 }
 
 /**
+ * @brief Gets the mass of a pilot.
+ *
+ * @usage m = p:mass()
+ *
+ *    @luatparam Pilot p Pilot to get mass of.
+ *    @luatreturn number The pilot's current mass (in tonnes).
+ * @luafunc mass
+ */
+static int pilotL_mass( lua_State *L )
+{
+   Pilot *p = luaL_validpilot(L,1);
+   lua_pushnumber( L, p->solid->mass );
+   return 1;
+}
+
+/**
  * @brief Gets the pilot's faction.
  *
  * @usage f = p:faction()
@@ -1869,6 +1887,9 @@ static int pilotL_setPosition( lua_State *L )
    /* Parse parameters */
    p     = luaL_validpilot(L,1);
    vec   = luaL_checkvector(L,2);
+
+   /* Insert skip in trail. */
+   pilot_sample_trails( p, 1 );
 
    /* Warp pilot to new position. */
    p->solid->pos = *vec;
@@ -2734,23 +2755,26 @@ static int pilotL_setHealth( lua_State *L )
  *
  *    @luatparam Pilot p Pilot to set energy of.
  *    @luatparam number energy Value to set energy to, should be double from 0-100 (in percent).
- *
+ *    @luatparam[opt=false] boolean nonrel  Whether or not it is being set in relative value or absolute.
  * @luafunc setEnergy
  */
 static int pilotL_setEnergy( lua_State *L )
 {
    Pilot *p;
    double e;
+   int nonrel;
 
    NLUA_CHECKRW(L);
 
    /* Handle parameters. */
-   p  = luaL_validpilot(L,1);
-   e  = luaL_checknumber(L, 2);
-   e /= 100.;
+   p      = luaL_validpilot(L,1);
+   e      = luaL_checknumber(L,2);
+   nonrel = lua_toboolean(L,3);
 
-   /* Set energy. */
-   p->energy = e * p->energy_max;
+   if (nonrel)
+      p->energy = CLAMP( 0, p->energy_max, e );
+   else
+      p->energy = (e/100.) * p->energy_max;
 
    return 0;
 }
@@ -2899,18 +2923,19 @@ static int pilotL_getHealth( lua_State *L )
  * @usage energy = p:energy()
  *
  *    @luatparam Pilot p Pilot to get energy of.
+ *    @luatparam[opt=false] boolean nonrel Whether or not to return the numeric value instead of the relative value.
  *    @luatreturn number The energy of the pilot in % [0:100].
  * @luafunc energy
  */
 static int pilotL_getEnergy( lua_State *L )
 {
-   Pilot *p;
+   Pilot *p = luaL_validpilot(L,1);
+   int nonrel = lua_toboolean(L,2);
 
-   /* Get the pilot. */
-   p  = luaL_validpilot(L,1);
-
-   /* Return parameter. */
-   lua_pushnumber(L, (p->energy_max > 0.) ? p->energy / p->energy_max * 100. : 0. );
+   if (nonrel)
+      lua_pushnumber(L, p->energy );
+   else
+      lua_pushnumber(L, (p->energy_max > 0.) ? p->energy / p->energy_max * 100. : 0. );
 
    return 1;
 }
