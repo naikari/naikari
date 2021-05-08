@@ -2125,6 +2125,8 @@ void pilot_update( Pilot* pilot, double dt )
       pilot->energy = 0.;
       /* Stop all on outfits. */
       nchg += pilot_outfitOffAll( pilot );
+      /* Run Lua stuff. */
+      pilot_outfitLOutfofenergy( pilot );
    }
 
    /* Must recalculate stats because something changed state. */
