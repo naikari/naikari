@@ -11,7 +11,7 @@
   <cpu>-4</cpu>
  </general>
  <specific type="afterburner" group="9">
-  <rumble>0.9</rumble>
+  <rumble>0.5</rumble>
   <sound>afterburner</sound>
   <sound_off>afb_disengage</sound_off>
   <thrust>300</thrust>
