@@ -114,6 +114,9 @@ static int pilotL_setNoLand( lua_State *L );
 static int pilotL_addOutfit( lua_State *L );
 static int pilotL_rmOutfit( lua_State *L );
 static int pilotL_setFuel( lua_State *L );
+static int pilotL_intrinsicReset( lua_State *L );
+static int pilotL_intrinsicSet( lua_State *L );
+static int pilotL_intrinsicGet( lua_State *L );
 static int pilotL_changeAI( lua_State *L );
 static int pilotL_setTemp( lua_State *L );
 static int pilotL_setHealth( lua_State *L );
@@ -226,6 +229,9 @@ static const luaL_Reg pilotL_methods[] = {
    { "addOutfit", pilotL_addOutfit },
    { "rmOutfit", pilotL_rmOutfit },
    { "setFuel", pilotL_setFuel },
+   { "intrinsicReset", pilotL_intrinsicReset },
+   { "intrinsicSet", pilotL_intrinsicSet },
+   { "intrinsicGet", pilotL_intrinsicGet },
    /* Ship. */
    { "ship", pilotL_ship },
    { "cargoFree", pilotL_cargoFree },
@@ -2472,6 +2478,8 @@ static int pilotL_addOutfit( lua_State *L )
 
       /* Add outfit - already tested. */
       ret = pilot_addOutfitRaw( p, o, p->outfits[i] );
+      if (ret==0)
+         pilot_outfitLInit( p, p->outfits[i] );
       pilot_calcStats( p );
 
       /* Add ammo if needed. */
@@ -2619,6 +2627,77 @@ static int pilotL_setFuel( lua_State *L )
 
    /* Return amount of fuel. */
    lua_pushnumber(L, p->fuel);
+   return 1;
+}
+
+
+/**
+ * @brief Resets the intrinsic stats of a pilot.
+ *
+ * @luafunc intrinsicReset
+ */
+static int pilotL_intrinsicReset( lua_State *L )
+{
+   Pilot *p = luaL_validpilot(L,1);
+   ss_statsInit( &p->intrinsic_stats );
+   pilot_calcStats( p );
+   return 0;
+}
+
+
+/**
+ * @brief Allows setting intrinsic stats of a pilot.
+ *
+ *    @luatparam Pilot p Pilot to set stat of.
+ *    @luatparam string name Name of the stat to set. It is the same as in the xml.
+ *    @luatparam number value Value to set the stat to.
+ *    @luatparam boolean replace Whether or not to add to the stat or replace it.
+ * @luafunc intrinsicSet
+ */
+static int pilotL_intrinsicSet( lua_State *L )
+{
+   Pilot *p = luaL_validpilot(L,1);
+   const char *name;
+   double value;
+   int replace;
+   /* Case individual parameter. */
+   if (!lua_istable(L,2)) {
+      name     = luaL_checkstring(L,2);
+      value    = luaL_checknumber(L,3);
+      replace  = lua_toboolean(L,4);
+      ss_statsSet( &p->intrinsic_stats, name, value, replace );
+      pilot_calcStats( p );
+      return 0;
+   }
+   replace = lua_toboolean(L,4);
+   /* Case set of parameters. */
+   lua_pushnil(L);
+   while (lua_next(L,2) != 0) {
+      name     = luaL_checkstring(L,-2);
+      value    = luaL_checknumber(L,-1);
+      ss_statsSet( &p->intrinsic_stats, name, value, replace );
+      lua_pop(L,1);
+   }
+   lua_pop(L,1);
+   pilot_calcStats( p );
+   return 0;
+}
+
+
+/**
+ * @brief Allows getting intrinsic stats of a pilot.
+ *
+ *    @luatparam Pilot p Pilot to set stat of.
+ *    @luatparam string name Name of the stat to set. It is the same as in the xml.
+ *    @luatparam number value Value to set the stat to.
+ *    @luatparam boolean overwrite Whether or not to add to the stat or replace it.
+ * @luafunc intrinsicGet
+ */
+static int pilotL_intrinsicGet( lua_State *L )
+{
+   Pilot *p          = luaL_validpilot(L,1);
+   const char *name  = luaL_checkstring(L,2);
+   lua_pushnumber(L, ss_statsGet( &p->intrinsic_stats, name ));
    return 1;
 }
 

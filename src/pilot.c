@@ -2823,7 +2823,7 @@ unsigned int pilot_create( Ship* ship, const char* name, int faction, const char
    pilot_init_trails( dyn );
 
    /* Run Lua stuff. */
-   pilot_outfitLInit( dyn );
+   pilot_outfitLInitAll( dyn );
 
    return dyn->id;
 }
@@ -2868,7 +2868,7 @@ Pilot* pilot_replacePlayer( Pilot* after )
    pilot_stack[i] = after;
    pilot_init_trails( after );
    /* Run Lua stuff. */
-   pilot_outfitLInit( after );
+   pilot_outfitLInitAll( after );
    return after;
 }
 
