@@ -54,8 +54,8 @@
 -- as text properly in Naev. dat/missions/neutral/common.lua provides
 -- the addMiscLog function, which is typically used for non-factional
 -- unique missions.
-require "numstring.lua"
-require "missions/neutral/common.lua"
+require "numstring"
+require "missions/neutral/common"
 
 --[[
 Multi-paragraph dialog strings should go here, each with an identifiable
