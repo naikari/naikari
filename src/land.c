@@ -827,14 +827,14 @@ void land_updateMainTab (void)
    credits2str( cred, player.p->credits, 2 );
    snprintf( buf, sizeof(buf),
          _("%s (%s system)\n"
-         "%s (%s-class)\n"
+         "%s (%s)\n"
          "%s\n"
          "%s\n"
          "\n"
          "%s\n"
          "%s"),
          _(land_planet->name), _(cur_system->name),
-         planet_getClassName(land_planet->class), _(land_planet->class),
+         _(land_planet->class), planet_getClassName(land_planet->class),
          _(faction_name(land_planet->faction)), pop, tons, cred );
    window_modifyText( land_windows[0], "txtDInfo", buf );
 
