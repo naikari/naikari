@@ -613,10 +613,10 @@ void player_thinkAutonav( Pilot *pplayer, double dt )
  */
 void player_updateAutonav( double dt )
 {
-   const double dis_dead = 5.0;
-   const double dis_mod  = 0.5;
-   const double dis_max  = 4.0;
-   const double dis_ramp = 6.0;
+   const double dis_dead = 1.0;
+   const double dis_mod  = 5.0;
+   const double dis_max  = 10.0;
+   const double dis_ramp = 2.0;
 
    if (paused || (player.p==NULL) || pilot_isFlag(player.p, PILOT_DEAD))
       return;
