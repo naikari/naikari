@@ -12,6 +12,7 @@
 
 local vn = require 'vn'
 require 'numstring'
+require 'missions.dvaered.coliseum_tables'
 
 logidstr = "log_morrigan"
 logname  = _("Totoran Tournament")
@@ -25,35 +26,36 @@ npc_colour     = {1, 0.7, 0.3}
 
 misn_title  = _("Totoran Tournament")
 misn_desc   = _("Annihilate all enemies in Coliseum.")
+misn_reward = _("Great riches!")
 
 coliseum = system.get("Coliseum")
 
 function create ()
-   misn.finish(false) -- Disabled for now
+   if not var.peek("testing") then
+      misn.finish(false) -- Disabled for now
+   end
    -- We'll have different NPCs for each tournament type
-   npc_1v1 = misn.npcAdd( "approach_1v1", npc_name, npc_portrait, npc_description )
+   npc_wave = misn.npcAdd( "approach_wave", npc_name, npc_portrait, npc_description )
 end
 function cleanup_npc ()
-   misn.npcRm( npc_1v1 )
+   misn.npcRm( npc_wave )
 end
 
 
 -- Land is unified for all types of combat
 function land ()
-   if misn_state==3 then
-      vn.clear()
-      vn.scene()
-      vn.transition()
-      vn.sfxMoney()
-      vn.func( function () player.pay( rewardcredits ) end )
-      vn.na(string.format(_("You received #g%s#0."), creditstring( rewardcredits )))
-      vn.run()
+   -- TODO show performance and give reward based on it
+   --[[
+   vn.clear()
+   vn.scene()
+   vn.transition()
+   vn.sfxMoney()
+   vn.func( function () player.pay( rewardcredits ) end )
+   vn.na(string.format(_("You received #g%s#0."), creditstring( rewardcredits )))
+   vn.run()
+   --]]
 
-      misn.finish(true)
-   elseif misn_state>0 then
-      player.msg(_("#rMISSION FAILED! You were not supposed to land after the fight started!!"))
-      misn.finish(false)
-   end
+   misn.finish(true)
 end
 
 
@@ -72,7 +74,7 @@ function pairsByKeys( t, f )
 end
 
 
-function approach_1v1 ()
+function approach_wave ()
    vn.clear()
    vn.scene()
    local dv = vn.newCharacter( npc_name, {image=npc_image} )
@@ -80,54 +82,32 @@ function approach_1v1 ()
 
    -- TODO first time message
 
+   vn.label("menu")
    dv("Yo")
    vn.menu{
-      { "Enter the Tournament", "enter" },
-      { "Ask for more information", "info" },
+      { "Enter in the Light Category", "light" },
+      { "Enter in the Medium Category", "medium" },
+      { "Enter in the Heavy Category", "heavy" },
+      { "More Information", "info" },
       { "Maybe later", "leave" },
    }
 
-   vn.label("enter")
-   dv("What type of tournament?")
-   vn.menu{
-      { "One on one", "onevone" },
-      --{ "Free for all", "ffa" },
-      { "Never mind", "leave" },
-   }
-
-   opponents_list = {
-      Hyena = 10e3,
-      Shark = 20e3,
-      Vendetta = 30e3,
-      Admonisher = 50e3,
-      Pacifier= 100e3,
-      Kestrel = 200e3,
-      Hawking = 300e3,
-   }
-   vn.label("onevone")
-   dv("What enemy?")
-   rewardcredits = 0
-   vn.menu( function ()
-         local opts = {}
-         local sortfunc = function(a,b) return opponents_list[a]<opponents_list[b] end
-         for k,v in pairsByKeys(opponents_list, sortfunc) do
-            local str = string.format(_("%s (#g%s#0)"), k, creditstring(v))
-            table.insert( opts, { str, k } )
-         end
-         table.insert( opts, {_("Never mind"), "leave"} )
-         return opts
-      end,
-      function( opt )
-         if opt=="leave" then
-            vn.jump(opt)
-            return
-         end
-         rewardcredits = opponents_list[opt]
-         enemy_ship = opt
-         misn_state = 0
-      end
-   )
+   vn.label("light")
+   vn.func( function () wave_category = "light" end )
    vn.done()
+
+   vn.label("medium")
+   vn.func( function () wave_category = "medium" end )
+   vn.done()
+
+   vn.label("heavy")
+   vn.func( function () wave_category = "heavy" end )
+   vn.done()
+
+   -- TODO info
+   vn.label("info")
+   dv("here be info")
+   vn.jump("menu")
 
    vn.label("leave")
    vn.na(_("You take your leave."))
@@ -135,8 +115,8 @@ function approach_1v1 ()
 
    vn.run()
 
-   -- If not accepted, misn_state will still be nil
-   if enemy_ship==nil then
+   -- See if we start the event
+   if wave_category==nil then
       return
    end
 
@@ -145,7 +125,7 @@ function approach_1v1 ()
 
    -- Set details
    misn.setDesc( misn_desc )
-   misn.setReward( creditstring(rewardcredits) )
+   misn.setReward( misn_reward )
    misn.setTitle( misn_title )
 
    -- Add to log
@@ -158,19 +138,39 @@ function approach_1v1 ()
    hook.safe("enter_the_ring")
    player.allowSave( false ) -- Don't want to save the mission
    player.takeoff() -- take off and enter the ring!
+
+   -- Wave meta-information
+   coliseum_enter = "enter_wave"
+   wave_round = 1
 end
+function abort ()
+   leave_the_ring()
+end
+
+--[[
+   Common Teleporting Functions
+--]]
+-- Enters Coliseum
 function enter_the_ring ()
    -- Teleport the player to the Coliseum and hide the rest of the universe
    local sys = coliseum
-   hook.enter("enter")
+   hook.enter( coliseum_enter )
    for k,s in ipairs(system.getAll()) do
       s:setHidden(true)
    end
    sys:setHidden(false)
+
+   -- Set up player stuff
    player.pilot():setPos( vec2.new( 0, 0 ) )
    player.allowSave(true)
    player.teleport(coliseum)
+
+   -- Player lost info
+   local pp = player.pilot()
+   --hook.pilot( pp, "disable", "player_lost" )
+   hook.pilot( pp, "exploded", "player_lost" )
 end
+-- Goes back to Totoran (landed)
 function leave_the_ring ()
    local sys = coliseum
    sys:setKnown(false)
@@ -178,78 +178,18 @@ function leave_the_ring ()
       s:setHidden(false)
    end
    hook.land("land")
+   local pp = player.pilot()
+   pp:setHide( true ) -- clear hidden flag
+   pp:setInvincible( false )
+   player.cinematics( false )
    player.land( planet.get("Totoran") )
 end
 
-
-function enter ()
-   if system.cur() ~= system.get("Coliseum") then
-      return
-   end
-
-   -- Get rid of pilots
-   pilot.clear()
-   pilot.toggleSpawn(false)
-
-   -- Set marker
-   start_pos = vec2.new( 0, 0 )
-   system.mrkAdd( _("Starting Position"), start_pos )
-   hook.timer( 500, "heartbeat" )
-
-   -- Metafactions
-   local fact = faction.dynAdd( "Mercenary", "Combatant", _("Combatant") )
-   enemies = {}
-   local function addenemy( shipname, name )
-      local pos = vec2.new( -500, 500 )
-      local p = pilot.add( shipname, fact, pos, name )
-      p:setInvincible(true)
-      p:control(true)
-      p:brake()
-      hook.pilot( p, "disable", "p_disabled" )
-      hook.pilot( p, "death", "p_death" )
-      table.insert( enemies, p )
-   end
-
-   addenemy( enemy_ship, _("Combatant") )
-end
-function enemy_out( p )
-   if misn_state==3 then return end
-
-   local idx = nil
-   for k,v in ipairs(enemies) do
-      if v==p then
-         idx=k
-         break
-      end
-   end
-   table.remove( enemies, idx )
-   if #enemies == 0 then
-      misn_state = 3
-      -- TODO play sound and cooler text
-      player.omsgAdd( _("YOU ARE VICTORIOUS!"), 5 )
-      shiplog.appendLog( logidstr, string.format(_("You defeated a %s in one-on-one combat."), enemy_ship) )
-      hook.timer( 5000, "leave_the_ring")
-   end
-end
-function p_disabled( p )
-   p:disable()
-   enemy_out( p )
-end
-function p_death( p )
-   enemy_out( p )
-end
-
-function heartbeat ()
-   local dist = player.pilot():pos():dist( start_pos )
-   if dist > 3000 then
-      hook.timer( 500, "heartbeat" )
-      return
-   end
-
-   misn_state = 1
-
-   player.autonavAbort(_("It is time to fight!"))
-   hook.timer( 0*1000, "countdown", _("5…") )
+--[[
+   Countdown stuff
+--]]
+function countdown_start ()
+   omsg_id = player.omsgAdd( _("5…"), 1.1 )
    hook.timer( 1*1000, "countdown", _("4…") )
    hook.timer( 2*1000, "countdown", _("3…") )
    hook.timer( 3*1000, "countdown", _("2…") )
@@ -258,18 +198,182 @@ function heartbeat ()
 end
 function countdown( str )
    -- TODO play countdown sound
-   player.omsgAdd( str, 1 )
+   player.omsgChange( omsg_id, str, 1.1 )
 end
 function countdown_done ()
    -- TODO play sound and cooler text
-   player.omsgAdd( _("FIGHT!"), 3 )
-   misn_state = 2
+   player.omsgChange( omsg_id, _("FIGHT!"), 3 )
+   wave_started = true
 
    for k,p in ipairs(enemies) do
       p:setInvincible(false)
-      p:setHostile(true)
       p:control(false)
+      -- We let them do their thing
    end
+end
+
+
+--[[
+   Common functions
+--]]
+function enemy_out( p )
+   local idx = nil
+   for k,v in ipairs(enemies) do
+      if v==p then
+         idx=k
+         break
+      end
+   end
+   if idx then
+      table.remove( enemies, idx )
+   end
+   if wave_started and #enemies == 0 then
+      wave_started = false
+      all_enemies_dead()
+   end
+end
+function p_disabled( p )
+   p:disable() -- don't let them come back
+   p:setInvisible( true ) -- can't target
+   p:setInvincible( true ) -- just stays there
+   enemy_out( p )
+end
+function p_death( p )
+   enemy_out( p )
+end
+function player_lost ()
+   local pp = player.pilot()
+   pp:setHealth( 100, 0 ) -- Heal up to avoid game over if necessary
+   pp:setHide( true )
+   pp:setInvincible( true )
+   player.cinematics( true )
+
+   -- omsg does not display so we need a custom solution
+   --player.omsgAdd( _("YOU LOST!"), 5 )
+   --shiplog.appendLog( logidstr, string.format(_("You defeated a %s in one-on-one combat."), enemy_ship) )
+   exploded_hook = hook.timer( 5000, "leave_the_ring")
+end
+
+
+--[[
+   Wave stuff
+--]]
+function enter_wave ()
+   if system.cur() ~= system.get("Coliseum") then
+      return
+   end
+
+   -- Get rid of pilots
+   pilot.clear()
+   pilot.toggleSpawn(false)
+
+   -- Metafactions
+   enemy_faction = faction.dynAdd( "Mercenary", "Combatant", _("Combatant") )
+
+   -- Start round
+   total_score = 0
+   wave_round_setup()
+end
+function wave_round_setup ()
+   pilot.clear() -- clear remaining pilots if necessary
+
+   -- Heal up and be nice to the player
+   local pp = player.pilot()
+   pp:setHealth( 100, 100, 0 )
+   pp:setEnergy( 100 )
+   pp:setTemp( 0 )
+   pp:fillAmmo()
+   -- TODO reset outfit cooldown stuff
+
+   local function addenemy( shipname, pos )
+      local p = pilot.add( shipname, enemy_faction, pos, nil, "baddie_norun" )
+      p:setInvincible(true)
+      p:control(true)
+      p:setHostile(true)
+      p:brake()
+      p:face( pp )
+      local mem = p:memory()
+      mem.comm_no = _("No response.") -- Don't allow talking
+      hook.pilot( p, "disable", "p_disabled" )
+      hook.pilot( p, "death", "p_death" )
+      return p
+   end
+   local function addenemies( ships )
+      local e = {}
+      local pos = vec2.new( -500, 500 )
+      for k,v in ipairs(ships) do
+         local shipname = v
+         local p = addenemy( shipname, pos )
+         table.insert( e, p )
+      end
+      return e
+   end
+
+   local round_enemies = wave_round_enemies[wave_category]
+   enemies = addenemies( round_enemies[wave_round] )
+   wave_enemies = round_enemies[wave_round]
+
+   -- Count down
+   player.omsgAdd( string.format( _("#pWAVE %d#0"), wave_round ), 8 )
+   countdown_start()
+
+   all_enemies_dead = wave_end
+end
+function wave_compute_score ()
+   local pp = player.pilot()
+   local score = 0
+   local bonus = 100
+   local str = ""
+
+   for k,n in ipairs(wave_enemies) do
+      local s = wave_score_table[n]
+      str = string.format("#o%s %d#0\n", _(n), s )
+      score = score + s
+   end
+
+   local function newbonus( s, b )
+      local h
+      if b > 0 then
+         h = "#g"
+      else
+         h = "#r"
+      end
+      str = str .. h .. string.format(s,b) .. "#0\n"
+      bonus = bonus + b
+   end
+   if wave_category == "light" then
+      local c = pp:ship():class()
+      if c=="Corvette" then
+         newbonus( "Corvette %d%%", -20 )
+      elseif c=="Destroyer" then
+         newbonus( "Destroyer %d%%", -40 )
+      elseif c=="Cruiser" then
+         newbonus( "Cruiser %d%%", -80 )
+      elseif c=="Carrier" then
+         newbonus( "Carrier %d%%", -90 )
+      end
+   end
+
+   score = math.max( 0, score * bonus / 100 )
+
+   total_score = total_score + score
+   str = str..string.format("TOTAL %d (#g+%d#0)", total_score, score )
+   return str, score
+end
+function wave_end ()
+   if wave_round < #wave_round_enemies[wave_category] then
+      -- TODO Cooler animation or something
+      local score_str, score = wave_compute_score()
+      player.omsgAdd( string.format( _("#pWAVE %d CLEAR#0\n%s"), wave_round, score_str ), 4.5 )
+      wave_round = wave_round + 1
+      hook.timer( 5000, "wave_round_setup" )
+      return
+   end
+
+   -- TODO play sound and cooler text
+   player.omsgAdd( _("YOU ARE VICTORIOUS!"), 5 )
+   --shiplog.appendLog( logidstr, string.format(_("You defeated a %s in one-on-one combat."), enemy_ship) )
+   hook.timer( 5000, "leave_the_ring")
 end
 
 

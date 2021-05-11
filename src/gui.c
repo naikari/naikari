@@ -555,8 +555,8 @@ static void gui_renderPilotTarget( double dt )
       return;
    }
 
-   /* Make sure target is still in range. */
-   if (!pilot_inRangePilot( player.p, p, NULL )) {
+   /* Make sure target is still valid and in range. */
+   if (!pilot_validTarget( player.p, p )) {
       pilot_setTarget( player.p, player.p->id );
       gui_setTarget();
       return;
@@ -2117,6 +2117,10 @@ void gui_updateFaction (void)
 void gui_setGeneric( Pilot* pilot )
 {
    if (gui_env == LUA_NOREF)
+      return;
+
+   if (player_isFlag(PLAYER_DESTROYED) || player_isFlag(PLAYER_CREATING) ||
+      (player.p == NULL) || pilot_isFlag(player.p,PILOT_DEAD))
       return;
 
    if ((player.p->target != PLAYER_ID) && (pilot->id == player.p->target))

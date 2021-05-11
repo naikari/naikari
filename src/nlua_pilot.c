@@ -122,6 +122,7 @@ static int pilotL_changeAI( lua_State *L );
 static int pilotL_setTemp( lua_State *L );
 static int pilotL_setHealth( lua_State *L );
 static int pilotL_setEnergy( lua_State *L );
+static int pilotL_fillAmmo( lua_State *L );
 static int pilotL_setNoboard( lua_State *L );
 static int pilotL_setNoDisable( lua_State *L );
 static int pilotL_setSpeedLimit( lua_State *L);
@@ -202,6 +203,7 @@ static const luaL_Reg pilotL_methods[] = {
    { "setTemp", pilotL_setTemp },
    { "setHealth", pilotL_setHealth },
    { "setEnergy", pilotL_setEnergy },
+   { "fillAmmo", pilotL_fillAmmo },
    { "setNoboard", pilotL_setNoboard },
    { "setNoDisable", pilotL_setNoDisable },
    { "setSpeedLimit", pilotL_setSpeedLimit },
@@ -493,8 +495,7 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
          return 0;
       }
       /* Get pilotname argument if provided. */
-      if ((lua_gettop(L) >= 4) && !lua_isnil(L,4))
-         fltname = luaL_checkstring(L,4);
+      fltname = luaL_optstring( L, 4, fltname );
       /* Get faction from string or number. */
       lf = luaL_validfaction(L,2);
    }
@@ -571,10 +572,7 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
    }
 
    /* Parse final argument - Fleet AI Override */
-   if ((lua_gettop(L) < 3+2*from_ship) || lua_isnil(L,3+2*from_ship))
-      fltai = NULL;
-   else
-      fltai = luaL_checkstring(L,3+2*from_ship);
+   fltai = luaL_optstring( L, 3+2*from_ship, NULL );
 
    /* Set up velocities and such. */
    if (jump != NULL) {
@@ -2768,7 +2766,7 @@ static int pilotL_changeAI( lua_State *L )
  *
  *    @luatparam Pilot p Pilot to set health of.
  *    @luatparam number temp Value to set temperature to. Values below base temperature will be clamped.
- *    @luatparam[opt=true] boolean slots Whether slots should also be set to this temperature.
+ *    @luatparam[opt=false] boolean noslots Whether slots should also be set to this temperature.
  * @luafunc setTemp
  */
 static int pilotL_setTemp( lua_State *L )
@@ -2782,10 +2780,7 @@ static int pilotL_setTemp( lua_State *L )
    /* Handle parameters. */
    p  = luaL_validpilot(L,1);
    kelvins  = luaL_checknumber(L, 2);
-   if (lua_gettop(L) < 3)
-      setOutfits = 1;
-   else
-      setOutfits = lua_toboolean(L, 3);
+   setOutfits = !lua_toboolean(L,3);
 
    /* Temperature must not go below base temp. */
    kelvins = MAX(kelvins, CONST_SPACE_STAR_TEMP);
@@ -2842,6 +2837,15 @@ static int pilotL_setHealth( lua_State *L )
    p->shield = s * p->shield_max;
    p->stress = st * p->armour;
 
+   /* Clear death hooks if not dead. */
+   if (p->armour > 0.) {
+      pilot_rmFlag( p, PILOT_DEAD );
+      pilot_rmFlag( p, PILOT_EXPLODED );
+      pilot_rmFlag( p, PILOT_DELETE );
+      if (pilot_isPlayer(p))
+         player_rmFlag( PLAYER_DESTROYED );
+   }
+
    /* Update disable status. */
    pilot_updateDisable(p, 0);
 
@@ -2878,6 +2882,21 @@ static int pilotL_setEnergy( lua_State *L )
    else
       p->energy = (e/100.) * p->energy_max;
 
+   return 0;
+}
+
+
+/**
+ * @brief Fills up the pilot's ammo.
+ *
+ *    @luatparam Pilot p Pilot to fill ammo.
+ * @luafunc fillAmmo
+ */
+static int pilotL_fillAmmo( lua_State *L )
+{
+   NLUA_CHECKRW(L);
+   Pilot *p = luaL_validpilot(L,1);
+   pilot_fillAmmo( p );
    return 0;
 }
 
