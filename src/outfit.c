@@ -441,9 +441,11 @@ int outfit_isAmmo( const Outfit* o )
  */
 int outfit_isSeeker( const Outfit* o )
 {
-   if (((o->type==OUTFIT_TYPE_AMMO) || (o->type==OUTFIT_TYPE_TURRET_LAUNCHER) ||
+   if ((o->type==OUTFIT_TYPE_AMMO) && (o->u.amm.ai > 0))
+      return 1;
+   if (((o->type==OUTFIT_TYPE_TURRET_LAUNCHER) ||
             (o->type==OUTFIT_TYPE_LAUNCHER)) &&
-         (o->u.amm.ai > 0))
+         (o->u.lau.ammo->u.amm.ai > 0))
       return 1;
    return 0;
 }
@@ -1872,11 +1874,11 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
    snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
          "%.0f CPU\n"
-         "%.1f Launches Per Second\n"
+         "%.1f Seconds Per Launch\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
          temp->cpu,
-         1./temp->u.bay.delay,
+         temp->u.bay.delay,
          temp->u.bay.amount, _(temp->u.bay.ammo_name) );
 
 #define MELEMENT(o,s) \
@@ -2538,6 +2540,9 @@ static void outfit_launcherDesc( Outfit* o )
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%.1f Second Lock-on\n"),
             o->u.lau.lockon );
+   else
+      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("No Tracking\n") );
 
    l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          _("Holds %d %s:\n"
