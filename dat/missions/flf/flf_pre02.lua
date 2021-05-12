@@ -60,9 +60,15 @@ ask_return_text = _([["I see you're back. Have you changed your mind about letti
 
 response_no = _([[The man frowns, then silently returns to his seat and crosses his arms.]])
 
-response_yes = _([["Good. You'll see soon why being neutral in this conflict is unacceptable.
+tohelp_yes = _([[The man grins. "Perfect. I'll show you just what our stakes are, what we fight for, and what we're up against. And most importantly, I'll find out if we can really trust you.
 
-"Our first stop will be my homeworld: %s. I'll be waiting in your ship until we arrive. I already know where it is." Sure enough, he begins to walk in the direction of your ship, but then stops and looks behind himself toward you. "Oh, by the way, my name is Flint. And also..." He pulls out a laser gun from some place you cannot discern. You had no idea he was carrying a weapon. You feel the color draining from your face. "Don't even think of trying any funny business. If you even think of trying to rat me out to the Dvaereds, I will kill you."
+"I suppose as good as place to start as any would be my homeworld, %s. Maybe that will give you the slightest inkling of how rich our society is. Too many people like you think that we're helpless barbarians who need to be uplifted and saved by an Imperial savior, and I'm sick and tired of that.
+
+"Oh, my name is Flint, by the way."]])
+
+neutral_yes = _([["Good. You'll see soon why being neutral in this conflict is unacceptable. More importantly, I'll find out if you can be trusted in the slightest.
+
+"Our first stop will be my homeworld, %s. Maybe that'll give you the slightest inkling of what's at stake for us. I'll be waiting in your ship until we arrive. I already know where it is." Sure enough, he begins to walk in the direction of your ship, but then stops and looks behind himself toward you. "Oh, by the way, my name is Flint. And also..." He pulls out a laser gun from some place you cannot discern. You had no idea he was carrying a weapon. You feel the color draining from your face. "Don't even think of trying any funny business. If you even think of trying to rat me out to the Dvaereds, I will kill you."
 
 Flint puts away his gun as swiftly as he took it out, still leaving you without a clue as to where he keeps it, and turns back away from you. "Nothing personal, but I gotta protect myself. Hopefully you should know well enough not to get yourself into that situation." He then walks off, leaving you to ponder the situation. You hope you haven't made a grave mistake just now, but Flint does seem to have positive intentions, so you brush your concerns aside and resolve to see just what it is that the FLF hate so much about House Dvaered.]])
 
