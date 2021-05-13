@@ -14,7 +14,7 @@ local vn = require 'vn'
 require 'numstring'
 require 'missions.dvaered.coliseum_tables'
 
-logidstr = "log_morrigan"
+logidstr = "log_totoran"
 logname  = _("Totoran Tournament")
 logtype  = _("Totoran Tournament")
 
@@ -30,6 +30,8 @@ misn_reward = _("Great riches!")
 
 coliseum = system.get("Coliseum")
 
+sfx_clear = audio.new( 'snd/sounds/jingles/victory.ogg' )
+
 function create ()
    if not var.peek("testing") then
       misn.finish(false) -- Disabled for now
@@ -44,16 +46,18 @@ end
 
 -- Land is unified for all types of combat
 function land ()
-   -- TODO show performance and give reward based on it
-   --[[
+   -- TODO something better than this
+   local result_str = string.format(_("You obtained %d points!"), total_score )
+   local rewardcredits = total_score
+
    vn.clear()
    vn.scene()
    vn.transition()
+   vn.na( result_str )
    vn.sfxMoney()
    vn.func( function () player.pay( rewardcredits ) end )
    vn.na(string.format(_("You received #g%s#0."), creditstring( rewardcredits )))
    vn.run()
-   --]]
 
    misn.finish(true)
 end
@@ -358,10 +362,10 @@ function wave_compute_score ()
       elseif c=="Carrier" then
          newbonus( "Carrier %d%%", -90 )
       end
-      if elapsed < 30 then
-         newbonus( "Fast Clear (<30s) %d%%", 25 )
-      elseif elapsed > 300 then
-         newbonus( "Slow Clear (>300s) %d%%", -25 )
+      if elapsed < 15 then
+         newbonus( "Fast Clear (<15s) %d%%", 25 )
+      elseif elapsed > 90 then
+         newbonus( "Slow Clear (>90s) %d%%", -25 )
       end
    elseif wave_category == "medium" then
       if c=="Fighter" then
@@ -375,10 +379,10 @@ function wave_compute_score ()
       elseif c=="Carrier" then
          newbonus( "Carrier %d%%", -30 )
       end
-      if elapsed < 45 then
-         newbonus( "Fast Clear (<45s) %d%%", 25 )
-      elseif elapsed > 450 then
-         newbonus( "Slow Clear (>450s) %d%%", -25 )
+      if elapsed < 25 then
+         newbonus( "Fast Clear (<25s) %d%%", 25 )
+      elseif elapsed > 120 then
+         newbonus( "Slow Clear (>120s) %d%%", -25 )
       end
    elseif wave_category == "heavy" then
       if c=="Fighter" then -- I'd love to see someone take down a kestrel in a fighter
@@ -390,10 +394,10 @@ function wave_compute_score ()
       elseif c=="Destroyer" then
          newbonus( "Destroyer %d%%", 50 )
       end
-      if elapsed < 60 then
-         newbonus( "Fast Clear (<60s) %d%%", 25 )
-      elseif elapsed > 600 then
-         newbonus( "Slow Clear (>600s) %d%%", -25 )
+      if elapsed < 40 then
+         newbonus( "Fast Clear (<40s) %d%%", 25 )
+      elseif elapsed > 180 then
+         newbonus( "Slow Clear (>180s) %d%%", -25 )
       end
    end
 
@@ -405,6 +409,7 @@ function wave_compute_score ()
 end
 function wave_end_msg( d )
    player.omsgAdd( d[1], d[2] )
+   -- TODO add sound
 end
 function wave_end ()
    if wave_round < #wave_round_enemies[wave_category] then
@@ -413,8 +418,8 @@ function wave_end ()
       local n = #score_str
       local s = 1.2 -- time to display each message
       local f = (n+2)*s
-      --player.omsgAdd( string.format( _("#pWAVE %d CLEAR#0\n%s"), wave_round, score_str ), (n+1)*s )
       player.omsgAdd( string.format( _("#pWAVE %d CLEAR#0"), wave_round ), f )
+      sfx_clear:play()
       for k,v in pairs(score_str) do
          local start = k*s
          hook.timer( 1000*start, "wave_end_msg", {v, f-start} )
@@ -426,6 +431,7 @@ function wave_end ()
 
    -- TODO play sound and cooler text
    player.omsgAdd( _("YOU ARE VICTORIOUS!"), 5 )
+   sfx_clear:play()
    --shiplog.appendLog( logidstr, string.format(_("You defeated a %s in one-on-one combat."), enemy_ship) )
    hook.timer( 5000, "leave_the_ring")
 end
