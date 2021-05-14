@@ -41,7 +41,7 @@ clue_title   = _("I know the pilot you're looking for")
 clue_text    = {}
 clue_text[1] = _("You ask for information about %s and the pilot tells you that this outlaw is supposed to have business in %s soon.")
 clue_text[2] = _([["%s? Yes, I know that scum. I've heard they like to hang around in %s. Good luck!"]])
-clue_text[3] = _([["%s has owed me 500K credits for dozens of cycles and never paid me back! You can probably catch that thief in %s."]])
+clue_text[3] = _([["%s has owed me 500\xc2\xa0k¢ for dozens of cycles and never paid me back! You can probably catch that thief in %s."]])
 clue_text[4] = _([["If you're looking for %s, I would suggest going to %s and taking a look there; that's where that outlaw was last time I heard."]])
 clue_text[5] = _([["If I was looking for %s, I would look in the %s system. That's probably a good bet."]])
 
