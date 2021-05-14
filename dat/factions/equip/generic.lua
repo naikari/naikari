@@ -427,24 +427,24 @@ equip_classOutfits_utilities = {
          "Reactor Class III", "Large Shield Booster", "Reactor Class II",
          "Medium Shield Booster", "Droid Repair Crew",
          "Forward Shock Absorbers", "Power Regulation Override",
-         "Targeting Array", "Improved Power Regulator", "Weapons Ionizer",
-         "Solar Panel", "Hellburner", "Emergency Shield Booster",
-         "Sensor Array",
+         "Targeting Array", "Improved Power Regulator",
+         "Turreted Weapons Ionizer", "Solar Panel", "Hellburner",
+         "Emergency Shield Booster", "Sensor Array",
       },
    },
    ["Cruiser"] = {
       {
          varied = true;
          "Reactor Class III", "Large Shield Booster", "Droid Repair Crew",
-         "Targeting Array", "Improved Power Regulator", "Weapons Ionizer",
-         "Solar Panel", "Sensor Array",
+         "Targeting Array", "Improved Power Regulator",
+         "Turreted Weapons Ionizer", "Solar Panel", "Sensor Array",
       },
    },
    ["Carrier"] = {
       {
          varied = true;
          "Reactor Class III", "Large Shield Booster", "Droid Repair Crew",
-         "Targeting Array", "Weapons Ionizer", "Sensor Array",
+         "Targeting Array", "Turreted Weapons Ionizer", "Sensor Array",
       },
    },
    ["Drone"] = {
