@@ -384,10 +384,10 @@ function equipDefaults( defaults )
    local pp = player.pilot() -- Convenience.
 
    for k,v in ipairs( pp:outfits() ) do
-      local n, s, prop = v:slot()
+      local n, s, prop, required = v:slot()
 
       -- Remove if required but not default.
-      if prop and v ~= defaults[prop].outfit then
+      if required and v ~= defaults[prop].outfit then
          -- Store and remove old
          player.addOutfit(v:nameRaw())
          pp:rmOutfit(v:nameRaw())
