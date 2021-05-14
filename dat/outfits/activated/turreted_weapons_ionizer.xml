@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Turreted Weapons Ionizer">
+ <general>
+  <slot>utility</slot>
+  <size>medium</size>
+  <mass>12</mass>
+  <price>400000</price>
+  <description>This upscaled version of the weapons ionizer works with turrets as well as forward-mounted weapons, but the design requirements force it into a form-factor that doesn't typically fit on small ships. Like the standard weapons ionizer, it allows conventional weapons to deal ionizing damage while the outfit is active.</description>
+  <gfx_store>accuracy_turret.png</gfx_store>
+  <limit>ionizer</limit>
+  <cpu>-5</cpu>
+ </general>
+ <specific type="modification" group="10">
+  <active />
+  <fwd_dam_as_dis>100</fwd_dam_as_dis>
+  <fwd_damage>-70</fwd_damage>
+  <fwd_energy>20</fwd_energy>
+  <fwd_heat>20</fwd_heat>
+  <tur_dam_as_dis>100</tur_dam_as_dis>
+  <tur_damage>-70</tur_damage>
+  <tur_energy>20</tur_energy>
+  <tur_heat>20</tur_heat>
+ </specific>
+</outfit>

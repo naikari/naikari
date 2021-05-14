@@ -282,6 +282,7 @@
   <item>Heavy Bioship Strong Fin Stage X</item>
   <item>Superheavy Bioship Strong Fin Stage X</item>
   <item>Weapons Ionizer</item>
+  <item>Turreted Weapons Ionizer</item>
  </tech>
  <tech name="All Ships">
   <item>Llama</item>
@@ -389,6 +390,7 @@
  <tech name="Ion 3">
   <item>Heavy Ion Turret</item>
   <item>Weapons Ionizer</item>
+  <item>Turreted Weapons Ionizer</item>
  </tech>
  <tech name="Kinetic 1">
   <item>Gauss Gun</item>
@@ -549,6 +551,7 @@
   <item>Medium Weapon License</item>
   <item>Medium Combat Vessel License</item>
   <item>Mercenary License</item>
+  <item>Turreted Weapons Ionizer</item>
  </tech>
  <tech name="Low Tech Upgrades">
   <item>Battery</item>
