@@ -297,7 +297,7 @@ function seller()
       if tk.choice(title[8], text[9], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
-            player.pay(-15000)
+            player.pay(-15000, true)
             artifactA = misn.cargoAdd("Artifact? A", 0)
             misn.markerRm(markerA)
          else
@@ -308,7 +308,7 @@ function seller()
       if tk.choice(title[8], text[10], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
-            player.pay(-15000)
+            player.pay(-15000, true)
             artifactB = misn.cargoAdd("Artifact? B", 0)
             misn.markerRm(markerB)
          else
@@ -319,7 +319,7 @@ function seller()
       if tk.choice(title[8], text[11], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
-            player.pay(-15000)
+            player.pay(-15000, true)
             artifactC = misn.cargoAdd("Artifact? C", 0)
             misn.markerRm(markerC)
          else
