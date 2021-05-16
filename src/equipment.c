@@ -1370,12 +1370,6 @@ static void equipment_genShipList( unsigned int wid )
 
       /* Create the image array. */
       iconsize = 96;
-      if (!conf.big_icons) {
-         if (toolkit_simImageArrayVisibleElements(sw,sh,iconsize,iconsize) < nships)
-            iconsize = 80;
-         if (toolkit_simImageArrayVisibleElements(sw,sh,iconsize,iconsize) < nships)
-            iconsize = 64;
-      }
       window_addImageArray( wid, 20, -40,
             sw, sh, EQUIPMENT_SHIPS, iconsize, iconsize,
             cships, nships, equipment_updateShips, NULL, equipment_transChangeShip );
@@ -1467,12 +1461,6 @@ static void equipment_genOutfitList( unsigned int wid )
    iw = ow - 6;
    ih = oh - 37;
    iconsize = 96;
-   if (!conf.big_icons) {
-      if (toolkit_simImageArrayVisibleElements(iw,ih,iconsize,iconsize) < noutfits)
-         iconsize = 80;
-      if (toolkit_simImageArrayVisibleElements(iw,ih,iconsize,iconsize) < noutfits)
-         iconsize = 64;
-   }
    window_addImageArray( wid, x + 4, y + 3, iw, ih,
          EQUIPMENT_OUTFITS, iconsize, iconsize,
          coutfits, noutfits,

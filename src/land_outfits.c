@@ -330,10 +330,7 @@ static void outfits_genList( unsigned int wid )
 
    iconsize = 128;
    if (!conf.big_icons) {
-      if (toolkit_simImageArrayVisibleElements(iw,ih-34,iconsize,iconsize) < noutfits)
-         iconsize = 96;
-      if (toolkit_simImageArrayVisibleElements(iw,ih-34,iconsize,iconsize) < noutfits)
-         iconsize = 64;
+      iconsize = 96;
    }
    window_addImageArray( wid, 20, 20,
          iw, ih - 34, OUTFITS_IAR, iconsize, iconsize,
