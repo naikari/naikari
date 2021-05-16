@@ -368,7 +368,9 @@ static void equipment_renderColumn( double x, double y, double w, double h,
 {
    int i, level;
    const glColour *c, *dc, *rc;
+   const glColour ic = { .r = 0.5, .g = 0.5, .b = 0.5, .a = 0.5 };
    glColour bc;
+   int irrelevant;
 
    /* Render text. */
    if ((o != NULL) && (lst[0].sslot->slot.type == o->slot.type))
@@ -380,6 +382,8 @@ static void equipment_renderColumn( double x, double y, double w, double h,
 
    /* Iterate for all the slots. */
    for (i=0; i<array_size(lst); i++) {
+      irrelevant = 0;
+
       /* Choose default colour. */
       if (wgt->weapons >= 0) {
          level = pilot_weapSetCheck( p, wgt->weapons, &lst[i] );
@@ -387,8 +391,12 @@ static void equipment_renderColumn( double x, double y, double w, double h,
             dc = &cWhite;
          else if (level == 1)
             dc = &cBlack;
-         else
+         else if (pilot_slotIsActive( &lst[i] ))
             dc = &cGrey60;
+         else {
+            dc = &cGrey60;
+            irrelevant = 1;
+         }
       }
       else
          dc = outfit_slotSizeColour( &lst[i].sslot->slot );
@@ -409,17 +417,19 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       if (lst[i].outfit != NULL) {
          /* Draw bugger. */
          gl_blitScale( lst[i].outfit->gfx_store,
-               x, y, w, h, NULL );
+               x, y, w, h, (irrelevant ? &ic : NULL) );
       }
       else if ((o != NULL) &&
             (lst[i].sslot->slot.type == o->slot.type)) {
          /* Render the appropriate sprite, centered in each slot. */
          if (pilot_canEquip( p, &lst[i], o ) != NULL)
             gl_blitScale( equip_ico_no,
-               x + w * .1, y + h * .1, w * .8, h * .8, NULL);
+               x + w * .1, y + h * .1, w * .8, h * .8,
+               (irrelevant ? &ic : NULL) );
          else
             gl_blitScale( equip_ico_yes,
-               x + w * .1, y + h * .1, w * .8, h * .8, NULL);
+               x + w * .1, y + h * .1, w * .8, h * .8,
+               (irrelevant ? &ic : NULL) );
       }
 
       /* Must rechoose colour based on slot properties. */
