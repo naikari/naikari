@@ -384,13 +384,11 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       if (wgt->weapons >= 0) {
          level = pilot_weapSetCheck( p, wgt->weapons, &lst[i] );
          if (level == 0)
-            dc = &cFontRed;
+            dc = &cWhite;
          else if (level == 1)
-            dc = &cFontYellow;
-         else if (pilot_slotIsActive( &lst[i] ))
-            dc = &cFontBlue;
+            dc = &cBlack;
          else
-            dc = &cFontGrey;
+            dc = &cGrey60;
       }
       else
          dc = outfit_slotSizeColour( &lst[i].sslot->slot );
@@ -403,7 +401,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       bc = *dc;
       bc.a = 0.4;
       if (i==selected)
-         c = &cGreen;
+         c = &cWhite;
       else
          c = &bc;
       toolkit_drawRect( x, y, w, h, c, NULL );
