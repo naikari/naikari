@@ -392,9 +392,9 @@ static void equipment_renderColumn( double x, double y, double w, double h,
          else if (level == 1)
             dc = &cBlack;
          else if (pilot_slotIsActive( &lst[i] ))
-            dc = &cGrey60;
+            dc = &cLightBlue;
          else {
-            dc = &cGrey60;
+            dc = &cLightBlue;
             irrelevant = 1;
          }
       }
