@@ -1,20 +1,20 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Coming Out">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>2</priority>
-   <chance>20</chance>
-   <location>Bar</location>
-   <faction>Soromid</faction>
-  </avail>
-  <notes>
-   <campaign>Coming Out</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>2</priority>
+  <chance>20</chance>
+  <location>Bar</location>
+  <faction>Soromid</faction>
+ </avail>
+ <notes>
+  <campaign>Coming Out</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 
    Coming Out
@@ -41,158 +41,158 @@ require "missions/soromid/common"
 title = {}
 text = {}
 
-title[1] = _("Just Some Transportation")
-text[1] = _([[The stranger seems rather nervous as you approach, but speaks up. The stranger's voice is deeper than you expected from their appearance, but you pay it no mind.
-    "H-hi! N-nice to meet you. I'm... um, you know what, you can just call me 'C' for now. I'm not sure about the name yet. They/them pronouns if that's okay." You agree to the request, introduce yourself, and chat with them a bit. They seem like a nice person.
-    After a while, C crosses their arms in thought. "So... um, you're a pilot, you say, right? Thing is, I'm in need of some transportation, but I don't really have much money on me so no one's willing to take me. It's a bit far and there's a lot of pirates in the area, so I get why no one wants to do it, but you know... I just... I need to see my parents. Just something I need to tell them. I'm not picky about how long it takes, and I promise I won't cause any trouble.... Could you do this for me?"]])
+ask_text = _([[The stranger looks up at you as you approach. Their voice is deeper than you expected from their appearance as they nervously speak.
 
-text[2] = _([[C seems relieved at your answer. "Thank you so much," they say. "I really appreciate it. I'll make it up to you somehow. My parents live in %s in the %s system. Like I said, no rush. Just as long as I get there, that's what matters."]])
+"Oh! Uh, h-hi! Nice to meet you. I'm... gee, I was just thinking of what name to go by, what are the odds?" They let out a nervous laugh. "I suppose I'll go by 'C' for now since I'm not sure yet about the name. I, uh, definitely don't want to give out my deadname anymore. They/them pronouns please." You likewise introduce yourself and, taking their lead, note your own pronouns. They seem like a nice person, so you start chatting. You learn that C recently found out that they're transgender and was just now trying to sort out their feelings about their gender. At some point, the fact that you're a pilot comes up, which causes C to perk up. "Oh! Maybe you could help me with my other problem, then!
 
-text[3] = _([["Okay. I understand. Thanks anyway."]])
+"See, I was running a few errands for my parents here in Soromid space, but I don't have my piloting license yet, so I hired someone else to give me a ride. He said something about needing to get some 'personal things' sorted and that he would be back in just a few hectoseconds. Well, it's been almost a period now and he hasn't come back. I think he probably abandoned me. I was going to look for a new pilot after sorting out my feelings about my gender for a bit, but you seem really nice. Could you be my transport? I would just need you to take me to a series of points in Soromid space. I haden't paid my previous transport yet, so I can give the payment to you instead. Does that sound like something you'd be interested in doing?"]])
 
-text[4] = _([["Oh, hi again. I'm still having trouble finding someone. Can you help me? It would mean so much if you could."]])
+no_text = _([["Oh, ok.... I guess you must be busy. No worries, I'll try to find someone else later."]])
 
-chatter = {}
+ask_again_text = _([["Oh! Hi again! I still could use your help getting around to some places in Soromid space. What do you say?"]])
 
-chatter[1] = _([["I just want to say again, thank you so much for helping me," C says. "It's a bit nerve-wracking, coming out to my parents, and I've met so many people who... anyway, it's nice to meet someone who understands and respects my wishes and doesn't react with sarcasm. I hope my parents understand...."
-    After confirming that it's about the pronouns you use to refer to them, you simply say that it should be common decency to respect people's wishes regarding how they wish to be referred to. This leads to a conversation about common decency and people who do rude things for no good reason.]])
+yes_text = _([[C seems relieved when you tell them that you'd be happy to help transport them. "Thank you so much," they say. They show you the destinations they need to go to so you can input them on your mission computer. "The order doesn't matter," they say. "I just need to get to all of these destinations, and then I need a transport to my home planet, %s."]])
 
-chatter[2] = _([[C perks up. "Can I tell you something?" You respond affirmatively. "Thank you," they say. "I was going to come out to my parents first, but I'm so nervous and... I feel safe coming out to you, you know? Since you've been so nice to me this entire time.
-    "I was assigned male at birth, and society tends to see me as a man. But I've come to the conclusion that... I'm transgender. I feel like I should be... a woman, I think? I'm not sure. Does... does that make sense? I'm not being ridiculous, am I?" You respond that, no, they're not ridiculous; everyone is different and no one can know C better than they can. C seems relieved to hear this.]])
+dest_text = {}
+dest_text[1] = _([[You arrive at your first destination after a trip that involved a pretty sizable amount of conversation. "Thank you for helping me with this," C says as you begin to approach. "And thanks for, um, not ignoring the pronouns I requested." Taken aback, you tell C that it's how you expect to be treated and that you wouldn't want to deny someone else's humanity by not recognizing something as fundamental to themself as their gender. C smiles at this.
 
-chatter[3] = _([["Hey... is there any chance, um... I know I asked you to use they/them pronouns for me before, but could you use she/her pronouns instead, please? I hope that's not too much trouble...." You assure her that it's no trouble at all and the two of you have a rather long and interesting conversation about the place of pronouns in society. You can tell that she's a lot happier and more comfortable than she was before.]])
+When you land, C takes off and goes to do whatever they need to do. By the time you've finished docking procedures, they return with a cheery look on their face. "Someone just called me 'ma'am'!" they explain excitedly. "That's the first time! I don't know what it is. I guess part of it might have been because I didn't speak. Either way, it felt really validating." You congratulate them. "Thank you! You know what? I'm going to start using she/her pronouns, I think." You give a nod and a smile, and mentally note to yourself to modify how you refer to her from now on.]])
 
-chatter[4] = _([["I've given it some thought," C says. "I think... my new name, I like the sound of 'Chelsea'." You respond that it sounds like a nice name, plastering a smile on Chelsea's face.]])
+dest_text[2] = _([[You have many long conversations with C about a number of topics during the trip to this location, including piloting. At some point during the trip, your experience as a pilot came up and you told C about your adventures. As you begin to enter the atmosphere, Chelsea speaks up again. "You know, you're an inspiration." You feel yourself blushing a little. She continues. "To travel all the way from Empire space into Soromid space really is quite huge! And all those places you've been to along the way! You're exactly the kind of pilot I want to be." You only half-jokingly suggest that maybe they should collaborate on a mission when she gets her piloting license. She softly giggles.
 
-chatter[5] = _([[You and Chelsea have a long conversation about ships and piloting. It turns out that she's quite interested in the subject and has aspirations of being a mercenary some day. You talk about your adventures with passion and share some tips on how to get started with being a freelance pilot.]])
+This time, you finish docking procedures before C finishes her errands at this location, so you head off on your own for a while. When you get back, you see C has returned, looking slightly sadder than usual, so you ask how her errands went. "Oh, it was fine," she says. "It's just, someone misgendered me while I was there." You ask if she's OK. "Yeah, I'm fine," she affirms. "It wasn't intentional and they corrected themself right after. It just kind of sucks, you know? Just because I look and sound a little different from society's expectation for what a woman is, people assume I'm a man." Hearing this, you tell her that you're always available to talk with her since you've begun to view her as a friend. She smiles. "Thank you. I appreciate it."]])
 
-reminders = {}
-reminders[1] = _("You idly talk some more with Chelsea about the joys of being a pilot.")
-reminders[2] = _("You hear a small noise and nearly jump in your seat, but you look over your shoulder and see it's just Chelsea reading something.")
-reminders[3] = _("Chelsea watches in awe as you work the ship. You can't help but smile a little.")
-reminders[4] = _("Chelsea remarks that she likes a song you're listening to, which gets you into a conversation about music you and Chelsea like to listen to.")
-reminders[5] = _("Somehow, you and Chelsea get into a discussion about drinks that each of you likes and dislikes, and stories of bars you've been to throughout the galaxy.")
-reminders[6] = _("Chelsea dozes off in a chair for a few hectoseconds before waking up with a yawn, prompting you to yawn as well.")
-reminders[7] = _("You start to forget for a while that you have a passenger until Chelsea asks you a question about something you're doing.")
-reminders[8] = _("You talk to Chelsea a little about some interesting experiences you've had as a pilot.")
-reminders[9] = _("You have a brief conversation with Chelsea about interesting sights you both have seen in your travels.")
+dest_text[3] = _([[The trip to this destination was filled with conversation, and you and C have learned a lot about each other. C mentioned several names she was considering, then after some deliberation, came to an answer. "I think I like 'Chelsea'," she said.
 
-landtext = {}
+Now, as you dock, Chelsea has a very happy look on her face. She goes to do whatever she needs to do with a positive attitude and judging by how she looks when she returns, it seems to have gone well.]])
 
-landtext[1] = _([[As you step off the ship with Chelsea in tow, you can tell that she's nervous about the whole thing. She asks you one more favor. "Can you come with me, as a friend?" You smile and say that you can.
-    As it turns out, Chelsea has arranged to see her parents at the bar. When you arrive, Chelsea's parents immediately recognize and greet her, calling her by a different name. A look of sadness appears on Chelsea's face as she hears this, but she quickly hides it and her parents don't seem to notice. Chelsea greets her parents, introduces you as her friend, then sits down. You sit down next to her.]])
+dest_text[4] = _([[At this point, talking to Chelsea has become a very natural thing for you. You've gotten used to the constant chatter with your new friend to the point that when she goes off on her errands at this location, the quiet feels strange in comparison.
 
-landtext[2] = _([["It's been so long!" Chelsea's mother says. "Your hair's getting long! I'm so glad you were able to make it over."
-    Chelsea laughs nervously. "There's something I have to tell you," she says. "I, um... I'm transgender. I would like for you to call me Chelsea and refer to me with she/her pronouns from now on... if that's okay."
-    Chelsea's father responds immediately and briefly. "Sure," he says. "I don't have any problem with that. However you dress or whatever name you use, that's fine by me."
-    Her mother is silent for a moment, then gets up out of her chair. Chelsea gets up as well, a look of fear in her eyes, then a look of surprise as her mother locks her in an embrace. She hugs her mother back and starts to sob. "I'm proud of you, Chelsea," her mother says. Out of Chelsea's view, her father shrugs and finishes his drink.]])
+When Chelsea returns, you notice that she looks happy, yet almost half-sad at the same time. Just when you were about to ask what's wrong, she speaks up. "Well, I guess the only place to go is back to my home planet, huh?" You nervously laugh, then say it'll almost feel unfamiliar with her not with you in the ship. "You're a really great friend," she says. Her smile grows and the sadness fades. "We should definitely stay in touch after that." You agree. "Actually," she muses, "I think I'd like to come out to my parents. They don't know I'm transgender yet. Can you go with me? Having you there while I come out to them would be a big help." You smile and agree to the request. "Thank you," she responds. "It means a lot."]])
 
-landtext[3] = _([[After Chelsea's mother releases her, she wipes a few tears from her eyes and gives you a friendly hug. "Thank you," she says. "You've been a great friend and joining me here has been a great help." She lets go of you. "I'm sure you must be busy! But hey, do come back once in a while, OK? I'm going to stick around on this planet for the time being. It'll be nice to see you again!"
-    Taking your cue, you say goodbye for now, excuse yourself from the table, and make your way back to your ship. As you enter your cockpit you find a credit chip worth %s! It's not much, but it's something.]])
+home_text = _([[As you approach Chelsea's parents' home, you can tell that she's nervous about the whole thing. You assure her that everything will be alright.
+
+She greets her parents and hands them something you don't know anything about, and she introduces you to them. "This is my new friend," she says. "The guy I started with kind of left me somewhere and didn't come back, but %s here helped me the rest of the way."
+
+Her father perks up. "Are you sure he left you? Maybe he just got lost."
+
+An awkward pause follows before Chelsea's mother intervenes. "Well the important thing is that everything went alright in the end." She smiles at Chelsea, then turns to look at you. "And hey, it's nice that you managed to make a friend along the way!" You smile back.]])
+
+home_text_2 = _([[Chelsea briefly pauses and glances at you. You nod encouragingly. "Um, I also managed to do some self-reflection. I'm, um... I'm transgender. I'm changing my name to 'Chelsea' and I'm using she/her pronouns now."
+
+Chelsea's father shrugs. "Whatever makes you happy," he says. "I might take some time getting used to the name." He lets out a slight chuckle. "But However you dress or whatever, that's fine by me."
+
+Chelsea's mother then walks up to Chelsea and pulls her into a warm embrace before she can even react. You see tears starting to appear in Chelsea's eyes as she hugs back. "I'm proud of you for being you, Chelsea," her mother says. Chelsea tightens her grip.]])
+
+home_text_3 = _([[After what seems like a permanent snapshot of the longest hug in human history, Chelsea and her mother let go each other, and Chelsea gives you a friendly hug. "Thank you for being here," she says. "I don't think I would have been able to come out about this without you."
+
+After some further pleasantries, you leave Chelsea's parents' home. "Well," Chelsea says, "I guess you'll probably have to go now, but do come back again soon! Maybe by the time you return I'll have my pilot's license and can start on my journey to become a pilot! Oh, and also, let me give this to you." She hands over a credit chip. "That's the payment I owe you for helping me out. I'll see you later, ok?" You say goodbye and part ways. You'll have to remember to return soon and see how Chelsea's goal of obtaining her pilot's license is going.]])
 
 misn_title = _("Coming Out")
-misn_desc = _("Your new friend needs you to take them to their parents in %s.")
-misn_reward = _("The satisfaction of helping out a new friend")
+misn_desc = _("Your new friend needs you to deliver them to a few locations, then return them to %s.")
 
 npc_name = _("Quiet stranger")
-npc_desc = _("A stranger is sitting quietly at a table, alone, glancing around the bar. In need of a suitable pilot, perhaps?")
+npc_desc = _("A stranger is sitting quietly at a table alone and staring off into space.")
 
 osd_desc    = {}
 osd_desc[1] = _("Go to the %s system and land on the planet %s.")
 
-log_text = _([[You have made a new friend, Chelsea. You helped escort her to her parents and helped her feel secure coming out as transgender to her parents. Chelsea has asked you to return to Durea to visit once in a while.]])
+log_text = _([[You have made a new friend, Chelsea. You helped transport her to complete some errands and also supported her in coming out as transgender to her parents. Chelsea has asked you to return to %s to visit soon.]])
 
 
 function create ()
-   misplanet, missys = planet.get( "Durea" )
+   homeplanet, homesys = planet.get("Durea")
+   dests = { "Soromid Wards Alpha", "Jaxheen", "Agino", "Neurri" }
+   markers = {}
    -- Note: This mission does not make system claims
-   if system.cur():jumpDist( missys, true ) < #chatter * 3 / 2 then
-      misn.finish( false )
-   end
 
-   credits = 50000
+   credits = 500000
    started = false
    chatter_index = 0
 
-   misn.setNPC( npc_name, "soromid/unique/chelsea.png", npc_desc )
+   misn.setNPC(npc_name, "soromid/unique/chelsea.png", npc_desc)
 end
 
 
 function accept ()
-   local txt = started and text[4] or text[1]
+   local txt = started and ask_again_text or ask_text
    started = true
 
-   if tk.yesno( title[1], txt ) then
-      tk.msg( title[1], text[2]:format( misplanet:name(), missys:name() ) )
+   if tk.yesno("", txt) then
+      tk.msg("", yes_text:format(homeplanet:name()))
 
       misn.accept()
 
-      misn.setTitle( misn_title )
-      misn.setDesc( misn_desc:format( missys:name() ) )
-      misn.setReward( misn_reward )
-      marker = misn.markerAdd( missys, "low" )
+      misn.setTitle(misn_title)
+      misn.setDesc(misn_desc:format(homeplanet:name()))
+      misn.setReward(creditstring(credits))
 
-      osd_desc[1] = osd_desc[1]:format( missys:name(), misplanet:name() )
-      misn.osdCreate( misn_title, osd_desc )
+      generate_osd()
 
-      hook.land( "land" )
+      for i, pn in ipairs(dests) do
+         local pl, sys = planet.get(pn)
+         markers[pn] = misn.markerAdd(sys, "low")
+      end
 
-      chatter_freq = time.create( 0, 10, 0 )
-      chatter_freq_mod = 8000
-      reminder_freq = time.create( 0, 20, 0 )
-      date_hook = hook.date( chatter_freq, "init_chatter" )
+      hook.land("land")
    else
-      tk.msg( title[1], text[3] )
+      tk.msg("", no_text)
       misn.finish()
    end
 end
 
 
--- Using a timer to make sure the messages don't show up immediately
--- as you jump in (at least, not most of the time; it's technically
--- still possible and that's fine).
-function init_chatter ()
-   if timer_hook ~= nil then hook.rm( timer_hook ) end
-   timer_hook = hook.timer( 10000, "do_chatter" )
-end
-
-
-function do_chatter ()
-   local freq = reminder_freq
-
-   if chatter_index < #chatter then
-      chatter_index = chatter_index + 1
-      tk.msg( "", chatter[ chatter_index ] )
-      if chatter_index < #chatter then freq = chatter_freq end
+function generate_osd ()
+   local osd_desc = {}
+   if #dests > 0 then
+      for i, pn in ipairs(dests) do
+         local pl, sys = planet.get(pn)
+         osd_desc[#osd_desc + 1] = string.format(
+               _("Fly to the %s system and land on %s"), sys:name(),
+               pl:name() )
+      end
    else
-      local i = rnd.rnd( 1, #reminders )
-      tk.msg( "", reminders[ i ] )
-   end
+      osd_desc[1] = string.format(
+            _("Fly to the %s system and land on %s"), homesys:name(),
+            homeplanet:name() )
 
-   local this_mod = rnd.rnd(-chatter_freq_mod, chatter_freq_mod)
-   if date_hook ~= nil then hook.rm( date_hook ) end
-   date_hook = hook.date( freq + time.create( 0, 0, this_mod ), "init_chatter" )
+   misn.osdCreate( misn_title, osd_desc )
 end
 
 
 function land ()
-   if planet.cur() == misplanet then
-      -- Use any remaining chatter boxes (make sure the player gets the
-      -- whole story)
-      while chatter_index < #chatter do
-         chatter_index = chatter_index + 1
-         tk.msg( "", chatter[ chatter_index ] )
-      end
+   if #dests > 0 then
+      for i, pn in ipairs(dests) do
+         local pl, sys = planet.get(pn)
+         if pl == planet.cur() then
+            tk.msg("", dest_text[1 + #dest_text - #dests])
 
-      tk.msg( "", landtext[1] )
-      tk.msg( "", landtext[2] )
-      tk.msg( "", landtext[3]:format( creditstring( credits ) ) )
+            -- Remove the dest from the dests list, shift everything
+            -- after it down.
+            for j=i, #dests do
+               dests[j] = dests[j + 1]
+            end
+
+            misn.markerRm(markers[pn])
+
+            misn.osdDestroy()
+            generate_osd()
+
+            if #dests <= 0 then
+               home_marker = misn.markerAdd(homesys, "low")
+            end
+         end 
+      end
+   elseif planet.cur() == homeplanet then
+      tk.msg("", home_text:format(player.name()))
+      tk.msg("", home_text_2)
+      tk.msg("", home_text_3)
       player.pay(credits)
 
       local t = time.get():tonumber()
-      var.push( "comingout_time", t )
+      var.push("comingout_time", t)
 
-      srm_addComingOutLog( log_text )
+      srm_addComingOutLog(log_text:format(homeplanet:name()))
 
       misn.finish(true)
    end
