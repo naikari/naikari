@@ -15,7 +15,6 @@
   <faction>Sirius</faction>
   <faction>Soromid</faction>
   <faction>Thurion</faction>
-  <faction>Traders Guild</faction>
   <faction>Za'lek</faction>
  </avail>
  <notes>
@@ -197,7 +196,6 @@ function land()
       if alive >= orig_alive then
          tk.msg( landsuccesstitle, landsuccesstext )
          player.pay( reward )
-         faction.get("Traders Guild"):modPlayer(1)
       elseif alive / orig_alive >= 0.6 then
          tk.msg( landcasualtytitle, landcasualtytext[1] )
          player.pay( reward * alive / orig_alive )

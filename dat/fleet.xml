@@ -126,48 +126,6 @@
    <pilot name="Trader Quicksilver" ship="Quicksilver"></pilot>
   </pilots>
  </fleet>
- <fleet name="Traders Guild Llama">
-  <ai>trader</ai>
-  <faction>Traders Guild</faction>
-  <pilots>
-   <pilot name="Trader Llama" ship="Llama"></pilot>
-  </pilots>
- </fleet>
- <fleet name="Traders Guild Koala">
-  <ai>trader</ai>
-  <faction>Traders Guild</faction>
-  <pilots>
-   <pilot name="Trader Koala" ship="Koala"></pilot>
-  </pilots>
- </fleet>
- <fleet name="Traders Guild Rhino">
-  <ai>trader</ai>
-  <faction>Traders Guild</faction>
-  <pilots>
-   <pilot name="Trader Rhino" ship="Rhino"></pilot>
-  </pilots>
- </fleet>
- <fleet name="Traders Guild Mule">
-  <ai>trader</ai>
-  <faction>Traders Guild</faction>
-  <pilots>
-   <pilot name="Traders Guild Mule" ship="Mule"></pilot>
-  </pilots>
- </fleet>
- <fleet name="Traders Guild Gawain">
-  <ai>trader</ai>
-  <faction>Traders Guild</faction>
-  <pilots>
-   <pilot name="Trader Gawain" ship="Gawain"></pilot>
-  </pilots>
- </fleet>
- <fleet name="Traders Guild Quicksilver">
-  <ai>trader</ai>
-  <faction>Traders Guild</faction>
-  <pilots>
-   <pilot name="Trader Quicksilver" ship="Quicksilver"></pilot>
-  </pilots>
- </fleet>
  <fleet name="Proteron Kahan">
   <ai>proteron</ai>
   <faction>Proteron</faction>
@@ -908,7 +866,7 @@
  </fleet>
  <fleet name="Sml Trader Convoy">
   <ai>trader</ai>
-  <faction>Traders Guild</faction>
+  <faction>Trader</faction>
   <pilots>
    <pilot name="Trader Llama" ship="Llama"></pilot>
    <pilot name="Trader Llama" ship="Llama"></pilot>
@@ -917,7 +875,7 @@
  </fleet>
   <fleet name="Trader Convoy 3">
   <ai>trader</ai>
-  <faction>Traders Guild</faction>
+  <faction>Trader</faction>
   <pilots>
    <pilot name="Convoy Llama" ship="Llama"></pilot>
    <pilot name="Convoy Llama" ship="Llama"></pilot>
@@ -926,7 +884,7 @@
  </fleet>
    <fleet name="Trader Convoy 4">
   <ai>trader</ai>
-  <faction>Traders Guild</faction>
+  <faction>Trader</faction>
   <pilots>
    <pilot name="Convoy Koala" ship="Koala"></pilot>
    <pilot name="Convoy Koala" ship="Koala"></pilot>
@@ -936,7 +894,7 @@
  </fleet>
    <fleet name="Trader Convoy 5">
   <ai>trader</ai>
-  <faction>Traders Guild</faction>
+  <faction>Trader</faction>
   <pilots>
    <pilot name="Convoy Rhino" ship="Rhino"></pilot>
    <pilot name="Convoy Rhino" ship="Rhino"></pilot>
@@ -947,7 +905,7 @@
  </fleet>
  <fleet name="Trader Convoy 6">
   <ai>trader</ai>
-  <faction>Traders Guild</faction>
+  <faction>Trader</faction>
   <pilots>
    <pilot name="Convoy Rhino" ship="Rhino"></pilot>
    <pilot name="Convoy Rhino" ship="Rhino"></pilot>
@@ -959,7 +917,7 @@
    </fleet>
  <fleet name="Trader Convoy 8">
   <ai>trader</ai>
-  <faction>Traders Guild</faction>
+  <faction>Trader</faction>
   <pilots>
    <pilot name="Convoy Rhino" ship="Rhino"></pilot>
    <pilot name="Convoy Rhino" ship="Rhino"></pilot>

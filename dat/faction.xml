@@ -130,7 +130,6 @@
    <enemy>Thurion</enemy>
    <enemy>DHC</enemy>
    <enemy>Trader</enemy>
-   <enemy>Traders Guild</enemy>
    <enemy>Za'lek</enemy>
   </enemies>
  </faction>
@@ -185,24 +184,6 @@
   </allies>
   <enemies>
    <enemy>Pirate</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Traders Guild</name>
-  <ai>trader</ai>
-  <known />
-  <logo>trader</logo>
-  <longname>Space Traders Guild</longname>
-  <player>3</player>
-  <spawn>traders_guild</spawn>
-  <standing>trader</standing>
-  <equip>trader</equip>
-  <allies>
-  </allies>
-  <enemies>
-   <enemy>Pirate</enemy>
-   <enemy>Raider</enemy>
-   <enemy>Wanted Pirate</enemy>
   </enemies>
  </faction>
  <faction>
@@ -365,7 +346,6 @@
    <enemy>Proteron Dissident</enemy>
    <enemy>Sirius</enemy>
    <enemy>Trader</enemy>
-   <enemy>Traders Guild</enemy>
   </enemies>
  </faction>
  <faction>
@@ -424,7 +404,6 @@
   <enemies>
    <enemy>Miner</enemy>
    <enemy>Trader</enemy>
-   <enemy>Traders Guild</enemy>
   </enemies>
  </faction>
  <faction>
@@ -653,7 +632,6 @@
    <enemy>Pirate</enemy>
    <enemy>Miner</enemy>
    <enemy>Trader</enemy>
-   <enemy>Traders Guild</enemy>
   </enemies>
  </faction>
 </Factions>

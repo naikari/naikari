@@ -16,7 +16,6 @@
    <faction>Independent</faction>
    <faction>Sirius</faction>
    <faction>Soromid</faction>
-   <faction>Traders Guild</faction>
    <faction>Za'lek</faction>
   </avail>
   <notes>

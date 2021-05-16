@@ -91,7 +91,6 @@ function create ()
       "Sirius",
       "Soromid",
       "Trader",
-      "Traders Guild",
       "Za'lek",
    }
 
@@ -263,7 +262,7 @@ function level_setup ()
 
    if target_faction == "Civilian" or target_faction == "Independent" then
       level = 1
-   elseif target_faction == "Trader" or target_faction == "Traders Guild" then
+   elseif target_faction == "Trader" then
       if num_pirates <= 100 then
          level = rnd.rnd( 1, 2 )
       else
@@ -503,32 +502,6 @@ function bounty_setup ()
             ship = "Trader Mule"
          end
          credits = 700000 + rnd.sigma() * 80000
-         reputation = 3
-      end
-   elseif target_faction == "Traders Guild" then
-      if level == 1 then
-         if rnd.rnd() < 0.5 then
-            ship = "Traders Guild Gawain"
-         else
-            ship = "Traders Guild Koala"
-         end
-         credits = 100000 + rnd.sigma() * 5000
-         reputation = 0
-      elseif level == 2 then
-         if rnd.rnd() < 0.5 then
-            ship = "Traders Guild Llama"
-         else
-            ship = "Traders Guild Quicksilver"
-         end
-         credits = 400000 + rnd.sigma() * 50000
-         reputation = 2
-      elseif level >= 3 then
-         if rnd.rnd() < 0.5 then
-            ship = "Traders Guild Rhino"
-         else
-            ship = "Traders Guild Mule"
-         end
-         credits = 800000 + rnd.sigma() * 80000
          reputation = 3
       end
    elseif target_faction == "Civilian" then

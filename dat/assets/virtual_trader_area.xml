@@ -2,7 +2,7 @@
 <asset name="Virtual Trader Area">
  <virtual/>
  <presence>
-  <faction>Traders Guild</faction>
+  <faction>Trader</faction>
   <value>35.000000</value>
   <range>1</range>
  </presence>
