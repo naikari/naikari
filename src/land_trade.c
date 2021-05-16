@@ -123,9 +123,6 @@ void commodity_exchange_open( unsigned int wid )
 
    /* set up the goods to buy/sell */
    iconsize = 128;
-   if (!conf.big_icons) {
-      iconsize = 96;
-   }
    window_addImageArray( wid, 20, 20,
          iw, ih, "iarTrade", iconsize, iconsize,
          cgoods, ngoods, commodity_update, commodity_update, commodity_update );

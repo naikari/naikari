@@ -175,9 +175,6 @@ void shipyard_open( unsigned int wid )
 
 
    iconsize = 128;
-   if (!conf.big_icons) {
-      iconsize = 96;
-   }
    window_addImageArray( wid, 20, 20,
          iw, ih, "iarShipyard", iconsize, iconsize,
          cships, nships, shipyard_update, shipyard_rmouse, NULL );

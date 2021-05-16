@@ -132,7 +132,6 @@ void conf_setDefaults (void)
    /* GUI. */
    conf.mesg_visible = 5;
    conf.map_overlay_opacity = MAP_OVERLAY_OPACITY_DEFAULT;
-   conf.big_icons = BIG_ICONS_DEFAULT;
 
    /* Repeat. */
    conf.repeat_delay = 500;
@@ -390,7 +389,6 @@ int conf_loadConfig ( const char* file )
          conf.mesg_visible = 5;
       conf_loadFloat( lEnv, "map_overlay_opacity", conf.map_overlay_opacity );
       conf.map_overlay_opacity = CLAMP(0, 1, conf.map_overlay_opacity);
-      conf_loadBool( lEnv, "big_icons", conf.big_icons );
 
       /* Key repeat. */
       conf_loadInt( lEnv, "repeat_delay", conf.repeat_delay );
@@ -962,7 +960,6 @@ int conf_saveConfig ( const char* file )
    conf_saveInt("mesg_visible",conf.mesg_visible);
    conf_saveComment(_("Opacity fraction (0-1) for the overlay map."));
    conf_saveFloat("map_overlay_opacity", conf.map_overlay_opacity);
-   conf_saveBool("big_icons", conf.big_icons);
    conf_saveEmptyLine();
 
    /* Key repeat. */

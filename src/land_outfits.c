@@ -329,9 +329,6 @@ static void outfits_genList( unsigned int wid )
    coutfits = outfits_imageArrayCells( iar_outfits[active], &noutfits );
 
    iconsize = 128;
-   if (!conf.big_icons) {
-      iconsize = 96;
-   }
    window_addImageArray( wid, 20, 20,
          iw, ih - 34, OUTFITS_IAR, iconsize, iconsize,
          coutfits, noutfits, outfits_update, outfits_rmouse, NULL );
