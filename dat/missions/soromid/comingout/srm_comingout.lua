@@ -155,6 +155,7 @@ function generate_osd ()
       osd_desc[1] = string.format(
             _("Fly to the %s system and land on %s"), homesys:name(),
             homeplanet:name() )
+   end
 
    misn.osdCreate( misn_title, osd_desc )
 end

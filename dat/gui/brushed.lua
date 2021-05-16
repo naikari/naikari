@@ -15,8 +15,8 @@ function create()
    pship = pp:ship()
 
    -- Set default formation
-   local savedform = var.peek("player_formation") or "Circle"
-   player.pilot():memory().formation = formation.keys[savedform]
+   local savedform = var.peek("player_formation") or "circle"
+   player.pilot():memory().formation = savedform
 
    --Get sizes
    screen_w, screen_h = gfx.dim()
