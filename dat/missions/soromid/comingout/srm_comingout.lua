@@ -103,6 +103,7 @@ log_text = _([[You have made a new friend, Chelsea. You helped transport her to 
 function create ()
    homeplanet, homesys = planet.get("Durea")
    dests = { "Soromid Wards Alpha", "Jaxheen", "Agino", "Neurri" }
+   dests["__save"] = true
    markers = {}
    -- Note: This mission does not make system claims
 
