@@ -1390,15 +1390,11 @@ int input_clickedJump( int jump, int autonav )
    if (player.p->nav_hyperspace != jump)
       map_select( jp->target, 0 );
 
-   if (autonav) {
+   if (autonav || (jump == player.p->nav_hyperspace
+            && input_isDoubleClick((void*)jp))) {
       player_targetHyperspaceSet( jump );
       player_autonavStart();
       return 1;
-   }
-
-   if (jump == player.p->nav_hyperspace && input_isDoubleClick( (void*)jp )) {
-      if (space_canHyperspace(player.p))
-         player_jump();
    }
    else
       player_targetHyperspaceSet( jump );
