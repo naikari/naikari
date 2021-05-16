@@ -4,7 +4,7 @@
   <typename>Core Systems (Engine)</typename>
   <slot prop="engines">structure</slot>
   <size>small</size>
-  <rarity>1</rarity>
+  <rarity>6</rarity>
   <mass>15</mass>
   <price>0</price>
   <description>Built by Za'lek Fabricators, this engine doesn't aim to be an efficient engine. Its goal is to be easily moddable in order to allow Za'lek scientists to test new refrigeration and propulsion systems. These engines are very often modded by students, which makes them unreliable.</description>

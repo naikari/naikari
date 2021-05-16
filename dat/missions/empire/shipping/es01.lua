@@ -46,17 +46,19 @@ text = {}
 text[1] = _([[You approach Commander Soldner, who seems to be waiting for you.
 "Hello, ready for your next mission?"]])
 text[2] = _([[Commander Soldner begins, "We have an important package that we must take from %s in the %s system to %s in the %s system. We have reason to believe that it is also wanted by external forces.
-    "The plan is to send an advance convoy with guards to make the run in an attempt to confuse possible enemies. You will then go in and do the actual delivery by yourself. This way we shouldn't arouse suspicion. You are to report here when you finish delivery and you'll be paid %s."]])
+
+"The plan is to send an advance convoy with guards to make the run in an attempt to confuse possible enemies. You will then go in and do the actual delivery by yourself. This way we shouldn't arouse suspicion. You are to report here when you finish delivery and you'll be paid %s."]])
 text[3] = _([["Avoid hostility at all costs. The package must arrive at its destination. Since you are undercover, Empire ships won't assist you if you come under fire, so stay sharp. Good luck."]])
 text[4] = _([[The packages labelled "Food" are loaded discreetly onto your ship. Now to deliver them to %s in the %s system.]])
 text[5] = _([[Workers quickly unload the package as mysteriously as it was loaded. You notice that one of them gives you a note. Looks like you'll have to go to %s in the %s system to report to Commander Soldner.]])
-text[6] = _([[You arrive at %s and report to Commander Soldner. He greets you and starts talking. "I heard you encountered resistance. At least you managed to deliver the package. Great work there. I've managed to get you cleared for the Heavy Weapon License. You'll still have to pay the fee for getting it, though.
-    "If you're interested in more work, meet me in the bar in a bit. I've got some paperwork I need to finish first."]])
+text[6] = _([[You arrive at %s and report to Commander Soldner. He greets you and starts talking. "I heard you encountered resistance. At least you managed to deliver the package. Great work there.
+
+"If you're interested in more work, meet me in the bar in a bit. I've got some paperwork I need to finish first."]])
 -- Errors
 errtitle = {}
 errtitle[1] = _("Need More Space")
 
-log_text = _([[You successfully completed a package delivery for the Empire. As a result, you have been cleared for the Heavy Weapon License and can now buy it at an outfitter. Commander Soldner said that you can meet him in the bar at Halir if you're interested in more work.]])
+log_text = _([[You successfully completed a package delivery for the Empire. Commander Soldner said that you can meet him in the bar at Halir if you're interested in more work.]])
 
 
 function create ()
@@ -154,9 +156,6 @@ function land ()
 
       -- Flavour text
       tk.msg(title[4], string.format(text[6], ret:name()) )
-
-      -- The goods
-      diff.apply("heavy_weapons_license")
 
       emp_addShippingLog( log_text )
 

@@ -52,19 +52,21 @@ title[2] = _("Disabled Ship")
 title[3] = _("Mission Success")
 text = {}
 text[1] = _([[You meet up once more with Commander Soldner at the bar.
-    "Hello again, %s. Still interested in doing another mission? This one will be more dangerous."]])
+
+"Hello again, %s. Still interested in doing another mission? This one will be more dangerous."]])
 text[2] = _([[Commander Soldner nods and continues, "We've had reports that a transport vessel came under attack while transporting a VIP. They managed to escape, but the engine ended up giving out in the %s system. The ship is now disabled and we need someone to board the ship and rescue the VIP. There have been many FLF ships detected near the sector, but we've managed to organise a Dvaered escort for you.
-    "You're going to have to fly to the %s system, find and board the transport ship to rescue the VIP, and then fly back. The sector is most likely going to be hot. That's where your Dvaered escorts will come in. Their mission will be to distract and neutralise all possible hostiles. You must not allow the transport ship to be destroyed before you rescue the VIP. His survival is vital."]])
+
+"You're going to have to fly to the %s system, find and board the transport ship to rescue the VIP, and then fly back. The sector is most likely going to be hot. That's where your Dvaered escorts will come in. Their mission will be to distract and neutralise all possible hostiles. You must not allow the transport ship to be destroyed before you rescue the VIP. His survival is vital."]])
 text[3] = _([["Be careful with the Dvaered; they can be a bit blunt, and might accidentally destroy the transport ship. If all goes well, you'll be paid %s when you return with the VIP. Good luck, pilot."]])
 text[4] = _([[The ship's hatch opens and immediately an unconscious VIP is brought aboard by his bodyguard. Looks like there is no one else aboard.]])
 text[5] = _([[You land at the starport. It looks like the VIP has already recovered. He thanks you profusely before heading off. You proceed to pay Commander Soldner a visit. He seems to be happy, for once.
-    "It seems like you managed to pull it off. I had my doubts at first, but you've proven to be a very skilled pilot. Oh, and I've cleared you for the Heavy Combat Vessel License; congratulations! We have nothing more for you now, but check in periodically in case something comes up for you."]])
+
+"It seems like you managed to pull it off. I had my doubts at first, but you've proven to be a very skilled pilot. We have nothing more for you now, but check in periodically in case something comes up for you."]])
 msg = {}
 msg[1] = _("MISSION FAILED: VIP is dead.")
 msg[2] = _("MISSION FAILED: You abandoned the VIP.")
 
-log_text_success = _([[You successfully rescued a VIP for the Empire and have been cleared for the Heavy Combat Vessel License; you can now buy one at the outfitter.]])
-log_text_fail = _([[You failed in your attempt to rescue a VIP for the Empire. Meet with Commander Soldner on Halir to try again.]])
+log_text_success = _([[You successfully rescued a VIP for the Empire.]])
 
 
 function create ()
@@ -133,7 +135,6 @@ function land ()
          emp_modReputation( 5 ) -- Bump cap a bit
          faction.modPlayerSingle("Empire",5);
          faction.modPlayerSingle("Dvaered",5);
-         diff.apply("heavy_combat_vessel_license")
 
          -- Flavour text
          tk.msg( title[3], text[5] )
@@ -197,7 +198,6 @@ function enter ()
    elseif misn_stage == 1 then
       -- Notify of mission failure
       player.msg( msg[2] )
-      emp_addShippingLog( log_text_fail )
       var.pop( "music_combat_force" )
       misn.finish(false)
    end
@@ -247,7 +247,6 @@ function death ()
    if misn_stage == 1 then
       -- Notify of death
       player.msg( msg[1] )
-      emp_addShippingLog( log_text_fail )
       var.pop( "music_combat_force" )
       misn.finish(false)
    end
@@ -257,7 +256,6 @@ end
 function abort ()
    -- If aborted you'll also leave the VIP to fate. (A.)
    player.msg( msg[2] )
-   emp_addShippingLog( log_text_fail )
    if system.cur() == destsys then
       var.pop( "music_combat_force" )
    end

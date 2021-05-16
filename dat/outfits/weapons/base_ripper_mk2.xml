@@ -9,7 +9,8 @@
   <description>This weapon is a cheat. It is not meant to be used by players.</description>
   <gfx_store>ripper.png</gfx_store>
   <cpu>-12</cpu>
- <rarity>6</rarity></general>
+  <rarity>6</rarity>
+ </general>
  <specific type="turret bolt">
   <gfx>ripperM.png</gfx>
   <sound>ripper</sound>

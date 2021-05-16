@@ -539,6 +539,8 @@
   <item>Enygma Systems Spearhead Launcher</item>
   <item>Medium Weapon License</item>
   <item>Medium Combat Vessel License</item>
+  <item>Heavy Weapon License</item>
+  <item>Heavy Combat Vessel License</item>
   <item>Mercenary License</item>
   <item>Weapons Ionizer</item>
   </tech>
@@ -551,6 +553,8 @@
   <item>Orion Lance</item>
   <item>Medium Weapon License</item>
   <item>Medium Combat Vessel License</item>
+  <item>Heavy Weapon License</item>
+  <item>Heavy Combat Vessel License</item>
   <item>Mercenary License</item>
   <item>Turreted Weapons Ionizer</item>
  </tech>
@@ -840,12 +844,6 @@
   <item>Za'lek Prototype</item>
   <item>Za'lek Diablo</item>
   <item>Za'lek Hephaestus</item>
- </tech>
- <tech name="__Heavy Weapon License">
-  <item>Heavy Weapon License</item>
- </tech>
- <tech name="__Heavy Combat Vessel License">
-  <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="__Collective">
   <item>Neutron Disruptor</item>
