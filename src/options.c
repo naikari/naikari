@@ -1268,9 +1268,6 @@ static void opt_video( unsigned int wid )
    y -= 30;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkVSync", _("Vertical Sync"), NULL, conf.vsync );
-   y -= 20;
-   window_addText( wid, x, y, cw, 20, 1,
-         "txtSCompat", NULL, NULL, _("*Disable for compatibility.") );
    y -= 40;
 
    /* Features. */
