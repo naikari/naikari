@@ -367,9 +367,9 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       int selected, Outfit *o, Pilot *p, CstSlotWidget *wgt )
 {
    int i, level;
-   const glColour *c, *dc, *rc;
+   const glColour *c, *dc;
    const glColour ic = { .r = 0.5, .g = 0.5, .b = 0.5, .a = 0.5 };
-   glColour bc;
+   glColour rc;
    int irrelevant;
 
    /* Render text. */
@@ -406,12 +406,10 @@ static void equipment_renderColumn( double x, double y, double w, double h,
          dc = &cGrey60;
 
       /* Draw background. */
-      bc = *dc;
-      bc.a = 0.4;
       if (i==selected)
          c = &cWhite;
       else
-         c = &bc;
+         c = dc;
       toolkit_drawRect( x, y, w, h, c, NULL );
 
       if (lst[i].outfit != NULL) {
@@ -433,18 +431,19 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       }
 
       /* Must rechoose colour based on slot properties. */
-      rc = dc;
+      rc = cBlack;
+      rc.a = 0.25;
       if (wgt->canmodify) {
          if (lst[i].sslot->required)
-            rc = &cBrightRed;
+            rc = cBrightRed;
          else if (lst[i].sslot->exclusive)
-            rc = &cWhite;
+            rc = cWhite;
          else if (lst[i].sslot->slot.spid != 0)
-            rc = &cBlack;
+            rc = cBlack;
       }
 
       /* Draw outline. */
-      toolkit_drawOutlineThick( x, y, w, h, 1, 3, rc, NULL );
+      toolkit_drawOutlineThick( x, y, w, h, 1, 3, &rc, NULL );
       // toolkit_drawOutline( x-1, y-1, w+3, h+3, 0, &cBlack, NULL );
       /* Go to next one. */
       y -= h+20;
