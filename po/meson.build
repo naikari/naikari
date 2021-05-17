@@ -8,7 +8,7 @@ potfiles = custom_target(
     install: false
 )
 
-i18n.gettext('naev',
+i18n.gettext(meson.project_name(),
     data_dirs: meson.source_root() / 'po',
     args: [
         '--files-from=' + (meson.source_root() / 'po/POTFILES.in'),
