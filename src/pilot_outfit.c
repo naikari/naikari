@@ -601,7 +601,6 @@ int pilot_reportSpaceworthy( Pilot *p, char buf[], int bufSize )
    SPACEWORTHY_CHECK( p->fuel_max < 0,         _("!! Insufficient Fuel Maximum\n") );
    SPACEWORTHY_CHECK( p->fuel_consumption < 0, _("!! Insufficient Fuel Consumption\n") );
    SPACEWORTHY_CHECK( p->cargo_free < 0,       _("!! Insufficient Free Cargo Space\n") );
-   SPACEWORTHY_CHECK( p->crew < 0,             _("!! Insufficient Crew\n") );
 
    /*buffer is full, lets write that there is more then what's copied */
    if (pos > bufSize-1) {
@@ -940,8 +939,6 @@ void pilot_calcStats( Pilot* pilot )
    pilot->thrust_base   = pilot->ship->thrust;
    pilot->turn_base     = pilot->ship->turn;
    pilot->speed_base    = pilot->ship->speed;
-   /* crew */
-   pilot->crew          = pilot->ship->crew;
    /* cargo */
    pilot->cap_cargo     = pilot->ship->cap_cargo;
    /* fuel_consumption. */
@@ -1106,7 +1103,6 @@ void pilot_calcStats( Pilot* pilot )
    pilot->cpu          += pilot->cpu_max; /* CPU is negative, this just sets it so it's based off of cpu_max. */
    /* Misc. */
    pilot->dmg_absorb    = MAX( 0., pilot->dmg_absorb );
-   pilot->crew         *= s->crew_mod;
    pilot->cap_cargo    *= s->cargo_mod;
    s->engine_limit     *= s->engine_limit_rel;
 

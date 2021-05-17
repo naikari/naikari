@@ -240,21 +240,14 @@ end
 
 
 function pilot_board ()
-   player.unboard()
-   if can_capture then
-      local t = subdue_text[ rnd.rnd( 1, #subdue_text ) ]:format( name )
-      tk.msg( subdue_title, t )
-      succeed()
-      target_killed = false
-      target_ship:changeAI( "dummy" )
-      target_ship:setHilight( false )
-      target_ship:disable() -- Stop it from coming back
-      if death_hook ~= nil then hook.rm( death_hook ) end
-   else
-      local t = subdue_fail_text[ rnd.rnd( 1, #subdue_fail_text ) ]:format( name )
-      tk.msg( subdue_fail_title, t )
-      board_fail()
-   end
+   local t = subdue_text[ rnd.rnd( 1, #subdue_text ) ]:format( name )
+   tk.msg( subdue_title, t )
+   succeed()
+   target_killed = false
+   target_ship:changeAI( "dummy" )
+   target_ship:setHilight( false )
+   target_ship:disable() -- Stop it from coming back
+   if death_hook ~= nil then hook.rm( death_hook ) end
 end
 
 
@@ -398,20 +391,6 @@ function spawn_pirate( param )
          death_hook = hook.pilot( target_ship, "death", "pilot_death" )
          pir_jump_hook = hook.pilot( target_ship, "jump", "pilot_jump" )
          pir_land_hook = hook.pilot( target_ship, "land", "pilot_jump" )
-
-
-         --[[
-         local pir_crew = target_ship:stats().crew
-         local pl_crew = player.pilot():stats().crew
-         if rnd.rnd() > (0.5 * (10 + pir_crew) / (10 + pl_crew)) then
-            can_capture = true
-         else
-            can_capture = false
-         end
-         --]]
-         -- Disabling and boarding is hard enough as is to randomly fail
-         -- TODO potentially do a small capturing minigame here
-         can_capture = true
       else
          fail( msg[1]:format( name ) )
       end

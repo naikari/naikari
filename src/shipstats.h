@@ -88,7 +88,6 @@ typedef enum ShipStatsType_ {
    /* Misc. */
    SS_TYPE_D_HEAT_DISSIPATION, /**< Ship heat dissipation. */
    SS_TYPE_D_STRESS_DISSIPATION, /**< Ship stress dissipation. */
-   SS_TYPE_D_CREW,            /**< Ship crew. */
    SS_TYPE_D_MASS,            /**< Ship mass. */
    SS_TYPE_D_ENGINE_LIMIT_REL, /**< Modifier for the ship's engine limit. */
    SS_TYPE_D_LOOT_MOD,        /**< Affects boarding rewards. */
@@ -203,7 +202,6 @@ typedef struct ShipStats_ {
    /* Military type. */
    double heat_dissipation; /**< Global ship dissipation. */
    double stress_dissipation; /**< Global stress dissipation. */
-   double crew_mod;        /**< Relative crew modification. */
    double mass_mod;        /**< Relative mass modification. */
 
    /* Launchers. */

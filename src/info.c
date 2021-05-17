@@ -432,7 +432,6 @@ static void info_openShip( unsigned int wid )
          _("#nName:\n"
          "Model:\n"
          "Class:\n"
-         "Crew:\n"
          "\n"
          "Mass:\n"
          "Jump Time:\n"
@@ -477,7 +476,6 @@ static void ship_update( unsigned int wid )
          _("%s\n"
          "%s\n"
          "%s\n"
-         "%d\n"
          "\n"
          "%.0f t\n"
          "%s average\n"
@@ -497,7 +495,6 @@ static void ship_update( unsigned int wid )
          player.p->name,
          _(player.p->ship->name),
          _(ship_class(player.p->ship)),
-         (int)floor(player.p->crew),
          /* Movement. */
          player.p->solid->mass,
          hyp_delay,

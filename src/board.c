@@ -406,34 +406,13 @@ static void board_stealAmmo( unsigned int wdw, char* str )
 static int board_trySteal( Pilot *p )
 {
    Pilot *target;
-   Damage dmg;
 
    /* Get the target. */
    target = pilot_get(p->target);
    if (target == NULL)
       return 1;
 
-   /* See if was successful. */
-   /* TODO probably replace the interface and rehaul it all. */
-   /*if (RNGF() > (0.5 * (10. + target->crew)/(10. + p->crew)))*/
-      return 0;
-
-   /* Triggered self destruct. */
-   if (RNGF() < 0.4) {
-      /* Don't actually kill. */
-      target->shield = 0.;
-      target->armour = 1.;
-      /* This will make the boarding ship take the possible faction hit. */
-      dmg.type        = dtype_get("normal");
-      dmg.damage      = 100.;
-      dmg.penetration = 1.;
-      dmg.disable     = 0.;
-      pilot_hit( target, NULL, p->id, &dmg, 1 );
-      /* Return ship dead. */
-      return -1;
-   }
-
-   return 1;
+   return 0;
 }
 
 
@@ -453,8 +432,7 @@ static int board_fail( unsigned int wdw )
    else if (ret < 0) /* killed ship. */
       player_message(_("#oYou have tripped the ship's self-destruct mechanism!"));
    else /* you just got locked out */
-      player_message(_("#oThe ship's security system locks %s out."),
-            (player.p->ship->crew > 0) ? "your crew" : "you" );
+      player_message(_("#oThe ship's security system locks you out."));
 
    board_exit( wdw, NULL);
    return 1;

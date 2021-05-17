@@ -19,7 +19,6 @@
   <armour_regen>3.4</armour_regen>
  </health>
  <characteristics>
-  <crew>28</crew>
   <mass>2200</mass>
   <cargo>120</cargo>
   <fuel_consumption>400</fuel_consumption>

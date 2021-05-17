@@ -646,7 +646,6 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                    "#nClass:#0 %s\n"
                    "\n%s\n\n"
                    "#nFabricator:#0 %s    "
-                   "#nCrew:#0 %d\n"
                    "#nCPU:#0 %.0f TFLOPS    "
                    "#nMass:#0 %.0f t\n"
                    "#nThrust:#0 %.0f kN/t    "
@@ -667,7 +666,6 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                  _(ship_class(ship)),
                  _(ship->description),
                  _(ship->fabricator),
-                 ship->crew,
                  /* Weapons & Manoeuvrability */
                  ship->cpu,
                  ship->mass,

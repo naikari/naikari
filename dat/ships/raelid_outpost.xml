@@ -27,7 +27,6 @@
  </health>
  <characteristics>
   <cpu>500</cpu>
-  <crew>500</crew>
   <mass>10000</mass>
   <fuel>1</fuel>
   <fuel_consumption>1</fuel_consumption>

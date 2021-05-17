@@ -284,7 +284,6 @@ void equipment_open( unsigned int wid )
    buf = _("#nName:\n#0"
       "#nModel:\n#0"
       "#nClass:\n#0"
-      "#nCrew:\n#0"
       "#nValue:\n#0"
       "\n"
       "#nMass:\n#0"
@@ -1556,7 +1555,6 @@ void equipment_updateShips( unsigned int wid, char* str )
          _("%s\n"
          "%s\n"
          "%s\n"
-         "#%c%s%.0f#0\n"
          "%s\n"
          "\n"
          "%.0f#0 t\n"
@@ -1578,7 +1576,6 @@ void equipment_updateShips( unsigned int wid, char* str )
       ship->name,
       _(ship->ship->name),
       _(ship_class(ship->ship)),
-      EQ_COMP( ship->crew, ship->ship->crew, 0 ),
       buf2,
       /* Movement. */
       ship->solid->mass,

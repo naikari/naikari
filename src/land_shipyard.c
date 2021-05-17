@@ -122,7 +122,6 @@ void shipyard_open( unsigned int wid )
    buf = _("#nModel:\n#0"
          "#nClass:\n#0"
          "#nFabricator:\n#0"
-         "#nCrew:\n#0"
          "\n"
          "#nCPU:\n#0"
          "#nMass:\n#0"
@@ -257,7 +256,6 @@ void shipyard_update( unsigned int wid, char* str )
          _("%s\n"
          "%s\n"
          "%s\n"
-         "%d\n"
          "\n"
          "%.0f TFLOPS\n"
          "%.0f t\n"
@@ -279,7 +277,6 @@ void shipyard_update( unsigned int wid, char* str )
          _(ship->name),
          _(ship_class(ship)),
          _(ship->fabricator),
-         ship->crew,
          /* Weapons & Manoeuvrability */
          ship->cpu,
          ship->mass,

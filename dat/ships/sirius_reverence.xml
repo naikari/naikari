@@ -23,7 +23,6 @@
   <armour_regen>0</armour_regen>
  </health>
  <characteristics>
-  <crew>11</crew>
   <mass>220</mass>
   <fuel_consumption>200</fuel_consumption>
   <cargo>40</cargo>

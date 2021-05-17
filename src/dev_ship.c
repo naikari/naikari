@@ -44,7 +44,7 @@ void dship_csv( const char *path )
    l = scnprintf( buf, sizeof(buf),
          "name,class,base_type,price,license,fabricator,"
          "thrust,turn,speed,"
-         "crew,mass,cpu,fuel,cargo,"
+         "mass,cpu,fuel,cargo,"
          "absorb,"
          "armour,armour_regen,"
          "shield,shield_regen,"
@@ -60,7 +60,7 @@ void dship_csv( const char *path )
       l = scnprintf( buf, sizeof(buf),
             "%s,%s,%s,%"CREDITS_PRI",%s,%s,"
             "%f,%f,%f,"
-            "%d,%f,%f,%d,%f,"
+            "%f,%f,%d,%f,"
             "%f,"
             "%f,%f,"
             "%f,%f,"
@@ -68,7 +68,7 @@ void dship_csv( const char *path )
             "%d,%d,%d\n",
             s->name, ship_class(s), s->base_type, s->price, s->license, s->fabricator,
             s->thrust, s->turn*180./M_PI, s->speed,
-            s->crew, s->mass, s->cpu, s->fuel, s->cap_cargo,
+            s->mass, s->cpu, s->fuel, s->cap_cargo,
             s->dmg_absorb*100,
             s->armour, s->armour_regen,
             s->shield, s->shield_regen,
