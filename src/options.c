@@ -23,6 +23,7 @@
 #include "dialogue.h"
 #include "input.h"
 #include "log.h"
+#include "menu.h"
 #include "music.h"
 #include "ndata.h"
 #include "nstring.h"
@@ -455,7 +456,8 @@ static int opt_gameplaySave( unsigned int wid, char *str )
       conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
 
    /* Reset speed so changes take effect immediately. */
-   player_autonavResetSpeed();
+   if (!menu_isOpen(MENU_MAIN))
+      player_autonavResetSpeed();
 
    return 0;
 }
