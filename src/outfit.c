@@ -1751,7 +1751,7 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
 #define DESC_ADD(x, s) \
 if ((x) != 0) \
    do { \
-      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "\n#%c", ((x)>0)?'g':'r' ); \
+      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "\n#%c%s", ((x)>0)?'g':'r', ((x)>0)?"":"!! " ); \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, s, x ); \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "#0" ); \
    } while(0)

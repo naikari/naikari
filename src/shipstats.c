@@ -492,6 +492,36 @@ static const char* ss_printI_colour( int i, const ShipStatsLookup *sl )
       return "g";
    return "r";
 }
+/**
+ * @brief Some colour coding for ship stats doubles.
+ */
+static const char* ss_printD_symbol( double d, const ShipStatsLookup *sl )
+{
+   if (sl->inverted) {
+      if (d < 0.)
+         return "";
+      return "!! ";
+   }
+
+   if (d > 0.)
+      return "";
+   return "!! ";
+}
+/**
+ * @brief Some colour coding for ship stats integers.
+ */
+static const char* ss_printI_symbol( int i, const ShipStatsLookup *sl )
+{
+   if (sl->inverted) {
+      if (i < 0)
+         return "";
+      return "!! ";
+   }
+
+   if (i > 0)
+      return "";
+   return "!! ";
+}
 
 
 /**
@@ -501,9 +531,10 @@ static int ss_printD( char *buf, int len, int newline, double d, const ShipStats
 {
    if (FABS(d) < 1e-10)
       return 0;
-   return scnprintf( buf, len, "%s#%s%+.0f%% %s#0",
+   return scnprintf( buf, len, "%s#%s%s%+.0f%% %s#0",
          (newline) ? "\n" : "",
          ss_printD_colour( d, sl ),
+         ss_printD_symbol( d, sl ),
          d*100., _(sl->display) );
 }
 
@@ -515,9 +546,10 @@ static int ss_printA( char *buf, int len, int newline, double d, const ShipStats
 {
    if (FABS(d) < 1e-10)
       return 0;
-   return scnprintf( buf, len, "%s#%s%+.0f %s#0",
+   return scnprintf( buf, len, "%s#%s%s%+.0f %s#0",
          (newline) ? "\n" : "",
          ss_printD_colour( d, sl ),
+         ss_printD_symbol( d, sl ),
          d, _(sl->display) );
 }
 
@@ -529,9 +561,10 @@ static int ss_printI( char *buf, int len, int newline, int i, const ShipStatsLoo
 {
    if (i == 0)
       return 0;
-   return scnprintf( buf, len, "%s#%s%+d %s#0",
+   return scnprintf( buf, len, "%s#%s%s%+d %s#0",
          (newline) ? "\n" : "",
          ss_printI_colour( i, sl ),
+         ss_printI_symbol( i, sl ),
          i, _(sl->display) );
 }
 
@@ -543,9 +576,10 @@ static int ss_printB( char *buf, int len, int newline, int b, const ShipStatsLoo
 {
    if (!b)
       return 0;
-   return scnprintf( buf, len, "%s#%s%s#0",
+   return scnprintf( buf, len, "%s#%s%s%s#0",
          (newline) ? "\n" : "",
          ss_printI_colour( b, sl ),
+         ss_printI_symbol( b, sl ),
          _(sl->display) );
 }
 
