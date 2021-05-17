@@ -101,6 +101,9 @@ static const ShipStatsLookup ss_lookup[] = {
    D__ELEM( SS_TYPE_D_EW_HIDE,            ew_hide,             gettext_noop("Cloaking") ),
    D__ELEM( SS_TYPE_D_EW_DETECT,          ew_detect,           gettext_noop("Detection") ),
    D__ELEM( SS_TYPE_D_EW_JUMPDETECT,      ew_jump_detect,      gettext_noop("Jump Detection") ),
+   D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       gettext_noop("Radar Range") ),
+   D__ELEM( SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,  gettext_noop("Jump Detect Range") ),
+   DI_ELEM( SS_TYPE_D_RDR_ENEMY_RANGE_MOD,rdr_enemy_range_mod, gettext_noop("Enemy Radar Range") ),
 
    D__ELEM( SS_TYPE_D_LAUNCH_RATE,        launch_rate,         gettext_noop("Fire Rate (Launcher)") ),
    D__ELEM( SS_TYPE_D_LAUNCH_RANGE,       launch_range,        gettext_noop("Launch Range") ),
