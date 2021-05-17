@@ -224,6 +224,12 @@ end
 
 
 function enter ()
+   if var.peek("_escort_disable") == system.cur():name() then
+      -- Disabling escorts for this system has been requested.
+      var.pop("_escort_disable")
+      return
+   end
+
    if standing_hook == nil then
       standing_hook = hook.standing("standing")
    end
