@@ -12,9 +12,9 @@
  </general>
  <specific type="launcher" secondary="1">
   <ammo>Headhunter Missile</ammo>
-  <delay>3.5</delay>
+  <delay>2.5</delay>
   <reload_time>60</reload_time>
-  <amount>25</amount>
+  <amount>35</amount>
   <lockon>6</lockon>
   <arc>120</arc>
   <ew_target>1.5</ew_target>

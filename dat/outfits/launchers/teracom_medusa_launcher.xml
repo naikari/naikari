@@ -4,7 +4,7 @@
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
-  <mass>17</mass>
+  <mass>18</mass>
   <price>40000</price>
   <description>TeraCom's Medusa launcher exceeds industry standards in terms of lock-on time and firing rate. With this launcher, you can easily bring even quite heavily armored targets to a halt easily.</description>
   <gfx_store>seekerlauncher.png</gfx_store>
@@ -12,7 +12,7 @@
  </general>
  <specific type="launcher" secondary="1">
   <ammo>Medusa Missile</ammo>
-  <delay>3.5</delay>
+  <delay>3</delay>
   <reload_time>60</reload_time>
   <amount>8</amount>
   <lockon>7</lockon>

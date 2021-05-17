@@ -14,6 +14,6 @@
   <ammo>Banshee Rocket</ammo>
   <delay>3</delay>
   <reload_time>90</reload_time>
-  <amount>20</amount>
+  <amount>30</amount>
  </specific>
 </outfit>

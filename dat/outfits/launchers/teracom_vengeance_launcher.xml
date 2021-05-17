@@ -4,7 +4,7 @@
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
-  <mass>50</mass>
+  <mass>30</mass>
   <price>150000</price>
   <description>TeraCom's patented Vengeance launcher hardware considerably reduces the time it takes to achieve a lock. Sometimes, those few seconds can make all the difference. With their destructive armor-focused payload, these missiles will make short work of even quite large ships once you've stripped them of their shields. Pairing with Spearhead missiles is recommended for best performance.</description>
   <gfx_store>headhunterlauncher.png</gfx_store>
@@ -12,9 +12,9 @@
  </general>
  <specific type="launcher" secondary="1">
   <ammo>Vengeance Missile</ammo>
-  <delay>6</delay>
+  <delay>4</delay>
   <reload_time>60</reload_time>
-  <amount>10</amount>
+  <amount>15</amount>
   <lockon>8</lockon>
   <arc>120</arc>
   <ew_target>1</ew_target>
