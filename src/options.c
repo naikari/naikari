@@ -454,6 +454,9 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    if (conf.mesg_visible == 0)
       conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
 
+   /* Reset speed so changes take effect immediately. */
+   player_autonavResetSpeed();
+
    return 0;
 }
 
