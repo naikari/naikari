@@ -395,7 +395,7 @@ int conf_loadConfig ( const char* file )
 
       /* Accessibility. */
       conf_loadFloat( lEnv, "dt_mod", conf.dt_mod );
-      conf.dt_mod = CLAMP(0.5, 1., conf.dt_mod);
+      conf.dt_mod = CLAMP(0.25, 1., conf.dt_mod);
 
       /* Key repeat. */
       conf_loadInt( lEnv, "repeat_delay", conf.repeat_delay );

@@ -358,7 +358,7 @@ static void opt_gameplay( unsigned int wid )
    window_addText( wid, x, y, cw, 20, 1, "txtGameSpeed", &gl_smallFont,
          NULL, NULL );
    y -= 20;
-   window_addFader( wid, x, y, cw, 20, "fadGameSpeed", 0.5, 1.,
+   window_addFader( wid, x, y, cw, 20, "fadGameSpeed", 0.25, 1.,
          conf.dt_mod, opt_setGameSpeed );
    y -= 40;
 
