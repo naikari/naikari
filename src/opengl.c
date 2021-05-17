@@ -339,7 +339,7 @@ static int gl_getGLInfo (void)
    glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &gl_screen.multitex_max);
 
    /* Debug happiness */
-   DEBUG(_("OpenGL Drawable Created: %dx%d@%dbpp"), gl_screen.rw, gl_screen.rh, gl_screen.depth);
+   DEBUG(_("OpenGL Drawable Created: %d×%d@%dbpp"), gl_screen.rw, gl_screen.rh, gl_screen.depth);
    DEBUG(_("r: %d, g: %d, b: %d, a: %d, db: %s, fsaa: %d, tex: %d"),
          gl_screen.r, gl_screen.g, gl_screen.b, gl_screen.a,
          gl_has(OPENGL_DOUBLEBUF) ? _("yes") : _("no"),

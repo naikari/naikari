@@ -1232,12 +1232,12 @@ static void opt_video( unsigned int wid )
    nres  = 0;
    res_def = 0;
    if (j) {
-      asprintf( &res[0], "%dx%d", conf.width, conf.height );
+      asprintf( &res[0], "%d×%d", conf.width, conf.height );
       nres     = 1;
    }
    for (i=0; i<n; i++) {
       SDL_GetDisplayMode( display_index, i, &mode  );
-      asprintf( &res[ nres ], "%dx%d", mode.w, mode.h );
+      asprintf( &res[ nres ], "%d×%d", mode.w, mode.h );
 
       /* Make sure doesn't already exist. */
       for (k=0; k<nres; k++)
@@ -1446,13 +1446,13 @@ int opt_setVideoMode( int w, int h, int fullscreen, int confirm )
       opt_needRestart();
 
    if (confirm && (status != 0 || changed_size || new_f != old_f) && !dialogue_YesNo(_("Keep Video Settings"),
-         _("Do you want to keep running at %dx%d %s?"),
+         _("Do you want to keep running at %d×%d %s?"),
          new_w, new_h, new_f ? _("fullscreen") : _("windowed"))) {
 
       opt_setVideoMode( old_conf_w, old_conf_h, old_conf_f, 0 );
 
       dialogue_msg( _("Video Settings Restored"),
-            _("Resolution reset to %dx%d %s."),
+            _("Resolution reset to %d×%d %s."),
             old_w, old_h, conf.fullscreen ? _("fullscreen") : _("windowed") );
 
       return 1;
@@ -1528,7 +1528,7 @@ static void opt_setScalefactor( unsigned int wid, char *str )
    if (FABS(conf.scalefactor-scale) > 1e-4)
       opt_needRestart();
    conf.scalefactor = scale;
-   snprintf( buf, sizeof(buf), _("Scaling: %.1fx"), conf.scalefactor );
+   snprintf( buf, sizeof(buf), _("Scaling: %.1f×"), conf.scalefactor );
    window_modifyText( wid, "txtScale", buf );
 }
 

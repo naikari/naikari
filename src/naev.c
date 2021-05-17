@@ -886,7 +886,7 @@ void display_fps( const double dt )
       dt_mod_base = player_dt_default();
    }
    if (dt_mod != dt_mod_base)
-      gl_print( NULL, x, y, NULL, "%3.1fx", dt_mod / dt_mod_base);
+      gl_print( NULL, x, y, NULL, "%3.1f×", dt_mod / dt_mod_base);
 
    if (!paused || !player_paused || !conf.pause_show)
       return;

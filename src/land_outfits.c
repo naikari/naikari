@@ -184,8 +184,8 @@ void outfits_open( unsigned int wid, Outfit **outfits )
    window_addImage( wid, -20, -50, 192, 192, "imgOutfit", NULL, 1 );
 
    /* cust draws the modifier */
-   window_addCust( wid, -40-bw, 60+2*bh,
-         bw, bh, "cstMod", 0, outfits_renderMod, NULL, NULL );
+   window_addCust( wid, -96, -260,
+         40, gl_smallFont.h, "cstMod", 0, outfits_renderMod, NULL, NULL );
 
    /* the descriptive text */
    window_addText( wid, 20 + iw + 20, -40,
@@ -895,7 +895,7 @@ static void outfits_renderMod( double bx, double by, double w, double h, void *d
    }
    if (q==1) return; /* Ignore no modifier. */
 
-   snprintf( buf, 8, "%dx", q );
+   snprintf( buf, 8, "%d×", q );
    gl_printMidRaw( &gl_smallFont, w, bx, by, &cFontWhite, -1, buf );
 }
 

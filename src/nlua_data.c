@@ -360,9 +360,9 @@ static int dataL_convolve2d( lua_State *L )
 
    /* Checks. */
    if (iw*ih*4*lI->elem != lI->size)
-      NLUA_ERROR(L,_("size mismatch for data: got %dx%dx4x%d, expected %d"), iw, ih, lI->elem, lI->size);
+      NLUA_ERROR(L,_("size mismatch for data: got %d×%d×4×%d, expected %d"), iw, ih, lI->elem, lI->size);
    if (kw*kh*4*lK->elem != lK->size)
-      NLUA_ERROR(L,_("size mismatch for data: got %dx%dx4x%d, expected %d"), kw, kh, lK->elem, lK->size);
+      NLUA_ERROR(L,_("size mismatch for data: got %d×%d×4×%d, expected %d"), kw, kh, lK->elem, lK->size);
    if (lI->type != LUADATA_NUMBER || lK->type != LUADATA_NUMBER)
       NLUA_ERROR(L, _("%s is only implemented for number types"), __func__);
 

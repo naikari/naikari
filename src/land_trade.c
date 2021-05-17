@@ -382,6 +382,6 @@ void commodity_renderMod( double bx, double by, double w, double h, void *data )
       commodity_update( land_getWid(LAND_WINDOW_COMMODITY), NULL );
       commodity_mod = q;
    }
-   snprintf( buf, 8, "%dx", q );
+   snprintf( buf, 8, "%d×", q );
    gl_printMidRaw( &gl_smallFont, w, bx, by, &cFontWhite, -1, buf );
 }
