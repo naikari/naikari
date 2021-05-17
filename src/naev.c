@@ -387,14 +387,16 @@ int main( int argc, char** argv )
             " project, based on another passion project (Naev), and ultimately"
             " developed exclusively by volunteers. It gives us great joy to"
             " know that there are others who love this game as much as we do!\n"
-            "    Of course, please note that this is an incomplete game. You"
+            "\n"
+            "Of course, please note that this is an incomplete game. You"
             " will encounter dead ends to storylines, missing storylines, and"
             " possibly even some bugs, although we try to keep those to a"
             " minimum of course. So be prepared for some rough edges for the"
             " time being. That said, we are working on this game every day and"
             " hope to one day finish this massive project on our hands."
             " Perhaps you could become one of us, who knows?\n"
-            "    For more information about the game and its development"
+            "\n"
+            "For more information about the game and its development"
             " state, take a look at naikari.github.io; it has all the relevant"
             " links. And again, thank you for playing!"), conf.lastversion );
    }
