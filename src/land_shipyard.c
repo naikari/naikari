@@ -104,18 +104,12 @@ void shipyard_open( unsigned int wid )
          _("Find Ships"), shipyard_find, SDLK_f );
    (void)off;
 
-   /* target gfx */
-   window_addRect( wid, -41, -30,
-         SHIP_TARGET_W, SHIP_TARGET_H, "rctTarget", &cBlack, 0 );
-   window_addImage( wid, -40, -30,
-         SHIP_TARGET_W, SHIP_TARGET_H, "imgTarget", NULL, 1 );
-
    /* slot types */
-   window_addCust( wid, -20, -SHIP_TARGET_H-35, 224, 80, "cstSlots", 0.,
+   window_addCust( wid, -100, -30, 224, 80, "cstSlots", 0.,
          shipyard_renderSlots, NULL, NULL );
 
    /* stat text */
-   window_addText( wid, -4, -SHIP_TARGET_H-40-70-20, 240, -SHIP_TARGET_H-60-70-20+h-bh, 0, "txtStats",
+   window_addText( wid, -4, -30-80-20, 320, -30-80-20+h-bh, 0, "txtStats",
          &gl_defFont, NULL, NULL );
 
    /* text */
@@ -148,7 +142,7 @@ void shipyard_open( unsigned int wid )
          w-SHIP_TARGET_W-40-(20+iw+20+180), th, 0, "txtDDesc", &gl_defFont, NULL, NULL );
    y -= th;
    window_addText( wid, 20+iw+20, y,
-         w-(20+iw+20) - (SHIP_TARGET_W+40), y-20+h-bh, 0, "txtDescription",
+         w-(20+iw+20) - 20, y-20+h-bh, 0, "txtDescription",
          &gl_smallFont, NULL, NULL );
 
    /* set up the ships to buy/sell */
@@ -199,7 +193,6 @@ void shipyard_update( unsigned int wid, char* str )
 
    /* No ships */
    if (i < 0 || array_size(shipyard_list) == 0) {
-      window_modifyImage( wid, "imgTarget", NULL, 0, 0 );
       window_disableButton( wid, "btnBuyShip");
       window_disableButton( wid, "btnTradeShip");
       snprintf( buf, sizeof(buf),
@@ -225,7 +218,6 @@ void shipyard_update( unsigned int wid, char* str )
             "N/A\n"
             "N/A\n"
             "N/A\n") );
-      window_modifyImage( wid, "imgTarget", NULL, 0, 0 );
       window_modifyText( wid, "txtStats", NULL );
       window_modifyText( wid, "txtDescription", NULL );
       window_modifyText( wid, "txtDDesc", buf );
@@ -234,9 +226,6 @@ void shipyard_update( unsigned int wid, char* str )
 
    ship = shipyard_list[i];
    shipyard_selected = ship;
-
-   /* update image */
-   window_modifyImage( wid, "imgTarget", ship->gfx_store, 0, 0 );
 
    /* update text */
    window_modifyText( wid, "txtStats", ship->desc_stats );
