@@ -22,6 +22,7 @@
 #define MANUAL_ZOOM_DEFAULT                  0     /**< Whether or not to enable manual zoom controls. */
 #define MAP_OVERLAY_OPACITY_DEFAULT          0.55  /**< Opacity fraction (0-1) for the overlay map. */
 #define INPUT_MESSAGES_DEFAULT               5     /**< Amount of messages to display. */
+#define DT_MOD_DEFAULT                       1.    /**< Base game speed. */
 /* Video options */
 #define RESOLUTION_W_MIN                     1280  /**< Minimum screen width (below which graphics are downscaled). */
 #define RESOLUTION_H_MIN                     720   /**< Minimum screen height (below which graphics are downscaled). */
@@ -117,6 +118,9 @@ typedef struct PlayerConf_s {
    /* GUI. */
    int mesg_visible; /**< Amount of visible messages. */
    double map_overlay_opacity; /**< Map overlay opacity. */
+
+   /* Accessibility. */
+   double dt_mod; /**< Static modifier of dt applied to the game as a whole. */
 
    /* Keyrepeat. */
    unsigned int repeat_delay; /**< Time in ms before start repeating. */

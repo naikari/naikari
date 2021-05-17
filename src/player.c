@@ -228,13 +228,7 @@ static void player_newSetup()
 void player_new (void)
 {
    int r;
-   const char *title, *caption;
-   char *ret, buf[PATH_MAX];
-
-   const char *speed_opts[] = {
-      _("Normal Speed"),
-      _("Slow Speed")
-   };
+   char buf[PATH_MAX];
 
    /* Set up new player. */
    player_newSetup();
@@ -260,26 +254,6 @@ void player_new (void)
          player_new();
          return;
       }
-   }
-
-   /* Set game speed. */
-   title = _("Game Speed");
-   caption = _("Your game can be set to normal speed or slow speed. Slow speed"
-         " causes time in space to pass at half the rate it would in normal"
-         " speed, which may be helpful if you have difficulty playing the game"
-         " at normal speed. Would you like to use normal speed or slow speed"
-         " for this profile? (If unsure, normal speed is probably what you"
-         " want.)");
-
-   dialogue_makeChoice( title, caption, 2 );
-   dialogue_addChoice( title, caption, speed_opts[0] );
-   dialogue_addChoice( title, caption, speed_opts[1] );
-   ret = dialogue_runChoice();
-   player.dt_mod = 1.;
-   if (ret != NULL) {
-      if (strcmp(ret, speed_opts[1]) == 0)
-         player.dt_mod = 0.5;
-      free( ret );
    }
 
    if (player_newMake())
@@ -356,7 +330,7 @@ static int player_newMake (void)
    /* Set player speed to default 1 */
    player.speed = 1.;
 
-   /* Reset speed (to make sure player.dt_mod is accounted for). */
+   /* Reset speed (to make sure conf.dt_mod is accounted for). */
    player_autonavResetSpeed();
 
    /* Monies. */
@@ -1655,9 +1629,9 @@ int player_getHypPreempt(void)
 double player_dt_default (void)
 {
    if (player.p != NULL && player.p->ship != NULL)
-      return player.p->stats.time_mod * player.p->ship->dt_default * player.dt_mod;
+      return player.p->stats.time_mod * player.p->ship->dt_default * conf.dt_mod;
 
-   return player.dt_mod;
+   return conf.dt_mod;
 }
 
 
@@ -2916,7 +2890,6 @@ int player_save( xmlTextWriterPtr writer )
 
    /* Standard player details. */
    xmlw_attr(writer,"name","%s",player.name);
-   xmlw_attr(writer,"dt_mod","%f",player.dt_mod);
    xmlw_elem(writer,"credits","%"CREDITS_PRI,player.p->credits);
    if (player.gui != NULL)
       xmlw_elem(writer,"gui","%s",player.gui);
@@ -3259,8 +3232,6 @@ static Planet* player_parse( xmlNodePtr parent )
    time_set    = 0;
    map_overlay_enabled = 0;
 
-   player.dt_mod = 1.; /* For old saves. */
-
    /* Must get planet first. */
    node = parent->xmlChildrenNode;
    do {
@@ -3272,7 +3243,6 @@ static Planet* player_parse( xmlNodePtr parent )
    do {
 
       /* global stuff */
-      xmlr_float(node, "dt_mod", player.dt_mod);
       xmlr_ulong(node, "credits", player_creds);
       xmlr_strd(node, "gui", player.gui);
       xmlr_int(node, "guiOverride", player.guiOverride);

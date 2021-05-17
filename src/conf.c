@@ -133,6 +133,9 @@ void conf_setDefaults (void)
    conf.mesg_visible = 5;
    conf.map_overlay_opacity = MAP_OVERLAY_OPACITY_DEFAULT;
 
+   /* Accessibility. */
+   conf.dt_mod = 1.;
+
    /* Repeat. */
    conf.repeat_delay = 500;
    conf.repeat_freq  = 30;
@@ -389,6 +392,10 @@ int conf_loadConfig ( const char* file )
          conf.mesg_visible = 5;
       conf_loadFloat( lEnv, "map_overlay_opacity", conf.map_overlay_opacity );
       conf.map_overlay_opacity = CLAMP(0, 1, conf.map_overlay_opacity);
+
+      /* Accessibility. */
+      conf_loadFloat( lEnv, "dt_mod", conf.dt_mod );
+      conf.dt_mod = CLAMP(0.5, 1., conf.dt_mod);
 
       /* Key repeat. */
       conf_loadInt( lEnv, "repeat_delay", conf.repeat_delay );
@@ -960,6 +967,11 @@ int conf_saveConfig ( const char* file )
    conf_saveInt("mesg_visible",conf.mesg_visible);
    conf_saveComment(_("Opacity fraction (0-1) for the overlay map."));
    conf_saveFloat("map_overlay_opacity", conf.map_overlay_opacity);
+   conf_saveEmptyLine();
+
+   /* Accessibility. */
+   conf_saveComment(_("Global speed modifier percentage."));
+   conf_saveFloat("dt_mod", conf.dt_mod);
    conf_saveEmptyLine();
 
    /* Key repeat. */

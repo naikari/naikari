@@ -71,6 +71,7 @@ static char** lang_list( int *n );
 static void opt_gameplay( unsigned int wid );
 static void opt_setAutonavResetSpeed( unsigned int wid, char *str );
 static void opt_setMapOverlayOpacity( unsigned int wid, char *str );
+static void opt_setGameSpeed( unsigned int wid, char *str );
 static void opt_OK( unsigned int wid, char *str );
 static int opt_gameplaySave( unsigned int wid, char *str );
 static void opt_gameplayDefaults( unsigned int wid, char *str );
@@ -114,8 +115,8 @@ void opt_menu (void)
    const char **names;
 
    /* Dimensions. */
-   w = 680;
-   h = 525;
+   w = 720;
+   h = 600;
 
    /* Create window and tabs. */
    opt_wid = window_create( "wdwOptions", _("Options"), -1, -1, w, h );
@@ -328,12 +329,12 @@ static void opt_gameplay( unsigned int wid )
 
    /* Options. */
 
-   /* MOpacity abort. */
+   /* MOpacity. */
    window_addText( wid, x, y, cw, 20, 0, "txtAMOpacity",
          NULL, NULL, _("Map Overlay Opacity:") );
    y -= 20;
 
-   /* MOpacity abort fader. */
+   /* MOpacity fader. */
    window_addText( wid, x, y, cw, 20, 1, "txtMOpacity",
          &gl_smallFont, NULL, NULL );
    y -= 20;
@@ -346,6 +347,19 @@ static void opt_gameplay( unsigned int wid )
    x = 20 + cw + 20;
    y  = by;
    cw += 80;
+
+   /* Base game speed (dt_mod). */
+   window_addText( wid, x, y, cw, 20, 0, "txtAGameSpeed",
+         NULL, NULL, _("Base Game Speed:") );
+   y -= 20;
+
+   /* Base game speed fader. */
+   window_addText( wid, x, y, cw, 20, 1, "txtGameSpeed", &gl_smallFont,
+         NULL, NULL );
+   y -= 20;
+   window_addFader( wid, x, y, cw, 20, "fadGameSpeed", 0.5, 1.,
+         conf.dt_mod, opt_setGameSpeed );
+   y -= 40;
 
    /* Autonav abort. */
    window_addText( wid, x, y, cw-130, 20, 0, "txtAAutonav",
@@ -430,6 +444,7 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    /* Faders. */
    conf.autonav_reset_speed = window_getFaderValue(wid, "fadAutonav");
    conf.map_overlay_opacity = window_getFaderValue(wid, "fadMapOverlayOpacity");
+   conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
 
    /* Input boxes. */
    vmsg = window_getInput( wid, "inpMSG" );
@@ -460,6 +475,7 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    /* Faders. */
    window_faderValue( wid, "fadAutonav", AUTONAV_RESET_SPEED_DEFAULT );
    window_faderValue( wid, "fadMapOverlayOpacity", MAP_OVERLAY_OPACITY_DEFAULT );
+   window_faderValue( wid, "fadGameSpeed", DT_MOD_DEFAULT );
 
    /* Input boxes. */
    snprintf( vmsg, sizeof(vmsg), "%d", INPUT_MESSAGES_DEFAULT );
@@ -485,6 +501,7 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    /* Faders. */
    window_faderValue( wid, "fadAutonav", conf.autonav_reset_speed );
    window_faderValue( wid, "fadMapOverlayOpacity", conf.map_overlay_opacity );
+   window_faderSetBoundedValue( wid, "fadGameSpeed", conf.dt_mod );
 
    /* Input boxes. */
    snprintf( vmsg, sizeof(vmsg), "%d", conf.mesg_visible );
@@ -1472,7 +1489,7 @@ static void opt_getVideoMode( int *w, int *h, int *fullscreen )
 static void opt_videoDefaults( unsigned int wid, char *str )
 {
    (void) str;
-   char buf[16];
+   char buf[STRMAX_SHORT];
 
    /* Restore settings. */
    /* Inputs. */
@@ -1500,7 +1517,7 @@ static void opt_videoDefaults( unsigned int wid, char *str )
  */
 static void opt_setScalefactor( unsigned int wid, char *str )
 {
-   char buf[32];
+   char buf[STRMAX_SHORT];
    double scale = window_getFaderValue(wid, str);
    scale = round(scale * 10) / 10;     // Reasonable precision. Clearer value.
    if (FABS(conf.scalefactor-scale) > 1e-4)
@@ -1513,14 +1530,14 @@ static void opt_setScalefactor( unsigned int wid, char *str )
 
 
 /**
- * @brief Callback to set autonav abort threshold.
+ * @brief Callback to set map overlay opacity.
  *
  *    @param wid Window calling the callback.
  *    @param str Name of the widget calling the callback.
  */
 static void opt_setMapOverlayOpacity( unsigned int wid, char *str )
 {
-   char buf[PATH_MAX];
+   char buf[STRMAX_SHORT];
    double map_overlay_opacity;
 
    /* Set fader. */
@@ -1532,3 +1549,22 @@ static void opt_setMapOverlayOpacity( unsigned int wid, char *str )
 }
 
 
+
+/**
+ * @brief Callback to set base game speed (conf.dt_mod).
+ *
+ *    @param wid Window calling the callback.
+ *    @param str Name of the widget calling the callback.
+ */
+static void opt_setGameSpeed( unsigned int wid, char *str )
+{
+   char buf[STRMAX_SHORT];
+   double dt_mod;
+
+   /* Set fader. */
+   dt_mod = window_getFaderValue(wid, str);
+
+   snprintf( buf, sizeof(buf), _("%.0f%%"), dt_mod * 100 );
+
+   window_modifyText( wid, "txtGameSpeed", buf );
+}
