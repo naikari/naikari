@@ -132,7 +132,13 @@ function accept()
 end
 
 function jumpout()
-   if stage == 1 then --player trying to escape
+   if stage == 0 then
+      if player.pilot():ship():class() == "Destroyer" then
+         var.push("_escort_disable", battlesys:name())
+      else
+         var.pop("_escort_disable")
+      end
+   elseif stage == 1 then --player trying to escape
       player.msg( "#r" .. msg_run .. "#0" )
       misn.finish(false)
    end
@@ -157,7 +163,7 @@ end
 
 function enter()
 
-   playerclass = player.pilot():ship():class()
+   local playerclass = player.pilot():ship():class()
    --Jumping in Toaxis for the battle with a destroyer class ship
    if system.cur() == battlesys and stage == 0 and playerclass == "Destroyer" then
       pilot.clear()
@@ -178,15 +184,16 @@ function lets_go()
    sharkboy:rmOutfit("all")
    sharkboy:rmOutfit("cores")
 
-   sharkboy:addOutfit("S&K Light Combat Plating")
-   sharkboy:addOutfit("Milspec Prometheus 3603 Core System")
+   sharkboy:addOutfit("S&K Light Stealth Plating")
+   sharkboy:addOutfit("Milspec Aegis 3601 Core System")
    sharkboy:addOutfit("Tricon Zephyr II Engine")
 
-   sharkboy:addOutfit("Reactor Class I",3)
-   sharkboy:addOutfit("Battery",2)
+   sharkboy:addOutfit("Reactor Class I", 2)
+   sharkboy:addOutfit("Small Shield Booster")
+   sharkboy:addOutfit("Engine Reroute", 2)
 
-   sharkboy:addOutfit("Heavy Ion Cannon")
-   sharkboy:addOutfit("Ion Cannon",3)
+   sharkboy:addOutfit("TeraCom Medusa Launcher")
+   sharkboy:addOutfit("Ion Cannon", 3)
 
    sharkboy:setHealth(100,100)
    sharkboy:setEnergy(100)
