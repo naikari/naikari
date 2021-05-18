@@ -294,6 +294,7 @@ function enter ()
             edata.pilot:setVisplayer(true)
             edata.pilot:setNoClear(true)
             hook.pilot(edata.pilot, "death", "pilot_death", i)
+            edata.pilot:memory().escort = true
          else
             edata.alive = false
          end
@@ -324,6 +325,7 @@ function standing ()
             edata.pilot:setVisplayer(false)
             edata.pilot:setNoClear(false)
             edata.pilot:hookClear()
+            edata.pilot:memory().escort = false
          end
       end
    end
@@ -352,6 +354,7 @@ function hail( p )
             edata.pilot:setVisplayer(false)
             edata.pilot:setNoClear(false)
             edata.pilot:hookClear()
+            edata.pilot:memory().escort = false
          end
       end
    end
