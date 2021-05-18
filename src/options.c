@@ -442,7 +442,6 @@ static int opt_gameplaySave( unsigned int wid, char *str )
 
    /* Faders. */
    conf.autonav_reset_speed = window_getFaderValue(wid, "fadAutonav");
-   conf.map_overlay_opacity = window_getFaderValue(wid, "fadMapOverlayOpacity");
    conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
 
    /* Input boxes. */
@@ -477,7 +476,6 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
 
    /* Faders. */
    window_faderValue( wid, "fadAutonav", AUTONAV_RESET_SPEED_DEFAULT );
-   window_faderValue( wid, "fadMapOverlayOpacity", MAP_OVERLAY_OPACITY_DEFAULT );
    window_faderValue( wid, "fadGameSpeed", DT_MOD_DEFAULT );
 
    /* Input boxes. */
@@ -1414,6 +1412,9 @@ static int opt_videoSave( unsigned int wid, char *str )
             conf.minimize ? "1" : "0" );
    }
 
+   /* Map overlay opacity. */
+   conf.map_overlay_opacity = window_getFaderValue(wid, "fadMapOverlayOpacity");
+
    return 0;
 }
 
@@ -1536,6 +1537,7 @@ static void opt_videoDefaults( unsigned int wid, char *str )
    /* Faders. */
    window_faderSetBoundedValue( wid, "fadScale", SCALE_FACTOR_DEFAULT );
    window_faderSetBoundedValue( wid, "fadBGBrightness", BG_BRIGHTNESS_DEFAULT );
+   window_faderValue( wid, "fadMapOverlayOpacity", MAP_OVERLAY_OPACITY_DEFAULT );
 }
 
 /**
