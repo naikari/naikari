@@ -282,7 +282,7 @@ static void opt_gameplay( unsigned int wid )
    cw = (w-60)/2 - 40;
    y  = by;
    x  = 20;
-   s = _("Language:");
+   s = _("Language");
    l = gl_printWidthRaw( NULL, s );
    window_addText( wid, x, y, l, 20, 0, "txtLanguage",
          NULL, NULL, s );
@@ -298,7 +298,7 @@ static void opt_gameplay( unsigned int wid )
    window_addList( wid, x+l+20, y, cw-l-50, 70, "lstLanguage", ls, n, i, NULL, NULL );
    y -= 90;
    window_addText( wid, x, y, cw, 20, 0, "txtCompile",
-         NULL, NULL, _("Compilation Flags:") );
+         NULL, NULL, _("Compilation Flags") );
    y -= 30;
    window_addText( wid, x, y, cw, h+y-20, 0, "txtFlags",
          &gl_smallFont, &cFontOrange,
@@ -333,7 +333,7 @@ static void opt_gameplay( unsigned int wid )
 
    /* MOpacity. */
    window_addText( wid, x, y, cw, 20, 0, "txtAMOpacity",
-         NULL, NULL, _("Map Overlay Opacity:") );
+         NULL, NULL, _("Map Overlay Opacity") );
    y -= 20;
 
    /* MOpacity fader. */
@@ -352,7 +352,7 @@ static void opt_gameplay( unsigned int wid )
 
    /* Base game speed (dt_mod). */
    window_addText( wid, x, y, cw, 20, 0, "txtAGameSpeed",
-         NULL, NULL, _("Base Game Speed:") );
+         NULL, NULL, _("Base Game Speed") );
    y -= 20;
 
    /* Base game speed fader. */
@@ -365,7 +365,7 @@ static void opt_gameplay( unsigned int wid )
 
    /* Autonav abort. */
    window_addText( wid, x, y, cw-130, 20, 0, "txtAAutonav",
-         NULL, NULL, _("Stop Speedup At:") );
+         NULL, NULL, _("Stop Speedup At") );
    y -= 20;
 
    /* Autonav abort fader. */
@@ -377,7 +377,7 @@ static void opt_gameplay( unsigned int wid )
    y -= 40;
 
    window_addText( wid, x, y, cw, 20, 0, "txtSettings",
-         NULL, NULL, _("Settings:") );
+         NULL, NULL, _("Settings") );
    y -= 25;
 
    window_addCheckbox( wid, x, y, cw, 20,
@@ -393,15 +393,15 @@ static void opt_gameplay( unsigned int wid )
          "chkCompress", _("Enable saved game compression"), NULL, conf.save_compress );
    y -= 40;
    s = _("Visible Messages");
-   l = gl_printWidthRaw( NULL, s );
+   l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtSMSG",
-         NULL, NULL, s );
+         &gl_smallFont, NULL, s );
    window_addInput( wid, -50, y, 40, 20, "inpMSG", 4, 1, NULL );
    y -= 30;
    s = _("Max Time Compression Factor");
-   l = gl_printWidthRaw( NULL, s );
+   l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtTMax",
-         NULL, NULL, s );
+         &gl_smallFont, NULL, s );
    window_addInput( wid, -50, y, 40, 20, "inpTMax", 4, 1, NULL );
 
    /* Restart text. */
@@ -900,7 +900,7 @@ static void opt_audio( unsigned int wid )
    y = -60;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkNosound", _("Disable all sound/music"), NULL, conf.nosound );
-   y -= 30;
+   y -= 25;
 
    window_addCheckbox( wid, x, y, cw, 20,
          "chkEFX", _("EFX (More CPU)"), NULL, conf.al_efx );
@@ -909,13 +909,13 @@ static void opt_audio( unsigned int wid )
    /* Sound levels. */
    x = 20 + cw + 20;
    y = -60;
-   window_addText( wid, x+20, y, cw-40, 20, 0, "txtSVolume",
+   window_addText( wid, x, y, cw-40, 20, 0, "txtSVolume",
          NULL, NULL, _("Volume Levels") );
    y -= 30;
 
    /* Sound fader. */
    window_addText( wid, x, y, cw, 20, 1, "txtSound",
-         NULL, NULL, NULL );
+         &gl_smallFont, NULL, NULL );
    y -= 20;
    window_addFader( wid, x, y, cw, 20, "fadSound", 0., 1.,
          sound_getVolume(), opt_setAudioLevel );
@@ -924,7 +924,7 @@ static void opt_audio( unsigned int wid )
 
    /* Music fader. */
    window_addText( wid, x, y, cw, 20, 1, "txtMusic",
-         NULL, NULL, NULL );
+         &gl_smallFont, NULL, NULL );
    y -= 20;
    window_addFader( wid, x, y, cw, 20, "fadMusic", 0., 1.,
          music_getVolume(), opt_setAudioLevel );
@@ -1211,7 +1211,7 @@ static void opt_video( unsigned int wid )
    cw = (w-60)/2;
    x = 20;
    y = -60;
-   window_addText( wid, x+20, y, 100, 20, 0, "txtSRes",
+   window_addText( wid, x, y, 100, 20, 0, "txtSRes",
          NULL, NULL, _("Resolution") );
    y -= 40;
    window_addInput( wid, x, y, 100, 20, "inpRes", 16, 1, NULL );
@@ -1233,12 +1233,12 @@ static void opt_video( unsigned int wid )
    nres  = 0;
    res_def = 0;
    if (j) {
-      asprintf( &res[0], "%d×%d", conf.width, conf.height );
+      asprintf( &res[0], "%dx%d", conf.width, conf.height );
       nres     = 1;
    }
    for (i=0; i<n; i++) {
       SDL_GetDisplayMode( display_index, i, &mode  );
-      asprintf( &res[ nres ], "%d×%d", mode.w, mode.h );
+      asprintf( &res[ nres ], "%dx%d", mode.w, mode.h );
 
       /* Make sure doesn't already exist. */
       for (k=0; k<nres; k++)
@@ -1256,21 +1256,25 @@ static void opt_video( unsigned int wid )
    }
    window_addList( wid, x, y, 140, 100, "lstRes", res, nres, -1, opt_videoRes, NULL );
    y -= 120;
-   window_addText( wid, x, y-3, 110, 20, 0, "txtScale",
-         NULL, NULL, NULL );
-   window_addFader( wid, x+120, y, cw-140, 20, "fadScale", 1., 3.,
+   window_addText( wid, x, y, cw-20, 20, 0, "txtAScale",
+         NULL, NULL, _("Scaling") );
+   y -= 20;
+   window_addText( wid, x, y, cw-20, 20, 1, "txtScale",
+         &gl_smallFont, NULL, NULL );
+   y -= 20;
+   window_addFader( wid, x, y, cw-20, 20, "fadScale", 1., 3.,
          conf.scalefactor, opt_setScalefactor );
    opt_setScalefactor( wid, "fadScale" );
    y -= 60;
 
    /* FPS stuff. */
-   window_addText( wid, x+20, y, 100, 20, 0, "txtFPSTitle",
+   window_addText( wid, x, y, 100, 20, 0, "txtFPSTitle",
          NULL, NULL, _("FPS Control") );
    y -= 30;
    s = _("FPS Limit");
-   l = gl_printWidthRaw( NULL, s );
+   l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtSFPS",
-         NULL, NULL, s );
+         &gl_smallFont, NULL, s );
    window_addInput( wid, x+l+20, y, 40, 20, "inpFPS", 4, 1, NULL );
    toolkit_setListPos( wid, "lstRes", res_def);
    window_setInputFilter( wid, "inpFPS", INPUT_FILTER_NUMBER );
@@ -1286,7 +1290,7 @@ static void opt_video( unsigned int wid )
    /* OpenGL options. */
    x = 20+cw+20;
    y = -60;
-   window_addText( wid, x+20, y, 100, 20, 0, "txtSGL",
+   window_addText( wid, x, y, 100, 20, 0, "txtSGL",
          NULL, NULL, _("OpenGL") );
    y -= 30;
    window_addCheckbox( wid, x, y, cw, 20,
@@ -1294,24 +1298,27 @@ static void opt_video( unsigned int wid )
    y -= 40;
 
    /* Features. */
-   window_addText( wid, x+20, y, 100, 20, 0, "txtSFeatures",
+   window_addText( wid, x, y, 100, 20, 0, "txtSFeatures",
          NULL, NULL, _("Features") );
    y -= 30;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkEngineGlow", _("Engine Glow (More RAM)"), NULL, conf.engineglow );
 
-   y -= 20;
+   y -= 25;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkMinimize", _("Minimize on focus loss"), NULL, conf.minimize );
-   y -= 20;
+   y -= 25;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkColorblind", _("Colorblind mode"), opt_checkColorblind,
          conf.colorblind );
+   y -= 40;
+   window_addText( wid, x, y-3, cw-20, 20, 0, "txtABGBrightness",
+         NULL, NULL, _("Background Brightness") );
    y -= 20;
-   window_addText( wid, x+15, y-3, cw-20, 20, 0, "txtBGBrightness",
-         NULL, NULL, NULL );
+   window_addText( wid, x, y-3, cw-20, 20, 1, "txtBGBrightness",
+         &gl_smallFont, NULL, NULL );
    y -= 20;
-   window_addFader( wid, x+40, y, cw-60, 20, "fadBGBrightness", 0., 1.,
+   window_addFader( wid, x, y, cw-20, 20, "fadBGBrightness", 0., 1.,
          conf.bg_brightness, opt_setBGBrightness );
    opt_setBGBrightness( wid, "fadBGBrightness" );
    y -= 40;
@@ -1538,7 +1545,7 @@ static void opt_setScalefactor( unsigned int wid, char *str )
    if (FABS(conf.scalefactor-scale) > 1e-4)
       opt_needRestart();
    conf.scalefactor = scale;
-   snprintf( buf, sizeof(buf), _("Scaling: %.1f×"), conf.scalefactor );
+   snprintf( buf, sizeof(buf), _("%.1f%%"), conf.scalefactor * 100 );
    window_modifyText( wid, "txtScale", buf );
 }
 
@@ -1553,7 +1560,7 @@ static void opt_setBGBrightness( unsigned int wid, char *str )
    char buf[STRMAX_SHORT];
    double scale = window_getFaderValue(wid, str);
    conf.bg_brightness = scale;
-   snprintf( buf, sizeof(buf), _("BG (Nebula, etc.) brightness: %.0f%%"), 100.*conf.bg_brightness );
+   snprintf( buf, sizeof(buf), _("%.0f%%"), 100.*conf.bg_brightness );
    window_modifyText( wid, "txtBGBrightness", buf );
 }
 
