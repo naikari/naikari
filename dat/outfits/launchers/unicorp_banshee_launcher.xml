@@ -15,5 +15,7 @@
   <delay>4</delay>
   <reload_time>90</reload_time>
   <amount>20</amount>
+  <track>2</track>
+  <swivel>22</swivel>
  </specific>
 </outfit>

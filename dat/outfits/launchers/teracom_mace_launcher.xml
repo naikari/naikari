@@ -17,5 +17,7 @@ TeraCom's Mace launcher uses an advanced reload mechanism that allows the launch
   <delay>0.25</delay>
   <reload_time>6</reload_time>
   <amount>75</amount>
+  <track>2</track>
+  <swivel>22</swivel>
  </specific>
 </outfit>

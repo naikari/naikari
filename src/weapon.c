@@ -102,9 +102,9 @@ static unsigned int beam_idgen = 0; /**< Beam identifier generator. */
  * Prototypes
  */
 /* Creation. */
-static double weapon_aimTurret( const Outfit *outfit, const Pilot *parent,
+static double weapon_aimTurret( const Pilot *parent,
       const Pilot *pilot_target, const Vector2d *pos, const Vector2d *vel, double dir,
-      double swivel, double time );
+      double swivel, double time, double track );
 static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
       const double dir, const Vector2d* pos, const Vector2d* vel, const Pilot* parent, double time );
 static void weapon_createAmmo( Weapon *w, const Outfit* outfit, double T,
@@ -1294,12 +1294,13 @@ static void weapon_hitAstBeam( Weapon* w, Asteroid* a, WeaponLayer layer,
  *    @param pos Position of the turret.
  *    @param vel Velocity of the turret.
  *    @param dir Direction facing parent ship and turret.
- *    @param time Expected flight time.
  *    @param swivel Maximum angle between weapon and straight ahead.
+ *    @param time Expected flight time.
+ *    @param track Tracking of the weapon.
  */
-static double weapon_aimTurret( const Outfit *outfit, const Pilot *parent,
+static double weapon_aimTurret( const Pilot *parent,
       const Pilot *pilot_target, const Vector2d *pos, const Vector2d *vel, double dir,
-      double swivel, double time )
+      double swivel, double time, double track )
 {
    AsteroidAnchor *field;
    Asteroid *ast;
@@ -1342,7 +1343,7 @@ static double weapon_aimTurret( const Outfit *outfit, const Pilot *parent,
 
    if (pilot_target != NULL) {
       /* Lead angle is determined from ewarfare. */
-      lead_angle = M_PI*pilot_ewWeaponTrack( parent, pilot_target, outfit->u.blt.track );
+      lead_angle = M_PI*pilot_ewWeaponTrack( parent, pilot_target, track );
 
       /*only do this if the lead angle is implemented; save compute cycled on fixed weapons*/
       if (lead_angle && FABS( angle_diff(ANGLE(x, y), VANGLE(relative_location)) ) > lead_angle) {
@@ -1395,7 +1396,9 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    else /* fire straight or at asteroid */
       pilot_target = NULL;
 
-   rdir = weapon_aimTurret( outfit, parent, pilot_target, pos, vel, dir, outfit->u.blt.swivel, time );
+   rdir = weapon_aimTurret(
+         parent, pilot_target, pos, vel, dir, outfit->u.blt.swivel,
+         time, outfit->u.blt.track );
 
    /* Calculate accuracy. */
    acc =  HEAT_WORST_ACCURACY * pilot_heatAccuracyMod( T );
@@ -1463,21 +1466,22 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
 
    pilot_target = NULL;
    ammo = launcher->u.lau.ammo;
-   if (w->outfit->type == OUTFIT_TYPE_AMMO &&
-            launcher->type == OUTFIT_TYPE_TURRET_LAUNCHER) {
+   if (w->outfit->type == OUTFIT_TYPE_AMMO) {
       pilot_target = pilot_get(w->target);
-      rdir = weapon_aimTurret( ammo, parent, pilot_target, pos, vel, dir, M_PI, time );
+      if (launcher->type == OUTFIT_TYPE_TURRET_LAUNCHER)
+         rdir = weapon_aimTurret(
+               parent, pilot_target, pos, vel, dir, M_PI, time,
+               launcher->u.lau.track );
+      else
+         rdir = weapon_aimTurret(
+               parent, pilot_target, pos, vel, dir,
+               launcher->u.lau.swivel, time, launcher->u.lau.track );
    }
    else
       rdir = dir;
 
    /* Launcher damage. */
    w->dam_mod *= parent->stats.launch_damage;
-   /*if (ammo->u.amm.accuracy != 0.) {
-      rdir += RNG_2SIGMA() * ammo->u.amm.accuracy/2. * 1./180.*M_PI;
-      if ((rdir > 2.*M_PI) || (rdir < 0.))
-         rdir = fmod(rdir, 2.*M_PI);
-   }*/
    if (rdir < 0.)
       rdir += 2.*M_PI;
    else if (rdir >= 2.*M_PI)

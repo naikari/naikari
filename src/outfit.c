@@ -1469,8 +1469,11 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
       xmlr_int(node,"reload_time",temp->u.lau.reload_time);
       xmlr_float(node,"ew_target",temp->u.lau.ew_target);
       xmlr_float(node,"lockon",temp->u.lau.lockon);
-      if (!outfit_isTurret(temp))
+      xmlr_float(node,"track",temp->u.lau.track);
+      if (!outfit_isTurret(temp)) {
          xmlr_float(node,"arc",temp->u.lau.arc); /* This is full arc in degrees, so we have to correct it to semi-arc in radians for internal usage. */
+         xmlr_float(node,"swivel",temp->u.lau.swivel);
+      }
 
       /* Stats. */
       ll = ss_listFromXML( node );
@@ -1484,6 +1487,7 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
 
    /* Post processing. */
    temp->u.lau.arc *= (M_PI/180.) / 2.; /* Note we convert from arc to semi-arc. */
+   temp->u.lau.swivel *= M_PI/180.;
    temp->u.lau.ew_target2 = pow2( temp->u.lau.ew_target );
 
    /* Set default outfit size if necessary. */
@@ -1497,6 +1501,7 @@ if (o) WARN(_("Outfit '%s' missing '%s' element"), temp->name, s) /**< Define to
    MELEMENT(temp->cpu==0.,"cpu");
    MELEMENT(temp->u.lau.amount==0.,"amount");
    MELEMENT(temp->u.lau.reload_time==0.,"reload_time");
+   MELEMENT(((temp->u.lau.swivel > 0.) || (temp->type == OUTFIT_TYPE_TURRET_LAUNCHER)) && (temp->u.lau.track==0.),"track");
 #undef MELEMENT
 }
 

@@ -204,6 +204,8 @@ typedef struct OutfitLauncherData_ {
    double ew_target; /**< Target ewarfare at which it the lockon time is based off of. */
    double ew_target2; /**< Target ewarfare squared for quicker comparisons. */
    double arc;       /**< Semi-angle of the arc which it will lock on in. */
+   double track;     /**< Ewarfare to track. */
+   double swivel;    /**< Amount of swivel (semiarc in radians of deviation the weapon can correct. */
 } OutfitLauncherData;
 
 /**
