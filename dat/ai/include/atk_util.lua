@@ -86,7 +86,7 @@ function _atk_zigzag()
    local target = ai.taskdata()
    local range  = ai.getweaprange(3)
 
-   if (not target:exists()) then
+   if not target or not target:exists() then
       ai.poptask()
       return
    end
@@ -118,7 +118,7 @@ end
 --]]
 function _atk_com_think( target )
    -- make sure pilot exists
-   if not target:exists() then
+   if not target or not target:exists() then
       ai.poptask()
       return
    end
