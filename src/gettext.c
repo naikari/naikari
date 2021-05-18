@@ -156,7 +156,7 @@ const char* gettext_ngettext( const char* msgid, const char* msgid_plural, uint6
       }
    }
 
-   return n>1 && msgid_plural!=NULL ? msgid_plural : msgid;
+   return n!=1 && msgid_plural!=NULL ? msgid_plural : msgid;
 }
 
 /**
