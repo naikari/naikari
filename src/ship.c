@@ -920,6 +920,8 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
             xmlr_int(cur,"fuel",temp->fuel);
             xmlr_int(cur,"fuel_consumption",temp->fuel_consumption);
             xmlr_float(cur,"cargo",temp->cap_cargo);
+            xmlr_float(cur,"rdr_range",temp->rdr_range);
+            xmlr_float(cur,"rdr_jump_range",temp->rdr_jump_range);
             /* All the xmlr_ stuff have continue cases. */
             WARN(_("Ship '%s' has unknown characteristic node '%s'."), temp->name, cur->name);
          } while (xml_nextNode(cur));

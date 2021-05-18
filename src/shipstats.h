@@ -48,9 +48,12 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_EW_HIDE,         /**< Electronic warfare hide modifier. */
    SS_TYPE_D_EW_DETECT,       /**< Electronic warfare detection modifier. */
    SS_TYPE_D_EW_JUMPDETECT,   /**< Electronic warfare jump point detection modifier. */
+   SS_TYPE_D_RDR_RANGE,       /**< Radar range. */
+   SS_TYPE_D_RDR_JUMP_RANGE,  /**< Jump detection range. */
    SS_TYPE_D_RDR_RANGE_MOD,   /**< Radar range modifier. */
    SS_TYPE_D_RDR_JUMP_RANGE_MOD, /**< Jump detection range modifier. */
    SS_TYPE_D_RDR_ENEMY_RANGE_MOD, /**< Enemy radar range modifier. */
+   SS_TYPE_D_ENEMY_TRK_RANGE_MOD, /**< Enemy weapons tracking range modifier. */
 
    /* Launchers. */
    SS_TYPE_D_LAUNCH_RATE,     /**< Launch rate for missiles. */
@@ -195,9 +198,12 @@ typedef struct ShipStats_ {
    double ew_hide;         /**< Electronic warfare hide modifier. */
    double ew_detect;       /**< Electronic warfare detection modifier. */
    double ew_jump_detect;  /**< Electronic warfare jump point detection modifier. */
+   double rdr_range;       /**< Radar range. */
+   double rdr_jump_range;  /**< Jump detection range. */
    double rdr_range_mod;   /**< Radar range modifier. */
    double rdr_jump_range_mod; /**< Jump detection range modifier. */
    double rdr_enemy_range_mod; /**< Enemy radar range modifier. */
+   double enemy_trk_range_mod; /**< Enemy weapons tracking range modifier. */
 
    /* Military type. */
    double heat_dissipation; /**< Global ship dissipation. */

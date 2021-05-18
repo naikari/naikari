@@ -101,9 +101,12 @@ static const ShipStatsLookup ss_lookup[] = {
    D__ELEM( SS_TYPE_D_EW_HIDE,            ew_hide,             gettext_noop("Cloaking") ),
    D__ELEM( SS_TYPE_D_EW_DETECT,          ew_detect,           gettext_noop("Detection") ),
    D__ELEM( SS_TYPE_D_EW_JUMPDETECT,      ew_jump_detect,      gettext_noop("Jump Detection") ),
+   A__ELEM( SS_TYPE_D_RDR_RANGE,          rdr_range,           gettext_noop("Radar Range") ),
+   A__ELEM( SS_TYPE_D_RDR_JUMP_RANGE,     rdr_jump_range,      gettext_noop("Jump Detect Range") ),
    D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       gettext_noop("Radar Range") ),
    D__ELEM( SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,  gettext_noop("Jump Detect Range") ),
    DI_ELEM( SS_TYPE_D_RDR_ENEMY_RANGE_MOD,rdr_enemy_range_mod, gettext_noop("Enemy Radar Range") ),
+   DI_ELEM( SS_TYPE_D_ENEMY_TRK_RANGE_MOD,enemy_trk_range_mod, gettext_noop("Enemy Turret Tracking Range") ),
 
    D__ELEM( SS_TYPE_D_LAUNCH_RATE,        launch_rate,         gettext_noop("Fire Rate (Launcher)") ),
    D__ELEM( SS_TYPE_D_LAUNCH_RANGE,       launch_range,        gettext_noop("Launch Range") ),
@@ -130,8 +133,8 @@ static const ShipStatsLookup ss_lookup[] = {
    DI_ELEM( SS_TYPE_D_TURRET_ENERGY,      tur_energy,          gettext_noop("Energy Usage (Turret)") ),
    D__ELEM( SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis,gettext_noop("Damage as Disable (Turret)") ),
 
-   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_SHIELD,  nebu_absorb_shield,   gettext_noop("Nebula Resistance (Shield)") ),
-   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_ARMOUR,  nebu_absorb_armour,   gettext_noop("Nebula Resistance (Armour)") ),
+   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_SHIELD,nebu_absorb_shield, gettext_noop("Nebula Resistance (Shield)") ),
+   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_ARMOUR,nebu_absorb_armour, gettext_noop("Nebula Resistance (Armour)") ),
 
    D__ELEM( SS_TYPE_D_HEAT_DISSIPATION,   heat_dissipation,    gettext_noop("Heat Dissipation") ),
    D__ELEM( SS_TYPE_D_STRESS_DISSIPATION, stress_dissipation,  gettext_noop("Stress Dissipation") ),
