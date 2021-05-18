@@ -114,6 +114,10 @@ function createPilotNPCs ()
       fac = faction.get("Thurion")
       default_ai = "thurion"
       portrait_arg = "Thurion"
+   elseif planet.cur():faction() == faction.get("Proteron") then
+      fac = faction.get("Proteron")
+      default_ai = "proteron"
+      portrait_arg = "Proteron"
    end
 
    if fac == nil or fac:playerStanding() < 0 then
