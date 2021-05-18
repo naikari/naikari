@@ -120,7 +120,7 @@ typedef struct Ship_ {
    double cap_cargo;        /**< Cargo capacity (in volume). */
    double dt_default;       /**< Default/minimum time delta. */
    double rdr_range;        /**< Range that the ship can detect objects. */
-   double rdr_jump_range;   /**< Range that the ship can detect jumps.
+   double rdr_jump_range;   /**< Range that the ship can detect jumps. */
 
    /* health */
    double armour;    /**< Maximum base armour in MJ. */

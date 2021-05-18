@@ -179,49 +179,49 @@ const char *ship_classToString( ShipClass class )
 
       /* Civilian. */
       case SHIP_CLASS_YACHT:
-         return gettext_noop("Yacht");
+         return N_("Yacht");
       case SHIP_CLASS_LUXURY_YACHT:
-         return gettext_noop("Luxury Yacht");
+         return N_("Luxury Yacht");
       case SHIP_CLASS_CRUISE_SHIP:
-         return gettext_noop("Cruise Ship");
+         return N_("Cruise Ship");
 
       /* Merchant. */
       case SHIP_CLASS_COURIER:
-         return gettext_noop("Courier");
+         return N_("Courier");
       case SHIP_CLASS_ARMOURED_TRANSPORT:
-         return gettext_noop("Armored Transport");
+         return N_("Armored Transport");
       case SHIP_CLASS_FREIGHTER:
-         return gettext_noop("Freighter");
+         return N_("Freighter");
       case SHIP_CLASS_BULK_CARRIER:
-         return gettext_noop("Bulk Carrier");
+         return N_("Bulk Carrier");
 
       /* Military. */
       case SHIP_CLASS_SCOUT:
-         return gettext_noop("Scout");
+         return N_("Scout");
       case SHIP_CLASS_FIGHTER:
-         return gettext_noop("Fighter");
+         return N_("Fighter");
       case SHIP_CLASS_BOMBER:
-         return gettext_noop("Bomber");
+         return N_("Bomber");
       case SHIP_CLASS_CORVETTE:
-         return gettext_noop("Corvette");
+         return N_("Corvette");
       case SHIP_CLASS_DESTROYER:
-         return gettext_noop("Destroyer");
+         return N_("Destroyer");
       case SHIP_CLASS_CRUISER:
-         return gettext_noop("Cruiser");
+         return N_("Cruiser");
       case SHIP_CLASS_CARRIER:
-         return gettext_noop("Carrier");
+         return N_("Carrier");
 
       /* Robotic. */
       case SHIP_CLASS_DRONE:
-         return gettext_noop("Drone");
+         return N_("Drone");
       case SHIP_CLASS_HEAVY_DRONE:
-         return gettext_noop("Heavy Drone");
+         return N_("Heavy Drone");
       case SHIP_CLASS_MOTHERSHIP:
-         return gettext_noop("Mothership");
+         return N_("Mothership");
 
       /* Unknown. */
       default:
-         return gettext_noop("Unknown");
+         return N_("Unknown");
    }
 }
 

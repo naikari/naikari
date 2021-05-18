@@ -264,15 +264,15 @@ const char *outfit_slotName( const Outfit* o )
       case OUTFIT_SLOT_NULL:
          return "NULL";
       case OUTFIT_SLOT_NA:
-         return gettext_noop("N/A");
+         return N_("N/A");
       case OUTFIT_SLOT_STRUCTURE:
-         return gettext_noop("Structure");
+         return N_("Structure");
       case OUTFIT_SLOT_UTILITY:
-         return gettext_noop("Utility");
+         return N_("Utility");
       case OUTFIT_SLOT_WEAPON:
-         return gettext_noop("Weapon");
+         return N_("Weapon");
       default:
-         return gettext_noop("Unknown");
+         return N_("Unknown");
    }
 }
 
@@ -284,15 +284,15 @@ const char *slotSize( const OutfitSlotSize o )
 {
    switch( o ) {
       case OUTFIT_SLOT_SIZE_NA:
-         return gettext_noop("N/A");
+         return N_("N/A");
       case OUTFIT_SLOT_SIZE_LIGHT:
-         return gettext_noop("Small");
+         return N_("Small");
       case OUTFIT_SLOT_SIZE_MEDIUM:
-         return gettext_noop("Medium");
+         return N_("Medium");
       case OUTFIT_SLOT_SIZE_HEAVY:
-         return gettext_noop("Large");
+         return N_("Large");
       default:
-         return gettext_noop("Unknown");
+         return N_("Unknown");
    }
 }
 
@@ -829,20 +829,20 @@ const char* outfit_getType( const Outfit* o )
  */
 const char* outfit_getTypeBroad( const Outfit* o )
 {
-   if (outfit_isBolt(o))            return gettext_noop("Bolt Weapon");
-   else if (outfit_isBeam(o))       return gettext_noop("Beam Weapon");
-   else if (outfit_isLauncher(o))   return gettext_noop("Launcher");
-   else if (outfit_isAmmo(o))       return gettext_noop("Ammo");
-   else if (outfit_isTurret(o))     return gettext_noop("Turret");
-   else if (outfit_isMod(o))        return gettext_noop("Modification");
-   else if (outfit_isAfterburner(o)) return gettext_noop("Afterburner");
-   else if (outfit_isFighterBay(o)) return gettext_noop("Fighter Bay");
-   else if (outfit_isFighter(o))    return gettext_noop("Fighter");
-   else if (outfit_isMap(o))        return gettext_noop("Map");
-   else if (outfit_isLocalMap(o))   return gettext_noop("Local Map");
-   else if (outfit_isGUI(o))        return gettext_noop("GUI");
-   else if (outfit_isLicense(o))    return gettext_noop("License");
-   else                             return gettext_noop("Unknown");
+   if (outfit_isBolt(o))            return N_("Bolt Weapon");
+   else if (outfit_isBeam(o))       return N_("Beam Weapon");
+   else if (outfit_isLauncher(o))   return N_("Launcher");
+   else if (outfit_isAmmo(o))       return N_("Ammo");
+   else if (outfit_isTurret(o))     return N_("Turret");
+   else if (outfit_isMod(o))        return N_("Modification");
+   else if (outfit_isAfterburner(o)) return N_("Afterburner");
+   else if (outfit_isFighterBay(o)) return N_("Fighter Bay");
+   else if (outfit_isFighter(o))    return N_("Fighter");
+   else if (outfit_isMap(o))        return N_("Map");
+   else if (outfit_isLocalMap(o))   return N_("Local Map");
+   else if (outfit_isGUI(o))        return N_("GUI");
+   else if (outfit_isLicense(o))    return N_("License");
+   else                             return N_("Unknown");
 }
 
 
@@ -854,9 +854,9 @@ const char* outfit_getTypeBroad( const Outfit* o )
 const char* outfit_getAmmoAI( const Outfit *o )
 {
    const char *ai_type[] = {
-      gettext_noop("Unguided"),
-      gettext_noop("Seek"),
-      gettext_noop("Smart")
+      N_("Unguided"),
+      N_("Seek"),
+      N_("Smart")
    };
 
    if (!outfit_isAmmo(o)) {
