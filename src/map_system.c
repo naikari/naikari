@@ -423,10 +423,12 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: None\n") );
 
       /* Interference. */
-      if (sys->interference > 0. ) {
-         if (sys->interference > 700.)
+      if (sys->rdr_range_mod < 1. ) {
+         if (sys->rdr_range_mod < 0.3)
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Interference: Dense\n") );
-         else if (sys->interference < 300.)
+         else if (sys->rdr_range_mod < 0.7)
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Interference: Moderate\n") );
+         else
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Interference: Light\n") );
       }
       /* Asteroids. */

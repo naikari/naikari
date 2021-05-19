@@ -158,9 +158,9 @@ int pilot_inRange( const Pilot *p, double x, double y )
    double d, sense;
 
    /* Get distance. */
-   d = pow2(x-p->solid->pos.x) + pow2(y-p->solid->pos.y);
+   d = hypot(x - p->solid->pos.x, y - p->solid->pos.y);
 
-   sense = sensor_curRange * p->ew_detect;
+   sense = p->rdr_range * cur_system->rdr_range_mod;
    if (d < sense)
       return 1;
 
@@ -173,33 +173,32 @@ int pilot_inRange( const Pilot *p, double x, double y )
  *
  *    @param p Pilot who is trying to check to see if other is in sensor range.
  *    @param target Target of p to check to see if is in sensor range.
- *    @param[out] dist2 Distance squared of the two pilots. Set to NULL if you're not interested.
+ *    @param[out] dist Distance of the two pilots. Set to NULL if you're not interested.
  *    @return 1 if they are in range, 0 if they aren't and -1 if they are detected fuzzily.
  */
-int pilot_inRangePilot( const Pilot *p, const Pilot *target, double *dist2)
+int pilot_inRangePilot( const Pilot *p, const Pilot *target, double *dist)
 {
-   double d, sense;
+   double d, sense, tempmod;
 
-   /* Get distance if needed. */
-   if (dist2 != NULL) {
-      d = vect_dist2( &p->solid->pos, &target->solid->pos );
-      *dist2 = d;
-   }
+   /* Get distance. */
+   d = vect_dist(&p->solid->pos, &target->solid->pos);
+   if (dist != NULL)
+      *dist = d;
 
    /* Special case player or omni-visible. */
    if ((pilot_isPlayer(p) && pilot_isFlag(target, PILOT_VISPLAYER)) ||
          pilot_isFlag(target, PILOT_VISIBLE) ||
          target->parent == p->id)
       return 1;
+   
+   tempmod = (1 - ((target->heat_T-CONST_SPACE_STAR_TEMP)
+            / (target->heat_C-CONST_SPACE_STAR_TEMP)));
 
-   /* Get distance if still needed */
-   if (dist2 == NULL)
-      d = vect_dist2( &p->solid->pos, &target->solid->pos );
-
-   sense = sensor_curRange * p->ew_detect;
-   if (d * target->ew_evasion < sense)
+   sense = (p->rdr_range * cur_system->rdr_range_mod
+         * target->stats.rdr_enemy_range_mod * tempmod);
+   if (d < sense)
       return 1;
-   else if  (d * target->ew_hide < sense)
+   else if (d < sense * 1.1)
       return -1;
 
    return 0;
@@ -220,22 +219,21 @@ int pilot_inRangePlanet( const Pilot *p, int target )
    double sense;
 
    /* pilot must exist */
-   if ( p == NULL )
+   if (p == NULL)
       return 0;
 
    /* Get the planet. */
    pnt = cur_system->planets[target];
 
    /* target must not be virtual */
-   if ( !pnt->real )
+   if (!pnt->real)
       return 0;
 
-   sense = sensor_curRange * p->ew_detect;
-
    /* Get distance. */
-   d = vect_dist2( &p->solid->pos, &pnt->pos );
+   d = vect_dist(&p->solid->pos, &pnt->pos);
 
-   if (d * pnt->hide < sense )
+   sense = p->rdr_range * cur_system->rdr_range_mod * pnt->rdr_range_mod;
+   if (d < sense)
       return 1;
 
    return 0;
@@ -258,19 +256,18 @@ int pilot_inRangeAsteroid( const Pilot *p, int ast, int fie )
    double sense;
 
    /* pilot must exist */
-   if ( p == NULL )
+   if (p == NULL)
       return 0;
 
    /* Get the asteroid. */
    f = &cur_system->asteroids[fie];
    as = &f->asteroids[ast];
 
-   sense = sensor_curRange * p->ew_detect;
-
    /* Get distance. */
-   d = vect_dist2( &p->solid->pos, &as->pos );
+   d = vect_dist(&p->solid->pos, &as->pos);
 
-   if (d < sense ) /* By default, asteroid's hide score is 1. It could be made changeable via xml.*/
+   sense = p->rdr_range * cur_system->rdr_range_mod;
+   if (d < sense)
       return 1;
 
    return 0;
@@ -289,10 +286,9 @@ int pilot_inRangeJump( const Pilot *p, int i )
    double d;
    JumpPoint *jp;
    double sense;
-   double hide;
 
    /* pilot must exist */
-   if ( p == NULL )
+   if (p == NULL)
       return 0;
 
    /* Get the jump point. */
@@ -302,22 +298,55 @@ int pilot_inRangeJump( const Pilot *p, int i )
    if (jp_isFlag(jp, JP_EXITONLY))
       return 0;
 
-   /* Handle hidden jumps separately, as they use a special range parameter. */
+   /* We don't want hidden jumps. */
    if (jp_isFlag(jp, JP_HIDDEN))
-      sense = pow(p->stats.misc_hidden_jump_detect, 2);
-   else
-      sense = sensor_curRange * p->ew_jump_detect;
-
-   hide = jp->hide;
+      return 0;
 
    /* Get distance. */
-   d = vect_dist2( &p->solid->pos, &jp->pos );
+   d = vect_dist(&p->solid->pos, &jp->pos);
 
-   if (d * hide < sense)
+   sense = p->rdr_range * cur_system->rdr_range_mod * jp->rdr_range_mod;
+   if (d < sense)
       return 1;
 
    return 0;
 }
+
+
+/**
+ * @brief Calculates the weapon lead (1. is 100%, 0. is 0%).
+ *
+ *    @param p Pilot tracking.
+ *    @param t Pilot being tracked.
+ *    @param track_optimal Optimal tracking distance.
+ *    @param track_max Maximum tracking distance.
+ */
+double pilot_weaponTrack(
+      const Pilot *p, const Pilot *t, double track_optimal, double track_max )
+{
+   double d, sense, tempmod;
+
+   /* pilot must exist */
+   if ((p == NULL) || (t == NULL))
+      return 0.;
+
+   d = vect_dist(&p->solid->pos, &t->solid->pos);
+   
+   tempmod = (1 - ((t->heat_T-CONST_SPACE_STAR_TEMP)
+            / (t->heat_C-CONST_SPACE_STAR_TEMP)));
+
+   sense = (track_optimal * cur_system->rdr_range_mod
+         * t->stats.rdr_enemy_range_mod * tempmod);
+
+   if (d <= sense)
+      return 1.;
+
+   if (d >= track_max)
+      return 0.;
+
+   return (d-sense) / (track_max-sense);
+}
+
 
 /**
  * @brief Calculates the weapon lead (1. is 100%, 0. is 0%)..

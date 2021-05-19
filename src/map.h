@@ -43,8 +43,8 @@ int map_map( const Outfit *map );
 int map_isUseless( const Outfit* map );
 
 /* Local map stuff. */
-int localmap_map( const Outfit *lmap );
-int localmap_isUseless( const Outfit *lmap );
+int localmap_map (void);
+int localmap_isUseless (void);
 
 /* shows a map at x, y (relative to wid) with size w,h  */
 void map_show( int wid, int x, int y, int w, int h, double zoom );

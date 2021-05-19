@@ -102,6 +102,7 @@ typedef struct Planet_ {
    /* Asset details. */
    double presenceAmount; /**< The amount of presence this asset exerts. */
    double hide;           /**< The ewarfare hide value for an asset. */
+   double rdr_range_mod;  /**< Modifier for detection range of the asset. */
    int presenceRange; /**< The range of presence exertion of this asset. */
    int real; /**< If the asset is tangible or not. */
 
@@ -198,6 +199,7 @@ struct JumpPoint_ {
    double radius; /**< Radius of jump range. */
    unsigned int flags; /**< Flags related to the jump point's status. */
    double hide; /**< ewarfare hide value for the jump point */
+   double rdr_range_mod; /**< Modifier for detection range of the jump point. */
    double angle; /**< Direction the jump is facing. */
    double cosa; /**< Cosinus of the angle. */
    double sina; /**< Sinus of the angle. */
@@ -289,6 +291,7 @@ struct StarSystem_ {
    Vector2d pos; /**< position */
    int stars; /**< Amount of "stars" it has. */
    double interference; /**< in % @todo implement interference. */
+   double rdr_range_mod; /**< Mod for radar range of all ships in the system. */
    double nebu_hue; /**< Hue of the nebula (0. - 1.) */
    double nebu_density; /**< Nebula density (0. - 1000.) */
    double nebu_volatility; /**< Nebula volatility (0. - 1000.) */

@@ -700,9 +700,9 @@ static void economy_modifySystemCommodityPrice(StarSystem *sys)
          planet->commodityPrice[j].planetVariation *= 1 / (1 - sys->radius/300000.);
 
          /* Increase price with volatility, which goes up to about 600.
-            And with interference, since systems are harder to find, which goes up to about 1000.*/
+            And with rdr_range_mod, since systems are harder to find. */
          planet->commodityPrice[j].price *= 1 + sys->nebu_volatility/6000.;
-         planet->commodityPrice[j].price *= 1 + sys->interference/10000.;
+         planet->commodityPrice[j].price *= 1 - sys->rdr_range_mod;
 
          /* Use number of jumps to determine sytsem time period.  More jumps means more options for trade
             so shorter period.  Between 1 to 6 jumps.  Make the base time 1000.*/

@@ -24,6 +24,8 @@
   <mass>2300</mass>
   <cargo>130</cargo>
   <fuel_consumption>400</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>7500</rdr_jump_range>
  </characteristics>
  <slots>
   <weapon size="large" prop="bio_weapon" x="40" y="0" h="0" />

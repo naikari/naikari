@@ -116,14 +116,6 @@ int space_spawn = 1; /**< Spawn enabled by default. */
 
 
 /*
- * Interference.
- */
-extern double interference_alpha; /* gui.c */
-static double interference_target = 0.; /**< Target alpha level. */
-static double interference_timer  = 0.; /**< Interference timer. */
-
-
-/*
  * Internal Prototypes.
  */
 /* planet load */
@@ -1308,49 +1300,6 @@ void space_update( const double dt )
          pilot_hit( pilot_stack[i], NULL, 0, &dmg, 0 );
    }
 
-
-   /*
-    * Interference.
-    */
-   if (cur_system->interference > 0.) {
-      /* Always dark. */
-      if (cur_system->interference >= 1000.)
-         interference_alpha = 1.;
-
-      /* Normal scenario. */
-      else {
-         interference_timer -= dt;
-         if (interference_timer < 0.) {
-            /* 0    ->  [   1,   5   ]
-             * 250  ->  [ 0.75, 3.75 ]
-             * 500  ->  [  0.5, 2.5  ]
-             * 750  ->  [ 0.25, 1.25 ]
-             * 1000 ->  [   0,   0   ] */
-            interference_timer += (1000. - cur_system->interference) / 1000. *
-                  (3. + RNG_2SIGMA() );
-
-            /* 0    ->  [  0,   0  ]
-             * 250  ->  [-0.5, 1.5 ]
-             * 500  ->  [ -1,   3  ]
-             * 1000 ->  [  0,   6  ] */
-            interference_target = cur_system->interference/1000. * 2. *
-                  (1. + RNG_2SIGMA() );
-         }
-
-         /* Head towards target. */
-         if (FABS(interference_alpha - interference_target) > 1e-05) {
-            /* Asymptotic. */
-            interference_alpha += (interference_target - interference_alpha) * dt;
-
-            /* Limit alpha to [0.-1.]. */
-            if (interference_alpha > 1.)
-               interference_alpha = 1.;
-            else if (interference_alpha < 0.)
-               interference_alpha = 0.;
-         }
-      }
-   }
-
    /* Faction updates. */
    if (space_fchg) {
       for (i=0; i<array_size(cur_system->planets); i++)
@@ -1522,7 +1471,6 @@ void space_init( const char* sysname )
    background_clear(); /* Get rid of the background. */
    factions_clearDynamic(); /* get rid of dynamic factions. */
    space_spawn = 1; /* spawn is enabled by default. */
-   interference_timer = 0.; /* Restart timer. */
    if (player.p != NULL) {
       pilot_lockClear( player.p );
       pilot_clearTimers( player.p ); /* Clear timers. */
@@ -1591,10 +1539,6 @@ void space_init( const char* sysname )
          debris_init(d);
       }
    }
-
-   /* Clear interference if you leave system with interference. */
-   if (cur_system->interference == 0.)
-      interference_alpha = 0.;
 
    /* See if we should get a new music song. */
    if (player.p != NULL)
@@ -2095,9 +2039,10 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
             /* Direct reads. */
             xmlr_strd(cur, "class", planet->class);
             xmlr_strd(cur, "bar", planet->bar_description);
-            xmlr_strd(cur, "description", planet->description );
-            xmlr_ulong(cur, "population", planet->population );
-            xmlr_float(cur, "hide", planet->hide );
+            xmlr_strd(cur, "description", planet->description);
+            xmlr_ulong(cur, "population", planet->population);
+            xmlr_float(cur, "hide", planet->hide);
+            xmlr_float(cur, "rdr_range_mod", planet->rdr_range_mod);
 
             if (xml_isNode(cur, "services")) {
                flags |= FLAG_SERVICESSET;
@@ -2233,6 +2178,8 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
 
    /* Square to allow for linear multiplication with squared distances. */
    planet->hide = pow2(planet->hide);
+
+   planet->rdr_range_mod = (planet->rdr_range_mod+100) / 100;
 
    return 0;
 }
@@ -2581,8 +2528,10 @@ static StarSystem* system_parse( StarSystem *sys, const xmlNodePtr parent )
             xmlr_int( cur, "stars", sys->stars );
             xmlr_float( cur, "radius", sys->radius );
             if (xml_isNode(cur,"interference")) {
-               flags |= FLAG_INTERFERENCESET;
                sys->interference = xml_getFloat(cur);
+            }
+            else if (xml_isNode(cur,"rdr_range_mod")) {
+               sys->rdr_range_mod = xml_getFloat(cur);
             }
             else if (xml_isNode(cur,"nebula")) {
                xmlr_attr_float( cur, "volatility", sys->nebu_volatility );
@@ -2617,13 +2566,14 @@ static StarSystem* system_parse( StarSystem *sys, const xmlNodePtr parent )
    /* Convert hue from 0 to 359 value to 0 to 1 value. */
    sys->nebu_hue /= 360.;
 
+   sys->rdr_range_mod = (sys->rdr_range_mod+100) / 100;
+
 #define MELEMENT(o,s)      if (o) WARN(_("Star System '%s' missing '%s' element"), sys->name, s)
    if (sys->name == NULL) WARN(_("Star System '%s' missing 'name' tag"), sys->name);
    MELEMENT((flags&FLAG_XSET)==0,"x");
    MELEMENT((flags&FLAG_YSET)==0,"y");
    MELEMENT(sys->stars==0,"stars");
    MELEMENT(sys->radius==0.,"radius");
-   MELEMENT((flags&FLAG_INTERFERENCESET)==0,"inteference");
 #undef MELEMENT
 
    return 0;
@@ -2840,9 +2790,9 @@ static int system_parseJumpPoint( const xmlNodePtr node, StarSystem *sys )
          jp_setFlag(j,JP_HIDDEN);
       else if (xml_isNode(cur,"exitonly"))
          jp_setFlag(j,JP_EXITONLY);
-      else if (xml_isNode(cur,"hide")) {
-         xmlr_float( cur,"hide", j->hide );
-      }
+
+      xmlr_float(cur,"hide",j->hide);
+      xmlr_float(cur,"rdr_range_mod",j->rdr_range_mod);
    } while (xml_nextNode(cur));
 
    if (!jp_isFlag(j,JP_AUTOPOS) && !pos)
@@ -2850,6 +2800,8 @@ static int system_parseJumpPoint( const xmlNodePtr node, StarSystem *sys )
 
    /* Square to allow for linear multiplication with squared distances. */
    j->hide = pow2(j->hide);
+
+   j->rdr_range_mod = (j->rdr_range_mod+100) / 100;
 
    return 0;
 }

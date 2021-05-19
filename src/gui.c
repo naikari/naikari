@@ -68,17 +68,9 @@
 #define XML_GUI_ID   "GUIs" /**< XML section identifier for GUI document. */
 #define XML_GUI_TAG  "gui" /**<  XML Section identifier for GUI tags. */
 
-#define INTERFERENCE_LAYERS      16 /**< Number of interference layers. */
-#define INTERFERENCE_CHANGE_DT   0.1 /**< Speed to change at. */
-
 #define RADAR_BLINK_PILOT        0.5 /**< Blink rate of the pilot target on radar. */
 #define RADAR_BLINK_PLANET       1. /**< Blink rate of the planet target on radar. */
 
-
-/* for interference. */
-static int interference_layer = 0; /**< Layer of the current interference. */
-double interference_alpha     = 0.; /**< Alpha of the current interference layer. */
-static double interference_t  = 0.; /**< Interference timer to control transitions. */
 
 /* some blinking stuff. */
 static double blink_pilot     = 0.; /**< Timer on target blinking on radar. */
@@ -169,7 +161,6 @@ typedef struct Radar_ {
    double y; /**< Y position. */
    RadarShape shape; /**< Shape */
    double res; /**< Resolution */
-   glTexture *interference[INTERFERENCE_LAYERS]; /**< Interference texture. */
 } Radar;
 /* radar resolutions */
 #define RADAR_RES_MAX      100. /**< Maximum radar resolution. */
@@ -227,7 +218,6 @@ extern void weapon_minimap( const double res, const double w, const double h,
  * internal
  */
 /* gui */
-static void gui_createInterference( Radar *radar );
 static void gui_borderIntersection( double *cx, double *cy, double rx, double ry, double hw, double hh );
 /* Render GUI. */
 static void gui_renderPilotTarget( double dt );
@@ -238,7 +228,6 @@ static const glColour *gui_getPlanetColour( int i );
 static void gui_renderRadarOutOfRange( RadarShape sh, int w, int h, int cx, int cy, const glColour *col );
 static void gui_blink( int w, int h, int rc, int cx, int cy, GLfloat vr, RadarShape shape, const glColour *col, const double blinkInterval, const double blinkVar );
 static const glColour* gui_getPilotColour( const Pilot* p );
-static void gui_renderInterference (void);
 static void gui_calcBorders (void);
 /* Lua GUI. */
 static int gui_doFunc( const char* func );
@@ -653,16 +642,11 @@ static void gui_renderBorder( double dt )
    double rx,ry;
    double cx,cy;
    const glColour *col;
-   glColour ccol;
-   double int_a;
    Pilot *const* pilot_stack;
 
    /* Get player position. */
    hw    = SCREEN_W/2;
    hh    = SCREEN_H/2;
-
-   /* Interference. */
-   int_a = 1. - interference_alpha;
 
    /* Render borders to enhance contrast. */
    gl_renderRect( 0., 0., 15., SCREEN_H, &cBlackHilight );
@@ -689,11 +673,7 @@ static void gui_renderBorder( double dt )
          gui_borderIntersection( &cx, &cy, rx, ry, hw, hh );
 
          col = gui_getPlanetColour(i);
-         ccol.r = col->r;
-         ccol.g = col->g;
-         ccol.b = col->b;
-         ccol.a = int_a;
-         gl_drawCircle(cx, cy, 5, &ccol, 0);
+         gl_drawCircle(cx, cy, 5, col, 0);
       }
    }
 
@@ -715,12 +695,8 @@ static void gui_renderBorder( double dt )
             col = &cGreen;
          else
             col = &cWhite;
-         ccol.r = col->r;
-         ccol.g = col->g;
-         ccol.b = col->b;
-         ccol.a = int_a;
 
-         gl_renderTriangleEmpty( cx, cy, -jp->angle, 10., 1., &ccol );
+         gl_renderTriangleEmpty( cx, cy, -jp->angle, 10., 1., col );
       }
    }
 
@@ -740,11 +716,7 @@ static void gui_renderBorder( double dt )
          gui_borderIntersection( &cx, &cy, rx, ry, hw, hh );
 
          col = gui_getPilotColour(plt);
-         ccol.r = col->r;
-         ccol.g = col->g;
-         ccol.b = col->b;
-         ccol.a = int_a;
-         gl_renderRectEmpty(cx-5, cy-5, 10, 10, &ccol);
+         gl_renderRectEmpty(cx-5, cy-5, 10, 10, col);
       }
    }
 }
@@ -883,8 +855,6 @@ void gui_render( double dt )
    blink_planet   -= dt / dt_mod;
    if (blink_planet < 0.)
       blink_planet += RADAR_BLINK_PLANET;
-   if (interference_alpha > 0.)
-      interference_t += dt;
 
    /* Render the border ships and targets. */
    gui_renderBorder(dt);
@@ -1064,7 +1034,6 @@ int gui_radarInit( int circle, int w, int h )
    gui_radar.res     = RADAR_RES_DEFAULT;
    gui_radar.w       = w;
    gui_radar.h       = h;
-   gui_createInterference( &gui_radar );
    return 0;
 }
 
@@ -1121,9 +1090,7 @@ void gui_radarRender( double x, double y )
    /*
     * weapons
     */
-   weapon_minimap( radar->res, radar->w, radar->h,
-         radar->shape, 1.-interference_alpha );
-
+   weapon_minimap( radar->res, radar->w, radar->h, radar->shape, 1. );
 
    /* render the pilot */
    pilot_stack = pilot_getAll();
@@ -1144,9 +1111,6 @@ void gui_radarRender( double x, double y )
       for (j=0; j<ast->nb; j++)
          gui_renderAsteroid( &ast->asteroids[j], radar->w, radar->h, radar->res, 0 );
    }
-
-   /* Interference. */
-   gui_renderInterference();
 
    /* Render the player cross. */
    gui_renderPlayer( radar->res, 0 );
@@ -1271,41 +1235,6 @@ static void gui_renderMessages( double dt )
 
 
 /**
- * @brief Renders interference if needed.
- */
-static void gui_renderInterference (void)
-{
-   glColour c;
-   glTexture *tex;
-   int t;
-
-   /* Must be displaying interference. */
-   if (interference_alpha <= 0.)
-      return;
-
-   /* Calculate frame to draw. */
-   if (interference_t > INTERFERENCE_CHANGE_DT) { /* Time to change */
-      t = RNG(0, INTERFERENCE_LAYERS-1);
-      if (t != interference_layer)
-         interference_layer = t;
-      else
-         interference_layer = (interference_layer == INTERFERENCE_LAYERS-1) ?
-               0 : interference_layer+1;
-      interference_t -= INTERFERENCE_CHANGE_DT;
-   }
-
-   /* Render the interference. */
-   c.r = c.g = c.b = 1.;
-   c.a = interference_alpha;
-   tex = gui_radar.interference[interference_layer];
-   if (gui_radar.shape == RADAR_CIRCLE)
-      gl_blitStatic( tex, -gui_radar.w, -gui_radar.w, &c );
-   else if (gui_radar.shape == RADAR_RECT)
-      gl_blitStatic( tex, -gui_radar.w, -gui_radar.h, &c );
-}
-
-
-/**
  * @brief Gets a pilot's colour, with a special colour for targets.
  *
  *    @param p Pilot to get colour of.
@@ -1379,8 +1308,6 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
    }
 
    /* Draw selection if targeted. */
-   /*col = cRadar_tPilot;
-   col.a = 1.-interference_alpha; */
    if (p->id == player.p->target) {
       gui_blink( w, h, 0, x, y, 12, RADAR_RECT, &cRadar_hilight, RADAR_BLINK_PILOT, blink_pilot);
    }
@@ -1391,8 +1318,6 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
       col = cRadar_tPilot;
    else
       col = *gui_getPilotColour(p);
-      // col = cRadar_hilight;
-   col.a = 1.-interference_alpha;
 
    glLineWidth( 2. );
    gl_renderTriangleEmpty( x, y, p->solid->dir, scale, 1., &cBlack );
@@ -1419,7 +1344,6 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
    int x, y, sx, sy, i, j, targeted;
    double px, py;
    const glColour *col;
-   glColour ccol;
 
    /* Skip invisible asteroids */
    if (a->appearing == ASTEROID_INVISIBLE)
@@ -1466,14 +1390,10 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
    else
       col = &cGrey70;
 
-   ccol.r = col->r;
-   ccol.g = col->g;
-   ccol.b = col->b;
-   ccol.a = 1.-interference_alpha;
-   gl_renderRect( px, py, MIN( 2*sx, w-px ), MIN( 2*sy, h-py ), &ccol );
+   gl_renderRect( px, py, MIN( 2*sx, w-px ), MIN( 2*sy, h-py ), col );
 
    if (targeted){
-      gui_blink( w, h, 0, x, y, 12, RADAR_RECT, &ccol, RADAR_BLINK_PILOT, blink_pilot );
+      gui_blink( w, h, 0, x, y, 12, RADAR_RECT, col, RADAR_BLINK_PILOT, blink_pilot );
    }
 }
 
@@ -1605,7 +1525,6 @@ static void gui_renderRadarOutOfRange( RadarShape sh, int w, int h, int cx, int 
    y2 = y - .15 * w * sin(a);
 
    c = *col;
-   c.a = 1.-interference_alpha;
 
    gl_drawLine( x, y, x2, y2, &c );
 }
@@ -1676,8 +1595,6 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
 
    /* Get the colour. */
    col = *gui_getPlanetColour(ind);
-   if (!overlay)
-      col.a = 1.-interference_alpha;
 
    /* Do the blink. */
    if (ind == player.p->nav_planet)
@@ -1785,9 +1702,6 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
       col = cRed;
    else
       col = cGreen;
-
-   if (!overlay)
-      col.a = 1.-interference_alpha;
 
    glLineWidth( 3. );
    gl_renderTriangleEmpty( cx - 1, cy, -jp->angle, vr, 2., &cBlack );
@@ -2211,112 +2125,19 @@ int gui_load( const char* name )
 
 
 /**
- * @brief Creates the interference map for the current gui.
- */
-static void gui_createInterference( Radar *radar )
-{
-   uint8_t raw;
-   int i, j, k;
-   float *map;
-   uint32_t *pix;
-   SDL_Surface *sur;
-   int w,h, hw,hh;
-   float c;
-   int r;
-
-   /* Dimension shortcuts. */
-   if (radar->shape == RADAR_CIRCLE) {
-      w = radar->w*2.;
-      h = w;
-   }
-   else if (radar->shape == RADAR_RECT) {
-      w = radar->w*2.;
-      h = radar->h*2.;
-   }
-   else {
-      WARN( _("Radar shape is invalid.") );
-      return;
-   }
-
-   for (k=0; k<INTERFERENCE_LAYERS; k++) {
-      /* Free the old texture. */
-      gl_freeTexture(radar->interference[k]);
-
-      /* Create the temporary surface. */
-      sur = SDL_CreateRGBSurface( SDL_SWSURFACE, w, h, 32, RGBAMASK );
-      pix = sur->pixels;
-
-      /* Clear pixels. */
-      memset( pix, 0, sizeof(uint32_t)*w*h );
-
-      /* Load the interference map. */
-      map = noise_genRadarInt( w, h, (w+h)/2*1.2 );
-
-      /* Create the texture. */
-      SDL_LockSurface( sur );
-      if (radar->shape == RADAR_CIRCLE) {
-         r = pow2((int)radar->w);
-         hw = w/2;
-         hh = h/2;
-         for (i=0; i<h; i++) {
-            for (j=0; j<w; j++) {
-               /* Must be in circle. */
-               if (pow2(i-hh) + pow2(j-hw) > r)
-                  continue;
-               c = map[i*w + j];
-               raw = 0xff & (uint8_t)((float)0xff * c);
-               memset( &pix[i*w + j], raw, sizeof(uint32_t) );
-               pix[i*w + j] |= AMASK;
-            }
-         }
-      }
-      else if (radar->shape == RADAR_RECT) {
-         for (i=0; i<h*w; i++) {
-            /* Process pixels. */
-            c = map[i];
-            raw = 0xff & (uint8_t)((float)0xff * c);
-            memset( &pix[i], raw, sizeof(uint32_t) );
-            pix[i] |= AMASK;
-         }
-      }
-      SDL_UnlockSurface( sur );
-
-      /* Set the interference. */
-      radar->interference[k] = gl_loadImage( sur, 0 );
-
-      /* Clean up. */
-      free(map);
-   }
-}
-
-
-/**
  * @brief Cleans up the GUI.
  */
 void gui_cleanup (void)
 {
-   int i;
-
    /* Disable mouse voodoo. */
    gui_mouseClickEnable( 0 );
    gui_mouseMoveEnable( 0 );
-
-   /* Interference. */
-   for (i=0; i<INTERFERENCE_LAYERS; i++) {
-      gl_freeTexture(gui_radar.interference[i]);
-      gui_radar.interference[i] = NULL;
-   }
 
    /* Set the viewport. */
    gui_clearViewport();
 
    /* Reset FPS. */
    fps_setPos( 15., (double)(gl_screen.h-15-gl_defFont.h) );
-
-   /* Clean up interference. */
-   interference_alpha = 0.;
-   interference_layer = 0;
-   interference_t     = 0.;
 
    /* Destroy offset. */
    gui_xoff = 0.;

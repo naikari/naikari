@@ -23,6 +23,8 @@
   <mass>2100</mass>
   <cargo>110</cargo>
   <fuel_consumption>400</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>7500</rdr_jump_range>
  </characteristics>
  <slots>
   <weapon size="large" prop="fighter_bay" exclusive="1" x="40" y="-20" h="0" />

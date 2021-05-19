@@ -958,6 +958,9 @@ void pilot_calcStats( Pilot* pilot )
    pilot->energy_max    = pilot->ship->energy;
    pilot->energy_regen  = pilot->ship->energy_regen;
    pilot->energy_loss   = 0.; /* Initially no net loss. */
+   /* Radar. */
+   pilot->rdr_range     = pilot->ship->rdr_range;
+   pilot->rdr_jump_range = pilot->ship->rdr_jump_range;
    /* Stats. */
    s = &pilot->stats;
    *s = pilot->ship->stats_array;
@@ -1098,6 +1101,9 @@ void pilot_calcStats( Pilot* pilot )
    pilot->shield_regen *= s->shield_regen_mod;
    pilot->energy_max   *= s->energy_mod;
    pilot->energy_regen *= s->energy_regen_mod;
+   /* Radar. */
+   pilot->rdr_range    *= s->rdr_range_mod;
+   pilot->rdr_jump_range *= s->rdr_jump_range_mod;
    /* cpu */
    pilot->cpu_max       = (int)floor((float)(pilot->ship->cpu + s->cpu_max)*s->cpu_mod);
    pilot->cpu          += pilot->cpu_max; /* CPU is negative, this just sets it so it's based off of cpu_max. */
@@ -1118,6 +1124,8 @@ void pilot_calcStats( Pilot* pilot )
    pilot->energy_max   += s->energy_flat;
    pilot->energy       += s->energy_flat;
    pilot->energy_regen -= s->energy_usage;
+   pilot->rdr_range    += s->rdr_range;
+   pilot->rdr_jump_range += s->rdr_jump_range;
 
    /* Give the pilot his health proportion back */
    pilot->armour = ac * pilot->armour_max;

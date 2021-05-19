@@ -683,16 +683,16 @@ static void map_update( unsigned int wid )
             p += scnprintf(&buf[p], sizeof(buf)-p, _("%sNebula"), adj);
       }
       /* Interference. */
-      if (sys->interference > 0.) {
+      if (sys->rdr_range_mod < 1.) {
          if (buf[0] != '\0')
             p += scnprintf(&buf[p], sizeof(buf)-p, _(", "));
 
-         if (sys->interference > 700.)
+         if (sys->rdr_range_mod < 0.3)
             p += scnprintf(&buf[p], sizeof(buf)-p, _("Dense Interference"));
-         else if (sys->interference < 300.)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Light Interference"));
-         else
+         else if (sys->rdr_range_mod < 0.7)
             p += scnprintf(&buf[p], sizeof(buf)-p, _("Interference"));
+         else
+            p += scnprintf(&buf[p], sizeof(buf)-p, _("Light Interference"));
       }
       /* Asteroids. */
       if (array_size(sys->asteroids) > 0) {
@@ -2586,34 +2586,27 @@ int map_isUseless( const Outfit* map )
 /**
  * @brief Maps a local map.
  */
-int localmap_map( const Outfit *lmap )
+int localmap_map (void)
 {
    int i;
    JumpPoint *jp;
    Planet *p;
-   double detect, mod;
 
    if (cur_system==NULL)
       return 0;
 
-   mod = pow2( 200. / (cur_system->interference + 200.) );
-
-   detect = lmap->u.lmap.jump_detect;
    for (i=0; i<array_size(cur_system->jumps); i++) {
       jp = &cur_system->jumps[i];
       if (jp_isFlag(jp, JP_EXITONLY) || jp_isFlag(jp, JP_HIDDEN))
          continue;
-      if (mod*jp->hide <= detect)
-         jp_setFlag( jp, JP_KNOWN );
+      jp_setFlag( jp, JP_KNOWN );
    }
 
-   detect = lmap->u.lmap.asset_detect;
    for (i=0; i<array_size(cur_system->planets); i++) {
       p = cur_system->planets[i];
       if (p->real != ASSET_REAL || !planet_hasSystem( p->name ) )
          continue;
-      if (mod*p->hide <= detect)
-         planet_setKnown( p );
+      planet_setKnown( p );
    }
    return 0;
 }
@@ -2622,33 +2615,28 @@ int localmap_map( const Outfit *lmap )
  * @brief Checks to see if the local map is limited to locations which are known
  *        or in a nonexistent status for plot reasons.
  */
-int localmap_isUseless( const Outfit *lmap )
+int localmap_isUseless (void)
 {
    int i;
    JumpPoint *jp;
    Planet *p;
-   double detect, mod;
 
    if (cur_system==NULL)
       return 1;
 
-   mod = pow2( 200. / (cur_system->interference + 200.) );
-
-   detect = lmap->u.lmap.jump_detect;
    for (i=0; i<array_size(cur_system->jumps); i++) {
       jp = &cur_system->jumps[i];
       if (jp_isFlag(jp, JP_EXITONLY) || jp_isFlag(jp, JP_HIDDEN))
          continue;
-      if ((mod*jp->hide <= detect) && !jp_isKnown( jp ))
+      if (!jp_isKnown( jp ))
          return 0;
    }
 
-   detect = lmap->u.lmap.asset_detect;
    for (i=0; i<array_size(cur_system->planets); i++) {
       p = cur_system->planets[i];
       if (p->real != ASSET_REAL)
          continue;
-      if ((mod*p->hide <= detect) && !planet_isKnown( p ))
+      if (!planet_isKnown( p ))
          return 0;
    }
    return 1;

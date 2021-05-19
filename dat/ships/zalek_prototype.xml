@@ -22,6 +22,8 @@
   <mass>2200</mass>
   <cargo>120</cargo>
   <fuel_consumption>400</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>7500</rdr_jump_range>
  </characteristics>
  <slots>
   <weapon size="large" x="40" y="0" h="2" />
