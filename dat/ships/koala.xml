@@ -20,7 +20,7 @@
   <mass>75</mass>
   <fuel_consumption>100</fuel_consumption>
   <rdr_range>7500</rdr_range>
-  <rdr_jump_range>7500</rdr_jump_range>
+  <rdr_jump_range>3000</rdr_jump_range>
   <cargo>30</cargo>
  </characteristics>
  <slots>

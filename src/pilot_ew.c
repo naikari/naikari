@@ -305,7 +305,7 @@ int pilot_inRangeJump( const Pilot *p, int i )
    /* Get distance. */
    d = vect_dist(&p->solid->pos, &jp->pos);
 
-   sense = p->rdr_range * cur_system->rdr_range_mod * jp->rdr_range_mod;
+   sense = p->rdr_jump_range * cur_system->rdr_range_mod * jp->rdr_range_mod;
    if (d < sense)
       return 1;
 

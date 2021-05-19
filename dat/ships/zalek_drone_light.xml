@@ -19,7 +19,7 @@
   <cargo>0</cargo>
   <fuel_consumption>1</fuel_consumption>
   <rdr_range>7500</rdr_range>
-  <rdr_jump_range>7500</rdr_jump_range>
+  <rdr_jump_range>3000</rdr_jump_range>
  </characteristics>
  <slots>
   <weapon size="small" x="10" y="-1" h="-3" />
