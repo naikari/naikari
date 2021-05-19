@@ -131,15 +131,17 @@ void shipyard_open( unsigned int wid )
          "#nCargo Space:\n#0"
          "#nFuel:\n#0"
          "#nFuel Use:\n#0"
+         "#nRadar Range:\n#0"
+         "#nJump Detect Range:\n#0"
          "#nPrice:\n#0"
          "#nMoney:\n#0"
          "#nLicense:\n#0");
-   th = gl_printHeightRaw( &gl_defFont, 180, buf );
+   th = gl_printHeightRaw( &gl_defFont, 220, buf );
    y  = -35;
    window_addText( wid, 20+iw+20, y,
-         180, th, 0, "txtSDesc", &gl_defFont, NULL, buf );
-   window_addText( wid, 20+iw+20+180, y,
-         w-SHIP_TARGET_W-40-(20+iw+20+180), th, 0, "txtDDesc", &gl_defFont, NULL, NULL );
+         220, th, 0, "txtSDesc", &gl_defFont, NULL, buf );
+   window_addText( wid, 20+iw+20+220, y,
+         w-SHIP_TARGET_W-40-(20+iw+20+220), th, 0, "txtDDesc", &gl_defFont, NULL, NULL );
    y -= th;
    window_addText( wid, 20+iw+20, y,
          w-(20+iw+20) - 20, y-20+h-bh, 0, "txtDescription",
@@ -217,6 +219,8 @@ void shipyard_update( unsigned int wid, char* str )
             "N/A\n"
             "N/A\n"
             "N/A\n"
+            "N/A\n"
+            "N/A\n"
             "N/A\n") );
       window_modifyText( wid, "txtStats", NULL );
       window_modifyText( wid, "txtDescription", NULL );
@@ -249,7 +253,7 @@ void shipyard_update( unsigned int wid, char* str )
          "%.0f TFLOPS\n"
          "%.0f t\n"
          "%.0f kN/t\n"
-         "%.0f m/s\n"
+         "%.0f km/s\n"
          "%.0f deg/s\n"
          "%.0f%%\n"
          "\n"
@@ -260,6 +264,8 @@ void shipyard_update( unsigned int wid, char* str )
          "%.0f t\n"
          "%d hL\n"
          "%d hL\n"
+         "%.0f km\n"
+         "%.0f km\n"
          "%s\n"
          "%s\n"
          "%s\n"),
@@ -281,6 +287,8 @@ void shipyard_update( unsigned int wid, char* str )
          ship->cap_cargo,
          ship->fuel,
          ship->fuel_consumption,
+         ship->rdr_range,
+         ship->rdr_jump_range,
          buf2,
          buf3,
          buf_license );

@@ -299,13 +299,15 @@ void equipment_open( unsigned int wid )
       "#nEnergy:\n#0"
       "#nCargo Space:\n#0"
       "#nFuel:\n#0"
+      "#nRadar Range:\n#0"
+      "#nJump Detect Range:\n#0"
       "\n"
       "#nShip Status:#0");
    x = 20 + sw + 20 + 180 + 20 + 30;
    y = -190;
    window_addText( wid, x, y,
-         100, y-20+h-bh, 0, "txtSDesc", &gl_smallFont, NULL, buf );
-   x += 150;
+         180, y-20+h-bh, 0, "txtSDesc", &gl_smallFont, NULL, buf );
+   x += 180;
    window_addText( wid, x, y,
          w - x - 20, y-20+h-bh, 0, "txtDDesc", &gl_smallFont, NULL, NULL );
 
@@ -1560,7 +1562,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "%.0f#0 t\n"
          "%s average\n"
          "#%c%s%.0f#0 kN/t\n"
-         "#%c%s%.0f#0 m/s (max #%c%s%.0f#0 m/s)\n"
+         "#%c%s%.0f#0 km/s (max #%c%s%.0f#0 km/s)\n"
          "#%c%s%.0f#0 deg/s\n"
          "%.0f%%\n"
          "\n"
@@ -1570,6 +1572,8 @@ void equipment_updateShips( unsigned int wid, char* str )
          "#%c%s%.0f#0 MJ (#%c%s%.1f#0 MW)\n"
          "%d / #%c%s%d#0 t\n"
          "%d hL (%d %s)\n"
+         "#%c%s%.0f km\n"
+         "#%c%s%.0f km\n"
          "\n"
          "#%c%s#0"),
          /* Generic. */
@@ -1598,6 +1602,8 @@ void equipment_updateShips( unsigned int wid, char* str )
       pilot_cargoUsed(ship), EQ_COMP( cargo, ship->ship->cap_cargo, 0 ),
       ship->fuel_max,
       jumps, n_( "jump", "jumps", jumps ),
+      EQ_COMP( ship->rdr_range, ship->ship->rdr_range, 0 ),
+      EQ_COMP( ship->rdr_jump_range, ship->ship->rdr_jump_range, 0 ),
       pilot_checkSpaceworthy(ship) ? 'r' : '0', errorReport );
    window_modifyText( wid, "txtDDesc", buf );
 

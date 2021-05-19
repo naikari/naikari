@@ -427,7 +427,7 @@ static void info_openShip( unsigned int wid )
          "closeOutfits", _("Close"), info_close );
 
    /* Text. */
-   window_addText( wid, 40, -60, 100, h-60, 0, "txtSDesc", &gl_smallFont,
+   window_addText( wid, 40, -60, 180, h-60, 0, "txtSDesc", &gl_smallFont,
          NULL,
          _("#nName:\n"
          "Model:\n"
@@ -446,10 +446,12 @@ static void info_openShip( unsigned int wid )
          "Energy:\n"
          "Cargo Space:\n"
          "Fuel:\n"
+         "Radar Range:\n"
+         "Jump Detect Range:\n"
          "\n"
          "Stats:\n")
          );
-   window_addText( wid, 180, -60, w-20-180-180., h-60, 0, "txtDDesc", &gl_smallFont,
+   window_addText( wid, 220, -60, w-20-180-180., h-60, 0, "txtDDesc", &gl_smallFont,
          NULL, NULL );
 
    /* Custom widget. */
@@ -480,7 +482,7 @@ static void ship_update( unsigned int wid )
          "%.0f t\n"
          "%s average\n"
          "%.0f kN/t\n"
-         "%.0f m/s (max %.0f m/s)\n"
+         "%.0f km/s (max %.0f km/s)\n"
          "%.0f deg/s\n"
          "%.0f%%\n" /* Time Constant (dt_default) */
          "\n"
@@ -490,6 +492,8 @@ static void ship_update( unsigned int wid )
          "%.0f / %.0f MJ (%.1f MW)\n" /* Energy */
          "%d / %d t\n"
          "%d / %d hL (%d %s)\n"
+         "%.0f km\n"
+         "%.0f km\n"
          "\n"),
          /* Generic */
          player.p->name,
@@ -509,7 +513,8 @@ static void ship_update( unsigned int wid )
          player.p->energy, player.p->energy_max, player.p->energy_regen,
          pilot_cargoUsed( player.p ), cargo,
          player.p->fuel, player.p->fuel_max,
-         pilot_getJumps(player.p), n_( "jump", "jumps", pilot_getJumps(player.p) ));
+         pilot_getJumps(player.p), n_( "jump", "jumps", pilot_getJumps(player.p)),
+         player.p->rdr_range, player.p->rdr_jump_range);
    equipment_shipStats( &buf[len], sizeof(buf)-len, player.p, 1 );
    window_modifyText( wid, "txtDDesc", buf );
    free( hyp_delay );
