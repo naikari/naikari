@@ -229,21 +229,21 @@ static void chk_render( Widget* chk, double bx, double by )
 #endif
 
    /* Draw rect. */
-   toolkit_drawRect( x-1, y-1 + (chk->h-10.)/2., 12., 12., toolkit_colLight, NULL );
-   toolkit_drawRect( x, y + (chk->h-10.)/2., 10., 10., toolkit_colDark, NULL );
+   toolkit_drawRect( x-1, y-1 + (chk->h-12.)/2., 14., 14., toolkit_colLight, NULL );
+   toolkit_drawRect( x, y + (chk->h-12.)/2., 12., 12., toolkit_colDark, NULL );
    if (chk->dat.chk.state)
-      toolkit_drawRect( x+1., y+1. + (chk->h-10.)/2., 8., 8., &cWhite, NULL );
+      toolkit_drawRect( x+2., y+2. + (chk->h-12.)/2., 8., 8., &cWhite, NULL );
 
 #if 0
    /* Inner outline */
-   toolkit_drawOutline( x, y + (chk->h-10.)/2., 10, 10, 0., lc, c );
+   toolkit_drawOutline( x, y + (chk->h-12.)/2., 12, 12, 0., lc, c );
    /* Outer outline */
-   toolkit_drawOutline( x, y + (chk->h-10.)/2., 10, 10, 1., &cBlack, NULL );
+   toolkit_drawOutline( x, y + (chk->h-12.)/2., 12, 12, 1., &cBlack, NULL );
 #endif
 
    /* Draw the txt. */
    gl_printMaxRaw( &gl_smallFont, chk->w - 20,
-         bx + chk->x + 15,
+         bx + chk->x + 17,
          by + chk->y + (chk->h - gl_defFont.h)/2.,
          &cFontWhite, -1., chk->dat.chk.display );
 }
