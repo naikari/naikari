@@ -17,5 +17,6 @@
   <armour>584</armour>
   <armour_regen>0</armour_regen>
   <ew_hide>18</ew_hide>
+  <rdr_enemy_range_mod>-18</rdr_enemy_range_mod>
  </specific>
 </outfit>

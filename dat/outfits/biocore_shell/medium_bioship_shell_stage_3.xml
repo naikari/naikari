@@ -17,5 +17,6 @@
   <armour>230</armour>
   <armour_regen>0</armour_regen>
   <ew_hide>14</ew_hide>
+  <rdr_enemy_range_mod>-14</rdr_enemy_range_mod>
  </specific>
 </outfit>
