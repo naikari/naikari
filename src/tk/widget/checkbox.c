@@ -229,10 +229,10 @@ static void chk_render( Widget* chk, double bx, double by )
 #endif
 
    /* Draw rect. */
-   toolkit_drawRect( x-1, y-1 + (chk->h-10.)/2., 12., 12., toolkit_colDark, NULL );
-   toolkit_drawRect( x, y + (chk->h-10.)/2., 10., 10., toolkit_colLight, NULL );
+   toolkit_drawRect( x-1, y-1 + (chk->h-10.)/2., 12., 12., toolkit_colLight, NULL );
+   toolkit_drawRect( x, y + (chk->h-10.)/2., 10., 10., toolkit_colDark, NULL );
    if (chk->dat.chk.state)
-      toolkit_drawRect( x+1., y+1. + (chk->h-10.)/2., 8., 8., toolkit_colDark, NULL );
+      toolkit_drawRect( x+1., y+1. + (chk->h-10.)/2., 8., 8., &cWhite, NULL );
 
 #if 0
    /* Inner outline */
