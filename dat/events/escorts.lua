@@ -305,6 +305,7 @@ function enter ()
             edata.pilot:setNoClear(true)
             hook.pilot(edata.pilot, "death", "pilot_death", i)
             edata.pilot:changeAI("escort")
+            hook.pilot(edata.pilot, "attacked", "pilot_attacked", i)
          else
             edata.alive = false
             edata.pilot:changeAI(edata.ai)
@@ -368,6 +369,13 @@ function hail( p )
             edata.pilot:changeAI(edata.ai)
          end
       end
+   end
+end
+
+
+function pilot_attacked( p, attacker, dmg, arg )
+   if attacker and attacker:leader() == p:leader() then
+      escorts[arg].alive = false
    end
 end
 
