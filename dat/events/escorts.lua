@@ -311,11 +311,13 @@ end
 function pay( amount, reason )
    if amount <= 0 or reason == "adjust" then return end
 
+   local royalty = 0
    for i, edata in ipairs(escorts) do
       if edata.alive and edata.royalty then
-         player.pay(-amount * edata.royalty, nil, true)
+         royalty = royalty + amount * edata.royalty
       end
    end
+   player.pay( -royalty, nil, true )
 end
 
 
