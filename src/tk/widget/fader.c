@@ -122,7 +122,7 @@ static void fad_render( Widget* fad, double bx, double by )
    toolkit_drawRect(tx, ty, tw , th, toolkit_colLight, NULL);
 
    /* Draw. */
-   toolkit_drawRect(kx, ky, kw, kh, toolkit_colLight, NULL);
+   toolkit_drawRect(kx, ky, kw, kh, &cGrey40, NULL);
    toolkit_drawOutline(kx + 1, ky, kw - 1, kh - 1, 1., toolkit_colDark, NULL);
 }
 

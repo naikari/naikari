@@ -1530,7 +1530,7 @@ void toolkit_drawScrollbar( int x, int y, int w, int h, double pos )
 
    /* Bar itself. */
    sy = y + (h - 30.) * (1.-pos);
-   toolkit_drawRect( x, sy, w, 30., toolkit_colLight, NULL );
+   toolkit_drawRect( x, sy, w, 30., &cGrey40, NULL );
    toolkit_drawOutline( x + 1, sy, w - 1, 30., 0., toolkit_colDark, NULL );
 }
 
