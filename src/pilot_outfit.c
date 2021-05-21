@@ -1108,7 +1108,6 @@ void pilot_calcStats( Pilot* pilot )
    pilot->cpu_max       = (int)floor((float)(pilot->ship->cpu + s->cpu_max)*s->cpu_mod);
    pilot->cpu          += pilot->cpu_max; /* CPU is negative, this just sets it so it's based off of cpu_max. */
    /* Misc. */
-   pilot->dmg_absorb    = MAX( 0., pilot->dmg_absorb );
    pilot->cap_cargo    *= s->cargo_mod;
    s->engine_limit     *= s->engine_limit_rel;
 
@@ -1126,6 +1125,7 @@ void pilot_calcStats( Pilot* pilot )
    pilot->energy_regen -= s->energy_usage;
    pilot->rdr_range    += s->rdr_range;
    pilot->rdr_jump_range += s->rdr_jump_range;
+   pilot->dmg_absorb    = MAX( 0., pilot->dmg_absorb + s->absorb_flat/100. );
 
    /* Give the pilot his health proportion back */
    pilot->armour = ac * pilot->armour_max;
