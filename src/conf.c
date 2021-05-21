@@ -152,8 +152,6 @@ void conf_setDefaults (void)
    conf.font_size_intro   = FONT_SIZE_INTRO_DEFAULT;
    conf.font_size_def     = FONT_SIZE_DEF_DEFAULT;
    conf.font_size_small   = FONT_SIZE_SMALL_DEFAULT;
-   conf.font_name_default = NULL;
-   conf.font_name_monospace = NULL;
 
    /* Misc. */
    conf.redirect_file = 1;
@@ -415,8 +413,6 @@ int conf_loadConfig ( const char* file )
       conf_loadInt( lEnv, "font_size_intro", conf.font_size_intro );
       conf_loadInt( lEnv, "font_size_def", conf.font_size_def );
       conf_loadInt( lEnv, "font_size_small", conf.font_size_small );
-      conf_loadString( lEnv, "font_name_default", conf.font_name_default );
-      conf_loadString( lEnv, "font_name_monospace", conf.font_name_monospace );
 
       /* Misc. */
       conf_loadFloat( lEnv, "compression_velocity", conf.compression_velocity );
@@ -1015,21 +1011,6 @@ int conf_saveConfig ( const char* file )
    conf_saveInt("font_size_def",conf.font_size_def);
    pos += scnprintf(&buf[pos], sizeof(buf)-pos, _("-- Small size: %d\n"), FONT_SIZE_SMALL_DEFAULT);
    conf_saveInt("font_size_small",conf.font_size_small);
-   conf_saveComment(_("Default font to use: unset"));
-   if (conf.font_name_default) {
-      conf_saveString("font_name_default",conf.font_name_default);
-   }
-   else {
-      conf_saveComment(_("font_name_default = \"/path/to/file.ttf\""));
-   }
-   conf_saveComment("Default monospace font to use: unset");
-   if (conf.font_name_monospace) {
-      conf_saveString("font_name_monospace",conf.font_name_monospace);
-   }
-   else {
-      conf_saveComment("font_name_monospace = \"/path/to/file.ttf\"");
-   }
-   conf_saveEmptyLine();
 
    /* Misc. */
    conf_saveComment(_("Sets the velocity (px/s) to compress up to when time compression is enabled."));
@@ -1171,4 +1152,3 @@ int conf_saveConfig ( const char* file )
 
    return 0;
 }
-
