@@ -23,7 +23,7 @@ end
 --    @return A string taking the form of "X ¢".
 --]]
 function creditstring( credits )
-   return gettext.ngettext("%s\xc2\xa0¢", "%s\xc2\xa0¢", credits):format(
+   return gettext.ngettext("%s ¢", "%s ¢", credits):format(
          numstring(credits) )
 end
 
@@ -53,7 +53,7 @@ end
 --]]
 function tonnestring_short( tonnes )
    -- Translator note: this form represents an abbreviation of "_ tonnes".
-   return gettext.ngettext( "%d\xc2\xa0t", "%d\xc2\xa0t", tonnes ):format( tonnes )
+   return gettext.ngettext( "%d t", "%d t", tonnes ):format( tonnes )
 end
 
 
