@@ -23,8 +23,7 @@ end
 --    @return A string taking the form of "X ¢".
 --]]
 function creditstring( credits )
-   return gettext.ngettext("%s ¢", "%s ¢", credits):format(
-         numstring(credits) )
+   return n_("%s ¢", "%s ¢", credits):format(numstring(credits))
 end
 
 
