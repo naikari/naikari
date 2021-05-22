@@ -44,5 +44,6 @@
   <armour_mod>-10</armour_mod>
   <launch_range>-50</launch_range>
   <ammo_capacity>-50</ammo_capacity>
+  <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
  </stats>
 </ship>

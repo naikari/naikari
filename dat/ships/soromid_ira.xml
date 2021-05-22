@@ -58,5 +58,6 @@
   <ew_hide>10</ew_hide>
   <fwd_damage>10</fwd_damage>
   <tur_damage>-10</tur_damage>
+  <rdr_enemy_range_mod>50</rdr_enemy_range_mod>
  </stats>
 </ship>

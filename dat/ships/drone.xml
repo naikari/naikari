@@ -37,5 +37,6 @@
   <thrust_mod>20</thrust_mod>
   <cargo_mod>-100</cargo_mod>
   <armour_mod>-20</armour_mod>
+  <rdr_enemy_range_mod>-50</rdr_enemy_range_mod>
  </stats>
 </ship>

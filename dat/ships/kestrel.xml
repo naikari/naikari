@@ -47,5 +47,6 @@
  </slots>
  <stats>
   <ew_hide>5</ew_hide>
+  <rdr_enemy_range_mod>50</rdr_enemy_range_mod>
  </stats>
 </ship>

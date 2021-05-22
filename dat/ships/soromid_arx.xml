@@ -52,5 +52,6 @@
   <armour_mod>-10</armour_mod>
   <ew_hide>10</ew_hide>
   <fbay_capacity>100</fbay_capacity>
+  <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
  </stats>
 </ship>

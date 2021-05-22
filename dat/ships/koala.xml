@@ -42,5 +42,6 @@
   <armour_mod>20</armour_mod>
   <cargo_inertia>-20</cargo_inertia>
   <ew_hide>-20</ew_hide>
+  <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
  </stats>
 </ship>

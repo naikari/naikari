@@ -44,5 +44,6 @@
  <stats>
   <cargo_mod>20</cargo_mod>
   <cargo_inertia>-30</cargo_inertia>
+  <rdr_enemy_range_mod>25</rdr_enemy_range_mod>
  </stats>
 </ship>

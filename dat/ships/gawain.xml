@@ -42,5 +42,6 @@
   <cargo_mod>-10</cargo_mod>
   <armour_mod>-10</armour_mod>
   <land_delay>-20</land_delay>
+  <rdr_enemy_range_mod>-50</rdr_enemy_range_mod>
  </stats>
 </ship>

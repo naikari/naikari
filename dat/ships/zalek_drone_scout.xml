@@ -38,6 +38,7 @@
   <ew_hide>20</ew_hide>
   <ew_detect>25</ew_detect>
   <ew_jump_detect>25</ew_jump_detect>
+  <rdr_enemy_range_mod>-50</rdr_enemy_range_mod>
   <misc_instant_jump>1</misc_instant_jump>
  </stats>
 </ship>

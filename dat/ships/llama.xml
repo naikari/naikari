@@ -43,5 +43,6 @@
   <shield_regen_mod>-20</shield_regen_mod>
   <cargo_inertia>-20</cargo_inertia>
   <ew_hide>-10</ew_hide>
+  <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
  </stats>
 </ship>

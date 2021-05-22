@@ -42,5 +42,6 @@
   <cargo_mod>20</cargo_mod>
   <jump_delay>-25</jump_delay>
   <cargo_inertia>-20</cargo_inertia>
+  <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
  </stats>
 </ship>

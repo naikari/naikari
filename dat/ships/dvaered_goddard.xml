@@ -57,5 +57,6 @@
   <fwd_heat>15</fwd_heat>
   <fwd_damage>30</fwd_damage>
   <fwd_energy>15</fwd_energy>
+  <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
  </stats>
 </ship>

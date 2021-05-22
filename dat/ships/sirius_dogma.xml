@@ -50,5 +50,6 @@
   <thrust_mod>10</thrust_mod>
   <shield_mod>10</shield_mod>
   <stress_dissipation>20</stress_dissipation>
+  <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
  </stats>
 </ship>

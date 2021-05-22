@@ -55,5 +55,6 @@
  <stats>
   <shield_mod>50</shield_mod>
   <shield_regen_mod>35</shield_regen_mod>
+  <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
  </stats>
 </ship>

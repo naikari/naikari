@@ -45,5 +45,6 @@
   <energy_mod>10</energy_mod>
   <ew_hide>10</ew_hide>
   <fwd_heat>-10</fwd_heat>
+  <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
  </stats>
 </ship>
