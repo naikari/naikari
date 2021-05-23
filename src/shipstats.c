@@ -147,6 +147,7 @@ static const ShipStatsLookup ss_lookup[] = {
 
    A__ELEM( SS_TYPE_A_ENERGY_FLAT,        energy_flat,         N_("Energy Capacity") ),
    AI_ELEM( SS_TYPE_A_ENERGY_REGEN_FLAT,  energy_usage,        N_("Energy Usage") ),
+   AI_ELEM( SS_TYPE_A_ENERGY_LOSS,        energy_loss,         N_("Energy Usage") ),
    A__ELEM( SS_TYPE_A_SHIELD_FLAT,        shield_flat,         N_("Shield Capacity") ),
    AI_ELEM( SS_TYPE_A_SHIELD_REGEN_FLAT,  shield_usage,        N_("Shield Usage") ),
    A__ELEM( SS_TYPE_A_ARMOUR_FLAT,        armour_flat,         N_("Armour") ),
