@@ -144,6 +144,7 @@ static const ShipStatsLookup ss_lookup[] = {
    D__ELEM( SS_TYPE_D_LOOT_MOD,           loot_mod,            N_("Boarding Bonus") ),
    DI_ELEM( SS_TYPE_D_TIME_MOD,           time_mod,            N_("Time Constant") ),
    D__ELEM( SS_TYPE_D_TIME_SPEEDUP,       time_speedup,        N_("Speed-Up") ),
+   DI_ELEM( SS_TYPE_D_COOLDOWN_TIME,      cooldown_time,       N_("Ship Cooldown Time") ),
 
    A__ELEM( SS_TYPE_A_ENERGY_FLAT,        energy_flat,         N_("Energy Capacity") ),
    AI_ELEM( SS_TYPE_A_ENERGY_REGEN_FLAT,  energy_usage,        N_("Energy Usage") ),
