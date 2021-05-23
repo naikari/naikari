@@ -1252,7 +1252,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s [%s]\n"
-         "%.0f CPU\n"
+         "%+.0f CPU\n"
          "%.0f%% Penetration\n"
          "%.2f DPS [%.0f Damage]\n"),
          _(outfit_getType(temp)), _(dtype_damageTypeToStr(temp->u.blt.dmg.type)),
@@ -1423,7 +1423,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
-         "%.0f CPU\n"
+         "%+.0f CPU\n"
          "%.0f%% Penetration\n"
          "%.2f DPS [%s]\n"),
          _(outfit_getType(temp)),
@@ -1774,7 +1774,14 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
          "%s"
          "%s",
          _(outfit_getType(temp)),
-         (temp->u.mod.active) ? _("\n#rActivated Outfit#0") : "" );
+         (temp->u.mod.active) ? _("\nActivated Outfit") : "" );
+
+   i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+         _("\n%+.0f CPU"), temp->cpu );
+
+   if (temp->limit != NULL)
+      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+            _("\n%s (limit 1 per ship)"), _(temp->limit) );
 
 #define DESC_ADD(x, s) \
 if ((x) != 0) \
@@ -1783,7 +1790,6 @@ if ((x) != 0) \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, s, x ); \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "#0" ); \
    } while(0)
-   DESC_ADD( temp->cpu,                _("%+.0f CPU") );
    DESC_ADD( temp->u.mod.thrust,       _("%+.0f Thrust") );
    DESC_ADD( temp->u.mod.turn,         _("%+.0f Turn Rate") );
    DESC_ADD( temp->u.mod.speed,        _("%+.0f Maximum Speed") );
@@ -1822,6 +1828,7 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
    xmlNodePtr node;
    node = parent->children;
    double C, area;
+   int i;
 
    /* Defaults. */
    temp->u.afb.sound = -1;
@@ -1867,22 +1874,31 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
 
    /* Set short description. */
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
-   snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
+   i = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
-         "#rActivated Outfit#0\n"
-         "%.0f CPU\n"
-         "Only one can be equipped\n"
-         "%.0f Maximum Effective Mass\n"
-         "%.0f%% Thrust\n"
-         "%.0f%% Maximum Speed\n"
-         "%.1f EPS\n"
-         "%.1f Rumble"),
+         "Activated Outfit\n"
+         "%+.0f CPU\n"),
          _(outfit_getType(temp)),
-         temp->cpu,
+         temp->cpu );
+
+   if (temp->limit != NULL)
+      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+            _("%s (limit 1 per ship)\n"),
+            _(temp->limit) );
+
+   i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+         _("%.0f t Mass Limit\n"
+         "#%c%s%+.0f%% Thrust#0\n"
+         "#%c%s%+.0f%% Maximum Speed#0\n"
+         "#%c%s%+.1f EPS#0\n"
+         "%.1f Rumble"),
          temp->u.afb.mass_limit,
-         temp->u.afb.thrust + 100.,
-         temp->u.afb.speed + 100.,
-         temp->u.afb.energy,
+         (temp->u.afb.thrust < 0 ? 'r' : 'g'),
+         (temp->u.afb.thrust < 0 ? "!! " : ""), temp->u.afb.thrust,
+         (temp->u.afb.speed < 0 ? 'r' : 'g'),
+         (temp->u.afb.speed < 0 ? "!! " : ""), temp->u.afb.speed,
+         (temp->u.afb.energy > 0 ? 'r' : 'g'),
+         (temp->u.afb.energy > 0 ? "!! " : ""), -temp->u.afb.energy,
          temp->u.afb.rumble );
 
    /* Post processing. */
@@ -1946,7 +1962,7 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
-         "%.0f CPU\n"
+         "%+.0f CPU\n"
          "%.1f Seconds Per Launch\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
@@ -2605,7 +2621,7 @@ static void outfit_launcherDesc( Outfit* o )
    o->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    l = scnprintf( o->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s [%s]\n"
-         "%.0f CPU\n"),
+         "%+.0f CPU\n"),
          _(outfit_getType(o)), _(dtype_damageTypeToStr(a->u.amm.dmg.type)),
          o->cpu );
 

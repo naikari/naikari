@@ -252,7 +252,7 @@ void shipyard_update( unsigned int wid, char* str )
          "\n"
          "%.0f TFLOPS\n"
          "%.0f t\n"
-         "%.0f kN/t\n"
+         "%.0f MN/t\n"
          "%.0f km/s\n"
          "%.0f deg/s\n"
          "%.0f%%\n"

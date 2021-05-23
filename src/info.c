@@ -481,7 +481,7 @@ static void ship_update( unsigned int wid )
          "\n"
          "%.0f t\n"
          "%s average\n"
-         "%.0f kN/t\n"
+         "%.0f MN/t\n"
          "%.0f km/s (max %.0f km/s)\n"
          "%.0f deg/s\n"
          "%.0f%%\n" /* Time Constant (dt_default) */

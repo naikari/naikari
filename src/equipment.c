@@ -1561,7 +1561,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "\n"
          "%.0f#0 t\n"
          "%s average\n"
-         "#%c%s%.0f#0 kN/t\n"
+         "#%c%s%.0f#0 MN/t\n"
          "#%c%s%.0f#0 km/s (max #%c%s%.0f#0 km/s)\n"
          "#%c%s%.0f#0 deg/s\n"
          "%.0f%%\n"

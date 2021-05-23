@@ -7,7 +7,7 @@
   <price>200000</price>
   <description>The weapons ionizer works on the principle of diverting massive amounts of weapon energy to an ion field generator. While energy usage increases and damage output significantly decreases, the ion field allows conventional weapons to deal ionizing damage while the outfit is active.</description>
   <gfx_store>accuracy_forward_3.png</gfx_store>
-  <limit>ionizer</limit>
+  <limit>Ionizer</limit>
   <cpu>-1</cpu>
  </general>
  <specific type="modification" group="10">
