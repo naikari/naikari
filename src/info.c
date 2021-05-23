@@ -487,9 +487,9 @@ static void ship_update( unsigned int wid )
          "%.0f%%\n" /* Time Constant (dt_default) */
          "\n"
          "%.0f%%\n" /* Absorbption */
-         "%.0f / %.0f MJ (%.1f MW)\n" /* Shield */
-         "%.0f / %.0f MJ (%.1f MW)\n" /* Armour */
-         "%.0f / %.0f MJ (%.1f MW)\n" /* Energy */
+         "%.0f / %.0f GJ (%.1f GW)\n" /* Shield */
+         "%.0f / %.0f GJ (%.1f GW)\n" /* Armour */
+         "%.0f / %.0f GJ (%.1f GW)\n" /* Energy */
          "%d / %d t\n"
          "%d / %d hL (%d %s)\n"
          "%.0f km\n"

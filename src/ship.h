@@ -123,12 +123,12 @@ typedef struct Ship_ {
    double rdr_jump_range;   /**< Range that the ship can detect jumps. */
 
    /* health */
-   double armour;    /**< Maximum base armour in MJ. */
-   double armour_regen; /**< Maximum armour regeneration in MJ/s. */
-   double shield;    /**< Maximum base shield in MJ. */
-   double shield_regen; /**< Maximum shield regeneration in MJ/s. */
-   double energy;    /**< Maximum base energy in MJ. */
-   double energy_regen; /**< Maximum energy regeneration in MJ/s. */
+   double armour;    /**< Maximum base armour in GJ. */
+   double armour_regen; /**< Maximum armour regeneration in GJ/s. */
+   double shield;    /**< Maximum base shield in GJ. */
+   double shield_regen; /**< Maximum shield regeneration in GJ/s. */
+   double energy;    /**< Maximum base energy in GJ. */
+   double energy_regen; /**< Maximum energy regeneration in GJ/s. */
    double dmg_absorb; /**< Damage absorption in per one [0:1] with 1 being 100% absorption. */
 
    /* graphics */
