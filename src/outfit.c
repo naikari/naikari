@@ -1141,6 +1141,8 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"energy",temp->u.blt.energy);
       xmlr_float(node,"heatup",temp->u.blt.heatup);
       xmlr_float(node,"track",temp->u.blt.track);
+      xmlr_float(node,"rdr_range",temp->u.blt.rdr_range);
+      xmlr_float(node,"rdr_range_max",temp->u.blt.rdr_range_max);
       xmlr_float(node,"swivel",temp->u.blt.swivel);
       if (xml_isNode(node,"range")) {
          xmlr_attr_strd(node,"blowup",buf);
@@ -1262,19 +1264,32 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          _("%.2f Disable/s [%.0f Disable]\n"),
          1./temp->u.blt.delay * temp->u.blt.dmg.disable, temp->u.blt.dmg.disable );
    }
+   if (temp->u.blt.energy > 0.) {
+      l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%.1f EPS [%.0f Energy]\n"),
+         1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy );
+   }
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.1f Shots Per Second\n"
-         "%.1f EPS [%.0f Energy]\n"
-         "%.0f Range\n"
-         "%.1f second heat up"),
+         _("%.1f RPS Fire Rate\n"
+         "%.0f km Range\n"
+         "%.1f s Heat Up"),
          1./temp->u.blt.delay,
-         1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy,
          temp->u.blt.range,
          temp->u.blt.heatup);
-   if (!outfit_isTurret(temp)) {
+   if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("\n%.1f degree swivel"),
-         temp->u.blt.swivel*180./M_PI );
+            _("\n%.0f km Radar Optimal Range"),
+            temp->u.blt.rdr_range );
+   }
+   if (temp->u.blt.rdr_range_max > 0.) {
+      l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("\n%.0f km Radar Maximum Range"),
+            temp->u.blt.rdr_range_max );
+   }
+   if ((!outfit_isTurret(temp)) && (temp->u.blt.swivel != 0.)) {
+      l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("\n%.1f° Swivel"),
+            temp->u.blt.swivel*180./M_PI );
    }
    (void)l;
 
@@ -1294,7 +1309,10 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
    MELEMENT(temp->cpu==0.,"cpu");
    MELEMENT(temp->u.blt.falloff > temp->u.blt.range,"falloff");
    MELEMENT(temp->u.blt.heatup==0.,"heatup");
-   MELEMENT(((temp->u.blt.swivel > 0.) || outfit_isTurret(temp)) && (temp->u.blt.track==0.),"track");
+   if ((temp->u.blt.swivel > 0.) || outfit_isTurret(temp)) {
+      MELEMENT(temp->u.blt.rdr_range==0.,"rdr_range");
+      MELEMENT(temp->u.blt.rdr_range_max==0.,"rdr_range_max");
+   }
 #undef MELEMENT
 }
 
@@ -1470,6 +1488,8 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"ew_target",temp->u.lau.ew_target);
       xmlr_float(node,"lockon",temp->u.lau.lockon);
       xmlr_float(node,"track",temp->u.lau.track);
+      xmlr_float(node,"rdr_range",temp->u.lau.rdr_range);
+      xmlr_float(node,"rdr_range_max",temp->u.lau.rdr_range_max);
       if (!outfit_isTurret(temp)) {
          xmlr_float(node,"arc",temp->u.lau.arc); /* This is full arc in degrees, so we have to correct it to semi-arc in radians for internal usage. */
          xmlr_float(node,"swivel",temp->u.lau.swivel);
@@ -1501,7 +1521,10 @@ if (o) WARN(_("Outfit '%s' missing '%s' element"), temp->name, s) /**< Define to
    MELEMENT(temp->cpu==0.,"cpu");
    MELEMENT(temp->u.lau.amount==0.,"amount");
    MELEMENT(temp->u.lau.reload_time==0.,"reload_time");
-   MELEMENT(((temp->u.lau.swivel > 0.) || (temp->type == OUTFIT_TYPE_TURRET_LAUNCHER)) && (temp->u.lau.track==0.),"track");
+   if ((temp->u.lau.swivel > 0.) || (temp->type == OUTFIT_TYPE_TURRET_LAUNCHER)) {
+      MELEMENT(temp->u.lau.rdr_range==0.,"rdr_range");
+      MELEMENT(temp->u.lau.rdr_range_max==0.,"rdr_range_max");
+   }
 #undef MELEMENT
 }
 
@@ -2588,7 +2611,7 @@ static void outfit_launcherDesc( Outfit* o )
 
    if (outfit_isSeeker(o))
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%.1f Second Lock-on\n"),
+            _("%.1f s Lock-on\n"),
             o->u.lau.lockon );
    else
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
@@ -2606,18 +2629,34 @@ static void outfit_launcherDesc( Outfit* o )
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%.1f Disable/s [%.0f Disable]\n"),
             1. / o->u.lau.delay * a->u.amm.dmg.disable, a->u.amm.dmg.disable );
+   if (o->u.amm.energy > 0.) {
+      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("%.1f EPS [%.0f Energy]\n"),
+            1. / o->u.lau.delay * o->u.amm.energy, a->u.amm.energy );
+   }
 
    l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-         _("%.1f Shots Per Second\n"
-         "%.1f EPS [%.0f Energy]\n"
-         "%.0f Range [%.1f duration]\n"
-         "%.0f Maximum Speed\n"
-         "%.1f%% Jam Resistance"),
+         _("%.1f RPS Fire Rate\n"
+         "%.0f km Range [%.1f duration]\n"
+         "%.0f km/s Maximum Speed"),
          1. / o->u.lau.delay,
-         o->u.lau.delay * a->u.amm.energy, a->u.amm.energy,
          outfit_range(a), a->u.amm.duration,
-         a->u.amm.speed,
-         (a->u.amm.resist <= 0 ? 0. : (1. - 0.5 / a->u.amm.resist) * 100.) );
+         a->u.amm.speed );
+   if (o->u.lau.rdr_range > 0.) {
+      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("\n%.0f km Radar Optimal Range"),
+            o->u.lau.rdr_range );
+   }
+   if (o->u.lau.rdr_range_max > 0.) {
+      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("\n%.0f km Radar Maximum Range"),
+            o->u.lau.rdr_range_max );
+   }
+   if ((!outfit_isTurret(o)) && (o->u.lau.swivel != 0)) {
+      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("\n%.1f° Swivel"),
+            o->u.lau.swivel*180./M_PI );
+   }
    (void)l;
 }
 

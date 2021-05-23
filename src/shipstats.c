@@ -106,7 +106,6 @@ static const ShipStatsLookup ss_lookup[] = {
    D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       N_("Radar Range") ),
    D__ELEM( SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,  N_("Jump Detect Range") ),
    DI_ELEM( SS_TYPE_D_RDR_ENEMY_RANGE_MOD,rdr_enemy_range_mod, N_("Enemy Radar Range") ),
-   DI_ELEM( SS_TYPE_D_ENEMY_TRK_RANGE_MOD,enemy_trk_range_mod, N_("Enemy Turret Tracking Range") ),
 
    D__ELEM( SS_TYPE_D_LAUNCH_RATE,        launch_rate,         N_("Fire Rate (Launcher)") ),
    D__ELEM( SS_TYPE_D_LAUNCH_RANGE,       launch_range,        N_("Launch Range") ),

@@ -47,7 +47,7 @@ void dout_csvBolt( const char *path )
          "license,mass,price,cpu,"
          "delay,speed,range,falloff,"
          "lockon,energy,heatup,"
-         "track,swivel,"
+         "rdr_range,rdr_range_max,swivel,"
          "penetrate,dtype,damage,disable\n"
          );
    SDL_RWwrite( rw, buf, l, 1 );
@@ -66,13 +66,13 @@ void dout_csvBolt( const char *path )
             "%s,%f,%"CREDITS_PRI",%f,"
             "%f,%f,%f,%f,"
             "%f,%f,%f,"
-            "%f,%f,"
+            "%f,%f,%f,"
             "%f,%s,%f,%f\n",
             o->name, outfit_getType(o), outfit_slotName(o), outfit_slotSize(o),
             o->license, o->mass, o->price, o->cpu,
             o->u.blt.delay, o->u.blt.speed, o->u.blt.range, o->u.blt.falloff,
             o->u.blt.ew_lockon, o->u.blt.energy, o->u.blt.heatup,
-            o->u.blt.track, o->u.blt.swivel * 180. / M_PI,
+            o->u.blt.rdr_range, o->u.blt.rdr_range_max, o->u.blt.swivel * 180. / M_PI,
             dmg->penetration*100, dtype_damageTypeToStr(dmg->type), dmg->damage, dmg->disable
             );
       SDL_RWwrite( rw, buf, l, 1 );

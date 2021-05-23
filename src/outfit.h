@@ -143,6 +143,8 @@ typedef struct OutfitBoltData_ {
    double heatup;    /**< How long it should take for the weapon to heat up (approx). */
    double heat;      /**< Heat per shot. */
    double track;     /**< Ewarfare to track. */
+   double rdr_range; /**< Radar Optimal Range. */
+   double rdr_range_max; /**< Radar Maximum Range. */
    double swivel;    /**< Amount of swivel (semiarc in radians of deviation the weapon can correct. */
 
    /* Sound and graphics. */
@@ -205,6 +207,8 @@ typedef struct OutfitLauncherData_ {
    double ew_target2; /**< Target ewarfare squared for quicker comparisons. */
    double arc;       /**< Semi-angle of the arc which it will lock on in. */
    double track;     /**< Ewarfare to track. */
+   double rdr_range; /**< Radar optimal range. */
+   double rdr_range_max; /**< Radar maximum range. */
    double swivel;    /**< Amount of swivel (semiarc in radians of deviation the weapon can correct. */
 } OutfitLauncherData;
 
