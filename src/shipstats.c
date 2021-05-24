@@ -343,10 +343,9 @@ int ss_statsMerge( ShipStats *dest, const ShipStats *src )
  *
  *    @param stats Stat structure to modify.
  *    @param list Single element to apply.
- *    @param amount If non nil stores the number found in amount.
  *    @return 0 on success.
  */
-int ss_statsModSingle( ShipStats *stats, const ShipStatList* list, const ShipStats *amount )
+int ss_statsModSingle( ShipStats *stats, const ShipStatList* list )
 {
    char *ptr;
    char *fieldptr;
@@ -362,17 +361,6 @@ int ss_statsModSingle( ShipStats *stats, const ShipStatList* list, const ShipSta
          *dbl *= 1.0+list->d.d;
          if (*dbl < 0.) /* Don't let the values go negative. */
             *dbl = 0.;
-
-         /* We'll increment amount. */
-         if (amount != NULL) {
-            if ((sl->inverted && (list->d.d < 0.)) ||
-                  (!sl->inverted && (list->d.d > 0.))) {
-               memcpy(&ptr, &amount, sizeof(char*));
-               fieldptr = &ptr[ sl->offset ];
-               memcpy(&dbl, &fieldptr, sizeof(double*));
-               (*dbl)  += 1.0;
-            }
-         }
          break;
 
 
@@ -380,32 +368,12 @@ int ss_statsModSingle( ShipStats *stats, const ShipStatList* list, const ShipSta
          fieldptr = &ptr[ sl->offset ];
          memcpy(&dbl, &fieldptr, sizeof(double*));
          *dbl += list->d.d;
-
-         /* We'll increment amount. */
-         if (amount != NULL) {
-            if ((sl->inverted && (list->d.d < 0.)) ||
-                  (!sl->inverted && (list->d.d > 0.))) {
-               memcpy(&ptr, &amount, sizeof(char*));
-               fieldptr = &ptr[ sl->offset ];
-               memcpy(&dbl, &fieldptr, sizeof(double*));
-               (*dbl)  += 1.0;
-            }
-         }
          break;
 
       case SS_DATA_TYPE_INTEGER:
          fieldptr = &ptr[ sl->offset ];
          memcpy(&i, &fieldptr, sizeof(int*));
          *i   += list->d.i;
-         if (amount != NULL) {
-            if ((sl->inverted && (list->d.i < 0)) ||
-                  (!sl->inverted && (list->d.i > 0))) {
-               memcpy(&ptr, &amount, sizeof(char*));
-               fieldptr = &ptr[ sl->offset ];
-               memcpy(&i, &fieldptr, sizeof(int*));
-               (*i)    += 1;
-            }
-         }
          break;
 
       case SS_DATA_TYPE_BOOLEAN:
@@ -424,16 +392,15 @@ int ss_statsModSingle( ShipStats *stats, const ShipStatList* list, const ShipSta
  *
  *    @param stats Stats to update.
  *    @param list List to update from.
- *    @param amount If non nil stores the number found in amount.
  */
-int ss_statsModFromList( ShipStats *stats, const ShipStatList* list, const ShipStats *amount )
+int ss_statsModFromList( ShipStats *stats, const ShipStatList* list )
 {
    int ret;
    const ShipStatList *ll;
 
    ret = 0;
    for (ll = list; ll != NULL; ll = ll->next)
-      ret |= ss_statsModSingle( stats, ll, amount );
+      ret |= ss_statsModSingle( stats, ll );
 
    return ret;
 }
