@@ -104,7 +104,7 @@ static unsigned int beam_idgen = 0; /**< Beam identifier generator. */
 /* Creation. */
 static double weapon_aimTurret( const Pilot *parent,
       const Pilot *pilot_target, const Vector2d *pos, const Vector2d *vel, double dir,
-      double swivel, double time, double track );
+      double swivel, double time, double track, double track_max );
 static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
       const double dir, const Vector2d* pos, const Vector2d* vel, const Pilot* parent, double time );
 static void weapon_createAmmo( Weapon *w, const Outfit* outfit, double T,
@@ -1312,11 +1312,12 @@ static void weapon_hitAstBeam( Weapon* w, Asteroid* a, WeaponLayer layer,
  *    @param dir Direction facing parent ship and turret.
  *    @param swivel Maximum angle between weapon and straight ahead.
  *    @param time Expected flight time.
- *    @param track Tracking of the weapon.
+ *    @param track Radar optimal range.
+ *    @param track_max Radar max range.
  */
 static double weapon_aimTurret( const Pilot *parent,
       const Pilot *pilot_target, const Vector2d *pos, const Vector2d *vel, double dir,
-      double swivel, double time, double track )
+      double swivel, double time, double track, double track_max )
 {
    AsteroidAnchor *field;
    Asteroid *ast;
@@ -1359,7 +1360,7 @@ static double weapon_aimTurret( const Pilot *parent,
 
    if (pilot_target != NULL) {
       /* Lead angle is determined from ewarfare. */
-      lead_angle = M_PI*pilot_ewWeaponTrack( parent, pilot_target, track );
+      lead_angle = M_PI*pilot_weaponTrack(parent, pilot_target, track, track_max);
 
       /*only do this if the lead angle is implemented; save compute cycled on fixed weapons*/
       if (lead_angle && FABS( angle_diff(ANGLE(x, y), VANGLE(relative_location)) ) > lead_angle) {
@@ -1414,7 +1415,7 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
 
    rdir = weapon_aimTurret(
          parent, pilot_target, pos, vel, dir, outfit->u.blt.swivel,
-         time, outfit->u.blt.track );
+         time, outfit->u.blt.rdr_range, outfit->u.blt.rdr_range_max );
 
    /* Calculate accuracy. */
    acc =  HEAT_WORST_ACCURACY * pilot_heatAccuracyMod( T );
@@ -1487,11 +1488,12 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
       if (launcher->type == OUTFIT_TYPE_TURRET_LAUNCHER)
          rdir = weapon_aimTurret(
                parent, pilot_target, pos, vel, dir, M_PI, time,
-               launcher->u.lau.track );
+               launcher->u.lau.rdr_range, launcher->u.lau.rdr_range_max );
       else
          rdir = weapon_aimTurret(
                parent, pilot_target, pos, vel, dir,
-               launcher->u.lau.swivel, time, launcher->u.lau.track );
+               launcher->u.lau.swivel, time, launcher->u.lau.rdr_range,
+               launcher->u.lau.rdr_range_max );
    }
    else
       rdir = dir;
