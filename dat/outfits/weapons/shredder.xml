@@ -22,6 +22,8 @@
   <energy>7.5</energy>
   <heatup>30</heatup>
   <track>1.5</track>
+  <rdr_range>1600</rdr_range>
+  <rdr_range_max>2000</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>impact</type>

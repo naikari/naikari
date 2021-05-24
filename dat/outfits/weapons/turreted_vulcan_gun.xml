@@ -22,6 +22,8 @@
   <energy>7.5</energy>
   <heatup>50</heatup>
   <track>1.5</track>
+  <rdr_range>1200</rdr_range>
+  <rdr_range_max>1600</rdr_range_max>
   <damage>
    <type>impact</type>
    <penetrate>36</penetrate>
