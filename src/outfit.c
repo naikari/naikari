@@ -1780,7 +1780,8 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
          "%s"
          "%s",
          _(outfit_getType(temp)),
-         (temp->u.mod.active) ? _("\nActivated Outfit") : "" );
+         (temp->u.mod.active || temp->u.mod.lua_ontoggle != LUA_NOREF)
+            ? _("\nActivated Outfit") : "" );
 
    if (temp->cpu != 0)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
