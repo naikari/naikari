@@ -1488,6 +1488,9 @@ function equip_generic( p )
    equip_set( p, equip_typeOutfits_structurals[basetype] )
    equip_set( p, equip_classOutfits_structurals[class] )
 
+   -- Fill ammo
+   p:fillAmmo()
+
    -- Add cargo
    local pb = equip_classCargo[class]
    if pb == nil then
