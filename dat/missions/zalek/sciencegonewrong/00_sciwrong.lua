@@ -160,7 +160,7 @@ function second_trd()
      tk.msg(mnytitle, mnytext)
      return
   end
-  player.pay(-pho_mny)
+  player.pay(-pho_mny, "adjust")
   carg_id = misn.cargoAdd("Phosphine", 3)
   tk.msg(title[1], text[9])
   osd_msg[3] = osd_msg[3]:format(t_sys[1]:name(), t_pla[1]:name())
@@ -265,9 +265,9 @@ function fine_vanish ()
    tk.msg(title[3],text[13])
    tk.msg(title[3],text[14]:format(creditstring(fine)))
    if player.credits() > fine then
-      player.pay(-fine)
+      player.pay(-fine, "adjust")
    else
-      player.pay(-player.credits())
+      player.pay(-player.credits(), "adjust")
    end
    misn.cargoRm(carg_id)
    if adm1:exists() then

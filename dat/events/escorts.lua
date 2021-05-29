@@ -312,12 +312,12 @@ function enter ()
 end
 
 
-function pay( amount )
-   if amount <= 0 then return end
+function pay( amount, reason )
+   if amount <= 0 or reason == "adjust" then return end
 
    for i, edata in ipairs(escorts) do
       if edata.alive and edata.royalty then
-         player.pay(-amount * edata.royalty, true)
+         player.pay(-amount * edata.royalty, nil, true)
       end
    end
 end
@@ -428,7 +428,7 @@ function approachPilot( npc_id )
       end
 
       if pdata.deposit then
-         player.pay(-pdata.deposit, true)
+         player.pay(-pdata.deposit, "adjust")
       end
 
       local i = #escorts + 1

@@ -140,10 +140,11 @@ function get_bioship_parts ()
 end
 
 
-function pay( amount )
+function pay( amount, reason )
    local pp = player.pilot()
    local exp_gain = math.floor(amount / 10000)
-   if amount > 0 and has_bioship() then
+   if amount > 0 and reason ~= "adjust" and reason ~= "loot"
+         and has_bioship() then
       local exp = var.peek( "_bioship_exp" ) or 0
       exp = exp + exp_gain
       while exp >= 100 do

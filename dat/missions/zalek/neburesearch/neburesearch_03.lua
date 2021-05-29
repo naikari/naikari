@@ -200,7 +200,7 @@ function enter_spaceport()
             tk.msg(lab_coat_title, lab_coat_text:format(creditstring(lab_coat_price), _("Apparently this is too expensive for you. Looks like you have to give your talk without a lab coat.")))
         else
             if tk.choice(lab_coat_title, lab_coat_text:format(creditstring(lab_coat_price), _("Will you buy the lab coat?")), _("Yes"), _("No")) == 1 then
-                player.pay(-lab_coat_price)
+                player.pay(-lab_coat_price, "adjust")
                 has_lab_coat = true
             end
         end
@@ -209,7 +209,7 @@ function enter_spaceport()
             tk.msg("", electronics_text:format(creditstring(glasses_price), _("Apparently this is too expensive for you.")))
         else
             if tk.choice("", electronics_text:format(creditstring(glasses_price), _("Will you buy the glasses?")), _("Yes"), _("No")) == 1 then
-                player.pay(-lab_coat_price)
+                player.pay(-lab_coat_price, "adjust")
                 has_glasses = true
             end
         end

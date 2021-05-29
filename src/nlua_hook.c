@@ -723,10 +723,11 @@ static int hook_discover( lua_State *L )
    return 1;
 }
 /**
- * @brief Hooks the function to when the player receives  or loses money through player.pay() (the Lua function only).
+ * @brief Hooks the function to when the player receives or loses money through player.pay() (the Lua function only).
  *
- * The amount paid (or taken from the player) is passed as a parameter:<br/>
- * function f( amount, args )
+ * The amount paid (or taken from the player), and the reason specified by
+ *  player.pay() (nil by default), are passed as parameters:<br/>
+ * function f( amount, reason, arg )
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam arg Argument to pass to hook.

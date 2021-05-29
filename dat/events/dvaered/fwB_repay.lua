@@ -43,7 +43,7 @@ end
 function pay()
    if tk.yesno(pay_title, pay_text:format(numstring(pirate_price))) then
       if player.credits() >= pirate_price then
-         player.pay(-pirate_price)
+         player.pay(-pirate_price, "adjust")
          shiplog.createLog( "frontier_war", _("Frontier War"), _("Dvaered") )
          shiplog.appendLog( "frontier_war", log_text )
          var.push("dv_pirate_debt", false)
