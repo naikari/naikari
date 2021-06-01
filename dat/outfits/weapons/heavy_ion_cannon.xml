@@ -23,6 +23,8 @@
   <energy>42</energy>
   <heatup>60</heatup>
   <track>2</track>
+  <rdr_range>1400</rdr_range>
+  <rdr_range_max>1800</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>ion</type>

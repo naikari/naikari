@@ -18,5 +18,7 @@
   <lockon>5</lockon>
   <ew_target>3</ew_target>
   <track>2</track>
+  <rdr_range>6000</rdr_range>
+  <rdr_range_max>7000</rdr_range_max>
  </specific>
 </outfit>
