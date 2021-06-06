@@ -87,7 +87,6 @@ function createPilotNPCs ()
    }
    local num_pilots = rnd.rnd(0, 5)
    local fac = faction.get("Mercenary")
-   local default_ai = "mercenary"
    local name_func = pilot_name
    local portrait_arg = nil
 
@@ -102,7 +101,6 @@ function createPilotNPCs ()
          { ship = "Pirate Phalanx", royalty = 0.3 },
       }
       fac = faction.get("Pirate")
-      default_ai = "pirate"
       name_func = pirate_name
       portrait_arg = "Pirate"
    elseif pf == faction.get("Thurion") then
@@ -113,11 +111,9 @@ function createPilotNPCs ()
          { ship = "Thurion Apprehension", royalty = 0.4 },
       }
       fac = faction.get("Thurion")
-      default_ai = "thurion"
       portrait_arg = "Thurion"
    elseif planet.cur():faction() == faction.get("Proteron") then
       fac = faction.get("Proteron")
-      default_ai = "proteron"
       portrait_arg = "Proteron"
    end
 
@@ -148,7 +144,6 @@ function createPilotNPCs ()
             newpilot.name = name_func()
             newpilot.portrait = portrait.get(portrait_arg)
             newpilot.faction = fac:name()
-            newpilot.ai = default_ai
             newpilot.approachtext = npctext[rnd.rnd(1, #npctext)]
             local id = evt.npcAdd(
                   "approachPilot", _("Pilot"), newpilot.portrait,
@@ -304,11 +299,9 @@ function enter ()
             edata.pilot:setVisplayer(true)
             edata.pilot:setNoClear(true)
             hook.pilot(edata.pilot, "death", "pilot_death", i)
-            edata.pilot:changeAI("escort")
             hook.pilot(edata.pilot, "attacked", "pilot_attacked", i)
          else
             edata.alive = false
-            edata.pilot:changeAI(edata.ai)
          end
       end
    end
@@ -337,7 +330,6 @@ function standing ()
             edata.pilot:setVisplayer(false)
             edata.pilot:setNoClear(false)
             edata.pilot:hookClear()
-            edata.pilot:changeAI(edata.ai)
          end
       end
    end
@@ -366,7 +358,6 @@ function hail( p )
             edata.pilot:setVisplayer(false)
             edata.pilot:setNoClear(false)
             edata.pilot:hookClear()
-            edata.pilot:changeAI(edata.ai)
          end
       end
    end
