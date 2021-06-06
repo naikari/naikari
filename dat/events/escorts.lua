@@ -238,6 +238,8 @@ function enter ()
       standing_hook = hook.standing("standing")
    end
 
+   hook.pilot(player.pilot(), "attacked", "player_attacked")
+
    local spawnpoint
    if lastsys == system.cur() then
       spawnpoint = lastplanet
@@ -295,6 +297,7 @@ function enter ()
          if f == nil or f:playerStanding() >= 0 then
             edata.pilot:setLeader(pp)
             edata.pilot:setVisplayer(true)
+            edata.pilot:setInvincPlayer(true)
             edata.pilot:setNoClear(true)
             hook.pilot(edata.pilot, "death", "pilot_death", i)
             hook.pilot(edata.pilot, "attacked", "pilot_attacked", i)
@@ -327,6 +330,9 @@ function standing ()
          local f = faction.get(edata.faction)
          if f ~= nil and f:playerStanding() < 0 then
             pilot_disbanded(edata)
+            player.msg( string.format(
+               _("%s has left your wing because you now have a negative standing with the %s faction."),
+               edata.name, f:name() ) )
          end
       end
    end
@@ -340,6 +346,7 @@ function pilot_disbanded( edata )
    if p and p:exists() then
       p:setLeader(nil)
       p:setVisplayer(false)
+      p:setInvincPlayer(false)
       p:setNoClear(false)
       p:setFriendly(false)
       p:hookClear()
@@ -368,6 +375,24 @@ function pilot_hail( p, arg )
             _("Are you sure you want to fire %s? This cannot be undone."),
             edata.name ) ) then
       pilot_disbanded(edata)
+      player.msg(string.format(_("You have fired %s."), edata.name))
+   end
+end
+
+
+function player_attacked( p, attacker, dmg )
+   if attacker then
+      for i, edata in ipairs(escorts) do
+         if attacker == edata.pilot then
+            if edata.alive then
+               pilot_disbanded(edata)
+               player.msg( string.format(
+                  _("%s has left your wing and turned against you!"),
+                  edata.name ) )
+            end
+            return
+         end
+      end
    end
 end
 
@@ -376,15 +401,15 @@ end
 function pilot_attacked( p, attacker, dmg, arg )
    -- Must have an attacker
    if attacker then
-      local l = p:leader()
-      -- Either the attacker or the attacker's leader should be their leader
-      if attacker == l or attacker:leader() == l then
+      local pp = player.pilot()
+      if attacker == pp or attacker:leader() == pp then
          -- Since all the escorts will turn on the player, we might as well
          -- just have them all disband at once and attack.
          for i, edata in ipairs(escorts) do
             pilot_disbanded(edata)
             edata.pilot:setHostile()
          end
+         player.msg(_("You have caused infighting within your wing, causing all of your escorts to quit and turn on you in retaliation!"))
       end
    end
 end
