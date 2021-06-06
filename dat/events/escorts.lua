@@ -334,14 +334,16 @@ end
 
 
 -- Pilot is no longer employed by the player
-function pilot_disbanded( e )
-   e.alive = false
-   local p = e.pilot
-   p:setLeader(nil)
-   p:setVisplayer(false)
-   p:setNoClear(false)
-   p:setFriendly(false)
-   p:hookClear()
+function pilot_disbanded( edata )
+   edata.alive = false
+   local p = edata.pilot
+   if p and p:exists() then
+      p:setLeader(nil)
+      p:setVisplayer(false)
+      p:setNoClear(false)
+      p:setFriendly(false)
+      p:hookClear()
+   end
 end
 
 
