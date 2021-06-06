@@ -1005,7 +1005,9 @@ int missions_saveActive( xmlTextWriterPtr writer )
    char **items;
    PilotCommodity *pc;
 
-   /* We also save specially created cargos here. */
+   /* We also save specially created cargos here. Since it can only be mission
+    * cargo and can only be placed on the player's main ship, we don't have to
+    * worry about it being on other ships. */
    xmlw_startElem(writer,"mission_cargo");
    for (i=0; i<array_size(player.p->commodities); i++) {
       pc = &player.p->commodities[i];
