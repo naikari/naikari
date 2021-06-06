@@ -365,7 +365,7 @@ function pilot_hail( p, arg )
          "", string.format(
             _("Are you sure you want to fire %s? This cannot be undone."),
             edata.name ) ) then
-      pilot_disbanded( edata )
+      pilot_disbanded(edata)
    end
 end
 
