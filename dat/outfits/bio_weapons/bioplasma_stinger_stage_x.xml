@@ -3,7 +3,6 @@
  <general>
   <slot prop="bio_weapon">weapon</slot>
   <size>small</size>
-  <license>Medium Weapon License</license>
   <rarity>6</rarity>
   <mass>6</mass>
   <price>9000</price>
@@ -24,6 +23,8 @@
   <energy>4</energy>
   <heatup>40</heatup>
   <track>3</track>
+  <rdr_range>1400</rdr_range>
+  <rdr_range_max>1800</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>normal</type>
