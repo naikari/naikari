@@ -358,7 +358,7 @@ function accept()
     misn.accept()
     intime = true
     overtime = false
-    local c = misn.cargoNew( N_("Pilgrims"), N_("A bunch of giddy Sirian pilgrims.") )
+    local c = misn.cargoNew( N_("Pilgrims"), N_("Sirius passengers awaiting arrival to Mutris.") )
     misn.cargoAdd(c, 0)  -- We'll assume you can hold as many pilgrims as you want?
     osd_msg[1] = osd_msg1:format(destplanet:name(), destsys:name(), timelimit:str())
     osd_msg[2] = osd_msg2:format((timelimit - time.get()):str())
