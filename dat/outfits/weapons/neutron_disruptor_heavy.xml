@@ -2,8 +2,8 @@
 <outfit name="Heavy Neutron Disruptor">
  <general>
   <slot>weapon</slot>
-  <size>medium</size>
-  <mass>30</mass>
+  <size>small</size>
+  <mass>18</mass>
   <price>36500</price>
   <license>Heavy Weapon License</license>
   <rarity>3</rarity>
@@ -21,15 +21,15 @@
   <range>500</range>
   <falloff>425</falloff>
   <gfx_end>neutron-end.png</gfx_end>
-  <energy>25</energy>
-  <heatup>30</heatup>
+  <energy>12</energy>
+  <heatup>35</heatup>
   <track>2</track>
   <rdr_range>1400</rdr_range>
   <rdr_range_max>1800</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>normal</type>
-   <penetrate>24</penetrate>
+   <penetrate>12</penetrate>
    <physical>52</physical>
    <disable>2</disable>
   </damage>
