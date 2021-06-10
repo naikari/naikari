@@ -111,7 +111,8 @@ function cargo_calculateRoute ()
    
    -- We now know where. But we don't know what yet. Randomly choose a commodity type.
    local cargo
-   local cargoes = difference(planet.cur():commoditiesSold(),destplanet:commoditiesSold())
+   local cargoes = difference(
+         planet.cur():commoditiesSold(), destplanet:commoditiesSold())
    if #cargoes == 0 then
       if cargo_always_available then
          cargo = nil
@@ -158,9 +159,14 @@ end
 function difference(a, b)
    local ai = {}
    local r = {}
-   for k,v in pairs(a) do r[k] = v; ai[v]=true end
+   for k,v in pairs(a) do
+      r[k] = v
+      ai[v] = true
+   end
    for k,v in pairs(b) do 
-      if ai[v]~=nil then   r[k] = nil   end
+      if ai[v] ~= nil then
+         r[k] = nil
+      end
    end
    return r
 end
