@@ -1466,6 +1466,10 @@ void pilot_outfitLCleanup( Pilot *pilot )
          continue;
       if (po->outfit->u.mod.lua_cleanup == LUA_NOREF)
          continue;
+      /* Pilot could be created and then erased without getting properly
+       * initialized. */
+      if (po->lua_mem == LUA_NOREF)
+         continue;
 
       nlua_env env = po->outfit->u.mod.lua_env;
 
