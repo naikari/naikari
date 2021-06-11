@@ -682,6 +682,9 @@ static int ai_loadProfile( const char* filename )
    prof->ref_control_manual = nlua_refenv( env, "control_manual" );
    if (prof->ref_control == LUA_NOREF)
       WARN( str, filename, "control_manual" );
+   prof->ref_refuel = nlua_refenvtype( env, "refuel", LUA_TFUNCTION );
+   if (prof->ref_control == LUA_NOREF)
+      WARN( str, filename, "refuel" );
 
    return 0;
 }
@@ -887,6 +890,7 @@ void ai_refuel( Pilot* refueler, unsigned int target )
 
    /* Create the task. */
    t           = calloc( 1, sizeof(Task) );
+   t->func     = cur_pilot->ai->ref_refuel;
    t->name     = strdup("refuel");
    lua_pushpilot(naevL, target);
    t->dat      = luaL_ref(naevL, LUA_REGISTRYINDEX);
