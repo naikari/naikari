@@ -653,7 +653,7 @@ static void equipment_renderOverlayColumn( double x, double y, double h,
             }
             else if ((wgt->outfit != NULL) &&
                   (lst->sslot->slot.type == wgt->outfit->slot.type)) {
-               top = 0;
+               top = 1;
                display = pilot_canEquip( wgt->selected, &lst[i], wgt->outfit );
                if (display != NULL)
                   c = &cFontRed;
@@ -765,18 +765,17 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    /* Slot is empty. */
    if (o == NULL) {
       if (slot->sslot->slot.spid)
-         pos = scnprintf( alt, sizeof(alt),
-               "#o%s", _( sp_display( slot->sslot->slot.spid ) ) );
+         pos = scnprintf( alt, sizeof(alt), _("%s (%s)"),
+               _( sp_display( slot->sslot->slot.spid ) ),
+               slotSize( slot->sslot->slot.size ) );
       else {
-         /* TODO: Get the newline out of the gettext message! This is silly! (Wait til this branch is merged first.) */
-         pos = scnprintf( alt, sizeof(alt), _( "#%c%s #%c%s #0slot\n" ),
-               outfit_slotSizeColourFont( &slot->sslot->slot ), slotSize( slot->sslot->slot.size ),
-               outfit_slotTypeColourFont( &slot->sslot->slot ), slotName( slot->sslot->slot.type ) );
-         alt[--pos] = '\0'; /* Didn't actually want the newline. */
+         pos = scnprintf( alt, sizeof(alt), _( "%s slot (%s)" ),
+               slotName( slot->sslot->slot.type ),
+               slotSize( slot->sslot->slot.size ) );
       }
       if (slot->sslot->slot.exclusive && (pos < (int)sizeof(alt)))
          pos += scnprintf( &alt[pos], sizeof(alt)-pos,
-               _(" [exclusive]") );
+               _(" #o[Exclusive]#0") );
       if (slot->sslot->slot.spid)
          scnprintf( &alt[pos], sizeof(alt)-pos,
                "\n\n%s", _( sp_description( slot->sslot->slot.spid ) ) );

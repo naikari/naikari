@@ -578,9 +578,11 @@ int outfit_altText( char *buf, int n, const Outfit *o )
    }
 
    p  = scnprintf( &buf[0], n, "%s\n", _(o->name) );
-   if (o->slot.type != OUTFIT_SLOT_NA)
-      p += scnprintf( &buf[p], n-p, _("%s slot (%s)\n"),
+   if (o->slot.type != OUTFIT_SLOT_NA) {
+      p += scnprintf( &buf[p], n-p, _("%s slot (%s)"),
             outfit_slotName(o), outfit_slotSize(o) );
+      p += scnprintf( &buf[p], n-p, "\n" );
+   }
    if (outfit_isProp(o, OUTFIT_PROP_UNIQUE))
       p += scnprintf( &buf[p], n-p, _("#oUnique#0\n") );
    if (o->slot.spid!=0)
