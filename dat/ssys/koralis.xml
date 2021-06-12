@@ -23,11 +23,11 @@
  <jumps>
   <jump target="Gamma Polaris">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Pastor">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Qex">
    <pos x="-8810.152489" y="-15443.708459"/>

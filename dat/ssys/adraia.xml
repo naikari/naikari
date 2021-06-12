@@ -16,7 +16,7 @@
  <jumps>
   <jump target="Gilligan's Tomb">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Ulysses">
    <autopos/>
@@ -24,7 +24,7 @@
   </jump>
   <jump target="Vanir">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

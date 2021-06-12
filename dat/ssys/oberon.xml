@@ -20,11 +20,11 @@
  <jumps>
   <jump target="Defa">
    <pos x="-15366.904607" y="-17565.639958"/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Shikima">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Thirty Stars">
    <pos x="19272.562144" y="8011.507651"/>

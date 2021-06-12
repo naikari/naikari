@@ -16,7 +16,7 @@
  <jumps>
   <jump target="Hasselt">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Malebolge">
    <autopos/>
@@ -24,7 +24,7 @@
   </jump>
   <jump target="Norn">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Sylph">
    <autopos/>

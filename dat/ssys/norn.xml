@@ -20,11 +20,11 @@
  <jumps>
   <jump target="Bonanza">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Pisces Prime">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Ram">
    <autopos/>

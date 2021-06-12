@@ -101,7 +101,6 @@ typedef struct Planet_ {
 
    /* Asset details. */
    double presenceAmount; /**< The amount of presence this asset exerts. */
-   double hide;           /**< The ewarfare hide value for an asset. */
    double rdr_range_mod;  /**< Modifier for detection range of the asset. */
    int presenceRange; /**< The range of presence exertion of this asset. */
    int real; /**< If the asset is tangible or not. */
@@ -178,6 +177,7 @@ typedef struct SystemPresence_ {
 #define JP_KNOWN        (1<<1) /**< Jump point is known. */
 #define JP_HIDDEN       (1<<2) /**< Jump point is hidden. */
 #define JP_EXITONLY     (1<<3) /**< Jump point is exit only */
+#define JP_EXPRESS      (1<<4) /**< Jump point is immediately visible. */
 #define jp_isFlag(j,f)    ((j)->flags & (f)) /**< Checks jump flag. */
 #define jp_setFlag(j,f)   ((j)->flags |= (f)) /**< Sets a jump flag. */
 #define jp_rmFlag(j,f)    ((j)->flags &= ~(f)) /**< Removes a jump flag. */
@@ -198,7 +198,6 @@ struct JumpPoint_ {
    Vector2d pos; /**< Position in the system. */
    double radius; /**< Radius of jump range. */
    unsigned int flags; /**< Flags related to the jump point's status. */
-   double hide; /**< ewarfare hide value for the jump point */
    double rdr_range_mod; /**< Modifier for detection range of the jump point. */
    double angle; /**< Direction the jump is facing. */
    double cosa; /**< Cosinus of the angle. */

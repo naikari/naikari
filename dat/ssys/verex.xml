@@ -21,7 +21,7 @@
   </jump>
   <jump target="Darkstone">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Ginger">
    <autopos/>
@@ -29,7 +29,7 @@
   </jump>
   <jump target="Tarsus">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

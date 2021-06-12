@@ -333,9 +333,9 @@ static void sysedit_editPntClose( unsigned int wid, char *unused )
    else
       p->land_func = strdup( inp );
 
-   p->presenceAmount = atof(window_getInput( sysedit_widEdit, "inpPresence" ));
-   p->presenceRange  = atoi(window_getInput( sysedit_widEdit, "inpPresenceRange" ));
-   p->hide           = pow2( atof(window_getInput( sysedit_widEdit, "inpHide" )) );
+   p->presenceAmount = atof(window_getInput(sysedit_widEdit, "inpPresence"));
+   p->presenceRange = atoi(window_getInput(sysedit_widEdit, "inpPresenceRange"));
+   p->rdr_range_mod = (atof(window_getInput(sysedit_widEdit, "inpHide"))+100) / 100;
 
    /* Add the new presence. */
    system_addPresence(sysedit_sys, p->faction, p->presenceAmount, p->presenceRange);
@@ -387,7 +387,7 @@ static void sysedit_btnNew( unsigned int wid_unused, char *unused )
    p->gfx_exteriorPath  = strdup( b->gfx_exteriorPath );
    p->pos.x             = sysedit_xpos / sysedit_zoom;
    p->pos.y             = sysedit_ypos / sysedit_zoom;
-   p->hide              = pow2(HIDE_DEFAULT_PLANET);
+   p->rdr_range_mod     = 0;
    p->radius            = b->radius;
 
    /* Add new planet. */
@@ -1317,7 +1317,7 @@ static void sysedit_editPnt( void )
    window_setInputFilter( wid, "inpPresenceRange", INPUT_FILTER_NUMBER );
    x += 30 + 10;
 
-   s = _("hide");
+   s = _("rdr_range_mod");
    l = gl_printWidthRaw( NULL, s );
    window_addText( wid, x, y, l, 20, 1, "txtHide",
          NULL, NULL, s );
@@ -1353,7 +1353,7 @@ static void sysedit_editPnt( void )
    window_setInput( wid, "inpPresence", buf );
    snprintf( buf, sizeof(buf), "%d", p->presenceRange );
    window_setInput( wid, "inpPresenceRange", buf );
-   snprintf( buf, sizeof(buf), "%g", sqrt(p->hide) );
+   snprintf( buf, sizeof(buf), "%g", p->rdr_range_mod );
    window_setInput( wid, "inpHide", buf );
 
    /* Generate the list. */
@@ -1439,7 +1439,7 @@ static void sysedit_editJump( void )
          "chkExit", _("Exit only"), jp_type_check_exit_update, jp_exit );
    y -= 30;
 
-   s = _("Hide"); /* TODO: if inpType == 0 disable hide box */
+   s = _("Radar Range Modifier");
    l = gl_printWidthRaw( NULL, s );
    window_addText( wid, x, y, l, 20, 1, "txtHide",
          NULL, NULL, s );
@@ -1454,7 +1454,7 @@ static void sysedit_editJump( void )
          "btnClose", _("Close"), sysedit_editJumpClose );
 
    /* Load current values. */
-   snprintf( buf, sizeof(buf), "%g", sqrt(j->hide) );
+   snprintf( buf, sizeof(buf), "%g", j->rdr_range_mod*100 - 100 );
    window_setInput( wid, "inpHide", buf );
 }
 
@@ -1479,7 +1479,7 @@ static void sysedit_editJumpClose( unsigned int wid, char *unused )
       jp_rmFlag( j, JP_HIDDEN );
       jp_rmFlag( j, JP_EXITONLY );
    }
-   j->hide  = pow2( atof(window_getInput( sysedit_widEdit, "inpHide" )) );
+   j->rdr_range_mod = (atof(window_getInput(sysedit_widEdit, "inpHide"))+100) / 100;
 
    window_close( wid, unused );
 }

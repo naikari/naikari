@@ -32,7 +32,7 @@
  <jumps>
   <jump target="Damien">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Hideyoshi's Star">
    <autopos/>
@@ -44,7 +44,7 @@
   </jump>
   <jump target="Seiben">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

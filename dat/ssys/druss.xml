@@ -23,11 +23,11 @@
  <jumps>
   <jump target="Eye of Night">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Kyo">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Ruttwi">
    <autopos/>

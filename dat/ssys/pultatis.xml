@@ -19,7 +19,7 @@
  <jumps>
   <jump target="Hargen">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Limbo">
    <autopos/>
@@ -27,7 +27,7 @@
   </jump>
   <jump target="Provectus Nova">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Sollav">
    <autopos/>

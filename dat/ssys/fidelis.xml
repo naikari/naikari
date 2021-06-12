@@ -22,11 +22,11 @@
  <jumps>
   <jump target="Eye of Night">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Millstone">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Valur Gem">
    <autopos/>

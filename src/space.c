@@ -1973,7 +1973,7 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
    /* Clear up memory for safe defaults. */
    flags          = 0;
    planet->real   = ASSET_REAL;
-   planet->hide   = 0.01;
+   planet->rdr_range_mod = 0;
    comms          = array_create( Commodity* );
 
    /* Get the name. */
@@ -2041,7 +2041,6 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
             xmlr_strd(cur, "bar", planet->bar_description);
             xmlr_strd(cur, "description", planet->description);
             xmlr_ulong(cur, "population", planet->population);
-            xmlr_float(cur, "hide", planet->hide);
             xmlr_float(cur, "rdr_range_mod", planet->rdr_range_mod);
 
             if (xml_isNode(cur, "services")) {
@@ -2175,9 +2174,6 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
    }
    /* Free temporary comms list. */
    array_free(comms);
-
-   /* Square to allow for linear multiplication with squared distances. */
-   planet->hide = pow2(planet->hide);
 
    planet->rdr_range_mod = (planet->rdr_range_mod+100) / 100;
 
@@ -2694,9 +2690,11 @@ static int system_parseJumpPointDiff( const xmlNodePtr node, StarSystem *sys )
       jp_setFlag(j,JP_HIDDEN);
    else if (strcmp(buf, "exitonly") == 0)
       jp_setFlag(j,JP_EXITONLY);
+   else if (strcmp(buf, "express") == 0)
+      jp_setFlag(j,JP_EXPRESS);
    free( buf );
 
-   xmlr_attr_float_def( node, "hide", j->hide, HIDE_DEFAULT_JUMP);
+   xmlr_attr_float_def(node, "rdr_range_mod", j->rdr_range_mod, 0);
 
    /* Set some stuff. */
    j->target = target;
@@ -2708,8 +2706,7 @@ static int system_parseJumpPointDiff( const xmlNodePtr node, StarSystem *sys )
    else
       jp_setFlag(j,JP_AUTOPOS);
 
-   /* Square to allow for linear multiplication with squared distances. */
-   j->hide = pow2(j->hide);
+   j->rdr_range_mod = (j->rdr_range_mod+100) / 100;
 
    return 0;
 }
@@ -2790,16 +2787,14 @@ static int system_parseJumpPoint( const xmlNodePtr node, StarSystem *sys )
          jp_setFlag(j,JP_HIDDEN);
       else if (xml_isNode(cur,"exitonly"))
          jp_setFlag(j,JP_EXITONLY);
+      else if (xml_isNode(cur,"express"))
+         jp_setFlag(j,JP_EXPRESS);
 
-      xmlr_float(cur,"hide",j->hide);
       xmlr_float(cur,"rdr_range_mod",j->rdr_range_mod);
    } while (xml_nextNode(cur));
 
    if (!jp_isFlag(j,JP_AUTOPOS) && !pos)
       WARN(_("JumpPoint in system '%s' is missing pos element but does not have autopos flag."), sys->name);
-
-   /* Square to allow for linear multiplication with squared distances. */
-   j->hide = pow2(j->hide);
 
    j->rdr_range_mod = (j->rdr_range_mod+100) / 100;
 
@@ -3405,7 +3400,7 @@ static void space_renderJumpPoint( JumpPoint *jp, int i )
    gl_blitSprite( jumppoint_gfx, jp->pos.x, jp->pos.y, jp->sx, jp->sy, c );
 
    /* Draw buoys next to "highway" jump points. */
-   if (jp->hide == 0.) {
+   if (jp_isFlag(jp, JP_EXPRESS)) {
       gl_blitSprite( jumpbuoy_gfx, jp->pos.x + 200 * jp->sina, jp->pos.y + 200 * jp->cosa, 0, 0, NULL ); /* Left */
       gl_blitSprite( jumpbuoy_gfx, jp->pos.x + -200 * jp->sina, jp->pos.y + -200 * jp->cosa, 0, 0, NULL ); /* Right */
    }

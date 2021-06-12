@@ -23,7 +23,7 @@
  <jumps>
   <jump target="Cerberus">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Elza">
    <autopos/>
@@ -31,7 +31,7 @@
   </jump>
   <jump target="Hatter">
    <pos x="19754.322856" y="-13904.725724"/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

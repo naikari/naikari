@@ -21,11 +21,11 @@
  <jumps>
   <jump target="Feye">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Norn">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Treacle">
    <autopos/>

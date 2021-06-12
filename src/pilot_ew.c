@@ -302,6 +302,10 @@ int pilot_inRangeJump( const Pilot *p, int i )
    if (jp_isFlag(jp, JP_HIDDEN))
       return 0;
 
+   /* Immediate success if express. */
+   if (jp_isFlag(jp, JP_EXPRESS))
+      return 1;
+
    /* Get distance. */
    d = vect_dist(&p->solid->pos, &jp->pos);
 

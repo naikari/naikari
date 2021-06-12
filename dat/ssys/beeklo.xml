@@ -23,7 +23,7 @@
  <jumps>
   <jump target="Awowa">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Baf">
    <autopos/>
@@ -31,11 +31,11 @@
   </jump>
   <jump target="Darkstone">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Dvaer">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

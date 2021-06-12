@@ -17,7 +17,7 @@
   </jump>
   <jump target="Kyo">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Modus Manis">
    <pos x="11786.389436" y="-19629.519729"/>
@@ -26,7 +26,7 @@
   </jump>
   <jump target="Palovi">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

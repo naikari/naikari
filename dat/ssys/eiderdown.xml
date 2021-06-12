@@ -26,7 +26,7 @@
   </jump>
   <jump target="Gilligan's Tomb">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Herakin">
    <pos x="25532.127636" y="-19674.201177"/>
@@ -34,7 +34,7 @@
   </jump>
   <jump target="Palovi">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

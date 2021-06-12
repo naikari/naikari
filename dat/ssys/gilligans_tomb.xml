@@ -15,7 +15,7 @@
  <jumps>
   <jump target="Adraia">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Brendon">
    <autopos/>
@@ -23,7 +23,7 @@
   </jump>
   <jump target="Eiderdown">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

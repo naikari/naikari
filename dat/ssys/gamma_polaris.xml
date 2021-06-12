@@ -28,11 +28,11 @@
  <jumps>
   <jump target="Apez">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Koralis">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Qex">
    <autopos/>

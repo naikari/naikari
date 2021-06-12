@@ -20,11 +20,11 @@
  <jumps>
   <jump target="Apez">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Arcturus">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Borla">
    <autopos/>

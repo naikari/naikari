@@ -20,7 +20,7 @@
  <jumps>
   <jump target="Bonanza">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

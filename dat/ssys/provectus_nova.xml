@@ -18,7 +18,7 @@
  <jumps>
   <jump target="Daan">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Effetey">
    <autopos/>
@@ -31,11 +31,11 @@
   </jump>
   <jump target="Pultatis">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Waterhole">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

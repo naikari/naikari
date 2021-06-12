@@ -27,11 +27,11 @@
   </jump>
   <jump target="Ogat">
    <pos x="-26146.261342" y="30826.874429"/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Tarsus">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Torg">
    <autopos/>

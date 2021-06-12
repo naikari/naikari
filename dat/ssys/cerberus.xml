@@ -23,7 +23,7 @@
  <jumps>
   <jump target="Feye">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Jervis">
    <autopos/>
@@ -31,7 +31,7 @@
   </jump>
   <jump target="Sergio Vix">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

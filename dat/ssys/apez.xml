@@ -23,7 +23,7 @@
  <jumps>
   <jump target="Gamma Polaris">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Hekaras">
    <autopos/>
@@ -31,7 +31,7 @@
   </jump>
   <jump target="Mural">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

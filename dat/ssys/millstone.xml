@@ -19,7 +19,7 @@
  <jumps>
   <jump target="Fidelis">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Infinity">
    <autopos/>
@@ -27,7 +27,7 @@
   </jump>
   <jump target="Maus">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

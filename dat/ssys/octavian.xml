@@ -26,7 +26,7 @@
   </jump>
   <jump target="Procyon">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

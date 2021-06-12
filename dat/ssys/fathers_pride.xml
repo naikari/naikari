@@ -26,11 +26,11 @@
   </jump>
   <jump target="Hatter">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Shikima">
    <pos x="-20143.133265" y="-21795.269630"/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

@@ -23,11 +23,11 @@
  <jumps>
   <jump target="Daan">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Gremlin">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Perhelion">
    <autopos/>

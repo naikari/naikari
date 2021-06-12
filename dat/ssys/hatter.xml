@@ -21,7 +21,7 @@
  <jumps>
   <jump target="Father's Pride">
    <pos x="12476.717946" y="-12440.153048"/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Khaas">
    <autopos/>
@@ -33,7 +33,7 @@
   </jump>
   <jump target="Sergio Vix">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

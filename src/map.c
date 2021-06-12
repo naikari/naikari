@@ -1381,7 +1381,7 @@ void map_renderNames( double bx, double by, double x, double y,
       return;
 
    for (i=0; i<array_size(systems_stack); i++) {
-      sys = system_getIndex( i );
+      sys = system_getIndex(i);
       for (j=0; j<array_size(sys->jumps); j++) {
          jsys = sys->jumps[j].target;
          /* Calculate offset. */
@@ -1394,14 +1394,14 @@ void map_renderNames( double bx, double by, double x, double y,
          tx  = x + map_zoom*sys->pos.x + d*vx;
          ty  = y + map_zoom*sys->pos.y + d*vy;
          /* Display. */
-         n = sqrt(sys->jumps[j].hide);
-         if (n == 0.)
-            snprintf( buf, sizeof(buf), "#gH: %.2f", n );
+         n = sys->jumps[j].rdr_range_mod*100 - 100;
+         if (jp_isFlag(&sys->jumps[j], JP_EXPRESS))
+            snprintf(buf, sizeof(buf), "#g∞#0");
          else
-            snprintf( buf, sizeof(buf), "H: %.2f", n );
+            snprintf(buf, sizeof(buf), "%+.f%%", n);
          col = cGrey70;
          col.a = alpha;
-         gl_printRaw( &gl_smallFont, tx, ty, &col, -1, buf );
+         gl_printRaw(&gl_smallFont, tx, ty, &col, -1, buf);
       }
    }
 }

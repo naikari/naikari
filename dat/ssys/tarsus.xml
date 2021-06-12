@@ -22,7 +22,7 @@
  <jumps>
   <jump target="Doranthex">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Klantar">
    <autopos/>
@@ -30,7 +30,7 @@
   </jump>
   <jump target="Verex">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

@@ -37,7 +37,7 @@
   </jump>
   <jump target="Vost">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

@@ -20,7 +20,7 @@
  <jumps>
   <jump target="Beeklo">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Ginger">
    <autopos/>
@@ -28,7 +28,7 @@
   </jump>
   <jump target="Maus">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

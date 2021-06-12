@@ -23,7 +23,7 @@
   </jump>
   <jump target="Ruadan">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Severus">
    <pos x="25200.916889" y="-17334.000223"/>
@@ -31,7 +31,7 @@
   </jump>
   <jump target="Za'lek">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

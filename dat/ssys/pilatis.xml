@@ -19,11 +19,11 @@
  <jumps>
   <jump target="Defa">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Draconis">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Halo">
    <autopos/>
