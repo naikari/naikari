@@ -1785,8 +1785,9 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
          _(outfit_getType(temp)),
          (temp->u.mod.active) ? _("\nActivated Outfit") : "" );
 
-   i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
-         _("\n%+.0f CPU"), temp->cpu );
+   if (temp->cpu != 0)
+      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+            _("\n%+.0f CPU"), temp->cpu );
 
    if (temp->limit != NULL)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
@@ -2629,10 +2630,12 @@ static void outfit_launcherDesc( Outfit* o )
 
    o->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    l = scnprintf( o->desc_short, OUTFIT_SHORTDESC_MAX,
-         _("%s [%s]\n"
-         "%+.0f CPU\n"),
-         _(outfit_getType(o)), _(dtype_damageTypeToStr(a->u.amm.dmg.type)),
-         o->cpu );
+         _("%s [%s]\n"),
+         _(outfit_getType(o)), _(dtype_damageTypeToStr(a->u.amm.dmg.type)) );
+   
+   if (o->cpu != 0)
+      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%+.0f CPU\n"), o->cpu );
 
    if (outfit_isSeeker(o))
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
