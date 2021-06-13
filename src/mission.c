@@ -76,9 +76,6 @@ static int missions_cmp( const void *a, const void *b );
 static int mission_parseFile( const char* file );
 static int mission_parseXML( MissionData *temp, const xmlNodePtr parent );
 static int missions_parseActive( xmlNodePtr parent );
-/* externed */
-int missions_saveActive( xmlTextWriterPtr writer );
-int missions_loadActive( xmlNodePtr parent );
 
 
 /**
@@ -1011,11 +1008,8 @@ int missions_saveActive( xmlTextWriterPtr writer )
    xmlw_startElem(writer,"mission_cargo");
    for (i=0; i<array_size(player.p->commodities); i++) {
       c = player.p->commodities[i].commodity;
-      if (!c->istemp)
-         continue;
       xmlw_startElem(writer,"cargo");
-      xmlw_attr(writer,"name","%s",c->name);
-      xmlw_attr(writer,"description","%s",c->description);
+      missions_saveTempCommodity(writer, c);
       xmlw_endElem(writer); /* "cargo" */
    }
    xmlw_endElem(writer); /* "missions_cargo */
@@ -1088,6 +1082,23 @@ int missions_saveActive( xmlTextWriterPtr writer )
 
 
 /**
+ * @brief Saves a temporary commodity's defintion into the current node.
+ *
+ *    @param writer XML Write to use to save missions.
+ *    @param c Commodity to save.
+ *    @return 0 on success.
+ */
+int missions_saveTempCommodity( xmlTextWriterPtr writer, const Commodity *c )
+{
+   if ( !c->istemp )
+      return 1;
+   xmlw_attr( writer, "name", "%s", c->name );
+   xmlw_attr( writer, "description", "%s", c->description );
+   return 0;
+}
+
+
+/**
  * @brief Loads the player's special mission commodities.
  *
  *    @param parent Node containing the player's special mission cargo.
@@ -1096,7 +1107,6 @@ int missions_saveActive( xmlTextWriterPtr writer )
 int missions_loadCommodity( xmlNodePtr parent )
 {
    xmlNodePtr node, cur;
-   char *name, *desc;
 
    /* We have to ensure the mission_cargo stuff is loaded first. */
    node = parent->xmlChildrenNode;
@@ -1107,36 +1117,52 @@ int missions_loadCommodity( xmlNodePtr parent )
          cur = node->xmlChildrenNode;
          do {
             xml_onlyNodes(cur);
-            if (xml_isNode(cur,"cargo")) {
-               xmlr_attr_strd( cur, "name", name );
-               if (name==NULL) {
-                  WARN(_("Mission cargo without name!"));
-                  continue;
-               }
-
-               if (commodity_getW(name) != NULL) {
-                  free(name);
-                  continue;
-               }
-
-               xmlr_attr_strd( cur, "description", desc );
-               if (desc==NULL) {
-                  WARN(_("Mission temporary cargo '%s' missing description!"), name);
-                  free(name);
-                  continue;
-               }
-
-               commodity_newTemp( name, desc );
-
-               free(name);
-               free(desc);
-            }
-         } while (xml_nextNode(cur));
+            if ( xml_isNode( cur, "cargo" ) )
+               (void)missions_loadTempCommodity( cur );
+         } while ( xml_nextNode( cur ) );
          continue;
       }
-   } while (xml_nextNode(node));
+   } while ( xml_nextNode( node ) );
 
    return 0;
+}
+
+
+/**
+ * @brief Loads a temporary commodity.
+ *
+ *    @param cur Node defining the commodity.
+ *    @return The temporary commodity, or NULL on failure.
+ */
+Commodity *missions_loadTempCommodity( xmlNodePtr cur )
+{
+   char *     name, *desc;
+   Commodity *c;
+
+   xmlr_attr_strd( cur, "name", name );
+   if ( name == NULL ) {
+      WARN( _( "Mission cargo without name!" ) );
+      return NULL;
+   }
+
+   c = commodity_getW( name );
+   if ( c != NULL ) {
+      free( name );
+      return c;
+   }
+
+   xmlr_attr_strd( cur, "description", desc );
+   if ( desc == NULL ) {
+      WARN( _( "Mission temporary cargo '%s' missing description!" ), name );
+      free( name );
+      return NULL;
+   }
+
+   c = commodity_newTemp( name, desc );
+
+   free( name );
+   free( desc );
+   return c;
 }
 
 
