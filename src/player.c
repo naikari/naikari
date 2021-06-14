@@ -1176,12 +1176,15 @@ void player_weapSetPress( int id, double value, int repeat )
 {
    int type;
 
+   if (player.p == NULL)
+      return;
+
    if (repeat)
       return;
 
    type = (value>=0) ? +1 : -1;
 
-   if ((type>0) && ((player.p == NULL) || toolkit_isOpen()))
+   if ((type>0) && toolkit_isOpen())
       return;
 
    if ((type>0) && (pilot_isFlag(player.p, PILOT_HYP_PREP) ||
