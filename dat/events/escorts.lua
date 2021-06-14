@@ -375,17 +375,20 @@ end
 
 
 function player_attacked( p, attacker, dmg )
-   if attacker then
-      for i, edata in ipairs(escorts) do
-         if attacker == edata.pilot then
-            if edata.alive then
-               pilot_disbanded(edata)
-               player.msg( string.format(
-                  _("%s has left your wing and turned against you!"),
-                  edata.name ) )
-            end
-            return
+   -- Must have an attacker
+   if attacker == nil or not attacker:exists() then
+      return
+   end
+
+   for i, edata in ipairs(escorts) do
+      if attacker == edata.pilot then
+         if edata.alive then
+            pilot_disbanded(edata)
+            player.msg( string.format(
+               _("%s has left your wing and turned against you!"),
+               edata.name ) )
          end
+         return
       end
    end
 end
@@ -394,17 +397,19 @@ end
 -- Check if player attacked his own escort
 function pilot_attacked( p, attacker, dmg, arg )
    -- Must have an attacker
-   if attacker then
-      local pp = player.pilot()
-      if attacker == pp or attacker:leader() == pp then
-         -- Since all the escorts will turn on the player, we might as well
-         -- just have them all disband at once and attack.
-         for i, edata in ipairs(escorts) do
-            pilot_disbanded(edata)
-            edata.pilot:setHostile()
-         end
-         player.msg(_("You have caused infighting within your wing, causing all of your escorts to quit and turn on you in retaliation!"))
+   if attacker == nil or not attacker:exists() then
+      return
+   end
+
+   local pp = player.pilot()
+   if attacker == pp or attacker:leader() == pp then
+      -- Since all the escorts will turn on the player, we might as well
+      -- just have them all disband at once and attack.
+      for i, edata in ipairs(escorts) do
+         pilot_disbanded(edata)
+         edata.pilot:setHostile()
       end
+      player.msg(_("You have caused infighting within your wing, causing all of your escorts to quit and turn on you in retaliation!"))
    end
 end
 
