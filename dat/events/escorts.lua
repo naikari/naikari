@@ -337,7 +337,7 @@ end
 function pilot_disbanded( edata )
    edata.alive = false
    local p = edata.pilot
-   if p and p:exists() then
+   if p ~= nil and p:exists() then
       p:setLeader(nil)
       p:setVisplayer(false)
       p:setInvincPlayer(false)
