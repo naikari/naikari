@@ -746,17 +746,20 @@ static void weapons_renderLegend( double bx, double by, double bw, double bh, vo
    (void) data;
    (void) bw;
    (void) bh;
-   double y;
+   double x, y;
 
+   x = bx+1;
    y = by+bh-20;
    gl_print( &gl_defFont, bx, y, &cFontWhite, _("Legend") );
 
    y -= 30.;
-   toolkit_drawRect( bx, y, 10, 10, &cWhite, NULL );
-   gl_print( &gl_smallFont, bx+20, y, &cFontWhite, _("Primary Weapon (Left click toggles)") );
+   toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
+   toolkit_drawTriangle( x, y, x+10, y+5, x, y+10, &cWhite );
+   gl_print( &gl_smallFont, x+20, y, &cFontWhite, _("Primary Weapon (Left click toggles)") );
 
    y -= 25.;
-   toolkit_drawRect( bx, y, 10, 10, &cBlack, NULL );
+   toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
+   toolkit_drawTriangle( x, y, x+10, y+5, x, y+10, &cBlack );
    gl_print( &gl_smallFont, bx+20, y, &cFontWhite, _("Secondary Weapon (Right click toggles)") );
 }
 
