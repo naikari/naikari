@@ -80,10 +80,10 @@ function createPilotNPCs ()
       { ship = "Vendetta", royalty = 0.2 },
       { ship = "Lancelot", royalty = 0.2 },
       { ship = "Ancestor", royalty = 0.25 },
-      { ship = "Admonisher", royalty = 0.3 },
-      { ship = "Phalanx", royalty = 0.3 },
-      { ship = "Pacifier", royalty = 0.35 },
-      { ship = "Vigilance", royalty = 0.35 },
+      { ship = "Admonisher", royalty = 0.35 },
+      { ship = "Phalanx", royalty = 0.35 },
+      { ship = "Pacifier", royalty = 0.5 },
+      { ship = "Vigilance", royalty = 0.5 },
    }
    local num_pilots = rnd.rnd(0, 5)
    local fac = faction.get("Mercenary")
@@ -97,8 +97,8 @@ function createPilotNPCs ()
          { ship = "Pirate Shark", royalty = 0.15 },
          { ship = "Pirate Vendetta", royalty = 0.2 },
          { ship = "Pirate Ancestor", royalty = 0.25 },
-         { ship = "Pirate Admonisher", royalty = 0.3 },
-         { ship = "Pirate Phalanx", royalty = 0.3 },
+         { ship = "Pirate Admonisher", royalty = 0.35 },
+         { ship = "Pirate Phalanx", royalty = 0.35 },
       }
       fac = faction.get("Pirate")
       name_func = pirate_name
@@ -107,8 +107,8 @@ function createPilotNPCs ()
       ship_choices = {
          { ship = "Thurion Ingenuity", royalty = 0.15 },
          { ship = "Thurion Scintillation", royalty = 0.25 },
-         { ship = "Thurion Virtuosity", royalty = 0.3 },
-         { ship = "Thurion Apprehension", royalty = 0.4 },
+         { ship = "Thurion Virtuosity", royalty = 0.35 },
+         { ship = "Thurion Apprehension", royalty = 0.5 },
       }
       fac = faction.get("Thurion")
       portrait_arg = "Thurion"
