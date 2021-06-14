@@ -18,6 +18,8 @@ TeraCom's Mace launcher uses an advanced reload mechanism that allows the launch
   <reload_time>6</reload_time>
   <amount>75</amount>
   <track>2</track>
+  <rdr_range>2600</rdr_range>
+  <rdr_range_max>3400</rdr_range_max>
   <swivel>22</swivel>
  </specific>
 </outfit>

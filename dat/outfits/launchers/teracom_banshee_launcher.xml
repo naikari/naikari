@@ -16,6 +16,8 @@
   <reload_time>90</reload_time>
   <amount>30</amount>
   <track>2</track>
+  <rdr_range>3300</rdr_range>
+  <rdr_range_max>4300</rdr_range_max>
   <swivel>22</swivel>
  </specific>
 </outfit>
