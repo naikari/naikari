@@ -760,7 +760,7 @@ static void weapons_renderLegend( double bx, double by, double bw, double bh, vo
    y -= 25.;
    toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
    toolkit_drawTriangle( x, y, x+10, y+5, x, y+10, &cBlack );
-   gl_print( &gl_smallFont, bx+20, y, &cFontWhite, _("Secondary Weapon (Right click toggles)") );
+   gl_print( &gl_smallFont, x+20, y, &cFontWhite, _("Secondary Weapon (Right click toggles)") );
 }
 
 
