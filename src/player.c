@@ -204,7 +204,7 @@ static void player_newSetup()
    /* Clean up player stuff if we'll be recreating. */
    player_cleanup();
 
-   /* Sane time defaults. */
+   /* Reasonable time defaults. */
    player.last_played = time(NULL);
    player.date_created = player.last_played;
    player.time_since_save = player.last_played;
