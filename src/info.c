@@ -266,7 +266,7 @@ static void info_openMain( unsigned int wid )
    buf = player_getLicenses();
    nlicenses = array_size( buf );
    /* List. */
-   if(nlicenses == 0){
+   if (nlicenses == 0) {
      licenses = malloc(sizeof(char*));
      licenses[0] = strdup(_("None"));
    } else {
