@@ -213,8 +213,8 @@ static void info_openMain( unsigned int wid )
 
    /* pilot generics */
    nt = ntime_pretty( ntime_get(), 2 );
-   window_addText( wid, 40, 20, 120, h-80,
-         0, "txtDPilot", &gl_smallFont, NULL,
+   window_addText( wid, 40, 20, 200, h-80,
+         0, "txtDPilot", &gl_defFont, NULL,
          _("#nPilot:\n"
          "Date:\n"
          "\n"
@@ -250,9 +250,9 @@ static void info_openMain( unsigned int wid )
          player.dmg_done_shield + player.dmg_done_armour,
          player.dmg_taken_shield + player.dmg_taken_armour,
          destroyed );
-   window_addText( wid, 180, 20,
-         w-80-200-40+20-180, h-80,
-         0, "txtPilot", &gl_smallFont, NULL, str );
+   window_addText( wid, 40+200, 20,
+         w-40-200-20-2*BUTTON_WIDTH-20, h-80,
+         0, "txtPilot", &gl_defFont, NULL, str );
    free(nt);
 
    /* menu */
@@ -275,9 +275,9 @@ static void info_openMain( unsigned int wid )
         licenses[i] = strdup( _(buf[i]) );
       qsort( licenses, nlicenses, sizeof(char*), strsort );
    }
-   window_addText( wid, -20, -40, w-80-200-40-40, 20, 1, "txtList",
+   window_addText( wid, -20, -40, 2*BUTTON_WIDTH+20, 20, 1, "txtList",
          NULL, NULL, _("Licenses") );
-   window_addList( wid, -20, -70, w-80-200-40-40, h-110-BUTTON_HEIGHT,
+   window_addList( wid, -20, -70, 2*BUTTON_WIDTH+20, h-110-BUTTON_HEIGHT,
          "lstLicenses", licenses, MAX(nlicenses, 1), 0, NULL, NULL );
 }
 
