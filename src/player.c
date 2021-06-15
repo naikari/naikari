@@ -3171,7 +3171,7 @@ Planet* player_load( xmlNodePtr parent )
    pnt = NULL;
    map_cleanup();
 
-   /* Sane time defaults. */
+   /* Reasonable time defaults. */
    player.last_played = time(NULL);
    player.date_created = player.last_played;
    player.time_since_save = player.last_played;

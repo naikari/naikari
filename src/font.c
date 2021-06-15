@@ -265,7 +265,7 @@ static int gl_fontAddGlyphTex( glFontStash *stsh, font_char_t *ch, glFontGlyph *
       glGenTextures( 1, &tex->id );
       glBindTexture( GL_TEXTURE_2D, tex->id );
 
-      /* Set a sane default minification and magnification filter. */
+      /* Set a reasonable default minification and magnification filter. */
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, stsh->magfilter);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, stsh->minfilter);
 

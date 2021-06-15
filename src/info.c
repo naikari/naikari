@@ -137,8 +137,8 @@ void menu_info( int window )
    }
 
    /* Dimensions. */
-   w = 640;
-   h = 600;
+   w = 800;
+   h = 640;
 
    /* Create the window. */
    info_wid = window_create( "wdwInfo", _("Info"), -1, -1, w, h );
@@ -544,25 +544,25 @@ static void info_openWeapons( unsigned int wid )
 
    /* Checkboxes. */
    wlen = w - 220 - 20;
-   y -=100;
+   y -= 100;
    window_addText( wid, 220, y, wlen, 20, 0, "txtLocal", NULL, NULL,
          _("Current Set Settings"));
-   y -= 20;
-   window_addCheckbox( wid, 240, y, wlen, BUTTON_HEIGHT,
+   y -= 30;
+   window_addCheckbox( wid, 220, y, wlen, 20,
          "chkFire", _("Enable instant mode (only for weapons)"), weapons_fire,
          (pilot_weapSetTypeCheck( player.p, info_eq_weaps.weapons )==WEAPSET_TYPE_WEAPON) );
-   y -= 30;
-   window_addCheckbox( wid, 240, y, wlen, BUTTON_HEIGHT,
+   y -= 25;
+   window_addCheckbox( wid, 220, y, wlen, 20,
          "chkInrange", _("Only shoot weapons that are in range"), weapons_inrange,
          pilot_weapSetInrangeCheck( player.p, info_eq_weaps.weapons ) );
    y -= 40;
    window_addText( wid, 220, y, wlen, 20, 0, "txtGlobal", NULL, NULL,
          _("Global Settings"));
-   y -= 20;
-   window_addCheckbox( wid, 240, y, wlen, BUTTON_HEIGHT,
-         "chkAutoweap", _("Automatically handle weapons"), weapons_autoweap, player.p->autoweap );
    y -= 30;
-   window_addCheckbox( wid, 240, y, wlen, BUTTON_HEIGHT,
+   window_addCheckbox( wid, 220, y, wlen, 20,
+         "chkAutoweap", _("Automatically handle weapons"), weapons_autoweap, player.p->autoweap );
+   y -= 25;
+   window_addCheckbox( wid, 220, y, wlen, 20,
          "chkHelper", _("Dogfight aiming helper"), aim_lines, player.p->aimLines );
 
    /* List. Has to be generated after checkboxes. */
