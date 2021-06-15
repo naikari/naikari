@@ -143,7 +143,7 @@ static unsigned int npc_add_giver( Mission *misn )
 {
    NPC_t npc;
 
-   /* Sanity check. */
+   /* Safety check. */
    if (misn->npc == NULL) {
       WARN(_("Mission '%s' trying to create NPC with no name!"), misn->data->name);
       return 0;
