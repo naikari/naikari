@@ -607,7 +607,7 @@ void loadscreen_render( double done, const char *msg )
    /* Get rid of events again. */
    while (SDL_PollEvent(&event));
 
-   /* Flip buffers. HACK: Also try to catch a late-breaking resize from the WM (...or a crazy user?). */
+   /* Flip buffers. HACK: Also try to catch a late-breaking resize from the WM. */
    SDL_GL_SwapWindow( gl_screen.window );
    naev_resize();
 }
