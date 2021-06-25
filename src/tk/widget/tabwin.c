@@ -415,8 +415,6 @@ static void tab_render( Widget* tab, double bx, double by )
       /* Go to next line. */
       x += (TAB_HPADDING * 2) + TAB_HMARGIN + tab->dat.tab.namelen[i];
    }
-
-
 }
 
 
