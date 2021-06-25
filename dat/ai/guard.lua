@@ -14,8 +14,8 @@ mem.bribe_no      = _("You can't bribe me!")
 mem.refuel_no     = _("I won't give you fuel!")
 mem.guardpos      = vec2.new( 0, 0 ) -- defaults to origin
 mem.guardbrake    = 500
-mem.guarddodist   = 5000 -- distance at which to start activities
-mem.guardreturndist = 7000 -- distance at which to return
+mem.guarddodist   = 3000 -- distance at which to start activities
+mem.guardreturndist = 6000 -- distance at which to return
 mem.enemyclose    = mem.guarddodist
 
 function create ()
