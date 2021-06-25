@@ -20,6 +20,9 @@ mem.enemyclose    = mem.guarddodist
 function create ()
    -- Choose attack format
    attack_choose()
+
+   -- Finish up creation
+   create_post()
 end
 
 local function gdist( t )
