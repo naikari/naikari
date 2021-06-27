@@ -144,6 +144,9 @@ static const ShipStatsLookup ss_lookup[] = {
    DI_ELEM( SS_TYPE_D_COOLDOWN_TIME,      cooldown_time,       N_("%+.0f%% Ship Cooldown Time") ),
    D__ELEM( SS_TYPE_D_JUMP_DISTANCE,      jump_distance,       N_("%+.0f%% Jump Distance") ),
 
+   A__ELEM( SS_TYPE_A_THRUST_BASE,        thrust_base,         N_("%+.0f MN/t Thrust") ),
+   A__ELEM( SS_TYPE_A_TURN_BASE,          turn_base,           N_("%+.0f deg/s Turn Rate") ),
+   A__ELEM( SS_TYPE_A_SPEED_BASE,         speed_base,          N_("%+.0f km/s Maximum Speed") ),
    A__ELEM( SS_TYPE_A_ENERGY_FLAT,        energy_flat,         N_("%+.0f GJ Energy Capacity") ),
    AI_ELEM( SS_TYPE_A_ENERGY_REGEN_FLAT,  energy_usage,        N_("%+.0f GW Energy Usage") ),
    AI_ELEM( SS_TYPE_A_ENERGY_LOSS,        energy_loss,         N_("%+.0f GW Energy Loss") ),
@@ -367,7 +370,6 @@ int ss_statsModSingle( ShipStats *stats, const ShipStatList* list )
          if (*dbl < 0.) /* Don't let the values go negative. */
             *dbl = 0.;
          break;
-
 
       case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
          fieldptr = &ptr[ sl->offset ];

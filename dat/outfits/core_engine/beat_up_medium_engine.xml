@@ -10,9 +10,9 @@
   <gfx_store>engine03.png</gfx_store>
  </general>
  <specific type="modification">
-  <thrust>60</thrust>
-  <turn>55</turn>
-  <speed>105</speed>
+  <thrust_base>60</thrust_base>
+  <turn_base>55</turn_base>
+  <speed_base>105</speed_base>
   <fuel>400</fuel>
   <energy_usage>2</energy_usage>
   <engine_limit>550</engine_limit>

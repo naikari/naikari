@@ -1712,10 +1712,6 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
 
          continue;
       }
-      /* movement */
-      xmlr_float(node,"thrust",temp->u.mod.thrust);
-      xmlr_float(node,"turn",temp->u.mod.turn);
-      xmlr_float(node,"speed",temp->u.mod.speed);
       /* health */
       xmlr_float(node,"armour",temp->u.mod.armour);
       xmlr_float(node,"shield",temp->u.mod.shield);
@@ -1805,9 +1801,6 @@ if ((x) != 0) \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, s, x ); \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "#0" ); \
    } while(0)
-   DESC_ADD( temp->u.mod.thrust,       _("%+g MN/t Thrust") );
-   DESC_ADD( temp->u.mod.turn,         _("%+g deg/s Turn Rate") );
-   DESC_ADD( temp->u.mod.speed,        _("%+g km/s Maximum Speed") );
    DESC_ADD( temp->u.mod.armour,       _("%+g GJ Armor Capacity") );
    DESC_ADD( temp->u.mod.shield,       _("%+g GJ Shield Capacity") );
    DESC_ADD( temp->u.mod.energy,       _("%+g GJ Energy Capacity") );
@@ -1820,7 +1813,6 @@ if ((x) != 0) \
 #undef DESC_ADD
 
    /* More processing. */
-   temp->u.mod.turn       *= M_PI / 180.;
    temp->u.mod.absorb     /= 100.;
 }
 

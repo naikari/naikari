@@ -1000,7 +1000,6 @@ void pilot_calcStats( Pilot* pilot )
       if (slot->lua_mem != LUA_NOREF)
          ss_statsMerge( &pilot->stats, &slot->lua_stats );
 
-
       /* TODO these mods should probably be all moved into shipstats. */
       if (outfit_isMod(o)) { /* Modification */
          /* Active outfits must be on to affect stuff. */
@@ -1008,10 +1007,6 @@ void pilot_calcStats( Pilot* pilot )
             continue;
          /* Add stats. */
          ss_statsModFromList( s, o->stats );
-         /* Movement. */
-         pilot->thrust_base   += o->u.mod.thrust;
-         pilot->turn_base     += o->u.mod.turn;
-         pilot->speed_base    += o->u.mod.speed;
          /* Health. */
          pilot->dmg_absorb    += o->u.mod.absorb;
          pilot->armour_max    += o->u.mod.armour;
@@ -1041,9 +1036,6 @@ void pilot_calcStats( Pilot* pilot )
       }
    }
 
-   if (!pilot_isFlag( pilot, PILOT_AFTERBURNER ))
-      pilot->solid->speed_max = pilot->speed;
-
    /* Merge stats. */
    ss_statsMerge( &pilot->stats, &pilot->intrinsic_stats );
 
@@ -1054,6 +1046,9 @@ void pilot_calcStats( Pilot* pilot )
     * Relative increases.
     */
    /* Movement. */
+   pilot->thrust_base  += s->thrust_base;
+   pilot->turn_base    += s->turn_base * M_PI / 180.;
+   pilot->speed_base   += s->speed_base;
    pilot->thrust_base  *= s->thrust_mod;
    pilot->turn_base    *= s->turn_mod;
    pilot->speed_base   *= s->speed_mod;
@@ -1073,6 +1068,10 @@ void pilot_calcStats( Pilot* pilot )
    /* Misc. */
    pilot->cap_cargo    *= s->cargo_mod;
    s->engine_limit     *= s->engine_limit_rel;
+
+   /* Set maximum speed. */
+   if (!pilot_isFlag( pilot, PILOT_AFTERBURNER ))
+      pilot->solid->speed_max = pilot->speed_base;
 
    /*
     * Flat increases.
