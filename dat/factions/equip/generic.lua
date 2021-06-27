@@ -1312,8 +1312,7 @@ equip_shipOutfits_structurals = {}
 -- @brief Wrapper for pilot.addOutfit that prints a warning if no outfits added.
 --]]
 function equip_warn( p, outfit, q, bypass )
-   if q == nil then q = 1 end
-   if bypass == nil then bypass = false end
+   q = q or 1
    local r = pilot.addOutfit( p, outfit, q, bypass )
    if r <= 0 then
       warn( string.format( _("Could not equip %s on pilot %s!"), outfit, p:name() ) )
