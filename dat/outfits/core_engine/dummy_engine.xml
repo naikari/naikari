@@ -10,9 +10,9 @@
   <gfx_store>engine04.png</gfx_store>
  </general>
  <specific type="modification">
-  <thrust_base>0</thrust_base>
-  <turn_base>0</turn_base>
-  <speed_base>0</speed_base>
+  <thrust>0</thrust>
+  <turn>0</turn>
+  <speed>0</speed>
   <fuel>0</fuel>
   <energy_usage>0</energy_usage>
   <engine_limit>100</engine_limit>

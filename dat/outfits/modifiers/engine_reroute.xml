@@ -11,7 +11,7 @@
   <cpu>-1</cpu>
  </general>
  <specific type="modification">
-  <thrust_base>10</thrust_base>
+  <thrust>10</thrust>
   <thrust_mod>10</thrust_mod>
   <energy_usage>2</energy_usage>
  </specific>

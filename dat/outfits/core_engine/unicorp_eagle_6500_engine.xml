@@ -11,9 +11,9 @@
   <gfx_store>engine11.png</gfx_store>
  </general>
  <specific type="modification">
-  <thrust_base>37</thrust_base>
-  <turn_base>45</turn_base>
-  <speed_base>65</speed_base>
+  <thrust>37</thrust>
+  <turn>45</turn>
+  <speed>65</speed>
   <fuel>1200</fuel>
   <energy_usage>30</energy_usage>
   <engine_limit>6500</engine_limit>
