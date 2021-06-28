@@ -159,6 +159,9 @@ static const ShipStatsLookup ss_lookup[] = {
    A__ELEM( SS_TYPE_A_ENGINE_LIMIT,       engine_limit,        N_("%+.0f t Engine Mass Limit") ),
    A__ELEM( SS_TYPE_A_ABSORB_FLAT,        absorb_flat,         N_("%+.0f pp Damage Absorption") ),
 
+   I__ELEM( SS_TYPE_I_FUEL,               fuel,                N_("%+d hL Fuel") ),
+   I__ELEM( SS_TYPE_I_CARGO,              cargo,               N_("%+d t Cargo") ),
+
    B__ELEM( SS_TYPE_B_INSTANT_JUMP,       misc_instant_jump,   N_("Instant Jump") ),
    B__ELEM( SS_TYPE_B_REVERSE_THRUST,     misc_reverse_thrust, N_("Reverse Thrusters") ),
    B__ELEM( SS_TYPE_B_ASTEROID_SCAN,      misc_asteroid_scan,  N_("Asteroid Scanner") ),

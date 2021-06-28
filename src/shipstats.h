@@ -118,6 +118,8 @@ typedef enum ShipStatsType_ {
    /*
     * I: Integer type data. Should be continuous.
     */
+   SS_TYPE_I_FUEL,              /**< Fuel bonus. */
+   SS_TYPE_I_CARGO,             /**< Cargo bonus. */
 
    /*
     * B: Boolean type data. Should be continuous.
@@ -259,6 +261,8 @@ typedef struct ShipStats_ {
    int misc_instant_jump;    /**< Do not require brake or chargeup to jump. */
    int misc_reverse_thrust;  /**< Slows down the ship instead of turning it around. */
    int misc_asteroid_scan;   /**< Able to scan asteroids. */
+   int fuel;                  /**< Maximum fuel modifier. */
+   int cargo;                 /**< Maximum cargo modifier. */
    double loot_mod;           /**< Boarding loot reward bonus. */
    double time_mod;           /**< Time dilation modifier. */
    double time_speedup;       /**< Makes the pilot operate at higher speeds. */
