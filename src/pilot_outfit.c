@@ -1000,15 +1000,13 @@ void pilot_calcStats( Pilot* pilot )
       if (slot->lua_mem != LUA_NOREF)
          ss_statsMerge( &pilot->stats, &slot->lua_stats );
 
-      /* TODO these mods should probably be all moved into shipstats. */
+      /* Apply modifications. */
       if (outfit_isMod(o)) { /* Modification */
          /* Active outfits must be on to affect stuff. */
          if (slot->active && !(slot->state==PILOT_OUTFIT_ON))
             continue;
          /* Add stats. */
          ss_statsModFromList( s, o->stats );
-         /* Health. */
-         pilot->dmg_absorb    += o->u.mod.absorb;
 
       }
       else if (outfit_isAfterburner(o)) { /* Afterburner */
@@ -1093,7 +1091,7 @@ void pilot_calcStats( Pilot* pilot )
    pilot->energy_loss  += s->energy_loss;
    pilot->rdr_range    += s->rdr_range;
    pilot->rdr_jump_range += s->rdr_jump_range;
-   pilot->dmg_absorb    = MAX( 0., pilot->dmg_absorb + s->absorb_flat/100. );
+   pilot->dmg_absorb    = CLAMP( 0., 1., pilot->dmg_absorb + s->absorb/100. );
 
    /* Give the pilot his health proportion back */
    pilot->armour = ac * pilot->armour_max;

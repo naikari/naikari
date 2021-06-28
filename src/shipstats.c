@@ -163,7 +163,7 @@ static const ShipStatsLookup ss_lookup[] = {
    A__ELEM( SS_TYPE_A_CPU_MAX,            cpu_max,             N_("%+.0f TFLOPS CPU Capacity") ),
 
    A__ELEM( SS_TYPE_A_ENGINE_LIMIT,       engine_limit,        N_("%+.0f t Engine Mass Limit") ),
-   A__ELEM( SS_TYPE_A_ABSORB_FLAT,        absorb_flat,         N_("%+.0f pp Damage Absorption") ),
+   A__ELEM( SS_TYPE_A_ABSORB,             absorb,              N_("%+.0f pp Damage Absorption") ),
 
    I__ELEM( SS_TYPE_I_FUEL,               fuel,                N_("%+d hL Fuel") ),
    I__ELEM( SS_TYPE_I_CARGO,              cargo,               N_("%+d t Cargo") ),

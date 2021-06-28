@@ -1712,8 +1712,6 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
 
          continue;
       }
-      /* health */
-      xmlr_float(node,"absorb", temp->u.mod.absorb );
       /* Lua stuff. */
       if (xml_isNode(node,"lua")) {
          nlua_env env;
@@ -1783,19 +1781,6 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
    if (temp->limit != NULL)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
             _("\n%s (limit 1 per ship)"), _(temp->limit) );
-
-#define DESC_ADD(x, s) \
-if ((x) != 0) \
-   do { \
-      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "\n#%c%s", ((x)>0)?'g':'r', ((x)>0)?"":"!! " ); \
-      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, s, x ); \
-      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "#0" ); \
-   } while(0)
-   DESC_ADD( temp->u.mod.absorb,       _("%+g pp Absorption") );
-#undef DESC_ADD
-
-   /* More processing. */
-   temp->u.mod.absorb     /= 100.;
 }
 
 
