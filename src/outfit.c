@@ -2503,14 +2503,22 @@ int outfit_load (void)
       o = &outfit_stack[i];
       if (outfit_isLauncher(&outfit_stack[i])) {
          o->u.lau.ammo = outfit_get( o->u.lau.ammo_name );
-         if (outfit_isSeeker(o) && /* Smart seekers. */
-               (o->u.lau.ammo->u.amm.ai)) {
+         if (outfit_isSeeker(o) /* Smart seekers. */
+               && (o->u.lau.ammo->u.amm.ai)) {
             if (o->u.lau.ew_target == 0.)
                WARN(_("Outfit '%s' missing/invalid 'ew_target' element"), o->name);
             if (o->u.lau.lockon == 0.)
                WARN(_("Outfit '%s' missing/invalid 'lockon' element"), o->name);
             if (!outfit_isTurret(o) && (o->u.lau.arc == 0.))
                WARN(_("Outfit '%s' missing/invalid 'arc' element"), o->name);
+            /* Avoid redundant warnings */
+            if ((o->u.lau.swivel == 0.)
+                  && (o->type != OUTFIT_TYPE_TURRET_LAUNCHER)) {
+               if (o->u.lau.rdr_range == 0.)
+                  WARN(_("Outfit '%s' missing/invalid 'rdr_range' element"), o->name);
+               if (o->u.lau.rdr_range_max == 0.)
+                  WARN(_("Outfit '%s' missing/invalid 'rdr_range_max' element"), o->name);
+            }
          }
 
          outfit_launcherDesc(o);
