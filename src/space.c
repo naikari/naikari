@@ -139,10 +139,10 @@ static int getPresenceIndex( StarSystem *sys, int faction );
 static void system_scheduler( double dt, int init );
 static void asteroid_explode ( Asteroid *a, AsteroidAnchor *field, int give_reward );
 /* Render. */
-static void space_renderJumpPoint( JumpPoint *jp, int i );
-static void space_renderPlanet( Planet *p );
-static void space_renderAsteroid( Asteroid *a );
-static void space_renderDebris( Debris *d, double x, double y );
+static void space_renderJumpPoint( const JumpPoint *jp, int i );
+static void space_renderPlanet( const Planet *p );
+static void space_renderAsteroid( const Asteroid *a );
+static void space_renderDebris( const Debris *d, double x, double y );
 /*
  * Externed prototypes.
  */
@@ -3381,7 +3381,7 @@ void planets_render (void)
 /**
  * @brief Renders a jump point.
  */
-static void space_renderJumpPoint( JumpPoint *jp, int i )
+static void space_renderJumpPoint( const JumpPoint *jp, int i )
 {
    const glColour *c;
 
@@ -3409,7 +3409,7 @@ static void space_renderJumpPoint( JumpPoint *jp, int i )
 /**
  * @brief Renders a planet.
  */
-static void space_renderPlanet( Planet *p )
+static void space_renderPlanet( const Planet *p )
 {
    gl_blitSprite( p->gfx_space, p->pos.x, p->pos.y, 0, 0, NULL );
 }
@@ -3418,7 +3418,7 @@ static void space_renderPlanet( Planet *p )
 /**
  * @brief Renders an asteroid.
  */
-static void space_renderAsteroid( Asteroid *a )
+static void space_renderAsteroid( const Asteroid *a )
 {
    int i;
    double scale, nx, ny;
@@ -3458,7 +3458,7 @@ static void space_renderAsteroid( Asteroid *a )
 /**
  * @brief Renders a debris.
  */
-static void space_renderDebris( Debris *d, double x, double y )
+static void space_renderDebris( const Debris *d, double x, double y )
 {
    double scale;
    Vector2d *testVect;
