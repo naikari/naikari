@@ -15,5 +15,7 @@
   <reload_time>40</reload_time>
   <amount>18</amount>
   <track>1.5</track>
+  <rdr_range>650</rdr_range>
+  <rdr_range_max>900</rdr_range_max>
  </specific>
 </outfit>
