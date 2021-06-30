@@ -818,9 +818,9 @@ void land_updateMainTab (void)
 {
    char buf[STRMAX], cred[ECON_CRED_STRLEN], tons[STRMAX_SHORT], pop[STRMAX_SHORT];
    Outfit *o;
-   uint64_t p = land_planet->population;
+   unsigned long long p = land_planet->population;
 
-   snprintf( pop, sizeof(pop), n_("%lu person", "%lu people", p), p );
+   snprintf( pop, sizeof(pop), n_("%llu person", "%llu people", p), p );
 
    /* Update credits. */
    tonnes2str( tons, player.p->cargo_free );

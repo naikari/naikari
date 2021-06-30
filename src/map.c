@@ -1898,20 +1898,19 @@ static void map_buttonZoom( unsigned int wid, char* str )
 static void map_genModeList(void)
 {
    int i,j,k,l;
-   int tot=0;
    Planet *p;
    StarSystem *sys;
    int totGot = 0;
    const char *odd_template, *even_template, *commod_text;
 
-   if ( commod_known == NULL )
+   if (commod_known == NULL)
       commod_known = malloc(sizeof(Commodity*) * commodity_getN());
+
    memset(commod_known,0,sizeof(Commodity*)*commodity_getN());
    for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
-      for ( j=0 ; j<array_size(sys->planets); j++) {
+      for (j=0; j<array_size(sys->planets); j++) {
          p = sys->planets[j];
-         tot += array_size( p->commodities );
          for ( k=0; k<array_size(p->commodities); k++) {
             if ( p->commodityPrice[k].cnt > 0 ) {/*commodity is known about*/
                /* find out which commodity this is */
@@ -1919,7 +1918,7 @@ static void map_genModeList(void)
                   if ( p->commodities[k] == commod_known[l] )
                      break;
                }
-               if ( l == totGot ) {
+               if (l == totGot) {
                   commod_known[totGot] = p->commodities[k];
                   totGot++;
                }
@@ -1928,7 +1927,7 @@ static void map_genModeList(void)
          }
       }
    }
-   for ( i=0; i<array_size(map_modes); i++)
+   for (i=0; i<array_size(map_modes); i++)
       free( map_modes[i] );
    array_free ( map_modes );
    map_modes = array_create_size( char*, 2*totGot + 1 );
@@ -1937,7 +1936,7 @@ static void map_genModeList(void)
 
    even_template = _("%s: Cost");
    odd_template = _("%s: Trade");
-   for ( i=0; i<totGot; i++ ) {
+   for (i=0; i<totGot; i++) {
       commod_text = _(commod_known[i]->name);
       asprintf( &array_grow( &map_modes ), even_template, commod_text );
       asprintf( &array_grow( &map_modes ), odd_template, commod_text );

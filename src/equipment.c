@@ -713,7 +713,6 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    int pos;
    Outfit *o;
    CstSlotWidget *wgt;
-   double mass;
 
    /* Get data. */
    wgt = (CstSlotWidget*) data;
@@ -781,12 +780,6 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
                "\n\n%s", _( sp_description( slot->sslot->slot.spid ) ) );
       toolkit_drawAltText( bx + wgt->altx, by + wgt->alty, alt );
       return;
-   }
-
-   mass = o->mass;
-   if ((outfit_isLauncher(o) || outfit_isFighterBay(o)) &&
-         (outfit_ammo(o) != NULL)) {
-      mass += outfit_amount(o) * outfit_ammo(o)->mass;
    }
 
    /* Get text. */
