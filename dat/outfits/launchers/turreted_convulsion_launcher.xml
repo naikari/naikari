@@ -21,5 +21,7 @@ This launcher is mounted on a turret and has more ammo capacity than the standar
   <lockon>5</lockon>
   <ew_target>3</ew_target>
   <track>2</track>
+  <rdr_range>6400</rdr_range>
+  <rdr_range_max>7400</rdr_range_max>
  </specific>
 </outfit>
