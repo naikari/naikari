@@ -1374,9 +1374,10 @@ void space_update( const double dt )
             a->timer += dt;
             if (a->timer >= ASTEROID_EXPLODE_INTERVAL) {
                a->timer = 0.;
-               if ( (RNGF() < ASTEROID_EXPLODE_CHANCE) ||
-                     (space_isInField(&a->pos) < 0) ) {
-                  asteroid_explode( a, ast, 0 );
+               if ( (RNGF() < ASTEROID_EXPLODE_CHANCE)
+                     || (space_isInField(&a->pos) < 0) ) {
+                  asteroid_explode( a, ast,
+                        (a->armour < asteroid_types[a->type].armour) );
                }
             }
          }
