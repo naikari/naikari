@@ -487,36 +487,36 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          }
       }
    } else {
-   /* display planet info */
-   p = cur_planetObj_sel;
+      /* display planet info */
+      p = cur_planetObj_sel;
 
-   cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
-      _("#%c%s%s#0\nPlanetary class: %s\n"), planet_getColourChar(p),
-      planet_getSymbol(p), _(p->name), p->class );
+      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
+         _("#%c%s%s#0\nPlanetary class: %s\n"), planet_getColourChar(p),
+         planet_getSymbol(p), _(p->name), p->class );
 
-   if (p->faction > 0)
-      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: %s\n"),
-            faction_shortname(p->faction) );
-   else
-      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: None\n") );
+      if (p->faction > 0)
+         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: %s\n"),
+               faction_shortname(p->faction) );
+      else
+         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: None\n") );
 
-   hasService = 0;
-   cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("\nServices:\n") );
+      hasService = 0;
+      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("\nServices:\n") );
 
-   for (i=1; i<PLANET_SERVICES_MAX; i<<=1) {
-      if (planet_hasService(p, i)) {
-         hasService = 1;
-         name = planet_getServiceName(i);
-         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, "%s\n", _(name) );
+      for (i=1; i<PLANET_SERVICES_MAX; i<<=1) {
+         if (planet_hasService(p, i)) {
+            hasService = 1;
+            name = planet_getServiceName(i);
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, "%s\n", _(name) );
+         }
       }
-   }
 
-   if (!hasService)
-      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("None\n") );
+      if (!hasService)
+         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("None\n") );
 
-   txtHeight = gl_printHeightRaw( &gl_smallFont, (w - nameWidth-pitch-60)/2, buf );
-   gl_printTextRaw( &gl_smallFont, (w - nameWidth - pitch - 60) / 2, txtHeight,
-      bx + 10 + pitch + nameWidth, by + h - 10 - txtHeight, 0, &cFontWhite, -1., buf );
+      txtHeight = gl_printHeightRaw( &gl_smallFont, (w - nameWidth-pitch-60)/2, buf );
+      gl_printTextRaw( &gl_smallFont, (w - nameWidth - pitch - 60) / 2, txtHeight,
+         bx + 10 + pitch + nameWidth, by + h - 10 - txtHeight, 0, &cFontWhite, -1., buf );
    }
 
    /* show the trade/outfit/ship info */
