@@ -583,7 +583,6 @@
      - flf_*.png
      - frontier_*.png
      - proteron_*.png
-     - prototype_tiny.png
      - soromid_*.png
      - trader_*.png
    loading:
@@ -614,6 +613,10 @@
        - station-shipyard.webp
        - station-shipyard2.webp
        - station-sphere.webp
+    license: CC-by 3.0
+    outfit:
+      store:
+      - fidelity_fighter.png
 - BTAxis:
    license: PD
    gui:
