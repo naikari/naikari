@@ -316,8 +316,6 @@
      - legacy:
        - minimal_planet.png
        - minimal_pilot.png
-     - no.png
-     - yes.png
    planet:
      space:
        - jumpbuoy.webp
@@ -613,10 +611,6 @@
        - station-shipyard.webp
        - station-shipyard2.webp
        - station-sphere.webp
-    license: CC-by 3.0
-    outfit:
-      store:
-      - fidelity_fighter.png
 - BTAxis:
    license: PD
    gui:
