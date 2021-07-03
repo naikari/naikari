@@ -212,7 +212,7 @@ function check_stranded( missing )
 
    if services["shipyard"] then
       -- Get value of player's ship.
-      local _, playervalue = pp:ship():price()
+      local c, playervalue = pp:ship():price()
       for k,v in ipairs( pp:outfits() ) do
          playervalue = playervalue + v:price()
       end
@@ -229,7 +229,7 @@ function check_stranded( missing )
    -- to determine where the problem lies, so let the player sort it out.
    if #missing == 0 then
       for k,v in ipairs( pp:outfits() ) do
-         _, _, prop = v:slot()
+         n, s, prop = v:slot()
          if not prop then
             return false
          end
@@ -240,10 +240,10 @@ function check_stranded( missing )
 
    -- Add the player's other ships' outfits.
    if services["shipyard"] then
-      for _, s in ipairs( player.ships() ) do
+      for i, s in ipairs( player.ships() ) do
          if s ~= pp:name() then
             local outfits = player.shipOutfits(s)
-            for _, o in ipairs(outfits) do
+            for j, o in ipairs(outfits) do
                table.insert(inv, o)
             end
          end
@@ -262,7 +262,7 @@ function check_stranded( missing )
 
    local last  = nil
    local found = 0
-   for _,o in ipairs(inv) do
+   for i,o in ipairs(inv) do
       if #missing <= 0 then
          break
       end
@@ -270,7 +270,7 @@ function check_stranded( missing )
       -- Iterate to find outfits matching the size and property of the empty
       -- core outfit slots.
       if last and o ~= last then
-         _, osize, oprop = o:slot()
+         n, osize, oprop = o:slot()
          for k,r in ipairs(missing) do
             if osize == r.size and oprop == r.property then
                table.remove(missing, k)
@@ -314,7 +314,7 @@ function buildTables()
 
    -- Find equipped cores.
    for k,v in pairs(outfits) do
-      _, _, prop = v:slot()
+      n, s, prop = v:slot()
       if prop then
          equipped[ prop ] = v
          nequipped = nequipped + 1
@@ -336,7 +336,7 @@ function buildOutfitTable( size, property, outfits )
    local out = {}
 
    for k,v in ipairs( outfits ) do
-      local _, osize, oprop = v:slot()
+      local n, osize, oprop = v:slot()
       if size == osize and property == oprop then
          table.insert(out, v:nameRaw())
       end
@@ -351,7 +351,7 @@ function removeNonCores( slottype )
    local pp = player.pilot() -- Convenience.
 
    for k,v in pairs( pp:outfits() ) do
-      local slot, _, prop = v:slot()
+      local slot, s, prop = v:slot()
       if not prop and (not slottype or slot == slottype) then
          -- Store and remove old
          player.addOutfit(v:nameRaw())
@@ -384,7 +384,7 @@ function equipDefaults( defaults )
    local pp = player.pilot() -- Convenience.
 
    for k,v in ipairs( pp:outfits() ) do
-      local _, _, prop = v:slot()
+      local n, s, prop = v:slot()
 
       -- Remove if required but not default.
       if prop and v ~= defaults[prop].outfit then
@@ -420,15 +420,15 @@ function assessOutfits()
    local structure = false -- Ship has structure outfits.
 
    for k,v in pairs(equipped) do
-      local _, _, prop = v:slot()
+      local n, s, prop = v:slot()
       if required[prop] and v ~= required[prop].outfit then
          defaults = false
          break
       end
    end
 
-   for _,o in ipairs( player.pilot():outfits() ) do
-      local s, _, prop = o:slot()
+   for i,o in ipairs( player.pilot():outfits() ) do
+      local s, sz, prop = o:slot()
       if not prop and s == "Weapon" then
          weapons = true
       elseif not prop and s == "Utility" then
