@@ -18,5 +18,7 @@
   <lockon>10</lockon>
   <arc>120</arc>
   <ew_target>1.25</ew_target>
+  <rdr_range>3600</rdr_range>
+  <rdr_range_max>4400</rdr_range_max>
  </specific>
 </outfit>
