@@ -420,7 +420,7 @@ int space_calcJumpInPos( StarSystem *in, StarSystem *out, Vector2d *pos, Vector2
    y = jp->pos.y;
 
    /* Calculate offset from target position. */
-   a = 2*M_PI - jp->angle;
+   a = 2*M_PI - jp->angle + RNGF()*HYPERSPACE_ENTER_ARC - HYPERSPACE_ENTER_ARC/2;
    d = RNGF()*(HYPERSPACE_ENTER_MAX-HYPERSPACE_ENTER_MIN) + HYPERSPACE_ENTER_MIN;
 
    /* Calculate new position. */

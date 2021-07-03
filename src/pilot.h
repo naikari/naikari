@@ -34,6 +34,7 @@
 #define HYPERSPACE_VEL           2. * HYPERSPACE_THRUST*HYPERSPACE_FLY_DELAY /**< Velocity at hyperspace. */
 #define HYPERSPACE_ENTER_MIN     HYPERSPACE_VEL*0.2 /**< Minimum entering distance. */
 #define HYPERSPACE_ENTER_MAX     HYPERSPACE_VEL*0.3 /**< Maximum entering distance. */
+#define HYPERSPACE_ENTER_ARC     (M_PI/4) /**< Angle variance arc in radians when entering. */
 #define HYPERSPACE_EXIT_MIN      1500. /**< Minimum distance to begin jumping. */
 /* Land/takeoff. */
 #define PILOT_LANDING_DELAY      2. /**< Delay for land animation. */
