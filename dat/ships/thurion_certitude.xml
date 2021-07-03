@@ -21,6 +21,7 @@
  </health>
  <characteristics>
   <mass>2000</mass>
+  <fuel>1200</fuel>
   <fuel_consumption>400</fuel_consumption>
   <rdr_range>7500</rdr_range>
   <rdr_jump_range>3000</rdr_jump_range>

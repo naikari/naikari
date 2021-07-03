@@ -18,7 +18,7 @@
  </health>
  <characteristics>
   <mass>95</mass>
-  <fuel>200</fuel>
+  <fuel>300</fuel>
   <fuel_consumption>100</fuel_consumption>
   <rdr_range>7500</rdr_range>
   <rdr_jump_range>3000</rdr_jump_range>
