@@ -442,7 +442,7 @@ static void info_openShip( unsigned int wid )
          "\n"
          "Absorption:\n"
          "Shield:\n"
-         "Armour:\n"
+         "Armor:\n"
          "Energy:\n"
          "Cargo Space:\n"
          "Fuel:\n"

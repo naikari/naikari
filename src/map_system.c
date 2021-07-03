@@ -656,7 +656,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                    "#nTime Constant:#0 %.0f%%\n"
                    "#nAbsorption:#0 %.0f%% damage\n"
                    "#nShield:#0 %.0f GJ (%.1f GW)    "
-                   "#nArmour:#0 %.0f GJ (%.1f GW)\n"
+                   "#nArmor:#0 %.0f GJ (%.1f GW)\n"
                    "#nEnergy:#0 %.0f GJ (%.1f GW)\n"
                    "#nCargo Space:#0 %.0f t\n"
                    "#nFuel:#0 %d hL  "

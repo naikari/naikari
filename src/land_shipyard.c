@@ -126,7 +126,7 @@ void shipyard_open( unsigned int wid )
          "\n"
          "#nAbsorption:\n#0"
          "#nShield:\n#0"
-         "#nArmour:\n#0"
+         "#nArmor:\n#0"
          "#nEnergy:\n#0"
          "#nCargo Space:\n#0"
          "#nFuel:\n#0"
