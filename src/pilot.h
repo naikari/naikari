@@ -32,8 +32,8 @@
 #define HYPERSPACE_FADEIN        1. /**< How long the fade is (seconds). */
 #define HYPERSPACE_THRUST        2000./**< How much thrust you use in hyperspace. */
 #define HYPERSPACE_VEL           2. * HYPERSPACE_THRUST*HYPERSPACE_FLY_DELAY /**< Velocity at hyperspace. */
-#define HYPERSPACE_ENTER_MIN     HYPERSPACE_VEL*0.3 /**< Minimum entering distance. */
-#define HYPERSPACE_ENTER_MAX     HYPERSPACE_VEL*0.4 /**< Maximum entering distance. */
+#define HYPERSPACE_ENTER_MIN     HYPERSPACE_VEL*0.2 /**< Minimum entering distance. */
+#define HYPERSPACE_ENTER_MAX     HYPERSPACE_VEL*0.3 /**< Maximum entering distance. */
 #define HYPERSPACE_EXIT_MIN      1500. /**< Minimum distance to begin jumping. */
 /* Land/takeoff. */
 #define PILOT_LANDING_DELAY      2. /**< Delay for land animation. */
