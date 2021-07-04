@@ -1371,11 +1371,14 @@ int player_land( int loud )
    /* Not under manual control or disabled. */
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ) ||
          pilot_isDisabled(player.p))
-      return PLAYER_LAND_DENIED;
+      return PLAYER_LAND_AGAIN;
+
+   /* Still taking off. */
+   if (pilot_isFlag(player.p, PILOT_TAKEOFF))
+      return PLAYER_LAND_AGAIN;
 
    /* Already landing. */
-   if ((pilot_isFlag( player.p, PILOT_LANDING) ||
-         pilot_isFlag( player.p, PILOT_TAKEOFF)))
+   if (pilot_isFlag(player.p, PILOT_LANDING))
       return PLAYER_LAND_DENIED;
 
    /* Check if there are planets to land on. */
