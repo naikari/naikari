@@ -15,7 +15,7 @@ function create()
    pship = pp:ship()
 
    -- Set default formation
-   local savedform = var.peek("player_formation") or "circle"
+   local savedform = var.peek("player_formation")
    player.pilot():memory().formation = savedform
 
    --Get sizes

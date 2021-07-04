@@ -41,6 +41,7 @@ function create()
    player.pilot():rename( name() ) -- Assign a random name to the player's ship.
    player.pilot():addOutfit( "Laser Cannon MK1", 2 )
    jump.setKnown( "Hakoi", "Eneguoz" )
+   var.push("player_formation", "circle")
 
    -- Give all GUIs
    -- XXX: Would be better to remove these outfits and the association,
