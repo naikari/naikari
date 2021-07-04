@@ -2665,10 +2665,10 @@ static void outfit_launcherDesc( Outfit* o )
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%.1f Disable/s [%.0f Disable]\n"),
             1. / o->u.lau.delay * a->u.amm.dmg.disable, a->u.amm.dmg.disable );
-   if (o->u.amm.energy > 0.) {
+   if (a->u.amm.energy > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
             _("%.1f EPS [%.0f Energy]\n"),
-            1. / o->u.lau.delay * o->u.amm.energy, a->u.amm.energy );
+            1. / o->u.lau.delay * a->u.amm.energy, a->u.amm.energy );
    }
 
    l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
