@@ -3,15 +3,22 @@
 
 ![Naikari](https://naikari.github.io/images/logo.png)
 
-Naikari is a 2D space trading and combat game, taking inspiration from the [Escape
-Velocity series](https://en.wikipedia.org/wiki/Escape_Velocity_(video_game)), among others.
+Naikari is a 2D space trading and combat game, forked from the
+[Naev](https://naev.org) project. Naev takes inspiration from the
+[Escape Velocity](https://en.wikipedia.org/wiki/Escape_Velocity_(video_game)),
+series, but Naikari's primary inspirations are
+[Star Wraith 2](https://archive.org/details/swizzle_demu_SW2),
+[RiftSpace](https://archive.org/details/RiftSpace), Naev itself, and to a
+lesser extent, [Endless Sky](https://endless-sky.github.io).
 
-You pilot a space ship from a top-down perspective, and are more or less free
-to do what you want. As the genre name implies, you’re able to trade and engage
-in combat at will. Beyond that, there’s an ever-growing number of storyline
-missions, equipment, and ships; Even the galaxy itself grows larger with each
-release. For the literarily-inclined, there are large amounts of lore
-accompanying everything from planets to equipment.
+You pilot space ships from a top-down perspective which you can collect and
+customize more or less however you want. To get new ships, you can deliver
+cargo, hunt bounties, join and assist various factions, or even turn to piracy
+if you dare go against the Empire. Additionally, to keep the game feeling fresh
+and allow you to seek out goals beyond just getting more credits and ships,
+several storylines are available which you can proceed through if you wish.
+All storylines are optional and kept out of the way if you have no interest in
+them.
 
 ## DEPENDENCIES
 
