@@ -281,32 +281,32 @@ void equipment_open( unsigned int wid )
          _("Unequip"), equipment_unequipShip, SDLK_u );
 
    /* text */
-   buf = _("#nName:\n#0"
-      "#nModel:\n#0"
-      "#nClass:\n#0"
-      "#nValue:\n#0"
+   buf = _("Name:\n"
+      "Model:\n"
+      "Class:\n"
+      "Value:\n"
       "\n"
-      "#nMass:\n#0"
-      "#nJump Time:\n#0"
-      "#nThrust:\n#0"
-      "#nSpeed:\n#0"
-      "#nTurn:\n#0"
-      "#nTime Constant:\n#0"
+      "Mass:\n"
+      "Jump Time:\n"
+      "Thrust:\n"
+      "Speed:\n"
+      "Turn:\n"
+      "Time Constant:\n"
       "\n"
-      "#nAbsorption:\n#0"
-      "#nShield:\n#0"
-      "#nArmor:\n#0"
-      "#nEnergy:\n#0"
-      "#nCargo Space:\n#0"
-      "#nFuel:\n#0"
-      "#nRadar Range:\n#0"
-      "#nJump Detect Range:\n#0"
+      "Absorption:\n"
+      "Shield:\n"
+      "Armor:\n"
+      "Energy:\n"
+      "Cargo Space:\n"
+      "Fuel:\n"
+      "Radar Range:\n"
+      "Jump Detect Range:\n"
       "\n"
-      "#nShip Status:#0");
+      "Ship Status:");
    x = 10 + sw + 10 + ew + 10;
    y = -40;
    window_addText( wid, x, y,
-         210, y-20+h-bh, 0, "txtSDesc", &gl_defFont, NULL, buf );
+         210, y-20+h-bh, 0, "txtSDesc", &gl_defFont, &cFontGrey, buf );
    x += 210;
    window_addText( wid, x, y,
          w - x - 10 - cw, y-20+h-bh, 0, "txtDDesc", &gl_defFont, NULL, NULL );
