@@ -113,7 +113,6 @@ typedef enum ShipStatsType_ {
    /*
     * I: Integer type data. Should be continuous.
     */
-   SS_TYPE_I_HIDDEN_JUMP_DETECT, /**< Hidden jump detection. */
 
    /*
     * B: Boolean type data. Should be continuous.
@@ -250,7 +249,6 @@ typedef struct ShipStats_ {
    int misc_instant_jump;    /**< Do not require brake or chargeup to jump. */
    int misc_reverse_thrust;  /**< Slows down the ship instead of turning it around. */
    int misc_asteroid_scan;   /**< Able to scan asteroids. */
-   int misc_hidden_jump_detect; /**< Degree of hidden jump detection. */
    double loot_mod;           /**< Boarding loot reward bonus. */
    double time_mod;           /**< Time dilation modifier. */
    double time_speedup;       /**< Makes the pilot operate at higher speeds. */
