@@ -182,7 +182,7 @@ static void equipment_getDim( unsigned int wid, int *w, int *h,
    window_dimWindow( wid, w, h );
 
    /* Calculate image array dimensions. */
-   ssw = 550 + (*w - LAND_WIDTH);
+   ssw = 440 + (*w - LAND_WIDTH);
    ssh = (*h - 100);
    if (sw != NULL)
       *sw = ssw;
@@ -201,7 +201,7 @@ static void equipment_getDim( unsigned int wid, int *w, int *h,
 
    /* Calculate custom widget. */
    if (cw != NULL)
-      *cw = *w - 20 - (sw!=NULL?*sw:0) - 20 - (ew!=NULL?*ew:0) - 20.;
+      *cw = 142;
    if (ch != NULL)
       *ch = *h - 100;
 
@@ -303,13 +303,13 @@ void equipment_open( unsigned int wid )
       "#nJump Detect Range:\n#0"
       "\n"
       "#nShip Status:#0");
-   x = 20 + sw + 20 + 180 + 20 + 30;
-   y = -190;
+   x = 10 + sw + 10 + ew + 10;
+   y = -40;
    window_addText( wid, x, y,
-         180, y-20+h-bh, 0, "txtSDesc", &gl_smallFont, NULL, buf );
-   x += 180;
+         210, y-20+h-bh, 0, "txtSDesc", &gl_defFont, NULL, buf );
+   x += 210;
    window_addText( wid, x, y,
-         w - x - 20, y-20+h-bh, 0, "txtDDesc", &gl_smallFont, NULL, NULL );
+         w - x - 10 - cw, y-20+h-bh, 0, "txtDDesc", &gl_defFont, NULL, NULL );
 
    /* Generate lists. */
    window_addText( wid, 30, -20,
@@ -318,15 +318,12 @@ void equipment_open( unsigned int wid )
          ow, gl_defFont.h, 0, "txtOutfitTitle", &gl_defFont, NULL, _("Available Outfits") );
    equipment_genLists( wid );
 
-   /* Separator. */
-   // window_addRect( wid, 20 + sw + 20, -40, 2, h-60, "rctDivider", &cGrey50, 0 );
-
    /* Slot widget. */
-   equipment_slotWidget( wid, 20 + sw + 40, -40, ew, eh, &eq_wgt );
+   equipment_slotWidget( wid, 10 + sw + 10, -40, ew, eh, &eq_wgt );
    eq_wgt.canmodify = 1;
 
    /* Custom widget (ship information). */
-   window_addCust( wid, 20 + sw + 40 + ew + 20, -40, cw, ch, "cstMisc", 0,
+   window_addCust( wid, -10, -40, cw, ch, "cstMisc", 0,
          equipment_renderMisc, NULL, NULL );
 
    /* Focus the ships image array. */
@@ -379,7 +376,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
    else
       c = &cFontWhite;
    gl_printMidRaw( &gl_smallFont, 60.,
-         x-15., y+h+10., c, -1., txt );
+         x-10., y+h+10., c, -1., txt );
 
    /* Iterate for all the slots. */
    for (i=0; i<array_size(lst); i++) {
@@ -561,11 +558,14 @@ static void equipment_renderMisc( double bx, double by, double bw, double bh, vo
 
    p = eq_wgt.selected;
 
+   /* Render ship graphic. */
+   equipment_renderShip( bx, by, bw, bh, bx, by, p );
+
    /* Render CPU and energy bars. */
    w = 120;
    h = 20;
-   x = bx + 50.;
-   y = by + bh - 30 - h;
+   x = bx + 10;
+   y = by + bh - 48 - 140;
 
    gl_printMidRaw( &gl_smallFont, w,
       x, y + h + 10., &cFontWhite, -1, _("CPU Free") );
@@ -598,11 +598,6 @@ static void equipment_renderMisc( double bx, double by, double bw, double bh, vo
          x, y, &cFontRed, _("!! %.0f%% Slower !!"),
          (1. - p->speed / p->speed_base) * 100);
    }
-
-   x += w/2. + 50;
-
-   /* Render ship graphic. */
-   equipment_renderShip( bx, by, bw, bh, x, y, p );
 }
 
 
@@ -833,10 +828,10 @@ static void equipment_renderShip( double bx, double by,
    }
    w  = 128;
    h  = 128;
-   px = (x+30) + (bx+bw - (x+30) - pw)/2;
-   py = by + bh - 30 - h + (h-ph)/2 + 30;
-   x  = (x+30) + (bx+bw - (x+30) - w)/2;
-   y  = by + bh - 30 - h + 30;
+   px = (x+5) + (bx+bw - (x+5) - pw)/2;
+   py = by + bh - 5 - h + (h-ph)/2 + 4;
+   x  = (x+5) + (bx+bw - (x+5) - w)/2;
+   y  = by + bh - 5 - h + 5;
    toolkit_drawRect( x-5, y-5, w+10, h+10, &cBlack, NULL );
    gl_blitScaleSprite( p->ship->gfx_space,
          px, py, sx, sy, pw, ph, NULL );
@@ -1376,7 +1371,7 @@ static void equipment_genShipList( unsigned int wid )
 
       /* Create the image array. */
       iconsize = 96;
-      window_addImageArray( wid, 20, -40,
+      window_addImageArray( wid, 10, -40,
             sw, sh, EQUIPMENT_SHIPS, iconsize, iconsize,
             cships, nships, equipment_updateShips, NULL, equipment_transChangeShip );
       toolkit_setImageArrayAccept( wid, EQUIPMENT_SHIPS, equipment_transChangeShip );
@@ -1416,7 +1411,7 @@ static void equipment_genOutfitList( unsigned int wid )
    eq_wgt.outfit = NULL;
 
    /* Calculate position. */
-   x = 20;
+   x = 10;
    y = 20;
 
    /* Create tabbed window. */
