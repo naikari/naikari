@@ -162,7 +162,7 @@ void dout_csvLauncher( const char *path )
          "name,type,slot,size,"
          "license,mass,price,cpu,"
          "delay,ammo_name,amount,"
-         "lockon,arc\n"
+         "lockon,arc,rdr_range,rdr_range_max\n"
          );
    SDL_RWwrite( rw, buf, l, 1 );
 
@@ -178,11 +178,12 @@ void dout_csvLauncher( const char *path )
             "%s,%s,%s,%s,"
             "%s,%f,%"CREDITS_PRI",%f,"
             "%f,%s,%d,"
-            "%f,%f\n",
+            "%f,%f,%f,%f\n",
             o->name, outfit_getType(o), outfit_slotName(o), outfit_slotSize(o),
             o->license, o->mass, o->price, o->cpu,
             o->u.lau.delay, o->u.lau.ammo_name, o->u.lau.amount,
-            o->u.lau.lockon, o->u.lau.arc * 180 / M_PI
+            o->u.lau.lockon, o->u.lau.arc * 180 / M_PI,
+            o->u.lau.rdr_range, o->u.lau.rdr_range_max
             );
       SDL_RWwrite( rw, buf, l, 1 );
    }
