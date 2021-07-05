@@ -1429,7 +1429,7 @@ static void equipment_genOutfitList( unsigned int wid )
 
       /* Only create the filter widget if it will be a reasonable size. */
       if (iw >= 30) {
-         window_addInput( wid, ix+15, iy+1, iw, ih, EQUIPMENT_FILTER, 32, 1, &gl_smallFont );
+         window_addInput( wid, ix+5, iy+1, iw, ih, EQUIPMENT_FILTER, 32, 1, &gl_smallFont );
          window_setInputCallback( wid, EQUIPMENT_FILTER, equipment_filterOutfits );
       }
    }
