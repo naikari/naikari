@@ -14,7 +14,7 @@
   <ammo>Imperator Torpedo</ammo>
   <delay>11</delay>
   <reload_time>120</reload_time>
-  <lockon>18</lockon>
+  <lockon>7</lockon>
   <arc>120</arc>
   <amount>5</amount>
   <rdr_range>3750</rdr_range>

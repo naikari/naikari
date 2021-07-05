@@ -15,7 +15,7 @@
   <delay>4</delay>
   <reload_time>60</reload_time>
   <amount>6</amount>
-  <lockon>9</lockon>
+  <lockon>6</lockon>
   <arc>120</arc>
   <rdr_range>4300</rdr_range>
   <rdr_range_max>5000</rdr_range_max>
