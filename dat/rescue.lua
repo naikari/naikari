@@ -306,7 +306,7 @@ function buildTables()
 
    -- Find the number of required cores, and their default outfits.
    for k,v in pairs(slots) do
-      if v.property then
+      if v.required then
          required[ v.property ] = v
          nrequired = nrequired + 1
       end
