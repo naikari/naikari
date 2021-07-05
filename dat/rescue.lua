@@ -372,8 +372,9 @@ function removeEquipDefaults()
    end
    -- Add core outfits
    for k,v in ipairs( pp:ship():getSlots() ) do
-      if v.outfit then
-         pp:addOutfit( v.outfit, 1, true )
+      local default = defaultOutfit(v)
+      if default then
+         pp:addOutfit(default, 1, true)
       end
    end
 end
@@ -385,15 +386,16 @@ function equipDefaults( defaults )
 
    for k,v in ipairs( pp:outfits() ) do
       local n, s, prop, required = v:slot()
+      local default = defaultOutfit(defaults[prop])
 
       -- Remove if required but not default.
-      if required and v ~= defaults[prop].outfit then
+      if required and v:nameRaw() ~= default then
          -- Store and remove old
          player.addOutfit(v:nameRaw())
          pp:rmOutfit(v:nameRaw())
 
          -- Add new
-         pp:addOutfit( defaults[k].outfit:nameRaw() )
+         pp:addOutfit(default)
 
          -- Remove the outfit from the to-add list.
          defaults[k] = nil
@@ -408,8 +410,45 @@ end
 function fillMissing( missing )
    -- Fill empty core slots with defaults.
    for k,v in pairs(missing) do
-      player.pilot():addOutfit( v.outfit:nameRaw() )
+      local default = defaultOutfit(v)
+      if default then
+         player.pilot():addOutfit(default)
+      end
    end
+end
+
+
+function defaultOutfit( slot )
+   if slot.property == "Core Systems" then
+      if slot.size == "Small" then
+         return "Previous Generation Small Systems"
+      elseif slot.size == "Medium" then
+         return "Previous Generation Medium Systems"
+      elseif slot.size == "Large" then
+         return "Previous Generation Large Systems"
+      end
+   elseif slot.property == "Hull Modifications" then
+      if slot.size == "Small" then
+         return "Patchwork Light Plating"
+      elseif slot.size == "Medium" then
+         return "Patchwork Medium Plating"
+      elseif slot.size == "Large" then
+         return "Patchwork Heavy Plating"
+      end
+   elseif slot.property == "Engines" then
+      if slot.size == "Small" then
+         return "Beat Up Small Engine"
+      elseif slot.size == "Medium" then
+         return "Beat Up Medium Engine"
+      elseif slot.size == "Large" then
+         return "Beat Up Large Engine"
+      end
+   elseif slot.outfit then
+      print(slot.property)
+      return slot.outfit:nameRaw()
+   end
+
+   return nil
 end
 
 
