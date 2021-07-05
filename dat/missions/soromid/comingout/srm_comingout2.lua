@@ -45,33 +45,36 @@ text = {}
 
 title[1] = _("Getting My Feet Wet")
 text[1] = _([[Chelsea smiles and waves as she sees you approaching. "Hi, %s! It's been a while!" You sit down and start a friendly conversation with her. She mentions that her parents seem to be supportive of her decision to transition and her mother in particular apparently has been very helpful.
-    Chelsea perks up a little. "So, remember I said I had ambitions of a pilot? Well, I have my piloting license already, but I'm kind of poor so I couldn't afford my first ship. So I've been asking around and I've managed to find a great deal for a used ship at %s in the %s system! I just need someone to take me there. Again, no rush. Would you be able to do that for me?"]])
 
-text[2] = _([["Thank you so much! I really appreciate it, %s. I can't pay you much, but I can give you %s when we get there. I can't wait to start!"]])
+Chelsea perks up a little. "So, remember I said I had ambitions of a pilot? Well, I have my piloting license now!" You congratulate her and she thanks you before grimacing slightly. "I, uh, can't manage to get a ship here though." You ask if there's anything you can do to help. "Oh!" she responds. "That's very kind of you!
 
-text[3] = _([["Oh, okay. Let me know later on if you're able to."]])
+"Well, I've done some research and I think I should start at %s in the %s system. Would you be able to take me there? I'll pay you for the transportation, of course."]])
+
+text[2] = _([["Thank you so much! I really appreciate it, %s. I've got %s for you when we get there. I can't wait to start!"]])
+
+text[3] = _([["Oh, okay. Let me know later on if you're able to!"]])
 
 text[4] = _([["Oh, %s! Are you able to help me out now?"]])
 
-landtext = _([[As you dock you can barely stop Chelsea from jumping out of your ship and hurting herself. She seems to know exactly where to go and before you even know what's going on, she's purchased an old Llama, possibly the most rusty and worn-down Llama you've ever seen, but in working order nonetheless. You express concern about the condition of the ship, but she assures you that she will fix it up as she gets enough money to do so. She hugs you in a friendly embrace, thanks you, and hands you a credit chip. "Catch up with me again sometime, okay? I'll be hanging out in Soromid space doing my first missions as a pilot!" As you walk away, you see her getting her first close-up look at the mission computer with a look of excitement in her eyes.]])
+landtext = _([[As you dock you can barely stop Chelsea from jumping out of your ship and hurting herself. She seems to know exactly where to go and before you even know what's going on, she's purchased a Llama from the shipyard which is considerably damaged and rusty, but in working order nonetheless. You express concern about the condition of the ship, but she assures you that she will fix it up as she gets enough money to do so. She gives you a friendly hug, thanks you, and hands you a credit chip. "Catch up with me again sometime, okay? I'll be hanging out in Soromid space doing my first missions as a pilot!" As you walk away, you see her getting her first close-up look at the mission computer with a look of excitement in her eyes.]])
 
 misn_title = _("Coming of Age")
 misn_desc = _("Chelsea needs you to take her to %s so she can buy her first ship and kick off her piloting career.")
 
 npc_name = _("Chelsea")
-npc_desc = _("She seems to just be sitting by idly. It's been a while; maybe you should say hi?")
+npc_desc = _("She seems to just be idly reading the news. It's been a while; maybe you should say hi?")
 
 osd_desc    = {}
-osd_desc[1] = _("Go to the %s system and land on the planet %s.")
+osd_desc[1] = _("Fly to the %s system and land on %s.")
 
-log_text = _([[You helped transport Chelsea to Crow, where she was able to buy her first ship, a Llama which is in very bad condition, but working. As she went on to start her career as a freelance pilot, she asked you to catch up with her again sometime. She expects that she'll be sticking to Soromid space for the time being.]])
+log_text = _([[You helped transport Chelsea to Crow, where she was able to buy her first ship, a Llama which is damaged and rusty, but working. As she went on to start her career as a freelance pilot, she asked you to catch up with her again sometime. She expects that she'll be sticking to Soromid space for the time being.]])
 
 
 function create ()
    misplanet, missys = planet.get( "Crow" )
    -- Note: This mission does not make system claims
 
-   credits = 50000
+   credits = 200000
    started = false
 
    misn.setNPC( npc_name, "soromid/unique/chelsea.png", npc_desc )

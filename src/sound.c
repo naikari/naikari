@@ -297,15 +297,15 @@ int sound_playPos( int sound, double px, double py, double vx, double vy )
    target = cam_getTarget();
 
    /* Following a pilot. */
-   p = pilot_get(target);
-   if (target && (p != NULL)) {
-      if (!pilot_inRange( p, px, py ))
+   if (target) {
+      p = pilot_get(target);
+      if ((p != NULL) && !pilot_inRange( p, px, py ))
          return 0;
    }
    /* Set to a position. */
    else {
       cam_getPos(&cx, &cy);
-      dist = pow2(px - cx) + pow2(py - cy);
+      dist = hypot(px - cx, py - cy);
       if ((player.p != NULL) && !player_isFlag(PLAYER_DESTROYED)
             && !player_isFlag(PLAYER_CREATING)
             && !pilot_isFlag(player.p,PILOT_DEAD)
