@@ -430,8 +430,8 @@ static void gui_renderPlanetTarget( double dt )
    AsteroidType *at;
 
    /* no need to draw if pilot is dead */
-   if (player_isFlag(PLAYER_DESTROYED) || player_isFlag(PLAYER_CREATING) ||
-      (player.p == NULL) || pilot_isFlag(player.p,PILOT_DEAD))
+   if (player_isFlag(PLAYER_DESTROYED) || player_isFlag(PLAYER_CREATING)
+         || (player.p == NULL) || pilot_isFlag(player.p,PILOT_DEAD))
       return;
 
    /* Make sure target exists. */

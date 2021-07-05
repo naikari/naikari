@@ -306,8 +306,10 @@ int sound_playPos( int sound, double px, double py, double vx, double vy )
    else {
       cam_getPos(&cx, &cy);
       dist = pow2(px - cx) + pow2(py - cy);
-      if ((player.p != NULL) &&
-            (dist > player.p->rdr_range * cur_system->rdr_range_mod))
+      if ((player.p != NULL) && !player_isFlag(PLAYER_DESTROYED)
+            && !player_isFlag(PLAYER_CREATING)
+            && !pilot_isFlag(player.p,PILOT_DEAD)
+            && (dist > player.p->rdr_range * cur_system->rdr_range_mod))
          return 0;
    }
 
