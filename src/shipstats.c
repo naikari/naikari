@@ -98,9 +98,6 @@ static const ShipStatsLookup ss_lookup[] = {
    DI_ELEM( SS_TYPE_D_LAND_DELAY,         land_delay,          N_("Landing Time") ),
    DI_ELEM( SS_TYPE_D_CARGO_INERTIA,      cargo_inertia,       N_("Cargo Inertia") ),
 
-   D__ELEM( SS_TYPE_D_EW_HIDE,            ew_hide,             N_("Cloaking") ),
-   D__ELEM( SS_TYPE_D_EW_DETECT,          ew_detect,           N_("Detection") ),
-   D__ELEM( SS_TYPE_D_EW_JUMPDETECT,      ew_jump_detect,      N_("Jump Detection") ),
    A__ELEM( SS_TYPE_D_RDR_RANGE,          rdr_range,           N_("Radar Range") ),
    A__ELEM( SS_TYPE_D_RDR_JUMP_RANGE,     rdr_jump_range,      N_("Jump Detect Range") ),
    D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       N_("Radar Range") ),

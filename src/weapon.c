@@ -58,6 +58,7 @@ typedef struct Weapon_ {
    unsigned int target; /**< target to hit, only used by seeking things */
    const Outfit* outfit; /**< related outfit that fired it or whatnot */
 
+   const Outfit* launcher; /**< Launcher that fired, used for ammo */
    double real_vel; /**< Keeps track of the real velocity. */
    double dam_mod; /**< Damage modifier. */
    double dam_as_dis_mod; /**< Damage as disable modifier. */
@@ -317,12 +318,14 @@ static void think_seeker( Weapon* w, const double dt )
 
    p = pilot_get(w->target); /* no null pilot */
    if (p==NULL) {
-      weapon_setThrust( w, 0. );
-      weapon_setTurn( w, 0. );
+      weapon_setThrust(w, 0.);
+      weapon_setTurn(w, 0.);
       return;
    }
 
-   ewtrack = pilot_ewWeaponTrack( pilot_get(w->parent), p, w->outfit->u.amm.resist );
+   ewtrack = pilot_weaponTrack(
+         pilot_get(w->parent), p, w->launcher->u.lau.rdr_range,
+         w->launcher->u.lau.rdr_range_max);
 
    /* Handle by status. */
    switch (w->status) {
@@ -1088,12 +1091,10 @@ static void weapon_hitAI( Pilot *p, Pilot *shooter, double dmg )
                   (pilot_isFlag(pilot_stack[i], PILOT_DELETE)))
                continue;
 
-            /*
-             * Pilots within a radius of 1500 (in a zero-interference system)
-             * will immediately notice hostile actions.
-             */
+            /* Pilots within 1/4 of their viewing range will immediately
+             * notice hostile actions. */
             d = vect_dist2( &p->solid->pos, &pilot_stack[i]->solid->pos );
-            if (d > (pilot_sensorRange() * 0.04 )) /* 0.2^2 */
+            if (d > pilot_stack[i]->rdr_range*cur_system->rdr_range_mod / 4)
                continue;
 
             /* Send AI the distress signal. */
@@ -1580,8 +1581,10 @@ static Weapon* weapon_create( const Outfit* outfit, double T,
    w->faction  = parent->faction; /* non-changeable */
    w->parent   = parent->id; /* non-changeable */
    w->target   = target; /* non-changeable */
-   if (outfit_isLauncher(outfit))
+   if (outfit_isLauncher(outfit)) {
       w->outfit   = outfit->u.lau.ammo; /* non-changeable */
+      w->launcher = outfit; /* non-changeable */
+   }
    else
       w->outfit   = outfit; /* non-changeable */
    w->update   = weapon_update;

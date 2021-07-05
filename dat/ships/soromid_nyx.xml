@@ -43,7 +43,6 @@
  </slots>
  <stats>
   <armour_mod>-10</armour_mod>
-  <ew_hide>10</ew_hide>
   <rdr_enemy_range_mod>25</rdr_enemy_range_mod>
  </stats>
 </ship>

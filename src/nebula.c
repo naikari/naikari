@@ -246,13 +246,9 @@ static void nebu_blitFBO (void)
 void nebu_update( double dt )
 {
    (void) dt;
-   double mod = 1.;
-
-   if (player.p != NULL)
-      mod = player.p->ew_detect;
 
    /* At density 1000 you have zero visibility. */
-   nebu_view = (1000. - nebu_density) * mod;
+   nebu_view = (1000. - nebu_density);
 }
 
 

@@ -15,7 +15,6 @@
   <delay>0.36</delay>
   <reload_time>6</reload_time>
   <amount>50</amount>
-  <track>2</track>
   <rdr_range>2000</rdr_range>
   <rdr_range_max>2700</rdr_range_max>
   <swivel>22</swivel>

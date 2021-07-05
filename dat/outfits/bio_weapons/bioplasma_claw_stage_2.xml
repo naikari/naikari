@@ -23,7 +23,6 @@
   <gfx_end>plasma2-end.png</gfx_end>
   <energy>10</energy>
   <heatup>23</heatup>
-  <track>3</track>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1700</rdr_range_max>
   <swivel>22</swivel>

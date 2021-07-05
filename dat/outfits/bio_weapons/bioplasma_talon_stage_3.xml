@@ -24,7 +24,6 @@
   <gfx_end>massL-end.png</gfx_end>
   <energy>60</energy>
   <heatup>55</heatup>
-  <track>0.8</track>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1600</rdr_range_max>
   <swivel>22</swivel>

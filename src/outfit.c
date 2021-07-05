@@ -1149,7 +1149,6 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"ew_lockon",temp->u.blt.ew_lockon);
       xmlr_float(node,"energy",temp->u.blt.energy);
       xmlr_float(node,"heatup",temp->u.blt.heatup);
-      xmlr_float(node,"track",temp->u.blt.track);
       xmlr_float(node,"rdr_range",temp->u.blt.rdr_range);
       xmlr_float(node,"rdr_range_max",temp->u.blt.rdr_range_max);
       xmlr_float(node,"swivel",temp->u.blt.swivel);
@@ -1494,9 +1493,7 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
       xmlr_strd(node,"ammo",temp->u.lau.ammo_name);
       xmlr_int(node,"amount",temp->u.lau.amount);
       xmlr_int(node,"reload_time",temp->u.lau.reload_time);
-      xmlr_float(node,"ew_target",temp->u.lau.ew_target);
       xmlr_float(node,"lockon",temp->u.lau.lockon);
-      xmlr_float(node,"track",temp->u.lau.track);
       xmlr_float(node,"rdr_range",temp->u.lau.rdr_range);
       xmlr_float(node,"rdr_range_max",temp->u.lau.rdr_range_max);
       if (!outfit_isTurret(temp)) {
@@ -1517,7 +1514,6 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
    /* Post processing. */
    temp->u.lau.arc *= (M_PI/180.) / 2.; /* Note we convert from arc to semi-arc. */
    temp->u.lau.swivel *= M_PI/180.;
-   temp->u.lau.ew_target2 = pow2( temp->u.lau.ew_target );
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
@@ -2505,8 +2501,6 @@ int outfit_load (void)
          o->u.lau.ammo = outfit_get( o->u.lau.ammo_name );
          if (outfit_isSeeker(o) /* Smart seekers. */
                && (o->u.lau.ammo->u.amm.ai)) {
-            if (o->u.lau.ew_target == 0.)
-               WARN(_("Outfit '%s' missing/invalid 'ew_target' element"), o->name);
             if (o->u.lau.lockon == 0.)
                WARN(_("Outfit '%s' missing/invalid 'lockon' element"), o->name);
             if (!outfit_isTurret(o) && (o->u.lau.arc == 0.))

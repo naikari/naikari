@@ -1165,7 +1165,6 @@ void pilot_broadcast( Pilot *p, const char *msg, int ignore_int )
 void pilot_distress( Pilot *p, Pilot *attacker, const char *msg, int ignore_int )
 {
    int i, r;
-   double d;
 
    /* Broadcast the message. */
    if (msg[0] != '\0')
@@ -1203,12 +1202,10 @@ void pilot_distress( Pilot *p, Pilot *attacker, const char *msg, int ignore_int 
 
       if (!ignore_int) {
          if (!pilot_inRangePilot(p, pilot_stack[i], NULL)) {
-            /*
-             * If the pilots are within sensor range of each other, send the
-             * distress signal, regardless of electronic warfare hide values.
-             */
-            d = vect_dist2( &p->solid->pos, &pilot_stack[i]->solid->pos );
-            if (d > pilot_sensorRange())
+            /* If the pilots are within sensor range of each other, send the
+             * distress signal. */
+            if ((!pilot_inRangePilot(pilot_stack[i], p, NULL))
+                  || (!pilot_inRangePilot(pilot_stack[i], attacker, NULL)))
                continue;
          }
 
@@ -1956,9 +1953,6 @@ void pilot_update( Pilot* pilot, double dt )
       pilot_heatUpdateShip( pilot, Q, dt );
    else
       pilot_heatUpdateCooldown( pilot );
-
-   /* Update electronic warfare. */
-   pilot_ewUpdateDynamic( pilot );
 
    /* Update stress. */
    if (!pilot_isFlag(pilot, PILOT_DISABLED)) { /* Case pilot is not disabled. */
@@ -3145,7 +3139,6 @@ void pilots_clean (int persist)
  */
 void pilots_newSystem (void)
 {
-   pilot_updateSensorRange();
    for (int i=0; i < array_size(pilot_stack); i++)
       pilot_init_trails( pilot_stack[i] );
 }

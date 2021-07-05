@@ -16,7 +16,6 @@
   <reload_time>90</reload_time>
   <lockon>16</lockon>
   <arc>120</arc>
-  <ew_target>0.5</ew_target>
   <amount>6</amount>
   <rdr_range>4000</rdr_range>
   <rdr_range_max>4700</rdr_range_max>

@@ -1355,12 +1355,12 @@ static int pilotL_weapset( lua_State *L )
          if ((is_lau || is_fb) &&
                (slot->u.ammo.outfit != NULL)) {
             lua_pushstring(L,"left");
-            lua_pushnumber( L, slot->u.ammo.quantity );
+            lua_pushnumber(L, slot->u.ammo.quantity);
             lua_rawset(L,-3);
 
          /* Ammo quantity relative. */
             lua_pushstring(L,"left_p");
-            lua_pushnumber( L, (double)slot->u.ammo.quantity / (double)pilot_maxAmmoO(p,slot->outfit) );
+            lua_pushnumber(L, (double)slot->u.ammo.quantity / (double)pilot_maxAmmoO(p,slot->outfit));
             lua_rawset(L,-3);
          }
 
@@ -1397,12 +1397,12 @@ static int pilotL_weapset( lua_State *L )
 
          /* Damage type. */
          if (is_lau && (slot->u.ammo.outfit != NULL))
-            dmg = outfit_damage( slot->u.ammo.outfit );
+            dmg = outfit_damage(slot->u.ammo.outfit);
          else
-            dmg = outfit_damage( slot->outfit );
+            dmg = outfit_damage(slot->outfit);
          if (dmg != NULL) {
             lua_pushstring(L, "dtype");
-            lua_pushstring(L, dtype_damageTypeToStr( dmg->type ) );
+            lua_pushstring(L, dtype_damageTypeToStr(dmg->type));
             lua_rawset(L,-3);
          }
 
@@ -1410,7 +1410,9 @@ static int pilotL_weapset( lua_State *L )
          if (slot->outfit->type == OUTFIT_TYPE_TURRET_BOLT) {
             lua_pushstring(L, "track");
             if (target != NULL)
-               lua_pushnumber(L, pilot_ewWeaponTrack( p, target, slot->outfit->u.blt.track ));
+               lua_pushnumber(L, pilot_weaponTrack(
+                     p, target, slot->outfit->u.blt.rdr_range,
+                     slot->outfit->u.blt.rdr_range_max));
             else
                lua_pushnumber(L, -1);
             lua_rawset(L,-3);
@@ -1850,9 +1852,10 @@ static int pilotL_ew( lua_State *L )
 
    /* Parse parameters */
    p     = luaL_validpilot(L,1);
+   (void) p;
 
    /* Push direction. */
-   lua_pushnumber( L, p->ew_evasion );
+   lua_pushnumber( L, 0 );
    return 1;
 }
 
@@ -3265,8 +3268,8 @@ static int pilotL_getStats( lua_State *L )
    PUSH_DOUBLE( L, "energy_regen", p->energy_regen );
    /* Stats. */
    PUSH_DOUBLE( L, "dmg_absorb", p->dmg_absorb );
-   PUSH_DOUBLE( L, "ew_hide", p->ew_hide );
-   PUSH_DOUBLE( L, "ew_detect", p->ew_detect );
+   PUSH_DOUBLE( L, "rdr_range", p->rdr_range );
+   PUSH_DOUBLE( L, "rdr_jump_range", p->rdr_jump_range );
    PUSH_DOUBLE( L, "jump_delay", ntime_convertSeconds( pilot_hyperspaceDelay(p) ) );
    PUSH_INT( L, "jumps", pilot_getJumps(p) );
 

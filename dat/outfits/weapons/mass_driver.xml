@@ -21,7 +21,6 @@
   <range blowup="armour">1900</range>
   <energy>12</energy>
   <heatup>50</heatup>
-  <track>1.5</track>
   <rdr_range>1600</rdr_range>
   <rdr_range_max>2000</rdr_range_max>
   <swivel>22</swivel>

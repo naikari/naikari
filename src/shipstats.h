@@ -45,9 +45,6 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_CARGO_INERTIA,   /**< Modifies the effect of cargo_mass. */
 
    /* Stealth. */
-   SS_TYPE_D_EW_HIDE,         /**< Electronic warfare hide modifier. */
-   SS_TYPE_D_EW_DETECT,       /**< Electronic warfare detection modifier. */
-   SS_TYPE_D_EW_JUMPDETECT,   /**< Electronic warfare jump point detection modifier. */
    SS_TYPE_D_RDR_RANGE,       /**< Radar range. */
    SS_TYPE_D_RDR_JUMP_RANGE,  /**< Jump detection range. */
    SS_TYPE_D_RDR_RANGE_MOD,   /**< Radar range modifier. */
@@ -201,9 +198,6 @@ typedef struct ShipStats_ {
    double cargo_inertia;   /**< Lowers the effect of cargo mass. */
 
    /* Stealth. */
-   double ew_hide;         /**< Electronic warfare hide modifier. */
-   double ew_detect;       /**< Electronic warfare detection modifier. */
-   double ew_jump_detect;  /**< Electronic warfare jump point detection modifier. */
    double rdr_range;       /**< Radar range. */
    double rdr_jump_range;  /**< Jump detection range. */
    double rdr_range_mod;   /**< Radar range modifier. */

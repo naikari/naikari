@@ -267,15 +267,6 @@ typedef struct Pilot_ {
    double energy_loss; /**< Linear loss that bypasses the actual RC circuit stuff. */
 
    /* Electronic warfare. */
-   double ew_base_hide; /**< Base static hide factor. */
-   double ew_mass;   /**< Mass factor. */
-   double ew_heat;   /**< Heat factor, affects hide. */
-   double ew_asteroid;   /**< Asteroid field factor, affects hide. */
-   double ew_hide;   /**< Static hide factor. */
-   double ew_movement; /**< Movement factor. */
-   double ew_evasion; /**< Dynamic evasion factor. */
-   double ew_detect; /**< Static detection factor. */
-   double ew_jump_detect; /** Static jump detection factor */
    double rdr_range;       /**< Static radar range. */
    double rdr_jump_range;  /**< Static jump detection range. */
 

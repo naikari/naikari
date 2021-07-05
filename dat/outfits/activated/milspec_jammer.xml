@@ -12,7 +12,6 @@
  </general>
  <specific type="modification" group="7">
   <active />
-  <ew_hide>90</ew_hide>
   <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
   <energy_loss>40</energy_loss>
  </specific>

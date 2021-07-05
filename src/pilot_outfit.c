@@ -104,7 +104,7 @@ void pilot_lockUpdateSlot( Pilot *p, PilotOutfitSlot *o, Pilot *t, double *a, do
    max = -o->outfit->u.lau.lockon/3. * p->stats.launch_lockon;
    if (o->u.ammo.lockon_timer > max) {
       /* Compensate for enemy hide factor. */
-      o->u.ammo.lockon_timer -= dt * (o->outfit->u.lau.ew_target2 / t->ew_hide);
+      o->u.ammo.lockon_timer -= dt;
 
       /* Cap at -max/3. */
       if (o->u.ammo.lockon_timer < max)
@@ -925,7 +925,7 @@ void pilot_calcStats( Pilot* pilot )
    Outfit* o;
    PilotOutfitSlot *slot;
    double ac, sc, ec; /* temporary health coefficients to set */
-   ShipStats amount, *s, *default_s;
+   ShipStats amount, *s;
 
    /*
     * set up the basic stuff
@@ -1050,19 +1050,6 @@ void pilot_calcStats( Pilot* pilot )
 
    /* Slot voodoo. */
    s = &pilot->stats;
-   default_s = &pilot->ship->stats_array;
-
-   /*
-    * Electronic warfare setting base parameters.
-    */
-   s->ew_hide           = default_s->ew_hide + (s->ew_hide-default_s->ew_hide)                      * exp( -0.2 * (double)(MAX(amount.ew_hide-1.,0)) );
-   s->ew_detect         = default_s->ew_detect + (s->ew_detect-default_s->ew_detect)                * exp( -0.2 * (double)(MAX(amount.ew_detect-1.,0)) );
-   s->ew_jump_detect    = default_s->ew_jump_detect + (s->ew_jump_detect-default_s->ew_jump_detect) * exp( -0.2 * (double)(MAX(amount.ew_jump_detect-1.,0)) );
-
-   /* Square the internal values to speed up comparisons. */
-   pilot->ew_base_hide   = pow2( s->ew_hide );
-   pilot->ew_detect      = pow2( s->ew_detect );
-   pilot->ew_jump_detect = pow2( s->ew_jump_detect );
 
    /*
     * Relative increases.
@@ -1172,7 +1159,7 @@ void pilot_updateMass( Pilot *pilot )
    pilot->turn    = factor * pilot->turn_base;
    pilot->speed   = factor * pilot->speed_base;
 
-/* limit the maximum speed if limiter is active */
+   /* limit the maximum speed if limiter is active */
    if (pilot_isFlag(pilot, PILOT_HASSPEEDLIMIT)) {
       pilot->speed = pilot->speed_limit - pilot->thrust / (mass * 3.);
       /* Speed must never go negative. */
@@ -1182,8 +1169,6 @@ void pilot_updateMass( Pilot *pilot )
          pilot->speed = 0.;
       }
    }
-   /* Need to recalculate electronic warfare mass change. */
-   pilot_ewUpdateStatic( pilot );
 }
 
 

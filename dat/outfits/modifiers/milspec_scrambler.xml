@@ -11,7 +11,6 @@
  </general>
  <specific type="modification">
   <energy_usage>6</energy_usage>
-  <ew_hide>20</ew_hide>
   <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
  </specific>
 </outfit>

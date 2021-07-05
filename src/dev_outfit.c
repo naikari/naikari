@@ -162,7 +162,7 @@ void dout_csvLauncher( const char *path )
          "name,type,slot,size,"
          "license,mass,price,cpu,"
          "delay,ammo_name,amount,"
-         "lockon,ew_target,arc\n"
+         "lockon,arc\n"
          );
    SDL_RWwrite( rw, buf, l, 1 );
 
@@ -178,11 +178,11 @@ void dout_csvLauncher( const char *path )
             "%s,%s,%s,%s,"
             "%s,%f,%"CREDITS_PRI",%f,"
             "%f,%s,%d,"
-            "%f,%f,%f\n",
+            "%f,%f\n",
             o->name, outfit_getType(o), outfit_slotName(o), outfit_slotSize(o),
             o->license, o->mass, o->price, o->cpu,
             o->u.lau.delay, o->u.lau.ammo_name, o->u.lau.amount,
-            o->u.lau.lockon, o->u.lau.ew_target, o->u.lau.arc * 180 / M_PI
+            o->u.lau.lockon, o->u.lau.arc * 180 / M_PI
             );
       SDL_RWwrite( rw, buf, l, 1 );
    }
@@ -289,7 +289,7 @@ void dout_csvMod( const char *path )
          "armour,armour_regen,"
          "shield,shield_regen,"
          "energy,energy_regen,"
-         "absorb,cargo,ew_hide\n"
+         "absorb,cargo\n"
          );
    SDL_RWwrite( rw, buf, l, 1 );
 
@@ -313,14 +313,14 @@ void dout_csvMod( const char *path )
             "%f,%f,"
             "%f,%f,"
             "%f,%f,"
-            "%f,%f,%f\n",
+            "%f,%f\n",
             o->name, outfit_getType(o), outfit_slotName(o), outfit_slotSize(o),
             o->license, o->mass, o->price, o->cpu, stats.cpu_max,
             o->u.mod.thrust, o->u.mod.turn * 180. / M_PI, o->u.mod.speed, o->u.mod.fuel, stats.energy_usage,
             o->u.mod.armour, o->u.mod.armour_regen,
             o->u.mod.shield, o->u.mod.shield_regen,
             o->u.mod.energy, o->u.mod.energy_regen,
-            o->u.mod.absorb * 100, o->u.mod.cargo, (stats.ew_hide - 1.) * 100
+            o->u.mod.absorb * 100, o->u.mod.cargo
             );
       SDL_RWwrite( rw, buf, l, 1 );
    }

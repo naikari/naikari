@@ -53,7 +53,6 @@
   <shield_regen_mod>60</shield_regen_mod>
   <energy_mod>30</energy_mod>
   <energy_regen_mod>20</energy_regen_mod>
-  <ew_hide>-20</ew_hide>
   <stress_dissipation>10</stress_dissipation>
   <misc_instant_jump>1</misc_instant_jump>
   <rdr_enemy_range_mod>100</rdr_enemy_range_mod>

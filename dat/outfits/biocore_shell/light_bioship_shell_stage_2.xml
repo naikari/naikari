@@ -16,7 +16,6 @@
   <absorb>4</absorb>
   <armour>86</armour>
   <armour_regen>0</armour_regen>
-  <ew_hide>10</ew_hide>
   <rdr_enemy_range_mod>-10</rdr_enemy_range_mod>
  </specific>
 </outfit>

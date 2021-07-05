@@ -11,6 +11,6 @@
  </general>
  <specific type="modification">
   <energy_usage>2</energy_usage>
-  <ew_jump_detect>60</ew_jump_detect>
+  <rdr_jump_range_mod>50</rdr_jump_range_mod>
  </specific>
 </outfit>
