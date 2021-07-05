@@ -203,7 +203,6 @@ static glFont* dialogue_getSize( const char* title,
    font = &gl_defFont;
    h = gl_printHeightRaw( font, w-40, msg );
 
-
    d = ((double)w/(double)h)*(3./4.); /* deformation factor. */
    if (FABS(d) > 0.3) {
       if (h > w)
@@ -478,21 +477,22 @@ char* dialogue_input( const char* title, int min, int max, const char *fmt, ... 
 char* dialogue_inputRaw( const char* title, int min, int max, const char *msg )
 {
    char *input;
-   int h, done;
+   int w, h, done;
 
    /* get text height */
-   h = gl_printHeightRaw( &gl_defFont, 200, msg );
+   w = 300;
+   h = gl_printHeightRaw( &gl_defFont, w, msg );
 
    /* create window */
-   input_dialogue.input_wid = window_create( "dlgInput", title, -1, -1, 240, h+140 );
+   input_dialogue.input_wid = window_create( "dlgInput", title, -1, -1, w+40, h+140 );
    window_setData( input_dialogue.input_wid, &done );
    window_setAccept( input_dialogue.input_wid, dialogue_inputClose );
    window_setCancel( input_dialogue.input_wid, dialogue_cancel );
    /* text */
-   window_addText( input_dialogue.input_wid, 30, -30, 200, h,  0, "txtInput",
+   window_addText( input_dialogue.input_wid, 20, -30, w, h,  0, "txtInput",
          &gl_defFont, NULL, msg );
    /* input */
-   window_addInput( input_dialogue.input_wid, 20, -50-h, 200, 20, "inpInput", max, 1, NULL );
+   window_addInput( input_dialogue.input_wid, 20, 20+30+10, w, 30,"inpInput", max, 1, NULL );
    window_setInputFilter( input_dialogue.input_wid, "inpInput", "/" ); /* Remove illegal stuff. */
    /* button */
    window_addButton( input_dialogue.input_wid, -20, 20, 80, 30,
