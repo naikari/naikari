@@ -403,10 +403,12 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       /* Nebula. */
       if (sys->nebu_density > 0. ) {
          /* Volatility */
-         if (sys->nebu_volatility > 700.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Volatile, ") );
-         else if (sys->nebu_volatility > 300.)
+         if (sys->nebu_volatility > 400.)
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Hostile, ") );
+         else if (sys->nebu_volatility > 100.)
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Dangerous, ") );
+         else if (sys->nebu_volatility > 20.)
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Volatile, ") );
          else if (sys->nebu_volatility > 0.)
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Unstable, ") );
          else

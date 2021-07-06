@@ -659,7 +659,7 @@ static void map_update( unsigned int wid )
    /*
     * System Status, if not showing commodity info
     */
-   if (map_mode != MAPMODE_TRAVEL) {
+   if ((map_mode == MAPMODE_TRAVEL) || (map_mode == MAPMODE_DISCOVER)) {
       buf[0] = '\0';
       p = 0;
 
@@ -681,10 +681,12 @@ static void map_update( unsigned int wid )
             adj = "";
 
          /* Volatility */
-         if (sys->nebu_volatility > 700.)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Volatile %sNebula"), adj);
-         else if (sys->nebu_volatility > 300.)
+         if (sys->nebu_volatility > 400.)
+            p += scnprintf(&buf[p], sizeof(buf)-p, _("Hostile %sNebula"), adj);
+         else if (sys->nebu_volatility > 100.)
             p += scnprintf(&buf[p], sizeof(buf)-p, _("Dangerous %sNebula"), adj);
+         else if (sys->nebu_volatility > 20.)
+            p += scnprintf(&buf[p], sizeof(buf)-p, _("Volatile %sNebula"), adj);
          else if (sys->nebu_volatility > 0.)
             p += scnprintf(&buf[p], sizeof(buf)-p, _("Unstable %sNebula"), adj);
          else
