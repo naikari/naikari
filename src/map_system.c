@@ -287,8 +287,10 @@ static void map_system_render( double bx, double by, double w, double h, void *d
    double unknownPresence = 0;
    char t;
    int txtHeight;
-   glTexture *logo;
    int offset;
+   int hasService;
+   const char *name;
+
    phase++;
    if ( phase > 150 ) {
       phase = 0;
@@ -303,16 +305,16 @@ static void map_system_render( double bx, double by, double w, double h, void *d
    /* background */
    gl_renderRect( bx, by, w, h, &cBlack );
 
-   j=0;
+   j = 0;
    offset = h - pitch*nshow;
    for ( i=0; i<array_size(sys->planets); i++ ) {
-      p=sys->planets[i];
+      p = sys->planets[i];
       if ( planet_isKnown(p) && (p->real == ASSET_REAL) ) {
          j++;
          if ( p->gfx_space == NULL) {
             WARN( _("No gfx for %s...\n"),p->name );
          } else {
-            ih=pitch;
+            ih = pitch;
             iw = ih;
             if ( p->gfx_space->w > p->gfx_space->h )
                ih = ih * p->gfx_space->h / p->gfx_space->w;
@@ -325,8 +327,8 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       }
    }
    /* draw the star */
-   ih=pitch;
-   iw=ih;
+   ih = pitch;
+   iw = ih;
    if ( array_size( bgImages ) > 0 ) {
       if ( bgImages[starCnt]->w > bgImages[starCnt]->h )
          ih = ih * bgImages[starCnt]->h / bgImages[starCnt]->w;
@@ -338,8 +340,8 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       gl_blitScale( bgImages[starCnt], bx+2 , by+(nshow-1)*pitch + (pitch-ih)/2 + offset, iw , ih, &ccol );
       if ( phase > 120 && array_size( bgImages ) > 2) {
          /* fade in the next star */
-         ih=pitch;
-         iw=ih;
+         ih = pitch;
+         iw = ih;
          i = starCnt + 1;
          if ( i >= array_size( bgImages ) ) {
             if ( array_size( bgImages ) <= 1 )
@@ -356,9 +358,10 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       }
    } else {
       /* no nebula or star images - probably due to nebula */
-      txtHeight=gl_printHeightRaw( &gl_smallFont,pitch,_("Obscured by the nebula") );
-      gl_printTextRaw( &gl_smallFont, pitch, txtHeight, (bx+2),
-            (by + (nshow-0.5)*pitch + offset), 0, &cFontRed, -1., _("Obscured by the nebula") );
+      txtHeight = gl_printHeightRaw(&gl_smallFont, iw, _("Obscured by the nebula"));
+      gl_printMidRaw( &gl_smallFont, iw, bx,
+            by + (nshow-1)*ih + offset + ih/2 - (txtHeight/2), &cFontRed, -1.,
+            _("Obscured by the nebula") );
    }
    gl_printRaw( &gl_smallFont, bx + 5 + pitch, by + (nshow-0.5)*pitch + offset,
          (cur_planet_sel == 0 ? &cFontGreen : &cFontWhite), -1., _(sys->name) );
@@ -380,9 +383,12 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       }
    }
    /* draw marker around currently selected planet */
-   ccol.r=0; ccol.g=0.6+0.4*sin( phase/150.*2*M_PI ); ccol.b=0; ccol.a=1;
-   ih=15;
-   iw=3;
+   ccol.r = 0;
+   ccol.g = 0.6+0.4*sin( phase/150.*2*M_PI );
+   ccol.b = 0;
+   ccol.a = 1;
+   ih = 15;
+   iw = 3;
    gl_renderRect( bx+1, by+(nshow-cur_planet_sel-1)*pitch + offset, iw, ih, &ccol );
    gl_renderRect( bx+1, by+(nshow-cur_planet_sel)*pitch-ih + offset, iw, ih, &ccol );
    gl_renderRect( bx+pitch+3-iw, by+(nshow-cur_planet_sel-1)*pitch + offset, iw, ih, &ccol );
@@ -391,8 +397,8 @@ static void map_system_render( double bx, double by, double w, double h, void *d
    gl_renderRect( bx+1, by+(nshow-cur_planet_sel)*pitch-iw + offset, ih, iw, &ccol );
    gl_renderRect( bx+pitch+3-ih, by+(nshow-cur_planet_sel-1)*pitch + offset, ih, iw, &ccol );
    gl_renderRect( bx+pitch+3-ih, by+(nshow-cur_planet_sel)*pitch-iw + offset, ih, iw, &ccol );
-   cnt=0;
-   buf[0]='\0';
+   cnt = 0;
+   buf[0] = '\0';
    if ( cur_planet_sel == 0 ) {
       int infopos = 0;
       int stars   = MAX( array_size( bgImages )-1, 0 );
@@ -405,19 +411,10 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          /* Volatility */
          if (sys->nebu_volatility > 0.)
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
-                  _("Nebula: %.0f GW volatility"), sys->nebu_volatility );
+                  _("Nebula: %.0f GW volatility\n"), sys->nebu_volatility );
          else
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Stable") );
-
-         /* Density */
-         if (sys->nebu_density > 700.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Dense\n") );
-         else if (sys->nebu_density < 300.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Light\n") );
-         else
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Medium\n") );
-      } else
-         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: None\n") );
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Stable\n") );
+      }
 
       /* Interference. */
       if (sys->rdr_range_mod < 1. ) {
@@ -446,21 +443,17 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          }
       }
       if (f == -1 ) {
-         cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: N/A\n") );
+         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: N/A\n") );
       }  else {
          if (i==array_size(sys->planets)) /* saw them all and all the same */
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: %s\nStanding: %s\n"), faction_longname(f), faction_getStandingText( f ) );
-         /* display the logo */
-         logo = faction_logoSmall( f );
-         if ( logo != NULL ) {
-            gl_blitScale( logo, bx + pitch + nameWidth + 200,
-                  by + h - 21, 20, 20, &cWhite );
-         }
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
+                  _("Faction: %s\nStanding: %s\n"), faction_longname(f),
+                  faction_getStandingText(f) );
       }
       /* Get presence. */
       hasPresence = 0;
       unknownPresence = 0;
-      for ( i=0; i < array_size(sys->presence); i++ ) {
+      for ( i=0; i<array_size(sys->presence); i++ ) {
          if (sys->presence[i].value <= 0)
             continue;
          hasPresence = 1;
@@ -494,54 +487,36 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          }
       }
    } else {
-     /* display planet info */
-     p = cur_planetObj_sel;
-     if (p->faction > 0 ) {/* show the faction */
-        char factionBuf[64];
-        logo = faction_logoSmall( p->faction );
-        if ( logo != NULL ) {
-           gl_blitScale( logo, bx + pitch + nameWidth + 200, by + h - 21, 20, 20, &cWhite );
-         }
-        snprintf( factionBuf, 64, "%s", faction_shortname( p->faction ) );
-        gl_printTextRaw( &gl_smallFont, (w - nameWidth-pitch - 60) / 2, 20,
-            bx+pitch+nameWidth + 230, by + h - 31, 0, &cFontWhite, -1., factionBuf );
+   /* display planet info */
+   p = cur_planetObj_sel;
 
-     }
+   cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
+      _("#%c%s%s#0\nPlanetary class: %s\n"), planet_getColourChar(p),
+      planet_getSymbol(p), _(p->name), p->class );
 
-     cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Planet: %s\nPlanetary class: %s    Population: %.0f\n"), _(p->name), p->class, (double)p->population );
-     if (!planet_hasService( p, PLANET_SERVICE_INHABITED ))
-        cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, _("No space port here\n") );
-     else if (p->can_land || p->bribed ) {
-        cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, _("You can land here\n") );
-     } else if ( areEnemies( FACTION_PLAYER, p->faction ) ) {
-        cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Not advisable to land here\n") );
-     } else {
-        cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, _("You cannot land here\n") );
-     }
-     /* Add a description */
-     cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, "%s", (p->description==NULL?_("No description available"):_(p->description)) );
+   if (p->faction > 0)
+      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: %s\n"),
+            faction_shortname(p->faction) );
+   else
+      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: None\n") );
 
-     txtHeight=gl_printHeightRaw( &gl_smallFont, (w - nameWidth-pitch-60)/2, buf );
+   hasService = 0;
+   cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("\nServices:\n") );
 
-     if ( infobuf[0] == '\0' ) {
-        int infocnt=0;
-        /* show some additional information */
-        infocnt=scnprintf( infobuf, sizeof(infobuf), "%s\n"
-                         "%s\n%s\n%s\n%s\n%s\n%s\n%s",
-                          planet_hasService( p, PLANET_SERVICE_LAND) ? _("This system is landable") : _("This system is not landable"),
-                          planet_hasService( p, PLANET_SERVICE_INHABITED) ? _("This system is inhabited") : _("This system is not inhabited"),
-                          planet_hasService( p, PLANET_SERVICE_REFUEL) ? _("You can refuel here") : _("You cannot refuel here"),
-                          planet_hasService( p, PLANET_SERVICE_BAR) ? _("This system has a bar") : _("This system does not have a bar"),
-                          planet_hasService( p,PLANET_SERVICE_MISSIONS) ? _("This system offers missions") : _("This system does not offer missions"),
-                          planet_hasService( p, PLANET_SERVICE_COMMODITY) ? _("This system has a trade outlet") : _("This system does not have a trade outlet"),
-                          planet_hasService( p, PLANET_SERVICE_OUTFITS) ? _("This system sells ship equipment") : _("This system does not sell ship equipment"),
-                          planet_hasService( p, PLANET_SERVICE_SHIPYARD) ? _("This system sells ships") : _("This system does not sell ships"));
-        if ( p->bar_description && planet_hasService( p, PLANET_SERVICE_BAR ) ) {
-           infocnt+=scnprintf( &infobuf[infocnt], sizeof(infobuf)-infocnt, "\n\n%s", _(p->bar_description) );
-        }
-     }
-     gl_printTextRaw( &gl_smallFont, (w - nameWidth - pitch - 60) / 2, txtHeight,
-         bx + 10 + pitch + nameWidth, by + h - 10 - txtHeight, 0, &cFontWhite, -1., buf );
+   for (i=1; i<PLANET_SERVICES_MAX; i<<=1) {
+      if (planet_hasService(p, i)) {
+         hasService = 1;
+         name = planet_getServiceName(i);
+         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, "%s\n", _(name) );
+      }
+   }
+
+   if (!hasService)
+      cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("None\n") );
+
+   txtHeight = gl_printHeightRaw( &gl_smallFont, (w - nameWidth-pitch-60)/2, buf );
+   gl_printTextRaw( &gl_smallFont, (w - nameWidth - pitch - 60) / 2, txtHeight,
+      bx + 10 + pitch + nameWidth, by + h - 10 - txtHeight, 0, &cFontWhite, -1., buf );
    }
 
    /* show the trade/outfit/ship info */
