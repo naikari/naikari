@@ -11,6 +11,6 @@
  </general>
  <specific type="modification">
   <energy_usage>2</energy_usage>
-  <rdr_range_mod>10</rdr_range_mod>
+  <rdr_range_mod>20</rdr_range_mod>
  </specific>
 </outfit>
