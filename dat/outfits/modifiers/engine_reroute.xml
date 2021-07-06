@@ -13,6 +13,6 @@
  <specific type="modification">
   <thrust>10</thrust>
   <thrust_mod>10</thrust_mod>
-  <energy_usage>2</energy_usage>
+  <energy_regen_malus>2</energy_regen_malus>
  </specific>
 </outfit>

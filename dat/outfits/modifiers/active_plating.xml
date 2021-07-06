@@ -14,6 +14,6 @@
  <specific type="modification">
   <armour_mod>15</armour_mod>
   <mass_mod>2.5</mass_mod>
-  <energy_usage>8</energy_usage>
+  <energy_regen_malus>8</energy_regen_malus>
  </specific>
 </outfit>

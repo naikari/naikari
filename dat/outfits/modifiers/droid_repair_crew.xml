@@ -12,6 +12,6 @@
  </general>
  <specific type="modification">
   <armour_regen>1.7</armour_regen>
-  <energy_usage>10</energy_usage>
+  <energy_regen_malus>10</energy_regen_malus>
  </specific>
 </outfit>
