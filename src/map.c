@@ -443,7 +443,7 @@ static void map_update( unsigned int wid )
    unsigned int services;
    int hasPlanets;
    char t;
-   const char *sym, *adj;
+   const char *sym;
    char buf[PATH_MAX];
    int p;
    glTexture *logo;
@@ -672,37 +672,20 @@ static void map_update( unsigned int wid )
          if (buf[0] != '\0')
             p += scnprintf(&buf[p], sizeof(buf)-p, _(", "));
 
-         /* Density. */
-         if (sys->nebu_density > 700.)
-            adj = _("Dense ");
-         else if (sys->nebu_density < 300.)
-            adj = _("Light ");
-         else
-            adj = "";
-
          /* Volatility */
-         if (sys->nebu_volatility > 400.)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Hostile %sNebula"), adj);
-         else if (sys->nebu_volatility > 100.)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Dangerous %sNebula"), adj);
-         else if (sys->nebu_volatility > 20.)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Volatile %sNebula"), adj);
-         else if (sys->nebu_volatility > 0.)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Unstable %sNebula"), adj);
+         if (sys->nebu_volatility > 0.)
+            p += scnprintf(&buf[p], sizeof(buf)-p,
+                  _("Nebula (%.0f GW volatility)"), sys->nebu_volatility);
          else
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("%sNebula"), adj);
+            p += scnprintf(&buf[p], sizeof(buf)-p, _("Nebula"));
       }
       /* Interference. */
       if (sys->rdr_range_mod < 1.) {
          if (buf[0] != '\0')
             p += scnprintf(&buf[p], sizeof(buf)-p, _(", "));
 
-         if (sys->rdr_range_mod < 0.3)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Dense Interference"));
-         else if (sys->rdr_range_mod < 0.7)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Interference"));
-         else
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Light Interference"));
+         p += scnprintf(&buf[p], sizeof(buf)-p,
+               _("%.0f%% Interference"), (1-sys->rdr_range_mod) * 100);
       }
       /* Asteroids. */
       if (array_size(sys->asteroids) > 0) {
@@ -716,12 +699,7 @@ static void map_update( unsigned int wid )
             density += sys->asteroids[i].area * sys->asteroids[i].density;
          }
 
-         if (density >= 1.5)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Dense Asteroid Field"));
-         else if (density <= 0.5)
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Light Asteroid Field"));
-         else
-            p += scnprintf(&buf[p], sizeof(buf)-p, _("Asteroid Field"));
+         p += scnprintf(&buf[p], sizeof(buf)-p, _("Asteroid Field"));
       }
       window_modifyText( wid, "txtSystemStatus", buf );
       (void)p;

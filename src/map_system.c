@@ -403,16 +403,11 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       /* Nebula. */
       if (sys->nebu_density > 0. ) {
          /* Volatility */
-         if (sys->nebu_volatility > 400.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Hostile, ") );
-         else if (sys->nebu_volatility > 100.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Dangerous, ") );
-         else if (sys->nebu_volatility > 20.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Volatile, ") );
-         else if (sys->nebu_volatility > 0.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Unstable, ") );
+         if (sys->nebu_volatility > 0.)
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
+                  _("Nebula: %.0f GW volatility"), sys->nebu_volatility );
          else
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Stable, ") );
+            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Stable") );
 
          /* Density */
          if (sys->nebu_density > 700.)
@@ -426,12 +421,8 @@ static void map_system_render( double bx, double by, double w, double h, void *d
 
       /* Interference. */
       if (sys->rdr_range_mod < 1. ) {
-         if (sys->rdr_range_mod < 0.3)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Interference: Dense\n") );
-         else if (sys->rdr_range_mod < 0.7)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Interference: Moderate\n") );
-         else
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Interference: Light\n") );
+         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
+               _("Interference: %.0f%%\n"), (1-sys->rdr_range_mod) * 100);
       }
       /* Asteroids. */
       if (array_size(sys->asteroids) > 0 ) {
