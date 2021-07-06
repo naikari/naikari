@@ -2525,10 +2525,7 @@ static StarSystem* system_parse( StarSystem *sys, const xmlNodePtr parent )
             xmlr_strd( cur, "features", sys->features );
             xmlr_int( cur, "stars", sys->stars );
             xmlr_float( cur, "radius", sys->radius );
-            if (xml_isNode(cur,"interference")) {
-               sys->interference = xml_getFloat(cur);
-            }
-            else if (xml_isNode(cur,"rdr_range_mod")) {
+            if (xml_isNode(cur,"rdr_range_mod")) {
                sys->rdr_range_mod = xml_getFloat(cur);
             }
             else if (xml_isNode(cur,"nebula")) {

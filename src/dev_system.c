@@ -115,8 +115,6 @@ int dsys_saveSystem( StarSystem *sys )
       xmlw_elem( writer, "features", "%s", sys->features );
    xmlw_elem( writer, "radius", "%f", sys->radius );
    xmlw_elem( writer, "stars", "%d", sys->stars );
-   if (sys->interference != 0.)
-      xmlw_elem( writer, "interference", "%f", sys->interference );
    if (sys->rdr_range_mod != 0.)
       xmlw_elem( writer, "rdr_range_mod", "%f", sys->rdr_range_mod );
    xmlw_startElem( writer, "nebula" );

@@ -1257,7 +1257,7 @@ static void uniedit_editSys (void)
    window_setInputFilter( wid, "inpStars", INPUT_FILTER_NUMBER );
    x += 50 + 12;
 
-   s = _("Interference");
+   s = _("Radar Range Mod");
    l = gl_printWidthRaw( NULL, s );
    window_addText( wid, x, y, l, 20, 1, "txtInterference",
          NULL, NULL, s );
@@ -1301,7 +1301,7 @@ static void uniedit_editSys (void)
    window_setInput( wid, "inpRadius", buf );
    snprintf( buf, sizeof(buf), "%d", sys->stars );
    window_setInput( wid, "inpStars", buf );
-   snprintf( buf, sizeof(buf), "%g", sys->interference );
+   snprintf( buf, sizeof(buf), "%g", sys->rdr_range_mod );
    window_setInput( wid, "inpInterference", buf );
    snprintf( buf, sizeof(buf), "%g", sys->nebu_density );
    window_setInput( wid, "inpNebula", buf );
@@ -1390,7 +1390,7 @@ static void uniedit_editSysClose( unsigned int wid, char *name )
    sysedit_sysScale(sys, scale);
 
    sys->stars           = atoi(window_getInput( wid, "inpStars" ));
-   sys->interference    = atof(window_getInput( wid, "inpInterference" ));
+   sys->rdr_range_mod   = (atof(window_getInput(wid, "inpInterference"))-100) / 100;
    sys->nebu_density    = atof(window_getInput( wid, "inpNebula" ));
    sys->nebu_volatility = atof(window_getInput( wid, "inpVolatility" ));
    sys->nebu_hue        = atof(window_getInput( wid, "inpHue" )) / 360.;
