@@ -19,11 +19,9 @@
  <jumps>
   <jump target="Aesria">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Vean">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

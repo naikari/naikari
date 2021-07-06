@@ -19,15 +19,12 @@
  <jumps>
   <jump target="Amatiri">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Neexi">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Opal">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

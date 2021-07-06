@@ -13,11 +13,9 @@
  <jumps>
   <jump target="Ganth">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Vost">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

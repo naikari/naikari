@@ -22,7 +22,6 @@
  <jumps>
   <jump target="Gewirn">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Hatter">
    <autopos/>

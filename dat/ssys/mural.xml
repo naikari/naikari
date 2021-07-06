@@ -28,11 +28,9 @@
   </jump>
   <jump target="Borla">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Salvador">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

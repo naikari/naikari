@@ -16,12 +16,10 @@
  <jumps>
   <jump target="Straight Row">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Unicorn">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
  </jumps>
  <asteroids>

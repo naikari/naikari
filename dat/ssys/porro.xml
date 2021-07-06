@@ -18,15 +18,12 @@
  <jumps>
   <jump target="Margarita">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Muirat">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Narousse">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

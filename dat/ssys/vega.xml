@@ -13,15 +13,12 @@
  <jumps>
   <jump target="Ganth">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Pultatis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Ux">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

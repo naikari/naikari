@@ -17,11 +17,9 @@
  <jumps>
   <jump target="C-00">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="C-43">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

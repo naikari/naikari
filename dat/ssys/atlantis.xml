@@ -15,15 +15,12 @@
  <jumps>
   <jump target="Pike">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Shickhaw">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sten">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

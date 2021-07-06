@@ -21,15 +21,12 @@
  <jumps>
   <jump target="Gruz">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Maus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Millstone">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

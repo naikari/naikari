@@ -18,19 +18,15 @@
  <jumps>
   <jump target="Anarbalis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Lazuli">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Niger">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Quai">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>

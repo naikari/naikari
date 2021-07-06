@@ -15,15 +15,12 @@
  <jumps>
   <jump target="Monogram">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Neon">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Pellmell">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

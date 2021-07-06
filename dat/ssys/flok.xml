@@ -13,11 +13,9 @@
  <jumps>
   <jump target="Akodu">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Doowa">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

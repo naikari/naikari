@@ -16,15 +16,12 @@
  <jumps>
   <jump target="Karman">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Nougat">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Triap">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

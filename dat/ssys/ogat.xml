@@ -32,11 +32,9 @@
   </jump>
   <jump target="Vlexon">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Zacron">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

@@ -15,11 +15,9 @@
  <jumps>
   <jump target="Jackson">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Kiwi">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

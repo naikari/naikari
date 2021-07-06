@@ -13,11 +13,9 @@
  <jumps>
   <jump target="Stelman">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Straight Row">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

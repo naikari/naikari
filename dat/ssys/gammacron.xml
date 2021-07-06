@@ -20,11 +20,9 @@
  <jumps>
   <jump target="Daan">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Limbo">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>

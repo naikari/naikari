@@ -13,15 +13,12 @@
  <jumps>
   <jump target="Churchill">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Narousse">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Porro">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

@@ -21,11 +21,9 @@
  <jumps>
   <jump target="Awowa">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Verex">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

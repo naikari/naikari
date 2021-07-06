@@ -18,15 +18,12 @@
  <jumps>
   <jump target="Eiger">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Orion">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Urdads">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

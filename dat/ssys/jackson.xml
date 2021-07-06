@@ -19,15 +19,12 @@
  <jumps>
   <jump target="Duros">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Fulcrum">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Pellmell">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

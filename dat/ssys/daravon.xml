@@ -31,11 +31,9 @@
   </jump>
   <jump target="Perhelion">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Pudas">
    <pos x="-8387.765035" y="-20971.033465"/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

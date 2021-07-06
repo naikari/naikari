@@ -19,23 +19,18 @@
  <jumps>
   <jump target="Daled">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Forlat">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Kelvos">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Octantis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Regulus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

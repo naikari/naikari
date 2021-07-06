@@ -3,7 +3,6 @@
  <general>
   <radius>22575.000000</radius>
   <stars>500</stars>
-  <interference>50.000000</interference>
   <rdr_range_mod>-5.000000</rdr_range_mod>
   <nebula volatility="0.000000" hue="100.000000">100.000000</nebula>
  </general>
@@ -24,12 +23,10 @@
  <jumps>
   <jump target="Hatter">
    <pos x="-7960.892232" y="-26332.526438"/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Possum">
    <pos x="36258.855420" y="13921.750314"/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
  </jumps>
 </ssys>

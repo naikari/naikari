@@ -20,7 +20,6 @@
  <jumps>
   <jump target="Slaccid">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

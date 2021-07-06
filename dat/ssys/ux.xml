@@ -21,11 +21,9 @@
  <jumps>
   <jump target="Valerie">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Vega">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

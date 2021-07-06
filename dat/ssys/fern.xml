@@ -13,7 +13,6 @@
  <jumps>
   <jump target="Korma">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>

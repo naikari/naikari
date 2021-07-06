@@ -23,7 +23,6 @@
  <jumps>
   <jump target="Point Zero">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

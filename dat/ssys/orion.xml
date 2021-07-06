@@ -22,11 +22,9 @@
  <jumps>
   <jump target="Bedimann">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Corinth">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

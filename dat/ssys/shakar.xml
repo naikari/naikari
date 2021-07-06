@@ -21,11 +21,9 @@
  <jumps>
   <jump target="Borla">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Gamma Polaris">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

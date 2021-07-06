@@ -20,15 +20,12 @@
  <jumps>
   <jump target="Octantis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Regulus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Tandar">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

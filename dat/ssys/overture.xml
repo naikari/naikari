@@ -19,7 +19,6 @@
  <jumps>
   <jump target="Dohriabi">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Nartur">
    <autopos/>
@@ -27,11 +26,9 @@
   </jump>
   <jump target="Pas">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Uhriabi">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Waterhole">
    <autopos/>

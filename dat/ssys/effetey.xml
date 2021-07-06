@@ -16,25 +16,20 @@
   <jump target="Fried">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Frolina">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Pas">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Provectus Nova">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Trohem">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

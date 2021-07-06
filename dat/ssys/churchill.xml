@@ -28,15 +28,12 @@
  <jumps>
   <jump target="Eiderdown">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Muirat">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Willow">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

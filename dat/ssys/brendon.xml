@@ -19,11 +19,9 @@
  <jumps>
   <jump target="Gilligan's Tomb">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Toxin">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

@@ -25,11 +25,9 @@
   <jump target="Fulcrum">
    <pos x="29692.320869" y="-16918.303096"/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Karman">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

@@ -17,11 +17,9 @@
   <jump target="Corinth">
    <pos x="15193.599356" y="13573.967466"/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Qulam">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

@@ -19,23 +19,18 @@
  <jumps>
   <jump target="Delta Polaris">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Paradox">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sirou">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Wolf">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Yarn">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

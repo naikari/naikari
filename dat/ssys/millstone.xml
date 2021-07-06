@@ -23,7 +23,6 @@
   </jump>
   <jump target="Infinity">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Maus">
    <autopos/>

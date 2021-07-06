@@ -18,15 +18,12 @@
  <jumps>
   <jump target="Armorhead">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Vauban">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Za'lek">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

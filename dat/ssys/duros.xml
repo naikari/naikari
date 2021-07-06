@@ -18,15 +18,12 @@
  <jumps>
   <jump target="Fulcrum">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Jackson">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Palovi">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

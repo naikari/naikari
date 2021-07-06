@@ -3,7 +3,6 @@
  <general>
   <radius>17500.000000</radius>
   <stars>140</stars>
-  <interference>100.000000</interference>
   <rdr_range_mod>-10.000000</rdr_range_mod>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
@@ -17,12 +16,10 @@
  <jumps>
   <jump target="Bastion">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="New Haven">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
  </jumps>
 </ssys>

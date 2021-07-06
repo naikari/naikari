@@ -15,15 +15,12 @@
  <jumps>
   <jump target="An'ku">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Gilligan's Memory">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Modus Manis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

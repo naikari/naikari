@@ -20,19 +20,15 @@
  <jumps>
   <jump target="Kiwi">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Kraft">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Nixon">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Pike">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

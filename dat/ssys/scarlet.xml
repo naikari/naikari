@@ -21,11 +21,9 @@
  <jumps>
   <jump target="Druss">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Esker">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

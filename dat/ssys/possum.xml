@@ -18,15 +18,12 @@
   <jump target="Mizar">
    <pos x="-13004.887399" y="-18441.575321"/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Moor">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Treacle">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

@@ -3,7 +3,6 @@
  <general>
   <radius>28000.000000</radius>
   <stars>100</stars>
-  <interference>300.000000</interference>
   <rdr_range_mod>-30.000000</rdr_range_mod>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
@@ -22,31 +21,25 @@
   <jump target="Daled">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Forlat">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Fury">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Haven">
    <pos x="-26890.577150" y="-29850.315954"/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Muran">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Titus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

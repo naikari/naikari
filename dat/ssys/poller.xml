@@ -3,7 +3,6 @@
  <general>
   <radius>18000.000000</radius>
   <stars>400</stars>
-  <interference>150.000000</interference>
   <rdr_range_mod>-15.000000</rdr_range_mod>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
@@ -18,15 +17,12 @@
  <jumps>
   <jump target="Newmarch">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Woreck">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Xeric">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

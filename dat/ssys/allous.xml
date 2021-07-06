@@ -21,15 +21,12 @@
  <jumps>
   <jump target="Faust">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Palin">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Suk">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

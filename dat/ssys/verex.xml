@@ -17,7 +17,6 @@
  <jumps>
   <jump target="Blunderbuss">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Darkstone">
    <autopos/>
@@ -25,7 +24,6 @@
   </jump>
   <jump target="Ginger">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Tarsus">
    <autopos/>

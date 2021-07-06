@@ -13,11 +13,9 @@
  <jumps>
   <jump target="Blacin">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Effetey">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

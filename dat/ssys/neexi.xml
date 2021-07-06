@@ -16,11 +16,9 @@
  <jumps>
   <jump target="Malebolge">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sleuth">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

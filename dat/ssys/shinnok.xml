@@ -28,7 +28,6 @@
   </jump>
   <jump target="Valerie">
    <pos x="-18009.886457" y="-12647.368180"/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

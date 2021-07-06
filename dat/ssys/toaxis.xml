@@ -3,7 +3,6 @@
  <general>
   <radius>17500.000000</radius>
   <stars>500</stars>
-  <interference>100.000000</interference>
   <rdr_range_mod>-10.000000</rdr_range_mod>
   <nebula volatility="0.000000" hue="240.000000">150.000000</nebula>
  </general>
@@ -18,11 +17,9 @@
  <jumps>
   <jump target="Ingot">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Raelid">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

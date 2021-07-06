@@ -19,11 +19,9 @@
  <jumps>
   <jump target="Monogram">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Vanir">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

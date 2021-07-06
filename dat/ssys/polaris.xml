@@ -3,7 +3,6 @@
  <general>
   <radius>10500.000000</radius>
   <stars>400</stars>
-  <interference>800.000000</interference>
   <rdr_range_mod>-80.000000</rdr_range_mod>
   <nebula volatility="500.000000" hue="320.000000">800.000000</nebula>
  </general>
@@ -17,11 +16,9 @@
  <jumps>
   <jump target="Nasona">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sol">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

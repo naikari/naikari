@@ -20,19 +20,15 @@
  <jumps>
   <jump target="Allous">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Gruz">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sarrii">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Vandal">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

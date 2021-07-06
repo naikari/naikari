@@ -3,7 +3,6 @@
  <general>
   <radius>17500.000000</radius>
   <stars>500</stars>
-  <interference>50.000000</interference>
   <rdr_range_mod>-5.000000</rdr_range_mod>
   <nebula volatility="0.000000" hue="240.000000">100.000000</nebula>
  </general>
@@ -24,27 +23,21 @@
  <jumps>
   <jump target="Arcanis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sonas">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Surano">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Tau Prime">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Toaxis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Zacron">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

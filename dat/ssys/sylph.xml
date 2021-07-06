@@ -20,11 +20,9 @@
  <jumps>
   <jump target="Bonanza">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Kansas">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

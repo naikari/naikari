@@ -3,7 +3,6 @@
  <general>
   <radius>17500.000000</radius>
   <stars>500</stars>
-  <interference>50.000000</interference>
   <rdr_range_mod>-5.000000</rdr_range_mod>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
@@ -23,16 +22,13 @@
  <jumps>
   <jump target="Alteris">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Draconis">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Dune">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

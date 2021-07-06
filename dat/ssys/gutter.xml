@@ -20,11 +20,9 @@
  <jumps>
   <jump target="Esker">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Tartan">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

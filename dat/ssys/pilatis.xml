@@ -27,11 +27,9 @@
   </jump>
   <jump target="Halo">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Thorndyke">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

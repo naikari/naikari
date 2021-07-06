@@ -3,7 +3,6 @@
  <general>
   <radius>28000.000000</radius>
   <stars>400</stars>
-  <interference>100.000000</interference>
   <rdr_range_mod>-10.000000</rdr_range_mod>
   <nebula volatility="25.000000">300.000000</nebula>
  </general>
@@ -16,11 +15,9 @@
   <jump target="Anger">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Myad">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

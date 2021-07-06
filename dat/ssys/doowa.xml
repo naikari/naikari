@@ -13,25 +13,20 @@
  <jumps>
   <jump target="Firk">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Flok">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Qorel">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Salvador">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Vlexon">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
  </jumps>
 </ssys>

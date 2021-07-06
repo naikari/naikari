@@ -22,7 +22,6 @@
  <jumps>
   <jump target="Copernicus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Procyon">
    <autopos/>

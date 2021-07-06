@@ -17,11 +17,9 @@
  <jumps>
   <jump target="Auger">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sheffield">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

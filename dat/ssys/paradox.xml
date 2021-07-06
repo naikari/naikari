@@ -20,11 +20,9 @@
  <jumps>
   <jump target="Knave">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Zemur">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

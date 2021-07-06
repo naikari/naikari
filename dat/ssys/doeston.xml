@@ -3,7 +3,6 @@
  <general>
   <radius>12250.000000</radius>
   <stars>400</stars>
-  <interference>200.000000</interference>
   <rdr_range_mod>-20.000000</rdr_range_mod>
   <nebula volatility="100.000000">500.000000</nebula>
  </general>
@@ -18,23 +17,18 @@
  <jumps>
   <jump target="Arandon">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Behar">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Myad">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Toros">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Zylex">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

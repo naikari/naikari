@@ -13,11 +13,9 @@
  <jumps>
   <jump target="Diadem">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Vedalus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

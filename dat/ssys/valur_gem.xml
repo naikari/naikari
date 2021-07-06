@@ -15,15 +15,12 @@
  <jumps>
   <jump target="Druid">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Fidelis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Gruz">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

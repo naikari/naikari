@@ -29,11 +29,9 @@
  <jumps>
   <jump target="Mida">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Telika">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

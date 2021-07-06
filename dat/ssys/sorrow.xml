@@ -13,11 +13,9 @@
  <jumps>
   <jump target="Eisenhorn">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Kraft">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

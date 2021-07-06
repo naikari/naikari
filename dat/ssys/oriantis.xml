@@ -3,7 +3,6 @@
  <general>
   <radius>10500.000000</radius>
   <stars>400</stars>
-  <interference>450.000000</interference>
   <rdr_range_mod>-45.000000</rdr_range_mod>
   <nebula volatility="100.000000" hue="290.000000">500.000000</nebula>
  </general>
@@ -17,11 +16,9 @@
  <jumps>
   <jump target="Iris">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Midoros">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

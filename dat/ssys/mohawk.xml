@@ -17,11 +17,9 @@
  <jumps>
   <jump target="Cherokee">
    <autopos/>
-   <hide>0.100000</hide>
   </jump>
   <jump target="Iroquois">
    <autopos/>
-   <hide>0.100000</hide>
   </jump>
  </jumps>
 </ssys>

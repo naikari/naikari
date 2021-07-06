@@ -20,15 +20,12 @@
  <jumps>
   <jump target="Brimstone">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Chraan">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Haleb">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

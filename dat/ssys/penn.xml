@@ -13,19 +13,15 @@
  <jumps>
   <jump target="Korma">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Rei">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Seifer">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Teller">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

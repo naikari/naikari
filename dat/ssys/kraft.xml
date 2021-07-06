@@ -21,11 +21,9 @@
  <jumps>
   <jump target="Neon">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sorrow">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

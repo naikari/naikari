@@ -20,11 +20,9 @@
  <jumps>
   <jump target="Octavian">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Procyon">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

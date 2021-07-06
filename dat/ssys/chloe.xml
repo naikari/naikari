@@ -13,11 +13,9 @@
  <jumps>
   <jump target="Polack">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Wolf">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

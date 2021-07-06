@@ -16,15 +16,12 @@
  <jumps>
   <jump target="Alteris">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Gamel">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Rockbed">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

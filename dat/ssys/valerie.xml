@@ -21,11 +21,9 @@
  <jumps>
   <jump target="Shinnok">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Ux">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

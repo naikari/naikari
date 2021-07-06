@@ -3,7 +3,6 @@
  <general>
   <radius>15750.000000</radius>
   <stars>400</stars>
-  <interference>20.000000</interference>
   <rdr_range_mod>-2.000000</rdr_range_mod>
   <nebula volatility="0.000000" hue="290.000000">50.000000</nebula>
  </general>
@@ -20,16 +19,13 @@
  <jumps>
   <jump target="Marat">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="PSO">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Zied">
    <autopos/>
    <exitonly/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

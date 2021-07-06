@@ -31,7 +31,6 @@
   </jump>
   <jump target="Botarn">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

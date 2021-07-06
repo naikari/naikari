@@ -20,7 +20,6 @@
   </jump>
   <jump target="Seelie">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Seiben">
    <autopos/>

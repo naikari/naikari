@@ -18,11 +18,9 @@
  <jumps>
   <jump target="Jommel">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Moor">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

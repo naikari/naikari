@@ -13,19 +13,15 @@
  <jumps>
   <jump target="Anger">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Hephaestus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Seifer">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sten">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

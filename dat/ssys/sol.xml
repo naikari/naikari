@@ -3,7 +3,6 @@
  <general>
   <radius>35000.000000</radius>
   <stars>500</stars>
-  <interference>950.000000</interference>
   <rdr_range_mod>-95.000000</rdr_range_mod>
   <nebula volatility="600.000000" hue="0.000000">900.000000</nebula>
  </general>
@@ -15,15 +14,12 @@
  <jumps>
   <jump target="Midoros">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Polaris">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Tide">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>

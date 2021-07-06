@@ -16,19 +16,15 @@
  <jumps>
   <jump target="Fried">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Limbo">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Pultatis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Stone Table">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

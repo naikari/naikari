@@ -23,11 +23,9 @@
  <jumps>
   <jump target="Dvaer">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Farizel">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

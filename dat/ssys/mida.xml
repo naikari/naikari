@@ -17,15 +17,12 @@
  <jumps>
   <jump target="Akra">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Apik">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Ekta">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

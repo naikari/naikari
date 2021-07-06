@@ -16,11 +16,9 @@
  <jumps>
   <jump target="Delta Polaris">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Paradox">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>

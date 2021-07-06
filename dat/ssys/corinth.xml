@@ -20,15 +20,12 @@
   <jump target="Kohler">
    <pos x="-20360.894424" y="-13308.977974"/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Orion">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Procyon">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

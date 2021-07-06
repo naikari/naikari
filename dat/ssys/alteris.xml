@@ -25,19 +25,15 @@
  <jumps>
   <jump target="Coriolis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Delta Pavonis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Eridani">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sikh">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>

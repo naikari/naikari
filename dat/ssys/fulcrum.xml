@@ -17,16 +17,13 @@
  <jumps>
   <jump target="Duros">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Gyrios">
    <autopos/>
    <exitonly/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Jackson">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

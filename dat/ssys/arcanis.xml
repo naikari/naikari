@@ -3,7 +3,6 @@
  <general>
   <radius>14000.000000</radius>
   <stars>500</stars>
-  <interference>100.000000</interference>
   <rdr_range_mod>-10.000000</rdr_range_mod>
   <nebula volatility="0.000000" hue="250.000000">200.000000</nebula>
  </general>
@@ -17,20 +16,16 @@
  <jumps>
   <jump target="Raelid">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sigur">
    <autopos/>
    <hidden/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sonas">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Zylex">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>

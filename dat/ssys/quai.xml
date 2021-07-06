@@ -17,11 +17,9 @@
  <jumps>
   <jump target="Lapis">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Ruttwi">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

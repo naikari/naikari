@@ -19,11 +19,9 @@
  <jumps>
   <jump target="Ariadus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Sleuth">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
  <asteroids>
