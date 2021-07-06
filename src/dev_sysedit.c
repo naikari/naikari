@@ -1353,7 +1353,7 @@ static void sysedit_editPnt( void )
    window_setInput( wid, "inpPresence", buf );
    snprintf( buf, sizeof(buf), "%d", p->presenceRange );
    window_setInput( wid, "inpPresenceRange", buf );
-   snprintf( buf, sizeof(buf), "%g", p->rdr_range_mod );
+   snprintf( buf, sizeof(buf), "%g", p->rdr_range_mod*100 - 100 );
    window_setInput( wid, "inpHide", buf );
 
    /* Generate the list. */

@@ -818,7 +818,7 @@ static void uniedit_jumpAdd( StarSystem *sys, StarSystem *targ )
    jp->targetid = targ->id;
    jp->radius  = 200.;
    jp->flags   = JP_AUTOPOS; /* Will automatically create position. */
-   jp->rdr_range_mod = 0;
+   jp->rdr_range_mod = 1.;
 }
 
 
@@ -1301,7 +1301,7 @@ static void uniedit_editSys (void)
    window_setInput( wid, "inpRadius", buf );
    snprintf( buf, sizeof(buf), "%d", sys->stars );
    window_setInput( wid, "inpStars", buf );
-   snprintf( buf, sizeof(buf), "%g", sys->rdr_range_mod );
+   snprintf( buf, sizeof(buf), "%g", sys->rdr_range_mod*100 - 100 );
    window_setInput( wid, "inpInterference", buf );
    snprintf( buf, sizeof(buf), "%g", sys->nebu_density );
    window_setInput( wid, "inpNebula", buf );

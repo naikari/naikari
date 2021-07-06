@@ -1974,7 +1974,7 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
    /* Clear up memory for safe defaults. */
    flags          = 0;
    planet->real   = ASSET_REAL;
-   planet->rdr_range_mod = 0;
+   planet->rdr_range_mod = 0.;
    comms          = array_create( Commodity* );
 
    /* Get the name. */

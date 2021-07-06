@@ -115,8 +115,8 @@ int dsys_saveSystem( StarSystem *sys )
       xmlw_elem( writer, "features", "%s", sys->features );
    xmlw_elem( writer, "radius", "%f", sys->radius );
    xmlw_elem( writer, "stars", "%d", sys->stars );
-   if (sys->rdr_range_mod != 0.)
-      xmlw_elem( writer, "rdr_range_mod", "%f", sys->rdr_range_mod );
+   if (sys->rdr_range_mod != 1.)
+      xmlw_elem( writer, "rdr_range_mod", "%f", sys->rdr_range_mod*100 - 100 );
    xmlw_startElem( writer, "nebula" );
    xmlw_attr( writer, "volatility", "%f", sys->nebu_volatility );
    if (fabs(sys->nebu_hue*360.0 - NEBULA_DEFAULT_HUE) > 1e-5)
