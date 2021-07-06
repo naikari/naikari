@@ -170,7 +170,8 @@ int dsys_saveSystem( StarSystem *sys )
          xmlw_elemEmpty( writer, "exitonly" );
       if (jp_isFlag( jp, JP_EXPRESS ))
          xmlw_elemEmpty( writer, "express" );
-      xmlw_elem( writer, "rdr_range_mod", "%f", jp->rdr_range_mod*100 - 100 );
+      if (jp->rdr_range_mod != 1.)
+         xmlw_elem( writer, "rdr_range_mod", "%f", jp->rdr_range_mod*100 - 100 );
       xmlw_endElem( writer ); /* "jump" */
    }
    xmlw_endElem( writer ); /* "jumps" */
