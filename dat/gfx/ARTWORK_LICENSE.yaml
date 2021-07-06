@@ -772,6 +772,10 @@
        - frame_planet_top.png
        - outfit.png
        - speedDouble.png
+     neo:
+       - barcircles.png
+       - barFrame.png
+       - barHeader.png
 - Nikola Whallon <6.saturn.6@gmail.com>:
    license: GPLv3 / CC-by 3
    planet:
