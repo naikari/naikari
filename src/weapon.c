@@ -1331,7 +1331,7 @@ static double weapon_aimTurret( const Pilot *parent,
    double x, y, t;
    double off;
 
-   if (pilot_target != NULL) {
+   if ((pilot_target != NULL) && (pilot_target->id != parent->id)) {
       target_pos = pilot_target->solid->pos;
       target_vel = pilot_target->solid->vel;
    }
