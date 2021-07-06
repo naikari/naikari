@@ -1301,7 +1301,7 @@ static void uniedit_editSys (void)
    window_setInput( wid, "inpRadius", buf );
    snprintf( buf, sizeof(buf), "%d", sys->stars );
    window_setInput( wid, "inpStars", buf );
-   snprintf( buf, sizeof(buf), "%g", sys->rdr_range_mod*100 - 100 );
+   snprintf( buf, sizeof(buf), "%g", sys->rdr_range_mod );
    window_setInput( wid, "inpInterference", buf );
    snprintf( buf, sizeof(buf), "%g", sys->nebu_density );
    window_setInput( wid, "inpNebula", buf );
@@ -1390,7 +1390,7 @@ static void uniedit_editSysClose( unsigned int wid, char *name )
    sysedit_sysScale(sys, scale);
 
    sys->stars           = atoi(window_getInput( wid, "inpStars" ));
-   sys->rdr_range_mod   = (atof(window_getInput(wid, "inpInterference"))-100) / 100;
+   sys->rdr_range_mod   = atof(window_getInput(wid, "inpInterference"));
    sys->nebu_density    = atof(window_getInput( wid, "inpNebula" ));
    sys->nebu_volatility = atof(window_getInput( wid, "inpVolatility" ));
    sys->nebu_hue        = atof(window_getInput( wid, "inpHue" )) / 360.;

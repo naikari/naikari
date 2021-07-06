@@ -335,7 +335,7 @@ static void sysedit_editPntClose( unsigned int wid, char *unused )
 
    p->presenceAmount = atof(window_getInput(sysedit_widEdit, "inpPresence"));
    p->presenceRange = atoi(window_getInput(sysedit_widEdit, "inpPresenceRange"));
-   p->rdr_range_mod = (atof(window_getInput(sysedit_widEdit, "inpHide"))+100) / 100;
+   p->rdr_range_mod = atof(window_getInput(sysedit_widEdit, "inpHide"));
 
    /* Add the new presence. */
    system_addPresence(sysedit_sys, p->faction, p->presenceAmount, p->presenceRange);
@@ -387,7 +387,7 @@ static void sysedit_btnNew( unsigned int wid_unused, char *unused )
    p->gfx_exteriorPath  = strdup( b->gfx_exteriorPath );
    p->pos.x             = sysedit_xpos / sysedit_zoom;
    p->pos.y             = sysedit_ypos / sysedit_zoom;
-   p->rdr_range_mod     = 0;
+   p->rdr_range_mod     = 1.;
    p->radius            = b->radius;
 
    /* Add new planet. */
@@ -1321,7 +1321,7 @@ static void sysedit_editPnt( void )
    l = gl_printWidthRaw( NULL, s );
    window_addText( wid, x, y, l, 20, 1, "txtHide",
          NULL, NULL, s );
-   window_addInput( wid, x += l + 5, y, 50, 20, "inpHide", 4, 1, NULL );
+   window_addInput( wid, x += l + 5, y, 50, 20, "inpHide", 64, 1, NULL );
    window_setInputFilter( wid, "inpHide", INPUT_FILTER_NUMBER );
    x += 50 + 10;
 
@@ -1353,7 +1353,7 @@ static void sysedit_editPnt( void )
    window_setInput( wid, "inpPresence", buf );
    snprintf( buf, sizeof(buf), "%d", p->presenceRange );
    window_setInput( wid, "inpPresenceRange", buf );
-   snprintf( buf, sizeof(buf), "%g", p->rdr_range_mod*100 - 100 );
+   snprintf( buf, sizeof(buf), "%g", p->rdr_range_mod );
    window_setInput( wid, "inpHide", buf );
 
    /* Generate the list. */
@@ -1443,7 +1443,7 @@ static void sysedit_editJump( void )
    l = gl_printWidthRaw( NULL, s );
    window_addText( wid, x, y, l, 20, 1, "txtHide",
          NULL, NULL, s );
-   window_addInput( wid, x + l + 8, y, 50, 20, "inpHide", 4, 1, NULL );
+   window_addInput( wid, x + l + 8, y, 50, 20, "inpHide", 64, 1, NULL );
    window_setInputFilter( wid, "inpHide", INPUT_FILTER_NUMBER );
    x += 50 + 10;
 
@@ -1454,7 +1454,7 @@ static void sysedit_editJump( void )
          "btnClose", _("Close"), sysedit_editJumpClose );
 
    /* Load current values. */
-   snprintf( buf, sizeof(buf), "%g", j->rdr_range_mod*100 - 100 );
+   snprintf( buf, sizeof(buf), "%g", j->rdr_range_mod );
    window_setInput( wid, "inpHide", buf );
 }
 
@@ -1479,7 +1479,7 @@ static void sysedit_editJumpClose( unsigned int wid, char *unused )
       jp_rmFlag( j, JP_HIDDEN );
       jp_rmFlag( j, JP_EXITONLY );
    }
-   j->rdr_range_mod = (atof(window_getInput(sysedit_widEdit, "inpHide"))+100) / 100;
+   j->rdr_range_mod = atof(window_getInput(sysedit_widEdit, "inpHide"));
 
    window_close( wid, unused );
 }
