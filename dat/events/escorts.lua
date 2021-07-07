@@ -208,11 +208,19 @@ end
 
 function jumpout ()
    for i, edata in ipairs(escorts) do
-      if edata.alive and edata.pilot ~= nil and edata.pilot:exists() then
-         edata.temp = edata.pilot:temp()
-         edata.armor, edata.shield, edata.stress = edata.pilot:health()
-         edata.energy = edata.pilot:energy()
-         edata.pilot:rm()
+      if edata.alive then
+         if edata.pilot ~= nil and edata.pilot:exists() then
+            edata.temp = edata.pilot:temp()
+            edata.armor, edata.shield, edata.stress = edata.pilot:health()
+            edata.energy = edata.pilot:energy()
+            edata.pilot:rm()
+         else
+            edata.temp = nil
+            edata.armor = nil
+            edata.shield = nil
+            edata.stress = nil
+            edata.energy = nil
+         end
          edata.pilot = nil
       else
          edata.alive = false
