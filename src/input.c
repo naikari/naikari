@@ -925,6 +925,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
             if (player_land(0) == PLAYER_LAND_AGAIN) {
                player_rmFlag(PLAYER_BASICAPPROACH);
                player_autonavPnt(cur_system->planets[player.p->nav_planet]->name);
+               player_message(_("#oAutonav: auto-landing sequence engaged."));
             }
          } else
             player_land(1);
@@ -1435,6 +1436,7 @@ int input_clickedPlanet( int planet, int autonav )
          if (ret == PLAYER_LAND_AGAIN) {
             player_rmFlag(PLAYER_BASICAPPROACH);
             player_autonavPnt(pnt->name);
+            player_message(_("#oAutonav: auto-landing sequence engaged."));
          }
          else if (ret == PLAYER_LAND_DENIED) {
             player_setFlag(PLAYER_BASICAPPROACH);

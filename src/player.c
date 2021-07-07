@@ -1263,9 +1263,19 @@ void player_targetPlanetSet( int id )
    player_hyperspacePreempt((id < 0) ? 1 : 0);
    if (old != id) {
       player_rmFlag(PLAYER_LANDACK);
+
+      /* Prevent weirdness with auto-landing. */
+      if (player_isFlag(PLAYER_AUTONAV) && !player_isFlag(PLAYER_BASICAPPROACH)
+            && ((player.autonav == AUTONAV_PNT_APPROACH)
+               || (player.autonav == AUTONAV_PNT_BRAKE))) {
+         player_setFlag(PLAYER_BASICAPPROACH);
+         player_message(_("#oAutonav: auto-landing sequence aborted."));
+      }
+
       if (id >= 0)
          player_soundPlayGUI(snd_nav, 1);
    }
+
    gui_forceBlink();
    gui_setNav();
 }
