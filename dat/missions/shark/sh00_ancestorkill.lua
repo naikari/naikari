@@ -145,7 +145,7 @@ function land()
    -- Did the player reach Ulios ?
    if planet.cur() == mispla and stage == 0 then
       smith = misn.npcAdd("beginbattle", npc_desc[2], "neutral/unique/arnoldsmith.png", bar_desc[2])
-      var.push("_escort_disable", battlesys:name())
+      var.push(string.format("_escort_disable_%s", battlesys:nameRaw()), true)
    end
 
    -- Did the player land again on Ulios after having killed the pirate

@@ -230,9 +230,10 @@ end
 
 
 function enter ()
-   if var.peek("_escort_disable") == system.cur():name() then
+   local vname = string.format("_escort_disable_%s", system.cur():nameRaw())
+   if var.peek(vname) then
       -- Disabling escorts for this system has been requested.
-      var.pop("_escort_disable")
+      var.pop(vname)
       return
    end
 

@@ -133,10 +133,11 @@ end
 
 function jumpout()
    if stage == 0 then
+      local vname = string.format("_escort_disable_%s", battlesys:nameRaw())
       if player.pilot():ship():class() == "Destroyer" then
-         var.push("_escort_disable", battlesys:name())
+         var.push(vname, true)
       else
-         var.pop("_escort_disable")
+         var.pop(vname)
       end
    elseif stage == 1 then --player trying to escape
       player.msg( "#r" .. msg_run .. "#0" )
