@@ -230,19 +230,6 @@ end
 
 
 function enter ()
-   local vname = string.format("_escort_disable_%s", system.cur():nameRaw())
-   if var.peek(vname) then
-      -- Disabling escorts for this system has been requested.
-      var.pop(vname)
-      return
-   end
-
-   if standing_hook == nil then
-      standing_hook = hook.standing("standing")
-   end
-
-   hook.pilot(player.pilot(), "attacked", "player_attacked")
-
    local spawnpoint
    if lastsys == system.cur() then
       spawnpoint = lastplanet
@@ -255,6 +242,19 @@ function enter ()
       end
    end
    lastsys = system.cur()
+
+   local vname = string.format("_escort_disable_%s", system.cur():nameRaw())
+   if var.peek(vname) then
+      -- Disabling escorts for this system has been requested.
+      var.pop(vname)
+      return
+   end
+
+   if standing_hook == nil then
+      standing_hook = hook.standing("standing")
+   end
+
+   hook.pilot(player.pilot(), "attacked", "player_attacked")
 
    local pp = player.pilot()
    for i, edata in ipairs(escorts) do
