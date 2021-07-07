@@ -12,9 +12,7 @@
  <description>This is a base. It's for AI use only. Don't buy it. Seriously.</description>
  <mission />
  <movement>
-  <thrust>1</thrust>
   <turn>100</turn>
-  <speed>1</speed>
  </movement>
  <health>
   <absorb>80</absorb>
