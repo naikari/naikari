@@ -1261,42 +1261,42 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s [%s]\n"
          "%+.0f CPU\n"
-         "%.0f%% Penetration\n"
-         "%.2f DPS [%.0f Damage]\n"),
+         "%g%% Penetration\n"
+         "%.2f DPS [%g Damage]\n"),
          _(outfit_getType(temp)), _(dtype_damageTypeToStr(temp->u.blt.dmg.type)),
          temp->cpu,
          temp->u.blt.dmg.penetration*100.,
          1./temp->u.blt.delay * temp->u.blt.dmg.damage, temp->u.blt.dmg.damage );
    if (temp->u.blt.dmg.disable > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.2f Disable/s [%.0f Disable]\n"),
+         _("%.2f Disable/s [%g Disable]\n"),
          1./temp->u.blt.delay * temp->u.blt.dmg.disable, temp->u.blt.dmg.disable );
    }
    if (temp->u.blt.energy > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.1f EPS [%.0f Energy]\n"),
+         _("%.1f EPS [%g Energy]\n"),
          1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy );
    }
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%.1f RPS Fire Rate\n"
-         "%.0f km Range\n"
-         "%.1f s Heat Up"),
+         "%g km Range\n"
+         "%g s Heat Up"),
          1./temp->u.blt.delay,
          temp->u.blt.range,
          temp->u.blt.heatup);
    if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%.0f km Radar Optimal Range"),
+            _("\n%g km Radar Optimal Range"),
             temp->u.blt.rdr_range );
    }
    if (temp->u.blt.rdr_range_max > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%.0f km Radar Maximum Range"),
+            _("\n%g km Radar Maximum Range"),
             temp->u.blt.rdr_range_max );
    }
    if ((!outfit_isTurret(temp)) && (temp->u.blt.swivel != 0.)) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%.1f° Swivel"),
+            _("\n%g° Swivel"),
             temp->u.blt.swivel*180./M_PI );
    }
    (void)l;
@@ -1432,8 +1432,8 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
          "%+.0f CPU\n"
-         "%.0f%% Penetration\n"
-         "%.2f DPS [%s]\n"),
+         "%g%% Penetration\n"
+         "%g DPS [%s]\n"),
          _(outfit_getType(temp)),
          temp->cpu,
          temp->u.bem.dmg.penetration*100.,
@@ -1444,10 +1444,11 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
          temp->u.bem.dmg.disable );
    }
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.1f EPS\n"
-         "%.1f Duration %.1f Cooldown\n"
-         "%.0f Range\n"
-         "%.1f second heat up"),
+         _("%g EPS\n"
+         "%g s Duration\n"
+         "%g s Cooldown\n"
+         "%g km Range\n"
+         "%g s heat up"),
          temp->u.bem.energy,
          temp->u.bem.duration, temp->u.bem.delay,
          temp->u.bem.range,
@@ -1894,11 +1895,11 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
             _(temp->limit) );
 
    i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
-         _("%.0f t Mass Limit\n"
-         "#%c%s%+.0f%% Thrust#0\n"
-         "#%c%s%+.0f%% Maximum Speed#0\n"
-         "#%c%s%+.1f EPS#0\n"
-         "%.1f Rumble"),
+         _("%g t Mass Limit\n"
+         "#%c%s%+g%% Thrust#0\n"
+         "#%c%s%+g%% Maximum Speed#0\n"
+         "#%c%s%+g EPS#0\n"
+         "%g Rumble"),
          temp->u.afb.mass_limit,
          (temp->u.afb.thrust < 0 ? 'r' : 'g'),
          (temp->u.afb.thrust < 0 ? "!! " : ""), temp->u.afb.thrust,
@@ -1970,7 +1971,7 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
    snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
          "%+.0f CPU\n"
-         "%.1f Seconds Per Launch\n"
+         "%g LPS Launch Rate\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
          temp->cpu,
@@ -2642,7 +2643,7 @@ static void outfit_launcherDesc( Outfit* o )
 
    if (outfit_isSeeker(o))
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%.1f s Lock-on\n"),
+            _("%g s Lock-on\n"),
             o->u.lau.lockon );
    else
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
@@ -2650,42 +2651,42 @@ static void outfit_launcherDesc( Outfit* o )
 
    l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          _("Holds %d %s:\n"
-         "%.0f%% Penetration\n"
-         "%.2f DPS [%.0f Damage]\n"),
+         "%g%% Penetration\n"
+         "%.2f DPS [%g Damage]\n"),
          o->u.lau.amount, _(o->u.lau.ammo_name),
          a->u.amm.dmg.penetration * 100.,
          1. / o->u.lau.delay * a->u.amm.dmg.damage, a->u.amm.dmg.damage );
 
    if (a->u.amm.dmg.disable > 0.)
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%.1f Disable/s [%.0f Disable]\n"),
+            _("%.1f Disable/s [%g Disable]\n"),
             1. / o->u.lau.delay * a->u.amm.dmg.disable, a->u.amm.dmg.disable );
    if (a->u.amm.energy > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%.1f EPS [%.0f Energy]\n"),
+            _("%.1f EPS [%g Energy]\n"),
             1. / o->u.lau.delay * a->u.amm.energy, a->u.amm.energy );
    }
 
    l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          _("%.1f RPS Fire Rate\n"
-         "%.0f km Range [%.1f duration]\n"
-         "%.0f km/s Maximum Speed"),
+         "%.0f km Range [%g duration]\n"
+         "%g km/s Maximum Speed"),
          1. / o->u.lau.delay,
          outfit_range(a), a->u.amm.duration,
          a->u.amm.speed );
    if (o->u.lau.rdr_range > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%.0f km Radar Optimal Range"),
+            _("\n%g km Radar Optimal Range"),
             o->u.lau.rdr_range );
    }
    if (o->u.lau.rdr_range_max > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%.0f km Radar Maximum Range"),
+            _("\n%g km Radar Maximum Range"),
             o->u.lau.rdr_range_max );
    }
    if ((!outfit_isTurret(o)) && (o->u.lau.swivel != 0)) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%.1f° Swivel"),
+            _("\n%g° Swivel"),
             o->u.lau.swivel*180./M_PI );
    }
    (void)l;

@@ -411,7 +411,7 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          /* Volatility */
          if (sys->nebu_volatility > 0.)
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
-                  _("Nebula: %.0f GW volatility\n"), sys->nebu_volatility );
+                  _("Nebula: %g GW volatility\n"), sys->nebu_volatility );
          else
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Stable\n") );
       }
