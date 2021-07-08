@@ -69,7 +69,7 @@ cargo_land_slow[3] = _("The containers of %s are unloaded by an exhausted-lookin
 msg_timeup = _("The delivery to %s has been canceled! You were too late.")
 
 osd_title = _("Rush cargo mission")
-osd_msg1 = _("Fly to the %s system and land on %s\n(%s remaining)")
+osd_msg1 = _("Fly to the %s system and land on %s before %s\n(%s remaining)")
 osd_timeup = _("Fly to the %s system and land on %s\n(deadline missed, but you can still make a late delivery if you hurry)")
 
 -- Create the mission
