@@ -392,6 +392,7 @@ static void think_beam( Weapon* w, const double dt )
    AsteroidAnchor *field;
    Asteroid *ast;
    double diff, mod;
+   double bdir;
    Vector2d v;
 
    /* Get pilot, if pilot is dead beam is destroyed. */
@@ -418,7 +419,30 @@ static void think_beam( Weapon* w, const double dt )
    /* Handle aiming. */
    switch (w->outfit->type) {
       case OUTFIT_TYPE_BEAM:
-         w->solid->dir = p->solid->dir;
+         bdir = p->solid->dir;
+
+         t = (w->target != w->parent) ? pilot_get(w->target) : NULL;
+         if (t == NULL) {
+            if (p->nav_asteroid >= 0) {
+               field = &cur_system->asteroids[p->nav_anchor];
+               ast = &field->asteroids[p->nav_asteroid];
+
+               bdir = vect_angle(&w->solid->pos, &ast->pos);
+            }
+         }
+         else
+            bdir = vect_angle(&w->solid->pos, &t->solid->pos);
+
+         /* Calculate bounds. */
+         diff = angle_diff( bdir, p->solid->dir );
+         if (FABS(diff) > w->outfit->u.bem.swivel) {
+            if (diff > 0.)
+               bdir = p->solid->dir - w->outfit->u.bem.swivel;
+            else
+               bdir = p->solid->dir + w->outfit->u.bem.swivel;
+         }
+
+         w->solid->dir = bdir;
          break;
 
       case OUTFIT_TYPE_TURRET_BEAM:
@@ -1787,6 +1811,9 @@ unsigned int beam_start( const Outfit* outfit,
          weapon_vbo = gl_vboCreateStream( size, NULL );
       gl_vboData( weapon_vbo, size, weapon_vboData );
    }
+
+   /* Think so we start out aiming in the corect direction. */
+   think_beam(w, 0);
 
    return w->ID;
 }

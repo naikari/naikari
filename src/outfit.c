@@ -1355,6 +1355,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"delay",temp->u.bem.delay);
       xmlr_float(node,"warmup",temp->u.bem.warmup);
       xmlr_float(node,"heatup",temp->u.bem.heatup);
+      xmlr_float(node,"swivel",temp->u.bem.swivel);
 
       if (xml_isNode(node, "duration")) {
          xmlr_attr_float(node, "min", temp->u.bem.min_duration);
@@ -1422,6 +1423,9 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    temp->u.bem.heat     = ((800.-CONST_SPACE_STAR_TEMP)*C +
             STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area)) /
          temp->u.bem.heatup;
+   temp->u.bem.swivel  *= M_PI/180.;
+   if (temp->type != OUTFIT_TYPE_BEAM)
+      temp->u.bem.swivel = M_PI;
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
