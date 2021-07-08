@@ -214,6 +214,7 @@ msg_tip =                  {_([["I heard you can set your weapons to only fire w
                               _([["If you're piloting a medium ship, I'd recommend you invest in at least one turreted missile launcher. I had a close call a few decaperiods ago where a bomber nearly blew me to bits outside the range of my Laser Turrets. Luckily I just barely managed to escape to a nearby planet so I could escape the pilot. I've not had that problem ever since I equipped a turreted missile launcher."]]),
                               _([["I've heard that pirates have to keep their reputations up with other pirates by flying pirate ships. The Hyena is considered a pirate ship and is easy to get, but as for the others, I have no idea where they get them from."]]),
                               string.format( _([["These computer symbols can be confusing sometimes! I've figured it out, though: '%s' means friendly, '%s' means neutral, '%s' means hostile, '%s' means restricted, and '%s' means uninhabited but landable. I wish someone had told me that!"]]), "#F+#0", "#N~#0", "#H!!#0", "#R*#0", "#I=#0" ),
+                              _([[This can be a bit dangerous, but if you ever run out of fuel in a system with nothing to land on and no friendly pilots willing to refuel you, pirates will often be willing to sell you some of their fuel. You just have to bribe them first. It'll put a drain on your credits, but at least you can make it out alive!]]),
                            }
 
 -- Jump point messages.
