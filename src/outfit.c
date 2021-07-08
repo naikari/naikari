@@ -1976,7 +1976,7 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
-         "%+.0f CPU\n"
+         "%+.0f TFLOPS CPU\n"
          "%g LPS Launch Rate\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
