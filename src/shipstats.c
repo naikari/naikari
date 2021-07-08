@@ -131,9 +131,6 @@ static const ShipStatsLookup ss_lookup[] = {
    DI_ELEM( SS_TYPE_D_TURRET_ENERGY,      tur_energy,          N_("%+.0f%% Energy Usage (Turret)") ),
    D__ELEM( SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis,N_("%+.0f%% Damage as Disable (Turret)") ),
 
-   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_SHIELD,nebu_absorb_shield, N_("%+.0f%% Nebula Resistance (Shield)") ),
-   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_ARMOUR,nebu_absorb_armour, N_("%+.0f%% Nebula Resistance (Armor)") ),
-
    D__ELEM( SS_TYPE_D_HEAT_DISSIPATION,   heat_dissipation,    N_("%+.0f%% Heat Dissipation") ),
    D__ELEM( SS_TYPE_D_STRESS_DISSIPATION, stress_dissipation,  N_("%+.0f%% Stress Dissipation") ),
    DI_ELEM( SS_TYPE_D_MASS,               mass_mod,            N_("%+.0f%% Ship Mass") ),
@@ -157,8 +154,11 @@ static const ShipStatsLookup ss_lookup[] = {
    A__ELEM( SS_TYPE_A_ARMOUR,             armour,              N_("%+.0f GJ Armor Capacity") ),
    A__ELEM( SS_TYPE_A_ARMOUR_REGEN,       armour_regen,        N_("%+.0f GW Armor Regeneration") ),
    AI_ELEM( SS_TYPE_A_ARMOUR_REGEN_MALUS, armour_regen_malus,  N_("%+.0f GW Armor Usage") ),
-   A__ELEM( SS_TYPE_A_CPU_MAX,            cpu_max,             N_("%+.0f TFLOPS CPU Capacity") ),
 
+   A__ELEM( SS_TYPE_A_NEBULA_ABSORB_SHIELD, nebu_absorb_shield,N_("%+.0f pp Nebula Resistance (Shield)") ),
+   A__ELEM( SS_TYPE_A_NEBULA_ABSORB_ARMOUR, nebu_absorb_armour,N_("%+.0f pp Nebula Resistance (Armor)") ),
+
+   A__ELEM( SS_TYPE_A_CPU_MAX,            cpu_max,             N_("%+.0f TFLOPS CPU Capacity") ),
    A__ELEM( SS_TYPE_A_ENGINE_LIMIT,       engine_limit,        N_("%+.0f t Engine Mass Limit") ),
    A__ELEM( SS_TYPE_A_ABSORB,             absorb,              N_("%+.0f pp Damage Absorption") ),
 
