@@ -82,79 +82,79 @@ static const ShipStatsLookup ss_lookup[] = {
    /* Null element. */
    N__ELEM( SS_TYPE_NIL ),
 
-   D__ELEM( SS_TYPE_D_SPEED_MOD,          speed_mod,           N_("Speed") ),
-   D__ELEM( SS_TYPE_D_TURN_MOD,           turn_mod,            N_("Turn") ),
-   D__ELEM( SS_TYPE_D_THRUST_MOD,         thrust_mod,          N_("Thrust") ),
-   D__ELEM( SS_TYPE_D_CARGO_MOD,          cargo_mod,           N_("Cargo Space") ),
-   D__ELEM( SS_TYPE_D_ARMOUR_MOD,         armour_mod,          N_("Armour Strength") ),
-   D__ELEM( SS_TYPE_D_ARMOUR_REGEN_MOD,   armour_regen_mod,    N_("Armour Regeneration") ),
-   D__ELEM( SS_TYPE_D_SHIELD_MOD,         shield_mod,          N_("Shield Strength") ),
-   D__ELEM( SS_TYPE_D_SHIELD_REGEN_MOD,   shield_regen_mod,    N_("Shield Regeneration") ),
-   D__ELEM( SS_TYPE_D_ENERGY_MOD,         energy_mod,          N_("Energy Capacity") ),
-   D__ELEM( SS_TYPE_D_ENERGY_REGEN_MOD,   energy_regen_mod,    N_("Energy Regeneration") ),
-   D__ELEM( SS_TYPE_D_CPU_MOD,            cpu_mod,             N_("CPU Capacity") ),
+   D__ELEM( SS_TYPE_D_SPEED_MOD,          speed_mod,           N_("%+.0f%% Speed") ),
+   D__ELEM( SS_TYPE_D_TURN_MOD,           turn_mod,            N_("%+.0f%% Turn") ),
+   D__ELEM( SS_TYPE_D_THRUST_MOD,         thrust_mod,          N_("%+.0f%% Thrust") ),
+   D__ELEM( SS_TYPE_D_CARGO_MOD,          cargo_mod,           N_("%+.0f%% Cargo Space") ),
+   D__ELEM( SS_TYPE_D_ARMOUR_MOD,         armour_mod,          N_("%+.0f%% Armour Strength") ),
+   D__ELEM( SS_TYPE_D_ARMOUR_REGEN_MOD,   armour_regen_mod,    N_("%+.0f%% Armour Regeneration") ),
+   D__ELEM( SS_TYPE_D_SHIELD_MOD,         shield_mod,          N_("%+.0f%% Shield Strength") ),
+   D__ELEM( SS_TYPE_D_SHIELD_REGEN_MOD,   shield_regen_mod,    N_("%+.0f%% Shield Regeneration") ),
+   D__ELEM( SS_TYPE_D_ENERGY_MOD,         energy_mod,          N_("%+.0f%% Energy Capacity") ),
+   D__ELEM( SS_TYPE_D_ENERGY_REGEN_MOD,   energy_regen_mod,    N_("%+.0f%% Energy Regeneration") ),
+   D__ELEM( SS_TYPE_D_CPU_MOD,            cpu_mod,             N_("%+.0f%% CPU Capacity") ),
 
-   DI_ELEM( SS_TYPE_D_JUMP_DELAY,         jump_delay,          N_("Jump Time") ),
-   DI_ELEM( SS_TYPE_D_LAND_DELAY,         land_delay,          N_("Landing Time") ),
-   DI_ELEM( SS_TYPE_D_CARGO_INERTIA,      cargo_inertia,       N_("Cargo Inertia") ),
+   DI_ELEM( SS_TYPE_D_JUMP_DELAY,         jump_delay,          N_("%+.0f%% Jump Time") ),
+   DI_ELEM( SS_TYPE_D_LAND_DELAY,         land_delay,          N_("%+.0f%% Landing Time") ),
+   DI_ELEM( SS_TYPE_D_CARGO_INERTIA,      cargo_inertia,       N_("%+.0f%% Cargo Inertia") ),
 
-   A__ELEM( SS_TYPE_D_RDR_RANGE,          rdr_range,           N_("Radar Range") ),
-   A__ELEM( SS_TYPE_D_RDR_JUMP_RANGE,     rdr_jump_range,      N_("Jump Detect Range") ),
-   D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       N_("Radar Range") ),
-   D__ELEM( SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,  N_("Jump Detect Range") ),
-   DI_ELEM( SS_TYPE_D_RDR_ENEMY_RANGE_MOD,rdr_enemy_range_mod, N_("Enemy Radar Range") ),
+   A__ELEM( SS_TYPE_D_RDR_RANGE,          rdr_range,           N_("%+.0f Radar Range") ),
+   A__ELEM( SS_TYPE_D_RDR_JUMP_RANGE,     rdr_jump_range,      N_("%+.0f Jump Detect Range") ),
+   D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       N_("%+.0f%% Radar Range") ),
+   D__ELEM( SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,  N_("%+.0f%% Jump Detect Range") ),
+   DI_ELEM( SS_TYPE_D_RDR_ENEMY_RANGE_MOD,rdr_enemy_range_mod, N_("%+.0f%% Enemy Radar Range") ),
 
-   D__ELEM( SS_TYPE_D_LAUNCH_RATE,        launch_rate,         N_("Fire Rate (Launcher)") ),
-   D__ELEM( SS_TYPE_D_LAUNCH_RANGE,       launch_range,        N_("Launch Range") ),
-   D__ELEM( SS_TYPE_D_LAUNCH_DAMAGE,      launch_damage,       N_("Damage (Launcher)") ),
-   D__ELEM( SS_TYPE_D_AMMO_CAPACITY,      ammo_capacity,       N_("Ammo Capacity") ),
-   D__ELEM( SS_TYPE_D_LAUNCH_LOCKON,      launch_lockon,       N_("Launch Lock-on") ),
-   D__ELEM( SS_TYPE_D_LAUNCH_RELOAD,      launch_reload,       N_("Ammo Reload Rate") ),
+   D__ELEM( SS_TYPE_D_LAUNCH_RATE,        launch_rate,         N_("%+.0f%% Fire Rate (Launcher)") ),
+   D__ELEM( SS_TYPE_D_LAUNCH_RANGE,       launch_range,        N_("%+.0f%% Launch Range") ),
+   D__ELEM( SS_TYPE_D_LAUNCH_DAMAGE,      launch_damage,       N_("%+.0f%% Damage (Launcher)") ),
+   D__ELEM( SS_TYPE_D_AMMO_CAPACITY,      ammo_capacity,       N_("%+.0f%% Ammo Capacity") ),
+   D__ELEM( SS_TYPE_D_LAUNCH_LOCKON,      launch_lockon,       N_("%+.0f%% Launch Lock-on") ),
+   D__ELEM( SS_TYPE_D_LAUNCH_RELOAD,      launch_reload,       N_("%+.0f%% Ammo Reload Rate") ),
 
-   D__ELEM( SS_TYPE_D_FBAY_DAMAGE,        fbay_damage,         N_("Fighter Damage") ),
-   D__ELEM( SS_TYPE_D_FBAY_HEALTH,        fbay_health,         N_("Fighter Health") ),
-   D__ELEM( SS_TYPE_D_FBAY_MOVEMENT,      fbay_movement,       N_("Fighter Movement") ),
-   D__ELEM( SS_TYPE_D_FBAY_CAPACITY,      fbay_capacity,       N_("Fighter Bay Capacity") ),
-   D__ELEM( SS_TYPE_D_FBAY_RATE,          fbay_rate,           N_("Fighter Bay Launch Rate") ),
-   D__ELEM( SS_TYPE_D_FBAY_RELOAD,        fbay_reload,         N_("Fighter Reload Rate") ),
+   D__ELEM( SS_TYPE_D_FBAY_DAMAGE,        fbay_damage,         N_("%+.0f%% Fighter Damage") ),
+   D__ELEM( SS_TYPE_D_FBAY_HEALTH,        fbay_health,         N_("%+.0f%% Fighter Health") ),
+   D__ELEM( SS_TYPE_D_FBAY_MOVEMENT,      fbay_movement,       N_("%+.0f%% Fighter Movement") ),
+   D__ELEM( SS_TYPE_D_FBAY_CAPACITY,      fbay_capacity,       N_("%+.0f%% Fighter Bay Capacity") ),
+   D__ELEM( SS_TYPE_D_FBAY_RATE,          fbay_rate,           N_("%+.0f%% Fighter Bay Launch Rate") ),
+   D__ELEM( SS_TYPE_D_FBAY_RELOAD,        fbay_reload,         N_("%+.0f%% Fighter Reload Rate") ),
 
-   DI_ELEM( SS_TYPE_D_FORWARD_HEAT,       fwd_heat,            N_("Heat (Cannon)") ),
-   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE,     fwd_damage,          N_("Damage (Cannon)") ),
-   D__ELEM( SS_TYPE_D_FORWARD_FIRERATE,   fwd_firerate,        N_("Fire Rate (Cannon)") ),
-   DI_ELEM( SS_TYPE_D_FORWARD_ENERGY,     fwd_energy,          N_("Energy Usage (Cannon)") ),
-   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE_AS_DISABLE,fwd_dam_as_dis,N_("Damage as Disable (Cannon)") ),
+   DI_ELEM( SS_TYPE_D_FORWARD_HEAT,       fwd_heat,            N_("%+.0f%% Heat (Cannon)") ),
+   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE,     fwd_damage,          N_("%+.0f%% Damage (Cannon)") ),
+   D__ELEM( SS_TYPE_D_FORWARD_FIRERATE,   fwd_firerate,        N_("%+.0f%% Fire Rate (Cannon)") ),
+   DI_ELEM( SS_TYPE_D_FORWARD_ENERGY,     fwd_energy,          N_("%+.0f%% Energy Usage (Cannon)") ),
+   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE_AS_DISABLE,fwd_dam_as_dis,N_("%+.0f%% Damage as Disable (Cannon)") ),
 
-   DI_ELEM( SS_TYPE_D_TURRET_HEAT,        tur_heat,            N_("Heat (Turret)") ),
-   D__ELEM( SS_TYPE_D_TURRET_DAMAGE,      tur_damage,          N_("Damage (Turret)") ),
-   D__ELEM( SS_TYPE_D_TURRET_TRACKING,    tur_tracking,        N_("Tracking (Turret)") ),
-   D__ELEM( SS_TYPE_D_TURRET_FIRERATE,    tur_firerate,        N_("Fire Rate (Turret)") ),
-   DI_ELEM( SS_TYPE_D_TURRET_ENERGY,      tur_energy,          N_("Energy Usage (Turret)") ),
-   D__ELEM( SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis,N_("Damage as Disable (Turret)") ),
+   DI_ELEM( SS_TYPE_D_TURRET_HEAT,        tur_heat,            N_("%+.0f%% Heat (Turret)") ),
+   D__ELEM( SS_TYPE_D_TURRET_DAMAGE,      tur_damage,          N_("%+.0f%% Damage (Turret)") ),
+   D__ELEM( SS_TYPE_D_TURRET_TRACKING,    tur_tracking,        N_("%+.0f%% Tracking (Turret)") ),
+   D__ELEM( SS_TYPE_D_TURRET_FIRERATE,    tur_firerate,        N_("%+.0f%% Fire Rate (Turret)") ),
+   DI_ELEM( SS_TYPE_D_TURRET_ENERGY,      tur_energy,          N_("%+.0f%% Energy Usage (Turret)") ),
+   D__ELEM( SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis,N_("%+.0f%% Damage as Disable (Turret)") ),
 
-   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_SHIELD,nebu_absorb_shield, N_("Nebula Resistance (Shield)") ),
-   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_ARMOUR,nebu_absorb_armour, N_("Nebula Resistance (Armour)") ),
+   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_SHIELD,nebu_absorb_shield, N_("%+.0f%% Nebula Resistance (Shield)") ),
+   D__ELEM( SS_TYPE_D_NEBULA_ABSORB_ARMOUR,nebu_absorb_armour, N_("%+.0f%% Nebula Resistance (Armour)") ),
 
-   D__ELEM( SS_TYPE_D_HEAT_DISSIPATION,   heat_dissipation,    N_("Heat Dissipation") ),
-   D__ELEM( SS_TYPE_D_STRESS_DISSIPATION, stress_dissipation,  N_("Stress Dissipation") ),
-   DI_ELEM( SS_TYPE_D_MASS,               mass_mod,            N_("Ship Mass") ),
-   D__ELEM( SS_TYPE_D_ENGINE_LIMIT_REL,   engine_limit_rel,    N_("Engine Mass Limit") ),
-   D__ELEM( SS_TYPE_D_LOOT_MOD,           loot_mod,            N_("Boarding Bonus") ),
-   DI_ELEM( SS_TYPE_D_TIME_MOD,           time_mod,            N_("Time Constant") ),
-   D__ELEM( SS_TYPE_D_TIME_SPEEDUP,       time_speedup,        N_("Speed-Up") ),
-   DI_ELEM( SS_TYPE_D_COOLDOWN_TIME,      cooldown_time,       N_("Ship Cooldown Time") ),
-   D__ELEM( SS_TYPE_D_JUMP_DISTANCE,      jump_distance,       N_("Jump Distance") ),
+   D__ELEM( SS_TYPE_D_HEAT_DISSIPATION,   heat_dissipation,    N_("%+.0f%% Heat Dissipation") ),
+   D__ELEM( SS_TYPE_D_STRESS_DISSIPATION, stress_dissipation,  N_("%+.0f%% Stress Dissipation") ),
+   DI_ELEM( SS_TYPE_D_MASS,               mass_mod,            N_("%+.0f%% Ship Mass") ),
+   D__ELEM( SS_TYPE_D_ENGINE_LIMIT_REL,   engine_limit_rel,    N_("%+.0f%% Engine Mass Limit") ),
+   D__ELEM( SS_TYPE_D_LOOT_MOD,           loot_mod,            N_("%+.0f%% Boarding Bonus") ),
+   DI_ELEM( SS_TYPE_D_TIME_MOD,           time_mod,            N_("%+.0f%% Time Constant") ),
+   D__ELEM( SS_TYPE_D_TIME_SPEEDUP,       time_speedup,        N_("%+.0f%% Speed-Up") ),
+   DI_ELEM( SS_TYPE_D_COOLDOWN_TIME,      cooldown_time,       N_("%+.0f%% Ship Cooldown Time") ),
+   D__ELEM( SS_TYPE_D_JUMP_DISTANCE,      jump_distance,       N_("%+.0f%% Jump Distance") ),
 
-   A__ELEM( SS_TYPE_A_ENERGY_FLAT,        energy_flat,         N_("Energy Capacity") ),
-   AI_ELEM( SS_TYPE_A_ENERGY_REGEN_FLAT,  energy_usage,        N_("Energy Usage") ),
-   AI_ELEM( SS_TYPE_A_ENERGY_LOSS,        energy_loss,         N_("Energy Usage") ),
-   A__ELEM( SS_TYPE_A_SHIELD_FLAT,        shield_flat,         N_("Shield Capacity") ),
-   AI_ELEM( SS_TYPE_A_SHIELD_REGEN_FLAT,  shield_usage,        N_("Shield Usage") ),
-   A__ELEM( SS_TYPE_A_ARMOUR_FLAT,        armour_flat,         N_("Armour") ),
-   AI_ELEM( SS_TYPE_A_ARMOUR_REGEN_FLAT,  armour_damage,       N_("Armour Damage") ),
-   A__ELEM( SS_TYPE_A_CPU_MAX,            cpu_max,             N_("CPU Capacity") ),
+   A__ELEM( SS_TYPE_A_ENERGY_FLAT,        energy_flat,         N_("%+.0f Energy Capacity") ),
+   AI_ELEM( SS_TYPE_A_ENERGY_REGEN_FLAT,  energy_usage,        N_("%+.0f Energy Usage") ),
+   AI_ELEM( SS_TYPE_A_ENERGY_LOSS,        energy_loss,         N_("%+.0f Energy Usage") ),
+   A__ELEM( SS_TYPE_A_SHIELD_FLAT,        shield_flat,         N_("%+.0f Shield Capacity") ),
+   AI_ELEM( SS_TYPE_A_SHIELD_REGEN_FLAT,  shield_usage,        N_("%+.0f Shield Usage") ),
+   A__ELEM( SS_TYPE_A_ARMOUR_FLAT,        armour_flat,         N_("%+.0f Armour") ),
+   AI_ELEM( SS_TYPE_A_ARMOUR_REGEN_FLAT,  armour_damage,       N_("%+.0f Armour Damage") ),
+   A__ELEM( SS_TYPE_A_CPU_MAX,            cpu_max,             N_("%+.0f CPU Capacity") ),
 
-   A__ELEM( SS_TYPE_A_ENGINE_LIMIT,       engine_limit,        N_("Engine Mass Limit") ),
-   A__ELEM( SS_TYPE_A_ABSORB_FLAT,        absorb_flat,         N_("Damage Absorption") ),
+   A__ELEM( SS_TYPE_A_ENGINE_LIMIT,       engine_limit,        N_("%+.0f Engine Mass Limit") ),
+   A__ELEM( SS_TYPE_A_ABSORB_FLAT,        absorb_flat,         N_("%+.0f Damage Absorption") ),
 
    B__ELEM( SS_TYPE_B_INSTANT_JUMP,       misc_instant_jump,   N_("Instant Jump") ),
    B__ELEM( SS_TYPE_B_REVERSE_THRUST,     misc_reverse_thrust, N_("Reverse Thrusters") ),
@@ -516,13 +516,18 @@ static const char* ss_printI_symbol( int i, const ShipStatsLookup *sl )
  */
 static int ss_printD( char *buf, int len, int newline, double d, const ShipStatsLookup *sl )
 {
+   char buf2[STRMAX_SHORT];
+
    if (FABS(d) < 1e-10)
       return 0;
-   return scnprintf( buf, len, "%s#%s%s%+.0f%% %s#0",
+
+   snprintf( buf2, sizeof(buf2), _(sl->display), d*100 );
+
+   return scnprintf( buf, len, "%s#%s%s%s#0",
          (newline) ? "\n" : "",
          ss_printD_colour( d, sl ),
          ss_printD_symbol( d, sl ),
-         d*100., _(sl->display) );
+         buf2 );
 }
 
 
@@ -531,13 +536,18 @@ static int ss_printD( char *buf, int len, int newline, double d, const ShipStats
  */
 static int ss_printA( char *buf, int len, int newline, double d, const ShipStatsLookup *sl )
 {
+   char buf2[STRMAX_SHORT];
+
    if (FABS(d) < 1e-10)
       return 0;
-   return scnprintf( buf, len, "%s#%s%s%+.0f %s#0",
+
+   snprintf( buf2, sizeof(buf2), _(sl->display), d );
+
+   return scnprintf( buf, len, "%s#%s%s%s#0",
          (newline) ? "\n" : "",
          ss_printD_colour( d, sl ),
          ss_printD_symbol( d, sl ),
-         d, _(sl->display) );
+         buf2 );
 }
 
 
@@ -546,13 +556,18 @@ static int ss_printA( char *buf, int len, int newline, double d, const ShipStats
  */
 static int ss_printI( char *buf, int len, int newline, int i, const ShipStatsLookup *sl )
 {
+   char buf2[STRMAX_SHORT];
+
    if (i == 0)
       return 0;
-   return scnprintf( buf, len, "%s#%s%s%+d %s#0",
+
+   snprintf( buf2, sizeof(buf2), _(sl->display), i );
+
+   return scnprintf( buf, len, "%s#%s%s%s#0",
          (newline) ? "\n" : "",
          ss_printI_colour( i, sl ),
          ss_printI_symbol( i, sl ),
-         i, _(sl->display) );
+         buf2 );
 }
 
 
