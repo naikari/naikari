@@ -20,7 +20,7 @@ function sos ()
       _("Taking hostile fire! Need assistance!"),
       _("We are under attack, require support!"),
       _("Mayday! Ship taking damage!"),
-      _("01010101011011100110010001100101011100100010000001100001011101000111010001100001011000110110101100100001") -- "Under attack!" in binary
+      _("0x556e6465722061747461636b21") -- "Under attack!" in hexadecimal
    }
    ai.settarget( ai.taskdata() )
    ai.distress( msg[ rnd.int(1,#msg) ])
