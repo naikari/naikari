@@ -25,6 +25,7 @@
 typedef enum StatDataType_ {
    SS_DATA_TYPE_DOUBLE,          /**< Relative [0:inf] value. */
    SS_DATA_TYPE_DOUBLE_ABSOLUTE, /**< Absolute double value. */
+   SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, /**< Absolute double value as a percent. */
    SS_DATA_TYPE_INTEGER,         /**< Absolute integer value. */
    SS_DATA_TYPE_BOOLEAN          /**< Boolean value, defaults 0. */
 } StatDataType;
@@ -58,6 +59,8 @@ typedef struct ShipStatsLookup_ {
    ELEM( t, n, dsp, SS_DATA_TYPE_DOUBLE, 0 )
 #define A__ELEM( t, n, dsp ) \
    ELEM( t, n, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 0 )
+#define P__ELEM( t, n, dsp ) \
+   ELEM( t, n, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 0 )
 #define I__ELEM( t, n, dsp ) \
    ELEM( t, n, dsp, SS_DATA_TYPE_INTEGER, 0 )
 #define B__ELEM( t, n, dsp ) \
@@ -67,6 +70,8 @@ typedef struct ShipStatsLookup_ {
    ELEM( t, n, dsp, SS_DATA_TYPE_DOUBLE, 1 )
 #define AI_ELEM( t, n, dsp ) \
    ELEM( t, n, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 1 )
+#define PI_ELEM( t, n, dsp ) \
+   ELEM( t, n, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 1 )
 #define II_ELEM( t, n, dsp ) \
    ELEM( t, n, dsp, SS_DATA_TYPE_INTEGER, 1 )
 #define BI_ELEM( t, n, dsp ) \
@@ -160,7 +165,8 @@ static const ShipStatsLookup ss_lookup[] = {
 
    A__ELEM( SS_TYPE_A_CPU_MAX,            cpu_max,             N_("%+.0f TFLOPS CPU Capacity") ),
    A__ELEM( SS_TYPE_A_ENGINE_LIMIT,       engine_limit,        N_("%+.0f t Engine Mass Limit") ),
-   A__ELEM( SS_TYPE_A_ABSORB,             absorb,              N_("%+.0f pp Damage Absorption") ),
+
+   P__ELEM( SS_TYPE_A_ABSORB,             absorb,              N_("%+.0f pp Damage Absorption") ),
 
    I__ELEM( SS_TYPE_I_FUEL,               fuel,                N_("%+d hL Fuel") ),
    I__ELEM( SS_TYPE_I_CARGO,              cargo,               N_("%+d t Cargo") ),
@@ -214,6 +220,7 @@ ShipStatList* ss_listFromXML( xmlNodePtr node )
    sl = &ss_lookup[ type ];
    switch (sl->data) {
       case SS_DATA_TYPE_DOUBLE:
+      case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
          ll->d.d     = xml_getFloat(node) / 100.;
          break;
 
@@ -285,6 +292,7 @@ int ss_statsInit( ShipStats *stats )
 
          /* No need to set, memset does the work. */
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
+         case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
          case SS_DATA_TYPE_INTEGER:
          case SS_DATA_TYPE_BOOLEAN:
             break;
@@ -329,6 +337,7 @@ int ss_statsMerge( ShipStats *dest, const ShipStats *src )
             break;
 
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
+         case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
             destdbl = (double*) &destptr[ sl->offset ];
             srcdbl = (const double*) &srcptr[ sl->offset ];
             *destdbl = (*destdbl) + (*srcdbl);
@@ -378,6 +387,7 @@ int ss_statsModSingle( ShipStats *stats, const ShipStatList* list )
          break;
 
       case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
+      case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
          fieldptr = &ptr[ sl->offset ];
          memcpy(&dbl, &fieldptr, sizeof(double*));
          *dbl += list->d.d;
@@ -625,6 +635,7 @@ int ss_statsListDesc( const ShipStatList *ll, char *buf, int len, int newline )
 
       switch (sl->data) {
          case SS_DATA_TYPE_DOUBLE:
+         case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
             i += ss_printD( &buf[i], left, newl, ll->d.d, sl );
             break;
 
@@ -684,6 +695,12 @@ int ss_statsDesc( const ShipStats *s, char *buf, int len, int newline )
             fieldptr = &ptr[ sl->offset ];
             memcpy(&dbl, &fieldptr, sizeof(double*));
             l    += ss_printD( &buf[l], left, (newline||(l!=0)), ((*dbl)-1.), sl );
+            break;
+
+         case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
+            fieldptr = &ptr[ sl->offset ];
+            memcpy(&dbl, &fieldptr, sizeof(double*));
+            l    += ss_printD( &buf[l], left, (newline||(l!=0)), (*dbl), sl );
             break;
 
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
@@ -757,6 +774,7 @@ int ss_statsSet( ShipStats *s, const char *name, double value, int overwrite )
          break;
 
       case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
+      case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
          destdbl  = (double*) &ptr[ sl->offset ];
          if (overwrite)
             *destdbl = value;
@@ -799,6 +817,10 @@ static double ss_statsGetInternal( const ShipStats *s, ShipStatsType type )
          destdbl = (const double*) &ptr[ sl->offset ];
          return 100.*((*destdbl) - 1.0);
 
+      case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
+         destdbl = (const double*) &ptr[ sl->offset ];
+         return 100.*(*destdbl);
+
       case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
          destdbl  = (const double*) &ptr[ sl->offset ];
          return *destdbl;
@@ -828,6 +850,14 @@ static int ss_statsGetLuaInternal( lua_State *L, const ShipStats *s, ShipStatsTy
             lua_pushnumber(L, *destdbl );
          else
             lua_pushnumber(L, 100.*((*destdbl) - 1.0) );
+         return 0;
+
+      case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
+         destdbl = (const double*) &ptr[ sl->offset ];
+         if (internal)
+            lua_pushnumber(L, *destdbl );
+         else
+            lua_pushnumber(L, 100.*(*destdbl));
          return 0;
 
       case SS_DATA_TYPE_DOUBLE_ABSOLUTE:

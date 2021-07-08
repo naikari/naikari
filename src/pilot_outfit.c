@@ -1087,7 +1087,7 @@ void pilot_calcStats( Pilot* pilot )
    pilot->energy_loss  += s->energy_loss;
    pilot->rdr_range    += s->rdr_range;
    pilot->rdr_jump_range += s->rdr_jump_range;
-   pilot->dmg_absorb    = CLAMP( 0., 1., pilot->dmg_absorb + s->absorb/100. );
+   pilot->dmg_absorb    = CLAMP( 0., 1., pilot->dmg_absorb + s->absorb );
 
    /* Give the pilot his health proportion back */
    pilot->armour = ac * pilot->armour_max;
