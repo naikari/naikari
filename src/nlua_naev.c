@@ -320,7 +320,6 @@ static int naevL_conf( lua_State *L )
    /* joystick */
    PUSH_INT( L, "mesg_visible", conf.mesg_visible );
    PUSH_DOUBLE( L, "map_overlay_opacity", conf.map_overlay_opacity );
-   PUSH_BOOL( L, "big_icons", conf.big_icons );
    PUSH_INT( L, "repeat_delay", conf.repeat_delay );
    PUSH_INT( L, "repeat_freq", conf.repeat_freq );
    PUSH_BOOL( L, "zoom_manual", conf.zoom_manual );
