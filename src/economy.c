@@ -702,7 +702,7 @@ static void economy_modifySystemCommodityPrice(StarSystem *sys)
          /* Increase price with volatility, which goes up to about 600.
             And with rdr_range_mod, since systems are harder to find. */
          planet->commodityPrice[j].price *= 1 + sys->nebu_volatility/6000.;
-         planet->commodityPrice[j].price *= 1 - sys->rdr_range_mod;
+         planet->commodityPrice[j].price /= sys->rdr_range_mod;
 
          /* Use number of jumps to determine sytsem time period.  More jumps means more options for trade
             so shorter period.  Between 1 to 6 jumps.  Make the base time 1000.*/
