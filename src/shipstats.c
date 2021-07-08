@@ -118,11 +118,11 @@ static const ShipStatsLookup ss_lookup[] = {
    D__ELEM( SS_TYPE_D_FBAY_RATE,          fbay_rate,           N_("%+.0f%% Fighter Bay Launch Rate") ),
    D__ELEM( SS_TYPE_D_FBAY_RELOAD,        fbay_reload,         N_("%+.0f%% Fighter Reload Rate") ),
 
-   DI_ELEM( SS_TYPE_D_FORWARD_HEAT,       fwd_heat,            N_("%+.0f%% Heat (Cannon)") ),
-   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE,     fwd_damage,          N_("%+.0f%% Damage (Cannon)") ),
-   D__ELEM( SS_TYPE_D_FORWARD_FIRERATE,   fwd_firerate,        N_("%+.0f%% Fire Rate (Cannon)") ),
-   DI_ELEM( SS_TYPE_D_FORWARD_ENERGY,     fwd_energy,          N_("%+.0f%% Energy Usage (Cannon)") ),
-   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE_AS_DISABLE,fwd_dam_as_dis,N_("%+.0f%% Damage as Disable (Cannon)") ),
+   DI_ELEM( SS_TYPE_D_FORWARD_HEAT,       fwd_heat,            N_("%+.0f%% Heat (Forward)") ),
+   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE,     fwd_damage,          N_("%+.0f%% Damage (Forward)") ),
+   D__ELEM( SS_TYPE_D_FORWARD_FIRERATE,   fwd_firerate,        N_("%+.0f%% Fire Rate (Forward)") ),
+   DI_ELEM( SS_TYPE_D_FORWARD_ENERGY,     fwd_energy,          N_("%+.0f%% Energy Usage (Forward)") ),
+   D__ELEM( SS_TYPE_D_FORWARD_DAMAGE_AS_DISABLE,fwd_dam_as_dis,N_("%+.0f%% Damage as Disable (Forward)") ),
 
    DI_ELEM( SS_TYPE_D_TURRET_HEAT,        tur_heat,            N_("%+.0f%% Heat (Turret)") ),
    D__ELEM( SS_TYPE_D_TURRET_DAMAGE,      tur_damage,          N_("%+.0f%% Damage (Turret)") ),
