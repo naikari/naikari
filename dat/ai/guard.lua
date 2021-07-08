@@ -12,7 +12,6 @@ mem.atk_kill      = true
 mem.atk_board     = false
 mem.bribe_no      = _("You can't bribe me!")
 mem.refuel_no     = _("I won't give you fuel!")
-mem.doscans       = true
 mem.guardpos      = vec2.new( 0, 0 ) -- defaults to origin
 mem.guarddodist   = 5000 -- distance at which to start activities
 mem.guardreturndist = 7000 -- distance at which to return
@@ -30,7 +29,7 @@ end
 -- Default task to run when idle
 function idle ()
    -- Aggressives will try to find enemies first, before falling back on
-   -- loitering, to avoid weird stuff starting to scan before attacking
+   -- loitering
    if mem.aggressive then
       local enemy  = ai.getenemy()
       if enemy ~= nil and gdist(enemy) < mem.guarddodist then
@@ -44,15 +43,6 @@ function idle ()
       -- Go back to Guard target
       ai.pushtask( "moveto", mem.guardpos )
       return
-   end
-
-   -- Scan if possible
-   if mem.doscans then
-      local target = __getscantarget()
-      if target and gdist(target) < mem.guarddodist then
-         __push_scan( target )
-         return
-      end
    end
 
    -- Just return
