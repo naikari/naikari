@@ -126,7 +126,8 @@ function spawnBaddies ()
       sp = last_system
    end
 
-   thugs = addShips( 4, "Admonisher", "Thugs", sp, _("Thug"), ai )
+   local pp = player.pilot()
+   thugs = addShips( 4, "Admonisher", "Thugs", sp, _("Thug"), {ai=ai} )
    for pilot_number, pilot_object in ipairs(thugs) do
       pilot_object:setHostile(true) --they don't like you
       pilot_object:rmOutfit("all") --strip them down
@@ -140,7 +141,7 @@ function spawnBaddies ()
       pilot_object:addOutfit("Shield Capacitor II")
       if system.cur() ~= targetsystem then
          pilot_object:control() --switch to manual control
-         pilot_object:attack( player.pilot() ) --they attack you and only you
+         pilot_object:attack( pp ) --they attack you and only you
       else
          thugs_alive = #thugs
          hook.pilot(pilot_object, "exploded", "pilotKilled") --trigger when one of them is killed

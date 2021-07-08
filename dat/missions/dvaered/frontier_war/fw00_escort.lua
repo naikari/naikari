@@ -445,7 +445,7 @@ function hamelsenAmbush()
       y = 1000 * rnd.rnd() + 1000
       pos = jp:pos() + vec2.new(x,y)
 
-      ambush[i] = pilot.add( "Shark", "Warlords", pos, nil, "baddie_norun" )
+      ambush[i] = pilot.add( "Shark", "Warlords", pos, nil, {ai="baddie_norun"} )
       ambush[i]:setHostile()
       hook.pilot(ambush[i], "death", "ambushDied")
       hook.pilot(ambush[i], "land", "ambushDied")
@@ -455,7 +455,7 @@ function hamelsenAmbush()
    x = 1000 * rnd.rnd() + 2000
    y = 1000 * rnd.rnd() + 2000
    pos = jp:pos() + vec2.new(x,y)
-   hamelsen = pilot.add( "Shark", "Warlords", pos, _("Colonel Hamelsen"), "baddie_norun" )
+   hamelsen = pilot.add( "Shark", "Warlords", pos, _("Colonel Hamelsen"), {ai="baddie_norun"} )
 
    -- Nice outfits for Colonel Hamelsen (the Hellburner is her life insurance)
    hamelsen:rmOutfit("all")

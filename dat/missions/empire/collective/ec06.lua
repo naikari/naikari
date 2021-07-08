@@ -149,7 +149,7 @@ function jumpin ()
                 fleetE[#fleetE + 1] = pilot.add( "Empire Lancelot", "Empire", last_sys )
             end
             
-            fleetC[#fleetC + 1] = pilot.add( "Goddard", "Empire", fleetCpos, _("Starfire"), "collective" )
+            fleetC[#fleetC + 1] = pilot.add( "Goddard", "Empire", fleetCpos, _("Starfire"), {ai="collective"} )
             hook.pilot(fleetC[#fleetC], "death", "col_dead")
             fleetC[#fleetC]:setNoDisable()
             fleetC[#fleetC]:setFaction( "Collective" )
@@ -224,7 +224,7 @@ end
 
 function addRefuelShip ()
    -- Create the pilot
-   refship = pilot.add( "Mule", "Trader", last_sys, _("Trader Mule"), "empire_refuel" )
+   refship = pilot.add( "Mule", "Trader", last_sys, _("Trader Mule"), {ai="empire_refuel"} )
    refship:rename(_("Fuel Tanker"))
    refship:setFaction("Empire")
    refship:setFriendly()
@@ -240,8 +240,8 @@ function addRefuelShip ()
 
    -- Add some escorts
    refesc = {}
-   refesc[1] = pilot.add( "Empire Lancelot", "Empire", last_sys, nil, "empire_idle" )
-   refesc[2] = pilot.add( "Empire Lancelot", "Empire", last_sys, nil, "empire_idle" )
+   refesc[1] = pilot.add( "Empire Lancelot", "Empire", last_sys, nil, {ai="empire_idle"} )
+   refesc[2] = pilot.add( "Empire Lancelot", "Empire", last_sys, nil, {ai="empire_idle"} )
    for k,v in ipairs(refesc) do
       v:setFriendly()
    end
