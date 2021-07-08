@@ -47,5 +47,8 @@
  <system name="Tide">
   <asset name="Virtual Thurion Local">add</asset>
  </system>
+ <system name="Oriantis">
+  <asset name="Virtual Thurion Local">add</asset>
+ </system>
 </unidiff>
 
