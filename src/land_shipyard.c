@@ -113,29 +113,29 @@ void shipyard_open( unsigned int wid )
          &gl_defFont, NULL, NULL );
 
    /* text */
-   buf = _("#nModel:\n#0"
-         "#nClass:\n#0"
-         "#nFabricator:\n#0"
+   buf = _("Model:\n"
+         "Class:\n"
+         "Fabricator:\n"
          "\n"
-         "#nCPU:\n#0"
-         "#nMass:\n#0"
-         "#nThrust:\n#0"
-         "#nSpeed:\n#0"
-         "#nTurn:\n#0"
-         "#nTime Constant:\n#0"
+         "CPU:\n"
+         "Mass:\n"
+         "Thrust:\n"
+         "Speed:\n"
+         "Turn:\n"
+         "Time Constant:\n"
          "\n"
-         "#nAbsorption:\n#0"
-         "#nShield:\n#0"
-         "#nArmor:\n#0"
-         "#nEnergy:\n#0"
-         "#nCargo Space:\n#0"
-         "#nFuel:\n#0"
-         "#nFuel Use:\n#0"
-         "#nRadar Range:\n#0"
-         "#nJump Detect Range:\n#0"
-         "#nPrice:\n#0"
-         "#nMoney:\n#0"
-         "#nLicense:\n#0");
+         "Absorption:\n"
+         "Shield:\n"
+         "Armor:\n"
+         "Energy:\n"
+         "Cargo Space:\n"
+         "Fuel:\n"
+         "Fuel Use:\n"
+         "Radar Range:\n"
+         "Jump Detect Range:\n"
+         "Price:\n"
+         "Money:\n"
+         "License:\n");
    th = gl_printHeightRaw( &gl_defFont, 220, buf );
    y  = -35;
    window_addText( wid, 20+iw+20, y,
@@ -145,7 +145,7 @@ void shipyard_open( unsigned int wid )
    y -= th;
    window_addText( wid, 20+iw+20, y,
          w-(20+iw+20) - 20, y-20+h-bh, 0, "txtDescription",
-         &gl_smallFont, NULL, NULL );
+         &gl_smallFont, &cFontGrey, NULL );
 
    /* set up the ships to buy/sell */
    shipyard_list = tech_getShip( land_planet->tech );
