@@ -11,7 +11,7 @@
   <cpu>-1</cpu>
  </general>
  <specific type="modification">
-  <energy_usage>1</energy_usage>
+  <energy_usage>0.2</energy_usage>
   <misc_asteroid_scan>1</misc_asteroid_scan>
  </specific>
 </outfit>
