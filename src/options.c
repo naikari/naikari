@@ -521,7 +521,7 @@ static void opt_setAutonavResetSpeed( unsigned int wid, char *str )
    else if (autonav_reset_speed > 0.)
       snprintf( buf, sizeof(buf), _("%.0f%% Shield"), autonav_reset_speed * 100 );
    else
-      snprintf( buf, sizeof(buf), _("Armour Damage") );
+      snprintf( buf, sizeof(buf), _("Armor Damage") );
 
    window_modifyText( wid, "txtAutonav", buf );
 }

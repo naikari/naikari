@@ -1260,21 +1260,21 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s [%s]\n"
-         "%+.0f CPU\n"
+         "%+.0f TFLOPS CPU\n"
          "%g%% Penetration\n"
-         "%.2f DPS [%g Damage]\n"),
+         "%.2f GW Damage [%g GJ/shot]\n"),
          _(outfit_getType(temp)), _(dtype_damageTypeToStr(temp->u.blt.dmg.type)),
          temp->cpu,
          temp->u.blt.dmg.penetration*100.,
          1./temp->u.blt.delay * temp->u.blt.dmg.damage, temp->u.blt.dmg.damage );
    if (temp->u.blt.dmg.disable > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.2f Disable/s [%g Disable]\n"),
+         _("%.2f GW Disable [%g GJ/shot]\n"),
          1./temp->u.blt.delay * temp->u.blt.dmg.disable, temp->u.blt.dmg.disable );
    }
    if (temp->u.blt.energy > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.1f EPS [%g Energy]\n"),
+         _("%.1f GW Energy Loss [%g GJ/shot]\n"),
          1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy );
    }
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
@@ -1431,20 +1431,20 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
-         "%+.0f CPU\n"
+         "%+.0f TFLOPS CPU\n"
          "%g%% Penetration\n"
-         "%g DPS [%s]\n"),
+         "%g GW Damage [%s]\n"),
          _(outfit_getType(temp)),
          temp->cpu,
          temp->u.bem.dmg.penetration*100.,
          temp->u.bem.dmg.damage, _(dtype_damageTypeToStr(temp->u.bem.dmg.type) ) );
    if (temp->u.blt.dmg.disable > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.0f Disable/s\n"),
+         _("%g GW Disable\n"),
          temp->u.bem.dmg.disable );
    }
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%g EPS\n"
+         _("%g GW Energy Loss\n"
          "%g s Duration\n"
          "%g s Cooldown\n"
          "%g km Range\n"
@@ -1803,18 +1803,18 @@ if ((x) != 0) \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, s, x ); \
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i, "#0" ); \
    } while(0)
-   DESC_ADD( temp->u.mod.thrust,       _("%+.0f Thrust") );
-   DESC_ADD( temp->u.mod.turn,         _("%+.0f Turn Rate") );
-   DESC_ADD( temp->u.mod.speed,        _("%+.0f Maximum Speed") );
-   DESC_ADD( temp->u.mod.armour,       _("%+.0f Armor") );
-   DESC_ADD( temp->u.mod.shield,       _("%+.0f Shield") );
-   DESC_ADD( temp->u.mod.energy,       _("%+.0f Energy") );
-   DESC_ADD( temp->u.mod.fuel,         _("%+.d Fuel") );
-   DESC_ADD( temp->u.mod.armour_regen, _("%+.1f Armor Per Second") );
-   DESC_ADD( temp->u.mod.shield_regen, _("%+.1f Shield Per Second") );
-   DESC_ADD( temp->u.mod.energy_regen, _("%+.1f Energy Per Second") );
-   DESC_ADD( temp->u.mod.absorb,       _("%+.0f Absorption") );
-   DESC_ADD( temp->u.mod.cargo,        _("%+.0f Cargo") );
+   DESC_ADD( temp->u.mod.thrust,       _("%+g MN/t Thrust") );
+   DESC_ADD( temp->u.mod.turn,         _("%+g deg/s Turn Rate") );
+   DESC_ADD( temp->u.mod.speed,        _("%+g km/s Maximum Speed") );
+   DESC_ADD( temp->u.mod.armour,       _("%+g GJ Armor Capacity") );
+   DESC_ADD( temp->u.mod.shield,       _("%+g GJ Shield Capacity") );
+   DESC_ADD( temp->u.mod.energy,       _("%+g GJ Energy Capacity") );
+   DESC_ADD( temp->u.mod.fuel,         _("%+.d hL Fuel") );
+   DESC_ADD( temp->u.mod.armour_regen, _("%+g GW Armor Regeneration") );
+   DESC_ADD( temp->u.mod.shield_regen, _("%+g GW Shield Regeneration") );
+   DESC_ADD( temp->u.mod.energy_regen, _("%+g GW Energy Regeneration") );
+   DESC_ADD( temp->u.mod.absorb,       _("%+g pp Absorption") );
+   DESC_ADD( temp->u.mod.cargo,        _("%+g t Cargo") );
 #undef DESC_ADD
 
    /* More processing. */
@@ -1889,7 +1889,7 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
    i = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
          "Activated Outfit\n"
-         "%+.0f CPU\n"),
+         "%+.0f TFLOPS CPU\n"),
          _(outfit_getType(temp)),
          temp->cpu );
 
@@ -1902,7 +1902,7 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
          _("%g t Mass Limit\n"
          "#%c%s%+g%% Thrust#0\n"
          "#%c%s%+g%% Maximum Speed#0\n"
-         "#%c%s%+g EPS#0\n"
+         "#%c%s%+g GW Energy Loss#0\n"
          "%g Rumble"),
          temp->u.afb.mass_limit,
          (temp->u.afb.thrust < 0 ? 'r' : 'g'),
@@ -2643,7 +2643,7 @@ static void outfit_launcherDesc( Outfit* o )
    
    if (o->cpu != 0)
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%+.0f CPU\n"), o->cpu );
+            _("%+.0f TFLOPS CPU\n"), o->cpu );
 
    if (outfit_isSeeker(o))
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
@@ -2656,18 +2656,18 @@ static void outfit_launcherDesc( Outfit* o )
    l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          _("Holds %d %s:\n"
          "%g%% Penetration\n"
-         "%.2f DPS [%g Damage]\n"),
+         "%.2f GW Damage [%g GJ/shot]\n"),
          o->u.lau.amount, _(o->u.lau.ammo_name),
          a->u.amm.dmg.penetration * 100.,
          1. / o->u.lau.delay * a->u.amm.dmg.damage, a->u.amm.dmg.damage );
 
    if (a->u.amm.dmg.disable > 0.)
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%.1f Disable/s [%g Disable]\n"),
+            _("%.1f GW Disable [%g GJ/shot]\n"),
             1. / o->u.lau.delay * a->u.amm.dmg.disable, a->u.amm.dmg.disable );
    if (a->u.amm.energy > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%.1f EPS [%g Energy]\n"),
+            _("%.1f GW Energy Loss [%g GJ/shot]\n"),
             1. / o->u.lau.delay * a->u.amm.energy, a->u.amm.energy );
    }
 

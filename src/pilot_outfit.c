@@ -536,9 +536,9 @@ const char* pilot_checkSpaceworthy( Pilot *p )
 
    /* Health. */
    if (p->armour_max < 0.)
-      return _("Insufficient Armour");
+      return _("Insufficient Armor");
    if (p->armour_regen < 0.)
-      return _("Insufficient Armour Regeneration");
+      return _("Insufficient Armor Regeneration");
    if (p->shield_max < 0.)
       return _("Insufficient Shield");
    if (p->shield_regen < 0.)
@@ -590,8 +590,8 @@ int pilot_reportSpaceworthy( Pilot *p, char buf[], int bufSize )
    SPACEWORTHY_CHECK( p->turn < 0,   _("!! Insufficient Turn\n") );
 
    /* Health. */
-   SPACEWORTHY_CHECK( p->armour < 0.,       _("!! Insufficient Armour\n") );
-   SPACEWORTHY_CHECK( p->armour_regen < 0., _("!! Insufficient Armour Regeneration\n") );
+   SPACEWORTHY_CHECK( p->armour < 0.,       _("!! Insufficient Armor\n") );
+   SPACEWORTHY_CHECK( p->armour_regen < 0., _("!! Insufficient Armor Regeneration\n") );
    SPACEWORTHY_CHECK( p->shield < 0.,       _("!! Insufficient Shield\n") );
    SPACEWORTHY_CHECK( p->shield_regen < 0., _("!! Insufficient Shield Regeneration\n") );
    SPACEWORTHY_CHECK( p->energy_max < 0.,   _("!! Insufficient Energy\n") );

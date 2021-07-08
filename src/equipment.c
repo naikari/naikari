@@ -1297,7 +1297,7 @@ int equipment_shipStats( char *buf, int max_len,  const Pilot *s, int dpseps )
    l = 0;
    if (dps > 0.)
       l += scnprintf( &buf[l], (max_len-l),
-            _("%s%.2f DPS [%.2f EPS]"), (l!=0)?"\n":"", dps, eps );
+            _("%s%.2f GW Damage\n%.2f GW Energy Regeneration"), (l!=0)?"\n":"", dps, eps );
    l += ss_statsDesc( &s->stats, &buf[l], (max_len-l), l );
    return l;
 }
