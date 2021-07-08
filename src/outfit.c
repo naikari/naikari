@@ -1424,8 +1424,6 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
             STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area)) /
          temp->u.bem.heatup;
    temp->u.bem.swivel  *= M_PI/180.;
-   if (temp->type != OUTFIT_TYPE_BEAM)
-      temp->u.bem.swivel = M_PI;
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
