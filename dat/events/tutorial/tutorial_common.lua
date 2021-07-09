@@ -37,6 +37,6 @@ end
 
 
 function addTutLog( text, logname )
-   shiplog.createLog("tutorial", logname, _("Tutorial"))
-   shiplog.appendLog("tutorial", text)
+   shiplog.create("tutorial", logname, _("Tutorial"))
+   shiplog.append("tutorial", text)
 end
