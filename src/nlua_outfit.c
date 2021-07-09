@@ -682,8 +682,8 @@ static int outfitL_specificStats( lua_State *L )
          SETFIELD( "energy",     o->u.blt.energy );
          SETFIELD( "heatup",     o->u.blt.heatup );
          SETFIELD( "heat",       o->u.blt.heat );
-         SETFIELD( "trackmin",   o->u.blt.trackmin );
-         SETFIELD( "trackmax",   o->u.blt.trackmax );
+         SETFIELD( "rdr_range",  o->u.blt.rdr_range );
+         SETFIELD( "rdr_range_max", o->u.blt.rdr_range_max );
          SETFIELD( "swivel",     o->u.blt.swivel );
          /* Damage stuff. */
          SETFIELD( "penetration",o->u.blt.dmg.penetration );
