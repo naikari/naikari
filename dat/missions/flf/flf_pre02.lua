@@ -113,7 +113,7 @@ function create ()
    -- yet.
    motive = nil
 
-   misn.setNPC(_("A skeptical man"), "flf/unique/flint.png", npc_desc)
+   misn.setNPC(_("A skeptical man"), "flf/unique/flint.webp", npc_desc)
 end
 
 
