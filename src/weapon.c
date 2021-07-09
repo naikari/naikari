@@ -392,7 +392,6 @@ static void think_beam( Weapon* w, const double dt )
    AsteroidAnchor *field;
    Asteroid *ast;
    double diff, mod;
-   double bdir;
    Vector2d v;
 
    /* Get pilot, if pilot is dead beam is destroyed. */
@@ -417,39 +416,20 @@ static void think_beam( Weapon* w, const double dt )
    w->solid->pos.y = p->solid->pos.y + v.y;
 
    /* Handle aiming. */
+   t = (w->target != w->parent) ? pilot_get(w->target) : NULL;
    switch (w->outfit->type) {
       case OUTFIT_TYPE_BEAM:
-         bdir = p->solid->dir;
-
-         t = (w->target != w->parent) ? pilot_get(w->target) : NULL;
-         if (t == NULL) {
-            if (p->nav_asteroid >= 0) {
-               field = &cur_system->asteroids[p->nav_anchor];
-               ast = &field->asteroids[p->nav_asteroid];
-
-               bdir = vect_angle(&w->solid->pos, &ast->pos);
-            }
-         }
-         else
-            bdir = vect_angle(&w->solid->pos, &t->solid->pos);
-
-         /* Calculate bounds. */
-         diff = angle_diff( bdir, p->solid->dir );
-         if (FABS(diff) > w->outfit->u.bem.swivel) {
-            if (diff > 0.)
-               bdir = p->solid->dir - w->outfit->u.bem.swivel;
-            else
-               bdir = p->solid->dir + w->outfit->u.bem.swivel;
-         }
-
-         w->solid->dir = bdir;
+         w->solid->dir = p->solid->dir;
+         if (w->outfit->u.bem.swivel > 0.)
+            w->solid->dir = weapon_aimTurret(
+               p, t, &w->solid->pos, &p->solid->vel, p->solid->dir,
+               w->outfit->u.bem.swivel, 0., 0., 0. );
          break;
 
       case OUTFIT_TYPE_TURRET_BEAM:
          /* Get target, if target is dead beam stops moving. Targeting
           * self is invalid so in that case we ignore the target.
           */
-         t = (w->target != w->parent) ? pilot_get(w->target) : NULL;
          if (t == NULL) {
             if (p->nav_asteroid >= 0) {
                field = &cur_system->asteroids[p->nav_anchor];
