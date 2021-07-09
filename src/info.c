@@ -448,11 +448,11 @@ static void info_openShip( unsigned int wid )
          "Radar Range:\n"
          "Jump Detect Range:")
          );
-   window_addText( wid, 40+240, -40, w*3/5 - (40+240) - 10, h-40, 0,
+   window_addText( wid, 40+240, -40, w*2/3 - (40+240) - 10, h-40, 0,
          "txtDDesc", &gl_defFont, NULL, NULL );
 
    /* Stats. */
-   window_addText( wid, w*3/5 + 10, -40, w*3/5 - 10 - 40,
+   window_addText( wid, w*2/3 + 10, -40, w*2/3 - 10 - 40,
          h-40-BUTTON_HEIGHT-20, 0, "txtStats", &gl_defFont, NULL, NULL );
 
    /* Update ship. */
