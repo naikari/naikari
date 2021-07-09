@@ -98,28 +98,28 @@ typedef enum ShipStatsType_ {
     * A: Absolute double type data. Should be continuous.
     */
    /* Movement. */
-   SS_TYPE_A_THRUST,            /**< Base thrust bonus. */
-   SS_TYPE_A_TURN,              /**< Base turn bonus (in deg/s). */
-   SS_TYPE_A_SPEED,             /**< Base speed bonus. */
+   SS_TYPE_A_THRUST,          /**< Thrust modifier. */
+   SS_TYPE_A_TURN,            /**< Turn modifier (in deg/s). */
+   SS_TYPE_A_SPEED,           /**< Speed modifier. */
    /* Health. */
-   SS_TYPE_A_ENERGY,            /**< Energy modifier. */
-   SS_TYPE_A_ENERGY_REGEN,      /**< Energy regeneration modifier. */
+   SS_TYPE_A_ENERGY,          /**< Energy modifier. */
+   SS_TYPE_A_ENERGY_REGEN,    /**< Energy regeneration modifier. */
    SS_TYPE_A_ENERGY_REGEN_MALUS,/**< Flat energy regeneration modifier (not multiplied). */
-   SS_TYPE_A_ENERGY_LOSS,       /**< Flat energy modifier (not multiplied) and applied linearly. */
-   SS_TYPE_A_SHIELD,            /**< Shield modifier. */
-   SS_TYPE_A_SHIELD_REGEN,      /**< Shield regeneration modifier. */
+   SS_TYPE_A_ENERGY_LOSS,     /**< Flat energy modifier (not multiplied) and applied linearly. */
+   SS_TYPE_A_SHIELD,          /**< Shield modifier. */
+   SS_TYPE_A_SHIELD_REGEN,    /**< Shield regeneration modifier. */
    SS_TYPE_A_SHIELD_REGEN_MALUS,/**< Flat shield regeneration modifier (not multiplied). */
-   SS_TYPE_A_ARMOUR,            /**< Armour modifier. */
-   SS_TYPE_A_ARMOUR_REGEN,      /**< Armour regeneration modifier. */
+   SS_TYPE_A_ARMOUR,          /**< Armour modifier. */
+   SS_TYPE_A_ARMOUR_REGEN,    /**< Armour regeneration modifier. */
    SS_TYPE_A_ARMOUR_REGEN_MALUS,/**< Flat armour regeneration modifier (not multiplied). */
    /* Misc. */
-   SS_TYPE_A_CPU_MAX,           /**< Maximum CPU modifier. */
-   SS_TYPE_A_ENGINE_LIMIT,      /**< Engine's mass limit. */
+   SS_TYPE_A_CPU_MAX,         /**< Maximum CPU modifier. */
+   SS_TYPE_A_ENGINE_LIMIT,    /**< Engine's mass limit. */
 
    /*
     * P: Absolute percent type datas. Should be continuous.
     */
-   SS_TYPE_P_ABSORB,            /**< Damage absorption. */
+   SS_TYPE_P_ABSORB,          /**< Damage absorption. */
    /* Nebula. */
    SS_TYPE_P_NEBULA_ABSORB_SHIELD, /**< Shield nebula resistance. */
    SS_TYPE_P_NEBULA_ABSORB_ARMOUR, /**< Armour nebula resistance. */
@@ -127,20 +127,20 @@ typedef enum ShipStatsType_ {
    /*
     * I: Integer type data. Should be continuous.
     */
-   SS_TYPE_I_FUEL,              /**< Fuel bonus. */
-   SS_TYPE_I_CARGO,             /**< Cargo bonus. */
+   SS_TYPE_I_FUEL,            /**< Fuel bonus. */
+   SS_TYPE_I_CARGO,           /**< Cargo bonus. */
 
    /*
     * B: Boolean type data. Should be continuous.
     */
-   SS_TYPE_B_INSTANT_JUMP, /**< Do not require brake or chargeup to jump. */
-   SS_TYPE_B_REVERSE_THRUST, /**< Ship slows down rather than turning on reverse. */
-   SS_TYPE_B_ASTEROID_SCAN, /**< Ship can gather informations from asteroids. */
+   SS_TYPE_B_INSTANT_JUMP,    /**< Do not require brake or chargeup to jump. */
+   SS_TYPE_B_REVERSE_THRUST,  /**< Ship slows down rather than turning on reverse. */
+   SS_TYPE_B_ASTEROID_SCAN,   /**< Ship can gather informations from asteroids. */
 
    /*
     * End of list.
     */
-   SS_TYPE_SENTINEL          /**< Sentinel for end of types. */
+   SS_TYPE_SENTINEL           /**< Sentinel for end of types. */
 } ShipStatsType;
 
 /**
