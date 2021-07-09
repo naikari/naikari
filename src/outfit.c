@@ -1426,10 +1426,10 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
-      outfit_setDefaultSize( temp );
+      outfit_setDefaultSize(temp);
 
    /* Set short description. */
-   temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
+   temp->desc_short = malloc(OUTFIT_SHORTDESC_MAX);
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
          "%+.0f TFLOPS CPU\n"
@@ -1449,11 +1449,16 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
          "%g s Duration\n"
          "%g s Cooldown\n"
          "%g km Range\n"
-         "%g s heat up"),
+         "%g s heat up\n"),
          temp->u.bem.energy,
          temp->u.bem.duration, temp->u.bem.delay,
          temp->u.bem.range,
-         temp->u.bem.heatup);
+         temp->u.bem.heatup );
+
+   if (!outfit_isTurret(temp))
+      l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("%g° Swivel"), temp->u.bem.swivel*180./M_PI );
+
    (void)l;
 
 #define MELEMENT(o,s) \
