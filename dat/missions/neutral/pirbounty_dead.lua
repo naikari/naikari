@@ -298,6 +298,7 @@ function pilot_death( p, attacker )
       elseif player_hits >= top_hits / 2 and rnd.rnd() < 0.5 then
          hailer = hook.pilot( top_hunter, "hail", "hunter_hail", top_hunter )
          credits = credits * player_hits / total_hits
+         reputation = reputation * player_hits / total_hits
          hook.pilot( top_hunter, "jump", "hunter_leave" )
          hook.pilot( top_hunter, "land", "hunter_leave" )
          hook.jumpout( "hunter_leave" )
@@ -333,6 +334,7 @@ function hunter_hail( arg )
    tk.msg( share_title, text:format( name ) )
 
    player.pay( credits )
+   paying_faction:modPlayerSingle( reputation )
    misn.finish( true )
 end
 
