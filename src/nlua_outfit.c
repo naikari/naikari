@@ -665,8 +665,8 @@ static int outfitL_specificStats( lua_State *L )
          SETFIELDI("amount",     o->u.lau.amount );
          SETFIELD( "reload_time",o->u.lau.reload_time );
          SETFIELD( "lockon",     o->u.lau.lockon );
-         SETFIELD( "trackmin",   o->u.lau.trackmin );
-         SETFIELD( "trackmax",   o->u.lau.trackmax );
+         SETFIELD( "rdr_range",  o->u.lau.rdr_range );
+         SETFIELD( "rdr_range_max", o->u.lau.rdr_range_max );
          SETFIELD( "arc",        o->u.lau.arc );
          SETFIELD( "swivel",     o->u.lau.swivel );
          break;
