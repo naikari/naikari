@@ -34,7 +34,7 @@
 #include "tk/toolkit_priv.h"
 #include "toolkit.h"
 
-#define BUTTON_WIDTH    135 /**< Button width, standard across menus. */
+#define BUTTON_WIDTH    180 /**< Button width, standard across menus. */
 #define BUTTON_HEIGHT   30 /**< Button height, standard across menus. */
 
 #define SETGUI_WIDTH    400 /**< GUI selection window width. */
@@ -66,7 +66,6 @@ static const char *info_names[INFO_WINDOWS] = {
 static unsigned int info_wid = 0;
 static unsigned int *info_windows = NULL;
 
-static CstSlotWidget info_eq;
 static CstSlotWidget info_eq_weaps;
 static int *info_factions;
 
@@ -137,8 +136,8 @@ void menu_info( int window )
    }
 
    /* Dimensions. */
-   w = 800;
-   h = 640;
+   w = 920;
+   h = 720;
 
    /* Create the window. */
    info_wid = window_create( "wdwInfo", _("Info"), -1, -1, w, h );
@@ -213,7 +212,7 @@ static void info_openMain( unsigned int wid )
 
    /* pilot generics */
    nt = ntime_pretty( ntime_get(), 2 );
-   window_addText( wid, 40, 20, 200, h-80,
+   window_addText( wid, 40, 20, 240, h-80,
          0, "txtDPilot", &gl_defFont, NULL,
          _("#nPilot:\n"
          "Date:\n"
@@ -250,8 +249,8 @@ static void info_openMain( unsigned int wid )
          player.dmg_done_shield + player.dmg_done_armour,
          player.dmg_taken_shield + player.dmg_taken_armour,
          destroyed );
-   window_addText( wid, 40+200, 20,
-         w-40-200-20-2*BUTTON_WIDTH-20, h-80,
+   window_addText( wid, 40+240, 20,
+         w-40-240-20-2*BUTTON_WIDTH-20, h-80,
          0, "txtPilot", &gl_defFont, NULL, str );
    free(nt);
 
@@ -427,9 +426,9 @@ static void info_openShip( unsigned int wid )
          "closeOutfits", _("Close"), info_close );
 
    /* Text. */
-   window_addText( wid, 40, -60, 180, h-60, 0, "txtSDesc", &gl_smallFont,
-         NULL,
-         _("#nName:\n"
+   window_addText( wid, 40, -40, 240, h-40, 0, "txtSDesc", &gl_defFont,
+         &cFontGrey,
+         _("Name:\n"
          "Model:\n"
          "Class:\n"
          "\n"
@@ -447,17 +446,14 @@ static void info_openShip( unsigned int wid )
          "Cargo Space:\n"
          "Fuel:\n"
          "Radar Range:\n"
-         "Jump Detect Range:\n"
-         "\n"
-         "Stats:\n")
+         "Jump Detect Range:")
          );
-   window_addText( wid, 220, -60, w-20-180-180., h-60, 0, "txtDDesc", &gl_smallFont,
-         NULL, NULL );
+   window_addText( wid, 40+240, -40, w*3/5 - (40+240) - 10, h-40, 0,
+         "txtDDesc", &gl_defFont, NULL, NULL );
 
-   /* Custom widget. */
-   equipment_slotWidget( wid, -20, -40, 180, h-60, &info_eq );
-   info_eq.selected  = player.p;
-   info_eq.canmodify = 0;
+   /* Stats. */
+   window_addText( wid, w*3/5 + 10, -40, w*3/5 - 10 - 40,
+         h-40-BUTTON_HEIGHT-20, 0, "txtStats", &gl_defFont, NULL, NULL );
 
    /* Update ship. */
    ship_update( wid );
@@ -470,11 +466,11 @@ static void info_openShip( unsigned int wid )
 static void ship_update( unsigned int wid )
 {
    char buf[STRMAX_SHORT], *hyp_delay;
-   int cargo, len;
+   int cargo;
 
    cargo = pilot_cargoUsed( player.p ) + pilot_cargoFree( player.p );
    hyp_delay = ntime_pretty( pilot_hyperspaceDelay( player.p ), 2 );
-   len = scnprintf( buf, sizeof(buf),
+   snprintf( buf, sizeof(buf),
          _("%s\n"
          "%s\n"
          "%s\n"
@@ -515,8 +511,11 @@ static void ship_update( unsigned int wid )
          player.p->fuel, player.p->fuel_max,
          pilot_getJumps(player.p), n_( "jump", "jumps", pilot_getJumps(player.p)),
          player.p->rdr_range, player.p->rdr_jump_range);
-   equipment_shipStats( &buf[len], sizeof(buf)-len, player.p, 1 );
    window_modifyText( wid, "txtDDesc", buf );
+
+   equipment_shipStats( buf, sizeof(buf), player.p, 1 );
+   window_modifyText( wid, "txtStats", buf );
+
    free( hyp_delay );
 }
 
@@ -1058,7 +1057,7 @@ static void info_openMissions( unsigned int wid )
          200, 40, 0, "txtReward", &gl_smallFont, NULL, NULL );
    window_addText( wid, 300+40, -120,
          w - (300+40+40), h - BUTTON_HEIGHT - 120, 0,
-         "txtDesc", &gl_smallFont, NULL, NULL );
+         "txtDesc", &gl_defFont, NULL, NULL );
 
    /* Put a map. */
    map_show( wid, 20, 20, 300, 260, 0.75 );
