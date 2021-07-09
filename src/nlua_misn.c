@@ -903,7 +903,7 @@ static int misn_osdGetActiveItem( lua_State *L )
 /**
  * @brief Adds an NPC.
  *
- * @usage npc_id = misn.npcAdd( "my_func", "Mr. Test", "none.png", "A test." ) -- Creates an NPC.
+ * @usage npc_id = misn.npcAdd( "my_func", "Mr. Test", "none.webp", "A test." ) -- Creates an NPC.
  *
  *    @luatparam string func Name of the function to run when approaching, gets passed the npc_id when called.
  *    @luatparam string name Name of the NPC

@@ -116,7 +116,7 @@ int nlua_loadTk( nlua_env env )
  * @brief Creates a window with an ok button, and optionally an image.
  *
  * @usage tk.msg( "Title", "This is a message." )
- * @usage tk.msg( "Title", "This is a message.", "character.png" )
+ * @usage tk.msg( "Title", "This is a message.", "character.webp" )
  *
  *    @luatparam string title Title of the window.
  *    @luatparam string message Message to display in the window.

@@ -81,7 +81,7 @@ int nlua_loadTex( nlua_env env )
  *
  * An example would be:
  * @code
- * t  = tex.open( "foo/bar.png" ) -- Loads the texture
+ * t  = tex.open( "foo/bar.webp" ) -- Loads the texture
  * w,h, sw,sh = t:dim()
  * sprites, sx,sy = t:sprites()
  * @endcode
