@@ -170,23 +170,12 @@
  </commodity>
  <commodity>
   <name>Weapons</name>
-  <description>An assortment of illegal personal weapons.</description>
-  <price>1500</price>
-  <faction_modifier type="Pirate">0.8</faction_modifier>
-  <faction_modifier type="FLF">1.5</faction_modifier>
  </commodity>
  <commodity>
   <name>Drugs</name>
-  <description>A collection of illegal drugs to be sold on the black market.</description>
-  <price>1260</price>
-  <faction_modifier type="Pirate">0.8</faction_modifier>
  </commodity>
  <commodity>
   <name>Radioactive Materials</name>
-  <description>Barrels of dangerous radioactive materials.</description>
-  <price>680</price>
-  <faction_modifier type="Pirate">1.2</faction_modifier>
-  <faction_modifier type="FLF">1.5</faction_modifier>
  </commodity>
  <commodity>
   <name>Bomb</name>
