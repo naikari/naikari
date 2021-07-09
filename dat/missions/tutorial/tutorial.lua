@@ -211,7 +211,7 @@ function accept ()
       tk.msg("", movement_text:format(
                tutGetKey("left"), tutGetKey("right"), tutGetKey("accel"),
                tutGetKey("reverse"), start_planet:name()))
-      addTutLog(movement_log, _("Navigation"))
+      addTutLog(movement_log, N_("Navigation"))
    else
       tk.msg("", nothanks_text)
       misn.finish(true)
@@ -230,11 +230,11 @@ function timer ()
          misn.osdActive(2)
 
          tk.msg("", objectives_text:format(tutGetKey("mousefly")))
-         addTutLog(objectives_log, _("Interface"))
+         addTutLog(objectives_log, N_("Interface"))
          tk.msg("", landing_text:format(
                   start_planet:name(), tutGetKey("target_planet"),
                   tutGetKey("land")))
-         addTutLog(landing_log, _("Navigation"))
+         addTutLog(landing_log, N_("Navigation"))
       end
    elseif stage == 4 then
       if system.cur() == missys
@@ -245,7 +245,7 @@ function timer ()
                   dest_planet:name(), tutGetKey("target_hostile"),
                   tutGetKey("primary"), tutGetKey("secondary"),
                   tutGetKey("autobrake")))
-         addTutLog(combat_log, _("Survival"))
+         addTutLog(combat_log, N_("Survival"))
          spawn_drone()
       end
    elseif stage == 6 then
@@ -253,8 +253,8 @@ function timer ()
          stage = 7
          misn.osdActive(6)
          tk.msg("", jumping_text:format(tutGetKey("starmap"), destsys:name()))
-         addTutLog(jumping_log, _("Navigation"))
-         addTutLog(jumping_log2, _("Navigation"))
+         addTutLog(jumping_log, N_("Navigation"))
+         addTutLog(jumping_log2, N_("Navigation"))
       end
    end
 end
@@ -265,7 +265,7 @@ function land ()
    if stage == 2 then
       stage = 3
       tk.msg("", land_text)
-      addTutLog(land_log, _("Interface"))
+      addTutLog(land_log, N_("Interface"))
       bar_hook = hook.land("land_bar", "bar")
       mission_hook = hook.land("land_mission", "mission")
       outfits_hook = hook.land("land_outfits", "outfits")
@@ -279,43 +279,43 @@ end
 function land_bar ()
    if bar_hook ~= nil then hook.rm(bar_hook) end
    tk.msg("", bar_text)
-   addTutLog(bar_log, _("Interface"))
-   addTutLog(bar_pilots_log, _("Interface"))
+   addTutLog(bar_log, N_("Interface"))
+   addTutLog(bar_pilots_log, N_("Interface"))
 end
 
 
 function land_mission ()
    if mission_hook ~= nil then hook.rm(mission_hook) end
    tk.msg("", mission_text:format(tutGetKey("info")))
-   addTutLog(mission_log, _("Interface"))
+   addTutLog(mission_log, N_("Interface"))
 end
 
 
 function land_outfits ()
    if outfits_hook ~= nil then hook.rm(outfits_hook) end
    tk.msg("", outfits_text)
-   addTutLog(outfits_log, _("Interface"))
+   addTutLog(outfits_log, N_("Interface"))
 end
 
 
 function land_shipyard ()
    if shipyard_hook ~= nil then hook.rm(shipyard_hook) end
    tk.msg("", shipyard_text)
-   addTutLog(shipyard_log, _("Interface"))
+   addTutLog(shipyard_log, N_("Interface"))
 end
 
 
 function land_equipment ()
    if equipment_hook ~= nil then hook.rm(equipment_hook) end
    tk.msg("", equipment_text)
-   addTutLog(equipment_log, _("Interface"))
+   addTutLog(equipment_log, N_("Interface"))
 end
 
 
 function land_commodity ()
    if commodity_hook ~= nil then hook.rm(commodity_hook) end
    tk.msg("", commodity_text:format(tutGetKey("starmap")))
-   addTutLog(commodity_log, _("Interface"))
+   addTutLog(commodity_log, N_("Interface"))
 end
 
 
@@ -342,14 +342,14 @@ function enter_timer ()
       misn.osdActive( 3 )
       tk.msg("", autonav_text:format(player.name(), tutGetKey("overlay"),
                tutGetKey("menu"), dest_planet:name()))
-      addTutLog(autonav_log, _("Navigation"))
+      addTutLog(autonav_log, N_("Navigation"))
    elseif stage == 5 and system.cur() == missys then
       spawn_drone()
    elseif stage == 7 and system.cur() == destsys then
       tk.msg("", fuel_text:format(player.name(), tutGetKey("target_next"),
                tutGetKey("hail")))
-      addTutLog(fuel_log, _("Survival"))
-      addTutLog(fuel_log2, _("Survival"))
+      addTutLog(fuel_log, N_("Survival"))
+      addTutLog(fuel_log2, N_("Survival"))
 
       addMiscLog(log_text)
 
@@ -375,9 +375,9 @@ function pilot_death_timer ()
    misn.osdActive(5)
    misn.markerAdd(destsys, "high")
    tk.msg("", infoscreen_text:format(tutGetKey("info"), tutGetKey("menu")))
-   addTutLog(infoscreen_log, _("Survival"))
+   addTutLog(infoscreen_log, N_("Survival"))
    tk.msg("", cooldown_text:format(tutGetKey("autobrake")))
-   addTutLog(cooldown_log, _("Survival"))
+   addTutLog(cooldown_log, N_("Survival"))
 end
 
 

@@ -36,7 +36,13 @@ function tutGetKey(command)
 end
 
 
-function addTutLog( text, logname )
-   shiplog.create("tutorial", logname, _("Tutorial"))
-   shiplog.append("tutorial", text)
+-- @brief Create a tutorial log, for referencing tutorial information later.
+--
+-- @usage addTutLog(_("Insert lesson here"), N_("Lesson Category"))
+--
+--    @luaparam text Text of the log entry.
+--    @luaparam logname_raw The raw (untranslated) name of the log to use.
+function addTutLog( text, logname_raw )
+   shiplog.create(logname_raw, _(logname_raw), _("Tutorial"))
+   shiplog.append(logname_raw, text)
 end
