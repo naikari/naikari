@@ -2684,16 +2684,21 @@ static int system_parseJumpPointDiff( const xmlNodePtr node, StarSystem *sys )
    xmlr_attr_float_def( node, "x", x, HUGE_VAL );
    xmlr_attr_float_def( node, "y", y, HUGE_VAL );
 
-   /* Handle jump point type. */
-   xmlr_attr_strd( node, "type", buf );
-   if (buf == NULL);
-   else if (strcmp(buf, "hidden") == 0)
+   /* Handle jump point settings. */
+   xmlr_attr_strd( node, "hidden", buf );
+   if (strcmp(buf, "yes") == 0)
       jp_setFlag(j,JP_HIDDEN);
-   else if (strcmp(buf, "exitonly") == 0)
+   free( buf );
+   xmlr_attr_strd( node, "exitonly", buf );
+   if (strcmp(buf, "yes") == 0)
       jp_setFlag(j,JP_EXITONLY);
-   else if (strcmp(buf, "express") == 0)
+   free( buf );
+   xmlr_attr_strd( node, "express", buf );
+   if (strcmp(buf, "yes") == 0)
       jp_setFlag(j,JP_EXPRESS);
-   else if (strcmp(buf, "longrange") == 0)
+   free( buf );
+   xmlr_attr_strd( node, "longrange", buf );
+   if (strcmp(buf, "yes") == 0)
       jp_setFlag(j,JP_LONGRANGE);
    free( buf );
 
