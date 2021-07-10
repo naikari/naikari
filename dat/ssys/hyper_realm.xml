@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ssys name="Hyper Realm">
  <general>
-  <radius>20000.000000</radius>
+  <radius>10000.000000</radius>
   <stars>400</stars>
   <rdr_range_mod>-50.000000</rdr_range_mod>
-  <nebula hue="35.000000">400.000000</nebula>
+  <nebula volatility="0.000000" hue="35.000000">400.000000</nebula>
  </general>
  <pos>
   <x>752.000000</x>
@@ -13,41 +13,41 @@
  <assets/>
  <jumps>
   <jump target="Aesir">
-   <pos x="18579.191030" y="-7397.424985"/>
+   <pos x="9289.595515" y="-3698.712492"/>
    <hidden/>
    <longrange/>
   </jump>
   <jump target="Dvaer">
-   <pos x="7239.812610" y="-18627.213244"/>
+   <pos x="4655.021503" y="-8815.217823"/>
    <hidden/>
    <longrange/>
   </jump>
   <jump target="Gamma Polaris">
-   <pos x="-19968.077116" y="-712.197245"/>
+   <pos x="-9984.038558" y="-356.098622"/>
    <hidden/>
    <longrange/>
   </jump>
   <jump target="Haleb">
-   <pos x="-313.729867" y="-19986.434538"/>
+   <pos x="-156.864934" y="-9993.217269"/>
    <hidden/>
    <longrange/>
   </jump>
   <jump target="Point Zero">
-   <pos x="-14573.165529" y="13667.721465"/>
+   <pos x="-7286.582764" y="6833.860733"/>
    <hidden/>
    <longrange/>
   </jump>
   <jump target="Protera">
-   <pos x="16033.762925" y="11904.476884"/>
+   <pos x="8016.881463" y="5952.238442"/>
    <hidden/>
    <longrange/>
   </jump>
   <jump target="Sol">
-   <pos x="37.716369" y="19939.478510"/>
+   <pos x="18.858185" y="9969.739255"/>
    <longrange/>
   </jump>
   <jump target="Za'lek">
-   <pos x="-13020.759013" y="-15086.434990"/>
+   <pos x="-6510.379507" y="-7543.217495"/>
    <hidden/>
    <longrange/>
   </jump>
