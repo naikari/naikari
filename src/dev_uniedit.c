@@ -746,6 +746,7 @@ static void uniedit_newSys( double x, double y )
    sys->pos.y  = y;
    sys->stars  = STARS_DENSITY_DEFAULT;
    sys->radius = RADIUS_DEFAULT;
+   sys->rdr_range_mod = 1.;
 
    /* Select new system. */
    uniedit_deselect();
