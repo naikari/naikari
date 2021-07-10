@@ -462,10 +462,7 @@ static void board_update( unsigned int wdw )
    char str[STRMAX_SHORT];
    char str2[STRMAX_SHORT];
    char cred[ECON_CRED_STRLEN];
-   Pilot *p;
-   PilotOutfitSlot *target_outfit_slot;
-   Outfit *target_outfit, *ammo;
-   int nammo;
+   Pilot* p;
 
    p = pilot_get(player.p->target);
 
@@ -485,44 +482,9 @@ static void board_update( unsigned int wdw )
    int nmissiles = pilot_countAmmo(p);
    if (nmissiles <= 0)
       snprintf( str, sizeof(str), _("none") );
-   else {
-      l = 0;
-
-      for (i=0; i<array_size(p->outfits); i++) {
-         target_outfit_slot = p->outfits[i];
-         if (target_outfit_slot == NULL)
-            continue;
-
-         target_outfit = target_outfit_slot->outfit;
-         if (target_outfit == NULL)
-            continue;
-
-         /* outfit isn't a launcher */
-         if (!outfit_isLauncher(target_outfit))
-            continue;
-
-         nammo = target_outfit_slot->u.ammo.quantity;
-         ammo = target_outfit_slot->u.ammo.outfit;
-
-         /* launcher has no ammo */
-         if (ammo == NULL)
-            continue;
-
-         if (nammo <= 0)
-            continue;
-
-         if (l > 0)
-            l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
-
-         l += scnprintf(&str2[l], sizeof(str2)-l,
-               "%s", _(ammo->name));
-      }
-
+   else
       snprintf( str, sizeof(str),
-            n_("%d (%s)", "%d (%s)", nmissiles),
-            nmissiles, str2 );
-   }
-
+            n_( "%d missile", "%d missiles", nmissiles ), nmissiles );
    window_modifyText( wdw, "txtDataAmmo", str );
 
    /* Commodities. */
@@ -535,12 +497,9 @@ static void board_update( unsigned int wdw )
       for (i=0; i<array_size(p->commodities); i++) {
          if (p->commodities[i].commodity == NULL)
             continue;
-
          c += player.p->stats.loot_mod * (double)p->commodities[i].quantity;
-
          if (l > 0)
             l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
-
          l += scnprintf(&str2[l], sizeof(str2)-l,
                "%s", _(p->commodities[i].commodity->name));
       }
