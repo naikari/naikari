@@ -1416,13 +1416,13 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    } while (xml_nextNode(node));
 
    /* Post processing. */
+   temp->u.bem.swivel   *= M_PI/180.;
    temp->u.bem.turn     *= M_PI/180.; /* Convert to rad/s. */
    C = pilot_heatCalcOutfitC(temp);
    area = pilot_heatCalcOutfitArea(temp);
-   temp->u.bem.heat     = ((800.-CONST_SPACE_STAR_TEMP)*C
-            + STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area))
-         / temp->u.bem.heatup * (temp->u.bem.delay+temp->u.bem.warmup+temp->u.bem.duration);
-   temp->u.bem.swivel  *= M_PI/180.;
+   temp->u.bem.heat     = ((800.-CONST_SPACE_STAR_TEMP)*C +
+            STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area)) /
+         temp->u.bem.heatup * (temp->u.bem.delay+temp->u.bem.warmup+temp->u.bem.duration) / temp->u.bem.delay;
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
