@@ -96,6 +96,7 @@ static double sysedit_my      = 0.; /**< Cursor Y position. */
 /* Stored checkbox values. */
 static int jp_hidden = 0; /**< Jump point hidden checkbox value. */
 static int jp_exit   = 0; /**< Jump point exit only checkbox value. */
+static int jp_longrange = 0; /**< Jump point longrange checkbox value. */
 
 
 /*
@@ -1396,6 +1397,15 @@ static void jp_type_check_exit_update( unsigned int wid, char* str )
 }
 
 /**
+ * @brief Updates the jump point checkboxes.
+ */
+static void jp_type_check_longrange_update( unsigned int wid, char* str )
+{
+   (void) str;
+   jp_longrange = window_checkboxState( wid, "chkLongRange" );
+}
+
+/**
  * @brief Edits a jump.
  */
 static void sysedit_editJump( void )
@@ -1430,16 +1440,24 @@ static void sysedit_editJump( void )
    /* Initial checkbox state */
    jp_hidden = 0;
    jp_exit   = 0;
+   jp_longrange = 0;
    if (jp_isFlag( j, JP_HIDDEN ))
       jp_hidden = 1;
    else if (jp_isFlag( j, JP_EXITONLY ))
       jp_exit   = 1;
+
+   if (jp_isFlag( j, JP_LONGRANGE ))
+      jp_longrange = 1;
+
    /* Create check boxes. */
    window_addCheckbox( wid, x, y, 100, 20,
          "chkHidden", _("Hidden"), jp_type_check_hidden_update, jp_hidden );
    y -= 20;
    window_addCheckbox( wid, x, y, 100, 20,
          "chkExit", _("Exit only"), jp_type_check_exit_update, jp_exit );
+   y -= 20;
+   window_addCheckbox( wid, x, y, 100, 20,
+         "chkLongRange", _("Long-Range"), jp_type_check_longrange_update, jp_longrange );
    y -= 30;
 
    s = _("Radar Range Modifier");
@@ -1482,6 +1500,10 @@ static void sysedit_editJumpClose( unsigned int wid, char *unused )
       jp_rmFlag( j, JP_HIDDEN );
       jp_rmFlag( j, JP_EXITONLY );
    }
+   if (jp_longrange)
+      jp_setFlag( j, JP_LONGRANGE );
+   else
+      jp_rmFlag( j, JP_LONGRANGE );
    j->rdr_range_mod = atof(window_getInput(sysedit_widEdit, "inpHide"));
 
    window_close( wid, unused );
