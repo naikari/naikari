@@ -28,10 +28,10 @@
 #include "toolkit.h"
 
 
-#define BOARDING_WIDTH  380 /**< Boarding window width. */
-#define BOARDING_HEIGHT 200 /**< Boarding window height. */
+#define BOARDING_WIDTH  420 /**< Boarding window width. */
+#define BOARDING_HEIGHT (40 + 5*BUTTON_HEIGHT + 50) /**< Boarding window height. */
 
-#define BUTTON_WIDTH     50 /**< Boarding button width. */
+#define BUTTON_WIDTH    100 /**< Boarding button width. */
 #define BUTTON_HEIGHT    30 /**< Boarding button height. */
 
 
@@ -152,26 +152,36 @@ void player_board (void)
     */
    wdw = window_create( "wdwBoarding", _("Boarding"), -1, -1, BOARDING_WIDTH, BOARDING_HEIGHT );
 
-   window_addText( wdw, 20, -30, 120, 60,
-         0, "txtCargo", &gl_smallFont, NULL,
-         _("Credits:\n"
-         "Cargo:\n"
-         "Fuel:\n"
-         "Ammo:\n")
-         );
-   window_addText( wdw, 80, -30, 120, 60,
-         0, "txtData", &gl_smallFont, NULL, NULL );
+   window_addButton( wdw, 20, -40, BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealCredits", _("Credits"), board_stealCreds);
+   window_addText( wdw, 20+BUTTON_WIDTH+10,
+         -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), BUTTON_HEIGHT, 0,
+         "txtDataCredits", &gl_defFont, NULL, NULL );
 
-   window_addButton( wdw, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnStealCredits", _("Credits"), board_stealCreds);
-   window_addButton( wdw, 20+BUTTON_WIDTH+20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnStealCargo", _("Cargo"), board_stealCargo);
-   window_addButton( wdw, 20+2*(BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnStealFuel", _("Fuel"), board_stealFuel);
-   window_addButton( wdw, 20+3*(BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnStealAmmo", _("Ammo"), board_stealAmmo);
-   window_addButton( wdw, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnBoardingClose", _("Leave"), board_exit );
+   window_addButton( wdw, 20, -40 - 1*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealFuel", _("Fuel"), board_stealFuel);
+   window_addText( wdw, 20+BUTTON_WIDTH+10,
+         -40 - 1*(BUTTON_HEIGHT+10) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), BUTTON_HEIGHT, 0,
+         "txtDataFuel", &gl_defFont, NULL, NULL );
+
+   window_addButton( wdw, 20, -40 - 2*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealAmmo", _("Ammo"), board_stealAmmo);
+   window_addText( wdw, 20+BUTTON_WIDTH+10,
+         -40 - 2*(BUTTON_HEIGHT+10) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), BUTTON_HEIGHT, 0,
+         "txtDataAmmo", &gl_defFont, NULL, NULL );
+
+   window_addButton( wdw, 20, -40 - 3*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealCargo", _("Cargo"), board_stealCargo);
+   window_addText( wdw, 20+BUTTON_WIDTH+10,
+         -40 - 3*(BUTTON_HEIGHT+10) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), 2*BUTTON_HEIGHT + 10, 0,
+         "txtDataCargo", &gl_defFont, NULL, NULL );
+
+   window_addButton( wdw, 20, -40 - 4*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit );
 
    board_update(wdw);
 }
@@ -446,50 +456,60 @@ static int board_fail( unsigned int wdw )
  */
 static void board_update( unsigned int wdw )
 {
-   int i, j;
+   int i, l;
    int total_cargo, fuel;
    double c;
-   char str[PATH_MAX];
+   char str[STRMAX_SHORT];
+   char str2[STRMAX_SHORT];
    char cred[ECON_CRED_STRLEN];
    Pilot* p;
 
    p = pilot_get(player.p->target);
-   j = 0;
 
    /* Credits. */
    credits2str( cred, p->credits * player.p->stats.loot_mod, 2 );
-   j += scnprintf( &str[j], sizeof(str), "%s\n", cred );
-
-   /* Commodities. */
-   if ((array_size(p->commodities)==0))
-      j += scnprintf( &str[j], sizeof(str)-j, _("none\n") );
-   else {
-      c = 0;
-      for (i=0; i<array_size(p->commodities); i++) {
-         if (p->commodities[i].commodity == NULL)
-            continue;
-         c += player.p->stats.loot_mod * (double)p->commodities[i].quantity;
-      }
-      total_cargo = round(c);
-      j += scnprintf( &str[ j ], sizeof(str) - j, n_( "%d t\n", "%d t\n", total_cargo ), total_cargo );
-   }
+   window_modifyText( wdw, "txtDataCredits", cred );
 
    /* Fuel. */
    fuel = round( player.p->stats.loot_mod * (double)p->fuel );
    if (fuel <= 0)
-      j += scnprintf( &str[j], sizeof(str)-j, _("none\n") );
+      snprintf( str, sizeof(str), _("none") );
    else
-      j += scnprintf( &str[ j ], sizeof(str) - j, n_( "%d hL\n", "%d hL\n", fuel ), fuel );
+      snprintf( str, sizeof(str), n_( "%d hL", "%d hL", fuel ), fuel );
+   window_modifyText( wdw, "txtDataFuel", str );
 
    /* Missiles */
    int nmissiles = pilot_countAmmo(p);
    if (nmissiles <= 0)
-      j += scnprintf( &str[j], sizeof(str)-j, _("none\n") );
+      snprintf( str, sizeof(str), _("none") );
    else
-      j += scnprintf( &str[ j ], sizeof(str) - j, n_( "%d missile\n", "%d missiles\n", nmissiles ), nmissiles );
-   (void)j;
+      snprintf( str, sizeof(str),
+            n_( "%d missile", "%d missiles", nmissiles ), nmissiles );
+   window_modifyText( wdw, "txtDataAmmo", str );
 
-   window_modifyText( wdw, "txtData", str );
+   /* Commodities. */
+   if ((array_size(p->commodities)==0))
+      snprintf( str, sizeof(str), _("none") );
+   else {
+      c = 0.;
+      l = 0;
+
+      for (i=0; i<array_size(p->commodities); i++) {
+         if (p->commodities[i].commodity == NULL)
+            continue;
+         c += player.p->stats.loot_mod * (double)p->commodities[i].quantity;
+         if (l > 0)
+            l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
+         l += scnprintf(&str2[l], sizeof(str2)-l,
+               "%s", _(p->commodities[i].commodity->name));
+      }
+
+      total_cargo = round(c);
+      snprintf( str, sizeof(str),
+            n_("%d t (%s)", "%d t (%s)", total_cargo),
+            total_cargo, str2 );
+   }
+   window_modifyText( wdw, "txtDataCargo", str );
 }
 
 
