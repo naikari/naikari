@@ -456,13 +456,19 @@ static int board_fail( unsigned int wdw )
  */
 static void board_update( unsigned int wdw )
 {
-   int i, l;
+   int i, j, l;
    int total_cargo, fuel;
    double c;
    char str[STRMAX_SHORT];
    char str2[STRMAX_SHORT];
    char cred[ECON_CRED_STRLEN];
-   Pilot* p;
+   Pilot *p;
+   PilotOutfitSlot *target_outfit_slot;
+   Outfit *target_outfit, *ammo;
+   int nammo;
+   char **outfit_names = NULL;
+   int noutfit_names;
+   int duplicate;
 
    p = pilot_get(player.p->target);
 
@@ -482,9 +488,70 @@ static void board_update( unsigned int wdw )
    int nmissiles = pilot_countAmmo(p);
    if (nmissiles <= 0)
       snprintf( str, sizeof(str), _("none") );
-   else
+   else {
+      l = 0;
+      noutfit_names = 0;
+
+      for (i=0; i<array_size(p->outfits); i++) {
+         target_outfit_slot = p->outfits[i];
+         if (target_outfit_slot == NULL)
+            continue;
+
+         target_outfit = target_outfit_slot->outfit;
+         if (target_outfit == NULL)
+            continue;
+
+         /* outfit isn't a launcher */
+         if (!outfit_isLauncher(target_outfit))
+            continue;
+
+         nammo = target_outfit_slot->u.ammo.quantity;
+         ammo = target_outfit_slot->u.ammo.outfit;
+
+         /* launcher has no ammo */
+         if (ammo == NULL)
+            continue;
+
+         if (nammo <= 0)
+            continue;
+
+         /* See if this is already listed. */
+         if (outfit_names != NULL) {
+            duplicate = 0;
+            for (j=0; j<noutfit_names; j++) {
+               if (strcmp(ammo->name, outfit_names[j]) == 0) {
+                  duplicate = 1;
+                  break;
+               }
+            }
+
+            if (duplicate)
+               continue;
+         }
+
+         if (l > 0)
+            l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
+
+         l += scnprintf(&str2[l], sizeof(str2)-l,
+               "%s", _(ammo->name));
+
+         if (outfit_names == NULL)
+            outfit_names = malloc(sizeof(char*));
+         else
+            outfit_names = realloc(outfit_names, sizeof(char*) * (noutfit_names+1));
+
+         outfit_names[noutfit_names] = ammo->name;
+         noutfit_names++;
+      }
+
+      free(outfit_names);
+      outfit_names = NULL;
+
       snprintf( str, sizeof(str),
-            n_( "%d missile", "%d missiles", nmissiles ), nmissiles );
+            n_("%d (%s)", "%d (%s)", nmissiles),
+            nmissiles, str2 );
+   }
+
    window_modifyText( wdw, "txtDataAmmo", str );
 
    /* Commodities. */
@@ -497,9 +564,12 @@ static void board_update( unsigned int wdw )
       for (i=0; i<array_size(p->commodities); i++) {
          if (p->commodities[i].commodity == NULL)
             continue;
+
          c += player.p->stats.loot_mod * (double)p->commodities[i].quantity;
+
          if (l > 0)
             l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
+
          l += scnprintf(&str2[l], sizeof(str2)-l,
                "%s", _(p->commodities[i].commodity->name));
       }
