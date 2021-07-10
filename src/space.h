@@ -178,6 +178,7 @@ typedef struct SystemPresence_ {
 #define JP_HIDDEN       (1<<2) /**< Jump point is hidden. */
 #define JP_EXITONLY     (1<<3) /**< Jump point is exit only */
 #define JP_EXPRESS      (1<<4) /**< Jump point is immediately visible. */
+#define JP_LONGRANGE    (1<<5) /**< Jump point is drawn as an arrow on the map instead of a line. */
 #define jp_isFlag(j,f)    ((j)->flags & (f)) /**< Checks jump flag. */
 #define jp_setFlag(j,f)   ((j)->flags |= (f)) /**< Sets a jump flag. */
 #define jp_rmFlag(j,f)    ((j)->flags &= ~(f)) /**< Removes a jump flag. */

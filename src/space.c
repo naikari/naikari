@@ -2693,6 +2693,8 @@ static int system_parseJumpPointDiff( const xmlNodePtr node, StarSystem *sys )
       jp_setFlag(j,JP_EXITONLY);
    else if (strcmp(buf, "express") == 0)
       jp_setFlag(j,JP_EXPRESS);
+   else if (strcmp(buf, "longrange") == 0)
+      jp_setFlag(j,JP_LONGRANGE);
    free( buf );
 
    xmlr_attr_float_def(node, "rdr_range_mod", j->rdr_range_mod, 0);
@@ -2790,6 +2792,8 @@ static int system_parseJumpPoint( const xmlNodePtr node, StarSystem *sys )
          jp_setFlag(j,JP_EXITONLY);
       else if (xml_isNode(cur,"express"))
          jp_setFlag(j,JP_EXPRESS);
+      else if (xml_isNode(cur,"longrange"))
+         jp_setFlag(j,JP_LONGRANGE);
 
       xmlr_float(cur,"rdr_range_mod",j->rdr_range_mod);
    } while (xml_nextNode(cur));
