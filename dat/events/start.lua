@@ -38,9 +38,21 @@ end
 
 
 function create()
-   player.pilot():rename( name() ) -- Assign a random name to the player's ship.
-   player.pilot():addOutfit( "Laser Cannon MK1", 2 )
-   jump.setKnown( "Hakoi", "Eneguoz" )
+   local pp = player.pilot()
+   pp:rename(name()) -- Assign a random name to the player's ship.
+   pp:rmOutfit("cores")
+   pp:rmOutfit("all")
+   pp:addOutfit("Unicorp PT-18 Core System")
+   pp:addOutfit("Nexus Dart 150 Engine")
+   pp:addOutfit("Unicorp D-2 Light Plating")
+   pp:addOutfit("Laser Cannon MK1", 2)
+
+   pp:setTemp(0)
+   pp:setHealth(100, 100)
+   pp:setEnergy(100)
+   pp:setFuel(true)
+
+   jump.setKnown("Hakoi", "Eneguoz")
    var.push("player_formation", "circle")
 
    -- Give all GUIs
@@ -56,6 +68,6 @@ function create()
 end
 
 function timer_tutorial()
-   naev.missionStart( "Tutorial" )
-   evt.finish( true )
+   naev.missionStart("Tutorial")
+   evt.finish(true)
 end
