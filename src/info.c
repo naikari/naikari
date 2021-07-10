@@ -137,7 +137,7 @@ void menu_info( int window )
 
    /* Dimensions. */
    w = 920;
-   h = 720;
+   h = 600;
 
    /* Create the window. */
    info_wid = window_create( "wdwInfo", _("Info"), -1, -1, w, h );
@@ -1045,7 +1045,7 @@ static void info_openMissions( unsigned int wid )
    /* buttons */
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
          "closeMissions", _("Close"), info_close );
-   window_addButtonKey( wid, -20, 40 + BUTTON_HEIGHT,
+   window_addButtonKey( wid, -40 - BUTTON_WIDTH, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT, "btnAbortMission", _("Abort"),
          mission_menu_abort, SDLK_a );
 
@@ -1056,7 +1056,7 @@ static void info_openMissions( unsigned int wid )
    window_addText( wid, 300+40, -80,
          200, 40, 0, "txtReward", &gl_smallFont, NULL, NULL );
    window_addText( wid, 300+40, -120,
-         w - (300+40+40), h - BUTTON_HEIGHT - 120, 0,
+         w - (300+40+40), h - BUTTON_HEIGHT - 120 - 20, 0,
          "txtDesc", &gl_defFont, NULL, NULL );
 
    /* Put a map. */
