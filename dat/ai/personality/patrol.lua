@@ -22,5 +22,6 @@ function idle ()
    mem.loiter = mem.loiter - 1
 end
 
+
 -- Settings
 mem.land_friendly = true -- Land on only friendly by default

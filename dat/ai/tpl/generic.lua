@@ -639,38 +639,3 @@ function clean_task( task )
    end
 end
 
-
--- Holds position
-function hold ()
-   if not ai.isstopped() then
-      ai.brake()
-   else
-      ai.stop()
-   end
-end
-
-
--- Flies back and tries to either dock or stops when back at leader
-function flyback( dock )
-   local target = ai.pilot():leader()
-   if not target or not target:exists() then
-      ai.poptask()
-      return
-   end
-   local goal = ai.follow_accurate(target, 0, 0, mem.Kp, mem.Kd)
-
-   local dir  = ai.face( goal )
-   local dist = ai.dist( goal )
-
-   if dist > 300 then
-      if dir < 10 then 
-         ai.accel()
-      end
-   else -- Time to dock
-      if dock then
-         ai.dock(target)
-      else
-         ai.poptask()
-      end
-   end
-end

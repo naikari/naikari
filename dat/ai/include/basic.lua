@@ -7,14 +7,25 @@
 
 
 --[[
+-- Helper function that checks to see if a value is in a table
+--]]
+function __intable( t, val )
+   for k,v in ipairs(t) do
+      if v==val then
+         return true
+      end
+   end
+   return false
+end
+
+
+--[[
 -- Faces the target.
 --]]
-function __face ()
-   local target = ai.taskdata()
+function __face( target )
    ai.face( target )
 end
-function __face_towards ()
-   local target = ai.taskdata()
+function __face_towards( target )
    local off = ai.face( target )
    if math.abs(off) < 5 then
       ai.poptask()
@@ -79,8 +90,7 @@ end
 --[[
 -- Goes to a target position without braking
 --]]
-function __moveto_nobrake ()
-   local target   = ai.taskdata()
+function __moveto_nobrake( target )
    local dir      = ai.face( target, nil, true )
    __moveto_generic( target, dir, false )
 end
@@ -89,7 +99,7 @@ end
 --[[
 -- Goes to a target position without braking
 --]]
-function __moveto_nobrake_raw ()
+function __moveto_nobrake_raw( target )
    local target   = ai.taskdata()
    local dir      = ai.face( target )
    __moveto_generic( target, dir, false )
@@ -138,8 +148,8 @@ end
 --[[
 -- Goes to a point in order to inspect (same as moveto, but pops when attacking)
 --]]
-function inspect_moveto()
-   __moveto_nobrake()
+function inspect_moveto( target )
+   __moveto_nobrake( target )
 end
 
 
@@ -952,5 +962,87 @@ function gather ()
    if dir < 10 and mod > 100 then
       ai.accel()
    end
+end
+
+
+-- Holds position
+function hold ()
+   if not ai.isstopped() then
+      ai.brake()
+   else
+      ai.stop()
+   end
+end
+
+
+-- Flies back and tries to either dock or stops when back at leader
+function flyback( dock )
+   local target = ai.pilot():leader()
+   if not target or not target:exists() then
+      ai.poptask()
+      return
+   end
+   local goal = ai.follow_accurate(target, 0, 0, mem.Kp, mem.Kd)
+
+   local dir  = ai.face( goal )
+   local dist = ai.dist( goal )
+
+   if dist > 300 then
+      if dir < 10 then
+         ai.accel()
+      end
+   else -- Time to dock
+      if dock then
+         ai.dock(target)
+      else
+         ai.poptask()
+      end
+   end
+end
+
+
+--[[
+-- Checks to see if a pilot is visible
+-- Assumes the pilot exists!
+--]]
+function __check_seeable( target )
+   local self   = ai.pilot()
+   if not target:flags().invisible then
+      -- Pilot still sees the target: continue attack
+      if self:inrange( target ) then
+         return true
+      end
+
+      -- Pilots on manual control (in missions or events) never loose target
+      -- /!\ This is not necessary desirable all the time /!\
+      -- TODO: there should probably be a flag settable to allow to outwit pilots under manual control
+      if self:flags().manualcontrol then
+         return true
+      end
+   end
+   return false
+end
+
+
+--[[
+-- Aborts current task and tries to see what happened to the target.
+--]]
+function __investigate_target( target )
+   local p = ai.pilot()
+   ai.settarget(p) -- Un-target
+   ai.poptask()
+   -- Guess the pilot will be randomly between the current position and the
+   -- future position if they go in the same direction with the same velocity
+   local ttl = ai.dist(target) / p:stats().speed_max
+   local fpos = target:pos() + vec2.newP( target:vel()*ttl, target:dir() ) * rnd.rnd()
+   ai.pushtask("inspect_moveto", fpos )
+end
+
+
+--[[
+-- Just loitering around.
+--]]
+function loiter( pos )
+   __moveto_nobrake( pos )
 end
 
