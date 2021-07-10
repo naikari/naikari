@@ -23,6 +23,7 @@
   <jump target="Zied">
    <autopos/>
    <exitonly/>
+   <longrange/>
   </jump>
  </jumps>
 </ssys>

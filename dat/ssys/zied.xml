@@ -18,12 +18,15 @@
  <jumps>
   <jump target="Amaroq">
    <autopos/>
+   <longrange/>
   </jump>
   <jump target="Pudas">
    <autopos/>
+   <longrange/>
   </jump>
   <jump target="Sheffield">
    <autopos/>
+   <longrange/>
   </jump>
  </jumps>
  <asteroids>

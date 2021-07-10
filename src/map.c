@@ -889,7 +889,7 @@ else (x) = MAX( y, (x) - dt )
       map_renderFactionDisks( x, y, 0, map_alpha_faction );
 
    /* Render jump routes. */
-   map_renderJumps( x, y, 0 );
+   map_renderJumps( x, y, r, 0 );
 
    /* Cause alpha to move smoothly between 0-1. */
    col.a = 0.5 + 0.5 * ( ABS(MAP_MARKER_CYCLE - (int)SDL_GetTicks() % (2*MAP_MARKER_CYCLE))
@@ -1125,9 +1125,10 @@ void map_renderSystemEnvironment( double x, double y, int editor, double alpha )
 /**
  * @brief Renders the jump routes between systems.
  */
-void map_renderJumps( double x, double y, int editor)
+void map_renderJumps( double x, double y, double r, int editor)
 {
    int i, j, k;
+   double dir;
    const glColour *col, *cole;
    GLfloat vertex[8*(2+4)];
    StarSystem *sys, *jsys;
@@ -1174,27 +1175,52 @@ void map_renderJumps( double x, double y, int editor)
          else
             col = &cLightBlue;
 
-         /* Draw the lines. */
-         vertex[0]  = x + sys->pos.x * map_zoom;
-         vertex[1]  = y + sys->pos.y * map_zoom;
-         vertex[2]  = vertex[0] + (jsys->pos.x - sys->pos.x)/2. * map_zoom;
-         vertex[3]  = vertex[1] + (jsys->pos.y - sys->pos.y)/2. * map_zoom;
-         vertex[4]  = x + jsys->pos.x * map_zoom;
-         vertex[5]  = y + jsys->pos.y * map_zoom;
-         vertex[6]  = col->r;
-         vertex[7]  = col->g;
-         vertex[8]  = col->b;
-         vertex[9]  = 0.2;
-         vertex[10] = (col->r + cole->r)/2.;
-         vertex[11] = (col->g + cole->g)/2.;
-         vertex[12] = (col->b + cole->b)/2.;
-         vertex[13] = 0.8;
-         vertex[14] = cole->r;
-         vertex[15] = cole->g;
-         vertex[16] = cole->b;
-         vertex[17] = 0.2;
-         gl_vboSubData( map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex );
-         glDrawArrays( GL_LINE_STRIP, 0, 3 );
+         if (jp_isFlag(&sys->jumps[j], JP_LONGRANGE)) {
+            dir = ANGLE(jsys->pos.x - sys->pos.x, jsys->pos.y - sys->pos.y);
+            vertex[0]  = x + sys->pos.x * map_zoom;
+            vertex[1]  = y + sys->pos.y * map_zoom;
+            vertex[2]  = vertex[0] + cos(dir)*8*r;
+            vertex[3]  = vertex[1] + sin(dir)*8*r;
+            vertex[4]  = x + sys->pos.x * map_zoom;
+            vertex[5]  = y + sys->pos.y * map_zoom;
+            vertex[6]  = col->r;
+            vertex[7]  = col->g;
+            vertex[8]  = col->b;
+            vertex[9]  = 0.6;
+            vertex[10] = col->r;
+            vertex[11] = col->g;
+            vertex[12] = col->b;
+            vertex[13] = 0.;
+            vertex[14] = col->r;
+            vertex[15] = col->g;
+            vertex[16] = col->b;
+            vertex[17] = 0.6;
+            gl_vboSubData( map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex );
+            glDrawArrays( GL_LINE_STRIP, 0, 3 );
+         }
+         else {
+            /* Draw the lines. */
+            vertex[0]  = x + sys->pos.x * map_zoom;
+            vertex[1]  = y + sys->pos.y * map_zoom;
+            vertex[2]  = vertex[0] + (jsys->pos.x - sys->pos.x)/2. * map_zoom;
+            vertex[3]  = vertex[1] + (jsys->pos.y - sys->pos.y)/2. * map_zoom;
+            vertex[4]  = x + jsys->pos.x * map_zoom;
+            vertex[5]  = y + jsys->pos.y * map_zoom;
+            vertex[6]  = col->r;
+            vertex[7]  = col->g;
+            vertex[8]  = col->b;
+            vertex[9]  = 0.2;
+            vertex[10] = (col->r + cole->r)/2.;
+            vertex[11] = (col->g + cole->g)/2.;
+            vertex[12] = (col->b + cole->b)/2.;
+            vertex[13] = 0.8;
+            vertex[14] = cole->r;
+            vertex[15] = cole->g;
+            vertex[16] = cole->b;
+            vertex[17] = 0.2;
+            gl_vboSubData( map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex );
+            glDrawArrays( GL_LINE_STRIP, 0, 3 );
+         }
       }
       gl_endSmoothProgram();
    }
