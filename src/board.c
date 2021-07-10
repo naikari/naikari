@@ -28,7 +28,7 @@
 #include "toolkit.h"
 
 
-#define BOARDING_WIDTH  420 /**< Boarding window width. */
+#define BOARDING_WIDTH  640 /**< Boarding window width. */
 #define BOARDING_HEIGHT (40 + 5*BUTTON_HEIGHT + 50) /**< Boarding window height. */
 
 #define BUTTON_WIDTH    100 /**< Boarding button width. */
