@@ -29,10 +29,10 @@
 
 
 #define BOARDING_WIDTH  640 /**< Boarding window width. */
-#define BOARDING_HEIGHT (40 + 5*BUTTON_HEIGHT + 50) /**< Boarding window height. */
+#define BOARDING_HEIGHT (40 + 5*BUTTON_HEIGHT + 5*20) /**< Boarding window height. */
 
-#define BUTTON_WIDTH    100 /**< Boarding button width. */
-#define BUTTON_HEIGHT    30 /**< Boarding button height. */
+#define BUTTON_WIDTH    110 /**< Boarding button width. */
+#define BUTTON_HEIGHT    40 /**< Boarding button height. */
 
 
 static int board_stopboard = 0; /**< Whether or not to unboard. */
@@ -156,31 +156,35 @@ void player_board (void)
          BUTTON_HEIGHT, "btnStealCredits", _("Credits"), board_stealCreds);
    window_addText( wdw, 20+BUTTON_WIDTH+10,
          -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), BUTTON_HEIGHT, 0,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataCredits", &gl_defFont, NULL, NULL );
 
-   window_addButton( wdw, 20, -40 - 1*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+   window_addButton( wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealFuel", _("Fuel"), board_stealFuel);
    window_addText( wdw, 20+BUTTON_WIDTH+10,
-         -40 - 1*(BUTTON_HEIGHT+10) - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), BUTTON_HEIGHT, 0,
+         -40 - 1*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataFuel", &gl_defFont, NULL, NULL );
 
-   window_addButton( wdw, 20, -40 - 2*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+   window_addButton( wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealAmmo", _("Ammo"), board_stealAmmo);
    window_addText( wdw, 20+BUTTON_WIDTH+10,
-         -40 - 2*(BUTTON_HEIGHT+10) - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), BUTTON_HEIGHT, 0,
+         -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataAmmo", &gl_defFont, NULL, NULL );
 
-   window_addButton( wdw, 20, -40 - 3*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+   window_addButton( wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealCargo", _("Cargo"), board_stealCargo);
    window_addText( wdw, 20+BUTTON_WIDTH+10,
-         -40 - 3*(BUTTON_HEIGHT+10) - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10), 2*BUTTON_HEIGHT + 10, 0,
+         -40 - 3*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         2*BUTTON_HEIGHT + 2*20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataCargo", &gl_defFont, NULL, NULL );
 
-   window_addButton( wdw, 20, -40 - 4*(BUTTON_HEIGHT+10), BUTTON_WIDTH,
+   window_addButton( wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit );
 
    board_update(wdw);
