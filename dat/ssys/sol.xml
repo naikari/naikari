@@ -12,6 +12,11 @@
  </pos>
  <assets/>
  <jumps>
+  <jump target="Hyper Realm">
+   <pos x="5262.168180" y="-6711.638587"/>
+   <hidden/>
+   <longrange/>
+  </jump>
   <jump target="Midoros">
    <autopos/>
   </jump>

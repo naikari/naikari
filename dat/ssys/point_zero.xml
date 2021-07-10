@@ -19,6 +19,11 @@
   <jump target="Gewirn">
    <autopos/>
   </jump>
+  <jump target="Hyper Realm">
+   <autopos/>
+   <hidden/>
+   <longrange/>
+  </jump>
   <jump target="Jommel">
    <autopos/>
   </jump>

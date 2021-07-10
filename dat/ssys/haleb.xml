@@ -17,6 +17,11 @@
   <asset>Virtual FLF Small</asset>
  </assets>
  <jumps>
+  <jump target="Hyper Realm">
+   <pos x="3794.912035" y="13124.269276"/>
+   <hidden/>
+   <longrange/>
+  </jump>
   <jump target="Slaccid">
    <autopos/>
   </jump>

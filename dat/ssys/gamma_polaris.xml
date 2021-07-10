@@ -30,6 +30,11 @@
    <autopos/>
    <express/>
   </jump>
+  <jump target="Hyper Realm">
+   <autopos/>
+   <hidden/>
+   <longrange/>
+  </jump>
   <jump target="Koralis">
    <autopos/>
    <express/>

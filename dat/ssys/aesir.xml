@@ -27,6 +27,11 @@
   <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
+  <jump target="Hyper Realm">
+   <autopos/>
+   <hidden/>
+   <longrange/>
+  </jump>
   <jump target="Vanir">
    <autopos/>
    <express/>

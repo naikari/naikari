@@ -1186,7 +1186,7 @@ void map_renderJumps( double x, double y, double r, int editor)
             vertex[6]  = col->r;
             vertex[7]  = col->g;
             vertex[8]  = col->b;
-            vertex[9]  = 0.6;
+            vertex[9]  = 1.;
             vertex[10] = col->r;
             vertex[11] = col->g;
             vertex[12] = col->b;
@@ -1194,7 +1194,7 @@ void map_renderJumps( double x, double y, double r, int editor)
             vertex[14] = col->r;
             vertex[15] = col->g;
             vertex[16] = col->b;
-            vertex[17] = 0.6;
+            vertex[17] = 1.;
             gl_vboSubData( map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex );
             glDrawArrays( GL_LINE_STRIP, 0, 3 );
          }
