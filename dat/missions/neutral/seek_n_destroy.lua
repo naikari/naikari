@@ -149,7 +149,7 @@ osd_msg    = {}
 osd_msg1_r = _("Fly to the %s system and search for clues")
 osd_msg[1] = " "
 osd_msg[2] = _("Kill %s")
-osd_msg[3] = _("Land on any %s planet and collect your bounty")
+osd_msg[3] = _("Land in %s territory to collect your bounty")
 osd_msg["__save"] = true
 
 npc_desc = _("Shifty Person")
