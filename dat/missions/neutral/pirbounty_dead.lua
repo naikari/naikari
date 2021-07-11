@@ -118,21 +118,21 @@ hunter_hits = {}
 function create ()
    paying_faction = planet.cur():faction()
 
-   local systems = getsysatdistance( system.cur(), 1, 3,
+   local systems = getsysatdistance(system.cur(), 1, 3,
       function(s)
          local p = s:presences()["Pirate"]
          return p ~= nil and p > 0
-      end )
+      end)
 
    if #systems == 0 then
       -- No pirates nearby
-      misn.finish( false )
+      misn.finish(false)
    end
 
-   missys = systems[ rnd.rnd( 1, #systems ) ]
-   if not misn.claim( missys ) then misn.finish( false ) end
+   missys = systems[ rnd.rnd(1, #systems) ]
+   if not misn.claim(missys) then misn.finish(false) end
 
-   jumps_permitted = system.cur():jumpDist(missys) + rnd.rnd( 5 )
+   jumps_permitted = system.cur():jumpDist(missys) + rnd.rnd(5)
    if rnd.rnd() < 0.05 then
       jumps_permitted = jumps_permitted - 1
    end
@@ -141,46 +141,47 @@ function create ()
    if num_pirates <= 25 then
       level = 1
    elseif num_pirates <= 50 then
-      level = rnd.rnd( 1, 2 )
+      level = rnd.rnd(1, 2)
    elseif num_pirates <= 75 then
-      level = rnd.rnd( 2, 3 )
+      level = rnd.rnd(2, 3)
    elseif num_pirates <= 100 then
-      level = rnd.rnd( 3, 4 )
+      level = rnd.rnd(3, 4)
    else
-      level = rnd.rnd( 4, #misn_title )
+      level = rnd.rnd(4, #misn_title)
    end
 
    name = pirate_name()
-   ship = "Pirate Hyena"
+   ship = "Hyena"
    credits = 50000
    reputation = 0
+   pirate_faction = faction.get("Pirate")
    board_failed = false
    bounty_setup()
 
    -- Set mission details
-   misn.setTitle( misn_title[level]:format( missys:name() ) )
-   misn.setDesc( misn_desc:format( name, missys:name(), paying_faction:name() ) )
-   misn.setReward( creditstring( credits ) )
-   marker = misn.markerAdd( missys, "computer" )
+   misn.setTitle(misn_title[level]:format(missys:name()))
+   misn.setDesc(misn_desc:format(name, missys:name(), paying_faction:name()))
+   misn.setReward(creditstring(credits))
+   marker = misn.markerAdd(missys, "computer")
 end
 
 
 function accept ()
    misn.accept()
 
-   osd_msg[1] = osd_msg[1]:format( missys:name() )
-   osd_msg[2] = osd_msg[2]:format( name )
-   osd_msg[3] = osd_msg[3]:format( paying_faction:name() )
-   misn.osdCreate( osd_title, osd_msg )
+   osd_msg[1] = osd_msg[1]:format(missys:name())
+   osd_msg[2] = osd_msg[2]:format(name)
+   osd_msg[3] = osd_msg[3]:format(paying_faction:name())
+   misn.osdCreate(osd_title, osd_msg)
 
    last_sys = system.cur()
    job_done = false
    target_killed = false
 
-   hook.jumpin( "jumpin" )
-   hook.jumpout( "jumpout" )
-   hook.takeoff( "takeoff" )
-   hook.land( "land" )
+   hook.jumpin("jumpin")
+   hook.jumpout("jumpout")
+   hook.takeoff("takeoff")
+   hook.land("land")
 end
 
 
@@ -190,12 +191,12 @@ function jumpin ()
       return
    end
 
-   local pos = jump.pos( system.cur(), last_sys )
+   local pos = jump.pos(system.cur(), last_sys)
    local offset_ranges = { { -2500, -1500 }, { 1500, 2500 } }
-   local xrange = offset_ranges[ rnd.rnd( 1, #offset_ranges ) ]
-   local yrange = offset_ranges[ rnd.rnd( 1, #offset_ranges ) ]
-   pos = pos + vec2.new( rnd.rnd( xrange[1], xrange[2] ), rnd.rnd( yrange[1], yrange[2] ) )
-   spawn_pirate( pos )
+   local xrange = offset_ranges[ rnd.rnd(1, #offset_ranges) ]
+   local yrange = offset_ranges[ rnd.rnd(1, #offset_ranges) ]
+   pos = pos + vec2.new(rnd.rnd(xrange[1], xrange[2]), rnd.rnd(yrange[1], yrange[2]))
+   spawn_pirate(pos)
 end
 
 
@@ -203,7 +204,7 @@ function jumpout ()
    jumps_permitted = jumps_permitted - 1
    last_sys = system.cur()
    if not job_done and last_sys == missys then
-      fail( msg[3]:format( last_sys:name() ) )
+      fail(msg[3]:format(last_sys:name()))
    end
 end
 
@@ -218,21 +219,21 @@ function land ()
    if job_done and planet.cur():faction() == paying_faction then
       local pay_text
       if target_killed then
-         pay_text = pay_kill_text[ rnd.rnd( 1, #pay_kill_text ) ]
+         pay_text = pay_kill_text[ rnd.rnd(1, #pay_kill_text) ]
       else
-         pay_text = pay_capture_text[ rnd.rnd( 1, #pay_capture_text ) ]
+         pay_text = pay_capture_text[ rnd.rnd(1, #pay_capture_text) ]
       end
-      tk.msg( pay_title, pay_text:format( name ) )
-      player.pay( credits )
-      paying_faction:modPlayerSingle( reputation )
-      misn.finish( true )
+      tk.msg(pay_title, pay_text:format(name))
+      player.pay(credits)
+      paying_faction:modPlayerSingle(reputation)
+      misn.finish(true)
    end
 end
 
 
 function pilot_disable ()
    if rnd.rnd() < 0.7 then
-      for i, j in ipairs( pilot.get() ) do
+      for i, j in ipairs(pilot.get()) do
          j:taskClear()
       end
    end
@@ -240,22 +241,22 @@ end
 
 
 function pilot_board ()
-   local t = subdue_text[ rnd.rnd( 1, #subdue_text ) ]:format( name )
-   tk.msg( subdue_title, t )
+   local t = subdue_text[ rnd.rnd(1, #subdue_text) ]:format(name)
+   tk.msg(subdue_title, t)
    succeed()
    target_killed = false
-   target_ship:changeAI( "dummy" )
-   target_ship:setHilight( false )
+   target_ship:changeAI("dummy")
+   target_ship:setHilight(false)
    target_ship:disable() -- Stop it from coming back
-   if death_hook ~= nil then hook.rm( death_hook ) end
+   if death_hook ~= nil then hook.rm(death_hook) end
 end
 
 
-function pilot_attacked( p, attacker, dmg )
+function pilot_attacked(p, attacker, dmg)
    if attacker ~= nil then
       local found = false
 
-      for i, j in ipairs( hunters ) do
+      for i, j in ipairs(hunters) do
          if j == attacker then
             hunter_hits[i] = hunter_hits[i] + dmg
             found = true
@@ -271,7 +272,7 @@ function pilot_attacked( p, attacker, dmg )
 end
 
 
-function pilot_death( p, attacker )
+function pilot_death(p, attacker)
    if attacker == player.pilot() or attacker:leader() == player.pilot() then
       succeed()
       target_killed = true
@@ -280,7 +281,7 @@ function pilot_death( p, attacker )
       local top_hits = 0
       local player_hits = 0
       local total_hits = 0
-      for i, j in ipairs( hunters ) do
+      for i, j in ipairs(hunters) do
          total_hits = total_hits + hunter_hits[i]
          if j ~= nil and j:exists() then
             if j == player.pilot() or j:leader() == player.pilot() then
@@ -296,58 +297,58 @@ function pilot_death( p, attacker )
          succeed()
          target_killed = true
       elseif player_hits >= top_hits / 2 and rnd.rnd() < 0.5 then
-         hailer = hook.pilot( top_hunter, "hail", "hunter_hail", top_hunter )
+         hailer = hook.pilot(top_hunter, "hail", "hunter_hail", top_hunter)
          credits = credits * player_hits / total_hits
          reputation = reputation * player_hits / total_hits
-         hook.pilot( top_hunter, "jump", "hunter_leave" )
-         hook.pilot( top_hunter, "land", "hunter_leave" )
-         hook.jumpout( "hunter_leave" )
-         hook.land( "hunter_leave" )
-         player.msg( "#r" .. msg[2]:format( name ) .. "#0" )
-         hook.timer( 3000, "timer_hail", top_hunter )
+         hook.pilot(top_hunter, "jump", "hunter_leave")
+         hook.pilot(top_hunter, "land", "hunter_leave")
+         hook.jumpout("hunter_leave")
+         hook.land("hunter_leave")
+         player.msg("#r" .. msg[2]:format(name) .. "#0")
+         hook.timer(3000, "timer_hail", top_hunter)
          misn.osdDestroy()
       else
-         fail( msg[2]:format( name ) )
+         fail(msg[2]:format(name))
       end
    end
 end
 
 
 function pilot_jump ()
-   fail( msg[1]:format( name ) )
+   fail(msg[1]:format(name))
 end
 
 
-function timer_hail( arg )
+function timer_hail(arg)
    if arg ~= nil and arg:exists() then
       arg:hailPlayer()
    end
 end
 
 
-function hunter_hail( arg )
-   if hailer ~= nil then hook.rm( hailer ) end
-   if rehailer ~= nil then hook.rm( rehailer ) end
+function hunter_hail(arg)
+   if hailer ~= nil then hook.rm(hailer) end
+   if rehailer ~= nil then hook.rm(rehailer) end
    player.commClose()
 
-   local text = share_text[ rnd.rnd( 1, #share_text ) ]
-   tk.msg( share_title, text:format( name ) )
+   local text = share_text[ rnd.rnd(1, #share_text) ]
+   tk.msg(share_title, text:format(name))
 
-   player.pay( credits )
-   paying_faction:modPlayerSingle( reputation )
-   misn.finish( true )
+   player.pay(credits)
+   paying_faction:modPlayerSingle(reputation)
+   misn.finish(true)
 end
 
 
 function hunter_leave ()
-   misn.finish( false )
+   misn.finish(false)
 end
 
 
 -- Set up the ship, credits, and reputation based on the level.
 function bounty_setup ()
    if level == 1 then
-      ship = "Pirate Hyena"
+      ship = "Hyena"
       credits = 50000 + rnd.sigma() * 15000
       reputation = 0
    elseif level == 2 then
@@ -379,29 +380,23 @@ end
 
 
 -- Spawn the ship at the location param.
-function spawn_pirate( param )
+function spawn_pirate(param)
    if not job_done and system.cur() == missys then
       if jumps_permitted >= 0 then
-         misn.osdActive( 2 )
-         target_ship = pilot.addFleet( ship, param )[1]
-         set_pirate_faction()
-         target_ship:rename( name )
-         target_ship:setHilight( true )
-         hook.pilot( target_ship, "disable", "pilot_disable" )
-         hook.pilot( target_ship, "board", "pilot_board" )
-         hook.pilot( target_ship, "attacked", "pilot_attacked" )
-         death_hook = hook.pilot( target_ship, "death", "pilot_death" )
-         pir_jump_hook = hook.pilot( target_ship, "jump", "pilot_jump" )
-         pir_land_hook = hook.pilot( target_ship, "land", "pilot_jump" )
+         misn.osdActive(2)
+         target_ship = pilot.add(ship, pirate_faction, param)
+         target_ship:rename(name)
+         target_ship:setHilight(true)
+         hook.pilot(target_ship, "disable", "pilot_disable")
+         hook.pilot(target_ship, "board", "pilot_board")
+         hook.pilot(target_ship, "attacked", "pilot_attacked")
+         death_hook = hook.pilot(target_ship, "death", "pilot_death")
+         pir_jump_hook = hook.pilot(target_ship, "jump", "pilot_jump")
+         pir_land_hook = hook.pilot(target_ship, "land", "pilot_jump")
       else
-         fail( msg[1]:format( name ) )
+         fail(msg[1]:format(name))
       end
    end
-end
-
-
--- Adjust pirate faction (used for "alive" bounties)
-function set_pirate_faction ()
 end
 
 
@@ -415,29 +410,29 @@ end
 -- Succeed the mission, make the player head to a planet for pay
 function succeed ()
    job_done = true
-   misn.osdActive( 3 )
+   misn.osdActive(3)
    if marker ~= nil then
-      misn.markerRm( marker )
+      misn.markerRm(marker)
    end
    if pir_jump_hook ~= nil then
-      hook.rm( pir_jump_hook )
+      hook.rm(pir_jump_hook)
    end
    if pir_land_hook ~= nil then
-      hook.rm( pir_land_hook )
+      hook.rm(pir_land_hook)
    end
 end
 
 
 -- Fail the mission, showing message to the player.
-function fail( message )
+function fail(message)
    if message ~= nil then
       -- Pre-colourized, do nothing.
       if message:find("#") then
-         player.msg( message )
+         player.msg(message)
       -- Colourize in red.
       else
-         player.msg( "#r" .. message .. "#0" )
+         player.msg("#r" .. message .. "#0")
       end
    end
-   misn.finish( false )
+   misn.finish(false)
 end

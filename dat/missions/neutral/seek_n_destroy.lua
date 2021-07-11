@@ -173,34 +173,34 @@ function create ()
    target_faction = fact[rnd.rnd(1,#fact)]
 
    if target_faction == nil then
-      misn.finish( false )
+      misn.finish(false)
    end
 
-   local systems = getsysatdistance( system.cur(), 1, 5,
+   local systems = getsysatdistance(system.cur(), 1, 5,
       function(s)
          local p = s:presences()[target_faction:nameRaw()]
          return p ~= nil and p > 0
-      end )
+      end)
 
    -- Create the table of system the player will visit now (to claim)
-   nbsys = rnd.rnd( 5, 9 ) -- Total number of available systems (in case the player misses the target first time)
-   pisys = rnd.rnd( 2, 4 ) -- System where the target will be
+   nbsys = rnd.rnd(5, 9) -- Total number of available systems (in case the player misses the target first time)
+   pisys = rnd.rnd(2, 4) -- System where the target will be
    mysys = {}
 
    if #systems <= nbsys then
       -- Not enough systems
-      misn.finish( false )
+      misn.finish(false)
    end
 
-   mysys[1] = systems[ rnd.rnd( 1, #systems ) ]
+   mysys[1] = systems[ rnd.rnd(1, #systems) ]
 
    -- There will probably be lot of failure in this loop.
    -- Just increase the mission probability to compensate.
    for i = 2, nbsys do
-      thesys = systems[ rnd.rnd( 1, #systems ) ]
+      thesys = systems[ rnd.rnd(1, #systems) ]
       -- Don't re-use the previous system
       if thesys == mysys[i-1] then
-         misn.finish( false )
+         misn.finish(false)
       end
       mysys[i] = thesys
    end
@@ -226,17 +226,17 @@ function create ()
    cursys = 1
 
    -- Set mission details
-   misn.setTitle( misn_title:format( mysys[1]:name() ) )
-   misn.setDesc( misn_desc:format( target_faction:name(), name, paying_faction:name(), mysys[1]:name() ) )
-   misn.setReward( creditstring( credits ) )
-   marker = misn.markerAdd( mysys[1], "computer" )
+   misn.setTitle(misn_title:format(mysys[1]:name()))
+   misn.setDesc(misn_desc:format(target_faction:name(), name, paying_faction:name(), mysys[1]:name()))
+   misn.setReward(creditstring(credits))
+   marker = misn.markerAdd(mysys[1], "computer")
 
    -- Store the table
    mysys["__save"] = true
 end
 
 -- Test if an element is in a list
-function elt_inlist( elt, list )
+function elt_inlist(elt, list)
    for i, elti in ipairs(list) do
       if elti == elt then
          return true
@@ -251,15 +251,15 @@ function accept ()
    stage = 0
    increment = false
    last_sys = system.cur()
-   tk.msg( breef_title, breef_text:format( name, target_faction:name(), name, creditstring(credits), paying_faction:name(), mysys[1]:name() ) )
-   jumphook = hook.enter( "enter" )
-   hailhook = hook.hail( "hail" )
-   landhook = hook.land( "land" )
+   tk.msg(breef_title, breef_text:format(name, target_faction:name(), name, creditstring(credits), paying_faction:name(), mysys[1]:name()))
+   jumphook = hook.enter("enter")
+   hailhook = hook.hail("hail")
+   landhook = hook.land("land")
 
-   osd_msg[1] = osd_msg1_r:format( mysys[1]:name() )
-   osd_msg[2] = osd_msg[2]:format( name )
-   osd_msg[3] = osd_msg[3]:format( paying_faction:name() )
-   misn.osdCreate( osd_title, osd_msg )
+   osd_msg[1] = osd_msg1_r:format(mysys[1]:name())
+   osd_msg[2] = osd_msg[2]:format(name)
+   osd_msg[3] = osd_msg[3]:format(paying_faction:name())
+   misn.osdCreate(osd_title, osd_msg)
 end
 
 function enter ()
@@ -280,47 +280,39 @@ function enter ()
 
       if stage == 0 then  -- Clue system
          if not var.peek("got_advice") then -- A bounty hunter who explains how it works
-            var.push( "got_advice", true )
+            var.push("got_advice", true)
             spawn_advisor ()
          end
          if cursys > 1 and rnd.rnd() < .5 then
             trigger_ambush() -- An ambush
          end
       elseif stage == 2 then  -- Target system
-         misn.osdActive( 2 )
+         misn.osdActive(2)
          
          -- Get the position of the target
          jp  = jump.get(system.cur(), last_sys)
          if jp ~= nil then
-            x = 6000 * rnd.rnd() - 3000
-            y = 6000 * rnd.rnd() - 3000
+            x = 8000 * rnd.rnd() - 4000
+            y = 8000 * rnd.rnd() - 4000
             pos = jp:pos() + vec2.new(x,y)
          else
             pos = nil
          end
 
          -- Spawn the target
-         pilot.toggleSpawn( false )
+         pilot.toggleSpawn(false)
          pilot.clear()
 
-         target_ship = pilot.addFleet( ship, pos )[1]
-         target_ship:rename( name )
-         target_ship:setHilight( true )
+         target_ship = pilot.addFleet(ship, pos)[1]
+         target_ship:rename(name)
+         target_ship:setHilight(true)
          target_ship:setVisplayer()
          target_ship:setHostile()
 
-         death_hook = hook.pilot( target_ship, "death", "target_death" )
-         pir_jump_hook = hook.pilot( target_ship, "jump", "target_flee" )
-         pir_land_hook = hook.pilot( target_ship, "land", "target_land" )
-         jumpout = hook.jumpout( "player_flee" )
-
-         -- If the target is weaker, runaway
-         pstat = player.pilot():stats()
-         tstat = target_ship:stats()
-         if ( (1.1*(pstat.armour + pstat.shield)) > (tstat.armour + tstat.shield) ) then
-            target_ship:control()
-            target_ship:runaway(player.pilot())
-         end
+         death_hook = hook.pilot(target_ship, "death", "target_death")
+         pir_jump_hook = hook.pilot(target_ship, "jump", "target_flee")
+         pir_land_hook = hook.pilot(target_ship, "land", "target_land")
+         jumpout = hook.jumpout("player_flee")
       end
    end
    last_sys = system.cur()
@@ -334,15 +326,15 @@ function trigger_ambush()
    x = 4000 * rnd.rnd() - 2000
    y = 4000 * rnd.rnd() - 2000
    pos = jp:pos() + vec2.new(x,y)
-   ambush[1] = pilot.addFleet( aship, pos )[1]
+   ambush[1] = pilot.addFleet(aship, pos)[1]
    x = 4000 * rnd.rnd() - 2000
    y = 4000 * rnd.rnd() - 2000
    pos = jp:pos() + vec2.new(x,y)
-   ambush[2] = pilot.addFleet( bship, pos )[1]
+   ambush[2] = pilot.addFleet(bship, pos)[1]
    x = 4000 * rnd.rnd() - 2000
    y = 4000 * rnd.rnd() - 2000
    pos = jp:pos() + vec2.new(x,y)
-   ambush[3] = pilot.addFleet( bship, pos )[1]
+   ambush[3] = pilot.addFleet(bship, pos)[1]
 
    ambush[1]:setHostile()
    ambush[2]:setHostile()
@@ -354,7 +346,7 @@ function trigger_ambush()
    ambush[2]:attack(player.pilot())
    ambush[3]:attack(player.pilot())
 
-   msg = hook.timer( 1000, "ambust_msg" )
+   msg = hook.timer(1000, "ambust_msg")
 end
 
 -- Enemies explain that they are ambushing the player
@@ -370,8 +362,8 @@ function spawn_advisor ()
    y = 4000 * rnd.rnd() - 2000
    pos = jp:pos() + vec2.new(x,y)
 
-   advisor = pilot.add( "Lancelot", "Mercenary", pos, nil, {ai="baddie_norun"} )
-   hailie = hook.timer( 2000, "hailme" )
+   advisor = pilot.add("Lancelot", "Mercenary", pos, nil, {ai="baddie_norun"})
+   hailie = hook.timer(2000, "hailme")
 
    hailed[#hailed+1] = advisor
 end
@@ -384,28 +376,28 @@ end
 function hail_ad()
    hook.rm(hailie)
    hook.rm(hailie2)
-   tk.msg( advice_title, advice_text ) -- Give advice to the player
+   tk.msg(advice_title, advice_text) -- Give advice to the player
 end
 
 -- Player hails a ship for info
-function hail( p )
+function hail(p)
    target = p
    if target:leader() == player.pilot() then
       -- Don't want the player hailing their own escorts.
       return
    end
 
-   if system.cur() == mysys[cursys] and stage == 0 and not elt_inlist( target, hailed ) then
+   if system.cur() == mysys[cursys] and stage == 0 and not elt_inlist(target, hailed) then
 
       hailed[#hailed+1] = target -- A pilot can be hailed only once
 
       if cursys+1 >= nbsys then -- No more claimed system : need to finish the mission
-         tk.msg( cold_title, cold_text[rnd.rnd(1,#cold_text)]:format( name ) )
+         tk.msg(cold_title, cold_text[rnd.rnd(1,#cold_text)]:format(name))
          misn.finish(false)
       else
 
          -- If hailed pilot is enemy to the target, there is less chance he knows
-         if target_faction:areEnemies( target:faction() ) then
+         if target_faction:areEnemies(target:faction()) then
             know = (rnd.rnd() > .9)
          else
             know = (rnd.rnd() > .3)
@@ -419,11 +411,11 @@ function hail( p )
          end
 
          if not know then -- NPC does not know the target
-            tk.msg( dono_title, dono_text[rnd.rnd(1,#dono_text)]:format( name ) )
+            tk.msg(dono_title, dono_text[rnd.rnd(1,#dono_text)]:format(name))
          elseif tells then
-            tk.msg( clue_title, clue_text[rnd.rnd(1,#clue_text)]:format( name, mysys[cursys+1]:name() ) )
+            tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
             next_sys()
-            target:setHostile( false )
+            target:setHostile(false)
          else
             space_clue()
          end
@@ -442,19 +434,19 @@ function space_clue ()
          -- End of function
       else -- Threaten the pilot
          if isScared (target) and rnd.rnd() < .5 then
-            tk.msg( scared_title, scared_text[rnd.rnd(1,#scared_text)]:format( name, mysys[cursys+1]:name() ) )
+            tk.msg(scared_title, scared_text[rnd.rnd(1,#scared_text)]:format(name, mysys[cursys+1]:name()))
             next_sys()
             target:control()
             target:runaway(player.pilot())
          else
-            tk.msg( not_scared_title, not_scared_text[rnd.rnd(1,#not_scared_text)]:format( name, mysys[cursys+1]:name() ) )
+            tk.msg(not_scared_title, not_scared_text[rnd.rnd(1,#not_scared_text)]:format(name, mysys[cursys+1]:name()))
             target:comm(not_scared_comm[rnd.rnd(1,#not_scared_comm)])
 
             -- Clean the previous hook if it exists
             if attack then
                hook.rm(attack)
             end
-            attack = hook.pilot( target, "attacked", "clue_attacked" )
+            attack = hook.pilot(target, "attacked", "clue_attacked")
          end
       end
 
@@ -466,12 +458,12 @@ function space_clue ()
       if choice == 1 then
          if player.credits() >= price then
             player.pay(-price)
-            tk.msg( clue_title, clue_text[rnd.rnd(1,#clue_text)]:format( name, mysys[cursys+1]:name() ) )
+            tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
             next_sys()
-            target:setHostile( false )
+            target:setHostile(false)
             target:comm(thank_comm[rnd.rnd(1,#thank_comm)])
          else
-            tk.msg( poor_title, poor_text )
+            tk.msg(poor_title, poor_text)
          end
       elseif choice == 2 then
          -- End of function
@@ -479,23 +471,23 @@ function space_clue ()
 
          -- Everybody except the pirates takes offence if you threaten them
          if not target:faction() == faction.get("Pirate") then
-            faction.modPlayerSingle( target:faction(), -1 )
+            faction.modPlayerSingle(target:faction(), -1)
          end
 
          if isScared (target) then
-            tk.msg( scared_title, scared_text[rnd.rnd(1,#scared_text)]:format( name, mysys[cursys+1]:name() ) )
+            tk.msg(scared_title, scared_text[rnd.rnd(1,#scared_text)]:format(name, mysys[cursys+1]:name()))
             next_sys()
             target:control()
             target:runaway(player.pilot())
          else
-            tk.msg( not_scared_title, not_scared_text[rnd.rnd(1,#not_scared_text)]:format( name, mysys[cursys+1]:name() ) )
+            tk.msg(not_scared_title, not_scared_text[rnd.rnd(1,#not_scared_text)]:format(name, mysys[cursys+1]:name()))
             target:comm(not_scared_comm[rnd.rnd(1,#not_scared_comm)])
 
             -- Clean the previous hook if it exists
             if attack then
                hook.rm(attack)
             end
-            attack = hook.pilot( target, "attacked", "clue_attacked" )
+            attack = hook.pilot(target, "attacked", "clue_attacked")
          end
       end
    end
@@ -503,13 +495,13 @@ function space_clue ()
 end
 
 -- Player attacks an informant who has refused to give info
-function clue_attacked( p, attacker )
+function clue_attacked(p, attacker)
    -- Target was hit sufficiently to get more talkative
    if (attacker == player.pilot() or attacker:leader() == player.pilot())
          and p:health() < 100 then
       p:control()
       p:runaway(player.pilot())
-      tk.msg( scared_title, scared_text[rnd.rnd(1,#scared_text)]:format( name, mysys[cursys+1]:name() ) )
+      tk.msg(scared_title, scared_text[rnd.rnd(1,#scared_text)]:format(name, mysys[cursys+1]:name()))
       next_sys()
       hook.rm(attack)
    end
@@ -561,39 +553,39 @@ function land ()
 
    -- Player wants to be paid
    elseif planet.cur():faction() == paying_faction and stage == 4 then
-      tk.msg( pay_title, pay_text[rnd.rnd(1,#pay_text)] )
-      player.pay( credits )
-      paying_faction:modPlayerSingle( rnd.rnd(1,2) )
-      misn.finish( true )
+      tk.msg(pay_title, pay_text[rnd.rnd(1,#pay_text)])
+      player.pay(credits)
+      paying_faction:modPlayerSingle(rnd.rnd(1,2))
+      misn.finish(true)
    end
 end
 
 -- The player ask for clues in the bar
 function clue_bar()
    if cursys+1 >= nbsys then -- No more claimed system : need to finish the mission
-      tk.msg( cold_title, cold_text[rnd.rnd(1,#cold_text)]:format( name ) )
+      tk.msg(cold_title, cold_text[rnd.rnd(1,#cold_text)]:format(name))
       misn.finish(false)
    else
 
       if know == 0 then -- NPC does not know the target
-         tk.msg( dono_title, dono_text[rnd.rnd(1,#dono_text)]:format( name ) )
+         tk.msg(dono_title, dono_text[rnd.rnd(1,#dono_text)]:format(name))
       elseif know == 1 then -- NPC wants money
          choice = tk.choice(money_title, money_text[rnd.rnd(1,#money_text)]:format(name,creditstring(price)), IdoPay, IdonnoPay)
 
          if choice == 1 then
             if player.credits() >= price then
                player.pay(-price)
-               tk.msg( clue_title, clue_text[rnd.rnd(1,#clue_text)]:format( name, mysys[cursys+1]:name() ) )
+               tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
                next_sys()
             else
-               tk.msg( poor_title, poor_text )
+               tk.msg(poor_title, poor_text)
             end
          else
             -- End of function
          end
 
       else -- NPC tells the clue
-         tk.msg( clue_title, clue_text[rnd.rnd(1,#clue_text)]:format( name, mysys[cursys+1]:name() ) )
+         tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
          next_sys()
       end
 
@@ -603,15 +595,15 @@ end
 
 function next_sys ()
    misn.markerMove (marker, mysys[cursys+1])
-   osd_msg[1] = osd_msg1_r:format( mysys[cursys+1]:name() )
-   misn.osdCreate( osd_title, osd_msg )
+   osd_msg[1] = osd_msg1_r:format(mysys[cursys+1]:name())
+   misn.osdCreate(osd_title, osd_msg)
    increment = true
 end
 
 function player_flee ()
-   tk.msg( flee_title, flee_text:format( name, system.cur():name() ) )
+   tk.msg(flee_title, flee_text:format(name, system.cur():name()))
    stage = 0
-   misn.osdActive( 1 )
+   misn.osdActive(1)
 
    hook.rm(death_hook)
    hook.rm(pir_jump_hook)
@@ -622,10 +614,10 @@ end
 function target_flee ()
    -- Target ran away. Unfortunately, we cannot continue the mission
    -- on the other side because the system has not been claimed...
-   tk.msg( Tflee_title, Tflee_text:format( name ) )
+   tk.msg(Tflee_title, Tflee_text:format(name))
    pilot.toggleSpawn(true)
    stage = 0
-   misn.osdActive( 1 )
+   misn.osdActive(1)
 
    hook.rm(death_hook)
    hook.rm(pir_jump_hook)
@@ -640,7 +632,7 @@ function target_death ()
    hook.rm(pir_land_hook)
    hook.rm(jumpout)
 
-   misn.osdActive( 3 )
+   misn.osdActive(3)
    misn.markerRm (marker)
    pilot.toggleSpawn(true)
 end

@@ -90,15 +90,17 @@ function pilot_death ()
       succeed()
       target_killed = true
    else
-      fail( fail_kill_text:format( name ) )
+      fail(fail_kill_text:format(name))
    end
 end
 
 
 -- Set up the ship, credits, and reputation based on the level.
 function bounty_setup ()
+   pirate_faction = faction.get("Wanted Pirate")
+
    if level == 1 then
-      ship = "Pirate Hyena"
+      ship = "Hyena"
       credits = 100000 + rnd.sigma() * 30000
       reputation = 0
    elseif level == 2 then
@@ -129,21 +131,15 @@ function bounty_setup ()
 end
 
 
--- Adjust pirate faction (used for "alive" bounties)
-function set_pirate_faction ()
-   target_ship:setFaction( "Wanted Pirate" )
-end
-
-
 function board_fail ()
    if rnd.rnd() < 0.25 then
       board_failed = true
       credits = credits / 5
-      local t = kill_instead_text[ rnd.rnd( 1, #kill_instead_text ) ]:format(
-         name, creditstring( credits ) )
-      tk.msg( kill_instead_title, t )
-      osd_msg[2] = osd_msg_kill:format( name )
-      misn.osdCreate( osd_title, osd_msg )
-      misn.osdActive( 2 )
+      local t = kill_instead_text[ rnd.rnd(1, #kill_instead_text) ]:format(
+         name, creditstring(credits))
+      tk.msg(kill_instead_title, t)
+      osd_msg[2] = osd_msg_kill:format(name)
+      misn.osdCreate(osd_title, osd_msg)
+      misn.osdActive(2)
    end
 end
