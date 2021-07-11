@@ -74,7 +74,7 @@ equip_typeOutfits_weapons["Preacher"] = {
       "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
       "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
       "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-      "TeraCom Imperator Launcher",
+      "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
    },
    {
       probability = {
@@ -91,7 +91,7 @@ equip_typeOutfits_weapons["Reverence"] = {
       "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
       "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
       "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-      "TeraCom Imperator Launcher",
+      "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
    },
    {
       probability = {

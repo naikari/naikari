@@ -64,7 +64,7 @@ equip_typeOutfits_weapons["Sting"] = {
       "Enygma Systems Spearhead Launcher", "TeraCom Fury Launcher",
       "TeraCom Headhunter Launcher", "TeraCom Medusa Launcher",
       "TeraCom Vengeance Launcher", "Za'lek Hunter Launcher",
-      "Za'lek Reaper Launcher",
+      "Za'lek Reaper Launcher", "Enygma Systems Huntsman Launcher",
    },
    {
       "Orion Lance",

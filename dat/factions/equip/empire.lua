@@ -65,35 +65,40 @@ equip_typeOutfits_weapons["Shark"] = {
 equip_typeOutfits_weapons["Lancelot"] = equip_shipOutfits_weapons["Empire Lancelot"]
 equip_typeOutfits_weapons["Admonisher"] = {
    {
-      num = 1;
-      "TeraCom Fury Launcher", "Unicorp Headhunter Launcher",
-      "Unicorp Vengeance Launcher", "Enygma Systems Spearhead Launcher"
+      varied = true;
+      "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
+      "Unicorp Medusa Launcher", "Unicorp Vengeance Launcher",
+      "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
+      "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
+      "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
+      "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
    },
    {
-      "Heavy Ripper Cannon"
+      probability = {
+         ["Ripper Cannon"] = 8, ["Plasma Cannon"] = 4,
+      };
+      "Ripper Cannon", "Plasma Cannon", "Laser Cannon MK2",
+      "Plasma Blaster MK2",
    },
-   {
-      "Ripper Cannon"
-   }
 }
 equip_typeOutfits_weapons["Pacifier"] = {
    {
-      num = 2;
-      "Heavy Ripper Turret", "Railgun"
+      "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
    },
    {
       num = 1;
-      "TeraCom Fury Launcher", "Unicorp Headhunter Launcher",
-      "Unicorp Vengeance Launcher", "Enygma Systems Spearhead Launcher",
-      "Unicorp Caesar IV Launcher", "Enygma Systems Turreted Fury Launcher"
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
    },
    {
       num = 1;
-      "Heavy Ripper Cannon", "Laser Turret MK2", "Orion Beam",
+      "Laser Turret MK2", "Plasma Turret MK2", "Orion Beam",
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
    },
    {
-      "Heavy Ripper Cannon", "Laser Turret MK2"
-   }
+      "Laser Turret MK2", "Plasma Turret MK2", "Orion Beam",
+   },
 }
 
 --[[

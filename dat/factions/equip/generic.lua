@@ -264,7 +264,7 @@ equip_classOutfits_weapons = {
          "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
          "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
          "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-         "TeraCom Imperator Launcher",
+         "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
       },
       {
          probability = {
