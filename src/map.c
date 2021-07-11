@@ -2080,6 +2080,9 @@ void map_close (void)
 {
    unsigned int wid;
 
+   /* Set to defaults for the benefit of the mission map */
+   map_clear();
+
    wid = window_get(MAP_WDWNAME);
    if (wid > 0)
       window_destroy(wid);
