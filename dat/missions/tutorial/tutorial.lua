@@ -33,14 +33,14 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-a_commodity = commodity.get( "Water" )
-an_outfit = outfit.get( "Heavy Laser Turret" )
+a_commodity = commodity.get("Water")
+an_outfit = outfit.get("Heavy Laser Turret")
 
 intro_text  = _([["Congratulations on your first space ship, %s!" Captain T. Practice, who sold the %s to you, says through the radio. "You have made an excellent decision to purchase from Melendez Corporation! Our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You are skeptical of the sales pitch, of course; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.
 
 "Now that we have you out in space for the first time, how about I go over your new ship's controls with you real quick? No charge!"]])
 
-nothanks_text  = _([["Ha, I guess you're eager to start, eh? Well, I won't hold you back. Just remember that you can review all of your ship's controls in the Options menu. Good luck!" And with that, you set off on your journey.]])
+nothanks_text  = _([["Ha, I guess you're eager to start, eh? Well, I won't hold you back. I have uploaded some useful information to your ship log, which you can review any time you like by checking the Tutorial section of your ship log. The ship log can be found in the Info window, which you can access by pressing %s, or by pressing %s and clicking the 'Info' button. Good luck!" And with that, you set off on your journey.]])
 
 movement_text = _([["Alright, let's go over how to pilot your new state-of-the-art ship from Melendez Corporation, then!" You resist the urge to roll your eyes. "Moving is pretty simple: rotate your ship with %s and %s, and thrust to move your ship forward with %s! You can also use %s to rotate your ship to the direction opposite of your current movement, or to reverse thrust if you purchase and install a Reverse Thruster onto your Melendez Corporation starship. Give it a try by flying over to %s! You see it on your screen, right? It's the planet right next to you."]])
 movement_log = _([[Basic movement can be accomplished by the movement keys (Accelerate, Turn Left, Turn Right, and Reverse; W, A, D, and S by default), which allow you to control your ship manually; or by the Mouse Flight key (Ctrl+X by default), which automatically pilots your ship toward your mouse pointer. The Reverse key either turns your ship to the direction opposite of your current movement, or thrusts backwards if you have a Reverse Thruster equipped.]])
@@ -138,9 +138,9 @@ fuel_log2 = _([[If you get stuck without fuel in a system where you can't land, 
 
 ask_continue_text = _([["That's all the basics! I must say, you are a natural-born pilot and your new Melendez ship suits you well! That said, there are other aspects of piloting I wasn't able to get into here. If you like, I can continue to give you guidance, free of charge! I promise to be unobtrusive; I'll just pop in and let you know about some other things when they become relevant. What do you say?"]])
 
-continue_yes_text = _([["Splendid! I'll leave you to your travels and keep an eye out. If you miss or forget anything, check the Tutorial section of your ship log; it can be found in the Info window, which you can access by pressing %s. Best of luck!"]])
+continue_yes_text = _([["Splendid! I'll leave you to your travels and keep an eye out. If you miss or forget anything, check the Tutorial section of your ship log; it can be found in the Info window, which you can access by pressing %s, or by pressing %s and then clicking the 'Info' button. Best of luck!"]])
 
-continue_no_text = _([["Ah, ok! In that case, I wish you good luck in your travels. You can review all the information we've gone through by checking the Tutorial section of your ship log; it can be found in the Info window, which you can access by pressing %s. Thank you for shopping with Melendez Corporation!" Captain T. Practice ceases contact and you let out a sigh of relief. You had no idea the level of annoyance you were getting into. At least you learned how to pilot the ship, though!]])
+continue_no_text = _([["Ah, ok! In that case, I wish you good luck in your travels. You can review all the information we've gone through by checking the Tutorial section of your ship log; it can be found in the Info window, which you can access by pressing %s, or by pressing %s and clicking the 'Info' button. Thank you for shopping with Melendez Corporation!" Captain T. Practice ceases contact and you let out a sigh of relief. You had no idea the level of annoyance you were getting into. At least you learned how to pilot the ship, though!]])
 
 misn_title = _("Tutorial")
 misn_desc = _("Captain T. Practice has offered to teach you how to fly your ship.")
@@ -160,21 +160,23 @@ log_text = _([[Captain T. Practice, the Melendez employee who sold you your firs
 
 
 function create ()
-   missys = system.get( "Hakoi" )
-   destsys = system.get( "Qex" )
-   start_planet = planet.get( "Em 1" )
+   missys = system.get("Hakoi")
+   destsys = system.get("Qex")
+   start_planet = planet.get("Em 1")
    start_planet_r = 200
-   dest_planet = planet.get( "Em 5" )
+   dest_planet = planet.get("Em 5")
    dest_planet_r = 200
 
-   if not misn.claim( missys ) then
-      print( string.format(_( "Warning: 'Tutorial' mission was unable to claim system %s!"), missys:name() ) )
-      misn.finish( false )
+   if not misn.claim(missys) then
+      print(string.format(
+               _("Warning: 'Tutorial' mission was unable to claim system %s!"),
+               missys:name()))
+      misn.finish(false)
    end
 
-   misn.setTitle( misn_title )
-   misn.setDesc( misn_desc )
-   misn.setReward( misn_reward )
+   misn.setTitle(misn_title)
+   misn.setDesc(misn_desc)
+   misn.setReward(misn_reward)
 
    accept()
 end
@@ -183,9 +185,9 @@ end
 function accept ()
    misn.accept()
 
-   if tk.yesno( "", intro_text:format(
-            player.name(), player.pilot():name() ) ) then
-      timer_hook = hook.timer( 5000, "timer" )
+   if tk.yesno("", intro_text:format(
+            player.name(), player.pilot():name())) then
+      timer_hook = hook.timer(5000, "timer")
       hook.land("land")
       hook.takeoff("takeoff")
       hook.enter("enter")
@@ -210,7 +212,29 @@ function accept ()
                tutGetKey("reverse"), start_planet:name()))
       addTutLog(movement_log, N_("Navigation"))
    else
-      tk.msg("", nothanks_text)
+      tk.msg("", nothanks_text:format(tutGetKey("info"), tutGetKey("menu"))
+
+      -- Add all tutorial logs that would have been added in case the
+      -- player changes their mind.
+      addTutLog(movement_log, N_("Navigation"))
+      addTutLog(objectives_log, N_("Missions"))
+      addTutLog(landing_log, N_("Navigation"))
+      addTutLog(land_log, N_("Planets and Stations"))
+      addTutLog(bar_log, N_("Planets and Stations"))
+      addTutLog(mission_log, N_("Missions"))
+      addTutLog(outfits_log, N_("Ship Upgrades"))
+      addTutLog(shipyard_log, N_("Ship Upgrades"))
+      addTutLog(equipment_log, N_("Ship Upgrades"))
+      addTutLog(commodity_log, N_("Commodity Trading"))
+      addTutLog(autonav_log, N_("Navigation"))
+      addTutLog(combat_log, N_("Combat"))
+      addTutLog(infoscreen_log, N_("Info Window"))
+      addTutLog(cooldown_log, N_("Active Cooling"))
+      addTutLog(jumping_log, N_("Navigation"))
+      addTutLog(jumping_log2, N_("Navigation"))
+      addTutLog(fuel_log, N_("Fuel"))
+      addTutLog(fuel_log2, N_("Fuel"))
+
       misn.finish(true)
    end
 end
@@ -326,16 +350,16 @@ end
 
 
 function enter ()
-   if timer_hook ~= nil then hook.rm( timer_hook ) end
-   timer_hook = hook.timer( 5000, "timer" )
-   hook.timer( 2000, "enter_timer" )
+   if timer_hook ~= nil then hook.rm(timer_hook) end
+   timer_hook = hook.timer(5000, "timer")
+   hook.timer(2000, "enter_timer")
 end
 
 
 function enter_timer ()
    if stage == 3 then
       stage = 4
-      misn.osdActive( 3 )
+      misn.osdActive(3)
       tk.msg("", autonav_text:format(player.name(), tutGetKey("overlay"),
                tutGetKey("menu"), dest_planet:name()))
       addTutLog(autonav_log, N_("Navigation"))
@@ -351,9 +375,11 @@ function enter_timer ()
 
       if tk.yesno("", ask_continue_text) then
          var.push("_tutorial_passive_active", true)
-         tk.msg("", continue_yes_text:format(tutGetKey("info")))
+         tk.msg("", continue_yes_text:format(
+                  tutGetKey("info"), tutGetKey("menu")))
       else
-         tk.msg("", continue_no_text:format(tutGetKey("info")))
+         tk.msg("", continue_no_text:format(
+                  tutGetKey("info"), tutGetKey("menu")))
       end
 
       misn.finish(true)
