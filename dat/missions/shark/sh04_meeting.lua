@@ -179,11 +179,10 @@ end
 
 function reveal()  --transforms the spawn drones into baddies
    if enable then  --only if this happens a few time after the jumping/taking off
-      local f = faction.dynAdd(nil, N_("Unknown"), nil, "baddie_norun")
+      local f = faction.dynAdd(nil, N_("Za'lek"), nil, "baddie_norun")
       f:dynEnemy(faction.get("Za'lek"))
       for i, p in ipairs(badguy) do
          if p:exists() then
-            p:rename(_("Hacked Drone"))
             p:setFaction(f)
             p:setHostile()
             p:control(false)
