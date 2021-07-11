@@ -40,6 +40,7 @@ end
 function create()
    local pp = player.pilot()
    pp:rename(name()) -- Assign a random name to the player's ship.
+   pp:cargoRm("__all")
    pp:rmOutfit("cores")
    pp:rmOutfit("all")
    pp:addOutfit("Unicorp PT-18 Core System")
