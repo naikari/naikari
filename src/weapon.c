@@ -1370,10 +1370,10 @@ static double weapon_aimTurret( const Pilot *parent,
    if (pilot_target != NULL) {
       /* Lead angle is determined from ewarfare. */
       lead     = pilot_weaponTrack(parent, pilot_target, track, track_max);
-      rdir     = lead * rdir_lead + (1.-lead) * rdir;
+      x        = lead * x + (1.-lead) * rx;
+      y        = lead * y + (1.-lead) * ry;
    }
-   else
-      rdir     = rdir_lead; /* Just be accurate for asteroids. */
+   rdir     = ANGLE(x,y);
 
    /* Calculate bounds. */
    off = angle_diff( rdir, dir );
