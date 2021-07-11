@@ -212,7 +212,7 @@ function accept ()
                tutGetKey("reverse"), start_planet:name()))
       addTutLog(movement_log, N_("Navigation"))
    else
-      tk.msg("", nothanks_text:format(tutGetKey("info"), tutGetKey("menu"))
+      tk.msg("", nothanks_text:format(tutGetKey("info"), tutGetKey("menu")))
 
       -- Add all tutorial logs that would have been added in case the
       -- player changes their mind.
