@@ -1682,7 +1682,6 @@ dat/ships/zalek_drone_light.xml
 dat/ships/zalek_drone_scout.xml
 dat/ships/zalek_hephaestus.xml
 dat/ships/zalek_mephisto.xml
-dat/ships/zalek_prototype.xml
 dat/ships/zalek_sting.xml
 dat/slots.xml
 dat/spfx/EmpM.xml
@@ -1858,6 +1857,7 @@ dat/ssys/hephaestus.xml
 dat/ssys/herakin.xml
 dat/ssys/hideyoshis_star.xml
 dat/ssys/humdrum.xml
+dat/ssys/hyper_realm.xml
 dat/ssys/hystera.xml
 dat/ssys/infinity.xml
 dat/ssys/ingot.xml
@@ -2427,7 +2427,6 @@ dat/scripts/vn.lua
 dat/scripts/vn/conf.lua
 dat/scripts/vn/main.lua
 dat/scripts/vn/transitions.lua
-dat/snd/music.lua
 src/ai.c
 src/ai.h
 src/array.c
@@ -2584,6 +2583,8 @@ src/nlua_commodity.c
 src/nlua_commodity.h
 src/nlua_data.c
 src/nlua_data.h
+src/nlua_debug.c
+src/nlua_debug.h
 src/nlua_diff.c
 src/nlua_diff.h
 src/nlua_evt.c
