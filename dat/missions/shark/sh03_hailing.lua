@@ -31,27 +31,23 @@ require "numstring"
 require "missions/shark/common"
 
 
-title = {}
 text = {}
 osd_msg = {}
 npc_desc = {}
 bar_desc = {}
 
-title[1] = _("A new job")
 text[1] = _([["Hello there, nice to meet you again! According to the information that you brought us, the negotiations between the Frontier officials and House Sirius are proceeding very quickly. We have to act now. There is a member of the Frontier Council who, for political reasons, could help us.
-    "I can't send him a message without being spotted by the Sirii, so I need you to contact him. He's probably piloting his Hawking in the %s system. Go there, hail him, and let him know that I have to see him on %s in the %s system. He will understand.
-    "Can I count on you to do this for me?"]])
 
-refusetitle = _("Sorry, not interested")
+"I can't send him a message without being spotted by the Sirii, so I need you to contact him. He's probably piloting his Hawking in the %s system. Go there, hail him, and let him know that I have to see him on %s in the %s system. He will understand.
+
+"Can I count on you to do this for me?"]])
+
 refusetext = _([["OK, come back when you are interested."]])
 
-title[2] = _("Time to go")
 text[2] = _([["Fantastic! I am known as Donald Ulnish to the Council member. Good luck."]])
 
-title[3] = _("Good job")
 text[3] = _([[Smith seems to relax as you tell him that everything went according to plan. "Fantastic! I have another mission for you; meet me in the bar when you are ready to bring me to %s in the %s system."]])
 
-title[4] = _("Time to go back to %s")
 text[4] = _([[The captain of the Hawking answers you. When you say that you have a message from Donald Ulnish, he redirects you to one of his officers who takes the message. Now, back to %s.]])
 
 
@@ -72,14 +68,15 @@ log_text = _([[You helped Nexus Shipyards initiate a secret meeting with a membe
 
 
 function create ()
-
-   --Change here to change the planets and the systems
-   mispla,missys = planet.getLandable(faction.get("Frontier"))  -- mispla will be useful to locate the Hawking
+   -- Change here to change the planets and the systems
+   -- mispla will be useful to locate the Hawking
+   mispla,missys = planet.getLandable(faction.get("Frontier"))
    pplname = "Darkshed"
    psyname = "Alteris"
    paysys = system.get(psyname)
    paypla = planet.get(pplname)
-   nextpla, nextsys = planet.get("Curie") -- This should be the same as the planet used in sh04_meeting!
+   -- This should be the same as the planet used in sh04_meeting!
+   nextpla, nextsys = planet.get("Curie")
 
    if not misn.claim(missys) then
       misn.finish(false)
@@ -89,13 +86,14 @@ function create ()
 end
 
 function accept()
-
    stage = 0
    reward = 750000
 
-   if tk.yesno(title[1], text[1]:format(missys:name(), nextpla:name(), nextsys:name())) then
+   if tk.yesno(
+            "", text[1]:format(missys:name(), nextpla:name(),
+            nextsys:name())) then
       misn.accept()
-      tk.msg(title[2], text[2])
+      tk.msg("", text[2])
 
       osd_msg[1] = osd_msg[1]:format(missys:name())
       osd_msg[2] = osd_msg[2]:format(pplname, psyname)
@@ -111,16 +109,15 @@ function accept()
       landhook = hook.land("land")
       enterhook = hook.enter("enter")
       else
-      tk.msg(refusetitle, refusetext)
+      tk.msg("", refusetext)
       misn.finish(false)
    end
 end
 
 function land()
-
    --Job is done
    if stage == 1 and planet.cur() == paypla then
-   tk.msg(title[3], text[3]:format(nextpla:name(), nextsys:name()))
+   tk.msg("", text[3]:format(nextpla:name(), nextsys:name()))
       player.pay(reward)
       misn.osdDestroy(osd)
       hook.rm(enterhook)
@@ -133,7 +130,9 @@ end
 function enter()
    --the system where the player must look for the Hawking
    if system.cur() == missys then
-      hawking = pilot.add("Hawking", "Frontier", mispla:pos() + vec2.new(-400,-400), _("Air Force One"), {ai="trader"} )
+      hawking = pilot.add(
+            "Hawking", "Frontier", mispla:pos() + vec2.new(-400,-400),
+            _("Air Force One"), {ai="trader"} )
       hawking:setHilight(true)
       hailhook = hook.pilot(hawking, "hail", "hail")
    end
@@ -142,7 +141,7 @@ end
 function hail()
    --The player takes contact with the Hawking
    if stage == 0 then
-      tk.msg(title[4]:format(paypla:name()), text[4]:format(paypla:name()))
+      tk.msg("":format(paypla:name()), text[4]:format(paypla:name()))
       stage = 1
       misn.osdActive(2)
       misn.markerRm(marker)

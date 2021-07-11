@@ -38,29 +38,23 @@ require "numstring"
 require "missions/shark/common"
 
 
-title = {}
 text = {}
 osd_msg = {}
 npc_desc = {}
 bar_desc = {}
 
-title[1] = _("Nexus Shipyards needs you")
 text[1] = _([["I have another job for you. The Baron was unfortunately not as impressed as we hoped. So we need a better demonstration, and we think we know what to do: we're going to demonstrate that the Lancelot, our higher-end fighter design, is more than capable of defeating destroyer class ships.
-    "Now, one small problem we face is that pirates almost never use destroyer class ships; they tend to stick to fighters, corvettes, and cruisers. More importantly, actually sending a fighter after a Destroyer is exceedingly dangerous, even if we could find a pirate piloting one. So we have another plan: we want someone to pilot a destroyer class ship and just let another pilot disable them with ion cannons.
-    "What do you say? Are you interested?"]])
 
-refusetitle = _("Sorry, not interested")
+"Now, one small problem we face is that pirates almost never use destroyer class ships; they tend to stick to fighters, corvettes, and cruisers. More importantly, actually sending a fighter after a Destroyer is exceedingly dangerous, even if we could find a pirate piloting one. So we have another plan: we want someone to pilot a destroyer class ship and just let another pilot disable them with ion cannons.
+
+"What do you say? Are you interested?"]])
+
 refusetext = _([["OK, that's alright."]])
 
-title[2] = _("Wonderful")
 text[2] = _([["Great! Go and meet our pilot in %s. After the job is done, meet me on %s in the %s system."]])
 
-title[3] = _("Reward")
 text[3] = _([[As you land, you see Arnold Smith waiting for you. He explains that the Baron was so impressed by the battle that he signed an updated contract with Nexus Shipyards, solidifying Nexus as the primary supplier of ships for his fleet. As a reward, they give you twice the sum of credits they promised to you.]])
 
-title[4] = _("You ran away!")
-title[5] = _("The Lancelot is destroyed!")
-title[6] = _("The Lancelot ran away!")
 text[4] = _([[Your mission failed.]])
 
 -- Mission details
@@ -107,9 +101,9 @@ function accept()
    stage = 0
    reward = 750000
 
-   if tk.yesno(title[1], text[1]:format(battlesys:name(), numstring(reward/2))) then
+   if tk.yesno("", text[1]:format(battlesys:name(), numstring(reward/2))) then
       misn.accept()
-      tk.msg(title[2], text[2]:format(battlesys:name(), paypla:name(), paysys:name()))
+      tk.msg("", text[2]:format(battlesys:name(), paypla:name(), paysys:name()))
 
       osd_msg[1] = osd_msg[1]:format(battlesys:name())
       osd_msg[2] = osd_msg[2]:format(paypla:name(), paysys:name())
@@ -126,7 +120,7 @@ function accept()
       landhook = hook.land("land")
       enterhook = hook.enter("enter")
    else
-      tk.msg(refusetitle, refusetext)
+      tk.msg("", refusetext)
       misn.finish(false)
    end
 end
@@ -140,24 +134,24 @@ function jumpout()
          var.pop(vname)
       end
    elseif stage == 1 then --player trying to escape
-      player.msg( "#r" .. msg_run .. "#0" )
+      player.msg("#r" .. msg_run .. "#0")
       misn.finish(false)
    end
 end
 
 function land()
    if stage == 1 then --player trying to escape
-      player.msg( "#r" .. msg_run .. "#0" )
+      player.msg("#r" .. msg_run .. "#0")
       misn.finish(false)
    end
    if stage == 2 and planet.cur() == paypla then
-      tk.msg(title[3], text[3])
+      tk.msg("", text[3])
       player.pay(reward)
       misn.osdDestroy(osd)
       hook.rm(enterhook)
       hook.rm(landhook)
       hook.rm(jumpouthook)
-      shark_addLog( log_text )
+      shark_addLog(log_text)
       misn.finish(true)
    end
 end
@@ -168,7 +162,7 @@ function enter()
    --Jumping in Toaxis for the battle with a destroyer class ship
    if system.cur() == battlesys and stage == 0 and playerclass == "Destroyer" then
       pilot.clear()
-      pilot.toggleSpawn( false )
+      pilot.toggleSpawn(false)
       pilot.setVisible(player.pilot())
 
       hook.timer(2000,"lets_go")
@@ -177,7 +171,7 @@ end
 
 function lets_go()
    -- spawns the Shark
-   sharkboy = pilot.add( "Lancelot", "Mercenary", system.get("Raelid"), nil, {ai="baddie_norun"} )
+   sharkboy = pilot.add("Lancelot", "Mercenary", system.get("Raelid"), nil, {ai="baddie_norun"})
    sharkboy:setHostile()
    sharkboy:setHilight()
 
@@ -201,12 +195,12 @@ function lets_go()
    sharkboy:setFuel(true)
    stage = 1
 
-   shark_dead_hook = hook.pilot( sharkboy, "death", "shark_dead" )
-   disabled_hook = hook.pilot( player.pilot(), "disable", "disabled" )
+   shark_dead_hook = hook.pilot(sharkboy, "death", "shark_dead")
+   disabled_hook = hook.pilot(player.pilot(), "disable", "disabled")
 end
 
 function shark_dead()  --you killed the shark
-   player.msg( "#r" .. msg_destroyed .. "#0" )
+   player.msg("#r" .. msg_destroyed .. "#0")
    misn.finish(false)
 end
 
@@ -216,7 +210,7 @@ function disabled(pilot, attacker)
       misn.osdActive(2)
       misn.markerRm(marker)
       marker2 = misn.markerAdd(paysys, "low")
-      pilot.toggleSpawn( true )
+      pilot.toggleSpawn(true)
    end
    sharkboy:control()
    --making sure the shark doesn't continue attacking the player

@@ -10,7 +10,7 @@
    <chance>50</chance>
    <location>Bar</location>
    <planet>Darkshed</planet>
-   <cond>not diff.isApplied( "flf_dead" )</cond>
+   <cond>not diff.isApplied("flf_dead")</cond>
   </avail>
   <notes>
    <campaign>Nexus show their teeth</campaign>
@@ -34,32 +34,33 @@ require "jumpdist"
 require "missions/shark/common"
 
 
-title = {}
 text = {}
 osd_msg = {}
 npc_desc = {}
 bar_desc = {}
 
-title[1] = _("The mission")
 text[1] = _([["Hello again. As you know, I've agreed with the FLF on a contract that will extend our sales of ships to them substantially. Of course, this deal must remain a secret, which is why it is being done through a false black market dealer.
-    "However, we have reason to suspect that a few key influential pirates may have their eyes on the FLF as possible buyers of the Skull and Bones pirate ships. We don't think the FLF will have any interest in those ships, but the pirates' ambitions could give them motivation to attack our false dealer's trade posts, destroying our deal with the FLF anyway. We of course can't have that.
-    "So what we want you to do, quite simply, is to eliminate these pirates. It's not that many of them; there are four pirates we need eliminated, and thankfully, they're all spread out. That being said, some of them do have quite big ships, so you will have to make sure you can handle that. Are you willing to do this job for us?"]])
 
-refusetitle = _("Sorry, not interested")
+"However, we have reason to suspect that a few key influential pirates may have their eyes on the FLF as possible buyers of the Skull and Bones pirate ships. We don't think the FLF will have any interest in those ships, but the pirates' ambitions could give them motivation to attack our false dealer's trade posts, destroying our deal with the FLF anyway. We of course can't have that.
+
+"So what we want you to do, quite simply, is to eliminate these pirates. It's not that many of them; there are four pirates we need eliminated, and thankfully, they're all spread out. That being said, some of them do have quite big ships, so you will have to make sure you can handle that. Are you willing to do this job for us?"]])
+
 refusetext = _([["I'm sorry to hear that. Don't hesitate to come back if you change your mind."]])
 
-title[2] = _("Very good")
 text[2] = _([["So, here are the details we have gathered about these pirates:
-    "%s should be in %s, flying a Gawain. He seems to be on a holiday, so he probably isn't able to fight back and will just run away.
-    "%s should be in %s, flying a Kestrel. We believe he has some escorts.
-    "%s should be in %s, also flying a Kestrel. He has escorts, too, according to our records.
-    "And finally, %s is in %s. He stole and beefed up a Goddard recently, so make sure you're prepared for that. He also has escorts, according to our records.
-    "And that's about it! Come back for your fee when you have finished."]])
 
-title[4] = _("Mission accomplished")
+"%s should be in %s, flying a Gawain. He seems to be on a holiday, so he probably isn't able to fight back and will just run away.
+
+"%s should be in %s, flying a Kestrel. We believe he has some escorts.
+
+"%s should be in %s, also flying a Kestrel. He has escorts, too, according to our records.
+
+"And finally, %s is in %s. He stole and beefed up a Goddard recently, so make sure you're prepared for that. He also has escorts, according to our records.
+
+"And that's about it! Come back for your fee when you have finished."]])
+
 text[4] = _("You have killed the four pirates. Now to return to %s and collect your payment...")
 
-title[5] = _("That was impressive")
 text[5] = _([[Smith awaits your arrival at the spaceport. When you exit your ship, he smiles and walks up to you. "Good job," he says. "Our deal is secure, thanks to you. Here is your pay. Thank you for all your help!"]])
 
 -- Mission details
@@ -128,13 +129,15 @@ function accept()
 
    --set the names of the pirates (and make sure they aren't duplicates)
    gawname = pirate_name()
-   kername1 = string.format( _("%s III"), pirate_name() )
-   kername2 = string.format( _("%s Jr." ), pirate_name() )
-   godname = string.format( _("%s II"), pirate_name() )
+   kername1 = pirate_name()
+   kername2 = pirate_name()
+   godname = pirate_name()
 
-   if tk.yesno(title[1], text[1]) then
+   if tk.yesno("", text[1]) then
       misn.accept()
-      tk.msg(title[2], text[2]:format(gawname, gawsys:name(), kername1, kersys1:name(), kername2, kersys2:name(), godname, godsys:name()))
+      tk.msg("", text[2]:format(
+               gawname, gawsys:name(), kername1, kersys1:name(), kername2,
+               kersys2:name(), godname, godsys:name()))
 
       osd_msg[2] = osd_msg[2]:format(pplname,psyname)
 
@@ -153,7 +156,7 @@ function accept()
       landhook = hook.land("land")
 
       else
-      tk.msg(refusetitle, refusetext)
+      tk.msg("", refusetext)
       misn.finish(false)
    end
 end
@@ -161,12 +164,12 @@ end
 function land()
    --Job is done
    if stage == 1 and planet.cur() == planet.get("Darkshed") then
-      tk.msg(title[5], text[5])
+      tk.msg("", text[5])
       player.pay(reward)
       misn.osdDestroy(osd)
       hook.rm(enterhook)
       hook.rm(landhook)
-      shark_addLog( log_text )
+      shark_addLog(log_text)
       misn.finish(true)
    end
 end
@@ -180,27 +183,10 @@ function enter()
       angle = rnd.rnd() * 360
       pos = vec2.newP(sysrad, angle)
 
-      baddie = pilot.add( "Gawain", "Thugs", nil, gawname, {ai="dummy"} )
+      baddie = pilot.add("Gawain", "Civilian", nil, gawname, {ai="baddie"})
+      baddie:setFaction("Pirate")
       baddie:setHostile()
       baddie:setHilight()
-      baddie:control()
-      baddie:moveto(pos)
-
-      --The pirate becomes nice defensive outfits
-      baddie:rmOutfit("all")
-      baddie:rmOutfit("cores")
-
-      baddie:addOutfit("S&K Ultralight Stealth Plating")
-      baddie:addOutfit("Milspec Aegis 2201 Core System")
-      baddie:addOutfit("Tricon Zephyr Engine")
-      baddie:setHealth(100,100)
-      baddie:setEnergy(100)
-
-      baddie:addOutfit("Shield Capacitor",2)
-      baddie:addOutfit("Small Shield Booster")
-      baddie:addOutfit("Milspec Scrambler")
-
-      baddie:addOutfit("Laser Cannon MK1",2)
 
       hook.pilot(baddie, "idle", "idle", pos)
       hook.pilot(baddie, "attacked", "attacked")
@@ -210,57 +196,64 @@ function enter()
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      baddie = pilot.add( "Pirate Kestrel", "Pirate", vec2.new(0,0), nil, {ai="pirate_norun"} )
-      ancestor = pilot.add( "Pirate Ancestor", "Pirate", vec2.new(100,0) )
-      hyena = pilot.add( "Hyena", "Pirate", vec2.new(0,100), _("Pirate Hyena") )
+      baddie = pilot.add(
+            "Pirate Kestrel", "Pirate", vec2.new(0,0), nil,
+            {ai="pirate_norun"})
+      ancestor = pilot.add("Pirate Ancestor", "Pirate", vec2.new(100,0))
+      hyena = pilot.add("Hyena", "Pirate", vec2.new(0,100), _("Pirate Hyena"))
 
       baddie:rename(kername1)
       baddie:setHilight()
       baddie:setHostile()
 
-      hook.pilot( baddie, "death", "kestrel_dead1")
+      hook.pilot(baddie, "death", "kestrel_dead1")
 
    elseif system.cur() == kersys2 and kerdead2 == false then  --The Kestrel
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      baddie = pilot.add( "Pirate Kestrel", "Pirate", vec2.new(0,0), nil, {ai="pirate_norun"} )
-      ancestor = pilot.add( "Pirate Ancestor", "Pirate", vec2.new(100,0) )
-      shark = pilot.add( "Pirate Shark", "Pirate", vec2.new(0,100) )
-      hyena = pilot.add( "Hyena", "Pirate", vec2.new(100,100), _("Pirate Hyena") )
+      baddie = pilot.add(
+            "Pirate Kestrel", "Pirate", vec2.new(0,0), nil,
+            {ai="pirate_norun"})
+      ancestor = pilot.add("Pirate Ancestor", "Pirate", vec2.new(100,0))
+      shark = pilot.add("Pirate Shark", "Pirate", vec2.new(0,100))
+      hyena = pilot.add(
+            "Hyena", "Pirate", vec2.new(100,100), _("Pirate Hyena"))
 
       baddie:rename(kername2)
       baddie:setHilight()
       baddie:setHostile()
 
-      hook.pilot( baddie, "death", "kestrel_dead2")
+      hook.pilot(baddie, "death", "kestrel_dead2")
 
    elseif system.cur() == godsys and goddead == false then  --The Goddard
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      baddie = pilot.add( "Goddard", "Goddard", vec2.new(0,0), _("Goddard Goddard"), {ai="pirate_norun"} ) --Faction's ships come with upgraded weaponry
+      -- Goddard ships come with upgraded weaponry
+      baddie = pilot.add(
+            "Goddard", "Goddard", vec2.new(0,0), _("Goddard Goddard"))
       baddie:setFaction("Pirate")
-      baddie:changeAI( "pirate" )
+      baddie:changeAI("pirate")
 
-      ancestor = pilot.add( "Pirate Ancestor", "Pirate", vec2.new(100,0) )
-      hyena = pilot.add( "Hyena", "Pirate", vec2.new(0,100), _("Pirate Hyena") )
+      ancestor = pilot.add("Pirate Ancestor", "Pirate", vec2.new(100,0))
+      hyena = pilot.add("Hyena", "Pirate", vec2.new(0,100), _("Pirate Hyena"))
 
       baddie:rename(godname)
       baddie:setHilight()
       baddie:setHostile()
 
-      hook.pilot( baddie, "death", "goddard_dead")
+      hook.pilot(baddie, "death", "goddard_dead")
 
    end
 
 end
 
 function idle(pilot,pos)  --the Gawain is flying around a random point
-   baddie:moveto(pos + vec2.new( 800,  800), false, false)
+   baddie:moveto(pos + vec2.new(800,  800), false, false)
    baddie:moveto(pos + vec2.new(-800,  800), false, false)
    baddie:moveto(pos + vec2.new(-800, -800), false, false)
-   baddie:moveto(pos + vec2.new( 800, -800), false, false)
+   baddie:moveto(pos + vec2.new(800, -800), false, false)
 end
 
 function attacked()  --the Gawain is going away
@@ -296,8 +289,8 @@ end
 
 function generic_dead()
    --Are there still other pirates to kill ?
-   if gawdead == true and kerdead1 == true and kerdead2 == true and goddead == true then
-      tk.msg(title[4], text[4]:format(paysys:name()))
+   if gawdead and kerdead1 and kerdead2 and goddead then
+      tk.msg("", text[4]:format(paysys:name()))
       stage = 1
       misn.osdActive(2)
       marker2 = misn.markerAdd(paysys, "low")

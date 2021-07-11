@@ -32,37 +32,33 @@
    0) Way to Sirius world
    1) Way to Darkshed
 
-   TODO: I didn't test the case when the player tries to do the mission with a freighter, and the case when the player's class is unknown
-
 --]]
 
 require "numstring"
 require "missions/shark/common"
 
 
-title = {}
 text = {}
 osd_msg = {}
 npc_desc = {}
 bar_desc = {}
 
-title[1] = _("Nexus Shipyards needs you (again)")
 text[1] = _([[You sit at Smith's table and ask him if he has a job for you. "Of course," he answers. "But this time, it's... well...
-    "Listen, I need to explain some background. As you know, Nexus designs are used far and wide in smaller militaries. The Empire is definitely our biggest customer, but the Frontier also notably makes heavy use of our Lancelot design, as do many independent systems. Still, competition is stiff; House Dvaered's Vendetta design, for instance, is quite popular with the FLF, ironically enough.
-    "But matters just got a little worse for us: it seems that House Sirius is looking to get in on the shipbuilding business as well, and the Frontier are prime targets. If they succeed, the Lancelot design could be completely pushed out of Frontier space, and we would be crushed in that market between House Dvaered and House Sirius. Sure, the FLF would still be using a few Pacifiers, but it would be a token business at best, and not to mention the authorities would start associating us with terrorism.
-    "So we've conducted a bit of espionage. We have an agent who has recorded some hopefully revealing conversations between a House Sirius sales manager and representatives of the Frontier. All we need you to do is meet with the agent, get the recordings, and bring them back to me on %s in the %s system." You raise an eyebrow.
-    "It's not exactly legal. That being said, you're just doing the delivery, so you almost certainly won't be implicated. What do you say? Is this something you can do?"]])
 
-refusetitle = _("Sorry, not interested")
+"Listen, I need to explain some background. As you know, Nexus designs are used far and wide in smaller militaries. The Empire is definitely our biggest customer, but the Frontier also notably makes heavy use of our Lancelot design, as do many independent systems. Still, competition is stiff; House Dvaered's Vendetta design, for instance, is quite popular with the FLF, ironically enough.
+
+"But matters just got a little worse for us: it seems that House Sirius is looking to get in on the shipbuilding business as well, and the Frontier are prime targets. If they succeed, the Lancelot design could be completely pushed out of Frontier space, and we would be crushed in that market between House Dvaered and House Sirius. Sure, the FLF would still be using a few Pacifiers, but it would be a token business at best, and not to mention the authorities would start associating us with terrorism.
+
+"So we've conducted a bit of espionage. We have an agent who has recorded some hopefully revealing conversations between a House Sirius sales manager and representatives of the Frontier. All we need you to do is meet with the agent, get the recordings, and bring them back to me on %s in the %s system." You raise an eyebrow.
+
+"It's not exactly legal. That being said, you're just doing the delivery, so you almost certainly won't be implicated. What do you say? Is this something you can do?"]])
+
 refusetext = _([["OK, sorry to bother you."]])
 
-title[2] = _("The job")
 text[2] = _([["I'm glad to hear it. Go meet our agent on %s in the %s system. Oh, yes, and I suppose I should mention that I'm known as 'James Neptune' to the agent. Good luck!"]])
 
-title[3] = _("Good job")
 text[3] = _([[The Nexus employee greets you as you reach the ground. "Excellent! I will just need to spend a few hectoseconds analyzing these recordings. See if you can find me in the bar soon; I might have another job for you."]])
 
-title[4] = _("Time to go back to Alteris")
 text[4] = _([[You approach the agent and obtain the package without issue. Before you leave, he suggests that you stay vigilant. "They might come after you," he says.]])
 
 
@@ -99,15 +95,16 @@ function create ()
    misn.setNPC(npc_desc[1], "neutral/unique/arnoldsmith.webp", bar_desc[1])
 end
 
+
 function accept()
 
    stage = 0
    reward = 750000
    proba = 0.3  --the chances you have to get an ambush
 
-   if tk.yesno(title[1], text[1]:format(pplname, psyname)) then
+   if tk.yesno("", text[1]:format(pplname, psyname)) then
       misn.accept()
-      tk.msg(title[2], text[2]:format(mispla:name(), missys:name()))
+      tk.msg("", text[2]:format(mispla:name(), missys:name()))
 
       osd_msg[1] = osd_msg[1]:format(mispla:name(), missys:name())
       osd_msg[2] = osd_msg[2]:format(pplname, psyname)
@@ -123,35 +120,39 @@ function accept()
       landhook = hook.land("land")
       enterhook = hook.enter("enter")
    else
-      tk.msg(refusetitle, refusetext)
+      tk.msg("", refusetext)
       misn.finish(false)
    end
 end
 
+
 function land()
    --The player is landing on the mission planet to get the box
    if stage == 0 and planet.cur() == mispla then
-      agent = misn.npcAdd("beginrun", npc_desc[2], "neutral/unique/nexus_agent.webp", bar_desc[2])
+      agent = misn.npcAdd(
+            "beginrun", npc_desc[2], "neutral/unique/nexus_agent.webp",
+            bar_desc[2])
    end
 
    --Job is done
    if stage == 1 and planet.cur() == paypla then
       if misn.cargoRm(records) then
-         tk.msg(title[3], text[3])
+         tk.msg("", text[3])
          player.pay(reward)
          misn.osdDestroy(osd)
          hook.rm(enterhook)
          hook.rm(landhook)
-         shark_addLog( log_text )
+         shark_addLog(log_text)
          misn.finish(true)
       end
    end
 end
 
+
 function enter()
    -- Ambush !
    if stage == 1 and rnd.rnd() < proba then
-      hook.timer( 2000, "ambush" )
+      hook.timer(2000, "ambush")
       proba = proba - 0.2
    elseif stage == 1 then
       --the probability of an ambush goes up when you cross a system without meeting any ennemy
@@ -159,8 +160,9 @@ function enter()
    end
 end
 
+
 function beginrun()
-   tk.msg(title[4], text[4])
+   tk.msg("", text[4])
    records = misn.cargoAdd("Box", 0)  --Adding the cargo
    stage = 1
    misn.osdActive(2)
@@ -171,162 +173,21 @@ function beginrun()
    misn.npcRm(agent)
 end
 
-function ambush()
-   --Looking at the player ship's class in order to spawn the most dangerous enemy to him
-   playerclass = player.pilot():ship():class()
-   badguys = {}
 
-   littleofall()
+function ambush()
+   badguys = {}
+   ship_choices = {
+      "Hyena", "Shark", "Lancelot", "Vendetta", "Ancestor", "Admonisher",
+      "Phalanx", "Kestrel", "Hawking"}
+
+   for i=1,4 do
+      local choice = ship_choices[rnd.rnd(1, #ship_choices)]
+      badguys[i] = pilot.add(choice, "Mercenary", nil, string.format(
+               _("Mercenary %s"), choice))
+   end
 
    --and a Llama for variety :
    if rnd.rnd() < 0.5 then
       add_llama()
    end
-end
-
-function interceptors()
-   --spawning high speed Hyenas
-   number = {1,2,3,4}
-   for i in ipairs(number) do
-      badguys[i] = pilot.add( "Hyena", "Mercenary", nil, _("Mercenary") )
-      badguys[i]:setHostile()
-
-      --Their outfits must be quite good
-      badguys[i]:rmOutfit("all")
-      badguys[i]:rmOutfit("cores")
-
-      badguys[i]:addOutfit("S&K Ultralight Combat Plating")
-      badguys[i]:addOutfit("Milspec Prometheus 2203 Core System")
-      badguys[i]:addOutfit("Tricon Zephyr Engine")
-
-      badguys[i]:addOutfit("Shredder",3)
-      badguys[i]:addOutfit("Improved Stabilizer") -- Just try to avoid fight with these fellas
-
-      badguys[i]:setHealth(100,100)
-      badguys[i]:setEnergy(100)
-   end
-end
-
-function hvy_intercept()
-   --spawning Lancelots
-   number = {1,2,3,4}
-   for i in ipairs(number) do
-      badguys[i] = pilot.add( "Lancelot", "Mercenary", nil, _("Mercenary") )
-      badguys[i]:setHostile()
-
-      --Their outfits must be quite good
-      badguys[i]:rmOutfit("all")
-      badguys[i]:rmOutfit("cores")
-
-      badguys[i]:addOutfit("Unicorp D-4 Light Plating")
-      badguys[i]:addOutfit("Unicorp PT-80 Core System")
-      badguys[i]:addOutfit("Tricon Zephyr II Engine")
-
-      badguys[i]:addOutfit("TeraCom Fury Launcher")
-      badguys[i]:addOutfit("Shredder",2)
-      badguys[i]:addOutfit("Ripper Cannon")
-      badguys[i]:addOutfit("Shield Capacitor",2)
-
-      badguys[i]:setHealth(100,100)
-      badguys[i]:setEnergy(100)
-   end
-end
-
-function corvette()
-   --spawning Admonishers
-   number = {1,2}
-   for i in ipairs(number) do
-      badguys[i] = pilot.add( "Admonisher", "Mercenary", nil, _("Mercenary") )
-      badguys[i]:setHostile()
-
-      badguys[i]:rmOutfit("all")
-      badguys[i]:rmOutfit("cores")
-
-      badguys[i]:addOutfit("Unicorp D-12 Medium Plating")
-      badguys[i]:addOutfit("Unicorp PT-280 Core System")
-      badguys[i]:addOutfit("Tricon Cyclone Engine")
-
-      badguys[i]:addOutfit("Razor Turret MK2",2)
-      badguys[i]:addOutfit("Unicorp Headhunter Launcher",2)
-
-      badguys[i]:setHealth(100,100)
-      badguys[i]:setEnergy(100)
-   end
-end
-
-function cruiser()
-   --spawning a Kestrel with massive missile weaponry
-   badguy = pilot.add( "Kestrel", "Mercenary", nil, _("Mercenary") )
-   badguy:setHostile()
-
-   badguy:rmOutfit("all")
-   badguy:rmOutfit("cores")
-
-   badguy:addOutfit("Unicorp D-48 Heavy Plating")
-   badguy:addOutfit("Unicorp PT-750 Core System")
-   badguy:addOutfit("Krain Remige Engine")
-
-   badguy:addOutfit("Heavy Ripper Turret",2)
-   badguy:addOutfit("Unicorp Headhunter Launcher",2)
-   badguy:addOutfit("Enygma Systems Spearhead Launcher",2)
-
-   badguy:addOutfit("Large Shield Booster",2)
-   badguy:addOutfit("Improved Stabilizer",4)
-   badguy:setHealth(100,100)
-   badguy:setEnergy(100)
-
-end
-
-function bombers()
-   --spawning Ancestors
-   number = {1,2,3}
-   for i in ipairs(number) do
-      badguys[i] = pilot.add( "Ancestor", "Mercenary", nil, _("Mercenary") )
-      badguys[i]:setHostile()
-
-      badguys[i]:rmOutfit("all")
-      badguys[i]:rmOutfit("cores")
-
-      badguys[i]:addOutfit("S&K Ultralight Combat Plating")
-      badguys[i]:addOutfit("Milspec Prometheus 2203 Core System")
-      badguys[i]:addOutfit("Tricon Zephyr II Engine")
-
-      badguys[i]:addOutfit("Unicorp Caesar IV Launcher",2)
-      badguys[i]:addOutfit("Neutron Disruptor")
-      badguys[i]:addOutfit("Vulcan Gun")
-
-      badguys[i]:addOutfit("Small Shield Booster",2)
-      badguys[i]:addOutfit("Shield Capacitor",2)
-
-      badguys[i]:setHealth(100,100)
-      badguys[i]:setEnergy(100)
-   end
-end
-
-function add_llama()
-   --adding an useless Llama
-   useless = pilot.add( "Llama", "Mercenary", nil, _("Amateur Mercenary") )
-   useless:setHostile()
-
-   useless:rmOutfit("all")
-   useless:addOutfit("Laser Cannon MK1",2)
-
-   useless:setHealth(100,100)
-   useless:setEnergy(100)
-end
-
-function littleofall()
-   --spawning random enemies
-   if rnd.rnd() < 0.5 then
-      interceptors()
-   else
-      hvy_intercept()
-   end
-end
-
-function abort()
-   if stage == 1 then
-      misn.cargoRm(records)
-   end
-   misn.finish(false)
 end
