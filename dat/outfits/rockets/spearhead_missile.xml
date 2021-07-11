@@ -4,7 +4,7 @@
   <license>Medium Weapon License</license>
   <mass>1</mass>
   <price>0</price>
-  <description>The Spearhead class shieldbreaker missile is one of Enygma Systems' more specialised pieces of hardware. Its sole function is to do massive damage to shielding. It uses a special energy discharge warhead that is quite effective at disrupting shields, but has little effect on physical objects. The Spearhead's limited agility make it primarily suited to fighting corvette class ships or heavier.</description>
+  <description>The Spearhead class ion missile is one of Enygma Systems' more specialized pieces of hardware. Unlike conventional missiles, it primarily targets shielding; it uses a special energy discharge warhead that is quite effective at disrupting shields. The Spearhead's limited agility make it primarily suited to fighting corvette class ships or heavier.</description>
   <gfx_store>placeholder.webp</gfx_store>
  </general>
  <specific type="ammo">
@@ -20,7 +20,7 @@
   <speed>600</speed>
   <resist>20</resist>
   <damage>
-   <type>shieldbreaker</type>
+   <type>ion</type>
    <penetrate>36</penetrate>
    <physical>300</physical>
    <disable>10</disable>
