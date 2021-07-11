@@ -39,10 +39,10 @@ require "pilot/pirate"
 
 clue_title   = _("I know the pilot you're looking for")
 clue_text    = {}
-clue_text[1] = _("You ask for information about %s and the pilot tells you that this outlaw is supposed to have business in %s soon.")
-clue_text[2] = _([["%s? Yes, I know that scum. I've heard they like to hang around in %s. Good luck!"]])
-clue_text[3] = _([["%s has owed me 500\xc2\xa0k¢ for dozens of cycles and never paid me back! You can probably catch that thief in %s."]])
-clue_text[4] = _([["If you're looking for %s, I would suggest going to %s and taking a look there; that's where that outlaw was last time I heard."]])
+clue_text[1] = _("The pilot tells you that %s is supposed to have business in %s soon.")
+clue_text[2] = _([["I've heard that %s likes to hang around in %s. Good luck!"]])
+clue_text[3] = _([["You can probably catch %s in %s."]])
+clue_text[4] = _([["If you're looking for %s, I would suggest going to %s and taking a look there; that's where they were last time I heard."]])
 clue_text[5] = _([["If I was looking for %s, I would look in the %s system. That's probably a good bet."]])
 
 
@@ -58,9 +58,10 @@ dono_text[7] = _([["I don't give a damn about %s. Go away."]])
 dono_text[8] = _([["%s? Don't know, don't care."]])
 dono_text[9] = _("When you ask about %s, you are promptly told to get lost.")
 dono_text[10] = _([["I'd love to get back at %s for last cycle, but I haven't seen them in quite some time now."]])
-dono_text[11] = _([["I've not seen %s, but good luck in your search!"]])
-dono_text[12] = _([["Wouldn't revenge be nice? Unfortunately I haven't a clue where %s is, though. Sorry!"]])
+dono_text[11] = _([["I've not seen %s, but good luck in your search."]])
+dono_text[12] = _([["Wouldn't revenge be nice? Unfortunately I haven't a clue where %s is, though."]])
 dono_text[13] = _([["I used to work with %s. We haven't seen each other since they stole my favorite ship, though."]])
+dono_text[14] = _([["%s has owed me 500 k¢ for dozens of cycles and never paid me back! I have no clue where they are, though."]])
 
 money_title   = _("How much money do you have?")
 money_text    = {}

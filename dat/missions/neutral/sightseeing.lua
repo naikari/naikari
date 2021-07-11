@@ -102,28 +102,28 @@ function create ()
    paying_faction = planet.cur():faction()
    startingplanet = planet.cur()
    startingsystem = system.cur()
-   local systems = getsysatdistance( system.cur(), 1, 2 )
+   local systems = getsysatdistance(system.cur(), 1, 2)
    systems[ #systems + 1 ] = startingsystem
 
    if #systems <= 0 then
-      misn.finish( false )
+      misn.finish(false)
    end
 
-   missys = systems[ rnd.rnd( 1, #systems ) ]
-   if not misn.claim( missys ) then misn.finish( false ) end
+   missys = systems[ rnd.rnd(1, #systems) ]
+   if not misn.claim(missys) then misn.finish(false) end
 
    local planets = missys:planets()
-   local numpoints = rnd.rnd( 2, #planets )
+   local numpoints = rnd.rnd(2, #planets)
    attractions = numpoints
    points = {}
    points["__save"] = true
    while numpoints > 0 and #planets > 0 do
-      local p = rnd.rnd( 1, #planets )
+      local p = rnd.rnd(1, #planets)
       points[ #points + 1 ] = planets[p]
       numpoints = numpoints - 1
 
       local new_planets = {}
-      for i, j in ipairs( planets ) do
+      for i, j in ipairs(planets) do
          if i ~= p then
             new_planets[ #new_planets + 1 ] = j
          end
@@ -131,35 +131,35 @@ function create ()
       planets = new_planets
    end
    if #points < 2 then
-      misn.finish( false )
+      misn.finish(false)
    end
 
    friend = missys:presence("friendly")
    foe = missys:presence("hostile")
    if friend < foe then
-      misn.finish( false )
+      misn.finish(false)
    end
 
    credits = system.cur():jumpDist(missys) * 2500 + attractions * 4000
-   credits_nolux = credits + rnd.sigma() * ( credits / 3 )
-   credits = credits * rnd.rnd( 2, 6 )
-   credits = credits + rnd.sigma() * ( credits / 5 )
+   credits_nolux = credits + rnd.sigma() * (credits / 3)
+   credits = credits * rnd.rnd(2, 6)
+   credits = credits + rnd.sigma() * (credits / 5)
    nolux = false
    nolux_known = false
 
    -- Set mission details
-   misn.setTitle( misn_title:format( missys:name() ) )
-   misn.setDesc( misn_desc:format( missys:name() ) )
-   misn.setReward( creditstring( credits ) )
-   marker = misn.markerAdd( missys, "computer" )
+   misn.setTitle(misn_title:format(missys:name()))
+   misn.setDesc(misn_desc:format(missys:name()))
+   misn.setReward(creditstring(credits))
+   marker = misn.markerAdd(missys, "computer")
 end
 
 
 function accept ()
    if player.pilot():ship():class() ~= "Luxury Yacht" then
-      if tk.yesno( nolux_title, nolux_text:format( creditstring(credits_nolux) ) ) then
+      if tk.yesno(nolux_title, nolux_text:format(creditstring(credits_nolux))) then
          nolux_known = true
-         misn.setReward( creditstring( credits_nolux ) )
+         misn.setReward(creditstring(credits_nolux))
       else
          misn.finish()
       end
@@ -167,15 +167,16 @@ function accept ()
 
    misn.accept()
 
-   osd_msg[1] = osd_msg[1]:format( missys:name() )
-   osd_msg[3] = osd_msg[3]:format( startingplanet:name(),startingsystem:name() )
-   misn.osdCreate( osd_title, osd_msg )
-   civs = misn.cargoAdd( "Civilians", 0 )
+   osd_msg[1] = osd_msg[1]:format(missys:name())
+   osd_msg[3] = osd_msg[3]:format(startingplanet:name(),startingsystem:name())
+   misn.osdCreate(osd_title, osd_msg)
+   local commod = misn.cargoNew(N_("Sightseers"))
+   civs = misn.cargoAdd(commod, 0)
    job_done = false
 
-   hook.enter( "enter" )
-   hook.jumpout( "jumpout" )
-   hook.land( "land" )
+   hook.enter("enter")
+   hook.jumpout("jumpout")
+   hook.land("land")
 end
 
 
@@ -192,8 +193,8 @@ end
 
 function jumpout ()
    if not job_done and system.cur() == missys then
-      misn.osdActive( 1 )
-      if timer_hook ~= nil then hook.rm( timer_hook ) end
+      misn.osdActive(1)
+      if timer_hook ~= nil then hook.rm(timer_hook) end
       if marks ~= nil then
          for i, m in ipairs(marks) do
             if m ~= nil then
@@ -209,39 +210,39 @@ end
 function land ()
    jumpout()
    if job_done and planet.cur() == startingplanet then
-      misn.cargoRm( civs )
+      misn.cargoRm(civs)
 
       local ttl = pay_title
-      local txt = pay_text[ rnd.rnd( 1, #pay_text ) ]
+      local txt = pay_text[ rnd.rnd(1, #pay_text) ]
       if nolux ~= nolux_known then
          if nolux then
             ttl = pay_s_nolux_title
-            txt = pay_s_nolux_text[ rnd.rnd( 1, #pay_s_nolux_text ) ]
+            txt = pay_s_nolux_text[ rnd.rnd(1, #pay_s_nolux_text) ]
          else
             ttl = pay_s_lux_title
-            txt = pay_s_lux_text[ rnd.rnd( 1, #pay_s_lux_text ) ]
+            txt = pay_s_lux_text[ rnd.rnd(1, #pay_s_lux_text) ]
          end
       end
-      tk.msg( ttl, txt )
+      tk.msg(ttl, txt)
 
       if nolux then
-         player.pay( credits_nolux )
+         player.pay(credits_nolux)
       else
-         player.pay( credits )
+         player.pay(credits)
       end
 
-      misn.finish( true )
+      misn.finish(true)
    end
 end
 
 
 function timer ()
-   if timer_hook ~= nil then hook.rm( timer_hook ) end
+   if timer_hook ~= nil then hook.rm(timer_hook) end
 
    local player_pos = player.pos()
 
    if #points > 0 then
-      misn.osdActive( 2 )
+      misn.osdActive(2)
 
       local updated = false
       local new_points = {}
@@ -250,9 +251,9 @@ function timer ()
       for i, p in ipairs(points) do
          local point_pos = p:pos()
 
-         if player_pos:dist( point_pos ) < 500 then
-            local sstxt = ssmsg[ rnd.rnd( 1, #ssmsg ) ]
-            player.msg( sstxt )
+         if player_pos:dist(point_pos) < 500 then
+            local sstxt = ssmsg[ rnd.rnd(1, #ssmsg) ]
+            player.msg(sstxt)
             updated = true
          else
             new_points[#new_points + 1] = p
@@ -268,13 +269,13 @@ function timer ()
    -- Another check since the previous block could change the result
    if #points <= 0 then
       job_done = true
-      player.msg( msg[1]:format( startingplanet:name() ) )
-      misn.osdActive( 3 )
-      misn.markerMove( marker, startingsystem )
+      player.msg(msg[1]:format(startingplanet:name()))
+      misn.osdActive(3)
+      misn.markerMove(marker, startingsystem)
    end
 
    if not job_done then
-      timer_hook = hook.timer( 50, "timer" )
+      timer_hook = hook.timer(50, "timer")
    end
 end
 

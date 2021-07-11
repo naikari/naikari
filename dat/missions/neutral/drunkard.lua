@@ -38,8 +38,8 @@ misn_desc = _("You've decided to help some drunkard at the bar by picking up som
 -- OSD
 OSDtitle = _("Help the Drunkard")
 OSDdesc = {}
-OSDdesc[1] = _("Go pickup some goods at %s in the %s system")
-OSDdesc[2] = _("Drop off the goods at %s in the %s system")
+OSDdesc[1] = _("Fly to the %s system and land on %s to pick up some cargo")
+OSDdesc[2] = _("Fly to the %s system and land on %s")
 
 payment = 500000
 
@@ -115,8 +115,8 @@ function accept ()
       misn.setDesc( misn_desc:format(pickupWorld:name(), pickupSys:name(), delivWorld:name(), delivSys:name() ) )
 
       -- OSD
-      OSDdesc[1] =  OSDdesc[1]:format(pickupWorld:name(), pickupSys:name())
-      OSDdesc[2] =  OSDdesc[2]:format(delivWorld:name(), delivSys:name())
+      OSDdesc[1] =  OSDdesc[1]:format(pickupSys:name(), pickupWorld:name())
+      OSDdesc[2] =  OSDdesc[2]:format(delivSys:name(), delivWorld:name())
 
       pickedup = false
       droppedoff = false

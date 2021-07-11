@@ -29,18 +29,19 @@ require "missions/neutral/common"
 
 
 -- Localization, choosing a language if Naev is translated for non-english-speaking locales.
-title1 = _("An elderly lady")
 text1 = _([[You decide to ask the old woman if there's something you can help her with.
-    "As a matter of fact, there is," she creaks. "I want to visit my cousin, she lives on %s, you know, in the %s system, it's a Sirian place. But I don't have a ship and those blasted passenger lines around here don't fly on Sirius space! I tell you, customer service really has gone down the gutter over the years. In my space faring days, there would always be some transport ready to take you anywhere! But now look at me, I'm forced to get to the spaceport bar to see if there's a captain willing to take me! It's a disgrace, that's what it is. What a galaxy we live in! But I ramble. You seem like you've got time on your hands. Fancy making a trip down to %s? I'll pay you a decent fare, of course."]])
+
+"As a matter of fact, there is," she creaks. "I want to visit my cousin, she lives on %s, you know, in the %s system, it's a Sirian place. But I don't have a ship and those blasted passenger lines around here don't fly on Sirius space! I tell you, customer service really has gone down the gutter over the years. In my space faring days, there would always be some transport ready to take you anywhere! But now look at me, I'm forced to get to the spaceport bar to see if there's a captain willing to take me! It's a disgrace, that's what it is. What a galaxy we live in! But I ramble. You seem like you've got time on your hands. Fancy making a trip down to %s? I'll pay you a decent fare, of course."]])
 text2 = _([["Oh, that's good of you." The old woman gives you a wrinkly smile. "I haven't seen my cousin in such a long time, it'll be great to see how she's doing, and we can talk about old times. Ah, old times. It was all so different then. The space ways were much safer, for one. And people were politer to each other too, oh yes!"
-    You escort the old lady to your ship, trying not to listen to her rambling. Perhaps it would be a good idea to get her to her destination as quickly as you can.]])
 
-title2 = _("Delivery complete")
+You escort the old lady to your ship, trying not to listen to her rambling. Perhaps it would be a good idea to get her to her destination as quickly as you can.]])
+
 text3 = _([[You help the old lady to the spacedock elevator. She keeps grumbling about how spaceports these days are so inconvenient and how advertisement holograms are getting quite cheeky of late, they wouldn't allow that sort of thing in her day. But once you deliver her to the exit terminal, she smiles at you.
-    "Thank you, young captain, I don't know what I would have done without you. It seems there are still decent folk out there even now. Take this, as a token of my appreciation."
-    The lady hands you a credit chip. Then she disappears through the terminal. Well, that was quite a passenger!]])
 
-complaintstitle = _("Grumblings from the old lady")
+"Thank you, young captain, I don't know what I would have done without you. It seems there are still decent folk out there even now. Take this, as a token of my appreciation."
+
+The lady hands you a credit chip. Then she disappears through the terminal. Well, that was quite a passenger!]])
+
 complaints = {}
 complaints[1] = _([["You youngsters and your newfangled triple redundancy plasma feedback shunts. In my day, we had to use simple monopole instaconductors to keep our hyperdrives running!"]])
 complaints[2] = _([["Tell me, youngster, why is everyone so preoccupied with Soromid enhancements these days? Cybernetic implants were good enough for us, why can't they be for you?"]])
@@ -52,11 +53,11 @@ complaints[7] = _([["All this automation is making people lax, I tell you. My un
 
 OSDtitle = _("The old woman")
 OSD = {}
-OSD[1] = _("Take the old woman to %s (%s system)")
+OSD[1] = _("Fly to the %s system and land on %s to drop off the old woman")
 
 NPCname = _("An old woman")
 NPCdesc = _("You see a wrinkled old lady, a somewhat unusual sight in a spaceport bar. She's purposefully looking around.")
-misndesc = _("An aging lady has asked you to ferry her to %s in the %s system.")
+misndesc = _("An aging lady has asked you to ferry her to %s.")
 misnreward = _("Fair monetary compensation")
 
 log_text = _([[You escorted an old woman to her cousin in Sirian space. She was nice, albeit somewhat overly chatty.]])
@@ -66,7 +67,7 @@ function create ()
     cursys = system.cur()
 
     local planets = {}
-    getsysatdistance( cursys, 1, 6,
+    getsysatdistance(cursys, 1, 6,
         function(s)
             for i, v in ipairs(s:planets()) do
                 if v:faction() == faction.get("Sirius") and v:class() == "M" and v:canLand() then
@@ -74,7 +75,7 @@ function create ()
                 end
             end
             return false
-        end )
+        end)
 
     if #planets == 0 then abort() end -- In case no suitable planets are in range.
 
@@ -88,14 +89,15 @@ end
 
 
 function accept ()
-    if tk.yesno(title1, text1:format(destplanet:name(), destsys:name(), destplanet:name())) then
-        tk.msg(title1, text2)
-        oldwoman = misn.cargoAdd("Civilians", 0)
+    if tk.yesno("", text1:format(destplanet:name(), destsys:name(), destplanet:name())) then
+        tk.msg("", text2)
+        local commod = misn.cargoNew(N_("Old Woman"))
+        oldwoman = misn.cargoAdd(commod, 0)
 
         misn.accept()
-        misn.setDesc(misndesc:format(destplanet:name(), destsys:name()))
+        misn.setDesc(misndesc:format(destplanet:name()))
         misn.setReward(misnreward)
-        OSD[1] = OSD[1]:format(destplanet:name(), destsys:name())
+        OSD[1] = OSD[1]:format(destsys:name(), destplanet:name())
         misn.osdCreate(OSDtitle, OSD)
         misn.markerAdd(destsys, "high")
 
@@ -115,7 +117,7 @@ function date()
     local complaint_now = math.floor(((dist_total - dist_now) / dist_total) * #complaints + 0.5)
     if complaint_now > complaint then
         complaint = complaint_now
-        tk.msg(complaintstitle, complaints[complaint])
+        tk.msg("", complaints[complaint])
     end
     -- Uh... yeah.
 end
@@ -123,9 +125,9 @@ end
 -- Land hook.
 function land()
     if planet.cur() == destplanet then
-        tk.msg(title2, text3)
+        tk.msg("", text3)
         player.pay(500000) -- 500K
-        addMiscLog( log_text )
+        addMiscLog(log_text)
         misn.finish(true)
     end
 end

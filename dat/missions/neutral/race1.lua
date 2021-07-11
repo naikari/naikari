@@ -23,37 +23,32 @@ require "numstring"
 
 
 text = {}
-title = {}
-ftitle = {}
 ftext = {}
 
-title[1] = _("Looking for a 4th")
 text[1] = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. You have to bring a Yacht class ship, and there's a prize of %s if you win. Interested?"]])
 
-title[2] = _("Awesome")
 text[2] = _([["That's great! Here's how it works: We will all be in a Yacht class ship. Once we take off from %s, there will be a countdown, and then we will proceed to the various checkpoints in order, boarding them before going to the next checkpoint. After the last checkpoint has been boarded, head back to %s and land. Let's have some fun!"]])
 
-title[3] = _("Checkpoint %s reached")
-text[3] = _("Proceed to Checkpoint %s")
+text[3] = _("Checkpoint %s reached. Proceed to Checkpoint %s.")
 
-text[4] = _("Land on %s")
+text[4] = _("Checkpoint %s reached. Land on %s.")
+
 refusetitle = _("Refusal")
 refusetext = _([["I guess we'll need to find another pilot."]])
 
 wintitle = _("You Won!")
 wintext = _([[The laid back person comes up to you and hands you a credit chip. 
-   "Nice racing! Here's your prize money. Let's race again sometime soon!"]])
-   
-ftitle[1] = _("Illegal ship!")
+
+"Nice racing! Here's your prize money. Let's race again sometime soon!"]])
+
 ftext[1] = _([["You have switched to a ship that's not allowed in this race. Mission failed."]])
 
-ftitle[2] = _("You left the race!")
 ftext[2] = _([["Because you left the race, you have been disqualified."]])
 
-ftitle[3] = _("You failed to win the race.")
 ftext[3] = _([[As you congratulate the winner on a great race, the laid back person comes up to you.
-   "That was a lot of fun! If you ever have time, let's race again. Maybe you'll win next time!"]])
-   
+
+"That was a lot of fun! If you ever have time, let's race again. Maybe you'll win next time!"]])
+
 NPCname = _("A laid back person")
 NPCdesc = _("You see a laid back person, who appears to be one of the locals, looking around the bar.")
 
@@ -94,13 +89,13 @@ end
 
 
 function accept ()
-   if tk.yesno(title[1], text[1]:format(creditstring(credits))) then
+   if tk.yesno("", text[1]:format(creditstring(credits))) then
       misn.accept()
       OSD[4] = string.format(OSD[4], curplanet:name())
       misn.setDesc(misndesc)
       misn.setReward(creditstring(credits))
       misn.osdCreate(OSDtitle, OSD)
-      tk.msg(title[2], string.format(text[2], curplanet:name(), curplanet:name()))
+      tk.msg("", string.format(text[2], curplanet:name(), curplanet:name()))
       hook.takeoff("takeoff")
    else
       tk.msg(refusetitle, refusetext)
@@ -110,7 +105,7 @@ end
 
 function takeoff()
    if player.pilot():ship():class() ~= "Yacht" and player.pilot():ship():class() ~= "Luxury Yacht" then
-      tk.msg(ftitle[1], ftext[1])
+      tk.msg("", ftext[1])
       abort()
    end
    planetvec = planet.pos(curplanet)
@@ -254,9 +249,9 @@ function board(ship)
          misn.osdActive(i+1)
          target[4] = target[4] + 1
          if target[4] == 4 then
-            tk.msg(string.format(title[3], i), string.format(text[4], curplanet:name()))
+            tk.msg("", string.format(text[4], i, curplanet:name()))
          else
-            tk.msg(string.format(title[3], i), string.format(text[3], i+1))
+            tk.msg("", string.format(text[3], i, i+1))
          end
          break
       end
@@ -266,7 +261,7 @@ end
 
 
 function jumpin()
-   tk.msg(ftitle[2], ftext[2])
+   tk.msg("", ftext[2])
    abort()
 end
 
@@ -283,12 +278,12 @@ function land()
          player.pay(credits)
          misn.finish(true)
       else
-         tk.msg(ftitle[3], ftext[3])
+         tk.msg("", ftext[3])
          abort()
          
       end
    else
-      tk.msg(ftitle[2], ftext[2])
+      tk.msg("", ftext[2])
       abort()
    end
 end

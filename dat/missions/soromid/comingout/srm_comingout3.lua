@@ -133,9 +133,8 @@ end
 
 
 function spawnChelseaShip( param )
-   chelsea = pilot.add("Llama", "Comingout_associates", param, _("Chelsea"))
-   chelsea:rmOutfit("all")
-   chelsea:rmOutfit("cores")
+   chelsea = pilot.add(
+         "Llama", "Comingout_associates", param, _("Chelsea"), {naked=true})
    chelsea:addOutfit("Unicorp PT-80 Core System")
    chelsea:addOutfit("Unicorp Hawk 300 Engine")
    chelsea:addOutfit("Unicorp D-4 Light Plating")

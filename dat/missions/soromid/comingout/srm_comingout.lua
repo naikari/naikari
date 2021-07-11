@@ -38,9 +38,6 @@ require "numstring"
 require "missions/soromid/common"
 
 
-title = {}
-text = {}
-
 ask_text = _([[The stranger looks up at you as you approach. Their voice is deeper than you expected from their appearance as they nervously speak.
 
 "Oh! Uh, h-hi! Nice to meet you. I'm... gee, I was just thinking of what name to go by, what are the odds?" They let out a nervous laugh. "I suppose I'll go by 'C' for now since I'm not sure yet about the name. I, uh, definitely don't want to give out my deadname anymore. They/them pronouns please." You likewise introduce yourself and, taking their lead, note your own pronouns. They seem like a nice person, so you start chatting. You learn that C recently found out that they're transgender and was just now trying to sort out their feelings about their gender. At some point, the fact that you're a pilot comes up, which causes C to perk up. "Oh! Maybe you could help me with my other problem, then!
@@ -150,15 +147,15 @@ function generate_osd ()
          local pl, sys = planet.get(pn)
          osd_desc[#osd_desc + 1] = string.format(
                _("Fly to the %s system and land on %s"), sys:name(),
-               pl:name() )
+               pl:name())
       end
    else
       osd_desc[1] = string.format(
             _("Fly to the %s system and land on %s"), homesys:name(),
-            homeplanet:name() )
+            homeplanet:name())
    end
 
-   misn.osdCreate( misn_title, osd_desc )
+   misn.osdCreate(misn_title, osd_desc)
 end
 
 
