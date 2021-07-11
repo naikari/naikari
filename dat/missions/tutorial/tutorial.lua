@@ -58,11 +58,8 @@ land_text = _([["Excellent! The landing was successful. Melendez Corporation use
 "When you land, your ship is refueled automatically and you can do things such as talk to civilians at the bar, buy new ship components, configure your ship, and most importantly, accept missions from the Mission Computer. Why don't we look around? As you can see, we are currently on the Landing Main tab, where you can learn about the planet and buy a local map. Click all the other tabs below and I'll give you a tour through what else you can do on a planet. When you are done, click the 'Take Off' button so we can continue."]])
 land_log = _([[When you land, your ship is refueled automatically if the planet or station supports refueling.]])
 
-bar_text = _([["This is the Spaceport Bar, where you can read the latest news (as you can see on your right at the moment), but more importantly, you can meet civilians, hire pilots to join your fleet, and sometimes find unique mission opportunities! Click on someone in the bar and then click on the Approach button to approach them. I recommend regularly talking to civilians at the bar, at least early on. There may be pilots among them who may have useful tips for you!
-
-"I would also recommend talking to any pilots you find and seeing if you might want to hire them to join your fleet. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. Each pilot is different, so try to pick pilots that can keep up with your ship and work well as a fleet."]])
+bar_text = _([["This is the Spaceport Bar, where you can read the latest news (as you can see on your right at the moment), but more importantly, you can meet civilians, hire pilots to join your fleet, and sometimes find unique mission opportunities! Click on someone in the bar and then click on the Approach button to approach them. I recommend regularly talking to civilians at the bar, at least early on. There may be pilots among them who may have useful tips for you!"]])
 bar_log = _([[The Spaceport Bar allows you to read the news, meet civilians, hire pilots to join your fleet, and sometimes find unique missions. You can click on any patron of the bar and then click on the Approach button to approach them. Some civilians may lend helpful advice.]])
-bar_pilots_log = _([[Pilots which are available for hire can be found at the Spaceport Bar. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. Each pilot is different, so you should try to pick pilots that will work well for you as a fleet.]])
 
 mission_text = _([["This is the Mission Computer, where you can find basic missions in the official mission database. Missions are how you make your living as a pilot, so I recommend you check this screen often to see where the money-making opportunities are! You can see that each mission is given a brief summary, and by clicking them, you will be able to see more information about the mission. Since many missions involve cargo, you can also see how much free space is available in your ship in the top-right.
 
@@ -280,7 +277,6 @@ function land_bar ()
    if bar_hook ~= nil then hook.rm(bar_hook) end
    tk.msg("", bar_text)
    addTutLog(bar_log, N_("Interface"))
-   addTutLog(bar_pilots_log, N_("Interface"))
 end
 
 

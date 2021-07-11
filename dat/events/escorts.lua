@@ -36,7 +36,15 @@
 local portrait = require "portrait"
 require "pilot/generic"
 require "pilot/pirate"
+require "events/tutorial/tutorial_common"
 
+
+tutorial_text = _([[Captain T. Practice pipes up. "Ah, it looks like there's pilots available for hire here at the bar! Let me explain: throughout the galaxy, there are many pilots who seek to work as escorts for other pilots, whether for experience or just to make good money. Having escorts can really make a lot of missions easier for you.
+
+"I would recommend at least talking to any pilots you find and seeing if you might want to hire them to join your fleet. Each pilot has a deposit that you have to pay up-front, and a royalty, which is a percentage of your mission earnings that you have to pay them whenever you get paid for a mission.
+
+"Of course, do make sure that your ship is able to defend itself if caught without escorts as your first priority; being alone and able to defend yourself is probably better than depending on other pilots! You should also try to pick pilots that can keep up with your ship have good synergy with the rest of your fleet."]])
+tutorial_log = _([[Pilots which are available for hire can be found at the Spaceport Bar. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. Each pilot is different, so you should try to pick pilots that will work well for you as a fleet.]])
 
 npctext = {}
 npctext[1] = _([["Hi there! I'm looking to get some piloting experience. Here are my credentials. Would you be interested in hiring me?"]])
@@ -66,6 +74,7 @@ function create ()
 
    hook.land("land")
    hook.load("land")
+   hook.land("land_bar", "bar")
    hook.jumpout("jumpout")
    hook.enter("enter")
    hook.pay("pay")
@@ -150,6 +159,8 @@ function createPilotNPCs ()
          npcs[id] = newpilot
       end
    end
+
+   
 end
 
 
@@ -203,6 +214,18 @@ function land ()
 
    -- Create NPCs for pilots you can hire.
    createPilotNPCs()
+end
+
+
+function land_bar ()
+   if #npcs > 0 and not var.peek("_tutorial_escorts_done") then
+      if var.peek("_tutorial_passive_active") then
+         tk.msg("", tutorial_text)
+      end
+      addTutLog(tutorial_log, N_("Interface"))
+
+      var.push("_tutorial_escorts_done", true)
+   end
 end
 
 
