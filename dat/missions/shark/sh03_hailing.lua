@@ -141,7 +141,7 @@ end
 function hail()
    --The player takes contact with the Hawking
    if stage == 0 then
-      tk.msg("":format(paypla:name()), text[4]:format(paypla:name()))
+      tk.msg("", text[4]:format(paypla:name()))
       stage = 1
       misn.osdActive(2)
       misn.markerRm(marker)

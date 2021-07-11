@@ -46,7 +46,6 @@ refusetext = _([["OK, come back when you are ready."]])
 
 text[2] = _([["Let's go, then."]])
 
-"" = _("End of mission")
 text[3] = _([[Smith gets out of your ship and looks at you, smiling. "You know, it's like that in our kind of job. Sometimes it works and sometimes it fails. It's not our fault. Anyway, here is your pay."]])
 
 text[4] = _([[As you land, you see a group of people that were waiting for your ship. Smith hails them and tells you to wait in the ship while he goes to a private part of the bar.
