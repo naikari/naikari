@@ -222,7 +222,7 @@ function land_bar ()
       if var.peek("_tutorial_passive_active") then
          tk.msg("", tutorial_text)
       end
-      addTutLog(tutorial_log, N_("Interface"))
+      addTutLog(tutorial_log, N_("Escorts"))
 
       var.push("_tutorial_escorts_done", true)
    end

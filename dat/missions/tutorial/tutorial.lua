@@ -64,7 +64,7 @@ bar_log = _([[The Spaceport Bar allows you to read the news, meet civilians, hir
 mission_text = _([["This is the Mission Computer, where you can find basic missions in the official mission database. Missions are how you make your living as a pilot, so I recommend you check this screen often to see where the money-making opportunities are! You can see that each mission is given a brief summary, and by clicking them, you will be able to see more information about the mission. Since many missions involve cargo, you can also see how much free space is available in your ship in the top-right.
 
 "When picking missions, pay attention to how much they pay. You'll want to strike a balance of choosing missions that you're capable of doing, but getting paid as much as possible to do them. Once you've chosen a mission, click the 'Accept Mission' button on the bottom-right and it will be added to your active missions, which you can review via the Info window by pressing %s."]])
-mission_log = _([[You can find basic missions in the official mission database via the Mission Computer (Missions tab while landed). Each mission is given a brief summary in the list on the left, and you can click on these summaries to see more information about a particular mission. Once you've chosen a mission, you can click the "Accept Mission" button on the bottom-right to add the mission to your active missions. You can review your active missions at any time via the Info window.]])
+mission_log = _([[You can find basic missions in the official mission database via the Mission Computer (Missions tab while landed). Each mission is given a brief summary in the list on the left, and you can click on these summaries to see more information about a particular mission. Once you've chosen a mission, you can click the "Accept Mission" button on the bottom-right to add the mission to your active missions. You can review your active missions at any time via the Info window, which you can open by pressing the Information Menu key (I by default) or by pressing the Small Menu key (Escape by default) and pressing the "Info" button.]])
 
 outfits_text = _([["This is the Outfitter, where you can buy new outfits to make your Melendez Corporation starship even better! You can fit your ship with new weapons, extra cargo space, more powerful core systems, and more! Regional maps which can help you explore the galaxy more easily can also be purchased here, as well as licenses required for higher-end weaponry and starships (for example, you will require a Large Civilian Vessel License to purchase our top-of-the-line Melendez Mule Bulk Cargo Starship, widely sought after for its unmatched cargo capacity).
 
@@ -111,7 +111,7 @@ combat_log = _([[You can target an enemy ship either by either clicking on it or
 infoscreen_text =_([["Excellent work taking out that drone! As you may have noticed, shield regenerates over time, but armor does not. This is not universal, of course; some ships, particularly larger ships, feature advanced armor repair technology. But even then, armor regeneration is usually much slower than shield regeneration.
 
 "It is also worth noting that you can configure the way your weapons shoot from the Weapons tab of the Info window, which can be accessed by pressing %s or by pressing %s and then clicking on the Info button. The Info window also lets you view information about your ship, cargo, current missions, and reputation with the various factions. You will likely be referencing it a lot."]])
-infoscreen_log = _([[You can configure the way your weapons shoot from the Weapons tab of the Info window.]])
+infoscreen_log = _([[You can configure the way your weapons shoot from the Weapons tab of the Info window, which you can open by pressing the Information Menu key (I by default) or by pressing the Small Menu key (Escape by default) and pressing the "Info" button.]])
 
 cooldown_text = _([["You may have also noticed your heat meters going up and your weapons becoming less accurate as your ship and weapons got hot. This is normal, but too much heat can make your weapons difficult to use, which is why we at Melendez Corporation recommend using active cooling when it is safe to do so. Let's practice using it. Engage active cooldown and wait for it to cool your ship down completely. As I said before, you can engage active cooling by pressing %s twice."]])
 cooldown_log = _([[As you fire your weapons, they and subsequently your ship get hotter. Too much heat causes your weapons to lose accuracy. You can cool down your ship at any time in space by pressing the Autobrake key (Ctrl+B by default) twice. You can also cool down your ship by landing on any planet or station.]])
@@ -227,7 +227,7 @@ function timer ()
          misn.osdActive(2)
 
          tk.msg("", objectives_text:format(tutGetKey("mousefly")))
-         addTutLog(objectives_log, N_("Interface"))
+         addTutLog(objectives_log, N_("Missions"))
          tk.msg("", landing_text:format(
                   start_planet:name(), tutGetKey("target_planet"),
                   tutGetKey("land")))
@@ -242,7 +242,7 @@ function timer ()
                   dest_planet:name(), tutGetKey("target_hostile"),
                   tutGetKey("primary"), tutGetKey("secondary"),
                   tutGetKey("autobrake")))
-         addTutLog(combat_log, N_("Survival"))
+         addTutLog(combat_log, N_("Combat"))
          spawn_drone()
       end
    elseif stage == 6 then
@@ -262,7 +262,7 @@ function land ()
    if stage == 2 then
       stage = 3
       tk.msg("", land_text)
-      addTutLog(land_log, N_("Interface"))
+      addTutLog(land_log, N_("Planets and Stations"))
       bar_hook = hook.land("land_bar", "bar")
       mission_hook = hook.land("land_mission", "mission")
       outfits_hook = hook.land("land_outfits", "outfits")
@@ -276,42 +276,42 @@ end
 function land_bar ()
    if bar_hook ~= nil then hook.rm(bar_hook) end
    tk.msg("", bar_text)
-   addTutLog(bar_log, N_("Interface"))
+   addTutLog(bar_log, N_("Planets and Stations"))
 end
 
 
 function land_mission ()
    if mission_hook ~= nil then hook.rm(mission_hook) end
    tk.msg("", mission_text:format(tutGetKey("info")))
-   addTutLog(mission_log, N_("Interface"))
+   addTutLog(mission_log, N_("Missions"))
 end
 
 
 function land_outfits ()
    if outfits_hook ~= nil then hook.rm(outfits_hook) end
    tk.msg("", outfits_text)
-   addTutLog(outfits_log, N_("Interface"))
+   addTutLog(outfits_log, N_("Ship Upgrades"))
 end
 
 
 function land_shipyard ()
    if shipyard_hook ~= nil then hook.rm(shipyard_hook) end
    tk.msg("", shipyard_text)
-   addTutLog(shipyard_log, N_("Interface"))
+   addTutLog(shipyard_log, N_("Ship Upgrades"))
 end
 
 
 function land_equipment ()
    if equipment_hook ~= nil then hook.rm(equipment_hook) end
    tk.msg("", equipment_text)
-   addTutLog(equipment_log, N_("Interface"))
+   addTutLog(equipment_log, N_("Ship Upgrades"))
 end
 
 
 function land_commodity ()
    if commodity_hook ~= nil then hook.rm(commodity_hook) end
    tk.msg("", commodity_text:format(tutGetKey("starmap")))
-   addTutLog(commodity_log, N_("Interface"))
+   addTutLog(commodity_log, N_("Commodity Trading"))
 end
 
 
@@ -344,8 +344,8 @@ function enter_timer ()
    elseif stage == 7 and system.cur() == destsys then
       tk.msg("", fuel_text:format(player.name(), tutGetKey("target_next"),
                tutGetKey("hail")))
-      addTutLog(fuel_log, N_("Survival"))
-      addTutLog(fuel_log2, N_("Survival"))
+      addTutLog(fuel_log, N_("Fuel"))
+      addTutLog(fuel_log2, N_("Fuel"))
 
       addMiscLog(log_text)
 
@@ -371,9 +371,9 @@ function pilot_death_timer ()
    misn.osdActive(5)
    misn.markerAdd(destsys, "high")
    tk.msg("", infoscreen_text:format(tutGetKey("info"), tutGetKey("menu")))
-   addTutLog(infoscreen_log, N_("Survival"))
+   addTutLog(infoscreen_log, N_("Info Window"))
    tk.msg("", cooldown_text:format(tutGetKey("autobrake")))
-   addTutLog(cooldown_log, N_("Survival"))
+   addTutLog(cooldown_log, N_("Active Cooling"))
 end
 
 
