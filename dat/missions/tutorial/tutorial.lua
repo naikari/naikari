@@ -286,7 +286,16 @@ function land ()
    if stage == 2 then
       stage = 3
       tk.msg("", land_text)
+
+      -- Add all logs right away just in case the player takes off early
       addTutLog(land_log, N_("Planets and Stations"))
+      addTutLog(bar_log, N_("Planets and Stations"))
+      addTutLog(mission_log, N_("Missions"))
+      addTutLog(outfits_log, N_("Ship Upgrades"))
+      addTutLog(shipyard_log, N_("Ship Upgrades"))
+      addTutLog(equipment_log, N_("Ship Upgrades"))
+      addTutLog(commodity_log, N_("Commodity Trading"))
+
       bar_hook = hook.land("land_bar", "bar")
       mission_hook = hook.land("land_mission", "mission")
       outfits_hook = hook.land("land_outfits", "outfits")
@@ -300,42 +309,36 @@ end
 function land_bar ()
    if bar_hook ~= nil then hook.rm(bar_hook) end
    tk.msg("", bar_text)
-   addTutLog(bar_log, N_("Planets and Stations"))
 end
 
 
 function land_mission ()
    if mission_hook ~= nil then hook.rm(mission_hook) end
    tk.msg("", mission_text:format(tutGetKey("info")))
-   addTutLog(mission_log, N_("Missions"))
 end
 
 
 function land_outfits ()
    if outfits_hook ~= nil then hook.rm(outfits_hook) end
    tk.msg("", outfits_text)
-   addTutLog(outfits_log, N_("Ship Upgrades"))
 end
 
 
 function land_shipyard ()
    if shipyard_hook ~= nil then hook.rm(shipyard_hook) end
    tk.msg("", shipyard_text)
-   addTutLog(shipyard_log, N_("Ship Upgrades"))
 end
 
 
 function land_equipment ()
    if equipment_hook ~= nil then hook.rm(equipment_hook) end
    tk.msg("", equipment_text)
-   addTutLog(equipment_log, N_("Ship Upgrades"))
 end
 
 
 function land_commodity ()
    if commodity_hook ~= nil then hook.rm(commodity_hook) end
    tk.msg("", commodity_text:format(tutGetKey("starmap")))
-   addTutLog(commodity_log, N_("Commodity Trading"))
 end
 
 
