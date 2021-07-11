@@ -20,10 +20,5 @@
   <jump target="Xavier">
    <autopos/>
   </jump>
-  <jump target="Zied">
-   <autopos/>
-   <exitonly/>
-   <longrange/>
-  </jump>
  </jumps>
 </ssys>

@@ -51,5 +51,10 @@
    <hidden/>
    <longrange/>
   </jump>
+  <jump target="Zied">
+   <pos x="9921.403503" y="1219.795158"/>
+   <hidden/>
+   <longrange/>
+  </jump>
  </jumps>
 </ssys>
