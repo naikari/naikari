@@ -67,12 +67,14 @@ end
 function timer ()
    local sys = system.cur()
    local nebu_dens, nebu_volat = sys:nebula()
-
    local landable_planets = false
-   for i, pl in ipairs(sys:getAll()) do
-      if pl:canLand() then
-         landable_planets = true
-         break
+
+   if not var.peek("tutorial_nofuel") and player.jumps() <= 0 then
+      for i, pl in ipairs(planet.getAll()) do
+         if pl:system() == sys and pl:canLand() then
+            landable_planets = true
+            break
+         end
       end
    end
 
