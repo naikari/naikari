@@ -187,7 +187,7 @@ double ntime_getRemainder( ntime_t t )
  */
 char* ntime_pretty( ntime_t t, int d )
 {
-   char str[64];
+   char str[STRMAX_SHORT];
    ntime_prettyBuf( str, sizeof(str), t, d );
    return strdup(str);
 }

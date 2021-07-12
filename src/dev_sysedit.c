@@ -1353,11 +1353,11 @@ static void sysedit_editPnt( void )
    snprintf( buf, sizeof(buf), "%s", p->class );
    window_setInput( wid, "inpClass", buf );
    window_setInput( wid, "inpLand", p->land_func );
-   snprintf( buf, sizeof(buf), "%g", p->presenceAmount );
+   snprintf( buf, sizeof(buf), "%G", p->presenceAmount );
    window_setInput( wid, "inpPresence", buf );
    snprintf( buf, sizeof(buf), "%d", p->presenceRange );
    window_setInput( wid, "inpPresenceRange", buf );
-   snprintf( buf, sizeof(buf), "%g", p->rdr_range_mod );
+   snprintf( buf, sizeof(buf), "%G", p->rdr_range_mod );
    window_setInput( wid, "inpHide", buf );
 
    /* Generate the list. */
@@ -1464,7 +1464,7 @@ static void sysedit_editJump( void )
    l = gl_printWidthRaw( NULL, s );
    window_addText( wid, x, y, l, 20, 1, "txtHide",
          NULL, NULL, s );
-   window_addInput( wid, x + l + 8, y, 50, 20, "inpHide", 64, 1, NULL );
+   window_addInput( wid, x + l + 8, y, 50, 20, "inpHide", 5, 1, NULL );
    window_setInputFilter( wid, "inpHide", INPUT_FILTER_NUMBER );
    x += 50 + 10;
 
@@ -1475,7 +1475,7 @@ static void sysedit_editJump( void )
          "btnClose", _("Close"), sysedit_editJumpClose );
 
    /* Load current values. */
-   snprintf( buf, sizeof(buf), "%g", j->rdr_range_mod );
+   snprintf( buf, sizeof(buf), "%G", j->rdr_range_mod );
    window_setInput( wid, "inpHide", buf );
 }
 

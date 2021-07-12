@@ -496,7 +496,7 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    /* Input boxes. */
    snprintf( vmsg, sizeof(vmsg), "%d", conf.mesg_visible );
    window_setInput( wid, "inpMSG", vmsg );
-   snprintf( tmax, sizeof(tmax), "%g", conf.compression_mult );
+   snprintf( tmax, sizeof(tmax), "%G", conf.compression_mult );
    window_setInput( wid, "inpTMax", tmax );
 }
 

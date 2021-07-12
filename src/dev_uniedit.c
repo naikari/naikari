@@ -948,7 +948,7 @@ void uniedit_selectText (void)
          if (sys->nebu_density<=0.)
             snprintf( buf, sizeof(buf), _("None") );
          else
-            snprintf( buf, sizeof(buf), _("%g Density\n%g GW Volatility"),
+            snprintf( buf, sizeof(buf), _("%G Density\n%G GW Volatility"),
                   sys->nebu_density, sys->nebu_volatility);
          window_modifyText( uniedit_wid, "txtNebula", buf );
       }
@@ -1299,17 +1299,17 @@ static void uniedit_editSys (void)
    (void)x;
 
    /* Load values */
-   snprintf( buf, sizeof(buf), "%g", sys->radius );
+   snprintf( buf, sizeof(buf), "%G", sys->radius );
    window_setInput( wid, "inpRadius", buf );
    snprintf( buf, sizeof(buf), "%d", sys->stars );
    window_setInput( wid, "inpStars", buf );
-   snprintf( buf, sizeof(buf), "%g", sys->rdr_range_mod );
+   snprintf( buf, sizeof(buf), "%G", sys->rdr_range_mod );
    window_setInput( wid, "inpInterference", buf );
-   snprintf( buf, sizeof(buf), "%g", sys->nebu_density );
+   snprintf( buf, sizeof(buf), "%G", sys->nebu_density );
    window_setInput( wid, "inpNebula", buf );
-   snprintf( buf, sizeof(buf), "%g", sys->nebu_volatility );
+   snprintf( buf, sizeof(buf), "%G", sys->nebu_volatility );
    window_setInput( wid, "inpVolatility", buf );
-   snprintf( buf, sizeof(buf), "%g", sys->nebu_hue*360. );
+   snprintf( buf, sizeof(buf), "%G", sys->nebu_hue*360. );
    window_setInput( wid, "inpHue", buf );
 
    /* Generate the list. */

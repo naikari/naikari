@@ -405,7 +405,7 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          /* Volatility */
          if (sys->nebu_volatility > 0.)
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
-                  _("Nebula: %g GW volatility\n"), sys->nebu_volatility );
+                  _("Nebula: %G GW volatility\n"), sys->nebu_volatility );
          else
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Stable\n") );
       }
@@ -413,7 +413,7 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       /* Interference. */
       if (sys->rdr_range_mod != 1. ) {
          cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
-               _("Radar Range: %+.0f%%\n"), sys->rdr_range_mod*100 - 100);
+               _("Radar Range: %+G%%\n"), sys->rdr_range_mod*100 - 100);
       }
       /* Asteroids. */
       if (array_size(sys->asteroids) > 0 ) {
@@ -964,40 +964,57 @@ void map_system_buyCommodPrice( unsigned int wid, char *str )
 {
    (void)wid;
    (void)str;
-   int njumps=0;
+   int njumps = 0;
    StarSystem **syslist;
    int cost,ret;
    char coststr[ECON_CRED_STRLEN];
    ntime_t t = ntime_get();
+   ntime_t tdiff;
 
    /* find number of jumps */
-   if ( ( strcmp( cur_system->name, cur_sys_sel->name ) == 0 ) ) {
+   if ((strcmp(cur_system->name, cur_sys_sel->name) == 0)) {
       cost = 500;
       njumps = 0;
    } else {
-      syslist=map_getJumpPath( cur_system->name, cur_sys_sel->name, 1, 0, NULL);
-      if ( syslist == NULL ) {
+      syslist = map_getJumpPath(cur_system->name, cur_sys_sel->name, 1, 0, NULL);
+      if (syslist == NULL) {
          /* no route */
-         dialogue_msg( _("Not available here"), _("Sorry, we don't have the commodity prices for %s available here at the moment."), _(cur_planetObj_sel->name) );
+         dialogue_msg(
+               "",
+               _("We don't have the commodity prices for %s available here at"
+                  " the moment."),
+               _(cur_planetObj_sel->name));
          return;
       } else {
-         cost = 500 + 300 * array_size( syslist );
-         array_free ( syslist );
+         njumps = array_size(syslist);
+         cost = 500 + 300*njumps;
+         array_free(syslist);
       }
    }
 
-   /* get the time at which this purchase will be made (2 periods per jump ago)*/
-   t-= ( njumps * 2 + 0.2 ) * NT_PERIOD_SECONDS * 1000;
+   /* Get the time at which this purchase will be made
+    * (2 periods per jump) */
+   tdiff = ntime_create(0, 2 * njumps, 0);
+   t -= tdiff;
+
    credits2str( coststr, cost, -1 );
    if ( !player_hasCredits( cost ) ) {
-      dialogue_msg( _("You can't afford that"), _("Sorry, but we are selling this information for %s, which you don't have."), coststr );
-   } else if ( array_size( cur_planetObj_sel->commodities ) == 0 ) {
-      dialogue_msgRaw( _("No commodities sold here"),_("There are no commodities sold here, as far as we are aware!"));
-   } else if ( cur_planetObj_sel->commodityPrice[0].updateTime >= t ) {
-      dialogue_msgRaw( _("You already have newer information"), _("I've checked your computer, and you already have newer information than we can sell.") );
+      dialogue_msg(
+            "",
+            _("We are selling this information for %s, which you don't have."),
+            coststr);
+   } else if (array_size(cur_planetObj_sel->commodities) == 0) {
+      dialogue_msgRaw("",_("We don't know of any commodities sold here."));
+   } else if (cur_planetObj_sel->commodityPrice[0].updateTime >= t) {
+      dialogue_msgRaw(
+            "", _("You already have newer information than we can sell."));
    } else {
-      ret=dialogue_YesNo( _("Purchase commodity prices?"), _("For %s, that will cost %s. The latest information we have is %g periods old."), _(cur_planetObj_sel->name), coststr, njumps*2+0.2);
-      if ( ret ) {
+      ret = dialogue_YesNo(
+            "",
+            _("Commodity prices on %s will cost %s. The latest information we"
+               " have is %s old. Purchase commodity prices?"),
+            _(cur_planetObj_sel->name), coststr, ntime_pretty(tdiff, 0));
+      if (ret) {
          player_modCredits( -cost );
          economy_averageSeenPricesAtTime( cur_planetObj_sel, t );
          map_system_array_update( wid,  MAPSYS_TRADE );

@@ -677,7 +677,7 @@ static void map_update( unsigned int wid )
          /* Volatility */
          if (sys->nebu_volatility > 0.)
             p += scnprintf(&buf[p], sizeof(buf)-p,
-                  _("Nebula (%g GW volatility)"), sys->nebu_volatility);
+                  _("Nebula (%G GW volatility)"), sys->nebu_volatility);
          else
             p += scnprintf(&buf[p], sizeof(buf)-p, _("Nebula"));
       }
@@ -687,7 +687,7 @@ static void map_update( unsigned int wid )
             p += scnprintf(&buf[p], sizeof(buf)-p, _(", "));
 
          p += scnprintf(&buf[p], sizeof(buf)-p,
-               _("%+g%% radar range"), sys->rdr_range_mod*100 - 100);
+               _("%+G%% radar range"), sys->rdr_range_mod*100 - 100);
       }
       /* Asteroids. */
       if (array_size(sys->asteroids) > 0) {
