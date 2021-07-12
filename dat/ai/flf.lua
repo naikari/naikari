@@ -55,23 +55,23 @@ end
 function taunt ( target, offense )
 
    -- Only 50% of actually taunting.
-   if rnd.int(0,1) == 0 then
+   if rnd.rnd(0,1) == 0 then
       return
    end
 
    -- some taunts
    if offense then
       taunts = {
-            _("For the Frontier!"),
-            _("You'll make great target practice!"),
-            _("Purge the oppressors!")
+         _("For the Frontier!"),
+         _("You'll make great target practice!"),
+         _("Purge the oppressors!"),
       }
    else
       taunts = {
-            _("You are no match for the FLF!"),
-            _("I've killed scum far more dangerous than you!"),
-            _("You'll regret that!"),
-            _("Death to the enemies of the Frontier!")
+         _("You are no match for the FLF!"),
+         _("I've killed scum far more dangerous than you!"),
+         _("You'll regret that!"),
+         _("Death to enemies of the Frontier!"),
       }
    end
 

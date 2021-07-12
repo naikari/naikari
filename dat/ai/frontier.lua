@@ -14,7 +14,7 @@ function create ()
 
    -- Handle bribing
    if rnd.rnd() < 0.6 then
-      mem.bribe_no = _("\"I shall especially enjoy your death.\"")
+      mem.bribe_no = _("\"The only way to deal with scum like you is with cannons!\"")
    else
       bribe_no = {
             _("\"I don't want your money.\""),
@@ -35,7 +35,9 @@ function create ()
       if flf_standing < 50 then
          mem.refuel_no = _("\"Sorry, I can't spare fuel for you.\"")
       elseif standing < 50 then
-         mem.refuel_msg = string.format(_("\"For you I could make an exception for %s.\""), creditstring(mem.refuel))
+         mem.refuel_msg = string.format(
+               _("\"For you I could make an exception for %s.\""),
+               creditstring(mem.refuel))
       else
          mem.refuel = 0
          mem.refuel_msg = _("\"Sure, friend, I can refuel you. On my way.\"")
@@ -56,14 +58,20 @@ function taunt ( target, offense )
       return
    end
 
-   -- Offense is not actually used
-   taunts = {
-       _("Alea iacta est!"),
-       _("Morituri te salutant!"),
-       _("Your head will make a great trophy!"),
-       _("Cave canem!"),
-       _("Death awaits you!")
-   }
+   if offense then
+      taunts = {
+         _("For the Frontier!"),
+         _("You'll make great target practice!"),
+         _("You won't get away with your actions!"),
+      }
+   else
+      taunts = {
+         _("You'll regret that!"),
+         _("Death to enemies of the Frontier!"),
+         _("I won't go down without a fight!"),
+         _("To hell with you!"),
+      }
+   end
    ai.pilot():comm( target, taunts[ rnd.int(1,#taunts) ] )
 end
 
