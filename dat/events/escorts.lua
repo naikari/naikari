@@ -96,6 +96,7 @@ function createPilotNPCs ()
    }
    local num_pilots = rnd.rnd(0, 5)
    local fac = faction.get("Mercenary")
+   local def_ai = "mercenary"
    local name_func = pilot_name
    local portrait_arg = nil
 
@@ -110,8 +111,20 @@ function createPilotNPCs ()
          { ship = "Pirate Phalanx", royalty = 0.35 },
       }
       fac = faction.get("Pirate")
+      def_ai = "pirate"
       name_func = pirate_name
       portrait_arg = "Pirate"
+   elseif pf == faction.get("FLF") then
+      ship_choices = {
+         { ship = "Hyena", royalty = 0.1 },
+         { ship = "Vendetta", royalty = 0.2 },
+         { ship = "Lancelot", royalty = 0.2 },
+         { ship = "Ancestor", royalty = 0.25 },
+         { ship = "Pacifier", royalty = 0.5 },
+      }
+      fac = faction.get("FLF")
+      def_ai = "flf"
+      portrait_arg = "FLF"
    elseif pf == faction.get("Thurion") then
       ship_choices = {
          { ship = "Thurion Ingenuity", royalty = 0.15 },
@@ -120,9 +133,11 @@ function createPilotNPCs ()
          { ship = "Thurion Apprehension", royalty = 0.5 },
       }
       fac = faction.get("Thurion")
+      def_ai = "thurion"
       portrait_arg = "Thurion"
    elseif planet.cur():faction() == faction.get("Proteron") then
       fac = faction.get("Proteron")
+      def_ai = "proteron"
       portrait_arg = "Proteron"
    end
 
@@ -152,6 +167,7 @@ function createPilotNPCs ()
          newpilot.name = name_func()
          newpilot.portrait = portrait.get(portrait_arg)
          newpilot.faction = fac:name()
+         newpilot.def_ai = def_ai
          newpilot.approachtext = npctext[rnd.rnd(1, #npctext)]
          local id = evt.npcAdd(
                "approachPilot", _("Pilot"), newpilot.portrait,
@@ -321,6 +337,7 @@ function enter ()
          edata.pilot:setFuel(true)
 
          if f == nil or f:playerStanding() >= 0 then
+            edata.pilot:changeAI("escort_player")
             edata.pilot:setLeader(pp)
             edata.pilot:setVisplayer(true)
             edata.pilot:setInvincPlayer(true)
@@ -370,6 +387,11 @@ function pilot_disbanded( edata )
    edata.alive = false
    local p = edata.pilot
    if p ~= nil and p:exists() then
+      if edata.def_ai ~= nil then
+         p:changeAI(edata.def_ai)
+      else
+         p:changeAI("mercenary")
+      end
       p:setLeader(nil)
       p:setVisplayer(false)
       p:setInvincPlayer(false)
