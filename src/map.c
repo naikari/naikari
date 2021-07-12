@@ -682,12 +682,12 @@ static void map_update( unsigned int wid )
             p += scnprintf(&buf[p], sizeof(buf)-p, _("Nebula"));
       }
       /* Interference. */
-      if (sys->rdr_range_mod < 1.) {
+      if (sys->rdr_range_mod != 1.) {
          if (buf[0] != '\0')
             p += scnprintf(&buf[p], sizeof(buf)-p, _(", "));
 
          p += scnprintf(&buf[p], sizeof(buf)-p,
-               _("%g%% interference"), (1-sys->rdr_range_mod) * 100);
+               _("%+g%% radar range"), sys->rdr_range_mod*100 - 100);
       }
       /* Asteroids. */
       if (array_size(sys->asteroids) > 0) {

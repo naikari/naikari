@@ -417,9 +417,9 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       }
 
       /* Interference. */
-      if (sys->rdr_range_mod < 1. ) {
+      if (sys->rdr_range_mod != 1. ) {
          cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
-               _("Interference: %.0f%%\n"), (1-sys->rdr_range_mod) * 100);
+               _("Radar Range: %+.0f%%\n"), sys->rdr_range_mod*100 - 100);
       }
       /* Asteroids. */
       if (array_size(sys->asteroids) > 0 ) {
