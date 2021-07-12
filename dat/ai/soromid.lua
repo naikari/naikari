@@ -32,7 +32,7 @@ function create ()
    end
 
    -- Handle bribing
-   if rnd.int() > 0.4 then
+   if rnd.rnd() > 0.4 then
       mem.bribe_no = _("\"I shall especially enjoy your death.\"")
    else
       bribe_no = {

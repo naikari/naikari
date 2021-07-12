@@ -10,7 +10,7 @@ mem.aggressive = true
 function create ()
 
    -- Credits.
-   ai.setcredits( rnd.int(ai.pilot():ship():price()/300, ai.pilot():ship():price()/100) )
+   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/300, ai.pilot():ship():price()/100) )
 
    -- Handle bribing
    if rnd.rnd() < 0.6 then
@@ -72,6 +72,6 @@ function taunt ( target, offense )
          _("To hell with you!"),
       }
    end
-   ai.pilot():comm( target, taunts[ rnd.int(1,#taunts) ] )
+   ai.pilot():comm( target, taunts[ rnd.rnd(1,#taunts) ] )
 end
 
