@@ -263,6 +263,8 @@ function timer ()
       end
    elseif stage == 6 then
       if player.pilot():temp() <= 250 then
+         player.allowLand(true)
+         player.pilot():setNoJump(false)
          stage = 7
          misn.osdActive(6)
          tk.msg("", jumping_text:format(tutGetKey("starmap"), destsys:name()))
@@ -381,6 +383,8 @@ end
 
 
 function pilot_death ()
+   player.allowLand(false)
+   player.pilot():setNoJump(true)
    hook.timer(2000, "pilot_death_timer")
 end
 
