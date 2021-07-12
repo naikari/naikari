@@ -103,9 +103,7 @@ combat_text = _([["Great job! As you can see, by using Autonav, the perceived du
 
 "Let's now practice combat. You won't need this if you stick to the safe systems in the Empire core, but sadly, you are likely to encounter pirate scum if you venture further out, so you need to know how to defend yourself. Fortunately, your ship comes pre-equipped with state-of-the-art laser cannons for just that reason!
 
-"I will launch a combat practice drone off of %s now for you to fight. Don't worry; our drone does not have any weapons and will not harm you. Target the drone by clicking on it or by pressing %s, then use your weapons, controlled with %s and %s, to take out the drone!
-
-"Ah, yes, one more tip before I launch the drone: if your weapons start losing their accuracy, it's because they're becoming overheated. You can remedy that by pressing %s twice to engage active cooling."]])
+"I will launch a combat practice drone off of %s now for you to fight. Don't worry; our drone does not have any weapons and will not harm you. Target the drone by clicking on it or by pressing %s, then use your weapons, controlled with %s and %s, to take out the drone!]])
 combat_log = _([[You can target an enemy ship either by either clicking on it or by pressing the Target Nearest Hostile key (R by default). You can then fire your weapons at them with the Fire Primary Weapon key (Space by default) and the Fire Secondary Weapon key (Left Shift by default).]])
 
 infoscreen_text =_([["Excellent work taking out that drone! As you may have noticed, shield regenerates over time, but armor does not. This is not universal, of course; some ships, particularly larger ships, feature advanced armor repair technology. But even then, armor regeneration is usually much slower than shield regeneration.
@@ -113,7 +111,7 @@ infoscreen_text =_([["Excellent work taking out that drone! As you may have noti
 "It is also worth noting that you can configure the way your weapons shoot from the Weapons tab of the Info window, which can be accessed by pressing %s or by pressing %s and then clicking on the Info button. The Info window also lets you view information about your ship, cargo, current missions, and reputation with the various factions. You will likely be referencing it a lot."]])
 infoscreen_log = _([[You can configure the way your weapons shoot from the Weapons tab of the Info window, which you can open by pressing the Information Menu key (I by default) or by pressing the Small Menu key (Escape by default) and pressing the "Info" button.]])
 
-cooldown_text = _([["You may have also noticed your heat meters going up and your weapons becoming less accurate as your ship and weapons got hot. This is normal, but too much heat can make your weapons difficult to use, which is why we at Melendez Corporation recommend using active cooling when it is safe to do so. Let's practice using it. Engage active cooldown and wait for it to cool your ship down completely. As I said before, you can engage active cooling by pressing %s twice."]])
+cooldown_text = _([["You may have also noticed your heat meters going up and your weapons becoming less accurate as your ship and weapons got hot. This is normal, but too much heat can make your weapons difficult to use, which is why we at Melendez Corporation recommend using active cooldown when it is safe to do so. Let's practice using it. Engage active cooldown and wait for it to cool your ship down completely. You can engage active cooldown by pressing %s twice."]])
 cooldown_log = _([[As you fire your weapons, they and subsequently your ship get hotter. Too much heat causes your weapons to lose accuracy. You can cool down your ship at any time in space by pressing the Autobrake key (Ctrl+B by default) twice. You can also cool down your ship by landing on any planet or station.]])
 
 jumping_text = _([["Good job! Your ship is now fully cooled off. In addition to using Active Cooldown, you can also cool off by landing on any planet or station.
@@ -259,8 +257,7 @@ function timer ()
          misn.osdActive(4)
          tk.msg("", combat_text:format(
                   dest_planet:name(), tutGetKey("target_hostile"),
-                  tutGetKey("primary"), tutGetKey("secondary"),
-                  tutGetKey("autobrake")))
+                  tutGetKey("primary"), tutGetKey("secondary")))
          addTutLog(combat_log, N_("Combat"))
          spawn_drone()
       end
@@ -400,14 +397,14 @@ end
 
 
 function spawn_drone ()
-   local p = pilot.add("Hyena", "Dummy", dest_planet, _("Practice Drone"),
-         {ai="baddie_norun"})
+   local f = faction.dynAdd(
+         nil, N_("Melendez"), N_("Melendez Corporation"), "baddie_norun")
+   local p = pilot.add("Hyena", f, dest_planet, _("Practice Drone"),
+         {naked=true})
 
-   p:rmOutfit("all")
-   p:rmOutfit("cores")
-   p:addOutfit("Previous Generation Small Systems")
-   p:addOutfit("Patchwork Light Plating")
-   p:addOutfit("Beat Up Small Engine")
+   p:addOutfit("Unicorp PT-80 Core System")
+   p:addOutfit("Unicorp D-2 Light Plating")
+   p:addOutfit("Nexus Dart 150 Engine")
 
    p:setHealth(100, 100)
    p:setEnergy(100)
