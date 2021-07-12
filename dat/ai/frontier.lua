@@ -37,6 +37,7 @@ function create ()
       elseif standing < 50 then
          mem.refuel_msg = string.format(_("\"For you I could make an exception for %s.\""), creditstring(mem.refuel))
       else
+         mem.refuel = 0
          mem.refuel_msg = _("\"Sure, friend, I can refuel you. On my way.\"")
       end
    end
