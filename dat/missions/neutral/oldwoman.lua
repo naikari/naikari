@@ -91,7 +91,7 @@ end
 function accept ()
     if tk.yesno("", text1:format(destplanet:name(), destsys:name(), destplanet:name())) then
         tk.msg("", text2)
-        local commod = misn.cargoNew(N_("Old Woman"))
+        local commod = misn.cargoNew(N_("Old Woman"), N_("An old woman who you agreed to Sirius space."))
         oldwoman = misn.cargoAdd(commod, 0)
 
         misn.accept()

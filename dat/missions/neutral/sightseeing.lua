@@ -170,7 +170,7 @@ function accept ()
    osd_msg[1] = osd_msg[1]:format(missys:name())
    osd_msg[3] = osd_msg[3]:format(startingplanet:name(),startingsystem:name())
    misn.osdCreate(osd_title, osd_msg)
-   local commod = misn.cargoNew(N_("Sightseers"))
+   local commod = misn.cargoNew(N_("Sightseers"), N_("A group of passengers on your ship for a sightseeing tour."))
    civs = misn.cargoAdd(commod, 0)
    job_done = false
 

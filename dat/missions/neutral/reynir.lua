@@ -110,7 +110,7 @@ function accept ()
 
       tk.msg("", string.format(text[3], misn_base:name()))
       misn.osdCreate(misn_title, {osd_msg[1]:format(misn_base:name())})
-      local commod = misn.cargoNew(N_("Reynir"))
+      local commod = misn.cargoNew(N_("Reynir"), N_("An old man named Reynir who wanted to fly in space."))
       cargoID = misn.cargoAdd(commod, 0)
    end
 

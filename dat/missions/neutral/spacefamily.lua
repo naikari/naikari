@@ -98,7 +98,7 @@ function create ()
    tk.msg("", text[1])
    tk.msg("", string.format(text[2], shipname))
 
-   local commod = misn.cargoNew(N_("Space Family"))
+   local commod = misn.cargoNew(N_("Space Family"), N_("An obnoxious family that you rescued from a shipwreck and are trying to get off your back."))
    carg_id = misn.cargoAdd(commod, 0)
 
    -- First stop; subsequent stops will be handled in the land function
