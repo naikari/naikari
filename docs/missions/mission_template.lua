@@ -180,8 +180,9 @@ function accept ()
 
       -- The OSD shows your objectives.
       local osd_desc = {}
-      osd_desc[1] = _("Fly to %s in the %s system"):format(misplanet:name(), missys:name())
-      misn.osdCreate(_("Suits Me Fine"), osd_desc)
+      osd_desc[1] = _("Fly to the %s system and land on %s"):format(
+            misplanet:name(), missys:name())
+      misn.osdCreate(_("The Special Suit"), osd_desc)
 
       -- This is where we would define any other variables we need, but
       -- we won't need any for this example.
