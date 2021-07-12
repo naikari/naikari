@@ -56,13 +56,6 @@ subdue_text[3] = _("The pirate's security system turns out to be no match for yo
 subdue_text[4] = _("Your crew infiltrates the pirate's ship and captures %s.")
 subdue_text[5] = _("Getting past this ship's security was surprisingly easy. Didn't they know that %s was wanted?")
 
-subdue_fail_title   = _("Capture Failed")
-subdue_fail_text    = {}
-subdue_fail_text[1] = _("Try as you might, you cannot get past the pirate's security system. Defeated, you and your crew return to the ship.")
-subdue_fail_text[2] = _("The ship's security system locks you out.")
-subdue_fail_text[3] = _("Your crew comes close to getting past the pirate's security system, but ultimately fails.")
-subdue_fail_text[4] = _("It seems your crew is no match for this ship's security system. You return to your ship.")
-
 pay_title   = _("Mission Completed")
 
 pay_kill_text    = {}
@@ -155,7 +148,6 @@ function create ()
    credits = 50000
    reputation = 0
    pirate_faction = faction.get("Pirate")
-   board_failed = false
    bounty_setup()
 
    -- Set mission details
@@ -397,13 +389,6 @@ function spawn_pirate(param)
          fail(msg[1]:format(name))
       end
    end
-end
-
-
--- Fail to board the ship; must kill the target instead
--- (Unused in this mission; used by pirbounty_alive)
-function board_fail ()
-   board_failed = true
 end
 
 

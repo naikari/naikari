@@ -86,12 +86,7 @@ osd_msg_kill = _("Kill %s")
 
 
 function pilot_death ()
-   if board_failed then
-      succeed()
-      target_killed = true
-   else
-      fail(fail_kill_text:format(name))
-   end
+   fail(fail_kill_text:format(name))
 end
 
 
@@ -127,19 +122,5 @@ function bounty_setup ()
       ship = "Pirate Kestrel"
       credits = 2500000 + rnd.sigma() * 500000
       reputation = 7
-   end
-end
-
-
-function board_fail ()
-   if rnd.rnd() < 0.25 then
-      board_failed = true
-      credits = credits / 5
-      local t = kill_instead_text[ rnd.rnd(1, #kill_instead_text) ]:format(
-         name, creditstring(credits))
-      tk.msg(kill_instead_title, t)
-      osd_msg[2] = osd_msg_kill:format(name)
-      misn.osdCreate(osd_title, osd_msg)
-      misn.osdActive(2)
    end
 end
