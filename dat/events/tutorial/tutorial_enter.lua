@@ -98,6 +98,7 @@ function timer ()
    elseif not var.peek("tutorial_nebula_volatility") and nebu_volat > 0 then
       if var.peek("_tutorial_passive_active") then
          tk.msg("", nebu_volat_text:format(nebu_volat), tutGetKey("starmap"))
+      end
       addTutLog(nebu_volat_log, N_("Nebula"))
       addTutLog(map_volat_log, N_("Nebula"))
       var.push("tutorial_nebula_volatility", true)
