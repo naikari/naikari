@@ -16,7 +16,7 @@ function create ()
    -- Get refuel chance
    local p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
+      local standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 1000, 2000 )
       if standing < 70 then
          mem.refuel_no = _("\"I do not have fuel to spare.\"")

@@ -17,7 +17,8 @@ function create ()
    ai.setcredits( rnd.int(ai.pilot():ship():price()/600 , ai.pilot():ship():price()/100) )
 
    -- Get standing.
-   p = player.pilot()
+   local p = player.pilot()
+   local standing
    if p:exists() then
       standing = ai.getstanding( p ) or -1
    else

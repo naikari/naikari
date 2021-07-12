@@ -25,7 +25,7 @@ function create ()
    -- Refueling
    local p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
+      local standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )
       if standing > 60 then mem.refuel = mem.refuel * 0.7 end
       mem.refuel_msg = string.format( _("\"I could do you the favor of refueling for the price of %s.\""),

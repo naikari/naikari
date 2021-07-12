@@ -71,7 +71,7 @@ function create ()
    -- Deal with refueling
    local p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
+      local standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )
       if standing > 60 then
          mem.refuel = mem.refuel * 0.5

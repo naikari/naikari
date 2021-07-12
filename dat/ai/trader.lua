@@ -14,10 +14,6 @@ function create ()
    mem.refuel = rnd.rnd( 3000, 5000 )
    p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
-      if standing > 50 then mem.refuel = mem.refuel * 0.75
-      elseif standing > 80 then mem.refuel = mem.refuel * 0.5
-      end
       mem.refuel_msg = string.format(_("\"I'll supply your ship with fuel for %s.\""),
             creditstring(mem.refuel));
    end

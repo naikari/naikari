@@ -29,7 +29,7 @@ function create ()
    -- Handle refueling
    local p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
+      local standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 1000, 3000 )
       if standing < 50 then
          mem.refuel_no = _("\"You are not worthy of my attention.\"")

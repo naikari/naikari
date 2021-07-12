@@ -41,12 +41,10 @@ function create ()
    mem.bribe_no = bribe_msg[ rnd.int(1,#bribe_msg) ]
 
    -- Refuel
-   mem.refuel = 0
    local p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
-      mem.refuel_msg = string.format(_("\"I'll supply your ship with fuel for %s.\""),
-            creditstring(mem.refuel));
+      mem.refuel = 0
+      mem.refuel_msg = _("\"Sure, I can spare some fuel.\"");
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system

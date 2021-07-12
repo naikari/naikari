@@ -16,7 +16,7 @@ function create ()
    -- Get refuel chance
    local p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
+      local standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )
       if standing < 20 then
          mem.refuel_no = _("\"The warriors of Sorom are not your personal refueller.\"")

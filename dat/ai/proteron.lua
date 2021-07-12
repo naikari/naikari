@@ -14,7 +14,7 @@ function create ()
    ai.setcredits( rnd.rnd(ai.pilot():ship():price()/300, ai.pilot():ship():price()/70) )
 
    -- Lines to annoy the player.
-   r = rnd.rnd(0,20)
+   local r = rnd.rnd(0,20)
    if r == 0 then
       ai.pilot():broadcast(_("The Proteron are watching you."))
    end
@@ -22,7 +22,7 @@ function create ()
    -- Get refuel chance
    local p = player.pilot()
    if p:exists() then
-      standing = ai.getstanding( p ) or -1
+      local standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )
       if standing < 20 then
          mem.refuel_no = _("\"My fuel isn't for sale.\"")
