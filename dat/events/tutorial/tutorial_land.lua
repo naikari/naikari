@@ -3,6 +3,9 @@
 <event name="Land Tutorial Event">
  <trigger>land</trigger>
  <chance>100</chance>
+ <flags>
+  <unique />
+ </flags>
 </event>
 --]]
 --[[
@@ -27,7 +30,7 @@
 require "events/tutorial/tutorial_common"
 
 
-time_dilation_text = _([[Captain T. Practice pipes up. "Ah, I see you have purchased your first large ship! Congratulations! There are some important things you should know about large ships, so let me explain.
+time_dilation_text = _([[Captain T. Practice pops up on your view screen. "I see you have purchased your first large ship! Congratulations! There are some important things you should know about large ships, so let me explain.
 
 "You may notice that the ship you bought has a 'Time Constant' rating. See, when operating a larger ship, you have to expend more time and effort performing the basic operations of the ship, causing your perception of time to speed up. Time Constant is simply a measure of how fast you will perceive the passage of time compared to a typical small ship; for example, a Time Constant rating of 200%% means that time appears to pass twice as fast as typical small ships.
 

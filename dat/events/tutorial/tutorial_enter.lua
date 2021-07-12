@@ -3,6 +3,9 @@
 <event name="Enter Tutorial Event">
  <trigger>enter</trigger>
  <chance>100</chance>
+ <flags>
+  <unique />
+ </flags>
 </event>
 --]]
 --[[
@@ -22,21 +25,64 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-nebu_volat_title = _("Volatility Rising")
-nebu_volat_msg = _([[As you jump the system you notice a small alarm lights up in the control panel:
-    %s
-    Looking over the systems it seems like the nebula is unstable here and is beginning to damage the ship's shields. If the volatility gets any stronger, it could be fatal to the %s. Going deeper into the nebula could prove to be a very risky endeavor.]])
-nebu_volat_wng = "#r" .. _("WARNING: NEBULA VOLATILITY DETECTED") .. "#0"
+require "events/tutorial/tutorial_common"
+
+hostile_presence_text = _([[Captain T. Practice shows up again. "It seems you've entered a system with hostile pilots! This is the first of many, I'm afraid, so it's important that you know what to do to protect yourself.
+
+"Obviously, one thing you can do is fight, assuming you have the capability. However, if you're outnumbered or unable to fight, there's still one more thing you can do: if you either #bdouble-click#0 on a hostile pilot, or target them with %s and then press %s, you can open the communication window, where you can bribe the pilot so that they stop attacking you. This usually works with pirate scum, though it may be less effective against other factions.
+
+"You can always check the faction presences of a given system by pressing %s to open the starmap. On the right, you will see a list of all factions present in the currently selected system, along with a number indicating how strong their presence is. This can help you stay out of hostile systems in the first place, if you wish.
+
+"Whatever you choose to do, stay safe!"]])
+hail_hostile_log = _([[You can hail a hostile pilot either by double-clicking on the pilot, or by targeting them with the Target Nearest Hostile key (R by default) and pressing the Hail key (Y by default). From there, you can bribe the pilot so that they stop attacking you. This is particularly effective against pirates.]])
+hostile_presence_log = _([[You can check faction the presences of a given known system by pressing the Star Map key (M by default) and selecting the system on the map. Each faction present in the system is listed on the right, along with a number indicating how strong their presence is.]])
+
+nebu_volat_text = _([[You begin to notice your shielding equipment behaving somewhat erratically as you see Captain T. Practice show up on your view screen. "Exploring the nebula, eh? It seems you're in a portion of the nebula with some volatility. Specifically, the system you're in has a volatility rating of %g GW. That means you are right now constantly taking that amount of damage. Your shields repel 85% of the damage due to the unique qualities of shielding, but your armor is not; if you run out of shields, your armor will begin to rapidly lose its integrity. For this reason, you should try not to be put in a situation where your shields are inactive.
+
+"You can see the volatility of the nebula in any given system via the starmap, which you can open by pressing %s. Information about the selected system, which includes volatility, can be found in the bottom-left. Try not to go too far into the nebula, and if you see your shields starting to drop, I advise you retreat to where you came from immediately. Stay safe!"]])
+nebu_volat_log = _([[Systems with a nebula volatility rating constantly cause damage to ships within them. The volatility rating corresponds to the damage they constantly inflict. Shields repel 85% of the damage inflicted on them, but armor, if left without shields, will take full damage and rapidly start to lose its integrity.]])
+map_volat_log = _([[You can see the volatility of the nebula in any given system via the starmap, which you can open by pressing the Star Map key (M by default). Information about the selected system, which includes nebula volatility, can be found in the bottom-left.]])
 
 
 function create ()
+   -- Delay the event by a bit so it doesn't happen in the middle of
+   -- the transition between the systems.
+   hook.timer(3000, "timer")
+   hook.jumpout("jumpout")
+end
+
+
+function timer ()
    local sys = system.cur()
    local nebu_dens, nebu_volat = sys:nebula()
-   if not var.peek( "tutorial_nebula_volatility" ) and nebu_volat > 0 then
-      tk.msg( nebu_volat_title, string.format(
-            nebu_volat_msg, nebu_volat_wng, player.ship() ) )
-      var.push( "tutorial_nebula_volatility", true )
+
+   if not var.peek("tutorial_hostile_presence")
+         and sys:presence("hostile") > 0 then
+      if var.peek("_tutorial_passive_active") then
+         tk.msg("", hostile_presence_text:format(
+                  tutGetKey("target_hostile"), tutGetKey("hail"),
+                  tutGetKey("starmap")))
+      end
+      addTutLog(hail_hostile_log, N_("Combat"))
+      addTutLog(hostile_presence_log, N_("Navigation"))
+      var.push("tutorial_hostile_presence", true)
+   elseif not var.peek("tutorial_nebula_volatility") and nebu_volat > 0 then
+      if var.peek("_tutorial_passive_active") then
+         tk.msg("", nebu_volat_text:format(nebu_volat), tutGetKey("starmap"))
+      addTutLog(nebu_volat_log, N_("Nebula"))
+      addTutLog(map_volat_log, N_("Nebula"))
+      var.push("tutorial_nebula_volatility", true)
    end
+
+   evt.finish()
+end
+
+
+function jumpout ()
+   -- In the unlikely event that a player leaves the system too quickly
+   -- to see a message before jumping out, this prevents it from showing
+   -- the message to prevent weirdness of looking like it's referring to
+   -- a system that it isn't.
    evt.finish()
 end
 
