@@ -356,12 +356,6 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          ccol.a = 1 - ccol.a;
          gl_blitScale( bgImages[i], bx+2, by+(nshow-1)*pitch + (pitch-ih)/2 + offset, iw, ih, &ccol );
       }
-   } else {
-      /* no nebula or star images - probably due to nebula */
-      txtHeight = gl_printHeightRaw(&gl_smallFont, iw, _("Obscured by the nebula"));
-      gl_printMidRaw( &gl_smallFont, iw, bx,
-            by + (nshow-1)*ih + offset + ih/2 - (txtHeight/2), &cFontRed, -1.,
-            _("Obscured by the nebula") );
    }
    gl_printRaw( &gl_smallFont, bx + 5 + pitch, by + (nshow-0.5)*pitch + offset,
          (cur_planet_sel == 0 ? &cFontGreen : &cFontWhite), -1., _(sys->name) );
