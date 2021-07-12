@@ -234,13 +234,13 @@ end
 
 
 function land_bar ()
-   if #npcs > 0 and not var.peek("_tutorial_escorts_done") then
+   if #npcs > 0 and not var.peek("tutorial_escorts_done") then
       if var.peek("_tutorial_passive_active") then
          tk.msg("", tutorial_text)
       end
       addTutLog(tutorial_log, N_("Escorts"))
 
-      var.push("_tutorial_escorts_done", true)
+      var.push("tutorial_escorts_done", true)
    end
 end
 
