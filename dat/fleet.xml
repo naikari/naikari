@@ -155,28 +155,28 @@
   </pilots>
  </fleet>
  <fleet name="Frontier Lancelot">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Lancelot" ship="Lancelot"></pilot>
   </pilots>
  </fleet>
  <fleet name="Frontier Phalanx">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Phalanx" ship="Phalanx"></pilot>
   </pilots>
  </fleet>
  <fleet name="Frontier Hyena">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Hyena" ship="Hyena"></pilot>
   </pilots>
  </fleet>
  <fleet name="Frontier Ancestor">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Ancestor" ship="Ancestor"></pilot>

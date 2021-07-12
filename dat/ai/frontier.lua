@@ -13,15 +13,14 @@ function create ()
    ai.setcredits( rnd.int(ai.pilot():ship():price()/300, ai.pilot():ship():price()/100) )
 
    -- Handle bribing
-   if rnd.int() > 0.4 then
+   if rnd.rnd() < 0.6 then
       mem.bribe_no = _("\"I shall especially enjoy your death.\"")
    else
       bribe_no = {
-            _("\"You insult my honor.\""),
-            _("\"I find your lack of honor disturbing.\""),
-            _("\"You disgust me.\""),
-            _("\"Bribery carries a harsh penalty.\""),
-            _("\"The Frontier does not lower itself to common scum.\"")
+            _("\"I don't want your money.\""),
+            _("\"I'm here for the Frontier, not money.\""),
+            _("\"Not interested.\""),
+            _("\"I won't let you off that easily.\""),
      }
      mem.bribe_no = bribe_no[ rnd.rnd(1,#bribe_no) ]
    end
@@ -30,11 +29,15 @@ function create ()
    local p = player.pilot()
    if p:exists() then
       local standing = ai.getstanding( p ) or -1
+      local flf_standing = faction.get("FLF"):playerStanding()
+
       mem.refuel = rnd.rnd( 1000, 3000 )
-      if standing < 50 then
-         mem.refuel_no = _("\"Mare magno turbantibus. That means that I don't care about your problems.\"")
-      else
+      if flf_standing < 50 then
+         mem.refuel_no = _("\"Sorry, I can't spare fuel for you.\"")
+      elseif standing < 50 then
          mem.refuel_msg = string.format(_("\"For you I could make an exception for %s.\""), creditstring(mem.refuel))
+      else
+         mem.refuel_msg = _("\"Sure, friend, I can refuel you. On my way.\"")
       end
    end
 

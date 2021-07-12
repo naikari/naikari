@@ -172,7 +172,7 @@
  </faction>
  <faction>
   <name>Frontier</name>
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <known />
   <logo>frontier</logo>
   <longname>Frontier Alliance</longname>
