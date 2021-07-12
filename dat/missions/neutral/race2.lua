@@ -66,7 +66,7 @@ OSD = {}
 OSD[1] = _("Board checkpoint 1")
 OSD[2] = _("Board checkpoint 2")
 OSD[3] = _("Board checkpoint 3")
-OSD[4] = _("Land at %s")
+OSD[4] = _("Land on %s")
 
 chatter = {}
 chatter[1] = _("Let's do this!")

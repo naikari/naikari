@@ -34,11 +34,14 @@ function create ()
    end
 
    -- Handle refueling.
-   if standing > 70 then
-      mem.refuel = rnd.rnd( 1000, 2000 )
+   if standing < 30 then
+      mem.refuel_no = _("\"I can't spare fuel for you.\"")
+   elseif standing < 70 then
+      mem.refuel = rnd.rnd(1000, 2000)
       mem.refuel_msg = string.format(_("\"I should be able to spare some fuel for %s.\""), creditstring(mem.refuel))
    else
-      mem.refuel_no = _("\"I can't spare fuel for you.\"")
+      mem.refuel = 0
+      mem.refuel_msg = string.format(_("Sure thing, %s. On my way."), player.name())
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system

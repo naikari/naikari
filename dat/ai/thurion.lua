@@ -41,8 +41,8 @@ function create ()
    mem.bribe_no = bribe_msg[ rnd.int(1,#bribe_msg) ]
 
    -- Refuel
-   mem.refuel = rnd.rnd( 1000, 3000 )
-   p = player.pilot()
+   mem.refuel = 0
+   local p = player.pilot()
    if p:exists() then
       standing = ai.getstanding( p ) or -1
       mem.refuel_msg = string.format(_("\"I'll supply your ship with fuel for %s.\""),

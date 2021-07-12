@@ -20,7 +20,7 @@ function create ()
    end
 
    -- Get refuel chance
-   p = player.pilot()
+   local p = player.pilot()
    if p:exists() then
       standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )

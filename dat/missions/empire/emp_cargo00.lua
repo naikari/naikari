@@ -30,18 +30,18 @@ require "missions/empire/common"
 
 bar_desc = _("You see an Empire Lieutenant who seems to be looking at you.")
 misn_title = _("Empire Recruitment")
-misn_desc = _("Deliver some parcels for the Empire to %s in %s.")
-title = {}
-title[1] = _("Spaceport Bar")
-title[2] = _("Empire Recruitment")
-title[3] = _("Mission Accomplished")
+misn_desc = _("Fly to the %s system and land on %s to deliver some parcels for the Empire")
+
 text = {}
 text[1] = _([[You approach the Empire Lieutenant.
-    "Hello, I'm Lieutenant Czesc from the Empire Armada Shipping Division. We're having another recruitment operation and would be interested in having another pilot among us. Would you be interested in working for the Empire?"]])
+
+"Hello, I'm Lieutenant Czesc from the Empire Armada Shipping Division. We're having another recruitment operation and would be interested in having another pilot among us. Would you be interested in working for the Empire?"]])
 text[2] = _([["Welcome aboard," says Czesc before giving you a firm handshake. "At first you'll just be tested with cargo missions while we gather data on your flying skills. Later on, you could get called upon for more important missions. Who knows? You could be the next Yao Pternov, greatest pilot we ever had in the armada."
-    He hits a couple buttons on his wrist computer, which springs into action. "It looks like we already have a simple task for you. Deliver these parcels to %s. The best pilots started delivering papers and ended up flying into combat against gigantic warships with the Interception Division."]])
+
+He hits a couple buttons on his wrist computer, which springs into action. "It looks like we already have a simple task for you. Deliver these parcels to %s. The best pilots started delivering papers and ended up flying into combat against gigantic warships with the Interception Division."]])
 text[3] = _([[You deliver the parcels to the Empire Shipping station at the %s spaceport. Afterwards, they make you do some paperwork to formalise your participation with the Empire. They tell you to keep an eye out for missions labeled ES, which stands for Empire Shipping, in the mission computer, to which you now have access.
-    You aren't too sure of what to make of your encounter with the Empire. Only time will tell...]])
+ 
+You aren't too sure of what to make of your encounter with the Empire. Only time will tell...]])
 
 log_text = _([[You were recruited into the Empire's shipping division and can now do missions labeled ES, which stands for Empire Shipping. You aren't too sure of what to make of your encounter with the Empire. Only time will tell...]])
 
@@ -52,7 +52,7 @@ function create ()
 
    -- target destination
    local planets = {} 
-   getsysatdistance( system.cur(), 1, 6,
+   getsysatdistance(system.cur(), 1, 6,
        function(s)
            for i, v in ipairs(s:planets()) do
                if v:faction() == faction.get("Empire") and v:canLand() then
@@ -60,23 +60,23 @@ function create ()
                end
            end 
            return false
-       end ) 
+       end) 
    if #planets == 0 then abort() end -- In case no suitable planets are in range. 
    local index = rnd.rnd(1, #planets)
    dest = planets[index][1]
    sys = planets[index][2]
 
-   misn.setNPC( _("Lieutenant"), "empire/unique/czesc.webp", bar_desc )
+   misn.setNPC(_("Lieutenant"), "empire/unique/czesc.webp", bar_desc)
 end
 
 
 function accept ()
    -- Intro text
-   if not tk.yesno( title[1], text[1] ) then
+   if not tk.yesno("", text[1]) then
       misn.finish()
    end
 
-   misn.markerAdd( sys, "low" )
+   misn.markerAdd(sys, "low")
 
    -- Accept the mission
    misn.accept()
@@ -84,15 +84,15 @@ function accept ()
    -- Mission details
    reward = 30000
    misn.setTitle(misn_title)
-   misn.setReward( creditstring(reward) )
-   misn.setDesc( string.format(misn_desc, dest:name(), sys:name()))
+   misn.setReward(creditstring(reward))
+   misn.setDesc(misn_desc:format(sys:name(), dest:name()))
 
    -- Flavour text and mini-briefing
-   tk.msg( title[2], string.format( text[2], dest:name() ))
-   misn.osdCreate(title[2], {misn_desc:format(dest:name(), sys:name())})
+   tk.msg("", string.format(text[2], dest:name()))
+   misn.osdCreate("", {misn_desc:format(sys:name(), dest:name())})
 
    -- Set up the goal
-   local c = misn.cargoNew( N_("Parcels"), N_("A bunch of boring Empire parcels.") )
+   local c = misn.cargoNew(N_("Parcels"), N_("A bunch of boring Empire parcels."))
    parcels = misn.cargoAdd(c, 0)
    hook.land("land")
 end
@@ -105,10 +105,10 @@ function land()
       if misn.cargoRm(parcels) then
          player.pay(reward)
          -- More flavour text
-         tk.msg(title[3], string.format( text[3], dest:name() ))
+         tk.msg("", string.format(text[3], dest:name()))
          var.push("es_cargo", true)
          faction.modPlayerSingle("Empire",3);
-         emp_addShippingLog( log_text )
+         emp_addShippingLog(log_text)
          misn.finish(true)
       end
    end

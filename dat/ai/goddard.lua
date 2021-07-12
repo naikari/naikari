@@ -23,7 +23,7 @@ function create ()
    mem.bribe_no = bribe_no[ rnd.rnd(1,#bribe_no) ]
 
    -- Refueling
-   p = player.pilot()
+   local p = player.pilot()
    if p:exists() then
       standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )

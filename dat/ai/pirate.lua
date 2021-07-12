@@ -69,14 +69,14 @@ function create ()
    end
 
    -- Deal with refueling
-   p = player.pilot()
+   local p = player.pilot()
    if p:exists() then
       standing = ai.getstanding( p ) or -1
       mem.refuel = rnd.rnd( 2000, 4000 )
       if standing > 60 then
          mem.refuel = mem.refuel * 0.5
       end
-      mem.refuel_msg = string.format(_("\"For you, only %s for a hundred units of fuel.\""),
+      mem.refuel_msg = string.format(_("\"For you, only %s for 100 hL of fuel.\""),
             creditstring(mem.refuel));
    end
 
