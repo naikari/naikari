@@ -1,17 +1,17 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <event name="Shipwreck">
-  <trigger>enter</trigger>
-  <chance>3</chance>
-  <cond>system.cur():presence("Pirate") &gt; 0</cond>
-  <flags>
-   <unique />
-  </flags>
-  <notes>
-   <tier>1</tier>
-  </notes>
- </event>
- --]]
+ <trigger>enter</trigger>
+ <chance>3</chance>
+ <cond>system.cur():presence("Pirate") &gt; 0</cond>
+ <flags>
+  <unique />
+ </flags>
+ <notes>
+  <tier>1</tier>
+ </notes>
+</event>
+--]]
 --[[
 -- Shipwreck Event
 -- 
@@ -27,6 +27,11 @@ shipname = _("August") --The ship will have a unique name
 shipwreck = _("Shipwrecked %s")
 
 function create ()
+    local nebu_dens, nebu_vol = system.cur():nebula()
+    if nebu_vol > 0 then
+      evt.finish()
+    end
+
     -- The shipwreck will be a random trader vessel.
     r = rnd.rnd()
     if r > 0.95 then

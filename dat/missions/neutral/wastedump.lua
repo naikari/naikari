@@ -13,7 +13,6 @@
   <faction>Independent</faction>
   <faction>Sirius</faction>
   <faction>Soromid</faction>
-  <faction>Thurion</faction>
   <faction>Za'lek</faction>
  </avail>
 </mission>

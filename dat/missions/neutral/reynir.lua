@@ -8,6 +8,14 @@
   <priority>1</priority>
   <chance>2</chance>
   <location>Bar</location>
+  <faction>Dvaered</faction>
+  <faction>Empire</faction>
+  <faction>Frontier</faction>
+  <faction>Goddard</faction>
+  <faction>Independent</faction>
+  <faction>Sirius</faction>
+  <faction>Soromid</faction>
+  <faction>Za'lek</faction>
   <cond>(function ()
            local count = 0
            for i, p in pairs(system.cur():planets()) do

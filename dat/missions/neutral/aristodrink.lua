@@ -8,6 +8,11 @@
   <priority>4</priority>
   <chance>5</chance>
   <location>Bar</location>
+  <faction>Dvaered</faction>
+  <faction>Empire</faction>
+  <faction>Goddard</faction>
+  <faction>Sirius</faction>
+  <faction>Za'lek</faction>
  </avail>
  <notes>
   <tier>1</tier>
