@@ -27,6 +27,18 @@
 
 require "events/tutorial/tutorial_common"
 
+
+nofuel_text = _([[You swear to yourself as you see that you're out of fuel with no place to land. How can you get fuel now? Just as you're thinking this, Captain T. Practice shows up. "I see you've run out of fuel and don't have a place to land! But don't worry, you can still refuel. It'll just be a little harder and more costly.
+
+See you can hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with %s and pressing %s. Once you've hailed them, you can request to be refueled. This isn't likely to work on military ships, but many civilians and traders will happily sell you some of their fuel for a nominal fee. When you find someone willing to refuel you, you will need to stop your ship, which you can do easily with %s, and wait for them to reach your ship and finish the fuel transfer.
+
+"If there aren't any civilians or traders in the area, there's one other way: if you hail a pirate, you can usually bribe them to convince them to leave you alone. After you've bribed them, there's a good chance they'll be willing to sell you fuel as well if you hail them again! While having to trust a pilot isn't ideal, it's at least better than being stuck in open space with no rescue.
+
+"Good luck!" Captain T. Practice terminates the communication. It looks like you'll have to talk to the other pilots in the system.…]])
+nofuel_log = _([[You can hail any other pilot by either double-clicking on them, or by targeting them with the Target Nearest key (T by default) and then pressing the Hail Target key (Y by default). From there, you can ask to be refueled. Most military ships will not be willing to help you, but many civilians and traders will be willing to sell you some fuel for a nominal fee. When you find someone willing to refuel you, you need to stop your ship, which you can do with the Autobrake key (Ctrl+B by default), and wait for them to reach your ship and finish the fuel transfer.
+
+If there are no civilians or traders in the system, you can alternatively attempt to get fuel from a pirate. To do so, you must first hail them and offer a bribe, and if you successfully bribe them, they will often be willing to refuel you if you hail them again and ask for it.]])
+
 hostile_presence_text = _([[Captain T. Practice shows up again. "It seems you've entered a system with hostile pilots! This is the first of many, I'm afraid, so it's important that you know what to do to protect yourself.
 
 "Obviously, one thing you can do is fight, assuming you have the capability. However, if you're outnumbered or unable to fight, there's still one more thing you can do: if you either #bdouble-click#0 on a hostile pilot, or target them with %s and then press %s, you can open the communication window, where you can bribe the pilot so that they stop attacking you. This usually works with pirate scum, though it may be less effective against other factions.
@@ -56,7 +68,24 @@ function timer ()
    local sys = system.cur()
    local nebu_dens, nebu_volat = sys:nebula()
 
-   if not var.peek("tutorial_hostile_presence")
+   local landable_planets = false
+   for i, pl in ipairs(sys:getAll()) do
+      if pl:canLand() then
+         landable_planets = true
+         break
+      end
+   end
+
+   if not var.peek("tutorial_nofuel") and not landable_planets
+         and player.jumps() <= 0 then
+      if var.peek("_tutorial_passive_active") then
+         tk.msg("", nofuel_text:format(
+                  tutGetKey("target_next"), tutGetKey("hail"),
+                  tutGetKey("autobrake")))
+      end
+      addTutLog(nofuel_log, N_("Hailing"))
+      var.push("tutorial_nofuel", true)
+   elseif not var.peek("tutorial_hostile_presence")
          and sys:presence("hostile") > 0 then
       if var.peek("_tutorial_passive_active") then
          tk.msg("", hostile_presence_text:format(

@@ -128,11 +128,8 @@ jumping_text = _([["Good job! Your ship is now fully cooled off. In addition to 
 jumping_log = _([[Traveling through systems is accomplished through jump points, which you usually need to find by exploring the area, talking to locals, or buying maps. Once you have found a jump point, you can use it by double-clicking on it.]])
 jumping_log2 = _([[You can open your starmap by pressing the Star Map key (M by default). Through your starmap, you can click on a system and click on the Autonav button to be automatically transported to the system. This only works if you know a valid route to get there.]])
 
-fuel_text = _([["You have done very well, %s! As you can see, the trip consumed fuel. You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks. Try to plan your routes so that you don't end up in a system where you can't land without fuel.
-
-"If you do get stuck without fuel in such a system, you can try to ask other pilots if they have fuel to spare by #bdouble-clicking#0 on them, or by selecting them with %s and then pressing %s. However, waiting for other pilots to refuel you puts you at risk of being attacked by pirates, so I recommend avoiding that situation if you can."]])
+fuel_text = _([["You have done very well, %s! As you can see, the trip consumed fuel. You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks. Try to plan your routes so that you don't end up in a system where you can't land without fuel.]])
 fuel_log = _([[You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks.]])
-fuel_log2 = _([[If you get stuck without fuel in a system where you can't land, you can try to ask other pilots if they have fuel to spare by double-clicking them, or by selecting them with the Target Nearest key (T by default) and then pressing the Hail Target key (Y by default). You can also hail hostile ships to attempt to bribe them. Bribes generally work on pirates, but may be less effective against other factions.]])
 
 ask_continue_text = _([["That's all the basics! I must say, you are a natural-born pilot and your new Melendez ship suits you well! That said, there are other aspects of piloting I wasn't able to get into here. If you like, I can continue to give you guidance, free of charge! I promise to be unobtrusive; I'll just pop in and let you know about some other things when they become relevant. What do you say?"]])
 
@@ -367,10 +364,8 @@ function enter_timer ()
    elseif stage == 5 and system.cur() == missys then
       spawn_drone()
    elseif stage == 7 and system.cur() == destsys then
-      tk.msg("", fuel_text:format(player.name(), tutGetKey("target_next"),
-               tutGetKey("hail")))
+      tk.msg("", fuel_text:format(player.name()))
       addTutLog(fuel_log, N_("Fuel"))
-      addTutLog(fuel_log2, N_("Fuel"))
 
       addMiscLog(log_text)
 
