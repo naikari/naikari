@@ -1491,7 +1491,8 @@ static int aiL_isbribed( lua_State *L )
 {
    Pilot *p;
    p = luaL_validpilot(L,1);
-   lua_pushboolean(L, (p->faction == FACTION_PLAYER)
+   lua_pushboolean(
+         L, ((p->faction == FACTION_PLAYER) || (p->parent == PLAYER_ID))
             && pilot_isFlag(cur_pilot, PILOT_BRIBED));
    return 1;
 }
