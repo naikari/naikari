@@ -455,6 +455,11 @@ function distress ( pilot, attacker )
       return
    end
 
+   -- Don't help if bribed
+   if ai.isbribed(attacker) then
+      return
+   end
+
    local pfact  = pilot:faction()
    local afact  = attacker:faction()
    local aifact = ai.pilot():faction()
