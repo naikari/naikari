@@ -271,7 +271,7 @@ function control ()
       local attack = false
 
       -- We'll first check enemy.
-      if enemy ~= nil and mem.aggressive then
+      if enemy ~= nil and mem.aggressive and not ai.isbribed(enemy) then
          -- Check if we have minimum range to engage
          if mem.enemyclose then
             local dist = ai.dist( enemy )
@@ -342,7 +342,7 @@ function control ()
    -- Enemy sighted, handled after running away
    elseif enemy ~= nil and mem.aggressive then
       -- Don't start new attacks while refueling.
-      if si.noattack then
+      if si.noattack or ai.isbribed(enemy) then
          return
       end
 
