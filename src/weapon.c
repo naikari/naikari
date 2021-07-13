@@ -197,8 +197,8 @@ void weapon_minimap( const double res, const double w,
          continue;
 
       /* Choose colour based on if it'll hit player. */
-      if ((outfit_isSeeker(wp->outfit) && (wp->target != PLAYER_ID)) ||
-            (wp->faction == FACTION_PLAYER))
+      if ((outfit_isSeeker(wp->outfit) && (wp->target != PLAYER_ID))
+            || (wp->faction == FACTION_PLAYER))
          c = &cNeutral;
       else {
          if (wp->target == PLAYER_ID)
@@ -771,6 +771,13 @@ static void weapon_render( Weapon* w, const double dt )
 static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
 {
    Pilot *parent;
+   unsigned int leader_id;
+
+   /* Get some data. */
+   parent = pilot_get(w->parent);
+   leader_id = 0;
+   if (parent != NULL)
+      leader_id = parent->parent;
 
    /* Can't hit invincible stuff. */
    if (pilot_isFlag(p, PILOT_INVINCIBLE))
@@ -794,7 +801,7 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
       return 0;
 
    /* Player can not hit special pilots. */
-   if ((w->faction == FACTION_PLAYER)
+   if (((w->faction == FACTION_PLAYER) || (leader_id == PLAYER_ID))
          && pilot_isFlag(p, PILOT_INVINC_PLAYER))
       return 0;
 
@@ -803,8 +810,7 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
       return 1;
 
    /* Player behaves differently. */
-   if (w->faction == FACTION_PLAYER) {
-
+   if ((w->faction == FACTION_PLAYER) || (leader_id == PLAYER_ID)) {
       /* Always hit hostiles. */
       if (pilot_isHostile(p))
          return 1;
@@ -815,13 +821,9 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
    }
 
    /* Let hostiles hit player. */
-   if (p->faction == FACTION_PLAYER) {
-      parent = pilot_get(w->parent);
-      if (parent != NULL) {
-         if (pilot_isHostile(parent))
-            return 1;
-      }
-   }
+   if (((p->faction == FACTION_PLAYER) || (leader_id == PLAYER_ID))
+         && (parent != NULL) && (pilot_isHostile(parent)))
+      return 1;
 
    /* Hit non-allies. */
    if (areEnemies(w->faction, p->faction))
@@ -1083,7 +1085,8 @@ static void weapon_hitAI( Pilot *p, Pilot *shooter, double dmg )
       return;
 
    /* Player is handled differently. */
-   if (shooter->faction == FACTION_PLAYER) {
+   if ((shooter->faction == FACTION_PLAYER)
+         || (shooter->parent == PLAYER_ID)) {
       pilot_stack = pilot_getAll();
 
       /* Increment damage done to by player. */

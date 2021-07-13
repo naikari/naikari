@@ -1584,9 +1584,8 @@ static int aiL_isenemy( lua_State *L )
    p = luaL_validpilot(L,1);
 
    /* Player needs special handling in case of hostility. */
-   if (p->faction == FACTION_PLAYER) {
+   if ((p->faction == FACTION_PLAYER) || (p->parent == PLAYER_ID)) {
       lua_pushboolean(L, pilot_isHostile(cur_pilot));
-      lua_pushboolean(L,1);
       return 1;
    }
 
@@ -1610,7 +1609,7 @@ static int aiL_isally( lua_State *L )
    p = luaL_validpilot(L,1);
 
    /* Player needs special handling in case of friendliness. */
-   if (p->faction == FACTION_PLAYER) {
+   if ((p->faction == FACTION_PLAYER) || (p->parent == PLAYER_ID)) {
       lua_pushboolean(L, pilot_isFriendly(cur_pilot));
       return 1;
    }
@@ -2994,7 +2993,7 @@ static int aiL_hostile( lua_State *L )
 
    p = luaL_validpilot(L,1);
 
-   if (p->faction == FACTION_PLAYER)
+   if ((p->faction == FACTION_PLAYER) || (p->parent == PLAYER_ID))
       pilot_setHostile(cur_pilot);
 
    return 0;

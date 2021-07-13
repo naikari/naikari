@@ -502,8 +502,8 @@ double pilot_getNearestPos( const Pilot *p, unsigned int *tp, double x, double y
          continue;
 
       /* Player doesn't select escorts (unless disabled is active). */
-      if (!disabled && (p->faction == FACTION_PLAYER) &&
-            (pilot_stack[i]->faction == FACTION_PLAYER))
+      if (!disabled && (p->faction == FACTION_PLAYER)
+            && (pilot_stack[i]->faction == FACTION_PLAYER))
          continue;
 
       /* Shouldn't be disabled. */
@@ -549,8 +549,8 @@ double pilot_getNearestAng( const Pilot *p, unsigned int *tp, double ang, int di
          continue;
 
       /* Player doesn't select escorts (unless disabled is active). */
-      if (!disabled && (p->faction == FACTION_PLAYER) &&
-            (pilot_stack[i]->faction == FACTION_PLAYER))
+      if (!disabled && (p->faction == FACTION_PLAYER)
+            && (pilot_stack[i]->faction == FACTION_PLAYER))
          continue;
 
       /* Shouldn't be disabled. */
@@ -1225,7 +1225,9 @@ void pilot_distress( Pilot *p, Pilot *attacker, const char *msg, int ignore_int 
    if (!pilot_isFlag(p, PILOT_DISTRESSED)) {
 
       /* Modify faction, about 1 for a llama, 4.2 for a hawking */
-      if ((attacker != NULL) && (attacker->faction == FACTION_PLAYER) && r)
+      if (r && (attacker != NULL)
+            && ((attacker->faction == FACTION_PLAYER)
+               || (attacker->parent == PLAYER_ID)))
          faction_modPlayer( p->faction, -(pow(p->base_mass, 0.2) - 1.), "distress" );
 
       /* Set flag to avoid a second faction hit. */

@@ -274,7 +274,7 @@ const char* faction_name( int f )
    }
    /* Don't want player to see their escorts as "Player" faction. */
    if (f == FACTION_PLAYER)
-      return "Escort";
+      return N_("Escort");
 
    return faction_stack[f].name;
 }
