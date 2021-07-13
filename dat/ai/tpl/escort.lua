@@ -9,7 +9,7 @@ function create ()
    attack_choose()
 
    -- Disable thinking
-   mem.atk_think = nil
+   --mem.atk_think = nil
 end
 
 -- Just tries to guard mem.escort
