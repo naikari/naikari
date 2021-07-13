@@ -15,7 +15,7 @@
  </presence>
  <general>
   <class>G</class>
-  <population>100</population>
+  <population>4000</population>
   <services>
    <land>land_lowclass</land>
    <refuel/>
