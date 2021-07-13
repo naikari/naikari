@@ -224,10 +224,8 @@ end
 
 
 function pilot_disable ()
-   if rnd.rnd() < 0.7 then
-      for i, j in ipairs(pilot.get()) do
-         j:taskClear()
-      end
+   for i, j in ipairs(pilot.get()) do
+      j:taskClear()
    end
 end
 
