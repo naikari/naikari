@@ -147,9 +147,9 @@ unsigned int pilot_getNextID( const unsigned int id, int mode )
    p = m+1;
    if (mode == 0) {
       while (p < array_size(pilot_stack)) {
-         if (((pilot_stack[p]->faction != FACTION_PLAYER) ||
-                  pilot_isDisabled(pilot_stack[p])) &&
-               pilot_validTarget( player.p, pilot_stack[p] ))
+         if (((pilot_stack[p]->faction != FACTION_PLAYER)
+                  || pilot_isDisabled(pilot_stack[p]))
+               && pilot_validTarget( player.p, pilot_stack[p] ))
             return pilot_stack[p]->id;
          p++;
       }
@@ -157,9 +157,9 @@ unsigned int pilot_getNextID( const unsigned int id, int mode )
    /* Get first hostile in range. */
    if (mode == 1) {
       while (p < array_size(pilot_stack)) {
-         if ((pilot_stack[p]->faction != FACTION_PLAYER) &&
-               pilot_validTarget( player.p, pilot_stack[p] ) &&
-               pilot_isHostile( pilot_stack[p] ))
+         if ((pilot_stack[p]->faction != FACTION_PLAYER)
+               && pilot_validTarget( player.p, pilot_stack[p] )
+               && pilot_isHostile( pilot_stack[p] ))
             return pilot_stack[p]->id;
          p++;
       }
@@ -199,9 +199,9 @@ unsigned int pilot_getPrevID( const unsigned int id, int mode )
    /* Get first one in range. */
    if (mode == 0) {
       while (p >= 0) {
-         if (((pilot_stack[p]->faction != FACTION_PLAYER) ||
-                  (pilot_isDisabled(pilot_stack[p]))) &&
-               pilot_validTarget( player.p, pilot_stack[p] ))
+         if (((pilot_stack[p]->faction != FACTION_PLAYER)
+                  || (pilot_isDisabled(pilot_stack[p])))
+               && pilot_validTarget( player.p, pilot_stack[p] ))
             return pilot_stack[p]->id;
          p--;
       }
@@ -633,8 +633,8 @@ int pilot_isHostile( const Pilot *p )
 {
    if ( !pilot_isFriendly( p )
          && !pilot_isFlag( p, PILOT_BRIBED )
-         && (pilot_isFlag( p, PILOT_HOSTILE ) ||
-            areEnemies( FACTION_PLAYER, p->faction ) ) )
+         && (pilot_isFlag( p, PILOT_HOSTILE )
+            || areEnemies( FACTION_PLAYER, p->faction ) ) )
       return 1;
 
    return 0;
@@ -663,9 +663,9 @@ int pilot_isNeutral( const Pilot *p )
  */
 int pilot_isFriendly( const Pilot *p )
 {
-   if ( pilot_isFlag( p, PILOT_FRIENDLY ) ||
-         ( areAllies( FACTION_PLAYER,p->faction ) &&
-         !pilot_isFlag( p, PILOT_HOSTILE ) ) )
+   if (pilot_isFlag(p, PILOT_FRIENDLY)
+         || (areAllies(FACTION_PLAYER, p->faction)
+            && !pilot_isFlag(p, PILOT_HOSTILE)))
       return 1;
 
    return 0;

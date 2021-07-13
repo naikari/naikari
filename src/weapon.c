@@ -785,8 +785,8 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
       return 0;
 
    /* Must not be landing nor taking off. */
-   if (pilot_isFlag(p, PILOT_LANDING) ||
-         pilot_isFlag(p, PILOT_TAKEOFF))
+   if (pilot_isFlag(p, PILOT_LANDING)
+         || pilot_isFlag(p, PILOT_TAKEOFF))
       return 0;
 
    /* Go "through" dead pilots. */
@@ -794,8 +794,8 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
       return 0;
 
    /* Player can not hit special pilots. */
-   if ((w->faction == FACTION_PLAYER) &&
-         pilot_isFlag(p, PILOT_INVINC_PLAYER))
+   if ((w->faction == FACTION_PLAYER)
+         && pilot_isFlag(p, PILOT_INVINC_PLAYER))
       return 0;
 
    /* Always hit target. */
