@@ -261,9 +261,9 @@ int pilot_validTarget( const Pilot* p, const Pilot* target )
 static int pilot_validEnemy( const Pilot* p, const Pilot* target )
 {
    /* Should either be hostile by faction or by player. */
-   if ( !( areEnemies( p->faction, target->faction )
-            || ( ( target->id == PLAYER_ID )
-               && pilot_isHostile( p ) ) ) )
+   if (!(areEnemies(p->faction, target->faction)
+            || ((target->faction == FACTION_PLAYER)
+               && pilot_isHostile(p))))
       return 0;
 
    /* Shouldn't be disabled. */
