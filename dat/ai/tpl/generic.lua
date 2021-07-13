@@ -375,20 +375,13 @@ function attacked( attacker )
 
    -- Notify that pilot has been attacked before
    mem.attacked = true
-   local p = ai.pilot()
-
-   -- Pilot shouldn't be allowed to rebribe, so we just have to cancel
-   -- bribe status
-   if ai.isbribed(attacker) then
-      p:setBribed( false )
-   end
 
    -- Cooldown should be left running if not taking heavy damage.
    if mem.cooldown then
-      local _, pshield = p:health()
+      local _, pshield = ai.pilot():health()
       if pshield < 90 then
          mem.cooldown = false
-         p:setCooldown( false )
+         ai.pilot():setCooldown( false )
       else
          return
       end
