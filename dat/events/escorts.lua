@@ -337,7 +337,6 @@ function enter ()
          edata.pilot:setFuel(true)
 
          if f == nil or f:playerStanding() >= 0 then
-            edata.pilot:changeAI("escort_player")
             edata.pilot:memory().carrier = false
             edata.pilot:setLeader(pp)
             edata.pilot:setVisplayer(true)
@@ -388,11 +387,6 @@ function pilot_disbanded( edata )
    edata.alive = false
    local p = edata.pilot
    if p ~= nil and p:exists() then
-      if edata.def_ai ~= nil then
-         p:changeAI(edata.def_ai)
-      else
-         p:changeAI("mercenary")
-      end
       p:setLeader(nil)
       p:setVisplayer(false)
       p:setInvincPlayer(false)
