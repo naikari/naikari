@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ssys name="Zied">
+<ssys name="Gomyo">
  <general>
   <background>solarwind</background>
   <radius>7000.000000</radius>
@@ -11,10 +11,10 @@
   <y>36.833333</y>
  </pos>
  <assets>
-  <asset>Bon Sebb</asset>
-  <asset>Sixbat Station</asset>
+  <asset>Gojo Shipyard</asset>
   <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Miner Local</asset>
+  <asset>Wakomi</asset>
  </assets>
  <jumps>
   <jump target="Hypergate Zone">

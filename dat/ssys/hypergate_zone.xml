@@ -27,6 +27,11 @@
    <hidden/>
    <longrange/>
   </jump>
+  <jump target="Gomyo">
+   <pos x="9921.403503" y="1219.795158"/>
+   <hidden/>
+   <longrange/>
+  </jump>
   <jump target="Haleb">
    <pos x="-156.864934" y="-9993.217269"/>
    <hidden/>
@@ -48,11 +53,6 @@
   </jump>
   <jump target="Za'lek">
    <pos x="-6510.379507" y="-7543.217495"/>
-   <hidden/>
-   <longrange/>
-  </jump>
-  <jump target="Zied">
-   <pos x="9921.403503" y="1219.795158"/>
    <hidden/>
    <longrange/>
   </jump>
