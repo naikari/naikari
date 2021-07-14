@@ -29,50 +29,48 @@ shipwreck = _("Shipwrecked %s")
 function create ()
     local nebu_dens, nebu_vol = system.cur():nebula()
     if nebu_vol > 0 then
-      evt.finish()
+        evt.finish()
     end
 
     -- The shipwreck will be a random trader vessel.
     r = rnd.rnd()
     if r > 0.95 then
-        ship = "Trader Gawain"
+        ship = "Gawain"
     elseif r > 0.8 then
-        ship = "Trader Mule"
+        ship = "Mule"
     elseif r > 0.5 then
-        ship = "Trader Koala"
+        ship = "Koala"
     else 
-        ship = "Trader Llama"
+        ship = "Llama"
     end
 
     -- Create the derelict.
     angle = rnd.rnd() * 2 * math.pi
-    dist  = rnd.rnd(2000, 3000) -- place it a ways out
-    pos   = vec2.new( dist * math.cos(angle), dist * math.sin(angle) )
-    p     = pilot.addFleet(ship, pos, {ai="dummy"})
-    for k,v in ipairs(p) do
-        v:setFaction("Derelict")
-        v:disable()
-        v:rename(shipwreck:format(shipname))
-        -- Added extra visibility for big systems (A.)
-        v:setVisplayer( true )
-        v:setHilight( true )
-    end
+    dist = rnd.rnd(2000, 3000) -- place it a ways out
+    pos = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
+    p = pilot.add(ship, "Derelict", pos, shipwreck:format(shipname),
+            {ai="dummy"})
+    p:disable()
+    p:rename(shipwreck:format(shipname))
+    -- Added extra visibility for big systems (A.)
+    p:setVisplayer(true)
+    p:setHilight(true)
 
     hook.timer(3000, "broadcast")
    
     -- Set hooks
-    hook.pilot( p[1], "board", "rescue" )
-    hook.pilot( p[1], "death", "destroyevent" )
+    hook.pilot(p, "board", "rescue")
+    hook.pilot(p, "death", "destroyevent")
     hook.enter("endevent")
     hook.land("endevent")
 end
 
 function broadcast ()
     -- Ship broadcasts an SOS every 10 seconds, until boarded or destroyed.
-    if not p[1]:exists() then
+    if not p:exists() then
         return
     end
-    p[1]:broadcast( string.format(broadcastmsg, shipname), true )
+    p:broadcast(string.format(broadcastmsg, shipname), true)
     bctimer = hook.timer(15000, "broadcast")
 end
 
