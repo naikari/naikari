@@ -3418,9 +3418,15 @@ static Planet* player_parse( xmlNodePtr parent )
          WARN(_("Could not find a suitable planet. Choosing a random planet."));
          found = space_getRndPlanet(0, 0, NULL); /* This should never, ever fail. */
       }
-      pnt = planet_get( found );
+      pnt = planet_get(found);
    }
-   sys = system_get( planet_getSystem( pnt->name ) );
+   sys = system_get(planet_getSystem(pnt->name));
+
+   /* This should never happen, but putting this here just in case.
+    * Otherwise we'll get a segfault in the next line. */
+   if (sys == NULL)
+      ERR("Ended up on a planet that either doesn't exist, or has no system.");
+
    space_gfxLoad( sys );
    a = RNGF() * 2.*M_PI;
    r = RNGF() * pnt->radius * 0.8;

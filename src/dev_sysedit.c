@@ -361,7 +361,7 @@ static void sysedit_btnNew( unsigned int wid_unused, char *unused )
    (void) wid_unused;
    (void) unused;
    Planet *p, *b;
-   char *name;
+   char *name, *sysname;
 
    /* Get new name. */
    name = dialogue_inputRaw( _("New Planet Creation"), 1, 32, _("What do you want to name the new planet?") );
@@ -369,9 +369,16 @@ static void sysedit_btnNew( unsigned int wid_unused, char *unused )
       return;
 
    /* Check for collision. */
-   if (planet_exists( name )) {
-      dialogue_alert( _("Planet by the name of #r'%s'#0 already exists in the #r'%s'#0 system"),
-            name, planet_getSystem( name ) );
+   if (planet_exists(name)) {
+      sysname = planet_getSystem(name);
+      if (sysname != NULL)
+         dialogue_alert(
+            _("Planet by the name of #r'%s'#0 already exists in the #r'%s'#0 system"),
+            name, sysname);
+      else
+         dialogue_alert(
+            _("Planet by the name of #r'%s'#0 already exists (but not in a system)"),
+            name);
       free(name);
       sysedit_btnNew( 0, NULL );
       return;
@@ -413,9 +420,10 @@ static void sysedit_btnRename( unsigned int wid_unused, char *unused )
    (void) wid_unused;
    (void) unused;
    int i;
-   char *name, *oldName, *newName, *filtered;
+   char *name, *oldName, *newName, *sysname, *filtered;
    Select_t *sel;
    Planet *p;
+
    for (i=0; i<sysedit_nselect; i++) {
       sel = &sysedit_select[i];
       if (sel->type == SELECT_PLANET) {
@@ -428,9 +436,16 @@ static void sysedit_btnRename( unsigned int wid_unused, char *unused )
             continue;
 
          /* Check for collision. */
-         if (planet_exists( name )) {
-            dialogue_alert( _("Planet by the name of #r'%s'#0 already exists in the #r'%s'#0 system"),
-                  name, planet_getSystem( name ) );
+         if (planet_exists(name)) {
+            sysname = planet_getSystem(name);
+            if (sysname != NULL)
+               dialogue_alert(
+                  _("Planet by the name of #r'%s'#0 already exists in the #r'%s'#0 system"),
+                  name, sysname);
+            else
+               dialogue_alert(
+                  _("Planet by the name of #r'%s'#0 already exists (but not in a system)"),
+                  name);
             free(name);
             continue;
          }

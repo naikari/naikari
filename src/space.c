@@ -515,6 +515,7 @@ char* space_getRndPlanet( int landable, unsigned int services,
    Planet **tmp;
    char *res;
    Planet *pnt;
+   char *sysname;
 
    res   = NULL;
    tmp   = array_create( Planet* );
@@ -547,7 +548,10 @@ char* space_getRndPlanet( int landable, unsigned int services,
          if (!pnt->can_land)
             continue;
       }
-      if (!space_sysReallyReachable( planet_getSystem(pnt->name) ))
+      sysname = planet_getSystem(pnt->name);
+      if (sysname == NULL)
+         continue;
+      if (!space_sysReallyReachable(sysname))
          continue;
 
       /* We want the name, not the actual planet. */
@@ -905,7 +909,7 @@ int planet_hasSystem( const char* planetname )
  * @brief Get the name of a system from a planetname.
  *
  *    @param planetname Planet name to match.
- *    @return Name of the system planet belongs to.
+ *    @return Name of the system planet belongs to, or NULL if it doesn't belong to any.
  */
 char* planet_getSystem( const char* planetname )
 {
@@ -915,7 +919,6 @@ char* planet_getSystem( const char* planetname )
       if (strcmp(planetname_stack[i],planetname)==0)
          return systemname_stack[i];
 
-   DEBUG(_("Planet '%s' not found in planetname stack"), planetname);
    return NULL;
 }
 
