@@ -4,6 +4,8 @@ require("ai/personality/patrol")
 -- Settings
 mem.aggressive = true
 mem.atk_kill = false
+mem.enemyclose = 2000
+mem.leadermaxdist = 3000
 
 
 function create ()
