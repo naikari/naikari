@@ -433,7 +433,7 @@ function space_clue ()
       if choice == 1 then
          -- End of function
       else -- Threaten the pilot
-         if isScared (target) and rnd.rnd() < .5 then
+         if isScared(target) and rnd.rnd() < .5 then
             tk.msg(scared_title, scared_text[rnd.rnd(1,#scared_text)]:format(name, mysys[cursys+1]:name()))
             next_sys()
             target:control()
