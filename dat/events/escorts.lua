@@ -212,10 +212,7 @@ function land ()
          edata.shield = nil
          edata.stress = nil
          edata.energy = nil
-         local id = evt.npcAdd(
-               "approachEscort", edata.name, edata.portrait,
-               _("This is one of the pilots currently under your wing."), 8 )
-         npcs[id] = edata
+         spawnNPC(edata)
          new_escorts[j] = edata
       end
    end
@@ -297,7 +294,7 @@ function enter ()
 
    local pp = player.pilot()
    for i, edata in ipairs(escorts) do
-      if edata.alive then
+      if edata.alive and not edata.docked then
          local f = faction.get(edata.faction)
 
          edata.pilot = pilot.add(edata.ship, f, spawnpoint, edata.name)
@@ -417,10 +414,9 @@ function pilot_hail( p, arg )
             edata.name, edata.ship, creditstring(edata.deposit),
             edata.royalty * 100, scredits, getTotalRoyalties() * 100 ) )
 
-   local n, s = tk.choice(
-         "", approachtext, _("Fire pilot"), _("Do nothing") )
-   if n == 1 and tk.yesno(
-         "", string.format(
+   local n, s = tk.choice("", approachtext, _("Fire pilot"), _("Do nothing"))
+
+   if s == _("Fire pilot") and tk.yesno("", string.format(
             _("Are you sure you want to fire %s? This cannot be undone."),
             edata.name ) ) then
       pilot_disbanded(edata)
@@ -475,6 +471,18 @@ function pilot_death( p, attacker, arg )
 end
 
 
+function spawnNPC( edata )
+   local name = edata.name
+   if edata.docked then
+      name = string.format(_("%s [docked]"), edata.name)
+   end
+
+   local id = evt.npcAdd("approachEscort", name, edata.portrait,
+         _("This is one of the pilots currently under your wing."), 8 )
+   npcs[id] = edata
+end
+
+
 function approachEscort( npc_id )
    local edata = npcs[npc_id]
    if edata == nil then
@@ -488,12 +496,31 @@ function approachEscort( npc_id )
             edata.name, edata.ship, creditstring(edata.deposit),
             edata.royalty * 100, scredits, getTotalRoyalties() * 100 ) )
 
-   local n, s = tk.choice("", approachtext, _("Fire pilot"), _("Do nothing"))
-   if n == 1 then
-      if tk.yesno(
-            "", string.format(
+   local dock_choice = _("Dock pilot")
+   if edata.docked then
+      dock_choice = _("Undock pilot")
+   end
+
+   local n, s = tk.choice("", approachtext,
+         dock_choice, _("Fire pilot"), _("Do nothing"))
+   if s == _("Dock pilot") then
+      if tk.yesno("", string.format(
+               _("Are you sure you want to dock %s? They will still be paid royalties, but will not join you in space until you undock them."),
+               edata.name)) then
+         edata.docked = true
+         evt.npcRm(npc_id)
+         npcs[npc_id] = nil
+         spawnNPC(edata)
+      end
+   elseif s == _("Undock pilot") then
+      edata.docked = false
+      evt.npcRm(npc_id)
+      npcs[npc_id] = nil
+      spawnNPC(edata)
+   elseif s == _("Fire pilot") then
+      if tk.yesno("", string.format(
                _("Are you sure you want to fire %s? This cannot be undone."),
-               edata.name ) ) then
+               edata.name)) then
          evt.npcRm(npc_id)
          npcs[npc_id] = nil
          -- We just set alive to false for now and let them get cleaned
@@ -536,10 +563,7 @@ function approachPilot( npc_id )
       escorts[i] = pdata
       evt.npcRm(npc_id)
       npcs[npc_id] = nil
-      local id = evt.npcAdd(
-            "approachEscort", pdata.name, pdata.portrait,
-            _("This is one of the pilots currently under your wing."), 8 )
-      npcs[id] = pdata
+      spawnNPC(pdata)
       evt.save(true)
    end
 end
