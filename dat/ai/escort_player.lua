@@ -3,6 +3,7 @@ require("ai/personality/patrol")
 
 -- Settings
 mem.aggressive = true
+mem.atk_kill = false
 
 
 function create ()
