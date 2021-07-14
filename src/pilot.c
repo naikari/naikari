@@ -264,7 +264,10 @@ static int pilot_validEnemy( const Pilot* p, const Pilot* target )
    if (!(areEnemies(p->faction, target->faction)
             || (((target->faction == FACTION_PLAYER)
                   || (target->parent == PLAYER_ID))
-               && pilot_isHostile(p))))
+               && pilot_isHostile(p))
+            || (((p->faction == FACTION_PLAYER)
+                  || (p->parent == PLAYER_ID))
+               && pilot_isHostile(target))))
       return 0;
 
    /* Shouldn't be disabled. */
