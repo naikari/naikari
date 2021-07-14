@@ -165,11 +165,11 @@ end
 
 
 function spawnThug( param )
-   local f = faction.dynAdd(nil, N_("Thug"), nil, "baddie")
    local shiptypes = {"Hyena", "Hyena", "Hyena", "Shark", "Lancelot"}
    local shiptype = shiptypes[rnd.rnd(1, #shiptypes)]
 
-   thug = pilot.add(shiptype, f, param, _("Thug %s"):format(_(shiptype)))
+   thug = pilot.add(
+         shiptype, "Comingout_thugs", param, _("Thug %s"):format(_(shiptype)))
 
    thug:setHostile()
 
