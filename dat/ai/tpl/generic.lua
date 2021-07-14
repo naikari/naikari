@@ -30,7 +30,7 @@ mem.careful       = false -- Should the pilot try to avoid enemies?
 
 mem.formation     = "circle" -- Formation to use when commanding fleet
 mem.form_pos      = nil -- Position in formation (for follower)
-mem.leadermaxdist = nil -- Distance from leader to run back to leader
+mem.leadermaxdist = 2000 -- Distance from leader to run back to leader
 mem.gather_range  = 800 -- Radius in which the pilot looks for gatherables
 
 --[[Control parameters: mem.radius and mem.angle are the polar coordinates 
@@ -258,8 +258,9 @@ function control ()
       if l then
          local dist = ai.dist( l )
          if lmd < dist then
-            if task ~= "flyback" then
-               ai.pushtask("flyback", false)
+            if task ~= "follow_fleet" then
+               if task ~= nil then ai.poptask() end
+               ai.pushtask("follow_fleet", false)
             end
             return
          end
