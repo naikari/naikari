@@ -7,7 +7,7 @@ local formation = require("scripts/formation")
 --
 -- These variables can be used to adjust the generic AI to suit other roles.
 --]]
-mem.enemyclose     = 2000 -- Distance at which an enemy is considered close
+mem.enemyclose     = 3000 -- Distance at which an enemy is considered close
 mem.armour_run     = 0 -- At which damage to run at
 mem.armour_return  = 0 -- At which armour to return to combat
 mem.shield_run     = 0 -- At which shield to run
@@ -30,7 +30,7 @@ mem.careful       = false -- Should the pilot try to avoid enemies?
 
 mem.formation     = "circle" -- Formation to use when commanding fleet
 mem.form_pos      = nil -- Position in formation (for follower)
-mem.leadermaxdist = 3000 -- Distance from leader to run back to leader
+mem.leadermaxdist = 4000 -- Distance from leader to run back to leader
 mem.gather_range  = 800 -- Radius in which the pilot looks for gatherables
 
 --[[Control parameters: mem.radius and mem.angle are the polar coordinates 
