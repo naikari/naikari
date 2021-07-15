@@ -7,7 +7,7 @@
   <avail>
    <priority>2</priority>
    <done>Coming of Age</done>
-   <chance>30</chance>
+   <chance>70</chance>
    <location>Bar</location>
    <faction>Soromid</faction>
    <cond>var.peek("comingout_time") == nil or time.get() &gt;= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0)</cond>
