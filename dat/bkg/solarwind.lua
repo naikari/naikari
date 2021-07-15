@@ -27,7 +27,8 @@ function renderfg( dt )
    -- Get camera properties
    local x, y = camera.get():get()
    local z = camera.getZoom()
+   local b = naev.conf().bg_brightness
    shader:send( "u_camera", x*0.5/sf, -y*0.5/sf, z )
 
-   bgshaders.render( dt, {0.2, 0.6, 0.9, 0.8} )
+   bgshaders.render(dt, {b*0.2, b*0.6, b*0.9, b*0.8})
 end
