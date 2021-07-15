@@ -32,12 +32,12 @@ equip_classOutfits_weapons["Courier"] = {
 equip_classOutfits_weapons["Freighter"] = {
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher"
-   },
-   {
       "Laser Turret MK2", "Turreted Vulcan Gun", "Plasma Turret MK2",
       "Orion Beam",
-   }
+   },
+   {
+      "Enygma Systems Turreted Fury Launcher",
+   },
 }
 
 
