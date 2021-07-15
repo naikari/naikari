@@ -297,9 +297,8 @@ function enter ()
       if edata.alive and not edata.docked then
          local f = faction.get(edata.faction)
 
-         edata.pilot = pilot.add(edata.ship, f, spawnpoint, edata.name)
-         edata.pilot:rmOutfit("all")
-         edata.pilot:rmOutfit("cores")
+         edata.pilot = pilot.add(edata.ship, f, spawnpoint, edata.name,
+               {naked=true})
          for j, o in ipairs(edata.outfits) do
             edata.pilot:addOutfit(o)
          end

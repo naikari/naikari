@@ -89,6 +89,7 @@ function pilot_name ()
       _("Nitrogen %s"),
       _("Nova %s"),
       _("Number %s"),
+      _("Order %s"),
       _("Orca %s"),
       _("Panther %s"),
       _("Pegasus %s"),
