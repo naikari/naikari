@@ -1400,8 +1400,8 @@ int pilot_outfitOff( Pilot *p, PilotOutfitSlot *o )
    if (outfit_isAfterburner( o->outfit )) /* Afterburners */
       pilot_afterburnOver( p );
    else if (outfit_isBeam( o->outfit )) {
-      /* Beams use stimer to represent minimum time until shutdown. */
-      o->stimer = -1;
+      beam_end( p->id, o->u.beamid );
+      pilot_stopBeam(p, o);
    }
    else if (!o->active)
       /* Case of a mod we can't toggle. */
