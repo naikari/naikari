@@ -62,13 +62,10 @@ success_text = _([[You successfully land and dock alongside Chelsea and she appr
 "Anyway, I should probably get going now," she says. "But I really appreciated the help there! Get in touch with me again sometime. We make a great team!" You agree, and you both go your separate ways once again.]])
 
 misn_title = _("A Friend's Aid")
-misn_desc = _("Chelsea needs you to escort her to %s.")
+misn_desc = _("Chelsea needs you to escort her to %s. You must wait for her to jump to or land on her destination before you jump or land, and you must not deviate from her course.")
 
 npc_name = _("Chelsea")
 npc_desc = _("You see Chelsea looking contemplative.")
-
-osd_desc    = {}
-osd_desc[1] = _("Escort Chelsea to %s in the %s system.")
 
 cheljump_msg = _("Chelsea has jumped to %s.")
 chelland_msg = _("Chelsea has landed on %s.")
@@ -82,7 +79,7 @@ log_text = _([[You helped escort Chelsea through a dangerous cargo delivery miss
 function create ()
    misplanet, missys, njumps, tdist, cargo, avgrisk = cargo_calculateRoute()
    if misplanet == nil or missys == nil or avgrisk > 0 then
-      misn.finish( false )
+      misn.finish(false)
    end
 
    credits = 500000
@@ -111,7 +108,12 @@ function accept ()
       misn.setReward(creditstring(credits))
       marker = misn.markerAdd(missys, "low")
 
-      osd_desc[1] = osd_desc[1]:format( misplanet:name(), missys:name())
+      local nextsys = getNextSystem(system.cur(), missys)
+      local osd_desc = {}
+      osd_desc[1] = string.format(
+            _("Protect Chelsea and wait for her to jump to %s"),
+            nextsys:name())
+      osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
       misn.osdCreate(misn_title, osd_desc)
 
       startplanet = planet.cur()
@@ -183,10 +185,24 @@ function jumpNext ()
    if chelsea ~= nil and chelsea:exists() then
       chelsea:taskClear()
       chelsea:control()
+      misn.osdDestroy()
       if system.cur() == missys then
          chelsea:land(misplanet, true)
+         local osd_desc = {}
+         osd_desc[1] = string.format(
+               _("Protect Chelsea and wait for her to land on %s"),
+               misplanet:name())
+         osd_desc[2] = string.format(_("Land on %s"), misplanet:name())
+         misn.osdCreate(misn_title, osd_desc)
       else
-         chelsea:hyperspace(getNextSystem(system.cur(), missys), true)
+         local nextsys = getNextSystem(system.cur(), missys)
+         chelsea:hyperspace(nextsys, true)
+         local osd_desc = {}
+         osd_desc[1] = string.format(
+               _("Protect Chelsea and wait for her to jump to %s"),
+               nextsys:name())
+         osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
+         misn.osdCreate(misn_title, osd_desc)
       end
    end
 end
@@ -245,6 +261,7 @@ function chelsea_jump( p, jump_point )
    if jump_point:dest() == getNextSystem(system.cur(), missys) then
       player.msg(cheljump_msg:format(jump_point:dest():name()))
       chelsea_jumped = true
+      misn.osdActive(2)
    else
       fail(chelflee_msg)
    end
@@ -255,6 +272,7 @@ function chelsea_land( p, planet )
    if planet == misplanet then
       player.msg(chelland_msg:format(planet:name()))
       chelsea_jumped = true
+      misn.osdActive(2)
    else
       fail(chelflee_msg)
    end

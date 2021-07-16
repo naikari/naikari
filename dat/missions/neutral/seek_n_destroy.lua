@@ -146,7 +146,7 @@ pay_text[2] = _("No one will miss this outlaw pilot! The bounty has been deposit
 
 osd_title = _("Seek and Destroy")
 osd_msg    = {}
-osd_msg1_r = _("Fly to the %s system and search for clues")
+osd_msg1_r = _("Fly to %s and search for clues")
 osd_msg[1] = " "
 osd_msg[2] = _("Kill %s")
 osd_msg[3] = _("Land in %s territory to collect your bounty")

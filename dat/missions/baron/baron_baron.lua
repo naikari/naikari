@@ -100,8 +100,8 @@ npc_desc = _("These must be the 'agents' hired by this Baron Sauterfeldt. They l
 
 -- OSD stuff
 osd_title = _("Baron")
-osd_msg[1] = _("Fly to the %s system and land on planet %s")
-osd_msg[2] = _("Fly to the %s system and dock with (board) Kahan Pinnacle")
+osd_msg[1] = _("Fly to %s and land on %s")
+osd_msg[2] = _("Fly to %s and dock with (board) Kahan Pinnacle")
 
 log_text_succeed = _([[You helped some selfish baron steal a Dvaered holopainting and were paid a measly sum of credits.]])
 log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pilot, but you angrily refused to accept the job. It seems whoever the pilot worked for won't be contacting you again.]])

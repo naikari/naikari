@@ -54,7 +54,7 @@ cargo_land[3] = _("The containers of %s are unloaded by an exhausted-looking bun
 cargo_land[4] = _("The containers of %s are unloaded by a team of robotic drones supervised by a human overseer, who hands you your pay when they finish.")
 
 osd_title = _("Cargo mission")
-osd_msg = _("Fly to the %s system and land on %s")
+osd_msg = _("Fly to %s and land on %s")
 
 -- Create the mission
 function create()

@@ -39,18 +39,17 @@ require "numstring"
 require "missions/soromid/common"
 
 
-title = {}
 text = {}
 
-title[1] = _("Visiting Family")
-text[1] = _([[Chelsea greets you as before. "Hi, %s! It's so nice to see you again!" The two of you talk about your travels once again. "So, I've got a bit of a request. Could you use they/them pronouns with me again?" You agree to the request. "Thank you," they say. "I've done some more soul-searching lately and I've found that I identify more as nonbinary than as a woman. I really appreciate it!
-    "Actually, come to think of it, this would be a great excuse to go see my parents again! It's been so long since I've seen them. Say, could you take me to them in %s?"]])
+ask_text = _([[Chelsea greets you as before. "Hi, %s! It's so nice to see you again!" The two of you talk about your travels once again. "I'm using they/them pronouns again," they eventually say. "I've done more soul-searching and found that nonbinary transfeminine feels right to me." You thank them for telling you. "You're welcome!" they say. "And thank you for respecting that! I sure hope my parents do too. I was thinking of meeting up with them back at %s, but I must admit that I'm a bit nervous and not entirely sure if my ship is up for getting through that part of space yet.
 
-text[2] = _([["Awesome! Thank you so much! So just take me to %s in the %s system, and then take me to %s in the %s system. As usual, no rush. Just as long as I get to see my parents, I'm happy!"]])
+"Oh! Actually, maybe you could help! I could meet up with you at %s and then you could escort me to %s. And I know I'd feel a lot better talking about this with my parents if you were there. What do you think, is that something you can do? I'll pay you, of course."]])
 
-text[3] = _([["Ah, busy, eh? That's OK. Let me know later if you can do it!"]])
+yes_text = _([["Thank you so much! Like I said, I'll meet you at %s; I can get that far on my own. See you soon!"]])
 
-text[4] = _([["Oh, %s! Have you changed your mind? Can you take me to %s?"]])
+no_text = _([["Ah, busy, eh? That's OK. Let me know later if you can do it!"]])
+
+ask_again_text = _([["Oh, %s! Have you changed your mind? Can you help me get to %s?"]])
 
 text[5] = _([[You land and dock on %s, then meet up with both of Chelsea's parents. They welcome Chelsea and their mother gives them a warm hug, then releases them. Chelsea's father slightly waves, and the three of them start chatting.
     Eventually, the topic of Chelsea's gender comes up. Chelsea explains that they are nonbinary and prefer they/them pronouns similarly to when they explained it to you. Their mother says that she is proud of them and hugs them.]])
@@ -71,14 +70,14 @@ text[9] = _([[With no time to lose, you dash into your ship and immediately star
 text[10] = _([[Having spent a large portion of the trip trying to console Chelsea, you honestly feel bad about dropping them off now. Nonetheless, Chelsea insists. "Thank you for your help," they say. "I never expected it to come to this, you know? I just... I hope my mom is OK. I just hope, you know?" They start to cry and you give them a friendly hug. As you release them, they wipe the tears away from their eyes. "Well, then, I've got some work to do I take it... it looks like I'm going to have a major fight on my hands, whatever form that takes. For now I'll keep doing missions as before. You know, save up money, build up my ship... that sort of thing. I'll find you if I need you, eh?" Chelsea forces a smile, as do you, and the two of you part ways for the time being. You hope they'll be OK.]])
 
 misn_title = _("Visiting Family")
-misn_desc = _("Chelsea wants to revisit their family in %s.")
+misn_desc = _("Chelsea wants to revisit their family in %s. They have asked you to escort them to there from %s.")
 misn_reward = _("None")
 
 npc_name = _("Chelsea")
 npc_desc = _("You see Chelsea in the bar and feel an urge to say hello.")
 
 osd_desc = {}
-osd_desc[1] = _("Fly to %s in the %s system.")
+osd_desc[1] = _("Fly to %s and land on %s")
 osd_desc[2] = _("Fly to %s in the %s system.")
 osd_desc["__save"] = true
 
@@ -90,79 +89,83 @@ log_text = _([[You transported Chelsea, who requests they/them pronouns now, to 
 
 
 function create ()
-   misplanet, missys = planet.get( "Durea" )
-   misplanet2, missys2 = planet.get( "Crow" )
-   if not misn.claim( missys ) then misn.finish( false ) end
+   -- TODO: remove this when the mission is ready
+   misn.finish(false)
+
+   startplanet, startsys = planet.get("Darkshed")
+   destplanet, destsys = planet.get("Durea")
+   if not misn.claim(missys) then misn.finish(false) end
 
    started = false
 
-   misn.setNPC( npc_name, "soromid/unique/chelsea.webp", npc_desc )
+   misn.setNPC(npc_name, "soromid/unique/chelsea.webp", npc_desc)
 end
 
 
 function accept ()
    local txt
    if started then
-      txt = text[4]:format( player.name(), misplanet:name() )
+      txt = ask_again_text:format(player.name(), destplanet:name(),
+            startplanet:name(), destplanet:name())
    else
-      txt = text[1]:format( player.name(), misplanet:name() )
+      txt = ask_text:format(player.name(), destplanet:name())
    end
    started = true
 
-   if tk.yesno( title[1], txt ) then
-      tk.msg( title[1], text[2]:format( misplanet:name(), missys:name(), misplanet2:name(), missys2:name() ) )
+   if tk.yesno("", txt) then
+      tk.msg("", yes_text:format(startplanet:name()))
 
       misn.accept()
 
-      misn.setTitle( misn_title )
-      misn.setDesc( misn_desc:format( misplanet:name() ) )
-      misn.setReward( misn_reward )
-      marker = misn.markerAdd( missys, "low" )
+      misn.setTitle(misn_title)
+      misn.setDesc(misn_desc:format(destplanet:name(), startplanet:name()))
+      misn.setReward(misn_reward)
+      marker = misn.markerAdd(missys, "low")
 
-      osd_desc[1] = osd_desc[1]:format( misplanet:name(), missys:name() )
-      osd_desc[2] = osd_desc[2]:format( misplanet2:name(), missys2:name() )
-      misn.osdCreate( misn_title, osd_desc )
+      osd_desc[1] = osd_desc[1]:format(misplanet:name(), missys:name())
+      osd_desc[2] = osd_desc[2]:format(misplanet2:name(), missys2:name())
+      misn.osdCreate(misn_title, osd_desc)
 
       stage = 1
 
-      hook.enter( "enter" )
-      hook.land( "land" )
+      hook.enter("enter")
+      hook.land("land")
    else
-      tk.msg( title[1], text[3] )
+      tk.msg("", no_text)
       misn.finish()
    end
 end
 
 
 function enter ()
-   player.allowSave( true )
+   player.allowSave(true)
    if stage >= 2 and system.cur() == missys then
-      player.allowLand( false, noland_msg )
-      hook.timer( 1000, "ambush_timer" )
+      player.allowLand(false, noland_msg)
+      hook.timer(1000, "ambush_timer")
    end
 end
 
 
 function land ()
    if stage == 1 and planet.cur() == misplanet then
-      player.allowSave( false )
+      player.allowSave(false)
 
-      tk.msg( "", text[5]:format( misplanet:name() ) )
-      tk.msg( "", text[6] )
-      tk.msg( "", text[7]:format( player.name() ) )
-      tk.msg( "", text[8] )
-      tk.msg( "", text[9] )
+      tk.msg("", text[5]:format(misplanet:name()))
+      tk.msg("", text[6])
+      tk.msg("", text[7]:format(player.name()))
+      tk.msg("", text[8])
+      tk.msg("", text[9])
 
       stage = 2
-      misn.osdActive( 2 )
-      if marker ~= nil then misn.markerRm( marker ) end
-      marker = misn.markerAdd( missys2, "low" )
+      misn.osdActive(2)
+      if marker ~= nil then misn.markerRm(marker) end
+      marker = misn.markerAdd(missys2, "low")
 
       player.takeoff()
    elseif stage >= 2 and planet.cur() == misplanet2 then
-      tk.msg( "", text[10] )
-      srm_addComingOutLog( log_text )
-      misn.finish( true )
+      tk.msg("", text[10])
+      srm_addComingOutLog(log_text)
+      misn.finish(true)
    end
 end
 
@@ -173,10 +176,10 @@ function ambush_timer ()
       "Hyena", "Hyena"
    }
    local leaderthug
-   for i, shiptype in ipairs( thugships ) do
-      local p = pilot.add( shiptype, "Comingout_thugs", misplanet, _("Thug %s"):format( _(shiptype) ) )
+   for i, shiptype in ipairs(thugships) do
+      local p = pilot.add(shiptype, "Comingout_thugs", misplanet, _("Thug %s"):format(_(shiptype)))
       p:setHostile()
-      p:setLeader( leaderthug )
+      p:setLeader(leaderthug)
 
       if i == 1 then
          leaderthug = p
@@ -184,7 +187,7 @@ function ambush_timer ()
    end
 
    if stage == 2 then
-      leaderthug:comm( ambush_msg )
+      leaderthug:comm(ambush_msg)
       stage = 3
    end
 end
