@@ -822,7 +822,7 @@ void land_updateMainTab (void)
    Outfit *o;
    long double p = land_planet->population;
 
-   snprintf( pop, sizeof(pop), n_("%LG person", "%LG people", p), p );
+   snprintf( pop, sizeof(pop), "%LG", p );
 
    /* Update credits. */
    tonnes2str( tons, player.p->cargo_free );
