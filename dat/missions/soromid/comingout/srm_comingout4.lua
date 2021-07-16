@@ -39,8 +39,6 @@ require "numstring"
 require "missions/soromid/common"
 
 
-text = {}
-
 ask_text = _([[Chelsea greets you as before. "Hi, %s! It's so nice to see you again!" The two of you talk about your travels once again. "I'm using they/them pronouns again," they eventually say. "I've done more soul-searching and found that nonbinary transfeminine feels right to me." You thank them for telling you. "You're welcome!" they say. "And thank you for respecting that! I sure hope my parents do too. I was thinking of meeting up with them back at %s, but I must admit that I'm a bit nervous and not entirely sure if my ship is up for getting through that part of space yet.
 
 "Oh! Actually, maybe you could help! I could meet up with you at %s and then you could escort me to %s. And I know I'd feel a lot better talking about this with my parents if you were there. What do you think, is that something you can do? I'll pay you, of course."]])
@@ -53,23 +51,35 @@ ask_again_text = _([["Oh, %s! Have you changed your mind? Can you help me get to
 
 darkshed_text = _([[You meet up with Chelsea. "Hello again, %s!" they say. "I'm all ready for takeoff! Like last time, I'll need you to follow me along, make sure I finish jumping or landing before you do, and help me shoot down any hostilities. See you out in space!"]])
 
-text[5] = _([[You land and dock on %s, then meet up with both of Chelsea's parents. They welcome Chelsea and their mother gives them a warm hug, then releases them. Chelsea's father slightly waves, and the three of them start chatting.
-    Eventually, the topic of Chelsea's gender comes up. Chelsea explains that they are nonbinary and prefer they/them pronouns similarly to when they explained it to you. Their mother says that she is proud of them and hugs them.]])
+home_text = {}
+home_text[1] = _([[You land and dock on %s, then meet up with both of Chelsea's parents. They welcome Chelsea and their mother gives them a warm hug, then releases them. Chelsea's father slightly waves, and the three of them start chatting.
 
-text[6] = _([[Chelsea's father shakes his head. "Look, bud, you will always be my son no matter what." You and Chelsea's mother both frown slightly. Chelsea's dad continues. "But don't you think enough is enough? You are a man. It's about time you stop pretending and start-"
-    Chelsea's mother cuts him off. "That's enough of that garbage from you! Chelsea is our child, and I love them as they are, not as some fantasy of what you think they should be!"
-    "He's our son!" Chelsea's father snaps back. "You're feeding into his wild imagination! He's already admitted that he's not a woman. But now he's just moving on to another fantasy! What's next? Identifying as a Soromid? Good lord!"]])
+Eventually, the topic of Chelsea's gender comes up. Chelsea explains that they are nonbinary and now use they/them pronouns similarly to when they explained it to you. Their mother thanks them and hugs them.
 
-text[7] = _([[Everything goes silent for what must be mere seconds, but seems to last a period. Finally, Chelsea speaks up. "Dad... I've made good friends with some Soromid in my travels." Their father's face seems to turn red with fury, but Chelsea continues. "The Soromid are not these horrible people you've made them out to be all my life. And dad, I am not your son. I never really was your son. I will never be your son. I am a transfemme enby. End of discussion.
-    "%s here has really taught me a lot about asserting myself and not letting others dictate who I am, probably without realizing it. So I'm no longer going to allow your bigoted ideas about gender define me." Chelsea pauses. "And with the help of the Soromid, I'll be getting some procedures done to help affirm who I am."]])
+Chelsea's father sighs. "Well, if you really wanna go with that, I guess I'll humor you." You look over at Chelsea; it's obvious that they're hurt by this.]])
+home_text[2] = _([[Chelsea's mother speaks up. "What do you mean, 'humor' them? You don't believe your own child about their personal experiences?"
 
-text[8] = _([[Chelsea's mother smiles. "I'm proud of you, sweetie," she says. "No matter what happens, always be true to yourself. You are my child, and I will always love you."
-    Chelsea's father frowns. "Is this really how you want it to be?" Chelsea nods. Their father continues. "Very well, then. You're right. You are not my son." He reaches into his pocket as Chelsea's mother looks in his direction.
-    Suddenly, Chelsea's mother yells out. "NO!" she shouts as she tackles her husband. That's when you see what he was reaching for: a laser gun. The two start to wrestle for control as Chelsea's mother shouts. "Run! Both of you! Get out of here!" Not needing to be told twice, you grab Chelsea's arm and run as fast as you can. Just as you make it out of view, you hear the laser gun fire.]])
+"I mean, you wanna identify as 'nonbinary' or a Kestrel or whatever because it makes you feel better, I mean, we both know that's not true, but at least you're not one of those those sorofreaks..."
 
-text[9] = _([[With no time to lose, you dash into your ship and immediately start launch procedures just in time to see Chelsea's father appear and attempt to fire his weapon at you. As Chelsea sits next to you, shaking uncontrollably from the the stress, you make a mental note to do whatever you can to comfort them once you make it out of this situation.]])
+Chelsea is clearly furious. "What do you think you're doing, throwing out that slur? The Soromid are people just like us! And I'm not pretending! Do you honestly think I'm fooling around and lying to you because it 'makes me feel better'? I'm telling you that I'm nonbinary because I really am nonbinary."]])
+home_text[3] = _([[Chelsea's father frowns, and Chelsea continues. "I've met many Soromid friends in my travels and many have had no problem accepting me as who I say I am. Why can't you?!"
 
-text[10] = _([[Having spent a large portion of the trip trying to console Chelsea, you honestly feel bad about dropping them off now. Nonetheless, Chelsea insists. "Thank you for your help," they say. "I never expected it to come to this, you know? I just... I hope my mom is OK. I just hope, you know?" They start to cry and you give them a friendly hug. As you release them, they wipe the tears away from their eyes. "Well, then, I've got some work to do I take it... it looks like I'm going to have a major fight on my hands, whatever form that takes. For now I'll keep doing missions as before. You know, save up money, build up my ship... that sort of thing. I'll find you if I need you, eh?" Chelsea forces a smile, as do you, and the two of you part ways for the time being. You hope they'll be OK.]])
+"Because you're my son, and you always will be! But you need to stop letting those sorofreaks get into your head! What am I going to tell my buddies if they hear that my son's been taken by them?! I can't let this go on!"
+
+"I'm not your son, and I never will be! Whether you accept me or not, I am nonbinary and there's nothing you can do to change that. And I won't tolerate you attacking some of the kindest people I've ever met with slurs! They're even providing me with the best medical treatments in the galaxy so I can finally be fully comfortable in my body!"]])
+home_text[4] = _([[Chelsea's father pauses. "It's like you've become a sorofreak yourself." He reaches for something you can't see. "You know what? You're right. You're not my son. I don't need freaks in my family!"
+
+Suddenly, Chelsea's mother tackles her husband. That's when you see what he was reaching for: a laser gun. The two start to wrestle for control as Chelsea's mother shouts. "Run! Both of you! Get out of here!" Not needing to be told twice, you grab Chelsea's arm and run as fast as you can. Just as you make it out of view, you hear the laser gun fire.
+
+With no time to lose, you and Chelsea dash into your ships and immediately start launch procedures just in time to see Chelsea's father appear and attempt to fire his weapon at Chelsea. The shots hit their ship, but deflect harmlessly off of their shields. Chelsea sends you a message saying that they're setting course for %s.]])
+
+end_text = _([[After docking on %s, you meet up again with Chelsea to see them sobbing and frustrated. "I should have known I couldn't trust him! He never was openly accepting when I came out as trans to him before and misgendered me multiple times, but I just hoped it was in my imagination, you know?" You tell Chelsea that it's not their fault. "I know, it's just… now he's sending thugs after me, and he'll probably send thugs after you too."
+
+They wipe the tears from their eyes. "I'll need to make sure I'm prepared when I face trouble from him again. Make sure my ship can handle it. Heck, maybe I should get more of a battle-hardened ship.
+
+"Thank you for your help, %s. This isn't the outcome that I wanted but I honestly could have died there if it wasn't for you. Here." They hand you a credit chip. "The payment I promised. I need to go build up my strength. Next time I see you, I swear, I'll have a ship that won't be left in a vulnerable position!" You offer a hug and say your goodbyes, hoping that Chelsea will be OK.]])
+
+left_fail_text = _("You have lost contact with Chelsea and therefore failed the mission.")
 
 misn_title = _("Visiting Family")
 misn_desc = _("Chelsea wants to revisit their family in %s. They have asked you to escort them to there from %s.")
@@ -78,22 +88,21 @@ misn_reward = _("None")
 npc_name = _("Chelsea")
 npc_desc = _("You see Chelsea in the bar and feel an urge to say hello.")
 
-osd_desc = {}
-osd_desc[1] = _("Fly to %s and land on %s")
-osd_desc[2] = _("Escort Chelsea to %s")
-osd_desc["__save"] = true
+cheljump_msg = _("Chelsea has jumped to %s.")
+chelland_msg = _("Chelsea has landed on %s.")
+chelkill_msg = _("MISSION FAILED: A rift in the space-time continuum causes you to have never met Chelsea in that bar.")
+chelflee_msg = _("MISSION FAILED: Chelsea has abandoned the mission.")
+plflee_msg = _("MISSION FAILED: You have abandoned the mission.")
 
-ambush_msg = _("Don't think you'll get away that easily! Get them!")
+ambush_msg = _("You heard the boss, folks! Get them!")
 noland_msg = _("It's too dangerous to land here right now.")
 
-log_text = _([[You transported Chelsea, who requests they/them pronouns now, to Durea so that they could see their parents. However, Chelsea's father turned on them because of their gender identity and acceptance of the Soromid, aiming a laser gun at Chelsea before he was tackled and held back by Chelsea's mother. You didn't see what happened, but as you and Chelsea ran away, you heard a gunshot. Chelsea's father then caught up with you as you began launch procedures, attempted to fire his laser gun at your ship, and then sent a group of thugs after you as you transported Chelsea to safety.
-    Traumatized, Chelsea has set off to continue doing what they were doing, but this time, they are partly doing so to prepare for the worst. They said that they will find you if they need your help again.]])
+log_text = _([[You escorted Chelsea, who requests they/them pronouns now, to Durea so that they could see their parents. However, Chelsea's father turned on them because of their gender identity and acceptance of the Soromid, aiming a laser gun at Chelsea before he was tackled and held back by Chelsea's mother. You didn't see what happened, but as you and Chelsea ran away, you heard a gunshot. Chelsea's father then caught up with you as you began launch procedures, attempted to fire his laser gun at Chelsea's ship, and then sent a group of thugs after you as you escorted Chelsea to safety.
+
+Chelsea has vowed to strengthen their ship so they aren't left in a vulnerable position again.]])
 
 
 function create ()
-   -- TODO: remove this when the mission is ready
-   misn.finish(false)
-
    startplanet, startsys = planet.get("Darkshed")
    destplanet, destsys = planet.get("Durea")
    if not misn.claim(missys) then misn.finish(false) end
@@ -122,15 +131,20 @@ function accept ()
       misn.setTitle(misn_title)
       misn.setDesc(misn_desc:format(destplanet:name(), startplanet:name()))
       misn.setReward(misn_reward)
-      marker = misn.markerAdd(missys, "low")
+      marker = misn.markerAdd(startsys, "low")
 
-      osd_desc[1] = osd_desc[1]:format(startsys:name(), startplanet:name())
-      osd_desc[2] = osd_desc[2]:format(destsys:name(), destplanet:name())
+      local osd_desc = {}
+      osd_desc[1] = string.format(_("Fly to %s and land on %s"),
+            startsys:name(), startplanet:name())
+      osd_desc[2] = string.format(_("Escort Chelsea to %s"),
+            destsys:name(), destplanet:name())
       misn.osdCreate(misn_title, osd_desc)
 
       stage = 1
 
-      hook.enter("enter")
+      hook.takeoff("takeoff")
+      hook.jumpin("jumpin")
+      hook.jumpout("jumpout")
       hook.land("land")
    else
       tk.msg("", no_text)
@@ -169,43 +183,120 @@ function spawnChelseaShip( param )
 end
 
 
-function enter ()
+function jumpNext ()
+   local missys = destsys
+   local misplanet = destplanet
+   if stage >= 3 then
+      missys = startsys
+      misplanet = startplanet
+   end
+
+   if chelsea ~= nil and chelsea:exists() then
+      chelsea:taskClear()
+      chelsea:control()
+      misn.osdDestroy()
+      if system.cur() == missys then
+         chelsea:land(misplanet, true)
+         local osd_desc = {}
+         osd_desc[1] = string.format(
+               _("Protect Chelsea and wait for her to land on %s"),
+               misplanet:name())
+         osd_desc[2] = string.format(_("Land on %s"), misplanet:name())
+         misn.osdCreate(misn_title, osd_desc)
+      else
+         local nextsys = getNextSystem(system.cur(), missys)
+         local jumps = system.cur():jumpDist(missys)
+         chelsea:hyperspace(nextsys, true)
+         local osd_desc = {}
+         osd_desc[1] = string.format(
+               _("Protect Chelsea and wait for her to jump to %s"),
+               nextsys:name())
+         osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
+         if jumps > 1 then
+            osd_desc[3] = string.format(
+                  _("%s more jumps after this one"), numstring(jumps - 1))
+         end
+         misn.osdCreate(misn_title, osd_desc)
+      end
+   end
+end
+
+
+function takeoff ()
    player.allowSave(true)
-   if stage >= 2 and system.cur() == missys then
+   if stage == 2 and system.cur() == startsys then
+      spawnChelseaShip(startplanet)
+      jumpNext()
+   elseif stage >= 3 and system.cur() == destsys then
       player.allowLand(false, noland_msg)
-      hook.timer(1000, "ambush_timer")
+      hook.timer(5000, "ambush_timer")
+      spawnChelseaShip(destplanet)
+      jumpNext()
+   end
+end
+
+
+function jumpout ()
+   lastsys = system.cur()
+end
+
+
+function jumpin ()
+   if stage >= 2 then
+      local missys = destsys
+      if stage >= 3 then
+         missys = startsys
+      end
+      if chelsea_jumped and system.cur() == getNextSystem(lastsys, missys) then
+         spawnChelseaShip(lastsys)
+         jumpNext()
+      else
+         fail(plflee_msg)
+      end
    end
 end
 
 
 function land ()
-   if stage == 1 and planet.cur() == misplanet then
-      player.allowSave(false)
-
-      tk.msg("", text[5]:format(misplanet:name()))
-      tk.msg("", text[6])
-      tk.msg("", text[7]:format(player.name()))
-      tk.msg("", text[8])
-      tk.msg("", text[9])
-
+   if stage == 1 and planet.cur() == startplanet then
+      tk.msg("", darkshed_text:format(player.name()))
       stage = 2
-      misn.osdActive(2)
       if marker ~= nil then misn.markerRm(marker) end
-      marker = misn.markerAdd(missys2, "low")
+      marker = misn.markerAdd(destsys, "high")
+   elseif stage == 2 then
+      if chelsea_jumped and planet.cur() == destplanet then
+         player.allowSave(false)
 
-      player.takeoff()
-   elseif stage >= 2 and planet.cur() == misplanet2 then
-      tk.msg("", text[10])
-      srm_addComingOutLog(log_text)
-      misn.finish(true)
+         tk.msg("", home_text[1]:format(destplanet:name()))
+         tk.msg("", home_text[2])
+         tk.msg("", home_text[3])
+         tk.msg("", home_text[4]:format(startplanet:name()))
+
+         stage = 3
+         if marker ~= nil then misn.markerRm(marker) end
+         marker = misn.markerAdd(startsys, "high")
+
+         player.takeoff()
+      else
+         tk.msg("", left_fail_text)
+         misn.finish(false)
+      end
+   elseif stage >= 3 then
+      if chelsea_jumped and planet.cur() == startplanet then
+         tk.msg("", end_text:format(startplanet:name(), player.name()))
+         srm_addComingOutLog(log_text)
+         misn.finish(true)
+      else
+         tk.msg("", left_fail_text)
+         misn.finish(false)
+      end
    end
 end
 
 
 function ambush_timer ()
    local thugships = {
-      "Admonisher", "Lancelot", "Lancelot", "Shark", "Shark", "Shark", "Shark",
-      "Hyena", "Hyena"
+      "Admonisher", "Lancelot", "Shark", "Hyena",
    }
    local leaderthug
    for i, shiptype in ipairs(thugships) do
@@ -218,8 +309,72 @@ function ambush_timer ()
       end
    end
 
-   if stage == 2 then
+   if stage == 3 then
       leaderthug:comm(ambush_msg)
-      stage = 3
+      stage = 4
    end
+end
+
+
+function chelsea_death ()
+   fail(chelkill_msg)
+end
+
+
+function chelsea_jump( p, jump_point )
+   local missys = destsys
+   if stage >= 3 then
+      missys = startsys
+   end
+   if jump_point:dest() == getNextSystem(system.cur(), missys) then
+      player.msg(cheljump_msg:format(jump_point:dest():name()))
+      chelsea_jumped = true
+      misn.osdActive(2)
+   else
+      fail(chelflee_msg)
+   end
+end
+
+
+function chelsea_land( p, planet )
+   local misplanet = destplanet
+   if stage >= 3 then
+      misplanet = startplanet
+   end
+   if planet == misplanet then
+      player.msg(chelland_msg:format(planet:name()))
+      chelsea_jumped = true
+      misn.osdActive(2)
+   else
+      fail(chelflee_msg)
+   end
+end
+
+
+function chelsea_attacked ()
+   if chelsea ~= nil and chelsea:exists() then
+      chelsea:control(false)
+      if distress_timer_hook ~= nil then hook.rm(distress_timer_hook) end
+      distress_timer_hook = hook.timer(1000, "chelsea_distress_timer")
+   end
+end
+
+
+function chelsea_distress_timer ()
+   jumpNext()
+end
+
+
+-- Fail the mission, showing message to the player.
+function fail( message )
+   if message ~= nil then
+      -- Pre-colourized, do nothing.
+      if message:find("#") then
+         player.msg(message)
+      -- Colourize in red.
+      else
+         player.msg("#r" .. message .. "#0")
+      end
+   end
+   misn.finish(false)
 end

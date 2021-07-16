@@ -206,8 +206,10 @@ function jumpNext ()
                _("Protect Chelsea and wait for her to jump to %s"),
                nextsys:name())
          osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
-         osd_desc[3] = string.format(
-               _("%s more jumps after this one"), numstring(jumps - 1))
+         if jumps > 1 then
+            osd_desc[3] = string.format(
+                  _("%s more jumps after this one"), numstring(jumps - 1))
+         end
          misn.osdCreate(misn_title, osd_desc)
       end
    end
@@ -238,7 +240,7 @@ end
 
 
 function land ()
-   if planet.cur() == misplanet then
+   if chelsea_jumped and planet.cur() == misplanet then
       tk.msg("", success_text:format(creditstring(credits)))
       player.pay(credits)
       srm_addComingOutLog(log_text)
