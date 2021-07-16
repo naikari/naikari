@@ -109,11 +109,14 @@ function accept ()
       marker = misn.markerAdd(missys, "low")
 
       local nextsys = getNextSystem(system.cur(), missys)
+      local jumps = system.cur():jumpDist(missys)
       local osd_desc = {}
       osd_desc[1] = string.format(
             _("Protect Chelsea and wait for her to jump to %s"),
             nextsys:name())
       osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
+      osd_desc[3] = string.format(
+            _("%s more jumps after this one"), numstring(jumps - 1))
       misn.osdCreate(misn_title, osd_desc)
 
       startplanet = planet.cur()
@@ -196,12 +199,15 @@ function jumpNext ()
          misn.osdCreate(misn_title, osd_desc)
       else
          local nextsys = getNextSystem(system.cur(), missys)
+         local jumps = system.cur():jumpDist(missys)
          chelsea:hyperspace(nextsys, true)
          local osd_desc = {}
          osd_desc[1] = string.format(
                _("Protect Chelsea and wait for her to jump to %s"),
                nextsys:name())
          osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
+         osd_desc[3] = string.format(
+               _("%s more jumps after this one"), numstring(jumps - 1))
          misn.osdCreate(misn_title, osd_desc)
       end
    end

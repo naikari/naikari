@@ -51,6 +51,8 @@ no_text = _([["Ah, busy, eh? That's OK. Let me know later if you can do it!"]])
 
 ask_again_text = _([["Oh, %s! Have you changed your mind? Can you help me get to %s?"]])
 
+darkshed_text = _([[You meet up with Chelsea. "Hello again, %s!" they say. "I'm all ready for takeoff! Like last time, I'll need you to follow me along, make sure I finish jumping or landing before you do, and help me shoot down any hostilities. See you out in space!"]])
+
 text[5] = _([[You land and dock on %s, then meet up with both of Chelsea's parents. They welcome Chelsea and their mother gives them a warm hug, then releases them. Chelsea's father slightly waves, and the three of them start chatting.
     Eventually, the topic of Chelsea's gender comes up. Chelsea explains that they are nonbinary and prefer they/them pronouns similarly to when they explained it to you. Their mother says that she is proud of them and hugs them.]])
 
@@ -78,7 +80,7 @@ npc_desc = _("You see Chelsea in the bar and feel an urge to say hello.")
 
 osd_desc = {}
 osd_desc[1] = _("Fly to %s and land on %s")
-osd_desc[2] = _("Fly to %s in the %s system.")
+osd_desc[2] = _("Escort Chelsea to %s")
 osd_desc["__save"] = true
 
 ambush_msg = _("Don't think you'll get away that easily! Get them!")
@@ -122,8 +124,8 @@ function accept ()
       misn.setReward(misn_reward)
       marker = misn.markerAdd(missys, "low")
 
-      osd_desc[1] = osd_desc[1]:format(misplanet:name(), missys:name())
-      osd_desc[2] = osd_desc[2]:format(misplanet2:name(), missys2:name())
+      osd_desc[1] = osd_desc[1]:format(startsys:name(), startplanet:name())
+      osd_desc[2] = osd_desc[2]:format(destsys:name(), destplanet:name())
       misn.osdCreate(misn_title, osd_desc)
 
       stage = 1
@@ -134,6 +136,36 @@ function accept ()
       tk.msg("", no_text)
       misn.finish()
    end
+end
+
+
+function spawnChelseaShip( param )
+   chelsea = pilot.add(
+         "Llama", "Comingout_associates", param, _("Chelsea"), {naked=true})
+   chelsea:addOutfit("Milspec Aegis 3601 Core System")
+   chelsea:addOutfit("Unicorp Hawk 300 Engine")
+   chelsea:addOutfit("S&K Light Combat Plating")
+   chelsea:addOutfit("Plasma Turret MK1", 2)
+   chelsea:addOutfit("Small Shield Booster")
+   chelsea:addOutfit("Improved Refrigeration Cycle")
+   chelsea:addOutfit("Shield Capacitor", 2)
+
+   chelsea:setHealth(100, 100)
+   chelsea:setEnergy(100)
+   chelsea:setTemp(0)
+   chelsea:setFuel(true)
+
+   chelsea:setFriendly()
+   chelsea:setHilight()
+   chelsea:setVisible()
+   chelsea:setInvincPlayer()
+
+   hook.pilot(chelsea, "death", "chelsea_death")
+   hook.pilot(chelsea, "jump", "chelsea_jump")
+   hook.pilot(chelsea, "land", "chelsea_land")
+   hook.pilot(chelsea, "attacked", "chelsea_attacked")
+
+   chelsea_jumped = false
 end
 
 
