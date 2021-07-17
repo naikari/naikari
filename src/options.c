@@ -383,13 +383,13 @@ static void opt_gameplay( unsigned int wid )
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtSMSG",
          &gl_smallFont, NULL, s );
-   window_addInput( wid, -50, y, 40, 20, "inpMSG", 4, 1, NULL );
+   window_addInput( wid, -50, y, 40, 20, "inpMSG", 4, 1, &gl_smallFont );
    y -= 30;
    s = _("Max Time Compression Factor");
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtTMax",
          &gl_smallFont, NULL, s );
-   window_addInput( wid, -50, y, 40, 20, "inpTMax", 4, 1, NULL );
+   window_addInput( wid, -50, y, 40, 20, "inpTMax", 4, 1, &gl_smallFont );
 
    /* Restart text. */
    window_addText( wid, 20, 20 + BUTTON_HEIGHT,
@@ -1198,7 +1198,7 @@ static void opt_video( unsigned int wid )
    window_addText( wid, x, y, 100, 20, 0, "txtSRes",
          NULL, NULL, _("Resolution") );
    y -= 40;
-   window_addInput( wid, x, y, 100, 20, "inpRes", 16, 1, NULL );
+   window_addInput( wid, x, y, 100, 20, "inpRes", 16, 1, &gl_smallFont );
    window_setInputFilter( wid, "inpRes", INPUT_FILTER_RESOLUTION );
    window_addCheckbox( wid, x+20+100, y, 100, 20,
          "chkFullscreen", _("Fullscreen"), NULL, conf.fullscreen );
@@ -1259,7 +1259,7 @@ static void opt_video( unsigned int wid )
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtSFPS",
          &gl_smallFont, NULL, s );
-   window_addInput( wid, x+l+20, y, 40, 20, "inpFPS", 4, 1, NULL );
+   window_addInput( wid, x+l+20, y, 40, 20, "inpFPS", 4, 1, &gl_smallFont );
    toolkit_setListPos( wid, "lstRes", res_def);
    window_setInputFilter( wid, "inpFPS", INPUT_FILTER_NUMBER );
    snprintf( buf, sizeof(buf), "%d", conf.fps_max );
