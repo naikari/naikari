@@ -226,7 +226,6 @@ function accept ()
       addTutLog(jumping_log, N_("Navigation"))
       addTutLog(jumping_log2, N_("Navigation"))
       addTutLog(fuel_log, N_("Fuel"))
-      addTutLog(fuel_log2, N_("Fuel"))
 
       misn.finish(true)
    end
