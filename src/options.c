@@ -54,6 +54,11 @@ static const char *opt_names[] = {
 static int opt_restart = 0;
 
 
+/* Initial values (reverted to on cancel). */
+static int opt_orig_colorblind;
+static double opt_orig_bg_brightness;
+
+
 /*
  * External stuff.
  */
@@ -177,6 +182,11 @@ static void opt_close( unsigned int wid, char *name )
     * This ensures that sound volumes are reset on "Cancel". */
    sound_volume(conf.sound);
    music_volume(conf.music);
+
+   /* Set others to original values as needed. */
+   conf.colorblind = opt_orig_colorblind;
+   gl_colorblind(conf.colorblind);
+   conf.bg_brightness = opt_orig_bg_brightness;
 
    window_destroy( opt_wid );
    opt_wid = 0;
@@ -848,7 +858,7 @@ static void opt_audioLevelStr( char *buf, int max, int type, double pos )
    vol = type ? music_getVolumeLog() : sound_getVolumeLog();
 
    if (vol == 0.)
-      snprintf( buf, max, str, _("Muted") );
+      snprintf( buf, max, _("%s: Muted"), str );
    else {
       magic = -48. / log(0.00390625); /* -48 dB minimum divided by logarithm of volume floor. */
       snprintf( buf, max, _("%s: %.2f (%.0f dB)"), str, pos, log(vol) * magic );
@@ -1176,6 +1186,10 @@ static void opt_video( unsigned int wid )
    int w, h, y, x, l;
    char **res;
    const char *s;
+
+   /* Save originals. */
+   opt_orig_colorblind = conf.colorblind;
+   opt_orig_bg_brightness = conf.bg_brightness;
 
    /* Get size. */
    window_dimWindow( wid, &w, &h );
