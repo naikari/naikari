@@ -1422,14 +1422,11 @@ static void opt_checkColorblind( unsigned int wid, char *str )
  */
 int opt_setVideoMode( int w, int h, int fullscreen, int confirm )
 {
-   int old_conf_w, old_conf_h, old_conf_f, status;
+   int status;
    int old_w, old_h, old_f, new_w, new_h, new_f;
    int changed_size, maximized;
 
    opt_getVideoMode( &old_w, &old_h, &old_f );
-   old_conf_w = conf.width;
-   old_conf_h = conf.height;
-   old_conf_f = conf.fullscreen;
    conf.width = w;
    conf.height = h;
    conf.fullscreen = fullscreen;
@@ -1454,7 +1451,7 @@ int opt_setVideoMode( int w, int h, int fullscreen, int confirm )
          _("Do you want to keep running at %d×%d %s?"),
          new_w, new_h, new_f ? _("fullscreen") : _("windowed"))) {
 
-      opt_setVideoMode( old_conf_w, old_conf_h, old_conf_f, 0 );
+      opt_setVideoMode( old_w, old_h, old_f, 0 );
 
       dialogue_msg( _("Video Settings Restored"),
             _("Resolution reset to %d×%d %s."),
@@ -1463,7 +1460,7 @@ int opt_setVideoMode( int w, int h, int fullscreen, int confirm )
       return 1;
    }
 
-   conf.explicit_dim = conf.explicit_dim || w != old_conf_w || h != old_conf_h;
+   conf.explicit_dim = conf.explicit_dim || w != old_w || h != old_h;
    return 0;
 }
 
