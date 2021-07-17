@@ -49,7 +49,6 @@ end
 -- @brief Spawns a capship with escorts.
 function spawn_capship ()
    local pilots = {}
-   pilots.__fleet = true
 
    if rnd.rnd() < pbm then
       pilots = spawnBgMerc("Soromid")
