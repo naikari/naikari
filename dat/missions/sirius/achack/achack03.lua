@@ -94,7 +94,7 @@ log_text = _([[Joanne hired you to interrogate Harja about his motives for tryin
 function create()
    -- Note: this mission does not make any system claims.
 
-   misn.setNPC(joannename, "sirius/unique/joanne.webp", joannedesc)
+   misn.setNPC(joannename, "sirius/unique/joanne.png", joannedesc)
 end
 
 function accept()

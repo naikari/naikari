@@ -84,7 +84,7 @@ function create ()
     destsys = planets[index][2]
 
     curplanet = planet.cur()
-    misn.setNPC(NPCname, "neutral/unique/oldwoman.webp", NPCdesc)
+    misn.setNPC(NPCname, "neutral/unique/oldwoman.png", NPCdesc)
 end
 
 

@@ -148,7 +148,7 @@ misn_cargoamount2 = 4
 outfit = "Unicorp PT-18 Core System"
 
 function create ()
-   misn.setNPC(_("Young People"), "neutral/unique/mia.webp", bar_desc)
+   misn.setNPC(_("Young People"), "neutral/unique/mia.png", bar_desc)
 end
 
 function accept ()
