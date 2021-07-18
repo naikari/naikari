@@ -36,6 +36,7 @@
 --]]
 
 require "numstring"
+require "nextjump"
 require "missions/soromid/common"
 
 
