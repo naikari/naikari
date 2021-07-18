@@ -268,13 +268,17 @@ static void board_stealCargo( unsigned int wdw, char* str )
 
    if (board_fail(wdw)) return;
 
-   /* TODO this will probably not be precise in some corner cases like the target having 3 different cargos of the same thing split up.  */
    /* steal as much as possible until full - @todo let player choose */
    q = 1;
-   while ((array_size(p->commodities) > 0) && (q!=0)) {
-      q = pilot_cargoAdd( player.p, p->commodities[0].commodity,
-            round(player.p->stats.loot_mod * (double)p->commodities[0].quantity), 0 );
-      pilot_cargoRm( p, p->commodities[0].commodity, q );
+   while ((array_size(p->commodities) > 0) && (q > 0)) {
+      q = round(player.p->stats.loot_mod * (double)p->commodities[0].quantity);
+      if (q > 0) {
+         q = pilot_cargoAdd(player.p, p->commodities[0].commodity, q, 0);
+         pilot_cargoRm(p, p->commodities[0].commodity, q);
+      } else {
+         /* Reset just in case cargo existed in too small a quantity. */
+         q = 1;
+      }
    }
 
    board_update( wdw );
@@ -463,6 +467,7 @@ static void board_update( unsigned int wdw )
    int i, j, l;
    int total_cargo, fuel;
    double c;
+   int ic;
    char str[STRMAX_SHORT];
    char str2[STRMAX_SHORT];
    char cred[ECON_CRED_STRLEN];
@@ -569,19 +574,24 @@ static void board_update( unsigned int wdw )
          if (p->commodities[i].commodity == NULL)
             continue;
 
-         c += player.p->stats.loot_mod * (double)p->commodities[i].quantity;
+         ic = round(player.p->stats.loot_mod * (double)p->commodities[i].quantity);
 
-         if (l > 0)
-            l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
+         if (ic > 0) {
+            c += ic;
 
-         l += scnprintf(&str2[l], sizeof(str2)-l,
-               "%s", _(p->commodities[i].commodity->name));
+            if (l > 0)
+               l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
+
+            l += scnprintf(&str2[l], sizeof(str2)-l,
+                  "%s", _(p->commodities[i].commodity->name));
+         }
       }
 
       total_cargo = round(c);
-      snprintf( str, sizeof(str),
-            n_("%d t (%s)", "%d t (%s)", total_cargo),
-            total_cargo, str2 );
+      if (total_cargo > 0)
+         snprintf(str, sizeof(str),
+               n_("%d t (%s)", "%d t (%s)", total_cargo),
+               total_cargo, str2);
    }
    window_modifyText( wdw, "txtDataCargo", str );
 }
