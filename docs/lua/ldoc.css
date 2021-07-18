@@ -5,7 +5,7 @@
 	clear: both;
 	margin: 0;
 	padding: 5px;
-	border-top: 2px solid #cccccc;
+	border-top: 2px solid #333;
 }
 
 #lDoc_container
@@ -17,7 +17,7 @@
 #product
 {
 	text-align: center;
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #333;
 }
 
 #product h2 {
@@ -37,20 +37,20 @@
 	width: 18em;
 	margin: 0;
 	vertical-align: top;
-	background-color: #f0f0f0;
+	background-color: #0f0f0f;
    overflow:visible;
-   border-left: 2px solid #cccccc
+   border-left: 2px solid #333
 }
 
 #navigation h1, #navigation h2 {
-	background-color:#e7e7e7;
+	background-color:#171717;
 	font-size:1.1em;
-	color:#000000;
+	color:#fff;
 	text-align:left;
 	margin:0px;
 	padding:0.2em;
-	border-top:1px solid #dddddd;
-	border-bottom:1px solid #dddddd;
+	border-top:1px solid #222;
+	border-bottom:1px solid #222;
 }
 
 #navigation ul
@@ -78,12 +78,12 @@
 {
 	margin-left: 18em;
 	padding: 1em;
-	border-left: 2px solid #cccccc;
-	border-right: 2px solid #cccccc;
+	border-left: 2px solid #333;
+	border-right: 2px solid #333;
 }
 
 pre.example {
-   background-color: rgb(245, 245, 245);
+   background-color: rgb(10, 10, 10);
    border-top-width: 1px;
    border-right-width: 1px;
    border-bottom-width: 1px;
@@ -108,11 +108,11 @@ table.module_list td
 	border-width: 1px;
 	padding: 3px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #333;
 }
 table.module_list td.name
 {
-   background-color: #f0f0f0;
+   background-color: #0f0f0f;
    white-space: nowrap;
 }
 table.module_list td.summary { width: 100%; }
@@ -121,7 +121,7 @@ table.file_list
 {
 	border-width: 1px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #333;
 	border-collapse: collapse;
 }
 table.file_list td
@@ -129,10 +129,10 @@ table.file_list td
 	border-width: 1px;
 	padding: 3px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #333;
 }
 table.file_list td.name {
-   background-color: #f0f0f0;
+   background-color: #0f0f0f;
    white-space: nowrap;
 }
 table.file_list td.summary { width: 100%; }
@@ -142,7 +142,7 @@ table.function_list
 {
 	border-width: 1px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #333;
 	border-collapse: collapse;
 }
 table.function_list td
@@ -150,11 +150,11 @@ table.function_list td
 	border-width: 1px;
 	padding: 3px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #333;
 }
 table.function_list td.name
 {
-   background-color: #f0f0f0;
+   background-color: #0f0f0f;
    white-space: nowrap;
 }
 table.function_list td.summary { width: 100%; }
@@ -164,7 +164,7 @@ table.table_list
 {
 	border-width: 1px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #333;
 	border-collapse: collapse;
 }
 table.table_list td
@@ -172,16 +172,16 @@ table.table_list td
 	border-width: 1px;
 	padding: 3px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #333;
 }
-table.table_list td.name { background-color: #f0f0f0; }
+table.table_list td.name { background-color: #0f0f0f; }
 table.table_list td.summary { width: 100%; }
 
-dl.function dt {border-top: 1px solid #ccc; padding-top: 1em;}
+dl.function dt {border-top: 1px solid #333; padding-top: 1em;}
 dl.function dd {padding-bottom: 1em;}
 dl.function h3 {padding: 0; margin: 0; font-size: medium;}
 
-dl.table dt {border-top: 1px solid #ccc; padding-top: 1em;}
+dl.table dt {border-top: 1px solid #333; padding-top: 1em;}
 dl.table dd {padding-bottom: 1em;}
 dl.table h3 {padding: 0; margin: 0; font-size: medium;}
 

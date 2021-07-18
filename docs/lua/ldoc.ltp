@@ -6,59 +6,26 @@
   <!--<meta charset="UTF-8">--><!-- New HTML5 way -->
   <!-- Mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Favourite icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="https://naev.org/favicon-180.png">
-  <link rel="icon" type="image/png" sizes="196x196" href="https://naev.org/favicon-196.png">
-  <link rel="icon" type="image/png" sizes="128x128" href="https://naev.org/favicon-128.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="https://naev.org/favicon-64.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://naev.org/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://naev.org/favicon-16.png">
-  <link rel="shortcut icon" type="image/x-icon" href="https://naev.org/favicon.ico">
+  <link rel="apple-touch-icon" href="https://naikari.github.io/favicon.png">
+  <link rel="icon" type="image/png" href="https://naikari.github.io/favicon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://naikari.github.io/favicon.ico">
   <link rel="stylesheet" href="$(ldoc.css)"><!-- CSS -->
-  <link rel="stylesheet" href=https://naev.org/style.css><!-- CSS -->
+  <link rel="stylesheet" href=https://naikari.github.io/style.css><!-- CSS -->
   <title>$(ldoc.title)</title><!-- Website information -->
 </head>
-<body class="bg-light">
-  <div id="naev-header" class="container-fluid nebula-bg">
-    <div class="container">
-      <a href="https://naev.org/"><img src="https://naev.org/imgs/naev.png" alt="Naev"></a>
-    </div>
-  </div>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container">
-      <a class="p-0 navbar-brand" href="#"><img id="logo" class="img-fluid" src="https://naev.org/favicon.png" alt=
-      "Naev"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=
-      "#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label=
-      "Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="https://naev.org/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://naev.org/page/1/">Blarg</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://naev.org/media/">Media</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://naev.org/downloads/">Downloads</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/naev/naev">Github</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/naev/naev/wiki">Wiki</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://discord.com/invite/nd2M5BR">Discord</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://naev.org/api/">Lua API</a>
-          </li>
+<body>
+    <h1 class="header"><img src="https://naikari.github.io/images/logo.png" alt="Naikari"></h1>
+    <nav class="header">
+        <ul>
+            <li><a href="https://naikari.github.io/index.html">Home</a></li>
+            <li><a href="https://naikari.github.io/screenshots.html">Screenshots</a></li>
+            <li><a href="https://naikari.github.io/download.html">Download</a></li>
+            <li><a href="https://naikari.github.io/contact.html">Contact</a></li>
+            <li><a href="https://github.com/naikari/naikari">Project Page</a></li>
+            <li><a href="https://liberapay.com/diligentcircle/">Liberapay</a></li>
+            <li><a href="https://www.patreon.com/diligentcircle">Patreon</a></li>
         </ul>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
 <div id="lDoc_container">
 
@@ -329,13 +296,10 @@
 <i style="float:right;">Last updated $(ldoc.updatetime) </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
-<div class="container-fluid nebula-bg mt-5">
-    <div class="container">
-        <footer class="row text-muted">
-            <p class="col-xs-12 col-sm-6 text-left">© $(ldoc.updatetime:sub(1,4)) Naev Development Blarg</p>
-            <p class="col-xs-12 col-sm-6 text-right">Original content licensed under CC-By-SA 4.0</p>
-        </footer>
-    </div>
+
+<div class="footer">
+    <p class="col-xs-12 col-sm-6 text-left">© $(ldoc.updatetime:sub(1,4)) Naev and Naikari development teams</p>
+            <p class="col-xs-12 col-sm-6 text-right">Original content licensed under CC BY-SA 4.0</p>
 </div>
 </body>
 </html>
