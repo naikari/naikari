@@ -134,8 +134,8 @@ function accept ()
       marker = misn.markerAdd(startsys, "low")
 
       local osd_desc = {}
-      osd_desc[1] = string.format(_("Fly to %s and land on %s"),
-            startsys:name(), startplanet:name())
+      osd_desc[1] = string.format(_("Land on %s (%s system)"),
+            startplanet:name(), startsys:name())
       osd_desc[2] = string.format(_("Escort Chelsea to %s"),
             destsys:name(), destplanet:name())
       misn.osdCreate(misn_title, osd_desc)
