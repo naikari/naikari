@@ -175,7 +175,7 @@ git diff --exit-code po/POTFILES.in || exec git commit --amend -C HEAD po/POTFIL
 
 ## CRASHES & PROBLEMS
 
-Please take a look at the [FAQ](https://github.com/naev/naev/wiki/FAQ) before submitting a new
+Please take a look at the [FAQ](https://github.com/naikari/naikari/wiki/FAQ) before submitting a new
 bug report, as it covers a number of common gameplay questions and
 common issues.
 
