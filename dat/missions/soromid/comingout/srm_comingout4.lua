@@ -83,7 +83,6 @@ left_fail_text = _("You have lost contact with Chelsea and therefore failed the 
 
 misn_title = _("Visiting Family")
 misn_desc = _("Chelsea wants to revisit their family in %s. They have asked you to escort them to there from %s.")
-misn_reward = _("None")
 
 npc_name = _("Chelsea")
 npc_desc = _("You see Chelsea in the bar and feel an urge to say hello.")
@@ -107,6 +106,7 @@ function create ()
    destplanet, destsys = planet.get("Durea")
    if not misn.claim(destsys) then misn.finish(false) end
 
+   credits = 600000
    started = false
 
    misn.setNPC(npc_name, "soromid/unique/chelsea.png", npc_desc)
@@ -130,7 +130,7 @@ function accept ()
 
       misn.setTitle(misn_title)
       misn.setDesc(misn_desc:format(destplanet:name(), startplanet:name()))
-      misn.setReward(misn_reward)
+      misn.setReward(creditstring(credits))
       marker = misn.markerAdd(startsys, "low")
 
       local osd_desc = {}
@@ -284,6 +284,7 @@ function land ()
    elseif stage >= 3 then
       if chelsea_jumped and planet.cur() == startplanet then
          tk.msg("", end_text:format(startplanet:name(), player.name()))
+         player.pay(credits)
          srm_addComingOutLog(log_text)
          misn.finish(true)
       else
