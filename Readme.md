@@ -4,12 +4,14 @@
 ![Naikari](https://naikari.github.io/images/logo.png)
 
 Naikari is a 2-D space trading and mercenary game forked from the
-[Naev](https://naev.org) project. Naev takes inspiration from the
-[Escape Velocity](https://en.wikipedia.org/wiki/Escape_Velocity_(video_game)),
-series, but Naikari's primary inspirations are
+[Naev](https://naev.org) project. Naikari's primary inspirations are
 [Star Wraith 2](https://archive.org/details/swizzle_demu_SW2),
 [RiftSpace](https://archive.org/details/RiftSpace), and to a lesser extent,
-[Endless Sky](https://endless-sky.github.io).
+[Endless Sky](https://endless-sky.github.io). It may also be similar to the
+[Escape Velocity](https://en.wikipedia.org/wiki/Escape_Velocity_(video_game))
+series since Naev and Endless Sky are inspired by that, although the Escape
+Velocity series is not a direct influence and Naikari does not necessarily
+seek to be like it.
 
 You pilot space ships from a top-down perspective which you can collect and
 customize more or less however you want. To get new ships, you can deliver
@@ -52,7 +54,7 @@ pip3 install meson ninja
 
 ### macOS
 
-Warning: this procedure is inadequate if you want to build a Naev.app that you can share with users of older macOS versions than your own.
+Warning: this procedure is inadequate if you want to build a Naikari.app that you can share with users of older macOS versions than your own.
 
 Dependencies may be installed using [Homebrew](https://brew.sh):
 ```
@@ -73,7 +75,7 @@ package lists for several distributions.
 
 ### CLONING AND SUBMODULES
 
-Naev requires the artwork submodule to run from git. You can check out the
+Naikari requires the artwork submodule to run from git. You can check out the
 submodules from the cloned repository with:
 
 ```bash
@@ -107,7 +109,7 @@ directory to see a list of all available options.
 
 **For Windows packaging**, try adding: `--bindir=bin -Dndata_path=bin`
 
-**For macOS**, try adding: `--prefix="$(pwd)"/build/dist/Naev.app --bindir=Contents/MacOS -Dndata_path=Contents/Resources`
+**For macOS**, try adding: `--prefix="$(pwd)"/build/dist/Naikari.app --bindir=Contents/MacOS -Dndata_path=Contents/Resources`
 
 **For normal development**, try adding: `--buildtype=debug -Db_sanitize=address` (adding `-Db_lundef=false` if compiling with Clang, substituting `-Ddebug_arrays=true` for `-Db_sanitize=...` on Windows if you can't use Clang).
 
@@ -127,8 +129,8 @@ See https://github.com/naikari/naikari/wiki/Compiling-on-Windows for how to comp
 
 ## UPDATING ART ASSETS
 
-Art assets are partially stored in the naev-artwork-production repository and
-sometimes are updated. For that reason, it is recommended to periodically
+Art assets are partially stored in the naikari-artwork-production repository
+and sometimes are updated. For that reason, it is recommended to periodically
 update the submodules with the following command.
 
 ```bash
@@ -146,16 +148,6 @@ Afterwards, every time you perform a `git pull`, it will also update the
 artwork submodule.
 
 ## TRANSLATION
-
-Naev supports unicode and gettext since version 0.8.0.
-
-### ONLINE TRANSLATION
-
-Naev is incorporated into Weblate. You can easily translate directly with a web
-interface to your chosen language at
-https://hosted.weblate.org/projects/naev/naev/ .
-
-### MANUAL TRANSLATION
 
 If you are a developer, you may need to update translation files as
 text is modified. You can update all translation files with the
