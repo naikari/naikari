@@ -253,7 +253,7 @@ function control ()
 
    -- Pilots return if too far away from leader
    local lmd = mem.leadermaxdist
-   if lmd then
+   if lmd ~= nil and not mem.attacked then
       local l = p:leader()
       if l then
          local dist = ai.dist( l )
