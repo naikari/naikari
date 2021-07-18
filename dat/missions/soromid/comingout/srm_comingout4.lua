@@ -105,7 +105,7 @@ Chelsea has vowed to strengthen their ship so they aren't left in a vulnerable p
 function create ()
    startplanet, startsys = planet.get("Darkshed")
    destplanet, destsys = planet.get("Durea")
-   if not misn.claim(missys) then misn.finish(false) end
+   if not misn.claim(destsys) then misn.finish(false) end
 
    started = false
 
