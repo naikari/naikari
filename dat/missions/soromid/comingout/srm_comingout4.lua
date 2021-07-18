@@ -116,10 +116,10 @@ end
 function accept ()
    local txt
    if started then
-      txt = ask_again_text:format(player.name(), destplanet:name(),
-            startplanet:name(), destplanet:name())
+      txt = ask_again_text:format(player.name(), destplanet:name())
    else
-      txt = ask_text:format(player.name(), destplanet:name())
+      txt = ask_text:format(player.name(), destplanet:name(),
+            startplanet:name(), destplanet:name())
    end
    started = true
 
