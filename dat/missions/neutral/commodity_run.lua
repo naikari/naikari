@@ -55,7 +55,7 @@ cargo_land[4] = _("The containers of %s are unloaded by robotic drones that scan
 osd_title = _("Commodity Delivery")
 osd_msg    = {}
 osd_msg[1] = _("Buy as much %s as possible")
-osd_msg[2] = _("Take the %s to %s in the %s system")
+osd_msg[2] = _("Take the %s to %s and land on %s")
 osd_msg["__save"] = true
 
 
@@ -64,15 +64,15 @@ osd_msg["__save"] = true
 commchoices = nil
 
 
-function update_active_runs( change )
-   local current_runs = var.peek( "commodity_runs_active" )
+function update_active_runs(change)
+   local current_runs = var.peek("commodity_runs_active")
    if current_runs == nil then current_runs = 0 end
-   var.push( "commodity_runs_active", math.max( 0, current_runs + change ) )
+   var.push("commodity_runs_active", math.max(0, current_runs + change))
 
    -- Note: This causes a delay (defined in create()) after accepting,
    -- completing, or aborting a commodity run mission.  This is
    -- intentional.
-   var.push( "last_commodity_run", time.tonumber( time.get() ) )
+   var.push("last_commodity_run", time.tonumber(time.get()))
 end
 
 
@@ -92,7 +92,7 @@ function create ()
    local mult = rnd.rnd(1, 3) + math.abs(rnd.threesigma() * 2)
    price = comm:price() * mult
 
-   local last_run = var.peek( "last_commodity_run" )
+   local last_run = var.peek("last_commodity_run")
    if last_run ~= nil then
       local delay = time.create(0, 7, 0)
       if time.get() < time.fromnumber(last_run) + delay then
@@ -100,8 +100,8 @@ function create ()
       end
    end
 
-   for i, j in ipairs( missys:planets() ) do
-      for k, v in pairs( j:commoditiesSold() ) do
+   for i, j in ipairs(missys:planets()) do
+      for k, v in pairs(j:commoditiesSold()) do
          if v == comm then
             misn.finish(false)
          end
@@ -109,10 +109,10 @@ function create ()
    end
 
    -- Set Mission Details
-   misn.setTitle( misn_title:format( comm:name() ) )
-   misn.markerAdd( system.cur(), "computer" )
-   misn.setDesc( misn_desc:format( misplanet:name(), comm:name() ) )
-   misn.setReward( _("%s per tonne"):format( creditstring( price ) ) )
+   misn.setTitle(misn_title:format(comm:name()))
+   misn.markerAdd(system.cur(), "computer")
+   misn.setDesc(misn_desc:format(misplanet:name(), comm:name()))
+   misn.setReward(_("%s per tonne"):format(creditstring(price)))
 end
 
 
@@ -120,10 +120,10 @@ function accept ()
    local comm = commodity.get(chosen_comm)
 
    misn.accept()
-   update_active_runs( 1 )
+   update_active_runs(1)
 
-   osd_msg[1] = osd_msg[1]:format( comm:name() )
-   osd_msg[2] = osd_msg[2]:format( comm:name(), misplanet:name(), missys:name() )
+   osd_msg[1] = osd_msg[1]:format(comm:name())
+   osd_msg[2] = osd_msg[2]:format(comm:name(), missys:name(), misplanet:name())
    misn.osdCreate(osd_title, osd_msg)
 
    hook.enter("enter")
@@ -132,7 +132,7 @@ end
 
 
 function enter ()
-   if pilot.cargoHas( player.pilot(), chosen_comm ) > 0 then
+   if pilot.cargoHas(player.pilot(), chosen_comm) > 0 then
       misn.osdActive(2)
    else
       misn.osdActive(1)
@@ -141,12 +141,12 @@ end
 
 
 function land ()
-   local amount = pilot.cargoHas( player.pilot(), chosen_comm )
+   local amount = pilot.cargoHas(player.pilot(), chosen_comm)
    local reward = amount * price
 
    if planet.cur() == misplanet and amount > 0 then
       local txt = cargo_land[rnd.rnd(1, #cargo_land)]:format(
-            _(chosen_comm), creditstring(reward) )
+            _(chosen_comm), creditstring(reward))
       tk.msg(cargo_land_title, txt)
       pilot.cargoRm(player.pilot(), chosen_comm, amount)
       player.pay(reward)
