@@ -14,10 +14,10 @@
   <spfx_shield>ExpM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <trail_generator x="0">fire-missile</trail_generator>
-  <duration blowup="armour">5</duration>
+  <duration blowup="armour">6</duration>
   <thrust>0</thrust>
   <turn>40</turn>
-  <speed>600</speed>
+  <speed>500</speed>
   <resist>20</resist>
   <damage>
    <type>impact</type>
