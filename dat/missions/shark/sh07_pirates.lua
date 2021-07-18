@@ -73,8 +73,8 @@ bar_desc[1] = _([[Perhaps it would be worthwhile to see if he has another job fo
 
 -- OSD
 osd_title = _("The Last Detail")
-osd_msg[1] = _("Kill the four pirates")
-osd_msg[2] = _("Report back to %s in %s")
+osd_msg[1] = _("Kill the four pirates (locations indicated on the map)")
+osd_msg[2] = _("Land on %s (%s system)")
 
 log_text = _([[You eliminated some pirates that were about to get in the way of Nexus Shipyards' business.]])
 

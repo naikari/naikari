@@ -35,7 +35,8 @@ firstcontact = _([[The woman smiles. "Aren't you the pilot that delivered those 
 toobad = _([["Oh, that's too bad. I thought it was such a good idea, too...."]])
 
 objectives = _([["Great!" Paddy says with a smile. She hands you what appear to be recipes. "I just need you to deliver these recipes to him. Oh, and some of my homemade cake! I've packed that cake into your ship. Feel free to give it a taste! It's delicious! Anyway, Michal will pay you %s when you get there. Thank you so much!"
-    When you arrive at your ship, you find your cargo hold packed to the brim with cake. You decide to try some, but the second it enters your mouth, you can't help but to spit it out in disgust. This is easily the most disgusting cake you've ever tasted. Well, as long as you get paid....]])
+
+When you arrive at your ship, you find your cargo hold packed to the brim with cake. You decide to try some, but the second it enters your mouth, you can't help but to spit it out in disgust. This is easily the most disgusting cake you've ever tasted. Well, as long as you get paid....]])
 
 objectives_nocake = _([["Great!" Paddy says with a smile. She hands you what appear to be recipes. "I just need you to deliver these recipes to him. I was hoping to deliver some cake to him too, but it seems your ship doesn't have enough space for it, so that's unfortunate. In any case, Michal will pay you %s when you arrive. Thank you so much!"]])
 
@@ -48,7 +49,7 @@ finish = _([[As Michal takes the recipes and cake off your hands, you can't help
 finish_nocake = _([[Michal takes the recipes from you gleefully and tells you how unfortunate it is that you weren't able to taste Paddy's cake, which he says is delicious. You shrug it off and collect your pay.]])
 
 osd_desc = {}
-osd_desc[1] = _("Fly to %s in the %s system.")
+osd_desc[1] = _("Land on %s (%s system)")
 osd_desc["__save"] = true
 
 log_text = _([[You delivered a whole lot of the most disgusting cake you've ever tasted in your life as well as recipes for making said cake to Michal, the man who had you deliver a literal tonne of love letters before. Supposedly this is for an attempt to start a restaurant, but with food as disgusting as that cake, you're sure the business will fail.]])

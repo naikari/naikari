@@ -64,8 +64,8 @@ bar_desc[1] = _([[He is waiting for you.]])
 
 -- OSD
 osd_title = _("The Meeting")
-osd_msg[1] = _("Go to the %s system and land on %s")
-osd_msg[2] = _("Bring Smith back to %s in the %s system")
+osd_msg[1] = _("Land on %s (%s system)")
+osd_msg[2] = _("Land on %s (%s system)")
 
 log_text = _([[You transported Arnold Smith to a secret meeting for Nexus Shipyards. The meeting supposedly did not go as well as he hoped, but was a partial success.]])
 
@@ -97,7 +97,7 @@ function accept()
       misn.accept()
       tk.msg("", text[2])
 
-      osd_msg[1] = osd_msg[1]:format(missys:name(), mispla:name())
+      osd_msg[1] = osd_msg[1]:format(mispla:name(), missys:name())
       osd_msg[2] = osd_msg[2]:format(paypla:name(), paysys:name())
 
       misn.setTitle(misn_title)

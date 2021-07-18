@@ -35,7 +35,7 @@ bar_desc = _("A bunch of scientists seem to be chattering nervously among themse
 mtitle = _("Nebula Satellite")
 mdesc = {}
 mdesc[1] = _("Fly to the %s system and wait for the probe to launch")
-mdesc[2] = _("Fly to the %s system and land on %s to drop off the scientists")
+mdesc[2] = _("Land on %s (%s system) to drop off the scientists")
 
 text = {}
 text[1] = _([[You approach the scientists. They seem a bit nervous and one mutters something about whether it's a good idea or not. Eventually one of them comes up to you.
@@ -170,7 +170,8 @@ function launchSatellite ()
    misn_stage = 1
    player.msg(launch[3])
    misn.cargoJet(cargo)
-   misn.setDesc(string.format(mdesc[2], homeworld_sys:name(), homeworld:name()))
-   misn.osdCreate(mtitle, {mdesc[2]:format(homeworld:name(), homeworld_sys:name())})
+   misn.setDesc(mdesc[2]:format(homeworld:name(), homeworld_sys:name()))
+   misn.osdCreate(mtitle,
+         {mdesc[2]:format(homeworld:name(), homeworld_sys:name())})
    misn.markerMove(misn_marker, homeworld_sys)
 end

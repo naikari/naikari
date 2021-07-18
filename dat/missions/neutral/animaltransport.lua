@@ -47,7 +47,7 @@ misnreward = _("You will be paid 200,000 credits on arrival.")
 
 OSDtitle = _("Animal transport")
 OSD = {}
-OSD[1] = _("Fly to the %s system and land on planet %s")
+OSD[1] = _("Land on %s (%s system)")
 
 log_text = _([[You successfully transported a crate of rodents for a Fyrra civilian. You could have swore you heard something squeak.]])
 
@@ -74,7 +74,7 @@ function create ()
     destsys = planets[index][2]
 
     misndesc = misndesc:format(destplanet:name(), destsys:name())
-    OSD[1] = OSD[1]:format(destsys:name(), destplanet:name())
+    OSD[1] = OSD[1]:format(destplanet:name(), destsys:name())
 
     misn.setNPC(NPCname, "sirius/unique/rodentman.png", NPCdesc)
 end

@@ -47,7 +47,7 @@ misn_desc = _([[Deliver the love letters to %s in the %s system.]])
 misn_accomplished = _([[You deliver the letters to a young woman who excitedly takes them and thanks you profusely. It seems you really made her day. When you check your balance, you see that %s have been transferred into your account.]])
 
 osd_desc = {}
-osd_desc[1] = _("Fly to %s in the %s system.")
+osd_desc[1] = _("Land on %s (%s system)")
 osd_desc["__save"] = true
 
 log_text = _([[You delivered a literal tonne of letters for a love-struck, old-fashioned man.]])

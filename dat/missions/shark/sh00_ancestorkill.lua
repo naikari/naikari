@@ -78,9 +78,9 @@ bar_desc[2] = _([[The Nexus employee who recruited you for a very special demo o
 
 -- OSD
 osd_title = _("A Shark Bites")
-osd_msg[1] = _("Buy a Shark (but not a Pirate Shark), then fly to the %s system and land on %s")
-osd_msg[2] = _("Go to %s and kill the pirate with your Shark")
-osd_msg[3] = _("Land on %s and collect your fee")
+osd_msg[1] = _("Buy a Shark (but not a Pirate Shark), then land on %s (%s system)")
+osd_msg[2] = _("Go to the %s system and kill the pirate with your Shark")
+osd_msg[3] = _("Land on %s (%s system) and collect your fee")
 
 leave_msg = _("MISSION FAILED: You left the pirate.")
 piratejump_msg = _("MISSION FAILED: The pirate ran away.")
@@ -116,9 +116,9 @@ function accept()
       piratename = pirate_name()    --for now, we only need his name
       tk.msg("", text[2]:format(missys:name(),mispla:name()))
 
-      osd_msg[1] = osd_msg[1]:format(missys:name(), mispla:name())
+      osd_msg[1] = osd_msg[1]:format(mispla:name(), missys:name())
       osd_msg[2] = osd_msg[2]:format(battlesys:name())
-      osd_msg[3] = osd_msg[3]:format(mispla:name())
+      osd_msg[3] = osd_msg[3]:format(mispla:name(), missys:name())
 
       misn.setTitle(misn_title)
       misn.setReward(creditstring(reward))

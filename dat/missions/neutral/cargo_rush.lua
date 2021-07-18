@@ -69,8 +69,8 @@ cargo_land_slow[3] = _("The containers of %s are unloaded by an exhausted-lookin
 msg_timeup = _("The delivery to %s has been canceled! You were too late.")
 
 osd_title = _("Rush cargo mission")
-osd_msg1 = _("Fly to %s and land on %s before %s\n(%s remaining)")
-osd_timeup = _("Fly to %s and land on %s\n(deadline missed, but you can still make a late delivery if you hurry)")
+osd_msg1 = _("Land on %s (%s system) before %s\n(%s remaining)")
+osd_timeup = _("Land on %s (%s system) before %s\n(deadline missed, but you can still make a late delivery if you hurry)")
 
 -- Create the mission
 function create()
@@ -189,7 +189,7 @@ function tick()
    if timelimit >= time.get() then
       -- Case still in time
       osd_msg[1] = osd_msg1:format(
-         destsys:name(), destplanet:name(), timelimit:str(),
+         destplanet:name(), destsys:name(), timelimit:str(),
          (timelimit - time.get()):str() )
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit2 <= time.get() then

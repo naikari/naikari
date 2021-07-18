@@ -32,7 +32,7 @@ piracyrisk[4] = _("Piracy Risk: High")
 msg_timeup = _("MISSION FAILED: You have failed to deliver the goods to the Empire on time!")
 
 osd_title = _("Empire Shipping")
-osd_msg1 = _("Fly to %s in the %s system before %s\n(%s remaining)")
+osd_msg1 = _("Land on %s (%s system) before %s\n(%s remaining)")
 
 --[[
 --    Empire shipping missions are always timed, but quite lax on the schedules

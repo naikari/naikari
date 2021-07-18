@@ -33,8 +33,8 @@ require "missions/empire/common"
 bar_desc = _("You see an Empire Commander. He seems to have noticed you.")
 misn_title = _("Prisoner Exchange")
 misn_desc = {}
-misn_desc[1] = _("Go to %s in the %s system to exchange prisoners with the FLF")
-misn_desc[2] = _("Return to %s in the %s system to report what happened")
+misn_desc[1] = _("Land on %s (%s system) to exchange prisoners with the FLF")
+misn_desc[2] = _("Land on %s (%s system) to report what happened")
 title = {}
 title[1] = _("Spaceport Bar")
 title[2] = _("Prisoner Exchange")

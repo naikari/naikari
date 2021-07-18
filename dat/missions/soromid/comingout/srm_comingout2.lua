@@ -63,7 +63,7 @@ npc_name = _("Chelsea")
 npc_desc = _("She seems to just be idly reading the news. It's been a while; maybe you should say hi?")
 
 osd_desc    = {}
-osd_desc[1] = _("Fly to the %s system and land on %s")
+osd_desc[1] = _("Land on %s (%s system)")
 
 log_text = _([[You helped transport Chelsea to Crow, where she was able to buy her first ship, a Llama which is damaged and rusty, but working. As she went on to start her career as a freelance pilot, she asked you to catch up with her again sometime. She expects that she'll be sticking to Soromid space for the time being.]])
 
@@ -98,7 +98,7 @@ function accept ()
       misn.setReward(creditstring(credits))
       marker = misn.markerAdd(missys, "low")
 
-      osd_desc[1] = osd_desc[1]:format(missys:name(), misplanet:name())
+      osd_desc[1] = osd_desc[1]:format(misplanet:name(), missys:name())
       misn.osdCreate(misn_title, osd_desc)
 
       hook.land("land")

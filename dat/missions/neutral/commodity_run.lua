@@ -55,7 +55,7 @@ cargo_land[4] = _("The containers of %s are unloaded by robotic drones that scan
 osd_title = _("Commodity Delivery")
 osd_msg    = {}
 osd_msg[1] = _("Buy as much %s as possible")
-osd_msg[2] = _("Take the %s to %s and land on %s")
+osd_msg[2] = _("Take the %s to %s (%s system)")
 osd_msg["__save"] = true
 
 
@@ -123,7 +123,7 @@ function accept ()
    update_active_runs(1)
 
    osd_msg[1] = osd_msg[1]:format(comm:name())
-   osd_msg[2] = osd_msg[2]:format(comm:name(), missys:name(), misplanet:name())
+   osd_msg[2] = osd_msg[2]:format(comm:name(), misplanet:name(), missys:name())
    misn.osdCreate(osd_title, osd_msg)
 
    hook.enter("enter")

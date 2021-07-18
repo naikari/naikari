@@ -30,7 +30,7 @@ require "missions/empire/common"
 
 bar_desc = _("You see an Empire Lieutenant who seems to be looking at you.")
 misn_title = _("Empire Recruitment")
-misn_desc = _("Fly to the %s system and land on %s to deliver some parcels for the Empire")
+misn_desc = _("Land on %s (%s system) to deliver some parcels for the Empire")
 
 text = {}
 text[1] = _([[You approach the Empire Lieutenant.
@@ -85,11 +85,11 @@ function accept ()
    reward = 30000
    misn.setTitle(misn_title)
    misn.setReward(creditstring(reward))
-   misn.setDesc(misn_desc:format(sys:name(), dest:name()))
+   misn.setDesc(misn_desc:format(dest:name(), sys:name()))
 
    -- Flavour text and mini-briefing
    tk.msg("", string.format(text[2], dest:name()))
-   misn.osdCreate("", {misn_desc:format(sys:name(), dest:name())})
+   misn.osdCreate("", {misn_desc:format(dest:name(), sys:name())})
 
    -- Set up the goal
    local c = misn.cargoNew(N_("Parcels"), N_("A bunch of boring Empire parcels."))

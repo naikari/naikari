@@ -141,10 +141,10 @@ misn_reward = _("None")
 
 osd_title = _("Tutorial")
 osd_desc = {}
-osd_desc[1] = _("Fly to %s in the %s system with the movement keys (%s, %s, %s, %s)")
-osd_desc[2] = _("Land on %s in the %s system by double-clicking on it")
-osd_desc[3] = _("Open the overlay map with %s and go to %s in the %s system by right-clicking its icon on the overlay map")
-osd_desc[4] = _("Destroy the practice drone near %s in the %s system by targeting it with %s or by left-clicking it, and then using %s and %s to fire your weapons")
+osd_desc[1] = _("Fly to %s (%s system) with the movement keys (%s, %s, %s, %s)")
+osd_desc[2] = _("Land on %s (%s system) by double-clicking on it")
+osd_desc[3] = _("Open the overlay map with %s and autonav to %s (%s system) by right-clicking its icon on the overlay map")
+osd_desc[4] = _("Destroy the practice drone near %s (%s system) by targeting it with %s or by left-clicking it, and then using %s and %s to fire your weapons")
 osd_desc[5] = _("Engage Active Cooldown by pressing %s twice, then wait for your ship to fully cool down")
 osd_desc[6] = _("Open your starmap with %s and jump to the %s system (indicated on the starmap) using Autonav")
 osd_desc["__save"] = true

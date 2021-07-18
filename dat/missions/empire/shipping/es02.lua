@@ -44,7 +44,7 @@ bar_desc = _("Commander Soldner is waiting for you.")
 misn_title = _("Empire VIP Rescue")
 misn_desc = {}
 misn_desc[1] = _("Rescue the VIP from a transport ship in the %s system")
-misn_desc[2] = _("Return to %s in the %s system with the VIP")
+misn_desc[2] = _("Land on %s (%s system) with the VIP")
 -- Fancy text messages
 title = {}
 title[1] = _("Commander Soldner")

@@ -74,7 +74,7 @@ misn_title = _("The Space Family")
 misn_reward = _("A clear conscience.")
 misn_desc = {}
 misn_desc[1] = _("A shipwrecked space family has enlisted your aid. Can you take them to safety?")
-misn_desc[2] = _("Fly to %s and land on %s to drop off the space family")
+misn_desc[2] = _("Land on %s (%s system) to drop off the space family")
 
 -- Aborted mission
 msg_abortTitle = _("A parting of ways")
@@ -109,7 +109,7 @@ function create ()
    destsys = targsys[rnd.rnd(1, #targsys)]
    destplanet = getlandable(destsys) -- pick a landable planet in the destination system
    tk.msg("", string.format(directions[nextstop], destplanet:name(), destsys:name())) -- NPC telling you where to go
-   misn.osdCreate(misn_title, {misn_desc[2]:format(destsys:name(), destplanet:name())})
+   misn.osdCreate(misn_title, {misn_desc[2]:format(destplanet:name(), destsys:name())})
    misn_marker = misn.markerAdd(destsys, "low")
 
    -- Force unboard

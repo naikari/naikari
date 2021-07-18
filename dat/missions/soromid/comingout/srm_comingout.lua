@@ -91,9 +91,6 @@ misn_desc = _("Your new friend needs you to deliver them to a few locations, the
 npc_name = _("Quiet stranger")
 npc_desc = _("A stranger is sitting quietly at a table alone and staring off into space.")
 
-osd_desc    = {}
-osd_desc[1] = _("Go to the %s system and land on the planet %s.")
-
 log_text = _([[You have made a new friend, Chelsea. You helped transport her to complete some errands and also supported her in coming out as transgender to her parents. Chelsea has asked you to return to %s to visit soon.]])
 
 
@@ -146,13 +143,11 @@ function generate_osd ()
       for i, pn in ipairs(dests) do
          local pl, sys = planet.get(pn)
          osd_desc[#osd_desc + 1] = string.format(
-               _("Fly to the %s system and land on %s"), sys:name(),
-               pl:name())
+               _("Land on %s (%s system)"), pl:name(), sys:name())
       end
    else
       osd_desc[1] = string.format(
-            _("Fly to the %s system and land on %s"), homesys:name(),
-            homeplanet:name())
+            _("Land on %s (%s system)"), homeplanet:name(), homesys:name())
    end
 
    misn.osdCreate(misn_title, osd_desc)

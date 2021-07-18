@@ -80,7 +80,7 @@ text[7] = _([[Reynir doesn't look happy when you meet him outside the ship.
 -- Other text for the mission -- ??
 osd_msg = {}
 osd_msg[1] = _("Fly around in the system, preferably near %s")
-osd_msg[2] = _("Take Reynir home to %s")
+osd_msg[2] = _("Land on %s (%s system)")
 
 log_text_good = _([[You took an old man named Reynir on a ride in outer space. He was happy and paid you in the form of %s of hot dogs.]])
 log_text_bad = _([[You took an old man named Reynir on a ride in outer space, but he was made very angry because the distance you traveled led to him getting injured and losing his hearing. Still, he begrudgingly paid you in the form of %s of hot dogs.]])
@@ -145,11 +145,13 @@ function landed()
    -- If we're in misn_base_sys but not on misn_base then...
    elseif system.cur() == misn_base_sys then
       tk.msg("", string.format(text[6], planet.cur():name(), misn_base:name()))
-      misn.osdCreate(misn_title, {osd_msg[2]:format(misn_base:name())})
+      misn.osdCreate(misn_title,
+            {osd_msg[2]:format(misn_base:name(), misn_base_sys:name())})
    -- If we're in another system then make Reynir bleed out his ears ;)
    else
       tk.msg("", string.format(text[4], misn_base:name()))
-      misn.osdCreate(misn_title, {osd_msg[2]:format(misn_base:name())})
+      misn.osdCreate(misn_title,
+            {osd_msg[2]:format(misn_base:name(), misn_base_sys:name())})
       misn_bleeding = true
    end
 end

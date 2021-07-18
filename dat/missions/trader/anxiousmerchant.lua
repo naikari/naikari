@@ -45,8 +45,8 @@ misn_title = _("Anxious Merchant")
 -- OSD
 osd_title = _("Help the Merchant")
 osd_desc = {}
-osd_desc[1] = _("Drop off the goods at %s in the %s system (You have %s remaining)")
-osd_desc[2] = _("Drop off the goods at %s in the %s system (You are late)")
+osd_desc[1] = _("Land on %s (%s system) to drop off the goods\n(You have %s remaining)")
+osd_desc[2] = _("Land on %s (%s system) to drop off the goods\n(You are late)")
 
 -- Cargo Details
 cargo = "Goods"

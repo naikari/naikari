@@ -126,7 +126,7 @@ osd_msg2  = {}
 
 osd_title = _("Shadowrun")
 
-osd_msg1[1] = _("Fly to planet %s in the %s system and pick up Jorek")
+osd_msg1[1] = _("Land on %s (%s system) and pick up Jorek")
 osd_msg1[2] = _("You have %s remaining")
 osd_msg1["__save"] = true
 

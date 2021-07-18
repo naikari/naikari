@@ -71,7 +71,7 @@ bar_desc[1] = _([[It looks like he has yet another job for you.]])
 -- OSD
 osd_title = _("The FLF Contact")
 osd_msg[1] = _("Hail any FLF ship, or disable and board one if necessary")
-osd_msg[2] = _("Go back to %s in %s")
+osd_msg[2] = _("Land on %s (%s system)")
 
 log_text = _([[You helped Arnold Smith establish a contact with the FLF. He said to meet you at the bar on Alteris when you're ready to take him to Arandon.]])
 

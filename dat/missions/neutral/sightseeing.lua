@@ -92,7 +92,7 @@ osd_title  = _("Sightseeing")
 osd_msg    = {}
 osd_msg[1] = _("Fly to the %s system")
 osd_msg[2]  = _("Go to all indicated points")
-osd_msg[3] = _("Return to %s in the %s system and collect your pay")
+osd_msg[3] = _("Land on %s (%s system) to collect your pay")
 osd_msg["__save"] = true
 
 mark_name = _("Attraction")

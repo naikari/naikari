@@ -54,7 +54,7 @@ cargo_land[3] = _("The containers of %s are unloaded by an exhausted-looking bun
 cargo_land[4] = _("The containers of %s are unloaded by a team of robotic drones supervised by a human overseer, who hands you your pay when they finish.")
 
 osd_title = _("Cargo mission")
-osd_msg = _("Fly to %s and land on %s")
+osd_msg = _("Land on %s (%s system)")
 
 -- Create the mission
 function create()
@@ -107,7 +107,7 @@ function accept()
    end
    misn.accept()
    misn.cargoAdd(cargo, amount) -- TODO: change to jettisonable cargo once custom commodities are in. For piracy purposes.
-   misn.osdCreate(osd_title, {osd_msg:format(destsys:name(), destplanet:name())})
+   misn.osdCreate(osd_title, {osd_msg:format(destplanet:name(), destsys:name())})
    hook.land("land")
 end
 

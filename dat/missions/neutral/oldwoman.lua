@@ -53,7 +53,7 @@ complaints[7] = _([["All this automation is making people lax, I tell you. My un
 
 OSDtitle = _("The old woman")
 OSD = {}
-OSD[1] = _("Fly to the %s system and land on %s to drop off the old woman")
+OSD[1] = _("Land on %s (%s system) to drop off the old woman")
 
 NPCname = _("An old woman")
 NPCdesc = _("You see a wrinkled old lady, a somewhat unusual sight in a spaceport bar. She's purposefully looking around.")
@@ -97,7 +97,7 @@ function accept ()
         misn.accept()
         misn.setDesc(misndesc:format(destplanet:name()))
         misn.setReward(misnreward)
-        OSD[1] = OSD[1]:format(destsys:name(), destplanet:name())
+        OSD[1] = OSD[1]:format(destplanet:name(), destsys:name())
         misn.osdCreate(OSDtitle, OSD)
         misn.markerAdd(destsys, "high")
 

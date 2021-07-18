@@ -64,13 +64,13 @@ misnreward = _("You will be compensated for your efforts.")
 OSDtitle = _("The macho teenager")
 OSD = {}
 OSD[1] = _("Disable Gawain Credence")
-OSD[2] = _("Bring the teenagers back to planet %s")
+OSD[2] = _("Land on %s (%s system)")
 
 
 function create ()
     cursys = system.cur()
     curplanet = planet.cur()
-    OSD[2] = OSD[2]:format(planet.cur():name())
+    OSD[2] = OSD[2]:format(curplanet:name(), cursys:name())
     misn.setNPC(NPCname, "neutral/unique/middleaged.png", NPCdesc)
 end
 

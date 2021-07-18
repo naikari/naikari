@@ -100,7 +100,7 @@ npc_desc = _("These must be the 'agents' hired by this Baron Sauterfeldt. They l
 
 -- OSD stuff
 osd_title = _("Baron")
-osd_msg[1] = _("Fly to %s and land on %s")
+osd_msg[1] = _("Land on %s (%s system)")
 osd_msg[2] = _("Fly to %s and dock with (board) Kahan Pinnacle")
 
 log_text_succeed = _([[You helped some selfish baron steal a Dvaered holopainting and were paid a measly sum of credits.]])
@@ -142,7 +142,7 @@ function accept()
    misn.setReward(misn_reward)
    misn.setDesc(misn_desc)
 
-   osd_msg[1] = osd_msg[1]:format(sysname1, planetname)
+   osd_msg[1] = osd_msg[1]:format(planetname, sysname1)
    osd_msg[2] = osd_msg[2]:format(sysname2)
    misn.osdCreate(osd_title, osd_msg)
 

@@ -60,8 +60,8 @@ bar_desc[1] = _([[He's waiting for you.]])
 
 -- OSD
 osd_title = _("A Journey To %s")
-osd_msg[1] = _("Go to %s and wait for the FLF ship, then hail and board it.")
-osd_msg[2] = _("Go back to %s in %s")
+osd_msg[1] = _("Fly to the %s system and wait for the FLF ship, then hail and board it")
+osd_msg[2] = _("Land on %s (%s system)")
 
 log_text = _([[You transported Arnold Smith to a meeting with someone from the FLF. He said that he had good results.]])
 
