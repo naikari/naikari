@@ -37,6 +37,7 @@ int dpl_savePlanet( const Planet *p )
    xmlTextWriterPtr writer;
    char *file, *cleanName;
    int i;
+   int inhabited = 0;
 
    /* Create the writer. */
    writer = xmlNewTextWriterDoc(&doc, 0);
@@ -98,22 +99,36 @@ int dpl_savePlanet( const Planet *p )
          else
             xmlw_elem( writer, "land", "%s", p->land_func );
       }
-      if (planet_hasService( p, PLANET_SERVICE_REFUEL ))
+      if (planet_hasService( p, PLANET_SERVICE_REFUEL )) {
          xmlw_elemEmpty( writer, "refuel" );
-      if (planet_hasService( p, PLANET_SERVICE_BAR ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_BAR )) {
          xmlw_elemEmpty( writer, "bar" );
-      if (planet_hasService( p, PLANET_SERVICE_MISSIONS ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_MISSIONS )) {
          xmlw_elemEmpty( writer, "missions" );
-      if (planet_hasService( p, PLANET_SERVICE_COMMODITY ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_COMMODITY )) {
          xmlw_elemEmpty( writer, "commodity" );
-      if (planet_hasService( p, PLANET_SERVICE_OUTFITS ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_OUTFITS )) {
          xmlw_elemEmpty( writer, "outfits" );
-      if (planet_hasService( p, PLANET_SERVICE_SHIPYARD ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_SHIPYARD )) {
          xmlw_elemEmpty( writer, "shipyard" );
+         inhabited = 1;
+      }
       if (planet_hasService( p, PLANET_SERVICE_BLACKMARKET ))
          xmlw_elemEmpty( writer, "blackmarket" );
       if (planet_isFlag( p, PLANET_NOMISNSPAWN ))
          xmlw_elemEmpty( writer, "nomissionspawn" );
+      if (inhabited && (p->population == 0))
+         xmlw_elemEmpty( writer, "uninhabited" );
       xmlw_endElem( writer ); /* "services" */
       if (planet_hasService( p, PLANET_SERVICE_LAND )) {
          if (p->faction > 0) {
