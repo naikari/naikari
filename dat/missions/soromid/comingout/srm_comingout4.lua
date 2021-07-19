@@ -60,25 +60,25 @@ Eventually, the topic of Chelsea's gender comes up. Chelsea explains that they a
 Chelsea's father sighs. "Well, if you really wanna go with that, I guess I'll humor you." You look over at Chelsea; it's obvious that they're hurt by this.]])
 home_text[2] = _([[Chelsea's mother speaks up. "What do you mean, 'humor' them? You don't believe your own child about their personal experiences?"
 
-"I mean, you wanna identify as 'nonbinary' or a Kestrel or whatever because it makes you feel better, I mean, we both know that's not true, but at least you're not one of those those sorofreaks..."
+"I mean, you wanna identify as 'nonbinary' or a Kestrel or whatever because it makes you feel better, we both know that's not true, but at least you're not one of those those sorofreaks."
 
-Chelsea is clearly furious. "What do you think you're doing, throwing out that slur? The Soromid are people just like us! And I'm not pretending! Do you honestly think I'm fooling around and lying to you because it 'makes me feel better'? I'm telling you that I'm nonbinary because I really am nonbinary."]])
-home_text[3] = _([[Chelsea's father frowns, and Chelsea continues. "I've met many Soromid friends in my travels and many have had no problem accepting me as who I say I am. Why can't you?!"
+You see a look of shock on Chelsea's face, followed by a glare aimed at their father. "What do you think you're doing, using that slur? The Soromid are people just like us! And I'm not pretending! Do you honestly think I'm fooling around and lying to you because it 'makes me feel better'? I'm telling you that I'm nonbinary because I really am nonbinary."]])
+home_text[3] = _([[Chelsea's father sighs. "Look, you're my son, and you always will be, but those sorofreaks are messing with your head. You need to come back to the real world eventually. I know you will."
 
-"Because you're my son, and you always will be! But you need to stop letting those sorofreaks get into your head! What am I going to tell my buddies if they hear that my son's been taken by them?! I can't let this go on!"
+Chelsea snaps back. "I won't sit here and listen to you attacking the Soromid like that! I've made some great friends with Soromid folks! Business partners even! And it's a Soromid who gave me treatments to make me more comfortable in my body!
 
-"I'm not your son, and I never will be! Whether you accept me or not, I am nonbinary and there's nothing you can do to change that. And I won't tolerate you attacking some of the kindest people I've ever met with slurs! They're even providing me with the best medical treatments in the galaxy so I can finally be fully comfortable in my body!"]])
-home_text[4] = _([[Chelsea's father pauses. "It's like you've become a sorofreak yourself." He reaches for something you can't see. "You know what? You're right. You're not my son. I don't need freaks in my family!"
+"I am not your son, dad, and I never will be. I'm your nonbinary child, whether you accept me or not. Not because of the Soromid 'messing with my head', but because that's what my gender is. You have no right to stop me from doing what makes me happy."]])
+home_text[4] = _([[Chelsea's father pauses. "So you're even making business deals with sorofreaks, huh? And you're thoroughly convinced that you're this 'nonbinary' nonsense. It's like you've become a sorofreak yourself." He reaches for something you can't see. "You know what? You're right. You're not my son. I won't stand by and let  the sorofreak agenda plague this galaxy!"
 
 Suddenly, Chelsea's mother tackles her husband. That's when you see what he was reaching for: a laser gun. The two start to wrestle for control as Chelsea's mother shouts. "Run! Both of you! Get out of here!" Not needing to be told twice, you grab Chelsea's arm and run as fast as you can. Just as you make it out of view, you hear the laser gun fire.
 
-With no time to lose, you and Chelsea dash into your ships and immediately start launch procedures just in time to see Chelsea's father appear and attempt to fire his weapon at Chelsea. The shots hit their ship, but deflect harmlessly off of their shields. Chelsea sends you a message saying that they're setting course for %s.]])
+With no time to lose, you and Chelsea dash into your ships and immediately start launch procedures just in time to see Chelsea's father appear and attempt to fire his weapon at Chelsea. The shots hit their ship, but deflect harmlessly off of their shields. Chelsea sends you a message saying that they're setting course for %s immediately.]])
 
-end_text = _([[After docking on %s, you meet up again with Chelsea to see them sobbing and frustrated. "I should have known I couldn't trust him! He never was openly accepting when I came out as trans to him before and misgendered me multiple times, but I just hoped it was in my imagination, you know?" You tell Chelsea that it's not their fault. "I know, it's just… now he's sending thugs after me, and he'll probably send thugs after you too."
+end_text = _([[After docking on %s, you meet up again with Chelsea to see them sobbing and frustrated. "I should have known I couldn't trust him! He never was openly accepting when I came out as trans to him before and misgendered me multiple times, but I just hoped it was in my imagination, you know? And I had no idea he was so bigoted against the Soromid!" You tell Chelsea that it's not their fault. "I know, it's just… I hope my mother is OK."
 
-They wipe the tears from their eyes. "I'll need to make sure I'm prepared when I face trouble from him again. Make sure my ship can handle it. Heck, maybe I should get more of a battle-hardened ship.
+They wipe the tears from their eyes. "He had thugs on our tail shortly after we left and that tells me that this isn't over. I'll need to make sure I'm prepared when I face trouble from him again. Heck, maybe I should get more of a battle-hardened ship.
 
-"Thank you for your help, %s. This isn't the outcome that I wanted but I honestly could have died there if it wasn't for you. Here." They hand you a credit chip. "The payment I promised. I need to go build up my strength. Next time I see you, I swear, I'll have a ship that won't be left in a vulnerable position!" You offer a hug and say your goodbyes, hoping that Chelsea will be OK.]])
+"Thank you for your help, %s. This isn't the outcome that I wanted but I honestly could have died there if it wasn't for you. Here." They hand you a credit chip. "The payment I promised. I need to go build up my strength. Next time I see you, I swear, I'll have a ship that won't be left in a vulnerable position when I run into trouble!" You offer a hug and say your goodbyes, hoping that Chelsea will be OK.]])
 
 left_fail_text = _("You have lost contact with Chelsea and therefore failed the mission.")
 
@@ -97,7 +97,7 @@ plflee_msg = _("MISSION FAILED: You have abandoned the mission.")
 ambush_msg = _("You heard the boss, folks! Get them!")
 noland_msg = _("It's too dangerous to land here right now.")
 
-log_text = _([[You escorted Chelsea, who requests they/them pronouns now, to Durea so that they could see their parents. However, Chelsea's father turned on them because of their gender identity and acceptance of the Soromid, aiming a laser gun at Chelsea before he was tackled and held back by Chelsea's mother. You didn't see what happened, but as you and Chelsea ran away, you heard a gunshot. Chelsea's father then caught up with you as you began launch procedures, attempted to fire his laser gun at Chelsea's ship, and then sent a group of thugs after you as you escorted Chelsea to safety.
+log_text = _([[You escorted Chelsea, who requests they/them pronouns now, to Durea so that they could see their parents. However, Chelsea's father turned on them because of their gender identity and dealings with the Soromid, aiming a laser gun at Chelsea before he was tackled and held back by Chelsea's mother. You didn't see what happened, but as you and Chelsea ran away, you heard a gunshot. Chelsea's father then caught up with you as you began launch procedures, attempted to fire his laser gun at Chelsea's ship, and then sent a group of thugs after you as you escorted Chelsea to safety.
 
 Chelsea has vowed to strengthen their ship so they aren't left in a vulnerable position again.]])
 
@@ -230,7 +230,7 @@ function takeoff ()
       jumpNext()
    elseif stage >= 3 and system.cur() == destsys then
       player.allowLand(false, noland_msg)
-      hook.timer(5000, "ambush_timer")
+      hook.timer(10000, "ambush_timer")
       spawnChelseaShip(destplanet)
       jumpNext()
    end
@@ -298,11 +298,12 @@ end
 
 function ambush_timer ()
    local thugships = {
-      "Admonisher", "Lancelot", "Shark", "Hyena",
+      "Vendetta", "Hyena", "Hyena",
    }
    local leaderthug
    for i, shiptype in ipairs(thugships) do
-      local p = pilot.add(shiptype, "Comingout_thugs", misplanet, _("Thug %s"):format(_(shiptype)))
+      local p = pilot.add(shiptype, "Comingout_thugs", destplanet,
+            _("Thug %s"):format(_(shiptype)))
       p:setHostile()
       p:setLeader(leaderthug)
 
