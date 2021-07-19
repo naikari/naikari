@@ -14,6 +14,7 @@
   <services>
    <land/>
    <refuel/>
+   <uninhabited/>
   </services>
   <description>When Domestica was discovered, its hostile atmosphere turned out to both make inhabitation impossible and make short work of any garbage thrown its way. As such, House Sirius decided to designate it as a legal waste dump facility. A landing pad is provided with a basic automatic refueling system that uses uses the various gases to synthesize fuel for any ship that needs it.</description>
  </general>

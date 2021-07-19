@@ -44,8 +44,8 @@ enum {
 /*
  * planet services
  */
-#define PLANET_SERVICE_LAND         (1<<0) /**< Can land. */
-#define PLANET_SERVICE_INHABITED    (1<<1) /**< Planet is inhabited. */
+#define PLANET_SERVICE_INHABITED    (1<<0) /**< Planet is inhabited. */
+#define PLANET_SERVICE_LAND         (1<<1) /**< Can land. */
 #define PLANET_SERVICE_REFUEL       (1<<2) /**< Has refueling. */
 #define PLANET_SERVICE_BAR          (1<<3) /**< Has bar and thus news. */
 #define PLANET_SERVICE_MISSIONS     (1<<4) /**< Has mission computer. */
@@ -63,9 +63,8 @@ enum {
  * Planet flags.
  */
 #define PLANET_KNOWN       (1<<0) /**< Planet is known. */
-#define PLANET_BLACKMARKET (1<<1) /**< Planet is a black market. */
-#define PLANET_NOMISNSPAWN (1<<2) /**< No missions spawn nor trigger on this asset. */
-#define PLANET_UNINHABITED (1<<3) /**< Force planet to be uninhabited. */
+#define PLANET_NOMISNSPAWN (1<<1) /**< No missions spawn nor trigger on this asset. */
+#define PLANET_UNINHABITED (1<<2) /**< Force planet to be uninhabited. */
 #define planet_isFlag(p,f)    ((p)->flags & (f)) /**< Checks planet flag. */
 #define planet_setFlag(p,f)   ((p)->flags |= (f)) /**< Sets a planet flag. */
 #define planet_rmFlag(p,f)    ((p)->flags &= ~(f)) /**< Removes a planet flag. */

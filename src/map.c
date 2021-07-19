@@ -254,8 +254,8 @@ void map_open (void)
    cur = system_getIndex( map_selected );
 
    /* Set up window size. */
-   w = MAX(600, SCREEN_W - 100);
-   h = MAX(540, SCREEN_H - 100);
+   w = MAX(1280, SCREEN_W - 100);
+   h = MAX(720, SCREEN_H - 100);
 
    /* create the window. */
    wid = window_create( MAP_WDWNAME, _("Star Map"), -1, -1, w, h );
@@ -648,7 +648,7 @@ static void map_update( unsigned int wid )
    buf[0] = '\0';
    p = 0;
    /*snprintf(buf, sizeof(buf), "%f\n", sys->prices[0]);*/ /*Hack to control prices. */
-   for (i=PLANET_SERVICE_MISSIONS; i<=PLANET_SERVICE_SHIPYARD; i<<=1)
+   for (i=PLANET_SERVICE_LAND; i<PLANET_SERVICES_MAX; i<<=1)
       if (services & i)
          p += scnprintf( &buf[p], sizeof(buf)-p, "%s\n", _(planet_getServiceName(i)) );
    if (buf[0] == '\0')
