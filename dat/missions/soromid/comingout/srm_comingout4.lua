@@ -57,7 +57,7 @@ darkshed_text = _([[You meet up with Chelsea. "Hello again, %s!" they say. "I'm 
 home_text = {}
 home_text[1] = _([[You land and dock on %s, then meet up with both of Chelsea's parents. They welcome Chelsea and their mother gives them a warm hug, then releases them. Chelsea's father slightly waves, and the three of them start chatting.
 
-Eventually, the topic of Chelsea's gender comes up. Chelsea explains that they are nonbinary and now use they/them pronouns similarly to when they explained it to you. Their mother thanks them and hugs them.
+Eventually, the topic of Chelsea's gender comes up. Chelsea explains that they are nonbinary and now use they/them pronouns similarly to when they explained it to you. Their mother thanks them for telling her and hugs them.
 
 Chelsea's father sighs. "Well, if you really wanna go with that, I guess I'll humor you." You look over at Chelsea; it's obvious that they're hurt by this.]])
 home_text[2] = _([[Chelsea's mother speaks up. "What do you mean, 'humor' them? You don't believe your own child about their personal experiences?"
