@@ -2762,7 +2762,8 @@ static void pilot_init( Pilot* pilot, Ship* ship, const char* name, int faction,
          array_push_back( &pilot->outfits, slot );
          if (pilot_list_ptr[i] != &pilot->outfit_weapon)
             slot->weapset = -1;
-         if (slot->sslot->data != NULL)
+         if ((slot->sslot->data != NULL)
+               && !pilot_isFlagRaw(flags, PILOT_NO_OUTFITS))
             pilot_addOutfitRaw( pilot, slot->sslot->data, slot );
       }
    }
@@ -2795,12 +2796,16 @@ static void pilot_init( Pilot* pilot, Ship* ship, const char* name, int faction,
 
    /* Safety check. */
 #ifdef DEBUGGING
-   const char *str = pilot_checkSpaceworthy( pilot );
-   if (str != NULL) {
-      DEBUG( _("Pilot '%s' failed safety check: %s"), pilot->name, str );
-      for (i=0; i<array_size(pilot->outfits); i++) {
-         if (pilot->outfits[i]->outfit != NULL)
-            DEBUG(_("   [%d] %s"), i, _(pilot->outfits[i]->outfit->name) );
+   /* Skip check if PILOT_NO_OUTFITS is set, since not being spaceworthy
+    * is normal in that case. */
+   if (!pilot_isFlagRaw(flags, PILOT_NO_OUTFITS)) {
+      const char *str = pilot_checkSpaceworthy( pilot );
+      if (str != NULL) {
+         DEBUG( _("Pilot '%s' failed safety check: %s"), pilot->name, str );
+         for (i=0; i<array_size(pilot->outfits); i++) {
+            if (pilot->outfits[i]->outfit != NULL)
+               DEBUG(_("   [%d] %s"), i, _(pilot->outfits[i]->outfit->name) );
+         }
       }
    }
 #endif /* DEBUGGING */
