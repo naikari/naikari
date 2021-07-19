@@ -117,7 +117,6 @@ dat/assets/blackwell_iix.xml
 dat/assets/blackwell_vii.xml
 dat/assets/blunderbuss_ii.xml
 dat/assets/bolero.xml
-dat/assets/bon_sebb.xml
 dat/assets/bonanza_i.xml
 dat/assets/bonanza_ii.xml
 dat/assets/boowoy.xml
@@ -349,6 +348,7 @@ dat/assets/ginni.xml
 dat/assets/goddard_iii.xml
 dat/assets/goddard_iv.xml
 dat/assets/godtra.xml
+dat/assets/gojo_shipyard.xml
 dat/assets/golem.xml
 dat/assets/gorchenchev_shipyards.xml
 dat/assets/gordons_exchange.xml
@@ -905,7 +905,6 @@ dat/assets/sirou_alpha.xml
 dat/assets/sirou_i.xml
 dat/assets/sirou_ii.xml
 dat/assets/sirou_vi.xml
-dat/assets/sixbat_station.xml
 dat/assets/skater.xml
 dat/assets/skona.xml
 dat/assets/sleuth_ii.xml
@@ -1094,7 +1093,6 @@ dat/assets/virtual_dvaered_small.xml
 dat/assets/virtual_dvaered_unpresence.xml
 dat/assets/virtual_empire_small.xml
 dat/assets/virtual_empire_unpresence.xml
-dat/assets/virtual_flf_sindbad.xml
 dat/assets/virtual_flf_small.xml
 dat/assets/virtual_flf_unpresence.xml
 dat/assets/virtual_frontier_small.xml
@@ -1130,6 +1128,7 @@ dat/assets/wahri.xml
 dat/assets/wahri_iii.xml
 dat/assets/wahri_iv.xml
 dat/assets/wakan.xml
+dat/assets/wakomi.xml
 dat/assets/waldar.xml
 dat/assets/wardens_end.xml
 dat/assets/warei.xml
@@ -1357,7 +1356,6 @@ dat/outfits/biocore_shell/ultralight_bioship_shell_stage_x.xml
 dat/outfits/core_engine/beat_up_large_engine.xml
 dat/outfits/core_engine/beat_up_medium_engine.xml
 dat/outfits/core_engine/beat_up_small_engine.xml
-dat/outfits/core_engine/dummy_engine.xml
 dat/outfits/core_engine/krain_remige_engine.xml
 dat/outfits/core_engine/melendez_buffalo_xl_engine.xml
 dat/outfits/core_engine/melendez_mammoth_xl_engine.xml
@@ -1375,7 +1373,6 @@ dat/outfits/core_engine/unicorp_eagle_6500_engine.xml
 dat/outfits/core_engine/unicorp_falcon_1200_engine.xml
 dat/outfits/core_engine/unicorp_hawk_300_engine.xml
 dat/outfits/core_engine/zalek_test_engine.xml
-dat/outfits/core_hull/dummy_plating.xml
 dat/outfits/core_hull/patchwork_heavy_plating.xml
 dat/outfits/core_hull/patchwork_light_plating.xml
 dat/outfits/core_hull/patchwork_medium_plating.xml
@@ -1398,7 +1395,6 @@ dat/outfits/core_hull/unicorp_d2_light_plating.xml
 dat/outfits/core_hull/unicorp_d48_heavy_plating.xml
 dat/outfits/core_hull/unicorp_d4_light_plating.xml
 dat/outfits/core_hull/unicorp_d72_heavy_plating.xml
-dat/outfits/core_system/dummy_systems.xml
 dat/outfits/core_system/milspec_aegis_2201_core_system.xml
 dat/outfits/core_system/milspec_aegis_3601_core_system.xml
 dat/outfits/core_system/milspec_aegis_4701_core_system.xml
@@ -1836,6 +1832,7 @@ dat/ssys/gilligans_tomb.xml
 dat/ssys/ginger.xml
 dat/ssys/goddard.xml
 dat/ssys/gold.xml
+dat/ssys/gomyo.xml
 dat/ssys/gorman.xml
 dat/ssys/gremlin.xml
 dat/ssys/griffin.xml
@@ -1857,7 +1854,7 @@ dat/ssys/hephaestus.xml
 dat/ssys/herakin.xml
 dat/ssys/hideyoshis_star.xml
 dat/ssys/humdrum.xml
-dat/ssys/hyper_realm.xml
+dat/ssys/hypergate_zone.xml
 dat/ssys/hystera.xml
 dat/ssys/infinity.xml
 dat/ssys/ingot.xml
@@ -2084,7 +2081,6 @@ dat/ssys/zacron.xml
 dat/ssys/zalek.xml
 dat/ssys/zemur.xml
 dat/ssys/zerantix.xml
-dat/ssys/zied.xml
 dat/ssys/zintar.xml
 dat/ssys/zylex.xml
 dat/start.xml
@@ -2110,7 +2106,7 @@ dat/ai/flee.lua
 dat/ai/flf.lua
 dat/ai/flf_norun.lua
 dat/ai/flf_rogue_norun.lua
-dat/ai/frontier_police.lua
+dat/ai/frontier.lua
 dat/ai/goddard.lua
 dat/ai/guard.lua
 dat/ai/include/atk_bomber.lua
@@ -2239,7 +2235,6 @@ dat/missions/baron/baron_prince.lua
 dat/missions/baron/common.lua
 dat/missions/dvaered/assault_on_unicorn.lua
 dat/missions/dvaered/championship.lua
-dat/missions/dvaered/coliseum_tables.lua
 dat/missions/dvaered/common.lua
 dat/missions/dvaered/dv_antiflf01.lua
 dat/missions/dvaered/dv_antiflf02.lua
@@ -2291,6 +2286,7 @@ dat/missions/flf/flf_pre02.lua
 dat/missions/flf/flf_pre03.lua
 dat/missions/flf/flf_rogue.lua
 dat/missions/neutral/animaltransport.lua
+dat/missions/neutral/anxiousmerchant.lua
 dat/missions/neutral/aristodrink.lua
 dat/missions/neutral/cargo.lua
 dat/missions/neutral/cargo_rush.lua
@@ -2304,7 +2300,6 @@ dat/missions/neutral/dts_01.lua
 dat/missions/neutral/dts_02.lua
 dat/missions/neutral/foodbiz/delivercake.lua
 dat/missions/neutral/foodbiz/deliverlove.lua
-dat/missions/neutral/kidnapped/traffic_00.lua
 dat/missions/neutral/nebu_satellite.lua
 dat/missions/neutral/oldwoman.lua
 dat/missions/neutral/patrol.lua
@@ -2319,6 +2314,7 @@ dat/missions/neutral/seek_n_destroy.lua
 dat/missions/neutral/sightseeing.lua
 dat/missions/neutral/spacefamily.lua
 dat/missions/neutral/teenager.lua
+dat/missions/neutral/trader_escort.lua
 dat/missions/neutral/wastedump.lua
 dat/missions/pirate/common.lua
 dat/missions/pirate/empbounty_dead.lua
@@ -2360,8 +2356,6 @@ dat/missions/soromid/comingout/srm_comingout5.lua
 dat/missions/soromid/comingout/srm_comingout6.lua
 dat/missions/soromid/common.lua
 dat/missions/soromid/srm_rehab.lua
-dat/missions/trader/anxiousmerchant.lua
-dat/missions/trader/trader_escort.lua
 dat/missions/tutorial/tutorial.lua
 dat/missions/zalek/common.lua
 dat/missions/zalek/neburesearch/neburesearch_00.lua
