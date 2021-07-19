@@ -156,7 +156,7 @@ following commands:
 ```bash
 meson compile potfiles           # necessary if files have been added or removed
 meson compile naikari-pot        # necessary if translatable strings changed
-meson compile naikari-update-po  # necessary outside the main line, where Weblate handles it
+meson compile naikari-update-po  # necessary if translatable strings changed
 ```
 
 This will allow you to edit the translation files in `po/` manually to modify
