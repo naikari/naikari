@@ -200,15 +200,9 @@ static void info_openMain( unsigned int wid )
    int i;
    char *nt;
    int w, h;
-   unsigned int destroyed;
 
    /* Get the dimensions. */
    window_dimWindow( wid, &w, &h );
-
-   /* Compute ships destroyed. */
-   destroyed = 0;
-   for (i=0; i<SHIP_CLASS_TOTAL; i++)
-      destroyed += player.ships_destroyed[i];
 
    /* pilot generics */
    nt = ntime_pretty( ntime_get(), 2 );
@@ -248,7 +242,7 @@ static void info_openMain( unsigned int wid )
          player.time_played / 3600.,
          player.dmg_done_shield + player.dmg_done_armour,
          player.dmg_taken_shield + player.dmg_taken_armour,
-         destroyed );
+         player.ships_destroyed );
    window_addText( wid, 40+240, 20,
          w-40-240-20-2*BUTTON_WIDTH-20, h-80,
          0, "txtPilot", &gl_defFont, NULL, str );
@@ -494,7 +488,7 @@ static void ship_update( unsigned int wid )
          /* Generic */
          player.p->name,
          _(player.p->ship->name),
-         _(ship_class(player.p->ship)),
+         _(player.p->ship->class),
          /* Movement. */
          player.p->solid->mass,
          hyp_delay,

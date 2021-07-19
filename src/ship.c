@@ -153,135 +153,6 @@ int ship_compareTech( const void *arg1, const void *arg2 )
 
 
 /**
- * @brief Gets the ship's class name in human readable form.
- *
- *    @param s Ship to get the class name from.
- *    @return The human readable class name.
- */
-const char* ship_class( const Ship* s )
-{
-   return ship_classToString( s->class );
-}
-
-
-/**
- * @brief Gets the ship class name in human readable form.
- *
- *    @param class Class to get name of.
- *    @return The human readable class name.
- */
-const char *ship_classToString( ShipClass class )
-{
-   switch (class) {
-      case SHIP_CLASS_NULL:
-         return "NULL";
-
-      /* Civilian. */
-      case SHIP_CLASS_YACHT:
-         return N_("Yacht");
-      case SHIP_CLASS_LUXURY_YACHT:
-         return N_("Luxury Yacht");
-      case SHIP_CLASS_CRUISE_SHIP:
-         return N_("Cruise Ship");
-
-      /* Merchant. */
-      case SHIP_CLASS_COURIER:
-         return N_("Courier");
-      case SHIP_CLASS_ARMOURED_TRANSPORT:
-         return N_("Armored Transport");
-      case SHIP_CLASS_FREIGHTER:
-         return N_("Freighter");
-      case SHIP_CLASS_BULK_CARRIER:
-         return N_("Bulk Carrier");
-
-      /* Military. */
-      case SHIP_CLASS_SCOUT:
-         return N_("Scout");
-      case SHIP_CLASS_FIGHTER:
-         return N_("Fighter");
-      case SHIP_CLASS_BOMBER:
-         return N_("Bomber");
-      case SHIP_CLASS_CORVETTE:
-         return N_("Corvette");
-      case SHIP_CLASS_DESTROYER:
-         return N_("Destroyer");
-      case SHIP_CLASS_CRUISER:
-         return N_("Cruiser");
-      case SHIP_CLASS_CARRIER:
-         return N_("Carrier");
-
-      /* Robotic. */
-      case SHIP_CLASS_DRONE:
-         return N_("Drone");
-      case SHIP_CLASS_HEAVY_DRONE:
-         return N_("Heavy Drone");
-      case SHIP_CLASS_MOTHERSHIP:
-         return N_("Mothership");
-
-      /* Unknown. */
-      default:
-         return N_("Unknown");
-   }
-}
-
-
-/**
- * @brief Gets the machine ship class identifier from a human readable string.
- *
- *    @param str String to extract ship class identifier from.
- */
-ShipClass ship_classFromString( const char* str )
-{
-   if ( str != NULL ) {
-      /* Civilian */
-      if ( strcmp( str, "Yacht" ) == 0 )
-         return SHIP_CLASS_YACHT;
-      else if ( strcmp( str, "Luxury Yacht" ) == 0 )
-         return SHIP_CLASS_LUXURY_YACHT;
-      else if ( strcmp( str, "Cruise Ship" ) == 0 )
-         return SHIP_CLASS_CRUISE_SHIP;
-
-      /* Merchant. */
-      else if ( strcmp( str, "Courier" ) == 0 )
-         return SHIP_CLASS_COURIER;
-      else if ( strcmp( str, "Freighter" ) == 0 )
-         return SHIP_CLASS_FREIGHTER;
-      else if ( strcmp( str, "Armored Transport" ) == 0 )
-         return SHIP_CLASS_ARMOURED_TRANSPORT;
-      else if ( strcmp( str, "Bulk Carrier" ) == 0 )
-         return SHIP_CLASS_BULK_CARRIER;
-
-      /* Military */
-      else if ( strcmp( str, "Scout" ) == 0 )
-         return SHIP_CLASS_SCOUT;
-      else if ( strcmp( str, "Fighter" ) == 0 )
-         return SHIP_CLASS_FIGHTER;
-      else if ( strcmp( str, "Bomber" ) == 0 )
-         return SHIP_CLASS_BOMBER;
-      else if ( strcmp( str, "Corvette" ) == 0 )
-         return SHIP_CLASS_CORVETTE;
-      else if ( strcmp( str, "Destroyer" ) == 0 )
-         return SHIP_CLASS_DESTROYER;
-      else if ( strcmp( str, "Cruiser" ) == 0 )
-         return SHIP_CLASS_CRUISER;
-      else if ( strcmp( str, "Carrier" ) == 0 )
-         return SHIP_CLASS_CARRIER;
-
-      /* Robotic */
-      else if ( strcmp( str, "Drone" ) == 0 )
-         return SHIP_CLASS_DRONE;
-      else if ( strcmp( str, "Heavy Drone" ) == 0 )
-         return SHIP_CLASS_HEAVY_DRONE;
-      else if ( strcmp( str, "Mothership" ) == 0 )
-         return SHIP_CLASS_MOTHERSHIP;
-   }
-
-  /* Unknown */
-  return SHIP_CLASS_NULL;
-}
-
-
-/**
  * @brief Gets the ship's base price (no outfits).
  */
 credits_t ship_basePrice( const Ship* s )
@@ -342,44 +213,6 @@ glTexture* ship_loadCommGFX( Ship* s )
    if (s->gfx_comm != NULL)
       return gl_newImage( s->gfx_comm, 0 );
    return NULL;
-}
-
-
-/**
- * @brief Gets the size of the ship.
- *
- *    @brief s Ship to get the size of.
- * @return Size of the ship.
- */
-int ship_size( const Ship *s )
-{
-   switch (s->class) {
-      case SHIP_CLASS_YACHT:
-      case SHIP_CLASS_LUXURY_YACHT:
-      case SHIP_CLASS_COURIER:
-      case SHIP_CLASS_SCOUT:
-      case SHIP_CLASS_FIGHTER:
-      case SHIP_CLASS_BOMBER:
-      case SHIP_CLASS_DRONE:
-         return 1;
-
-      case SHIP_CLASS_CRUISE_SHIP:
-      case SHIP_CLASS_ARMOURED_TRANSPORT:
-      case SHIP_CLASS_FREIGHTER:
-      case SHIP_CLASS_CORVETTE:
-      case SHIP_CLASS_DESTROYER:
-      case SHIP_CLASS_HEAVY_DRONE:
-         return 2;
-
-      case SHIP_CLASS_BULK_CARRIER:
-      case SHIP_CLASS_CRUISER:
-      case SHIP_CLASS_CARRIER:
-      case SHIP_CLASS_MOTHERSHIP:
-         return 3;
-
-      default:
-         return -1;
-   }
 }
 
 
@@ -631,25 +464,8 @@ static int ship_parseSlot( Ship *temp, ShipOutfitSlot *slot, OutfitSlotType type
    if (buf != NULL)
       base_size = outfit_toSlotSize( buf );
    else {
-      if ((temp->class == SHIP_CLASS_BULK_CARRIER) ||
-            (temp->class == SHIP_CLASS_CRUISER) ||
-            (temp->class == SHIP_CLASS_CARRIER) ||
-            (temp->class == SHIP_CLASS_MOTHERSHIP)) {
-         typ       = "Large";
-         base_size = OUTFIT_SLOT_SIZE_HEAVY;
-      }
-      else if ((temp->class == SHIP_CLASS_CRUISE_SHIP) ||
-            (temp->class == SHIP_CLASS_FREIGHTER) ||
-            (temp->class == SHIP_CLASS_DESTROYER) ||
-            (temp->class == SHIP_CLASS_CORVETTE) ||
-            (temp->class == SHIP_CLASS_ARMOURED_TRANSPORT)) {
-         typ       = "Medium";
-         base_size = OUTFIT_SLOT_SIZE_MEDIUM;
-      }
-      else {
-         typ       = "Small";
-         base_size = OUTFIT_SLOT_SIZE_LIGHT;
-      }
+      typ       = "Small";
+      base_size = OUTFIT_SLOT_SIZE_LIGHT;
       WARN(_("Ship '%s' has implicit slot size, setting to '%s'"),temp->name, typ);
    }
    free(buf);
@@ -734,16 +550,6 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
    xmlr_attr_strd( parent, "name", temp->name );
    if (temp->name == NULL)
       WARN( _("Ship in %s has invalid or no name"), SHIP_DATA_PATH );
-
-   /* Datat that must be loaded first. */
-   node = parent->xmlChildrenNode;
-   do { /* load all the data */
-      xml_onlyNodes(node);
-      if (xml_isNode(node,"class")) {
-         temp->class = ship_classFromString( xml_get(node) );
-         continue;
-      }
-   } while (xml_nextNode(node));
 
    /* Default offsets for the engine. */
    temp->trail_emitters = NULL;
@@ -855,10 +661,7 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
          continue;
       }
       xmlr_strd(node,"base_type",temp->base_type);
-      if (xml_isNode(node,"class")) {
-         /* Already preemptively loaded, avoids warning. */
-         continue;
-      }
+      xmlr_strd(node,"class",temp->class);
       xmlr_float(node,"time_mod",temp->dt_default);
       xmlr_long(node,"price",temp->price);
       xmlr_strd(node,"license",temp->license);
@@ -1000,7 +803,7 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
    MELEMENT(temp->base_type==NULL,"base_type");
    MELEMENT((temp->gfx_space==NULL) || (temp->gfx_comm==NULL),"GFX");
    MELEMENT(temp->gui==NULL,"GUI");
-   MELEMENT(temp->class==SHIP_CLASS_NULL,"class");
+   MELEMENT(temp->class==NULL,"class");
    MELEMENT(temp->price==0,"price");
    MELEMENT(temp->dt_default==0.,"time_mod");
    MELEMENT(temp->fabricator==NULL,"fabricator");
@@ -1108,6 +911,7 @@ void ships_free (void)
       free(s->description);
       free(s->gui);
       free(s->base_type);
+      free(s->class);
       free(s->fabricator);
       free(s->license);
       free(s->desc_stats);

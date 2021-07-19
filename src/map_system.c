@@ -632,7 +632,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                    "#nLicense:#0 %s\n"
                    "%s"),
                  _(ship->name),
-                 _(ship_class(ship)),
+                 _(ship->class),
                  _(ship->description),
                  _(ship->fabricator),
                  /* Weapons & Manoeuvrability */

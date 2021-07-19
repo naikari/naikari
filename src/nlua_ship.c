@@ -351,7 +351,7 @@ static int shipL_class( lua_State *L )
    /* Get the ship. */
    s  = luaL_validship(L,1);
 
-   lua_pushstring(L, ship_class(s));
+   lua_pushstring(L, s->class);
    return 1;
 }
 

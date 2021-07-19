@@ -3137,9 +3137,6 @@ static int player_saveShip( xmlTextWriterPtr writer, Pilot* ship )
  */
 static int player_saveMetadata( xmlTextWriterPtr writer )
 {
-   int i;
-   size_t j;
-   char buf[STRMAX_SHORT];
    time_t t = time(NULL);
 
    /* Compute elapsed time. */
@@ -3157,16 +3154,8 @@ static int player_saveMetadata( xmlTextWriterPtr writer )
    xmlw_elem(writer, "dmg_taken_shield", "%f", player.dmg_taken_shield);
    xmlw_elem(writer, "dmg_taken_armour", "%f", player.dmg_taken_armour);
 
-   /* Ships destroyed by class. */
-   xmlw_startElem(writer,"ships_destroyed");
-   for (i=SHIP_CLASS_NULL+1; i<SHIP_CLASS_TOTAL; i++) {
-      strncpy( buf, ship_classToString(i), sizeof(buf)-1 );
-      for (j=0; j<strlen(buf); j++)
-         if (buf[j]==' ')
-            buf[j]='_';
-      xmlw_elem(writer, buf, "%u", player.ships_destroyed[i]);
-   }
-   xmlw_endElem(writer); /* "ships_destroyed" */
+   /* Ships destroyed. */
+   xmlw_elem(writer, "ships_destroyed", "%u", player.ships_destroyed);
 
    return 0;
 }
@@ -3584,10 +3573,7 @@ static int player_parseEscorts( xmlNodePtr parent )
  */
 static int player_parseMetadata( xmlNodePtr parent )
 {
-   xmlNodePtr node, cur;
-   size_t i;
-   int class;
-   char buf[STRMAX_SHORT];
+   xmlNodePtr node;
 
    node = parent->xmlChildrenNode;
    do {
@@ -3607,25 +3593,8 @@ static int player_parseMetadata( xmlNodePtr parent )
          player.dmg_taken_shield = xml_getFloat(node);
       else if (xml_isNode(node,"dmg_taken_armour"))
          player.dmg_taken_armour = xml_getFloat(node);
-      else if (xml_isNode(node,"ships_destroyed")) {
-         cur = node->xmlChildrenNode;
-         do {
-            xml_onlyNodes(cur);
-
-            strncpy( buf, (const char*)cur->name, sizeof(buf)-1 );
-            for (i=0; i<strlen(buf); i++)
-               if (buf[i]=='_')
-                  buf[i] = ' ';
-
-            class = ship_classFromString( buf );
-            if (class==SHIP_CLASS_NULL) {
-               WARN(_("Unknown ship class '%s' when pasing 'ships_destroyed' node!"), (const char*)cur->name );
-               continue;
-            }
-
-            player.ships_destroyed[class] = xml_getULong(cur);
-         } while (xml_nextNode(cur));
-      }
+      else if (xml_isNode(node,"ships_destroyed"))
+         player.ships_destroyed = xml_getInt(node);
    } while (xml_nextNode(node));
 
    return 0;

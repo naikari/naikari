@@ -99,7 +99,7 @@ typedef struct ShipTrailEmitter_ {
 typedef struct Ship_ {
    char* name;       /**< Ship name */
    char* base_type;  /**< Ship's base type, basically used for figuring out what ships are related. */
-   ShipClass class;  /**< Ship class */
+   char* class;      /**< Ship class */
    int rarity;       /**< Rarity. */
 
    /* store stuff */
@@ -178,13 +178,9 @@ Ship* ship_get( const char* name );
 Ship* ship_getW( const char* name );
 const char *ship_existsCase( const char* name );
 const Ship* ship_getAll (void);
-const char* ship_class( const Ship* s );
-const char *ship_classToString( ShipClass class );
-ShipClass ship_classFromString( const char* str );
 credits_t ship_basePrice( const Ship* s );
 credits_t ship_buyPrice( const Ship* s );
 glTexture* ship_loadCommGFX( Ship* s );
-int ship_size( const Ship *s );
 
 
 /*

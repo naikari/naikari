@@ -269,7 +269,7 @@ void shipyard_update( unsigned int wid, char* str )
          "%s\n"
          "%s\n"),
          _(ship->name),
-         _(ship_class(ship)),
+         _(ship->class),
          _(ship->fabricator),
          /* Weapons & Manoeuvrability */
          ship->cpu,
