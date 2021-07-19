@@ -32,17 +32,5 @@
   <rdr_jump_range>3000</rdr_jump_range>
   <cargo>5000</cargo>
  </characteristics>
- <slots>
-  <weapon size="large" x="0" y="0" h="5" />
-  <weapon size="large" x="0" y="0" h="5" />
-  <weapon size="large" x="0" y="0" h="5" />
-  <weapon size="large" x="0" y="0" h="5" />
-  <weapon size="large" x="0" y="0" h="5" />
-  <weapon size="large" x="0" y="0" h="5" />
-  <weapon size="large" x="0" y="0" h="5" />
-  <weapon size="large" x="0" y="0" h="5" />
-  <utility size="large" prop="systems" exclusive="1" required="1">Dummy Systems</utility>
-  <structure size="large" prop="engines" exclusive="1" required="1">Dummy Engine</structure>
-  <structure size="large" prop="hull" exclusive="1" required="1">Dummy Plating</structure>
- </slots>
+ <slots/>
 </ship>

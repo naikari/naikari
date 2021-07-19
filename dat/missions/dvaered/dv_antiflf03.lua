@@ -138,7 +138,7 @@ function accept()
         misn.setDesc(misn_desc)
         misn.setReward(misn_reward)
         misn.setTitle(misn_title)
-        mission_marker = misn.markerAdd( system.get(destsysname), "high" )
+        mission_marker = misn.markerAdd(system.get(destsysname), "high")
 
         missionstarted = false
         victorious = false
@@ -176,7 +176,7 @@ function enter()
 
         spawnbase()
         spawnDV()
-        obstinate:comm( _("All Dvaered vessels in position. Citizen, join the fleet and commence the attack!"), true )
+        obstinate:comm(_("All Dvaered vessels in position. Citizen, join the fleet and commence the attack!"), true)
         -- Wait for the player to fly to the Obstinate before commencing the mission
 
         hook.timer(500, "proximity", {anchor = obstinate, radius = 1500, funcname = "operationStart"})
@@ -210,29 +210,24 @@ function land()
     if victorious and planet.cur() == DVplanet then
         tk.msg(title[3], string.format(text[5], player.name()))
         tk.msg(title[3], text[6])
-        dv_modReputation( 5 )
+        dv_modReputation(5)
         faction.get("Dvaered"):modPlayerSingle(10)
         player.pay(1000000) -- 1M
         var.pop("flfbase_intro")
         var.pop("flfbase_sysname")
         diff.apply("FLF_base")
         diff.apply("flf_dead")
-        dv_addAntiFLFLog( log_text )
+        dv_addAntiFLFLog(log_text)
         local t = time.get():tonumber()
-        var.push( "invasion_time", t ) -- Timer for the frontier's invasion
+        var.push("invasion_time", t) -- Timer for the frontier's invasion
         misn.finish(true)
     end
 end
 
 -- Spawns the FLF base, ship version.
 function spawnbase()
-    base = pilot.add( "Sindbad", "FLF", basepos, nil, {ai="flf_norun"} )
-    base:rmOutfit("all")
-    base:rmOutfit("cores")
-    base:addOutfit("Dummy Systems")
-    base:addOutfit("Dummy Plating")
-    base:addOutfit("Dummy Engine")
-    base:addOutfit("Base Ripper MK2", 8)
+    base = pilot.add("Sindbad", "FLF", basepos, nil,
+            {ai="flf_norun", noequip=true})
     base:setHostile()
     base:setNoDisable(true)
     base:setHilight(true)
@@ -243,11 +238,11 @@ end
 function deathBase()
     player.pilot():setInvincible()
     player.cinematics()
-    camera.set( base, true, 5000 )
-    hook.timer( 8000, "timer_plcontrol" )
+    camera.set(base, true, 5000)
+    hook.timer(8000, "timer_plcontrol")
 
     misn.osdActive(4)
-    misn.markerMove( mission_marker, DVsys )
+    misn.markerMove(mission_marker, DVsys)
 
     for i, j in ipairs(bombers) do
         if j:exists() then
@@ -272,7 +267,7 @@ function deathBase()
 
     hook.rm(controller)
 
-    obstinate:comm( _("Terrorist station eliminated! All units, return to base."), true )
+    obstinate:comm(_("Terrorist station eliminated! All units, return to base."), true)
     obstinate:control()
     obstinate:hyperspace()
     obstinate:setHilight(false)
@@ -283,15 +278,15 @@ function deathBase()
 end
 
 function timer_plcontrol ()
-    camera.set( player.pilot(), true, 5000 )
-    player.cinematics( false )
+    camera.set(player.pilot(), true, 5000)
+    player.cinematics(false)
 end
 
 -- Spawns the one-time-only Dvaered ships. Bombers are handled elsewhere.
 function spawnDV()
     updatepos()
 
-    obstinate = pilot.add( "Dvaered Goddard", "Dvaered", fleetpos[1], nil, {ai="dvaered_norun"} )
+    obstinate = pilot.add("Dvaered Goddard", "Dvaered", fleetpos[1], nil, {ai="dvaered_norun"})
     obstinate:rename(_("Obstinate"))
     obstinate:setDir(90)
     obstinate:setFriendly()
@@ -308,11 +303,11 @@ function spawnDV()
     hook.pilot(obstinate, "idle", "idle")
 
     -- Treat player as one more
-    hook.pilot( player.pilot(), "attacked", "attacked" )
+    hook.pilot(player.pilot(), "attacked", "attacked")
 
     local i = 1
     while i <= 4 do
-        vigilance = pilot.add( "Dvaered Vigilance", "Dvaered", fleetpos[i + 1], nil, {ai="dvaered_norun"} )
+        vigilance = pilot.add("Dvaered Vigilance", "Dvaered", fleetpos[i + 1], nil, {ai="dvaered_norun"})
         vigilance:setDir(90)
         vigilance:setFriendly()
         vigilance:control()
@@ -324,7 +319,7 @@ function spawnDV()
 
     local i = 1
     while i <= 6 do
-        vendetta = pilot.add( "Dvaered Vendetta", "Dvaered", fighterpos[i], nil, {ai="dvaered_norun"} )
+        vendetta = pilot.add("Dvaered Vendetta", "Dvaered", fighterpos[i], nil, {ai="dvaered_norun"})
         vendetta:setDir(90)
         vendetta:setFriendly()
         vendetta:setVisplayer(true)
@@ -337,7 +332,7 @@ end
 
 
 -- Helper function
-function setFLF( j )
+function setFLF(j)
   hook.pilot(j, "death", "deathFLF")
   j:setNoDisable(true)
   j:setHostile()
@@ -349,29 +344,29 @@ end
 function spawnFLFfighters()
     wavefirst = true
     wavestarted = true
-    local wingFLF = addShips( 3, "Lancelot", "FLF", base:pos(), _("FLF Lancelot"), {ai="flf_norun"} )
+    local wingFLF = addShips(3, "Lancelot", "FLF", base:pos(), _("FLF Lancelot"), {ai="flf_norun"})
     for i, j in ipairs(wingFLF) do
         fleetFLF[#fleetFLF + 1] = j
-        setFLF( j )
+        setFLF(j)
     end
 end
 
 -- Spawns FLF bombers
 function spawnFLFbombers()
-    local wingFLF = addShips( 3, "Vendetta", "FLF", base:pos(), _("FLF Vendetta"), {ai="flf_norun"} )
+    local wingFLF = addShips(3, "Vendetta", "FLF", base:pos(), _("FLF Vendetta"), {ai="flf_norun"})
     for i, j in ipairs(wingFLF) do
         fleetFLF[#fleetFLF + 1] = j
-        setFLF( j )
+        setFLF(j)
     end
 end
 
 -- Spawns FLF destroyers
 function spawnFLFdestroyers()
-    local wingFLF = addShips( 2, "Pacifier", "FLF", base:pos(), _("FLF Pacifier"), {ai="flf_norun"} )
+    local wingFLF = addShips(2, "Pacifier", "FLF", base:pos(), _("FLF Pacifier"), {ai="flf_norun"})
     for i, j in ipairs(wingFLF) do
         fleetFLF[#fleetFLF + 1] = j
         hook.pilot(j, "death", "deathFLF")
-        setFLF( j )
+        setFLF(j)
     end
 end
 
@@ -446,7 +441,7 @@ end
 
 -- Spawns the initial Dvaered bombers.
 function spawnDVbomber()
-    bomber = pilot.add( "Dvaered Ancestor", "Dvaered", obstinate:pos(), nil, {ai="dvaered_norun"} )
+    bomber = pilot.add("Dvaered Ancestor", "Dvaered", obstinate:pos(), nil, {ai="dvaered_norun"})
     bomber:rmOutfit("all")
     foo = bomber:addOutfit("TeraCom Imperator Launcher", 1, true, true)
     bomber:addOutfit("Engine Reroute", 1)
@@ -485,13 +480,13 @@ end
 
 function destroyBase()
    if base:exists() then
-      base:setHealth( -1, 0 )
+      base:setHealth(-1, 0)
    end
 end
 
 
 -- Controls a fleet
-function controlFleet( fleetCur, pos, off )
+function controlFleet(fleetCur, pos, off)
     if baseattack then
        return
     end
@@ -501,7 +496,7 @@ function controlFleet( fleetCur, pos, off )
     end
 
     -- Dvaered escorts should fall back into formation if not in combat, or if too close to the base or if too far from the Obstinate.
-    for i, j in ipairs( fleetCur ) do
+    for i, j in ipairs(fleetCur) do
         if j:exists() then
             local basedist = vec2.dist(j:pos(), base:pos())
 
@@ -522,7 +517,7 @@ function controlFleet( fleetCur, pos, off )
             -- Too close to base or recalled
             if basedist < safestandoff or timer <= 0 then
                 j:control()
-                j:moveto( pos[i + off] )
+                j:moveto(pos[i + off])
 
             -- See if we should engage
             elseif nearest ~= nil and (distance < 500 or j:idle()) then
@@ -532,7 +527,7 @@ function controlFleet( fleetCur, pos, off )
             -- Fly back to fleet
             elseif j:idle() then
                 j:control()
-                j:moveto( pos[i + off] )
+                j:moveto(pos[i + off])
             end
         end
     end
@@ -546,8 +541,8 @@ function control()
     end
 
     -- Control the fleets
-    controlFleet( fleetDV, fleetpos, 1 )
-    controlFleet( fightersDV, fighterpos, 0 )
+    controlFleet(fleetDV, fleetpos, 1)
+    controlFleet(fightersDV, fighterpos, 0)
 
     controller = hook.timer(500, "control")
 end
@@ -558,7 +553,7 @@ function deathDVbomber()
         DVreinforcements = DVreinforcements - 1
         for i, j in ipairs(bombers) do
             if not j:exists() then
-                bomber = pilot.add( "Dvaered Ancestor", "Dvaered", obstinate:pos(), nil, {ai="dvaered_norun"} )
+                bomber = pilot.add("Dvaered Ancestor", "Dvaered", obstinate:pos(), nil, {ai="dvaered_norun"})
                 bomber:rmOutfit("all")
                 bomber:addOutfit("TeraCom Imperator Launcher", 1, true, true)
                 bomber:addOutfit("Engine Reroute", 1)

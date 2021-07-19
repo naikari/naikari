@@ -21,6 +21,7 @@ enum {
    PILOT_CREATED_AI,    /**< Pilot has already created AI. */
    PILOT_EMPTY,         /**< Do not add pilot to stack. */
    PILOT_NO_OUTFITS,    /**< Do not create the pilot with outfits. */
+   PILOT_NO_EQUIP,      /**< Do not run the equip script on the pilot. */
    /*
     * Dinamic flags
     */

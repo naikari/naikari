@@ -90,11 +90,11 @@ log_text_thurion = _([[Having braved the nebula, you were introduced to the Thur
 
 
 function create ()
-   if not evt.claim( system.cur() ) then
-      evt.finish( false )
+   if not evt.claim(system.cur()) then
+      evt.finish(false)
    end
 
-   emp_srcsys = system.get( "Arcanis" )
+   emp_srcsys = system.get("Arcanis")
    emp_shptypes = {
       "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot",
       "Empire Admonisher", "Empire Admonisher", "Empire Admonisher", "Empire Pacifier", "Empire Hawking",
@@ -103,8 +103,8 @@ function create ()
    found_thurion = false
    player_attacks = 0
 
-   bar_hook = hook.land( "enter_bar", "bar" )
-   abort_hook = hook.enter( "takeoff_abort" )
+   bar_hook = hook.land("enter_bar", "bar")
+   abort_hook = hook.enter("takeoff_abort")
 end
 
 
@@ -113,71 +113,66 @@ function enter_bar ()
       "FLF Commodity Run", "Eliminate a Dvaered Patrol",
       "Divert the Dvaered Forces", "Eliminate an Empire Patrol",
       "FLF Pirate Disturbance", "Rogue FLF" }
-   if not anyMissionActive( flf_missions ) then
-      if bar_hook ~= nil then hook.rm( bar_hook ) end
-      if abort_hook ~= nil then hook.rm( abort_hook ) end
+   if not anyMissionActive(flf_missions) then
+      if bar_hook ~= nil then hook.rm(bar_hook) end
+      if abort_hook ~= nil then hook.rm(abort_hook) end
       music.stop()
-      music.load( "tension" )
+      music.load("tension")
       music.play()
-      var.push( "music_off", true )
-      tk.msg( title[1], text[1] )
-      tk.msg( title[1], text[2]:format( player.name() ) )
-      tk.msg( title[1], text[3]:format( emp_srcsys:name(), player.name() ) )
-      tk.msg( title[1], text[4] )
-      tk.msg( title[1], text[5] )
-      var.pop( "music_off" )
+      var.push("music_off", true)
+      tk.msg(title[1], text[1])
+      tk.msg(title[1], text[2]:format(player.name()))
+      tk.msg(title[1], text[3]:format(emp_srcsys:name(), player.name()))
+      tk.msg(title[1], text[4])
+      tk.msg(title[1], text[5])
+      var.pop("music_off")
 
-      takeoff_hook = hook.enter( "takeoff" )
+      takeoff_hook = hook.enter("takeoff")
       player.takeoff()
    end
 end
 
 
 function takeoff_abort ()
-   evt.finish( false )
+   evt.finish(false)
 end
 
 
 function takeoff ()
-   if takeoff_hook ~= nil then hook.rm( takeoff_hook ) end
+   if takeoff_hook ~= nil then hook.rm(takeoff_hook) end
 
-   pilot.toggleSpawn( false )
+   pilot.toggleSpawn(false)
    pilot.clear()
 
    local ss, s
 
-   ss, s = planet.get( "Sindbad" )
+   ss, s = planet.get("Sindbad")
 
-   flf_base = pilot.add( "Sindbad", "FLF", ss:pos(), nil, {ai="flf_norun"} )
-   flf_base:rmOutfit( "all" )
-   flf_base:rmOutfit( "cores" )
-   flf_base:addOutfit( "Dummy Systems" )
-   flf_base:addOutfit( "Dummy Plating" )
-   flf_base:addOutfit( "Dummy Engine" )
-   flf_base:addOutfit( "Base Ripper MK2", 8 )
+   flf_base = pilot.add("Sindbad", "FLF", ss:pos(), nil,
+         {ai="flf_norun", noequip=true})
    flf_base:setVisible()
    flf_base:setHilight()
-   hook.pilot( flf_base, "attacked", "pilot_attacked_sindbad" )
-   hook.pilot( flf_base, "death", "pilot_death_sindbad" )
+   hook.pilot(flf_base, "attacked", "pilot_attacked_sindbad")
+   hook.pilot(flf_base, "death", "pilot_death_sindbad")
 
    -- Spawn FLF ships
    shptypes = {"Pacifier", "Lancelot", "Vendetta", "Lancelot", "Vendetta", "Lancelot", "Vendetta"}
    shpnames = {_("FLF Pacifier"), _("FLF Lancelot"), _("FLF Vendetta"), _("FLF Lancelot"), _("FLF Vendetta"), _("FLF Lancelot"), _("FLF Vendetta")}
-   flf_ships = addShips( 5, shptypes, "FLF", ss:pos(), shpnames, {ai="flf_norun"} )
-   for i, j in ipairs( flf_ships ) do
+   flf_ships = addShips(5, shptypes, "FLF", ss:pos(), shpnames, {ai="flf_norun"})
+   for i, j in ipairs(flf_ships) do
       j:setVisible()
-      j:memory( "aggressive", true )
+      j:memory("aggressive", true)
    end
 
    -- Spawn Empire ships
-   emp_ships = addShips( 1, emp_shptypes, "Empire", emp_srcsys, nil, {ai="empire_norun"} )
-   for i, j in ipairs( emp_ships ) do
+   emp_ships = addShips(1, emp_shptypes, "Empire", emp_srcsys, nil, {ai="empire_norun"})
+   for i, j in ipairs(emp_ships) do
       j:setHostile()
       j:setVisible()
-      hook.pilot( j, "death", "pilot_death_emp" )
+      hook.pilot(j, "death", "pilot_death_emp")
       if rnd.rnd() < 0.5 then
          j:control()
-         j:attack( flf_base )
+         j:attack(flf_base)
       end
    end
 
@@ -187,20 +182,20 @@ function takeoff ()
       "Dvaered Phalanx", "Dvaered Ancestor", "Dvaered Ancestor",
       "Dvaered Ancestor", "Dvaered Vendetta", "Dvaered Vendetta",
       "Dvaered Vendetta", "Dvaered Vendetta" }
-   dv_ships = addShips( 1, shptypes, "Dvaered", emp_srcsys, nil, {ai="dvaered_norun"} )
-   for i, j in ipairs( dv_ships ) do
+   dv_ships = addShips(1, shptypes, "Dvaered", emp_srcsys, nil, {ai="dvaered_norun"})
+   for i, j in ipairs(dv_ships) do
       j:setHostile()
       j:setVisible()
    end
 
-   diff.apply( "flf_dead" )
-   player.pilot():setNoJump( true )
+   diff.apply("flf_dead")
+   player.pilot():setNoJump(true)
 end
 
 
-function pilot_death_emp( pilot, attacker, arg )
+function pilot_death_emp(pilot, attacker, arg)
    local emp_alive = {}
-   for i, j in ipairs( emp_ships ) do
+   for i, j in ipairs(emp_ships) do
       if j:exists() then
          emp_alive[ #emp_alive + 1 ] = j
       end
@@ -208,15 +203,15 @@ function pilot_death_emp( pilot, attacker, arg )
 
    if #emp_alive < emp_minsize or rnd.rnd() < 0.1 then
       emp_ships = emp_alive
-      local nf = addShips( 1, emp_shptypes, "Empire", emp_srcsys, nil, {ai="empire_norun"} )
-      for i, j in ipairs( nf ) do
+      local nf = addShips(1, emp_shptypes, "Empire", emp_srcsys, nil, {ai="empire_norun"})
+      for i, j in ipairs(nf) do
          j:setHostile()
          j:setVisible()
-         hook.pilot( j, "death", "pilot_death_emp" )
+         hook.pilot(j, "death", "pilot_death_emp")
          if rnd.rnd() < 0.5 then
             j:control()
             if flf_base:exists() then
-               j:attack( flf_base )
+               j:attack(flf_base)
             end
          end
          emp_ships[ #emp_ships + 1 ] = j
@@ -225,7 +220,7 @@ function pilot_death_emp( pilot, attacker, arg )
 end
 
 
-function pilot_attacked_sindbad( pilot, attacker, arg )
+function pilot_attacked_sindbad(pilot, attacker, arg)
    if (attacker == player.pilot() or attacker:leader() == player.pilot())
          and faction.get("FLF"):playerStanding() > -100 then
       -- Punish the player with a faction hit every time they attack
@@ -234,25 +229,25 @@ function pilot_attacked_sindbad( pilot, attacker, arg )
 end
 
 
-function pilot_death_sindbad( pilot, attacker, arg )
-   player.pilot():setNoJump( false )
-   pilot.toggleSpawn( true )
+function pilot_death_sindbad(pilot, attacker, arg)
+   player.pilot():setNoJump(false)
+   pilot.toggleSpawn(true)
 
-   if diff.isApplied( "flf_pirate_ally" ) then
-      diff.remove( "flf_pirate_ally" )
+   if diff.isApplied("flf_pirate_ally") then
+      diff.remove("flf_pirate_ally")
    end
 
-   for i, j in ipairs( emp_ships ) do
+   for i, j in ipairs(emp_ships) do
       if j:exists() then
-         j:control( false )
-         j:changeAI( "empire" )
-         j:setVisible( false )
+         j:control(false)
+         j:changeAI("empire")
+         j:setVisible(false)
       end
    end
-   for i, j in ipairs( dv_ships ) do
+   for i, j in ipairs(dv_ships) do
       if j:exists() then
-         j:changeAI( "dvaered" )
-         j:setVisible( false )
+         j:changeAI("dvaered")
+         j:setVisible(false)
       end
    end
 
@@ -261,77 +256,77 @@ function pilot_death_sindbad( pilot, attacker, arg )
       -- Player decided to help destroy Sindbad for some reason. Set FLF
       -- reputation to "enemy", add a log entry, and finish the event
       -- without giving the usual rewards.
-      faction.get("FLF"):setPlayerStanding( -100 )
-      flf_addLog( log_text_betrayal )
-      evt.finish( true )
+      faction.get("FLF"):setPlayerStanding(-100)
+      flf_addLog(log_text_betrayal)
+      evt.finish(true)
    end
 
    music.stop()
-   music.load( "machina" )
+   music.load("machina")
    music.play()
-   var.push( "music_wait", true )
+   var.push("music_wait", true)
 
    player.pilot():setInvincible()
    player.cinematics()
-   camera.set( flf_base )
+   camera.set(flf_base)
 
-   tk.msg( title[6], text[6] )
-   tk.msg( title[6], text[7]:format( player.name() ) )
-   flf_setReputation( 100 )
-   faction.get("FLF"):setPlayerStanding( 100 )
-   flf_addLog( log_text_flf )
-   player.addOutfit( "Map: Inner Nebula Secret Jump" )
-   hook.jumpin( "jumpin" )
-   hook.land( "land" )
-   hook.timer( 8000, "timer_plcontrol" )
+   tk.msg(title[6], text[6])
+   tk.msg(title[6], text[7]:format(player.name()))
+   flf_setReputation(100)
+   faction.get("FLF"):setPlayerStanding(100)
+   flf_addLog(log_text_flf)
+   player.addOutfit("Map: Inner Nebula Secret Jump")
+   hook.jumpin("jumpin")
+   hook.land("land")
+   hook.timer(8000, "timer_plcontrol")
 end
 
 
 function timer_plcontrol ()
-   camera.set( player.pilot() )
-   player.cinematics( false )
-   hook.timer( 2000, "timer_end" )
+   camera.set(player.pilot())
+   player.cinematics(false)
+   hook.timer(2000, "timer_end")
 end
 
 
 function timer_end ()
-   player.pilot():setInvincible( false )
+   player.pilot():setInvincible(false)
 end
 
 
 function jumpin ()
    if not found_thurion and system.cur() == system.get("Oriantis") then
       music.stop()
-      music.load( "intro" )
+      music.load("intro")
       music.play()
-      var.push( "music_wait", true )
-      hook.timer( 5000, "timer_thurion" )
+      var.push("music_wait", true)
+      hook.timer(5000, "timer_thurion")
    elseif found_thurion and system.cur() == system.get("Metsys") then
-      diff.apply( "Thurion_found" )
+      diff.apply("Thurion_found")
    end
 end
 
 
 function timer_thurion ()
    found_thurion = true
-   tk.msg( title[8], text[8] )
-   tk.msg( title[8], text[9] )
-   tk.msg( title[8], text[10] )
+   tk.msg(title[8], text[8])
+   tk.msg(title[8], text[9])
+   tk.msg(title[8], text[10])
    player.refuel()
 end
 
 
 function land ()
    if planet.cur():faction() == faction.get("Thurion") then
-      tk.msg( title[11], text[11] )
-      tk.msg( title[11], text[12] )
-      tk.msg( title[11], text[13] )
-      tk.msg( title[11], text[14]:format( player.name() ) )
-      faction.get("Thurion"):setKnown( true )
-      flf_addLog( log_text_thurion )
-   elseif diff.isApplied( "Thurion_found" ) then
-      diff.remove( "Thurion_found" )
+      tk.msg(title[11], text[11])
+      tk.msg(title[11], text[12])
+      tk.msg(title[11], text[13])
+      tk.msg(title[11], text[14]:format(player.name()))
+      faction.get("Thurion"):setKnown(true)
+      flf_addLog(log_text_thurion)
+   elseif diff.isApplied("Thurion_found") then
+      diff.remove("Thurion_found")
    end
-   var.pop( "music_wait" )
-   evt.finish( true )
+   var.pop("music_wait")
+   evt.finish(true)
 end

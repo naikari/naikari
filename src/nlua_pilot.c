@@ -597,6 +597,11 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
       if (lua_toboolean(L, -1))
          pilot_setFlagRaw( flags, PILOT_NO_OUTFITS );
       lua_pop( L, 1 );
+
+      lua_getfield( L, i_parameters, "noequip" );
+      if (lua_toboolean(L, -1))
+         pilot_setFlagRaw( flags, PILOT_NO_EQUIP );
+      lua_pop( L, 1 );
    }
 
    /* Set up velocities and such. */
@@ -668,6 +673,11 @@ static int pilotL_addFleet( lua_State *L )
  *  - system: jumps pilot in from the system <br/>
  *  - vec2: pilot is created at the position (no jump/takeoff) <br/>
  *  - true: Acts like nil, but does not avoid jump points with no presence <br/>
+ * <br/>
+ * Supported arguments of the "parameters" parameter:<br/>
+ *  - "ai" (string): AI to give the pilot. Defaults to the faction's AI.<br/>
+ *  - "naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.
+ *  - "noequip" (boolean): Whether or not to skip the equip script (and use the ship's default outfits). Defaults to false.
  *
  * @usage p = pilot.add( "Empire Shark", nil, "Empire" ) -- Creates a standard Empire Shark.
  * @usage p = pilot.add( "Hyena", "Pirate", _("Pirate Hyena") ) -- Just adds the pilot (will jump in or take off).
@@ -681,9 +691,7 @@ static int pilotL_addFleet( lua_State *L )
  *    @luatparam System|Planet param Position to create pilot at, if it's a system it'll try to jump in from that system, if it's
  *              a planet it'll try to take off from it.
  *    @luatparam[opt] string pilotname Name to give the pilot. Defaults to shipname.
- *    @luatparam[opt] table parameters Table of extra keyword arguments. Supported arguments:
- *                    "ai" (string): AI to give the pilot. Defaults to the faction's AI.
- *                    "naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.
+ *    @luatparam[opt] table parameters Table of extra keyword arguments. See above for supported arguments.
  *    @luatreturn Pilot The created pilot.
  * @luafunc add
  */

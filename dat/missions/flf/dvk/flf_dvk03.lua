@@ -95,29 +95,29 @@ log_text = _([[You led the effort to destroy the hated Dvaered base, Raelid Outp
 
 
 function create ()
-   missys = system.get( "Raelid" )
-   if not misn.claim( missys ) then
-      misn.finish( false )
+   missys = system.get("Raelid")
+   if not misn.claim(missys) then
+      misn.finish(false)
    end
 
-   misn.setNPC( npc_name, "flf/unique/benito.png", npc_desc )
+   misn.setNPC(npc_name, "flf/unique/benito.png", npc_desc)
 end
 
 
 function accept ()
-   if tk.yesno( title[1], text[1]:format( player.name() ) ) then
-      tk.msg( title[3], text[3] )
-      tk.msg( title[3], text[4]:format( player.name() ) )
-      tk.msg( title[3], text[5] )
+   if tk.yesno(title[1], text[1]:format(player.name())) then
+      tk.msg(title[3], text[3])
+      tk.msg(title[3], text[4]:format(player.name()))
+      tk.msg(title[3], text[5])
 
       misn.accept()
 
-      osd_desc[1] = osd_desc[1]:format( missys:name() )
-      misn.osdCreate( osd_title, osd_desc )
-      misn.setTitle( misn_title )
-      misn.setDesc( misn_desc:format( missys:name() ) )
-      marker = misn.markerAdd( missys, "plot" )
-      misn.setReward( misn_reward )
+      osd_desc[1] = osd_desc[1]:format(missys:name())
+      misn.osdCreate(osd_title, osd_desc)
+      misn.setTitle(misn_title)
+      misn.setDesc(misn_desc:format(missys:name()))
+      marker = misn.markerAdd(missys, "plot")
+      misn.setReward(misn_reward)
 
       credits = 300000
       reputation = 5
@@ -126,10 +126,10 @@ function accept ()
       attacked_station = false
       completed = false
 
-      hook.enter( "enter" )
+      hook.enter("enter")
    else
-      tk.msg( title[2], text[2] )
-      misn.finish( false )
+      tk.msg(title[2], text[2])
+      misn.finish(false)
    end
 end
 
@@ -138,153 +138,149 @@ function enter ()
    if not completed then
       started = false
       attacked_station = false
-      misn.osdActive( 1 )
-      if timer_start_hook ~= nil then hook.rm( timer_start_hook ) end
-      if timer_pirates_hook ~= nil then hook.rm( timer_pirates_hook ) end
+      misn.osdActive(1)
+      if timer_start_hook ~= nil then hook.rm(timer_start_hook) end
+      if timer_pirates_hook ~= nil then hook.rm(timer_pirates_hook) end
 
-      if diff.isApplied( "raelid_outpost_death" ) then
-         diff.remove( "raelid_outpost_death" )
+      if diff.isApplied("raelid_outpost_death") then
+         diff.remove("raelid_outpost_death")
       end
 
       if system.cur() == missys then
          pilot.clear()
-         pilot.toggleSpawn( false )
+         pilot.toggleSpawn(false)
 
          local ro, ms, s, nf
 
-         ro, s = planet.get( "Raelid Outpost" )
-         ms, s = planet.get( "Marius Station" )
+         ro, s = planet.get("Raelid Outpost")
+         ms, s = planet.get("Marius Station")
 
          -- Spawn Raelid Outpost ship
-         dv_base = pilot.add( "Raelid Outpost", "Dvaered", ro:pos() , nil, {ai="dvaered_norun"} )
-         dv_base:rmOutfit( "all" )
-         dv_base:rmOutfit( "cores" )
-         dv_base:addOutfit( "Dummy Systems" )
-         dv_base:addOutfit( "Dummy Plating" )
-         dv_base:addOutfit( "Dummy Engine" )
+         dv_base = pilot.add("Raelid Outpost", "Dvaered", ro:pos() , nil,
+               {ai="dvaered_norun", noequip=true})
          dv_base:control()
          dv_base:setNoDisable()
          dv_base:setNoboard()
          dv_base:setNoLand()
          dv_base:setVisible()
          dv_base:setHilight()
-         hook.pilot( dv_base, "attacked", "pilot_attacked_station" )
-         hook.pilot( dv_base, "death", "pilot_death_station" )
+         hook.pilot(dv_base, "attacked", "pilot_attacked_station")
+         hook.pilot(dv_base, "death", "pilot_death_station")
 
          -- Spawn Dvaered and Empire ships
          dv_fleet = {}
 
-         nf = pilot.addFleet( "Empire Lge Attack", ms:pos(), {ai="empire_norun"} )
-         for i, j in ipairs( nf ) do
+         nf = pilot.addFleet("Empire Lge Attack", ms:pos(), {ai="empire_norun"})
+         for i, j in ipairs(nf) do
             dv_fleet[ #dv_fleet + 1 ] = j
          end
 
-         nf = pilot.addFleet( "Dvaered Big Patrol", ro:pos(), {ai="dvaered_norun"} )
-         for i, j in ipairs( nf ) do
+         nf = pilot.addFleet("Dvaered Big Patrol", ro:pos(), {ai="dvaered_norun"})
+         for i, j in ipairs(nf) do
             dv_fleet[ #dv_fleet + 1 ] = j
          end
 
-         for i, j in ipairs( dv_fleet ) do
+         for i, j in ipairs(dv_fleet) do
             j:control()
             j:setVisible()
-            hook.pilot( j, "attacked", "pilot_attacked" )
+            hook.pilot(j, "attacked", "pilot_attacked")
          end
 
          -- Spawn FLF ships
          local jmp, jmp2
-         jmp, jpm2 = jump.get( "Raelid", "Arcanis" )
-         flf_fleet = addShips( 14, "Vendetta", "FLF", jmp:pos() , _("FLF Vendetta") )
+         jmp, jpm2 = jump.get("Raelid", "Arcanis")
+         flf_fleet = addShips(14, "Vendetta", "FLF", jmp:pos() , _("FLF Vendetta"))
 
-         for i, j in ipairs( flf_fleet ) do
+         for i, j in ipairs(flf_fleet) do
             j:control()
             j:brake()
-            j:face( dv_base:pos(), true )
+            j:face(dv_base:pos(), true)
             j:setVisplayer()
             j:setHilight()
-            hook.pilot( j, "attacked", "pilot_attacked" )
+            hook.pilot(j, "attacked", "pilot_attacked")
          end
 
-         timer_start_hook = hook.timer( 4000, "timer_start" )
-         diff.apply( "raelid_outpost_death" )
+         timer_start_hook = hook.timer(4000, "timer_start")
+         diff.apply("raelid_outpost_death")
       end
    end
 end
 
 
 function timer_start ()
-   if timer_start_hook ~= nil then hook.rm( timer_start_hook ) end
+   if timer_start_hook ~= nil then hook.rm(timer_start_hook) end
 
    local player_pos = player.pos()
    local proximity = false
-   for i, j in ipairs( flf_fleet ) do
-      local dist = player_pos:dist( j:pos() )
+   for i, j in ipairs(flf_fleet) do
+      local dist = player_pos:dist(j:pos())
       if dist < 500 then proximity = true end
    end
 
    if proximity then
       started = true
-      flf_fleet[1]:comm( flfcomm[1]:format( player.name() ) )
-      timer_pirates_hook = hook.timer( 4000, "timer_pirates" )
-      misn.osdActive( 2 )
+      flf_fleet[1]:comm(flfcomm[1]:format(player.name()))
+      timer_pirates_hook = hook.timer(4000, "timer_pirates")
+      misn.osdActive(2)
 
-      for i, j in ipairs( flf_fleet ) do
-         j:setHilight( false )
-         hook.hail( "hail" )
+      for i, j in ipairs(flf_fleet) do
+         j:setHilight(false)
+         hook.hail("hail")
       end
 
       civ_fleet = {}
       local choices = {
          "Civilian Llama", "Civilian Gawain", "Trader Llama",
          "Trader Koala", "Trader Mule" }
-      local src = system.get( "Zacron" )
+      local src = system.get("Zacron")
       for i = 1, 12 do
-         local choice = choices[ rnd.rnd( 1, #choices ) ]
-         local nf = pilot.addFleet( choice, src )
+         local choice = choices[ rnd.rnd(1, #choices) ]
+         local nf = pilot.addFleet(choice, src)
          civ_fleet[ #civ_fleet + 1 ] = nf[1]
       end
 
-      local dest = system.get( "Tau Prime" )
-      for i, j in ipairs( civ_fleet ) do
+      local dest = system.get("Tau Prime")
+      for i, j in ipairs(civ_fleet) do
          j:control()
-         j:hyperspace( dest )
+         j:hyperspace(dest)
          j:setVisible()
-         hook.pilot( j, "attacked", "pilot_attacked_civilian" )
+         hook.pilot(j, "attacked", "pilot_attacked_civilian")
       end
    else
-      timer_start_hook = hook.timer( 50, "timer_start" )
+      timer_start_hook = hook.timer(50, "timer_start")
    end
 end
 
 
 function timer_pirates ()
-   civ_fleet[1]:comm( civcomm )
+   civ_fleet[1]:comm(civcomm)
 
-   local src = system.get( "Zacron" )
+   local src = system.get("Zacron")
 
-   pir_boss = pilot.add( "Pirate Kestrel", "Pirate", src )
+   pir_boss = pilot.add("Pirate Kestrel", "Pirate", src)
    pir_fleet = {pir_boss}
-   hook.pilot( pir_boss, "death", "pilot_death_kestrel" )
+   hook.pilot(pir_boss, "death", "pilot_death_kestrel")
 
    local choices = {
       "Pirate Hyena", "Pirate Shark", "Pirate Admonisher",
       "Pirate Vendetta", "Pirate Ancestor" }
    for i = 1, 9 do
-      local choice = choices[ rnd.rnd( 1, #choices ) ]
-      local nf = pilot.addFleet( choice, src )
+      local choice = choices[ rnd.rnd(1, #choices) ]
+      local nf = pilot.addFleet(choice, src)
       pir_fleet[ #pir_fleet + 1 ] = nf[1]
    end
 
-   for i, j in ipairs( pir_fleet ) do
+   for i, j in ipairs(pir_fleet) do
       j:control()
       j:setVisible()
       j:setFriendly()
       j:attack()
-      hook.pilot( j, "attacked", "pilot_attacked" )
+      hook.pilot(j, "attacked", "pilot_attacked")
    end
 
-   for i, j in ipairs( dv_fleet ) do
+   for i, j in ipairs(dv_fleet) do
       if j:exists() then
-         j:attack( pir_boss )
+         j:attack(pir_boss)
       end
    end
 end
@@ -294,40 +290,40 @@ function hail ()
    player.commClose()
    if not attacked_station then
       local comm_done = false
-      for i, j in ipairs( flf_fleet ) do
+      for i, j in ipairs(flf_fleet) do
          if j:exists() then
-            j:attack( dv_base )
+            j:attack(dv_base)
             if not comm_done then
-               j:comm( flfcomm[2] )
+               j:comm(flfcomm[2])
                comm_done = true
             end
          end
       end
       attacked_station = true
-      misn.osdActive( 3 )
+      misn.osdActive(3)
    end
 end
 
 
-function pilot_attacked( pilot, attacker, arg )
-   pilot:control( false )
+function pilot_attacked(pilot, attacker, arg)
+   pilot:control(false)
 end
 
 
-function pilot_attacked_civilian( pilot, attacker, arg )
-   pilot:control( false )
-   attacker:control( false )
+function pilot_attacked_civilian(pilot, attacker, arg)
+   pilot:control(false)
+   attacker:control(false)
 end
 
 
-function pilot_attacked_station( pilot, attacker, arg )
-   for i, j in ipairs( dv_fleet ) do
+function pilot_attacked_station(pilot, attacker, arg)
+   for i, j in ipairs(dv_fleet) do
       if j:exists() then
-         j:control( false )
+         j:control(false)
          j:setHostile()
       end
    end
-   for i, j in ipairs( flf_fleet ) do
+   for i, j in ipairs(flf_fleet) do
       if j:exists() then
          j:setVisible()
       end
@@ -335,69 +331,69 @@ function pilot_attacked_station( pilot, attacker, arg )
 end
 
 
-function pilot_death_civilian( pilot, attacker, arg )
-   for i, j in ipairs( pir_fleet ) do
+function pilot_death_civilian(pilot, attacker, arg)
+   for i, j in ipairs(pir_fleet) do
       if j:exists() then
-         j:control( false )
+         j:control(false)
       end
    end
 end
 
 
-function pilot_death_kestrel( pilot, attacker, arg )
-   for i, j in ipairs( dv_fleet ) do
+function pilot_death_kestrel(pilot, attacker, arg)
+   for i, j in ipairs(dv_fleet) do
       if j:exists() then
-         j:control( false )
+         j:control(false)
       end
    end
 end
 
 
-function pilot_death_station( pilot, attacker, arg )
-   hook.timer( 3000, "timer_station" )
+function pilot_death_station(pilot, attacker, arg)
+   hook.timer(3000, "timer_station")
 end
 
 
 function timer_station ()
-   tk.msg( title[6], text[6] )
-   tk.msg( title[6], text[7] )
+   tk.msg(title[6], text[6])
+   tk.msg(title[6], text[7])
 
-   for i, j in ipairs( flf_fleet ) do
+   for i, j in ipairs(flf_fleet) do
       if j:exists() then
-         j:control( false )
-         j:changeAI( "flf" )
+         j:control(false)
+         j:changeAI("flf")
       end
    end
-   for i, j in ipairs( pir_fleet ) do
+   for i, j in ipairs(pir_fleet) do
       if j:exists() then
-         j:control( false )
+         j:control(false)
       end
    end
 
    completed = true
-   pilot.toggleSpawn( true )
-   faction.get("Empire"):setPlayerStanding( -100 )
-   diff.apply( "flf_vs_empire" )
-   misn.osdActive( 4 )
-   if marker ~= nil then misn.markerRm( marker ) end
-   hook.land( "land" )
+   pilot.toggleSpawn(true)
+   faction.get("Empire"):setPlayerStanding(-100)
+   diff.apply("flf_vs_empire")
+   misn.osdActive(4)
+   if marker ~= nil then misn.markerRm(marker) end
+   hook.land("land")
 end
 
 
 function land ()
    if planet.cur():faction() == faction.get("FLF") then
-      tk.msg( title[8], text[8] )
+      tk.msg(title[8], text[8])
       finish()
    end
 end
 
 
 function finish ()
-   player.pay( credits )
-   flf_setReputation( 70 )
-   faction.get("FLF"):modPlayer( reputation )
-   flf_addLog( log_text )
-   misn.finish( true )
+   player.pay(credits)
+   flf_setReputation(70)
+   faction.get("FLF"):modPlayer(reputation)
+   flf_addLog(log_text)
+   misn.finish(true)
 end
 
 
@@ -405,16 +401,16 @@ function abort ()
    if completed then
       finish()
    else
-      if diff.isApplied( "raelid_outpost_death" ) then
-         diff.remove( "raelid_outpost_death" )
+      if diff.isApplied("raelid_outpost_death") then
+         diff.remove("raelid_outpost_death")
       end
-      if diff.isApplied( "flf_vs_empire" ) then
-         diff.remove( "flf_vs_empire" )
+      if diff.isApplied("flf_vs_empire") then
+         diff.remove("flf_vs_empire")
       end
       if dv_base ~= nil and dv_base:exists() then
          dv_base:rm()
       end
-      misn.finish( false )
+      misn.finish(false)
    end
 end
 
