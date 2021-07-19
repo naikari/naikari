@@ -336,7 +336,8 @@ void map_open (void)
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnClose", _("Close"), map_window_close );
    /* Commodity button */
-   window_addButton( wid, -20 - (BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT, "btnCommod", _("Mode"), map_buttonCommodity );
+   window_addButton( wid, -20 - (BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
+            "btnCommod", _("Mode"), map_buttonCommodity );
    /* Find button */
    window_addButton( wid, -20 - 2*(BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnFind", _("Find"), map_inputFind );
@@ -350,10 +351,12 @@ void map_open (void)
     * [+] [-]  Nebula, Interference
     */
    /* Zoom buttons */
-   window_addButtonKey( wid, -60, 40 + BUTTON_HEIGHT, 30, BUTTON_HEIGHT, "btnZoomIn", "+", map_buttonZoom, SDLK_EQUALS );
-   window_addButtonKey( wid, -20, 40 + BUTTON_HEIGHT, 30, BUTTON_HEIGHT, "btnZoomOut", "-", map_buttonZoom, SDLK_MINUS );
+   window_addButtonKey( wid, 20, 20, 30, BUTTON_HEIGHT, "btnZoomIn", "+",
+         map_buttonZoom, SDLK_EQUALS );
+   window_addButtonKey( wid, 60, 20, 30, BUTTON_HEIGHT, "btnZoomOut", "-",
+         map_buttonZoom, SDLK_MINUS );
    /* Situation text */
-   window_addText( wid, 20, 10, w - 120 - 4*BUTTON_WIDTH, 30, 0,
+   window_addText( wid, 100, 10, w - 100 - 4*(BUTTON_WIDTH+20), 30, 0,
                    "txtSystemStatus", &gl_smallFont, NULL, NULL );
 
    map_genModeList();
@@ -1959,12 +1962,13 @@ static void map_genModeList(void)
  */
 static void map_modeUpdate( unsigned int wid, char* str )
 {
-  (void)str;
-  int listpos;
-   listpos=toolkit_getListPos( wid, "lstMapMode" );
-   if ( listMapModeVisible==2) {
-      listMapModeVisible=1;
-   } else if ( listMapModeVisible == 1 ) {
+   (void) str;
+   int listpos;
+
+   listpos = toolkit_getListPos(wid, "lstMapMode");
+   if (listMapModeVisible == 2) {
+      listMapModeVisible = 1;
+   } else if (listMapModeVisible == 1) {
       /* TODO: make this more robust. */
       if (listpos == 0) {
          map_mode = MAPMODE_TRAVEL;
@@ -1978,8 +1982,8 @@ static void map_modeUpdate( unsigned int wid, char* str )
       }
       else {
          map_mode = MAPMODE_TRADE;
-         cur_commod = (listpos - MAPMODE_TRADE) / 2;
-         cur_commod_mode = (listpos - MAPMODE_TRADE) % 2 ; /* if 0, showing cost, if 1 showing difference */
+         cur_commod = (listpos-MAPMODE_TRADE) / 2;
+         cur_commod_mode = (listpos-MAPMODE_TRADE) % 2 ; /* if 0, showing cost, if 1 showing difference */
       }
    }
    map_update(wid);
@@ -1994,17 +1998,18 @@ static void map_modeUpdate( unsigned int wid, char* str )
  */
 static void map_buttonCommodity( unsigned int wid, char* str )
 {
-   (void)str;
+   (void) str;
    SDL_Keymod mods;
    char **this_map_modes;
    static int cur_commod_last = 0;
    static int cur_commod_mode_last = 0;
    static int map_mode_last = MAPMODE_TRAVEL;
    int defpos;
+
    /* Clicking the mode button - by default will show (or remove) the list of map modes.
       If ctrl is pressed, will toggle between current mode and default */
    mods = SDL_GetModState();
-   if (mods & (KMOD_LCTRL | KMOD_RCTRL)) {/* toggle on/off */
+   if (mods & (KMOD_LCTRL | KMOD_RCTRL)) { /* toggle on/off */
       if (map_mode == MAPMODE_TRAVEL) {
          map_mode = map_mode_last;
          cur_commod = cur_commod_last;
@@ -2026,13 +2031,13 @@ static void map_buttonCommodity( unsigned int wid, char* str )
          window_destroyWidget( wid, "lstMapMode" );
       }
       map_update(wid);
-   } else {/* no keyboard modifier */
+   } else { /* no keyboard modifier */
       if ( listMapModeVisible) {/* Hide the list widget */
          listMapModeVisible = 0;
          window_destroyWidget( wid, "lstMapMode" );
-      } else {/* show the list widget */
+      } else { /* show the list widget */
          this_map_modes = calloc( sizeof(char*), array_size(map_modes) );
-         for (int i=0; i<array_size(map_modes);i++) {
+         for (int i=0; i<array_size(map_modes); i++) {
             this_map_modes[i]=strdup(map_modes[i]);
          }
          listMapModeVisible = 2;
@@ -2043,8 +2048,10 @@ static void map_buttonCommodity( unsigned int wid, char* str )
          else
             defpos = cur_commod*2 + MAPMODE_TRADE - cur_commod_mode;
 
-         window_addList( wid, -10, 60, 200, 200, "lstMapMode",
-                         this_map_modes, array_size(map_modes), defpos, map_modeUpdate, NULL );
+         window_addList(wid, -10, 60, 200, 200, "lstMapMode",
+               this_map_modes, array_size(map_modes), defpos, map_modeUpdate,
+               NULL);
+         window_setFocus(wid, "lstMapMode");
       }
    }
 }
