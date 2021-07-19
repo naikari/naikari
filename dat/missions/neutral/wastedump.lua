@@ -3,7 +3,7 @@
 <mission name="Waste Dump">
  <avail>
   <priority>9</priority>
-  <done>Garbage Person</done>
+  <done>Waste Collector</done>
   <chance>100</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>

@@ -47,7 +47,7 @@ ask_text = _([[Chelsea gleefully waves you over. "It's nice to see you again!" s
 
 start_text = _([["Awesome! I really appreciate it!
 
-"So the mission is in theory a pretty simple one: I need to deliver some cargo to %s in the %s system. Trouble is apparently I'll be getting in the middle of some sort of trade dispute with a shady company that's bribed the local officials. Needless to say we can expect to be attacked by some thugs and probably won't get any external help.
+"So the mission is in theory a pretty simple one: I need to deliver some cargo to %s in the %s system. Trouble is apparently I'll be getting on the bad side of some thugs that hate the Soromid or something.
 
 "That's where you come in. I just need you to follow me along, make sure I finish jumping or landing before you do, and if we encounter any hostilities, help me shoot them down. Shouldn't be too too hard as long as you've got a decent ship. I'll meet you out in space!"]])
 

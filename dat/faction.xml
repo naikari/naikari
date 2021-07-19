@@ -198,6 +198,7 @@
   <allies/>
   <enemies>
    <enemy>Pirate</enemy>
+   <enemy>Comingout_thugs</enemy>
   </enemies>
  </faction>
  <faction>
@@ -581,6 +582,7 @@
   <equip>pirate</equip>
   <enemies>
    <enemy>Comingout_associates</enemy>
+   <enemy>Soromid</enemy>
   </enemies>
  </faction>
  <faction>

@@ -1,6 +1,6 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
-<mission name="Garbage Person">
+<mission name="Waste Collector">
  <flags>
   <unique />
  </flags>
