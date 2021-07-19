@@ -1923,7 +1923,7 @@ void player_targetHostile (void)
       /* Must be hostile. */
       if (pilot_isHostile(pilot_stack[i])) {
          inRange = pilot_inRangePilot(player.p, pilot_stack[i], &td);
-         if (tp == PLAYER_ID || ((inRange == 1) && (td < d))) {
+         if ((inRange == 1) && (tp == PLAYER_ID || (td < d))) {
             d  = td;
             tp = pilot_stack[i]->id;
          }
