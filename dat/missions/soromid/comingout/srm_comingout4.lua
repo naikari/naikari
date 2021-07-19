@@ -200,7 +200,7 @@ function jumpNext ()
          chelsea:land(misplanet, true)
          local osd_desc = {}
          osd_desc[1] = string.format(
-               _("Protect Chelsea and wait for her to land on %s"),
+               _("Protect Chelsea and wait for them to land on %s"),
                misplanet:name())
          osd_desc[2] = string.format(_("Land on %s"), misplanet:name())
          misn.osdCreate(misn_title, osd_desc)
@@ -210,7 +210,7 @@ function jumpNext ()
          chelsea:hyperspace(nextsys, true)
          local osd_desc = {}
          osd_desc[1] = string.format(
-               _("Protect Chelsea and wait for her to jump to %s"),
+               _("Protect Chelsea and wait for them to jump to %s"),
                nextsys:name())
          osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
          if jumps > 1 then
