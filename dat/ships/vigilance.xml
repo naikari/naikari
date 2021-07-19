@@ -5,6 +5,7 @@
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Destroyer</class>
+ <rdr_scale>2</rdr_scale>
  <price>900000</price>
  <time_mod>1.5</time_mod>
  <trail_generator x="-36" y="0" h="0" always_under="1" >fire</trail_generator>

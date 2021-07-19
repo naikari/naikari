@@ -6,6 +6,7 @@
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Carrier</class>
+ <rdr_scale>3</rdr_scale>
  <price>9000000</price>
  <time_mod>2</time_mod>
  <trail_generator x="-55" y="0" h="5" >nebula</trail_generator>

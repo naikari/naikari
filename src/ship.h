@@ -100,6 +100,7 @@ typedef struct Ship_ {
    char* name;       /**< Ship name */
    char* base_type;  /**< Ship's base type, basically used for figuring out what ships are related. */
    char* class;      /**< Ship class */
+   double rdr_scale; /**< Scale of the ship on the radar and overview. */
    int rarity;       /**< Rarity. */
 
    /* store stuff */

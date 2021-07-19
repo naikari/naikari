@@ -5,6 +5,7 @@
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Destroyer</class>
+ <rdr_scale>2</rdr_scale>
  <price>1000000</price>
  <time_mod>1.5</time_mod>
  <trail_generator x="-18" y="-25" h="-3" >nebula</trail_generator>

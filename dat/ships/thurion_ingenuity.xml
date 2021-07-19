@@ -6,6 +6,7 @@
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Fighter</class>
+ <rdr_scale>1</rdr_scale>
  <price>650000</price>
  <time_mod>1</time_mod>
  <trail_generator x="-8" y="0" h="0" />

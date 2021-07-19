@@ -6,6 +6,7 @@
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Carrier</class>
+ <rdr_scale>3</rdr_scale>
  <price>7000000</price>
  <time_mod>2</time_mod>
  <trail_generator x="5" y="25" h="0">zalek</trail_generator>

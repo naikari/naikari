@@ -662,6 +662,7 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
       }
       xmlr_strd(node,"base_type",temp->base_type);
       xmlr_strd(node,"class",temp->class);
+      xmlr_float(node,"rdr_scale",temp->rdr_scale);
       xmlr_float(node,"time_mod",temp->dt_default);
       xmlr_long(node,"price",temp->price);
       xmlr_strd(node,"license",temp->license);
@@ -804,6 +805,7 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
    MELEMENT((temp->gfx_space==NULL) || (temp->gfx_comm==NULL),"GFX");
    MELEMENT(temp->gui==NULL,"GUI");
    MELEMENT(temp->class==NULL,"class");
+   MELEMENT(temp->rdr_scale==0.,"rdr_scale");
    MELEMENT(temp->price==0,"price");
    MELEMENT(temp->dt_default==0.,"time_mod");
    MELEMENT(temp->fabricator==NULL,"fabricator");

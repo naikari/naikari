@@ -6,6 +6,7 @@
  <rarity>2</rarity>
  <sound>engine</sound>
  <class>Corvette</class>
+ <rdr_scale>1.5</rdr_scale>
  <price>650000</price>
  <time_mod>1.25</time_mod>
  <trail_generator x="-10" y="-3" h="0" always_under="1" >fire</trail_generator>

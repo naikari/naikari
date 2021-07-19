@@ -6,6 +6,7 @@
  <rarity>3</rarity>
  <sound>engine</sound>
  <class>Drone</class>
+ <rdr_scale>1</rdr_scale>
  <price>300000</price>
  <time_mod>0.875</time_mod>
  <trail_generator x="-8" y="0" h="-3" always_under="1" />

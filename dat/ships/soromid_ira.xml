@@ -6,6 +6,7 @@
  <rarity>2</rarity>
  <sound>engine</sound>
  <class>Cruiser</class>
+ <rdr_scale>2.5</rdr_scale>
  <price>4500000</price>
  <time_mod>1.75</time_mod>
  <trail_generator x="-40" y="5" h="5">soromidS</trail_generator>
