@@ -42,7 +42,9 @@ require "missions/soromid/common"
 
 ask_text = _([[Chelsea greets you as before. "Hi, %s! It's so nice to see you again!" The two of you talk about your travels once again. "I'm using they/them pronouns again," they eventually say. "I've done more soul-searching and found that nonbinary transfeminine feels right to me." You thank them for telling you. "You're welcome!" they say. "And thank you for respecting that! I sure hope my parents do too. I was thinking of meeting up with them back at %s, but I must admit that I'm a bit nervous and not entirely sure if my ship is up for getting through that part of space yet.
 
-"Oh! Actually, maybe you could help! I could meet up with you at %s and then you could escort me to %s. And I know I'd feel a lot better talking about this with my parents if you were there. What do you think, is that something you can do? I'll pay you, of course."]])
+"Oh! Actually, maybe you could help! I could meet up with you at %s and then you could escort me to %s. And I know I'd feel a lot better talking about this with my parents if you were there. What do you think, is that something you can do? I'll pay you, of course."
+
+#rCONTENT WARNING: This mission contains depictions of transmisia, enbymisia, and fictionalized racism.#0]])
 
 yes_text = _([["Thank you so much! Like I said, I'll meet you at %s; I can get that far on my own. See you soon!"]])
 
@@ -65,9 +67,9 @@ home_text[2] = _([[Chelsea's mother speaks up. "What do you mean, 'humor' them? 
 You see a look of shock on Chelsea's face, followed by a glare aimed at their father. "What do you think you're doing, using that slur? The Soromid are people just like us! And I'm not pretending! Do you honestly think I'm fooling around and lying to you because it 'makes me feel better'? I'm telling you that I'm nonbinary because I really am nonbinary."]])
 home_text[3] = _([[Chelsea's father sighs. "Look, you're my son, and you always will be, but those sorofreaks are messing with your head. You need to come back to the real world eventually. I know you will."
 
-Chelsea snaps back. "I won't sit here and listen to you attacking the Soromid like that! I've made some great friends with Soromid folks! Business partners even! And it's a Soromid who gave me treatments to make me more comfortable in my body!
+Chelsea snaps back. "I won't sit here and listen to you attacking the Soromid like that! I've made some great friends with Soromid folks! Business partners even! And it was a Soromid who gave me treatments to make me more comfortable in my body!
 
-"I am not your son, dad, and I never will be. I'm your nonbinary child, whether you accept me or not. Not because of the Soromid 'messing with my head', but because that's what my gender is. You have no right to stop me from doing what makes me happy."]])
+"I am not your son, dad, and I never will be. I'm your nonbinary child, whether you accept me or not. Not because of the Soromid 'messing with my head', but because that's what my gender is. You have no right to stop me from being me."]])
 home_text[4] = _([[Chelsea's father pauses. "So you're even making business deals with sorofreaks, huh? And you're thoroughly convinced that you're this 'nonbinary' nonsense. It's like you've become a sorofreak yourself." He reaches for something you can't see. "You know what? You're right. You're not my son. I won't stand by and let  the sorofreak agenda plague this galaxy!"
 
 Suddenly, Chelsea's mother tackles her husband. That's when you see what he was reaching for: a laser gun. The two start to wrestle for control as Chelsea's mother shouts. "Run! Both of you! Get out of here!" Not needing to be told twice, you grab Chelsea's arm and run as fast as you can. Just as you make it out of view, you hear the laser gun fire.
