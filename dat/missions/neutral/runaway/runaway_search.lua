@@ -29,10 +29,9 @@ npc_name = _("Old Man")
 bar_desc = _("An old man sits at a table with some missing person papers.")
 title = _("The Search for Cynthia")
 misn_desc_pre_accept = _([[Approaching him, he hands you a paper. It offers a 100,000 credit reward for the finding of a "Cynthia" person.
-    "That's my girl. She disappeared quite a few decaperiods ago. We managed to track her down to here, but where she went afterwards remains a mystery. We know she was kidnapped, but if you know anything..." The man begins to cry. "Have you seen any trace of her?"]])
+
+"That's my girl. She disappeared quite a few decaperiods ago. We managed to track her down to here, but where she went afterwards remains a mystery. We know she was kidnapped, but if you know anything..." The man begins to cry. "Have you seen any trace of her?"]])
 misn_desc = _("Search for Cynthia.")
-reward_desc = _("%s on delivery.")
-cargoname = _("Person")
 
 post_accept = {}
 post_accept[1] = _([[Looking at the picture, you see that the locket matches the one that Cynthia wore, so you hand it to her father. "I believe that this was hers." Stunned, the man hands you a list of planets that they wanted to look for her on.]])
@@ -47,10 +46,10 @@ misn_father = _("As Cynthia sees her father, she begins her crying anew. You ove
 
 -- Here are stored the fake texts for the OSD
 osd_text = {}
-osd_text[1] = _("Search for Cynthia on Niflheim in Dohriabi")
-osd_text[2] = _("Search for Cynthia on Nova Shakar in Shakar")
-osd_text[3] = _("Search for Cynthia on Selphod in Eridani")
-osd_text[4] = _("Search for Cynthia on Emperor's Fist in Gamma Polaris")
+osd_text[1] = _("Land on Niflheim (Dohriabi system) and search for Cynthia")
+osd_text[2] = _("Land on Nova Shakar (Shakar system) and search for Cynthia")
+osd_text[3] = _("Land on Selphod (Eridani system) and search for Cynthia")
+osd_text[4] = _("Land on Emperor's Fist (Gamma Polaris system) and search for Cynthia")
 osd_text["__save"] = true
 
 -- Can't let them see what's coming up, can I?
@@ -66,31 +65,31 @@ function create ()
    targetworld_sys = system.get("Dohriabi")
    targetworld = planet.get("Niflheim")
 
-   releasereward = 25000
-   reward = 100000
+   releasereward = 75000
+   reward = 200000
 
-   misn.setNPC( npc_name, "neutral/unique/cynthia_father.png", bar_desc )
+   misn.setNPC(npc_name, "neutral/unique/cynthia_father.png", bar_desc)
 end
 
 function accept ()
    --This mission does not make any system claims
-   if not tk.yesno( title, string.format( misn_desc_pre_accept, reward, targetworld:name() ) ) then
+   if not tk.yesno("", string.format(misn_desc_pre_accept, reward, targetworld:name())) then
       misn.finish()
    end
 
    --Set up the OSD
    if misn.accept() then
-      misn.osdCreate(title,osd_text)
+      misn.osdCreate(title, osd_text)
       misn.osdActive(1)
    end
 
-   misn.setTitle( title )
-   misn.setReward( string.format( reward_desc, creditstring(reward) ) )
+   misn.setTitle(title)
+   misn.setReward(creditstring(reward))
 
-   misn.setDesc( string.format( misn_desc, targetworld:name(), targetworld_sys:name() ) )
+   misn.setDesc(string.format(misn_desc, targetworld:name(), targetworld_sys:name()))
    runawayMarker = misn.markerAdd(system.get("Dohriabi"), "low")
 
-   tk.msg( title, post_accept[1] )
+   tk.msg("", post_accept[1])
 
 
    hook.land("land")
@@ -105,14 +104,14 @@ function land ()
    --If we land on Niflheim, display message, reset target and carry on.
    if planet.cur() == planet.get("Niflheim") then
       targetworld = planet.get("Nova Shakar")
-      tk.msg(title, misn_nifiheim)
+      tk.msg("", misn_nifiheim)
       misn.osdActive(2)
       misn.markerMove(runawayMarker, system.get("Shakar"))
 
    --If we land on Nova Shakar, display message, reset target and carry on.
    elseif planet.cur() == planet.get("Nova Shakar") then
       targetworld = planet.get("Torloth")
-      tk.msg(title, misn_nova_shakar)
+      tk.msg("", misn_nova_shakar)
 
       --Add in the *secret* OSD text
       osd_text[3] = osd3
@@ -120,7 +119,7 @@ function land ()
 
       --Update the OSD
       misn.osdDestroy()
-      misn.osdCreate(title,osd_text)
+      misn.osdCreate(title, osd_text)
       misn.osdActive(3)
 
       misn.markerMove(runawayMarker, system.get("Cygnus"))
@@ -130,17 +129,16 @@ function land ()
       targetworld = planet.get("Zhiru")
 
       --If you decide to release her, speak appropriately, otherwise carry on
-      if not tk.yesno(title, misn_torloth) then
+      if not tk.yesno("", misn_torloth) then
          osd_text[4] = osdlie
-         tk.msg(title, misn_release)
+         tk.msg("", misn_release)
       else
-         tk.msg(title, misn_capture)
-         cargoID = misn.cargoAdd( cargoname, 0 )
+         tk.msg("", misn_capture)
       end
 
       --Update the OSD
       misn.osdDestroy()
-      misn.osdCreate(title,osd_text)
+      misn.osdCreate(title, osd_text)
       misn.osdActive(4)
 
       misn.markerMove(runawayMarker, system.get("Goddard"))
@@ -151,14 +149,13 @@ function land ()
 
       --Talk to the father and get the reward
       if misn.osdGetActive() == osd4 then
-         tk.msg(title, misn_father)
+         tk.msg("", misn_father)
          player.pay(reward)
-         misn.cargoRm(cargoID)
-         addMiscLog( log_text_capture )
+         addMiscLog(log_text_capture)
       else
-         tk.msg(title, misn_release_father)
+         tk.msg("", misn_release_father)
          player.pay(releasereward)
-         addMiscLog( log_text_release )
+         addMiscLog(log_text_release)
       end
 
       misn.finish(true)
