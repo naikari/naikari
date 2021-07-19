@@ -162,7 +162,7 @@ meson compile naikari-update-po  # necessary if translatable strings changed
 This will allow you to edit the translation files in `po/` manually to modify
 translations.
 
-If you like, you can set up commmit hooks to handle the `potfiles` step. For instance:
+If you like, you can set up commit hooks to handle the `potfiles` step. For instance:
 ```bash
 # .git/hooks/pre-commit
 #!/bin/bash
