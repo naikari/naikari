@@ -92,15 +92,16 @@ pre.example {
    border-right-style: solid;
    border-bottom-style: solid;
    border-left-style: solid;
-   border-top-color: silver;
-   border-right-color: silver;
-   border-bottom-color: silver;
-   border-left-color: silver;
+   border-top-color: #3f3f3f;
+   border-right-color: #3f3f3f;
+   border-bottom-color: #3f3f3f;
+   border-left-color: #3f3f3f;
    padding: 1em;
    margin-left: 1em;
    margin-right: 1em;
    font-family: "Andale Mono", monospace; 
    font-size: smaller;
+   overflow: auto;
 }
 
 table.module_list td
