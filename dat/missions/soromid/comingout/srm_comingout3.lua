@@ -173,8 +173,8 @@ function spawnThug( param )
    local shiptypes = {"Hyena", "Hyena", "Hyena", "Shark", "Lancelot"}
    local shiptype = shiptypes[rnd.rnd(1, #shiptypes)]
 
-   thug = pilot.add(
-         shiptype, "Comingout_thugs", param, _("Thug %s"):format(_(shiptype)))
+   thug = pilot.add(shiptype, "Comingout_thugs", param,
+         _("Thug %s"):format(_(shiptype)))
 
    thug:setHostile()
 
@@ -208,7 +208,9 @@ function jumpNext ()
          osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
          if jumps > 1 then
             osd_desc[3] = string.format(
-                  _("%s more jumps after this one"), numstring(jumps - 1))
+                  n_("%s more jump after this one",
+                     "%s more jumps after this one", jumps - 1),
+                  numstring(jumps - 1))
          end
          misn.osdCreate(misn_title, osd_desc)
       end
