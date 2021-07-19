@@ -157,8 +157,8 @@ end
 
 
 function spawnChelseaShip( param )
-   chelsea = pilot.add(
-         "Llama", "Comingout_associates", param, _("Chelsea"), {naked=true})
+   chelsea = pilot.add("Llama", "Comingout_associates", param, _("Chelsea"),
+         {naked=true})
    chelsea:addOutfit("Milspec Aegis 3601 Core System")
    chelsea:addOutfit("Unicorp Hawk 300 Engine")
    chelsea:addOutfit("S&K Light Combat Plating")
@@ -183,6 +183,20 @@ function spawnChelseaShip( param )
    hook.pilot(chelsea, "attacked", "chelsea_attacked")
 
    chelsea_jumped = false
+
+   if faction.get("Empire"):playerStanding() >= 0 then
+      -- Spawn a bunch of Empire to help keep pirates busy
+      local merc_ships = {
+         "Empire Shark", "Empire Lancelot", "Empire Admonisher",
+         "Empire Pacifier", "Empire Hawking", "Empire Peacemaker",
+      }
+      local r = system.cur():radius()
+      for i=1,20 do
+         local shipname = merc_ships[rnd.rnd(1, #merc_ships)]
+         local param = vec2.new(rnd.rnd(-r, r), rnd.rnd(-r, r))
+         pilot.add(shipname, "Empire", param)
+      end
+   end
 end
 
 
