@@ -37,8 +37,8 @@ bar_desc = _("You notice Lt. Commander Dimitri at one of the booths.")
 misn_title = _("Collective Espionage")
 misn_reward = creditstring(700000) -- 700K
 misn_desc = {}
-misn_desc[1] = _("Land on %s in the %s system to monitor Collective communications")
-misn_desc[2] = _("Travel back to %s in %s")
+misn_desc[1] = _("Land on %s (%s system) to monitor Collective communications")
+misn_desc[2] = _("Return to %s (%s system)")
 title = {}
 title[1] = _("Collective Espionage")
 title[2] = _("Mission Accomplished")
@@ -55,7 +55,7 @@ text[6] = _([[As your ship touches ground, you see Lt. Commander Dimitri come ou
     "How was the weather?" he asks jokingly. "Glad to see you're still in one piece. We'll get right on analyzing the data acquired. Those robots have to be up to something. Meet me in the bar later. Meanwhile give yourself a treat; you've earned it. We've made a 700K credit deposit into your bank account. Enjoy it."]])
 
 osd_msg = {}
-osd_msg[1] = _("Fly to %s and land on %s")
+osd_msg[1] = _("Land on %s (%s system)")
 osd_msg[2] = _("Return to %s with your findings")
 osd_msg["__save"] = true 
 
@@ -91,7 +91,7 @@ function accept ()
    misn.setTitle(misn_title)
    misn.setReward( misn_reward )
    misn.setDesc( string.format(misn_desc[1], misn_target:name(), misn_target_sys:name() ))
-   osd_msg[1] = osd_msg[1]:format(misn_target_sys:name(), misn_target:name())
+   osd_msg[1] = osd_msg[1]:format(misn_target:name(), misn_target_sys:name())
    osd_msg[2] = osd_msg[2]:format(misn_base:name())
    misn.osdCreate(misn_title, osd_msg)
 
