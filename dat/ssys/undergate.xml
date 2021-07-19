@@ -19,6 +19,9 @@
   <asset>Wagenni</asset>
  </assets>
  <jumps>
+  <jump target="Musca">
+   <autopos/>
+  </jump>
   <jump target="Toxin">
    <autopos/>
   </jump>
