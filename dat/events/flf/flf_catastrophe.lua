@@ -148,9 +148,7 @@ function takeoff ()
 
    ss, s = planet.get("Sindbad")
 
-   flf_base = pilot.add("Sindbad", "FLF", ss:pos(), nil,
-         {ai="flf_norun", naked=true})
-   flf_base:addOutfit("Base Ripper MK2", 8)
+   flf_base = pilot.add("Sindbad", "FLF", ss:pos(), nil, {ai="flf_norun"})
    flf_base:setVisible()
    flf_base:setHilight()
    hook.pilot(flf_base, "attacked", "pilot_attacked_sindbad")

@@ -17,9 +17,11 @@ equip_classCargo = {
    ["Carrier"] = .3,
    ["Drone"] = .05,
    ["Heavy Drone"] = .05,
+   ["Station"] = 1,
 }
 
--- Table of available core systems by class.
+-- Table of available core systems by class. `false` means that
+-- none should be equipped.
 equip_classOutfits_coreSystems = {
    ["Yacht"] = {
       "Unicorp PT-18 Core System", "Unicorp PT-80 Core System",
@@ -71,10 +73,12 @@ equip_classOutfits_coreSystems = {
    ["Heavy Drone"] = {
       "Milspec Orion 3701 Core System",
    },
+   ["Station"] = false,
 }
 
 
--- Table of available engines by class.
+-- Table of available engines by class. `false` means that
+-- none should be equipped.
 equip_classOutfits_engines = {
    ["Yacht"] = {
       "Nexus Dart 150 Engine", "Unicorp Hawk 300 Engine",
@@ -122,10 +126,12 @@ equip_classOutfits_engines = {
    ["Heavy Drone"] = {
       "Unicorp Hawk 300 Engine",
    },
+   ["Station"] = false,
 }
 
 
--- Table of available hulls by class.
+-- Table of available hulls by class. `false` means that
+-- none should be equipped.
 equip_classOutfits_hulls = {
    ["Yacht"] = {
       "Unicorp D-2 Light Plating", "Unicorp D-4 Light Plating",
@@ -174,6 +180,7 @@ equip_classOutfits_hulls = {
    ["Heavy Drone"] = {
       "S&K Light Stealth Plating"
    },
+   ["Station"] = false,
 }
 
 
@@ -335,6 +342,11 @@ equip_classOutfits_weapons = {
       },
       {
          "Electron Burst Cannon"
+      },
+   },
+   ["Station"] = {
+      {
+         "Base Ripper MK2",
       },
    }
 }
@@ -1421,15 +1433,21 @@ function equip_generic( p )
    -- Core systems
    success = false
    o = equip_shipOutfits_coreSystems[shipname]
-   if o ~= nil then
+   if o == false then
+      success = true
+   elseif o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    o = equip_typeOutfits_coreSystems[basetype]
-   if not success and o ~= nil then
+   if o == false then
+      success = true
+   elseif not success and o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    o = equip_classOutfits_coreSystems[class]
-   if not success and o ~= nil then
+   if o == false then
+      success = true
+   elseif not success and o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    if not success then
@@ -1439,15 +1457,21 @@ function equip_generic( p )
    -- Engines
    success = false
    o = equip_shipOutfits_engines[shipname]
-   if o ~= nil then
+   if o == false then
+      success = true
+   elseif o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    o = equip_typeOutfits_engines[basetype]
-   if not success and o ~= nil then
+   if o == false then
+      success = true
+   elseif not success and o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    o = equip_classOutfits_engines[class]
-   if not success and o ~= nil then
+   if o == false then
+      success = true
+   elseif not success and o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    if not success then
@@ -1457,15 +1481,21 @@ function equip_generic( p )
    -- Hulls
    success = false
    o = equip_shipOutfits_hulls[shipname]
-   if o ~= nil then
+   if o == false then
+      success = true
+   elseif o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    o = equip_typeOutfits_hulls[basetype]
-   if not success and o ~= nil then
+   if o == false then
+      success = true
+   elseif not success and o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    o = equip_classOutfits_hulls[class]
-   if not success and o ~= nil then
+   if o == false then
+      success = true
+   elseif not success and o ~= nil then
       success = equip_warn( p, o[rnd.rnd(1, #o)] )
    end
    if not success then
