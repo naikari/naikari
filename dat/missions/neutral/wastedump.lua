@@ -3,8 +3,7 @@
 <mission name="Waste Dump">
  <avail>
   <priority>9</priority>
-  <done>Waste Collector</done>
-  <chance>100</chance>
+  <chance>20</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -65,6 +64,7 @@ misn_desc = _("Take as many waste containers off of here as your ship can hold a
 osd_title = _("Waste Dump")
 osd_msg = {}
 osd_msg[1] = _("Land on any garbage collection facility (indicated on your map) to drop off the Waste Containers")
+osd_msg[2] = _("Alternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the Info window (press %s to open), and jump out of the system before you are discovered")
 
 -- List of possible waste dump planets.
 dest_planets = {"The Stinker", "Eiroik", "Vaal", "Domestica", "Blossom"}
@@ -113,6 +113,7 @@ function accept ()
    cid = misn.cargoAdd(c, q)
    player.pay(credits)
 
+   osd_msg[2] = osd_msg[2]:format(naev.keyGet("info"))
    misn.osdCreate(osd_title, osd_msg)
 
    hook.takeoff("takeoff")
