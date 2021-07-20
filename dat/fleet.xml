@@ -829,13 +829,6 @@
    <pilot name="Byakko" ship="Pirate Kestrel"></pilot>
   </pilots>
  </fleet>
- <fleet name="Shadowvigil Diplomat">
-  <ai>trader</ai>
-  <faction>Diplomatic</faction>
-  <pilots>
-   <pilot name="Imperial Diplomat" ship="Diplomatic Vessel"></pilot>
-  </pilots>
- </fleet>
  <fleet name="Shadowvigil Escorts">
   <ai>baddie_norun</ai>
   <faction>Four Winds</faction>
