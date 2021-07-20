@@ -94,9 +94,13 @@ homeworld_text.help[1] = _([[As you begin to enter the atmosphere, you notice Fl
 
 "Do you honestly think that's what our struggle is about? Pretty oceans? There's much more at stake here than that. We're people who the Dvaereds are trying to rule over. This is our struggle for our freedom and autonomy, not to protect nature.
 
-"Besides that, this planet isn't just looks, you know. It's home to a special algae that we use as medicine, and it's both vital to the health of people in the entire Frontier and in need of delicate conservation, which we've balanced for hundreds of cycles. The threat of losing our lives because we lose our supply of vital medicine is far greater than any risk of a damn mining operation ruining a view that you apparently think we'd risk our lives for."]])
+"Besides that, this planet isn't just looks, you know. It's home to a special algae that we use as medicine, and it's both vital to the health of people in the entire Frontier and in need of delicate conservation, which we've balanced for hundreds of cycles. The threat of losing our lives because we lose our supply of vital medicine is far greater than any risk of a mining operation ruining a damn view that you apparently think we'd risk our lives for."]])
+homeworld_text.help[2] = _([[A brief pause passes, and you apologize. Flint sighs. "This is the problem with imperials like you. Always thinking you know everything when you know absolutely nothing." An awkward silence fills your cockpit as you land your ship.
 
-homeworld_text.help[2] = _([[A brief pause passes, and you apologize. Flint sighs. "This is the problem with imperials like you. Always thinking you know everything when you know absolutely nothing."]])
+"Ok, I want you to keep your mouth shut, follow me, and listen," Flint tells you as soon as you finish landing procedures. Not wanting to make him more upset than he already is, you comply. He softly introduces you to several people he seems to know as "a potential new recruit to the cause". Everyone he talks to reacts to this news with relief, with some of them talking about the threat the Dvaereds pose and personal experiences they've had recently with the Dvaereds.
+
+One story stands out to you in particular: an adolescent, no older than maybe 10 cycles, mentions that their mother, who was an official Frontier peace-keeping volunteer. She was accused of being an FLF pilot after getting into an argument with a Dvaered pilot who was harassing a civilian, and subsequently, a group of Dvaereds opened fire and killed her.]])
+homeworld_text.help[3] = _([[Eventually, Flint finishes introducing you to people. ""]])
 
 motive_text = {}
 motive_text.help = _("To help the FLF")
