@@ -18,7 +18,6 @@
   <thrust>150</thrust>
   <turn>40</turn>
   <speed>220</speed>
-  <resist>100</resist>
   <damage>
    <type>normal</type>
    <penetrate>90</penetrate>
