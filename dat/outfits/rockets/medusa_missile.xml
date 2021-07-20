@@ -14,7 +14,7 @@
   <spfx_armour>EmpM</spfx_armour>
   <trail_generator x="0">missile</trail_generator>
   <duration blowup="armour">8</duration>
-  <thrust>0</thrust>
+  <thrust>200</thrust>
   <turn>30</turn>
   <speed>300</speed>
   <resist>20</resist>

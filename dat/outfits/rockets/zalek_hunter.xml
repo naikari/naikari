@@ -14,10 +14,9 @@
   <spfx_shield>ExpM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <duration blowup="armour">6</duration>
-  <thrust>0</thrust>
+  <thrust>400</thrust>
   <turn>50</turn>
   <speed>550</speed>
-  <resist>35</resist>
   <damage>
    <type>normal</type>
    <penetrate>36</penetrate>
