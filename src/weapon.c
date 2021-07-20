@@ -143,9 +143,6 @@ static void weapon_setThrust( Weapon *w, double thrust );
 static void weapon_setTurn( Weapon *w, double turn );
 
 
-/**
- * @brief Initializes the weapon stuff.
- */
 void weapon_init (void)
 {
    wfrontLayer = array_create(Weapon*);
@@ -705,10 +702,6 @@ static void weapon_render( Weapon* w, const double dt )
 {
    glTexture *gfx;
    glColour c = { .r=1., .g=1., .b=1. };
-
-   /* Don't render destroyed weapons. */
-   if (weapon_isFlag(w,WEAPON_FLAG_DESTROYED))
-      return;
 
    switch (w->outfit->type) {
       /* Weapons that use sprites. */
