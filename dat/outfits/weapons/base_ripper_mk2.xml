@@ -16,19 +16,19 @@
   <sound>ripper</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>ExpS</spfx_armour>
-  <delay>1</delay>
+  <delay>1.45</delay>
   <speed>700</speed>
-  <range>1900</range>
-  <falloff>1500</falloff>
+  <range>2800</range>
+  <falloff>2200</falloff>
   <gfx_end>ripperM-end.png</gfx_end>
-  <energy>1</energy>
+  <energy>0</energy>
   <heatup>10000</heatup>
-  <rdr_range>2000</rdr_range>
-  <rdr_range_max>3800</rdr_range_max>
+  <rdr_range>4400</rdr_range>
+  <rdr_range_max>5600</rdr_range_max>
   <damage>
    <type>normal</type>
-   <penetrate>50</penetrate>
-   <physical>22.5</physical>
+   <penetrate>100</penetrate>
+   <physical>80</physical>
    <disable>1</disable>
   </damage>
  </specific>
