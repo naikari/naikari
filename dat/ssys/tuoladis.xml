@@ -13,6 +13,9 @@
   <asset>Virtual FLF Small</asset>
  </assets>
  <jumps>
+  <jump target="Ash">
+   <autopos/>
+  </jump>
   <jump target="Doranthex">
    <autopos/>
   </jump>
