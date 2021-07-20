@@ -20,6 +20,7 @@
   <speed>700</speed>
   <range>2800</range>
   <falloff>2200</falloff>
+  <energy>1</energy>
   <gfx_end>ripperM-end.png</gfx_end>
   <energy>0</energy>
   <heatup>10000</heatup>
