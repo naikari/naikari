@@ -34,13 +34,13 @@
   <cargo>5000</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="0" y="0" h="0"/>
-  <weapon size="large" x="0" y="0" h="0"/>
-  <weapon size="large" x="50" y="0" h="5"/>
-  <weapon size="large" x="-50" y="0" h="5"/>
-  <weapon size="large" x="0" y="50" h="5"/>
-  <weapon size="large" x="0" y="-40" h="5"/>
-  <weapon size="large" x="0" y="0" h="30"/>
-  <weapon size="large" x="0" y="0" h="30"/>
+  <weapon size="large" x="0" y="0" h="0">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="0" h="0">Base Ripper MK2</weapon>
+  <weapon size="large" x="50" y="0" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="-50" y="0" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="50" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="-40" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="0" h="30">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="0" h="30">Base Ripper MK2</weapon>
  </slots>
 </ship>
