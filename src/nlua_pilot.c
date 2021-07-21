@@ -2568,7 +2568,7 @@ static int pilotL_setNoClear( lua_State *L )
 /**
  * @brief Adds an outfit to a pilot.
  *
- * This by default tries to add them to the first empty or defaultly equipped slot. Will not overwrite existing outfits.
+ * This by default tries to add them to the first empty slot. Will not overwrite existing outfits.
  *
  * @usage added = p:addOutfit( "Laser Cannon", 5 ) -- Adds 5 laser cannons to p
  *
