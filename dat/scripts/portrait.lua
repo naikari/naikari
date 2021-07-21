@@ -45,6 +45,7 @@ local portraits_m_neutral = {
    "neutral/miner1.png",
    "neutral/thief1.png",
    "neutral/thief2.png",
+   "neutral/cyborg1.png",
 }
 local portraits_f_neutral = {
    "neutral/female1.png",
