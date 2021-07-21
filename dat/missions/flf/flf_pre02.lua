@@ -100,7 +100,31 @@ homeworld_text.help[2] = _([[A brief pause passes, and you apologize. Flint sigh
 "Ok, I want you to keep your mouth shut, follow me, and listen," Flint tells you as soon as you finish landing procedures. Not wanting to make him more upset than he already is, you comply. He softly introduces you to several people he seems to know as "a potential new recruit to the cause". Everyone he talks to reacts to this news with relief, with some of them talking about the threat the Dvaereds pose and personal experiences they've had recently with the Dvaereds.
 
 One story stands out to you in particular: an adolescent, no older than maybe 10 cycles, mentions that their mother, who was an official Frontier peace-keeping volunteer. She was accused of being an FLF pilot after getting into an argument with a Dvaered pilot who was harassing a civilian, and subsequently, a group of Dvaereds opened fire and killed her.]])
-homeworld_text.help[3] = _([[Eventually, Flint finishes introducing you to people. ""]])
+homeworld_text.help[3] = _([[Eventually, Flint finishes introducing you to people. He turns to you as you and he walk back toward the spaceport. "Hopefully you'll have an inkling of what's actually at stake here now," he says. You apologize for making assumptions about the plight of the Frontier, and he silently turns his head to face the direction he's walking in again.
+
+When you arrive at the spaceport and Flint starts to return to your ship, Flint tells you that your next stop will be %s and that he's ready to leave when you are.]])
+
+jorlan_text = {}
+jorlan_text.help = {}
+jorlan_text.help[1] = _([[You land on Jorlan, a rocky, lifeless planet. "This place has basically no atmosphere," Flint explains. "The Santa Maria was possibly one of the most unlucky surviving colony ships, but hey, the managed to colonize this place. A lot of the Frontier's materials come from here now. Who would've thought?
+
+"More importantly, though, right next to here is where the Dvaereds chose to build that damn station." He points up into what for lack of a better word you might call a "sky". The Dvaered outpost, Raglan Outpost, is clearly visible. You ask why the Dvaereds would build an outpost there. "The official explanation is that it's to 'expand trade relations and help protect from pirates'," he responds. "But we all know that's bullshit. There's hardly any pirates in this part of the Frontier, and the Frontier Council had no real say in its construction" He looks at you. "It spreads Dvaered presence deep into Frontier space. So tell me: for what purpose would the Dvaereds want more of their ships inside of Frontier territory?"]])
+jorlan_text.help[2] = _([[Your eyes widen as you realize what Flint is saying. Flint grins for a moment, before his expression becomes serious again. "Invasion," he says. "The Dvaereds for years have wanted to expand their territory into the Frontier.
+
+"The Frontier was lucky, in a way. The Faction Wars kept hyperspace travel out of the Frontier for a long while, and so when the Empire rose to power, we retained our autonomy without having to fight for it. We enjoyed a sort of status, the First Growth colonies, the seniors of space flight, if you will, so the Empire decreed that we were to remain independent. But now, things have changed. The Empire's old promise is still technically valid, but the Empire's grip in this region is essentially gone, and even if the Empire had any real control here, they wouldn't risk the little power they have left for the sake of a promise that most of the galaxy has forgotten about."]])
+jorlan_text.help[3] = _([[Flint grins. "But there's one thing the Dvaereds didn't count on, one thing stopping them from successfully invading the Frontier: our fighting spirit! Our final stop will be %s. Feel free to take a look around here if you like. When you're ready, I'll show you the strength of our undying commitment to fight the Dvaereds! The higher-ups of Sindbad may be the brains of the FLF, but the people I'll be introducing you to, and many others like them, are the blood, muscle, and heart of the FLF."]])
+
+norpin_text = {}
+norpin_text.help = {}
+norpin_text.help[1] = _([[As you exit your ship after landing, several faces warmly greet Flint and some begin to question who you are. Flint explains that you're a former Imperial who wants to join the cause. Most of them laugh at the statement. "We'll see about that," one of them says. "But hey, not much you can do here even if you have ill intent. The Dvaereds already know we hate their guts here."
+
+Flint turns to you. "Ah, yeah, that's right, I should introduce you. These are some of my comrades. They work here at the shipyard" You introduce yourself, and Flint chats with them for a little longer before they go back to their jobs.]])
+norpin_text.help[2] = _([[The two of you begin approaching the bar. "You may have heard rumors that the shipyard here supplies ships for us," Flint says. "That's actually true, but this shipyard also supplies ships for the Frontier volunteer peacekeeping force. That's actually another reason the Dvaereds put Raglan Outpost where they did. It's a choke point; right now, it makes it much harder for FLF ships to be supplied by this shipyard, which is why we also build ships on Sindbad. If the Dvaereds go to war with the Frontier officially, that will be the case for Frontier ships as well.
+
+"The Dvaereds are scared of us, as they should be." You and Flint reach the bar, where you see someone in a Dvaered military outfit demanding a drink from the bartender, accompanied by another person in a Dvaered military outfit. "Well, apparently this guy isn't scared enough… but that's just about to change. Pay close attention. This is what the FLF is all about."]])
+norpin_text.help[3] = _([[As if on cue, a group of three of visibly angry patrons steps up behind the Dvaered soldiers. "It seems we have ourselves a problem here," one of them says as the bartender turns to look away from the scene.
+
+The Dvaered soldiers turn to face the patrons. "Oh yeah? You'd dare talk to someone of my standing like that? I'll have you know—" One of the patrons interrupts the soldier with a punch in the face, and a scuffle breaks out between the three patrons and the two soldiers. Eventually, a fourth and fifth patron join the scuffle against the Dvaered soldiers. Overwhelmed, the Dvaered soldiers flee from the bar, Flint grins, and the bartender finally turns back around, feigning ignorance.]])
 
 motive_text = {}
 motive_text.help = _("To help the FLF")
@@ -112,6 +136,8 @@ npc_desc = _("This man eyes you with a very icy stare. It seems he doesn't trust
 
 function create ()
    homepla, homesys = planet.get("Cetrat")
+   invpla, invsys = planet.get("Jorlan")
+   resistpla, resistsys = planet.get("Norpin II")
    misn.finish(false)
 
    -- Variable storing the player's motive. Can be "help", "neutral",

@@ -785,6 +785,14 @@
   <item>Vendetta</item>
   <item>Pacifier</item>
  </tech>
+ <tech name="Frontier Military Ships">
+  <item>Hyena</item>
+  <item>Lancelot</item>
+  <item>Vendetta</item>
+  <item>Ancestor</item>
+  <item>Phalanx</item>
+  <item>Pacifier</item>
+ </tech>
  <tech name="Dvaered Military Ships">
   <item>Dvaered Ancestor</item>
   <item>Dvaered Goddard</item>
