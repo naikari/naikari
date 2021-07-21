@@ -682,6 +682,7 @@ static int pilotL_addFleet( lua_State *L )
  *  <li>"naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.</li>
  *  <li>"noequip" (boolean): Whether or not to skip the equip script (and use the ship's default outfits). Defaults to false.</li>
  * </ul>
+ * <br/>
  *
  * @usage p = pilot.add( "Empire Shark", nil, "Empire" ) -- Creates a standard Empire Shark.
  * @usage p = pilot.add( "Hyena", "Pirate", _("Pirate Hyena") ) -- Just adds the pilot (will jump in or take off).
