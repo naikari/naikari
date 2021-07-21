@@ -36,7 +36,7 @@ civ_desc = {_("This person seems to be here to relax."),
             _("This person seems friendly enough."),
             _("A civilian sitting at the bar."),
             _("This person is idly browsing a news terminal."),
-            _("A worker sits drinks, but not working."),
+            _("A worker sits and drinks instead of working."),
             _("A worker slouched against the bar, nursing a drink."),
             _("This worker seems bored with everything but their drink."),
             }
