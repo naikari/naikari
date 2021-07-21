@@ -676,8 +676,8 @@ static int pilotL_addFleet( lua_State *L )
  * <br/>
  * Supported arguments of the "parameters" parameter:<br/>
  *  - "ai" (string): AI to give the pilot. Defaults to the faction's AI.<br/>
- *  - "naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.
- *  - "noequip" (boolean): Whether or not to skip the equip script (and use the ship's default outfits). Defaults to false.
+ *  - "naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.<br/>
+ *  - "noequip" (boolean): Whether or not to skip the equip script (and use the ship's default outfits). Defaults to false.<br/>
  *
  * @usage p = pilot.add( "Empire Shark", nil, "Empire" ) -- Creates a standard Empire Shark.
  * @usage p = pilot.add( "Hyena", "Pirate", _("Pirate Hyena") ) -- Just adds the pilot (will jump in or take off).
