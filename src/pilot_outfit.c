@@ -1078,6 +1078,12 @@ void pilot_calcStats( Pilot* pilot )
    pilot->cap_cargo    *= s->cargo_mod;
    s->engine_limit     *= s->engine_limit_rel;
 
+   /* Make sure none of the speed variables are zero or lower, as this
+    * can cause disastrous and unpredictable results. */
+   pilot->thrust_base = MAX(pilot->thrust_base, 0.0001);
+   pilot->turn_base = MAX(pilot->turn_base, 0.0001);
+   pilot->speed_base = MAX(pilot->speed_base, 0.0001);
+
    /* Set maximum speed. */
    if (!pilot_isFlag( pilot, PILOT_AFTERBURNER ))
       pilot->solid->speed_max = pilot->speed_base;
@@ -1170,6 +1176,12 @@ void pilot_updateMass( Pilot *pilot )
          pilot->speed = 0.;
       }
    }
+
+   /* Just to be absolutely safe, never let any of the speed variables
+    * be zero. Never. */
+   pilot->thrust = MAX(pilot->thrust, 0.0001);
+   pilot->turn = MAX(pilot->turn, 0.0001);
+   pilot->speed = MAX(pilot->speed, 0.0001);
 }
 
 
