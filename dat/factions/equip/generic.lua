@@ -333,15 +333,15 @@ equip_classOutfits_weapons = {
    },
    ["Drone"] = {
       {
-         "Neutron Disruptor"
+         "Neutron Disruptor",
       },
    },
    ["Heavy Drone"] = {
       {
-         "Heavy Neutron Disruptor"
+         "Heavy Neutron Disruptor",
       },
       {
-         "Electron Burst Cannon"
+         "Electron Burst Cannon",
       },
    },
    ["Station"] = {
@@ -1323,11 +1323,11 @@ equip_shipOutfits_structurals = {}
 --[[
 -- @brief Wrapper for pilot.addOutfit that prints a warning if no outfits added.
 --]]
-function equip_warn( p, outfit, q, bypass )
+function equip_warn(p, outfit, q, bypass)
    q = q or 1
-   local r = pilot.addOutfit( p, outfit, q, bypass )
+   local r = pilot.addOutfit(p, outfit, q, bypass)
    if r <= 0 then
-      warn( string.format( _("Could not equip %s on pilot %s!"), outfit, p:name() ) )
+      warn(string.format(_("Could not equip %s on pilot %s!"), outfit, p:name()))
    end
    return r
 end
@@ -1367,44 +1367,44 @@ end
 -- structurals) in ``set``; including multiple types will prevent proper
 -- detection of how many are needed.
 --]]
-function equip_set( p, set )
+function equip_set(p, set)
    if set == nil then return end
 
    local num, varied, probability
    local choices, chance, c, i, equipped
 
-   for k, v in ipairs( set ) do
+   for k, v in ipairs(set) do
       num = v.num
       varied = v.varied
       probability = v.probability
 
       choices = {}
-      for i, choice in ipairs( v ) do
-         choices[ #choices + 1 ] = choice
+      for i, choice in ipairs(v) do
+         choices[#choices + 1] = choice
 
          -- Add entries based on "probability".
          if probability ~= nil then
-            chance = probability[ choice ]
+            chance = probability[choice]
             if chance ~= nil then
                -- Starting at 2 because the first one is already in the table.
                for j=2,chance do
-                  choices[ #choices + 1 ] = choice
+                  choices[#choices + 1] = choice
                end
             end
          end
       end
 
-      c = rnd.rnd( 1, #choices )
+      c = rnd.rnd(1, #choices)
       i = 1
       while #choices > 0 and (num == nil or i <= num) do
          i = i + 1
-         if varied then c = rnd.rnd( 1, #choices ) end
+         if varied then c = rnd.rnd(1, #choices) end
 
-         equipped = p:addOutfit( choices[c] )
+         equipped = p:addOutfit(choices[c])
          if equipped <= 0 then
             if varied or num == nil then
-               table.remove( choices, c )
-               c = rnd.rnd( 1, #choices )
+               table.remove(choices, c)
+               c = rnd.rnd(1, #choices)
             else
                break
             end
@@ -1419,10 +1419,10 @@ end
 --
 --    @param p Pilot to equip
 --]]
-function equip_generic( p )
+function equip_generic(p)
    -- Start with an empty ship
-   p:rmOutfit( "all" )
-   p:rmOutfit( "cores" )
+   p:rmOutfit("all")
+   p:rmOutfit("cores")
 
    local shipname = p:ship():nameRaw()
    local basetype = p:ship():baseType()
@@ -1436,22 +1436,22 @@ function equip_generic( p )
    if o == false then
       success = true
    elseif o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    o = equip_typeOutfits_coreSystems[basetype]
    if o == false then
       success = true
    elseif not success and o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    o = equip_classOutfits_coreSystems[class]
    if o == false then
       success = true
    elseif not success and o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    if not success then
-      equip_warn( p, "Unicorp PT-18 Core System" )
+      equip_warn(p, "Unicorp PT-18 Core System")
    end
 
    -- Engines
@@ -1460,22 +1460,22 @@ function equip_generic( p )
    if o == false then
       success = true
    elseif o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    o = equip_typeOutfits_engines[basetype]
    if o == false then
       success = true
    elseif not success and o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    o = equip_classOutfits_engines[class]
    if o == false then
       success = true
    elseif not success and o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    if not success then
-      equip_warn( p, "Unicorp Hawk 300 Engine" )
+      equip_warn(p, "Unicorp Hawk 300 Engine")
    end
 
    -- Hulls
@@ -1484,38 +1484,38 @@ function equip_generic( p )
    if o == false then
       success = true
    elseif o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    o = equip_typeOutfits_hulls[basetype]
    if o == false then
       success = true
    elseif not success and o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    o = equip_classOutfits_hulls[class]
    if o == false then
       success = true
    elseif not success and o ~= nil then
-      success = equip_warn( p, o[rnd.rnd(1, #o)] )
+      success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    if not success then
-      equip_warn( p, "Unicorp D-2 Light Plating" )
+      equip_warn(p, "Unicorp D-2 Light Plating")
    end
 
    -- Weapons
-   equip_set( p, equip_shipOutfits_weapons[shipname] )
-   equip_set( p, equip_typeOutfits_weapons[basetype] )
-   equip_set( p, equip_classOutfits_weapons[class] )
+   equip_set(p, equip_shipOutfits_weapons[shipname])
+   equip_set(p, equip_typeOutfits_weapons[basetype])
+   equip_set(p, equip_classOutfits_weapons[class])
 
    -- Utilities
-   equip_set( p, equip_shipOutfits_utilities[shipname] )
-   equip_set( p, equip_typeOutfits_utilities[basetype] )
-   equip_set( p, equip_classOutfits_utilities[class] )
+   equip_set(p, equip_shipOutfits_utilities[shipname])
+   equip_set(p, equip_typeOutfits_utilities[basetype])
+   equip_set(p, equip_classOutfits_utilities[class])
 
    -- Structurals
-   equip_set( p, equip_shipOutfits_structurals[shipname] )
-   equip_set( p, equip_typeOutfits_structurals[basetype] )
-   equip_set( p, equip_classOutfits_structurals[class] )
+   equip_set(p, equip_shipOutfits_structurals[shipname])
+   equip_set(p, equip_typeOutfits_structurals[basetype])
+   equip_set(p, equip_classOutfits_structurals[class])
 
    -- Fill ammo
    p:fillAmmo()
@@ -1523,9 +1523,9 @@ function equip_generic( p )
    -- Add cargo
    local pb = equip_classCargo[class]
    if pb == nil then
-      warn( string.format(
+      warn(string.format(
             "Class %s not handled by equip_classCargo in equip script",
-            class ) )
+            class))
       return
    end
 
@@ -1534,8 +1534,8 @@ function equip_generic( p )
 
       if #avail_cargo > 0 then
          for i=1,rnd.rnd(1,3) do
-            local ncargo = rnd.rnd( 0, math.floor(p:cargoFree()*pb) )
-            p:cargoAdd( avail_cargo[ rnd.rnd( 1, #avail_cargo ) ]:nameRaw(), ncargo )
+            local ncargo = rnd.rnd(0, math.floor(p:cargoFree()*pb))
+            p:cargoAdd(avail_cargo[rnd.rnd(1, #avail_cargo)]:nameRaw(), ncargo)
          end
       end
    end
