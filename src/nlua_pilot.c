@@ -667,17 +667,21 @@ static int pilotL_addFleet( lua_State *L )
 /**
  * @brief Adds a ship with an AI and faction to the system (instead of a predefined fleet).
  *
- * How param works (by type of value passed): <br/>
- *  - nil: spawns pilot randomly entering from jump points with presence of their faction or taking off from non-hostile planets <br/>
- *  - planet: pilot takes off from the planet <br/>
- *  - system: jumps pilot in from the system <br/>
- *  - vec2: pilot is created at the position (no jump/takeoff) <br/>
- *  - true: Acts like nil, but does not avoid jump points with no presence <br/>
- * <br/>
+ * How param works (by type of value passed):<br/>
+ * <ul>
+ *  <li>nil: spawns pilot randomly entering from jump points with presence of their faction or taking off from non-hostile planets</li>
+ *  <li>planet: pilot takes off from the planet</li>
+ *  <li>system: jumps pilot in from the system</li>
+ *  <li>vec2: pilot is created at the position (no jump/takeoff)</li>
+ *  <li>true: Acts like nil, but does not avoid jump points with no presence</li>
+ * </ul>
+ *
  * Supported arguments of the "parameters" parameter:<br/>
- *  - "ai" (string): AI to give the pilot. Defaults to the faction's AI.<br/>
- *  - "naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.<br/>
- *  - "noequip" (boolean): Whether or not to skip the equip script (and use the ship's default outfits). Defaults to false.<br/>
+ * <ul>
+ *  <li>"ai" (string): AI to give the pilot. Defaults to the faction's AI.</li>
+ *  <li>"naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.</li>
+ *  <li>"noequip" (boolean): Whether or not to skip the equip script (and use the ship's default outfits). Defaults to false.</li>
+ * </ul>
  *
  * @usage p = pilot.add( "Empire Shark", nil, "Empire" ) -- Creates a standard Empire Shark.
  * @usage p = pilot.add( "Hyena", "Pirate", _("Pirate Hyena") ) -- Just adds the pilot (will jump in or take off).
