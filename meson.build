@@ -133,7 +133,6 @@ if buildExec.disabled() == false
    if use_system_suitesparse
       foreach csparse_name : ['csparse', 'cxsparse']
          system_csparse = cc.find_library(csparse_name, required: false)
-         use_system_suitesparse = system_csparse.found()
          if system_csparse.found()
             break
          endif
@@ -145,7 +144,6 @@ if buildExec.disabled() == false
          error('Failed to find an installation of c[x]sparse. See above note about SuiteSparse.')
       endif
 
-   # TODO: These packages may require the same nonsense, in terms of checking for suitesparse/foo.h headers.
       naev_deps += cc.find_library('amd', required: true)
       naev_deps += cc.find_library('blas', required: false)
       naev_deps += cc.find_library('ccolamd', required: false)
