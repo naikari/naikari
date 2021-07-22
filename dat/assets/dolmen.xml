@@ -25,8 +25,8 @@
    <shipyard/>
   </services>
   <commodities/>
-  <description>Dolmen is a nice planet but it's only sparsely populated. The local government aims to keep the planet free from crime and, while this is likely to be an unrealistic goal, the strict immigration policy does help to filter out the more unsavory characters.</description>
-  <bar>The spaceport bar is officially outside the borders of the Dolmen global political area. This legal construction was necessary for Dolmen to allow both free trade and a tight migration policy. An interesting side effect is that all drinks in this bar are tax free.</bar>
+  <description>Dolmen is a nice planet, but it's only sparsely populated due to an incredibly high cost of living. It has carved out a niche for itself as a supplier of certain high-end products that are difficult to find elsewhere.</description>
+  <bar>The spaceport bar is weirdly luxurious, and drinks are so expensive that most visiting pilots make do without a drink.</bar>
  </general>
  <tech>
   <item>Crappy Core Systems</item>
