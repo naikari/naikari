@@ -807,9 +807,9 @@ const char* outfit_getType( const Outfit* o )
    const char* outfit_typename[] = {
          N_("NULL"),
          N_("Bolt Cannon"),
-         N_("Beam Cannon"),
+         N_("Beam"),
          N_("Bolt Turret"),
-         N_("Beam Turret"),
+         N_("Turret Beam"),
          N_("Launcher"),
          N_("Ammunition"),
          N_("Turret Launcher"),
