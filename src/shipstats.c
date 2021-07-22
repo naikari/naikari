@@ -109,7 +109,7 @@ static const ShipStatsLookup ss_lookup[] = {
 
    A__ELEM( SS_TYPE_D_RDR_RANGE,          rdr_range,           1, N_("%+G km Radar Range") ),
    A__ELEM( SS_TYPE_D_RDR_JUMP_RANGE,     rdr_jump_range,      1, N_("%+G km Jump Detect Range") ),
-   D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       1, N_("%+G%% Radar Range") ),
+   D__ELEM( SS_TYPE_D_RDR_RANGE_MOD,      rdr_range_mod,       0, N_("%+G%% Radar Range") ),
    D__ELEM( SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,  1, N_("%+G%% Jump Detect Range") ),
    DI_ELEM( SS_TYPE_D_RDR_ENEMY_RANGE_MOD,rdr_enemy_range_mod, 0, N_("%+G%% Enemy Radar Range") ),
 

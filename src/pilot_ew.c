@@ -218,7 +218,7 @@ double pilot_weaponTrack(
    tempmod = (1 - ((t->heat_T-CONST_SPACE_STAR_TEMP)
             / (t->heat_C-CONST_SPACE_STAR_TEMP)));
 
-   sense = (track_optimal * cur_system->rdr_range_mod
+   sense = (track_optimal * cur_system->rdr_range_mod * p->stats.rdr_range_mod
          * t->stats.rdr_enemy_range_mod * tempmod);
 
    if (d <= sense)
