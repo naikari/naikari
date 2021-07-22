@@ -401,9 +401,9 @@ static int playerL_allowSave( lua_State *L )
    unsigned int b;
    NLUA_CHECKRW(L);
    PLAYER_CHECK();
-   if (lua_gettop(L)==0)
-      b = 1;
-   else
+
+   b = 1;
+   if (lua_gettop(L) > 0)
       b = lua_toboolean(L, 1);
 
    if (b)

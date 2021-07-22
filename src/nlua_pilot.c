@@ -3049,19 +3049,18 @@ static int pilotL_fillAmmo( lua_State *L )
 static int pilotL_setNoboard( lua_State *L )
 {
    Pilot *p;
-   int disable;
+   int enable;
 
    NLUA_CHECKRW(L);
 
    /* Handle parameters. */
    p  = luaL_validpilot(L,1);
-   if (lua_gettop(L)==1)
-      disable = 1;
-   else
-      disable = lua_toboolean(L, 2);
+   enable = 1;
+   if (lua_gettop(L) > 1)
+      enable = lua_toboolean(L, 2);
 
    /* See if should prevent boarding. */
-   if (disable)
+   if (enable)
       pilot_setFlag(p, PILOT_NOBOARD);
    else
       pilot_rmFlag(p, PILOT_NOBOARD);
@@ -3091,9 +3090,8 @@ static int pilotL_setNoDisable( lua_State *L )
 
    /* Handle parameters. */
    p  = luaL_validpilot(L,1);
-   if (lua_gettop(L)==1)
-      disable = 1;
-   else
+   disable = 1;
+   if (lua_gettop(L) > 1)
       disable = lua_toboolean(L, 2);
 
    /* See if should prevent disabling. */
@@ -3725,9 +3723,8 @@ static int pilotL_control( lua_State *L )
 
    /* Handle parameters. */
    p  = luaL_validpilot(L,1);
-   if (lua_gettop(L)==1)
-      enable = 1;
-   else
+   enable = 1;
+   if (lua_gettop(L) > 1)
       enable = lua_toboolean(L, 2);
 
    hasflag = pilot_isFlag(p, PILOT_MANUAL_CONTROL);

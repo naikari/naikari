@@ -177,7 +177,7 @@ static int colL_new( lua_State *L )
 
    NLUA_CHECKRW(L);
 
-   if (lua_gettop(L)==0) {
+   if (lua_gettop(L) <= 0) {
       col.r = col.g = col.b = col.a = 1.;
    }
    else if (lua_isnumber(L,1)) {

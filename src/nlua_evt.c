@@ -282,9 +282,8 @@ static int evtL_save( lua_State *L )
 {
    int b;
    Event_t *cur_event;
-   if (lua_gettop(L)==0)
-      b = 1;
-   else
+   b = 1;
+   if (lua_gettop(L) > 0)
       b = lua_toboolean(L,1);
    cur_event = event_getFromLua(L);
    cur_event->save = b;

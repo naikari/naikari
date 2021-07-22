@@ -173,13 +173,13 @@ static int fontL_new( lua_State *L )
    int h;
    const char *fname, *prefix;
 
-   if (lua_gettop(L)==1) {
-      fname = NULL;
-      h = luaL_checkint(L,1);
-   }
-   else {
+   if (lua_gettop(L) > 1) {
       fname = luaL_optstring(L,1,NULL);
       h = luaL_checkint(L,2);
+   }
+   else {
+      fname = NULL;
+      h = luaL_checkint(L,1);
    }
 
    if (fname == NULL) {
