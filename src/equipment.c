@@ -54,7 +54,7 @@
 
 
 /* global/main window */
-#define BUTTON_WIDTH    200 /**< Default button width. */
+#define BUTTON_WIDTH    180 /**< Default button width. */
 #define BUTTON_HEIGHT   40 /**< Default button height. */
 
 
@@ -102,6 +102,7 @@ static void equipment_renameShip( unsigned int wid, char *str );
 static void equipment_transChangeShip( unsigned int wid, char* str );
 static void equipment_changeShip( unsigned int wid );
 static void equipment_unequipShip( unsigned int wid, char* str );
+static void equipment_sellOutfit( unsigned int wid, char* str );
 static void equipment_filterOutfits( unsigned int wid, char *str );
 static void equipment_rightClickOutfits( unsigned int wid, char* str );
 static void equipment_changeTab( unsigned int wid, char *wgt, int old, int tab );
@@ -272,11 +273,11 @@ static void equipment_getDim( unsigned int wid, int *w, int *h,
    if (cw != NULL)
       *cw = 142;
    if (ch != NULL)
-      *ch = *h - 100;
+      *ch = 280;
 
    /* Calculate button dimensions. */
    if (bw != NULL)
-      *bw = (*w - 10 - (ow!=NULL?*ow:0) - 50 - 10) / 5;
+      *bw = (*w - 10 - (ow!=NULL?*ow:0) - (4*10) - 10) / 4;
    if (bh != NULL)
       *bh = BUTTON_HEIGHT;
 }
@@ -327,21 +328,24 @@ void equipment_open( unsigned int wid )
    equipment_addAmmo();
 
    /* buttons */
-   window_addButtonKey( wid, -10, 20,
-         bw, bh, "btnCloseEquipment",
-         _("Take Off"), land_buttonTakeoff, SDLK_t );
-   window_addButtonKey( wid, -10 - (10+bw), 20,
-         bw, bh, "btnRenameShip",
+   window_addButtonKey( wid, -10, -40-ch-10,
+         cw, bh, "btnRenameShip",
          _("Rename"), equipment_renameShip, SDLK_r );
-   window_addButtonKey( wid, -10 - (10+bw)*2, 20,
-         bw, bh, "btnSellShip",
-         _("Sell Ship"), equipment_sellShip, SDLK_s );
-   window_addButtonKey( wid, -10 - (10+bw)*3, 20,
+   window_addButtonKey( wid, -10, -40-ch-10 - (10+bh),
+         cw, bh, "btnUnequipShip",
+         _("Unequip"), equipment_unequipShip, SDLK_u );
+
+   window_addButtonKey( wid, 10 + sw + 10, 20, bw, bh,
+         "btnSellOutfit", _("Sell Outfit"), equipment_sellOutfit, SDLK_o );
+   window_addButtonKey( wid, 10+sw+10 + (10+bw), 20,
          bw, bh, "btnChangeShip",
          _("Swap Ship"), equipment_transChangeShip, SDLK_p );
-   window_addButtonKey( wid, -10 - (10+bw)*4, 20,
-         bw, bh, "btnUnequipShip",
-         _("Unequip"), equipment_unequipShip, SDLK_u );
+   window_addButtonKey( wid, 10+sw+10 + (10+bw)*2, 20,
+         bw, bh, "btnSellShip",
+         _("Sell Ship"), equipment_sellShip, SDLK_s );
+
+   window_addButtonKey( wid, -10, 20, bw, bh, "btnCloseEquipment",
+         _("Take Off"), land_buttonTakeoff, SDLK_t );
 
    /* text */
    buf = _("Name:\n"
@@ -372,7 +376,7 @@ void equipment_open( unsigned int wid )
          210, y-20+h-bh, 0, "txtSDesc", &gl_defFont, &cFontGrey, buf );
    x += 210;
    window_addText( wid, x, y,
-         w - x - 10 - cw, y-20+h-bh, 0, "txtDDesc", &gl_defFont, NULL, NULL );
+         w - x, y-20+h-bh, 0, "txtDDesc", &gl_defFont, NULL, NULL );
 
    /* Generate lists. */
    window_addText( wid, 30, -20,
@@ -1956,7 +1960,8 @@ static void equipment_sellShip( unsigned int wid, char* str )
 
    /* Check if player really wants to sell. */
    if (!dialogue_YesNo( _("Sell Ship"),
-            _("Are you sure you want to sell your ship %s for %s?"),
+            _("Are you sure you want to sell your ship %s for %s? All"
+               " equipped outfits will be sold along with it."),
             shipname, buf))
       return;
 
@@ -1986,6 +1991,60 @@ static void equipment_sellShip( unsigned int wid, char* str )
    if (land_takeoff)
       takeoff(1);
    free(name);
+}
+/**
+ * @brief Player tries to sell an outfit.
+ *    @param wid Window player is selling an outfit in.
+ *    @param str Unused.
+ */
+static void equipment_sellOutfit( unsigned int wid, char* str )
+{
+   (void) str;
+   char buf[ECON_CRED_STRLEN];
+   Outfit* o;
+   int i, active, q;
+   HookParam hparam[3];
+
+   active = window_tabWinGetActive( wid, EQUIPMENT_OUTFIT_TAB );
+   i = toolkit_getImageArrayPos( wid, EQUIPMENT_OUTFITS );
+
+   /* Did the user click on background or placeholder cell? */
+   if (i < 0 || iar_outfits[active] == NULL)
+      return;
+
+   o = iar_outfits[active][i];
+   if (o == NULL)
+      return;
+
+   /* Check various failure conditions. */
+   if (land_errDialogue( o->name, "sellOutfit" ))
+      return;
+
+   /* Calculate price. */
+   credits2str( buf, o->price, 2 );
+
+   /* TODO: Would be nice to have a quantity choice. */
+   q = 1;
+
+   /* Check if player really wants to sell. */
+   if (!dialogue_YesNo( _("Sell Outfit"),
+            _("Are you sure you want to sell your %s for %s?"),
+            _(o->name), buf))
+      return;
+
+   /* Destroy widget. */
+   equipment_regenLists( wid, 1, 0 );
+
+   player_modCredits( o->price * player_rmOutfit( o, q ) );
+   outfits_updateEquipmentOutfits();
+   hparam[0].type    = HOOK_PARAM_STRING;
+   hparam[0].u.str   = o->name;
+   hparam[1].type    = HOOK_PARAM_NUMBER;
+   hparam[1].u.num   = q;
+   hparam[2].type    = HOOK_PARAM_SENTINEL;
+   hooks_runParam( "outfit_sell", hparam );
+   if (land_takeoff)
+      takeoff(1);
 }
 
 
