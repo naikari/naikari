@@ -1431,14 +1431,15 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    /* Set short description. */
    temp->desc_short = malloc(OUTFIT_SHORTDESC_MAX);
    l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
-         _("%s\n"
+         _("%s [%s]\n"
          "%+.0f TFLOPS CPU\n"
          "%G%% Penetration\n"
-         "%G GW Damage [%s]\n"),
+         "%G GW Damage\n"),
          _(outfit_getType(temp)),
+         _(dtype_damageTypeToStr(temp->u.bem.dmg.type)),
          temp->cpu,
          temp->u.bem.dmg.penetration*100.,
-         temp->u.bem.dmg.damage, _(dtype_damageTypeToStr(temp->u.bem.dmg.type) ) );
+         temp->u.bem.dmg.damage );
    if (temp->u.blt.dmg.disable > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G GW Disable\n"),
