@@ -145,7 +145,6 @@ if buildExec.disabled() == false
       endif
 
       naev_deps += cc.find_library('amd', required: true)
-      naev_deps += cc.find_library('blas', required: false)
       naev_deps += cc.find_library('ccolamd', required: false)
       naev_deps += cc.find_library('colamd', required: true)
       naev_deps += cc.find_library('lapack', required: false)
