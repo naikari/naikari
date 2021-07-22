@@ -119,7 +119,7 @@ if buildExec.disabled() == false
    naev_deps += lua
 
    # Linear Algebra
-   message('IMPORTANT NOTE ABOUT SuiteSparse: Naev can provide it, but only if you "meson configure --force-fallback-for=SuiteSparse". Otherwise, you must have the following libraries installed: amd, colamd, cholmod, and either csparse or cxsparse.')
+   message('IMPORTANT NOTE ABOUT SuiteSparse: Naev can provide it, but only if you "meson configure --force-fallback-for=SuiteSparse". Otherwise, you must have the following libraries installed: amd, colamd, and either csparse or cxsparse.')
 
    use_system_glpk = ('glpk' not in get_option('force_fallback_for'))
    use_system_suitesparse = ('SuiteSparse' not in get_option('force_fallback_for'))
@@ -132,13 +132,7 @@ if buildExec.disabled() == false
 
    if use_system_suitesparse
       foreach csparse_name : ['csparse', 'cxsparse']
-         system_csparse = cc.find_library(csparse_name, required: false, has_headers: ['suitesparse/cs.h'])
-         use_system_suitesparse = system_csparse.found()
-         if system_csparse.found()
-            config_data.set10('HAVE_SUITESPARSE_CS_H', true)
-            break
-         endif
-         system_csparse = cc.find_library(csparse_name, required: false, has_headers: ['cs.h'])
+         system_csparse = cc.find_library(csparse_name, required: false)
          use_system_suitesparse = system_csparse.found()
          if system_csparse.found()
             break
@@ -155,7 +149,6 @@ if buildExec.disabled() == false
       naev_deps += cc.find_library('blas', required: false)
       naev_deps += cc.find_library('ccolamd', required: false)
       naev_deps += cc.find_library('colamd', required: true)
-      naev_deps += cc.find_library('cholmod', required: true)
       naev_deps += cc.find_library('lapack', required: false)
       naev_deps += cc.find_library('metis', required: false)
       naev_deps += cc.find_library('suitesparseconfig', required: true)
@@ -192,6 +185,7 @@ if buildExec.disabled() == false
    config_data.set10('HAVE_DECL_SETENV', cc.has_header_symbol('stdlib.h', 'setenv'))
    config_data.set10('HAVE_DECL__PUTENV_S', cc.has_header_symbol('stdlib.h', '_putenv_s'))
    config_data.set10('HAVE_DECL_GETENV_S', cc.has_header_symbol('stdlib.h', 'getenv_s'))
+   config_data.set10('HAVE_SUITESPARSE_CS_H', cc.has_header('suitesparse/cs.h'))
    config_data.set10('HAVE_FEENABLEEXCEPT', cc.has_header_symbol('fenv.h', 'feenableexcept'))
    config_data.set10('HAVE_ALLOCA_H', cc.has_header('alloca.h'))
    config_data.set10('HAVE_FENV_H', cc.has_header('fenv.h'))
