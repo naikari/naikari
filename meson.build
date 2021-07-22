@@ -119,7 +119,7 @@ if buildExec.disabled() == false
    naev_deps += lua
 
    # Linear Algebra
-   message('IMPORTANT NOTE ABOUT SuiteSparse: Naev can provide it, but only if you "meson configure --force-fallback-for=SuiteSparse". Otherwise, you must have the following libraries installed: amd, colamd, and either csparse or cxsparse.')
+   message('IMPORTANT NOTE ABOUT SuiteSparse: Naikari can provide it, but only if you "meson configure --force-fallback-for=SuiteSparse". Otherwise, you must have the following libraries installed: amd, colamd, and either csparse or cxsparse.')
 
    use_system_glpk = ('glpk' not in get_option('force_fallback_for'))
    use_system_suitesparse = ('SuiteSparse' not in get_option('force_fallback_for'))
