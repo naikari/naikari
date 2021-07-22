@@ -132,13 +132,7 @@ if buildExec.disabled() == false
 
    if use_system_suitesparse
       foreach csparse_name : ['csparse', 'cxsparse']
-         system_csparse = cc.find_library(csparse_name, required: false, has_headers: ['suitesparse/cs.h'])
-         use_system_suitesparse = system_csparse.found()
-         if system_csparse.found()
-            config_data.set10('HAVE_SUITESPARSE_CS_H', true)
-            break
-         endif
-         system_csparse = cc.find_library(csparse_name, required: false, has_headers: ['cs.h'])
+         system_csparse = cc.find_library(csparse_name, required: false)
          use_system_suitesparse = system_csparse.found()
          if system_csparse.found()
             break
@@ -146,6 +140,7 @@ if buildExec.disabled() == false
       endforeach
       if system_csparse.found()
          naev_deps += system_csparse
+         config_data.set10('HAVE_SUITESPARSE_CS_H', cc.has_header('suitesparse/cs.h'))
       else
          error('Failed to find an installation of c[x]sparse. See above note about SuiteSparse.')
       endif
