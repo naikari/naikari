@@ -540,14 +540,22 @@ static int factionL_isknown( lua_State *L )
  *
  * @usage f:setKnown( false ) -- Makes faction unknown.
  *    @luatparam Faction f Faction to set known.
- *    @luatparam[opt=false] boolean b Whether or not to set as known.
+ *    @luatparam[opt=true] boolean b Whether or not to set as known.
  * @luafunc setKnown
  */
 static int factionL_setknown( lua_State *L )
 {
+   int fac;
+   int b;
+
    NLUA_CHECKRW(L);
-   int fac = luaL_validfaction(L, 1);
-   int b   = lua_toboolean(L, 2);
+   fac = luaL_validfaction(L, 1);
+
+   if (lua_gettop(L) >= 2)
+      b = lua_toboolean(L, 2);
+   else
+      b = 1;
+
    faction_setKnown( fac, b );
    return 0;
 }
