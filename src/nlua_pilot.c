@@ -1593,7 +1593,7 @@ static int pilotL_weapsetHeat( lua_State *L )
  * @usage act_outfits = p:actives() -- Gets the table of active outfits
  *
  *    @luatparam Pilot p Pilot to get active outfits of.
- *    @luatparam[opt=false] boolean sort Whether or not to sort the otufits.
+ *    @luatparam[opt=false] boolean sort Whether or not to sort the outfits.
  *    @luatreturn table The table with each active outfit's information.
  * @luafunc actives
  */

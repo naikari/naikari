@@ -988,8 +988,9 @@ static int systemL_isknown( lua_State *L )
  *
  * @usage s:setKnown( false ) -- Makes system unknown.
  *    @luatparam System  s System to set known.
- *    @luatparam[opt=false] boolean b Whether or not to set as known.
- *    @luatparam[opt=false] boolean r Whether or not to iterate over the system's assets and jump points.
+ *    @luatparam[opt=true] boolean b Whether or not to set as known.
+ *    @luatparam[opt=false] boolean r Whether or not to iterate over the
+ *       system's assets and jump points.
  * @luafunc setKnown
  */
 static int systemL_setknown( lua_State *L )
@@ -999,11 +1000,13 @@ static int systemL_setknown( lua_State *L )
 
    NLUA_CHECKRW(L);
 
+   b = 1;
    r = 0;
    sys = luaL_validsystem(L, 1);
-   b   = lua_toboolean(L, 2);
-   if (lua_gettop(L) > 2)
-      r   = lua_toboolean(L, 3);
+   if (lua_gettop(L) >= 2)
+      b = lua_toboolean(L, 2);
+   if (lua_gettop(L) >= 3)
+      r = lua_toboolean(L, 3);
 
    if (b)
       sys_setFlag( sys, SYSTEM_KNOWN );
