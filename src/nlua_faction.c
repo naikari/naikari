@@ -649,50 +649,78 @@ static int factionL_dynAdd( lua_State *L )
 
 
 /**
- * @brief Adds or removes allies to a faction. Only works with dynamic factions.
+ * @brief Sets whether a faction is an ally of a dynamic faction.
  *
- *    @luatparam Faction fac Faction to add ally to.
- *    @luatparam Faction ally Faction to add as an ally.
+ * Both factions will be adjusted, but the first faction <em>must</em>
+ * be a dynamic faction. The second faction can be any faction. This
+ * restriction is in place because the changes do not persist in between
+ * game sessions. To adjust ally status of permanent factions, use the
+ * unidiff system instead.
+ *
+ *    @luatparam Faction fac Dynamic faction to adjust.
+ *    @luatparam Faction ally Faction to adjust ally status of.
+ *    @luatparam[opt=true] boolean enable true to make the factions
+ *       allies, false to make the factions not allies.
  * @luafunc dynAlly
  */
 static int factionL_dynAlly( lua_State *L )
 {
    LuaFaction fac, ally;
-   int remove;
+   int enable;
+
    NLUA_CHECKRW(L);
-   fac      = luaL_validfaction(L,1);
+   fac = luaL_validfaction(L,1);
    if (!faction_isDynamic(fac))
       NLUA_ERROR(L,_("Can only add allies to dynamic factions"));
-   ally     = luaL_validfaction(L,2);
-   remove   = lua_toboolean(L,3);
-   if (remove)
-      faction_rmAlly(fac, ally);
+   ally = luaL_validfaction(L,2);
+
+   if (lua_gettop(L) >= 3)
+      enable = lua_toboolean(L,3);
    else
+      enable = 1;
+
+   if (enable)
       faction_addAlly(fac, ally);
+   else
+      faction_rmAlly(fac, ally);
    return 0;
 }
 
 
 /**
- * @brief Adds or removes enemies to a faction. Only works with dynamic factions.
+ * @brief Sets whether a faction is an enemy of a dynamic faction.
  *
- *    @luatparam Faction fac Faction to add enemy to.
- *    @luatparam Faction enemy Faction to add as an enemy.
+ * Both factions will be adjusted, but the first faction <em>must</em>
+ * be a dynamic faction. The second faction can be any faction. This
+ * restriction is in place because the changes do not persist in between
+ * game sessions. To adjust enemy status of permanent factions, use the
+ * unidiff system instead.
+ *
+ *    @luatparam Faction fac Dynamic faction to adjust.
+ *    @luatparam Faction ally Faction to adjust enemy status of.
+ *    @luatparam[opt=true] boolean enable true to make the factions
+ *       enemies, false to make the factions not enemies.
  * @luafunc dynEnemy
  */
 static int factionL_dynEnemy( lua_State *L )
 {
    LuaFaction fac, enemy;
-   int remove;
+   int enable;
+
    NLUA_CHECKRW(L);
-   fac      = luaL_validfaction(L,1);
+   fac = luaL_validfaction(L,1);
    if (!faction_isDynamic(fac))
       NLUA_ERROR(L,_("Can only add allies to dynamic factions"));
-   enemy    = luaL_validfaction(L,2);
-   remove   = lua_toboolean(L,3);
-   if (remove)
-      faction_rmEnemy(fac, enemy);
+   enemy = luaL_validfaction(L,2);
+
+   if (lua_gettop(L) >= 3)
+      enable = lua_toboolean(L,3);
    else
+      enable = 1;
+
+   if (enable)
       faction_addEnemy(fac, enemy);
+   else
+      faction_rmEnemy(fac, enemy);
    return 0;
 }
