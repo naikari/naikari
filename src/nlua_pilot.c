@@ -649,11 +649,11 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
 /**
  * @brief Adds a fleet to the system.
  *
- * Do not use.
+ * Legacy fleet spawning function. Do not use in new code.
  *
  *    @luatparam string fleetname Name of the fleet to add.
- *    @luatparam System|Planet|Vec2 param Position to create the pilot at. See pilot.add for further information.
- *    @luatparam[opt] string|nil ai If set will override the standard fleet AI.  nil means use default.
+ *    @luatparam[opt] System|Planet|vec2|boolean source See pilot.add.
+ *    @luatparam[opt] table parameters See pilot.add.
  *    @luatreturn {Pilot,...} Table populated with all the pilots created.  The keys are ordered numbers.
  * @luafunc addFleet
  */
@@ -665,38 +665,46 @@ static int pilotL_addFleet( lua_State *L )
 
 
 /**
- * @brief Adds a ship with an AI and faction to the system (instead of a predefined fleet).
+ * @brief Adds a ship with an AI and faction to the system.
  *
- * How param works (by type of value passed):<br/>
+ * How the "source" argument works (by type of value passed):<br/>
  * <ul>
- *  <li>nil: spawns pilot randomly entering from jump points with presence of their faction or taking off from non-hostile planets</li>
- *  <li>planet: pilot takes off from the planet</li>
- *  <li>system: jumps pilot in from the system</li>
- *  <li>vec2: pilot is created at the position (no jump/takeoff)</li>
- *  <li>true: Acts like nil, but does not avoid jump points with no presence</li>
+ *    <li>nil: spawns pilot randomly entering from jump points with
+ *       presence of their faction or taking off from non-hostile
+ *       planets</li>
+ *    <li>planet: pilot takes off from the planet</li>
+ *    <li>system: jumps pilot in from the system</li>
+ *    <li>vec2: pilot is created at the position (no jump/takeoff)</li>
+ *    <li>true: Acts like nil, but does not avoid jump points with no
+ *       presence</li>
  * </ul>
  *
- * Supported arguments of the "parameters" parameter:<br/>
+ * Arguments that can be passed to the "parameters" parameter:<br/>
  * <ul>
- *  <li>"ai" (string): AI to give the pilot. Defaults to the faction's AI.</li>
- *  <li>"naked" (boolean): Whether or not to have the pilot spawn without outfits. Defaults to false.</li>
- *  <li>"noequip" (boolean): Whether or not to skip the equip script (and use the ship's default outfits). Defaults to false.</li>
+ *    <li>"ai" (string): AI to give the pilot. Defaults to the faction's
+ *       AI.</li>
+ *    <li>"naked" (boolean): Whether or not to have the pilot spawn
+ *       without outfits. Defaults to false.</li>
+ *    <li>"noequip" (boolean): Whether or not to skip the equip script
+ *       (and use the ship's default outfits). Defaults to false.</li>
  * </ul>
  * <br/>
  *
- * @usage p = pilot.add( "Empire Shark", nil, "Empire" ) -- Creates a standard Empire Shark.
- * @usage p = pilot.add( "Hyena", "Pirate", _("Pirate Hyena") ) -- Just adds the pilot (will jump in or take off).
- * @usage p = pilot.add( "Llama", "Trader", nil, _("Trader Llama"), {ai="dummy"} ) -- Overrides AI with dummy ai.
- * @usage p = pilot.add( "Gawain", "Civilian", vec2.new( 1000, 200 ) ) -- Pilot won't jump in, will just appear.
- * @usage p = pilot.add( "Empire Pacifier", "Empire", system.get("Goddard") ) -- Have the pilot jump in from the system.
- * @usage p = pilot.add( "Goddard", "Goddard", planet.get("Zhiru") , _("Goddard Goddard") ) -- Have the pilot take off from a planet.
+ * @usage p = pilot.add("Empire Shark", nil, "Empire") -- Creates a standard Empire Shark.
+ * @usage p = pilot.add("Hyena", "Pirate", _("Pirate Hyena")) -- Just adds the pilot (will jump in or take off).
+ * @usage p = pilot.add("Llama", "Trader", nil, _("Trader Llama"), {ai="dummy"}) -- Overrides AI with dummy ai.
+ * @usage p = pilot.add("Gawain", "Civilian", vec2.new( 1000, 200 )) -- Pilot won't jump in, will just appear.
+ * @usage p = pilot.add("Empire Pacifier", "Empire", system.get("Goddard")) -- Have the pilot jump in from the system.
+ * @usage p = pilot.add("Goddard", "Goddard", planet.get("Zhiru") , _("Goddard Goddard")) -- Have the pilot take off from a planet.
  *
  *    @luatparam string shipname Name of the ship to add.
  *    @luatparam Faction faction Faction to give the pilot.
- *    @luatparam System|Planet param Position to create pilot at, if it's a system it'll try to jump in from that system, if it's
- *              a planet it'll try to take off from it.
- *    @luatparam[opt] string pilotname Name to give the pilot. Defaults to shipname.
- *    @luatparam[opt] table parameters Table of extra keyword arguments. See above for supported arguments.
+ *    @luatparam[opt] System|Planet|vec2|boolean source Where to create
+ *       the pilot; see above for a complete explanation.
+ *    @luatparam[opt] string pilotname Name to give the pilot. Defaults
+ *       to shipname.
+ *    @luatparam[opt] table parameters Table of extra keyword arguments.
+ *       See above for supported arguments.
  *    @luatreturn Pilot The created pilot.
  * @luafunc add
  */

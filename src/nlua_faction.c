@@ -556,12 +556,43 @@ static int factionL_setknown( lua_State *L )
 /**
  * @brief Adds a faction dynamically.
  *
- * @note Defaults to known.
+ * If "base" is non-nil, the following is copied from the base
+ * faction:<br/>
+ * <ul>
+ *    <li>The faction's default AI, unless another is specified by the
+ *       "ai" argument.</li>
+ *    <li>The faction's allies, unless cleared by the "clear_allies"
+ *       argument.</li>
+ *    <li>The faction's enemies, unless cleared by the "clear_enemies"
+ *       argument.</li>
+ *    <li>The faction's logo.</li>
+ *    <li>The faction's player standing.</li>
+ *    <li>The faction's color.</li>
+ *    <li>The faction's equip script.</li>
+ * </ul>
  *
- *    @luatparam Faction base Faction to base it off of or nil for new faction.
+ * Arguments that can be passed to the "params" parameter:<br/>
+ * <ul>
+ *    <li>"ai" (string): Default AI to give to pilots of the faction.
+ *       This should be considered required if not basing the faction on
+ *       another faction, as creating a pilot with no AI can lead to
+ *       weird results.</li>
+ *    <li>"clear_allies" (boolean): Whether or not to clear all allies
+ *       from the faction on creation (useful only if basing the faction
+ *       on another faction).</li>
+ *    <li>"clear_enemies" (boolean): Whether or not to clear all enemies
+ *       from the faction on creation (useful only if basing the faction
+ *       on another faction).</li>
+ * </ul>
+ *
+ * @note Created faction is known by default.
+ *
+ *    @luatparam Faction base Faction to base it off of or nil for no
+ *       base faction.
  *    @luatparam string name Name to give the faction.
  *    @luatparam[opt] string display Display name to give the faction.
- *    @luatparam[opt] table params Table of parameters.
+ *    @luatparam[opt] table params Table of extra keyword arguments. See
+ *       above for supported arguments.
  * @luafunc dynAdd
  */
 static int factionL_dynAdd( lua_State *L )
