@@ -181,7 +181,7 @@ const char *ship_existsCase( const char* name );
 const Ship* ship_getAll (void);
 credits_t ship_basePrice( const Ship* s );
 credits_t ship_buyPrice( const Ship* s );
-glTexture* ship_loadCommGFX( Ship* s );
+glTexture* ship_loadCommGFX( const Ship* s );
 
 
 /*
