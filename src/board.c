@@ -340,7 +340,7 @@ static void board_stealAmmo( unsigned int wdw, char* str )
      Pilot* p;
      int nreloaded, i, nammo, x;
      PilotOutfitSlot *target_outfit_slot, *player_outfit_slot;
-     Outfit *target_outfit, *ammo, *player_outfit;
+     const Outfit *target_outfit, *ammo, *player_outfit;
      (void)str;
      nreloaded = 0;
      p = pilot_get(player.p->target);
@@ -473,7 +473,7 @@ static void board_update( unsigned int wdw )
    char cred[ECON_CRED_STRLEN];
    Pilot *p;
    PilotOutfitSlot *target_outfit_slot;
-   Outfit *target_outfit, *ammo;
+   const Outfit *target_outfit, *ammo;
    int nammo;
    char **outfit_names = NULL;
    int noutfit_names;

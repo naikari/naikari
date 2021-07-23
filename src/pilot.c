@@ -3443,7 +3443,7 @@ double pilot_reldps( const Pilot* cur_pilot, const Pilot* p )
    double DPSaccum_target = 0.;
    double DPSaccum_pilot = 0.;
    double delay_cache, damage_cache;
-   Outfit *o;
+   const Outfit *o;
    const Damage *dmg;
 
    for (i=0; i<array_size(p->outfit_weapon); i++) {
