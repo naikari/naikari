@@ -649,7 +649,7 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
 /**
  * @brief Adds a fleet to the system.
  *
- * Legacy fleet spawning function. Do not use in new code.
+ * Deprecated. Do not use in new code.
  *
  *    @luatparam string fleetname Name of the fleet to add.
  *    @luatparam[opt] System|Planet|vec2|boolean source See pilot.add.
