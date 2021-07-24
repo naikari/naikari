@@ -556,7 +556,7 @@ static void info_openWeapons( unsigned int wid )
          "chkAutoweap", _("Automatically handle weapons"), weapons_autoweap, player.p->autoweap );
    y -= 25;
    window_addCheckbox( wid, 220, y, wlen, 20,
-         "chkHelper", _("Dogfight aiming helper"), aim_lines, player.p->aimLines );
+         "chkHelper", _("Aiming helper"), aim_lines, player.p->aimLines );
 
    /* List. Has to be generated after checkboxes. */
    weapons_genList( wid );
