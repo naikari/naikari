@@ -443,7 +443,7 @@ static void map_update( unsigned int wid )
    int i;
    StarSystem *sys;
    int f, h, x, y, logow, logoh;
-   unsigned int services;
+   unsigned int services_u, services_f, services_n, services_r, services_h;
    int hasPlanets;
    char t;
    const char *sym;
@@ -644,16 +644,45 @@ static void map_update( unsigned int wid )
    /* Get the services */
    window_moveWidget( wid, "txtSServices", x, y );
    window_moveWidget( wid, "txtServices", x + 50, y-gl_smallFont.h-5 );
-   services = 0;
+   services_u = 0;
+   services_f = 0;
+   services_n = 0;
+   services_r = 0;
+   services_h = 0;
    for (i=0; i<array_size(sys->planets); i++)
-      if (planet_isKnown(sys->planets[i]))
-         services |= sys->planets[i]->services;
+      if (planet_isKnown(sys->planets[i])) {
+         if (!planet_hasService(sys->planets[i], PLANET_SERVICE_INHABITED))
+            services_u |= sys->planets[i]->services;
+         else if (sys->planets[i]->can_land) {
+            if (areAllies(FACTION_PLAYER, sys->planets[i]->faction))
+               services_f |= sys->planets[i]->services;
+            else
+               services_n |= sys->planets[i]->services;
+         }
+         else if (areEnemies(FACTION_PLAYER, sys->planets[i]->faction))
+            services_h |= sys->planets[i]->services;
+         else
+            services_r |= sys->planets[i]->services;
+      }
    buf[0] = '\0';
    p = 0;
    /*snprintf(buf, sizeof(buf), "%f\n", sys->prices[0]);*/ /*Hack to control prices. */
    for (i=PLANET_SERVICE_LAND; i<PLANET_SERVICES_MAX; i<<=1)
-      if (services & i)
-         p += scnprintf( &buf[p], sizeof(buf)-p, "%s\n", _(planet_getServiceName(i)) );
+      if (services_f & i)
+         p += scnprintf(&buf[p], sizeof(buf)-p, "#F+ %s#0\n",
+               _(planet_getServiceName(i)));
+      else if (services_n & i)
+         p += scnprintf(&buf[p], sizeof(buf)-p, "#N~ %s#0\n",
+               _(planet_getServiceName(i)));
+      else if (services_u & i)
+         p += scnprintf(&buf[p], sizeof(buf)-p, "#I= %s#0\n",
+               _(planet_getServiceName(i)));
+      else if (services_r & i)
+         p += scnprintf(&buf[p], sizeof(buf)-p, "#R* %s#0\n",
+               _(planet_getServiceName(i)));
+      else if (services_h & i)
+         p += scnprintf(&buf[p], sizeof(buf)-p, "#H!! %s#0\n",
+               _(planet_getServiceName(i)));
    if (buf[0] == '\0')
       p += scnprintf( &buf[p], sizeof(buf)-p, _("None"));
    (void)p;
