@@ -89,6 +89,7 @@ typedef struct ShipTrailEmitter_ {
    double y_engine;   /**< Offset y. */
    double h_engine;   /**< Offset z. */
    unsigned int always_under; /**< Should this trail be always drawn under the ship? */
+   unsigned int always_over; /**< Should this trail be always drawn over the ship? */
    const TrailSpec* trail_spec; /**< Trail type to emit. */
 } ShipTrailEmitter;
 
