@@ -526,12 +526,14 @@ function renderWeapBar( weapon, x, y )
 
          if weapon.type == "Bolt Cannon" or weapon.type == "Bolt Turret" then
             bottom_icon = icon_projectile
-         elseif weapon.type == "Beam Cannon" or weapon.type == "Beam Turret" then
+         elseif weapon.type == "Beam" or weapon.type == "Turret Beam" then
             bottom_icon = icon_beam
          elseif weapon.type == "Launcher" or weapon.type == "Turret Launcher" then
             bottom_icon = icon_missile
          elseif weapon.type == "Fighter Bay" then
             bottom_icon = icon_ship
+         else
+            bottom_icon = icon_projectile
          end
 
          top_icon_w, top_icon_h = top_icon:dim()
