@@ -872,6 +872,10 @@ credits_t player_modCredits( credits_t amount )
 void player_render( double dt )
 {
    double a, b, d, x1, y1, x2, y2, r, theta;
+   double dist;
+   int i;
+   int inrange;
+   const Outfit *o;
    glColour c;
    Pilot *target;
 
@@ -895,42 +899,75 @@ void player_render( double dt )
       if ((player.p->target != PLAYER_ID) && player.p->aimLines) {
          target = pilot_get(player.p->target);
          if (target != NULL) {
-            a = player.p->solid->dir;
             r = 200.;
             gl_gameToScreenCoords( &x1, &y1, player.p->solid->pos.x, player.p->solid->pos.y );
 
             b = pilot_aimAngle( player.p, target );
+            a = b;
 
-            theta = 22*M_PI/180;
+            dist = vect_dist(&player.p->solid->pos, &target->solid->pos);
+            inrange = 0;
 
-            /* The angular error will give the exact colour that is used. */
-            d = ABS( angle_diff(a,b) / (2*theta) );
-            d = MIN( 1, d );
+            theta = 2*M_PI;
 
-            c = cInert;
-            c.a = .3;
-            gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a+theta ),
-                                   player.p->solid->pos.y + r*sin( a+theta ) );
-            gl_drawLine( x1, y1, x2, y2, &c );
-            gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a-theta ),
-                                   player.p->solid->pos.y + r*sin( a-theta ) );
-            gl_drawLine( x1, y1, x2, y2, &c );
+            for (i=0; i<array_size(player.p->outfit_weapon); i++) {
+               o = player.p->outfit_weapon[i].outfit;
 
-            c.r = d*.9;
-            c.g = d*.2 + (1-d)*.8;
-            c.b = (1-d)*.2;
-            c.a = 0.9;
-            gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a ),
-                                   player.p->solid->pos.y + r*sin( a ) );
+               if (o == NULL)
+                  continue;
 
-            gl_drawLine( x1, y1, x2, y2, &c );
+               if (outfit_range(o) < dist)
+                  continue;
 
-            gl_renderCross( x2 - 1, y2 - 1, 6., &cBlack );
-            gl_renderCross( x2 - 1, y2 + 1, 6., &cBlack );
-            gl_renderCross( x2 + 1, y2 - 1, 6., &cBlack );
-            gl_renderCross( x2 + 1, y2 + 1, 6., &cBlack );
-            gl_renderCross( x2, y2, 7., &cBlack );
-            gl_renderCross( x2, y2, 6., &cWhite );
+               inrange = 1;
+
+               if (outfit_isTurret(o))
+                  continue;
+
+               if (outfit_isBolt(o))
+                  theta = MIN(theta, o->u.blt.swivel);
+               else if (outfit_isBeam(o))
+                  theta = MIN(theta, o->u.bem.swivel);
+               else if (outfit_isLauncher(o))
+                  theta = MIN(theta, MAX(o->u.lau.swivel, o->u.lau.arc));
+            }
+
+            //theta = 22*M_PI/180;
+
+            if (theta < 2*M_PI) {
+               a = player.p->solid->dir;
+
+               /* The angular error will give the exact colour that is used. */
+               d = ABS( angle_diff(a,b) / (2*theta) );
+               d = MIN( 1, d );
+
+               c = cInert;
+               c.a = .3;
+               gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a+theta ),
+                                      player.p->solid->pos.y + r*sin( a+theta ) );
+               gl_drawLine( x1, y1, x2, y2, &c );
+               gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a-theta ),
+                                      player.p->solid->pos.y + r*sin( a-theta ) );
+               gl_drawLine( x1, y1, x2, y2, &c );
+            }
+
+            if (inrange) {
+               c.r = d*.9;
+               c.g = d*.2 + (1-d)*.8;
+               c.b = (1-d)*.2;
+               c.a = 0.9;
+               gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a ),
+                                      player.p->solid->pos.y + r*sin( a ) );
+
+               gl_drawLine( x1, y1, x2, y2, &c );
+
+               gl_renderCross( x2 - 1, y2 - 1, 6., &cBlack );
+               gl_renderCross( x2 - 1, y2 + 1, 6., &cBlack );
+               gl_renderCross( x2 + 1, y2 - 1, 6., &cBlack );
+               gl_renderCross( x2 + 1, y2 + 1, 6., &cBlack );
+               gl_renderCross( x2, y2, 7., &cBlack );
+               gl_renderCross( x2, y2, 6., &cWhite );
+            }
 
             gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( b ),
                                    player.p->solid->pos.y + r*sin( b ) );
