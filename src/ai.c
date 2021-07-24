@@ -975,7 +975,8 @@ static void ai_create( Pilot* pilot )
    if (!pilot_isFlag(pilot,PILOT_NO_OUTFITS)
          && !pilot_isFlag(pilot,PILOT_NO_EQUIP)
          && (aiL_status==AI_STATUS_CREATE)
-         && !pilot_isFlag(pilot, PILOT_EMPTY)) {
+         && !pilot_isFlag(pilot, PILOT_EMPTY)
+         && (pilot->id != PLAYER_ID)) {
       if  (faction_getEquipper( pilot->faction ) != LUA_NOREF) {
          env = faction_getEquipper( pilot->faction );
          func = "equip";

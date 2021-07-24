@@ -40,18 +40,7 @@ end
 function create()
    local pp = player.pilot()
    pp:rename(name()) -- Assign a random name to the player's ship.
-   pp:cargoRm("__all")
-   pp:rmOutfit("cores")
-   pp:rmOutfit("all")
-   pp:addOutfit("Unicorp PT-18 Core System")
-   pp:addOutfit("Nexus Dart 150 Engine")
-   pp:addOutfit("Unicorp D-2 Light Plating")
    pp:addOutfit("Laser Cannon MK1", 2)
-
-   pp:setTemp(0)
-   pp:setHealth(100, 100)
-   pp:setEnergy(100)
-   pp:setFuel(true)
 
    jump.setKnown("Hakoi", "Eneguoz")
    var.push("player_formation", "circle")
