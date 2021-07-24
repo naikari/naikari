@@ -31,11 +31,8 @@ require "missions/empire/common"
 
 bar_desc = _("Lieutenant Czesc from the Empire Armada Shipping Division is sitting at the bar.")
 misn_title = _("Soromid Long Distance Recruitment")
-misn_desc = _("Deliver a shipping diplomat for the Empire to Soromid Customs Central in the Oberon system")
-title = {}
-title[1] = _("Spaceport Bar")
-title[2] = _("Soromid Long Distance Recruitment")
-title[3] = _("Mission Accomplished")
+misn_desc = _("Land on Soromid Customs Central (Oberon system) to deliver a shipping diplomat")
+
 text = {}
 text[1] = _([[You approach Lieutenant Czesc. His demeanor brightens as he sees you. "Hello! I've been looking for you. You've done a great job with those Empire Shipping missions and we have a new exciting opportunity. You see, the head office is looking to expand business with other factions, which has enormous untapped business potential. They need someone competent and trustworthy to help them out. That's where you come in. Interested?"]])
 text[2] = _([["I knew I could count on you," Lieutenant Czesc exclaims. "These missions will be long distance, meaning that you'll usually have to go at least 3 jumps to make the delivery. In addition, you'll often find yourself in the territory of other factions, where the Empire may not be able to protect you. In return, you will be nicely compensated." He hits a couple buttons on his wrist computer. "First, we need to set up operations with the other factions. We'll need a bureaucrat to handle the red tape and oversee the operations. We will begin with the Soromid. I know those genetically modified beings are kind of creepy, but business is business. Please accompany a bureaucrat to Soromid Customs Central in the Oberon system. He will report back to me when this mission is accomplished. I tend to travel within Empire space handling minor trade disputes, so keep an eye out for me in the bar on Empire controlled planets."]])
@@ -55,19 +52,19 @@ function create ()
    targetworld = planet.get("Soromid Customs Central")
 
 
-   misn.setNPC( _("Lieutenant"), "empire/unique/czesc.png", bar_desc )
+   misn.setNPC(_("Lieutenant"), "empire/unique/czesc.png", bar_desc)
 end
 
 
 function accept ()
    -- Set marker to a system, visible in any mission computer and the onboard computer.
-   misn.markerAdd( targetworld_sys, "low")
+   misn.markerAdd(targetworld_sys, "low")
    ---Intro Text
-   if not tk.yesno( title[1], text[1] ) then
+   if not tk.yesno("", text[1]) then
       misn.finish()
    end
    -- Flavour text and mini-briefing
-   tk.msg( title[2], text[2] )
+   tk.msg("", text[2])
    ---Accept the mission
    misn.accept()
   
@@ -75,23 +72,23 @@ function accept ()
    reward = 500000 -- 500K
    misn.setTitle(misn_title)
    misn.setReward(creditstring(reward))
-   misn.setDesc( string.format( misn_desc, targetworld:name(), targetworld_sys:name() ) )
-   misn.osdCreate(title[2], {misn_desc})
+   misn.setDesc(string.format(misn_desc, targetworld:name(), targetworld_sys:name()))
+   misn.osdCreate("", {misn_desc})
    -- Set up the goal
    hook.land("land")
-   person = misn.cargoAdd( "Person" , 0 )
+   person = misn.cargoAdd("Person" , 0)
 end
 
 
 function land()
 
    if planet.cur() == targetworld then
-         misn.cargoRm( person )
-         player.pay( reward )
+         misn.cargoRm(person)
+         player.pay(reward)
          -- More flavour text
-         tk.msg( title[3], text[3] )
-         faction.modPlayerSingle( "Empire",3 )
-         emp_addShippingLog( log_text )
+         tk.msg("", text[3])
+         faction.modPlayerSingle("Empire",3)
+         emp_addShippingLog(log_text)
          misn.finish(true)
    end
 end

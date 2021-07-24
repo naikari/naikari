@@ -1,22 +1,22 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Dvaered Long Distance Recruitment">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>4</priority>
-   <cond>faction.playerStanding("Empire") &gt;= 0</cond>
-   <chance>75</chance>
-   <done>Soromid Long Distance Recruitment</done>   
-   <location>Bar</location>
-   <faction>Empire</faction>
-  </avail>
-  <notes>
-   <campaign>Empire Shipping</campaign>
-  </notes>
- </mission> 
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>4</priority>
+  <cond>faction.playerStanding("Empire") &gt;= 0</cond>
+  <chance>75</chance>
+  <done>Soromid Long Distance Recruitment</done>   
+  <location>Bar</location>
+  <faction>Empire</faction>
+ </avail>
+ <notes>
+  <campaign>Empire Shipping</campaign>
+ </notes>
+</mission> 
+--]]
 --[[
 
    Second diplomatic mission to Dvaered space that opens up the Empire long-distance cargo missions.
@@ -31,11 +31,8 @@ require "missions/empire/common"
 
 bar_desc = _("Lieutenant Czesc from the Empire Armada Shipping Division is sitting at the bar.")
 misn_title = _("Dvaered Long Distance Recruitment")
-misn_desc = _("Deliver a shipping diplomat for the Empire to Praxis in the Ogat system")
-title = {}
-title[1] = _("Spaceport Bar")
-title[2] = _("Dvaered Long Distance Recruitment")
-title[3] = _("Mission Accomplished")
+misn_desc = _("Land on Praxis (Ogat system) to deliver a shipping diplomat")
+
 text = {}
 text[1] = _([[Lieutenant Czesc waves you over when he notices you enter the bar. "I knew we would run into each other soon enough. Great job delivering that bureaucrat. We should be up and running in Soromid space in no time!" He presses a button on his wrist computer. "We're hoping to expand to Dvaered territory next. Can I count on your help?"]])
 text[2] = _([["Great!" says Lieutenant Czesc. "I'll send a message to the bureaucrat to meet you at the hanger. The Dvaered are, of course, allies of the Empire. Still, they offend easily, so try not to talk too much. Your mission is to drop the bureaucrat off on Praxis in the Ogat system. He will take it from there and report back to me when the shipping contract has been confirmed. Afterwards, keep an eye out for me in Empire space and we can continue the operation."]])
@@ -55,19 +52,19 @@ function create ()
    targetworld = planet.get("Praxis")
 
 
-   misn.setNPC( _("Lieutenant"), "empire/unique/czesc.png", bar_desc )
+   misn.setNPC(_("Lieutenant"), "empire/unique/czesc.png", bar_desc)
 end
 
 
 function accept ()
    -- Set marker to a system, visible in any mission computer and the onboard computer.
-   misn.markerAdd( targetworld_sys, "low")
+   misn.markerAdd(targetworld_sys, "low")
    ---Intro Text
-   if not tk.yesno( title[1], text[1] ) then
+   if not tk.yesno("", text[1]) then
       misn.finish()
    end
    -- Flavour text and mini-briefing
-   tk.msg( title[2], text[2] )
+   tk.msg("", text[2])
    ---Accept the mission
    misn.accept()
   
@@ -75,23 +72,23 @@ function accept ()
    reward = 500000 -- 500K
    misn.setTitle(misn_title)
    misn.setReward(creditstring(reward))
-   misn.setDesc( string.format( misn_desc, targetworld:name(), targetworld_sys:name() ) )
-   misn.osdCreate(title[2], {misn_desc})
+   misn.setDesc(string.format(misn_desc, targetworld:name(), targetworld_sys:name()))
+   misn.osdCreate("", {misn_desc})
    -- Set up the goal
    hook.land("land")
-   person = misn.cargoAdd( "Person" , 0 )
+   person = misn.cargoAdd("Person" , 0)
 end
 
 
 function land()
 
    if planet.cur() == targetworld then
-         misn.cargoRm( person )
-         player.pay( reward )
+         misn.cargoRm(person)
+         player.pay(reward)
          -- More flavour text
-         tk.msg( title[3], text[3] )
-         faction.modPlayerSingle( "Empire",3 )
-         emp_addShippingLog( log_text )
+         tk.msg("", text[3])
+         faction.modPlayerSingle("Empire",3)
+         emp_addShippingLog(log_text)
          misn.finish(true)
    end
 end

@@ -1,22 +1,22 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Sirius Long Distance Recruitment">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>4</priority>
-   <cond>faction.playerStanding("Empire") &gt;= 0</cond>
-   <chance>75</chance>
-   <done>Frontier Long Distance Recruitment</done>   
-   <location>Bar</location>
-   <faction>Empire</faction>
-  </avail>
-  <notes>
-   <campaign>Empire Shipping</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>4</priority>
+  <cond>faction.playerStanding("Empire") &gt;= 0</cond>
+  <chance>75</chance>
+  <done>Frontier Long Distance Recruitment</done>   
+  <location>Bar</location>
+  <faction>Empire</faction>
+ </avail>
+ <notes>
+  <campaign>Empire Shipping</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 
    Fifth diplomatic mission to Sirius space that opens up the Empire long-distance cargo missions.
@@ -31,11 +31,8 @@ require "missions/empire/common"
 
 bar_desc = _("Lieutenant Czesc from the Empire Armada Shipping Division is sitting at the bar.")
 misn_title = _("Sirius Long Distance Recruitment")
-misn_desc = _("Deliver a shipping diplomat for the Empire to Madria in the Esker system")
-title = {}
-title[1] = _("Spaceport Bar")
-title[2] = _("Sirius Long Distance Recruitment")
-title[3] = _("Mission Accomplished")
+misn_desc = _("Land on Madria (Esker system) to deliver a shipping diplomat")
+
 text = {}
 text[1] = _([[Lieutenant Czesc approaches as you enter the bar. "If it isn't my favorite Empire Armada employee. We're on track to establish a deal with House Sirius. This should be the last contract to be negotiated. Ready to go?"]])
 text[2] = _([["You know how this goes by now." says Lieutenant Czesc, "Drop the bureaucrat off at Madria in the Esker system. Sirius space is quite a distance, so be prepared for anything. Afterwards, come find me one more time and we'll finalize the paperwork to get you all set up for these missions."]])
@@ -54,19 +51,19 @@ function create ()
    targetworld_sys = system.get("Esker")
    targetworld = planet.get("Madria")
 
-   misn.setNPC( _("Lieutenant"), "empire/unique/czesc.png", bar_desc )
+   misn.setNPC(_("Lieutenant"), "empire/unique/czesc.png", bar_desc)
 end
 
 
 function accept ()
    -- Set marker to a system, visible in any mission computer and the onboard computer.
-   misn.markerAdd( targetworld_sys, "low")
+   misn.markerAdd(targetworld_sys, "low")
    ---Intro Text
-   if not tk.yesno( title[1], text[1] ) then
+   if not tk.yesno("", text[1]) then
       misn.finish()
    end
    -- Flavour text and mini-briefing
-   tk.msg( title[2], text[2] )
+   tk.msg("", text[2])
    ---Accept the mission
    misn.accept()
   
@@ -74,23 +71,23 @@ function accept ()
    reward = 500000 -- 500K
    misn.setTitle(misn_title)
    misn.setReward(creditstring(reward))
-   misn.setDesc( string.format( misn_desc, targetworld:name(), targetworld_sys:name() ) )
-   misn.osdCreate(title[2], {misn_desc})
+   misn.setDesc(string.format(misn_desc, targetworld:name(), targetworld_sys:name()))
+   misn.osdCreate("", {misn_desc})
    -- Set up the goal
    hook.land("land")
-   person = misn.cargoAdd( "Person" , 0 )
+   person = misn.cargoAdd("Person", 0)
 end
 
 
 function land()
 
    if planet.cur() == targetworld then
-         misn.cargoRm( person )
-         player.pay( reward )
+         misn.cargoRm(person)
+         player.pay(reward)
          -- More flavour text
-         tk.msg( title[3], text[3] )
-         faction.modPlayerSingle( "Empire",3 )
-         emp_addShippingLog( log_text )
+         tk.msg("", text[3])
+         faction.modPlayerSingle("Empire", 3)
+         emp_addShippingLog(log_text)
          misn.finish(true)
    end
 end

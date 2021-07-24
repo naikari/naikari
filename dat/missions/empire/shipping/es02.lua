@@ -38,18 +38,15 @@
 
 require "numstring"
 require "missions/empire/common"
+require "events/tutorial/tutorial_common"
 
 -- Mission details
 bar_desc = _("Commander Soldner is waiting for you.")
 misn_title = _("Empire VIP Rescue")
 misn_desc = {}
-misn_desc[1] = _("Rescue the VIP from a transport ship in the %s system")
+misn_desc[1] = _("Board the transport ship in the %s system to rescue the VIP")
 misn_desc[2] = _("Land on %s (%s system) with the VIP")
--- Fancy text messages
-title = {}
-title[1] = _("Commander Soldner")
-title[2] = _("Disabled Ship")
-title[3] = _("Mission Success")
+
 text = {}
 text[1] = _([[You meet up once more with Commander Soldner at the bar.
 
@@ -62,6 +59,13 @@ text[4] = _([[The ship's hatch opens and immediately an unconscious VIP is broug
 text[5] = _([[You land at the starport. It looks like the VIP has already recovered. He thanks you profusely before heading off. You proceed to pay Commander Soldner a visit. He seems to be happy, for once.
 
 "It seems like you managed to pull it off. I had my doubts at first, but you've proven to be a very skilled pilot. We have nothing more for you now, but check in periodically in case something comes up for you."]])
+
+btutorial_text = _([[As you enter the %s system and prepare to rescue the VIP, Captain T. Practice butts in on your view screen. "This is a dangerous situation, %s, I know, but I can't help but notice you've taken a mission that requires you to #bboard#0 a ship, so I'd like to go over how to do that real quick.
+
+"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board. However, some missions allow you to board certain ships without disabling them. As it happens, this is one of those missions; the target you need to board is already disabled. Once a ship is disabled or otherwise can be boarded, you can do so by stopping over the ship, then either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes, like in this mission, it can trigger special mission events instead (in this case, you must rescue the Empire's VIP by boarding the transport ship).
+
+"That's all. Good luck on the rescue!"]])
+
 msg = {}
 msg[1] = _("MISSION FAILED: VIP is dead.")
 msg[2] = _("MISSION FAILED: You abandoned the VIP.")
@@ -71,25 +75,25 @@ log_text_success = _([[You successfully rescued a VIP for the Empire.]])
 
 function create ()
    -- Target destination
-   destsys     = system.get( "Slaccid" )
-   ret,retsys  = planet.getLandable( "Halir" )
+   destsys     = system.get("Slaccid")
+   ret,retsys  = planet.getLandable("Halir")
    if ret== nil then
       misn.finish(false)
    end
 
    -- Must claim system
-   if not misn.claim( destsys ) then
+   if not misn.claim(destsys) then
       misn.finish(false)
    end
 
    -- Add NPC.
-   misn.setNPC( _("Soldner"), "empire/unique/soldner.png", bar_desc )
+   misn.setNPC(_("Soldner"), "empire/unique/soldner.png", bar_desc)
 end
 
 
 function accept ()
    -- Intro text
-   if not tk.yesno( title[1], string.format( text[1], player.name() ) ) then
+   if not tk.yesno("", string.format(text[1], player.name())) then
       misn.finish()
    end
 
@@ -97,18 +101,18 @@ function accept ()
    misn.accept()
 
    -- Set marker
-   misn_marker = misn.markerAdd( destsys, "low" )
+   misn_marker = misn.markerAdd(destsys, "low")
 
    -- Mission details
    misn_stage = 0
    reward = 750e3
    misn.setTitle(misn_title)
-   misn.setReward( creditstring(reward) )
-   misn.setDesc( string.format( misn_desc[1], destsys:name() ) )
+   misn.setReward(creditstring(reward))
+   misn.setDesc(string.format(misn_desc[1], destsys:name()))
 
    -- Flavour text and mini-briefing
-   tk.msg( title[1], string.format( text[2], destsys:name(), destsys:name() ) )
-   tk.msg( title[1], string.format( text[3], creditstring(reward) ) )
+   tk.msg("", string.format(text[2], destsys:name(), destsys:name()))
+   tk.msg("", string.format(text[3], creditstring(reward)))
    misn.osdCreate(misn_title, {misn_desc[1]:format(destsys:name())})
    -- Set hooks
    hook.land("land")
@@ -132,14 +136,14 @@ function land ()
 
          -- Rewards
          player.pay(reward)
-         emp_modReputation( 5 ) -- Bump cap a bit
+         emp_modReputation(5) -- Bump cap a bit
          faction.modPlayerSingle("Empire",5);
          faction.modPlayerSingle("Dvaered",5);
 
          -- Flavour text
-         tk.msg( title[3], text[5] )
+         tk.msg("", text[5])
 
-         emp_addShippingLog( log_text_success )
+         emp_addShippingLog(log_text_success)
 
          misn.finish(true)
       end
@@ -152,48 +156,51 @@ function enter ()
 
    if misn_stage == 0 and sys == destsys then
       -- Force FLF combat music (note: must clear this later on).
-      var.push( "music_combat_force", "FLF" )
+      var.push("music_combat_force", "FLF")
 
       -- Put the VIP a ways off of the player but near the jump.
       enter_vect = jump.pos(sys, prevsys)
       m,a = enter_vect:polar()
-      enter_vect:setP( m-3000, a )
-      v = pilot.add( "Gawain", "Trader", enter_vect, _("Trader Gawain"), {ai="dummy"} )
+      enter_vect:setP(m-3000, a)
+      v = pilot.add("Gawain", "Trader", enter_vect, _("Trader Gawain"), {ai="dummy"})
 
-      v:setPos( enter_vect )
-      v:setVel( vec2.new( 0, 0 ) ) -- Clear velocity
+      v:setPos(enter_vect)
+      v:setVel(vec2.new(0, 0)) -- Clear velocity
       v:disable()
       v:setHilight(true)
       v:setVisplayer(true)
-      v:setFaction( "Empire" )
+      v:setFaction("Empire")
       v:rename(_("VIP"))
-      hook.pilot( v, "board", "board" )
-      hook.pilot( v, "death", "death" )
+      hook.pilot(v, "board", "board")
+      hook.pilot(v, "death", "death")
 
       -- FLF Spawn around the Gawain
-      p = pilot.addFleet( "FLF Med Force", enter_vect )
+      p = pilot.addFleet("FLF Med Force", enter_vect)
       for k,v in ipairs(p) do
          v:setHostile()
       end
       -- To make it more interesting a vendetta will solely target the player.
-      p = pilot.add( "Vendetta", "FLF", enter_vect , _("FLF Vendetta") )
+      p = pilot.add("Vendetta", "FLF", enter_vect , _("FLF Vendetta"))
       p:setHostile()
       -- If player is seen, have them target player
       local pp = player.pilot()
-      if p:inrange( pp ) then
+      if p:inrange(pp) then
          p:control()
-         p:attack( pp )
+         p:attack(pp)
       end
       
       -- Now Dvaered
       -- They will jump together with you in the system at the jump point. (A.)
-      p = pilot.addFleet( "Dvaered Med Force", prevsys )
+      p = pilot.addFleet("Dvaered Med Force", prevsys)
       for k,v in ipairs(p) do
          v:setFriendly()
       end
 
+      -- Tutorial timer
+      tuthook = hook.timer(1000, "tutorial_timer")
+
       -- Add more ships on a timer to make this messy
-      hook.timer(rnd.rnd( 3000, 5000 ) , "delay_flf")
+      hook.timer(rnd.rnd(3000, 5000) , "delay_flf")
 
       -- Pass to next stage
       misn_stage = 1
@@ -201,19 +208,30 @@ function enter ()
    -- Can't run away from combat
    elseif misn_stage == 1 then
       -- Notify of mission failure
-      player.msg( msg[2] )
-      var.pop( "music_combat_force" )
+      player.msg(msg[2])
+      var.pop("music_combat_force")
       misn.finish(false)
    end
 end
 
 
+function tutorial_timer ()
+   if tuthook ~= nil then hook.rm(tuthook) end
+
+   tutExplainBoarding(btutorial_text:format(
+            system.cur():name(), player.name(), tutGetKey("target_next"),
+            tutGetKey("board")))
+end
+
+
 function jumpout ()
+   if tuthook ~= nil then hook.rm(tuthook) end
+
    -- Storing the system the player jumped from.
    prevsys = system.cur()
 
    if prevsys == destsys then
-      var.pop( "music_combat_force" )
+      var.pop("music_combat_force")
    end
 end
 
@@ -224,7 +242,7 @@ function delay_flf ()
    end
 
    -- More ships to pressure player from behind
-   p = pilot.addFleet( "FLF Sml Force", prevsys )
+   p = pilot.addFleet("FLF Sml Force", prevsys)
    for k,v in ipairs(p) do
       v:setHostile()
    end
@@ -233,13 +251,13 @@ end
 
 function board ()
    -- VIP boards
-   vip = misn.cargoAdd( "VIP", 0 )
-   tk.msg( title[2], text[4] )
+   vip = misn.cargoAdd("VIP", 0)
+   tk.msg("", text[4])
 
    -- Update mission details
    misn_stage = 2
-   misn.markerMove( misn_marker, retsys )
-   misn.setDesc( string.format(misn_desc[2], ret:name(), retsys:name() ))
+   misn.markerMove(misn_marker, retsys)
+   misn.setDesc(string.format(misn_desc[2], ret:name(), retsys:name()))
    misn.osdCreate(misn_title, {misn_desc[2]:format(ret:name(),retsys:name())})
 
    -- Force unboard
@@ -250,8 +268,8 @@ end
 function death ()
    if misn_stage == 1 then
       -- Notify of death
-      player.msg( msg[1] )
-      var.pop( "music_combat_force" )
+      player.msg(msg[1])
+      var.pop("music_combat_force")
       misn.finish(false)
    end
 end
@@ -259,9 +277,9 @@ end
 
 function abort ()
    -- If aborted you'll also leave the VIP to fate. (A.)
-   player.msg( msg[2] )
+   player.msg(msg[2])
    if system.cur() == destsys then
-      var.pop( "music_combat_force" )
+      var.pop("music_combat_force")
    end
    misn.finish(false)
 end

@@ -28,6 +28,7 @@
 -- Localization, choosing a language if Naev is translated for non-english-speaking locales.
 
 require "numstring"
+require "events/tutorial/tutorial_common"
 
 
 text = {}
@@ -49,9 +50,9 @@ title[5] = _("You're grounded, young man")
 text[5] = _([[The boy's father awaits you at the spaceport. He gives his son and the young lady a stern look and curtly commands them to wait for him in the spaceport hall. The couple droops off, and the father turns to face you.
     "You've done me a service, captain," he says. "As promised, I have a reward for a job well done. You'll find it in your bank account. I'm going to give my son a reprimand he'll not soon forget, so hopefully he won't repeat this little stunt anytime soon. Well then, I must be going. Thank you again, and good luck on your travels."]])
 
-btutorial_text = _([[As you exit the atmosphere to search for the joyriding teenager, Captain T. Practice shows up on your screen once again. "I saw your mission log. Those teenagers sure can be a bother! Anyhow, you're going to need to disable and board the Credence to capture him, so please let me explain that real quick.
+btutorial_text = _([[As you exit the atmosphere to search for the joyriding teenager, Captain T. Practice shows up on your screen once again. "I saw your mission log. Those teenagers sure can be a bother! Anyhow, you're going to need to disable and #bboard#0 the Credence to capture him, so please let me explain that real quick.
 
-"To board a ship, you must use disabling weapons, such as ion cannons, to disable what you want to board. There are some missions and events that allow you to board certain ships without disabling them, but this isn't one of them, so I hope you have some good ion cannons or Medusa missiles! Anyway, once a ship is disabled or otherwise can be boarded, you can do so by stopping over the ship, then either double-clicking on it, or targeting it with %s and then pressing %s. In most cases, boarding you lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes, like in this mission, it can trigger special mission events instead (in this case, boarding the Credence will allow you to capture the troublesome teenagers).
+"To board a ship, you must use disabling weapons, such as ion cannons, to disable what you want to board. There are some missions and events that allow you to board certain ships without disabling them, but this isn't one of them, so I hope you have some good ion cannons or Medusa missiles! Anyway, once a ship is disabled or otherwise can be boarded, you can do so by stopping over the ship, then either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes, like in this mission, it can trigger special mission events instead (in this case, boarding the Credence will allow you to capture the troublesome teenagers).
 
 "Good luck on your mission!"]])
 
