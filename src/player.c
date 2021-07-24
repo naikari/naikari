@@ -872,7 +872,7 @@ credits_t player_modCredits( credits_t amount )
 void player_render( double dt )
 {
    double a, b, d, x1, y1, x2, y2, r, theta;
-   double dist;
+   double time;
    int i;
    int inrange;
    const Outfit *o;
@@ -905,7 +905,6 @@ void player_render( double dt )
             b = pilot_aimAngle( player.p, target );
             a = b;
 
-            dist = vect_dist(&player.p->solid->pos, &target->solid->pos);
             inrange = 0;
 
             theta = 2*M_PI;
@@ -915,8 +914,10 @@ void player_render( double dt )
 
                if (o == NULL)
                   continue;
-
-               if (outfit_range(o) < dist)
+               
+               time = pilot_weapFlyTime(o, player.p, &target->solid->pos,
+                     &target->solid->vel);
+               if (outfit_duration(o) < time)
                   continue;
 
                inrange = 1;
@@ -931,8 +932,6 @@ void player_render( double dt )
                else if (outfit_isLauncher(o))
                   theta = MIN(theta, MAX(o->u.lau.swivel, o->u.lau.arc));
             }
-
-            //theta = 22*M_PI/180;
 
             if (theta < 2*M_PI) {
                a = player.p->solid->dir;
