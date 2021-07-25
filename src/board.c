@@ -274,9 +274,13 @@ static void board_stealCargo( unsigned int wdw, char* str )
       q = round(player.p->stats.loot_mod * (double)p->commodities[0].quantity);
       if (q > 0) {
          q = pilot_cargoAdd(player.p, p->commodities[0].commodity, q, 0);
-         pilot_cargoRm(p, p->commodities[0].commodity, q);
+         pilot_cargoRm(p, p->commodities[0].commodity,
+               p->commodities[0].quantity);
       } else {
-         /* Reset just in case cargo existed in too small a quantity. */
+         /* Remove the cargo, but set q to 1 so that we don't stop
+          * looting cargo too early. */
+         pilot_cargoRm(p, p->commodities[0].commodity,
+               p->commodities[0].quantity);
          q = 1;
       }
    }
