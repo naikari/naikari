@@ -13,7 +13,7 @@ function idle ()
       local planet = ai.landplanet( mem.land_friendly )
       -- planet must exist.
       if planet == nil or mem.land_planet == false then
-         ai.settimer(0, rnd.int(1000, 3000))
+         ai.settimer(0, rnd.uniform(1, 3))
          ai.pushtask("enterdelay")
       else
          mem.land = planet:pos()
