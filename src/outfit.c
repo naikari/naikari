@@ -1787,7 +1787,7 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
 
    if (temp->cpu != 0)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
-            _("\n%+.0f CPU"), temp->cpu );
+            _("\n%+.0f TFLOPS CPU"), temp->cpu );
 
    if (temp->limit != NULL)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
