@@ -1279,9 +1279,11 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%.1f RPS Fire Rate\n"
          "%G km Range\n"
+         "%G km/s Speed\n"
          "%G s Heat Up"),
          1./temp->u.blt.delay,
          temp->u.blt.range,
+         temp->u.blt.speed,
          temp->u.blt.heatup);
    if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
