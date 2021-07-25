@@ -168,12 +168,21 @@ void equipment_rightClickOutfits( unsigned int wid, char* str )
    }
    /* Only fits in a single slot, so we might as well just swap it. */
    if (nfits==1) {
-      eq_wgt.outfit  = o;
-      p              = eq_wgt.selected;
-      /* We have to call once to remove, once to add. */
+      eq_wgt.outfit = NULL;
+      p = eq_wgt.selected;
+
       if (slots[minimal].outfit != NULL)
-         equipment_swapSlot( equipment_wid, p, &slots[minimal] );
-      equipment_swapSlot( equipment_wid, p, &slots[minimal] );
+         /* First unequip the existing outfit. */
+         equipment_swapSlot(equipment_wid, p, &slots[minimal]);
+
+      /* Have to set this here (after removing the outfit) since the
+       * image array can get offset by the returned outfit. Otherwise
+       * we'll swap in the wrong outfit. */
+      eq_wgt.outfit = o;
+
+      /* Equip the new outfit. */
+      equipment_swapSlot(equipment_wid, p, &slots[minimal]);
+
       return;
    }
 
@@ -200,11 +209,21 @@ void equipment_rightClickOutfits( unsigned int wid, char* str )
          minimal = i;
       }
       if (minimal < n) {
-         eq_wgt.outfit  = o;
-         p              = eq_wgt.selected;
-         /* Once to unequip and once to equip. */
-         equipment_swapSlot( equipment_wid, p, &slots[minimal] );
-         equipment_swapSlot( equipment_wid, p, &slots[minimal] );
+         eq_wgt.outfit = NULL;
+         p = eq_wgt.selected;
+
+         /* First unequip the existing outfit. */
+         equipment_swapSlot(equipment_wid, p, &slots[minimal]);
+
+         /* Have to set this here (after removing the outfit) since the
+          * image array can get offset by the returned outfit. Otherwise
+          * we'll swap in the wrong outfit. */
+         eq_wgt.outfit = o;
+
+         /* Equip the new outfit. */
+         equipment_swapSlot(equipment_wid, p, &slots[minimal]);
+
+         return;
       }
    }
 
