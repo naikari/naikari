@@ -19,8 +19,8 @@ function sos ()
       _("Taking hostile fire! Need assistance!"),
       _("We are under attack, require support!"),
       _("Mayday! Ship taking damage!"),
-      string.format(_("Mayday! %s %s being assaulted!"), plt:faction(), string.lower( plt:ship():class() ))
+      string.format(_("Mayday! %s %s being assaulted!"), plt:faction(), string.lower(plt:ship():class()))
    }
-   ai.settarget( ai.taskdata() )
-   ai.distress( msg[ rnd.int(1,#msg) ])
+   ai.settarget(ai.taskdata())
+   ai.distress(msg[rnd.rnd(1,#msg)])
 end

@@ -180,7 +180,7 @@ function enter ()
          enemies()
       -- Enter after player
       else
-         t = hook.timer(rnd.int(2, 5) , "enemies")
+         t = hook.timer(rnd.rnd(2, 5) , "enemies")
       end
    end
 end
