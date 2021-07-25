@@ -200,7 +200,7 @@ function enter ()
             hook.pilot(j, "attacked", "pilot_attacked")
          end
 
-         timer_start_hook = hook.timer(4000, "timer_start")
+         timer_start_hook = hook.timer(4, "timer_start")
          diff.apply("raelid_outpost_death")
       end
    end
@@ -220,7 +220,7 @@ function timer_start ()
    if proximity then
       started = true
       flf_fleet[1]:comm(flfcomm[1]:format(player.name()))
-      timer_pirates_hook = hook.timer(4000, "timer_pirates")
+      timer_pirates_hook = hook.timer(4, "timer_pirates")
       misn.osdActive(2)
 
       for i, j in ipairs(flf_fleet) do
@@ -247,7 +247,7 @@ function timer_start ()
          hook.pilot(j, "attacked", "pilot_attacked_civilian")
       end
    else
-      timer_start_hook = hook.timer(50, "timer_start")
+      timer_start_hook = hook.timer(0.05, "timer_start")
    end
 end
 
@@ -350,7 +350,7 @@ end
 
 
 function pilot_death_station(pilot, attacker, arg)
-   hook.timer(3000, "timer_station")
+   hook.timer(3, "timer_station")
 end
 
 

@@ -248,7 +248,7 @@ function takeoff ()
       jumpNext()
    elseif stage >= 3 and system.cur() == destsys then
       player.allowLand(false, noland_msg)
-      hook.timer(10000, "ambush_timer")
+      hook.timer(10, "ambush_timer")
       spawnChelseaShip(destplanet)
       jumpNext()
    end
@@ -376,7 +376,7 @@ function chelsea_attacked ()
    if chelsea ~= nil and chelsea:exists() then
       chelsea:control(false)
       if distress_timer_hook ~= nil then hook.rm(distress_timer_hook) end
-      distress_timer_hook = hook.timer(1000, "chelsea_distress_timer")
+      distress_timer_hook = hook.timer(1, "chelsea_distress_timer")
    end
 end
 

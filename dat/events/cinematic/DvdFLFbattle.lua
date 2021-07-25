@@ -64,11 +64,11 @@ function create ()
     flfguys = {}
     dvaeredguys = {}
     flfwave = 1
-    dvaeredwave = 1    
-    
-    hook.timer(3000, "FLFSpawn")
-    
-    hook.timer(12000, "DvaeredSpawn")
+    dvaeredwave = 1
+
+    hook.timer(3.0, "FLFSpawn")
+
+    hook.timer(12.0, "DvaeredSpawn")
 
     news.add(articles)
     
@@ -90,7 +90,7 @@ function FLFSpawn ()
     
     flfwave = flfwave + 1
     if flfwave <=5 then
-        hook.timer(1000, "FLFSpawn")
+        hook.timer(1.0, "FLFSpawn")
     end
 end
 
@@ -109,7 +109,7 @@ function DvaeredSpawn ()
     
     dvaeredwave = dvaeredwave + 1
     if dvaeredwave <=5 then
-        hook.timer(3000, "DvaeredSpawn")
+        hook.timer(3.0, "DvaeredSpawn")
     end
 end
 

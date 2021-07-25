@@ -19,8 +19,8 @@
 require ("proximity") 
 
 function create ()
-    hailie = hook.timer(20000, "hailme")
-    
+    hailie = hook.timer(20.0, "hailme")
+
     landhook = hook.land("finish")
     jumpouthook = hook.jumpout("finish")
 end

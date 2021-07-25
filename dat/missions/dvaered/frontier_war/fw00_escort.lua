@@ -9,7 +9,8 @@
    <chance>100</chance>
    <location>Bar</location>
    <faction>Dvaered</faction>
-   <cond>diff.isApplied("flf_dead") and system.get("Tarsus"):jumpDist() &lt; 4 and (var.peek("invasion_time") == nil or time.get() &gt;= time.fromnumber(var.peek("invasion_time")) + time.create(0, 20, 0)) and not (planet.cur():services().shipyard == nil)</cond>
+   <done>Destroy the FLF base!</done>
+   <cond>system.get("Tarsus"):jumpDist() &lt; 4 and not (planet.cur():services().shipyard == nil)</cond>
   </avail>
   <notes>
    <campaign>Frontier Invasion</campaign>
@@ -118,6 +119,12 @@ misn_reward = _("Dvaered never talk about money.")
 
 
 function create()
+   -- The mission should not appear just after the FLF destruction
+   if not (var.peek("invasion_time") == nil or 
+           time.get() >= time.fromnumber(var.peek("invasion_time")) + time.create(0, 20, 0)) then
+      misn.finish(false)
+   end
+
    destpla1, destsys1 = planet.get("Ginni")
    destpla2, destsys2 = planet.get(wlrd_planet)
    destpla3, destsys3 = planet.get("Laarss")
@@ -173,7 +180,7 @@ function enter()
    if stage == 0 then   -- Go to first rendezvous
       if system.cur() == destsys1 then -- Spawn the Warlord
          encounterWarlord( _("Lady Bitterfly"), destpla1 )
-         hook.timer( 2000, "meeting_msg1" )
+         hook.timer( 2.0, "meeting_msg1" )
       else
          nextsys = getNextSystem(system.cur(), destsys1)
          majorTam:control()
@@ -185,7 +192,7 @@ function enter()
       if system.cur() == destsys2 then -- Spawn the Baddies
          encounterWarlord( _("Lord Battleaddict"), destpla2 )
          jumpingTam = hook.pilot(majorTam, "jump", "tamJump")
-         hook.timer( 2000, "meeting_msg2" )
+         hook.timer( 2.0, "meeting_msg2" )
       else
          nextsys = getNextSystem(system.cur(), destsys2)
          majorTam:control()
@@ -194,7 +201,7 @@ function enter()
       end
 
    elseif stage == 3 then  -- Fleeing to flee planet
-      hook.timer( 2500, "explain_battle") -- Explain what happened
+      hook.timer( 2.5, "explain_battle") -- Explain what happened
       majorTam:control()
       majorTam:land(fleepla)
       stage = 4
@@ -206,7 +213,7 @@ function enter()
       if system.cur() == destsys3 then -- Spawn the Warlord and Hamelsen
          hamelsenAmbush()
          encounterWarlord( _("Lord Jim"), destpla3 )
-         hook.timer( 2000, "meeting_msg3" )
+         hook.timer( 2.0, "meeting_msg3" )
       else
          nextsys = getNextSystem(system.cur(), destsys3)
          majorTam:control()
@@ -243,10 +250,6 @@ function meeting_msg3()
 end
 
 function spawnTam( origin )
---   if dyingTam ~= nil then
---      hook.rm(dyingTam)
---   end
-
    majorTam = pilot.add( "Dvaered Vendetta", "Dvaered", origin )
    majorTam:rename(_("Major Tam"))
    majorTam:setHilight()
@@ -256,14 +259,16 @@ function spawnTam( origin )
    majorTam:rmOutfit("all")
    majorTam:rmOutfit("cores")
    majorTam:addOutfit("S&K Light Combat Plating")
-   majorTam:addOutfit("Milspec Aegis 3601 Core System")
+   majorTam:addOutfit("Milspec Orion 3701 Core System")
    majorTam:addOutfit("Tricon Zephyr II Engine")
-   majorTam:addOutfit("Generic Afterburner")
-   majorTam:addOutfit("Shield Capacitor")
-   majorTam:addOutfit("Shredder",6)
+   majorTam:addOutfit("Unicorp Light Afterburner")
+   --majorTam:addOutfit("Solar Panel")
+   majorTam:addOutfit("Vulcan Gun",3)
+   majorTam:addOutfit("Gauss Gun",3)
    majorTam:setHealth(100,100)
    majorTam:setEnergy(100)
    majorTam:setFuel(true)
+   majorTam:cargoRm( "__all" )
 
    dyingTam = hook.pilot(majorTam, "death", "tamDied")
 end
@@ -291,7 +296,7 @@ function encounterWarlord( name, origin )
    majorTam:memory().radius = 0
    majorTam:follow(warlord, true)
 
-   proxHook = hook.timer(500, "proximity", {anchor = warlord, radius = 1000, funcname = "meeting_timer", focus = majorTam})
+   proxHook = hook.timer(0.5, "proximity", {anchor = warlord, radius = 1000, funcname = "meeting_timer", focus = majorTam})
 end
 
 function tamJump()
@@ -350,7 +355,7 @@ function meeting_timer() -- Delay the triggering of the meeting
    player.cinematics( true )
    player.cinematics( false )
 
-   hook.timer(7000, "meeting")
+   hook.timer(7.0, "meeting")
 end
 
 function meeting()
@@ -370,14 +375,15 @@ function meeting()
       tk.msg(meet_title2, meet_text2:format(nextsys:name()))
       stage = 3
       quickie = pilot.add( "Dvaered Vendetta", "Dvaered", destpla2 )
+      quickie:cargoRm( "__all" )
       quickie:setFaction("Warlords")
 
-      majorTam:control()
+      majorTam:taskClear()
       majorTam:memory().careful = true
       majorTam:runaway(quickie, true) -- The nojump prevents him to land as well
 
-      hook.timer( 2000, "attackMe" ) -- A small delay to give the player a chance in case an enemy is too close
-      hook.timer( 15000, "tamHyperspace" ) -- At some point, he is supposed to jump
+      hook.timer( 2.0, "attackMe" ) -- A small delay to give the player a chance in case an enemy is too close
+      hook.timer( 15.0, "tamHyperspace" ) -- At some point, he is supposed to jump
 
       misn.osdDestroy()
       misn.osdCreate( osd_title, {osd_msg3:format(fleesys:name())} )
@@ -393,20 +399,7 @@ end
 
 -- Makes Battleaddict's team actually attack the player
 function attackMe()
-   quickie:rmOutfit("all")
-   quickie:rmOutfit("cores")
-   quickie:addOutfit("S&K Light Combat Plating")
-   quickie:addOutfit("Milspec Aegis 3601 Core System")
-   quickie:addOutfit("Tricon Zephyr II Engine")
-   quickie:addOutfit("Reactor Class I")
-   quickie:addOutfit("Improved Stabilizer")
-   quickie:addOutfit("Shredder",3)
-   quickie:addOutfit("Vulcan Gun",3)
-   quickie:setHealth(100,100)  -- TODO: does it give health to the player somehow ?!?
-   quickie:setEnergy(100)
-   quickie:setFuel(true)
-
-   hook.timer( 5000, "moreBadGuys" )
+   hook.timer( 5.0, "moreBadGuys" )
 
    -- Change the enemies to Warlords in order to make them attack
    for i = 1,#p do
@@ -461,12 +454,12 @@ function hamelsenAmbush()
    hamelsen:rmOutfit("all")
    hamelsen:rmOutfit("cores")
    hamelsen:addOutfit("S&K Ultralight Combat Plating")
-   hamelsen:addOutfit("Milspec Aegis 2201 Core System")
+   hamelsen:addOutfit("Milspec Orion 2301 Core System")
    hamelsen:addOutfit("Tricon Zephyr Engine")
    hamelsen:addOutfit("Hellburner")
-   hamelsen:addOutfit("Engine Reroute",2)
-   hamelsen:addOutfit("Shredder")
-   hamelsen:addOutfit("Vulcan Gun",2)
+   hamelsen:addOutfit("Milspec Impacto-Plastic Coating")
+   hamelsen:addOutfit("Improved Stabilizer",2)
+   hamelsen:addOutfit("Gauss Gun",3)
    hamelsen:setHealth(100,100)
    hamelsen:setEnergy(100)
    hamelsen:setFuel(true)
@@ -490,7 +483,7 @@ function hamelsenAmbush()
    savers[1]:setNoDeath()
    savers[1]:setNoDisable()
 
-   msg = hook.timer( 4000, "ambush_msg" )
+   msg = hook.timer( 4.0, "ambush_msg" )
    killed_ambush = 0
 end
 
@@ -513,7 +506,7 @@ function hamelsen_attacked( )
    if shield < 10 then
       hamelsen:control()
       hamelsen:runaway(player.pilot(), true) -- Nojump because I don't want her to try to jump at the beginning
-      hook.timer(15000, "hamelsenHyperspace")
+      hook.timer(15.0, "hamelsenHyperspace")
       hook.rm(attack)
       ambushDied() -- One less
    end
@@ -529,8 +522,8 @@ function ambushDied()
    if killed_ambush >= nambush then -- Everything back to normal: we meet Lord Jim
       majorTam:control()
       majorTam:follow(warlord, true)
-      hook.timer(500, "proximity", {anchor = warlord, radius = 1000, funcname = "meeting_timer", focus = majorTam})
-      hook.timer(3000, "ambush_end")
+      hook.timer(0.5, "proximity", {anchor = warlord, radius = 1000, funcname = "meeting_timer", focus = majorTam})
+      hook.timer(3.0, "ambush_end")
    end
 end
 

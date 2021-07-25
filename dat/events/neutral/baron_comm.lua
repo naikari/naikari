@@ -37,8 +37,8 @@ function create ()
     hook.pilot(hyena, "death", "finish")
     hook.land("finish")
     hook.jumpout("finish")
-    
-    hailie = hook.timer( 3000., "hailme" );
+
+    hailie = hook.timer( 3.0, "hailme" );
 end
 
 -- Make the ship hail the player

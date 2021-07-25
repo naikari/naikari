@@ -277,14 +277,14 @@ function pilot_death_sindbad(pilot, attacker, arg)
    player.addOutfit("Map: Inner Nebula Secret Jump")
    hook.jumpin("jumpin")
    hook.land("land")
-   hook.timer(8000, "timer_plcontrol")
+   hook.timer(8, "timer_plcontrol")
 end
 
 
 function timer_plcontrol ()
    camera.set(player.pilot())
    player.cinematics(false)
-   hook.timer(2000, "timer_end")
+   hook.timer(2, "timer_end")
 end
 
 
@@ -299,7 +299,7 @@ function jumpin ()
       music.load("intro")
       music.play()
       var.push("music_wait", true)
-      hook.timer(5000, "timer_thurion")
+      hook.timer(5, "timer_thurion")
    elseif found_thurion and system.cur() == system.get("Metsys") then
       diff.apply("Thurion_found")
    end

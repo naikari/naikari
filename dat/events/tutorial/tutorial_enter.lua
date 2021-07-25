@@ -59,7 +59,7 @@ map_volat_log = _([[You can see the volatility of the nebula in any given system
 function create ()
    -- Delay the event by a bit so it doesn't happen in the middle of
    -- the transition between the systems.
-   hook.timer(3000, "timer")
+   hook.timer(3, "timer")
    hook.jumpout("jumpout")
 end
 

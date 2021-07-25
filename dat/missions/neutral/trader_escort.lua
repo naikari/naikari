@@ -258,7 +258,7 @@ function traderAttacked(p, attacker)
    if not shuttingup then
       shuttingup = true
       p:comm(player.pilot(), traderdistress)
-      hook.timer(5000, "traderShutup") -- Shuts him up for at least 5s.
+      hook.timer(5, "traderShutup") -- Shuts him up for at least 5s.
    end
 end
 
@@ -267,7 +267,7 @@ function traderShutup()
 end
 
 function timer_traderSafe()
-   hook.timer(2000, "timer_traderSafe")
+   hook.timer(2, "timer_traderSafe")
 
    if unsafe then
       unsafe = false
@@ -381,7 +381,7 @@ function spawnConvoy ()
 
    updateOSD()
 
-   hook.timer(1000, "timer_traderSafe")
+   hook.timer(1, "timer_traderSafe")
 end
 
 function continueToDest(p)
