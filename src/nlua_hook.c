@@ -191,7 +191,7 @@ static int hookL_setarg( unsigned int hook, int ind )
       lua_pushboolean( naevL, 1 );/* v, b */
       lua_setfield( naevL, -2, "__save" ); /* v */
    }
-   lua_pop(L,1);
+
    /* Create if necessary the actual hook argument table. */
    nlua_getenv(env, "__hook_arg");  /* t */
    if (lua_isnil(naevL,-1)) {       /* nil */
