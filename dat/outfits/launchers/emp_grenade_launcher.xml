@@ -9,7 +9,7 @@
   <description>This launcher can fire EMP grenades in any direction using a unique internal guidance system. The grenades unleash an electromagnetic pulse, rapidly disabling the electronics of enemy ships. Useful for taking ships alive; the EM pulses rarely destroy the ship, leaving it floating disabled in space. These are favored by traders for keeping pirates at bay.</description>
   <cpu>-12</cpu>
  </general>
- <specific type="turret launcher" secondary="1">
+ <specific type="turret launcher">
   <ammo>EMP Grenade</ammo>
   <delay>2</delay>
   <reload_time>40</reload_time>
