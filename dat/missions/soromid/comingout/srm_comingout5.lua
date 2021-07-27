@@ -108,6 +108,7 @@ function accept ()
 
       startplanet = planet.cur()
 
+      hook.enter("enter")
       hook.takeoff("takeoff")
       hook.jumpout("jumpout")
       hook.jumpin("jumpin")
@@ -157,7 +158,10 @@ end
 
 
 function spawnThug(param)
-   local shiptypes = { "Hyena", "Hyena", "Shark", "Lancelot", "Admonisher" }
+   local shiptypes = {
+      "Hyena", "Shark", "Lancelot", "Vendetta", "Ancestor", "Admonisher",
+      "Phalanx",
+   }
    local shiptype = shiptypes[rnd.rnd(1, #shiptypes)]
 
    thug = pilot.add(shiptype, "Comingout_thugs", param,
@@ -174,8 +178,10 @@ end
 function takeoff ()
    spawnChelseaShip(startplanet)
    jumpNext()
-   spawnThug()
-   spawnThug()
+
+   for i=1,3 do
+      spawnThug()
+   end
 end
 
 
@@ -198,9 +204,17 @@ end
 
 
 function thug_timer ()
-   spawnThug()
-   spawnThug()
-   if system.cur() == missys then
-      spawnThug(lastsys)
+   for i=1,4 do
+      spawnThug()
    end
+   if system.cur() == missys then
+      for i=1,2 do
+         spawnThug(lastsys)
+      end
+   end
+end
+
+
+function abort ()
+   pilot.toggleSpawn(true)
 end
