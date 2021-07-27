@@ -146,7 +146,7 @@ osd_desc[2] = _("Land on %s (%s system) by double-clicking on it")
 osd_desc[3] = _("Open the overlay map with %s and autonav to %s (%s system) by right-clicking its icon on the overlay map")
 osd_desc[4] = _("Destroy the practice drone near %s (%s system) by targeting it with %s or by left-clicking it, and then using %s and %s to fire your weapons")
 osd_desc[5] = _("Engage Active Cooldown by pressing %s twice, then wait for your ship to fully cool down")
-osd_desc[6] = _("Open your starmap with %s and jump to the %s system (indicated on the starmap) using Autonav")
+osd_desc[6] = _("Open your starmap with %s and use it (along with everything else you have learned) to help you navigate to the %s system (indicated on the starmap)")
 osd_desc["__save"] = true
 
 log_text = _([[Captain T. Practice, the Melendez employee who sold you your first ship, gave you a tutorial on how to pilot it, claiming afterwards that you are "a natural-born pilot".]])
