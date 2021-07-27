@@ -48,7 +48,7 @@ text[1] = _([[You greet Chelsea as usual and have a friendly chat with them. You
 
 "I'm making a lot more money than before. The work is tough though. I've been picking off small pirates with bounties on their heads, doing system patrols, that sort of thing. I'm supposed to be getting a better ship soon, but it's going to be difficult." You ask them why that is. "Well, I came across someone who's offering me a bargain on a new ship! Well, not new exactly. It's used, but in pretty good condition. Supposedly this guy used to be a bounty hunter and is offering me his old Vigilance if I just take care of this one pirate known as %s. Trouble is they're piloting a ship that's stronger than my own.…"
 
-Chelsea pauses in contemplation for a moment. "Say, do you think you could help me out on this one? I just need you to help me kill the pirate in %s. I'll give you %s for the trouble, and I'll even let you take the lead! How about it?"]])
+Chelsea pauses in contemplation for a moment. "Say, do you think you could help me out on this one? I just need you to help me kill the pirate in %s. I'll give you %s for the trouble. How about it?"]])
 
 text[2] = _([["Fantastic! Thank you for the help! I'll meet you in %s and we can take the pirate out. Let's do this!"]])
 
@@ -153,17 +153,16 @@ function spawn ()
    p:setHilight(true)
 
    -- Spawn Chelsea
-   chelsea = pilot.add("Lancelot", "Comingout_associates", lastsys,
+   chelsea = pilot.add("Vendetta", "Comingout_associates", lastsys,
          _("Chelsea"), {naked=true})
-   chelsea:addOutfit("Milspec Orion 3701 Core System")
+   chelsea:addOutfit("Milspec Aegis 3601 Core System")
    chelsea:addOutfit("S&K Light Stealth Plating")
-   chelsea:addOutfit("Tricon Zephyr II Engine")
-   chelsea:addOutfit("Unicorp Headhunter Launcher")
+   chelsea:addOutfit("Unicorp Hawk 300 Engine")
+   chelsea:addOutfit("Unicorp Mace Launcher", 2)
    chelsea:addOutfit("Plasma Blaster MK2", 3)
-   chelsea:addOutfit("Reactor Class I")
-   chelsea:addOutfit("Small Shield Booster")
+   chelsea:addOutfit("Unicorp Mace Launcher")
    chelsea:addOutfit("Power Regulation Override")
-   chelsea:addOutfit("Engine Reroute", 2)
+   chelsea:addOutfit("Steering Thrusters")
 
    chelsea:setHealth(100, 100)
    chelsea:setEnergy(100)
@@ -175,7 +174,9 @@ function spawn ()
    chelsea:setHilight()
    chelsea:setVisible()
    chelsea:setInvincPlayer()
-   chelsea:setLeader(player.pilot())
+
+   chelsea:control()
+   chelsea:attack(p)
 
    hook.pilot(chelsea, "death", "chelsea_death")
    hook.pilot(chelsea, "jump", "chelsea_leave")
