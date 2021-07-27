@@ -401,13 +401,13 @@ end
 
 function spawn_drone ()
    local f = faction.dynAdd(
-         nil, N_("Melendez"), N_("Melendez Corporation"), "baddie_norun")
+         nil, N_("Melendez"), N_("Melendez Corporation"), {ai="baddie_norun"})
    local p = pilot.add("Hyena", f, dest_planet, _("Practice Drone"),
          {naked=true})
 
-   p:addOutfit("Unicorp PT-80 Core System")
+   p:addOutfit("Previous Generation Small Systems")
    p:addOutfit("Unicorp D-2 Light Plating")
-   p:addOutfit("Nexus Dart 150 Engine")
+   p:addOutfit("Beat Up Small Engine")
 
    p:setHealth(100, 100)
    p:setEnergy(100)
