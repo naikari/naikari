@@ -60,6 +60,7 @@ function pilot_name ()
       _("Hammer %s"),
       _("Hawk %s"),
       _("Helium %s"),
+      _("Hero %s"),
       _("Hornet %s"),
       _("Hunter %s"),
       _("Hurricane %s"),
