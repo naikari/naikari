@@ -261,13 +261,6 @@ msg_edone =                {{"Animal trouble", _([["What? You had rodents sabota
 
 function create()
    -- Logic to decide what to spawn, if anything.
-   -- TODO: Do not spawn any NPCs on restricted assets.
-
-   -- Chance of a jump point message showing up. As this gradually goes
-   -- down, it is replaced by lore messages. See spawnNPC function below.
-   jm_chance_min = 0.05
-   jm_chance_max = 0.3
-   jm_chance = var.peek( "npc_jm_chance" ) or jm_chance_max
 
    local num_npc = rnd.rnd(1, 5)
    npcs = {}
@@ -322,7 +315,7 @@ function spawnNPC()
    -- Select what this NPC should say.
    select = rnd.rnd()
    local msg
-   if select < jm_chance then
+   if select < 0.2 then
       -- Jump point message.
       msg, func = getJmpMessage(fac)
    elseif select <= 0.55 then
@@ -459,9 +452,6 @@ function talkNPC(id)
    end
 
    tk.msg( "", npcdata.msg )
-
-   -- Reduce jump message chance
-   var.push( "npc_jm_chance", math.max( jm_chance - 0.025, jm_chance_min ) )
 end
 
 --[[
