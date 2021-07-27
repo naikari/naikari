@@ -3427,7 +3427,7 @@ static int pilotL_cargoRm( lua_State *L )
    Pilot *p;
    const char *str;
    int quantity;
-   Commodity *cargo = NULL;
+   Commodity *cargo;
 
    NLUA_CHECKRW(L);
 
