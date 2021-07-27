@@ -2119,7 +2119,6 @@ dat/ai/independent.lua
 dat/ai/mercenary.lua
 dat/ai/miner.lua
 dat/ai/noidle.lua
-dat/ai/personality/advertiser.lua
 dat/ai/personality/civilian.lua
 dat/ai/personality/miner.lua
 dat/ai/personality/patrol.lua

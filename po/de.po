@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2021-07-24 23:49-0400\n"
+"POT-Creation-Date: 2021-07-27 14:02-0400\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -3226,7 +3226,7 @@ msgstr ""
 "recht nette Kneipe – was sicherlich nicht viele Dvaered für sich "
 "beanspruchen können."
 
-#: dat/assets/crow.xml:2 dat/scripts/pilot/pirate.lua:288
+#: dat/assets/crow.xml:2 dat/scripts/pilot/pirate.lua:291
 msgid "Crow"
 msgstr "Krähe"
 
@@ -8102,7 +8102,7 @@ msgstr ""
 "jeder Zeit kann man hier große Gruppen von Dvaered-Arbeitern antreffen, die "
 "ihre Freizeit und ihre Credits für Schnaps und Unterhaltung ausgeben."
 
-#: dat/assets/lanze.xml:2 dat/scripts/pilot/pirate.lua:379
+#: dat/assets/lanze.xml:2 dat/scripts/pilot/pirate.lua:385
 msgid "Lanze"
 msgstr "Lanze"
 
@@ -10406,7 +10406,7 @@ msgstr ""
 msgid "Onasan"
 msgstr "Onasan"
 
-#: dat/assets/oni.xml:2 dat/scripts/pilot/pirate.lua:412
+#: dat/assets/oni.xml:2 dat/scripts/pilot/pirate.lua:419
 msgid "Oni"
 msgstr "Oni"
 
@@ -11678,7 +11678,7 @@ msgstr ""
 "Außenpostens den ständigen Befehl, angesichts der Gefahr eines FLF-Angriffs "
 "in Alarmbereitschaft zu bleiben."
 
-#: dat/assets/ramen.xml:2 dat/scripts/pilot/pirate.lua:434
+#: dat/assets/ramen.xml:2 dat/scripts/pilot/pirate.lua:442
 msgid "Ramen"
 msgstr "Ramen"
 
@@ -11761,7 +11761,7 @@ msgstr ""
 #: src/dev_sysedit.c:1880 src/dev_sysedit.c:1917 src/dev_sysedit.c:1952
 #: src/dev_sysedit.c:1958 src/dev_uniedit.c:949 src/dev_uniedit.c:1128
 #: src/dev_uniedit.c:1361 src/dev_uniedit.c:1427 src/info.c:264 src/info.c:364
-#: src/info.c:804 src/info.c:1106 src/input.c:551 src/land_outfits.c:377
+#: src/info.c:811 src/info.c:1113 src/input.c:551 src/land_outfits.c:377
 #: src/land_outfits.c:410 src/land_outfits.c:618 src/land_shipyard.c:156
 #: src/land_shipyard.c:241 src/land_trade.c:85 src/land_trade.c:87
 #: src/land_trade.c:121 src/load.c:370 src/load.c:415 src/load.c:459
@@ -14713,7 +14713,7 @@ msgstr ""
 "Planeten Anker. Die Za'lek nutzen die aus dieser Forschung gewonnenen Daten, "
 "um widerstandsfähigere Lebensräume und Abschirmungen für Schiffe zu schaffen."
 
-#: dat/assets/tora.xml:2 dat/scripts/pilot/pirate.lua:492
+#: dat/assets/tora.xml:2 dat/scripts/pilot/pirate.lua:502
 msgid "Tora"
 msgstr "Tora"
 
@@ -14775,7 +14775,7 @@ msgstr "Torg I"
 msgid "Torg IV"
 msgstr "Torg IV"
 
-#: dat/assets/tori.xml:2 dat/scripts/pilot/pirate.lua:493
+#: dat/assets/tori.xml:2 dat/scripts/pilot/pirate.lua:503
 msgid "Tori"
 msgstr "Tori"
 
@@ -17813,7 +17813,7 @@ msgstr "Front-Liberationsfront"
 #: dat/faction.xml:251 dat/events/dvaered/fwA_treason.lua:131
 #: dat/events/dvaered/fwA_treason.lua:140 dat/events/dvaered/fwB_repay.lua:47
 #: dat/missions/dvaered/common.lua:11
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:324
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:329
 #: dat/missions/dvaered/frontier_war/fw01_sabotage.lua:646
 #: dat/missions/dvaered/frontier_war/fw02_escape.lua:320
 #: dat/missions/dvaered/frontier_war/fw03_sirius.lua:672
@@ -19005,7 +19005,7 @@ msgstr ""
 
 #: dat/outfits/activated/turreted_weapons_ionizer.xml:10
 #: dat/outfits/activated/weapons_ionizer.xml:10
-#: dat/scripts/pilot/pirate.lua:347
+#: dat/scripts/pilot/pirate.lua:351
 msgid "Ionizer"
 msgstr "Ionisierer"
 
@@ -24966,7 +24966,7 @@ msgid ""
 "fleets, without sacrificing carrying capacity."
 msgstr ""
 
-#: dat/ships/soromid_brigand.xml:3 dat/scripts/pilot/pirate.lua:269
+#: dat/ships/soromid_brigand.xml:3 dat/scripts/pilot/pirate.lua:271
 msgid "Brigand"
 msgstr "Brigant"
 
@@ -25045,7 +25045,7 @@ msgstr ""
 "Systemwaffenpunkten. Er dominiert häufig bei kleineren militärischen "
 "Einsätzen."
 
-#: dat/ships/soromid_reaver.xml:3 dat/scripts/pilot/pirate.lua:439
+#: dat/ships/soromid_reaver.xml:3 dat/scripts/pilot/pirate.lua:447
 msgid "Reaver"
 msgstr "Reiver"
 
@@ -25211,7 +25211,7 @@ msgstr ""
 "verfügt sie über eine im Vergleich zu ihren Gegenstücken unterlegene "
 "Technologie."
 
-#: dat/ships/zalek_demon.xml:3 dat/scripts/pilot/pirate.lua:296 src/space.c:255
+#: dat/ships/zalek_demon.xml:3 dat/scripts/pilot/pirate.lua:299 src/space.c:255
 msgid "Demon"
 msgstr "Dämon"
 
@@ -26080,7 +26080,7 @@ msgstr "Kiwi"
 msgid "Klantar"
 msgstr "Klantar"
 
-#: dat/ssys/knave.xml:2 dat/scripts/pilot/pirate.lua:373
+#: dat/ssys/knave.xml:2 dat/scripts/pilot/pirate.lua:379
 msgid "Knave"
 msgstr "Schuft"
 
@@ -26840,11 +26840,11 @@ msgstr "Volus"
 msgid "Vost"
 msgstr "Vost"
 
-#: dat/ssys/willow.xml:2 dat/scripts/pilot/pirate.lua:514
+#: dat/ssys/willow.xml:2 dat/scripts/pilot/pirate.lua:524
 msgid "Willow"
 msgstr "Weide"
 
-#: dat/ssys/wolf.xml:2 dat/scripts/pilot/pirate.lua:517
+#: dat/ssys/wolf.xml:2 dat/scripts/pilot/pirate.lua:527
 msgid "Wolf"
 msgstr "Wolf"
 
@@ -27544,10 +27544,10 @@ msgstr "Du bist ein Parasit!"
 #. ship must be stabilized since 2 secs
 #. if not mem.stabilized then
 #. mem.stabilized = true
-#. ai.settimer(0, 2000)
+#. ai.settimer(0, 2)
 #. elseif not ai.timeup(1) and ai.timeup(0) then
 #. -- If the ship manages to catch its mark, reset the timer
-#. ai.settimer(1, 10000)
+#. ai.settimer(1, 10)
 #. In range
 #. If he managed to shoot, reinitialize the timer
 #. The pilot just arrived in the good zone :
@@ -27993,10 +27993,6 @@ msgid "\"I don't want any problem.\""
 msgstr "„Ich will keine Schwierigkeiten.“"
 
 #. No idle function, ship won't react until it detects enemies
-#. Default task to run when idle. Similar as civilian, but with a message
-#. Try to leave. Civilians will always try to land on a planet if there is one.
-#. planet must exist
-#. Stay. Have a beer.
 #. Default task to run when idle
 #. Try to leave. Civilians will always try to land on a planet if there is one.
 #. planet must exist
@@ -29199,7 +29195,7 @@ msgstr ""
 "einer anderen Vendetta für deine Einweisung gerufen.“"
 
 #: dat/events/dvaered/fwA_treason.lua:41
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:53
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:54
 #: dat/missions/dvaered/frontier_war/fw02_escape.lua:85
 #: dat/missions/dvaered/frontier_war/fw04_meeting.lua:54
 msgid "Too bad"
@@ -29395,6 +29391,7 @@ msgstr ""
 #. Player answers to hail
 #. Reaction to player's choice at first landing
 #. Traitor
+#. majorTam:addOutfit("Solar Panel")
 #. Make sure Pirates don't get on the way
 #. Because she is immortal and could kill the player
 #. The player is only allowed to land on special occasions
@@ -29432,7 +29429,7 @@ msgstr ""
 #. camera.set(klank2)
 #. Epilogue
 #: dat/events/dvaered/fwA_treason.lua:131
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:324
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:329
 #: dat/missions/dvaered/frontier_war/fw01_sabotage.lua:646
 msgid "Dvaered Military Coordination"
 msgstr "Dvaered-Militärkoordination"
@@ -29474,9 +29471,6 @@ msgstr "Front-Krieg"
 #. --Event for Frontier Invasion campaign. The player must repay general Klank
 #. --
 #. Messages when encountering warlords
-#. if dyingTam ~= nil then
-#. hook.rm(dyingTam)
-#. end
 #. To avoid triggering by mistake
 #. Hook to make Hamelsen run away
 #. Target was hit sufficiently to run away
@@ -29558,8 +29552,8 @@ msgstr "Front-Krieg"
 #. 6) Pursuit: you may land after the target
 #. --
 #: dat/events/dvaered/fwB_repay.lua:21
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:44
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:251
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:45
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:254
 #: dat/missions/dvaered/frontier_war/fw01_sabotage.lua:42
 #: dat/missions/dvaered/frontier_war/fw03_sirius.lua:43
 msgid "Major Tam"
@@ -29612,7 +29606,7 @@ msgstr "Major Tam"
 #. TODO: check that no blockade has been forgotten
 #. Spawn the alpha squadron
 #: dat/events/dvaered/fwB_repay.lua:21
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:489
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:482
 #: dat/missions/dvaered/frontier_war/fw02_escape.lua:51
 #: dat/missions/dvaered/frontier_war/fw04_meeting.lua:384
 msgid "Captain Leblanc"
@@ -34292,7 +34286,6 @@ msgstr "Reise"
 #.
 #. -- This is a helper event for the fourth mission in the Academy Hack minor campaign.
 #. --
-#. 10-40s
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <event name="Preacher">
@@ -35758,11 +35751,11 @@ msgstr "Abbezahlt"
 #. Kills of the faction's allies
 #. Missions done for the faction's enemies
 #. Missions done for the faction's allies
-#: dat/factions/standing/skel.lua:27 src/info.c:746
+#: dat/factions/standing/skel.lua:27 src/info.c:753
 msgid "Legend"
 msgstr "Legende"
 
-#: dat/factions/standing/skel.lua:28
+#: dat/factions/standing/skel.lua:28 dat/scripts/pilot/pirate.lua:340
 msgid "Hero"
 msgstr "Held"
 
@@ -35782,7 +35775,7 @@ msgstr "Partner"
 msgid "Associate"
 msgstr "Kollege"
 
-#: dat/factions/standing/skel.lua:34 dat/scripts/pilot/pirate.lua:415
+#: dat/factions/standing/skel.lua:34 dat/scripts/pilot/pirate.lua:422
 msgid "Outlaw"
 msgstr "Gesetzloser"
 
@@ -35921,7 +35914,7 @@ msgstr "Bestochen"
 #. Bottom bar
 #: dat/gui/brushed.lua:270 dat/gui/brushed.lua:387 dat/gui/slim.lua:393
 #: dat/gui/slim.lua:1027 dat/gui/slim.lua:1044 dat/gui/slim.lua:1083
-#: dat/gui/slim.lua:1084 src/board.c:491 src/board.c:499 src/board.c:568
+#: dat/gui/slim.lua:1084 src/board.c:495 src/board.c:503 src/board.c:572
 #, c-format
 msgid "none"
 msgstr "nichts"
@@ -37290,7 +37283,7 @@ msgstr ""
 "wirst nur auf die harte Weise herausfinden, was dahintersteckt."
 
 #: dat/missions/baron/baron_prince.lua:68
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:56
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:57
 #: dat/missions/dvaered/frontier_war/fw01_sabotage.lua:92
 #: dat/missions/dvaered/frontier_war/fw03_sirius.lua:88
 msgid "What are you doing here?"
@@ -38133,7 +38126,7 @@ msgid "Disable your opponent; DO NOT KILL"
 msgstr "Mach deinen Gegner kampfunfähig; NICHT TÖTEN"
 
 #: dat/missions/dvaered/championship.lua:128
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:114
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:115
 #: dat/missions/dvaered/frontier_war/fw01_sabotage.lua:171
 #: dat/missions/dvaered/frontier_war/fw04_meeting.lua:197
 #: dat/missions/empire/collective/ec04.lua:65 dat/missions/neutral/race1.lua:77
@@ -38742,6 +38735,7 @@ msgstr ""
 msgid "Lure out the FLF"
 msgstr "Die FLF hervorlocken"
 
+#. No pirates nearby
 #: dat/missions/dvaered/dv_antiflf02.lua:91
 #: dat/missions/dvaered/dv_antiflf03.lua:99
 #: dat/missions/dvaered/dv_diversion.lua:76
@@ -38756,7 +38750,7 @@ msgstr "Die FLF hervorlocken"
 #: dat/missions/neutral/sightseeing.lua:93
 #: dat/missions/pirate/empbounty_dead.lua:73 dat/missions/pirate/patrol.lua:67
 #: dat/missions/proteron/dissbounty_dead.lua:89
-#: dat/missions/soromid/comingout/srm_comingout6.lua:68
+#: dat/missions/soromid/comingout/srm_comingout6.lua:115
 #: dat/missions/zalek/neburesearch/neburesearch_00.lua:107
 #: dat/missions/zalek/neburesearch/neburesearch_00.lua:108
 #, lua-format
@@ -39638,7 +39632,8 @@ msgstr "Hawk"
 #. <chance>100</chance>
 #. <location>Bar</location>
 #. <faction>Dvaered</faction>
-#. <cond>diff.isApplied("flf_dead") and system.get("Tarsus"):jumpDist() &lt; 4 and (var.peek("invasion_time") == nil or time.get() &gt;= time.fromnumber(var.peek("invasion_time")) + time.create(0, 20, 0)) and not (planet.cur():services().shipyard == nil)</cond>
+#. <done>Destroy the FLF base!</done>
+#. <cond>system.get("Tarsus"):jumpDist() &lt; 4 and not (planet.cur():services().shipyard == nil)</cond>
 #. </avail>
 #. <notes>
 #. <campaign>Frontier Invasion</campaign>
@@ -39660,11 +39655,11 @@ msgstr "Hawk"
 #. 5) Way to third system, battle with Hamelsen & such
 #. 8) Land at last system
 #. --
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:41
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:42
 msgid "Dvaered officer"
 msgstr "Dvaered-Offizier"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:42
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:43
 msgid ""
 "This Dvaered senior officer could be looking for a pilot for hire. Why else "
 "would he stay at this bar?"
@@ -39672,18 +39667,18 @@ msgstr ""
 "Dieser Dvaered-Senior-Offizier könnte auf der Suche nach einem Piloten zum "
 "Anheuern sein. Warum sollte er sonst in dieser Bar bleiben?"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:45
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:46
 msgid ""
 "Major Tam is a very friendly man. At least by Dvaered military standards."
 msgstr ""
 "Major Tam ist ein sehr freundlicher Mann. Jedenfalls nach Dvaered-"
 "Militärstandards."
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:47
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:48
 msgid "In need of a pilot"
 msgstr "Pilot gesucht"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:48
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:49
 #, lua-format
 msgid ""
 "As you approach the officer, he hails you. \"Hello, citizen %s. I was "
@@ -39705,11 +39700,11 @@ msgstr ""
 "Eskortmission vor. Alles, was Sie brauchen, ist ein schnelles Kampfschiff, "
 "das mit meiner Vendetta mithalten kann. Was sagen Sie dazu?“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:50
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:51
 msgid "Instructions"
 msgstr "Anweisungen"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:51
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:52
 #, lua-format
 msgid ""
 "Tam seems satisfied with your answer. \"I am going to pay a visit to three "
@@ -39723,7 +39718,7 @@ msgstr ""
 "und %s auf mich warten. Ich möchte, dass Sie sich an meine Vendetta halten "
 "und jeden Feind angreifen, der versuchen könnte, mich abzufangen.“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:54
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:55
 msgid ""
 "Tam seems disappointed by your answer. \"Mwell, then, maybe we will meet "
 "again later, who knows?\""
@@ -39731,16 +39726,16 @@ msgstr ""
 "Tam scheint von deiner Antwort enttäuscht zu sein. „Na gut, vielleicht "
 "werden wir uns später treffen, wer weiß?“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:57
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:58
 msgid "You were supposed to escort Major Tam, weren't you?"
 msgstr "Du hättest Major Tam begleiten sollen, nicht wahr?"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:59
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:60
 #: dat/missions/zalek/zlk_test.lua:69
 msgid "Mission failed"
 msgstr "Mission gescheitert"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:60
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:61
 msgid ""
 "As you watch the final explosion of Major Tam's ship dispatching around the "
 "system the remains of what once was a proud Vendetta, you realize that "
@@ -39754,22 +39749,22 @@ msgstr ""
 "Karriere nachdenkst. „Ach was“, denkst du schließlich, „ich bin mir sicher, "
 "dass ich früher oder später eine weitere Chance haben werde.“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:62
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:63
 msgid "Your ship is too slow"
 msgstr "Dein Schiff ist zu langsam"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:63
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:64
 msgid ""
 "Did you really expect to catch up with Major Tam with your current ship?"
 msgstr ""
 "Hast du wirklich gedacht, dass du Major Tam mit deinem jetzigen Schiff "
 "aufholen könntest?"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:65
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:66
 msgid "Everything is right"
 msgstr "Alles ist OK"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:66
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:67
 #, lua-format
 msgid ""
 "After Tam boards the Goddard, you wait for about half a period until his "
@@ -39782,11 +39777,11 @@ msgstr ""
 "Nachricht von ihm: „Alles ist in Ordnung, wir werden jetzt auf %s landen, um "
 "aufzutanken und uns einige Zeit auszuruhen.“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:68
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:69
 msgid "They're after me!"
 msgstr "Sie sind hinter mir her!"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:69
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:70
 #, lua-format
 msgid ""
 "Tam boards the Goddard. A few seconds later, he undocks in a hurry, while "
@@ -39798,12 +39793,12 @@ msgstr ""
 "Nachricht: „Dieser alte Narr hat versucht, mich zu töten! Schnell, wir "
 "müssen nach %s! Lassen Sie mich zuerst springen!“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:71
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:82
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:72
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:83
 msgid "Major Tam is ready"
 msgstr "Major Tam ist bereit"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:72
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:73
 msgid ""
 "How do you do, citizen? Did you enjoy the trip so far? I'm ready for next "
 "stop. I'll follow you when you take off."
@@ -39811,11 +39806,11 @@ msgstr ""
 "Wie geht es Ihnen, Bürger? Hat Ihnen die Reise bisher gefallen? Ich bin "
 "bereit für den nächsten Halt. Ich folge Ihnen, wenn Sie abheben."
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:74
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:75
 msgid "Major Tam is talkative today"
 msgstr "Major Tam ist heute redselig"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:75
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:76
 msgid ""
 "\"Hello, citizen. Did you already recover from Lord Battleaddict's last "
 "joke? It reminded me of my youth, when I used to belong to a fighter's "
@@ -39826,11 +39821,11 @@ msgstr ""
 "Amarock gehörte …“ Möchtest du Tam ermutigen, über seine Vergangenheit zu "
 "reden?"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:77
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:78
 msgid "Major Tam before he was at the Headquarters"
 msgstr "Major Tam, bevor er am Hauptquartier war"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:78
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:79
 msgid ""
 "\"You know I've not always worked at the Headquarters. I started as a pilot "
 "at the DHC base on Rhaana. Oh, sorry, DHC stays for Dvaered High Command. "
@@ -39871,15 +39866,15 @@ msgstr ""
 "war das nochmal? Oh, ich kann mich nicht erinnern. Wie auch immer, Bürger, "
 "wenn Sie abheben wollen, ich bin bereit.“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:83
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:84
 msgid "\"Anyway, citizen, if you want to take off, I'm ready.\""
 msgstr "„Wie auch immer, Bürger, wenn Sie abheben wollen, bin ich bereit.“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:85
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:86
 msgid "Thank you, citizen"
 msgstr "Danke sehr, Bürger"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:86
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:87
 #, lua-format
 msgid ""
 "As you land, Major Tam greets you at the spaceport. \"After the losses they "
@@ -39902,11 +39897,11 @@ msgstr ""
 "gutgeschrieben … Nun, wissen Sie, was wir tun werden? Ich werde Ihnen einen "
 "Satz Gaußkanonen im Wert von %s geben! Gaußkanonen braucht man immer, oder?“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:88
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:89
 msgid "That was really close!"
 msgstr "Das war ziemlich knapp!"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:89
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:90
 #, lua-format
 msgid ""
 "You send a message to Major Tam to ask if you are safe now. \"I think so\" "
@@ -39936,11 +39931,11 @@ msgstr ""
 "Die Dvaered wissen, dass es besser ist, sich nicht in die Angelegenheiten "
 "eines Kriegsherrn einzumischen.“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:92
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:93
 msgid "Say hello to my mace rockets"
 msgstr "Sag meinen Mace-Raketen ‚hallo‘"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:93
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:94
 msgid ""
 "As your ship decelerates to its normal speed after jumping in, you realize "
 "that there are hostile ships around. An enemy Shark then broadcasts the "
@@ -39953,17 +39948,17 @@ msgstr ""
 "Schwächling, hast du geglaubt, dass Lord Kampfeslust dich wirklich am Leben "
 "lassen würde? Du bist dem Untergang geweiht!“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:94
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:95
 msgid "You wanted to meet Lord Jim? What about you meet your doom instead?"
 msgstr ""
 "Du wolltest Lord Jim treffen? Wie wäre es, wenn du stattdessen deinen "
 "Untergang triffst?"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:96
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:97
 msgid "Hostiles eliminated"
 msgstr "Feinde eliminiert"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:97
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:98
 #, lua-format
 msgid ""
 "As the remaining attackers run away, you remark that a Dvaered patrol helped "
@@ -40001,11 +39996,11 @@ msgstr ""
 "Kapitän.“ Leblanc antwortet: „Hallo, Bürger. Ich bin froh, dass es "
 "Zivilisten wie Sie gibt, die ihre Pflicht tun und der Dvaered-Nation dienen.“"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:100
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:101
 msgid "Two attacks are one too many"
 msgstr ""
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:101
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:102
 msgid ""
 "\"Anyway,\" says Tam, \"I am afraid this ambush is not acceptable.\" Leblanc "
 "responds: \"True, sir. Attacking someone in one's system is a standard way "
@@ -40016,17 +40011,17 @@ msgid ""
 "Lord Jim. I just hope he will not try to make us dance as well...\""
 msgstr ""
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:104
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:105
 #, lua-format
 msgid "%s should be waiting for us in orbit around %s."
 msgstr ""
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:106
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:107
 #, fuzzy, lua-format
 msgid "Major Tam has jumped for the %s system."
 msgstr "Joanne ist zum „%s“-System gesprungen. Folg ihr!"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:108
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:109
 msgid ""
 "The Major Tam, from the Space Force Headquarters of Dvaered High Command "
 "(DHC) has employed you in the framework of the military coordination. One of "
@@ -40035,47 +40030,48 @@ msgid ""
 "looks like trying to coordinate Dvaered warlords is a really dangerous job."
 msgstr ""
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:110
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:111
 #, fuzzy
 msgid "Dvaered Escort"
 msgstr "Dvaered-Pilot"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:111
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:112
 msgid "Escort Major Tam"
 msgstr ""
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:112
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:113
 #, fuzzy
 msgid "Engage the hostiles"
 msgstr "Feinde eliminieren"
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:113
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:114
 #, lua-format
 msgid "Ensure Major Tam safely jumps to %s and follow him"
 msgstr ""
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:116
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:117
 msgid ""
 "You agreed to escort a senior officer of the Dvaered High Command who is "
 "visiting three warlords."
 msgstr ""
 
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:117
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:118
 msgid "Dvaered never talk about money."
 msgstr ""
 
+#. The mission should not appear just after the FLF destruction
 #. We need the first target to be at least 1 jump ahead
 #. Because the player has no right to enter a system if tamJumped is false
 #. Go to first rendezvous
 #. Spawn the Warlord
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:175
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:182
 #: dat/missions/dvaered/frontier_war/fw_common.lua:23
 msgid "Lady Bitterfly"
 msgstr ""
 
 #. Travel to second rendezvous
 #. Spawn the Baddies
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:186
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:193
 msgid "Lord Battleaddict"
 msgstr "Lord Kampfeslust"
 
@@ -40083,7 +40079,7 @@ msgstr "Lord Kampfeslust"
 #. Explain what happened
 #. Travel to third rendezvous
 #. Spawn the Warlord and Hamelsen
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:208
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:215
 #: dat/missions/dvaered/frontier_war/fw_common.lua:22
 msgid "Lord Jim"
 msgstr "Lord Jim"
@@ -40097,12 +40093,11 @@ msgstr "Lord Jim"
 #. A small delay to give the player a chance in case an enemy is too close
 #. At some point, he is supposed to jump
 #. Makes Battleaddict's team actually attack the player
-#. TODO: does it give health to the player somehow ?!?
 #. Change the enemies to Warlords in order to make them attack
 #. Battleaddict's bros
 #. Spawn colonel Hamelsen and her mates
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:426
-#: dat/missions/dvaered/frontier_war/fw00_escort.lua:458
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:419
+#: dat/missions/dvaered/frontier_war/fw00_escort.lua:451
 #: dat/missions/dvaered/frontier_war/fw03_sirius.lua:662
 #, fuzzy
 msgid "Colonel Hamelsen"
@@ -43441,7 +43436,7 @@ msgstr ""
 msgid "Return to %s"
 msgstr "Kehre nach %s zurück"
 
-#: dat/missions/empire/collective/ec03.lua:62 src/equipment.c:824
+#: dat/missions/empire/collective/ec03.lua:62 src/equipment.c:843
 #: src/map_find.c:431
 #, c-format, lua-format
 msgid "%s (%s)"
@@ -56094,7 +56089,7 @@ msgstr[1] ""
 #. <mission name="Waste Dump">
 #. <avail>
 #. <priority>9</priority>
-#. <chance>20</chance>
+#. <chance>30</chance>
 #. <location>Computer</location>
 #. <faction>Dvaered</faction>
 #. <faction>Empire</faction>
@@ -56266,10 +56261,12 @@ msgstr ""
 #. Note: this mission makes no system claims
 #. Set mission details
 #: dat/missions/neutral/wastedump.lua:112
+#: dat/missions/soromid/comingout/srm_comingout5.lua:143
 msgid "Waste Containers"
 msgstr "Abfallbehälter"
 
 #: dat/missions/neutral/wastedump.lua:112
+#: dat/missions/soromid/comingout/srm_comingout5.lua:143
 msgid "A bunch of waste containers leaking all sorts of indescribable liquids."
 msgstr ""
 
@@ -63461,7 +63458,6 @@ msgstr ""
 "Chelsea braucht dich, um sie zu %s zu bringen, damit sie sich ihr erstes "
 "Schiff kaufen und ihre Pilotenkarriere starten kann."
 
-#. No pirates nearby
 #. Spawn pirate
 #. Spawn Chelsea
 #: dat/missions/soromid/comingout/srm_comingout2.lua:62
@@ -63470,9 +63466,9 @@ msgstr ""
 #: dat/missions/soromid/comingout/srm_comingout4.lua:90
 #: dat/missions/soromid/comingout/srm_comingout4.lua:160
 #: dat/missions/soromid/comingout/srm_comingout5.lua:60
-#: dat/missions/soromid/comingout/srm_comingout5.lua:123
+#: dat/missions/soromid/comingout/srm_comingout5.lua:124
 #: dat/missions/soromid/comingout/srm_comingout6.lua:64
-#: dat/missions/soromid/comingout/srm_comingout6.lua:154
+#: dat/missions/soromid/comingout/srm_comingout6.lua:157
 msgid "Chelsea"
 msgstr "Chelsea"
 
@@ -63657,7 +63653,7 @@ msgstr "Chelsea ist auf %s gelandet."
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:72
 #: dat/missions/soromid/comingout/srm_comingout4.lua:95
-#: dat/missions/soromid/comingout/srm_comingout6.lua:71
+#: dat/missions/soromid/comingout/srm_comingout6.lua:67
 msgid ""
 "MISSION FAILED: A rift in the space-time continuum causes you to have never "
 "met Chelsea in that bar."
@@ -63667,13 +63663,13 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:73
 #: dat/missions/soromid/comingout/srm_comingout4.lua:96
-#: dat/missions/soromid/comingout/srm_comingout6.lua:72
+#: dat/missions/soromid/comingout/srm_comingout6.lua:68
 msgid "MISSION FAILED: Chelsea has abandoned the mission."
 msgstr "MISSION FEHLGESCHLAGEN: Chelsea hat die Mission abgebrochen."
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:74
 #: dat/missions/soromid/comingout/srm_comingout4.lua:97
-#: dat/missions/soromid/comingout/srm_comingout6.lua:73
+#: dat/missions/soromid/comingout/srm_comingout6.lua:69
 msgid "MISSION FAILED: You have abandoned the mission."
 msgstr "MISSION FEHLGESCHLAGEN: Du hast die Mission abgebrochen."
 
@@ -63698,7 +63694,7 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:179
 #: dat/missions/soromid/comingout/srm_comingout4.lua:324
-#: dat/missions/soromid/comingout/srm_comingout5.lua:163
+#: dat/missions/soromid/comingout/srm_comingout5.lua:168
 #, fuzzy, lua-format
 msgid "Thug %s"
 msgstr "Strolche"
@@ -63985,7 +63981,7 @@ msgstr ""
 #. <avail>
 #. <priority>2</priority>
 #. <done>Visiting Family</done>
-#. <chance>30</chance>
+#. <chance>70</chance>
 #. <location>Bar</location>
 #. <faction>Soromid</faction>
 #. </avail>
@@ -64186,8 +64182,7 @@ msgid ""
 "\n"
 "Chelsea pauses in contemplation for a moment. \"Say, do you think you could "
 "help me out on this one? I just need you to help me kill the pirate in %s. "
-"I'll give you %s for the trouble, and I'll even let you take the lead! How "
-"about it?\""
+"I'll give you %s for the trouble. How about it?\""
 msgstr ""
 "Du grüßt Chelsea wie immer und unterhältst dich freundlich mit ser. Du "
 "erfährst, dass ser vor kurzem einen Nahkampf mit einem anderen Schurken "
@@ -64257,13 +64252,7 @@ msgstr ""
 msgid "Oh, it's Chelsea! You feel an urge to say hello."
 msgstr "Oh, es ist Chelsea! Du verspürst den Drang, hallo zu sagen."
 
-#: dat/missions/soromid/comingout/srm_comingout6.lua:69
-#, lua-format
-msgid "Protect Chelsea and help them kill or capture %s"
-msgstr ""
-"Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
-
-#: dat/missions/soromid/comingout/srm_comingout6.lua:75
+#: dat/missions/soromid/comingout/srm_comingout6.lua:71
 msgid ""
 "You helped Chelsea hunt down a wanted pirate, earning a bounty for both of "
 "you and allowing Chelsea to acquire a retired Dvaered warlord's old "
@@ -64272,6 +64261,12 @@ msgstr ""
 "Du hast Chelsea geholfen, einen gesuchten Piraten zur Strecke zu bringen, "
 "ein Kopfgeld für euch beide verdient und Chelsea ermöglicht, die alte "
 "Vigilanz eines Kriegsherren der Dvaered im Ruhestand zu erhalten."
+
+#: dat/missions/soromid/comingout/srm_comingout6.lua:117
+#, fuzzy, lua-format
+msgid "Protect Chelsea and help them kill %s"
+msgstr ""
+"Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
 #.
 #. <?xml version='1.0' encoding='utf8'?>
@@ -68516,7 +68511,7 @@ msgstr "Zeitlimit: %s"
 #. pilot: The pilot to say the text
 #. text: The text to be said
 #.
-#. Example usage: hook.timer(2000, "chatter", {pilot = p, text = "Hello, space!"})
+#. Example usage: hook.timer(2.0, "chatter", {pilot = p, text = "Hello, space!"})
 #. Taken from http://lua-users.org/wiki/InheritanceTutorial
 #. Implementation of additional OO properties starts here --
 #. Return the class object of the instance
@@ -69434,460 +69429,465 @@ msgstr ""
 
 #: dat/scripts/pilot/generic.lua:63
 #, fuzzy, lua-format
+msgid "Hero %s"
+msgstr "Held"
+
+#: dat/scripts/pilot/generic.lua:64
+#, fuzzy, lua-format
 msgid "Hornet %s"
 msgstr "Planet %s"
 
-#: dat/scripts/pilot/generic.lua:64
+#: dat/scripts/pilot/generic.lua:65
 #, fuzzy, lua-format
 msgid "Hunter %s"
 msgstr "Hunter"
 
-#: dat/scripts/pilot/generic.lua:65
+#: dat/scripts/pilot/generic.lua:66
 #, lua-format
 msgid "Hurricane %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:66
+#: dat/scripts/pilot/generic.lua:67
 #, fuzzy, lua-format
 msgid "Hydrogen %s"
 msgstr "Dragon"
 
-#: dat/scripts/pilot/generic.lua:67
+#: dat/scripts/pilot/generic.lua:68
 #, lua-format
 msgid "Ice %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:68
+#: dat/scripts/pilot/generic.lua:69
 #, fuzzy, lua-format
 msgid "Ion %s"
 msgstr "Lande auf %s"
 
-#: dat/scripts/pilot/generic.lua:69
+#: dat/scripts/pilot/generic.lua:70
 #, fuzzy, lua-format
 msgid "Iron %s"
 msgstr "Lande auf %s"
 
-#: dat/scripts/pilot/generic.lua:70
+#: dat/scripts/pilot/generic.lua:71
 #, fuzzy, lua-format
 msgid "Katana %s"
 msgstr "Katana"
 
-#: dat/scripts/pilot/generic.lua:71
+#: dat/scripts/pilot/generic.lua:72
 #, fuzzy, lua-format
 msgid "Krypton %s"
 msgstr "Proteron"
 
-#: dat/scripts/pilot/generic.lua:72
+#: dat/scripts/pilot/generic.lua:73
 #, fuzzy, lua-format
 msgid "Lantern %s"
 msgstr "Lantern"
 
-#: dat/scripts/pilot/generic.lua:73
+#: dat/scripts/pilot/generic.lua:74
 #, fuzzy, lua-format
 msgid "Legion %s"
 msgstr "Lande auf %s"
 
-#: dat/scripts/pilot/generic.lua:74
+#: dat/scripts/pilot/generic.lua:75
 #, lua-format
 msgid "Leopard %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:75
+#: dat/scripts/pilot/generic.lua:76
 #, fuzzy, lua-format
 msgid "Light %s"
 msgstr "leichter "
 
-#: dat/scripts/pilot/generic.lua:76
+#: dat/scripts/pilot/generic.lua:77
 #, fuzzy, lua-format
 msgid "Lion %s"
 msgstr "Lande auf %s"
 
-#: dat/scripts/pilot/generic.lua:77
+#: dat/scripts/pilot/generic.lua:78
 #, lua-format
 msgid "Lithium %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:78
+#: dat/scripts/pilot/generic.lua:79
 #, fuzzy, lua-format
 msgid "Lizard %s"
 msgstr "Zauberer"
 
-#: dat/scripts/pilot/generic.lua:79
+#: dat/scripts/pilot/generic.lua:80
 #, lua-format
 msgid "Lynx %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:80
+#: dat/scripts/pilot/generic.lua:81
 #, lua-format
 msgid "Mammoth %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:81
+#: dat/scripts/pilot/generic.lua:82
 #, fuzzy, lua-format
 msgid "Mantis %s"
 msgstr "Atlantis I"
 
-#: dat/scripts/pilot/generic.lua:82
+#: dat/scripts/pilot/generic.lua:83
 #, fuzzy, lua-format
 msgid "Mastodon %s"
 msgstr "Mastodon-Station"
 
-#: dat/scripts/pilot/generic.lua:83
+#: dat/scripts/pilot/generic.lua:84
 #, fuzzy, lua-format
 msgid "Mech %s"
 msgstr "Mech"
 
-#: dat/scripts/pilot/generic.lua:84
+#: dat/scripts/pilot/generic.lua:85
 #, fuzzy, lua-format
 msgid "Monarch %s"
 msgstr "Mech"
 
-#: dat/scripts/pilot/generic.lua:85
+#: dat/scripts/pilot/generic.lua:86
 #, fuzzy, lua-format
 msgid "Mosquito %s"
 msgstr "Mosquito"
 
-#: dat/scripts/pilot/generic.lua:86
+#: dat/scripts/pilot/generic.lua:87
 #, fuzzy, lua-format
 msgid "Mouse %s"
 msgstr "Abtrünnige FLF"
 
-#: dat/scripts/pilot/generic.lua:87
+#: dat/scripts/pilot/generic.lua:88
 #, fuzzy, lua-format
 msgid "Neon %s"
 msgstr "Neutronendisruptor"
 
-#: dat/scripts/pilot/generic.lua:88
+#: dat/scripts/pilot/generic.lua:89
 #, fuzzy, lua-format
 msgid "Neutron %s"
 msgstr "Neutronendisruptor"
 
-#: dat/scripts/pilot/generic.lua:89
+#: dat/scripts/pilot/generic.lua:90
 #, fuzzy, lua-format
 msgid "Nitrogen %s"
 msgstr "Neutronendisruptor"
 
-#: dat/scripts/pilot/generic.lua:90
+#: dat/scripts/pilot/generic.lua:91
 #, fuzzy, lua-format
 msgid "Nova %s"
 msgstr "Nova"
 
-#: dat/scripts/pilot/generic.lua:91
+#: dat/scripts/pilot/generic.lua:92
 #, fuzzy, lua-format
 msgid "Number %s"
 msgstr "Taube "
 
-#: dat/scripts/pilot/generic.lua:92
+#: dat/scripts/pilot/generic.lua:93
 #, fuzzy, lua-format
 msgid "Order %s"
 msgstr "Spider"
 
-#: dat/scripts/pilot/generic.lua:93
+#: dat/scripts/pilot/generic.lua:94
 #, lua-format
 msgid "Orca %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:94
+#: dat/scripts/pilot/generic.lua:95
 #, fuzzy, lua-format
 msgid "Panther %s"
 msgstr "Panther"
 
-#: dat/scripts/pilot/generic.lua:95
+#: dat/scripts/pilot/generic.lua:96
 #, lua-format
 msgid "Pegasus %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:96
+#: dat/scripts/pilot/generic.lua:97
 #, fuzzy, lua-format
 msgid "Peril %s"
 msgstr "Peril"
 
-#: dat/scripts/pilot/generic.lua:97
+#: dat/scripts/pilot/generic.lua:98
 #, lua-format
 msgid "Photon %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:98
+#: dat/scripts/pilot/generic.lua:99
 #, fuzzy, lua-format
 msgid "Pixie %s"
 msgstr "Stolz"
 
-#: dat/scripts/pilot/generic.lua:99
+#: dat/scripts/pilot/generic.lua:100
 #, lua-format
 msgid "Plutonium %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:100
+#: dat/scripts/pilot/generic.lua:101
 #, fuzzy, lua-format
 msgid "Pride %s"
 msgstr "Stolz"
 
-#: dat/scripts/pilot/generic.lua:101
+#: dat/scripts/pilot/generic.lua:102
 #, fuzzy, lua-format
 msgid "Proton %s"
 msgstr "Proteron"
 
-#: dat/scripts/pilot/generic.lua:102
+#: dat/scripts/pilot/generic.lua:103
 #, fuzzy, lua-format
 msgid "Python %s"
 msgstr "Python"
 
-#: dat/scripts/pilot/generic.lua:103
+#: dat/scripts/pilot/generic.lua:104
 #, fuzzy, lua-format
 msgid "Radium %s"
 msgstr "Radius"
 
-#: dat/scripts/pilot/generic.lua:104
+#: dat/scripts/pilot/generic.lua:105
 #, fuzzy, lua-format
 msgid "Radon %s"
 msgstr "Lande auf %s"
 
-#: dat/scripts/pilot/generic.lua:105
+#: dat/scripts/pilot/generic.lua:106
 #, fuzzy, lua-format
 msgid "Raptor %s"
 msgstr "Rennflieger %s"
 
-#: dat/scripts/pilot/generic.lua:106
+#: dat/scripts/pilot/generic.lua:107
 #, fuzzy, lua-format
 msgid "Raven %s"
 msgstr "Raven"
 
-#: dat/scripts/pilot/generic.lua:107
+#: dat/scripts/pilot/generic.lua:108
 #, lua-format
 msgid "Rebirth %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:108
+#: dat/scripts/pilot/generic.lua:109
 #, fuzzy, lua-format
 msgid "Red %s"
 msgstr "Red "
 
-#: dat/scripts/pilot/generic.lua:109
+#: dat/scripts/pilot/generic.lua:110
 #, lua-format
 msgid "Rex %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:110
+#: dat/scripts/pilot/generic.lua:111
 #, fuzzy, lua-format
 msgid "Rocket %s"
 msgstr "Taschen-"
 
-#: dat/scripts/pilot/generic.lua:111
+#: dat/scripts/pilot/generic.lua:112
 #, fuzzy, lua-format
 msgid "Rogue %s"
 msgstr "Abtrünnige FLF"
 
-#: dat/scripts/pilot/generic.lua:112
+#: dat/scripts/pilot/generic.lua:113
 #, fuzzy, lua-format
 msgid "Saber %s"
 msgstr "Rennflieger %s"
 
-#: dat/scripts/pilot/generic.lua:113
+#: dat/scripts/pilot/generic.lua:114
 #, fuzzy, lua-format
 msgid "Scimitar %s"
 msgstr "Rennflieger %s"
 
-#: dat/scripts/pilot/generic.lua:114
+#: dat/scripts/pilot/generic.lua:115
 #, fuzzy, lua-format
 msgid "Scorpion %s"
 msgstr "Skorpion-Station"
 
-#: dat/scripts/pilot/generic.lua:115
+#: dat/scripts/pilot/generic.lua:116
 #, fuzzy, lua-format
 msgid "Scythe %s"
 msgstr "Sense"
 
-#: dat/scripts/pilot/generic.lua:116
+#: dat/scripts/pilot/generic.lua:117
 #, fuzzy, lua-format
 msgid "Serpent %s"
 msgstr "Serpent"
 
-#: dat/scripts/pilot/generic.lua:117
+#: dat/scripts/pilot/generic.lua:118
 #, fuzzy, lua-format
 msgid "Shadow %s"
 msgstr "Schatten"
 
-#: dat/scripts/pilot/generic.lua:118
+#: dat/scripts/pilot/generic.lua:119
 #, fuzzy, lua-format
 msgid "Shark %s"
 msgstr "Hai"
 
-#: dat/scripts/pilot/generic.lua:119
+#: dat/scripts/pilot/generic.lua:120
 #, fuzzy, lua-format
 msgid "Sheath %s"
 msgstr "Tod"
 
-#: dat/scripts/pilot/generic.lua:120
+#: dat/scripts/pilot/generic.lua:121
 #, fuzzy, lua-format
 msgid "Shield %s"
 msgstr "Großer Schildverstärker"
 
-#: dat/scripts/pilot/generic.lua:121
+#: dat/scripts/pilot/generic.lua:122
 #, fuzzy, lua-format
 msgid "Shuriken %s"
 msgstr "Skorpion-Station"
 
-#: dat/scripts/pilot/generic.lua:122
+#: dat/scripts/pilot/generic.lua:123
 #, fuzzy, lua-format
 msgid "Silver %s"
 msgstr "Silver "
 
-#: dat/scripts/pilot/generic.lua:123
+#: dat/scripts/pilot/generic.lua:124
 #, lua-format
 msgid "Sky %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:124
+#: dat/scripts/pilot/generic.lua:125
 #, fuzzy, lua-format
 msgid "Snake %s"
 msgstr "Spade"
 
-#: dat/scripts/pilot/generic.lua:125
+#: dat/scripts/pilot/generic.lua:126
 #, fuzzy, lua-format
 msgid "Star Killer %s"
 msgstr "Töte %s"
 
-#: dat/scripts/pilot/generic.lua:126
+#: dat/scripts/pilot/generic.lua:127
 #, fuzzy, lua-format
 msgid "Spade %s"
 msgstr "Spade"
 
-#: dat/scripts/pilot/generic.lua:127
+#: dat/scripts/pilot/generic.lua:128
 #, fuzzy, lua-format
 msgid "Spear %s"
 msgstr "Spider"
 
-#: dat/scripts/pilot/generic.lua:128
+#: dat/scripts/pilot/generic.lua:129
 #, fuzzy, lua-format
 msgid "Spider %s"
 msgstr "Spider"
 
-#: dat/scripts/pilot/generic.lua:129
+#: dat/scripts/pilot/generic.lua:130
 #, fuzzy, lua-format
 msgid "Sword %s"
 msgstr "Void"
 
-#: dat/scripts/pilot/generic.lua:130
+#: dat/scripts/pilot/generic.lua:131
 #, fuzzy, lua-format
 msgid "System %s"
 msgstr "System: %s\n"
 
-#: dat/scripts/pilot/generic.lua:131
+#: dat/scripts/pilot/generic.lua:132
 #, fuzzy, lua-format
 msgid "Talon %s"
 msgstr "Lande auf %s"
 
-#: dat/scripts/pilot/generic.lua:132
+#: dat/scripts/pilot/generic.lua:133
 #, lua-format
 msgid "Thorium %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:133
+#: dat/scripts/pilot/generic.lua:134
 #, fuzzy, lua-format
 msgid "Thunder %s"
 msgstr "Donner"
 
-#: dat/scripts/pilot/generic.lua:134
+#: dat/scripts/pilot/generic.lua:135
 #, fuzzy, lua-format
 msgid "Tiger %s"
 msgstr "Tiger"
 
-#: dat/scripts/pilot/generic.lua:135
+#: dat/scripts/pilot/generic.lua:136
 #, lua-format
 msgid "Torch %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:136
+#: dat/scripts/pilot/generic.lua:137
 #, lua-format
 msgid "Tornado %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:137
+#: dat/scripts/pilot/generic.lua:138
 #, lua-format
 msgid "Torpedo %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:138
+#: dat/scripts/pilot/generic.lua:139
 #, fuzzy, lua-format
 msgid "Tortoise %s"
 msgstr "Fang %s"
 
-#: dat/scripts/pilot/generic.lua:139
+#: dat/scripts/pilot/generic.lua:140
 #, lua-format
 msgid "Tsunami %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:140
+#: dat/scripts/pilot/generic.lua:141
 #, fuzzy, lua-format
 msgid "Turtle %s"
 msgstr "Fang %s"
 
-#: dat/scripts/pilot/generic.lua:141
+#: dat/scripts/pilot/generic.lua:142
 #, lua-format
 msgid "Typhoon %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:142
+#: dat/scripts/pilot/generic.lua:143
 #, fuzzy, lua-format
 msgid "Unicorn %s"
 msgstr "Einhorn I"
 
-#: dat/scripts/pilot/generic.lua:143
+#: dat/scripts/pilot/generic.lua:144
 #, lua-format
 msgid "Uranium %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:144
+#: dat/scripts/pilot/generic.lua:145
 #, fuzzy, lua-format
 msgid "Velocity %s"
 msgstr "Tempo"
 
-#: dat/scripts/pilot/generic.lua:145
+#: dat/scripts/pilot/generic.lua:146
 #, fuzzy, lua-format
 msgid "Vengeance %s"
 msgstr "Rächer"
 
-#: dat/scripts/pilot/generic.lua:146
+#: dat/scripts/pilot/generic.lua:147
 #, fuzzy, lua-format
 msgid "Virus %s"
 msgstr "Achse"
 
-#: dat/scripts/pilot/generic.lua:147
+#: dat/scripts/pilot/generic.lua:148
 #, fuzzy, lua-format
 msgid "Void %s"
 msgstr "Void"
 
-#: dat/scripts/pilot/generic.lua:148
+#: dat/scripts/pilot/generic.lua:149
 #, lua-format
 msgid "Wasp %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:149
+#: dat/scripts/pilot/generic.lua:150
 #, fuzzy, lua-format
 msgid "Wind %s"
 msgstr "Wind"
 
-#: dat/scripts/pilot/generic.lua:150
+#: dat/scripts/pilot/generic.lua:151
 #, fuzzy, lua-format
 msgid "Wing %s"
 msgstr "Flügelige "
 
-#: dat/scripts/pilot/generic.lua:151
+#: dat/scripts/pilot/generic.lua:152
 #, fuzzy, lua-format
 msgid "Wolf %s"
 msgstr "Wolf I"
 
-#: dat/scripts/pilot/generic.lua:152
+#: dat/scripts/pilot/generic.lua:153
 #, lua-format
 msgid "Wraith %s"
 msgstr ""
 
-#: dat/scripts/pilot/generic.lua:153
+#: dat/scripts/pilot/generic.lua:154
 #, fuzzy, lua-format
 msgid "Xenon %s"
 msgstr "Dämon"
 
-#: dat/scripts/pilot/generic.lua:154
+#: dat/scripts/pilot/generic.lua:155
 #, fuzzy, lua-format
 msgid "Zombie %s"
 msgstr "Zombie"
@@ -70394,1506 +70394,1544 @@ msgid "Psychic "
 msgstr "Psycho-"
 
 #: dat/scripts/pilot/pirate.lua:134
+#, fuzzy
+msgid "Radical "
+msgstr "Radix I"
+
+#: dat/scripts/pilot/pirate.lua:135
 msgid "Raging "
 msgstr "Wütende "
 
-#: dat/scripts/pilot/pirate.lua:135
+#: dat/scripts/pilot/pirate.lua:136
 msgid "Reclusive "
 msgstr "Reklusive "
 
-#: dat/scripts/pilot/pirate.lua:136
+#: dat/scripts/pilot/pirate.lua:137
 msgid "Relentless "
 msgstr "Gnadenlose "
 
-#: dat/scripts/pilot/pirate.lua:137
+#: dat/scripts/pilot/pirate.lua:138
 msgid "Rostige "
 msgstr "Rostige "
 
-#: dat/scripts/pilot/pirate.lua:138
+#: dat/scripts/pilot/pirate.lua:139
 msgid "Rough "
 msgstr "Harte "
 
-#: dat/scripts/pilot/pirate.lua:139
+#: dat/scripts/pilot/pirate.lua:140
 msgid "Ruthless "
 msgstr "Ruchlose "
 
-#: dat/scripts/pilot/pirate.lua:140
+#: dat/scripts/pilot/pirate.lua:141
 msgid "Saccharin "
 msgstr "Saccharin-"
 
-#: dat/scripts/pilot/pirate.lua:141
+#: dat/scripts/pilot/pirate.lua:142
 msgid "Salty "
 msgstr "Salzige "
 
-#: dat/scripts/pilot/pirate.lua:142
+#: dat/scripts/pilot/pirate.lua:143
 msgid "Samui "
 msgstr "Samui-"
 
-#: dat/scripts/pilot/pirate.lua:143
+#: dat/scripts/pilot/pirate.lua:144
 msgid "Satanic "
 msgstr "Satanische "
 
-#: dat/scripts/pilot/pirate.lua:144
+#: dat/scripts/pilot/pirate.lua:145
 msgid "Secluded "
 msgstr "Einsame "
 
-#: dat/scripts/pilot/pirate.lua:145
+#: dat/scripts/pilot/pirate.lua:146
 msgid "Seltsame "
 msgstr "Seltsame "
 
-#: dat/scripts/pilot/pirate.lua:146
+#: dat/scripts/pilot/pirate.lua:147
 msgid "Serial "
 msgstr "Seriale "
 
-#: dat/scripts/pilot/pirate.lua:147
+#: dat/scripts/pilot/pirate.lua:148
 msgid "Sharing "
 msgstr "Teilende "
 
-#: dat/scripts/pilot/pirate.lua:148
+#: dat/scripts/pilot/pirate.lua:149
 msgid "Silly "
 msgstr "Doofe "
 
-#: dat/scripts/pilot/pirate.lua:149
+#: dat/scripts/pilot/pirate.lua:150
 msgid "Single "
 msgstr "Einzelner "
 
-#: dat/scripts/pilot/pirate.lua:150
+#: dat/scripts/pilot/pirate.lua:151
 msgid "Sleepy "
 msgstr "Schläfrige "
 
-#: dat/scripts/pilot/pirate.lua:151
+#: dat/scripts/pilot/pirate.lua:152
 msgid "Slimy "
 msgstr "Schleimige "
 
-#: dat/scripts/pilot/pirate.lua:152
+#: dat/scripts/pilot/pirate.lua:153
 msgid "Smelly "
 msgstr "Stänkernde "
 
-#: dat/scripts/pilot/pirate.lua:153
+#: dat/scripts/pilot/pirate.lua:154
 msgid "Solar "
 msgstr "Solare "
 
-#: dat/scripts/pilot/pirate.lua:154
+#: dat/scripts/pilot/pirate.lua:155
 msgid "Space "
 msgstr "Weltraum-"
 
-#: dat/scripts/pilot/pirate.lua:155
+#: dat/scripts/pilot/pirate.lua:156
 msgid "Spicy "
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:156
+#: dat/scripts/pilot/pirate.lua:157
 msgid "Stained "
 msgstr "Fleckige "
 
-#: dat/scripts/pilot/pirate.lua:157
+#: dat/scripts/pilot/pirate.lua:158
 msgid "Static "
 msgstr "Statische "
 
-#: dat/scripts/pilot/pirate.lua:158
+#: dat/scripts/pilot/pirate.lua:159
 msgid "Steel "
 msgstr "Stählerne "
 
-#: dat/scripts/pilot/pirate.lua:159
+#: dat/scripts/pilot/pirate.lua:160
 msgid "Strange "
 msgstr "Komische "
 
-#: dat/scripts/pilot/pirate.lua:160
+#: dat/scripts/pilot/pirate.lua:161
 msgid "Strawhat "
 msgstr "Strohhut-"
 
-#: dat/scripts/pilot/pirate.lua:161
+#: dat/scripts/pilot/pirate.lua:162
 msgid "Sukina "
 msgstr "Sukina-"
 
-#: dat/scripts/pilot/pirate.lua:162
+#: dat/scripts/pilot/pirate.lua:163
 msgid "Super "
 msgstr "Super-"
 
-#: dat/scripts/pilot/pirate.lua:163
+#: dat/scripts/pilot/pirate.lua:164
+msgid "Supreme "
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:165
 msgid "Sweaty "
 msgstr "Schweiß-"
 
-#: dat/scripts/pilot/pirate.lua:164
+#: dat/scripts/pilot/pirate.lua:166
 msgid "Sweet "
 msgstr "Süße "
 
-#: dat/scripts/pilot/pirate.lua:165
+#: dat/scripts/pilot/pirate.lua:167
 msgid "Tall "
 msgstr "Tall "
 
-#: dat/scripts/pilot/pirate.lua:166
+#: dat/scripts/pilot/pirate.lua:168
 msgid "Takai "
 msgstr "Takai-"
 
-#: dat/scripts/pilot/pirate.lua:167
+#: dat/scripts/pilot/pirate.lua:169
 msgid "Terrible "
 msgstr "Furchtbare "
 
-#: dat/scripts/pilot/pirate.lua:168
+#: dat/scripts/pilot/pirate.lua:170
 msgid "Tired "
 msgstr "Müde "
 
-#: dat/scripts/pilot/pirate.lua:169
+#: dat/scripts/pilot/pirate.lua:171
 msgid "Toothless "
 msgstr "Zahnlose "
 
-#: dat/scripts/pilot/pirate.lua:170
+#: dat/scripts/pilot/pirate.lua:172
 msgid "Tropical "
 msgstr "Tropische "
 
-#: dat/scripts/pilot/pirate.lua:171
+#: dat/scripts/pilot/pirate.lua:173
 msgid "Tsukareteru "
 msgstr "Tsukareteru-"
 
-#: dat/scripts/pilot/pirate.lua:172
+#: dat/scripts/pilot/pirate.lua:174
 msgid "Typical "
 msgstr "Typische "
 
-#: dat/scripts/pilot/pirate.lua:173
+#: dat/scripts/pilot/pirate.lua:175
 msgid "Ultimate "
 msgstr "Ultimative "
 
-#: dat/scripts/pilot/pirate.lua:174
+#: dat/scripts/pilot/pirate.lua:176
 msgid "Umai "
 msgstr "Umai-"
 
-#: dat/scripts/pilot/pirate.lua:175
+#: dat/scripts/pilot/pirate.lua:177
 msgid "Uncombed "
 msgstr "Ungekämmte "
 
-#: dat/scripts/pilot/pirate.lua:176
+#: dat/scripts/pilot/pirate.lua:178
 msgid "Undead "
 msgstr "Untote "
 
-#: dat/scripts/pilot/pirate.lua:177
+#: dat/scripts/pilot/pirate.lua:179
 msgid "Unersättliche "
 msgstr "Unersättliche "
 
-#: dat/scripts/pilot/pirate.lua:178
+#: dat/scripts/pilot/pirate.lua:180
 msgid "Unhealthy "
 msgstr "Kranke "
 
-#: dat/scripts/pilot/pirate.lua:179
+#: dat/scripts/pilot/pirate.lua:181
 msgid "Unreal "
 msgstr "Irreale "
 
-#: dat/scripts/pilot/pirate.lua:180
+#: dat/scripts/pilot/pirate.lua:182
 msgid "Unsightly "
 msgstr "Hässliche "
 
-#: dat/scripts/pilot/pirate.lua:181
+#: dat/scripts/pilot/pirate.lua:183
 msgid "Urusai "
 msgstr "Urusai "
 
-#: dat/scripts/pilot/pirate.lua:182
+#: dat/scripts/pilot/pirate.lua:184
 msgid "Utsukushī "
 msgstr "Utsukushī-"
 
-#: dat/scripts/pilot/pirate.lua:183
+#: dat/scripts/pilot/pirate.lua:185
 msgid "Vengeful "
 msgstr "Rachsame "
 
-#: dat/scripts/pilot/pirate.lua:184
+#: dat/scripts/pilot/pirate.lua:186
 msgid "Very Bad "
 msgstr "Sehr Schlechte "
 
-#: dat/scripts/pilot/pirate.lua:185
+#: dat/scripts/pilot/pirate.lua:187
 msgid "Violent "
 msgstr "Gewaltige "
 
-#: dat/scripts/pilot/pirate.lua:186
+#: dat/scripts/pilot/pirate.lua:188
 msgid "Warui "
 msgstr "Warui-"
 
-#: dat/scripts/pilot/pirate.lua:187
+#: dat/scripts/pilot/pirate.lua:189
 msgid "Weeping "
 msgstr "Weinende "
 
-#: dat/scripts/pilot/pirate.lua:188
+#: dat/scripts/pilot/pirate.lua:190
 msgid "Wild "
 msgstr "Wilde "
 
-#: dat/scripts/pilot/pirate.lua:189
+#: dat/scripts/pilot/pirate.lua:191
 msgid "Winged "
 msgstr "Flügelige "
 
-#: dat/scripts/pilot/pirate.lua:190
+#: dat/scripts/pilot/pirate.lua:192
 msgid "Wretched "
 msgstr "Jämmerliche "
 
-#: dat/scripts/pilot/pirate.lua:191
+#: dat/scripts/pilot/pirate.lua:193
 #, fuzzy
 msgid "Yami No "
 msgstr "Chairo No "
 
-#: dat/scripts/pilot/pirate.lua:192
+#: dat/scripts/pilot/pirate.lua:194
 msgid "Yaseteru "
 msgstr "Yaseteru-"
 
-#: dat/scripts/pilot/pirate.lua:193
+#: dat/scripts/pilot/pirate.lua:195
 msgid "Yasui "
 msgstr "Yasui-"
 
-#: dat/scripts/pilot/pirate.lua:194
+#: dat/scripts/pilot/pirate.lua:196
 msgid "Yasashī "
 msgstr "Yasashī "
 
-#: dat/scripts/pilot/pirate.lua:195
+#: dat/scripts/pilot/pirate.lua:197
 msgid "Yummy "
 msgstr "Mjam-"
 
-#: dat/scripts/pilot/pirate.lua:198
+#: dat/scripts/pilot/pirate.lua:200
 msgid "Akai "
 msgstr "Akai "
 
-#: dat/scripts/pilot/pirate.lua:199
+#: dat/scripts/pilot/pirate.lua:201
 msgid "Amarillo "
 msgstr "Amarillo "
 
-#: dat/scripts/pilot/pirate.lua:200
+#: dat/scripts/pilot/pirate.lua:202
 msgid "Aoi "
 msgstr "Aoi "
 
-#: dat/scripts/pilot/pirate.lua:201
+#: dat/scripts/pilot/pirate.lua:203
 msgid "Azul "
 msgstr "Azul "
 
-#: dat/scripts/pilot/pirate.lua:202
+#: dat/scripts/pilot/pirate.lua:204
 msgid "Blau "
 msgstr "Blaue "
 
-#: dat/scripts/pilot/pirate.lua:203
+#: dat/scripts/pilot/pirate.lua:205
 msgid "Bleu "
 msgstr "Bleu "
 
-#: dat/scripts/pilot/pirate.lua:204
+#: dat/scripts/pilot/pirate.lua:206
 msgid "Blue "
 msgstr "Blue "
 
-#: dat/scripts/pilot/pirate.lua:205
+#: dat/scripts/pilot/pirate.lua:207
 msgid "Chairo No "
 msgstr "Chairo No "
 
-#: dat/scripts/pilot/pirate.lua:206
+#: dat/scripts/pilot/pirate.lua:208
 msgid "Crimson "
 msgstr "Blutrote "
 
-#: dat/scripts/pilot/pirate.lua:207
+#: dat/scripts/pilot/pirate.lua:209
 msgid "Cyan "
 msgstr "Türkise "
 
-#: dat/scripts/pilot/pirate.lua:208
+#: dat/scripts/pilot/pirate.lua:210
 msgid "Gelb "
 msgstr "Gelbe "
 
-#: dat/scripts/pilot/pirate.lua:209
+#: dat/scripts/pilot/pirate.lua:211
 msgid "Gin'iro No "
 msgstr "Gin'iro No "
 
-#: dat/scripts/pilot/pirate.lua:210
+#: dat/scripts/pilot/pirate.lua:212
 msgid "Golden "
 msgstr "Goldene "
 
-#: dat/scripts/pilot/pirate.lua:211
+#: dat/scripts/pilot/pirate.lua:213
 msgid "Gray "
 msgstr "Gray "
 
-#: dat/scripts/pilot/pirate.lua:212
+#: dat/scripts/pilot/pirate.lua:214
 msgid "Green "
 msgstr "Green "
 
-#: dat/scripts/pilot/pirate.lua:213
+#: dat/scripts/pilot/pirate.lua:215
 msgid "Grün "
 msgstr "Grüne "
 
-#: dat/scripts/pilot/pirate.lua:214
+#: dat/scripts/pilot/pirate.lua:216
 msgid "Haiiro No "
 msgstr "Haiiro No "
 
-#: dat/scripts/pilot/pirate.lua:215
+#: dat/scripts/pilot/pirate.lua:217
 msgid "Kiiroi "
 msgstr "Kiiroi "
 
-#: dat/scripts/pilot/pirate.lua:216
+#: dat/scripts/pilot/pirate.lua:218
 msgid "Kin'iro No "
 msgstr "Kin'iro No "
 
-#: dat/scripts/pilot/pirate.lua:217
+#: dat/scripts/pilot/pirate.lua:219
 msgid "Kuroi "
 msgstr "Kuroi "
 
-#: dat/scripts/pilot/pirate.lua:218
+#: dat/scripts/pilot/pirate.lua:220
 msgid "Mauve "
 msgstr "Mauve "
 
-#: dat/scripts/pilot/pirate.lua:219
+#: dat/scripts/pilot/pirate.lua:221
 msgid "Midori No "
 msgstr "Midori No "
 
-#: dat/scripts/pilot/pirate.lua:220
+#: dat/scripts/pilot/pirate.lua:222
 msgid "Murasaki No "
 msgstr "Murasaki No "
 
-#: dat/scripts/pilot/pirate.lua:221
+#: dat/scripts/pilot/pirate.lua:223
 msgid "Pink "
 msgstr "Pinke "
 
-#: dat/scripts/pilot/pirate.lua:222
+#: dat/scripts/pilot/pirate.lua:224
 msgid "Purple "
 msgstr "Purpurne "
 
-#: dat/scripts/pilot/pirate.lua:223
+#: dat/scripts/pilot/pirate.lua:225
 msgid "Red "
 msgstr "Red "
 
-#: dat/scripts/pilot/pirate.lua:224
+#: dat/scripts/pilot/pirate.lua:226
 msgid "Roho "
 msgstr "Roho "
 
-#: dat/scripts/pilot/pirate.lua:225
+#: dat/scripts/pilot/pirate.lua:227
 msgid "Schwarz "
 msgstr "Schwarze "
 
-#: dat/scripts/pilot/pirate.lua:226
+#: dat/scripts/pilot/pirate.lua:228
 msgid "Shiroi "
 msgstr "Shiroi "
 
-#: dat/scripts/pilot/pirate.lua:227
+#: dat/scripts/pilot/pirate.lua:229
 msgid "Silver "
 msgstr "Silver "
 
-#: dat/scripts/pilot/pirate.lua:228
+#: dat/scripts/pilot/pirate.lua:230
 msgid "Violet "
 msgstr "Violet "
 
-#: dat/scripts/pilot/pirate.lua:229
+#: dat/scripts/pilot/pirate.lua:231
 msgid "Yellow "
 msgstr "Gelbe "
 
-#: dat/scripts/pilot/pirate.lua:232
+#: dat/scripts/pilot/pirate.lua:234
 msgid "1024"
 msgstr "1024"
 
-#: dat/scripts/pilot/pirate.lua:233
+#: dat/scripts/pilot/pirate.lua:235
 msgid "Aku"
 msgstr "Aku"
 
-#: dat/scripts/pilot/pirate.lua:234
+#: dat/scripts/pilot/pirate.lua:236
 msgid "Akuma"
 msgstr "Akuma"
 
-#: dat/scripts/pilot/pirate.lua:235
+#: dat/scripts/pilot/pirate.lua:237
 msgid "Alphabet Soup"
 msgstr "Alphabetsuppe"
 
-#: dat/scripts/pilot/pirate.lua:236
+#: dat/scripts/pilot/pirate.lua:238
 msgid "Amigo"
 msgstr "Amigo"
 
-#: dat/scripts/pilot/pirate.lua:237
+#: dat/scripts/pilot/pirate.lua:239
 msgid "Angel"
 msgstr "Angel"
 
-#: dat/scripts/pilot/pirate.lua:238
+#: dat/scripts/pilot/pirate.lua:240
 msgid "Angle Grinder"
 msgstr "Flexer"
 
-#: dat/scripts/pilot/pirate.lua:239
+#: dat/scripts/pilot/pirate.lua:241
 msgid "Anvil"
 msgstr "Amboss"
 
-#: dat/scripts/pilot/pirate.lua:240
+#: dat/scripts/pilot/pirate.lua:242
 msgid "Ari"
 msgstr "Ari"
 
-#: dat/scripts/pilot/pirate.lua:241
+#: dat/scripts/pilot/pirate.lua:243
 msgid "Arrow"
 msgstr "Arrow"
 
-#: dat/scripts/pilot/pirate.lua:242
+#: dat/scripts/pilot/pirate.lua:244
 msgid "Ass"
 msgstr "Ass"
 
-#: dat/scripts/pilot/pirate.lua:243
+#: dat/scripts/pilot/pirate.lua:245
 msgid "Atama"
 msgstr "Atama"
 
-#: dat/scripts/pilot/pirate.lua:244
+#: dat/scripts/pilot/pirate.lua:246
 msgid "Aunt"
 msgstr "Tante"
 
-#: dat/scripts/pilot/pirate.lua:245
+#: dat/scripts/pilot/pirate.lua:247
 msgid "Auster"
 msgstr "Auster"
 
-#: dat/scripts/pilot/pirate.lua:246
+#: dat/scripts/pilot/pirate.lua:248
 msgid "Avenger"
 msgstr "Rächer"
 
-#: dat/scripts/pilot/pirate.lua:247
+#: dat/scripts/pilot/pirate.lua:249
 msgid "Axis"
 msgstr "Achse"
 
-#: dat/scripts/pilot/pirate.lua:248
+#: dat/scripts/pilot/pirate.lua:250
 msgid "Baka"
 msgstr "Baka"
 
-#: dat/scripts/pilot/pirate.lua:249
+#: dat/scripts/pilot/pirate.lua:251
 msgid "Bakemono"
 msgstr "Bakemono"
 
-#: dat/scripts/pilot/pirate.lua:250
+#: dat/scripts/pilot/pirate.lua:252
 msgid "Band Saw"
 msgstr "Bandsäge"
 
-#: dat/scripts/pilot/pirate.lua:251
+#: dat/scripts/pilot/pirate.lua:253
 msgid "Bat"
 msgstr "Schlag"
 
-#: dat/scripts/pilot/pirate.lua:252
+#: dat/scripts/pilot/pirate.lua:254
 msgid "Beard"
 msgstr "Bart"
 
-#: dat/scripts/pilot/pirate.lua:253
+#: dat/scripts/pilot/pirate.lua:255
 msgid "Belt Sander"
 msgstr "Bandschleifer"
 
-#: dat/scripts/pilot/pirate.lua:254
+#: dat/scripts/pilot/pirate.lua:256
 msgid "Bench Grinder"
 msgstr "Tischschleifer"
 
-#: dat/scripts/pilot/pirate.lua:255
+#: dat/scripts/pilot/pirate.lua:257
 msgid "Bengoshi"
 msgstr "Bengoshi"
 
-#: dat/scripts/pilot/pirate.lua:256
+#: dat/scripts/pilot/pirate.lua:258
 msgid "Black Hole"
 msgstr "Schwarzes Loch"
 
-#: dat/scripts/pilot/pirate.lua:257
+#: dat/scripts/pilot/pirate.lua:259
 msgid "Blarg"
 msgstr "Blarg"
 
-#: dat/scripts/pilot/pirate.lua:258
+#: dat/scripts/pilot/pirate.lua:260
 msgid "Blitzschneider"
 msgstr "Blitzschneider"
 
-#: dat/scripts/pilot/pirate.lua:259
+#: dat/scripts/pilot/pirate.lua:261
 msgid "Blizzard"
 msgstr "Blizzard"
 
-#: dat/scripts/pilot/pirate.lua:260
+#: dat/scripts/pilot/pirate.lua:262
 msgid "Blood"
 msgstr "Blood"
 
-#: dat/scripts/pilot/pirate.lua:261
+#: dat/scripts/pilot/pirate.lua:263
 msgid "Blunder"
 msgstr "Patzer"
 
-#: dat/scripts/pilot/pirate.lua:262
+#: dat/scripts/pilot/pirate.lua:264
 msgid "Boot"
 msgstr "Stiefel"
 
-#: dat/scripts/pilot/pirate.lua:263
+#: dat/scripts/pilot/pirate.lua:265
 msgid "Bobber"
 msgstr "Bobber"
 
-#: dat/scripts/pilot/pirate.lua:264
+#: dat/scripts/pilot/pirate.lua:266
 msgid "Bolt Cutter"
 msgstr "Bolzenschneider"
 
-#: dat/scripts/pilot/pirate.lua:265
+#: dat/scripts/pilot/pirate.lua:267
 msgid "Bōshi"
 msgstr "Bōshi"
 
-#: dat/scripts/pilot/pirate.lua:266
+#: dat/scripts/pilot/pirate.lua:268
 msgid "Brain"
 msgstr "Brain"
 
-#: dat/scripts/pilot/pirate.lua:267
+#: dat/scripts/pilot/pirate.lua:269
 msgid "Breeze"
 msgstr "Brise"
 
-#: dat/scripts/pilot/pirate.lua:268
+#: dat/scripts/pilot/pirate.lua:270
 msgid "Bride"
 msgstr "Braut"
 
-#: dat/scripts/pilot/pirate.lua:270
+#: dat/scripts/pilot/pirate.lua:272
 msgid "Bulk"
 msgstr "Massen"
 
-#: dat/scripts/pilot/pirate.lua:271
+#: dat/scripts/pilot/pirate.lua:273
 msgid "Burglar"
 msgstr "Burglar"
 
-#: dat/scripts/pilot/pirate.lua:272
+#: dat/scripts/pilot/pirate.lua:274
 msgid "Cane"
 msgstr "Stab"
 
-#: dat/scripts/pilot/pirate.lua:273
+#: dat/scripts/pilot/pirate.lua:275
 #, fuzzy
 msgid "Cannon"
 msgstr "Ionenkanone"
 
-#: dat/scripts/pilot/pirate.lua:274
+#: dat/scripts/pilot/pirate.lua:276
 msgid "Chainsaw"
 msgstr "Kettensäge"
 
-#: dat/scripts/pilot/pirate.lua:275
+#: dat/scripts/pilot/pirate.lua:277
 msgid "Cheese"
 msgstr "Käse"
 
-#: dat/scripts/pilot/pirate.lua:276
+#: dat/scripts/pilot/pirate.lua:278
 msgid "Cheese Grater"
 msgstr "Käsereibe"
 
-#: dat/scripts/pilot/pirate.lua:277
+#: dat/scripts/pilot/pirate.lua:279
 msgid "Chi"
 msgstr "Chi"
 
-#: dat/scripts/pilot/pirate.lua:278
+#: dat/scripts/pilot/pirate.lua:280
 msgid "Chicken"
 msgstr "Chicken"
 
-#: dat/scripts/pilot/pirate.lua:279
+#: dat/scripts/pilot/pirate.lua:281
+msgid "Chin"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:282
 msgid "Circle"
 msgstr "Kreis"
 
-#: dat/scripts/pilot/pirate.lua:280
+#: dat/scripts/pilot/pirate.lua:283
 msgid "Claw"
 msgstr "Claw"
 
-#: dat/scripts/pilot/pirate.lua:281
+#: dat/scripts/pilot/pirate.lua:284
 msgid "Claw Hammer"
 msgstr "Klauhammer"
 
-#: dat/scripts/pilot/pirate.lua:282
+#: dat/scripts/pilot/pirate.lua:285
 msgid "Club"
 msgstr "Club"
 
-#: dat/scripts/pilot/pirate.lua:283
+#: dat/scripts/pilot/pirate.lua:286
 msgid "Coconut"
 msgstr "Kokosnuss"
 
-#: dat/scripts/pilot/pirate.lua:284
+#: dat/scripts/pilot/pirate.lua:287
 msgid "Coot"
 msgstr "Coot"
 
-#: dat/scripts/pilot/pirate.lua:285
+#: dat/scripts/pilot/pirate.lua:288
 msgid "Corsair"
 msgstr "Korsar"
 
-#: dat/scripts/pilot/pirate.lua:286
+#: dat/scripts/pilot/pirate.lua:289
 msgid "Cougar"
 msgstr "Puma"
 
-#: dat/scripts/pilot/pirate.lua:287
+#: dat/scripts/pilot/pirate.lua:290
 msgid "Crisis"
 msgstr "Krise"
 
-#: dat/scripts/pilot/pirate.lua:289
+#: dat/scripts/pilot/pirate.lua:292
 msgid "Crowbar"
 msgstr "Brecheisen"
 
-#: dat/scripts/pilot/pirate.lua:290
+#: dat/scripts/pilot/pirate.lua:293
 msgid "Crusader"
 msgstr "Crusader"
 
-#: dat/scripts/pilot/pirate.lua:291
+#: dat/scripts/pilot/pirate.lua:294
 msgid "Curse"
 msgstr "Fluch"
 
-#: dat/scripts/pilot/pirate.lua:292
+#: dat/scripts/pilot/pirate.lua:295
 msgid "Cyborg"
 msgstr "Cyborg"
 
-#: dat/scripts/pilot/pirate.lua:293
+#: dat/scripts/pilot/pirate.lua:296
 msgid "Darkness"
 msgstr "Darkness"
 
-#: dat/scripts/pilot/pirate.lua:294 src/menu.c:559
+#: dat/scripts/pilot/pirate.lua:297 src/menu.c:559
 msgid "Death"
 msgstr "Tod"
 
-#: dat/scripts/pilot/pirate.lua:295
+#: dat/scripts/pilot/pirate.lua:298
 msgid "Deity"
 msgstr "Deity"
 
-#: dat/scripts/pilot/pirate.lua:297
+#: dat/scripts/pilot/pirate.lua:300
 msgid "Destruction"
 msgstr "Destruktion"
 
-#: dat/scripts/pilot/pirate.lua:298
+#: dat/scripts/pilot/pirate.lua:301
 msgid "Devil"
 msgstr "Teufel"
 
-#: dat/scripts/pilot/pirate.lua:299
+#: dat/scripts/pilot/pirate.lua:302
 msgid "Dictator"
 msgstr "Diktator"
 
-#: dat/scripts/pilot/pirate.lua:300
+#: dat/scripts/pilot/pirate.lua:303
 msgid "Disaster"
 msgstr "Disaster"
 
-#: dat/scripts/pilot/pirate.lua:301
+#: dat/scripts/pilot/pirate.lua:304
 msgid "Discord"
 msgstr "Konflikt"
 
-#: dat/scripts/pilot/pirate.lua:302
+#: dat/scripts/pilot/pirate.lua:305
 msgid "Donkey"
 msgstr "Esel"
 
-#: dat/scripts/pilot/pirate.lua:303
+#: dat/scripts/pilot/pirate.lua:306
 msgid "Doom"
 msgstr "Verderben"
 
-#: dat/scripts/pilot/pirate.lua:304
+#: dat/scripts/pilot/pirate.lua:307
 msgid "Drache"
 msgstr "Drache"
 
-#: dat/scripts/pilot/pirate.lua:305
+#: dat/scripts/pilot/pirate.lua:308
 msgid "Dragon"
 msgstr "Dragon"
 
-#: dat/scripts/pilot/pirate.lua:306
+#: dat/scripts/pilot/pirate.lua:309
 msgid "Dread"
 msgstr "Grauen"
 
-#: dat/scripts/pilot/pirate.lua:307
+#: dat/scripts/pilot/pirate.lua:310
 msgid "Drifter"
 msgstr "Drifter"
 
-#: dat/scripts/pilot/pirate.lua:308
+#: dat/scripts/pilot/pirate.lua:311
 msgid "Drill Press"
 msgstr "Bohrpresser"
 
-#: dat/scripts/pilot/pirate.lua:309
+#: dat/scripts/pilot/pirate.lua:312
 msgid "Duckling"
 msgstr "Entlein"
 
-#: dat/scripts/pilot/pirate.lua:310
+#: dat/scripts/pilot/pirate.lua:313
 msgid "Eagle"
 msgstr "Adler"
 
-#: dat/scripts/pilot/pirate.lua:311
+#: dat/scripts/pilot/pirate.lua:314
 msgid "Eggplant"
 msgstr "Eggplant"
 
-#: dat/scripts/pilot/pirate.lua:312
+#: dat/scripts/pilot/pirate.lua:315
 msgid "Ego"
 msgstr "Ego"
 
-#: dat/scripts/pilot/pirate.lua:313
+#: dat/scripts/pilot/pirate.lua:316
 msgid "Electricity"
 msgstr "Elektrizität"
 
-#: dat/scripts/pilot/pirate.lua:314
+#: dat/scripts/pilot/pirate.lua:317
 msgid "Emperor"
 msgstr "Imperator"
 
-#: dat/scripts/pilot/pirate.lua:315
+#: dat/scripts/pilot/pirate.lua:318
 msgid "Energy-Volt"
 msgstr "Energie-Volt"
 
-#: dat/scripts/pilot/pirate.lua:316
+#: dat/scripts/pilot/pirate.lua:319
 msgid "Engine"
 msgstr "Motor"
 
-#: dat/scripts/pilot/pirate.lua:317
+#: dat/scripts/pilot/pirate.lua:320
 msgid "Fang"
 msgstr "Fang"
 
-#: dat/scripts/pilot/pirate.lua:318
+#: dat/scripts/pilot/pirate.lua:321
 msgid "Flare"
 msgstr "Flare"
 
-#: dat/scripts/pilot/pirate.lua:319
+#: dat/scripts/pilot/pirate.lua:322
 msgid "Flash"
 msgstr "Flash"
 
-#: dat/scripts/pilot/pirate.lua:320
+#: dat/scripts/pilot/pirate.lua:323
 msgid "Fox"
 msgstr "Fuchs"
 
-#: dat/scripts/pilot/pirate.lua:321
+#: dat/scripts/pilot/pirate.lua:324
 msgid "Friend"
 msgstr "Freund"
 
-#: dat/scripts/pilot/pirate.lua:322
+#: dat/scripts/pilot/pirate.lua:325
 msgid "Fugitive"
 msgstr "Fugitive"
 
-#: dat/scripts/pilot/pirate.lua:323
+#: dat/scripts/pilot/pirate.lua:326
 msgid "Gaki"
 msgstr "Gaki"
 
-#: dat/scripts/pilot/pirate.lua:324
+#: dat/scripts/pilot/pirate.lua:327
 #, fuzzy
 msgid "Game"
 msgstr "Gamel"
 
-#: dat/scripts/pilot/pirate.lua:325
+#: dat/scripts/pilot/pirate.lua:328
 msgid "Geschützturmdrehbank"
 msgstr "Geschützturmdrehbank"
 
-#: dat/scripts/pilot/pirate.lua:326
+#: dat/scripts/pilot/pirate.lua:329
 msgid "Giant"
 msgstr "Riese"
 
-#: dat/scripts/pilot/pirate.lua:327
+#: dat/scripts/pilot/pirate.lua:330
 msgid "Gift"
 msgstr "Gift"
 
-#: dat/scripts/pilot/pirate.lua:328
+#: dat/scripts/pilot/pirate.lua:331
 msgid "Gohan"
 msgstr "Gohan"
 
-#: dat/scripts/pilot/pirate.lua:329
+#: dat/scripts/pilot/pirate.lua:332
 msgid "Goose"
 msgstr "Gans"
 
-#: dat/scripts/pilot/pirate.lua:330
+#: dat/scripts/pilot/pirate.lua:333
 msgid "Gorilla"
 msgstr "Gorilla"
 
-#: dat/scripts/pilot/pirate.lua:331
+#: dat/scripts/pilot/pirate.lua:334
 msgid "Gun"
 msgstr "Gun"
 
-#: dat/scripts/pilot/pirate.lua:332
+#: dat/scripts/pilot/pirate.lua:335
 msgid "Hae"
 msgstr "Hae"
 
-#: dat/scripts/pilot/pirate.lua:333
+#: dat/scripts/pilot/pirate.lua:336
 msgid "Hamburger"
 msgstr "Hamburger"
 
-#: dat/scripts/pilot/pirate.lua:334
+#: dat/scripts/pilot/pirate.lua:337
 msgid "Hammer"
 msgstr "Hammer"
 
-#: dat/scripts/pilot/pirate.lua:335
+#: dat/scripts/pilot/pirate.lua:338
 msgid "Headache"
 msgstr "Headache"
 
-#: dat/scripts/pilot/pirate.lua:336
+#: dat/scripts/pilot/pirate.lua:339
 #, fuzzy
 msgid "Hedgehog"
 msgstr "Wedge"
 
-#: dat/scripts/pilot/pirate.lua:337
+#: dat/scripts/pilot/pirate.lua:341
 msgid "Hex"
 msgstr "Hex"
 
-#: dat/scripts/pilot/pirate.lua:338
+#: dat/scripts/pilot/pirate.lua:342
 msgid "Hikari"
 msgstr "Hikari"
 
-#: dat/scripts/pilot/pirate.lua:339
+#: dat/scripts/pilot/pirate.lua:343
 msgid "Horobi"
 msgstr "Horobi"
 
-#: dat/scripts/pilot/pirate.lua:340
+#: dat/scripts/pilot/pirate.lua:344
 msgid "Horror"
 msgstr "Horror"
 
-#: dat/scripts/pilot/pirate.lua:341
+#: dat/scripts/pilot/pirate.lua:345
 msgid "Hunter"
 msgstr "Hunter"
 
-#: dat/scripts/pilot/pirate.lua:342
+#: dat/scripts/pilot/pirate.lua:346
 msgid "Husband"
 msgstr "Gatte"
 
-#: dat/scripts/pilot/pirate.lua:343
+#: dat/scripts/pilot/pirate.lua:347
 msgid "Ichigo"
 msgstr "Ichigo"
 
-#: dat/scripts/pilot/pirate.lua:344
+#: dat/scripts/pilot/pirate.lua:348
 msgid "Id"
 msgstr "Id"
 
-#: dat/scripts/pilot/pirate.lua:345
+#: dat/scripts/pilot/pirate.lua:349
 msgid "Impact Wrench"
 msgstr "Schlagzängler"
 
-#: dat/scripts/pilot/pirate.lua:346
+#: dat/scripts/pilot/pirate.lua:350
 msgid "Inazuma"
 msgstr "Inazuma"
 
-#: dat/scripts/pilot/pirate.lua:348
+#: dat/scripts/pilot/pirate.lua:352
 msgid "Ishi"
 msgstr "Ishi"
 
-#: dat/scripts/pilot/pirate.lua:349
+#: dat/scripts/pilot/pirate.lua:353
 msgid "Itoyōji"
 msgstr "Itoyōji"
 
-#: dat/scripts/pilot/pirate.lua:350
+#: dat/scripts/pilot/pirate.lua:354
 msgid "Jalapeño"
 msgstr "Jalapeño"
 
-#: dat/scripts/pilot/pirate.lua:351
+#: dat/scripts/pilot/pirate.lua:355
 msgid "Jigsaw"
 msgstr "Puzzle"
 
-#: dat/scripts/pilot/pirate.lua:352
+#: dat/scripts/pilot/pirate.lua:356
 msgid "Jishin"
 msgstr "Jishin"
 
-#: dat/scripts/pilot/pirate.lua:353
+#: dat/scripts/pilot/pirate.lua:357
 msgid "Jinx"
 msgstr "Jinx"
 
-#: dat/scripts/pilot/pirate.lua:354
+#: dat/scripts/pilot/pirate.lua:358
 msgid "Ka"
 msgstr "Ka"
 
-#: dat/scripts/pilot/pirate.lua:355
+#: dat/scripts/pilot/pirate.lua:359
+#, fuzzy
+msgid "Kai"
+msgstr "Kaji"
+
+#: dat/scripts/pilot/pirate.lua:360
 msgid "Kailan"
 msgstr "Kailan"
 
-#: dat/scripts/pilot/pirate.lua:356
+#: dat/scripts/pilot/pirate.lua:361
 msgid "Kaji"
 msgstr "Kaji"
 
-#: dat/scripts/pilot/pirate.lua:357
+#: dat/scripts/pilot/pirate.lua:362
 msgid "Kamakiri"
 msgstr "Kamakiri"
 
-#: dat/scripts/pilot/pirate.lua:358
+#: dat/scripts/pilot/pirate.lua:363
 msgid "Kame"
 msgstr "Kame"
 
-#: dat/scripts/pilot/pirate.lua:359
+#: dat/scripts/pilot/pirate.lua:364
 msgid "Kami"
 msgstr "Kami"
 
-#: dat/scripts/pilot/pirate.lua:360
+#: dat/scripts/pilot/pirate.lua:365
 msgid "Kamikaze"
 msgstr "Kamikaze"
 
-#: dat/scripts/pilot/pirate.lua:361
+#: dat/scripts/pilot/pirate.lua:366
 msgid "Kappa"
 msgstr "Kappa"
 
-#: dat/scripts/pilot/pirate.lua:362
+#: dat/scripts/pilot/pirate.lua:367
 msgid "Karaoke"
 msgstr "Karaoke"
 
-#: dat/scripts/pilot/pirate.lua:363
+#: dat/scripts/pilot/pirate.lua:368
 msgid "Katana"
 msgstr "Katana"
 
-#: dat/scripts/pilot/pirate.lua:364
+#: dat/scripts/pilot/pirate.lua:369
 msgid "Kaze"
 msgstr "Kaze"
 
-#: dat/scripts/pilot/pirate.lua:365
+#: dat/scripts/pilot/pirate.lua:370
 msgid "Keel"
 msgstr "Kiel"
 
-#: dat/scripts/pilot/pirate.lua:366
+#: dat/scripts/pilot/pirate.lua:371
 msgid "Ketchup"
 msgstr "Ketchup"
 
-#: dat/scripts/pilot/pirate.lua:367
+#: dat/scripts/pilot/pirate.lua:372
 msgid "Killer"
 msgstr "Killer"
 
-#: dat/scripts/pilot/pirate.lua:368
+#: dat/scripts/pilot/pirate.lua:373
+msgid "King"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:374
 msgid "Kinoko"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:369
+#: dat/scripts/pilot/pirate.lua:375
 msgid "Kirin"
 msgstr "Kirin"
 
-#: dat/scripts/pilot/pirate.lua:370
+#: dat/scripts/pilot/pirate.lua:376
 msgid "Kitchen Knife"
 msgstr "Küchenmesser"
 
-#: dat/scripts/pilot/pirate.lua:371
+#: dat/scripts/pilot/pirate.lua:377
 msgid "Kitsune"
 msgstr "Kitsune"
 
-#: dat/scripts/pilot/pirate.lua:372
+#: dat/scripts/pilot/pirate.lua:378
 msgid "Kitten"
 msgstr "Kätzchen"
 
-#: dat/scripts/pilot/pirate.lua:374
+#: dat/scripts/pilot/pirate.lua:380
 msgid "Knife"
 msgstr "Messer"
 
-#: dat/scripts/pilot/pirate.lua:375
+#: dat/scripts/pilot/pirate.lua:381
 msgid "Knight"
 msgstr "Knight"
 
-#: dat/scripts/pilot/pirate.lua:376
+#: dat/scripts/pilot/pirate.lua:382
 msgid "Kōmori"
 msgstr "Kōmori"
 
-#: dat/scripts/pilot/pirate.lua:377
+#: dat/scripts/pilot/pirate.lua:383
 msgid "Kumo"
 msgstr "Kumo"
 
-#: dat/scripts/pilot/pirate.lua:378
+#: dat/scripts/pilot/pirate.lua:384
 msgid "Lance"
 msgstr "Spieß"
 
-#: dat/scripts/pilot/pirate.lua:380
+#: dat/scripts/pilot/pirate.lua:386
 msgid "Lantern"
 msgstr "Lantern"
 
-#: dat/scripts/pilot/pirate.lua:381
+#: dat/scripts/pilot/pirate.lua:387
 msgid "Lawyer"
 msgstr "Lawyer"
 
-#: dat/scripts/pilot/pirate.lua:382
+#: dat/scripts/pilot/pirate.lua:388
 msgid "League"
 msgstr "League"
 
-#: dat/scripts/pilot/pirate.lua:383
+#: dat/scripts/pilot/pirate.lua:389
 msgid "Lust"
 msgstr "Lust"
 
-#: dat/scripts/pilot/pirate.lua:384
+#: dat/scripts/pilot/pirate.lua:390
 msgid "Madōshi"
 msgstr "Madōshi"
 
-#: dat/scripts/pilot/pirate.lua:385
+#: dat/scripts/pilot/pirate.lua:391
 msgid "Magician"
 msgstr "Magician"
 
-#: dat/scripts/pilot/pirate.lua:386
+#: dat/scripts/pilot/pirate.lua:392
 msgid "Mahō"
 msgstr "Mahō"
 
-#: dat/scripts/pilot/pirate.lua:387
+#: dat/scripts/pilot/pirate.lua:393
 msgid "Maize"
 msgstr "Maize"
 
-#: dat/scripts/pilot/pirate.lua:388
+#: dat/scripts/pilot/pirate.lua:394
 msgid "Mangaka"
 msgstr "Mangaka"
 
-#: dat/scripts/pilot/pirate.lua:389
+#: dat/scripts/pilot/pirate.lua:395
 msgid "Mangekyō"
 msgstr "Mangekyō"
 
-#: dat/scripts/pilot/pirate.lua:390
+#: dat/scripts/pilot/pirate.lua:396
 msgid "Mango"
 msgstr "Mango"
 
-#: dat/scripts/pilot/pirate.lua:391
+#: dat/scripts/pilot/pirate.lua:397
 #, fuzzy
 msgid "Mastodon"
 msgstr "Mastodon-Station"
 
-#: dat/scripts/pilot/pirate.lua:392
+#: dat/scripts/pilot/pirate.lua:398
 msgid "Mech"
 msgstr "Mech"
 
-#: dat/scripts/pilot/pirate.lua:393
+#: dat/scripts/pilot/pirate.lua:399
 msgid "Melon"
 msgstr "Melon"
 
-#: dat/scripts/pilot/pirate.lua:394
+#: dat/scripts/pilot/pirate.lua:400
 msgid "Mind"
 msgstr "Geist"
 
-#: dat/scripts/pilot/pirate.lua:395
+#: dat/scripts/pilot/pirate.lua:401
 msgid "Model"
 msgstr "Model"
 
-#: dat/scripts/pilot/pirate.lua:396
+#: dat/scripts/pilot/pirate.lua:402
 msgid "Monster"
 msgstr "Monster"
 
-#: dat/scripts/pilot/pirate.lua:397
+#: dat/scripts/pilot/pirate.lua:403
 msgid "Mosquito"
 msgstr "Mosquito"
 
-#: dat/scripts/pilot/pirate.lua:398
+#: dat/scripts/pilot/pirate.lua:404
 msgid "Moustache"
 msgstr "Schnurrbart"
 
-#: dat/scripts/pilot/pirate.lua:399
+#: dat/scripts/pilot/pirate.lua:405
 msgid "Mugi"
 msgstr "Mugi"
 
-#: dat/scripts/pilot/pirate.lua:400
+#: dat/scripts/pilot/pirate.lua:406
 msgid "Mushroom"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:401
+#: dat/scripts/pilot/pirate.lua:407
 #, fuzzy
 msgid "Mustard"
 msgstr "Schnurrbart"
 
-#: dat/scripts/pilot/pirate.lua:402
+#: dat/scripts/pilot/pirate.lua:408
 msgid "Nanika"
 msgstr "Nanika"
 
-#: dat/scripts/pilot/pirate.lua:403
+#: dat/scripts/pilot/pirate.lua:409
 msgid "Necromancer"
 msgstr "Necromancer"
 
-#: dat/scripts/pilot/pirate.lua:404
+#: dat/scripts/pilot/pirate.lua:410
 msgid "Neko"
 msgstr "Neko"
 
-#: dat/scripts/pilot/pirate.lua:405
+#: dat/scripts/pilot/pirate.lua:411
 msgid "Nezumi"
 msgstr "Nezumi"
 
-#: dat/scripts/pilot/pirate.lua:406
+#: dat/scripts/pilot/pirate.lua:412
 msgid "Night"
 msgstr "Night"
 
-#: dat/scripts/pilot/pirate.lua:407
+#: dat/scripts/pilot/pirate.lua:413
 msgid "Niku"
 msgstr "Niku"
 
-#: dat/scripts/pilot/pirate.lua:408
+#: dat/scripts/pilot/pirate.lua:414
 msgid "Ninja"
 msgstr "Ninja"
 
-#: dat/scripts/pilot/pirate.lua:409
+#: dat/scripts/pilot/pirate.lua:415
 msgid "Niwatori"
 msgstr "Niwatori"
 
-#: dat/scripts/pilot/pirate.lua:410
+#: dat/scripts/pilot/pirate.lua:416
 msgid "Nova"
 msgstr "Nova"
 
-#: dat/scripts/pilot/pirate.lua:411
+#: dat/scripts/pilot/pirate.lua:417
+msgid "Octopus"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:418
 msgid "Ogre"
 msgstr "Oger"
 
-#: dat/scripts/pilot/pirate.lua:413
+#: dat/scripts/pilot/pirate.lua:420
 msgid "Onion"
 msgstr "Onion"
 
-#: dat/scripts/pilot/pirate.lua:414
+#: dat/scripts/pilot/pirate.lua:421
 msgid "Osiris"
 msgstr "Osiris"
 
-#: dat/scripts/pilot/pirate.lua:416
+#: dat/scripts/pilot/pirate.lua:423
 msgid "Oyster"
 msgstr "Auster"
 
-#: dat/scripts/pilot/pirate.lua:417
+#: dat/scripts/pilot/pirate.lua:424
 msgid "Panther"
 msgstr "Panther"
 
-#: dat/scripts/pilot/pirate.lua:418
+#: dat/scripts/pilot/pirate.lua:425
 msgid "Paste"
 msgstr "Kleber"
 
-#: dat/scripts/pilot/pirate.lua:419
+#: dat/scripts/pilot/pirate.lua:426
 msgid "Pea"
 msgstr "Pea"
 
-#: dat/scripts/pilot/pirate.lua:420
+#: dat/scripts/pilot/pirate.lua:427
 msgid "Peapod"
 msgstr "Peapod"
 
-#: dat/scripts/pilot/pirate.lua:421
+#: dat/scripts/pilot/pirate.lua:428
 msgid "Peril"
 msgstr "Peril"
 
-#: dat/scripts/pilot/pirate.lua:422
+#: dat/scripts/pilot/pirate.lua:429
 msgid "Pickaxe"
 msgstr "Spitzbeil"
 
-#: dat/scripts/pilot/pirate.lua:423
+#: dat/scripts/pilot/pirate.lua:430
 msgid "Pipe Wrench"
 msgstr "Rohrzang"
 
-#: dat/scripts/pilot/pirate.lua:424
+#: dat/scripts/pilot/pirate.lua:431
 msgid "Pitchfork"
 msgstr "Forke"
 
-#: dat/scripts/pilot/pirate.lua:425
+#: dat/scripts/pilot/pirate.lua:432
 msgid "Politician"
 msgstr "Politician"
 
-#: dat/scripts/pilot/pirate.lua:426
+#: dat/scripts/pilot/pirate.lua:433
 msgid "Potato"
 msgstr "Erdapfel"
 
-#: dat/scripts/pilot/pirate.lua:427
+#: dat/scripts/pilot/pirate.lua:434
 msgid "Potter"
 msgstr "Potter"
 
-#: dat/scripts/pilot/pirate.lua:428
+#: dat/scripts/pilot/pirate.lua:435
 msgid "Pride"
 msgstr "Stolz"
 
-#: dat/scripts/pilot/pirate.lua:429
+#: dat/scripts/pilot/pirate.lua:436
 msgid "Princess"
 msgstr "Princess"
 
-#: dat/scripts/pilot/pirate.lua:430
+#: dat/scripts/pilot/pirate.lua:437
 msgid "Pulse"
 msgstr "Puls"
 
-#: dat/scripts/pilot/pirate.lua:431
+#: dat/scripts/pilot/pirate.lua:438
 msgid "Puppy"
 msgstr "Hundi"
 
-#: dat/scripts/pilot/pirate.lua:432
+#: dat/scripts/pilot/pirate.lua:439
 msgid "Python"
 msgstr "Python"
 
-#: dat/scripts/pilot/pirate.lua:433
+#: dat/scripts/pilot/pirate.lua:440
+msgid "Queen"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:441
 msgid "Raigeki"
 msgstr "Raigeki"
 
-#: dat/scripts/pilot/pirate.lua:435
+#: dat/scripts/pilot/pirate.lua:443
 msgid "Rat"
 msgstr "Ratte"
 
-#: dat/scripts/pilot/pirate.lua:436
+#: dat/scripts/pilot/pirate.lua:444
 msgid "Ratte"
 msgstr "Ratte"
 
-#: dat/scripts/pilot/pirate.lua:437
+#: dat/scripts/pilot/pirate.lua:445
 msgid "Ravager"
 msgstr "Ravager"
 
-#: dat/scripts/pilot/pirate.lua:438
+#: dat/scripts/pilot/pirate.lua:446
 msgid "Raven"
 msgstr "Raven"
 
-#: dat/scripts/pilot/pirate.lua:440
+#: dat/scripts/pilot/pirate.lua:448
 msgid "Recluse"
 msgstr "Recluse"
 
-#: dat/scripts/pilot/pirate.lua:441
+#: dat/scripts/pilot/pirate.lua:449
 msgid "Rice"
 msgstr "Rice"
 
-#: dat/scripts/pilot/pirate.lua:442
+#: dat/scripts/pilot/pirate.lua:450
 msgid "Ring"
 msgstr "Ring"
 
-#: dat/scripts/pilot/pirate.lua:443
+#: dat/scripts/pilot/pirate.lua:451
 msgid "River"
 msgstr "Fluss"
 
-#: dat/scripts/pilot/pirate.lua:444
+#: dat/scripts/pilot/pirate.lua:452
 msgid "Roba"
 msgstr "Roba"
 
-#: dat/scripts/pilot/pirate.lua:445
+#: dat/scripts/pilot/pirate.lua:453
 msgid "Rōjin"
 msgstr "Rōjin"
 
-#: dat/scripts/pilot/pirate.lua:446
+#: dat/scripts/pilot/pirate.lua:454
 #, fuzzy
 msgid "Rubber"
 msgstr "Bobber"
 
-#: dat/scripts/pilot/pirate.lua:447
+#: dat/scripts/pilot/pirate.lua:455
 msgid "Rubber Mallet"
 msgstr "Gummischlägel"
 
-#: dat/scripts/pilot/pirate.lua:448
+#: dat/scripts/pilot/pirate.lua:456
 msgid "Ryū"
 msgstr "Ryū"
 
-#: dat/scripts/pilot/pirate.lua:449
+#: dat/scripts/pilot/pirate.lua:457
 msgid "Sakura"
 msgstr "Sakura"
 
-#: dat/scripts/pilot/pirate.lua:450
+#: dat/scripts/pilot/pirate.lua:458
 msgid "Salad"
 msgstr "Salat"
 
-#: dat/scripts/pilot/pirate.lua:451
+#: dat/scripts/pilot/pirate.lua:459
 msgid "Samurai"
 msgstr "Samurai"
 
-#: dat/scripts/pilot/pirate.lua:452
+#: dat/scripts/pilot/pirate.lua:460
 msgid "Sasori"
 msgstr "Sasori"
 
-#: dat/scripts/pilot/pirate.lua:453
+#: dat/scripts/pilot/pirate.lua:461
 msgid "Scythe"
 msgstr "Sense"
 
-#: dat/scripts/pilot/pirate.lua:454
+#: dat/scripts/pilot/pirate.lua:462
 msgid "Sea"
 msgstr "Meer"
 
-#: dat/scripts/pilot/pirate.lua:455
+#: dat/scripts/pilot/pirate.lua:463
 msgid "Seaweed"
 msgstr "Seaweed"
 
-#: dat/scripts/pilot/pirate.lua:456
+#: dat/scripts/pilot/pirate.lua:464
 msgid "Seijika"
 msgstr "Seijika"
 
-#: dat/scripts/pilot/pirate.lua:457
+#: dat/scripts/pilot/pirate.lua:465
 msgid "Sentinel"
 msgstr "Sentinel"
 
-#: dat/scripts/pilot/pirate.lua:458
+#: dat/scripts/pilot/pirate.lua:466
 msgid "Serpent"
 msgstr "Serpent"
 
-#: dat/scripts/pilot/pirate.lua:459
+#: dat/scripts/pilot/pirate.lua:467
 msgid "Shepherd"
 msgstr "Schäfer"
 
-#: dat/scripts/pilot/pirate.lua:460
+#: dat/scripts/pilot/pirate.lua:468
 msgid "Shinigami"
 msgstr "Shinigami"
 
-#: dat/scripts/pilot/pirate.lua:461
+#: dat/scripts/pilot/pirate.lua:469
 msgid "Shinobi"
 msgstr "Shinobi"
 
-#: dat/scripts/pilot/pirate.lua:462
+#: dat/scripts/pilot/pirate.lua:470
 msgid "Shock"
 msgstr "Shock"
 
-#: dat/scripts/pilot/pirate.lua:463
+#: dat/scripts/pilot/pirate.lua:471
 msgid "Shovel"
 msgstr "Shovel"
 
-#: dat/scripts/pilot/pirate.lua:464
+#: dat/scripts/pilot/pirate.lua:472
 msgid "Shujin"
 msgstr "Shujin"
 
-#: dat/scripts/pilot/pirate.lua:465
+#: dat/scripts/pilot/pirate.lua:473
 msgid "Siren"
 msgstr "Siren"
 
-#: dat/scripts/pilot/pirate.lua:466
+#: dat/scripts/pilot/pirate.lua:474
 msgid "Slayer"
 msgstr "Slayer"
 
-#: dat/scripts/pilot/pirate.lua:467
+#: dat/scripts/pilot/pirate.lua:475
 msgid "Sosei"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:468
+#: dat/scripts/pilot/pirate.lua:476
 msgid "Space Dog"
 msgstr "Space Dog"
 
-#: dat/scripts/pilot/pirate.lua:469
+#: dat/scripts/pilot/pirate.lua:477
 msgid "Spade"
 msgstr "Spade"
 
-#: dat/scripts/pilot/pirate.lua:470
+#: dat/scripts/pilot/pirate.lua:478
 msgid "Spaghetti"
 msgstr "Spaghetti"
 
-#: dat/scripts/pilot/pirate.lua:471
+#: dat/scripts/pilot/pirate.lua:479
 msgid "Spaghetti Monster"
 msgstr "Spaghettimonster"
 
-#: dat/scripts/pilot/pirate.lua:472
+#: dat/scripts/pilot/pirate.lua:480
 msgid "Spearmint"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:473
+#: dat/scripts/pilot/pirate.lua:481
 msgid "Spider"
 msgstr "Spider"
 
-#: dat/scripts/pilot/pirate.lua:474
+#: dat/scripts/pilot/pirate.lua:482
 msgid "Squeegee"
 msgstr "Rakel"
 
-#: dat/scripts/pilot/pirate.lua:475
+#: dat/scripts/pilot/pirate.lua:483
+msgid "Squid"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:484
 msgid "Staple Gun"
 msgstr "Klammeraffe"
 
-#: dat/scripts/pilot/pirate.lua:476
+#: dat/scripts/pilot/pirate.lua:485
 msgid "Stern"
 msgstr "Stern"
 
-#: dat/scripts/pilot/pirate.lua:477
+#: dat/scripts/pilot/pirate.lua:486
 msgid "Stir-fry"
 msgstr "Pfannenrühr"
 
-#: dat/scripts/pilot/pirate.lua:478
+#: dat/scripts/pilot/pirate.lua:487
 msgid "Storm"
 msgstr "Sturm"
 
-#: dat/scripts/pilot/pirate.lua:479
+#: dat/scripts/pilot/pirate.lua:488
 msgid "Supernova"
 msgstr "Supernova"
 
-#: dat/scripts/pilot/pirate.lua:480
+#: dat/scripts/pilot/pirate.lua:489
 msgid "Surströmming"
 msgstr "Surströmming"
 
-#: dat/scripts/pilot/pirate.lua:481
+#: dat/scripts/pilot/pirate.lua:490
 msgid "Table Saw"
 msgstr "Tischsäge"
 
-#: dat/scripts/pilot/pirate.lua:482
-msgid "Tallman"
-msgstr "Großmann"
+#: dat/scripts/pilot/pirate.lua:491
+msgid "Taco"
+msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:483
+#: dat/scripts/pilot/pirate.lua:492
+msgid "Tako"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:493
 msgid "Tanoshimi"
 msgstr "Tanoshimi"
 
-#: dat/scripts/pilot/pirate.lua:484
+#: dat/scripts/pilot/pirate.lua:494
 msgid "Tatsumaki"
 msgstr "Tatsumaki"
 
-#: dat/scripts/pilot/pirate.lua:485
+#: dat/scripts/pilot/pirate.lua:495
 msgid "Tegami"
 msgstr "Tegami"
 
-#: dat/scripts/pilot/pirate.lua:486
+#: dat/scripts/pilot/pirate.lua:496
 msgid "Teineigo"
 msgstr "Teineigo"
 
-#: dat/scripts/pilot/pirate.lua:487
+#: dat/scripts/pilot/pirate.lua:497
 msgid "Tenkūryū"
 msgstr "Tenkūryū"
 
-#: dat/scripts/pilot/pirate.lua:488
+#: dat/scripts/pilot/pirate.lua:498
 msgid "Terror"
 msgstr "Terror"
 
-#: dat/scripts/pilot/pirate.lua:489
+#: dat/scripts/pilot/pirate.lua:499
 msgid "Thunder"
 msgstr "Donner"
 
-#: dat/scripts/pilot/pirate.lua:490
+#: dat/scripts/pilot/pirate.lua:500
 msgid "Tomodachi"
 msgstr "Tomodachi"
 
-#: dat/scripts/pilot/pirate.lua:491
+#: dat/scripts/pilot/pirate.lua:501
 msgid "Tooth"
 msgstr "Tooth"
 
-#: dat/scripts/pilot/pirate.lua:494
+#: dat/scripts/pilot/pirate.lua:504
 msgid "Treasure Hunter"
 msgstr "Schatzjäger"
 
-#: dat/scripts/pilot/pirate.lua:495
+#: dat/scripts/pilot/pirate.lua:505
 msgid "Tree"
 msgstr "Tree"
 
-#: dat/scripts/pilot/pirate.lua:496
+#: dat/scripts/pilot/pirate.lua:506
 msgid "Tsuchi"
 msgstr "Tsuchi"
 
-#: dat/scripts/pilot/pirate.lua:497
+#: dat/scripts/pilot/pirate.lua:507
 msgid "Tumbler"
 msgstr "Stürzer"
 
-#: dat/scripts/pilot/pirate.lua:498
+#: dat/scripts/pilot/pirate.lua:508
 msgid "Turret Lathe"
 msgstr "Turretdrechsel"
 
-#: dat/scripts/pilot/pirate.lua:499
+#: dat/scripts/pilot/pirate.lua:509
 msgid "Twilight"
 msgstr "Twilight"
 
-#: dat/scripts/pilot/pirate.lua:500
+#: dat/scripts/pilot/pirate.lua:510
 msgid "Tyrant"
 msgstr "Tyrann"
 
-#: dat/scripts/pilot/pirate.lua:501
+#: dat/scripts/pilot/pirate.lua:511
 msgid "Umi"
 msgstr "Umi"
 
-#: dat/scripts/pilot/pirate.lua:502
+#: dat/scripts/pilot/pirate.lua:512
 #, fuzzy
 msgid "Underdog"
 msgstr "Untertor"
 
-#: dat/scripts/pilot/pirate.lua:503
+#: dat/scripts/pilot/pirate.lua:513
 msgid "Urchin"
 msgstr "Urchin"
 
-#: dat/scripts/pilot/pirate.lua:504
+#: dat/scripts/pilot/pirate.lua:514
 msgid "Velocity"
 msgstr "Tempo"
 
-#: dat/scripts/pilot/pirate.lua:505
+#: dat/scripts/pilot/pirate.lua:515
 msgid "Vengeance"
 msgstr "Rächer"
 
-#: dat/scripts/pilot/pirate.lua:506
+#: dat/scripts/pilot/pirate.lua:516
 msgid "Void"
 msgstr "Void"
 
-#: dat/scripts/pilot/pirate.lua:507
+#: dat/scripts/pilot/pirate.lua:517
 msgid "Vomit"
 msgstr "Vomit"
 
-#: dat/scripts/pilot/pirate.lua:508
+#: dat/scripts/pilot/pirate.lua:518
 msgid "Wache"
 msgstr "Wache"
 
-#: dat/scripts/pilot/pirate.lua:509
+#: dat/scripts/pilot/pirate.lua:519
 msgid "Watcher"
 msgstr "Watcher"
 
-#: dat/scripts/pilot/pirate.lua:510
+#: dat/scripts/pilot/pirate.lua:520
 msgid "Wedge"
 msgstr "Wedge"
 
-#: dat/scripts/pilot/pirate.lua:511
+#: dat/scripts/pilot/pirate.lua:521
 msgid "Widget"
 msgstr "Widget"
 
-#: dat/scripts/pilot/pirate.lua:512
+#: dat/scripts/pilot/pirate.lua:522
 msgid "Widow"
 msgstr "Witwe"
 
-#: dat/scripts/pilot/pirate.lua:513
+#: dat/scripts/pilot/pirate.lua:523
 msgid "Wight"
 msgstr "Wight"
 
-#: dat/scripts/pilot/pirate.lua:515
+#: dat/scripts/pilot/pirate.lua:525
 msgid "Wind"
 msgstr "Wind"
 
-#: dat/scripts/pilot/pirate.lua:516
+#: dat/scripts/pilot/pirate.lua:526
 msgid "Wizard"
 msgstr "Zauberer"
 
-#: dat/scripts/pilot/pirate.lua:518
+#: dat/scripts/pilot/pirate.lua:528
 msgid "Yakuza"
 msgstr "Yakuza"
 
-#: dat/scripts/pilot/pirate.lua:519
+#: dat/scripts/pilot/pirate.lua:529
 msgid "Yama"
 msgstr "Yama"
 
-#: dat/scripts/pilot/pirate.lua:520
+#: dat/scripts/pilot/pirate.lua:530
 msgid "Yami"
 msgstr "Yami"
 
-#: dat/scripts/pilot/pirate.lua:521
+#: dat/scripts/pilot/pirate.lua:531
 msgid "Yarou"
 msgstr "Yarou"
 
-#: dat/scripts/pilot/pirate.lua:522
+#: dat/scripts/pilot/pirate.lua:532
 msgid "Yasai"
 msgstr "Yasai"
 
-#: dat/scripts/pilot/pirate.lua:523
+#: dat/scripts/pilot/pirate.lua:533
 msgid "Yatsu"
 msgstr "Yatsu"
 
-#: dat/scripts/pilot/pirate.lua:524
+#: dat/scripts/pilot/pirate.lua:534
 msgid "Youma"
 msgstr "Youma"
 
-#: dat/scripts/pilot/pirate.lua:525
+#: dat/scripts/pilot/pirate.lua:535
 msgid "Zombie"
 msgstr "Zombie"
 
@@ -71976,6 +72014,9 @@ msgstr "Zombie"
 #. @tparam string fragcode Fragment shader code.
 #. @return The newly created shader.
 #. --
+#.
+#. -- A post-processing version of the corruption shader.
+#. --
 #. --
 #. Simple deterministic Lua PRNG. Meant when you want worse quality random numbers
 #. and more deterministic than what the rnd module provides.
@@ -72022,17 +72063,17 @@ msgstr "Zombie"
 #. focus: The pilot that's polled for. If omitted, defaults to the player.
 #. funcname: The name of the function to be called when the player is in proximity.
 #.
-#. Example usage: hook.timer(500, "proximity", {location = vec2.new(0, 0), radius = 500, funcname = "function"})
-#. Example usage: hook.timer(500, "proximity", {anchor = mypilot, radius = 500, funcname = "function"})
-#. Example usage: hook.timer(500, "proximity", {anchor = mypilot, radius = 500, funcname = "function", focus = theirpilot})
+#. Example usage: hook.timer(0.5, "proximity", {location = vec2.new(0, 0), radius = 500, funcname = "function"})
+#. Example usage: hook.timer(0.5, "proximity", {anchor = mypilot, radius = 500, funcname = "function"})
+#. Example usage: hook.timer(0.5, "proximity", {anchor = mypilot, radius = 500, funcname = "function", focus = theirpilot})
 #. This variant assumes a proximity hook between two ships, and trigger when the anchor ship scans the focus ship (fuzzy detection doesn't trigger).
 #. argument trigger: a table containing:
 #. anchor: The pilot to use as the anchor for the trigger area.  If omitted, defaults to the player.
 #. focus: The pilot that's polled for.
 #. funcname: The name of the function to be called when the player is in proximity.
 #.
-#. Example usage: hook.timer(500, "proximityScan", {focus = theirpilot, funcname = "function"}) -- Triggers when theirpilot is detected by the player
-#. Example usage: hook.timer(500, "proximityScan", {anchor = theirpilot, focus = mypilot, funcname = "function"}) -- Triggers when mypilot is detected by theirpilot
+#. Example usage: hook.timer(0.5, "proximityScan", {focus = theirpilot, funcname = "function"}) -- Triggers when theirpilot is detected by the player
+#. Example usage: hook.timer(0.5, "proximityScan", {anchor = theirpilot, focus = mypilot, funcname = "function"}) -- Triggers when mypilot is detected by theirpilot
 #. Check global proxmitiy table
 #. Assign ID if necessary
 #. First time hook is set
@@ -72711,78 +72752,78 @@ msgstr "#oDas Schiff hat keine Fracht."
 msgid "#rYou have no room for the ship's cargo."
 msgstr "#rDu hast keinen Laderaum für die Fracht des Schiffs."
 
-#: src/board.c:285
+#: src/board.c:289
 msgid "#oYou manage to steal the ship's cargo."
 msgstr "#oDu hast die Fracht des Schiffs gestohlen."
 
 #. no fuel.
-#: src/board.c:303
+#: src/board.c:307
 msgid "#oThe ship has no fuel."
 msgstr "#oDas Schiff hat keinen Treibstoff."
 
-#: src/board.c:307
+#: src/board.c:311
 msgid "#rYour ship is at maximum fuel capacity."
 msgstr "#rDein Schiff ist hat die maximal mögliche Menge an Treibstoff."
 
-#: src/board.c:328
+#: src/board.c:332
 msgid "#oYou manage to steal the ship's fuel."
 msgstr "#oDu hast den Treibstoff des Schiffs gestohlen."
 
-#: src/board.c:349
+#: src/board.c:353
 msgid "#rThe ship has no ammo."
 msgstr "#rDas Schiff hat keine Munition."
 
-#: src/board.c:354
+#: src/board.c:358
 msgid "#rYou are already at max ammo."
 msgstr "#rDu hast bereits die maximal mögliche Munition."
 
-#: src/board.c:399
+#: src/board.c:403
 #, c-format
 msgid "#oYou looted: %d × %s"
 msgstr "#oDu erbeutest: %d × %s"
 
-#: src/board.c:409
+#: src/board.c:413
 msgid "#rThere is no ammo compatible with your launchers on board."
 msgstr ""
 "#rEs gibt keine Munition, die mit deinen Werfern an Bord kompatibel ist."
 
 #. killed ship.
-#: src/board.c:451
+#: src/board.c:455
 msgid "#oYou have tripped the ship's self-destruct mechanism!"
 msgstr "#oDu hast den Selbstzerstörungsmechanismus des Schiffs ausgelöst!"
 
 #. you just got locked out
-#: src/board.c:453
+#: src/board.c:457
 #, fuzzy
 msgid "#oThe ship's security system locks you out."
 msgstr "Das Sicherheitssystem des Schiffs sperrt dich aus."
 
-#: src/board.c:493
+#: src/board.c:497
 #, fuzzy, c-format
 msgid "%d hL"
 msgid_plural "%d hL"
 msgstr[0] "%+.d Treibstoff"
 msgstr[1] "%+.d Treibstoff"
 
-#: src/board.c:542 src/board.c:583 src/map.c:707 src/map.c:719 src/map.c:729
+#: src/board.c:546 src/board.c:587 src/map.c:707 src/map.c:719 src/map.c:729
 msgid ", "
 msgstr ", "
 
-#: src/board.c:560
+#: src/board.c:564
 #, fuzzy, c-format
 msgid "%d (%s)"
 msgid_plural "%d (%s)"
 msgstr[0] "%s (%s)"
 msgstr[1] "%s (%s)"
 
-#: src/board.c:593
+#: src/board.c:597
 #, fuzzy, c-format
 msgid "%d t (%s)"
 msgid_plural "%d t (%s)"
 msgstr[0] "%s (%s)"
 msgstr[1] "%s (%s)"
 
-#: src/board.c:674
+#: src/board.c:678
 #, c-format
 msgid "#%c%s#0 has plundered %s from your ship!"
 msgstr "#%c%s#0 hat %s aus deinem Schiff geplündert!"
@@ -72843,8 +72884,8 @@ msgstr "Kommunikationskanal"
 #: src/dev_sysedit.c:1490 src/dev_sysedit.c:1557 src/dev_sysedit.c:1752
 #: src/dev_sysedit.c:1927 src/dev_sysedit.c:2012 src/dev_uniedit.c:1014
 #: src/dev_uniedit.c:1226 src/dev_uniedit.c:1484 src/info.c:254 src/info.c:335
-#: src/info.c:420 src/info.c:566 src/info.c:774 src/info.c:952 src/info.c:1041
-#: src/info.c:1386 src/land_outfits.c:169 src/map.c:337 src/map_find.c:1045
+#: src/info.c:420 src/info.c:573 src/info.c:781 src/info.c:959 src/info.c:1048
+#: src/info.c:1393 src/land_outfits.c:169 src/map.c:337 src/map_find.c:1045
 #: src/map_system.c:203
 msgid "Close"
 msgstr "Schließen"
@@ -73666,7 +73707,7 @@ msgid "Remove"
 msgstr "Entfernen"
 
 #: src/dev_sysedit.c:222 src/dev_sysedit.c:1284 src/dev_uniedit.c:197
-#: src/dev_uniedit.c:1232 src/equipment.c:333
+#: src/dev_uniedit.c:1232 src/equipment.c:352
 msgid "Rename"
 msgstr "Umbenennen"
 
@@ -74150,32 +74191,32 @@ msgstr "Planet „%s“ scheint Ware „%s“ definiert zu haben, aber keine Fra
 msgid "Planet '%s' has saved economy data but doesn't exist!"
 msgstr "Planet „%s“ hat gespeicherte Wirtschaftsdaten, aber existiert nicht!"
 
-#: src/equipment.c:336
+#: src/equipment.c:355
 msgid "Unequip"
 msgstr "Abrüsten"
 
 #. Check if player really wants to sell.
-#: src/equipment.c:339 src/equipment.c:2030
+#: src/equipment.c:358 src/equipment.c:2049
 #, fuzzy
 msgid "Sell Outfit"
 msgstr "Ausstattung"
 
-#: src/equipment.c:342
+#: src/equipment.c:361
 msgid "Swap Ship"
 msgstr "Schiff wechseln"
 
 #. Check if player really wants to sell.
-#: src/equipment.c:345 src/equipment.c:1962
+#: src/equipment.c:364 src/equipment.c:1981
 msgid "Sell Ship"
 msgstr "Schiff verkaufen"
 
-#: src/equipment.c:348 src/land.c:289 src/land.c:573 src/land.c:1237
+#: src/equipment.c:367 src/land.c:289 src/land.c:573 src/land.c:1237
 #: src/land_outfits.c:164 src/land_shipyard.c:95 src/land_trade.c:74
 msgid "Take Off"
 msgstr "Abheben"
 
 #. text
-#: src/equipment.c:351
+#: src/equipment.c:370
 #, fuzzy
 msgid ""
 "Name:\n"
@@ -74194,7 +74235,7 @@ msgid ""
 "Shield:\n"
 "Armor:\n"
 "Energy:\n"
-"Cargo Space:\n"
+"Cargo:\n"
 "Fuel:\n"
 "Radar Range:\n"
 "Jump Detect Range:\n"
@@ -74222,79 +74263,79 @@ msgstr ""
 "\n"
 "#nStatistiken:#0\n"
 
-#: src/equipment.c:383
+#: src/equipment.c:402
 msgid "Available Ships"
 msgstr "Verfügbare Schiffe"
 
-#: src/equipment.c:385
+#: src/equipment.c:404
 msgid "Available Outfits"
 msgstr "Verfügbare Ausstattungen"
 
-#: src/equipment.c:580 src/outfit.c:282
+#: src/equipment.c:599 src/outfit.c:282
 msgid "Weapon"
 msgstr "Waffe"
 
-#: src/equipment.c:588 src/outfit.c:280
+#: src/equipment.c:607 src/outfit.c:280
 msgid "Utility"
 msgstr "Utensil"
 
-#: src/equipment.c:596 src/outfit.c:278
+#: src/equipment.c:615 src/outfit.c:278
 msgid "Structure"
 msgstr "Gerüst"
 
-#: src/equipment.c:632
+#: src/equipment.c:651
 msgid "CPU Free"
 msgstr "CPU frei"
 
-#: src/equipment.c:644
+#: src/equipment.c:663
 msgid "Mass Limit Left"
 msgstr "Verbl. Massenlimit"
 
-#: src/equipment.c:659
+#: src/equipment.c:678
 #, c-format
 msgid "!! %.0f%% Slower !!"
 msgstr "!! %.0f%% langsamer !!"
 
-#: src/equipment.c:706
+#: src/equipment.c:725
 msgid "Right click to remove"
 msgstr "Rechtsklick zum Entfernen"
 
-#: src/equipment.c:717
+#: src/equipment.c:736
 msgid "Right click to add"
 msgstr "Rechtsklick zum Hinzufügen"
 
-#: src/equipment.c:828 src/land_outfits.c:582
+#: src/equipment.c:847 src/land_outfits.c:582
 #, fuzzy, c-format
 msgid "%s slot (%s)"
 msgstr "%s (%s)"
 
-#: src/equipment.c:834
+#: src/equipment.c:853
 #, fuzzy
 msgid " #o[Exclusive]#0"
 msgstr " [exklusiv]"
 
-#: src/equipment.c:1386
+#: src/equipment.c:1405
 #, fuzzy, c-format
 msgid ""
 "%s%.1f GW Weapon Damage\n"
 "%.1f GW Weapon Energy"
 msgstr "Unzureichende Energieregenerierung"
 
-#: src/equipment.c:1469
+#: src/equipment.c:1488
 #, c-format
 msgid "Ship Stats\n"
 msgstr "Schiffsstatistiken\n"
 
-#: src/equipment.c:1504 src/land_outfits.c:275 src/shiplog.c:489
+#: src/equipment.c:1523 src/land_outfits.c:275 src/shiplog.c:489
 #: src/shiplog.c:534
 msgid "All"
 msgstr "Alle"
 
-#: src/equipment.c:1538 src/land_outfits.c:305
+#: src/equipment.c:1557 src/land_outfits.c:305
 msgid "Filter…"
 msgstr ""
 
-#: src/equipment.c:1655
+#: src/equipment.c:1674
 #, fuzzy, c-format
 msgid ""
 "%s\n"
@@ -74342,19 +74383,19 @@ msgstr ""
 "\n"
 "#%c%s#0"
 
-#: src/equipment.c:1702 src/info.c:241 src/info.c:506
+#: src/equipment.c:1721 src/info.c:241 src/info.c:513
 #, fuzzy
 msgid "jump"
 msgid_plural "jumps"
 msgstr[0] "%s Sprung"
 msgstr[1] "%s Sprünge"
 
-#: src/equipment.c:1887
+#: src/equipment.c:1906
 msgid "You can not unequip your ship while you have deployed fighters!"
 msgstr ""
 "Du kannst dein Schiff nicht abrüsten, während deine Kämpfer aktiv sind!"
 
-#: src/equipment.c:1892
+#: src/equipment.c:1911
 msgid ""
 "You can not unequip your ship when you have more cargo than it can hold "
 "without modifications!"
@@ -74362,18 +74403,18 @@ msgstr ""
 "Du kannst dein Schiff nicht abrüsten, so lange du mehr Frachtladung hast, "
 "die es ohne Modifikationen tragen kann!"
 
-#: src/equipment.c:1896
+#: src/equipment.c:1915
 msgid "Unequip Ship"
 msgstr "Schiff abrüsten"
 
 #. confirm
-#: src/equipment.c:1897
+#: src/equipment.c:1916
 msgid "Are you sure you want to remove all equipment from your ship?"
 msgstr ""
 "Bist du dir sicher, dass du all das Equipment von deinem Schiff entfernen "
 "möchtest?"
 
-#: src/equipment.c:1963
+#: src/equipment.c:1982
 #, fuzzy, c-format
 msgid ""
 "Are you sure you want to sell your ship %s for %s? All equipped outfits will "
@@ -74381,34 +74422,34 @@ msgid ""
 msgstr "Bist du dir sicher, dass du das Schiff %s für %s verkaufen möchtest?"
 
 #. Display widget.
-#: src/equipment.c:1981
+#: src/equipment.c:2000
 msgid "Ship Sold"
 msgstr "Schiff verkauft"
 
-#: src/equipment.c:1982
+#: src/equipment.c:2001
 #, c-format
 msgid "You have sold your ship %s for %s."
 msgstr "Du hast dein Schiff %s für %s verkauft."
 
-#: src/equipment.c:2031
+#: src/equipment.c:2050
 #, fuzzy, c-format
 msgid "Are you sure you want to sell your %s for %s?"
 msgstr "Bist du dir sicher, dass du das Schiff %s für %s verkaufen möchtest?"
 
-#: src/equipment.c:2065 src/player.c:382
+#: src/equipment.c:2084 src/player.c:382
 msgid "Ship Name"
 msgstr "Schiffsname"
 
-#: src/equipment.c:2066
+#: src/equipment.c:2085
 #, c-format
 msgid "Please enter a new name for your %s:"
 msgstr "Bitte gib einen neuen Namen für %s ein:"
 
-#: src/equipment.c:2074
+#: src/equipment.c:2093
 msgid "Name Collision"
 msgstr "Namenskollision"
 
-#: src/equipment.c:2075 src/player.c:407
+#: src/equipment.c:2094 src/player.c:407
 msgid "Please do not give the ship the same name as another of your ships."
 msgstr ""
 "Bitte gib dem Schiff keinen Namen, den du bereits für eines deiner anderen "
@@ -75089,6 +75130,8 @@ msgid ""
 "Class:\n"
 "\n"
 "Mass:\n"
+"Mass Limit Left:\n"
+"Speed Penalty:\n"
 "Jump Time:\n"
 "Thrust:\n"
 "Speed:\n"
@@ -75099,7 +75142,7 @@ msgid ""
 "Shield:\n"
 "Armor:\n"
 "Energy:\n"
-"Cargo Space:\n"
+"Cargo:\n"
 "Fuel:\n"
 "Radar Range:\n"
 "Jump Detect Range:"
@@ -75125,7 +75168,7 @@ msgstr ""
 "\n"
 "#nStatistiken:#0\n"
 
-#: src/info.c:468
+#: src/info.c:470
 #, fuzzy, c-format
 msgid ""
 "%s\n"
@@ -75133,6 +75176,8 @@ msgid ""
 "%s\n"
 "\n"
 "%.0f t\n"
+"%.0f / %.0f t\n"
+"%.0f%%\n"
 "%s average\n"
 "%.0f MN/t\n"
 "%.0f km/s (max %.0f km/s)\n"
@@ -75169,36 +75214,36 @@ msgstr ""
 "%d / %d Einheiten (%d Sprünge)\n"
 "\n"
 
-#: src/info.c:542
+#: src/info.c:549
 msgid "Current Set Settings"
 msgstr "Aktuelle Set-Einstellungen"
 
-#: src/info.c:545
+#: src/info.c:552
 msgid "Enable instant mode (only for weapons)"
 msgstr "Sofortmodus aktivieren (nur für Waffen)"
 
-#: src/info.c:549
+#: src/info.c:556
 msgid "Only shoot weapons that are in range"
 msgstr "Nur Waffen, die in Reichweite sind, feuern"
 
-#: src/info.c:553
+#: src/info.c:560
 msgid "Global Settings"
 msgstr "Globale Einstellungen"
 
-#: src/info.c:556
+#: src/info.c:563
 msgid "Automatically handle weapons"
 msgstr "Waffen automatisch bedienen"
 
-#: src/info.c:559
+#: src/info.c:566
 #, fuzzy
 msgid "Aiming helper"
 msgstr "Nahkampfzielhelfer"
 
-#: src/info.c:651
+#: src/info.c:658
 msgid "Enable autoweapons?"
 msgstr "Autowaffen aktivieren?"
 
-#: src/info.c:652
+#: src/info.c:659
 msgid ""
 "Are you sure you want to enable automatic weapon groups for the ship?\n"
 "\n"
@@ -75209,54 +75254,54 @@ msgstr ""
 "\n"
 "Dies wird alle manuell angepassten Waffengruppen überschreiben."
 
-#: src/info.c:695
+#: src/info.c:702
 msgid "You can not set all your weapon sets to fire groups!"
 msgstr "Du kannst nicht all deine Waffengruppen auf Feuergruppen setzen!"
 
-#: src/info.c:751
+#: src/info.c:758
 msgid "Primary Weapon (Left click toggles)"
 msgstr "Primärwaffe (Rechtsklick schaltet um)"
 
-#: src/info.c:756
+#: src/info.c:763
 msgid "Secondary Weapon (Right click toggles)"
 msgstr "Sekundärwaffe (Rechtsklick schaltet um)"
 
-#: src/info.c:776
+#: src/info.c:783
 msgid "Jettison"
 msgstr "Wegwerfen"
 
-#: src/info.c:856 src/info.c:1134
+#: src/info.c:863 src/info.c:1141
 msgid "Abort Mission"
 msgstr "Mission abbrechen"
 
-#: src/info.c:857 src/info.c:1135
+#: src/info.c:864 src/info.c:1142
 msgid "Are you sure you want to abort this mission?"
 msgstr "Bist du dir sicher, dass du diese Mission abbrechen willst?"
 
-#: src/info.c:873
+#: src/info.c:880
 #, c-format
 msgid "Cargo '%d' does not belong to any active mission."
 msgstr "Ware „%d“ gehört zu keiner aktiven Mission."
 
-#: src/info.c:1043
+#: src/info.c:1050
 msgid "Abort"
 msgstr "Abbrechen"
 
-#: src/info.c:1049
+#: src/info.c:1056
 msgid "#nReward:#0"
 msgstr "#nBelohnung:#0"
 
 #. no missions
 #. Make sure you have missions.
-#: src/info.c:1087 src/info.c:1105 src/land.c:634 src/land.c:702 src/land.c:738
+#: src/info.c:1094 src/info.c:1112 src/land.c:634 src/land.c:702 src/land.c:738
 msgid "No Missions"
 msgstr "Keine Missionen"
 
-#: src/info.c:1108
+#: src/info.c:1115
 msgid "You currently have no active missions."
 msgstr "Du hast im Moment keine aktiven Missionen."
 
-#: src/info.c:1289
+#: src/info.c:1296
 msgid ""
 "You are currently viewing all logs in the selected log type. Please select a "
 "log title to delete."
@@ -75264,7 +75309,7 @@ msgstr ""
 "Du siehst gerade alle Einträge des gewählten Protokolltyps aus. Bitte wähl "
 "einen Protokolltitel zum Löschen aus."
 
-#: src/info.c:1294
+#: src/info.c:1301
 #, c-format
 msgid ""
 "This will delete ALL \"%s\" log entries. This operation cannot be undone. "
@@ -75273,56 +75318,56 @@ msgstr ""
 "Dies wird ALLE „%s“-Logbucheinträge löschen. Diese Aktion kann nicht "
 "widerrufen werden. Bist du dir sicher?"
 
-#: src/info.c:1324
+#: src/info.c:1331
 msgid "Log message"
 msgstr "Logbuchnachricht"
 
-#: src/info.c:1347 src/info.c:1355
+#: src/info.c:1354 src/info.c:1362
 msgid "Add a log entry"
 msgstr "Neuer Logbucheintrag"
 
-#: src/info.c:1347
+#: src/info.c:1354
 msgid "Add an entry to your diary:"
 msgstr "Eintrag für dein Tagebuch hinzufügen:"
 
-#: src/info.c:1350
+#: src/info.c:1357
 msgid "Your Diary"
 msgstr "Dein Tagebuch"
 
-#: src/info.c:1355
+#: src/info.c:1362
 #, c-format
 msgid "Add an entry to the log titled '%s':"
 msgstr "Eintrag zum Logbuch namens ‚%s‘ hinzufügen:"
 
-#: src/info.c:1361
+#: src/info.c:1368
 msgid "Cannot add log"
 msgstr "Kann nicht hinzufügen"
 
-#: src/info.c:1361
+#: src/info.c:1368
 msgid "Cannot find this log!  Something went wrong here!"
 msgstr "Dieses Protokoll kann nicht gefunden werden! Etwas lief hier falsch!"
 
-#: src/info.c:1388 src/load.c:388
+#: src/info.c:1395 src/load.c:388
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/info.c:1391
+#: src/info.c:1398
 msgid "View Entry"
 msgstr "Eintrag ansehen"
 
-#: src/info.c:1394
+#: src/info.c:1401
 msgid "Add Entry"
 msgstr "Neuer Eintrag"
 
-#: src/info.c:1400
+#: src/info.c:1407
 msgid "Select log type:"
 msgstr "Logtyp wählen:"
 
-#: src/info.c:1404
+#: src/info.c:1411
 msgid "Select log title:"
 msgstr "Logtitel wählen:"
 
-#: src/info.c:1408
+#: src/info.c:1415
 msgid "Log entries:"
 msgstr "Logeinträge:"
 
@@ -75921,7 +75966,7 @@ msgstr "Meta"
 msgid "Any"
 msgstr "Beliebig"
 
-#: src/input.c:557 src/opengl_tex.c:665
+#: src/input.c:557 src/opengl_tex.c:669
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -77275,7 +77320,7 @@ msgstr "Kartenausstattungen"
 msgid "Exit to Main Menu"
 msgstr "Zurück zum Hauptmenü"
 
-#: src/mission.c:113 src/nlua_player.c:1193 src/nlua_player.c:1222
+#: src/mission.c:113 src/nlua_player.c:1210 src/nlua_player.c:1239
 #, c-format
 msgid "Mission '%s' not found in stack"
 msgstr "Mission „%s“ nicht im Stack gefunden"
@@ -77907,7 +77952,7 @@ msgstr ""
 "require: %s nicht in ndata gefunden.\n"
 "Versuchte:%s"
 
-#: src/nlua_audio.c:421 src/nlua_audio.c:449
+#: src/nlua_audio.c:485 src/nlua_audio.c:513
 #, c-format
 msgid "Unknown seek source '%s'! Should be either 'seconds' or 'samples'!"
 msgstr ""
@@ -77935,8 +77980,8 @@ msgstr "Ware ist ungültig."
 msgid "Commodity '%s' not found!"
 msgstr "Ware „%s“ nicht gefunden!"
 
-#: src/nlua_commodity.c:330 src/nlua_commodity.c:366 src/nlua_player.c:1329
-#: src/nlua_player.c:1348
+#: src/nlua_commodity.c:330 src/nlua_commodity.c:366 src/nlua_player.c:1346
+#: src/nlua_player.c:1365
 #, c-format
 msgid "Planet '%s' does not belong to a system."
 msgstr "Planet „%s“ gehört zu keinem System."
@@ -78000,11 +78045,11 @@ msgstr ""
 msgid "Event '%s' -> '%s': %s"
 msgstr "Ereignis „%s“ -> „%s“ %s"
 
-#: src/nlua_evt.c:256 src/nlua_misn.c:985
+#: src/nlua_evt.c:256 src/nlua_misn.c:990
 msgid "Invalid NPC ID!"
 msgstr "Ungültige NPC-ID!"
 
-#: src/nlua_evt.c:338
+#: src/nlua_evt.c:339
 msgid "Event trying to claim but already has."
 msgstr "Ereignis versucht, zu claimen, hat es aber bereits getan."
 
@@ -78067,17 +78112,17 @@ msgstr ""
 msgid "No hook target was set."
 msgstr "Es wurde kein Hookziel gesetzt."
 
-#: src/nlua_hook.c:887
+#: src/nlua_hook.c:859
 #, fuzzy, c-format
 msgid "Unsupported Lua hook paramater type '%s'!"
 msgstr "Unbekannter Luaparametertyp."
 
-#: src/nlua_hook.c:966
+#: src/nlua_hook.c:938
 msgid "Invalid parameter #1 for hook.pilot, expecting pilot or nil."
 msgstr "Ungültiger Parameter #1 für hook.pilot, erwartete pilot oder nil."
 
 #. hook_type not valid
-#: src/nlua_hook.c:985
+#: src/nlua_hook.c:957
 #, c-format
 msgid "Invalid pilot hook type: '%s'"
 msgstr "Ungültiger Pilot-Hooktyp: „%s“"
@@ -78130,11 +78175,11 @@ msgid ""
 "cargo!"
 msgstr ""
 
-#: src/nlua_misn.c:797
+#: src/nlua_misn.c:802
 msgid "Can't create an OSD on an unaccepted mission!"
 msgstr "Ein OSD für eine nicht akzeptierte Mission kann nicht erzeugt werden!"
 
-#: src/nlua_misn.c:1017
+#: src/nlua_misn.c:1023
 msgid "Mission trying to claim but already has."
 msgstr "Mission versucht, zu claimen, hat es aber bereits getan."
 
@@ -78197,26 +78242,26 @@ msgstr ""
 msgid "Outfit is invalid."
 msgstr "Ausstattung ist ungültig."
 
-#: src/nlua_pilot.c:382
+#: src/nlua_pilot.c:383
 msgid "Pilot is invalid."
 msgstr "Pilot ist ungültig."
 
-#: src/nlua_pilot.c:504 src/nlua_ship.c:234
+#: src/nlua_pilot.c:505 src/nlua_ship.c:234
 #, c-format
 msgid "Ship '%s' not found!"
 msgstr "Schiff „%s“ nicht gefunden!"
 
-#: src/nlua_pilot.c:515
+#: src/nlua_pilot.c:516
 #, c-format
 msgid "Fleet '%s' doesn't exist."
 msgstr "Flotte „%s“ existiert nicht."
 
-#: src/nlua_pilot.c:538
+#: src/nlua_pilot.c:539
 #, c-format
 msgid "Fleet '%s' jumping in from non-adjacent system '%s' to '%s'."
 msgstr "Flotte „%s“ springt aus nicht-benachbartem System „%s“ nach „%s“."
 
-#: src/nlua_pilot.c:543
+#: src/nlua_pilot.c:544
 #, c-format
 msgid ""
 "Fleet '%s' attempting to jump in from '%s', but '%s' has no jump points."
@@ -78224,70 +78269,65 @@ msgstr ""
 "Flotte „%s“ versucht, aus „%s“ hereinzuspringen, aber „%s“ hat keine "
 "Sprungpunkte."
 
-#: src/nlua_pilot.c:589
+#: src/nlua_pilot.c:590
 #, fuzzy
 msgid "'parameters' should be a table of options or omitted!"
 msgstr ""
 "Zweiter Parameter zu cinematics sollte eine Tabelle von Optionen oder "
 "ausgelassen werden!"
 
-#: src/nlua_pilot.c:737
+#: src/nlua_pilot.c:738
 msgid "Trying to remove the bloody player!"
 msgstr "Versuch, den verdammten Spieler zu entfernen!"
 
-#: src/nlua_pilot.c:1776
+#: src/nlua_pilot.c:1778
 #, fuzzy, c-format
 msgid "Unknown slot type '%s'"
 msgstr "Unbekannter Var-Typ „%s“"
 
-#: src/nlua_pilot.c:3394 src/nlua_pilot.c:3446
-#, c-format
-msgid "Cargo '%s' does not exist!"
-msgstr "Fracht „%s“ existiert nicht!"
-
-#: src/nlua_pilot.c:3399
+#: src/nlua_pilot.c:3398
 msgid ""
 "Quantity must be positive for pilot.cargoAdd (if removing, use pilot.cargoRm)"
 msgstr ""
 "Anzahl muss positiv für pilot.cargoAdd sein (zum Entfernen benutze pilot."
 "cargoRm)"
 
-#: src/nlua_pilot.c:3451
+#: src/nlua_pilot.c:3454
 msgid ""
 "Quantity must be positive for pilot.cargoRm (if adding, use pilot.cargoAdd)"
 msgstr ""
 "Anzahl muss positiv für pilot.cargoRm sein (zum Hinzufügen benutze pilot."
 "cargoAdd)"
 
-#: src/nlua_pilot.c:3775
+#: src/nlua_pilot.c:3778
 msgid "pilot.memory requires 1 argument!"
 msgstr "pilot.memory benötigt 1 Argument!"
 
-#: src/nlua_pilot.c:3784
+#: src/nlua_pilot.c:3787
 msgid "Pilot does not have AI."
 msgstr "Pilot hat keine KI."
 
-#: src/nlua_pilot.c:3840
+#: src/nlua_pilot.c:3843
 msgid "Pilot is not on manual control."
 msgstr "Pilot ist nicht unter manueller Steuerung."
 
-#: src/nlua_pilot.c:4178
+#: src/nlua_pilot.c:4181
 #, c-format
 msgid "Pilot '%s' can't jump out exit only jump '%s'"
 msgstr "Pilot „%s“ kann nicht aus einen Nur-Ausgangs-Sprung „%s“ springen"
 
 #. Not found.
-#: src/nlua_pilot.c:4190
+#: src/nlua_pilot.c:4193
 #, c-format
 msgid "System '%s' is not adjacent to current system '%s'"
 msgstr "System „%s“ grenzt nicht am aktuellen System „%s“ an"
 
-#: src/nlua_pilot.c:4240
+#: src/nlua_pilot.c:4243
 #, c-format
 msgid "Planet '%s' not found in system '%s'"
 msgstr "Planet „%s“ nicht im System „%s“ gefunden"
 
-#: src/nlua_pilot.c:4294
+#: src/nlua_pilot.c:4297
 #, c-format
 msgid "#%c%s#0 is hailing you."
 msgstr "#%c%s#0 funkt dich an."
@@ -78327,54 +78367,54 @@ msgstr "Planet „%s“ wurde nicht in einem System platziert"
 msgid "Planet '%s' can't find system '%s'"
 msgstr "Planet „%s“ kann System „%s“ nicht finden"
 
-#: src/nlua_player.c:617
+#: src/nlua_player.c:621
 msgid "Second parameter to cinematics should be a table of options or omitted!"
 msgstr ""
 "Zweiter Parameter zu cinematics sollte eine Tabelle von Optionen oder "
 "ausgelassen werden!"
 
-#: src/nlua_player.c:721
+#: src/nlua_player.c:738
 msgid "Player must be landed to force takeoff."
 msgstr "Spieler muss gelandet sein, um das Abheben zu erzwingen."
 
-#: src/nlua_player.c:746
+#: src/nlua_player.c:763
 #, fuzzy, c-format
 msgid "Planet '%s' is not in a system!"
 msgstr "Planet „%s“ wurde nicht in einem System platziert"
 
-#: src/nlua_player.c:839
+#: src/nlua_player.c:856
 msgid "Must be landed to set the active land window."
 msgstr "Muss gelandet sein, um das aktive Landungsfenster zu setzen."
 
-#: src/nlua_player.c:948
+#: src/nlua_player.c:965
 #, c-format
 msgid "Player does not own a ship named '%s'"
 msgstr "Dem Spieler gehört kein Schiff namens „%s“"
 
-#: src/nlua_player.c:1248 src/nlua_player.c:1278
+#: src/nlua_player.c:1265 src/nlua_player.c:1295
 #, c-format
 msgid "Event '%s' not found in stack"
 msgstr "Ereignis „%s“ nicht im Stack gefunden"
 
-#: src/nlua_player.c:1311
+#: src/nlua_player.c:1328
 msgid "Can not teleport the player while landed!"
 msgstr "Kann den Spieler nicht teleportieren, während er gelandet ist!"
 
-#: src/nlua_player.c:1313
+#: src/nlua_player.c:1330
 msgid "Can not teleport the player while the comm is open!"
 msgstr ""
 "Kann den Spieler nicht teleportieren, während die Kommunikation offen ist!"
 
-#: src/nlua_player.c:1315
+#: src/nlua_player.c:1332
 msgid "Can not teleport the player while they are boarded!"
 msgstr "Kann den Spieler nicht teleportieren, während er geentert wird!"
 
-#: src/nlua_player.c:1343
+#: src/nlua_player.c:1360
 #, c-format
 msgid "'%s' is not a valid teleportation target."
 msgstr "„%s“ ist kein gültiges Teleportationsziel."
 
-#: src/nlua_player.c:1360
+#: src/nlua_player.c:1377
 #, c-format
 msgid "System '%s' does not exist."
 msgstr "System „%s“ existiert nicht."
@@ -78542,19 +78582,19 @@ msgstr "Unbekannter NPC-Typ!"
 
 #. only seconds
 #: src/ntime.c:220
-#, c-format
-msgid "%04d s"
+#, fuzzy, c-format
+msgid "%04d s"
 msgstr "%04d s"
 
 #: src/ntime.c:222
-#, c-format
-msgid "%.*f p"
+#, fuzzy, c-format
+msgid "%.*f p"
 msgstr "%.*f p"
 
 #. UST format
 #: src/ntime.c:224
-#, c-format
-msgid "UST %d:%.*f"
+#, fuzzy, c-format
+msgid "UST %d:%.*f"
 msgstr "UST %d:%.*f"
 
 #: src/nxml.c:93
@@ -78570,26 +78610,26 @@ msgstr "Konnte ungültigen Planeten nicht speichern."
 msgid "Failed to save invalid system."
 msgstr "Konnte ungültiges System nicht speichern."
 
-#: src/nxml_lua.c:331
+#: src/nxml_lua.c:334
 msgid "Failed to save invalid jump."
 msgstr "Konnte ungültigen Sprung nicht speichern."
 
-#: src/nxml_lua.c:338
+#: src/nxml_lua.c:341
 #, fuzzy
 msgid "Failed to save invalid commodity."
 msgstr "Konnte ungültigen Sprung nicht speichern."
 
-#: src/nxml_lua.c:460
+#: src/nxml_lua.c:463
 #, c-format
 msgid "Failed to load nonexistent planet '%s'"
 msgstr "Konnte den nicht existenten Planeten „%s“ nicht laden"
 
-#: src/nxml_lua.c:467
+#: src/nxml_lua.c:470
 #, c-format
 msgid "Failed to load nonexistent system '%s'"
 msgstr "Konnte das nicht existentes System „%s“ nicht laden"
 
-#: src/nxml_lua.c:487
+#: src/nxml_lua.c:490
 #, c-format
 msgid "Failed to load nonexistent jump from '%s' to '%s'"
 msgstr "Konnte den nicht existenten Sprung von „%s“ nach „%s“ nicht laden"
@@ -78599,7 +78639,7 @@ msgstr "Konnte den nicht existenten Sprung von „%s“ nach „%s“ nicht lade
 #. * Seems doable, use case unclear: ARTICLE_METATABLE, VEC_METATABLE.
 #. * Seems doable, but probably GUI-only: COL_METATABLE, TEX_METATABLE.
 #. *
-#: src/nxml_lua.c:500
+#: src/nxml_lua.c:503
 msgid "Unknown Lua data type!"
 msgstr "Unbekannter Lua-Datentyp!"
 
@@ -78720,28 +78760,28 @@ msgstr ""
 msgid "Texture '%s' has no RWops"
 msgstr "Textur „%s“ hat kein RWops"
 
-#: src/opengl_tex.c:632
+#: src/opengl_tex.c:636
 msgid "Trying to load image from NULL path."
 msgstr "Versuche, Bild aus NULL-Bild zu laden."
 
-#: src/opengl_tex.c:639
+#: src/opengl_tex.c:643
 #, c-format
 msgid "Failed to load surface '%s' from ndata."
 msgstr "Surface „%s“ aus ndata konnte nicht geladen werden."
 
-#: src/opengl_tex.c:670
+#: src/opengl_tex.c:674
 #, fuzzy, c-format
 msgid "Unable to load image '%s'."
 msgstr "Nebelbild konnte nicht geladen werden: %s"
 
-#: src/opengl_tex.c:675
+#: src/opengl_tex.c:679
 #, c-format
 msgid "'%s' could not be opened"
 msgstr "„%s“ konnte nicht geöffnet werden"
 
 #. Not found
 #. Surfaces will have NULL names
-#: src/opengl_tex.c:789
+#: src/opengl_tex.c:811
 #, c-format
 msgid "Attempting to free texture '%s' not found in stack!"
 msgstr ""
@@ -78749,21 +78789,21 @@ msgstr ""
 "zu entfernen!"
 
 #. Invalid texture.
-#: src/opengl_tex.c:826
+#: src/opengl_tex.c:848
 #, c-format
 msgid "Unable to duplicate texture '%s'."
 msgstr "Texture „%s“ konnte nicht dupliziert werden."
 
-#: src/opengl_tex.c:868
+#: src/opengl_tex.c:890
 #, c-format
 msgid "Angle not between 0 and 2.*M_PI [%f]."
 msgstr "Winkel nicht zwischen 0 and 2.*M_PI [%f]."
 
-#: src/opengl_tex.c:934
+#: src/opengl_tex.c:956
 msgid "Texture leak detected!"
 msgstr "Texturenleck erfasst!"
 
-#: src/opengl_tex.c:936
+#: src/opengl_tex.c:958
 #, c-format
 msgid "   '%s' opened %d time"
 msgid_plural "   '%s' opened %d times"
@@ -79231,12 +79271,12 @@ msgstr ""
 "                Bitte benutze das Skript „polygon_from_sprite.py“, welches "
 "in Naevs „artwork“-Repository gefunden werden kann."
 
-#: src/outfit.c:1162 src/outfit.c:1583
+#: src/outfit.c:1162 src/outfit.c:1585
 #, c-format
 msgid "Outfit '%s' has invalid blowup property: '%s'"
 msgstr "Ausstattung „%s“ hat ungültige „blowup“-Eigenschaft: „%s“"
 
-#: src/outfit.c:1188 src/outfit.c:1609
+#: src/outfit.c:1188 src/outfit.c:1611
 #, c-format
 msgid ""
 "Outfit '%s': the number of collision polygons is wrong.\n"
@@ -79245,10 +79285,10 @@ msgstr ""
 "Ausstattung „%s“: Die Anzahl der Kollisionspolygone ist falsch.\n"
 "                     npolygon = %i und sx*sy = %i"
 
-#: src/outfit.c:1232 src/outfit.c:1415 src/outfit.c:1523 src/outfit.c:1657
-#: src/outfit.c:1770 src/outfit.c:1849 src/outfit.c:1931 src/outfit.c:1977
-#: src/outfit.c:2049 src/outfit.c:2072 src/outfit.c:2114 src/outfit.c:2153
-#: src/outfit.c:2187 src/outfit.c:2319 src/outfit.c:2400
+#: src/outfit.c:1232 src/outfit.c:1417 src/outfit.c:1525 src/outfit.c:1659
+#: src/outfit.c:1772 src/outfit.c:1851 src/outfit.c:1933 src/outfit.c:1979
+#: src/outfit.c:2051 src/outfit.c:2074 src/outfit.c:2116 src/outfit.c:2155
+#: src/outfit.c:2189 src/outfit.c:2321 src/outfit.c:2402
 #, c-format
 msgid "Outfit '%s' has unknown node '%s'"
 msgstr "Ausstattung „%s“ hat unbekannen Node „%s“"
@@ -79271,7 +79311,7 @@ msgstr ""
 msgid "%.2f GW Disable [%G GJ/shot]\n"
 msgstr "%.2f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 
-#: src/outfit.c:1276 src/outfit.c:2635
+#: src/outfit.c:1276 src/outfit.c:2637
 #, fuzzy, c-format
 msgid "%.1f GW Energy Loss [%G GJ/shot]\n"
 msgstr "%.1f Unfähigmachung/s [%.0f Unfähigmachung]\n"
@@ -79281,6 +79321,7 @@ msgstr "%.1f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 msgid ""
 "%.1f RPS Fire Rate\n"
 "%G km Range\n"
+"%G km/s Speed\n"
 "%G s Heat Up"
 msgstr ""
 "%.1f EPS\n"
@@ -79288,21 +79329,21 @@ msgstr ""
 "%.0f Reichweite\n"
 "%.1f Sekunden Aufhitzung"
 
-#: src/outfit.c:1288 src/outfit.c:2648
+#: src/outfit.c:1290 src/outfit.c:2650
 #, fuzzy, c-format
 msgid ""
 "\n"
 "%G km Radar Optimal Range"
 msgstr "Reichweite"
 
-#: src/outfit.c:1293 src/outfit.c:2653
+#: src/outfit.c:1295 src/outfit.c:2655
 #, fuzzy, c-format
 msgid ""
 "\n"
 "%G km Radar Maximum Range"
 msgstr "Reichweite"
 
-#: src/outfit.c:1298 src/outfit.c:2658
+#: src/outfit.c:1300 src/outfit.c:2660
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -79311,14 +79352,14 @@ msgstr ""
 "\n"
 "%.1f Grad Drehung"
 
-#: src/outfit.c:1305 src/outfit.c:1470 src/outfit.c:1668 src/outfit.c:1895
-#: src/outfit.c:1951 src/outfit.c:1987 src/outfit.c:2088 src/outfit.c:2127
-#: src/outfit.c:2162 src/outfit.c:2197 src/outfit.c:2404
+#: src/outfit.c:1307 src/outfit.c:1472 src/outfit.c:1670 src/outfit.c:1897
+#: src/outfit.c:1953 src/outfit.c:1989 src/outfit.c:2090 src/outfit.c:2129
+#: src/outfit.c:2164 src/outfit.c:2199 src/outfit.c:2406
 #, c-format
 msgid "Outfit '%s' missing/invalid '%s' element"
 msgstr "Ausstattung „%s“ fehlt oder hat ungültiges „%s“-Element"
 
-#: src/outfit.c:1434
+#: src/outfit.c:1436
 #, fuzzy, c-format
 msgid ""
 "%s [%s]\n"
@@ -79331,12 +79372,12 @@ msgstr ""
 "%.0f%% Durchdringung\n"
 "%.2f SPS [%s]\n"
 
-#: src/outfit.c:1447
+#: src/outfit.c:1449
 #, fuzzy, c-format
 msgid "%G GW Disable (%.0f GW average)\n"
 msgstr "%.0f Unfähigmachung/s\n"
 
-#: src/outfit.c:1453
+#: src/outfit.c:1455
 #, fuzzy, c-format
 msgid ""
 "%G GW Energy Loss\n"
@@ -79350,36 +79391,36 @@ msgstr ""
 "%.0f Reichweite\n"
 "%.1f Sekunden Aufhitzung"
 
-#: src/outfit.c:1465
+#: src/outfit.c:1467
 #, fuzzy, c-format
 msgid "%G° Swivel"
 msgstr ""
 "\n"
 "%.1f Grad Drehung"
 
-#: src/outfit.c:1535
+#: src/outfit.c:1537
 #, c-format
 msgid "Outfit '%s' missing '%s' element"
 msgstr "Ausstattung „%s“ fehlt „%s“-Element"
 
-#: src/outfit.c:1653
+#: src/outfit.c:1655
 #, c-format
 msgid "Ammo '%s' has unknown ai type '%s'."
 msgstr "Munition „%s“ hat unbekannten „ai“-Typ „%s“."
 
-#: src/outfit.c:1730
+#: src/outfit.c:1732
 #, fuzzy, c-format
 msgid "Outfit '%s' failed to read Lua '%s'!"
 msgstr "Ausstattung „%s“ hat ungültige „blowup“-Eigenschaft: „%s“"
 
-#: src/outfit.c:1742
+#: src/outfit.c:1744
 #, fuzzy, c-format
 msgid ""
 "Outfit '%s' Lua error:\n"
 "%s"
 msgstr "Ereignis-Lua „%s“ Syntaxfehler: %s"
 
-#: src/outfit.c:1784
+#: src/outfit.c:1786
 #, fuzzy
 msgid ""
 "\n"
@@ -79388,21 +79429,21 @@ msgstr ""
 "\n"
 "#rAktivierbare Ausstattung#0"
 
-#: src/outfit.c:1788
+#: src/outfit.c:1790
 #, fuzzy, c-format
 msgid ""
 "\n"
-"%+.0f CPU"
+"%+.0f TFLOPS CPU"
 msgstr "%+.0f CPU"
 
-#: src/outfit.c:1792
+#: src/outfit.c:1794
 #, c-format
 msgid ""
 "\n"
 "%s (limit 1 per ship)"
 msgstr ""
 
-#: src/outfit.c:1855
+#: src/outfit.c:1857
 #, fuzzy, c-format
 msgid ""
 "%s\n"
@@ -79412,12 +79453,12 @@ msgstr ""
 "\n"
 "#rAktivierbare Ausstattung#0"
 
-#: src/outfit.c:1863
+#: src/outfit.c:1865
 #, c-format
 msgid "%s (limit 1 per ship)\n"
 msgstr ""
 
-#: src/outfit.c:1867
+#: src/outfit.c:1869
 #, c-format
 msgid ""
 "%G t Mass Limit\n"
@@ -79427,7 +79468,7 @@ msgid ""
 "%G Rumble"
 msgstr ""
 
-#: src/outfit.c:1941
+#: src/outfit.c:1943
 #, fuzzy, c-format
 msgid ""
 "%s\n"
@@ -79440,135 +79481,135 @@ msgstr ""
 "%.1f Starts pro Sekunde\n"
 "Fasst %d %s"
 
-#: src/outfit.c:2038
+#: src/outfit.c:2040
 #, c-format
 msgid "Map '%s' has invalid asset '%s'"
 msgstr "Karte „%s“ hat ungültige Mediendaten „%s“"
 
-#: src/outfit.c:2046
+#: src/outfit.c:2048
 #, c-format
 msgid "Map '%s' has invalid jump point '%s'"
 msgstr "Karte „%s“ hat ungültigen Sprungpunkt „%s“"
 
-#: src/outfit.c:2053
+#: src/outfit.c:2055
 #, c-format
 msgid "Map '%s' has invalid system '%s'"
 msgstr "Karte „%s“ hat ungültiges System „%s“"
 
-#: src/outfit.c:2159
+#: src/outfit.c:2161
 #, c-format
 msgid "GUI (Graphical User Interface)"
 msgstr "GUI (Grafische Benutzeroberfläche)"
 
-#: src/outfit.c:2226 src/outfit.c:2550 src/slots.c:74 src/space.c:3144
+#: src/outfit.c:2228 src/outfit.c:2552 src/slots.c:74 src/space.c:3144
 #: src/spfx.c:1157 src/start.c:74
 #, c-format
 msgid "Malformed '%s' file: does not contain elements"
 msgstr "Defekte „%s“-Datei: enthält keine Elemente"
 
-#: src/outfit.c:2236
+#: src/outfit.c:2238
 #, c-format
 msgid "Outfit in %s has invalid or no name"
 msgstr "Mission in %s hat ungültigen oder keinen Namen"
 
-#: src/outfit.c:2282
+#: src/outfit.c:2284
 #, c-format
 msgid "Outfit '%s' has an slot type invalid."
 msgstr "Ausstattung „%s“ hat einen ungültigen Platztyp."
 
-#: src/outfit.c:2290
+#: src/outfit.c:2292
 #, c-format
 msgid "Outfit '%s' has unknown slot type '%s'."
 msgstr "Ausstattung „%s“ hat einen unbekannten Platztyp „%s“."
 
-#: src/outfit.c:2303
+#: src/outfit.c:2305
 #, c-format
 msgid "Outfit '%s' has unknown general node '%s'"
 msgstr "Ausstattung „%s“ hat einen unbekannten generellen Node „%s“"
 
-#: src/outfit.c:2329
+#: src/outfit.c:2331
 #, c-format
 msgid "Outfit '%s' element 'specific' missing property 'type'"
 msgstr ""
 "Bei Ausstattung „%s“ fehlt dem Element „specific“ die Eigenschaft „type“"
 
-#: src/outfit.c:2345
+#: src/outfit.c:2347
 #, c-format
 msgid "Outfit '%s' has group '%d', should be in the 1-%d range"
 msgstr "Ausstattung „%s“ hat Gruppe „%d“, sie sollte im Wertebereich 1-%d sein"
 
-#: src/outfit.c:2356
+#: src/outfit.c:2358
 #, c-format
 msgid "Outfit '%s' is of type NONE"
 msgstr "Ausstattung „%s“ ist vom Typ NONE"
 
-#: src/outfit.c:2476
+#: src/outfit.c:2478
 #, c-format
 msgid "Outfit '%s' missing/invalid 'lockon' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „lockon“-Element"
 
-#: src/outfit.c:2478
+#: src/outfit.c:2480
 #, c-format
 msgid "Outfit '%s' missing/invalid 'arc' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „arc“-Element"
 
-#: src/outfit.c:2483
+#: src/outfit.c:2485
 #, fuzzy, c-format
 msgid "Outfit '%s' missing/invalid 'rdr_range' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „ew_target“-Element"
 
-#: src/outfit.c:2485
+#: src/outfit.c:2487
 #, fuzzy, c-format
 msgid "Outfit '%s' missing/invalid 'rdr_range_max' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „ew_target“-Element"
 
-#: src/outfit.c:2511
+#: src/outfit.c:2513
 #, c-format
 msgid "Name collision! %d outfit is named '%s'"
 msgid_plural "Name collision! %d outfits are named '%s'"
 msgstr[0] "Namenskollision! %d Ausstattung haben den Namen „%s“"
 msgstr[1] "Namenskollision! %d Ausstattungen haben den Namen „%s“"
 
-#: src/outfit.c:2518
+#: src/outfit.c:2520
 #, c-format
 msgid "Loaded %d Outfit"
 msgid_plural "Loaded %d Outfits"
 msgstr[0] "%d Ausstattung geladen"
 msgstr[1] "%d Ausstattungen geladen"
 
-#: src/outfit.c:2543
+#: src/outfit.c:2545
 #, c-format
 msgid "%s file is invalid xml!"
 msgstr "„%s“-Datei ist ungültiges XML!"
 
-#: src/outfit.c:2598
+#: src/outfit.c:2600
 #, c-format
 msgid "Outfit '%s' already has a short description"
 msgstr "Ausstattung „%s“ hat bereits eine kurze Beschreibung"
 
-#: src/outfit.c:2606
+#: src/outfit.c:2608
 #, fuzzy, c-format
 msgid "%s [%s]\n"
 msgstr ""
 "%s [%s]\n"
 "%.0f CPU\n"
 
-#: src/outfit.c:2611
+#: src/outfit.c:2613
 #, fuzzy, c-format
 msgid "%+.0f TFLOPS CPU\n"
 msgstr "%+.0f CPU"
 
-#: src/outfit.c:2615
+#: src/outfit.c:2617
 #, fuzzy, c-format
 msgid "%G s Lock-on\n"
 msgstr "%.1f Sekunden Zielerfassung\n"
 
-#: src/outfit.c:2619
+#: src/outfit.c:2621
 #, fuzzy
 msgid "No Tracking\n"
 msgstr "Tarnung"
 
-#: src/outfit.c:2622
+#: src/outfit.c:2624
 #, fuzzy, c-format
 msgid ""
 "Holds %d %s:\n"
@@ -79579,12 +79620,12 @@ msgstr ""
 "%.0f%% Penetration\n"
 "%.2f SPS [%.0f Schaden]\n"
 
-#: src/outfit.c:2631
+#: src/outfit.c:2633
 #, fuzzy, c-format
 msgid "%.1f GW Disable [%G GJ/shot]\n"
 msgstr "%.1f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 
-#: src/outfit.c:2640
+#: src/outfit.c:2642
 #, fuzzy, c-format
 msgid ""
 "%.1f RPS Fire Rate\n"
@@ -82167,6 +82208,18 @@ msgstr ""
 #: src/weapon.c:1817 src/weapon.c:1864 src/weapon.c:2008
 msgid "Invalid WEAPON_LAYER specified"
 msgstr "Ungültiger WEAPON_LAYER angegeben"
+
+#~ msgid "Tallman"
+#~ msgstr "Großmann"
+
+#~ msgid "Cargo '%s' does not exist!"
+#~ msgstr "Fracht „%s“ existiert nicht!"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "%+.0f CPU"
+#~ msgstr "%+.0f CPU"
 
 #~ msgid "Abandoned Station"
 #~ msgstr "Verlassene Station"
