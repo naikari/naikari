@@ -249,12 +249,8 @@ static void ovr_optimizeLayout( int items, const Vector2d** pos, MapOverlayPos**
       mo[i]->radius = MAX( mo[i]->radius, 8 );
 
    /* Initialization offset list. */
-   off_0x = array_create_size( float, items );
-   off_0y = array_create_size( float, items );
-/*   for (i=0; i<items; i++) {*/
-/*      off_0x[i] = 0;*/
-/*      off_0y[i] = 0;*/
-/*   }*/
+   off_0x = calloc( items, sizeof(float) );
+   off_0y = calloc( items, sizeof(float) );
 
    /* Initialize all items. */
    for (i=0; i<items; i++) {
