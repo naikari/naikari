@@ -383,7 +383,7 @@ void equipment_open( unsigned int wid )
       "Shield:\n"
       "Armor:\n"
       "Energy:\n"
-      "Cargo Space:\n"
+      "Cargo:\n"
       "Fuel:\n"
       "Radar Range:\n"
       "Jump Detect Range:\n"
