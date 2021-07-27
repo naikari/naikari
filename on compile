@@ -1,0 +1,128 @@
+[1mdiff --git a/src/nlua_misn.c b/src/nlua_misn.c[m
+[1mindex fe34e614a..0edfc573f 100644[m
+[1m--- a/src/nlua_misn.c[m
+[1m+++ b/src/nlua_misn.c[m
+[36m@@ -689,7 +689,9 @@[m [mstatic int misn_cargoNew( lua_State *L )[m
+  * automatically aborts the mission. Mission cargo is also removed[m
+  * automatically when the mission ends.[m
+  *[m
+[31m- *    @luatparam Commodity|string cargo Type of cargo to add.[m
+[32m+[m[32m *    @luatparam Commodity|string cargo Type of cargo to add, either as[m
+[32m+[m[32m *       a Commodity object or as the raw (untranslated) name of a[m
+[32m+[m[32m *       commodity.[m
+  *    @luatparam number quantity Quantity of cargo to add.[m
+  *    @luatreturn number The id of the cargo which can be used in cargoRm.[m
+  * @luafunc cargoAdd[m
+[1mdiff --git a/src/nlua_pilot.c b/src/nlua_pilot.c[m
+[1mindex d5d1b42d1..788b8466c 100644[m
+[1m--- a/src/nlua_pilot.c[m
+[1m+++ b/src/nlua_pilot.c[m
+[36m@@ -3370,7 +3370,9 @@[m [mstatic int pilotL_cargoHas( lua_State *L )[m
+  * @usage n = pilot.cargoAdd( player.pilot(), "Food", 20 )[m
+  *[m
+  *    @luatparam Pilot p The pilot to add cargo to.[m
+[31m- *    @luatparam Commodity|string cargo Type of cargo to add.[m
+[32m+[m[32m *    @luatparam Commodity|string cargo Type of cargo to add, either as[m
+[32m+[m[32m *       a Commodity object or as the raw (untranslated) name of a[m
+[32m+[m[32m *       commodity.[m
+  *    @luatparam number quantity Quantity of cargo to add.[m
+  *    @luatreturn number The quantity of cargo added.[m
+  * @luafunc cargoAdd[m
+[36m@@ -3384,8 +3386,8 @@[m [mstatic int pilotL_cargoAdd( lua_State *L )[m
+    NLUA_CHECKRW(L);[m
+ [m
+    /* Parse parameters. */[m
+[31m-   p = luaL_validpilot(L,1);[m
+[31m-   cargo = luaL_validcommodity(L,2);[m
+[32m+[m[32m   p = luaL_validpilot(L, 1);[m
+[32m+[m[32m   cargo = luaL_validcommodity(L, 2);[m
+    quantity = luaL_checknumber(L, 3);[m
+ [m
+    if (quantity < 0) {[m
+[36m@@ -3405,12 +3407,16 @@[m [mstatic int pilotL_cargoAdd( lua_State *L )[m
+ /**[m
+  * @brief Tries to remove cargo from the pilot's ship.[m
+  *[m
+[31m- * @usage n = pilot.cargoRm( player.pilot(), "Food", 20 )[m
+[31m- * @usage n = pilot.cargoRm( player.pilot(), "__allExceptMisn" ) -- Removes all cargo from the player, excepted mission cargo[m
+[31m- * @usage n = pilot.cargoRm( player.pilot(), "__all" ) -- Removes all cargo from the player[m
+[32m+[m[32m * @usage n = pilot.cargoRm(player.pilot(), "Food", 20)[m
+[32m+[m[32m * @usage n = pilot.cargoRm(player.pilot(), "__allExceptMisn") -- Removes all cargo from the player, excepted mission cargo[m
+[32m+[m[32m * @usage n = pilot.cargoRm(player.pilot(), "__all") -- Removes all cargo from the player[m
+  *[m
+  *    @luatparam Pilot p The pilot to remove cargo from.[m
+[31m- *    @luatparam string type Raw (untranslated) name of the cargo to remove.[m
+[32m+[m[32m *    @luatparam Commodity|string cargo Type of cargo to remove, either[m
+[32m+[m[32m *       as a Commodity object or as the raw (untranslated) name of a[m
+[32m+[m[32m *       commodity. You can also pass the special values "__all" (which[m
+[32m+[m[32m *       removes all cargo) and "__allExceptMisn" (which removes all[m
+[32m+[m[32m *       non-mission cargo).[m
+  *    @luatparam number quantity Quantity of the cargo to remove.[m
+  *    @luatreturn number The number of cargo removed.[m
+  * @luafunc cargoRm[m
+[36m@@ -3420,38 +3426,44 @@[m [mstatic int pilotL_cargoRm( lua_State *L )[m
+    Pilot *p;[m
+    const char *str;[m
+    int quantity;[m
+[31m-   Commodity *cargo;[m
+[32m+[m[32m   Commodity *cargo = NULL;[m
+ [m
+    NLUA_CHECKRW(L);[m
+ [m
+    /* Parse parameters. */[m
+[31m-   p = luaL_validpilot(L,1);[m
+[31m-   str      = luaL_checkstring( L, 2 );[m
+[32m+[m[32m   p = luaL_validpilot(L, 1);[m
+ [m
+[31m-   if (strcmp(str, "__allExceptMisn") == 0)[m
+[31m-      quantity = pilot_cargoRmAll( p, 0 );[m
+[31m-   else if (strcmp(str, "__all") == 0)[m
+[31m-      quantity = pilot_cargoRmAll( p, 1 );[m
+[31m-   else {[m
+[31m-      quantity = luaL_checknumber( L, 3 );[m
+[32m+[m[32m   if (lua_isstring(L, 2)) {[m
+[32m+[m[32m      str = lua_tostring(L, 2);[m
+ [m
+[31m-      /* Get cargo. */[m
+[31m-      cargo    = commodity_get( str );[m
+[31m-      if (cargo == NULL) {[m
+[31m-         NLUA_ERROR( L, _("Cargo '%s' does not exist!"), str );[m
+[31m-         return 0;[m
+[32m+[m[32m      /* Check for special strings. */[m
+[32m+[m[32m      if (strcmp(str, "__allExceptMisn") == 0) {[m
+[32m+[m[32m         quantity = pilot_cargoRmAll(p, 0);[m
+[32m+[m[32m         lua_pushnumber(L, quantity);[m
+[32m+[m[32m         return 1;[m
+       }[m
+[31m-[m
+[31m-      if (quantity < 0) {[m
+[31m-         NLUA_ERROR( L, _("Quantity must be positive for pilot.cargoRm (if adding, use pilot.cargoAdd)") );[m
+[31m-         return 0;[m
+[32m+[m[32m      else if (strcmp(str, "__all") == 0) {[m
+[32m+[m[32m         quantity = pilot_cargoRmAll(p, 1);[m
+[32m+[m[32m         lua_pushnumber(L, quantity);[m
+[32m+[m[32m         return 1;[m
+       }[m
+[32m+[m[32m   }[m
+[32m+[m
+[32m+[m[32m   /* No special string handling, just handle as a normal commodity. */[m
+[32m+[m[32m   cargo = luaL_validcommodity(L, 2);[m
+[32m+[m[32m   quantity = luaL_checknumber(L, 3);[m
+ [m
+[31m-      /* Try to remove the cargo. */[m
+[31m-      quantity = pilot_cargoRm( p, cargo, quantity );[m
+[32m+[m[32m   if (quantity < 0) {[m
+[32m+[m[32m      NLUA_ERROR(L,[m
+[32m+[m[32m            _("Quantity must be positive for pilot.cargoRm (if adding, use"[m
+[32m+[m[32m               " pilot.cargoAdd)"));[m
+[32m+[m[32m      return 0;[m
+    }[m
+ [m
+[31m-   lua_pushnumber( L, quantity );[m
+[32m+[m[32m   /* Try to remove the cargo. */[m
+[32m+[m[32m   quantity = pilot_cargoRm(p, cargo, quantity);[m
+[32m+[m
+[32m+[m[32m   lua_pushnumber(L, quantity);[m
+    return 1;[m
+ }[m
+ [m

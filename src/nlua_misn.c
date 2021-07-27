@@ -689,7 +689,9 @@ static int misn_cargoNew( lua_State *L )
  * automatically aborts the mission. Mission cargo is also removed
  * automatically when the mission ends.
  *
- *    @luatparam Commodity|string cargo Type of cargo to add.
+ *    @luatparam Commodity|string cargo Type of cargo to add, either as
+ *       a Commodity object or as the raw (untranslated) name of a
+ *       commodity.
  *    @luatparam number quantity Quantity of cargo to add.
  *    @luatreturn number The id of the cargo which can be used in cargoRm.
  * @luafunc cargoAdd
