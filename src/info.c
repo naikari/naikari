@@ -784,6 +784,13 @@ static void info_openCargo( unsigned int wid )
          cargo_jettison );
    window_disableButton( wid, "btnJettisonCargo" );
 
+   /* Description. */
+   window_addText(wid, 20+350+20, -20,
+         w - (20+350+20) - 20, 60, 1, "txtCargoName", NULL, NULL, NULL);
+   window_addText(wid, 20+350+20, -20 - 60,
+         w - (20+350+20) - 20, h - BUTTON_HEIGHT - 20 - 60, 0,
+         "txtCargoDesc", &gl_smallFont, NULL, NULL );
+
    /* Generate the list. */
    cargo_genList( wid );
 }
@@ -815,7 +822,7 @@ static void cargo_genList( unsigned int wid )
       /* List the player's cargo */
       buf = malloc( sizeof(char*) * array_size(player.p->commodities) );
       for (i=0; i<array_size(player.p->commodities); i++) {
-         asprintf(&buf[i], "%s%s %d",
+         asprintf(&buf[i], "%s%s (%d t)",
                _(player.p->commodities[i].commodity->name),
                (player.p->commodities[i].id != 0) ? "*" : "",
                player.p->commodities[i].quantity);
@@ -823,7 +830,7 @@ static void cargo_genList( unsigned int wid )
       nbuf = array_size(player.p->commodities);
    }
    window_addList( wid, 20, -40,
-         w - 40, h - BUTTON_HEIGHT - 80,
+         350, h - BUTTON_HEIGHT - 80,
          "lstCargo", buf, nbuf, 0, cargo_update, NULL );
 }
 /**
@@ -833,15 +840,36 @@ static void cargo_genList( unsigned int wid )
 static void cargo_update( unsigned int wid, char* str )
 {
    (void) str;
+   char buf[STRMAX];
+   int pos;
+   const Commodity *com;
+
+   /* Clear text fields */
+   window_modifyText(wid, "txtCargoName", "");
+   window_modifyText(wid, "txtCargoDesc", "");
 
    if (array_size(player.p->commodities)==0)
       return; /* No cargo */
 
    /* Can jettison all but mission cargo when not landed*/
    if (landed)
-      window_disableButton( wid, "btnJettisonCargo" );
+      window_disableButton(wid, "btnJettisonCargo");
    else
-      window_enableButton( wid, "btnJettisonCargo" );
+      window_enableButton(wid, "btnJettisonCargo");
+
+   if (array_size(player.p->commodities)==0)
+      return; /* No cargo, redundant check */
+
+   pos = toolkit_getListPos(wid, "lstCargo");
+   com = player.p->commodities[pos].commodity;
+
+   snprintf(buf, sizeof(buf), "%s%s (%d t)", _(com->name),
+         (player.p->commodities[pos].id != 0) ? "*" : "",
+         player.p->commodities[pos].quantity);
+   window_modifyText(wid, "txtCargoName", buf);
+
+   if (com->description)
+      window_modifyText(wid, "txtCargoDesc", _(com->description));
 }
 /**
  * @brief Makes the player jettison the currently selected cargo.
