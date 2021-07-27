@@ -14,6 +14,7 @@
 #include "naev.h"
 /** @endcond */
 
+#include "nlua_commodity.h"
 #include "nlua_pilot.h"
 
 #include "ai.h"
@@ -3369,7 +3370,7 @@ static int pilotL_cargoHas( lua_State *L )
  * @usage n = pilot.cargoAdd( player.pilot(), "Food", 20 )
  *
  *    @luatparam Pilot p The pilot to add cargo to.
- *    @luatparam string type Raw (untranslated) name of the cargo to add.
+ *    @luatparam Commodity|string cargo Type of cargo to add.
  *    @luatparam number quantity Quantity of cargo to add.
  *    @luatreturn number The quantity of cargo added.
  * @luafunc cargoAdd
@@ -3377,7 +3378,6 @@ static int pilotL_cargoHas( lua_State *L )
 static int pilotL_cargoAdd( lua_State *L )
 {
    Pilot *p;
-   const char *str;
    int quantity;
    Commodity *cargo;
 
@@ -3385,24 +3385,19 @@ static int pilotL_cargoAdd( lua_State *L )
 
    /* Parse parameters. */
    p = luaL_validpilot(L,1);
-   str      = luaL_checkstring( L, 2 );
-   quantity = luaL_checknumber( L, 3 );
-
-   /* Get cargo. */
-   cargo    = commodity_get( str );
-   if (cargo == NULL) {
-      NLUA_ERROR( L, _("Cargo '%s' does not exist!"), str );
-      return 0;
-   }
+   cargo = luaL_validcommodity(L,2);
+   quantity = luaL_checknumber(L, 3);
 
    if (quantity < 0) {
-      NLUA_ERROR( L, _("Quantity must be positive for pilot.cargoAdd (if removing, use pilot.cargoRm)") );
+      NLUA_ERROR(L,
+            _("Quantity must be positive for pilot.cargoAdd (if removing, use"
+               " pilot.cargoRm)"));
       return 0;
    }
 
    /* Try to add the cargo. */
-   quantity = pilot_cargoAdd( p, cargo, quantity, 0 );
-   lua_pushnumber( L, quantity );
+   quantity = pilot_cargoAdd(p, cargo, quantity, 0);
+   lua_pushnumber(L, quantity);
    return 1;
 }
 
