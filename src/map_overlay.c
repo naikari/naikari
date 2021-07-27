@@ -318,12 +318,8 @@ static void ovr_optimizeLayout( int items, const Vector2d** pos, MapOverlayPos**
     * recieved by a given object. Then these forces are summed to obtain the total force on the object.
     * Odd lines are forces from objects and Even lines from other texts. */
 
-   forces_xa = array_create_size( float, 2*items*items );
-   forces_ya = array_create_size( float, 2*items*items );
-   for (i=0; i<2*items*items; i++) {
-      forces_xa[i] = 0;
-      forces_ya[i] = 0;
-   }
+   forces_xa = calloc( 2*items*items, sizeof(float) );
+   forces_ya = calloc( 2*items*items, sizeof(float) );
 
    /* And buffer lists. */
    off_buffx = calloc( items, sizeof(float) );
