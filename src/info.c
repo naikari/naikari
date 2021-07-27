@@ -427,6 +427,8 @@ static void info_openShip( unsigned int wid )
          "Class:\n"
          "\n"
          "Mass:\n"
+         "Mass Limit Left:\n"
+         "Speed Penalty:\n"
          "Jump Time:\n"
          "Thrust:\n"
          "Speed:\n"
@@ -470,6 +472,8 @@ static void ship_update( unsigned int wid )
          "%s\n"
          "\n"
          "%.0f t\n"
+         "%.0f / %.0f t\n" /* Mass Limit Left */
+         "%.0f%%\n" /* Speed Penalty */
          "%s average\n"
          "%.0f MN/t\n"
          "%.0f km/s (max %.0f km/s)\n"
@@ -491,6 +495,9 @@ static void ship_update( unsigned int wid )
          _(player.p->ship->class),
          /* Movement. */
          player.p->solid->mass,
+         player.p->stats.engine_limit - player.p->solid->mass,
+         player.p->stats.engine_limit,
+         (1. - player.p->speed/player.p->speed_base) * 100.,
          hyp_delay,
          player.p->thrust / player.p->solid->mass,
          player.p->speed, solid_maxspeed( player.p->solid, player.p->speed, player.p->thrust ),
