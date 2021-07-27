@@ -207,7 +207,7 @@ msg_tip =                  {_([["I heard you can set your weapons to only fire w
                               _([["Remember that when you pilot a big ship, you perceive time passing a lot faster than you do when you pilot a small ship. It can be easy to forget just how slow these larger ships are when you're frantically trying to depressurize the exhaust valve while also configuring the capacitance array. In a way the slow speed of the ship becomes a pretty huge relief!"]]),
                               _([["There's always an exception to the rule, but I wouldn't recommend using forward-facing weapons on larger ships. Large ships' slower turn rates aren't able to keep up with the dashing and dodging of smaller ships, and aiming is harder anyway what with how complex these ships are. Turrets are much better; they aim automatically and usually do a very good job!"]]),
                               _([["Don't forget to have your target selected. Even if you have forward-facing weapons, the weapons will swivel a bit to track your target. But it's absolutely essential for turreted weapons."]]),
-                              _("\"Did you know that you can automatically follow pilot with Autonav? It's true! Just #bleft-click#0 the pilot to target them and then #bright-click#0 your target to follow! I like to use this feature for escort missions. It makes them a lot less tedious.\""),
+                              _("\"Did you know that you can automatically follow a pilot with Autonav? It's true! Just #bleft-click#0 the pilot to target them and then #bright-click#0 your target to follow! I like to use this feature for escort missions. It makes them a lot less tedious.\""),
                               _([["The new aiming helper feature is awesome! Simply turn it on in your ship's weapons configuration and you get little guides telling you where you should aim to hit your target! I use it a lot."]]),
                               _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's sometimes expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
                               _([["If you're piloting a medium ship, I'd recommend you invest in at least one turreted missile launcher. I had a close call a few decaperiods ago where a bomber nearly blew me to bits outside the range of my Laser Turrets. Luckily I just barely managed to escape to a nearby planet so I could escape the pilot. I've not had that problem ever since I equipped a turreted missile launcher."]]),
@@ -265,8 +265,8 @@ function create()
 
    -- Chance of a jump point message showing up. As this gradually goes
    -- down, it is replaced by lore messages. See spawnNPC function below.
-   jm_chance_min = 0
-   jm_chance_max = 0.25
+   jm_chance_min = 0.05
+   jm_chance_max = 0.3
    jm_chance = var.peek( "npc_jm_chance" ) or jm_chance_max
 
    local num_npc = rnd.rnd(1, 5)
