@@ -64,10 +64,6 @@ misn_desc = _("Chelsea needs you help them kill a wanted pirate in %s.")
 npc_name = _("Chelsea")
 npc_desc = _("Oh, it's Chelsea! You feel an urge to say hello.")
 
-osd_desc = {}
-osd_desc[1] = _("Fly to the %s system")
-osd_desc[2] = _("Protect Chelsea and help them kill or capture %s")
-
 chelkill_msg = _("MISSION FAILED: A rift in the space-time continuum causes you to have never met Chelsea in that bar.")
 chelflee_msg = _("MISSION FAILED: Chelsea has abandoned the mission.")
 plflee_msg = _("MISSION FAILED: You have abandoned the mission.")
@@ -87,7 +83,7 @@ function create ()
       misn.finish(false)
    end
 
-   missys = systems[ rnd.rnd(1, #systems) ]
+   missys = systems[rnd.rnd(1, #systems)]
    if not misn.claim(missys) then misn.finish(false) end
 
    pirname = pirate_name()
@@ -114,6 +110,13 @@ function accept ()
       misn.setTitle(misn_title)
       misn.setDesc(misn_desc:format(missys:name()))
       misn.setReward(creditstring(credits))
+
+      local osd_desc = {}
+      osd_desc[1] = string.format(_("Fly to the %s system"), missys)
+      osd_desc[2] = string.format(
+            _("Protect Chelsea and help them kill %s"), pirname)
+      misn.osdCreate(misn_title, osd_desc)
+
       marker = misn.markerAdd(missys, "high")
 
       hook.enter("enter")
