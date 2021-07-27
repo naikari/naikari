@@ -832,7 +832,7 @@ static void cargo_genList( unsigned int wid )
  */
 static void cargo_update( unsigned int wid, char* str )
 {
-   (void)str;
+   (void) str;
 
    if (array_size(player.p->commodities)==0)
       return; /* No cargo */
