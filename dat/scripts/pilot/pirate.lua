@@ -490,7 +490,6 @@ function pirate_name ()
       _("Table Saw"),
       _("Taco"),
       _("Tako"),
-      _("Tallman"),
       _("Tanoshimi"),
       _("Tatsumaki"),
       _("Tegami"),
