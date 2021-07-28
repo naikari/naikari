@@ -72,7 +72,7 @@ text[3] = _([["Thank you so much! Just fly me around in the system, preferably n
 
 text[4] = _([[Reynir walks out of the ship. You notice that he's bleeding out of both ears. "Where have you taken me?! Get me back to %s right now!!"]])
 text[5] = _([["Thank you so much! Here's %s of hot dogs. They're worth more than their weight in gold, aren't they?"]])
-text[6] = _([[Reynir walks out of the ship, amazed by the view. "So this is how %s looks like! I've always wondered... I want to go back to %s now, please."]])
+text[6] = _([[Reynir walks out of the ship, amazed by the view. "So this is what %s looks like! I've always wondered. I want to go back to %s now, please."]])
 text[7] = _([[Reynir doesn't look happy when you meet him outside the ship.
 
 "I lost my hearing out there! Damn you!! I made a promise, though, so I'd better keep it. Here's your reward, %s of hot dogs..."]])
