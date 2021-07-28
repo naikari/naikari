@@ -89,7 +89,7 @@ function accept ()
 
    -- Flavour text and mini-briefing
    tk.msg("", string.format(text[2], dest:name()))
-   misn.osdCreate("", {misn_desc:format(dest:name(), sys:name())})
+   misn.osdCreate(misn_title, {misn_desc:format(dest:name(), sys:name())})
 
    -- Set up the goal
    local c = misn.cargoNew(N_("Parcels"), N_("A bunch of boring Empire parcels."))

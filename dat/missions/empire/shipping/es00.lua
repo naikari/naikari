@@ -94,7 +94,7 @@ function accept ()
    -- Flavour text and mini-briefing
    tk.msg("", string.format(text[2], dest:name(), destsys:name(),
          dest:name(), ret:name(), retsys:name()))
-   misn.osdCreate("", {misn_desc[1]:format(dest:name(),destsys:name())})
+   misn.osdCreate(misn_title, {misn_desc[1]:format(dest:name(),destsys:name())})
    -- Set up the goal
    prisoners = misn.cargoAdd("Prisoners", 0)
    tk.msg("", text[3])
@@ -118,7 +118,7 @@ function land ()
          tk.msg("", text[5])
          misn.markerMove(misn_marker, retsys)
          misn.setDesc(string.format(misn_desc[2], ret:name(), retsys:name()))
-         misn.osdCreate("", {misn_desc[2]:format(ret:name(),retsys:name())})
+         misn.osdCreate(misn_title, {misn_desc[2]:format(ret:name(),retsys:name())})
 
          -- Prevent players from saving on the destination planet
          player.allowSave(false)

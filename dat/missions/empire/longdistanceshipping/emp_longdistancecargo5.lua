@@ -72,7 +72,7 @@ function accept ()
    misn.setTitle(misn_title)
    misn.setReward(creditstring(reward))
    misn.setDesc(string.format(misn_desc, targetworld:name(), targetworld_sys:name()))
-   misn.osdCreate("", {misn_desc})
+   misn.osdCreate(misn_title, {misn_desc})
    -- Set up the goal
    hook.land("land")
    person = misn.cargoAdd("Person", 0)
