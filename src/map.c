@@ -543,7 +543,7 @@ static void map_update( unsigned int wid )
    /* System is known */
    window_modifyText( wid, "txtSysname", _(sys->name) );
 
-   f         = -1;
+   f = -1;
    for (i=0; i<array_size(sys->planets); i++) {
       if (sys->planets[i]->real != ASSET_REAL)
          continue;
@@ -649,7 +649,7 @@ static void map_update( unsigned int wid )
    services_n = 0;
    services_r = 0;
    services_h = 0;
-   for (i=0; i<array_size(sys->planets); i++)
+   for (i=0; i<array_size(sys->planets); i++) {
       if (planet_isKnown(sys->planets[i])) {
          if (!planet_hasService(sys->planets[i], PLANET_SERVICE_INHABITED))
             services_u |= sys->planets[i]->services;
@@ -664,6 +664,7 @@ static void map_update( unsigned int wid )
          else
             services_r |= sys->planets[i]->services;
       }
+   }
    buf[0] = '\0';
    p = 0;
    /*snprintf(buf, sizeof(buf), "%f\n", sys->prices[0]);*/ /*Hack to control prices. */
@@ -1047,7 +1048,8 @@ void map_renderDecorators( double x, double y, int editor, double alpha )
  */
 void map_renderFactionDisks( double x, double y, int editor, double alpha )
 {
-   int i;
+   int i, j;
+   int f;
    const glColour *col;
    glColour c;
    StarSystem *sys;
@@ -1066,8 +1068,28 @@ void map_renderFactionDisks( double x, double y, int editor, double alpha )
       tx = x + sys->pos.x*map_zoom;
       ty = y + sys->pos.y*map_zoom;
 
+      f = -1;
+      for (j=0; j<array_size(sys->planets); j++) {
+         if (sys->planets[j]->real != ASSET_REAL)
+            continue;
+         if (!planet_isKnown(sys->planets[j]) && !editor)
+            continue;
+         if (!editor && (sys->planets[j]->faction > 0)
+               && (!faction_isKnown(sys->planets[j]->faction)))
+            continue;
+
+         if ((f == -1) && (sys->planets[j]->faction > 0)) {
+            f = sys->planets[j]->faction;
+         }
+         else if (f != sys->planets[j]->faction
+                  && (sys->planets[j]->faction > 0)) {
+            f = sys->faction;
+            break;
+         }
+      }
+
       /* System has faction and is known or we are in editor. */
-      if (sys->faction != -1) {
+      if (f != -1) {
          /* Cache to avoid repeated sqrt() */
          presence = sqrt(sys->ownerpresence);
 
@@ -1075,7 +1097,7 @@ void map_renderFactionDisks( double x, double y, int editor, double alpha )
          sw = (60 + presence * 3) * map_zoom;
          sh = sw;
 
-         col = faction_colour(sys->faction);
+         col = faction_colour(f);
          c.r = col->r;
          c.g = col->g;
          c.b = col->b;
@@ -1268,7 +1290,9 @@ void map_renderJumps( double x, double y, double r, int editor)
 void map_renderSystems( double bx, double by, double x, double y,
       double w, double h, double r, int editor)
 {
-   int i;
+   int i, j;
+   int f;
+   int has_planet;
    const glColour *col;
    StarSystem *sys;
    double tx, ty;
@@ -1302,11 +1326,41 @@ void map_renderSystems( double bx, double by, double x, double y,
       if (editor || map_mode == MAPMODE_TRAVEL || map_mode == MAPMODE_TRADE) {
          if (!system_hasPlanet(sys))
             continue;
+
+         f = -1;
+         has_planet = 0;
+         for (j=0; j<array_size(sys->planets); j++) {
+            if (sys->planets[j]->real != ASSET_REAL)
+               continue;
+            if (!planet_isKnown(sys->planets[j]) && !editor)
+               continue;
+
+            has_planet = 1;
+
+            if (!editor && (sys->planets[j]->faction > 0)
+                  && (!faction_isKnown(sys->planets[j]->faction)))
+               continue;
+
+            if ((f == -1) && (sys->planets[j]->faction > 0)) {
+               f = sys->planets[j]->faction;
+            }
+            else if (f != sys->planets[j]->faction
+                  && (sys->planets[j]->faction > 0)) {
+               f = sys->faction;
+               break;
+            }
+         }
+
+         if (!has_planet)
+            continue;
+
          /* Planet colours */
-         if (!editor && !sys_isKnown(sys)) col = &cInert;
-         else if (sys->faction < 0) col = &cInert;
-         else if (editor) col = &cNeutral;
-         else col = faction_getColour( sys->faction );
+         if (f < 0)
+            col = &cInert;
+         else if (editor)
+            col = &cNeutral;
+         else
+            col = faction_getColour(f);
 
          if (editor) {
             /* Radius slightly shorter. */
