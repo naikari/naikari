@@ -1436,7 +1436,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
          _("%s [%s]\n"
          "%+.0f TFLOPS CPU\n"
          "%G%% Penetration\n"
-         "%G GW Damage (%.0f GW avg.)\n"),
+         "%G GW Damage [%.0f GW avg.]\n"),
          _(outfit_getType(temp)),
          _(dtype_damageTypeToStr(temp->u.bem.dmg.type)),
          temp->cpu,
@@ -1446,13 +1446,13 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
             / (temp->u.bem.duration+temp->u.bem.delay) );
    if (temp->u.blt.dmg.disable > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%G GW Disable (%.0f GW avg.)\n"),
+         _("%G GW Disable [%.0f GW avg.]\n"),
          temp->u.bem.dmg.disable,
          temp->u.bem.dmg.disable * temp->u.bem.duration
             / (temp->u.bem.duration+temp->u.bem.delay) );
    }
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%G GW Energy Loss (%.0f GW avg.)\n"
+         _("%G GW Energy Loss [%.0f GW avg.]\n"
          "%G s Duration\n"
          "%G s Cooldown\n"
          "%G km Range\n"
