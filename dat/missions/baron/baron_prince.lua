@@ -29,28 +29,22 @@ local portrait = require "portrait"
 require "missions/baron/common"
 
 
-title = {}
 text = {}
 osd_msg = {}
 misn_desc = {}
 
-title[1] = _("His Baronship remembers you")
 text[1] = _([[As you approach the stranger, he extends his hand in greeting. He introduces himself as an associate of Baron Sauterfeldt, the man you helped to "acquire" a holopainting not too long ago.
 
 "The Baron was quite pleased with your performance in that matter," he confides. "He has asked me to try to find you again for another job not unlike the last one. The Baron is a collector, you see, and his hunger for new possessions is a hard one to satiate." He makes a face. "Of course, his methods aren't always completely respectable, as you've experienced for yourself. But I assure you that the Baron is not a bad man, he is simply very enthusiastic."
 
 You decide to keep your opinion of the aristocrat to yourself. Instead you inquire as to what the man wants from you this time. "To tell the truth, I don't actually know," the man says. "The Baron wants you to meet him so he can brief you in person. You will find his ship in the %s system. Shall I inform his lordship that you will be paying him a visit?"]])
 
-refusetitle = _("Sorry, not today")
 refusetext = _([["Okay, fair enough," the man says with a disappointed look on his face. "I'll try to find someone else. But maybe we'll run into each other again, so if you change your mind..."]])
 
-title[2] = _("At your beck and call")
 text[2] = _([["Splendid. Please go see his lordship at the earliest opportunity. He doesn't like to be kept waiting. I will send word that you will be coming, so contact the Pinnacle when you arrive at %s, and they will allow you to board."]])
 
-title[3] = _("Green light for docking")
 text[3] = _([[Your comm is answered by a communications officer on the bridge of the Pinnacle. You tell her you've got a delivery for the baron. She runs a few checks on a console off the screen, then tells you you've been cleared for docking and that the Pinnacle will be brought to a halt.]])
 
-title[4] = _("An audience with the Baron")
 text[4] = _([[You find yourself once again aboard the Pinnacle, Baron Sauterfeldt's flag ship. After a short time, an attendant ushers you into the Baron's personal quarters, which are as extravagant as you remember them. You notice the holopainting is now firmly fixed on one of the walls.
 
 Baron Dovai Sauterfeldt greets you with a pompous wave of his hand. "Ahh yes, there you are at last. %s, was it? Do have a seat." He then offers you a drink, but you decline on the basis that you still have to drive. "Now then, %s, I assume you're wondering why I've called you here. As you've no doubt heard, I have an interest in the unique, the exquisite." The Baron gestures around the room. "I have built up quite an impressive collection, as you can see, but it is still lacking something. Fortunately, news has reached me about a priceless artifact from Earth itself, dating back to before the Faction Wars. I must have it. It belongs in the hands of a connoisseur like myself."]])
@@ -61,15 +55,9 @@ text[5] = _([["Unfortunately, news of this artifact has reached more ears than j
 
 "I should warn you, %s. Some of my, ah, colleagues have also set their sights on this item, and so you can expect their henchmen to try to take it off you. I trust you are equipped to defend yourself against their despicable sort."]])
 
-title[5] = _("Off to the shops")
-
 text[6] = _([[You are swiftly escorted back to your ship. You didn't really get the chance to ask the Baron any questions, such as who these potential attackers are, how you're supposed to pay for the artifacts once you locate the sellers, or what you will get out of all this. You do, however, find an update to your galaxy map that shows the location of the sellers, as well as a list of names and portraits. It would seem that the only way to find out what you're dealing with is the hard way.]])
 
-title[6] = _("What are you doing here?")
-
 text[7] = _([[You have not yet collected and identified the genuine artifact. Buy the artifacts from the sellers and visit Flintley on %s (%s) to identify the real one.]])
-
-title[7] = _("Flintley, at your service")
 
 text[8] = _([[You approach the nervous-looking man and inquire if he is Flintley, the historian in Baron Sauterfeldt's employ.
 
@@ -77,15 +65,11 @@ text[8] = _([[You approach the nervous-looking man and inquire if he is Flintley
 
 Flintley sighs. "Well, that's that. Come to me with any artifacts you manage to procure, and I'll analyze them to the best of my ability."]])
 
-title[8] = _("A suspicious salesman")
-
 text[9] = _([["Hello there," the guy says to you when you approach. "Can I interest you in this bona fide relic from an ancient past? Unlike all those scammers out there, I offer you the real deal, no fakes here!"]])
 
 text[10] = _([[The man grins at you. "Ah, I can tell you have the eye of a connoisseur! I deal only in the finest, counterfeit-free antiques. If you're smart, and I can see that you are, you won't trust all those opportunists who will try to sell you fakes! How about it?"]])
 
 text[11] = _([[The woman beckons you over to the bar. "Listen, friend. I have here a unique, extremely rare remnant of prehistoric times. This is the genuine article, trust me on that. One hundred per cent legit! And you wouldn't want to spend good credits on a fake, right?"]])
-
-title[9] = _("This is not the artifact you're looking for")
 
 text[12] = _([["Let's see what we have here," Flintley says as you hand him the artifact you bought on %s. "Ah, I know what this is without even looking anything up. It's a piece of an old-fashioned airlock mechanism, as used on most ships during the Faction Wars. That makes it rather old, but that also makes it worthless, I'm afraid. This is just old scrap." He gives you an apologetic look. "Don't let it get you down. Not many people would know this on first sight. Those scammers can be pretty clever."
 
@@ -99,11 +83,7 @@ text[14] = _([[Flintley studies the object on the table for a while, checking th
 
 You dispose of the counterfeit artifact. Hopefully the next one will be what Sauterfeldt is looking for...]])
 
-flintdeftitle = _("Just passing through")
-
 flintdeftext = _([[Flintley greets you. "Do you have any objects for me to look at, %s? No? Well, alright. I'll be here if you need me. Good luck out there."]])
-
-title[10] = _("From days long gone")
 
 text[15] = _([[Flintley carefully studies the object in front of him, turning it around and consulting the online database via the bar table's terminal. After several hectoseconds he leans back and whistles. "Well I never. This has to be it, %s. I'd do a carbon dating if I could, but even without I'm positive. This object dates back to pre-Growth Earth. And it's in an amazingly good condition!"
 
@@ -112,8 +92,6 @@ You take another look at the thing. It resembles a small flat surface, apart fro
 "It's called a skate-board," Flintley continues. "The records about it are a bit sketchy and a lot is nothing but conjecture, but it appears it was once used in primitive communal rituals. The exact nature of these rituals is unknown, but they may have been tribal initiations or even mating rituals. The patterns in the board itself are thought to have a spiritual or mystical meaning. Also, according to some theories, people used to stand on top of the skate-board, with the cylinder wheels facing the ground. This has led some historians to believe that the feet were once central to human psychology."
 
 Flintley seems to have a lot more to say on the subject, but you're not that interested, so you thank him and return to your ship with the ancient artifact. You can only hope that the Baron is as enthusiastic about this skate-board as his historian!]])
-
-title[11] = _("The Baron has his prize")
 
 text[16] = _([[Baron Dovai Sauterfeldt turns the skate-board over in his hands, inspecting every nick, every scratch on the surface. His eyes are gleaming with delight.
 
@@ -175,9 +153,9 @@ function accept()
 
    reward = 200000 -- The price of each artifact will always be 15% of this, so at most the player will be paid 85% and at least 55%.
 
-   if tk.yesno(title[1], text[1]:format(baronsys:name())) then
+   if tk.yesno("", text[1]:format(baronsys:name())) then
       misn.accept()
-      tk.msg(title[2], text[2]:format(baronsys:name()))
+      tk.msg("", text[2]:format(baronsys:name()))
 
       misn.setTitle(misn_title)
       misn.setReward(misn_reward)
@@ -188,16 +166,16 @@ function accept()
 
       enterhook = hook.enter("enter")
    else
-      tk.msg(refusetitle, refusetext)
+      tk.msg("", refusetext)
       abort()
    end
 end
 
 function board()
    if stage == 1 then
-      tk.msg(title[4], text[4]:format(mangle(player.name()), mangle(player.name())))
-      tk.msg(title[4], text[5]:format(mangle(player.name()), flintplanet:name(), flintsys:name(), mangle(player.name())))
-      tk.msg(title[5], text[6])
+      tk.msg("", text[4]:format(mangle(player.name()), mangle(player.name())))
+      tk.msg("", text[5]:format(mangle(player.name()), flintplanet:name(), flintsys:name(), mangle(player.name())))
+      tk.msg("", text[6])
       misn.osdCreate(misn_title, { osd_msg[1]:format(baronsys:name()),
                             osd_msg[2]
                            })
@@ -217,12 +195,12 @@ function board()
       pinnacle:setHealth(100,100)
       idle()
    elseif stage == 2 then
-      tk.msg(title[6], text[7]:format(flintplanet, flintsys))
+      tk.msg("", text[7]:format(flintplanet, flintsys))
       player.unboard()
       pinnacle:setHealth(100,100)
       idle()
    elseif stage == 3 then
-      tk.msg(title[11], text[16]:format(mangle(player.name()), mangle(player.name()), mangle(player.name())))
+      tk.msg("", text[16]:format(mangle(player.name()), mangle(player.name()), mangle(player.name())))
       player.unboard()
       pinnacle:setHealth(100,100)
       pinnacle:control(false)
@@ -253,16 +231,16 @@ function flintley()
 
    if flintleyfirst then
       flintleyfirst = false
-      tk.msg(title[7], text[8]:format(player.name()))
+      tk.msg("", text[8]:format(player.name()))
    elseif artifactA == nil and artifactB == nil and artifactC == nil then
-      tk.msg(flintdeftitle, flintdeftext:format(player.name()))
+      tk.msg("", flintdeftext:format(player.name()))
    end
 
    if artifactA ~= nil then
       if rnd.rnd(1, 3 - artifactsfound) == 1 then
          bingo = true
       else
-         tk.msg(title[9], text[12]:format(artifactplanetA:name()))
+         tk.msg("", text[12]:format(artifactplanetA:name()))
          artifactsfound = artifactsfound + 1
       end
       misn.cargoRm(artifactA)
@@ -272,7 +250,7 @@ function flintley()
       if rnd.rnd(1, 3 - artifactsfound) == 1 then
          bingo = true
       else
-         tk.msg(title[9], text[13]:format(artifactplanetB:name(), player.name()))
+         tk.msg("", text[13]:format(artifactplanetB:name(), player.name()))
          artifactsfound = artifactsfound + 1
       end
       misn.cargoRm(artifactB)
@@ -282,7 +260,7 @@ function flintley()
       if rnd.rnd(1, 3 - artifactsfound) == 1 then
          bingo = true
       else
-         tk.msg(title[9], text[14]:format(artifactplanetC:name(), player.name()))
+         tk.msg("", text[14]:format(artifactplanetC:name(), player.name()))
          artifactsfound = artifactsfound + 1
       end
       misn.cargoRm(artifactC)
@@ -290,7 +268,7 @@ function flintley()
    end
 
    if bingo then
-      tk.msg(title[10], text[15]:format(player.name()))
+      tk.msg("", text[15]:format(player.name()))
       misn.osdCreate(misn_title, { osd_msg[1]:format(baronsys:name()),
                             osd_msg[2],
                             osd_msg[3]
@@ -311,7 +289,7 @@ end
 
 function seller()
    if planet.cur() == artifactplanetA then
-      if tk.choice(title[8], text[9], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
+      if tk.choice("", text[9], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
             player.pay(-15000, "adjust")
@@ -323,7 +301,7 @@ function seller()
          end
       end
    elseif planet.cur() == artifactplanetB then
-      if tk.choice(title[8], text[10], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
+      if tk.choice("", text[10], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
             player.pay(-15000, "adjust")
@@ -335,7 +313,7 @@ function seller()
          end
       end
    elseif planet.cur() == artifactplanetC then
-      if tk.choice(title[8], text[11], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
+      if tk.choice("", text[11], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
             player.pay(-15000, "adjust")
@@ -391,7 +369,7 @@ function idle()
 end
 
 function hail()
-   tk.msg(title[3], text[3])
+   tk.msg("", text[3])
    pinnacle:taskClear()
    pinnacle:brake()
    pinnacle:setActiveBoard(true)
