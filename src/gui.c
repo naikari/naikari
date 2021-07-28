@@ -693,9 +693,11 @@ static void gui_renderBorder( double dt )
          gui_borderIntersection( &cx, &cy, rx, ry, hw, hh );
 
          if (i==player.p->nav_hyperspace)
-            col = &cGreen;
-         else
             col = &cWhite;
+         else if (jp_isFlag(jp, JP_HIDDEN))
+            col = &cRed;
+         else
+            col = &cGreen;
 
          gl_renderTriangleEmpty( cx, cy, -jp->angle, 10., 1., col );
       }
