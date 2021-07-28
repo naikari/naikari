@@ -265,6 +265,9 @@ function land()
       tk.msg( debrief_title, debrief_text2:format(creditstring(reward)), ("portraits/"..portrait_tam) )
       player.pay(reward)
 
+      local t = time.get():tonumber()
+      var.push( "invasion_time", t ) -- Timer for the next mission
+
       shiplog.create( "frontier_war", _("Frontier War"), _("Dvaered") )
       shiplog.append( "frontier_war", log_text )
       misn.finish(true)
@@ -475,10 +478,10 @@ function spawnControl()
    theSys = syst[ rnd.rnd(1,#syst) ]
    origin = system.get(theSys)
 
-   types = { "Civilian Gawain", "Civilian Llama", "Civilian Schroedinger", "Civilian Hyena" }
+   types = { "Gawain", "Llama", "Schroedinger", "Hyena" }
    theTyp = types[ rnd.rnd(1,#types) ]
 
-   controls[noCtrl] = pilot.addFleet( theTyp, origin )[1]
+   controls[noCtrl] = pilot.add( theTyp, "Independent", origin )[1]
    controls[noCtrl]:control()
    controls[noCtrl]:land(targpla)
 
@@ -584,7 +587,7 @@ end
 
 -- Spawn Hamelsen in a hyena
 function spawnHam()
-   hamelsen = pilot.add( "Hyena", "Civilian", system.get("Beeklo") , _("Civilian Hyena") )
+   hamelsen = pilot.add( "Hyena", "Independent", system.get("Beeklo") )
    equipHyena( hamelsen )
    hamelsen:control()
    hamelsen:land(targpla)
@@ -594,7 +597,7 @@ function spawnHam()
    hook.timer(0.5, "proximity", {location = targpos, radius = 10000, funcname = ("incomingHamelsen"), focus = hamelsen})
 
    -- Hamelsen's partner, whose purpose is to make a fight occur
-   jules = pilot.add( "Hyena", "Civilian", system.get("Beeklo") , _("Civilian Hyena") )
+   jules = pilot.add( "Hyena", "Independent", system.get("Beeklo") )
    equipHyena( jules )
    jules:control()
    jules:follow( hamelsen )
@@ -607,14 +610,14 @@ function equipHyena( p )
    p:addOutfit("Tricon Zephyr Engine")
    p:addOutfit("Milspec Orion 2301 Core System")
    p:addOutfit("S&K Ultralight Combat Plating")
-   p:addOutfit("Shredder",3)
+   p:addOutfit("Gauss Gun",3)
    p:addOutfit("Improved Stabilizer")
    p:addOutfit("Hellburner")
    p:setHealth(100,100)
    p:setEnergy(100)
 
    -- Remove all cargo (to make them lighter)
-   p:cargoRm( "__all" )
+   p:cargoRm( "all" )
 end
 
 function hamelsenLanded()
@@ -697,12 +700,8 @@ function StraferNspy()
    alpha[2]:attack( spy )
 
    -- Remove all cargo (to control their speed)
-   for i, v in ipairs(alpha[2]:cargoList()) do
-      alpha[2]:cargoRm( v.name, v.q )
-   end
-   for i, v in ipairs(spy:cargoList()) do
-      spy:cargoRm( v.name, v.q )
-   end
+   alpha[2]:cargoRm( "all" )
+   spy:cargoRm( "all" )
 end
 
 -- Many enemies jump and kill Strafer
