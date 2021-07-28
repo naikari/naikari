@@ -693,9 +693,9 @@ function render( dt, dt_mod )
    for num, weapon in ipairs(wset) do
       txt = _(weapon.name)
       if weapon.left then -- Truncate names for readability.
-         if weapon.type == "Bolt Cannon" or weapon.type == "Beam Cannon" then
+         if weapon.type == "Bolt Cannon" or weapon.type == "Beam" then
             txt = string.gsub(txt,"Cannon", "C.")
-         elseif weapon.type == "Bolt Turret" or weapon.type == "Beam Turret" then
+         elseif weapon.type == "Bolt Turret" or weapon.type == "Turret Beam" then
             txt = string.gsub(txt,"Turret", "T.")
          elseif weapon.type == "Launcher" or weapon.type == "Turret Launcher" then
             txt = string.gsub(txt,"Launcher", "L.")
