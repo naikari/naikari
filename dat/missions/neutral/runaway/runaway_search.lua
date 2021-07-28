@@ -34,9 +34,9 @@ misn_desc_pre_accept = _([[Approaching him, he hands you a paper. It offers a 10
 misn_desc = _("Search for Cynthia.")
 
 post_accept = {}
-post_accept[1] = _([[Looking at the picture, you see that the locket matches the one that Cynthia wore, so you hand it to her father. "I believe that this was hers." Stunned, the man hands you a list of planets that they wanted to look for her on.]])
+post_accept[1] = _([[Looking at the picture, you see that the locket matches the one that Cynthia wore, so you hand it to her father, telling him that you believe it was hers. Stunned, the man hands you a list of planets that they wanted to look for her on.]])
 
-misn_nifiheim = _("After thoroughly searching the spaceport, you decide that she wasn't there.")
+misn_nifiheim = _("After thoroughly searching the spaceport, you decide that she isn't there.")
 misn_nova_shakar = _("At last! You find her, but she ducks into a tour bus when she sees you. The schedule says it's destined for Torloth. You begin to wonder if she'll want to be found.")
 misn_torloth = _([[After chasing Cynthia through most of the station, you find her curled up at the end of a hall, crying. As you approach, she screams, "Why can't you leave me alone? I don't want to go back to my terrible parents!" Will you take her anyway?]])
 misn_capture = "Cynthia stops crying and proceeds to hide in the farthest corner of your ship. Attemps to talk to her turn up fruitless."
