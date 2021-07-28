@@ -231,7 +231,7 @@ end
 
 
 function land_bar ()
-   if #npcs > 0 and not var.peek("tutorial_escorts_done") then
+   if next(npcs) ~= nil and not var.peek("tutorial_escorts_done") then
       if var.peek("_tutorial_passive_active") then
          tk.msg("", tutorial_text)
       end
