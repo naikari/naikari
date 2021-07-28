@@ -126,7 +126,7 @@ if buildExec.disabled() == false
    naev_deps += use_system_glpk ? system_glpk : subproject('glpk').get_variable('glpk_dep')
 
    if use_system_suitesparse
-      message('Note: Naev needs the following SuiteSparse libraries: amd, colamd, cholmod, and either csparse or cxsparse. ' +
+      message('Note: Naikari needs the following SuiteSparse libraries: amd, colamd, cholmod, and either csparse or cxsparse. ' +
               'It can use its own copies if you run "meson configure --force-fallback-for=SuiteSparse".')
       foreach csparse_name : ['csparse', 'cxsparse']
          system_csparse = cc.find_library(csparse_name, required: false)
@@ -139,6 +139,14 @@ if buildExec.disabled() == false
          config_data.set10('HAVE_SUITESPARSE_CS_H', cc.has_header('suitesparse/cs.h'))
       else
          error('Failed to find an installation of c[x]sparse. See above note about SuiteSparse.')
+      endif
+
+      system_cholmod = cc.find_library('cholmod', required: false)
+      if system_cholmod.found()
+         naev_deps += system_cholmod
+         config_data.set10('HAVE_SUITESPARSE_CHOLMOD_H', cc.has_header('suitesparse/cholmod.h'))
+      else
+         error('Failed to find an installation of cholmod. See above note about SuiteSparse.')
       endif
 
       naev_deps += cc.find_library('amd', required: true)
