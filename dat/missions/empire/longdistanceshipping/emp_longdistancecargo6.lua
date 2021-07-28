@@ -48,10 +48,9 @@ function create ()
    startworld, startworld_sys = planet.cur()
 
    -- Set our target system and planet.
-   targetworld_sys = system.get("Gamma Polaris")
-   targetworld = planet.get("Halir")
+   targetworld, targetworld_sys = planet.get("Halir")
 
-   misn.setNPC( _("Lieutenant"), "empire/unique/czesc.png", bar_desc )
+   misn.setNPC(_("Lieutenant"), "empire/unique/czesc.png", bar_desc)
    if targetworld == startworld then --makes sure pilot is not currently on Gamma Polaris
        misn.finish(false)
     end
@@ -60,13 +59,13 @@ end
 
 function accept ()
    -- Set marker to a system, visible in any mission computer and the onboard computer.
-   misn.markerAdd( targetworld_sys, "low")
+   misn.markerAdd(targetworld_sys, "low")
    ---Intro Text
-   if not tk.yesno( "", text[1] ) then
+   if not tk.yesno("", text[1]) then
       misn.finish()
    end
    -- Flavour text and mini-briefing
-   tk.msg( "", text[2] )
+   tk.msg("", text[2])
    ---Accept the mission
    misn.accept()
   
@@ -74,25 +73,27 @@ function accept ()
    reward = 500e3
    misn.setTitle(misn_title)
    misn.setReward(creditstring(reward))
-   misn.setDesc( string.format( misn_desc, targetworld:name(), targetworld_sys:name() ) )
+   misn.setDesc(string.format(misn_desc, targetworld:name(), targetworld_sys:name()))
    misn.osdCreate(misn_title, {misn_desc})
+
    -- Set up the goal
    local commod = misn.cargoNew(N_("Lieutenant Czesc"),
          N_("Lieutenant Czesc of the Empire Armada Shipping Division, who has asked you to transport him back to Halir."))
    person = misn.cargoAdd(commod , 0)
+
+   hook.land("land")
 end
 
 
 function land()
-
    if planet.cur() == targetworld then
-         misn.cargoRm( person )
-         player.pay( reward )
-         -- More flavour text
-         tk.msg( "", text[3] )
-         faction.modPlayerSingle( "Empire",3 )
-         emp_addShippingLog( log_text )
-         misn.finish(true)
+      misn.cargoRm(person)
+      player.pay(reward)
+      -- More flavour text
+      tk.msg("", text[3])
+      faction.modPlayerSingle("Empire",3)
+      emp_addShippingLog(log_text)
+      misn.finish(true)
    end
 end
 
