@@ -76,7 +76,9 @@ function accept ()
    misn.osdCreate(misn_title, {misn_desc})
    -- Set up the goal
    hook.land("land")
-   person = misn.cargoAdd("Person" , 0)
+   local commod = misn.cargoNew(N_("Imperial Diplomat"),
+         N_("An Imperial shipping diplomat you are transporting."))
+   person = misn.cargoAdd(commod , 0)
 end
 
 

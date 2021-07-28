@@ -77,8 +77,9 @@ function accept ()
    misn.setDesc( string.format( misn_desc, targetworld:name(), targetworld_sys:name() ) )
    misn.osdCreate(misn_title, {misn_desc})
    -- Set up the goal
-   hook.land("land")
-   person = misn.cargoAdd( "Person" , 0 )
+   local commod = misn.cargoNew(N_("Lieutenant Czesc"),
+         N_("Lieutenant Czesc of the Empire Armada Shipping Division, who has asked you to transport him back to Halir."))
+   person = misn.cargoAdd(commod , 0)
 end
 
 

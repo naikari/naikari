@@ -108,7 +108,9 @@ function accept()
 
       marker = misn.markerAdd(missys, "low")
 
-      smith = misn.cargoAdd("Person", 0)  --Adding the cargo
+      local c = misn.cargoNew(N_("Arnold Smith"),
+            N_("Arnold Smith, an employee of Nexus Shipyards, who has asked you to transport him."))
+      smith = misn.cargoAdd(c, 0)  --Adding the cargo
 
       landhook = hook.land("land")
       enterhook = hook.enter("enter")
