@@ -73,10 +73,12 @@ dest_planets = {"The Stinker", "Eiroik", "Vaal", "Domestica", "Blossom"}
 function create ()
    local dist = nil
    local p, sys
-   for i, j in ipairs(dest_planets) do
-      p, sys = planet.get(j)
+   local closest_sys
+   for i, v in ipairs(dest_planets) do
+      p, sys = planet.get(v)
       if dist == nil or system.cur():jumpDist(sys) < dist then
          dist = system.cur():jumpDist(sys)
+         closest_sys = sys
       end
    end
 
@@ -87,10 +89,8 @@ function create ()
 
    landed = true
 
-   for i, j in ipairs(dest_planets) do
-      local p, sys
-      p, sys = planet.get(j)
-      misn.markerAdd(sys, "computer")
+   if closest_sys ~= nil then
+      tempmarker = misn.markerAdd(closest_sys, "computer")
    end
 
    -- Set mission details
@@ -102,11 +102,18 @@ end
 
 function accept ()
    misn.accept()
+
+   if tempmarker ~= nil then misn.markerRm(tempmarker) end
+   for i, v in ipairs(dest_planets) do
+      local p, sys
+      p, sys = planet.get(v)
+      misn.markerAdd(sys, "computer")
+   end
    
    local q = player.pilot():cargoFree()
    credits = credits_factor * q + credits_mod
 
-   local txt = text[ rnd.rnd(1, #text) ]
+   local txt = text[rnd.rnd(1, #text)]
    tk.msg("", txt:format(creditstring(credits)))
 
    local c = misn.cargoNew(N_("Waste Containers"), N_("A bunch of waste containers leaking all sorts of indescribable liquids."))
@@ -129,9 +136,9 @@ end
 function land ()
    landed = true
 
-   for i, j in ipairs(dest_planets) do
-      if planet.get(j) == planet.cur() then
-         local txt = finish_text[ rnd.rnd(1, #finish_text) ]
+   for i, v in ipairs(dest_planets) do
+      if planet.get(v) == planet.cur() then
+         local txt = finish_text[rnd.rnd(1, #finish_text)]
          tk.msg("", txt)
          misn.finish(true)
       end
@@ -147,14 +154,14 @@ function abort ()
       player.pay(-fine)
       misn.finish(false)
    else
-      local txt = abort_text[ rnd.rnd(1, #abort_text) ]
+      local txt = abort_text[rnd.rnd(1, #abort_text)]
       tk.msg("", txt)
 
       misn.cargoJet(cid)
 
       -- Make everyone angry
-      for i, j in ipairs(pilot.get()) do
-         j:setHostile()
+      for i, p in ipairs(pilot.get()) do
+         p:setHostile()
       end
 
       -- Add some police!
@@ -172,36 +179,36 @@ function abort ()
 
       local choices
       if f == faction.get("Empire") then
-         choices = { "Empire Sml Defense", "Empire Lge Attack", "Empire Med Attack" }
+         choices = {"Empire Sml Defense", "Empire Lge Attack", "Empire Med Attack"}
       elseif f == faction.get("Goddard") then
-         choices = { "Goddard Goddard", "Goddard Lancelot" }
+         choices = {"Goddard Goddard", "Goddard Lancelot"}
       elseif f == faction.get("Dvaered") then
-         choices = { "Dvaered Big Patrol", "Dvaered Small Patrol", "Dvaered Strike Force" }
+         choices = {"Dvaered Big Patrol", "Dvaered Small Patrol", "Dvaered Strike Force"}
       elseif f == faction.get("Soromid") then
-         choices = { "Soromid Arx", "Soromid Vox", "Soromid Nyx", "Soromid Odium" }
+         choices = {"Soromid Arx", "Soromid Vox", "Soromid Nyx", "Soromid Odium"}
       elseif f == faction.get("Za'lek") then
-         choices = { "Za'lek Hephaestus", "Za'lek Mephisto", "Za'lek Diablo", "Za'lek Demon" }
+         choices = {"Za'lek Hephaestus", "Za'lek Mephisto", "Za'lek Diablo", "Za'lek Demon"}
       elseif f == faction.get("Sirius") then
-         choices = { "Sirius Preacher", "Sirius Divinity", "Sirius Dogma" }
+         choices = {"Sirius Preacher", "Sirius Divinity", "Sirius Dogma"}
       elseif f == faction.get("Frontier") then
-         choices = { "Frontier Phalanx", "Frontier Lancelot", "Frontier Ancestor" }
+         choices = {"Frontier Phalanx", "Frontier Lancelot", "Frontier Ancestor"}
       elseif f == faction.get("Thurion") then
-         choices = { "Thurion Apprehension", "Thurion Certitude" }
+         choices = {"Thurion Apprehension", "Thurion Certitude"}
       elseif f == faction.get("Proteron") then
-         choices = { "Proteron Kahan", "Proteron Watson", "Proteron Archimedes" }
+         choices = {"Proteron Kahan", "Proteron Watson", "Proteron Archimedes"}
       elseif f == faction.get("Collective") then
-         choices = { "Collective Lge Swarm", "Collective Sml Swarm" }
+         choices = {"Collective Lge Swarm", "Collective Sml Swarm"}
       elseif f == faction.get("FLF") then
-         choices = { "FLF Pacifier", "FLF Vendetta", "FLF Lancelot" }
+         choices = {"FLF Pacifier", "FLF Vendetta", "FLF Lancelot"}
       elseif f == faction.get("Pirate") then
-         choices = { "Pirate Kestrel", "Pirate Phalanx", "Pirate Admonisher" }
+         choices = {"Pirate Kestrel", "Pirate Phalanx", "Pirate Admonisher"}
       else
-         choices = { "Vendetta Quartet", "Mercenary Pacifier", "Mercenary Ancestor", "Mercenary Vendetta" }
+         choices = {"Vendetta Quartet", "Mercenary Pacifier", "Mercenary Ancestor", "Mercenary Vendetta"}
       end
 
       for n = 1, rnd.rnd(2, 4) do
          for i, j in ipairs(system.cur():jumps()) do
-            local p = pilot.addFleet(choices[ rnd.rnd(1, #choices) ], j:dest())
+            local p = pilot.addFleet(choices[rnd.rnd(1, #choices)], j:dest())
             for k, v in ipairs(p) do
                v:setHostile()
             end
