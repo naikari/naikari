@@ -1733,7 +1733,7 @@ void equipment_updateShips( unsigned int wid, char* str )
       window_disableButton( wid, "btnSellShip" );
       window_disableButton( wid, "btnChangeShip" );
    }
-   else {\
+   else {
       window_enableButton( wid, "btnChangeShip" );
       window_enableButton( wid, "btnSellShip" );
    }
@@ -1750,6 +1750,8 @@ void equipment_updateOutfits( unsigned int wid, char* str )
    (void) str;
    int i, active;
 
+   window_disableButton(wid, "btnSellOutfit");
+
    /* Must have outfit. */
    active = window_tabWinGetActive( wid, EQUIPMENT_OUTFIT_TAB );
    i = toolkit_getImageArrayPos( wid, EQUIPMENT_OUTFITS );
@@ -1759,6 +1761,8 @@ void equipment_updateOutfits( unsigned int wid, char* str )
    }
 
    eq_wgt.outfit = iar_outfits[active][i];
+   if (eq_wgt.outfit != NULL)
+      window_enableButton(wid, "btnSellOutfit");
 }
 
 /**
