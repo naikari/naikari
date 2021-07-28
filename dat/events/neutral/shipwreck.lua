@@ -83,7 +83,7 @@ end
 
 function destroyevent ()
     evt.finish(true)
- end
+end
 
 function endevent ()
     evt.finish()
