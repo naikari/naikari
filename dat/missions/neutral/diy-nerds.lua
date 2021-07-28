@@ -48,7 +48,7 @@ You reply that for a deal to be worked out, they better provide some detail.
 You just start wondering at the boldness of so young a lady as she already signals her impatience. "Well then, will you do it?"]])
 
 -- you accept
-text[2] = _([[Upon accepting the task, you see the entire group relax visibly, and you can almost feel Mia's boldness fade away - to some extent, at least. It seems that the group is quite keen on the competition, but until now had no idea how to get there.
+text[2] = _([[Upon accepting the task, you see the entire group relax visibly, and you can almost feel Mia's boldness fade away (to some extent, at least). It seems that the group is quite keen on the competition, but until now had no idea how to get there.
 
 As the others scramble to get up from their cramped table and start to gather their belongings, it is again up to Mia to address you:
 
