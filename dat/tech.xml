@@ -39,7 +39,6 @@
   <item>Grave Beam</item>
   <item>Orion Beam</item>
   <item>Grave Lance</item>
-  <item>Particle Beam</item>
   <item>Particle Lance</item>
   <item>Orion Lance</item>
   <item>Neutron Disruptor</item>
@@ -417,7 +416,6 @@
  </tech>
  <tech name="Beam 1">
   <item>Orion Lance</item>
-  <item>Particle Beam</item>
   <item>Orion Beam</item>
  </tech>
  <tech name="Beam 2">

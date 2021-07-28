@@ -191,7 +191,7 @@ equip_classOutfits_weapons = {
       {
          "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
          "Laser Turret MK1", "Razor Turret MK1", "Turreted Gauss Gun",
-         "Plasma Turret MK1", "Particle Beam",
+         "Plasma Turret MK1",
       },
    },
    ["Luxury Yacht"] = {
@@ -208,7 +208,7 @@ equip_classOutfits_weapons = {
    ["Courier"] = {
       {
          "Laser Turret MK1", "Razor Turret MK1", "Turreted Gauss Gun",
-         "Plasma Turret MK1", "Particle Beam",
+         "Plasma Turret MK1",
       },
    },
    ["Freighter"] = {
