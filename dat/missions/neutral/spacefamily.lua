@@ -120,19 +120,16 @@ function create ()
    hook.enter("enter")
 end
 
--- Checks if the parameter system has planets you can land on. Return true if so, false otherwise.
-function haslandable(sys)
-   for a, b in pairs(sys:planets()) do
-      if b:services()["inhabited"] then return true
-      end
-   end
-   return false
+function islandable(p)
+   return (b:services()["inhabited"] and b:canLand() and b:class() ~= "0"
+         and b:class() ~= "1" and b:class() ~= "2" and b:class() ~= "3"
+         and b:nameRaw() ~= "The Stinker" and b:nameRaw() ~= "Blossom")
 end
 
 -- Given a system, return the first landable planet found, or nil if none are landable (shouldn't happen in this script)
 function getlandable(sys)
    for a, b in pairs(sys:planets()) do
-      if b:services()["inhabited"] and b:canLand() then
+      if islandable(b) then
          return b
       end
    end
@@ -167,7 +164,7 @@ function getlandablesystems(systems)
    t = {}
    for k,v in ipairs(systems) do
       for k,p in ipairs(v:planets()) do
-         if p:services()["inhabited"] and p:canLand() then
+         if islandable(p) then
             t[#t+1] = v
             break
          end
