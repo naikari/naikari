@@ -53,7 +53,11 @@ abort_text[1] = _("Sick and tired of smelling garbage, you illegally jettison th
 abort_text[2] = _("You decide that the nearest waste dump location is too far away for you to bother to go to and simply jettison the containers of waste. You hope you don't get caught.")
 abort_text[3] = _("You dump the waste containers into space illegally, noting that you should make sure not to get caught by authorities.")
 
-abort_landed_text = _("In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo pod while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of %s.")
+abort_landed_text = _("In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of %s.")
+
+abort_landed_broke_text = _([[In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of %s.
+
+When you explain that you don't have enough money to pay the fine, the officials confiscate outfits and cargo you own to make up the difference.]])
 
 noland_msg = _("Get lost, waste dumping scum! We don't want you here!")
 
@@ -150,74 +154,99 @@ function abort ()
    if landed then
       misn.cargoRm(cid)
       local fine = 2 * credits
-      tk.msg("", abort_landed_text:format(creditstring(fine)))
-      player.pay(-fine)
-      misn.finish(false)
-   else
-      local txt = abort_text[rnd.rnd(1, #abort_text)]
-      tk.msg("", txt)
-
-      misn.cargoJet(cid)
-
-      -- Make everyone angry
-      for i, p in ipairs(pilot.get()) do
-         p:setHostile()
-      end
-
-      -- Add some police!
-      local presences = system.cur():presences()
-      local f = nil
-      if presences then
-         local strongest_amount = 0
-         for k, v in pairs(presences) do
-            if v > strongest_amount then
-               f = faction.get(k)
-               strongest_amount = v
-            end
-         end
-      end
-
-      local choices
-      if f == faction.get("Empire") then
-         choices = {"Empire Sml Defense", "Empire Lge Attack", "Empire Med Attack"}
-      elseif f == faction.get("Goddard") then
-         choices = {"Goddard Goddard", "Goddard Lancelot"}
-      elseif f == faction.get("Dvaered") then
-         choices = {"Dvaered Big Patrol", "Dvaered Small Patrol", "Dvaered Strike Force"}
-      elseif f == faction.get("Soromid") then
-         choices = {"Soromid Arx", "Soromid Vox", "Soromid Nyx", "Soromid Odium"}
-      elseif f == faction.get("Za'lek") then
-         choices = {"Za'lek Hephaestus", "Za'lek Mephisto", "Za'lek Diablo", "Za'lek Demon"}
-      elseif f == faction.get("Sirius") then
-         choices = {"Sirius Preacher", "Sirius Divinity", "Sirius Dogma"}
-      elseif f == faction.get("Frontier") then
-         choices = {"Frontier Phalanx", "Frontier Lancelot", "Frontier Ancestor"}
-      elseif f == faction.get("Thurion") then
-         choices = {"Thurion Apprehension", "Thurion Certitude"}
-      elseif f == faction.get("Proteron") then
-         choices = {"Proteron Kahan", "Proteron Watson", "Proteron Archimedes"}
-      elseif f == faction.get("Collective") then
-         choices = {"Collective Lge Swarm", "Collective Sml Swarm"}
-      elseif f == faction.get("FLF") then
-         choices = {"FLF Pacifier", "FLF Vendetta", "FLF Lancelot"}
-      elseif f == faction.get("Pirate") then
-         choices = {"Pirate Kestrel", "Pirate Phalanx", "Pirate Admonisher"}
+      local money = player.credits()
+      if money >= fine then
+         tk.msg("", abort_landed_text:format(creditstring(fine)))
       else
-         choices = {"Vendetta Quartet", "Mercenary Pacifier", "Mercenary Ancestor", "Mercenary Vendetta"}
-      end
+         tk.msg("", abort_landed_broke_text:format(creditstring(fine)))
 
-      for n = 1, rnd.rnd(2, 4) do
-         for i, j in ipairs(system.cur():jumps()) do
-            local p = pilot.addFleet(choices[rnd.rnd(1, #choices)], j:dest())
-            for k, v in ipairs(p) do
-               v:setHostile()
-            end
+         -- Start by confiscating cargo...
+         local pla = planet.cur()
+         local t = time.get()
+         for i, v in ipairs(player.pilot():cargoList()) do
+            local cprice = commodity.get(v.nameRaw):priceAtTime(pla, t)
+            fine = math.max(0, fine - cprice)
+         end
+         player.pilot():cargoRm("__all")
+
+         -- And now confiscate outfits until there are no outfits left
+         -- or the fine is covered.
+         local poutfits = player.outfits()
+         while #poutfits > 0 and money < fine do
+            local o = outfit.get(poutfits[1])
+            fine = math.max(0, fine - o:price())
+            player.rmOutfit(poutfits[1])
+
+            poutfits = player.outfits()
          end
       end
-
-      -- No landing, filthy waste dumper!
-      player.allowLand(false, noland_msg)
-
-      misn.finish(true)
+      player.pay(-fine, "adjust")
+      misn.finish(false)
    end
+
+   local txt = abort_text[rnd.rnd(1, #abort_text)]
+   tk.msg("", txt)
+
+   misn.cargoJet(cid)
+
+   -- Make everyone angry
+   for i, p in ipairs(pilot.get()) do
+      p:setHostile()
+   end
+
+   -- Add some police!
+   local presences = system.cur():presences()
+   local f = nil
+   if presences then
+      local strongest_amount = 0
+      for k, v in pairs(presences) do
+         if v > strongest_amount then
+            f = faction.get(k)
+            strongest_amount = v
+         end
+      end
+   end
+
+   local choices
+   if f == faction.get("Empire") then
+      choices = {"Empire Sml Defense", "Empire Lge Attack", "Empire Med Attack"}
+   elseif f == faction.get("Goddard") then
+      choices = {"Goddard Goddard", "Goddard Lancelot"}
+   elseif f == faction.get("Dvaered") then
+      choices = {"Dvaered Big Patrol", "Dvaered Small Patrol", "Dvaered Strike Force"}
+   elseif f == faction.get("Soromid") then
+      choices = {"Soromid Arx", "Soromid Vox", "Soromid Nyx", "Soromid Odium"}
+   elseif f == faction.get("Za'lek") then
+      choices = {"Za'lek Hephaestus", "Za'lek Mephisto", "Za'lek Diablo", "Za'lek Demon"}
+   elseif f == faction.get("Sirius") then
+      choices = {"Sirius Preacher", "Sirius Divinity", "Sirius Dogma"}
+   elseif f == faction.get("Frontier") then
+      choices = {"Frontier Phalanx", "Frontier Lancelot", "Frontier Ancestor"}
+   elseif f == faction.get("Thurion") then
+      choices = {"Thurion Apprehension", "Thurion Certitude"}
+   elseif f == faction.get("Proteron") then
+      choices = {"Proteron Kahan", "Proteron Watson", "Proteron Archimedes"}
+   elseif f == faction.get("Collective") then
+      choices = {"Collective Lge Swarm", "Collective Sml Swarm"}
+   elseif f == faction.get("FLF") then
+      choices = {"FLF Pacifier", "FLF Vendetta", "FLF Lancelot"}
+   elseif f == faction.get("Pirate") then
+      choices = {"Pirate Kestrel", "Pirate Phalanx", "Pirate Admonisher"}
+   else
+      choices = {"Vendetta Quartet", "Mercenary Pacifier", "Mercenary Ancestor", "Mercenary Vendetta"}
+   end
+
+   for n = 1, rnd.rnd(2, 4) do
+      for i, j in ipairs(system.cur():jumps()) do
+         local p = pilot.addFleet(choices[rnd.rnd(1, #choices)], j:dest())
+         for k, v in ipairs(p) do
+            v:setHostile()
+         end
+      end
+   end
+
+   -- No landing, filthy waste dumper!
+   player.allowLand(false, noland_msg)
+
+   misn.finish(true)
 end

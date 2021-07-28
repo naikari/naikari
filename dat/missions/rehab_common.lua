@@ -61,7 +61,7 @@ function accept()
         misn.finish()
     end
     
-    player.pay(-fine)
+    player.pay(-fine, "adjust")
     tk.msg(misn_title:format(fac:name()), accepted:format(fac:name(), fac:name(), fac:name()))
     
     fac:modPlayerRaw(-rep)
