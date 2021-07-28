@@ -447,7 +447,7 @@ static void map_update( unsigned int wid )
    int hasPlanets;
    char t;
    const char *sym;
-   char buf[PATH_MAX];
+   char buf[STRMAX];
    int p;
    glTexture *logo;
    double w;
@@ -558,6 +558,7 @@ static void map_update( unsigned int wid )
       }
       else if (f != sys->planets[i]->faction /** @todo more verbosity */
                && (sys->planets[i]->faction > 0)) {
+         f = sys->faction;
          snprintf( buf, sizeof(buf), _("Multiple") );
          break;
       }
