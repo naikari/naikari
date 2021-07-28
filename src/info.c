@@ -283,8 +283,12 @@ static void info_openMain( unsigned int wid )
  */
 static void setgui_close( unsigned int wdw, char *str )
 {
-   (void)str;
-   window_destroy( wdw );
+   (void) str;
+
+   window_destroy(wdw);
+
+   /* Load the GUI. */
+   gui_load(gui_pick());
 }
 
 
@@ -381,9 +385,6 @@ static void setgui_load( unsigned int wdw, char *str )
 
    /* Close menus before loading for proper rendering. */
    setgui_close(wdw, NULL);
-
-   /* Load the GUI. */
-   gui_load( gui_pick() );
 }
 
 
@@ -395,10 +396,10 @@ static void setgui_load( unsigned int wdw, char *str )
  */
 static void info_toggleGuiOverride( unsigned int wid, char *name )
 {
-   player.guiOverride = window_checkboxState( wid, name );
+   player.guiOverride = window_checkboxState(wid, name);
    /* Go back to the default one. */
    if (player.guiOverride == 0)
-      toolkit_setList( wid, "lstGUI", gui_pick() );
+      toolkit_setList(wid, "lstGUI", gui_pick());
 }
 
 
