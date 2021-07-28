@@ -76,6 +76,11 @@ misn_desc = {}
 misn_desc[1] = _("A shipwrecked space family has enlisted your aid. Can you take them to safety?")
 misn_desc[2] = _("Land on %s (%s system) to drop off the space family")
 
+-- Aborted mission
+msg_abortTitle = _("A parting of ways")
+msg_abort_space = _([[You unceremoniously shove your passengers out of the airlock and into the coldness of space. You're done playing taxi; it's time to get back to important things!]])
+msg_abort_landed = _([[You unceremoniously shove your passengers out of the airlock, leaving them to their fate on this planet. You're done playing taxi; it's time to get back to important things!]])
+
 log_text = _([[You rescued a bad-tempered man and his family who were stranded aboard their ship. After a lot of annoying complaints, the man and his family finally left your ship, the man's wife leaving a generous payment for the trouble.]])
 
 
@@ -182,4 +187,14 @@ end
 
 function harrassme()
    tk.msg("", harrass_msg)
+end
+
+function abort ()
+   if inspace then
+      tk.msg(msg_abortTitle, msg_abort_space)
+   else
+      tk.msg(msg_abortTitle, msg_abort_landed)
+   end
+   misn.cargoJet(carg_id)
+   misn.finish(true)
 end
