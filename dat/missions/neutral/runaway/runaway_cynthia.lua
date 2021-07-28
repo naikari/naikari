@@ -99,6 +99,7 @@ function land ()
 
       addMiscLog(log_text)
 
+      var.push("cynthia_time", time.get():tonumber())
       misn.finish(true)
    end
 end

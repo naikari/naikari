@@ -62,6 +62,17 @@ log_text_release = _([[The father of Cynthia, who you had given a lift before, a
 
 
 function create ()
+   local t = var.peek("cynthia_time")
+   if t then
+      t = time.fromnumber(t)
+      if time.get() - t < time.create(0, 50, 0) then
+         misn.finish(false)
+      end
+   else
+      var.push("cynthia_time", time.get():tonumber())
+      misn.finish(false)
+   end
+
    targetworld_sys = system.get("Dohriabi")
    targetworld = planet.get("Niflheim")
 
