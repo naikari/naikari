@@ -3416,8 +3416,8 @@ static int pilotL_cargoAdd( lua_State *L )
  *    @luatparam Pilot p The pilot to remove cargo from.
  *    @luatparam Commodity|string cargo Type of cargo to remove, either
  *       as a Commodity object or as the raw (untranslated) name of a
- *       commodity. You can also pass the special value "__all" to
- *       remove all cargo from the pilot, except for mission cargo.
+ *       commodity. You can also pass the special value "all" to remove
+ *       all cargo from the pilot, except for mission cargo.
  *    @luatparam number quantity Quantity of the cargo to remove.
  *    @luatreturn number The number of cargo removed.
  * @luafunc cargoRm
