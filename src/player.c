@@ -933,7 +933,13 @@ void player_render( double dt )
                   theta = MIN(theta, MAX(o->u.lau.swivel, o->u.lau.arc));
             }
 
+            /* Reasonable defaults. */
             d = 0.;
+            c.r = 0.;
+            c.g = 0.;
+            c.b = 0.;
+            c.a = 1.;
+
             if (theta < 2*M_PI) {
                a = player.p->solid->dir;
 
