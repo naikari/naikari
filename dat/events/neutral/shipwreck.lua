@@ -3,7 +3,7 @@
 <event name="Shipwreck">
  <trigger>enter</trigger>
  <chance>3</chance>
- <cond>system.cur():presence("Pirate") &gt; 0</cond>
+ <cond>system.cur():presence("Pirate") &gt; 0 and not player.misnDone("The Space Family") and not player.misnActive("The Space Family")</cond>
  <flags>
   <unique />
  </flags>
@@ -34,9 +34,7 @@ function create ()
 
     -- The shipwreck will be a random trader vessel.
     r = rnd.rnd()
-    if r > 0.95 then
-        ship = "Gawain"
-    elseif r > 0.8 then
+    if r > 0.8 then
         ship = "Mule"
     elseif r > 0.5 then
         ship = "Koala"
@@ -78,7 +76,7 @@ function rescue ()
     -- Player boards the shipwreck and rescues the crew, this spawns a new mission.
     hook.rm(bctimer)
     naev.missionStart("The Space Family")
-    evt.finish(true)
+    evt.finish()
 end
 
 function destroyevent ()

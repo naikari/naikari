@@ -77,9 +77,8 @@ misn_desc[1] = _("A shipwrecked space family has enlisted your aid. Can you take
 misn_desc[2] = _("Land on %s (%s system) to drop off the space family")
 
 -- Aborted mission
-msg_abortTitle = _("A parting of ways")
-msg_abort_space = _([[You unceremoniously shove your passengers out of the airlock and into the coldness of space. You're done playing taxi; it's time to get back to important things!]])
-msg_abort_landed = _([[You unceremoniously shove your passengers out of the airlock, leaving them to their fate on this planet. You're done playing taxi; it's time to get back to important things!]])
+msg_abort_space = _([[Sick of their bullshit, you unceremoniously shove the space family out of the airlock and into the coldness of space.]])
+msg_abort_landed = _([[Sick of their bullshit, you force the space family out of your ship and lock them out, leaving them to their fate on this planet.]])
 
 log_text = _([[You rescued a bad-tempered man and his family who were stranded aboard their ship. After a lot of annoying complaints, the man and his family finally left your ship, the man's wife leaving a generous payment for the trouble.]])
 
@@ -191,10 +190,9 @@ end
 
 function abort ()
    if inspace then
-      tk.msg(msg_abortTitle, msg_abort_space)
+      tk.msg("", msg_abort_space)
    else
-      tk.msg(msg_abortTitle, msg_abort_landed)
+      tk.msg("", msg_abort_landed)
    end
    misn.cargoJet(carg_id)
-   misn.finish(true)
 end
