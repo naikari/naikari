@@ -304,11 +304,11 @@ function spawnConvoy ()
          p:rm()
       end
       if p:exists() then
-         p:rmOutfit("cores")
+         p:outfitRm("cores")
          for j, o in ipairs(p:outfits()) do
             if o == "Improved Stabilizer" then
-               p:rmOutfit("Improved Stabilizer")
-               p:addOutfit("Cargo Pod")
+               p:outfitRm("Improved Stabilizer")
+               p:outfitAdd("Cargo Pod")
             end
          end
 
@@ -320,18 +320,18 @@ function spawnConvoy ()
          if class == "Yacht" or class == "Luxury Yacht" or class == "Scout"
                or class == "Courier" or class == "Fighter" or class == "Bomber"
                or class == "Drone" or class == "Heavy Drone" then
-            p:addOutfit("Unicorp PT-80 Core System")
-            p:addOutfit("Melendez Ox XL Engine")
-            p:addOutfit("S&K Small Cargo Hull")
+            p:outfitAdd("Unicorp PT-80 Core System")
+            p:outfitAdd("Melendez Ox XL Engine")
+            p:outfitAdd("S&K Small Cargo Hull")
          elseif class == "Freighter" or class == "Armored Transport"
                or class == "Corvette" or class == "Destroyer" then
-            p:addOutfit("Unicorp PT-400 Core System")
-            p:addOutfit("Melendez Buffalo XL Engine")
-            p:addOutfit("S&K Medium Cargo Hull")
+            p:outfitAdd("Unicorp PT-400 Core System")
+            p:outfitAdd("Melendez Buffalo XL Engine")
+            p:outfitAdd("S&K Medium Cargo Hull")
          elseif class == "Cruiser" or class == "Carrier" then
-            p:addOutfit("Unicorp PT-400 Core System")
-            p:addOutfit("Melendez Mammoth XL Engine")
-            p:addOutfit("S&K Large Cargo Hull")
+            p:outfitAdd("Unicorp PT-400 Core System")
+            p:outfitAdd("Melendez Mammoth XL Engine")
+            p:outfitAdd("S&K Large Cargo Hull")
          end
 
          p:setHealth(100, 100)

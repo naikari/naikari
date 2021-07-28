@@ -177,19 +177,19 @@ function takeoff()
    racers[2] = pilot.add("Gawain", "Civilian", curplanet)
    racers[3] = pilot.add("Llama", "Civilian", curplanet)
    if choice == 1 then
-      racers[1]:addOutfit("Engine Reroute")
-      racers[2]:addOutfit("Steering Thrusters")
-      racers[3]:addOutfit("Improved Stabilizer")
+      racers[1]:outfitAdd("Engine Reroute")
+      racers[2]:outfitAdd("Steering Thrusters")
+      racers[3]:outfitAdd("Improved Stabilizer")
    else
       for i in pairs(racers) do
-         racers[i]:rmOutfit("all")
-         racers[i]:rmOutfit("cores")
+         racers[i]:outfitRm("all")
+         racers[i]:outfitRm("cores")
          
-         racers[i]:addOutfit("Unicorp PT-18 Core System")
-         racers[i]:addOutfit("Unicorp D-2 Light Plating")
+         racers[i]:outfitAdd("Unicorp PT-18 Core System")
+         racers[i]:outfitAdd("Unicorp D-2 Light Plating")
          local en_choices = {
             "Nexus Dart 150 Engine", "Tricon Zephyr Engine" }
-         racers[i]:addOutfit(en_choices[rnd.rnd(1, #en_choices)])
+         racers[i]:outfitAdd(en_choices[rnd.rnd(1, #en_choices)])
       end
    end
    for i, j in ipairs(racers) do

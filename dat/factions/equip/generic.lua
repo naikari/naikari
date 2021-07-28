@@ -1321,11 +1321,11 @@ equip_shipOutfits_structurals = {}
 
 
 --[[
--- @brief Wrapper for pilot.addOutfit that prints a warning if no outfits added.
+-- @brief Wrapper for pilot.outfitAdd that prints a warning if no outfits added.
 --]]
 function equip_warn(p, outfit, q, bypass)
    q = q or 1
-   local r = pilot.addOutfit(p, outfit, q, bypass)
+   local r = pilot.outfitAdd(p, outfit, q, bypass)
    if r <= 0 then
       warn(string.format(_("Could not equip %s on pilot %s!"), outfit, p:name()))
    end
@@ -1400,7 +1400,7 @@ function equip_set(p, set)
          i = i + 1
          if varied then c = rnd.rnd(1, #choices) end
 
-         equipped = p:addOutfit(choices[c])
+         equipped = p:outfitAdd(choices[c])
          if equipped <= 0 then
             if varied or num == nil then
                table.remove(choices, c)
@@ -1421,8 +1421,8 @@ end
 --]]
 function equip_generic(p)
    -- Start with an empty ship
-   p:rmOutfit("all")
-   p:rmOutfit("cores")
+   p:outfitRm("all")
+   p:outfitRm("cores")
 
    local shipname = p:ship():nameRaw()
    local basetype = p:ship():baseType()

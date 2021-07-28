@@ -365,7 +365,7 @@ function nerds_land3()
          end
          tk.msg("", text[15]:format(outfit))
          time.inc(time.create(0,0,5000))
-         player.addOutfit(outfit)
+         player.outfitAdd(outfit)
          if planet.services(cp)["outfits"] then
             player.landWindow("equipment")
          end

@@ -405,9 +405,9 @@ function spawn_drone ()
    local p = pilot.add("Hyena", f, dest_planet, _("Practice Drone"),
          {naked=true})
 
-   p:addOutfit("Previous Generation Small Systems")
-   p:addOutfit("Unicorp D-2 Light Plating")
-   p:addOutfit("Beat Up Small Engine")
+   p:outfitAdd("Previous Generation Small Systems")
+   p:outfitAdd("Unicorp D-2 Light Plating")
+   p:outfitAdd("Beat Up Small Engine")
 
    p:setHealth(100, 100)
    p:setEnergy(100)

@@ -357,36 +357,20 @@ end
 
 -- Equips a Goddard for a duel, with or without repeating railguns
 function equipGoddard( pilot, repeating )
-   pilot:rmOutfit("all")
-   pilot:rmOutfit("cores")
-   pilot:addOutfit("S&K Superheavy Combat Plating")
-   pilot:addOutfit("Melendez Mammoth XL Engine")
-   pilot:addOutfit("Nanobond Plating", 6)
+   pilot:outfitRm("all")
+   pilot:outfitRm("cores")
+   pilot:outfitAdd("S&K Superheavy Combat Plating")
+   pilot:outfitAdd("Melendez Mammoth XL Engine")
+   pilot:outfitAdd("Milspec Orion 9901 Core System")
+   pilot:outfitAdd("Nanobond Plating", 6)
+   pilot:outfitAdd("Milspec Impacto-Plastic Coating")
+   pilot:outfitAdd("Droid Repair Crew",4)
 
    if repeating then
-      pilot:addOutfit("Milspec Hermes 9802 Core System")
-      pilot:addOutfit("Repeating Railgun", 7)
-      pilot:addOutfit("Reactor Class III", 5)
+      pilot:outfitAdd("Repeating Railgun", 7)
    else
-      pilot:addOutfit("Milspec Prometheus 9803 Core System")
-      pilot:addOutfit("Railgun", 7)
-      pilot:addOutfit("Reactor Class II", 5)
+      pilot:outfitAdd("Railgun", 7)
    end
-   pilot:setHealth(100,100)
-   pilot:setEnergy(100)
-   pilot:setFuel(true)
-end
-
-function equipVendetta( pilot )
-   pilot:rmOutfit("all")
-   pilot:rmOutfit("cores")
-   pilot:addOutfit("S&K Light Combat Plating")
-   pilot:addOutfit("Tricon Zephyr II Engine")
-   pilot:addOutfit("Shield Capacitor")
-   pilot:addOutfit("Milspec Aegis 3601 Core System")
-   pilot:addOutfit("Small Shield Booster")
-   pilot:addOutfit("Unicorp Mace Launcher", 6)
-
    pilot:setHealth(100,100)
    pilot:setEnergy(100)
    pilot:setFuel(true)
@@ -434,7 +418,7 @@ end
 -- Test civilian ships
 function player_civilian()
    local playerclass = player.pilot():ship():class()
-   return (playerclass == "Luxury Yacht" or playerclass == "Yacht" or playerclass == "Courier" or playerclass == "Freighter" or playerclass == "Armored Transport")
+   return (playerclass == "Yacht" or playerclass == "Courier" or playerclass == "Freighter" or playerclass == "Armoured Transport")
 end
 
 -- Spawn the Phalanx to disable
@@ -448,16 +432,16 @@ function spawn_phalanx()
    nextsys = getNextSystem(system.cur(), sabotsys)
    p:hyperspace( nextsys ) -- Go towards Battleaddict's place
 
-   p:rmOutfit("all")
-   p:rmOutfit("cores")
-   p:addOutfit("S&K Medium Combat Plating")
-   p:addOutfit("Milspec Prometheus 4703 Core System")
-   p:addOutfit("Tricon Cyclone Engine")
-   p:addOutfit("Turreted Vulcan Gun", 2)
-   p:addOutfit("Mass Driver")
-   p:addOutfit("Vulcan Gun", 2)
-   p:addOutfit("Reactor Class I")
-   p:addOutfit("Medium Cargo Pod", 2)
+   p:outfitRm("all")
+   p:outfitRm("cores")
+   p:outfitAdd("S&K Medium Combat Plating")
+   p:outfitAdd("Milspec Orion 4801 Core System")
+   p:outfitAdd("Tricon Cyclone Engine")
+   p:outfitAdd("Turreted Vulcan Gun", 2)
+   p:outfitAdd("Mass Driver")
+   p:outfitAdd("Vulcan Gun", 2)
+   p:outfitAdd("Reactor Class I")
+   p:outfitAdd("Medium Cargo Pod", 2)
    p:setHealth(100,100)
    p:setEnergy(100)
    p:setFuel(true)
@@ -583,7 +567,7 @@ function fighterDuel()
    klank2:rename( "General Klank" )
    klank2:control(true)
    klank2:setFaction("DHC")
-   equipVendetta( klank2 ) -- Klank's superior equipment should ensure victory once more
+   equipVendettaMace( klank2 ) -- Klank's superior equipment should ensure victory once more
 
    battleaddict2 = pilot.add( "Dvaered Vendetta", "Dvaered", battleaddict:pos() )
    battleaddict2:rename( "Lord Battleaddict" )

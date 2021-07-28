@@ -40,7 +40,7 @@ end
 function create()
    local pp = player.pilot()
    pp:rename(name()) -- Assign a random name to the player's ship.
-   pp:addOutfit("Laser Cannon MK1", 2)
+   pp:outfitAdd("Laser Cannon MK1", 2)
 
    jump.setKnown("Hakoi", "Eneguoz")
    var.push("player_formation", "circle")
@@ -49,10 +49,10 @@ function create()
    -- XXX: Would be better to remove these outfits and the association,
    -- but they're so tightly integrated atm (with no other way to define
    -- GUIs as usable) that I'm implementing it this way for now.
-   player.addOutfit( "GUI - Brushed" )
-   player.addOutfit( "GUI - Slim" )
-   player.addOutfit( "GUI - Slimv2" )
-   player.addOutfit( "GUI - Legacy" )
+   player.outfitAdd( "GUI - Brushed" )
+   player.outfitAdd( "GUI - Slim" )
+   player.outfitAdd( "GUI - Slimv2" )
+   player.outfitAdd( "GUI - Legacy" )
 
    hook.timer(1.0, "timer_tutorial")
 end

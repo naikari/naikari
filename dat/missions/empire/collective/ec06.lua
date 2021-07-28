@@ -233,9 +233,9 @@ function addRefuelShip ()
    refship:setNoJump()
 
    -- Maximize fuel
-   refship:rmOutfit("all") -- Only will have fuel pods
+   refship:outfitRm("all") -- Only will have fuel pods
    local h,m,l = refship:ship():slots()
-   refship:addOutfit( "Fuel Pod", l )
+   refship:outfitAdd( "Fuel Pod", l )
    refship:setFuel( true ) -- Set fuel to max
 
    -- Add some escorts

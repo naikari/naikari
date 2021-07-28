@@ -182,11 +182,11 @@ function spawnDV()
         j:setHostile()
         j:setHilight(true)
         j:setVisplayer(true)
-        j:rmOutfit("all")
-        j:addOutfit("Turreted Gauss Gun", 1)
-        j:addOutfit("Small Shield Booster", 1)
-        j:addOutfit("Steering Thrusters", 1)
-        j:addOutfit("Solar Panel", 1)
+        j:outfitRm("all")
+        j:outfitAdd("Turreted Gauss Gun", 1)
+        j:outfitAdd("Small Shield Booster", 1)
+        j:outfitAdd("Steering Thrusters", 1)
+        j:outfitAdd("Solar Panel", 1)
         hook.pilot(j, "disable", "disableDV")
     end
 
@@ -220,7 +220,7 @@ function spawnFLF()
         j:changeAI("dvaered_norun")
         j:setInvincPlayer()
         -- Re-outfit the ships to use disable weapons. Kind of ugly, should probably be handled via AI orders in the future.
-        j:addOutfit("EMP Grenade Launcher", 3)
+        j:outfitAdd("EMP Grenade Launcher", 3)
     end
     angle = rnd.rnd() * 2 * math.pi
     dist = 800

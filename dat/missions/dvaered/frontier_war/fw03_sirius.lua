@@ -78,7 +78,7 @@ lore_text[3] = _([[You ask Major Tam to continue his story about when he used to
 
 question[4] = _("Ask news from Hamfresser")
 lore_text[4] = _([["Oh, the captain is doing well. He spent a few periods at the hospital, but it was not so serious. About the other ones, I'm not too sure. I don't know them very well actually, they are more like statistics to me. I know it's bad, but hey, I have so many things to think about right now.
-   "Oh, and we went to the funerals of the one who died, the private Amadeus Tronk, officially killed in training, of course. It was nice. Leblanc's squadron has made an aerial meeting with a mace rocket concerto for the occasion, and we organized a fight to death between a convicted criminal and a gladiator in General Klank's private arena. The role of it is to honor the memory of the dead warrior, and also to have some fun."]])
+   "Oh, and we went to the funerals of the one who died, the private Amadeus Tronk, officially killed in training, of course. It was nice. Leblanc's squadron has made an aerial meeting with a mace rocket concerto for the occasion, and we organized a fight to death between a convicted criminal and a gladiator in General Klank's private arena. The role of it is to honour the memory of the dead warrior, and also to have some fun."]])
 
 
 located_title = _("Enemies located")
@@ -231,7 +231,7 @@ function enter()
             ambJp = jump.get(system.cur(), ambStart) -- We assume there are no one-way jumps
          end
 
-         escort[1]:control(true)
+         escort[1]:taskClear()
          escort[1]:moveto( ambJp:pos() )  -- Let's say Strafer knows where they are supposed to come from...
 
          if system.cur() == ambushsys then
@@ -319,7 +319,7 @@ function land()
             tk.msg( execution_title, execution_failed_text2:format(creditstring(effective_credits)) )
          else -- No pity for non-Hamelsen henchmen
             tk.msg( execution_title, execution_text1:format(shi:name(), player.name()) )
-            tk.msg( execution_title, execution_text2, "portraits/neutral/female1.png" )
+            tk.msg( execution_title, execution_text2, "portraits/neutral/female1.webp" )
             tk.msg( execution_title, execution_text3:format(creditstring(effective_credits)) )
          end
          payNfinish()
@@ -338,17 +338,17 @@ function spawnEscort( origin )
       escort[1] = pilot.add( "Schroedinger", "DHC", origin, _("Lieutenant Strafer") )
 
       -- Give him nice outfits
-      escort[1]:rmOutfit("all")
-      escort[1]:rmOutfit("cores")
-      escort[1]:addOutfit("S&K Ultralight Stealth Plating")
-      escort[1]:addOutfit("Tricon Zephyr Engine")
-      escort[1]:addOutfit("Milspec Aegis 2201 Core System")
-      escort[1]:addOutfit("Reactor Class II")
-      escort[1]:addOutfit("Reactor Class I")
-      escort[1]:addOutfit("Hellburner")
-      escort[1]:addOutfit("Milspec Scrambler")
-      escort[1]:addOutfit("Improved Stabilizer")
-      escort[1]:addOutfit("Shredder")
+      escort[1]:outfitRm("all")
+      escort[1]:outfitRm("cores")
+      escort[1]:outfitAdd("Nexus Light Stealth Plating")
+      escort[1]:outfitAdd("Tricon Zephyr Engine")
+      escort[1]:outfitAdd("Milspec Orion 2301 Core System")
+      escort[1]:outfitAdd("Scanning Combat AI")
+      escort[1]:outfitAdd("Nexus Stealth Coating")
+      escort[1]:outfitAdd("Hellburner")
+      escort[1]:outfitAdd("Milspec Scrambler")
+      escort[1]:outfitAdd("Improved Stabilizer")
+      escort[1]:outfitAdd("Gauss Gun")
       escort[1]:setHealth(100,100)
       escort[1]:setEnergy(100)
       escort[1]:setFuel(true)
@@ -656,7 +656,7 @@ end
 
 -- Spawn Hamelsen and make her escape
 function spawnHamelsen( origin )
-   hamelsen = pilot.add( "Schroedinger", "Civilian", origin , _("Civilian Schroedinger") )
+   hamelsen = pilot.add( "Schroedinger", "Independent", origin )
    hamelsen:setInvincible()
    hamelsen:setFaction("Warlords")
    hamelsen:rename(_("Colonel Hamelsen"))

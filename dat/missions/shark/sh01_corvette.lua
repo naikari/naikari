@@ -176,19 +176,19 @@ function lets_go()
    sharkboy:setHilight()
 
    --The shark becomes nice outfits
-   sharkboy:rmOutfit("all")
-   sharkboy:rmOutfit("cores")
+   sharkboy:outfitRm("all")
+   sharkboy:outfitRm("cores")
 
-   sharkboy:addOutfit("S&K Light Stealth Plating")
-   sharkboy:addOutfit("Milspec Aegis 3601 Core System")
-   sharkboy:addOutfit("Tricon Zephyr II Engine")
+   sharkboy:outfitAdd("S&K Light Stealth Plating")
+   sharkboy:outfitAdd("Milspec Aegis 3601 Core System")
+   sharkboy:outfitAdd("Tricon Zephyr II Engine")
 
-   sharkboy:addOutfit("Reactor Class I", 2)
-   sharkboy:addOutfit("Small Shield Booster")
-   sharkboy:addOutfit("Engine Reroute", 2)
+   sharkboy:outfitAdd("Reactor Class I", 2)
+   sharkboy:outfitAdd("Small Shield Booster")
+   sharkboy:outfitAdd("Engine Reroute", 2)
 
-   sharkboy:addOutfit("TeraCom Medusa Launcher")
-   sharkboy:addOutfit("Ion Cannon", 3)
+   sharkboy:outfitAdd("TeraCom Medusa Launcher")
+   sharkboy:outfitAdd("Ion Cannon", 3)
 
    sharkboy:setHealth(100,100)
    sharkboy:setEnergy(100)

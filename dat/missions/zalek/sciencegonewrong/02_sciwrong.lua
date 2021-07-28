@@ -128,9 +128,9 @@ function game_of_drones ()
    -- spawn drones 
 
    t_drone = pilot.add( "Za'lek Scout Drone", "Za'lek", t_pla[1], nil, {ai="trader"} ) -- prototype is a scout drone
-   t_drone:addOutfit("Tricon Zephyr II Engine")
+   t_drone:outfitAdd("Tricon Zephyr II Engine")
    -- add something so it is not insta-disabled with one shot?
-   --t_drone:addOutfit("Tricon Zephyr II Engine")
+   --t_drone:outfitAdd("Tricon Zephyr II Engine")
    t_drone:setFaction("Civilian")
    t_drone:rename(_("Prototype Drone"))
    t_drone:setInvincible(true)
@@ -239,7 +239,7 @@ end
 function chase_of_drones ()
    tk.msg(title[3],text[10])
    t_drone = pilot.add( "Za'lek Scout Drone", "Za'lek", vec2.newP(rnd.rnd(0,system.cur():radius()/5),rnd.rnd(0,359)), nil, {ai="dummy"} ) -- prototype is a scout drone
-   t_drone:addOutfit("Tricon Zephyr II Engine")
+   t_drone:outfitAdd("Tricon Zephyr II Engine")
    -- add something so it is not insta-disabled with one shot?
    t_drone:setFaction("Civilian")
    t_drone:rename(_("Prototype Drone"))

@@ -175,7 +175,7 @@ function abort ()
          while #poutfits > 0 and money < fine do
             local o = outfit.get(poutfits[1])
             fine = math.max(0, fine - o:price())
-            player.rmOutfit(poutfits[1])
+            player.outfitRm(poutfits[1])
 
             poutfits = player.outfits()
          end

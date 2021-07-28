@@ -594,8 +594,8 @@ function killDiplomats()
     for i, j in ipairs(escorts) do
         if j:exists() then
             j:taskClear()
-            j:rmOutfit("all")
-            j:addOutfit("Cheater's Ragnarok Beam", 1)
+            j:outfitRm("all")
+            j:outfitAdd("Cheater's Ragnarok Beam", 1)
             j:attack(dvaerplomat)
             j:setHilight(false)
         end
@@ -621,7 +621,7 @@ function escortFlee()
     for i, j in ipairs(escorts) do
         if j:exists() then
             j:taskClear()
-            j:rmOutfit("all")
+            j:outfitRm("all")
             j:hyperspace()
             j:setInvincible(false)
             j:setInvincPlayer(false)
