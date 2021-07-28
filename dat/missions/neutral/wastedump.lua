@@ -167,7 +167,7 @@ function abort ()
             local cprice = commodity.get(v.nameRaw):priceAtTime(pla, t)
             fine = math.max(0, fine - cprice)
          end
-         player.pilot():cargoRm("__all")
+         player.pilot():cargoRm("all")
 
          -- And now confiscate outfits until there are no outfits left
          -- or the fine is covered.
