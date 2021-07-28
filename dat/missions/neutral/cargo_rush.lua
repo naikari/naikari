@@ -198,7 +198,8 @@ function tick()
       misn.finish(false)
    elseif intime then
       -- Case missed first deadline
-      osd_msg[1] = osd_timeup:format( destplanet:name(), destsys:name() )
+      osd_msg[1] = osd_timeup:format(
+         destplanet:name(), destsys:name(), timelimit:str())
       misn.osdCreate(osd_title, osd_msg)
       intime = false
    end
