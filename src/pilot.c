@@ -2714,6 +2714,7 @@ static void pilot_init( Pilot* pilot, const Ship* ship, const char* name, int fa
       const PilotFlags flags, unsigned int dockpilot, int dockslot )
 {
    int i, j;
+   int inrange_default;
    PilotOutfitSlot *dslot, *slot;
    PilotOutfitSlot **pilot_list_ptr[] = { &pilot->outfit_structure, &pilot->outfit_utility, &pilot->outfit_weapon };
    ShipOutfitSlot *ship_list[] = { ship->outfit_structure, ship->outfit_utility, ship->outfit_weapon };
@@ -2727,11 +2728,21 @@ static void pilot_init( Pilot* pilot, const Ship* ship, const char* name, int fa
       pilot->id = ++pilot_id; /* new unique pilot id based on pilot_id, can't be 0 */
 
    /* Defaults. */
+   inrange_default = 0;
    pilot->autoweap = 1;
-   pilot->aimLines = 1;
+   pilot->aimLines = 0;
    pilot->dockpilot = dockpilot;
    pilot->dockslot = dockslot;
    ss_statsInit(&pilot->intrinsic_stats);
+
+   if (pilot->id == PLAYER_ID) {
+      inrange_default = WEAPSET_INRANGE_PLAYER_DEF;
+      pilot->aimLines = 1;
+   }
+
+   for (i=0; i<PILOT_WEAPON_SETS; i++) {
+      pilot_weapSetInrange(pilot, i, inrange_default);
+   }
 
    /* Basic information. */
    pilot->ship = ship;

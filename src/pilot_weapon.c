@@ -1250,12 +1250,13 @@ void pilot_weaponAuto( Pilot *p )
    pilot_weapSetType( p, 9, WEAPSET_TYPE_ACTIVE );
 
    /* All should be inrange. */
-   if (!pilot_isPlayer(p))
+   if (!pilot_isPlayer(p)) {
       for (i=0; i<PILOT_WEAPON_SETS; i++) {
          pilot_weapSetInrange( p, i, 1 );
          /* Update range and speed (at 0)*/
          pilot_weapSetUpdateRange( &p->weapon_sets[i] );
       }
+   }
 
    /* Iterate through all the outfits. */
    for (i=0; i<array_size(p->outfits); i++) {
