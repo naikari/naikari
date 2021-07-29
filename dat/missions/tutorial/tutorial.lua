@@ -43,15 +43,19 @@ intro_text  = _([["Congratulations on your first space ship, %s!" Captain T. Pra
 nothanks_text  = _([["Ha, I guess you're eager to start, eh? Well, I won't hold you back. I have uploaded some useful information to your ship log, which you can review any time you like by checking the Tutorial section of your ship log. The ship log can be found in the Info window, which you can access by pressing %s, or by pressing %s and clicking the 'Info' button. Good luck!" And with that, you set off on your journey.]])
 
 movement_text = _([["Alright, let's go over how to pilot your new state-of-the-art ship from Melendez Corporation, then!" You resist the urge to roll your eyes. "Moving is pretty simple: rotate your ship with %s and %s, and thrust to move your ship forward with %s! You can also use %s to rotate your ship to the direction opposite of your current movement, or to reverse thrust if you purchase and install a Reverse Thruster onto your Melendez Corporation starship. Give it a try by flying over to %s! You see it on your screen, right? It's the planet right next to you."]])
-movement_log = _([[Basic movement can be accomplished by the movement keys (Accelerate, Turn Left, Turn Right, and Reverse; W, A, D, and S by default), which allow you to control your ship manually; or by the Mouse Flight key (Ctrl+X by default), which automatically pilots your ship toward your mouse pointer. The Reverse key either turns your ship to the direction opposite of your current movement, or thrusts backwards if you have a Reverse Thruster equipped.]])
+movement_log = _([[Basic movement can be accomplished by the movement keys (Accelerate, Turn Left, Turn Right, and Reverse; W, A, D, and S by default). The Reverse key either turns your ship to the direction opposite of your current movement, or thrusts backwards if you have a Reverse Thruster equipped.
 
-objectives_text = _([["Perfect! That was easy enough, right? We at Melendez Corporation recommend this manner of flight, which we call 'keyboard flight'. However, there is one other way you can fly if you so choose: press %s on your console and your Melendez Corporation ship will follow your #bmouse pointer#0 automatically! It's up to you which method you prefer to use.
+Alternatively, you can enable mouse flight by pressing the Mouse Flight key (Ctrl+X by default), which causes your ship to automatically point toward your mouse pointer. You can then thrust with the Accelerate key (W by default), middle mouse button, or either of the extra mouse buttons.]])
+
+objectives_text = _([["Perfect! That was easy enough, right? We at Melendez Corporation recommend this manner of flight, which we call 'keyboard flight'.
+
+However, there is one other way you can fly if you so choose: press %s on your console and your Melendez Corporation ship will turn toward your #bmouse pointer#0 automatically! You can then thrust either with %s, the #bmiddle mouse button#0, or either of the #bextra mouse buttons#0. What method you use to pilot your ship is entirely up to you.
 
 "Ah, you may also have noticed the mission on-screen display on your monitor! As you can see, you completed your first objective of the Tutorial mission, so the next objective is now being highlighted."]])
 objectives_log = _([[The mission on-screen display highlights your current objective for each mission. When you complete one objective, the next objective is highlighted.]])
 
 landing_text = _([["On that note, let's go over landing! All kinds of actions, like landing on planets, hailing ships, boarding disabled ships, and jumping to other systems can be accomplished by #bdouble-clicking#0 on an applicable target, or alternatively by pressing certain buttons on your control console. How about you try landing on %s? You can engage the automatic landing procedure either by #bdouble-clicking#0 on the planet or its radar icon, or by targeting the planet with %s and then pressing %s. Give it a try!"]])
-landing_log = _([[You can land on any planet by either double-clicking on it, or by targeting the planet with the Target Planet button and then pressing the Land button. The landing procedure is automatic.]])
+landing_log = _([[You can land on any planet by either double-clicking on it, or by targeting the planet with the Target Planet button and then pressing the Land key. The landing procedure is automatic.]])
 
 land_text = _([["Excellent! The landing was successful. Melendez Corporation uses advanced artificial intelligence technology so that you never have to worry about your ship crashing. It may seem like a small thing, but it wasn't long ago when pilots had to land manually and crashes were commonplace! We at Melendez Corporation pride ourselves in protecting the safety of our valued customers and ensuring that your ship is reliable and resilient.
 
@@ -242,7 +246,8 @@ function timer ()
          stage = 2
          misn.osdActive(2)
 
-         tk.msg("", objectives_text:format(tutGetKey("mousefly")))
+         tk.msg("", objectives_text:format(
+                  tutGetKey("mousefly"), tutGetKey("accel")))
          addTutLog(objectives_log, N_("Missions"))
          tk.msg("", landing_text:format(
                   start_planet:name(), tutGetKey("target_planet"),
