@@ -2258,9 +2258,6 @@ void player_toggleMouseFly(void)
       input_mouseHide();
       player_rmFlag(PLAYER_MFLY);
       player_message(_("#rMouse flying disabled."));
-
-      if (conf.mouse_thrust)
-         player_accelOver();
    }
 }
 
@@ -2293,11 +2290,11 @@ void player_brake(void)
 /**
  * @brief Handles mouse flying based on cursor position.
  *
- *    @return 1 if cursor is outside the dead zone, 0 if it isn't.
+ *    @return 1 if turned to face the mouse, 0 if didn't.
  */
 static int player_thinkMouseFly(void)
 {
-   double px, py, r, x, y, acc;
+   double px, py, r, x, y;
 
    px = player.p->solid->pos.x;
    py = player.p->solid->pos.y;
@@ -2305,15 +2302,6 @@ static int player_thinkMouseFly(void)
    r = sqrt(pow2(x-px) + pow2(y-py));
    if (r > 50.) { /* Ignore mouse input within a 50 px radius of the centre. */
       pilot_face(player.p, atan2( y - py, x - px));
-      if (conf.mouse_thrust) { /* Only alter thrust if option is enabled. */
-         acc = CLAMP(0., 1., (r - 100) / 200.);
-         acc = 3 * pow2(acc) - 2 * pow(acc, 3);
-         /* Only accelerate when within 180 degrees of the intended direction. */
-         if (ABS(angle_diff(atan2( y - py, x - px), player.p->solid->dir)) < M_PI_2 )
-            player_accel(acc);
-         else
-            player_accel(0.);
-      }
       return 1;
    }
    else

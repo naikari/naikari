@@ -190,7 +190,6 @@ void conf_setGameplayDefaults (void)
    conf.compression_velocity  = TIME_COMPRESSION_DEFAULT_MAX;
    conf.compression_mult      = TIME_COMPRESSION_DEFAULT_MULT;
    conf.save_compress         = SAVE_COMPRESSION_DEFAULT;
-   conf.mouse_thrust          = MOUSE_THRUST_DEFAULT;
    conf.mouse_doubleclick     = MOUSE_DOUBLECLICK_TIME;
    conf.autonav_reset_speed   = AUTONAV_RESET_SPEED_DEFAULT;
    conf.zoom_manual           = MANUAL_ZOOM_DEFAULT;
@@ -405,7 +404,6 @@ int conf_loadConfig ( const char* file )
       conf_loadBool( lEnv, "redirect_file", conf.redirect_file );
       conf_loadBool( lEnv, "save_compress", conf.save_compress );
       conf_loadInt( lEnv, "afterburn_sensitivity", conf.afterburn_sens );
-      conf_loadInt( lEnv, "mouse_thrust", conf.mouse_thrust );
       conf_loadFloat( lEnv, "mouse_doubleclick", conf.mouse_doubleclick );
       conf_loadFloat( lEnv, "autonav_abort", conf.autonav_reset_speed );
       conf_loadBool( lEnv, "devmode", conf.devmode );
@@ -993,10 +991,6 @@ int conf_saveConfig ( const char* file )
 
    conf_saveComment(_("Afterburner sensitivity"));
    conf_saveInt("afterburn_sensitivity",conf.afterburn_sens);
-   conf_saveEmptyLine();
-
-   conf_saveComment(_("Mouse-flying thrust control"));
-   conf_saveInt("mouse_thrust",conf.mouse_thrust);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Maximum interval to count as a double-click (0 disables)."));

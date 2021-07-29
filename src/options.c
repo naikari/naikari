@@ -384,9 +384,6 @@ static void opt_gameplay( unsigned int wid )
          "chkAfterburn", _("Enable double-tap afterburn"), NULL, conf.afterburn_sens );
    y -= 25;
    window_addCheckbox( wid, x, y, cw, 20,
-         "chkMouseThrust", _("Enable mouse-flying thrust control"), NULL, conf.mouse_thrust );
-   y -= 25;
-   window_addCheckbox( wid, x, y, cw, 20,
          "chkCompress", _("Enable saved game compression"), NULL, conf.save_compress );
    y -= 40;
    s = _("Visible Messages");
@@ -437,7 +434,6 @@ static int opt_gameplaySave( unsigned int wid, char *str )
       conf.afterburn_sens = (!!f)*250;
 
    conf.zoom_manual = window_checkboxState( wid, "chkZoomManual" );
-   conf.mouse_thrust = window_checkboxState(wid, "chkMouseThrust" );
    conf.save_compress = window_checkboxState( wid, "chkCompress" );
 
    /* Faders. */
@@ -471,7 +467,6 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    /* Checkboxes. */
    window_checkboxSet( wid, "chkZoomManual", MANUAL_ZOOM_DEFAULT );
    window_checkboxSet( wid, "chkAfterburn", AFTERBURNER_SENSITIVITY_DEFAULT );
-   window_checkboxSet( wid, "chkMouseThrust", MOUSE_THRUST_DEFAULT );
    window_checkboxSet( wid, "chkCompress", SAVE_COMPRESSION_DEFAULT );
 
    /* Faders. */
@@ -496,7 +491,6 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    /* Checkboxes. */
    window_checkboxSet( wid, "chkZoomManual", conf.zoom_manual );
    window_checkboxSet( wid, "chkAfterburn", conf.afterburn_sens );
-   window_checkboxSet( wid, "chkMouseThrust", conf.mouse_thrust );
    window_checkboxSet( wid, "chkCompress", conf.save_compress );
 
    /* Faders. */
