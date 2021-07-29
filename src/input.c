@@ -1185,6 +1185,7 @@ static void input_mouseMove( SDL_Event* event )
  */
 static void input_clickevent( SDL_Event* event )
 {
+   unsigned int t;
    unsigned int pid;
    int mx, my, pntid, jpid, astid, fieid;
    int res;
@@ -1207,9 +1208,46 @@ static void input_clickevent( SDL_Event* event )
    if (pilot_isFlag(player.p, PILOT_DEAD))
       return;
 
+   /* Handle mouse thrust. */
+   if (player_isFlag(PLAYER_MFLY)) {
+      if ((event->button.button == SDL_BUTTON_MIDDLE)
+            || (event->button.button == SDL_BUTTON_X1)
+            || (event->button.button == SDL_BUTTON_X2)) {
+         if (event->type == SDL_MOUSEBUTTONDOWN) {
+            player_restoreControl( PINPUT_MOVEMENT, NULL );
+            player_setFlag(PLAYER_ACCEL);
+            player_accel(1.);
+            input_accelButton = 1;
+         }
+
+         else if (event->type == SDL_MOUSEBUTTONUP) {
+            player_accelOver();
+            player_rmFlag(PLAYER_ACCEL);
+            input_accelButton = 0;
+         }
+
+         /* double tap accel = afterburn! */
+         t = SDL_GetTicks();
+         if ((conf.afterburn_sens != 0) &&
+               (event->type == SDL_MOUSEBUTTONDOWN) && INGAME() && NOHYP()
+               && NODEAD() && (t-input_accelLast <= conf.afterburn_sens))
+            pilot_afterburn( player.p );
+         else if (event->type == SDL_MOUSEBUTTONUP)
+            pilot_afterburnOver( player.p );
+
+         if (event->type == SDL_MOUSEBUTTONDOWN)
+            input_accelLast = t;
+         return;
+      }
+   }
+
    /* Mouse targeting only uses left and right buttons. */
    if (event->button.button != SDL_BUTTON_LEFT &&
             event->button.button != SDL_BUTTON_RIGHT)
+      return;
+
+   /* Mouse targeting only uses mouse button down. */
+   if (event->type != SDL_MOUSEBUTTONDOWN)
       return;
 
    autonav = (event->button.button == SDL_BUTTON_RIGHT) ? 1 : 0;
@@ -1609,6 +1647,7 @@ void input_handle( SDL_Event* event )
 
       /* Mouse stuff. */
       case SDL_MOUSEBUTTONDOWN:
+      case SDL_MOUSEBUTTONUP:
          input_clickevent( event );
          break;
 
