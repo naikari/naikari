@@ -36,10 +36,11 @@
   <structure size="small" />
   <structure size="small" />
   <structure size="small" />
+  <structure size="small" />
  </slots>
  <stats>
   <turn_mod>-20</turn_mod>
-  <cargo_mod>30</cargo_mod>
+  <cargo_mod>40</cargo_mod>
   <armour_mod>20</armour_mod>
   <cargo_inertia>-20</cargo_inertia>
   <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
