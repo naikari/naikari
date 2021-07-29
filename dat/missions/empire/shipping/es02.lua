@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>2</priority>
-  <cond>faction.playerStanding("Empire") &gt;= 0 and faction.playerStanding("Dvaered") &gt;= 0 and faction.playerStanding("FLF") &lt; 10</cond>
+  <cond>faction.playerStanding("Empire") &gt;= 10 and faction.playerStanding("Dvaered") &gt;= 0 and faction.playerStanding("FLF") &lt; 10</cond>
   <chance>50</chance>
   <done>Empire Shipping 2</done>
   <location>Bar</location>
