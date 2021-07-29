@@ -120,9 +120,9 @@ function create ()
 end
 
 function islandable(p)
-   return (b:services()["inhabited"] and b:canLand() and b:class() ~= "0"
-         and b:class() ~= "1" and b:class() ~= "2" and b:class() ~= "3"
-         and b:nameRaw() ~= "The Stinker" and b:nameRaw() ~= "Blossom")
+   return (p:services()["inhabited"] and p:canLand() and p:class() ~= "0"
+         and p:class() ~= "1" and p:class() ~= "2" and p:class() ~= "3"
+         and p:nameRaw() ~= "The Stinker" and p:nameRaw() ~= "Blossom")
 end
 
 -- Given a system, return the first landable planet found, or nil if none are landable (shouldn't happen in this script)
