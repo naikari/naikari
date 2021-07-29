@@ -1207,12 +1207,6 @@ static void input_clickevent( SDL_Event* event )
    if (pilot_isFlag(player.p, PILOT_DEAD))
       return;
 
-   /* Middle mouse enables mouse flying. */
-   if (event->button.button == SDL_BUTTON_MIDDLE) {
-      player_toggleMouseFly();
-      return;
-   }
-
    /* Mouse targeting only uses left and right buttons. */
    if (event->button.button != SDL_BUTTON_LEFT &&
             event->button.button != SDL_BUTTON_RIGHT)
