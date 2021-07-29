@@ -5,7 +5,7 @@
    <priority>3</priority>
    <cond>faction.playerStanding("Empire") &gt;= 0</cond>
    <chance>350</chance>
-   <done>Empire Long Distance Recruitment</done>
+   <done>Empire Recruitment</done>
    <location>Computer</location>
    <faction>Empire</faction>
   </avail>
