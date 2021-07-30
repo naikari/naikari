@@ -769,7 +769,7 @@ void dialogue_makeChoice( const char *caption, const char *msg, int opts )
    font           = dialogue_getSize( caption, msg, &w, &h );
 
    /* create window */
-   choice_wid     = window_create( "dlgChoice", caption, -1, -1, w, h+100+40*choice_nopts );
+   choice_wid     = window_create( "dlgChoice", caption, -1, -1, w, h+100+40*choice_nopts-30 );
    /* text */
    window_addText( choice_wid, 20, -40, w-40, h,  0, "txtChoice",
          font, NULL, msg );
@@ -791,7 +791,7 @@ void dialogue_addChoice( const char *caption, const char *msg, const char *opt)
    dialogue_getSize( caption, msg, &w, &h );
 
    /* buttons. Add one for each option in the menu. */
-   window_addButton( choice_wid, w/2-125, choice_nopts*40, 250, 30, (char *) opt,
+   window_addButton( choice_wid, 10, choice_nopts*40 - 30, w-20, 30, (char *) opt,
          (char *) opt, dialogue_choiceClose );
    choice_nopts --;
 
