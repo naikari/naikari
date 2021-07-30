@@ -247,6 +247,15 @@ function accept ()
       misn.setDesc(misn_desc[motive])
       misn.setReward(_("None"))
 
+      local osd_desc = {}
+      osd_desc[1] = string.format(_("Land on %s (%s system)"),
+            homepla:name(), homesys:name())
+      osd_desc[2] = string.format(_("Land on %s (%s system)"),
+            invpla:name(), invsys:name())
+      osd_desc[3] = string.format(_("Land on %s (%s system)"),
+            resistpla:name(), resistsys:name())
+      misn.osdCreate(misn_title, osd_desc)
+
       marker = misn.markerAdd(homesys, "low")
 
       hook.land("land")
@@ -267,6 +276,7 @@ function land ()
       end
 
       stage = 2
+      misn.osdActive(2)
       if marker ~= nil then misn.markerRm(marker) end
       marker = misn.markerAdd(invsys, "low")
    elseif stage == 2 and planet.cur() == invpla then
@@ -278,6 +288,7 @@ function land ()
       end
 
       stage = 3
+      misn.osdActive(3)
       if marker ~= nil then misn.markerRm(marker) end
       marker = misn.markerAdd(resistsys, "low")
    elseif stage == 3 and planet.cur() == resistpla then
