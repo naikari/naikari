@@ -2094,8 +2094,10 @@ static void equipment_renameShip( unsigned int wid, char *str )
 
    /* Must not have same name. */
    if (player_hasShip(newname)) {
-      dialogue_msg( _("Name Collision"),
-            _("Please do not give the ship the same name as another of your ships."));
+      if (strcmp(shipname, newname) != 0) {
+         dialogue_msg( _("Name Collision"),
+               _("Please do not give the ship the same name as another of your ships."));
+      }
       free(newname);
       return;
    }
