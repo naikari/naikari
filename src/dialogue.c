@@ -497,8 +497,10 @@ char* dialogue_inputRaw( const char* title, int min, int max, const char *msg )
    window_addInput( input_dialogue.input_wid, 20, 20+30+10, w, 30,"inpInput", max, 1, NULL );
    window_setInputFilter( input_dialogue.input_wid, "inpInput", "/" ); /* Remove illegal stuff. */
    /* button */
-   window_addButton( input_dialogue.input_wid, -20, 20, 80, 30,
+   window_addButton( input_dialogue.input_wid, -20, 20, (w-20)/2, 30,
          "btnClose", _("Done"), dialogue_inputClose );
+   window_addButton( input_dialogue.input_wid, 20, 20, (w-20)/2, 30,
+         "btnCancel", _("Cancel"), dialogue_cancel );
 
    /* tricky secondary loop */
    done  = 0;
@@ -537,7 +539,7 @@ char* dialogue_inputRaw( const char* title, int min, int max, const char *msg )
 }
 /**
  * @brief Closes an input dialogue.
- *    @param wid Unused.
+ *    @param wid Window to close.
  *    @param str Unused.
  */
 static void dialogue_inputClose( unsigned int wid, char* str )
