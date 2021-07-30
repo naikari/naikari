@@ -31,7 +31,7 @@
 
 --
 
-   This is the second "prelude" mission leading to the FLF campaign.
+   This is the third "prelude" mission leading to the FLF campaign.
    stack variable flfbase_intro:
         1 - The player has turned in the FLF agent or rescued the Dvaered crew. Conditional for dv_antiflf02
         2 - The player has rescued the FLF agent. Conditional for flf_pre02
@@ -44,42 +44,42 @@ require "missions/flf/flf_patrol"
 require "missions/flf/flf_common"
 require "missions/dvaered/common"
 
-title = {}
 text = {}
-DVtitle = {}
 DVtext = {}
 osd_desc = {}
 DVosd = {}
 refuelmsg = {}
 
-title[1] = _("A chance to prove yourself")
 text[1] = _([[The FLF officer doesn't seem at all surprised that you approached her. On the contrary, she looks like she expected you to do so all along.
-    "Greetings," she says, nodding at you in curt greeting. "I am Corporal Benito. And you must be %s, the one who got Lt. Fletcher back here in one piece." Benito's expression becomes a little more severe. "I'm not here to exchange pleasantries, however. You probably noticed, but people here are a little uneasy about your presence. They don't know what to make of you, see. You helped us once, it is true, but that doesn't tell us much. We don't know you."]])
+
+"Greetings," she says, nodding at you in curt greeting. "I am Corporal Benito. And you must be %s, the one who got Lt. Fletcher back here in one piece." Benito's expression becomes a little more severe. "I'm not here to exchange pleasantries, however. You probably noticed, but people here are a little uneasy about your presence. They don't know what to make of you, see. You helped us once, it is true, but that doesn't tell us much. We don't know you."]])
 
 text[2] = _([[Indeed, you are constantly aware of the furtive glances the other people in this bar are giving you. They don't seem outright hostile, but you can tell that if you don't watch your step and choose your words carefully, things might quickly take a turn for the worse.
-    Benito waves her hand to indicate you needn't pay them any heed. "That said, the upper ranks have decided that if you are truly sympathetic to our cause, you will be given an opportunity to prove yourself. Of course, if you'd rather not get involved in our struggle, that's understandable. But if you're in for greater things, if you stand for justice... Perhaps you'll consider joining with us?"]])
 
-title[3] = _("Patrol-B-gone")
+Benito waves her hand to indicate you needn't pay them any heed. "That said, the upper ranks have decided that if you are truly sympathetic to our cause, you will be given an opportunity to prove yourself. Of course, if you'd rather not get involved in our struggle, that's understandable. But if you're in for greater things, if you stand for justice... Perhaps you'll consider joining with us?"]])
+
 text[3] = _([["I'm happy to hear that. It's good to know we still have the support from the common pilot. Anyway, let me fill you in on what it is we want you to do. As you may be aware, the Dvaered have committed a lot of resources to finding us and flushing us out lately. And while our base is well hidden, those constant patrols are certainly not doing anything to make us feel more secure! I think you can see where this is going. You will go out there and eliminate one of those patrols in the %s system."
-    You object, asking the Corporal if all recruits have to undertake dangerous missions like this to be accepted into the FLF ranks. Benito chuckles and makes a pacifying gesture.
-    "Calm down, it's not as bad as it sounds. You only have to take out one small patrol; I don't think you will have to fight more than 3 ships, 4 if you're really unlucky. If you think that's too much for you, you can abort the mission for now and come to me again later. Otherwise, good luck!"]])
 
-title[4] = _("Breaking the ice")
+You object, asking the Corporal if all recruits have to undertake dangerous missions like this to be accepted into the FLF ranks. Benito chuckles and makes a pacifying gesture.
+
+"Calm down, it's not as bad as it sounds. You only have to take out one small patrol; I don't think you will have to fight more than 3 ships, 4 if you're really unlucky. If you think that's too much for you, you can abort the mission for now and come to me again later. Otherwise, good luck!"]])
+
 text[4] = _([[When you left Sindbad Station, it was a cold, lonely place for you. The FLF soldiers on the station avoided you whenever they could, and basic services were harder to get than they should have been.
-    But now that you have returned victorious over the Dvaered, the place has become considerably more hospitable. There are more smiles on people's faces, and some even tell you you did a fine job. Among them is Corporal Benito. She walks up to you and offers you her hand.]])
+
+But now that you have returned victorious over the Dvaered, the place has become considerably more hospitable. There are more smiles on people's faces, and some even tell you you did a fine job. Among them is Corporal Benito. She walks up to you and offers you her hand.]])
 
 text[5] = _([["Welcome back, %s, and congratulations. I didn't expect the Dvaered to send reinforcements, much less a Vigilance. I certainly wouldn't have sent you alone if I did, and I might not have sent you at all. But then, you're still in one piece, so maybe I shouldn't worry so much, eh?"]])
 
 text[6] = _([[Benito takes you to the station's bar and buys you what for lack of a better word must be called a drink.
-    "We will of course reward you for your service," she says once you are seated. "Though you must understand the FLF doesn't have that big a budget. Financial support is tricky, and the Frontier doesn't have that much to spare themselves to begin with. Nevertheless, we are willing to pay for good work, and your work is nothing but. What's more, you've ingratiated yourself with many of us, as you've undoubtedly noticed. Our top brass are among those you've impressed, so from today on, you can call yourself one of us! How about that, huh?"]])
+
+"We will of course reward you for your service," she says once you are seated. "Though you must understand the FLF doesn't have that big a budget. Financial support is tricky, and the Frontier doesn't have that much to spare themselves to begin with. Nevertheless, we are willing to pay for good work, and your work is nothing but. What's more, you've ingratiated yourself with many of us, as you've undoubtedly noticed. Our top brass are among those you've impressed, so from today on, you can call yourself one of us! How about that, huh?"]])
 
 text[7] = _([["Of course, our work is only just beginning. No rest for the weary; we must continue the fight against the oppressors. I'm sure the road is still long, but I'm encouraged by the fact that we gained another valuable ally today. Check the mission computer for more tasks you can help us with. I'm sure you'll play an important role in our eventual victory over the Dvaered!"
-    That last part earns a cheer from the assembled FLF soldiers. You decide to raise your glass with them, making a toast to the fortune of battle in the upcoming campaign - and the sweet victory that lies beyond.]])
 
-refusetitle = _("Some other time perhaps")
-refusetext = _([["I see. That's a fair answer, I'm sure you have your reasons. But if you ever change your mind, I'll be around on Sindbad. You won't have trouble finding me, I'm sure."]])
+That last part earns a cheer from the assembled FLF soldiers. You decide to raise your glass with them, making a toast to the fortune of battle in the upcoming campaign - and the sweet victory that lies beyond.]])
 
-DVtitle[1] = _("A tempting offer")
+refusetext = _([["I see. That's a fair answer, I'm sure you have your reasons. But if you ever change your mind, I'll be around on Sindbad."]])
+
 DVtext[1] = _([[Your viewscreen shows a Dvaered Colonel. He looks tense. Normally, a tense Dvaered would be bad news, but then this one bothered to hail you in the heat of battle, so perhaps there is more here than meets the eye.]])
 
 DVtext[2] = _([["I am Colonel Urnus of the Dvaered Fleet, anti-terrorism division. I would normally never contact an enemy of House Dvaered, but my intelligence officer has looked through our records and found that you were recently a law-abiding citizen, doing honest freelance missions."]])
@@ -89,13 +89,10 @@ DVtext[3] = _([["I know your type, %s. You take jobs where profit is to be had, 
 DVchoice1 = _("Accept the offer")
 DVchoice2 = _("Remain loyal to the FLF")
 
-DVtitle[4] = _("Opportunism is an art")
 DVtext[4] = _([[Colonel Urnus smiles broadly. "I knew you'd make the right choice, citizen!" He addresses someone on his bridge, out of the view of the camera. "Notify the flight group. This ship is now friendly. Cease fire." Then he turns back to you. "Proceed to %s in the %s system, citizen. I will personally meet you there."]])
 
-DVtitle[5] = _("End of negotiations")
 DVtext[5] = _([[Colonel Urnus is visibly annoyed by your response. "Very well then," he bites at you. "In that case you will be destroyed along with the rest of that terrorist scum. Helm, full speed ahead! All batteries, fire at will!"]])
 
-DVtitle[6] = _("A reward for a job well botched")
 DVtext[6] = _([[Soon after docking, you are picked up by a couple of soldiers, who escort you to Colonel Urnus's office. Urnus greets you warmly, and offers you a seat and a cigar. You take the former, not the latter.
     "I am most pleased with the outcome of this situation, citizen," Urnus begins. "To be absolutely frank with you, I was beginning to get frustrated. My superiors have been breathing down my neck, demanding results on those blasted FLF, but they are as slippery as eels. Just when you think you've cornered them, poof! They're gone, lost in that nebula. Thick as soup, that thing. I don't know how they can even find their own way home!"]])
 
@@ -129,26 +126,26 @@ log_text_dv = _([[As you were conducting a mission to earn the trust of the FLF,
 
 
 function create ()
-   missys = system.get( "Arcanis" )
-   if not misn.claim( missys ) then misn.finish( false ) end
+   missys = system.get("Arcanis")
+   if not misn.claim(missys) then misn.finish(false) end
 
-   misn.setNPC( npc_name, "flf/unique/benito.png", npc_desc )
+   misn.setNPC(npc_name, "flf/unique/benito.png", npc_desc)
 end
 
 
 function accept ()
-   tk.msg( title[1], text[1]:format( player.name() ) )
-   if tk.yesno( title[1], text[2] ) then
-      tk.msg( title[3], text[3]:format( missys:name() ) )
+   tk.msg("", text[1]:format(player.name()))
+   if tk.yesno("", text[2]) then
+      tk.msg("", text[3]:format(missys:name()))
 
-      osd_desc[1] = osd_desc[1]:format( missys:name() )
+      osd_desc[1] = osd_desc[1]:format(missys:name())
 
       misn.accept()
-      misn.osdCreate( osd_title, osd_desc )
-      misn.setDesc( misn_desc )
-      misn.setTitle( misn_title:format( missys:name() ) )
-      marker = misn.markerAdd( missys, "low" )
-      misn.setReward( misn_rwrd )
+      misn.osdCreate(osd_title, osd_desc)
+      misn.setDesc(misn_desc)
+      misn.setTitle(misn_title:format(missys:name()))
+      marker = misn.markerAdd(missys, "low")
+      misn.setReward(misn_rwrd)
 
       DVplanet, DVsys = planet.get("Raelid Outpost")
 
@@ -156,12 +153,12 @@ function accept ()
       dv_ships_left = 0
       job_done = false
 
-      hook.enter( "enter" )
-      hook.jumpout( "leave" )
-      hook.land( "leave" )
+      hook.enter("enter")
+      hook.jumpout("leave")
+      hook.land("leave")
    else
-      tk.msg( refusetitle, refusetext )
-      misn.finish( false )
+      tk.msg("", refusetext)
+      misn.finish()
    end
 end
 
@@ -169,19 +166,19 @@ end
 function enter ()
    if not job_done then
       if system.cur() == missys then
-         misn.osdActive( 2 )
-         patrol_spawnDV( 3, nil )
+         misn.osdActive(2)
+         patrol_spawnDV(3, nil)
       else
-         misn.osdActive( 1 )
+         misn.osdActive(1)
       end
    end
 end
 
 
 function leave ()
-   if spawner ~= nil then hook.rm( spawner ) end
-   if hailer ~= nil then hook.rm( hailer ) end
-   if rehailer ~= nil then hook.rm( rehailer ) end
+   if spawner ~= nil then hook.rm(spawner) end
+   if hailer ~= nil then hook.rm(hailer) end
+   if rehailer ~= nil then hook.rm(rehailer) end
    reinforcements_arrived = false
    dv_ships_left = 0
 end
@@ -203,81 +200,84 @@ function spawnDVReinforcements ()
       y = -dist
    end
 
-   local pos = player.pos() + vec2.new( x, y )
-   local reinforcements = pilot.addFleet( "Dvaered Big Patrol", pos, {ai="dvaered_norun"} )
-   for i, j in ipairs( reinforcements ) do
+   local pos = player.pos() + vec2.new(x, y)
+   local reinforcements = addShips(1,
+         {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
+            "Dvaered Vendetta", "Dvaered Vendetta"},
+         "Dvaered", pos, nil, {ai="dvaered_norun"})
+   for i, j in ipairs(reinforcements) do
       if j:ship():class() == "Destroyer" then boss = j end
-      hook.pilot( j, "death", "pilot_death_dv" )
+      hook.pilot(j, "death", "pilot_death_dv")
       j:setHostile()
-      j:setVisible( true )
-      j:setHilight( true )
+      j:setVisible(true)
+      j:setHilight(true)
       fleetDV[ #fleetDV + 1 ] = j
       dv_ships_left = dv_ships_left + 1
    end
 
    -- Check for defection possibility
-   if faction.playerStanding( "Dvaered" ) >= -5 then
-      hailer = hook.timer( 30, "timer_hail" )
+   if faction.playerStanding("Dvaered") >= -5 then
+      hailer = hook.timer(30, "timer_hail")
    else
-      spawner = hook.timer( 30, "timer_spawnFLF" )
+      spawner = hook.timer(30, "timer_spawnFLF")
    end
 end
 
 
 function timer_hail ()
-   if hailer ~= nil then hook.rm( hailer ) end
+   if hailer ~= nil then hook.rm(hailer) end
    if boss ~= nil and boss:exists() then
       timer_rehail()
-      hailer = hook.pilot( boss, "hail", "hail" )
+      hailer = hook.pilot(boss, "hail", "hail")
    end
 end
 
 
 function timer_rehail ()
-   if rehailer ~= nil then hook.rm( rehailer ) end
+   if rehailer ~= nil then hook.rm(rehailer) end
    if boss ~= nil and boss:exists() then
       boss:hailPlayer()
-      rehailer = hook.timer( 8, "timer_rehail" )
+      rehailer = hook.timer(8, "timer_rehail")
    end
 end
 
 
 function hail ()
-   if hailer ~= nil then hook.rm( hailer ) end
-   if rehailer ~= nil then hook.rm( rehailer ) end
+   if hailer ~= nil then hook.rm(hailer) end
+   if rehailer ~= nil then hook.rm(rehailer) end
    player.commClose()
-   tk.msg( DVtitle[1], DVtext[1] )
-   tk.msg( DVtitle[1], DVtext[2] )
-   choice = tk.choice( DVtitle[1], DVtext[3]:format( player.name() ),
-      DVchoice1, DVchoice2 )
+   tk.msg("", DVtext[1])
+   tk.msg("", DVtext[2])
+   choice = tk.choice("", DVtext[3]:format(player.name()),
+      DVchoice1, DVchoice2)
    if choice == 1 then
-      tk.msg( DVtitle[4], DVtext[4]:format( DVplanet:name(), DVsys:name() ) )
+      tk.msg("", DVtext[4]:format(DVplanet:name(), DVsys:name()))
 
-      faction.get("FLF"):setPlayerStanding( -100 )
+      faction.get("FLF"):setPlayerStanding(-100)
       local standing = faction.get("Dvaered"):playerStanding()
       if standing < 0 then
-         faction.get("Dvaered"):setPlayerStanding( 0 )
+         faction.get("Dvaered"):setPlayerStanding(0)
       end
 
-      for i, j in ipairs( fleetDV ) do
+      for i, j in ipairs(fleetDV) do
          if j:exists() then
             j:setFriendly()
-            j:changeAI( "dvaered" )
+            j:changeAI("dvaered")
          end
       end
 
       job_done = true
-      osd_desc[1] = DVosd[1]:format( DVsys:name(), DVplanet:name() )
+      osd_desc[1] = DVosd[1]:format(DVsys:name(), DVplanet:name())
       osd_desc[2] = nil
-      misn.osdActive( 1 )
-      misn.osdCreate( misn_title, osd_desc )
-      misn.markerRm( marker )
-      marker = misn.markerAdd( DVsys, "high" )
+      misn.osdActive(1)
+      misn.osdCreate(misn_title, osd_desc)
+      misn.markerRm(marker)
+      marker = misn.markerAdd(DVsys, "high")
 
-      spawner = hook.timer( 3, "timer_spawnHostileFLF" )
-      hook.land( "land_dv" )
+      spawner = hook.timer(3, "timer_spawnHostileFLF")
+      hook.land("land_dv")
    else
-      tk.msg( DVtitle[5], DVtext[5] )
+      tk.msg("", DVtext[5])
       timer_spawnFLF()
    end
 end
@@ -298,41 +298,42 @@ function spawnFLF ()
       y = -dist
    end
 
-   local pos = player.pos() + vec2.new( x, y )
-   fleetFLF = addShips( 8, {"Vendetta", "Lancelot"}, "FLF", pos, {_("FLF Vendetta"), _("FLF Lancelot")}, {ai="flf_norun"} )
+   local pos = player.pos() + vec2.new(x, y)
+   fleetFLF = addShips(8, {"Vendetta", "Lancelot"}, "FLF", pos,
+         {_("FLF Vendetta"), _("FLF Lancelot")}, {ai="flf_norun"})
 end
 
 
 function timer_spawnFLF ()
    if boss ~= nil and boss:exists() then
       spawnFLF()
-      for i, j in ipairs( fleetFLF ) do
+      for i, j in ipairs(fleetFLF) do
          j:setFriendly()
-         j:setVisplayer( true )
+         j:setVisplayer(true)
       end
 
-      fleetFLF[1]:broadcast( flfcomm[1]:format( player.name() ) )
+      fleetFLF[1]:broadcast(flfcomm[1]:format(player.name()))
    end
 end
 
 
 function timer_spawnHostileFLF ()
    spawnFLF()
-   for i, j in ipairs( fleetFLF ) do
+   for i, j in ipairs(fleetFLF) do
       j:setHostile()
       j:control()
-      j:attack( player.pilot() )
+      j:attack(player.pilot())
    end
 
-   hook.pilot( player.pilot(), "death", "returnFLFControl" )
-   fleetFLF[1]:broadcast( flfcomm[2]:format( player.name() ) )
+   hook.pilot(player.pilot(), "death", "returnFLFControl")
+   fleetFLF[1]:broadcast(flfcomm[2]:format(player.name()))
 end
 
 
 function returnFLFControl()
-   for i, j in ipairs( fleetFLF ) do
+   for i, j in ipairs(fleetFLF) do
       if j:exists() then
-         j:control( false )
+         j:control(false)
       end
    end
 end
@@ -341,29 +342,29 @@ end
 function pilot_death_dv ()
    dv_ships_left = dv_ships_left - 1
    if dv_ships_left <= 0 then
-      if spawner ~= nil then hook.rm( spawner ) end
-      if hailer ~= nil then hook.rm( hailer ) end
-      if rehailer ~= nil then hook.rm( rehailer ) end
+      if spawner ~= nil then hook.rm(spawner) end
+      if hailer ~= nil then hook.rm(hailer) end
+      if rehailer ~= nil then hook.rm(rehailer) end
 
       job_done = true
       local standing = faction.get("Dvaered"):playerStanding()
       if standing > -20 then
-         faction.get("Dvaered"):setPlayerStanding( -20 )
+         faction.get("Dvaered"):setPlayerStanding(-20)
       end
-      misn.osdActive( 3 )
-      misn.markerRm( marker )
-      marker = misn.markerAdd( system.get( var.peek( "flfbase_sysname" ) ), "high" )
-      hook.land( "land_flf" )
-      pilot.toggleSpawn( true )
+      misn.osdActive(3)
+      misn.markerRm(marker)
+      marker = misn.markerAdd(system.get(var.peek("flfbase_sysname")), "high")
+      hook.land("land_flf")
+      pilot.toggleSpawn(true)
       local hailed = false
       if fleetFLF ~= nil then
-         for i, j in ipairs( fleetFLF ) do
+         for i, j in ipairs(fleetFLF) do
             if j:exists() then
                j:control()
                j:hyperspace()
                if not hailed then
                   hailed = true
-                  j:comm( player.pilot(), flfcomm[3]:format( player.name() ) )
+                  j:comm(player.pilot(), flfcomm[3]:format(player.name()))
                end
             end
          end
@@ -377,16 +378,16 @@ end
 function land_flf ()
    leave()
    if planet.cur():faction() == faction.get("FLF") then
-      tk.msg( title[4], text[4] )
-      tk.msg( title[4], text[5]:format( player.name() ) )
-      tk.msg( title[4], text[6] )
-      tk.msg( title[4], text[7] )
-      player.pay( 100000 )
-      flf_setReputation( 10 )
-      faction.get("FLF"):modPlayer( 1 )
-      var.pop( "flfbase_intro" )
-      flf_addLog( log_text_flf )
-      misn.finish( true )
+      tk.msg("", text[4])
+      tk.msg("", text[5]:format(player.name()))
+      tk.msg("", text[6])
+      tk.msg("", text[7])
+      player.pay(100000)
+      flf_setReputation(10)
+      faction.get("FLF"):modPlayer(1)
+      var.pop("flfbase_intro")
+      flf_addLog(log_text_flf)
+      misn.finish(true)
    end
 end
 
@@ -394,14 +395,14 @@ end
 function land_dv ()
    leave()
    if planet.cur() == DVplanet then
-      tk.msg( DVtitle[6], DVtext[6] )
-      tk.msg( DVtitle[6], DVtext[7] )
-      tk.msg( DVtitle[6], DVtext[8] )
-      player.pay( 70000 )
-      var.push( "flfbase_intro", 3 )
-      if diff.isApplied( "FLF_base" ) then diff.remove( "FLF_base" ) end
-      dv_addAntiFLFLog( log_text_dv )
-      misn.finish( true )
+      tk.msg("", DVtext[6])
+      tk.msg("", DVtext[7])
+      tk.msg("", DVtext[8])
+      player.pay(70000)
+      var.push("flfbase_intro", 3)
+      if diff.isApplied("FLF_base") then diff.remove("FLF_base") end
+      dv_addAntiFLFLog(log_text_dv)
+      misn.finish(true)
    end
 end
 
