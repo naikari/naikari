@@ -76,7 +76,7 @@ text[6] = _([[Benito takes you to the station's bar and buys you what for lack o
 
 text[7] = _([["Of course, our work is only just beginning. No rest for the weary; we must continue the fight against the oppressors. I'm sure the road is still long, but I'm encouraged by the fact that we gained another valuable ally today. Check the mission computer for more tasks you can help us with. I'm sure you'll play an important role in our eventual victory over the Dvaered!"
 
-That last part earns a cheer from the assembled FLF soldiers. You decide to raise your glass with them, making a toast to the fortune of battle in the upcoming campaign - and the sweet victory that lies beyond.]])
+That last part earns a cheer from the assembled FLF soldiers. You decide to raise your glass with them, making a toast to the fortune of battle in the upcoming campaign and the sweet victory that lies beyond.]])
 
 refusetext = _([["I see. That's a fair answer, I'm sure you have your reasons. But if you ever change your mind, I'll be around on Sindbad."]])
 
