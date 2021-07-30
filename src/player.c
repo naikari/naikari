@@ -371,18 +371,19 @@ static int player_newMake (void)
 Pilot* player_newShip( const Ship* ship, const char *def_name,
       int trade, int noname )
 {
-   char *ship_name, *old_name;
+   char *ship_name, *temp_name;
+   const char *old_name;
    int i, len, w;
    Pilot *new_ship;
 
    /* temporary values while player doesn't exist */
    player_creds = (player.p != NULL) ? player.p->credits : 0;
-   player_ship    = ship;
+   player_ship = ship;
    if (!noname)
-      ship_name      = dialogue_input( _("Ship Name"), 1, 60,
+      ship_name = dialogue_input( _("Ship Name"), 1, 60,
             _("Please name your new ship:") );
    else
-      ship_name      = NULL;
+      ship_name = NULL;
 
    /* Dialogue cancelled. */
    if (ship_name == NULL) {
@@ -392,8 +393,8 @@ Pilot* player_newShip( const Ship* ship, const char *def_name,
 
       /* Add default name. */
       i = 2;
-      len = strlen(def_name)+10;
-      ship_name = malloc( len );
+      len = strlen(def_name) + 10;
+      ship_name = malloc(len * sizeof(ship_name));
       strcpy( ship_name, def_name );
       while (player_hasShip(ship_name)) {
          snprintf( ship_name, len, "%s %d", def_name, i );
@@ -401,23 +402,47 @@ Pilot* player_newShip( const Ship* ship, const char *def_name,
       }
    }
 
-   /* Must not have same name. */
-   if (player_hasShip(ship_name)) {
-      dialogue_msg( _("Name collision"),
-            _("Please do not give the ship the same name as another of your ships."));
-      free( ship_name );
-      return NULL;
-   }
-
-   new_ship = player_newShipMake( ship_name );
-
    /* Player is trading ship in. */
    if (trade) {
       if (player.p == NULL)
          ERR(_("Player ship isn't valid... This shouldn't happen!"));
       old_name = player.p->name;
-      player_swapShip( ship_name, 1 ); /* Move to the new ship. */
-      player_rmShip( old_name );
+   }
+   else
+      old_name = NULL;
+
+   /* Must not have same name. */
+   if (player_hasShip(ship_name)) {
+      if ((old_name != NULL) && (strcmp(ship_name, old_name) == 0)) {
+         /* Add temporary name. */
+         i = 2;
+         len = strlen("temp") + 10;
+         temp_name = malloc(len * sizeof(temp_name));
+         strcpy(temp_name, "temp");
+
+         while (player_hasShip(temp_name)) {
+            snprintf(temp_name, len, "temp-%d", i);
+            i++;
+         }
+
+         free(player.p->name);
+         player.p->name = temp_name;
+         old_name = player.p->name;
+      }
+      else {
+         dialogue_msg(_("Name collision"),
+               _("Please do not give the ship the same name as another of your"
+                  " ships."));
+         free(ship_name);
+         return NULL;
+      }
+   }
+
+   new_ship = player_newShipMake( ship_name );
+
+   if (old_name != NULL) {
+      player_swapShip(ship_name, 1); /* Move to the new ship. */
+      player_rmShip(old_name);
    }
 
    free(ship_name);
@@ -603,13 +628,13 @@ void player_rmShip( const char *shipname )
 
    for (i=0; i<array_size(player_stack); i++) {
       /* Not the ship we are looking for. */
-      if (strcmp(shipname,player_stack[i].p->name)!=0)
+      if (strcmp(shipname, player_stack[i].p->name) != 0)
          continue;
 
       /* Free player ship. */
       pilot_free(player_stack[i].p);
-
-      array_erase( &player_stack, &player_stack[i], &player_stack[i+1] );
+      array_erase(&player_stack, &player_stack[i], &player_stack[i+1]);
+      break;
    }
 
    /* Update ship list if landed. */
