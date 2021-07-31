@@ -29,6 +29,7 @@
 ]]--
 
 require "numstring"
+require "fleethelper"
 require "missions/empire/common"
 
 bar_desc = _("You see an Empire Commander. He seems to have noticed you.")
@@ -157,10 +158,12 @@ function enter ()
       enter_vect = player.pos() + vec2.newP(rnd.rnd(1500, 2000), ang)
 
       -- Create some pilots to go after the player
-      p = pilot.addFleet("FLF Sml Force", enter_vect)
+      local fleet = addShips(1, {"Lancelot", "Vendetta", "Vendetta"}, "FLF",
+            enter_vect, {_("FLF Lancelot"), _("FLF Vendetta"),
+               _("FLF Vendetta")})
       -- Set hostile
-      for k,v in ipairs(p) do
-         v:setHostile()
+      for i, p in ipairs(fleet) do
+         p:setHostile()
       end
 
       -- Get a far away position for fighting to happen
@@ -169,11 +172,16 @@ function enter ()
 
       -- We'll put the FLF first
       enter_vect = battle_pos + vec2.newP(rnd.rnd(700, 1000), rnd.rnd(0, 360))
-      pilot.addFleet("FLF Med Force", enter_vect)
+      
+      addShips(1, {"Pacifier", "Lancelot", "Lancelot", "Vendetta", "Vendetta"},
+            "FLF", enter_vect, {_("FLF Pacifier"), _("FLF Lancelot"),
+               _("FLF Lancelot"), _("FLF Vendetta"), _("FLF Vendetta")})
 
       -- Now the Dvaered
       enter_vect = battle_pos + vec2.newP(rnd.rnd(200, 300), rnd.rnd(0, 360))
-      pilot.addFleet("Dvaered Med Force", enter_vect)
+      addShips(1, {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
+               "Dvaered Ancestor", "Dvaered Vendetta", "Dvaered Vendetta"},
+            "Dvaered", enter_vect)
 
       -- Player should not be able to reland
       player.allowLand(false,
