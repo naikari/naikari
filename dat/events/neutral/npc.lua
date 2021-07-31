@@ -8,7 +8,8 @@
 
 --[[
 -- Event for creating random characters in the spaceport bar.
--- The random NPCs will tell the player things about the Naev universe in general, about their faction, or about the game itself.
+-- The random NPCs will tell the player things about the Naikari
+-- universe in general, about their faction, or about the game itself.
 --]]
 
 require "events/tutorial/tutorial_common"
@@ -20,10 +21,30 @@ local portrait = require "portrait"
 -- of the main universe (Thurion, Proteron).
 nongeneric_factions = {"Pirate", "FLF", "Thurion", "Proteron"}
 
+-- Land-restricted NPC names for the spaceport bar. This correlates
+-- land restriction function names (returned by planet.restriction())
+-- with what NPCs on planets with those restrictions should be called.
+-- Appearance in this table also implicitly causes portrait.getMil() to
+-- be used for selecting a portrait instead of portrait.get().
+mil_name = {
+   emp_mil_restricted = _("Empire Officer"),
+   emp_mil_omega = _("Empire Officer"),
+   emp_mil_wrath = _("Empire Officer"),
+   srs_mil_restricted = _("Sirius Officer"),
+   dv_mil_restricted = _("Dvaered Officer"),
+   dv_mil_command = _("Dvaered Officer"),
+   srm_mil_restricted = _("Soromid Officer"),
+   zlk_mil_restricted = _("Za'lek Scientist"),
+   zlk_ruadan = _("Za'lek Scientist"),
+   flf_sindbad = _("FLF Soldier"),
+   ptn_mil_restricted = _("Proteron Officer"),
+}
+
 -- Civilian descriptions for the spaceport bar.
--- These descriptions will be picked at random, and may be picked multiple times in one generation.
--- Remember that any description can end up with any portrait, so don't make any assumptions
--- about the appearance of the NPC!
+-- These descriptions will be picked at random, and may be picked
+-- multiple times in one generation. Remember that any description can
+-- end up with any portrait, so don't make any assumptions about th
+-- appearance of the NPC!
 civ_desc = {
    _("This person seems to be here to relax."),
    _("There is a civilian sitting on one of the tables."),
@@ -40,6 +61,82 @@ civ_desc = {
    _("A worker sits and drinks instead of working."),
    _("A worker slouched against the bar, nursing a drink."),
    _("This worker seems bored with everything but their drink."),
+}
+
+-- Same as civ_desc, but for land-restricted NPCs, organized by land
+-- restriction function name.
+mil_desc = {}
+mil_desc.emp_mil_restricted = {
+   _("An Empire officer sits idly at one of the tables."),
+   _("This Empire officer seems somewhat spaced-out."),
+   _("An Empire officer drinking alone."),
+   _("An Empire officer sitting at the bar."),
+   _("This Empire officer is idly reading the news terminal."),
+   _("This officer seems bored with everything but their drink."),
+   _("This officer seems to be relaxing after a hard day's work."),
+   _("An Empire officer sitting in the corner."),
+}
+mil_desc.emp_mil_omega = mil_desc.emp_mil_restricted
+mil_desc.emp_mil_wrath = mil_desc.emp_mil_restricted
+mil_desc.srs_mil_restricted = {
+   _("A Sirius officer sits idly at one of the tables."),
+   _("This Sirius officer seems somewhat spaced-out."),
+   _("A Sirius officer drinking alone."),
+   _("A Sirius officer sitting at the bar."),
+   _("This Sirius officer is idly reading the news terminal."),
+   _("This officer seems bored with everything but their drink."),
+   _("This officer seems to be relaxing after a hard day's work."),
+   _("A Sirius officer sitting in the corner."),
+}
+mil_desc.dv_mil_restricted = {
+   _("A Dvaered officer sits idly at one of the tables."),
+   _("This Dvaered officer seems somewhat spaced-out."),
+   _("A Dvaered officer drinking alone."),
+   _("A Dvaered officer sitting at the bar."),
+   _("This Dvaered officer is idly reading the news terminal."),
+   _("This officer seems bored with everything but their drink."),
+   _("This officer seems to be relaxing after a hard day's work."),
+   _("A Dvaered officer sitting in the corner."),
+}
+mil_desc.dv_mil_command = mil_desc.dv_mil_restricted
+mil_desc.srm_mil_restricted = {
+   _("A Soromid officer sits idly at one of the tables."),
+   _("This Soromid officer seems somewhat spaced-out."),
+   _("A Soromid officer drinking alone."),
+   _("A Soromid officer sitting at the bar."),
+   _("This Soromid officer is idly reading the news terminal."),
+   _("This officer seems bored with everything but their drink."),
+   _("This officer seems to be relaxing after a hard day's work."),
+   _("A Soromid officer sitting in the corner."),
+}
+mil_desc.zlk_mil_restricted = {
+   _("A Za'lek scientist sits idly at one of the tables."),
+   _("This Za'lek scientist seems somewhat spaced-out."),
+   _("A Za'lek scientist drinking alone."),
+   _("A Za'lek scientist sitting at the bar."),
+   _("This Za'lek scientist is idly reading the news terminal."),
+   _("This scientist seems bored with everything but their drink."),
+   _("This scientist seems to be relaxing after a hard day's work."),
+   _("A Za'lek scientist sitting in the corner."),
+}
+mil_desc.zlk_ruadan = mil_desc.zlk_mil_restricted
+mil_desc.flf_sindbad = {
+   _("An FLF soldier sits idly at one of the tables."),
+   _("This FLF soldier seems somewhat spaced-out."),
+   _("An FLF soldier drinking alone."),
+   _("An FLF soldier sitting at the bar."),
+   _("This FLF soldier is idly reading the news terminal."),
+   _("This FLF soldier seems to be relaxing for the moment."),
+   _("An FLF soldier sitting in the corner."),
+}
+mil_desc.ptn_mil_restricted = {
+   _("A Proteron officer sits idly at one of the tables."),
+   _("A Proteron officer drinking alone."),
+   _("A Proteron officer sitting at the bar."),
+   _("This Proteron officer is idly reading the news terminal."),
+   _("This officer seems bored with everything but their drink."),
+   _("This officer seems to be relaxing after a hard day's work."),
+   _("A Proteron officer sitting in the corner."),
 }
 
 -- Lore messages. These come in general and factional varieties.
@@ -324,11 +421,22 @@ function spawnNPC()
       npcname = string.format( _("%s Civilian"), _(fac) )
    end
 
-   -- Select a portrait
-   local image = portrait.get(fac)
+   local restriction = planet.cur():restriction()
+   local milname = mil_name[restriction]
+   local image
+   local desc
+   if milname ~= nil then
+      npcname = milname
 
-   -- Select a description for the civilian.
-   local desc = civ_desc[rnd.rnd(1, #civ_desc)]
+      -- Select a military portrait and description.
+      image = portrait.getMil(fac)
+      local descriptions = mil_desc[restriction]
+      desc = descriptions[rnd.rnd(1, #descriptions)]
+   else
+      -- Select a civilian portrait and description.
+      image = portrait.get(fac)
+      desc = civ_desc[rnd.rnd(1, #civ_desc)]
+   end
 
    -- Select what this NPC should say.
    select = rnd.rnd()

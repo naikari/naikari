@@ -138,12 +138,25 @@ function zlk_mil_restricted( pnt )
          _("Docking sequence transmitted."),
          _("Authorization level too low to grant access."),
          _("Authorization denied."),
-         _("Money is irrelevant."))
+         _("\"Money is irrelevant.\""))
 end
 
 -- Za'lek's military center.
 function zlk_ruadan( pnt )
    return false, "Permission denied. Ruadan space is off-limits to you."
+end
+
+-- Sindbad.
+function flf_sindbad( pnt )
+   local granted_text = _("Permission to land granted.")
+   if faction.get("FLF"):playerStanding() >= 30 then
+      granted_text = _("Permission to land granted. Welcome back, comrade.")
+   end
+   return land_military(pnt, 0,
+         granted_text,
+         _("Landing request denied. We don't trust you."),
+         _("Begone, oppressor!"),
+         _("\"I'm not interested in your dirty money.\""))
 end
 
 -- Proteron military assets.
@@ -152,7 +165,7 @@ function ptn_mil_restricted( pnt )
          _("Permission to land granted."),
          _("You are not authorized to land here."),
          _("Landing request denied."),
-         _("We Proteron don't take kindly to bribery."))
+         _("\"We Proteron don't take kindly to bribery.\""))
 end
 
 -- Thurion military assets.
@@ -161,7 +174,7 @@ function thr_mil_restricted( pnt )
          _("Welcome, friend %s. You may dock when ready."):format(player.name()),
          _("I'm sorry, we can't trust you to land here just yet."),
          _("Landing request denied."),
-         _("We have no need for your credits."))
+         _("\"We have no need for your credits.\""))
 end
 
 -- Pirate clanworld.
