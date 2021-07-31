@@ -53,8 +53,6 @@ greet_table["Goddard"] = {
 }
 greet_table["Pirate"] = {
    _("News that matters."),
-   _("Adopt a cat today!"),
-   _("Laughing at the Emperor."),
    _("On top of the world."),
    _("Piracy has never been better."),
 }
@@ -73,7 +71,7 @@ greet_table["Za'lek"] = {
    _("Peer reviewed news."),
 }
 greet_table["Soromid"] = {
-   _("Genetically tailoured for you."),
+   _("Genetically tailored for you."),
    _("Naturally selected news."),
 }
 greet_table["Thurion"] = {""}
