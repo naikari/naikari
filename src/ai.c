@@ -3236,7 +3236,7 @@ static int aiL_shoot_indicator( lua_State *L )
 /**
  * @brief Sends a distress signal.
  *
- *    @luatparam string|nil msg Message to send or nil.
+ *    @luatparam[opt] string msg Message to send or nil.
  *    @luafunc distress
  */
 static int aiL_distress( lua_State *L )
