@@ -554,7 +554,8 @@ static int playerL_autonavDest( lua_State *L )
  *
  * @note Does not do anything if the player is not in autonav.
  *
- * @usage sys, jumps = player.autonavAbort()
+ * @usage player.autonavAbort()
+ * @usage player.autonavAbort(_("Your engines malfunctioned!"))
  *
  *    @luatparam string msg Abort message.
  * @luafunc autonavAbort
@@ -572,7 +573,16 @@ static int playerL_autonavAbort( lua_State *L )
  *
  * @note Does not do anything if the player is not in autonav.
  *
- *    @luatparam[opt=0.] number timer How many seconds to wait before starting autonav up again.
+ * @usage
+ * -- Resets speed, then immediately resumes time compression
+ * player.autonavReset()
+ *
+ * @usage
+ * -- Resets speed for 3 seconds
+ * player.autonavReset(3)
+ *
+ *    @luatparam[opt=0] number timer How many seconds to wait before
+ *       starting autonav up again.
  * @luafunc autonavReset
  */
 static int playerL_autonavReset( lua_State *L )
@@ -588,17 +598,28 @@ static int playerL_autonavReset( lua_State *L )
 /**
  * @brief Puts the game in cinematics mode or back to regular mode.
  *
- * Possible options are:<br/>
+ * Possible values to pass to the table of options are:<br/>
  * <ul>
- *  <li>abort : (string) autonav abort message</li>
- *  <li>no2x : (boolean) whether to prevent the player from increasing the speed, default false</li>
- *  <li>gui : (boolean) enables the player's gui, default disabled</li>
+ *  <li>"abort" (string): Autonav abort message.</li>
+ *  <li>"no2x" (boolean): Whether to prevent the player from increasing
+ *       the speed of the game. Defaults to false.</li>
+ *  <li>"gui" (boolean): Whether to enable the player's gui. Defaults to
+ *       false.</li>
  * </ul>
+ * <br/>
  *
- * @usage player.cinematics( true, { gui = true } ) -- Enables cinematics without hiding gui.
+ * @usage
+ * -- Enables cinematics without hiding the GUI, showing
+ * -- "Let the show begin!" if autonav is aborted.
+ * player.cinematics(true, {gui=true, abort=_("Let the show begin!")})
  *
- *    @luatparam boolean enable If true sets cinematics mode, if false disables. Defaults to disable.
- *    @luatparam table options Table of options.
+ * @usage
+ * -- Disables cinematics.
+ * player.cinematics(false)
+ *
+ *    @luatparam[opt=false] boolean enable If true sets cinematics mode, if false disables. Defaults to disable.
+ *    @luatparam[opt] table options Table of options. See above for
+ *       information about what options can be passed.
  * @luafunc cinematics
  */
 static int playerL_cinematics( lua_State *L )
@@ -615,8 +636,12 @@ static int playerL_cinematics( lua_State *L )
    f_2x      = 0;
 
    /* Parse parameters. */
-   b = lua_toboolean( L, 1 );
-   if (lua_gettop(L) > 1) {
+   if (lua_gettop(L) >= 1)
+      b = lua_toboolean(L, 1);
+   else
+      b = 1;
+
+   if (lua_gettop(L) >= 2) {
       if (!lua_istable(L,2)) {
          NLUA_ERROR( L, _("Second parameter to cinematics should be a table of options or omitted!") );
          return 0;
@@ -911,7 +936,8 @@ static int playerL_commclose( lua_State *L )
  * </ul>
  * <br/>
  *
- * @usage for i, v in ipairs(player.ships()) do
+ * @usage
+ * for i, v in ipairs(player.ships()) do
  *    print(v.name) -- Prints player-defined pilot name
  *    print(v.ship:name()) -- Prints name of the ship (e.g. "Llama")
  * end
