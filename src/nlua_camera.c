@@ -71,15 +71,18 @@ int nlua_loadCamera( nlua_env env )
 /**
  * @brief Sets the camera.
  *
- * Make sure to reset camera after using it or we'll run into trouble.
+ * @note Make sure to reset camera after using it or we'll run into trouble.
  *
  * @usage camera.set() -- Resets the camera to the pilot hard.
- * @usage camera.set( a_pilot, true ) -- Flies camera over to a_pilot.
- * @usage camera.set( vec2.new() ) -- Jumps camera to 0,0
+ * @usage camera.set(a_pilot, true) -- Flies camera over to a_pilot.
+ * @usage camera.set(vec2.new()) -- Jumps camera to 0,0
  *
- *    @luatparam Pilot|Vec2|nil target It will follow pilots around. If nil, it follows the player.
- *    @luatparam[opt=false] boolean soft_over Indicates that the camera should fly over rather than instantly teleport.
- *    @luaparam[opt=2500] speed Speed at which to fly over if soft_over is true.
+ *    @luatparam[opt] Pilot|Vec2 target It will follow pilots around. If
+ *       nil or unspecified, it follows the player.
+ *    @luatparam[opt=false] boolean soft_over Indicates that the camera
+ *       should fly over rather than instantly teleport.
+ *    @luaparam[opt=2500] speed Speed at which to fly over if soft_over
+ *       is true.
  * @luafunc set
  */
 static int camL_set( lua_State *L )
