@@ -552,9 +552,9 @@ static int playerL_autonavDest( lua_State *L )
 /**
  * @brief Stops the players autonav if active.
  *
- * @usage sys, jumps = player.autonavAbort()
- *
  * @note Does not do anything if the player is not in autonav.
+ *
+ * @usage sys, jumps = player.autonavAbort()
  *
  *    @luatparam string msg Abort message.
  * @luafunc autonavAbort
@@ -898,11 +898,26 @@ static int playerL_commclose( lua_State *L )
 
 
 /**
- * @brief Gets the names of the player's ships.
+ * @brief Gets information about the player's ships.
  *
- * @usage names = player.ships() -- The player's ship names.
+ * The returned table contains one ship table for each of the player's
+ * ships, and each ship table contains the following values:<br/>
+ * <ul>
+ *    <li>"name" (string): The name of the ship (technically, the name
+ *       of the pilot) given by the player.</li>
+ *    <li>"ship" (Ship): The actual ship type of the player ship (e.g.
+ *       the value returned by ship.get("Llama") if the ship is a
+ *       Llama).</li>
+ * </ul>
+ * <br/>
  *
- *   @luatreturn {String,...} Table of ship names.
+ * @usage for i, v in ipairs(player.ships()) do
+ *    print(v.name) -- Prints player-defined pilot name
+ *    print(v.ship:name()) -- Prints name of the ship (e.g. "Llama")
+ * end
+ *
+ *   @luatreturn {ShipTable,...} ships Table of ship tables. See above
+ *       for an explanation of the ship table format.
  * @luafunc ships
  */
 static int playerL_ships( lua_State *L )
