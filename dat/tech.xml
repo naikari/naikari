@@ -142,11 +142,14 @@
   <item>Milspec Jammer</item>
   <item>Sensor Array</item>
   <item>Jump Scanner</item>
+  <item>Hyena Fighter Bay</item>
+  <item>Mini Hyena Fighter Bay</item>
   <item>Lancelot Fighter Bay</item>
   <item>Mini Lancelot Fighter Bay</item>
   <item>Empire Lancelot Fighter Bay</item>
   <item>Fidelity Fighter Bay</item>
   <item>Drone Fighter Bay</item>
+  <item>Heavy Drone Fighter Bay</item>
   <item>Za'lek Light Drone Fighter Bay</item>
   <item>Za'lek Heavy Drone Fighter Bay</item>
   <item>Za'lek Bomber Drone Fighter Bay</item>
@@ -602,8 +605,8 @@
   <item>Star Maps</item>
   <item>Unicorp Scrambler</item>
   <item>Unicorp Jammer</item>
-  <item>Lancelot Fighter Bay</item>
-  <item>Mini Lancelot Fighter Bay</item>
+  <item>Hyena Fighter Bay</item>
+  <item>Mini Hyena Fighter Bay</item>
   <item>Medium Weapon License</item>
   <item>Emergency Shield Booster</item>
   <item>Reverse Thrusters</item>
@@ -853,6 +856,7 @@
   <item>Neutron Disruptor</item>
   <item>Electron Burst Cannon</item>
   <item>Drone Fighter Bay</item>
+  <item>Heavy Drone Fighter Bay</item>
   <item>Drone</item>
   <item>Heavy Drone</item>
  </tech>
