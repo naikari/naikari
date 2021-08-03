@@ -1,17 +1,17 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Divert the Dvaered Forces">
-  <avail>
-   <priority>3</priority>
-   <chance>550</chance>
-   <done>Diversion from Raelid</done>
-   <location>Computer</location>
-   <faction>FLF</faction>
-   <faction>Frontier</faction>
-   <cond>not diff.isApplied( "flf_dead" )</cond>
-  </avail>
- </mission>
- --]]
+ <avail>
+  <priority>3</priority>
+  <chance>550</chance>
+  <done>Diversion from Raelid</done>
+  <location>Computer</location>
+  <faction>FLF</faction>
+  <faction>Frontier</faction>
+  <cond>not diff.isApplied("flf_dead")</cond>
+ </avail>
+</mission>
+--]]
 --[[
 
    FLF diversion mission.
@@ -41,8 +41,8 @@ success_text = {}
 success_text[1] = _("You receive a transmission from an FLF officer saying that the operation has completed, and you can now return to the base.")
 
 pay_text = {}
-pay_text[1] = _("The FLF officer in charge of the primary operation thanks you for your contribution and hands you your pay.")
-pay_text[2] = _("You greet the FLF officer in charge of the primary operation, who seems happy that the mission was a success. You congratulate each other, and the officer hands you your pay.")
+pay_text[1] = _("The FLF commander in charge of the primary operation thanks you for your contribution and hands you your pay.")
+pay_text[2] = _("You greet the FLF commander in charge of the primary operation, who seems happy that the mission was a success. You congratulate each other, and the commander hands you your pay.")
 
 misn_desc = _("A fleet of FLF ships will be conducting an operation against the Dvaered forces. Create a diversion from this operation by wreaking havoc in the nearby %s system.")
 
@@ -51,14 +51,14 @@ msg = _("%s has warped in!")
 osd_title   = _("FLF Diversion")
 osd_desc    = {}
 osd_desc[1] = _("Fly to the %s system")
-osd_desc[2] = _("Engage and destroy Dvaered ships to get their attention")
+osd_desc[2] = _("Attack Dvaered ships to get as many pilots' attention as possible")
 osd_desc[3] = _("Return to FLF base")
 osd_desc["__save"] = true
 
 
 function create ()
    missys = flf_getTargetSystem()
-   if not misn.claim( missys ) then misn.finish( false ) end
+   if not misn.claim(missys) then misn.finish(false) end
 
    local num_dvaereds = missys:presences()["Dvaered"]
    local num_empire = missys:presences()["Empire"]
@@ -67,42 +67,42 @@ function create ()
    if num_empire == nil then num_empire = 0 end
    if num_flf == nil then num_flf = 0 end
    dv_attention_target = num_dvaereds / 50
-   credits = 200 * (num_dvaereds + num_empire - num_flf) * system.cur():jumpDist( missys, true ) / 3
+   credits = 200 * (num_dvaereds + num_empire - num_flf) * system.cur():jumpDist(missys, true) / 3
    credits = credits + rnd.sigma() * 10000
-   reputation = math.max( (num_dvaereds + num_empire - num_flf) / 25, 1 )
-   if credits < 10000 then misn.finish( false ) end
+   reputation = math.max((num_dvaereds + num_empire - num_flf) / 25, 1)
+   if credits < 10000 then misn.finish(false) end
 
    -- Set mission details
-   misn.setTitle( misn_title:format( missys:name() ) )
-   misn.setDesc( misn_desc:format( missys:name() ) )
-   misn.setReward( creditstring( credits ) )
-   marker = misn.markerAdd( missys, "computer" )
+   misn.setTitle(misn_title:format(missys:name()))
+   misn.setDesc(misn_desc:format(missys:name()))
+   misn.setReward(creditstring(credits))
+   marker = misn.markerAdd(missys, "computer")
 end
 
 
 function accept ()
    misn.accept()
 
-   osd_desc[1] = osd_desc[1]:format( missys:name() )
-   misn.osdCreate( osd_title, osd_desc )
+   osd_desc[1] = osd_desc[1]:format(missys:name())
+   misn.osdCreate(osd_title, osd_desc)
 
    dv_attention = 0
    dv_coming = false
    job_done = false
 
-   hook.enter( "enter" )
-   hook.jumpout( "leave" )
-   hook.land( "leave" )
+   hook.enter("enter")
+   hook.jumpout("leave")
+   hook.land("leave")
 end
 
 
 function enter ()
    if not job_done then
       if system.cur() == missys then
-         misn.osdActive( 2 )
+         misn.osdActive(2)
          update_dv()
       else
-         misn.osdActive( 1 )
+         misn.osdActive(1)
          dv_attention = 0
       end
    end
@@ -110,57 +110,57 @@ end
 
 
 function leave ()
-   if update_dv_hook ~= nil then hook.rm( update_dv_hook ) end
+   if update_dv_hook ~= nil then hook.rm(update_dv_hook) end
 end
 
 
 function update_dv ()
-   for i, j in ipairs( pilot.get( { faction.get("Dvaered") } ) ) do
-      hook.pilot( j, "attacked", "pilot_attacked_dv" )
-      hook.pilot( j, "death", "pilot_death_dv" )
+   for i, j in ipairs(pilot.get({faction.get("Dvaered")})) do
+      hook.pilot(j, "attacked", "pilot_attacked_dv")
+      hook.pilot(j, "death", "pilot_death_dv")
    end
-   update_dv_hook = hook.timer( 3.0, "update_dv" )
+   update_dv_hook = hook.timer(3.0, "update_dv")
 end
 
 
-function add_attention( p )
-   p:setHilight( true )
+function add_attention(p)
+   p:setHilight(true)
 
    if not job_done then
       dv_attention = dv_attention + 1
       if dv_attention >= dv_attention_target and dv_attention - 1 < dv_attention_target then
-         if success_hook ~= nil then hook.rm( success_hook ) end
-         success_hook = hook.timer( 30.0, "timer_mission_success" )
+         if success_hook ~= nil then hook.rm(success_hook) end
+         success_hook = hook.timer(30.0, "timer_mission_success")
       end
 
-      hook.pilot( p, "jump", "rm_attention" )
-      hook.pilot( p, "land", "rm_attention" )
+      hook.pilot(p, "jump", "rm_attention")
+      hook.pilot(p, "land", "rm_attention")
    end
 end
 
 
 function rm_attention ()
-   dv_attention = math.max( dv_attention - 1, 0 )
+   dv_attention = math.max(dv_attention - 1, 0)
    if dv_attention < dv_attention_target then
-      if success_hook ~= nil then hook.rm( success_hook ) end
+      if success_hook ~= nil then hook.rm(success_hook) end
    end
 end
 
 
-function pilot_attacked_dv( p, attacker )
+function pilot_attacked_dv(p, attacker)
    if (attacker == player.pilot() or attacker:leader() == player.pilot())
          and not dv_coming and rnd.rnd() < 0.1 then
       dv_coming = true
-      hook.timer( 10.0, "timer_spawn_dv" )
+      hook.timer(10.0, "timer_spawn_dv")
    end
 end
 
 
-function pilot_death_dv( p, attacker )
+function pilot_death_dv(p, attacker)
    if (attacker == player.pilot() or attacker:leader() == player.pilot())
          and not dv_coming then
       dv_coming = true
-      hook.timer( 10.0, "timer_spawn_dv" )
+      hook.timer(10.0, "timer_spawn_dv")
    end
 end
 
@@ -168,11 +168,11 @@ end
 function timer_spawn_dv ()
    dv_coming = false
    if not job_done then
-      local shipnames = { "Dvaered Vendetta", "Dvaered Ancestor", "Dvaered Phalanx", "Dvaered Vigilance", "Dvaered Goddard", "Dvaered Small Patrol", "Dvaered Big Patrol" }
-      local shipname = shipnames[ rnd.rnd( 1, #shipnames ) ]
-      player.msg( msg:format( shipname ) )
-      for i, j in ipairs( pilot.addFleet( shipname ) ) do
-         add_attention( j )
+      local shipnames = {"Dvaered Vendetta", "Dvaered Ancestor", "Dvaered Phalanx", "Dvaered Vigilance", "Dvaered Goddard", "Dvaered Small Patrol", "Dvaered Big Patrol"}
+      local shipname = shipnames[rnd.rnd(1, #shipnames)]
+      player.msg(msg:format(shipname))
+      for i, j in ipairs(pilot.addFleet(shipname)) do
+         add_attention(j)
       end
    end
 end
@@ -181,20 +181,20 @@ end
 function timer_mission_success ()
    if dv_attention >= dv_attention_target then
       job_done = true
-      misn.osdActive( 3 )
-      if marker ~= nil then misn.markerRm( marker ) end
-      if update_dv_hook ~= nil then hook.rm( update_dv_hook ) end
-      hook.land( "land" )
-      tk.msg( "", success_text[ rnd.rnd( 1, #success_text ) ] )
+      misn.osdActive(3)
+      if marker ~= nil then misn.markerRm(marker) end
+      if update_dv_hook ~= nil then hook.rm(update_dv_hook) end
+      hook.land("land")
+      tk.msg("", success_text[rnd.rnd(1, #success_text)])
    end
 end
 
 
 function land ()
    if planet.cur():faction() == faction.get("FLF") then
-      tk.msg( "", pay_text[ rnd.rnd( 1, #pay_text ) ] )
-      player.pay( credits )
-      faction.get("FLF"):modPlayer( reputation )
-      misn.finish( true )
+      tk.msg("", pay_text[rnd.rnd(1, #pay_text)])
+      player.pay(credits)
+      faction.get("FLF"):modPlayer(reputation)
+      misn.finish(true)
    end
 end

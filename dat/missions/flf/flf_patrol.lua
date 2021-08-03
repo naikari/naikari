@@ -45,8 +45,8 @@ misn_title[6] = _("FLF: Highly Dangerous Dvaered patrol in %s")
 
 text = {}
 text[1] = _("After you are handed your pay, an FLF soldier congratulates you for your victory and buys you a drink. You chat for a while before getting back to work.")
-text[2] = _("As you get your pay from the officer, FLF soldiers congratulate you for your victory.")
-text[3] = _("You collect your pay from the officer, who then congratulates you for your victory.")
+text[2] = _("As you get your pay from a petty officer, FLF soldiers congratulate you for your victory.")
+text[3] = _("You collect your pay from an FLF petty officer, who then congratulates you for your victory.")
 
 flfcomm = {}
 flfcomm[1] = _("Alright, let's have at them!")

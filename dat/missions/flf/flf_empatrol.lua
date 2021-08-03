@@ -7,7 +7,7 @@
    <location>Computer</location>
    <faction>FLF</faction>
    <faction>Frontier</faction>
-   <cond>diff.isApplied("flf_vs_empire") and not diff.isApplied( "flf_dead" )</cond>
+   <cond>diff.isApplied("flf_vs_empire") and not diff.isApplied("flf_dead")</cond>
   </avail>
   <notes>
    <requires name="The Empire and the FLF are enemies"/>
@@ -56,7 +56,7 @@ function setDescription ()
    desc = gettext.ngettext(
          "There is %d Empire ship patrolling the %s system. Eliminate this ship.",
          "There is an Empire patrol with %d ships in the %s system. Eliminate this patrol.",
-         ships ):format( ships, missys:name() )
+         ships):format(ships, missys:name())
 
    if has_vigilance then
       desc = desc .. _(" There is a Pacifier among them, so you must proceed with caution.")
@@ -68,7 +68,7 @@ function setDescription ()
       desc = desc .. gettext.ngettext(
             " You will be accompanied by %d other FLF pilot for this mission.",
             " You will be accompanied by %d other FLF pilots for this mission.",
-            flfships ):format( flfships )
+            flfships):format(flfships)
    end
    return desc
 end
@@ -82,53 +82,53 @@ end
 function enter ()
    if not job_done then
       if system.cur() == missys then
-         misn.osdActive( 2 )
+         misn.osdActive(2)
          local boss
          if has_goddard then
             boss = "Empire Hawking"
          elseif has_vigilance then
             boss = "Empire Pacifier"
          end
-         patrol_spawnEmpire( ships, boss )
+         patrol_spawnEmpire(ships, boss)
 
          if flfships > 0 then
             if not late_arrival then
-               patrol_spawnFLF( flfships, last_system, flfcomm[1] )
+               patrol_spawnFLF(flfships, last_system, flfcomm[1])
             else
-               hook.timer( late_arrival_delay, "timer_lateFLF" )
+               hook.timer(late_arrival_delay, "timer_lateFLF")
             end
          end
       else
-         misn.osdActive( 1 )
+         misn.osdActive(1)
       end
    end
 end
 
 
 -- Spawn an Empire patrol with n ships.
-function patrol_spawnEmpire( n, boss )
+function patrol_spawnEmpire(n, boss)
    pilot.clear()
-   pilot.toggleSpawn( false )
-   player.pilot():setVisible( true )
+   pilot.toggleSpawn(false)
+   player.pilot():setVisible(true)
    if rnd.rnd() < 0.05 then n = n + 1 end
    local r = system.cur():radius()
    fleetDV = {}
    for i = 1, n do
-      local x = rnd.rnd( -r, r )
-      local y = rnd.rnd( -r, r )
+      local x = rnd.rnd(-r, r)
+      local y = rnd.rnd(-r, r)
       local shipname
       if i == 1 and boss ~= nil then
          shipname = boss
       else
-         local shipnames = { "Empire Shark", "Empire Lancelot" }
-         shipname = shipnames[ rnd.rnd( 1, #shipnames ) ]
+         local shipnames = {"Empire Shark", "Empire Lancelot"}
+         shipname = shipnames[rnd.rnd(1, #shipnames)]
       end
-      local pstk = pilot.addFleet( shipname, vec2.new( x, y ), {ai="empire_norun"} )
+      local pstk = pilot.addFleet(shipname, vec2.new(x, y), {ai="empire_norun"})
       local p = pstk[1]
-      hook.pilot( p, "death", "pilot_death_dv" )
+      hook.pilot(p, "death", "pilot_death_dv")
       p:setHostile()
-      p:setVisible( true )
-      p:setHilight( true )
+      p:setVisible(true)
+      p:setHilight(true)
       fleetDV[i] = p
       dv_ships_left = dv_ships_left + 1
    end
