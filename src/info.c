@@ -200,6 +200,11 @@ static void info_openMain( unsigned int wid )
    int i;
    char *nt;
    int w, h;
+   time_t t = time(NULL);
+
+   /* Compute elapsed time. */
+   player.time_played += difftime(t, player.time_since_save);
+   player.time_since_save = t;
 
    /* Get the dimensions. */
    window_dimWindow( wid, &w, &h );
@@ -229,7 +234,7 @@ static void info_openMain( unsigned int wid )
          "%s\n"
          "%d (%d %s)\n"
          "\n"
-         "%.1f hours\n"
+         "%.0f:%02llu:%02llu\n"
          "%.0f\n"
          "%.0f\n"
          "%u"),
@@ -239,7 +244,9 @@ static void info_openMain( unsigned int wid )
          player.p->name,
          player.p->fuel, pilot_getJumps(player.p),
          n_( "jump", "jumps", pilot_getJumps(player.p) ),
-         player.time_played / 3600.,
+         player.time_played / 86400.,
+         ((long long)player.time_played%86400) / 3600,
+         ((long long)player.time_played%3600) / 60,
          player.dmg_done_shield + player.dmg_done_armour,
          player.dmg_taken_shield + player.dmg_taken_armour,
          player.ships_destroyed );
