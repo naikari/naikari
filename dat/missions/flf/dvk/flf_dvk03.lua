@@ -1,23 +1,23 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Assault on Raelid">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>2</priority>
-   <chance>30</chance>
-   <done>FLF Pirate Alliance</done>
-   <location>Bar</location>
-   <faction>FLF</faction>
-   <cond>faction.playerStanding("FLF") &gt;= 50</cond>
-  </avail>
-  <notes>
-   <provides name="The Empire and the FLF are enemies">Because they're caught in the battle</provides>
-   <campaign>Save the Frontier</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>2</priority>
+  <chance>30</chance>
+  <done>FLF Pirate Alliance</done>
+  <location>Bar</location>
+  <faction>FLF</faction>
+  <cond>faction.playerStanding("FLF") &gt;= 50</cond>
+ </avail>
+ <notes>
+  <provides name="The Empire and the FLF are enemies">Because they're caught in the battle</provides>
+  <campaign>Save the Frontier</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 
    Assault on Raelid
@@ -41,34 +41,31 @@ require "numstring"
 require "fleethelper"
 require "missions/flf/flf_common"
 
--- Localization stuff
-title = {}
 text = {}
 
-title[1] = _("The Next Level")
-text[1] = _([["Hello there, %s! You're just in time. We were just discussing our next operation against the Dvaered oppressors! Do you want in?"]])
+ask_text = _([["Hello there, %s! You're just in time. We were just discussing our next operation against the Dvaered oppressors! Do you want in?"]])
 
-title[2] = _("Not This Time")
-text[2] = _([["Okay. Just let me know if you change your mind."]])
+no_text = _([["Okay. Just let me know if you change your mind."]])
 
-title[3] = _("A Decisive Strike")
-text[3] = _([[You take a seat among the group. "Fantastic!" says Benito. "Let me get you caught up, then. Do you remember that mission in Raelid you helped with a while back?" You nod. You were wondering what you were actually creating a diversion from. "Yes, well, I never got around to telling you what we actually did there. See, we've been wanting to destroy Raelid Outpost for some time, mostly because it's often used as a front for trying to scout us out. So while you were getting the attention of those Dvaereds, we rigged a special bomb and covertly installed it onto the outpost!"]])
+yes_text = _([[You take a seat among the group. "Fantastic!" says Benito. "Let me get you caught up, then. Do you remember that mission in Raelid you helped with a while back?" You nod. You were wondering what you were actually creating a diversion from. "Yes, well, I never got around to telling you what we actually did there. See, we've been wanting to destroy Raelid Outpost for some time, mostly because it's often used as a front for trying to scout us out. So while you were getting the attention of those Dvaereds, we rigged a special bomb and covertly installed it onto the outpost!"]])
 
-text[4] = _([["Now, the bomb is not perfect. Given how hastily we had to install the thing, we could not make it so that it could be detonated remotely. Instead, it has to be detonated manually, by blasting the station repeatedly. Shooting it down, in other words.
-    "So here's the plan. We have hired a large group of pirates to help us out by creating a massive disturbance far away from our target. You are to wait until the coast is clear, then swarm in and attack the outpost with all you've got. You, %s, will lead the charge. You have to determine the optimal time, when the Dvaereds are far enough away for you to initiate the attack, but before the pirates are inevitably overwhelmed. Simply hail one of the others when it's time to attack, then make a beeline for Raelid Outpost and shoot at it with all you've got!"]])
+explain_text = _([["Now, the bomb is not perfect. Given how hastily we had to install the thing, we could not make it so that it could be detonated remotely. Instead, it has to be detonated manually, by blasting the station repeatedly. Shooting it down, in other words.
 
-text[5] = _([["You guys are some of our best pilots, so try not to get killed, eh? A moment of triumph is upon us! Down with the oppressors!" The last line earns Benito a cheer from the crowd. Well, time to get your ship ready for the battle.]])
+"So here's the plan. We have hired a large group of pirates to help us out by creating a massive disturbance far away from our target. You are to wait until the coast is clear, then swarm in and attack the outpost with all you've got. You, %s, will lead the charge. You have to determine the optimal time, when the Dvaereds are far enough away for you to initiate the attack, but before the pirates are inevitably overwhelmed. Simply hail one of the others when it's time to attack, then make a beeline for Raelid Outpost and shoot at it with all you've got!"]])
 
-title[6] = _("Ominous Foretelling")
-text[6] = _([[As Raelid Outpost erupts into a fantastic explosion before your very eyes, your comrades cheer. But then, you see something odd. Someone is hailing you... an Empire ship? Surely this can't be. Cautiously, you answer. The man whose face comes up on your view screen wastes no time.
-    "So, you actually showed your face. I half expected you to run away and hide. But no matter." You try not to show any reaction to his icy stare. He continues.]])
+goodluck_text = _([["You guys are some of our best pilots, so try not to get killed, eh? A moment of triumph is upon us! Down with the oppressors!" The last line earns Benito a cheer from the crowd. Well, time to get your ship ready for the battle.]])
 
-text[7] = _([["Terrorist, I'd bet you think this latest act of yours is a victory for you. Perhaps, for now, it is. But I assure you that the Empire will not ignore your activities any longer. I have already sent word to the Emperor, and he has authorized a declaration of your organization, the FLF, as an enemy of the Empire. Count the minutes on your fingers, terrorist. Your days are numbered."
-    The Empire officer then immediately ceases communication, and you suddenly feel a chill down your spine. But one of your wingmates snaps you out of it. "Pay the Empire no mind," he says. "More importantly, we have to get out of here! We'll meet you at Sindbad."]])
+explode_text = _([[As Raelid Outpost erupts into a fantastic explosion before your very eyes, your comrades cheer. But then, you see something odd. Someone is hailing you... an Empire ship? Surely this can't be. Cautiously, you answer. The man whose face comes up on your view screen wastes no time.
 
-title[8] = _("Victory on the Horizon")
-text[8] = _([[As you return to the base, you are welcomed with all manner of cheers and enthusiasm. You can understand why, too; this is a huge victory for the FLF, and surely just one of many victories to come. But still...
-    You manage to make your way over to Benito, who is clearly pleased with the outcome. "Outstanding job!" she says. "That base has been a burden on us for so long. Now it is gone, 100% gone! I don't think I need to tell you how fantastic of a victory this is. Victory is within our grasp!" That's when all doubt is erased from your mind. She's right; so what if the Empire is against you now? You exchange some more words with Benito, after which she hands you your pay for a job well done and excuses herself. You, on the other hand, stay behind to celebrate for a few more periods before finally excusing yourself.]])
+"So, you actually showed your face. I half expected you to run away and hide. But no matter." You try not to show any reaction to his icy stare. He continues.]])
+
+threat_text = _([["Terrorist, I'd bet you think this latest act of yours is a victory for you. Perhaps, for now, it is. But I assure you that the Empire will not ignore your activities any longer. I have already sent word to the Emperor, and he has authorized a declaration of your organization, the FLF, as an enemy of the Empire. Count the minutes on your fingers, terrorist. Your days are numbered."
+
+The Empire officer then immediately ceases communication, and you suddenly feel a chill down your spine. But one of your wingmates snaps you out of it. "Pay the Empire no mind," he says. "More importantly, we have to get out of here! We'll meet you at Sindbad."]])
+
+end_text = _([[As you return to the base, you are welcomed with all manner of cheers and enthusiasm. You can understand why, too; this is a huge victory for the FLF, and surely just one of many victories to come. But still…
+
+You manage to make your way over to Benito, who is clearly pleased with the outcome. "Outstanding job!" she says. "That base has been a burden on us for so long. Now it is gone, 100% gone! I don't think I need to tell you how fantastic of a victory this is. Victory is within our grasp!" That's when all doubt is erased from your mind. She's right; so what if the Empire is against you now? You exchange some more words with Benito, after which she hands you your pay for a job well done and excuses herself. You, on the other hand, stay behind to celebrate for a few more periods before finally excusing yourself.]])
 
 misn_title = _("Assault on Raelid")
 misn_desc = _("Join with the other FLF pilots for the assault on Raelid Outpost.")
@@ -105,10 +102,10 @@ end
 
 
 function accept ()
-   if tk.yesno(title[1], text[1]:format(player.name())) then
-      tk.msg(title[3], text[3])
-      tk.msg(title[3], text[4]:format(player.name()))
-      tk.msg(title[3], text[5])
+   if tk.yesno("", ask_text:format(player.name())) then
+      tk.msg("", yes_text)
+      tk.msg("", explain_text:format(player.name()))
+      tk.msg("", goodluck_text)
 
       misn.accept()
 
@@ -128,8 +125,8 @@ function accept ()
 
       hook.enter("enter")
    else
-      tk.msg(title[2], text[2])
-      misn.finish(false)
+      tk.msg("", no_text)
+      misn.finish()
    end
 end
 
@@ -170,14 +167,18 @@ function enter ()
          -- Spawn Dvaered and Empire ships
          dv_fleet = {}
 
-         nf = pilot.addFleet("Empire Lge Attack", ms:pos(), {ai="empire_norun"})
+         nf = addShips({1, 1, 1, 3, 7}, {"Empire Peacemaker", "Empire Hawking",
+                  "Empire Pacifier", "Empire Admonisher", "Empire Lancelot"},
+               "Empire", ms:pos(), nil, {ai="empire_norun"})
          for i, j in ipairs(nf) do
-            dv_fleet[ #dv_fleet + 1 ] = j
+            dv_fleet[#dv_fleet + 1] = j
          end
 
-         nf = pilot.addFleet("Dvaered Big Patrol", ro:pos(), {ai="dvaered_norun"})
+         nf = addShips({1, 1, 1, 2}, {"Dvaered Vigilance", "Dvaered Phalanx",
+                  "Dvaered Ancestor", "Dvaered Vendetta"},
+               "Dvaered", ro:pos(), nil, {ai="dvaered_norun"})
          for i, j in ipairs(nf) do
-            dv_fleet[ #dv_fleet + 1 ] = j
+            dv_fleet[#dv_fleet + 1] = j
          end
 
          for i, j in ipairs(dv_fleet) do
@@ -189,7 +190,8 @@ function enter ()
          -- Spawn FLF ships
          local jmp, jmp2
          jmp, jpm2 = jump.get("Raelid", "Arcanis")
-         flf_fleet = addShips(14, "Vendetta", "FLF", jmp:pos() , _("FLF Vendetta"))
+         flf_fleet = addShips(14, "Vendetta", "FLF", jmp:pos() ,
+               _("FLF Vendetta"))
 
          for i, j in ipairs(flf_fleet) do
             j:control()
@@ -234,9 +236,9 @@ function timer_start ()
          "Trader Koala", "Trader Mule" }
       local src = system.get("Zacron")
       for i = 1, 12 do
-         local choice = choices[ rnd.rnd(1, #choices) ]
+         local choice = choices[rnd.rnd(1, #choices)]
          local nf = pilot.addFleet(choice, src)
-         civ_fleet[ #civ_fleet + 1 ] = nf[1]
+         civ_fleet[#civ_fleet + 1] = nf[1]
       end
 
       local dest = system.get("Tau Prime")
@@ -265,9 +267,9 @@ function timer_pirates ()
       "Pirate Hyena", "Pirate Shark", "Pirate Admonisher",
       "Pirate Vendetta", "Pirate Ancestor" }
    for i = 1, 9 do
-      local choice = choices[ rnd.rnd(1, #choices) ]
+      local choice = choices[rnd.rnd(1, #choices)]
       local nf = pilot.addFleet(choice, src)
-      pir_fleet[ #pir_fleet + 1 ] = nf[1]
+      pir_fleet[#pir_fleet + 1] = nf[1]
    end
 
    for i, j in ipairs(pir_fleet) do
@@ -355,8 +357,8 @@ end
 
 
 function timer_station ()
-   tk.msg(title[6], text[6])
-   tk.msg(title[6], text[7])
+   tk.msg("", explode_text)
+   tk.msg("", threat_text)
 
    for i, j in ipairs(flf_fleet) do
       if j:exists() then
@@ -382,7 +384,7 @@ end
 
 function land ()
    if planet.cur():faction() == faction.get("FLF") then
-      tk.msg(title[8], text[8])
+      tk.msg("", end_text)
       finish()
    end
 end

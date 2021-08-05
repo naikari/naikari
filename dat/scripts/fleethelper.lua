@@ -26,22 +26,24 @@ function addShips( count, ship, faction, location, pilotname, parameters )
       print(_("addShips: Error, ship list is not a ship or table of ships!"))
       return
    elseif type(ship) == "string" then -- Put lone ship into table.
-      ship = { ship }
+      ship = {ship}
    end
-   pilotnames= _buildDupeTable( pilotname, #ship )
-   locations = _buildDupeTable( location, #ship )
-   factions  = _buildDupeTable( faction, #ship )
+   if count == nil then
+      count = 1
+   end
+   counts = _buildDupeTable(count, #ship)
+   pilotnames = _buildDupeTable(pilotname, #ship)
+   locations = _buildDupeTable(location, #ship)
+   factions = _buildDupeTable(faction, #ship)
    if factions[1] == nil then
       print(_("addShips: Error, raw ships must have factions!"))
       return
    end
 
-   if count == nil then
-      count = 1
-   end
-   for i=1,count do -- Repeat the pattern as necessary.
-      for k,v in ipairs(ship) do
-         out[k+(i-1)*#ship] = pilot.add( ship[k], factions[k], locations[k], pilotnames[k], parameters )
+   for i, s in ipairs(ship) do
+      for j=1,counts[i] do
+         out[#out + 1] = pilot.add(
+               s, factions[i], locations[i], pilotnames[i], parameters)
       end
    end
    if #out > 1 then
