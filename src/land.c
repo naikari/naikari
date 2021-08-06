@@ -544,7 +544,7 @@ static void bar_approach( unsigned int wid, char *str )
  */
 static int news_load (void)
 {
-   generate_news(faction_name(land_planet->faction));
+   generate_news(land_planet->faction);
    return 0;
 }
 
@@ -837,7 +837,9 @@ void land_updateMainTab (void)
          "%s"),
          _(land_planet->name), _(cur_system->name),
          _(land_planet->class), planet_getClassName(land_planet->class),
-         _(faction_name(land_planet->faction)), pop, tons, cred );
+         land_planet->faction >= 0 ?
+            _(faction_name(land_planet->faction)) : _("None"),
+         pop, tons, cred );
    window_modifyText( land_windows[0], "txtDInfo", buf );
 
    /* Maps are only offered if the planet provides fuel. */
