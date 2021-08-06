@@ -10,9 +10,6 @@
   <location>Bar</location>
   <planet>Niflheim</planet>
  </avail>
- <notes>
-  <tier>1</tier>
- </notes>
 </mission>
 --]]
 --[[

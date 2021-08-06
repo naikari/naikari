@@ -26,9 +26,6 @@
            return count &gt; 1
         end)()</cond>
  </avail>
-  <notes>
-   <tier>1</tier>
-  </notes>
 </mission>
 --]]
 --[[

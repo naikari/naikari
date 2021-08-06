@@ -8,9 +8,6 @@
   <location>Computer</location>
   <faction>Dvaered</faction>
  </avail>
- <notes>
-  <tier>3</tier>
- </notes>
 </mission>
 --]]
 --[[

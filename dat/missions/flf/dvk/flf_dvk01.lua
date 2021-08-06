@@ -14,7 +14,6 @@
  </avail>
  <notes>
   <campaign>Save the Frontier</campaign>
-  <tier>4</tier>
  </notes>
 </mission>
 --]]

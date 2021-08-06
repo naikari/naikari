@@ -1,20 +1,17 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Hitman">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>2</priority>
-   <chance>10</chance>
-   <location>Bar</location>
-   <cond>system.cur() == system.get("Alteris")</cond>
-  </avail>
-  <notes>
-   <tier>3</tier>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>2</priority>
+  <chance>10</chance>
+  <location>Bar</location>
+  <cond>system.cur() == system.get("Alteris")</cond>
+ </avail>
+</mission>
+--]]
 --[[
 
    Pirate Hitman

@@ -1,20 +1,17 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="The one with the Shopping">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>4</priority>
-   <chance>100</chance>
-   <location>Bar</location>
-   <planet>Gastan</planet>
-  </avail>
-  <notes>
-   <tier>2</tier>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>4</priority>
+  <chance>100</chance>
+  <location>Bar</location>
+  <planet>Gastan</planet>
+ </avail>
+</mission>
+--]]
 --[[
    Mission: The one with the Shopping
 

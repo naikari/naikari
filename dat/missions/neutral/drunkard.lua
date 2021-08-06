@@ -12,9 +12,6 @@
   <faction>Empire</faction>
   <faction>Goddard</faction>
  </avail>
- <notes>
-  <tier>1</tier>
- </notes>
 </mission>
 --]]
 --[[

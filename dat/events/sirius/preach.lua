@@ -7,9 +7,6 @@
  <flags>
   <unique />
  </flags>
- <notes>
-  <tier>1</tier>
- </notes>
 </event>
 --]]
 --Preliminary draft of a new event where the player meets one of the Touched, who tries to convert him

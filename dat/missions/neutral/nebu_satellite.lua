@@ -12,11 +12,8 @@
   <faction>Empire</faction>
   <faction>Goddard</faction>
  </avail>
- <notes>
-  <tier>2</tier>
- </notes>
 </mission>
- --]]
+--]]
 --[[
 
    Nebula Satellite

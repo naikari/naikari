@@ -1,24 +1,21 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Defend the System 1">
-  <flags>
-   <unique />
-  </flags> 
-  <avail>
-   <priority>4</priority>
-   <chance>3</chance>
-   <location>None</location>
-   <faction>Dvaered</faction>
-   <faction>Frontier</faction>
-   <faction>Goddard</faction>
-   <faction>Independent</faction>
-   <faction>Soromid</faction>
-  </avail>
-  <notes>
-   <tier>3</tier>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags> 
+ <avail>
+  <priority>4</priority>
+  <chance>3</chance>
+  <location>None</location>
+  <faction>Dvaered</faction>
+  <faction>Frontier</faction>
+  <faction>Goddard</faction>
+  <faction>Independent</faction>
+  <faction>Soromid</faction>
+ </avail>
+</mission>
+--]]
 --[[
 
    MISSION: Defend the System 1

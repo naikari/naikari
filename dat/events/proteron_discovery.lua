@@ -1,16 +1,13 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <event name="Proteron Discovery">
-  <trigger>enter</trigger>
-  <chance>100</chance>
-  <flags>
-   <unique />
-  </flags>
-  <notes>
-   <tier>5</tier>
-  </notes>
- </event>
- --]]
+ <trigger>enter</trigger>
+ <chance>100</chance>
+ <flags>
+  <unique />
+ </flags>
+</event>
+--]]
 --[[
 
    Proteron Discovery Event

@@ -1,17 +1,14 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Stealing ships">
-  <avail>
-   <priority>4</priority>
-   <chance>10</chance>
-   <location>Bar</location>
-   <cond>faction.playerStanding("Pirate") &gt;= 0 or planet.cur():faction() == faction.get("Pirate")</cond>
-  </avail>
-  <notes>
-   <tier>2</tier>
-  </notes>
- </mission>
- --]]
+ <avail>
+  <priority>4</priority>
+  <chance>10</chance>
+  <location>Bar</location>
+  <cond>faction.playerStanding("Pirate") &gt;= 0 or planet.cur():faction() == faction.get("Pirate")</cond>
+ </avail>
+</mission>
+--]]
 --[[
 
 -- The player pays a fellow pirate to know where to steal a random ship.

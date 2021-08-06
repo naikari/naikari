@@ -9,7 +9,6 @@
  <notes>
   <done_misn name="Shadowrun"/>
   <campaign>Shadow</campaign>
-  <tier>3</tier>
  </notes>
 </event>
 --]]

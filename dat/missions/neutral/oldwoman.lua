@@ -10,9 +10,6 @@
   <location>Bar</location>
   <faction>Dvaered</faction>
  </avail>
- <notes>
-  <tier>1</tier>
- </notes>
 </mission>
 --]]
 -- Note: additional conditionals present in mission script!

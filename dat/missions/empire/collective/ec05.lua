@@ -14,7 +14,6 @@
   </avail>
   <notes>
    <campaign>Collective</campaign>
-   <tier>4</tier>
   </notes>
  </mission>
  --]]

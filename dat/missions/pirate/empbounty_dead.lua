@@ -1,20 +1,17 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Pirate Empire Patrol Bounty">
-  <avail>
-   <priority>3</priority>
-   <cond>player.numOutfit("Mercenary License") &gt; 0 or planet.cur():blackmarket()</cond>
-   <chance>1260</chance>
-   <location>Computer</location>
-   <faction>Pirate</faction>
-   <faction>Independent</faction>
-   <faction>FLF</faction>
-  </avail>
-  <notes>
-   <tier>3</tier>
-  </notes>
- </mission>
- --]]
+ <avail>
+  <priority>3</priority>
+  <cond>player.numOutfit("Mercenary License") &gt; 0 or planet.cur():blackmarket()</cond>
+  <chance>1260</chance>
+  <location>Computer</location>
+  <faction>Pirate</faction>
+  <faction>Independent</faction>
+  <faction>FLF</faction>
+ </avail>
+</mission>
+--]]
 --[[
 
    Pirate Empire bounty

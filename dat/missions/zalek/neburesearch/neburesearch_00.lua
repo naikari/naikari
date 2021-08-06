@@ -10,10 +10,9 @@
   <location>Bar</location>
   <planet>Jorla</planet>
  </avail>
-  <notes>
-   <campaign>Nebula Research</campaign>
-   <tier>2</tier>
-  </notes>
+ <notes>
+  <campaign>Nebula Research</campaign>
+ </notes>
 </mission>
 --]]
 --[[

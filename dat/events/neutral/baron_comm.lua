@@ -17,7 +17,6 @@
  </flags>
  <notes>
   <campaign>Baron Sauterfeldt</campaign>
-  <tier>2</tier>
  </notes>
 </event>
 --]]

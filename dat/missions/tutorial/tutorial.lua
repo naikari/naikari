@@ -8,6 +8,9 @@
   <priority>1</priority>
   <location>None</location>
  </avail>
+ <notes>
+  <provides name="Continued Tutorial">If you say yes to more help</provides>
+ </notes>
 </mission>
 --]]
 --[[

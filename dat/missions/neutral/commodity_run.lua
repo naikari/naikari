@@ -17,9 +17,6 @@
   <faction>Thurion</faction>
   <faction>Za'lek</faction>
  </avail>
- <notes>
-  <tier>1</tier>
- </notes>
 </mission>
 --]]
 --[[

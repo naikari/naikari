@@ -14,7 +14,6 @@
   </avail>
   <notes>
    <campaign>Coming Out</campaign>
-   <tier>3</tier>
   </notes>
  </mission>
  --]]

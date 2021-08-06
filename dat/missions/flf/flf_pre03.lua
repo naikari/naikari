@@ -14,7 +14,6 @@
  <notes>
   <provides name="The Dvaered know where Sindbad is">If you betray the FLF</provides>
   <campaign>Join the FLF</campaign>
-  <tier>3</tier>
  </notes>
 </mission>
 --]]

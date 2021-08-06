@@ -10,9 +10,6 @@
    <location>Bar</location>
    <planet>Zeo</planet>
   </avail>
-  <notes>
-   <tier>1</tier>
-  </notes>
  </mission>
  --]]
 

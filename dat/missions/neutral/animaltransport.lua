@@ -11,9 +11,6 @@
   <faction>Sirius</faction>
   <cond>planet.cur():class() ~= "0" and planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"</cond>
  </avail>
- <notes>
-  <tier>1</tier>
- </notes>
 </mission>
 --]]
 --[[

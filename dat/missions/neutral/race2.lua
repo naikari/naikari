@@ -16,9 +16,6 @@
   <faction>Soromid</faction>
   <faction>Za'lek</faction>
  </avail>
- <notes>
-  <tier>2</tier>
- </notes>
 </mission>
 --]]
 --[[

@@ -1,20 +1,17 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="The Dvaered Championship">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>4</priority>
-   <chance>50</chance>
-   <location>Bar</location>
-   <planet>Dvaer Prime</planet>
-  </avail>
-  <notes>
-   <tier>3</tier>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>4</priority>
+  <chance>50</chance>
+  <location>Bar</location>
+  <planet>Dvaer Prime</planet>
+ </avail>
+</mission>
+--]]
 --[[
 
    The player takes part into a challenge between fighter pilots in Dvaered space, he has to defeat 5 opponents to win.

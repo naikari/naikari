@@ -20,7 +20,6 @@
   </avail>
   <notes>
    <campaign>Nexus show their teeth</campaign>
-   <tier>3</tier>
   </notes>
  </mission>
  --]]
