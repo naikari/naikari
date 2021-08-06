@@ -191,7 +191,7 @@ for node in meta_nodes:
         sub.add_node(name, shape='hexagon', color='red')
 
 
-def subgraph_add( name, subN, unique, subN_check, shape ):
+def subgraph_add(name, subN, unique, subN_check, shape):
     if subN == subN_check or ignore_camp:
         if unique:
             G.add_node(name, shape=shape)
