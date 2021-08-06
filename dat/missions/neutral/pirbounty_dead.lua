@@ -49,14 +49,14 @@ require "jumpdist"
 require "pilot/pirate"
 
 
-subdue_text    = {}
-subdue_text[1] = _("You and your crew infiltrate the ship's pathetic security and subdue %s. You transport the pirate to your ship.")
+subdue_text = {}
+subdue_text[1] = _("You and your crew infiltrate the ship's pathetic security and subdue %s. You transport them to your ship.")
 subdue_text[2] = _("Your crew has a difficult time getting past the ship's security, but eventually succeeds and subdues %s.")
-subdue_text[3] = _("The pirate's security system turns out to be no match for your crew. You infiltrate the ship and capture %s.")
-subdue_text[4] = _("Your crew infiltrates the pirate's ship and captures %s.")
+subdue_text[3] = _("The ship's security system turns out to be no match for your crew. You infiltrate the ship and capture %s.")
+subdue_text[4] = _("Your crew infiltrates the ship and captures %s.")
 subdue_text[5] = _("Getting past this ship's security was surprisingly easy. Didn't they know that %s was wanted?")
 
-pay_kill_text    = {}
+pay_kill_text = {}
 pay_kill_text[1] = _("After verifying that you killed %s, an officer hands you your pay.")
 pay_kill_text[2] = _("After verifying that %s is indeed dead, the tired-looking officer smiles and hands you your pay.")
 pay_kill_text[3] = _("The officer seems pleased that %s is finally dead. They thank you and promptly hand you your pay.")
@@ -64,14 +64,14 @@ pay_kill_text[4] = _("The paranoid-looking officer takes you into a locked room,
 pay_kill_text[5] = _("When you ask the officer for your bounty on %s, they sigh, lead you into an office, go through some paperwork, and hand you your pay, mumbling something about how useless the bounty system is.")
 pay_kill_text[6] = _("The officer verifies the death of %s, goes through the necessary paperwork, and hands you your pay, looking bored the entire time.")
 
-pay_capture_text    = {}
+pay_capture_text = {}
 pay_capture_text[1] = _("An officer takes %s into custody and hands you your pay.")
-pay_capture_text[2] = _("The officer seems to think your decision to capture %s alive was foolish. They carefully take the pirate off your hands, taking precautions you think are completely unnecessary, and then hand you your pay")
-pay_capture_text[3] = _("The officer you deal with seems to especially dislike %s. The pirate is taken off your hands and you are handed your pay without a word.")
+pay_capture_text[2] = _("The officer seems to think your decision to capture %s alive was foolish. They carefully take your target off your hands, taking precautions you think are completely unnecessary, and then hand you your pay")
+pay_capture_text[3] = _("The officer you deal with seems to especially dislike %s. Your target is taken off your hands and you are handed your pay without a word.")
 pay_capture_text[4] = _("A fearful-looking officer rushes %s into a secure hold, pays you the appropriate bounty, and then hurries off.")
-pay_capture_text[5] = _("The officer you greet gives you a puzzled look when you say that you captured %s alive. Nonetheless, they politely take the pirate off of your hands and hand you your pay.")
+pay_capture_text[5] = _("The officer you greet gives you a puzzled look when you say that you captured %s alive. Nonetheless, they politely take your target off of your hands and hand you your pay.")
 
-share_text    = {}
+share_text = {}
 share_text[1] = _([["Greetings. I can see that you were trying to collect a bounty on %s. Well, as you can see, I earned the bounty, but I don't think I would have succeeded without your help, so I've transferred a portion of the bounty into your account."]])
 share_text[2] = _([["Sorry about getting in the way of your bounty. I don't really care too much about the money, but I just wanted to make sure the galaxy would be rid of that scum; I've seen the villainy of %s first-hand, you see. So as an apology, I would like to offer you the portion of the bounty you clearly earned. The money will be in your account shortly."]])
 share_text[3] = _([["Hey, thanks for the help back there. I don't know if I would have been able to handle %s alone! Anyway, since you were such a big help, I have transferred what I think is your fair share of the bounty to your bank account."]])
@@ -88,13 +88,13 @@ misn_title[5] = _("Dangerous Dead or Alive Bounty in %s")
 misn_desc   = _("The pirate known as %s was recently seen in the %s system. %s authorities want this pirate dead or alive.")
 
 -- Messages
-msg    = {}
+msg = {}
 msg[1] = _("MISSION FAILURE! %s got away.")
 msg[2] = _("MISSION FAILURE! Another pilot eliminated %s.")
 msg[3] = _("MISSION FAILURE! You have left the %s system.")
 
 osd_title = _("Bounty Hunt")
-osd_msg    = {}
+osd_msg = {}
 osd_msg[1] = _("Fly to the %s system")
 osd_msg[2] = _("Kill or capture %s")
 osd_msg[3] = _("Land in %s territory to collect your bounty")
