@@ -921,7 +921,11 @@ void player_render( double dt )
          !pilot_isFlag( player.p, PILOT_HIDE)) {
 
       /* Render the aiming lines. */
-      if ((player.p->target != PLAYER_ID) && player.p->aimLines) {
+      if ((player.p->target != PLAYER_ID) && player.p->aimLines
+            && !pilot_isFlag(player.p, PILOT_HYPERSPACE)
+            && !pilot_isFlag(player.p, PILOT_DISABLED)
+            && !pilot_isFlag(player.p, PILOT_LANDING)
+            && !pilot_isFlag(player.p, PILOT_TAKEOFF)) {
          target = pilot_get(player.p->target);
          if (target != NULL) {
             r = 200.;
