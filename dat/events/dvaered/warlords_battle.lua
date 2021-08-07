@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Warlords battle">
  <trigger>enter</trigger>
- <chance>5</chance>
+ <chance>100</chance>
  <cond>system.cur():faction() == faction.get("Dvaered") and not player.evtActive ("Warlords battle")</cond>
  <flags>
  </flags>
@@ -71,6 +71,9 @@ end
 
 --Spawns a merchant ship that explains what happens
 function merchant()
+   if faction.get("Dvaered"):playerStanding() < 0 then
+      return
+   end
    trader = pilot.add("Llama", "Civilian", source_system, N_("Civilian Llama"))
    hook.timer(2, "hailme")
 end
@@ -97,8 +100,8 @@ function hailagain()
 end
 
 function attack()
-   local f1 = faction.dynAdd("Dvaered", N_("Invading Warlords"))
-   local f2 = faction.dynAdd("Dvaered", N_("Local Warlords"))
+   local f1 = faction.dynAdd("Dvaered", N_("Invaders"))
+   local f2 = faction.dynAdd("Dvaered", N_("Locals"))
    f1:dynEnemy(f2)
    f2:dynEnemy(f1)
 
@@ -143,9 +146,10 @@ function attack()
    defenders = addShips({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
-            "Dvaered Vendetta"}, f2, source_system,
+            "Dvaered Vendetta"}, f2, source_planet,
          N_("Local Warlord Force"))
-   godd = pilot.add("Dvaered Goddard", f2, source_system, N_("Local Warlord"))
+   godd = pilot.add("Dvaered Goddard", f2, source_planet, N_("Local Warlord"))
+   defenders[#defenders + 1] = godd
 
    defenders = arrangeList(defenders)
    form = formation.random_key()
@@ -198,7 +202,7 @@ function defenderAttacked(victim, attacker)
    if attacker == player.pilot() or attacker:leader() == player.pilot() then
       for i, p in ipairs(defenders) do
          hook.rm(defAttHook[i])
-         if p ~= nil and p:exists() then
+         if p:exists() then
             p:setHostile()
          end
       end
@@ -218,7 +222,7 @@ function attackerAttacked(victim, attacker)
    if attacker == player.pilot() or attacker:leader() == player.pilot() then
       for i, p in ipairs(attackers) do
          hook.rm(attAttHook[i])
-         if p ~= nil and p:exists() then
+         if p:exists() then
             p:setHostile()
          end
       end
@@ -248,7 +252,8 @@ function attackerDeath(victim, attacker)
          batInProcess = false -- Battle ended
 
          --Time to get rewarded
-         if side == "defender" then
+         if side == "defender"
+               and faction.get("Dvaered"):playerStanding() >= 0 then
             warrior = chooseInList(defenders)
             computeReward(true, attkilled)
             hook.timer(1.0, "hailmeagain")
@@ -272,7 +277,8 @@ function defenderDeath(victim, attacker)
          batInProcess = false -- Battle ended
 
          --Time to get rewarded
-         if side == "attacker" then
+         if side == "attacker"
+               and faction.get("Dvaered"):playerStanding() >= 0 then
             warrior = chooseInList(attackers)
             computeReward(true, defkilled)
             hook.timer(1.0, "hailmeagain")
