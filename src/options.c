@@ -832,18 +832,18 @@ static void opt_setAudioLevel( unsigned int wid, char *str )
    double vol;
 
    vol = window_getFaderValue(wid, str);
-   if (strcmp(str,"fadSound")==0) {
+   if (strcmp(str, "fadSound") == 0) {
       sound_volume(vol);
       widget = "txtSound";
-      opt_audioLevelStr( buf, sizeof(buf), 0, vol );
+      opt_audioLevelStr(buf, sizeof(buf), 0, vol);
    }
    else {
       music_volume(vol);
       widget = "txtMusic";
-      opt_audioLevelStr( buf, sizeof(buf), 1, vol );
+      opt_audioLevelStr(buf, sizeof(buf), 1, vol);
    }
 
-   window_modifyText( wid, widget, buf );
+   window_modifyText(wid, widget, buf);
 }
 
 
@@ -858,16 +858,14 @@ static void opt_setAudioLevel( unsigned int wid, char *str )
 static void opt_audioLevelStr( char *buf, int max, int type, double pos )
 {
    double vol, magic;
-   const char *str;
 
-   str = type ? _("Music Volume") : _("Sound Volume");
    vol = type ? music_getVolumeLog() : sound_getVolumeLog();
 
    if (vol == 0.)
-      snprintf( buf, max, _("%s: Muted"), str );
+      snprintf(buf, max, _("Muted"));
    else {
       magic = -48. / log(0.00390625); /* -48 dB minimum divided by logarithm of volume floor. */
-      snprintf( buf, max, _("%s: %.2f (%.0f dB)"), str, pos, log(vol) * magic );
+      snprintf(buf, max, _("%.2f (%.0f dB)"), pos, log(vol) * magic);
    }
 }
 
@@ -909,29 +907,32 @@ static void opt_audio( unsigned int wid )
    /* Sound levels. */
    x = 20 + cw + 20;
    y = -60;
-   window_addText( wid, x, y, cw-40, 20, 0, "txtSVolume",
-         NULL, NULL, _("Volume Levels") );
-   y -= 30;
 
    /* Sound fader. */
-   window_addText( wid, x, y, cw, 20, 1, "txtSound",
-         &gl_smallFont, NULL, NULL );
+   window_addText(wid, x, y, cw-40, 20, 0, "txtSSoundVolume",
+         NULL, NULL, _("Sound Volume"));
    y -= 20;
-   window_addFader( wid, x, y, cw, 20, "fadSound", 0., 1.,
-         sound_getVolume(), opt_setAudioLevel );
-   window_faderScrollDone( wid, "fadSound", opt_beep );
-   y -= 40;
+   window_addText(wid, x, y, cw, 20, 1, "txtSound",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadSound", 0., 1.,
+         sound_getVolume(), opt_setAudioLevel);
+   window_faderScrollDone(wid, "fadSound", opt_beep);
+   y -= 60;
 
    /* Music fader. */
-   window_addText( wid, x, y, cw, 20, 1, "txtMusic",
-         &gl_smallFont, NULL, NULL );
+   window_addText(wid, x, y, cw-40, 20, 0, "txtSMusicVolume",
+         NULL, NULL, _("Music Volume"));
    y -= 20;
-   window_addFader( wid, x, y, cw, 20, "fadMusic", 0., 1.,
-         music_getVolume(), opt_setAudioLevel );
+   window_addText(wid, x, y, cw, 20, 1, "txtMusic",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadMusic", 0., 1.,
+         music_getVolume(), opt_setAudioLevel);
 
    /* Restart text. */
-   window_addText( wid, 20, 20 + BUTTON_HEIGHT,
-         w - 40, 30, 0, "txtRestart", &gl_smallFont, NULL, NULL );
+   window_addText(wid, 20, 20 + BUTTON_HEIGHT,
+         w - 40, 30, 0, "txtRestart", &gl_smallFont, NULL, NULL);
 
    opt_audioUpdate(wid);
 }
@@ -1308,8 +1309,9 @@ static void opt_video( unsigned int wid )
    window_addText( wid, x, y, 100, 20, 0, "txtSFeatures",
          NULL, NULL, _("Features") );
    y -= 30;
-   window_addCheckbox( wid, x, y, cw, 20,
-         "chkMinimize", _("Minimize on focus loss"), NULL, conf.minimize );
+   window_addCheckbox(wid, x, y, cw, 20,
+         "chkMinimize", _("Minimize on fullscreen focus loss"),
+         NULL, conf.minimize);
    y -= 25;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkColorblind", _("Colorblind mode"), opt_checkColorblind,
