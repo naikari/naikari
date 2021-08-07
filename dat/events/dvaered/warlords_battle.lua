@@ -1,13 +1,13 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <event name="Warlords battle">
-  <trigger>enter</trigger>
-  <chance>5</chance>
-  <cond>system.cur():faction() == faction.get("Dvaered") and not player.evtActive ("Warlords battle")</cond>
-  <flags>
-  </flags>
- </event>
- --]]
+ <trigger>enter</trigger>
+ <chance>5</chance>
+ <cond>system.cur():faction() == faction.get("Dvaered") and not player.evtActive ("Warlords battle")</cond>
+ <flags>
+ </flags>
+</event>
+--]]
 --  A battle between two Dvaered warlords. The player can join one of them and get a reward
 
 require "fleethelper"
@@ -16,27 +16,23 @@ require "numstring"
 local formation = require "formation"
 
 
-title = {}
-text = {}
+explain_text = _([["Hey, you," the captain of the ship says. "You don't seem to know what's going to happen here. A mighty warlord from %s is going to attack %s. You shouldn't stay here, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship and they lose the battle, the other warlord will reward you. But if the warlord you attacked wins, you will be hunted down."]])
 
-title[1] = _("A battle is about to begin")
-text[1] = _([["Hey, you," the captain of the ship says. "You seem not to know what is going to happen here: a mighty warlord from %s is going to attack %s. You shouldn't stay there, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship, and he loses the battle, the other warlord will reward you. But if he wins, you will be hunted down."]])
+reward_text = _([["Hello captain," a Dvaered officer says, "You helped us in this battle. I am authorized to give you %s as a reward."]])
 
-title[2] = _("Here comes your reward")
-text[2] = _([["Hello captain," a Dvaered officer says, "You helped us in this battle. I am authorized to give you %s as a reward."]])
 
-function create ()
+function create()
    source_system = system.cur()
    jumphook = hook.jumpin("begin")
    landhook = hook.land("leave")
 end
 
-function begin ()  
+function begin()  
    thissystem = system.cur()
 
    -- thissystem and source_system must be adjacent (for those who use player.teleport)
    areAdj = false
-   for _,s in ipairs( source_system:adjacentSystems() ) do
+   for _,s in ipairs(source_system:adjacentSystems()) do
       if thissystem == s then areAdj = true end
    end
 
@@ -64,10 +60,9 @@ function begin ()
 
    source_planet = cand[rnd.rnd(1,#cand)]
 
-   hook.timer(3.0, "merchant")
-   hook.timer(7.0, "attack")
-   hook.timer(12.0, "defense")
-   inForm       = true -- People are in formation
+   hook.timer(3, "merchant")
+   hook.timer(12, "attack")
+   inForm = true -- People are in formation
    batInProcess = true -- Battle is happening
 
    hook.rm(jumphook)
@@ -75,10 +70,8 @@ function begin ()
 end
 
 --Spawns a merchant ship that explains what happens
-function merchant ()
-   merShips = {"Trader Koala", "Trader Mule", "Trader Rhino", "Trader Llama"}
-   mship = merShips[rnd.rnd(1,#merShips)]
-   trader = pilot.addFleet(mship, source_system)[1]
+function merchant()
+   trader = pilot.add("Llama", "Civilian", source_system, N_("Civilian Llama"))
    hook.timer(2, "hailme")
 end
 
@@ -89,7 +82,7 @@ end
 
 function hail()
    hook.rm(hailhook)
-   tk.msg(title[1], text[1]:format(source_system:name(), source_planet:name()))
+   tk.msg("", explain_text:format(source_system:name(), source_planet:name()))
 end
 
 function hailmeagain()
@@ -99,45 +92,31 @@ end
 
 function hailagain()
    hook.rm(hailhook)
-   tk.msg(title[2], text[2]:format(creditstring(reward)))
+   tk.msg("", reward_text:format(creditstring(reward)))
    player.pay(reward)
 end
 
-function attack ()
+function attack()
+   local f1 = faction.dynAdd("Dvaered", N_("Invading Warlords"))
+   local f2 = faction.dynAdd("Dvaered", N_("Local Warlords"))
+   f1:dynEnemy(f2)
+   f2:dynEnemy(f1)
+
    attAttHook = {}
-   local n = rnd.rnd(3,6)
 
-   attackers = addShips(n, {"Dvaered Vendetta", "Dvaered Ancestor"}, "Dvaered", source_system) -- Give them Dvaered equipment
-   attackers[2*n+1] = pilot.add( "Dvaered Phalanx", "Dvaered", source_system )
-   attackers[2*n+2] = pilot.add( "Dvaered Phalanx", "Dvaered", source_system )
-   attackers[2*n+3] = pilot.add( "Dvaered Vigilance", "Dvaered", source_system )
-   attackers[2*n+4] = pilot.add("Rhino", "Dvaered", source_system) --some transport ships
-   attackers[2*n+5] = pilot.add("Rhino", "Dvaered", source_system)
-   attackers[2*n+6] = pilot.add("Rhino", "Dvaered", source_system)
-   attackers[2*n+7] = pilot.add("Rhino", "Dvaered", source_system)
-   goda             = pilot.add( "Dvaered Goddard", "Dvaered", source_system )
-   attackers[2*n+8] = goda
+   attackers = addShips({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
+            rnd.rnd(3, 10)},
+         {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
+            "Dvaered Vendetta"}, f1, source_system,
+         N_("Invading Warlord Force"))
+   goda = pilot.add("Dvaered Goddard", f1, source_system,
+         N_("Invading Warlord"))
+   attackers[#attackers + 1] = goda
 
-   -- The transport ships tend to run away
-   attackers[2*n+4]:memory().shield_run = 70
-   attackers[2*n+5]:memory().shield_run = 70
-   attackers[2*n+6]:memory().shield_run = 70
-   attackers[2*n+7]:memory().shield_run = 70
-
-   attackers[2*n+4]:memory().shield_return = 99
-   attackers[2*n+5]:memory().shield_return = 99
-   attackers[2*n+6]:memory().shield_return = 99
-   attackers[2*n+7]:memory().shield_return = 99
-
-   attackers = arrangeList(attackers)  --The heaviest ships will surround the leader
+   attackers = arrangeList(attackers)
    form = formation.random_key()
 
-   -- I use Thugs and Associates based factions because they won't interact with anybody
-   f1 = faction.dynAdd( "Thugs", "Invaders", _("Warlords") )
-
    for i, j in ipairs(attackers) do
-      j:rename("Invader")
-      j:setFaction("Invaders")
       j:memory().formation = form
       j:memory().aggressive = false
       
@@ -153,34 +132,25 @@ function attack ()
 
    attnum = table.getn(attackers)
    attdeath = 0
-   attkilled = 0  --mass of the player's victims
+   attkilled = 0 -- mass of the player's victims
 
    local lead = getLeader(attackers)
    lead:control()
    lead:land(source_planet)
-end
 
-function defense ()
    defAttHook = {}
-   local n = rnd.rnd(3,6)
 
-   defenders = addShips(n, {"Dvaered Vendetta", "Dvaered Ancestor"}, "Dvaered", source_planet)
-   defenders[2*n+1] = pilot.add( "Dvaered Phalanx", "Dvaered", source_planet )
-   defenders[2*n+2] = pilot.add( "Dvaered Phalanx", "Dvaered", source_planet )
-   defenders[2*n+3] = pilot.add( "Dvaered Vigilance", "Dvaered", source_planet )
-   godd             = pilot.add( "Dvaered Goddard", "Dvaered", source_planet )
-   defenders[2*n+4] = godd
+   defenders = addShips({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
+            rnd.rnd(3, 10)},
+         {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
+            "Dvaered Vendetta"}, f2, source_system,
+         N_("Local Warlord Force"))
+   godd = pilot.add("Dvaered Goddard", f2, source_system, N_("Local Warlord"))
 
-   defenders = arrangeList(defenders)  --The heaviest ships will surround the leader
+   defenders = arrangeList(defenders)
    form = formation.random_key()
 
-   f2 = faction.dynAdd( "Associates", "Locals", _("Warlords") )
-   faction.dynEnemy (f1, f2)
-   faction.dynEnemy (f2, f1)
-
    for i, j in ipairs(defenders) do
-      j:rename("Local Warlord's Force")
-      j:setFaction("Locals")
       j:memory().formation = form
       j:memory().aggressive = false
 
@@ -204,7 +174,8 @@ function defense ()
    dlead:control()
    alead:attack(dlead)
    dlead:attack(alead)
-   hook.timer(0.5, "proximity", {anchor = alead, radius = 5000, funcname = "startBattle", focus = dlead})
+   hook.timer(0.5, "proximity", {anchor=alead, radius=5000,
+            funcname="startBattle", focus=dlead})
 end
 
 -- Both fleets are close enough: start the epic battle
@@ -253,7 +224,7 @@ function attackerAttacked(victim, attacker)
       end
       if side == "attacker" then
          side = nil
-         elseif side == nil then
+      elseif side == nil then
          side = "defender"
       end
    end
@@ -367,5 +338,5 @@ function arrangeList(list)
 end
 
 function leave ()
-    evt.finish()
+   evt.finish()
 end
