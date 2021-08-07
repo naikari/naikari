@@ -1793,7 +1793,8 @@ void factions_clearDynamic (void)
 int faction_dynAdd( int base, const char* name, const char* display, const char* ai )
 {
    Faction *f, *bf;
-   int i, *tmp;
+   int dynfac;
+   int i;
 
    f = &array_grow( &faction_stack );
    memset( f, 0, sizeof(Faction) );
@@ -1807,6 +1808,9 @@ int faction_dynAdd( int base, const char* name, const char* display, const char*
    f->sched_env   = LUA_NOREF;
    f->flags       = FACTION_STATIC | FACTION_INVISIBLE | FACTION_DYNAMIC | FACTION_KNOWN;
    faction_addStandingScript( f, "static" );
+
+   dynfac = faction_get(f->name);
+
    if (base>=0) {
       bf = &faction_stack[base];
 
@@ -1816,12 +1820,12 @@ int faction_dynAdd( int base, const char* name, const char* display, const char*
          f->logo = gl_dupTexture( bf->logo );
 
       for (i=0; i<array_size(bf->allies); i++) {
-         tmp = &array_grow( &f->allies );
-         *tmp = i;
+         faction_addAlly(dynfac, bf->allies[i]);
+         faction_addAlly(bf->allies[i], dynfac);
       }
       for (i=0; i<array_size(bf->enemies); i++) {
-         tmp = &array_grow( &f->enemies );
-         *tmp = i;
+         faction_addEnemy(dynfac, bf->enemies[i]);
+         faction_addEnemy(bf->enemies[i], dynfac);
       }
 
       f->player_def = bf->player_def;
