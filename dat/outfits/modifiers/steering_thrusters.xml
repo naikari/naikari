@@ -10,8 +10,8 @@
   <gfx_store>thruster.webp</gfx_store>
  </general>
  <specific type="modification">
-  <turn>10</turn>
-  <turn_mod>20</turn_mod>
+  <turn>20</turn>
+  <turn_mod>50</turn_mod>
   <energy_regen_malus>1</energy_regen_malus>
  </specific>
 </outfit>
