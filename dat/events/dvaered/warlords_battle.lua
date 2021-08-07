@@ -86,6 +86,7 @@ end
 function hail()
    hook.rm(hailhook)
    tk.msg("", explain_text:format(source_system:name(), source_planet:name()))
+   player.commClose()
 end
 
 function hailmeagain()
@@ -97,6 +98,7 @@ function hailagain()
    hook.rm(hailhook)
    tk.msg("", reward_text:format(creditstring(reward)))
    player.pay(reward)
+   player.commClose()
 end
 
 function attack()
