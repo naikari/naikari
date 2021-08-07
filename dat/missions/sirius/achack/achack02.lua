@@ -11,10 +11,10 @@
   <chance>10</chance>
   <location>Bar</location>
   <faction>Sirius</faction>
-  <notes>
-   <campaign>Academy Hack</campaign>
-  </notes>
  </avail>
+ <notes>
+  <campaign>Academy Hack</campaign>
+ </notes>
 </mission>
 --]]
 --[[
