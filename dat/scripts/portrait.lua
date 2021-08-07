@@ -1,8 +1,9 @@
 --[[--
-Functions for handling portraits in Naev.
+Functions for handling portraits in Naikari.
 
 @module portrait
 --]]
+
 --[[
 
    Portrait Common
