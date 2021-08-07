@@ -350,25 +350,29 @@ msg_jmp = {
 -- ALL NPCs have a chance to say one of these lines instead of a lore message.
 -- So, make sure the hints are always faction neutral.
 msg_mhint = {
-   {"Shadowrun", _([["Apparently there's a woman who regularly turns up on planets in and around the Klantar system. I wonder what she's looking for."]])},
+   {"Baron", _([["There's this obnoxious baron who bought the entire Ulios system for himself. I hear he flies a Proteron Kahan from before the Incident and sends people he hires on wild goose chases to find all sorts of weird trinkets. I don't envy the folks that work for him; he sounds like a real pain."]])},
+   {"Empire Recruitment", _([["Apparently the Empire is trying to recruit new pilots into their shipping division. That might be a worthwhile opportunity if you want to make some credits!"]])},
    {"Hitman", _([["There are often shady characters hanging out in the Alteris system. I'd stay away from there if I were you, someone might offer you a dirty kind of job!"]])},
+   {"Racing Skills 1", _([["There's a bunch of folks who organize races from time to time. You have to fly a Yacht class ship to take part in them. I totally want to join one of those races some day."]])},
+   {"Shadowrun", _([["Apparently there's a woman who regularly turns up on planets in and around the Klantar system. I wonder what she's looking for."]])},
    {"Za'lek Shipping Delivery", _([["So there's some Za'lek scientist looking for a cargo monkey out on Niflheim in the Dohriabi system. I hear it's pretty good money."]])},
 }
 
 -- Event hint messages. Each element should be a table containing the event name and the corresponding hint.
 -- Make sure the hints are always faction neutral.
 msg_ehint = {
-   {"FLF/DV Derelicts", _([["The FLF and the Dvaered sometimes clash in Surano. If you go there, you might find something of interest… Or not."]])},
+   {"FLF/DV Derelicts", _([["The FLF and the Dvaered sometimes clash in Surano. If you go there, you might find something of interest… or not."]])},
 }
 
 -- Mission after-care messages. Each element should be a table containing the mission name and a line of text.
 -- This text will be said by NPCs once the player has completed the mission in question.
 -- Make sure the messages are always faction neutral.
 msg_mdone = {
-   {"Nebula Satellite", _([["Heard some reckless scientists got someone to put a satellite inside the nebula for them. I thought everyone with half a brain knew to stay out of there, but oh well."]])},
-   {"Shadow Vigil", _([["Did you hear? There was some big incident during a diplomatic meeting between the Empire and the Dvaered. Nobody knows what exactly happened, but both diplomats died. Now both sides are accusing the other of foul play. Could get ugly."]])},
-   {"Baron", _([["Some thieves broke into a museum on Varia and stole a holopainting! Most of the thieves were caught, but the one who carried the holopainting offworld is still at large. No leads. Damn criminals…"]])},
+   {"Baron", _([["Some thieves broke into a museum on Varia and stole a holopainting! Most of the thieves were caught, but the one who carried the holopainting offworld is still at large. No leads."]])},
    {"Destroy the FLF base!", _([["The Dvaered scored a major victory against the FLF recently. They went into Sigur and blew the hidden base there to bits! I bet that was a serious setback for the FLF."]])},
+   {"Nebula Satellite", _([["Heard some reckless scientists got someone to put a satellite inside the nebula for them. I thought everyone with half a brain knew to stay out of there, but oh well."]])},
+   {"Racing Skills 2", _([["You won one of the big races? That's awesome! I'd love to join a race some day."]])},
+   {"Shadow Vigil", _([["Did you hear? There was some big incident during a diplomatic meeting between the Empire and the Dvaered. Nobody knows what exactly happened, but both diplomats died. Now both sides are accusing the other of foul play. Could get ugly."]])},
 }
 
 -- Event after-care messages. Each element should be a table containing the event name and a line of text.
