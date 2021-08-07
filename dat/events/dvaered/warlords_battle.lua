@@ -212,9 +212,6 @@ function defenderAttacked(victim, attacker)
          side = "attacker"
       end
    end
-   if inForm then
-      startBattle()
-   end
 end
 
 function attackerAttacked(victim, attacker)
@@ -231,9 +228,6 @@ function attackerAttacked(victim, attacker)
       elseif side == nil then
          side = "defender"
       end
-   end
-   if inForm then
-      startBattle()
    end
 end
 
