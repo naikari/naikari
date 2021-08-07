@@ -56,7 +56,10 @@ static int opt_restart = 0;
 
 /* Initial values (reverted to on cancel). */
 static int opt_orig_colorblind;
+static double opt_orig_scalefactor;
 static double opt_orig_bg_brightness;
+static double opt_orig_zoom_far;
+static double opt_orig_zoom_near;
 
 
 /*
@@ -89,6 +92,8 @@ static int opt_videoSave( unsigned int wid, char *str );
 static void opt_videoDefaults( unsigned int wid, char *str );
 static void opt_getVideoMode( int *w, int *h, int *fullscreen );
 static void opt_setScalefactor( unsigned int wid, char *str );
+static void opt_setZoomFar( unsigned int wid, char *str );
+static void opt_setZoomNear( unsigned int wid, char *str );
 static void opt_setBGBrightness( unsigned int wid, char *str );
 static void opt_checkColorblind( unsigned int wid, char *str );
 /* Audio. */
@@ -123,7 +128,7 @@ void opt_menu (void)
 
    /* Dimensions. */
    w = 720;
-   h = 600;
+   h = 640;
 
    /* Create window and tabs. */
    opt_wid = window_create( "wdwOptions", _("Options"), -1, -1, w, h );
@@ -154,20 +159,24 @@ void opt_menu (void)
  */
 static void opt_OK( unsigned int wid, char *str )
 {
+   (void) wid;
    int ret, prompted_restart;
 
    prompted_restart = opt_restart;
    ret = 0;
-   ret |= opt_gameplaySave( opt_windows[ OPT_WIN_GAMEPLAY ], str);
-   ret |= opt_audioSave(    opt_windows[ OPT_WIN_AUDIO ], str);
-   ret |= opt_videoSave(    opt_windows[ OPT_WIN_VIDEO ], str);
+   ret |= opt_gameplaySave(opt_windows[OPT_WIN_GAMEPLAY], str);
+   ret |= opt_audioSave(opt_windows[OPT_WIN_AUDIO], str);
+   ret |= opt_videoSave(opt_windows[OPT_WIN_VIDEO], str);
 
    if (opt_restart && !prompted_restart)
-      dialogue_msgRaw( _("Warning"), _("Restart Naev for changes to take effect.") );
+      dialogue_msgRaw(_("Warning"),
+         _("Restart Naikari for changes to take effect."));
 
    /* Close window if no errors occurred. */
-   if (!ret)
-      opt_close(wid, str);
+   if (!ret) {
+      window_destroy(opt_wid);
+      opt_wid = 0;
+   }
 }
 
 /**
@@ -186,9 +195,12 @@ static void opt_close( unsigned int wid, char *name )
    /* Set others to original values as needed. */
    conf.colorblind = opt_orig_colorblind;
    gl_colorblind(conf.colorblind);
+   conf.scalefactor = opt_orig_scalefactor;
    conf.bg_brightness = opt_orig_bg_brightness;
+   conf.zoom_far = opt_orig_zoom_far;
+   conf.zoom_near = opt_orig_zoom_near;
 
-   window_destroy( opt_wid );
+   window_destroy(opt_wid);
    opt_wid = 0;
 }
 
@@ -243,7 +255,7 @@ static char** lang_list( int *n )
 static void opt_gameplay( unsigned int wid )
 {
    (void) wid;
-   char buf[4096];
+   char buf[STRMAX];
    char **paths;
    int cw;
    int w, h, y, x, by, l, n, i;
@@ -1183,7 +1195,10 @@ static void opt_video( unsigned int wid )
 
    /* Save originals. */
    opt_orig_colorblind = conf.colorblind;
+   opt_orig_scalefactor = conf.scalefactor;
    opt_orig_bg_brightness = conf.bg_brightness;
+   opt_orig_zoom_far = conf.zoom_far;
+   opt_orig_zoom_near = conf.zoom_near;
 
    /* Get size. */
    window_dimWindow( wid, &w, &h );
@@ -1322,9 +1337,32 @@ static void opt_video( unsigned int wid )
    opt_setMapOverlayOpacity( wid, "fadMapOverlayOpacity" );
    y -= 40;
 
+   window_addText(wid, x, y, cw-20, 20, 0, "txtAZoomFar",
+         NULL, NULL, _("Far Zoom"));
+   y -= 20;
+   window_addText(wid, x, y, cw-20, 20, 1, "txtZoomFar",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw-20, 20, "fadZoomFar", 0.1, 2.,
+         conf.zoom_far, opt_setZoomFar);
+   opt_setMapOverlayOpacity(wid, "fadZoomFar");
+   opt_setZoomFar(wid, "fadZoomFar");
+   y -= 40;
+
+   window_addText(wid, x, y, cw-20, 20, 0, "txtAZoomNear",
+         NULL, NULL, _("Near Zoom"));
+   y -= 20;
+   window_addText(wid, x, y, cw-20, 20, 1, "txtZoomNear",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw-20, 20, "fadZoomNear", 0.1, 2.,
+         conf.zoom_near, opt_setZoomNear);
+   opt_setZoomNear(wid, "fadZoomNear");
+   y -= 40;
+
    /* Restart text. */
-   window_addText( wid, 20, 20 + BUTTON_HEIGHT,
-         w - 40, 30, 0, "txtRestart", &gl_smallFont, NULL, NULL );
+   window_addText(wid, 20, 20 + BUTTON_HEIGHT,
+         w - 40, 30, 0, "txtRestart", &gl_smallFont, NULL, NULL);
 }
 
 /**
@@ -1401,8 +1439,12 @@ static int opt_videoSave( unsigned int wid, char *str )
             conf.minimize ? "1" : "0" );
    }
 
-   /* Map overlay opacity. */
+   /* Faders. */
+   conf.scalefactor = window_getFaderValue(wid, "fadScale");
+   conf.bg_brightness = window_getFaderValue(wid, "fadBGBrightness");
    conf.map_overlay_opacity = window_getFaderValue(wid, "fadMapOverlayOpacity");
+   conf.zoom_far = window_getFaderValue(wid, "fadZoomFar");
+   conf.zoom_near = window_getFaderValue(wid, "fadZoomNear");
 
    return 0;
 }
@@ -1508,22 +1550,26 @@ static void opt_videoDefaults( unsigned int wid, char *str )
 
    /* Restore settings. */
    /* Inputs. */
-   snprintf( buf, sizeof(buf), "%dx%d", RESOLUTION_W_DEFAULT, RESOLUTION_H_DEFAULT );
-   window_setInput( wid, "inpRes", buf );
-   snprintf( buf, sizeof(buf), "%d", FPS_MAX_DEFAULT );
-   window_setInput( wid, "inpFPS", buf );
+   snprintf(buf, sizeof(buf), "%dx%d", RESOLUTION_W_DEFAULT, RESOLUTION_H_DEFAULT);
+   window_setInput(wid, "inpRes", buf);
+   snprintf(buf, sizeof(buf), "%d", FPS_MAX_DEFAULT);
+   window_setInput(wid, "inpFPS", buf);
 
    /* Checkboxes. */
-   window_checkboxSet( wid, "chkFullscreen", FULLSCREEN_DEFAULT );
-   window_checkboxSet( wid, "chkVSync", VSYNC_DEFAULT );
-   window_checkboxSet( wid, "chkFPS", SHOW_FPS_DEFAULT );
-   window_checkboxSet( wid, "chkMinimize", MINIMIZE_DEFAULT );
+   window_checkboxSet(wid, "chkFullscreen", FULLSCREEN_DEFAULT);
+   window_checkboxSet(wid, "chkVSync", VSYNC_DEFAULT);
+   window_checkboxSet(wid, "chkFPS", SHOW_FPS_DEFAULT);
+   window_checkboxSet(wid, "chkMinimize", MINIMIZE_DEFAULT);
 
    /* Faders. */
-   window_faderSetBoundedValue( wid, "fadScale", SCALE_FACTOR_DEFAULT );
-   window_faderSetBoundedValue( wid, "fadBGBrightness", BG_BRIGHTNESS_DEFAULT );
-   window_faderValue( wid, "fadMapOverlayOpacity", MAP_OVERLAY_OPACITY_DEFAULT );
+   window_faderSetBoundedValue(wid, "fadScale", SCALE_FACTOR_DEFAULT);
+   window_faderSetBoundedValue(wid, "fadBGBrightness", BG_BRIGHTNESS_DEFAULT);
+   window_faderSetBoundedValue(wid, "fadMapOverlayOpacity",
+         MAP_OVERLAY_OPACITY_DEFAULT);
+   window_faderSetBoundedValue(wid, "fadZoomFar", ZOOM_FAR_DEFAULT);
+   window_faderSetBoundedValue(wid, "fadZoomNear", ZOOM_NEAR_DEFAULT);
 }
+
 
 /**
  * @brief Callback to set the scaling factor.
@@ -1535,13 +1581,64 @@ static void opt_setScalefactor( unsigned int wid, char *str )
 {
    char buf[STRMAX_SHORT];
    double scale = window_getFaderValue(wid, str);
-   scale = round(scale * 10) / 10;     // Reasonable precision. Clearer value.
-   if (FABS(conf.scalefactor-scale) > 1e-4)
+
+   if (FABS(conf.scalefactor - scale) > 1e-4)
       opt_needRestart();
    conf.scalefactor = scale;
-   snprintf( buf, sizeof(buf), _("%.0f%%"), conf.scalefactor * 100 );
-   window_modifyText( wid, "txtScale", buf );
+   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.scalefactor * 100.);
+   window_modifyText(wid, "txtScale", buf);
 }
+
+
+/**
+ * @brief Callback to set the far zoom.
+ *
+ *    @param wid Window calling the callback.
+ *    @param str Name of the widget calling the callback.
+ */
+static void opt_setZoomFar( unsigned int wid, char *str )
+{
+   char buf[STRMAX_SHORT];
+   double zoom = window_getFaderValue(wid, str);
+
+   if (FABS(conf.zoom_far - zoom) > 1e-4)
+      opt_needRestart();
+
+   conf.zoom_far = zoom;
+   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_far * 100.);
+   window_modifyText(wid, "txtZoomFar", buf);
+
+   if (conf.zoom_far > conf.zoom_near) {
+      window_faderSetBoundedValue(wid, "fadZoomNear", conf.zoom_far);
+      opt_setZoomNear(wid, "fadZoomNear");
+   }
+}
+
+
+/**
+ * @brief Callback to set the far zoom.
+ *
+ *    @param wid Window calling the callback.
+ *    @param str Name of the widget calling the callback.
+ */
+static void opt_setZoomNear( unsigned int wid, char *str )
+{
+   char buf[STRMAX_SHORT];
+   double zoom = window_getFaderValue(wid, str);
+
+   if (FABS(conf.zoom_near - zoom) > 1e-4)
+      opt_needRestart();
+
+   conf.zoom_near = zoom;
+   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_near * 100.);
+   window_modifyText(wid, "txtZoomNear", buf);
+
+   if (conf.zoom_near < conf.zoom_far) {
+      window_faderSetBoundedValue(wid, "fadZoomFar", conf.zoom_near);
+      opt_setZoomFar(wid, "fadZoomFar");
+   }
+}
+
 
 /**
  * @brief Callback to set the background brightness.
@@ -1552,10 +1649,10 @@ static void opt_setScalefactor( unsigned int wid, char *str )
 static void opt_setBGBrightness( unsigned int wid, char *str )
 {
    char buf[STRMAX_SHORT];
-   double scale = window_getFaderValue(wid, str);
-   conf.bg_brightness = scale;
-   snprintf( buf, sizeof(buf), _("%.0f%%"), 100.*conf.bg_brightness );
-   window_modifyText( wid, "txtBGBrightness", buf );
+
+   conf.bg_brightness = window_getFaderValue(wid, str);
+   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.bg_brightness * 100.);
+   window_modifyText(wid, "txtBGBrightness", buf);
 }
 
 
