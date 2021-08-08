@@ -93,9 +93,6 @@ function scom.spawn( pilots, faction, guerilla )
             p:setLeader(leader)
          end
       end
-      if pilots.__doscans then
-         mem.doscans = true
-      end
       spawned[ #spawned+1 ] = { pilot=p, presence=presence }
    end
    return spawned

@@ -16,9 +16,6 @@ end
 local function add_rhino( pilots )
    scom.addPilot( pilots, "Rhino", 70, {name=N_("Trader Rhino")})
 end
-local function add_shark( pilots )
-   scom.addPilot( pilots, "Shark", 15, {name=N_("Trader Shark"), ai="mercenary"})
-end
 
 
 -- @brief Spawns a small trade fleet.
@@ -65,9 +62,6 @@ function spawn_squad ()
             add_koala( pilots )
          end
       end
-      for i=1,rnd.rnd(1,3) do
-         add_shark( pilots )
-      end
    elseif r < 0.8 then
       add_mule( pilots )
       for i=1,rnd.rnd(3,6) do
@@ -79,9 +73,6 @@ function spawn_squad ()
          else
             add_quicksilver( pilots )
          end
-      end
-      for i=1,rnd.rnd(1,3) do
-         add_shark( pilots )
       end
    else
       for i=1,rnd.rnd(3,5) do

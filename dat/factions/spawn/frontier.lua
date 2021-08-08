@@ -1,18 +1,19 @@
 local scom = require "factions.spawn.lib.common"
+local merc = require "factions.spawn.lib.mercenary"
 
 -- @brief Spawns a small patrol fleet.
 function spawn_patrol ()
-   local pilots = { __doscans = true }
+   local pilots = {}
    local r = rnd.rnd()
 
    if r < 0.5 then
-      scom.addPilot( pilots, "Lancelot", 30 )
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
    elseif r < 0.8 then
-      scom.addPilot( pilots, "Hyena", 20 )
-      scom.addPilot( pilots, "Lancelot", 30 )
+      scom.addPilot(pilots, "Hyena", 20, {name=N_("Frontier Hyena")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
    else
-      scom.addPilot( pilots, "Hyena", 20 )
-      scom.addPilot( pilots, "Ancestor", 25 )
+      scom.addPilot(pilots, "Hyena", 20, {name=N_("Frontier Hyena")})
+      scom.addPilot(pilots, "Ancestor", 25, {name=N_("Frontier Ancestor")})
    end
 
    return pilots
@@ -22,19 +23,15 @@ end
 -- @brief Spawns a medium sized squadron.
 function spawn_squad ()
    local pilots = {}
-   if rnd.rnd() < 0.5 then
-      pilots.__doscans = true
-   end
-
    local r = rnd.rnd()
 
    if r < 0.5 then
-      scom.addPilot( pilots, "Lancelot", 30 )
-      scom.addPilot( pilots, "Phalanx", 55 )
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Phalanx", 55, {name=N_("Frontier Phalanx")})
    else
-      scom.addPilot( pilots, "Lancelot", 30 )
-      scom.addPilot( pilots, "Lancelot", 30 )
-      scom.addPilot( pilots, "Ancestor", 25 )
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Ancestor", 25, {name=N_("Frontier Ancestor")})
    end
 
    return pilots

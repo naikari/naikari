@@ -4,34 +4,14 @@ local scom = require "factions.spawn.lib.common"
 -- @brief Spawns a single small ship.
 function spawn_patrol ()
    local pilots = {}
-
-   -- Compute the hostile presence
-   local host = 0
-   for k,fact in pairs(faction.get("Civilian"):enemies()) do
-      host = host + system.cur():presence(fact)
-   end
-   host = host / system.cur():presence(faction.get("Civilian"))
-
-   -- The more hostiles, the less advertisers
-   local prop = .25 -- Advertisers proportion at host = 0
-   local h0   = 3  -- At this hostile presence, advertiser prop is 5% of original proportion
-   local r = rnd.rnd() + prop*(1-math.exp(-3*host/h0))
-
    local civships = {
-         {"Schroedinger", 8},
-         {"Llama", 8},
-         {"Gawain", 8},
-         {"Hyena", 13}
+      {"Schroedinger", 8, N_("Civilian Schroedinger")},
+      {"Llama", 8, N_("Civilian Llama")},
+      {"Gawain", 8, N_("Civilian Gawain")},
+      {"Hyena", 13, N_("Civilian Hyena")},
    }
-   local shp = civships[ rnd.rnd(1, #civships) ]
-   local params
-   if r < prop then
-      params = {ai="advertiser"}
-   else
-      params = {ai="civilian"}
-   end
-   scom.addPilot( pilots, shp[1], shp[2], params )
-
+   local shp = civships[rnd.rnd(1, #civships)]
+   scom.addPilot(pilots, shp[1], shp[2], {name=shp[3]})
    return pilots
 end
 

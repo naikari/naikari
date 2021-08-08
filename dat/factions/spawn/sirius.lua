@@ -2,7 +2,7 @@ local scom = require "factions.spawn.lib.common"
 
 -- @brief Spawns a small patrol fleet.
 function spawn_patrol ()
-   local pilots = { __doscans = true }
+   local pilots = {}
    local r = rnd.rnd()
 
    if r < 0.5 then
@@ -22,9 +22,6 @@ end
 -- @brief Spawns a medium sized squadron.
 function spawn_squad ()
    local pilots = {}
-   if rnd.rnd() < 0.5 then
-      pilots.__doscans = true
-   end
    local r = rnd.rnd()
 
    if r < 0.5 then
