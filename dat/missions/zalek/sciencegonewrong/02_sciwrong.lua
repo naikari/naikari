@@ -24,7 +24,6 @@
    Author: fart but based on Mission Ideas in wiki: wiki.naev.org/wiki/Mission_Ideas
 --]]
 
-require "fleethelper"
 require "missions/zalek/common"
 
 
