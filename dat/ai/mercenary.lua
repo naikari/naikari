@@ -9,12 +9,14 @@ mem.aggressive = true
 
 
 function create ()
-
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/150, ai.pilot():ship():price()/50) )
+   local p = ai.pilot()
+   local price = p:ship():price()
+   ai.setcredits(rnd.rnd(price / 150, price / 50))
 
    if rnd.rnd() > 0.7 then
-      mem.bribe = math.sqrt( ai.pilot():stats().mass ) * (750. * rnd.rnd() + 2500.)
-      mem.bribe_prompt = string.format(_("\"Your life is worth %s to me.\""), creditstring(mem.bribe) )
+      mem.bribe = math.sqrt(p:stats().mass) * (750. * rnd.rnd() + 2500.)
+      mem.bribe_prompt = string.format(_("\"Your life is worth %s to me.\""),
+            creditstring(mem.bribe))
       mem.bribe_paid = _("\"Beat it.\"")
    else
       if rnd.rnd() > 0.5 then

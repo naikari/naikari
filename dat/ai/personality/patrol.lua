@@ -15,14 +15,6 @@ function idle ()
           end
        end
    else -- Stay. Have a beer.
-      if mem.doscans then
-         local target = __getscantarget()
-         if target then
-            __push_scan( target )
-            return
-         end
-      end
-
       -- Check to see if we want to patrol waypoints
       if mem.waypoints then
          -- If haven't started patroling, find the closest waypoint
