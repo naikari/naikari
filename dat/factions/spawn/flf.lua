@@ -7,15 +7,15 @@ function spawn_patrol ()
    local r = rnd.rnd()
 
    if r < 0.5 then
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Lancelot", 25 )
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
    elseif r < 0.8 then
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Vendetta", 25 )
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
    else
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Vendetta", 25 )
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
    end
 
    return pilots
@@ -28,16 +28,16 @@ function spawn_squad ()
    local r = rnd.rnd()
 
    if r < 0.5 then
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Vendetta", 25 )
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
    elseif r < 0.8 then
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Vendetta", 25 )
-      scom.addPilot( pilots, "Vendetta", 25 )
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
    else
-      scom.addPilot( pilots, "Lancelot", 25 )
-      scom.addPilot( pilots, "Pacifier", 70 )
+      scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
+      scom.addPilot(pilots, "Pacifier", 70, {name=N_("FLF Pacifier"))
    end
 
    return pilots
