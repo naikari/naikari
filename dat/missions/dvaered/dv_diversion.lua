@@ -21,7 +21,7 @@
 
 -- localization stuff, translators would work here
 
-require "fleethelper"
+local fleet = require "fleet"
 local portrait = require "portrait"
 
 
@@ -150,7 +150,7 @@ function enter()
       hawk:hyperspace(system.get(destjumpname))
       hawk:broadcast(string.format(chatter[0], destjumpname))
       fleethooks = {}
-      fleetdv = addShips( 14, "Dvaered Vendetta", "Dvaered", hawk:pos()-vec2.new(1000,1500), nil, {ai="dvaered_norun"} )
+      fleetdv = fleet.add( 14, "Dvaered Vendetta", "Dvaered", hawk:pos()-vec2.new(1000,1500), nil, {ai="dvaered_norun"} )
       for i, j in ipairs(fleetdv) do
          j:changeAI("dvaered_norun")
          j:setHilight(true)

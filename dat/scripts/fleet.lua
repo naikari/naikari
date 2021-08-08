@@ -1,31 +1,40 @@
---[[
--- @brief Wrapper for pilot.add() that can operate on tables of ships.
---
--- @usage pilots = addShips( 1, "Hyena", "Pirate" ) -- Creates a facsimile of a Pirate Hyena.
--- @usage pilots = addShips( 1, "Hyena", "Pirate", nil, nil, {ai="pirate_norun"} ) -- Ditto, but use the "norun" AI variant.
--- @usage pilots = addShips( 2, { "Rhino", "Koala" }, "Trader" ) -- Creates four Trader ships.
---
---    @luaparam count Number of times to repeat the pattern.
---    @luaparam ship Ship to add.
---    @luaparam faction Faction to give the pilot.
---    @luaparam location Location to jump in from, take off from, or appear at.
---    @luaparam pilotname Name to give the pilot.
---    @luaparam parameters Table of extra parameters to pass pilot.add(), e.g. {ai="escort"}.
---    @luareturn Table of created pilots.
---
---    @TODO: With a little work we can support a table of parameters tables, but no one even wants that. (Yet?)
--- @luafunc addShips
+--[[--
+Functions for adding fleets of pilots.
+
+@module fleet
 --]]
-function addShips( count, ship, faction, location, pilotname, parameters )
+local fleet = {}
+
+
+--[[--
+Wrapper for pilot.add() that can operate on tables of ships.
+
+All arguments passed except for the parameters argument can be either
+the argument to pass to pilot.add() itself, or tables of arguments to
+pass to each ship. If a table is passed as an argument, the size of the
+table must be exactly the same as the size of the ship argument table.
+
+   @usage pilots = fleet.add(2, {"Rhino", "Koala"}, "Trader")
+   @usage pilots = fleet.add(1, {"Mule", "Llama"}, {"Trader", "Civilian"})
+
+      @param count Number of times to repeat the pattern.
+      @param ship Ship to add.
+      @param faction Faction to give the pilot.
+      @param location Location to jump in from, take off from, or appear at.
+      @param pilotname Name to give the pilot.
+      @param parameters Table of extra parameters to pass pilot.add().
+      @return Ordered table of created pilots.
+--]]
+-- TODO: With a little work we can support a table of parameters tables,
+-- but no one even wants that. (Yet?)
+function fleet.add( count, ship, faction, location, pilotname, parameters )
    local pilotnames = {}
    local locations = {}
    local factions = {}
    local out = {}
 
-   if type(ship) ~= "table" and type(ship) ~= "string" then
-      print(_("addShips: Error, ship list is not a ship or table of ships!"))
-      return
-   elseif type(ship) == "string" then -- Put lone ship into table.
+   -- Put lone ship into table.
+   if type(ship) ~= "table" then
       ship = {ship}
    end
    if count == nil then
@@ -36,7 +45,7 @@ function addShips( count, ship, faction, location, pilotname, parameters )
    locations = _buildDupeTable(location, #ship)
    factions = _buildDupeTable(faction, #ship)
    if factions[1] == nil then
-      print(_("addShips: Error, raw ships must have factions!"))
+      print(_("fleet.add: Error, raw ships must have factions!"))
       return
    end
 
@@ -90,3 +99,6 @@ function _randomizePositions( ship, override )
       end
    end
 end
+
+
+return fleet

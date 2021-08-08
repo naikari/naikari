@@ -38,7 +38,7 @@
 --]]
 
 require "numstring"
-require "fleethelper"
+local fleet = require "fleet"
 require "missions/flf/flf_common"
 
 text = {}
@@ -167,14 +167,14 @@ function enter ()
          -- Spawn Dvaered and Empire ships
          dv_fleet = {}
 
-         nf = addShips({1, 1, 1, 3, 7}, {"Empire Peacemaker", "Empire Hawking",
+         nf = fleet.add({1, 1, 1, 3, 7}, {"Empire Peacemaker", "Empire Hawking",
                   "Empire Pacifier", "Empire Admonisher", "Empire Lancelot"},
                "Empire", ms:pos(), nil, {ai="empire_norun"})
          for i, j in ipairs(nf) do
             dv_fleet[#dv_fleet + 1] = j
          end
 
-         nf = addShips({1, 1, 1, 2}, {"Dvaered Vigilance", "Dvaered Phalanx",
+         nf = fleet.add({1, 1, 1, 2}, {"Dvaered Vigilance", "Dvaered Phalanx",
                   "Dvaered Ancestor", "Dvaered Vendetta"},
                "Dvaered", ro:pos(), nil, {ai="dvaered_norun"})
          for i, j in ipairs(nf) do
@@ -190,7 +190,7 @@ function enter ()
          -- Spawn FLF ships
          local jmp, jmp2
          jmp, jpm2 = jump.get("Raelid", "Arcanis")
-         flf_fleet = addShips(14, "Vendetta", "FLF", jmp:pos() ,
+         flf_fleet = fleet.add(14, "Vendetta", "FLF", jmp:pos() ,
                _("FLF Vendetta"))
 
          for i, j in ipairs(flf_fleet) do

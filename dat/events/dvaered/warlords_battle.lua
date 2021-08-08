@@ -10,7 +10,7 @@
 --]]
 --  A battle between two Dvaered warlords. The player can join one of them and get a reward
 
-require "fleethelper"
+local fleet = require "fleet"
 require "proximity"
 require "numstring"
 local formation = require "formation"
@@ -109,7 +109,7 @@ function attack()
 
    attAttHook = {}
 
-   attackers = addShips({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
+   attackers = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"}, f1, source_system,
@@ -145,7 +145,7 @@ function attack()
 
    defAttHook = {}
 
-   defenders = addShips({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
+   defenders = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"}, f2, source_planet,

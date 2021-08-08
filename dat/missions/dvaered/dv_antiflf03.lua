@@ -26,7 +26,7 @@
 --      3 - The player has found the FLF base for the Dvaered, or has betrayed the FLF after rescuing the agent. Conditional for dv_antiflf03
 --]]
 
-require "fleethelper"
+local fleet = require "fleet"
 require "proximity"
 local portrait = require "portrait"
 require "missions/dvaered/common"
@@ -343,7 +343,7 @@ end
 function spawnFLFfighters()
     wavefirst = true
     wavestarted = true
-    local wingFLF = addShips(3, "Lancelot", "FLF", base:pos(), _("FLF Lancelot"), {ai="flf_norun"})
+    local wingFLF = fleet.add(3, "Lancelot", "FLF", base:pos(), _("FLF Lancelot"), {ai="flf_norun"})
     for i, j in ipairs(wingFLF) do
         fleetFLF[#fleetFLF + 1] = j
         setFLF(j)
@@ -352,7 +352,7 @@ end
 
 -- Spawns FLF bombers
 function spawnFLFbombers()
-    local wingFLF = addShips(3, "Vendetta", "FLF", base:pos(), _("FLF Vendetta"), {ai="flf_norun"})
+    local wingFLF = fleet.add(3, "Vendetta", "FLF", base:pos(), _("FLF Vendetta"), {ai="flf_norun"})
     for i, j in ipairs(wingFLF) do
         fleetFLF[#fleetFLF + 1] = j
         setFLF(j)
@@ -361,7 +361,7 @@ end
 
 -- Spawns FLF destroyers
 function spawnFLFdestroyers()
-    local wingFLF = addShips(2, "Pacifier", "FLF", base:pos(), _("FLF Pacifier"), {ai="flf_norun"})
+    local wingFLF = fleet.add(2, "Pacifier", "FLF", base:pos(), _("FLF Pacifier"), {ai="flf_norun"})
     for i, j in ipairs(wingFLF) do
         fleetFLF[#fleetFLF + 1] = j
         hook.pilot(j, "death", "deathFLF")

@@ -38,7 +38,7 @@ Make comm chatter appear during the battle
 Add some consequences if the player aborts the mission
 ]]--
 
-require "fleethelper"
+local fleet = require "fleet"
 require "scripts/numstring"
 
 -- This section stores the strings (text) for the mission.
@@ -182,7 +182,7 @@ function defend_system()
       end
 
   -- Create a fleet of raiding pirates
-      raider_fleet = addShips( 18, "Hyena", "Raider", raider_position, _("Raider Hyena"), {ai="def"} )
+      raider_fleet = fleet.add( 18, "Hyena", "Raider", raider_position, _("Raider Hyena"), {ai="def"} )
       for k,v in ipairs( raider_fleet) do
          v:setHostile()
       end

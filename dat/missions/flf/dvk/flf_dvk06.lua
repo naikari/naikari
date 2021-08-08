@@ -37,7 +37,7 @@
 --]]
 
 require "numstring"
-require "fleethelper"
+local fleet = require "fleet"
 require "missions/flf/flf_common"
 
 -- Localization stuff
@@ -158,7 +158,7 @@ function enter ()
             "Dvaered Goddard", "Dvaered Ancestor", "Dvaered Phalanx", "Dvaered Vigilance", "Dvaered Ancestor", "Dvaered Phalanx", "Dvaered Vigilance", "Dvaered Ancestor", "Dvaered Ancestor",
             "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta",
             "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta", "Dvaered Vendetta"}
-         dv_fleet = addShips(1, dv_ships, "Dvaered", ro:pos(), nil, {ai="dvaered_norun"})
+         dv_fleet = fleet.add(1, dv_ships, "Dvaered", ro:pos(), nil, {ai="dvaered_norun"})
 
          for i, j in ipairs(dv_fleet) do
             j:control()
@@ -169,7 +169,7 @@ function enter ()
          -- Spawn FLF ships
          local jmp, jmp2
          jmp, jpm2 = jump.get("Haleb", "Theras")
-         flf_fleet = addShips(4, {"Vendetta", "Vendetta", "Lancelot"}, "FLF", jmp:pos() , {_("FLF Vendetta"), _("FLF Vendetta"), _("FLF Lancelot")})
+         flf_fleet = fleet.add(4, {"Vendetta", "Vendetta", "Lancelot"}, "FLF", jmp:pos() , {_("FLF Vendetta"), _("FLF Vendetta"), _("FLF Lancelot")})
 
          for i, j in ipairs(flf_fleet) do
             j:control()

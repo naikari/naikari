@@ -21,7 +21,7 @@
 
 require "proximity"
 require "nextjump"
-require "fleethelper"
+local fleet = require "fleet"
 require "chatter"
 require "selectiveclear"
 require "missions/shadow/common"
@@ -254,7 +254,7 @@ end
 function enter()
     if system.cur() == misssys[1] and stage == 1 and missend == false then
         -- case enter system where escorts wait
-        escorts = addShips( 3, "Lancelot", "Four Winds", vec2.new(0, 0), _("Four Winds Escort"), {ai="baddie_norun"} )
+        escorts = fleet.add( 3, "Lancelot", "Four Winds", vec2.new(0, 0), _("Four Winds Escort"), {ai="baddie_norun"} )
         for i, j in ipairs(escorts) do
             if not alive[i] then j:rm() end -- Dead escorts stay dead.
             if j:exists() then
@@ -315,7 +315,7 @@ function jumpin()
         pilot.clearSelect("Pirate")
 
         -- Spawn the escorts.
-        escorts = addShips( 3, "Lancelot", "Four Winds", origin, _("Four Winds Escort"), {ai="baddie_norun"} )
+        escorts = fleet.add( 3, "Lancelot", "Four Winds", origin, _("Four Winds Escort"), {ai="baddie_norun"} )
         for i, j in ipairs(escorts) do
             if not alive[i] then j:rm() end -- Dead escorts stay dead.
             if j:exists() then

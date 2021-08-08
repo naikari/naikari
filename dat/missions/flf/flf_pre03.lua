@@ -38,7 +38,7 @@
 
 --]]
 
-require "fleethelper"
+local fleet = require "fleet"
 require "missions/flf/flf_patrol"
 require "missions/flf/flf_common"
 require "missions/dvaered/common"
@@ -200,7 +200,7 @@ function spawnDVReinforcements ()
    end
 
    local pos = player.pos() + vec2.new(x, y)
-   local reinforcements = addShips(1,
+   local reinforcements = fleet.add(1,
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta", "Dvaered Vendetta"},
          "Dvaered", pos, nil, {ai="dvaered_norun"})
@@ -298,7 +298,7 @@ function spawnFLF ()
    end
 
    local pos = player.pos() + vec2.new(x, y)
-   fleetFLF = addShips(8, {"Vendetta", "Lancelot"}, "FLF", pos,
+   fleetFLF = fleet.add(8, {"Vendetta", "Lancelot"}, "FLF", pos,
          {_("FLF Vendetta"), _("FLF Lancelot")}, {ai="flf_norun"})
 end
 
