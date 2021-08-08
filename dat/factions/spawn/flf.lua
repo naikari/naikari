@@ -11,11 +11,11 @@ function spawn_patrol ()
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
    elseif r < 0.8 then
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
-      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta")})
    else
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
-      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta")})
    end
 
    return pilots
@@ -30,14 +30,14 @@ function spawn_squad ()
    if r < 0.5 then
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
-      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta")})
    elseif r < 0.8 then
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
-      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
-      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta"))
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta")})
+      scom.addPilot(pilots, "Vendetta", 25, {name=N_("FLF Vendetta")})
    else
       scom.addPilot(pilots, "Lancelot", 25, {name=N_("FLF Lancelot")})
-      scom.addPilot(pilots, "Pacifier", 70, {name=N_("FLF Pacifier"))
+      scom.addPilot(pilots, "Pacifier", 70, {name=N_("FLF Pacifier")})
    end
 
    return pilots
