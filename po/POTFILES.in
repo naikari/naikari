@@ -2156,6 +2156,7 @@ dat/events/dvaered/warlords_battle.lua
 dat/events/escorts.lua
 dat/events/flf/derelict.lua
 dat/events/flf/flf_catastrophe.lua
+dat/events/mercenaries.lua
 dat/events/neutral/animaltrouble.lua
 dat/events/neutral/baron_comm.lua
 dat/events/neutral/baron_flintley.lua
