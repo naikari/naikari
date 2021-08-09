@@ -1634,7 +1634,7 @@ eq_qCol( cur, base, inv ), eq_qSym( cur, base, inv ), cur
 void equipment_updateShips( unsigned int wid, char* str )
 {
    (void)str;
-   char *buf, buf2[ECON_CRED_STRLEN];
+   char *buf, buf2[ECON_CRED_STRLEN], buf3[STRMAX_SHORT];
    char errorReport[STRMAX_SHORT];
    char *shipname;
    Pilot *ship;
@@ -1667,7 +1667,13 @@ void equipment_updateShips( unsigned int wid, char* str )
    /* Get ship error report. */
    pilot_reportSpaceworthy( ship, errorReport, sizeof(errorReport));
 
-   jumps = floor(ship->fuel_max / ship->fuel_consumption);
+   if (ship->fuel_consumption != 0) {
+      jumps = floor(ship->fuel_max / ship->fuel_consumption);
+      snprintf(buf3, sizeof(buf3), n_("%d jump", "%d jumps", jumps), jumps);
+   }
+   else {
+      strcpy(buf3, _("∞ jumps"));
+   }
 
    /* Fill the buffer. */
    asprintf( &buf,
@@ -1688,7 +1694,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "#%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
          "#%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
          "%d / #%c%s%d#0 t\n"
-         "%d hL (%d %s)\n"
+         "%d hL (%s)\n"
          "#%c%s%.0f km\n"
          "#%c%s%.0f km\n"
          "\n"
@@ -1717,8 +1723,7 @@ void equipment_updateShips( unsigned int wid, char* str )
       EQ_COMP( ship->energy_regen, ship->ship->energy_regen, 0 ),
       /* Misc. */
       pilot_cargoUsed(ship), EQ_COMP( cargo, ship->ship->cap_cargo, 0 ),
-      ship->fuel_max,
-      jumps, n_( "jump", "jumps", jumps ),
+      ship->fuel_max, buf3,
       EQ_COMP( ship->rdr_range, ship->ship->rdr_range, 0 ),
       EQ_COMP( ship->rdr_jump_range, ship->ship->rdr_jump_range, 0 ),
       pilot_checkSpaceworthy(ship) ? 'r' : '0', errorReport );
