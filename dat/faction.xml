@@ -129,7 +129,6 @@
    <enemy>Sirius</enemy>
    <enemy>Soromid</enemy>
    <enemy>Thurion</enemy>
-   <enemy>DHC</enemy>
    <enemy>Trader</enemy>
    <enemy>Za'lek</enemy>
   </enemies>
@@ -245,7 +244,6 @@
    <enemy>Dvaered</enemy>
    <enemy>Rogue FLF</enemy>
    <enemy>Rogue Pirate</enemy>
-   <enemy>DHC</enemy>
   </enemies>
  </faction>
  <faction>
@@ -410,16 +408,6 @@
   </enemies>
  </faction>
  <faction>
-  <name>Derelict</name>
-  <ai>independent</ai>
-  <static />
-  <invisible />
-  <player>0</player>
-  <standing>static</standing>
-  <allies />
-  <enemies />
- </faction>
- <faction>
   <name>Four Winds</name>
   <ai>baddie</ai>
   <static />
@@ -532,20 +520,6 @@
   </enemies>
  </faction>
  <faction>
-  <name>Kidnappers</name>
-  <ai>trader</ai>
-  <display>Pirate</display>
-  <static />
-  <invisible />
-  <known />
-  <logo>pirate</logo>
-  <colour>red</colour>
-  <allies />
-  <player>0</player>
-  <standing>static</standing>
-  <enemies />
- </faction>
- <faction>
   <name>Comingout_associates</name>
   <ai>mercenary</ai>
   <display>Mercenary</display>
@@ -573,57 +547,6 @@
   <enemies>
    <enemy>Comingout_associates</enemy>
    <enemy>Soromid</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>DHC</name>
-  <ai>baddie</ai>
-  <logo>dvaered</logo>
-  <colour>brown</colour>
-  <longname>Dvaered High Command</longname>
-  <static />
-  <invisible />
-  <known />
-  <player>10</player>
-  <standing>static</standing>
-  <equip>dvaered</equip>
-  <enemies>
-   <enemy>Pirate</enemy>
-   <enemy>FLF</enemy>
-   <enemy>Warlords</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Warlords</name>
-  <ai>baddie</ai>
-  <logo>dvaered</logo>
-  <colour>brown</colour>
-  <longname>Dvaered Warlords</longname>
-  <static />
-  <invisible />
-  <known />
-  <player>-10</player>
-  <standing>static</standing>
-  <equip>dvaered</equip>
-  <enemies>
-   <enemy>DHC</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Strangelove</name>
-  <ai>zalek</ai>
-  <display>Independent</display>
-  <static />
-  <invisible />
-  <known />
-  <player>0</player>
-  <standing>static</standing>
-  <equip>pirate</equip>
-  <enemies>
-   <enemy>Za'lek</enemy>
-   <enemy>Pirate</enemy>
-   <enemy>Miner</enemy>
-   <enemy>Trader</enemy>
   </enemies>
  </faction>
 </Factions>

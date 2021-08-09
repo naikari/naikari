@@ -40,10 +40,11 @@ function create ()
     end
 
     -- Create the derelict.
-    angle = rnd.rnd() * 2 * math.pi
-    dist = rnd.rnd(2000, 3000) -- place it a ways out
-    pos = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
-    p = pilot.add(ship, "Derelict", pos, shipwreck:format(shipname),
+    local f = faction.dynAdd(nil, "Derelict", N_("Trader"), {ai="trader"})
+    local angle = rnd.rnd() * 2 * math.pi
+    local dist = rnd.rnd(2000, 3000) -- place it a ways out
+    local pos = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
+    local p = pilot.add(ship, f, pos, shipwreck:format(shipname),
             {ai="dummy"})
     p:disable()
     p:rename(shipwreck:format(shipname))
