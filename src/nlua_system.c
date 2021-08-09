@@ -800,15 +800,29 @@ static int systemL_addGatherable( lua_State *L )
 
 
 /**
- * @brief Returns the factions that have presence in a system and their respective presence values.
- *        Faction names are internal -- can be passed to other functions as a faction identifier, but
- *        should not be shown to the user without being translated by _().
+ * @brief Returns a table indicating faction presence levels.
  *
- *  @usage if sys:presences()["Empire"] then -- Checks to see if Empire has ships in the system
- *  @usage if sys:presences()[faction.get("Pirate")] then -- Checks to see if the Pirates have ships in the system
+ * The table returned is indexed by raw (untranslated) faction name and
+ * indicates the corresponding presence number. Factions with no
+ * presence in the system are not included in the table (meaning that
+ * attempting to index the table with factions that are not in the
+ * system will give you nil instead of 0, and looping through the table
+ * will yield only factions that have some amount of presence in the
+ * system).
  *
- *    @luatparam System s System to get the factional presences of.
- *    @luatreturn {Faction,...} A table with the factions that have presence in the system.
+ * @usage
+ * if sys:presences()["Empire"] then
+ *    -- The system has Empire ships.
+ * end
+ * @usage
+ * for k, v in pairs(sys:presences()) do
+ *    print(string.format(_("%s presence is %d."), _(k), v))
+ * end
+ *
+ *    @luatparam System s System to get the faction presences of.
+ *    @luatreturn table A table indicating presences, indexed by raw
+ *       (untranslated) faction name. See above for a complete
+ *       explanation.
  * @luafunc presences
  */
 static int systemL_presences( lua_State *L )
