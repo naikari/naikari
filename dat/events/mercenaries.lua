@@ -176,9 +176,6 @@ function choose_target()
    end
 
    local choices = hire_faction:enemies()
-   if hire_faction:playerStanding() < 0 then
-      choices[#choices + 1] = player.pilot()
-   end
 
    local target_faction
    while #choices > 0 do
@@ -200,9 +197,15 @@ function choose_target()
    end
 
    local choices = pilot.get(target_faction)
+
+   if hire_faction:playerStanding() < 0 then
+      choices[#choices + 1] = player.pilot()
+   end
+
    if #choices <= 0 then
       return nil
    end
+
    return choices[rnd.rnd(1, #choices)]
 end
 
