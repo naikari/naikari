@@ -1,6 +1,6 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
-<mission name="Pirate Empire Patrol Bounty">
+<mission name="Assassination Job">
  <avail>
   <priority>3</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0 or planet.cur():blackmarket()</cond>
@@ -14,7 +14,7 @@
 --]]
 --[[
 
-   Pirate Empire bounty
+   Assassination Job
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
