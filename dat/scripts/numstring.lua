@@ -64,12 +64,15 @@ end
 --
 -- @usage tk.msg("", _("The system is %s away."):format(jumpstring(jumps)))
 --
---    @param jumps Number of jumps.
+--    @param jumps Number of jumps, or nil for infinite jumps.
 --    @return A string taking the form of "X jump" or "X jumps".
 --]]
 function jumpstring( jumps )
+   if jumps == nil then
+      return _("∞ jumps")
+   end
    return gettext.ngettext("%s jump", "%s jumps", jumps):format(
-         numstring(jumps) )
+         numstring(jumps))
 end
 
 

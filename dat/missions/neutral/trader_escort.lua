@@ -116,9 +116,10 @@ function create()
 end
 
 function accept()
-   if player.jumps() < numjumps then
+   local pjumps = player.jumps()
+   if pjumps ~= nil and pjumps < numjumps then
       if not tk.yesno(slow[1], slow[2]:format(
-            jumpstring(numjumps), jumpstring(player.jumps()))) then
+            jumpstring(numjumps), jumpstring(pjumps))) then
          misn.finish()
       end
    end

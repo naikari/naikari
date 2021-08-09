@@ -1294,10 +1294,13 @@ void pilot_rmFriendly( Pilot* p )
  * @brief Gets the amount of jumps the pilot has left.
  *
  *    @param p Pilot to get the jumps left.
- *    @return Number of jumps the pilot has left.
+ *    @return Number of jumps the pilot has left, or -1 if infinite.
  */
 int pilot_getJumps( const Pilot* p )
 {
+   if (p->fuel_consumption == 0)
+      return -1;
+
    return p->fuel / p->fuel_consumption;
 }
 

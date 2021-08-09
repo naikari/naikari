@@ -195,12 +195,20 @@ void info_update (void)
 static void info_openMain( unsigned int wid )
 {
    char str[STRMAX_SHORT], **buf, creds[ECON_CRED_STRLEN];
+   char str2[STRMAX_SHORT];
    char **licenses;
+   int jumps;
    int nlicenses;
    int i;
    char *nt;
    int w, h;
    time_t t = time(NULL);
+
+   jumps = pilot_getJumps(player.p);
+   if (jumps != -1)
+      snprintf(str2, sizeof(str2), n_("%d jump", "%d jumps", jumps), jumps);
+   else
+      strcpy(str2, _("∞ jumps"));
 
    /* Compute elapsed time. */
    player.time_played += difftime(t, player.time_since_save);
@@ -232,7 +240,7 @@ static void info_openMain( unsigned int wid )
          "\n"
          "%s\n"
          "%s\n"
-         "%d (%d %s)\n"
+         "%d (%s)\n"
          "\n"
          "%.0f:%02llu:%02llu\n"
          "%.0f\n"
@@ -242,8 +250,7 @@ static void info_openMain( unsigned int wid )
          nt,
          creds,
          player.p->name,
-         player.p->fuel, pilot_getJumps(player.p),
-         n_( "jump", "jumps", pilot_getJumps(player.p) ),
+         player.p->fuel, str2,
          player.time_played / 86400.,
          ((long long)player.time_played%86400) / 3600,
          ((long long)player.time_played%3600) / 60,
@@ -469,11 +476,20 @@ static void info_openShip( unsigned int wid )
  */
 static void ship_update( unsigned int wid )
 {
-   char buf[STRMAX_SHORT], *hyp_delay;
+   char *hyp_delay;
+   char buf[STRMAX], buf2[STRMAX_SHORT];
    int cargo;
+   int jumps;
 
    cargo = pilot_cargoUsed( player.p ) + pilot_cargoFree( player.p );
    hyp_delay = ntime_pretty( pilot_hyperspaceDelay( player.p ), 2 );
+
+   jumps = pilot_getJumps(player.p);
+   if (jumps != -1)
+      snprintf(buf2, sizeof(buf2), n_("%d jump", "%d jumps", jumps), jumps);
+   else
+      strcpy(buf2, _("∞ jumps"));
+
    snprintf( buf, sizeof(buf),
          _("%s\n"
          "%s\n"
@@ -493,7 +509,7 @@ static void ship_update( unsigned int wid )
          "%.0f / %.0f GJ (%.1f GW)\n" /* Armour */
          "%.0f / %.0f GJ (%.1f GW)\n" /* Energy */
          "%d / %d t\n"
-         "%d / %d hL (%d %s)\n"
+         "%d / %d hL (%s)\n"
          "%.0f km\n"
          "%.0f km\n"
          "\n"),
@@ -517,8 +533,7 @@ static void ship_update( unsigned int wid )
          player.p->armour, player.p->armour_max, player.p->armour_regen,
          player.p->energy, player.p->energy_max, player.p->energy_regen,
          pilot_cargoUsed( player.p ), cargo,
-         player.p->fuel, player.p->fuel_max,
-         pilot_getJumps(player.p), n_( "jump", "jumps", pilot_getJumps(player.p)),
+         player.p->fuel, player.p->fuel_max, buf2,
          player.p->rdr_range, player.p->rdr_jump_range);
    window_modifyText( wid, "txtDDesc", buf );
 

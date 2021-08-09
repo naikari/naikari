@@ -448,12 +448,20 @@ static int playerL_getPilot( lua_State *L )
  *
  * @usage jumps = player.jumps()
  *
- *    @luatreturn number The player's maximum number of jumps.
+ *    @luatreturn number|nil The player's maximum number of jumps, or
+ *       nil if the player has infinite jumps.
  * @luafunc jumps
  */
 static int playerL_jumps( lua_State *L )
 {
+   int jumps;
+
    PLAYER_CHECK();
+
+   jumps = pilot_getJumps(player.p);
+   if (jumps == -1)
+      return 0;
+
    lua_pushnumber(L, pilot_getJumps(player.p));
    return 1;
 }

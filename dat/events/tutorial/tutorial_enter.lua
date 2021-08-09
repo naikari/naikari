@@ -72,7 +72,7 @@ function timer ()
    local nebu_dens, nebu_volat = sys:nebula()
    local landable_planets = false
 
-   if not var.peek("tutorial_nofuel") and player.jumps() <= 0 then
+   if not var.peek("tutorial_nofuel") and player.jumps() == 0 then
       for i, pl in ipairs(planet.getAll()) do
          if pl:system() == sys and pl:canLand() then
             landable_planets = true
@@ -82,7 +82,7 @@ function timer ()
    end
 
    if not var.peek("tutorial_nofuel") and not landable_planets
-         and player.jumps() <= 0 then
+         and player.jumps() == 0 then
       if var.peek("_tutorial_passive_active") then
          tk.msg("", nofuel_text:format(
                   tutGetKey("target_next"), tutGetKey("hail"),

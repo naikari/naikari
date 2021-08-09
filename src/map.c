@@ -1400,20 +1400,22 @@ static void map_renderPath( double x, double y, double a, double alpha )
          sys1 = map_path[j];
          if (sys_isFlag(sys0,SYSTEM_HIDDEN) || sys_isFlag(sys1,SYSTEM_HIDDEN))
             continue;
-         if (jcur == jmax && jmax > 0)
+         if ((jcur == jmax) && (jmax != 0))
             col = &cGreen;
-         else if (jcur < 1)
-            col = &cRed;
-         else
+         else if ((jcur > 0) || (jmax == -1))
             col = &cYellow;
+         else
+            col = &cRed;
          x0 = x + sys0->pos.x * map_zoom;
          y0 = y + sys0->pos.y * map_zoom;
          x1 = x + sys1->pos.x * map_zoom;
          y1 = y + sys1->pos.y * map_zoom;
          w0 = w1 = MIN( map_zoom, 1.5 ) / hypot( x0-x1, y0-y1 );
-         w0 *= jcur >= 1 ? 8 : 4;
+
+         w0 *= ((jmax == -1) || (jcur > 0)) ? 8 : 4;
+
          jcur--;
-         w1 *= jcur >= 1 ? 8 : 4;
+         w1 *= ((jmax == -1) || (jcur > 0)) ? 8 : 4;
 
          /* Draw the lines. */
          for (k=0; k<3*2; k++) {

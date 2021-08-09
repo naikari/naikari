@@ -8,7 +8,7 @@
   <priority>3</priority>
   <chance>10</chance>
   <location>Bar</location>
-  <cond>system.get("Ogat"):jumpDist() == 4 and player.jumps() &gt;= 4</cond>
+  <cond>system.get("Ogat"):jumpDist() == 4 and (player.jumps() == nil or player.jumps() &gt;= 4)</cond>
  </avail>
 </mission>
 --]]
