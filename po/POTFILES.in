@@ -2150,8 +2150,6 @@ dat/bkg/default.lua
 dat/bkg/solarwind.lua
 dat/events/bioship_upgrade.lua
 dat/events/cinematic/DvdFLFbattle.lua
-dat/events/dvaered/fwA_treason.lua
-dat/events/dvaered/fwB_repay.lua
 dat/events/dvaered/warlords_battle.lua
 dat/events/escorts.lua
 dat/events/flf/derelict.lua
@@ -2272,9 +2270,6 @@ dat/missions/neutral/common.lua
 dat/missions/neutral/crimelord.lua
 dat/missions/neutral/diy-nerds.lua
 dat/missions/neutral/drunkard.lua
-dat/missions/neutral/dts_00.lua
-dat/missions/neutral/dts_01.lua
-dat/missions/neutral/dts_02.lua
 dat/missions/neutral/foodbiz/delivercake.lua
 dat/missions/neutral/foodbiz/deliverlove.lua
 dat/missions/neutral/nebu_satellite.lua
@@ -2293,8 +2288,8 @@ dat/missions/neutral/spacefamily.lua
 dat/missions/neutral/teenager.lua
 dat/missions/neutral/trader_escort.lua
 dat/missions/neutral/wastedump.lua
+dat/missions/pirate/assassination_job.lua
 dat/missions/pirate/common.lua
-dat/missions/pirate/empbounty_dead.lua
 dat/missions/pirate/fake_id.lua
 dat/missions/pirate/hitman.lua
 dat/missions/pirate/hitman2.lua
