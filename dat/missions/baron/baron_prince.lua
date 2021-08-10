@@ -39,21 +39,19 @@ text[1] = _([[As you approach the stranger, he extends his hand in greeting. He 
 
 You decide to keep your opinion of the aristocrat to yourself. Instead you inquire as to what the man wants from you this time. "To tell the truth, I don't actually know," the man says. "The Baron wants you to meet him so he can brief you in person. You will find his ship in the %s system. Shall I inform his lordship that you will be paying him a visit?"]])
 
-refusetext = _([["Okay, fair enough," the man says with a disappointed look on his face. "I'll try to find someone else. But maybe we'll run into each other again, so if you change your mind..."]])
-
 text[2] = _([["Splendid. Please go see his lordship at the earliest opportunity. He doesn't like to be kept waiting. I will send word that you will be coming, so contact the Pinnacle when you arrive at %s, and they will allow you to board."]])
 
 text[3] = _([[Your comm is answered by a communications officer on the bridge of the Pinnacle. You tell her you've got a delivery for the baron. She runs a few checks on a console off the screen, then tells you you've been cleared for docking and that the Pinnacle will be brought to a halt.]])
 
 text[4] = _([[You find yourself once again aboard the Pinnacle, Baron Sauterfeldt's flag ship. After a short time, an attendant ushers you into the Baron's personal quarters, which are as extravagant as you remember them. You notice the holopainting is now firmly fixed on one of the walls.
 
-Baron Dovai Sauterfeldt greets you with a pompous wave of his hand. "Ahh yes, there you are at last. %s, was it? Do have a seat." He then offers you a drink, but you decline on the basis that you still have to drive. "Now then, %s, I assume you're wondering why I've called you here. As you've no doubt heard, I have an interest in the unique, the exquisite." The Baron gestures around the room. "I have built up quite an impressive collection, as you can see, but it is still lacking something. Fortunately, news has reached me about a priceless artifact from Earth itself, dating back to before the Faction Wars. I must have it. It belongs in the hands of a connoisseur like myself."]])
+Baron Dovai Sauterfeldt greets you with a pompous wave of his hand. "Ahh yes, there you are at last. %s, piloting the ship called %s, right? Do have a seat." He then offers you a drink, but you decline on the basis that you still have to drive. "Now then, %s, I assume you're wondering why I've called you here. As you've no doubt heard, I have an interest in the unique, the exquisite." The Baron gestures around the room. "I have built up quite an impressive collection, as you can see, but it is still lacking something. Fortunately, news has reached me about a priceless artifact from Earth itself, dating back to before the Faction Wars. I must have it. It belongs in the hands of a connoisseur like myself."]])
 
-text[5] = _([["Unfortunately, news of this artifact has reached more ears than just mine. All over the galaxy there are people who will try to sell you 'ancient artifacts', which always turn out to be imitations at best and worthless scrap they picked up from the streets at worst." The Baron snorts derisively. "Even the contacts who usually fenc- ah, I mean, supply me with new items for my collection are in on the frenzy.
+text[5] = _([["Unfortunately, news of this artifact has reached more ears than just mine. All over the galaxy there are people who will try to sell you 'ancient artifacts', which always turn out to be imitations at best and worthless scrap they picked up from the streets at worst." The Baron snorts derisively. "Even the contacts who usually fenc– ah, I mean, supply me with new items for my collection are in on the frenzy.
 
 "I've narrowed down my search to three of these people. I'm confident that one of them is selling the genuine article, while the other two are shams. And this is where you come in, %s. I want you to visit these vendors, buy their wares off them and bring me the authentic artifact. You will have the help of a man named Flintley, who is a history buff or some such rot. You will find him on %s in the %s system. Simply tell him you're working for me and show him any artifacts in your possession. He will tell you which are authentic and which are fake.
 
-"I should warn you, %s. Some of my, ah, colleagues have also set their sights on this item, and so you can expect their henchmen to try to take it off you. I trust you are equipped to defend yourself against their despicable sort."]])
+"I should warn you, %s. Some of my, ah, colleagues have also set their sights on this item, and so you can expect their henchmen to try to take it off you. I trust the %s is equipped to defend you against their despicable sort."]])
 
 text[6] = _([[You are swiftly escorted back to your ship. You didn't really get the chance to ask the Baron any questions, such as who these potential attackers are, how you're supposed to pay for the artifacts once you locate the sellers, or what you will get out of all this. You do, however, find an update to your galaxy map that shows the location of the sellers, as well as a list of names and portraits. It would seem that the only way to find out what you're dealing with is the hard way.]])
 
@@ -122,7 +120,6 @@ sellerdesc = _("You spot a dodgy individual who matches one of the portraits in 
 buy = _("Buy the artifact (%s)")
 nobuy = _("Don't buy the artifact")
 
-nomoneytitle = _("Not enough money!")
 nomoneytext = _("You can't currently afford to buy this artifact. You need %s.")
 
 -- OSD stuff
@@ -135,24 +132,24 @@ log_text = _([[Baron Sauterfeldt sent you on a wild goose chase to find some anc
 
 function create ()
    -- Note: this mission makes no system claims.
-   misn.setNPC(npc_desc, "neutral/unique/unfamiliarman.png", bar_desc)
-end
-
-function accept()
-   baronsys = system.get("Ingot")
-
+   baronpla, baronsys = planet.get("Ulios")
    artifactplanetA, artifactsysA = planet.get("Varaati")
    artifactplanetB, artifactsysB = planet.get("Sinclair")
    artifactplanetC, artifactsysC = planet.get("Hurada")
    flintplanet, flintsys = planet.get("Tau Station")
+   misn.setNPC(npc_desc, "neutral/unique/unfamiliarman.png", bar_desc)
 
    stage = 1
 
    flintleyfirst = true
    artifactsfound = 0
 
-   reward = 200000 -- The price of each artifact will always be 15% of this, so at most the player will be paid 85% and at least 55%.
+   -- The price of each artifact will always be 15% of this, so at most
+   -- the player will be paid 85% and at least 55%.
+   reward = 600000
+end
 
+function accept()
    if tk.yesno("", text[1]:format(baronsys:name())) then
       misn.accept()
       tk.msg("", text[2]:format(baronsys:name()))
@@ -160,25 +157,26 @@ function accept()
       misn.setTitle(misn_title)
       misn.setReward(misn_reward)
       misn.setDesc(misn_desc[1]:format(baronsys:name()))
-      misn.osdCreate(misn_title, { osd_msg[1]:format(baronsys:name()),
-                           })
+      misn.osdCreate(misn_title, {osd_msg[1]:format(baronsys:name())})
       marker = misn.markerAdd(baronsys, "low")
 
       enterhook = hook.enter("enter")
    else
-      tk.msg("", refusetext)
-      abort()
+      misn.finish()
    end
 end
 
 function board()
    if stage == 1 then
-      tk.msg("", text[4]:format(mangle(player.name()), mangle(player.name())))
-      tk.msg("", text[5]:format(mangle(player.name()), flintplanet:name(), flintsys:name(), mangle(player.name())))
+      local pname = player.name()
+      local sname = player.pilot():name()
+      tk.msg("", text[4]:format(sname, pname, sname))
+      tk.msg("", text[5]:format(sname, flintplanet:name(), flintsys:name(),
+            sname, pname))
       tk.msg("", text[6])
-      misn.osdCreate(misn_title, { osd_msg[1]:format(baronsys:name()),
-                            osd_msg[2]
-                           })
+      misn.osdCreate(misn_title, {
+            osd_msg[1]:format(baronsys:name()),
+            osd_msg[2]})
       misn.setDesc(misn_desc[2])
       misn.osdActive(2)
 
@@ -200,7 +198,8 @@ function board()
       pinnacle:setHealth(100,100)
       idle()
    elseif stage == 3 then
-      tk.msg("", text[16]:format(mangle(player.name()), mangle(player.name()), mangle(player.name())))
+      local sname = player.pilot():name()
+      tk.msg("", text[16]:format(sname, sname, sname))
       player.unboard()
       pinnacle:setHealth(100,100)
       pinnacle:control(false)
@@ -212,16 +211,21 @@ end
 
 function land()
    if planet.cur() == artifactplanetA and not artifactA then
-      sellnpc = misn.npcAdd("seller", _("Artifact seller"), portrait.get("Pirate"), sellerdesc, 4)
+      sellnpc = misn.npcAdd("seller", _("Artifact seller"),
+            portrait.get("Pirate"), sellerdesc, 4)
    elseif planet.cur() == artifactplanetB and not artifactB then
-      sellnpc = misn.npcAdd("seller", _("Artifact seller"), portrait.get("Pirate"), sellerdesc, 4)
+      sellnpc = misn.npcAdd("seller", _("Artifact seller"),
+            portrait.get("Pirate"), sellerdesc, 4)
    elseif planet.cur() == artifactplanetC and not artifactC then
-      sellnpc = misn.npcAdd("seller", _("Artifact seller"), portrait.get("Pirate"), sellerdesc, 4)
+      sellnpc = misn.npcAdd("seller", _("Artifact seller"),
+            portrait.get("Pirate"), sellerdesc, 4)
    elseif planet.cur() == flintplanet then
       if flintleyfirst then
-         flintnpc = misn.npcAdd("flintley", flint_npc1, "neutral/unique/flintley.png", flint_bar1, 4)
+         flintnpc = misn.npcAdd("flintley", flint_npc1,
+               "neutral/unique/flintley.png", flint_bar1, 4)
       else
-         flintnpc = misn.npcAdd("flintley", flint_npc2, "neutral/unique/flintley.png", flint_bar2, 4)
+         flintnpc = misn.npcAdd("flintley", flint_npc2,
+               "neutral/unique/flintley.png", flint_bar2, 4)
       end
    end
 end
@@ -269,14 +273,15 @@ function flintley()
 
    if bingo then
       tk.msg("", text[15]:format(player.name()))
-      misn.osdCreate(misn_title, { osd_msg[1]:format(baronsys:name()),
-                            osd_msg[2],
-                            osd_msg[3]
-                           })
+      misn.osdCreate(misn_title, {
+            osd_msg[1]:format(baronsys:name()),
+            osd_msg[2],
+            osd_msg[3]})
       misn.osdActive(3)
       stage = 3
 
-      local c = misn.cargoNew( N_("Ancient Artifact"), N_("A seemingly ancient artifact.") )
+      local c = misn.cargoNew(N_("Ancient Artifact"),
+            N_("A seemingly ancient artifact."))
       artifactReal = misn.cargoAdd(c, 0)
 
       misn.markerRm(markerA)
@@ -289,39 +294,45 @@ end
 
 function seller()
    if planet.cur() == artifactplanetA then
-      if tk.choice("", text[9], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
+      if tk.choice("", text[9],
+            buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
-            player.pay(-15000, "adjust")
-            local c = misn.cargoNew( N_("Artifact? A"), N_("An ancient artifact?") )
+            player.pay(-reward * 0.15, "adjust")
+            local c = misn.cargoNew(N_("Artifact? A"),
+                  N_("An ancient artifact?"))
             artifactA = misn.cargoAdd(c, 0)
             misn.markerRm(markerA)
          else
-            tk.msg(nomoneytitle, nomoneytext:format(creditstring(reward * 0.15)))
+            tk.msg("", nomoneytext:format(creditstring(reward * 0.15)))
          end
       end
    elseif planet.cur() == artifactplanetB then
-      if tk.choice("", text[10], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
+      if tk.choice("", text[10],
+            buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
-            player.pay(-15000, "adjust")
-            local c = misn.cargoNew( N_("Artifact? B"), N_("An ancient artifact?") )
+            player.pay(-reward * 0.15, "adjust")
+            local c = misn.cargoNew(N_("Artifact? B"),
+                  N_("An ancient artifact?"))
             artifactB = misn.cargoAdd(c, 0)
             misn.markerRm(markerB)
          else
-            tk.msg(nomoneytitle, nomoneytext:format(creditstring(reward * 0.15)))
+            tk.msg("", nomoneytext:format(creditstring(reward * 0.15)))
          end
       end
    elseif planet.cur() == artifactplanetC then
-      if tk.choice("", text[11], buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
+      if tk.choice("", text[11],
+            buy:format(creditstring(reward * 0.15)), nobuy) == 1 then
          if player.credits() >= reward * 0.15 then
             misn.npcRm(sellnpc)
-            player.pay(-15000, "adjust")
-            local c = misn.cargoNew( N_("Artifact? C"), N_("An ancient artifact?") )
+            player.pay(-reward * 0.15, "adjust")
+            local c = misn.cargoNew(N_("Artifact? C"),
+                  N_("An ancient artifact?"))
             artifactC = misn.cargoAdd(c, 0)
             misn.markerRm(markerC)
          else
-            tk.msg(nomoneytitle, nomoneytext:format(creditstring(reward * 0.15)))
+            tk.msg("", nomoneytext:format(creditstring(reward * 0.15)))
          end
       end
    end
@@ -329,29 +340,32 @@ end
 
 function enter()
    if system.cur() == baronsys then
-      pinnacle = pilot.add("Proteron Kahan", "Civilian", planet.get("Ulios"):pos() + vec2.new(-400,-400), _("Pinnacle"), {ai="trader"} )
+      pinnacle = pilot.add("Proteron Kahan", "Civilian",
+            baronpla:pos() + vec2.new(-400,-400), _("Pinnacle"), {ai="trader"})
       pinnacle:setInvincible(true)
       pinnacle:setFriendly()
       pinnacle:control()
       pinnacle:setHilight(true)
-      pinnacle:moveto(planet.get("Ulios"):pos() + vec2.new( 500, -500), false, false)
+      pinnacle:moveto(baronpla:pos() + vec2.new(500, -500), false, false)
       idlehook = hook.pilot(pinnacle, "idle", "idle")
       hhail = hook.pilot(pinnacle, "hail", "hail")
-   elseif artifactA ~= nil or artifactB ~= nil or artifactC ~= nil or artifactReal ~= nil then
+   elseif artifactA ~= nil or artifactB ~= nil or artifactC ~= nil
+         or artifactReal ~= nil then
       -- Spawn artifact hunters, maybe.
       local choice = rnd.rnd(1, 5)
       local fleep
-      local count
-      local pilots = { "Hyena", "Hyena" }
+      local count = 1
+      local pilots = {"Hyena", "Hyena"}
 
       if choice == 2 then -- 60% chance of artifact hunters.
          pilots[2] = "Vendetta"
       elseif choice == 3 then
-         pilots = { "Llama" }
+         pilots = {"Llama"}
          count = 3
       end
       if choice <= 3 then
-         fleep = fleet.add(count, pilots, "Mercenary", nil, _("Artifact Hunter"));
+         fleep = fleet.add(count, pilots, "Mercenary", nil,
+               _("Artifact Hunter"));
          for i, j in ipairs(fleep) do
             j:control()
             j:setHostile(true)
@@ -362,10 +376,10 @@ function enter()
 end
 
 function idle()
-   pinnacle:moveto(planet.get("Ulios"):pos() + vec2.new( 500,  500), false)
-   pinnacle:moveto(planet.get("Ulios"):pos() + vec2.new(-500,  500), false)
-   pinnacle:moveto(planet.get("Ulios"):pos() + vec2.new(-500, -500), false)
-   pinnacle:moveto(planet.get("Ulios"):pos() + vec2.new( 500, -500), false)
+   pinnacle:moveto(baronpla:pos() + vec2.new(500,  500), false)
+   pinnacle:moveto(baronpla:pos() + vec2.new(-500,  500), false)
+   pinnacle:moveto(baronpla:pos() + vec2.new(-500, -500), false)
+   pinnacle:moveto(baronpla:pos() + vec2.new(500, -500), false)
 end
 
 function hail()
@@ -376,46 +390,4 @@ function hail()
    boardhook = hook.pilot(pinnacle, "board", "board")
    hook.rm(idlehook)
    hook.rm(hhail)
-end
-
--- Function that tries to misspell whatever string is passed to it.
--- TODO support Unicode to a certain point
-function mangle(intext)
-   local outtext = intext
-
-   local vowels = {"a", "e", "i", "o", "u", "y"}
-   local consonants = {"b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "z"}
-
-   local i = 1
-   local found = false
-
-   while i < #intext - 1 do
-      if isIn(intext:sub(i, i):lower(), consonants) and isIn(intext:sub(i + 1, i + 1):lower(), vowels) and isIn(intext:sub(i + 2, i + 2):lower(), consonants) then
-         found = true
-         break
-      end
-      i = i + 1
-   end
-
-   if found then
-      local first = consonants[rnd.rnd(1, #consonants)]
-      local second = vowels[rnd.rnd(1, #vowels)]
-      if intext:sub(i, i):upper() == intext:sub(i, i) then first = first:upper() end -- preserve case
-      if intext:sub(i + 1, i + 1):upper() == intext:sub(i, i) then second = second:upper() end -- preserve case
-      outtext = intext:sub(-#intext, -(#intext - i + 2)) .. first .. second .. intext:sub(i + 2)
-   end
-
-   return outtext
-end
-
--- Helper function for mangle()
-function isIn(char, table)
-   for _, j in pairs(table) do
-      if j == char then return true end
-   end
-   return false
-end
-
-function abort()
-   misn.finish(false)
 end
