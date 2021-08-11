@@ -10,20 +10,18 @@ mem.aggressive = true
 function create ()
 
    -- Credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/300, ai.pilot():ship():price()/100) )
+   local price = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(price / 300, price / 100))
 
    -- Handle bribing
-   if rnd.rnd() < 0.6 then
-      mem.bribe_no = _("\"The only way to deal with scum like you is with cannons!\"")
-   else
-      bribe_no = {
-            _("\"I don't want your money.\""),
-            _("\"I'm here for the Frontier, not money.\""),
-            _("\"Not interested.\""),
-            _("\"I won't let you off that easily.\""),
-     }
-     mem.bribe_no = bribe_no[ rnd.rnd(1,#bribe_no) ]
-   end
+   local bribe_no = {
+         _("\"The only way to deal with scum like you is with cannons!\""),
+         _("\"I don't want your money.\""),
+         _("\"I'm here for the Frontier, not money.\""),
+         _("\"Not interested.\""),
+         _("\"I won't let you off that easily.\""),
+   }
+   mem.bribe_no = bribe_no[rnd.rnd(1,#bribe_no)]
 
    -- Handle refueling
    local p = player.pilot()
