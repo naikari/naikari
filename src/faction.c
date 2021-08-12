@@ -60,7 +60,7 @@ typedef struct Faction_ {
 
    /* Graphics. */
    glTexture *logo; /**< Tiny logo. */
-   const glColour *colour; /**< Faction specific colour. */
+   glColour colour; /**< Faction specific colour. */
 
    /* Enemies */
    int *enemies; /**< Enemies by ID of the faction. */
@@ -368,7 +368,7 @@ const glColour* faction_colour( int f )
       return NULL;
    }
 
-   return faction_stack[f].colour;
+   return &faction_stack[f].colour;
 }
 
 
@@ -1271,7 +1271,6 @@ static int faction_parse( Faction* temp, xmlNodePtr parent )
    xmlNodePtr node;
    int player;
    char buf[PATH_MAX], *dat, *ctmp;
-   glColour *col;
    size_t ndat;
 
    /* Clear memory. */
@@ -1300,18 +1299,15 @@ static int faction_parse( Faction* temp, xmlNodePtr parent )
       if (xml_isNode(node, "colour")) {
          ctmp = xml_get(node);
          if (ctmp != NULL)
-            temp->colour = col_fromName(xml_raw(node));
+            temp->colour = *col_fromName(xml_raw(node));
          /* If no named colour is present, RGB attributes are used. */
          else {
             /* Initialize in case a colour channel is absent. */
-            col = calloc( 1, sizeof(glColour) );
-
-            xmlr_attr_float(node,"r",col->r);
-            xmlr_attr_float(node,"g",col->g);
-            xmlr_attr_float(node,"b",col->b);
-
-            col->a = 1.;
-            temp->colour = col;
+            xmlr_attr_float(node,"r",temp->colour.r);
+            xmlr_attr_float(node,"g",temp->colour.g);
+            xmlr_attr_float(node,"b",temp->colour.b);
+            temp->colour.a = 1.;
+            col_gammaToLinear( &temp->colour );
          }
          continue;
       }
