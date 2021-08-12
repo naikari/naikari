@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2021-08-10 12:08-0400\n"
+"POT-Creation-Date: 2021-08-12 14:11-0400\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -21615,7 +21615,7 @@ msgstr "\"하우스 드레이드는 흔한 쓰레기로 자신을 낮추지 않�
 msgid "\"You are not worthy of my attention.\""
 msgstr "너는 내가 신경쓸 가치가 없어\""
 
-#: dat/ai/dvaered.lua:37 dat/ai/frontier.lua:39
+#: dat/ai/dvaered.lua:37 dat/ai/frontier.lua:37
 #, fuzzy, lua-format
 msgid "\"For you I could make an exception for %s.\""
 msgstr "\"당신을 위해 나는 %d 크레딧을 제외해줄 수 있습니다.\""
@@ -21742,7 +21742,7 @@ msgstr "너는 제국에 걸맞지 않아!"
 msgid "The Empire will have your head!"
 msgstr "제국은 너의 머리를 가질것이야!"
 
-#: dat/ai/empire.lua:88 dat/ai/flf.lua:73 dat/ai/frontier.lua:69
+#: dat/ai/empire.lua:88 dat/ai/flf.lua:73 dat/ai/frontier.lua:67
 #: dat/ai/proteron.lua:87 dat/ai/soromid.lua:77
 msgid "You'll regret that!"
 msgstr "넌 그걸 사과하게 될거야!"
@@ -21797,7 +21797,7 @@ msgstr "저 여기서 나가요."
 #. Create function
 #. Credits.
 #. Handle bribing
-#: dat/ai/flf.lua:30 dat/ai/frontier.lua:17
+#: dat/ai/flf.lua:30 dat/ai/frontier.lua:18
 msgid "\"The only way to deal with scum like you is with cannons!\""
 msgstr "\"너같은 쓰레기를 다루려면 대포밖에 없어!\""
 
@@ -21833,11 +21833,11 @@ msgstr ""
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. taunts
 #. Only 50% of actually taunting.
-#: dat/ai/flf.lua:65 dat/ai/frontier.lua:63
+#: dat/ai/flf.lua:65 dat/ai/frontier.lua:61
 msgid "For the Frontier!"
 msgstr "국경을 위해!"
 
-#: dat/ai/flf.lua:66 dat/ai/frontier.lua:64
+#: dat/ai/flf.lua:66 dat/ai/frontier.lua:62
 msgid "You'll make great target practice!"
 msgstr "타겟 연습이 잘 될거야!"
 
@@ -21855,50 +21855,50 @@ msgstr "너는 FLF와 어울리지 않아."
 msgid "I've killed scum far more dangerous than you!"
 msgstr "난 너보다 훨씬 더 위험한 쓰레기를 죽였어."
 
-#: dat/ai/flf.lua:74 dat/ai/frontier.lua:70
+#: dat/ai/flf.lua:74 dat/ai/frontier.lua:68
 #, fuzzy
 msgid "Death to enemies of the Frontier!"
 msgstr "국경의 적에게 죽음을!"
 
-#: dat/ai/frontier.lua:20
+#: dat/ai/frontier.lua:19
 #, fuzzy
 msgid "\"I don't want your money.\""
 msgstr "\"나는 어떤 문제도 원하지 않아.\""
 
-#: dat/ai/frontier.lua:21
+#: dat/ai/frontier.lua:20
 #, fuzzy
 msgid "\"I'm here for the Frontier, not money.\""
 msgstr "\"나는 너의 돈을 쓸 필요가 없다.\""
 
-#: dat/ai/frontier.lua:22
+#: dat/ai/frontier.lua:21
 msgid "\"Not interested.\""
 msgstr ""
 
-#: dat/ai/frontier.lua:23
+#: dat/ai/frontier.lua:22
 #, fuzzy
 msgid "\"I won't let you off that easily.\""
 msgstr "연료를 주지 않겠어!"
 
 #. Handle refueling
-#: dat/ai/frontier.lua:36
+#: dat/ai/frontier.lua:34
 #, fuzzy
 msgid "\"Sorry, I can't spare fuel for you.\""
 msgstr "\"난 너에게 연료를 나눠줄 수 없어.\""
 
-#: dat/ai/frontier.lua:43
+#: dat/ai/frontier.lua:41
 msgid "\"Sure, friend, I can refuel you. On my way.\""
 msgstr ""
 
-#: dat/ai/frontier.lua:65
+#: dat/ai/frontier.lua:63
 #, fuzzy
 msgid "You won't get away with your actions!"
 msgstr "당신은 도발할 때 잘못했다!"
 
-#: dat/ai/frontier.lua:71
+#: dat/ai/frontier.lua:69
 msgid "I won't go down without a fight!"
 msgstr ""
 
-#: dat/ai/frontier.lua:72
+#: dat/ai/frontier.lua:70
 msgid "To hell with you!"
 msgstr ""
 
@@ -58048,7 +58048,7 @@ msgstr ""
 msgid "Music thread did not exit when asked, ignoring..."
 msgstr ""
 
-#: src/naev.c:189 src/naev.c:1108
+#: src/naev.c:189 src/naev.c:1114
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr ""
@@ -58246,32 +58246,48 @@ msgstr ""
 msgid "clock_gettime failed!"
 msgstr ""
 
-#: src/naev.c:947
+#: src/naev.c:931
+#, c-format
+msgid "%.2f FPS"
+msgstr ""
+
+#. Translators: "TC" is short for "Time Compression". Please
+#. * substitute "TC" for a shortened form of "Time Compression" or
+#. * just "Time" that makes sense for the language being translated
+#. * to. The number displayed is the rate of time passage as a
+#. * percentage (e.g. 200% if time is passing twice as fast as
+#. * normal).
+#: src/naev.c:946
+#, c-format
+msgid "TC %.0f%%"
+msgstr ""
+
+#: src/naev.c:953
 msgid "PAUSED"
 msgstr ""
 
-#: src/naev.c:1048
+#: src/naev.c:1054
 msgid "Icon (icon.png) not found!"
 msgstr ""
 
-#: src/naev.c:1053
+#: src/naev.c:1059
 msgid "Unable to load icon.png!"
 msgstr ""
 
-#: src/naev.c:1078
+#: src/naev.c:1084
 msgid " debug"
 msgstr ""
 
-#: src/naev.c:1136
+#: src/naev.c:1142
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr ""
 
-#: src/naev.c:1146
+#: src/naev.c:1152
 msgid "SDL is newer than compiled version"
 msgstr ""
 
-#: src/naev.c:1148
+#: src/naev.c:1154
 msgid "SDL is older than compiled version."
 msgstr ""
 
@@ -58461,7 +58477,7 @@ msgstr ""
 msgid "Unexpected parameter"
 msgstr ""
 
-#: src/nlua_col.c:195
+#: src/nlua_col.c:199
 #, c-format
 msgid "Colour '%s' does not exist!"
 msgstr "색상 '%s'이 (가) 없습니다!"
@@ -59542,38 +59558,38 @@ msgstr ""
 msgid "Height/Width invalid. Should be formatted like 1024x768."
 msgstr ""
 
-#: src/options.c:1498
+#: src/options.c:1503
 msgid "Resolution can't be changed while maximized."
 msgstr ""
 
-#: src/options.c:1502
+#: src/options.c:1507
 msgid "Keep Video Settings"
 msgstr ""
 
-#: src/options.c:1503
+#: src/options.c:1508
 #, fuzzy, c-format
 msgid "Do you want to keep running at %d×%d %s?"
 msgstr "\"원하는게 뭐야!?\""
 
-#: src/options.c:1504 src/options.c:1510
+#: src/options.c:1509 src/options.c:1515
 msgid "fullscreen"
 msgstr ""
 
-#: src/options.c:1504 src/options.c:1510
+#: src/options.c:1509 src/options.c:1515
 msgid "windowed"
 msgstr ""
 
-#: src/options.c:1508
+#: src/options.c:1513
 msgid "Video Settings Restored"
 msgstr ""
 
-#: src/options.c:1509
+#: src/options.c:1514
 #, c-format
 msgid "Resolution reset to %d×%d %s."
 msgstr ""
 
-#: src/options.c:1590 src/options.c:1610 src/options.c:1635 src/options.c:1656
-#: src/options.c:1675 src/options.c:1695
+#: src/options.c:1596 src/options.c:1616 src/options.c:1641 src/options.c:1662
+#: src/options.c:1681 src/options.c:1701
 #, c-format
 msgid "%.0f%%"
 msgstr ""

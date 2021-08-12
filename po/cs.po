@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2021-08-10 12:08-0400\n"
+"POT-Creation-Date: 2021-08-12 14:11-0400\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -21441,7 +21441,7 @@ msgstr "„Rod Dvaered se nesnižuje k obyčejné spodině.“"
 msgid "\"You are not worthy of my attention.\""
 msgstr "„Nejsi hoden mé pozornosti.“"
 
-#: dat/ai/dvaered.lua:37 dat/ai/frontier.lua:39
+#: dat/ai/dvaered.lua:37 dat/ai/frontier.lua:37
 #, lua-format
 msgid "\"For you I could make an exception for %s.\""
 msgstr "„Pro tebe bych mohl udělat výjimku za %s.“"
@@ -21568,7 +21568,7 @@ msgstr "Pro impérium nejsi žádná výzva!"
 msgid "The Empire will have your head!"
 msgstr "Impérium bude mít tvoji hlavu!"
 
-#: dat/ai/empire.lua:88 dat/ai/flf.lua:73 dat/ai/frontier.lua:69
+#: dat/ai/empire.lua:88 dat/ai/flf.lua:73 dat/ai/frontier.lua:67
 #: dat/ai/proteron.lua:87 dat/ai/soromid.lua:77
 msgid "You'll regret that!"
 msgstr "Toho budeš litovat!"
@@ -21623,7 +21623,7 @@ msgstr "Mizím odsud."
 #. Create function
 #. Credits.
 #. Handle bribing
-#: dat/ai/flf.lua:30 dat/ai/frontier.lua:17
+#: dat/ai/flf.lua:30 dat/ai/frontier.lua:18
 msgid "\"The only way to deal with scum like you is with cannons!\""
 msgstr "„Jediný způsob, jak se vypořádat s lůzou, jako jsi ty, jsou děla!“"
 
@@ -21659,11 +21659,11 @@ msgstr ""
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. taunts
 #. Only 50% of actually taunting.
-#: dat/ai/flf.lua:65 dat/ai/frontier.lua:63
+#: dat/ai/flf.lua:65 dat/ai/frontier.lua:61
 msgid "For the Frontier!"
 msgstr "Za Pohraničí!"
 
-#: dat/ai/flf.lua:66 dat/ai/frontier.lua:64
+#: dat/ai/flf.lua:66 dat/ai/frontier.lua:62
 msgid "You'll make great target practice!"
 msgstr "Bude z tebe skvělý cvičný terč!"
 
@@ -21681,50 +21681,50 @@ msgstr "Pro FLF nejsi žádnou výzvou."
 msgid "I've killed scum far more dangerous than you!"
 msgstr "Zabil jsem spodinu mnohem nebezpečnější než jsi ty."
 
-#: dat/ai/flf.lua:74 dat/ai/frontier.lua:70
+#: dat/ai/flf.lua:74 dat/ai/frontier.lua:68
 #, fuzzy
 msgid "Death to enemies of the Frontier!"
 msgstr "Smrt nepřátelům Pohraničí!"
 
-#: dat/ai/frontier.lua:20
+#: dat/ai/frontier.lua:19
 #, fuzzy
 msgid "\"I don't want your money.\""
 msgstr "„Nechci žádný problémy.“"
 
-#: dat/ai/frontier.lua:21
+#: dat/ai/frontier.lua:20
 #, fuzzy
 msgid "\"I'm here for the Frontier, not money.\""
 msgstr "„Tvé peníze mi jsou k ničemu.“"
 
-#: dat/ai/frontier.lua:22
+#: dat/ai/frontier.lua:21
 msgid "\"Not interested.\""
 msgstr ""
 
-#: dat/ai/frontier.lua:23
+#: dat/ai/frontier.lua:22
 #, fuzzy
 msgid "\"I won't let you off that easily.\""
 msgstr "Nedám ti palivo!"
 
 #. Handle refueling
-#: dat/ai/frontier.lua:36
+#: dat/ai/frontier.lua:34
 #, fuzzy
 msgid "\"Sorry, I can't spare fuel for you.\""
 msgstr "„Nemohu ti dát palivo.“"
 
-#: dat/ai/frontier.lua:43
+#: dat/ai/frontier.lua:41
 msgid "\"Sure, friend, I can refuel you. On my way.\""
 msgstr ""
 
-#: dat/ai/frontier.lua:65
+#: dat/ai/frontier.lua:63
 #, fuzzy
 msgid "You won't get away with your actions!"
 msgstr "Tvé provokace jsou špatné!"
 
-#: dat/ai/frontier.lua:71
+#: dat/ai/frontier.lua:69
 msgid "I won't go down without a fight!"
 msgstr ""
 
-#: dat/ai/frontier.lua:72
+#: dat/ai/frontier.lua:70
 msgid "To hell with you!"
 msgstr ""
 
@@ -57673,7 +57673,7 @@ msgstr ""
 msgid "Music thread did not exit when asked, ignoring..."
 msgstr ""
 
-#: src/naev.c:189 src/naev.c:1108
+#: src/naev.c:189 src/naev.c:1114
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr ""
@@ -57871,32 +57871,48 @@ msgstr ""
 msgid "clock_gettime failed!"
 msgstr ""
 
-#: src/naev.c:947
+#: src/naev.c:931
+#, c-format
+msgid "%.2f FPS"
+msgstr ""
+
+#. Translators: "TC" is short for "Time Compression". Please
+#. * substitute "TC" for a shortened form of "Time Compression" or
+#. * just "Time" that makes sense for the language being translated
+#. * to. The number displayed is the rate of time passage as a
+#. * percentage (e.g. 200% if time is passing twice as fast as
+#. * normal).
+#: src/naev.c:946
+#, c-format
+msgid "TC %.0f%%"
+msgstr ""
+
+#: src/naev.c:953
 msgid "PAUSED"
 msgstr ""
 
-#: src/naev.c:1048
+#: src/naev.c:1054
 msgid "Icon (icon.png) not found!"
 msgstr ""
 
-#: src/naev.c:1053
+#: src/naev.c:1059
 msgid "Unable to load icon.png!"
 msgstr ""
 
-#: src/naev.c:1078
+#: src/naev.c:1084
 msgid " debug"
 msgstr ""
 
-#: src/naev.c:1136
+#: src/naev.c:1142
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr ""
 
-#: src/naev.c:1146
+#: src/naev.c:1152
 msgid "SDL is newer than compiled version"
 msgstr ""
 
-#: src/naev.c:1148
+#: src/naev.c:1154
 msgid "SDL is older than compiled version."
 msgstr ""
 
@@ -58073,7 +58089,7 @@ msgstr ""
 msgid "Unexpected parameter"
 msgstr ""
 
-#: src/nlua_col.c:195
+#: src/nlua_col.c:199
 #, c-format
 msgid "Colour '%s' does not exist!"
 msgstr ""
@@ -59147,38 +59163,38 @@ msgstr ""
 msgid "Height/Width invalid. Should be formatted like 1024x768."
 msgstr ""
 
-#: src/options.c:1498
+#: src/options.c:1503
 msgid "Resolution can't be changed while maximized."
 msgstr ""
 
-#: src/options.c:1502
+#: src/options.c:1507
 msgid "Keep Video Settings"
 msgstr ""
 
-#: src/options.c:1503
+#: src/options.c:1508
 #, fuzzy, c-format
 msgid "Do you want to keep running at %d×%d %s?"
 msgstr "Chcete splácet DVV?"
 
-#: src/options.c:1504 src/options.c:1510
+#: src/options.c:1509 src/options.c:1515
 msgid "fullscreen"
 msgstr ""
 
-#: src/options.c:1504 src/options.c:1510
+#: src/options.c:1509 src/options.c:1515
 msgid "windowed"
 msgstr ""
 
-#: src/options.c:1508
+#: src/options.c:1513
 msgid "Video Settings Restored"
 msgstr ""
 
-#: src/options.c:1509
+#: src/options.c:1514
 #, c-format
 msgid "Resolution reset to %d×%d %s."
 msgstr ""
 
-#: src/options.c:1590 src/options.c:1610 src/options.c:1635 src/options.c:1656
-#: src/options.c:1675 src/options.c:1695
+#: src/options.c:1596 src/options.c:1616 src/options.c:1641 src/options.c:1662
+#: src/options.c:1681 src/options.c:1701
 #, c-format
 msgid "%.0f%%"
 msgstr ""
