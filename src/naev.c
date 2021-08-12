@@ -928,7 +928,7 @@ void display_fps( const double dt )
    x = fps_x;
    y = fps_y;
    if (conf.fps_show) {
-      gl_print( NULL, x, y, NULL, "%3.2f", fps );
+      gl_print( NULL, x, y, NULL, _("%.2f FPS"), fps );
       y -= gl_defFont.h + 5.;
    }
 
@@ -937,7 +937,13 @@ void display_fps( const double dt )
       dt_mod_base = player_dt_default();
    }
    if (dt_mod != dt_mod_base)
-      gl_print( NULL, x, y, NULL, "%3.1f×", dt_mod / dt_mod_base);
+      /* Translators: "TC" is short for "Time Compression". Please
+       * substitute "TC" for a shortened form of "Time Compression" or
+       * just "Time" that makes sense for the language being translated
+       * to. The number displayed is the rate of time passage as a
+       * percentage (e.g. 200% if time is passing twice as fast as
+       * normmal). */
+      gl_print(NULL, x, y, NULL, _("TC %.0f%%"), 100. * dt_mod / dt_mod_base);
 
    if (!paused || !player_paused || !conf.pause_show)
       return;
