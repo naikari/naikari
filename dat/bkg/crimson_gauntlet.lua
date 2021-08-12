@@ -23,12 +23,12 @@ function background ()
    background_nebula()
 end
 
-function renderbg( dt )
+function renderfg( dt )
    -- Get camera properties
    --local x, y = camera.get():get()
    local z = camera.getZoom()
    shader:send( "u_camera", 0, 0, z )
 
    local b = 0.1
-   bgshaders.render( dt, {b, b, b, naev.conf().bg_brightness} )
+   bgshaders.render( dt, {b, b, b, 0.02 * naev.conf().bg_brightness} )
 end
