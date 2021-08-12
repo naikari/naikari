@@ -942,7 +942,7 @@ void display_fps( const double dt )
        * just "Time" that makes sense for the language being translated
        * to. The number displayed is the rate of time passage as a
        * percentage (e.g. 200% if time is passing twice as fast as
-       * normmal). */
+       * normal). */
       gl_print(NULL, x, y, NULL, _("TC %.0f%%"), 100. * dt_mod / dt_mod_base);
 
    if (!paused || !player_paused || !conf.pause_show)
