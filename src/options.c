@@ -1448,6 +1448,11 @@ static int opt_videoSave( unsigned int wid, char *str )
    conf.zoom_far = window_getFaderValue(wid, "fadZoomFar");
    conf.zoom_near = window_getFaderValue(wid, "fadZoomNear");
 
+   /* Round these values to the nearest 1%. */
+   conf.scalefactor = round(conf.scalefactor*100.) / 100.;
+   conf.zoom_far = round(conf.zoom_far*100.) / 100.;
+   conf.zoom_near = round(conf.zoom_near*100.) / 100.;
+
    return 0;
 }
 
@@ -1586,7 +1591,8 @@ static void opt_setScalefactor( unsigned int wid, char *str )
 
    if (FABS(conf.scalefactor - scale) > 1e-4)
       opt_needRestart();
-   conf.scalefactor = scale;
+
+   conf.scalefactor = round(scale*100.) / 100.;
    snprintf(buf, sizeof(buf), _("%.0f%%"), conf.scalefactor * 100.);
    window_modifyText(wid, "txtScale", buf);
 }
@@ -1606,7 +1612,7 @@ static void opt_setZoomFar( unsigned int wid, char *str )
    if (FABS(conf.zoom_far - zoom) > 1e-4)
       opt_needRestart();
 
-   conf.zoom_far = zoom;
+   conf.zoom_far = round(zoom*100.) / 100.;
    snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_far * 100.);
    window_modifyText(wid, "txtZoomFar", buf);
 
@@ -1631,7 +1637,7 @@ static void opt_setZoomNear( unsigned int wid, char *str )
    if (FABS(conf.zoom_near - zoom) > 1e-4)
       opt_needRestart();
 
-   conf.zoom_near = zoom;
+   conf.zoom_near = round(zoom*100.) / 100.;
    snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_near * 100.);
    window_modifyText(wid, "txtZoomNear", buf);
 
