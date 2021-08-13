@@ -89,9 +89,6 @@
 #define CONF_FILE       "conf.lua" /**< Configuration file by default. */
 #define VERSION_FILE    "VERSION" /**< Version file by default. */
 
-#define NAEV_INIT_DELAY 3000 /**< Minimum amount of time_ms to wait with loading screen */
-
-
 static int quit               = 0; /**< For primary loop */
 static unsigned int time_ms   = 0; /**< used to calculate FPS and movement. */
 static glTexture *loading     = NULL; /**< Loading screen. */
@@ -366,9 +363,6 @@ int main( int argc, char** argv )
 
    LOG( _( "Reached main menu" ) );
 
-   /* Force a minimum delay with loading screen */
-   if ((SDL_GetTicks() - time_ms) < NAEV_INIT_DELAY)
-      SDL_Delay( NAEV_INIT_DELAY - (SDL_GetTicks() - time_ms) );
    fps_init(); /* initializes the time_ms */
 
    /*
