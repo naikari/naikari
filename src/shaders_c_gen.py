@@ -55,6 +55,12 @@ class Shader:
                     f.write(f"      shaders.{self.name}.{subroutine}.{r} = glGetSubroutineIndex( shaders.{self.name}.program, GL_FRAGMENT_SHADER, \"{r}\" );\n")
             f.write("   }\n");
 
+
+class SimpleShader(Shader):
+    def __init__(self, name, fs_path):
+        super().__init__( name=name, vs_path="project_pos.vert", fs_path=fs_path, attributes=["vertex"], uniforms=["projection","color","dimensions"], subroutines={} )
+
+
 SHADERS = [
    Shader(
       name = "circle",
@@ -259,6 +265,10 @@ SHADERS = [
       attributes = ["vertex"],
       uniforms = ["projection", "dimensions", "progress"],
       subroutines = {},
+   ),
+   SimpleShader(
+      name = "safelanes",
+      fs_path = "safelanes.frag",
    ),
 ]
 
