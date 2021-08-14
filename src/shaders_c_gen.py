@@ -255,6 +255,10 @@ SHADERS = [
       name = "progressbar",
       fs_path = "progressbar.frag",
    ),
+   SimpleShader(
+      name = "sysmarker",
+      fs_path = "sysmarker.frag",
+   ),
 ]
 
 def write_header(f):
