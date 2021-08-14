@@ -570,7 +570,7 @@ void loadscreen_render( double done, const char *msg )
    by = (SCREEN_H-SHIP_IMAGE_HEIGHT)/2.;
    /* Loading bar. */
    w  = SCREEN_W * 0.4;
-   h  = SCREEN_H * 0.02;
+   h  = SCREEN_H * 0.025;
    rh = h + gl_defFont.h + 4.;
    x  = (SCREEN_W-w)/2.;
    y  = (SCREEN_H-SHIP_IMAGE_HEIGHT)/2. - rh - 5.;
@@ -584,7 +584,6 @@ void loadscreen_render( double done, const char *msg )
    }
 
    /* Draw progress bar. */
-   /* Set the vertex. */
    gl_Matrix4 projection = gl_view_matrix;
    projection = gl_Matrix4_Translate(projection, x, y, 0);
    projection = gl_Matrix4_Scale(projection, w, h, 1);
@@ -603,7 +602,6 @@ void loadscreen_render( double done, const char *msg )
    glUseProgram(0);
    gl_checkErr();
    
-
    /* Draw text. */
    gl_printRaw( &gl_defFont, x, y + h + 3., &cFontWhite, -1., msg );
 
@@ -929,7 +927,7 @@ void display_fps( const double dt )
    x = fps_x;
    y = fps_y;
    if (conf.fps_show) {
-      gl_print( NULL, x, y, NULL, "%3.2f", fps );
+      gl_print( NULL, x, y, NULL, _("%.2f FPS"), fps );
       y -= gl_defFont.h + 5.;
    }
 
@@ -938,7 +936,13 @@ void display_fps( const double dt )
       dt_mod_base = player_dt_default();
    }
    if (dt_mod != dt_mod_base)
-      gl_print( NULL, x, y, NULL, "%3.1f×", dt_mod / dt_mod_base);
+      /* Translators: "TC" is short for "Time Compression". Please
+       * substitute "TC" for a shortened form of "Time Compression" or
+       * just "Time" that makes sense for the language being translated
+       * to. The number displayed is the rate of time passage as a
+       * percentage (e.g. 200% if time is passing twice as fast as
+       * normal). */
+      gl_print(NULL, x, y, NULL, _("TC %.0f%%"), 100. * dt_mod / dt_mod_base);
 
    if (!paused || !player_paused || !conf.pause_show)
       return;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2021-08-10 12:08-0400\n"
+"POT-Creation-Date: 2021-08-12 14:11-0400\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -27066,7 +27066,7 @@ msgstr "„Haus Dvaered lässt sich nicht auf niederem Abschaum ein.“"
 msgid "\"You are not worthy of my attention.\""
 msgstr "„Du hast meine Aufmerksamkeit nicht verdient.“"
 
-#: dat/ai/dvaered.lua:37 dat/ai/frontier.lua:39
+#: dat/ai/dvaered.lua:37 dat/ai/frontier.lua:37
 #, lua-format
 msgid "\"For you I could make an exception for %s.\""
 msgstr "„Für dich könnte ich eine Ausnahme für %s machen.“"
@@ -27193,7 +27193,7 @@ msgstr "Sie sind dem Imperium nicht gewachsen!"
 msgid "The Empire will have your head!"
 msgstr "Das Imperium will Ihren Kopf!"
 
-#: dat/ai/empire.lua:88 dat/ai/flf.lua:73 dat/ai/frontier.lua:69
+#: dat/ai/empire.lua:88 dat/ai/flf.lua:73 dat/ai/frontier.lua:67
 #: dat/ai/proteron.lua:87 dat/ai/soromid.lua:77
 msgid "You'll regret that!"
 msgstr "Das werden Sie bereuen!"
@@ -27248,7 +27248,7 @@ msgstr "Ich bin weg."
 #. Create function
 #. Credits.
 #. Handle bribing
-#: dat/ai/flf.lua:30 dat/ai/frontier.lua:17
+#: dat/ai/flf.lua:30 dat/ai/frontier.lua:18
 msgid "\"The only way to deal with scum like you is with cannons!\""
 msgstr ""
 "„Die einzige Methode, mit Abschaum wie dir fertig zu werden, ist mit "
@@ -27286,11 +27286,11 @@ msgstr ""
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. taunts
 #. Only 50% of actually taunting.
-#: dat/ai/flf.lua:65 dat/ai/frontier.lua:63
+#: dat/ai/flf.lua:65 dat/ai/frontier.lua:61
 msgid "For the Frontier!"
 msgstr "Für die Front!"
 
-#: dat/ai/flf.lua:66 dat/ai/frontier.lua:64
+#: dat/ai/flf.lua:66 dat/ai/frontier.lua:62
 msgid "You'll make great target practice!"
 msgstr "Du machst dich gut als Zielscheibe!"
 
@@ -27308,51 +27308,51 @@ msgstr "Du bist der FLF nicht gewachsen."
 msgid "I've killed scum far more dangerous than you!"
 msgstr "Ich habe gefährlicheren Abschaum als dich getötet."
 
-#: dat/ai/flf.lua:74 dat/ai/frontier.lua:70
+#: dat/ai/flf.lua:74 dat/ai/frontier.lua:68
 #, fuzzy
 msgid "Death to enemies of the Frontier!"
 msgstr "Tod den Feinden der Front!"
 
-#: dat/ai/frontier.lua:20
+#: dat/ai/frontier.lua:19
 #, fuzzy
 msgid "\"I don't want your money.\""
 msgstr "„Ich will keine Schwierigkeiten.“"
 
-#: dat/ai/frontier.lua:21
+#: dat/ai/frontier.lua:20
 #, fuzzy
 msgid "\"I'm here for the Frontier, not money.\""
 msgstr "„Ich kann mit deinem Geld nichts anfangen.“"
 
-#: dat/ai/frontier.lua:22
+#: dat/ai/frontier.lua:21
 #, fuzzy
 msgid "\"Not interested.\""
 msgstr "Tud mit Leid, nicht interessiert"
 
-#: dat/ai/frontier.lua:23
+#: dat/ai/frontier.lua:22
 #, fuzzy
 msgid "\"I won't let you off that easily.\""
 msgstr "Ich werde Ihnen keinen Treibstoff geben!"
 
 #. Handle refueling
-#: dat/ai/frontier.lua:36
+#: dat/ai/frontier.lua:34
 #, fuzzy
 msgid "\"Sorry, I can't spare fuel for you.\""
 msgstr "„Ich habe für dich keinen Treibstoff über.“"
 
-#: dat/ai/frontier.lua:43
+#: dat/ai/frontier.lua:41
 msgid "\"Sure, friend, I can refuel you. On my way.\""
 msgstr ""
 
-#: dat/ai/frontier.lua:65
+#: dat/ai/frontier.lua:63
 #, fuzzy
 msgid "You won't get away with your actions!"
 msgstr "Deine Provokationen waren ein Fehler!"
 
-#: dat/ai/frontier.lua:71
+#: dat/ai/frontier.lua:69
 msgid "I won't go down without a fight!"
 msgstr ""
 
-#: dat/ai/frontier.lua:72
+#: dat/ai/frontier.lua:70
 msgid "To hell with you!"
 msgstr ""
 
@@ -70667,7 +70667,7 @@ msgid "Music thread did not exit when asked, ignoring..."
 msgstr ""
 "Musik-Thread hat sich nach einer Anfrage nicht beendet, wird ignoriert …"
 
-#: src/naev.c:189 src/naev.c:1108
+#: src/naev.c:189 src/naev.c:1114
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr "Versionszeichenkette „%s“ konnte nicht geparst werden!"
@@ -70884,32 +70884,48 @@ msgstr "clock_gettime fehlgeschlagen, posix-Zeit wird deaktiviert."
 msgid "clock_gettime failed!"
 msgstr "clock_gettime fehlgeschlagen!"
 
-#: src/naev.c:947
+#: src/naev.c:931
+#, c-format
+msgid "%.2f FPS"
+msgstr ""
+
+#. Translators: "TC" is short for "Time Compression". Please
+#. * substitute "TC" for a shortened form of "Time Compression" or
+#. * just "Time" that makes sense for the language being translated
+#. * to. The number displayed is the rate of time passage as a
+#. * percentage (e.g. 200% if time is passing twice as fast as
+#. * normal).
+#: src/naev.c:946
+#, fuzzy, c-format
+msgid "TC %.0f%%"
+msgstr "%.0f%%"
+
+#: src/naev.c:953
 msgid "PAUSED"
 msgstr "PAUSIERT"
 
-#: src/naev.c:1048
+#: src/naev.c:1054
 msgid "Icon (icon.png) not found!"
 msgstr "Icon (icon.png) nicht gefunden!"
 
-#: src/naev.c:1053
+#: src/naev.c:1059
 msgid "Unable to load icon.png!"
 msgstr "Konnte icon.png nicht laden!"
 
-#: src/naev.c:1078
+#: src/naev.c:1084
 msgid " debug"
 msgstr " debug"
 
-#: src/naev.c:1136
+#: src/naev.c:1142
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr "SDL: %d.%d.%d [kompiliert: %d.%d.%d]"
 
-#: src/naev.c:1146
+#: src/naev.c:1152
 msgid "SDL is newer than compiled version"
 msgstr "SDL ist neuer als die kompilierte Version"
 
-#: src/naev.c:1148
+#: src/naev.c:1154
 msgid "SDL is older than compiled version."
 msgstr "SDL ist älter als die kompilierte Version."
 
@@ -71109,7 +71125,7 @@ msgstr ""
 msgid "Unexpected parameter"
 msgstr "Unerwarteter Bonus"
 
-#: src/nlua_col.c:195
+#: src/nlua_col.c:199
 #, c-format
 msgid "Colour '%s' does not exist!"
 msgstr "Farbe „%s“ existiert nicht!"
@@ -72243,38 +72259,38 @@ msgstr "Radar reinzoomen"
 msgid "Height/Width invalid. Should be formatted like 1024x768."
 msgstr "Höhe/Breite ungültig. Sollte wie „1024x768“ formatiert sein."
 
-#: src/options.c:1498
+#: src/options.c:1503
 msgid "Resolution can't be changed while maximized."
 msgstr "Auflösung kann nicht geändert werden, solange es maximiert ist."
 
-#: src/options.c:1502
+#: src/options.c:1507
 msgid "Keep Video Settings"
 msgstr "Grafikeinstellungen behalten"
 
-#: src/options.c:1503
+#: src/options.c:1508
 #, fuzzy, c-format
 msgid "Do you want to keep running at %d×%d %s?"
 msgstr "Möchtest du mit %d×%d %s weiter arbeiten?"
 
-#: src/options.c:1504 src/options.c:1510
+#: src/options.c:1509 src/options.c:1515
 msgid "fullscreen"
 msgstr "Vollbild"
 
-#: src/options.c:1504 src/options.c:1510
+#: src/options.c:1509 src/options.c:1515
 msgid "windowed"
 msgstr "Fenster"
 
-#: src/options.c:1508
+#: src/options.c:1513
 msgid "Video Settings Restored"
 msgstr "Grafikeinstellungen wiederhergestellt"
 
-#: src/options.c:1509
+#: src/options.c:1514
 #, fuzzy, c-format
 msgid "Resolution reset to %d×%d %s."
 msgstr "Auflösung auf %d×%d %s zurückgesetzt."
 
-#: src/options.c:1590 src/options.c:1610 src/options.c:1635 src/options.c:1656
-#: src/options.c:1675 src/options.c:1695
+#: src/options.c:1596 src/options.c:1616 src/options.c:1641 src/options.c:1662
+#: src/options.c:1681 src/options.c:1701
 #, c-format
 msgid "%.0f%%"
 msgstr "%.0f%%"
