@@ -259,6 +259,10 @@ SHADERS = [
       name = "targetship",
       fs_path = "targetship.frag",
    ),
+   SimpleShader(
+      name = "targetplanet",
+      fs_path = "targetplanet.frag",
+   ),
 ]
 
 def write_header(f):
