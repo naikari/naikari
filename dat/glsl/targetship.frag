@@ -19,6 +19,6 @@ void main(void) {
    d = max( -sdCircle( uv-vec2(M_SQRT1_2), 0.04 ), d );
 
    color_out = color;
-   color_out.a *= 0.6*smoothstep( -m, 0.0, -d );
+   color_out.a *= 0.6*smoothstep( -m, m, -d );
 }
 
