@@ -168,7 +168,6 @@ typedef struct Radar_ {
 #define RADAR_RES_MAX      100. /**< Maximum radar resolution. */
 #define RADAR_RES_MIN      10. /**< Minimum radar resolution. */
 #define RADAR_RES_INTERVAL 10. /**< Steps used to increase/decrease resolution. */
-#define RADAR_RES_DEFAULT  50. /**< Default resolution. */
 static Radar gui_radar;
 
 /* needed to render properly */
@@ -244,7 +243,7 @@ static int gui_runFunc( const char* func, int nargs, int nret );
  */
 void gui_setDefaults (void)
 {
-   gui_radar.res = RADAR_RES_DEFAULT;
+   gui_radar.res = player.radar_res;
    memset( mesg_stack, 0, sizeof(Mesg)*mesg_max );
 }
 
@@ -1019,7 +1018,7 @@ int gui_getMapOverlayBoundLeft(void)
 int gui_radarInit( int circle, int w, int h )
 {
    gui_radar.shape   = circle ? RADAR_CIRCLE : RADAR_RECT;
-   gui_radar.res     = RADAR_RES_DEFAULT;
+   gui_radar.res     = player.radar_res;
    gui_radar.w       = w;
    gui_radar.h       = h;
    return 0;
@@ -1772,7 +1771,7 @@ int gui_init (void)
    /*
     * radar
     */
-   gui_radar.res = RADAR_RES_DEFAULT;
+   gui_radar.res = player.radar_res;
 
    /*
     * messages
