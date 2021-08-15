@@ -89,11 +89,9 @@
 #define CONF_FILE       "conf.lua" /**< Configuration file by default. */
 #define VERSION_FILE    "VERSION" /**< Version file by default. */
 
-#define NAEV_INIT_DELAY 3000 /**< Minimum amount of time_ms to wait with loading screen */
-
-
 static int quit               = 0; /**< For primary loop */
 static unsigned int time_ms   = 0; /**< used to calculate FPS and movement. */
+static double loading_r       = 0.; /**< Just to provide some randomness. */
 static glTexture *loading     = NULL; /**< Loading screen. */
 static glFont loading_font; /**< Loading font. */
 static char *loading_txt = NULL; /**< Loading text to display. */
@@ -366,9 +364,6 @@ int main( int argc, char** argv )
 
    LOG( _( "Reached main menu" ) );
 
-   /* Force a minimum delay with loading screen */
-   if ((SDL_GetTicks() - time_ms) < NAEV_INIT_DELAY)
-      SDL_Delay( NAEV_INIT_DELAY - (SDL_GetTicks() - time_ms) );
    fps_init(); /* initializes the time_ms */
 
    /*
@@ -522,6 +517,7 @@ void loadscreen_load (void)
    /* Load the texture */
    snprintf( file_path, sizeof(file_path), GFX_PATH"loading/%s", load );
    loading = gl_newImage( file_path, 0 );
+   loading_r = RNGF();
 
    /* Load the metadata. */
    snprintf( file_path, sizeof(file_path), GFX_PATH"loading/%s.txt", load );
@@ -584,24 +580,11 @@ void loadscreen_render( double done, const char *msg )
    }
 
    /* Draw progress bar. */
-   gl_Matrix4 projection = gl_view_matrix;
-   projection = gl_Matrix4_Translate(projection, x, y, 0);
-   projection = gl_Matrix4_Scale(projection, w, h, 1);
-   
    glUseProgram(shaders.progressbar.program);
-   glEnableVertexAttribArray(shaders.progressbar.vertex);
-   gl_Matrix4_Uniform(shaders.progressbar.projection, projection);
+   glUniform1f( shaders.progressbar.r, loading_r );
+   glUniform1f( shaders.progressbar.dt, done );
+   gl_renderShader( x, y, w, h, 0., &shaders.progressbar, NULL, 0 );
 
-   glUniform2f( shaders.progressbar.dimensions, w, h );
-   glUniform1f( shaders.progressbar.progress, done );
-      
-   gl_vboActivateAttribOffset( gl_squareVBO, shaders.progressbar.vertex, 0, 2, GL_FLOAT, 0 );
-   glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
-   
-   glDisableVertexAttribArray(shaders.progressbar.vertex);
-   glUseProgram(0);
-   gl_checkErr();
-   
    /* Draw text. */
    gl_printRaw( &gl_defFont, x, y + h + 3., &cFontWhite, -1., msg );
 

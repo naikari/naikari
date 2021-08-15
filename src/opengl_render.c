@@ -699,6 +699,56 @@ void gl_blitStatic( const glTexture* texture,
 
 
 /**
+ * @brief Renders a simple shader.
+ *
+ *    @param x X position.
+ *    @param y Y position.
+ *    @param w Width.
+ *    @param h Height.
+ *    @param r Rotation or 0. to disable.
+ *    @param shd Shader to render.
+ *    @param c Colour to use or NULL if not necessary.
+ *    @param center Whether or not to center the shader on the position and use [-1,1] coordinates or set bottom-left and use [0,1] coordinates.
+ */
+void gl_renderShader( double x, double y, double w, double h, double r, const SimpleShader *shd, const glColour *c, int center )
+{
+   gl_Matrix4 projection = gl_view_matrix;
+   projection = gl_Matrix4_Translate(projection, x, y, 0);
+   projection = gl_Matrix4_Scale(projection, w, h, 1);
+   if (r != 0.)
+      projection = gl_Matrix4_Rotate2d(projection, r);
+   glUniform2f( shd->dimensions, w, h );
+   gl_renderShaderH( shd, &projection, c, center );
+}
+
+
+/**
+ * @brief Renders a simple shader with a transformation.
+ *
+ *    @param shd Shader to render.
+ *    @param H Transformation matrix.
+ *    @param c Colour to use or NULL if not necessary.
+ *    @param center Whether or not to center the shader on the position and use [-1,1] coordinates or set bottom-left and use [0,1] coordinates.
+ */
+void gl_renderShaderH( const SimpleShader *shd, const gl_Matrix4 *H, const glColour *c, int center )
+{
+   glEnableVertexAttribArray(shd->vertex);
+   gl_vboActivateAttribOffset( center ? gl_circleVBO : gl_squareVBO, shd->vertex, 0, 2, GL_FLOAT, 0 );
+
+   if (c != NULL)
+      gl_uniformColor(shd->color, c);
+
+   gl_Matrix4_Uniform(shd->projection, *H);
+
+   glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
+
+   glDisableVertexAttribArray(shd->vertex);
+   glUseProgram(0);
+   gl_checkErr();
+}
+
+
+/**
  * @brief Draws a circle.
  *
  *    @param cx X position of the center in screen coordinates.

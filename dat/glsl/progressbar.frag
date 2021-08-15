@@ -2,20 +2,22 @@
 #include "lib/sdf.glsl"
 
 uniform vec2 dimensions;
-uniform float progress;
+uniform float dt;
+uniform float r;
 out vec4 color_out;
 in vec2 pos;
 
 void main(void) {
-   vec2 rel_pos = gl_FragCoord.xy * 0.05;
+   float progress = dt;
+   vec2 rel_pos = gl_FragCoord.xy * 0.05 + r*100.;
 
    const float margin = 0.05;
    float relprog = smoothstep( -margin, margin, pos.x-progress);
 
    const float time  = 0.0;
    const float hue   = 0.65;
-   float value       = 0.4*(1.0-relprog);
-   float brightness  = 0.1*relprog;
+   float value       = 0.1*(1.0-relprog);
+   float brightness  = relprog;
 
    color_out = nebula( vec4(0.0, 0.0, 0.0, 1.0), rel_pos, time, hue, value, brightness );
    color_out *= 1.0 - 0.8 * relprog;
