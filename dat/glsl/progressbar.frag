@@ -16,8 +16,8 @@ void main(void) {
 
    const float time  = 0.0;
    const float hue   = 0.65;
-   float value       = 0.4*(1.0-relprog);
-   float brightness  = 0.1*relprog;
+   float value       = 0.1*(1.0-relprog);
+   float brightness  = relprog;
 
    color_out = nebula( vec4(0.0, 0.0, 0.0, 1.0), rel_pos, time, hue, value, brightness );
    color_out *= 1.0 - 0.8 * relprog;
