@@ -255,10 +255,6 @@ SHADERS = [
       uniforms = ["projection", "dimensions", "progress"],
       subroutines = {},
    ),
-   SimpleShader(
-      name = "safelanes",
-      fs_path = "safelanes.frag",
-   ),
 ]
 
 def write_header(f):
