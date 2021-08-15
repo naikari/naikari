@@ -166,6 +166,7 @@ typedef struct Radar_ {
 } Radar;
 /* radar resolutions */
 #define RADAR_RES_MAX      300. /**< Maximum radar resolution. */
+#define RADAR_RES_REF      100. /**< Reference radar resolution. */
 #define RADAR_RES_MIN      10. /**< Minimum radar resolution. */
 #define RADAR_RES_INTERVAL 10. /**< Steps used to increase/decrease resolution. */
 static Radar gui_radar;
@@ -1271,7 +1272,7 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
       y = ((p->solid->pos.y - player.p->solid->pos.y) / res);
    }
    /* Get size. */
-   scale = p->ship->rdr_scale * (1. + RADAR_RES_MAX/res);
+   scale = p->ship->rdr_scale * (1. + RADAR_RES_REF/res);
 
    /* Check if pilot in range. */
    if ( ((shape==RADAR_RECT) &&
