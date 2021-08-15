@@ -1780,16 +1780,19 @@ void map_updateFactionPresence( const unsigned int wid, const char *name, const 
          break;
       }
       /* Use map grey instead of default neutral colour */
-      l += scnprintf( &buf[l], sizeof(buf) - l, "%s#0%s: #%c%.0f", ( l == 0 ) ? "" : "\n",
-                      omniscient ? faction_name( sys->presence[ i ].faction )
-                                 : faction_shortname( sys->presence[ i ].faction ),
-                      faction_getColourChar( sys->presence[ i ].faction ), sys->presence[ i ].value );
+      l += scnprintf(&buf[l], sizeof(buf)-l, "%s#%c%s%s:#0 %.0f",
+            (l == 0) ? "" : "\n",
+            faction_getColourChar(sys->presence[i].faction),
+            faction_getSymbol(sys->presence[i].faction),
+            omniscient ? faction_name(sys->presence[i].faction)
+               : faction_shortname(sys->presence[i].faction),
+            sys->presence[i].value);
       if (l > sizeof( buf ))
          break;
    }
    if (unknownPresence != 0 && l <= sizeof(buf))
-      l += scnprintf( &buf[l], sizeof(buf) - l, "%s#0%s: #%c%.0f", ( l == 0 ) ? "" : "\n", _( "Unknown" ), 'N',
-                      unknownPresence );
+      l += scnprintf(&buf[l], sizeof(buf)-l, "%s#0%s: #I%.0f",
+            (l == 0) ? "" : "\n", _("Unknown"), unknownPresence);
 
    if (hasPresence == 0)
       snprintf( buf, sizeof(buf), _("None") );

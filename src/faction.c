@@ -1016,10 +1016,19 @@ int faction_isPlayerEnemy( int f )
  */
 const glColour* faction_getColour( int f )
 {
-   if (f<0) return &cInert;
-   else if (areAllies(FACTION_PLAYER,f)) return &cFriend;
-   else if (areEnemies(FACTION_PLAYER,f)) return &cHostile;
-   else return &cNeutral;
+   if (f < 0)
+      return &cInert;
+
+   if (!faction_isKnown(f))
+      return &cInert;
+
+   if (areAllies(FACTION_PLAYER,f))
+      return &cFriend;
+
+   if (areEnemies(FACTION_PLAYER,f))
+      return &cHostile;
+
+   return &cNeutral;
 }
 
 
@@ -1034,10 +1043,43 @@ const glColour* faction_getColour( int f )
  */
 char faction_getColourChar( int f )
 {
-   if (f<0) return 'I';
-   else if (areEnemies(FACTION_PLAYER,f)) return 'H';
-   else if (areAllies(FACTION_PLAYER,f)) return 'F';
-   else return 'N';
+   if (f < 0)
+      return 'I';
+
+   if (!faction_isKnown(f))
+      return 'I';
+
+   if (areEnemies(FACTION_PLAYER,f))
+      return 'H';
+
+   if (areAllies(FACTION_PLAYER,f))
+      return 'F';
+
+   return 'N';
+}
+
+
+/**
+ * @brief Gets the faction symbol associated to its standing with the player.
+ *
+ *    @param f Faction to get the colour of based on player's standing.
+ *    @return The character associated to the faction.
+ */
+const char *faction_getSymbol( int f )
+{
+   if (f < 0)
+      return "";
+
+   if (!faction_isKnown(f))
+      return "? ";
+
+   if (areEnemies(FACTION_PLAYER, f))
+      return "!! ";
+
+   if (areAllies(FACTION_PLAYER,f))
+      return "+ ";
+
+   return "~ ";
 }
 
 
