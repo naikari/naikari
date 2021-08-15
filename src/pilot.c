@@ -1730,15 +1730,12 @@ void pilot_render( Pilot* p, const double dt )
       return;
 
    /* Check if needs scaling. */
-   if (pilot_isFlag( p, PILOT_LANDING )) {
+   if (pilot_isFlag( p, PILOT_LANDING ))
       scale = CLAMP( 0., 1., p->ptimer / p->landing_delay );
-   }
-   else if (pilot_isFlag( p, PILOT_TAKEOFF )) {
+   else if (pilot_isFlag( p, PILOT_TAKEOFF ))
       scale = CLAMP( 0., 1., 1. - p->ptimer / p->landing_delay );
-   }
-   else {
+   else
       scale = 1.;
-   }
 
    if (p->ship->gfx_3d != NULL) {
       /* 3d */
