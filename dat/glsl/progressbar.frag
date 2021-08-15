@@ -2,12 +2,13 @@
 #include "lib/sdf.glsl"
 
 uniform vec2 dimensions;
+uniform float r;
 uniform float progress;
 out vec4 color_out;
 in vec2 pos;
 
 void main(void) {
-   vec2 rel_pos = gl_FragCoord.xy * 0.05;
+   vec2 rel_pos = gl_FragCoord.xy*0.05 + r*100.;
 
    const float margin = 0.05;
    float relprog = smoothstep( -margin, margin, pos.x-progress);

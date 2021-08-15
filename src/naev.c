@@ -91,6 +91,7 @@
 
 static int quit               = 0; /**< For primary loop */
 static unsigned int time_ms   = 0; /**< used to calculate FPS and movement. */
+static double loading_r = 0.; /**< Used to provide some randomness. */
 static glTexture *loading     = NULL; /**< Loading screen. */
 static glFont loading_font; /**< Loading font. */
 static char *loading_txt = NULL; /**< Loading text to display. */
@@ -516,6 +517,7 @@ void loadscreen_load (void)
    /* Load the texture */
    snprintf( file_path, sizeof(file_path), GFX_PATH"loading/%s", load );
    loading = gl_newImage( file_path, 0 );
+   loading_r = RNGF();
 
    /* Load the metadata. */
    snprintf( file_path, sizeof(file_path), GFX_PATH"loading/%s.txt", load );
@@ -587,6 +589,7 @@ void loadscreen_render( double done, const char *msg )
    gl_Matrix4_Uniform(shaders.progressbar.projection, projection);
 
    glUniform2f( shaders.progressbar.dimensions, w, h );
+   glUniform1f( shaders.progressbar.r, loading_r );
    glUniform1f( shaders.progressbar.progress, done );
       
    gl_vboActivateAttribOffset( gl_squareVBO, shaders.progressbar.vertex, 0, 2, GL_FLOAT, 0 );
