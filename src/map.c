@@ -1042,7 +1042,7 @@ void map_renderFactionDisks( double x, double y, int editor, double alpha )
          c.r = col->r;
          c.g = col->g;
          c.b = col->b;
-         c.a = 0.6 * alpha;
+         c.a = alpha;
 
          gl_Matrix4 projection = gl_view_matrix;
          projection = gl_Matrix4_Translate(projection, tx-sw/2, ty-sh/2, 0);
