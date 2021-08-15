@@ -59,15 +59,15 @@ static void mesh_create( Mesh **meshes, const char* name,
    mesh->vbo = gl_vboCreateStatic(array_size(corners) * sizeof(Vertex), corners);
    mesh->num_corners = array_size(corners);
    mesh->material = material;
-   array_clear(corners);
+   array_resize(&corners, 0);
 }
 
-static int readGLfloat( GLfloat *dest, int how_many )
+static int readGLfloat( GLfloat *dest, int how_many, char **saveptr )
 {
    char *token;
    int num = 0;
 
-   while ((token = strtok(NULL, DELIM)) != NULL) {
+   while ((token = strtok_r(NULL, DELIM, saveptr)) != NULL) {
       double d;
       sscanf(token, "%lf", &d);
       dest[num++] = d;
@@ -121,7 +121,7 @@ static void materials_readFromFile( const char *filename, Material **materials )
 {
    DEBUG("Loading material from %s", filename);
 
-   SDL_RWops *f = ndata_rwops(filename);
+   SDL_RWops *f = PHYSFSRWOPS_openRead(filename);
    if (!f)
       ERR("Cannot open object file %s", filename);
 
@@ -130,34 +130,35 @@ static void materials_readFromFile( const char *filename, Material **materials )
    char line[256];
    while (SDL_RWgets(line, sizeof(line), f)) {
       const char *token;
+      char *saveptr;
       assert("Line too long" && (line[strlen(line) - 1] == '\n'));
-      token = strtok(line, DELIM);
+      token = strtok_r(line, DELIM, &saveptr);
 
       if (token == NULL) {
          /* Missing */
       } else if (strcmp(token, "newmtl") == 0) {
-         token = strtok(NULL, DELIM);
+         token = strtok_r(NULL, DELIM, &saveptr);
          curr = &array_grow(materials);
          curr->name = strdup(token);
          curr->texture = NULL;
          DEBUG("Reading new material %s", curr->name);
       } else if (strcmp(token, "Ns") == 0) {
-         readGLfloat(&curr->Ns, 1);
+         readGLfloat(&curr->Ns, 1, &saveptr);
       } else if (strcmp(token, "Ni") == 0) {
-         readGLfloat(&curr->Ni, 1);
+         readGLfloat(&curr->Ni, 1, &saveptr);
       } else if (strcmp(token, "d") == 0) {
-         readGLfloat(&curr->d, 1);
+         readGLfloat(&curr->d, 1, &saveptr);
       } else if (strcmp(token, "Ka") == 0) {
-         readGLfloat(curr->Ka, 3);
+         readGLfloat(curr->Ka, 3, &saveptr);
          curr->Ka[3] = 1.0;
       } else if (strcmp(token, "Kd") == 0) {
-         readGLfloat(curr->Kd, 3);
+         readGLfloat(curr->Kd, 3, &saveptr);
          curr->Kd[3] = 1.0;
       } else if (strcmp(token, "Ks") == 0) {
-         readGLfloat(curr->Ks, 3);
+         readGLfloat(curr->Ks, 3, &saveptr);
          curr->Ks[3] = 1.0;
       } else if (strcmp(token, "map_Kd") == 0) {
-         token = strtok(NULL, DELIM);
+         token = strtok_r(NULL, DELIM, &saveptr);
          if (token[0] == '-')
             ERR("Options not supported for map_Kd");
 
@@ -198,7 +199,7 @@ Object *object_loadFromFile( const char *filename )
    GLfloat *texture = array_create(GLfloat);  /**< texture coordinates */
    Vertex *corners = array_create(Vertex);    /**< corners of the triangle faces */
 
-   SDL_RWops *f = ndata_rwops(filename);
+   SDL_RWops *f = PHYSFSRWOPS_openRead(filename);
    if (!f)
       ERR("Cannot open object file %s", filename);
 
@@ -218,12 +219,13 @@ Object *object_loadFromFile( const char *filename )
    while (SDL_RWgets(line, sizeof(line), f)) {
       const char *token;
       assert("Line too long" && (line[strlen(line) - 1] == '\n'));
-      token = strtok(line, DELIM);
+      char *saveptr;
+      token = strtok_r(line, DELIM, &saveptr);
 
       if (token == NULL) {
          /* Missing */
       } else if (strcmp(token, "mtllib") == 0) {
-         while ((token = strtok(NULL, DELIM)) != NULL) {
+         while ((token = strtok_r(NULL, DELIM, &saveptr)) != NULL) {
             /* token contains the filename describing materials */
 
             /* computes the path to materials */
@@ -240,23 +242,23 @@ Object *object_loadFromFile( const char *filename )
          }
       } else if (strcmp(token, "o") == 0) {
          mesh_create(&object->meshes, name, corners, material);
-         token = strtok(NULL, DELIM);
+         token = strtok_r(NULL, DELIM, &saveptr);
          free(name), name = strdup(token);
       } else if (strcmp(token, "v") == 0) {
          (void)array_grow(&vertex);
          (void)array_grow(&vertex);
          (void)array_grow(&vertex);
-         readGLfloat(array_end(vertex) - 3, 3);
+         readGLfloat(array_end(vertex) - 3, 3, &saveptr);
       } else if (strcmp(token, "vt") == 0) {
          (void)array_grow(&texture);
          (void)array_grow(&texture);
-         readGLfloat(array_end(texture) - 2, 2);
+         readGLfloat(array_end(texture) - 2, 2, &saveptr);
       } else if (strcmp(token, "f") == 0) {
          /* XXX reads only the geometric & texture vertices.
           * The standards says corners can also include normal vertices.
           */
          int num = 0;
-         while ((token = strtok(NULL, DELIM)) != NULL) {
+         while ((token = strtok_r(NULL, DELIM, &saveptr)) != NULL) {
             int i_v, i_t;
             if (sscanf(token, "%d/%d", &i_v, &i_t) == 1)
                i_t = 0;
@@ -276,7 +278,7 @@ Object *object_loadFromFile( const char *filename )
          mesh_create(&object->meshes, name, corners, material);
 
          /* a new mesh with the same name */
-         token = strtok(NULL, DELIM);
+         token = strtok_r(NULL, DELIM, &saveptr);
          for (material = 0; material < array_size(object->materials); ++material)
             if (strcmp(token, object->materials[material].name) == 0)
                break;
@@ -334,40 +336,6 @@ void object_free( Object *object )
    }
 }
 
-static void object_fix3d( void )
-{
-   double zoom;
-
-   /* XXX changes the projection */
-   glMatrixMode(GL_PROJECTION);
-   glPushMatrix();
-   glLoadIdentity();
-
-   /* rotates and scales the object to match projection */
-   zoom = cam_getZoom();
-   glMatrixMode(GL_MODELVIEW);
-   glPushMatrix();
-   glScalef(zoom, zoom, zoom);
-   glRotatef(180., 0., 1., 0.);
-   glRotatef(90., 1., 0., 0.);
-
-   /* texture is initially flipped vertically */
-   glMatrixMode(GL_TEXTURE);
-   glPushMatrix();
-   glScalef(+1., -1., +1.);
-}
-
-static void object_restore2d( void )
-{
-   /* restores all matrices */
-   glMatrixMode(GL_PROJECTION);
-   glPopMatrix();
-   glMatrixMode(GL_TEXTURE);
-   glPopMatrix();
-   glMatrixMode(GL_MODELVIEW);
-   glPopMatrix();
-}
-
 static void object_renderMesh( Object *object, int part, GLfloat alpha )
 {
    Mesh *mesh = &object->meshes[part];
@@ -377,10 +345,8 @@ static void object_renderMesh( Object *object, int part, GLfloat alpha )
    const int tex_offset = offsetof(Vertex, tex);
 
    /* activates vertices and texture coords */
-   gl_vboActivateOffset(mesh->vbo,
-         GL_VERTEX_ARRAY, ver_offset, 3, GL_FLOAT, sizeof(Vertex));
-   gl_vboActivateOffset(mesh->vbo,
-         GL_TEXTURE_COORD_ARRAY, tex_offset, 2, GL_FLOAT, sizeof(Vertex));
+   gl_vboActivateAttribOffset(mesh->vbo, shaders.material.vertex, ver_offset, 3, GL_FLOAT, sizeof(Vertex));
+   gl_vboActivateAttribOffset(mesh->vbo, shaders.material.tex_coord, tex_offset, 2, GL_FLOAT, sizeof(Vertex));
 
    /* Set material */
    /* XXX Ni, d ?? */
@@ -388,38 +354,21 @@ static void object_renderMesh( Object *object, int part, GLfloat alpha )
    Material *material = object->materials + mesh->material;
    material->Kd[3] = alpha;
 
-   if (glIsEnabled(GL_LIGHTING)) {
-      glMaterialfv(GL_FRONT, GL_AMBIENT,  material->Ka);
-      glMaterialfv(GL_FRONT, GL_DIFFUSE,  material->Kd);
-      glMaterialfv(GL_FRONT, GL_SPECULAR, material->Ks);
-      glMaterialf(GL_FRONT, GL_SHININESS, material->Ns);
-   } else {
-#if 0
-      DEBUG("No lighting kd = %.3lf %.3lf %.3lf %.3lf",
-            material->Kd[0], material->Kd[1],
-            material->Kd[2], material->Kd[3]);
-#endif
-      glColor4fv(material->Kd);
-   }
+   glUniform4fv(shaders.material.Ka, 1, material->Ka);
+   glUniform4fv(shaders.material.Kd, 1, material->Kd);
+   glUniform4fv(shaders.material.Ks, 1, material->Ks);
+   glUniform1f(shaders.material.Ns, material->Ns);
 
    /* binds textures */
    glBindTexture(GL_TEXTURE_2D, material->texture == NULL ? emptyTexture->texture : material->texture->texture);
 
-   glEnable(GL_DEPTH_TEST);
-   glDepthFunc(GL_LESS);  /* XXX this changes the global DepthFunc */
-
    glDrawArrays(GL_TRIANGLES, 0, mesh->num_corners);
-
-   glDisable(GL_DEPTH_TEST);
-   if (material->has_texture)
-      glDisable(GL_TEXTURE_2D);
-   gl_vboDeactivate();
-
 }
 
 
 void object_renderSolidPart( Object *object, const Solid *solid, const char *part_name, GLfloat alpha, double scale )
 {
+   gl_Matrix4 projection;
    double x, y, cx, cy, gx, gy, zoom;
    int i;
 
@@ -427,26 +376,34 @@ void object_renderSolidPart( Object *object, const Solid *solid, const char *par
    cam_getPos(&cx, &cy);
    gui_getOffset(&gx, &gy);
    zoom = cam_getZoom();
+   scale *= zoom;
 
    /* calculate position - we'll use relative coords to player */
    x = (solid->pos.x - cx + gx) * zoom / gl_screen.nw * 2;
    y = (solid->pos.y - cy + gy) * zoom / gl_screen.nh * 2;
 
-   glMatrixMode(GL_MODELVIEW);
-   glPushMatrix();
-   glTranslatef(x, y, 0.);
-   glRotatef(90., 0., 0., 1.);
-   glRotatef(-45., 0., 1., 0.);
-   glRotatef(solid->dir / M_PI * 180., 0., 0., 1.);
-   glRotatef(90., 1., 0., 0.);
-   glScalef(scale, scale, scale);
+   glUseProgram(shaders.material.program);
+   glEnableVertexAttribArray(shaders.material.vertex);
+   glEnableVertexAttribArray(shaders.material.tex_coord);
 
-   object_fix3d();
+   projection = gl_Matrix4_Translate(gl_view_matrix, x, y, 0. );
+   projection = gl_Matrix4_Rotate(projection, M_PI/2, 0., 0., 1.);
+   projection = gl_Matrix4_Rotate(projection, -M_PI/4, 0., 1., 0.);
+   projection = gl_Matrix4_Rotate(projection, solid->dir, 0., 0., 1.);
+   projection = gl_Matrix4_Rotate(projection, M_PI/2, 1., 0., 0.);
+   projection = gl_Matrix4_Scale(projection, scale, scale, scale);
+   projection = gl_Matrix4_Rotate(projection, M_PI, 0., 1., 0.);
+   projection = gl_Matrix4_Rotate(projection, M_PI/2, 1., 0., 0.);
+   gl_Matrix4_Uniform(shaders.material.projection, projection);
+
+   glEnable(GL_DEPTH_TEST);
+   glDepthFunc(GL_LESS);  /* XXX this changes the global DepthFunc */
+
    for (i = 0; i < array_size(object->meshes); ++i)
       if (strcmp(part_name, object->meshes[i].name) == 0)
          object_renderMesh(object, i, alpha);
-   object_restore2d();
 
-   glMatrixMode(GL_MODELVIEW);
-   glPopMatrix();
+   glDisable(GL_DEPTH_TEST);
+   glUseProgram(0);
+   gl_checkErr();
 }
