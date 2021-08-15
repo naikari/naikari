@@ -10,7 +10,6 @@ nebulae = {
    "nebula17.webp",
    "nebula19.webp",
    "nebula20.webp",
-   "nebula21.webp",
    "nebula23.webp",
    "nebula30.webp",
    "nebula34.webp",
