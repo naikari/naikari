@@ -1780,11 +1780,14 @@ static int planets_load ( void )
  */
 char planet_getColourChar( Planet *p )
 {
-   if (!planet_hasService( p, PLANET_SERVICE_INHABITED ))
+   if (!planet_hasService(p, PLANET_SERVICE_INHABITED))
+      return 'I';
+
+   if (!faction_isKnown(p->faction))
       return 'I';
 
    if (p->can_land || p->bribed) {
-      if (areAllies(FACTION_PLAYER,p->faction))
+      if (areAllies(FACTION_PLAYER, p->faction))
          return 'F';
       return 'N';
    }
@@ -1800,19 +1803,22 @@ char planet_getColourChar( Planet *p )
  */
 const char *planet_getSymbol( Planet *p )
 {
-   if (!planet_hasService( p, PLANET_SERVICE_INHABITED )) {
-      if (planet_hasService( p, PLANET_SERVICE_LAND ))
+   if (!planet_hasService(p, PLANET_SERVICE_INHABITED)) {
+      if (planet_hasService(p, PLANET_SERVICE_LAND))
          return "= ";
       return "";
    }
 
+   if (!faction_isKnown(p->faction))
+      return "? ";
+
    if (p->can_land || p->bribed) {
-      if (areAllies(FACTION_PLAYER,p->faction))
+      if (areAllies(FACTION_PLAYER, p->faction))
          return "+ ";
       return "~ ";
    }
 
-   if (areEnemies(FACTION_PLAYER,p->faction))
+   if (areEnemies(FACTION_PLAYER, p->faction))
       return "!! ";
    return "* ";
 }
@@ -1823,16 +1829,19 @@ const char *planet_getSymbol( Planet *p )
  */
 const glColour* planet_getColour( Planet *p )
 {
-   if (!planet_hasService( p, PLANET_SERVICE_INHABITED ))
+   if (!planet_hasService(p, PLANET_SERVICE_INHABITED))
+      return &cInert;
+
+   if (!faction_isKnown(p->faction))
       return &cInert;
 
    if (p->can_land || p->bribed) {
-      if (areAllies(FACTION_PLAYER,p->faction))
+      if (areAllies(FACTION_PLAYER, p->faction))
          return &cFriend;
       return &cNeutral;
    }
 
-   if (areEnemies(FACTION_PLAYER,p->faction))
+   if (areEnemies(FACTION_PLAYER, p->faction))
       return &cHostile;
    return &cRestricted;
 }

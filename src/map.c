@@ -425,7 +425,8 @@ static void map_update( unsigned int wid )
    int i;
    StarSystem *sys;
    int f, h, x, y, logow, logoh;
-   unsigned int services_u, services_f, services_n, services_r, services_h;
+   unsigned int services_u, services_q;
+   unsigned int services_f, services_n, services_r, services_h;
    int hasPlanets;
    char t;
    const char *sym;
@@ -628,6 +629,7 @@ static void map_update( unsigned int wid )
    window_moveWidget( wid, "txtSServices", x, y );
    window_moveWidget( wid, "txtServices", x + 50, y-gl_smallFont.h-5 );
    services_u = 0;
+   services_q = 0;
    services_f = 0;
    services_n = 0;
    services_r = 0;
@@ -636,6 +638,8 @@ static void map_update( unsigned int wid )
       if (planet_isKnown(sys->planets[i])) {
          if (!planet_hasService(sys->planets[i], PLANET_SERVICE_INHABITED))
             services_u |= sys->planets[i]->services;
+         else if (!faction_isKnown(sys->planets[i]->faction))
+            services_q |= sys->planets[i]->services;
          else if (sys->planets[i]->can_land) {
             if (areAllies(FACTION_PLAYER, sys->planets[i]->faction))
                services_f |= sys->planets[i]->services;
@@ -666,6 +670,9 @@ static void map_update( unsigned int wid )
                _(planet_getServiceName(i)));
       else if (services_h & i)
          p += scnprintf(&buf[p], sizeof(buf)-p, "#H!! %s#0\n",
+               _(planet_getServiceName(i)));
+      else if (services_q & i)
+         p += scnprintf(&buf[p], sizeof(buf)-p, "#I? %s#0\n",
                _(planet_getServiceName(i)));
    if (buf[0] == '\0')
       p += scnprintf( &buf[p], sizeof(buf)-p, _("None"));
