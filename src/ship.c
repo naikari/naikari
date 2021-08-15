@@ -55,7 +55,7 @@ static Ship* ship_stack = NULL; /**< Stack of ships available in the game. */
 /*
  * Prototypes
  */
-static int ship_loadGFX( Ship *temp, const char *buf, int sx, int sy, int engine, int has_3d_model );
+static int ship_loadGFX( Ship *temp, const char *buf, int sx, int sy, int engine );
 static int ship_loadPLG( Ship *temp, const char *buf, int size_hint );
 static int ship_parse( Ship *temp, xmlNodePtr parent );
 
@@ -348,7 +348,6 @@ static int ship_loadEngineImage( Ship *temp, char *str, int sx, int sy )
  *    @param sx Number of X sprites in image.
  *    @param sy Number of Y sprites in image.
  *    @param engine Whether there is also an engine image to load.
- *    @param has_3d_model Whether to look for a .obj file to load.
  */
 static int ship_loadGFX( Ship *temp, const char *buf, int sx, int sy, int engine )
 {
@@ -358,6 +357,13 @@ static int ship_loadGFX( Ship *temp, const char *buf, int sx, int sy, int engine
    delim = strchr( buf, '_' );
    base = delim==NULL ? strdup( buf ) : strndup( buf, delim-buf );
 
+   /* Load the 3d model */
+   snprintf(str, sizeof(str), SHIP_3DGFX_PATH"%s/%s"SHIP_3DEXT, base, buf);
+   if (PHYSFS_exists(str)) {
+      temp->gfx_3d = object_loadFromFile(str);
+   }
+
+   /* Load the space sprite. */
    ext = ".webp";
    snprintf( str, sizeof(str), SHIP_GFX_PATH"%s/%s%s", base, buf, ext );
    if (!PHYSFS_exists(str)) {
@@ -564,8 +570,6 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
       xml_onlyNodes(node);
 
       if (xml_isNode(node,"GFX")) {
-         int has_3d_model = 0;
-
          /* Get base graphic name. */
          buf = xml_get(node);
          if (buf==NULL) {
@@ -573,24 +577,8 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
             continue;
          }
 
-         /* Checks for a 3d model */
-         xmlr_attr(node, "_3d", stmp);
-         if (stmp != NULL) {
-            if (strcmp(stmp, "true") == 0)
-               has_3d_model = 1;
-            free(stmp);
-         }
-
-         /* Checks for a 3d scale */
-         xmlr_attr(node, "_3d_scale", stmp);
-         if (stmp != NULL) {
-            temp->gfx_3d_scale = atof(stmp);
-            free(stmp);
-         }
-         else
-             temp->gfx_3d_scale = .01;
-
-         /* Get sprite size. */
+         /* Get size. */
+         xmlr_attr_float_def(node, "_3d_scale", temp->gfx_3d_scale, 0.01);
          xmlr_attr_int_def( node, "sx", sx, 8 );
          xmlr_attr_int_def( node, "sy", sy, 8 );
 
