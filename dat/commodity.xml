@@ -178,23 +178,10 @@
   <name>Radioactive Materials</name>
  </commodity>
  <commodity>
-  <name>Bomb</name>
- </commodity>
- <commodity>
-  <name>Commando</name>
- </commodity>
- <commodity>
-  <name>Datapad</name>
- </commodity>
- <commodity>
   <name>Equipment</name>
  </commodity>
  <commodity>
   <name>Four Winds Informant</name>
- </commodity>
- <commodity>
-  <name>Fuel</name>
-  <gfx_space>fuel.webp</gfx_space>
  </commodity>
  <commodity>
   <name>Gregar</name>
@@ -222,9 +209,6 @@
  </commodity>
  <commodity>
   <name>Secret Technology</name>
- </commodity>
- <commodity>
-  <name>Small Arms</name>
  </commodity>
  <commodity>
   <name>VIP</name>
