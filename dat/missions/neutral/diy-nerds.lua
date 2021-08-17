@@ -40,7 +40,7 @@ text[1] = _([[As you approach the group, the babbling ceases and the papers are 
 
 You reply that for a deal to be worked out, they better provide some detail.
 
-"Listen," she says, "there's this Homebrew Processing Box Masters on %s. Right over there, this system. I'm sure our box will get us the first prize. You take us there, you take us back, you get 20,000."
+"Listen," she says, "there's this contest called the Homebrew Processing Box Masters on %s. Right over there, this system. I'm sure our box will get us the first prize. You take us there, you take us back, you get 20 k¢."
 
 You just start wondering at the boldness of so young a lady as she already signals her impatience. "Well then, will you do it?"]])
 
@@ -131,12 +131,6 @@ textmsg = {}
 -- displayed if you leave without the nerd's authorization
 textmsg[1] = _("Have the nerds not told you to stay in the system? Mission failed!")
 textmsg[2] = _("Have the nerds not told you to pick them up at the bar? Mission failed!")
-
--- the mission cargo (names as in commodity.xml)
-misn_cargo1 = "Group of Nerds"
-misn_cargoamount1 = 0
-misn_cargo2 = "Box"
-misn_cargoamount2 = 4
 
 -- the outfit name as in outfit.xml
 outfit = "Unicorp PT-18 Core System"
@@ -378,8 +372,12 @@ end
 
 -- helper functions, used repeatedly
 function addNerdCargo()
-   cargo1 = misn.cargoAdd(misn_cargo1, misn_cargoamount1)
-   cargo2 = misn.cargoAdd(misn_cargo2, misn_cargoamount2)
+   local cargo1 = misn.cargoNew(N_("Nerds"),
+         _("A group of nerds you are transporting."))
+   local cargo2 = misn.cargoNew(N_("Processing Box"),
+         _("A box the nerds put together for the Homebrew Processing Box Masters contest."))
+   cargo1 = misn.cargoAdd(cargo1, 0)
+   cargo2 = misn.cargoAdd(cargo2, 4)
 end
 
 function rmNerdCargo()

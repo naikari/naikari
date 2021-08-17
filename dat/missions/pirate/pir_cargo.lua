@@ -43,7 +43,7 @@ cargo_always_available = true
 
 -- This is in cargo_common, but we need to increase the range
 function cargo_selectMissionDistance ()
-   return rnd.rnd( 3, 10 )
+   return rnd.rnd(3, 10)
 end
 
 
@@ -62,11 +62,26 @@ function create()
 
    -- We’re redefining the cargo
    local cargoes = {
-      N_("Unmarked Boxes"),
-      N_("Weapons"),
-      N_("Drugs"),
-      N_("Exotic Animals"),
-      N_("Radioactive Materials"),
+      {
+         N_("Unmarked Boxes"),
+         _("A collection of unmarked boxes you were not told the contents of.")
+      },
+      {
+         N_("Weapons"),
+         _("Assorted crates of illegally sourced weapons to be sold on the black market.")
+      },
+      {
+         N_("Drugs"),
+         _("A collection of various illegal drugs that will surely net a large profit.")
+      },
+      {
+         N_("Exotic Animals"),
+         _("Several exotic animal species being trafficked from all around the galaxy.")
+      },
+      {
+         N_("Radioactive Materials"),
+         _("Highly dangerous, yet highly useful, radioactive materials being sold on the black market, outside of regulatory bodies.")
+      },
    }
    cargo = cargoes[rnd.rnd(1, #cargoes)]
 
@@ -79,7 +94,8 @@ function create()
    -- Allow extra time for refuelling stops.
    local jumpsperstop = 3 + math.min(tier, 1)
    if numjumps > jumpsperstop then
-      timelimit:add(time.create( 0, 0, math.floor((numjumps-1) / jumpsperstop) * stuperjump ))
+      timelimit:add(time.create(
+               0, 0, math.floor((numjumps-1) / jumpsperstop) * stuperjump))
    end
    
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
@@ -89,53 +105,56 @@ function create()
    distreward = 0.30
    reward    = 1.5^tier * (numjumps * jumpreward + traveldist * distreward) * finished_mod * (1. + 0.05*rnd.twosigma())
    
-   misn.setTitle( string.format(
-      _("PIRACY: Illegal Cargo transport (%s of %s)"), tonnestring(amount),
-      _(cargo) ) )
+   misn.setTitle(string.format(
+            _("PIRACY: Illegal Cargo transport (%s of %s)"),
+            tonnestring(amount), _(cargo[1])))
    misn.markerAdd(destsys, "computer")
-   cargo_setDesc( misn_desc:format( destplanet:name(), destsys:name() ), cargo, amount, destplanet, timelimit );
-   misn.setReward( creditstring(reward) )
+   cargo_setDesc(misn_desc:format(destplanet:name(), destsys:name()), cargo[1],
+         amount, destplanet, timelimit);
+   misn.setReward(creditstring(reward))
 end
 
 -- Mission is accepted
 function accept()
-   local playerbest = cargoGetTransit( timelimit, numjumps, traveldist )
+   local playerbest = cargoGetTransit(timelimit, numjumps, traveldist)
    if timelimit < playerbest then
-      if not tk.yesno( _("Too slow"), string.format(
-            _("This shipment must arrive within %s, but it will take at least %s for your ship to reach %s, missing the deadline. Accept the mission anyway?"),
-            (timelimit - time.get()):str(), (playerbest - time.get()):str(),
-            destplanet:name() ) ) then
+      if not tk.yesno(_("Too slow"), string.format(
+               _("This shipment must arrive within %s, but it will take at least %s for your ship to reach %s, missing the deadline. Accept the mission anyway?"),
+               (timelimit - time.get()):str(), (playerbest - time.get()):str(),
+               destplanet:name())) then
          misn.finish()
       end
    end
    if player.pilot():cargoFree() < amount then
-      tk.msg( _("No room in ship"), string.format(
-         _("You don't have enough cargo space to accept this mission. It requires %s of free space (%s more than you have)."),
-         tonnestring(amount),
-         tonnestring( amount - player.pilot():cargoFree() ) ) )
+      tk.msg(_("No room in ship"), string.format(
+               _("You don't have enough cargo space to accept this mission. It requires %s of free space (%s more than you have)."),
+               tonnestring(amount),
+               tonnestring(amount - player.pilot():cargoFree())))
       misn.finish()
    end
 
    misn.accept()
 
-   carg_id = misn.cargoAdd( cargo, amount )
-   tk.msg( _("Mission Accepted"), string.format(
-      _("%s of %s are loaded onto your ship."), tonnestring(amount),
-      _(cargo) ) )
+   local cobj = misn.cargoNew(cargo[1], cargo[2])
+   carg_id = misn.cargoAdd(cobj, amount)
+   tk.msg(_("Mission Accepted"), string.format(
+            _("%s of %s are loaded onto your ship."), tonnestring(amount),
+            _(cargo[1])))
    local osd_msg = {}
    osd_msg[1] = osd_msg1:format(
       destplanet:name(), destsys:name(), timelimit:str(),
-      ( timelimit - time.get() ):str() )
+      (timelimit - time.get()):str())
    misn.osdCreate(osd_title, osd_msg)
-   hook.land( "land" ) -- only hook after accepting
+   hook.land("land") -- only hook after accepting
    hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
 end
 
 -- Land hook
 function land()
    if planet.cur() == destplanet then
-         tk.msg( _("Successful Delivery"), string.format(
-            _("The containers of %s are unloaded at the docks."), _(cargo) ) )
+         tk.msg(_("Successful Delivery"), string.format(
+                  _("The containers of %s are unloaded at the docks."),
+                  _(cargo[1])))
       player.pay(reward)
       n = var.peek("ps_misn")
       if n ~= nil then
@@ -157,7 +176,7 @@ function tick()
       local osd_msg = {}
       osd_msg[1] = osd_msg1:format(
          destplanet:name(), destsys:name(), timelimit:str(),
-         ( timelimit - time.get() ):str() )
+         (timelimit - time.get()):str())
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit <= time.get() then
       -- Case missed deadline

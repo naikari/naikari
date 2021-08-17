@@ -181,9 +181,6 @@
   <name>Bomb</name>
  </commodity>
  <commodity>
-  <name>Box</name>
- </commodity>
- <commodity>
   <name>Commando</name>
  </commodity>
  <commodity>
@@ -209,19 +206,10 @@
   <name>Goods</name>
  </commodity>
  <commodity>
-  <name>Group of Nerds</name>
- </commodity>
- <commodity>
   <name>Love Letters</name>
  </commodity>
  <commodity>
-  <name>Message</name>
- </commodity>
- <commodity>
   <name>Packages</name>
- </commodity>
- <commodity>
-  <name>Person</name>
  </commodity>
  <commodity>
   <name>Phosphine</name>
@@ -233,25 +221,10 @@
   <name>Prototype</name>
  </commodity>
  <commodity>
-  <name>Recipes</name>
- </commodity>
- <commodity>
-  <name>Refugees</name>
- </commodity>
- <commodity>
   <name>Secret Technology</name>
  </commodity>
  <commodity>
   <name>Small Arms</name>
- </commodity>
- <commodity>
-  <name>The Rescued Children</name>
- </commodity>
- <commodity>
-  <name>Tourists</name>
- </commodity>
- <commodity>
-  <name>Unmarked Boxes</name>
  </commodity>
  <commodity>
   <name>VIP</name>
