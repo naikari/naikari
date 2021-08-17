@@ -109,14 +109,13 @@ function attack()
 
    attAttHook = {}
 
+   goda = pilot.add("Dvaered Goddard", f1, source_system,
+         N_("Invading Warlord"))
    attackers = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"}, f1, source_system,
-         N_("Invading Warlord Force"))
-   goda = pilot.add("Dvaered Goddard", f1, source_system,
-         N_("Invading Warlord"))
-   attackers[#attackers + 1] = goda
+         N_("Invading Warlord Force"), nil, goda)
 
    attackers = arrangeList(attackers)
    form = formation.random_key()
@@ -124,10 +123,6 @@ function attack()
    for i, j in ipairs(attackers) do
       j:memory().formation = form
       j:memory().aggressive = false
-      
-      if j ~= goda then
-         j:setLeader(goda)
-      end
 
       attAttHook[i] = hook.pilot(j, "attacked", "attackerAttacked")
       hook.pilot(j, "death", "attackerDeath")
@@ -145,13 +140,12 @@ function attack()
 
    defAttHook = {}
 
+   godd = pilot.add("Dvaered Goddard", f2, source_planet, N_("Local Warlord"))
    defenders = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"}, f2, source_planet,
-         N_("Local Warlord Force"))
-   godd = pilot.add("Dvaered Goddard", f2, source_planet, N_("Local Warlord"))
-   defenders[#defenders + 1] = godd
+         N_("Local Warlord Force"), nil, godd)
 
    defenders = arrangeList(defenders)
    form = formation.random_key()
@@ -159,10 +153,6 @@ function attack()
    for i, j in ipairs(defenders) do
       j:memory().formation = form
       j:memory().aggressive = false
-
-      if j ~= godd then
-         j:setLeader(godd)
-      end
 
       defAttHook[i] = hook.pilot(j, "attacked", "defenderAttacked")
       hook.pilot(j, "death", "defenderDeath")
