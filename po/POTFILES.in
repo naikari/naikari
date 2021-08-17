@@ -2227,7 +2227,6 @@ dat/missions/baron/baron_baron.lua
 dat/missions/baron/baron_prince.lua
 dat/missions/baron/common.lua
 dat/missions/dvaered/assault_on_unicorn.lua
-dat/missions/dvaered/championship.lua
 dat/missions/dvaered/common.lua
 dat/missions/dvaered/dv_antiflf01.lua
 dat/missions/dvaered/dv_antiflf02.lua
@@ -2260,14 +2259,12 @@ dat/missions/flf/flf_pre01.lua
 dat/missions/flf/flf_pre02.lua
 dat/missions/flf/flf_pre03.lua
 dat/missions/flf/flf_rogue.lua
-dat/missions/neutral/animaltransport.lua
 dat/missions/neutral/anxiousmerchant.lua
 dat/missions/neutral/aristodrink.lua
 dat/missions/neutral/cargo.lua
 dat/missions/neutral/cargo_rush.lua
 dat/missions/neutral/commodity_run.lua
 dat/missions/neutral/common.lua
-dat/missions/neutral/crimelord.lua
 dat/missions/neutral/diy-nerds.lua
 dat/missions/neutral/drunkard.lua
 dat/missions/neutral/foodbiz/delivercake.lua
@@ -2295,7 +2292,6 @@ dat/missions/pirate/hitman.lua
 dat/missions/pirate/hitman2.lua
 dat/missions/pirate/patrol.lua
 dat/missions/pirate/pir_cargo.lua
-dat/missions/pirate/pir_clan_cargo.lua
 dat/missions/pirate/pir_ship_stealing.lua
 dat/missions/pirate/pirate_commodity_run.lua
 dat/missions/proteron/dissbounty_dead.lua
@@ -2317,6 +2313,7 @@ dat/missions/sirius/achack/achack01.lua
 dat/missions/sirius/achack/achack02.lua
 dat/missions/sirius/achack/achack03.lua
 dat/missions/sirius/achack/achack04.lua
+dat/missions/sirius/animaltransport.lua
 dat/missions/sirius/common.lua
 dat/missions/sirius/srs_ferry.lua
 dat/missions/sirius/srs_rehab.lua
