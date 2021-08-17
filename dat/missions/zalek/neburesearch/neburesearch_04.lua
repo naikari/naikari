@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>15</priority>
   <done>The Substitute Speaker</done>
   <chance>10</chance>
   <location>Bar</location>

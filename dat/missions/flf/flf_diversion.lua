@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Divert the Dvaered Forces">
  <avail>
-  <priority>3</priority>
+  <priority>30</priority>
   <chance>550</chance>
   <done>Diversion from Raelid</done>
   <location>Computer</location>

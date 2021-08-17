@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>25</priority>
   <chance>25</chance>
   <location>Bar</location>
   <planet>Niflheim</planet>

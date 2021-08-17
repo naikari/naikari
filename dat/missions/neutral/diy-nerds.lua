@@ -1,16 +1,16 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="DIY Nerds">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>4</priority>
-   <chance>2</chance>
-   <location>Bar</location>
-  </avail>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>20</priority>
+  <chance>2</chance>
+  <location>Bar</location>
+ </avail>
+</mission>
+--]]
    --[[
       MISSION: diy-nerds
       DESCRIPTION: Cart some nerds and their hardware to some DIY
@@ -80,8 +80,7 @@ text[9] = _([[As you get of your ship, you do not immediately see the nerds. You
     "So no, we didn't win" she adds after taking a few breaths to calm down. "Take us back to %s."]])
 
 -- you do not pickup the nerds in time
-text[10] = _([[You look around, but the nerds are nowhere to be found. That is not much of a surprise, seeing that you are way too late.
-    Suddenly, a guy approaches you. "Hi, are you %s? The nerds wanted you to know that, basically, they got another transport home. One of the girls said some more, in a particularly rude language, but I don't remember the details".]])
+text[10] = _([[You look around, but the nerds are nowhere to be found. That is not much of a surprise, seeing that you are way too late.]])
 
 -- you do not pickup the nerds in time, and don't even land on the right planet
 text[11] = _([[Seeing that it is already too late to pick up the nerds, and that you're quite far from %s, you decide it's better to forget about them completely.]])
@@ -105,9 +104,7 @@ Finally, the modified box is set before you. "Here you are. Now you're the proud
 With that, the nerds leave. Having gotten nothing else out of this, you think you should visit an outfitter to see if the homemade core system may actually be of any use, or if you can at least sell it.]])
 
 -- for use in accept(), if any of the mission's preconditions are not met
-text[16] = _([["Aw, I forgot" she adds. "We would of course need 4 tonnes of free cargo space for our box."]])
-
-text[17] = _([["Sorry, we're busy right now."]])
+text[16] = _([["Oh, I forgot to mention. We would of course need 4 tonnes of free cargo space for our box."]])
 
 -- additional text for stage 2 cargo space test
 text[18] = _([["Aw %s," Mia complains, "as if you didn't know that our box needs 4 tonnes of free cargo space. Make room now, and pick us up at the bar."]])
@@ -145,6 +142,11 @@ misn_cargoamount2 = 4
 outfit = "Unicorp PT-18 Core System"
 
 function create ()
+   -- the mission cannot be started with less than two landable assets in the system
+   if not system_hasAtLeast(2, "land") then
+      misn.finish(false)
+   end
+
    misn.setNPC(_("Young People"), "neutral/unique/mia.png", bar_desc)
 end
 
@@ -158,18 +160,12 @@ function accept ()
       end
    end
 
-   -- the mission cannot be started with less than two landable assets in the system
-   if not system_hasAtLeast(2, "land") then
-      tk.msg("", text[17])
-      misn.finish(false)
-   end
-
    if not tk.yesno("", string.format(text[1], destPlanet:name())) then
-      misn.finish(false)
+      misn.finish()
    else
-         if player.pilot():cargoFree() < 4 then
+      if player.pilot():cargoFree() < 4 then
          tk.msg("", text[16])
-         misn.finish(false)
+         misn.finish()
       end
 
       misn.accept()
@@ -275,15 +271,13 @@ function nerds_land2()
 
    elseif not intime and planet.cur() == destPlanet then
    -- you're late for the pickup
-      tk.msg("", string.format(text[10], player.name()))
-      cleanup()
-      misn.finish(true)
+      tk.msg("", text[10])
+      misn.finish(false)
 
    elseif not intime then
    -- you're late and far from the nerds
       tk.msg("", string.format(text[11], srcPlanet:name()))
-      cleanup()
-      misn.finish(true)
+      misn.finish(false)
    end
 end
 
@@ -367,10 +361,6 @@ function nerds_land3()
             player.landWindow("equipment")
          end
       end
-      rmNerdCargo()
-      hook.rm(dhook)
-      hook.rm(lhook)
-      misn.markerRm(marker)
       misn.finish(true)
    end
 end

@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>10</priority>
   <cond>faction.playerStanding("Empire") &gt;= 10 and faction.playerStanding("Dvaered") &gt;= 0 and faction.playerStanding("FLF") &lt; 10 and var.peek("es_misn") ~= nil and var.peek("es_misn") &gt;= 3</cond>
   <chance>35</chance>
   <done>Empire Long Distance Recruitment</done>

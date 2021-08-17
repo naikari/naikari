@@ -1,22 +1,22 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Coming of Age">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>2</priority>
-   <done>Coming Out</done>
-   <chance>100</chance>
-   <location>Bar</location>
-   <planet>Durea</planet>
-   <cond>var.peek("comingout_time") == nil or time.get() &gt;= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0)</cond>
-  </avail>
-  <notes>
-   <campaign>Coming Out</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>29</priority>
+  <done>Coming Out</done>
+  <chance>100</chance>
+  <location>Bar</location>
+  <planet>Durea</planet>
+  <cond>var.peek("comingout_time") == nil or time.get() &gt;= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0)</cond>
+ </avail>
+ <notes>
+  <campaign>Coming Out</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 
    Coming of Age
@@ -69,8 +69,8 @@ log_text = _([[You helped transport Chelsea to Crow, where she was able to buy h
 
 
 function create ()
-   misplanet, missys = planet.get("Crow")
    -- Note: This mission does not make system claims
+   misplanet, missys = planet.get("Crow")
 
    credits = 200000
    started = false

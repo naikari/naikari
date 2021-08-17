@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Trader Escort">
  <avail>
-  <priority>5</priority>
+  <priority>49</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
   <chance>560</chance>
   <location>Computer</location>
@@ -18,7 +18,7 @@
   <faction>Za'lek</faction>
  </avail>
 </mission>
- --]]
+--]]
 --Escort a convoy of traders to a destination--
 
 require "nextjump"

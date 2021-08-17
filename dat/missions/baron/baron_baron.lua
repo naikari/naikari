@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>29</priority>
   <chance>100</chance>
   <location>None</location>
  </avail>

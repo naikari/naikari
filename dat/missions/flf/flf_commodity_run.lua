@@ -1,18 +1,18 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="FLF Commodity Run">
-  <avail>
-   <priority>5</priority>
-   <cond>var.peek("commodity_runs_active") == nil or var.peek("commodity_runs_active") &lt; 3</cond>
-   <chance>90</chance>
-   <location>Computer</location>
-   <faction>FLF</faction>
-  </avail>
-  <notes>
-   <done_misn name="Deal with the FLF agent"/>
-  </notes>
- </mission>
- --]]
+ <avail>
+  <priority>79</priority>
+  <cond>var.peek("commodity_runs_active") == nil or var.peek("commodity_runs_active") &lt; 3</cond>
+  <chance>90</chance>
+  <location>Computer</location>
+  <faction>FLF</faction>
+ </avail>
+ <notes>
+  <done_misn name="Deal with the FLF agent"/>
+ </notes>
+</mission>
+--]]
 --[[
 
    FLF Commodity Delivery Mission

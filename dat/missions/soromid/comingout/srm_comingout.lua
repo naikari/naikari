@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>19</priority>
   <chance>20</chance>
   <location>Bar</location>
   <faction>Soromid</faction>
@@ -95,11 +95,11 @@ log_text = _([[You have made a new friend, Chelsea. You helped transport her to 
 
 
 function create ()
+   -- Note: This mission does not make system claims
    homeplanet, homesys = planet.get("Durea")
    dests = { "Soromid Wards Alpha", "Jaxheen", "Agino", "Neurri" }
    dests["__save"] = true
    markers = {}
-   -- Note: This mission does not make system claims
 
    credits = 500000
    started = false

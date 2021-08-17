@@ -63,7 +63,7 @@ typedef struct MissionAvail_s {
    char* cond; /**< Condition that must be met (Lua). */
    char* done; /**< Previous mission that must have been done. */
 
-   int priority; /**< Mission priority: 0 = main plot, 5 = default, 10 = insignificant. */
+   int priority; /**< Mission priority: 0 = main plot, 50 = default, 100 = insignificant. */
 } MissionAvail_t;
 
 

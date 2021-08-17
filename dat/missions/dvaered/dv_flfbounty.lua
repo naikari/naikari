@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Dvaered FLF Bounty">
  <avail>
-  <priority>3</priority>
+  <priority>39</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
   <chance>360</chance>
   <location>Computer</location>

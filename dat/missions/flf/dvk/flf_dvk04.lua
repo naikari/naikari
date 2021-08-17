@@ -1,22 +1,22 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Diversion from Haleb">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>2</priority>
-   <chance>40</chance>
-   <done>Assault on Raelid</done>
-   <location>Bar</location>
-   <faction>FLF</faction>
-   <cond>faction.playerStanding("FLF") &gt;= 70</cond>
-  </avail>
-  <notes>
-   <campaign>Save the Frontier</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>10</priority>
+  <chance>40</chance>
+  <done>Assault on Raelid</done>
+  <location>Bar</location>
+  <faction>FLF</faction>
+  <cond>faction.playerStanding("FLF") &gt;= 70</cond>
+ </avail>
+ <notes>
+  <campaign>Save the Frontier</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 
    Diversion from Haleb

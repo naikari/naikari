@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>10</priority>
   <chance>30</chance>
   <done>Diversion from Raelid</done>
   <location>Bar</location>

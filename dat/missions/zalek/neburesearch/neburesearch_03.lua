@@ -5,7 +5,7 @@
    <unique />
   </flags>
   <avail>
-   <priority>4</priority>
+   <priority>15</priority>
    <done>Emergency of Immediate Inspiration</done>
    <chance>100</chance>
    <location>Bar</location>

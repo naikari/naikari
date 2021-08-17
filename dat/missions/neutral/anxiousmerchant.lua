@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Anxious Merchant">
  <avail>
-  <priority>3</priority>
+  <priority>76</priority>
   <chance>1</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>

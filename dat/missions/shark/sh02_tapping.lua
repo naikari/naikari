@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>3</priority>
+  <priority>20</priority>
   <cond>diff.isApplied("collective_dead")</cond>
   <done>Sharkman Is Back</done>
   <chance>3</chance>
@@ -23,7 +23,7 @@
   <campaign>Nexus show their teeth</campaign>
  </notes>
 </mission>
- --]]
+--]]
 --[[
 
    This is the third mission of the Shark's teeth campaign. The player has to take illegal holophone recordings in his ship.

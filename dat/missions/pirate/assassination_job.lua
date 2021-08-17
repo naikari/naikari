@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Assassination Job">
  <avail>
-  <priority>3</priority>
+  <priority>39</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0 or planet.cur():blackmarket()</cond>
   <chance>660</chance>
   <location>Computer</location>

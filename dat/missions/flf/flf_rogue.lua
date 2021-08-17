@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Rogue FLF">
  <avail>
-  <priority>4</priority>
+  <priority>34</priority>
   <chance>550</chance>
   <done>The FLF Split</done>
   <location>Computer</location>

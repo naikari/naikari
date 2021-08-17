@@ -5,7 +5,7 @@
    <unique />
  </flags>
  <avail>
-  <priority>3</priority>
+  <priority>50</priority>
   <cond>(player.pilot():ship():class() == "Yacht" or player.pilot():ship():class() == "Luxury Yacht") and planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
   <chance>10</chance>
   <location>Bar</location>

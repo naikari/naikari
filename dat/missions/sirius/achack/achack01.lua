@@ -1,20 +1,20 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Sirian Bounty">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>3</priority>
-   <planet>The Wringer</planet>
-   <chance>50</chance>
-   <location>Bar</location>
-  </avail>
-  <notes>
-   <campaign>Academy Hack</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>19</priority>
+  <planet>The Wringer</planet>
+  <chance>50</chance>
+  <location>Bar</location>
+ </avail>
+ <notes>
+  <campaign>Academy Hack</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 -- This is the first mission in the Academy Hack minor campaign.
 --]]
@@ -60,7 +60,7 @@ log_text = _([[A Sirian man named Harja hired you to kill a Sirius military offi
 
 function create()
     -- This mission ONLY spawns if the system it's in is not claimed by another mission. Special hack to mutex with Dark Shadow.
-    if not misn.claim ( {system.cur()} ) then
+    if not misn.claim(system.cur()) then
         abort()
     end
 

@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>10</priority>
   <chance>10</chance>
   <location>Bar</location>
   <cond>system.cur() == system.get("Alteris")</cond>

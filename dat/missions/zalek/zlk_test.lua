@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Za'lek Test">
  <avail>
-  <priority>3</priority>
+  <priority>60</priority>
   <cond>faction.playerStanding("Za'lek") &gt; 5 and planet.cur():services()["outfits"] == "Outfits"</cond>
   <chance>450</chance>
   <location>Computer</location>

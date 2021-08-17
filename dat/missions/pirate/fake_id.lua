@@ -1,13 +1,13 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Fake ID">
-  <avail>
-   <priority>10</priority>
-   <chance>100</chance>
-   <location>Computer</location>
-   <faction>Pirate</faction>
-  </avail>
- </mission>
+ <avail>
+  <priority>99</priority>
+  <chance>100</chance>
+  <location>Computer</location>
+  <faction>Pirate</faction>
+ </avail>
+</mission>
 --]]
 --[[
 

@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Eliminate an Empire Patrol">
  <avail>
-  <priority>3</priority>
+  <priority>32</priority>
   <chance>550</chance>
   <location>Computer</location>
   <faction>FLF</faction>

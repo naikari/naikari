@@ -1,21 +1,21 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Invitation">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>3</priority>
-   <done>Unfair Competition</done>
-   <chance>50</chance>
-   <location>Bar</location>
-   <planet>Darkshed</planet>
-  </avail>
-  <notes>
-   <campaign>Nexus show their teeth</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>20</priority>
+  <done>Unfair Competition</done>
+  <chance>50</chance>
+  <location>Bar</location>
+  <planet>Darkshed</planet>
+ </avail>
+ <notes>
+  <campaign>Nexus show their teeth</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 
    This is the fourth mission of the Shark's teeth campaign. The player has to hail a frontier ship.

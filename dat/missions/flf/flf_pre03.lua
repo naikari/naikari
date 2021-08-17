@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>10</priority>
   <chance>100</chance>
   <location>Bar</location>
   <done>Plight of the Frontier</done>
