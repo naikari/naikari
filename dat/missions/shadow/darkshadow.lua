@@ -1,20 +1,20 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Dark Shadow">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>3</priority>
-   <chance>100</chance>
-   <location>None</location>
-  </avail>
-  <notes>
-   <done_evt name="Shadowcomm2">Triggers</done_evt>
-   <campaign>Shadow</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>20</priority>
+  <chance>100</chance>
+  <location>None</location>
+ </avail>
+ <notes>
+  <done_evt name="Shadowcomm2">Triggers</done_evt>
+  <campaign>Shadow</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 -- This is the third mission in the "shadow" series, featuring the return of SHITMAN.
 --]]

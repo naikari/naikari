@@ -1,19 +1,19 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Sirian Truce">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>3</priority>
-   <location>None</location>
-  </avail>
-  <notes>
-   <done_evt name="Achack04 Helper">Triggers</done_evt>
-   <campaign>Academy Hack</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>19</priority>
+  <location>None</location>
+ </avail>
+ <notes>
+  <done_evt name="Achack04 Helper">Triggers</done_evt>
+  <campaign>Academy Hack</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 -- This is the fourth mission in the Academy Hack minor campaign.
 -- This mission is started from a helper event.

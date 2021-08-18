@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>10</priority>
   <cond>faction.playerStanding("Dvaered") &gt; 5</cond>
   <chance>10</chance>
   <location>Bar</location>

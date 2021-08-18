@@ -763,7 +763,7 @@ static int mission_parseXML( MissionData *temp, const xmlNodePtr parent )
    memset( temp, 0, sizeof(MissionData) );
 
    /* Defaults. */
-   temp->avail.priority = 5;
+   temp->avail.priority = 50;
 
    /* get the name */
    xmlr_attr_strd(parent,"name",temp->name);

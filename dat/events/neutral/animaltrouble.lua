@@ -1,17 +1,17 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <event name="Animal trouble">
-  <trigger>enter</trigger>
-  <chance>20</chance>
-  <cond>var.peek("shipinfested") == true</cond>
-  <flags>
-   <unique />
-  </flags>
-  <notes>
-   <done_misn name="Animal transport">The rodents sabotage your ship</done_misn>
-  </notes>
- </event>
- --]]
+ <trigger>enter</trigger>
+ <chance>20</chance>
+ <cond>var.peek("shipinfested") == true</cond>
+ <flags>
+  <unique />
+ </flags>
+ <notes>
+  <done_misn name="Animal transport">The rodents sabotage your ship</done_misn>
+ </notes>
+</event>
+--]]
 --[[
 -- Animal Trouble event
 --

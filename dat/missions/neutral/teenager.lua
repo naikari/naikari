@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>20</priority>
   <chance>5</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
@@ -68,6 +68,11 @@ OSD[2] = _("Land on %s (%s system)")
 function create ()
     cursys = system.cur()
     curplanet = planet.cur()
+
+    if not misn.claim(cursys) then
+        misn.finish(false)
+    end
+
     OSD[2] = OSD[2]:format(curplanet:name(), cursys:name())
     misn.setNPC(NPCname, "neutral/unique/middleaged.png", NPCdesc)
 end

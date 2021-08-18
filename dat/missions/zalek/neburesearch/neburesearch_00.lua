@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>15</priority>
   <chance>100</chance>
   <location>Bar</location>
   <planet>Jorla</planet>

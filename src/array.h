@@ -223,6 +223,14 @@ ALWAYS_INLINE static inline int array_size(const void *array)
       ((basic_type *)(_array_copy_helper(sizeof(basic_type), (void *)(ptr_array))))
 
 
+/** @brief Clears the array
+ * NOTE: Invalidates all iterators. */
+#define array_clear(array) \
+   do { \
+      _array_private_container(array)->_size = 0; \
+   } while (0)
+
+
 #endif /* ARRAY_H */
 
 

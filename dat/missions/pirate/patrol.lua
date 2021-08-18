@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Pirate Patrol">
  <avail>
-  <priority>4</priority>
+  <priority>48</priority>
   <chance>560</chance>
   <location>Computer</location>
   <faction>Pirate</faction>

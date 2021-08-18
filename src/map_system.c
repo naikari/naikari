@@ -452,16 +452,17 @@ static void map_system_render( double bx, double by, double w, double h, void *d
             continue;
          hasPresence = 1;
          if ( faction_isKnown( sys->presence[i].faction ) ) {
-            t = faction_getColourChar( sys->presence[i].faction );
-            cnt += scnprintf( &buf[cnt], sizeof( buf ) - cnt, "#0%s: #%c%.0f\n",
-                              faction_shortname( sys->presence[i].faction ),
-                              t, sys->presence[i].value);
+            t = faction_getColourChar(sys->presence[i].faction);
+            cnt += scnprintf(&buf[cnt], sizeof(buf)-cnt, "#%c%s%s:#0 %.0f\n",
+                  t, faction_getSymbol(sys->presence[i].faction),
+                  faction_shortname(sys->presence[i].faction),
+                  sys->presence[i].value);
          } else
             unknownPresence += sys->presence[i].value;
       }
       if (unknownPresence != 0)
-         cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, "#0Unknown: #%c%.0f\n",
-                           'N', unknownPresence );
+         cnt += scnprintf(&buf[cnt], sizeof(buf)-cnt, "#0Unknown: #I%.0f\n",
+               unknownPresence);
       if (hasPresence == 0)
          cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Presence: N/A\n"));
       txtHeight=gl_printHeightRaw(&gl_smallFont,(w - nameWidth-pitch-60)/2,buf);

@@ -1723,31 +1723,32 @@ void pilot_render( Pilot* p, const double dt )
 {
    int i, g;
    (void) dt;
-   double scalew, scaleh;
+   double scale;
 
    /* Don't render the pilot. */
    if (pilot_isFlag( p, PILOT_NORENDER ))
       return;
 
    /* Check if needs scaling. */
-   if (pilot_isFlag( p, PILOT_LANDING )) {
-      scalew = CLAMP( 0., 1., p->ptimer / p->landing_delay );
-      scaleh = scalew;
-   }
-   else if (pilot_isFlag( p, PILOT_TAKEOFF )) {
-      scalew = CLAMP( 0., 1., 1. - p->ptimer / p->landing_delay );
-      scaleh = scalew;
-   }
-   else {
-      scalew = 1.;
-      scaleh = 1.;
-   }
+   if (pilot_isFlag( p, PILOT_LANDING ))
+      scale = CLAMP( 0., 1., p->ptimer / p->landing_delay );
+   else if (pilot_isFlag( p, PILOT_TAKEOFF ))
+      scale = CLAMP( 0., 1., 1. - p->ptimer / p->landing_delay );
+   else
+      scale = 1.;
 
    /* Base ship. */
-   gl_blitSpriteInterpolateScale( p->ship->gfx_space, p->ship->gfx_engine,
-         1.-p->engine_glow, p->solid->pos.x, p->solid->pos.y,
-         scalew, scaleh,
-         p->tsx, p->tsy, NULL );
+   if (p->ship->gfx_3d != NULL) {
+      /* 3d */
+      object_renderSolidPart(p->ship->gfx_3d, p->solid, "body", 1, p->ship->gfx_3d_scale * scale);
+      object_renderSolidPart(p->ship->gfx_3d, p->solid, "engine", p->engine_glow, p->ship->gfx_3d_scale * scale);
+   } else {
+      /* Sprites */
+      gl_blitSpriteInterpolateScale( p->ship->gfx_space, p->ship->gfx_engine,
+            1.-p->engine_glow, p->solid->pos.x, p->solid->pos.y,
+            scale, scale,
+            p->tsx, p->tsy, NULL );
+   }
 
 #ifdef DEBUGGING
    double dircos, dirsin, x, y;

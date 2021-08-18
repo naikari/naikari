@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Waste Dump">
  <avail>
-  <priority>9</priority>
+  <priority>80</priority>
   <chance>30</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>

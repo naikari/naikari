@@ -20,6 +20,12 @@ float sdSmoothUnion( float d1, float d2, float k )
 	return smin( d1, d2, k );
 }
 
+float sdSegment( in vec2 p, in vec2 a, in vec2 b )
+{
+   vec2 pa = p-a, ba = b-a;
+   float h = clamp( dot(pa,ba)/dot(ba,ba), 0.0, 1.0 );
+   return length( pa - ba*h );
+}
 
 // c=sin/cos of aperture
 float sdPie( vec2 p, vec2 c, float r )
@@ -76,7 +82,7 @@ float sdArc( in vec2 p, in vec2 sca, in vec2 scb, in float ra, in float rb )
    p *= mat2(sca.x,sca.y,-sca.y,sca.x);
    p.x = abs(p.x);
    float k = (scb.y*p.x>scb.x*p.y) ? dot(p.xy,scb) : length(p);
-   return sqrt( dot(p,p) + ra*ra - 2.0*ra*k ) - rb;
+   return sqrt( max(0.0, dot(p,p) + ra*ra - 2.0*ra*k) ) - rb;
 }
 
 float sdCircle( in vec2 p, in float r )
@@ -110,21 +116,19 @@ vec4 sdf_alarm( vec4 color, Image tex, vec2 uv, vec2 px )
    return color;
 }
 
+#define CS(A)  vec2(sin(A),cos(A))
 vec4 sdf_pilot( vec4 color, vec2 uv )
 {
    float m = 1.0 / dimensions.x;
    uv = abs(uv);
 
-   float d = sdArc( uv,
-         vec2(sin(M_PI*0.75),cos(M_PI*0.75)),
-         vec2(sin(M_PI/10.0),cos(M_PI/10.0)),
-         1.0, 0.03 );
+   float d = sdArc( uv, CS(M_PI*0.75), CS(M_PI/10.0), 1.0, 0.02 );
 
    d = min( d, sdUnevenCapsule( uv, vec2(M_SQRT1_2), vec2(0.8), 0.07, 0.02) );
    d -= (1.0+sin(3.0*dt)) * 0.007;
    d = max( -sdCircle( uv-vec2(M_SQRT1_2), 0.04 ), d );
 
-   color.a *= smoothstep( -m, m, -d );
+   color.a *= smoothstep( -m, 0.0, -d );
    return color;
 }
 
@@ -133,56 +137,99 @@ vec4 sdf_planet( vec4 color, vec2 uv )
    float m = 1.0 / dimensions.x;
 
 	/* Outter stuff. */
-	float w = 3.0 / dimensions.x;
+	float w = 1.0 * m;
 	float inner = 1.0-w-m;
-	float d = sdArc( uv, vec2(sin(-M_PI/4.0),cos(-M_PI/4.0)),
-			 vec2(sin(M_PI/2.0*3.0), cos(M_PI/2.0*3.0)), inner, w );
+	float d = sdArc( uv, CS(-M_PI/4.0), CS(M_PI/22.0*32.0), inner, w );
 
-	/* Moving inner stuff. */
-   const vec2 arclen = vec2( sin(M_PI/6.0), cos(M_PI/6.0) );
-	w = 5.0 / dimensions.x;
-	float o = 0.1 * dt;
-	inner -= 2.0*w+m;
-	d = min( d, sdArc( uv, vec2(sin(o),cos(o)), arclen, inner, w ) );
-	o += M_PI * 2.0/3.0;
-	d = min( d, sdArc( uv, vec2(sin(o),cos(o)), arclen, inner, w ) );
-	o += M_PI * 2.0/3.0;
-	d = min( d, sdArc( uv, vec2(sin(o),cos(o)), arclen, inner, w ) );
+   /* Rotation matrix. */
+   float dts = 0.1 * max( 0.5, 100.0 * m );
+   float c, s;
+   s = sin(dt*dts);
+   c = cos(dt*dts);
+   mat2 R = mat2( c, s, -s, c );
 
-   color.a *= smoothstep( -m, m, -d );
+   vec2 auv = abs(uv);
+   if (auv.y < auv.x)
+      auv.xy = vec2( auv.y, auv.x );
+   if (dimensions.x > 100.0) {
+      const float arcseg = M_PI/64.0;
+      const vec2 shortarc = CS(arcseg);
+      for (int i=2; i<16; i+=4)
+         d = min( d, sdArc( auv, CS(M_PI/2.0+float(i)*arcseg),  shortarc, inner, w ) );
+
+      /* Moving inner stuff. */
+      uv = uv*R;
+      const vec2 arclen = CS(M_PI/9.0);
+      w = 2.0 * m;
+      inner -= 2.0*(w+m);
+      for (int i=0; i<5; i++)
+         d = min( d, sdArc( uv, CS( float(i)*M_PI*2.0/5.0), arclen, inner, w ) );
+   }
+   else {
+      const float arcseg = M_PI/32.0;
+      const vec2 shortarc = CS(arcseg);
+      for (int i=2; i<8; i+=4)
+         d = min( d, sdArc( auv, CS(M_PI/2.0+float(i)*arcseg),  shortarc, inner, w ) );
+
+      /* Moving inner stuff. */
+      uv = uv*R;
+      const vec2 arclen = CS(M_PI/6.0);
+      w = 2.0 * m;
+      inner -= 2.0*(w+m);
+      for (int i=0; i<3; i++)
+         d = min( d, sdArc( uv, CS( float(i)*M_PI*2.0/3.0), arclen, inner, w ) );
+   }
+
+   color.a *= smoothstep( -m, 0.0, -d );
    return color;
 }
 
-#define CS(A)  vec2(sin(A),cos(A))
+float sdf_emptyCircle( vec2 uv, float d, float m )
+{
+   d = min( d, sdCircle( uv, 7.0 * m) );
+   d = max( -sdCircle(   uv, 3.5 * m), d );
+   return d;
+}
 vec4 sdf_planet2( vec4 color, vec2 uv )
 {
    float m = 1.0 / dimensions.x;
 
 	/* Outter stuff. */
-	float w = 1.0 / dimensions.x;
+	float w = 2.0 * m;
 	float inner = 1.0-w-m;
 	float d = sdArc( uv, CS(-M_PI/4.0), CS(M_PI/22.0*32.0), inner, w );
 
-   const float arcseg = M_PI/32.0;
-   const vec2 shortarc = CS(arcseg);
-   vec2 auv = abs(uv);
-   d = min( d, sdArc( auv, CS(M_PI/2.0+2.0*arcseg), shortarc, inner, w ) );
-   d = min( d, sdArc( auv, CS(M_PI/2.0+6.0*arcseg), shortarc, inner, w ) );
-   d = min( d, sdArc( auv, CS(M_PI/2.0+10.0*arcseg), shortarc, inner, w ) );
-   d = min( d, sdArc( auv, CS(M_PI/2.0+14.0*arcseg), shortarc, inner, w ) );
+   /* Inner steps */
+   float dts = 0.05 * max( 0.5, 100.0 * m );
+   float c, s;
+   s = sin(dt*dts);
+   c = cos(dt*dts);
+   mat2 R = mat2( c, s, -s, c );
+   vec2 auv = abs(uv*R);
+   if (auv.y < auv.x)
+      auv.xy = vec2( auv.y, auv.x );
+   const int nmax = 9; // only works well with odd numbers
+   for (int i=0; i<nmax; i++)
+      d = min( d, sdSegment( auv,
+            CS((float(i)+0.5)*0.5*M_PI/float(nmax)*0.5)*0.91,
+            CS((float(i)+0.5)*0.5*M_PI/float(nmax)*0.5)*0.93 )-m );
+   d = min( d, sdSegment( auv,
+         CS((float(nmax/2)+0.5)*0.5*M_PI/float(nmax)*0.5)*0.89,
+         CS((float(nmax/2)+0.5)*0.5*M_PI/float(nmax)*0.5)*0.93 )-1.5*m );
 
-	/* Moving inner stuff. */
-   const vec2 arclen = CS(M_PI/6.0);
-	w = 2.0 / dimensions.x;
-	float o = 0.1 * dt;
-	inner -= 2.0*w+m;
-	d = min( d, sdArc( uv, CS(o), arclen, inner, w ) );
-	o += M_PI * 2.0/3.0;
-	d = min( d, sdArc( uv, CS(o), arclen, inner, w ) );
-	o += M_PI * 2.0/3.0;
-	d = min( d, sdArc( uv, CS(o), arclen, inner, w ) );
+   /* Circles on main. */
+   if (uv.y < uv.x)
+      uv.xy = vec2(uv.y, uv.x);
+   d = sdf_emptyCircle( uv - CS(M_PI/4.0)*inner, d, m );
+   d = sdf_emptyCircle( uv - CS(M_PI/4.0+M_PI/22.0*32.0)*inner, d, m );
+   //d = sdf_emptyCircle( uv - CS(M_PI/4.0-M_PI/22.0*32.0)*inner, d, m );
 
-   color.a *= smoothstep( -m, m, -d );
+   /* Circles off main. */
+   //d = sdf_emptyCircle( uv - CS(M_PI/4.0 + M_PI*0.9)*inner, d, m );
+   d = sdf_emptyCircle( uv - CS(M_PI/4.0 + M_PI*1.0)*inner, d, m );
+   d = sdf_emptyCircle( uv - CS(M_PI/4.0 + M_PI*1.1)*inner, d, m );
+
+   color.a *= smoothstep( -m, 0.0, -d );
    return color;
 }
 

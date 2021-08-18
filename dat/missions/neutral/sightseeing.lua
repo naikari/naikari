@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Sightseeing">
  <avail>
-  <priority>4</priority>
+  <priority>59</priority>
   <cond>planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
   <chance>460</chance>
   <location>Computer</location>
@@ -44,24 +44,21 @@
 require "numstring"
 require "jumpdist"
 
-nolux_title = _("Not Very Luxurious")
+
 nolux_text  = _("Since your ship is not a Luxury Yacht class ship, you will only be paid %s. Accept the mission anyway?")
 
-pay_title = _("Mission Completed")
 pay_text    = {}
 pay_text[1] = _("The passengers disembark with a new appreciation for the wonders of the universe.")
 pay_text[2] = _("Going off-world has renewed your passengers sense of adventure.")
 pay_text[3] = _("The passengers burst into cheers upon returning to the hanger. What a wonderful experience.")
 pay_text[4] = _("The passengers enjoyed their time aboard your vessel.")
 
-pay_s_lux_title = _("Unexpected Bonus")
 pay_s_lux_text    = {}
 pay_s_lux_text[1] = _("The passengers appreciate that you took them an a Luxury Yacht class ship after all. You are paid the original fare rather than the reduced fare.")
 pay_s_lux_text[2] = _("Your passengers were thrilled that they were able to ride in a Luxury Yacht after all. They insist on paying the originally offered fare as a show of appreciation.")
 pay_s_lux_text[3] = _("As your passengers disembark, one wealthy passenger personally thanks you for taking them on a Luxury Yacht after all and gives you a tip amounting to the difference between the original fare and what your passengers paid.")
 pay_s_lux_text[4] = _("When it comes time to collect your fare, the passengers collectively announce that they will be paying the original fare offered, since you took them on a Luxury Yacht after all.")
 
-pay_s_nolux_title = _("Disappointment")
 pay_s_nolux_text    = {}
 pay_s_nolux_text[1] = _("Several passengers are furious that you did not take them on your Luxury Yacht class ship after all. They refuse to pay, leaving you with much less overall payment.")
 pay_s_nolux_text[2] = _("While your passengers enjoyed the trip, they are not happy that you didn't take them on your Luxury Yacht class ship the entire way. They refuse to pay the full fare.")
@@ -100,13 +97,13 @@ function create ()
    startingplanet = planet.cur()
    startingsystem = system.cur()
    local systems = getsysatdistance(system.cur(), 1, 2)
-   systems[ #systems + 1 ] = startingsystem
+   systems[#systems + 1] = startingsystem
 
    if #systems <= 0 then
       misn.finish(false)
    end
 
-   missys = systems[ rnd.rnd(1, #systems) ]
+   missys = systems[rnd.rnd(1, #systems)]
    if not misn.claim(missys) then misn.finish(false) end
 
    local planets = missys:planets()
@@ -116,13 +113,13 @@ function create ()
    points["__save"] = true
    while numpoints > 0 and #planets > 0 do
       local p = rnd.rnd(1, #planets)
-      points[ #points + 1 ] = planets[p]
+      points[#points + 1] = planets[p]
       numpoints = numpoints - 1
 
       local new_planets = {}
       for i, j in ipairs(planets) do
          if i ~= p then
-            new_planets[ #new_planets + 1 ] = j
+            new_planets[#new_planets + 1] = j
          end
       end
       planets = new_planets
@@ -154,7 +151,7 @@ end
 
 function accept ()
    if player.pilot():ship():class() ~= "Luxury Yacht" then
-      if tk.yesno(nolux_title, nolux_text:format(creditstring(credits_nolux))) then
+      if tk.yesno("", nolux_text:format(creditstring(credits_nolux))) then
          nolux_known = true
          misn.setReward(creditstring(credits_nolux))
       else
@@ -165,7 +162,7 @@ function accept ()
    misn.accept()
 
    osd_msg[1] = osd_msg[1]:format(missys:name())
-   osd_msg[3] = osd_msg[3]:format(startingplanet:name(),startingsystem:name())
+   osd_msg[3] = osd_msg[3]:format(startingplanet:name(), startingsystem:name())
    misn.osdCreate(osd_title, osd_msg)
    local commod = misn.cargoNew(N_("Sightseers"), N_("A group of passengers on your ship for a sightseeing tour."))
    civs = misn.cargoAdd(commod, 0)
@@ -209,18 +206,15 @@ function land ()
    if job_done and planet.cur() == startingplanet then
       misn.cargoRm(civs)
 
-      local ttl = pay_title
-      local txt = pay_text[ rnd.rnd(1, #pay_text) ]
+      local txt = pay_text[rnd.rnd(1, #pay_text)]
       if nolux ~= nolux_known then
          if nolux then
-            ttl = pay_s_nolux_title
-            txt = pay_s_nolux_text[ rnd.rnd(1, #pay_s_nolux_text) ]
+            txt = pay_s_nolux_text[rnd.rnd(1, #pay_s_nolux_text)]
          else
-            ttl = pay_s_lux_title
-            txt = pay_s_lux_text[ rnd.rnd(1, #pay_s_lux_text) ]
+            txt = pay_s_lux_text[rnd.rnd(1, #pay_s_lux_text)]
          end
       end
-      tk.msg(ttl, txt)
+      tk.msg("", txt)
 
       if nolux then
          player.pay(credits_nolux)
@@ -249,7 +243,7 @@ function timer ()
          local point_pos = p:pos()
 
          if player_pos:dist(point_pos) < 500 then
-            local sstxt = ssmsg[ rnd.rnd(1, #ssmsg) ]
+            local sstxt = ssmsg[rnd.rnd(1, #ssmsg)]
             player.msg(sstxt)
             updated = true
          else

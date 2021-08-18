@@ -64,7 +64,7 @@ typedef struct EventData_ {
    EventTrigger_t trigger; /**< What triggers the event. */
    char *cond; /**< Conditional Lua code to execute. */
    double chance; /**< Chance of appearing. */
-   int priority; /**< Event priority: 0 = main plot, 5 = default, 10 = insignificant. */
+   int priority; /**< Event priority: 0 = main plot, 50 = default, 100 = insignificant. */
 } EventData;
 
 
@@ -388,6 +388,9 @@ static int event_parseXML( EventData *temp, const xmlNodePtr parent )
    char *buf;
 
    memset( temp, 0, sizeof(EventData) );
+
+   /* Defaults */
+   temp->priority = 50;
 
    /* get the name */
    xmlr_attr_strd(parent, "name", temp->name);

@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>3</priority>
+  <priority>15</priority>
   <cond>planet.get("Violin Station"):system():jumpDist() &lt; 4</cond>
   <done>Sirian Bounty</done>
   <chance>10</chance>

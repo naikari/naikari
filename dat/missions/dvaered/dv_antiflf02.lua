@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>10</priority>
   <chance>10</chance>
   <location>Bar</location>
   <cond>var.peek("flfbase_intro") == 1</cond>

@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>1</priority>
+  <priority>20</priority>
   <chance>2</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>

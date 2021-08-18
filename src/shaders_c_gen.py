@@ -204,6 +204,14 @@ SHADERS = [
       }
    ),
    Shader(
+      name = "material",
+      vs_path = "material.vert",
+      fs_path = "material.frag",
+      attributes = ["vertex", "vertex_normal", "vertex_tex"],
+      uniforms = ["projection", "map_Kd", "map_Bump", "Ka", "Kd", "d", "bm"],
+      subroutines = {},
+   ),
+   Shader(
       name = "colorblind",
       vs_path = "postprocess.vert",
       fs_path = "colorblind.frag",
@@ -235,13 +243,9 @@ SHADERS = [
       uniforms = ["ClipSpaceFromLocal", "MainTex", "gamma"],
       subroutines = {},
    ),
-   Shader(
+   SimpleShader(
       name = "status",
-      vs_path = "project_pos.vert",
       fs_path = "status.frag",
-      attributes = ["vertex"],
-      uniforms = ["projection", "ok"],
-      subroutines = {},
    ),
    SimpleShader(
       name = "factiondisk",

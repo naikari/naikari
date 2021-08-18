@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>10</priority>
   <chance>60</chance>
   <done>Disrupt a Dvaered Patrol</done>
   <location>Bar</location>

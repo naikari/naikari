@@ -165,10 +165,10 @@ typedef struct Radar_ {
    double res; /**< Resolution */
 } Radar;
 /* radar resolutions */
-#define RADAR_RES_MAX      100. /**< Maximum radar resolution. */
+#define RADAR_RES_MAX      300. /**< Maximum radar resolution. */
+#define RADAR_RES_REF      100. /**< Reference radar resolution. */
 #define RADAR_RES_MIN      10. /**< Minimum radar resolution. */
 #define RADAR_RES_INTERVAL 10. /**< Steps used to increase/decrease resolution. */
-#define RADAR_RES_DEFAULT  50. /**< Default resolution. */
 static Radar gui_radar;
 
 /* needed to render properly */
@@ -244,7 +244,7 @@ static int gui_runFunc( const char* func, int nargs, int nret );
  */
 void gui_setDefaults (void)
 {
-   gui_radar.res = RADAR_RES_DEFAULT;
+   gui_radar.res = player.radar_res;
    memset( mesg_stack, 0, sizeof(Mesg)*mesg_max );
 }
 
@@ -509,6 +509,7 @@ static void gui_renderTargetReticles( const SimpleShader *shd, double x, double 
 
    glUseProgram(shd->program);
    glUniform1f(shd->dt, animation_dt);
+   glUniform1f(shd->r, radius);
    gl_renderShader( rx, ry, r, r, angle, shd, c, 1 );
 }
 
@@ -1018,7 +1019,7 @@ int gui_getMapOverlayBoundLeft(void)
 int gui_radarInit( int circle, int w, int h )
 {
    gui_radar.shape   = circle ? RADAR_CIRCLE : RADAR_RECT;
-   gui_radar.res     = RADAR_RES_DEFAULT;
+   gui_radar.res     = player.radar_res;
    gui_radar.w       = w;
    gui_radar.h       = h;
    return 0;
@@ -1271,7 +1272,7 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
       y = ((p->solid->pos.y - player.p->solid->pos.y) / res);
    }
    /* Get size. */
-   scale = p->ship->rdr_scale * (1. + RADAR_RES_MAX/res);
+   scale = p->ship->rdr_scale * (1. + RADAR_RES_REF/res);
 
    /* Check if pilot in range. */
    if ( ((shape==RADAR_RECT) &&
@@ -1771,7 +1772,7 @@ int gui_init (void)
    /*
     * radar
     */
-   gui_radar.res = RADAR_RES_DEFAULT;
+   gui_radar.res = player.radar_res;
 
    /*
     * messages

@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Eliminate a Dvaered Patrol">
  <avail>
-  <priority>3</priority>
+  <priority>31</priority>
   <chance>550</chance>
   <done>Disrupt a Dvaered Patrol</done>
   <location>Computer</location>

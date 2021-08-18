@@ -1,20 +1,20 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Shadowrun">
-  <flags>
-   <unique />
-  </flags>
-  <avail>
-   <priority>3</priority>
-   <chance>20</chance>
-   <location>Bar</location>
-   <cond>system.get("Klantar"):jumpDist() &lt; 3</cond>
-  </avail>
-  <notes>
-   <campaign>Shadow</campaign>
-  </notes>
- </mission>
- --]]
+ <flags>
+  <unique />
+ </flags>
+ <avail>
+  <priority>20</priority>
+  <chance>20</chance>
+  <location>Bar</location>
+  <cond>system.get("Klantar"):jumpDist() &lt; 3</cond>
+ </avail>
+ <notes>
+  <campaign>Shadow</campaign>
+ </notes>
+</mission>
+--]]
 --[[
 -- This is the main script for the Shadowrun mission. It's started from the spaceport bar and tries to emulate spaceport bar conversation as part of the mission.
 -- "shadowrun" stack variable:

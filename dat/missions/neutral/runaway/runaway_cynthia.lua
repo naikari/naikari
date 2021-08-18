@@ -5,7 +5,7 @@
    <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>20</priority>
   <chance>11</chance>
   <location>Bar</location>
   <system>Gamma Polaris</system>

@@ -1,13 +1,13 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <event name="Travel Log">
-  <trigger>enter</trigger>
-  <chance>100</chance>
-  <flags>
-   <unique />
-  </flags>
- </event>
- --]]
+ <trigger>enter</trigger>
+ <chance>100</chance>
+ <flags>
+  <unique />
+ </flags>
+</event>
+--]]
 --[[
 
    Shiplog Event

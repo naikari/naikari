@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
+  <priority>15</priority>
   <done>Advanced Nebula Research</done>
   <chance>30</chance>
   <location>Bar</location>

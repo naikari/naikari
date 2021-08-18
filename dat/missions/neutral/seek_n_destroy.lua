@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Seek And Destroy">
  <avail>
-  <priority>4</priority>
+  <priority>42</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
   <chance>875</chance>
   <location>Computer</location>

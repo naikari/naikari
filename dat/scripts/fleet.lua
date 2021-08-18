@@ -23,15 +23,35 @@ table must be exactly the same as the size of the ship argument table.
       @param location Location to jump in from, take off from, or appear at.
       @param pilotname Name to give the pilot.
       @param parameters Table of extra parameters to pass pilot.add().
+      @param leader A pilot to add to the start of the fleet and make
+         into the fleet's leader, true to automatically assign the first
+         ship added as the fleet's leader, or nil (default) for no
+         leader.
       @return Ordered table of created pilots.
 --]]
 -- TODO: With a little work we can support a table of parameters tables,
 -- but no one even wants that. (Yet?)
-function fleet.add( count, ship, faction, location, pilotname, parameters )
+function fleet.add(count, ship, faction, location, pilotname, parameters,
+      leader)
    local pilotnames = {}
    local locations = {}
    local factions = {}
    local out = {}
+
+   -- Allow false as a synonym for nil
+   if leader == false then
+      leader = nil
+   end
+
+   -- Put the leader in, if an external one is specified.
+   if leader ~= nil and leader ~= true and leader ~= false then
+      if leader:exists() then
+         out[1] = leader
+      else
+         print(_("fleet.add: Warning: attempted to assign a leader that doesn't exist."))
+         leader = nil
+      end
+   end
 
    -- Put lone ship into table.
    if type(ship) ~= "table" then
@@ -51,8 +71,21 @@ function fleet.add( count, ship, faction, location, pilotname, parameters )
 
    for i, s in ipairs(ship) do
       for j=1,counts[i] do
-         out[#out + 1] = pilot.add(
+         local p = pilot.add(
                s, factions[i], locations[i], pilotnames[i], parameters)
+
+         if leader ~= nil then
+            if leader == true then
+               leader = p
+            elseif leader:exists() then
+               p:setLeader(leader)
+            else
+               print(_("fleet.add: Warning: Auto leader doesn't exist."))
+               leader = nil
+            end
+         end
+
+         out[#out + 1] = p
       end
    end
    if #out > 1 then

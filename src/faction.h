@@ -60,6 +60,7 @@ const char *faction_getStandingText( int f );
 const char *faction_getStandingBroad( int f, int bribed, int override );
 const glColour* faction_getColour( int f );
 char faction_getColourChar( int f );
+const char *faction_getSymbol( int f );
 
 /* works with only factions */
 int areEnemies( int a, int b );

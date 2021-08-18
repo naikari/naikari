@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>2</priority>
+  <priority>25</priority>
   <done>Waste Collector</done>
   <chance>30</chance>
   <location>Bar</location>
