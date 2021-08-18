@@ -31,7 +31,6 @@ typedef struct Mesh_ {
 typedef struct Object_ {
    Mesh *meshes;
    Material *materials;
-   GLfloat radius;
 } Object;
 
 
