@@ -1041,7 +1041,7 @@ void map_renderFactionDisks( double x, double y, double r, int editor, double al
          c.r = col->r;
          c.g = col->g;
          c.b = col->b;
-         c.a = alpha;
+         c.a = 0.6 * alpha;
 
          glUseProgram(shaders.factiondisk.program);
          glUniform1f(shaders.factiondisk.r, r / sr );
