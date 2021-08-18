@@ -935,7 +935,7 @@ void map_renderDecorators( double x, double y, int editor, double alpha )
    int visible;
    MapDecorator *decorator;
    StarSystem *sys;
-   glColour ccol = { .r=1.00, .g=1.00, .b=1.00, .a=2./3. }; /**< White */
+   glColour ccol = { .r=1.00, .g=1.00, .b=1.00, .a=1./3. }; /**< White */
 
    /* Fade in the decorators to allow toggling between commodity and nothing */
    ccol.a *= alpha;
