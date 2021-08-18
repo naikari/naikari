@@ -9,10 +9,8 @@
 #include "SDL.h"
 /** @endcond */
 
-#include "opengl_vbo.h"
+#include "opengl.h"
 #include "physics.h"
-
-struct gl_vbo;
 
 typedef struct Material_ {
    char *name;
