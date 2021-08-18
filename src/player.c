@@ -380,6 +380,7 @@ Pilot* player_newShip( const Ship* ship, const char *def_name,
    char *ship_name, *temp_name;
    const char *old_name;
    int i, len, w;
+   int n, failed;
    Pilot *new_ship;
 
    /* temporary values while player doesn't exist */
@@ -421,19 +422,31 @@ Pilot* player_newShip( const Ship* ship, const char *def_name,
    if (player_hasShip(ship_name)) {
       if ((old_name != NULL) && (strcmp(ship_name, old_name) == 0)) {
          /* Add temporary name. */
+         failed = 0;
          i = 2;
          len = strlen("temp") + 10;
          temp_name = malloc(len * sizeof(temp_name));
          strcpy(temp_name, "temp");
 
          while (player_hasShip(temp_name)) {
-            snprintf(temp_name, len, "temp-%d", i);
+            n = snprintf(temp_name, len, "temp-%d", i);
             i++;
+
+            /* If the whole temp name wasn't written, count as failure
+             * and break from the loop. Silences a warning about an
+             * unlikely, but possible, event that would cause an
+             * infinite loop. */
+            if ((n < 0) || (n >= len)) {
+               failed = 1;
+               break;
+            }
          }
 
-         free(player.p->name);
-         player.p->name = temp_name;
-         old_name = player.p->name;
+         if (!failed) {
+            free(player.p->name);
+            player.p->name = temp_name;
+            old_name = player.p->name;
+         }
       }
       else {
          dialogue_msg(_("Name collision"),
