@@ -1750,10 +1750,17 @@ void pilot_render( Pilot* p, const double dt )
    }
 
    /* Base ship. */
-   gl_blitSpriteInterpolateScale( p->ship->gfx_space, p->ship->gfx_engine,
-         1.-p->engine_glow, p->solid->pos.x, p->solid->pos.y,
-         scalew, scaleh,
-         p->tsx, p->tsy, NULL );
+   if (p->ship->gfx_3d != NULL) {
+      /* 3d */
+      object_renderSolidPart(p->ship->gfx_3d, p->solid, "body", 1, p->ship->gfx_3d_scale * scale);
+      object_renderSolidPart(p->ship->gfx_3d, p->solid, "engine", p->engine_glow, p->ship->gfx_3d_scale * scale);
+   } else {
+      /* Sprites */
+      gl_blitSpriteInterpolateScale( p->ship->gfx_space, p->ship->gfx_engine,
+            1.-p->engine_glow, p->solid->pos.x, p->solid->pos.y,
+            scalew, scaleh,
+            p->tsx, p->tsy, NULL );
+   }
 
 #ifdef DEBUGGING
    double dircos, dirsin, x, y;
