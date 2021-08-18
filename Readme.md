@@ -46,11 +46,11 @@ If you're cross-compiling for Windows, you must install this soft dependency:
 Install compile-time dependencies on Ubuntu 16.04 (and hopefully later) with:
 
 ```
-apt-get install build-essential libsdl2-dev libsdl2-image-dev \
+sudo apt install build-essential libsdl2-dev libsdl2-image-dev \
 libgl1-mesa-dev libxml2-dev libfreetype6-dev libpng-dev libwebp-dev \
 libopenal-dev libvorbis-dev binutils-dev libiberty-dev autopoint intltool \
-libfontconfig-dev python3-pip
-pip3 install meson ninja
+libfontconfig-dev python3-pip libglpk-dev libluajit-5.1-dev
+sudo pip3 install meson ninja
 ```
 
 ### macOS
