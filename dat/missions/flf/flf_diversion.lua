@@ -157,8 +157,9 @@ end
 
 
 function pilot_death_dv(p, attacker)
-   if (attacker == player.pilot() or attacker:leader() == player.pilot())
-         and not dv_coming then
+   if not dv_coming
+         and (attacker == player.pilot() or attacker:leader() == player.pilot()
+            or attacker:faction() == faction.get("FLF")) then
       dv_coming = true
       hook.timer(10.0, "timer_spawn_dv")
    end
@@ -168,12 +169,14 @@ end
 function timer_spawn_dv ()
    dv_coming = false
    if not job_done then
-      local shipnames = {"Dvaered Vendetta", "Dvaered Ancestor", "Dvaered Phalanx", "Dvaered Vigilance", "Dvaered Goddard", "Dvaered Small Patrol", "Dvaered Big Patrol"}
+      local shipnames = {
+         "Dvaered Vendetta", "Dvaered Ancestor", "Dvaered Phalanx",
+         "Dvaered Vigilance", "Dvaered Goddard",
+      }
       local shipname = shipnames[rnd.rnd(1, #shipnames)]
       player.msg(msg:format(shipname))
-      for i, j in ipairs(pilot.addFleet(shipname)) do
-         add_attention(j)
-      end
+      local p = pilot.add(shipname, "Dvaered")
+      add_attention(p)
    end
 end
 
