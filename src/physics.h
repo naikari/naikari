@@ -8,7 +8,9 @@
 #  define PHYSICS_H
 
 
+/** @cond */
 #include <math.h>
+/** @endcond */
 
 
 #define VX(v)     ((v).x) /**< Gets the X component of a vector. */
@@ -16,7 +18,7 @@
 #define VMOD(v)   ((v).mod) /**< Gets the modulus of a vector. */
 #define VANGLE(v) ((v).angle) /**< Gets the angle of a vector. */
 
-#define MOD(x,y)  (sqrt((x)*(x)+(y)*(y))) /**< Gets the modulus of a vector by cartesian coordinates. */
+#define MOD(x,y)  (hypot((x),(y))) /**< Gets the modulus of a vector by cartesian coordinates. */
 #define ANGLE(x,y) (atan2(y,x)) /**< Gets the angle of two cartesian coordinates. */
 
 #define vect_dist(v,u)  MOD((v)->x-(u)->x,(v)->y-(u)->y) /**< Gets the distance between two vectors. */
@@ -54,7 +56,6 @@ double angle_diff( const double ref, double a );
 void vect_cset( Vector2d* v, const double x, const double y );
 void vect_csetmin( Vector2d* v, const double x, const double y ); /* does not set mod nor angle */
 void vect_pset( Vector2d* v, const double mod, const double angle );
-void vectcpy( Vector2d* dest, const Vector2d* src );
 void vectnull( Vector2d* v );
 double vect_angle( const Vector2d* ref, const Vector2d* v );
 void vect_cadd( Vector2d* v, const double x, const double y );

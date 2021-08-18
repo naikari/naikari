@@ -8,18 +8,17 @@
 
 
 #include "mission.h"
-
-#include "nlua_pilot.h"
 #include "nlua_faction.h"
-#include "nlua_planet.h"
 #include "nlua_jump.h"
+#include "nlua_pilot.h"
+#include "nlua_planet.h"
 
 
 #define HOOK_MAX_PARAM  3 /**< Maximum hook params, to avoid dynamic allocation. */
 
 
 /**
- * @Brief The hook parameter types.
+ * @brief The hook parameter types.
  */
 typedef enum HookParamType_e {
    HOOK_PARAM_NIL, /**< No hook parameter. */
@@ -68,6 +67,8 @@ int hook_hasEventParent( unsigned int parent );
 /* pilot hook. */
 int pilot_runHookParam( Pilot* p, int hook_type, HookParam *param, int nparam );
 
+nlua_env hook_env( unsigned int hook );
+
 /*
  * run hooks
  *
@@ -84,6 +85,7 @@ int pilot_runHookParam( Pilot* p, int hook_type, HookParam *param, int nparam );
  *    - "standing" - Whenever faction changes.
  *    - "load" - Run on load.
  *    - "discover" - When something is discovered.
+ *    - "pay" - When player receives or loses money.
  *  - Landing
  *    - "land" - When landed
  *    - "outfits" - When visited outfitter
@@ -93,6 +95,7 @@ int pilot_runHookParam( Pilot* p, int hook_type, HookParam *param, int nparam );
  *    - "commodity" - When visited commodity exchange
  *    - "equipment" - When visiting equipment place < br/>
  */
+int hooks_runParamDeferred( const char* stack, HookParam *param );
 int hooks_runParam( const char* stack, HookParam *param );
 int hooks_run( const char* stack );
 int hook_runIDparam( unsigned int id, HookParam *param );

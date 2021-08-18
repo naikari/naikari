@@ -1,4 +1,4 @@
-include("dat/ai/include/basic.lua")
+require("ai/include/basic")
 
 -- Variables
 planet_dist = 1500 -- distance to keep from planets
@@ -12,7 +12,7 @@ control_rate = 2
 function control ()
    task = ai.taskname()
 
-   if task == "none" or task == "idle" then
+   if task == nil or task == "idle" then
       enemy = ai.getenemy()
 
       -- There is an enemy
@@ -26,9 +26,9 @@ function control ()
       -- nothing to do so check if we are too far form the planet (if there is one)
       if mem.approach == nil then
          local planet = ai.rndplanet()
-	 if planet ~= nil then
+         if planet ~= nil then
             mem.approach = planet:pos()
-	 end
+         end
       end
       planet = mem.approach
 
@@ -40,7 +40,7 @@ function control ()
       end
 
       -- Go idle if no task
-      if task == "none" then
+      if task == nil then
          ai.pushtask("idle")
          return
       end
@@ -57,7 +57,7 @@ function control ()
 
    -- Check if we need to run more
    elseif task == "runaway" then
-      enemy = ai.target()
+      enemy = ai.taskdata()
 
       if ai.dist(enemy) > enemy_dist and ai.haslockon() == false then
          ai.poptask()
@@ -76,7 +76,7 @@ function attacked ( attacker )
       ai.pushtask("runaway", attacker)
 
    elseif task == "runaway" then
-      if ai.target() ~= attacker then
+      if ai.taskdata() ~= attacker then
          -- Runaway from the new guy
          ai.poptask()
          ai.pushtask("runaway", attacker)

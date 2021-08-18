@@ -5,8 +5,8 @@
   <y>-644.071679</y>
  </pos>
  <GFX>
-  <space>A02.png</space>
-  <exterior>desertic.png</exterior>
+  <space>A02.webp</space>
+  <exterior>desertic.webp</exterior>
  </GFX>
  <presence>
   <faction>Za'lek</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>A</class>
   <population>125000</population>
-  <hide>0.250000</hide>
   <services>
    <land/>
    <refuel/>
@@ -26,11 +25,7 @@
    <outfits/>
    <shipyard/>
   </services>
-  <commodities>
-   <commodity>Food</commodity>
-   <commodity>Ore</commodity>
-   <commodity>Industrial Goods</commodity>
-  </commodities>
+  <commodities/>
   <description>This planet is still in its infancy, and is a primary source of geological research for Za'lek scientists. This, and the high density of rare and valuable heavy metals makes it a potentially valuable Za'lek world despite the unpleasantness of its environment.</description>
   <bar>The bar has pictures of the famous scientists that the planet was named after, as well as various pictures and holopaintings of some of the phenomena on the planet that those whose interests in geology might find interesting.</bar>
  </general>

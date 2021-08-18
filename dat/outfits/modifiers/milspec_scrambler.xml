@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Milspec Scrambler">
  <general>
   <slot>utility</slot>
@@ -6,11 +6,11 @@
   <mass>3</mass>
   <price>250000</price>
   <description>Milspec knows what's important out there. It's that you don't get shot! And the best way not to get shot is not to get targeted in the first place. The Milspec RX 500-C scrambler will put the wool over your enemies' sensors, at a minimal cost to you or your ship's reactor! Fly safe, fly Milspec.</description>
-  <gfx_store>jammer1</gfx_store>
-  <cpu>-3</cpu>
+  <gfx_store>agility_combat_ai.webp</gfx_store>
+  <cpu>-6</cpu>
  </general>
  <specific type="modification">
-  <energy_usage>12</energy_usage>
-  <ew_hide>20</ew_hide>
+  <energy_regen_malus>6</energy_regen_malus>
+  <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
  </specific>
 </outfit>

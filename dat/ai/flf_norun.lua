@@ -1,4 +1,4 @@
-include("dat/ai/flf.lua")
+require("ai/flf")
 
 mem.armour_run = 0
 

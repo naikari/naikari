@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ship name="Thurion Virtuosity">
+ <base_type>Virtuosity</base_type>
+ <GFX>virtuosity</GFX>
+ <rarity>4</rarity>
+ <GUI>brushed</GUI>
+ <sound>engine</sound>
+ <class>Corvette</class>
+ <rdr_scale>1.5</rdr_scale>
+ <price>1100000</price>
+ <time_mod>1.25</time_mod>
+ <trail_generator x="-15" y="5" h="0" />
+ <trail_generator x="-15" y="-5" h="0" />
+ <trail_generator x="-13" y="-25" h="-5">nebula</trail_generator>
+ <trail_generator x="-11" y="-11" h="8">nebula</trail_generator>
+ <trail_generator x="-13" y="25" h="-5">nebula</trail_generator>
+ <trail_generator x="-11" y="11" h="8">nebula</trail_generator>
+ <fabricator>Thurion shipyards</fabricator>
+ <license>Medium Combat Vessel License</license>
+ <description>The Thurion Virtuosity is a medium-size ship used by the Thurion for frontal assaults. While weapon space is less than stellar, the vessel's superior electronics and resistance to the harsh nebula more than make up for it.</description>
+ <health>
+  <armour>300</armour>
+  <armour_regen>0</armour_regen>
+ </health>
+ <characteristics>
+  <mass>130</mass>
+  <fuel>600</fuel>
+  <fuel_consumption>200</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>3000</rdr_jump_range>
+  <cargo>25</cargo>
+ </characteristics>
+ <slots>
+  <weapon size="medium" x="16" y="0" h="-2" />
+  <weapon size="medium" x="-5" y="11" h="0" />
+  <weapon size="medium" x="-5" y="-11" h="0" />
+  <weapon size="small" x="24" y="0" h="-2" />
+  <utility size="medium" prop="systems" exclusive="1" required="1">Unicorp PT-280 Core System</utility>
+  <utility size="medium" />
+  <utility size="medium" />
+  <utility size="small" />
+  <utility size="small" />
+  <structure size="medium" prop="engines" exclusive="1" required="1">Nexus Arrow 700 Engine</structure>
+  <structure size="medium" prop="hull" exclusive="1" required="1">Unicorp D-12 Medium Plating</structure>
+  <structure size="medium" />
+  <structure size="medium" />
+  <structure size="medium" />
+ </slots>
+ <stats>
+  <nebu_absorb_shield>80</nebu_absorb_shield>
+  <nebu_absorb_armour>97</nebu_absorb_armour>
+  <rdr_enemy_range_mod>-50</rdr_enemy_range_mod>
+  <rdr_range_mod>125</rdr_range_mod>
+  <rdr_jump_range_mod>50</rdr_jump_range_mod>
+ </stats>
+</ship>

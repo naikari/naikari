@@ -5,8 +5,8 @@
   <y>607.267583</y>
  </pos>
  <GFX>
-  <space>003.png</space>
-  <exterior>station03.png</exterior>
+  <space>O03.webp</space>
+  <exterior>snowy_cliffs.webp</exterior>
  </GFX>
  <presence>
   <faction>Independent</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>A</class>
   <population>25000</population>
-  <hide>0.750000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
    <outfits/>
    <shipyard/>
   </services>

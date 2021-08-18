@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Milspec Aegis 5401 Core System">
  <general>
   <typename>Core Systems (System)</typename>
@@ -8,14 +8,13 @@
   <mass>180</mass>
   <price>400000</price>
   <description>Milspec cares about your personal safety. Your protection is our concern. The Aegis 5401 grants your ship excellent shield strength while preserving a high level of subsystem control and energy capacity. Fly safe, fly Milspec.</description>
-  <gfx_store>core_system03</gfx_store>
+  <gfx_store>core_system_shield_m2.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>100</cpu_max>
+  <cpu_max>400</cpu_max>
   <shield>700</shield>
   <shield_regen>14</shield_regen>
-  <energy>1600</energy>
-  <energy_regen>85</energy_regen>
-  <ew_hide>0</ew_hide>
+  <energy>1500</energy>
+  <energy_regen>75</energy_regen>
  </specific>
 </outfit>

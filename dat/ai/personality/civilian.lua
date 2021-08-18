@@ -5,7 +5,7 @@ function idle ()
        local planet = ai.landplanet( mem.land_friendly )
        -- planet must exist
        if planet == nil then
-          ai.settimer(0, rnd.int(1000, 3000))
+          ai.settimer(0, rnd.uniform(1, 3))
           ai.pushtask("enterdelay")
        else
           mem.land = planet:pos()
@@ -15,7 +15,7 @@ function idle ()
    else -- Stay. Have a beer.
       sysrad = rnd.rnd() * system.cur():radius()
       angle = rnd.rnd() * 2 * math.pi
-      ai.pushtask("__goto_nobrake", vec2.new(math.cos(angle) * sysrad, math.sin(angle) * sysrad))
+      ai.pushtask("loiter", vec2.new(math.cos(angle) * sysrad, math.sin(angle) * sysrad))
    end
    mem.loiter = mem.loiter - 1
 end

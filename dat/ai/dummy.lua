@@ -1,4 +1,4 @@
-include("dat/ai/include/basic.lua")
+require("ai/include/basic")
 --[[
 -- Dummy AI - does nothing except brake and then float around.
 --]]
@@ -13,6 +13,8 @@ end
 
 -- No need for control
 function control ()
+end
+function control_manual ()
 end
 
 -- No response

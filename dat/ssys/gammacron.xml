@@ -3,7 +3,6 @@
  <general>
   <radius>16800.000000</radius>
   <stars>400</stars>
-  <interference>0.000000</interference>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
@@ -16,15 +15,27 @@
   <asset>Gammacron Va</asset>
   <asset>Gammacron Vb</asset>
   <asset>Pund</asset>
+  <asset>Virtual Miner Small</asset>
  </assets>
  <jumps>
   <jump target="Daan">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Limbo">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
+ <asteroids>
+  <asteroid>
+   <type>default</type>
+   <type>diamond</type>
+   <radius>1400.000000</radius>
+   <pos x="1200.000000" y="4032.000000"/>
+   <density>10.000000</density>
+  </asteroid>
+  <exclusion>
+   <radius>1000.000000</radius>
+   <pos x="1200.000000" y="4032.000000"/>
+  </exclusion>
+ </asteroids>
 </ssys>

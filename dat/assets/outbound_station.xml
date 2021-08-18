@@ -5,8 +5,8 @@
   <y>7508.035569</y>
  </pos>
  <GFX>
-  <space>station-commerce3.png</space>
-  <exterior>station05.png</exterior>
+  <space>station-commerce3.webp</space>
+  <exterior>station05.webp</exterior>
  </GFX>
  <presence>
   <faction>Empire</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>1</class>
   <population>5000</population>
-  <hide>0.500000</hide>
   <services>
    <land/>
    <refuel/>
@@ -24,10 +23,7 @@
    <missions/>
    <outfits/>
   </services>
-  <commodities>
-   <commodity>Food</commodity>
-   <commodity>Medicine</commodity>
-  </commodities>
+  <commodities/>
   <description>The last bastion of Imperial control before entering Za'lek space, this station is meant to patrol and tax traffic between the Empire and its supposedly subservient great house. In theory, the system is owned by the Empire. However, the Za'lek have a strong presence here thanks to the Gerhart Station, and the debate over who truly owns the Ganth system and its tolls is a tense one.</description>
   <bar>The bar is staffed with traders and Imperial Military officials. It is noteworthy that there is no Za'lek in sight here.</bar>
  </general>

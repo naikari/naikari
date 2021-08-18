@@ -5,8 +5,8 @@
   <y>5139.003418</y>
  </pos>
  <GFX>
-  <space>moon-D02.png</space>
-  <exterior>asteroid.png</exterior>
+  <space>moon-D02.webp</space>
+  <exterior>asteroid.webp</exterior>
  </GFX>
  <presence>
   <faction>Empire</faction>
@@ -16,12 +16,10 @@
  <general>
   <class>D</class>
   <population>17500</population>
-  <hide>0.500000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
-   <commodity/>
   </services>
   <commodities/>
   <description>Falas is a sparsely populated garrison planet with little to no resources of any use. However, it was cheaper to build an outpost here than to build a whole new space station.</description>

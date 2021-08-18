@@ -8,33 +8,41 @@
  * @brief Handles the Lua console.
  */
 
+/** @cond */
+#define lua_c
+#include <ctype.h>
+#include <lauxlib.h>
+#include <lua.h>
+#include <lualib.h>
+#include <stdlib.h>
+
+#include "naev.h"
+/** @endcond */
+
 #include "console.h"
 
-#include "naev.h"
-
-#include <stdlib.h>
-#include "nstring.h"
-
-#define lua_c
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
-
+#include "array.h"
+#include "conf.h"
+#include "font.h"
 #include "log.h"
+#include "menu.h"
 #include "naev.h"
+#include "ndata.h"
+#include "nfile.h"
 #include "nlua.h"
-#include "nlua_cli.h"
-#include "nlua_tk.h"
-#include "nlua_tex.h"
-#include "nlua_col.h"
+#include "nlua_audio.h"
 #include "nlua_bkg.h"
 #include "nlua_camera.h"
+#include "nlua_cli.h"
+#include "nlua_col.h"
+#include "nlua_debug.h"
+#include "nlua_linopt.h"
 #include "nlua_music.h"
-#include "font.h"
+#include "nlua_tex.h"
+#include "nlua_tk.h"
+#include "nluadef.h"
+#include "nstring.h"
 #include "toolkit.h"
-#include "nfile.h"
-#include "menu.h"
-#include "conf.h"
 
 
 #define BUTTON_WIDTH    50 /**< Button width. */
@@ -44,21 +52,22 @@
 /*
  * Global stuff.
  */
-static lua_State *cli_state = NULL; /**< Lua CLI state. */
+static nlua_env cli_env     = LUA_NOREF; /**< Lua CLI env. */
 static glFont *cli_font     = NULL; /**< CLI font to use. */
 
 /*
  * Buffers.
  */
-#define BUF_LINES          128 /**< Number of lines in the buffer. */
-#define LINE_LENGTH        256 /**< Length of lines in the buffer. */
+#define CLI_MAX_INPUT      1024 /** Maximum characters typed into console. */
 #define CLI_WIDTH          (SCREEN_W - 100) /**< Console width. */
 #define CLI_HEIGHT         (SCREEN_H - 100) /**< Console height. */
-static int cli_cursor      = 0; /**< Current cursor position. */
-static char cli_buffer[BUF_LINES][LINE_LENGTH]; /**< CLI buffer. */
-static int cli_viewport    = 0; /**< Current viewport. */
+/** Height of console box */
+#define CLI_CONSOLE_HEIGHT  (CLI_HEIGHT-80-BUTTON_HEIGHT)
+/** Number of lines displayed at once */
+#define CLI_MAX_LINES (CLI_CONSOLE_HEIGHT/(cli_font->h+5))
+static char **cli_buffer; /**< CLI buffer. */
 static int cli_history     = 0; /**< Position in history. */
-static int cli_height      = 0; /**< Current console height. */
+static int cli_scroll_pos  = -1; /**< Pistion in scrolling through output */
 static int cli_firstOpen   = 1; /**< First time opening. */
 
 
@@ -72,9 +81,9 @@ static int cli_firstline   = 1; /**< Is this the first line? */
  * CLI stuff.
  */
 static int cli_script( lua_State *L );
-static int cli_printOnly( lua_State *L );
+//static int cli_printOnly( lua_State *L );
 static const luaL_Reg cli_methods[] = {
-   { "print", cli_printOnly },
+   { "print", cli_print },
    { "script", cli_script },
    { "warn", cli_warn },
    {NULL, NULL}
@@ -85,9 +94,59 @@ static const luaL_Reg cli_methods[] = {
 /*
  * Prototypes.
  */
-static int cli_keyhandler( unsigned int wid, SDLKey key, SDLMod mod );
+static int cli_keyhandler( unsigned int wid, SDL_Keycode key, SDL_Keymod mod );
 static void cli_render( double bx, double by, double w, double h, void *data );
+static void cli_printCoreString( const char *s, int escape );
 static int cli_printCore( lua_State *L, int cli_only );
+void cli_tabComplete( unsigned int wid );
+static int cli_initLua (void);
+
+
+static char* cli_escapeString( int *len_out, const char *s, int len )
+{
+   char *buf = malloc( 2*len+1 ); /* worst case */
+   int b = 0;
+   for (int i=0; i<len; i++) {
+      if (s[i]==FONT_COLOUR_CODE)
+         buf[b++] = FONT_COLOUR_CODE;
+      buf[b++] = s[i];
+   }
+   buf[b] = '\0';
+   *len_out = b;
+   return buf;
+}
+
+
+/**
+ * @brief Prints a string.
+ */
+static void cli_printCoreString( const char *s, int escape )
+{
+   int p, l, slen, len;
+   char *tmp, *buf;
+
+   tmp = strdup(s);
+   slen = strlen(s);
+   p = 0;
+   do {
+      if ((tmp[p] == ' ') || (tmp[p] == '\n'))
+         p++;
+      /* Don't handle tab for now. */
+      if (tmp[p]=='\t')
+         tmp[p] = ' ';
+      l = gl_printWidthForText(cli_font, &tmp[p], CLI_WIDTH-40, NULL );
+      if (escape) {
+         buf = cli_escapeString( &len, &tmp[p], l );
+         cli_addMessageMax( buf, len );
+         free(buf);
+      }
+      else
+         cli_addMessageMax( &tmp[p], l );
+      p += l;
+   } while (p < slen);
+
+   free(tmp);
+}
 
 
 /**
@@ -97,12 +156,9 @@ static int cli_printCore( lua_State *L, int cli_only )
 {
    int n; /* number of arguments */
    int i;
-   char buf[LINE_LENGTH];
-   int p;
    const char *s;
 
    n = lua_gettop(L);
-   p = 0;
 
    lua_getglobal(L, "tostring");
    for (i=1; i<=n; i++) {
@@ -111,23 +167,16 @@ static int cli_printCore( lua_State *L, int cli_only )
       lua_call(L, 1, 1);
       s = lua_tostring(L, -1);  /* get result */
       if (s == NULL)
-         return luaL_error(L, LUA_QL("tostring") " must return a string to "
+         return NLUA_ERROR(L, LUA_QL("tostring") " must return a string to "
                LUA_QL("print"));
       if (!cli_only)
          LOG( "%s", s );
 
       /* Add to console. */
-      p += nsnprintf( &buf[p], LINE_LENGTH-p, "%s%s", (i>1) ? "   " : "", s );
-      if (p >= LINE_LENGTH) {
-         cli_addMessage(buf);
-         p = 0;
-      }
+      cli_printCoreString( s, 1 );
+
       lua_pop(L, 1);  /* pop result */
    }
-
-   /* Add last line if needed. */
-   if (n > 0)
-      cli_addMessage(buf);
 
    return 0;
 }
@@ -136,15 +185,14 @@ static int cli_printCore( lua_State *L, int cli_only )
 /**
  * @brief Barebones warn implementation for Lua, allowing scripts to print warnings to stderr.
  *
- * @luafunc warn()
+ * @luafunc warn
  */
 int cli_warn( lua_State *L )
 {
-   const char *msg;
-
-   msg = luaL_checkstring(L,1);
-   logprintf( stderr, "Warning: %s\n", msg );
-
+   const char *msg = luaL_checkstring(L,1);
+   WARN("%s", msg );
+   /* Add to console. */
+   cli_printCoreString( msg, 1 );
    return 0;
 }
 
@@ -157,7 +205,7 @@ int cli_print( lua_State *L )
    return cli_printCore( L, 0 );
 }
 
-
+#if 0
 /**
  * @brief Replacement for the internal Lua print to print to console instead of terminal.
  */
@@ -165,7 +213,7 @@ static int cli_printOnly( lua_State *L )
 {
    return cli_printCore( L, 1 );
 }
-
+#endif
 
 /**
  * @brief Would be like "dofile" from the base Lua lib.
@@ -173,27 +221,38 @@ static int cli_printOnly( lua_State *L )
 static int cli_script( lua_State *L )
 {
    const char *fname;
-   char buf[PATH_MAX], *bbuf;
+   char *buf;
+   size_t blen;
    int n;
 
    /* Handle parameters. */
-   fname = luaL_optstring(L, 1, NULL);
-   n     = lua_gettop(L);
+   fname = luaL_checkstring(L, 1);
+   n = lua_gettop(L);
 
-   /* Try to find the file if it exists. */
-   if (nfile_fileExists(fname))
-      nsnprintf( buf, sizeof(buf), "%s", fname );
-   else {
-      bbuf = strdup( naev_binary() );
-      nsnprintf( buf, sizeof(buf), "%s/%s", nfile_dirname( bbuf ), fname );
-      free(bbuf);
+   /* Reset loaded buffer. */
+   if (cli_env != LUA_NOREF) {
+      nlua_getenv( cli_env, "_LOADED" );
+      if (lua_istable(L,-1)) {
+         lua_pushnil(L);                     /* t, nil */
+         while (lua_next(L, -2) != 0) {      /* t, key, val */
+            lua_pop(L,1);                    /* t, key */
+            lua_pushvalue(L,-1);             /* t, key, key */
+            lua_pushnil(L);                  /* t, key, key, nil */
+            lua_rawset(L,-4);                /* t, key */
+         }                                   /* t */
+      }
+      lua_pop(L,1);                          /* */
    }
 
-   /* Do the file. */
-   if (luaL_loadfile(L, buf) != 0)
+   /* Do the file from PHYSFS. */
+   buf = ndata_read( fname, &blen );
+   if (luaL_loadbuffer( L, buf, blen, fname ) != 0)
       lua_error(L);
+   free( buf );
 
    /* Return the stuff. */
+   nlua_pushenv(cli_env);
+   lua_setfenv(L, -2);
    lua_call(L, 0, LUA_MULTRET);
    return lua_gettop(L) - n;
 }
@@ -206,28 +265,31 @@ static int cli_script( lua_State *L )
  */
 void cli_addMessage( const char *msg )
 {
-   int n;
-
+   char *buf;
    /* Not initialized. */
-   if (cli_state == NULL)
+   if (cli_env == LUA_NOREF)
       return;
+   buf = strdup((msg != NULL) ? msg : "");
+   array_grow(&cli_buffer) = buf;
+   cli_history = array_size(cli_buffer) - 1;
+}
 
-   if (msg != NULL) {
-      strncpy( cli_buffer[cli_cursor], msg, LINE_LENGTH );
-      cli_buffer[cli_cursor][LINE_LENGTH-1] = '\0';
-   }
-   else
-      cli_buffer[cli_cursor][0] = '\0';
 
-   cli_cursor = (cli_cursor+1) % BUF_LINES;
-   cli_history = cli_cursor; /* History matches cursor. */
-
-   /* Move viewport if needed. */
-   n = (cli_cursor - cli_viewport) % BUF_LINES;
-   if (cli_cursor < cli_viewport)
-      n += BUF_LINES;
-   if (n*(cli_font->h+5) > cli_height-80-BUTTON_HEIGHT)
-      cli_viewport = (cli_viewport+1) % BUF_LINES;
+/**
+ * @brief Adds a message to the buffer.
+ *
+ *    @param msg Message to add.
+ *    @param l Max message length.
+ */
+void cli_addMessageMax( const char *msg, const int l )
+{
+   char *buf;
+   /* Not initialized. */
+   if (cli_env == LUA_NOREF)
+      return;
+   buf = strndup((msg != NULL) ? msg : "", l);
+   array_grow(&cli_buffer) = buf;
+   cli_history = array_size(cli_buffer) - 1;
 }
 
 
@@ -237,68 +299,92 @@ void cli_addMessage( const char *msg )
 static void cli_render( double bx, double by, double w, double h, void *data )
 {
    (void) data;
-   int i, y;
-   const glColour *c;
+   int i, start;
 
-   /* Draw the text. */
-   i = cli_viewport;
-   for (y=h-cli_font->h-5; y>0; y -= cli_font->h + 5) {
-      if (cli_buffer[i][0] == '>')
-         c = &cDConsole;
-      else if (strncmp(cli_buffer[i], "cli:", 4)==0)
-         c = &cRed;
-      else
-         c = &cBlack;
-      gl_printMaxRaw( cli_font, w,
-            bx, by + y, c, cli_buffer[i] );
-      i = (i + 1) % BUF_LINES;
-   }
+   if (cli_scroll_pos == -1)
+      start = MAX(0, array_size(cli_buffer) - CLI_MAX_LINES);
+   else
+      start = cli_scroll_pos;
+
+   for (i=start; i<array_size(cli_buffer); i++)
+      gl_printMaxRaw( cli_font, w, bx,
+            by + h - (i+1-start)*(cli_font->h+5),
+            &cFontWhite, -1., cli_buffer[i] );
 }
 
 
 /**
  * @brief Key handler for the console window.
  */
-static int cli_keyhandler( unsigned int wid, SDLKey key, SDLMod mod )
+static int cli_keyhandler( unsigned int wid, SDL_Keycode key, SDL_Keymod mod )
 {
    (void) mod;
-   int i;
+   int i, pos;
+   char *str;
 
    switch (key) {
 
       /* Go up in history. */
       case SDLK_UP:
-         i = cli_history-1;
-         while (cli_buffer[i][0] != '\0') {
-            if (cli_buffer[i][0] == '>') {
-               window_setInput( wid, "inpInput", &cli_buffer[i][3] );
+         for (i=cli_history; i>=0; i--) {
+            if (strncmp(cli_buffer[i], "#C>", 3) == 0) {
+               /* Strip escape codes from beginning and end */
+               str = strndup(cli_buffer[i]+5, strlen(cli_buffer[i])-7);
+               if (i == cli_history &&
+                  strcmp(window_getInput(wid, "inpInput"), str) == 0) {
+                  free(str);
+                  continue;
+               }
+               window_setInput( wid, "inpInput", str );
+               free(str);
                cli_history = i;
                return 1;
             }
-            i--;
          }
          return 1;
 
       /* Go down in history. */
       case SDLK_DOWN:
          /* Clears buffer. */
-         if (cli_history >= cli_cursor) {
+         if (cli_history >= array_size(cli_buffer)-1) {
             window_setInput( wid, "inpInput", NULL );
             return 1;
          }
 
          /* Find next buffer. */
-         i = cli_history+1;
-         while (cli_buffer[i][0] != '\0') {
-            if (cli_buffer[i][0] == '>') {
-               window_setInput( wid, "inpInput", &cli_buffer[i][3] );
+         for (i=cli_history+1; i<array_size(cli_buffer); i++) {
+            if (strncmp(cli_buffer[i], "#C>", 3) == 0) {
+               str = strndup(cli_buffer[i]+5, strlen(cli_buffer[i])-7);
+               window_setInput( wid, "inpInput", str );
+               free(str);
                cli_history = i;
                return 1;
             }
-            i++;
          }
          cli_history = i-1;
          window_setInput( wid, "inpInput", NULL );
+         return 1;
+
+      /* Scroll up */
+      case SDLK_PAGEUP:
+         pos = cli_scroll_pos;
+         if (pos == -1)
+            pos = MAX(0, array_size(cli_buffer) - CLI_MAX_LINES);
+         cli_scroll_pos = MAX(0, pos - CLI_MAX_LINES);
+         return 1;
+
+      /* Scroll down */
+      case SDLK_PAGEDOWN:
+         if (cli_scroll_pos != -1) {
+            cli_scroll_pos = cli_scroll_pos + CLI_MAX_LINES;
+            if (cli_scroll_pos > (array_size(cli_buffer) - CLI_MAX_LINES))
+               cli_scroll_pos = -1;
+         }
+         return 1;
+
+      /* Tab completion */
+      case SDLK_TAB:
+         cli_tabComplete(wid);
          return 1;
 
       default:
@@ -310,40 +396,119 @@ static int cli_keyhandler( unsigned int wid, SDLKey key, SDLMod mod )
 
 
 /**
+ * @brief Basic tab completion for console.
+ */
+void cli_tabComplete( unsigned int wid ) {
+   int i;
+   const char *match, *old;
+   char *str, *cur, *new;
+
+   old = window_getInput( wid, "inpInput" );
+   if (old == NULL)
+      return;
+   str = strdup(old);
+
+   nlua_pushenv(cli_env);
+   cur = str;
+   for (i=0; str[i] != '\0'; i++) {
+      if (str[i] == '.' || str[i] == ':') {
+         str[i] = '\0';
+         lua_getfield(naevL, -1, cur);
+
+         /* If not indexable, replace with blank table */
+         if (!lua_istable(naevL, -1)) {
+            if (luaL_getmetafield(naevL, -1, "__index")) {
+               if (lua_istable(naevL, -1)) {
+                  /* Handles the metatables used by Naev's userdatas */
+                  lua_remove(naevL, -2);
+               } else {
+                  lua_pop(naevL, 2);
+                  lua_newtable(naevL);
+               }
+            } else {
+               lua_pop(naevL, 1);
+               lua_newtable(naevL);
+            }
+         }
+
+         lua_remove(naevL, -2);
+         cur = str + i + 1;
+      /* Start over on other non-identifier character */
+      } else if (!isalnum(str[i]) && str[i] != '_') {
+         lua_pop(naevL, 1);
+         nlua_pushenv(cli_env);
+         cur = str + i + 1;
+      }
+   }
+
+   if (strlen(cur) > 0) {
+      lua_pushnil(naevL);
+      while (lua_next(naevL, -2) != 0) {
+         if (lua_isstring(naevL, -2)) {
+            match = lua_tostring(naevL, -2);
+            if (strncmp(cur, match, strlen(cur)) == 0) {
+               new = malloc(strlen(old) + strlen(match) - strlen(cur) + 1);
+               strcpy(new, old);
+               strcat(new, match + strlen(cur));
+               window_setInput( wid, "inpInput", new);
+               free(new);
+               lua_pop(naevL, 2);
+               break;
+            }
+         }
+         lua_pop(naevL, 1);
+      }
+   }
+
+   free(str);
+   lua_pop(naevL, 1);
+}
+
+
+static int cli_initLua (void)
+{
+   /* Already loaded. */
+   if (cli_env != LUA_NOREF)
+      return 0;
+
+   /* Create the state. */
+   cli_env = nlua_newEnv(1);
+   nlua_loadStandard( cli_env );
+   nlua_loadTex( cli_env );
+   nlua_loadCol( cli_env );
+   nlua_loadBackground( cli_env );
+   nlua_loadCLI( cli_env );
+   nlua_loadCamera( cli_env );
+   nlua_loadMusic( cli_env );
+   nlua_loadAudio( cli_env );
+   nlua_loadTk( cli_env );
+   nlua_loadLinOpt( cli_env );
+
+   /* Mark as console. */
+   lua_pushboolean( naevL, 1 );
+   nlua_setenv( cli_env, "__cli" );
+
+   nlua_pushenv(cli_env);
+   luaL_register( naevL, NULL, cli_methods );
+   lua_settop( naevL, 0 );
+
+   return 0;
+}
+
+
+/**
  * @brief Initializes the CLI environment.
  */
 int cli_init (void)
 {
-   /* Already loaded. */
-   if (cli_state != NULL)
-      return 0;
-
-   /* Set the height. */
-   cli_height = CLI_HEIGHT;
-
-   /* Create the state. */
-   cli_state   = nlua_newState();
-   nlua_loadStandard( cli_state, 0 );
-   nlua_loadCol( cli_state, 0 );
-   nlua_loadTex( cli_state, 0 );
-   nlua_loadBackground( cli_state, 0 );
-   nlua_loadCamera( cli_state, 0 );
-   nlua_loadTk( cli_state );
-   nlua_loadCLI( cli_state );
-   nlua_loadMusic( cli_state, 0 );
-   luaL_register( cli_state, "_G", cli_methods );
-   lua_settop( cli_state, 0 );
-
-   /* Mark as console. */
-   lua_pushboolean( cli_state, 1 );
-   lua_setglobal( cli_state, "__cli" );
+   cli_initLua();
 
    /* Set the font. */
    cli_font    = malloc( sizeof(glFont) );
-   gl_fontInit( cli_font, "dat/mono.ttf", conf.font_size_console );
+   gl_fontInit( cli_font, FONT_MONOSPACE_PATH, conf.font_size_console, FONT_PATH_PREFIX, 0 );
 
-   /* Clear the buffer. */
-   memset( cli_buffer, 0, sizeof(cli_buffer) );
+   /* Allocate the buffer. */
+   cli_buffer = array_create(char*);
 
    return 0;
 }
@@ -354,11 +519,23 @@ int cli_init (void)
  */
 void cli_exit (void)
 {
+   int i;
+
    /* Destroy the state. */
-   if (cli_state != NULL) {
-      lua_close( cli_state );
-      cli_state = NULL;
+   if (cli_env != LUA_NOREF) {
+      nlua_freeEnv( cli_env );
+      cli_env = LUA_NOREF;
    }
+
+   gl_freeFont( cli_font );
+   free( cli_font );
+   cli_font = NULL;
+
+   /* Free the buffer. */
+   for (i=0; i<array_size(cli_buffer); i++)
+      free(cli_buffer[i]);
+   array_free(cli_buffer);
+   cli_buffer = NULL;
 }
 
 
@@ -371,10 +548,9 @@ void cli_exit (void)
 static void cli_input( unsigned int wid, char *unused )
 {
    (void) unused;
-   int status;
-   char *str;
-   lua_State *L;
-   char buf[LINE_LENGTH];
+   int status, len;
+   char *str, *escaped;
+   char buf[CLI_MAX_INPUT+7];
 
    /* Get the input. */
    str = window_getInput( wid, "inpInput" );
@@ -384,64 +560,75 @@ static void cli_input( unsigned int wid, char *unused )
       return;
 
    /* Put the message in the console. */
-   nsnprintf( buf, LINE_LENGTH, "%s %s",
-         cli_firstline ? "> " : ">>", str );
-   cli_addMessage( buf );
-
-   /* Set up state. */
-   L = cli_state;
+   escaped = cli_escapeString( &len, str, strlen(str) );
+   snprintf( buf, CLI_MAX_INPUT+7, "#C%s %s#0",
+         cli_firstline ? "> " : ">>", escaped );
+   free(escaped);
+   cli_printCoreString( buf, 0 );
 
    /* Set up for concat. */
-   if (!cli_firstline)           /* o */
-      lua_pushliteral(L, "\n");  /* o \n */
+   if (!cli_firstline)               /* o */
+      lua_pushliteral(naevL, "\n");  /* o \n */
 
    /* Load the string. */
-   lua_pushstring( L, str );     /* s */
+   lua_pushstring( naevL, str );     /* s */
 
    /* Concat. */
-   if (!cli_firstline)           /* o \n s */
-      lua_concat(L, 3);          /* s */
+   if (!cli_firstline)               /* o \n s */
+      lua_concat(naevL, 3);          /* s */
 
-   status = luaL_loadbuffer( L, lua_tostring(L,-1), lua_strlen(L,-1), "=cli" );
+   status = luaL_loadbuffer( naevL, lua_tostring(naevL,-1), lua_strlen(naevL,-1), "=cli" );
 
    /* String isn't proper Lua yet. */
    if (status == LUA_ERRSYNTAX) {
       size_t lmsg;
-      const char *msg = lua_tolstring(L, -1, &lmsg);
+      const char *msg = lua_tolstring(naevL, -1, &lmsg);
       const char *tp = msg + lmsg - (sizeof(LUA_QL("<eof>")) - 1);
+      const char *s;
       if (strstr(msg, LUA_QL("<eof>")) == tp) {
          /* Pop the loaded buffer. */
-         lua_pop(L, 1);
+         lua_pop(naevL, 1);
          cli_firstline = 0;
       }
       else {
          /* Real error, spew message and break. */
-         cli_addMessage( lua_tostring(L, -1) );
-         lua_settop(L, 0);
+         s = lua_tostring(naevL, -1);
+         WARN( "%s", s );
+         cli_printCoreString( s, 1 );
+         lua_settop(naevL, 0);
          cli_firstline = 1;
       }
    }
+
    /* Print results - all went well. */
    else if (status == 0) {
-      lua_remove(L,1);
-      if (lua_pcall(L, 0, LUA_MULTRET, 0)) {
-         cli_addMessage( lua_tostring(L, -1) );
-         lua_pop(L,1);
+      lua_remove(naevL,1);
+
+      nlua_pushenv(cli_env);
+      lua_setfenv(naevL, -2);
+
+      if (nlua_pcall(cli_env, 0, LUA_MULTRET)) {
+         cli_printCoreString( lua_tostring(naevL, -1), 1 );
+         lua_pop(naevL, 1);
       }
-      if (lua_gettop(L) > 0) {
-         lua_getglobal(L, "print");
-         lua_insert(L, 1);
-         if (lua_pcall(L, lua_gettop(L)-1, 0, 0) != 0)
-            cli_addMessage( "Error printing results." );
+
+      if (lua_gettop(naevL) > 0) {
+         nlua_getenv(cli_env, "print");
+         lua_insert(naevL, 1);
+         if (lua_pcall(naevL, lua_gettop(naevL)-1, 0, 0) != 0)
+            cli_addMessage( _("Error printing results.") );
       }
 
       /* Clear stack. */
-      lua_settop(L, 0);
+      lua_settop(naevL, 0);
       cli_firstline = 1;
    }
 
    /* Clear the box now. */
    window_setInput( wid, "inpInput", NULL );
+
+   /* Scroll to bottom */
+   cli_scroll_pos = -1;
 }
 
 
@@ -453,7 +640,7 @@ void cli_open (void)
    unsigned int wid;
 
    /* Lazy loading. */
-   if (cli_state == NULL)
+   if (cli_env == LUA_NOREF)
       if (cli_init())
          return;
 
@@ -462,22 +649,23 @@ void cli_open (void)
       return;
 
    /* Must not be already open. */
-   if (window_exists( "Lua Console" ))
+   if (window_exists( "wdwLuaConsole" ))
       return;
 
    /* Put a friendly message at first. */
    if (cli_firstOpen) {
-      char buf[256];
+      char *buf;
       cli_addMessage( "" );
-      cli_addMessage( "\egWelcome to the Lua console!" );
-      nsnprintf( buf, sizeof(buf), "\eg "APPNAME" v%s", naev_version(0) );
-      cli_addMessage( buf );
+      cli_addMessage( _("#gWelcome to the Lua console!") );
+      asprintf( &buf, "#g "APPNAME" v%s", naev_version(0) );
+      cli_printCoreString( buf, 0 );
+      free( buf );
       cli_addMessage( "" );
       cli_firstOpen = 0;
    }
 
    /* Create the window. */
-   wid = window_create( "Lua Console", -1, -1, CLI_WIDTH, CLI_HEIGHT );
+   wid = window_create( "wdwLuaConsole", _("Lua Console"), -1, -1, CLI_WIDTH, CLI_HEIGHT );
 
    /* Window settings. */
    window_setAccept( wid, cli_input );
@@ -487,19 +675,16 @@ void cli_open (void)
    /* Input box. */
    window_addInput( wid, 20, 20,
          CLI_WIDTH-60-BUTTON_WIDTH, BUTTON_HEIGHT,
-         "inpInput", LINE_LENGTH, 1, cli_font );
+         "inpInput", CLI_MAX_INPUT, 1, cli_font );
 
    /* Buttons. */
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", "Close", window_close );
+         "btnClose", _("Close"), window_close );
 
    /* Custom console widget. */
    window_addCust( wid, 20, -40,
-         CLI_WIDTH-40, CLI_HEIGHT-80-BUTTON_HEIGHT,
+         CLI_WIDTH-40, CLI_CONSOLE_HEIGHT,
          "cstConsole", 0, cli_render, NULL, NULL );
-
-   /* Cache current height in case the window is resized. */
-   cli_height = CLI_HEIGHT;
 }
 
 

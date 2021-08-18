@@ -3,7 +3,6 @@
  <general>
   <radius>17500.000000</radius>
   <stars>400</stars>
-  <interference>0.000000</interference>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
@@ -17,20 +16,18 @@
   <asset>Ruttwi II</asset>
   <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Dvaered Unpresence</asset>
+  <asset>Virtual Independent Trader Area</asset>
   <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
   <jump target="Druss">
    <pos x="1406.230514" y="19670.467799"/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Quai">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Rhu">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

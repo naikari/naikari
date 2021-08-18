@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Caesar IV Torpedo">
+ <general>
+  <license>Heavy Weapon License</license>
+  <mass>4</mass>
+  <price>0</price>
+  <description>Caesar IV class torpedoes are among the most common torpedo weapons available. Though much slower than missiles and useless against mobile targets, they remain maneuverable enough to chase down light cruisers.</description>
+  <gfx_store>placeholder.webp</gfx_store>
+ </general>
+ <specific type="ammo">
+  <gfx>caesar.png</gfx>
+  <sound>mace</sound>
+  <sound_hit>lrgexp0</sound_hit>
+  <spfx_shield>ExpL</spfx_shield>
+  <spfx_armour>ExpL</spfx_armour>
+  <trail_generator x="-10">fire-missileL</trail_generator>
+  <duration blowup="armour">33</duration>
+  <thrust>100</thrust>
+  <turn>25</turn>
+  <speed>200</speed>
+  <damage>
+   <type>impact</type>
+   <penetrate>70</penetrate>
+   <physical>800</physical>
+   <disable>5</disable>
+  </damage>
+  <ai>smart</ai>
+ </specific>
+</outfit>

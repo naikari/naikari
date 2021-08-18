@@ -5,8 +5,8 @@
   <y>-569.295766</y>
  </pos>
  <GFX>
-  <space>J09.png</space>
-  <exterior>station04.png</exterior>
+  <space>J09.webp</space>
+  <exterior>station04.webp</exterior>
  </GFX>
  <presence>
   <faction>Za'lek</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>J</class>
   <population>15000</population>
-  <hide>0.000000</hide>
   <services>
    <land/>
    <refuel/>
@@ -25,12 +24,9 @@
    <outfits/>
    <shipyard/>
   </services>
-  <commodities>
-   <commodity>Food</commodity>
-   <commodity>Industrial Goods</commodity>
-  </commodities>
+  <commodities/>
   <description>This gas giant is the epicenter of a gas mining operation for the Za'lek navy and merchant marine. The gasses here are refined into fuel for the Za'lek's new ring drives. Obviously, scientists here also work obsessively on building new and better forms of engines for the house's vessels.</description>
-  <bar>This bar smells faintly of the refining going on throughout the orbital station skimming the upper atmosphere of the gas giant Warnecke. It does very little to impress, and the bartender apologizes for the poor air scrubbers labouring in the corners.</bar>
+  <bar>This bar smells faintly of the refining going on throughout the orbital station skimming the upper atmosphere of the gas giant Warnecke. It does very little to impress, and the bartender apologizes for the poor air scrubbers laboring in the corners.</bar>
  </general>
  <tech>
   <item>Ion 1</item>

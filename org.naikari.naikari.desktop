@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Naikari
+GenericName=Naikari
+Comment=2-D space-trading sandbox game, forked from the Naev project
+Icon=naikari
+Exec=naikari
+Categories=Game;AdventureGame;
+Terminal=false

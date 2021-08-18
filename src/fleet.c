@@ -10,17 +10,18 @@
  */
 
 
-#include "fleet.h"
-
-#include "naev.h"
-
-#include "nstring.h"
+/** @cond */
+#include <limits.h>
 #include <math.h>
 #include <stdlib.h>
-#include <limits.h>
 
+#include "naev.h"
+/** @endcond */
+
+#include "fleet.h"
+
+#include "nstring.h"
 #include "nxml.h"
-
 #include "log.h"
 #include "pilot.h"
 #include "ndata.h"
@@ -70,27 +71,24 @@ Fleet* fleet_get( const char* name )
  *    @param vel Initial velocity.
  *    @param ai AI to use (NULL is default).
  *    @param flags Flags to create with.
- *    @param systemFleet System fleet the pilot belongs to.
  *    @return The ID of the pilot created.
  *
  * @sa pilot_create
  */
 unsigned int fleet_createPilot( Fleet *flt, FleetPilot *plt, double dir,
-      Vector2d *pos, Vector2d *vel, const char* ai, PilotFlags flags,
-      const int systemFleet )
+      Vector2d *pos, Vector2d *vel, const char* ai, PilotFlags flags )
 {
    unsigned int p;
    p = pilot_create( plt->ship,
-         plt->name,
+         _(plt->name), /* Currently, FleetPilots come from static XML in English, but Pilots have translated names. */
          flt->faction,
-         (ai != NULL) ? ai :
-               (plt->ai != NULL) ? plt->ai :
-                     flt->ai,
+         (ai != NULL) ? ai : flt->ai,
          dir,
          pos,
          vel,
          flags,
-         systemFleet );
+         0,
+         0 );
    return p;
 }
 
@@ -111,13 +109,13 @@ static int fleet_parse( Fleet *temp, const xmlNodePtr parent )
    int mem;
    node = parent->xmlChildrenNode;
 
-   /* Sane defaults and clean up. */
+   /* Safe defaults and clean up. */
    memset( temp, 0, sizeof(Fleet) );
    temp->faction = -1;
 
-   temp->name = (char*)xmlGetProp(parent,(xmlChar*)"name"); /* already mallocs */
+   xmlr_attr_strd(parent,"name",temp->name);
    if (temp->name == NULL)
-      WARN("Fleet in "FLEET_DATA_PATH" has invalid or no name");
+      WARN( _("Fleet in %s has invalid or no name"), FLEET_DATA_PATH );
 
    do { /* load all the data */
       xml_onlyNodes(node);
@@ -131,14 +129,14 @@ static int fleet_parse( Fleet *temp, const xmlNodePtr parent )
       /* Set AI. */
       xmlr_strd(node,"ai",temp->ai);
       if (ai_getProfile ( temp->ai ) == NULL)
-         WARN("Fleet '%s' has invalid AI '%s'.", temp->name, temp->ai );
+         WARN(_("Fleet '%s' has invalid AI '%s'."), temp->name, temp->ai );
 
       /* Set flags. */
       if (xml_isNode(node,"flags")) {
          cur = node->children;
          do {
             xml_onlyNodes(cur);
-            WARN("Fleet '%s' has unknown flag node '%s'.", temp->name, cur->name);
+            WARN(_("Fleet '%s' has unknown flag node '%s'."), temp->name, cur->name);
          } while (xml_nextNode(cur));
          continue;
       }
@@ -164,25 +162,21 @@ static int fleet_parse( Fleet *temp, const xmlNodePtr parent )
                memset( pilot, 0, sizeof(FleetPilot) );
 
                /* Check for name override */
-               xmlr_attr(cur,"name",c);
+               xmlr_attr_strd(cur,"name",c);
                pilot->name = c; /* No need to free since it will have to later */
 
-               /* Check for AI override */
-               xmlr_attr(cur,"ai",pilot->ai);
-
                /* Load pilot's ship */
-               xmlr_attr(cur,"ship",c);
+               xmlr_attr_strd(cur,"ship",c);
                if (c==NULL)
-                  WARN("Pilot %s in Fleet %s has null ship", pilot->name, temp->name);
+                  WARN(_("Pilot %s in Fleet %s has null ship"), pilot->name, temp->name);
                pilot->ship = ship_get(c);
                if (pilot->ship == NULL)
-                  WARN("Pilot %s in Fleet %s has invalid ship", pilot->name, temp->name);
-               if (c!=NULL)
-                  free(c);
+                  WARN(_("Pilot %s in Fleet %s has invalid ship"), pilot->name, temp->name);
+               free(c);
                continue;
             }
 
-            WARN("Fleet '%s' has unknown pilot node '%s'.", temp->name, cur->name);
+            WARN(_("Fleet '%s' has unknown pilot node '%s'."), temp->name, cur->name);
          } while (xml_nextNode(cur));
 
          /* Resize to minimum. */
@@ -190,11 +184,11 @@ static int fleet_parse( Fleet *temp, const xmlNodePtr parent )
          continue;
       }
 
-      DEBUG("Unknown node '%s' in fleet '%s'",node->name,temp->name);
+      DEBUG(_("Unknown node '%s' in fleet '%s'"),node->name,temp->name);
    } while (xml_nextNode(node));
 
 #define MELEMENT(o,s) \
-if (o) WARN("Fleet '%s' missing '"s"' element", temp->name)
+if (o) WARN( _("Fleet '%s' missing '%s' element"), s,temp->name)
 /**< Hack to check for missing fields. */
    MELEMENT(temp->ai==NULL,"ai");
    MELEMENT(temp->faction==-1,"faction");
@@ -213,24 +207,23 @@ if (o) WARN("Fleet '%s' missing '"s"' element", temp->name)
 static int fleet_loadFleets (void)
 {
    int mem;
-   uint32_t bufsize;
-   char *buf;
    xmlNodePtr node;
    xmlDocPtr doc;
 
    /* Load the data. */
-   buf = ndata_read( FLEET_DATA_PATH, &bufsize);
-   doc = xmlParseMemory( buf, bufsize );
+   doc = xml_parsePhysFS( FLEET_DATA_PATH );
+   if (doc == NULL)
+      return -1;
 
    node = doc->xmlChildrenNode; /* fleets node */
    if (strcmp((char*)node->name,"Fleets")) {
-      ERR("Malformed "FLEET_DATA_PATH" file: missing root element 'Fleets'.");
+      ERR( _("Malformed %s file: missing root element 'Fleets'."), FLEET_DATA_PATH);
       return -1;
    }
 
    node = node->xmlChildrenNode; /* first fleet node */
    if (node == NULL) {
-      ERR("Malformed "FLEET_DATA_PATH" file: does not contain elements.");
+      ERR( _("Malformed %s file: does not contain elements."), FLEET_DATA_PATH );
       return -1;
    }
 
@@ -252,7 +245,6 @@ static int fleet_loadFleets (void)
    fleet_stack = realloc(fleet_stack, sizeof(Fleet) * nfleets);
 
    xmlFreeDoc(doc);
-   free(buf);
 
    return 0;
 }
@@ -268,7 +260,7 @@ int fleet_load (void)
    if (fleet_loadFleets())
       return -1;
 
-   DEBUG("Loaded %d Fleet%s", nfleets, (nfleets==1) ? "" : "s" );
+   DEBUG( n_( "Loaded %d Fleet", "Loaded %d Fleets", nfleets ), nfleets );
 
    return 0;
 }
@@ -284,12 +276,8 @@ void fleet_free (void)
    /* Free the fleet stack. */
    if (fleet_stack != NULL) {
       for (i=0; i<nfleets; i++) {
-         for (j=0; j<fleet_stack[i].npilots; j++) {
-            if (fleet_stack[i].pilots[j].name)
-               free(fleet_stack[i].pilots[j].name);
-            if (fleet_stack[i].pilots[j].ai)
-               free(fleet_stack[i].pilots[j].ai);
-         }
+         for (j=0; j<fleet_stack[i].npilots; j++)
+            free(fleet_stack[i].pilots[j].name);
          free(fleet_stack[i].name);
          free(fleet_stack[i].pilots);
          free(fleet_stack[i].ai);

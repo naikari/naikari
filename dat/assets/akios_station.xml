@@ -5,8 +5,8 @@
   <y>12773.423776</y>
  </pos>
  <GFX>
-  <space>station-fleetbase.png</space>
-  <exterior>station05.png</exterior>
+  <space>station-fleetbase.webp</space>
+  <exterior>station05.webp</exterior>
  </GFX>
  <presence>
   <faction>Za'lek</faction>
@@ -16,17 +16,13 @@
  <general>
   <class>0</class>
   <population>5500</population>
-  <hide>0.500000</hide>
   <services>
    <land>zlk_mil_restricted</land>
    <refuel/>
    <outfits/>
    <shipyard/>
   </services>
-  <commodities>
-   <commodity>Food</commodity>
-   <commodity>Medicine</commodity>
-  </commodities>
+  <commodities/>
   <description>Akios Station is a Za'lek border station meant to keep the pirates from the Kretogg system out of Za'lek space. Because of the real threat that the loathsome criminals pose to the great house's security, there is (comparatively) little debate over the necessity over this station's existence.</description>
  </general>
  <tech>

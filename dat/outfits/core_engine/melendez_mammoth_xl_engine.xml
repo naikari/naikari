@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Melendez Mammoth XL Engine">
  <general>
   <typename>Core Systems (Engine)</typename>
@@ -8,14 +8,14 @@
   <mass>100</mass>
   <price>1500000</price>
   <description>The very largest engine that Melendez produces, the Mammoth XL has precious little competition when it comes to moving massive amounts of mass around the galaxy, whether in the form of bulk freight or as the primary engine of a fully-equipped battlecruiser.</description>
-  <gfx_store>engine02</gfx_store>
+  <gfx_store>engine12.webp</gfx_store>
  </general>
  <specific type="modification">
   <thrust>35</thrust>
   <turn>45</turn>
   <speed>70</speed>
   <fuel>2000</fuel>
-  <energy_usage>45</energy_usage>
+  <energy_regen_malus>45</energy_regen_malus>
   <engine_limit>8000</engine_limit>
  </specific>
 </outfit>

@@ -13,15 +13,7 @@ end
 --[[
 -- Mainly targets small drones.
 --]]
-function atk_drone_think ()
-   local target = ai.target()
-
-   -- Stop attacking if it doesn't exist
-   if not target:exists() then
-      ai.poptask()
-      return
-   end
-
+function atk_drone_think( target, si )
    local enemy    = ai.getenemy_size(0, 200)  -- find a small ship to attack
    local nearest_enemy = ai.getenemy()
    local dist     = ai.dist(target)
@@ -55,6 +47,11 @@ function _atk_drone_ranged( target, dist )
    -- Check if in range
    if dist < ai.getweaprange( 4 ) and dir < 30 then
       ai.weapset( 4 )
+   else
+      -- First test if we should zz
+      if _atk_decide_zz() then
+         ai.pushsubtask("_atk_zigzag", target)
+      end
    end
 
    -- Always launch fighters
@@ -69,13 +66,16 @@ end
 --[[
 -- Main control function for drone behavior.
 --]]
-function atk_drone ()
-   local target = _atk_com_think()
+function atk_drone( target )
+   target = _atk_com_think( target )
    if target == nil then return end
 
    -- Targeting stuff
    ai.hostile(target) -- Mark as hostile
    ai.settarget(target)
+
+   -- See if the enemy is still seeable
+   if not _atk_check_seeable( target ) then return end
 
    -- Get stats about enemy
    local dist  = ai.dist( target ) -- get distance
@@ -105,6 +105,11 @@ function _atk_d_flyby( target, dist )
    local range = ai.getweaprange(3)
    local dir = 0
    ai.weapset( 3 ) -- Forward/turrets
+
+   -- First test if we should zz
+   if _atk_decide_zz() then
+      ai.pushsubtask("_atk_zigzag", target)
+   end
 
    -- Far away, must approach
    if dist > (3 * range) then
@@ -140,7 +145,7 @@ function _atk_d_flyby( target, dist )
    else
 
       dir = ai.aim(target)
-      --not accellerating here is the only difference between the aggression levels. This can probably be an aggression AI parameter
+      --not accelerating here is the only difference between the aggression levels. This can probably be an aggression AI parameter
       if mem.aggressive == true then
          ai.accel()
       end
@@ -164,6 +169,11 @@ function _atk_d_space_sup( target, dist )
    local range = ai.getweaprange(3)
    local dir   = 0
    ai.weapset( 3 ) -- Forward/turrets
+
+   -- First test if we should zz
+   if _atk_decide_zz() then
+      ai.pushsubtask("_atk_zigzag", target)
+   end
 
    --if we're far away from the target, then turn and approach
    if dist > (1.1*range) then

@@ -5,8 +5,8 @@
   <y>-2901.684261</y>
  </pos>
  <GFX>
-  <space>L00.png</space>
-  <exterior>station01.png</exterior>
+  <space>L00.webp</space>
+  <exterior>station01.webp</exterior>
  </GFX>
  <presence>
   <faction>Dvaered</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>L</class>
   <population>20000000</population>
-  <hide>0.250000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
   </services>
   <commodities/>
   <description>Though a fairly unobtrusive world filled with lower-middle class Dvaered citizens, the Dvaered authorities nevertheless pay close attention to what goes on on Sternguard. Close to the Sirian border, the world is a prime candidate for conversion. At the moment the population seems to be stable, but the Dvaered know better than to relax their guard.</description>

@@ -5,8 +5,8 @@
   <y>-2844.812770</y>
  </pos>
  <GFX>
-  <space>O03.png</space>
-  <exterior>aquatic2.png</exterior>
+  <space>O03.webp</space>
+  <exterior>aquatic2.webp</exterior>
  </GFX>
  <presence>
   <faction>Soromid</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>M</class>
   <population>6000000000</population>
-  <hide>0.250000</hide>
   <services>
    <land>land_hiclass</land>
    <refuel/>
@@ -31,6 +30,7 @@
   <bar>The age demographic of Zalebus tends toward younger citizens. As a result, the spaceport bar is often full of youngsters preparing for a trip into space, or just returning from one.</bar>
  </general>
  <tech>
+  <item>Crappy Core Systems</item>
   <item>Engines Cargo</item>
   <item>Systems Low</item>
   <item>Engines Medium</item>

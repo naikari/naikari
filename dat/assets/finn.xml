@@ -5,8 +5,8 @@
   <y>9320.810117</y>
  </pos>
  <GFX>
-  <space>D02.png</space>
-  <exterior>mining3.png</exterior>
+  <space>D02.webp</space>
+  <exterior>mining3.webp</exterior>
  </GFX>
  <presence>
   <faction>Empire</faction>
@@ -16,12 +16,10 @@
  <general>
   <class>D</class>
   <population>235127</population>
-  <hide>0.250000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
-   <commodity/>
   </services>
   <commodities/>
   <description>Finn is a prison rock. The surface is completely uninhabitable but the natural caverns underground make for a perfect prison complex. The Empire dumps its worst criminals here, leaving them to fend for themselves, many of the convicts from the Jade Court end up here too.</description>

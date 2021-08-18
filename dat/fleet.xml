@@ -63,6 +63,27 @@
    <pilot name="Civilian Gawain" ship="Gawain"></pilot>
   </pilots>
  </fleet>
+ <fleet name="Miner Llama">
+  <ai>miner</ai>
+  <faction>Miner</faction>
+  <pilots>
+   <pilot name="Miner Llama" ship="Llama"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Miner Koala">
+  <ai>miner</ai>
+  <faction>Miner</faction>
+  <pilots>
+   <pilot name="Miner Koala" ship="Koala"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Miner Mule">
+  <ai>miner</ai>
+  <faction>Miner</faction>
+  <pilots>
+   <pilot name="Miner Mule" ship="Mule"></pilot>
+  </pilots>
+ </fleet>
  <fleet name="Trader Llama">
   <ai>trader</ai>
   <faction>Trader</faction>
@@ -134,28 +155,28 @@
   </pilots>
  </fleet>
  <fleet name="Frontier Lancelot">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Lancelot" ship="Lancelot"></pilot>
   </pilots>
  </fleet>
  <fleet name="Frontier Phalanx">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Phalanx" ship="Phalanx"></pilot>
   </pilots>
  </fleet>
  <fleet name="Frontier Hyena">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Hyena" ship="Hyena"></pilot>
   </pilots>
  </fleet>
  <fleet name="Frontier Ancestor">
-  <ai>frontier_police</ai>
+  <ai>frontier</ai>
   <faction>Frontier</faction>
   <pilots>
    <pilot name="Frontier Ancestor" ship="Ancestor"></pilot>
@@ -180,6 +201,20 @@
   <faction>FLF</faction>
   <pilots>
    <pilot name="FLF Lancelot" ship="Lancelot"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Rogue FLF Vendetta">
+  <ai>flf</ai>
+  <faction>Rogue FLF</faction>
+  <pilots>
+   <pilot name="Rogue FLF Vendetta" ship="Vendetta"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Rogue FLF Lancelot">
+  <ai>flf</ai>
+  <faction>Rogue FLF</faction>
+  <pilots>
+   <pilot name="Rogue FLF Lancelot" ship="Lancelot"></pilot>
   </pilots>
  </fleet>
  <fleet name="Pirate Hyena">
@@ -285,8 +320,6 @@
    <pilot name="Collective Drone" ship="Drone"></pilot>
    <pilot name="Collective Drone" ship="Drone"></pilot>
    <pilot name="Collective Drone" ship="Drone"></pilot>
-   <pilot name="Collective Drone" ship="Drone"></pilot>
-   <pilot name="Collective Heavy Drone" ship="Heavy Drone"></pilot>
    <pilot name="Collective Heavy Drone" ship="Heavy Drone"></pilot>
   </pilots>
  </fleet>
@@ -711,11 +744,25 @@
    <pilot name="Trader Gawain" ship="Gawain"></pilot>
   </pilots>
  </fleet>
- <fleet name="FLF Base">
+ <fleet name="Sindbad">
   <ai>base</ai>
   <faction>FLF</faction>
   <pilots>
-   <pilot name="Sindbad" ship="Base"></pilot>
+   <pilot name="Sindbad" ship="Sindbad"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Raelid Outpost">
+  <ai>dvaered_norun</ai>
+  <faction>Dvaered</faction>
+  <pilots>
+   <pilot name="Raelid Outpost" ship="Raelid Outpost"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Raglan Outpost">
+  <ai>dvaered_norun</ai>
+  <faction>Dvaered</faction>
+  <pilots>
+   <pilot name="Raglan Outpost" ship="Raglan Outpost"></pilot>
   </pilots>
  </fleet>
  <fleet name="Vendetta Quartet">
@@ -758,35 +805,28 @@
   <ai>trader</ai>
   <faction>Four Winds</faction>
   <pilots>
-   <pilot name="Seiryuu" ship="Seiryuu"></pilot>
+   <pilot name="Seiryuu" ship="Pirate Kestrel"></pilot>
   </pilots>
  </fleet>
  <fleet name="Genbu">
   <ai>baddie</ai>
   <faction>Four Winds</faction>
   <pilots>
-   <pilot name="Genbu" ship="Genbu"></pilot>
+   <pilot name="Genbu" ship="Pirate Kestrel"></pilot>
   </pilots>
  </fleet>
  <fleet name="Suzaku">
   <ai>baddie</ai>
   <faction>Four Winds</faction>
   <pilots>
-   <pilot name="Suzaku" ship="Suzaku"></pilot>
+   <pilot name="Suzaku" ship="Pirate Kestrel"></pilot>
   </pilots>
  </fleet>
  <fleet name="Byakko">
   <ai>baddie</ai>
   <faction>Four Winds</faction>
   <pilots>
-   <pilot name="Byakko" ship="Byakko"></pilot>
-  </pilots>
- </fleet>
- <fleet name="Shadowvigil Diplomat">
-  <ai>trader</ai>
-  <faction>Diplomatic</faction>
-  <pilots>
-   <pilot name="Imperial Diplomat" ship="Diplomatic Vessel"></pilot>
+   <pilot name="Byakko" ship="Pirate Kestrel"></pilot>
   </pilots>
  </fleet>
  <fleet name="Shadowvigil Escorts">
@@ -824,6 +864,122 @@
    <pilot name="Trader Llama" ship="Llama"></pilot>
    <pilot name="Trader Llama" ship="Llama"></pilot>
    <pilot name="Trader Koala" ship="Koala"></pilot>
+  </pilots>
+ </fleet>
+  <fleet name="Trader Convoy 3">
+  <ai>trader</ai>
+  <faction>Trader</faction>
+  <pilots>
+   <pilot name="Convoy Llama" ship="Llama"></pilot>
+   <pilot name="Convoy Llama" ship="Llama"></pilot>
+   <pilot name="Convoy Llama" ship="Llama"></pilot>
+  </pilots>
+ </fleet>
+   <fleet name="Trader Convoy 4">
+  <ai>trader</ai>
+  <faction>Trader</faction>
+  <pilots>
+   <pilot name="Convoy Koala" ship="Koala"></pilot>
+   <pilot name="Convoy Koala" ship="Koala"></pilot>
+   <pilot name="Convoy Koala" ship="Koala"></pilot>
+   <pilot name="Convoy Koala" ship="Koala"></pilot>
+  </pilots>
+ </fleet>
+   <fleet name="Trader Convoy 5">
+  <ai>trader</ai>
+  <faction>Trader</faction>
+  <pilots>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Trader Convoy 6">
+  <ai>trader</ai>
+  <faction>Trader</faction>
+  <pilots>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   </pilots>
+   </fleet>
+ <fleet name="Trader Convoy 8">
+  <ai>trader</ai>
+  <faction>Trader</faction>
+  <pilots>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Rhino" ship="Rhino"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+   <pilot name="Convoy Mule" ship="Mule"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Trader Ambush 1">
+  <ai>baddie_norun</ai>
+  <faction>Pirate</faction>
+  <pilots>
+   <pilot name="Pirate Ancestor" ship="Pirate Ancestor"></pilot>
+   <pilot name="Pirate Vendetta" ship="Pirate Vendetta"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+   </pilots>
+</fleet>
+ <fleet name="Trader Ambush 2">
+  <ai>baddie_norun</ai>
+  <faction>Pirate</faction>
+  <pilots>
+   <pilot name="Pirate Ancestor" ship="Pirate Ancestor"></pilot>
+   <pilot name="Pirate Ancestor" ship="Pirate Vendetta"></pilot>
+   <pilot name="Pirate Vendetta" ship="Pirate Vendetta"></pilot>
+   <pilot name="Pirate Vendetta" ship="Pirate Vendetta"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Trader Ambush 3">
+  <ai>baddie_norun</ai>
+  <faction>Pirate</faction>
+  <pilots>
+   <pilot name="Pirate Admonisher" ship="Pirate Admonisher"></pilot>
+   <pilot name="Pirate Rhino" ship="Pirate Rhino"></pilot>
+   <pilot name="Pirate Rhino" ship="Pirate Rhino"></pilot>
+   <pilot name="Pirate Shark" ship="Pirate Shark"></pilot>
+   <pilot name="Pirate Shark" ship="Pirate Shark"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Trader Ambush 4">
+  <ai>baddie_norun</ai>
+  <faction>Pirate</faction>
+  <pilots>
+   <pilot name="Pirate Admonisher" ship="Pirate Admonisher"></pilot>
+   <pilot name="Pirate Phalanx" ship="Pirate Phalanx"></pilot>
+   <pilot name="Pirate Phalanx" ship="Pirate Phalanx"></pilot>
+   <pilot name="Pirate Shark" ship="Pirate Shark"></pilot>
+   <pilot name="Pirate Shark" ship="Pirate Shark"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Trader Ambush 5">
+  <ai>baddie_norun</ai>
+  <faction>Pirate</faction>
+  <pilots>
+   <pilot name="Pirate Kestrel" ship="Pirate Kestrel"></pilot>   
+   <pilot name="Pirate Admonisher" ship="Pirate Admonisher"></pilot>
+   <pilot name="Pirate Rhino" ship="Pirate Rhino"></pilot>
+   <pilot name="Pirate Shark" ship="Pirate Shark"></pilot>
+   <pilot name="Pirate Shark" ship="Pirate Shark"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
+   <pilot name="Hyena" ship="Hyena"></pilot>
   </pilots>
  </fleet>
  <fleet name="Pirate Hyena Pack">
@@ -868,11 +1024,67 @@
    <pilot name="Dvaered Vigilance" ship="Dvaered Vigilance"></pilot>
   </pilots>
  </fleet>
+ <fleet name="Thurion Perspicacity">
+  <ai>thurion</ai>
+  <faction>Thurion</faction>
+  <pilots>
+   <pilot name="Thurion Perspicacity" ship="Thurion Perspicacity"></pilot>
+  </pilots>
+ </fleet>
  <fleet name="Thurion Ingenuity">
   <ai>thurion</ai>
   <faction>Thurion</faction>
   <pilots>
    <pilot name="Thurion Ingenuity" ship="Thurion Ingenuity"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Thurion Scintillation">
+  <ai>thurion</ai>
+  <faction>Thurion</faction>
+  <pilots>
+   <pilot name="Thurion Scintillation" ship="Thurion Scintillation"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Thurion Virtuosity">
+  <ai>thurion</ai>
+  <faction>Thurion</faction>
+  <pilots>
+   <pilot name="Thurion Virtuosity" ship="Thurion Virtuosity"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Thurion Taciturnity">
+  <ai>thurion</ai>
+  <faction>Thurion</faction>
+  <pilots>
+   <pilot name="Thurion Taciturnity" ship="Thurion Taciturnity"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Thurion Apprehension">
+  <ai>thurion</ai>
+  <faction>Thurion</faction>
+  <pilots>
+   <pilot name="Thurion Apprehension" ship="Thurion Apprehension"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Thurion Certitude">
+  <ai>thurion</ai>
+  <faction>Thurion</faction>
+  <pilots>
+   <pilot name="Thurion Certitude" ship="Thurion Certitude"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Ghost Ship">
+  <ai>thurion</ai>
+  <faction>Thurion</faction>
+  <pilots>
+   <pilot name="Ghost Ship" ship="Thurion Ingenuity"></pilot>
+  </pilots>
+ </fleet>
+ <fleet name="Nebula Research Shuttle">
+  <ai>zalek</ai>
+  <faction>Za'lek</faction>
+  <pilots>
+   <pilot name="Nebula Research Shuttle" ship="Rhino"></pilot>
   </pilots>
  </fleet>
  <fleet name="Sirius Recon Force">
@@ -903,37 +1115,25 @@
    <pilot name="Sirius Fidelity" ship="Sirius Fidelity"></pilot>
   </pilots>
  </fleet>
- <fleet name="Nasin Sml Civilian">
-  <ai>civilian</ai>
-  <faction>Nasin</faction>
+ <fleet name="Proteron Dissident Hyena">
+  <ai>proteron_dissident</ai>
+  <faction>Proteron Dissident</faction>
   <pilots>
-   <pilot name="Nasin Llama" ship="Llama"></pilot>
-   <pilot name="Nasin Llama" ship="Llama"></pilot>
-   <pilot name="Nasin Mule" ship="Mule"></pilot>
+   <pilot name="Civilian Hyena" ship="Hyena"></pilot>
   </pilots>
  </fleet>
- <fleet name="Nasin Sml Attack Fleet">
-  <ai>baddie</ai>
-  <faction>Nasin</faction>
+ <fleet name="Proteron Dissident Llama">
+  <ai>proteron_dissident</ai>
+  <faction>Proteron Dissident</faction>
   <pilots>
-   <pilot name="Nasin Lancelot" ship="Lancelot"></pilot>
-   <pilot name="Nasin Lancelot" ship="Lancelot"></pilot>
-   <pilot name="Nasin Lancelot" ship="Lancelot"></pilot>
-   <pilot name="Nasin Admonisher" ship="Admonisher"></pilot>
+   <pilot name="Civilian Llama" ship="Llama"></pilot>
   </pilots>
  </fleet>
- <fleet name="Nasin Med Defense Fleet">
-  <ai>baddie</ai>
-  <faction>Nasin</faction>
+ <fleet name="Proteron Dissident Gawain">
+  <ai>proteron_dissident</ai>
+  <faction>Proteron Dissident</faction>
   <pilots>
-   <pilot name="Nasin Shark" ship="Shark"></pilot>
-   <pilot name="Nasin Shark" ship="Shark"></pilot>
-   <pilot name="Nasin Lancelot" ship="Lancelot"></pilot>
-   <pilot name="Nasin Lancelot" ship="Lancelot"></pilot>
-   <pilot name="Nasin Lancelot" ship="Lancelot"></pilot>
-   <pilot name="Nasin Lancelot" ship="Lancelot"></pilot>
-   <pilot name="Nasin Admonisher" ship="Admonisher"></pilot>
-   <pilot name="Nasin Admonisher" ship="Admonisher"></pilot>
+   <pilot name="Civilian Gawain" ship="Gawain"></pilot>
   </pilots>
  </fleet>
 </Fleets>

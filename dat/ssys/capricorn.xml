@@ -3,7 +3,6 @@
  <general>
   <radius>28000.000000</radius>
   <stars>200</stars>
-  <interference>0.000000</interference>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
@@ -17,21 +16,19 @@
   <asset>Durea</asset>
   <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Empire Small</asset>
-  <asset>Virtual Trader Local</asset>
+  <asset>Virtual Independent Trader Local</asset>
+  <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
   <jump target="Daled">
    <autopos/>
    <hidden/>
-   <hide>1.000000</hide>
   </jump>
   <jump target="Pontus">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Rockbed">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

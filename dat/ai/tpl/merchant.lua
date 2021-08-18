@@ -1,4 +1,4 @@
-include("dat/ai/include/basic.lua")
+require("ai/include/basic")
 
 -- Variables
 mem.enemy_close = 500 -- Distance enemy is too close for comfort
@@ -14,14 +14,14 @@ function control ()
    -- Runaway if enemy is near
    if task ~= "runaway" and enemy ~= nil and
          (ai.dist(enemy) < mem.enemy_close or ai.haslockon()) then
-      if task ~= "none" then
+      if task ~= nil then
          ai.poptask()
       end
       ai.pushtask("runaway",enemy)
 
    -- Try to jump when far enough away
    elseif task == "runaway" then
-      target = ai.target()
+      target = ai.taskdata()
 
       -- Check if should still run.
       if not target:exists() then
@@ -58,11 +58,11 @@ function control ()
       end
 
    -- Find something to do
-   elseif task == "none" then
+   elseif task == nil then
       planet = ai.landplanet()
       -- planet must exist
       if planet == nil then
-         ai.settimer(0, rnd.int(1000, 3000))
+         ai.settimer(0, rnd.uniform(1, 3))
          ai.pushtask("enterdelay")
       else
          mem.land = planet:pos()

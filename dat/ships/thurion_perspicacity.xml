@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ship name="Thurion Perspicacity">
+ <base_type>Perspicacity</base_type>
+ <GFX>perspicacity</GFX>
+ <rarity>4</rarity>
+ <GUI>brushed</GUI>
+ <sound>engine</sound>
+ <class>Scout</class>
+ <rdr_scale>1</rdr_scale>
+ <price>350000</price>
+ <time_mod>1</time_mod>
+ <trail_generator x="-8" y="0" h="0" />
+ <trail_generator x="-5" y="0" h="0">nebula</trail_generator>
+ <trail_generator x="-5" y="-8" h="3">nebula</trail_generator>
+ <trail_generator x="-5" y="0" h="15">nebula</trail_generator>
+ <trail_generator x="-5" y="8" h="3">nebula</trail_generator>
+ <trail_generator x="-5" y="0" h="-15">nebula</trail_generator>
+ <fabricator>Thurion shipyards</fabricator>
+ <license>Light Combat Vessel License</license>
+ <description>The Thurion Perspicacity is a fast, light fighter typically used for scouting or attacking in swarms.</description>
+ <health>
+  <armour>50</armour>
+  <armour_regen>0</armour_regen>
+ </health>
+ <characteristics>
+  <mass>40</mass>
+  <fuel>700</fuel>
+  <fuel_consumption>100</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>3000</rdr_jump_range>
+  <cargo>10</cargo>
+ </characteristics>
+ <slots>
+  <weapon size="small" x="17" y="0" h="-4" />
+  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-18 Core System</utility>
+  <utility size="small" />
+  <utility size="small" />
+  <utility size="small" />
+  <structure size="small" prop="engines" exclusive="1" required="1">Nexus Dart 150 Engine</structure>
+  <structure size="small" prop="hull" exclusive="1" required="1">Unicorp D-2 Light Plating</structure>
+  <structure size="small" />
+  <structure size="small" />
+ </slots>
+ <stats>
+  <cpu_mod>10</cpu_mod>
+  <nebu_absorb_shield>80</nebu_absorb_shield>
+  <nebu_absorb_armour>97</nebu_absorb_armour>
+  <rdr_enemy_range_mod>-80</rdr_enemy_range_mod>
+  <rdr_range_mod>240</rdr_range_mod>
+  <rdr_jump_range_mod>125</rdr_jump_range_mod>
+ </stats>
+</ship>

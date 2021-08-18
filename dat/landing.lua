@@ -15,7 +15,7 @@
    end
 
    function noland( pnt )
-      return false, "Nobody expects the spanish inquisition!"
+      return false, "Nobody expects the Spanish Inquisition!"
    end
 
    function noland_nobribe( pnt )
@@ -28,7 +28,7 @@
 
 --]]
 
-include "dat/scripts/numstring.lua"
+require "scripts/numstring"
 
 -- Default function. Any asset that has no landing script explicitly defined will use this.
 function land( pnt )
@@ -47,109 +47,134 @@ end
 
 -- Empire military assets.
 function emp_mil_restricted( pnt )
-   return land_military(pnt, 35,
-         "Permission to land granted.",
-         "You are not authorized to land here.",
-         "Landing request denied.",
-         "\"Don't attempt to bribe an Empire official, pilot.\"")
+   return land_military(pnt, 50,
+         _("Permission to land granted."),
+         _("You are not authorized to land here."),
+         _("Landing request denied."),
+         _("\"Don't attempt to bribe an Empire official, pilot.\""))
 end
 
 -- Empire Omega Station.
 function emp_mil_omega( pnt )
-   local required = 35
+   local required = 50
 
    if player.misnDone("Empire Shipping 3") or player.misnActive("Empire Shipping 3") then
       required = 0
    end
 
    return land_military(pnt, required,
-         "Permission to land granted.",
-         "You are not authorized to land here.",
-         "Landing request denied.",
-         "\"Don't attempt to bribe an Empire official, pilot.\"")
+         _("Permission to land granted."),
+         _("You are not authorized to land here."),
+         _("Landing request denied."),
+         _("\"Don't attempt to bribe an Empire official, pilot.\""))
 end
 
 -- Empire Emperor's Wrath.
 function emp_mil_wrath( pnt )
-   return land_military(pnt, 75,
-         "The Emperor permits you to land.",
-         "You may not approach the Emperor.",
-         "Landing request denied.",
-         "\"Don't attempt to bribe an Empire official, pilot.\"")
+   return land_military(pnt, 90,
+         _("The Emperor permits you to land."),
+         _("You may not approach the Emperor."),
+         _("Landing request denied."),
+         _("\"Don't attempt to bribe an Empire official, pilot.\""))
 end
 
 -- Sirius military assets.
 function srs_mil_restricted( pnt )
-   return land_military(pnt, 30,
-         "Permission to land granted.",
-         "Only the faithful may land here. Request denied.",
-         "Landing request denied.",
-         "\"The faithful will never be swayed by money.\"")
+   return land_military(pnt, 50,
+         _("Permission to land granted."),
+         _("Only the faithful may land here. Request denied."),
+         _("Landing request denied."),
+         _("\"The faithful will never be swayed by money.\""))
 end
 
 -- Sirius Mutris.
 function srs_mil_mutris( pnt )
-   return land_military(pnt, 75,
-         "Welcome to Mutris, home of Sirichana.",
-         "You may not approach the home of Sirichana yet.",
-         "Landing request denied.",
-         "\"The faithful will never be swayed by money.\"")
+   return land_military(pnt, 70,
+         _("Welcome to Mutris, home of Sirichana."),
+         _("You may not approach the home of Sirichana yet."),
+         _("Landing request denied."),
+         _("\"The faithful will never be swayed by money.\""))
 end
 
 -- Dvaered military assets.
 function dv_mil_restricted( pnt )
-   return land_military(pnt, 40,
-         "Permission to land granted.",
-         "Your rank is too low, citizen. Access denied.",
-         "Landing request denied.",
-         "\"Money won't buy you access to our restricted facilities, citizen.\"")
+   return land_military(pnt, 50,
+         _("Permission to land granted."),
+         _("Your rank is too low, citizen. Access denied."),
+         _("Landing request denied."),
+         _("\"Money won't buy you access to our restricted facilities, citizen.\""))
 end
 
 -- Dvaered High Command.
 function dv_mil_command( pnt )
-   return land_military(pnt, 80,
-         "Permission to land granted, captain.",
-         "Only high ranking personnel allowed. Landing request denied.",
-         "Landing request denied.",
-         "\"Money won't buy you access to our restricted facilities, citizen.\"")
+   return land_military(pnt, 70,
+         _("Permission to land granted, captain."),
+         _("Only high ranking personnel allowed. Landing request denied."),
+         _("Landing request denied."),
+         _("\"Money won't buy you access to our restricted facilities, citizen.\""))
 end
 
 -- Soromid military assets.
 function srm_mil_restricted( pnt )
-   return land_military(pnt, 30,
-         "Permission to land granted.",
-         "Permission denied. You're not truly one of us.",
-         "Landing request denied.",
-         "\"We don't need your money, outsider.\"")
+   return land_military(pnt, 50,
+         _("Permission to land granted."),
+         _("Permission denied. You're not truly one of us."),
+         _("Landing request denied."),
+         _("\"We don't need your money, outsider.\""))
 end
 
 -- Soromid Kataka.
 function srm_mil_kataka( pnt )
    return land_military(pnt, 75,
-         "Permission to land granted.",
-         "Only friends of the Soromid may set foot on Kataka.",
-         "Landing request denied.",
-         "\"We don't need your money, outsider.\"")
+         _("Permission to land granted."),
+         _("Only friends of the Soromid may set foot on Kataka."),
+         _("Landing request denied."),
+         _("\"We don't need your money, outsider.\""))
 end
-
 
 -- Za'lek's military assets.
 function zlk_mil_restricted( pnt )
-   return land_military(pnt, 30,
-         "Docking sequence transmitted.",
-         "Authorization level too low to grant access.",
-         "Authorization denied.",
-         "Money is irrelevant.")
+   return land_military(pnt, 50,
+         _("Docking sequence transmitted."),
+         _("Authorization level too low to grant access."),
+         _("Authorization denied."),
+         _("\"Money is irrelevant.\""))
 end
-
 
 -- Za'lek's military center.
 function zlk_ruadan( pnt )
-   return land_military(pnt, 75,
-         "Docking sequence transmitted.",
-         "This is a restricted area. Your clearance is far too low. Go away.",
-         "Authorization denied.",
-         "Bribery is a crime, and will not get you on this planet.")
+   return false, "Permission denied. Ruadan space is off-limits to you."
+end
+
+-- Sindbad.
+function flf_sindbad( pnt )
+   local granted_text = _("Permission to land granted.")
+   if faction.get("FLF"):playerStanding() >= 30 then
+      granted_text = _("Permission to land granted. Welcome back, comrade.")
+   end
+   return land_military(pnt, 0,
+         granted_text,
+         _("Landing request denied. We don't trust you."),
+         _("Begone, oppressor!"),
+         _("\"I'm not interested in your dirty money.\""))
+end
+
+-- Proteron military assets.
+function ptn_mil_restricted( pnt )
+   return land_military(pnt, 50,
+         _("Permission to land granted."),
+         _("You are not authorized to land here."),
+         _("Landing request denied."),
+         _("\"We Proteron don't take kindly to bribery.\""))
+end
+
+-- Thurion military assets.
+function thr_mil_restricted( pnt )
+   return land_military(pnt, 50,
+         _("Welcome, friend %s. You may dock when ready."):format(player.name()),
+         _("I'm sorry, we can't trust you to land here just yet."),
+         _("Landing request denied."),
+         _("\"We have no need for your credits.\""))
 end
 
 -- Pirate clanworld.
@@ -160,22 +185,22 @@ function pir_clanworld( pnt )
 
    local land_msg
    if can_land then
-      land_msg = "Permission to land granted. Welcome, brother."
+      land_msg = _("Permission to land granted. Welcome, mate.")
    elseif standing >= 0 then
-      land_msg = "Small time pirates have no business on our clanworld!"
+      land_msg = _("Small time pirates have no business on our clanworld!")
    else
-      land_msg = "Get out of here!"
+      land_msg = _("Get out of here!")
    end
 
    -- Calculate bribe price. Custom for pirates.
    local bribe_price, bribe_msg, bribe_ack_msg
    if not can_land and standing >= -50 then
       bribe_price = (20 - standing) * 500 + 1000 -- 36K max, at -50 rep. Pirates are supposed to be cheaper than regular factions.
-      local str   = numstring( bribe_price )
+      local str   = creditstring( bribe_price )
       bribe_msg   = string.format(
-            "\"Well, I think you're scum, but I'm willing to look the other way for %s credits. Deal?\"",
+               _("\"Well, I think you're scum, but I'm willing to look the other way for %s. Deal?\""),
             str )
-      bribe_ack_msg = "Heh heh, thanks. Now get off the comm, I'm busy!"
+      bribe_ack_msg = _("Heh heh, thanks. Now get off the comm, I'm busy!")
    end
    return can_land, land_msg, bribe_price, bribe_msg, bribe_ack_msg
 end
@@ -185,7 +210,7 @@ end
 -- NOTE: This should be replaced by something better in time.
 function getshipmod()
    local light = {"Yacht", "Luxury Yacht", "Drone", "Fighter", "Bomber", "Scout"}
-   local medium = {"Destroyer", "Corvette", "Courier", "Armoured Transport", "Freighter"}
+   local medium = {"Destroyer", "Corvette", "Courier", "Armored Transport", "Freighter"}
    local heavy = {"Cruiser", "Carrier"}
    local ps = player.pilot():ship()
    for _, j in ipairs(light) do
@@ -206,7 +231,7 @@ end
 function getcost(fct, land_floor, bribe_floor, rate)
    local standing = fct:playerStanding()
    if standing < bribe_floor then
-      return "\"I'm not dealing with dangerous criminals like you!\""
+      return _("\"I'm not dealing with dangerous criminals like you!\"")
    else
       -- Assume standing is always lower than the land_floor.
       return (land_floor - standing) * rate * getshipmod() + 5000
@@ -222,18 +247,20 @@ function land_civilian( pnt, land_floor, bribe_floor )
    -- Get land message
    local land_msg
    if can_land then
-      land_msg = "Permission to land granted."
+      land_msg = _("Permission to land granted.")
    else
-      land_msg = "Landing request denied."
+      land_msg = _("Landing request denied.")
    end
 
    local bribe_msg, bribe_ack_msg
    -- Calculate bribe price. Note: Assumes bribe floor < land_floor.
    local bribe_price = getcost(fct, land_floor, bribe_floor, 1000) -- TODO: different rates for different factions.
    if not can_land and type(bribe_price) == "number" then
-       local str      = numstring( bribe_price )
-       bribe_msg      = string.format("\"I'll let you land for the modest price of %s credits.\"\n\nPay %s credits?", str, str )
-       bribe_ack_msg  = "Make it quick."
+       local str      = creditstring( bribe_price )
+       bribe_msg      = string.format(
+               _("\"I'll let you land for the modest price of %s.\"\n\nPay %s?"),
+            str, str )
+       bribe_ack_msg  = _("Make it quick.")
    end
    return can_land, land_msg, bribe_price, bribe_msg, bribe_ack_msg
 end

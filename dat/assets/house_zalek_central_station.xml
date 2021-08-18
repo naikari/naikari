@@ -5,8 +5,8 @@
   <y>5380.131934</y>
  </pos>
  <GFX>
-  <space>zalek_hq.png</space>
-  <exterior>traderoom.png</exterior>
+  <space>zalek_hq.webp</space>
+  <exterior>traderoom.webp</exterior>
  </GFX>
  <presence>
   <faction>Za'lek</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>0</class>
   <population>25000</population>
-  <hide>0.370000</hide>
   <services>
    <land>zlk_mil_restricted</land>
    <refuel/>
@@ -26,10 +25,7 @@
    <outfits/>
    <shipyard/>
   </services>
-  <commodities>
-   <commodity>Food</commodity>
-   <commodity>Luxury Goods</commodity>
-  </commodities>
+  <commodities/>
   <description>This station was once the nerve center of the entirety of House Za'lek. It still is to an extent, but with the move of much the Za'lek government to Ruadan, this station's become something of a secondary capital. Most day to day business of running the Great House still takes place here.</description>
   <bar>This bar seems to double as a conference hall, with many Za'lek university deans and government officials (more often than not being represented by the same people) meeting with each other as well as foreign trade leaders and dignitaries. The food and drink here is of course top notch, but not extravagant.</bar>
  </general>
@@ -53,6 +49,7 @@
   <item>Missiles 1</item>
   <item>Missiles 2</item>
   <item>Star Maps</item>
+  <item>Za'lek Military Outfits</item>
   <item>Basic Civilian Ships</item>
   <item>Basic Trade Ships</item>
   <item>Za'lek Military Ships</item>

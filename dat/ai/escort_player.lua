@@ -1,14 +1,14 @@
-include("dat/ai/tpl/escort.lua")
-include("dat/ai/personality/patrol.lua")
+require("ai/tpl/escort")
+require("ai/personality/patrol")
 
 -- Settings
 mem.aggressive = true
-mem.command = false
+mem.atk_kill = false
+mem.enemyclose = 2000
+mem.leadermaxdist = 3000
 
 
 function create ()
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
-
-   mem.escort = player.pilot()
 end
 

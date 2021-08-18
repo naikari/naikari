@@ -1,6 +1,8 @@
-include("dat/ai/tpl/escort.lua")
---include("dat/ai/personality/patrol.lua") -- Messes up the ai
+require("ai/tpl/escort")
+--require("ai/personality/patrol") -- Messes up the ai
 
 -- Do not distress
 mem.distress = false
-
+mem.aggressive = true
+mem.enemyclose = 3000
+mem.leadermaxdist = 8000

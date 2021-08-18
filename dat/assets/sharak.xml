@@ -5,8 +5,8 @@
   <y>-5912.913110</y>
  </pos>
  <GFX>
-  <space>moon-J01.png</space>
-  <exterior>forest.png</exterior>
+  <space>moon-J01.webp</space>
+  <exterior>forest.webp</exterior>
  </GFX>
  <presence>
   <faction>Soromid</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>L</class>
   <population>50000</population>
-  <hide>0.500000</hide>
   <services>
    <land>land_hiclass</land>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
    <outfits/>
    <shipyard/>
   </services>

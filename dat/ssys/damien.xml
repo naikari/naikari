@@ -3,7 +3,6 @@
  <general>
   <radius>25000.000000</radius>
   <stars>400</stars>
-  <interference>0.000000</interference>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
@@ -20,19 +19,17 @@
  <jumps>
   <jump target="Garten">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Ruadan">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Severus">
    <pos x="25200.916889" y="-17334.000223"/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Za'lek">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

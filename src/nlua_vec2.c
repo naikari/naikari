@@ -10,15 +10,16 @@
  * These bindings control the planets and systems.
  */
 
-#include "nlua_vec2.h"
-
-#include "naev.h"
-
+/** @cond */
 #include <lauxlib.h>
 
-#include "nlua.h"
-#include "nluadef.h"
+#include "naev.h"
+/** @endcond */
+
+#include "nlua_vec2.h"
+
 #include "log.h"
+#include "nluadef.h"
 
 
 /* Vector metatable methods */
@@ -39,7 +40,7 @@ static int vectorL_setP( lua_State *L );
 static int vectorL_distance( lua_State *L );
 static int vectorL_distance2( lua_State *L );
 static int vectorL_mod( lua_State *L );
-static const luaL_reg vector_methods[] = {
+static const luaL_Reg vector_methods[] = {
    { "new", vectorL_new },
    { "newP", vectorL_newP },
    { "__add", vectorL_add },
@@ -64,24 +65,12 @@ static const luaL_reg vector_methods[] = {
 /**
  * @brief Loads the vector metatable.
  *
- *    @param L State to load the vector metatable into.
+ *    @param env Environment to load the vector metatable into.
  *    @return 0 on success.
  */
-int nlua_loadVector( lua_State *L )
+int nlua_loadVector( nlua_env env )
 {
-   /* Create the metatable */
-   luaL_newmetatable(L, VECTOR_METATABLE);
-
-   /* Create the access table */
-   lua_pushvalue(L,-1);
-   lua_setfield(L,-2,"__index");
-
-   /* Register the values */
-   luaL_register(L, NULL, vector_methods);
-
-   /* Clean up. */
-   lua_setfield(L, LUA_GLOBALSINDEX, VECTOR_METATABLE);
-
+   nlua_register(env, VECTOR_METATABLE, vector_methods, 1);
    return 0;
 }
 
@@ -99,35 +88,35 @@ int nlua_loadVector( lua_State *L )
  * my_vec = my_vec - your_vec -- my_vec is now (19,13)
  * @endcode
  *
- * @luamod vec2
- *
  * To call members of the metatable always use:
  * @code
  * vector:function( param )
  * @endcode
+ *
+ * @luamod vec2
  */
 /**
  * @brief Gets vector at index.
  *
  *    @param L Lua state to get vector from.
  *    @param ind Index position of vector.
- *    @return The LuaVector at ind.
+ *    @return The Vector2d at ind.
  */
-LuaVector* lua_tovector( lua_State *L, int ind )
+Vector2d* lua_tovector( lua_State *L, int ind )
 {
-   return (LuaVector*) lua_touserdata(L,ind);
+   return (Vector2d*) lua_touserdata(L,ind);
 }
 /**
  * @brief Gets vector at index making sure type is valid.
  *
  *    @param L Lua state to get vector from.
  *    @param ind Index position of vector.
- *    @return The LuaVector at ind.
+ *    @return The Vector2d at ind.
  */
-LuaVector* luaL_checkvector( lua_State *L, int ind )
+Vector2d* luaL_checkvector( lua_State *L, int ind )
 {
    if (lua_isvector(L,ind))
-      return (LuaVector*) lua_touserdata(L,ind);
+      return (Vector2d*) lua_touserdata(L,ind);
    luaL_typerror(L, ind, VECTOR_METATABLE);
    return NULL;
 }
@@ -139,10 +128,10 @@ LuaVector* luaL_checkvector( lua_State *L, int ind )
  *    @param vec Vector to push.
  *    @return Vector just pushed.
  */
-LuaVector* lua_pushvector( lua_State *L, LuaVector vec )
+Vector2d* lua_pushvector( lua_State *L, Vector2d vec )
 {
-   LuaVector *v;
-   v = (LuaVector*) lua_newuserdata(L, sizeof(LuaVector));
+   Vector2d *v;
+   v = (Vector2d*) lua_newuserdata(L, sizeof(Vector2d));
    *v = vec;
    luaL_getmetatable(L, VECTOR_METATABLE);
    lua_setmetatable(L, -2);
@@ -178,14 +167,14 @@ int lua_isvector( lua_State *L, int ind )
  * @usage vec2.new( 5, 3 ) -- creates a vector at (5,3)
  * @usage vec2.new() -- creates a vector at (0,0)
  *
- *    @luaparam x If set, the X value for the new vector.
- *    @luaparam y If set, the Y value for the new vector.
- *    @luareturn The new vector.
- * @luafunc new( x, y )
+ *    @luatparam number x If set, the X value for the new vector.
+ *    @luatparam number y If set, the Y value for the new vector.
+ *    @luatreturn Vec2 The new vector.
+ * @luafunc new
  */
 static int vectorL_new( lua_State *L )
 {
-   LuaVector v;
+   Vector2d v;
    double x, y;
 
    if ((lua_gettop(L) > 1) && lua_isnumber(L,1) && lua_isnumber(L,2)) {
@@ -197,7 +186,7 @@ static int vectorL_new( lua_State *L )
       y = 0.;
    }
 
-   vect_cset( &v.vec, x, y );
+   vect_cset( &v, x, y );
    lua_pushvector(L, v);
    return 1;
 }
@@ -208,14 +197,14 @@ static int vectorL_new( lua_State *L )
  * @usage vec2.newP( 1000, 90 ) -- creates a vector at (0,1000)
  * @usage vec2.newP() -- creates a vector at (0,0)
  *
- *    @luaparam m If set, the modulus for the new vector.
- *    @luaparam a If set, the angle for the new vector, in degrees.
- *    @luareturn The new vector.
- * @luafunc newP( m, a )
+ *    @luatparam[opt=0] number m If set, the modulus for the new vector.
+ *    @luatparam[opt=0] number a If set, the angle for the new vector, in degrees.
+ *    @luatreturn Vec2 The new vector.
+ * @luafunc newP
  */
 static int vectorL_newP( lua_State *L )
 {
-   LuaVector v;
+   Vector2d v;
    double m, a;
 
    if ((lua_gettop(L) > 1) && lua_isnumber(L,1) && lua_isnumber(L,2)) {
@@ -227,7 +216,7 @@ static int vectorL_newP( lua_State *L )
       a = 0.;
    }
 
-   vect_pset( &v.vec, m, a );
+   vect_pset( &v, m, a );
    lua_pushvector(L, v);
    return 1;
 }
@@ -242,15 +231,15 @@ static int vectorL_newP( lua_State *L )
  * @usage my_vec:add( your_vec )
  * @usage my_vec:add( 5, 3 )
  *
- *    @luaparam v Vector getting stuff subtracted from.
- *    @luaparam x X coordinate or vector to add to.
- *    @luaparam y Y coordinate or nil to add to.
- *    @luareturn The result of the vector operation.
- * @luafunc add( v, x, y )
+ *    @luatparam Vector v Vector getting stuff subtracted from.
+ *    @luatparam number|Vec2 x X coordinate or vector to add to.
+ *    @luatparam number|nil y Y coordinate or nil to add to.
+ *    @luatreturn Vec2 The result of the vector operation.
+ * @luafunc add
  */
 static int vectorL_add( lua_State *L )
 {
-   LuaVector vout, *v1, *v2;
+   Vector2d vout, *v1, *v2;
    double x, y;
 
    /* Get self. */
@@ -260,8 +249,8 @@ static int vectorL_add( lua_State *L )
    v2 = NULL;
    if (lua_isvector(L,2)) {
       v2 = lua_tovector(L,2);
-      x = v2->vec.x;
-      y = v2->vec.y;
+      x = v2->x;
+      y = v2->y;
    }
    else if ((lua_gettop(L) > 2) && lua_isnumber(L,2) && lua_isnumber(L,3)) {
       x = lua_tonumber(L,2);
@@ -273,14 +262,14 @@ static int vectorL_add( lua_State *L )
    }
 
    /* Actually add it */
-   vect_cset( &vout.vec, v1->vec.x + x, v1->vec.y + y );
+   vect_cset( &vout, v1->x + x, v1->y + y );
    lua_pushvector( L, vout );
 
    return 1;
 }
 static int vectorL_add__( lua_State *L )
 {
-   LuaVector *v1, *v2;
+   Vector2d *v1, *v2;
    double x, y;
 
    /* Get self. */
@@ -290,8 +279,8 @@ static int vectorL_add__( lua_State *L )
    v2 = NULL;
    if (lua_isvector(L,2)) {
       v2 = lua_tovector(L,2);
-      x = v2->vec.x;
-      y = v2->vec.y;
+      x = v2->x;
+      y = v2->y;
    }
    else if ((lua_gettop(L) > 2) && lua_isnumber(L,2) && lua_isnumber(L,3)) {
       x = lua_tonumber(L,2);
@@ -303,7 +292,7 @@ static int vectorL_add__( lua_State *L )
    }
 
    /* Actually add it */
-   vect_cset( &v1->vec, v1->vec.x + x, v1->vec.y + y );
+   vect_cset( v1, v1->x + x, v1->y + y );
    lua_pushvector( L, *v1 );
 
    return 1;
@@ -319,15 +308,15 @@ static int vectorL_add__( lua_State *L )
  * @usage my_vec:sub( your_vec )
  * @usage my_vec:sub( 5, 3 )
  *
- *    @luaparam v Vector getting stuff subtracted from.
- *    @luaparam x X coordinate or vector to subtract.
- *    @luaparam y Y coordinate or nil to subtract.
- *    @luareturn The result of the vector operation.
- * @luafunc sub( v, x, y )
+ *    @luatparam Vec2 v Vector getting stuff subtracted from.
+ *    @luatparam number|Vec2 x X coordinate or vector to subtract.
+ *    @luatparam number|nil y Y coordinate or nil to subtract.
+ *    @luatreturn Vec2 The result of the vector operation.
+ * @luafunc sub
  */
 static int vectorL_sub( lua_State *L )
 {
-   LuaVector vout, *v1, *v2;
+   Vector2d vout, *v1, *v2;
    double x, y;
 
    /* Get self. */
@@ -337,8 +326,8 @@ static int vectorL_sub( lua_State *L )
    v2 = NULL;
    if (lua_isvector(L,2)) {
       v2 = lua_tovector(L,2);
-      x = v2->vec.x;
-      y = v2->vec.y;
+      x = v2->x;
+      y = v2->y;
    }
    else if ((lua_gettop(L) > 2) && lua_isnumber(L,2) && lua_isnumber(L,3)) {
       x = lua_tonumber(L,2);
@@ -350,13 +339,13 @@ static int vectorL_sub( lua_State *L )
    }
 
    /* Actually add it */
-   vect_cset( &vout.vec, v1->vec.x - x, v1->vec.y - y );
+   vect_cset( &vout, v1->x - x, v1->y - y );
    lua_pushvector( L, vout );
    return 1;
 }
 static int vectorL_sub__( lua_State *L )
 {
-   LuaVector *v1, *v2;
+   Vector2d *v1, *v2;
    double x, y;
 
    /* Get self. */
@@ -366,8 +355,8 @@ static int vectorL_sub__( lua_State *L )
    v2 = NULL;
    if (lua_isvector(L,2)) {
       v2 = lua_tovector(L,2);
-      x = v2->vec.x;
-      y = v2->vec.y;
+      x = v2->x;
+      y = v2->y;
    }
    else if ((lua_gettop(L) > 2) && lua_isnumber(L,2) && lua_isnumber(L,3)) {
       x = lua_tonumber(L,2);
@@ -379,7 +368,7 @@ static int vectorL_sub__( lua_State *L )
    }
 
    /* Actually add it */
-   vect_cset( &v1->vec, v1->vec.x - x, v1->vec.y - y );
+   vect_cset( v1, v1->x - x, v1->y - y );
    lua_pushvector( L, *v1 );
    return 1;
 }
@@ -390,14 +379,14 @@ static int vectorL_sub__( lua_State *L )
  * @usage my_vec = my_vec * 3
  * @usage my_vec:mul( 3 )
  *
- *    @luaparam v Vector to multiply.
- *    @luaparam mod Amount to multiply by.
- *    @luareturn The result of the vector operation.
- * @luafunc mul( v, mod )
+ *    @luatparam Vec2 v Vector to multiply.
+ *    @luatparam number mod Amount to multiply by.
+ *    @luatreturn Vec2 The result of the vector operation.
+ * @luafunc mul
  */
 static int vectorL_mul( lua_State *L )
 {
-   LuaVector vout, *v1;
+   Vector2d vout, *v1;
    double mod;
 
    /* Get parameters. */
@@ -405,13 +394,13 @@ static int vectorL_mul( lua_State *L )
    mod   = luaL_checknumber(L,2);
 
    /* Actually add it */
-   vect_cset( &vout.vec, v1->vec.x * mod, v1->vec.y * mod );
+   vect_cset( &vout, v1->x * mod, v1->y * mod );
    lua_pushvector( L, vout );
    return 1;
 }
 static int vectorL_mul__( lua_State *L )
 {
-   LuaVector *v1;
+   Vector2d *v1;
    double mod;
 
    /* Get parameters. */
@@ -419,7 +408,7 @@ static int vectorL_mul__( lua_State *L )
    mod   = luaL_checknumber(L,2);
 
    /* Actually add it */
-   vect_cset( &v1->vec, v1->vec.x * mod, v1->vec.y * mod );
+   vect_cset( v1, v1->x * mod, v1->y * mod );
    lua_pushvector( L, *v1 );
    return 1;
 }
@@ -430,14 +419,14 @@ static int vectorL_mul__( lua_State *L )
  * @usage my_vec = my_vec / 3
  * @usage my_vec:div(3)
  *
- *    @luaparam v Vector to divide.
- *    @luaparam mod Amount to divide by.
- *    @luareturn The result of the vector operation.
- * @luafunc div( v, mod )
+ *    @luatparam Vec2 v Vector to divide.
+ *    @luatparam number mod Amount to divide by.
+ *    @luatreturn Vec2 The result of the vector operation.
+ * @luafunc div
  */
 static int vectorL_div( lua_State *L )
 {
-   LuaVector vout, *v1;
+   Vector2d vout, *v1;
    double mod;
 
    /* Get parameters. */
@@ -445,13 +434,13 @@ static int vectorL_div( lua_State *L )
    mod   = luaL_checknumber(L,2);
 
    /* Actually add it */
-   vect_cset( &vout.vec, v1->vec.x / mod, v1->vec.y / mod );
+   vect_cset( &vout, v1->x / mod, v1->y / mod );
    lua_pushvector( L, vout );
    return 1;
 }
 static int vectorL_div__( lua_State *L )
 {
-   LuaVector *v1;
+   Vector2d *v1;
    double mod;
 
    /* Get parameters. */
@@ -459,7 +448,7 @@ static int vectorL_div__( lua_State *L )
    mod   = luaL_checknumber(L,2);
 
    /* Actually add it */
-   vect_cset( &v1->vec, v1->vec.x / mod, v1->vec.y / mod );
+   vect_cset( v1, v1->x / mod, v1->y / mod );
    lua_pushvector( L, *v1 );
    return 1;
 }
@@ -470,20 +459,21 @@ static int vectorL_div__( lua_State *L )
  *
  * @usage x,y = my_vec:get()
  *
- *    @luaparam v Vector to get position of.
- *    @luareturn X and Y position of the vector.
- * @luafunc get(v)
+ *    @luatparam Vec2 v Vector to get position of.
+ *    @luatreturn number X position of the vector.
+ *    @luatreturn number Y position of the vector.
+ * @luafunc get
  */
 static int vectorL_get( lua_State *L )
 {
-   LuaVector *v1;
+   Vector2d *v1;
 
    /* Get self. */
    v1 = luaL_checkvector(L,1);
 
    /* Push the vector. */
-   lua_pushnumber(L, v1->vec.x);
-   lua_pushnumber(L, v1->vec.y);
+   lua_pushnumber(L, v1->x);
+   lua_pushnumber(L, v1->y);
    return 2;
 }
 
@@ -494,19 +484,20 @@ static int vectorL_get( lua_State *L )
  *
  * @usage modulus, angle = my_vec:polar()
  *
- *    @luaparam v Vector to get polar coordinates of.
- *    @luareturn The modulus and angle of the vector.
- * @luafunc polar(v)
+ *    @luatparam Vec2 v Vector to get polar coordinates of.
+ *    @luatreturn number The modulus of the vector.
+ *    @luatreturn number The angle of the vector.
+ * @luafunc polar
  */
 static int vectorL_polar( lua_State *L )
 {
-   LuaVector *v1;
+   Vector2d *v1;
 
    /* Get self. */
    v1 = luaL_checkvector(L,1);
 
-   lua_pushnumber(L, VMOD(v1->vec));
-   lua_pushnumber(L, VANGLE(v1->vec)*180./M_PI);
+   lua_pushnumber(L, VMOD(*v1));
+   lua_pushnumber(L, VANGLE(*v1)*180./M_PI);
    return 2;
 }
 
@@ -515,14 +506,14 @@ static int vectorL_polar( lua_State *L )
  *
  * @usage my_vec:set(5, 3) -- my_vec is now (5,3)
  *
- *    @luaparam v Vector to set coordinates of.
- *    @luaparam x X coordinate to set.
- *    @luaparam y Y coordinate to set.
- * @luafunc set( v, x, y )
+ *    @luatparam Vec2 v Vector to set coordinates of.
+ *    @luatparam number x X coordinate to set.
+ *    @luatparam number y Y coordinate to set.
+ * @luafunc set
  */
 static int vectorL_set( lua_State *L )
 {
-   LuaVector *v1;
+   Vector2d *v1;
    double x, y;
 
    /* Get parameters. */
@@ -530,7 +521,7 @@ static int vectorL_set( lua_State *L )
    x  = luaL_checknumber(L,2);
    y  = luaL_checknumber(L,3);
 
-   vect_cset( &v1->vec, x, y );
+   vect_cset( v1, x, y );
    return 0;
 }
 
@@ -539,14 +530,14 @@ static int vectorL_set( lua_State *L )
  *
  * @usage my_vec:setP( 1, 90 ) -- my_vec is now (0,1)
  *
- *    @luaparam v Vector to set coordinates of.
- *    @luaparam m Modulus to set.
- *    @luaparam a Angle to set, in degrees.
- * @luafunc setP( v, m, a )
+ *    @luatparam Vec2 v Vector to set coordinates of.
+ *    @luatparam number m Modulus to set.
+ *    @luatparam number a Angle to set, in degrees.
+ * @luafunc setP
  */
 static int vectorL_setP( lua_State *L )
 {
-   LuaVector *v1;
+   Vector2d *v1;
    double m, a;
 
    /* Get parameters. */
@@ -554,7 +545,7 @@ static int vectorL_setP( lua_State *L )
    m  = luaL_checknumber(L,2);
    a  = luaL_checknumber(L,3)/180.*M_PI;
 
-   vect_pset( &v1->vec, m, a );
+   vect_pset( v1, m, a );
    return 0;
 }
 
@@ -564,14 +555,14 @@ static int vectorL_setP( lua_State *L )
  * @usage my_vec:dist() -- Gets length of the vector (distance from origin).
  * @usage my_vec:dist( your_vec ) -- Gets distance from both vectors (your_vec - my_vec).
  *
- *    @luaparam v Vector to act as origin.
- *    @luaparam v2 Vector to get distance from, uses origin (0,0) if not set.
- *    @luareturn The distance calculated.
- * @luafunc dist( v, v2 )
+ *    @luatparam Vec2 v Vector to act as origin.
+ *    @luatparam Vec2 v2 Vector to get distance from, uses origin (0,0) if not set.
+ *    @luatreturn number The distance calculated.
+ * @luafunc dist
  */
 static int vectorL_distance( lua_State *L )
 {
-   LuaVector *v1, *v2;
+   Vector2d *v1, *v2;
    double dist;
 
    /* Get self. */
@@ -585,9 +576,9 @@ static int vectorL_distance( lua_State *L )
 
    /* Get distance. */
    if (v2 == NULL)
-      dist = vect_odist(&v1->vec);
+      dist = vect_odist(v1);
    else
-      dist = vect_dist(&v1->vec, &v2->vec);
+      dist = vect_dist(v1, v2);
 
    /* Return the distance. */
    lua_pushnumber(L, dist);
@@ -600,14 +591,14 @@ static int vectorL_distance( lua_State *L )
  * @usage my_vec:dist2() -- Gets squared length of the vector (distance squared from origin).
  * @usage my_vec:dist2( your_vec ) -- Gets squared distance from both vectors (your_vec - my_vec)^2.
  *
- *    @luaparam v Vector to act as origin.
- *    @luaparam v2 Vector to get squared distance from, uses origin (0,0) if not set.
- *    @luareturn The distance calculated.
- * @luafunc dist2( v, v2 )
+ *    @luatparam Vec2 v Vector to act as origin.
+ *    @luatparam Vec2 v2 Vector to get squared distance from, uses origin (0,0) if not set.
+ *    @luatreturn number The distance calculated.
+ * @luafunc dist2
  */
 static int vectorL_distance2( lua_State *L )
 {
-   LuaVector *v1, *v2;
+   Vector2d *v1, *v2;
    double dist2;
 
    /* Get self. */
@@ -621,9 +612,9 @@ static int vectorL_distance2( lua_State *L )
 
    /* Get distance. */
    if (v2 == NULL)
-      dist2 = vect_odist2(&v1->vec);
+      dist2 = vect_odist2(v1);
    else
-      dist2 = vect_dist2(&v1->vec, &v2->vec);
+      dist2 = vect_dist2(v1, v2);
 
    /* Return the distance. */
    lua_pushnumber(L, dist2);
@@ -632,16 +623,16 @@ static int vectorL_distance2( lua_State *L )
 
 /**
  * @brief Gets the modulus of the vector.
- *    @luaparam v Vector to get modulus of.
- *    @luareturn The modulus of the vector.
- * @luafunc mod(v)
+ *    @luatparam Vec2 v Vector to get modulus of.
+ *    @luatreturn number The modulus of the vector.
+ * @luafunc mod
  */
 static int vectorL_mod( lua_State *L )
 {
-   LuaVector *v;
+   Vector2d *v;
 
    v = luaL_checkvector(L,1);
-   lua_pushnumber(L, VMOD(v->vec));
+   lua_pushnumber(L, VMOD(*v));
    return 1;
 }
 

@@ -1,44 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <ship name="Ancestor">
  <base_type>Ancestor</base_type>
  <GFX>ancestor</GFX>
- <GUI>slim</GUI>
+ <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Bomber</class>
+ <rdr_scale>1</rdr_scale>
  <price>500000</price>
+ <time_mod>1</time_mod>
+ <trail_generator x="-2" y="29" h="0">nebula</trail_generator>
+ <trail_generator x="-2" y="-29" h="0">nebula</trail_generator>
+ <trail_generator x="-10" y="0" h="0">fire</trail_generator>
  <fabricator>House Dvaered</fabricator>
  <license>Light Combat Vessel License</license>
  <description>Commonly referred to as the little Goddard, the Ancestor also has its roots in the primitive flying machines used by men many ages ago. Unlike the Goddard though, the electronics are done by House Dvaered, making it considerably inferior in that area.</description>
  <health>
-  <absorb>4</absorb>
   <armour>70</armour>
   <armour_regen>0</armour_regen>
  </health>
  <characteristics>
-  <crew>6</crew>
   <mass>70</mass>
   <fuel_consumption>100</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>3000</rdr_jump_range>
   <cargo>10</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" x="8" y="0" h="0"/>
-  <weapon size="medium" x="8" y="0" h="0"/>
-  <weapon size="small" x="-2" y="9" h="-1"/>
-  <weapon size="small" x="-2" y="-9" h="-1"/>
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-200 Core System</utility>
-  <utility size="small"/>
-  <utility size="small"/>
+  <weapon size="medium" x="8" y="0" h="0" />
+  <weapon size="medium" x="8" y="0" h="0" />
+  <weapon size="small" x="-2" y="9" h="-1" />
+  <weapon size="small" x="-2" y="-9" h="-1" />
+  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-80 Core System</utility>
+  <utility size="small" />
+  <utility size="small" />
   <structure size="small" prop="engines" exclusive="1" required="1">Unicorp Hawk 300 Engine</structure>
   <structure size="small" prop="hull" exclusive="1" required="1">Unicorp D-4 Light Plating</structure>
-  <structure size="small"/>
+  <structure size="small" />
  </slots>
  <stats>
-  <speed_mod>-20</speed_mod>
-  <turn_mod>-10</turn_mod>
-  <thrust_mod>-10</thrust_mod>
-  <armour_mod>15</armour_mod>
+  <cpu_mod>-25</cpu_mod>
   <launch_rate>15</launch_rate>
   <launch_range>10</launch_range>
   <ammo_capacity>50</ammo_capacity>
+  <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
  </stats>
 </ship>

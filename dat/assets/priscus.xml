@@ -5,8 +5,8 @@
   <y>9970.939191</y>
  </pos>
  <GFX>
-  <space>A04.png</space>
-  <exterior>mining.png</exterior>
+  <space>A04.webp</space>
+  <exterior>mining.webp</exterior>
  </GFX>
  <presence>
   <faction>Soromid</faction>
@@ -16,12 +16,10 @@
  <general>
   <class>A</class>
   <population>98000</population>
-  <hide>0.250000</hide>
   <services>
    <land>srm_mil_restricted</land>
    <refuel/>
    <bar/>
-   <commodity/>
    <outfits/>
   </services>
   <commodities/>

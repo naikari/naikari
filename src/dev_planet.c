@@ -8,24 +8,26 @@
  * @brief Handles the planet stuff.
  */
 
-#include "dev_planet.h"
-#include "dev_uniedit.h"
+
+/** @cond */
+#include <stdlib.h>
 
 #include "naev.h"
+/** @endcond */
 
-#include <stdlib.h> /* qsort */
+#include "dev_planet.h"
 
 #include "conf.h"
-#include "nxml.h"
-#include "physics.h"
+#include "dev_uniedit.h"
 #include "nfile.h"
 #include "nstring.h"
+#include "nxml.h"
+#include "physics.h"
 
 
 /**
  * @brief Saves a planet.
  *
- *    @param writer Write to use for saving the star planet.
  *    @param p Planet to save.
  *    @return 0 on success.
  */
@@ -33,13 +35,14 @@ int dpl_savePlanet( const Planet *p )
 {
    xmlDocPtr doc;
    xmlTextWriterPtr writer;
-   char file[PATH_MAX], *cleanName;
+   char *file, *cleanName;
    int i;
+   int inhabited = 0;
 
    /* Create the writer. */
    writer = xmlNewTextWriterDoc(&doc, 0);
    if (writer == NULL) {
-      WARN("testXmlwriterDoc: Error creating the xml writer");
+      WARN(_("testXmlwriterDoc: Error creating the xml writer"));
       return -1;
    }
 
@@ -87,7 +90,8 @@ int dpl_savePlanet( const Planet *p )
       xmlw_startElem( writer, "general" );
       xmlw_elem( writer, "class", "%s", p->class );
       xmlw_elem( writer, "population", "%"PRIu64, p->population );
-      xmlw_elem( writer, "hide", "%f", sqrt(p->hide) );
+      if (p->rdr_range_mod != 1.)
+         xmlw_elem( writer, "rdr_range_mod", "%f", p->rdr_range_mod*100 - 100 );
       xmlw_startElem( writer, "services" );
       if (planet_hasService( p, PLANET_SERVICE_LAND )) {
          if (p->land_func == NULL)
@@ -95,27 +99,46 @@ int dpl_savePlanet( const Planet *p )
          else
             xmlw_elem( writer, "land", "%s", p->land_func );
       }
-      if (planet_hasService( p, PLANET_SERVICE_REFUEL ))
+      if (planet_hasService( p, PLANET_SERVICE_REFUEL )) {
          xmlw_elemEmpty( writer, "refuel" );
-      if (planet_hasService( p, PLANET_SERVICE_BAR ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_BAR )) {
          xmlw_elemEmpty( writer, "bar" );
-      if (planet_hasService( p, PLANET_SERVICE_MISSIONS ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_MISSIONS )) {
          xmlw_elemEmpty( writer, "missions" );
-      if (planet_hasService( p, PLANET_SERVICE_COMMODITY ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_COMMODITY )) {
          xmlw_elemEmpty( writer, "commodity" );
-      if (planet_hasService( p, PLANET_SERVICE_OUTFITS ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_OUTFITS )) {
          xmlw_elemEmpty( writer, "outfits" );
-      if (planet_hasService( p, PLANET_SERVICE_SHIPYARD ))
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_SHIPYARD )) {
          xmlw_elemEmpty( writer, "shipyard" );
+         inhabited = 1;
+      }
+      if (planet_hasService( p, PLANET_SERVICE_BLACKMARKET ))
+         xmlw_elemEmpty( writer, "blackmarket" );
+      if (planet_isFlag( p, PLANET_NOMISNSPAWN ))
+         xmlw_elemEmpty( writer, "nomissionspawn" );
+      if (inhabited && (p->population == 0))
+         xmlw_elemEmpty( writer, "uninhabited" );
       xmlw_endElem( writer ); /* "services" */
       if (planet_hasService( p, PLANET_SERVICE_LAND )) {
-         xmlw_startElem( writer, "commodities" );
-         for (i=0; i<p->ncommodities; i++)
-            xmlw_elem( writer, "commodity", "%s", p->commodities[i]->name );
-         xmlw_endElem( writer ); /* "commodities" */
-
-         if (planet_isBlackMarket(p))
-            xmlw_elemEmpty( writer, "blackmarket" );
+         if (p->faction > 0) {
+            xmlw_startElem( writer, "commodities" );
+            for (i=0; i<array_size(p->commodities); i++) {
+               if (p->commodities[i]->standard == 0)
+                  xmlw_elem( writer, "commodity", "%s", p->commodities[i]->name );
+            }
+            xmlw_endElem( writer ); /* "commodities" */
+         }
 
          xmlw_elem( writer, "description", "%s", p->description );
          if (planet_hasService( p, PLANET_SERVICE_BAR ))
@@ -136,12 +159,14 @@ int dpl_savePlanet( const Planet *p )
 
    /* Write data. */
    cleanName = uniedit_nameFilter( p->name );
-   nsnprintf( file, sizeof(file), "%s/%s.xml", conf.dev_save_asset, cleanName );
-   xmlSaveFileEnc( file, doc, "UTF-8" );
+   asprintf( &file, "%s/%s.xml", conf.dev_save_asset, cleanName );
+   if (xmlSaveFileEnc( file, doc, "UTF-8" ) < 0)
+      WARN("Failed writing '%s'!", file);
 
    /* Clean up. */
    xmlFreeDoc(doc);
    free(cleanName);
+   free(file);
 
    return 0;
 }
@@ -155,13 +180,12 @@ int dpl_savePlanet( const Planet *p )
 int dpl_saveAll (void)
 {
    int i;
-   int np;
    const Planet *p;
 
-   p = planet_getAll( &np );
+   p = planet_getAll();
 
    /* Write planets. */
-   for (i=0; i<np; i++)
+   for (i=0; i<array_size(p); i++)
       dpl_savePlanet( &p[i] );
 
    return 0;

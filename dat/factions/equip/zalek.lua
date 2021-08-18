@@ -1,190 +1,138 @@
--- Generic equipping routines, helper functions and outfit definitions.
-include("dat/factions/equip/generic.lua")
+require "factions/equip/generic"
+
+
+equip_typeOutfits_coreSystems["Sting"] = {
+   "Milspec Aegis 4701 Core System",
+}
+equip_typeOutfits_coreSystems["Demon"] = {
+   "Milspec Prometheus 5403 Core System",
+}
+equip_typeOutfits_coreSystems["Mephisto"] = {
+   "Milspec Prometheus 8503 Core System",
+}
+equip_typeOutfits_coreSystems["Diablo"] = {
+   "Milspec Orion 9901 Core System",
+}
+equip_typeOutfits_coreSystems["Hephaestus"] = {
+   "Milspec Hermes 9802 Core System",
+}
+equip_typeOutfits_coreSystems["Prototype"] = {
+   "Milspec Orion 9901 Core System",
+}
+
+equip_typeOutfits_engines["Sting"] = {
+   "Tricon Cyclone Engine",
+}
+equip_typeOutfits_engines["Demon"] = {
+   "Tricon Cyclone II Engine",
+}
+equip_typeOutfits_engines["Mephisto"] = {
+   "Unicorp Eagle 6500 Engine", "Tricon Typhoon II Engine",
+}
+equip_typeOutfits_engines["Diablo"] = {
+   "Tricon Typhoon II Engine",
+}
+equip_typeOutfits_engines["Hephaestus"] = {
+   "Melendez Mammoth XL Engine",
+}
+equip_typeOutfits_engines["Prototype"] = {
+   "Unicorp Eagle 6500 Engine", "Tricon Typhoon II Engine",
+}
+
+equip_typeOutfits_hulls["Sting"] = {
+   "S&K Medium Stealth Plating", "S&K Medium Combat Plating",
+}
+equip_typeOutfits_hulls["Demon"] = {
+   "S&K Medium-Heavy Stealth Plating", "S&K Medium-Heavy Combat Plating",
+}
+equip_typeOutfits_hulls["Mephisto"] = {
+   "Unicorp D-48 Heavy Plating", "S&K Heavy Combat Plating",
+}
+equip_typeOutfits_hulls["Diablo"] = {
+   "Unicorp D-48 Heavy Plating", "S&K Heavy Combat Plating",
+}
+equip_typeOutfits_hulls["Hephaestus"] = {
+   "Unicorp D-72 Heavy Plating", "S&K Superheavy Combat Plating",
+}
+equip_typeOutfits_hulls["Prototype"] = {
+   "Unicorp D-72 Heavy Plating", "S&K Superheavy Combat Plating",
+}
+
+equip_typeOutfits_weapons["Sting"] = {
+   {
+      varied = true;
+      "Enygma Systems Spearhead Launcher", "TeraCom Fury Launcher",
+      "TeraCom Headhunter Launcher", "TeraCom Medusa Launcher",
+      "TeraCom Vengeance Launcher", "Za'lek Hunter Launcher",
+      "Za'lek Reaper Launcher", "Enygma Systems Huntsman Launcher",
+   },
+   {
+      "Orion Lance",
+   },
+}
+equip_typeOutfits_weapons["Demon"] = {
+   {
+      "Grave Beam",
+   },
+   {
+      num = 1;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+   },
+   {
+      num = 1;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Grave Lance", "Orion Beam",
+   },
+   {
+      "Grave Lance", "Orion Beam",
+   },
+}
+equip_typeOutfits_weapons["Diablo"] = {
+   {
+      varied = true;
+      "Za'lek Light Drone Fighter Bay", "Za'lek Heavy Drone Fighter Bay",
+      "Za'lek Bomber Drone Fighter Bay",
+   },
+   {
+      "Ragnarok Beam",
+   },
+   {
+      "Grave Beam",
+   },
+}
+equip_typeOutfits_weapons["Mephisto"] = {
+   {
+      num = 1;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Za'lek Hunter Launcher",
+   },
+   {
+      "Grave Beam",
+   },
+}
+equip_typeOutfits_weapons["Hephaestus"] = {
+   {
+      varied = true;
+      "Za'lek Light Drone Fighter Bay", "Za'lek Heavy Drone Fighter Bay",
+      "Za'lek Bomber Drone Fighter Bay",
+   },
+   {
+      "Ragnarok Beam",
+   },
+   {
+      "Grave Beam",
+   },
+}
+
 
 --[[
--- @brief Does zalek pilot equipping
+-- @brief Does Za'lek pilot equipping
 --
 --    @param p Pilot to equip
 --]]
 function equip( p )
-   -- Start with an empty ship
-   p:rmOutfit("all")
-   p:rmOutfit("cores")
-
-   -- Get ship info
-   local shiptype, shipsize = equip_getShipBroad( p:ship():class() )
-
-   -- Split by type
-   if shiptype == "military" then
-      equip_empireMilitary( p, shipsize )
-   else
-      equip_generic( p )
-   end
-end
-
-
--- CANNONS
-function equip_forwardZlkLow ()
-   return { "Orion Lance", "Laser Cannon MK3" }
-end
-function equip_forwardZlkMed ()
-   return { "Laser Cannon MK3", "Orion Lance", "Grave Lance", "Heavy Ripper Cannon" }
-end
--- TURRETS
-function equip_turretZlkLow ()
-   return { "Laser Turret MK2" }
-end
-function equip_turretZlkMed ()
-   return { "Pulse Beam", "Laser Turret MK3" }
-end
-function equip_turretZlkHig ()
-   return { "Grave Beam", "Ragnarok Beam" }
-end
--- RANGED
-function equip_rangedZlk ()
-   return { "Unicorp Mace Launcher" }
-end
-function equip_secondaryZlk ()
-   return { "Shattershield Lance", "Unicorp Headhunter Launcher" }
-end
--- NON-COMBAT
---[[
--- Utility slots
---]]
-function equip_mediumZlkLow ()
-   return { "Reactor Class I", "Unicorp Scrambler", "Small Shield Booster" }
-end
-function equip_mediumZlkMed ()
-   return { "Reactor Class II", "Milspec Scrambler", "Medium Shield Booster" }
-end
-function equip_mediumZlkHig ()
-   return { "Reactor Class III", "Milspec Scrambler", "Large Shield Booster" }
-end
-
---[[
--- Structure slots
---]]
-function equip_lowZlkLow ()
-   return { "Battery", "Shield Capacitor", "Engine Reroute" }
-end
-function equip_lowZlkMed ()
-   return { "Shield Capacitor II", "Shield Capacitor III", "Engine Reroute", "Battery II" }
-end
-function equip_lowZlkHig ()
-   return { "Shield Capacitor III", "Shield Capacitor IV", "Battery III" }
-end
-
-
-
---[[
--- @brief Equips a zalek military type ship.
---]]
-function equip_empireMilitary( p, shipsize )
-   local medium, low
-   local use_primary, use_secondary, use_medium, use_low
-   local use_forward, use_turrets, use_medturrets
-   local nhigh, nmedium, nlow = p:ship():slots()
-   local scramble
-
-   -- Defaults
-   medium      = { "Unicorp Scrambler" }
-   weapons     = {}
-   scramble    = false
-
-   -- Equip by size and type
-   if shipsize == "small" then
-      local class = p:ship():class()
-      cores = {
-         {"Tricon Zephyr Engine", "Milspec Orion 2301 Core System", "S&K Ultralight Combat Plating"},
-         {"Tricon Zephyr II Engine", "Milspec Orion 3701 Core System", "S&K Light Combat Plating"}
-      }
-      equip_cores(p, equip_getCores(p, shipsize, cores))
-
-      -- Scout
-      if class == "Scout" then
-         equip_cores(p, "Tricon Zephyr Engine", "Milspec Orion 2301 Core System", "S&K Ultralight Stealth Plating")
-         use_primary    = rnd.rnd(1,nhigh)
-         addWeapons( equip_forwardLow(), use_primary )
-         medium         = { "Generic Afterburner", "Milspec Scrambler" }
-         use_medium     = 2
-         low            = { "Solar Panel" }
-
-      -- Fighter
-      elseif class == "Fighter" then
-         use_primary    = nhigh-1
-         use_secondary  = 1
-         addWeapons( equip_forwardZlkMed(), use_primary )
-         addWeapons( equip_secondaryZlk(), use_secondary )
-         medium         = equip_mediumZlkLow()
-         low            = equip_lowZlkLow()
-
-
-      -- Bomber
-      elseif class == "Bomber" then
-         use_primary    = rnd.rnd(1,2)
-         use_secondary  = nhigh - use_primary
-         addWeapons( equip_forwardZlkLow(), use_primary )
-         addWeapons( equip_rangedZlk(), use_secondary )
-         medium         = equip_mediumZlkLow()
-         low            = equip_lowZlkLow()
-
-      end
-
-   elseif shipsize == "medium" then
-      local class = p:ship():class()
-      cores = {
-         {"Tricon Cyclone Engine", "Milspec Orion 4801 Core System", "S&K Medium Combat Plating"},
-         {"Tricon Cyclone II Engine", "Milspec Orion 5501 Core System", "S&K Medium-Heavy Combat Plating"}
-      }
-      equip_cores(p, equip_getCores(p, shipsize, cores))
-
-      -- Corvette
-      if class == "Corvette" then
-         use_secondary  = rnd.rnd(1,2)
-         use_primary    = nhigh - use_secondary
-         addWeapons( equip_forwardZlkMed(), use_primary )
-         addWeapons( equip_secondaryZlk(), use_secondary )
-         medium         = equip_mediumZlkMed()
-         low            = equip_lowZlkMed()
-
-      end
-
-      -- Destroyer
-      if class == "Destroyer" then
-         use_secondary  = rnd.rnd(1,2)
-         use_turrets    = nhigh - use_secondary - rnd.rnd(1,2)
-         use_forward    = nhigh - use_secondary - use_turrets
-         addWeapons( equip_secondaryZlk(), use_secondary )
-         addWeapons( equip_turretZlkMed(), use_turrets )
-         addWeapons( equip_forwardZlkMed(), use_forward )
-         medium         = equip_mediumZlkMed()
-         low            = equip_lowZlkMed()
-
-      end
-
-   else -- "large"
-      -- TODO: Divide into carrier and cruiser classes.
-      cores = {
-         {"Tricon Typhoon Engine", "Milspec Orion 9901 Core System", "S&K Heavy Combat Plating"},
-         {"Tricon Typhoon II Engine", "Milspec Orion 9901 Core System", "S&K Superheavy Combat Plating"}
-      }
-      equip_cores(p, equip_getCores(p, shipsize, cores))
-
-      use_secondary  = 2
-      if rnd.rnd() > 0.4 then -- Anti-fighter variant.
-         use_turrets    = nhigh - use_secondary - rnd.rnd(2,3)
-         use_medturrets = nhigh - use_secondary - use_turrets
-         addWeapons( equip_turretZlkMed(), use_medturrets )
-      else -- Anti-capital variant.
-         use_turrets    = nhigh - use_secondary
-      end
-      addWeapons( equip_turretZlkHig(), use_turrets )
-      addWeapons( equip_secondaryZlk(), use_secondary )
-      medium         = equip_mediumZlkHig()
-      low            = equip_lowZlkHig()
-
-   end
-
-   equip_ship( p, scramble, weapons, medium, low,
-               use_medium, use_low )
+   equip_generic( p )
 end

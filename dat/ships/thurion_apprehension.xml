@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ship name="Thurion Apprehension">
+ <base_type>Apprehension</base_type>
+ <GFX sx="12" sy="12">apprehension</GFX>
+ <rarity>4</rarity>
+ <GUI>brushed</GUI>
+ <sound>engine</sound>
+ <class>Destroyer</class>
+ <rdr_scale>2</rdr_scale>
+ <price>1500000</price>
+ <time_mod>1.5</time_mod>
+ <trail_generator x="-30" y="9" h="-5" />
+ <trail_generator x="-30" y="-9" h="-5" />
+ <trail_generator x="-30" y="0" h="10" />
+ <trail_generator x="-20" y="-20" h="10" >nebula</trail_generator>
+ <trail_generator x="-20" y="20" h="10" >nebula</trail_generator>
+ <fabricator>Thurion shipyards</fabricator>
+ <license>Medium Combat Vessel License</license>
+ <description>...</description>
+ <health>
+  <armour>550</armour>
+  <armour_regen>0</armour_regen>
+ </health>
+ <characteristics>
+  <mass>320</mass>
+  <fuel>600</fuel>
+  <fuel_consumption>200</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>3000</rdr_jump_range>
+  <cargo>50</cargo>
+ </characteristics>
+ <slots>
+  <weapon size="large" x="23" y="0" h="4" />
+  <weapon size="large" x="6" y="0" h="6" />
+  <weapon size="medium" prop="fighter_bay" x="8" y="0" h="-6" />
+  <utility size="medium" prop="systems" exclusive="1" required="1">Unicorp PT-400 Core System</utility>
+  <utility size="large" />
+  <utility size="large" />
+  <utility size="large" />
+  <utility size="medium" />
+  <utility size="medium" />
+  <structure size="medium" prop="engines" exclusive="1" required="1">Unicorp Falcon 1200 Engine</structure>
+  <structure size="medium" prop="hull" exclusive="1" required="1">Unicorp D-24 Medium Plating</structure>
+  <structure size="large" />
+  <structure size="large" />
+  <structure size="medium" />
+ </slots>
+ <stats>
+  <shield_mod>10</shield_mod>
+  <shield_regen_mod>15</shield_regen_mod>
+  <nebu_absorb_shield>80</nebu_absorb_shield>
+  <nebu_absorb_armour>97</nebu_absorb_armour>
+  <rdr_enemy_range_mod>-37.5</rdr_enemy_range_mod>
+  <rdr_range_mod>125</rdr_range_mod>
+  <rdr_jump_range_mod>50</rdr_jump_range_mod>
+ </stats>
+</ship>

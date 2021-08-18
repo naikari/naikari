@@ -3,7 +3,6 @@
  <general>
   <radius>27000.000000</radius>
   <stars>400</stars>
-  <interference>0.000000</interference>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
@@ -25,7 +24,6 @@
  <jumps>
   <jump target="Ulysses">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

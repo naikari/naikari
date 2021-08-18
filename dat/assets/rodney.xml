@@ -5,8 +5,8 @@
   <y>592.066195</y>
  </pos>
  <GFX>
-  <space>moon-H02.png</space>
-  <exterior>mining2.png</exterior>
+  <space>moon-H02.webp</space>
+  <exterior>mining2.webp</exterior>
  </GFX>
  <presence>
   <faction>Soromid</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>J</class>
   <population>100000</population>
-  <hide>0.500000</hide>
   <services>
    <land/>
    <refuel/>

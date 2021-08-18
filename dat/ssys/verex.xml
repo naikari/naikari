@@ -3,7 +3,6 @@
  <general>
   <radius>26250.000000</radius>
   <stars>500</stars>
-  <interference>0.000000</interference>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
@@ -18,19 +17,17 @@
  <jumps>
   <jump target="Blunderbuss">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Darkstone">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
   <jump target="Ginger">
    <autopos/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Tarsus">
    <autopos/>
-   <hide>0.000000</hide>
+   <express/>
   </jump>
  </jumps>
 </ssys>

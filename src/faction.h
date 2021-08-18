@@ -7,31 +7,42 @@
 #  define FACTION_H
 
 
-#include "opengl.h"
 #include "colour.h"
 #include "nlua.h"
+#include "opengl.h"
 
 
 #define FACTION_PLAYER  0  /**< Hardcoded player faction identifier. */
+#define FACTION_LOGO_SM 64 /**< Size of "small" logo. */
 
 
 /* get stuff */
 int faction_isFaction( int f );
+int faction_exists( const char* name );
 int faction_get( const char* name );
-int* faction_getAll( int *n );
-int* faction_getKnown( int *n );
+int* faction_getAll();
+int* faction_getKnown();
+int faction_isInvisible( int id );
+int faction_setInvisible( int id, int state );
 int faction_isKnown( int id );
-char* faction_name( int f );
-char* faction_shortname( int f );
-char* faction_longname( int f );
-lua_State *faction_getScheduler( int f );
-lua_State *faction_getEquipper( int f );
-glTexture* faction_logoSmall( int f );
-glTexture* faction_logoTiny( int f );
+int faction_isDynamic( int id );
+const char* faction_name( int f );
+const char* faction_shortname( int f );
+const char* faction_longname( int f );
+const char* faction_default_ai( int f );
+void faction_clearEnemy( int f );
+void faction_addEnemy( int f, int o );
+void faction_rmEnemy( int f, int o );
+void faction_clearAlly( int f );
+void faction_addAlly( int f, int o );
+void faction_rmAlly( int f, int o );
+nlua_env faction_getScheduler( int f );
+nlua_env faction_getEquipper( int f );
+glTexture* faction_logo( int f );
 const glColour* faction_colour( int f );
-int* faction_getEnemies( int f, int *n );
-int* faction_getAllies( int f, int *n );
-int* faction_getGroup( int *n, int which );
+int* faction_getEnemies( int f );
+int* faction_getAllies( int f );
+int* faction_getGroup( int which );
 
 /* set stuff */
 int faction_setKnown( int id, int state );
@@ -49,6 +60,7 @@ const char *faction_getStandingText( int f );
 const char *faction_getStandingBroad( int f, int bribed, int override );
 const glColour* faction_getColour( int f );
 char faction_getColourChar( int f );
+const char *faction_getSymbol( int f );
 
 /* works with only factions */
 int areEnemies( int a, int b );
@@ -58,7 +70,11 @@ int areAllies( int a, int b );
 int factions_load (void);
 void factions_free (void);
 void factions_reset (void);
-void faction_clearKnown(void);
+void faction_clearKnown (void);
+
+/* Dynamic factions. */
+void factions_clearDynamic (void);
+int faction_dynAdd( int base, const char* name, const char* display, const char* ai );
 
 
 #endif /* FACTION_H */

@@ -5,8 +5,8 @@
   <y>-141.231031</y>
  </pos>
  <GFX>
-  <space>M05.png</space>
-  <exterior>aquatic2.png</exterior>
+  <space>M05.webp</space>
+  <exterior>aquatic2.webp</exterior>
  </GFX>
  <presence>
   <faction>Empire</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>M</class>
   <population>1236540</population>
-  <hide>0.250000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
    <outfits/>
    <shipyard/>
   </services>

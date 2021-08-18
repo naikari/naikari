@@ -7,14 +7,25 @@
 
 
 --[[
+-- Helper function that checks to see if a value is in a table
+--]]
+function __intable( t, val )
+   for k,v in ipairs(t) do
+      if v==val then
+         return true
+      end
+   end
+   return false
+end
+
+
+--[[
 -- Faces the target.
 --]]
-function __face ()
-   local target = ai.target()
+function __face( target )
    ai.face( target )
 end
-function __face_towards ()
-   local target = ai.target()
+function __face_towards( target )
    local off = ai.face( target )
    if math.abs(off) < 5 then
       ai.poptask()
@@ -49,30 +60,57 @@ end
 
 
 --[[
--- Goes to a target position without braking
+-- Move in zigzag around a direction
 --]]
-function __goto_nobrake ()
-   local target   = ai.target()
-   local dir      = ai.face( target, nil, true )
-   __goto_generic( target, dir, false )
+function __zigzag ( dir, angle )
+   if mem.pm == nil then
+      mem.pm = 1
+   end
+
+   if (mem.pm*dir < angle-20) or (mem.pm*dir > angle+25) then
+      -- Orientation is totally wrong: reset timer
+      ai.settimer(0, 2)
+   end
+
+   if (mem.pm*dir < angle) then
+      ai.turn(-mem.pm)
+   else
+      ai.turn(mem.pm)
+      if (mem.pm*dir < angle+5) then -- Right orientation, wait for max vel
+         --if ai.ismaxvel() then -- TODO : doesn't work well
+         if ai.timeup(0) then
+            mem.pm = -mem.pm
+         end
+      end
+   end
+   ai.accel()
 end
 
 
 --[[
 -- Goes to a target position without braking
 --]]
-function __goto_nobrake_raw ()
-   local target   = ai.target()
+function __moveto_nobrake( target )
+   local dir      = ai.face( target, nil, true )
+   __moveto_generic( target, dir, false )
+end
+
+
+--[[
+-- Goes to a target position without braking
+--]]
+function __moveto_nobrake_raw( target )
+   local target   = ai.taskdata()
    local dir      = ai.face( target )
-   __goto_generic( target, dir, false )
+   __moveto_generic( target, dir, false )
 end
 
 
 --[[
 -- Goes to a precise position.
 --]]
-function __goto_precise ()
-   local target   = ai.target()
+function __moveto_precise ()
+   local target   = ai.taskdata()
    local dir      = ai.face( target, nil, true )
    local dist     = ai.dist( target )
 
@@ -100,27 +138,35 @@ end
 --[[
 -- Goes to a target position roughly
 --]]
-function goto ()
-   local target   = ai.target()
+function moveto ()
+   local target   = ai.taskdata()
    local dir      = ai.face( target, nil, true )
-   __goto_generic( target, dir, true )
+   __moveto_generic( target, dir, true )
 end
 
 
 --[[
--- Goto without velocity compensation.
+-- Goes to a point in order to inspect (same as moveto, but pops when attacking)
 --]]
-function goto_raw ()
-   local target   = ai.target()
+function inspect_moveto( target )
+   __moveto_nobrake( target )
+end
+
+
+--[[
+-- moveto without velocity compensation.
+--]]
+function moveto_raw ()
+   local target   = ai.taskdata()
    local dir      = ai.face( target )
-   __goto_generic( target, dir, true )
+   __moveto_generic( target, dir, true )
 end
 
 
 --[[
--- Generic GOTO function.
+-- Generic moveto function.
 --]]
-function __goto_generic( target, dir, brake, subtask )
+function __moveto_generic( target, dir, brake, subtask )
    local dist     = ai.dist( target )
    local bdist
    if brake then
@@ -148,34 +194,33 @@ end
 -- Follows it's target.
 --]]
 function follow ()
-   local target = ai.target()
- 
-   -- Will just float without a target to escort.
-   if not target:exists() then
-      ai.poptask()
-      return
-   end
-   
-   local dir   = ai.face(target)
-   local dist  = ai.dist(target)
- 
-   -- Must approach
-   if dir < 10 and dist > 300 then
-      ai.accel()
- 
-   end
-end
-function follow_accurate ()
-   local target = ai.target()
-   local p = ai.pilot()
- 
+   local target = ai.taskdata()
+
    -- Will just float without a target to escort.
    if not target:exists() then
       ai.poptask()
       return
    end
 
-   local goal = ai.follow_accurate(target, mem.radius, 
+   local dir   = ai.face(target)
+   local dist  = ai.dist(target)
+
+   -- Must approach
+   if dir < 10 and dist > 300 then
+      ai.accel()
+   end
+end
+function follow_accurate ()
+   local target = ai.taskdata()
+   local p = ai.pilot()
+
+   -- Will just float without a target to escort.
+   if not target:exists() then
+      ai.poptask()
+      return
+   end
+
+   local goal = ai.follow_accurate(target, mem.radius,
          mem.angle, mem.Kp, mem.Kd)
 
    local mod = vec2.mod(goal - p:pos())
@@ -187,6 +232,70 @@ function follow_accurate ()
       ai.accel()
    end
 
+end
+
+-- Default action for non-leader pilot in fleet
+function follow_fleet ()
+   local plt    = ai.pilot()
+   local leader = plt:leader()
+
+   if leader == nil or not leader:exists() then
+      ai.poptask()
+      return
+   end
+
+   if mem.form_pos == nil then -- Simply follow unaccurately
+      local dir  = ai.face(leader)
+      local dist = ai.dist(leader)
+      if dist > 300 and dir < 10 then -- Must approach
+         ai.accel()
+      end
+
+   else -- Ship has a precise position in formation
+      if mem.app == nil then
+         mem.app = 2
+      end
+
+      local angle, radius, method = table.unpack(mem.form_pos)
+      local goal  = ai.follow_accurate(leader, radius, angle, mem.Kp, mem.Kd, method) -- Standard controller
+      local dist  = ai.dist(goal)
+
+      if mem.app == 2 then
+         local dir   = ai.face(goal)
+         if dist > 300 then
+            if dir < 10 then  -- Must approach
+               ai.accel()
+            end
+         else  -- Toggle precise positioning controller
+            mem.app = 1
+         end
+
+      elseif mem.app == 1 then -- only small corrections to do
+         if dist > 300 then -- We're much too far away, we need to toggle large correction
+            mem.app = 2
+         else  -- Derivative-augmented controller
+            local goal0 = ai.follow_accurate(leader, radius, angle, 2*mem.Kp, 10*mem.Kd, method)
+            local dist0 = ai.dist(goal0)
+            local dir = ai.face(goal0)
+            if dist0 > 300 then
+               if dir < 10 then  -- Must approach
+                  ai.accel()
+               end
+            else  -- No need to approach anymore
+               mem.app = 0
+            end
+         end
+
+      else
+         local dir   = ai.face(goal)
+         if dist > 300 then   -- Must approach
+            mem.app = 1
+         else   -- Face forward
+            goal = plt:pos() + leader:vel()
+            ai.face(goal)
+         end
+      end
+   end
 end
 
 --[[
@@ -211,25 +320,19 @@ function __hyperspace ()
    hyperspace()
 end
 function __hyperspace_shoot ()
-   local target = ai.target()
+   local target = ai.taskdata()
    if target == nil then
       target = ai.rndhyptarget()
       if target == nil then
          return
       end
    end
-   ai.pushsubtask( "__hyp_approach_shoot", target )
+   local pos = ai.sethyptarget(target)
+   ai.pushsubtask( "__hyp_approach_shoot", pos )
 end
 function __hyp_approach_shoot ()
-   -- Shoot
-   if ai.hasturrets() then
-      enemy = ai.getenemy()
-      if enemy ~= nil then
-         ai.weapset( 3 )
-         ai.settarget( enemy )
-         ai.shoot( true )
-      end
-   end
+   -- Shoot and approach
+   __move_shoot()
    __hyp_approach()
 end
 
@@ -238,12 +341,34 @@ function __land ()
    land()
 end
 
+function __land_shoot ()
+   __choose_land_target ()
+   ai.pushsubtask( "__landgo_shoot" )
+end
+
+function __landgo_shoot ()
+   __move_shoot()
+   __landgo()
+end
+
+function __move_shoot ()
+   -- Shoot while going somewhere
+   -- The difference with run_turret is that we pick a new enemy in this one
+   if ai.hasturrets() then
+      enemy = ai.getenemy()
+      if enemy ~= nil then
+         ai.weapset( 3 )
+         ai.settarget( enemy )
+         ai.shoot( true )
+      end
+   end
+end
+
 
 --[[
 -- Attempts to land on a planet.
 --]]
-function land ()
-
+function __choose_land_target ()
    -- Only want to land once, prevents guys from never leaving.
    if mem.landed then
       ai.poptask()
@@ -251,7 +376,7 @@ function land ()
    end
 
    -- Set target if necessary
-   local target = ai.target()
+   local target = ai.taskdata()
    if target ~= nil then
       mem.land = target
    end
@@ -264,18 +389,21 @@ function land ()
 
       -- Bail out if no valid planet could be found.
       else
-         warn(string.format("Pilot '%s' tried to land with no landable assets!",
+         warn(string.format(_("Pilot '%s' tried to land with no landable assets!"),
                ai.pilot():name()))
          ai.poptask()
          return
       end
    end
+end
 
+function land ()
+   __choose_land_target ()
    ai.pushsubtask( "__landgo" )
 end
 function __landgo ()
    local target   = mem.land
-   
+
    local dist     = ai.dist( target )
    local bdist    = ai.minbrakedist()
 
@@ -304,6 +432,8 @@ function __landstop ()
       if not ai.land() then
          ai.popsubtask()
       else
+         local p = ai.pilot()
+         p:msg(p:followers(), "land", mem.land)
          ai.poptask() -- Done, pop task
       end
    end
@@ -314,14 +444,38 @@ end
 -- Attempts to run away from the target.
 --]]
 function runaway ()
-   if __run_target() then return end
+
+   -- Target must exist
+   local target = ai.taskdata()
+   if not target:exists() then
+      ai.poptask()
+      return
+   end
 
    -- See if there's a target to use when running
    local t = ai.nearhyptarget()
-   if t == nil then
+   local p = ai.nearestplanet()
+
+   if p == nil and t == nil then
       ai.pushsubtask( "__run_target" )
+   elseif p == nil then
+      local pos = ai.sethyptarget(t)
+      ai.pushsubtask( "__run_hyp", pos )
+   elseif t == nil then
+      mem.land = p:pos()
+      ai.pushsubtask( "__landgo" )
    else
-      ai.pushsubtask( "__run_hyp", t )
+      -- find which one is the closest
+      local pilpos = ai.pilot():pos()
+      local modt = vec2.mod(t:pos()-pilpos)
+      local modp = vec2.mod(p:pos()-pilpos)
+      if modt < modp then
+         local pos = ai.sethyptarget(t)
+         ai.pushsubtask( "__run_hyp", pos )
+      else
+         mem.land = p:pos()
+         ai.pushsubtask( "__run_landgo" )
+      end
    end
 end
 function runaway_nojump ()
@@ -329,7 +483,8 @@ function runaway_nojump ()
    __run_turret()
 end
 function __run_target ()
-   local target = ai.target()
+   local target = ai.taskdata()
+   local plt    = ai.pilot()
 
    -- Target must exist
    if not target:exists() then
@@ -340,11 +495,20 @@ function __run_target ()
    -- Good to set the target for distress calls
    ai.settarget( target )
 
-   local dir   = ai.face(target, true)
-   ai.accel()
+   -- See whether we have a chance to outrun the attacker
+   local relspe = plt:stats().speed_max/target:stats().speed_max
+   if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile() and (not ai.hasafterburner()) then
+      -- Pilot is agile, but too slow to outrun the enemy: dodge
+      local dir = ai.dir(target) + 180      -- Reverse (run away)
+      if dir > 180 then dir = dir - 360 end -- Because of periodicity
+      __zigzag(dir, 70)
+   else
+      ai.face(target, true)
+      ai.accel()
+   end
 
-   -- Afterburner handling.         
-   if ai.hasafterburner() and ai.pilot():energy() > 10 then
+   -- Afterburner handling.
+   if ai.hasafterburner() and plt:energy() > 10 then
       ai.weapset( 8, true )
    end
 
@@ -352,14 +516,14 @@ function __run_target ()
 end
 function __run_turret ()
    -- Shoot the target
-   local target   = ai.target()
+   local target   = ai.taskdata()
    if target:exists() then
       ai.hostile(target)
       ai.settarget( target )
       local dist    = ai.dist(target)
       -- See if we have some turret to use
       if ai.hasturrets() then
-         if dist < ai.getweaprange(true) then
+         if dist < ai.getweaprange(3) then
             ai.weapset( 3 )
             ai.shoot( true )
          end
@@ -371,29 +535,52 @@ function __run_hyp ()
    __run_turret()
 
    -- Go towards jump
-   local jump     = ai.subtarget()
+   local jump     = ai.subtaskdata()
    local jdir
    local bdist    = ai.minbrakedist()
    local jdist    = ai.dist(jump)
+   local plt      = ai.pilot()
 
-   if jdist > 3*bdist and ai.pilot():stats().mass < 600 then
-      jdir = ai.careful_face(jump)
-   else --Heavy ships should rush to jump point
-      jdir = ai.face(jump)
+   if jdist > bdist then
+
+      local dozigzag = false
+      if ai.taskdata():exists() then
+         local relspe = plt:stats().speed_max/ai.taskdata():stats().speed_max
+         if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile() and
+            (not ai.hasafterburner()) and jdist > 3*bdist then
+            dozigzag = true
+         end
+      end
+
+      if dozigzag then
+         -- Pilot is agile, but too slow to outrun the enemy: dodge
+         local dir = ai.dir(jump)
+         __zigzag(dir, 70)
+      else
+         if jdist > 3*bdist and plt:stats().mass < 600 then
+            jdir = ai.careful_face(jump)
+         else --Heavy ships should rush to jump point
+            jdir = ai.face( jump, nil, true )
+         end
+         if jdir < 10 then
+            ai.accel()
+         end
+      end
+   else
+      if ai.instantJump() then
+         ai.pushsubtask( "__hyp_jump" )
+      else
+         ai.pushsubtask( "__run_hypbrake" )
+      end
    end
-   
+
    --Afterburner: activate while far away from jump
-   if ai.hasafterburner() and ai.pilot():energy() > 10 then
+   if ai.hasafterburner() and plt:energy() > 10 then
       if jdist > 3 * bdist then
          ai.weapset( 8, true )
       else
          ai.weapset( 8, false )
       end
-   end
-   if jdist > bdist and jdir < 10 then       
-      ai.accel()
-   elseif jdist < bdist then
-      ai.pushsubtask( "__run_hypbrake" )
    end
 end
 function __run_hypbrake ()
@@ -407,29 +594,82 @@ function __run_hypbrake ()
    end
 end
 
+function __run_landgo ()
+   -- Shoot the target
+   __run_turret()
+
+   local target   = mem.land
+   local dist     = ai.dist( target )
+   local bdist    = ai.minbrakedist()
+   local plt      = ai.pilot()
+
+   if dist < bdist then -- Need to start braking
+      ai.pushsubtask( "__landstop" )
+   else
+
+      local dozigzag = false
+      if ai.taskdata():exists() then
+         local relspe = plt:stats().speed_max/ai.taskdata():stats().speed_max
+         if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile() and
+            (not ai.hasafterburner()) and dist > 3*bdist then
+            dozigzag = true
+         end
+      end
+
+      if dozigzag then
+         -- Pilot is agile, but too slow to outrun the enemy: dodge
+         local dir = ai.dir(target)
+         __zigzag(dir, 70)
+      else
+
+         -- 2 methods depending on mem.careful
+         local dir
+         if not mem.careful or dist < 3*bdist then
+            dir = ai.face( target )
+         else
+            dir = ai.careful_face( target )
+         end
+         if dir < 10 then
+            ai.accel()
+         end
+      end
+   end
+
+   --Afterburner
+   if ai.hasafterburner() and plt:energy() > 10 then
+      if dist > 3 * bdist then
+         ai.weapset( 8, true )
+      else
+         ai.weapset( 8, false )
+      end
+   end
+
+end
+
 
 --[[
 -- Starts heading away to try to hyperspace.
 --]]
 function hyperspace ()
-   local target = ai.target()
+   local target = ai.taskdata()
    if target == nil then
       target = ai.rndhyptarget()
       if target == nil then
          return
       end
    end
-   ai.pushsubtask( "__hyp_approach", target )
+   local pos = ai.sethyptarget(target)
+   ai.pushsubtask( "__hyp_approach", pos )
 end
 function __hyp_approach ()
-   local target   = ai.subtarget()
+   local target   = ai.subtaskdata()
    local dir
    local dist     = ai.dist( target )
    local bdist    = ai.minbrakedist()
 
    -- 2 methods for dir
    if not mem.careful or dist < 3*bdist then
-      dir = ai.face( target )
+      dir = ai.face( target, nil, true )
    else
       dir = ai.careful_face( target )
    end
@@ -439,7 +679,11 @@ function __hyp_approach ()
       ai.accel()
    -- Need to start braking
    elseif dist < bdist then
-      ai.pushsubtask("__hyp_brake")
+      if ai.instantJump() then
+         ai.pushsubtask("__hyp_jump")
+      else
+         ai.pushsubtask("__hyp_brake")
+      end
    end
 end
 function __hyp_brake ()
@@ -452,10 +696,10 @@ function __hyp_brake ()
 end
 function __hyp_jump ()
    if ai.hyperspace() == nil then
-      ai.poptask()
-   else
-      ai.popsubtask()
+      local p = ai.pilot()
+      p:msg(p:followers(), "hyperspace", ai.nearhyptarget())
    end
+   ai.popsubtask() -- Keep the task even if succeeding in case pilot gets pushed away.
 end
 
 
@@ -463,7 +707,7 @@ end
 -- Boards the target
 --]]
 function board ()
-   local target = ai.target()
+   local target = ai.taskdata()
 
    -- Make sure pilot exists
    if not target:exists() then
@@ -496,7 +740,7 @@ end
 -- Attempts to brake on the target.
 --]]
 function __boardstop ()
-   target = ai.target()
+   target = ai.taskdata()
 
    -- make sure pilot exists
    if not target:exists() then
@@ -539,7 +783,7 @@ end
 function refuel ()
 
    -- Get the target
-   local target = ai.target()
+   local target = ai.taskdata()
 
    -- make sure pilot exists
    if not target:exists() then
@@ -571,7 +815,7 @@ end
 -- Attempts to brake on the target.
 --]]
 function __refuelstop ()
-   local target = ai.target()
+   local target = ai.taskdata()
 
    -- make sure pilot exists
    if not target:exists() then
@@ -583,12 +827,13 @@ function __refuelstop ()
    ai.settarget(target)
 
    -- See if finished refueling
-   if not ai.pilot():flags().refueling then
-      ai.pilot():comm(target, "Finished fuel transfer.")
+   local p = ai.pilot()
+   if not p:flags().refueling then
+      p:comm(target, _("Finished fuel transfer."))
       ai.poptask()
 
       -- Untarget
-      ai.settarget( ai.pilot() )
+      ai.settarget( p )
       return
    end
 
@@ -604,5 +849,200 @@ function __refuelstop ()
    if ai.isstopped() then
       ai.popsubtask()
    end
+end
+
+--[[
+-- Mines an asteroid
+--]]
+function mine ()
+   ai.weapset( 1 )
+   local fieldNast = ai.taskdata()
+   local field     = fieldNast[1]
+   local ast       = fieldNast[2]
+   local p         = ai.pilot()
+   local wrange    = ai.getweaprange(nil, 0)
+   local erange    = 100
+   local trange    = math.min( math.max( erange, wrange * 3 / 4 ), wrange )
+   local mbd       = ai.minbrakedist()
+
+   -- See if there's a gatherable; if so, pop this task and gather instead
+   local gat = ai.getgatherable( wrange )
+   if gat ~= nil and ai.gatherablepos( gat ) ~= nil then
+      ai.poptask()
+      ai.pushtask("gather")
+      return
+   end
+
+   ai.setasterotarget( field, ast )
+
+   local target, vel = system.asteroidPos( field, ast )
+
+   local dist, angle = vec2.polar( p:pos() - target )
+
+   -- First task : place the ship close to the asteroid
+   local goal = ai.face_accurate( target, vel, trange, angle, mem.Kp, mem.Kd )
+
+   local dir  = ai.face(goal)
+   local mod  = ai.dist(goal)
+
+   if dir < 10 and mod > mbd then
+      ai.accel()
+   end
+
+   local relpos = vec2.add( p:pos(), vec2.mul(target,-1) ):mod()
+   local relvel = vec2.add( p:vel(), vec2.mul(vel,-1) ):mod()
+
+   if relpos < wrange and relvel < 10 then
+      ai.pushsubtask("__killasteroid")
+   end
+end
+function __killasteroid ()
+   local fieldNast = ai.taskdata()
+   local field     = fieldNast[1]
+   local ast       = fieldNast[2]
+   local wrange    = ai.getweaprange()
+
+   local target = system.asteroidPos( field, ast )
+   local dir  = ai.face(target)
+
+    -- See if there's a gatherable; if so, pop this task and gather instead
+   local gat = ai.getgatherable( wrange )
+   if gat ~= nil and ai.gatherablepos( gat ) ~= nil then
+      ai.poptask()
+      ai.pushtask("gather")
+      return
+   end
+
+   -- Have to start over if we're out of range for some reason
+   if ai.dist(target) > wrange then
+      ai.poptask()
+      return
+   end
+
+   -- Second task : destroy it
+   if dir < 8 then
+      ai.weapset( 1 )
+      ai.shoot()
+      ai.shoot(true)
+   end
+   if system.asteroidDestroyed( field, ast ) then
+      ai.poptask()
+      -- Last task : gather
+      ai.pushtask("gather")
+   end
+end
+
+--[[
+-- Attempts to seek and gather gatherables
+--]]
+function gather ()
+   if ai.pilot():cargoFree() == 0 then --No more cargo
+      ai.poptask()
+      return
+   end
+
+   local gat = ai.getgatherable( mem.gather_range )
+
+   if gat == nil then -- Nothing to gather
+      ai.poptask()
+      return
+   end
+
+   local target, vel = ai.gatherablepos( gat )
+   if target == nil then -- gatherable disappeared
+      ai.poptask()
+      return
+   end
+
+   local goal = ai.face_accurate( target, vel, 0, 0, mem.Kp, mem.Kd )
+
+   local dir  = ai.face(goal)
+   local mod  = ai.dist(goal)
+
+   if dir < 10 and mod > 100 then
+      ai.accel()
+   end
+end
+
+
+-- Holds position
+function hold ()
+   if not ai.isstopped() then
+      ai.brake()
+   else
+      ai.stop()
+   end
+end
+
+
+-- Flies back and tries to either dock or stops when back at leader
+function flyback( dock )
+   local target = ai.pilot():leader()
+   if not target or not target:exists() then
+      ai.poptask()
+      return
+   end
+   local goal = ai.follow_accurate(target, 0, 0, mem.Kp, mem.Kd)
+
+   local dir  = ai.face( goal )
+   local dist = ai.dist( goal )
+
+   if dist > 300 then
+      if dir < 10 then
+         ai.accel()
+      end
+   else -- Time to dock
+      if dock then
+         ai.dock(target)
+      else
+         ai.poptask()
+      end
+   end
+end
+
+
+--[[
+-- Checks to see if a pilot is visible
+-- Assumes the pilot exists!
+--]]
+function __check_seeable( target )
+   local self   = ai.pilot()
+   if not target:flags().invisible then
+      -- Pilot still sees the target: continue attack
+      if self:inrange( target ) then
+         return true
+      end
+
+      -- Pilots on manual control (in missions or events) never loose target
+      -- /!\ This is not necessary desirable all the time /!\
+      -- TODO: there should probably be a flag settable to allow to outwit pilots under manual control
+      if self:flags().manualcontrol then
+         return true
+      end
+   end
+   return false
+end
+
+
+--[[
+-- Aborts current task and tries to see what happened to the target.
+--]]
+function __investigate_target( target )
+   local p = ai.pilot()
+   ai.settarget(p) -- Un-target
+   ai.poptask()
+   -- Guess the pilot will be randomly between the current position and the
+   -- future position if they go in the same direction with the same velocity
+   local ttl = ai.dist(target) / p:stats().speed_max
+   local fpos = target:pos() + vec2.newP( target:vel()*ttl, target:dir() ) * rnd.rnd()
+   ai.pushtask("inspect_moveto", fpos )
+end
+
+
+--[[
+-- Just loitering around.
+--]]
+function loiter( pos )
+   __moveto_nobrake( pos )
 end
 

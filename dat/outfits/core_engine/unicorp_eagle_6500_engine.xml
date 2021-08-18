@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Unicorp Eagle 6500 Engine">
  <general>
   <typename>Core Systems (Engine)</typename>
@@ -7,15 +7,15 @@
   <priority>7</priority>
   <mass>65</mass>
   <price>400000</price>
-  <description>The Eagle 6500 is Unicorp's largest and highest-capacity engine, though perhaps not a flagship model. Its relatively low price makes it attractive to captains on a tight budget, if their performance demands aren't too great.</description>
-  <gfx_store>engine02</gfx_store>
+  <description>The Eagle 6500 is Unicorp's largest and highest-capacity engine, though perhaps not a flagship model. Its relatively low price makes it attractive to captains on a tight budget if their performance demands aren't too great, and its efficiency makes it an attractive option for heavy cruisers that need as much battery power for their weapons as possible.</description>
+  <gfx_store>unicorp_engine_l.webp</gfx_store>
  </general>
  <specific type="modification">
   <thrust>37</thrust>
   <turn>45</turn>
   <speed>65</speed>
   <fuel>1200</fuel>
-  <energy_usage>40</energy_usage>
+  <energy_regen_malus>30</energy_regen_malus>
   <engine_limit>6500</engine_limit>
  </specific>
 </outfit>

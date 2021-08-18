@@ -5,8 +5,8 @@
   <y>4092.797355</y>
  </pos>
  <GFX>
-  <space>moon-M00.png</space>
-  <exterior>station04.png</exterior>
+  <space>moon-M00.webp</space>
+  <exterior>station04.webp</exterior>
  </GFX>
  <presence>
   <faction>Dvaered</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>M</class>
   <population>20000</population>
-  <hide>0.500000</hide>
   <services>
    <land/>
    <refuel/>

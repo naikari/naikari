@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ship name="Raglan Outpost">
+ <base_type>Raglan Outpost</base_type>
+ <gfx_space sx="1" sy="1">planet/space/station-battlestation.webp</gfx_space>
+ <gfx_comm>planet/exterior/station05.webp</gfx_comm>
+ <GUI>brushed</GUI>
+ <sound>engine</sound>
+ <class>Station</class>
+ <rdr_scale>5</rdr_scale>
+ <price>1</price>
+ <time_mod>1</time_mod>
+ <fabricator>N/A</fabricator>
+ <description>This is a base. It's for AI use only. Don't buy it. Seriously.</description>
+ <mission />
+ <movement>
+  <turn>100</turn>
+ </movement>
+ <health>
+  <absorb>80</absorb>
+  <shield>100</shield>
+  <shield_regen>1</shield_regen>
+  <armour>7000</armour>
+  <armour_regen>10</armour_regen>
+  <energy>10000</energy>
+  <energy_regen>100</energy_regen>
+ </health>
+ <characteristics>
+  <cpu>500</cpu>
+  <mass>30000</mass>
+  <fuel>1</fuel>
+  <fuel_consumption>1</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>3000</rdr_jump_range>
+  <cargo>5000</cargo>
+ </characteristics>
+ <slots/>
+</ship>

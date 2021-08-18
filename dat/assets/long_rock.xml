@@ -5,8 +5,8 @@
   <y>3309.834808</y>
  </pos>
  <GFX>
-  <space>K00.png</space>
-  <exterior>mining5.png</exterior>
+  <space>K00.webp</space>
+  <exterior>mining5.webp</exterior>
  </GFX>
  <presence>
   <faction>Soromid</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>D</class>
   <population>100000</population>
-  <hide>0.250000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
   </services>
   <commodities/>
   <description>Long Rock is a mining world, where the Soromid harvest most of the resources they need. Their thirst for raw materials is considerably small due to the semi-organic nature of their ships, but there is still a demand, and Long Rock is here to deliver.</description>

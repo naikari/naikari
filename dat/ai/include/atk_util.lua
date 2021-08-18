@@ -25,18 +25,85 @@ function _atk_keep_distance()
       ai.turn(1)
    elseif perp_distance > 0 and perp_distance < 50 then
       ai.turn(-1)
-   end    
+   end
+end
+
+--[[
+-- Tests if the target is seeable (even fuzzy). If no, try to go where it was last seen
+-- This is not supra-clean as we are not supposed to know [target:pos()]
+-- But the clean way would require to have stored the target position into memory
+-- This test should be put in any subtask of the attack task.
+--]]
+function _atk_check_seeable( target )
+   if __check_seeable( target ) then
+      return true
+   end
+   __investigate_target( target )
+end
+
+
+--[[
+-- Decides if zigzag is a good option
+--]]
+function _atk_decide_zz()
+   -- The situation is the following: we're out of range, facing the target,
+   -- going towards the target, and someone is shooting on us.
+
+   local target = ai.taskdata()
+   local pilot  = ai.pilot()
+   local range  = ai.getweaprange(3)
+   local dir = ai.idir(target)
+   local dist  = ai.dist( target )
+
+   local m, d1 = vec2.polar( pilot:vel() )
+   local m, d2 = vec2.polar( target:pos() - pilot:pos() )
+   local d = d1-d2
+
+   return ( (dist > (1.1*range)) and (ai.hasprojectile())
+           and (dir < 10) and (dir > -10) and (d < 10) and (d > -10) )
+end
+
+
+--[[
+-- Zig zags towards the target
+--]]
+function _atk_zigzag()
+   local target = ai.taskdata()
+   local range  = ai.getweaprange(3)
+
+   if not target or not target:exists() then
+      ai.poptask()
+      return
+   end
+
+   -- See if the enemy is still seeable
+   if not _atk_check_seeable( target ) then return end
+
+   -- Is there something to dodge?
+   if (not ai.hasprojectile()) then
+      ai.popsubtask()
+      return
+   end
+
+   local dist  = ai.dist( target )
+
+   -- Are we ready to shoot?
+   if dist < (1.1*range) then
+      ai.popsubtask()
+      return
+   end
+
+   local dir = ai.dir(ai.taskdata())
+   __zigzag(dir, 30)
 end
 
 
 --[[
 -- Common control stuff
 --]]
-function _atk_com_think ()
-   local target = ai.target()
-
+function _atk_com_think( target )
    -- make sure pilot exists
-   if not target:exists() then
+   if not target or not target:exists() then
       ai.poptask()
       return
    end
@@ -58,7 +125,7 @@ function _atk_com_think ()
       ai.poptask()
       return
    end
-   
+
    return target
 end
 

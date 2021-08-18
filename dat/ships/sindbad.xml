@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ship name="Sindbad">
+ <base_type>Sindbad</base_type>
+ <gfx_space sx="1" sy="1">planet/space/000.webp</gfx_space>
+ <gfx_comm>planet/exterior/station00.webp</gfx_comm>
+ <GUI>brushed</GUI>
+ <sound>engine</sound>
+ <class>Station</class>
+ <rdr_scale>5</rdr_scale>
+ <price>1</price>
+ <time_mod>1</time_mod>
+ <fabricator>N/A</fabricator>
+ <description>This is a base. It's for AI use only. Don't buy it. Seriously.</description>
+ <mission />
+ <movement>
+  <turn>100</turn>
+ </movement>
+ <health>
+  <absorb>80</absorb>
+  <shield>8000</shield>
+  <armour>20000</armour>
+  <energy>10000</energy>
+  <shield_regen>3.3</shield_regen>
+  <armour_regen>0.2</armour_regen>
+  <energy_regen>1000</energy_regen>
+ </health>
+ <characteristics>
+  <cpu>50000</cpu>
+  <mass>100000</mass>
+  <fuel>1</fuel>
+  <fuel_consumption>1</fuel_consumption>
+  <rdr_range>7500</rdr_range>
+  <rdr_jump_range>3000</rdr_jump_range>
+  <cargo>5000</cargo>
+ </characteristics>
+ <slots>
+  <weapon size="large" x="0" y="0" h="0">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="0" h="0">Base Ripper MK2</weapon>
+  <weapon size="large" x="50" y="0" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="-50" y="0" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="50" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="-40" h="5">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="0" h="30">Base Ripper MK2</weapon>
+  <weapon size="large" x="0" y="0" h="30">Base Ripper MK2</weapon>
+ </slots>
+</ship>

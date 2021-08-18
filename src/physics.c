@@ -4,15 +4,16 @@
 
 
 
-#include "physics.h"
+/** @cond */
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "naev.h"
-
-#include <stdlib.h>
-#include <stdio.h>
-#include "nstring.h"
+/** @endcond */
 
 #include "log.h"
+#include "nstring.h"
+#include "physics.h"
 
 
 /*
@@ -100,21 +101,6 @@ void vect_pset( Vector2d* v, const double mod, const double angle )
    v->angle = angle;
    v->x     = v->mod*cos(v->angle);
    v->y     = v->mod*sin(v->angle);
-}
-
-
-/**
- * @brief Copies vector src to dest.
- *
- *    @param dest Destination vector.
- *    @param src Vector to copy.
- */
-void vectcpy( Vector2d* dest, const Vector2d* src )
-{
-   dest->x     = src->x;
-   dest->y     = src->y;
-   dest->mod   = src->mod;
-   dest->angle = src->angle;
 }
 
 
@@ -295,6 +281,10 @@ static void solid_update_euler (Solid *obj, const double dt)
    px += vx*dt + 0.5*ax * dt*dt;
    py += vy*dt + 0.5*ay * dt*dt;
 
+   /* v = a*dt */
+   vx += ax*dt;
+   vy += ay*dt;
+
    /* Update position and velocity. */
    vect_cset( &obj->vel, vx, vy );
    vect_cset( &obj->pos, px, py );
@@ -401,7 +391,7 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    vect_cset( &obj->vel, vx, vy );
    vect_cset( &obj->pos, px, py );
 
-   /* Sanity check. */
+   /* Validity check. */
    if (obj->dir >= 2.*M_PI)
       obj->dir -= 2.*M_PI;
    else if (obj->dir < 0.)
@@ -449,13 +439,13 @@ void solid_init( Solid* dest, const double mass, const double dir,
    if (vel == NULL)
       vectnull( &dest->vel );
    else
-      vectcpy( &dest->vel, vel );
+      dest->vel = *vel;
 
    /* Set position. */
    if (pos == NULL)
       vectnull( &dest->pos );
    else
-      vectcpy( &dest->pos, pos);
+      dest->pos = *pos;
 
    /* Misc. */
    dest->speed_max = -1.; /* Negative is invalid. */
@@ -471,7 +461,7 @@ void solid_init( Solid* dest, const double mass, const double dir,
          break;
 
       default:
-         WARN("Solid initialization did not specify correct update function!");
+         WARN(_("Solid initialization did not specify correct update function!"));
          dest->update = solid_update_rk4;
          break;
    }
@@ -492,7 +482,7 @@ Solid* solid_create( const double mass, const double dir,
 {
    Solid* dyn = malloc(sizeof(Solid));
    if (dyn==NULL)
-      ERR("Out of Memory");
+      ERR(_("Out of Memory"));
    solid_init( dyn, mass, dir, pos, vel, update );
    return dyn;
 }

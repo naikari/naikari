@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Spearhead Missile">
+ <general>
+  <license>Medium Weapon License</license>
+  <mass>2</mass>
+  <price>0</price>
+  <description>The Spearhead class ion missile is one of Enygma Systems' more specialized pieces of hardware. Unlike conventional missiles, it primarily targets shielding; it uses a special energy discharge warhead that is quite effective at disrupting shields. The Spearhead's limited agility make it primarily suited to fighting corvette class ships or heavier.</description>
+  <gfx_store>placeholder.webp</gfx_store>
+ </general>
+ <specific type="ammo">
+  <gfx>headhunter.png</gfx>
+  <sound>missile</sound>
+  <sound_hit>medexp0</sound_hit>
+  <spfx_shield>ExpM</spfx_shield>
+  <spfx_armour>ExpM</spfx_armour>
+  <trail_generator x="-7">fire-missile</trail_generator>
+  <duration blowup="armour">7</duration>
+  <thrust>200</thrust>
+  <turn>30</turn>
+  <speed>300</speed>
+  <damage>
+   <type>ion</type>
+   <penetrate>36</penetrate>
+   <physical>200</physical>
+   <disable>10</disable>
+  </damage>
+  <ai>smart</ai>
+ </specific>
+</outfit>

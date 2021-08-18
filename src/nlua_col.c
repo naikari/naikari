@@ -8,15 +8,17 @@
  * @brief Handles colours.
  */
 
-#include "nlua_col.h"
 
-#include "naev.h"
-
+/** @cond */
 #include <lauxlib.h>
 
-#include "nlua.h"
-#include "nluadef.h"
+#include "naev.h"
+/** @endcond */
+
+#include "nlua_col.h"
+
 #include "log.h"
+#include "nluadef.h"
 
 
 /* Colour metatable methods. */
@@ -28,7 +30,9 @@ static int colL_hsv( lua_State *L );
 static int colL_setrgb( lua_State *L );
 static int colL_sethsv( lua_State *L );
 static int colL_setalpha( lua_State *L );
-static const luaL_reg colL_methods[] = {
+static int colL_linearToGamma( lua_State *L );
+static int colL_gammaToLinear( lua_State *L );
+static const luaL_Reg colL_methods[] = {
    { "__eq", colL_eq },
    { "new", colL_new },
    { "alpha", colL_alpha },
@@ -37,6 +41,8 @@ static const luaL_reg colL_methods[] = {
    { "setRGB", colL_setrgb },
    { "setHSV", colL_sethsv },
    { "setAlpha", colL_setalpha },
+   { "linearToGamma", colL_linearToGamma },
+   { "gammaToLinear", colL_gammaToLinear },
    {0,0}
 }; /**< Colour metatable methods. */
 
@@ -46,27 +52,12 @@ static const luaL_reg colL_methods[] = {
 /**
  * @brief Loads the colour library.
  *
- *    @param L State to load colour library into.
+ *    @param env Environment to load colour library into.
  *    @return 0 on success.
  */
-int nlua_loadCol( lua_State *L, int readonly )
+int nlua_loadCol( nlua_env env )
 {
-   if (readonly) /* Nothing is read only */
-      return 0;
-
-   /* Create the metatable */
-   luaL_newmetatable(L, COL_METATABLE);
-
-   /* Create the access table */
-   lua_pushvalue(L,-1);
-   lua_setfield(L,-2,"__index");
-
-   /* Register the values */
-   luaL_register(L, NULL, colL_methods);
-
-   /* Clean up. */
-   lua_setfield(L, LUA_GLOBALSINDEX, COL_METATABLE);
-
+   nlua_register(env, COL_METATABLE, colL_methods, 1);
    return 0;
 }
 
@@ -91,9 +82,9 @@ int nlua_loadCol( lua_State *L, int readonly )
  *    @param ind Index position to find the colour.
  *    @return Colour found at the index in the state.
  */
-LuaColour* lua_tocolour( lua_State *L, int ind )
+glColour* lua_tocolour( lua_State *L, int ind )
 {
-   return (LuaColour*) lua_touserdata(L,ind);
+   return (glColour*) lua_touserdata(L,ind);
 }
 /**
  * @brief Gets colour at index or raises error if there is no colour at index.
@@ -102,7 +93,7 @@ LuaColour* lua_tocolour( lua_State *L, int ind )
  *    @param ind Index position to find colour.
  *    @return Colour found at the index in the state.
  */
-LuaColour* luaL_checkcolour( lua_State *L, int ind )
+glColour* luaL_checkcolour( lua_State *L, int ind )
 {
    if (lua_iscolour(L,ind))
       return lua_tocolour(L,ind);
@@ -116,10 +107,10 @@ LuaColour* luaL_checkcolour( lua_State *L, int ind )
  *    @param colour Colour to push.
  *    @return Newly pushed colour.
  */
-LuaColour* lua_pushcolour( lua_State *L, LuaColour colour )
+glColour* lua_pushcolour( lua_State *L, glColour colour )
 {
-   LuaColour *c;
-   c = (LuaColour*) lua_newuserdata(L, sizeof(LuaColour));
+   glColour *c;
+   c = (glColour*) lua_newuserdata(L, sizeof(glColour));
    *c = colour;
    luaL_getmetatable(L, COL_METATABLE);
    lua_setmetatable(L, -2);
@@ -152,17 +143,17 @@ int lua_iscolour( lua_State *L, int ind )
 /**
  * @brief Compares two colours to see if they are the same.
  *
- *    @luaparam c1 Colour 1 to compare.
- *    @luaparam c2 Colour 2 to compare.
- *    @luareturn true if both colours are the same.
- * @luafunc __eq( c1, c2 )
+ *    @luatparam Colour c1 Colour 1 to compare.
+ *    @luatparam Colour c2 Colour 2 to compare.
+ *    @luatreturn boolean true if both colours are the same.
+ * @luafunc __eq
  */
 static int colL_eq( lua_State *L )
 {
-   LuaColour *c1, *c2;
+   glColour *c1, *c2;
    c1 = luaL_checkcolour(L,1);
    c2 = luaL_checkcolour(L,2);
-   lua_pushboolean( L, (memcmp( &c1->col, &c2->col, sizeof(glColour) )==0) );
+   lua_pushboolean( L, (memcmp( c1, c2, sizeof(glColour) )==0) );
    return 1;
 }
 
@@ -176,50 +167,50 @@ static int colL_eq( lua_State *L )
  * @usage colour.new( 1., 0., 0. ) -- Creates a bright red colour
  * @usage colour.new( 1., 0., 0., 0.5 ) -- Creates a bright red colour with alpha 0.5
  *
- *    @luaparam r Red value of the colour.
- *    @luaparam g Green value of the colour.
- *    @luaparam b Blue value of the colour.
- *    @luaparam a Alpha value of the colour.
- *    @luareturn A newly created colour.
- * @luafunc new( r, g, b, a )
+ *    @luatparam number r Red value of the colour.
+ *    @luatparam number g Green value of the colour.
+ *    @luatparam number b Blue value of the colour.
+ *    @luatparam[opt=1.] number a Alpha value of the colour.
+ *    @luatreturn Colour A newly created colour.
+ * @luafunc new
  */
 static int colL_new( lua_State *L )
 {
-   const glColour *col;
-   LuaColour lc, *lc2;
+   glColour col;
+   const glColour *col2;
 
-   if (lua_gettop(L)==0) {
-      lc.col.r = lc.col.g = lc.col.b = lc.col.a = 1.;
+   NLUA_CHECKRW(L);
+
+   if (lua_gettop(L) <= 0) {
+      col.r = col.g = col.b = col.a = 1.;
    }
    else if (lua_isnumber(L,1)) {
-      lc.col.r = luaL_checknumber(L,1);
-      lc.col.g = luaL_checknumber(L,2);
-      lc.col.b = luaL_checknumber(L,3);
+      col.r = luaL_checknumber(L,1);
+      col.g = luaL_checknumber(L,2);
+      col.b = luaL_checknumber(L,3);
       if (lua_isnumber(L,4))
-         lc.col.a = luaL_checknumber(L,4);
+         col.a = luaL_checknumber(L,4);
       else
-         lc.col.a = 1.;
+         col.a = 1.;
    }
    else if (lua_isstring(L,1)) {
-      col = col_fromName( lua_tostring(L,1) );
-      if (col == NULL) {
-         NLUA_ERROR( L, "Colour '%s' does not exist!", lua_tostring(L,1) );
+      col2 = col_fromName( lua_tostring(L,1) );
+      if (col2 == NULL) {
+         NLUA_ERROR( L, _("Colour '%s' does not exist!"), lua_tostring(L,1) );
          return 0;
       }
-      memcpy( &lc.col, col, sizeof(glColour) );
+      col = *col2;
       if (lua_isnumber(L,2))
-         lc.col.a = luaL_checknumber(L,2);
+         col.a = luaL_checknumber(L,2);
       else
-         lc.col.a = 1.;
+         col.a = 1.;
    }
-   else if (lua_iscolour(L,1)) {
-      lc2 = lua_tocolour(L,1);
-      memcpy( &lc, lc2, sizeof(LuaColour) );
-   }
+   else if (lua_iscolour(L,1))
+      col = *lua_tocolour(L,1);
    else
       NLUA_INVALID_PARAMETER(L);
 
-   lua_pushcolour( L, lc );
+   lua_pushcolour( L, col );
    return 1;
 }
 
@@ -231,15 +222,15 @@ static int colL_new( lua_State *L )
  *
  * @usage colour_alpha = col:alpha()
  *
- *    @luaparam col Colour to get alpha of.
- *    @luareturn The alpha of the colour.
- * @luafunc alpha( col )
+ *    @luatparam Colour col Colour to get alpha of.
+ *    @luatreturn number The alpha of the colour.
+ * @luafunc alpha
  */
 static int colL_alpha( lua_State *L )
 {
-   LuaColour *lc;
-   lc = luaL_checkcolour(L,1);
-   lua_pushnumber( L, lc->col.a );
+   glColour *col;
+   col = luaL_checkcolour(L,1);
+   lua_pushnumber( L, col->a );
    return 1;
 }
 
@@ -251,17 +242,19 @@ static int colL_alpha( lua_State *L )
  *
  * @usage r,g,b = col:rgb()
  *
- *    @luaparam col Colour to get RGB values of.
- *    @luareturn The red, green and blue values of the colour.
- * @luafunc rgb( col )
+ *    @luatparam Colour col Colour to get RGB values of.
+ *    @luatreturn number The red value of the colour.
+ *    @luatreturn number The green value of the colour.
+ *    @luatreturn number The blue value of the colour.
+ * @luafunc rgb
  */
 static int colL_rgb( lua_State *L )
 {
-   LuaColour *lc;
-   lc = luaL_checkcolour(L,1);
-   lua_pushnumber( L, lc->col.r );
-   lua_pushnumber( L, lc->col.g );
-   lua_pushnumber( L, lc->col.b );
+   glColour *col;
+   col = luaL_checkcolour(L,1);
+   lua_pushnumber( L, col->r );
+   lua_pushnumber( L, col->g );
+   lua_pushnumber( L, col->b );
    return 3;
 }
 
@@ -273,16 +266,18 @@ static int colL_rgb( lua_State *L )
  *
  * @usage h,s,v = col:rgb()
  *
- *    @luaparam col Colour to get HSV values of.
- *    @luareturn The hue, saturation and value values of the colour.
- * @luafunc hsv( col )
+ *    @luatparam Colour col Colour to get HSV values of.
+ *    @luatreturn number The hue of the colour.
+ *    @luatreturn number The saturation of the colour.
+ *    @luatreturn number The value of the colour.
+ * @luafunc hsv
  */
 static int colL_hsv( lua_State *L )
 {
-   double h, s, v;
-   LuaColour *lc;
-   lc = luaL_checkcolour(L,1);
-   col_rgb2hsv( &h, &s, &v, lc->col.r, lc->col.g, lc->col.b );
+   float h, s, v;
+   glColour *col;
+   col = luaL_checkcolour(L,1);
+   col_rgb2hsv( &h, &s, &v, col->r, col->g, col->b );
    lua_pushnumber( L, h );
    lua_pushnumber( L, s );
    lua_pushnumber( L, v );
@@ -297,19 +292,20 @@ static int colL_hsv( lua_State *L )
  *
  * @usage col:setRGB( r, g, b )
  *
- *    @luaparam col Colour to set RGB values.
- *    @luaparam r Red value to set.
- *    @luaparam g Green value to set.
- *    @luaparam b Blue value to set.
- * @luafunc setRGB( col, r, g, b )
+ *    @luatparam Colour col Colour to set RGB values.
+ *    @luatparam number r Red value to set.
+ *    @luatparam number g Green value to set.
+ *    @luatparam number b Blue value to set.
+ * @luafunc setRGB
  */
 static int colL_setrgb( lua_State *L )
 {
-   LuaColour *lc;
-   lc          = luaL_checkcolour(L,1);
-   lc->col.r   = luaL_checknumber(L,2);
-   lc->col.g   = luaL_checknumber(L,3);
-   lc->col.b   = luaL_checknumber(L,4);
+   NLUA_CHECKRW(L);
+   glColour *col;
+   col     = luaL_checkcolour(L,1);
+   col->r  = luaL_checknumber(L,2);
+   col->g  = luaL_checknumber(L,3);
+   col->b  = luaL_checknumber(L,4);
    return 0;
 }
 
@@ -321,24 +317,22 @@ static int colL_setrgb( lua_State *L )
  *
  * @usage col:setHSV( h, s, v )
  *
- *    @luaparam col Colour to set HSV values.
- *    @luaparam h Hue value to set.
- *    @luaparam s Saturation value to set.
- *    @luaparam v Value to set.
- * @luafunc setHSV( col, h, s, v )
+ *    @luatparam Colour col Colour to set HSV values.
+ *    @luatparam number h Hue value to set.
+ *    @luatparam number s Saturation value to set.
+ *    @luatparam number v Value to set.
+ * @luafunc setHSV
  */
 static int colL_sethsv( lua_State *L )
 {
-   double r, g, b, h, s, v;
-   LuaColour *lc;
-   lc = luaL_checkcolour(L,1);
+   float h, s, v;
+   glColour *col;
+   NLUA_CHECKRW(L);
+   col = luaL_checkcolour(L,1);
    h  = luaL_checknumber(L,2);
    s  = luaL_checknumber(L,3);
    v  = luaL_checknumber(L,4);
-   col_hsv2rgb( &r, &g, &b,  h, s, v );
-   lc->col.r = r;
-   lc->col.g = g;
-   lc->col.b = b;
+   col_hsv2rgb( col, h, s, v );
    return 0;
 }
 
@@ -350,15 +344,71 @@ static int colL_sethsv( lua_State *L )
  *
  * @usage col:setAlpha( 0.5 ) -- Make colour half transparent
  *
- *    @luaparam col Colour to set alpha of.
- *    @luaparam alpha Alpha value to set.
- * @luafunc setAlpha( col, alpha )
+ *    @luatparam Colour col Colour to set alpha of.
+ *    @luatparam number alpha Alpha value to set.
+ * @luafunc setAlpha
  */
 static int colL_setalpha( lua_State *L )
 {
-   LuaColour *lc;
-   lc          = luaL_checkcolour(L,1);
-   lc->col.a   = luaL_checknumber(L,2);
+   glColour *col;
+   NLUA_CHECKRW(L);
+   col = luaL_checkcolour(L,1);
+   col->a = luaL_checknumber(L,2);
    return 0;
+}
+
+/*
+ * http://en.wikipedia.org/wiki/SRGB#The_forward_transformation_.28CIE_xyY_or_CIE_XYZ_to_sRGB.29
+ */
+static double linearToGamma( double x )
+{
+   if (x <= 0.0031308)
+      return x * 12.92;
+   return 1.055 * pow(x, 1.0 / 2.4) - 0.055;
+}
+/*
+ * http://en.wikipedia.org/wiki/SRGB#The_reverse_transformation
+ */
+static double gammaToLinear( double x )
+{
+   if (x <= 0.04045)
+      return x / 12.92;
+   return pow((x + 0.055) / 1.055, 2.4);
+}
+/**
+ * @brief Converts a colour from linear to gamma corrected.
+ *
+ *    @luatparam Colour col Colour to change from linear to gamma.
+ *    @luatreturn Colour Modified colour.
+ */
+static int colL_linearToGamma( lua_State *L )
+{
+   glColour *col = luaL_checkcolour(L,1);
+   glColour out;
+   out.r = linearToGamma( col->r );
+   out.g = linearToGamma( col->g );
+   out.b = linearToGamma( col->b );
+   out.a = col->a;
+   lua_pushcolour(L,out);
+   return 1;
+}
+
+
+/**
+ * @brief Converts a colour from gamma corrected to linear.
+ *
+ *    @luatparam Colour col Colour to change from gamma corrected to linear.
+ *    @luatreturn Colour Modified colour.
+ */
+static int colL_gammaToLinear( lua_State *L )
+{
+   glColour *col = luaL_checkcolour(L,1);
+   glColour out;
+   out.r = gammaToLinear( col->r );
+   out.g = gammaToLinear( col->g );
+   out.b = gammaToLinear( col->b );
+   out.a = col->a;
+   lua_pushcolour(L,out);
+   return 1;
 }
 

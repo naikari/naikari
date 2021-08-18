@@ -5,8 +5,8 @@
   <y>12825.307328</y>
  </pos>
  <GFX>
-  <space>moon-M02.png</space>
-  <exterior>oceanic2.png</exterior>
+  <space>moon-M02.webp</space>
+  <exterior>agriculture.webp</exterior>
  </GFX>
  <presence>
   <faction>Soromid</faction>
@@ -16,7 +16,6 @@
  <general>
   <class>M</class>
   <population>900000</population>
-  <hide>0.500000</hide>
   <services>
    <land/>
    <refuel/>

@@ -3,7 +3,6 @@
  <general>
   <radius>24806.250000</radius>
   <stars>500</stars>
-  <interference>0.000000</interference>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
@@ -19,17 +18,17 @@
   <asset>Sirou VI</asset>
   <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Civilian Standard</asset>
+  <asset>Virtual Independent Trader Area</asset>
+  <asset>Virtual Independent Trader Local</asset>
   <asset>Virtual Trader Area</asset>
-  <asset>Virtual Trader Local</asset>
+  <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
   <jump target="Gamma Polaris">
    <pos x="23612.088994" y="-23123.662452"/>
-   <hide>1.250000</hide>
   </jump>
   <jump target="Zemur">
    <pos x="-23291.414097" y="22730.093209"/>
-   <hide>1.250000</hide>
   </jump>
  </jumps>
 </ssys>

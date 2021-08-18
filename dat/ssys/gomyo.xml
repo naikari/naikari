@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ssys name="Gomyo">
+ <general>
+  <background>solarwind</background>
+  <radius>7000.000000</radius>
+  <stars>500</stars>
+  <nebula volatility="0.000000">0.000000</nebula>
+ </general>
+ <pos>
+  <x>970.833333</x>
+  <y>36.833333</y>
+ </pos>
+ <assets>
+  <asset>Gojo Shipyard</asset>
+  <asset>Virtual Civilian Standard</asset>
+  <asset>Virtual Miner Local</asset>
+  <asset>Wakomi</asset>
+ </assets>
+ <jumps>
+  <jump target="Hypergate Zone">
+   <autopos/>
+   <longrange/>
+  </jump>
+ </jumps>
+ <asteroids>
+  <asteroid>
+   <type>default</type>
+   <type>massive</type>
+   <type>golden</type>
+   <type>diamond</type>
+   <type>liquid</type>
+   <radius>2000.000000</radius>
+   <pos x="3000.000000" y="1500.000000"/>
+   <density>1.000000</density>
+  </asteroid>
+ </asteroids>
+</ssys>

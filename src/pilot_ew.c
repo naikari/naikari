@@ -10,117 +10,18 @@
  */
 
 
-#include "pilot.h"
 
-#include "naev.h"
-
+/** @cond */
 #include <math.h>
 
+#include "naev.h"
+/** @endcond */
+
 #include "log.h"
-#include "space.h"
+#include "pilot.h"
 #include "player.h"
+#include "space.h"
 
-static double sensor_curRange    = 0.; /**< Current base sensor range, used to calculate
-                                         what is in range and what isn't. */
-
-#define EVASION_SCALE        1.3225 /**< 1.15 squared. Ensures that ships have higher evasion than hide. */
-#define SENSOR_DEFAULT_RANGE 7500   /**< The default sensor range for all ships. */
-
-/**
- * @brief Updates the pilot's static electronic warfare properties.
- *
- *    @param p Pilot to update.
- */
-void pilot_ewUpdateStatic( Pilot *p )
-{
-   /*
-    * Unlike the other values, heat isn't squared. The ew_hide formula is thus
-    * equivalent to: ew_base_hide * ew_mass * sqrt(ew_heat)
-    */
-   p->ew_mass     = pow2( pilot_ewMass( p->solid->mass ) );
-   p->ew_heat     = pilot_ewHeat( p->heat_T );
-   p->ew_hide     = p->ew_base_hide * p->ew_mass * p->ew_heat;
-   p->ew_evasion  = p->ew_hide * EVASION_SCALE;
-}
-
-
-/**
- * @brief Updates the pilot's dynamic electronic warfare properties.
- *
- *    @param p Pilot to update.
- */
-void pilot_ewUpdateDynamic( Pilot *p )
-{
-   /* Update hide. */
-   p->ew_heat     = pilot_ewHeat( p->heat_T );
-   p->ew_hide     = p->ew_base_hide * p->ew_mass * p->ew_heat;
-
-   /* Update evasion. */
-   p->ew_movement = pilot_ewMovement( VMOD(p->solid->vel) );
-   p->ew_evasion  = p->ew_hide * EVASION_SCALE;
-}
-
-
-/**
- * @brief Gets the electronic warfare movement modifier for a given velocity.
- *
- *    @param vmod Velocity to get electronic warfare movement modifier of.
- *    @return The electronic warfare movement modifier.
- */
-double pilot_ewMovement( double vmod )
-{
-   return 1. + vmod / 100.;
-}
-
-
-/**
- * @brief Gets the electronic warfare heat modifier for a given temperature.
- *
- *    @param T Temperature of the ship.
- *    @return The electronic warfare heat modifier.
- */
-double pilot_ewHeat( double T )
-{
-   return 1. - 0.001 * (T - CONST_SPACE_STAR_TEMP);
-}
-
-
-/**
- * @brief Gets the electronic warfare mass modifier for a given mass.
- *
- *    @param mass Mass to get the electronic warfare mass modifier of.
- *    @return The electronic warfare mass modifier.
- */
-double pilot_ewMass( double mass )
-{
-   return 1. / (.3 + sqrt(mass) / 30. );
-}
-
-
-/**
- * @brief Updates the system's base sensor range.
- */
-void pilot_updateSensorRange (void)
-{
-   /* Adjust sensor range based on system interference. */
-   /* See: http://www.wolframalpha.com/input/?i=y+%3D+7500+%2F+%28%28x+%2B+200%29+%2F+200%29+from+x%3D0+to+1000 */
-   sensor_curRange = SENSOR_DEFAULT_RANGE / ((cur_system->interference + 200) / 200.);
-
-   /* Speeds up calculations as we compare it against vectors later on
-    * and we want to avoid actually calculating the sqrt(). */
-   sensor_curRange = pow2(sensor_curRange);
-}
-
-
-/**
- * @brief Returns the default sensor range for the current system.
- *
- *    @return Sensor range.
- */
-double pilot_sensorRange( void )
-{
-   return sensor_curRange;
-}
 
 
 /**
@@ -136,9 +37,9 @@ int pilot_inRange( const Pilot *p, double x, double y )
    double d, sense;
 
    /* Get distance. */
-   d = pow2(x-p->solid->pos.x) + pow2(y-p->solid->pos.y);
+   d = hypot(x - p->solid->pos.x, y - p->solid->pos.y);
 
-   sense = sensor_curRange * p->ew_detect;
+   sense = p->rdr_range * cur_system->rdr_range_mod;
    if (d < sense)
       return 1;
 
@@ -151,25 +52,32 @@ int pilot_inRange( const Pilot *p, double x, double y )
  *
  *    @param p Pilot who is trying to check to see if other is in sensor range.
  *    @param target Target of p to check to see if is in sensor range.
+ *    @param[out] dist Distance of the two pilots. Set to NULL if you're not interested.
  *    @return 1 if they are in range, 0 if they aren't and -1 if they are detected fuzzily.
  */
-int pilot_inRangePilot( const Pilot *p, const Pilot *target )
+int pilot_inRangePilot( const Pilot *p, const Pilot *target, double *dist)
 {
-   double d, sense;
+   double d, sense, tempmod;
+
+   /* Get distance. */
+   d = vect_dist(&p->solid->pos, &target->solid->pos);
+   if (dist != NULL)
+      *dist = d;
 
    /* Special case player or omni-visible. */
    if ((pilot_isPlayer(p) && pilot_isFlag(target, PILOT_VISPLAYER)) ||
          pilot_isFlag(target, PILOT_VISIBLE) ||
          target->parent == p->id)
       return 1;
+   
+   tempmod = (1 - ((target->heat_T-CONST_SPACE_STAR_TEMP)
+            / (target->heat_C-CONST_SPACE_STAR_TEMP)));
 
-   /* Get distance. */
-   d = vect_dist2( &p->solid->pos, &target->solid->pos );
-
-   sense = sensor_curRange * p->ew_detect;
-   if (d * target->ew_evasion < sense)
+   sense = (p->rdr_range * cur_system->rdr_range_mod
+         * target->stats.rdr_enemy_range_mod * tempmod);
+   if (d < sense)
       return 1;
-   else if  (d * target->ew_hide < sense)
+   else if (d < sense * 1.1)
       return -1;
 
    return 0;
@@ -190,32 +98,66 @@ int pilot_inRangePlanet( const Pilot *p, int target )
    double sense;
 
    /* pilot must exist */
-   if ( p == NULL )
+   if (p == NULL)
       return 0;
 
    /* Get the planet. */
    pnt = cur_system->planets[target];
 
    /* target must not be virtual */
-   if ( !pnt->real )
+   if (!pnt->real)
       return 0;
 
-   sense = sensor_curRange * p->ew_detect;
-
    /* Get distance. */
-   d = vect_dist2( &p->solid->pos, &pnt->pos );
+   d = vect_dist(&p->solid->pos, &pnt->pos);
 
-   if (d * pnt->hide < sense )
+   sense = p->rdr_range * cur_system->rdr_range_mod * pnt->rdr_range_mod;
+   if (d < sense)
       return 1;
 
    return 0;
 }
 
+
+/**
+ * @brief Check to see if an asteroid is in sensor range of the pilot.
+ *
+ *    @param p Pilot who is trying to check to see if the asteroid is in sensor range.
+ *    @param ast Asteroid to see if is in sensor range.
+ *    @param fie Field the Asteroid belongs to to see if is in sensor range.
+ *    @return 1 if they are in range, 0 if they aren't.
+ */
+int pilot_inRangeAsteroid( const Pilot *p, int ast, int fie )
+{
+   double d;
+   Asteroid *as;
+   AsteroidAnchor *f;
+   double sense;
+
+   /* pilot must exist */
+   if (p == NULL)
+      return 0;
+
+   /* Get the asteroid. */
+   f = &cur_system->asteroids[fie];
+   as = &f->asteroids[ast];
+
+   /* Get distance. */
+   d = vect_dist(&p->solid->pos, &as->pos);
+
+   sense = p->rdr_range * cur_system->rdr_range_mod;
+   if (d < sense)
+      return 1;
+
+   return 0;
+}
+
+
 /**
  * @brief Check to see if a jump point is in sensor range of the pilot.
  *
  *    @param p Pilot who is trying to check to see if the jump point is in sensor range.
- *    @param target Jump point to see if is in sensor range.
+ *    @param i target Jump point to see if is in sensor range.
  *    @return 1 if they are in range, 0 if they aren't.
  */
 int pilot_inRangeJump( const Pilot *p, int i )
@@ -223,10 +165,9 @@ int pilot_inRangeJump( const Pilot *p, int i )
    double d;
    JumpPoint *jp;
    double sense;
-   double hide;
 
    /* pilot must exist */
-   if ( p == NULL )
+   if (p == NULL)
       return 0;
 
    /* Get the jump point. */
@@ -236,42 +177,55 @@ int pilot_inRangeJump( const Pilot *p, int i )
    if (jp_isFlag(jp, JP_EXITONLY))
       return 0;
 
-   /* Handle hidden jumps separately, as they use a special range parameter. */
+   /* We don't want hidden jumps. */
    if (jp_isFlag(jp, JP_HIDDEN))
-      sense = pow(p->stats.misc_hidden_jump_detect, 2);
-   else
-      sense = sensor_curRange * p->ew_jump_detect;
+      return 0;
 
-   hide = jp->hide;
+   /* Immediate success if express. */
+   if (jp_isFlag(jp, JP_EXPRESS))
+      return 1;
 
    /* Get distance. */
-   d = vect_dist2( &p->solid->pos, &jp->pos );
+   d = vect_dist(&p->solid->pos, &jp->pos);
 
-   if (d * hide < sense)
+   sense = p->rdr_jump_range * cur_system->rdr_range_mod * jp->rdr_range_mod;
+   if (d < sense)
       return 1;
 
    return 0;
 }
 
+
 /**
- * @brief Calculates the weapon lead (1. is 100%, 0. is 0%)..
+ * @brief Calculates the weapon lead (1. is 100%, 0. is 0%).
  *
  *    @param p Pilot tracking.
  *    @param t Pilot being tracked.
- *    @param track Track limit of the weapon.
- *    @return The lead angle of the weapon.
+ *    @param track_optimal Optimal tracking distance.
+ *    @param track_max Maximum tracking distance.
  */
-double pilot_ewWeaponTrack( const Pilot *p, const Pilot *t, double track )
+double pilot_weaponTrack(
+      const Pilot *p, const Pilot *t, double track_optimal, double track_max )
 {
-   double limit, lead;
+   double d, sense, tempmod;
 
-   limit = track * p->ew_detect;
-   if (t->ew_evasion * t->ew_movement < limit)
-      lead = 1.;
-   else
-      lead = MAX( 0., 1. - 0.5*((t->ew_evasion  * t->ew_movement)/limit - 1.));
-   return lead;
+   /* pilot must exist */
+   if ((p == NULL) || (t == NULL))
+      return 0.;
+
+   d = vect_dist(&p->solid->pos, &t->solid->pos);
+   
+   tempmod = (1 - ((t->heat_T-CONST_SPACE_STAR_TEMP)
+            / (t->heat_C-CONST_SPACE_STAR_TEMP)));
+
+   sense = (track_optimal * cur_system->rdr_range_mod * p->stats.rdr_range_mod
+         * t->stats.rdr_enemy_range_mod * tempmod);
+
+   if (d <= sense)
+      return 1.;
+
+   if (d >= track_max)
+      return 0.;
+
+   return (d-sense) / (track_max-sense);
 }
-
-
-

@@ -5,8 +5,8 @@
   <y>-1382.510592</y>
  </pos>
  <GFX>
-  <space>moon-J01.png</space>
-  <exterior>lava.png</exterior>
+  <space>moon-J01.webp</space>
+  <exterior>lava.webp</exterior>
  </GFX>
  <presence>
   <faction>Empire</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>J</class>
   <population>1254573</population>
-  <hide>0.500000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
   </services>
   <commodities/>
   <description>An unusually stable hot world, Mugen has become home to a wide variety of industrial processing companies. Using the planet's own heat via the stable magma streams that suffuse what passes for the planet's crust, smelting and refining operations can be carried out at significantly reduced cost.</description>

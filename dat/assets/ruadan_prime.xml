@@ -5,8 +5,8 @@
   <y>3443.389418</y>
  </pos>
  <GFX>
-  <space>M09.png</space>
-  <exterior>traderoom.png</exterior>
+  <space>M09.webp</space>
+  <exterior>traderoom.webp</exterior>
  </GFX>
  <presence>
   <faction>Za'lek</faction>
@@ -16,19 +16,17 @@
  <general>
   <class>M</class>
   <population>1000000</population>
-  <hide>0.250000</hide>
   <services>
    <land>zlk_ruadan</land>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
    <outfits/>
    <shipyard/>
   </services>
   <commodities/>
-  <description>(null)</description>
-  <bar>(null)</bar>
+  <description>Ruadan has recently become the nerve center of the Za'lek. Most of the Za'lek's strength is concentrated here, and they don't allow anyone but the highest level captains to land here. Even being allowed to be here is considered a great honor.</description>
+  <bar>Given the the exclusive nature of Ruadan Prime, the atmosphere of the bar is very to-the-point and focused. Everyone here has a reason to be here.</bar>
  </general>
  <tech>
   <item>Systems Low</item>
@@ -42,6 +40,7 @@
   <item>Hulls Medium</item>
   <item>Hulls High</item>
   <item>Hulls Elite</item>
+  <item>Za'lek Military Outfits</item>
   <item>Za'lek Military Ships</item>
   <item>Low Tech Upgrades</item>
   <item>High Tech Upgrades 1</item>

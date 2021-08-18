@@ -1,4 +1,4 @@
-include("dat/ai/include/basic.lua")
+require("ai/include/basic")
 
 
 -- Required control rate
@@ -6,7 +6,7 @@ control_rate   = 5
 
 
 function create ()
-   mem.comm_no = "No response."
+   mem.comm_no = _("No response.")
 end
 
 
@@ -42,7 +42,7 @@ function attack ()
       return
    end
 
-   -- Targetting stuff
+   -- Targeting stuff
    ai.hostile(target) -- Mark as hostile
    ai.settarget(target)
 

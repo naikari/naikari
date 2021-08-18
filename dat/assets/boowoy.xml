@@ -5,8 +5,8 @@
   <y>6002.748046</y>
  </pos>
  <GFX>
-  <space>H03.png</space>
-  <exterior>desertic2.png</exterior>
+  <space>H03.webp</space>
+  <exterior>desertic2.webp</exterior>
  </GFX>
  <presence>
   <faction>Sirius</faction>
@@ -15,14 +15,12 @@
  </presence>
  <general>
   <class>H</class>
-  <population>100</population>
-  <hide>0.250000</hide>
+  <population>100000</population>
   <services>
    <land>land_lowclass</land>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
    <outfits/>
    <shipyard/>
   </services>

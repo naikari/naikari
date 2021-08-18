@@ -1,0 +1,193 @@
+/* Old LuaDocs CSS. */
+
+#about
+{
+	clear: both;
+	margin: 0;
+	padding: 5px;
+	border-top: 2px solid #333;
+}
+
+#lDoc_container
+{
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+#product
+{
+	text-align: center;
+	border-bottom: 1px solid #333;
+}
+
+#product h2 {
+	font-size: 2em;
+}
+
+#product_description
+{
+   margin: auto;
+   text-align: justify;
+   width: 50%;
+}
+
+#navigation
+{
+	float: left;
+	width: 18em;
+	margin: 0;
+	vertical-align: top;
+	background-color: #0f0f0f;
+   overflow:visible;
+   border-left: 2px solid #333
+}
+
+#navigation h1, #navigation h2 {
+	background-color:#171717;
+	font-size:1.1em;
+	color:#fff;
+	text-align:left;
+	margin:0px;
+	padding:0.2em;
+	border-top:1px solid #222;
+	border-bottom:1px solid #222;
+}
+
+#navigation ul
+{
+	font-size:1em;
+	list-style-type: none;
+	padding: 0;
+	margin: 1px;
+}
+
+#navigation li
+{
+	text-indent: -1em;
+	margin: 0em 0em 0em 0.5em;
+	display: block;
+	padding: 3px 0px 0px 12px;
+}
+
+#navigation li li a
+{
+	padding: 0px 3px 0px -1em;
+}
+
+#content
+{
+	margin-left: 18em;
+	padding: 1em;
+	border-left: 2px solid #333;
+	border-right: 2px solid #333;
+}
+
+pre.example {
+   background-color: rgb(10, 10, 10);
+   border-top-width: 1px;
+   border-right-width: 1px;
+   border-bottom-width: 1px;
+   border-left-width: 1px;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+   border-top-color: #3f3f3f;
+   border-right-color: #3f3f3f;
+   border-bottom-color: #3f3f3f;
+   border-left-color: #3f3f3f;
+   padding: 1em;
+   margin-left: 1em;
+   margin-right: 1em;
+   font-family: "Andale Mono", monospace; 
+   font-size: smaller;
+   overflow: auto;
+}
+
+table.module_list td
+{
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
+	border-color: #333;
+}
+table.module_list td.name
+{
+   background-color: #0f0f0f;
+   white-space: nowrap;
+}
+table.module_list td.summary { width: 100%; }
+
+table.file_list
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #333;
+	border-collapse: collapse;
+}
+table.file_list td
+{
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
+	border-color: #333;
+}
+table.file_list td.name {
+   background-color: #0f0f0f;
+   white-space: nowrap;
+}
+table.file_list td.summary { width: 100%; }
+
+
+table.function_list
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #333;
+	border-collapse: collapse;
+}
+table.function_list td
+{
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
+	border-color: #333;
+}
+table.function_list td.name
+{
+   background-color: #0f0f0f;
+   white-space: nowrap;
+}
+table.function_list td.summary { width: 100%; }
+
+
+table.table_list
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #333;
+	border-collapse: collapse;
+}
+table.table_list td
+{
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
+	border-color: #333;
+}
+table.table_list td.name { background-color: #0f0f0f; }
+table.table_list td.summary { width: 100%; }
+
+dl.function dt {border-top: 1px solid #333; padding-top: 1em;}
+dl.function dd {padding-bottom: 1em;}
+dl.function h3 {padding: 0; margin: 0; font-size: medium;}
+
+dl.table dt {border-top: 1px solid #333; padding-top: 1em;}
+dl.table dd {padding-bottom: 1em;}
+dl.table h3 {padding: 0; margin: 0; font-size: medium;}
+
+span.parameter { font-family:monospace; }
+span.parameter:after { content:":"; }
+span.types:before { content:"("; }
+span.types:after { content:")"; }
+.type { font-weight: bold; font-style:italic }

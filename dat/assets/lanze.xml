@@ -5,8 +5,8 @@
   <y>5346.852767</y>
  </pos>
  <GFX>
-  <space>M01.png</space>
-  <exterior>forest.png</exterior>
+  <space>M01.webp</space>
+  <exterior>forest.webp</exterior>
  </GFX>
  <presence>
   <faction>Sirius</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>M</class>
   <population>3000000000</population>
-  <hide>0.250000</hide>
   <services>
    <land>land_hiclass</land>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
    <outfits/>
    <shipyard/>
   </services>

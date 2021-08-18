@@ -7,33 +7,28 @@
 #  define NLUA_COL_H
 
 
-#include <lua.h>
-
 #include "colour.h"
+#include "nlua.h"
 
 
 #define COL_METATABLE      "colour" /**< COL metatable identifier. */
 
 
-/**
- * @brief Lua texture wrapper.
- */
-typedef struct LuaColour_s {
-   glColour col; /**< Colour wrapped around. */
-} LuaColour; /**< Wrapper for a texture. */
+/* Helper. */
+#define luaL_optcolour(L,ind,def)   nluaL_optarg(L,ind,def,luaL_checkcolour)
 
 
 /*
  * Library loading
  */
-int nlua_loadCol( lua_State *L, int readonly );
+int nlua_loadCol( nlua_env env );
 
 /*
  * Colour operations
  */
-LuaColour* lua_tocolour( lua_State *L, int ind );
-LuaColour* luaL_checkcolour( lua_State *L, int ind );
-LuaColour* lua_pushcolour( lua_State *L, LuaColour col );
+glColour* lua_tocolour( lua_State *L, int ind );
+glColour* luaL_checkcolour( lua_State *L, int ind );
+glColour* lua_pushcolour( lua_State *L, glColour col );
 int lua_iscolour( lua_State *L, int ind );
 
 

@@ -1,27 +1,21 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Techs>
  <!-- Templates - add all new outfits, commodities and ships here! -->
  <tech name="All Outfits">
   <item>Laser Cannon MK1</item>
   <item>Laser Cannon MK2</item>
-  <item>Laser Cannon MK3</item>
   <item>Ripper Cannon</item>
   <item>Heavy Ripper Cannon</item>
-  <item>Laser PD MK1</item>
-  <item>Laser PD MK2</item>
-  <item>Laser PD MK3</item>
   <item>Laser Turret MK1</item>
   <item>Laser Turret MK2</item>
-  <item>Laser Turret MK3</item>
   <item>Heavy Ripper Turret</item>
-  <item>Heavy Laser</item>
+  <item>Heavy Laser Turret</item>
   <item>Turbolaser</item>
   <item>Razor MK1</item>
   <item>Razor MK2</item>
-  <item>Razor MK3</item>
+  <item>Slicer</item>
   <item>Razor Turret MK1</item>
   <item>Razor Turret MK2</item>
-  <item>Razor Turret MK3</item>
   <item>Heavy Razor Turret</item>
   <item>Ion Cannon</item>
   <item>Heavy Ion Cannon</item>
@@ -31,60 +25,58 @@
   <item>Shredder</item>
   <item>Turreted Gauss Gun</item>
   <item>Turreted Vulcan Gun</item>
-  <item>Mass Driver MK1</item>
-  <item>Mass Driver MK2</item>
-  <item>Mass Driver MK3</item>
+  <item>Mass Driver</item>
   <item>Railgun</item>
   <item>Repeating Railgun</item>
   <item>Railgun Turret</item>
   <item>Plasma Blaster MK1</item>
   <item>Plasma Blaster MK2</item>
-  <item>Plasma Blaster MK3</item>
+  <item>Plasma Cannon</item>
   <item>Plasma Turret MK1</item>
   <item>Plasma Turret MK2</item>
-  <item>BioPlasma Organ Stage 1</item>
-  <item>BioPlasma Organ Stage 2</item>
-  <item>Plasma Cluster Cannon MK1</item>
-  <item>Plasma Cluster Cannon MK2</item>
-  <item>Plasma Cluster Cannon MK3</item>
+  <item>Plasma Cluster Cannon</item>
   <item>Ragnarok Beam</item>
   <item>Grave Beam</item>
   <item>Orion Beam</item>
-  <item>Pulse Beam</item>
   <item>Grave Lance</item>
+  <item>Particle Lance</item>
   <item>Orion Lance</item>
-  <item>Shattershield Lance</item>
   <item>Neutron Disruptor</item>
   <item>Heavy Neutron Disruptor</item>
+  <item>Electron Burst Cannon</item>
   <item>Unicorp Fury Launcher</item>
   <item>TeraCom Fury Launcher</item>
   <item>Enygma Systems Turreted Fury Launcher</item>
-  <item>Fury Missile</item>
   <item>Unicorp Headhunter Launcher</item>
   <item>TeraCom Headhunter Launcher</item>
   <item>Enygma Systems Turreted Headhunter Launcher</item>
-  <item>Headhunter Missile</item>
   <item>Unicorp Vengeance Launcher</item>
   <item>TeraCom Vengeance Launcher</item>
-  <item>Enygma Systems Turreted Vengeance Launcher</item>
-  <item>Vengeance Missile</item>
   <item>Unicorp Mace Launcher</item>
   <item>TeraCom Mace Launcher</item>
-  <item>Mace Rocket</item>
   <item>Unicorp Banshee Launcher</item>
   <item>TeraCom Banshee Launcher</item>
-  <item>Banshee Rocket</item>
   <item>Unicorp Caesar IV Launcher</item>
-  <item>Caesar IV Torpedo</item>
   <item>TeraCom Imperator Launcher</item>
-  <item>Imperator Torpedo</item>
   <item>EMP Grenade Launcher</item>
-  <item>EMP Grenade</item>
   <item>Unicorp Medusa Launcher</item>
   <item>TeraCom Medusa Launcher</item>
-  <item>Medusa Missile</item>
+  <item>Enygma Systems Huntsman Launcher</item>
   <item>Enygma Systems Spearhead Launcher</item>
-  <item>Spearhead Missile</item>
+  <item>Convulsion Launcher</item>
+  <item>Turreted Convulsion Launcher</item>
+  <item>Za'lek Hunter Launcher</item>
+  <item>Za'lek Reaper Launcher</item>
+  <item>BioPlasma Stinger Stage 1</item>
+  <item>BioPlasma Stinger Stage X</item>
+  <item>BioPlasma Claw Stage 1</item>
+  <item>BioPlasma Claw Stage X</item>
+  <item>BioPlasma Fang Stage 1</item>
+  <item>BioPlasma Fang Stage X</item>
+  <item>BioPlasma Talon Stage 1</item>
+  <item>BioPlasma Talon Stage X</item>
+  <item>BioPlasma Tentacle Stage 1</item>
+  <item>BioPlasma Tentacle Stage X</item>
   <item>Battery</item>
   <item>Battery II</item>
   <item>Battery III</item>
@@ -99,9 +91,11 @@
   <item>Small Shield Booster</item>
   <item>Medium Shield Booster</item>
   <item>Large Shield Booster</item>
+  <item>Adaptive Stealth Plating</item>
   <item>Plasteel Plating</item>
+  <item>Active Plating</item>
   <item>Nanobond Plating</item>
-  <item>Biometal Armour</item>
+  <item>Biometal Armor</item>
   <item>Droid Repair Crew</item>
   <item>Engine Reroute</item>
   <item>Improved Stabilizer</item>
@@ -109,15 +103,15 @@
   <item>Generic Afterburner</item>
   <item>Hellburner</item>
   <item>Emergency Shield Booster</item>
-  <item>Hidden Jump Scanner</item>
   <item>Reverse Thrusters</item>
   <item>Fuel Pod</item>
   <item>Medium Fuel Pod</item>
   <item>Large Fuel Pod</item>
   <item>Cargo Pod</item>
-  <item>Boarding Androids MKI</item>
-  <item>Boarding Androids MKII</item>
+  <item>Medium Cargo Pod</item>
+  <item>Large Cargo Pod</item>
   <item>Targeting Array</item>
+  <item>Asteroid Scanner</item>
   <item>Forward Shock Absorbers</item>
   <item>Power Regulation Override</item>
   <item>Improved Power Regulator</item>
@@ -135,31 +129,30 @@
   <item>Map: Pirate strongholds</item>
   <item>Map: Qorel Expanse</item>
   <item>Map: New Haven's hidden jump points</item>
+  <item>Map: Kretogg's hidden jump points</item>
   <item>Map: FLF Hidden Jumps</item>
+  <item>Map: FLF-Pirate Route</item>
+  <item>Map: Inner Nebula Secret Jump</item>
+  <item>Map: Thurion Core</item>
   <item>Ultra Map</item>
   <item>Local System Map</item>
   <item>Unicorp Scrambler</item>
   <item>Milspec Scrambler</item>
   <item>Unicorp Jammer</item>
   <item>Milspec Jammer</item>
-  <item>GUI - Brushed</item>
-  <item>GUI - Legacy</item>
-  <item>GUI - Slimv2</item>
+  <item>Sensor Array</item>
   <item>Jump Scanner</item>
+  <item>Hyena Fighter Bay</item>
+  <item>Mini Hyena Fighter Bay</item>
   <item>Lancelot Fighter Bay</item>
-  <item>Lancelot Fighter</item>
+  <item>Mini Lancelot Fighter Bay</item>
   <item>Empire Lancelot Fighter Bay</item>
-  <item>Empire Lancelot Fighter</item>
   <item>Fidelity Fighter Bay</item>
-  <item>Fidelity Fighter</item>
   <item>Drone Fighter Bay</item>
-  <item>Drone Fighter</item>
+  <item>Heavy Drone Fighter Bay</item>
   <item>Za'lek Light Drone Fighter Bay</item>
-  <item>Za'lek Light Drone Fighter</item>
   <item>Za'lek Heavy Drone Fighter Bay</item>
-  <item>Za'lek Heavy Drone Fighter</item>
   <item>Za'lek Bomber Drone Fighter Bay</item>
-  <item>Za'lek Bomber Drone Fighter</item>
   <item>Large Civilian Vessel License</item>
   <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
@@ -167,11 +160,9 @@
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
   <item>Mercenary License</item>
-  <item>Tricon Experimental Engine License</item>
-  <item>Pirate Landing Pass</item>
   <item>Previous Generation Small Systems</item>
-  <item>Unicorp PT-100 Core System</item>
-  <item>Unicorp PT-200 Core System</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
   <item>Milspec Hermes 2202 Core System</item>
   <item>Milspec Aegis 2201 Core System</item>
   <item>Milspec Prometheus 2203 Core System</item>
@@ -181,8 +172,8 @@
   <item>Milspec Prometheus 3603 Core System</item>
   <item>Milspec Orion 3701 Core System</item>
   <item>Previous Generation Medium Systems</item>
-  <item>Unicorp PT-500 Core System</item>
-  <item>Unicorp PT-600 Core System</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
   <item>Milspec Hermes 4702 Core System</item>
   <item>Milspec Aegis 4701 Core System</item>
   <item>Milspec Prometheus 4703 Core System</item>
@@ -192,8 +183,8 @@
   <item>Milspec Prometheus 5403 Core System</item>
   <item>Milspec Orion 5501 Core System</item>
   <item>Previous Generation Large Systems</item>
-  <item>Unicorp PT-900 Core System</item>
-  <item>Unicorp PT-1000 Core System</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Unicorp PT-3400 Core System</item>
   <item>Milspec Hermes 8502 Core System</item>
   <item>Milspec Aegis 8501 Core System</item>
   <item>Milspec Prometheus 8503 Core System</item>
@@ -203,29 +194,20 @@
   <item>Milspec Prometheus 9803 Core System</item>
   <item>Milspec Orion 9901 Core System</item>
   <item>Beat Up Small Engine</item>
-  <item>Unicorp Hawk 150 Engine</item>
   <item>Unicorp Hawk 300 Engine</item>
-  <item>Melendez Ox Engine</item>
-  <item>Nexus Dart 300 Engine</item>
   <item>Nexus Dart 150 Engine</item>
   <item>Melendez Ox XL Engine</item>
   <item>Tricon Zephyr Engine</item>
   <item>Tricon Zephyr II Engine</item>
   <item>Beat Up Medium Engine</item>
-  <item>Unicorp Falcon 550 Engine</item>
   <item>Unicorp Falcon 1200 Engine</item>
-  <item>Melendez Buffalo Engine</item>
-  <item>Nexus Arrow 550 Engine</item>
-  <item>Nexus Arrow 1200 Engine</item>
+  <item>Nexus Arrow 700 Engine</item>
   <item>Melendez Buffalo XL Engine</item>
   <item>Tricon Cyclone Engine</item>
   <item>Tricon Cyclone II Engine</item>
   <item>Beat Up Large Engine</item>
-  <item>Unicorp Eagle 4500 Engine</item>
   <item>Unicorp Eagle 6500 Engine</item>
-  <item>Melendez Mammoth Engine</item>
   <item>Nexus Bolt 4500 Engine</item>
-  <item>Nexus Bolt 6500 Engine</item>
   <item>Melendez Mammoth XL Engine</item>
   <item>Krain Remige Engine</item>
   <item>Tricon Typhoon Engine</item>
@@ -233,32 +215,77 @@
   <item>Za'lek Test Engine</item>
   <item>Patchwork Light Plating</item>
   <item>Unicorp D-2 Light Plating</item>
-  <item>Unicorp B-2 Light Plating</item>
   <item>Unicorp D-4 Light Plating</item>
-  <item>Unicorp B-4 Light Plating</item>
   <item>S&amp;K Ultralight Combat Plating</item>
   <item>S&amp;K Ultralight Stealth Plating</item>
   <item>S&amp;K Light Combat Plating</item>
   <item>S&amp;K Light Stealth Plating</item>
   <item>S&amp;K Small Cargo Hull</item>
   <item>Patchwork Medium Plating</item>
-  <item>Unicorp D-8 Medium Plating</item>
-  <item>Unicorp B-8 Medium Plating</item>
   <item>Unicorp D-12 Medium Plating</item>
-  <item>Unicorp B-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>S&amp;K Medium Combat Plating</item>
   <item>S&amp;K Medium Stealth Plating</item>
   <item>S&amp;K Medium Cargo Hull</item>
   <item>S&amp;K Medium-Heavy Stealth Plating</item>
   <item>S&amp;K Medium-Heavy Combat Plating</item>
   <item>Patchwork Heavy Plating</item>
-  <item>Unicorp D-16 Heavy Plating</item>
-  <item>Unicorp B-16 Heavy Plating</item>
-  <item>Unicorp D-20 Heavy Plating</item>
-  <item>Unicorp B-20 Heavy Plating</item>
+  <item>Unicorp D-48 Heavy Plating</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>S&amp;K Heavy Combat Plating</item>
   <item>S&amp;K Large Cargo Hull</item>
   <item>S&amp;K Superheavy Combat Plating</item>
+  <item>Ultralight Brain Stage 1</item>
+  <item>Light Brain Stage 1</item>
+  <item>Medium Brain Stage 1</item>
+  <item>Medium-Heavy Brain Stage 1</item>
+  <item>Heavy Brain Stage 1</item>
+  <item>Superheavy Brain Stage 1</item>
+  <item>Ultralight Shell Stage 1</item>
+  <item>Light Shell Stage 1</item>
+  <item>Medium Shell Stage 1</item>
+  <item>Medium-Heavy Shell Stage 1</item>
+  <item>Heavy Shell Stage 1</item>
+  <item>Superheavy Shell Stage 1</item>
+  <item>Ultralight Fast Fin Stage 1</item>
+  <item>Light Fast Fin Stage 1</item>
+  <item>Medium Fast Fin Stage 1</item>
+  <item>Medium-Heavy Fast Fin Stage 1</item>
+  <item>Heavy Fast Fin Stage 1</item>
+  <item>Superheavy Fast Fin Stage 1</item>
+  <item>Ultralight Strong Fin Stage 1</item>
+  <item>Light Strong Fin Stage 1</item>
+  <item>Medium Strong Fin Stage 1</item>
+  <item>Medium-Heavy Strong Fin Stage 1</item>
+  <item>Heavy Strong Fin Stage 1</item>
+  <item>Superheavy Strong Fin Stage 1</item>
+  <item>Ultralight Brain Stage X</item>
+  <item>Light Brain Stage X</item>
+  <item>Medium Brain Stage X</item>
+  <item>Medium-Heavy Brain Stage X</item>
+  <item>Heavy Brain Stage X</item>
+  <item>Superheavy Brain Stage X</item>
+  <item>Ultralight Shell Stage X</item>
+  <item>Light Shell Stage X</item>
+  <item>Medium Shell Stage X</item>
+  <item>Medium-Heavy Shell Stage X</item>
+  <item>Heavy Shell Stage X</item>
+  <item>Superheavy Shell Stage X</item>
+  <item>Ultralight Fast Fin Stage X</item>
+  <item>Light Fast Fin Stage X</item>
+  <item>Medium Fast Fin Stage X</item>
+  <item>Medium-Heavy Fast Fin Stage X</item>
+  <item>Heavy Fast Fin Stage X</item>
+  <item>Superheavy Fast Fin Stage X</item>
+  <item>Ultralight Strong Fin Stage X</item>
+  <item>Light Strong Fin Stage X</item>
+  <item>Medium Strong Fin Stage X</item>
+  <item>Medium-Heavy Strong Fin Stage X</item>
+  <item>Heavy Strong Fin Stage X</item>
+  <item>Superheavy Strong Fin Stage X</item>
+  <item>Weapons Ionizer</item>
+  <item>Turreted Weapons Ionizer</item>
+  <item>Nebular Shielding Prototype</item>
  </tech>
  <tech name="All Ships">
   <item>Llama</item>
@@ -280,6 +307,7 @@
   <item>Shark</item>
   <item>Pirate Shark</item>
   <item>Empire Shark</item>
+  <item>Thurion Perspicacity</item>
   <item>Soromid Reaver</item>
   <item>Lancelot</item>
   <item>Empire Lancelot</item>
@@ -291,6 +319,7 @@
   <item>Ancestor</item>
   <item>Dvaered Ancestor</item>
   <item>Pirate Ancestor</item>
+  <item>Thurion Scintillation</item>
   <item>Phalanx</item>
   <item>Dvaered Phalanx</item>
   <item>Pirate Phalanx</item>
@@ -300,6 +329,7 @@
   <item>Pirate Admonisher</item>
   <item>Empire Admonisher</item>
   <item>Za'lek Sting</item>
+  <item>Thurion Virtuosity</item>
   <item>Vigilance</item>
   <item>Dvaered Vigilance</item>
   <item>Proteron Kahan</item>
@@ -307,15 +337,16 @@
   <item>Za'lek Demon</item>
   <item>Pacifier</item>
   <item>Empire Pacifier</item>
+  <item>Thurion Apprehension</item>
   <item>Rhino</item>
   <item>Pirate Rhino</item>
   <item>Mule</item>
+  <item>Thurion Taciturnity</item>
   <item>Kestrel</item>
   <item>Pirate Kestrel</item>
   <item>Proteron Archimedes</item>
   <item>Soromid Ira</item>
   <item>Za'lek Mephisto</item>
-  <item>Za'lek Prototype Cruiser</item>
   <item>Hawking</item>
   <item>Empire Hawking</item>
   <item>Sirius Dogma</item>
@@ -328,34 +359,22 @@
   <item>Empire Peacemaker</item>
   <item>Soromid Vox</item>
   <item>Za'lek Hephaestus</item>
- </tech>
- <tech name="All Commodities">
-  <item>Food</item>
-  <item>Ore</item>
-  <item>Industrial Goods</item>
-  <item>Medicine</item>
-  <item>Luxury Goods</item>
+  <item>Thurion Certitude</item>
  </tech>
  <!-- Weapon Trees -->
  <tech name="Laser 1">
   <item>Laser Cannon MK1</item>
-  <item>Laser PD MK1</item>
   <item>Laser Turret MK1</item>
   <item>Ripper Cannon</item>
  </tech>
  <tech name="Laser 2">
   <item>Laser Cannon MK2</item>
-  <item>Laser Cannon MK3</item>
-  <item>Laser PD MK2</item>
-  <item>Laser PD MK3</item>
   <item>Laser Turret MK2</item>
-  <item>Laser Turret MK3</item>
   <item>Heavy Ripper Cannon</item>
  </tech>
  <tech name="Laser 3">
   <item>Heavy Ripper Turret</item>
-  <item>Heavy Laser</item>
-  <item>Turbolaser</item>
+  <item>Heavy Laser Turret</item>
  </tech>
  <tech name="Ion 1">
   <item>Ion Cannon</item>
@@ -365,29 +384,27 @@
  <tech name="Ion 2">
   <item>Heavy Ion Cannon</item>
   <item>Razor MK2</item>
-  <item>Razor MK3</item>
+  <item>Slicer</item>
   <item>Razor Turret MK2</item>
-  <item>Razor Turret MK3</item>
+  <item>Weapons Ionizer</item>
  </tech>
  <tech name="Ion 3">
   <item>Heavy Ion Turret</item>
-  <item>Heavy Razor Turret</item>
+  <item>Weapons Ionizer</item>
+  <item>Turreted Weapons Ionizer</item>
  </tech>
  <tech name="Kinetic 1">
   <item>Gauss Gun</item>
   <item>Turreted Gauss Gun</item>
-  <item>Mass Driver MK1</item>
  </tech>
  <tech name="Kinetic 2">
   <item>Vulcan Gun</item>
   <item>Turreted Vulcan Gun</item>
   <item>Shredder</item>
-  <item>Mass Driver MK2</item>
-  <item>Mass Driver MK3</item>
+  <item>Mass Driver</item>
  </tech>
  <tech name="Kinetic 3">
   <item>Railgun</item>
-  <item>Repeating Railgun</item>
   <item>Railgun Turret</item>
  </tech>
  <tech name="Plasma 1">
@@ -396,21 +413,13 @@
  </tech>
  <tech name="Plasma 2">
   <item>Plasma Blaster MK2</item>
-  <item>Plasma Blaster MK3</item>
-  <!-- TODO
-  <item>Plasma Cluster Cannon MK1</item>
-  <item>Plasma Cluster Cannon MK2</item>
-  <item>Plasma Cluster Cannon MK3</item>
-  <item>BioPlasma Organ Stage 1</item>
-  <item>BioPlasma Organ Stage 2</item>
-  -->
+  <item>Plasma Cannon</item>
+  <item>Plasma Cluster Cannon</item>
   <item>Plasma Turret MK2</item>
  </tech>
  <tech name="Beam 1">
   <item>Orion Lance</item>
   <item>Orion Beam</item>
-  <item>Pulse Beam</item>
-  <item>Shattershield Lance</item>
  </tech>
  <tech name="Beam 2">
   <item>Grave Lance</item>
@@ -435,94 +444,90 @@
   <item>Plasma Blaster MK1</item>
   <item>Gauss Gun</item>
   <item>Unicorp Fury Launcher</item>
-  <item>Fury Missile</item>
   <item>Battery</item>
   <item>Solar Panel</item>
   <item>Fuel Pod</item>
   <item>Star Maps</item>
   <item>Large Civilian Vessel License</item>
-  <item>GUI - Brushed</item>
   <item>Local System Map</item>
   <item>Previous Generation Small Systems</item>
   <item>Previous Generation Medium Systems</item>
   <item>Previous Generation Large Systems</item>
-  <item>Unicorp PT-100 Core System</item>
-  <item>Unicorp PT-200 Core System</item>
-  <item>Unicorp PT-500 Core System</item>
-  <item>Unicorp PT-600 Core System</item>
-  <item>Unicorp PT-1000 Core System</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Unicorp PT-3400 Core System</item>
   <item>Beat Up Small Engine</item>
   <item>Beat Up Medium Engine</item>
   <item>Beat Up Large Engine</item>
-  <item>Unicorp Hawk 150 Engine</item>
+  <item>Nexus Dart 150 Engine</item>
   <item>Unicorp Hawk 300 Engine</item>
-  <item>Unicorp Falcon 550 Engine</item>
+  <item>Nexus Arrow 700 Engine</item>
   <item>Unicorp Falcon 1200 Engine</item>
-  <item>Unicorp Eagle 4500 Engine</item>
+  <item>Nexus Bolt 4500 Engine</item>
   <item>Unicorp Eagle 6500 Engine</item>
   <item>Patchwork Light Plating</item>
   <item>Unicorp D-2 Light Plating</item>
   <item>Unicorp D-4 Light Plating</item>
   <item>Patchwork Medium Plating</item>
-  <item>Unicorp D-8 Medium Plating</item>
   <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Patchwork Heavy Plating</item>
-  <item>Unicorp D-16 Heavy Plating</item>
-  <item>Unicorp D-20 Heavy Plating</item>
+  <item>Unicorp D-48 Heavy Plating</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   </tech>
  <tech name="Basic Outfits 2">
   <item>Laser Cannon MK2</item>
   <item>Plasma Blaster MK2</item>
   <item>Unicorp Banshee Launcher</item>
-  <item>Banshee Rocket</item>
   <item>Reactor Class I</item>
   <item>Shield Capacitor</item>
   <item>Plasteel Plating</item>
   <item>Engine Reroute</item>
   <item>Generic Afterburner</item>
   <item>Cargo Pod</item>
-  <item>Boarding Androids MKI</item>
+  <item>Medium Cargo Pod</item>
+  <item>Large Cargo Pod</item>
   <item>Star Maps</item>
   <item>Unicorp Scrambler</item>
   <item>Unicorp Jammer</item>
   <item>Large Civilian Vessel License</item>
-  <item>GUI - Brushed</item>
-  <item>GUI - Legacy</item>
-  <item>GUI - Slimv2</item>
   <item>Unicorp Medusa Launcher</item>
+  <item>Sensor Array</item>
   <item>Jump Scanner</item>
-  <item>Medusa Missile</item>
   <item>Local System Map</item>
   <item>Previous Generation Small Systems</item>
   <item>Previous Generation Medium Systems</item>
   <item>Previous Generation Large Systems</item>
-  <item>Unicorp PT-100 Core System</item>
-  <item>Unicorp PT-200 Core System</item>
-  <item>Unicorp PT-500 Core System</item>
-  <item>Unicorp PT-600 Core System</item>
-  <item>Unicorp PT-1000 Core System</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Unicorp PT-3400 Core System</item>
   <item>Beat Up Small Engine</item>
   <item>Beat Up Medium Engine</item>
   <item>Beat Up Large Engine</item>
-  <item>Unicorp Hawk 150 Engine</item>
+  <item>Nexus Dart 150 Engine</item>
   <item>Unicorp Hawk 300 Engine</item>
-  <item>Unicorp Falcon 550 Engine</item>
+  <item>Nexus Arrow 700 Engine</item>
   <item>Unicorp Falcon 1200 Engine</item>
-  <item>Unicorp Eagle 4500 Engine</item>
+  <item>Nexus Bolt 4500 Engine</item>
   <item>Unicorp Eagle 6500 Engine</item>
   <item>Patchwork Light Plating</item>
   <item>Unicorp D-2 Light Plating</item>
   <item>Unicorp D-4 Light Plating</item>
   <item>Patchwork Medium Plating</item>
-  <item>Unicorp D-8 Medium Plating</item>
   <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Patchwork Heavy Plating</item>
-  <item>Unicorp D-16 Heavy Plating</item>
-  <item>Unicorp D-20 Heavy Plating</item>
+  <item>Unicorp D-48 Heavy Plating</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Emergency Shield Booster</item>
   </tech>
  <tech name="Heavy Weapons 1">
-  <item>Laser PD MK1</item>
   <item>Laser Turret MK1</item>
   <item>Turreted Gauss Gun</item>
   <item>Plasma Turret MK1</item>
@@ -530,25 +535,27 @@
   <item>Railgun</item>
   <item>Ripper Cannon</item>
   <item>EMP Grenade Launcher</item>
-  <item>EMP Grenade</item>
   <item>Enygma Systems Spearhead Launcher</item>
-  <item>Spearhead Missile</item>
   <item>Medium Weapon License</item>
   <item>Medium Combat Vessel License</item>
+  <item>Heavy Weapon License</item>
+  <item>Heavy Combat Vessel License</item>
   <item>Mercenary License</item>
+  <item>Weapons Ionizer</item>
   </tech>
  <tech name="Heavy Weapons 2">
-  <item>Laser PD MK2</item>
   <item>Laser Turret MK2</item>
-  <item>Mass Driver MK1</item>
+  <item>Mass Driver</item>
   <item>Ion Cannon</item>
   <item>Heavy Ion Turret</item>
   <item>Railgun Turret</item>
   <item>Orion Lance</item>
-  <item>Shattershield Lance</item>
   <item>Medium Weapon License</item>
   <item>Medium Combat Vessel License</item>
+  <item>Heavy Weapon License</item>
+  <item>Heavy Combat Vessel License</item>
   <item>Mercenary License</item>
+  <item>Turreted Weapons Ionizer</item>
  </tech>
  <tech name="Low Tech Upgrades">
   <item>Battery</item>
@@ -561,11 +568,12 @@
   <item>Engine Reroute</item>
   <item>Fuel Pod</item>
   <item>Cargo Pod</item>
-  <item>Boarding Androids MKI</item>
-  <item>Boarding Androids MKII</item>
+  <item>Medium Cargo Pod</item>
+  <item>Large Cargo Pod</item>
   <item>Star Maps</item>
   <item>Unicorp Scrambler</item>
   <item>Unicorp Jammer</item>
+  <item>Sensor Array</item>
   <item>Jump Scanner</item>
   <item>Light Combat Vessel License</item>
   <item>Mercenary License</item>
@@ -589,19 +597,20 @@
   <item>Fuel Pod</item>
   <item>Medium Fuel Pod</item>
   <item>Cargo Pod</item>
-  <item>Boarding Androids MKI</item>
-  <item>Boarding Androids MKII</item>
+  <item>Medium Cargo Pod</item>
+  <item>Large Cargo Pod</item>
   <item>Targeting Array</item>
   <item>Forward Shock Absorbers</item>
   <item>Power Regulation Override</item>
   <item>Star Maps</item>
   <item>Unicorp Scrambler</item>
   <item>Unicorp Jammer</item>
-  <item>Lancelot Fighter Bay</item>
-  <item>Lancelot Fighter</item>
+  <item>Hyena Fighter Bay</item>
+  <item>Mini Hyena Fighter Bay</item>
   <item>Medium Weapon License</item>
   <item>Emergency Shield Booster</item>
   <item>Reverse Thrusters</item>
+  <item>Asteroid Scanner</item>
  </tech>
  <tech name="High Tech Upgrades 2">
   <item>Battery III</item>
@@ -609,7 +618,7 @@
   <item>Reactor Class III</item>
   <item>Shield Capacitor III</item>
   <item>Shield Capacitor IV</item>
-  <item>Biometal Armour</item>
+  <item>Biometal Armor</item>
   <item>Droid Repair Crew</item>
   <item>Steering Thrusters</item>
   <item>Hellburner</item>
@@ -619,40 +628,37 @@
   <item>Milspec Scrambler</item>
   <item>Milspec Jammer</item>
   <item>Lancelot Fighter Bay</item>
-  <item>Lancelot Fighter</item>
+  <item>Mini Lancelot Fighter Bay</item>
   <item>Medium Weapon License</item>
   <item>Emergency Shield Booster</item>
   <item>Reverse Thrusters</item>
   <item>Medium Fuel Pod</item>
   <item>Large Fuel Pod</item>
+  <item>Weapons Ionizer</item>
  </tech>
  <tech name="Missiles 1">
   <item>Unicorp Banshee Launcher</item>
-  <item>Banshee Rocket</item>
   <item>Unicorp Fury Launcher</item>
-  <item>Fury Missile</item>
   <item>Unicorp Medusa Launcher</item>
-  <item>Medusa Missile</item>
   <item>Unicorp Headhunter Launcher</item>
-  <item>Headhunter Missile</item>
-  <item>Mace Rocket</item>
   <item>Unicorp Caesar IV Launcher</item>
  </tech>
  <tech name="Missiles 2">
   <item>Unicorp Headhunter Launcher</item>
-  <item>Headhunter Missile</item>
   <item>Unicorp Mace Launcher</item>
-  <item>Mace Rocket</item>
+  <item>TeraCom Mace Launcher</item>
   <item>Unicorp Caesar IV Launcher</item>
-  <item>Caesar IV Torpedo</item>
+  <item>TeraCom Imperator Launcher</item>
   <item>Enygma Systems Spearhead Launcher</item>
-  <item>Spearhead Missile</item>
+  <item>Enygma Systems Huntsman Launcher</item>
+  <item>TeraCom Banshee Launcher</item>
   <item>TeraCom Medusa Launcher</item>
   <item>TeraCom Fury Launcher</item>
-  <item>Medusa Missile</item>
+  <item>TeraCom Headhunter Launcher</item>
+  <item>TeraCom Vengeance Launcher</item>
   <item>Enygma Systems Turreted Fury Launcher</item>
+  <item>Enygma Systems Turreted Headhunter Launcher</item>
   <item>Unicorp Vengeance Launcher</item>
-  <item>Vengeance Missile</item>
  </tech>
  <tech name="Star Maps">
   <item>Map: Nebula Edge</item>
@@ -665,6 +671,69 @@
   <item>Map: Sirius Core</item>
   <item>Map: Za'lek Core</item>
   <item>Local System Map</item>
+ </tech>
+
+ <!-- Faction outfits -->
+ <tech name="Empire Military Outfits">
+  <item>Turbolaser</item>
+  <item>Empire Lancelot Fighter Bay</item>
+ </tech>
+ <tech name="Dvaered Military Outfits">
+  <item>Repeating Railgun</item>
+  <item>Active Plating</item>
+ </tech>
+ <tech name="Sirius Military Outfits">
+  <item>Heavy Razor Turret</item>
+  <item>Fidelity Fighter Bay</item>
+ </tech>
+ <tech name="Za'lek Military Outfits">
+  <item>Za'lek Hunter Launcher</item>
+  <item>Za'lek Reaper Launcher</item>
+  <item>Za'lek Light Drone Fighter Bay</item>
+  <item>Za'lek Heavy Drone Fighter Bay</item>
+  <item>Za'lek Bomber Drone Fighter Bay</item>
+ </tech>
+ <tech name="Thurion Outfits">
+  <item>Convulsion Launcher</item>
+  <item>Turreted Convulsion Launcher</item>
+  <item>Adaptive Stealth Plating</item>
+  <item>Map: Thurion Core</item>
+ </tech>
+ <tech name="Thurion Military Outfits">
+  <item>Nebular Shielding Prototype</item>
+ </tech>
+
+ <!-- Bioship outfits -->
+ <tech name="Bioship Outfits">
+  <item>BioPlasma Stinger Stage 1</item>
+  <item>BioPlasma Claw Stage 1</item>
+  <item>BioPlasma Fang Stage 1</item>
+  <item>BioPlasma Talon Stage 1</item>
+  <item>BioPlasma Tentacle Stage 1</item>
+  <item>Ultralight Brain Stage 1</item>
+  <item>Light Brain Stage 1</item>
+  <item>Medium Brain Stage 1</item>
+  <item>Medium-Heavy Brain Stage 1</item>
+  <item>Heavy Brain Stage 1</item>
+  <item>Superheavy Brain Stage 1</item>
+  <item>Ultralight Shell Stage 1</item>
+  <item>Light Shell Stage 1</item>
+  <item>Medium Shell Stage 1</item>
+  <item>Medium-Heavy Shell Stage 1</item>
+  <item>Heavy Shell Stage 1</item>
+  <item>Superheavy Shell Stage 1</item>
+  <item>Ultralight Fast Fin Stage 1</item>
+  <item>Light Fast Fin Stage 1</item>
+  <item>Medium Fast Fin Stage 1</item>
+  <item>Medium-Heavy Fast Fin Stage 1</item>
+  <item>Heavy Fast Fin Stage 1</item>
+  <item>Superheavy Fast Fin Stage 1</item>
+  <item>Ultralight Strong Fin Stage 1</item>
+  <item>Light Strong Fin Stage 1</item>
+  <item>Medium Strong Fin Stage 1</item>
+  <item>Medium-Heavy Strong Fin Stage 1</item>
+  <item>Heavy Strong Fin Stage 1</item>
+  <item>Superheavy Strong Fin Stage 1</item>
  </tech>
 
  <!-- Ships -->
@@ -712,8 +781,18 @@
   <item>Empire Shark</item>
  </tech>
  <tech name="FLF Ships">
-  <item>FLF Lancelot</item>
-  <item>FLF Vendetta</item>
+  <item>Hyena</item>
+  <item>Lancelot</item>
+  <item>Vendetta</item>
+  <item>Pacifier</item>
+ </tech>
+ <tech name="Frontier Military Ships">
+  <item>Hyena</item>
+  <item>Lancelot</item>
+  <item>Vendetta</item>
+  <item>Ancestor</item>
+  <item>Phalanx</item>
+  <item>Pacifier</item>
  </tech>
  <tech name="Dvaered Military Ships">
   <item>Dvaered Ancestor</item>
@@ -732,7 +811,6 @@
   <item>Pirate Vendetta</item>
  </tech>
  <tech name="Proteron Military Ships">
-  <item>Proteron Watson</item>
   <item>Proteron Archimedes</item>
   <item>Proteron Derivative</item>
   <item>Proteron Kahan</item>
@@ -754,38 +832,45 @@
   <item>Soromid Ira</item>
   <item>Soromid Arx</item>
  </tech>
- <tech name="Thurion Military Ships">
+ <tech name="Thurion Civilian Ships">
+  <item>Thurion Perspicacity</item>
   <item>Thurion Ingenuity</item>
+  <item>Thurion Taciturnity</item>
+ </tech>
+ <tech name="Thurion Military Ships">
+  <item>Thurion Perspicacity</item>
+  <item>Thurion Ingenuity</item>
+  <item>Thurion Scintillation</item>
+  <item>Thurion Virtuosity</item>
+  <item>Thurion Apprehension</item>
+  <item>Thurion Certitude</item>
  </tech>
  <tech name="Za'lek Military Ships">
   <item>Za'lek Sting</item>
   <item>Za'lek Demon</item>
   <item>Za'lek Mephisto</item>
   <item>Za'lek Diablo</item>
- </tech>
- <tech name="__Heavy Weapon License">
-  <item>Heavy Weapon License</item>
- </tech>
- <tech name="__Heavy Combat Vessel License">
-  <item>Heavy Combat Vessel License</item>
+  <item>Za'lek Hephaestus</item>
  </tech>
  <tech name="__Collective">
   <item>Neutron Disruptor</item>
-  <item>Heavy Neutron Disruptor</item>
+  <item>Electron Burst Cannon</item>
   <item>Drone Fighter Bay</item>
-  <item>Drone Fighter</item>
+  <item>Heavy Drone Fighter Bay</item>
   <item>Drone</item>
   <item>Heavy Drone</item>
  </tech>
+
  <tech name="Systems Low">
   <item>Previous Generation Small Systems</item>
   <item>Previous Generation Medium Systems</item>
   <item>Previous Generation Large Systems</item>
-  <item>Unicorp PT-100 Core System</item>
-  <item>Unicorp PT-200 Core System</item>
-  <item>Unicorp PT-500 Core System</item>
-  <item>Unicorp PT-600 Core System</item>
-  <item>Unicorp PT-1000 Core System</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Unicorp PT-3400 Core System</item>
  </tech>
  <tech name="Systems Medium">
   <item>Milspec Hermes 2202 Core System</item>
@@ -821,28 +906,28 @@
   <item>Beat Up Small Engine</item>
   <item>Beat Up Medium Engine</item>
   <item>Beat Up Large Engine</item>
-  <item>Unicorp Hawk 150 Engine</item>
+  <item>Nexus Dart 150 Engine</item>
   <item>Unicorp Hawk 300 Engine</item>
-  <item>Unicorp Falcon 550 Engine</item>
+  <item>Nexus Arrow 700 Engine</item>
   <item>Unicorp Falcon 1200 Engine</item>
-  <item>Unicorp Eagle 4500 Engine</item>
+  <item>Nexus Bolt 4500 Engine</item>
   <item>Unicorp Eagle 6500 Engine</item>
  </tech>
  <tech name="Engines Cargo">
-  <item>Melendez Ox Engine</item>
-  <item>Melendez Buffalo Engine</item>
-  <item>Melendez Mammoth Engine</item>
   <item>Melendez Ox XL Engine</item>
   <item>Melendez Buffalo XL Engine</item>
   <item>Melendez Mammoth XL Engine</item>
  </tech>
  <tech name="Engines Medium">
+  <item>Beat Up Small Engine</item>
+  <item>Beat Up Medium Engine</item>
+  <item>Beat Up Large Engine</item>
   <item>Nexus Dart 150 Engine</item>
-  <item>Nexus Dart 300 Engine</item>
-  <item>Nexus Arrow 550 Engine</item>
-  <item>Nexus Arrow 1200 Engine</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp Falcon 1200 Engine</item>
   <item>Nexus Bolt 4500 Engine</item>
-  <item>Nexus Bolt 6500 Engine</item>
+  <item>Unicorp Eagle 6500 Engine</item>
  </tech>
  <tech name="Engines High">
   <item>Tricon Zephyr Engine</item>
@@ -859,18 +944,18 @@
   <item>Patchwork Heavy Plating</item>
   <item>Unicorp D-2 Light Plating</item>
   <item>Unicorp D-4 Light Plating</item>
-  <item>Unicorp D-8 Medium Plating</item>
   <item>Unicorp D-12 Medium Plating</item>
-  <item>Unicorp D-16 Heavy Plating</item>
-  <item>Unicorp D-20 Heavy Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
+  <item>Unicorp D-48 Heavy Plating</item>
+  <item>Unicorp D-72 Heavy Plating</item>
  </tech>
  <tech name="Hulls Medium">
-  <item>Unicorp B-2 Light Plating</item>
-  <item>Unicorp B-4 Light Plating</item>
-  <item>Unicorp B-8 Medium Plating</item>
-  <item>Unicorp B-12 Medium Plating</item>
-  <item>Unicorp B-16 Heavy Plating</item>
-  <item>Unicorp B-20 Heavy Plating</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp D-4 Light Plating</item>
+  <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
+  <item>Unicorp D-48 Heavy Plating</item>
+  <item>Unicorp D-72 Heavy Plating</item>
  </tech>
  <tech name="Hulls High">
   <item>S&amp;K Ultralight Combat Plating</item>
@@ -895,5 +980,8 @@
  </tech>
  <tech name="New Haven Maps">
   <item>Map: New Haven's hidden jump points</item>
+ </tech>
+ <tech name="Kretogg Maps">
+  <item>Map: Kretogg's hidden jump points</item>
  </tech>
 </Techs>

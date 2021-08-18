@@ -1,111 +1,123 @@
+--[[
+<?xml version='1.0' encoding='utf8'?>
+<event name="Preacher">
+ <trigger>enter</trigger>
+ <chance>1</chance>
+ <cond>system.cur():presence(faction.get("Sirius"))&gt;50 and (not player.evtActive ("Preacher")) and ((var.peek("si_convert")==nil) or rnd.rnd(1,var.peek("si_convert")+1)==1)</cond>
+ <flags>
+  <unique />
+ </flags>
+</event>
+--]]
 --Preliminary draft of a new event where the player meets one of the Touched, who tries to convert him
 --Sudarshan S <ssoxygen@users.sf.net>
 
-include("fleethelper.lua")
+local fleet = require "fleet"
 
-commtitle="The preaching begins..."
-commtext=[[A Sirian appears on your viewscreen. He seems different than most Sirii you've met. He regards you with a neutral yet intense gaze.
-"Man is cruel and deceptive," he says. "You deserve more than you shall ever get from humanity. Your only hope is to follow the Holy One, Sirichana. He shall guide you to peace and wisdom. He is the sole refuge for humans like you and me. You MUST follow him!"
 
-You feel a brief but overpowering urge to follow him, but it passes and your head clears. The Sirian ship makes no further attempt to communicate with you.]]
+commtext = _([[A Sirian appears on your viewscreen. He seems different than most Sirii you've met. He regards you with a neutral yet intense gaze.
 
-althoughEnemy={
-"%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for I abhor violence!",
-"%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for I believe mercy is a great Truth!",
-"%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for you too are Sirichana's child!"
+"Humankind is cruel and deceptive," he says. "You deserve more than you shall ever get from humanity. Your only hope is to follow the Holy One, Sirichana. He shall guide you to peace and wisdom. He is the sole refuge for humans like you and me. You MUST follow him!"
+ 
+You feel a brief but overpowering urge to follow him, but it passes and your head clears. The Sirian ship makes no further attempt to communicate with you.]])
+
+althoughEnemy = {
+   _("%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for I abhor violence!"),
+   _("%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for I believe mercy is a great Truth!"),
+   _("%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for you too are Sirichana's child!"),
 }
 
-friend={
-"%s, I foresee in you a great Sirian citizen, and I look forward to your friendship!",
-"%s, I foresee a bright future for you, illuminated by Sirichana's light!",
-"%s, may Sirichana's light illuminate your path!"
+friend = {
+   _("%s, I foresee in you a great Sirian citizen, and I look forward to your friendship!"),
+   _("%s, I foresee a bright future for you, illuminated by Sirichana's light!"),
+   _("%s, may Sirichana's light illuminate your path!"),
 }
 
-followSirichana={
-"You shall all follow Sirichana henceforth!",
-"Sirichana shall lead you to peace and wisdom!",
-"Sirichana is the Father of you all!",
-"Sirichana's grace shall liberate you!",
-"May Sirichana's light shine on you henceforth!"
+followSirichana = {
+   _("You shall all follow Sirichana henceforth!"),
+   _("Sirichana shall lead you to peace and wisdom!"),
+   _("Sirichana is the Father of you all!"),
+   _("Sirichana's grace shall liberate you!"),
+   _("May Sirichana's light shine on you henceforth!"),
 }
 
-praiseSirichana={
-"We shall all follow Sirichana now!",
-"We have been liberated from our evil ways!",
-"No more shall we tread the path of evil!",
-"We see the True path now!",
-"No more shall we commit sins!"
+praiseSirichana = {
+   _("We shall all follow Sirichana now!"),
+   _("We have been liberated from our evil ways!"),
+   _("No more shall we tread the path of evil!"),
+   _("We see the True path now!"),
+   _("No more shall we commit sins!"),
 }
 
-attackerPunished={
-"Serves you right for attacking a Touched!",
-"Fry in hell, demon!",
-"May you suffer eternal torment!",
-"Your doom is Sirichana's curse!"
+attackerPunished = {
+   _("Serves you right for attacking a Touched!"),
+   _("Fry in hell, demon!"),
+   _("May you suffer eternal torment!"),
+   _("Your doom is Sirichana's curse!"),
 }
 
-attackersDead={
-"All the attackers are dead!",
-"We can resume our Quest now!",
-"The glory of Sirichana remains unblemished!",
-"All heretics have been destroyed!"
+attackersDead = {
+   _("All the attackers are dead!"),
+   _("We can resume our Quest now!"),
+   _("The glory of Sirichana remains unblemished!"),
+   _("All heretics have been destroyed!"),
 }
 
-whatHappened={
-"Do you think everyone can be brainwashed?",
-"You shall convert no more of us!",
-"Some of us shall not be converted, fool!",
-"You'll never convert me!",
-"I shall never be converted!"
+whatHappened = {
+   _("Do you think everyone can be brainwashed?"),
+   _("You shall convert no more of us!"),
+   _("Some of us shall not be converted, fool!"),
+   _("You'll never convert me!"),
+   _("I shall never be converted!"),
 }
 
-presence={
-"You feel an overwhelming presence nearby!",
-"Something compels you to stop",
-"You are jerked awake by a mysterious but compelling urge",
-"You feel... Touched... by a magical power"
+presence = {
+   _("You feel an overwhelming presence nearby!"),
+   _("Something compels you to stop"),
+   _("You are jerked awake by a mysterious but compelling urge"),
+   _("You feel... Touched... by a magical power"),
 }
 
-startCombat={
-"Die, heretics!",
-"Those who insult the Sirichana shall die!",
-"You've commited an unpardonable sin!",
-"Hell awaits, fools!"
+startCombat = {
+   _("Die, heretics!"),
+   _("Those who insult the Sirichana shall die!"),
+   _("You've committed an unpardonable sin!"),
+   _("Hell awaits, fools!"),
 }
 
-preacherDead={
-"Oh no! The Touched One is dead!",
-"Sirichana save our souls!",
-"We shall never forget You, O Touched One!",
-"We swear eternal revenge!"
+preacherDead = {
+   _("Oh no! The Touched One is dead!"),
+   _("Sirichana save our souls!"),
+   _("We shall never forget You, O Touched One!"),
+   _("We swear eternal revenge!"),
 }
 
-urge={
-"You feel an overwhelming urge to hear him out!",
-"A mysterious force forces you to listen!",
-"You feel compelled to listen!"
+urge = {
+   _("You feel an overwhelming urge to hear him out!"),
+   _("A mysterious force forces you to listen!"),
+   _("You feel compelled to listen!"),
 }
 
-dyingMessage={
-"With my dying breath, I curse you!",
-"Sirichana speed you to hell!",
-"Sirichana, I did my best!"
+dyingMessage = {
+   _("With my dying breath, I curse you!"),
+   _("Sirichana speed you to hell!"),
+   _("Sirichana, I did my best!"),
 }
 
-dead={
-"The Reverence is dead!",
-"Someone killed the preacher!"
+dead = {
+   _("The Reverence is dead!"),
+   _("Someone killed the preacher!")
 }
 
 --initialize the event
 function create()
    curr=system.cur() --save the current system
 
-   v = var.peek( "si_convert" ) -- Get the value
+   v = var.peek("si_convert") -- Get the value
    if v == nil then -- Doesn't exist, so create
-      var.push( "si_convert", 1 )
+      var.push("si_convert", 1)
    else
-      var.push( "si_convert", v+1 )
+      var.push("si_convert", v+1)
    end
 
    --start the fun when the player jumps
@@ -115,9 +127,9 @@ end
 
 --Start the real mission after a short delay
 function funStartsSoon()
-   playerP=player.pilot() --save player's pilot
-   rep=faction.playerStanding(faction.get("Sirius"))
-   hook.timer(5000, "theFunBegins") --for effect, so that we can see them jumping in!
+   playerP = player.pilot() --save player's pilot
+   rep = faction.playerStanding(faction.get("Sirius"))
+   hook.timer(5, "theFunBegins") --for effect, so that we can see them jumping in!
 end
 
 --the preaching's about to begin!
@@ -125,24 +137,25 @@ function theFunBegins()
    if rep < 0 then
       local dist = vec2.dist(jump.get(system.cur(),curr):pos(),player.pos()) --please note the order of system.cur() and curr matters!
       if dist < 6000 then
-         hook.timer(5000,"theFunBegins") --wait some more time
+         hook.timer(5, "theFunBegins") --wait some more time
          return
       end
    end
    --summon a preacher from the jump point and highlight him and take control and focus on him
-   preacher=pilot.addRaw("Sirius Reverence", "sirius_norun", curr, "Sirius")[1]
+   preacher = pilot.add(
+         "Sirius Reverence", "Sirius", curr, nil, {ai="sirius_norun"})
    preacher:setHilight()
    preacher:setVisplayer()
    preacher:control()
-   preacher:broadcast(followSirichana[rnd.rnd(1,#followSirichana)],true)
+   preacher:broadcast(followSirichana[rnd.rnd(1, #followSirichana)], true)
    preacher:hailPlayer()
    playerP:setInvincible()
 
    --set needed hooks
-   hook.pilot(preacher,"attacked","violence")
-   hook.pilot(preacher,"death","badCleanup")
-   hook.pilot(preacher,"land","landCleanup")
-   hook.pilot(preacher,"jump","jumpCleanup")
+   hook.pilot(preacher,"attacked", "violence")
+   hook.pilot(preacher,"death", "badCleanup")
+   hook.pilot(preacher,"land", "landCleanup")
+   hook.pilot(preacher,"jump", "jumpCleanup")
    hook.jumpout("cleanup")
 
    camera.set(preacher, true)
@@ -150,7 +163,7 @@ function theFunBegins()
 
    --you're hooked till you hear him out!
    playerP:control()
-   player.msg(urge[rnd.rnd(1,#urge)])
+   player.msg(urge[rnd.rnd(1, #urge)])
 
    --create a random band of converted pirate followers
    local followerShips = {"Pirate Kestrel", "Pirate Admonisher", "Pirate Shark", "Pirate Vendetta", "Pirate Rhino"} --the types of followers allowed
@@ -161,16 +174,16 @@ function theFunBegins()
       followers[num] = followerShips[rnd.rnd(1, #followerShips)] -- Pick a follower ship at random.
    end
 
-   followers = addRawShips(followers, "sirius_norun", curr, "Sirius") -- The table now contains pilots, not ship names.
-   for _,j in ipairs(followers) do
-      j:rename("Converted "..j:name())
+   followers = fleet.add(1, followers, "Sirius", curr, nil, {ai="sirius_norun"}) -- The table now contains pilots, not ship names.
+   for k,j in ipairs(followers) do
+      j:rename(string.format(_("Converted %s"), j:name()))
    end
 
    --pick a random converted pirate and have him praise the Sirichana
-   praiser=followers[rnd.rnd(1,#followers)]
+   praiser = followers[rnd.rnd(1,#followers)]
 
    --add some sirian escorts too
-   local sirianFollowers = {"Sirius Fidelity","Sirius Shaman"} --the types of followers allowed
+   local sirianFollowers = {"Sirius Fidelity", "Sirius Shaman"} --the types of followers allowed
    local sirianFollowerList = {}
 
    numships = rnd.rnd(2, 6) -- This is the total number of sirian escort ships.
@@ -178,10 +191,10 @@ function theFunBegins()
       sirianFollowerList[num] = sirianFollowers[rnd.rnd(1, #sirianFollowers)] -- Pick a follower ship at random.
    end
 
-   sirianFollowers = addRawShips(sirianFollowerList, "sirius_norun", curr, "Sirius") -- The table now contains pilots, not ship names.
+   sirianFollowers = fleet.add(1, sirianFollowerList, "Sirius", curr, nil, {ai="sirius_norun"}) -- The table now contains pilots, not ship names.
 
-   for _, j in ipairs(sirianFollowers) do
-      followers[#followers + 1] = j
+   for i, p in ipairs(sirianFollowers) do
+      followers[#followers + 1] = p
    end
 
    --set up a table to store attackers
@@ -189,25 +202,25 @@ function theFunBegins()
 
    --make these followers follow the Touched one
    --if Sirius is an enemy still keep these guys neutral... at first
-   for _, j in ipairs(followers) do
-      j:setFriendly()
-      j:control()
-      j:follow(preacher)
-      hook.pilot(j,"attacked","violence")
+   for i, p in ipairs(followers) do
+      p:setFriendly()
+      p:control()
+      p:follow(preacher)
+      hook.pilot(p, "attacked", "violence")
    end
    preacher:setFriendly()
 
    --pick a random follower and have him praise Sirichana, after a delay
-   hook.timer(4000,"praise")
+   hook.timer(4, "praise")
 
    --have the preacher say something cool
-   hook.timer(8000,"preacherSpeak")
+   hook.timer(8, "preacherSpeak")
 
    --add some normal pirates for fun :)
-   hook.timer(12500,"pirateSpawn")
+   hook.timer(12.5, "pirateSpawn")
 
    --hook up timers for releasing cinematics (and you of course :P)
-   hook.timer(17500,"release")
+   hook.timer(17.5, "release")
 
    --hook up timer for re-hailing player
    hailHook=hook.date(time.create(0, 0, 1000), "reHail") --hail every 1000 STU till player answers
@@ -217,11 +230,13 @@ function theFunBegins()
 end
 
 function preacherSpeak()
-   camera.set(preacher,true)
+   camera.set(preacher, true)
    if rep < 0 then
-      preacher:comm(string.format(althoughEnemy[rnd.rnd(1,#althoughEnemy)],player.name()), true)
+      preacher:comm(string.format(
+               althoughEnemy[rnd.rnd(1, #althoughEnemy)], player.name()), true)
    else
-      preacher:comm(string.format(friend[rnd.rnd(1,#friend)],player.name()), true)
+      preacher:comm(string.format(
+               friend[rnd.rnd(1, #friend)], player.name()), true)
    end
 end
 
@@ -234,42 +249,42 @@ end
 
 --random praise for the Sirichana
 function praise()
-   camera.set(praiser,true)
-   praiser:broadcast(praiseSirichana[rnd.rnd(1,#praiseSirichana)],true)
+   camera.set(praiser, true)
+   praiser:broadcast(praiseSirichana[rnd.rnd(1, #praiseSirichana)], true)
 end
 
 --spawn some enemy pirates for fun :P
 --to add even more fun have them say something cool
 function pirateSpawn()
-   local numships=rnd.rnd(2,5)
-   local curiousNumber=rnd.rnd(1,numships)
-   local shiptype={"Pirate Shark","Pirate Vendetta"}
+   local numships = rnd.rnd(2, 5)
+   local curiousNumber = rnd.rnd(1, numships)
+   local shiptype = {"Pirate Shark", "Pirate Vendetta"}
    local thepilot
    for num=1,numships,1 do
-      thepilot = pilot.add(shiptype[rnd.rnd(1,#shiptype)], nil, curr)[1]
-      if num==curiousNumber then
-         thepilot:broadcast(whatHappened[rnd.rnd(1,#whatHappened)],true)
-         camera.set(thepilot,true)
+      thepilot = pilot.add(shiptype[rnd.rnd(1, #shiptype)], "Pirate", curr)
+      if num == curiousNumber then
+         thepilot:broadcast(whatHappened[rnd.rnd(1, #whatHappened)], true)
+         camera.set(thepilot, true)
       end
       thepilot:control()
-      thepilot:attack(followers[rnd.rnd(1,#followers)])
+      thepilot:attack(followers[rnd.rnd(1, #followers)])
    end
 end
 
 --called when a new attack happens
 function violence(attacked,attacker)
    if #attackers == 0 then --we have to change the group to battle mode
-      attacked:broadcast(startCombat[rnd.rnd(1,#startCombat)],true)
+      attacked:broadcast(startCombat[rnd.rnd(1, #startCombat)], true)
       preacher:control(false)
-      for _, j in ipairs(followers) do
-         if j:exists() then
-            j:control(false)
+      for i, p in ipairs(followers) do
+         if p:exists() then
+            p:control(false)
          end
       end
    end
    local found=false
-   for _,j in ipairs(attackers) do
-      if j==attacker then
+   for i, p in ipairs(attackers) do
+      if p == attacker then
          found=true
          break
       end
@@ -282,44 +297,44 @@ function violence(attacked,attacker)
    end
 end
 
---another enemy is dead
+-- another enemy is dead
 function anotherdead(enemy, attacker)
 
-   if attacker==nil then --in case the pilot was blown up by an explosion
-      attacker=preacher
+   if attacker == nil then --in case the pilot was blown up by an explosion
+      attacker = preacher
    end
 
-   if attacker:exists() then --in case the attacker was parallely killed
-      attacker:broadcast(attackerPunished[rnd.rnd(1,#attackerPunished)],true)
+   if attacker:exists() then --in case the attacker was killed in parallel
+      attacker:broadcast(attackerPunished[rnd.rnd(1, #attackerPunished)], true)
    end
 
-   --find and remove the enemy
-   for i,j in ipairs(attackers) do
-      if j==enemy then
-         table.remove(attackers,i)
+   -- find and remove the enemy
+   for i, p in ipairs(attackers) do
+      if p == enemy then
+         table.remove(attackers, i)
          break
       end
    end
 
    if #attackers == 0 then --last one was killed, restore idle mode
-      attacker:broadcast(attackersDead[rnd.rnd(1,#attackersDead)],true)
+      attacker:broadcast(attackersDead[rnd.rnd(1, #attackersDead)], true)
       restoreControl()
    end
 end
 
---finds and set a new target for the preacher, when he is outta battle mode
+-- finds and set a new target for the preacher, when he is outta battle mode
 function getPreacherTarget()
-   local sirius=faction.get( "Sirius" )
+   local sirius = faction.get("Sirius")
 
-   --look for nearby landable sirian planet to land
-   for key, planet in ipairs( system.cur():planets() ) do
-      if planet:faction()==sirius and planet:services()["land"]  then
+   --look for nearby landable Sirian planet to land
+   for key, planet in ipairs(system.cur():planets()) do
+      if planet:faction() == sirius and planet:services()["land"]  then
          target = planet
          break
       end
    end
 
-   --if no landable sirian planets found, jump to random system
+   --if no landable Sirian planets found, jump to random system
    --TODO: prevent jump back through the entry point
    if target then
       preacher:land(target)
@@ -331,10 +346,10 @@ end
 --restores control to the idle mode
 function restoreControl()
    preacher:control()
-   for _, j in ipairs(followers) do
-      if j:exists() then
-         j:control()
-         j:follow(preacher)
+   for i, p in ipairs(followers) do
+      if p:exists() then
+         p:control()
+         p:follow(preacher)
       end
    end
    getPreacherTarget()
@@ -347,14 +362,14 @@ function release()
    playerP:setInvincible(false)
    playerP:control(false)
    --if the attacks have already started, we shouldn't set a target yet
-   if #attackers==0 then
+   if #attackers == 0 then
       getPreacherTarget()
    end
 end
 
 --when hailed back, show the message
 function hail()
-   tk.msg(commtitle,commtext)
+   tk.msg("", commtext)
    player.commClose()
    hook.rm(hailHook) --no more hailing
 end
@@ -365,49 +380,49 @@ function cleanup()
    player.pilot():control(false)
    camera.set()
    player.cinematics(false)
-   evt.finish()
+   evt.finish(true)
 end
 
 --oops, it seems the preacher died. End gracefully
 function badCleanup()
    playerP:setInvincible(false)
-   player.msg(dead[rnd.rnd(1,#dead)])
-   preacher:broadcast(dyingMessage[rnd.rnd(1,#dyingMessage)])
+   player.msg(dead[rnd.rnd(1, #dead)])
+   preacher:broadcast(dyingMessage[rnd.rnd(1, #dyingMessage)])
    local survivors={}
-   for _,j in ipairs(followers) do
-      if j:exists() then
-         j:control(false)
-         survivors[#survivors+1]=j
+   for i, p in ipairs(followers) do
+      if p:exists() then
+         p:control(false)
+         survivors[#survivors+1] = p
       end
    end
    if #survivors > 0 then
-      follower=survivors[rnd.rnd(1,#survivors)]
-      follower:broadcast(preacherDead[rnd.rnd(1,#preacherDead)],true)
+      follower = survivors[rnd.rnd(1, #survivors)]
+      follower:broadcast(preacherDead[rnd.rnd(1, #preacherDead)], true)
    end
-   evt.finish()
+   evt.finish(false)
 end
 
 --the preacher has landed. Land all his followers too
 function landCleanup()
    playerP:setInvincible(false)
-   for _,j in ipairs(followers) do
-      if j:exists() then
-         j:taskClear()
-         j:land(target)
+   for i, p in ipairs(followers) do
+      if p:exists() then
+         p:taskClear()
+         p:land(target)
       end
    end
-   evt.finish()
+   evt.finish(true)
 end
 
 --the preacher has jumped. Jump all his followers too
 function jumpCleanup()
    playerP:setInvincible(false)
-   for _,j in ipairs(followers) do
-      if j:exists() then
-         j:taskClear()
-         j:control()
-         j:hyperspace(target,true) --attack back as they move away?
+   for i, p in ipairs(followers) do
+      if p:exists() then
+         p:taskClear()
+         p:control()
+         p:hyperspace(target,true) --attack back as they move away?
       end
    end
-   evt.finish()
+   evt.finish(true)
 end

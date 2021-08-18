@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <outfit name="TeraCom Vengeance Launcher">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
-  <mass>20</mass>
+  <mass>30</mass>
   <price>150000</price>
-  <description>TeraCom's patented launcher hardware considerably reduces the time it takes to achieve a lock. Sometimes, those few seconds can make all the difference.</description>
-  <gfx_store>headhunterlauncher</gfx_store>
-  <cpu>-10</cpu>
+  <description>TeraCom's patented Vengeance launcher hardware considerably reduces the time it takes to achieve a lock. Sometimes, those few seconds can make all the difference. With their destructive payload, these missiles will make short work of even quite large ships.</description>
+  <gfx_store>headhunterlauncher.webp</gfx_store>
+  <cpu>-8</cpu>
  </general>
  <specific type="launcher" secondary="1">
   <ammo>Vengeance Missile</ammo>
-  <delay>6</delay>
-  <amount>10</amount>
-  <lockon>8</lockon>
-  <arc>8</arc>
-  <ew_target>1</ew_target>
+  <delay>4</delay>
+  <reload_time>60</reload_time>
+  <amount>15</amount>
+  <lockon>5</lockon>
+  <arc>120</arc>
+  <rdr_range>3000</rdr_range>
+  <rdr_range_max>4100</rdr_range_max>
  </specific>
 </outfit>

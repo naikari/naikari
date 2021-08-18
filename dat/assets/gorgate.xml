@@ -5,8 +5,8 @@
   <y>6955.974130</y>
  </pos>
  <GFX>
-  <space>M02.png</space>
-  <exterior>aquatic.png</exterior>
+  <space>M02.webp</space>
+  <exterior>aquatic.webp</exterior>
  </GFX>
  <presence>
   <faction>Sirius</faction>
@@ -16,13 +16,11 @@
  <general>
   <class>M</class>
   <population>4000000000</population>
-  <hide>0.250000</hide>
   <services>
    <land/>
    <refuel/>
    <bar/>
    <missions/>
-   <commodity/>
    <outfits/>
    <shipyard/>
   </services>

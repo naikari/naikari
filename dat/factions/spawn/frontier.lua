@@ -1,45 +1,40 @@
-include("dat/factions/spawn/common.lua")
-include("dat/factions/spawn/mercenary_helper.lua")
-
+local scom = require "factions.spawn.lib.common"
+local merc = require "factions.spawn.lib.mercenary"
 
 -- @brief Spawns a small patrol fleet.
 function spawn_patrol ()
-    local pilots = {}
-    local r = rnd.rnd()
+   local pilots = {}
+   local r = rnd.rnd()
 
-    if r < pbm then
-       pilots = spawnLtMerc("Frontier")
-    elseif r < 0.5 then
-       scom.addPilot( pilots, "Frontier Lancelot", 30 );
-    elseif r < 0.8 then
-       scom.addPilot( pilots, "Frontier Hyena", 20 );
-       scom.addPilot( pilots, "Frontier Lancelot", 30 );
-    else
-       scom.addPilot( pilots, "Frontier Hyena", 20 );
-       scom.addPilot( pilots, "Frontier Ancestor", 25 );
-    end
+   if r < 0.5 then
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+   elseif r < 0.8 then
+      scom.addPilot(pilots, "Hyena", 20, {name=N_("Frontier Hyena")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+   else
+      scom.addPilot(pilots, "Hyena", 20, {name=N_("Frontier Hyena")})
+      scom.addPilot(pilots, "Ancestor", 25, {name=N_("Frontier Ancestor")})
+   end
 
-    return pilots
+   return pilots
 end
 
 
 -- @brief Spawns a medium sized squadron.
 function spawn_squad ()
-    local pilots = {}
-    local r = rnd.rnd()
+   local pilots = {}
+   local r = rnd.rnd()
 
-    if r < pbm then
-        pilots = spawnMdMerc("Frontier")
-    elseif r < 0.5 then
-       scom.addPilot( pilots, "Frontier Lancelot", 30 );
-       scom.addPilot( pilots, "Frontier Phalanx", 55 );
-    else
-       scom.addPilot( pilots, "Frontier Lancelot", 30 );
-       scom.addPilot( pilots, "Frontier Lancelot", 30 );
-       scom.addPilot( pilots, "Frontier Ancestor", 25 );
-    end
+   if r < 0.5 then
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Phalanx", 55, {name=N_("Frontier Phalanx")})
+   else
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Ancestor", 25, {name=N_("Frontier Ancestor")})
+   end
 
-    return pilots
+   return pilots
 end
 
 
@@ -50,7 +45,7 @@ function create ( max )
     -- Create weights for spawn table
     weights[ spawn_patrol  ] = 100
     weights[ spawn_squad   ] = 0.33*max
-   
+
     -- Create spawn table base on weights
     spawn_table = scom.createSpawnTable( weights )
 
@@ -63,15 +58,13 @@ end
 
 -- @brief Spawning hook
 function spawn ( presence, max )
-    local pilots
-
     -- Over limit
     if presence > max then
        return 5
     end
-  
+
     -- Actually spawn the pilots
-    pilots = scom.spawn( spawn_data )
+    local pilots = scom.spawn( spawn_data, "Frontier" )
 
     -- Calculate spawn data
     spawn_data = scom.choose( spawn_table )

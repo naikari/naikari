@@ -8,32 +8,41 @@
  * @brief Handles the Lua commodity bindings.
  */
 
-#include "nlua_commodity.h"
-
-#include "naev.h"
-
+/** @cond */
 #include <lauxlib.h>
 
-#include "nlua.h"
-#include "nluadef.h"
-#include "nlua_planet.h"
+#include "naev.h"
+/** @endcond */
+
+#include "nlua_commodity.h"
+
+#include "array.h"
 #include "log.h"
+#include "nlua_planet.h"
+#include "nlua_time.h"
+#include "nluadef.h"
 #include "rng.h"
 
 
 /* Commodity metatable methods. */
 static int commodityL_eq( lua_State *L );
 static int commodityL_get( lua_State *L );
+static int commodityL_getStandard( lua_State *L );
 static int commodityL_name( lua_State *L );
+static int commodityL_nameRaw( lua_State *L );
 static int commodityL_price( lua_State *L );
 static int commodityL_priceAt( lua_State *L );
-static const luaL_reg commodityL_methods[] = {
+static int commodityL_priceAtTime( lua_State *L );
+static const luaL_Reg commodityL_methods[] = {
    { "__tostring", commodityL_name },
    { "__eq", commodityL_eq },
    { "get", commodityL_get },
+   { "getStandard", commodityL_getStandard },
    { "name", commodityL_name },
+   { "nameRaw", commodityL_nameRaw },
    { "price", commodityL_price },
    { "priceAt", commodityL_priceAt },
+   { "priceAtTime", commodityL_priceAtTime },
    {0,0}
 }; /**< Commodity metatable methods. */
 
@@ -42,26 +51,12 @@ static const luaL_reg commodityL_methods[] = {
 /**
  * @brief Loads the commodity library.
  *
- *    @param L State to load commodity library into.
+ *    @param env Environment to load commodity library into.
  *    @return 0 on success.
  */
-int nlua_loadCommodity( lua_State *L, int readonly )
+int nlua_loadCommodity( nlua_env env )
 {
-   (void) readonly; /* Everything is readonly. */
-
-   /* Create the metatable */
-   luaL_newmetatable(L, COMMODITY_METATABLE);
-
-   /* Create the access table */
-   lua_pushvalue(L,-1);
-   lua_setfield(L,-2,"__index");
-
-   /* Register the values */
-   luaL_register(L, NULL, commodityL_methods);
-
-   /* Clean up. */
-   lua_setfield(L, LUA_GLOBALSINDEX, COMMODITY_METATABLE);
-
+   nlua_register(env, COMMODITY_METATABLE, commodityL_methods, 1);
    return 0;
 }
 
@@ -88,9 +83,9 @@ int nlua_loadCommodity( lua_State *L, int readonly )
  *    @param ind Index position to find the commodity.
  *    @return Commodity found at the index in the state.
  */
-LuaCommodity* lua_tocommodity( lua_State *L, int ind )
+Commodity* lua_tocommodity( lua_State *L, int ind )
 {
-   return (LuaCommodity*) lua_touserdata(L,ind);
+   return *((Commodity**) lua_touserdata(L,ind));
 }
 /**
  * @brief Gets commodity at index or raises error if there is no commodity at index.
@@ -99,7 +94,7 @@ LuaCommodity* lua_tocommodity( lua_State *L, int ind )
  *    @param ind Index position to find commodity.
  *    @return Commodity found at the index in the state.
  */
-LuaCommodity* luaL_checkcommodity( lua_State *L, int ind )
+Commodity* luaL_checkcommodity( lua_State *L, int ind )
 {
    if (lua_iscommodity(L,ind))
       return lua_tocommodity(L,ind);
@@ -115,13 +110,10 @@ LuaCommodity* luaL_checkcommodity( lua_State *L, int ind )
  */
 Commodity* luaL_validcommodity( lua_State *L, int ind )
 {
-   LuaCommodity *lo;
    Commodity *o;
 
-   if (lua_iscommodity(L, ind)) {
-      lo = luaL_checkcommodity(L, ind);
-      o  = lo->commodity;
-   }
+   if (lua_iscommodity(L, ind))
+      o = luaL_checkcommodity(L, ind);
    else if (lua_isstring(L, ind))
       o = commodity_get( lua_tostring(L, ind) );
    else {
@@ -130,7 +122,7 @@ Commodity* luaL_validcommodity( lua_State *L, int ind )
    }
 
    if (o == NULL)
-      NLUA_ERROR(L, "Commodity is invalid.");
+      NLUA_ERROR(L, _("Commodity is invalid."));
 
    return o;
 }
@@ -141,10 +133,10 @@ Commodity* luaL_validcommodity( lua_State *L, int ind )
  *    @param commodity Commodity to push.
  *    @return Newly pushed commodity.
  */
-LuaCommodity* lua_pushcommodity( lua_State *L, LuaCommodity commodity )
+Commodity** lua_pushcommodity( lua_State *L, Commodity* commodity )
 {
-   LuaCommodity *o;
-   o = (LuaCommodity*) lua_newuserdata(L, sizeof(LuaCommodity));
+   Commodity **o;
+   o = (Commodity**) lua_newuserdata(L, sizeof(Commodity*));
    *o = commodity;
    luaL_getmetatable(L, COMMODITY_METATABLE);
    lua_setmetatable(L, -2);
@@ -179,17 +171,17 @@ int lua_iscommodity( lua_State *L, int ind )
  *
  * @usage if o1 == o2 then -- Checks to see if commodity o1 and o2 are the same
  *
- *    @luaparam o1 First commodity to compare.
- *    @luaparam o2 Second commodity to compare.
- *    @luareturn true if both commodities are the same.
- * @luafunc __eq( o1, o2 )
+ *    @luatparam Commodity o1 First commodity to compare.
+ *    @luatparam Commodity o2 Second commodity to compare.
+ *    @luatreturn boolean true if both commodities are the same.
+ * @luafunc __eq
  */
 static int commodityL_eq( lua_State *L )
 {
-   LuaCommodity *a, *b;
+   Commodity *a, *b;
    a = luaL_checkcommodity(L,1);
    b = luaL_checkcommodity(L,2);
-   if (a->commodity == b->commodity)
+   if (a == b)
       lua_pushboolean(L,1);
    else
       lua_pushboolean(L,0);
@@ -197,53 +189,101 @@ static int commodityL_eq( lua_State *L )
 }
 
 
-
-
 /**
  * @brief Gets a commodity.
  *
  * @usage s = commodity.get( "Food" ) -- Gets the food commodity
  *
- *    @luaparam s Name of the commodity to get.
- *    @luareturn The commodity matching name or nil if error.
- * @luafunc get( s )
+ *    @luatparam string s Raw (untranslated) name of the commodity to get.
+ *    @luatreturn Commodity|nil The commodity matching name or nil if error.
+ * @luafunc get
  */
 static int commodityL_get( lua_State *L )
 {
    const char *name;
-   LuaCommodity lo;
+   Commodity *commodity;
 
    /* Handle parameters. */
    name = luaL_checkstring(L,1);
 
    /* Get commodity. */
-   lo.commodity = commodity_get( name );
-   if (lo.commodity == NULL) {
-      NLUA_ERROR(L,"Commodity '%s' not found!", name);
+   commodity = commodity_get( name );
+   if (commodity == NULL) {
+      NLUA_ERROR(L,_("Commodity '%s' not found!"), name);
       return 0;
    }
 
    /* Push. */
-   lua_pushcommodity(L, lo);
+   lua_pushcommodity(L, commodity);
    return 1;
 }
+
+
 /**
- * @brief Gets the name of the commodity's commodity.
+ * @brief Gets the list of standard commodities.
  *
- * @usage commodityname = s:name()
+ * @luatreturn table A table containing commodity objects, namely those which are standard (buyable/sellable anywhere).
+ * @luafunc getStandard
+ */
+static int commodityL_getStandard( lua_State *L )
+{
+   int i;
+   Commodity **standard;
+
+   /* Get commodity. */
+   standard = standard_commodities();
+
+   /* Push. */
+   lua_newtable( L );                       /* Stack: t */
+   for (i=0; i<array_size(standard); i++) {
+      lua_pushnumber( L, i+1 );            /* Stack: t, i (1-based index) */
+      lua_pushcommodity( L, standard[i] ); /* Stack: t, i, c */
+      lua_rawset( L, -3 );                 /* Stack: t */
+   }
+
+   array_free( standard );
+   return 1;
+}
+
+
+/**
+ * @brief Gets the translated name of the commodity.
  *
- *    @luaparam s Commodity to get commodity name.
- *    @luareturn The name of the commodity's commodity.
- * @luafunc name( s )
+ * This translated name should be used for display purposes (e.g.
+ * messages). It cannot be used as an identifier for the commodity; for
+ * that, use commodity.nameRaw() instead.
+ *
+ * @usage commodityname = s:name() -- Equivalent to `_(s:nameRaw())`
+ *
+ *    @luatparam Commodity s Commodity to get the translated name of.
+ *    @luatreturn string The translated name of the commodity.
+ * @luafunc name
  */
 static int commodityL_name( lua_State *L )
 {
-   Commodity *c;
+   Commodity *c  = luaL_validcommodity(L,1);
+   lua_pushstring(L, _(c->name));
+   return 1;
+}
 
-   /* Get the commodity. */
-   c  = luaL_validcommodity(L,1);
 
-   /** Return the commodity name. */
+/**
+ * @brief Gets the raw (untranslated) name of the commodity.
+ *
+ * This untranslated name should be used for identification purposes
+ * (e.g. can be passed to commodity.get()). It should not be used
+ * directly for display purposes without manually translating it with
+ * _().
+ *
+ * @usage commodityrawname = s:nameRaw()
+ *
+ *    @luatparam Commodity s Commodity to get the raw name of.
+ *    @luatreturn string The raw name of the commodity.
+ * @luafunc nameRaw
+ */
+static int commodityL_nameRaw( lua_State *L )
+{
+   Commodity *c  = luaL_validcommodity(L,1);
    lua_pushstring(L, c->name);
    return 1;
 }
@@ -254,9 +294,9 @@ static int commodityL_name( lua_State *L )
  *
  * @usage print( o:price() ) -- Prints the base price of the commodity
  *
- *    @luaparam o Commodity to get information of.
- *    @luareturn The base price of the commodity.
- * @luafunc price( o )
+ *    @luatparam Commodity o Commodity to get information of.
+ *    @luatreturn number The base price of the commodity.
+ * @luafunc price
  */
 static int commodityL_price( lua_State *L )
 {
@@ -267,14 +307,14 @@ static int commodityL_price( lua_State *L )
 
 
 /**
- * @brief Gets the base price of an commodity at a certain planet.
+ * @brief Gets the base price of an commodity on a certain planet.
  *
  * @usage if o:priceAt( planet.get("Polaris Prime") ) > 100 then -- Checks price of an outfit at polaris prime
  *
- *    @luaparam o Commodity to get information of.
- *    @luaparam p Planet to get price at.
- *    @luareturn The price of the commodity at the planet.
- * @luafunc priceAt( o, p )
+ *    @luatparam Commodity o Commodity to get information of.
+ *    @luatparam Planet p Planet to get price at.
+ *    @luatreturn number The price of the commodity at the planet.
+ * @luafunc priceAt
  */
 static int commodityL_priceAt( lua_State *L )
 {
@@ -287,12 +327,12 @@ static int commodityL_priceAt( lua_State *L )
    p = luaL_validplanet(L,2);
    sysname = planet_getSystem( p->name );
    if (sysname == NULL) {
-      NLUA_ERROR( L, "Planet '%s' does not belong to a system", p->name );
+      NLUA_ERROR( L, _("Planet '%s' does not belong to a system."), p->name );
       return 0;
    }
    sys = system_get( sysname );
    if (sys == NULL) {
-      NLUA_ERROR( L, "Planet '%s' can not find its system '%s'", p->name, sysname );
+      NLUA_ERROR( L, _("Planet '%s' can not find its system '%s'."), p->name, sysname );
       return 0;
    }
 
@@ -300,5 +340,38 @@ static int commodityL_priceAt( lua_State *L )
    return 1;
 }
 
+/**
+ * @brief Gets the price of an commodity on a certain planet at a certain time.
+ *
+ * @usage if o:priceAtTime( planet.get("Polaris Prime"), time ) > 100 then -- Checks price of an outfit at polaris prime
+ *
+ *    @luatparam Commodity o Commodity to get information of.
+ *    @luatparam Planet p Planet to get price at.
+ *    @luatparam Time t Time to get the price at.
+ *    @luatreturn number The price of the commodity at the planet.
+ * @luafunc priceAtTime
+ */
+static int commodityL_priceAtTime( lua_State *L )
+{
+   Commodity *c;
+   Planet *p;
+   StarSystem *sys;
+   char *sysname;
+   ntime_t t;
+   c = luaL_validcommodity(L,1);
+   p = luaL_validplanet(L,2);
+   t = luaL_validtime(L, 3);
+   sysname = planet_getSystem( p->name );
+   if (sysname == NULL) {
+      NLUA_ERROR( L, _("Planet '%s' does not belong to a system."), p->name );
+      return 0;
+   }
+   sys = system_get( sysname );
+   if (sys == NULL) {
+      NLUA_ERROR( L, _("Planet '%s' can not find its system '%s'."), p->name, sysname );
+      return 0;
+   }
 
-
+   lua_pushnumber( L, planet_commodityPriceAtTime( p, c, t ) );
+   return 1;
+}

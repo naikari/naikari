@@ -10,24 +10,27 @@
  * These bindings control the factions.
  */
 
-#include "nlua_faction.h"
-
-#include "naev.h"
-
+/** @cond */
 #include <lauxlib.h>
 
-#include "log.h"
-#include "nlua.h"
-#include "nluadef.h"
-#include "nlua_tex.h"
-#include "nlua_col.h"
+#include "naev.h"
+/** @endcond */
+
+#include "nlua_faction.h"
+
+#include "array.h"
 #include "faction.h"
+#include "log.h"
+#include "nlua_col.h"
+#include "nlua_tex.h"
+#include "nluadef.h"
 
 
 /* Faction metatable methods */
 static int factionL_get( lua_State *L );
 static int factionL_eq( lua_State *L );
 static int factionL_name( lua_State *L );
+static int factionL_nameRaw( lua_State *L );
 static int factionL_longname( lua_State *L );
 static int factionL_areenemies( lua_State *L );
 static int factionL_areallies( lua_State *L );
@@ -38,16 +41,19 @@ static int factionL_setplayerstanding( lua_State *L );
 static int factionL_playerstanding( lua_State *L );
 static int factionL_enemies( lua_State *L );
 static int factionL_allies( lua_State *L );
-static int factionL_logoSmall( lua_State *L );
-static int factionL_logoTiny( lua_State *L );
+static int factionL_logo( lua_State *L );
 static int factionL_colour( lua_State *L );
 static int factionL_isknown( lua_State *L );
 static int factionL_setknown( lua_State *L );
-static const luaL_reg faction_methods[] = {
+static int factionL_dynAdd( lua_State *L );
+static int factionL_dynAlly( lua_State *L );
+static int factionL_dynEnemy( lua_State *L );
+static const luaL_Reg faction_methods[] = {
    { "get", factionL_get },
    { "__eq", factionL_eq },
    { "__tostring", factionL_name },
    { "name", factionL_name },
+   { "nameRaw", factionL_nameRaw },
    { "longname", factionL_longname },
    { "areEnemies", factionL_areenemies },
    { "areAllies", factionL_areallies },
@@ -58,54 +64,26 @@ static const luaL_reg faction_methods[] = {
    { "playerStanding", factionL_playerstanding },
    { "enemies", factionL_enemies },
    { "allies", factionL_allies },
-   { "logoSmall", factionL_logoSmall },
-   { "logoTiny", factionL_logoTiny },
+   { "logo", factionL_logo },
    { "colour", factionL_colour },
    { "known", factionL_isknown },
    { "setKnown", factionL_setknown },
+   { "dynAdd", factionL_dynAdd },
+   { "dynAlly", factionL_dynAlly },
+   { "dynEnemy", factionL_dynEnemy },
    {0,0}
 }; /**< Faction metatable methods. */
-static const luaL_reg faction_methods_cond[] = {
-   { "get", factionL_get },
-   { "__eq", factionL_eq },
-   { "__tostring", factionL_name },
-   { "name", factionL_name },
-   { "longname", factionL_longname },
-   { "areEnemies", factionL_areenemies },
-   { "areAllies", factionL_areallies },
-   { "playerStanding", factionL_playerstanding },
-   { "enemies", factionL_enemies },
-   { "allies", factionL_allies },
-   { "logoSmall", factionL_logoSmall },
-   { "logoTiny", factionL_logoTiny },
-   { "colour", factionL_colour },
-   { "known", factionL_isknown },
-   {0,0}
-}; /**< Factions read only metatable methods. */
 
 
 /**
  * @brief Loads the faction library.
  *
- *    @param L State to load faction library into.
- *    @param readonly Load as read only?
+ *    @param env Environment to load faction library into.
  *    @return 0 on success.
  */
-int nlua_loadFaction( lua_State *L, int readonly )
+int nlua_loadFaction( nlua_env env )
 {
-   /* Create the metatable */
-   luaL_newmetatable(L, FACTION_METATABLE);
-
-   /* Create the access table */
-   lua_pushvalue(L,-1);
-   lua_setfield(L,-2,"__index");
-
-   /* Register the values */
-   luaL_register(L, NULL, (readonly) ? faction_methods_cond : faction_methods);
-
-   /* Clean up. */
-   lua_setfield(L, LUA_GLOBALSINDEX, FACTION_METATABLE);
-
+   nlua_register(env, FACTION_METATABLE, faction_methods, 1);
    return 0; /* No error */
 }
 
@@ -128,9 +106,9 @@ int nlua_loadFaction( lua_State *L, int readonly )
  *
  * @usage f = faction.get( "Empire" )
  *
- *    @luaparam name Name of the faction to get.
- *    @luareturn The faction matching name.
- * @luafunc get( name )
+ *    @luatparam string name Name of the faction to get.
+ *    @luatreturn Faction The faction matching name.
+ * @luafunc get
  */
 static int factionL_get( lua_State *L )
 {
@@ -138,9 +116,9 @@ static int factionL_get( lua_State *L )
    const char *name;
 
    name = luaL_checkstring(L,1);
-   f.f = faction_get(name);
-   if (f.f < 0) {
-      NLUA_ERROR(L,"Faction '%s' not found in stack.", name );
+   f = faction_get(name);
+   if (f < 0) {
+      NLUA_ERROR(L,_("Faction '%s' not found in stack."), name );
       return 0;
    }
    lua_pushfaction(L,f);
@@ -155,9 +133,9 @@ static int factionL_get( lua_State *L )
  *    @param ind Index position to find the faction.
  *    @return Faction found at the index in the state.
  */
-LuaFaction* lua_tofaction( lua_State *L, int ind )
+LuaFaction lua_tofaction( lua_State *L, int ind )
 {
-   return (LuaFaction*) lua_touserdata(L,ind);
+   return *((LuaFaction*) lua_touserdata(L,ind));
 }
 
 
@@ -168,12 +146,12 @@ LuaFaction* lua_tofaction( lua_State *L, int ind )
  *    @param ind Index position to find the faction.
  *    @return Faction found at the index in the state.
  */
-int luaL_validfaction( lua_State *L, int ind )
+LuaFaction luaL_validfaction( lua_State *L, int ind )
 {
    int id;
 
    if (lua_isfaction(L,ind))
-      id = lua_tofaction(L,ind)->f;
+      id = lua_tofaction(L,ind);
    else if (lua_isstring(L,ind))
       id = faction_get( lua_tostring(L, ind) );
    else {
@@ -182,7 +160,7 @@ int luaL_validfaction( lua_State *L, int ind )
    }
 
    if (id == -1)
-      NLUA_ERROR(L,"Faction '%s' not found in stack.", lua_tostring(L,ind) );
+      NLUA_ERROR(L,_("Faction '%s' not found in stack."), lua_tostring(L,ind) );
 
    return id;
 }
@@ -230,53 +208,81 @@ int lua_isfaction( lua_State *L, int ind )
 /**
  * @brief __eq (equality) metamethod for factions.
  *
- * You can use the '=' operator within Lua to compare factions with this.
+ * You can use the '==' operator within Lua to compare factions with this.
  *
  * @usage if f == faction.get( "Dvaered" ) then
  *
- *    @luaparam f Faction comparing.
- *    @luaparam comp faction to compare against.
- *    @luareturn true if both factions are the same.
- * @luafunc __eq( f, comp )
+ *    @luatparam Faction f Faction comparing.
+ *    @luatparam Faction comp faction to compare against.
+ *    @luatreturn boolean true if both factions are the same.
+ * @luafunc __eq
  */
 static int factionL_eq( lua_State *L )
 {
-   int a, b;
-   a = luaL_validfaction(L,1);
-   b = luaL_validfaction(L,2);
+   int a = luaL_validfaction(L,1);
+   int b = luaL_validfaction(L,2);
    lua_pushboolean(L, a == b);
    return 1;
 }
 
 /**
- * @brief Gets the faction's name.
+ * @brief Gets the faction's translated short name.
  *
- * @usage name = f:name()
+ * This translated name should be used for display purposes (e.g.
+ * messages) where the shorter version of the faction's display name
+ * should be used. It cannot be used as an identifier for the faction;
+ * for that, use faction.nameRaw() instead.
  *
- *    @luaparam f The faction to get the name of.
- *    @luareturn The name of the faction.
- * @luafunc name( f )
+ * @usage shortname = f:name()
+ *
+ *    @luatparam Faction f The faction to get the name of.
+ *    @luatreturn string The name of the faction.
+ * @luafunc name
  */
 static int factionL_name( lua_State *L )
 {
-   int f;
-   f = luaL_validfaction(L,1);
+   int f = luaL_validfaction(L,1);
+   lua_pushstring(L, faction_shortname(f));
+   return 1;
+}
+
+/**
+ * @brief Gets the faction's raw / "real" (untranslated, internal) name.
+ *
+ * This untranslated name should be used for identification purposes
+ * (e.g. can be passed to faction.get()). It should not be used for
+ * display purposes; for that, use faction.name() or faction.longname()
+ * instead.
+ *
+ * @usage name = f:nameRaw()
+ *
+ *    @luatparam Faction f The faction to get the name of.
+ *    @luatreturn string The name of the faction.
+ * @luafunc nameRaw
+ */
+static int factionL_nameRaw( lua_State *L )
+{
+   int f = luaL_validfaction(L,1);
    lua_pushstring(L, faction_name(f));
    return 1;
 }
 
 /**
- * @brief Gets the faction's long name.
+ * @brief Gets the faction's translated long name.
+ *
+ * This translated name should be used for display purposes (e.g.
+ * messages) where the longer version of the faction's display name
+ * should be used. It cannot be used as an identifier for the faction;
+ * for that, use faction.nameRaw() instead.
  *
  * @usage longname = f:longname()
- *    @luaparam f Faction to get long name of.
- *    @luareturn The long name of the faction.
- * @luafunc longname( f )
+ *    @luatparam Faction f Faction to get long name of.
+ *    @luatreturn string The long name of the faction (translated).
+ * @luafunc longname
  */
 static int factionL_longname( lua_State *L )
 {
-   int f;
-   f = luaL_validfaction(L,1);
+   int f = luaL_validfaction(L,1);
    lua_pushstring(L, faction_longname(f));
    return 1;
 }
@@ -286,17 +292,15 @@ static int factionL_longname( lua_State *L )
  *
  * @usage if f:areEnemies( faction.get( "Dvaered" ) ) then
  *
- *    @luaparam f Faction to check against.
- *    @luaparam e Faction to check if is an enemy.
- *    @luareturn true if they are enemies, false if they aren't.
- * @luafunc areEnemies( f, e )
+ *    @luatparam Faction f Faction to check against.
+ *    @luatparam Faction e Faction to check if is an enemy.
+ *    @luatreturn string true if they are enemies, false if they aren't.
+ * @luafunc areEnemies
  */
 static int factionL_areenemies( lua_State *L )
 {
-   int f, ff;
-   f  = luaL_validfaction(L,1);
-   ff = luaL_validfaction(L,2);
-
+   int f  = luaL_validfaction(L,1);
+   int ff = luaL_validfaction(L,2);
    lua_pushboolean(L, areEnemies( f, ff ));
    return 1;
 }
@@ -306,17 +310,15 @@ static int factionL_areenemies( lua_State *L )
  *
  * @usage if f:areAllies( faction.get( "Pirate" ) ) then
  *
- *    @luaparam f Faction to check against.
- *    @luaparam a Faction to check if is an enemy.
- *    @luareturn true if they are enemies, false if they aren't.
- * @luafunc areAllies( f, a )
+ *    @luatparam Faction f Faction to check against.
+ *    @luatparam faction a Faction to check if is an enemy.
+ *    @luatreturn boolean true if they are enemies, false if they aren't.
+ * @luafunc areAllies
  */
 static int factionL_areallies( lua_State *L )
 {
-   int f, ff;
-   f  = luaL_validfaction(L,1);
-   ff = luaL_validfaction(L,2);
-
+   int f  = luaL_validfaction(L,1);
+   int ff = luaL_validfaction(L,2);
    lua_pushboolean(L, areAllies( f, ff ));
    return 1;
 }
@@ -328,19 +330,16 @@ static int factionL_areallies( lua_State *L )
  *
  * @usage f:modPlayer( -5 ) -- Lowers faction by 5
  *
- *    @luaparam f Faction to modify player's standing with.
- *    @luaparam mod The modifier to modify faction by.
- * @luafunc modPlayer( f, mod )
+ *    @luatparam Faction f Faction to modify player's standing with.
+ *    @luatparam number mod The modifier to modify faction by.
+ * @luafunc modPlayer
  */
 static int factionL_modplayer( lua_State *L )
 {
-   int f;
-   double n;
-
-   f = luaL_validfaction(L,1);
-   n = luaL_checknumber(L,2);
+   NLUA_CHECKRW(L);
+   int f    = luaL_validfaction(L,1);
+   double n = luaL_checknumber(L,2);
    faction_modPlayer( f, n, "script" );
-
    return 0;
 }
 
@@ -351,17 +350,15 @@ static int factionL_modplayer( lua_State *L )
  *
  * @usage f:modPlayerSingle( 10 )
  *
- *    @luaparam f Faction to modify player's standing with.
- *    @luaparam mod The modifier to modify faction by.
- * @luafunc modPlayerSingle( f, mod )
+ *    @luatparam Faction f Faction to modify player's standing with.
+ *    @luatparam number mod The modifier to modify faction by.
+ * @luafunc modPlayerSingle
  */
 static int factionL_modplayersingle( lua_State *L )
 {
-   int f;
-   double n;
-
-   f = luaL_validfaction(L,1);
-   n = luaL_checknumber(L,2);
+   NLUA_CHECKRW(L);
+   int f    = luaL_validfaction(L,1);
+   double n = luaL_checknumber(L,2);
    faction_modPlayerSingle( f, n, "script" );
 
    return 0;
@@ -375,19 +372,16 @@ static int factionL_modplayersingle( lua_State *L )
  *
  * @usage f:modPlayerRaw( 10 )
  *
- *    @luaparam f Faction to modify player's standing with.
- *    @luaparam mod The modifier to modify faction by.
- * @luafunc modPlayerRaw( f, mod )
+ *    @luatparam Faction f Faction to modify player's standing with.
+ *    @luatparam number mod The modifier to modify faction by.
+ * @luafunc modPlayerRaw
  */
 static int factionL_modplayerraw( lua_State *L )
 {
-   int f;
-   double n;
-
-   f = luaL_validfaction(L,1);
-   n = luaL_checknumber(L,2);
+   NLUA_CHECKRW(L);
+   int f    = luaL_validfaction(L,1);
+   double n = luaL_checknumber(L,2);
    faction_modPlayerRaw( f, n );
-
    return 0;
 }
 
@@ -396,19 +390,16 @@ static int factionL_modplayerraw( lua_State *L )
  *
  * @usage f:setPlayerStanding(70) -- Make player an ally
  *
- *    @luaparam f Faction to set the player's standing for.
- *    @luaparam value Value to set the player's standing to (from -100 to 100).
- * @luafunc setPlayerStanding( f, value )
+ *    @luatparam Faction f Faction to set the player's standing for.
+ *    @luatparam number value Value to set the player's standing to (from -100 to 100).
+ * @luafunc setPlayerStanding
  */
 static int factionL_setplayerstanding( lua_State *L )
 {
-   int f;
-   double n;
-
-   f = luaL_validfaction( L, 1 );
-   n = luaL_checknumber( L, 2 );
+   NLUA_CHECKRW(L);
+   int f    = luaL_validfaction( L, 1 );
+   double n = luaL_checknumber( L, 2 );
    faction_setPlayer( f, n );
-
    return 0;
 }
 
@@ -417,21 +408,16 @@ static int factionL_setplayerstanding( lua_State *L )
  *
  * @usage if f:playerStanding() > 70 then -- Player is an ally
  *
- *    @luaparam f Faction to get player's standing with.
- *    @luareturn The value of the standing and the human readable string.
- * @luafunc playerStanding( f )
+ *    @luatparam Faction f Faction to get player's standing with.
+ *    @luatreturn number The value of the standing and the human readable string.
+ * @luafunc playerStanding
  */
 static int factionL_playerstanding( lua_State *L )
 {
-   int f;
-   double n;
-
-   f = luaL_validfaction( L, 1 );
-   n = faction_getPlayer( f );
-
+   int f    = luaL_validfaction( L, 1 );
+   double n = faction_getPlayer( f );
    lua_pushnumber( L, n );
    lua_pushstring( L, faction_getStandingText( f ) );
-
    return 2;
 }
 
@@ -440,25 +426,23 @@ static int factionL_playerstanding( lua_State *L )
  *
  * @usage for k,v in pairs(f:enemies()) do -- Iterates over enemies
  *
- *    @luaparam f Faction to get enemies of.
- *    @luareturn A table containing the enemies of the faction.
- * @luafunc enemies( f )
+ *    @luatparam Faction f Faction to get enemies of.
+ *    @luatreturn {Faction,...} A table containing the enemies of the faction.
+ * @luafunc enemies
  */
 static int factionL_enemies( lua_State *L )
 {
-   int i, n, f;
+   int i, f;
    int *factions;
-   LuaFaction fe;
 
    f = luaL_validfaction(L,1);
 
    /* Push the enemies in a table. */
    lua_newtable(L);
-   factions = faction_getEnemies( f, &n );
-   for (i=0; i<n; i++) {
+   factions = faction_getEnemies( f );
+   for (i=0; i<array_size(factions); i++) {
       lua_pushnumber(L, i+1); /* key */
-      fe.f = factions[i];
-      lua_pushfaction(L, fe); /* value */
+      lua_pushfaction(L, factions[i]); /* value */
       lua_rawset(L, -3);
    }
 
@@ -470,25 +454,23 @@ static int factionL_enemies( lua_State *L )
  *
  * @usage for k,v in pairs(f:allies()) do -- Iterate over faction allies
  *
- *    @luaparam f Faction to get allies of.
- *    @luareturn A table containing the allies of the faction.
- * @luafunc allies( f )
+ *    @luatparam Faction f Faction to get allies of.
+ *    @luatreturn {Faction,...} A table containing the allies of the faction.
+ * @luafunc allies
  */
 static int factionL_allies( lua_State *L )
 {
-   int i, n, f;
+   int i, f;
    int *factions;
-   LuaFaction fa;
 
    f = luaL_validfaction(L,1);
 
    /* Push the enemies in a table. */
    lua_newtable(L);
-   factions = faction_getAllies( f, &n );
-   for (i=0; i<n; i++) {
+   factions = faction_getAllies( f );
+   for (i=0; i<array_size(factions); i++) {
       lua_pushnumber(L, i+1); /* key */
-      fa.f = factions[i];
-      lua_pushfaction(L, fa); /* value */
+      lua_pushfaction(L, factions[i]); /* value */
       lua_rawset(L, -3);
    }
 
@@ -497,45 +479,21 @@ static int factionL_allies( lua_State *L )
 
 
 /**
- * @brief Gets the small faction logo which is 64x64 or smaller.
+ * @brief Gets the faction logo.
  *
- *    @luaparam f Faction to get logo from.
- *    @luareturn The small faction logo or nil if not applicable.
- * @luafunc logoSmall( f )
+ *    @luatparam Faction f Faction to get logo from.
+ *    @luatreturn Tex The faction logo or nil if not applicable.
+ * @luafunc logo
  */
-static int factionL_logoSmall( lua_State *L )
+static int factionL_logo( lua_State *L )
 {
    int lf;
-   LuaTex lt;
    glTexture *tex;
    lf = luaL_validfaction(L,1);
-   tex = faction_logoSmall( lf );
+   tex = faction_logo( lf );
    if (tex == NULL)
       return 0;
-   lt.tex = gl_dupTexture( tex );
-   lua_pushtex( L, lt );
-   return 1;
-}
-
-
-/**
- * @brief Gets the tiny faction logo which is 24x24 or smaller.
- *
- *    @luaparam f Faction to get logo from.
- *    @luareturn The tiny faction logo or nil if not applicable.
- * @luafunc logoTiny( f )
- */
-static int factionL_logoTiny( lua_State *L )
-{
-   int lf;
-   LuaTex lt;
-   glTexture *tex;
-   lf = luaL_validfaction(L,1);
-   tex = faction_logoTiny( lf );
-   if (tex == NULL)
-      return 0;
-   lt.tex = gl_dupTexture( tex );
-   lua_pushtex( L, lt );
+   lua_pushtex( L, gl_dupTexture( tex ) );
    return 1;
 }
 
@@ -543,21 +501,19 @@ static int factionL_logoTiny( lua_State *L )
 /**
  * @brief Gets the faction colour.
  *
- *    @luaparam f Faction to get colour from.
- *    @luareturn The faction colour or nil if not applicable.
- * @luafunc colour( f )
+ *    @luatparam Faction f Faction to get colour from.
+ *    @luatreturn Colour|nil The faction colour or nil if not applicable.
+ * @luafunc colour
  */
 static int factionL_colour( lua_State *L )
 {
    int lf;
-   LuaColour lc;
    const glColour *col;
    lf = luaL_validfaction(L,1);
    col = faction_getColour(lf);
    if (col == NULL)
       return 0;
-   memcpy( &lc.col, col, sizeof(glColour) );
-   lua_pushcolour( L, lc );
+   lua_pushcolour( L, *col );
    return 1;
 }
 
@@ -567,9 +523,9 @@ static int factionL_colour( lua_State *L )
  *
  * @usage b = f:known()
  *
- *    @luaparam f Faction to check if the player knows.
- *    @luareturn true if the player knows the faction.
- * @luafunc known( f )
+ *    @luatparam Faction f Faction to check if the player knows.
+ *    @luatreturn boolean true if the player knows the faction.
+ * @luafunc known
  */
 static int factionL_isknown( lua_State *L )
 {
@@ -583,19 +539,196 @@ static int factionL_isknown( lua_State *L )
  * @brief Sets a faction's known state.
  *
  * @usage f:setKnown( false ) -- Makes faction unknown.
- *    @luaparam f Faction to set known.
- *    @luaparam b Whether or not to set as known (defaults to false).
- * @luafunc setKnown( f, b )
+ *    @luatparam Faction f Faction to set known.
+ *    @luatparam[opt=true] boolean b Whether or not to set as known.
+ * @luafunc setKnown
  */
 static int factionL_setknown( lua_State *L )
 {
-   int b, fac;
+   int fac;
+   int b;
 
+   NLUA_CHECKRW(L);
    fac = luaL_validfaction(L, 1);
-   b   = lua_toboolean(L, 2);
+
+   if (lua_gettop(L) >= 2)
+      b = lua_toboolean(L, 2);
+   else
+      b = 1;
 
    faction_setKnown( fac, b );
-
    return 0;
 }
 
+
+/**
+ * @brief Adds a faction dynamically.
+ *
+ * If "base" is non-nil, the following is copied from the base
+ * faction:<br/>
+ * <ul>
+ *    <li>The faction's default AI, unless another is specified by the
+ *       "ai" argument.</li>
+ *    <li>The faction's allies, unless cleared by the "clear_allies"
+ *       argument.</li>
+ *    <li>The faction's enemies, unless cleared by the "clear_enemies"
+ *       argument.</li>
+ *    <li>The faction's logo.</li>
+ *    <li>The faction's player standing.</li>
+ *    <li>The faction's color.</li>
+ *    <li>The faction's equip script.</li>
+ * </ul>
+ *
+ * Arguments that can be passed to the "params" parameter:<br/>
+ * <ul>
+ *    <li>"ai" (string): Default AI to give to pilots of the faction.
+ *       This should be considered required if not basing the faction on
+ *       another faction, as creating a pilot with no AI can lead to
+ *       weird results.</li>
+ *    <li>"clear_allies" (boolean): Whether or not to clear all allies
+ *       from the faction on creation (useful only if basing the faction
+ *       on another faction).</li>
+ *    <li>"clear_enemies" (boolean): Whether or not to clear all enemies
+ *       from the faction on creation (useful only if basing the faction
+ *       on another faction).</li>
+ * </ul>
+ *
+ * @note Created faction is known by default.
+ *
+ *    @luatparam Faction|nil base Faction to base it off of or nil for
+ *       no base faction.
+ *    @luatparam string name Name to give the faction.
+ *    @luatparam[opt] string display Display name to give the faction.
+ *    @luatparam[opt] table params Table of extra keyword arguments. See
+ *       above for supported arguments.
+ * @luafunc dynAdd
+ */
+static int factionL_dynAdd( lua_State *L )
+{
+   LuaFaction fac, newfac;
+   const char *name, *display, *ai;
+   int clear_allies, clear_enemies;
+
+   NLUA_CHECKRW(L);
+
+   if (!lua_isnoneornil(L, 1))
+      fac   = luaL_validfaction(L,1);
+   else
+      fac   = -1;
+   name     = luaL_checkstring(L,2);
+   display  = luaL_optstring(L,3,name);
+
+   /* Parse parameters. */
+   if (lua_istable(L,4)) {
+      lua_getfield(L,4,"ai");
+      ai    = luaL_optstring(L,-1,NULL);
+      lua_pop(L,1);
+
+      lua_getfield(L,4,"clear_allies");
+      clear_allies = lua_toboolean(L,-1);
+      lua_pop(L,1);
+
+      lua_getfield(L,4,"clear_enemies");
+      clear_enemies = lua_toboolean(L,-1);
+      lua_pop(L,1);
+   }
+   else {
+      ai             = NULL;
+      clear_allies   = 0;
+      clear_enemies  = 0;
+   }
+
+   /* Check if exists. */
+   if (faction_exists(name))
+      NLUA_ERROR(L,_("Faction '%s' already exists!"), name);
+
+   /* Create new faction. */
+   newfac = faction_dynAdd( fac, name, display, ai );
+
+   /* Clear if necessary. */
+   if (clear_allies)
+      faction_clearAlly( newfac );
+   if (clear_enemies)
+      faction_clearEnemy( newfac );
+
+   lua_pushfaction( L, newfac );
+   return 1;
+}
+
+
+/**
+ * @brief Sets whether a faction is an ally of a dynamic faction.
+ *
+ * Both factions will be adjusted, but the first faction <em>must</em>
+ * be a dynamic faction. The second faction can be any faction. This
+ * restriction is in place because the changes do not persist in between
+ * game sessions. To adjust ally status of permanent factions, use the
+ * unidiff system instead.
+ *
+ *    @luatparam Faction fac Dynamic faction to adjust.
+ *    @luatparam Faction ally Faction to adjust ally status of.
+ *    @luatparam[opt=true] boolean enable true to make the factions
+ *       allies, false to make the factions not allies.
+ * @luafunc dynAlly
+ */
+static int factionL_dynAlly( lua_State *L )
+{
+   LuaFaction fac, ally;
+   int enable;
+
+   NLUA_CHECKRW(L);
+   fac = luaL_validfaction(L,1);
+   if (!faction_isDynamic(fac))
+      NLUA_ERROR(L,_("Can only add allies to dynamic factions"));
+   ally = luaL_validfaction(L,2);
+
+   if (lua_gettop(L) >= 3)
+      enable = lua_toboolean(L,3);
+   else
+      enable = 1;
+
+   if (enable)
+      faction_addAlly(fac, ally);
+   else
+      faction_rmAlly(fac, ally);
+   return 0;
+}
+
+
+/**
+ * @brief Sets whether a faction is an enemy of a dynamic faction.
+ *
+ * Both factions will be adjusted, but the first faction <em>must</em>
+ * be a dynamic faction. The second faction can be any faction. This
+ * restriction is in place because the changes do not persist in between
+ * game sessions. To adjust enemy status of permanent factions, use the
+ * unidiff system instead.
+ *
+ *    @luatparam Faction fac Dynamic faction to adjust.
+ *    @luatparam Faction ally Faction to adjust enemy status of.
+ *    @luatparam[opt=true] boolean enable true to make the factions
+ *       enemies, false to make the factions not enemies.
+ * @luafunc dynEnemy
+ */
+static int factionL_dynEnemy( lua_State *L )
+{
+   LuaFaction fac, enemy;
+   int enable;
+
+   NLUA_CHECKRW(L);
+   fac = luaL_validfaction(L,1);
+   if (!faction_isDynamic(fac))
+      NLUA_ERROR(L,_("Can only add allies to dynamic factions"));
+   enemy = luaL_validfaction(L,2);
+
+   if (lua_gettop(L) >= 3)
+      enable = lua_toboolean(L,3);
+   else
+      enable = 1;
+
+   if (enable)
+      faction_addEnemy(fac, enemy);
+   else
+      faction_rmEnemy(fac, enemy);
+   return 0;
+}

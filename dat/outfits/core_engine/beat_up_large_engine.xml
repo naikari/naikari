@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Beat Up Large Engine">
  <general>
   <typename>Core Systems (Engine)</typename>
@@ -7,14 +7,14 @@
   <mass>100</mass>
   <price>0</price>
   <description>Clogged, corroded and cracked in every way possible while still remaining in functional condition, this engine really belongs on the scrap heap.</description>
-  <gfx_store>engine02</gfx_store>
+  <gfx_store>engine6.webp</gfx_store>
  </general>
  <specific type="modification">
   <thrust>30</thrust>
   <turn>40</turn>
   <speed>55</speed>
   <fuel>800</fuel>
-  <energy_usage>26</energy_usage>
-  <engine_limit>6500</engine_limit>
+  <energy_regen_malus>9</energy_regen_malus>
+  <engine_limit>4500</engine_limit>
  </specific>
 </outfit>

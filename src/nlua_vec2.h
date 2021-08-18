@@ -7,32 +7,24 @@
 #  define NLUA_VEC2_H
 
 
-#include <lua.h>
+#include "nlua.h"
 #include "physics.h"
 
 
 #define VECTOR_METATABLE   "vec2"   /**< Vector metatable identifier. */
 
 
-/**
- * @brief Lua Vector2d Wrapper.
- */
-typedef struct LuaVector_s {
-   Vector2d vec; /**< The actual Vector2d. */
-} LuaVector;
-
-
 /*
  * Vector library.
  */
-int nlua_loadVector( lua_State *L );
+int nlua_loadVector( nlua_env env );
 
 /*
  * Vector operations.
  */
-LuaVector* lua_tovector( lua_State *L, int ind );
-LuaVector* luaL_checkvector( lua_State *L, int ind );
-LuaVector* lua_pushvector( lua_State *L, LuaVector vec );
+Vector2d* lua_tovector( lua_State *L, int ind );
+Vector2d* luaL_checkvector( lua_State *L, int ind );
+Vector2d* lua_pushvector( lua_State *L, Vector2d vec );
 int lua_isvector( lua_State *L, int ind );
 
 
