@@ -33,6 +33,7 @@
 --]]
 
 local fleet = require "fleet"
+local formation = require "formation"
 
 
 local paying_factions = {
@@ -125,10 +126,13 @@ function spawn_merc(source)
    local choices = fleet_choices[merc_ship]
    if nescorts and choices ~= nil and #choices > 0 then
       local n = rnd.rnd(0, 8)
+      local form = formation.random_key()
+      merc:memory().formation = form
       for i=1,nescorts do
          local eship = choices[rnd.rnd(1, #choices)]
          local escort = pilot.add(eship, "Mercenary", source, names[eship],
                {ai="escort"})
+         escort:memory().formation = form
          escort:setLeader(merc)
          escorts[#escorts + 1] = escort
       end
