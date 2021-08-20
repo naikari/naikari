@@ -1520,6 +1520,20 @@ function equip_generic(p)
    -- Fill ammo
    p:fillAmmo()
 
+   -- Add fuel
+   local stats = p:stats()
+   local fcons = stats.fuel_consumption
+   local fmax = stats.fuel_max
+   local maxjumps = math.floor(fmax / fcons)
+   local njumps = rnd.rnd(1, maxjumps)
+
+   -- We do this so that if the amount is uneven, it becomes too much
+   -- rather than too little, simulating what the fuel loss must have
+   -- looked like since takeoff. (For example, this will cause a ship
+   -- with 900 max fuel and a fuel consumption of 200 to have 500 fuel
+   -- instead of 400 fuel.)
+   p:setFuel(fmax - fcons*(maxjumps-njumps))
+
    -- Add cargo
    local pb = equip_classCargo[class]
    if pb == nil then

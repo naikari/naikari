@@ -2536,6 +2536,22 @@ void pilot_hyperspaceAbort( Pilot* p )
 
 
 /**
+ * @brief Gets the quantity of fuel that a pilot can supply.
+ *
+ *    @param p Pilot to check refuel quantity of.
+ *    @param target Target pilot that would be refueled.
+ */
+int pilot_refuelQuantity( Pilot *p, Pilot *target )
+{
+   /* Pilots must exist. */
+   if ((p == NULL) || (target == NULL))
+      return 0;
+
+   return CLAMP(0, target->fuel_consumption, p->fuel - p->fuel_consumption);
+}
+
+
+/**
  * @brief Attempts to start refueling the pilot's target.
  *
  *    @param p Pilot to try to start refueling.
@@ -2577,6 +2593,7 @@ static void pilot_refuel( Pilot *p, double dt )
 {
    (void) dt;
    Pilot *target;
+   int q;
 
    /* Check to see if target exists, remove flag if not. */
    target = pilot_get(p->target);
@@ -2592,8 +2609,9 @@ static void pilot_refuel( Pilot *p, double dt )
    /* Check to see if done. */
    if (p->ptimer < 0.) {
       /* Move fuel. */
-      p->fuel       -= PILOT_REFUEL_QUANTITY;
-      target->fuel   = MIN(target->fuel+PILOT_REFUEL_QUANTITY, target->fuel_max);
+      q = pilot_refuelQuantity(p, target);
+      p->fuel -= q;
+      target->fuel = MIN(target->fuel + q, target->fuel_max);
 
       pilot_rmFlag(p, PILOT_REFUELBOARDING);
       pilot_rmFlag(p, PILOT_REFUELING);
@@ -2804,7 +2822,7 @@ static void pilot_init( Pilot* pilot, const Ship* ship, const char* name, int fa
    pilot->armour = pilot->armour_max;
    pilot->shield = pilot->shield_max;
    pilot->energy = pilot->energy_max;
-   pilot->fuel   = pilot->fuel_max;
+   pilot->fuel = pilot->fuel_max;
 
    /* Mark as deployed if needed */
    dslot = pilot_getDockSlot( pilot );

@@ -76,7 +76,7 @@ function create ()
       if standing > 60 then
          mem.refuel = mem.refuel * 0.5
       end
-      mem.refuel_msg = string.format(_("\"For you, only %s for 100 hL of fuel.\""),
+      mem.refuel_msg = string.format(_("\"For you, only %s for some fuel.\""),
             creditstring(mem.refuel));
    end
 

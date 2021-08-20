@@ -423,6 +423,7 @@ int pilot_numOutfit( const Pilot *p, const Outfit *o );
 /* Misc. */
 int pilot_hasCredits( Pilot *p, credits_t amount );
 credits_t pilot_modCredits( Pilot *p, credits_t amount );
+int pilot_refuelQuantity( Pilot *p, Pilot *target );
 int pilot_refuelStart( Pilot *p );
 void pilot_hyperspaceAbort( Pilot* p );
 void pilot_clearTimers( Pilot *pilot );

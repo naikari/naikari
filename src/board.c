@@ -334,7 +334,7 @@ static void board_stealFuel( unsigned int wdw, char* str )
    /* TODO this can create some fuel of out thin air with loot_mod. */
    /* Make sure doesn't overflow. */
    if (player.p->fuel > player.p->fuel_max) {
-      p->fuel      = player.p->fuel - player.p->fuel_max;
+      p->fuel = player.p->fuel - player.p->fuel_max;
       player.p->fuel = player.p->fuel_max;
    }
 

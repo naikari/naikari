@@ -493,14 +493,8 @@ int ai_pinit( Pilot *p, const char *ai )
    lua_pop(naevL,3);                 /* */
 
    /* Create the pilot. */
-   ai_create( p );
+   ai_create(p);
    pilot_setFlag(p, PILOT_CREATED_AI);
-
-   /* Set fuel.  Hack until we do it through AI itself. */
-   if (!pilot_isPlayer(p)) {
-      p->fuel  = (RNG_2SIGMA()/4. + 0.5) * (p->fuel_max - p->fuel_consumption);
-      p->fuel += p->fuel_consumption;
-   }
 
    return 0;
 }
