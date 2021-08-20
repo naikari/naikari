@@ -4,11 +4,7 @@
 *.pyc
 .hgignore
 build/*
-naev_csv
-naikari_csv
 bintray.json
-asset.xml
-ssys.xml
 stderr.txt
 stdout.txt
 .DS_Store
