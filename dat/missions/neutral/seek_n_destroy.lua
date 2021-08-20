@@ -34,16 +34,14 @@ local portrait = require "portrait"
 require "pilot/generic"
 require "pilot/pirate"
 
-clue_title   = _("I know the pilot you're looking for")
+
 clue_text    = {}
 clue_text[1] = _("The pilot tells you that %s is supposed to have business in %s soon.")
-clue_text[2] = _([["I've heard that %s likes to hang around in %s. Good luck!"]])
+clue_text[2] = _([["I've heard that %s likes to hang around in %s."]])
 clue_text[3] = _([["You can probably catch %s in %s."]])
 clue_text[4] = _([["If you're looking for %s, I would suggest going to %s and taking a look there; that's where they were last time I heard."]])
 clue_text[5] = _([["If I was looking for %s, I would look in the %s system. That's probably a good bet."]])
 
-
-dono_title   = _("No clue")
 dono_text    = {}
 dono_text[1] = _("This person has never heard of %s. It seems you will have to ask someone else.")
 dono_text[2] = _("This person is also looking for %s, but doesn't seem to know anything you don't.")
@@ -60,7 +58,6 @@ dono_text[12] = _([["Wouldn't revenge be nice? Unfortunately I haven't a clue wh
 dono_text[13] = _([["I used to work with %s. We haven't seen each other since they stole my favorite ship, though."]])
 dono_text[14] = _([["%s has owed me 500 k¢ for dozens of cycles and never paid me back! I have no clue where they are, though."]])
 
-money_title   = _("How much money do you have?")
 money_text    = {}
 money_text[1] = _([["%s, you say? Well, I don't offer my services for free. Pay me %s and I'll tell you where to look; how does that sound?"]])
 money_text[2] = _([["Ah, yes, I know where probably %s is. I'll tell you for just %s. What do you say?"]])
@@ -72,28 +69,23 @@ IdoPay       = _("Pay the sum")
 IdonnoPay    = _("Give up")
 IkickYourAss = _("Threaten the pilot")
 
-poor_title = _("Not enough money")
 poor_text  = _("You don't have enough money.")
 
-not_scared_title   = _("Not impressed")
 not_scared_text    = {}
 not_scared_text[1] = _([["As if the likes of you would ever try to fight me!"]])
 not_scared_text[2] = _("The pilot simply sighs and cuts the connection.")
 not_scared_text[3] = _([["What a lousy attempt to scare me."]])
 
-scared_title   = _("You're intimidating!")
 scared_text    = {}
 scared_text[1] = _("As it becomes clear that you have no problem with blasting a ship to smithereens, the pilot tells you that %s is supposed to have business in %s soon.")
 scared_text[2] = _([["OK, OK, I'll tell you! You can find %s in the %s system! Leave me alone!"]])
 
-cold_title   = _("Your track is cold")
 cold_text    = {}
 cold_text[1] = _("When you ask for information about %s, they tell you that this outlaw has already been killed by someone else.")
 cold_text[2] = _([["Didn't you hear? That outlaw's dead. Got blown up in an asteroid field is what I heard."]])
 cold_text[3] = _([["Ha ha, you're still looking for that outlaw? You're wasting your time; they've already been taken care of."]])
 cold_text[4] = _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, though! It was glorious."]])
 
-noinfo_title   = _("I won't tell you")
 noinfo_text    = {}
 noinfo_text[1] = _("The pilot asks you to give them one good reason to give you that information.")
 noinfo_text[2] = _([["What if I know where your target is and I don't want to tell you, eh?"]])
@@ -101,42 +93,14 @@ noinfo_text[3] = _([["Piss off! I won't tell anything to the likes of you!"]])
 noinfo_text[4] = _([["And why exactly should I give you that information?"]])
 noinfo_text[5] = _([["And why should I help you, eh? Get lost!"]])
 
+advice_text  = _([["Hi there", says the pilot. "You seem to be lost." As you explain that you're looking for an outlaw pilot and have no idea where to find your target, the pilot laughs. "So, you've taken a Seek and Destroy job, but you have no idea how it works. Well, there are two ways to get information on an outlaw: first way is to land on a planet and ask questions at the bar. The second way is to ask pilots in space. By the way, pilots of the same faction of your target are most likely to have information, but won't give it easily. Good luck with your search!"]])
 
-advice_title = _("You're looking for someone")
-advice_text  = _([["Hi there", says the pilot. "You seem to be lost." As you explain that you're looking for an outlaw pilot and have no idea where to find your target, the pilot laughs. "So, you've taken a Seek and Destroy job, but you have no idea how it works. Well, there are two ways to get information on an outlaw: first way is to land on a planet and ask questions at the bar. The second way is to ask pilots in space. By the way, pilots of the same faction of your target are most likely to have information, but won't give it easily. Good luck with your task!"]])
-
-thank_comm    = {}
-thank_comm[1] = _("Hehe, pleasure to deal with you!")
-thank_comm[2] = _("Thank you and goodbye!")
-thank_comm[3] = _("See ya later!")
-thank_comm[4] = _("Haha, good luck!")
-
-not_scared_comm    = {}
-not_scared_comm[1] = _("Mommy, I'm so scared! Har har har!")
-not_scared_comm[2] = _("Haw haw haw! You're ridiculous!")
-not_scared_comm[3] = _("Just come at me if you dare!")
-not_scared_comm[4] = _("You're so pitiful!")
-
-ambush_comm    = {}
-ambush_comm[1] = _("You want to meet %s? Well he doesn't want to meet you!")
-ambush_comm[2] = _("Stop asking questions about %s!")
-ambush_comm[3] = _("Why are you following %s?")
-ambush_comm[4] = _("Quit following %s!")
-ambush_comm[5] = _("Your quest for %s ends here!")
-ambush_comm[6] = _("You ask too many questions about %s!")
-ambush_comm[7] = _("You were not supposed to get on the trail of %s!")
-
-
-breef_title = _("Find and Kill a pilot")
 breef_text = _("%s is a notorious %s pilot who is wanted by the authorities, dead or alive. Any citizen who can find and neutralize %s by any means necessary will be given %s as a reward. %s authorities have lost track of this pilot in the %s system. It is very likely that the target is no longer there, but this system may be a good place to start an investigation.")
 
-flee_title = _("You're not going to kill anybody like that")
 flee_text = _("You had a chance to neutralize %s, and you wasted it! Now you have to start all over. Maybe some other pilots in %s know where your target is going.")
 
-Tflee_title = _("Target ran away")
 Tflee_text = _("That was close, but unfortunately, %s ran away. Maybe some other pilots in this system know where your target is heading.")
 
-pay_title   = _("Good work, pilot!")
 pay_text    = {}
 pay_text[1] = _("An officer hands you your pay.")
 pay_text[2] = _("No one will miss this outlaw pilot! The bounty has been deposited into your account.")
@@ -208,14 +172,10 @@ function create ()
 
    if target_faction == faction.get("FLF") then
       name = pilot_name()
-      ships = {"FLF Lancelot", "FLF Vendetta", "FLF Pacifier"}
-      aship = "FLF Pacifier"
-      bship = "FLF Lancelot"
+      ships = {"Lancelot", "Vendetta", "Pacifier"}
    else -- default Pirate
       name = pirate_name()
       ships = {"Pirate Shark", "Pirate Vendetta", "Pirate Admonisher"}
-      aship = "Pirate Phalanx"
-      bship = "Pirate Hyena"
    end
 
    ship = ships[rnd.rnd(1,#ships)]
@@ -248,7 +208,8 @@ function accept ()
    stage = 0
    increment = false
    last_sys = system.cur()
-   tk.msg(breef_title, breef_text:format(name, target_faction:name(), name, creditstring(credits), paying_faction:name(), mysys[1]:name()))
+   tk.msg("", breef_text:format(name, target_faction:name(), name,
+            creditstring(credits), paying_faction:name(), mysys[1]:name()))
    jumphook = hook.enter("enter")
    hailhook = hook.hail("hail")
    landhook = hook.land("land")
@@ -280,9 +241,6 @@ function enter ()
             var.push("got_advice", true)
             spawn_advisor ()
          end
-         if cursys > 1 and rnd.rnd() < .5 then
-            trigger_ambush() -- An ambush
-         end
       elseif stage == 2 then  -- Target system
          misn.osdActive(2)
          
@@ -300,7 +258,7 @@ function enter ()
          pilot.toggleSpawn(false)
          pilot.clear()
 
-         target_ship = pilot.addFleet(ship, pos)[1]
+         target_ship = pilot.add(ship, target_faction, pos)
          target_ship:rename(name)
          target_ship:setHilight(true)
          target_ship:setVisplayer()
@@ -313,44 +271,6 @@ function enter ()
       end
    end
    last_sys = system.cur()
-end
-
--- Enemies wait for the player
-function trigger_ambush()
-   jp     = jump.get(system.cur(), last_sys)
-   ambush = {}
-
-   x = 4000 * rnd.rnd() - 2000
-   y = 4000 * rnd.rnd() - 2000
-   pos = jp:pos() + vec2.new(x,y)
-   ambush[1] = pilot.addFleet(aship, pos)[1]
-   x = 4000 * rnd.rnd() - 2000
-   y = 4000 * rnd.rnd() - 2000
-   pos = jp:pos() + vec2.new(x,y)
-   ambush[2] = pilot.addFleet(bship, pos)[1]
-   x = 4000 * rnd.rnd() - 2000
-   y = 4000 * rnd.rnd() - 2000
-   pos = jp:pos() + vec2.new(x,y)
-   ambush[3] = pilot.addFleet(bship, pos)[1]
-
-   ambush[1]:setHostile()
-   ambush[2]:setHostile()
-   ambush[3]:setHostile()
-   ambush[1]:control()
-   ambush[2]:control()
-   ambush[3]:control()
-   ambush[1]:attack(player.pilot())
-   ambush[2]:attack(player.pilot())
-   ambush[3]:attack(player.pilot())
-
-   msg = hook.timer(1, "ambust_msg")
-end
-
--- Enemies explain that they are ambushing the player
-function ambust_msg()
-   ambush[1]:comm(ambush_comm[rnd.rnd(1,#ambush_comm)]:format(name))
-   ambush[2]:comm(ambush_comm[rnd.rnd(1,#ambush_comm)]:format(name))
-   ambush[3]:comm(ambush_comm[rnd.rnd(1,#ambush_comm)]:format(name))
 end
 
 function spawn_advisor ()
@@ -373,48 +293,48 @@ end
 function hail_ad()
    hook.rm(hailie)
    hook.rm(hailie2)
-   tk.msg(advice_title, advice_text) -- Give advice to the player
+   tk.msg("", advice_text) -- Give advice to the player
 end
 
 -- Player hails a ship for info
 function hail(p)
-   target = p
-   if target:leader() == player.pilot() then
+   if p:leader() == player.pilot() then
       -- Don't want the player hailing their own escorts.
       return
    end
 
-   if system.cur() == mysys[cursys] and stage == 0 and not elt_inlist(target, hailed) then
-
-      hailed[#hailed+1] = target -- A pilot can be hailed only once
+   if system.cur() == mysys[cursys] and stage == 0
+         and not elt_inlist(p, hailed) then
+      hailed[#hailed+1] = p -- A pilot can be hailed only once
 
       if cursys+1 >= nbsys then -- No more claimed system : need to finish the mission
-         tk.msg(cold_title, cold_text[rnd.rnd(1,#cold_text)]:format(name))
+         tk.msg("", cold_text[rnd.rnd(1,#cold_text)]:format(name))
          misn.finish(false)
       else
 
          -- If hailed pilot is enemy to the target, there is less chance he knows
-         if target_faction:areEnemies(target:faction()) then
+         if target_faction:areEnemies(p:faction()) then
             know = (rnd.rnd() > .9)
          else
             know = (rnd.rnd() > .3)
          end
 
          -- If hailed pilot is enemy to the player, there is less chance he tells
-         if target:hostile() then
+         if p:hostile() then
             tells = (rnd.rnd() > .95)
          else
             tells = (rnd.rnd() > .5)
          end
 
          if not know then -- NPC does not know the target
-            tk.msg(dono_title, dono_text[rnd.rnd(1,#dono_text)]:format(name))
+            tk.msg("", dono_text[rnd.rnd(1, #dono_text)]:format(name))
          elseif tells then
-            tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
+            local s = clue_text[rnd.rnd(1, #clue_text)]
+            tk.msg("", s:format(name, mysys[cursys+1]:name()))
             next_sys()
-            target:setHostile(false)
+            p:setHostile(false)
          else
-            space_clue()
+            space_clue(p)
          end
       end
 
@@ -423,107 +343,126 @@ function hail(p)
 end
 
 -- The NPC knows the target. The player has to convince him to give info
-function space_clue ()
+function space_clue(p)
+   -- FLF are loyal to each other.
+   local loyal = false
+   local flf = faction.get("FLF")
+   if target_faction == flf and p:faction() == flf then
+      loyal = true
+   end
 
-   if target:hostile() then -- Pilot doesn't like you
-      choice = tk.choice(noinfo_title, noinfo_text[rnd.rnd(1,#noinfo_text)], IdonnoPay, IkickYourAss) -- TODO maybe: add the possibility to pay
+   if loyal or p:hostile() then
+      local s = noinfo_text[rnd.rnd(1, #noinfo_text)]
+      local choice = tk.choice("", s, IdonnoPay, IkickYourAss)
       if choice == 1 then
-         -- End of function
+         return
       else -- Threaten the pilot
-         if isScared(target) and rnd.rnd() < .5 then
-            tk.msg(scared_title, scared_text[rnd.rnd(1,#scared_text)]:format(name, mysys[cursys+1]:name()))
+         if isScared(p) and rnd.rnd() < .5 then
+            local s = scared_text[rnd.rnd(1, #scared_text)]
+            tk.msg("", s:format(name, mysys[cursys+1]:name()))
             next_sys()
-            target:control()
-            target:runaway(player.pilot())
+            p:control()
+            p:runaway(player.pilot())
          else
-            tk.msg(not_scared_title, not_scared_text[rnd.rnd(1,#not_scared_text)]:format(name, mysys[cursys+1]:name()))
-            target:comm(not_scared_comm[rnd.rnd(1,#not_scared_comm)])
+            tk.msg("", not_scared_text[rnd.rnd(1, #not_scared_text)])
 
             -- Clean the previous hook if it exists
             if attack then
                hook.rm(attack)
             end
-            attack = hook.pilot(target, "attacked", "clue_attacked")
+            attack = hook.pilot(p, "attacked", "clue_attacked")
          end
       end
-
    else -- Pilot wants payment
-
       price = (5 + 5*rnd.rnd()) * 1000
-      choice = tk.choice(money_title, money_text[rnd.rnd(1,#money_text)]:format(name,creditstring(price)), IdoPay, IdonnoPay, IkickYourAss)
+      local s = money_text[rnd.rnd(1,#money_text)]
+      choice = tk.choice("", s:format(name,creditstring(price)),
+            IdoPay, IdonnoPay, IkickYourAss)
 
       if choice == 1 then
          if player.credits() >= price then
             player.pay(-price)
-            tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
+            tk.msg("", clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
             next_sys()
-            target:setHostile(false)
-            target:comm(thank_comm[rnd.rnd(1,#thank_comm)])
+            p:setHostile(false)
          else
-            tk.msg(poor_title, poor_text)
+            tk.msg("", poor_text)
          end
       elseif choice == 2 then
-         -- End of function
+         return
       else -- Threaten the pilot
-
          -- Everybody except the pirates takes offence if you threaten them
-         if not target:faction() == faction.get("Pirate") then
-            faction.modPlayerSingle(target:faction(), -1)
+         if p:faction() ~= faction.get("Pirate") then
+            faction.modPlayerSingle(p:faction(), -1)
          end
 
-         if isScared (target) then
-            tk.msg(scared_title, scared_text[rnd.rnd(1,#scared_text)]:format(name, mysys[cursys+1]:name()))
+         if isScared(p) then
+            local s = scared_text[rnd.rnd(1, #scared_text)]
+            tk.msg("", :format(name, mysys[cursys+1]:name()))
             next_sys()
-            target:control()
-            target:runaway(player.pilot())
+            p:control()
+            p:runaway(player.pilot())
          else
-            tk.msg(not_scared_title, not_scared_text[rnd.rnd(1,#not_scared_text)]:format(name, mysys[cursys+1]:name()))
-            target:comm(not_scared_comm[rnd.rnd(1,#not_scared_comm)])
+            tk.msg("", not_scared_text[rnd.rnd(1, #not_scared_text)])
 
             -- Clean the previous hook if it exists
             if attack then
                hook.rm(attack)
             end
-            attack = hook.pilot(target, "attacked", "clue_attacked")
+            attack = hook.pilot(p, "attacked", "clue_attacked")
          end
       end
    end
-
 end
 
 -- Player attacks an informant who has refused to give info
 function clue_attacked(p, attacker)
+   -- FLF has no fear.
+   local flf = faction.get("FLF")
+   if target_faction == flf and p:faction() == flf then
+      hook.rm(attack)
+      return
+   end
+
    -- Target was hit sufficiently to get more talkative
    if (attacker == player.pilot() or attacker:leader() == player.pilot())
          and p:health() < 100 then
       p:control()
       p:runaway(player.pilot())
-      tk.msg(scared_title, scared_text[rnd.rnd(1,#scared_text)]:format(name, mysys[cursys+1]:name()))
+      local s = scared_text[rnd.rnd(1, #scared_text)]
+      tk.msg("", s:format(name, mysys[cursys+1]:name()))
       next_sys()
       hook.rm(attack)
    end
 end
 
 -- Decides if the pilot is scared by the player
-function isScared (t)
-   pstat = player.pilot():stats()
-   tstat = t:stats()
+function isScared(t)
+   -- FLF has no fear.
+   local flf = faction.get("FLF")
+   if target_faction == flf and t:faction() == flf then
+      return false
+   end
+
+   local pstat = player.pilot():stats()
+   local tstat = t:stats()
 
    -- If target is stronger, no fear
-   if tstat.armour+tstat.shield > 1.1 * (pstat.armour+pstat.shield) and rnd.rnd() > .2 then
+   if tstat.armour+tstat.shield > 1.1 * (pstat.armour+pstat.shield)
+         and rnd.rnd() < 0.95 then
       return false
    end
 
    -- If target is quicker, no fear
-   if tstat.speed_max > pstat.speed_max and rnd.rnd() > .2 then
+   if tstat.speed_max > pstat.speed_max and rnd.rnd() < 0.95 then
       if t:hostile() then
-         target:control()
-         target:runaway(player.pilot())
+         t:control()
+         t:runaway(player.pilot())
       end
       return false
    end
 
-   if rnd.rnd() > .8 then
+   if rnd.rnd() < 0.2 then
       return false
    end
 
@@ -550,7 +489,7 @@ function land ()
 
    -- Player wants to be paid
    elseif planet.cur():faction() == paying_faction and stage == 4 then
-      tk.msg(pay_title, pay_text[rnd.rnd(1,#pay_text)])
+      tk.msg("", pay_text[rnd.rnd(1,#pay_text)])
       player.pay(credits)
       paying_faction:modPlayerSingle(rnd.rnd(1,2))
       misn.finish(true)
@@ -559,30 +498,33 @@ end
 
 -- The player ask for clues in the bar
 function clue_bar()
-   if cursys+1 >= nbsys then -- No more claimed system : need to finish the mission
-      tk.msg(cold_title, cold_text[rnd.rnd(1,#cold_text)]:format(name))
+   if cursys+1 >= nbsys then
+      tk.msg("", cold_text[rnd.rnd(1, #cold_text)]:format(name))
       misn.finish(false)
    else
 
       if know == 0 then -- NPC does not know the target
-         tk.msg(dono_title, dono_text[rnd.rnd(1,#dono_text)]:format(name))
+         tk.msg("", dono_text[rnd.rnd(1,#dono_text)]:format(name))
       elseif know == 1 then -- NPC wants money
-         choice = tk.choice(money_title, money_text[rnd.rnd(1,#money_text)]:format(name,creditstring(price)), IdoPay, IdonnoPay)
+         local s = money_text[rnd.rnd(1,#money_text)]
+         choice = tk.choice("", s:format(name, creditstring(price)),
+               IdoPay, IdonnoPay)
 
          if choice == 1 then
             if player.credits() >= price then
                player.pay(-price)
-               tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
+               tk.msg("", clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
                next_sys()
             else
-               tk.msg(poor_title, poor_text)
+               tk.msg("", poor_text)
             end
          else
             -- End of function
          end
 
       else -- NPC tells the clue
-         tk.msg(clue_title, clue_text[rnd.rnd(1,#clue_text)]:format(name, mysys[cursys+1]:name()))
+         local s = clue_text[rnd.rnd(1, #clue_text)]
+         tk.msg("", s:format(name, mysys[cursys+1]:name()))
          next_sys()
       end
 
@@ -598,7 +540,7 @@ function next_sys ()
 end
 
 function player_flee ()
-   tk.msg(flee_title, flee_text:format(name, system.cur():name()))
+   tk.msg("", flee_text:format(name, system.cur():name()))
    stage = 0
    misn.osdActive(1)
 
@@ -611,7 +553,7 @@ end
 function target_flee ()
    -- Target ran away. Unfortunately, we cannot continue the mission
    -- on the other side because the system has not been claimed...
-   tk.msg(Tflee_title, Tflee_text:format(name))
+   tk.msg("", Tflee_text:format(name))
    pilot.toggleSpawn(true)
    stage = 0
    misn.osdActive(1)
