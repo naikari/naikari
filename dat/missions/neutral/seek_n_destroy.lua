@@ -60,9 +60,9 @@ dono_text[14] = _([["%s has owed me 500 k¢ for dozens of cycles and never paid
 
 money_text    = {}
 money_text[1] = _([["%s, you say? Well, I don't offer my services for free. Pay me %s and I'll tell you where to look; how does that sound?"]])
-money_text[2] = _([["Ah, yes, I know where probably %s is. I'll tell you for just %s. What do you say?"]])
+money_text[2] = _([["Ah, yes, I think I know where %s is. I'll tell you for just %s. What do you say?"]])
 money_text[3] = _([["%s? Of course, I know this pilot. I can tell you where they were last heading, but it'll cost you. %s. Deal?"]])
-money_text[4] = _([["Ha ha ha! Yes, I've seen %s around! Will I tell you where? Heck no! Not unless you pay me, of course... %s should be sufficient."]])
+money_text[4] = _([["Ha ha ha! Yes, I've seen %s around! Will I tell you where? Heck no! Not unless you pay me, of course.… %s should be sufficient."]])
 money_text[5] = _([["You're looking for %s? I tell you what: give me %s and I'll tell you. Otherwise, get lost!"]])
 
 IdoPay       = _("Pay the sum")
@@ -75,6 +75,7 @@ not_scared_text    = {}
 not_scared_text[1] = _([["As if the likes of you would ever try to fight me!"]])
 not_scared_text[2] = _("The pilot simply sighs and cuts the connection.")
 not_scared_text[3] = _([["What a lousy attempt to scare me."]])
+not_scared_text[4] = _([["Was I not clear enough the first time? Piss off!"]])
 
 scared_text    = {}
 scared_text[1] = _("As it becomes clear that you have no problem with blasting a ship to smithereens, the pilot tells you that %s is supposed to have business in %s soon.")
