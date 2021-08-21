@@ -10,7 +10,7 @@
   <limit>Jammer</limit>
   <cpu>-8</cpu>
  </general>
- <specific type="modification" group="7">
+ <specific type="modification" group="6">
   <active />
   <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
   <energy_loss>40</energy_loss>
