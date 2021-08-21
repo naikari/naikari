@@ -211,6 +211,26 @@ function should_attack( enemy, si )
       return false
    end
 
+   -- Try to follow the leader behaviour
+   local p = ai.pilot()
+   local l = p:leader()
+   if l and l:exists() then
+      local ltask, ldata = l:task()
+      local lsi = _stateinfo( ltask )
+      if lsi.fighting then
+         if ldata and ldata:exists() then
+            -- Check to see if the pilot group the leader is fighting is the
+            -- same as the current enenmy
+            local lel = ldata:leader() or ldata
+            local el = enemy:leader() or enemy
+            if lel == el then
+               return true
+            end
+         end
+         -- TODO maybe add a check to see if nearby fighting leader?
+      end
+   end
+
    -- Check if we have minimum range to engage
    if mem.enemyclose then
       local dist = ai.dist2( enemy )
@@ -336,7 +356,7 @@ function control ()
    -- Pilots return if too far away from leader
    local lmd = mem.leadermaxdist
    if lmd then
-      local l = p:leader()
+      --local l = p:leader() -- Leader should be set already
       if l then
          local dist = ai.dist( l )
          if lmd < dist then
@@ -355,7 +375,7 @@ function control ()
          ai.hostile(enemy) -- Should be done before taunting
          taunt(enemy, true)
          ai.pushtask("attack", enemy)
-      elseif p:leader() and p:leader():exists() then
+      elseif l then -- Leader should be set already
          ai.pushtask("follow_fleet")
       else
          idle()

@@ -145,7 +145,9 @@ static int pilotL_ship( lua_State *L );
 static int pilotL_idle( lua_State *L );
 static int pilotL_control( lua_State *L );
 static int pilotL_memory( lua_State *L );
+static int pilotL_task( lua_State *L );
 static int pilotL_taskname( lua_State *L );
+static int pilotL_taskdata( lua_State *L );
 static int pilotL_taskclear( lua_State *L );
 static int pilotL_moveto( lua_State *L );
 static int pilotL_face( lua_State *L );
@@ -258,7 +260,9 @@ static const luaL_Reg pilotL_methods[] = {
    { "idle", pilotL_idle },
    { "control", pilotL_control },
    { "memory", pilotL_memory },
+   { "task", pilotL_task },
    { "taskname", pilotL_taskname },
+   { "taskdata", pilotL_taskdata },
    { "taskClear", pilotL_taskclear },
    { "moveto", pilotL_moveto },
    { "face", pilotL_face },
@@ -3797,20 +3801,64 @@ static int pilotL_memory( lua_State *L )
 
 
 /**
+ * @brief Gets the name and data of a pilot's current task.
+ *
+ *    @luatparam Pilot p Pilot to get task data of.
+ *    @luatreturn string Name of the task.
+ *    @luareturn Data of the task.
+ * @luafunc task
+ */
+static int pilotL_task( lua_State *L )
+{
+   Pilot *p = luaL_validpilot(L,1);
+   Task *t  = ai_curTask(p);
+   if (t) {
+      lua_pushstring(L, t->name);
+      if (t->dat != LUA_NOREF) {
+         lua_rawgeti(L, LUA_REGISTRYINDEX, t->dat);
+         return 2;
+      }
+      return 1;
+   }
+   return 0;
+}
+
+
+/**
  * @brief Gets the name of the task the pilot is currently doing.
  *
- *    @luatparam Pilot p Pilot to clear tasks of.
+ *    @luatparam Pilot p Pilot to get task name of.
+ *    @luatreturn string Name of the task.
  * @luafunc taskname
  */
 static int pilotL_taskname( lua_State *L )
 {
    Pilot *p = luaL_validpilot(L,1);
-   Task *t = ai_curTask(p);
-   if (t)
+   Task *t  = ai_curTask(p);
+   if (t) {
       lua_pushstring(L, t->name);
-   else
-      lua_pushnil(L);
-   return 1;
+      return 1;
+   }
+   return 0;
+}
+
+
+/**
+ * @brief Gets the data of the task the pilot is currently doing.
+ *
+ *    @luatparam Pilot p Pilot to get task data of.
+ *    @luareturn Data of the task.
+ * @luafunc taskdata
+ */
+static int pilotL_taskdata( lua_State *L )
+{
+   Pilot *p = luaL_validpilot(L,1);
+   Task *t  = ai_curTask(p);
+   if (t && (t->dat != LUA_NOREF)) {
+      lua_rawgeti(L, LUA_REGISTRYINDEX, t->dat);
+      return 1;
+   }
+   return 0;
 }
 
 
