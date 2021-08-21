@@ -490,11 +490,13 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
    JumpPoint *jump;
    PilotFlags flags;
    int ignore_rules;
+   Pilot *pplt;
 
    /* Default values. */
    pilot_clearFlagsRaw( flags );
    vectnull(&vn); /* Need to determine angle. */
    jump = NULL;
+   planet = NULL;
    a    = 0.;
 
    /* Parse first argument - Fleet Name */
@@ -624,6 +626,25 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
       /* Create the pilot. */
       p = pilot_create( ship, fltname, lf, fltai, a, &vp, &vv, flags, 0, 0 );
       lua_pushpilot(L,p);
+      pplt = pilot_get( p );
+
+      /* Set the memory stuff. */
+      if (jump != NULL) {
+         LuaJump lj;
+         lj.srcid = jump->from->id;
+         lj.destid = cur_system->id;
+
+         nlua_getenv( pplt->ai->env, AI_MEM );
+         lua_pushjump(L, lj);
+         lua_setfield(L,-2,"create_jump");
+         lua_pop(L,1);
+      }
+      else if (planet != NULL) {
+         nlua_getenv( pplt->ai->env, AI_MEM );
+         lua_pushplanet(L,planet->id);
+         lua_setfield(L,-2,"create_planet");
+         lua_pop(L,1);
+      }
    }
    else {
       /* now we start adding pilots and toss ids into the table we return */
@@ -645,6 +666,25 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
          lua_pushnumber(L,i+1); /* index, starts with 1 */
          lua_pushpilot(L,p); /* value = LuaPilot */
          lua_rawset(L,-3); /* store the value in the table */
+         pplt = pilot_get( p );
+
+         /* Set the memory stuff. */
+         if (jump != NULL) {
+            LuaJump lj;
+            lj.srcid = jump->from->id;
+            lj.destid = cur_system->id;
+
+            nlua_getenv( pplt->ai->env, AI_MEM );
+            lua_pushjump(L, lj);
+            lua_setfield(L,-2,"create_jump");
+            lua_pop(L,1);
+         }
+         else if (planet != NULL) {
+            nlua_getenv( pplt->ai->env, AI_MEM );
+            lua_pushplanet(L,planet->id);
+            lua_setfield(L,-2,"create_planet");
+            lua_pop(L,1);
+         }
       }
    }
    return 1;
