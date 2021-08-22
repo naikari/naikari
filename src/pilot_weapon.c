@@ -1269,7 +1269,7 @@ void pilot_weaponAuto( Pilot *p )
 {
    PilotOutfitSlot *slot;
    const Outfit *o;
-   int i, level, level0, id;
+   int i, level, id;
 
    /* Clear weapons. */
    pilot_weaponClear( p );
@@ -1279,12 +1279,12 @@ void pilot_weaponAuto( Pilot *p )
    pilot_weapSetType( p, 1, WEAPSET_TYPE_CHANGE );
    pilot_weapSetType( p, 2, WEAPSET_TYPE_CHANGE );
    pilot_weapSetType( p, 3, WEAPSET_TYPE_CHANGE );
-   pilot_weapSetType( p, 4, WEAPSET_TYPE_CHANGE );
+   pilot_weapSetType( p, 4, WEAPSET_TYPE_WEAPON );
    pilot_weapSetType( p, 5, WEAPSET_TYPE_WEAPON );
    pilot_weapSetType( p, 6, WEAPSET_TYPE_ACTIVE );
    pilot_weapSetType( p, 7, WEAPSET_TYPE_ACTIVE );
    pilot_weapSetType( p, 8, WEAPSET_TYPE_ACTIVE );
-   pilot_weapSetType( p, 9, WEAPSET_TYPE_ACTIVE );
+   pilot_weapSetType( p, 9, WEAPSET_TYPE_WEAPON );
 
    /* All should be inrange. */
    if (!pilot_isPlayer(p)) {
@@ -1309,7 +1309,6 @@ void pilot_weaponAuto( Pilot *p )
 
       /* Set level based on secondary flag. */
       level  = outfit_isSecondary(o);
-      level0 = level;
 
       /* Manually defined group preempts others. */
       if (o->group) {
@@ -1322,8 +1321,7 @@ void pilot_weaponAuto( Pilot *p )
       }
       /* Seekers. */
       else if (outfit_isLauncher(o) && outfit_isSeeker(o->u.lau.ammo)) {
-         id     = 4;
-         level0 = outfit_isTurret(o);  /* Seekers have a different logic for level. */
+         id    = 4;
       }
       /* Fighter bays. */
       else if (outfit_isFighterBay(o)) {
@@ -1336,7 +1334,7 @@ void pilot_weaponAuto( Pilot *p )
       }
 
       /* Add to its base group. */
-      pilot_weapSetAdd( p, id, slot, level0 );
+      pilot_weapSetAdd( p, id, slot, level );
 
       /* Also add another copy to another group. */
       if (id == 1) { /* Forward. */
@@ -1347,8 +1345,11 @@ void pilot_weaponAuto( Pilot *p )
          pilot_weapSetAdd( p, 0, slot, level ); /* Also get added to 'All'. */
          pilot_weapSetAdd( p, 3, slot, 1 );     /* Also get added to 'Fwd/Tur'. */
       }
-      else if (id == 4) /* Seekers */
+      else if (id == 4) { /* Seekers */
          pilot_weapSetAdd( p, 0, slot, level ); /* Also get added to 'All'. */
+         if (outfit_isTurret(o))
+            pilot_weapSetAdd( p, 9, slot, level ); /* Also get added to 'Turreted Seekers'. */
+      }
    }
 
    /* Update active weapon set. */
