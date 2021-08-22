@@ -399,7 +399,7 @@ function space_clue(p)
 
          if isScared(p) then
             local s = scared_text[rnd.rnd(1, #scared_text)]
-            tk.msg("", :format(name, mysys[cursys+1]:name()))
+            tk.msg("", s:format(name, mysys[cursys+1]:name()))
             next_sys()
             p:control()
             p:runaway(player.pilot())
