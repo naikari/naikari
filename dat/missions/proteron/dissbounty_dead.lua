@@ -30,6 +30,7 @@
 --]]
 
 require "missions/neutral/pirbounty_dead"
+require "pilot/generic"
 
 subdue_title   = _("Captured Alive")
 subdue_text    = {}
@@ -73,7 +74,7 @@ share_text[5] = _([["Ha ha ha, looks like I beat you to it this time, eh? Well, 
 
 -- Mission details
 misn_title  = _("PD: Dead or Alive Bounty in %s")
-misn_desc   = _("A political dissident was recently seen in the %s system. %s authorities want this dissident dead or alive.")
+misn_desc   = _("A political dissident known as %s was recently seen in the %s system. %s authorities want this dissident dead or alive.")
 
 -- Messages
 msg    = {}
@@ -92,48 +93,46 @@ osd_msg["__save"] = true
 function create ()
    paying_faction = planet.cur():faction()
 
-   local systems = getsysatdistance( system.cur(), 1, 3,
+   local systems = getsysatdistance(system.cur(), 1, 3,
       function(s)
          local p = s:presences()["Proteron Dissident"]
          return p ~= nil and p > 0
-      end )
+      end)
 
    if #systems == 0 then
       -- No dissidents nearby
-      misn.finish( false )
+      misn.finish(false)
    end
 
-   missys = systems[ rnd.rnd( 1, #systems ) ]
-   if not misn.claim( missys ) then misn.finish( false ) end
+   missys = systems[rnd.rnd(1, #systems)]
+   if not misn.claim(missys) then misn.finish(false) end
 
-   jumps_permitted = system.cur():jumpDist(missys) + rnd.rnd( 5 )
+   jumps_permitted = system.cur():jumpDist(missys) + rnd.rnd(5)
    if rnd.rnd() < 0.05 then
       jumps_permitted = jumps_permitted - 1
    end
 
    level = 1
-   name = _("Target Dissident")
-   ship = "Proteron Dissident Schroedinger"
+   name = pilot_name()
+   ship = "Schroedinger"
    credits = 50000
    reputation = 0
    board_failed = false
+   pirate_faction = faction.get("Proteron Dissident")
    bounty_setup()
 
    -- Set mission details
-   misn.setTitle( misn_title:format( missys:name() ) )
-   misn.setDesc( misn_desc:format( missys:name(), paying_faction:name() ) )
-   misn.setReward( creditstring( credits ) )
-   marker = misn.markerAdd( missys, "computer" )
+   misn.setTitle(misn_title:format(missys:name()))
+   misn.setDesc(misn_desc:format(name, missys:name(), paying_faction:name()))
+   misn.setReward(creditstring(credits))
+   marker = misn.markerAdd(missys, "computer")
 end
 
 
 -- Set up the ship, credits, and reputation.
 function bounty_setup ()
-   local choices = {
-      "Proteron Dissident Schroedinger", "Proteron Dissident Hyena",
-      "Proteron Dissident Llama", "Proteron Dissident Gawain",
-   }
-   ship = choices[ rnd.rnd( 1, #choices ) ]
+   local choices = {"Schroedinger", "Hyena", "Llama", "Gawain"}
+   ship = choices[rnd.rnd(1, #choices)]
    credits = 150000 + rnd.sigma() * 15000
-   reputation = rnd.rnd( 1, 2 )
+   reputation = rnd.rnd(1, 2)
 end
