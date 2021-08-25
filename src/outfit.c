@@ -2345,13 +2345,13 @@ static int outfit_parse( Outfit* temp, const char* file )
 
          /* Check for manually-defined group. */
          xmlr_attr_int_def(node, "group", group, -1);
-         if (group != -1) {
-            if (group > PILOT_WEAPON_SETS || group < 1) {
-               WARN(_("Outfit '%s' has group '%d', should be in the 1-%d range"),
-                     temp->name, group, PILOT_WEAPON_SETS);
+         if (group >= 0) {
+            if (group > PLAYER_WEAPON_SETS-1) {
+               WARN(_("Outfit '%s' has group '%d', should be in the 0–%d range"),
+                     temp->name, group, PLAYER_WEAPON_SETS-1);
             }
 
-            temp->group = CLAMP(0, 9, group);
+            temp->group = CLAMP(0, PLAYER_WEAPON_SETS-1, group);
          }
 
          /*

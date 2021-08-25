@@ -1275,16 +1275,16 @@ void pilot_weaponAuto( Pilot *p )
    pilot_weaponClear( p );
 
    /* Set modes. */
-   pilot_weapSetType( p, 0, WEAPSET_TYPE_CHANGE );
-   pilot_weapSetType( p, 1, WEAPSET_TYPE_CHANGE );
-   pilot_weapSetType( p, 2, WEAPSET_TYPE_CHANGE );
-   pilot_weapSetType( p, 3, WEAPSET_TYPE_CHANGE );
-   pilot_weapSetType( p, 4, WEAPSET_TYPE_WEAPON );
-   pilot_weapSetType( p, 5, WEAPSET_TYPE_WEAPON );
+   pilot_weapSetType(p, WEAPSET_ALL, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_FWD, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_TUR, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_NOSEEK, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_SEEK, WEAPSET_TYPE_WEAPON);
+   pilot_weapSetType(p, WEAPSET_FBAY, WEAPSET_TYPE_WEAPON);
    pilot_weapSetType( p, 6, WEAPSET_TYPE_ACTIVE );
    pilot_weapSetType( p, 7, WEAPSET_TYPE_ACTIVE );
    pilot_weapSetType( p, 8, WEAPSET_TYPE_ACTIVE );
-   pilot_weapSetType( p, 9, WEAPSET_TYPE_WEAPON );
+   pilot_weapSetType(p, WEAPSET_TURSEEK, WEAPSET_TYPE_WEAPON);
 
    /* All should be inrange. */
    if (!pilot_isPlayer(p)) {
@@ -1298,7 +1298,7 @@ void pilot_weaponAuto( Pilot *p )
    /* Iterate through all the outfits. */
    for (i=0; i<array_size(p->outfits); i++) {
       slot = p->outfits[i];
-      o    = slot->outfit;
+      o = slot->outfit;
 
       /* Must be non-empty, and a weapon or active outfit. */
       if ((o == NULL) || !outfit_isActive(o)) {
@@ -1308,24 +1308,24 @@ void pilot_weaponAuto( Pilot *p )
       }
 
       /* Set level based on secondary flag. */
-      level  = outfit_isSecondary(o);
+      level = outfit_isSecondary(o);
 
       /* Manually defined group preempts others. */
       if (o->group) {
-         id    = o->group;
+         id = o->group;
       }
       /* Bolts and beams. */
-      else if (outfit_isBolt(o) || outfit_isBeam(o) ||
-            (outfit_isLauncher(o) && !outfit_isSeeker(o->u.lau.ammo))) {
-         id    = outfit_isTurret(o) ? 2 : 1;
+      else if (outfit_isBolt(o) || outfit_isBeam(o)
+            || (outfit_isLauncher(o) && !outfit_isSeeker(o->u.lau.ammo))) {
+         id = outfit_isTurret(o) ? WEAPSET_TUR : WEAPSET_FWD;
       }
       /* Seekers. */
       else if (outfit_isLauncher(o) && outfit_isSeeker(o->u.lau.ammo)) {
-         id    = 4;
+         id = WEAPSET_SEEK;
       }
       /* Fighter bays. */
       else if (outfit_isFighterBay(o)) {
-         id    = 5;
+         id = WEAPSET_FBAY;
       }
       /* Ignore rest. */
       else {
@@ -1337,18 +1337,18 @@ void pilot_weaponAuto( Pilot *p )
       pilot_weapSetAdd( p, id, slot, level );
 
       /* Also add another copy to another group. */
-      if (id == 1) { /* Forward. */
-         pilot_weapSetAdd( p, 0, slot, level ); /* Also get added to 'All'. */
-         pilot_weapSetAdd( p, 3, slot, 0 );     /* Also get added to 'Fwd/Tur'. */
+      if (id == WEAPSET_FWD) { /* Forward. */
+         pilot_weapSetAdd(p, WEAPSET_ALL, slot, level);
+         pilot_weapSetAdd(p, WEAPSET_NOSEEK, slot, 0);
       }
-      else if (id == 2) { /* Turrets. */
-         pilot_weapSetAdd( p, 0, slot, level ); /* Also get added to 'All'. */
-         pilot_weapSetAdd( p, 3, slot, 1 );     /* Also get added to 'Fwd/Tur'. */
+      else if (id == WEAPSET_TUR) { /* Turrets. */
+         pilot_weapSetAdd(p, WEAPSET_ALL, slot, level);
+         pilot_weapSetAdd(p, WEAPSET_NOSEEK, slot, 1);
       }
-      else if (id == 4) { /* Seekers */
-         pilot_weapSetAdd( p, 0, slot, level ); /* Also get added to 'All'. */
+      else if (id == WEAPSET_SEEK) { /* Seekers */
+         pilot_weapSetAdd( p, WEAPSET_ALL, slot, level );
          if (outfit_isTurret(o))
-            pilot_weapSetAdd( p, 9, slot, level ); /* Also get added to 'Turreted Seekers'. */
+            pilot_weapSetAdd( p, WEAPSET_TURSEEK, slot, level );
       }
    }
 

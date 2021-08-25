@@ -619,8 +619,8 @@ static void weapons_genList( unsigned int wid )
       n = -1;
 
    /* List */
-   buf = malloc( sizeof(char*) * PILOT_WEAPON_SETS );
-   for (i=0; i<PILOT_WEAPON_SETS; i++) {
+   buf = malloc( sizeof(char*) * PLAYER_WEAPON_SETS );
+   for (i=0; i<PLAYER_WEAPON_SETS; i++) {
       str = pilot_weapSetName( info_eq_weaps.selected, i );
       if (str == NULL)
          snprintf( tbuf, sizeof(tbuf), "%d - ??", (i+1)%10 );
@@ -630,7 +630,7 @@ static void weapons_genList( unsigned int wid )
    }
    window_addList( wid, 20+180+20, -40,
          w - (20+180+20+20), 200,
-         "lstWeapSets", buf, PILOT_WEAPON_SETS,
+         "lstWeapSets", buf, PLAYER_WEAPON_SETS,
          0, weapons_update, NULL );
 
    /* Restore position. */
@@ -716,12 +716,12 @@ static void weapons_fire( unsigned int wid, char *str )
    pilot_weapSetType( player.p, info_eq_weaps.weapons, c );
 
    /* Check to see if they are all fire groups. */
-   for (i=0; i<PILOT_WEAPON_SETS; i++)
+   for (i=0; i<PLAYER_WEAPON_SETS; i++)
       if (!pilot_weapSetTypeCheck( player.p, i ))
          break;
 
    /* Not able to set them all to fire groups. */
-   if (i >= PILOT_WEAPON_SETS) {
+   if (i >= PLAYER_WEAPON_SETS) {
       dialogue_alert( _("You can not set all your weapon sets to fire groups!") );
       pilot_weapSetType( player.p, info_eq_weaps.weapons, WEAPSET_TYPE_CHANGE );
       window_checkboxSet( wid, str, 0 );

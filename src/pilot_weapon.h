@@ -16,6 +16,14 @@
 #define WEAPSET_TYPE_WEAPON   1  /**< Activates weapons (while held down). */
 #define WEAPSET_TYPE_ACTIVE   2  /**< Toggles outfits (if on it deactivates). */
 
+#define WEAPSET_ALL 0 /**< Default weapon set containing all weapons. */
+#define WEAPSET_FWD 1 /**< Forward non-seekers. */
+#define WEAPSET_TUR 2 /**< Turreted non-seekers. */
+#define WEAPSET_NOSEEK 3 /**< Non-seekers. */
+#define WEAPSET_SEEK 4 /**< Instant mode seekers. */
+#define WEAPSET_TURSEEK 9 /**< Instant mode turreted seekers. */
+#define WEAPSET_FBAY 5 /**< Instant mode fighter bays. */
+
 
 /* Freedom. */
 void pilot_weapSetFree( Pilot* p );
