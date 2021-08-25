@@ -10,7 +10,7 @@
   <limit>Ionizer</limit>
   <cpu>-1</cpu>
  </general>
- <specific type="modification" group="10">
+ <specific type="modification" group="8">
   <active />
   <fwd_dam_as_dis>100</fwd_dam_as_dis>
   <fwd_damage>-70</fwd_damage>
