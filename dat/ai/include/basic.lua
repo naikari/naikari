@@ -360,6 +360,7 @@ function __move_shoot ()
          ai.weapset( 3 )
          ai.settarget( enemy )
          ai.shoot( true )
+         ai.weapset(9)
       end
    end
 end
@@ -526,6 +527,7 @@ function __run_turret ()
          if dist < ai.getweaprange(3) then
             ai.weapset( 3 )
             ai.shoot( true )
+            ai.weapset(9)
          end
       end
    end

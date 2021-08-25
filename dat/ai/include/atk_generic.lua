@@ -105,8 +105,12 @@ function _atk_g_ranged_dogfight( target, dist )
    end
 
    -- Check if in range to shoot missiles
-   if dist < ai.getweaprange( 4 ) and dir < 30 then
-      ai.weapset( 4 )
+   if dist < ai.getweaprange(4) then
+      if dir < 30 then
+         ai.weapset(4)
+      else
+         ai.weapset(9)
+      end
    else
       -- Test if we should zz
       if ai.pilot():stats().mass < 400 and _atk_decide_zz() then
