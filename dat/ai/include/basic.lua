@@ -357,10 +357,10 @@ function __move_shoot ()
    if ai.hasturrets() then
       enemy = ai.getenemy()
       if enemy ~= nil then
-         ai.weapset( 3 )
+         ai.weapset("all_nonseek")
          ai.settarget( enemy )
          ai.shoot( true )
-         ai.weapset(9)
+         ai.weapset("turret_seek")
       end
    end
 end
@@ -524,10 +524,10 @@ function __run_turret ()
       local dist    = ai.dist(target)
       -- See if we have some turret to use
       if ai.hasturrets() then
-         if dist < ai.getweaprange(3) then
-            ai.weapset( 3 )
+         if dist < ai.getweaprange("all_nonseek") then
+            ai.weapset("all_nonseek")
             ai.shoot( true )
-            ai.weapset(9)
+            ai.weapset("turret_seek")
          end
       end
    end

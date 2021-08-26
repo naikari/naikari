@@ -46,6 +46,7 @@ void pilot_weapSetUpdate( Pilot* p );
 
 
 /* Weapon Set. */
+int pilot_weapSetFromString( const char* name );
 const char *pilot_weapSetName( Pilot* p, int id );
 void pilot_weapSetRmSlot( Pilot *p, int id, OutfitSlotType type );
 void pilot_weapSetAdd( Pilot* p, int id, PilotOutfitSlot *o, int level );

@@ -358,6 +358,30 @@ void pilot_weapSetInrange( Pilot* p, int id, int inrange )
 
 
 /**
+ * @brief Gets a weapset ID from a string identifier, or -1 if no match.
+ */
+int pilot_weapSetFromString( const char* name )
+{
+   if (strcmp(name, "all") == 0)
+      return WEAPSET_ALL;
+   else if (strcmp(name, "all_nonseek") == 0)
+      return WEAPSET_NOSEEK;
+   else if (strcmp(name, "forward_nonseek") == 0)
+      return WEAPSET_FWD;
+   else if (strcmp(name, "turret_nonseek") == 0)
+      return WEAPSET_TUR;
+   else if (strcmp(name, "all_seek") == 0)
+      return WEAPSET_SEEK;
+   else if (strcmp(name, "turret_seek") == 0)
+      return WEAPSET_TURSEEK;
+   else if (strcmp(name, "fighter_bay") == 0)
+      return WEAPSET_FBAY;
+
+   return -1;
+}
+
+
+/**
  * @brief Gets the name of a weapon set.
  */
 const char *pilot_weapSetName( Pilot* p, int id )

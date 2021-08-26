@@ -1523,7 +1523,11 @@ static int pilotL_weapset( lua_State *L )
  * @usage hmean, hpeak = p:weapsetHeat( 5 ) -- Get info about the set number 5
  *
  *    @luatparam Pilot p Pilot to get weapset weapon of.
- *    @luatparam[opt] number id ID of the set to get information of. Defaults to currently active set.
+ *    @luatparam[opt] number|string|boolean id ID of the set to get
+ *       information of. Defaults to currently active set. Strings
+ *       identifying special weapon sets can also be used here; see
+ *       ai.weapset for more information. Set to true to get
+ *       information of all weapon sets.
  *    @luatreturn number Mean heat.
  *    @luatreturn number Peak heat.
  * @luafunc weapsetHeat
@@ -1537,6 +1541,7 @@ static int pilotL_weapsetHeat( lua_State *L )
    int i, j, n;
    int id, all, level, level_match;
    double heat, heat_mean, heat_peak, nweapons;
+   const char *name;
 
    /* Defaults. */
    heat_mean = 0.;
@@ -1552,6 +1557,14 @@ static int pilotL_weapsetHeat( lua_State *L )
       else if (lua_isboolean(L,2)) {
          all = lua_toboolean(L,2);
          id  = p->active_set;
+      }
+      else if (lua_isstring(L,2)) {
+         name = lua_tostring(L,2);
+         id = pilot_weapSetFromString(name);
+         if (id == -1) {
+            NLUA_ERROR(L, _("'%s' is not a valid weapon set name."), name);
+            return 0;
+         }
       }
       else
          NLUA_INVALID_PARAMETER(L);

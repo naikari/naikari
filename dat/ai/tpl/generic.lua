@@ -578,8 +578,8 @@ end
 function choose_weapset()
    if ai.hascannons() and ai.hasturrets() then
       local p = ai.pilot()
-      local meant, peakt = p:weapsetHeat( 3 )
-      local meanc, peakc = p:weapsetHeat( 2 )
+      local meant, peakt = p:weapsetHeat("turret_nonseek")
+      local meanc, peakc = p:weapsetHeat("forward_nonseek")
 
       --[[
       -- Weapon groups:

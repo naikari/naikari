@@ -2781,9 +2781,37 @@ static int aiL_gatherablePos( lua_State *L )
 
 
 /**
- * @brief Sets the active weapon set, fires another weapon set or activate an outfit.
+ * @brief Triggers a weapon set.
  *
- *    @luatparam number id ID of the weapon set to switch to or fire.
+ * This will set the active weapon set, fire the weapon set if that
+ * weapon set is instant mode, or activate the outfits in the weapon set
+ * if the weapon set is for activatable outfits.
+ *
+ * In addition to the exact weapon set ID, certain special named weapon
+ * sets (defined in C) are available. These are:<br/>
+ *
+ * <ul>
+ *    <li>"all": The default weapon set which contains all weapons and
+ *       is used for the player by default.</li>
+ *    <li>"all_nonseek": Weapon set containing only all non-seekers,
+ *       with forward-facing weapons set as primary and turreted weapons
+ *       set as secondary.</li>
+ *    <li>"forward_nonseek": Weapon set containing only forward-facing
+ *       non-seekers, set as primary.</li>
+ *    <li>"turret_nonseek": Weapon set containing only turreted
+ *       non-seekers, set as primary.</li>
+ *    <li>"all_seek": Instant mode weapon set containing only all
+ *       seekers (both forward-facing and turreted).</li>
+ *    <li>"turret_seek": Instant mode weapon set containing only
+ *       turreted seekers.</li>
+ *    <li>"fighter_bay": Instant mode weapon set containing only fighter
+ *       bays.</li>
+ * </ul>
+ * <br/>
+ *
+ *    @luatparam number|string id ID of the weapon set to switch to or
+ *       fire. Can also be a string identifying a special weapon set
+ *       (see above).
  *    @luatparam[opt=true] boolean type true to activate, false to deactivate.
  * @luafunc weapset
  */
@@ -2791,10 +2819,25 @@ static int aiL_weapSet( lua_State *L )
 {
    Pilot* p;
    int id, type, on, l, i;
+   const char *name;
    PilotWeaponSet *ws;
 
    p = cur_pilot;
-   id = lua_tonumber(L,1);
+
+   if (lua_isnumber(L,1))
+      id = lua_tointeger(L,1);
+   else if (lua_isstring(L,1)) {
+      name = lua_tostring(L,1);
+      id = pilot_weapSetFromString(name);
+      if (id == -1) {
+         NLUA_ERROR(L, _("'%s' is not a valid weapon set name."), name);
+         return 0;
+      }
+   }
+   else {
+      NLUA_INVALID_PARAMETER(L);
+      return 0;
+   }
 
    if (lua_gettop(L) > 1)
       type = lua_toboolean(L,2);
@@ -3000,16 +3043,41 @@ static int aiL_hostile( lua_State *L )
 /**
  * @brief Gets the range of a weapon.
  *
- *    @luatparam[opt] number id Optional parameter indicating id of weapon set to get range of, defaults to selected one.
- *    @luatparam[opt=-1] number level Level of weapon set to get range of.
+ *    @luatparam[opt] number|string id Optional parameter indicating id
+ *       of weapon set to get range of, defaults to selected one. See
+ *       ai.weapset for more information.
+ *    @luatparam[opt=-1] number level Level of weapon set to get range
+ *       of (0 for primary, 1 for secondary, -1 for all).
  *    @luatreturn number The range of the weapon set.
  * @luafunc getweaprange
  */
 static int aiL_getweaprange( lua_State *L )
 {
-   int id    = luaL_optinteger( L, 1, cur_pilot->active_set );
-   int level = luaL_optinteger( L, 2, -1 );
-   lua_pushnumber(L, pilot_weapSetRange( cur_pilot, id, level ) );
+   int id;
+   int level;
+   const char *name;
+
+   if ((lua_gettop(L) > 0) && (!lua_isnil(L, 1))) {
+      if (lua_isnumber(L, 1))
+         id = lua_tointeger(L, 1);
+      else if (lua_isstring(L, 1)) {
+         name = lua_tostring(L, 1);
+         id = pilot_weapSetFromString(name);
+         if (id == -1) {
+            NLUA_ERROR(L, _("'%s' is not a valid weapon set name."), name);
+            return 0;
+         }
+      }
+      else {
+         NLUA_INVALID_PARAMETER(L);
+         return 0;
+      }
+   }
+   else
+      id = cur_pilot->active_set;
+
+   level = luaL_optinteger(L, 2, -1);
+   lua_pushnumber(L, pilot_weapSetRange(cur_pilot, id, level));
    return 1;
 }
 
