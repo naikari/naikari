@@ -271,6 +271,10 @@ SHADERS = [
       name = "targetplanet",
       fs_path = "targetplanet.frag",
    ),
+   SimpleShader(
+      name = "blinkmarker",
+      fs_path = "blinkmarker.frag",
+   ),
 ]
 
 def header_chunks():
