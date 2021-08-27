@@ -1639,24 +1639,25 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
       h  *= 2.;
    }
 
-   /* Do the blink. */
-   if (ind == player.p->nav_hyperspace) {
+   if (ind == player.p->nav_hyperspace)
       col = &cWhite;
-      gui_blink( cx, cy, vr*2.6, col, RADAR_BLINK_PLANET, blink_planet );
-   }
    else if (jp_isFlag(jp, JP_HIDDEN))
       col = &cRed;
    else
       col = &cGreen;
 
    glLineWidth( 3. );
-   gl_renderTriangleEmpty( cx - 1, cy, -jp->angle, 2*vr, 2., &cBlack );
-   gl_renderTriangleEmpty( cx + 1, cy, -jp->angle, 2*vr, 2., &cBlack );
-   gl_renderTriangleEmpty( cx, cy - 1, -jp->angle, 2*vr, 2., &cBlack );
-   gl_renderTriangleEmpty( cx, cy + 1, -jp->angle, 2*vr, 2., &cBlack );
+   gl_renderTriangleEmpty( cx - 1, cy, -jp->angle, 2.*vr, 2., &cBlack );
+   gl_renderTriangleEmpty( cx + 1, cy, -jp->angle, 2.*vr, 2., &cBlack );
+   gl_renderTriangleEmpty( cx, cy - 1, -jp->angle, 2.*vr, 2., &cBlack );
+   gl_renderTriangleEmpty( cx, cy + 1, -jp->angle, 2.*vr, 2., &cBlack );
 
-   gl_renderTriangleEmpty( cx, cy, -jp->angle, 2*vr, 2., col );
+   gl_renderTriangleEmpty( cx, cy, -jp->angle, 2.*vr, 2., col );
    glLineWidth( 1. );
+
+   /* Blink ontop. */
+   if (ind == player.p->nav_hyperspace)
+      gui_blink( cx, cy, vr*4., col, RADAR_BLINK_PLANET, blink_planet );
 
    /* Render name. */
    if (overlay) {
