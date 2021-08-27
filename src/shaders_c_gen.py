@@ -288,6 +288,10 @@ SHADERS = [
       fs_path = "targetplanet.frag",
    ),
    SimpleShader(
+      name = "sdfcircle",
+      fs_path = "sdfcircle.frag",
+   ),
+   SimpleShader(
       name = "progressbar",
       fs_path = "progressbar.frag",
    ),
