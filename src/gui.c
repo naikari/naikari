@@ -1328,7 +1328,8 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
  */
 void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int overlay )
 {
-   int x, y, sx, sy, i, j, targeted;
+   int i, j, targeted;
+   double x, y, r, sx, sy;
    double px, py;
    const glColour *col;
 
@@ -1346,13 +1347,14 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
 
    /* Get position. */
    if (overlay) {
-      x = (int)(a->pos.x / res);
-      y = (int)(a->pos.y / res);
+      x = (a->pos.x / res);
+      y = (a->pos.y / res);
    }
    else {
-      x = (int)((a->pos.x - player.p->solid->pos.x) / res);
-      y = (int)((a->pos.y - player.p->solid->pos.y) / res);
+      x = ((a->pos.x - player.p->solid->pos.x) / res);
+      y = ((a->pos.y - player.p->solid->pos.y) / res);
    }
+
    /* Get size. */
    sx = 1.;
    sy = 1.;
@@ -1377,10 +1379,13 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
    else
       col = &cGrey70;
 
-   gl_renderRect( px, py, MIN( 2*sx, w-px ), MIN( 2*sy, h-py ), col );
+   //gl_renderRect( px, py, MIN( 2*sx, w-px ), MIN( 2*sy, h-py ), col );
+   r = (sx+sy)/2.0+1.5;
+   glUseProgram(shaders.asteroidmarker.program);
+   gl_renderShader( px, py, r, r, 0., &shaders.asteroidmarker, col, 1 );
 
    if (targeted)
-      gui_blink( px, py, MAX(7., 2.0*(sx+sy)), col, RADAR_BLINK_PILOT, blink_pilot );
+      gui_blink( px, py, MAX(7., 2.0*r), col, RADAR_BLINK_PILOT, blink_pilot );
 }
 
 
