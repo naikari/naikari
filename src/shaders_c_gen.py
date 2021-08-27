@@ -164,14 +164,6 @@ SHADERS = [
       }
    ),
    Shader(
-      name = "tk",
-      vs_path = "tk.vert",
-      fs_path = "tk.frag",
-      attributes = ["vertex"],
-      uniforms = ["projection", "c", "dc", "lc", "oc", "wh", "corner_radius"],
-      subroutines = {},
-   ),
-   Shader(
       name = "jump",
       vs_path = "project_pos.vert",
       fs_path = "jump.frag",
