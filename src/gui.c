@@ -1647,7 +1647,8 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
       col = &cGreen;
 
    glUseProgram(shaders.jumpmarker.program);
-   gl_renderShader( cx, cy, vr*1.5, vr*1.5, -jp->angle, &shaders.jumpmarker, col, 1 );
+   gl_renderShader(cx, cy, vr*1.5, vr*1.5, -jp->angle+M_PI,
+         &shaders.jumpmarker, col, 1);
 
    /* Blink ontop. */
    if (ind == player.p->nav_hyperspace)
