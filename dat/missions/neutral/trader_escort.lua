@@ -284,7 +284,7 @@ function spawnConvoy ()
             {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
             ambush_src, {nil, nil, N_("Pirate Hyena")})
    elseif convoysize == 3 then
-      convoy = fleet.add({2, 3}, {"Rhino", "Mule"}, origin,
+      convoy = fleet.add({2, 3}, {"Rhino", "Mule"}, "Trader", origin,
             {N_("Convoy Rhino"), N_("Convoy Mule")})
 
       if rnd.rnd() < 0.5 then
@@ -297,7 +297,7 @@ function spawnConvoy ()
                ambush_src)
       end
    elseif convoysize == 4 then
-      convoy = fleet.add(3, {"Rhino", "Mule"}, origin,
+      convoy = fleet.add(3, {"Rhino", "Mule"}, "Trader", origin,
             {N_("Convoy Rhino"), N_("Convoy Mule")})
 
       local r = rnd.rnd()
@@ -316,7 +316,7 @@ function spawnConvoy ()
                ambush_src)
       end
    else
-      convoy = fleet.add(4, {"Rhino", "Mule"}, origin,
+      convoy = fleet.add(4, {"Rhino", "Mule"}, "Trader", origin,
             {N_("Convoy Rhino"), N_("Convoy Mule")})
 
       local r = rnd.rnd()
