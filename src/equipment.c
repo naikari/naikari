@@ -958,9 +958,9 @@ static void equipment_renderShip( double bx, double by,
       v.y *= ph / p->ship->gfx_space->sh;
 
       /* Render it. */
-      glLineWidth( 3. );
-      gl_renderCross(px + v.x, py + v.y, 7, &cRadar_player);
-      glLineWidth( 1. );
+      glUseProgram(shaders.crosshairs.program);
+      glUniform1f(shaders.crosshairs.r, 2.);
+      gl_renderShader( px+v.x, py+v.y, 7, 7, 0., &shaders.crosshairs, &cRadar_player, 1 );
    }
 
    toolkit_drawOutline( x - 4., y-4., w+7., h+2., 1., toolkit_colLight, NULL  );

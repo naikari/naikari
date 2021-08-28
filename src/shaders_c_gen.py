@@ -268,6 +268,10 @@ SHADERS = [
       fs_path = "circle.frag",
    ),
    SimpleShader(
+      name = "crosshairs",
+      fs_path = "crosshairs.frag",
+   ),
+   SimpleShader(
       name = "progressbar",
       fs_path = "progressbar.frag",
    ),
