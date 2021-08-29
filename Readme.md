@@ -36,6 +36,7 @@ Naikari requires the following:
 * libvorbis >= 1.2.2
 * binutils
 * intltool
+* libunibreak (included)
 
 If you're cross-compiling for Windows, you must install this soft dependency:
 * [physfs](https://icculus.org/physfs/), example package name mingw-w64-physfs
