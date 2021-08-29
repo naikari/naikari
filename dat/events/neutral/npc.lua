@@ -96,6 +96,7 @@ mil_desc.dv_mil_restricted = {
    _("This officer seems bored with everything but their drink."),
    _("This officer seems to be relaxing after a hard day's work."),
    _("A Dvaered officer sitting in the corner."),
+   _("A Dvaered officer suspiciously glancing around, as if expecting to be attacked by FLF terrorists at any moment."),
 }
 mil_desc.dv_mil_command = mil_desc.dv_mil_restricted
 mil_desc.srm_mil_restricted = {
@@ -127,6 +128,7 @@ mil_desc.flf_sindbad = {
    _("This FLF soldier is idly reading the news terminal."),
    _("This FLF soldier seems to be relaxing for the moment."),
    _("An FLF soldier sitting in the corner."),
+   _("An FLF soldier drinking with a group of comrades."),
 }
 mil_desc.ptn_mil_restricted = {
    _("A Proteron officer sits idly at one of the tables."),
@@ -136,6 +138,7 @@ mil_desc.ptn_mil_restricted = {
    _("This officer seems bored with everything but their drink."),
    _("This officer seems to be relaxing after a hard day's work."),
    _("A Proteron officer sitting in the corner."),
+   _("A nervous-looking Proteron officer gently sips a drink while reading government propaganda."),
 }
 
 -- Lore messages. These come in general and factional varieties.
@@ -379,7 +382,7 @@ msg_mdone = {
 -- This text will be said by NPCs once the player has completed the event in question.
 -- Make sure the messages are always faction neutral.
 msg_edone = {
-   {"Animal trouble", _([["What? You had rodents sabotage your ship? Man, you're lucky to be alive. If it had hit the wrong power line…"]])},
+   {"Animal trouble", _([["What? You had rodents sabotage your ship? Damn, you're lucky to be alive. If it had hit the wrong power line…"]])},
 }
 
 
