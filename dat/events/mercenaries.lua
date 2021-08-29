@@ -2,6 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Mercenary Handler">
  <trigger>enter</trigger>
+ <priority>100</priority>
  <chance>100</chance>
  <flags>
   <unique />
