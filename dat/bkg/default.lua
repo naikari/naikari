@@ -2,7 +2,9 @@ prng_lib = require "prng"
 prng = prng_lib.new()
 
 nebulae = {
+   "nebula01.png",
    "nebula02.webp",
+   "nebula03.png",
    "nebula04.webp",
    "nebula10.webp",
    "nebula12.webp",
