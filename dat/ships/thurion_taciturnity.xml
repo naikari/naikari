@@ -10,7 +10,7 @@
  <trail_generator x="-7" y="-23" h="-13">nebula</trail_generator>
  <trail_generator x="-7" y="0" h="30">nebula</trail_generator>
  <class>Armored Transport</class>
- <rdr_scale>2</rdr_scale>
+ <rdr_scale>1.5</rdr_scale>
  <price>1600000</price>
  <time_mod>1.5</time_mod>
  <fabricator>Thurion shipyards</fabricator>

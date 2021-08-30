@@ -6,7 +6,7 @@
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Cruiser</class>
- <rdr_scale>2.5</rdr_scale>
+ <rdr_scale>1.9</rdr_scale>
  <price>3250000</price>
  <time_mod>1.75</time_mod>
  <trail_generator x="-50" y="4" h="0">thin</trail_generator>

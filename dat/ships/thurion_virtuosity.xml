@@ -6,7 +6,7 @@
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Corvette</class>
- <rdr_scale>1.5</rdr_scale>
+ <rdr_scale>1.25</rdr_scale>
  <price>1100000</price>
  <time_mod>1.25</time_mod>
  <trail_generator x="-15" y="5" h="0" />
