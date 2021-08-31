@@ -524,9 +524,8 @@ function __run_turret ()
       local dist    = ai.dist(target)
       -- See if we have some turret to use
       if ai.hasturrets() then
-         if dist < ai.getweaprange("all_nonseek") then
-            ai.weapset("all_nonseek")
-            ai.shoot( true )
+         if dist < ai.getweaprange("turret_nonseek") then
+            ai.weapset("turret_nonseek")
             ai.weapset("turret_seek")
          end
       end
@@ -857,12 +856,12 @@ end
 -- Mines an asteroid
 --]]
 function mine ()
-   ai.weapset( 1 )
+   ai.weapset("all_nonseek")
    local fieldNast = ai.taskdata()
    local field     = fieldNast[1]
    local ast       = fieldNast[2]
    local p         = ai.pilot()
-   local wrange    = ai.getweaprange(nil, 0)
+   local wrange    = ai.getweaprange("all_nonseek")
    local erange    = 100
    local trange    = math.min( math.max( erange, wrange * 3 / 4 ), wrange )
    local mbd       = ai.minbrakedist()
@@ -902,7 +901,7 @@ function __killasteroid ()
    local fieldNast = ai.taskdata()
    local field     = fieldNast[1]
    local ast       = fieldNast[2]
-   local wrange    = ai.getweaprange()
+   local wrange    = ai.getweaprange("all_nonseek")
 
    local target = system.asteroidPos( field, ast )
    local dir  = ai.face(target)
@@ -923,7 +922,7 @@ function __killasteroid ()
 
    -- Second task : destroy it
    if dir < 8 then
-      ai.weapset( 1 )
+      ai.weapset("all_nonseek")
       ai.shoot()
       ai.shoot(true)
    end

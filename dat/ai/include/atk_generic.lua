@@ -175,11 +175,13 @@ function _atk_g_ranged_strafe( target, dist )
       local dir  = ai.face(target)
       if dir < 30 then
          ai.set_shoot_indicator(false)
-         ai.weapset( 4 )
+         ai.weapset("all_seek")
          -- If he managed to shoot, reinitialize the timer
          if ai.shoot_indicator() and not ai.timeup(1) then
             ai.settimer(1, 13)
          end
+      else
+         ai.weapset("turret_seek")
       end
    end
 
@@ -192,9 +194,6 @@ function _atk_g_ranged_strafe( target, dist )
 end
 function _atk_g_ranged_kite( target, dist )
    local p = ai.pilot()
-
-   -- Estimate the range
-   local range = ai.getweaprange( 4 )
 
    -- Try to keep velocity vector away from enemy
    local targetpos = target:pos()
@@ -211,15 +210,18 @@ function _atk_g_ranged_kite( target, dist )
 
    -- We are flying away, so try to kite
    local dir = ai.aim(target) -- aim instead of facing
-   if dir < 30 then
-      if dist < range*0.95 then
-         ai.weapset( 4 )
+   if dist < ai.getweaprange("all_seek") then
+      if dir < 30 then
+         ai.weapset("all_seek")
+      else
+         ai.weapset("turret_seek")
       end
-
+   end
+   if dist < ai.getweaprange("all_nonseek") then
       if dir < 10 then
-         ai.weapset( 3 ) -- Set turret/forward weaponset.
-         ai.shoot()
+         ai.weapset("forward_nonseek")
       end
+      ai.weapset("turret_nonseek")
    end
 end
 --[[
@@ -229,14 +231,16 @@ function _atk_g_ranged( target, dist )
    local range = ai.getweaprange( 4 )
    local relvel = ai.relvel( target )
    local istargeted = (target:target()==ai.pilot())
-   local wrange = math.min( ai.getweaprange(3,0), ai.getweaprange(3,1) )
+   local wrange = math.min(ai.getweaprange("forward_nonseek"),
+         ai.getweaprange("turret_nonseek"))
 
    -- Pilot thinks dogfight is the best
-   if ai.relhp(target)*ai.reldps(target) >= 0.25
-         or ai.getweapspeed(4) < target:stats().speed_max*1.2
-         or range < ai.getweaprange(1)*1.5 then
+   if ai.relhp(target) * ai.reldps(target) >= 0.25
+         or ai.getweapspeed(4) < target:stats().speed_max * 1.2
+         or range < ai.getweaprange("forward_nonseek") * 1.5 then
       _atk_g_ranged_dogfight( target, dist )
-   elseif target:target()==ai.pilot() and dist < range and ai.hasprojectile() then
+   elseif target:target() == ai.pilot() and dist < range
+         and ai.hasprojectile() then
       local tvel = target:vel()
       local pvel = ai.pilot():vel()
       local vel = (tvel-pvel):polar()
@@ -253,7 +257,7 @@ function _atk_g_ranged( target, dist )
    end
 
    -- Always launch fighters for now
-   ai.weapset( 5 )
+   ai.weapset("fighter_bay")
 end
 
 

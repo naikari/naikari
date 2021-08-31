@@ -80,7 +80,7 @@ function attack ()
 
    -- Choose how to face
    local dist  = ai.dist( target )
-   local range = ai.getweaprange( 3 ) -- Short range
+   local range = ai.getweaprange("all_nonseek")
    local dir
    if dist < range then
       dir = ai.aim( target )
@@ -90,7 +90,7 @@ function attack ()
 
    -- In melee
    if dist < range then
-      ai.weapset( 3 ) -- Forward/turret
+      ai.weapset("all_nonseek")
       if dir < 10 then
          ai.shoot() -- Forward
       end
@@ -99,9 +99,9 @@ function attack ()
 
    -- Long-range
    if dir < 10 then
-      ai.weapset( 4 ) -- Missiles, it's a fire group
+      ai.weapset("all_seek")
    end
-   ai.weapset( 9 ) -- Turreted Missiles
+   ai.weapset("turret_seek")
 end
 
 

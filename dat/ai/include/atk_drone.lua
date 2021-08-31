@@ -18,7 +18,7 @@ function atk_drone_think( target, si )
    local nearest_enemy = ai.getenemy()
    local dist     = ai.dist(target)
 
-   local range = ai.getweaprange(3, 0)
+   local range = ai.getweaprange("forward_nonseek")
    -- Get new target if it's closer
    --prioritize targets within the size limit
    if enemy ~= target and enemy ~= nil then
@@ -45,9 +45,13 @@ function _atk_drone_ranged( target, dist )
    -- TODO: should modify this line
 
    -- Check if in range
-   if dist < ai.getweaprange( 4 ) and dir < 30 then
-      ai.weapset( 4 )
+   if dist < ai.getweaprange("all_seek") and dir < 30 then
+      ai.weapset("all_seek")
    else
+      if dist < ai.getweaprange("turret_seek") then
+         ai.weapset("turret_seek")
+      end
+
       -- First test if we should zz
       if _atk_decide_zz() then
          ai.pushsubtask("_atk_zigzag", target)
@@ -55,7 +59,7 @@ function _atk_drone_ranged( target, dist )
    end
 
    -- Always launch fighters
-   ai.weapset( 5 )
+   ai.weapset("fighter_bay")
 
    -- Approach for melee
    if dir < 10 then
@@ -79,7 +83,7 @@ function atk_drone( target )
 
    -- Get stats about enemy
    local dist  = ai.dist( target ) -- get distance
-   local range = ai.getweaprange(3, 0)  -- get my weapon range (?)
+   local range = ai.getweaprange("forward_nonseek")
 
    -- We first bias towards range
    if dist > range * mem.atk_approach then
@@ -102,9 +106,9 @@ end
 -- This version is slightly less aggressive and cruises by the target
 --]]
 function _atk_d_flyby( target, dist )
-   local range = ai.getweaprange(3)
+   local range = ai.getweaprange("all_nonseek")
    local dir = 0
-   ai.weapset( 3 ) -- Forward/turrets
+   ai.weapset("all_nonseek")
 
    -- First test if we should zz
    if _atk_decide_zz() then
@@ -166,9 +170,9 @@ end
 --This is designed for drones engaging other drones
 --]]
 function _atk_d_space_sup( target, dist )
-   local range = ai.getweaprange(3)
+   local range = ai.getweaprange("all_nonseek")
    local dir   = 0
-   ai.weapset( 3 ) -- Forward/turrets
+   ai.weapset("all_nonseek")
 
    -- First test if we should zz
    if _atk_decide_zz() then
