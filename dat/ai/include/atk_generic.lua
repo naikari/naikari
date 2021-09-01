@@ -120,11 +120,12 @@ function _atk_g_ranged_dogfight( target, dist )
    end
 
    -- Approach for melee
+   ai.weapset("all_nonseek")
    if dir < 10 then
       ai.accel()
-      ai.weapset("forward_nonseek")
+      ai.shoot()
    end
-   ai.weapset("turret_nonseek")
+   ai.shoot(true)
 end
 function _atk_g_ranged_strafe( target, dist )
 --[[ The pilot tries first to place himself at range and at constant velocity.
@@ -220,10 +221,11 @@ function _atk_g_ranged_kite( target, dist )
       end
    end
    if dist < ai.getweaprange("all_nonseek") then
+      ai.weapset("all_nonseek")
       if dir < 10 then
-         ai.weapset("forward_nonseek")
+         ai.shoot()
       end
-      ai.weapset("turret_nonseek")
+      ai.shoot(true)
    end
 end
 --[[

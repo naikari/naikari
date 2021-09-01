@@ -39,7 +39,8 @@ end
 --As there is no aiming involved this is a turret/capital ship only attack method
 --]]
 function _atk_g_capital( target, dist )
-   local range = ai.getweaprange(mem.weapset)
+   ai.weapset(mem.weapset)
+   local range = ai.getweaprange()
    local dir = 0
    local shoot = false
 
@@ -85,7 +86,6 @@ function _atk_g_capital( target, dist )
 
    --within close range; aim and blast away with everything
    else
-      ai.weapset(mem.weapset)
       dir = ai.aim(target)
       -- At point-blank range, we ignore recharge.
       if dir < 10 then
@@ -95,7 +95,6 @@ function _atk_g_capital( target, dist )
    end
 
    if shoot and not mem.recharge then
-      ai.weapset(mem.weapset)
       -- test if, by chance, the target can be hit by cannons
       if aimdir < 10 then
          ai.shoot()

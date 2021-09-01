@@ -526,6 +526,7 @@ function __run_turret ()
       if ai.hasturrets() then
          if dist < ai.getweaprange("turret_nonseek") then
             ai.weapset("turret_nonseek")
+            ai.shoot()
             ai.weapset("turret_seek")
          end
       end
