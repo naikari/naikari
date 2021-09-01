@@ -20,7 +20,7 @@ function atk_capital( target )
 
    -- Get stats about enemy
    local dist  = ai.dist( target ) -- get distance
-   local range = ai.getweaprange(3)
+   local range = ai.getweaprange("all_nonseek")
 
    -- We first bias towards range
    if dist > range * mem.atk_approach and mem.ranged_ammo > mem.atk_minammo then
@@ -39,10 +39,9 @@ end
 --As there is no aiming involved this is a turret/capital ship only attack method
 --]]
 function _atk_g_capital( target, dist )
-   local range = ai.getweaprange(3)
+   local range = ai.getweaprange(mem.weapset)
    local dir = 0
    local shoot = false
-   ai.weapset( mem.weapset )
 
    --capital ships tend to require heavier energy reserves and burst output for maximum effectiveness
    if ai.pilot():energy() <= 1 then
@@ -86,6 +85,7 @@ function _atk_g_capital( target, dist )
 
    --within close range; aim and blast away with everything
    else
+      ai.weapset(mem.weapset)
       dir = ai.aim(target)
       -- At point-blank range, we ignore recharge.
       if dir < 10 then
@@ -95,6 +95,7 @@ function _atk_g_capital( target, dist )
    end
 
    if shoot and not mem.recharge then
+      ai.weapset(mem.weapset)
       -- test if, by chance, the target can be hit by cannons
       if aimdir < 10 then
          ai.shoot()

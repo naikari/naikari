@@ -18,7 +18,7 @@ function atk_fighter_think( target, si )
    local nearest_enemy = ai.getenemy()
    local dist     = ai.dist(target)
 
-   local range = ai.getweaprange(3, 0)
+   local range = ai.getweaprange("forward_nonseek")
    -- Get new target if it's closer
    --prioritize targets within the size limit
    if enemy ~= target and enemy ~= nil then
@@ -52,7 +52,7 @@ function atk_fighter( target )
 
    -- Get stats about enemy
    local dist  = ai.dist( target ) -- get distance
-   local range = ai.getweaprange(3, 0)
+   local range = ai.getweaprange("forward_nonseek")
 
    -- We first bias towards range
    if dist > range * mem.atk_approach and mem.ranged_ammo > mem.atk_minammo then
@@ -75,9 +75,9 @@ end
 -- This version is slightly less aggressive and cruises by the target
 --]]
 function _atk_f_flyby( target, dist )
-   local range = ai.getweaprange(3)
+   local range = ai.getweaprange("all_nonseek")
    local dir = 0
-   ai.weapset( 3 ) -- Forward/turrets
+   ai.weapset("all_nonseek")
 
    -- First test if we should zz
    if _atk_decide_zz() then
@@ -137,9 +137,9 @@ end
 --This is designed for fighters engaging other fighters
 --]]
 function _atk_f_space_sup( target, dist )
-   local range = ai.getweaprange(3)
+   local range = ai.getweaprange("all_nonseek")
    local dir   = 0
-   ai.weapset( 3 ) -- Forward/turrets
+   ai.weapset("all_nonseek")
 
    -- First test if we should zz
    if _atk_decide_zz() then

@@ -23,7 +23,7 @@ mem.distress       = true -- AI distresses
 mem.distressrate   = 3 -- Number of ticks before calling for help
 mem.distressmsg    = nil -- Message when calling for help
 mem.distressmsgfunc = nil -- Function to call when distressing
-mem.weapset        = 3 -- Weapon set that should be used (tweaked based on heat).
+mem.weapset        = "all_nonseek" -- Weapon set that should be used (tweaked based on heat).
 mem.tickssincecooldown = 0 -- Prevents overly-frequent cooldown attempts.
 mem.norun         = false -- Do not run away.
 mem.careful       = false -- Should the pilot try to avoid enemies?
@@ -581,36 +581,27 @@ function choose_weapset()
       local meant, peakt = p:weapsetHeat("turret_nonseek")
       local meanc, peakc = p:weapsetHeat("forward_nonseek")
 
-      --[[
-      -- Weapon groups:
-      --    1: Cannons
-      --    2: Turrets
-      --    3: Combined
-      --
-      -- Note: AI indexes from 0, but pilot module indexes from 1.
-      --]]
-
       -- Use both if both are cool, or if both are similar in temperature.
       if meant + meanc < .1 then
-         mem.weapset = 3
+         mem.weapset = "all_nonseek"
       elseif peakt == 0 then
-         mem.weapset = 2
+         mem.weapset = "turret_nonseek"
       elseif peakc == 0 then
-         mem.weapset = 1
+         mem.weapset = "forward_nonseek"
       -- Both sets are similarly hot.
       elseif math.abs(meant - meanc) < .15 then
-         mem.weapset = 3
+         mem.weapset = "all_nonseek"
       -- An extremely-hot weapon is a good reason to pick another set.
       elseif math.abs(peakt - peakc) > .4 then
          if peakt > peakc then
-            mem.weapset = 1
+            mem.weapset = "forward_nonseek"
          else
-            mem.weapset = 2
+            mem.weapset = "turret_nonseek"
          end
       elseif meant > meanc then
-         mem.weapset = 1
+         mem.weapset = "forward_nonseek"
       else
-         mem.weapset = 2
+         mem.weapset = "turret_nonseek"
       end
    end
 end

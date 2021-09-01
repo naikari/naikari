@@ -20,8 +20,8 @@ function atk_corvette( target )
 
    -- Get stats about enemy
    local dist  = ai.dist( target ) -- get distance
-   local range = ai.getweaprange(3, 0)
-   local range2 = ai.getweaprange(3, 1)
+   local range = ai.getweaprange("forward_nonseek")
+   local range2 = ai.getweaprange("turret_nonseek")
 
    if range2 > range then
       range = range2

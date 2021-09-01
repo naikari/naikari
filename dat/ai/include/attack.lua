@@ -42,7 +42,7 @@ function attack_think( target, si )
    if si.noattack then return end
 
    -- Update some high level stats
-   mem.ranged_ammo = ai.getweapammo(4)
+   mem.ranged_ammo = ai.getweapammo("all_seek")
 
    if mem.atk_think ~= nil then
       mem.atk_think( target, si )
@@ -106,7 +106,7 @@ function attack_choose ()
    local class = ai.pilot():ship():class()
 
    -- Set initial variables
-   mem.ranged_ammo = ai.getweapammo(4)
+   mem.ranged_ammo = ai.getweapammo("all_seek")
 
    -- Lighter ships
    if class == "Bomber" then

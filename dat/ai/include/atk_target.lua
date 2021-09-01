@@ -40,8 +40,8 @@ function atk_topdown_think( target, si )
       dist = ai.dist(nearest_enemy)
    end
 
-   local range  = ai.getweaprange(3, 1)
-   local range2 = ai.getweaprange(3, 0)
+   local range  = ai.getweaprange("turret_nonseek")
+   local range2 = ai.getweaprange("forward_nonseek")
 
    if range2 > range then
       range = range2
@@ -94,7 +94,7 @@ function atk_heuristic_big_game_think( target, si )
    local nearest_enemy = ai.getenemy()
 
    local dist = ai.dist(target)
-   local range = ai.getweaprange(3, 0)
+   local range = ai.getweaprange("forward_nonseek")
    -- Get new target if it's closer
    -- prioritize targets within the size limit
    if enemy ~= target and enemy ~= nil then

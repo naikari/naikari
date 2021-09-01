@@ -20,7 +20,7 @@ function atk_generic_think( target, si )
    local enemy  = ai.getenemy()
    if enemy ~= target and enemy ~= nil then
       local dist  = ai.dist( target )
-      local range = ai.getweaprange( 3 )
+      local range = ai.getweaprange("all_nonseek")
 
       -- Shouldn't switch targets if close
       if dist > range * mem.atk_changetarget then
@@ -54,7 +54,7 @@ function atk_generic_attacked( attacker )
    end
    local tdist  = ai.dist(target)
    local dist   = ai.dist(attacker)
-   local range  = ai.getweaprange( 0 )
+   local range  = ai.getweaprange("all")
 
    if target ~= attacker and dist < tdist and
          dist < range * mem.atk_changetarget then
@@ -79,7 +79,7 @@ function atk_generic( target )
 
    -- Get stats about enemy
    local dist  = ai.dist( target ) -- get distance
-   local range = ai.getweaprange( 3 )
+   local range = ai.getweaprange("all_nonseek")
 
    -- We first bias towards range
    if dist > range * mem.atk_approach and mem.ranged_ammo > mem.atk_minammo then
@@ -98,18 +98,19 @@ end
 
 function _atk_g_ranged_dogfight( target, dist )
    local dir
-   if not mem.careful or dist < 3 * ai.getweaprange(3, 0) * mem.atk_approach then
+   if not mem.careful or dist < 3 * ai.getweaprange("forward_nonseek")
+            * mem.atk_approach then
       dir = ai.face(target) -- Normal face the target
    else
       dir = ai.careful_face(target) -- Careful method
    end
 
    -- Check if in range to shoot missiles
-   if dist < ai.getweaprange(4) then
+   if dist < ai.getweaprange("all_seek") then
       if dir < 30 then
-         ai.weapset(4)
+         ai.weapset("all_seek")
       else
-         ai.weapset(9)
+         ai.weapset("turret_seek")
       end
    else
       -- Test if we should zz
@@ -121,9 +122,9 @@ function _atk_g_ranged_dogfight( target, dist )
    -- Approach for melee
    if dir < 10 then
       ai.accel()
-      ai.weapset( 3 ) -- Set turret/forward weaponset.
-      ai.shoot()
+      ai.weapset("forward_nonseek")
    end
+   ai.weapset("turret_nonseek")
 end
 function _atk_g_ranged_strafe( target, dist )
 --[[ The pilot tries first to place himself at range and at constant velocity.
@@ -138,8 +139,9 @@ function _atk_g_ranged_strafe( target, dist )
 
    -- Estimate the range
    local radial_vel = ai.relvel(target, true)
-   local range = ai.getweaprange( 4 )
-   range = math.min ( range - dist * radial_vel / ( ai.getweapspeed( 4 ) - radial_vel ), range )
+   local range = ai.getweaprange("all_seek")
+   range = math.min(range,
+         range - dist*radial_vel/(ai.getweapspeed("all_seek")-radial_vel))
 
    local goal = ai.follow_accurate(target, range * 0.8, 0, 10, 20, "keepangle")
    local mod = vec2.mod(goal - p:pos())
@@ -228,7 +230,7 @@ end
 -- Enters ranged combat with the target
 --]]
 function _atk_g_ranged( target, dist )
-   local range = ai.getweaprange( 4 )
+   local range = ai.getweaprange("all_seek")
    local relvel = ai.relvel( target )
    local istargeted = (target:target()==ai.pilot())
    local wrange = math.min(ai.getweaprange("forward_nonseek"),
@@ -236,7 +238,7 @@ function _atk_g_ranged( target, dist )
 
    -- Pilot thinks dogfight is the best
    if ai.relhp(target) * ai.reldps(target) >= 0.25
-         or ai.getweapspeed(4) < target:stats().speed_max * 1.2
+         or ai.getweapspeed("all_seek") < target:stats().speed_max * 1.2
          or range < ai.getweaprange("forward_nonseek") * 1.5 then
       _atk_g_ranged_dogfight( target, dist )
    elseif target:target() == ai.pilot() and dist < range
@@ -282,8 +284,8 @@ end
 --]]
 function _atk_g_melee( target, dist )
    local dir   = ai.aim(target) -- We aim instead of face
-   local range = ai.getweaprange( 3 )
-   ai.weapset( 3 ) -- Set turret/forward weaponset.
+   local range = ai.getweaprange("all_nonseek")
+   ai.weapset("all_nonseek")
 
    -- Drifting away we'll want to get closer
    if dir < 10 and dist > 0.5*range and ai.relvel(target) > -10 then

@@ -51,7 +51,7 @@ function _atk_decide_zz()
 
    local target = ai.taskdata()
    local pilot  = ai.pilot()
-   local range  = ai.getweaprange(3)
+   local range  = ai.getweaprange("all_nonseek")
    local dir = ai.idir(target)
    local dist  = ai.dist( target )
 
@@ -69,7 +69,7 @@ end
 --]]
 function _atk_zigzag()
    local target = ai.taskdata()
-   local range  = ai.getweaprange(3)
+   local range  = ai.getweaprange("all_nonseek")
 
    if not target or not target:exists() then
       ai.poptask()
