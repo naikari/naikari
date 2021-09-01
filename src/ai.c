@@ -3043,10 +3043,10 @@ static int aiL_hostile( lua_State *L )
 /**
  * @brief Gets the range of a weapon.
  *
- *    @luatparam[opt] number|string id Optional parameter indicating id
- *       of weapon set to get range of, defaults to selected one. See
- *       ai.weapset for more information.
- *    @luatparam[opt=-1] number level Level of weapon set to get range
+ *    @luatparam[opt] number|string id ID of the weapon set to get the range
+ *       of. Can also be a string identifying a special weapon set.
+ *       See ai.weapset for more information.
+ *    @luatparam[opt=-1] number level Level of weapon set to get the range
  *       of (0 for primary, 1 for secondary, -1 for all).
  *    @luatreturn number The range of the weapon set.
  * @luafunc getweaprange
@@ -3085,16 +3085,42 @@ static int aiL_getweaprange( lua_State *L )
 /**
  * @brief Gets the speed of a weapon.
  *
- *    @luatparam[opt] number id Optional parameter indicating id of weapon set to get speed of, defaults to selected one.
- *    @luatparam[opt=-1] number level Level of weapon set to get range of.
- *    @luatreturn number The range of the weapon set.
+ *    @luatparam[opt] number|string id ID of the weapon set to get the speed
+ *       of. Can also be a string identifying a special weapon set.
+ *       See ai.weapset for more information.
+ *    @luatparam[opt=-1] number level Level of weapon set to get the speed
+ *       of (0 for primary, 1 for secondary, -1 for all).
+ *    @luatreturn number The speed of the weapon set.
  * @luafunc getweapspeed
  */
 static int aiL_getweapspeed( lua_State *L )
 {
-   int id    = luaL_optinteger( L, 1, cur_pilot->active_set );
-   int level = luaL_optinteger( L, 2, -1 );
-   lua_pushnumber(L, pilot_weapSetSpeed( cur_pilot, id, level ) );
+   int id;
+   int level;
+   const char *name;
+
+   if ((lua_gettop(L) > 0) && (!lua_isnil(L, 1))) {
+      if (lua_isnumber(L, 1))
+         id = lua_tointeger(L, 1);
+      else if (lua_isstring(L, 1)) {
+         name = lua_tostring(L, 1);
+         id = pilot_weapSetFromString(name);
+         if (id == -1) {
+            NLUA_ERROR(L, _("'%s' is not a valid weapon set name."), name);
+            return 0;
+         }
+      }
+      else {
+         NLUA_INVALID_PARAMETER(L);
+         return 0;
+      }
+   }
+   else
+      id = cur_pilot->active_set;
+
+   level = luaL_optinteger(L, 2, -1);
+   lua_pushnumber(L, pilot_weapSetSpeed(cur_pilot, id, level));
+
    return 1;
 }
 
@@ -3102,16 +3128,42 @@ static int aiL_getweapspeed( lua_State *L )
 /**
  * @brief Gets the ammo of a weapon.
  *
- *    @luatparam[opt] number id Optional parameter indicating id of weapon set to get ammo of, defaults to selected one.
- *    @luatparam[opt=-1] number level Level of weapon set to get range of.
- *    @luatreturn number The range of the weapon set.
+ *    @luatparam[opt] number|string id ID of the weapon set to get the ammo
+ *       of. Can also be a string identifying a special weapon set.
+ *       See ai.weapset for more information.
+ *    @luatparam[opt=-1] number level Level of weapon set to get the ammo
+ *       of (0 for primary, 1 for secondary, -1 for all).
+ *    @luatreturn number The ammo of the weapon set.
  * @luafunc getweapammo
  */
 static int aiL_getweapammo( lua_State *L )
 {
-   int id    = luaL_optinteger( L, 1, cur_pilot->active_set );
-   int level = luaL_optinteger( L, 2, -1 );
-   lua_pushnumber(L, pilot_weapSetAmmo( cur_pilot, id, level ) );
+   int id;
+   int level;
+   const char *name;
+
+   if ((lua_gettop(L) > 0) && (!lua_isnil(L, 1))) {
+      if (lua_isnumber(L, 1))
+         id = lua_tointeger(L, 1);
+      else if (lua_isstring(L, 1)) {
+         name = lua_tostring(L, 1);
+         id = pilot_weapSetFromString(name);
+         if (id == -1) {
+            NLUA_ERROR(L, _("'%s' is not a valid weapon set name."), name);
+            return 0;
+         }
+      }
+      else {
+         NLUA_INVALID_PARAMETER(L);
+         return 0;
+      }
+   }
+   else
+      id = cur_pilot->active_set;
+
+   level = luaL_optinteger(L, 2, -1);
+   lua_pushnumber(L, pilot_weapSetAmmo(cur_pilot, id, level));
+
    return 1;
 }
 
