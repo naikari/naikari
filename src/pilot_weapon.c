@@ -1305,10 +1305,13 @@ void pilot_weaponAuto( Pilot *p )
    pilot_weapSetType(p, WEAPSET_NOSEEK, WEAPSET_TYPE_CHANGE);
    pilot_weapSetType(p, WEAPSET_SEEK, WEAPSET_TYPE_WEAPON);
    pilot_weapSetType(p, WEAPSET_FBAY, WEAPSET_TYPE_WEAPON);
-   pilot_weapSetType( p, 6, WEAPSET_TYPE_ACTIVE );
-   pilot_weapSetType( p, 7, WEAPSET_TYPE_ACTIVE );
-   pilot_weapSetType( p, 8, WEAPSET_TYPE_ACTIVE );
    pilot_weapSetType(p, WEAPSET_TURSEEK, WEAPSET_TYPE_WEAPON);
+
+   /* Weapset types for the player-allocated weapon sets. Starts with 1
+    * because WEAPSET_ALL is 0. */
+   for (i=1; i<PLAYER_WEAPON_SETS; i++) {
+      pilot_weapSetType(p, i, WEAPSET_TYPE_ACTIVE);
+   }
 
    /* All should be inrange. */
    if (!pilot_isPlayer(p)) {
