@@ -460,6 +460,9 @@ Pilot* player_newShip( const Ship* ship, const char *def_name,
    new_ship = player_newShipMake( ship_name );
 
    if (old_name != NULL) {
+      /* Undeploy any deployed escorts. */
+      pilot_undeployAll(player.p);
+
       player_swapShip(ship_name, 1); /* Move to the new ship. */
       player_rmShip(old_name);
    }
@@ -554,6 +557,9 @@ void player_swapShip( const char *shipname, int move_cargo )
    for (i=0; i<array_size(player_stack); i++) {
       if (strcmp(shipname,player_stack[i].p->name)!=0)
          continue;
+
+      /* Undeploy any escorts. */
+      pilot_undeployAll(player.p);
 
       /* swap player and ship */
       ship = player_stack[i].p;

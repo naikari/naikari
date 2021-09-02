@@ -1157,6 +1157,9 @@ static int equipment_swapSlot( unsigned int wid, Pilot *p, PilotOutfitSlot *slot
 {
    int ret;
    const Outfit *o, *ammo;
+   int i;
+   PilotOutfitSlot* dockslot;
+   Pilot *escort;
 
    /* Remove outfit. */
    if (slot->outfit != NULL) {
@@ -1170,6 +1173,22 @@ static int equipment_swapSlot( unsigned int wid, Pilot *p, PilotOutfitSlot *slot
       ammo = outfit_ammo(o);
       if ( ammo != NULL )
          pilot_rmAmmo( eq_wgt.selected, slot, slot->u.ammo.quantity );
+
+      /* Recall deployed fighters if it's a fighter bay. */
+      if (outfit_isFighterBay(o)) {
+         for (i=array_size(p->escorts)-1; i>=0; i--) {
+            escort = pilot_get(p->escorts[i].id);
+            if ((escort == NULL) || pilot_isFlag(escort, PILOT_DEAD)
+                  || pilot_isFlag(escort, PILOT_DELETE))
+               continue;
+
+            dockslot = pilot_getDockSlot(escort);
+            if ((dockslot == NULL) || (dockslot->id != slot->id))
+               continue;
+
+            pilot_delete(escort);
+         }
+      }
 
       /* Remove outfit. */
       ret = pilot_rmOutfit( eq_wgt.selected, slot );

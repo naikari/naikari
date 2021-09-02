@@ -429,6 +429,7 @@ int pilot_refuelStart( Pilot *p );
 void pilot_hyperspaceAbort( Pilot* p );
 void pilot_clearTimers( Pilot *pilot );
 int pilot_hasDeployed( Pilot *p );
+void pilot_undeployAll( Pilot *p );
 int pilot_dock( Pilot *p, Pilot *target );
 ntime_t pilot_hyperspaceDelay( Pilot *p );
 void pilot_untargetAsteroid( int anchor, int asteroid );

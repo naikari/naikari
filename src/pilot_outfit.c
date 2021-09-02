@@ -281,6 +281,32 @@ int pilot_hasDeployed( Pilot *p )
 
 
 /**
+ * @brief Instantly deletes all of the pilot's deployed escorts.
+ *
+ *    @param p Pilot to undeploy ships for.
+ */
+void pilot_undeployAll( Pilot *p )
+{
+   int i;
+   PilotOutfitSlot* dockslot;
+   Pilot *escort;
+
+   for (i=array_size(p->escorts)-1; i>=0; i--) {
+      escort = pilot_get(p->escorts[i].id);
+      if ((escort == NULL) || pilot_isFlag(escort, PILOT_DEAD)
+            || pilot_isFlag(escort, PILOT_DELETE))
+         continue;
+
+      dockslot = pilot_getDockSlot(escort);
+      if (dockslot == NULL)
+         continue;
+
+      pilot_delete(escort);
+   }
+}
+
+
+/**
  * @brief Adds an outfit to the pilot, ignoring CPU or other limits.
  *
  * @note Does not call pilot_calcStats().
@@ -668,11 +694,6 @@ const char* pilot_canEquip( Pilot *p, PilotOutfitSlot *s, const Outfit *o )
       /* Check to see if already equipped unique. */
       if (outfit_isProp(o,OUTFIT_PROP_UNIQUE) && (pilot_numOutfit(p,o)>0))
          return _("Can only install unique outfit once.");
-   }
-   else {
-      /* Check fighter bay. */
-      if ((o==NULL) && (s!=NULL) && (s->u.ammo.deployed > 0))
-         return _("Recall the fighters first");
    }
 
    return NULL;
