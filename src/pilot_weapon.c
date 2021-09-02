@@ -1298,20 +1298,19 @@ void pilot_weaponAuto( Pilot *p )
    /* Clear weapons. */
    pilot_weaponClear( p );
 
-   /* Set modes. */
-   pilot_weapSetType(p, WEAPSET_ALL, WEAPSET_TYPE_CHANGE);
-   pilot_weapSetType(p, WEAPSET_FWD, WEAPSET_TYPE_CHANGE);
-   pilot_weapSetType(p, WEAPSET_TUR, WEAPSET_TYPE_CHANGE);
-   pilot_weapSetType(p, WEAPSET_NOSEEK, WEAPSET_TYPE_CHANGE);
-   pilot_weapSetType(p, WEAPSET_SEEK, WEAPSET_TYPE_WEAPON);
-   pilot_weapSetType(p, WEAPSET_FBAY, WEAPSET_TYPE_WEAPON);
-   pilot_weapSetType(p, WEAPSET_TURSEEK, WEAPSET_TYPE_WEAPON);
-
-   /* Weapset types for the player-allocated weapon sets. Starts with 1
-    * because WEAPSET_ALL is 0. */
-   for (i=1; i<PLAYER_WEAPON_SETS; i++) {
+   /* Weapset types for the player-allocated weapon sets. */
+   for (i=0; i<PLAYER_WEAPON_SETS; i++) {
       pilot_weapSetType(p, i, WEAPSET_TYPE_ACTIVE);
    }
+
+   /* Set special weapsets. */
+   pilot_weapSetType(p, WEAPSET_ALL, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_FBAY, WEAPSET_TYPE_WEAPON);
+   pilot_weapSetType(p, WEAPSET_NOSEEK, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_FWD, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_TUR, WEAPSET_TYPE_CHANGE);
+   pilot_weapSetType(p, WEAPSET_SEEK, WEAPSET_TYPE_WEAPON);
+   pilot_weapSetType(p, WEAPSET_TURSEEK, WEAPSET_TYPE_WEAPON);
 
    /* All should be inrange. */
    if (!pilot_isPlayer(p)) {
