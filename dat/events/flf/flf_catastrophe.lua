@@ -95,10 +95,11 @@ function create ()
    end
 
    emp_srcsys = system.get("Arcanis")
+   emp_shipnums = {1, 1, 1, 3, 7, 3}
    emp_shptypes = {
-      "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot", "Empire Lancelot",
-      "Empire Admonisher", "Empire Admonisher", "Empire Admonisher", "Empire Pacifier", "Empire Hawking",
-      "Empire Peacemaker", "Empire Shark", "Empire Shark", "Empire Shark" }
+      "Empire Peacemaker", "Empire Hawking", "Empire Pacifier",
+      "Empire Admonisher", "Empire Lancelot", "Empire Shark",
+   }
    emp_minsize = 6
    found_thurion = false
    player_attacks = 0
@@ -155,16 +156,18 @@ function takeoff ()
    hook.pilot(flf_base, "death", "pilot_death_sindbad")
 
    -- Spawn FLF ships
-   shptypes = {"Pacifier", "Lancelot", "Vendetta", "Lancelot", "Vendetta", "Lancelot", "Vendetta"}
-   shpnames = {_("FLF Pacifier"), _("FLF Lancelot"), _("FLF Vendetta"), _("FLF Lancelot"), _("FLF Vendetta"), _("FLF Lancelot"), _("FLF Vendetta")}
-   flf_ships = fleet.add(5, shptypes, "FLF", ss:pos(), shpnames, {ai="flf_norun"})
+   flf_ships = fleet.add({5, 10, 10, 4},
+         {"Pacifier", "Vendetta", "Lancelot", "Hyena"}, "FLF", ss:pos(),
+         {N_("FLF Pacifier"), N_("FLF Vendetta"), N_("FLF Lancelot"),
+            N_("FLF Hyena")}, {ai="flf_norun"})
    for i, j in ipairs(flf_ships) do
       j:setVisible()
       j:memory("aggressive", true)
    end
 
    -- Spawn Empire ships
-   emp_ships = fleet.add(1, emp_shptypes, "Empire", emp_srcsys, nil, {ai="empire_norun"})
+   emp_ships = fleet.add(emp_shpnums, emp_shptypes, "Empire", emp_srcsys, nil,
+         {ai="empire_norun"})
    for i, j in ipairs(emp_ships) do
       j:setHostile()
       j:setVisible()
@@ -176,12 +179,10 @@ function takeoff ()
    end
 
    -- Spawn Dvaered ships
-   shptypes = {
-      "Dvaered Goddard", "Dvaered Vigilance", "Dvaered Vigilance",
-      "Dvaered Phalanx", "Dvaered Ancestor", "Dvaered Ancestor",
-      "Dvaered Ancestor", "Dvaered Vendetta", "Dvaered Vendetta",
-      "Dvaered Vendetta", "Dvaered Vendetta" }
-   dv_ships = fleet.add(1, shptypes, "Dvaered", emp_srcsys, nil, {ai="dvaered_norun"})
+   dv_ships = fleet.add({1, 2, 2, 3, 4},
+         {"Dvaered Goddard", "Dvaered Vigilance", "Dvaered Phalanx",
+            "Dvaered Ancestor", "Dvaered Vendetta"},
+         "Dvaered", emp_srcsys, nil, {ai="dvaered_norun"})
    for i, j in ipairs(dv_ships) do
       j:setHostile()
       j:setVisible()
@@ -202,7 +203,8 @@ function pilot_death_emp(pilot, attacker, arg)
 
    if #emp_alive < emp_minsize or rnd.rnd() < 0.1 then
       emp_ships = emp_alive
-      local nf = fleet.add(1, emp_shptypes, "Empire", emp_srcsys, nil, {ai="empire_norun"})
+      local nf = fleet.add(emp_shpnums, emp_shptypes, "Empire", emp_srcsys,
+            nil, {ai="empire_norun"})
       for i, j in ipairs(nf) do
          j:setHostile()
          j:setVisible()
