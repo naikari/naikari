@@ -184,8 +184,7 @@ StarSystem* luaL_validsystem( lua_State *L, int ind )
  */
 LuaSystem* lua_pushsystem( lua_State *L, LuaSystem sys )
 {
-   LuaSystem *s;
-   s = (LuaSystem*) lua_newuserdata(L, sizeof(LuaSystem));
+   LuaSystem *s = (LuaSystem*) lua_newuserdata(L, sizeof(LuaSystem));
    *s = sys;
    luaL_getmetatable(L, SYSTEM_METATABLE);
    lua_setmetatable(L, -2);
@@ -333,8 +332,7 @@ static int systemL_eq( lua_State *L )
  */
 static int systemL_name( lua_State *L )
 {
-   StarSystem *sys;
-   sys = luaL_validsystem(L,1);
+   StarSystem *sys = luaL_validsystem(L,1);
    lua_pushstring(L, _(sys->name));
    return 1;
 }
@@ -354,8 +352,7 @@ static int systemL_name( lua_State *L )
  */
 static int systemL_nameRaw( lua_State *L )
 {
-   StarSystem *sys;
-   sys = luaL_validsystem(L,1);
+   StarSystem *sys = luaL_validsystem(L,1);
    lua_pushstring(L, sys->name);
    return 1;
 }
@@ -369,13 +366,9 @@ static int systemL_nameRaw( lua_State *L )
  */
 static int systemL_faction( lua_State *L )
 {
-   StarSystem *s;
-
-   s = luaL_validsystem(L,1);
-
+   StarSystem *s = luaL_validsystem(L,1);
    if (s->faction == -1)
       return 0;
-
    lua_pushfaction(L,s->faction);
    return 1;
 

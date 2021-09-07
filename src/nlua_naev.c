@@ -30,27 +30,27 @@ static int cache_table = LUA_NOREF; /* No reference. */
 
 
 /* Naev methods. */
-static int naev_Lversion( lua_State *L );
-static int naev_lastplayed( lua_State *L );
-static int naev_ticks( lua_State *L );
-static int naev_keyGet( lua_State *L );
-static int naev_keyEnable( lua_State *L );
-static int naev_keyEnableAll( lua_State *L );
-static int naev_keyDisableAll( lua_State *L );
-static int naev_eventStart( lua_State *L );
-static int naev_missionStart( lua_State *L );
+static int naevL_version( lua_State *L );
+static int naevL_lastplayed( lua_State *L );
+static int naevL_ticks( lua_State *L );
+static int naevL_keyGet( lua_State *L );
+static int naevL_keyEnable( lua_State *L );
+static int naevL_keyEnableAll( lua_State *L );
+static int naevL_keyDisableAll( lua_State *L );
+static int naevL_eventStart( lua_State *L );
+static int naevL_missionStart( lua_State *L );
 static int naevL_conf( lua_State *L );
 static int naevL_cache( lua_State *L );
 static const luaL_Reg naev_methods[] = {
-   { "version", naev_Lversion },
-   { "lastplayed", naev_lastplayed },
-   { "ticks", naev_ticks },
-   { "keyGet", naev_keyGet },
-   { "keyEnable", naev_keyEnable },
-   { "keyEnableAll", naev_keyEnableAll },
-   { "keyDisableAll", naev_keyDisableAll },
-   { "eventStart", naev_eventStart },
-   { "missionStart", naev_missionStart },
+   { "version", naevL_version },
+   { "lastplayed", naevL_lastplayed },
+   { "ticks", naevL_ticks },
+   { "keyGet", naevL_keyGet },
+   { "keyEnable", naevL_keyEnable },
+   { "keyEnableAll", naevL_keyEnableAll },
+   { "keyDisableAll", naevL_keyDisableAll },
+   { "eventStart", naevL_eventStart },
+   { "missionStart", naevL_missionStart },
    { "conf", naevL_conf },
    { "cache", naevL_cache },
    {0,0}
@@ -91,7 +91,7 @@ int nlua_loadNaev( nlua_env env )
  *    @luatreturn save_version Version of current loaded save or nil if not loaded.
  * @luafunc version
  */
-static int naev_Lversion( lua_State *L )
+static int naevL_version( lua_State *L )
 {
    lua_pushstring( L, naev_version(0) );
    if (player.loaded_version==NULL)
@@ -108,7 +108,7 @@ static int naev_Lversion( lua_State *L )
  *    @luatreturn number Number of days since the player last played.
  * @luafunc lastplayed
  */
-static int naev_lastplayed( lua_State *L )
+static int naevL_lastplayed( lua_State *L )
 {
    double d = difftime( time(NULL), player.last_played );
    lua_pushnumber(L, d/(3600.*24.)); /*< convert to days */
@@ -124,7 +124,7 @@ static int naev_lastplayed( lua_State *L )
  *    @luatreturn number The SDL ticks since the application started running.
  * @luafunc ticks
  */
-static int naev_ticks( lua_State *L )
+static int naevL_ticks( lua_State *L )
 {
    lua_pushinteger(L, SDL_GetTicks());
    return 1;
@@ -139,7 +139,7 @@ static int naev_ticks( lua_State *L )
  *    @luatparam string keyname Name of the keybinding to get value of. Valid values are listed in src/input.c: keybind_info.
  * @luafunc keyGet
  */
-static int naev_keyGet( lua_State *L )
+static int naevL_keyGet( lua_State *L )
 {
    const char *keyname;
    char buf[128];
@@ -164,7 +164,7 @@ static int naev_keyGet( lua_State *L )
  *    @luatparam[opt=false] boolean enable Whether to enable or disable.
  * @luafunc keyEnable
  */
-static int naev_keyEnable( lua_State *L )
+static int naevL_keyEnable( lua_State *L )
 {
    const char *key;
    int enable;
@@ -186,7 +186,7 @@ static int naev_keyEnable( lua_State *L )
  * @usage naev.keyEnableAll() -- Enables all inputs
  * @luafunc keyEnableAll
  */
-static int naev_keyEnableAll( lua_State *L )
+static int naevL_keyEnableAll( lua_State *L )
 {
    NLUA_CHECKRW(L);
    input_enableAll();
@@ -200,7 +200,7 @@ static int naev_keyEnableAll( lua_State *L )
  * @usage naev.keyDisableAll() -- Disables all inputs
  * @luafunc keyDisableAll
  */
-static int naev_keyDisableAll( lua_State *L )
+static int naevL_keyDisableAll( lua_State *L )
 {
    NLUA_CHECKRW(L);
    input_disableAll();
@@ -216,7 +216,7 @@ static int naev_keyDisableAll( lua_State *L )
  *    @luatreturn boolean true on success.
  * @luafunc eventStart
  */
-static int naev_eventStart( lua_State *L )
+static int naevL_eventStart( lua_State *L )
 {
    int ret;
    const char *str;
@@ -245,7 +245,7 @@ static int naev_eventStart( lua_State *L )
  *    @luatreturn boolean true on success.
  * @luafunc missionStart
  */
-static int naev_missionStart( lua_State *L )
+static int naevL_missionStart( lua_State *L )
 {
    int ret;
    const char *str;
