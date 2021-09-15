@@ -66,7 +66,7 @@ jobs:
 
       - name: Compile AppImage
         run: |
-          ./source/utils/buildAppImage.sh -m -s "source" -b "build"
+          ./source/utils/buildAppImage.sh -n -s "source" -b "build"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
@@ -99,7 +99,7 @@ jobs:
               --bindir=bin \
               -Dndata_path=bin \
               --cross-file='source/utils/build/windows_cross_mxe.ini' \
-              --buildtype=release \
+              --buildtype=debug \
               --force-fallback-for=glpk,SuiteSparse \
               -Dnightly=true \
               -Db_lto=true \
@@ -146,7 +146,7 @@ jobs:
               --bindir=Contents/MacOS \
               -Dndata_path=Contents/Resources \
               --cross-file='source/utils/build/macos_cross_osxcross.ini' \
-              --buildtype=release \
+              --buildtype=debug \
               -Dnightly=true \
               -Db_lto=true \
               -Dauto_features=enabled \
