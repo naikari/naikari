@@ -233,7 +233,7 @@ jobs:
         run: |
           BUILD_DATE="$(date +%Y%m%d)"
           VERSION="$(<"build/staging/naikari-version/VERSION")"
-          SUFFIX="$VERSION.$BUILD_DATE"
+          SUFFIX="$VERSION+DEBUG.$BUILD_DATE"
 
           mv build/staging/naikari-linux-x86-64/*.AppImage build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
           mv build/staging/naikari-macos/*.zip build/dist/naikari-$SUFFIX-macos.zip
