@@ -4073,7 +4073,8 @@ void space_reconstructPresences( void )
 
    /* Have to redo the scheduler because everything changed. */
    /* TODO this actually ignores existing presence and will temporarily increase system presence more than normal... */
-   system_scheduler( 0., 1 );
+   if (cur_system != NULL)
+      system_scheduler( 0., 1 );
 }
 
 
