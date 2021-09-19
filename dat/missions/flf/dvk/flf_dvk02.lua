@@ -57,7 +57,11 @@ ask_text = _([[You remark that it's strange that pirates are there in the first 
 
 ask_again_text = _([["I still don't have any ideas for what to do about those pirates. Do you, %s?"]])
 
-text[3] = _([["Excellent! I knew you would do it." Benito becomes visibly more relaxed, almost her usual self. "Now, %s, I'm sure you're well aware of this, but please remember that pirates are extremely dangerous. They will probably attack you, and they may have demands. I'm counting on you to overcome any... obstacles you may encounter and secure a deal." You nod in understanding. "Good," she says. "Report back here with your results." Benito then excuses herself, presumably to take care of other things.]])
+yes_text = _([[You think about the problem for a moment, then suggest to Benito that it might be best to intimidate or bribe the pirates so they leave FLF ships alone. Benito stares off into space for a moment. "Hm… well, we don't have money to throw around bribing pilots, so that's off the table. But I don't think we have the numbers to really intimidate a pirate presence that large without giving the Dvaereds an opening to exploit, so we can't do that either." You ask Benito if it might be possible to bribe the pirates with a future favor. Her eyes widen. "A favor… that's it! %s, that's a perfect idea!
+
+"Truth is, we have an operation we need to conduct that just isn't possible right now without some major help. I think the pirates can help us out and might see it as an opportunity. It's rather risky, if we give it a shot, we just might kill two birds with one stone.
+
+"Alright, it's settled then. I need your help. I will join you on your ship; please take me to the %s system and hail them. We might have to board and intimidate them before they'll listen, so be prepared for that." You give Benito a thumbs-up and invite her into your cockpit. Time to get into some aggressive negotiations.…]])
 
 text[4] = _([["That's too bad. I understand where you're coming from, though. Please feel free to return if you are willing to take on this mission at a later date."]])
 
@@ -135,7 +139,7 @@ function accept ()
    end
 
    if tk.yesno("", txt:format(player.name())) then
-      tk.msg( "", text[3]:format( player.name() ) )
+      tk.msg( "", yes_text:format( player.name() ) )
 
       misn.accept()
 
