@@ -4217,52 +4217,18 @@ static int pilotL_runaway( lua_State *L )
    Pilot *p, *pt;
    Task *t;
    int nojump;
-   LuaJump *lj;
-   LuaPlanet *lp;
 
    NLUA_CHECKRW(L);
 
    /* Get parameters. */
    p = luaL_validpilot(L,1);
    pt = luaL_validpilot(L,2);
+   nojump = lua_toboolean(L,3);
 
-   /* Set the task depending on the last parameter. */
-   if (lua_isnoneornil(L,3)) {
-      t = pilotL_newtask(L, p, "__runaway");
-      lua_pushpilot(L, pt->id);
-      t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
-   }
-   else {
-
-      if (lua_isboolean(L,3)) {
-         nojump = lua_toboolean(L,3);
-         t = pilotL_newtask(L, p, (nojump) ? "__runaway_nojump" : "__runaway");
-         lua_pushpilot(L, pt->id);
-         t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
-      }
-      else if (lua_isjump(L,3)) {
-         lj = lua_tojump(L,3);
-         t = pilotL_newtask(L, p, "__runaway_jump");
-         lua_newtable(L);
-         lua_pushpilot(L, pt->id);
-         lua_rawseti(L, -2, 1);
-         lua_pushjump(L, *lj);
-         lua_rawseti(L, -2, 2);
-         t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
-      }
-      else if (lua_isplanet(L,3)) {
-         lp = lua_toplanet(L,3);
-         t = pilotL_newtask(L, p, "__runaway_land");
-         lua_newtable(L);
-         lua_pushpilot(L, pt->id);
-         lua_rawseti(L, -2, 1);
-         lua_pushplanet(L, *lp);
-         lua_rawseti(L, -2, 2);
-         t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
-      }
-      else
-         NLUA_INVALID_PARAMETER(L);
-   }
+   /* Set the task. */
+   t = pilotL_newtask(L, p, (nojump) ? "__runaway_nojump" : "__runaway");
+   lua_pushpilot(L, pt->id);
+   t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
 
    return 0;
 }
