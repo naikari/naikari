@@ -63,9 +63,9 @@ abandoned_msg = _("MISSION FAILURE! You have left the %s system.")
 pay_msg = _("MISSION SUCCESS! Pay has been transferred into your account.")
 
 osd_title = _("Assassination")
-osd_msg    = {}
-osd_ran_msg = _("Fly to the %s system")
-osd_stolen_msg = _("Kill %s")
+osd_msg = {}
+osd_msg[1] = _("Fly to the %s system")
+osd_msg[2] = _("Kill %s")
 osd_msg["__save"] = true
 
 
@@ -154,8 +154,8 @@ end
 function accept ()
    misn.accept()
 
-   osd_ran_msg = osd_ran_msg:format(missys:name())
-   osd_stolen_msg = osd_stolen_msg:format(name)
+   osd_msg[1] = osd_ran_msg:format(missys:name())
+   osd_msg[2] = osd_stolen_msg:format(name)
    misn.osdCreate(osd_title, osd_msg)
 
    last_sys = system.cur()
