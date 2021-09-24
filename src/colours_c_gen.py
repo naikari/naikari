@@ -79,7 +79,7 @@ COLOURS = [
     Colour( "Hostile", 170./255., 68./255., 153./255. ),
     Colour( "Restricted", 153./255., 153./255., 51./255. ),
     # Mission Markers
-    Colour( "MarkerNew", 154./255., 112./255., 158./255. ),
+    Colour( "MarkerNew", 221./255., 142./255., 249./255. ),
     Colour( "MarkerComputer", 208./255., 231./255., 202./255. ),
     Colour( "MarkerLow", 234./255., 240./255., 181./255. ),
     Colour( "MarkerHigh", 252./255., 247./255., 213./255. ),

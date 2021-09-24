@@ -16,8 +16,6 @@ void main(void) {
    float d;
    if (parami==1) {
       const vec2 b = b2;
-      const vec2 o = vec2(0.2, 0.0);
-      vec2 opos = pos + o;
       d = sdRhombus(pos, b);
       d = max(-sdRhombus(pos*2.0, b), d);
       d = min(d, sdRhombus(pos*4.0, b));
