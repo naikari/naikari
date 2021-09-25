@@ -1381,11 +1381,11 @@ void gui_renderPlayer( double res, int overlay )
    if (overlay) {
       x = player.p->solid->pos.x / res + map_overlay_center_x();
       y = player.p->solid->pos.y / res + map_overlay_center_y();
-      r = MIN(SCREEN_W,SCREEN_H)*0.024;
+      r = MAX(14., 1.5 * player.p->ship->rdr_scale * (1. + RADAR_RES_REF/res));
    } else {
       x = 0.;
       y = 0.;
-      r = MIN(SCREEN_W,SCREEN_H)*0.016;
+      r = MAX(12., 1.25 * player.p->ship->rdr_scale * (1. + RADAR_RES_REF/res));
    }
 
    glUseProgram(shaders.playermarker.program);
