@@ -166,7 +166,7 @@ function createPilotNPCs ()
                shipchoice.royalty + 0.1*shipchoice.royalty*rnd.sigma() )
          newpilot.name = name_func()
          newpilot.portrait = portrait.get(portrait_arg)
-         newpilot.faction = fac:name()
+         newpilot.faction = fac:nameRaw()
          newpilot.def_ai = def_ai
          newpilot.approachtext = npctext[rnd.rnd(1, #npctext)]
          local id = evt.npcAdd(
