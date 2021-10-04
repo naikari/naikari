@@ -36,6 +36,7 @@
 
 --]]
 
+local fmt = require "fmt"
 require "numstring"
 local fleet = require "fleet"
 require "missions/flf/flf_common"
@@ -45,23 +46,19 @@ text = {}
 
 intro_text = _([[Benito looks up at you and sighs. It seems she's been working on a problem for a long while.
 
-"Hello again, %s. Sorry I'm such a mess at the moment. I just don't know what to do about this problem we have." You ask what the problem is. "Pirates. The damn pirates are making things difficult for us. Activity has picked up in the %s system and we don't know why.
+"Hello again, {player}. Sorry I'm such a mess at the moment. Maybe you can help with this little problem I have." You ask what the problem is. "Pirates. The damn pirates are making things difficult for us. Activity has picked up in the {sys} system and we don't know why.
 
-"Pirates are usually just sort of a double-edged sword for us, but in this region of space they're nothing bug a nuisance. They're enemies to both us and the Dvaereds, but there's no Dvaereds in that region, just us and occasionally some Empire ships. And that's on our most direct route to Frontier space. If pirates are going to be giving us even more trouble there than before, that could slow down – or worse, wreck – our operations."]])
+"Pirates usually don't cause a huge problem for us because they attack Dvaered ships as well as our ships and Frontier ships, so it sort of evens out. But in that region of space, they're nothing but a nuisance. No Dvaered ships for them to attack, it's just us an the occasional Empire ship. And that's on our most direct route to Frontier space. If pirates are going to be giving us even more trouble there than before, that could slow down – or worse, wreck – our operations."]])
 
 ask_text = _([[You remark that it's strange that pirates are there in the first place. "Yes!" Benito says. "It makes no sense! Pirates are always after civilians and traders to steal their credits and cargo, so why would they be there? We don't carry much cargo, the Empire doesn't carry much cargo… it just doesn't add up!
 
-"My only guess is that maybe they're trying to find our hidden jump to Gilligan's Light, and if that's the case, that could be tremendously bad news. I'm not worried about the damage pirates can do to the Frontier; they've been prevalent in Frontier space for a long while. But if they start attacking Gilligan's Light, that could leave the Frontier in a vulnerable position that the Dvaereds can take advantage of!
+"My only guess is that maybe they're trying to find our hidden jump to Gilligan's Light, and if that's the case, that could be tremendously bad news. I'm not worried about the damage pirates can do to the Frontier; they've been prevalent in Frontier space for a long while. But if they start attacking Gilligan's Light, that could leave the Frontier in a vulnerable position that the Dvaereds can take advantage of!"
 
-"But I just don't have any ideas. Do you have any ideas, %s?"]])
+Benito sighs. "Could you help us with this problem, {player}?"]])
 
-ask_again_text = _([["I still don't have any ideas for what to do about those pirates. Do you, %s?"]])
+ask_again_text = _([["Hello again, {player}. Are you able to help us deal with the pirates in the nebula now?"]])
 
-yes_text = _([[You think about the problem for a moment, then suggest to Benito that it might be best to intimidate or bribe the pirates so they leave FLF ships alone. Benito stares off into space for a moment. "Hm… well, we don't have money to throw around bribing pilots, so that's off the table. But I don't think we have the numbers to really intimidate a pirate presence that large without giving the Dvaereds an opening to exploit, so we can't do that either." You ask Benito if it might be possible to bribe the pirates with a future favor. Her eyes widen. "A favor… that's it! %s, that's a perfect idea!
-
-"Truth is, we have an operation we need to conduct that just isn't possible right now without some major help. I think the pirates can help us out and might see it as an opportunity. It's rather risky, if we give it a shot, we just might kill two birds with one stone.
-
-"Alright, it's settled then. I need your help. I will join you on your ship; please take me to the %s system and hail them. We might have to board and intimidate them before they'll listen, so be prepared for that." You give Benito a thumbs-up and invite her into your cockpit. Time to get into some aggressive negotiations.…]])
+yes_text = _([["Perfect! I knew you would do it!"]])
 
 text[4] = _([["That's too bad. I understand where you're coming from, though. Please feel free to return if you are willing to take on this mission at a later date."]])
 
@@ -135,10 +132,10 @@ function accept ()
 
    if not asked then
       txt = ask_text
-      tk.msg("", intro_text:format(player.name(), missys:name()))
+      tk.msg("", fmt.f(intro_text, {player=player.name(), sys=missys:name()}))
    end
 
-   if tk.yesno("", txt:format(player.name())) then
+   if tk.yesno("", fmt.f(txt, {player=player.name()})) then
       tk.msg( "", yes_text:format( player.name() ) )
 
       misn.accept()
