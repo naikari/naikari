@@ -25,15 +25,3 @@ if (ascli_exe.found())
     workdir: meson.source_root()
     )
 endif
-
-if (luacheck_exe.found())
-    luacheck_config_file = join_paths(meson.source_root(), 'test', 'luacheckrc')
-    test('lua_lint',
-    luacheck_exe,
-    args: [
-        join_paths(meson.source_root(), 'dat'),
-        '--config=' + luacheck_config_file,
-        '--no-color'
-    ]
-    )
-endif
