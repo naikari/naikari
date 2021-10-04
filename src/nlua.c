@@ -346,16 +346,6 @@ static lua_State *nlua_newState (void)
 static int nlua_loadBasic( lua_State* L )
 {
    int i;
-   const char *override[] = { /* unsafe functions */
-         "collectgarbage",
-         "dofile",
-         "getfenv",
-         "load",
-         "loadfile",
-         "loadstring",
-         "setfenv",
-         NULL
-   };
 
    luaL_openlibs(L);
 
@@ -366,12 +356,6 @@ static int nlua_loadBasic( lua_State* L )
    lua_pop(L,1);                 /* */
    lua_pushnil(L);               /* nil */
    lua_setglobal(L, "unpack");   /* */
-
-   /* replace non-safe functions */
-   for (i=0; override[i]!=NULL; i++) {
-      lua_pushnil(L);
-      lua_setglobal(L, override[i]);
-   }
 
    /* Override print to print in the console. */
    lua_register(L, "print", cli_print);
