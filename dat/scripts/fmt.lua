@@ -91,9 +91,6 @@ function fmt.times(times)
 end
 
 
---[[
-   Inspired by https://github.com/hishamhm/f-strings without debug stuff
---]]
 local function loads(code, name, env)
    local fn, err = loadstring(code, name)
    if fn then
@@ -102,6 +99,15 @@ local function loads(code, name, env)
    end
    return nil, err
 end
+
+--[[--
+String interpolation, inspired by <a href="https://github.com/hishamhm/f-strings">f-strings</a> without debug stuff.
+   Prefer this over string.format because it allows translations to change the word order.
+   @usage fmt.f(_("Deliver the loot to {pntname} in the {sysname} system"),{pntname=returnpnt:name(), sysname=returnsys:name()})
+   @tparam string str Format string which may include placeholders of the form "{var}" "{var:6.3f}"
+                      (where the expression after the colon is any directive string.format understands).
+   @tparam table tab Argument table.
+--]]
 function fmt.f(str, tab)
    return (str:gsub("%b{}", function(block)
       local code, sfmt = block:match("{(.*):(%%.*)}")
