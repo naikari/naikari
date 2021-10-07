@@ -58,9 +58,19 @@ Benito sighs. "Could you help us with this problem, {player}?"]])
 
 ask_again_text = _([["Hello again, {player}. Are you able to help us deal with the pirates in the nebula now?"]])
 
-yes_text = _([["Perfect! I knew you would do it!"]])
+yes_text = _([["Perfect! I knew you would do it!
 
-text[4] = _([["That's too bad. I understand where you're coming from, though. Please feel free to return if you are willing to take on this mission at a later date."]])
+"First, we need to do some investigating, find out why they're there and what they want. I suspect they won't tell you without a fight, so I need you to… persuade them. I would recommend boarding one of them and interrogating them personally. I will leave you to decide what to do after that. Let me know how it goes, what you've found out and what you've accomplished. Good luck!"]])
+
+no_text = _([[You see a defeated expression on Benito's face. "OK. Let me know if you change your mind."]])
+
+board_text = _([[You force your way onto the pirate ship and subdue the pirate on board. You seem to have had a good stroke of luck: the pirate is clearly unprepared and has a very poorly secured. Clearly, this pirate is new to the job.
+
+Not wanting to give away your suspicions, you order the pirate to tell you what the pirates are doing in the nebula. "What do you think we're doing? Exploring the nebula, of course!" You tell them to elaborate. "Surely you've heard the ghost stories, haven't you? They say ghosts lurk in the nebula, hiding, waiting to strike. Of course we don't believe in the supernatural, but that means there must be alien ships in there! Aliens with technology so advanced they're able to freely traverse the Nebula! If we could capture one of those ships, we'd be both rich and unstoppable!" You ask where they got into the Nebula from. "I'm not telling you!" he answers.]])
+
+unboard_text = _([[Undeterred, you pull out a laser gun and put it against the pirate's head, ordering them again to tell you where they got into the Nebula from. This seems to convince the previously boisterous pirate. "W-we have a hidden jump to {system2}! We come in from there! It's on my computer, you can check for yourself!"
+
+You grin. Taking the pirate's suggestion, you look at the ship's computer, and sure enough, you find the hidden jump they were talking about. The map also reveals that there is a station in {system2} called {station}. You decide that this station is a good next place to investigate.]])
 
 text[5] = _([[A scraggly-looking pirate appears on your viewscreen. You realize this must be the leader of the group. "Bwah ha ha!" he laughs. "That has to be the most pathetic excuse for a ship I've ever seen!" You try to ignore his rude remark and start to explain to him that you just want to talk. "Talk?" he responds. "Why would I want to talk to a normie like you? Why, I'd bet my mates right here could blow you out of the sky even without my help!"
     The pirate immediately cuts his connection. Well, if these pirates won't talk to you, maybe it's time to show him what you're made of. Destroying just one or two of his escorts should do the trick.]])
@@ -136,7 +146,7 @@ function accept ()
    end
 
    if tk.yesno("", fmt.f(txt, {player=player.name()})) then
-      tk.msg( "", yes_text:format( player.name() ) )
+      tk.msg("", yes_text)
 
       misn.accept()
 
@@ -161,9 +171,9 @@ function accept ()
       pir_reputation = 10
       pir_starting_reputation = faction.get("Pirate"):playerStanding()
 
-      hook.enter( "enter" )
+      hook.enter("enter")
    else
-      tk.msg("", text[4])
+      tk.msg("", no_text)
       misn.finish()
    end
 end
