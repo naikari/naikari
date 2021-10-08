@@ -345,8 +345,6 @@ static lua_State *nlua_newState (void)
  */
 static int nlua_loadBasic( lua_State* L )
 {
-   int i;
-
    luaL_openlibs(L);
 
    /* move unpack to table.unpack as in Lua5.2 */

@@ -51,7 +51,7 @@ void main (void)
    l = 0.0f * L + 0.0f * M + 0.0f * S;
    m = 0.0f * L + 0.0f * M + 0.0f * S;
    s = 0.01775f * L + 0.10945f * M + 0.87262f * S;
-#elif  COLORBLIND_MODE == ROD_MONOCHROMACY
+#elif COLORBLIND_MODE == ROD_MONOCHROMACY
    // Rod Monochromat (Achromatopsia) - only brightness can be detected
    // (0.003% population)
    l = 0.212656f * L + 0.715158f * M + 0.072186f * S;
