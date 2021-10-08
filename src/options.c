@@ -1314,7 +1314,7 @@ static void opt_video( unsigned int wid )
          NULL, conf.minimize);
    y -= 25;
    window_addCheckbox( wid, x, y, cw, 20,
-         "chkColorblind", _("Colorblind mode"), opt_checkColorblind,
+         "chkColorblind", _("Colorblind simulator"), opt_checkColorblind,
          conf.colorblind );
    y -= 40;
    window_addText( wid, x, y-3, cw-20, 20, 0, "txtABGBrightness",
