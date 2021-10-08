@@ -918,7 +918,7 @@ static void opt_audio( unsigned int wid )
    window_addFader(wid, x, y, cw, 20, "fadSound", 0., 1.,
          sound_getVolume(), opt_setAudioLevel);
    window_faderScrollDone(wid, "fadSound", opt_beep);
-   y -= 60;
+   y -= 40;
 
    /* Music fader. */
    window_addText(wid, x, y, cw-40, 20, 0, "txtSMusicVolume",
@@ -929,6 +929,7 @@ static void opt_audio( unsigned int wid )
    y -= 20;
    window_addFader(wid, x, y, cw, 20, "fadMusic", 0., 1.,
          music_getVolume(), opt_setAudioLevel);
+   y -= 40;
 
    /* Restart text. */
    window_addText(wid, 20, 20 + BUTTON_HEIGHT,
@@ -1224,8 +1225,6 @@ static void opt_video( unsigned int wid )
    y -= 40;
    window_addInput( wid, x, y, 100, 20, "inpRes", 16, 1, &gl_smallFont );
    window_setInputFilter( wid, "inpRes", INPUT_FILTER_RESOLUTION );
-   window_addCheckbox( wid, x+20+100, y, 100, 20,
-         "chkFullscreen", _("Fullscreen"), NULL, conf.fullscreen );
    y -= 30;
    SDL_DisplayMode mode;
    int k;
@@ -1264,21 +1263,34 @@ static void opt_video( unsigned int wid )
    }
    window_addList( wid, x, y, 140, 100, "lstRes", res, nres, -1, opt_videoRes, NULL );
    y -= 120;
-   window_addText( wid, x, y, cw-20, 20, 0, "txtAScale",
-         NULL, NULL, _("Scaling") );
-   y -= 20;
-   window_addText( wid, x, y, cw-20, 20, 1, "txtScale",
-         &gl_smallFont, NULL, NULL );
-   y -= 20;
-   window_addFader( wid, x, y, cw-20, 20, "fadScale", 1., 3.,
-         conf.scalefactor, opt_setScalefactor );
-   opt_setScalefactor( wid, "fadScale" );
-   y -= 60;
+
+   window_addText( wid, x, y, 100, 20, 0, "txtVideoChecksHeader",
+         NULL, NULL, _("Settings") );
+   y -= 30;
+
+   window_addCheckbox( wid, x, y, 100, 20,
+         "chkFullscreen", _("Fullscreen"), NULL, conf.fullscreen );
+   y -= 25;
+
+   /* Sets inpRes to current resolution, must be after lstRes is added. */
+   opt_resize();
+
+   /* OpenGL options. */
+   window_addCheckbox( wid, x, y, cw, 20,
+         "chkVSync", _("Vertical Sync"), NULL, conf.vsync );
+   y -= 25;
+
+   /* Features. */
+   window_addCheckbox(wid, x, y, cw, 20,
+         "chkMinimize", _("Minimize on fullscreen focus loss"),
+         NULL, conf.minimize);
+   y -= 25;
+   window_addCheckbox( wid, x, y, cw, 20,
+         "chkColorblind", _("Colorblind simulator"), opt_checkColorblind,
+         conf.colorblind );
+   y -= 40;
 
    /* FPS stuff. */
-   window_addText( wid, x, y, 100, 20, 0, "txtFPSTitle",
-         NULL, NULL, _("FPS Control") );
-   y -= 30;
    s = _("FPS Limit");
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtSFPS",
@@ -1291,31 +1303,20 @@ static void opt_video( unsigned int wid )
    y -= 30;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkFPS", _("Show FPS"), NULL, conf.fps_show );
-
-   /* Sets inpRes to current resolution, must be after lstRes is added. */
-   opt_resize();
-
-   /* OpenGL options. */
-   x = 20+cw+20;
-   y = -60;
-   window_addText( wid, x, y, 100, 20, 0, "txtSGL",
-         NULL, NULL, _("OpenGL") );
-   y -= 30;
-   window_addCheckbox( wid, x, y, cw, 20,
-         "chkVSync", _("Vertical Sync"), NULL, conf.vsync );
    y -= 40;
 
-   /* Features. */
-   window_addText( wid, x, y, 100, 20, 0, "txtSFeatures",
-         NULL, NULL, _("Features") );
-   y -= 30;
-   window_addCheckbox(wid, x, y, cw, 20,
-         "chkMinimize", _("Minimize on fullscreen focus loss"),
-         NULL, conf.minimize);
-   y -= 25;
-   window_addCheckbox( wid, x, y, cw, 20,
-         "chkColorblind", _("Colorblind simulator"), opt_checkColorblind,
-         conf.colorblind );
+   /* Faders. */
+   x = 20+cw+20;
+   y = -60;
+   window_addText( wid, x, y, cw-20, 20, 0, "txtAScale",
+         NULL, NULL, _("Scaling") );
+   y -= 20;
+   window_addText( wid, x, y, cw-20, 20, 1, "txtScale",
+         &gl_smallFont, NULL, NULL );
+   y -= 20;
+   window_addFader( wid, x, y, cw-20, 20, "fadScale", 1., 3.,
+         conf.scalefactor, opt_setScalefactor );
+   opt_setScalefactor( wid, "fadScale" );
    y -= 40;
    window_addText( wid, x, y-3, cw-20, 20, 0, "txtABGBrightness",
          NULL, NULL, _("Background Brightness") );
