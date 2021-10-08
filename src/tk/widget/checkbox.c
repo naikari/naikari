@@ -208,7 +208,7 @@ static void chk_render( Widget* chk, double bx, double by )
    toolkit_drawRect( x-1, y-1 + (chk->h-12.)/2., 14., 14., toolkit_colLight, NULL );
    toolkit_drawRect( x, y + (chk->h-12.)/2., 12., 12., toolkit_colDark, NULL );
    if (chk->dat.chk.state)
-      toolkit_drawRect( x+2., y+2. + (chk->h-12.)/2., 8., 8., &cWhite, NULL );
+      gl_drawCircle(x+6., y+6. + (chk->h-12.)/2., 5., &cWhite, 1 );
 
    /* Draw the txt. */
    gl_printMaxRaw( &gl_smallFont, chk->w - 20,
