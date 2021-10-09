@@ -817,26 +817,31 @@ void land_updateMainTab (void)
    char buf[STRMAX], cred[ECON_CRED_STRLEN], tons[STRMAX_SHORT], pop[STRMAX_SHORT];
    Outfit *o;
    long double p = land_planet->population;
+   int w, h;
 
    snprintf( pop, sizeof(pop), "%LG", p );
 
    /* Update credits. */
-   tonnes2str( tons, player.p->cargo_free );
-   credits2str( cred, player.p->credits, 2 );
-   snprintf( buf, sizeof(buf),
-         _("%s (%s system)\n"
-         "%s (%s)\n"
-         "%s\n"
-         "%s\n"
+   tonnes2str(tons, player.p->cargo_free);
+   credits2str(cred, player.p->credits, 2);
+   snprintf(buf, sizeof(buf),
+         _("#nStationed at#0 %s\n"
+         "#nSystem:#0 %s\n"
+         "#nClass:#0 %s (%s)\n"
+         "#nFaction:#0 %s\n"
+         "#nPopulation:#0 %s\n"
          "\n"
-         "%s\n"
-         "%s"),
+         "#nFree Space:#0 %s\n"
+         "#nMoney:#0 %s"),
          _(land_planet->name), _(cur_system->name),
          _(land_planet->class), planet_getClassName(land_planet->class),
          land_planet->faction >= 0 ?
             _(faction_name(land_planet->faction)) : _("None"),
-         pop, tons, cred );
-   window_modifyText( land_windows[0], "txtDInfo", buf );
+         pop, tons, cred);
+   window_dimWidget(land_windows[0], "txtDInfo", &w, &h);
+   h = gl_printHeightRaw(&gl_defFont, 200, buf );
+   window_resizeWidget(land_windows[0], "txtDInfo", w, h);
+   window_modifyText(land_windows[0], "txtDInfo", buf);
 
    /* Maps are only offered if the planet provides fuel. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL))
@@ -1182,8 +1187,7 @@ static void land_createMainTab( unsigned int wid )
 {
    glTexture *logo;
    int offset;
-   int w, h, logow, logoh, th;
-   const char *bufSInfo;
+   int w, h, logow, logoh;
 
    /* Get window dimensions. */
    window_dimWindow( wid, &w, &h );
@@ -1212,19 +1216,8 @@ static void land_createMainTab( unsigned int wid )
          "txtPlanetDesc", &gl_smallFont, NULL, _(land_planet->description) );
 
    /* Player stats. */
-   bufSInfo = _(
-         "#nStationed at:\n"
-         "Class:\n"
-         "Faction:\n"
-         "Population:\n"
-         "\n"
-         "Free Space:\n"
-         "Money:" );
-   th = gl_printHeightRaw( &gl_defFont, 200, bufSInfo );
-   window_addText( wid, 20, 20, 200, th,
-         0, "txtSInfo", &gl_defFont, NULL, bufSInfo );
-   window_addText( wid, 20+120, 20, w - 20 - (20+200) - LAND_BUTTON_WIDTH,
-         th, 0, "txtDInfo", &gl_defFont, NULL, NULL );
+   window_addText( wid, 20, 20, w - 20 - LAND_BUTTON_WIDTH,
+         0, 0, "txtDInfo", &gl_defFont, NULL, NULL );
 
    /*
     * buttons
