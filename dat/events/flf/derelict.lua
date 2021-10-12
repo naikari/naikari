@@ -2,22 +2,18 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="FLF/DV Derelicts">
  <trigger>enter</trigger>
- <chance>40</chance>
- <cond>faction.get("Dvaered"):playerStanding() &gt;= 0 and faction.get("Pirate"):playerStanding() &lt; 0 and system.cur() == system.get("Surano") and not (player.misnDone("Take the Dvaered crew home") or player.misnDone("Deal with the FLF agent")) and not (player.misnActive("Deal with the FLF agent") or player.misnActive("Take the Dvaered crew home"))</cond>
+ <chance>10</chance>
+ <cond>faction.get("Dvaered"):playerStanding() &gt;= 0 and faction.get("Pirate"):playerStanding() &lt; 0 and system.cur():presences()["FLF"] and system.cur():presences()["Dvaered"] and not (player.misnDone("Take the Dvaered crew home") or player.misnDone("Deal with the FLF agent")) and not (player.misnActive("Deal with the FLF agent") or player.misnActive("Take the Dvaered crew home"))</cond>
 </event>
 --]]
 --[[
 -- Derelict Event, spawning either the FLF prelude mission string or the Dvaered anti-FLF string.
 --]]
 
--- Text
-text = {}
-title = {}
 
-broadcastmsgDV = _("SOS. This is %s. Primary systems down. Requesting assistance.")
-broadcastmsgFLF = _("Calling all ships. This is %s. Engines down, ship damaged. Please help.")
-shipnameDV = _("Dvaered Patrol")
-shipnameFLF = _("Frontier Patrol")
+broadcastmsgDV = _("SOS! Dvaered anti-terrorist patrol ship in need of assistance. Primary systems down. Please position your ship over ours and #bdouble-click#0 on our ship to board.")
+broadcastmsgFLF = _("Calling all ships! This is Frontier scout Gregar Fletcher. Engines down, ship damaged. Please help me by positioning your ship over mine and #bdouble-clicking#0 on my ship to board.")
+
 
 function create()
     if not evt.claim(system.cur()) then
@@ -64,13 +60,13 @@ end
 
 function broadcastDV()
     -- Ship broadcasts an SOS every 10 seconds, until boarded or destroyed.
-    shipDV:broadcast(string.format(broadcastmsgDV, shipnameDV), true)
+    shipDV:broadcast(broadcastmsgDV, true)
     timerDV = hook.timer(20.0, "broadcastDV")
 end
 
 function broadcastFLF()
     -- Ship broadcasts an SOS every 10 seconds, until boarded or destroyed.
-    shipFLF:broadcast(string.format(broadcastmsgFLF, shipnameFLF), true)
+    shipFLF:broadcast(broadcastmsgFLF, true)
     timerFLF = hook.timer(20.0, "broadcastFLF")
 end
 
