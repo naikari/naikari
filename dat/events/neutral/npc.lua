@@ -158,7 +158,6 @@ msg_lore["general"] = {
    _([["Have you heard of Captain T. Practice? They're amazing, I'm their biggest fan!"]]),
    _([["Sometimes I look at the stars and wonder… are we the only sentient species in the universe?"]]),
    _([["Hey, you ever wonder why we're here?" You respond that it's one of the great mysteries of the universe. Why are we here? Are we the product of some cosmic coincidence or is there some great cosmic plan for us? You don't know, but it sometimes keeps you up at night. As you say this, the citizen stares at you incredulously. "What?? No, I mean why are we in here, in this bar?"]]),
-   _([["I've heard that pirates have to keep their reputations up with other pirates by flying pirate ships. The Hyena is considered a pirate ship and is easy to get, but as for the others, I have no idea where they get them from."]]),
 }
 
 msg_lore["Independent"] = {
@@ -284,14 +283,12 @@ msg_lore["Pirate"] = {
    _([["My gran once said to me, 'Never trust a pirate.' Well, she was right! I got a pretty credit chip out of her wallet last time I saw her, and I'd do it again."]]),
    _([["I don't understand why some pirates talk like 16th-century Earth pirates even though that planet is literally dead."]]),
    _([["I may be a pirate who blows up ships and steals for a living, but that inner nebula still kind of freaks me out."]]),
-   _([["Damn Empire stopped my heist a few decaperiods ago. Just wait'll they see me again.…"]]),
+   _([["Damn Empire stopped my heist a few decaperiods ago. Just wait till they see me again.…"]]),
    _([["There's a pirate clanworld I really wanted to get to, but they wouldn't let me in because I'm a 'small-time pirate'! Sometimes I think I'll never make it in this line of work.…"]]),
-   _([["Don't forget, true pirates fly pirate ships! You won't hold onto your reputation very long if you fly around in those pathetic normie vessels. I once met a pirate who kept flying his standard Lancelot. Let's just say, he didn't make it very far."]]),
    _([["I was around before Haven was destroyed, you know! Funny times. All the pirates were panicking and the Empire was cheering thinking that we were done for. Ha! As if! It barely even made a difference. We just relocated to New Haven and resumed business as usual."]]),
-   _([["Y'know, I got into this business by accident to tell the truth. But what can you do? I could get a fake ID and pretend to be someone else but I'd get caught eventually and I'd lose my fame as a pirate."]]),
+   _([["You know, I got into this business by accident to tell the truth. But what can you do? I could get a fake ID and pretend to be someone else but I'd get caught eventually anyway. Might as well make the best of what I have now."]]),
    _([["One of my favorite things to do is buy a fake ID and then deliver as much contraband as I can before I get caught. It's great fun, and finding out that my identity's been discovered gives me a rush!"]]),
-   _([["Back when I started out in this business all you could do was go around delivering packages for other people. Becoming a pirate was real hard back then, but I got so bored I spent several decaperiods doing it. Nowadays things are way more exciting for normies, but I don't regret my choice one bit!"]]),
-   _([["Flying a real big ship is impressive, but it's still no pirate ship. I mean, I respect you more if you're flying a Goddard than if you're flying a civilian Lancelot, but the best pirates fly the good old Pirate Kestrel!"]]),
+   _([["Back when I started out in this business all you could do was go around delivering packages for other people. Becoming a pirate was real hard back then, but I got so bored I became a pirate anyway. Nowadays things are way more exciting for normies, but I don't regret my choice one bit!"]]),
 }
 
 msg_lore["Trader"] = {
@@ -307,7 +304,6 @@ msg_lore["Trader"] = {
 msg_tip = {
    _([["I heard you can set your weapons to only fire when your target is in range, or just let them fire when you pull the trigger. Sounds handy!"]]),
    string.format( _([["Did you know that if a planet doesn't like you, you can often bribe the spaceport operators and land anyway? Just hail the planet with %s, and click the bribe button! Careful though, it doesn't always work."]]), tutGetKey("hail") ),
-   _([["Many factions offer rehabilitation programs to criminals through the mission computer, giving them a chance to get back into their good graces. It can get really expensive for serious offenders though!"]]),
    _([["These new-fangled missile systems! You can't even fire them unless you get a target lock first! But the same thing goes for your opponents. You can actually make it harder for them to lock on to your ship by equipping scramblers or jammers. Scout class ships are also harder to target."]]),
    _([["You know how you can't change your ship or your equipment on some planets? Well, it seems you need an outfitter to change equipment, and a shipyard to change ships! Bet you didn't know that."]]),
    _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
