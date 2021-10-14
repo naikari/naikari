@@ -40,7 +40,6 @@
 
 --]]
 
-require "numstring"
 require "missions/neutral/pirbounty_dead"
 
 

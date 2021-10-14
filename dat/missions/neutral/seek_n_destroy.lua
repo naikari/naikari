@@ -492,7 +492,7 @@ function land ()
    elseif planet.cur():faction() == paying_faction and stage == 4 then
       tk.msg("", pay_text[rnd.rnd(1,#pay_text)])
       player.pay(credits)
-      paying_faction:modPlayerSingle(rnd.rnd(1,2))
+      paying_faction:modPlayer(rnd.rnd(1,2))
       misn.finish(true)
    end
 end

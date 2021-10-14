@@ -33,6 +33,7 @@
 
 --]]
 
+local fmt = require "fmt"
 require "missions/neutral/pirbounty_dead"
 require "pilot/generic"
 
@@ -82,7 +83,7 @@ function create ()
    -- Set mission details
    misn.setTitle(misn_title[level]:format(missys:name()))
    misn.setDesc(misn_desc:format(name, missys:name(), paying_faction:name()))
-   misn.setReward(creditstring(credits))
+   misn.setReward(fmt.credits(credits))
    marker = misn.markerAdd(missys, "computer")
 end
 

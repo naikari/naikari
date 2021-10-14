@@ -41,7 +41,7 @@
 
 --]]
 
-require "numstring"
+local fmt = require "fmt"
 require "jumpdist"
 require "pilot/pirate"
 
@@ -147,7 +147,7 @@ function create ()
    -- Set mission details
    misn.setTitle(misn_title[level]:format(missys:name()))
    misn.setDesc(misn_desc:format(name, missys:name(), paying_faction:name()))
-   misn.setReward(creditstring(credits))
+   misn.setReward(fmt.credits(credits))
    marker = misn.markerAdd(missys, "computer")
 end
 
@@ -211,7 +211,7 @@ function land ()
       end
       tk.msg("", pay_text:format(name))
       player.pay(credits)
-      paying_faction:modPlayerSingle(reputation)
+      paying_faction:modPlayer(reputation)
       misn.finish(true)
    end
 end
@@ -319,7 +319,7 @@ function hunter_hail(arg)
    tk.msg("", text:format(name))
 
    player.pay(credits)
-   paying_faction:modPlayerSingle(reputation)
+   paying_faction:modPlayer(reputation)
    misn.finish(true)
 end
 
