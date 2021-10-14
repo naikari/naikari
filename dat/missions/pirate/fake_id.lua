@@ -28,7 +28,7 @@
 
 --]] 
 
-require "numstring"
+local fmt = require "fmt"
 
 
 misn_title = _("Fake ID")
@@ -49,73 +49,56 @@ factions = {
    "Empire", "Goddard", "Dvaered", "Za'lek", "Sirius", "Soromid", "Frontier",
    "Trader", "Miner"
 }
-misnvars = {
-   Empire = "_fcap_empire", Goddard = "_fcap_goddard",
-   Dvaered = "_fcap_dvaered", ["Za'lek"] = "_fcap_zalek",
-   Sirius = "_fcap_sirius", Soromid = "_fcap_soromid",
-   Frontier = "_fcap_frontier", Trader = "_fcap_trader",
-   Miner = "_fcap_miner"
-}
 orig_standing = {}
 orig_standing["__save"] = true
-orig_cap = {}
-orig_cap["__save"] = true
-
-temp_cap = 10
-next_discovered = false
 
 
 function create ()
    local nhated = 0
-   for i, j in ipairs( factions ) do
+   for i, j in ipairs(factions) do
       if faction.get(j):playerStanding() < 0 then
          nhated = nhated + 1
       end
    end
-   if nhated <= 0 then misn.finish( false ) end
+   if nhated <= 0 then misn.finish(false) end
 
    credits = 50000 * nhated
 
-   misn.setTitle( misn_title )
-   misn.setDesc( misn_desc:format( creditstring( credits ) ) )
-   misn.setReward( misn_reward )
+   misn.setTitle(misn_title)
+   misn.setDesc(misn_desc:format(fmt.credits(credits)))
+   misn.setReward(misn_reward)
 end
 
 
 function accept ()
    if player.credits() < credits then
-      tk.msg( "", lowmoney:format( creditstring( credits ) ) )
+      tk.msg("", lowmoney:format(fmt.credits(credits)))
       misn.finish()
    end
 
-   player.pay( -credits )
+   player.pay(-credits)
    misn.accept()
 
-   for i, j in ipairs( factions ) do
-      local f = faction.get(j)
+   for i, fn in ipairs(factions) do
+      local f = faction.get(fn)
       if f:playerStanding() < 0 then
-         orig_standing[j] = f:playerStanding()
-         orig_cap[j] = var.peek( misnvars[j] )
-         var.push( misnvars[j], temp_cap )
-         f:setPlayerStanding( 0 )
+         orig_standing[fn] = f:playerStanding()
+         f:setPlayerStanding(0)
       end
    end
 
+   next_discovered = false
    landed = true
-   standhook = hook.standing( "standing" )
-   hook.takeoff( "takeoff" )
-   hook.land( "land" )
+   standhook = hook.standing("standing")
+   hook.takeoff("takeoff")
+   hook.land("land")
 end
 
 
-function standing( f, delta )
+function standing(f, delta)
    local fn = f:nameRaw()
    if orig_standing[fn] ~= nil then
-      if delta >= 0 then
-         if var.peek( misnvars[fn] ) ~= temp_cap then
-            abort()
-         end
-      else
+      if delta < 0 then
          abort()
       end
    elseif fn == "Pirate" and delta >= 0 then
@@ -146,16 +129,9 @@ end
 function abort ()
    if standhook ~= nil then hook.rm(standhook) end
    
-   for i, j in ipairs( factions ) do
-      if orig_standing[j] ~= nil then
-         if misnvars[j] ~= nil then
-            if orig_cap[j] ~= nil then
-               var.push( misnvars[j], orig_cap[j] + var.peek( misnvars[j] ) - temp_cap )
-            else
-               var.pop( misnvars[j] )
-            end
-         end
-         faction.get(j):setPlayerStanding( orig_standing[j] )
+   for i, fn in ipairs(factions) do
+      if orig_standing[fn] ~= nil then
+         faction.get(fn):setPlayerStanding(orig_standing[fn])
       end
    end
    
@@ -167,6 +143,6 @@ function abort ()
       end
    end
 
-   tk.msg( "", msg )
-   misn.finish( false )
+   tk.msg("", msg)
+   misn.finish(false)
 end
