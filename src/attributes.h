@@ -2,7 +2,8 @@
  * See Licensing and Copyright notice in naev.h
  */
 
-#pragma once
+#ifndef ATTRIBUTES_H
+#define ATTRIBUTES_H
 
 #ifndef __has_attribute
    #define __has_attribute( x ) 0
@@ -74,3 +75,5 @@
 #else
    #define FALLTHROUGH (void)0
 #endif
+
+#endif /* ATTRIBUTES_H */
