@@ -219,6 +219,7 @@ static int gl_fontAddGlyphTex( glFontStash *stsh, font_char_t *ch, glFontGlyph *
    GLfloat tx, ty, txw, tyh;
    GLfloat fw, fh;
    GLshort vx, vy, vw, vh;
+   double mx, my;
 
    /* Find free row. */
    tex = NULL;
@@ -341,14 +342,16 @@ static int gl_fontAddGlyphTex( glFontStash *stsh, font_char_t *ch, glFontGlyph *
    /* Temporary variables. */
    fw  = (GLfloat) stsh->tw;
    fh  = (GLfloat) stsh->th;
-   tx  = (GLfloat) gr->x / fw;
-   ty  = (GLfloat) gr->y / fh;
-   txw = (GLfloat) (gr->x + ch->w) / fw;
-   tyh = (GLfloat) (gr->y + ch->h) / fh;
-   vx  = ch->off_x;
-   vy  = ch->off_y - ch->h;
-   vw  = ch->w;
-   vh  = ch->h;
+   mx  = 1. / fw;
+   my  = 1. / fh;
+   tx  = (GLfloat) (gr->x+1.) / fw;
+   ty  = (GLfloat) (gr->y+1.) / fh;
+   txw = (GLfloat) (gr->x + ch->w-1.) / fw;
+   tyh = (GLfloat) (gr->y + ch->h-1.) / fh;
+   vx  = ch->off_x + mx;
+   vy  = ch->off_y - ch->h + mx;
+   vw  = ch->w - mx;
+   vh  = ch->h - my;
    /* Texture coords. */
    vbo_tex[ 0 ] = tx;  /* Top left. */
    vbo_tex[ 1 ] = ty;
@@ -1199,7 +1202,9 @@ static int font_makeChar( glFontStash *stsh, font_char_t *c, uint32_t ch )
  */
 static void gl_fontRenderStart( const glFontStash* stsh, double x, double y, const glColour *c, double outlineR )
 {
-   gl_Matrix4 H = gl_Matrix4_Translate(gl_view_matrix, round(x), round(y), 0);
+   /* OpenGL has pixel centers at 0.5 offset. */
+   gl_Matrix4 H = gl_Matrix4_Translate(gl_view_matrix,
+         round(x + 0.5*gl_screen.wscale), round(y + 0.5*gl_screen.hscale), 0);
    gl_fontRenderStartH( stsh, &H, c, outlineR );
 }
 static void gl_fontRenderStartH( const glFontStash* stsh, const gl_Matrix4 *H, const glColour *c, double outlineR )
