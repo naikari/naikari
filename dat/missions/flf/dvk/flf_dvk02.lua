@@ -84,6 +84,16 @@ station_text3 = _([[You tell the pirate in no uncertain terms that he should lis
 
 The pirate shifts slightly in shock. "Y-you want to work with us?" You assure him that if he and his contemporaries behave, aliens or not, this station will lead them to riches beyond their wildest dreams. He closes his hands into a pair of tight fists. "OK. I understand. I will spread the word." You voice your approval and leave him, grinning to yourself. Perfect! Now to return to Sindbad to report your results.…]])
 
+sindbad_text = _([[As soon as you arrive at Sindbad, you locate Benito and inform her of the situation, including the location of the pirate station, the fact that your efforts seem to have been fruitful, and how you promised a chance at cooperative profit should they behave. Benito looks thankful, yet concerned.
+
+"I see," she responds. "That was certainly a good idea, mixing in an offer like that alongside intimidation. Of course, those pirates' conception that we would destroy them is absurd, but from their vantage point, we must look capable of such a feat and we may as well use that misconception to our advantage. Of course, having to live up to that promise you made creates a complication, but I'm sure we can work something out.
+
+"Thank you for your service, {player}. It sounds like we may have been clear of any real danger already if it's true that they're looking for so-called aliens in the Nebula, but that little bit of intimidation and offer of cooperation should solidify the safety of our position. We may very soon start seeing reduced hostility from pirates as a result, which helps us further."]])
+
+pay_text = _([[Benito hands you payment on a credit chip before continuing. "I must admit I'm also curious about their whole 'aliens' idea. We don't tend to really explore the Nebula since we only use it for cover, but I have indeed heard the ghost stories. Perhaps we should do our own investigation. I'm not sure if I believe them, but if there really are aliens, making allies out of them could be very helpful to our cause. Of course, we can't put too many resources into that as the so-called ghosts could maybe just be some pre-Incident artifacts that somehow survived being turned to dust by the nebula, but it wouldn't hurt to do some cursory investigation and trade information with the pirates.
+
+"Well, I'll go discuss what we should do next regarding the pirates. I think I already have some ideas. Thank you again, and blow up a Dvaered for me, eh?" You laugh at her quip and wave goodbye as you consider what to next.]])
+
 text[5] = _([[A scraggly-looking pirate appears on your viewscreen. You realize this must be the leader of the group. "Bwah ha ha!" he laughs. "That has to be the most pathetic excuse for a ship I've ever seen!" You try to ignore his rude remark and start to explain to him that you just want to talk. "Talk?" he responds. "Why would I want to talk to a normie like you? Why, I'd bet my mates right here could blow you out of the sky even without my help!"
     The pirate immediately cuts his connection. Well, if these pirates won't talk to you, maybe it's time to show him what you're made of. Destroying just one or two of his escorts should do the trick.]])
 
@@ -113,17 +123,16 @@ comm_boss_insults[4] = _("Keep hailing all you want, but I don't listen to weakl
 comm_boss_insults[5] = _("We'll have your ship plundered in no time at all!")
 comm_boss_incomplete = _("Don't be bothering me without the loot, you hear?")
 
-misn_title = _("Pirate Talks")
-misn_desc = _("You are to seek out pirates in the %s system and try to convince them to become trading partners with the FLF.")
-misn_reward = _("Supplies for the FLF")
+misn_title = _("FLF's Pirate Problem")
+misn_desc = _("Benito has tasked you with figuring out what the pirates are doing in the Nebula and doing whatever you can to ensure they don't disrupt FLF operations.")
 
 npc_name = _("Benito")
 npc_desc = _("You see exhaustion on Benito's face. Perhaps you should see what's up.")
 
-osd_title   = _("Pirate Alliance")
+osd_title   = _("FLF's Pirate Problem")
 osd_desc    = {}
-osd_desc[1] = _("Fly to the %s system")
-osd_desc[2] = _("Find pirates and try to talk to (hail) them")
+osd_desc[1] = _("Fly to the {system} system")
+osd_desc[2] = _("Board a pirate's ship and interrogate them")
 osd_desc["__save"] = true
 
 osd_apnd    = {}
@@ -133,7 +142,7 @@ osd_apnd[4] = _("Bring %s of Ore to the Pirate Kestrel in the %s system")
 osd_final   = _("Return to FLF base")
 osd_desc[3] = osd_final
 
-log_text = _([[You helped the Pirates to build a new base in the Anger system and established a trade alliance between the FLF and the Pirates. Benito suggested that you should buy a Skull and Bones ship from the pirates and destroy Dvaered ships in areas where pirates are to keep your reputation with the pirates up. She also suggested you may want to upgrade your ship now that you have access to the black market.]])
+log_text = _([[You learned that pirates have entered the nebula region apparently seeking to find so-called nebula ghost ships which they believe to be aliens and in general should not pose a problem for the FLF. However, to make absolutely sure of it, you cornered one pirate who was suggesting trying to break into Frontier space, intimidated him, and also suggested that he and his pirate contemporaries could benefit from working together with the FLF if they don't misbehave.]])
 
 
 function create ()
@@ -162,13 +171,6 @@ function accept ()
 
       misn.accept()
 
-      osd_desc[1] = osd_desc[1]:format( missys:name() )
-      misn.osdCreate( osd_title, osd_desc )
-      misn.setTitle( misn_title )
-      misn.setDesc( misn_desc:format( missys:name() ) )
-      marker = misn.markerAdd( missys, "plot" )
-      misn.setReward( misn_reward )
-
       stage = 0
       pirates_left = 0
       boss_hailed = false
@@ -182,6 +184,13 @@ function accept ()
       reputation = 1
       pir_reputation = 10
       pir_starting_reputation = faction.get("Pirate"):playerStanding()
+
+      osd_desc[1] = fmt.f(osd_desc[1], {system=missys:name()})
+      misn.osdCreate(osd_title, osd_desc)
+      misn.setTitle(misn_title)
+      misn.setDesc(misn_desc)
+      marker = misn.markerAdd(missys, "plot")
+      misn.setReward(fmt.credits(credits))
 
       hook.enter("enter")
    else
