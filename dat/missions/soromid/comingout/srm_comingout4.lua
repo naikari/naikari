@@ -70,7 +70,7 @@ home_text[3] = _([[Chelsea's father sighs. "Look, you're my son, and you always 
 Chelsea snaps back. "I won't sit here and listen to you attacking the Soromid like that! I've made some great friends with Soromid folks! Business partners even! And it was a Soromid who gave me treatments to make me more comfortable in my body!
 
 "I am not your son, dad, and I never will be. I'm your nonbinary child, whether you accept me or not. Not because of the Soromid 'messing with my head', but because that's what my gender is. You have no right to stop me from being me."]])
-home_text[4] = _([[Chelsea's father pauses. "So you're even making business deals with sorofreaks, huh? And you're thoroughly convinced that you're this 'nonbinary' nonsense. It's like you've become a sorofreak yourself." He reaches for something you can't see. "You know what? You're right. You're not my son. I won't stand by and let  the sorofreak agenda plague this galaxy!"
+home_text[4] = _([[Chelsea's father pauses. "So you're even making business deals with sorofreaks, huh? And you're thoroughly convinced that you're this 'nonbinary' nonsense. It's like you've become a sorofreak yourself." He reaches for something you can't see. "You know what? You're right. You're not my son. I won't stand by and let the sorofreak agenda plague this galaxy!"
 
 Suddenly, Chelsea's mother tackles her husband. That's when you see what he was reaching for: a laser gun. The two start to wrestle for control as Chelsea's mother shouts. "Run! Both of you! Get out of here!" Not needing to be told twice, you grab Chelsea's arm and run as fast as you can. Just as you make it out of view, you hear the laser gun fire.
 
