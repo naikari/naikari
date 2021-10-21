@@ -924,7 +924,7 @@ static int planetL_isKnown( lua_State *L )
  *
  * @usage p:setKnown( false ) -- Makes planet unknown.
  *    @luatparam Planet p Planet to set known.
- *    @luatparam[opt=false] boolean b Whether or not to set as known.
+ *    @luatparam[opt=true] boolean b Whether or not to set as known.
  * @luafunc setKnown
  */
 static int planetL_setKnown( lua_State *L )
@@ -935,7 +935,11 @@ static int planetL_setKnown( lua_State *L )
    NLUA_CHECKRW(L);
 
    p = luaL_validplanet(L,1);
-   b = lua_toboolean(L, 2);
+
+   if (lua_gettop(L) >= 2)
+      b = lua_toboolean(L, 2);
+   else
+      b = 1;
 
    changed = (b != (int)planet_isKnown(p));
 
