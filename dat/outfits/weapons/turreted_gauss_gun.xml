@@ -19,14 +19,14 @@
   <delay>0.2</delay>
   <speed>500</speed>
   <range blowup="armour">1000</range>
-  <energy>2.5</energy>
+  <energy>2</energy>
   <heatup>40</heatup>
   <rdr_range>1600</rdr_range>
   <rdr_range_max>2000</rdr_range_max>
   <damage>
    <type>impact</type>
    <penetrate>6</penetrate>
-   <physical>4</physical>
+   <physical>4.5</physical>
    <disable>0.25</disable>
   </damage>
  </specific>
