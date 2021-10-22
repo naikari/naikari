@@ -2197,17 +2197,19 @@ static int pilotL_broadcast( lua_State *L )
 }
 
 /**
- * @brief Sends a message to the target or player if no target is passed.
+ * @brief Sends a comm message from one pilot to another.
  *
  * @usage p:comm( _("How are you doing?") ) -- Messages the player
  * @usage p:comm( _("You got this?"), true ) -- Messages the player ignoring interference
  * @usage p:comm( target, _("Heya!") ) -- Messages target
  * @usage p:comm( target, _("Got this?"), true ) -- Messages target ignoring interference
  *
- *    @luatparam Pilot p Pilot to message the player.
- *    @luatparam Pilot target Target to send message to.
+ *    @luatparam Pilot p Pilot sending the comm.
+ *    @luatparam[opt] Pilot target Target to send message to. Sends to
+ *       the player if omitted.
  *    @luatparam string msg Message to send.
- *    @luatparam[opt=false] boolean ignore_int Whether or not it should ignore interference.
+ *    @luatparam[opt=false] boolean ignore_int Whether or not to ignore
+ *       interference.
  * @luafunc comm
  */
 static int pilotL_comm( lua_State *L )
@@ -2223,12 +2225,12 @@ static int pilotL_comm( lua_State *L )
    p = luaL_validpilot(L,1);
    if (lua_isstring(L,2)) {
       target = 0;
-      msg   = luaL_checkstring(L,2);
+      msg = luaL_checkstring(L,2);
       ignore_int = lua_toboolean(L,3);
    }
    else {
       target = luaL_checkpilot(L,2);
-      msg   = luaL_checkstring(L,3);
+      msg = luaL_checkstring(L,3);
       ignore_int = lua_toboolean(L,4);
    }
 
