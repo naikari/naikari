@@ -13,6 +13,7 @@
   <cond>faction.playerStanding("FLF") &gt;= 30</cond>
  </avail>
  <notes>
+  <done_misn name="FLF Weak Point"/>
   <campaign>Save the Frontier</campaign>
  </notes>
 </mission>
