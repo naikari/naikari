@@ -227,7 +227,7 @@ function land()
 
       diff.apply("flf_pirate_ally")
       player.pay(credits)
-      flf_setReputation(50)
+      flf_setReputation(40)
       faction.get("FLF"):modPlayer(reputation)
 
       local pf = faction.get("Pirate")
