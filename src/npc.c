@@ -58,7 +58,7 @@ typedef struct NPCmisnData_ {
 typedef struct NPC_s {
    unsigned int id; /**< ID of the NPC. */
    NPCtype type; /**< Type of the NPC. */
-   int priority; /**< NPC priority, 5 is average, 0 is highest, 10 is lowest. */
+   int priority; /**< NPC priority, 50 is average, 0 is highest, 100 is lowest. */
    char *name; /**< Translated, human-readable name of the NPC. */
    glTexture *portrait; /**< Portrait of the NPC. */
    glTexture *background; /**< Background of the NPC. */
@@ -605,7 +605,7 @@ int npc_isImportant( int i )
    if (i<0 || npc_array == NULL || i>=array_size(npc_array))
       return 0;
 
-   if (npc_array[i].priority <= 5)
+   if (npc_array[i].priority <= 50)
       return 1;
    return 0;
 }

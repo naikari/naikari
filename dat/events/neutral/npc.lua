@@ -466,7 +466,7 @@ function spawnNPC()
    end
    local npcdata = {name = npcname, msg = msg, func = func, image = portrait.getFullPath(image)}
 
-   id = evt.npcAdd("talkNPC", npcname, image, desc, 10)
+   id = evt.npcAdd("talkNPC", npcname, image, desc, 100)
    npcs[id] = npcdata
 end
 

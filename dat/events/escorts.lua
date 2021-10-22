@@ -163,7 +163,7 @@ function createPilotNPCs ()
          newpilot.ship = shipchoice.ship
          newpilot.deposit = deposit
          newpilot.royalty = (
-               shipchoice.royalty + 0.1*shipchoice.royalty*rnd.sigma() )
+               shipchoice.royalty + 0.1*shipchoice.royalty*rnd.sigma())
          newpilot.name = name_func()
          newpilot.portrait = portrait.get(portrait_arg)
          newpilot.faction = fac:nameRaw()
@@ -171,7 +171,7 @@ function createPilotNPCs ()
          newpilot.approachtext = npctext[rnd.rnd(1, #npctext)]
          local id = evt.npcAdd(
                "approachPilot", _("Pilot"), newpilot.portrait,
-               _("This pilot seems to be looking for work."), 9 )
+               _("This pilot seems to be looking for work."), 90)
          npcs[id] = newpilot
       end
    end
@@ -477,7 +477,7 @@ function spawnNPC( edata )
    end
 
    local id = evt.npcAdd("approachEscort", name, edata.portrait,
-         _("This is one of the pilots currently under your wing."), 8 )
+         _("This is one of the pilots currently under your wing."), 80)
    npcs[id] = edata
 end
 
@@ -493,7 +493,7 @@ function approachEscort( npc_id )
    local approachtext = (
          pilot_action_text .. "\n\n" .. credentials:format(
             edata.name, edata.ship, creditstring(edata.deposit),
-            edata.royalty * 100, scredits, getTotalRoyalties() * 100 ) )
+            edata.royalty * 100, scredits, getTotalRoyalties() * 100))
 
    local dock_choice = _("Dock pilot")
    if edata.docked then

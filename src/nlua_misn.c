@@ -928,11 +928,14 @@ static int misn_osdGetActiveItem( lua_State *L )
  *
  * @usage npc_id = misn.npcAdd( "my_func", "Mr. Test", "none.webp", "A test." ) -- Creates an NPC.
  *
- *    @luatparam string func Name of the function to run when approaching, gets passed the npc_id when called.
+ *    @luatparam string func Name of the function to run when
+ *       approaching, gets passed the npc_id when called.
  *    @luatparam string name Name of the NPC
- *    @luatparam string portrait Portrait file name to use for the NPC (from GFX_PATH/portraits/).
+ *    @luatparam string portrait Portrait file name to use for the NPC
+ *       (from GFX_PATH/portraits/).
  *    @luatparam string desc Description associated to the NPC.
- *    @luatparam[opt=5] number priority Optional priority argument (highest is 0, lowest is 10).
+ *    @luatparam[opt=50] number priority Optional priority argument
+ *       (highest is 0, lowest is 100).
  *    @luatparam[opt=nil] string background Background file name to use (from GFX_PATH/portraits/).
  *    @luatreturn number The ID of the NPC to pass to npcRm.
  * @luafunc npcAdd
@@ -952,8 +955,8 @@ static int misn_npcAdd( lua_State *L )
    desc = luaL_checkstring(L, 4);
 
    /* Optional parameters. */
-   priority = luaL_optinteger(L,5,5);
-   bg   = luaL_optstring(L,6,NULL);
+   priority = luaL_optinteger(L, 5, 50);
+   bg = luaL_optstring(L, 6, NULL);
 
    /* Set path. */
    ndata_getPathDefault( portrait, sizeof(portrait), GFX_PATH"portraits/", gfx );
