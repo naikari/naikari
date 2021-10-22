@@ -85,7 +85,7 @@ COLOURS = [
     Colour( "MarkerHigh", 252./255., 247./255., 213./255. ),
     Colour( "MarkerPlot", 255./255., 255./255., 255./255. ),
     # Radar
-    Colour( "Radar_player", 0.9, 0.3, 1.0 ),
+    Colour( "Radar_player", 102/255, 255/255, 230/255 ),
     Colour( "Radar_tPilot", 1.0, 1.0, 1.0 ),
     Colour( "Radar_tPlanet", 1.0, 1.0, 1.0 ),
     Colour( "Radar_weap", 0.8, 0.2, 0.2 ),
