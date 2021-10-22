@@ -41,15 +41,13 @@ local fleet = require "fleet"
 require "missions/flf/flf_common"
 
 
-intro_text = _([[Benito looks up at you and sighs. It seems she's been working on a problem for a long while.
+intro_text = _([[Benito looks up at you and sighs. "Hello again, {player}. Sorry I'm such a mess at the moment. Maybe you can help with this little problem I have." You ask what the problem is. "Pirates. The damn pirates are making things difficult for us. Activity has picked up in the {sys} system and we don't know why.
 
-"Hello again, {player}. Sorry I'm such a mess at the moment. Maybe you can help with this little problem I have." You ask what the problem is. "Pirates. The damn pirates are making things difficult for us. Activity has picked up in the {sys} system and we don't know why.
-
-"Pirates usually don't cause a huge problem for us because they attack Dvaered ships as well as our ships and Frontier ships, so it sort of evens out. But in that region of space, they're nothing but a nuisance. No Dvaered ships for them to attack, it's just us an the occasional Empire ship. And that's on our most direct route to Frontier space. If pirates are going to be giving us even more trouble there than before, that could slow down – or worse, wreck – our operations."]])
+"Pirates usually don't cause a huge problem for us because they attack Dvaered ships as well as our ships and Frontier ships, so it sort of evens out. But in that region of space, they're nothing but a nuisance. No Dvaered ships for them to attack, it's just us and the occasional Empire ship. And that's on our most direct route to Frontier space. If pirates are going to be giving us even more trouble there than before, that could slow down – or worse, wreck – our operations."]])
 
 ask_text = _([[You remark that it's strange that pirates are there in the first place. "Yes!" Benito says. "It makes no sense! Pirates are always after civilians and traders to steal their credits and cargo, so why would they be there? We don't carry much cargo, the Empire doesn't carry much cargo… it just doesn't add up!
 
-"My only guess is that maybe they're trying to find our hidden jump to Gilligan's Light, and if that's the case, that could be tremendously bad news. I'm not worried about the damage pirates can do to the Frontier; they've been prevalent in Frontier space for a long while. But if they start attacking Gilligan's Light, that could leave the Frontier in a vulnerable position that the Dvaereds can take advantage of!"
+"My only guess is that maybe they're trying to find our hidden jump to Gilligan's Light, and if that's the case, that could be tremendously bad news. I'm not worried about the damage pirates can do to the Frontier; they've been prevalent in Frontier space for a long while. But if they start attacking Gilligan's Light, that could leave the Frontier Council in a vulnerable position that the Dvaereds can take advantage of!"
 
 Benito sighs. "Could you help us with this problem, {player}?"]])
 
@@ -63,7 +61,7 @@ no_text = _([[You see a defeated expression on Benito's face. "OK. Let me know i
 
 board_text = _([[You force your way onto the pirate ship and subdue the pirate on board. You seem to have had a good stroke of luck: the pirate is clearly unprepared and has a very poorly secured ship. Clearly, this pirate is new to the job.
 
-Not wanting to give away your suspicions, you order the pirate to tell you what the pirates are doing in the nebula. "What do you think we're doing? Exploring the nebula, of course!" You tell them to elaborate. "Surely you've heard the ghost stories, haven't you? They say ghosts lurk in the nebula, hiding, waiting to strike. Of course we don't believe in the supernatural, but that means there must be alien ships in there! Aliens with technology so advanced they're able to freely traverse the Nebula! If we could capture one of those ships, we'd be both rich and unstoppable!" You ask where they got into the Nebula from. "What's it to you?!" he shouts back.]])
+Not wanting to give away your suspicions, you order the pirate to tell you what the pirates are doing in the nebula. "What do you think we're doing? Exploring the nebula, of course!" You tell them to elaborate. "Surely you've heard the ghost stories, haven't you? They say ghosts lurk in the nebula, hiding, waiting to strike. Of course we don't believe in the supernatural, but that means there must be alien ships in there! Aliens with technology so advanced they're able to freely traverse the Nebula! If we could capture one of those ships, we'd be both rich and unstoppable!" You ask where they got into the Nebula from. "What's it to you?!" the pirate shouts back.]])
 
 unboard_text = _([[Undeterred, you pull out a laser gun and put it against the pirate's head, ordering them again to tell you where they got into the Nebula from. This seems to convince the previously boisterous pirate. "W-we have a hidden jump to {system}! We come in from there! It's on my computer, you can check for yourself!"
 
@@ -73,9 +71,9 @@ station_text = _([[You land on the newly constructed station and begin searching
 
 You go around the station's bar and start prodding its patrons, posing as a pirate. You find that pirates around the bar generally confirm what the pirate you interrogated before said about trying to find some unknown alien civilization. However, something that one pirate says catches your ear. After rambling for what feels like several periods about alien tech and how great this would be, he continues with something concerning. "And besides, even if we don't find any alien tech, we could still suss out whatever secret jump those FLF fools use to get into the Frontier and get a nice, easy income source in the heart of the Frontier!"]])
 
-station_text2 = _([[You resist the urge to frown; showing your anger in this situation, surrounded by pirates, would be dangerous. To your relief, all of the other pirates at the table seem to disagree. "I'm all for getting some nice alien tech, but pissing off the FLF is a bad move, I'm telling you!" one pirate responds. "Word is they've got enough ships and strength to keep the Dvaereds at bay, so what chance do we have? They'd swoop in blow us all up in an instant! Honestly the only reason they're not a problem for us is because we don't threaten the Frontier all that much and they know that." The rest of the pirates murmur in agreement, and the table goes silent.
+station_text2 = _([[You resist the urge to frown; showing your anger in this situation, surrounded by pirates, would be dangerous. To your relief, all of the other pirates at the table seem to disagree. "I'm all for getting some nice alien tech, but pissing off the FLF is a bad move, I'm telling you!" one pirate responds. "Word is they've got enough ships and strength to keep the Dvaereds at bay, so what chance do we have? They'd swoop in and blow us all up in an instant! Honestly the only reason they're not a problem for us is because we don't threaten the Frontier all that much and they know that." The rest of the pirates murmur in agreement, and the table goes silent.
 
-You excuse yourself from the table, but decide that rogue pirate is dangerous. You patiently wait until the rogue pirate is alone in a secluded location, then sneak up behind him and put a gun to his back. The pirate suddenly freezes in place, not daring to make any sudden movements.]])
+You excuse yourself from the table, but decide that rogue pirate is dangerous. You patiently wait until the rogue pirate is alone in a secluded location, then sneak up behind him and put a laser gun to his back. The pirate suddenly freezes in place, not daring to make any sudden movements.]])
 
 station_text3 = _([[You tell the pirate in no uncertain terms that he should listen to his contemporaries and not piss off the FLF. "U-understood," the pirate responds. "I'm sorry, I won't be encouraging g-going against you again, I promise!" You grin to yourself, then have another idea. With the pirate thoroughly intimidated, you tell him that they will be annihilated if they piss off the FLF, but that if he and his fellow pirates behave themselves, they just might be able to work together with the FLF for a level of profit that far exceeds anything they may expect to get alone.
 
@@ -124,6 +122,7 @@ function accept()
    local txt = ask_again_text
 
    if not asked then
+      asked = true
       txt = ask_text
       tk.msg("", fmt.f(intro_text, {player=player.name(), sys=missys:name()}))
    end
@@ -177,14 +176,18 @@ function board(p)
       return
    end
 
+   if system.cur() ~= missys or stage ~= 0 then
+      return
+   end
+
    if p:faction() == faction.get("Pirate") then
       stage = 1
-      diff.apply("Fury Station")
+      diff.apply("Fury_Station")
       misplanet = planet.get("Fury Station")
 
       player.unboard()
       tk.msg("", board_text)
-      tk.msg("", fmt.f(board_text,
+      tk.msg("", fmt.f(unboard_text,
                {system=missys2:name(), station=misplanet:name()}))
 
       hj1:setKnown()
@@ -241,8 +244,8 @@ function abort()
    hj1:setKnown(hj1known)
    hj2:setKnown(hj2known)
    missys2:setKnown(missys2known)
-   if diff.isApplied("Fury Station") then
-      diff.remove("Fury Station")
+   if diff.isApplied("Fury_Station") then
+      diff.remove("Fury_Station")
    end
 
    misn.finish(false)
