@@ -185,7 +185,7 @@ function board(p)
       player.unboard()
       tk.msg("", board_text)
       tk.msg("", fmt.f(board_text,
-               {system=missys2:name(), station=misplanet:name()})
+               {system=missys2:name(), station=misplanet:name()}))
 
       hj1:setKnown()
       hj2:setKnown()
