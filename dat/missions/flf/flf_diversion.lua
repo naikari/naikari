@@ -189,6 +189,10 @@ function timer_mission_success ()
       if update_dv_hook ~= nil then hook.rm(update_dv_hook) end
       hook.land("land")
       tk.msg("", success_text[rnd.rnd(1, #success_text)])
+
+      for i, p in ipairs(pilot.get(nil, true)) do
+         p:setHilight(false)
+      end
    end
 end
 
