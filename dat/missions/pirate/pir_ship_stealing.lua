@@ -5,7 +5,9 @@
   <priority>4</priority>
   <chance>10</chance>
   <location>Bar</location>
-  <cond>faction.playerStanding("Pirate") &gt;= 0 or planet.cur():faction() == faction.get("Pirate")</cond>
+  <faction>Pirate</faction>
+  <faction>Independent</faction>
+  <cond>planet.cur():blackmarket() or (faction.playerStanding("Pirate") &gt;= 0 and player.numOutfit("Mercenary License") &gt; 0)</cond>
  </avail>
 </mission>
 --]]
