@@ -2660,15 +2660,19 @@ static int pilotL_setNoClear( lua_State *L )
 /**
  * @brief Adds an outfit to a pilot.
  *
- * This by default tries to add them to the first empty slot. Will not overwrite existing outfits.
+ * This by default tries to add them to the first empty slot. Will not
+ * overwrite existing outfits.
  *
- * @usage added = p:outfitAdd( "Laser Cannon", 5 ) -- Adds 5 laser cannons to p
+ * @usage added = p:outfitAdd("Laser Cannon", 5)
  *
  *    @luatparam Pilot p Pilot to add outfit to.
- *    @luatparam string|outfit outfit Outfit or name of the outfit to add.
+ *    @luatparam string|Outfit outfit Outfit or name of the outfit to
+ *       add.
  *    @luatparam[opt=1] number q Quantity of the outfit to add.
- *    @luatparam[opt=false] boolean bypass_cpu Whether to skip CPU checks when adding an outfit.
- *    @luatparam[opt=false] boolean bypass_slot Whether to skip slot size checks before adding an outfit.
+ *    @luatparam[opt=false] boolean bypass_cpu Whether to skip CPU
+ *       checks when adding an outfit.
+ *    @luatparam[opt=false] boolean bypass_slot Whether to skip slot
+ *       size checks before adding an outfit.
  *    @luatreturn number The number of outfits added.
  * @luafunc outfitAdd
  */

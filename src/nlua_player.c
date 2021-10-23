@@ -1042,10 +1042,17 @@ static int playerL_shipOutfits( lua_State *L )
 /**
  * @brief Adds an outfit to one of the player's ships.
  *
+ * This by default tries to add them to the first empty slot. Will not
+ * overwrite existing outfits.
+ *
+ * @note The outfit is added in the same manner as pilot.outfitAdd. It
+ *    does not pull from the player's existing outfits, but rather adds
+ *    an entirely new one.
+ *
  * @usage player.shipOutfitAdd("Titanic", "Laser Cannon MK1", 2)
  *
  *    @luatparam string name Name of the ship to add outfits to.
- *    @luatparam string|outfit outfit Outfit or raw (untranslated) name
+ *    @luatparam string|Outfit outfit Outfit or raw (untranslated) name
  *       of the outfit to add.
  *    @luatparam[opt=1] number q Quantity of the outfit to add.
  *    @luatparam[opt=false] boolean bypass_cpu Whether to skip CPU
