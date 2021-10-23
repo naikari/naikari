@@ -319,7 +319,7 @@ static int pilotL_setFlagWrapper( lua_State *L, int flag )
    p = luaL_validpilot(L,1);
 
    /* Get state. */
-   if (lua_isnone(L,2))
+   if (lua_isnoneornil(L,2))
       state = 1;
    else
       state = lua_toboolean(L, 2);
@@ -2396,7 +2396,8 @@ static int pilotL_setInvincPlayer( lua_State *L )
  * @usage p:setHide(false) -- p will appear again
  *
  *    @luatparam Pilot p Pilot to set hidden status of.
- *    @luatparam boolean state State to set hide.
+ *    @luatparam[opt=true] boolean state Whether or not the pilot should
+ *       be hidden.
  * @luafunc setHide
  */
 static int pilotL_setHide( lua_State *L )
@@ -2412,7 +2413,8 @@ static int pilotL_setHide( lua_State *L )
  * renders and updates just like normal.
  *
  *    @luatparam Pilot p Pilot to set invisibility status of.
- *    @luatparam boolean state State to set invisibility.
+ *    @luatparam[opt=true] boolean state Whether or not the pilot should
+ *       be invisible.
  * @luafunc setInvisible
  */
 static int pilotL_setInvisible( lua_State *L )
@@ -2428,7 +2430,9 @@ static int pilotL_setInvisible( lua_State *L )
  * damage. Meant to be used in conjunction with other flags like "invisible".
  *
  *    @luatparam Pilot p Pilot to set norender status of.
- *    @luatparam boolean state State to set norender.
+ *    @luatparam[opt=true] boolean state true if the pilot should be
+ *       given norender status, false if the pilot should be rendered
+ *       normally.
  * @luafunc setInvisible
  */
 static int pilotL_setNoRender( lua_State *L )
@@ -2618,7 +2622,8 @@ static int pilotL_setCooldown( lua_State *L )
  * @usage p:setNoJump( true )
  *
  *    @luatparam Pilot p Pilot to modify.
- *    @luatparam[opt=true] boolean state true or false
+ *    @luatparam[opt=true] boolean state true to disallow jumping, false
+ *       to allow jumping.
  * @luafunc setNoJump
  */
 static int pilotL_setNoJump( lua_State *L )
@@ -2633,7 +2638,8 @@ static int pilotL_setNoJump( lua_State *L )
  * @usage p:setNoLand( true )
  *
  *    @luatparam Pilot p Pilot to modify.
- *    @luatparam[opt] boolean state true or false
+ *    @luatparam[opt=true] boolean state true to disallow landing, false
+ *       to allow landing.
  * @luafunc setNoLand
  */
 static int pilotL_setNoLand( lua_State *L )
@@ -2648,7 +2654,9 @@ static int pilotL_setNoLand( lua_State *L )
  * @usage p:setNoClear( true )
  *
  *    @luatparam Pilot p Pilot to modify.
- *    @luatparam[opt] boolean state true or false
+ *    @luatparam[opt=true] boolean state true to exempt the pilot from
+ *       pilot.clear(), false to make the pilot affected by
+ *       pilot.clear() normally.
  * @luafunc setNoClear
  */
 static int pilotL_setNoClear( lua_State *L )
