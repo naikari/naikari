@@ -352,7 +352,7 @@ function update_nav()
 
       ta_pnt_faction_gfx = nil
       if ta_pntfact and ta_pntfact:known() then
-         ta_pnt_faction_gfx = ta_pntfact:logo()
+         ta_pnt_faction_gfx = ta_pntfact:logoTiny()
       end
 
       planet = { -- Table for convenience.
@@ -929,7 +929,7 @@ function render( dt )
          ta_pnt_pane_x + 14, ta_pnt_pane_y - 40, col_text )
 
       if ta_pnt_faction_gfx then
-         gfx.renderTexScale( ta_pnt_faction_gfx, ta_pnt_fact_x, ta_pnt_fact_y, 24, 24 )
+         gfx.renderTex( ta_pnt_faction_gfx, ta_pnt_fact_x, ta_pnt_fact_y )
       end
 
       x1, y1 = vec2.get(planet.pos)
