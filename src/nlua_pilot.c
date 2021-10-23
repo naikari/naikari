@@ -1811,7 +1811,7 @@ static int outfit_compareActive( const void *slot1, const void *slot2 )
  *
  *    @luatparam Pilot p Pilot to get outfits of.
  *    @luatparam[opt=nil] string What slot type to get outfits of. Can be either nil, "weapon", "utility", or "structure".
- *    @luatreturn table The outfits of the pilot in an ordered list.
+ *    @luatreturn {Outfit,...} The outfits of the pilot in an ordered list.
  * @luafunc outfits
  */
 static int pilotL_outfits( lua_State *L )
