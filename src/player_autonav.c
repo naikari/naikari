@@ -72,8 +72,14 @@ void player_autonavStart (void)
    if ((player.p->nav_hyperspace == -1) && (player.p->nav_planet== -1))
       return;
    else if ((player.p->nav_planet != -1) && !player_getHypPreempt()) {
-      player_setFlag( PLAYER_BASICAPPROACH );
-      player_autonavPnt( cur_system->planets[ player.p->nav_planet ]->name );
+      /* Ensure the player is informed when auto-landing is aborted. */
+      if (player_isFlag(PLAYER_AUTONAV) && !player_isFlag(PLAYER_BASICAPPROACH)
+            && ((player.autonav == AUTONAV_PNT_APPROACH)
+               || (player.autonav == AUTONAV_PNT_BRAKE)))
+         player_message(_("#oAutonav: auto-landing sequence aborted."));
+
+      player_setFlag(PLAYER_BASICAPPROACH);
+      player_autonavPnt(cur_system->planets[player.p->nav_planet]->name);
       return;
    }
 
