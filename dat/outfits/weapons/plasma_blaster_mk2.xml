@@ -15,12 +15,12 @@
   <sound>plasma</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
-  <delay>1.0</delay>
+  <delay>1.4</delay>
   <speed>700</speed>
   <range>1000</range>
   <falloff>850</falloff>
   <gfx_end>plasma2-end.png</gfx_end>
-  <energy>10</energy>
+  <energy>14</energy>
   <heatup>35</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1700</rdr_range_max>
@@ -28,8 +28,8 @@
   <damage>
    <type>impact</type>
    <penetrate>12</penetrate>
-   <physical>26</physical>
-   <disable>2</disable>
+   <physical>36</physical>
+   <disable>2.8</disable>
   </damage>
  </specific>
 </outfit>
