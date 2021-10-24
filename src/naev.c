@@ -1045,7 +1045,7 @@ static void window_caption (void)
    }
 
    /* Set caption. */
-   snprintf(buf, sizeof(buf), APPNAME" - %s", start_name());
+   snprintf(buf, sizeof(buf), APPNAME" – %s", start_name());
    SDL_SetWindowTitle( gl_screen.window, buf );
    SDL_SetWindowIcon(  gl_screen.window, naev_icon );
 }
@@ -1063,7 +1063,7 @@ char *naev_version( int long_version )
    if (long_version) {
       if (version_human[0] == '\0')
          snprintf( version_human, sizeof(version_human),
-               " "APPNAME" v%s%s - %s", VERSION,
+               " "APPNAME" v%s%s – %s", VERSION,
 #ifdef DEBUGGING
                _(" debug"),
 #else /* DEBUGGING */
