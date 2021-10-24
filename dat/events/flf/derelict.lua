@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="FLF/DV Derelicts">
  <trigger>enter</trigger>
- <chance>10</chance>
+ <chance>1</chance>
  <cond>
    faction.get("Dvaered"):playerStanding() &gt;= 0
    and faction.get("Pirate"):playerStanding() &lt; 0
@@ -36,8 +36,9 @@ function create()
     posDV = vec2.new(7400, 3000)
     posFLF = vec2.new(-10500, -8500)
     
-    shipDV = pilot.add( "Dvaered Vendetta", "Dvaered", posDV, nil, {ai="dummy"} )
-    shipFLF = pilot.add( "Vendetta", "FLF", posFLF, _("FLF Vendetta"), {ai="dummy"} )
+    shipDV = pilot.add("Dvaered Vendetta", "Dvaered", posDV, nil, {ai="dummy"})
+    shipFLF = pilot.add("Vendetta", "FLF", posFLF, _("FLF Vendetta"),
+         {ai="dummy"})
     
     shipDV:disable()
     shipFLF:disable()
@@ -47,9 +48,6 @@ function create()
     
     shipDV:setVisplayer()
     shipFLF:setVisplayer()
-    
-    shipDV:rename(shipnameDV)
-    shipFLF:rename(shipnameFLF)
 
     timerDV = hook.timer(3.0, "broadcastDV")
     timerFLF = hook.timer(12.0, "broadcastFLF")
