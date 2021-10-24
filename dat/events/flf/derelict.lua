@@ -3,7 +3,16 @@
 <event name="FLF/DV Derelicts">
  <trigger>enter</trigger>
  <chance>10</chance>
- <cond>faction.get("Dvaered"):playerStanding() &gt;= 0 and faction.get("Pirate"):playerStanding() &lt; 0 and system.cur():presences()["FLF"] and system.cur():presences()["Dvaered"] and not (player.misnDone("Take the Dvaered crew home") or player.misnDone("Deal with the FLF agent")) and not (player.misnActive("Deal with the FLF agent") or player.misnActive("Take the Dvaered crew home"))</cond>
+ <cond>
+   faction.get("Dvaered"):playerStanding() &gt;= 0
+   and faction.get("Pirate"):playerStanding() &lt; 0
+   and system.cur():presences()["FLF"]
+   and system.cur():presences()["Dvaered"]
+   and not player.misnDone("Take the Dvaered crew home")
+   and not player.misnDone("Deal with the FLF agent")
+   and not player.misnActive("Deal with the FLF agent")
+   and not player.misnActive("Take the Dvaered crew home")
+ </cond>
 </event>
 --]]
 --[[

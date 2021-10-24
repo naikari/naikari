@@ -88,21 +88,17 @@ int cond_check( const char* cond )
          break;
    }
 
-   /* Check the result. */
-   if (lua_isboolean(naevL, -1)) {
-      b = lua_toboolean(naevL, -1);
-      lua_pop(naevL, 1);
-      if (b)
-         ret = 1;
-      else
-         ret = 0;
+   b = lua_toboolean(naevL, -1);
+   lua_pop(naevL, 1);
+   if (b)
+      ret = 1;
+   else
+      ret = 0;
 
-      /* Clear the stack. */
-      lua_settop(naevL, 0);
+   /* Clear the stack. */
+   lua_settop(naevL, 0);
 
-      return ret;
-   }
-   WARN(_("Lua Conditional didn't return a boolean"));
+   return ret;
 
 cond_err:
    /* Clear the stack. */
