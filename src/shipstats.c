@@ -114,10 +114,9 @@ static const ShipStatsLookup ss_lookup[] = {
    DI_ELEM( SS_TYPE_D_RDR_ENEMY_RANGE_MOD,rdr_enemy_range_mod, 0, N_("%+G%% Enemy Radar Range") ),
 
    D__ELEM( SS_TYPE_D_LAUNCH_RATE,        launch_rate,         0, N_("%+G%% Fire Rate (Launcher)") ),
-   D__ELEM( SS_TYPE_D_LAUNCH_RANGE,       launch_range,        0, N_("%+G%% Launch Range") ),
+   D__ELEM( SS_TYPE_D_LAUNCH_RANGE,       launch_range,        0, N_("%+G%% Range (Launcher)") ),
    D__ELEM( SS_TYPE_D_LAUNCH_DAMAGE,      launch_damage,       0, N_("%+G%% Damage (Launcher)") ),
    D__ELEM( SS_TYPE_D_AMMO_CAPACITY,      ammo_capacity,       0, N_("%+G%% Ammo Capacity") ),
-   D__ELEM( SS_TYPE_D_LAUNCH_LOCKON,      launch_lockon,       0, N_("%+G%% Launch Lock-on") ),
    D__ELEM( SS_TYPE_D_LAUNCH_RELOAD,      launch_reload,       0, N_("%+G%% Ammo Reload Rate") ),
 
    D__ELEM( SS_TYPE_D_FBAY_DAMAGE,        fbay_damage,         0, N_("%+G%% Fighter Damage") ),
@@ -135,7 +134,6 @@ static const ShipStatsLookup ss_lookup[] = {
 
    DI_ELEM( SS_TYPE_D_TURRET_HEAT,        tur_heat,            0, N_("%+G%% Heat (Turret)") ),
    D__ELEM( SS_TYPE_D_TURRET_DAMAGE,      tur_damage,          0, N_("%+G%% Damage (Turret)") ),
-   D__ELEM( SS_TYPE_D_TURRET_TRACKING,    tur_tracking,        0, N_("%+G%% Tracking (Turret)") ),
    D__ELEM( SS_TYPE_D_TURRET_FIRERATE,    tur_firerate,        0, N_("%+G%% Fire Rate (Turret)") ),
    DI_ELEM( SS_TYPE_D_TURRET_ENERGY,      tur_energy,          0, N_("%+G%% Energy Usage (Turret)") ),
    D__ELEM( SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis,0, N_("%+G%% Damage as Disable (Turret)") ),

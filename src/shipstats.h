@@ -57,7 +57,6 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_LAUNCH_RANGE,    /**< Launch range for missiles. */
    SS_TYPE_D_LAUNCH_DAMAGE,   /**< Launch damage for missiles. */
    SS_TYPE_D_AMMO_CAPACITY,   /**< Capacity of launchers. */
-   SS_TYPE_D_LAUNCH_LOCKON,   /**< Lock-on speed of launchers. */
    SS_TYPE_D_LAUNCH_RELOAD,   /**< Regeneration rate of launcher ammo. */
 
    /* Fighter Bays. */
@@ -78,7 +77,6 @@ typedef enum ShipStatsType_ {
    /* Turrets. */
    SS_TYPE_D_TURRET_HEAT,     /**< Heat generation for turrets. */
    SS_TYPE_D_TURRET_DAMAGE,   /**< Damage done by turrets. */
-   SS_TYPE_D_TURRET_TRACKING, /**< Tracking of turrets. */
    SS_TYPE_D_TURRET_FIRERATE, /**< Firerate of turrets. */
    SS_TYPE_D_TURRET_ENERGY,   /**< Energy usage of turrets. */
    SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
@@ -239,7 +237,6 @@ typedef struct ShipStats_ {
    double launch_range;    /**< Range of launchers. */
    double launch_damage;   /**< Damage of launchers. */
    double ammo_capacity;   /**< Capacity of launchers. */
-   double launch_lockon;   /**< Lock on speed of launchers. */
    double launch_reload;   /**< Reload rate of launchers. */
 
    /* Fighter bays. */
@@ -260,7 +257,6 @@ typedef struct ShipStats_ {
    /* Destroyer/Cruiser type. */
    double tur_heat;        /**< Heat of turrets. */
    double tur_damage;      /**< Damage of turrets. */
-   double tur_tracking;    /**< Tracking of turrets. */
    double tur_firerate;    /**< Rate of fire of turrets. */
    double tur_energy;      /**< Consumption rate of turrets. */
    double tur_dam_as_dis;  /**< Damage as disable for turrets. */
