@@ -15,17 +15,6 @@ function pir_modReputation( increment )
 end
 
 
---[[
-   @brief Increases the decay floor (how low reputation can decay to).
---]]
-function pir_modDecayFloor( n )
-   local floor = var.peek("_ffloor_decay_pirate")
-   if floor == nil then floor = -20 end
-   floor = math.min(floor + n, -1)
-   var.push("_ffloor_decay_pirate", floor)
-end
-
-
 function pir_addMiscLog( text )
    shiplog.create("pir_misc", _("Miscellaneous"), _("Pirate"))
    shiplog.append("pir_misc", text)
