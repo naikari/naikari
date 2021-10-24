@@ -196,14 +196,14 @@ portraits_mil_f["Pirate"] = portraits_f["Pirate"]
 --[[--
 Choose a random male civilian portrait.
 
-@usage misn.setNPC( "Sam", getMale( "Pirate" ), description )
+@usage misn.setNPC("Sam", getMale("Pirate"), description)
    @tparam[opt="neutral"] string faction Name of faction to get a portrait for, or nil for neutral.
 --]]
-function portrait.getMale( faction )
+function portrait.getMale(faction)
    if portraits_m[faction] ~= nil then
-      return portraits_m[faction][ rnd.rnd( 1, #portraits_m[faction] ) ]
+      return portraits_m[faction][rnd.rnd(1, #portraits_m[faction])]
    else
-      return portraits_m_neutral[ rnd.rnd( 1, #portraits_m_neutral ) ]
+      return portraits_m_neutral[rnd.rnd(1, #portraits_m_neutral)]
    end
 end
 
@@ -211,14 +211,14 @@ end
 --[[--
 Choose a random female civilian portrait.
 
-@usage misn.setNPC( "Sam", getFemale(), description )
+@usage misn.setNPC("Sam", getFemale(), description)
    @tparam[opt="neutral"] string faction Name of faction to get a portrait for, or nil for neutral.
 --]]
-function portrait.getFemale( faction )
+function portrait.getFemale(faction)
    if portraits_f[faction] ~= nil then
-      return portraits_f[faction][ rnd.rnd( 1, #portraits_f[faction] ) ]
+      return portraits_f[faction][rnd.rnd(1, #portraits_f[faction])]
    else
-      return portraits_f_neutral[ rnd.rnd( 1, #portraits_f_neutral ) ]
+      return portraits_f_neutral[rnd.rnd(1, #portraits_f_neutral)]
    end
 end
 
@@ -226,14 +226,14 @@ end
 --[[--
 Choose a random civilian portrait of any gender.
 
-@usage misn.setNPC( "Sam", get( "Empire" ), description )
+@usage misn.setNPC("Sam", get("Empire"), description)
    @tparam[opt="neutral"] string faction Name of faction to get a portrait for, or nil for neutral.
 --]]
-function portrait.get( faction )
+function portrait.get(faction)
    if rnd.rnd() < 0.5 then
-      return portrait.getMale( faction )
+      return portrait.getMale(faction)
    else
-      return portrait.getFemale( faction )
+      return portrait.getFemale(faction)
    end
 end
 
@@ -241,14 +241,14 @@ end
 --[[--
 Choose a random male military portrait.
 
-@usage misn.setNPC( "Sam", getMaleMil( "Pirate" ), description )
+@usage misn.setNPC("Sam", getMaleMil("Pirate"), description)
    @tparam[opt="neutral"] string faction Name of faction to get a portrait for, or nil for neutral.
 --]]
-function portrait.getMaleMil( faction )
+function portrait.getMaleMil(faction)
    if portraits_mil_m[faction] ~= nil then
-      return portraits_mil_m[faction][ rnd.rnd( 1, #portraits_mil_m[faction] ) ]
+      return portraits_mil_m[faction][rnd.rnd(1, #portraits_mil_m[faction])]
    else
-      return portraits_m_neutral[ rnd.rnd( 1, #portraits_m_neutral ) ]
+      return portraits_m_neutral[rnd.rnd(1, #portraits_m_neutral)]
    end
 end
 
@@ -256,14 +256,14 @@ end
 --[[--
 Choose a random female military portrait.
 
-@usage misn.setNPC( "Sam", getFemaleMil( "Dvaered" ), description )
+@usage misn.setNPC("Sam", getFemaleMil("Dvaered"), description)
    @tparam[opt="neutral"] string faction Name of faction to get a portrait for, or nil for neutral.
 --]]
-function portrait.getFemaleMil( faction )
+function portrait.getFemaleMil(faction)
    if portraits_mil_f[faction] ~= nil then
-      return portraits_mil_f[faction][ rnd.rnd( 1, #portraits_mil_f[faction] ) ]
+      return portraits_mil_f[faction][rnd.rnd(1, #portraits_mil_f[faction])]
    else
-      return portraits_f_neutral[ rnd.rnd( 1, #portraits_f_neutral ) ]
+      return portraits_f_neutral[rnd.rnd(1, #portraits_f_neutral)]
    end
 end
 
@@ -271,14 +271,14 @@ end
 --[[--
 Choose a random military portrait of any gender.
 
-@usage misn.setNPC( "Sam", getMil( "Empire" ), description )
+@usage misn.setNPC("Sam", getMil("Empire"), description)
    @tparam[opt="neutral"] string faction Name of faction to get a portrait for, or nil for neutral.
 --]]
-function portrait.getMil( faction )
+function portrait.getMil(faction)
    if rnd.rnd() < 0.5 then
-      return portrait.getMaleMil( faction )
+      return portrait.getMaleMil(faction)
    else
-      return portrait.getFemaleMil( faction )
+      return portrait.getFemaleMil(faction)
    end
 end
 
@@ -286,10 +286,10 @@ end
 --[[--
 Gets the full path of a portrait relative to the data directory.
 
-@usage portrait.getFullPath( portrait.get() )
+@usage portrait.getFullPath(portrait.get())
    @tparam string str Name of the portrait image to get.
 --]]
-function portrait.getFullPath( str )
+function portrait.getFullPath(str)
    return "gfx/portraits/"..str
 end
 

@@ -31,6 +31,7 @@ mil_name = {
    emp_mil_omega = _("Empire Officer"),
    emp_mil_wrath = _("Empire Officer"),
    srs_mil_restricted = _("Sirius Officer"),
+   srs_mil_mutris = _("Sirius Officer"),
    dv_mil_restricted = _("Dvaered Officer"),
    dv_mil_command = _("Dvaered Officer"),
    srm_mil_restricted = _("Soromid Officer"),
@@ -38,6 +39,7 @@ mil_name = {
    zlk_ruadan = _("Za'lek Scientist"),
    flf_sindbad = _("FLF Soldier"),
    ptn_mil_restricted = _("Proteron Officer"),
+   pir_clanworld = _("Pirate"),
 }
 
 -- Civilian descriptions for the spaceport bar.
@@ -87,6 +89,7 @@ mil_desc.srs_mil_restricted = {
    _("This officer seems to be relaxing after a hard day's work."),
    _("A Sirius officer sitting in the corner."),
 }
+mil_desc.srs_mil_mutris = mil_desc.srs_mil_restricted
 mil_desc.dv_mil_restricted = {
    _("A Dvaered officer sits idly at one of the tables."),
    _("This Dvaered officer seems somewhat spaced-out."),
@@ -139,6 +142,20 @@ mil_desc.ptn_mil_restricted = {
    _("This officer seems to be relaxing after a hard day's work."),
    _("A Proteron officer sitting in the corner."),
    _("A nervous-looking Proteron officer gently sips a drink while reading government propaganda."),
+}
+mil_desc.pir_clanworld = {
+   _("This pirate seems to be here to relax."),
+   _("There is a pirate sitting on one of the tables."),
+   _("There is a pirate sitting there, looking somewhere else."),
+   _("A pirate sits at the bar, seemingly serious about the cocktails on offer."),
+   _("There is a pirate sitting in the corner."),
+   _("A pirate feverishly concentrating on a fluorescing drink."),
+   _("A pirate drinking alone."),
+   _("A pirate sitting at the bar."),
+   _("This pirate is idly browsing a news terminal."),
+   _("A worker sits and drinks instead of working."),
+   _("A worker slouched against the bar, nursing a drink."),
+   _("This pirate seems bored with everything but their drink."),
 }
 
 -- Lore messages. These come in general and factional varieties.
@@ -435,7 +452,7 @@ function spawnNPC()
       npcname = milname
 
       -- Select a military portrait and description.
-      image = portrait.getMil(fac)
+      image = portrait.getMil(planfaction)
       local descriptions = mil_desc[restriction]
       desc = descriptions[rnd.rnd(1, #descriptions)]
    else
