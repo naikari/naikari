@@ -1454,8 +1454,14 @@ int input_clickedPlanet( int planet, int autonav )
       return 0;
 
    if (autonav) {
-      player_targetPlanetSet(planet);
+      /* Ensure the player is informed when auto-landing is aborted. */
+      if (player_isFlag(PLAYER_AUTONAV) && !player_isFlag(PLAYER_BASICAPPROACH)
+            && ((player.autonav == AUTONAV_PNT_APPROACH)
+               || (player.autonav == AUTONAV_PNT_BRAKE)))
+         player_message(_("#oAutonav: auto-landing sequence aborted."));
+
       player_setFlag(PLAYER_BASICAPPROACH);
+      player_targetPlanetSet(planet);
       player_autonavPnt(pnt->name);
       return 1;
    }
