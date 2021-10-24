@@ -87,7 +87,7 @@ function create()
    allowance  = traveldist * stuperpx + numjumps * stuperjump + stupertakeoff + 240 * numjumps
    
    -- Allow extra time for refuelling stops.
-   local jumpsperstop = 3 + math.min(tier, 3)
+   local jumpsperstop = 2 + math.min(tier-1, 2)
    if numjumps > jumpsperstop then
       allowance = allowance + math.floor((numjumps-1) / jumpsperstop) * stuperjump
    end
