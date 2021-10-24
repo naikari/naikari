@@ -165,7 +165,7 @@ function accept()
 
    -- Set mission details
    misn.setTitle(_("Ship Stealing"))
-   misn.setDesc(fmt.f(misn_desc)
+   misn.setDesc(fmt.f(misn_desc))
 
    misn.setReward(_("A shiny new ship"))
    marker = misn.markerAdd(missys, "computer")
