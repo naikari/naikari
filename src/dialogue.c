@@ -178,26 +178,15 @@ static glFont* dialogue_getSize( const char* title,
 {
    glFont* font;
    double w, h, d;
-   int i, titlelen, msglen;
+   int titlelen, msglen;
 
    /* Get title length. */
    titlelen = gl_printWidthRaw( &gl_defFont, title );
    msglen = gl_printWidthRaw( &gl_defFont, msg );
 
-   /* Try widths from 300 to 800 in 50 px increments.
-    * Each subsequent width gets an additional line, following this table:
-    *
-    *    300 px:  2 lines,  540 px total
-    *    350 px:  3 lines,  930 px total
-    *    ...
-    *    800 px: 12 lines, 9600 px total
-    */
-   for (i=0; i<11; i++)
-      if (msglen < (260 + i * 50) * (2 + i))
-         break;
-
-   w = 300 + i * 50;
-   w = MAX(w, titlelen+40); /* Expand width if the title is long. */
+   w = CLAMP(300, 800, msglen + 40);
+   w = MAX(w, titlelen + 40);
+   w = MIN(w, SCREEN_W);
 
    /* Now we look at proportion. */
    font = &gl_defFont;
