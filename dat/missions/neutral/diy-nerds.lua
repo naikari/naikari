@@ -38,7 +38,7 @@ text[1] = _([[As you approach the group, the babbling ceases and the papers are 
 
 "Hi, I'm Mia. We need transportation, and you look as if you could need some dough. Interested?"
 
-You reply that for a deal to be worked out, they better provide some detail.
+You reply that for a deal to be worked out, they'd better provide some detail.
 
 "Listen," she says, "there's this contest called the Homebrew Processing Box Masters on %s. Right over there, this system. I'm sure our box will get us the first prize. You take us there, you take us back, you get 20 k¢."
 
@@ -49,7 +49,7 @@ text[2] = _([[Upon accepting the task, you see the entire group relax visibly, a
 
 As the others scramble to get up from their cramped table and start to gather their belongings, it is again up to Mia to address you:
 
-"Really? You'll do it? Um, great. Fantastic. I just knew that eventually, someone desperate would turn up. OK, we're set to go. We better take off immediately and go directly to %s, or we'll be late for the contest!"]])
+"Really? You'll do it? Um, great. Fantastic. I just knew that eventually, someone desperate would turn up. OK, we're set to go. We'd better take off immediately and go directly to %s, or we'll be late for the contest!"]])
   
 -- right planet, in time
 text[3] = _([["Good job, %s," Mia compliments you upon arrival. "We'll now go win the competition and celebrate a bit. You better stay in the system. We will hail you in about 4 or 5 periods, so you can pick us up an' bring us back to %s."
@@ -372,12 +372,12 @@ end
 
 -- helper functions, used repeatedly
 function addNerdCargo()
-   local cargo1 = misn.cargoNew(N_("Nerds"),
+   local comm1 = misn.cargoNew(N_("Nerds"),
          _("A group of nerds you are transporting."))
-   local cargo2 = misn.cargoNew(N_("Processing Box"),
+   local comm2 = misn.cargoNew(N_("Processing Box"),
          _("A box the nerds put together for the Homebrew Processing Box Masters contest."))
-   cargo1 = misn.cargoAdd(cargo1, 0)
-   cargo2 = misn.cargoAdd(cargo2, 4)
+   cargo1 = misn.cargoAdd(comm1, 0)
+   cargo2 = misn.cargoAdd(comm2, 4)
 end
 
 function rmNerdCargo()
