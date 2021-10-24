@@ -9,15 +9,8 @@ mem.aggressive = true
 
 
 function create ()
-
    -- Not too many credits.
    ai.setcredits( rnd.rnd(ai.pilot():ship():price()/300, ai.pilot():ship():price()/70) )
-
-   -- Lines to annoy the player.
-   local r = rnd.rnd(0,20)
-   if r == 0 then
-      ai.pilot():broadcast(_("The Proteron are watching you."))
-   end
 
    -- Get refuel chance
    local p = player.pilot()
