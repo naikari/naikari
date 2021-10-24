@@ -76,11 +76,12 @@ hunter_hits = {}
 function create ()
    paying_faction = faction.get("Pirate")
 
-   target_factions = {
+   local target_factions = {
       "Civilian",
       "Dvaered",
       "Empire",
       "Frontier",
+      "Goddard",
       "Independent",
       "Sirius",
       "Soromid",
@@ -154,8 +155,8 @@ end
 function accept ()
    misn.accept()
 
-   osd_msg[1] = osd_ran_msg:format(missys:name())
-   osd_msg[2] = osd_stolen_msg:format(name)
+   osd_msg[1] = osd_msg[1]:format(missys:name())
+   osd_msg[2] = osd_msg[2]:format(name)
    misn.osdCreate(osd_title, osd_msg)
 
    last_sys = system.cur()
