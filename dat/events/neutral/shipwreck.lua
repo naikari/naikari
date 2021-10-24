@@ -52,7 +52,7 @@ function create ()
     p:setVisplayer(true)
     p:setHilight(true)
 
-    hook.timer(3, "broadcast")
+    hook.timer(3, "broadcast", p)
 
     -- Set hooks
     hook.pilot(p, "board", "rescue")
@@ -61,9 +61,9 @@ function create ()
     hook.land("endevent")
 end
 
-function broadcast ()
+function broadcast(p)
     -- Ship broadcasts an SOS every 10 seconds, until boarded or destroyed.
-    if not p:exists() then
+    if p == nil or not p:exists() then
         return
     end
     p:broadcast(string.format(broadcastmsg, shipname), true)
