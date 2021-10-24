@@ -1426,12 +1426,12 @@ int input_clickedJump( int jump, int autonav )
 
    if (autonav || (jump == player.p->nav_hyperspace
             && input_isDoubleClick((void*)jp))) {
-      player_targetHyperspaceSet( jump );
+      player_targetHyperspaceSet(jump);
       player_autonavStart();
       return 1;
    }
    else
-      player_targetHyperspaceSet( jump );
+      player_targetHyperspaceSet(jump);
 
    input_clicked( (void*)jp );
    return 1;
