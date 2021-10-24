@@ -47,30 +47,27 @@ local fmt = require "fmt"
 require "jumpdist"
 
 
-pay_title = _("Mission Completed")
-pay_text    = {}
+pay_text = {}
 pay_text[1] = _("After going through some paperwork, an officer hands you your pay and sends you off.")
 pay_text[2] = _("A tired-looking officer verifies your mission log and hands you your pay.")
 pay_text[3] = _("The officer you deal with thanks you for your work, hands you your pay, and sends you off.")
 pay_text[4] = _("An officer goes through the necessary paperwork, looking bored the entire time, and hands you your fee.")
 
-abandon_title = _("Mission Abandoned")
 abandon_text    = {}
 abandon_text[1] = _("You are sent a message informing you that landing in the middle of a patrol mission is considered to be abandonment. As such, your contract is void and you will not receive payment.")
 
 
 -- Mission details
-misn_title  = _("Patrol of the %s System")
-misn_desc   = _("Patrol specified points in the %s system, eliminating any hostiles you encounter.")
+misn_title = _("Patrol of the %s System")
+misn_desc = _("Patrol specified points in the %s system, eliminating any hostiles you encounter.")
 
 -- Messages
-msg    = {}
-msg[1] = _("Point secure.")
-msg[2] = _("Hostiles detected. Engage hostiles.")
-msg[3] = _("Hostiles eliminated.")
-msg[4] = _("Patrol complete. You can now collect your pay.")
-msg[5] = _("MISSION FAILURE! You showed up too late.")
-msg[6] = _("MISSION FAILURE! You have left the %s system.")
+secure_msg = _("Point secure.")
+hostiles_msg = _("Hostiles detected. Engage hostiles.")
+continue_msg = _("Hostiles eliminated.")
+done_msg = _("Patrol complete. You can now collect your pay.")
+late_msg = _("MISSION FAILURE! You showed up too late.")
+abandoned_msg = _("MISSION FAILURE! You have left the %s system.")
 
 osd_title  = _("Patrol")
 osd_msg    = {}
@@ -197,9 +194,9 @@ function jumpout ()
    local last_sys = system.cur()
    if not job_done then
       if last_sys == missys then
-         fail(msg[6]:format(last_sys:name()))
+         fail(abandoned_msg:format(last_sys:name()))
       elseif jumps_permitted < 0 then
-         fail(msg[5])
+         fail(late_msg)
       end
    end
 end
@@ -214,13 +211,13 @@ function land ()
    jumps_permitted = jumps_permitted - 1
    if job_done and planet.cur():faction() == paying_faction then
       local txt = pay_text[rnd.rnd(1, #pay_text)]
-      tk.msg(pay_title, txt)
+      tk.msg("", txt)
       player.pay(credits)
       paying_faction:modPlayer(reputation)
       misn.finish(true)
    elseif not job_done and system.cur() == missys then
       local txt = abandon_text[rnd.rnd(1, #abandon_text)]
-      tk.msg(abandon_title, txt)
+      tk.msg("", txt)
       misn.finish(false)
    end
 end
@@ -268,13 +265,13 @@ function timer ()
 
    if #hostiles > 0 then
       if not hostiles_encountered then
-         player.msg(msg[2])
+         player.msg(hostiles_msg)
          hostiles_encountered = true
       end
       misn.osdActive(3)
    elseif #points > 0 then
       if hostiles_encountered then
-         player.msg(msg[3])
+         player.msg(continue_msg)
          hostiles_encountered = false
       end
       misn.osdActive(2)
@@ -293,7 +290,7 @@ function timer ()
          points = new_points
          points["__save"] = true
 
-         player.msg(msg[1])
+         player.msg(secure_msg)
          osd_msg[2] = gettext.ngettext(
             "Go to indicated point (%d remaining)",
             "Go to indicated point (%d remaining)",
@@ -308,7 +305,7 @@ function timer ()
       end
    else
       job_done = true
-      player.msg(msg[4])
+      player.msg(done_msg)
       misn.osdActive(4)
       if marker ~= nil then
          misn.markerRm(marker)
