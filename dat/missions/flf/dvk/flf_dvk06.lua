@@ -7,7 +7,6 @@
  <avail>
   <priority>10</priority>
   <chance>30</chance>
-  <done>Alliance of Inconvenience</done>
   <location>Bar</location>
   <faction>FLF</faction>
   <cond>faction.playerStanding("FLF") &gt;= 80</cond>

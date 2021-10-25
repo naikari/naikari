@@ -3,9 +3,8 @@
 <event name="FLF Catastrophe">
  <trigger>enter</trigger>
  <chance>70</chance>
- <cond>system.cur() == system.get("Sigur") and faction.get("FLF"):playerStanding() &gt;= 98 and player.misnDone("The FLF Split")</cond>
+ <cond>system.cur() == system.get("Sigur") and faction.get("FLF"):playerStanding() &gt;= 98</cond>
  <notes>
-  <done_misn name="The FLF Split"/>
   <campaign>Save the Frontier</campaign>
  </notes>
 </event>
