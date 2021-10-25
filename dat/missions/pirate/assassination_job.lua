@@ -575,7 +575,7 @@ function succeed ()
       end
    end
 
-   paying_faction:modPlayerSingle(reputation)
+   paying_faction:modPlayer(reputation)
    misn.finish(true)
 end
 

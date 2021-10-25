@@ -198,7 +198,7 @@ function land()
       player.outfitRm("Za'lek Test Engine")
 
       -- increase faction
-      faction.modPlayerSingle("Za'lek", rnd.rnd(1, 2))
+      faction.modPlayer("Za'lek", 1)
       rmTheOutfit()
       misn.finish(true)
    end

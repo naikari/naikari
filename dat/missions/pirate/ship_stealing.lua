@@ -265,7 +265,7 @@ function enter_timer()
 end
 
 
--- Set up the ship, credits, and reputation based on the level.
+-- Set up the ship to steal and calculate cost
 function bounty_setup()
    local ship_choices = {
       Civilian = {

@@ -179,7 +179,7 @@ function closehail()
    logan:setHilight(false)
    logan:setInvincible(false) 
    logan:hyperspace()
-   faction.modPlayerSingle("Za'lek", 5)
+   faction.modPlayer("Za'lek", 1)
    zlk_addMiscLog(log_text)
    misn.finish(true)
 end

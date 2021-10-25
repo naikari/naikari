@@ -109,11 +109,11 @@ end
 
 function land()
    if planet.cur() == planet_start and pirates_killed > 0 then
-      var.pop( "assault_on_unicorn_check" )
+      var.pop("assault_on_unicorn_check")
 
       tk.msg(title[2], text[2]:format( creditstring( bounty_earned )))
       player.pay(bounty_earned)
-      faction.modPlayerSingle( "Dvaered", math.pow( bounty_earned, 0.5 ) / 100 )
+      faction.modPlayer("Dvaered", math.pow( bounty_earned, 0.5 ) / 100)
       misn.finish(true)
    end
 end

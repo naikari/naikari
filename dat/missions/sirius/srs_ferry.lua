@@ -384,7 +384,7 @@ function land()
 
         if intime then
             local distbonus = math.max(math.min(numjumps,distbonus_maxjumps)-distbonus_minjumps+1, 0) / 2  -- ranges from 0 (<distbonus_minjumps jumps) to 4 (>=distbonus_maxjumps jumps)
-            faction.modPlayerSingle("Sirius", rnd.rnd(distbonus, distbonus+rank+1))
+            faction.modPlayer("Sirius", rnd.rnd(distbonus, distbonus+rank+1))
 
             tk.msg(ferry_land_title, ferry_land_p2[rank]:format( ferry_land_p1[rank]) )
         elseif overtime then
@@ -397,7 +397,7 @@ function land()
         end
 
         if change == 2 then
-            faction.modPlayerSingle("Sirius", 1)  -- A little bonus for doing something nice
+            faction.modPlayer("Sirius", 1)  -- A little bonus for doing something nice
             tk.msg(change_ship_t, change_ship[change])  -- Pay them a bonus for using a Sirian ship
             reward = reward * 1.25
         end

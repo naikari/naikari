@@ -211,7 +211,7 @@ function land()
         tk.msg(title[3], string.format(text[5], player.name()))
         tk.msg(title[3], text[6])
         dv_modReputation(5)
-        faction.get("Dvaered"):modPlayerSingle(10)
+        faction.get("Dvaered"):modPlayer(3)
         player.pay(1000000) -- 1M
         var.pop("flfbase_intro")
         var.pop("flfbase_sysname")

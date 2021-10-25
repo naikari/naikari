@@ -152,7 +152,7 @@ function landed()
       tk.msg("", pay_text)
       player.pay(150000)
       pir_modReputation(2)
-      faction.modPlayerSingle("Pirate", 3)
+      faction.modPlayer("Pirate", 1)
       pir_addMiscLog(log_text)
       misn.finish(true)
    end

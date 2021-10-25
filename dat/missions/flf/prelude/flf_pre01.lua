@@ -172,7 +172,7 @@ function land()
     elseif planet.cur():faction() == faction.get("Dvaered") and not basefound then
         if tk.yesno("", ask_turnin_text) then
             tk.msg("", turnin_text)
-            faction.get("Dvaered"):modPlayerSingle(5)
+            faction.get("Dvaered"):modPlayer(2)
             var.push("flfbase_intro", 1)
             var.pop("flfbase_flfshipkilled")
             dv_addAntiFLFLog( log_text_dv )

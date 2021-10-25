@@ -144,7 +144,7 @@ function land ()
 
       -- Rewards
       player.pay(reward)
-      faction.modPlayerSingle("Empire",5);
+      faction.modPlayer("Empire", 2)
 
       -- Flavour text
       tk.msg("", string.format(text[6], ret:name()))

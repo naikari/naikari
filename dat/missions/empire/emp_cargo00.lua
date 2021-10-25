@@ -104,7 +104,7 @@ function land()
          -- More flavour text
          tk.msg("", string.format(text[3], dest:name()))
          var.push("es_cargo", true)
-         faction.modPlayerSingle("Empire",3);
+         faction.modPlayer("Empire", 3)
          emp_addShippingLog(log_text)
          misn.finish(true)
       end

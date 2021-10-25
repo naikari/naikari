@@ -164,7 +164,7 @@ function land()
       end
 
       -- increase faction
-      faction.modPlayerSingle("Pirate", rnd.rnd(2, 4))
+      faction.modPlayer("Pirate", 1)
       misn.finish(true)
    end
 end
