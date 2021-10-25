@@ -61,3 +61,25 @@ function create ()
    tex_iconSpeed = tex_open("iconSpeed.png")
 end
 
+
+function render(dt, dt_mod)
+end
+
+
+function render_bar_raw(x, y, col, col_end, pct)
+   local w, h = tex_barFrame:dim()
+   local bw = math.floor(w * pct)
+   gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
+   gfx.renderRect(x, y, bw, h, col)
+   gfx.renderRect(x + bw - 1, y, 1, h, col_end)
+   gfx.renderTex(tex_barFrame, x, y)
+end
+
+
+function render_bar_header_raw(x, y, icon)
+   local w, h = tex_barHeader:dim()
+   gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
+   gfx.renderTexRaw(icon, x, y, w, h, 1, 1, 0, 0, 1, 1)
+   gfx.randerTex(tex_barHeader, x, y)
+end
+
