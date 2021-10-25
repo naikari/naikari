@@ -37,7 +37,7 @@ end
 
 -- Low-class landing function. Low class planets let you land and bribe at much lower standings.
 function land_lowclass( pnt )
-   return land_civilian(pnt, -20, -80)
+   return land_civilian(pnt, -20, -100)
 end
 
 -- High class landing function. High class planets can't be bribed.
