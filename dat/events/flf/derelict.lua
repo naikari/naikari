@@ -2,6 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="FLF/DV Derelicts">
  <trigger>enter</trigger>
+ <priority>19</priority>
  <chance>1</chance>
  <cond>
    faction.get("Dvaered"):playerStanding() &gt;= 0
