@@ -22,6 +22,7 @@
 
 --]]
 
+local fmt = require "fmt"
 require "missions/pirate/common"
 
 
@@ -29,20 +30,19 @@ require "missions/pirate/common"
 bar_desc = _("You see a shifty looking man sitting in a darkened corner of the bar. He is trying to discreetly motion you to join him, but is only managing to make himself look suspicious. Perhaps he's watched too many holovideos.")
 
 -- Mission details
-misn_title = _("Thug")
+misn_title = _("Shifty Business")
 misn_reward = _("Some easy money")
-misn_desc = _("A shifty businessman has tasked you with chasing away merchant competition in the %s system.")
-osd_desc_1 = _("Attack, but do not kill, Trader pilots in the %s system so that they run away")
-osd_desc_2 = _("Return to %s in the %s system for payment")
+misn_desc = _("A shifty businessman has tasked you with chasing away merchant competition in the {system} system.")
+
+osd_desc = {}
+osd_desc_1 = _("Attack, but do not kill, Trader pilots in the %s system so that they run away ({number} remaining)")
+osd_desc[2] = _("Land on {planet} ({system} system)")
+osd_desc["__save"] = true
 
 -- Text
-title    = {}
-text     = {}
-title[1] = _("Spaceport Bar")
-text[1]  = _([[The man motions for you to take a seat next to him. Voice barely above a whisper, he asks, "How'd you like to earn some easy money? If you're comfortable with getting your hands dirty, that is."]])
-title[3] = _("Mission Complete")
-text[2] = _([[Apparently relieved that you've accepted his offer, he continues, "There're some new merchants edging in on my trade routes in %s. I want you to make sure they know they're not welcome." Pausing for a moment, he notes, "You don't have to kill anyone, just rough them up a bit."]])
-text[3] = _([[As you inform your acquaintance that you successfully scared off the traders, he grins and transfers a sum of credits to your account. "That should teach them to stay out of my space."]])
+ask_text = _([[The man motions for you to take a seat next to him. Voice barely above a whisper, he asks, "How'd you like to earn some easy money? If you're comfortable with getting your hands dirty, that is."]])
+explain_text = _([[Apparently relieved that you've accepted his offer, he continues, "There're some new merchants edging in on my trade routes in {system}. I want you to make sure they know they're not welcome." Pausing for a moment, he notes, "You don't have to kill anyone, just rough them up a bit."]])
+pay_text = _([[As you inform your acquaintance that you successfully scared off the traders, he grins and transfers a sum of credits to your account. "That should teach them to stay out of my space."]])
 
 -- Messages
 success_msg = _("MISSION SUCCESS! Return for payment.")
@@ -55,7 +55,7 @@ function create ()
    targetsystem = system.get("Delta Pavonis") -- Find target system
 
    -- Spaceport bar stuff
-   misn.setNPC( _("Shifty Trader"),  "neutral/unique/shifty_merchant.png", bar_desc)
+   misn.setNPC(_("Shifty Trader"), "neutral/unique/shifty_merchant.png", bar_desc)
 end
 
 
@@ -64,28 +64,30 @@ Mission entry point.
 --]]
 function accept ()
    -- Mission details:
-   if not tk.yesno( title[1], string.format( text[1],
-          targetsystem:name() ) ) then
+   if not tk.yesno("", string.format(ask_text,
+          targetsystem:name())) then
       misn.finish()
    end
    misn.accept()
+   tk.msg("", fmt.f(explain_text, {system=targetsystem:name()}))
 
    -- Some variables for keeping track of the mission
    misn_done = false
    fledTraders = 0
+   tradersNeeded = 5
    misn_base, misn_base_sys = planet.cur()
 
    -- Set mission details
-   misn.setTitle( string.format( misn_title, targetsystem:name()) )
-   misn.setReward( string.format( misn_reward, credits) )
-   misn.setDesc( string.format( misn_desc, targetsystem:name() ) )
-   misn_marker = misn.markerAdd( targetsystem, "low" )
-   local osd_desc = {}
-   osd_desc[1] = osd_desc_1:format( targetsystem:name() )
-   osd_desc[2] = osd_desc_2:format( misn_base:name(), misn_base_sys:name() )
-   misn.osdCreate( misn_title, osd_desc )
-   -- Some flavour text
-   tk.msg( title[1], string.format( text[2], targetsystem:name()) )
+   misn.setTitle(misn_title)
+   misn.setReward(misn_reward)
+   misn.setDesc(fmt.f(misn_desc, {system=targetsystem:name()}))
+
+   misn_marker = misn.markerAdd(targetsystem, "low")
+
+   osd_desc[1] = fmt.f(osd_desc_1,
+         {system=targetsystem:name(), number=tradersNeeded-fledTraders})
+   osd_desc[2] = fmt.f(osd_desc[2], {planet=misn_base:name(), system=misn_base_sys:name()})
+   misn.osdCreate(misn_title, osd_desc)
 
    -- Set hooks
    hook.enter("sys_enter")
@@ -107,8 +109,8 @@ function trader_attacked (hook_pilot, hook_attacker, hook_arg)
    end
 
    if hook_pilot:faction() == faction.get("Trader")
-         and ( hook_attacker == player.pilot()
-            or hook_attacker:leader() == player.pilot() ) then
+         and (hook_attacker == player.pilot()
+            or hook_attacker:leader() == player.pilot()) then
       hook_pilot:hookClear()
       hook.pilot(hook_pilot, "jump", "trader_jumped")
       hook.pilot(hook_pilot, "land", "trader_jumped")
@@ -122,8 +124,13 @@ function trader_jumped (hook_pilot, hook_arg)
    end
 
    fledTraders = fledTraders + 1
-   if fledTraders >= 5 then
+   if fledTraders >= tradersNeeded then
       attack_finished()
+   else
+      misn.osdDestroy()
+      osd_desc[1] = fmt.f(osd_desc_1,
+            {system=targetsystem:name(), number=tradersNeeded-fledTraders})
+      misn.osdCreate(misn_title, osd_desc)
    end
 end
 
@@ -133,9 +140,8 @@ function attack_finished()
       return
    end
    misn_done = true
-   player.msg( success_msg )
-   misn.markerRm( misn_marker )
-   misn_marker = misn.markerAdd( misn_base_sys, "low" )
+   player.msg(success_msg)
+   misn.markerMove(misn_marker, misn_base_sys)
    misn.osdActive(2)
    hook.land("landed")
 end
@@ -143,7 +149,7 @@ end
 -- landed
 function landed()
    if planet.cur() == misn_base then
-      tk.msg(title[3], text[3])
+      tk.msg("", pay_text)
       player.pay(150000)
       pir_modReputation(2)
       faction.modPlayerSingle("Pirate", 3)
