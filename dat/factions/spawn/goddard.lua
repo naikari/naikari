@@ -6,22 +6,22 @@ function spawn_capship ()
     local pilots = {}
 
     -- Generate the capship
-    scom.addPilot( pilots, "Goddard", 145 )
+    scom.addPilot(pilots, "Goddard", 145, {name=N_("Goddard Goddard")})
 
     -- Generate the escorts
     local r = rnd.rnd()
     if r < 0.5 then
-       scom.addPilot( pilots, "Lancelot", 25 )
-       scom.addPilot( pilots, "Lancelot", 25 )
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
     elseif r < 0.8 then
-       scom.addPilot( pilots, "Lancelot", 25 )
-       scom.addPilot( pilots, "Lancelot", 25 )
-       scom.addPilot( pilots, "Lancelot", 25 )
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
     else
-       scom.addPilot( pilots, "Lancelot", 25 )
-       scom.addPilot( pilots, "Lancelot", 25 )
-       scom.addPilot( pilots, "Lancelot", 25 )
-       scom.addPilot( pilots, "Lancelot", 25 )
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
+       scom.addPilot(pilots, "Lancelot", 25, {name=N_("Goddard Lancelot")})
     end
 
     return pilots
