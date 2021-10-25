@@ -42,7 +42,7 @@ require "missions/soromid/common"
 
 text = {}
 
-ask_text = _([[You walk over to Chelsea to greet them when you notice an unpleasant odor coming off of them. Chelsea notices you. "Ah! %s! Uh, sorry about the smell. I don't know why the hell I did this, but I took a job from some guy here and now I'm stuck with it." You ask what kind of job it is. "Erm, I kind of agreed to take their trash from them." You grimace. "Yeah," Chelsea says, "it's gross. And what's worse, I'm in over my head. I've already taken the garbage and my new ship is packed to the brim with the stuff, but there's thugs outside giving me a lot of trouble.
+ask_text = _([[You walk over to Chelsea to greet them when you notice an unpleasant odor coming off of them. Chelsea notices you. "Ah! %s! Uh, sorry about the smell. I don't know why the hell I did this, but I took a job from some guy here and now I'm stuck with it." You ask what kind of job it is. "Erm, I kind of agreed to take their trash from them." You grimace. "Yeah," Chelsea says, "it's gross. And what's worse, I'm in over my head. I've already taken the garbage and my new ship is packed to the brim with the stuff, but there's gangsters outside giving me a lot of trouble.
 
 "I, uh, know I ask a lot of you, but could you help me out again? I just need an escort to %s so I can drop off this garbage there. I'll give you %s for the trouble. What do you say?"]])
 
@@ -50,7 +50,7 @@ start_text = _([["I appreciate it very much. I'll wait at the spaceport until yo
 
 no_text = _([["OK, I understand. I guess I'll have to find some other way to get rid of all this garbage..."]])
 
-ask_again_text = _([["I'm not having any luck coming up with a plan to get rid of all of this garbage without getting jumped by those thugs. Is there any chance you could reconsider escorting me? It would be a big help."]])
+ask_again_text = _([["I'm not having any luck coming up with a plan to get rid of all of this garbage without getting jumped by those gangsters. Is there any chance you could reconsider escorting me? It would be a big help."]])
 
 success_text = _([[As you dock, you can't help but notice the foul smell of garbage all around you. The planet really does fit the name. You grimace as you watch workers unload what must be hundreds of tonnes of garbage from Chelsea's ship, some of which is leaking. Eventually Chelsea's ship is emptied and you and Chelsea are handed your credit chips for the job. You and Chelsea part ways, with you vowing to take a shower immediately while Chelsea vows to scrub the cargo hold of their ship clean.]])
 
@@ -60,7 +60,7 @@ misn_desc = _("Chelsea needs an escort to %s so they can get rid of the garbage 
 npc_name = _("Chelsea")
 npc_desc = _("Chelsea seems like they're stressed. Maybe you should see how they're doing?")
 
-log_text = _([[You helped Chelsea get rid of a load of garbage they naively agreed to take to The Stinker as a mission, defending them from thugs along the way.]])
+log_text = _([[You helped Chelsea get rid of a load of garbage they naively agreed to take to The Stinker as a mission, defending them from gangsters along the way.]])
 
 
 function create ()
@@ -157,21 +157,21 @@ function spawnChelseaShip(param)
 end
 
 
-function spawnThug(param)
+function spawnGangster(param)
    local shiptypes = {
       "Hyena", "Shark", "Lancelot", "Vendetta", "Ancestor", "Admonisher",
       "Phalanx",
    }
    local shiptype = shiptypes[rnd.rnd(1, #shiptypes)]
 
-   thug = pilot.add(shiptype, "Comingout_thugs", param,
-         _("Thug %s"):format(_(shiptype)))
+   gangster = pilot.add(shiptype, "Comingout_gangsters", param,
+         _("Gangster %s"):format(_(shiptype)))
 
-   thug:setHostile()
+   gangster:setHostile()
 
-   hook.pilot(thug, "death", "thug_removed")
-   hook.pilot(thug, "jump", "thug_removed")
-   hook.pilot(thug, "land", "thug_removed")
+   hook.pilot(gangster, "death", "gangster_removed")
+   hook.pilot(gangster, "jump", "gangster_removed")
+   hook.pilot(gangster, "land", "gangster_removed")
 end
 
 
@@ -180,7 +180,7 @@ function takeoff ()
    jumpNext()
 
    for i=1,3 do
-      spawnThug()
+      spawnGangster()
    end
 end
 
@@ -203,13 +203,13 @@ function land ()
 end
 
 
-function thug_timer ()
+function gangster_timer()
    for i=1,4 do
-      spawnThug()
+      spawnGangster()
    end
    if system.cur() == missys then
       for i=1,2 do
-         spawnThug(lastsys)
+         spawnGangster(lastsys)
       end
    end
 end

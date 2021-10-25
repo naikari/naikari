@@ -78,7 +78,7 @@ With no time to lose, you and Chelsea dash into your ships and immediately start
 
 end_text = _([[After docking on %s, you meet up again with Chelsea to see them sobbing and frustrated. "I should have known I couldn't trust him! He never was openly accepting when I came out as trans to him before and misgendered me multiple times, but I just hoped it was in my imagination, you know? And I had no idea he was so bigoted against the Soromid!" You tell Chelsea that it's not their fault. "I know, it's just… I hope my mother is OK."
 
-They wipe the tears from their eyes. "He had thugs on our tail shortly after we left and that tells me that this isn't over. I'll need to make sure I'm prepared when I face trouble from him again. Heck, maybe I should get more of a battle-hardened ship.
+They wipe the tears from their eyes. "He had goons on our tail shortly after we left and that tells me that this isn't over. I'll need to make sure I'm prepared when I face trouble from him again. Heck, maybe I should get more of a battle-hardened ship.
 
 "Thank you for your help, %s. This isn't the outcome that I wanted but I honestly could have died there if it wasn't for you. Here." They hand you a credit chip. "The payment I promised. I need to go build up my strength. Next time I see you, I swear, I'll have a ship that won't be left in a vulnerable position when I run into trouble!" You offer a hug and say your goodbyes, hoping that Chelsea will be OK.]])
 
@@ -99,7 +99,7 @@ plflee_msg = _("MISSION FAILED: You have abandoned the mission.")
 ambush_msg = _("You heard the boss, folks! Get them!")
 noland_msg = _("It's too dangerous to land here right now.")
 
-log_text = _([[You escorted Chelsea, who requests they/them pronouns now, to Durea so that they could see their parents. However, Chelsea's father turned on them because of their gender identity and dealings with the Soromid, aiming a laser gun at Chelsea before he was tackled and held back by Chelsea's mother. You didn't see what happened, but as you and Chelsea ran away, you heard a gunshot. Chelsea's father then caught up with you as you began launch procedures, attempted to fire his laser gun at Chelsea's ship, and then sent a group of thugs after you as you escorted Chelsea to safety.
+log_text = _([[You escorted Chelsea, who requests they/them pronouns now, to Durea so that they could see their parents. However, Chelsea's father turned on them because of their gender identity and dealings with the Soromid, aiming a laser gun at Chelsea before he was tackled and held back by Chelsea's mother. You didn't see what happened, but as you and Chelsea ran away, you heard a gunshot. Chelsea's father then caught up with you as you began launch procedures, attempted to fire his laser gun at Chelsea's ship, and then sent a group of goons after you as you escorted Chelsea to safety.
 
 Chelsea has vowed to strengthen their ship so they aren't left in a vulnerable position again.]])
 
@@ -315,23 +315,23 @@ end
 
 
 function ambush_timer ()
-   local thugships = {
+   local goonships = {
       "Vendetta", "Hyena", "Hyena",
    }
-   local leaderthug
-   for i, shiptype in ipairs(thugships) do
-      local p = pilot.add(shiptype, "Comingout_thugs", destplanet,
-            _("Thug %s"):format(_(shiptype)))
+   local leadergoon
+   for i, shiptype in ipairs(goonships) do
+      local p = pilot.add(shiptype, "Comingout_gangsters", destplanet,
+            _("Gangster %s"):format(_(shiptype)))
       p:setHostile()
-      p:setLeader(leaderthug)
+      p:setLeader(leadergoon)
 
       if i == 1 then
-         leaderthug = p
+         leadergoon = p
       end
    end
 
    if stage == 3 then
-      leaderthug:comm(ambush_msg)
+      leadergoon:comm(ambush_msg)
       stage = 4
    end
 end

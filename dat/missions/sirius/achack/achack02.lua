@@ -264,7 +264,7 @@ end
 
 -- Sets up the ambush ships and trigger area.
 function ambushSet(ships, location)
-   ambush = fleet.add(1, ships, "Achack_thugs", location)
+   ambush = fleet.add(1, ships, "Achack_mercenary", location)
    for _, j in ipairs(ambush) do
       j:control()
    end

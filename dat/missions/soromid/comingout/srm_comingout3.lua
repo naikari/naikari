@@ -46,7 +46,7 @@ ask_text = _([[Chelsea gleefully waves you over. "It's nice to see you again!" s
 
 start_text = _([["Awesome! I really appreciate it!
 
-"So the mission is in theory a pretty simple one: I need to deliver some cargo to %s in the %s system. Trouble is apparently I'll be getting on the bad side of some thugs that hate the Soromid or something.
+"So the mission is in theory a pretty simple one: I need to deliver some cargo to %s in the %s system. Trouble is apparently I'll be getting on the bad side of some gang that hates the Soromid or something.
 
 "That's where you come in. I just need you to follow me along, make sure I finish jumping or landing before you do, and if we encounter any hostilities, help me shoot them down. Shouldn't be too too hard as long as you've got a decent ship. I'll meet you out in space!"]])
 
@@ -72,7 +72,7 @@ chelkill_msg = _("MISSION FAILED: A rift in the space-time continuum causes you 
 chelflee_msg = _("MISSION FAILED: Chelsea has abandoned the mission.")
 plflee_msg = _("MISSION FAILED: You have abandoned the mission.")
 
-log_text = _([[You helped escort Chelsea through a dangerous cargo delivery mission where you had to protect her from the thugs of a shady company. She said that she would like to get back in touch with you again sometime for another mission.]])
+log_text = _([[You helped escort Chelsea through a dangerous cargo delivery mission where you had to protect her from some sort of gang. She said that she would like to get back in touch with you again sometime for another mission.]])
 
 
 function create ()
@@ -170,18 +170,18 @@ function spawnChelseaShip( param )
 end
 
 
-function spawnThug( param )
+function spawnGangster(param)
    local shiptypes = {"Hyena", "Hyena", "Hyena", "Shark", "Lancelot"}
    local shiptype = shiptypes[rnd.rnd(1, #shiptypes)]
 
-   thug = pilot.add(shiptype, "Comingout_thugs", param,
-         _("Thug %s"):format(_(shiptype)))
+   gangster = pilot.add(shiptype, "Comingout_gangsters", param,
+         _("Gangster %s"):format(_(shiptype)))
 
-   thug:setHostile()
+   gangster:setHostile()
 
-   hook.pilot(thug, "death", "thug_removed")
-   hook.pilot(thug, "jump", "thug_removed")
-   hook.pilot(thug, "land", "thug_removed")
+   hook.pilot(gangster, "death", "gangster_removed")
+   hook.pilot(gangster, "jump", "gangster_removed")
+   hook.pilot(gangster, "land", "gangster_removed")
 end
 
 
@@ -222,7 +222,7 @@ end
 function takeoff ()
    spawnChelseaShip(startplanet)
    jumpNext()
-   spawnThug()
+   spawnGangster()
 end
 
 
@@ -235,7 +235,7 @@ function jumpin ()
    if chelsea_jumped and system.cur() == getNextSystem(lastsys, missys) then
       spawnChelseaShip(lastsys)
       jumpNext()
-      hook.timer(5, "thug_timer")
+      hook.timer(5, "gangster_timer")
    else
       fail(plflee_msg)
    end
@@ -255,10 +255,10 @@ function land ()
 end
 
 
-function thug_timer ()
-   spawnThug()
+function gangster_timer()
+   spawnGangster()
    if system.cur() == missys then
-      spawnThug(lastsys)
+      spawnGangster(lastsys)
    end
 end
 
@@ -304,8 +304,8 @@ function chelsea_distress_timer ()
 end
 
 
-function thug_removed ()
-   spawnThug()
+function gangster_removed ()
+   spawnGangster()
    if distress_timer_hook ~= nil then hook.rm( distress_timer_hook ) end
    jumpNext()
 end

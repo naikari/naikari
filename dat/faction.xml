@@ -198,7 +198,7 @@
   <allies/>
   <enemies>
    <enemy>Pirate</enemy>
-   <enemy>Comingout_thugs</enemy>
+   <enemy>Comingout_gangsters</enemy>
   </enemies>
  </faction>
  <faction>
@@ -466,32 +466,6 @@
   </enemies>
  </faction>
  <faction>
-  <name>Associates</name>
-  <ai>dvaered</ai>
-  <static />
-  <invisible />
-  <known />
-  <allies />
-  <player>0</player>
-  <standing>static</standing>
-  <enemies>
-   <enemy>Thugs</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Thugs</name>
-  <ai>dvaered</ai>
-  <static />
-  <invisible />
-  <known />
-  <allies />
-  <player>0</player>
-  <standing>static</standing>
-  <enemies>
-   <enemy>Associates</enemy>
-  </enemies>
- </faction>
- <faction>
   <name>Achack_sirius</name>
   <ai>sirius_norun</ai>
   <display>Sirius</display>
@@ -502,13 +476,13 @@
   <player>0</player>
   <standing>static</standing>
   <enemies>
-   <enemy>Achack_thugs</enemy>
+   <enemy>Achack_mercenary</enemy>
   </enemies>
  </faction>
  <faction>
-  <name>Achack_thugs</name>
+  <name>Achack_mercenary</name>
   <ai>baddie_norun</ai>
-  <display>Thugs</display>
+  <display>Mercenary</display>
   <static />
   <invisible />
   <known />
@@ -531,13 +505,13 @@
   <equip>mercenary</equip>
   <enemies>
    <enemy>Pirate</enemy>
-   <enemy>Comingout_thugs</enemy>
+   <enemy>Comingout_gangsters</enemy>
   </enemies>
  </faction>
  <faction>
-  <name>Comingout_thugs</name>
+  <name>Comingout_gangsters</name>
   <ai>baddie</ai>
-  <display>Thugs</display>
+  <display>Gangsters</display>
   <static />
   <invisible />
   <known />

@@ -50,7 +50,7 @@ text6 = _([["You see, those bounty hunters I hired and that you so helpfully sho
     You sit back, motioning for Harja to keep talking. You can sort of tell where this is going, though.
     "Okay, so this is the deal," Harja continues. "I want you to go talk to these guys, and convince them to leave me alone in the future. You know. A bit of diplomacy. Tact. Excessive violence. I'm sure you'll succeed with at least one of those."
     You ignore his cynicism and ask him where to find these bounty hunters.
-    "They move about a lot, which is why I'm not risking going into space myself, but if you want to be sure to catch them, head to Suna. You know, where the Wringer is. I'll send a badly-encrypted message to one of the thugs there, saying that I'm coming to find him. No doubt those bounty hunters will intercept it and lie in wait just outside the jump point. They'll be expecting me, but they'll be getting you. Jump in, do what you have to do, get back here. Then we can talk about going to see that... to see Joanne," he finishes. He seems to have his temper under control a little better now, at least.
+    "They move about a lot, which is why I'm not risking going into space myself, but if you want to be sure to catch them, head to Suna. You know, where the Wringer is. I'll send a badly-encrypted message to one of the peasants there, saying that I'm coming to find him. No doubt those bounty hunters will intercept it and lie in wait just outside the jump point. They'll be expecting me, but they'll be getting you. Jump in, do what you have to do, get back here. Then we can talk about going to see that... to see Joanne," he finishes. He seems to have his temper under control a little better now, at least.
     You leave Harja's table, since it's clear that he's not going to cooperate until you take care of his problem. Why can't it ever just be quick and easy?]])
    
 title5 = _("Harja stays put")
@@ -205,7 +205,7 @@ end
 function jumpin()
    if system.cur() == destsys and stage == stages.killAssociates then
       bhfleet = {"Pirate Vendetta", "Pacifier", "Lancelot", "Hyena"}
-      bhfleet = fleet.add(1, bhfleet, "Achack_thugs", vec2.new(-3000, -7000), _("Bounty Hunter"))
+      bhfleet = fleet.add(1, bhfleet, "Achack_mercenary", vec2.new(-3000, -7000), _("Bounty Hunter"))
       alive = #bhfleet
       for i, j in ipairs(bhfleet) do
          j:control()

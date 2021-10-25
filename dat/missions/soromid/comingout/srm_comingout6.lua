@@ -44,7 +44,7 @@ require "missions/soromid/common"
 
 text = {}
 
-text[1] = _([[You greet Chelsea as usual and have a friendly chat with them. You learn that they had a close call recently with another thug, but they managed to shake the thug off with their new ship.
+text[1] = _([[You greet Chelsea as usual and have a friendly chat with them. You learn that they had a close call recently with another group of gangsters, but they managed to shake them off with their new ship.
 
 "I'm making a lot more money than before. The work is tough though. I've been picking off small pirates with bounties on their heads, doing system patrols, that sort of thing. I'm supposed to be getting a better ship soon, but it's going to be difficult." You ask them why that is. "Well, I came across someone who's offering me a bargain on a new ship! Well, not new exactly. It's used, but in pretty good condition. Supposedly this guy used to be a bounty hunter and is offering me his old Vigilance if I just take care of this one pirate known as %s. Trouble is they're piloting a ship that's stronger than my own.…"
 
