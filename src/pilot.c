@@ -2465,7 +2465,9 @@ static void pilot_hyperspace( Pilot* p, double dt )
                      || player_isFlag(PLAYER_REVERSE)
                      || player_isFlag(PLAYER_ACCEL))) {
                pilot_hyperspaceAbort(p);
-               player_message(_("#rJump aborted."));
+
+               if (!player_isFlag(PLAYER_AUTONAV))
+                  player_message(_("#rJump aborted."));
 
                /* Ensure that acceleration starts where appropriate. We
                 * need to do this since player_accel() suppresses itself
