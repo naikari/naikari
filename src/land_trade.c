@@ -90,18 +90,18 @@ void commodity_exchange_open( unsigned int wid )
            "#nYou have:#0\n"
            "#nPurchased for:#0\n"
            "#nMarket Price:#0\n"
-           "#nFree Space:#0\n"
-           "#nMoney:#0\n"
+           "\n"
            "#nAverage price here:#0\n"
-           "#nAverage price all:#0");
-   infoHeight = gl_printHeightRaw(&gl_defFont, LAND_BUTTON_WIDTH+80, bufSInfo);
-   window_addText( wid, 40 + iw, -60 - titleHeight, 200, infoHeight, 0,
-         "txtSInfo", &gl_defFont, NULL, bufSInfo );
-   window_addText( wid, 40 + iw + 224, -60 - titleHeight,
-         dw - (200 + 20+192), infoHeight, 0,
-         "txtDInfo", &gl_defFont, NULL, NULL );
+           "#nAverage price all:#0\n"
+           "\n"
+           "#nFree Space:#0\n"
+           "#nMoney:#0");
+   infoHeight = gl_printHeightRaw(&gl_defFont, dw - (20+192), bufSInfo);
 
-   window_addText( wid, 40 + iw, MIN(-80-titleHeight-infoHeight, -192-60),
+   window_addText( wid, 40 + iw, -60 - titleHeight, dw - (20+192), infoHeight,
+         0, "txtDInfo", &gl_defFont, NULL, NULL );
+
+   window_addText( wid, 40 + iw, MIN(-60-titleHeight-infoHeight-40, -192-60),
          dw, h - (80+titleHeight+infoHeight) - (40+LAND_BUTTON_HEIGHT), 0,
          "txtDesc", &gl_smallFont, NULL, NULL );
 
@@ -155,16 +155,17 @@ void commodity_update( unsigned int wid, char* str )
    if (i < 0 || array_size(land_planet->commodities) == 0) {
       credits2str( buf_credits, player.p->credits, 2 );
       tonnes2str( buf_tonnes_free, pilot_cargoFree(player.p) );
-      snprintf( buf, PATH_MAX,
-         _("N/A t\n"
-           "\n"
-           "N/A ¢\n"
-           "%s\n"
-           "%s\n"
-           "N/A ¢\n"
-           "N/A ¢"),
-         buf_tonnes_free,
-         buf_credits );
+      snprintf(buf, PATH_MAX,
+         _("#nYou have:#0 N/A\n"
+            "#nPurchased for:#0 N/A\n"
+            "#nMarket Price:#0 N/A\n"
+            "\n"
+            "#nAverage price here:#0 N/A\n"
+            "#nAverage price all:#0 N/A\n"
+            "\n"
+            "#nFree Space:#0 %s\n"
+            "#nMoney:#0 %s"),
+         buf_tonnes_free, buf_credits);
       window_modifyText( wid, "txtDInfo", buf );
       window_modifyText( wid, "txtDesc", _("No commodities available.") );
       window_disableButton( wid, "btnCommodityBuy" );
@@ -183,24 +184,27 @@ void commodity_update( unsigned int wid, char* str )
    credits2str( buf_globalmean, globalmean, -1 );
    snprintf( buf_globalstd, sizeof(buf_globalstd), _("%.1f ¢"), globalstd ); /* TODO credit2str could learn to do this... */
    /* modify text */
-   buf_purchase_price[0]='\0';
-   owned=pilot_cargoOwned( player.p, com );
-   if ( owned > 0 )
-      credits2str( buf_purchase_price, com->lastPurchasePrice, -1 );
-   credits2str( buf_credits, player.p->credits, 2 );
-   credits2str( buf_local_price, planet_commodityPrice( land_planet, com ), -1 );
-   tonnes2str( buf_tonnes_owned, owned );
-   tonnes2str( buf_tonnes_free, pilot_cargoFree(player.p) );
-   snprintf( buf, sizeof(buf),
-              _( "%s\n"
-                 "%s\n"
-                 "%s/t\n"
-                 "%s\n"
-                 "%s\n"
-                 "%s/t ± %s/t\n"
-                 "%s/t ± %s/t\n" ),
-              buf_tonnes_owned, buf_purchase_price, buf_local_price, buf_tonnes_free, buf_credits, buf_mean, buf_std,
-              buf_globalmean, buf_globalstd );
+   strcpy(buf_purchase_price, _("N/A"));
+   owned = pilot_cargoOwned(player.p, com);
+   if (owned > 0)
+      credits2str(buf_purchase_price, com->lastPurchasePrice, -1);
+   credits2str(buf_credits, player.p->credits, 2);
+   credits2str(buf_local_price, planet_commodityPrice(land_planet, com), -1);
+   tonnes2str(buf_tonnes_owned, owned);
+   tonnes2str(buf_tonnes_free, pilot_cargoFree(player.p));
+   snprintf(buf, sizeof(buf),
+              _("#nYou have:#0 %s\n"
+                 "#nPurchased for:#0 %s\n"
+                 "#nMarket Price:#0 %s/t\n"
+                 "\n"
+                 "#nAverage price here:#0 %s/t ± %s/t\n"
+                 "#nAverage price all:#0 %s/t ± %s/t\n"
+                 "\n"
+                 "#nFree Space:#0 %s\n"
+                 "#nMoney:#0 %s"),
+              buf_tonnes_owned, buf_purchase_price, buf_local_price,
+              buf_tonnes_free, buf_credits, buf_mean, buf_std,
+              buf_globalmean, buf_globalstd);
 
    window_modifyText( wid, "txtDInfo", buf );
    window_modifyText( wid, "txtName", _(com->name) );
