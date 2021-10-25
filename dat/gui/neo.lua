@@ -66,12 +66,73 @@ function render(dt, dt_mod)
 end
 
 
-function render_bar_raw(x, y, col, col_end, pct)
+--[[
+-- Render the bar portion of a weapon bar.
+--
+-- If the argument passed to the text parameter is non-nil, text is
+-- displayed over the bar and any arguments for the parameters that
+-- follow it are ignored, so you can only use either the
+-- reload/lock/icon/weapon number graphic *or* text, not both.
+--
+--    @tparam number x Location X coordinate.
+--    @tparam number y Location Y coordinate.
+--    @tparam Colour col Color of the bar.
+--    @tparam Colour col_end Color of the tip of the bar.
+--    @tparam number pct Percent of the bar to fill.
+--    @tparam[opt] string text Text to display over the bar. Must be nil
+--       to use the ricon, rpct, and wnum parameters.
+--    @tparam[opt] Tex ricon Icon to show in the reload meter.
+--    @tparam[opt] Colour rcol Color of the reload meter.
+--    @tparam[opt] number rpct Percent of the reload meter to fill.
+--       Only works if rcol is specified as well.
+--    @tparam[opt] string wnum Weapon number to display. Should be
+--       single digit.
+--    @tparam[opt] Colour lcol Color of the lock-on meter.
+--    @tparam[opt] number lpct Percent of the lock-on meter to fill.
+--       Only works if lcol is specified as well.
+-- @func render_bar_raw
+--]]
+function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
+      lcol, lpct)
    local w, h = tex_barFrame:dim()
    local bw = math.floor(w * pct)
+   local centerx = math.floor(x + w/2)
+   local text_y = math.ceil(y + h/2 - gfx.fontSize(true)/2)
+
    gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
    gfx.renderRect(x, y, bw, h, col)
    gfx.renderRect(x + bw - 1, y, 1, h, col_end)
+
+   if text ~= nil then
+      gfx.print(true, text, centerx, text_y, col_text, w, true)
+   elseif ricon ~= nil or wnum ~nil or (rcol ~= nil and rpct ~= nil)
+         or (lcol ~= nil and lpct ~= nil) then
+      local cw, ch = tex_barCircles:dim()
+      local cx = math.floor(x + w/2 - cw/2)
+
+      if rcol ~= nil and rpct ~= nil then
+         -- TODO
+      end
+
+      if lcol != nil and lpct ~= nil then
+         -- TODO
+      end
+
+      gfx.renderTex(tex_barCircles, cx, y)
+
+      if ricon ~= nil then
+         local iw, ih = ricon:dim()
+         local ix = math.floor(x + w/2 - cw/4 - iw/2)
+         local iy = math.floor(y + h/2 - ih/2)
+         gfx.renderTex(ricon, ix, iy)
+      end
+
+      if wnum ~= nil then
+         local tx = math.floor(x + w/2 + cw/4)
+         gfx.print(true, wnum, tx, text_y, col_text, math.floor(cw/4), true)
+      end
+   end
+
    gfx.renderTex(tex_barFrame, x, y)
 end
 
