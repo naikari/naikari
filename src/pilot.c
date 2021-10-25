@@ -2442,16 +2442,39 @@ static void pilot_hyperspace( Pilot* p, double dt )
 
          if (pilot_isPlayer(p))
             if (!player_isFlag(PLAYER_AUTONAV))
-               player_message( _("#rStrayed too far from jump point: jump aborted.") );
+               player_message(
+                  _("#rJump aborted: strayed too far from jump point."));
       }
       else if (pilot_isFlag(p,PILOT_AFTERBURNER)) {
          pilot_hyperspaceAbort( p );
 
          if (pilot_isPlayer(p))
             if (!player_isFlag(PLAYER_AUTONAV))
-               player_message( _("#rAfterburner active: jump aborted.") );
+               player_message(_("#rJump aborted: afterburner active."));
       }
       else {
+         if (pilot_isPlayer(p)) {
+            /* Need to call this here since thinking doesn't happen. */
+            player_autonavShouldResetSpeed();
+
+            /* If a movement control is pressed, immediately abort and
+             * return control to the player. */
+            if (!pilot_isFlag(p, PILOT_HYPERSPACE)
+                  && (player_isFlag(PLAYER_TURN_LEFT)
+                     || player_isFlag(PLAYER_TURN_RIGHT)
+                     || player_isFlag(PLAYER_REVERSE)
+                     || player_isFlag(PLAYER_ACCEL))) {
+               pilot_hyperspaceAbort(p);
+               player_message(_("#rJump aborted."));
+
+               /* Ensure that acceleration starts where appropriate. We
+                * need to do this since player_accel() suppresses itself
+                * during the hyperspace sequence. */
+               if (player_isFlag(PLAYER_ACCEL))
+                  player_accel(1.);
+            }
+         }
+
          if (p->ptimer < 0.) { /* engines ready */
             p->ptimer = HYPERSPACE_FLY_DELAY * p->stats.jump_delay;
             pilot_setFlag(p, PILOT_HYPERSPACE);
@@ -2469,7 +2492,8 @@ static void pilot_hyperspace( Pilot* p, double dt )
 
          if (pilot_isPlayer(p))
             if (!player_isFlag(PLAYER_AUTONAV))
-               player_message( _("#rStrayed too far from jump point: jump aborted.") );
+               player_message(
+                  _("#rJump aborted: strayed too far from jump point."));
       }
       else {
          /* If the ship needs to charge up its hyperdrive, brake. */
