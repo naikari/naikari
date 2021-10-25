@@ -712,7 +712,7 @@ function render( dt )
    mod_x = math.max( margin, math.min(
          screen_w - 2*margin - math.max( gui_w, 1024 ),
          math.floor( (screen_w - 2*margin - gui_w)/3 ) ) )
-   mod_y = 46
+   mod_y = margin + 12
    gfx.renderTexRaw( ext_right, left_side_w - 10 + mod_x, mod_y, right_side_w, end_right_h, 1, 1, 0, 0, 1, 1 )
    gfx.renderTex( end_right, right_side_x + right_side_w + mod_x, mod_y )
 
