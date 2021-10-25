@@ -17,7 +17,7 @@
 Za'lek Cargo Run. adapted from Drunkard Mission
 ]]--
 
-require "numstring"
+local fmt = require "fmt"
 require "missions/zalek/common"
 
 
@@ -57,11 +57,9 @@ When you enter, your head spins at a combination of the highly advanced and esot
 
 text[5] = _([[You feel a little agitated as you leave the atmosphere, but you guess you can't blame the scientist for being late, especially given the lack of organization you've seen on the planet. Suddenly, you hear a ping on your console, signifying that someone's hailing you.]])
 
-text[6] = _([["Hello again. It's Dr. Logan. I am terribly sorry for the delay. As agreed, you will be paid your fee. I am pleased by your help, captain; I hope we meet again."]])
+pay_text = _([["Hello again. It's Dr. Logan. I am terribly sorry for the delay. As agreed, you will be paid your fee. I am pleased by your help, captain; I hope we meet again."
 
-text[7] = _([["For your trouble, I will add a bonus of %s to your fee. I am pleased by your help, captain; I hope we meet again."]])
-
-text[8] = _([[You check your account balance as he closes the comm channel to find yourself %s richer. A good compensation indeed. You feel better already.]])
+You check your account balance as he closes the comm channel to find yourself {credits} richer. A good compensation indeed. You feel better already.]])
 
 text[9] = _([[You don't have enough cargo space to accept this mission.]])
 
@@ -163,18 +161,9 @@ function takeoff()
 end
 
 function hail()
-   tk.msg("", text[6])
-
---   eventually I'll implement a bonus
---   tk.msg("", text[7]:format(creditstring(bonus)))
-
-   hook.update("closehail")
-end
-
-function closehail()
-   bonus = 0
+   player.commClose()
+   tk.msg("", fmt.f(pay_text, {credits=fmt.credits(payment)}))
    player.pay(payment)
-   tk.msg("", text[8]:format(creditstring(payment)))
    logan:setVisplayer(false)
    logan:setHilight(false)
    logan:setInvincible(false) 
