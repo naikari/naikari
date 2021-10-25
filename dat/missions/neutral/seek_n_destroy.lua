@@ -180,7 +180,7 @@ function create ()
    end
 
    ship = ships[rnd.rnd(1,#ships)]
-   credits = 1000000 + rnd.rnd()*500000
+   credits = 500000 + rnd.rnd()*200000 + rnd.sigma()*10000
    cursys = 1
 
    -- Set mission details
