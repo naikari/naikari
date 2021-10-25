@@ -8,7 +8,6 @@
   <location>Computer</location>
   <faction>Pirate</faction>
   <faction>Independent</faction>
-  <faction>FLF</faction>
  </avail>
 </mission>
 --]]
