@@ -1517,42 +1517,44 @@ int player_land( int loud )
       silent = 1; /* Suppress further targeting noises. */
    }
    /*check if planet is in range*/
-   else if (!pilot_inRangePlanet( player.p, player.p->nav_planet )) {
-      player_planetOutOfRangeMsg();
+   else if (!pilot_inRangePlanet(player.p, player.p->nav_planet)) {
+      if (loud)
+         player_planetOutOfRangeMsg();
+
       return PLAYER_LAND_AGAIN;
    }
 
    if (player_isFlag(PLAYER_NOLAND)) {
-      player_message( "#r%s", player_message_noland );
+      player_message("#r%s", player_message_noland);
       return PLAYER_LAND_DENIED;
    }
    else if (pilot_isFlag( player.p, PILOT_NOLAND)) {
-      player_message( _("#rDocking stabilizers malfunctioning, cannot land.") );
+      player_message(_("#rDocking stabilizers malfunctioning, cannot land."));
       return PLAYER_LAND_DENIED;
    }
 
    /* attempt to land at selected planet */
    planet = cur_system->planets[player.p->nav_planet];
    if (!planet_hasService(planet, PLANET_SERVICE_LAND)) {
-      player_messageRaw( _("#rYou can't land here.") );
+      player_messageRaw(_("#rYou can't land here."));
       return PLAYER_LAND_DENIED;
    }
    else if (!player_isFlag(PLAYER_LANDACK)) { /* no landing authorization */
       if (planet_hasService(planet,PLANET_SERVICE_INHABITED)) { /* Basic services */
          if (planet->can_land || (planet->land_override > 0))
-            player_message( "#%c%s>#0 %s", planet_getColourChar(planet),
-                  _(planet->name), planet->land_msg );
+            player_message("#%c%s>#0 %s", planet_getColourChar(planet),
+                  _(planet->name), planet->land_msg);
          else if (planet->bribed && (planet->land_override >= 0))
-            player_message( "#%c%s>#0 %s", planet_getColourChar(planet),
-                  _(planet->name), planet->bribe_ack_msg );
+            player_message("#%c%s>#0 %s", planet_getColourChar(planet),
+                  _(planet->name), planet->bribe_ack_msg);
          else { /* Hostile */
-            player_message( "#%c%s>#0 %s", planet_getColourChar(planet),
-                  _(planet->name), planet->land_msg );
+            player_message("#%c%s>#0 %s", planet_getColourChar(planet),
+                  _(planet->name), planet->land_msg);
             return PLAYER_LAND_DENIED;
          }
       }
       else /* No shoes, no shirt, no lifeforms, no service. */
-         player_message( _("#oReady to land on %s."), _(planet->name) );
+         player_message(_("#oReady to land on %s."), _(planet->name));
 
       player_setFlag(PLAYER_LANDACK);
       if (!silent)
@@ -2238,7 +2240,7 @@ void player_hail (void)
       comm_openPilot(player.p->target);
    else if (player.p->nav_planet != -1) {
       if (pilot_inRangePlanet( player.p, player.p->nav_planet ))
-         comm_openPlanet( cur_system->planets[ player.p->nav_planet ] );
+         comm_openPlanet(cur_system->planets[player.p->nav_planet], 0);
       else
          player_planetOutOfRangeMsg();
    }
@@ -2252,21 +2254,29 @@ void player_hail (void)
 
 /**
  * @brief Opens communication with the player's planet target.
+ *
+ *    @param loud Whether to output messages irrelevant to autonav
+ *    @return 1 if actually hailed, 0 if could not contact.
  */
-void player_hailPlanet (void)
+int player_hailPlanet(int loud)
 {
    /* Not under manual control. */
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ))
-      return;
+      return 0;
 
    if (player.p->nav_planet != -1) {
       if (pilot_inRangePlanet( player.p, player.p->nav_planet ))
-         comm_openPlanet( cur_system->planets[ player.p->nav_planet ] );
-      else
-         player_planetOutOfRangeMsg();
+         comm_openPlanet(cur_system->planets[player.p->nav_planet], 1);
+      else {
+         if (loud)
+            player_planetOutOfRangeMsg();
+         return 0;
+      }
    }
    else
       player_message(_("#rNo target selected to hail."));
+
+   return 1;
 }
 
 

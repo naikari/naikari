@@ -13,7 +13,7 @@
 int comm_isOpen (void);
 void comm_queueClose (void);
 int comm_openPilot( unsigned int pilot );
-int comm_openPlanet( Planet *planet );
+int comm_openPlanet(Planet *planet, int autonav);
 
 
 #endif /* COMM_H */

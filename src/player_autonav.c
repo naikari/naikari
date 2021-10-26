@@ -31,12 +31,14 @@
 
 extern double player_acc; /**< Player acceleration. */
 
-static double tc_mod    = 1.; /**< Time compression modifier. */
-static double tc_base   = 1.; /**< Base compression modifier. */
-static double tc_down   = 0.; /**< Rate of decrement. */
-static int tc_rampdown  = 0; /**< Ramping down time compression? */
+static double tc_mod = 1.; /**< Time compression modifier. */
+static double tc_base = 1.; /**< Base compression modifier. */
+static double tc_down = 0.; /**< Rate of decrement. */
+static int tc_rampdown = 0; /**< Ramping down time compression? */
 static double lasts;
 static double lasta;
+static int hailed;
+static int informed;
 
 /*
  * Prototypes.
@@ -126,10 +128,12 @@ static int player_autonavSetup (void)
    /* Safe values. */
    free( player.autonavmsg );
    player.autonavmsg = NULL;
-   tc_rampdown  = 0;
-   tc_down      = 0.;
-   lasts        = player.p->shield / player.p->shield_max;
-   lasta        = player.p->armour / player.p->armour_max;
+   tc_rampdown = 0;
+   tc_down = 0.;
+   lasts = player.p->shield / player.p->shield_max;
+   lasta = player.p->armour / player.p->armour_max;
+   hailed = 0;
+   informed = 0;
 
    /* Set flag and tc_mod just in case. */
    player_setFlag(PLAYER_AUTONAV);
@@ -192,7 +196,18 @@ void player_autonavPnt( char *name )
    if (!player_autonavSetup())
       return;
 
-   player.autonav    = AUTONAV_PNT_APPROACH;
+   /* Resting on the assumption that initialization of auto-landing
+    * starts with an attempt to land normally (as it should), this
+    * variable is here to ensure that double-messages don't happen,
+    * which otherwise occurs with planet where landing clearance was
+    * denied due to how it works. Essentially, if we're in range,
+    * that means the previous player.land call already had a chance
+    * to give the player the planet faction's explanation, and so we
+    * make a note of this so that they don't immediately repeat
+    * themselves as a part of the hailing step. */
+   informed = pilot_inRangePlanet(player.p, player.p->nav_planet);
+
+   player.autonav = AUTONAV_PNT_APPROACH;
    player.autonavmsg = strdup( _(p->name) );
    player.autonavcol = planet_getColourChar( p );
    vect_cset( &player.autonav_pos, p->pos.x, p->pos.y );
@@ -301,12 +316,13 @@ void player_autonavAbort( const char *reason )
  */
 static void player_autonav (void)
 {
+   StarSystem *sys;
    JumpPoint *jp;
+   Planet *pnt;
    Pilot *p;
    int ret, map_npath;
    double d, t, tint;
    double vel;
-   StarSystem *sys;
    double a, diff;
 
    (void)map_getDestination( &map_npath );
@@ -406,6 +422,37 @@ static void player_autonav (void)
          break;
 
       case AUTONAV_PNT_APPROACH:
+         if (!hailed && !player_isFlag(PLAYER_BASICAPPROACH)
+               && !player_isFlag(PLAYER_LANDACK)
+               && (player.p->nav_planet != -1)) {
+            pnt = cur_system->planets[player.p->nav_planet];
+            if (!pnt->can_land && !pnt->bribed && (pnt->land_override <= 0)) {
+               ret = player_hailPlanet(0);
+               if (ret) {
+                  if (pnt->faction < 0) {
+                     player_autonavAbort(NULL);
+                     break;
+                  }
+                  else {
+                     if (!informed) {
+                        /* Call player_land so the player knows what's up. */
+                        player_land(0);
+                        informed = 1;
+                     }
+
+                     player_message(
+                        _("#oAutonav: hailing planet; please negotiate land"
+                           " clearance."));
+                     hailed = 1;
+                  }
+               }
+            }
+            else {
+               /* Call player_land to let player know of clearance. */
+               player_land(0);
+            }
+         }
+
          ret = player_autonavApproach( &player.autonav_pos, &d, 1 );
          if (ret) {
             if (player_isFlag(PLAYER_BASICAPPROACH)) {
@@ -427,10 +474,13 @@ static void player_autonav (void)
 
          /* Try to land. */
          if (ret) {
-            if (player_land(0) == PLAYER_LAND_DENIED)
-               player_autonavAbort(NULL);
-            else
+            ret = player_land(0);
+            if (ret == PLAYER_LAND_OK)
+               player_autonavEnd();
+            else if (ret == PLAYER_LAND_AGAIN)
                player.autonav = AUTONAV_PNT_APPROACH;
+            else
+               player_autonavAbort(NULL);
          }
 
          /* See if should ramp down. */

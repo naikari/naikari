@@ -703,6 +703,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
 {
    unsigned int t;
    HookParam hparam[3];
+   Planet *pnt;
 
    /* Repetition stuff. */
    if (conf.repeat_delay != 0) {
@@ -922,9 +923,11 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    } else if (KEY("land") && INGAME() && NOHYP() && NOLAND() && NODEAD()) {
       if (value==KEY_PRESS) {
          if (player.p->nav_planet != -1) {
-            if (player_land(0) == PLAYER_LAND_AGAIN) {
+            pnt = cur_system->planets[player.p->nav_planet];
+            if ((player_land(0) != PLAYER_LAND_OK)
+                  && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
                player_rmFlag(PLAYER_BASICAPPROACH);
-               player_autonavPnt(cur_system->planets[player.p->nav_planet]->name);
+               player_autonavPnt(pnt->name);
                player_message(_("#oAutonav: auto-landing sequence engaged."));
             }
          } else
@@ -1468,21 +1471,18 @@ int input_clickedPlanet( int planet, int autonav )
 
    if (planet == player.p->nav_planet && input_isDoubleClick((void*)pnt)) {
       player_hyperspacePreempt(0);
-      if ((pnt->faction < 0) || pnt->can_land || pnt->bribed ||
-            (pnt->land_override > 0)) {
-         ret = player_land(0);
-         if (ret == PLAYER_LAND_AGAIN) {
+      ret = player_land(0);
+      if (ret != PLAYER_LAND_OK) {
+         if (planet_hasService(pnt, PLANET_SERVICE_LAND)) {
             player_rmFlag(PLAYER_BASICAPPROACH);
             player_autonavPnt(pnt->name);
             player_message(_("#oAutonav: auto-landing sequence engaged."));
          }
-         else if (ret == PLAYER_LAND_DENIED) {
+         else {
             player_setFlag(PLAYER_BASICAPPROACH);
             player_autonavPnt(pnt->name);
          }
       }
-      else
-         player_hailPlanet();
    }
    else
       player_targetPlanetSet( planet );

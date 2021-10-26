@@ -36,10 +36,11 @@
 #define GRAPHIC_HEIGHT 256 /**< Height of graphic. */
 
 
-static Pilot *comm_pilot       = NULL; /**< Pilot currently talking to. */
-static Planet *comm_planet     = NULL; /**< Planet currently talking to. */
+static Pilot *comm_pilot = NULL; /**< Pilot currently talking to. */
+static Planet *comm_planet = NULL; /**< Planet currently talking to. */
 static glTexture *comm_graphic = NULL; /**< Pilot's graphic. */
-static int comm_commClose      = 0; /**< Close comm when done. */
+static int comm_commClose = 0; /**< Close comm when done. */
+static int comm_autonav = 0; /* Whether or not the comm is for autonav. */
 
 
 /*
@@ -214,9 +215,10 @@ static void comm_addPilotSpecialButtons( unsigned int wid )
  * @brief Opens a communication dialogue with a planet.
  *
  *    @param planet Planet to communicate with.
+ *    @param autonav Whether the call is from autonav.
  *    @return 0 on success.
  */
-int comm_openPlanet( Planet *planet )
+int comm_openPlanet(Planet *planet, int autonav)
 {
    unsigned int wid;
 
@@ -247,6 +249,8 @@ int comm_openPlanet( Planet *planet )
    /* Create the generic comm window. */
    wid = comm_open( gl_dupTexture( comm_planet->gfx_space ),
          comm_planet->faction, 0, 0, _(comm_planet->name) );
+
+   comm_autonav = autonav;
 
    /* Add special buttons. */
    if (!planet->can_land && !planet->bribed && (planet->bribe_msg != NULL))
@@ -279,6 +283,9 @@ static unsigned int comm_open( glTexture *gfx, int faction,
    glFont *font;
    int gw, gh;
    double aspect;
+
+   /* Ensure comm_autonav is 0 by default. */
+   comm_autonav = 0;
 
    /* Clean up. */
    gl_freeTexture(comm_graphic);
@@ -384,12 +391,22 @@ static unsigned int comm_open( glTexture *gfx, int faction,
  */
 static void comm_close( unsigned int wid, char *unused )
 {
+   if (comm_autonav && (comm_planet != NULL)) {
+      /* If the comm is part of autonav, check to see if the planet is
+       * bribed now: if it is, call player_land to show the player that
+       * landing is now authorized; and if it isn't, abort autonav. */
+      if (comm_planet->bribed)
+         player_land(0);
+      else
+         player_autonavAbort(NULL);
+   }
+
    gl_freeTexture(comm_graphic);
    comm_graphic = NULL;
-   comm_pilot  = NULL;
+   comm_pilot = NULL;
    comm_planet = NULL;
    /* Close the window. */
-   window_close( wid, unused );
+   window_close(wid, unused);
 }
 
 
@@ -523,7 +540,7 @@ static void comm_bribePlanet( unsigned int wid, char *unused )
 
    /* Reopen window. */
    window_destroy( wid );
-   comm_openPlanet( comm_planet );
+   comm_openPlanet(comm_planet, comm_autonav);
 }
 
 
