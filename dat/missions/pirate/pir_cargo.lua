@@ -18,6 +18,7 @@
 
 ]]--
 
+local fmt = require "fmt"
 require "cargo_common"
 require "numstring"
 
@@ -105,31 +106,32 @@ function create()
    distreward = 0.30
    reward    = 1.5^tier * (numjumps * jumpreward + traveldist * distreward) * finished_mod * (1. + 0.05*rnd.twosigma())
    
-   misn.setTitle(string.format(
-            _("PIRACY: Illegal Cargo transport (%s of %s)"),
-            tonnestring(amount), _(cargo[1])))
+   misn.setTitle(fmt.f(
+            _("PIRACY: Illegal Cargo transport ({amount} of {cargotype})"),
+            {amount=fmt.tonnes(amount), cargotype=_(cargo[1])}))
    misn.markerAdd(destsys, "computer")
    cargo_setDesc(misn_desc:format(destplanet:name(), destsys:name()), cargo[1],
          amount, destplanet, timelimit);
-   misn.setReward(creditstring(reward))
+   misn.setReward(fmt.credits(reward))
 end
 
 -- Mission is accepted
 function accept()
    local playerbest = cargoGetTransit(timelimit, numjumps, traveldist)
    if timelimit < playerbest then
-      if not tk.yesno(_("Too slow"), string.format(
-               _("This shipment must arrive within %s, but it will take at least %s for your ship to reach %s, missing the deadline. Accept the mission anyway?"),
-               (timelimit - time.get()):str(), (playerbest - time.get()):str(),
-               destplanet:name())) then
+      if not tk.yesno("", fmt.f(
+               _("This shipment must arrive within {timelimit}, but it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?"),
+               {timelimit=(timelimit - time.get()):str(),
+                  time=(playerbest - time.get()):str(),
+                  planet=destplanet:name()})) then
          misn.finish()
       end
    end
    if player.pilot():cargoFree() < amount then
-      tk.msg(_("No room in ship"), string.format(
-               _("You don't have enough cargo space to accept this mission. It requires %s of free space (%s more than you have)."),
-               tonnestring(amount),
-               tonnestring(amount - player.pilot():cargoFree())))
+      tk.msg("", fmt.f(
+               _("You don't have enough cargo space to accept this mission. It requires {amount} of free space ({amount2} more than you have)."),
+               {amount=fmt.tonnes(amount),
+                  amount2=fmt.tonnes(amount - player.pilot():cargoFree())}))
       misn.finish()
    end
 
@@ -137,9 +139,7 @@ function accept()
 
    local cobj = misn.cargoNew(cargo[1], cargo[2])
    carg_id = misn.cargoAdd(cobj, amount)
-   tk.msg(_("Mission Accepted"), string.format(
-            _("%s of %s are loaded onto your ship."), tonnestring(amount),
-            _(cargo[1])))
+
    local osd_msg = {}
    osd_msg[1] = osd_msg1:format(
       destplanet:name(), destsys:name(), timelimit:str(),
@@ -152,9 +152,9 @@ end
 -- Land hook
 function land()
    if planet.cur() == destplanet then
-         tk.msg(_("Successful Delivery"), string.format(
-                  _("The containers of %s are unloaded at the docks."),
-                  _(cargo[1])))
+         tk.msg("", fmt.f(
+                  _("The containers of {cargotype} are unloaded at the docks."),
+                  {cargotype=_(cargo[1])}))
       player.pay(reward)
       n = var.peek("ps_misn")
       if n ~= nil then
