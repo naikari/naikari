@@ -44,7 +44,7 @@ require "jumpdist"
 
 
 npc_desc = _("A pirate informer sits at the bar. Perhaps they might have some useful information.…")
-misn_desc = _("You and a pirate informer have conspired to steal a vulnerable {ship} in the {system} system. You are to disable and board the ship, then meed up with the pirate at a place of your choosing.")
+misn_desc = _("You and a pirate informer have conspired to steal a vulnerable {shiptype} in the {system} system. You are to disable and board the ship, then meed up with the pirate at a place of your choosing.")
 
 ask_text = _([[You approach the pirate informer. "I have a fantastic offer for you," they say. "There's a practically defenseless {shiptype} just waiting to be… taken off its pilot's hands. For just {credits}, I'll tell you the ship's location and even help you get the ship! Well? What do you say?"]])
 
@@ -165,7 +165,7 @@ function accept()
 
    -- Set mission details
    misn.setTitle(_("Ship Stealing"))
-   misn.setDesc(fmt.f(misn_desc))
+   misn.setDesc(fmt.f(misn_desc, {shiptype=shiptype, system=missys:name()}))
 
    misn.setReward(_("A shiny new ship"))
    marker = misn.markerAdd(missys, "computer")
