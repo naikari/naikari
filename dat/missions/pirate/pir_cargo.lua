@@ -181,9 +181,9 @@ function tick()
    if timelimit >= time.get() then
       -- Case still in time
       local osd_msg = {}
-      osd_msg[1] = osd_msg1:format(
-         destplanet:name(), destsys:name(), timelimit:str(),
-         (timelimit - time.get()):str())
+      osd_msg[1] = fmt.f(osd_msg1,
+         {planet=destplanet:name(), system=destsys:name(),
+            timelimit=timelimit:str(), time=(timelimit - time.get()):str()})
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit <= time.get() then
       -- Case missed deadline
