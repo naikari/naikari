@@ -306,6 +306,8 @@ static void player_autonav (void)
    int ret, map_npath;
    double d, t, tint;
    double vel;
+   StarSystem *sys;
+   double a, diff;
 
    (void)map_getDestination( &map_npath );
 
@@ -347,15 +349,37 @@ static void player_autonav (void)
 
       case AUTONAV_JUMP_BRAKE:
          /* Target jump. */
-         jp    = &cur_system->jumps[ player.p->nav_hyperspace ];
+         jp = &cur_system->jumps[player.p->nav_hyperspace];
          if (player.p->stats.misc_instant_jump) {
-            ret = pilot_interceptPos( player.p, jp->pos.x, jp->pos.y );
-            if (!ret && space_canHyperspace(player.p))
-               ret = 1;
-            player_acc = player.p->solid->thrust / player.p->thrust;
+            ret = 0;
+
+            /* Check to see if headed toward the jump point. */
+            a = atan2(jp->pos.y - player.p->solid->pos.y,
+                  jp->pos.x - player.p->solid->pos.x);
+            diff = angle_diff(VANGLE(player.p->solid->vel), a);
+
+            if (ABS(diff) < MIN_DIR_ERR) {
+               /* Face system headed to. */
+               sys = cur_system->jumps[player.p->nav_hyperspace].target;
+               a = ANGLE(sys->pos.x - cur_system->pos.x,
+                     sys->pos.y - cur_system->pos.y);
+               diff = pilot_face(player.p, a);
+               if (ABS(diff) < MAX_DIR_ERR)
+                  pilot_setTurn(player.p, 0.);
+
+               if (space_canHyperspace(player.p))
+                  /* Hyperspace time! */
+                  ret = 1;
+            }
+            else {
+               /* Trajectory is bad; fall back to the braking method,
+                * which is more reliable. */
+               ret = player_autonavBrake();
+            }
          }
-         else
+         else {
             ret = player_autonavBrake();
+         }
 
          /* Try to jump or see if braked. */
          if (ret) {
