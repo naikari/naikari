@@ -695,7 +695,7 @@ static void faction_modPlayerLua( int f, double mod, const char *source, int sec
 {
    Faction *faction;
    double old, delta;
-   HookParam hparam[3];
+   HookParam hparam[4];
 
    faction = &faction_stack[f];
 
@@ -742,11 +742,13 @@ static void faction_modPlayerLua( int f, double mod, const char *source, int sec
    /* Run hook if necessary. */
    delta = faction->player - old;
    if (FABS(delta) > 1e-10) {
-      hparam[0].type    = HOOK_PARAM_FACTION;
-      hparam[0].u.lf    = f;
-      hparam[1].type    = HOOK_PARAM_NUMBER;
-      hparam[1].u.num   = delta;
-      hparam[2].type    = HOOK_PARAM_SENTINEL;
+      hparam[0].type = HOOK_PARAM_FACTION;
+      hparam[0].u.lf = f;
+      hparam[1].type = HOOK_PARAM_NUMBER;
+      hparam[1].u.num = delta;
+      hparam[2].type = HOOK_PARAM_BOOL;
+      hparam[2].u.b = secondary;
+      hparam[3].type = HOOK_PARAM_SENTINEL;
       hooks_runParam( "standing", hparam );
 
       /* Tell space the faction changed. */

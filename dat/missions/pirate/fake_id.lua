@@ -96,11 +96,17 @@ function accept ()
 end
 
 
-function standing(f, delta)
+function standing(f, delta, secondary)
    local fn = f:nameRaw()
    if orig_standing[fn] ~= nil then
       if delta < 0 then
          abort()
+      elseif f:playerStanding() >= 20 then
+         if next_discovered then
+            abort()
+         else
+            next_discovered = rnd.rnd() < 0.1
+         end
       end
    elseif fn == "Pirate" and delta >= 0 then
       local sf = system.cur():faction()

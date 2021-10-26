@@ -23,12 +23,12 @@ require "cargo_common"
 require "numstring"
 
 
-misn_desc = _("Pirate cargo transport of contraband goods to %s in the %s system.")
+misn_desc = _("Pirate cargo transport of contraband goods to {planet} in the {system} system.")
 
 msg_timeup = _("MISSION FAILED: You have failed to deliver the goods on time!")
 
 osd_title = _("Pirate Shipping")
-osd_msg1 = _("Fly to %s in the %s system before %s\n(%s remaining)")
+osd_msg1 = _("Fly to {planet} ({system} system) before {timelimit}\n({time} remaining)")
 
 -- Use hidden jumps
 cargo_use_hidden = true
@@ -85,6 +85,7 @@ function create()
       },
    }
    cargo = cargoes[rnd.rnd(1, #cargoes)]
+   cargo["__save"] = true
 
    -- mission generics
    stuperpx   = 0.3 - 0.015 * tier
@@ -110,8 +111,9 @@ function create()
             _("PIRACY: Illegal Cargo transport ({amount} of {cargotype})"),
             {amount=fmt.tonnes(amount), cargotype=_(cargo[1])}))
    misn.markerAdd(destsys, "computer")
-   cargo_setDesc(misn_desc:format(destplanet:name(), destsys:name()), cargo[1],
-         amount, destplanet, timelimit);
+   cargo_setDesc(
+         fmt.f(misn_desc, {planet=destplanet:name(), system=destsys:name()}),
+         cargo[1], amount, destplanet, timelimit);
    misn.setReward(fmt.credits(reward))
 end
 
@@ -141,9 +143,9 @@ function accept()
    carg_id = misn.cargoAdd(cobj, amount)
 
    local osd_msg = {}
-   osd_msg[1] = osd_msg1:format(
-      destplanet:name(), destsys:name(), timelimit:str(),
-      (timelimit - time.get()):str())
+   osd_msg[1] = fmt.f(osd_msg1,
+      {planet=destplanet:name(), system=destsys:name(),
+         timelimit=timelimit:str(), time=(timelimit - time.get()):str()})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land") -- only hook after accepting
    hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
@@ -164,7 +166,12 @@ function land()
       end
 
       -- increase faction
-      faction.modPlayer("Pirate", 1)
+      if player.misnActive("Fake ID") then
+         -- Won't get immediately noticed with fake ID.
+         faction.modPlayerSingle("Pirate", 1)
+      else
+         faction.modPlayer("Pirate", 1)
+      end
       misn.finish(true)
    end
 end
