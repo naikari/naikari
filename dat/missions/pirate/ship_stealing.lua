@@ -146,7 +146,8 @@ end
 
 
 function accept()
-   local t = fmt.f(ask_text, {shiptype=shiptype, credits=fmt.credits(credits)})
+   local t = fmt.f(ask_text,
+         {shiptype=_(shiptype), credits=fmt.credits(credits)})
    if not tk.yesno("", t) then
       misn.finish()
       return
@@ -165,7 +166,7 @@ function accept()
 
    -- Set mission details
    misn.setTitle(_("Ship Stealing"))
-   misn.setDesc(fmt.f(misn_desc, {shiptype=shiptype, system=missys:name()}))
+   misn.setDesc(fmt.f(misn_desc, {shiptype=_(shiptype), system=missys:name()}))
 
    misn.setReward(_("A shiny new ship"))
    marker = misn.markerAdd(missys, "computer")
