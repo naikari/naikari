@@ -27,7 +27,7 @@ misn_desc = _("Pirate cargo transport of contraband goods to {planet} in the {sy
 msg_timeup = _("MISSION FAILED: You have failed to deliver the goods on time!")
 
 osd_title = _("Pirate Shipping")
-osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({info})")
+osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
 
 -- Use hidden jumps
 cargo_use_hidden = true
@@ -145,16 +145,9 @@ function accept()
    player.pilot():cargoRm("Food", amount)
    if timelimit < playerbest then
       local tlimit = timelimit - time.get()
-      local tlimit_text = n_(
-            "This shipment must arrive within {timelimit}. ",
-            "This shipment must arrive within {timelimit}. ",
-            tlimit:tonumber())
       local tmore = playerbest - time.get()
-      local tmore_text = n_(
-            "However, it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?",
-            "However, it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?",
-            tmore:tonumber())
-      if not tk.yesno("", fmt.f(tlimit_text .. tmore_text,
+      if not tk.yesno("", fmt.f(
+               _("This shipment must arrive within {timelimit}, but it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?"),
                {timelimit=tlimit:str(), time=tmore:str(),
                   planet=destplanet:name()})) then
          misn.finish()
@@ -177,13 +170,9 @@ function accept()
    carg_id = misn.cargoAdd(cobj, amount)
 
    local osd_msg = {}
-   local tremain = timelimit - time.get()
-   local tremain_text = fmt.f(
-         n_("{time} remaining", "{time} remaining", tremain:tonumber()),
-         {time=tremain:str()})
    osd_msg[1] = fmt.f(osd_msg1,
          {planet=destplanet:name(), system=destsys:name(),
-            deadline=timelimit:str(), info=tremain_text})
+            deadline=timelimit:str(), time=tonumber(timelimit - time.get())})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land") -- only hook after accepting
    hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
@@ -224,13 +213,9 @@ function tick()
    if timelimit >= time.get() then
       -- Case still in time
       local osd_msg = {}
-      local tremain = timelimit - time.get()
-      local tremain_text = fmt.f(
-            n_("{time} remaining", "{time} remaining", tremain:tonumber()),
-            {time=tremain:str()})
       osd_msg[1] = fmt.f(osd_msg1,
             {planet=destplanet:name(), system=destsys:name(),
-               deadline=timelimit:str(), info=tremain_text})
+               deadline=timelimit:str(), time=tonumber(timelimit - time.get())})
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit <= time.get() then
       -- Case missed deadline
