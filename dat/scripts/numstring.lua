@@ -1,7 +1,7 @@
+local fmt = require "fmt"
 -- NOTE: This file is deprecated. Please use fmt.lua instead.
 
--- Converts an integer into a human readable string, delimiting every third digit with a comma.
--- Note: rounds input to the nearest integer. Primary use is for payment descriptions.
+-- Depricated. Aliases fmt.number().
 function numstring(number)
    number = math.floor(number + 0.5)
    local numberstring = ""
@@ -10,64 +10,31 @@ function numstring(number)
       number = math.floor(number / 1000)
    end
    numberstring = number % 1000 .. numberstring
-   return numberstring
+   return fmt.number(number)
 end
 
 
---[[
--- @brief Properly converts a number of credits to a string.
---
--- Should be used everywhere a number of credits is displayed.
---
--- @usage tk.msg("", _("You have been paid %s."):format(creditstring(credits)))
---
---    @param credits Number of credits.
---    @return A string taking the form of "X ¢".
---]]
+-- Deprecated. Aliases fmt.credits().
 function creditstring( credits )
-   return n_("%s ¢", "%s ¢", credits):format(numstring(credits))
+   return fmt.credits(credits)
 end
 
 
---[[
--- @brief Properly converts a number of tonnes to a string, utilizing ngettext.
---
--- This adds "tonnes" to the output of numstring in a translatable way.
--- Should be used everywhere a number of tonnes is displayed.
---
--- @usage tk.msg("", _("You are carrying %s."):format(tonnestring(tonnes)))
---
---    @param tonnes Number of tonnes.
---    @return A string taking the form of "X tonne" or "X tonnes".
---]]
+-- Depricated. Aliases fmt.tonnes().
 function tonnestring( tonnes )
-   return gettext.ngettext("%s tonne", "%s tonnes", tonnes):format(
-         numstring(tonnes) )
+   return fmt.tonnes(tonnes)
 end
 
 
---[[
--- @brief Like tonnestring, but for abbreviations.
---
---    @param tonnes Number of tonnes.
---    @return A short string like "22 t" describing the given mass.
---]]
+-- Deprecated. Aliases fmt.tonnes().
 function tonnestring_short( tonnes )
    -- Translator note: this form represents an abbreviation of "_ tonnes".
-   return gettext.ngettext( "%d t", "%d t", tonnes ):format( tonnes )
+   return fmt.tonnes(tonnes)
 end
 
 
 --[[
--- @brief Properly converts a number of jumps to a string, utilizing ngettext.
---
--- This adds "jumps" to the output of numstring in a translatable way.
--- Should be used everywhere a number of jumps is displayed.
---
--- @usage tk.msg("", _("The system is %s away."):format(jumpstring(jumps)))
---
---    @param jumps Number of jumps, or nil for infinite jumps.
---    @return A string taking the form of "X jump" or "X jumps".
+-- Deprecated. Do not use.
 --]]
 function jumpstring( jumps )
    if jumps == nil then

@@ -18,10 +18,8 @@ end
 --[[
 -- @brief Converts a number of credits to a string (e.g. "10 ¢").
 --
--- DO NOT USE THIS WITHIN SENTENCES. Relying on it for that use-case can
--- lead to sentences which cannot be properly translated. Use this
--- function ONLY for cases where a number of credits is shown alone,
--- such as misn.setReward. In all other cases, use ngettext manually.
+-- The conversion method is the same as in C credits2str function, but
+-- locked to using 2 decimal places.
 --
 -- @usage misn.setReward(fmt.credits(100000))
 --
@@ -29,7 +27,21 @@ end
 --    @return A string taking the form of "X ¤".
 --]]
 function fmt.credits(credits)
-   return n_("%s ¢", "%s ¢", credits):format(fmt.number(credits))
+   if credits >= 1e21 then
+      return string.format(_("%.2f E¢"), credits / 1e18)
+   elseif credits >= 1e18 then
+      return string.format(_("%.2f P¢"), credits / 1e15)
+   elseif credits >= 1e15 then
+      return string.format(_("%.2f T¢"), credits / 1e12)
+   elseif credits >= 1e12 then
+      return string.format(_("%.2f G¢"), credits / 1e9)
+   elseif credits >= 1e9 then
+      return string.format(_("%.2f M¢"), credits / 1e6)
+   elseif credits >= 1e6 then
+      return string.format(_("%.2f k¢"), credits / 1e3)
+   else
+      return string.format(_("%.2f ¢"), credits)
+   end
 end
 
 
@@ -44,8 +56,20 @@ end
 --    @return A string taking the form of "X tonne" or "X tonnes".
 --]]
 function fmt.tonnes(tonnes)
+   -- Translator note: this form represents an abbreviation of "_ tonnes".
    return n_("%s t", "%s t", tonnes):format(fmt.number(tonnes))
 end
+
+
+local function loads(code, name, env)
+   local fn, err = loadstring(code, name)
+   if fn then
+      setfenv(fn, env)
+      return fn
+   end
+   return nil, err
+end
+
 
 --[[--
 String interpolation, inspired by <a href="https://github.com/hishamhm/f-strings">f-strings</a> without debug stuff.
