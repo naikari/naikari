@@ -30,31 +30,36 @@
 
 --
 
-   This is a Naev mission template.
+   This is a Naikari mission template.
    In this document aims to provide a structure on which to build many
-   Naev missions and teach how to make basic missions in Naev.
-   For more information on Naev, please visit: http://naev.org/
-   Naev missions are written in the Lua programming language: http://www.lua.org/
-   There is documentation on Naev's Lua API at: http://api.naev.org/
-   You can study the source code of missions in [path_to_Naev_folder]/dat/missions/
+   Naikari missions and teach how to make basic missions in Naikari.
+   Naikari missions are written in the Lua programming language.
+   There is documentation on Naikari's Lua API on the Naikari website:
+
+      https://naikari.github.io/lua/
+
+   You can also study the source code of missions in
+   [path_to_Naikari_folder]/dat/missions/.
 
    When creating a mission with this template, please erase the
    explanatory comments (such as this one) along the way, but retain the
    above license header and the MISSION and DESCRIPTION fields below,
-   adapted to your mission.
+   adapted to your mission. You must also ensure you check the XML
+   portion at the top and that your mission has a unique name defined
+   there (that name is not displayed to players, but is used to identify
+   missions internally).
 
    MISSION: <NAME GOES HERE>
    DESCRIPTION: <DESCRIPTION GOES HERE>
 
 --]]
 
--- require statements go here. Most missions should include
--- numstring.lua, which provides the useful `numstring()` and
--- `creditstring()` functions. We use these functions to format numbers
--- as text properly in Naev. dat/missions/neutral/common.lua provides
--- the addMiscLog function, which is typically used for non-factional
--- unique missions.
-require "numstring"
+-- require statements go here. Most missions should include the fmt
+-- module, which is used for formatting text and is preferred over the
+-- built-in string.format() in most cases.
+-- dat/missions/neutral/common.lua provides the addMiscLog function,
+-- which is typically used for non-factional unique missions.
+local fmt = require "fmt"
 require "missions/neutral/common"
 
 --[[
@@ -64,6 +69,9 @@ displayed to the player with `_()`. This is a call to gettext, which
 enables localization. The _() call should be used directly on the
 string, as shown here, instead of on a variable, so that the script
 which figures out what all the translatable text is can find it.
+(Alternatively, you can store the untranslated version while still
+allowing gettext to know about the string by using `N_()` around the
+string and then later usin `_()` on the variable that contains it.)
 
 When writing dialog, write it like a book (in the present-tense), with
 paragraphs and quotations and all that good stuff. Use a double line
@@ -78,21 +86,27 @@ One thing to keep in mind: the player can be any gender, so keep all
 references to the player gender-neutral. If you need to use a
 third-person pronoun for the player, singular "they" is the best choice.
 
-You may notice instances of "%s" sprinkled throughout the text. These
-are portions that will be filled in later by the mission via the
-`string.format()` function.
+You may notice instances of words within curly braces ({}) sprinkled
+throughout the text. These are portions that will be filled in later by
+the mission via the `fmt.f()` function.
+
+One of those portions is {reward_sentence}, which will be replaced by
+an entire sentence later on. This is necessary as we will be using
+ngettext, which must be done inline. Pulling out the entire sentence is
+necessary to ensure that translators have full capability to translate
+the sentence properly.
 --]]
 ask_text = _([[As you approach the guy, he looks up in curiosity. You sit down and ask him how his day is. "Why, fine," he answers. "How are you?" You answer that you are fine as well and compliment him on his suit, which seems to make his eyes light up. "Why, thanks! It's my favorite suit! I had it custom tailored, you know.
 
-"Actually, that reminds me! There was a special suit on %s in the %s system, the last one I need to complete my collection, but I don't have a ship. You do have a ship, don't you? So I'll tell you what, give me a ride and I'll pay you %s for it! What do you say?"]])
+"Actually, that reminds me! There was a special suit on {planet} in the {system} system, the last one I need to complete my collection, but I don't have a ship. You do have a ship, don't you? {reward_sentence} What do you say?"]])
 
-ask_again_text = _([["Ah, it's you again! Have you changed your mind? Like I said, I just need transport to %s in the %s system, and I'll pay you %s when we get there. How's that sound?"]])
+ask_again_text = _([["Ah, it's you again! Have you changed your mind? Like I said, I just need transport to {planet} in the {system} system."]])
 
 accept_text = _([["Fantastic! I knew you would do it! Like I said, I'll pay you as soon as we get there. No rush! Just bring me there when you're ready.]])
 
 finish_text = _([[As you arrive on %s, your passenger reacts with glee. "I must sincerely thank you, kind stranger! Now I can finally complete my suit collection, and it's all thanks to you. Here is %s, as we agreed. I hope you have safe travels!"]])
 
-misn_desc = _("A well-dressed man wants you to take him to %s in the %s system so he get some sort of special suit.")
+misn_desc = _("A well-dressed man wants you to take him to {planet} in the {system} system so he get some sort of special suit.")
 misn_log = _([[You helped transport a well-dressed man to %s so that he could buy some kind of special suit to complete his collection.]])
 
 
@@ -108,16 +122,6 @@ function create ()
    misplanet, missys = planet.get("Ulios")
    credits = 250000
    talked = false
-
-   -- Here we use the `creditstring()` function to convert our credits
-   -- from a number to a string. This function both applies gettext
-   -- correctly for variable amounts (by using the ngettext function),
-   -- and formats the number in a way that is appropriate for Naikari
-   -- (by using the numstring function). You should always use this when
-   -- displaying a number of credits. The exception is if you're
-   -- displaying the amount of credits the player has, in which case the
-   -- second return value of `player.credits()` should be used.
-   reward_text = creditstring(credits)
    
    -- If we needed to claim a system, we would do that here with
    -- something like the following commented out statement. However,
@@ -148,19 +152,34 @@ function accept ()
    -- this is our first time.
    local text
    if talked then
-      -- We use `string.format()` here to fill in the destination and
-      -- reward text. `s1:format(s2)` is a shorthand for
-      -- `string.format(s1, s2)`.
-      text = ask_again_text
+      -- We use `fmt.f` here to fill in the variables.
+      text = fmt.f(ask_again_text,
+            {planet=misplanet:name(), system=missys:name()})
    else
-      text = ask_text
+      -- And also here. However, here we include mention of how many
+      -- credits the player gets, and so it gets slightly more
+      -- complicated. First, we get the reward sentence and store it
+      -- in local variable reward_text, using fmt.f and n_() (alias to
+      -- gettext.ngettext) to translate and format this portion. Then,
+      -- we format `ask_text` as with `ask_again_text`, splicing in the
+      -- extra sentence we just translated with ngettext.
+      --
+      -- In general, credits are best indicated with ¢, but writing out
+      -- the words "credit" and "credits" as below is acceptable, too.
+      local reward_text = fmt.f(
+            n_("So I'll tell you what, give me a ride and I'll pay you {credits} credit for it!",
+               "So I'll tell you what, give me a ride and I'll pay you {credits} credits for it!",
+               credits),
+            {credits=fmt.number(credits)}
+      text = fmt.f(ask_text,
+            {planet=misplanet:name(), system=missys:name(),
+               reward_sentence=reward_text})
       talked = true
    end
 
    -- This will create the typical "Yes/No" dialogue. It returns true if
    -- yes was selected. 
-   if tk.yesno("", text:format(
-            misplanet:name(), missys:name(), reward_text)) then
+   if tk.yesno("", text) then
       -- Followup text.
       tk.msg("", accept_text)
 
@@ -171,17 +190,24 @@ function accept ()
       -- You should always set mission details right after accepting the
       -- mission.
       misn.setTitle(_("The Special Suit"))
-      misn.setReward(reward_text)
-      misn.setDesc(misn_desc:format(misplanet:name(), missys:name()))
+      -- For reward, we are simply using `fmt.credits()` to display the
+      -- number of credits the player will be getting. You can also
+      -- choose to make the text some arbitrary string, e.g.
+      -- `misn.setReward(_("A lotta money"))`, but in most cases simply
+      -- displaying how many credits are earned is ideal.
+      misn.setReward(fmt.credits(credits))
+      misn.setDesc(fmt.f(misn_desc,
+            {planet=misplanet:name(), system=missys:name()}))
 
-      -- Markers indicate a target system on the map, it may not be
+      -- Markers indicate a target system on the map. It may not be
       -- needed depending on the type of mission you're writing.
       misn.markerAdd(missys, "low")
 
-      -- The OSD shows your objectives.
+      -- The OSD shows your objectives. For style purposes, the OSD
+      -- description should not contain end-of-sentence punctuation.
       local osd_desc = {}
-      osd_desc[1] = _("Fly to the %s system and land on %s"):format(
-            misplanet:name(), missys:name())
+      osd_desc[1] = fmt.f(_("Land on {planet} ({system} system)"),
+            {planet=misplanet:name(), system=missys:name()})
       misn.osdCreate(_("The Special Suit"), osd_desc)
 
       -- This is where we would define any other variables we need, but
@@ -192,8 +218,8 @@ function accept ()
       -- player lands on a planet.
       hook.land("land")
    else
-      -- Call misn.finish() to end the conversation with the NPC without
-      -- getting rid of him.
+      -- Call misn.finish() with no arguments to end the conversation
+      -- with the NPC without getting rid of him.
       misn.finish()
    end
 end
