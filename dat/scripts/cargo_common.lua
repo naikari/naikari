@@ -1,3 +1,4 @@
+local fmt = require "fmt"
 require "jumpdist"
 require "nextjump"
 require "numstring"
@@ -193,27 +194,32 @@ end
 -- @param notes Any additional text the user should see on its own detail line, such as piracy risk. May be nil.
 -- ]]
 function cargo_setDesc( misn_desc, cargo, amount, target, deadline, notes )
-   local t = { misn_desc, "" };
+   local t = {misn_desc, ""};
    if amount ~= nil then
-      table.insert( t, _("Cargo: %s (%s)"):format( _(cargo), tonnestring(amount) ) );
+      table.insert(t, fmt.f(_("Cargo: {cargoname} ({amount})"),
+            {cargoname=_(cargo), amount=fmt.tonnes(amount)}))
    elseif cargo ~= nil then
-      table.insert( t, _("Cargo: %s"):format( _(cargo) ) );
+      table.insert(t, fmt.f(_("Cargo: {cargoname}"), {cargoname=_(cargo)}))
    end
 
-   local numjumps   = system.cur():jumpDist( target:system(), cargo_use_hidden )
-   local dist = cargo_calculateDistance( system.cur(), planet.cur():pos(), target:system(), target )
-   table.insert( t,
-      gettext.ngettext( "Jumps: %d", "Jumps: %d", numjumps ):format( numjumps )
+   local numjumps = system.cur():jumpDist(target:system(), cargo_use_hidden)
+   local dist = cargo_calculateDistance(system.cur(), planet.cur():pos(),
+         target:system(), target)
+   table.insert(t,
+      gettext.ngettext("Jumps: %d", "Jumps: %d", numjumps):format(numjumps)
       .. "\n"
-      .. gettext.ngettext("Travel distance: %s", "Travel distance: %s", dist):format( numstring(dist) ) )
+      .. fmt.f(gettext.ngettext("Travel distance: {distance} km",
+            "Travel distance: {distance} km", dist),
+         {distance=fmt.number(dist)}))
 
    if notes ~= nil then
-      table.insert( t, notes );
+      table.insert(t, notes);
    end
 
    if deadline ~= nil then
-      table.insert( t, _("Time limit: %s"):format( tostring(deadline - time.get()) ) );
+      table.insert(t, fmt.f(_("Time limit: {time}"),
+            {time=tostring(deadline - time.get())}))
    end
 
-   misn.setDesc( table.concat(t, "\n" ) );
+   misn.setDesc(table.concat(t, "\n"));
 end
