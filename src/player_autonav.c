@@ -324,6 +324,7 @@ static void player_autonav (void)
    double d, t, tint;
    double vel;
    double a, diff;
+   double error_margin;
 
    (void)map_getDestination( &map_npath );
 
@@ -374,7 +375,12 @@ static void player_autonav (void)
                   jp->pos.x - player.p->solid->pos.x);
             diff = angle_diff(VANGLE(player.p->solid->vel), a);
 
-            if (ABS(diff) < MIN_DIR_ERR) {
+            /* The line representing the distance is at a right angle
+             * with the line representing the radius. */
+            error_margin = atan(jp->radius
+                  / vect_dist(&player.p->solid->pos, &jp->pos));
+
+            if (ABS(diff) < error_margin) {
                /* Face system headed to. */
                sys = cur_system->jumps[player.p->nav_hyperspace].target;
                a = ANGLE(sys->pos.x - cur_system->pos.x,
