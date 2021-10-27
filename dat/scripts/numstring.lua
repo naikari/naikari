@@ -1,3 +1,5 @@
+-- NOTE: This file is deprecated. Please use fmt.lua instead.
+
 -- Converts an integer into a human readable string, delimiting every third digit with a comma.
 -- Note: rounds input to the nearest integer. Primary use is for payment descriptions.
 function numstring(number)
@@ -73,22 +75,4 @@ function jumpstring( jumps )
    end
    return gettext.ngettext("%s jump", "%s jumps", jumps):format(
          numstring(jumps))
-end
-
-
---[[
--- @brief Properly converts a number of times (occurrences) to a string,
--- utilizing ngettext.
---
--- This adds "times" to the output of numstring in a translatable way.
--- Should be used everywhere a number of occurrences is displayed.
---
--- @usage tk.msg("", _("Brush your teeth % per day."):format(timestring(times)))
---
---    @param times Number of times.
---    @return A string taking the form of "X time" or "X times".
---]]
-function timestring( times )
-   return gettext.ngettext("%s time", "%s times", times):format(
-         numstring(times) )
 end

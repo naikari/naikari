@@ -2,7 +2,7 @@ local fmt = {}
 
 
 -- Converts an integer into a human readable string, delimiting every third digit with a comma.
--- Note: rounds input to the nearest integer. Primary use is for payment descriptions.
+-- Note: rounds input to the nearest integer.
 function fmt.number(number)
    number = math.floor(number + 0.5)
    local numberstring = ""
@@ -16,11 +16,14 @@ end
 
 
 --[[
--- @brief Properly converts a number of credits to a string.
+-- @brief Converts a number of credits to a string (e.g. "10 ¢").
 --
--- Should be used everywhere a number of credits is displayed.
+-- DO NOT USE THIS WITHIN SENTENCES. Relying on it for that use-case can
+-- lead to sentences which cannot be properly translated. Use this
+-- function ONLY for cases where a number of credits is shown alone,
+-- such as misn.setReward. In all other cases, use ngettext manually.
 --
--- @usage tk.msg("", _("You have been paid %s."):format(fmt.credits(credits)))
+-- @usage misn.setReward(fmt.credits(100000))
 --
 --    @param credits Number of credits.
 --    @return A string taking the form of "X ¤".
@@ -31,73 +34,17 @@ end
 
 
 --[[
--- @brief Properly converts a number of tonnes to a string, utilizing ngettext.
+-- @brief Converts a number of tonnes to a string.
 --
--- This adds "tonnes" to the output of fmt.number in a translatable way.
--- Should be used everywhere a number of tonnes is displayed.
---
--- @usage tk.msg("", _("You are carrying %s."):format(fmt.tonnes(tonnes)))
+-- DO NOT USE THIS WITHIN SENTENCES. Relying on it for that use-case can
+-- lead to sentences which cannot be properly translated. Use this
+-- function ONLY for cases where a number of tonnes is shown alone.
 --
 --    @param tonnes Number of tonnes.
 --    @return A string taking the form of "X tonne" or "X tonnes".
 --]]
 function fmt.tonnes(tonnes)
-   return n_("%s tonne", "%s tonnes", tonnes):format(fmt.number(tonnes))
-end
-
-
---[[
--- @brief Like fmt.tonnes, but for abbreviations.
---
---    @param tonnes Number of tonnes.
---    @return A short string like "22 t" describing the given mass.
---]]
-function fmt.tonnes_short(tonnes)
-   -- Translator note: this form represents an abbreviation of "_ tonnes".
-   return n_("%d t", "%d t", tonnes):format(tonnes)
-end
-
-
---[[
--- @brief Properly converts a number of jumps to a string, utilizing ngettext.
---
--- This adds "jumps" to the output of fmt.number in a translatable way.
--- Should be used everywhere a number of jumps is displayed.
---
--- @usage tk.msg("", _("The system is %s away."):format(fmt.jumps(jumps)))
---
---    @param jumps Number of jumps.
---    @return A string taking the form of "X jump" or "X jumps".
---]]
-function fmt.jumps(jumps)
-   return n_("%s jump", "%s jumps", jumps):format(fmt.number(jumps))
-end
-
-
---[[
--- @brief Properly converts a number of times (occurrences) to a string,
--- utilizing ngettext.
---
--- This adds "times" to the output of fmt.number in a translatable way.
--- Should be used everywhere a number of occurrences is displayed.
---
--- @usage tk.msg("", _("Brush your teeth % per day."):format(fmt.times(times)))
---
---    @param times Number of times.
---    @return A string taking the form of "X time" or "X times".
---]]
-function fmt.times(times)
-   return n_("%s time", "%s times", times):format(fmt.number(times))
-end
-
-
-local function loads(code, name, env)
-   local fn, err = loadstring(code, name)
-   if fn then
-      setfenv(fn, env)
-      return fn
-   end
-   return nil, err
+   return n_("%s t", "%s t", tonnes):format(fmt.number(tonnes))
 end
 
 --[[--
