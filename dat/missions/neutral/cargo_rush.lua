@@ -93,7 +93,7 @@ function create()
       allowance = allowance + math.floor((numjumps-1) / jumpsperstop) * stuperjump
    end
    
-   timelimit  = time.get() + time.create(0, 0, allowance)
+   timelimit = time.get() + time.create(0, 0, allowance)
    timelimit2 = time.get() + time.create(0, 0, allowance * 1.2)
    
    if avgrisk == 0 then

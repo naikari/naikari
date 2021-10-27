@@ -57,13 +57,15 @@ function create()
    end
 
    -- mission generics
-   stuperpx   = 0.3 - 0.015 * tier
-   stuperjump = 11000 - 75 * tier
+   stuperpx = 0.3 - 0.015*tier
+   stuperjump = 11000 - 600*tier
    stupertakeoff = 15000
-   timelimit  = time.get() + time.create(0, 0, traveldist * stuperpx + numjumps * stuperjump + stupertakeoff + 480 * numjumps)
+   timelimit = time.get() + time.create(0, 0,
+            traveldist*stuperpx + numjumps*stuperjump
+               + stupertakeoff + 480*numjumps)
 
    -- Allow extra time for refuelling stops.
-   local jumpsperstop = 3 + math.min(tier, 2)
+   local jumpsperstop = 2 + math.min(tier-1, 2)
    if numjumps > jumpsperstop then
       timelimit:add(time.create( 0, 0, math.floor((numjumps-1) / jumpsperstop) * stuperjump ))
    end

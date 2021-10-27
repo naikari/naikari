@@ -28,7 +28,7 @@ misn_desc = _("Pirate cargo transport of contraband goods to {planet} in the {sy
 msg_timeup = _("MISSION FAILED: You have failed to deliver the goods on time!")
 
 osd_title = _("Pirate Shipping")
-osd_msg1 = _("Fly to {planet} ({system} system) before {timelimit}\n({time} remaining)")
+osd_msg1 = _("Fly to {planet} ({system} system) before {deadline}\n({time} remaining)")
 
 -- Use hidden jumps
 cargo_use_hidden = true
@@ -88,13 +88,15 @@ function create()
    cargo["__save"] = true
 
    -- mission generics
-   stuperpx   = 0.3 - 0.015 * tier
-   stuperjump = 11000 - 75 * tier
+   stuperpx = 0.3 - 0.015*tier
+   stuperjump = 11000 - 600*tier
    stupertakeoff = 15000
-   timelimit  = time.get() + time.create(0, 0, traveldist * stuperpx + numjumps * stuperjump + stupertakeoff + 480 * numjumps)
+   timelimit = time.get() + time.create(0, 0,
+            traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
+               + 480*numjumps)
 
    -- Allow extra time for refuelling stops.
-   local jumpsperstop = 3 + math.min(tier, 1)
+   local jumpsperstop = 2 + math.min(tier-1, 2)
    if numjumps > jumpsperstop then
       timelimit:add(time.create(
                0, 0, math.floor((numjumps-1) / jumpsperstop) * stuperjump))
@@ -102,10 +104,11 @@ function create()
    
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
    finished_mod = 2.0 -- Modifier that should tend towards 1.0 as Naev is finished as a game
-   amount    = rnd.rnd(10 + 3 * tier, 20 + 4 * tier) 
+   amount = rnd.rnd(10 + 3 * tier, 20 + 4 * tier) 
    jumpreward = 1500
    distreward = 0.30
-   reward    = 1.5^tier * (numjumps * jumpreward + traveldist * distreward) * finished_mod * (1. + 0.05*rnd.twosigma())
+   reward = 1.5^tier * (numjumps*jumpreward + traveldist*distreward)
+         * finished_mod * (1. + 0.05*rnd.twosigma())
    
    misn.setTitle(fmt.f(
             _("PIRACY: Illegal Cargo transport ({amount} of {cargotype})"),
@@ -122,8 +125,8 @@ function accept()
    local playerbest = cargoGetTransit(timelimit, numjumps, traveldist)
    if timelimit < playerbest then
       if not tk.yesno("", fmt.f(
-               _("This shipment must arrive within {timelimit}, but it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?"),
-               {timelimit=(timelimit - time.get()):str(),
+               _("This shipment must arrive within {deadline}, but it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?"),
+               {deadline=(timelimit - time.get()):str(),
                   time=(playerbest - time.get()):str(),
                   planet=destplanet:name()})) then
          misn.finish()
@@ -145,7 +148,7 @@ function accept()
    local osd_msg = {}
    osd_msg[1] = fmt.f(osd_msg1,
       {planet=destplanet:name(), system=destsys:name(),
-         timelimit=timelimit:str(), time=(timelimit - time.get()):str()})
+         deadline=timelimit:str(), time=(timelimit - time.get()):str()})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land") -- only hook after accepting
    hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
@@ -183,7 +186,7 @@ function tick()
       local osd_msg = {}
       osd_msg[1] = fmt.f(osd_msg1,
          {planet=destplanet:name(), system=destsys:name(),
-            timelimit=timelimit:str(), time=(timelimit - time.get()):str()})
+            deadline=timelimit:str(), time=(timelimit - time.get()):str()})
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit <= time.get() then
       -- Case missed deadline
