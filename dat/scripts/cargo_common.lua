@@ -83,9 +83,9 @@ function cargo_calculateRoute ()
       return
    end
 
-   local index     = rnd.rnd(1, #planets)
+   local index = rnd.rnd(1, #planets)
    local destplanet = planets[index][1]
-   local destsys   = planets[index][2]
+   local destsys = planets[index][2]
    
    -- We have a destination, now we need to calculate how far away it is by simulating the journey there.
    -- Assume shortest route with no interruptions.
@@ -203,14 +203,14 @@ function cargo_setDesc( misn_desc, cargo, amount, target, deadline, notes )
    end
 
    local numjumps = system.cur():jumpDist(target:system(), cargo_use_hidden)
+   table.insert(t, string.format(
+         n_("Jumps: %d", "Jumps: %d", numjumps), numjumps))
+
    local dist = cargo_calculateDistance(system.cur(), planet.cur():pos(),
          target:system(), target)
-   table.insert(t,
-      gettext.ngettext("Jumps: %d", "Jumps: %d", numjumps):format(numjumps)
-      .. "\n"
-      .. fmt.f(gettext.ngettext("Travel distance: {distance} km",
-            "Travel distance: {distance} km", dist),
-         {distance=fmt.number(dist)}))
+   table.insert(t, fmt.f(n_("Travel distance: {distance} km",
+               "Travel distance: {distance} km", dist),
+            {distance=fmt.number(dist)}))
 
    if notes ~= nil then
       table.insert(t, notes);

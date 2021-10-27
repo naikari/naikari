@@ -23,25 +23,9 @@
    -- These missions require fast ships, but higher tiers may also require increased cargo space.
 --]]
 
+local fmt = require "fmt"
 require "cargo_common"
-require "numstring"
 
-
-misn_title = {}
--- Note: indexed from 0, to match mission tiers.
-misn_title[0] = _("Courier transport to %s in %s (%s)")
-misn_title[1] = _("Priority shipment to %s in %s (%s)")
-misn_title[2] = _("Pressing cargo delivery to %s in %s (%s)")
-misn_title[3] = _("Urgent cargo delivery to %s in %s (%s)")
-misn_title[4] = _("Emergency cargo delivery to %s in %s (%s)")
-
-misn_desc = {}
--- Note: indexed from 0, to match mission tiers.
-misn_desc[0] = _("Courier transport to %s in the %s system.")
-misn_desc[1] = _("Priority shipment to %s in the %s system.")
-misn_desc[2] = _("Pressing cargo delivery to %s in the %s system.")
-misn_desc[3] = _("Urgent cargo delivery to %s in the %s system.")
-misn_desc[4] = _("Emergency cargo delivery to %s in the %s system.")
 
 piracyrisk = {}
 piracyrisk[1] = _("Piracy Risk: None")
@@ -49,25 +33,11 @@ piracyrisk[2] = _("Piracy Risk: Low")
 piracyrisk[3] = _("Piracy Risk: Medium")
 piracyrisk[4] = _("Piracy Risk: High")
 
---=Landing=--
-
-cargo_land_title = _("Successful Delivery")
-
-cargo_land = {}
-cargo_land[1] = _("The containers of %s are carried out of your ship by a sullen group of workers. The job takes inordinately long to complete, and the leader pays you without speaking a word.")
-cargo_land[2] = _("The containers of %s are rushed out of your vessel by a team shortly after you land. Before you can even collect your thoughts, one of them presses a credit chip in your hand and departs.")
-cargo_land[3] = _("The containers of %s are unloaded by an exhausted-looking bunch of dockworkers. Still, they make fairly good time, delivering your pay upon completion of the job.")
-
-cargo_land_slow = {}
-cargo_land_slow[1] = _("The containers of %s are carried out of your ship by a sullen group of workers. They are not happy that they have to work overtime because you were late. You are paid only %s of the %s you were promised.")
-cargo_land_slow[2] = _("The containers of %s are rushed out of your vessel by a team shortly after you land. Your late arrival is stretching quite a few schedules! Your pay is only %s instead of %s because of that.")
-cargo_land_slow[3] = _("The containers of %s are unloaded by an exhausted-looking bunch of dockworkers. You missed the deadline, so your reward is only %s instead of the %s you were hoping for.")
-
-msg_timeup = _("The delivery to %s has been canceled! You were too late.")
+msg_timeup = _("The delivery to {system} has been canceled! You were too late.")
 
 osd_title = _("Rush cargo mission")
-osd_msg1 = _("Land on %s (%s system) before %s\n(%s remaining)")
-osd_timeup = _("Land on %s (%s system) before %s\n(deadline missed, but you can still make a late delivery if you hurry)")
+osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({info})")
+osd_timeup = _("Land on {planet} ({system} system) before {deadline}\n(deadline missed, but you can still make a late delivery if you hurry)")
 
 -- Create the mission
 function create()
@@ -113,52 +83,107 @@ function create()
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
    -- Note: Pay is independent from amount by design! Not all deals are equally attractive!
    finished_mod = 2.0 -- Modifier that should tend towards 1.0 as Naev is finished as a game
-   amount     = rnd.rnd(10 + 5 * tier, 20 + 6 * tier) -- 45 max (quicksilver)
+   amount = rnd.rnd(10 + 5 * tier, 20 + 6 * tier) -- 45 max (quicksilver)
    jumpreward = commodity.price(cargo)*1.2
    distreward = math.log(300*commodity.price(cargo))/100
-   reward     = 1.5^tier * (avgrisk*riskreward + numjumps * jumpreward + traveldist * distreward) * finished_mod * (1. + 0.05*rnd.twosigma())
-   
-   misn.setTitle( misn_title[tier]:format(
-      destplanet:name(), destsys:name(), tonnestring(amount) ) )
+   reward = (1.5^tier
+         * (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward)
+         * finished_mod * (1. + 0.05*rnd.twosigma()))
+
+   local title, desc
+   if tier <= 0 then
+      title = n_("Courier Cargo: {amount} t to {planet} ({system} system)",
+            "Courier Cargo: {amount} t to {planet} ({system} system)", amount)
+      desc = _("Courier cargo transport to {planet} in the {system} system.")
+   elseif tier <= 1 then
+      title = n_("Priority Cargo: {amount} t to {planet} ({system} system)",
+            "Priority Cargo: {amount} t to {planet} ({system} system)", amount)
+      desc = _("Priority cargo shipment to {planet} in the {system} system.")
+   elseif tier <= 2 then
+      title = n_("Pressing Cargo: {amount} t to {planet} ({system} system)",
+            "Pressing Cargo: {amount} t to {planet} ({system} system)", amount)
+      desc = _("Pressing cargo delivery to {planet} in the {system} system.")
+   elseif tier <= 3 then
+      title = n_("Urgent Cargo: {amount} t to {planet} ({system} system)",
+            "Urgent Cargo: {amount} t to {planet} ({system} system)", amount)
+      desc = _("Urgent cargo delivery to {planet} in the {system} system.")
+   else
+      title = n_(
+            "Emergency Cargo: {amount} t to {planet} ({system} system)",
+            "Emergency Cargo: {amount} t to {planet} ({system} system)",
+            amount)
+      desc = _("Emergency cargo delivery to {planet} in the {system} system.")
+   end
+
+   misn.setTitle(fmt.f(title,
+         {planet=destplanet:name(), system=destsys:name(),
+            amount=fmt.number(amount)}))
    misn.markerAdd(destsys, "computer")
-   cargo_setDesc( misn_desc[tier]:format( destplanet:name(), destsys:name() ), cargo, amount, destplanet, timelimit, piracyrisk );
-   misn.setReward( creditstring(reward) )
+   cargo_setDesc(fmt.f(desc,
+            {planet=destplanet:name(), system=destsys:name()}),
+         cargo, amount, destplanet, timelimit, piracyrisk);
+   misn.setReward(fmt.credits(reward))
 end
 
 -- Mission is accepted
 function accept()
    if player.pilot():cargoFree() < amount then
-      tk.msg( _("No room in ship"), string.format(
-         _("You don't have enough cargo space to accept this mission. It requires %s of free space (%s more than you have)."),
-         tonnestring(amount),
-         tonnestring( amount - player.pilot():cargoFree() ) ) )
+      local required_text = n_(
+            "You don't have enough cargo space to accept this mission. It requires {required} tonne of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} tonnes of free space. ",
+            amount)
+      local shortfall = amount - player.pilot():cargoFree()
+      local shortfall_text = n_(
+            "You need {shortfall} more tonne of empty space.",
+            "You need {shortfall} more tonnes of empty space.",
+            shortfall)
+      tk.msg("", fmt.f(required_text .. shortfall_text,
+            {required=fmt.number(amount),
+               shortfall=fmt.number(shortfall)}))
       misn.finish()
    end
-   player.pilot():cargoAdd( cargo, amount ) 
-   local playerbest = cargoGetTransit( timelimit, numjumps, traveldist )
-   player.pilot():cargoRm( cargo, amount ) 
+   player.pilot():cargoAdd("Food", amount)
+   local playerbest = cargoGetTransit(timelimit, numjumps, traveldist)
+   player.pilot():cargoRm("Food", amount)
    if timelimit < playerbest then
-      if not tk.yesno( _("Too slow"), string.format(
-            _("This shipment must arrive within %s, but it will take at least %s for your ship to reach %s, missing the deadline. Accept the mission anyway?"),
-            (timelimit - time.get()):str(), (playerbest - time.get()):str(),
-            destplanet:name() ) ) then
+      local tlimit = timelimit - time.get()
+      local tlimit_text = n_(
+            "This shipment must arrive within {timelimit}. ",
+            "This shipment must arrive within {timelimit}. ",
+            tlimit:tonumber())
+      local tmore = playerbest - time.get()
+      local tmore_text = n_(
+            "However, it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?",
+            "However, it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?",
+            tmore:tonumber())
+      if not tk.yesno("", fmt.f(tlimit_text .. tmore_text,
+               {timelimit=tlimit:str(), time=tmore:str(),
+                  planet=destplanet:name()})) then
          misn.finish()
       end
-   elseif system.cur():jumpDist(destsys, false, true) == nil
-         or system.cur():jumpDist(destsys, false, true) < numjumps then
-      if not tk.yesno( _("Unknown route"), string.format(
-            _("The fastest route to %s is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than %s may cause you to miss the deadline. Accept the mission anyway?"),
-            destplanet:name(), jumpstring(numjumps) ) ) then
+   elseif system.cur():jumpDist(destsys, true, true) == nil
+         or system.cur():jumpDist(destsys, true, true) < numjumps then
+      local text = n_(
+            "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jump may cause you to miss the deadline. Accept the mission anyway?",
+            "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jumps may cause you to miss the deadline. Accept the mission anyway?",
+            numjumps)
+      if not tk.yesno("", fmt.f(text,
+               {planet=destplanet:name(), jumps=numjumps})) then
          misn.finish()
       end
    end
+
    misn.accept()
    intime = true
-   misn.cargoAdd(cargo, amount) -- TODO: change to jettisonable cargo once custom commodities are in. For piracy purposes.
+   misn.cargoAdd(cargo, amount)
    local osd_msg = {}
-   osd_msg[1] = osd_msg1:format(
-      destplanet:name(), destsys:name(), timelimit:str(),
-      (timelimit - time.get()):str() )
+   local tremain = timelimit - time.get()
+   local tremain_text = fmt.f(
+         n_("{time} remaining", "{time} remaining", tremain:tonumber()),
+         {time=tremain:str()})
+   osd_msg[1] = fmt.f(osd_msg1,
+         {planet=destplanet:name(), system=destsys:name(),
+            deadline=timelimit:str(), info=tremain_text})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land")
    hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
@@ -169,11 +194,24 @@ function land()
    if planet.cur() == destplanet then
       if intime then
       -- Semi-random message.
-      tk.msg( cargo_land_title, cargo_land[rnd.rnd(1, #cargo_land)]:format(_(cargo)) )
+      local cargo_land = {
+         _("The containers of {cargotype} are carried out of your ship by a sullen group of workers. The job takes inordinately long to complete, and the leader pays you without speaking a word."),
+         _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Before you can even collect your thoughts, one of them presses a credit chip in your hand and departs."),
+         _("The containers of {cargotype} are unloaded by an exhausted-looking bunch of dockworkers. Still, they make fairly good time, delivering your pay upon completion of the job."),
+      }
+
+      tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
+               {cargotype=_(cargo)}))
    else
       -- Semi-random message for being late.
-      tk.msg( cargo_land_title, cargo_land_slow[rnd.rnd(1, #cargo_land_slow)]:format(
-         _(cargo), creditstring(reward / 2), creditstring(reward) ) )
+      local cargo_land = {
+         _("The containers of {cargotype} are carried out of your ship by a sullen group of workers. They are not happy that they have to work overtime because you were late. You are paid only half the original reward you were promised."),
+         _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Your late arrival is stretching quite a few schedules! Your pay is only half your original pay because of that."),
+         _("The containers of {cargotype} are unloaded by an exhausted-looking bunch of dockworkers. You missed the deadline, so your reward is only half the amount you were hoping for."),
+      }
+
+      tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
+               {cargotype=_(cargo)}))
       reward = reward / 2
    end
    player.pay(reward)
@@ -185,19 +223,24 @@ end
 function tick()
    local osd_msg = {}
    if timelimit >= time.get() then
-      -- Case still in time
-      osd_msg[1] = osd_msg1:format(
-         destplanet:name(), destsys:name(), timelimit:str(),
-         (timelimit - time.get()):str() )
+      local osd_msg = {}
+      local tremain = timelimit - time.get()
+      local tremain_text = fmt.f(
+            n_("{time} remaining", "{time} remaining", tremain:tonumber()),
+            {time=tremain:str()})
+      osd_msg[1] = fmt.f(osd_msg1,
+            {planet=destplanet:name(), system=destsys:name(),
+               deadline=timelimit:str(), info=tremain_text})
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit2 <= time.get() then
       -- Case missed second deadline
-      player.msg( msg_timeup:format( destsys:name() ) )
+      player.msg(fmt.f(msg_timeup, {system=destsys:name()}))
       misn.finish(false)
    elseif intime then
       -- Case missed first deadline
-      osd_msg[1] = osd_timeup:format(
-         destplanet:name(), destsys:name(), timelimit:str())
+      osd_msg[1] = fmt.f(osd_timeup,
+            {planet=destplanet:name(), system=destsys:name(),
+               deadline=timelimit:str()})
       misn.osdCreate(osd_title, osd_msg)
       intime = false
    end

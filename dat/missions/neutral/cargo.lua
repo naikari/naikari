@@ -23,35 +23,26 @@
    -- Most of these missions require BULK ships. Not for small ships!
 --]]
 
+local fmt = require "fmt"
 require "cargo_common"
-require "numstring"
 
 
 misn_desc = {}
 -- Note: indexed from 0 to match mission tiers.
-misn_desc[0] = _("Small shipment to %s in the %s system.")
-misn_desc[1] = _("Medium shipment to %s in the %s system.")
-misn_desc[2] = _("Sizable cargo delivery to %s in the %s system.")
-misn_desc[3] = _("Large cargo delivery to %s in the %s system.")
-misn_desc[4] = _("Bulk freight delivery to %s in the %s system.")
+misn_desc[0] = _("Small shipment to {planet} in the {system} system.")
+misn_desc[1] = _("Medium shipment to {planet} in the {system} system.")
+misn_desc[2] = _("Sizable cargo delivery to {planet} in the {system} system.")
+misn_desc[3] = _("Large cargo delivery to {planet} in the {system} system.")
+misn_desc[4] = _("Bulk freight delivery to {planet} in the {system} system.")
 
 piracyrisk = {}
 piracyrisk[1] = _("Piracy Risk: None")
 piracyrisk[2] = _("Piracy Risk: Low")
 piracyrisk[3] = _("Piracy Risk: Medium")
 piracyrisk[4] = _("Piracy Risk: High")
---=Landing=--
-
-cargo_land_title = _("Delivery success!")
-
-cargo_land = {}
-cargo_land[1] = _("The containers of %s are carried out of your ship by a sullen group of workers. The job takes inordinately long to complete, and the leader pays you without speaking a word.")
-cargo_land[2] = _("The containers of %s are rushed out of your vessel by a team shortly after you land. Before you can even collect your thoughts, one of them presses a credit chip in your hand and departs.")
-cargo_land[3] = _("The containers of %s are unloaded by an exhausted-looking bunch of dockworkers. Still, they make fairly good time, delivering your pay upon completion of the job.")
-cargo_land[4] = _("The containers of %s are unloaded by a team of robotic drones supervised by a human overseer, who hands you your pay when they finish.")
 
 osd_title = _("Cargo mission")
-osd_msg = _("Land on %s (%s system)")
+osd_msg = _("Land on {planet} ({system} system)")
 
 -- Create the mission
 function create()
@@ -86,25 +77,40 @@ function create()
    distreward = math.log(100*commodity.price(cargo))/100
    reward = 1.5^tier * (avgrisk*riskreward + numjumps * jumpreward + traveldist * distreward) * finished_mod * (1. + 0.05*rnd.twosigma())
 
-   misn.setTitle( _("Shipment to %s in %s (%s)"):format(
-         destplanet:name(), destsys:name(), tonnestring(amount) ) )
+   local title = n_("Cargo: {amount} t to {planet} ({system} system)",
+         "Cargo: {amount} t to {planet} ({system} system)", amount)
+   misn.setTitle(fmt.f(title,
+         {planet=destplanet:name(), system=destsys:name(),
+            amount=fmt.number(amount)}))
    misn.markerAdd(destsys, "computer")
-   cargo_setDesc( misn_desc[tier]:format( destplanet:name(), destsys:name() ), cargo, amount, destplanet, nil, piracyrisk );
-   misn.setReward( creditstring(reward) )
+   cargo_setDesc(fmt.f(misn_desc[tier],
+            {planet=destplanet:name(), system=destsys:name()}),
+         cargo, amount, destplanet, nil, piracyrisk);
+   misn.setReward(fmt.credits(reward))
 end
 
 -- Mission is accepted
 function accept()
    if player.pilot():cargoFree() < amount then
-      tk.msg( _("No room in ship"), string.format(
-         _("You don't have enough cargo space to accept this mission. It requires %s of free space (%s more than you have)."),
-         tonnestring(amount),
-         tonnestring( amount - player.pilot():cargoFree() ) ) )
+      local required_text = n_(
+            "You don't have enough cargo space to accept this mission. It requires {required} tonne of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} tonnes of free space. ",
+            amount)
+      local shortfall = amount - player.pilot():cargoFree()
+      local shortfall_text = n_(
+            "You need {shortfall} more tonne of empty space.",
+            "You need {shortfall} more tonnes of empty space.",
+            shortfall)
+      tk.msg("", fmt.f(required_text .. shortfall_text,
+            {required=fmt.number(amount),
+               shortfall=fmt.number(shortfall)}))
       misn.finish()
    end
    misn.accept()
-   misn.cargoAdd(cargo, amount) -- TODO: change to jettisonable cargo once custom commodities are in. For piracy purposes.
-   misn.osdCreate(osd_title, {osd_msg:format(destplanet:name(), destsys:name())})
+   misn.cargoAdd(cargo, amount)
+   misn.osdCreate(osd_title, {
+         fmt.f(osd_msg, {planet=destplanet:name(), system=destsys:name()})
+      })
    hook.land("land")
 end
 
@@ -112,7 +118,14 @@ end
 function land()
    if planet.cur() == destplanet then
       -- Semi-random message.
-      tk.msg( cargo_land_title, cargo_land[rnd.rnd(1, #cargo_land)]:format(_(cargo)) )
+      local cargo_land = {
+         _("The containers of {cargotype} are carried out of your ship by a sullen group of workers. The job takes inordinately long to complete, and the leader pays you without speaking a word."),
+         _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Before you can even collect your thoughts, one of them presses a credit chip in your hand and departs."),
+         _("The containers of {cargotype} are unloaded by an exhausted-looking bunch of dockworkers. Still, they make fairly good time, delivering your pay upon completion of the job."),
+      }
+
+      tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
+               {cargotype=_(cargo)}))
       player.pay(reward)
       misn.finish(true)
    end
