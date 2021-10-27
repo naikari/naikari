@@ -175,6 +175,7 @@ msg_lore["general"] = {
    _([["Have you heard of Captain T. Practice? They're amazing, I'm their biggest fan!"]]),
    _([["Sometimes I look at the stars and wonder… are we the only sentient species in the universe?"]]),
    _([["Hey, you ever wonder why we're here?" You respond that it's one of the great mysteries of the universe. Why are we here? Are we the product of some cosmic coincidence or is there some great cosmic plan for us? You don't know, but it sometimes keeps you up at night. As you say this, the citizen stares at you incredulously. "What?? No, I mean why are we in here, in this bar?"]]),
+   _([["Don't be fooled by those distances your ship's instruments show you; the places you travel through are actually about 100,000 times larger on average. Unbelievable, I know! But traveling through systems in any reasonable amount of time would require traveling significantly faster than the speed of light, so every modern ship uses quantum triangulation to slip our ships through naturally occurring miniature dark matter wormholes, and since these are the same for every ship, your ship's computer is able to calculate a consistent position in an artificial 2-D space. Pretty cool, don't you think?"]]),
 }
 
 msg_lore["Independent"] = {
