@@ -27,20 +27,20 @@ end
 --    @return A string taking the form of "X ¤".
 --]]
 function fmt.credits(credits)
-   if credits >= 1e21 then
+   if credits >= 1e18 then
       return string.format(_("%.2f E¢"), credits / 1e18)
-   elseif credits >= 1e18 then
-      return string.format(_("%.2f P¢"), credits / 1e15)
    elseif credits >= 1e15 then
-      return string.format(_("%.2f T¢"), credits / 1e12)
+      return string.format(_("%.2f P¢"), credits / 1e15)
    elseif credits >= 1e12 then
-      return string.format(_("%.2f G¢"), credits / 1e9)
+      return string.format(_("%.2f T¢"), credits / 1e12)
    elseif credits >= 1e9 then
-      return string.format(_("%.2f M¢"), credits / 1e6)
+      return string.format(_("%.2f G¢"), credits / 1e9)
    elseif credits >= 1e6 then
+      return string.format(_("%.2f M¢"), credits / 1e6)
+   elseif credits >= 1e3 then
       return string.format(_("%.2f k¢"), credits / 1e3)
    else
-      return string.format(_("%.2f ¢"), credits)
+      return string.format(_("%.2f ¢"), math.floor(credits + 0.5))
    end
 end
 
