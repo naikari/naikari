@@ -6,7 +6,7 @@
 --
 -- @code
 -- local planets = {} 
--- getsysatdistance( system.cur(), 1, 6,
+-- getsysatdistance(system.cur(), 1, 6,
 --     function(s)
 --         for i, v in ipairs(s:planets()) do
 --             if v:faction() == faction.get("Sirius") and v:class() == "M" then
@@ -14,7 +14,7 @@
 --             end
 --         end 
 --         return false
---     end )
+--     end)
 -- 
 -- if #planets == 0 then abort() end -- In case no suitable planets are in range.
 -- 
@@ -29,9 +29,10 @@
 --    @param filter Optional filter function to use for more details.
 --    @param data Data to pass to filter
 --    @param hidden Whether or not to consider hidden jumps (off by default)
+--    @param hypergates Whether or not to consider hypergates (off by default)
 --    @return The table of systems n jumps away from sys
 --]]
-function getsysatdistance( sys, min, max, filter, data, hidden )
+function getsysatdistance(sys, min, max, filter, data, hidden, hypergates)
    -- Get default parameters
    if sys == nil then
       sys = system.cur()
@@ -40,22 +41,23 @@ function getsysatdistance( sys, min, max, filter, data, hidden )
       max = min
    end
 
-   open  = { sys }
-   close = { [sys:nameRaw()]=sys }
-   dist  = { [sys:nameRaw()]=0 }
+   open = {sys}
+   close = {[sys:nameRaw()]=sys}
+   dist = {[sys:nameRaw()]=0}
 
    -- Run max times
-   for i=1,max do
+   for i=1, max do
       nopen = {}
       -- Get all the adjacent system of the current set
-      for _,s in ipairs(open) do
-         adjsys = s:adjacentSystems( hidden ) -- Get them all
-         for _,a in ipairs(adjsys) do
+      for j, s in ipairs(open) do
+         adjsys = s:adjacentSystems(hidden) -- Get them all
+         for k, a in ipairs(adjsys) do
             -- Must not have been explored previously
-            if close[ a:nameRaw() ] == nil then
-               nopen[ #nopen+1 ] = a
-               close[ a:nameRaw() ] = a
-               dist[  a:nameRaw() ] = i
+            if close[a:nameRaw()] == nil
+                  and (hypergates or a ~= system.get("Hypergate Zone")) then
+               nopen[#nopen+1] = a
+               close[a:nameRaw()] = a
+               dist[a:nameRaw()] = i
             end
          end
       end
@@ -67,7 +69,7 @@ function getsysatdistance( sys, min, max, filter, data, hidden )
    for i,s in pairs(close) do
       if dist[i] >= min and dist[i] <= max and
             (filter == nil or filter(s,data)) then
-         finalset[ #finalset+1 ] = s
+         finalset[#finalset+1] = s
       end
    end
    return finalset

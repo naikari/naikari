@@ -203,7 +203,7 @@ function cargo_setDesc( misn_desc, cargo, amount, target, deadline, notes )
    end
 
    local numjumps = system.cur():jumpDist(target:system(), cargo_use_hidden)
-   if jumjumps ~= nil then
+   if numjumps ~= nil then
       table.insert(t, string.format(
             n_("Jumps: %d", "Jumps: %d", numjumps), numjumps))
    end
