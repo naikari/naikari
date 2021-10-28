@@ -940,8 +940,14 @@ static void input_key( int keynum, double value, double kabs, int repeat )
       if (value==KEY_PRESS) map_open();
    } else if (KEY("jump") && INGAME() && !repeat) {
       if (value==KEY_PRESS) {
-         player_restoreControl( 0, NULL );
-         player_jump();
+         if (player.p->nav_hyperspace != -1) {
+            player_hyperspacePreempt(1);
+            player_autonavStart();
+         }
+         else {
+            player_restoreControl(0, NULL);
+            player_jump();
+         }
       }
    } else if (KEY("overlay") && NODEAD() && INGAME() && !repeat) {
       ovr_key( value );
