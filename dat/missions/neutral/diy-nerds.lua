@@ -76,8 +76,10 @@ text[8] = _([[As soon as you get of your ship, you are surrounded by the group o
 
 -- you pick up the nerds in time, they didn't win
 text[9] = _([[As you get of your ship, you do not immediately see the nerds. You finally find them in a dark corner of the landing pad quietly sitting on their box, obviously not in a good mood. You greet them, but nobody speaks a word. You ask them what's wrong. The nerds warily glance at each other before Mia bursts out in frustration.
-    "That aristocratic ass of a bored teenager! He snatched the prize from us! It wasn't even fair play. His box wasn't home built. It was a brand new ship's processing unit, on which he banged his hammer until it looked acceptable. And the corrupt assholes in the jury pretended not to notice!"
-    "So no, we didn't win" she adds after taking a few breaths to calm down. "Take us back to %s."]])
+
+"That aristocratic ass of a bored teenager! He snatched the prize from us! It wasn't even fair play. His box wasn't home built. It was a brand new ship's processing unit, on which he banged his hammer until it looked acceptable. And the corrupt assholes in the jury pretended not to notice!"
+
+"So no, we didn't win" she adds after taking a few breaths to calm down. "Take us back to %s."]])
 
 -- you do not pickup the nerds in time
 text[10] = _([[You look around, but the nerds are nowhere to be found. That is not much of a surprise, seeing that you are way too late.]])
