@@ -75,7 +75,7 @@ abandoned_msg = _("MISSION FAILURE! You have left the {system} system.")
 osd_title = _("Ship Stealing")
 osd_msg = {}
 osd_msg[1] = _("Fly to the {system} system")
-osd_msg[2] = _("Locate, disable, and board {pilot}")
+osd_msg[2] = _("Disable and board {pilot}")
 osd_msg[3] = _("Land on any planet or station")
 osd_msg["__save"] = true
 
@@ -192,8 +192,12 @@ function jumpin()
       return
    end
 
-   local r = system.cur():radius()
-   local pos = vec2.new(rnd.rnd(-r, r), rnd.rnd(-r, r))
+   local pos = jump.pos(system.cur(), last_sys)
+   local offset_ranges = {{-5000, -2500}, {2500, 5000}}
+   local xrange = offset_ranges[rnd.rnd(1, #offset_ranges)]
+   local yrange = offset_ranges[rnd.rnd(1, #offset_ranges)]
+   pos = pos + vec2.new(rnd.rnd(xrange[1], xrange[2]),
+            rnd.rnd(yrange[1], yrange[2]))
    spawn_target(pos)
 end
 
@@ -223,29 +227,37 @@ function land()
          end
       end
 
+      -- Give some pirate fame, take away standing from target faction.
+      faction.get("Pirate"):modPlayer(1)
+      faction.get(target_faction):modPlayerSingle(-1)
+
       misn.finish(true)
    end
 end
 
 
-function pilot_board(p)
-   local t = subdue_text[rnd.rnd(1, #subdue_text)]
-   tk.msg("", t)
-   succeed()
+function pilot_boarding(p, boarder)
+   if boarder == player.pilot() then
+      player.unboard()
+      local t = subdue_text[rnd.rnd(1, #subdue_text)]
+      tk.msg("", t)
+      succeed()
 
-   -- Pirate takes over the ship
-   p:setHilight(false)
-   p:setNoJump(false)
-   p:setNoLand(false)
-   p:setNoDeath()
-   p:control()
-   p:hyperspace()
+      -- Pirate takes over the ship
+      p:setHilight(false)
+      p:setNoDeath()
+      p:control()
+      p:hyperspace()
 
-   -- Store the outfits on the ship
-   soutfits = {}
-   soutfits["__save"] = true
-   for i, o in p:outfits() do
-      soutfits[#soutfits + 1] = o
+      -- Store the outfits on the ship
+      soutfits = {}
+      soutfits["__save"] = true
+      for i, o in ipairs(p:outfits()) do
+         soutfits[#soutfits + 1] = o
+      end
+   else
+      p:setHilight(false)
+      fail(_("Another pilot captured your target."))
    end
 end
 
@@ -330,23 +342,17 @@ function spawn_target(source)
       if jumps_permitted >= 0 then
          misn.osdActive(2)
 
-         local f = faction.dynAdd(target_faction, "Steal Target",
-               target_faction, {clear_enemies=true})
-         f:dynAlly(target_faction)
          local target_ship = pilot.add(shiptype, target_faction, source, name)
          target_ship:setHilight()
-         target_ship:setNoJump()
-         target_ship:setNoLand()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
 
-         -- Prevent the ship from trying to run.
-         target_ship:memory().armour_run = 0
-         target_ship:memory().shield_run = 0
-
+         hook.pilot(target_ship, "boarding", "pilot_boarding")
          hook.pilot(target_ship, "death", "pilot_death")
          target_jump_hook = hook.pilot(target_ship, "jump", "pilot_jump")
          target_land_hook = hook.pilot(target_ship, "land", "pilot_jump")
+
+         target_ship:taskClear()
 
          hook.timer(2, "enter_timer")
       else

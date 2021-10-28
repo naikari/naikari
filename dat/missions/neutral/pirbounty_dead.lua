@@ -224,15 +224,22 @@ function pilot_disable ()
 end
 
 
-function pilot_board ()
-   local t = subdue_text[rnd.rnd(1, #subdue_text)]:format(name)
-   tk.msg("", t)
-   succeed()
-   target_killed = false
-   target_ship:changeAI("dummy")
-   target_ship:setHilight(false)
-   target_ship:disable() -- Stop it from coming back
-   if death_hook ~= nil then hook.rm(death_hook) end
+function pilot_board(p, boarder)
+   if boarder == player.pilot() then
+      local t = subdue_text[rnd.rnd(1, #subdue_text)]:format(name)
+      tk.msg("", t)
+      succeed()
+      target_killed = false
+      target_ship:changeAI("dummy")
+      target_ship:setHilight(false)
+      target_ship:disable() -- Stop it from coming back
+      if death_hook ~= nil then hook.rm(death_hook) end
+   else
+      target_ship:changeAI("dummy")
+      target_ship:setHilight(false)
+      target_ship:disable()
+      fail(_("Another pilot captured your bounty."))
+   end
 end
 
 
@@ -374,7 +381,7 @@ function spawn_pirate(param)
          target_ship:setHilight()
          target_ship:setHostile()
          hook.pilot(target_ship, "disable", "pilot_disable")
-         hook.pilot(target_ship, "board", "pilot_board")
+         hook.pilot(target_ship, "boarding", "pilot_board")
          hook.pilot(target_ship, "attacked", "pilot_attacked")
          death_hook = hook.pilot(target_ship, "death", "pilot_death")
          pir_jump_hook = hook.pilot(target_ship, "jump", "pilot_jump")
