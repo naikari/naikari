@@ -104,9 +104,9 @@ function create()
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
    finished_mod = 2.0 -- Modifier that should tend towards 1.0 as Naev is finished as a game
    amount = rnd.rnd(10 + 3 * tier, 20 + 4 * tier)
-   jumpreward = 1500
-   distreward = 0.30
-   reward = 1.5^tier * (numjumps*jumpreward + traveldist*distreward)
+   jumpreward = 3000
+   distreward = 0.60
+   reward = 1.1^tier * (numjumps*jumpreward + traveldist*distreward)
          * finished_mod * (1. + 0.05*rnd.twosigma())
    
    local title = n_(
