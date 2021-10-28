@@ -136,7 +136,7 @@ function create ()
       misn.finish(false)
    end
 
-   jumps_permitted = system.cur():jumpDist(missys) + 3
+   jumps_permitted = system.cur():jumpDist(missys, use_hidden_jumps) + 3
    hostiles = {}
    hostiles["__save"] = true
    hostiles_encountered = false
