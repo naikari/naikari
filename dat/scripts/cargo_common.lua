@@ -91,7 +91,7 @@ function cargo_calculateRoute ()
    -- Assume shortest route with no interruptions.
    -- This is used to calculate the reward.
 
-   local numjumps   = origin_s:jumpDist(destsys, cargo_use_hidden)
+   local numjumps = origin_s:jumpDist(destsys, cargo_use_hidden) or 0
    local traveldist = cargo_calculateDistance(routesys, routepos, destsys, destplanet)
    
    
@@ -203,8 +203,10 @@ function cargo_setDesc( misn_desc, cargo, amount, target, deadline, notes )
    end
 
    local numjumps = system.cur():jumpDist(target:system(), cargo_use_hidden)
-   table.insert(t, string.format(
-         n_("Jumps: %d", "Jumps: %d", numjumps), numjumps))
+   if jumjumps ~= nil then
+      table.insert(t, string.format(
+            n_("Jumps: %d", "Jumps: %d", numjumps), numjumps))
+   end
 
    local dist = cargo_calculateDistance(system.cur(), planet.cur():pos(),
          target:system(), target)

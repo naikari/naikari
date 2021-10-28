@@ -408,14 +408,18 @@ static int systemL_nebula( lua_State *L )
  *    - system : Gets distance to system
  *
  * @usage d = sys:jumpDist() -- Distance from sys to current system.
- * @usage d = sys:jumpDist( "Draygar" ) -- Distance from sys to system Draygar.
- * @usage d = sys:jumpDist( another_sys ) -- Distance from sys to another_sys.
+ * @usage d = sys:jumpDist("Draygar") -- Distance from sys to system Draygar.
+ * @usage d = sys:jumpDist(another_sys) -- Distance from sys to another_sys.
  *
  *    @luatparam System s Starting system.
- *    @luatparam nil|string|Goal system param See description.
- *    @luatparam[opt=false] boolean hidden Whether or not to consider hidden jumps.
- *    @luatparam[opt=false] boolean known Whether or not to consider only jumps known by the player.
- *    @luatreturn number Number of jumps to system.
+ *    @luatparam string|System[opt] system System to get distance to.
+ *       If nil or unspecified, gets distance to the current system.
+ *    @luatparam[opt=false] boolean hidden Whether or not to consider
+ *       hidden jumps.
+ *    @luatparam[opt=false] boolean known Whether or not to consider
+ *       only jumps known by the player.
+ *    @luatreturn number|nil Number of jumps to system, or nil if there
+ *       is no route to the system with the given parameters.
  * @luafunc jumpDist
  */
 static int systemL_jumpdistance( lua_State *L )
@@ -423,27 +427,40 @@ static int systemL_jumpdistance( lua_State *L )
    StarSystem *sys, *sysp;
    StarSystem **s;
    const char *start, *goal;
-   int h, k;
+   int h, k, size;
 
-   sys = luaL_validsystem(L,1);
+   sys = luaL_validsystem(L, 1);
    start = sys->name;
-   h   = lua_toboolean(L,3);
-   k   = !lua_toboolean(L,4);
 
-   if (lua_gettop(L) > 1) {
-      if (lua_isstring(L,2))
-         goal = lua_tostring(L,2);
-      else if (lua_issystem(L,2)) {
-         sysp = luaL_validsystem(L,2);
+   if (!lua_isnoneornil(L, 2)) {
+      if (lua_isstring(L, 2))
+         goal = lua_tostring(L, 2);
+      else if (lua_issystem(L, 2)) {
+         sysp = luaL_validsystem(L, 2);
          goal = sysp->name;
       }
-      else NLUA_INVALID_PARAMETER(L);
+      else
+         NLUA_INVALID_PARAMETER(L);
    }
    else
       goal = cur_system->name;
 
-   s = map_getJumpPath( start, goal, k, h, NULL );
-   lua_pushnumber(L,array_size(s));
+   /* If the two systems are the same, return a distance of 0. No need
+    * to bother with the rest of the arguments in that case. */
+   if (strcmp(start, goal) == 0) {
+      lua_pushnumber(L, 0);
+      return 1;
+   }
+
+   h = lua_toboolean(L, 3);
+   k = !lua_toboolean(L, 4);
+
+   s = map_getJumpPath(start, goal, k, h, NULL);
+   size = array_size(s);
+   if (size > 0)
+      lua_pushnumber(L, array_size(s));
+   else
+      lua_pushnil(L);
 
    array_free(s);
    return 1;

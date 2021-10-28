@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>15</priority>
-  <cond>planet.get("Violin Station"):system():jumpDist() &lt; 4</cond>
+  <cond>system.get("Churchill"):jumpDist() ~= nil and system.get("Churchill"):jumpDist() &lt; 4</cond>
   <done>Sirian Bounty</done>
   <chance>10</chance>
   <location>Bar</location>

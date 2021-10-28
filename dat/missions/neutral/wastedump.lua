@@ -80,7 +80,8 @@ function create ()
    local closest_sys
    for i, v in ipairs(dest_planets) do
       p, sys = planet.get(v)
-      if dist == nil or system.cur():jumpDist(sys) < dist then
+      local jd = system.cur():jumpDist(sys)
+      if jd ~= nil and (dist == nil or jd < dist) then
          dist = system.cur():jumpDist(sys)
          closest_sys = sys
       end
