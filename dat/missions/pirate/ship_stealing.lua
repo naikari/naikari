@@ -331,7 +331,7 @@ function spawn_target(source)
          misn.osdActive(2)
 
          local f = faction.dynAdd(target_faction, "Steal Target",
-               target_faction:nameRaw(), {clear_enemies=true})
+               target_faction, {clear_enemies=true})
          f:dynAlly(target_faction)
          local target_ship = pilot.add(shiptype, target_faction, source, name)
          target_ship:setHilight()

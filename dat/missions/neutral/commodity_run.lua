@@ -35,24 +35,24 @@
    Commodity delivery missions.
 --]]
 
-require "numstring"
+local fmt = require "fmt"
 
 --Mission Details
-misn_title = _("%s Delivery")
-misn_desc = _("%s has an insufficient supply of %s to satisfy the current demand. Go to any planet which sells this commodity and bring as much of it back as possible.")
+misn_title = _("{commodity} Delivery")
+misn_desc = _("{planet} has an insufficient supply of {commodity} to satisfy the current demand. Go to any planet which sells this commodity and bring as much of it back as possible.")
 
 cargo_land_title = _("Delivery success!")
 
 cargo_land = {}
-cargo_land[1] = _("The containers of %s are carried out of your ship and tallied. After several different men double-check the register to confirm the amount, you are paid %s and summarily dismissed.")
-cargo_land[2] = _("The containers of %s are quickly and efficiently unloaded, labeled, and readied for distribution. The delivery manager thanks you with a credit chip worth %s.")
-cargo_land[3] = _("The containers of %s are unloaded from your vessel by a team of dockworkers who are in no rush to finish, eventually delivering %s after the number of tonnes is determined.")
-cargo_land[4] = _("The containers of %s are unloaded by robotic drones that scan and tally the contents. The human overseer hands you %s when they finish.")
+cargo_land[1] = _("The containers of {commodity} are carried out of your ship and tallied. After several different men double-check the register to confirm the amount, you are paid {credits} and summarily dismissed.")
+cargo_land[2] = _("The containers of {commodity} are quickly and efficiently unloaded, labeled, and readied for distribution. The delivery manager thanks you with a credit chip worth {credits}.")
+cargo_land[3] = _("The containers of {commodity} are unloaded from your vessel by a team of dockworkers who are in no rush to finish, eventually delivering {credits} after the number of tonnes is determined.")
+cargo_land[4] = _("The containers of {commodity} are unloaded by robotic drones that scan and tally the contents. The human overseer hands you {credits} when they finish.")
 
 osd_title = _("Commodity Delivery")
 osd_msg    = {}
-osd_msg[1] = _("Buy as much %s as possible")
-osd_msg[2] = _("Take the %s to %s (%s system)")
+osd_msg[1] = _("Buy as much {commodity} as possible")
+osd_msg[2] = _("Take the {commodity} to {planet} ({system} system)")
 osd_msg["__save"] = true
 
 
@@ -80,7 +80,7 @@ function create ()
    missys = system.cur()
    
    if commchoices == nil then
-      local std = commodity.getStandard();
+      local std = commodity.getStandard()
       chosen_comm = std[rnd.rnd(1, #std)]:nameRaw()
    else
       chosen_comm = commchoices[rnd.rnd(1, #commchoices)]
@@ -106,10 +106,12 @@ function create ()
    end
 
    -- Set Mission Details
-   misn.setTitle(misn_title:format(comm:name()))
+   misn.setTitle(fmt.f(misn_title, {commodity=comm:name()}))
    misn.markerAdd(system.cur(), "computer")
-   misn.setDesc(misn_desc:format(misplanet:name(), comm:name()))
-   misn.setReward(_("%s per tonne"):format(creditstring(price)))
+   misn.setDesc(fmt.f(misn_desc,
+         {planet=misplanet:name(), commodity=comm:name()}))
+   misn.setReward(fmt.f(n_("{price} ¢/t", "{price} ¢/t", price),
+         {price=fmt.number(price)}))
 end
 
 
@@ -119,8 +121,9 @@ function accept ()
    misn.accept()
    update_active_runs(1)
 
-   osd_msg[1] = osd_msg[1]:format(comm:name())
-   osd_msg[2] = osd_msg[2]:format(comm:name(), misplanet:name(), missys:name())
+   osd_msg[1] = fmt.f(osd_msg[1], {commodity=comm:name()})
+   osd_msg[2] = fmt.f(osd_msg[2],
+         {commodity=comm:name(), planet=misplanet:name(), system=missys:name()})
    misn.osdCreate(osd_title, osd_msg)
 
    hook.enter("enter")
@@ -142,8 +145,8 @@ function land ()
    local reward = amount * price
 
    if planet.cur() == misplanet and amount > 0 then
-      local txt = cargo_land[rnd.rnd(1, #cargo_land)]:format(
-            _(chosen_comm), creditstring(reward))
+      local txt = fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
+            {commodity=_(chosen_comm), credits=fmt.credits(reward)})
       tk.msg(cargo_land_title, txt)
       pilot.cargoRm(player.pilot(), chosen_comm, amount)
       player.pay(reward)

@@ -31,14 +31,14 @@
 
 require "missions/neutral/commodity_run"
 
-misn_title = _("Exploit the Demand for %s")
-misn_desc = _("Pirates on %s have been demanding a lot of %s lately, and that's driving the price up. If you find some of it and bring it back, you can make some good money off of them.")
+misn_title = _("Exploit the Demand for {commodity}")
+misn_desc = _("Pirates on {planet} have been demanding a lot of {commodity} lately, and that's driving the price up. If you find some of it and bring it back, you can make some good money off of them.")
 
 cargo_land = {}
-cargo_land[1] = _("The containers of %s are bought by the boatload, eventually earning you %s.")
-cargo_land[2] = _("The containers of %s are quickly sold out, earning you %s.")
-cargo_land[3] = _("The containers of %s are eventually all sold to the pirates, though it takes some time. Your total earnings in the end amount to %s.")
-cargo_land[4] = _("Pirates immediately line up to buy your %s. Before you know it, you have none left, and you find that you're %s richer.")
+cargo_land[1] = _("The containers of {commodity} are bought by the boatload, eventually earning you {credits}.")
+cargo_land[2] = _("The containers of {commodity} are quickly sold out, earning you {credits}.")
+cargo_land[3] = _("The containers of {commodity} are eventually all sold to the pirates, though it takes some time. Your total earnings in the end amount to {credits}.")
+cargo_land[4] = _("Pirates immediately line up to buy your {commodity}. Before you know it, you have none left, and you find that you're {credits} richer.")
 
 osd_title = _("Pirate Sales")
 
