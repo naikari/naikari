@@ -224,7 +224,7 @@ function pilot_attacked_sindbad(pilot, attacker, arg)
    if (attacker == player.pilot() or attacker:leader() == player.pilot())
          and faction.get("FLF"):playerStanding() > -100 then
       -- Punish the player with a faction hit every time they attack
-      faction.get("FLF"):modPlayer(-10)
+      faction.get("FLF"):modPlayerSingle(-10)
    end
 end
 
