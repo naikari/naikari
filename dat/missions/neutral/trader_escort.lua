@@ -21,20 +21,20 @@
 --]]
 --Escort a convoy of traders to a destination--
 
+local fmt = require "fmt"
+local fleet = require "fleet"
 require "nextjump"
 require "cargo_common"
-require "numstring"
-local fleet = require "fleet"
 
 
 misn_title = {}
-misn_title[1] = _("Escort a tiny convoy to %s in %s.")
-misn_title[2] = _("Escort a small convoy to %s in %s.")
-misn_title[3] = _("Escort a medium convoy to %s in %s.")
-misn_title[4] = _("Escort a large convoy to %s in %s.")
-misn_title[5] = _("Escort a huge convoy to %s in %s.")
+misn_title[1] = _("Escort: Tiny Convoy to {planet} ({system} system)")
+misn_title[2] = _("Escort: Small Convoy to {planet} ({system} system)")
+misn_title[3] = _("Escort: Medium Convoy to {planet} ({system} system)")
+misn_title[4] = _("Escort: Large Convoy to {planet} ({system} system)")
+misn_title[5] = _("Escort: Huge Convoy to {planet} ({system} system)")
 
-misn_desc = _("A convoy of traders needs protection while they go to %s (%s system). You must stick with the convoy at all times, waiting to jump or land until the entire convoy has done so.")
+misn_desc = _("A convoy of traders needs protection while they go to {planet} in the {system} system. You must stick with the convoy at all times, waiting to jump or land until the entire convoy has done so.")
    
 piracyrisk = {}
 piracyrisk[1] = _("Piracy Risk: None")
@@ -43,19 +43,13 @@ piracyrisk[3] = _("Piracy Risk: Medium")
 piracyrisk[4] = _("Piracy Risk: High")
 
 osd_title = _("Convey Escort")
-osd_msg = _("Escort a convoy of traders to %s (%s system)")
-
-slow = {}
-slow[1] = _("Not enough fuel")
-slow[2] = _([[The destination is %s away, but you only have enough fuel for %s. You cannot stop to refuel. Accept the mission anyway?]])
+osd_msg = _("Escort a convoy of traders to {planet} ({system} system)")
 
 landsuccesstext = _("You successfully escorted the trading convoy to the destination. There wasn't a single casualty and you are rewarded the full amount.")
 
 landcasualtytext = {}
 landcasualtytext[1] = _("You've arrived with the trading convoy more or less intact. Your pay is docked slightly due to the loss of part of the convoy.")
 landcasualtytext[2] = _("You arrive with what's left of the convoy. It's not much, but it's better than nothing. You are paid a steeply discounted amount.")
-
-convoydeathtext = _([[All of the traders have been killed. You are a terrible escort.]])
 
 landfailtext = _("You have landed, abandoning your mission to escort the trading convoy.")
 
@@ -108,18 +102,26 @@ function create()
    end
    reward = 2.0 * (avgrisk * numjumps * jumpreward + traveldist * distreward) * (1. + 0.05*rnd.twosigma())
    
-   misn.setTitle(misn_title[convoysize]:format(
-      destplanet:name(), destsys:name()))
-   cargo_setDesc(misn_desc:format(destplanet:name(), destsys:name()), cargo, nil, destplanet, nil, piracyrisk);
+   misn.setTitle(fmt.f(misn_title[convoysize],
+         {planet=destplanet:name(), system=destsys:name()}))
+   cargo_setDesc(fmt.f(misn_desc,
+            {planet=destplanet:name(), system=destsys:name()}),
+         cargo, nil, destplanet, nil, piracyrisk)
    misn.markerAdd(destsys, "computer")
-   misn.setReward(creditstring(reward))
+   misn.setReward(fmt.credits(reward))
 end
 
 function accept()
    local pjumps = player.jumps()
    if pjumps ~= nil and pjumps < numjumps then
-      if not tk.yesno(slow[1], slow[2]:format(
-            jumpstring(numjumps), jumpstring(pjumps))) then
+      local needed_text = n_("The destination is {distance} jump away. ",
+            "The destination is {distance} jumps away. ", numjumps)
+      local avail_text = n_(
+            "You only have enough fuel for {range} jump. You cannot stop to refuel. Accept the mission anyway?",
+            "You only have enough fuel for {range} jumps. You cannot stop to refuel. Accept the mission anyway?",
+            pjumps)
+      if not tk.yesno("", fmt.f(needed_text .. avail_text,
+               {distance=fmt.number(numjumps), range=fmt.number(pjumps)})) then
          misn.finish()
       end
    end
@@ -134,7 +136,8 @@ function accept()
    unsafe = false
 
    misn.accept()
-   misn.osdCreate(osd_title, {osd_msg:format(destplanet:name(), destsys:name())})
+   misn.osdCreate(osd_title,
+         {fmt.f(osd_msg, {planet=destplanet:name(), system=destsys:name()})})
 
    hook.takeoff("takeoff")
    hook.jumpin("jumpin")
@@ -206,8 +209,9 @@ function traderJump(p, j)
       exited = exited + 1
       updateOSD()
       if p:exists() then
-         player.msg(string.format(
-            _("%s has jumped to %s."), p:name(), j:dest():name()))
+         player.msg(fmt.f(
+               _("{ship} has jumped to {system}."),
+               {ship=p:name(), system=j:dest():name()}))
       end
       if exited >= alive then
          misn.osdActive(2)
@@ -223,8 +227,9 @@ function traderLand(p, plnt)
       exited = exited + 1
       updateOSD()
       if p:exists() then
-         player.msg(string.format(
-            "%s has landed on %s.", p:name(), plnt:name()))
+         player.msg(fmt.f(
+               _("{ship} has landed on {planet}."),
+               {ship=p:name(), planet=plnt:name()}))
       end
       if exited >= alive then
          misn.osdActive(2)
@@ -438,27 +443,29 @@ function continueToDest(p)
    end
 end
 
-function updateOSD ()
+function updateOSD()
    misn.osdDestroy()
    if system.cur() == destsys then
       local osd_desc = {}
-      osd_desc[1] = string.format(
-            _("Protect the convoy ships and wait for them to land on %s (%s/%s)"),
-            destplanet:name(), numstring(exited), numstring(alive))
-      osd_desc[2] = string.format(_("Land on %s"), destplanet:name())
+      osd_desc[1] = fmt.f(
+            _("Protect the convoy ships and wait for them to land on {planet} ({landed}/{remaining})"),
+            {planet=destplanet:name(), landed=fmt.number(exited),
+               remaining=fmt.number(alive)})
+      osd_desc[2] = fmt.f(_("Land on {planet}"), {planet=destplanet:name()})
       misn.osdCreate(osd_title, osd_desc)
    else
       local jumps = system.cur():jumpDist(destsys)
       local osd_desc = {}
-      osd_desc[1] = string.format(
-            _("Protect the convoy ships and wait for them to jump to %s (%s/%s)"),
-            nextsys:name(), numstring(exited), numstring(alive))
-      osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
+      osd_desc[1] = fmt.f(
+            _("Protect the convoy ships and wait for them to jump to {system} ({jumped}/{remaining})"),
+            {system=nextsys:name(), jumped=fmt.number(exited),
+               remaining=fmt.number(alive)})
+      osd_desc[2] = fmt.f(_("Jump to {system}"), {system=nextsys:name()})
       if jumps > 1 then
-         osd_desc[3] = string.format(
-               n_("%s more jump after this one",
-                  "%s more jumps after this one", jumps - 1),
-               numstring(jumps - 1))
+         osd_desc[3] = fmt.f(
+               n_("{remaining} more jump after this one",
+                  "{remaining} more jumps after this one", jumps - 1),
+               {remaining=fmt.number(jumps - 1)})
       end
       misn.osdCreate(osd_title, osd_desc)
    end
