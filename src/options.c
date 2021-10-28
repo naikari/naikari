@@ -1348,7 +1348,6 @@ static void opt_video( unsigned int wid )
    y -= 20;
    window_addFader(wid, x, y, cw-20, 20, "fadZoomFar", 0.1, 2.,
          conf.zoom_far, opt_setZoomFar);
-   opt_setMapOverlayOpacity(wid, "fadZoomFar");
    opt_setZoomFar(wid, "fadZoomFar");
    y -= 40;
 
