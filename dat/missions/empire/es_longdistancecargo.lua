@@ -164,7 +164,7 @@ function accept()
    local osd_msg = {}
    osd_msg[1] = fmt.f(osd_msg1,
          {planet=destplanet:name(), system=destsys:name(),
-            deadline=timelimit:str(), time=tonumber(timelimit - time.get())})
+            deadline=timelimit:str(), time=(timelimit - time.get()):str()})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land") -- only hook after accepting
    hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
@@ -200,7 +200,7 @@ function tick()
       local osd_msg = {}
       osd_msg[1] = fmt.f(osd_msg1,
             {planet=destplanet:name(), system=destsys:name(),
-               deadline=timelimit:str(), time=tonumber(timelimit - time.get())})
+               deadline=timelimit:str(), time=(timelimit - time.get()):str()})
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit <= time.get() then
       -- Case missed deadline
