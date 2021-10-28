@@ -4,7 +4,7 @@
  <avail>
   <priority>40</priority>
   <cond>planet.cur():blackmarket() or (faction.playerStanding("Pirate") &gt;= 0 and player.numOutfit("Mercenary License") &gt; 0)</cond>
-  <chance>10</chance>
+  <chance>15</chance>
   <location>Bar</location>
   <faction>Pirate</faction>
   <faction>Independent</faction>
