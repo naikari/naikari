@@ -89,10 +89,7 @@ function accept ()
    end
 
    next_discovered = false
-   landed = true
    standhook = hook.standing("standing")
-   hook.takeoff("takeoff")
-   hook.land("land")
 end
 
 
@@ -123,16 +120,6 @@ function standing(f, delta, secondary)
 end
 
 
-function takeoff ()
-   landed = false
-end
-
-
-function land ()
-   landed = true
-end
-
-
 function abort ()
    if standhook ~= nil then hook.rm(standhook) end
    
@@ -143,7 +130,7 @@ function abort ()
    end
    
    local msg = noticed_offplanet
-   if landed then
+   if player.isLanded() then
       local f = planet.cur():faction()
       if f ~= nil and orig_standing[f:nameRaw()] ~= nil then
          msg = noticed_onplanet
