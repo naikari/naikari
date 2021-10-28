@@ -14,7 +14,7 @@
 #include "nlua_planet.h"
 
 
-#define HOOK_MAX_PARAM  3 /**< Maximum hook params, to avoid dynamic allocation. */
+#define HOOK_MAX_PARAM  4 /**< Maximum hook params, to avoid dynamic allocation. */
 
 
 /**
