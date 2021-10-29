@@ -123,9 +123,7 @@ cooldown_log = _([[As you fire your weapons, they and subsequently your ship get
 
 jumping_text = _([["Good job! Your ship is now fully cooled off. In addition to using Active Cooldown, you can also cool off by landing on any planet or station.
 
-"I think we should try venturing outside of this system! There are many systems in the universe; this one is but a tiny sliver of what can be found out there!
-
-"Traveling through systems is accomplished through jump points. Like planets, you usually need to find these by exploring the area, talking to the locals, or buying maps. Once you have found a jump point, you can use it by #bdouble-clicking#0 on it.
+"I think we should try venturing outside of this system! There are many systems in the universe; this one is but a tiny sliver of what can be found out there! Traveling through systems is accomplished through jump points. Like planets, you usually need to find these by exploring the area, talking to the locals, or buying maps. Once you have found a jump point, you can use it by #bdouble-clicking#0 on it.
 
 "But there is yet a better way to navigate across systems! By pressing %s, you can open your starmap. The starmap shows you all of the systems you currently know about. Through your starmap, you can click on a system and click on the Autonav button to be automatically transported to the system! Of course, this only works if you know a valid route to get there, but you will find that this method of travel greatly simplifies things.
 
