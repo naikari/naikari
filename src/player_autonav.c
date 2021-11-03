@@ -655,7 +655,13 @@ int player_autonavShouldResetSpeed (void)
    if (!player_isFlag(PLAYER_AUTONAV))
       return 0;
 
-   hostiles   = 0;
+   /* Reset on lockons. */
+   if (player.p->lockons > 0) {
+      player_autonavResetSpeed();
+      return 1;
+   }
+
+   hostiles = 0;
    will_reset = 0;
 
    failpc = conf.autonav_reset_speed;
