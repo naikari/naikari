@@ -61,40 +61,37 @@ function fmt.tonnes(tonnes)
 end
 
 
-local function loads(code, name, env)
-   local fn, err = loadstring(code, name)
-   if fn then
-      setfenv(fn, env)
-      return fn
-   end
-   return nil, err
-end
-
-
 --[[--
-String interpolation, inspired by <a href="https://github.com/hishamhm/f-strings">f-strings</a> without debug stuff.
-   Prefer this over string.format because it allows translations to change the word order.
-   @usage fmt.f(_("Deliver the loot to {pntname} in the {sysname} system"),{pntname=returnpnt:name(), sysname=returnsys:name()})
+String interpolation function.
+
+Inspired by
+<a href="https://github.com/hishamhm/f-strings">f-strings</a>, but more
+similar to Python's str.format() and simplified. Prefer this over
+string.format because it allows translations to change the word order.
+
+   @usage fmt.f(_("Land on {pntname} ({sysname} system)"), {pntname=returnpnt:name(), sysname=returnsys:name()})
+   @usage fmt.f(_("As easy as {1}, {2}, {3}"), {"one", "two", "three"})
+   @usage fmt.f(_("A few digits of pi: {1:.2f}"), {math.pi})
+
    @tparam string str Format string which may include placeholders of
       the form "{var}" or "{var:%6.3f}" (where the expression after the
-      colon is any directive string.format understands).
+      colon is any directive string.format understands). A var which is
+      a number is treated as a number; all other var definition is
+      treated as a string. This value is used to index the argument
+      table.
    @tparam table tab Argument table.
 --]]
 function fmt.f(str, tab)
    return (str:gsub("%b{}", function(block)
-      local code, sfmt = block:match("{(.*):(%%.*)}")
-      code = code or block:match("{(.*)}")
-      local fn, err = loads("return " .. code,
-            string.format(_("format expression `%s`"), code), tab)
-      if fn then
-         fn = fn()
-         if fn == nil then
-            warn(string.format(_("fmt.f: string '%s' has '%s'==nil!"),str,code))
-         end
-         return sfmt and string.format(sfmt, fn) or tostring(fn)
-      else
-         error(err, 0)
+      local key, fmt = block:match("{(.*):(.*)}")
+      key = key or block:match("{(.*)}")
+      -- Support {1} for printing the first member of the table, etc.
+      key = tonumber(key) or key
+      val = tab[key]
+      if val == nil then
+         warn(string.format(_("fmt.f: string '%s' has '%s'==nil!"), str, key))
       end
+      return fmt and string.format('%' .. fmt, val) or tostring(val)
    end))
 end
 
