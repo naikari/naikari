@@ -61,7 +61,9 @@ text[3] = _([["I'm happy to hear that. It's good to know we still have the suppo
 
 You object, asking the Corporal if all recruits have to undertake dangerous missions like this to be accepted into the FLF ranks. Benito chuckles and makes a pacifying gesture.
 
-"Calm down, it's not as bad as it sounds. You only have to take out one small patrol; I don't think you will have to fight more than 3 ships, 4 if you're really unlucky. If you think that's too much for you, you can abort the mission for now and come to me again later. Otherwise, good luck!"]])
+"Calm down, it's not as bad as it sounds. You only have to take out one small patrol; I don't think you will have to fight more than 3 ships, 4 if you're really unlucky. If you think that's too much for you, you can abort the mission for now and come to me again later."]])
+
+sindbad_tip_text = _([[Benito starts to walk away, then turns back and addresses you again. "Ah, yes, I forgot to mention this: as I'm sure you're aware, we are a small guerrilla force fighting a war in territory where we are majorly outnumbered. As such, I do not recommend flying in fancy large ships. You need to be able to get in, get the job done, and get out so you can survive and fight again, and for that, small ships, no larger than a Lancelot or Vendetta, are generally going to be your best bet. If you don't have such a ship, I would suggest getting one at our shipyard. Anyway, good luck, and show those Dvaereds hell!"]])
 
 text[4] = _([[When you left Sindbad Station, it was a cold, lonely place for you. The FLF soldiers on the station avoided you whenever they could, and basic services were harder to get than they should have been.
 
@@ -136,6 +138,7 @@ function accept ()
    tk.msg("", text[1]:format(player.name()))
    if tk.yesno("", text[2]) then
       tk.msg("", text[3]:format(missys:name()))
+      tk.msg("", sindbad_tip_text)
 
       osd_desc[1] = osd_desc[1]:format(missys:name())
 
