@@ -285,7 +285,7 @@ function hail ()
 end
 
 
-function spawnFLF ()
+function spawnFLF(num)
    local dist = 1500
    local x
    local y
@@ -301,14 +301,14 @@ function spawnFLF ()
    end
 
    local pos = player.pos() + vec2.new(x, y)
-   fleetFLF = fleet.add(8, {"Vendetta", "Lancelot"}, "FLF", pos,
+   fleetFLF = fleet.add(num, {"Vendetta", "Lancelot"}, "FLF", pos,
          {_("FLF Vendetta"), _("FLF Lancelot")}, {ai="flf_norun"})
 end
 
 
-function timer_spawnFLF ()
+function timer_spawnFLF()
    if boss ~= nil and boss:exists() then
-      spawnFLF()
+      spawnFLF(8)
       for i, j in ipairs(fleetFLF) do
          j:setFriendly()
          j:setVisplayer(true)
@@ -320,11 +320,9 @@ end
 
 
 function timer_spawnHostileFLF ()
-   spawnFLF()
+   spawnFLF(4)
    for i, j in ipairs(fleetFLF) do
       j:setHostile()
-      j:control()
-      j:attack(player.pilot())
    end
 
    hook.pilot(player.pilot(), "death", "returnFLFControl")
