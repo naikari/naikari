@@ -313,7 +313,6 @@ void equipment_open( unsigned int wid )
    int ew, eh;
    int cw, ch;
    int x, y;
-   const char *buf;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_EQUIPMENT);
@@ -366,36 +365,10 @@ void equipment_open( unsigned int wid )
    window_addButtonKey( wid, -10, 20, bw, bh, "btnCloseEquipment",
          _("Take Off"), land_buttonTakeoff, SDLK_t );
 
-   /* text */
-   buf = _("Name:\n"
-      "Model:\n"
-      "Class:\n"
-      "Value:\n"
-      "\n"
-      "Mass:\n"
-      "Jump Time:\n"
-      "Thrust:\n"
-      "Speed:\n"
-      "Turn:\n"
-      "Time Constant:\n"
-      "\n"
-      "Absorption:\n"
-      "Shield:\n"
-      "Armor:\n"
-      "Energy:\n"
-      "Cargo:\n"
-      "Fuel:\n"
-      "Radar Range:\n"
-      "Jump Detect Range:\n"
-      "\n"
-      "Ship Status:");
    x = 10 + sw + 10 + ew + 10;
    y = -40;
-   window_addText( wid, x, y,
-         210, y-20+h-bh, 0, "txtSDesc", &gl_defFont, &cFontGrey, buf );
-   x += 210;
-   window_addText( wid, x, y,
-         w - x, y-20+h-bh, 0, "txtDDesc", &gl_defFont, NULL, NULL );
+   window_addText(wid, x, y, w-x-10-cw, h+y-20-bh, 0, "txtDDesc",
+         &gl_defFont, NULL, NULL);
 
    /* Generate lists. */
    window_addText( wid, 30, -20,
@@ -1698,27 +1671,28 @@ void equipment_updateShips( unsigned int wid, char* str )
 
    /* Fill the buffer. */
    asprintf( &buf,
-         _("%s\n"
-         "%s\n"
-         "%s\n"
-         "%s\n"
+      _("#nName:#0 %s\n"
+         "#nModel:#0 %s\n"
+         "#nClass:#0 %s\n"
+         "#nValue:#0 %s\n"
          "\n"
-         "%.0f#0 t\n"
-         "%s average\n"
-         "#%c%s%.0f#0 MN/t\n"
-         "#%c%s%.0f#0 km/s (max #%c%s%.0f#0 km/s)\n"
-         "#%c%s%.0f#0 deg/s\n"
-         "%.0f%%\n"
+         "#nMass:#0 %.0f t\n"
+         "#nJump Time:#0 %s\n"
+         "#nThrust:#0 #%c%s%.0f#0 MN/t\n"
+         "#nSpeed:#0 #%c%s%.0f#0 km/s (max #%c%s%.0f#0 km/s)\n"
+         "#nTurn:#0 #%c%s%.0f#0 deg/s\n"
+         "#nTime Constant:#0 %.0f%%\n"
          "\n"
-         "#%c%s%.0f%%\n"
-         "#%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
-         "#%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
-         "#%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
-         "%d / #%c%s%d#0 t\n"
-         "%d hL (%s)\n"
-         "#%c%s%.0f km\n"
-         "#%c%s%.0f km\n"
+         "#nAbsorption:#0 #%c%s%.0f%%\n"
+         "#nShield:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
+         "#nArmor:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
+         "#nEnergy:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
+         "#nCargo:#0 %d / #%c%s%d#0 t\n"
+         "#nFuel:#0 %d hL (%s)\n"
+         "#nRadar Range:#0 #%c%s%.0f km\n"
+         "#nJump Detect Range:#0 #%c%s%.0f km\n"
          "\n"
+         "#nShip Status:#0\n"
          "#%c%s#0"),
          /* Generic. */
       ship->name,
