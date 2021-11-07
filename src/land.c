@@ -818,8 +818,33 @@ void land_updateMainTab (void)
    Outfit *o;
    long double p = land_planet->population;
    int w, h;
+   char scratch[STRMAX_SHORT];
+   const char *digits[] = {
+      "\xe2\x81\xb0", "\xc2\xb9", "\xc2\xb2", "\xc2\xb3", "\xe2\x81\xb4",
+      "\xe2\x81\xb5", "\xe2\x81\xb6", "\xe2\x81\xb7", "\xe2\x81\xb8",
+      "\xe2\x81\xb9"};
+   int state = 0, COEF = 0, E = 1, EXP = 4;
+   size_t l = 0;
 
-   snprintf( pop, sizeof(pop), "%LG", p );
+   if (p < 1.0e3)
+      snprintf(pop, sizeof(pop), "%.0Lf", p);
+   else {
+      snprintf(scratch, sizeof(scratch), "%.1Le", p);
+      for (const char *c = scratch; *c; c++) {
+         if (state == COEF && *c != 'e')
+            l += scnprintf(&pop[l], sizeof(pop)-l, "%c", *c);
+         else if (state == COEF ) {
+            l += scnprintf(&pop[l], sizeof(pop)-l, "%s", "\xc3\x97" "10");
+            state = E;
+         }
+         else if (state == E && (*c == '+' || *c == '0'))
+            state = E;
+         else {
+            state = EXP;
+            l += scnprintf(&pop[l], sizeof(pop)-l, "%s", digits[*c-'0']);
+         }
+      }
+   }
 
    /* Update credits. */
    tonnes2str(tons, player.p->cargo_free);
