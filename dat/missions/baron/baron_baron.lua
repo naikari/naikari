@@ -144,6 +144,7 @@ function accept()
    stopping = false
 
    hook.land("land")
+   hook.load("land")
    hook.enter("jumpin")
    hook.takeoff("takeoff")
 end
@@ -232,16 +233,18 @@ end
 
 function takeoff()
    if talked and system.cur() == missys then
-      vendetta1 = pilot.add("Dvaered Vendetta", "Dvaered", vec2.new(500,0),
-            nil, {ai="dvaered_norun"})
-      vendetta2 = pilot.add("Dvaered Vendetta", "Dvaered", vec2.new(-500,0),
-            nil, {ai="dvaered_norun"})
-      vendetta1:control()
-      vendetta2:control()
-      vendetta1:attack(player.pilot())
-      vendetta2:attack(player.pilot())
-      vendetta1:broadcast(comm1:format(player.ship(), mispla:name()), true)
+      hook.timer(1, "dvtimer")
    end
+end
+
+function dvtimer()
+   vendetta1 = pilot.add("Dvaered Vendetta", "Dvaered", planet.get(planetname),
+         nil, {ai="dvaered_norun"})
+   vendetta2 = pilot.add("Dvaered Vendetta", "Dvaered", planet.get(planetname),
+         nil, {ai="dvaered_norun"})
+   vendetta1:setHostile()
+   vendetta2:setHostile()
+   vendetta1:broadcast(comm1:format(player.ship(), mispla:name()), true)
 end
 
 function abort()
