@@ -1142,9 +1142,12 @@ void land_genWindows( int load, int changetab )
  */
 int land_setWindow( int window )
 {
-   if (land_windowsMap[ window ] < 0)
+   if (land_windowsMap[window] < 0)
       return -1;
-   window_tabWinSetActive( land_wid, "tabLand", land_windowsMap[window] );
+
+   window_tabWinSetActive(land_wid, "tabLand", land_windowsMap[window]);
+   land_changeTab(land_wid, "tabLand", land_windowsMap[last_window],
+         land_windowsMap[window]);
    return 0;
 }
 
