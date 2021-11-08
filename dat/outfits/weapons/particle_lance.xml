@@ -3,7 +3,7 @@
  <general>
   <slot>weapon</slot>
   <size>small</size>
-  <license>Medium Weapon License</license>
+  <license>Light Weapon License</license>
   <mass>4</mass>
   <price>9800</price>
   <description>This is the smallest direct beam weapon built, purpose-built by the Za'lek for their drones.</description>

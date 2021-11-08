@@ -155,6 +155,7 @@
   <item>Za'lek Heavy Drone Fighter Bay</item>
   <item>Za'lek Bomber Drone Fighter Bay</item>
   <item>Large Civilian Vessel License</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
   <item>Light Combat Vessel License</item>
@@ -449,6 +450,7 @@
   <item>Solar Panel</item>
   <item>Fuel Pod</item>
   <item>Star Maps</item>
+  <item>Light Weapon License</item>
   <item>Large Civilian Vessel License</item>
   <item>Local System Map</item>
   <item>Previous Generation Small Systems</item>
@@ -494,6 +496,7 @@
   <item>Star Maps</item>
   <item>Unicorp Scrambler</item>
   <item>Unicorp Jammer</item>
+  <item>Light Weapon License</item>
   <item>Large Civilian Vessel License</item>
   <item>Unicorp Medusa Launcher</item>
   <item>Sensor Array</item>
@@ -537,9 +540,10 @@
   <item>Ripper Cannon</item>
   <item>EMP Grenade Launcher</item>
   <item>Enygma Systems Spearhead Launcher</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
-  <item>Medium Combat Vessel License</item>
   <item>Heavy Weapon License</item>
+  <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
   <item>Mercenary License</item>
   <item>Weapons Ionizer</item>
@@ -551,9 +555,10 @@
   <item>Heavy Ion Turret</item>
   <item>Railgun Turret</item>
   <item>Orion Lance</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
-  <item>Medium Combat Vessel License</item>
   <item>Heavy Weapon License</item>
+  <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
   <item>Mercenary License</item>
   <item>Turreted Weapons Ionizer</item>
@@ -608,6 +613,7 @@
   <item>Unicorp Jammer</item>
   <item>Hyena Fighter Bay</item>
   <item>Mini Hyena Fighter Bay</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
   <item>Emergency Shield Booster</item>
   <item>Reverse Thrusters</item>
@@ -630,6 +636,7 @@
   <item>Milspec Jammer</item>
   <item>Lancelot Fighter Bay</item>
   <item>Mini Lancelot Fighter Bay</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
   <item>Emergency Shield Booster</item>
   <item>Reverse Thrusters</item>
