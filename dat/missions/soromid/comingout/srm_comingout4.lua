@@ -241,8 +241,7 @@ function jumpNext ()
 end
 
 
-function takeoff ()
-   player.allowSave(true)
+function takeoff()
    if stage == 2 and system.cur() == startsys then
       spawnChelseaShip(startplanet)
       jumpNext()
@@ -284,8 +283,6 @@ function land ()
       marker = misn.markerAdd(destsys, "high")
    elseif stage == 2 then
       if chelsea_jumped and planet.cur() == destplanet then
-         player.allowSave(false)
-
          tk.msg("", home_text[1]:format(destplanet:name()))
          tk.msg("", home_text[2])
          tk.msg("", home_text[3])
@@ -295,7 +292,9 @@ function land ()
          if marker ~= nil then misn.markerRm(marker) end
          marker = misn.markerAdd(startsys, "high")
 
+         player.allowSave(false)
          player.takeoff()
+         player.allowSave()
       else
          tk.msg("", left_fail_text)
          misn.finish(false)
