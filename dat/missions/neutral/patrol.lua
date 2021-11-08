@@ -162,10 +162,9 @@ function accept ()
 
    osd_msg[1] = osd_msg[1]:format(missys:name())
    osd_msg[2] = gettext.ngettext(
-      "Go to indicated point (%d remaining)",
-      "Go to indicated point (%d remaining)",
-      #points
-  ):format(#points)
+      "Go to point indicated on overlay map (%d remaining)",
+      "Go to point indicated on overlay map (%d remaining)",
+      #points):format(#points)
    osd_msg[4] = osd_msg[4]:format(paying_faction:name())
    misn.osdCreate(osd_title, osd_msg)
 

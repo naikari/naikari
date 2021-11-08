@@ -85,7 +85,7 @@ ssmsg[7] = _("Truly a sight to behold for the passengers.")
 osd_title  = _("Sightseeing")
 osd_msg    = {}
 osd_msg[1] = _("Fly to the %s system")
-osd_msg[2]  = _("Go to all indicated points")
+osd_msg[2]  = _("Go to all points indicated on overlay map")
 osd_msg[3] = _("Land on %s (%s system) to collect your pay")
 osd_msg["__save"] = true
 
