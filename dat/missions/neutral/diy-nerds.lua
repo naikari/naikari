@@ -34,7 +34,7 @@ misn_desc = _("Cart some nerds to their contest, and back.")
 text = {}
 
 -- The nerd's job proposal
-text[1] = _([[As you approach the group, the babbling ceases and the papers are quickly and jealously stashed away. One of the girls comes forward and introduces herself.
+text[1] = _([[As you approach the group, the babbling ceases and the papers are quickly stashed away. One of the girls comes forward and introduces herself.
 
 "Hi, I'm Mia. We need transportation, and you look as if you could need some dough. Interested?"
 
@@ -52,7 +52,7 @@ As the others scramble to get up from their cramped table and start to gather th
 "Really? You'll do it? Um, great. Fantastic. I just knew that eventually, someone desperate would turn up. OK, we're set to go. We'd better take off immediately and go directly to %s, or we'll be late for the contest!"]])
   
 -- right planet, in time
-text[3] = _([["Good job, %s," Mia compliments you upon arrival. "We'll now go win the competition and celebrate a bit. You better stay in the system. We will hail you in about 4 or 5 periods, so you can pick us up an' bring us back to %s."
+text[3] = _([["Good job, %s," Mia compliments you upon arrival. "We'll now go win the competition and celebrate a bit. You better stay in the system. We will hail you in about 4 or 5 periods, so you can pick us up and bring us back to %s."
 
 That said, the nerds shoulder the box and rushes towards a banner which reads "Admissions".]])
 
