@@ -128,7 +128,7 @@ function takeoff()
             tutGetKey("target_next"), tutGetKey("board")))
 
    planetvec = planet.pos(curplanet)
-   misn.osdActive(1) 
+   misn.osdActive(1)
    checkpoint = {}
    racers = {}
    pilot.toggleSpawn(false)
