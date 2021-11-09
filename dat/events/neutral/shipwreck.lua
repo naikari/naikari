@@ -62,12 +62,12 @@ function create ()
 end
 
 function broadcast(p)
-    -- Ship broadcasts an SOS every 10 seconds, until boarded or destroyed.
+    -- Ship broadcasts an SOS every 15 seconds, until boarded or destroyed.
     if p == nil or not p:exists() then
         return
     end
     p:broadcast(string.format(broadcastmsg, shipname), true)
-    bctimer = hook.timer(15, "broadcast")
+    bctimer = hook.timer(15, "broadcast", p)
 end
 
 function rescue ()
