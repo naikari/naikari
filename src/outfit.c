@@ -1274,11 +1274,11 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
             NULL);
       if (dshield > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%.2f GW Shield Damage [%G GJ/shot]\n"),
+               _("%.2f GW Shield Damage [%.1f GJ/shot]\n"),
                1./temp->u.blt.delay * dshield, dshield);
       if (darmor > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%.2f GW Armor Damage [%G GJ/shot]\n"),
+               _("%.2f GW Armor Damage [%.1f GJ/shot]\n"),
                1./temp->u.blt.delay * darmor, darmor);
       if (dknockback > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
@@ -1470,13 +1470,13 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
             NULL);
       if (dshield > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%G GW Shield Damage [%.0f GW avg.]\n"),
+               _("%.2f GW Shield Damage [%.0f GW avg.]\n"),
                dshield,
                dshield * temp->u.bem.duration
                   / (temp->u.bem.duration+temp->u.bem.delay));
       if (darmor > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%G GW Armor Damage [%.0f GW avg.]\n"),
+               _("%.2f GW Armor Damage [%.0f GW avg.]\n"),
                darmor,
                darmor * temp->u.bem.duration
                   / (temp->u.bem.duration+temp->u.bem.delay));
@@ -2676,11 +2676,11 @@ static void outfit_launcherDesc( Outfit* o )
       dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &a->u.amm.dmg, NULL);
       if (dshield > 0.)
          l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%.2f GW Shield Damage [%G GJ/shot]\n"),
+               _("%.2f GW Shield Damage [%.1f GJ/shot]\n"),
                1./o->u.lau.delay * dshield, dshield);
       if (darmor > 0.)
          l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%.2f GW Armor Damage [%G GJ/shot]\n"),
+               _("%.2f GW Armor Damage [%.1f GJ/shot]\n"),
                1./o->u.lau.delay * darmor, darmor);
       if (dknockback > 0.)
          l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
