@@ -180,8 +180,8 @@ void outfits_open( unsigned int wid, const Outfit **outfits )
    (void)off;
 
    /* fancy 192x192 image */
-   window_addRect(wid, -17, -36, 200, 199, "rctImage", &cBlack, 0);
-   window_addImage(wid, -20, -40, 192, 192, "imgOutfit", NULL, 1);
+   window_addRect(wid, -17, -16, 200, 199, "rctImage", &cBlack, 0);
+   window_addImage(wid, -20, -20, 192, 192, "imgOutfit", NULL, 1);
 
    /* cust draws the modifier */
    window_addCust( wid, -96, -260,
