@@ -24,7 +24,7 @@
   <rdr_range>1100</rdr_range>
   <rdr_range_max>1500</rdr_range_max>
   <damage>
-   <type>impact</type>
+   <type>heat</type>
    <penetrate>36</penetrate>
    <physical>44</physical>
    <disable>2.8</disable>
