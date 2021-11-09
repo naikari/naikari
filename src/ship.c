@@ -135,10 +135,10 @@ int ship_compareTech( const void *arg1, const void *arg2 )
    s1 = * (const Ship**) arg1;
    s2 = * (const Ship**) arg2;
 
-   /* Compare class. */
-   if (s1->class < s2->class)
+   /* Compare rarity. */
+   if (s1->rarity < s2->rarity)
       return +1;
-   else if (s1->class > s2->class)
+   else if (s1->rarity > s2->rarity)
       return -1;
 
    /* Compare price. */
@@ -147,8 +147,14 @@ int ship_compareTech( const void *arg1, const void *arg2 )
    else if (s1->price > s2->price)
       return -1;
 
+   /* Compare mass. */
+   if (s1->mass < s2->mass)
+      return +1;
+   else if (s1->mass > s2->mass)
+      return -1;
+
    /* Same. */
-   return strcmp( s1->name, s2->name );
+   return strcmp(s1->name, s2->name);
 }
 
 
