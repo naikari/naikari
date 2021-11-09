@@ -63,9 +63,6 @@ void shipyard_open( unsigned int wid )
    int w, h;
    int iw, ih;
    int bw, bh, padding, off;
-   int th;
-   int y;
-   const char *buf;
    glTexture *t;
    int iconsize;
 
@@ -76,7 +73,7 @@ void shipyard_open( unsigned int wid )
    shipyard_cleanup();
 
    /* Get window dimensions. */
-   window_dimWindow( wid, &w, &h );
+   window_dimWindow(wid, &w, &h);
 
    /* Calculate image array dimensions. */
    iw = 428 + (w - LAND_WIDTH);
@@ -113,39 +110,12 @@ void shipyard_open( unsigned int wid )
          &gl_defFont, NULL, NULL );
 
    /* text */
-   buf = _("Model:\n"
-         "Class:\n"
-         "Fabricator:\n"
-         "\n"
-         "CPU:\n"
-         "Mass:\n"
-         "Thrust:\n"
-         "Speed:\n"
-         "Turn:\n"
-         "Time Constant:\n"
-         "\n"
-         "Absorption:\n"
-         "Shield:\n"
-         "Armor:\n"
-         "Energy:\n"
-         "Cargo Space:\n"
-         "Fuel:\n"
-         "Fuel Use:\n"
-         "Radar Range:\n"
-         "Jump Detect Range:\n"
-         "Price:\n"
-         "Money:\n"
-         "License:\n");
-   th = gl_printHeightRaw( &gl_defFont, 220, buf );
-   y  = -35;
-   window_addText( wid, 20+iw+20, y,
-         220, th, 0, "txtSDesc", &gl_defFont, NULL, buf );
-   window_addText( wid, 20+iw+20+220, y,
-         w-SHIP_TARGET_W-40-(20+iw+20+220), th, 0, "txtDDesc", &gl_defFont, NULL, NULL );
-   y -= th;
-   window_addText( wid, 20+iw+20, y,
-         w-(20+iw+20) - 20, y-20+h-bh, 0, "txtDescription",
-         &gl_smallFont, &cFontGrey, NULL );
+   window_addText(wid, 20+iw+20, -35,
+         w - (20+iw+20) - 20 - MAX(320, SHIP_TARGET_W) - 20, 160, 0,
+         "txtDDesc", &gl_defFont, NULL, NULL);
+   window_addText(wid, 20+iw+20, 0,
+         w - (20+iw+20) - 20 - MAX(320, SHIP_TARGET_W) - 20, 160, 0,
+         "txtDescription", &gl_smallFont, NULL, NULL);
 
    /* set up the ships to buy/sell */
    shipyard_list = tech_getShip( land_planet->tech );
@@ -187,44 +157,28 @@ void shipyard_open( unsigned int wid )
 void shipyard_update( unsigned int wid, char* str )
 {
    (void)str;
-   int i;
+   int i, l;
+   int w, h, iw, bh, tw, th;
+   int y;
    Ship* ship;
-   char buf[PATH_MAX], buf2[ECON_CRED_STRLEN], buf3[ECON_CRED_STRLEN], buf_license[PATH_MAX];
+   char buf[STRMAX], buf2[ECON_CRED_STRLEN], buf3[ECON_CRED_STRLEN],
+         buf_license[STRMAX_SHORT];
+
+   /* Get dimensions. */
+   window_dimWindow(wid, &w, &h);
+   iw = 428 + (w - LAND_WIDTH);
+   bh = LAND_BUTTON_HEIGHT;
 
    i = toolkit_getImageArrayPos( wid, "iarShipyard" );
 
    /* No ships */
    if (i < 0 || array_size(shipyard_list) == 0) {
-      window_disableButton( wid, "btnBuyShip");
-      window_disableButton( wid, "btnTradeShip");
-      snprintf( buf, sizeof(buf),
-            _("None\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n"
-            "N/A\n") );
-      window_modifyText( wid, "txtStats", NULL );
-      window_modifyText( wid, "txtDescription", NULL );
-      window_modifyText( wid, "txtDDesc", buf );
+      window_disableButton(wid, "btnBuyShip");
+      window_disableButton(wid, "btnTradeShip");
+      snprintf(buf, sizeof(buf), _("#nModel:#0 None"));
+      window_modifyText(wid, "txtStats", NULL);
+      window_modifyText(wid, "txtDescription", NULL);
+      window_modifyText(wid, "txtDDesc", buf);
       return;
    }
 
@@ -233,7 +187,6 @@ void shipyard_update( unsigned int wid, char* str )
 
    /* update text */
    window_modifyText( wid, "txtStats", ship->desc_stats );
-   window_modifyText( wid, "txtDescription", _(ship->description) );
    price2str( buf2, ship_buyPrice(ship), player.p->credits, 2 );
    credits2str( buf3, player.p->credits, 2 );
 
@@ -245,54 +198,92 @@ void shipyard_update( unsigned int wid, char* str )
    else
       snprintf( buf_license, sizeof(buf_license), "#r%s#0", _(ship->license) );
 
-   snprintf( buf, sizeof(buf),
-         _("%s\n"
-         "%s\n"
-         "%s\n"
-         "\n"
-         "%.0f TFLOPS\n"
-         "%.0f t\n"
-         "%.0f MN/t\n"
-         "%.0f km/s\n"
-         "%.0f deg/s\n"
-         "%.0f%%\n"
-         "\n"
-         "%.0f%% damage\n"
-         "%.0f GJ (%.1f GW)\n"
-         "%.0f GJ (%.1f GW)\n"
-         "%.0f GJ (%.1f GW)\n"
-         "%.0f t\n"
-         "%d hL\n"
-         "%d hL\n"
-         "%.0f km\n"
-         "%.0f km\n"
-         "%s\n"
-         "%s\n"
-         "%s\n"),
+   l = scnprintf(buf, sizeof(buf),
+         _("#nModel:#0 %s\n"
+            "#nClass:#0 %s\n"
+            "#nFabricator:#0 %s\n"
+            "#nPrice:#0 %s\n"
+            "#nMoney:#0 %s\n"
+            "#nLicense:#0 %s\n"),
          _(ship->name),
          _(ship->class),
          _(ship->fabricator),
-         /* Weapons & Manoeuvrability */
-         ship->cpu,
-         ship->mass,
-         ship->thrust,
-         ship->speed,
-         ship->turn*180/M_PI,
-         ship->dt_default*100.,
-         /* Misc */
-         ship->dmg_absorb*100.,
-         ship->shield, ship->shield_regen,
-         ship->armour, ship->armour_regen,
-         ship->energy, ship->energy_regen,
-         ship->cap_cargo,
-         ship->fuel,
-         ship->fuel_consumption,
-         ship->rdr_range,
-         ship->rdr_jump_range,
          buf2,
          buf3,
-         buf_license );
-   window_modifyText( wid,  "txtDDesc", buf );
+         buf_license);
+
+   if (ship->cpu != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nCPU:#0 %.0f TFLOPS"), ship->cpu);
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         _("\n#nMass:#0 %.0f t"), ship->mass);
+
+   if (ship->thrust != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nThrust:#0 %G MN/t"), ship->thrust);
+
+   if (ship->speed != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nSpeed:#0 %G km/s"), ship->speed);
+
+   if (ship->turn != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nTurn:#0 %.0f deg/s"), ship->turn*180./M_PI);
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         _("\n#nTime Constant:#0 %.0f%%\n"), ship->dt_default*100.);
+
+   if (ship->dmg_absorb != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nAbsorption:#0 %.0f%%"), ship->dmg_absorb*100.);
+
+   if ((ship->shield != 0.) || (ship->shield_regen != 0.))
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nShield:#0 %G GJ (%G GW)"),
+            ship->shield, ship->shield_regen);
+
+   if ((ship->armour != 0.) || (ship->armour_regen != 0.))
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nArmor:#0 %G GJ (%G GW)"),
+            ship->armour, ship->armour_regen);
+
+   if ((ship->energy != 0.) || (ship->energy_regen != 0.))
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nEnergy:#0 %G GJ (%G GW)"),
+            ship->energy, ship->energy_regen);
+
+   if (ship->cap_cargo != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nCargo Space:#0 %.0f t"), ship->cap_cargo);
+
+   if (ship->fuel != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nFuel:#0 %d hL"), ship->fuel);
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         _("\n#nFuel Use:#0 %d hL"), ship->fuel_consumption);
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         _("\n#nRadar Range:#0 %.0f km"), ship->rdr_range);
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         _("\n#nJump Detect Range:#0 %.0f km"), ship->rdr_jump_range);
+
+   y = -35;
+   window_modifyText(wid,  "txtDDesc", buf);
+   window_dimWidget(wid, "txtDDesc", &tw, &th);
+   th = gl_printHeightRaw(&gl_defFont, tw, buf);
+   window_resizeWidget(wid, "txtDDesc", tw, th);
+   window_moveWidget(wid, "txtDDesc", 20+iw+20, y);
+
+   y -= th + 40;
+
+   window_modifyText(wid, "txtDescription", _(ship->description));
+   window_dimWidget(wid, "txtDescription", &tw, &th);
+   th = h + y - bh - 20;
+   window_resizeWidget(wid, "txtDescription", tw, th);
+   window_moveWidget(wid, "txtDescription", 20+iw+20, y);
 
    if (!shipyard_canBuy( ship->name, land_planet ))
       window_disableButtonSoft( wid, "btnBuyShip");
