@@ -1131,6 +1131,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    char *buf;
    double C, area;
    int l;
+   double dshield, darmor, dknockback;
 
    /* Defaults */
    temp->u.blt.spfx_armour    = -1;
@@ -1257,25 +1258,44 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
 
    /* Set short description. */
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
-   l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
-         _("%s [%s]\n"
-         "%+.0f TFLOPS CPU\n"
-         "%G%% Penetration\n"
-         "%.2f GW Damage [%G GJ/shot]\n"),
-         _(outfit_getType(temp)), _(dtype_damageTypeToStr(temp->u.blt.dmg.type)),
-         temp->cpu,
-         temp->u.blt.dmg.penetration*100.,
-         1./temp->u.blt.delay * temp->u.blt.dmg.damage, temp->u.blt.dmg.damage );
-   if (temp->u.blt.dmg.disable > 0.) {
-      l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.2f GW Disable [%G GJ/shot]\n"),
-         1./temp->u.blt.delay * temp->u.blt.dmg.disable, temp->u.blt.dmg.disable );
+   l = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
+         "%s\n", _(outfit_getType(temp)));
+
+   if (temp->cpu != 0.)
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%+.0f TFLOPS CPU\n"), temp->cpu);
+
+   if (temp->u.blt.dmg.penetration > 0.)
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%G%% Penetration\n"), temp->u.blt.dmg.penetration*100.);
+
+   if (temp->u.blt.dmg.damage > 0.) {
+      dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &temp->u.blt.dmg,
+            NULL);
+      if (dshield > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%.2f GW Shield Damage [%G GJ/shot]\n"),
+               1./temp->u.blt.delay * dshield, dshield);
+      if (darmor > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%.2f GW Armor Damage [%G GJ/shot]\n"),
+               1./temp->u.blt.delay * darmor, darmor);
+      if (dknockback > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%G%% Knockback\n"), dknockback * 100.);
    }
-   if (temp->u.blt.energy > 0.) {
-      l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.1f GW Energy Loss [%G GJ/shot]\n"),
-         1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy );
-   }
+
+   if (temp->u.blt.dmg.disable > 0.)
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("%.2f GW Disable [%G GJ/shot]\n"),
+            1./temp->u.blt.delay * temp->u.blt.dmg.disable,
+            temp->u.blt.dmg.disable);
+
+   if (temp->u.blt.energy > 0.)
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("%.1f GW Energy Loss [%G GJ/shot]\n"),
+            1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy);
+
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%.1f RPS Fire Rate\n"
          "%G km Range\n"
@@ -1339,6 +1359,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    xmlNodePtr node;
    double C, area;
    char *shader;
+   double dshield, darmor, dknockback;
 
    /* Defaults. */
    temp->u.bem.spfx_armour = -1;
@@ -1433,31 +1454,50 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
 
    /* Set short description. */
    temp->desc_short = malloc(OUTFIT_SHORTDESC_MAX);
-   l = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
-         _("%s [%s]\n"
-         "%+.0f TFLOPS CPU\n"
-         "%G%% Penetration\n"
-         "%G GW Damage [%.0f GW avg.]\n"),
-         _(outfit_getType(temp)),
-         _(dtype_damageTypeToStr(temp->u.bem.dmg.type)),
-         temp->cpu,
-         temp->u.bem.dmg.penetration*100.,
-         temp->u.bem.dmg.damage,
-         temp->u.bem.dmg.damage * temp->u.bem.duration
-            / (temp->u.bem.duration+temp->u.bem.delay) );
-   if (temp->u.blt.dmg.disable > 0.) {
+   l = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
+         "%s\n", _(outfit_getType(temp)));
+
+   if (temp->cpu != 0.)
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%+.0f TFLOPS CPU\n"), temp->cpu);
+
+   if (temp->u.bem.dmg.penetration > 0.)
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%G%% Penetration\n"), temp->u.bem.dmg.penetration*100.);
+
+   if (temp->u.bem.dmg.damage > 0.) {
+      dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &temp->u.bem.dmg,
+            NULL);
+      if (dshield > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%G GW Shield Damage [%.0f GW avg.]\n"),
+               dshield,
+               dshield * temp->u.bem.duration
+                  / (temp->u.bem.duration+temp->u.bem.delay));
+      if (darmor > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%G GW Armor Damage [%.0f GW avg.]\n"),
+               darmor,
+               darmor * temp->u.bem.duration
+                  / (temp->u.bem.duration+temp->u.bem.delay));
+      if (dknockback > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%G%% Knockback\n"), dknockback * 100.);
+   }
+
+   if (temp->u.blt.dmg.disable > 0.)
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G GW Disable [%.0f GW avg.]\n"),
          temp->u.bem.dmg.disable,
          temp->u.bem.dmg.disable * temp->u.bem.duration
             / (temp->u.bem.duration+temp->u.bem.delay) );
-   }
+
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G GW Energy Loss [%.0f GW avg.]\n"
          "%G s Duration\n"
          "%G s Cooldown\n"
          "%G km Range\n"
-         "%G s heat up\n"),
+         "%G s heat up"),
          temp->u.bem.energy,
          temp->u.bem.energy * temp->u.bem.duration
             / (temp->u.bem.duration+temp->u.bem.delay),
@@ -1465,9 +1505,9 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
          temp->u.bem.range,
          temp->u.bem.heatup );
 
-   if (!outfit_isTurret(temp))
+   if (!outfit_isTurret(temp) && (temp->u.bem.swivel > 0.))
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%G° Swivel"), temp->u.bem.swivel*180./M_PI );
+            _("\n%G° Swivel"), temp->u.bem.swivel*180./M_PI );
 
    (void)l;
 
@@ -1856,12 +1896,14 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
 
    /* Set short description. */
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
-   i = scnprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
+   i = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
-         "Activated Outfit\n"
-         "%+.0f TFLOPS CPU\n"),
-         _(outfit_getType(temp)),
-         temp->cpu );
+         "Activated Outfit\n"),
+         _(outfit_getType(temp)));
+
+   if (temp->cpu != 0.)
+      i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
+            _("%+.0f TFLOPS CPU\n"), temp->cpu);
 
    if (temp->limit != NULL)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
@@ -2597,6 +2639,7 @@ static void outfit_launcherDesc( Outfit* o )
 {
    int l;
    Outfit *a; /* Launcher's ammo. */
+   double dshield, darmor, dknockback;
 
    if (o->desc_short != NULL) {
       WARN(_("Outfit '%s' already has a short description"), o->name);
@@ -2606,13 +2649,12 @@ static void outfit_launcherDesc( Outfit* o )
    a = o->u.lau.ammo;
 
    o->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
-   l = scnprintf( o->desc_short, OUTFIT_SHORTDESC_MAX,
-         _("%s [%s]\n"),
-         _(outfit_getType(o)), _(dtype_damageTypeToStr(a->u.amm.dmg.type)) );
+   l = scnprintf(o->desc_short, OUTFIT_SHORTDESC_MAX,
+         "%s\n", _(outfit_getType(o)));
    
-   if (o->cpu != 0)
-      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%+.0f TFLOPS CPU\n"), o->cpu );
+   if (o->cpu != 0.)
+      l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%+.0f TFLOPS CPU\n"), o->cpu);
 
    if (outfit_isSeeker(o))
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
@@ -2622,13 +2664,28 @@ static void outfit_launcherDesc( Outfit* o )
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("No Tracking\n") );
 
-   l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-         _("Holds %d %s:\n"
-         "%G%% Penetration\n"
-         "%.2f GW Damage [%G GJ/shot]\n"),
-         o->u.lau.amount, _(o->u.lau.ammo_name),
-         a->u.amm.dmg.penetration * 100.,
-         1. / o->u.lau.delay * a->u.amm.dmg.damage, a->u.amm.dmg.damage );
+   l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+         n_("Holds %d %s:\n", "Holds %d %s:\n", o->u.lau.amount),
+         o->u.lau.amount, _(o->u.lau.ammo_name));
+
+   if (a->u.amm.dmg.penetration > 0.)
+      l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%G%% Penetration\n"), a->u.amm.dmg.penetration * 100.);
+
+   if (a->u.amm.dmg.damage > 0.) {
+      dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &a->u.amm.dmg, NULL);
+      if (dshield > 0.)
+         l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%.2f GW Shield Damage [%G GJ/shot]\n"),
+               1./o->u.lau.delay * dshield, dshield);
+      if (darmor > 0.)
+         l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%.2f GW Armor Damage [%G GJ/shot]\n"),
+               1./o->u.lau.delay * darmor, darmor);
+      if (dknockback > 0.)
+         l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%G%% Knockback\n"), dknockback * 100.);
+   }
 
    if (a->u.amm.dmg.disable > 0.)
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
