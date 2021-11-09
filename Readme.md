@@ -28,6 +28,7 @@ Naikari's dependencies are intended to be relatively common. In addition to an
 OpenGL-capable graphics card and driver with support for at least OpenGL 3.1,
 Naikari requires the following:
 * SDL 2
+* SDL2_image
 * libxml2
 * freetype2
 * libpng
@@ -36,6 +37,8 @@ Naikari requires the following:
 * libvorbis >= 1.2.2
 * binutils
 * intltool
+* python3
+* ninja
 * libunibreak (included)
 
 If you're cross-compiling for Windows, you must install this soft dependency:
@@ -44,7 +47,7 @@ If you're cross-compiling for Windows, you must install this soft dependency:
 
 ### Ubuntu
 
-Install compile-time dependencies on Ubuntu 16.04 (and hopefully later) with:
+Install compile-time dependencies on Ubuntu 16.04 and later with:
 
 ```
 sudo apt install build-essential libsdl2-dev libsdl2-image-dev \
