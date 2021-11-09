@@ -28,6 +28,7 @@
   <item>Mass Driver</item>
   <item>Railgun</item>
   <item>Repeating Railgun</item>
+  <item>Mass Driver Turret</item>
   <item>Railgun Turret</item>
   <item>Plasma Blaster MK1</item>
   <item>Plasma Blaster MK2</item>
@@ -35,6 +36,7 @@
   <item>Plasma Turret MK1</item>
   <item>Plasma Turret MK2</item>
   <item>Plasma Cluster Cannon</item>
+  <item>Plasma Cluster Turret</item>
   <item>Ragnarok Beam</item>
   <item>Grave Beam</item>
   <item>Orion Beam</item>
@@ -407,6 +409,7 @@
  </tech>
  <tech name="Kinetic 3">
   <item>Railgun</item>
+  <item>Mass Driver Turret</item>
   <item>Railgun Turret</item>
  </tech>
  <tech name="Plasma 1">
@@ -418,6 +421,7 @@
   <item>Plasma Cannon</item>
   <item>Plasma Cluster Cannon</item>
   <item>Plasma Turret MK2</item>
+  <item>Plasma Cluster Turret</item>
  </tech>
  <tech name="Beam 1">
   <item>Orion Lance</item>
