@@ -13,6 +13,7 @@
  <assets>
   <asset>Poller D-2</asset>
   <asset>Poller I-1</asset>
+  <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
   <jump target="Newmarch">

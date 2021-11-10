@@ -9,7 +9,9 @@
   <x>580.552530</x>
   <y>-876.519508</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual Pirate Small</asset>
+ </assets>
  <jumps>
   <jump target="Eye of Night">
    <pos x="8573.344953" y="-6735.197102"/>

@@ -9,7 +9,9 @@
   <x>-133.708317</x>
   <y>277.186666</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual Trader Area</asset>
+ </assets>
  <jumps>
   <jump target="Mason">
    <autopos/>

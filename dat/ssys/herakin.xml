@@ -9,7 +9,9 @@
   <x>1104.147845</x>
   <y>-586.317226</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual Trader Area</asset>
+ </assets>
  <jumps>
   <jump target="Anrique">
    <autopos/>

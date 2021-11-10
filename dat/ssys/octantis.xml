@@ -9,7 +9,9 @@
   <x>-121.957878</x>
   <y>386.917924</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual Trader Area</asset>
+ </assets>
  <jumps>
   <jump target="Corvus">
    <autopos/>

@@ -9,7 +9,9 @@
   <x>289.501978</x>
   <y>-931.721231</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual Pirate Small</asset>
+ </assets>
  <jumps>
   <jump target="Faust">
    <autopos/>

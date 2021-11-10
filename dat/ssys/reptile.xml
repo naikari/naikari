@@ -9,7 +9,9 @@
   <x>-791.102910</x>
   <y>-973.580452</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual Trader Area</asset>
+ </assets>
  <jumps>
   <jump target="Armorhead">
    <autopos/>
