@@ -271,7 +271,7 @@ function enter ()
       spawnpoint = lastplanet
    else
       spawnpoint = player.pos()
-      for i, sys in ipairs(lastsys:adjacentSystems()) do
+      for i, sys in ipairs(lastsys:adjacentSystems(true)) do
          if sys == system.cur() then
             spawnpoint = lastsys
          end
