@@ -71,7 +71,7 @@ osd_msg[1] = _("Land on any garbage collection facility (indicated on your map) 
 osd_msg[2] = _("Alternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the Info window (press %s to open), and jump out of the system before you are discovered")
 
 -- List of possible waste dump planets.
-dest_planets = {"The Stinker", "Eiroik", "Vaal", "Domestica", "Blossom"}
+dest_planets = {"The Stinker", "Vaal", "Domestica", "Blossom"}
 
 
 function create ()
