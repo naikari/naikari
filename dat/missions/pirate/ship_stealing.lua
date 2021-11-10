@@ -348,6 +348,8 @@ end
 function spawn_target(source)
    if not job_done and system.cur() == missys then
       if jumps_permitted >= 0 then
+         pilot.clear()
+         pilot.toggleSpawn(false)
          misn.osdActive(2)
 
          local target_ship = pilot.add(shiptype, target_faction, source, name)
@@ -372,6 +374,7 @@ end
 
 -- Succeed the capture, proceed to landing on the planet
 function succeed()
+   pilot.toggleSpawn(true)
    job_done = true
    misn.osdActive(3)
    if marker ~= nil then
@@ -388,6 +391,7 @@ end
 
 -- Fail the mission, showing message to the player.
 function fail(message)
+   pilot.toggleSpawn(true)
    if message ~= nil then
       -- Pre-colourized, do nothing.
       if message:find("#") then
