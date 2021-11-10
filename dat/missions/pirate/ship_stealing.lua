@@ -228,8 +228,10 @@ function land()
 
       local newship = player.addShip(shiptype, name)
       if soutfits ~= nil then
+         player.shipOutfitRm(newship, "all")
+         player.shipOutfitRm(newship, "cores")
          for i, o in ipairs(soutfits) do
-            player.shipOutfitAdd(newship, o)
+            player.shipOutfitAdd(newship, o, 1, true)
          end
       end
 

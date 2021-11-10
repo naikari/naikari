@@ -90,6 +90,7 @@ static int playerL_commclose( lua_State *L );
 static int playerL_ships( lua_State *L );
 static int playerL_shipOutfits( lua_State *L );
 static int playerL_shipOutfitAdd( lua_State *L );
+static int playerL_shipOutfitRm( lua_State *L );
 static int playerL_outfits( lua_State *L );
 static int playerL_numOutfit( lua_State *L );
 static int playerL_addOutfit( lua_State *L );
@@ -135,6 +136,7 @@ static const luaL_Reg playerL_methods[] = {
    { "ships", playerL_ships },
    { "shipOutfits", playerL_shipOutfits },
    { "shipOutfitAdd", playerL_shipOutfitAdd },
+   { "shipOutfitRm", playerL_shipOutfitRm },
    { "outfits", playerL_outfits },
    { "numOutfit", playerL_numOutfit },
    { "outfitAdd", playerL_addOutfit },
@@ -1152,6 +1154,129 @@ static int playerL_shipOutfitAdd( lua_State *L )
    }
 
    lua_pushnumber(L, added);
+   return 1;
+}
+
+
+/**
+ * @brief Removes an outfit to one of the player's ships.
+ *
+ * "all" will remove all outfits except cores.
+ * "cores" will remove all cores, but nothing else.
+ *
+ * @note The outfit is removed in the same manner as pilot.outfitAdd. It
+ *    does not return the outfit to the player's outfits list, but
+ *    instead deletes it entirely.
+ *
+ * @usage player.shipOutfitRm("Titanic", "all")
+ * @usage player.shipOutfitRm("Titanic", "cores")
+ * @usage player.shipOutfitRm("Titanic", "Laser Cannon MK1")
+ * @usage player.shipOutfitRm("Titanic", "Laser Cannon MK1", 2)
+ *
+ *    @luatparam string name Name of the ship to remove outfits from.
+ *    @luatparam string|Outfit outfit Outfit or raw (untranslated) name
+ *       of the outfit to remove.
+ *    @luatparam[opt=1] number q Quantity of the outfit to remove.
+ *    @luatreturn number The number of outfits removed.
+ * @luafunc shipOutfitRm
+ */
+static int playerL_shipOutfitRm( lua_State *L )
+{
+   const char *str;
+   int i;
+   const PlayerShip_t *ships;
+   Pilot *p;
+   const char *outfit;
+   const Outfit *o;
+   int q, removed, matched;
+
+   NLUA_CHECKRW(L);
+   PLAYER_CHECK();
+
+   /* Get parameters. */
+   str = luaL_checkstring(L, 1);
+   q = luaL_optinteger(L, 3, 1);
+
+   ships = player_getShipStack();
+
+   /* Get outfit. */
+   lua_newtable(L);
+
+   p = NULL;
+   if (strcmp(str, player.p->name)==0)
+      p = player.p;
+   else {
+      for (i=0; i<array_size(ships); i++) {
+         if (strcmp(str, ships[i].p->name) == 0) {
+            p = ships[i].p;
+            break;
+         }
+      }
+   }
+
+   if (p == NULL) {
+      NLUA_ERROR(L, _("Player does not own a ship named '%s'"), str);
+      return 0;
+   }
+
+   matched = 0;
+   if (lua_isstring(L, 2)) {
+      outfit = luaL_checkstring(L, 2);
+
+      /* If outfit is "all", we remove everything except cores. */
+      if (strcmp(outfit, "all") == 0) {
+         for (i=0; i<array_size(p->outfits); i++) {
+            if (p->outfits[i]->sslot->required)
+               continue;
+            pilot_rmOutfitRaw(p, p->outfits[i]);
+            removed++;
+         }
+         pilot_calcStats(p); /* Recalculate stats. */
+         matched = 1;
+      }
+      /* If outfit is "cores", we remove cores only. */
+      else if (strcmp(outfit, "cores") == 0) {
+         for (i=0; i<array_size(p->outfits); i++) {
+            if (!p->outfits[i]->sslot->required)
+               continue;
+            pilot_rmOutfitRaw(p, p->outfits[i]);
+            removed++;
+         }
+         pilot_calcStats(p); /* Recalculate stats. */
+         matched = 1;
+      }
+   }
+
+   if (!matched) {
+      o = luaL_validoutfit(L,2);
+
+      /* Remove the outfit outfit. */
+      for (i=0; i<array_size(p->outfits); i++) {
+         /* Must still need to remove. */
+         if (q <= 0)
+            break;
+
+         /* Not found. */
+         if (p->outfits[i]->outfit != o)
+            continue;
+
+         /* Remove outfit. */
+         pilot_rmOutfit(p, p->outfits[i]);
+         q--;
+         removed++;
+      }
+   }
+
+   if (removed > 0) {
+      if (p->autoweap)
+         /* Update the weapon sets. */
+         pilot_weaponAuto(p);
+
+      /* Update equipment window since it's a player pilot. */
+      outfits_updateEquipmentOutfits();
+   }
+
+   lua_pushnumber(L, removed);
    return 1;
 }
 
