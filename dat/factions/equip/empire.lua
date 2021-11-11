@@ -83,7 +83,8 @@ equip_typeOutfits_weapons["Admonisher"] = {
 }
 equip_typeOutfits_weapons["Pacifier"] = {
    {
-      "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+      "Heavy Ripper Turret", "Plasma Cluster Turret", "Grave Beam",
+      "Heavy Ion Turret",
    },
    {
       num = 1;
@@ -117,7 +118,7 @@ function equip( p )
             "Turbolaser", "Heavy Laser Turret", "Ragnarok Beam",
          },
          {
-            "Heavy Ripper Turret",
+            "Heavy Ripper Turret", "Plasma Cluster Turret",
          },
       }
    else
@@ -130,7 +131,7 @@ function equip( p )
             "Turbolaser", "Heavy Laser Turret", "Ragnarok Beam",
          },
          {
-            "Heavy Ripper Turret",
+            "Heavy Ripper Turret", "Plasma Cluster Turret",
          },
       }
    end

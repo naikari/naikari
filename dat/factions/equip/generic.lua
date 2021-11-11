@@ -224,7 +224,8 @@ equip_classOutfits_weapons = {
    },
    ["Armored Transport"] = {
       {
-         "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+         "Heavy Ripper Turret", "Plasma Cluster Turret",
+         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
       },
       {
          num = 1;
@@ -284,7 +285,8 @@ equip_classOutfits_weapons = {
    },
    ["Destroyer"] = {
       {
-         "Railgun", "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+         "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
+         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
       },
       {
          num = 1;
@@ -316,7 +318,8 @@ equip_classOutfits_weapons = {
          "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
       },
       {
-         "Railgun", "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+         "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
+         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
       },
    },
    ["Carrier"] = {
@@ -328,7 +331,8 @@ equip_classOutfits_weapons = {
          "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
       },
       {
-         "Heavy Ripper Turret", "Grave Beam",
+         "Heavy Ripper Turret", "Plasma Cluster Turret",
+         "Turreted Mass Driver", "Grave Beam",
       },
    },
    ["Drone"] = {
@@ -1000,7 +1004,8 @@ equip_typeOutfits_weapons = {
    },
    ["Kestrel"] = {
       {
-         "Railgun", "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+         "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
+         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
       },
       {
          "Enygma Systems Turreted Fury Launcher",
@@ -1015,7 +1020,8 @@ equip_typeOutfits_weapons = {
          "Enygma Systems Turreted Headhunter Launcher",
       },
       {
-         "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+         "Heavy Ripper Turret", "Plasma Cluster Turret",
+         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
       },
    },
    ["Goddard"] = {
@@ -1174,7 +1180,7 @@ equip_typeOutfits_weapons = {
          "BioPlasma Tentacle Stage 7", "BioPlasma Tentacle Stage X",
       },
       {
-         "Heavy Ripper Turret", "Grave Beam",
+         "Plasma Cluster Turret", "Grave Beam",
       },
    },
    ["Vox"] = {
