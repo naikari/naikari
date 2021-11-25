@@ -7,7 +7,7 @@
 	<key>CFBundleIconFile</key>
 	<string>naikari.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.naikari.Naikari</string>
+	<string>io.github.naikari.Naikari</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
