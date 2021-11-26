@@ -243,7 +243,7 @@ jobs:
           chmod +x build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
 
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.8.6
         if: ${{ matrix.releasetype == 'github' }}
         with:
           artifacts: "${{ github.workspace }}/build/dist/*.*"
@@ -251,5 +251,4 @@ jobs:
           body: ${{ steps.changelog.outputs.changelog }}
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: true
-          removeArtifacts: true
           tag: "nightly"
