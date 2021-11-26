@@ -1,23 +1,23 @@
 #!/bin/bash
 
-# GITHUB DEPLOYMENT SCRIPT FOR NAEV
+# GITHUB DEPLOYMENT SCRIPT FOR NAIKARI
 #
 # This script should be run after downloading all build artefacts.
 # It also makes use of ENV variable GH_TOKEN to login. ensure this is exported.
 #
 #
-# Pass in [-d] [-n] (set this for nightly builds) [-p] (set this for pre-release builds.) [-c] (set this for CI testing) -t <TEMPPATH> (build artefact location) -o <OUTDIR> (dist output directory) -r <TAGNAME> (tag of release *required*) -g <REPONAME> (defaults to naev/naev)
+# Pass in [-d] [-n] (set this for nightly builds) [-p] (set this for pre-release builds.) [-c] (set this for CI testing) -t <TEMPPATH> (build artefact location) -o <OUTDIR> (dist output directory) -r <TAGNAME> (tag of release *required*) -g <REPONAME> (defaults to naikari/naikari)
 
 set -e
 
 # Defaults
 NIGHTLY="false"
 PRERELEASE="false"
-REPO="naev/naev"
+REPO="naikari/naikari"
 TEMPPATH="$(pwd)"
 OUTDIR="$(pwd)/dist"
 DRYRUN="false"
-REPONAME="naev/naev"
+REPONAME="naikari/naikari"
 
 while getopts dnpcb:o:r:g: OPTION "$@"; do
     case $OPTION in
@@ -49,7 +49,7 @@ while getopts dnpcb:o:r:g: OPTION "$@"; do
 done
 
 if [[ -z "$TAGNAME" ]]; then
-    echo "usage: `basename $0` [-d] [-n] (set this for nightly builds) [-p] (set this for pre-release builds.) [-c] (set this for CI testing) -t <TEMPPATH> (build artefact location) -o <OUTDIR> (dist output directory) -r <TAGNAME> (tag of release *required*) -g <REPONAME> (defaults to naev/naev)"
+    echo "usage: `basename $0` [-d] [-n] (set this for nightly builds) [-p] (set this for pre-release builds.) [-c] (set this for CI testing) -t <TEMPPATH> (build artefact location) -o <OUTDIR> (dist output directory) -r <TAGNAME> (tag of release *required*) -g <REPONAME> (defaults to naikari/naikari)"
     exit -1
 fi
 
@@ -83,7 +83,7 @@ run_gh () {
 # Collect date and assemble the VERSION suffix
 
 BUILD_DATE="$(date +%Y%m%d)"
-VERSION="$(<"$TEMPPATH/naev-version/VERSION")"
+VERSION="$(<"$TEMPPATH/naikari-version/VERSION")"
 
 if [ "$NIGHTLY" == "true" ]; then
     SUFFIX="$VERSION+DEBUG.$BUILD_DATE"
@@ -99,28 +99,20 @@ mkdir -p "$OUTDIR"/dist
 mkdir -p "$OUTDIR"/lin64
 mkdir -p "$OUTDIR"/macos
 mkdir -p "$OUTDIR"/win64
-mkdir -p "$OUTDIR"/soundtrack
 
 # Move all build artefacts to deployment locations
 # Move Linux binary and set as executable
-cp "$TEMPPATH"/naev-linux-x86-64/*.AppImage "$OUTDIR"/lin64/naev-$SUFFIX-linux-x86-64.AppImage
-chmod +x "$OUTDIR"/lin64/naev-$SUFFIX-linux-x86-64.AppImage
+cp "$TEMPPATH"/naikari-linux-x86-64/*.AppImage "$OUTDIR"/lin64/naikari-$SUFFIX-linux-x86-64.AppImage
+chmod +x "$OUTDIR"/lin64/naikari-$SUFFIX-linux-x86-64.AppImage
 
 # Move macOS bundle to deployment location
-cp "$TEMPPATH"/naev-macos/*.zip -d "$OUTDIR"/macos/naev-$SUFFIX-macos.zip
+cp "$TEMPPATH"/naikari-macos/*.zip -d "$OUTDIR"/macos/naikari-$SUFFIX-macos.zip
 
 # Move Windows installer to deployment location
-cp "$TEMPPATH"/naev-win64/naev*.exe "$OUTDIR"/win64/naev-$SUFFIX-win64.exe
+cp "$TEMPPATH"/naikari-win64/naikari*.exe "$OUTDIR"/win64/naikari-$SUFFIX-win64.exe
 
 # Move Dist to deployment location
-cp "$TEMPPATH"/naev-dist/source.tar.xz "$OUTDIR"/dist/naev-$SUFFIX-source.tar.xz
-
-# Move Soundtrack to deployment location if this is a release.
-if [ "$NIGHTLY" == "true" ]; then
-    echo "not preparing soundtrack"
-elif [ "$PRERELEASE" == "false" ]; then
-    cp "$TEMPPATH"/naev-soundtrack/naev-*-soundtrack.zip "$OUTDIR"/dist/naev-$SUFFIX-soundtrack.zip
-fi
+cp "$TEMPPATH"/naikari-dist/source.tar.xz "$OUTDIR"/dist/naikari-$SUFFIX-source.tar.xz
 
 # Push builds to github via gh
 
@@ -143,7 +135,6 @@ if [ "$DRYRUN" == "false" ]; then
             run_gh release upload "$TAGNAME" "$OUTDIR"/lin64/* -R "$REPONAME" --clobber
             run_gh release upload "$TAGNAME" "$OUTDIR"/macos/* -R "$REPONAME" --clobber
             run_gh release upload "$TAGNAME" "$OUTDIR"/win64/* -R "$REPONAME" --clobber
-            run_gh release upload "$TAGNAME" "$OUTDIR"/soundtrack/* -R "$REPONAME" --clobber
             run_gh release upload "$TAGNAME" "$OUTDIR"/dist/* -R "$REPONAME" --clobber
 
         else
@@ -164,7 +155,6 @@ elif [ "$DRYRUN" == "true" ]; then
         elif [ "$PRERELEASE" == "false" ]; then
             # Run github release upload
             echo "github release upload"
-            echo "github soundtrack upload"
             ls -l -R "$OUTDIR"
 
         else
