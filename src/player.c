@@ -46,7 +46,6 @@
 #include "news.h"
 #include "nfile.h"
 #include "nlua_misn.h"
-#include "nlua_outfit.h"
 #include "nlua_var.h"
 #include "nstring.h"
 #include "ntime.h"
