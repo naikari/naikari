@@ -222,6 +222,6 @@ jobs:
         run: |
           chmod -R +x build/staging/naev-github-deployment
           cp -r build/staging/naev-github-deployment/* "$(pwd)"
-          ./GHDeploy.sh -n -t "$(pwd)/build/staging" -o "$(pwd)/build/dist" -r "nightly"
+          ./GHDeploy.sh -n -t "$(pwd)/build/staging" -o "$(pwd)/build/dist" -r "${{github.ref_name}}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
