@@ -19,7 +19,7 @@ OUTDIR="$(pwd)/dist"
 DRYRUN="false"
 REPONAME="naikari/naikari"
 
-while getopts dnpcb:o:r:g: OPTION "$@"; do
+while getopts dnpct:o:r:g: OPTION "$@"; do
     case $OPTION in
     d)
         set -x
@@ -118,29 +118,10 @@ cp "$TEMPPATH"/naikari-dist/source.tar.xz "$OUTDIR"/dist/naikari-$SUFFIX-source.
 
 if [ "$DRYRUN" == "false" ]; then
     run_gh --version
-    if [ "$NIGHTLY" == "true" ]; then
-        run_gh release upload "$TAGNAME" "$OUTDIR"/lin64/* -R "$REPONAME" --clobber
-        run_gh release upload "$TAGNAME" "$OUTDIR"/macos/* -R "$REPONAME" --clobber
-        run_gh release upload "$TAGNAME" "$OUTDIR"/win64/* -R "$REPONAME" --clobber
-        run_gh release upload "$TAGNAME" "$OUTDIR"/dist/* -R "$REPONAME" --clobber
-
-    else
-        if [ "$PRERELEASE" == "true" ]; then
-            run_gh release upload "$TAGNAME" "$OUTDIR"/lin64/* -R "$REPONAME" --clobber
-            run_gh release upload "$TAGNAME" "$OUTDIR"/macos/* -R "$REPONAME" --clobber
-            run_gh release upload "$TAGNAME" "$OUTDIR"/win64/* -R "$REPONAME" --clobber
-            run_gh release upload "$TAGNAME" "$OUTDIR"/dist/* -R "$REPONAME" --clobber
-
-        elif [ "$PRERELEASE" == "false" ]; then
-            run_gh release upload "$TAGNAME" "$OUTDIR"/lin64/* -R "$REPONAME" --clobber
-            run_gh release upload "$TAGNAME" "$OUTDIR"/macos/* -R "$REPONAME" --clobber
-            run_gh release upload "$TAGNAME" "$OUTDIR"/win64/* -R "$REPONAME" --clobber
-            run_gh release upload "$TAGNAME" "$OUTDIR"/dist/* -R "$REPONAME" --clobber
-
-        else
-            echo "Something went wrong determining if this is a PRERELEASE or not."
-        fi
-    fi
+    run_gh release upload "$TAGNAME" "$OUTDIR"/lin64/* -R "$REPONAME" --clobber
+    run_gh release upload "$TAGNAME" "$OUTDIR"/macos/* -R "$REPONAME" --clobber
+    run_gh release upload "$TAGNAME" "$OUTDIR"/win64/* -R "$REPONAME" --clobber
+    run_gh release upload "$TAGNAME" "$OUTDIR"/dist/* -R "$REPONAME" --clobber
 elif [ "$DRYRUN" == "true" ]; then
     run_gh --version
     if [ "$NIGHTLY" == "true" ]; then
