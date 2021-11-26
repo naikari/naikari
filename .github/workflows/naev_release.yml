@@ -233,4 +233,5 @@ jobs:
           artifacts: "build/dist/*.*"
           bodyFile: "build/staging/naikari-changelog/CHANGELOG"
           token: ${{ secrets.GITHUB_TOKEN }}
+          artifactErrorsFailBuild: true
           prerelease: false
