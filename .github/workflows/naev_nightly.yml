@@ -250,6 +250,5 @@ jobs:
           name: "Nightly Build"
           body: ${{ steps.changelog.outputs.changelog }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifactErrorsFailBuild: true
           prerelease: true
           tag: "nightly"
