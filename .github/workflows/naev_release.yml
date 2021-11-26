@@ -32,7 +32,6 @@ jobs:
         run: |
           mkdir -p build/dist
           mv build/meson-dist/naikari-*.tar.xz build/dist/source.tar.xz
-          cp source/CHANGELOG build/dist
           cp source/dat/VERSION build/dist
 
       - name: Upload Source Artifact
@@ -47,13 +46,6 @@ jobs:
         with:
           name: naikari-version
           path: ${{ github.workspace }}/build/dist/VERSION
-          if-no-files-found: error
-
-      - name: Upload Changelog Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: naikari-changelog
-          path: ${{ github.workspace }}/build/dist/CHANGELOG
           if-no-files-found: error
 
   "Linux_Naev_Release":
@@ -223,9 +215,10 @@ jobs:
           chmod +x build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
 
       - name: Upload Github Release
-        uses: ncipollo/release-action@v1
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          artifacts: "build/dist/*.*"
-          bodyFile: "build/staging/naikari-changelog/CHANGELOG"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
           prerelease: false
+          files: |
+            ${{ github.workspace }}/build/dist/*.*
