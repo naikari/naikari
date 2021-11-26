@@ -173,9 +173,6 @@ jobs:
   "Upload_Naev_Release":
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - releasetype: github
 
     runs-on: ubuntu-latest
 
@@ -194,18 +191,15 @@ jobs:
     steps:
       - name: Checkout Naev Repository
         uses: actions/checkout@v2
-        if: ${{ matrix.releasetype == 'github' }}
 
       - name: Generate commit changelog
         uses: Bullrich/generate-release-changelog@2.0.1
-        if: ${{ matrix.releasetype == 'github' }}
         id: changelog
         env:
           REPO: ${{ github.repository }}
 
       - name: Delete old nightly tag and release.
         uses: dev-drprasad/delete-tag-and-release@v0.1.2
-        if: ${{ matrix.releasetype == 'github' }}
         with:
           delete_release: true
           tag_name: nightly
@@ -214,7 +208,6 @@ jobs:
 
       - name: Create 'nightly' tag
         uses: EndBug/latest-tag@latest
-        if: ${{ matrix.releasetype == 'github' }}
         with:
           tag-name: nightly
 
@@ -229,7 +222,6 @@ jobs:
           path: ${{ github.workspace }}/build/staging
 
       - name: Build Github Release
-        if: ${{ matrix.releasetype == 'github' }}
         run: |
           BUILD_DATE="$(date +%Y%m%d)"
           VERSION="$(<"build/staging/naikari-version/VERSION")"
@@ -243,8 +235,7 @@ jobs:
           chmod +x build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
 
       - name: Create Release
-        uses: ncipollo/release-action@v1.8.6
-        if: ${{ matrix.releasetype == 'github' }}
+        uses: ncipollo/release-action@v1
         with:
           artifacts: "${{ github.workspace }}/build/dist/*.*"
           name: "Nightly Build"

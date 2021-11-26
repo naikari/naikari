@@ -183,9 +183,6 @@ jobs:
   "Upload_Naev_Release":
     strategy:
       fail-fast: true
-      matrix:
-        include:
-          - releasetype: github
 
     runs-on: ubuntu-latest
 
@@ -212,7 +209,6 @@ jobs:
           path: ${{ github.workspace }}/build/staging
 
       - name: Build Github Release
-        if: ${{ matrix.releasetype == 'github' }}
         run: |
           BUILD_DATE="$(date +%Y%m%d)"
           VERSION="$(<"build/staging/naikari-version/VERSION")"
@@ -227,8 +223,7 @@ jobs:
           chmod +x build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
 
       - name: Upload Github Release
-        uses: ncipollo/release-action@v1.8.6
-        if: ${{ matrix.releasetype == 'github' }}
+        uses: ncipollo/release-action@v1
         with:
           artifacts: "build/dist/*.*"
           bodyFile: "build/staging/naikari-changelog/CHANGELOG"
