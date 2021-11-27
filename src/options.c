@@ -244,8 +244,7 @@ static char** lang_list( int *n )
    /* Default English only. */
    ls = malloc( sizeof(char*)*128 );
    ls[0] = strdup(_("system"));
-   ls[1] = strdup("en");
-   *n = 2;
+   *n = 1;
 
    /* Try to open the available languages. */
    for (i=0; i<array_size(opts); i++)
