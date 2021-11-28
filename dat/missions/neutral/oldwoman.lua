@@ -28,7 +28,7 @@ require "missions/neutral/common"
 -- Localization, choosing a language if Naev is translated for non-english-speaking locales.
 text1 = _([[You decide to ask the old woman if there's something you can help her with.
 
-"As a matter of fact, there is," she creaks. "I want to visit my cousin, she lives on %s, you know, in the %s system, it's a Sirian place. But I don't have a ship and those blasted passenger lines around here don't fly on Sirius space! I tell you, customer service really has gone down the gutter over the years. In my space faring days, there would always be some transport ready to take you anywhere! But now look at me, I'm forced to get to the spaceport bar to see if there's a captain willing to take me! It's a disgrace, that's what it is. What a galaxy we live in! But I ramble. You seem like you've got time on your hands. Fancy making a trip down to %s? I'll pay you a decent fare, of course."]])
+"As a matter of fact, there is," she creaks. "I want to visit my cousin, she lives on %s, you know, in the %s system, it's in Sirius space. But I don't have a ship and those blasted passenger lines around here don't fly on Sirius space! I tell you, customer service really has gone down the gutter over the years. In my space faring days, there would always be some transport ready to take you anywhere! But now look at me, I'm forced to get to the spaceport bar to see if there's a captain willing to take me! It's a disgrace, that's what it is. What a galaxy we live in! But I ramble. You seem like you've got time on your hands. Fancy making a trip down to %s? I'll pay you a decent fare, of course."]])
 text2 = _([["Oh, that's good of you." The old woman gives you a wrinkly smile. "I haven't seen my cousin in such a long time, it'll be great to see how she's doing, and we can talk about old times. Ah, old times. It was all so different then. The space ways were much safer, for one. And people were politer to each other too, oh yes!"
 
 You escort the old lady to your ship, trying not to listen to her rambling. Perhaps it would be a good idea to get her to her destination as quickly as you can.]])
@@ -57,7 +57,7 @@ NPCdesc = _("You see a wrinkled old lady, a somewhat unusual sight in a spacepor
 misndesc = _("An aging lady has asked you to ferry her to %s.")
 misnreward = _("Fair monetary compensation")
 
-log_text = _([[You escorted an old woman to her cousin in Sirian space. She was nice, albeit somewhat overly chatty.]])
+log_text = _([[You escorted an old woman to her cousin in Sirius space. She was nice, albeit somewhat overly chatty.]])
 
 
 function create ()

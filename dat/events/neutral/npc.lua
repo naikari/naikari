@@ -190,7 +190,7 @@ msg_lore["Empire"] = {
    _([["I'm still waiting for my pilot license application to get through. Oh well, it's only been half a cycle, I just have to be patient."]]),
    _([["Between you and me, the laws the Council passes can get really ridiculous! Most planets find creative ways of ignoring them.…"]]),
    _([["Don't pay attention to the naysayers. The Empire is still strong. Have you ever seen a Peacemaker up close? I doubt any ship fielded by any other power could stand up to one."]]),
-   _([["I wonder why the Sirii are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
+   _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
    _([["I wouldn't travel north of Alteris if I were you, unless you're a good fighter! That area of space has really gone down the drain since the Incident."]]),
@@ -205,7 +205,7 @@ msg_lore["Dvaered"] = {
    _([["I'm thinking about joining the military. Every time I see or hear news about those rotten FLF bastards, it makes my blood boil! They should all be pounded into space dust!"]]),
    _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
    _([["Did you know that House Dvaered was named after a hero of the revolt? At least that's what my grandparents told me."]]),
-   _([["I wonder why the Sirii are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
+   _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
@@ -217,7 +217,7 @@ msg_lore["Sirius"] = {
    _([["My cousin was called to Mutris a cycle ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
    _([["Some people say Sirius society is unfair because our echelons are determined by birth. But even though we are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
    _([["House Sirius is officially part of the Empire, but everyone knows that's only true on paper. The Emperor has nothing to say in these systems. We follow Sirichana, and no-one else."]]),
-   _([["You can easily tell the different echelons apart. Every Sirian citizen and soldier wears clothing appropriate to his or her echelon."]]),
+   _([["You can easily tell the different echelons apart. Every Sirius citizen and soldier wears clothing appropriate to his or her echelon."]]),
    _([["I hope to meet one of the Touched one day!"]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
@@ -230,7 +230,7 @@ msg_lore["Soromid"] = {
    _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
    _([["Our cosmetic gene treatments are even safer now for non-Soromids, with a rate of survival of 99.4%!"]]),
    _([["We have been rebuilding and enhancing our bodies for so long, I say we've become a new species, one above human."]]),
-   _([["I wonder why the Sirii are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
+   _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
 }
 
 msg_lore["Za'lek"] = {
@@ -244,7 +244,7 @@ msg_lore["Za'lek"] = {
    _([["I am worried about my sister. She's on trial for 'abusive self-citing' and the public prosecutor has requested a life sentence."]]),
    _([["They opened two professor positions on precision machining in Atryssa Central Manufacturing Lab, and none in Bedimann Advanced Process Lab, but everyone knows that the BAPL needs reinforcement ever since three of its professors retired last cycle. People say it's because a member of Atryssa's lab posted a positive review of the president of the Za'lek central scientific recruitment committee."]]),
    _([["Even if our labs are the best in the galaxy, other factions have their own labs as well. For example, Dvaer Prime Lab for Advanced Mace Rocket Studies used to be very successful until it was nuked by mistake by a warlord during an invasion of the planet."]]),
-   _([["I wonder why the Sirii are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
+   _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
 }
 
 msg_lore["Thurion"] = {

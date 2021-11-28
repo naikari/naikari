@@ -15,11 +15,11 @@
 local fleet = require "fleet"
 
 
-commtext = _([[A Sirian appears on your viewscreen. He seems different than most Sirii you've met. He regards you with a neutral yet intense gaze.
+commtext = _([[A Siriusite appears on your viewscreen. He seems different than most Siriusites you've met. He regards you with a neutral yet intense gaze.
 
 "Humankind is cruel and deceptive," he says. "You deserve more than you shall ever get from humanity. Your only hope is to follow the Holy One, Sirichana. He shall guide you to peace and wisdom. He is the sole refuge for humans like you and me. You MUST follow him!"
  
-You feel a brief but overpowering urge to follow him, but it passes and your head clears. The Sirian ship makes no further attempt to communicate with you.]])
+You feel a brief but overpowering urge to follow him, but it passes and your head clears. The Sirius ship makes no further attempt to communicate with you.]])
 
 althoughEnemy = {
    _("%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for I abhor violence!"),
@@ -28,7 +28,7 @@ althoughEnemy = {
 }
 
 friend = {
-   _("%s, I foresee in you a great Sirian citizen, and I look forward to your friendship!"),
+   _("%s, I foresee in you a great Sirius citizen, and I look forward to your friendship!"),
    _("%s, I foresee a bright future for you, illuminated by Sirichana's light!"),
    _("%s, may Sirichana's light illuminate your path!"),
 }
@@ -182,18 +182,18 @@ function theFunBegins()
    --pick a random converted pirate and have him praise the Sirichana
    praiser = followers[rnd.rnd(1,#followers)]
 
-   --add some sirian escorts too
-   local sirianFollowers = {"Sirius Fidelity", "Sirius Shaman"} --the types of followers allowed
-   local sirianFollowerList = {}
+   --add some sirius escorts too
+   local siriusFollowers = {"Sirius Fidelity", "Sirius Shaman"} --the types of followers allowed
+   local siriusFollowerList = {}
 
-   numships = rnd.rnd(2, 6) -- This is the total number of sirian escort ships.
+   numships = rnd.rnd(2, 6) -- This is the total number of sirius escort ships.
    for num=1, numships, 1 do
-      sirianFollowerList[num] = sirianFollowers[rnd.rnd(1, #sirianFollowers)] -- Pick a follower ship at random.
+      siriusFollowerList[num] = siriusFollowers[rnd.rnd(1, #siriusFollowers)] -- Pick a follower ship at random.
    end
 
-   sirianFollowers = fleet.add(1, sirianFollowerList, "Sirius", curr, nil, {ai="sirius_norun"}) -- The table now contains pilots, not ship names.
+   siriusFollowers = fleet.add(1, siriusFollowerList, "Sirius", curr, nil, {ai="sirius_norun"}) -- The table now contains pilots, not ship names.
 
-   for i, p in ipairs(sirianFollowers) do
+   for i, p in ipairs(siriusFollowers) do
       followers[#followers + 1] = p
    end
 
@@ -326,7 +326,7 @@ end
 function getPreacherTarget()
    local sirius = faction.get("Sirius")
 
-   --look for nearby landable Sirian planet to land
+   --look for nearby landable Sirius planet to land
    for key, planet in ipairs(system.cur():planets()) do
       if planet:faction() == sirius and planet:services()["land"]  then
          target = planet
@@ -334,7 +334,7 @@ function getPreacherTarget()
       end
    end
 
-   --if no landable Sirian planets found, jump to random system
+   --if no landable Sirius planets found, jump to random system
    --TODO: prevent jump back through the entry point
    if target then
       preacher:land(target)
