@@ -22,29 +22,26 @@
 --
 --]]
 
+local fmt = require "fmt"
 require "jumpdist"
 require "missions/neutral/common"
 
 
-text = {}
-title = {}
+ask_text = _([["Good day to you, captain. I'm looking for someone with a ship who can take this crate here to planet {planet} in the {system} system. The crate contains a colony of rodents I've bred myself, and my in-law has a pet shop on {planet} where I hope to sell them. Upon delivery, you will be paid 200 k¢. Are you interested in the job?"]])
 
-title[1] = _("Animal transport")
-text[1] = _([["Good day to you, captain. I'm looking for someone with a ship who can take this crate here to planet %s in the %s system. The crate contains a colony of rodents I've bred myself, and my in-law has a pet shop on %s where I hope to sell them. Upon delivery, you will be paid 200,000 credits. Are you interested in the job?"]])
+yes_text = _([["Excellent! My in-law will send someone to meet you at the spaceport to take the crate off your hands, and you'll be paid immediately on delivery. Thanks again!"]])
 
-text[2] = _([["Excellent! My in-law will send someone to meet you at the spaceport to take the crate off your hands, and you'll be paid immediately on delivery. Thanks again!"]])
-
-text[3] = _([[As promised, there's someone at the spaceport who accepts the crate. In return, you receive a number of credit chips worth 200,000 credits, as per the arrangement. You go back into your ship to put the chips away before heading off to check in with the local authorities. But did you just hear something squeak...?]])
+pay_text = _([[As promised, there's someone at the spaceport who accepts the crate. In return, you receive a number of credit chips worth 200 k¢, as per the arrangement. You go back into your ship to put the chips away before heading off to check in with the local authorities. But did you just hear something squeak...?]])
 
 NPCname = _("A Fyrra civilian")
 NPCdesc = _("There's a civilian here, from the Fyrra echelon by the looks of him. He's got some kind of crate with him.")
 
-misndesc = _("You've been hired to transport a crate of specially engineered rodents to %s (%s system).")
-misnreward = _("You will be paid 200,000 credits on arrival.")
+misndesc = _("You've been hired to transport a crate of specially engineered rodents to {planet} in the {system} system.")
+misnreward = _("200 k¢")
 
 OSDtitle = _("Animal transport")
 OSD = {}
-OSD[1] = _("Land on %s (%s system)")
+OSD[1] = _("Land on {planet} ({system} system)")
 
 log_text = _([[You successfully transported a crate of rodents for a Fyrra civilian. You could have swore you heard something squeak.]])
 
@@ -55,35 +52,38 @@ function create ()
     getsysatdistance( system.cur(), 2, 4,
         function(s)
             for i, v in ipairs(s:planets()) do
-                if v:faction() == faction.get("Sirius") and v:class() == "M" and v:canLand() then
+                if v:faction() == faction.get("Sirius") and v:class() == "M"
+                        and v:canLand() then
                     planets[#planets + 1] = {v, s}
                 end
-           end
-           return false
+            end
+            return false
         end )
 
     if #planets == 0 then
-        abort()
+        misn.finish(false)
     end
 
     index = rnd.rnd(1, #planets)
     destplanet = planets[index][1]
     destsys = planets[index][2]
 
-    misndesc = misndesc:format(destplanet:name(), destsys:name())
-    OSD[1] = OSD[1]:format(destplanet:name(), destsys:name())
+    misndesc = fmt.f(misndesc,
+            {planet=destplanet:name(), system=destsys:name()})
+    OSD[1] = fmt.f(OSD[1], {planet=destplanet:name(), system=destsys:name()})
 
     misn.setNPC(NPCname, "sirius/unique/rodentman.png", NPCdesc)
 end
 
 
 function accept ()
-    if tk.yesno(title[1], text[1]:format(destplanet:name(), destsys:name(), destplanet:name())) then
+    if tk.yesno("", fmt.f(ask_text,
+            {planet=destplanet:name(), system=destsys:name()})) then
         misn.accept()
         misn.setDesc(misndesc)
         misn.setReward(misnreward)
         misn.osdCreate(OSDtitle, OSD)
-        tk.msg(title[1], text[2])
+        tk.msg("", yes_text)
         misn.markerAdd(destsys, "high")
         hook.land("land")
     else
@@ -93,14 +93,10 @@ end
 
 function land()
     if planet.cur() == destplanet then
-        tk.msg(title[1], text[3])
+        tk.msg("", pay_text)
         player.pay(200000) -- 200K
         var.push("shipinfested", true)
         addMiscLog( log_text )
         misn.finish(true)
     end
-end
-
-function abort ()
-   misn.finish(false)
 end
