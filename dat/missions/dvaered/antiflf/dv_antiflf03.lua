@@ -8,7 +8,7 @@
   <priority>10</priority>
   <chance>10</chance>
   <location>Bar</location>
-  <cond>var.peek("flfbase_intro") == 3</cond>
+  <cond>var.peek("flfbase_intro") == 4</cond>
   <faction>Dvaered</faction>
  </avail>
  <notes>
