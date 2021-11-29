@@ -384,9 +384,9 @@ int main( int argc, char** argv )
          _("Welcome to Naikari"),
          _("Welcome to Naikari version %s, and thank you for playing! We hope"
             " you enjoy this game and all it has to offer. This is a passion"
-            " project, based on another passion project (Naev), and ultimately"
-            " developed exclusively by volunteers. It gives us great joy to"
-            " know that there are others who love this game as much as we do!\n"
+            " project developed exclusively by volunteers, and it would give"
+            " us great joy if there are others who love this game as much as"
+            " we do!\n"
             "\n"
             "Of course, please note that this is an incomplete game. You"
             " will encounter dead ends to storylines, missing storylines, and"
