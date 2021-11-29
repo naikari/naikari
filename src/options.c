@@ -28,6 +28,7 @@
 #include "ndata.h"
 #include "nstring.h"
 #include "player.h"
+#include "render.h"
 #include "sound.h"
 #include "toolkit.h"
 
@@ -58,6 +59,7 @@ static int opt_restart = 0;
 static int opt_orig_colorblind;
 static double opt_orig_scalefactor;
 static double opt_orig_bg_brightness;
+static double opt_orig_gamma_correction;
 static double opt_orig_zoom_far;
 static double opt_orig_zoom_near;
 
@@ -80,6 +82,7 @@ static char** lang_list( int *n );
 static void opt_gameplay( unsigned int wid );
 static void opt_setAutonavResetSpeed( unsigned int wid, char *str );
 static void opt_setMapOverlayOpacity( unsigned int wid, char *str );
+static void opt_setGamma(unsigned int wid, char *str);
 static void opt_setGameSpeed( unsigned int wid, char *str );
 static void opt_OK( unsigned int wid, char *str );
 static int opt_gameplaySave( unsigned int wid, char *str );
@@ -197,8 +200,12 @@ static void opt_close( unsigned int wid, char *name )
    gl_colorblind(conf.colorblind);
    conf.scalefactor = opt_orig_scalefactor;
    conf.bg_brightness = opt_orig_bg_brightness;
+   conf.gamma_correction = opt_orig_gamma_correction;
    conf.zoom_far = opt_orig_zoom_far;
    conf.zoom_near = opt_orig_zoom_near;
+
+   /* Need to set gamma again in case it was changed. */
+   render_setGamma(conf.gamma_correction);
 
    window_destroy(opt_wid);
    opt_wid = 0;
@@ -1189,7 +1196,7 @@ static void opt_video( unsigned int wid )
 {
    (void) wid;
    int i, j, nres, res_def;
-   char buf[16];
+   char buf[STRMAX_SHORT];
    int cw;
    int w, h, y, x, l;
    char **res;
@@ -1199,6 +1206,7 @@ static void opt_video( unsigned int wid )
    opt_orig_colorblind = conf.colorblind;
    opt_orig_scalefactor = conf.scalefactor;
    opt_orig_bg_brightness = conf.bg_brightness;
+   opt_orig_gamma_correction = conf.gamma_correction;
    opt_orig_zoom_far = conf.zoom_far;
    opt_orig_zoom_near = conf.zoom_near;
 
@@ -1318,6 +1326,22 @@ static void opt_video( unsigned int wid )
          conf.scalefactor, opt_setScalefactor );
    opt_setScalefactor( wid, "fadScale" );
    y -= 40;
+
+   window_addText(wid, x, y, cw-20, 20, 0, "txtAGamma",
+         NULL, NULL, _("Gamma"));
+   y -= 20;
+   window_addText(wid, x, y, cw-20, 20, 1, "txtGamma",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw-20, 20, "fadGamma", 0.25, 3.,
+         conf.gamma_correction, opt_setGamma);
+   /* Not calling opt_setGamma since that would override values outside
+    * of the slider's bounds (which are not an indication of any strict
+    * limit). */
+   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.gamma_correction * 100.);
+   window_modifyText(wid, "txtGamma", buf);
+   y -= 40;
+
    window_addText( wid, x, y-3, cw-20, 20, 0, "txtABGBrightness",
          NULL, NULL, _("Background Brightness") );
    y -= 20;
@@ -1680,6 +1704,28 @@ static void opt_setMapOverlayOpacity( unsigned int wid, char *str )
    map_overlay_opacity = window_getFaderValue(wid, str);
    snprintf( buf, sizeof(buf), _("%.0f%%"), map_overlay_opacity * 100 );
    window_modifyText( wid, "txtMOpacity", buf );
+}
+
+
+
+/**
+ * @brief Callback to set map overlay opacity.
+ *
+ *    @param wid Window calling the callback.
+ *    @param str Name of the widget calling the callback.
+ */
+static void opt_setGamma(unsigned int wid, char *str)
+{
+   char buf[STRMAX_SHORT];
+   double gamma;
+
+   /* Set fader. */
+   gamma = window_getFaderValue(wid, str);
+   conf.gamma_correction = round(gamma*100.) / 100.;
+   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.gamma_correction * 100.);
+   window_modifyText(wid, "txtGamma", buf);
+
+   render_setGamma(conf.gamma_correction);
 }
 
 
