@@ -2,7 +2,7 @@ on:
   repository_dispatch:
     types: manual-nightly
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 4 * * *"
 
 name: Nightly Release
 
