@@ -3,7 +3,7 @@
 <event name="FLF/DV Derelicts">
  <trigger>enter</trigger>
  <priority>19</priority>
- <chance>1</chance>
+ <chance>5</chance>
  <cond>
    faction.get("Dvaered"):playerStanding() &gt;= 0
    and faction.get("Pirate"):playerStanding() &lt; 0
@@ -27,7 +27,18 @@ broadcastmsgFLF = _("Calling all ships! Frontier scout here. Engines down, ship 
 
 function create()
     if not evt.claim(system.cur()) then
-       evt.finish(false)
+        evt.finish(false)
+    end
+
+    local firstcomm = var.peek("flfderelict_first")
+    if firstcomm == nil then
+        var.push("flfderelict_first", time.get():tonumber())
+        evt.finish(false)
+    else
+        firstcomm = time.fromnumber(firstcomm)
+        if time.get() - firstcomm < time.create(0, 30, 0) then
+            evt.finish(false)
+        end
     end
 
     -- Create the derelicts One Dvaered, one FLF.
@@ -38,8 +49,8 @@ function create()
     posFLF = vec2.new(-10500, -8500)
     
     shipDV = pilot.add("Dvaered Vendetta", "Dvaered", posDV, nil, {ai="dummy"})
-    shipFLF = pilot.add("Vendetta", "FLF", posFLF, _("FLF Vendetta"),
-         {ai="dummy"})
+    shipFLF = pilot.add("Vendetta", "FLF", posFLF, _("Frontier Vendetta"),
+            {ai="dummy"})
     
     shipDV:disable()
     shipFLF:disable()
