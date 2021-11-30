@@ -27,17 +27,29 @@
 
 function create ()
     if not evt.claim(system.cur()) then
-      evt.finish()
+        evt.finish(false)
     end
 
-    hyena = pilot.add( "Hyena", "Civilian", true, _("Civilian Hyena") )
+    local lastcomm = var.peek("baroncomm_last")
+    if lastcomm == nil then
+        var.push("baroncomm_last", time.get():tonumber())
+        evt.finish(false)
+    else
+        if time.get() - time.fromnumber(lastcomm) < time.create(0, 50, 0) then
+            evt.finish(false)
+        else
+            var.push("baroncomm_last", time.get():tonumber())
+        end
+    end
+
+    hyena = pilot.add("Hyena", "Civilian", true, _("Civilian Hyena"))
     
     hook.pilot(hyena, "jump", "finish")
     hook.pilot(hyena, "death", "finish")
     hook.land("finish")
     hook.jumpout("finish")
 
-    hailie = hook.timer( 3.0, "hailme" );
+    hailie = hook.timer(3.0, "hailme");
 end
 
 -- Make the ship hail the player
@@ -48,8 +60,8 @@ end
 
 -- Triggered when the player hails the ship
 function hail()
-    naev.missionStart("Baron")
     player.commClose()
+    naev.missionStart("Baron")
     evt.finish(true)
 end
 
