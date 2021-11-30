@@ -275,7 +275,6 @@ end
 
 function board()
     player.unboard()
-    seiryuu:setHealth(100, 100)
     seiryuu:changeAI("flee")
     seiryuu:setHilight(false)
     seiryuu:setActiveBoard(false)
