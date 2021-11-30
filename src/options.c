@@ -1594,6 +1594,7 @@ static void opt_videoDefaults( unsigned int wid, char *str )
 
    /* Faders. */
    window_faderSetBoundedValue(wid, "fadScale", SCALE_FACTOR_DEFAULT);
+   window_faderSetBoundedValue(wid, "fadGamma", GAMMA_CORRECTION_DEFAULT);
    window_faderSetBoundedValue(wid, "fadBGBrightness", BG_BRIGHTNESS_DEFAULT);
    window_faderSetBoundedValue(wid, "fadMapOverlayOpacity",
          MAP_OVERLAY_OPACITY_DEFAULT);
