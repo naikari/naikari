@@ -71,11 +71,13 @@ You cough to get the Baron's attention. He looks up, clearly displeased at the d
 
 refusetext = _([["Oh. Oh well, too bad. I'll just try to find someone who will take the job, then. Sorry for taking up your time. See you around!"]])
 
+angry_confirmtext = _([[This option will lock you out of accepting this mission permanently. This cannot be undone. Are you sure you wish to permanently lock yourself out of doing this mission? (If you select "No", you will instead politely decline the offer.)]])
+
 angrytext = _([[The pilot frowns. "I see I misjudged you. I thought for sure you would be more open-minded. Get out of my sight and never show your face to me again! You are clearly useless to my employer."]])
 
 choice1 = _("Accept the job")
 choice2 = _("Politely decline")
-choice3 = _("Angrily refuse")
+choice3 = _("Rudely refuse")
 
 comm1 = _("All troops, engage %s! They have broken %s law!")
 
@@ -97,28 +99,28 @@ osd_msg[3] = _("Hail Kahan Pinnacle (orbiting %s) by either double-clicking on i
 osd_msg[4] = _("Dock with (board) Kahan Pinnacle by stopping over it and then either double-clicking on it or pressing %s")
 
 log_text_succeed = _([[You helped some selfish baron steal a Dvaered holopainting and were paid a measly sum of credits.]])
-log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pilot, but you angrily refused to accept the job. It seems whoever the pilot worked for won't be contacting you again.]])
+log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pilot, but you rudely refused to accept the job. It seems whoever the pilot worked for won't be contacting you again.]])
 
 
 function create ()
    mispla, missys = planet.get("Varia")
    paypla, paysys = planet.get("Ulios")
    if not misn.claim(missys) then
-      abort()
+      misn.finish(false)
    end
 
    tk.msg("", hail_text)
    local c = tk.choice("", ask_text, choice1, choice2, choice3)
    if c == 1 then
       accept()
-   elseif c == 2 then
-      tk.msg("", refusetext)
-      abort()
-   else
+   elseif c == 3 and tk.yesno("", angry_confirmtext) then
       tk.msg("", angrytext)
       var.push("baron_hated", true)
       addMiscLog(log_text_refuse)
-      abort()
+      misn.finish(false)
+   else
+      tk.msg("", refusetext)
+      misn.finish(false)
    end
 end
 
