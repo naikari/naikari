@@ -46,7 +46,7 @@ typedef enum MapMode_ {
 #define MAP_HEIGHT  MAX(720, SCREEN_H - 100) /**< Map window height. */
 #define MAP_SIDEBAR_WIDTH  240 /**< Map window sidebar width. */
 
-#define BUTTON_WIDTH    100 /**< Map button width. */
+#define BUTTON_WIDTH    120 /**< Map button width. */
 #define BUTTON_HEIGHT   30 /**< Map button height. */
 
 

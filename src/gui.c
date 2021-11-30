@@ -2014,6 +2014,12 @@ int gui_load( const char* name )
       window_lower( land_wid );
    }
 
+   /* Recreate map window if it's open. */
+   if (map_isOpen()) {
+      map_close();
+      map_open();
+   }
+
    return 0;
 }
 
