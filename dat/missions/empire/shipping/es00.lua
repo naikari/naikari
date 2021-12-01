@@ -156,11 +156,11 @@ function enter ()
       enter_vect = player.pos() + vec2.newP(rnd.rnd(1500, 2000), ang)
 
       -- Create some pilots to go after the player
-      local fleet = fleet.add(1, {"Lancelot", "Vendetta", "Vendetta"}, "FLF",
+      local flt = fleet.add(1, {"Lancelot", "Vendetta", "Vendetta"}, "FLF",
             enter_vect, {_("FLF Lancelot"), _("FLF Vendetta"),
                _("FLF Vendetta")})
       -- Set hostile
-      for i, p in ipairs(fleet) do
+      for i, p in ipairs(flt) do
          p:setHostile()
       end
 
