@@ -160,7 +160,9 @@ function accept()
       misn.osdCreate(misn_title, {osd_msg[1]:format(baronsys:name())})
       marker = misn.markerAdd(baronsys, "low")
 
-      enterhook = hook.enter("enter")
+      hook.enter("enter")
+      hook.takeoff("exit")
+      hook.jumpout("exit")
    else
       misn.finish()
    end
@@ -351,28 +353,32 @@ function enter()
       hhail = hook.pilot(pinnacle, "hail", "hail")
    elseif artifactA ~= nil or artifactB ~= nil or artifactC ~= nil
          or artifactReal ~= nil then
-      -- Spawn artifact hunters, maybe.
-      local choice = rnd.rnd(1, 5)
-      local fleep
-      local count = 1
-      local pilots = {"Hyena", "Hyena"}
-
-      if choice == 2 then -- 60% chance of artifact hunters.
-         pilots[2] = "Vendetta"
-      elseif choice == 3 then
-         pilots = {"Llama"}
-         count = 3
-      end
-      if choice <= 3 then
-         fleep = fleet.add(count, pilots, "Mercenary", nil,
-               _("Artifact Hunter"));
-         for i, j in ipairs(fleep) do
-            j:control()
-            j:setHostile(true)
-            j:attack(player.pilot())
+      if rnd.rnd() < 0.75 then
+         hunterhooks = {}
+         local choices = {"Llama", "Hyena", "Shark", "Lancelot", "Vendetta"}
+         for i=1,10 do
+            if rnd.rnd() < 0.6 then
+               hunterhooks[i] = hook.timer(rnd.uniform(1, 60), "spawn_hunter",
+                     choices[rnd.rnd(1, #choices)])
+            end
          end
       end
    end
+end
+
+function exit()
+   if hunterhooks ~= nil then
+      for i, h in ipairs(hunterhooks) do
+         hook.rm(h)
+      end
+      hunterhooks = nil
+   end
+end
+
+function spawn_hunter(shiptype)
+   local p = pilot.add(shiptype, "Mercenary", nil, _("Artifact Hunter"),
+         {ai="baddie_norun"})
+   p:setHostile()
 end
 
 function idle()
