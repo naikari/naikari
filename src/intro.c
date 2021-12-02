@@ -92,7 +92,8 @@ static int intro_load( const char *text )
    intro_buf = ndata_read( text, &intro_size );
 
    /* Create intro font. */
-   gl_fontInit( &intro_font, _(FONT_MONOSPACE_PATH), conf.font_size_intro, FONT_PATH_PREFIX, 0 );
+   gl_fontInit(&intro_font, _(FONT_DEFAULT_PATH), conf.font_size_intro,
+         FONT_PATH_PREFIX, 0);
 
    intro_cmds = array_create( intro_cmd_t );
    rest_of_file = intro_buf;
