@@ -37,6 +37,8 @@
 --]]
 
 local fmt = require "fmt"
+local portrait = require "portrait"
+require "jumpdist"
 
 
 send_text = {
@@ -82,9 +84,104 @@ send_text = {
    },
 }
 
+receive_text = {
+   m = {
+      
+   }
+   f = {
+   }
+   x = {
+   }
+}
+
+
+function avail_planets()
+   local srcpla = planet.cur()
+   local planets = {}
+   getsysatdistance(system.cur(), 6, 12,
+      function(s)
+         for i, pl in ipairs(s:planets()) do
+            local f = pl:faction()
+            if pl:services()["inhabited"] and pl:canLand()
+                  and (not srcpla:restriction()
+                     or srcpla:restriction() == "lowclass"
+                     or srcpla:restriction() == "hiclass")
+                  and f ~= faction.get("FLF") and f ~= faction.get("Pirate")
+                  and f ~= faction.get("Proteron")
+                  and f ~= faction.get("Thurion") then
+               planets[#planets + 1] = {pl, s}
+            end
+         end
+         return true
+      end)
+   return planets
+end
+
+
+function gen_partners(num_planets)
+   polyam = false
+   if num_planets > 1 then
+      polyam = rnd.rnd() < 0.1
+   end
+
+   reltype = "rom"
+   if rnd.rnd() < 0.05 then
+      reltype = "qpp"
+   end
+
+   local genders = {"m", "f", "x"}
+   gender = genders[rnd.rnd(1, #genders)]
+   numpartners = 1
+   if polyam then
+      numpartners = rnd.rnd(2, math.min(num_planets, 4))
+   end
+end
+
+
+function gen_portraits()
+   sender_portrait = portrait.get(planet.cur():faction():nameRaw())
+   for i, dest in ipairs(dests) do
+      local dname = dest:nameRaw()
+      if gender == "m" then
+         portraits[dname] = portrait.getMale(dest:faction():nameRaw())
+      elseif gender == "f" then
+         portraits[dname] = portrait.getFemale(dest:faction():nameRaw())
+      else
+         portraits[dname] = portrait.get(dest:faction():nameRaw())
+      end
+   end
+end
+
 
 function create()
    misn.finish(false)
+   local planets = avail_planets()
+   if #planets < 1 then
+      misn.finish(false)
+   end
+
+   -- Safe defaults
+   reltype = "rom"
+   gender = "x"
+   numpartners = 1
+   sender_portrait = "none.png"
+   portraits = {}
+   portraits["__save"] = true
+
+   gen_partners(#planets)
+
+   dests = {}
+   dests["__save"] = true
+   for i=1,numpartners do
+      dests[#dests + 1] = planets[rnd.rnd(1, #planets)]
+   end
+
+   if #dests < 1 then
+      -- Shouldn't happen, but check just in case.
+      misn.finish(false)
+   end
+
+   gen_portraits()
 end
 
 
