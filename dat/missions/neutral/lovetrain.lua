@@ -94,6 +94,17 @@ receive_text = {
    }
 }
 
+sender_name = _("Unusual Civilian")
+sender_desc = {
+   _("A civilian stares longingly at something with a smile on their face."),
+   _("A civilian sitting alone tries to grab your attention."),
+   _("A civilian sits at a table with some sort of package, grinning to themself."),
+}
+
+misn_title = _("Love Train")
+misn_desc_mono = _("You have been tasked with delivering a package to someone's partner.")
+misn_desc_poly = _("You have been tasked with delivering packages to someone's partners.")
+
 
 function avail_planets()
    local srcpla = planet.cur()
@@ -182,8 +193,63 @@ function create()
    end
 
    gen_portraits()
+
+   -- To try to make a calculation of distance traveled more accurate,
+   -- check the average distance it would take to travel to each system.
+   -- This is to avoid weird cases where clustered together systems are
+   -- equally as rewarding as spread apart systems; this should lead
+   -- a higher travel distance to be calculated for more spread out
+   -- destinations, on average.
+   local cursys = system.cur()
+   local totaldist = 0
+   for i, dest in ipairs(dests) do
+      local itotaldist = cursys:jumpDist(dest[2])
+      for j, source in ipairs(dests) do
+         if i ~= j then
+            itotaldist = itotaldist + source[2]:jumpDist(dest[2])
+         end
+      end
+      totaldist = totaldist + itotaldist/#dests
+   end
+
+   credits = 55000 * math.sqrt(totaldist)
+
+   if polyam then
+      local t = send_text.poly[reltype]
+      local list = ""
+      for i, dest in ipairs(dests) do
+         list = list .. fmt.f(_("{planet} ({system} system)"),
+               {planet=dest[1]:name(), system=dest[2]:name()})
+         if i ~= #dests then
+            list = list .. "\n"
+         end
+      end
+      csend_text = fmt.f(t[rnd.rnd(1, #t)],
+            {places_list=list, credits=fmt.credits(credits)})
+   else
+      local t = send_text.mono[reltype][gender]
+      csend_text = fmt.f(t[rnd.rnd(1, #t)],
+            {planet=dests[1][1]:name(), system=dests[1][2]:name(),
+               credits=fmt.credits(credits)})
+   end
+
+   misn.setNPC(sender_name, sender_portrait,
+         sender_desc[rnd.rnd(1, #sender_desc)])
 end
 
 
 function accept()
+   if tk.yesno("", csend_text) then
+      misn.accept()
+
+      misn.setTitle(misn_title)
+      misn.setReward(fmt.credits(credits))
+      if polyam then
+         misn.setDesc(misn_desc_poly)
+      else
+         misn.setDesc(misn_desc_mono)
+      end
+   else
+      misn.finish()
+   end
 end
