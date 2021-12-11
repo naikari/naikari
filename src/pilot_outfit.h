@@ -33,8 +33,7 @@ void pilot_fillAmmo( Pilot* pilot );
 /* Checks. */
 int pilot_slotsCheckSafety( Pilot *p );
 int pilot_slotsCheckRequired( Pilot *p );
-const char* pilot_checkSpaceworthy( Pilot *p );
-int pilot_reportSpaceworthy( Pilot *p, char buf[], int buffSize );
+int pilot_reportSpaceworthy(Pilot *p, char *buf, int buffSize);
 const char* pilot_canEquip( Pilot *p, PilotOutfitSlot *s, const Outfit *o );
 
 /* Lock-ons. */

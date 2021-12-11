@@ -1630,6 +1630,7 @@ void equipment_updateShips( unsigned int wid, char* str )
    (void)str;
    char *buf, buf2[ECON_CRED_STRLEN], buf3[STRMAX_SHORT];
    char errorReport[STRMAX_SHORT];
+   int problems;
    char *shipname;
    Pilot *ship;
    char *nt;
@@ -1659,7 +1660,7 @@ void equipment_updateShips( unsigned int wid, char* str )
    nt = ntime_pretty( pilot_hyperspaceDelay( ship ), 2 );
 
    /* Get ship error report. */
-   pilot_reportSpaceworthy( ship, errorReport, sizeof(errorReport));
+   problems = pilot_reportSpaceworthy(ship, errorReport, sizeof(errorReport));
 
    if (ship->fuel_consumption != 0) {
       jumps = floor(ship->fuel_max / ship->fuel_consumption);
@@ -1670,7 +1671,7 @@ void equipment_updateShips( unsigned int wid, char* str )
    }
 
    /* Fill the buffer. */
-   asprintf( &buf,
+   asprintf(&buf,
       _("#nName:#0 %s\n"
          "#nModel:#0 %s\n"
          "#nClass:#0 %s\n"
@@ -1702,40 +1703,42 @@ void equipment_updateShips( unsigned int wid, char* str )
       /* Movement. */
       ship->solid->mass,
       nt,
-      EQ_COMP( ship->thrust/ship->solid->mass, ship->ship->thrust/ship->ship->mass, 0 ),
-      EQ_COMP( ship->speed, ship->ship->speed, 0 ),
-      EQ_COMP( solid_maxspeed( ship->solid, ship->speed, ship->thrust ),
-            solid_maxspeed( ship->solid, ship->ship->speed, ship->ship->thrust), 0 ),
-      EQ_COMP( ship->turn*180./M_PI, ship->ship->turn*180./M_PI, 0 ),
+      EQ_COMP(ship->thrust/ship->solid->mass,
+            ship->ship->thrust/ship->ship->mass, 0),
+      EQ_COMP(ship->speed, ship->ship->speed, 0),
+      EQ_COMP(solid_maxspeed(ship->solid, ship->speed, ship->thrust),
+            solid_maxspeed(ship->solid, ship->ship->speed, ship->ship->thrust),
+            0),
+      EQ_COMP(ship->turn*180./M_PI, ship->ship->turn*180./M_PI, 0),
       ship->stats.time_mod * ship->ship->dt_default * 100,
       /* Health. */
-      EQ_COMP( ship->dmg_absorb * 100, ship->ship->dmg_absorb * 100, 0 ),
-      EQ_COMP( ship->shield_max, ship->ship->shield, 0 ),
-      EQ_COMP( ship->shield_regen, ship->ship->shield_regen, 0 ),
-      EQ_COMP( ship->armour_max, ship->ship->armour, 0 ),
-      EQ_COMP( ship->armour_regen, ship->ship->armour_regen, 0 ),
-      EQ_COMP( ship->energy_max, ship->ship->energy, 0 ),
-      EQ_COMP( ship->energy_regen, ship->ship->energy_regen, 0 ),
+      EQ_COMP(ship->dmg_absorb * 100, ship->ship->dmg_absorb * 100, 0),
+      EQ_COMP(ship->shield_max, ship->ship->shield, 0),
+      EQ_COMP(ship->shield_regen, ship->ship->shield_regen, 0),
+      EQ_COMP(ship->armour_max, ship->ship->armour, 0),
+      EQ_COMP(ship->armour_regen, ship->ship->armour_regen, 0),
+      EQ_COMP(ship->energy_max, ship->ship->energy, 0),
+      EQ_COMP(ship->energy_regen, ship->ship->energy_regen, 0),
       /* Misc. */
-      pilot_cargoUsed(ship), EQ_COMP( cargo, ship->ship->cap_cargo, 0 ),
+      pilot_cargoUsed(ship), EQ_COMP(cargo, ship->ship->cap_cargo, 0),
       ship->fuel_max, buf3,
-      EQ_COMP( ship->rdr_range, ship->ship->rdr_range, 0 ),
-      EQ_COMP( ship->rdr_jump_range, ship->ship->rdr_jump_range, 0 ),
-      pilot_checkSpaceworthy(ship) ? 'r' : '0', errorReport );
-   window_modifyText( wid, "txtDDesc", buf );
+      EQ_COMP(ship->rdr_range, ship->ship->rdr_range, 0),
+      EQ_COMP(ship->rdr_jump_range, ship->ship->rdr_jump_range, 0),
+      problems ? 'r' : '0', errorReport);
+   window_modifyText(wid, "txtDDesc", buf);
 
    /* Clean up. */
-   free( buf );
-   free( nt );
+   free(buf);
+   free(nt);
 
    /* button disabling */
    if (onboard) {
-      window_disableButton( wid, "btnSellShip" );
-      window_disableButton( wid, "btnChangeShip" );
+      window_disableButton(wid, "btnSellShip");
+      window_disableButton(wid, "btnChangeShip");
    }
    else {
-      window_enableButton( wid, "btnChangeShip" );
-      window_enableButton( wid, "btnSellShip" );
+      window_enableButton(wid, "btnChangeShip");
+      window_enableButton(wid, "btnSellShip");
    }
 }
 #undef EQ_COMP

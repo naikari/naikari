@@ -2860,12 +2860,12 @@ static void pilot_init( Pilot* pilot, const Ship* ship, const char* name, int fa
    /* Skip check if PILOT_NO_OUTFITS is set, since not being spaceworthy
     * is normal in that case. */
    if (!pilot_isFlagRaw(flags, PILOT_NO_OUTFITS)) {
-      const char *str = pilot_checkSpaceworthy( pilot );
-      if (str != NULL) {
-         DEBUG( _("Pilot '%s' failed safety check: %s"), pilot->name, str );
+      char str[STRMAX];
+      if (pilot_reportSpaceworthy(pilot, str, sizeof(str))) {
+         DEBUG(_("Pilot '%s' failed safety check:\n%s"), pilot->name, str);
          for (i=0; i<array_size(pilot->outfits); i++) {
             if (pilot->outfits[i]->outfit != NULL)
-               DEBUG(_("   [%d] %s"), i, _(pilot->outfits[i]->outfit->name) );
+               DEBUG(_("   [%d] %s"), i, _(pilot->outfits[i]->outfit->name));
          }
       }
    }

@@ -1632,7 +1632,7 @@ void player_checkLandAck( void )
  */
 int player_canTakeoff(void)
 {
-   return !pilot_checkSpaceworthy(player.p);
+   return !pilot_reportSpaceworthy(player.p, NULL, 0);
 }
 
 
@@ -3931,8 +3931,6 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
    /* Test for validity. */
    if (fuel >= 0)
       ship->fuel = MIN(ship->fuel_max, fuel);
-   /* ships can now be non-spaceworthy on save
-    * str = pilot_checkSpaceworthy( ship ); */
    if (!pilot_slotsCheckSafety( ship )) {
       DEBUG(_("Player ship '%s' failed slot validity check , removing all outfits and adding to stock."),
             ship->name );
