@@ -152,7 +152,8 @@ function avail_planets()
       function(s)
          for i, pl in ipairs(s:planets()) do
             local f = pl:faction()
-            if pl:services()["inhabited"] and pl:canLand()
+            if pl:services()["inhabited"] and pl:services()["bar"]
+                  and pl:canLand()
                   and (not srcpla:restriction()
                      or srcpla:restriction() == "lowclass"
                      or srcpla:restriction() == "hiclass")
@@ -179,11 +180,13 @@ function gen_partners(num_planets)
       reltype = "qpp"
    end
 
-   local genders = {"m", "f", "x"}
-   gender = genders[rnd.rnd(1, #genders)]
-   numpartners = 1
    if polyam then
+      gender = "x"
       numpartners = rnd.rnd(1, math.min(num_planets, 4))
+   else
+      local genders = {"m", "f", "x"}
+      gender = genders[rnd.rnd(1, #genders)]
+      numpartners = 1
    end
 end
 
@@ -217,12 +220,12 @@ function create()
    numpartners = 1
    sender_portrait = "none.png"
    portraits = {}
-   portraits["__save"] = true
+   portraits.__save = true
 
    gen_partners(#planets)
 
    dests = {}
-   dests["__save"] = true
+   dests.__save = true
    for i=1,numpartners do
       dests[#dests + 1] = planets[rnd.rnd(1, #planets)]
    end
@@ -253,6 +256,8 @@ function create()
    end
 
    credits = 55000 * math.sqrt(totaldist)
+   markers = {}
+   markers.__save = true
 
    gen_sender_text()
 
@@ -273,10 +278,30 @@ function accept()
          misn.setDesc(misn_desc_mono)
       end
 
+      setup_osd()
+
       hook.land("land")
    else
       misn.finish()
    end
+end
+
+
+function setup_osd()
+   for i, marker in ipairs(markers) do
+      misn.markerRm(marker)
+   end
+   markers = {}
+   markers.__save = true
+
+   local osd_msg = {}
+   for i, dest in ipairs(dests) do
+      markers[#markers + 1] = misn.markerAdd(dest.sys, "low")
+      osd_msg[#osd_msg + 1] = fmt.f(
+            _("Talk to lover in bar on {planet} ({system} system)"),
+            {planet=dest.pnt:name(), system=dest.sys:name()})
+   end
+   misn.osdCreate(misn_title, osd_msg)
 end
 
 
@@ -292,6 +317,9 @@ end
 
 
 function approach()
+   local t = receive_text[gender]
+   tk.msg("", t[rnd.rnd(1, #t)])
+
    if npc ~= nil then
       misn.npcRm(npc)
       npc = nil
@@ -311,4 +339,6 @@ function approach()
       player.pay(credits)
       misn.finish(true)
    end
+
+   setup_osd()
 end
