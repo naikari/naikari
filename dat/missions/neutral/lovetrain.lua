@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Love Train">
  <avail>
-  <priority>76</priority>
+  <priority>50</priority>
   <chance>10</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
@@ -120,7 +120,7 @@ function avail_planets()
                   and f ~= faction.get("FLF") and f ~= faction.get("Pirate")
                   and f ~= faction.get("Proteron")
                   and f ~= faction.get("Thurion") then
-               planets[#planets + 1] = {pl, s}
+               planets[#planets + 1] = {pla=pl, sys=s}
             end
          end
          return true
@@ -152,13 +152,14 @@ end
 function gen_portraits()
    sender_portrait = portrait.get(planet.cur():faction():nameRaw())
    for i, dest in ipairs(dests) do
-      local dname = dest:nameRaw()
+      local dname = dest.pla:nameRaw()
+      local fname = dest.pla:faction():nameRaw()
       if gender == "m" then
-         portraits[dname] = portrait.getMale(dest:faction():nameRaw())
+         portraits[dname] = portrait.getMale(fname)
       elseif gender == "f" then
-         portraits[dname] = portrait.getFemale(dest:faction():nameRaw())
+         portraits[dname] = portrait.getFemale(fname)
       else
-         portraits[dname] = portrait.get(dest:faction():nameRaw())
+         portraits[dname] = portrait.get(fname)
       end
    end
 end
@@ -203,10 +204,10 @@ function create()
    local cursys = system.cur()
    local totaldist = 0
    for i, dest in ipairs(dests) do
-      local itotaldist = cursys:jumpDist(dest[2])
+      local itotaldist = cursys:jumpDist(dest.sys)
       for j, source in ipairs(dests) do
          if i ~= j then
-            itotaldist = itotaldist + source[2]:jumpDist(dest[2])
+            itotaldist = itotaldist + source.sys:jumpDist(dest.sys)
          end
       end
       totaldist = totaldist + itotaldist/#dests
@@ -219,7 +220,7 @@ function create()
       local list = ""
       for i, dest in ipairs(dests) do
          list = list .. fmt.f(_("{planet} ({system} system)"),
-               {planet=dest[1]:name(), system=dest[2]:name()})
+               {planet=dest.pla:name(), system=dest.sys:name()})
          if i ~= #dests then
             list = list .. "\n"
          end
@@ -229,7 +230,7 @@ function create()
    else
       local t = send_text.mono[reltype][gender]
       csend_text = fmt.f(t[rnd.rnd(1, #t)],
-            {planet=dests[1][1]:name(), system=dests[1][2]:name(),
+            {planet=dests[1].pla:name(), system=dests[1].sys:name(),
                credits=fmt.credits(credits)})
    end
 
@@ -249,7 +250,43 @@ function accept()
       else
          misn.setDesc(misn_desc_mono)
       end
+
+      hook.land("land")
    else
       misn.finish()
+   end
+end
+
+
+function land()
+   for i, dest in ipairs(dests) do
+      if planet.cur() == dest.pla then
+         npc = misn.npcAdd("approach", _("Lover"),
+               portraits[dest.pla:nameRaw()], 50)
+         return
+      end
+   end
+end
+
+
+function approach()
+   if npc ~= nil then
+      misn.npcRm(npc)
+      npc = nil
+   end
+
+   -- Delete the destination and shift all later dests forward.
+   for i, dest in ipairs(dests) do
+      if dest.pla == planet.cur() then
+         for j=i,#dests do
+            dests[j] = dests[j + 1]
+         end
+         break
+      end
+   end
+
+   if #dests <= 0 then
+      player.pay(credits)
+      misn.finish(true)
    end
 end
