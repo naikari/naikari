@@ -4,7 +4,7 @@
  <GFX size="96" sx="10" sy="10">nyx</GFX>
  <rarity>2</rarity>
  <GUI>brushed</GUI>
- <sound>engine</sound>
+ <sound>engine_soromid</sound>
  <class>Destroyer</class>
  <rdr_scale>1.5</rdr_scale>
  <price>1000000</price>

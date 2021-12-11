@@ -4,7 +4,7 @@
  <GFX>odium</GFX>
  <rarity>2</rarity>
  <GUI>brushed</GUI>
- <sound>engine</sound>
+ <sound>engine_soromid</sound>
  <class>Corvette</class>
  <rdr_scale>1.25</rdr_scale>
  <price>600000</price>

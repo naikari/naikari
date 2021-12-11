@@ -4,7 +4,7 @@
  <GFX size="124" sx="12" sy="12">arx</GFX>
  <rarity>2</rarity>
  <GUI>brushed</GUI>
- <sound>engine</sound>
+ <sound>engine_soromid</sound>
  <class>Carrier</class>
  <rdr_scale>2</rdr_scale>
  <price>7200000</price>
