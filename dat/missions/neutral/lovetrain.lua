@@ -43,23 +43,30 @@ require "jumpdist"
 
 receive_text = {
    m = {
-      _([[The man is ecstatic when you explain that you are delivering a package for him and who it is from. He thanks you excitedly and leaves. Soon after, you see that your payment has been wired into your account by the sender.]]),
-      _([[The man squeals with glee when he sees the name on the package. You smile at him as he rushes out without even finishing his drink, and you see shortly after that your payment has been sent to your account.]]),
-      _([[The man laughs nervously as you hand him the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
-      _([[The man tears up with joy as he opens his package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
+      _([[The man is ecstatic when you explain that you are delivering a package for him and who it is from. He thanks you excitedly and leaves.]]),
+      _([[The man squeals with glee when he sees the name on the package. You smile at him as he rushes out without even finishing his drink.]]),
+      _([[The man laughs nervously as you hand him the package, but nonetheless thanks you.]]),
+      _([[The man tears up with joy as he opens his package, thanking you for delivering it.]]),
    },
    f = {
-      _([[The woman is ecstatic when you explain that you are delivering a package for her and who it is from. She thanks you excitedly and leaves. Soon after, you see that your payment has been wired into your account by the sender.]]),
-      _([[The woman squeals with glee when she sees the name on the package. You smile at her as she rushes out without even finishing her drink, and you see shortly after that your payment has been sent to your account.]]),
-      _([[The woman laughs nervously as you hand her the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
-      _([[The woman tears up with joy as she opens his package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
+      _([[The woman is ecstatic when you explain that you are delivering a package for her and who it is from. She thanks you excitedly and leaves.]]),
+      _([[The woman squeals with glee when she sees the name on the package. You smile at her as she rushes out without even finishing her drink.]]),
+      _([[The woman laughs nervously as you hand her the package, but nonetheless thanks you.]]),
+      _([[The woman tears up with joy as she opens his package, thanking you for delivering it.]]),
    },
    x = {
-      _([[The lover is ecstatic when you explain that you are delivering a package for them and who it is from. They thank you excitedly and leave. Soon after, you see that your payment has been wired into your account by the sender.]]),
-      _([[The lover squeals with glee when they see the name on the package. You smile at them as they rush out without even finishing their drink, and you see shortly after that your payment has been sent to your account.]]),
+      _([[The lover is ecstatic when you explain that you are delivering a package for them and who it is from. They thank you excitedly and leave.]]),
+      _([[The lover squeals with glee when they see the name on the package. You smile at them as they rush out without even finishing their drink.]]),
       _([[The lover laughs nervously as you hand them the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
-      _([[The lover tears up with joy as they open their package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
+      _([[The lover tears up with joy as they open their package, thanking you for delivering it.]]),
    },
+}
+
+pay_text = {
+   _([[Not long after you finish your delivery, you see your reward has been deposited into your account.]]),
+   _([[You soon see your payment added to your account's balance.]]),
+   _([[Shortly after you finish the job, you see that your payment has been sent to your account.]]),
+   _([[Soon after finishing the job, you check your account balance and find that the promised payment has been wired into your account.]]),
 }
 
 sender_name = _("Unusual Civilian")
@@ -67,6 +74,13 @@ sender_desc = {
    _("A civilian stares longingly at something with a smile on their face."),
    _("A civilian sitting alone tries to grab your attention."),
    _("A civilian sits at a table with some sort of package, grinning to themself."),
+}
+
+receiver_name = _("Lover")
+receiver_desc = {
+   _("This must be the lover you've been hired to deliver a package to."),
+   _("The lover you have been sent to deliver a package to sits at the bar in anticipation."),
+   _("You see the lover you've been tasked with delivering a package to, fidgeting in their seat."),
 }
 
 misn_title = _("Love Train")
@@ -208,7 +222,6 @@ end
 
 
 function create()
-   misn.finish(false)
    local planets = avail_planets()
    if #planets < 1 then
       misn.finish(false)
@@ -281,6 +294,7 @@ function accept()
       setup_osd()
 
       hook.land("land")
+      hook.load("land")
    else
       misn.finish()
    end
@@ -299,7 +313,7 @@ function setup_osd()
       markers[#markers + 1] = misn.markerAdd(dest.sys, "low")
       osd_msg[#osd_msg + 1] = fmt.f(
             _("Talk to lover in bar on {planet} ({system} system)"),
-            {planet=dest.pnt:name(), system=dest.sys:name()})
+            {planet=dest.pla:name(), system=dest.sys:name()})
    end
    misn.osdCreate(misn_title, osd_msg)
 end
@@ -308,8 +322,9 @@ end
 function land()
    for i, dest in ipairs(dests) do
       if planet.cur() == dest.pla then
-         npc = misn.npcAdd("approach", _("Lover"),
-               portraits[dest.pla:nameRaw()], 50)
+         npc = misn.npcAdd("approach", receiver_name,
+               portraits[dest.pla:nameRaw()],
+               receiver_desc[rnd.rnd(1, #receiver_desc)], 50)
          return
       end
    end
@@ -337,6 +352,7 @@ function approach()
 
    if #dests <= 0 then
       player.pay(credits)
+      tk.msg("", pay_text[rnd.rnd(1, #pay_text)])
       misn.finish(true)
    end
 
