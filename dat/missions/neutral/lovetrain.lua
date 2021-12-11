@@ -285,7 +285,7 @@ function accept()
       misn.setReward(fmt.credits(credits))
       misn.setDesc(
             n_("You have been tasked with delivering a package to someone's partner.",
-               "You have been tasked with delivering packages to someone's partners."
+               "You have been tasked with delivering packages to someone's partners.",
                numpartners))
 
       setup_osd()
