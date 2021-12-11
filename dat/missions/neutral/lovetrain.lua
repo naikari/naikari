@@ -84,8 +84,6 @@ receiver_desc = {
 }
 
 misn_title = _("Love Train")
-misn_desc_mono = _("You have been tasked with delivering a package to someone's partner.")
-misn_desc_poly = _("You have been tasked with delivering packages to someone's partners.")
 
 
 function gen_sender_text()
@@ -285,11 +283,10 @@ function accept()
 
       misn.setTitle(misn_title)
       misn.setReward(fmt.credits(credits))
-      if polyam then
-         misn.setDesc(misn_desc_poly)
-      else
-         misn.setDesc(misn_desc_mono)
-      end
+      misn.setDesc(
+            n_("You have been tasked with delivering a package to someone's partner.",
+               "You have been tasked with delivering packages to someone's partners."
+               numpartners))
 
       setup_osd()
 
