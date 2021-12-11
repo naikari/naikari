@@ -41,56 +41,24 @@ local portrait = require "portrait"
 require "jumpdist"
 
 
-send_text = {
-   mono = {
-      rom = {
-         m = {
-            _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my boyfriend? I-it's a special surprise and I want it to be… you know. He'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
-            _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my boyfriend. Such a special man he is! He's on {planet} in the {system} system and you should be able to find him at the bar; I'll make sure he's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
-         },
-         f = {
-            _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my girlfriend? I-it's a special surprise and I want it to be… you know. She'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
-            _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my girlfriend. Such a special woman she is! She's on {planet} in the {system} system and you should be able to find her at the bar; I'll make sure she's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
-         },
-         x = {
-            _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my sweetheart? I-it's a special surprise and I want it to be… you know. They'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
-            _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my sweetheart. Such a special person they are! They're on {planet} in the {system} system and you should be able to find them at the bar; I'll make sure they're there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
-         },
-      },
-      qpp = {
-         m = {
-            _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my QPP? I-it's a special surprise and I want it to be… you know. He'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
-            _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my QPP. Such a special man he is! He's on {planet} in the {system} system and you should be able to find him at the bar; I'll make sure he's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
-         },
-         f = {
-            _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my QPP? I-it's a special surprise and I want it to be… you know. She'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
-            _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my QPP. Such a special woman she is! She's on {planet} in the {system} system and you should be able to find her at the bar; I'll make sure she's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
-         },
-         x = {
-            _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my QPP? I-it's a special surprise and I want it to be… you know. They'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
-            _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my QPP. Such a special person they are! They're on {planet} in the {system} system and you should be able to find them at the bar; I'll make sure they're there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
-         },
-      },
-   },
-   poly = {
-      rom = {
-         _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering some special packages to my sweethearts? I-it's a special surprise and I want it to be… you know. You would j-just have to go to these places and give them each their p-package at the bar." The civilian shows you a list:\n\n{places_list}\n\n"I-I can give you {credits} for it. C-can you do it?"]]),
-         _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my sweethearts. Such special people they are! All I'd need you to do is meet them at the bars of these locations; I'll make sure they're there." The civilian grins in excitement at the plan and shows you a list:\n\n{places_list}\n\n"I'll pay you {credits} for the service. What do you say?"]]),
-      },
-      qpp = {
-         _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering some special packages to my QPPs? I-it's a special surprise and I want it to be… you know. You would j-just have to go to these places and give them each their p-package at the bar." The civilian shows you a list:\n\n{places_list}\n\n"I-I can give you {credits} for it. C-can you do it?"]]),
-         _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something for my QPPs. Such lovely people they are! All I'd need you to do is meet them at the bars of these locations; I'll make sure they're there." The civilian grins in excitement at the plan and shows you a list:\n\n{places_list}\n\n"I'll pay you {credits} for the service. What do you say?"]]),
-      },
-   },
-}
-
 receive_text = {
    m = {
-      
+      _([[The man is ecstatic when you explain that you are delivering a package for him and who it is from. He thanks you excitedly and leaves. Soon after, you see that your payment has been wired into your account by the sender.]]),
+      _([[The man squeals with glee when he sees the name on the package. You smile at him as he rushes out without even finishing his drink, and you see shortly after that your payment has been sent to your account.]]),
+      _([[The man laughs nervously as you hand him the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
+      _([[The man tears up with joy as he opens his package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
    }
    f = {
+      _([[The woman is ecstatic when you explain that you are delivering a package for her and who it is from. She thanks you excitedly and leaves. Soon after, you see that your payment has been wired into your account by the sender.]]),
+      _([[The woman squeals with glee when she sees the name on the package. You smile at her as she rushes out without even finishing her drink, and you see shortly after that your payment has been sent to your account.]]),
+      _([[The woman laughs nervously as you hand her the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
+      _([[The woman tears up with joy as she opens his package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
    }
    x = {
+      _([[The lover is ecstatic when you explain that you are delivering a package for them and who it is from. They thank you excitedly and leave. Soon after, you see that your payment has been wired into your account by the sender.]]),
+      _([[The lover squeals with glee when they see the name on the package. You smile at them as they rush out without even finishing their drink, and you see shortly after that your payment has been sent to your account.]]),
+      _([[The lover laughs nervously as you hand them the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
+      _([[The lover tears up with joy as they open their package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
    }
 }
 
@@ -104,6 +72,77 @@ sender_desc = {
 misn_title = _("Love Train")
 misn_desc_mono = _("You have been tasked with delivering a package to someone's partner.")
 misn_desc_poly = _("You have been tasked with delivering packages to someone's partners.")
+
+
+function gen_sender_text()
+   if polyam then
+      local text_choices = {
+         rom = {
+            n_([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to {numpartners} of my sweethearts? I-it's a special surprise and I want it to be… you know. You would j-just have to go to this place and give them each their p-package at the bar." The civilian shows you a list:\n\n{places_list}\n\n"I-I can give you {credits} for it. C-can you do it?"]],
+               [["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering some special packages to {numpartners} of my sweethearts? I-it's a special surprise and I want it to be… you know. You would j-just have to go to these places and give them each their p-package at the bar." The civilian shows you a list:\n\n{places_list}\n\n"I-I can give you {credits} for it. C-can you do it?"]],
+               numpartners),
+            n_([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to {numpartners} of my sweethearts. All I'd need you to do is meet them at the bar of this location; I'll make sure they're there." The civilian grins in excitement at the plan and shows you a list:\n\n{places_list}\n\n"I'll pay you {credits} for the service. What do you say?"]],
+               [["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to {numpartners} of my sweethearts. All I'd need you to do is meet them at the bars of these locations; I'll make sure they're there." The civilian grins in excitement at the plan and shows you a list:\n\n{places_list}\n\n"I'll pay you {credits} for the service. What do you say?"]],
+               numpartners),
+         },
+         qpp = {
+            n_([["Oh, h-hi!" The civilian smiles nervously. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to {numpartners} of my QPPs? I-it's a special surprise and I want it to be… you know. You would j-just have to go to this place and give them each their p-package at the bar." The civilian shows you a list:\n\n{places_list}\n\n"I-I can give you {credits} for it. C-can you do it?"]],
+               [["Oh, h-hi!" The civilian smiles nervously. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering some special packages to {numpartners} of my QPPs? I-it's a special surprise and I want it to be… you know. You would j-just have to go to these places and give them each their p-package at the bar." The civilian shows you a list:\n\n{places_list}\n\n"I-I can give you {credits} for it. C-can you do it?"]],
+               numpartners),
+            n_([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to {numpartners} of my QPPs. All I'd need you to do is meet them at the bar of this location; I'll make sure they're there." The civilian grins in excitement at the plan and shows you a list:\n\n{places_list}\n\n"I'll pay you {credits} for the service. What do you say?"]],
+               [["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to {numpartners} of my QPPs. All I'd need you to do is meet them at the bars of these locations; I'll make sure they're there." The civilian grins in excitement at the plan and shows you a list:\n\n{places_list}\n\n"I'll pay you {credits} for the service. What do you say?"]],
+               numpartners),
+         },
+      }
+      local t = text_choices[reltype]
+      local list = ""
+      for i, dest in ipairs(dests) do
+         list = list .. fmt.f(_("{planet} ({system} system)"),
+               {planet=dest.pla:name(), system=dest.sys:name()})
+         if i ~= #dests then
+            list = list .. "\n"
+         end
+      end
+      send_text = fmt.f(t[rnd.rnd(1, #t)],
+            {numpartners=numpartners, places_list=list,
+               credits=fmt.credits(credits)})
+   else
+      local text_choices = {
+         rom = {
+            m = {
+               _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my boyfriend? I-it's a special surprise and I want it to be… you know. He'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
+               _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to my boyfriend. He's on {planet} in the {system} system and you should be able to find him at the bar; I'll make sure he's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
+            },
+            f = {
+               _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my girlfriend? I-it's a special surprise and I want it to be… you know. She'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
+               _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to my girlfriend. She's on {planet} in the {system} system and you should be able to find her at the bar; I'll make sure she's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
+            },
+            x = {
+               _([["Oh, h-hi!" The civilian blushes. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my sweetheart? I-it's a special surprise and I want it to be… you know. They'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
+               _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to my sweetheart. They're on {planet} in the {system} system and you should be able to find them at the bar; I'll make sure they're there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
+            },
+         },
+         qpp = {
+            m = {
+               _([["Oh, h-hi!" The civilian smiles nervously. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my QPP? I-it's a special surprise and I want it to be… you know. He'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
+               _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to my QPP. He's on {planet} in the {system} system and you should be able to find him at the bar; I'll make sure he's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
+            },
+            f = {
+               _([["Oh, h-hi!" The civilian smiles nervously. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my QPP? I-it's a special surprise and I want it to be… you know. She'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
+               _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to my QPP. She's on {planet} in the {system} system and you should be able to find her at the bar; I'll make sure she's there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
+            },
+            x = {
+               _([["Oh, h-hi!" The civilian smiles nervously. "Y-you're a pilot, aren't you? I was wondering if, um, you could do a job for me d-delivering a special package to my QPP? I-it's a special surprise and I want it to be… you know. They'll b-be in the bar of {planet} in the {system} system. I-I can give you {credits} for it. C-can you do it?"]]),
+               _([["Why, hello there! You look to be a capable pilot, so could you help me out? I was thinking of sending a special something to my QPP. They're on {planet} in the {system} system and you should be able to find them at the bar; I'll make sure they're there." The civilian grins in excitement at the plan. "I'll pay you {credits} for the service. What do you say?"]]),
+            },
+         },
+      }
+      local t = text_choices[reltype][gender]
+      send_text = fmt.f(t[rnd.rnd(1, #t)],
+            {planet=dests[1].pla:name(), system=dests[1].sys:name(),
+               credits=fmt.credits(credits)})
+   end
+end
 
 
 function avail_planets()
@@ -144,7 +183,7 @@ function gen_partners(num_planets)
    gender = genders[rnd.rnd(1, #genders)]
    numpartners = 1
    if polyam then
-      numpartners = rnd.rnd(2, math.min(num_planets, 4))
+      numpartners = rnd.rnd(1, math.min(num_planets, 4))
    end
 end
 
@@ -215,24 +254,7 @@ function create()
 
    credits = 55000 * math.sqrt(totaldist)
 
-   if polyam then
-      local t = send_text.poly[reltype]
-      local list = ""
-      for i, dest in ipairs(dests) do
-         list = list .. fmt.f(_("{planet} ({system} system)"),
-               {planet=dest.pla:name(), system=dest.sys:name()})
-         if i ~= #dests then
-            list = list .. "\n"
-         end
-      end
-      csend_text = fmt.f(t[rnd.rnd(1, #t)],
-            {places_list=list, credits=fmt.credits(credits)})
-   else
-      local t = send_text.mono[reltype][gender]
-      csend_text = fmt.f(t[rnd.rnd(1, #t)],
-            {planet=dests[1].pla:name(), system=dests[1].sys:name(),
-               credits=fmt.credits(credits)})
-   end
+   gen_sender_text()
 
    misn.setNPC(sender_name, sender_portrait,
          sender_desc[rnd.rnd(1, #sender_desc)])
@@ -240,7 +262,7 @@ end
 
 
 function accept()
-   if tk.yesno("", csend_text) then
+   if tk.yesno("", send_text) then
       misn.accept()
 
       misn.setTitle(misn_title)
