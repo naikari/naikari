@@ -47,19 +47,19 @@ receive_text = {
       _([[The man squeals with glee when he sees the name on the package. You smile at him as he rushes out without even finishing his drink, and you see shortly after that your payment has been sent to your account.]]),
       _([[The man laughs nervously as you hand him the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
       _([[The man tears up with joy as he opens his package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
-   }
+   },
    f = {
       _([[The woman is ecstatic when you explain that you are delivering a package for her and who it is from. She thanks you excitedly and leaves. Soon after, you see that your payment has been wired into your account by the sender.]]),
       _([[The woman squeals with glee when she sees the name on the package. You smile at her as she rushes out without even finishing her drink, and you see shortly after that your payment has been sent to your account.]]),
       _([[The woman laughs nervously as you hand her the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
       _([[The woman tears up with joy as she opens his package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
-   }
+   },
    x = {
       _([[The lover is ecstatic when you explain that you are delivering a package for them and who it is from. They thank you excitedly and leave. Soon after, you see that your payment has been wired into your account by the sender.]]),
       _([[The lover squeals with glee when they see the name on the package. You smile at them as they rush out without even finishing their drink, and you see shortly after that your payment has been sent to your account.]]),
       _([[The lover laughs nervously as you hand them the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
       _([[The lover tears up with joy as they open their package, thanking you for delivering it. Not long after, you see your reward has been deposited to your account.]]),
-   }
+   },
 }
 
 sender_name = _("Unusual Civilian")
