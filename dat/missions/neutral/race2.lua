@@ -33,9 +33,9 @@ ftext = {}
 
 text[1] = _([["Hey there, great to see you back! You want to have another race?"]])   
 
-text[5] = _([["There are two races you can participate in: an easy one, which is like the first race we had, or a hard one, with smaller checkpoints and no afterburners allowed. The easy one has a prize of %s, and the hard one has a prize of %s. Which one do you want to do?"]])
+text[5] = _([["There are two races you can participate in: an easy one, which is like the first race we had, or a hard one with smaller checkpoints where everyone tries their absolute best. The easy one has a prize of %s, and the hard one has a prize of %s. Which one do you want to do?"]])
 
-text[6] = _([["You want a challenge huh? Remember, no afterburners on your ship or you will not be allowed to race. Let's go have some fun!"]])
+text[6] = _([["You want a challenge huh? Let's go have some fun!"]])
 
 choice1 = _("Easy")
 choice2 = _("Hard")
@@ -58,8 +58,6 @@ ftext[2] = _([["Because you left the race, you have been disqualified."]])
 ftext[3] = _([[As you congratulate the winner on a great race, the laid back person comes up to you.
 
 "That was a lot of fun! If you ever have time, let's race again. Maybe you'll win next time!"]])
-
-ftext[4] = _([["You have outfits on your ship which is not allowed in this race in hard mode. Mission failed."]])
 
 NPCname = _("A laid back person")
 NPCdesc = _("You see a laid back person, who appears to be one of the locals, looking around the bar, apparently in search of a suitable pilot.")
@@ -131,15 +129,6 @@ function takeoff()
       tk.msg("", ftext[1])
       misn.finish(false)
    end
-   if choice ~= 1 then
-      for k,v in ipairs(player.pilot():outfits()) do
-         if v == outfit.get("Generic Afterburner")
-               or v == outfit.get("Hellburner") then
-            tk.msg("", ftext[4])
-            misn.finish(false)
-         end
-      end
-   end
    planetvec = planet.pos(curplanet)
    misn.osdActive(1) 
    checkpoint = {}
@@ -173,20 +162,20 @@ function takeoff()
    racers[1] = pilot.add("Llama", "Civilian", curplanet)
    racers[2] = pilot.add("Gawain", "Civilian", curplanet)
    racers[3] = pilot.add("Llama", "Civilian", curplanet)
-   if choice == 1 then
-      racers[1]:outfitAdd("Engine Reroute")
-      racers[2]:outfitAdd("Steering Thrusters")
-      racers[3]:outfitAdd("Improved Stabilizer")
-   else
+   if choice == 2 then
       for i in pairs(racers) do
          racers[i]:outfitRm("all")
          racers[i]:outfitRm("cores")
          
-         racers[i]:outfitAdd("Unicorp PT-18 Core System")
+         racers[i]:outfitAdd("Milspec Prometheus 2203 Core System")
          racers[i]:outfitAdd("Unicorp D-2 Light Plating")
          local en_choices = {
             "Nexus Dart 150 Engine", "Tricon Zephyr Engine" }
          racers[i]:outfitAdd(en_choices[rnd.rnd(1, #en_choices)])
+         if rnd.rnd() < 0.5 then
+            racers[i]:outfitAdd("Improved Stabilizer")
+         end
+         racers[i]:outfitAdd("Engine Reroute", 2)
       end
    end
    for i, j in ipairs(racers) do
