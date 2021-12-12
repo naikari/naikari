@@ -158,7 +158,6 @@ end
 
 
 function avail_planets()
-   local srcpla = planet.cur()
    local planets = {}
    getsysatdistance(system.cur(), 6, 12,
       function(s)
@@ -166,9 +165,8 @@ function avail_planets()
             local f = pl:faction()
             if pl:services()["inhabited"] and pl:services()["bar"]
                   and pl:canLand()
-                  and (not srcpla:restriction()
-                     or srcpla:restriction() == "lowclass"
-                     or srcpla:restriction() == "hiclass")
+                  and (not pl:restriction() or pl:restriction() == "lowclass"
+                     or pl:restriction() == "hiclass")
                   and f ~= faction.get("FLF") and f ~= faction.get("Pirate")
                   and f ~= faction.get("Proteron")
                   and f ~= faction.get("Thurion") then
