@@ -57,7 +57,7 @@ receive_text = {
    x = {
       _([[The lover is ecstatic when you explain that you are delivering a package for them and who it is from. They thank you excitedly and leave.]]),
       _([[The lover squeals with glee when they see the name on the package. You smile at them as they rush out without even finishing their drink.]]),
-      _([[The lover laughs nervously as you hand them the package, but nonetheless thanks you. You soon see your payment added to your account's balance.]]),
+      _([[The lover laughs nervously as you hand them the package, but nonetheless thanks you.]]),
       _([[The lover tears up with joy as they open their package, thanking you for delivering it.]]),
    },
 }
