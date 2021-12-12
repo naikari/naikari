@@ -7,7 +7,7 @@
   <ttl>1.5</ttl>
   <idle r="1" g="1" b="1" a="0.05" />
   <glow r="0" g="1" b="1" a="0.7" />
-  <afterburn r="1" g="0.5" b="0" a="0.85" scale="1.5" />
+  <afterburn r="0" g="1" b="1" a="0.85" scale="1.5" />
   <jumping r="0.9" g="0.1" b="0.9" a="0.85" scale="2"/>
  </trail>
  <trail name="thin" inherits="default">
@@ -30,7 +30,7 @@
   <ttl>1.5</ttl>
   <idle r="1" g="1" b="1" a="0.05" />
   <glow r="1" g="0.84" b="0" a="0.7" />
-  <afterburn r="1" g="0.5" b="0" a="0.85" scale="1.5" />
+  <afterburn r="1" g="0.84" b="0" a="0.85" scale="1.5" />
   <jumping r="0.9" g="0.1" b="0.9" a="0.85" scale="2" />
  </trail>
  <trail name="fire-thin" inherits="fire">
@@ -57,7 +57,7 @@
   <ttl>1.1</ttl>
   <idle r="1" g="1" b="1" a="0.05" />
   <glow r="1" g="0.9" b="0.6" a="0.7" />
-  <afterburn r="1" g="0.5" b="0" a="0.85" scale="1.5" />
+  <afterburn r="1" g="0.9" b="0.6" a="0.85" scale="1.5" />
   <jumping r="0.9" g="0.1" b="0.9" a="0.85" scale="2" />
  </trail>
 
@@ -68,7 +68,7 @@
   <ttl>1.1</ttl>
   <idle r="1" g="1" b="1" a="0.05" />
   <glow r="1" g="0.3" b="0.3" a="0.7" />
-  <afterburn r="1" g="0.5" b="0" a="0.85" scale="1.5" />
+  <afterburn r="1" g="0.3" b="0.3" a="0.85" scale="1.5" />
   <jumping r="0.9" g="0.1" b="0.9" a="0.85" scale="2" />
  </trail>
  <trail name="zalekXS" inherits="zalek">
@@ -103,7 +103,7 @@
   <ttl>1.1</ttl>
   <idle r="1" g="1" b="1" a="0.05" />
   <glow r="0.5" g="0.9" b="0.2" a="0.7" />
-  <afterburn r="1" g="0.5" b="0" a="0.85" scale="1.5" />
+  <afterburn r="0.5" g="0.9" b="0.2" a="0.85" scale="1.5" />
   <jumping r="0.9" g="0.1" b="0.9" a="0.85" scale="2" />
  </trail>
  <trail name="soromidS" inherits="soromid">
@@ -118,7 +118,7 @@
   <ttl>1.1</ttl>
   <idle r="1" g="1" b="1" a="0.05" />
   <glow r="0.9" g="0.1" b="0.4" a="0.7" />
-  <afterburn r="1" g="0.5" b="0" a="0.85" scale="1.5" />
+  <afterburn r="0.9" g="0.1" b="0.4" a="0.85" scale="1.5" />
   <jumping r="0.9" g="0.1" b="0.9" a="0.85" scale="2" />
  </trail>
  <trail name="pirateS" inherits="pirate">
@@ -134,7 +134,7 @@
   <ttl>2</ttl>
   <idle r="0.4" g="0.4" b="0.9" a="0.7" />
   <glow r="0.4" g="0.4" b="0.9" a="0.7" />
-  <afterburn r="0.4" g="0.4" b="0.9" a="0.9" scale="1.5" />
-  <jumping r="0.4" g="0.4" b="0.9" a="0.9" scale="2" />
+  <afterburn r="0.4" g="0.4" b="0.9" a="0.9" scale="2" />
+  <jumping r="0.4" g="0.4" b="0.9" a="0.9" scale="3" />
  </trail>
 </Trail_types>
