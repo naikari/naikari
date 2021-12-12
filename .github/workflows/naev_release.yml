@@ -216,7 +216,7 @@ jobs:
           prerelease: false
 
       - name: Build and Upload Github Release
-      - run: |
+        run: |
           chmod -R +x build/staging/naikari-github-deployment
           cp -r build/staging/naikari-github-deployment/* "$(pwd)"
           ./GHDeploy.sh -t "$(pwd)/build/staging" -o "$(pwd)/build/dist" -r "${{github.ref_name}}"
