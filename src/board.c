@@ -37,7 +37,7 @@
 
 static int board_stopboard = 0; /**< Whether or not to unboard. */
 static int board_boarded = 0;
-static unsigned int board_hook_id = 0;
+static unsigned long board_hook_id = 0;
 
 
 /*
@@ -69,6 +69,7 @@ static int board_hook(void *data)
 
    /* Remove board hook so it doesn't run again. */
    hook_rm(board_hook_id);
+   board_hook_id = 0;
 
    /*
     * run hook if needed
@@ -209,7 +210,8 @@ int player_board(void)
    /* Don't unboard. */
    board_stopboard = 0;
 
-   board_hook_id = hook_addFunc(board_hook, p, "safe");
+   if (board_hook_id == 0)
+      board_hook_id = hook_addFunc(board_hook, p, "safe");
    return PLAYER_BOARD_OK;
 }
 
