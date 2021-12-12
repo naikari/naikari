@@ -10,8 +10,16 @@
 #include "pilot.h"
 
 
+enum {
+   PLAYER_BOARD_OK,
+   PLAYER_BOARD_RETRY,
+   PLAYER_BOARD_IMPOSSIBLE,
+   PLAYER_BOARD_ERROR
+};
+
+
 int player_isBoarded (void);
-void player_board (void);
+int player_board(void);
 void board_unboard (void);
 int pilot_board( Pilot *p );
 void pilot_boardComplete( Pilot *p );

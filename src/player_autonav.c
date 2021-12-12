@@ -18,6 +18,7 @@
 #include "player.h"
 
 #include "array.h"
+#include "board.h"
 #include "conf.h"
 #include "map.h"
 #include "pause.h"
@@ -47,6 +48,7 @@ static int player_autonavSetup (void);
 static void player_autonav (void);
 static int player_autonavApproach( const Vector2d *pos, double *dist2, int count_target );
 static void player_autonavFollow( const Vector2d *pos, const Vector2d *vel, const int follow, double *dist2 );
+static int player_autonavApproachBoard( const Vector2d *pos, const Vector2d *vel, double *dist2, double sw );
 static int player_autonavBrake (void);
 
 
@@ -156,6 +158,7 @@ void player_autonavEnd (void)
    player_autonavResetSpeed();
    free( player.autonavmsg );
    player.autonavmsg = NULL;
+   player_accelOver();
 }
 
 
@@ -223,16 +226,44 @@ void player_autonavPil( unsigned int p )
    Pilot *pilot;
    int inrange;
 
-   pilot = pilot_get( p );
+   pilot = pilot_get(p);
 
-   inrange = pilot_inRangePilot( player.p, pilot, NULL );
+   inrange = pilot_inRangePilot(player.p, pilot, NULL);
    if (!player_autonavSetup() || !inrange)
       return;
 
-   player.autonav    = AUTONAV_PLT_FOLLOW;
-   player.autonavmsg = strdup( pilot->name );
+   player.autonav = AUTONAV_PLT_FOLLOW;
+   player.autonavmsg = strdup(pilot->name);
    player.autonavcol = '0';
-   player_message(_("#oAutonav: following %s."), inrange == 1 ? pilot->name : _("Unknown") );
+   player_message(_("#oAutonav: following %s."),
+         inrange ? pilot->name : _("Unknown"));
+}
+
+
+/**
+ * @brief Starts autonav with a pilot to board.
+ */
+void player_autonavBoard(unsigned int p)
+{
+   Pilot *pilot;
+   int inrange;
+
+   pilot = pilot_get(p);
+
+   inrange = pilot_inRangePilot(player.p, pilot, NULL);
+   if (!player_autonavSetup() || !inrange)
+      return;
+
+   /* Detected fuzzy, can't board. */
+   if (!inrange) {
+      player_autonavPil(p);
+      return;
+   }
+
+   player_message(_("#oAutonav: boarding %s."), pilot->name);
+   player.autonav = AUTONAV_PLT_BOARD_APPROACH;
+   player.autonavmsg = strdup(pilot->name);
+   player.autonavcol = '0';
 }
 
 
@@ -515,6 +546,25 @@ static void player_autonav (void)
                player_autonavRampdown(d);
          }
          break;
+
+      case AUTONAV_PLT_BOARD_APPROACH:
+         p = pilot_get(player.p->target);
+         if (p == NULL)
+            p = pilot_get(PLAYER_ID);
+         ret = player_autonavApproachBoard(&p->solid->pos, &p->solid->vel, &d,
+               p->ship->gfx_space->sw);
+         if (!tc_rampdown)
+            player_autonavRampdown(d);
+
+         /* Try to board. */
+         if (ret) {
+            ret = player_board();
+            if (ret == PLAYER_BOARD_OK)
+               player_autonavEnd();
+            else if (ret != PLAYER_BOARD_RETRY)
+               player_autonavAbort(NULL);
+         }
+         break;
    }
 }
 
@@ -578,13 +628,18 @@ static int player_autonavApproach( const Vector2d *pos, double *dist2, int count
  */
 static void player_autonavFollow( const Vector2d *pos, const Vector2d *vel, const int follow, double *dist2 )
 {
-   double Kp, Kd, angle, radius, d;
+   double Kp, Kd, angle, radius, d, timeFactor;
    Vector2d dir, point;
 
-   /* Define the control coefficients. If needed, they could be adapted.
+   /* timeFactor is a time constant of the ship, used to heuristically
+    * determine the ratio Kd/Kp. */
+   timeFactor = M_PI/player.p->turn
+         + player.p->speed/player.p->thrust*player.p->solid->mass;
+
+   /* Define the control coefficients.
       Maybe radius could be adjustable by the player. */
    Kp = 10;
-   Kd = 20;
+   Kd = MAX(5., 10.84*timeFactor-10.82);
    radius = 100;
 
    /* Find a point behind the target at a distance of radius unless stationary, or not following. */
@@ -609,6 +664,45 @@ static void player_autonavFollow( const Vector2d *pos, const Vector2d *vel, cons
    /* If aiming exactly at the point, should say when approaching. */
    if (!follow)
       *dist2 = vect_dist( pos, &player.p->solid->pos );
+}
+
+
+static int player_autonavApproachBoard( const Vector2d *pos, const Vector2d *vel, double *dist2, double sw )
+{
+   double d, timeFactor;
+   Vector2d dir;
+
+   /* timeFactor is a time constant of the ship, used to heuristically
+    * determine the ratio Kd/Kp. */
+   timeFactor = M_PI/player.p->turn
+         + player.p->speed/player.p->thrust*player.p->solid->mass;
+
+   /* Define the control coefficients. */
+   const double Kp = 10.;
+   const double Kd = MAX(5., 10.84*timeFactor-10.82);
+
+   vect_cset( &dir, (pos->x - player.p->solid->pos.x) * Kp +
+         (vel->x - player.p->solid->vel.x) *Kd,
+         (pos->y - player.p->solid->pos.y) * Kp +
+         (vel->y - player.p->solid->vel.y) *Kd );
+
+   d = pilot_face( player.p, VANGLE(dir) );
+
+   if ((FABS(d) < MIN_DIR_ERR) && (VMOD(dir) > 300.))
+      player_accel( 1. );
+   else
+      player_accel( 0. );
+
+   /* Distance for TC-rampdown. */
+   *dist2 = vect_dist( pos, &player.p->solid->pos );
+
+   /* Check if velocity and position allow to board. */
+   if (*dist2 > sw * PILOT_SIZE_APPROX)
+      return 0;
+   if ((pow2(VX(player.p->solid->vel)) + pow2(VY(player.p->solid->vel))) >
+            (double)pow2(MAX_HYPERSPACE_VEL))
+      return 0;
+   return 1;
 }
 
 

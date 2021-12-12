@@ -60,6 +60,74 @@ int player_isBoarded (void)
 }
 
 
+static int board_hook(void *data)
+{
+   HookParam hparam[2];
+   Pilot *p = (Pilot*) data;
+   unsigned int wdw;
+
+   /*
+    * run hook if needed
+    */
+   hparam[0].type = HOOK_PARAM_PILOT;
+   hparam[0].u.lp = p->id;
+   hparam[1].type = HOOK_PARAM_SENTINEL;
+   hooks_runParam("board", hparam);
+   pilot_runHookParam(p, PILOT_HOOK_BOARD, hparam, 1);
+   hparam[0].u.lp = PLAYER_ID;
+   pilot_runHookParam(p, PILOT_HOOK_BOARDING, hparam, 1);
+
+   if (board_stopboard) {
+      board_boarded = 0;
+      return 0;
+   }
+
+   /*
+    * create the boarding window
+    */
+   wdw = window_create("wdwBoarding", _("Boarding"), -1, -1, BOARDING_WIDTH,
+         BOARDING_HEIGHT);
+
+   window_addButton(wdw, 20, -40, BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealCredits", _("Credits"), board_stealCreds);
+   window_addText(wdw, 20+BUTTON_WIDTH+10,
+         -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
+         "txtDataCredits", &gl_defFont, NULL, NULL);
+
+   window_addButton( wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealFuel", _("Fuel"), board_stealFuel);
+   window_addText(wdw, 20+BUTTON_WIDTH+10,
+         -40 - 1*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
+         "txtDataFuel", &gl_defFont, NULL, NULL);
+
+   window_addButton(wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealAmmo", _("Ammo"), board_stealAmmo);
+   window_addText(wdw, 20+BUTTON_WIDTH+10,
+         -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
+         "txtDataAmmo", &gl_defFont, NULL, NULL);
+
+   window_addButton(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealCargo", _("Cargo"), board_stealCargo);
+   window_addText(wdw, 20+BUTTON_WIDTH+10,
+         -40 - 3*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
+         2*BUTTON_HEIGHT + 2*20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
+         "txtDataCargo", &gl_defFont, NULL, NULL);
+
+   window_addButton(wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit);
+
+   board_update(wdw);
+   return 0;
+}
+
+
 /**
  * @fn void player_board (void)
  *
@@ -67,16 +135,14 @@ int player_isBoarded (void)
  *
  * Creates the window on success.
  */
-void player_board (void)
+int player_board(void)
 {
    Pilot *p;
-   unsigned int wdw;
    char c;
-   HookParam hparam[2];
 
    /* Not disabled. */
    if (pilot_isDisabled(player.p))
-      return;
+      return PLAYER_BOARD_IMPOSSIBLE;
 
    if (player.p->target==PLAYER_ID) {
       /* We don't try to find far away targets, only nearest and see if it matches.
@@ -88,7 +154,7 @@ void player_board (void)
             pilot_isFlag(p,PILOT_NOBOARD)) {
          player_targetClear();
          player_message( _("#rYou need a target to board first!") );
-         return;
+         return PLAYER_BOARD_IMPOSSIBLE;
       }
    }
    else
@@ -98,36 +164,34 @@ void player_board (void)
    /* More checks. */
    if (pilot_isFlag(p,PILOT_NOBOARD)) {
       player_message( _("#rTarget ship can not be boarded.") );
-      return;
+      return PLAYER_BOARD_IMPOSSIBLE;
    }
    else if (pilot_isFlag(p,PILOT_BOARDED)) {
       player_message( _("#rYour target cannot be boarded again.") );
-      return;
+      return PLAYER_BOARD_IMPOSSIBLE;
    }
    else if (!pilot_isDisabled(p) && !pilot_isFlag(p,PILOT_BOARDABLE)) {
       player_message(_("#rYou cannot board a ship that isn't disabled!"));
-      return;
+      return PLAYER_BOARD_IMPOSSIBLE;
    }
    else if (vect_dist(&player.p->solid->pos,&p->solid->pos) >
          p->ship->gfx_space->sw * PILOT_SIZE_APPROX) {
-      player_message(_("#rYou are too far away to board your target."));
-      return;
+      return PLAYER_BOARD_RETRY;
    }
    else if ((pow2(VX(player.p->solid->vel)-VX(p->solid->vel)) +
             pow2(VY(player.p->solid->vel)-VY(p->solid->vel))) >
          (double)pow2(MAX_HYPERSPACE_VEL)) {
-      player_message(_("#rYou are going too fast to board the ship."));
-      return;
+      return PLAYER_BOARD_RETRY;
    }
 
    /* Handle fighters. */
    if (pilot_isFlag(p, PILOT_CARRIED) && (p->dockpilot == PLAYER_ID)) {
       if (pilot_dock( p, player.p )) {
          WARN(_("Unable to recover fighter."));
-         return;
+         return PLAYER_BOARD_IMPOSSIBLE;
       }
       player_message(_("#oYou recover your %s fighter."), p->name);
-      return;
+      return PLAYER_BOARD_OK;
    }
 
    /* Is boarded. */
@@ -141,63 +205,8 @@ void player_board (void)
    /* Don't unboard. */
    board_stopboard = 0;
 
-   /*
-    * run hook if needed
-    */
-   hparam[0].type       = HOOK_PARAM_PILOT;
-   hparam[0].u.lp       = p->id;
-   hparam[1].type       = HOOK_PARAM_SENTINEL;
-   hooks_runParam( "board", hparam );
-   pilot_runHookParam(p, PILOT_HOOK_BOARD, hparam, 1);
-   hparam[0].u.lp       = PLAYER_ID;
-   pilot_runHookParam(p, PILOT_HOOK_BOARDING, hparam, 1);
-
-   if (board_stopboard) {
-      board_boarded = 0;
-      return;
-   }
-
-   /*
-    * create the boarding window
-    */
-   wdw = window_create( "wdwBoarding", _("Boarding"), -1, -1, BOARDING_WIDTH, BOARDING_HEIGHT );
-
-   window_addButton( wdw, 20, -40, BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCredits", _("Credits"), board_stealCreds);
-   window_addText( wdw, 20+BUTTON_WIDTH+10,
-         -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
-         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
-         "txtDataCredits", &gl_defFont, NULL, NULL );
-
-   window_addButton( wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealFuel", _("Fuel"), board_stealFuel);
-   window_addText( wdw, 20+BUTTON_WIDTH+10,
-         -40 - 1*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
-         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
-         "txtDataFuel", &gl_defFont, NULL, NULL );
-
-   window_addButton( wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealAmmo", _("Ammo"), board_stealAmmo);
-   window_addText( wdw, 20+BUTTON_WIDTH+10,
-         -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
-         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
-         "txtDataAmmo", &gl_defFont, NULL, NULL );
-
-   window_addButton( wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCargo", _("Cargo"), board_stealCargo);
-   window_addText( wdw, 20+BUTTON_WIDTH+10,
-         -40 - 3*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
-         2*BUTTON_HEIGHT + 2*20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
-         "txtDataCargo", &gl_defFont, NULL, NULL );
-
-   window_addButton( wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit );
-
-   board_update(wdw);
+   hook_addFunc(board_hook, p, "safe");
+   return PLAYER_BOARD_OK;
 }
 
 

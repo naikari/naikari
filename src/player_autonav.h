@@ -20,6 +20,8 @@ enum {
    AUTONAV_PNT_APPROACH,   /**< Player is going to a planet. */
    AUTONAV_PNT_BRAKE,      /**< Player is braking at a planet. */
    AUTONAV_PLT_FOLLOW,     /**< Player is following a pilot. */
+   AUTONAV_PLT_BOARD_APPROACH, /**< Player is trying to board a pilot. */
+   AUTONAV_PLT_BOARD_BRAKE, /**< Player is going to brake to board. */
 };
 
 
@@ -35,6 +37,7 @@ void player_autonavStartWindow( unsigned int wid, char *str);
 void player_autonavPos( double x, double y );
 void player_autonavPnt( char *name );
 void player_autonavPil( unsigned int p );
+void player_autonavBoard(unsigned int p);
 
 
 #endif /* PLAYER_AUTONAV_H */
