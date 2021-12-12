@@ -180,7 +180,6 @@ function takeoff()
    end
    for i, j in ipairs(racers) do
       j:rename(string.format(_("Racer %s"), i))
-      j:setHilight(true)
       j:setInvincible(true)
       j:setVisible(true)
       j:control()
@@ -268,8 +267,10 @@ function stopcount()
    player.omsgRm(omsg)
 end
 function board(ship)
+   player.unboard()
    for i,j in ipairs(checkpoint) do
       if ship == j and target[4] == i then
+         ship:setHilight(false)
          player.msg(string.format(positionmsg, player.name(),target[4]))
          misn.osdActive(i+1)
          target[4] = target[4] + 1
@@ -281,7 +282,6 @@ function board(ship)
          break
       end
    end
-   player.unboard()       
 end
 
 function jumpin()
