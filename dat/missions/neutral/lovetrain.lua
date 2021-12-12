@@ -3,7 +3,7 @@
 <mission name="Love Train">
  <avail>
   <priority>50</priority>
-  <chance>10</chance>
+  <chance>15</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -264,7 +264,7 @@ function create()
       totaldist = totaldist + itotaldist/#dests
    end
 
-   credits = 55000 * math.sqrt(totaldist)
+   credits = 85000 * math.sqrt(totaldist)
    markers = {}
    markers.__save = true
 
