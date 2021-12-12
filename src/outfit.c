@@ -1549,7 +1549,7 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"delay",temp->u.lau.delay);
       xmlr_strd(node,"ammo",temp->u.lau.ammo_name);
       xmlr_int(node,"amount",temp->u.lau.amount);
-      xmlr_int(node,"reload_time",temp->u.lau.reload_time);
+      xmlr_float(node,"reload_time",temp->u.lau.reload_time);
       xmlr_float(node,"lockon",temp->u.lau.lockon);
       xmlr_float(node,"rdr_range",temp->u.lau.rdr_range);
       xmlr_float(node,"rdr_range_max",temp->u.lau.rdr_range_max);
@@ -1964,7 +1964,7 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
    do {
       xml_onlyNodes(node);
       xmlr_int(node,"delay",temp->u.bay.delay);
-      xmlr_int(node,"reload_time",temp->u.bay.reload_time);
+      xmlr_float(node,"reload_time",temp->u.bay.reload_time);
       xmlr_strd(node,"ammo",temp->u.bay.ammo_name);
       xmlr_int(node,"amount",temp->u.bay.amount);
 
