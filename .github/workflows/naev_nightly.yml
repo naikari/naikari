@@ -29,6 +29,7 @@ jobs:
       - name: Collect Artifacts
         run: |
           mkdir -p build/dist
+          cp -r source/utils/ci/gh build/dist/
           mv build/meson-dist/naikari-*.tar.xz build/dist/source.tar.xz
           cp source/dat/VERSION build/dist
 
@@ -44,6 +45,13 @@ jobs:
         with:
           name: naikari-version
           path: ${{ github.workspace }}/build/dist/VERSION
+          if-no-files-found: error
+
+      - name: Upload GitHub Deployment Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: naev-github-deployment
+          path: ${{ github.workspace }}/build/dist/gh/*
           if-no-files-found: error
 
   "Linux_Naev_Release":
@@ -202,25 +210,18 @@ jobs:
         with:
           path: ${{ github.workspace }}/build/staging
 
-      - name: Build Github Release
-        run: |
-          BUILD_DATE="$(date +%Y%m%d)"
-          VERSION="$(<"build/staging/naikari-version/VERSION")"
-          SUFFIX="$VERSION+DEBUG.$BUILD_DATE"
-
-          mv build/staging/naikari-linux-x86-64/*.AppImage build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
-          mv build/staging/naikari-macos/*.zip build/dist/naikari-$SUFFIX-macos.zip
-          mv build/staging/naikari-win64/naikari*.exe build/dist/naikari-$SUFFIX-win64.exe
-          mv build/staging/naikari-dist/source.tar.xz build/dist/naikari-$SUFFIX-source.tar.xz
-
-          chmod +x build/dist/naikari-$SUFFIX-linux-x86-64.AppImage
-
-      - name: Upload 'nightly' Release
+      - name: Create Github Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: "nightly"
           prerelease: true
           title: "Nightly build"
-          files: |
-            ${{ github.workspace }}/build/dist/*.*
+
+      - name: Build and Upload Github Release
+      - run: |
+          chmod -R +x build/staging/naikari-github-deployment
+          cp -r build/staging/naikari-github-deployment/* "$(pwd)"
+          ./GHDeploy.sh -n -t "$(pwd)/build/staging" -o "$(pwd)/build/dist" -r "nightly"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
