@@ -19,7 +19,7 @@
 --]]
 
 -- Text
-broadcastmsg = _("SOS. This is %s. We are shipwrecked. Please #bboard#0 us by positioning your ship over ours and then #bdouble-clicking#0 on our ship.")
+broadcastmsg = _("SOS. This is %s. We are shipwrecked. Please #bboard#0 us by #bdouble-clicking#0 on our ship.")
 shipname = _("August") --The ship will have a unique name
 shipwreck = _("Shipwrecked %s")
 

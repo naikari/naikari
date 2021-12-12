@@ -21,8 +21,8 @@
 --]]
 
 
-broadcastmsgDV = _("SOS! Dvaered anti-terrorist patrol ship in need of assistance. Primary systems down. Please position your ship over ours and #bdouble-click#0 on our ship to board.")
-broadcastmsgFLF = _("Calling all ships! Frontier scout here. Engines down, ship damaged. Please help.")
+broadcastmsgDV = _("SOS! Dvaered anti-terrorist patrol ship in need of assistance. Primary systems down. Please #bdouble-click#0 on our ship to board.")
+broadcastmsgFLF = _("Calling all ships! Frontier scout here. Engines down, ship damaged. Please help by #bdouble-clicking#0 on my ship.")
 
 
 function create()

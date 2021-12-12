@@ -44,7 +44,7 @@ text[4] = _("Checkpoint %s reached. Land on %s.")
 
 btutorial_text = _([[As you begin takeoff procedures to prepare for the race, Captain T. Practice shows up on your screen once again. "I see you're going on a race! I just wanted to check and make sure you know how to #bboard#0 ships, since that's required for this race, so let me explain how boarding works very quick.
 
-"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board. However, some missions allow you to board certain ships without disabling them, and as it happens, this race is one of them! Once a ship is disabled or otherwise can be boarded, you can do so by stopping over the ship, then either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes, like in this race, it can trigger special mission events instead (in this case, boarding one "checkpoint" ship will let you move on to the next one).
+"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board. However, some missions allow you to board certain ships without disabling them, and as it happens, this race is one of them! Once a ship is disabled or otherwise can be boarded, you can do so by either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes, like in this race, it can trigger special mission events instead (in this case, boarding one "checkpoint" ship will let you move on to the next one).
 
 "That's all! Good luck on the race!"]])
 

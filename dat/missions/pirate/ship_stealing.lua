@@ -69,9 +69,9 @@ finish_text = _([[You meet back up with the pirate, who delivers the promised sh
 
 btutorial_text = _([[As you enter the system and begin to search for your target, Captain T. Practice butts into your screen out of nowhere. You frown. "Hello! I haven't checked the details yet, but it looks like you need to #bboard#0 a ship for a mission, right? I don't believe I've had a chance to explain how to do this yet, so let me go over boarding basics!
 
-"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board, though some missions may override this requirement. Once a ship is disabled or otherwise can be boarded, you can do so by stopping over the ship, then either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes it can trigger special mission events instead, like in this mission, where…"
+"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board, though some missions may override this requirement. Once a ship is disabled or otherwise can be boarded, you can do so by either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes it can trigger special mission events instead, like in this mission, where…"
 
-Captain T. Practice's eyes widen and they start to sweat. "Oh! You're, um, s-stealing someone else's ship, huh? Um, how about this, i-if you don't steal my ship, I won't tell the authorities! How about it? Um, I see you're very busy, so g-good luck on your… mission!"]])
+Captain T. Practice's eyes widen and they start to sweat. "Oh! You're, um… well, I see you're very busy, so good luck on your… mission."]])
 
 -- Messages
 ran_msg = _("MISSION FAILURE! {pilot} got away.")

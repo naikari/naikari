@@ -96,7 +96,7 @@ osd_title = _("Baron")
 osd_msg[1] = _("Land on %s (%s system)")
 osd_msg[2] = _("Fly to %s")
 osd_msg[3] = _("Hail Kahan Pinnacle (orbiting %s) by either double-clicking on it or pressing %s")
-osd_msg[4] = _("Dock with (board) Kahan Pinnacle by stopping over it and then either double-clicking on it or pressing %s")
+osd_msg[4] = _("Dock with (board) Kahan Pinnacle by either double-clicking on it or pressing %s")
 
 log_text_succeed = _([[You helped some selfish baron steal a Dvaered holopainting and were paid a measly sum of credits.]])
 log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pilot, but you rudely refused to accept the job. It seems whoever the pilot worked for won't be contacting you again.]])
