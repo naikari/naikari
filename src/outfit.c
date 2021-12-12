@@ -1581,7 +1581,7 @@ if (o) WARN(_("Outfit '%s' missing '%s' element"), temp->name, s) /**< Define to
    MELEMENT(temp->u.lau.ammo_name==NULL,"ammo");
    MELEMENT(temp->u.lau.delay==0.,"delay");
    MELEMENT(temp->cpu==0.,"cpu");
-   MELEMENT(temp->u.lau.amount==0.,"amount");
+   MELEMENT(temp->u.lau.amount==0,"amount");
    MELEMENT(temp->u.lau.reload_time==0.,"reload_time");
    if ((temp->u.lau.swivel > 0.) || (temp->type == OUTFIT_TYPE_TURRET_LAUNCHER)) {
       MELEMENT(temp->u.lau.rdr_range==0.,"rdr_range");
