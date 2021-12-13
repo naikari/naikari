@@ -205,13 +205,12 @@ function gen_portraits()
    sender_portrait = portrait.get(planet.cur():faction():nameRaw())
    for i, dest in ipairs(dests) do
       local dname = dest.pla:nameRaw()
-      local fname = dest.pla:faction():nameRaw()
       if gender == "m" then
-         portraits[dname] = portrait.getMale(fname)
+         portraits[dname] = portrait.getMale()
       elseif gender == "f" then
-         portraits[dname] = portrait.getFemale(fname)
+         portraits[dname] = portrait.getFemale()
       else
-         portraits[dname] = portrait.get(fname)
+         portraits[dname] = portrait.get()
       end
    end
 end
