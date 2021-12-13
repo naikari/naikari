@@ -12,7 +12,7 @@
  </general>
  <specific type="modification" group="6">
   <active />
-  <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
+  <rdr_enemy_range_mod>-75</rdr_enemy_range_mod>
   <energy_loss>40</energy_loss>
  </specific>
 </outfit>
