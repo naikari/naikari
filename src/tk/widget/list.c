@@ -121,6 +121,8 @@ static void lst_render( Widget* lst, double bx, double by )
    x = bx + lst->x;
    y = by + lst->y;
 
+   /* If this list is a pop-up menu, we may be on top of previously drawn text. */
+   glClear( GL_DEPTH_BUFFER_BIT );
    /* lst bg */
    toolkit_drawRect( x, y, lst->w, lst->h, &cBlack, NULL );
 
