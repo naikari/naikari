@@ -38,6 +38,7 @@
 static int board_stopboard = 0; /**< Whether or not to unboard. */
 static int board_boarded = 0;
 static unsigned long board_hook_id = 0;
+static unsigned int board_pilot_id = 0;
 
 
 /*
@@ -63,19 +64,24 @@ int player_isBoarded (void)
 
 static int board_hook(void *data)
 {
+   (void) data;
    HookParam hparam[2];
-   Pilot *p = (Pilot*) data;
+   Pilot *p;
    unsigned int wdw;
 
    /* Remove board hook so it doesn't run again. */
    hook_rm(board_hook_id);
    board_hook_id = 0;
 
+   p = pilot_get(board_pilot_id);
+   if (p == NULL)
+      return 0;
+
    /*
     * run hook if needed
     */
    hparam[0].type = HOOK_PARAM_PILOT;
-   hparam[0].u.lp = p->id;
+   hparam[0].u.lp = board_pilot_id;
    hparam[1].type = HOOK_PARAM_SENTINEL;
    hooks_runParam("board", hparam);
    pilot_runHookParam(p, PILOT_HOOK_BOARD, hparam, 1);
@@ -210,8 +216,9 @@ int player_board(void)
    /* Don't unboard. */
    board_stopboard = 0;
 
+   board_pilot_id = p->id;
    if (board_hook_id == 0)
-      board_hook_id = hook_addFunc(board_hook, p, "safe");
+      board_hook_id = hook_addFunc(board_hook, NULL, "safe");
    return PLAYER_BOARD_OK;
 }
 
