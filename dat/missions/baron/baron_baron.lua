@@ -19,17 +19,11 @@
 -- This is the first mission in the baron string.
 --]]
 
+local fmt = require "fmt"
 local portrait = require "portrait"
 require "missions/baron/common"
 require "missions/neutral/common"
 
-
-sysname1 = "Darkstone"
-sysname2 = "Ingot"
-planetname = "Varia"
-planetname2 = "Ulios"
-
-osd_msg = {}
 
 hail_text = _([[Your viewscreen flashes to life. You're greeted by a nondescript pilot who doesn't seem to be affiliated with anyone you know.
 
@@ -39,13 +33,13 @@ ask_text = _([[You inquire what it is exactly this Mr. Sauterfeldt needs from yo
 
 You pause for a moment before responding to this sudden offer. It's not everyday that people come to bring you work instead of making you look for it, but then again this job sounds like it could get you in trouble with the authorities. What will you do?]])
 
-accept_text = _([["Oh, that's great! Okay, here's what Baron Sauterfeldt needs you to do. You should fly to the Dvaered world %s. There's an art museum dedicated to one of the greatest Warlords in recent Dvaered history. I forget his name. Drovan or something? Durvan? Uh, anyway. This museum has a holopainting of the Warlord and his military entourage. His Lordship really wants this piece of art, but the museum has refused to sell it to him. So, we've sent agents to… appropriate… the holopainting."
+accept_text = _([["Oh, that's great! Okay, here's what Baron Sauterfeldt needs you to do. You should fly to the Dvaered world {planet}. There's an art museum dedicated to one of the greatest Warlords in recent Dvaered history. I forget his name. Drovan or something? Durvan? Uh, anyway. This museum has a holopainting of the Warlord and his military entourage. His Lordship really wants this piece of art, but the museum has refused to sell it to him. So, we've sent agents to… appropriate… the holopainting."
 
-You raise an eyebrow, but the pilot on the other end seems to be oblivious to the gesture. "So, right, you're going to %s to meet with our agents. You should find them in the spaceport bar. They'll get the item onto your ship, and you'll transport it out of Dvaered space. All quiet-like of course. No need for the authorities to know until you're long gone. Don't worry, our people are pros. It'll go off without a hitch, trust me."]])
+You raise an eyebrow, but the pilot on the other end seems to be oblivious to the gesture. "So, right, you're going to {planet} to meet with our agents. You should find them in the spaceport bar. They'll get the item onto your ship, and you'll transport it out of Dvaered space. All quiet-like of course. No need for the authorities to know until you're long gone. Don't worry, our people are pros. It'll go off without a hitch, trust me."]])
 
 details_text = _([[You smirk at that. You know from experience that things seldom "go off without a hitch", and this particular plan doesn't seem to be all that well thought out. Still, it doesn't seem like you'll be in a lot of danger. If things go south, they'll go south well before you are even in the picture. And even if the authorities somehow get on your case, you'll only have to deal with the planetary police, not the entirety of House Dvaered.
 
-You ask the Baron's messenger where this holopainting needs to be delivered. "His Lordship will be taking your delivery in the %s system, aboard his ship the Pinnacle," he replies. "Once you arrive with the holopainting onboard your ship, hail the Pinnacle and ask for docking permission. They'll know who you are, so you should be allowed to dock. You'll be paid on delivery. Any questions?" You indicate that you know what to do, then cut the connection. Next stop: planet %s.]])
+You ask the Baron's messenger where this holopainting needs to be delivered. "His Lordship will be taking your delivery in the {system} system, aboard his ship the Pinnacle," he replies. "Once you arrive with the holopainting onboard your ship, hail the Pinnacle and ask for docking permission. They'll know who you are, so you should be allowed to dock. You'll be paid on delivery. Any questions?" You indicate that you know what to do, then cut the connection. Next stop: planet {planet}.]])
 
 approach_text = _([[The three shifty-looking patrons regard you with apprehension as you approach their table. Clearly they don't know who their contact is supposed to be. You decide to be discreet, asking them if they've ever heard of a certain Sauterfeldt. Upon hearing this, the trio visibly relaxes. They tell you that indeed they know the man you speak of, and that they have something of his in their possession. Things proceed smoothly from that point, and several hectoseconds later you are back at your ship, preparing it for takeoff while you wait for the agents to bring you your cargo.
 
@@ -79,7 +73,7 @@ choice1 = _("Accept the job")
 choice2 = _("Politely decline")
 choice3 = _("Rudely refuse")
 
-comm1 = _("All troops, engage %s! They have broken %s law!")
+comm1 = _("All troops, engage {shipname}! They have broken {planet} law!")
 
 -- Mission details
 misn_title = _("Baron")
@@ -93,10 +87,11 @@ npc_desc = _("These must be the 'agents' hired by this Baron Sauterfeldt. They l
 
 -- OSD stuff
 osd_title = _("Baron")
-osd_msg[1] = _("Land on %s (%s system)")
-osd_msg[2] = _("Fly to %s")
-osd_msg[3] = _("Hail Kahan Pinnacle (orbiting %s) by either double-clicking on it or pressing %s")
-osd_msg[4] = _("Dock with (board) Kahan Pinnacle by either double-clicking on it or pressing %s")
+osd_msg = {}
+osd_msg[1] = _("Land on {planet} ({system} system)")
+osd_msg[2] = _("Fly to the {system} system")
+osd_msg[3] = _("Hail Kahan Pinnacle (orbiting {planet}) by either double-clicking on it or pressing {hail_key}")
+osd_msg[4] = _("Dock with (board) Kahan Pinnacle by either double-clicking on it or pressing {board_key}")
 
 log_text_succeed = _([[You helped some selfish baron steal a Dvaered holopainting and were paid a measly sum of credits.]])
 log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pilot, but you rudely refused to accept the job. It seems whoever the pilot worked for won't be contacting you again.]])
@@ -125,8 +120,8 @@ function create ()
 end
 
 function accept()
-   tk.msg("", accept_text:format(mispla:name(), mispla:name()))
-   tk.msg("", details_text:format(paysys:name(), mispla:name()))
+   tk.msg("", fmt.f(accept_text, {planet=mispla:name()}))
+   tk.msg("", fmt.f(details_text, {system=paysys:name(), planet=mispla:name()}))
 
    misn.accept()
 
@@ -134,10 +129,11 @@ function accept()
    misn.setReward(misn_reward)
    misn.setDesc(misn_desc)
 
-   osd_msg[1] = osd_msg[1]:format(mispla:name(), missys:name())
-   osd_msg[2] = osd_msg[2]:format(paysys:name())
-   osd_msg[3] = osd_msg[3]:format(paypla:name(), naev.keyGet("hail"))
-   osd_msg[4] = osd_msg[4]:format(naev.keyGet("board"))
+   osd_msg[1] = fmt.f(osd_msg[1], {planet=mispla:name(), system=missys:name()})
+   osd_msg[2] = fmt.f(osd_msg[2], {system=paysys:name()})
+   osd_msg[3] = fmt.f(osd_msg[3],
+         {planet=paypla:name(), hail_key=naev.keyGet("hail")})
+   osd_msg[4] = fmt.f(osd_msg[4], {board_key=naev.keyGet("board")})
    misn.osdCreate(osd_title, osd_msg)
 
    misn_marker = misn.markerAdd(missys, "low")
@@ -152,7 +148,7 @@ function accept()
 end
 
 function land()
-   if planet.cur() == planet.get(planetname) and not talked then
+   if planet.cur() == mispla and not talked then
       thief1 = misn.npcAdd("talkthieves", _("Sauterfeldt's agents"),
             portrait.get("Pirate"), npc_desc)
       thief2 = misn.npcAdd("talkthieves", _("Sauterfeldt's agents"),
@@ -240,13 +236,14 @@ function takeoff()
 end
 
 function dvtimer()
-   vendetta1 = pilot.add("Dvaered Vendetta", "Dvaered", planet.get(planetname),
-         nil, {ai="dvaered_norun"})
-   vendetta2 = pilot.add("Dvaered Vendetta", "Dvaered", planet.get(planetname),
-         nil, {ai="dvaered_norun"})
+   vendetta1 = pilot.add("Dvaered Vendetta", "Dvaered", mispla, nil,
+         {ai="dvaered_norun"})
+   vendetta2 = pilot.add("Dvaered Vendetta", "Dvaered", mispla, nil,
+         {ai="dvaered_norun"})
    vendetta1:setHostile()
    vendetta2:setHostile()
-   vendetta1:broadcast(comm1:format(player.ship(), mispla:name()), true)
+   vendetta1:broadcast(
+         fmt.f(comm1, {shipname=player.ship(), planet=mispla:name()}), true)
 end
 
 function abort()
