@@ -33,6 +33,7 @@
 
 --]]
 
+local fmt = require "fmt"
 local portrait = require "portrait"
 require "pilot/generic"
 require "pilot/pirate"
@@ -350,7 +351,7 @@ function enter ()
 end
 
 
-function pay( amount, reason )
+function pay(amount, reason)
    if amount <= 0 or reason == "adjust" then return end
 
    local royalty = 0
@@ -359,20 +360,20 @@ function pay( amount, reason )
          royalty = royalty + amount * edata.royalty
       end
    end
-   player.pay( -royalty, nil, true )
+   player.pay(-royalty, nil, true)
 end
 
 
-function standing ()
+function standing()
    for i, edata in ipairs(escorts) do
       if edata.alive and edata.faction ~= nil and edata.pilot ~= nil
             and edata.pilot:exists() then
          local f = faction.get(edata.faction)
          if f ~= nil and f:playerStanding() < 0 then
             pilot_disbanded(edata)
-            player.msg( string.format(
-               _("%s has left your wing because you now have a negative standing with the %s faction."),
-               edata.name, f:name() ) )
+            player.msg(fmt.f(
+               _("{escort} has left your wing because you now have a negative standing with the {faction} faction."),
+               {escort=edata.name, faction=f:name()}))
          end
       end
    end
@@ -380,7 +381,7 @@ end
 
 
 -- Pilot is no longer employed by the player
-function pilot_disbanded( edata )
+function pilot_disbanded(edata)
    edata.alive = false
    local p = edata.pilot
    if p ~= nil and p:exists() then
@@ -400,7 +401,7 @@ end
 
 
 -- Pilot was hailed by the player
-function pilot_hail( p, arg )
+function pilot_hail(p, arg)
    local edata = escorts[arg]
    if not edata.alive then
       return
@@ -410,21 +411,21 @@ function pilot_hail( p, arg )
    local credits, scredits = player.credits(2)
    local approachtext = (
          pilot_action_text .. "\n\n" .. credentials:format(
-            edata.name, edata.ship, creditstring(edata.deposit),
-            edata.royalty * 100, scredits, getTotalRoyalties() * 100 ) )
+            edata.name, edata.ship, fmt.credits(edata.deposit),
+            edata.royalty * 100, scredits, getTotalRoyalties() * 100))
 
    local n, s = tk.choice("", approachtext, _("Fire pilot"), _("Do nothing"))
 
-   if s == _("Fire pilot") and tk.yesno("", string.format(
-            _("Are you sure you want to fire %s? This cannot be undone."),
-            edata.name ) ) then
+   if s == _("Fire pilot") and tk.yesno("", fmt.f(
+            _("Are you sure you want to fire {pilot}? This cannot be undone."),
+            {pilot=edata.name})) then
       pilot_disbanded(edata)
-      player.msg(string.format(_("You have fired %s."), edata.name))
+      player.msg(fmt.f(_("You have fired {pilot}."), {pilot=edata.name}))
    end
 end
 
 
-function player_attacked( p, attacker, dmg )
+function player_attacked(p, attacker, dmg)
    -- Must have an attacker
    if attacker == nil or not attacker:exists() then
       return
@@ -434,9 +435,9 @@ function player_attacked( p, attacker, dmg )
       if attacker == edata.pilot then
          if edata.alive then
             pilot_disbanded(edata)
-            player.msg( string.format(
-               _("%s has left your wing and turned against you!"),
-               edata.name ) )
+            player.msg(fmt.f(
+                  _("{pilot} has left your wing and turned against you!"),
+                  {pilot=edata.name}))
          end
          return
       end
@@ -445,7 +446,7 @@ end
 
 
 -- Check if player attacked his own escort
-function pilot_attacked( p, attacker, dmg, arg )
+function pilot_attacked(p, attacker, dmg, arg)
    -- Must have an attacker
    if attacker == nil or not attacker:exists() then
       return
@@ -465,15 +466,15 @@ end
 
 
 -- Escort got killed
-function pilot_death( p, attacker, arg )
+function pilot_death(p, attacker, arg)
    escorts[arg].alive = false
 end
 
 
-function spawnNPC( edata )
+function spawnNPC(edata)
    local name = edata.name
    if edata.docked then
-      name = string.format(_("%s [docked]"), edata.name)
+      name = fmt.f(_("{pilot} [docked]"), {pilot=edata.name})
    end
 
    local id = evt.npcAdd("approachEscort", name, edata.portrait,
@@ -482,7 +483,7 @@ function spawnNPC( edata )
 end
 
 
-function approachEscort( npc_id )
+function approachEscort(npc_id)
    local edata = npcs[npc_id]
    if edata == nil then
       evt.npcRm(npc_id)
@@ -492,7 +493,7 @@ function approachEscort( npc_id )
    local credits, scredits = player.credits(2)
    local approachtext = (
          pilot_action_text .. "\n\n" .. credentials:format(
-            edata.name, edata.ship, creditstring(edata.deposit),
+            edata.name, edata.ship, fmt.credits(edata.deposit),
             edata.royalty * 100, scredits, getTotalRoyalties() * 100))
 
    local dock_choice = _("Dock pilot")
@@ -503,9 +504,9 @@ function approachEscort( npc_id )
    local n, s = tk.choice("", approachtext,
          dock_choice, _("Fire pilot"), _("Do nothing"))
    if s == _("Dock pilot") then
-      if tk.yesno("", string.format(
-               _("Are you sure you want to dock %s? They will still be paid royalties, but will not join you in space until you undock them."),
-               edata.name)) then
+      if tk.yesno("", fmt.f(
+               _("Are you sure you want to dock {pilot}? They will still be paid royalties, but will not join you in space until you undock them."),
+               {pilot=edata.name})) then
          edata.docked = true
          evt.npcRm(npc_id)
          npcs[npc_id] = nil
@@ -517,9 +518,9 @@ function approachEscort( npc_id )
       npcs[npc_id] = nil
       spawnNPC(edata)
    elseif s == _("Fire pilot") then
-      if tk.yesno("", string.format(
-               _("Are you sure you want to fire %s? This cannot be undone."),
-               edata.name)) then
+      if tk.yesno("", fmt.f(
+               _("Are you sure you want to fire {pilot}? This cannot be undone."),
+               {pilot=edata.name})) then
          evt.npcRm(npc_id)
          npcs[npc_id] = nil
          -- We just set alive to false for now and let them get cleaned
@@ -530,7 +531,7 @@ function approachEscort( npc_id )
 end
 
 
-function approachPilot( npc_id )
+function approachPilot(npc_id)
    local pdata = npcs[npc_id]
    if pdata == nil then
       evt.npcRm(npc_id)
@@ -539,8 +540,8 @@ function approachPilot( npc_id )
 
    local credits, scredits = player.credits(2)
    local cstr = credentials:format(
-         pdata.name, pdata.ship, creditstring(pdata.deposit),
-         pdata.royalty * 100, scredits, getTotalRoyalties() * 100 )
+         pdata.name, pdata.ship, fmt.credits(pdata.deposit),
+         pdata.royalty * 100, scredits, getTotalRoyalties() * 100)
 
    if tk.yesno("", pdata.approachtext .. "\n\n" .. cstr) then
       if pdata.deposit and pdata.deposit > player.credits() then
