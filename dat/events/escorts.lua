@@ -42,10 +42,10 @@ require "events/tutorial/tutorial_common"
 
 tutorial_text = _([[Captain T. Practice pipes up. "Ah, it looks like there's pilots available for hire here at the bar! Let me explain: throughout the galaxy, there are many pilots who seek to work as escorts for other pilots, whether for experience or just to make good money. Having escorts can really make a lot of missions easier for you.
 
-"I would recommend at least talking to any pilots you find and seeing if you might want to hire them to join your fleet. Each pilot has a deposit that you have to pay up-front, and a royalty, which is a percentage of your mission earnings that you have to pay them whenever you get paid for a mission.
+"I would recommend at least talking to any pilots you find and seeing if you might want to hire them to join your fleet. Each pilot has a deposit that you have to pay up-front, and a royalty, which is a percentage of your mission earnings that you have to pay them whenever you get paid for a mission. The deposit is partially refunded when you fire them while landed, based on how much they have earned in royalties. However, you cannot get the deposit back if the pilot dies or if you fire them while out in space.
 
 "Of course, do make sure that your ship is able to defend itself if caught without escorts as your first priority; being alone and able to defend yourself is probably better than depending on other pilots! You should also try to pick pilots that can keep up with your ship have good synergy with the rest of your fleet."]])
-tutorial_log = _([[Pilots which are available for hire can be found at the Spaceport Bar. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. Each pilot is different, so you should try to pick pilots that will work well for you as a fleet.]])
+tutorial_log = _([[Pilots which are available for hire can be found at the Spaceport Bar. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. The deposit can be partially refunded when you fire them while landed; the amount refunded depends on how much the pilot has earned in royalties. If you fire them while out in space or if they die, none of the deposit is refunded. Each pilot is different, so you should try to pick pilots that will work well for you as a fleet.]])
 
 npctext = {}
 npctext[1] = _([["Hi there! I'm looking to get some piloting experience. Here are my credentials. Would you be interested in hiring me?"]])
@@ -357,7 +357,12 @@ function pay(amount, reason)
    local royalty = 0
    for i, edata in ipairs(escorts) do
       if edata.alive and edata.royalty then
-         royalty = royalty + amount * edata.royalty
+         local this_royalty = amount * edata.royalty
+         royalty = royalty + this_royalty
+         if edata.total_paid == nil then
+            edata.total_paid = 0
+         end
+         edata.total_paid = edata.total_paid + this_royalty
       end
    end
    player.pay(-royalty, nil, true)
@@ -417,7 +422,7 @@ function pilot_hail(p, arg)
    local n, s = tk.choice("", approachtext, _("Fire pilot"), _("Do nothing"))
 
    if s == _("Fire pilot") and tk.yesno("", fmt.f(
-            _("Are you sure you want to fire {pilot}? This cannot be undone."),
+            _("Are you sure you want to fire {pilot}? This cannot be undone and you will not get any of the deposit back."),
             {pilot=edata.name})) then
       pilot_disbanded(edata)
       player.msg(fmt.f(_("You have fired {pilot}."), {pilot=edata.name}))
@@ -518,14 +523,33 @@ function approachEscort(npc_id)
       npcs[npc_id] = nil
       spawnNPC(edata)
    elseif s == _("Fire pilot") then
+      local paid = edata.total_paid or 0
+      local refund = math.floor(paid / 2)
+      local deposit_s
+      if refund >= edata.deposit then
+         deposit_s = fmt.f(
+               _("You will be refunded the full {deposit} deposit."),
+               {deposit=fmt.credits(edata.deposit)})
+      elseif refund > 0 then
+         deposit_s = fmt.f(
+               _("You will be refunded {refund} of the {deposit} deposit."),
+               {refund=fmt.credits(refund),
+                  deposit=fmt.credits(edata.deposit)})
+      else
+         deposit_s = fmt.f(
+               _("You will not be refunded any of the {deposit} deposit."),
+               {deposit=fmt.credits(edata.deposit)})
+      end
+
       if tk.yesno("", fmt.f(
-               _("Are you sure you want to fire {pilot}? This cannot be undone."),
-               {pilot=edata.name})) then
+               _("Are you sure you want to fire {pilot}? This cannot be undone. {deposit_sentence}"),
+               {pilot=edata.name, deposit_sentence=deposit_s})) then
          evt.npcRm(npc_id)
          npcs[npc_id] = nil
          -- We just set alive to false for now and let them get cleaned
          -- up next time we land.
          edata.alive = false
+         player.pay(math.min(refund, edata.deposit), "adjust")
       end
    end
 end
