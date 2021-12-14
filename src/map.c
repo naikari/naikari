@@ -42,8 +42,6 @@ typedef enum MapMode_ {
 } MapMode;
 
 
-#define MAP_WIDTH  MAX(1280, SCREEN_W - 100) /**< Map window width. */
-#define MAP_HEIGHT  MAX(720, SCREEN_H - 100) /**< Map window height. */
 #define MAP_SIDEBAR_WIDTH  240 /**< Map window sidebar width. */
 
 #define BUTTON_WIDTH    120 /**< Map button width. */
@@ -2109,25 +2107,14 @@ static void map_buttonCommodity( unsigned int wid, char* str )
 
 
 /**
- * @brief Cleans up the map stuff.
+ * @brief Wrapper for map_close().
  */
 static void map_window_close( unsigned int wid, char *str )
 {
-   int i;
-   free ( commod_known );
-   commod_known = NULL;
-   for ( i=0; i<array_size(map_modes); i++ )
-      free ( map_modes[i] );
-   array_free ( map_modes );
-   map_modes = NULL;
-   map_reset();
-   window_close(wid,str);
-}
+   (void) wid;
+   (void) str;
 
-void map_cleanup (void)
-{
    map_close();
-   map_clear();
 }
 
 
@@ -2137,9 +2124,24 @@ void map_cleanup (void)
 void map_close (void)
 {
    unsigned int wid;
+   int i;
+
+   /* Close any system map that may be open first. */
+   map_system_close();
+
+   free(commod_known);
+   commod_known = NULL;
+
+   if (map_modes != NULL) {
+      for (i=0; i<array_size(map_modes); i++)
+         free(map_modes[i]);
+      array_free (map_modes);
+   }
+   map_modes = NULL;
 
    /* Set to defaults for the benefit of the mission map */
    map_clear();
+   map_reset();
 
    wid = window_get(MAP_WDWNAME);
    if (wid > 0)

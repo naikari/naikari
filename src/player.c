@@ -687,7 +687,7 @@ void player_cleanup (void)
    events_cleanup();
    space_clearKnown();
    land_cleanup();
-   map_cleanup();
+   map_close();
    factions_clearDynamic();
 
    /* Reset controls. */
@@ -3283,7 +3283,7 @@ Planet* player_load( xmlNodePtr parent )
    memset( &player, 0, sizeof(Player_t) );
    player.speed = 1.;
    pnt = NULL;
-   map_cleanup();
+   map_close();
 
    /* Reasonable time defaults. */
    player.last_played = time(NULL);

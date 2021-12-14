@@ -11,6 +11,8 @@
 #include "space.h"
 
 #define MAP_WDWNAME     "wdwStarMap" /**< Map window name. */
+#define MAP_WIDTH  MAX(1280, SCREEN_W - 100) /**< Map window width. */
+#define MAP_HEIGHT  MAX(720, SCREEN_H - 100) /**< Map window height. */
 
 typedef struct MapDecorator_ {
    glTexture* image;
@@ -32,7 +34,6 @@ int map_isOpen (void);
 StarSystem* map_getDestination( int *jumps );
 void map_setZoom( double zoom );
 void map_select( StarSystem *sys, char shifted );
-void map_cleanup (void);
 void map_clear (void);
 void map_jump (void);
 
