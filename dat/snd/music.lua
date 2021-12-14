@@ -219,7 +219,8 @@ function choose_ambient ()
 
       -- Do not change songs so soon
       if songpos < 10. then
-         music.delay( "ambient", 10. - songpos )
+         music.delay("ambient", 10. - songpos)
+         last = "ambient"
          return false
       end
    end
