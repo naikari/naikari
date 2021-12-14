@@ -45,8 +45,6 @@
 #define BUTTON_WIDTH  80 /**< Button width in ship view window. */
 #define BUTTON_HEIGHT 30 /**< Button height in ship view window. */
 
-#define STATS_DESC_MAX 256 /**< Maximum length for statistics description. */
-
 
 static Ship* ship_stack = NULL; /**< Stack of ships available in the game. */
 
@@ -790,8 +788,8 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
 
          /* Create description. */
          if (temp->stats != NULL) {
-            temp->desc_stats = malloc( STATS_DESC_MAX );
-            i = ss_statsListDesc( temp->stats, temp->desc_stats, STATS_DESC_MAX, 0 );
+            temp->desc_stats = malloc(STRMAX);
+            i = ss_statsListDesc(temp->stats, temp->desc_stats, STRMAX, 0);
             if (i <= 0) {
                free( temp->desc_stats );
                temp->desc_stats = NULL;
