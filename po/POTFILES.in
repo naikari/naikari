@@ -1591,6 +1591,7 @@ dat/outfits/weapons/plasma_blaster_mk1.xml
 dat/outfits/weapons/plasma_blaster_mk2.xml
 dat/outfits/weapons/plasma_cannon.xml
 dat/outfits/weapons/plasma_cluster_cannon.xml
+dat/outfits/weapons/plasma_cluster_turret.xml
 dat/outfits/weapons/plasma_turret_mk1.xml
 dat/outfits/weapons/plasma_turret_mk2.xml
 dat/outfits/weapons/ragnarok_beam.xml
@@ -1606,6 +1607,7 @@ dat/outfits/weapons/shredder.xml
 dat/outfits/weapons/slicer.xml
 dat/outfits/weapons/turbolaser.xml
 dat/outfits/weapons/turreted_gauss_gun.xml
+dat/outfits/weapons/turreted_mass_driver.xml
 dat/outfits/weapons/turreted_vulcan_gun.xml
 dat/outfits/weapons/vulcan_gun.xml
 dat/ships/admonisher.xml
@@ -1666,6 +1668,7 @@ dat/ships/soromid_nyx.xml
 dat/ships/soromid_odium.xml
 dat/ships/soromid_reaver.xml
 dat/ships/soromid_vox.xml
+dat/ships/starbridge.xml
 dat/ships/thurion_apprehension.xml
 dat/ships/thurion_certitude.xml
 dat/ships/thurion_ingenuity.xml
@@ -2088,9 +2091,17 @@ dat/ssys/zylex.xml
 dat/start.xml
 dat/tech.xml
 dat/trails.xml
+dat/unidiff/FLF_base.xml
+dat/unidiff/Fury_Station.xml
+dat/unidiff/Thurion_found.xml
+dat/unidiff/collective_dead.xml
+dat/unidiff/flf_dead.xml
+dat/unidiff/flf_pirate_ally.xml
+dat/unidiff/flf_vs_empire.xml
+dat/unidiff/raelid_outpost_death.xml
+dat/unidiff/raglan_outpost_death.xml
 dat/ai/baddie.lua
 dat/ai/baddie_norun.lua
-dat/ai/base.lua
 dat/ai/civilian.lua
 dat/ai/collective.lua
 dat/ai/collective_norun.lua
@@ -2265,6 +2276,7 @@ dat/missions/neutral/diy-nerds.lua
 dat/missions/neutral/drunkard.lua
 dat/missions/neutral/foodbiz/delivercake.lua
 dat/missions/neutral/foodbiz/deliverlove.lua
+dat/missions/neutral/lovetrain.lua
 dat/missions/neutral/nebu_satellite.lua
 dat/missions/neutral/oldwoman.lua
 dat/missions/neutral/patrol.lua
@@ -2310,7 +2322,6 @@ dat/missions/sirius/achack/achack03.lua
 dat/missions/sirius/achack/achack04.lua
 dat/missions/sirius/animaltransport.lua
 dat/missions/sirius/common.lua
-dat/missions/sirius/srs_ferry.lua
 dat/missions/soromid/comingout/srm_comingout.lua
 dat/missions/soromid/comingout/srm_comingout2.lua
 dat/missions/soromid/comingout/srm_comingout3.lua
@@ -2320,7 +2331,6 @@ dat/missions/soromid/comingout/srm_comingout6.lua
 dat/missions/soromid/common.lua
 dat/missions/tutorial/tutorial.lua
 dat/missions/zalek/common.lua
-dat/missions/zalek/zlk_cargorun.lua
 dat/missions/zalek/zlk_test.lua
 dat/outfits/lua/example.lua
 dat/rescue.lua
