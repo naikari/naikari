@@ -7,7 +7,6 @@
   <chance>360</chance>
   <location>Computer</location>
   <faction>Empire</faction>
-  <faction>Frontier</faction>
   <faction>Goddard</faction>
   <faction>Independent</faction>
   <faction>Sirius</faction>
