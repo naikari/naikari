@@ -68,7 +68,11 @@ function create ()
     getsysatdistance(cursys, 1, 6,
         function(s)
             for i, v in ipairs(s:planets()) do
-                if v:faction() == faction.get("Sirius") and v:class() == "M" and v:canLand() then
+                if v:faction() == faction.get("Sirius") and v:canLand()
+                        and (v:class() == "G" or v:class() == "H"
+                            or v:class() == "K" or v:class() == "L"
+                            or v:class() == "M" or v:class() == "O"
+                            or v:class() == "Q") then
                     planets[#planets + 1] = {v, s}
                 end
             end
