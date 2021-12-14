@@ -37,7 +37,7 @@ mdesc[2] = _("Land on %s (%s system) to drop off the scientists")
 text = {}
 text[1] = _([[You approach the scientists. They seem a bit nervous and one mutters something about whether it's a good idea or not. Eventually one of them comes up to you.
 
-"Hello Captain, we're looking for a ship to take us into the Sol Nebula. Would you be willing to take us there?"]])
+"Hello Captain, we're looking for a ship to take us to the margins of the Inner Nebula. Would you be willing to help us?"]])
 text[2] = _([["We had a trip scheduled with a space trader ship, but they backed out at the last minute. So we were stuck here until you came. We've got a research probe that we have to release into the %s system to monitor the Nebula's growth rate. The probe launch procedure is pretty straightforward and shouldn't have any complications."
 
 He takes a deep breath, "We hope to be able to find out more secrets of the Sol Nebula so mankind can once again regain its lost patrimony. So far the radiation and volatility of the deeper areas haven't been very kind to our instruments. That's why we designed this satellite we're going to launch."]])
