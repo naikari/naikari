@@ -372,7 +372,6 @@ msg_mhint = {
    {"Hitman", _([["There are often shady characters hanging out in the Alteris system. I'd stay away from there if I were you, someone might offer you a dirty kind of job!"]])},
    {"Racing Skills 1", _([["There's a bunch of folks who organize races from time to time. You have to fly a Yacht class ship to take part in them. I totally want to join one of those races some day."]])},
    {"Shadowrun", _([["Apparently there's a woman who regularly turns up on planets in and around the Klantar system. I wonder what she's looking for."]])},
-   {"Za'lek Shipping Delivery", _([["So there's some Za'lek scientist looking for a cargo monkey out on Niflheim in the Dohriabi system. I hear it's pretty good money."]])},
 }
 
 -- Event hint messages. Each element should be a table containing the event name and the corresponding hint.
