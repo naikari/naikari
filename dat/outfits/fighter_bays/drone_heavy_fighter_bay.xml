@@ -7,7 +7,7 @@
   <rarity>3</rarity>
   <mass>280</mass>
   <price>2250000</price>
-  <gfx_store>drone_fighter.webp</gfx_store>
+  <gfx_store>drone_heavy_fighter.webp</gfx_store>
   <description>The Heavy Drone Fighter bay is capable of launching a pair of devastating Heavy Drones. All the equipment needed to create and take care of the drones are provided with the bay.</description>
   <cpu>-450</cpu>
  </general>
