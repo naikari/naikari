@@ -1376,7 +1376,7 @@ void toolkit_drawAltText( int bx, int by, const char *alt )
    glClear( GL_DEPTH_BUFFER_BIT );
 
    /* Get dimensions. */
-   w = 250;
+   w = 350;
    h = gl_printHeightRaw( &gl_defFont, w, alt );
 
    /* Choose position. */
