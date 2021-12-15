@@ -425,31 +425,7 @@ static void info_openShip( unsigned int wid )
          "closeOutfits", _("Close"), info_close );
 
    /* Text. */
-   window_addText( wid, 40, -40, 240, h-40, 0, "txtSDesc", &gl_defFont,
-         &cFontGrey,
-         _("Name:\n"
-         "Model:\n"
-         "Class:\n"
-         "\n"
-         "Mass:\n"
-         "Mass Limit Left:\n"
-         "Speed Penalty:\n"
-         "Jump Time:\n"
-         "Thrust:\n"
-         "Speed:\n"
-         "Turn:\n"
-         "Time Constant:\n"
-         "\n"
-         "Absorption:\n"
-         "Shield:\n"
-         "Armor:\n"
-         "Energy:\n"
-         "Cargo:\n"
-         "Fuel:\n"
-         "Radar Range:\n"
-         "Jump Detect Range:")
-         );
-   window_addText( wid, 40+240, -40, w*2/3 - (40+240) - 10, h-40, 0,
+   window_addText( wid, 40, -40, w*2/3 - 40 - 10, h-40, 0,
          "txtDDesc", &gl_defFont, NULL, NULL );
 
    /* Stats. */
@@ -481,27 +457,27 @@ static void ship_update( unsigned int wid )
       strcpy(buf2, _("∞ jumps"));
 
    snprintf( buf, sizeof(buf),
-         _("%s\n"
-         "%s\n"
-         "%s\n"
+         _("#nName:#0 %s\n"
+         "#nModel:#0 %s\n"
+         "#nClass:#0 %s\n"
          "\n"
-         "%.0f t\n"
-         "%.0f / %.0f t\n" /* Mass Limit Left */
-         "%.0f%%\n" /* Speed Penalty */
-         "%s average\n"
-         "%.0f MN/t\n"
-         "%.0f km/s (max %.0f km/s)\n"
-         "%.0f deg/s\n"
-         "%.0f%%\n" /* Time Constant (dt_default) */
+         "#nMass:#0 %.0f t\n"
+         "#nMass Limit Left:#0 %.0f / %.0f t\n"
+         "#nSpeed Penalty:#0 %.0f%%\n"
+         "#nJump Time:#0 %s average\n"
+         "#nThrust:#0 %.0f MN/t\n"
+         "#nSpeed:#0 %.0f km/s (max %.0f km/s)\n"
+         "#nTurn:#0 %.0f deg/s\n"
+         "#nTime Constant:#0 %.0f%%\n"
          "\n"
-         "%.0f%%\n" /* Absorbption */
-         "%.0f / %.0f GJ (%.1f GW)\n" /* Shield */
-         "%.0f / %.0f GJ (%.1f GW)\n" /* Armour */
-         "%.0f / %.0f GJ (%.1f GW)\n" /* Energy */
-         "%d / %d t\n"
-         "%d / %d hL (%s)\n"
-         "%.0f km\n"
-         "%.0f km\n"
+         "#nAbsorption:#0 %.0f%%\n"
+         "#nShield:#0 %.0f / %.0f GJ (%.1f GW)\n"
+         "#nArmor:#0 %.0f / %.0f GJ (%.1f GW)\n"
+         "#nEnergy:#0 %.0f / %.0f GJ (%.1f GW)\n"
+         "#nCargo:#0 %d / %d t\n"
+         "#nFuel:#0 %d / %d hL (%s)\n"
+         "#nRadar Range:#0 %.0f km\n"
+         "#nJump Detect Range:#0 %.0f km\n"
          "\n"),
          /* Generic */
          player.p->name,
