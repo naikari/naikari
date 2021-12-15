@@ -223,33 +223,19 @@ static void info_openMain( unsigned int wid )
 
    /* pilot generics */
    nt = ntime_pretty( ntime_get(), 2 );
-   window_addText( wid, 40, 20, 240, h-80,
-         0, "txtDPilot", &gl_defFont, NULL,
-         _("#nPilot:\n"
-         "Date:\n"
-         "\n"
-         "Money:\n"
-         "Ship:\n"
-         "Fuel:\n"
-         "\n"
-         "Time played:\n"
-         "Damage done:\n"
-         "Damage taken:\n"
-         "Ships destroyed:")
-         );
    credits2str( creds, player.p->credits, 2 );
    snprintf( str, sizeof(str),
-         _("%s\n"
-         "%s\n"
+         _("#nPilot:#0 %s\n"
+         "#nDate:#0 %s\n"
          "\n"
-         "%s\n"
-         "%s\n"
-         "%d (%s)\n"
+         "#nMoney:#0 %s\n"
+         "#nShip:#0 %s\n"
+         "#nFuel:#0 %d (%s)\n"
          "\n"
-         "%.0f:%02llu:%02llu\n"
-         "%.0f\n"
-         "%.0f\n"
-         "%u"),
+         "#nTime played (D:HH:MM):#0 %.0f:%02llu:%02llu\n"
+         "#nDamage done:#0 %.0f GJ\n"
+         "#nDamage taken:#0 %.0f GJ\n"
+         "#nShips destroyed:#0 %u"),
          player.name,
          nt,
          creds,
@@ -261,8 +247,8 @@ static void info_openMain( unsigned int wid )
          player.dmg_done_shield + player.dmg_done_armour,
          player.dmg_taken_shield + player.dmg_taken_armour,
          player.ships_destroyed );
-   window_addText( wid, 40+240, 20,
-         w-40-240-20-2*BUTTON_WIDTH-20, h-80,
+   window_addText( wid, 40, 20,
+         w-40-20-2*BUTTON_WIDTH-20-20, h-80,
          0, "txtPilot", &gl_defFont, NULL, str );
    free(nt);
 
