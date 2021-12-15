@@ -79,7 +79,7 @@ equip_typeOutfits_weapons["Watson"] = {
       "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
    },
    {
-      "Lancelot Fighter Bay",
+      "Derivative Fighter Bay",
    },
    {
       "Heavy Razor Turret", "Grave Beam",

@@ -1167,8 +1167,7 @@ equip_typeOutfits_weapons = {
    ["Arx"] = {
       {
          varied = true;
-         -- TODO: Replace this with Soromid Brigand fighter bays.
-         "Lancelot Fighter Bay",
+         "Brigand Fighter Bay",
       },
       {
          varied = true, probability = {

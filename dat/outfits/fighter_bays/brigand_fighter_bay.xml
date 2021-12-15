@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Brigand Fighter Bay">
+ <general>
+  <slot prop="fighter_bay">weapon</slot>
+  <size>large</size>
+  <license>Light Combat Vessel License</license>
+  <rarity>2</rarity>
+  <mass>240</mass>
+  <price>830000</price>
+  <gfx_store>soromid_brigand_fighter.webp</gfx_store>
+  <description>This fighter bay allows your ship to carry three Soromid Brigand fighters. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
+  <cpu>-400</cpu>
+ </general>
+ <specific type="fighter bay" secondary="1">
+  <ammo>Brigand Fighter</ammo>
+  <delay>4</delay>
+  <reload_time>240</reload_time>
+  <amount>3</amount>
+ </specific>
+</outfit>

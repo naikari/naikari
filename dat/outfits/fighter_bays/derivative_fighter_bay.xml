@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Fidelity Fighter Bay">
+<outfit name="Derivative Fighter Bay">
  <general>
   <slot prop="fighter_bay">weapon</slot>
   <size>large</size>
@@ -7,12 +7,12 @@
   <rarity>2</rarity>
   <mass>260</mass>
   <price>830000</price>
-  <gfx_store>fidelity_fighter.webp</gfx_store>
-  <description>This fighter bay allows your ship to carry three Sirius Fidelity fighters, blessed by Sirichana himself. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
+  <gfx_store>proteron_derivative_fighter.webp</gfx_store>
+  <description>This bay allows your ship to carry three devastating Proteron Derivative fighters. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
   <cpu>-450</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
-  <ammo>Fidelity Fighter</ammo>
+  <ammo>Derivative Fighter</ammo>
   <delay>4</delay>
   <reload_time>180</reload_time>
   <amount>3</amount>
