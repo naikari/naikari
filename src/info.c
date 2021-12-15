@@ -135,6 +135,10 @@ void menu_info( int window )
       return;
    }
 
+   /* Close map if open, since we need it to be reset for the Missions
+    * tab. */
+   map_close();
+
    /* Dimensions. */
    w = 920;
    h = 600;
