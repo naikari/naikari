@@ -576,7 +576,7 @@ int pilot_reportSpaceworthy( Pilot *p, char *buf, int bufSize )
    SPACEWORTHY_CHECK(p->turn < 0, _("!! Insufficient Turn\n"));
 
    /* Health. */
-   SPACEWORTHY_CHECK(p->armour < 0., _("!! Insufficient Armor\n"));
+   SPACEWORTHY_CHECK(p->armour <= 0., _("!! Insufficient Armor\n"));
    SPACEWORTHY_CHECK(p->armour_regen < 0.,
          _("!! Insufficient Armor Regeneration\n"));
    SPACEWORTHY_CHECK(p->shield < 0., _("!! Insufficient Shield\n"));
@@ -591,7 +591,7 @@ int pilot_reportSpaceworthy( Pilot *p, char *buf, int bufSize )
    SPACEWORTHY_CHECK(p->fuel_consumption < 0,
          _("!! Insufficient Fuel Consumption\n"));
    SPACEWORTHY_CHECK( p->cargo_free < 0,
-         _("!! Insufficient Free Cargo Space\n"));
+         _("!! Insufficient Cargo Space\n"));
 
    if (buf != NULL) {
       /* buffer is full, lets write that there is more then what's copied */
