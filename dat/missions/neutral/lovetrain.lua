@@ -202,7 +202,7 @@ end
 
 
 function gen_portraits()
-   sender_portrait = portrait.get(planet.cur():faction():nameRaw())
+   sender_portrait = portrait.get()
    for i, dest in ipairs(dests) do
       local dname = dest.pla:nameRaw()
       if gender == "m" then
