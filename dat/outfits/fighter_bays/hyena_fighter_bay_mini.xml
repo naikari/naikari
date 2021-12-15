@@ -2,7 +2,7 @@
 <outfit name="Mini Hyena Fighter Bay">
  <general>
   <slot prop="fighter_bay">weapon</slot>
-  <size>large</size>
+  <size>medium</size>
   <license>Light Combat Vessel License</license>
   <mass>80</mass>
   <price>200000</price>
