@@ -6,7 +6,7 @@
   <license>Light Combat Vessel License</license>
   <mass>100</mass>
   <price>420000</price>
-  <gfx_store>lancelot_fighter_bay.webp</gfx_store>
+  <gfx_store>lancelot_fighter.webp</gfx_store>
   <description>This miniaturized fighter bay allows your ship to carry a single Lancelot class fighter. It comes with all the equipment required for the maintenance and flight of the fighter.</description>
   <cpu>-200</cpu>
  </general>
