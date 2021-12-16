@@ -8,7 +8,7 @@
   <priority>15</priority>
   <chance>100</chance>
   <location>Bar</location>
-  <cond>var.peek("flfbase_intro") == 2</cond>
+  <cond>faction.playerStanding("FLF") &gt;= 0 and var.peek("flfbase_intro") == 2</cond>
   <planet>Sindbad</planet>
  </avail>
  <notes>

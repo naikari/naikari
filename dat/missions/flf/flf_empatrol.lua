@@ -7,7 +7,7 @@
   <location>Computer</location>
   <faction>FLF</faction>
   <faction>Frontier</faction>
-  <cond>diff.isApplied("flf_vs_empire") and not diff.isApplied("flf_dead")</cond>
+  <cond>faction.playerStanding("FLF") &gt;= 0 and diff.isApplied("FLF_base") and diff.isApplied("flf_vs_empire") and not diff.isApplied("flf_dead")</cond>
  </avail>
  <notes>
   <requires name="The Empire and the FLF are enemies"/>

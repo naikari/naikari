@@ -10,6 +10,7 @@
   <location>Bar</location>
   <done>Plight of the Frontier</done>
   <planet>Sindbad</planet>
+  <cond>faction.playerStanding("FLF") &gt;= 0</cond>
  </avail>
  <notes>
   <provides name="The Dvaered know where Sindbad is">If you betray the FLF</provides>

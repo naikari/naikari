@@ -8,7 +8,7 @@
   <location>Computer</location>
   <faction>FLF</faction>
   <faction>Frontier</faction>
-  <cond>not diff.isApplied("flf_dead")</cond>
+  <cond>faction.playerStanding("FLF") &gt;= 0 and diff.isApplied("FLF_base") and not diff.isApplied("flf_dead")</cond>
  </avail>
 </mission>
 --]]
