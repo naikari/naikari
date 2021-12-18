@@ -24,31 +24,22 @@
 
 ]]--
 
-require "numstring"
+local fmt = require "fmt"
 require "missions/neutral/common"
 
 
 bar_desc = _("A bunch of scientists seem to be chattering nervously among themselves.")
-mtitle = _("Nebula Satellite")
-mdesc = {}
-mdesc[1] = _("Fly to the %s system and wait for the probe to launch")
-mdesc[2] = _("Land on %s (%s system) to drop off the scientists")
+mtitle = _("Nebula Probe")
+mdesc = _("You have been tasked with helping a group of scientists launch a special probe into the Nebula.")
 
-text = {}
-text[1] = _([[You approach the scientists. They seem a bit nervous and one mutters something about whether it's a good idea or not. Eventually one of them comes up to you.
+ask_text = _([[You approach the scientists. They seem a bit nervous and one mutters something about whether it's a good idea or not. Eventually one of them comes up to you.
 
 "Hello Captain, we're looking for a ship to take us to the margins of the Inner Nebula. Would you be willing to help us?"]])
-text[2] = _([["We had a trip scheduled with a space trader ship, but they backed out at the last minute. So we were stuck here until you came. We've got a research probe that we have to release into the %s system to monitor the Nebula's growth rate. The probe launch procedure is pretty straightforward and shouldn't have any complications."
+explain1_text = _([["We had a trip scheduled with a space trader ship, but they backed out at the last minute. So we were stuck here until you came. We've got a research probe that we have to release into the {system} system to monitor the Nebula's growth rate. The probe launch procedure is pretty straightforward and shouldn't have any complications."
 
-He takes a deep breath, "We hope to be able to find out more secrets of the Sol Nebula so mankind can once again regain its lost patrimony. So far the radiation and volatility of the deeper areas haven't been very kind to our instruments. That's why we designed this satellite we're going to launch."]])
-text[3] = _([["The plan is for you to take us to %s so we can launch the probe, and then return us to our home at %s in the %s system. The probe will automatically send us the data we need if all goes well. You'll be paid %s when we arrive."]])
-text[4] = _([[The scientists thank you for your help before going back to their home to continue their nebula research.]])
-text[9] = _([["You do not have enough free cargo space to accept this mission!"]])
-
-launch = {}
-launch[1] = _("Preparing to launch satellite probe...")
-launch[2] = _("Launch in 5...")
-launch[3] = _("Satellite launch successful!")
+He takes a deep breath, "We hope to be able to find out more secrets of the Sol Nebula so mankind can once again regain its lost patrimony. So far the radiation and volatility of the deeper areas haven't been very kind to our instruments. That's why we designed this probe we're going to launch."]])
+explain2_text = _([["The plan is for you to take us to {launchsystem} so we can launch the probe, and then return us to our home at {homeplanet} in the {homesystem} system. The probe will automatically send us the data we need if all goes well. You'll be paid {credits} when we arrive."]])
+pay_text = _([[The scientists thank you for your help and pay you before going back to their home to continue their nebula research.]])
 
 articles={}
 articles={
@@ -70,8 +61,10 @@ function create ()
    if homeworld == nil then
       misn.finish(false)
    end
+
    satellite_sys = system.get("Arandon") -- Not too unstable
-   credits = 750000
+   credits = 400000
+   probe_mass = 3
 
    -- Set stuff up for the spaceport bar
    misn.setNPC(_("Scientists"), "neutral/unique/neil.png", bar_desc)
@@ -80,37 +73,42 @@ end
 
 
 function accept ()
-   -- See if rejects mission
-   if not tk.yesno("", text[1]) then
+   if not tk.yesno("", ask_text) then
       misn.finish()
    end
 
-   -- Check for cargo space
-   if player.pilot():cargoFree() <  3 then
-      tk.msg("", text[9])
+   if player.pilot():cargoFree() < probe_mass then
+      local t = n_("\"Ah, sorry, I forgot to mention that you need %d tonne of cargo space. Let us know if you manage to free up enough.\"",
+               "\"Ah, sorry, I forgot to mention that you need %d tonnes of cargo space. Let us know if you manage to free up enough.\"",
+               probe_mass)
+      tk.msg("", t:format(probe_mass))
       misn.finish()
    end
 
-   -- Add cargo
-   local c = misn.cargoNew(N_("Satellite"), N_("A small satellite loaded with sensors for exploring the depths of the nebula."))
-   cargo = misn.cargoAdd(c, 3)
-
-   -- Set up mission information
-   misn.setTitle(mtitle)
-   misn.setReward(creditstring(credits))
-   misn.setDesc(string.format(mdesc[1], satellite_sys:name()))
-   misn_marker = misn.markerAdd(satellite_sys, "low")
-
-   -- Add mission
    misn.accept()
 
-   -- More flavour text
-   tk.msg("", string.format(text[2], satellite_sys:name()))
-   tk.msg("", string.format(text[3], satellite_sys:name(),
-         homeworld:name(), homeworld_sys:name(), creditstring(credits)))
+   local c = misn.cargoNew(N_("Nebula Probe"),
+         N_("A small probe loaded with sensors for exploring the depths of the nebula."))
+   cargo = misn.cargoAdd(c, probe_mass)
 
-   misn.osdCreate(mtitle, {mdesc[1]:format(satellite_sys:name())})
-   -- Set up hooks
+   misn.setTitle(mtitle)
+   misn.setReward(fmt.credits(credits))
+   misn.setDesc(mdesc)
+   misn_marker = misn.markerAdd(satellite_sys, "low")
+
+   tk.msg("", fmt.f(explain1_text, {system=satellite_sys:name()}))
+   tk.msg("", fmt.f(explain2_text,
+         {launchsystem=satellite_sys:name(), homeplanet=homeworld:name(),
+            homesystem=homeworld_sys:name(), credits=fmt.credits(credits)}))
+
+   local osd_msg = {
+      fmt.f(_("Fly to the {system} system and wait for the probe to launch"),
+            {system=satellite_sys:name()}),
+      fmt.f(_("Land on {planet} ({system} system)"),
+            {planet=homeworld:name(), system=homeworld_sys:name()}),
+   }
+   misn.osdCreate(mtitle, osd_msg)
+
    hook.land("land")
    hook.enter("jumpin")
 end
@@ -118,9 +116,8 @@ end
 
 function land ()
    landed = planet.cur()
-   -- Mission success
    if misn_stage == 1 and landed == homeworld then
-      tk.msg("", text[4])
+      tk.msg("", pay_text)
       player.pay(credits)
       addMiscLog(log_text)
       misn.finish(true)
@@ -130,7 +127,6 @@ end
 
 function jumpin ()
    sys = system.cur()
-   -- Launch satellite
    if misn_stage == 0 and sys == satellite_sys then
       hook.timer(3, "beginLaunch")
    end
@@ -140,13 +136,14 @@ end
    Launch process
 --]]
 function beginLaunch ()
-   player.msg(launch[1])
+   player.msg(_("Preparing to launch probe…"))
    misn.osdDestroy()
    hook.timer(3, "beginCountdown")
 end
 function beginCountdown ()
    countdown = 5
-   player.msg(launch[2])
+   player.msg(string.format(
+         n_("Launch in %d…", "Launch in %d…", countdown), countdown))
    hook.timer(1, "countLaunch")
 end
 function countLaunch ()
@@ -154,18 +151,17 @@ function countLaunch ()
    if countdown <= 0 then
       launchSatellite()
    else
-      player.msg(string.format(_("%d..."), countdown))
+      player.msg(string.format(
+            n_("Launch in %d…", "Launch in %d…", countdown), countdown))
       hook.timer(1, "countLaunch")
    end
 end
 function launchSatellite ()
-
-   articles[1][4] = time.get() + time.create(0,3,0)
+   articles[1][4] = time.get() + time.create(0, 3, 0)
    news.add(articles)
 
-
    misn_stage = 1
-   player.msg(launch[3])
+   player.msg(_("Probe launch successful."))
    misn.cargoJet(cargo)
    misn.setDesc(mdesc[2]:format(homeworld:name(), homeworld_sys:name()))
    misn.osdCreate(mtitle,
