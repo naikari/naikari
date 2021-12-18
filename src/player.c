@@ -950,7 +950,8 @@ void player_render( double dt )
             && !pilot_isFlag(player.p, PILOT_HYPERSPACE)
             && !pilot_isFlag(player.p, PILOT_DISABLED)
             && !pilot_isFlag(player.p, PILOT_LANDING)
-            && !pilot_isFlag(player.p, PILOT_TAKEOFF)) {
+            && !pilot_isFlag(player.p, PILOT_TAKEOFF)
+            && !player_isFlag(PLAYER_CINEMATICS_GUI)) {
          target = pilot_get(player.p->target);
          if (target != NULL) {
             r = 200.;
