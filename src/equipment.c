@@ -1598,9 +1598,9 @@ static char eq_qCol(double cur, double base, int inv, int outcond)
 {
    if (outcond)
       return 'r';
-   else if (cur > 1.2*base)
+   else if (cur > base)
       return (inv) ? 'y' : 'g';
-   else if (cur < 0.8*base)
+   else if (cur < base)
       return (inv) ? 'g' : 'y';
    return '0';
 }
@@ -1613,9 +1613,9 @@ static const char* eq_qSym(double cur, double base, int inv, int outcond)
 {
    if (outcond)
       return "!! ";
-   else if (cur > 1.2*base)
+   else if (cur > base)
       return (inv) ? "*" : "";
-   else if (cur < 0.8*base)
+   else if (cur < base)
       return (inv) ? "" : "*";
    return "";
 }
@@ -1706,36 +1706,72 @@ void equipment_updateShips( unsigned int wid, char* str )
       /* Movement. */
       ship->solid->mass,
       nt,
-      EQ_COMP(ship->thrust/ship->solid->mass,
-            ship->ship->thrust/ship->ship->mass, 0,
-            ship->thrust/ship->solid->mass <= 0.5),
-      EQ_COMP(ship->speed, ship->ship->speed, 0, ship->speed <= 0.5),
+      EQ_COMP(ship->thrust / ship->solid->mass,
+            (ship->ship->thrust+ship->ship->stats_array.thrust)
+               * ship->ship->stats_array.thrust_mod / ship->ship->mass,
+            0, ship->thrust / ship->solid->mass <= 0.5),
+      EQ_COMP(ship->speed,
+            (ship->ship->speed+ship->ship->stats_array.speed)
+               * ship->ship->stats_array.speed_mod
+               * ship->ship->stats_array.speed,
+            0, ship->speed <= 0.5),
       solid_maxspeed(ship->solid, ship->speed, ship->thrust),
-      EQ_COMP(ship->turn*180./M_PI, ship->ship->turn*180./M_PI, 0,
-            ship->turn*180./M_PI <= 0.5),
-      EQ_COMP(ship->stats.time_mod * ship->ship->dt_default * 100,
-            ship->ship->dt_default * 100, 1, 0),
+      EQ_COMP(ship->turn * 180. / M_PI,
+            (ship->ship->turn*180./M_PI + ship->ship->stats_array.turn)
+               * ship->ship->stats_array.turn_mod,
+            0, ship->turn*180./M_PI <= 0.5),
+      EQ_COMP(ship->stats.time_mod * ship->ship->dt_default * 100.,
+            ship->ship->stats_array.time_mod * ship->ship->dt_default * 100.,
+            1, 0),
       /* Health. */
-      EQ_COMP(ship->dmg_absorb * 100, ship->ship->dmg_absorb * 100, 0,
-            ship->dmg_absorb < 0.),
-      EQ_COMP(ship->shield_max, ship->ship->shield, 0, ship->shield_max < 0.),
-      EQ_COMP(ship->shield_regen, ship->ship->shield_regen, 0,
-            ship->shield_regen < 0.),
-      EQ_COMP(ship->armour_max, ship->ship->armour, 0, ship->armour_max <= 0.),
-      EQ_COMP(ship->armour_regen, ship->ship->armour_regen, 0,
-            ship->armour_regen < 0.),
-      EQ_COMP(ship->energy_max, ship->ship->energy, 0, ship->energy_max < 0.),
-      EQ_COMP(ship->energy_regen, ship->ship->energy_regen, 0,
-            ship->energy_regen < 0.),
+      EQ_COMP(ship->dmg_absorb * 100.,
+            CLAMP(0., 1.,
+               ship->ship->dmg_absorb+ship->ship->stats_array.absorb) * 100.,
+            0, ship->dmg_absorb < 0.),
+      EQ_COMP(ship->shield_max,
+            (ship->ship->shield+ship->ship->stats_array.shield)
+               * ship->ship->stats_array.shield_mod,
+            0, ship->shield_max < 0.),
+      EQ_COMP(ship->shield_regen,
+            (ship->ship->shield_regen+ship->ship->stats_array.shield_regen)
+               * ship->ship->stats_array.shield_regen_mod
+               - ship->ship->stats_array.shield_regen_malus,
+            0, ship->shield_regen < 0.),
+      EQ_COMP(ship->armour_max,
+            (ship->ship->armour+ship->ship->stats_array.armour)
+               * ship->ship->stats_array.armour_mod,
+            0, ship->armour_max <= 0.),
+      EQ_COMP(ship->armour_regen,
+            (ship->ship->armour_regen+ship->ship->stats_array.armour_regen)
+               * ship->ship->stats_array.armour_regen_mod
+               - ship->ship->stats_array.armour_regen_malus,
+            0, ship->armour_regen < 0.),
+      EQ_COMP(ship->energy_max,
+            (ship->ship->energy+ship->ship->stats_array.energy)
+               * ship->ship->stats_array.energy_mod,
+            0, ship->energy_max < 0.),
+      EQ_COMP(ship->energy_regen,
+            (ship->ship->energy_regen+ship->ship->stats_array.energy_regen)
+               * ship->ship->stats_array.energy_regen_mod
+               - ship->ship->stats_array.energy_regen_malus,
+            0, ship->energy_regen < 0.),
       /* Misc. */
       pilot_cargoUsed(ship),
-      EQ_COMP(cargo, ship->ship->cap_cargo, 0, cargo < 0.),
-      EQ_COMP(ship->fuel_max, ship->ship->fuel, 0,
-            ship->fuel_max < ship->fuel_consumption),
+      EQ_COMP(cargo,
+            (ship->ship->cap_cargo+ship->ship->stats_array.cargo)
+               * ship->ship->stats_array.cargo_mod,
+            0, cargo < 0.),
+      EQ_COMP(ship->fuel_max, ship->ship->fuel + ship->ship->stats_array.fuel,
+            0, ship->fuel_max < ship->fuel_consumption),
       buf3,
-      EQ_COMP(ship->rdr_range, ship->ship->rdr_range, 0, ship->rdr_range < 0.),
-      EQ_COMP(ship->rdr_jump_range, ship->ship->rdr_jump_range, 0,
-            ship->rdr_jump_range < 0.),
+      EQ_COMP(ship->rdr_range,
+            (ship->ship->rdr_range+ship->ship->stats_array.rdr_range)
+               * ship->ship->stats_array.rdr_range_mod,
+            0, ship->rdr_range < 0.),
+      EQ_COMP(ship->rdr_jump_range,
+            (ship->ship->rdr_jump_range+ship->ship->stats_array.rdr_jump_range)
+               * ship->ship->stats_array.rdr_jump_range_mod,
+            0, ship->rdr_jump_range < 0.),
       problems ? 'r' : '0', errorReport);
    window_modifyText(wid, "txtDDesc", buf);
 

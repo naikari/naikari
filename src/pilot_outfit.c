@@ -1027,43 +1027,46 @@ void pilot_calcStats( Pilot* pilot )
     * Absolute increases.
     */
    /* Movement. */
-   pilot->thrust_base  += s->thrust;
-   pilot->turn_base    += s->turn * M_PI / 180.;
-   pilot->speed_base   += s->speed;
+   pilot->thrust_base += s->thrust;
+   pilot->turn_base += s->turn * M_PI / 180.;
+   pilot->speed_base += s->speed;
    /* Health. */
-   pilot->armour_max   += s->armour;
+   pilot->armour_max += s->armour;
    pilot->armour_regen += s->armour_regen;
-   pilot->shield_max   += s->shield;
+   pilot->shield_max += s->shield;
    pilot->shield_regen += s->shield_regen;
-   pilot->energy_max   += s->energy;
+   pilot->energy_max += s->energy;
    pilot->energy_regen += s->energy_regen;
+   /* Radar. */
+   pilot->rdr_range += s->rdr_range;
+   pilot->rdr_jump_range += s->rdr_jump_range;
    /* Misc. */
-   pilot->fuel_max     += s->fuel;
-   pilot->cap_cargo    += s->cargo;
+   pilot->fuel_max += s->fuel;
+   pilot->cap_cargo += s->cargo;
 
    /*
     * Relative increases.
     */
    /* Movement. */
-   pilot->thrust_base  *= s->thrust_mod;
-   pilot->turn_base    *= s->turn_mod;
-   pilot->speed_base   *= s->speed_mod;
+   pilot->thrust_base *= s->thrust_mod;
+   pilot->turn_base *= s->turn_mod;
+   pilot->speed_base *= s->speed_mod;
    /* Health. */
-   pilot->armour_max   *= s->armour_mod;
+   pilot->armour_max *= s->armour_mod;
    pilot->armour_regen *= s->armour_regen_mod;
-   pilot->shield_max   *= s->shield_mod;
+   pilot->shield_max *= s->shield_mod;
    pilot->shield_regen *= s->shield_regen_mod;
-   pilot->energy_max   *= s->energy_mod;
+   pilot->energy_max *= s->energy_mod;
    pilot->energy_regen *= s->energy_regen_mod;
    /* Radar. */
-   pilot->rdr_range    *= s->rdr_range_mod;
+   pilot->rdr_range *= s->rdr_range_mod;
    pilot->rdr_jump_range *= s->rdr_jump_range_mod;
    /* cpu */
-   pilot->cpu_max       = (int)floor((float)(pilot->ship->cpu + s->cpu_max)*s->cpu_mod);
-   pilot->cpu          += pilot->cpu_max; /* CPU is negative, this just sets it so it's based off of cpu_max. */
+   pilot->cpu_max = (int)floor((float)(pilot->ship->cpu+s->cpu_max) * s->cpu_mod);
+   pilot->cpu += pilot->cpu_max; /* CPU is negative, this just sets it so it's based off of cpu_max. */
    /* Misc. */
-   pilot->cap_cargo    *= s->cargo_mod;
-   s->engine_limit     *= s->engine_limit_rel;
+   pilot->cap_cargo *= s->cargo_mod;
+   s->engine_limit *= s->engine_limit_rel;
 
    /* Make sure none of the speed variables are zero or lower, as this
     * can cause disastrous and unpredictable results. */
@@ -1081,10 +1084,8 @@ void pilot_calcStats( Pilot* pilot )
    pilot->armour_regen -= s->armour_regen_malus;
    pilot->shield_regen -= s->shield_regen_malus;
    pilot->energy_regen -= s->energy_regen_malus;
-   pilot->energy_loss  += s->energy_loss;
-   pilot->rdr_range    += s->rdr_range;
-   pilot->rdr_jump_range += s->rdr_jump_range;
-   pilot->dmg_absorb    = CLAMP( 0., 1., pilot->dmg_absorb + s->absorb );
+   pilot->energy_loss += s->energy_loss;
+   pilot->dmg_absorb = CLAMP(0., 1., pilot->dmg_absorb + s->absorb);
 
    /* Give the pilot his health proportion back */
    pilot->armour = ac * pilot->armour_max;
