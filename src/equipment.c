@@ -95,7 +95,6 @@ static int equipment_mouseInColumn( double y, double h, int n, double my );
 static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       double x, double y, double w, double h, double rx, double ry, void *data );
 /* Misc. */
-static char eq_qCol( double cur, double base, int inv );
 static int equipment_swapSlot( unsigned int wid, Pilot *p, PilotOutfitSlot *slot );
 static void equipment_sellShip( unsigned int wid, char* str );
 static void equipment_renameShip( unsigned int wid, char *str );
@@ -1595,12 +1594,14 @@ static void equipment_genOutfitList( unsigned int wid )
 /**
  * @brief Gets the colour for comparing a current value vs a ship base value.
  */
-static char eq_qCol( double cur, double base, int inv )
+static char eq_qCol(double cur, double base, int inv, int outcond)
 {
-   if (cur > 1.2*base)
-      return (inv) ? 'r' : 'g';
+   if (outcond)
+      return 'r';
+   else if (cur > 1.2*base)
+      return (inv) ? 'y' : 'g';
    else if (cur < 0.8*base)
-      return (inv) ? 'g' : 'r';
+      return (inv) ? 'g' : 'y';
    return '0';
 }
 
@@ -1608,18 +1609,20 @@ static char eq_qCol( double cur, double base, int inv )
 /**
  * @brief Gets the symbol for comparing a current value vs a ship base value.
  */
-static const char* eq_qSym( double cur, double base, int inv )
+static const char* eq_qSym(double cur, double base, int inv, int outcond)
 {
-   if (cur > 1.2*base)
-      return (inv) ? "!! " : "";
+   if (outcond)
+      return "!! ";
+   else if (cur > 1.2*base)
+      return (inv) ? "*" : "";
    else if (cur < 0.8*base)
-      return (inv) ? "" : "!! ";
+      return (inv) ? "" : "*";
    return "";
 }
 
 
-#define EQ_COMP( cur, base, inv ) \
-eq_qCol( cur, base, inv ), eq_qSym( cur, base, inv ), cur
+#define EQ_COMP(cur, base, inv, outcond) \
+   eq_qCol(cur, base, inv, (outcond)), eq_qSym(cur, base, inv, (outcond)), cur
 /**
  * @brief Updates the player's ship window.
  *    @param wid Window to update.
@@ -1680,18 +1683,18 @@ void equipment_updateShips( unsigned int wid, char* str )
          "#nMass:#0 %.0f t\n"
          "#nJump Time:#0 %s\n"
          "#nThrust:#0 #%c%s%.0f#0 MN/t\n"
-         "#nSpeed:#0 #%c%s%.0f#0 km/s (max #%c%s%.0f#0 km/s)\n"
+         "#nSpeed:#0 #%c%s%.0f#0 km/s (max %.0f km/s)\n"
          "#nTurn:#0 #%c%s%.0f#0 deg/s\n"
-         "#nTime Constant:#0 %.0f%%\n"
+         "#nTime Constant:#0 #%c%s%.0f%%#0\n"
          "\n"
          "#nAbsorption:#0 #%c%s%.0f%%\n"
          "#nShield:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
          "#nArmor:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
          "#nEnergy:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
          "#nCargo:#0 %d / #%c%s%d#0 t\n"
-         "#nFuel:#0 %d hL (%s)\n"
-         "#nRadar Range:#0 #%c%s%.0f km\n"
-         "#nJump Detect Range:#0 #%c%s%.0f km\n"
+         "#nFuel:#0 #%c%s%d#0 hL (%s)\n"
+         "#nRadar Range:#0 #%c%s%.0f#0 km\n"
+         "#nJump Detect Range:#0 #%c%s%.0f#0 km\n"
          "\n"
          "#nShip Status:#0\n"
          "#%c%s#0"),
@@ -1704,26 +1707,35 @@ void equipment_updateShips( unsigned int wid, char* str )
       ship->solid->mass,
       nt,
       EQ_COMP(ship->thrust/ship->solid->mass,
-            ship->ship->thrust/ship->ship->mass, 0),
-      EQ_COMP(ship->speed, ship->ship->speed, 0),
-      EQ_COMP(solid_maxspeed(ship->solid, ship->speed, ship->thrust),
-            solid_maxspeed(ship->solid, ship->ship->speed, ship->ship->thrust),
-            0),
-      EQ_COMP(ship->turn*180./M_PI, ship->ship->turn*180./M_PI, 0),
-      ship->stats.time_mod * ship->ship->dt_default * 100,
+            ship->ship->thrust/ship->ship->mass, 0,
+            ship->thrust/ship->solid->mass <= 0.5),
+      EQ_COMP(ship->speed, ship->ship->speed, 0, ship->speed <= 0.5),
+      solid_maxspeed(ship->solid, ship->speed, ship->thrust),
+      EQ_COMP(ship->turn*180./M_PI, ship->ship->turn*180./M_PI, 0,
+            ship->turn*180./M_PI <= 0.5),
+      EQ_COMP(ship->stats.time_mod * ship->ship->dt_default * 100,
+            ship->ship->dt_default * 100, 1, 0),
       /* Health. */
-      EQ_COMP(ship->dmg_absorb * 100, ship->ship->dmg_absorb * 100, 0),
-      EQ_COMP(ship->shield_max, ship->ship->shield, 0),
-      EQ_COMP(ship->shield_regen, ship->ship->shield_regen, 0),
-      EQ_COMP(ship->armour_max, ship->ship->armour, 0),
-      EQ_COMP(ship->armour_regen, ship->ship->armour_regen, 0),
-      EQ_COMP(ship->energy_max, ship->ship->energy, 0),
-      EQ_COMP(ship->energy_regen, ship->ship->energy_regen, 0),
+      EQ_COMP(ship->dmg_absorb * 100, ship->ship->dmg_absorb * 100, 0,
+            ship->dmg_absorb < 0.),
+      EQ_COMP(ship->shield_max, ship->ship->shield, 0, ship->shield_max < 0.),
+      EQ_COMP(ship->shield_regen, ship->ship->shield_regen, 0,
+            ship->shield_regen < 0.),
+      EQ_COMP(ship->armour_max, ship->ship->armour, 0, ship->armour_max <= 0.),
+      EQ_COMP(ship->armour_regen, ship->ship->armour_regen, 0,
+            ship->armour_regen < 0.),
+      EQ_COMP(ship->energy_max, ship->ship->energy, 0, ship->energy_max < 0.),
+      EQ_COMP(ship->energy_regen, ship->ship->energy_regen, 0,
+            ship->energy_regen < 0.),
       /* Misc. */
-      pilot_cargoUsed(ship), EQ_COMP(cargo, ship->ship->cap_cargo, 0),
-      ship->fuel_max, buf3,
-      EQ_COMP(ship->rdr_range, ship->ship->rdr_range, 0),
-      EQ_COMP(ship->rdr_jump_range, ship->ship->rdr_jump_range, 0),
+      pilot_cargoUsed(ship),
+      EQ_COMP(cargo, ship->ship->cap_cargo, 0, cargo < 0.),
+      EQ_COMP(ship->fuel_max, ship->ship->fuel, 0,
+            ship->fuel_max < ship->fuel_consumption),
+      buf3,
+      EQ_COMP(ship->rdr_range, ship->ship->rdr_range, 0, ship->rdr_range < 0.),
+      EQ_COMP(ship->rdr_jump_range, ship->ship->rdr_jump_range, 0,
+            ship->rdr_jump_range < 0.),
       problems ? 'r' : '0', errorReport);
    window_modifyText(wid, "txtDDesc", buf);
 
