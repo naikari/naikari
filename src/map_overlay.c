@@ -529,7 +529,8 @@ void ovr_render( double dt )
 
    /* First render the background overlay. */
    glColour c = { .r=0., .g=0., .b=0., .a= conf.map_overlay_opacity };
-   gl_renderRect( (double)gui_getMapOverlayBoundLeft(), (double)gui_getMapOverlayBoundRight(), w, h, &c );
+   gl_renderRect((double)gui_getMapOverlayBoundLeft(),
+         (double)gui_getMapOverlayBoundBottom(), w, h, &c);
 
    /* Render planets. */
    for (i=0; i<array_size(cur_system->planets); i++)
