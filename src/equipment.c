@@ -1636,7 +1636,7 @@ void equipment_updateShips( unsigned int wid, char* str )
    int problems;
    char *shipname;
    Pilot *ship;
-   char *nt;
+   char *nt, *nt2;
    int onboard;
    int cargo, jumps;
 
@@ -1658,9 +1658,12 @@ void equipment_updateShips( unsigned int wid, char* str )
    eq_wgt.selected = ship;
 
    /* update text */
-   credits2str( buf2, player_shipPrice(shipname), 2 ); /* sell price */
+   credits2str(buf2, player_shipPrice(shipname), 2); /* sell price */
    cargo = pilot_cargoFree(ship) + pilot_cargoUsed(ship);
-   nt = ntime_pretty( pilot_hyperspaceDelay( ship ), 2 );
+   nt = ntime_pretty(pilot_hyperspaceDelay( ship ), 2);
+   nt2 = ntime_pretty(
+      ntime_create(0, 0, (int)(NT_PERIOD_SECONDS * ship->stats.land_delay)),
+      2);
 
    /* Get ship error report. */
    problems = pilot_reportSpaceworthy(ship, errorReport, sizeof(errorReport));
@@ -1682,6 +1685,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "\n"
          "#nMass:#0 %.0f t\n"
          "#nJump Time:#0 %s\n"
+         "#nTakeoff Time:#0 %s\n"
          "#nThrust:#0 #%c%s%.0f#0 MN/t\n"
          "#nSpeed:#0 #%c%s%.0f#0 km/s (max %.0f km/s)\n"
          "#nTurn:#0 #%c%s%.0f#0 deg/s\n"
@@ -1706,6 +1710,7 @@ void equipment_updateShips( unsigned int wid, char* str )
       /* Movement. */
       ship->solid->mass,
       nt,
+      nt2,
       EQ_COMP(ship->thrust / ship->solid->mass,
             (ship->ship->thrust+ship->ship->stats_array.thrust)
                * ship->ship->stats_array.thrust_mod / ship->ship->mass,
@@ -1778,6 +1783,7 @@ void equipment_updateShips( unsigned int wid, char* str )
    /* Clean up. */
    free(buf);
    free(nt);
+   free(nt2);
 
    /* button disabling */
    if (onboard) {
