@@ -113,9 +113,9 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Energy Regeneration")),
    D__ELEM(SS_TYPE_D_CPU_MOD, cpu_mod, 1, N_("%+G%% CPU Capacity")),
 
-   DI_ELEM(SS_TYPE_D_JUMP_DELAY, jump_delay, 0,
+   DI_ELEM(SS_TYPE_D_JUMP_DELAY, jump_delay, 1,
       N_("%+G%% Jump Time")),
-   DI_ELEM(SS_TYPE_D_LAND_DELAY, land_delay, 0,
+   DI_ELEM(SS_TYPE_D_LAND_DELAY, land_delay, 1,
       N_("%+G%% Takeoff Time")),
    DI_ELEM(SS_TYPE_D_CARGO_INERTIA, cargo_inertia, 0,
       N_("%+G%% Cargo Inertia")),
