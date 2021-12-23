@@ -366,7 +366,7 @@ void equipment_open( unsigned int wid )
 
    x = 10 + sw + 10 + ew + 10;
    y = -40;
-   window_addText(wid, x, y, w-x-10-cw-20, h+y-20-bh, 0, "txtDDesc",
+   window_addText(wid, x, y, w-x-10-cw-10, h+y-20-bh, 0, "txtDDesc",
          &gl_defFont, NULL, NULL);
 
    /* Generate lists. */
