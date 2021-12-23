@@ -343,21 +343,3 @@ if buildExec.disabled() == false
      meson.add_install_script('extras/macos/bundle.py')
    endif
 endif
-
-####
-# Soundtrack
-####
-soundtrackpy = find_program('utils/soundtrack.py')
-custom_target(
-   'soundtrack',
-   command: [
-      soundtrackpy,
-      '--csv', 'yes',
-      '--source-dir', meson.source_root(),
-      '--output', '@OUTPUT0@'
-   ],
-   output: [
-      'naikari-' + meson.project_version() + '-soundtrack.zip',
-      'naikari-' + meson.project_version() + '-soundtrack.csv'
-   ]
-)

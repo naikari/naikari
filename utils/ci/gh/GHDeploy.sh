@@ -81,7 +81,6 @@ mkdir -p "$OUTDIR"/dist
 mkdir -p "$OUTDIR"/lin64
 mkdir -p "$OUTDIR"/macos
 mkdir -p "$OUTDIR"/win64
-mkdir -p "$OUTDIR"/soundtrack
 
 # Move all build artefacts to deployment locations
 # Move Linux binary and set as executable
