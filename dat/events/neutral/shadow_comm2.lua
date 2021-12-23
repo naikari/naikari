@@ -3,7 +3,7 @@
 <event name="Shadowcomm2">
  <trigger>enter</trigger>
  <chance>3</chance>
- <cond>system.cur():presence("hostile") &lt; 300 and player.misnDone("Shadow Vigil") and not (player.misnDone("Dark Shadow") or var.peek("darkshadow_active") == true)</cond>
+ <cond>system.cur():presence("hostile") &lt; 300 and player.misnDone("Shadow Vigil") and not player.misnDone("Dark Shadow") and not player.misnActive("Dark Shadow")</cond>
  <flags>
  </flags>
  <notes>

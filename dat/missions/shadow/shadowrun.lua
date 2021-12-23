@@ -118,7 +118,7 @@ sol2_text = { _("They don't seem to appreciate your company. You decide to leave
 osd_title = _("Shadowrun")
 osd_msg = {}
 osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
-osd_msg2 = _("Fly to the {system} system and dock with (board) Seiryuu by stopping over it and then either double-clicking on it or pressing {key}\n({time} remaining)")
+osd_msg2 = _("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it\n({time} remaining)")
 osd_msg["__save"] = true
 
 log_text = _([[You participated in an operation for Captain Rebina. You thought you were rescuing a man named Jorek, but it turns out that you were actually helping smuggle something onto Captain Rebina's ship, the Seiryuu. You know next to nothing about Captain Rebina or who she works for.]])
@@ -186,8 +186,7 @@ function gen_osd()
     osd_msg[1] = fmt.f(osd_msg1,
             {planet=pnt:name(), system=sys:name(), deadline=deadline1:str(),
                 time=time1:str()})
-    osd_msg[2] = fmt.f(osd_msg2,
-            {system=sys2:name(), key=naev.keyGet("board"), time=time2:str()})
+    osd_msg[2] = fmt.f(osd_msg2, {system=sys2:name(), time=time2:str()})
     misn.osdCreate(osd_title, osd_msg)
 end
 
@@ -263,10 +262,11 @@ function enter()
         seiryuu = pilot.add("Starbridge", "Four Winds", mypos, _("Seiryuu"),
                 {ai="trader", noequip=true})
 
-        seiryuu:setActiveBoard(true)
+        seiryuu:setActiveBoard()
         seiryuu:control()
-        seiryuu:setInvincible(true)
-        seiryuu:setHilight(true)
+        seiryuu:setInvincible()
+        seiryuu:setHilight()
+        seiryuu:setVisplayer()
         
         hook.pilot(seiryuu, "board", "board")
         hook.pilot(seiryuu, "death", "seiryuu_death")

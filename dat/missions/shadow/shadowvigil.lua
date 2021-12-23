@@ -19,9 +19,10 @@
 -- This is the second mission in the "shadow" series.
 --]]
 
+local fmt = require "fmt"
+local fleet = require "fleet"
 require "proximity"
 require "nextjump"
-local fleet = require "fleet"
 require "chatter"
 require "selectiveclear"
 require "missions/shadow/common"
@@ -117,7 +118,7 @@ misn_desc = _([[Captain Rebina of the Four Winds has asked you to help Four Wind
 misn_reward = _("A sum of credits")
 
 osd_title0 = _("Mysterious Meeting")
-osd_msg0 = _("Fly to the {system} system")
+osd_msg0 = _("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it")
 
 misn_desc0 = _("You have been invited to a meeting in the {system} system, though you don't know with whom.")
 misn_reward0 = _("Unknown")
@@ -239,7 +240,8 @@ end
 function enter()
     if system.cur() == misssys[1] and stage == 1 and missend == false then
         -- case enter system where escorts wait
-        escorts = fleet.add(3, "Lancelot", "Four Winds", vec2.new(0, 0), _("Four Winds Escort"), {ai="baddie_norun"})
+        escorts = fleet.add(3, "Lancelot", "Four Winds", vec2.new(0, 0),
+                _("Four Winds Escort"), {ai="baddie_norun"})
         for i, j in ipairs(escorts) do
             if not alive[i] then j:rm() end -- Dead escorts stay dead.
             if j:exists() then
@@ -263,12 +265,13 @@ function jumpin()
     end    
 
     if stage == 0 and system.cur() == rebinasys then -- put Rebina's ship
-        seiryuu = pilot.add("Starbridge", "Four Winds", vec2.new(0, -2000), _("Seiryuu"), {ai="trader"})
-        seiryuu:control(true)
-        seiryuu:setActiveBoard(true)
-        seiryuu:setInvincible(true)
-        seiryuu:setHilight(true)
-        seiryuu:setVisplayer(true)
+        seiryuu = pilot.add("Starbridge", "Four Winds", vec2.new(0, -2000),
+                _("Seiryuu"), {ai="trader", noequip=true})
+        seiryuu:control()
+        seiryuu:setActiveBoard()
+        seiryuu:setInvincible()
+        seiryuu:setHilight()
+        seiryuu:setVisplayer()
         hook.pilot(seiryuu, "board", "board")
     end
 
@@ -376,7 +379,18 @@ function jumpin()
             end
             jp2go = system.cur():jumpDist(misssys[4])
             if jp2go <= 2 and jp2go > 0 then -- Encounter
-                ambush = pilot.addFleet(string.format("Shadowvigil Ambush %i", 3 - jp2go), vec2.new(0, 0), {ai="baddie_norun"})
+                if jp2go == 1 then
+                    ambush = fleet.add({1, 2}, {"Pirate Ancestor", "Hyena"},
+                        "Shadow_pirates", vec2.new(0, 0),
+                        {"Pirate Ancestor", "Pirate Hyena"},
+                        {ai="baddie_norun"})
+                else
+                    ambush = fleet.add({1, 1, 2},
+                        {"Pirate Ancestor", "Pirate Vendetta", "Hyena"},
+                        "Shadow_pirates", vec2.new(0, 0),
+                        {"Pirate Ancestor", "Pirate Vendetta", "Pirate Hyena"},
+                        {ai="baddie_norun"})
+                end
                 kills = 0
                 for i, j in ipairs(ambush) do
                     if j:exists() then
@@ -399,7 +413,8 @@ function jumpin()
 
     elseif system.cur() == seirsys then -- not escorting.
         -- case enter system where Seiryuu is
-        seiryuu = pilot.add("Pirate Kestrel", "Four Winds", vec2.new(0, -2000), _("Seiryuu"), {ai="trader"})
+        seiryuu = pilot.add("Starbridge", "Four Winds", vec2.new(0, -2000),
+                _("Seiryuu"), {ai="trader", noequip=true})
         seiryuu:setInvincible(true)
         if missend then
             seiryuu:setActiveBoard(true)
