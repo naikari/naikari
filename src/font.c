@@ -554,6 +554,7 @@ int gl_printLineIteratorNext( glPrintLineIterator* iter )
    glFontStash *stsh = gl_fontGetStash( iter->ft_font );
    int brk, can_break, can_fit;
    struct LineBreakContext lbc;
+   _linepos_t lastpos;
 
    if (iter->dead)
       return 0;
@@ -567,6 +568,7 @@ int gl_printLineIteratorNext( glPrintLineIterator* iter )
    _linepos_t pos = { .i = iter->l_begin, .w = 0. };
    pos.ch = font_nextChar( iter->text, &pos.i );
    lb_init_break_context( &lbc, pos.ch, gettext_getLanguage() );
+   lastpos = pos;
 
    while (pos.ch != '\0') {
       glFontGlyph *glyph = gl_fontGetGlyph( stsh, pos.ch );
@@ -589,13 +591,14 @@ int gl_printLineIteratorNext( glPrintLineIterator* iter )
 
       if (!can_fit && iter->l_end == iter->l_begin) {
          /* Case we weren't able to write any whole words. */
-         iter->l_width = (int)round(pos.w);
-         iter->l_end = iter->l_next = pos.i;
+         iter->l_width = (int)round(lastpos.w);
+         iter->l_end = iter->l_next = lastpos.i;
       }
 
       if (!can_fit || brk == LINEBREAK_MUSTBREAK)
          return 1;
 
+      lastpos = pos;
       pos = nextpos;
    }
 
