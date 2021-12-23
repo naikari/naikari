@@ -173,7 +173,7 @@ static const luaL_Reg pilotL_methods[] = {
    { "rm", pilotL_remove },
    { "get", pilotL_getPilots },
    { "getHostiles", pilotL_getHostiles },
-   { "getisible", pilotL_getVisible },
+   { "getVisible", pilotL_getVisible },
    { "__eq", pilotL_eq },
    /* Info. */
    { "name", pilotL_name },
@@ -988,10 +988,11 @@ static int pilotL_getHostiles( lua_State *L )
 
 
 /**
- * @brief Gets visible pilots to a pilot within a certain distance.
+ * @brief Gets a table of pilots visible to a pilot.
  *
  *    @luatparam Pilot pilot Pilot to get visible pilots of.
- *    @luatparam[opt=false] boolean disabled Whether or not to count disabled pilots.
+ *    @luatparam[opt=false] boolean disabled Whether or not to count
+ *       disabled pilots.
  *    @luatreturn {Pilot,...} A table containing the pilots.
  * @luafunc getVisible
  */
