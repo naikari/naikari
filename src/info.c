@@ -442,13 +442,16 @@ static void info_openShip( unsigned int wid )
  */
 static void ship_update( unsigned int wid )
 {
-   char *hyp_delay;
+   char *hyp_delay, *land_delay;
    char buf[STRMAX], buf2[STRMAX_SHORT];
    int cargo;
    int jumps;
 
-   cargo = pilot_cargoUsed( player.p ) + pilot_cargoFree( player.p );
-   hyp_delay = ntime_pretty( pilot_hyperspaceDelay( player.p ), 2 );
+   cargo = pilot_cargoUsed(player.p) + pilot_cargoFree(player.p);
+   hyp_delay = ntime_pretty(pilot_hyperspaceDelay(player.p), 2);
+   land_delay = ntime_pretty(
+      ntime_create(0, 0, (int)(NT_PERIOD_SECONDS * player.p->stats.land_delay)),
+      2);
 
    jumps = pilot_getJumps(player.p);
    if (jumps != -1)
@@ -456,7 +459,7 @@ static void ship_update( unsigned int wid )
    else
       strcpy(buf2, _("∞ jumps"));
 
-   snprintf( buf, sizeof(buf),
+   snprintf(buf, sizeof(buf),
          _("#nName:#0 %s\n"
          "#nModel:#0 %s\n"
          "#nClass:#0 %s\n"
@@ -464,7 +467,8 @@ static void ship_update( unsigned int wid )
          "#nMass:#0 %.0f t\n"
          "#nMass Limit Left:#0 %.0f / %.0f t\n"
          "#nSpeed Penalty:#0 %.0f%%\n"
-         "#nJump Time:#0 %s average\n"
+         "#nJump Time:#0 %s\n"
+         "#nTakeoff Time:#0 %s\n"
          "#nThrust:#0 %.0f MN/t\n"
          "#nSpeed:#0 %.0f km/s (max %.0f km/s)\n"
          "#nTurn:#0 %.0f deg/s\n"
@@ -489,6 +493,7 @@ static void ship_update( unsigned int wid )
          player.p->stats.engine_limit,
          (1. - player.p->speed/player.p->speed_base) * 100.,
          hyp_delay,
+         land_delay,
          player.p->thrust / player.p->solid->mass,
          player.p->speed, solid_maxspeed( player.p->solid, player.p->speed, player.p->thrust ),
          player.p->turn*180./M_PI,
@@ -501,12 +506,13 @@ static void ship_update( unsigned int wid )
          pilot_cargoUsed( player.p ), cargo,
          player.p->fuel, player.p->fuel_max, buf2,
          player.p->rdr_range, player.p->rdr_jump_range);
-   window_modifyText( wid, "txtDDesc", buf );
+   window_modifyText(wid, "txtDDesc", buf);
 
-   equipment_shipStats( buf, sizeof(buf), player.p, 1 );
-   window_modifyText( wid, "txtStats", buf );
+   equipment_shipStats(buf, sizeof(buf), player.p, 1);
+   window_modifyText(wid, "txtStats", buf);
 
-   free( hyp_delay );
+   free(hyp_delay);
+   free(land_delay);
 }
 
 
