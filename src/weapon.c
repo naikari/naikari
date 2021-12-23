@@ -1356,7 +1356,6 @@ static void weapon_hitAstBeam( Weapon* w, Asteroid* a, WeaponLayer layer,
 /**
  * @brief Gets the aim position of a turret weapon.
  *
- *    @param outfit Weapon outfit.
  *    @param parent Parent of the weapon.
  *    @param pilot_target Target of the weapon.
  *    @param pos Position of the turret.
@@ -1367,9 +1366,9 @@ static void weapon_hitAstBeam( Weapon* w, Asteroid* a, WeaponLayer layer,
  *    @param track Radar optimal range.
  *    @param track_max Radar max range.
  */
-static double weapon_aimTurret( const Pilot *parent,
-      const Pilot *pilot_target, const Vector2d *pos, const Vector2d *vel, double dir,
-      double swivel, double time, double track, double track_max )
+static double weapon_aimTurret(const Pilot *parent, const Pilot *pilot_target,
+      const Vector2d *pos, const Vector2d *vel, double dir, double swivel,
+      double time, double track, double track_max)
 {
    AsteroidAnchor *field;
    Asteroid *ast;
