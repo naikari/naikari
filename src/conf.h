@@ -39,6 +39,7 @@
 #define SHOW_FPS_DEFAULT                     0     /**< Whether to display FPS on screen. */
 #define FPS_MAX_DEFAULT                      60    /**< Maximum FPS. */
 #define SHOW_PAUSE_DEFAULT                   1     /**< Whether to display pause status. */
+#define RESIZABLE_DEFAULT 1 /**< Whether window is resizable. */
 #define MINIMIZE_DEFAULT                     1     /**< Whether to minimize on focus loss. */
 #define COLORBLIND_DEFAULT                   0     /**< Whether to enable colorblindness simulation. */
 #define BG_BRIGHTNESS_DEFAULT                1.    /**< How much to darken (or lighten) the backgrounds. */
@@ -84,6 +85,7 @@ typedef struct PlayerConf_s {
    double nebu_scale; /**< Downscaling factor for the expensively rendered nebula. */
    int fullscreen; /**< Whether or not game is fullscreen. */
    int modesetting; /**< Whether to use modesetting for fullscreen. */
+   int resizable; /**< Whether or not window is resizable. */
    int borderless; /**< Whether to disable window decorations. */
    int minimize; /**< Whether to minimize on focus loss. */
    int colorblind; /**< Whether to enable colorblindness simulation. */

@@ -247,6 +247,7 @@ void conf_setVideoDefaults (void)
    conf.explicit_dim = 0; /* No need for a define, this is only for first-run. */
    conf.scalefactor  = SCALE_FACTOR_DEFAULT;
    conf.nebu_scale   = NEBULA_SCALE_FACTOR_DEFAULT;
+   conf.resizable = RESIZABLE_DEFAULT;
    conf.minimize     = MINIMIZE_DEFAULT;
    conf.colorblind   = COLORBLIND_DEFAULT;
    conf.bg_brightness = BG_BRIGHTNESS_DEFAULT;
@@ -344,6 +345,7 @@ int conf_loadConfig ( const char* file )
       conf_loadFloat( lEnv, "nebu_scale", conf.nebu_scale );
       conf_loadBool( lEnv, "fullscreen", conf.fullscreen );
       conf_loadBool( lEnv, "modesetting", conf.modesetting );
+      conf_loadBool(lEnv, "resizable", conf.resizable);
       conf_loadBool( lEnv, "borderless", conf.borderless );
       conf_loadBool( lEnv, "minimize", conf.minimize );
       conf_loadBool( lEnv, "colorblind", conf.colorblind );
@@ -865,6 +867,10 @@ int conf_saveConfig ( const char* file )
 
    conf_saveComment(_("Use video modesetting when fullscreen is enabled"));
    conf_saveBool("modesetting",conf.modesetting);
+   conf_saveEmptyLine();
+
+   conf_saveComment(_("Allow resizing the window"));
+   conf_saveBool("resizable", conf.resizable);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Disable window decorations. Use with care and know the keyboard controls to quit and toggle fullscreen."));
