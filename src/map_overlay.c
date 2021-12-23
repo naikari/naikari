@@ -512,7 +512,8 @@ void ovr_render( double dt )
    Pilot *const*pstk;
    AsteroidAnchor *ast;
    double w, h, res;
-   double x,y;
+   double x, y;
+   glColour c;
 
    /* Must be open. */
    if (!ovr_open)
@@ -528,9 +529,15 @@ void ovr_render( double dt )
    res   = ovr_res;
 
    /* First render the background overlay. */
-   glColour c = { .r=0., .g=0., .b=0., .a= conf.map_overlay_opacity };
-   gl_renderRect((double)gui_getMapOverlayBoundLeft(),
-         (double)gui_getMapOverlayBoundBottom(), w, h, &c);
+   if (conf.map_overlay_opacity > 0.) {
+      x = gui_getMapOverlayBoundLeft();
+      y = gui_getMapOverlayBoundBottom();
+      c.r = c.g = c.b = 0.;
+      c.a = conf.map_overlay_opacity;
+      gl_renderRect(x, y, w, h, &c);
+      c.a *= 2;
+      gl_renderRectEmpty(x, y, w, h, &c);
+   }
 
    /* Render planets. */
    for (i=0; i<array_size(cur_system->planets); i++)
