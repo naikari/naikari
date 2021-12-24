@@ -43,10 +43,6 @@ OSDdesc[2] = _("Land on %s (%s system) to deliver the cargo")
 
 payment = 500000
 
--- Cargo Details
-cargo = "Goods"
-cargoAmount = 45
-
 text = {}   --mission text
 
 text[1] = _([[You sit next to the drunk man at the bar and listen to him almost sob into his drink. "I was so close! I almost had it! I could feel it in my grasp! And then I messed it all up! Why did I do it? Hey, wait! You! You can help me!" The man grabs your collar. "How'd you like to make a bit of money and help me out? You can help me! It'll be good for you, it'll be good for me, it'll be good for everyone! Will you help me?"]])
@@ -77,17 +73,17 @@ log_text = _([[You helped some drunkard deliver goods for some countess. You tho
 function create ()
    -- Note: this mission does not make any system claims.
 
-   misn.setNPC( _("Drunkard"), "neutral/unique/drunkard.png", bar_desc )  -- creates the drunkard at the bar
+   misn.setNPC(_("Drunkard"), "neutral/unique/drunkard.png", bar_desc)
 
    -- Planets
-   pickupWorld, pickupSys  = planet.getLandable("INSS-2")
-   delivWorld, delivSys    = planet.getLandable("Darkshed")
+   pickupWorld, pickupSys = planet.getLandable("INSS-2")
+   delivWorld, delivSys = planet.getLandable("Darkshed")
    if pickupWorld == nil or delivWorld == nil then -- Must be landable
       misn.finish(false)
    end
-   origWorld, origSys      = planet.cur()
+   origWorld, origSys = planet.cur()
 
---   origtime = time.get()
+   cargoAmount = 45
 end
 
 function accept ()
@@ -113,31 +109,33 @@ function accept ()
       pickedup = false
       droppedoff = false
 
-      marker = misn.markerAdd( pickupSys, "low" )  -- pickup
-      misn.osdCreate( OSDtitle, OSDdesc )  -- OSD
+      marker = misn.markerAdd(pickupSys, "low")
+      misn.osdCreate(OSDtitle, OSDdesc)
 
       tk.msg( "", text[2]:format( pickupWorld:name(), pickupSys:name(), delivWorld:name(), delivSys:name() ) )
 
-      landhook = hook.land ("land")
-      flyhook = hook.takeoff ("takeoff")
+      hook.land("land")
+      hook.takeoff("takeoff")
    end
 end
 
 function land ()
    if planet.cur() == pickupWorld and not pickedup then
-      if player.pilot():cargoFree() < 45 then
+      if player.pilot():cargoFree() < cargoAmount then
          tk.msg( "", text[9] )  -- Not enough space
          misn.finish()
 
       else
 
          tk.msg( "", text[3] )
-         cargoID = misn.cargoAdd(cargo, cargoAmount)  -- adds cargo
+         local c = misn.cargoNew(N_("Goods"),
+               _("Some sort of cargo you picked up for some countess."))
+         cargoID = misn.cargoAdd(c, cargoAmount)
          pickedup = true
 
-         misn.markerMove( marker, delivSys )  -- destination
+         misn.markerMove(marker, delivSys)
 
-         misn.osdActive(2)  --OSD
+         misn.osdActive(2)
       end
    elseif planet.cur() == delivWorld and pickedup and not droppedoff then
       tk.msg( "", text[4] )
@@ -164,21 +162,13 @@ function takeoff()
       willie:control()
       willie:moveto(player.pos() + vec2.new( 150, 75), true)
       tk.msg( "", text[5] )
-      hailhook = hook.pilot(willie, "hail", "hail")
+      hook.pilot(willie, "hail", "hail")
    end
 end
 
 function hail()
+   player.commClose()
    tk.msg( "", text[6] )
-
---   eventually I'll implement a bonus
---   tk.msg( "", text[7]:format( creditstring(bonus) ) )
-
-   hook.update("closehail")
-end
-
-function closehail()
-   bonus = 0
    player.pay( payment )
    tk.msg( "", text[8]:format( creditstring(payment) ) )
    willie:setVisplayer(false)
@@ -187,11 +177,4 @@ function closehail()
    willie:hyperspace()
    addMiscLog( log_text )
    misn.finish(true)
-end
-
-function abort()
-   hook.rm(landhook)
-   hook.rm(flyhook)
-   if hailhook then hook.rm(hailhook) end
-   misn.finish()
 end

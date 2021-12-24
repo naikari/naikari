@@ -46,7 +46,7 @@ osd_desc_1 = _("Land on {planet} ({system} system) before {deadline}\n({time} re
 osd_desc_2 = _("Land on {planet} ({system} system) before {deadline}\n(You are late)")
 
 -- Cargo Details
-cargo = "Goods"
+cargo = "Industrial Goods"
 
 text = {}   --mission text
 

@@ -109,8 +109,6 @@ function create()
     misn.setReward(misn_reward)
     misn.markerAdd(system.get(destsysname), "low")
     
-    gregar = misn.cargoAdd("Gregar", 0)
-    
     hook.enter("enter")
     hook.land("land")
 end
