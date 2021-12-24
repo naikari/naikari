@@ -40,35 +40,27 @@ bar_desc = _("You see a merchant at the bar in a clear state of anxiety.")
 misn_title = _("Anxious Merchant")
 
 -- OSD
-osd_title = _("Help the Merchant")
-osd_desc = {}
+osd_title = _("Anxious Merchant")
 osd_desc_1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
 osd_desc_2 = _("Land on {planet} ({system} system) before {deadline}\n(You are late)")
 
--- Cargo Details
-cargo = "Industrial Goods"
-
 text = {}   --mission text
 
-full_text = _([[You don't have enough cargo space to accept this mission.]])
+misn_desc = _("You decided to help a fraught merchant by delivering some goods to {planet}.")
 
-slow_text = _([[The goods have to arrive in %s but it will take %s for your ship to reach %s. Accept the mission anyway?]])
+ask_text = _([[As you sit down the merchant looks up at you with a panicked expression, "Ahh! What do you want? Can't you see I've enough on my plate as it is?" You apologize and offer a drink. The merchant visibly relaxes. "Jeez, that's nice of you.…"
 
-misn_desc = _("You decided to help a fraught merchant by delivering some goods to %s.")
+You grab a couple of drinks and hand one to the merchant as they start to talk. "So, I work for a company called NGL. I transport stuff for them, they pay me. Only problem is I kinda strained my engines running from pirates on the way to the pick-up and now I'm realising that my engines just don't have the speed to get me back to beat the deadline. And to top it all off, I'm late on my bills as is; I can't afford new engines now! it's like I'm in the Sol Nebula without a shield generator, you know?"
 
-text[1] = _([[As you sit down the merchant looks up at you with a panicked expression, "Ahh! What do you want? Can't you see I've enough on my plate as it is?" You tell the merchant to calm down and offer a drink. "Jeez, that's nice of you… ha, maybe I can cut a break today!"
+You attempt to reassure the merchant by telling them that surely the company will cut some slack. "Like hell they will! I've already been scolded by management for this exact same thing before! {job_description} I really need this job, you know? I don't know what to do.…" The merchant pauses. "Unless… say, you wouldn't be able to help me out here, would you? I'd just need you to take the cargo to {planet} in the {system} system. Could you? I'll give you the payment for the mission if you do it; it means a lot!"]])
 
-You grab a couple of drinks and hand one to the slightly more relaxed looking merchant as they start to talk. "So, I work for a company called NGL. I transport stuff for them, they pay me. Only problem is I kinda strained my engines running from pirates on the way to the pick-up and now I'm realising that my engines just don't have the speed to get me back to beat the deadline. And to top it all off, I'm late on my bills as is; I can't afford new engines now! it's like I'm in the Sol nebula without a shield generator."
+yes_text = _([[The merchant sighs in relief. "Thank you so much for this. Just bring the cargo to the cargo guy at {planet}. They should pay you {credits} when you get there. Don't be late, OK?"]])
 
-You attempt to reassure the merchant by telling them that surely the company will cut some slack. "Like hell they will! I've already been scolded by management for this exact same thing before! If I don't get this shipment of %s to %s... I really need this job, you know? I don't know what to do.…" The merchant pauses. "Unless… say, you wouldn't be able to help me out here, would you? I'd just need you to take the cargo to %s in the %s system. Could you? I'll give you the payment for the mission if you do it; it means a lot!"]])
+pay_text = _([[As you touch down at the spaceport you see the NGL depot surrounded by a hustle and bustle. The cargo inspector looks at you with surprise and you explain to them what happened as the cargo is unloaded from your ship. "Wow, thanks for the help! You definitely saved us a ton of grief. Here's your payment. Maybe I can buy you a drink some time!" You laugh and part ways.]])
 
-text[2] = _([[The merchant sighs in relief. "Thank you so much for this. Just bring the cargo to the cargo guy at %s. They should pay you %s when you get there. Don't be late, OK?"]])
+pay_late_text = _([[Landing at the spaceport you see the NGL depot surrounded by a fraught hum of activity. The cargo inspector looks at you with surprise and then anger, "What the hell is this?! This shipment was supposed to be here ages ago! We've been shifting stuff around to make up for it and then you come waltzing in here… where the hell is the employee who was supposed to deliver this stuff?" A group of workers rushes along with the inspector and you as you try to explain what happened. The inspector frowns at your explanation. "That fool has been causing us all sorts of problems, and passing on the job to someone as incompetent as you is the last straw! I swear!"
 
-text[3] = _([[As you touch down at the spaceport you see the NGL depot surrounded by a hustle and bustle. The cargo inspector looks at you with surprise and you explain to him what happened as the cargo is unloaded from your ship. "Wow, thanks for the help! You definitely saved us a ton of grief. Here's your payment. Maybe I can buy you a drink some time!" You laugh and part ways.]])
-
-text[4] = _([[Landing at the spaceport you see the NGL depot surrounded by a fraught hum of activity. The cargo inspector looks at you with surprise and then anger, "What the hell is this?! This shipment was supposed to be here ages ago! We've been shifting stuff around to make up for it and then you come waltzing in here… where the hell is the employee who was supposed to deliver this stuff?" A group of workers rushes along with the Inspector and you as you try to explain what happened. "That fool has been causing us all sorts of problems, and passing on the job to someone as incompetent as you is the last straw! I swear!"
-
-You wait to one side as the cargo is hauled off your ship at breakneck speed and wonder if you should have just dumped the stuff in space. Just as the last of the cargo is taken off your ship the inspector, who has clearly cooled off a bit, comes up to you and says "Look, I know you were trying to do us a favor but next time don't bother if you can't make it on time. I'm glad you didn't just dump it all into space like some people have done, but I can't pay you for this." He shakes his head and walks away. "That pilot is so fired.…"]])
+You wait to one side as the cargo is hauled off your ship at breakneck speed and wonder if you should have just dumped the stuff in space. Just as the last of the cargo is taken off your ship the inspector, who has clearly cooled off a bit, comes up to you. "Look, I know you were trying to do us a favor and I'm glad you didn't just dump it all into space like some people have done, so I'll give you a few credits for your troubles. But next time don't bother if you can't make it on time." The inspector shakes their head and walks away. "That pilot is so fired.…"]])
 
 
 function create()
@@ -80,7 +72,7 @@ function create()
       misn.finish(false)
    end
 
-   misn.setNPC(_("Merchant"), portrait.get("Trader"), bar_desc) -- creates the merchant at the bar
+   misn.setNPC(_("Merchant"), portrait.get("Trader"), bar_desc)
 
    stu_distance = 0.2 * travel_dist
    stu_jumps = 10300 * num_jumps
@@ -100,75 +92,105 @@ function create()
 end
 
 function accept()
-   if not tk.yesno("", text[1]:format(_(cargo), dest_planet:name(), dest_planet:name(), dest_sys:name())) then
+   local job_description = fmt.f(n_(
+            "If I don't get this {tonnes} tonne of {cargo} to {planet}…",
+            "If I don't get these {tonnes} tonnes of {cargo} to {planet}…",
+            cargo_size)
+         {tonnes=cargo_size, cargo=_(cargo), planet=dest_planet:name()})
+   if not tk.yesno("", fmt.f(ask_text,
+         {job_description=job_description, planet=dest_planet:name(),
+            system=dest_sys:name()})) then
       misn.finish()
    end
+
    if player.pilot():cargoFree() < cargo_size then
-      tk.msg("", full_text)  -- Not enough space
+      local required_text = n_(
+            "You don't have enough cargo space to accept this mission. It requires {required} tonne of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} tonnes of free space. ",
+            cargo_size)
+      local shortfall = cargo_size - player.pilot():cargoFree()
+      local shortfall_text = n_(
+            "You need {shortfall} more tonne of empty space.",
+            "You need {shortfall} more tonnes of empty space.",
+            shortfall)
+      tk.msg("", fmt.f(required_text .. shortfall_text,
+            {required=fmt.number(cargo_size),
+               shortfall=fmt.number(shortfall)}))
       misn.finish()
    end
-   player.pilot():cargoAdd(cargo, cargo_size)
-   local player_best = cargoGetTransit(time_limit, num_jumps, travel_dist)
-   player.pilot():cargoRm(cargo, cargo_size)
-   if time_limit < player_best then
-      if not tk.yesno("", slow_text:format((time_limit - time.get()):str(), (player_best - time.get()):str(), dest_planet:name())) then
+   player.pilot():cargoAdd("Food", amount)
+   local playerbest = cargoGetTransit(time_limit, numjumps, traveldist)
+   player.pilot():cargoRm("Food", amount)
+   if time_limit < playerbest then
+      local tlimit = time_limit - time.get()
+      local tmore = playerbest - time.get()
+      if not tk.yesno("", fmt.f(
+               _("This shipment must arrive within {timelimit}, but it will take at least {time} for your ship to reach {planet}, missing the deadline. Accept the mission anyway?"),
+               {timelimit=tlimit:str(), time=tmore:str(),
+                  planet=dest_planet:name()})) then
+         misn.finish()
+      end
+   elseif system.cur():jumpDist(destsys, true, true) == nil
+         or system.cur():jumpDist(destsys, true, true) > numjumps then
+      local text = n_(
+            "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jump may cause you to miss the deadline. Accept the mission anyway?",
+            "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jumps may cause you to miss the deadline. Accept the mission anyway?",
+            numjumps)
+      if not tk.yesno("", fmt.f(text,
+               {planet=dest_planet:name(), jumps=numjumps})) then
          misn.finish()
       end
    end
 
    misn.accept()
 
-   -- mission details
    misn.setTitle(misn_title)
    misn.setReward(fmt.credits(payment))
-   misn.setDesc(misn_desc:format(dest_planet:name()))
-   marker = misn.markerAdd(dest_sys, "low") -- destination
-   cargo_ID = misn.cargoAdd(cargo, cargo_size) -- adds cargo
+   misn.setDesc(fmt.f(misn_desc, {planet=dest_planet:name()}))
 
-   -- OSD
-   osd_msg = {
+   marker = misn.markerAdd(dest_sys, "low")
+
+   cargo_ID = misn.cargoAdd(cargo, cargo_size)
+
+   local osd_msg = {
       fmt.f(osd_desc_1,
             {planet=dest_planet:name(), system=dest_sys:name(),
                deadline=time_limit:str(),
                time=(time_limit - time.get()):str()})
    }
-   osd = misn.osdCreate(osd_title, osd_msg)
+   misn.osdCreate(osd_title, osd_msg)
 
-   tk.msg("", text[2]:format(dest_planet:name(), fmt.credits(payment)))
+   tk.msg("", fmt.f(yes_text,
+         {planet=dest_planet:name(), credits=fmt.credits(payment)}))
 
    intime = true
-   land_hook = hook.land("land")
-   date_hook = hook.date(time.create(0, 0, 42), "tick") -- 42STU per tick
+   hook.land("land")
+   date_hook = hook.date(time.create(0, 0, 100), "tick")
 end
 
 function land()
    if planet.cur() == dest_planet then
       if intime then
-         tk.msg("", text[3])
+         tk.msg("", pay_text)
          player.pay(payment)
       else
-         tk.msg("", text[4])
+         tk.msg("", pay_late_text)
+         player.pay(payment / 5)
       end
-      misn.cargoRm(cargo_ID)
-      misn.osdDestroy(osd)
-      misn.markerRm(marker)
-      hook.rm(land_hook)
-      hook.rm(date_hook)
       misn.finish(true)
    end
 end
 
 function tick()
    local osd_msg
-   if time_limit >= time.get() then -- still in time
+   if time_limit >= time.get() then
       osd_msg = {
          fmt.f(osd_desc_1,
                {planet=dest_planet:name(), system=dest_sys:name(),
                   deadline=time_limit:str(),
                   time=(time_limit - time.get()):str()})
       }
-   else -- missed deadline
-      osd_msg = {osd_desc_2:format(dest_planet:name(), dest_sys:name())}
+   else
       osd_msg = {
          fmt.f(osd_desc_2,
                {planet=dest_planet:name(), system=dest_sys:name(),
