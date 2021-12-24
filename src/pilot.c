@@ -3339,7 +3339,8 @@ void pilots_update( double dt )
    int i;
    Pilot *p;
 
-   /* Now update all the pilots. */
+   /* Handle deletions separately to protect against heap-use-after-free
+    * errors. */
    for (i=0; i<array_size(pilot_stack); i++) {
       p = pilot_stack[i];
 
@@ -3349,6 +3350,11 @@ void pilots_update( double dt )
          i--; /* Must decrement iterator. */
          continue;
       }
+   }
+
+   /* Now update all the pilots. */
+   for (i=0; i<array_size(pilot_stack); i++) {
+      p = pilot_stack[i];
 
       /* Invisible, not doing anything. */
       if (pilot_isFlag(p, PILOT_HIDE))
