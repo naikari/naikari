@@ -75,7 +75,7 @@ sh "$MESON" install -C "$BUILDPATH"
 
 # Prep dist directory for appimage
 # (I hate this but otherwise linuxdeploy fails on systems that generate the desktop file)
-cp -f "$SOURCEROOT/io.github.naikari.naikari.desktop" "$DESTDIR/usr/share/applications/"
+cp -f "$SOURCEROOT/io.github.naikari.Naikari.desktop" "$DESTDIR/usr/share/applications/"
 
 # Set ARCH of AppImage
 export ARCH=$(arch)

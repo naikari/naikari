@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.naikari.naikari</id>
+  <id>io.github.naikari.Naikari</id>
 
   <name>Naikari</name>
   <summary>2-D space-trading sandbox game</summary>
@@ -20,7 +20,7 @@
     </p>
   </description>
 
-  <launchable type="desktop-id">io.github.naikari.naikari.desktop</launchable>
+  <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <image>https://naev.org/imgs/screenshots/fight2.png</image>
