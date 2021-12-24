@@ -2528,7 +2528,11 @@ static int pilotL_setNoDeath( lua_State *L )
  * @usage p:disable()
  *
  *    @luatparam Pilot p Pilot to disable.
- *    @luatparam[opt=false] boolean nopermanent Whether or not the disable should be not permanent.
+ *    @luatparam[opt=false] boolean temporary Whether or not the disable
+ *       should be temporary (i.e. the pilot should automatically become
+ *       re-enabled after a period of time, like normal). If this is
+ *       false, the pilot will remain disabled until explicitly
+ *       re-enabled.
  * @luafunc disable
  */
 static int pilotL_disable( lua_State *L )
