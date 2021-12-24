@@ -50,7 +50,7 @@ bar_desc = {}
 
 text[1] = _([[You approach the man and he introduces himself. "Hello, my name is Arnold Smith; I work for Nexus Shipyards. I'm looking for a talented pilot to make a demonstration to one of our potential customers.
 
-"Pretty simple, really: we want someone to show how great Nexus ship designs are by destroying a Pirate Ancestor with just one of our lowest-grade ship, the Shark. Of course, the pilot of the Ancestor has a bounty on his head, so it won't be illegal. The sum of the bounty will be paid to you and Nexus will add a little extra. Would you be interested?"]])
+"Pretty simple, really: we want someone to show how great Nexus ship designs are by destroying a Pirate Ancestor with just one of our smallest ship model, the Shark. Of course, the pilot of the Ancestor has a bounty on his head, so it won't be illegal. The sum of the bounty will be paid to you and Nexus will add a little extra. Would you be interested?"]])
 
 refusetext = _([["That's your choice," the man says. "Don't hesitate to tell me if you change your mind."]])
 
