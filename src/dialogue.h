@@ -41,14 +41,18 @@ char *dialogue_runChoice (void);
  */
 PRINTF_FORMAT( 4, 5 ) int dialogue_list( const char* title, char **items, int nitems, const char *fmt, ... );
 int dialogue_listRaw( const char* title, char **items, int nitems, const char *msg );
-PRINTF_FORMAT( 8, 9 ) int dialogue_listPanel ( const char* title, char **items, int nitems, int extrawidth,
-      int minheight, void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
-      void (*select_call) (unsigned int wid, char* wgtname, int x, int y, int w, int h),
-      const char *fmt, ... );
-int dialogue_listPanelRaw( const char* title, char **items, int nitems, int extrawidth,
-      int minheight, void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
-      void (*select_call) (unsigned int wid, char* wgtname, int x, int y, int w, int h),
-      const char *msg );
+PRINTF_FORMAT( 8, 9 ) int dialogue_listPanel(const char* title, char **items,
+      int nitems, int min, int minheight,
+      void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
+      void (*select_call) (unsigned int wid, char* wgtname, int x, int y,
+         int w, int h),
+      const char *fmt, ...);
+int dialogue_listPanelRaw(const char* title, char **items, int nitems,
+      int minwidth, int minheight,
+      void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
+      void (*select_call) (unsigned int wid, char* wgtname, int x, int y,
+         int w, int h),
+      const char *msg);
 
 /*
  * Custom.

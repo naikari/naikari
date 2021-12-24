@@ -614,7 +614,7 @@ int dialogue_listRaw( const char* title, char **items, int nitems, const char *m
  *    @param title Title of the dialogue.
  *    @param items Items in the list (should be all malloced, automatically freed).
  *    @param nitems Number of items.
- *    @param extrawidth Width of area to add for select_call callback.
+ *    @param minwidth Minimum width for the window.
  *    @param minheight Minimum height for the window.
  *    @param add_widgets This function is called with the new window as an argument
  *          allowing for initial population of the extra area.
@@ -623,10 +623,12 @@ int dialogue_listRaw( const char* title, char **items, int nitems, const char *m
  *          as arguments.
  *    @param fmt printf formatted string with text to display.
  */
-int dialogue_listPanel( const char* title, char **items, int nitems, int extrawidth,
-      int minheight, void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
-      void (*select_call) (unsigned int wid, char* wgtname, int x, int y, int w, int h),
-      const char *fmt, ... )
+int dialogue_listPanel(const char* title, char **items, int nitems,
+      int minwidth, int minheight,
+      void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
+      void (*select_call) (unsigned int wid, char* wgtname, int x, int y,
+         int w, int h),
+      const char *fmt, ...)
 {
    char msg[STRMAX_SHORT];
    va_list ap;
@@ -642,8 +644,8 @@ int dialogue_listPanel( const char* title, char **items, int nitems, int extrawi
    vsnprintf(msg, sizeof(msg), fmt, ap);
    va_end(ap);
 
-   return dialogue_listPanelRaw( title, items, nitems, extrawidth, minheight,
-         add_widgets, select_call, msg );
+   return dialogue_listPanelRaw(title, items, nitems, minwidth, minheight,
+         add_widgets, select_call, msg);
 }
 /**
  * @brief Creates a list dialogue with OK and Cancel buttons, with a fixed message,
@@ -652,7 +654,7 @@ int dialogue_listPanel( const char* title, char **items, int nitems, int extrawi
  *    @param title Title of the dialogue.
  *    @param items Items in the list (should be all malloced, automatically freed).
  *    @param nitems Number of items.
- *    @param extrawidth Width of area to add for select_call callback.
+ *    @param minwidth Minimum width for the window.
  *    @param minheight Minimum height for the window.
  *    @param add_widgets This function is called with the new window as an argument
  *          allowing for initial population of the extra area.
@@ -661,10 +663,12 @@ int dialogue_listPanel( const char* title, char **items, int nitems, int extrawi
  *          name as arguments.
  *    @param msg string with text to display.
  */
-int dialogue_listPanelRaw( const char* title, char **items, int nitems, int extrawidth,
-      int minheight, void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
-      void (*select_call) (unsigned int wid, char* wgtname, int x, int y, int w, int h),
-      const char *msg )
+int dialogue_listPanelRaw(const char* title, char **items, int nitems,
+      int minwidth, int minheight,
+      void (*add_widgets) (unsigned int wid, int x, int y, int w, int h),
+      void (*select_call) (unsigned int wid, char* wgtname, int x, int y,
+         int w, int h),
+      const char *msg)
 {
    int i;
    int w, h, winw, winh;
@@ -691,11 +695,11 @@ int dialogue_listPanelRaw( const char* title, char **items, int nitems, int extr
    else
       h = MAX( 300, list_height );
 
-   h = MIN( (SCREEN_H*2)/3, h );
-   w = MAX( list_width + 60, 500 );
+   h = MIN((SCREEN_H*2)/3, h);
+   w = MAX(list_width + 60, 500);
 
-   winw = w + extrawidth;
-   winh = MAX( h, minheight );
+   winw = MAX(w, minwidth);
+   winh = MAX(h, minheight);
 
    h = winh;
 
@@ -708,13 +712,13 @@ int dialogue_listPanelRaw( const char* title, char **items, int nitems, int extr
    window_setCancel( wid, dialogue_listCancel );
 
    if (add_widgets)
-      add_widgets(wid, w, 0, winw, winh);
+      add_widgets(wid, w, 20+30+20, winw - w, winh - (20+30+20));
 
    if (select_call) {
       input_dialogue.x = w;
-      input_dialogue.y = 0;
-      input_dialogue.w = winw;
-      input_dialogue.h = winh;
+      input_dialogue.y = 20+30+20;
+      input_dialogue.w = winw - w;
+      input_dialogue.h = winh - (20+30+20);
       input_dialogue.item_select_cb = select_call;
    }
 

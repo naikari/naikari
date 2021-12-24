@@ -5,6 +5,7 @@
 
 /** @cond */
 #include <assert.h>
+#include <math.h>
 
 #include "naev.h"
 /** @endcond */
@@ -12,6 +13,7 @@
 #include "map_find.h"
 
 #include "array.h"
+#include "conf.h"
 #include "dialogue.h"
 #include "log.h"
 #include "map.h"
@@ -651,35 +653,20 @@ static char **map_outfitsMatch( const char *name )
  */
 static void map_addOutfitDetailFields(unsigned int wid, int x, int y, int w, int h)
 {
-   (void) h;
-   (void) y;
-   int iw;
+   window_addRect(wid, x+w - 17 - 136, y+h - 36 - 135, 136, 135,
+         "rctImage", &cBlack, 0);
+   window_addImage(wid, x+w - 20 - 128, y+h - 40 - 128, 128, 128,
+         "imgOutfit", NULL, 1);
 
-   iw = x;
+   window_addText(wid, x, y+h - 40 - 160, w - 10 - 136 - 20, 160, 0,
+         "txtOutfitName", &gl_defFont, NULL, NULL);
 
-   window_addRect( wid, -1 + iw, -50, 128, 129, "rctImage", &cBlack, 0 );
-   window_addImage( wid, iw, -50-128, 0, 0, "imgOutfit", NULL, 1 );
-
-   window_addText( wid, iw + 128 + 20, -60,
-         280, 160, 0, "txtOutfitName", &gl_defFont, NULL, NULL );
-   window_addText( wid, iw + 128 + 20, -60 - gl_defFont.h - 20,
-         280, 160, 0, "txtDescShort", &gl_smallFont, NULL, NULL );
-   window_addText( wid, iw+20, -60-128-10,
-         90, 160, 0, "txtSDesc", &gl_smallFont, NULL,
-         _("#nOwned:#0\n"
-         "\n"
-         "#nSlot:#0\n"
-         "#nSize:#0\n"
-         "#nMass:#0\n"
-         "\n"
-         "#nPrice:#0\n"
-         "#nMoney:#0\n"
-         "#nLicense:#0\n") );
-   window_addText( wid, iw+20, -60-128-10,
-         w - (20 + iw + 20 + 90), 160, 0, "txtDDesc", &gl_smallFont, NULL, NULL );
-   window_addText( wid, iw+20, -60-128-10-160,
-         w-(iw+80), 180, 0, "txtDescription",
-         &gl_smallFont, NULL, NULL );
+   window_addText(wid, x, 0, w - 10 - 136 - 20, 160, 0,
+         "txtDDesc", &gl_defFont, NULL, NULL);
+   window_addText(wid, x, 0, w - 20, 320, 0,
+         "txtDescShort", &gl_defFont, NULL, NULL);
+   window_addText(wid, x, 0, w - 20, 160, 0,
+         "txtDescription", &gl_smallFont, NULL, NULL);
 }
 /**
  * @brief Update the listPanel outfit details to the outfit selected.
@@ -693,22 +680,27 @@ static void map_addOutfitDetailFields(unsigned int wid, int x, int y, int w, int
  */
 static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, int w, int h)
 {
-   (void) x;
-   (void) y;
-   (void) h;
+   (void) w;
    Outfit *outfit;
-   char buf[PATH_MAX], buf2[ECON_CRED_STRLEN], buf3[ECON_CRED_STRLEN];
-   double th;
-   int iw;
+   char buf[STRMAX], buf_price[ECON_CRED_STRLEN],
+         buf_credits[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT];
+   int tw, th;
+   int dy;
    double mass;
 
-   /* 452 px is the sum of the 128 px outfit image width, its 4 px border,
-    * a 20 px gap, 280 px for the outfit's name and a final 20 px gap. */
-   iw = w - 452;
+   outfit = outfit_get(map_foundOutfitNames[toolkit_getListPos(wid, wgtname)]);
 
-   outfit = outfit_get( map_foundOutfitNames[toolkit_getListPos(wid, wgtname)] );
-   window_modifyText( wid, "txtOutfitName", _(outfit->name) );
-   window_modifyImage( wid, "imgOutfit", outfit->gfx_store, 128, 128 );
+   window_modifyImage(wid, "imgOutfit", outfit->gfx_store, 128, 128);
+
+   price2str(buf_price, outfit->price, player.p->credits, 2);
+   credits2str(buf_credits, player.p->credits, 2);
+
+   if (outfit->license == NULL)
+      strncpy(buf_license, _("None"), sizeof(buf_license)-1);
+   else if (player_hasLicense(outfit->license))
+      strncpy(buf_license, _(outfit->license), sizeof(buf_license)-1);
+   else
+      snprintf(buf_license, sizeof(buf_license), "#r%s#0", _(outfit->license));
 
    mass = outfit->mass;
    if ((outfit_isLauncher(outfit) || outfit_isFighterBay(outfit)) &&
@@ -716,34 +708,46 @@ static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, 
       mass += outfit_amount(outfit) * outfit_ammo(outfit)->mass;
    }
 
-   window_modifyText( wid, "txtDescription", _(outfit->description) );
-   credits2str( buf2, outfit->price, 2 );
-   credits2str( buf3, player.p->credits, 2 );
-   snprintf( buf, sizeof(buf),
-         _("%d\n"
-         "\n"
-         "%s\n"
-         "%s\n"
-         "%.0f t\n"
-         "\n"
-         "%s\n"
-         "%s\n"
-         "%s\n"),
+   window_modifyText(wid, "txtOutfitName", _(outfit->name));
+   window_dimWidget(wid, "txtOutfitName", &tw, &th);
+   th = gl_printHeightRaw(&gl_defFont, tw, _(outfit->name));
+   dy = y+h - 40 - th - 30;
+
+   snprintf(buf, sizeof(buf),
+         _("#nOwned:#0 %d\n"
+            "#nSlot:#0 %s (%s)\n"
+            "#nMass:#0 %.0f t\n"
+            "#nPrice:#0 %s\n"
+            "#nMoney:#0 %s\n"
+            "#nLicense:#0 %s\n"),
          player_outfitOwned(outfit),
-         _(outfit_slotName(outfit)),
-         _(outfit_slotSize(outfit)),
+         _(outfit_slotName(outfit)), _(outfit_slotSize(outfit)),
          mass,
-         buf2,
-         buf3,
-         (outfit->license != NULL) ? _(outfit->license) : _("None") );
-   window_modifyText( wid, "txtDDesc", buf );
-   window_modifyText( wid, "txtOutfitName", _(outfit->name) );
-   window_modifyText( wid, "txtDescShort", outfit->desc_short );
-   th = MAX( 128, gl_printHeightRaw( &gl_smallFont, 280, outfit->desc_short ) );
-   window_moveWidget( wid, "txtSDesc", iw+20, -60-th-20 );
-   window_moveWidget( wid, "txtDDesc", iw+20+90, -60-th-20 );
-   th += gl_printHeightRaw( &gl_smallFont, 280, buf );
-   window_moveWidget( wid, "txtDescription", iw+20, -60-th-40 );
+         buf_price,
+         buf_credits,
+         buf_license);
+   window_modifyText(wid, "txtDDesc", buf);
+   window_dimWidget(wid, "txtDDesc", &tw, &th);
+   th = gl_printHeightRaw(&gl_defFont, tw, buf);
+   th = MAX(0, MIN(th, dy - y));
+   window_resizeWidget(wid, "txtDDesc", tw, th);
+   window_moveWidget(wid, "txtDDesc", x, dy - th);
+   dy -= th + 20;
+
+   window_modifyText(wid, "txtDescShort", outfit->desc_short);
+   window_dimWidget(wid, "txtDescShort", &tw, &th);
+   th = gl_printHeightRaw(&gl_defFont, tw, outfit->desc_short);
+   th = MAX(0, MIN(th, dy - y));
+   window_resizeWidget(wid, "txtDescShort", tw, th);
+   window_moveWidget(wid, "txtDescShort", x, dy - th);
+   dy -= th + 20;
+
+   window_modifyText(wid, "txtDescription", _(outfit->description));
+   window_dimWidget(wid, "txtDescription", &tw, &th);
+   th = gl_printHeightRaw(&gl_defFont, tw, _(outfit->description));
+   th = MAX(0, MIN(th, dy - y));
+   window_resizeWidget(wid, "txtDescription", tw, th);
+   window_moveWidget(wid, "txtDescription", x, dy - th);
 }
 
 /**
@@ -778,9 +782,10 @@ static int map_findSearchOutfits( unsigned int parent, const char *name )
       list  = malloc( len*sizeof(char*) );
       for (i=0; i<len; i++)
          list[i] = strdup( _(map_foundOutfitNames[i]) );
-      i = dialogue_listPanel( _("Search Results"), list, len, 452, 650,
+      i = dialogue_listPanel(_("Search Results"), list, len,
+            RESOLUTION_W_MIN, RESOLUTION_H_MIN,
             map_addOutfitDetailFields, map_showOutfitDetail,
-            _("Search results for outfits matching '%s':"), name );
+            _("Search results for outfits matching '%s':"), name);
       if (i < 0) {
          array_free( map_foundOutfitNames );
          map_foundOutfitNames = NULL;
