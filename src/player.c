@@ -239,7 +239,7 @@ static void player_newSetup()
 void player_new (void)
 {
    int r;
-   char buf[PATH_MAX];
+   char buf[PATH_MAX], buf2[PATH_MAX];
 
    /* Set up new player. */
    player_newSetup();
@@ -257,10 +257,12 @@ void player_new (void)
       return;
    }
 
-   snprintf( buf, sizeof(buf), "saves/%s.ns", player.name);
+   str2filename(buf2, sizeof(buf2), player.name);
+   if (snprintf(buf, sizeof(buf), "saves/%s.ns", buf2) < 0)
+      WARN(_("Save file name was truncated: %s"), buf);
    if (PHYSFS_exists( buf )) {
       r = dialogue_YesNo(_("Overwrite"),
-            _("You already have a pilot named %s. Overwrite?"),player.name);
+            _("You already have a pilot named %s. Overwrite?"), player.name);
       if (r==0) { /* no */
          player_new();
          return;

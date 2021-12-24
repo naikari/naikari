@@ -157,7 +157,8 @@ void shipyard_open( unsigned int wid )
 void shipyard_update( unsigned int wid, char* str )
 {
    (void)str;
-   int i, l;
+   int i;
+   size_t l;
    int w, h, iw, bh, tw, th;
    int y;
    Ship* ship;

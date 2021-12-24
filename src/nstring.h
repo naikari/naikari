@@ -38,5 +38,7 @@ PRINTF_FORMAT( 3, 4 ) int scnprintf( char* text, size_t maxlen, const char* fmt,
 
 int strsort( const void *p1, const void *p2 );
 
+size_t str2filename(char *out, size_t maxlen, const char *s);
+
 
 #endif /* NSTRING_H */

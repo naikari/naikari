@@ -190,3 +190,72 @@ int scnprintf( char* text, size_t maxlen, const char* fmt, ... )
    va_end( ap );
    return MIN( maxlen-1, (size_t)n );
 }
+
+
+/**
+ * @brief Creates a variant of a string which is safe for file names.
+ *
+ *    @param out Where to write the converted string.
+ *    @param maxlen Maximum length of out string.
+ *    @param s The string to convert.
+ *    @return Number of characters written.
+ */
+size_t str2filename(char *out, size_t maxlen, const char *s)
+{
+   int i;
+   size_t l = 0;
+
+   if ((s == NULL) || (out == NULL))
+      return 0;
+
+   /* Illegal characters on Linux FS:
+    *    ':'
+    *    0
+    * Illegal characters on Windows FS:
+    *    '<' '>' ':' '"' '/' '\\' '|' '?' '*'
+    *    0-31
+    * Potentially problematic characters:
+    *    '.'
+    *    Unicode characters
+    * Reserved Windows names:
+    *    'CON' 'PRN' 'AUX' 'NUL' 'COM1'…'COM9' 'LPT1'…'LPT9'
+    * '!' is also converted since it's used in replacement notation. */
+   for (i=0; s[i]!='\0'; i++) {
+      if ((s[i] <= 31) || (s[i] >= 127)) {
+         l += scnprintf(&out[l], maxlen - l, "!%02x", (unsigned int)s[i]);
+         continue;
+      }
+
+      switch (s[i]) {
+         case ':':
+         case '<':
+         case '>':
+         case '"':
+         case '\\':
+         case '/':
+         case '|':
+         case '?':
+         case '*':
+         case '.':
+         case '!':
+            l += scnprintf(&out[l], maxlen - l, "!%02x", (unsigned int)s[i]);
+            break;
+
+         default:
+            l += scnprintf(&out[l], maxlen - l, "%c", s[i]);
+      }
+   }
+#if defined(_WIN32) || defined(__CYGWIN__)
+   /* Extra protections just for Windows. Keeping it out of Linux
+    * because this reserved names thing is rather silly. */
+   if ((strcasestr(out, "con") != NULL)
+         || (strcasestr(out, "prn") != NULL)
+         || (strcasestr(out, "aux") != NULL)
+         || (strcasestr(out, "nul") != NULL)
+         || (strcasestr(out, "com") != NULL)
+         || (strcasestr(out, "lpt") != NULL))
+      l += scnprintf(&out[l], maxlen - l, "%s", "!X");
+#endif
+
+   return l;
+}
