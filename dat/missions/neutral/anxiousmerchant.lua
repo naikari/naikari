@@ -44,8 +44,6 @@ osd_title = _("Anxious Merchant")
 osd_desc_1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
 osd_desc_2 = _("Land on {planet} ({system} system) before {deadline}\n(You are late)")
 
-text = {}   --mission text
-
 misn_desc = _("You decided to help a fraught merchant by delivering some goods to {planet}.")
 
 ask_text = _([[As you sit down the merchant looks up at you with a panicked expression, "Ahh! What do you want? Can't you see I've enough on my plate as it is?" You apologize and offer a drink. The merchant visibly relaxes. "Jeez, that's nice of you.…"
