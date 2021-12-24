@@ -834,8 +834,8 @@ void player_thinkAutonav( Pilot *pplayer, double dt )
 void player_updateAutonav( double dt )
 {
    const double dis_dead = 1.0;
-   const double dis_mod  = 5.0;
-   const double dis_max  = 10.0;
+   const double dis_mod = 5.0;
+   const double dis_max = 10.0;
    const double dis_ramp = 2.0;
 
    if (paused || (player.p==NULL) || pilot_isFlag(player.p, PILOT_DEAD))
@@ -854,6 +854,7 @@ void player_updateAutonav( double dt )
        *
        * For triangles we have to add the rectangle and triangle areas.
        */
+      tc_base = player_dt_default();
       /* 5 second deadtime. */
       if (player.p->dtimer_accum < dis_dead)
          tc_mod = tc_base;
