@@ -116,9 +116,9 @@ function accept()
                shortfall=fmt.number(shortfall)}))
       misn.finish()
    end
-   player.pilot():cargoAdd("Food", amount)
+   player.pilot():cargoAdd("Food", cargo_size)
    local playerbest = cargoGetTransit(time_limit, numjumps, traveldist)
-   player.pilot():cargoRm("Food", amount)
+   player.pilot():cargoRm("Food", cargo_size)
    if time_limit < playerbest then
       local tlimit = time_limit - time.get()
       local tmore = playerbest - time.get()
