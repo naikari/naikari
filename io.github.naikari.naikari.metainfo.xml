@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.naikari.naikari</id>
-  
+
   <name>Naikari</name>
   <summary>2-D space-trading sandbox game</summary>
-  
+  <url type="homepage">https://naikari.github.io</url>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  
+
   <recommends>
     <control>pointing</control>
     <control>keyboard</control>
     <control>gamepad</control>
   </recommends>
-  
+
   <description>
     <p>
       Naikari is a 2-D space-trading sandbox game, forked from the Naev project.
     </p>
   </description>
-  
+
   <launchable type="desktop-id">io.github.naikari.naikari.desktop</launchable>
   <screenshots>
     <screenshot type="default">
@@ -41,14 +41,14 @@
         <image>https://naev.org/imgs/screenshots/planet.png</image>
     </screenshot>
   </screenshots>
-  
+
   <icon type="stock">naikari</icon>
   
   <categories>
     <category>Game</category>
     <category>AdventureGame</category>
   </categories>
-  
+
   <provides>
     <binary>naikari</binary>
   </provides>
