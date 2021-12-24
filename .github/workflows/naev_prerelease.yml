@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/projectsynchro/naev-release:latest"
+      image: "ghcr.io/naev/naev-release:latest"
 
     steps:
       - name: Checkout Naev Repository
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/projectsynchro/naev-linux-lts:latest"
+      image: "ghcr.io/naev/naev-linux-lts:latest"
 
     steps:
       - name: Get Source
@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/projectsynchro/naev-windows:latest"
+      image: "ghcr.io/naev/naev-windows:latest"
 
     steps:
       - name: Get Source
@@ -136,7 +136,7 @@ jobs:
     needs: "Package_Source"
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/projectsynchro/naev-macos:latest"
+      image: "ghcr.io/naev/naev-macos:latest"
 
     steps:
       - name: Get Source
@@ -187,7 +187,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/projectsynchro/naev-release:latest"
+      image: "ghcr.io/naev/naev-release:latest"
 
     needs:
       [
