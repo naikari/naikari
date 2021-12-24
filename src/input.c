@@ -35,6 +35,7 @@
 #include "player.h"
 #include "toolkit.h"
 #include "weapon.h"
+#include "utf8.h"
 
 
 #define MOUSE_HIDE   ( 3.) /**< Time in seconds to wait before hiding mouse again. */
@@ -126,12 +127,15 @@ const char *keybind_info[][3] = {
    { "switchtab8", N_("Switch Tab 8"), N_("Switches to tab 8.") },
    { "switchtab9", N_("Switch Tab 9"), N_("Switches to tab 9.") },
    { "switchtab0", N_("Switch Tab 0"), N_("Switches to tab 0.") },
+   /* Console-main. */
+   { "paste", N_("Paste"), N_("Paste from the operating system's clipboard.") },
    /* Must terminate in NULL. */
    { NULL, NULL, NULL }
 }; /**< Names of possible keybindings. */
 
 static Keybind *input_keybinds; /**< contains the players keybindings */
 const int input_numbinds = ( sizeof( keybind_info ) / sizeof( keybind_info[ 0 ] ) ) - 1; /**< Number of keybindings. */
+static Keybind *input_paste;
 
 
 /*
@@ -279,6 +283,7 @@ void input_setDefault ( int wasd )
    input_setKeybind( "switchtab8", KEYBIND_KEYBOARD, SDLK_8, NMOD_ALT );
    input_setKeybind( "switchtab9", KEYBIND_KEYBOARD, SDLK_9, NMOD_ALT );
    input_setKeybind( "switchtab0", KEYBIND_KEYBOARD, SDLK_0, NMOD_ALT );
+   input_setKeybind( "paste", KEYBIND_KEYBOARD, SDLK_v, NMOD_CTRL );
 }
 
 
@@ -330,12 +335,15 @@ void input_init (void)
       temp->type        = KEYBIND_NULL;
       temp->key         = SDLK_UNKNOWN;
       temp->mod         = NMOD_NONE;
+
+      if (strcmp(temp->name,"paste")==0)
+         input_paste = temp;
    }
 }
 
 
 /**
- * @brief Exits the input subsystem.
+ * @brief exits the input subsystem.
  */
 void input_exit (void)
 {
@@ -820,7 +828,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
 
 
    /*
-    * combat
+    * Combat
     */
    /* shooting primary weapon */
    } else if (KEY("primary") && NODEAD() && !repeat) {
@@ -905,7 +913,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
       player_weapSetPress( 9, value, repeat );
 
    /*
-    * space
+    * Space
     */
    } else if (KEY("autonav") && NOHYP() && NODEAD()) {
       if (value==KEY_PRESS) {
@@ -1267,8 +1275,7 @@ static void input_clickevent( SDL_Event* event )
    gl_windowToScreenPos( &mx, &my, event->button.x, event->button.y );
    if ((mx <= 15 || my <= 15 ) || (my >= gl_screen.h - 15 || mx >= gl_screen.w - 15)) {
       /* Border targeting is handled as a special case, as it uses angles,
-       * not coordinates.
-       */
+       * not coordinates. */
       x = (mx - (gl_screen.w / 2.)) + px;
       y = (my - (gl_screen.h / 2.)) + py;
       mouseang = atan2(py - y, px -  x);
@@ -1600,7 +1607,12 @@ int input_isDoubleClick( void *clicked )
  */
 void input_handle( SDL_Event* event )
 {
-   int ismouse = 0;
+   int ismouse;
+   SDL_Event evt;
+   char *txt;
+   size_t i;
+   uint32_t ch;
+   size_t e;
 
    /* Special case mouse stuff. */
    if ((event->type == SDL_MOUSEMOTION)  ||
@@ -1609,6 +1621,27 @@ void input_handle( SDL_Event* event )
       input_mouseTimer = MOUSE_HIDE;
       SDL_ShowCursor( SDL_ENABLE );
       ismouse = 1;
+   }
+   else
+      ismouse = 0;
+
+   /* Special case paste. */
+   if ((event->type == SDL_KEYDOWN) && SDL_HasClipboardText() &&
+         (SDL_EventState(SDL_TEXTINPUT, SDL_QUERY) == SDL_ENABLE)) {
+      SDL_Keymod mod = input_translateMod( event->key.keysym.mod );
+      if ((input_paste->key == event->key.keysym.sym) &&
+            (input_paste->mod & mod)) {
+         txt = SDL_GetClipboardText();
+         evt.type = SDL_TEXTINPUT;
+         i = 0;
+         while ((ch = u8_nextchar(txt, &i))) {
+            e = u8_wc_toutf8(evt.text.text, ch);
+            evt.text.text[e] = '\0';
+            SDL_PushEvent(&evt);
+         }
+         SDL_free(txt);
+         return;
+      }
    }
 
    if (toolkit_isOpen()) { /* toolkit handled completely separately */
