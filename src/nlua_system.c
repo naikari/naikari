@@ -579,7 +579,7 @@ static int systemL_adjacent( lua_State *L )
  * @usage for i, s in ipairs( sys:jumps() ) do -- Iterate over jumps.
  *
  *    @luatparam System s System to get the jumps of.
- *    @luatparam[opt=false] boolean exitonly Whether to exclude exit-only jumps.
+ *    @luatparam[opt=false] boolean exitonly Whether to include exit-only jumps.
  *    @luatreturn {Jump,...} An ordered table with all the jumps.
  * @luafunc jumps
  */
@@ -597,7 +597,7 @@ static int systemL_jumps( lua_State *L )
    lua_newtable(L);
    for (i=0; i<array_size(s->jumps); i++) {
       /* Skip exit-only jumps if requested. */
-      if ((exitonly) && (jp_isFlag( &s->jumps[i],  JP_EXITONLY)))
+      if ((!exitonly) && (jp_isFlag(&s->jumps[i], JP_EXITONLY)))
             continue;
 
       lj.srcid  = s->id;

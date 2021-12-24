@@ -298,7 +298,7 @@ function spawn_timer()
       local sources = {}
 
       -- Possible systems to jump in from
-      for i, jmp in ipairs(sys:jumps()) do
+      for i, jmp in ipairs(sys:jumps(true)) do
          local source = jmp:dest()
          -- Have to get the real jump that would be used to get here.
          -- Ensures that they don't try to spawn through a jump that's
