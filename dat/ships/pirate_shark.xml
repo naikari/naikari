@@ -15,9 +15,9 @@
  <trail_generator x="-15" y="-7" h="7" >pirate</trail_generator>
  <trail_generator x="-15" y="0" h="-5" always_under="1" >pirate</trail_generator>
  <fabricator>Skull and Bones</fabricator>
- <description>The nimble Nexus Shipyards Shark has proved an excellent canvas for the Skull and Bones technicians. Fitted with an additional weapon mount, its handling suffers minimally while it's able to bring substantially more firepower to bear.</description>
+ <description>The nimble Nexus Shipyards Shark has proved an excellent canvas for the Skull and Bones technicians. Fitted with an additional weapon mount, its protection and handling suffers minimally while it's able to bring substantially more firepower to bear.</description>
  <health>
-  <armour>35</armour>
+  <armour>30</armour>
   <armour_regen>0</armour_regen>
  </health>
  <characteristics>
@@ -43,8 +43,11 @@
  </slots>
  <stats>
   <turn_mod>-5</turn_mod>
+  <engine_limit_rel>10</engine_limit_rel>
   <cargo_mod>15</cargo_mod>
-  <armour_mod>-10</armour_mod>
+  <shield_mod>-20</shield_mod>
+  <shield_regen_mod>-5</shield_regen_mod>
+  <armour_mod>30</armour_mod>
   <heat_dissipation>10</heat_dissipation>
   <rdr_enemy_range_mod>-50</rdr_enemy_range_mod>
  </stats>

@@ -16,9 +16,6 @@ equip_typeOutfits_coreSystems["Diablo"] = {
 equip_typeOutfits_coreSystems["Hephaestus"] = {
    "Milspec Hermes 9802 Core System",
 }
-equip_typeOutfits_coreSystems["Prototype"] = {
-   "Milspec Orion 9901 Core System",
-}
 
 equip_typeOutfits_engines["Sting"] = {
    "Tricon Cyclone Engine",
@@ -35,9 +32,6 @@ equip_typeOutfits_engines["Diablo"] = {
 equip_typeOutfits_engines["Hephaestus"] = {
    "Melendez Mammoth XL Engine",
 }
-equip_typeOutfits_engines["Prototype"] = {
-   "Unicorp Eagle 6500 Engine", "Tricon Typhoon II Engine",
-}
 
 equip_typeOutfits_hulls["Sting"] = {
    "S&K Medium Stealth Plating", "S&K Medium Combat Plating",
@@ -52,9 +46,6 @@ equip_typeOutfits_hulls["Diablo"] = {
    "Unicorp D-48 Heavy Plating", "S&K Heavy Combat Plating",
 }
 equip_typeOutfits_hulls["Hephaestus"] = {
-   "Unicorp D-72 Heavy Plating", "S&K Superheavy Combat Plating",
-}
-equip_typeOutfits_hulls["Prototype"] = {
    "Unicorp D-72 Heavy Plating", "S&K Superheavy Combat Plating",
 }
 
