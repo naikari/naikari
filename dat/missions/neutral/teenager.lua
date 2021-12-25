@@ -157,6 +157,7 @@ function targetBoard()
 
     target:setHilight(false)
     target:setVisplayer(false)
+    target:disable()
 
     local c = misn.cargoNew(N_("Teenagers"), N_("Disillusioned teenagers."))
     cargoID = misn.cargoAdd(c,0)
