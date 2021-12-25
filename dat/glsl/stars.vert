@@ -21,7 +21,6 @@ void main(void) {
 
    /* Generate lines. */
    vec2 v = xy * brightness;
-   v = length(v) >= 1. ? v : vec2(1., 0.);
    gl_Position.xy += mod(float(gl_VertexID), 2.) * v * scale;
 
    gl_Position = projection * gl_Position;

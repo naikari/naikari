@@ -161,6 +161,7 @@ void background_renderStars( const double dt )
    GLfloat x, y, m;
    double z;
    gl_Matrix4 projection;
+   int use_lines;
 
    glUseProgram(shaders.stars.program);
 
@@ -196,6 +197,10 @@ void background_renderStars( const double dt )
          y = m*sin(VANGLE(player.p->solid->vel));
       }
    }
+   use_lines = (x >= 2.) || (x <= -2.) || (y >= 2.) || (y <= -2.);
+   if (!use_lines) {
+      x = y = 0.;
+   }
 
    /* Calculate some dimensions. */
    w  = (SCREEN_W + 2.*STAR_BUF);
@@ -216,7 +221,7 @@ void background_renderStars( const double dt )
    glUniform2f(shaders.stars.wh, w, h);
    glUniform2f(shaders.stars.xy, x, y);
    glUniform1f(shaders.stars.scale, 1 / gl_screen.scale);
-   glDrawArrays( GL_LINES, 0, nstars );
+   glDrawArrays(use_lines ? GL_LINES : GL_POINTS, 0, nstars);
 
    /* Disable vertex array. */
    glDisableVertexAttribArray( shaders.stars.vertex );
