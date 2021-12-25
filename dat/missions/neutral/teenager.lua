@@ -36,7 +36,7 @@ ask_text = _([["Excuse me," the man says as you approach him. "I'm looking for a
 
 yes_text = _([["Thank you! The yacht doesn't have a working hyperdrive, so they won't have left the system. It's a Gawain named Credence. Just disable it and board it, then transport my disobedient son and his girlfriend back here. Don't worry about the yacht, I'll have it recovered later. Oh, and one more thing, though it should go without saying: whatever you do, don't destroy the yacht! I don't want to lose my son over this. Well then, I hope to see you again soon."]])
 
-fail_text = _([[You have destroyed the Credence! You resolve to get out of here as soon as possible so the father doesn't do something to you.]])
+fail_text = _([[The Credence has been destroyed! You resolve to get out of here as soon as possible so the father doesn't do something to you.]])
 
 board_text = _([[You board the Gawain and find an enraged teenage boy and a disillusioned teenage girl. The boy is furious that you attacked and disabled his ship, but when you mention that his father is quite upset and wants him to come home right now, he quickly pipes down. You march the young couple onto your ship and seal the airlock behind you.]])
 
@@ -142,10 +142,13 @@ function targetIdle()
 end
 
 function targetExploded()
-   hook.timer(2.0, "targetDeath")
+    hook.timer(2.0, "targetDeath")
 end
 
 function targetDeath()
+    if not targetlive then
+        return
+    end
     tk.msg("", fail_text)
     misn.finish(false)
 end
@@ -169,7 +172,7 @@ function targetBoard()
 end
 
 function land()
-    if planet.cur() == curplanet then
+    if planet.cur() == curplanet and not targetlive then
         tk.msg("", pay_text)
         player.pay(300000) -- 300K
         misn.finish(true)
