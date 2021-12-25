@@ -33,6 +33,7 @@
 #include "player_gui.h"
 #include "slots.h"
 #include "space.h"
+#include "tk/toolkit_priv.h"
 #include "toolkit.h"
 
 
@@ -183,10 +184,6 @@ void outfits_open( unsigned int wid, const Outfit **outfits )
    window_addRect(wid, -17, -16, 200, 199, "rctImage", &cBlack, 0);
    window_addImage(wid, -20, -20, 192, 192, "imgOutfit", NULL, 1);
 
-   /* cust draws the modifier */
-   window_addCust( wid, -96, -260,
-         40, gl_smallFont.h, "cstMod", 0, outfits_renderMod, NULL, NULL );
-
    /* the descriptive text */
    window_addText(wid, 20 + iw + 20, -40, w - (20+iw+20) - 200 - 20, 160, 0,
          "txtOutfitName", &gl_defFont, NULL, NULL);
@@ -197,6 +194,10 @@ void outfits_open( unsigned int wid, const Outfit **outfits )
          "txtDescShort", &gl_defFont, NULL, NULL);
    window_addText(wid, 20 + iw + 20, 0, w - (20+iw+20) - 20, 160, 0,
          "txtDescription", &gl_smallFont, NULL, NULL);
+
+   /* cust draws the modifier */
+   window_addCust(wid, -20 - (20+bw) - (10+bw) + 20, 20+bh+10,
+         40, 2*gl_smallFont.h, "cstMod", 0, outfits_renderMod, NULL, NULL);
 
    /* Create the image array. */
    outfits_genList( wid );
@@ -876,8 +877,11 @@ static void outfits_renderMod( double bx, double by, double w, double h, void *d
 {
    (void) data;
    (void) h;
+   int tw, th;
    int q;
-   char buf[8];
+   char buf[STRMAX_SHORT];
+   glColour c;
+   const int off = 4;
 
    q = outfits_getMod();
    if (q != outfits_mod) {
@@ -886,8 +890,21 @@ static void outfits_renderMod( double bx, double by, double w, double h, void *d
    }
    if (q==1) return; /* Ignore no modifier. */
 
-   snprintf( buf, 8, "%d×", q );
-   gl_printMidRaw( &gl_smallFont, w, bx, by, &cFontWhite, -1, buf );
+   /* It's possible for there to be text underneath. */
+   glClear(GL_DEPTH_BUFFER_BIT);
+
+   snprintf(buf, 8, "%d×", q);
+
+   by += off;
+   tw = gl_printWidthRaw(&gl_smallFont, buf);
+   th = gl_printHeightRaw(&gl_smallFont, tw, buf);
+   c.r = toolkit_col->r;
+   c.g = toolkit_col->g;
+   c.b = toolkit_col->b;
+   c.a = 0.95;
+
+   gl_renderRect(bx + w/2 - tw/2 - off, by - off, tw + 2*off, th + 2*off, &c);
+   gl_printMidRaw(&gl_smallFont, w, bx, by, &cFontWhite, -1, buf);
 }
 
 
