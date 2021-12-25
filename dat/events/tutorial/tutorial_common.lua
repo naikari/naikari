@@ -56,5 +56,6 @@ function tutExplainBoarding(explanation)
          tk.msg("", explanation)
       end
       addTutLog(log, N_("Boarding"))
+      var.push("tutorial_boarding", true)
    end
 end
