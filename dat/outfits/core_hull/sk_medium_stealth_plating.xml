@@ -12,8 +12,8 @@
  </general>
  <specific type="modification">
   <cargo>12</cargo>
-  <absorb>14</absorb>
-  <armour>260</armour>
+  <absorb>12</absorb>
+  <armour>180</armour>
   <armour_regen>0</armour_regen>
   <rdr_enemy_range_mod>-30</rdr_enemy_range_mod>
  </specific>

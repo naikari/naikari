@@ -15,5 +15,6 @@
   <absorb>56</absorb>
   <armour>1650</armour>
   <armour_regen>0</armour_regen>
+  <rdr_enemy_range_mod>10</rdr_enemy_range_mod>
  </specific>
 </outfit>
