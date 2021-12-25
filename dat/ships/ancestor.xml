@@ -39,6 +39,8 @@
  </slots>
  <stats>
   <cpu_mod>-25</cpu_mod>
+  <speed_mod>5</speed_mod>
+  <engine_limit_rel>5</engine_limit_rel>
   <launch_rate>15</launch_rate>
   <launch_range>10</launch_range>
   <ammo_capacity>50</ammo_capacity>
