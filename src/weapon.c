@@ -1527,7 +1527,8 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
 
    pilot_target = NULL;
    ammo = launcher->u.lau.ammo;
-   if (w->outfit->type == OUTFIT_TYPE_AMMO) {
+   if ((w->outfit->type == OUTFIT_TYPE_AMMO) && (parent->id != w->target)
+         && (w->target != 0)) {
       pilot_target = pilot_get(w->target);
       if (launcher->type == OUTFIT_TYPE_TURRET_LAUNCHER)
          rdir = weapon_aimTurret(
