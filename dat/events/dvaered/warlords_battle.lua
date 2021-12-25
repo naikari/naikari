@@ -134,10 +134,6 @@ function attack()
    attdeath = 0
    attkilled = 0 -- mass of the player's victims
 
-   local lead = getLeader(attackers)
-   lead:control()
-   lead:land(source_planet)
-
    defAttHook = {}
 
    godd = pilot.add("Dvaered Goddard", f2, source_planet, N_("Local Warlord"))
@@ -164,25 +160,34 @@ function attack()
    defdeath = 0
    defkilled = 0 --mass of the player's victims
 
-   local alead = getLeader(attackers)
-   local dlead = getLeader(defenders)
-   alead:taskClear()
-   dlead:control()
-   alead:attack(dlead)
-   dlead:attack(alead)
-   hook.timer(0.5, "proximity", {anchor=alead, radius=5000,
-            funcname="startBattle", focus=dlead})
+   goda:setVisible()
+   goda:setHilight()
+   goda:control()
+
+   godd:setVisible()
+   godd:setHilight()
+   godd:control()
+
+   goda:attack(godd)
+   godd:attack(goda)
+
+   hook.timer(0.5, "proximity", {anchor=goda, radius=5000,
+            funcname="startBattle", focus=godd})
 end
 
 -- Both fleets are close enough: start the epic battle
 function startBattle()
    if inForm then
       for i, p in ipairs(attackers) do
-         p:memory().aggressive = true
+         if p:exists() then
+            p:memory().aggressive = true
+         end
       end
       getLeader(attackers):control(false)
       for i, p in ipairs(defenders) do
-         p:memory().aggressive = true
+         if p:exists() then
+            p:memory().aggressive = true
+         end
       end
       getLeader(defenders):control(false)
       inForm = false
