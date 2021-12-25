@@ -43,7 +43,7 @@
  <stats>
   <speed_mod>-10</speed_mod>
   <turn_mod>-5</turn_mod>
-  <armour_mod>20</armour_mod>
+  <armour_mod>60</armour_mod>
   <energy_mod>20</energy_mod>
   <energy_regen_mod>-10</energy_regen_mod>
   <fwd_heat>-15</fwd_heat>

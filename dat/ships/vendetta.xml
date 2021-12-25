@@ -41,7 +41,7 @@
  </slots>
  <stats>
   <speed_mod>-10</speed_mod>
-  <armour_mod>10</armour_mod>
+  <armour_mod>50</armour_mod>
   <energy_mod>20</energy_mod>
   <energy_regen_mod>-10</energy_regen_mod>
   <fwd_heat>-10</fwd_heat>
