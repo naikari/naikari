@@ -4,7 +4,7 @@
   <typename>Shield Power Modifier</typename>
   <slot>structure</slot>
   <size>medium</size>
-  <mass>18</mass>
+  <mass>12</mass>
   <price>110000</price>
   <description>A more powerful shield enhancer, providing better protection during skirmishes.</description>
   <gfx_store>capacitor2.webp</gfx_store>

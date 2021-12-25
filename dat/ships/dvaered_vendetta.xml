@@ -18,7 +18,7 @@
  <description>This military grade version of the Vendetta has stronger armor and better weapon cooling facilities than the standard Vendetta, but its turning thrusters are less optimally placed than its standard counterpart to make space for the improved weapon cooling facilities, reducing the ship's turning rate slightly.</description>
  <health>
   <armour>110</armour>
-  <armour_regen>0</armour_regen>
+  <armour_regen>0.8</armour_regen>
  </health>
  <characteristics>
   <mass>75</mass>

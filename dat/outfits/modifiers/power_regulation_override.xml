@@ -14,5 +14,8 @@
   <fwd_damage>15</fwd_damage>
   <fwd_heat>5</fwd_heat>
   <fwd_energy>5</fwd_energy>
+  <launch_damage>15</launch_damage>
+  <launch_range>-5</launch_range>
+  <ammo_capacity>-5</ammo_capacity>
  </specific>
 </outfit>
