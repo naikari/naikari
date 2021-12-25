@@ -717,6 +717,9 @@ static void equipment_renderOverlayColumn( double x, double y, double h,
          }
 
          if (display != NULL) {
+            /* The text might appear on top of previously drawn text. */
+            glClear(GL_DEPTH_BUFFER_BIT);
+
             text_width = gl_printWidthRaw( &gl_smallFont, display );
             if (top)
                yoff = h + 2;
