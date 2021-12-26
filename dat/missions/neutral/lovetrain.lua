@@ -279,10 +279,10 @@ function accept()
       misn.accept()
 
       local s = fmt.f(
-            n_("The civilian hands you {packages:%d} package. You will be paid when it is delivered.",
-               "The civilian hands you {packages:%d} packages. You will be paid when they are all delivered.",
+            n_("The civilian hands you {number} package. You will be paid when it is delivered.",
+               "The civilian hands you {number} packages. You will be paid when they are all delivered.",
                numpartners),
-            {packages=numpartners})
+            {number=numpartners})
       tk.msg("", s)
 
       misn.setTitle(misn_title)
