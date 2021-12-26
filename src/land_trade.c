@@ -203,8 +203,9 @@ void commodity_update( unsigned int wid, char* str )
                  "#nFree Space:#0 %s\n"
                  "#nMoney:#0 %s"),
               buf_tonnes_owned, buf_purchase_price, buf_local_price,
-              buf_tonnes_free, buf_credits, buf_mean, buf_std,
-              buf_globalmean, buf_globalstd);
+              buf_mean, buf_std,
+              buf_globalmean, buf_globalstd,
+              buf_tonnes_free, buf_credits);
 
    window_modifyText( wid, "txtDInfo", buf );
    window_modifyText( wid, "txtName", _(com->name) );
