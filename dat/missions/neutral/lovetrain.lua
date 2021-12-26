@@ -278,6 +278,13 @@ function accept()
    if tk.yesno("", send_text) then
       misn.accept()
 
+      local s = fmt.f(
+            n_("The civilian hands you {packages:%d} package. You will be paid when it is delivered.",
+               "The civilian hands you {packages:%d} packages. You will be paid when they are all delivered.",
+               numpartners),
+            {packages=numpartners})
+      tk.msg("", s)
+
       misn.setTitle(misn_title)
       misn.setReward(fmt.credits(credits))
       misn.setDesc(
