@@ -246,7 +246,7 @@ static const ShipStatsLookup ss_lookup[] = {
    B__ELEM(SS_TYPE_B_REVERSE_THRUST, misc_reverse_thrust, 0,
       N_("Reverse Thrusters")),
    B__ELEM(SS_TYPE_B_ASTEROID_SCAN, misc_asteroid_scan, 0,
-      N_("Asteroid Scanner")),
+      N_("Asteroid Detailed View")),
 
    /* Sentinel. */
    N__ELEM(SS_TYPE_SENTINEL)
