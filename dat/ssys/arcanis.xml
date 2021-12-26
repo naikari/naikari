@@ -34,6 +34,8 @@
    <type>default</type>
    <type>default</type>
    <type>massive</type>
+   <type>golden</type>
+   <type>liquid</type>
    <radius>4000.000000</radius>
    <pos x="4000.000000" y="6000.000000"/>
    <density>1.000000</density>
