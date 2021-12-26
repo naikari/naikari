@@ -594,7 +594,6 @@ static void cli_input( unsigned int wid, char *unused )
          cli_firstline = 1;
       }
    }
-
    /* Print results - all went well. */
    else if (status == 0) {
       lua_remove(naevL,1);
@@ -680,6 +679,9 @@ void cli_open (void)
    window_addCust( wid, 20, -40,
          CLI_WIDTH-40, CLI_CONSOLE_HEIGHT,
          "cstConsole", 0, cli_render, NULL, NULL );
+
+   /* Reinitilaized. */
+   cli_firstline = 1;
 }
 
 
