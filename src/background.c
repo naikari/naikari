@@ -114,23 +114,38 @@ void background_initStars( int n )
    nstars = (unsigned int)(size/(800.*600.));
 
    /* Create data. */
-   star_vertex = malloc( nstars * sizeof(GLfloat) * 6 );
+   star_vertex = malloc(nstars * sizeof(GLfloat) * 12);
 
    for (i=0; i < nstars; i++) {
       /* Set the position. */
-      star_vertex[6*i+0] = RNGF()*w - hw;
-      star_vertex[6*i+1] = RNGF()*h - hh;
-      star_vertex[6*i+3] = star_vertex[6*i+0];
-      star_vertex[6*i+4] = star_vertex[6*i+1];
+      star_vertex[12*i+0] = RNGF()*w - hw;
+      star_vertex[12*i+1] = RNGF()*h - hh;
+      star_vertex[12*i+6] = star_vertex[12*i+0];
+      star_vertex[12*i+7] = star_vertex[12*i+1];
       /* Set the colour. */
-      star_vertex[6*i+2] = RNGF()*0.6 + 0.2;
-      star_vertex[6*i+5] = star_vertex[6*i+2];
+      star_vertex[12*i+2] = RNGF()*0.6 + 0.2;
+      if (RNGF() < 0.5) {
+         /* Less colorful star. */
+         star_vertex[12*i+3] = RNGF()*0.2 + 0.8;
+         star_vertex[12*i+4] = RNGF()*0.2 + 0.8;
+         star_vertex[12*i+5] = RNGF()*0.2 + 0.8;
+      }
+      else {
+         /* More colorful star. */
+         star_vertex[12*i+3] = RNGF()*0.8 + 0.2;
+         star_vertex[12*i+4] = RNGF()*0.8 + 0.2;
+         star_vertex[12*i+5] = RNGF()*0.8 + 0.2;
+      }
+      star_vertex[12*i+8] = star_vertex[12*i+2];
+      star_vertex[12*i+9] = star_vertex[12*i+3];
+      star_vertex[12*i+10] = star_vertex[12*i+4];
+      star_vertex[12*i+11] = star_vertex[12*i+5];
    }
 
    /* Recreate VBO. */
    gl_vboDestroy( star_vertexVBO );
    star_vertexVBO = gl_vboCreateStatic(
-         nstars * sizeof(GLfloat) * 6, star_vertex );
+         nstars * sizeof(GLfloat) * 12, star_vertex);
 
    free(star_vertex);
 }
@@ -165,7 +180,8 @@ void background_renderStars( const double dt )
 
    glUseProgram(shaders.stars.program);
 
-   glLineWidth(1 / gl_screen.scale);
+   glLineWidth(1. / gl_screen.scale);
+   glPointSize(1. / gl_screen.scale);
 
    /* Do some scaling for now. */
    z = cam_getZoom();
@@ -209,12 +225,15 @@ void background_renderStars( const double dt )
    h += conf.zoom_stars * (h / conf.zoom_far - 1.);
 
    /* Render. */
-   glEnableVertexAttribArray( shaders.stars.vertex );
-   glEnableVertexAttribArray( shaders.stars.brightness );
-   gl_vboActivateAttribOffset( star_vertexVBO, shaders.stars.vertex, 0,
-         2, GL_FLOAT, 3 * sizeof(GLfloat) );
-   gl_vboActivateAttribOffset( star_vertexVBO, shaders.stars.brightness, 2 * sizeof(GLfloat),
-         1, GL_FLOAT, 3 * sizeof(GLfloat) );
+   glEnableVertexAttribArray(shaders.stars.vertex);
+   glEnableVertexAttribArray(shaders.stars.brightness);
+   glEnableVertexAttribArray(shaders.stars.color);
+   gl_vboActivateAttribOffset(star_vertexVBO, shaders.stars.vertex,
+         0, 2, GL_FLOAT, 6 * sizeof(GLfloat));
+   gl_vboActivateAttribOffset(star_vertexVBO, shaders.stars.brightness,
+         2 * sizeof(GLfloat), 1, GL_FLOAT, 6 * sizeof(GLfloat));
+   gl_vboActivateAttribOffset(star_vertexVBO, shaders.stars.color,
+         3 * sizeof(GLfloat), 3, GL_FLOAT, 6 * sizeof(GLfloat));
 
    gl_Matrix4_Uniform(shaders.stars.projection, projection);
    glUniform2f(shaders.stars.star_xy, star_x, star_y);
@@ -227,7 +246,8 @@ void background_renderStars( const double dt )
    glDisableVertexAttribArray( shaders.stars.vertex );
    glDisableVertexAttribArray( shaders.stars.brightness );
 
-   glLineWidth(1 / gl_screen.scale);
+   glLineWidth(1. / gl_screen.scale);
+   glPointSize(1. / gl_screen.scale);
 
    glUseProgram(0);
 

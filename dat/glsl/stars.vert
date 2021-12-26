@@ -7,8 +7,10 @@ uniform float scale;
 
 in vec4 vertex;
 in float brightness;
+in vec3 color;
 
 out float brightness_out;
+out vec3 c_out;
 
 void main(void) {
    /* Calculate position */
@@ -26,4 +28,5 @@ void main(void) {
    gl_Position = projection * gl_Position;
 
    brightness_out = brightness;
+   c_out = color;
 }
