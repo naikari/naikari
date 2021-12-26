@@ -111,7 +111,7 @@ void background_initStars( int n )
 
    /* Calculate stars. */
    size  *= n;
-   nstars = (unsigned int)(size/(800.*600.));
+   nstars = (unsigned int)(size/(1280.*720.));
 
    /* Create data. */
    star_vertex = malloc(nstars * sizeof(GLfloat) * 12);
@@ -168,15 +168,16 @@ void background_moveStars( double x, double y )
  * @brief Renders the starry background.
  *
  *    @param dt Current delta tick.
+ *    @param stationary Whether to limit star movement (so they're far away).
  */
-void background_renderStars( const double dt )
+void background_renderStars(const double dt, const int stationary)
 {
    (void) dt;
    GLfloat h, w;
    GLfloat x, y, m;
    double z;
    gl_Matrix4 projection;
-   int use_lines;
+   int use_lines = 0;
 
    glUseProgram(shaders.stars.program);
 
@@ -184,38 +185,46 @@ void background_renderStars( const double dt )
    glPointSize(1. / gl_screen.scale);
 
    /* Do some scaling for now. */
-   z = cam_getZoom();
-   z = 1. * (1. - conf.zoom_stars) + z * conf.zoom_stars;
-   projection = gl_Matrix4_Translate( gl_view_matrix, SCREEN_W/2., SCREEN_H/2., 0 );
-   projection = gl_Matrix4_Scale( projection, z, z, 1 );
+   z = 1.;
+   if (!stationary) {
+      z = cam_getZoom();
+      z = 1. * (1. - conf.zoom_stars) + z * conf.zoom_stars;
+   }
+   projection = gl_Matrix4_Translate(
+         gl_view_matrix, SCREEN_W/2., SCREEN_H/2., 0);
+   projection = gl_Matrix4_Scale(projection, z, z, 1);
 
    /* Decide on shade mode. */
    x = 0;
    y = 0;
-   if ((player.p != NULL) && !player_isFlag(PLAYER_DESTROYED) &&
-         !player_isFlag(PLAYER_CREATING)) {
+   if (!stationary) {
+      if ((player.p != NULL) && !player_isFlag(PLAYER_DESTROYED) &&
+            !player_isFlag(PLAYER_CREATING)) {
 
-      if (pilot_isFlag(player.p,PILOT_HYPERSPACE)) { /* hyperspace fancy effects */
-         /* lines get longer the closer we are to finishing the jump */
-         m  = MAX( 0, HYPERSPACE_STARS_BLUR-player.p->ptimer );
-         m /= HYPERSPACE_STARS_BLUR;
-         m *= HYPERSPACE_STARS_LENGTH;
-         x = m*cos(VANGLE(player.p->solid->vel));
-         y = m*sin(VANGLE(player.p->solid->vel));
+         /* hyperspace fancy effects */
+         if (pilot_isFlag(player.p,PILOT_HYPERSPACE)) {
+            /* lines get longer the closer we are to finishing the jump */
+            m  = MAX(0, HYPERSPACE_STARS_BLUR-player.p->ptimer);
+            m /= HYPERSPACE_STARS_BLUR;
+            m *= HYPERSPACE_STARS_LENGTH;
+            x = m*cos(VANGLE(player.p->solid->vel));
+            y = m*sin(VANGLE(player.p->solid->vel));
+         }
+         else if (dt_mod * VMOD(player.p->solid->vel) > 500. ) {
+            /* Very short lines tend to flicker horribly. A stock Llama
+             * at 2x speed just so happens to make very short lines. A
+             * 5px minimum is long enough to (mostly) alleviate the
+             * flickering.
+             */
+            m = MAX(5, dt_mod*VMOD(player.p->solid->vel)/25. - 20);
+            x = m*cos(VANGLE(player.p->solid->vel));
+            y = m*sin(VANGLE(player.p->solid->vel));
+         }
       }
-      else if (dt_mod * VMOD(player.p->solid->vel) > 500. ) {
-         /* Very short lines tend to flicker horribly. A stock Llama at 2x
-          * speed just so happens to make very short lines. A 5px minimum
-          * is long enough to (mostly) alleviate the flickering.
-          */
-         m = MAX( 5, dt_mod*VMOD(player.p->solid->vel)/25. - 20 );
-         x = m*cos(VANGLE(player.p->solid->vel));
-         y = m*sin(VANGLE(player.p->solid->vel));
+      use_lines = (x >= 2.) || (x <= -2.) || (y >= 2.) || (y <= -2.);
+      if (!use_lines) {
+         x = y = 0.;
       }
-   }
-   use_lines = (x >= 2.) || (x <= -2.) || (y >= 2.) || (y <= -2.);
-   if (!use_lines) {
-      x = y = 0.;
    }
 
    /* Calculate some dimensions. */
@@ -236,7 +245,8 @@ void background_renderStars( const double dt )
          3 * sizeof(GLfloat), 3, GL_FLOAT, 6 * sizeof(GLfloat));
 
    gl_Matrix4_Uniform(shaders.stars.projection, projection);
-   glUniform2f(shaders.stars.star_xy, star_x, star_y);
+   glUniform2f(shaders.stars.star_xy, stationary ? star_x / 1000. : star_x,
+         stationary ? star_y / 1000. : star_y);
    glUniform2f(shaders.stars.wh, w, h);
    glUniform2f(shaders.stars.xy, x, y);
    glUniform1f(shaders.stars.scale, 1 / gl_screen.scale);
@@ -270,8 +280,9 @@ void background_render( double dt )
       }
    }
 
+   background_renderStars(dt, 1);
    background_renderImages( bkg_image_arr_bk );
-   background_renderStars(dt);
+   background_renderStars(dt, 0);
    background_renderImages( bkg_image_arr_ft );
 
    if (bkg_L_renderfg != LUA_NOREF) {

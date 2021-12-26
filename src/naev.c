@@ -558,7 +558,7 @@ void loadscreen_render( double done, const char *msg )
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
    /* Draw stars. */
-   background_renderStars( 0. );
+   background_renderStars(0., 1);
 
    /*
     * Dimensions.
