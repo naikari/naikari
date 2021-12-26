@@ -12,16 +12,16 @@ out float brightness_out;
 
 void main(void) {
    /* Calculate position */
-   float b = 1./(9. - 10.*brightness);
+   float b = 1.0 / (9.0 - 10.0*brightness);
    gl_Position = vertex;
    gl_Position.xy += star_xy * b;
 
    /* check boundaries */
-   gl_Position.xy = mod(gl_Position.xy + wh/2., wh) - wh/2.;
+   gl_Position.xy = mod(gl_Position.xy + wh/2.0, wh) - wh/2.0;
 
    /* Generate lines. */
    vec2 v = xy * brightness;
-   gl_Position.xy += mod(float(gl_VertexID), 2.) * v * scale;
+   gl_Position.xy += mod(float(gl_VertexID), 2.0) * v * scale;
 
    gl_Position = projection * gl_Position;
 
