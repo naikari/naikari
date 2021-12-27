@@ -147,6 +147,9 @@ void map_exit (void)
       array_free( decorator_stack );
       decorator_stack = NULL;
    }
+
+   array_free(map_path);
+   map_path = NULL;
 }
 
 
@@ -2164,11 +2167,10 @@ void map_clear (void)
       map_xpos = 0.;
       map_ypos = 0.;
    }
-   array_free(map_path);
-   map_path = NULL;
 
    /* default system is current system */
-   map_selectCur();
+   if (map_selected == -1)
+      map_selectCur();
 }
 
 static void map_reset (void)
