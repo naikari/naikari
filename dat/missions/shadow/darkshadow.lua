@@ -39,8 +39,13 @@ You step onto the bridge, where Captain Rebina is waiting for you. "Welcome back
 
 The captain motions you to take a seat at what looks like a holotable in the center of the bridge. "Before I tell you what I've called you here for, I feel I should explain to you in full who we are, what we do and what your part in all this is." She takes a seat opposite from yours, and leans on the holotable. "As I've said before, we are the Four Winds. Our organization is a very secretive one, as you've experienced firsthand. Very few outside our ranks know of our existence, and now you're one of those few."]])
 
-text[3] = _([["The Four Winds are old, %s. Very old indeed. The movement dates back to old Earth, before the Space Age, even. We have been with human civilization throughout the ages, at first only in the Eastern nations, later establishing a foothold worldwide. Our purpose was to guide humanity, prevent it from making mistakes it could not afford to make. We never came out in the open, we always worked behind the scenes, from the shadows. We were diplomats, scientists, journalists, politicians' spouses, sometimes even assassins. We used any means necessary to gather information and avert disaster, when we could.
-    "Of course, we didn't always succeed. We couldn't prevent the nuclear strikes on Japan, though we managed to prevent several others. We foiled the sabotage attempts on several of the colony ships launched during the First Growth, but sadly failed to do so in Maelstrom's case. We failed to stop the Faction Wars, though we managed to help the Empire gain the upper hand. Our most recent failure is the Incident - we should have seen it coming, but we were completely taken by surprise."]])
+-- Note: Rebina wrongly believing that nuclear weapons were never used
+-- is intentional. She has been lied to; the Four Winds are actually an
+-- elaborate Proteron espionage scheme which has had a breakdown in
+-- command since the Proteron are cut off.
+fourwinds_origin_text = _([["The Four Winds are old, {player}. Ancient, even. The movement dates back to old Earth. We have been with human civilization throughout the ages, at first only in the Eastern nations, later establishing a foothold worldwide. Our purpose was to guide humanity, prevent it from making mistakes it could not afford to make. We never came out in the open, we always worked behind the scenes, from the shadows. We were diplomats, scientists, journalists, politicians' spouses, sometimes even assassins. We used any means necessary to gather information and avert disaster, when we could.
+
+"We accomplished a lot, but no one would know since they don't know how history could have turned out. We prevented nuclear weapons from ever being used on Earth when humanity discovered them in ancient times. We foiled the sabotage attempts on several of the colony ships launched during the First Growth. We ensured the Empire's success in the faction wars. That said, we had our first major failure with The Incident, which took us by surprise."]])
 
 text[4] = _([[Captain Rebina sits back in her chair and heaves a sigh. "I think that may have been when things started to change. We used to be committed to our purpose, but apparently things are different now. No doubt you remember what happened to the diplomatic exchange between the Empire and the Dvaered some time ago. Well, suffice to say that increasing the tension between the two is definitely not part of our mandate. In fact, it's completely at odds with what we stand for. And that was not just an isolated incident either. Things have been happening that suggest Four Winds involvement, things that bode ill."
     She activates the holotable, and it displays four cruisers, all seemingly identical to the Seiryuu, though you notice subtle differences in the hull designs.
@@ -176,7 +181,7 @@ function seiryuuBoard()
     player.unboard()
     if stage == 1 then -- Briefing
         tk.msg("", fmt.f(explain_text, {player=player.name()}))
-        tk.msg("", text[3]:format(player.name()))
+        tk.msg("", fmt.f(fourwinds_origin_text, {player=player.name()}))
         shadow_addLog(log_text_intro:format(player.name()))
         tk.msg("", text[4])
         tk.msg("", text[5]:format(player.name(), jorekplanet1:name(), joreksys1:name(), jorekplanet1:name()))
