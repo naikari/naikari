@@ -2401,9 +2401,8 @@ static void pilot_hyperspace( Pilot* p, double dt )
 
    /* pilot is actually in hyperspace */
    if (pilot_isFlag(p, PILOT_HYPERSPACE)) {
-
       /* Time to play sound. */
-      if ((p->id == PLAYER_ID) &&
+      if (pilot_isPlayer(p) &&
             (p->ptimer < sound_getLength(snd_hypPowUpJump)) &&
             (p->timer[0] == -1.)) {
          p->timer[0] = -2.;
@@ -2454,9 +2453,6 @@ static void pilot_hyperspace( Pilot* p, double dt )
       }
       else {
          if (pilot_isPlayer(p)) {
-            /* Need to call this here since thinking doesn't happen. */
-            player_autonavShouldResetSpeed();
-
             /* If a movement control is pressed, immediately abort and
              * return control to the player. */
             if (!pilot_isFlag(p, PILOT_HYPERSPACE)
@@ -2531,8 +2527,12 @@ static void pilot_hyperspace( Pilot* p, double dt )
       }
    }
 
-   if (pilot_isPlayer(p))
-      player_updateSpecific( p, dt );
+   if (pilot_isPlayer(p)) {
+      /* Need to call this here since thinking doesn't happen. */
+      player_autonavShouldResetSpeed();
+
+      player_updateSpecific(p, dt);
+   }
 }
 
 
