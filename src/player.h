@@ -292,8 +292,8 @@ void player_targetEscort( int prev );
  * keybind actions
  */
 void player_weapSetPress( int id, double value, int repeat );
-int player_land( int loud );
-int player_jump (void);
+int player_land(int loud);
+int player_jump(int loud);
 void player_screenshot (void);
 void player_accel( double acc );
 void player_accelOver (void);

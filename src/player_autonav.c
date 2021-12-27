@@ -438,7 +438,7 @@ static void player_autonav (void)
          /* Try to jump or see if braked. */
          if (ret) {
             if (space_canHyperspace(player.p))
-               player_jump();
+               player_jump(0);
             player.autonav = AUTONAV_JUMP_APPROACH;
          }
 

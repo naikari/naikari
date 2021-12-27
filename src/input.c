@@ -932,16 +932,20 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    /* target nearest planet or attempt to land */
    } else if (KEY("land") && INGAME() && NOHYP() && NOLAND() && NODEAD()) {
       if (value==KEY_PRESS) {
-         if (player.p->nav_planet != -1) {
-            pnt = cur_system->planets[player.p->nav_planet];
-            if ((player_land(0) != PLAYER_LAND_OK)
-                  && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
-               player_rmFlag(PLAYER_BASICAPPROACH);
-               player_autonavPnt(pnt->name);
-               player_message(_("#oAutonav: auto-landing sequence engaged."));
-            }
-         } else
-            player_land(1);
+         /* First try player_land() in case no planet is selected. */
+         if (player_land(0) != PLAYER_LAND_OK) {
+            if (player.p->nav_planet != -1) {
+               pnt = cur_system->planets[player.p->nav_planet];
+               if ((player_land(0) != PLAYER_LAND_OK)
+                     && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
+                  player_rmFlag(PLAYER_BASICAPPROACH);
+                  player_autonavPnt(pnt->name);
+                  player_message(
+                        _("#oAutonav: auto-landing sequence engaged."));
+               }
+            } else
+               player_land(1);
+         }
       }
    } else if (KEY("thyperspace") && NOHYP() && NOLAND() && NODEAD()) {
       if (value==KEY_PRESS)
@@ -950,13 +954,16 @@ static void input_key( int keynum, double value, double kabs, int repeat )
       if (value==KEY_PRESS) map_open();
    } else if (KEY("jump") && INGAME() && !repeat) {
       if (value==KEY_PRESS) {
-         if (player.p->nav_hyperspace != -1) {
-            player_hyperspacePreempt(1);
-            player_autonavStart();
-         }
-         else {
-            player_restoreControl(0, NULL);
-            player_jump();
+         /* Frist try player_jump() in case no jump is selected. */
+         if (!player_jump(0)) {
+            if (player.p->nav_hyperspace != -1) {
+               player_hyperspacePreempt(1);
+               player_autonavStart();
+            }
+            else {
+               player_restoreControl(0, NULL);
+               player_jump(1);
+            }
          }
       }
    } else if (KEY("overlay") && NODEAD() && INGAME() && !repeat) {

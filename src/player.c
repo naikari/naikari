@@ -1779,9 +1779,11 @@ void player_hailStart (void)
 /**
  * @brief Actually attempts to jump in hyperspace.
  *
+ *    @param loud Whether or not to show errors irrelevant to
+ *       auto-hyperspace.
  *    @return 1 if actually started a jump, 0 otherwise.
  */
-int player_jump (void)
+int player_jump(int loud)
 {
    int i, j;
    double dist, mindist;
@@ -1828,8 +1830,11 @@ int player_jump (void)
 
    /* Try to hyperspace. */
    i = space_hyperspace(player.p);
-   if (i == -1)
-      player_message(_("#rYou are too far from a jump point to initiate hyperspace."));
+   if (i == -1){
+      if (loud)
+         player_message(
+            _("#rYou are too far from a jump point to initiate hyperspace."));
+   }
    else if (i == -2)
       player_message(_("#rHyperspace drive is offline."));
    else if (i == -3)
