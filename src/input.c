@@ -507,7 +507,8 @@ void input_getKeybindDisplay( const char *keybind, char *buf, int len )
          p = 0;
          /* Handle mod. */
          if ((mod != NMOD_NONE) && (mod != NMOD_ANY))
-            p += scnprintf( &buf[p], len-p, "%s + ", input_modToText(mod) );
+            p += scnprintf(&buf[p], len-p, "%s\xc2\xa0+\xc2\xa0",
+                  input_modToText(mod));
          /* Print key. Special-case ASCII letters (use uppercase, unlike SDL_GetKeyName.). */
          if (key < 0x100 && isalpha(key))
             p += scnprintf( &buf[p], len-p, "%c", toupper(key) );
