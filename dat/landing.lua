@@ -28,7 +28,7 @@
 
 --]]
 
-require "scripts/numstring"
+local fmt = require "fmt"
 
 -- Default function. Any asset that has no landing script explicitly defined will use this.
 function land( pnt )
@@ -58,7 +58,8 @@ end
 function emp_mil_omega( pnt )
    local required = 50
 
-   if player.misnDone("Empire Shipping 3") or player.misnActive("Empire Shipping 3") then
+   if player.misnDone("Empire Shipping 3")
+         or player.misnActive("Empire Shipping 3") then
       required = 0
    end
 
@@ -171,7 +172,8 @@ end
 -- Thurion military assets.
 function thr_mil_restricted( pnt )
    return land_military(pnt, 50,
-         _("Welcome, friend %s. You may dock when ready."):format(player.name()),
+         fmt.f(_("Welcome, friend {player}. You may dock when ready."),
+               {player=player.name()}),
          _("I'm sorry, we can't trust you to land here just yet."),
          _("Landing request denied."),
          _("\"We have no need for your credits.\""))
@@ -196,10 +198,9 @@ function pir_clanworld( pnt )
    local bribe_price, bribe_msg, bribe_ack_msg
    if not can_land and standing >= -50 then
       bribe_price = (20 - standing) * 500 + 1000 -- 36K max, at -50 rep. Pirates are supposed to be cheaper than regular factions.
-      local str   = creditstring( bribe_price )
-      bribe_msg   = string.format(
-               _("\"Well, I think you're scum, but I'm willing to look the other way for %s. Deal?\""),
-            str )
+      bribe_msg = fmt.f(
+            _("\"Well, I think you're scum, but I'm willing to look the other way for {credits}. Deal?\""),
+            {credits=fmt.credits(bribe_price)})
       bribe_ack_msg = _("Heh heh, thanks. Now get off the comm, I'm busy!")
    end
    return can_land, land_msg, bribe_price, bribe_msg, bribe_ack_msg
@@ -256,11 +257,10 @@ function land_civilian( pnt, land_floor, bribe_floor )
    -- Calculate bribe price. Note: Assumes bribe floor < land_floor.
    local bribe_price = getcost(fct, land_floor, bribe_floor, 1000) -- TODO: different rates for different factions.
    if not can_land and type(bribe_price) == "number" then
-       local str      = creditstring( bribe_price )
-       bribe_msg      = string.format(
-               _("\"I'll let you land for the modest price of %s.\"\n\nPay %s?"),
-            str, str )
-       bribe_ack_msg  = _("Make it quick.")
+       bribe_msg = fmt.f(
+            _("\"I'll let you land for the modest price of {credits}.\"\n\nPay {credits}?"),
+            {credits=fmt.credits(bribe_price)})
+       bribe_ack_msg = _("Make it quick.")
    end
    return can_land, land_msg, bribe_price, bribe_msg, bribe_ack_msg
 end

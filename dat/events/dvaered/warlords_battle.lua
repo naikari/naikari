@@ -10,15 +10,15 @@
 --]]
 --  A battle between two Dvaered warlords. The player can join one of them and get a reward
 
+local fmt = require "fmt"
 local fleet = require "fleet"
 require "proximity"
-require "numstring"
 local formation = require "formation"
 
 
-explain_text = _([["Hey, you," the captain of the ship says. "You don't seem to know what's going to happen here. A mighty warlord from %s is going to attack %s. You shouldn't stay here, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship and they lose the battle, the other warlord will reward you. But if the warlord you attacked wins, you will be hunted down."]])
+explain_text = _([["Hey, you," the captain of the ship says. "You don't seem to know what's going to happen here. A mighty warlord from {system} is going to attack {planet}. You shouldn't stay here, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship and they lose the battle, the other warlord will reward you. But if the warlord you attacked wins, you will be hunted down."]])
 
-reward_text = _([["Hello captain," a Dvaered officer says, "You helped us in this battle. I am authorized to give you %s as a reward."]])
+reward_text = _([["Hello captain," a Dvaered officer says, "You helped us in this battle. I am authorized to give you {credits} as a reward."]])
 
 
 function create()
@@ -85,7 +85,8 @@ end
 
 function hail()
    hook.rm(hailhook)
-   tk.msg("", explain_text:format(source_system:name(), source_planet:name()))
+   tk.msg("", fmt.f(explain_text,
+         {system=source_system:name(), planet=source_planet:name()}))
    player.commClose()
 end
 
@@ -96,7 +97,7 @@ end
 
 function hailagain()
    hook.rm(hailhook)
-   tk.msg("", reward_text:format(creditstring(reward)))
+   tk.msg("", fmt.f(reward_text, {credits=fmt.credits(reward)}))
    player.pay(reward)
    player.commClose()
 end
