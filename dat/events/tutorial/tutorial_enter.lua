@@ -31,7 +31,7 @@
 require "events/tutorial/tutorial_common"
 
 
-nofuel_text = _([[You swear to yourself as you see that you're out of fuel with no place to land. How can you get fuel now? Just as you're thinking this, Captain T. Practice shows up. "I see you've run out of fuel and don't have a place to land! But don't worry, you can still refuel. It'll just be a little harder and more costly.
+nofuel_text = _([[As you enter the system and look for a place to land, realizing you're out of fuel, Captain T. Practice shows up on your display. "Hi there! I see you've run out of fuel, and what a predicament, too; there aren't any planets that you can land on here. But don't worry, you can still refuel! It'll just be a little harder and more costly.
 
 See you can hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with %s and pressing %s. Once you've hailed them, you can request to be refueled. This isn't likely to work on military ships, but many civilians and traders will happily sell you some of their fuel for a nominal fee. When you find someone willing to refuel you, you will need to stop your ship, which you can do easily with %s, and wait for them to reach your ship and finish the fuel transfer.
 
@@ -74,7 +74,8 @@ function timer ()
 
    if not var.peek("tutorial_nofuel") and player.jumps() == 0 then
       for i, pl in ipairs(planet.getAll()) do
-         if pl:system() == sys and pl:canLand() then
+         local landable, bribable = pl:canLand()
+         if pl:system() == sys and (landable or bribable) then
             landable_planets = true
             break
          end
