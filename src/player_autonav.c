@@ -58,7 +58,6 @@ static int player_autonavBrake (void);
 void player_autonavResetSpeed (void)
 {
    tc_mod = 1.;
-   tc_rampdown = 0;
    player_resetSpeed();
 }
 
