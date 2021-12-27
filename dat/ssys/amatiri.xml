@@ -13,8 +13,10 @@
   <asset>Amatiri I</asset>
   <asset>Amatiri II</asset>
   <asset>Amatiri Ia</asset>
+  <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Miner Small</asset>
   <asset>Virtual Pirate Small</asset>
+  <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
   <jump target="Ariadus">

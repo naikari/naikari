@@ -10,8 +10,10 @@
   <y>604.486667</y>
  </pos>
  <assets>
+  <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Miner Small</asset>
   <asset>Virtual Pirate Small</asset>
+  <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
   <jump target="Point Zero">
