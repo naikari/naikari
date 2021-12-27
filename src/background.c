@@ -17,6 +17,7 @@
 #include "array.h"
 #include "camera.h"
 #include "conf.h"
+#include "gui.h"
 #include "log.h"
 #include "ndata.h"
 #include "nebula.h"
@@ -380,7 +381,7 @@ static void background_renderImages( background_image_t *bkg_arr )
 {
    int i;
    background_image_t *bkg;
-   double px,py, x,y, xs,ys, z;
+   double px, py, x, y, xs, ys, gx, gy;
    glColour col;
 
    /* Skip rendering altogether if disabled. */
@@ -391,19 +392,22 @@ static void background_renderImages( background_image_t *bkg_arr )
    for (i=0; i<array_size(bkg_arr); i++) {
       bkg = &bkg_arr[i];
 
-      cam_getPos( &px, &py );
-      x  = px + (bkg->x - px) * bkg->move - bkg->scale*bkg->image->sw/2.;
-      y  = py + (bkg->y - py) * bkg->move - bkg->scale*bkg->image->sh/2.;
-      gl_gameToScreenCoords( &xs, &ys, x, y );
-      z = cam_getZoom();
-      z *= bkg->scale;
-      /* TODO add rotation too! */
+      cam_getPos(&px, &py);
+      x = px + (bkg->x-px)*bkg->move - bkg->scale*bkg->image->sw/2.;
+      y = py + (bkg->y-py)*bkg->move - bkg->scale*bkg->image->sh/2.;
+
+      gui_getOffset(&gx, &gy);
+
+      /* calculate position */
+      xs = (x-px) + gx + SCREEN_W/2.;
+      ys = (y-py) + gy + SCREEN_H/2.;
+
       col.r = bkg->col.r * conf.bg_brightness;
       col.g = bkg->col.g * conf.bg_brightness;
       col.b = bkg->col.b * conf.bg_brightness;
       col.a = bkg->col.a;
-      gl_blitScale( bkg->image, xs, ys,
-            z*bkg->image->sw, z*bkg->image->sh, &col );
+      gl_blitScale(bkg->image, xs, ys,
+            bkg->image->sw * bkg->scale, bkg->image->sh * bkg->scale, &col);
    }
 }
 

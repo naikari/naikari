@@ -74,7 +74,7 @@ function background_nebula ()
    local a     = 2*math.pi*prng:random()
    local x     = r*math.cos(a)
    local y     = r*math.sin(a)
-   local move  = 0.01 + prng:random()*0.01
+   local move  = 0.001 + prng:random()*0.001
    local scale = 1 + (prng:random()*0.5 + 0.5)*((2000+2000)/(w+h))
    if scale > 1.9 then scale = 1.9 end
    bkg.image( img, x, y, move, scale )
@@ -116,29 +116,29 @@ end
 
 function star_add( added, num_added )
    -- Set up parameters
-   local path  = "gfx/bkg/star/"
+   local path = "gfx/bkg/star/"
    -- Avoid repeating stars
-   local num   = prng:random(1,#stars)
-   local i     = 0
+   local num = prng:random(1,#stars)
+   local i = 0
    while added[num] and i < 10 do
-      num = prng:random(1,#stars)
-      i   = i + 1
+      num = prng:random(1, #stars)
+      i = i + 1
    end
-   local star  = stars[ num ]
+   local star  = stars[num]
    -- Load and set stuff
-   local img   = tex.open( path .. star )
-   local w,h   = img:dim()
+   local img = tex.open(path .. star)
+   local w, h = img:dim()
    -- Position should depend on whether there's more than a star in the system
-   local r     = prng:random() * cur_sys:radius()/3
+   local r = prng:random() * cur_sys:radius()/3
    if num_added > 0 then
-      r        = r + cur_sys:radius()*2/3
+      r = r + cur_sys:radius()*2/3
    end
-   local a     = 2*math.pi*prng:random()
-   local x     = r*math.cos(a)
-   local y     = r*math.sin(a)
-   local nmove = math.max( .05, prng:random()*0.1 )
-   local move  = 0.02 + nmove
-   local scale = 1.0 - (1. - nmove/0.2)/5
-   bkg.image( img, x, y, move, scale ) -- On the background
+   local a = 2 * math.pi * prng:random()
+   local x = r * math.cos(a)
+   local y = r * math.sin(a)
+   local move = 0.005 + prng:random()*0.005
+   local base_w = 200 + prng:random()*100
+   local scale = base_w^2 / (w*h)
+   bkg.image(img, x, y, move, scale)
    return num
 end
