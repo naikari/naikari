@@ -100,6 +100,7 @@ function create ()
    dests = { "Soromid Wards Alpha", "Jaxheen", "Agino", "Neurri" }
    dests["__save"] = true
    markers = {}
+   markers["__save"] = true
 
    credits = 500000
    started = false
