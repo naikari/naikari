@@ -73,9 +73,9 @@ function timer ()
    local landable_planets = false
 
    if not var.peek("tutorial_nofuel") and player.jumps() == 0 then
-      for i, pl in ipairs(planet.getAll()) do
+      for i, pl in ipairs(sys:planets()) do
          local landable, bribable = pl:canLand()
-         if pl:system() == sys and (landable or bribable) then
+         if landable or bribable then
             landable_planets = true
             break
          end
