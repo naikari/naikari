@@ -19,8 +19,8 @@
   <speed>500</speed>
   <range blowup="armour">1900</range>
   <gfx_end>ripperM-end.png</gfx_end>
-  <energy>12</energy>
-  <heatup>75</heatup>
+  <energy>6</energy>
+  <heatup>150</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1600</rdr_range_max>
   <damage>
