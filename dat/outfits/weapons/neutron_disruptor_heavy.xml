@@ -19,7 +19,7 @@
   <delay>1.0</delay>
   <speed>800</speed>
   <range>500</range>
-  <falloff>425</falloff>
+  <falloff>450</falloff>
   <gfx_end>neutron-end.png</gfx_end>
   <energy>12</energy>
   <heatup>35</heatup>
