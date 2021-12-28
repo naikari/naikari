@@ -160,7 +160,7 @@ static int map_keyHandler( unsigned int wid, SDL_Keycode key, SDL_Keymod mod )
 {
    (void) mod;
 
-   if ((key == SDLK_SLASH) || (key == SDLK_f)) {
+   if (key == SDLK_SLASH) {
       map_inputFind( wid, NULL );
       return 1;
    }
@@ -332,11 +332,13 @@ void map_open (void)
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnClose", _("Close"), map_window_close );
    /* Commodity button */
-   window_addButton( wid, -20 - (BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnCommod", _("Mode"), map_buttonCommodity );
+   window_addButtonKey(wid, -20 - (BUTTON_WIDTH+20), 20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnCommod", _("Mode"), map_buttonCommodity, SDLK_o);
    /* Find button */
-   window_addButton( wid, -20 - 2*(BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnFind", _("Find"), map_inputFind );
+   window_addButtonKey(wid, -20 - 2*(BUTTON_WIDTH+20), 20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnFind", _("Find"), map_inputFind, SDLK_f);
    /* Autonav button */
    window_addButtonKey( wid, -20 - 3*(BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnAutonav", _("Autonav"), player_autonavStartWindow, SDLK_a );

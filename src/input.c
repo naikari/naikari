@@ -916,16 +916,9 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    /*
     * Space
     */
-   } else if (KEY("autonav") && NOHYP() && NODEAD()) {
-      if (value==KEY_PRESS) {
-         if (map_isOpen()) {
-            unsigned int wid = window_get( MAP_WDWNAME );
-            player_autonavStartWindow( wid, NULL );
-         }
-         else if INGAME() {
-            player_autonavStart();
-         }
-      }
+   } else if (KEY("autonav") && INGAME() && NOHYP() && NODEAD()) {
+      if (value == KEY_PRESS)
+         player_autonavStart();
    /* target planet (cycles like target) */
    } else if (KEY("target_planet") && INGAME() && NOHYP() && NOLAND() && NODEAD()) {
       if (value==KEY_PRESS) player_targetPlanet();
