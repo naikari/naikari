@@ -77,7 +77,7 @@ An awkward pause follows before Chelsea's mother intervenes. "Well the important
 
 home_text_2 = _([[Chelsea briefly pauses and glances at you. You nod encouragingly. "Um, I also managed to do some self-reflection. I'm, um... I'm transgender. I'm changing my name to 'Chelsea' and I'm using she/her pronouns now."
 
-Chelsea's father shrugs. "Whatever makes you happy," he says. "I might take some time getting used to the name." He lets out a slight chuckle. "But However you dress or whatever, that's fine by me."
+Chelsea's father shrugs. "Whatever makes you happy," he says. "I might take some time getting used to the name." He lets out a slight chuckle. "But however you dress or whatever, that's fine by me."
 
 Chelsea's mother then walks up to Chelsea and pulls her into a warm embrace before she can even react. You see tears starting to appear in Chelsea's eyes as she hugs back. "I'm proud of you for being you, Chelsea," her mother says. Chelsea tightens her grip.]])
 
