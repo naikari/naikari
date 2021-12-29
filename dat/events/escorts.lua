@@ -84,16 +84,16 @@ end
 
 function createPilotNPCs ()
    local ship_choices = {
-      {ship = "Llama", royalty = 0.025},
-      {ship = "Hyena", royalty = 0.05},
-      {ship = "Shark", royalty = 0.075},
-      {ship = "Vendetta", royalty = 0.1},
-      {ship = "Lancelot", royalty = 0.1},
-      {ship = "Ancestor", royalty = 0.15},
-      {ship = "Admonisher", royalty = 0.2},
-      {ship = "Phalanx", royalty = 0.2},
-      {ship = "Pacifier", royalty = 0.3},
-      {ship = "Vigilance", royalty = 0.3},
+      {ship = "Llama", royalty = 0.025, deposit_mod = 1/10},
+      {ship = "Hyena", royalty = 0.05, deposit_mod = 1/10},
+      {ship = "Shark", royalty = 0.075, deposit_mod = 1/10},
+      {ship = "Vendetta", royalty = 0.1, deposit_mod = 1/7},
+      {ship = "Lancelot", royalty = 0.1, deposit_mod = 1/7},
+      {ship = "Ancestor", royalty = 0.15, deposit_mod = 1/6},
+      {ship = "Admonisher", royalty = 0.2, deposit_mod = 1/5},
+      {ship = "Phalanx", royalty = 0.2, deposit_mod = 1/5},
+      {ship = "Pacifier", royalty = 0.3, deposit_mod = 1/4},
+      {ship = "Vigilance", royalty = 0.3, deposit_mod = 1/4},
    }
    local num_pilots = rnd.rnd(0, 5)
    local fac = faction.get("Mercenary")
@@ -104,12 +104,12 @@ function createPilotNPCs ()
    local pf = planet.cur():faction()
    if pf == faction.get("Pirate") then
       ship_choices = {
-         {ship = "Hyena", royalty = 0.05},
-         {ship = "Pirate Shark", royalty = 0.075},
-         {ship = "Pirate Vendetta", royalty = 0.1},
-         {ship = "Pirate Ancestor", royalty = 0.15},
-         {ship = "Pirate Admonisher", royalty = 0.2},
-         {ship = "Pirate Phalanx", royalty = 0.2},
+         {ship = "Hyena", royalty = 0.05, deposit_mod = 1/10},
+         {ship = "Pirate Shark", royalty = 0.075, deposit_mod = 1/10},
+         {ship = "Pirate Vendetta", royalty = 0.1, deposit_mod = 1/7},
+         {ship = "Pirate Ancestor", royalty = 0.15, deposit_mod = 1/6},
+         {ship = "Pirate Admonisher", royalty = 0.2, deposit_mod = 1/5},
+         {ship = "Pirate Phalanx", royalty = 0.2, deposit_mod = 1/5},
       }
       fac = faction.get("Pirate")
       def_ai = "pirate"
@@ -117,21 +117,21 @@ function createPilotNPCs ()
       portrait_arg = "Pirate"
    elseif pf == faction.get("FLF") then
       ship_choices = {
-         {ship = "Hyena", royalty = 0.05},
-         {ship = "Vendetta", royalty = 0.1},
-         {ship = "Lancelot", royalty = 0.1},
-         {ship = "Ancestor", royalty = 0.15},
-         {ship = "Pacifier", royalty = 0.3},
+         {ship = "Hyena", royalty = 0.05, deposit_mod = 1/10},
+         {ship = "Vendetta", royalty = 0.1, deposit_mod = 1/7},
+         {ship = "Lancelot", royalty = 0.1, deposit_mod = 1/7},
+         {ship = "Ancestor", royalty = 0.15, deposit_mod = 1/6},
+         {ship = "Pacifier", royalty = 0.3, deposit_mod = 1/4},
       }
       fac = faction.get("FLF")
       def_ai = "flf"
       portrait_arg = "FLF"
    elseif pf == faction.get("Thurion") then
       ship_choices = {
-         {ship = "Thurion Ingenuity", royalty = 0.075},
-         {ship = "Thurion Scintillation", royalty = 0.15},
-         {ship = "Thurion Virtuosity", royalty = 0.2},
-         {ship = "Thurion Apprehension", royalty = 0.3},
+         {ship = "Thurion Ingenuity", royalty = 0.075, deposit_mod = 1/10},
+         {ship = "Thurion Scintillation", royalty = 0.15, deposit_mod = 1/6},
+         {ship = "Thurion Virtuosity", royalty = 0.2, deposit_mod = 1/5},
+         {ship = "Thurion Apprehension", royalty = 0.3, deposit_mod = 1/4},
       }
       fac = faction.get("Thurion")
       def_ai = "thurion"
@@ -159,7 +159,8 @@ function createPilotNPCs ()
          newpilot.outfits[#newpilot.outfits + 1] = o:nameRaw()
       end
 
-      deposit = math.floor((deposit + 0.2*deposit*rnd.sigma()) / 4)
+      local mod = shipchoice.deposit_mod or 0.5
+      deposit = math.floor((deposit + 0.2*deposit*rnd.sigma()) * mod)
       if deposit <= player.credits() then
          newpilot.ship = shipchoice.ship
          newpilot.deposit = deposit
