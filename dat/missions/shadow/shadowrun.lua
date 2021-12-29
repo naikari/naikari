@@ -161,11 +161,13 @@ function accept()
         misn.setTitle(misn_title)
         misn.setReward(misn_reward)
         misn.setDesc(misn_desc)
-        gen_osd()
-        misn_marker = misn.markerAdd(sys, "low")
+
         shadowrun = 2
 
-        datehook = hook.date(time.create(0, 0, 1000), "date")
+        gen_osd()
+        misn_marker = misn.markerAdd(sys, "low")
+
+        datehook = hook.date(time.create(0, 0, 100), "date")
         hook.land("land")
         hook.enter("enter")
     else
@@ -233,7 +235,7 @@ function date()
             or (deadline2 >= time.get() and shadowrun == 3) then
         gen_osd()
         hook.rm(datehook)
-        datehook = hook.date(time.create(0, 0, 1000), "date")
+        datehook = hook.date(time.create(0, 0, 100), "date")
     else
         tk.msg("", fail_notime_text)
         misn.finish(false)
