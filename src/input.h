@@ -25,6 +25,14 @@
 #define KEY_RELEASE  (-1.) /**< Key is released. */
 
 
+/* Layouts (used with input_setDefault() */
+enum {
+   LAYOUT_ARROWS, /**< Arrow keys layout. */
+   LAYOUT_WASD, /**< WASD layout (for QWERTY keyboards). */
+   LAYOUT_ZQSD /**< ZQSD layout (for AZERTY keyboards). */
+};
+
+
 /* input types */
 typedef enum {
    KEYBIND_NULL, /**< Null keybinding. */
@@ -46,7 +54,7 @@ extern const int   input_numbinds;
 /*
  * set input
  */
-void input_setDefault( int wasd );
+void input_setDefault(int layout);
 SDL_Keycode input_keyConv( const char *name );
 void input_setKeybind( const char *keybind, KeybindType type, SDL_Keycode key, SDL_Keymod mod );
 const char *input_modToText( SDL_Keymod mod );

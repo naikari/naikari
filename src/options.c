@@ -783,12 +783,13 @@ static void opt_keyDefaults( unsigned int wid, char *str )
 {
    (void) str;
    const char *title, *caption, *ret;
-   int i, ind;
+   int i, ind, layout;
 
-   const int n = 3;
+   const int n = 4;
    const char *opts[] = {
       _("WASD"),
       _("Arrow Keys"),
+      _("ZQSD"),
       _("Cancel")
    };
 
@@ -812,11 +813,26 @@ static void opt_keyDefaults( unsigned int wid, char *str )
          break;
       }
 
-   if (ind == 2)
-      return;
+   layout = LAYOUT_ARROWS;
+   switch (ind) {
+      case 0:
+         layout = LAYOUT_WASD;
+         break;
+
+      case 1:
+         layout = LAYOUT_ARROWS;
+         break;
+
+      case 2:
+         layout = LAYOUT_ZQSD;
+         break;
+
+      default:
+         return;
+   }
 
    /* Restore defaults. */
-   input_setDefault( (ind == 0) ? 1 : 0 );
+   input_setDefault(layout);
 
    /* Regenerate list widget. */
    menuKeybinds_genList( wid );

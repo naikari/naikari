@@ -181,16 +181,22 @@ static void input_mouseMove( SDL_Event* event );
 /**
  * @brief Sets the default input keys.
  *
- *    @param wasd Whether to use the WASD layout.
+ *    @param layout The layout to assign.
  */
-void input_setDefault ( int wasd )
+void input_setDefault(int layout)
 {
    /* Movement */
-   if (wasd) {
+   if (layout == LAYOUT_WASD) {
       input_setKeybind( "accel", KEYBIND_KEYBOARD, SDLK_w, NMOD_ANY );
       input_setKeybind( "left", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY );
       input_setKeybind( "right", KEYBIND_KEYBOARD, SDLK_d, NMOD_ANY );
       input_setKeybind( "reverse", KEYBIND_KEYBOARD, SDLK_s, NMOD_ANY );
+   }
+   else if (layout == LAYOUT_ZQSD) {
+      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_z, NMOD_ANY);
+      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
+      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_d, NMOD_ANY);
+      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_s, NMOD_ANY);
    }
    else {
       input_setKeybind( "accel", KEYBIND_KEYBOARD, SDLK_UP, NMOD_ANY );
@@ -200,9 +206,18 @@ void input_setDefault ( int wasd )
    }
 
    /* Targeting */
-   if (wasd) {
+   if (layout == LAYOUT_WASD) {
       input_setKeybind( "target_next", KEYBIND_KEYBOARD, SDLK_e, NMOD_CTRL );
       input_setKeybind( "target_prev", KEYBIND_KEYBOARD, SDLK_q, NMOD_CTRL );
+      input_setKeybind( "target_nearest", KEYBIND_KEYBOARD, SDLK_t, NMOD_ANY );
+      input_setKeybind( "target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
+      input_setKeybind( "target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
+      input_setKeybind( "target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY );
+      input_setKeybind( "target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY );
+   }
+   else if (layout == LAYOUT_ZQSD) {
+      input_setKeybind( "target_next", KEYBIND_KEYBOARD, SDLK_e, NMOD_CTRL );
+      input_setKeybind( "target_prev", KEYBIND_KEYBOARD, SDLK_a, NMOD_CTRL );
       input_setKeybind( "target_nearest", KEYBIND_KEYBOARD, SDLK_t, NMOD_ANY );
       input_setKeybind( "target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
       input_setKeybind( "target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
@@ -222,8 +237,8 @@ void input_setDefault ( int wasd )
    /* Combat */
    input_setKeybind( "primary", KEYBIND_KEYBOARD, SDLK_SPACE, NMOD_ANY );
 
-   if (wasd)
-      input_setKeybind( "face", KEYBIND_KEYBOARD, SDLK_q, NMOD_NONE );
+   if (layout == LAYOUT_WASD)
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
    else
       input_setKeybind( "face", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY );
 

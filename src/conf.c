@@ -169,7 +169,7 @@ void conf_setDefaults (void)
    conf_setVideoDefaults();
 
    /* Input */
-   input_setDefault(1);
+   input_setDefault(LAYOUT_WASD);
 
    /* Debugging. */
    conf.fpu_except   = 0; /* Causes many issues. */
