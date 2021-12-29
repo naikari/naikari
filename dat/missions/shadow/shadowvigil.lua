@@ -28,7 +28,6 @@ require "selectiveclear"
 require "missions/shadow/common"
 
 
-text = {}
 commmsg = {}
 
 dock_text = _([[You dock with the Seiryuu and shut down your engines. At the airlock, you are welcomed by two nondescript crewmen in gray uniforms who tell you to follow them into the ship. They lead you through corridors and passages that seem to lead to the bridge. On the way, you can't help but look around you in wonder. The ship isn't anything you're used to seeing. While some parts can be identified as such common features as doors and viewports, a lot of the equipment in the compartments and niches seems strange, almost alien to you. Clearly the Seiryuu is no ordinary ship.
@@ -37,11 +36,11 @@ At the bridge, you immediately spot the Seiryuu's captain, Rebina, seated in the
 
 Rebina swivels the chair around and smiles when she sees you. "Ah, {player}," she says. "How good of you to come. I was hoping you'd get my invitation, since I was quite pleased with your performance last time. And I'm not the only one. As it turns out, Jorek seems to have taken a liking to you as well. He may seem rough, but he's a good man at heart."]])
 
-text[2] = _([[You choose not to say anything, but Rebina seems to have no trouble reading what's on your mind. "Ah yes, the ship. It's understandable that you're surprised at how it looks. I can't divulge too much about this technology or how we came to possess it, but suffice to say that we don't buy from the regular outlets. We have need for… an edge in our line of business." Grateful for the opening, you ask Rebina what exactly this line of business is. Rebina flashes you a quick smile and settles into the chair for the explanation.
+dock2_text = _([[You choose not to say anything, but Rebina seems to have no trouble reading what's on your mind. "Ah yes, the ship. It's understandable that you're surprised at how it looks. I can't divulge too much about this technology or how we came to possess it, but suffice to say that we don't buy from the regular outlets. We have need for… an edge in our line of business." Grateful for the opening, you ask Rebina what exactly this line of business is. Rebina flashes you a quick smile and settles into the chair for the explanation.
 
-"The organization I'm part of is known as the Four Winds, or rather, not known as the Four Winds." She gestures dismissively. "We keep a low profile. You won't have heard of us before, I'm sure. At this point I should add that many who do know us refer to us as the 'Shadows', but this is purely a colloquial name. It doesn't cover what we do, certainly. In any event, you can think of us as a private operation with highly specific objectives. At this point that is all I can tell you." She leans forward and fixes you with a level stare. "Speaking of specific objectives, I have one such objective for you."]])
+"The organization I'm part of is known as the Four Winds, or rather, not known as the Four Winds." She gestures dismissively. "We keep a low profile. You won't have heard of us before, I'm sure. At this point I should add that many who do know us refer to us as the 'Shadows', but this is purely a colloquial name. It doesn't cover what we do, certainly. In any event, you can think of us as a private operation with highly specific objectives. At this point that is all I can tell you." She leans forward and fixes you with a level stare. "Speaking of specific objectives, I have one such objective for you.]])
 
-text[3] = _([["You may not know this, but there are tensions between the Imperial and Dvaered militaries. For some time now there have been incidents on the border, conflicts about customs, pilots disrespecting each other's flight trajectories, that sort of thing. It hasn't become a public affair yet, and the respective authorities don't want it to come to that. This is why they've arranged a secret diplomatic meeting to smooth things over and make arrangements to de-escalate the situation.
+dock3_text = _([["You may not know this, but there are tensions between the Imperial and Dvaered militaries. For some time now there have been incidents on the border, conflicts about customs, pilots disrespecting each other's flight trajectories, that sort of thing. It hasn't become a public affair yet, and the respective authorities don't want it to come to that. This is why they've arranged a secret diplomatic meeting to smooth things over and make arrangements to de-escalate the situation.
 
 "This is where we come in. Without going into the details, suffice to say we have an interest in making sure that this meeting does not meet with any unfortunate accidents. However, for reasons I can't explain to you now, we can't become involved directly. That's why I want you to go on our behalf. You will essentially be flying an escort mission. You will rendezvous with a small wing of private fighters, who will take you to your charge, the Imperial representative. Once there, you will protect him from any threats you might encounter, and see him safely to Dvaered space. As soon as the Imperial representative has joined his Dvaered colleague, your mission will be complete and you will report back here.
 
@@ -158,8 +157,8 @@ end
 -- Boarding the Seiryuu at the beginning of the mission
 function meeting()
     tk.msg("", fmt.f(dock_text, {player=player.name()}))
-    tk.msg("", text[2])
-    if tk.yesno("", text[3]) then
+    tk.msg("", dock2_text)
+    if tk.yesno("", dock3_text) then
         accept_m()
     else
         tk.msg("", refusetext)

@@ -47,7 +47,7 @@ accept_text = _([["Wonderful!" Rebina gives you a warm, sincere smile. "I don't 
 
 Rebina takes a moment to sip from her drink. "I think you can see where this is going. You are to rendezvous with Jorek, take him aboard your ship, lose whoever's tailing him, then bring him to the {destsys} system. There you will dock with one of our ships, the Seiryuu, which will take Jorek to his final destination. You will receive your reward from her captain once Jorek is aboard.
 
-"It's a simple objective, but accomplishing it might require considerable skill." She leans back and smiles. "Still, I have utmost confidence that you can do it. I seldom misjudge those I choose to trust."]])
+"It's a simple objective, but accomplishing it might require considerable skill." She leans back and smiles. "Still, I have utmost confidence that you can do it. I seldom misjudge those I choose to trust.]])
 
 accept_text2 = _([["You will find Jorek in the spaceport bar on {planet}. When you see him, tell him you've come to 'see to his special needs'. Oh, and please be discreet. Don't talk about things you don't need to; the walls have ears in that place. In particular, don't mention any names.
 
@@ -63,7 +63,7 @@ fail_noattempt_text = _([[You complete docking operations with the Seiryuu, well
 
 You prepare to undock from the Seiryuu, but before you complete the procedures there is a sudden power spike in your primary systems. All panels go black. In the darkness, the only thing that disturbs the silence is the sound of the Seiryuu dislodging itself from your docking clamp. Seconds later, the computer core reboots itself and your controls come back online, but you find to your dismay that your OS has been reset to factory defaults. All custom content has been lost, including your logs of meeting the Seiryuu.]])
 
-succeed_text = _([[You complete docking operations with the Seiryuu, well aware that your ship isn't carrying the man they were expecting but content in the knowledge that this contingency was planned for. When the airlock opens, you find yourself face to face with a woman and two crewmen, all wearing grey, featureless uniforms. It takes you a few moments to realize that the woman is in fact Rebina. This is not the elegant, feminine figure you met in the spaceport bar not too long ago. This woman emits an aura of authority, and you immediately understand that Rebina is in fact captain of the Seiryuu.
+succeed_text = _([[You complete docking operations with the Seiryuu, well aware that your ship isn't carrying the man they were expecting but content in the knowledge that this contingency was planned for. When the airlock opens, you find yourself face to face with a woman and two crewmen, all wearing gray, featureless uniforms. It takes you a few moments to realize that the woman is in fact Rebina. This is not the elegant, feminine figure you met in the spaceport bar not too long ago. This woman emits an aura of authority, and you immediately understand that Rebina is in fact captain of the Seiryuu.
 
 "Well met, {player}," she says. At the same time, the two crewmen that accompanied her push their way past you and disappear in the direction of your cargo hold. You open your mouth to protest, but Rebina raises a hand to forestall you. "There is no cause for concern," she says. "My men are only retrieving that which we sent you to fetch. I assure you that your ship and its cargo will be left undisturbed."
 
