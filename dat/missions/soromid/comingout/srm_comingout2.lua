@@ -44,7 +44,7 @@ text = {}
 
 ask_text = _([[Chelsea smiles and waves as she sees you approaching. "Hi, %s! It's been a while!" You sit down and start a friendly conversation with her. She mentions that her parents seem to be supportive of her decision to transition and her mother in particular apparently has been very helpful.
 
-Chelsea perks up a little. "So, remember I said I had ambitions of a pilot? Well, I have my piloting license now!" You congratulate her and she thanks you before grimacing slightly. "I, uh, can't manage to get a ship here though." You ask if there's anything you can do to help. "Oh!" she responds. "That's very kind of you!
+Chelsea perks up a little. "So, remember I said I had ambitions of being a pilot? Well, I have my piloting license now!" You congratulate her and she thanks you before grimacing slightly. "I, uh, can't manage to get a ship here though." You ask if there's anything you can do to help. "Oh!" she responds. "That's very kind of you!
 
 "Well, I've done some research and I think I should start at %s in the %s system. Would you be able to take me there? I'll pay you for the transportation, of course."]])
 
