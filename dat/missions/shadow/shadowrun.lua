@@ -117,14 +117,14 @@ sol2_text = { _("They don't seem to appreciate your company. You decide to leave
 -- OSD stuff
 osd_title = _("Shadowrun")
 osd_msg = {}
-osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
+osd_msg1 = _("Talk to Jorek on {planet} ({system} system) before {deadline}\n({time} remaining)")
 osd_msg2 = _("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it\n({time} remaining)")
 osd_msg["__save"] = true
 
 log_text = _([[You participated in an operation for Captain Rebina. You thought you were rescuing a man named Jorek, but it turns out that you were actually helping smuggle something onto Captain Rebina's ship, the Seiryuu. You know next to nothing about Captain Rebina or who she works for.]])
 
 
-function create ()
+function create()
     pnt, sys = planet.get("Durea")
     sys2 = system.get("Uhriabi")
 
@@ -182,7 +182,7 @@ function gen_osd()
     if shadowrun <= 2 then
         time1 = deadline1 - time.get()
     else
-        time1 = time.create(0, 0, 0)
+        time1 = time.create(0, 0, 1)
     end
     local time2 = deadline2 - time.get()
     osd_msg[1] = fmt.f(osd_msg1,
@@ -190,6 +190,9 @@ function gen_osd()
                 time=time1:str()})
     osd_msg[2] = fmt.f(osd_msg2, {system=sys2:name(), time=time2:str()})
     misn.osdCreate(osd_title, osd_msg)
+    if shadowrun > 2 then
+        misn.osdActive(2)
+    end
 end
 
 function land()
