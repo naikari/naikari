@@ -689,7 +689,7 @@ void player_cleanup (void)
    events_cleanup();
    space_clearKnown();
    land_cleanup();
-   map_close();
+   map_cleanup();
    factions_clearDynamic();
 
    /* Reset controls. */

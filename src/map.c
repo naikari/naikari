@@ -2155,6 +2155,28 @@ void map_close (void)
 
 
 /**
+ * @brief Cleans up data that is local to a particular play session.
+ */
+void map_cleanup(void)
+{
+   /* Make sure the map is closed first. */
+   map_close();
+
+   /* Free map_path; using this across play sessions will lead to
+    * wierd lines being drawn on the map. */
+   array_free(map_path);
+   map_path = NULL;
+
+   /* Reset map selection so that a game doesn't select an unknown
+    * system etc. */
+   map_selected = -1;
+
+   /* Reset map mode choice as well as that is session-specific. */
+   set_map_mode = MAPMODE_TRAVEL;
+}
+
+
+/**
  * @brief Sets the map to safe defaults
  */
 void map_clear (void)
@@ -2174,6 +2196,7 @@ void map_clear (void)
    if (map_selected == -1)
       map_selectCur();
 }
+
 
 static void map_reset (void)
 {
