@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>20</priority>
-  <chance>20</chance>
+  <chance>80</chance>
   <location>Bar</location>
   <cond>system.get("Klantar"):jumpDist() ~= nil and system.get("Klantar"):jumpDist() &lt; 3</cond>
  </avail>
