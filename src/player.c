@@ -1503,19 +1503,33 @@ int player_land( int loud )
       for (i=0; i<array_size(cur_system->planets); i++) {
          planet = cur_system->planets[i];
          d = vect_dist(&player.p->solid->pos,&planet->pos);
-         if (pilot_inRangePlanet( player.p, i ) &&
-               planet_hasService(planet,PLANET_SERVICE_LAND) &&
-               ((tp==-1) || ((td == -1) || (td > d)))) {
+         /* Try to select the nearest planet that the player can simply
+          * land on without bribes. If that's not possible, select the
+          * closest landable planet (excluding those which have been
+          * overrided to blanket deny landing). */
+         if (planet_isKnown(planet)
+               && planet_hasService(planet, PLANET_SERVICE_LAND)
+               && planet->land_override >= 0
+               && ((tp == -1) || (td == -1)
+                  || (!cur_system->planets[tp]->can_land
+                     && (cur_system->planets[tp]->land_override <= 0)
+                     && (planet->can_land || (planet->land_override > 0)
+                        || (td > d)))
+                  || ((planet->can_land || (planet->land_override > 0))
+                     && (td > d)))) {
             tp = i;
             td = d;
          }
       }
-      player_targetPlanetSet( tp );
+      player_targetPlanetSet(tp);
       player_hyperspacePreempt(0);
 
       /* no landable planet */
-      if (player.p->nav_planet < 0)
+      if (player.p->nav_planet < 0) {
+         if (loud)
+            player_messageRaw(_("#rNo suitable planet to land on found."));
          return PLAYER_LAND_DENIED;
+      }
 
       silent = 1; /* Suppress further targeting noises. */
    }
@@ -1532,7 +1546,7 @@ int player_land( int loud )
       return PLAYER_LAND_DENIED;
    }
    else if (pilot_isFlag( player.p, PILOT_NOLAND)) {
-      player_message(_("#rDocking stabilizers malfunctioning, cannot land."));
+      player_message(_("#rDocking stabilizers malfunctioning: cannot land."));
       return PLAYER_LAND_DENIED;
    }
 
@@ -1799,17 +1813,20 @@ int player_jump(int loud)
 
    /* Select nearest jump if not target. */
    if (player.p->nav_hyperspace == -1) {
-      j        = -1;
-      mindist  = INFINITY;
+      j = -1;
+      mindist = INFINITY;
       for (i=0; i<array_size(cur_system->jumps); i++) {
-         dist = vect_dist2( &player.p->solid->pos, &cur_system->jumps[i].pos );
-         if (dist < mindist && jp_isUsable(&cur_system->jumps[i])) {
-            mindist  = dist;
-            j        = i;
+         dist = vect_dist2(&player.p->solid->pos, &cur_system->jumps[i].pos);
+         if ((dist < mindist) && jp_isUsable(&cur_system->jumps[i])) {
+            mindist = dist;
+            j = i;
          }
       }
-      if (j  < 0)
+      if (j < 0) {
+         if (loud)
+            player_messageRaw(_("#rNo known jump point found."));
          return 0;
+      }
 
       player.p->nav_hyperspace = j;
       player_soundPlayGUI(snd_nav,1);
@@ -1817,7 +1834,7 @@ int player_jump(int loud)
       gui_setNav();
 
       /* Only follow through if within range. */
-      if (mindist > pow2( cur_system->jumps[j].radius ))
+      if (mindist > pow2(cur_system->jumps[j].radius))
          return 0;
    }
 
