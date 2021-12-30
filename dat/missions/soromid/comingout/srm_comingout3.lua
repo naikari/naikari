@@ -284,6 +284,7 @@ function chelsea_land( p, planet )
       player.msg(chelland_msg:format(planet:name()))
       chelsea_jumped = true
       misn.osdActive(2)
+      if distress_timer_hook ~= nil then hook.rm(distress_timer_hook) end
    else
       fail(chelflee_msg)
    end
