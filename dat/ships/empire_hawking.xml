@@ -20,7 +20,7 @@
  <license>Heavy Combat Vessel License</license>
  <description>The Imperial military grade Hawking is well-known for its weapon amplification sub-system. It makes the vessel somewhat less maneuverable and less armored than the standard Hawking, but that small concession is no comfort to those exposed to its seemingly unstoppable barrage of turreted weapons.</description>
  <health>
-  <armour>1600</armour>
+  <armour>1400</armour>
   <armour_regen>0</armour_regen>
  </health>
  <characteristics>
