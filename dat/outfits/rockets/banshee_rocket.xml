@@ -20,7 +20,7 @@
   <damage>
    <type>impact</type>
    <penetrate>18</penetrate>
-   <physical>120</physical>
+   <physical>80</physical>
    <disable>3</disable>
   </damage>
   <ai>unguided</ai>
