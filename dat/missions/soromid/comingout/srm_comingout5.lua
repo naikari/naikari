@@ -35,6 +35,7 @@
 
 --]]
 
+local fmt = require "fmt"
 require "numstring"
 require "missions/soromid/comingout/srm_comingout3"
 require "missions/soromid/common"
@@ -147,6 +148,7 @@ function spawnChelseaShip(param)
    chelsea:setHilight()
    chelsea:setVisible()
    chelsea:setInvincPlayer()
+   chelsea:setNoBoard()
 
    hook.pilot(chelsea, "death", "chelsea_death")
    hook.pilot(chelsea, "jump", "chelsea_jump")
@@ -175,6 +177,40 @@ function spawnGangster(param)
 end
 
 
+function jumpNext ()
+   if chelsea ~= nil and chelsea:exists() then
+      chelsea:taskClear()
+      chelsea:control()
+      misn.osdDestroy()
+      if system.cur() == missys then
+         chelsea:land(misplanet, true)
+         local osd_desc = {}
+         osd_desc[1] = fmt.f(
+               _("Protect Chelsea and wait for them to land on {planet}"),
+               {planet=misplanet:name()})
+         osd_desc[2] = fmt.f(_("Land on {planet}"), {planet=misplanet:name()})
+         misn.osdCreate(misn_title, osd_desc)
+      else
+         local nextsys = getNextSystem(system.cur(), missys)
+         local jumps = system.cur():jumpDist(missys)
+         chelsea:hyperspace(nextsys, true)
+         local osd_desc = {}
+         osd_desc[1] = fmt.f(
+               _("Protect Chelsea and wait for them to jump to {system}"),
+               {system=nextsys:name()})
+         osd_desc[2] = fmt.f(_("Jump to {system}"), {system=nextsys:name()})
+         if jumps > 1 then
+            osd_desc[3] = fmt.f(
+                  n_("{jumps} more jump after this one",
+                     "{jumps} more jumps after this one", jumps - 1),
+                  {jumps=fmt.number(jumps - 1)})
+         end
+         misn.osdCreate(misn_title, osd_desc)
+      end
+   end
+end
+
+
 function takeoff ()
    spawnChelseaShip(startplanet)
    jumpNext()
@@ -187,7 +223,7 @@ end
 
 function land ()
    if chelsea_jumped and planet.cur() == misplanet then
-      tk.msg("", success_text:format(numstring(credits)))
+      tk.msg("", success_text)
       player.pay(credits)
 
       local t = time.get():tonumber()
@@ -212,9 +248,4 @@ function gangster_timer()
          spawnGangster(lastsys)
       end
    end
-end
-
-
-function abort ()
-   pilot.toggleSpawn(true)
 end

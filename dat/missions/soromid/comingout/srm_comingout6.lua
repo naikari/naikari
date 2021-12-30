@@ -174,6 +174,7 @@ function spawn ()
    chelsea:setHilight()
    chelsea:setVisible()
    chelsea:setInvincPlayer()
+   chelsea:setNoBoard()
 
    chelsea:control()
    chelsea:attack(p)
