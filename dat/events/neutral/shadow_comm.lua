@@ -14,6 +14,7 @@
 -- Comm Event for the Shadow missions
 --]]
 
+local fmt = require "fmt"
 require "proximity"
 require "missions/shadow/common"
 
