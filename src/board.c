@@ -185,13 +185,12 @@ int player_board(void)
       player_message(_("#rYou cannot board a ship that isn't disabled!"));
       return PLAYER_BOARD_IMPOSSIBLE;
    }
-   else if (vect_dist(&player.p->solid->pos,&p->solid->pos) >
-         p->ship->gfx_space->sw * PILOT_SIZE_APPROX) {
+   else if (vect_dist(&player.p->solid->pos,&p->solid->pos)
+         > p->ship->gfx_space->sw * PILOT_SIZE_APPROX) {
       return PLAYER_BOARD_RETRY;
    }
-   else if ((pow2(VX(player.p->solid->vel)-VX(p->solid->vel)) +
-            pow2(VY(player.p->solid->vel)-VY(p->solid->vel))) >
-         (double)pow2(MAX_HYPERSPACE_VEL)) {
+   else if (vect_dist(&player.p->solid->vel, &p->solid->vel)
+         > MAX_HYPERSPACE_VEL) {
       return PLAYER_BOARD_RETRY;
    }
 
@@ -660,9 +659,8 @@ int pilot_board( Pilot *p )
    else if (vect_dist(&p->solid->pos, &target->solid->pos) >
          target->ship->gfx_space->sw * PILOT_SIZE_APPROX )
       return 0;
-   else if ((pow2(VX(p->solid->vel)-VX(target->solid->vel)) +
-            pow2(VY(p->solid->vel)-VY(target->solid->vel))) >
-            (double)pow2(MAX_HYPERSPACE_VEL))
+   else if (vect_dist(&p->solid->vel, &target->solid->vel)
+         > MAX_HYPERSPACE_VEL)
       return 0;
    else if (pilot_isFlag(target,PILOT_BOARDED))
       return 0;
