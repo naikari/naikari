@@ -16,5 +16,6 @@ void main(void) {
    float beta  = smoothstep(-M_SQRT2*m, -1.0*m, -d);
    vec4 fg_c   = mix( outline_color, color, alpha );
    color_out   = vec4( fg_c.rgb, beta*fg_c.a );
-   gl_FragDepth = d;
+   // Change [-1,1] range to [0,1]
+   gl_FragDepth = d*0.5 + 0.5;
 }
