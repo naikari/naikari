@@ -15,9 +15,9 @@
  <trail_generator x="-25" y="-8" h="0" />
  <fabricator>Nexus Shipyards</fabricator>
  <license>Medium Combat Vessel License</license>
- <description>This military grade version of the Pacifier is mostly identical in function to a standard Pacifier, but with slightly better armor, shields, and heat dissipation.</description>
+ <description>The Pacifier has a long history with the Empire. Its performance has only been slightly enhanced compared to the civilian-grade Pacifier, but the Empire believes the design to be hard to beat. The military grade version replaces some of its built-in armor with enhanced shielding and enhanced heat dissipation systems.</description>
  <health>
-  <armour>550</armour>
+  <armour>460</armour>
   <armour_regen>0</armour_regen>
  </health>
  <characteristics>
@@ -25,7 +25,7 @@
   <fuel_consumption>200</fuel_consumption>
   <rdr_range>7500</rdr_range>
   <rdr_jump_range>3000</rdr_jump_range>
-  <cargo>40</cargo>
+  <cargo>20</cargo>
  </characteristics>
  <slots>
   <weapon size="large" x="-15" y="-10" h="-10" />
@@ -45,8 +45,8 @@
   <structure size="medium" />
  </slots>
  <stats>
-  <shield_mod>15</shield_mod>
-  <shield_regen_mod>20</shield_regen_mod>
+  <shield_mod>20</shield_mod>
+  <shield_regen_mod>15</shield_regen_mod>
   <heat_dissipation>15</heat_dissipation>
   <rdr_enemy_range_mod>25</rdr_enemy_range_mod>
  </stats>
