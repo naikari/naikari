@@ -57,10 +57,8 @@ end
 
 -- Triggered when the player hails the ship
 function hail(p)
-    hook.rm(hailhook)
-
-    tk.msg("", fmt.f(ask_text, {player=player.name(), system=sys:name()}))
     player.commClose()
+    hook.rm(hailhook)
     vendetta:control()
     vendetta:hyperspace()
 
