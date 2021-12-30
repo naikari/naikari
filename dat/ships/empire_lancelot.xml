@@ -15,17 +15,17 @@
  <trail_generator x="-20" y="-5" h="0" />
  <fabricator>Nexus Shipyards</fabricator>
  <license>Light Combat Vessel License</license>
- <description>This military grade version of the Lancelot is mostly identical in function to a standard Lancelot, but with slightly better armor, shields, and heat dissipation.</description>
+ <description>The military-grade version of the Lancelot is more balanced than its civilian counterpart, being somewhat less armored, but having improved shielding and missile deployment systems. Enemies of the Empire know well to fear this vessel.</description>
  <health>
-  <armour>70</armour>
+  <armour>60</armour>
   <armour_regen>0</armour_regen>
  </health>
  <characteristics>
-  <mass>80</mass>
+  <mass>75</mass>
   <fuel_consumption>100</fuel_consumption>
   <rdr_range>7500</rdr_range>
   <rdr_jump_range>3000</rdr_jump_range>
-  <cargo>15</cargo>
+  <cargo>5</cargo>
  </characteristics>
  <slots>
   <weapon size="medium" x="12" y="0" h="0" />
@@ -42,12 +42,13 @@
   <structure size="small" />
  </slots>
  <stats>
-  <shield_mod>-5</shield_mod>
-  <armour_mod>55</armour_mod>
+  <shield_mod>10</shield_mod>
+  <shield_regen_mod>5</shield_regen_mod>
+  <armour_mod>25</armour_mod>
   <heat_dissipation>15</heat_dissipation>
-  <launch_rate>-25</launch_rate>
-  <launch_range>-10</launch_range>
-  <ammo_capacity>-25</ammo_capacity>
+  <launch_rate>-15</launch_rate>
+  <launch_range>-5</launch_range>
+  <ammo_capacity>-20</ammo_capacity>
   <rdr_enemy_range_mod>-40</rdr_enemy_range_mod>
  </stats>
 </ship>
