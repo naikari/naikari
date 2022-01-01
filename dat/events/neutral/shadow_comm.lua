@@ -43,10 +43,10 @@ function create ()
     hook.timer(0.5, "proximityScan", {focus = vendetta, funcname = "hailme"})
 
     -- Clean up on events that remove the Vendetta from the game
-    hook1 = hook.pilot(vendetta, "jump", "finish")
-    hook2 = hook.pilot(vendetta, "death", "finish")
-    hook3 = hook.land("finish")
-    hook4 = hook.jumpout("finish")
+    hook1 = hook.pilot(vendetta, "jump", "leave")
+    hook2 = hook.pilot(vendetta, "death", "leave")
+    hook3 = hook.land("leave")
+    hook4 = hook.jumpout("leave")
 end
 
 -- Make the ship hail the player
@@ -67,5 +67,9 @@ function hail(p)
         shadow_addLog( log_text )
         naev.missionStart("Shadow Vigil")
     end
+    evt.finish()
+end
+
+function leave()
     evt.finish()
 end
