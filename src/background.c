@@ -406,7 +406,7 @@ static void background_renderImages( background_image_t *bkg_arr )
       col.g = bkg->col.g * conf.bg_brightness;
       col.b = bkg->col.b * conf.bg_brightness;
       col.a = bkg->col.a;
-      gl_blitScale(bkg->image, round(4.*xs) / 4., round(4.*ys) / 4.,
+      gl_blitScale(bkg->image, xs, ys,
             bkg->image->sw * bkg->scale, bkg->image->sh * bkg->scale, &col);
    }
 }
