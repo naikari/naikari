@@ -16,23 +16,22 @@
 -- Comm Event for the Shadow missions
 --]]
 
-require ("proximity") 
 
 function create ()
-    hailie = hook.timer(20.0, "hailme")
+    hook.timer(20.0, "timer")
 
     landhook = hook.land("finish")
     jumpouthook = hook.jumpout("finish")
 end
 
--- Make the ship hail the player
-function hailme()
+
+function timer()
     naev.missionStart("Dark Shadow")
     player.commClose()
     evt.finish()
 end
 
+
 function finish()
-    hook.rm(hailie)
     evt.finish()
 end
