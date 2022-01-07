@@ -28,7 +28,11 @@ require "selectiveclear"
 require "missions/shadow/common"
 
 
-commmsg = {}
+ask_text = _([["Greetings, {player}," the pilot of the Vendetta says to you as soon as you answer his hail. "I have been looking for you on behalf of an acquaintance of yours. She wishes to meet with you at a place of her choosing, and a time of yours. It involves a proposition that you might find interesting if you don't mind sticking your neck out." You frown at that, but ask the pilot where this acquaintance wishes you to go anyway.
+
+"Fly to the {system} system," he replies. "She will meet you there. There's no rush, but I suggest you go see her at the earliest opportunity." The screen blinks out and the Vendetta goes about its business, paying you no more attention. It seems there's someone out there who wants to see you, and there's only one way to find out what about. Will you respond to the invitation?]])
+
+noclaim_text = _([["Oh! Sorry, I mistook you for somebody else. Here, I know you're busy and I've interrupted you, so as an apology I've deposited a small sum of credits into your account." The strange pilot ceases communication, leaving you stunned, but not as stunned as when you find that a small sum of credits has indeed been deposited into your account from an unknown source. Odd, how did they know your account details?…]])
 
 dock_text = _([[You dock with the Seiryuu and shut down your engines. At the airlock, you are welcomed by two nondescript crewmen in gray uniforms who tell you to follow them into the ship. They lead you through corridors and passages that seem to lead to the bridge. On the way, you can't help but look around you in wonder. The ship isn't anything you're used to seeing. While some parts can be identified as such common features as doors and viewports, a lot of the equipment in the compartments and niches seems strange, almost alien to you. Clearly the Seiryuu is no ordinary ship.
 
@@ -82,6 +86,7 @@ diplomatdistress = _("Diplomatic vessel under fire!")
 commmsg[1] = _("There you are at last. Fancy boat you've got there. We're gonna head to Nova Shakar first, to grab some fuel. Just stick with us, okay?")
 
 -- En-route chatter.
+commmsg = {}
 commmsg[2] = _("So do you guys think we'll run into any trouble?")
 commmsg[3] = _("Not if we all follow the plan. I didn't hear of any trouble coming our way from any of the others.")
 commmsg[4] = _("I just hope Z. knows what they're doing.")
@@ -128,9 +133,29 @@ log_text_success = _([[Your attempt to escort a diplomat for the Four Winds was 
 
 -- After having accepted the mission from the hailing Vendetta
 function create()
-    misn.accept()
     stage = 0
     rebinasys = system.get("Pas")
+    misssys = {
+        system.get("Qex"),
+        system.get("Shakar"),
+        system.get("Borla"),
+        system.get("Doranthex"),
+    }
+    misssys["__save"] = true
+
+    if not misn.claim(misssys) then
+        tk.msg("", noclaim_text)
+        -- Small consolation pay
+        player.pay(10000)
+        misn.finish(false)
+    end
+
+    if not tk.yesno("", fmt.f(ask_text,
+            {player=player.name(), system=rebinasys:name()})) then
+        misn.finish(false)
+    end
+
+    misn.accept()
 
     misn.setTitle(osd_title0)
     misn.setDesc(fmt.f(misn_desc0, {system=rebinasys:name()}))
@@ -141,20 +166,9 @@ function create()
     misn.osdCreate(osd_title0, {osd_msg0})
 
     hook.jumpin("jumpin")
-    hook.update("delayedClaim")
 end
 
--- Delayed claim to let time for the event's claim to disappear
-function delayedClaim()
-    misssys = {system.get("Qex"), system.get("Shakar"), system.get("Borla"), system.get("Doranthex")} -- Escort meeting point, refuel stop, protegee meeting point, final destination.
-    misssys["__save"] = true
 
-    if not misn.claim(misssys) then
-        misn.finish(false)
-    end
-end
-
--- Boarding the Seiryuu at the beginning of the mission
 function meeting()
     tk.msg("", fmt.f(dock_text, {player=player.name()}))
     tk.msg("", dock2_text)
