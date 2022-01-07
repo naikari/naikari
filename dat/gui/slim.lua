@@ -19,6 +19,8 @@ function create()
    smallfont_h = gfx.fontSize(true)
    gui.viewport( 0, 28, screen_w, screen_h - 28 )
 
+   fps_y = 32
+
    --Colors
    col_txt_bar = colour.new( 192/255, 198/255, 217/255 )
    col_txt_top = colour.new( 148/255, 158/255, 192/255 )
@@ -286,7 +288,7 @@ function create()
    ta_pnt_center_y = ta_pnt_image_y + ta_pnt_image_h / 2
 
    -- Set FPS
-   gui.fpsPos( 20, screen_h - 48 - deffont_h )
+   gui.fpsPos(20, screen_h - fps_y)
 
    -- Set OSD
    gui.osdInit( 23, screen_h - 63, 150, 500 )
@@ -341,7 +343,7 @@ function update_nav()
    if nav_pnt then
       pntflags = nav_pnt:services()
       gui.osdInit( ta_pnt_pane_x + ta_pnt_pane_w + 8, screen_h - 63, 150, 500 )
-      gui.fpsPos( ta_pnt_pane_x + ta_pnt_pane_w + 3, screen_h - 28 - 15 - deffont_h )
+      gui.fpsPos(ta_pnt_pane_x + ta_pnt_pane_w + 3, screen_h - fps_y)
 
       ta_pnt_gfx = nav_pnt:gfxSpace()
       ta_pnt_gfx_w, ta_pnt_gfx_h = ta_pnt_gfx:dim()
@@ -378,7 +380,7 @@ function update_nav()
       end
    else
       gui.osdInit( 23, screen_h - 63, 150, 500 )
-      gui.fpsPos( 15, screen_h - 28 - 15 - deffont_h )
+      gui.fpsPos(15, screen_h - fps_y)
    end
    if nav_hyp then
       if nav_hyp:known() then

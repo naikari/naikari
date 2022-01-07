@@ -891,8 +891,8 @@ void dialogue_custom( const char* caption, int width, int height,
 
    /* custom widget for all! */
    if (fullscreen) {
-      width  = SCREEN_W;
-      height = SCREEN_H;
+      width = gl_screen.nw;
+      height = gl_screen.nh;
       wgtx = wgty = 0;
    }
    else {
@@ -938,7 +938,7 @@ int dialogue_customFullscreen( int enable )
 
    cd = (struct dialogue_custom_data_s*) window_getData( wid );
    window_dimWindow( wid, &w, &h );
-   fullscreen = (w==SCREEN_W && h==SCREEN_H);
+   fullscreen = ((w == gl_screen.nw) && (h == gl_screen.nh));
 
    if (enable) {
       if (fullscreen)
