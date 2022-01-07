@@ -64,10 +64,12 @@ function create ()
    missys = systems[rnd.rnd(1, #systems)]
    if not misn.claim(missys) then misn.finish(false) end
 
-   jumps_permitted = system.cur():jumpDist(missys) + rnd.rnd(5)
-   if rnd.rnd() < 0.05 then
-      jumps_permitted = jumps_permitted - 1
+   local dist = system.cur():jumpDist(missys)
+   if dist == nil then
+      misn.finish(false)
    end
+   -- Add enough leniency for landings every two jumps
+   jumps_permitted = math.floor(dist + dist/2) + rnd.rnd(0, 5)
 
    level = rnd.rnd(1, 4)
 
