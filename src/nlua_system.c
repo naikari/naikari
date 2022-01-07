@@ -412,7 +412,7 @@ static int systemL_nebula( lua_State *L )
  * @usage d = sys:jumpDist(another_sys) -- Distance from sys to another_sys.
  *
  *    @luatparam System s Starting system.
- *    @luatparam string|System[opt] system System to get distance to.
+ *    @luatparam[opt] string|System system System to get distance to.
  *       If nil or unspecified, gets distance to the current system.
  *    @luatparam[opt=false] boolean hidden Whether or not to consider
  *       hidden jumps.
