@@ -3308,7 +3308,7 @@ Planet* player_load( xmlNodePtr parent )
    memset( &player, 0, sizeof(Player_t) );
    player.speed = 1.;
    pnt = NULL;
-   map_close();
+   map_cleanup();
 
    /* Reasonable time defaults. */
    player.last_played = time(NULL);
