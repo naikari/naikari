@@ -402,18 +402,13 @@ static int systemL_nebula( lua_State *L )
 /**
  * @brief Gets jump distance from current system, or to another.
  *
- * Does different things depending on the parameter type:
- *    - nil : Gets distance to current system.
- *    - string : Gets distance to system matching name.
- *    - system : Gets distance to system
- *
  * @usage d = sys:jumpDist() -- Distance from sys to current system.
  * @usage d = sys:jumpDist("Draygar") -- Distance from sys to system Draygar.
  * @usage d = sys:jumpDist(another_sys) -- Distance from sys to another_sys.
  *
  *    @luatparam System s Starting system.
- *    @luatparam[opt] string|System system System to get distance to.
- *       If nil or unspecified, gets distance to the current system.
+ *    @luatparam[opt] string|System dest System to get distance to.  If
+ *       nil or unspecified, gets distance to the current system.
  *    @luatparam[opt=false] boolean hidden Whether or not to consider
  *       hidden jumps.
  *    @luatparam[opt=false] boolean known Whether or not to consider
@@ -427,7 +422,7 @@ static int systemL_jumpdistance( lua_State *L )
    StarSystem *sys, *sysp;
    StarSystem **s;
    const char *start, *goal;
-   int h, k, size;
+   int h, k;
 
    sys = luaL_validsystem(L, 1);
    start = sys->name;
@@ -456,8 +451,7 @@ static int systemL_jumpdistance( lua_State *L )
    k = !lua_toboolean(L, 4);
 
    s = map_getJumpPath(start, goal, k, h, NULL);
-   size = array_size(s);
-   if (size > 0)
+   if (s != NULL)
       lua_pushnumber(L, array_size(s));
    else
       lua_pushnil(L);
@@ -470,21 +464,18 @@ static int systemL_jumpdistance( lua_State *L )
 /**
  * @brief Gets jump path from current system, or to another.
  *
- * Does different things depending on the parameter type:
- * <ul>
- *    <li>nil : Gets path to current system.</li>
- *    <li>string : Gets path to system with the given raw (untranslated) name.</li>
- *    <li>system : Gets path to system</li>
- * </ul>
- *
- * @usage jumps = sys:jumpPath( system.cur() ) -- Path from sys to current system.
- * @usage jumps = sys:jumpPath( "Draygar" ) -- Path from sys to Draygar.
- * @usage jumps = system.jumpPath( "Draygar", another_sys ) -- Path from Draygar to another_sys.
+ * @usage jumps = sys:jumpPath() -- Path from sys to current system.
+ * @usage jumps = sys:jumpPath("Draygar") -- Path from sys to Draygar.
  *
  *    @luatparam System s Starting system.
- *    @luatparam System goal Goal system param See description.
- *    @luatparam[opt=false] boolean hidden Whether or not to consider hidden jumps.
- *    @luatreturn {Jump,...} Table of jumps.
+ *    @luatparam[opt] string|System dest System to get path to.  If nil
+ *       or unspecified, gets path to the current system.
+ *    @luatparam[opt=false] boolean hidden Whether or not to consider
+ *       hidden jumps.
+ *    @luatparam[opt=false] boolean known Whether or not to consider
+ *       only jumps known by the player.
+ *    @luatreturn {Jump,...}|nil Table of jumps, or nil if there is no
+ *       route to the system with the given parameters.
  * @luafunc jumpPath
  */
 static int systemL_jumpPath( lua_State *L )
@@ -492,21 +483,36 @@ static int systemL_jumpPath( lua_State *L )
    LuaJump lj;
    StarSystem *sys, *sysp;
    StarSystem **s;
-   int i, sid, pushed, h;
+   int i, sid, pushed;
+   int h, k;
    const char *start, *goal;
 
-   h   = lua_toboolean(L,3);
+   h = lua_toboolean(L, 3);
+   k = !lua_toboolean(L, 4);
 
    /* Foo to Bar */
-   sys   = luaL_validsystem(L,1);
+   sys = luaL_validsystem(L, 1);
    start = sys->name;
-   sid   = sys->id;
-   sysp  = luaL_validsystem(L,2);
-   goal  = sysp->name;
+   sid = sys->id;
 
-   s = map_getJumpPath( start, goal, 1, h, NULL );
-   if (s == NULL)
-      return 0;
+   if (!lua_isnoneornil(L, 2)) {
+      if (lua_isstring(L, 2))
+         goal = lua_tostring(L, 2);
+      else if (lua_issystem(L, 2)) {
+         sysp = luaL_validsystem(L, 2);
+         goal = sysp->name;
+      }
+      else
+         NLUA_INVALID_PARAMETER(L);
+   }
+   else
+      goal = cur_system->name;
+
+   s = map_getJumpPath(start, goal, k, h, NULL);
+   if (s == NULL) {
+      lua_pushnil(L);
+      return 1;
+   }
 
    /* Create the jump table. */
    lua_newtable(L);
