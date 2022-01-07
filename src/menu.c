@@ -57,7 +57,7 @@
 
 
 #define DEATH_WIDTH     200 /**< Death menu width. */
-#define DEATH_HEIGHT    200 /**< Death menu height. */
+#define DEATH_HEIGHT    150 /**< Death menu height. */
 
 #define BUTTON_WIDTH    160 /**< Button width, standard across menus. */
 #define BUTTON_HEIGHT   30 /**< Button height, standard across menus. */
@@ -557,22 +557,22 @@ void menu_death (void)
    char path[PATH_MAX];
 
    wid = window_create( "wdwRIP", _("Death"), -1, -1, DEATH_WIDTH, DEATH_HEIGHT );
-   window_onClose( wid, menu_death_close );
+   window_onClose(wid, menu_death_close);
 
    /* Allow the player to continue if the saved game exists, if not, propose to restart */
    snprintf( path, sizeof(path), "saves/%s.ns", player.name );
    if (PHYSFS_exists( path ))
-      window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT*2 + 20*2, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnContinue", _("Continue"), menu_death_continue, SDLK_c );
+      window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT+20,
+            BUTTON_WIDTH, BUTTON_HEIGHT,
+            "btnContinue", _("Continue"), menu_death_continue, SDLK_c);
    else
-      window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT*2 + 20*2, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnRestart", _("Restart"), menu_death_restart, SDLK_r );
+      window_addButtonKey(wid, 20, 20 + BUTTON_HEIGHT+20,
+            BUTTON_WIDTH, BUTTON_HEIGHT,
+            "btnRestart", _("Restart"), menu_death_restart, SDLK_r);
 
-   window_addButtonKey( wid, 20, 20 + (BUTTON_HEIGHT+20),
+   window_addButtonKey(wid, 20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnMain", _("Main Menu"), menu_death_main, SDLK_m );
-   window_addButtonKey( wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnExit", _("Exit Game"), menu_exit, SDLK_x );
+         "btnMain", _("Main Menu"), menu_death_main, SDLK_m);
    menu_Open(MENU_DEATH);
 
    /* Makes it all look cooler since everything still goes on. */
