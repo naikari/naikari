@@ -77,11 +77,9 @@ share_text[5] = _([["Ha ha ha, looks like I beat you to it this time, eh? Well, 
 misn_title  = _("PD: Dead or Alive Bounty in %s")
 misn_desc   = _("A political dissident known as %s was recently seen in the %s system. %s authorities want this dissident dead or alive.")
 
--- Messages
-msg    = {}
-msg[1] = _("MISSION FAILURE! Your target got away.")
-msg[2] = _("MISSION FAILURE! Another pilot eliminated your target.")
-msg[3] = _("MISSION FAILURE! You have left the %s system.")
+fail_escape_text = _("MISSION FAILURE! Your target got away.")
+fail_beaten_text = _("MISSION FAILURE! Another pilot eliminated your target.")
+fail_abandon_text = _("MISSION FAILURE! You have left the {system} system.")
 
 osd_title = _("Bounty Hunt")
 osd_msg    = {}

@@ -83,11 +83,9 @@ misn_title[4] = _("High Dead or Alive Bounty in %s")
 misn_title[5] = _("Dangerous Dead or Alive Bounty in %s")
 misn_desc   = _("The pirate known as %s was recently seen in the %s system. %s authorities want this pirate dead or alive.")
 
--- Messages
-msg = {}
-msg[1] = _("MISSION FAILURE! %s got away.")
-msg[2] = _("MISSION FAILURE! Another pilot eliminated %s.")
-msg[3] = _("MISSION FAILURE! You have left the %s system.")
+fail_escape_text = _("MISSION FAILURE! {pilot} got away.")
+fail_beaten_text = _("MISSION FAILURE! Another pilot eliminated {pilot}.")
+fail_abandon_text = _("MISSION FAILURE! You have left the {system} system.")
 
 osd_title = _("Bounty Hunt")
 osd_msg = {}
@@ -189,7 +187,7 @@ function jumpout ()
    jumps_permitted = jumps_permitted - 1
    last_sys = system.cur()
    if not job_done and last_sys == missys then
-      fail(msg[3]:format(last_sys:name()))
+      fail(fmt.f(fail_abandon_text, {system=missys:name()}))
    end
 end
 
@@ -294,18 +292,18 @@ function pilot_death(p, attacker)
          hook.pilot(top_hunter, "land", "hunter_leave")
          hook.jumpout("hunter_leave")
          hook.land("hunter_leave")
-         player.msg("#r" .. msg[2]:format(name) .. "#0")
+         player.msg("#r" .. fmt.f(fail_beaten_text, {pilot=name}) .. "#0")
          hook.timer(3, "timer_hail", top_hunter)
          misn.osdDestroy()
       else
-         fail(msg[2]:format(name))
+         fail(fmt.f(fail_beaten_text, {pilot=name}))
       end
    end
 end
 
 
-function pilot_jump ()
-   fail(msg[1]:format(name))
+function pilot_jump()
+   fail(fmt.f(fail_escape_text, {pilot=name}))
 end
 
 
@@ -371,7 +369,11 @@ end
 
 -- Spawn the ship at the location param.
 function spawn_pirate(param)
-   if not job_done and system.cur() == missys then
+   if job_done then
+      return
+   end
+
+   if system.cur() == missys then
       if jumps_permitted >= 0 then
          misn.osdActive(2)
          target_ship = pilot.add(ship, pirate_faction, param)
@@ -386,7 +388,17 @@ function spawn_pirate(param)
          pir_jump_hook = hook.pilot(target_ship, "jump", "pilot_jump")
          pir_land_hook = hook.pilot(target_ship, "land", "pilot_jump")
       else
-         fail(msg[1]:format(name))
+         fail(fmt.f(fail_escape_text, {pilot=name}))
+      end
+   else
+      local needed = system.cur():jumpDist(missys, true)
+      if needed ~= nil and needed > jumps_permitted then
+         -- Mission is now impossible to beat and therefore in a sort of
+         -- "zombie" state, so immediately fail the mission. We use the
+         -- "beaten" fail text here because the player isn't inside the
+         -- system, so they wouldn't know that the pirate is no longer
+         -- there, but they would know if someone else did the job.
+         fail(fmt.f(fail_beaten_text, {pilot=name}))
       end
    end
 end

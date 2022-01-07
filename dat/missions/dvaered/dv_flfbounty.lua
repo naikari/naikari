@@ -46,8 +46,6 @@ misn_title[3] = _("DV: Moderate Dead or Alive FLF Bounty in %s")
 misn_title[4] = _("DV: High Dead or Alive FLF Bounty in %s")
 misn_desc   = _("The FLF terrorist known as %s was recently seen in the %s system. %s authorities want this terrorist dead or alive.")
 
-fail_kill_text = _("MISSION FAILURE! %s has been killed.")
-
 
 function create ()
    paying_faction = planet.cur():faction()

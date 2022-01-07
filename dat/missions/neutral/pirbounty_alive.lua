@@ -51,7 +51,7 @@ pay_capture_text[5] = _("The officer you deal with thanks you profusely for capt
 pay_capture_text[6] = _("Upon learning that you managed to capture %s alive, the officer who previously sported a defeated look suddenly brightens up. The pirate is swiftly taken into custody as you are handed your pay.")
 pay_capture_text[7] = _("When you ask the officer for your bounty on %s, they sigh, take the pirate into custody, go through some paperwork, and hand you your pay, mumbling something about how useless capturing pirates alive is.")
 
-fail_kill_text = _("MISSION FAILURE! %s has been killed.")
+fail_kill_text = _("MISSION FAILURE! {pilot} has been killed.")
 
 misn_title = {}
 misn_title[1] = _("Tiny Alive Bounty in %s")
@@ -65,7 +65,7 @@ osd_msg[2] = _("Capture %s")
 
 
 function pilot_death ()
-   fail(fail_kill_text:format(name))
+   fail(fmt.f(fail_kill_text, {pilot=name}))
 end
 
 
