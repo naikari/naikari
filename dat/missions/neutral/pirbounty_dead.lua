@@ -351,7 +351,7 @@ function bounty_setup ()
       else
          ship = "Pirate Ancestor"
       end
-      credits = 400000 + rnd.sigma() * 80000
+      credits = 250000 + rnd.sigma() * 80000
       reputation = 1
    elseif level == 4 then
       if rnd.rnd() < 0.5 then

@@ -96,7 +96,7 @@ function bounty_setup ()
       reputation = 0
    elseif level == 2 then
       ship = "Lancelot"
-      credits = 300000 + rnd.sigma() * 500000
+      credits = 200000 + rnd.sigma() * 50000
       reputation = 1
    elseif level == 3 then
       if rnd.rnd() < 0.95 then
@@ -104,11 +104,11 @@ function bounty_setup ()
       else
          ship = "Ancestor"
       end
-      credits = 500000 + rnd.sigma() * 80000
-      reputation = 3
+      credits = 300000 + rnd.sigma() * 80000
+      reputation = 2
    elseif level == 4 then
       ship = "Pacifier"
       credits = 1000000 + rnd.sigma() * 150000
-      reputation = 6
+      reputation = 4
    end
 end
