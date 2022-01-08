@@ -102,7 +102,7 @@ function cargo_calculateRoute ()
    if jumps then
       for k, v in ipairs(jumps) do
          local travelrisk = v:system():presences()["Pirate"] or 0
-         local risk = risk + travelrisk^exp
+         risk = risk + travelrisk^exp
       end
    end
    local avgrisk = (risk / (numjumps+1)) ^ (1/exp)
