@@ -19,10 +19,8 @@ nebulae = {
    "nebula15.png",
    "nebula16.png",
    "nebula17.png",
-   "nebula18.png",
    "nebula19.png",
    "nebula20.webp",
-   "nebula23.webp",
    "nebula34.webp",
    "nebula35.png",
 }
