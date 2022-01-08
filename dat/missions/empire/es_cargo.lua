@@ -87,11 +87,13 @@ function create()
    end
  
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
-   finished_mod = 2.0 -- Modifier that should tend towards 1.0 as Naev is finished as a game
-   amount = rnd.rnd(10 + 3 * tier, 20 + 4 * tier)
-   jumpreward = commodity.price(cargo)*1.5
-   distreward = math.log(300*commodity.price(cargo))/100
-   reward = 1.5^tier * (avgrisk*riskreward + numjumps * jumpreward + traveldist * distreward) * finished_mod * (1. + 0.05*rnd.twosigma())
+   amount = rnd.rnd(10 + 3*tier, 20 + 4*tier)
+   jumpreward = commodity.price(cargo) * 1.5
+   distreward = math.log(300*commodity.price(cargo)) / 100
+   reward = (1.5^tier
+         * (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward
+            + 75000)
+         * (1 + 0.05*rnd.twosigma()))
 
    local title = n_("ES: Cargo: {amount} t to {planet} ({system} system)",
          "ES: Cargo: {amount} t to {planet} ({system} system)", amount)
