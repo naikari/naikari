@@ -39,6 +39,7 @@
 
 --]]
 
+local fmt = require "fmt"
 require "missions/neutral/pirbounty_dead"
 
 
