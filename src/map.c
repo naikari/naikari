@@ -349,20 +349,28 @@ void map_open (void)
     * [+] [-]  Nebula, Interference
     */
    /* Zoom buttons */
-   window_addButtonKey( wid, 20, 20, 30, BUTTON_HEIGHT, "btnZoomIn", "+",
-         map_buttonZoom, SDLK_EQUALS );
-   window_addButtonKey( wid, 60, 20, 30, BUTTON_HEIGHT, "btnZoomOut", "-",
-         map_buttonZoom, SDLK_MINUS );
+   window_addButtonKey(wid, 20, 20,
+         30, BUTTON_HEIGHT, "btnZoomOut", "-", map_buttonZoom, SDLK_MINUS);
+   window_addButtonKey(wid, 20, 20+10+BUTTON_HEIGHT,
+         30, BUTTON_HEIGHT, "btnZoomIn", "+",
+         map_buttonZoom, SDLK_EQUALS);
+
    /* Situation text */
-   window_addText( wid, 100, 10, w - 100 - 4*(BUTTON_WIDTH+20), 30, 0,
-                   "txtSystemStatus", &gl_smallFont, NULL, NULL );
+   window_addText(wid, 20+30+10, 10,
+         w - (20+30+10) - 4*(BUTTON_WIDTH+20), BUTTON_HEIGHT,
+         0, "txtSystemStatus", &gl_smallFont, NULL, NULL);
+
+   /* Player info text */
+   window_addText(wid, 20+30+10, 20+BUTTON_HEIGHT+10,
+         w - (20+30+10) - 20 - 20 - iw - 20, BUTTON_HEIGHT-10,
+         0, "txtPlayerInfo", &gl_smallFont, NULL, NULL);
 
    map_genModeList();
 
    /*
     * The map itself.
     */
-   map_show( wid, 20, -40, w-20-20-iw-20, h-100, 1. ); /* Reset zoom. */
+   map_show(wid, 20, -40, w-20-20-iw-20, h - 60 - (BUTTON_HEIGHT+10)*2, 1.);
 
    map_update( wid );
 
@@ -451,6 +459,8 @@ static void map_update( unsigned int wid )
    glTexture *logo;
    double w;
    Commodity *c;
+   int jumps;
+   char *infobuf, credbuf[ECON_CRED_STRLEN], jumpsbuf[STRMAX_SHORT];
 
    /* Needs map to update. */
    if (!map_isOpen())
@@ -741,9 +751,36 @@ static void map_update( unsigned int wid )
 
          p += scnprintf(&buf[p], sizeof(buf)-p, _("Asteroid Field"));
       }
-      window_modifyText( wid, "txtSystemStatus", buf );
-      (void)p;
+      if (p > 0) {
+         asprintf(&infobuf, _("#n%s:#0 %s"), _(sys->name), buf);
+         window_modifyText(wid, "txtSystemStatus", infobuf);
+         free(infobuf);
+         infobuf = NULL;
+      }
    }
+
+   if (player.p->fuel_consumption != 0) {
+      jumps = floor(player.p->fuel / player.p->fuel_consumption);
+      snprintf(jumpsbuf, sizeof(jumpsbuf),
+            n_("%d jump", "%d jumps", jumps), jumps);
+   }
+   else
+      strcpy(jumpsbuf, _("∞ jumps"));
+
+   credits2str(credbuf, player.p->credits, 2);
+
+   asprintf(&infobuf,
+         _("#nCredits:#0 %s"
+            "    #nFuel:#0 %d hL (%s)"
+            "    #nCurrent System:#0 %s"
+            "    #nTarget System:#0 %s"),
+         credbuf,
+         player.p->fuel, jumpsbuf,
+         _(cur_system->name),
+         _(sys->name));
+   window_modifyText(wid, "txtPlayerInfo", infobuf);
+
+   free(infobuf);
 }
 
 
