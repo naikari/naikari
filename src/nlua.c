@@ -120,6 +120,34 @@ static int nlua_gettext_noop( lua_State *L )
 }
 
 
+/**
+ * @brief Implements the Lua function math.log2 (base-2 logarithm).
+ */
+static int nlua_log2( lua_State *L )
+{
+   double n;
+   n = luaL_checknumber(L, 1);
+   lua_pushnumber(L, log2(n));
+   return 1;
+}
+
+
+/**
+ * @brief Implements the Lua function os.getenv.
+ *
+ * In the sandbox we only make a fake $HOME visible.
+ */
+static int nlua_os_getenv( lua_State *L )
+{
+   const char *var;
+   var = luaL_checkstring(L, 1);
+   if (strcmp(var, "HOME") != 0)
+      return 0;
+   lua_pushstring(L, "lua_home");
+   return 1;
+}
+
+
 /*
  * @brief Initializes the global Lua state.
  */
@@ -347,13 +375,17 @@ static int nlua_loadBasic( lua_State* L )
 {
    luaL_openlibs(L);
 
-   /* move unpack to table.unpack as in Lua5.2 */
+   /* move [un]pack to table.[un]pack as in Lua5.2 */
    lua_getglobal(L, "table");    /* t */
    lua_getglobal(L, "unpack");   /* t, u */
    lua_setfield(L,-2,"unpack");  /* t */
+   lua_getglobal(L, "pack");     /* t, u */
+   lua_setfield(L,-2,"pack");    /* t */
    lua_pop(L,1);                 /* */
    lua_pushnil(L);               /* nil */
    lua_setglobal(L, "unpack");   /* */
+   lua_pushnil(L);               /* nil */
+   lua_setglobal(L, "pack");     /* */
 
    /* Override print to print in the console. */
    lua_register(L, "print", cli_print);
@@ -364,6 +396,22 @@ static int nlua_loadBasic( lua_State* L )
    lua_register(L, "N_", nlua_gettext_noop);
    lua_register(L, "n_", nlua_ngettext);
    luaL_register(L, "gettext", gettext_methods);
+
+   /* Sandbox "io" and "os". */
+   lua_newtable(L); /* io table */
+   lua_setglobal(L,"io");
+   lua_newtable(L); /* os table */
+   lua_pushcfunction(L, nlua_os_getenv);
+   lua_setfield(L,-2,"getenv");
+   lua_setglobal(L,"os");
+
+   /* Special math functions function. */
+   lua_getglobal(L,"math");
+   lua_pushcfunction(L, nlua_log2);
+   lua_setfield(L,-2,"log2");
+   lua_pushnil(L);
+   lua_setfield(L,-2,"mod"); /* Get rid of math.mod */
+   lua_pop(L,1);
 
    return 0;
 }
