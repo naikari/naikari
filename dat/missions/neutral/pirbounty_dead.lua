@@ -56,7 +56,7 @@ pay_kill_text = {}
 pay_kill_text[1] = _("After verifying that you killed %s, an officer hands you your pay.")
 pay_kill_text[2] = _("After verifying that %s is indeed dead, the tired-looking officer smiles and hands you your pay.")
 pay_kill_text[3] = _("The officer seems pleased that %s is finally dead. They thank you and promptly hand you your pay.")
-pay_kill_text[4] = _("The paranoid-looking officer takes you into a locked room, where the death of %s is quietly verified. The officer then pays you and sends you off.")
+pay_kill_text[4] = _("A frightful officer takes you into a locked room, where the death of %s is quietly verified. The officer then pays you and sends you off.")
 pay_kill_text[5] = _("When you ask the officer for your bounty on %s, they sigh, lead you into an office, go through some paperwork, and hand you your pay, mumbling something about how useless the bounty system is.")
 pay_kill_text[6] = _("The officer verifies the death of %s, goes through the necessary paperwork, and hands you your pay, looking bored the entire time.")
 
