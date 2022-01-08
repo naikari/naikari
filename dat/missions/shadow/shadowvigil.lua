@@ -82,11 +82,11 @@ diplomatnoruntext = _([[You have jumped before the diplomat you were supposed to
 
 diplomatdistress = _("Diplomatic vessel under fire!")
 
+commmsg = {}
 -- First meeting.
 commmsg[1] = _("There you are at last. Fancy boat you've got there. We're gonna head to Nova Shakar first, to grab some fuel. Just stick with us, okay?")
 
 -- En-route chatter.
-commmsg = {}
 commmsg[2] = _("So do you guys think we'll run into any trouble?")
 commmsg[3] = _("Not if we all follow the plan. I didn't hear of any trouble coming our way from any of the others.")
 commmsg[4] = _("I just hope Z. knows what they're doing.")
