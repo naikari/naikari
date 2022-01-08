@@ -448,6 +448,7 @@ static void map_update( unsigned int wid )
 {
    int i;
    StarSystem *sys;
+   StarSystem **path;
    int f, h, x, y;
    unsigned int services_u, services_q;
    unsigned int services_f, services_n, services_r, services_h;
@@ -461,6 +462,7 @@ static void map_update( unsigned int wid )
    Commodity *c;
    int jumps;
    char *infobuf, credbuf[ECON_CRED_STRLEN], jumpsbuf[STRMAX_SHORT];
+   char jumpsbuf2[STRMAX_SHORT];
 
    /* Needs map to update. */
    if (!map_isOpen())
@@ -767,17 +769,27 @@ static void map_update( unsigned int wid )
    else
       strcpy(jumpsbuf, _("∞ jumps"));
 
+   strcpy(jumpsbuf2, "");
+   path = map_getJumpPath(cur_system->name, sys->name, 1, 1, NULL);
+   if (path != NULL) {
+      jumps = array_size(path);
+      if (jumps > 0)
+         snprintf(jumpsbuf2, sizeof(jumpsbuf2),
+               n_("(%d jump)", "(%d jumps)", jumps), jumps);
+      array_free(path);
+   }
+
    credits2str(credbuf, player.p->credits, 2);
 
    asprintf(&infobuf,
          _("#nCredits:#0 %s"
             "    #nFuel:#0 %d hL (%s)"
             "    #nCurrent System:#0 %s"
-            "    #nTarget System:#0 %s"),
+            "    #nTarget System:#0 %s %s"),
          credbuf,
          player.p->fuel, jumpsbuf,
          _(cur_system->name),
-         _(sys->name));
+         _(sys->name), jumpsbuf2);
    window_modifyText(wid, "txtPlayerInfo", infobuf);
 
    free(infobuf);
