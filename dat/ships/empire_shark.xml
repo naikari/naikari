@@ -16,17 +16,17 @@
  <trail_generator x="-15" y="0" h="-5" always_under="1" />
  <fabricator>Nexus Shipyards</fabricator>
  <license>Light Combat Vessel License</license>
- <description>The Empire military grade version of the Shark is mostly identical in function to a standard Shark, but with slightly better armor, shields, and heat dissipation. The military-grade materials used also result in the ship being slightly lighter than its generic counterpart.</description>
+ <description>Not quite satisfied with the maneuverability and detection of the standard Shark, the Imperial military stripped it of some of its armor, replacing it with comparatively more lightweight shield generators, and installed integrated steering thruster and state-of-the art radar sensors. The resulting ship ensures that enemies of the Empire have no chance of escape.</description>
  <health>
   <armour>40</armour>
-  <armour_regen>0</armour_regen>
+  <armour_regen>0.25</armour_regen>
  </health>
  <characteristics>
   <mass>40</mass>
   <fuel_consumption>100</fuel_consumption>
   <rdr_range>7500</rdr_range>
   <rdr_jump_range>3000</rdr_jump_range>
-  <cargo>10</cargo>
+  <cargo>5</cargo>
  </characteristics>
  <slots>
   <weapon size="small" x="12" y="0" h="0" />
@@ -41,9 +41,12 @@
   <structure size="small" />
  </slots>
  <stats>
-  <shield_mod>-5</shield_mod>
-  <armour_mod>45</armour_mod>
+  <turn_mod>10</turn_mod>
+  <shield_mod>5</shield_mod>
+  <armour_mod>25</armour_mod>
+  <energy_regen_mod>-10</energy_regen_mod>
   <heat_dissipation>15</heat_dissipation>
+  <rdr_range_mod>10</rdr_range_mod>
   <rdr_enemy_range_mod>-50</rdr_enemy_range_mod>
  </stats>
 </ship>
