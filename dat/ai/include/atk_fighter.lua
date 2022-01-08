@@ -84,6 +84,15 @@ function _atk_f_flyby( target, dist )
       ai.pushsubtask("_atk_zigzag", target)
    end
 
+   -- Check if in range to shoot missiles
+   if dist < ai.getweaprange("all_seek") then
+      if dir < 30 then
+         ai.weapset("all_seek")
+      else
+         ai.weapset("turret_seek")
+      end
+   end
+
    -- Far away, must approach
    if dist > (3 * range) then
       dir = ai.idir(target)
@@ -144,6 +153,15 @@ function _atk_f_space_sup( target, dist )
    -- First test if we should zz
    if _atk_decide_zz() then
       ai.pushsubtask("_atk_zigzag", target)
+   end
+
+   -- Check if in range to shoot missiles
+   if dist < ai.getweaprange("all_seek") then
+      if dir < 30 then
+         ai.weapset("all_seek")
+      else
+         ai.weapset("turret_seek")
+      end
    end
 
    --if we're far away from the target, then turn and approach
