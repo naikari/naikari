@@ -95,20 +95,17 @@ function cargo_calculateRoute ()
    local traveldist = cargo_calculateDistance(routesys, routepos, destsys, destplanet)
    
    
-   --Determine amount of piracy along the route
-   local jumps = system.jumpPath( system.cur(), destsys )
-   local risk = system.cur():presences()["Pirate"]
-   if risk == nil then risk = 0 end
+   -- Determine amount of piracy along the route
+   local exp = 1.5
+   local jumps = system.jumpPath(system.cur(), destsys, cargo_use_hidden)
+   local risk = (system.cur():presences()["Pirate"] or 0) ^ exp
    if jumps then
       for k, v in ipairs(jumps) do
-         local travelrisk = v:system():presences()["Pirate"]
-         if travelrisk == nil then
-            travelrisk = 0
-         end
-         local risk = risk+travelrisk
+         local travelrisk = v:system():presences()["Pirate"] or 0
+         local risk = risk + travelrisk^exp
       end
    end
-   local avgrisk = risk/(numjumps + 1)
+   local avgrisk = (risk / (numjumps+1)) ^ (1/exp)
    
    -- We now know where. But we don't know what yet. Randomly choose a commodity type.
    local cargo
