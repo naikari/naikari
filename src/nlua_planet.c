@@ -606,29 +606,32 @@ static int planetL_classLong(lua_State *L )
  * @brief Checks for planet services.
  *
  * Possible services are:<br />
- *  - "land"<br />
- *  - "inhabited"<br />
- *  - "refuel"<br />
- *  - "bar"<br />
- *  - "missions"<br />
- *  - "commodity"<br />
- *  - "outfits"<br />
- *  - "shipyard"<br />
- *  - "blackmarket"<br />
+ * <ul>
+ *    <li>"inhabited"</li>
+ *    <li>"land"</li>
+ *    <li>"refuel"</li>
+ *    <li>"bar"</li>
+ *    <li>"missions"</li>
+ *    <li>"commodity"</li>
+ *    <li>"outfits"</li>
+ *    <li>"shipyard"</li>
+ *    <li>"blackmarket"</li>
+ * </ul>
  *
  * @usage if p:services()["refuel"] then -- Planet has refuel service.
  * @usage if p:services()["shipyard"] then -- Planet has shipyard service.
  *    @luatparam Planet p Planet to get the services of.
- *    @luatreturn table Table containing all the services.
+ *    @luatreturn table Table containing all the services. Lowercase
+ *       identifiers listed above are the keys, and untranslated whole
+ *       service display names are the values.
  * @luafunc services
  */
 static int planetL_services( lua_State *L )
 {
    int i;
-   size_t len;
    Planet *p;
    const char *name;
-   char lower[256];
+   const char *identifier;
    p = luaL_validplanet(L,1);
 
    /* Return result in table */
@@ -638,11 +641,42 @@ static int planetL_services( lua_State *L )
    for (i=1; i<PLANET_SERVICES_MAX; i<<=1) {
       if (planet_hasService(p, i)) {
          name = planet_getServiceName(i);
-         len = strlen(name) + 1;
-         snprintf( lower, MIN(len,sizeof(lower)), "%c%s", tolower(name[0]), &name[1] );
+
+         switch (i) {
+            case PLANET_SERVICE_INHABITED:
+               identifier = "inhabited";
+               break;
+            case PLANET_SERVICE_LAND:
+               identifier = "land";
+               break;
+            case PLANET_SERVICE_REFUEL:
+               identifier = "refuel";
+               break;
+            case PLANET_SERVICE_BAR:
+               identifier = "bar";
+               break;
+            case PLANET_SERVICE_MISSIONS:
+               identifier = "missions";
+               break;
+            case PLANET_SERVICE_COMMODITY:
+               identifier = "commodity";
+               break;
+            case PLANET_SERVICE_OUTFITS:
+               identifier = "outfits";
+               break;
+            case PLANET_SERVICE_SHIPYARD:
+               identifier = "shipyard";
+               break;
+            case PLANET_SERVICE_BLACKMARKET:
+               identifier = "blackmarket";
+               break;
+            default:
+               WARN("planet.services: Unhandled service %d", i);
+               identifier = NULL;
+         }
 
          lua_pushstring(L, name);
-         lua_setfield(L, -2, lower );
+         lua_setfield(L, -2, identifier);
       }
    }
    return 1;
