@@ -260,8 +260,6 @@ function jumpout ()
             edata.energy = nil
          end
          edata.pilot = nil
-      else
-         edata.alive = false
       end
    end
 end
@@ -464,7 +462,9 @@ function pilot_attacked(p, attacker, dmg, arg)
       -- just have them all disband at once and attack.
       for i, edata in ipairs(escorts) do
          pilot_disbanded(edata)
-         edata.pilot:setHostile()
+         if edata.pilot ~= nil and edata.pilot:exists() then
+            edata.pilot:setHostile()
+         end
       end
       player.msg(_("You have caused infighting within your wing, causing all of your escorts to quit and turn on you in retaliation!"))
    end
