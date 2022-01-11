@@ -1101,12 +1101,14 @@ static int pilot_shootWeapon( Pilot* p, PilotOutfitSlot* w, double time )
 
    /* Get weapon mount position. */
    pilot_getMount( p, w, &vp );
-   vp.x += p->solid->pos.x;
-   vp.y += p->solid->pos.y;
 
    /* Modify velocity to take into account the rotation. */
-   vect_cset( &vv, p->solid->vel.x + vp.x*p->solid->dir_vel,
-         p->solid->vel.y + vp.y*p->solid->dir_vel );
+   vect_cset( &vv, p->solid->vel.x - vp.y*p->solid->dir_vel,
+         p->solid->vel.y + vp.x*p->solid->dir_vel );
+
+   /* Get absolute weapon mount position. */
+   vp.x += p->solid->pos.x;
+   vp.y += p->solid->pos.y;
 
    /*
     * regular bolt weapons
@@ -1121,7 +1123,7 @@ static int pilot_shootWeapon( Pilot* p, PilotOutfitSlot* w, double time )
       p->energy  -= energy;
       pilot_heatAddSlot( p, w );
       weapon_add( w->outfit, w->heat_T, p->solid->dir,
-            &vp, &p->solid->vel, p, p->target, time );
+            &vp, &vv, p, p->target, time );
    }
 
    /*
@@ -1169,7 +1171,7 @@ static int pilot_shootWeapon( Pilot* p, PilotOutfitSlot* w, double time )
       p->energy  -= energy;
       pilot_heatAddSlot( p, w );
       weapon_add( w->outfit, w->heat_T, p->solid->dir,
-            &vp, &p->solid->vel, p, p->target, time );
+            &vp, &vv, p, p->target, time );
 
       pilot_rmAmmo( p, w, 1 );
 
