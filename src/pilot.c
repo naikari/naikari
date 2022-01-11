@@ -1339,6 +1339,10 @@ void pilot_setTarget( Pilot* p, unsigned int id )
 
    p->target = id;
    pilot_lockClear( p );
+
+   /* Untarget asteroid (if any). */
+   p->nav_anchor   = -1;
+   p->nav_asteroid = -1;
 }
 
 

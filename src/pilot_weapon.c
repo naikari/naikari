@@ -124,10 +124,10 @@ static int pilot_weapSetFire( Pilot *p, PilotWeaponSet *ws, int level )
             time = pilot_weapFlyTime( o, p, &pt->solid->pos, &pt->solid->vel);
       }
       /* Looking for a closer targeted asteroid */
-      if (p->nav_asteroid != -1) {
+      else if (p->nav_asteroid != -1) {
          field = &cur_system->asteroids[p->nav_anchor];
          ast = &field->asteroids[p->nav_asteroid];
-         time = MIN( time, pilot_weapFlyTime( o, p, &ast->pos, &ast->vel) );
+         time = pilot_weapFlyTime( o, p, &ast->pos, &ast->vel);
       }
 
       /* Only "inrange" outfits. */
@@ -918,7 +918,7 @@ void pilot_stopBeam( Pilot *p, PilotOutfitSlot *w )
  *
  *    @param o the weapon to shoot.
  *    @param parent Parent of the weapon.
- *    @param pos Target of the weapon.
+ *    @param pos Target's position.
  *    @param vel Target's velocity.
  */
 double pilot_weapFlyTime( const Outfit *o, const Pilot *parent, const Vector2d *pos, const Vector2d *vel)

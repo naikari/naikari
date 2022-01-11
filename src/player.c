@@ -1424,6 +1424,9 @@ void player_targetAsteroidSet( int field, int id )
    }
 
    player.p->nav_anchor = field;
+
+   /* Untarget pilot. */
+   player.p->target = player.p->id;
 }
 
 
