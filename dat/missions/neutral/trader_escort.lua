@@ -454,13 +454,15 @@ function updateOSD()
       osd_desc[2] = fmt.f(_("Land on {planet}"), {planet=destplanet:name()})
       misn.osdCreate(osd_title, osd_desc)
    else
+      local sys = getNextSystem(system.cur(), destsys)
       local jumps = system.cur():jumpDist(destsys)
-      local osd_desc = {}
-      osd_desc[1] = fmt.f(
+      local osd_desc = {
+         fmt.f(
             _("Protect the convoy ships and wait for them to jump to {system} ({jumped}/{remaining})"),
-            {system=nextsys:name(), jumped=fmt.number(exited),
-               remaining=fmt.number(alive)})
-      osd_desc[2] = fmt.f(_("Jump to {system}"), {system=nextsys:name()})
+            {system=sys:name(), jumped=fmt.number(exited),
+               remaining=fmt.number(alive)}),
+         fmt.f(_("Jump to {system}"), {system=sys:name()}),
+      }
       if jumps > 1 then
          osd_desc[3] = fmt.f(
                n_("{remaining} more jump after this one",
