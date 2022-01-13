@@ -6,7 +6,6 @@
  </flags>
  <avail>
   <priority>20</priority>
-  <cond>diff.isApplied("collective_dead")</cond>
   <done>Sharkman Is Back</done>
   <chance>3</chance>
   <location>Bar</location>
@@ -19,7 +18,6 @@
   <faction>Za'lek</faction>
  </avail>
  <notes>
-  <requires name="The Collective is dead and no one will miss them"/>
   <campaign>Nexus show their teeth</campaign>
  </notes>
 </mission>
@@ -43,7 +41,7 @@ osd_msg = {}
 npc_desc = {}
 bar_desc = {}
 
-text[1] = _([[You sit at Smith's table and ask him if he has a job for you. "Of course," he answers. "But this time, it's... well...
+text[1] = _([[You sit at Smith's table and ask him if he has a job for you. "Of course," he answers. "But this time, it's… well…
 
 "Listen, I need to explain some background. As you know, Nexus designs are used far and wide in smaller militaries. The Empire is definitely our biggest customer, but the Frontier also notably makes heavy use of our Lancelot design, as do many independent systems. Still, competition is stiff; House Dvaered's Vendetta design, for instance, is quite popular with the FLF, ironically enough.
 
