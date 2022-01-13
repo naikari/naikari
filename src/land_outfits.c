@@ -409,7 +409,9 @@ void outfits_update( unsigned int wid, char* str )
             "#nPrice:#0 %s\n"
             "#nMoney:#0 %s\n"
             "#nLicense:#0 %s"),
-         _(outfit_slotName(outfit)), _(outfit_slotSize(outfit)),
+         (outfit->slot.spid == 0) ?
+            _(outfit_slotName(outfit)) : _(sp_display(outfit->slot.spid)),
+         _(outfit_slotSize(outfit)),
          mass,
          buf_price,
          buf_credits,
@@ -569,15 +571,14 @@ int outfit_altText( char *buf, int n, const Outfit *o )
 
    p  = scnprintf( &buf[0], n, "%s\n", _(o->name) );
    if (o->slot.type != OUTFIT_SLOT_NA) {
-      p += scnprintf( &buf[p], n-p, _("%s slot (%s)"),
-            outfit_slotName(o), outfit_slotSize(o) );
-      p += scnprintf( &buf[p], n-p, "\n" );
+      p += scnprintf(&buf[p], n-p, _("%s slot (%s)"),
+            (o->slot.spid == 0) ?
+               _(outfit_slotName(o)) : _(sp_display(o->slot.spid)),
+            outfit_slotSize(o));
+      p += scnprintf(&buf[p], n-p, "\n");
    }
    if (outfit_isProp(o, OUTFIT_PROP_UNIQUE))
       p += scnprintf( &buf[p], n-p, _("#oUnique#0\n") );
-   if (o->slot.spid!=0)
-      p += scnprintf( &buf[p], n-p, _("#o%s#0\n"),
-            _( sp_display( o->slot.spid ) ) );
    p += scnprintf( &buf[p], n-p, "\n%s", o->desc_short );
    if ((o->mass > 0.) && (p < n))
       scnprintf( &buf[p], n-p,

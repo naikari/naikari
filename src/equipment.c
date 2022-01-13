@@ -817,13 +817,13 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    /* Slot is empty. */
    if (o == NULL) {
       if (slot->sslot->slot.spid)
-         pos = scnprintf( alt, sizeof(alt), _("%s (%s)"),
-               _( sp_display( slot->sslot->slot.spid ) ),
-               slotSize( slot->sslot->slot.size ) );
+         pos = scnprintf(alt, sizeof(alt), _("%s slot (%s)"),
+               _(sp_display( slot->sslot->slot.spid)),
+               slotSize(slot->sslot->slot.size));
       else {
-         pos = scnprintf( alt, sizeof(alt), _( "%s slot (%s)" ),
-               slotName( slot->sslot->slot.type ),
-               slotSize( slot->sslot->slot.size ) );
+         pos = scnprintf(alt, sizeof(alt), _("%s slot (%s)"),
+               _(slotName(slot->sslot->slot.type)),
+               _(slotSize(slot->sslot->slot.size)));
       }
       if (slot->sslot->slot.exclusive && (pos < (int)sizeof(alt)))
          pos += scnprintf( &alt[pos], sizeof(alt)-pos,
