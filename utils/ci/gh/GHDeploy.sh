@@ -13,7 +13,6 @@ set -e
 # Defaults
 NIGHTLY="false"
 PRERELEASE="false"
-REPO="naikari/naikari"
 TEMPPATH="$(pwd)"
 OUTDIR="$(pwd)/dist"
 DRYRUN="false"
@@ -45,23 +44,25 @@ while getopts dnpct:o:r:g: OPTION "$@"; do
     g)
         REPONAME="${OPTARG}"
         ;;
+    *)
+        ;;
     esac
 done
 
 if [[ -z "$TAGNAME" ]]; then
-    echo "usage: `basename $0` [-d] [-n] (set this for nightly builds) [-p] (set this for pre-release builds.) [-c] (set this for CI testing) -t <TEMPPATH> (build artefact location) -o <OUTDIR> (dist output directory) -r <TAGNAME> (tag of release *required*) -g <REPONAME> (defaults to naikari/naikari)"
-    exit -1
+    echo "usage: $(basename "$0") [-d] [-n] (set this for nightly builds) [-p] (set this for pre-release builds.) [-c] (set this for CI testing) -t <TEMPPATH> (build artefact location) -o <OUTDIR> (dist output directory) -r <TAGNAME> (tag of release *required*) -g <REPONAME> (defaults to naikari/naikari)"
+    exit 1
 fi
 
 if ! [ -x "$(command -v github-assets-uploader)" ]; then
     echo "You don't have github-assets-uploader in PATH"
-    exit -1
+    exit 1
 else
     GH="github-assets-uploader"
 fi
 
 run_gau () {
-    $GH -retry 5 -logtostderr $@
+    $GH -retry 5 -logtostderr "$@"
 }
 
 # Collect date and assemble the VERSION suffix
@@ -83,18 +84,20 @@ mkdir -p "$OUTDIR"/macos
 mkdir -p "$OUTDIR"/win64
 
 # Move all build artefacts to deployment locations
-# Move Linux binary and set as executable
-cp "$TEMPPATH"/naikari-linux-x86-64/*.AppImage "$OUTDIR"/lin64/naikari-$SUFFIX-linux-x86-64.AppImage
-chmod +x "$OUTDIR"/lin64/naikari-$SUFFIX-linux-x86-64.AppImage
+# Move Linux AppImage, zsync files and set AppImage as executable
+cp "$TEMPPATH"/naikari-linux-x86-64/*.AppImage "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage
+cp "$TEMPPATH"/naikari-linux-x86-64/*.zsync "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage.zsync
+
+chmod +x "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage
 
 # Move macOS bundle to deployment location
-cp "$TEMPPATH"/naikari-macos/*.zip -d "$OUTDIR"/macos/naikari-$SUFFIX-macos.zip
+cp "$TEMPPATH"/naikari-macos/*.zip -d "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.zip
 
 # Move Windows installer to deployment location
-cp "$TEMPPATH"/naikari-win64/naikari*.exe "$OUTDIR"/win64/naikari-$SUFFIX-win64.exe
+cp "$TEMPPATH"/naikari-win64/naikari*.exe "$OUTDIR"/win64/naikari-"$SUFFIX"-win64.exe
 
 # Move Dist to deployment location
-cp "$TEMPPATH"/naikari-dist/source.tar.xz "$OUTDIR"/dist/naikari-$SUFFIX-source.tar.xz
+cp "$TEMPPATH"/naikari-dist/source.tar.xz "$OUTDIR"/dist/naikari-"$SUFFIX"-source.tar.xz
 
 # Push builds to github via gh
 #
@@ -104,6 +107,7 @@ cp "$TEMPPATH"/naikari-dist/source.tar.xz "$OUTDIR"/dist/naikari-$SUFFIX-source.
 if [ "$DRYRUN" == "false" ]; then
     run_gau -version
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage -mediatype "application/octet-stream" -overwrite
+    run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage.zsync -mediatype "application/octet-stream" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.zip -mediatype "application/zip" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/win64/naikari-"$SUFFIX"-win64.exe -mediatype "application/vnd.microsoft.portable-executable" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/dist/naikari-"$SUFFIX"-source.tar.xz -mediatype "application/x-gtar" -overwrite
