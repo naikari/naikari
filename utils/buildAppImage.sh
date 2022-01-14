@@ -88,6 +88,12 @@ else
     exit -1
 fi
 
+if [[ "$NIGHTLY" =~ "true" ]]; then
+    TAG="nightly"
+else
+    TAG="$VERSION"
+fi
+
 if [[ "$BUILDTYPE" =~ "debug" ]]; then
     export VERSION="$VERSION+DEBUG.$BUILD_DATE"
 fi
@@ -112,11 +118,19 @@ if [ ! -f "$linuxdeploy" ]; then
     chmod +x "$linuxdeploy"
 fi
 
+export UPDATE_INFORMATION="gh-releases-zsync|naev|naev|$TAG|naev-*.AppImage.zsync"
+
 # Run linuxdeploy and generate an AppDir, then generate an AppImage
+
+pushd "$WORKPATH"
 
 "$linuxdeploy" \
     --appdir "$DESTDIR" \
     --output appimage
 
-# Mark as executable
+# Move zsync file to dist directory
+mv ./*.zsync "$WORKPATH"/dist
+popd
+
+# Mark AppImage as executable
 chmod +x "$OUTPUT"
