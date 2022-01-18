@@ -348,6 +348,7 @@ msg_tip = {
    _([["These computer symbols can be confusing sometimes! I've figured it out, though: '#F+#0' means friendly, '#N~#0' means neutral, '#H!!#0' means hostile, '#R*#0' means restricted, and '#I=#0' means uninhabited but landable. I wish someone had told me that!"]]),
    _([["This can be a bit dangerous, but if you ever run out of fuel in a system with nothing to land on and no friendly pilots willing to refuel you, pirates will often be willing to sell you some of their fuel. You just have to bribe them first. It'll put a drain on your credits, but at least you can make it out alive!"]]),
    _([["A lot of interfaces that give you a bunch of images to select and a button to click also allow you to right-click on the images. Here at the bar, right-clicking on one of us is the same as clicking the 'Approach' button. Give it a try!"]]),
+   _([["Launchers and fighter bays have their mass listed as a range rather than just a flat mass because the ammo has its own mass. When they're empty, their mass is the minimum mass, and when they're full, their mass is the maximum mass."]]),
 }
 
 -- Jump point messages.
