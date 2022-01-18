@@ -341,10 +341,10 @@ void outfits_update( unsigned int wid, char* str )
    int i, active;
    Outfit* outfit;
    char buf[STRMAX], buf_price[ECON_CRED_STRLEN],
-         buf_credits[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT];
+         buf_credits[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT],
+         buf_mass[STRMAX_SHORT];
    int y, tw, th;
    int w, h, iw, ih, bh;
-   double mass;
 
    /* Get dimensions. */
    outfits_getSize(wid, &w, &h, &iw, &ih, NULL, &bh);
@@ -392,10 +392,17 @@ void outfits_update( unsigned int wid, char* str )
    else
       snprintf(buf_license, sizeof(buf_license), "#r%s#0", _(outfit->license));
 
-   mass = outfit->mass;
    if ((outfit_isLauncher(outfit) || outfit_isFighterBay(outfit)) &&
          (outfit_ammo(outfit) != NULL)) {
-      mass += outfit_amount(outfit) * outfit_ammo(outfit)->mass;
+      /* Translation note: this is a range from one mass to another,
+       * indicating minimum and maximum mass of a launcher or fighter
+       * bay. */
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f t"),
+            outfit->mass,
+            outfit->mass + outfit_amount(outfit)*outfit_ammo(outfit)->mass);
+   }
+   else {
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f t"), outfit->mass);
    }
 
    window_modifyText(wid, "txtOutfitName", _(outfit->name));
@@ -405,14 +412,14 @@ void outfits_update( unsigned int wid, char* str )
 
    snprintf(buf, sizeof(buf),
          _("#nSlot:#0 %s (%s)\n"
-            "#nMass:#0 %.0f t\n"
+            "#nMass:#0 %s\n"
             "#nPrice:#0 %s\n"
             "#nMoney:#0 %s\n"
             "#nLicense:#0 %s"),
          (outfit->slot.spid == 0) ?
             _(outfit_slotName(outfit)) : _(sp_display(outfit->slot.spid)),
          _(outfit_slotSize(outfit)),
-         mass,
+         buf_mass,
          buf_price,
          buf_credits,
          buf_license);
@@ -562,11 +569,20 @@ int outfit_altText( char *buf, int n, const Outfit *o )
 {
    int p;
    double mass;
+   char buf_mass[STRMAX_SHORT];
 
    mass = o->mass;
    if ((outfit_isLauncher(o) || outfit_isFighterBay(o)) &&
          (outfit_ammo(o) != NULL)) {
       mass += outfit_amount(o) * outfit_ammo(o)->mass;
+      /* Translation note: this is a range from one mass to another,
+       * indicating minimum and maximum mass of a launcher or fighter
+       * bay. */
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f t"),
+            o->mass, mass);
+   }
+   else {
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f t"), mass);
    }
 
    p  = scnprintf( &buf[0], n, "%s\n", _(o->name) );
@@ -581,9 +597,7 @@ int outfit_altText( char *buf, int n, const Outfit *o )
       p += scnprintf( &buf[p], n-p, _("#oUnique#0\n") );
    p += scnprintf( &buf[p], n-p, "\n%s", o->desc_short );
    if ((o->mass > 0.) && (p < n))
-      scnprintf( &buf[p], n-p,
-            n_("\n%.0f t", "\n%.0f t", mass),
-            mass );
+      scnprintf(&buf[p], n-p, "\n%s", buf_mass);
    return 0;
 }
 

@@ -683,10 +683,10 @@ static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, 
    (void) w;
    Outfit *outfit;
    char buf[STRMAX], buf_price[ECON_CRED_STRLEN],
-         buf_credits[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT];
+         buf_credits[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT],
+         buf_mass[STRMAX_SHORT];
    int tw, th;
    int dy;
-   double mass;
 
    outfit = outfit_get(map_foundOutfitNames[toolkit_getListPos(wid, wgtname)]);
 
@@ -702,10 +702,17 @@ static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, 
    else
       snprintf(buf_license, sizeof(buf_license), "#r%s#0", _(outfit->license));
 
-   mass = outfit->mass;
    if ((outfit_isLauncher(outfit) || outfit_isFighterBay(outfit)) &&
          (outfit_ammo(outfit) != NULL)) {
-      mass += outfit_amount(outfit) * outfit_ammo(outfit)->mass;
+      /* Translation note: this is a range from one mass to another,
+       * indicating minimum and maximum mass of a launcher or fighter
+       * bay. */
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f t"),
+            outfit->mass,
+            outfit->mass + outfit_amount(outfit)*outfit_ammo(outfit)->mass);
+   }
+   else {
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f t"), outfit->mass);
    }
 
    window_modifyText(wid, "txtOutfitName", _(outfit->name));
@@ -716,13 +723,13 @@ static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, 
    snprintf(buf, sizeof(buf),
          _("#nOwned:#0 %d\n"
             "#nSlot:#0 %s (%s)\n"
-            "#nMass:#0 %.0f t\n"
+            "#nMass:#0 %s\n"
             "#nPrice:#0 %s\n"
             "#nMoney:#0 %s\n"
             "#nLicense:#0 %s\n"),
          player_outfitOwned(outfit),
          _(outfit_slotName(outfit)), _(outfit_slotSize(outfit)),
-         mass,
+         buf_mass,
          buf_price,
          buf_credits,
          buf_license);
