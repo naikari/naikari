@@ -2,7 +2,7 @@
 <outfit name="Fidelity Fighter">
  <general>
   <license>Light Combat Vessel License</license>
-  <mass>50</mass>
+  <mass>15</mass>
   <price>0</price>
   <gfx_store>fidelity_fighter.webp</gfx_store>
   <description>The Fidelity may not be the greatest ship ever fielded by the Siriusites, but they have strength in numbers and the faith of their pilots.</description>

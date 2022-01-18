@@ -13,7 +13,7 @@
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Brigand Fighter</ammo>
-  <delay>4</delay>
+  <delay>5</delay>
   <reload_time>240</reload_time>
   <amount>3</amount>
  </specific>
