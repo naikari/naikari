@@ -1987,11 +1987,11 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
    snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
          "%+.0f TFLOPS CPU\n"
-         "%G LPS Launch Rate\n"
+         "%.2f LPS Launch Rate\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
          temp->cpu,
-         temp->u.bay.delay,
+         1. / temp->u.bay.delay,
          temp->u.bay.amount, _(temp->u.bay.ammo_name) );
 
 #define MELEMENT(o,s) \
