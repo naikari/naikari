@@ -916,14 +916,14 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
       if (p != NULL) {
          /* Beams need to update their properties online. */
          if (w->outfit->type == OUTFIT_TYPE_BEAM) {
-            w->dam_mod        = p->stats.fwd_damage;
-            w->dam_as_dis_mod = p->stats.fwd_dam_as_dis-1.;
+            w->dam_mod = p->stats.fwd_damage;
+            w->dam_as_dis_mod = p->stats.fwd_dam_as_dis;
          }
          else {
-            w->dam_mod        = p->stats.tur_damage;
-            w->dam_as_dis_mod = p->stats.tur_dam_as_dis-1.;
+            w->dam_mod = p->stats.tur_damage;
+            w->dam_as_dis_mod = p->stats.tur_dam_as_dis;
          }
-         w->dam_as_dis_mod = CLAMP( 0., 1., w->dam_as_dis_mod );
+         w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
       }
    }
 
@@ -1467,16 +1467,13 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    /* Stat modifiers. */
    if (outfit->type == OUTFIT_TYPE_TURRET_BOLT) {
       w->dam_mod *= parent->stats.tur_damage;
-      /* dam_as_dis is computed as multiplier, must be corrected. */
-      w->dam_as_dis_mod = parent->stats.tur_dam_as_dis-1.;
+      w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
    }
    else {
       w->dam_mod *= parent->stats.fwd_damage;
-      /* dam_as_dis is computed as multiplier, must be corrected. */
-      w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis-1.;
+      w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
    }
-   /* Clamping, but might not actually be necessary if weird things want to be done. */
-   w->dam_as_dis_mod = CLAMP( 0., 1., w->dam_as_dis_mod );
+   w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
 
    /* Calculate direction. */
    rdir += RNG_2SIGMA() * acc;
@@ -1545,6 +1542,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
 
    /* Launcher damage. */
    w->dam_mod *= parent->stats.launch_damage;
+   w->dam_as_dis_mod = CLAMP(0., 1., parent->stats.launch_dam_as_dis);
    if (rdir < 0.)
       rdir += 2.*M_PI;
    else if (rdir >= 2.*M_PI)
@@ -1558,9 +1556,9 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    w->real_vel = VMOD(v);
 
    /* Set up ammo details. */
-   mass        = w->outfit->mass;
-   w->timer    = ammo->u.amm.duration * parent->stats.launch_range;
-   w->solid    = solid_create( mass, rdir, pos, &v, SOLID_UPDATE_RK4 );
+   mass = w->outfit->mass;
+   w->timer = ammo->u.amm.duration * parent->stats.launch_range;
+   w->solid = solid_create(mass, rdir, pos, &v, SOLID_UPDATE_RK4);
    if (w->outfit->u.amm.thrust != 0.) {
       weapon_setThrust( w, w->outfit->u.amm.thrust * mass );
       w->solid->speed_max = w->outfit->u.amm.speed; /* Limit speed, we only care if it has thrust. */
@@ -1679,14 +1677,14 @@ static Weapon* weapon_create( const Outfit* outfit, double T,
                w->solid->vel.y);
 
          if (outfit->type == OUTFIT_TYPE_BEAM) {
-            w->dam_mod       *= parent->stats.fwd_damage;
-            w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis-1.;
+            w->dam_mod *= parent->stats.fwd_damage;
+            w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
          }
          else {
-            w->dam_mod       *= parent->stats.tur_damage;
-            w->dam_as_dis_mod = parent->stats.tur_dam_as_dis-1.;
+            w->dam_mod *= parent->stats.tur_damage;
+            w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
          }
-         w->dam_as_dis_mod = CLAMP( 0., 1., w->dam_as_dis_mod );
+         w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
 
          break;
 

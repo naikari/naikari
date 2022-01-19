@@ -16,5 +16,8 @@
   <fwd_damage>-70</fwd_damage>
   <fwd_energy>20</fwd_energy>
   <fwd_heat>20</fwd_heat>
+  <launch_dam_as_dis>100</launch_dam_as_dis>
+  <launch_damage>-70</launch_damage>
+  <launch_range>-10</launch_range>
  </specific>
 </outfit>

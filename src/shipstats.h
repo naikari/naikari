@@ -58,6 +58,7 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_LAUNCH_DAMAGE,   /**< Launch damage for missiles. */
    SS_TYPE_D_AMMO_CAPACITY,   /**< Capacity of launchers. */
    SS_TYPE_D_LAUNCH_RELOAD,   /**< Regeneration rate of launcher ammo. */
+   SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
 
    /* Fighter Bays. */
    SS_TYPE_D_FBAY_DAMAGE,     /**< Fighter bay fighter damage bonus (all weapons). */
@@ -72,14 +73,14 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_FORWARD_DAMAGE,  /**< Damage done by cannons. */
    SS_TYPE_D_FORWARD_FIRERATE, /**< Firerate of cannons. */
    SS_TYPE_D_FORWARD_ENERGY,  /**< Energy usage of cannons. */
-   SS_TYPE_D_FORWARD_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
+   SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
 
    /* Turrets. */
    SS_TYPE_D_TURRET_HEAT,     /**< Heat generation for turrets. */
    SS_TYPE_D_TURRET_DAMAGE,   /**< Damage done by turrets. */
    SS_TYPE_D_TURRET_FIRERATE, /**< Firerate of turrets. */
    SS_TYPE_D_TURRET_ENERGY,   /**< Energy usage of turrets. */
-   SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
+   SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
 
    /* Misc. */
    SS_TYPE_D_HEAT_DISSIPATION, /**< Ship heat dissipation. */
@@ -238,6 +239,7 @@ typedef struct ShipStats_ {
    double launch_damage;   /**< Damage of launchers. */
    double ammo_capacity;   /**< Capacity of launchers. */
    double launch_reload;   /**< Reload rate of launchers. */
+   double launch_dam_as_dis; /**< Damage as disable for launchers. */
 
    /* Fighter bays. */
    double fbay_damage;     /**< Fighter bay fighter damage (all weapons). */

@@ -141,6 +141,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Ammo Capacity")),
    D__ELEM(SS_TYPE_D_LAUNCH_RELOAD, launch_reload, 0,
       N_("%+G%% Ammo Reload Rate")),
+   P__ELEM(SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, launch_dam_as_dis, 0,
+      N_("%+G pp Damage as Disable (Launcher)")),
 
    D__ELEM(SS_TYPE_D_FBAY_DAMAGE, fbay_damage, 0,
       N_("%+G%% Fighter Damage")),
@@ -163,8 +165,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Fire Rate (Forward)")),
    DI_ELEM(SS_TYPE_D_FORWARD_ENERGY, fwd_energy, 0,
       N_("%+G%% Energy Usage (Forward)")),
-   D__ELEM(SS_TYPE_D_FORWARD_DAMAGE_AS_DISABLE, fwd_dam_as_dis, 0,
-      N_("%+G%% Damage as Disable (Forward)")),
+   P__ELEM(SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, fwd_dam_as_dis, 0,
+      N_("%+G pp Damage as Disable (Forward)")),
 
    DI_ELEM(SS_TYPE_D_TURRET_HEAT, tur_heat, 0,
       N_("%+G%% Heat (Turret)")),
@@ -174,8 +176,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Fire Rate (Turret)")),
    DI_ELEM(SS_TYPE_D_TURRET_ENERGY, tur_energy, 0,
       N_("%+G%% Energy Usage (Turret)")),
-   D__ELEM(SS_TYPE_D_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis, 0,
-      N_("%+G%% Damage as Disable (Turret)")),
+   P__ELEM(SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis, 0,
+      N_("%+G pp Damage as Disable (Turret)")),
 
    D__ELEM(SS_TYPE_D_HEAT_DISSIPATION, heat_dissipation, 0,
       N_("%+G%% Heat Dissipation")),
