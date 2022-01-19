@@ -843,7 +843,7 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    /* Display temporary bonuses. */
    if (slot->lua_mem != LUA_NOREF) {
       slen = strlen(alt);
-      ss_statsDesc( &slot->lua_stats, &alt[slen], sizeof(alt)-slen, 1, 1 );
+      ss_statsDesc(&slot->lua_stats, &alt[slen], sizeof(alt)-slen, 1, 0);
    }
 
    /* Draw the text. */
@@ -1399,7 +1399,7 @@ int equipment_shipStats( char *buf, int max_len,  const Pilot *s, int dpseps )
    if (dps > 0.)
       l += scnprintf( &buf[l], (max_len-l),
             _("%s%.1f GW Weapon Damage\n%.1f GW Weapon Energy"), (l!=0)?"\n":"", dps, eps );
-   l += ss_statsDesc( &s->stats, &buf[l], (max_len-l), l, 0 );
+   l += ss_statsDesc(&s->stats, &buf[l], (max_len-l), l, 1);
    return l;
 }
 

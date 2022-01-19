@@ -40,11 +40,11 @@ typedef struct ShipStatsLookup_ {
    /* Explicitly set. */
    ShipStatsType type;  /**< Type of the stat. */
    const char *name;    /**< Name to look into XML for, must match name in the structure. */
-   int ship_redundant;  /**< Indicates whether the stat is redundant when
-                             referring to a ship, i.e. the stat is fully
-                             contained in the ship's final properties and
-                             uninteresting to the player in that context. */
-   const char *display; /**< Display name for visibility by player. */
+   const char *display; /**< Display string of the stat alone. */
+   const char *ship_display; /**< Display string of the stat totalled on
+      a ship. Can be set to NULL for no display of this stat for a
+      ship's totalled stat list (should be done if the stat is redundant
+      with standard ship information, e.g. mass). */
    StatDataType data;   /**< Type of data for the stat. */
    int inverted;        /**< Indicates whether the good value is inverted, by
                              default positive is good, with this set negative
@@ -56,202 +56,278 @@ typedef struct ShipStatsLookup_ {
 
 
 /* Flexible do everything macro. */
-#define ELEM( t, n, r, dsp, d , i) \
-   { .type=t, .ship_redundant=r, .name=#n, .display=dsp, .data=d, .inverted=i, .offset=offsetof( ShipStats, n ) }
+#define ELEM(t, n, dsp, sh_dsp, d , i) \
+   {.type=t, .name=#n, .display=dsp, .ship_display=sh_dsp, .data=d, \
+      .inverted=i, .offset=offsetof(ShipStats, n)}
 /* Standard types. */
-#define D__ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_DOUBLE, 0 )
-#define A__ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 0 )
-#define P__ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 0 )
-#define I__ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_INTEGER, 0 )
-#define B__ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_BOOLEAN, 0 )
+#define D_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE, 0)
+#define A_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 0)
+#define P_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 0)
+#define I_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_INTEGER, 0)
+#define B_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_BOOLEAN, 0)
 /* Inverted types. */
-#define DI_ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_DOUBLE, 1 )
-#define AI_ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 1 )
-#define PI_ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 1 )
-#define II_ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_INTEGER, 1 )
-#define BI_ELEM( t, n, r, dsp ) \
-   ELEM( t, n, r, dsp, SS_DATA_TYPE_BOOLEAN, 1 )
+#define DI_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE, 1)
+#define AI_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 1)
+#define PI_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 1)
+#define II_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_INTEGER, 1)
+#define BI_ELEM(t, n, dsp, sh_dsp) \
+   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_BOOLEAN, 1)
 /** Nil element. */
-#define N__ELEM( t ) \
-   { .type=t, .ship_redundant=0, .name=NULL, .display=NULL, .inverted=0, .offset=0 }
+#define N_ELEM(t) \
+   {.type=t, .name=NULL, .display=NULL, .ship_display=NULL, .inverted=0, \
+      .offset=0}
 
 /**
  * The ultimate look up table for ship stats, everything goes through this.
  */
 static const ShipStatsLookup ss_lookup[] = {
    /* Null element. */
-   N__ELEM(SS_TYPE_NIL),
+   N_ELEM(SS_TYPE_NIL),
 
-   D__ELEM(SS_TYPE_D_SPEED_MOD, speed_mod, 1,
-      N_("%+G%% Speed")),
-   D__ELEM(SS_TYPE_D_TURN_MOD, turn_mod, 1,
-      N_("%+G%% Turn")),
-   D__ELEM(SS_TYPE_D_THRUST_MOD, thrust_mod, 1,
-      N_("%+G%% Thrust")),
-   D__ELEM(SS_TYPE_D_CARGO_MOD, cargo_mod, 1,
-      N_("%+G%% Cargo Space")),
-   D__ELEM(SS_TYPE_D_ARMOUR_MOD, armour_mod, 1,
-      N_("%+G%% Armor Strength")),
-   D__ELEM(SS_TYPE_D_ARMOUR_REGEN_MOD, armour_regen_mod, 1,
-      N_("%+G%% Armor Regeneration")),
-   D__ELEM(SS_TYPE_D_SHIELD_MOD, shield_mod, 1,
-      N_("%+G%% Shield Strength")),
-   D__ELEM(SS_TYPE_D_SHIELD_REGEN_MOD, shield_regen_mod, 1,
-      N_("%+G%% Shield Regeneration")),
-   D__ELEM(SS_TYPE_D_ENERGY_MOD, energy_mod, 1,
-      N_("%+G%% Energy Capacity")),
-   D__ELEM(SS_TYPE_D_ENERGY_REGEN_MOD, energy_regen_mod, 1,
-      N_("%+G%% Energy Regeneration")),
-   D__ELEM(SS_TYPE_D_CPU_MOD, cpu_mod, 1, N_("%+G%% CPU Capacity")),
+   D_ELEM(SS_TYPE_D_SPEED_MOD, speed_mod,
+      N_("%+G%% Speed"),
+      NULL),
+   D_ELEM(SS_TYPE_D_TURN_MOD, turn_mod,
+      N_("%+G%% Turn"),
+      NULL),
+   D_ELEM(SS_TYPE_D_THRUST_MOD, thrust_mod,
+      N_("%+G%% Thrust"),
+      NULL),
+   D_ELEM(SS_TYPE_D_CARGO_MOD, cargo_mod,
+      N_("%+G%% Cargo Space"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ARMOUR_MOD, armour_mod,
+      N_("%+G%% Armor Strength"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ARMOUR_REGEN_MOD, armour_regen_mod,
+      N_("%+G%% Armor Regeneration"),
+      NULL),
+   D_ELEM(SS_TYPE_D_SHIELD_MOD, shield_mod,
+      N_("%+G%% Shield Strength"),
+      NULL),
+   D_ELEM(SS_TYPE_D_SHIELD_REGEN_MOD, shield_regen_mod,
+      N_("%+G%% Shield Regeneration"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ENERGY_MOD, energy_mod,
+      N_("%+G%% Energy Capacity"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ENERGY_REGEN_MOD, energy_regen_mod,
+      N_("%+G%% Energy Regeneration"),
+      NULL),
+   D_ELEM(SS_TYPE_D_CPU_MOD, cpu_mod,
+      N_("%+G%% CPU Capacity"),
+      NULL),
 
-   DI_ELEM(SS_TYPE_D_JUMP_DELAY, jump_delay, 1,
-      N_("%+G%% Jump Time")),
-   DI_ELEM(SS_TYPE_D_LAND_DELAY, land_delay, 1,
-      N_("%+G%% Takeoff Time")),
-   DI_ELEM(SS_TYPE_D_CARGO_INERTIA, cargo_inertia, 0,
-      N_("%+G%% Cargo Inertia")),
+   DI_ELEM(SS_TYPE_D_JUMP_DELAY, jump_delay,
+      N_("%+G%% Jump Time"),
+      NULL),
+   DI_ELEM(SS_TYPE_D_LAND_DELAY, land_delay,
+      N_("%+G%% Takeoff Time"),
+      NULL),
+   DI_ELEM(SS_TYPE_D_CARGO_INERTIA, cargo_inertia,
+      N_("%+G%% Cargo Inertia"),
+      N_("%+.0f%% Cargo Inertia")),
 
-   A__ELEM(SS_TYPE_D_RDR_RANGE, rdr_range, 1,
-      N_("%+G km Radar Range")),
-   A__ELEM(SS_TYPE_D_RDR_JUMP_RANGE, rdr_jump_range, 1,
-      N_("%+G km Jump Detect Range")),
-   D__ELEM(SS_TYPE_D_RDR_RANGE_MOD, rdr_range_mod, 0,
-      N_("%+G%% Radar Range")),
-   D__ELEM(SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod, 1,
-      N_("%+G%% Jump Detect Range")),
-   DI_ELEM(SS_TYPE_D_RDR_ENEMY_RANGE_MOD, rdr_enemy_range_mod, 0,
-      N_("%+G%% Enemy Radar Range")),
+   A_ELEM(SS_TYPE_D_RDR_RANGE, rdr_range,
+      N_("%+G km Radar Range"),
+      NULL),
+   A_ELEM(SS_TYPE_D_RDR_JUMP_RANGE, rdr_jump_range,
+      N_("%+G km Jump Detect Range"),
+      NULL),
+   D_ELEM(SS_TYPE_D_RDR_RANGE_MOD, rdr_range_mod,
+      N_("%+G%% Radar Range"),
+      N_("%+.0f%% Radar Range")),
+   D_ELEM(SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,
+      N_("%+G%% Jump Detect Range"),
+      NULL),
+   DI_ELEM(SS_TYPE_D_RDR_ENEMY_RANGE_MOD, rdr_enemy_range_mod,
+      N_("%+G%% Enemy Radar Range"),
+      N_("%+.0f%% Enemy Radar Range")),
 
-   D__ELEM(SS_TYPE_D_LAUNCH_RATE, launch_rate, 0,
-      N_("%+G%% Fire Rate (Launcher)")),
-   D__ELEM(SS_TYPE_D_LAUNCH_RANGE, launch_range, 0,
-      N_("%+G%% Range (Launcher)")),
-   D__ELEM(SS_TYPE_D_LAUNCH_DAMAGE, launch_damage, 0,
-      N_("%+G%% Damage (Launcher)")),
-   D__ELEM(SS_TYPE_D_AMMO_CAPACITY, ammo_capacity, 0,
-      N_("%+G%% Ammo Capacity")),
-   D__ELEM(SS_TYPE_D_LAUNCH_RELOAD, launch_reload, 0,
-      N_("%+G%% Ammo Reload Rate")),
-   P__ELEM(SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, launch_dam_as_dis, 0,
-      N_("%+G pp Damage as Disable (Launcher)")),
+   D_ELEM(SS_TYPE_D_LAUNCH_RATE, launch_rate,
+      N_("%+G%% Fire Rate (Launcher)"),
+      N_("%+.0f%% Fire Rate (Launcher)")),
+   D_ELEM(SS_TYPE_D_LAUNCH_RANGE, launch_range,
+      N_("%+G%% Range (Launcher)"),
+      N_("%+.0f%% Range (Launcher)")),
+   D_ELEM(SS_TYPE_D_LAUNCH_DAMAGE, launch_damage,
+      N_("%+G%% Damage (Launcher)"),
+      N_("%+.0f%% Damage (Launcher)")),
+   D_ELEM(SS_TYPE_D_AMMO_CAPACITY, ammo_capacity,
+      N_("%+G%% Ammo Capacity"),
+      N_("%+.0f%% Ammo Capacity")),
+   D_ELEM(SS_TYPE_D_LAUNCH_RELOAD, launch_reload,
+      N_("%+G%% Ammo Reload Rate"),
+      N_("%+.0f%% Ammo Reload Rate")),
+   P_ELEM(SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, launch_dam_as_dis,
+      N_("%+G pp Damage as Disable (Launcher)"),
+      N_("%.0f%% Damage as Disable (Launcher)")),
 
-   D__ELEM(SS_TYPE_D_FBAY_DAMAGE, fbay_damage, 0,
-      N_("%+G%% Fighter Damage")),
-   D__ELEM(SS_TYPE_D_FBAY_HEALTH, fbay_health, 0,
-      N_("%+G%% Fighter Health")),
-   D__ELEM(SS_TYPE_D_FBAY_MOVEMENT, fbay_movement, 0,
-      N_("%+G%% Fighter Agility")),
-   D__ELEM(SS_TYPE_D_FBAY_CAPACITY, fbay_capacity, 0,
-      N_("%+G%% Fighter Bay Capacity")),
-   D__ELEM(SS_TYPE_D_FBAY_RATE, fbay_rate, 0,
-      N_("%+G%% Fighter Bay Launch Rate")),
-   D__ELEM(SS_TYPE_D_FBAY_RELOAD, fbay_reload, 0,
-      N_("%+G%% Fighter Reload Rate")),
+   D_ELEM(SS_TYPE_D_FBAY_DAMAGE, fbay_damage,
+      N_("%+G%% Fighter Damage"),
+      N_("%+.0f%% Fighter Damage")),
+   D_ELEM(SS_TYPE_D_FBAY_HEALTH, fbay_health,
+      N_("%+G%% Fighter Health"),
+      N_("%+.0f%% Fighter Health")),
+   D_ELEM(SS_TYPE_D_FBAY_MOVEMENT, fbay_movement,
+      N_("%+G%% Fighter Agility"),
+      N_("%+.0f%% Fighter Agility")),
+   D_ELEM(SS_TYPE_D_FBAY_CAPACITY, fbay_capacity,
+      N_("%+G%% Fighter Bay Capacity"),
+      N_("%+.0f%% Fighter Bay Capacity")),
+   D_ELEM(SS_TYPE_D_FBAY_RATE, fbay_rate,
+      N_("%+G%% Fighter Bay Launch Rate"),
+      N_("%+.0f%% Fighter Bay Launch Rate")),
+   D_ELEM(SS_TYPE_D_FBAY_RELOAD, fbay_reload,
+      N_("%+G%% Fighter Reload Rate"),
+      N_("%+.0f%% Fighter Reload Rate")),
 
-   DI_ELEM(SS_TYPE_D_FORWARD_HEAT, fwd_heat, 0,
-      N_("%+G%% Heat (Forward)")),
-   D__ELEM(SS_TYPE_D_FORWARD_DAMAGE, fwd_damage, 0,
-      N_("%+G%% Damage (Forward)")),
-   D__ELEM(SS_TYPE_D_FORWARD_FIRERATE, fwd_firerate, 0,
-      N_("%+G%% Fire Rate (Forward)")),
-   DI_ELEM(SS_TYPE_D_FORWARD_ENERGY, fwd_energy, 0,
-      N_("%+G%% Energy Usage (Forward)")),
-   P__ELEM(SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, fwd_dam_as_dis, 0,
-      N_("%+G pp Damage as Disable (Forward)")),
+   DI_ELEM(SS_TYPE_D_FORWARD_HEAT, fwd_heat,
+      N_("%+G%% Heat (Forward)"),
+      N_("%+.0f%% Heat (Forward)")),
+   D_ELEM(SS_TYPE_D_FORWARD_DAMAGE, fwd_damage,
+      N_("%+G%% Damage (Forward)"),
+      N_("%+.0f%% Damage (Forward)")),
+   D_ELEM(SS_TYPE_D_FORWARD_FIRERATE, fwd_firerate,
+      N_("%+G%% Fire Rate (Forward)"),
+      N_("%+.0f%% Fire Rate (Forward)")),
+   DI_ELEM(SS_TYPE_D_FORWARD_ENERGY, fwd_energy,
+      N_("%+G%% Energy Usage (Forward)"),
+      N_("%+.0f%% Energy Usage (Forward)")),
+   P_ELEM(SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, fwd_dam_as_dis,
+      N_("%+G pp Damage as Disable (Forward)"),
+      N_("%.0f%% Damage as Disable (Forward)")),
 
-   DI_ELEM(SS_TYPE_D_TURRET_HEAT, tur_heat, 0,
-      N_("%+G%% Heat (Turret)")),
-   D__ELEM(SS_TYPE_D_TURRET_DAMAGE, tur_damage, 0,
-      N_("%+G%% Damage (Turret)")),
-   D__ELEM(SS_TYPE_D_TURRET_FIRERATE, tur_firerate, 0,
-      N_("%+G%% Fire Rate (Turret)")),
-   DI_ELEM(SS_TYPE_D_TURRET_ENERGY, tur_energy, 0,
-      N_("%+G%% Energy Usage (Turret)")),
-   P__ELEM(SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis, 0,
-      N_("%+G pp Damage as Disable (Turret)")),
+   DI_ELEM(SS_TYPE_D_TURRET_HEAT, tur_heat,
+      N_("%+G%% Heat (Turret)"),
+      N_("%+.0f%% Heat (Turret)")),
+   D_ELEM(SS_TYPE_D_TURRET_DAMAGE, tur_damage,
+      N_("%+G%% Damage (Turret)"),
+      N_("%+.0f%% Damage (Turret)")),
+   D_ELEM(SS_TYPE_D_TURRET_FIRERATE, tur_firerate,
+      N_("%+G%% Fire Rate (Turret)"),
+      N_("%+.0f%% Fire Rate (Turret)")),
+   DI_ELEM(SS_TYPE_D_TURRET_ENERGY, tur_energy,
+      N_("%+G%% Energy Usage (Turret)"),
+      N_("%+.0f%% Energy Usage (Turret)")),
+   P_ELEM(SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis,
+      N_("%+G pp Damage as Disable (Turret)"),
+      N_("%.0f%% Damage as Disable (Turret)")),
 
-   D__ELEM(SS_TYPE_D_HEAT_DISSIPATION, heat_dissipation, 0,
-      N_("%+G%% Heat Dissipation")),
-   D__ELEM(SS_TYPE_D_STRESS_DISSIPATION, stress_dissipation, 0,
-      N_("%+G%% Stress Dissipation")),
-   DI_ELEM(SS_TYPE_D_MASS, mass_mod, 1,
-      N_("%+G%% Ship Mass")),
-   D__ELEM(SS_TYPE_D_ENGINE_LIMIT_REL, engine_limit_rel, 1,
-      N_("%+G%% Engine Mass Limit")),
-   D__ELEM(SS_TYPE_D_LOOT_MOD, loot_mod, 0,
-      N_("%+G%% Boarding Bonus")),
-   DI_ELEM(SS_TYPE_D_TIME_MOD, time_mod, 1,
-      N_("%+G%% Time Constant")),
-   D__ELEM(SS_TYPE_D_TIME_SPEEDUP, time_speedup, 0,
-      N_("%+G%% Speed-Up")),
-   DI_ELEM(SS_TYPE_D_COOLDOWN_TIME, cooldown_time, 0,
-      N_("%+G%% Ship Cooldown Time")),
-   D__ELEM(SS_TYPE_D_JUMP_DISTANCE, jump_distance, 0,
-      N_("%+G%% Jump Point Radius")),
+   D_ELEM(SS_TYPE_D_HEAT_DISSIPATION, heat_dissipation,
+      N_("%+G%% Heat Dissipation"),
+      N_("%+.0f%% Heat Dissipation")),
+   D_ELEM(SS_TYPE_D_STRESS_DISSIPATION, stress_dissipation,
+      N_("%+G%% Stress Dissipation"),
+      N_("%+.0f%% Stress Dissipation")),
+   DI_ELEM(SS_TYPE_D_MASS, mass_mod,
+      N_("%+G%% Ship Mass"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ENGINE_LIMIT_REL, engine_limit_rel,
+      N_("%+G%% Engine Mass Limit"),
+      NULL),
+   D_ELEM(SS_TYPE_D_LOOT_MOD, loot_mod,
+      N_("%+G%% Boarding Bonus"),
+      N_("%+.0f%% Boarding Bonus")),
+   DI_ELEM(SS_TYPE_D_TIME_MOD, time_mod,
+      N_("%+G%% Time Constant"),
+      NULL),
+   D_ELEM(SS_TYPE_D_TIME_SPEEDUP, time_speedup,
+      N_("%+G%% Speed-Up"),
+      N_("%+.0f%% Speed-Up")),
+   DI_ELEM(SS_TYPE_D_COOLDOWN_TIME, cooldown_time,
+      N_("%+G%% Ship Cooldown Time"),
+      N_("%+.0f%% Ship Cooldown Time")),
+   D_ELEM(SS_TYPE_D_JUMP_DISTANCE, jump_distance,
+      N_("%+G%% Jump Point Radius"),
+      N_("%+.0f%% Jump Point Radius")),
 
-   A__ELEM(SS_TYPE_A_THRUST, thrust, 1,
-      N_("%+G MN/t Thrust")),
-   A__ELEM(SS_TYPE_A_TURN, turn, 1,
-      N_("%+G deg/s Turn Rate")),
-   A__ELEM(SS_TYPE_A_SPEED, speed, 1,
-      N_("%+G km/s Maximum Speed")),
-   A__ELEM(SS_TYPE_A_ENERGY, energy, 1,
-      N_("%+G GJ Energy Capacity")),
-   A__ELEM(SS_TYPE_A_ENERGY_REGEN, energy_regen, 1,
-      N_("%+G GW Energy Regeneration")),
-   AI_ELEM(SS_TYPE_A_ENERGY_REGEN_MALUS, energy_regen_malus, 1,
-      N_("%+G GW Energy Usage")),
-   AI_ELEM(SS_TYPE_A_ENERGY_LOSS, energy_loss, 0,
-      N_("%+G GW Energy Loss")),
-   A__ELEM(SS_TYPE_A_SHIELD, shield, 1,
-      N_("%+G GJ Shield Capacity")),
-   A__ELEM(SS_TYPE_A_SHIELD_REGEN, shield_regen, 1,
-      N_("%+G GW Shield Regeneration")),
-   AI_ELEM(SS_TYPE_A_SHIELD_REGEN_MALUS, shield_regen_malus, 1,
-      N_("%+G GW Shield Usage")),
-   A__ELEM(SS_TYPE_A_ARMOUR, armour, 1,
-      N_("%+G GJ Armor Capacity")),
-   A__ELEM(SS_TYPE_A_ARMOUR_REGEN, armour_regen, 1,
-      N_("%+G GW Armor Regeneration")),
-   AI_ELEM(SS_TYPE_A_ARMOUR_REGEN_MALUS, armour_regen_malus, 1,
-      N_("%+G GW Armor Usage")),
+   A_ELEM(SS_TYPE_A_THRUST, thrust,
+      N_("%+G MN/t Thrust"),
+      NULL),
+   A_ELEM(SS_TYPE_A_TURN, turn,
+      N_("%+G deg/s Turn Rate"),
+      NULL),
+   A_ELEM(SS_TYPE_A_SPEED, speed,
+      N_("%+G km/s Maximum Speed"),
+      NULL),
+   A_ELEM(SS_TYPE_A_ENERGY, energy,
+      N_("%+G GJ Energy Capacity"),
+      NULL),
+   A_ELEM(SS_TYPE_A_ENERGY_REGEN, energy_regen,
+      N_("%+G GW Energy Regeneration"),
+      NULL),
+   AI_ELEM(SS_TYPE_A_ENERGY_REGEN_MALUS, energy_regen_malus,
+      N_("%+G GW Energy Usage"),
+      NULL),
+   AI_ELEM(SS_TYPE_A_ENERGY_LOSS, energy_loss,
+      N_("%+G GW Energy Loss"),
+      N_("%+.1f GW Energy Loss")),
+   A_ELEM(SS_TYPE_A_SHIELD, shield,
+      N_("%+G GJ Shield Capacity"),
+      NULL),
+   A_ELEM(SS_TYPE_A_SHIELD_REGEN, shield_regen,
+      N_("%+G GW Shield Regeneration"),
+      NULL),
+   AI_ELEM(SS_TYPE_A_SHIELD_REGEN_MALUS, shield_regen_malus,
+      N_("%+G GW Shield Usage"),
+      NULL),
+   A_ELEM(SS_TYPE_A_ARMOUR, armour,
+      N_("%+G GJ Armor Capacity"),
+      NULL),
+   A_ELEM(SS_TYPE_A_ARMOUR_REGEN, armour_regen,
+      N_("%+G GW Armor Regeneration"),
+      NULL),
+   AI_ELEM(SS_TYPE_A_ARMOUR_REGEN_MALUS, armour_regen_malus,
+      N_("%+G GW Armor Usage"),
+      NULL),
 
-   A__ELEM(SS_TYPE_A_CPU_MAX, cpu_max, 1,
-      N_("%+G TFLOPS CPU Capacity")),
-   A__ELEM(SS_TYPE_A_ENGINE_LIMIT, engine_limit, 1,
-      N_("%+G t Engine Mass Limit")),
+   A_ELEM(SS_TYPE_A_CPU_MAX, cpu_max,
+      N_("%+G TFLOPS CPU Capacity"),
+      NULL),
+   A_ELEM(SS_TYPE_A_ENGINE_LIMIT, engine_limit,
+      N_("%+G t Engine Mass Limit"),
+      NULL),
 
-   P__ELEM(SS_TYPE_P_ABSORB, absorb, 1,
-      N_("%+G pp Damage Absorption")),
+   P_ELEM(SS_TYPE_P_ABSORB, absorb,
+      N_("%+G pp Damage Absorption"),
+      NULL),
 
-   P__ELEM(SS_TYPE_P_NEBULA_ABSORB_SHIELD, nebu_absorb_shield, 0,
-      N_("%+G pp Nebula Resistance (Shield)")),
-   P__ELEM(SS_TYPE_P_NEBULA_ABSORB_ARMOUR, nebu_absorb_armour, 0,
-      N_("%+G pp Nebula Resistance (Armor)")),
+   P_ELEM(SS_TYPE_P_NEBULA_ABSORB_SHIELD, nebu_absorb_shield,
+      N_("%+G pp Nebula Resistance (Shield)"),
+      N_("%.0f%% Nebula Resistance (Shield)")),
+   P_ELEM(SS_TYPE_P_NEBULA_ABSORB_ARMOUR, nebu_absorb_armour,
+      N_("%+G pp Nebula Resistance (Armor)"),
+      N_("%.0f%% Nebula Resistance (Armor)")),
 
-   I__ELEM(SS_TYPE_I_FUEL, fuel, 1,
-      N_("%+d hL Fuel")),
-   I__ELEM(SS_TYPE_I_CARGO, cargo, 1,
-      N_("%+d t Cargo Space")),
+   I_ELEM(SS_TYPE_I_FUEL, fuel,
+      N_("%+d hL Fuel"),
+      NULL),
+   I_ELEM(SS_TYPE_I_CARGO, cargo,
+      N_("%+d t Cargo Space"),
+      NULL),
 
-   B__ELEM(SS_TYPE_B_INSTANT_JUMP, misc_instant_jump, 0,
+   B_ELEM(SS_TYPE_B_INSTANT_JUMP, misc_instant_jump,
+      N_("Instant Jump"),
       N_("Instant Jump")),
-   B__ELEM(SS_TYPE_B_REVERSE_THRUST, misc_reverse_thrust, 0,
+   B_ELEM(SS_TYPE_B_REVERSE_THRUST, misc_reverse_thrust,
+      N_("Reverse Thrusters"),
       N_("Reverse Thrusters")),
-   B__ELEM(SS_TYPE_B_ASTEROID_SCAN, misc_asteroid_scan, 0,
-      N_("Asteroid Detailed View")),
+   B_ELEM(SS_TYPE_B_ASTEROID_SCAN, misc_asteroid_scan,
+      N_("Asteroid Details"),
+      N_("Asteroid Details")),
 
    /* Sentinel. */
-   N__ELEM(SS_TYPE_SENTINEL)
+   N_ELEM(SS_TYPE_SENTINEL)
 };
 
 
@@ -260,10 +336,14 @@ static const ShipStatsLookup ss_lookup[] = {
  */
 static const char* ss_printD_colour( double d, const ShipStatsLookup *sl );
 static const char* ss_printI_colour( int i, const ShipStatsLookup *sl );
-static int ss_printD( char *buf, int len, int newline, double d, const ShipStatsLookup *sl );
-static int ss_printA( char *buf, int len, int newline, double d, const ShipStatsLookup *sl );
-static int ss_printI( char *buf, int len, int newline, int i, const ShipStatsLookup *sl );
-static int ss_printB( char *buf, int len, int newline, int b, const ShipStatsLookup *sl );
+static int ss_printD(char *buf, int len, int newline, double d,
+      const ShipStatsLookup *sl, const char *display);
+static int ss_printA(char *buf, int len, int newline, double d,
+      const ShipStatsLookup *sl, const char *display);
+static int ss_printI(char *buf, int len, int newline, int i,
+      const ShipStatsLookup *sl, const char *display);
+static int ss_printB(char *buf, int len, int newline, int b,
+      const ShipStatsLookup *sl, const char *display);
 static double ss_statsGetInternal( const ShipStats *s, ShipStatsType type );
 static int ss_statsGetLuaInternal( lua_State *L, const ShipStats *s, ShipStatsType type, int internal );
 
@@ -613,14 +693,15 @@ static const char* ss_printI_symbol( int i, const ShipStatsLookup *sl )
 /**
  * @brief Helper to print doubles.
  */
-static int ss_printD( char *buf, int len, int newline, double d, const ShipStatsLookup *sl )
+static int ss_printD(char *buf, int len, int newline, double d,
+      const ShipStatsLookup *sl, const char *display)
 {
    char buf2[STRMAX_SHORT];
 
    if (FABS(d) < 1e-10)
       return 0;
 
-   snprintf( buf2, sizeof(buf2), _(sl->display), d*100 );
+   snprintf(buf2, sizeof(buf2), _(display), d*100);
 
    return scnprintf( buf, len, "%s#%s%s%s#0",
          (newline) ? "\n" : "",
@@ -633,14 +714,15 @@ static int ss_printD( char *buf, int len, int newline, double d, const ShipStats
 /**
  * @brief Helper to print absolute doubles.
  */
-static int ss_printA( char *buf, int len, int newline, double d, const ShipStatsLookup *sl )
+static int ss_printA(char *buf, int len, int newline, double d,
+      const ShipStatsLookup *sl, const char *display)
 {
    char buf2[STRMAX_SHORT];
 
    if (FABS(d) < 1e-10)
       return 0;
 
-   snprintf( buf2, sizeof(buf2), _(sl->display), d );
+   snprintf(buf2, sizeof(buf2), _(display), d);
 
    return scnprintf( buf, len, "%s#%s%s%s#0",
          (newline) ? "\n" : "",
@@ -653,14 +735,15 @@ static int ss_printA( char *buf, int len, int newline, double d, const ShipStats
 /**
  * @brief Helper to print integers.
  */
-static int ss_printI( char *buf, int len, int newline, int i, const ShipStatsLookup *sl )
+static int ss_printI(char *buf, int len, int newline, int i,
+      const ShipStatsLookup *sl, const char *display)
 {
    char buf2[STRMAX_SHORT];
 
    if (i == 0)
       return 0;
 
-   snprintf( buf2, sizeof(buf2), _(sl->display), i );
+   snprintf(buf2, sizeof(buf2), _(display), i);
 
    return scnprintf( buf, len, "%s#%s%s%s#0",
          (newline) ? "\n" : "",
@@ -673,15 +756,16 @@ static int ss_printI( char *buf, int len, int newline, int i, const ShipStatsLoo
 /**
  * @brief Helper to print booleans.
  */
-static int ss_printB( char *buf, int len, int newline, int b, const ShipStatsLookup *sl )
+static int ss_printB(char *buf, int len, int newline, int b,
+      const ShipStatsLookup *sl, const char *display)
 {
    if (!b)
       return 0;
-   return scnprintf( buf, len, "%s#%s%s%s#0",
-         (newline) ? "\n" : "",
-         ss_printI_colour( b, sl ),
-         ss_printI_symbol( b, sl ),
-         _(sl->display) );
+   return scnprintf(buf, len, "%s#%s%s%s#0",
+         newline ? "\n" : "",
+         ss_printI_colour(b, sl),
+         ss_printI_symbol(b, sl),
+         _(display));
 }
 
 
@@ -711,19 +795,19 @@ int ss_statsListDesc( const ShipStatList *ll, char *buf, int len, int newline )
       switch (sl->data) {
          case SS_DATA_TYPE_DOUBLE:
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
-            i += ss_printD( &buf[i], left, newl, ll->d.d, sl );
+            i += ss_printD(&buf[i], left, newl, ll->d.d, sl, sl->display);
             break;
 
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
-            i += ss_printA( &buf[i], left, newl, ll->d.d, sl );
+            i += ss_printA(&buf[i], left, newl, ll->d.d, sl, sl->display);
             break;
 
          case SS_DATA_TYPE_INTEGER:
-            i += ss_printI( &buf[i], left, newl, ll->d.i, sl );
+            i += ss_printI(&buf[i], left, newl, ll->d.i, sl, sl->display);
             break;
 
          case SS_DATA_TYPE_BOOLEAN:
-            i += ss_printB( &buf[i], left, newl, ll->d.i, sl );
+            i += ss_printB(&buf[i], left, newl, ll->d.i, sl, sl->display);
             break;
       }
 
@@ -740,10 +824,14 @@ int ss_statsListDesc( const ShipStatList *ll, char *buf, int len, int newline )
  *    @param buf Buffer to write to.
  *    @param len Space left in the buffer.
  *    @param newline Add a newline at start.
- *    @param include_redundant Include "ship redundant" stats.
+ *    @param composite Whether or not the stats are composite stats for
+ *       an overall ship. If set to 1, "ship display" text will be used
+ *       and if "ship display" text is not defined, the stat will not
+ *       be displayed.
  *    @return Number of characters written.
  */
-int ss_statsDesc( const ShipStats *s, char *buf, int len, int newline, int include_redundant )
+int ss_statsDesc(const ShipStats *s, char *buf, int len, int newline,
+      int composite)
 {
    int i, l, left;
    char *ptr;
@@ -761,8 +849,9 @@ int ss_statsDesc( const ShipStats *s, char *buf, int len, int newline, int inclu
       if (sl->name == NULL)
          continue;
 
-      /* Only include redundant stats if requested. */
-      if ((sl->ship_redundant) && (!include_redundant))
+      /* If using composite display, exclude stats without a
+       * "ship display" text defined. */
+      if (composite && (sl->ship_display == NULL))
          continue;
 
       /* Calculate offset left. */
@@ -774,31 +863,36 @@ int ss_statsDesc( const ShipStats *s, char *buf, int len, int newline, int inclu
          case SS_DATA_TYPE_DOUBLE:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&dbl, &fieldptr, sizeof(double*));
-            l    += ss_printD( &buf[l], left, (newline||(l!=0)), ((*dbl)-1.), sl );
+            l += ss_printD(&buf[l], left, (newline||(l!=0)), ((*dbl)-1.), sl,
+                  composite ? sl->ship_display : sl->display);
             break;
 
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&dbl, &fieldptr, sizeof(double*));
-            l    += ss_printD( &buf[l], left, (newline||(l!=0)), (*dbl), sl );
+            l += ss_printD( &buf[l], left, (newline||(l!=0)), (*dbl), sl,
+                  composite ? sl->ship_display : sl->display);
             break;
 
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&dbl, &fieldptr, sizeof(double*));
-            l    += ss_printA( &buf[l], left, (newline||(l!=0)), (*dbl), sl );
+            l += ss_printA(&buf[l], left, (newline||(l!=0)), (*dbl), sl,
+                  composite ? sl->ship_display : sl->display);
             break;
 
          case SS_DATA_TYPE_INTEGER:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&num, &fieldptr, sizeof(int*));
-            l    += ss_printI( &buf[l], left, (newline||(l!=0)), (*num), sl );
+            l += ss_printI(&buf[l], left, (newline||(l!=0)), (*num), sl,
+                  composite ? sl->ship_display : sl->display);
             break;
 
          case SS_DATA_TYPE_BOOLEAN:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&num, &fieldptr, sizeof(int*));
-            l    += ss_printB( &buf[l], left, (newline||(l!=0)), (*num), sl );
+            l += ss_printB(&buf[l], left, (newline||(l!=0)), (*num), sl,
+                  composite ? sl->ship_display : sl->display);
             break;
       }
    }
