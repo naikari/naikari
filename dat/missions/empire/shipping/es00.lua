@@ -62,14 +62,12 @@ log_text = _([[You took part in a prisoner exchange with the FLF on behalf of th
 
 
 function create ()
-   -- Target destination
    dest, destsys = planet.getLandable(faction.get("Frontier"))
    ret, retsys = planet.getLandable("Halir")
    if dest == nil or ret == nil or not misn.claim(destsys) then
       misn.finish(false)
    end
 
-   -- Spaceport bar stuff
    misn.setNPC(_("Commander"), "empire/unique/soldner.png", bar_desc)
 end
 
@@ -116,31 +114,26 @@ function land ()
    landed = planet.cur()
    if landed == dest and misn_stage == 0 then
       if misn.cargoRm(prisoners) then
-         -- Go on to next stage
          misn_stage = 1
 
-         -- Some text
          tk.msg("", land_text)
          tk.msg("", land2_text)
+
          misn.markerMove(misn_marker, retsys)
          misn.osdActive(2)
 
          -- Prevent players from saving on the destination planet
          player.allowSave(false)
 
-         -- We'll take off right away again
          player.takeoff()
 
          -- Saving should be disabled for as short a time as possible
          player.allowSave()
       end
    elseif landed == ret and misn_stage == 1 then
-
-      -- Rewards
       player.pay(reward)
       faction.modPlayer("Empire", 2)
 
-      -- Flavour text
       tk.msg("", pay_text)
 
       emp_addShippingLog(log_text)
