@@ -679,16 +679,19 @@ static int playerL_cinematics( lua_State *L )
    }
 
    if (b) {
-      /* Reset speeds. This will override the player's ship base speed. */
-      player.speed = 1.;
-      sound_setSpeed( 1. );
-      pause_setSpeed( 1. );
+      /* Set Cinematics flag (used to ensure speeds are kept at 1x). */
+      player_setFlag(PLAYER_CINEMATICS);
 
       /* Get rid of stuff that could be bothersome. We force-abort
        * autonav here in case the player pilot is under manual
        * control. */
       player_autonavAbort(abort_msg, 1);
       ovr_setOpen(0);
+
+      /* Reset the player's speed. Because of the Cinematics flag, this
+       * will override the ship's base speed. */
+      player.speed = 1.;
+      player_resetSpeed();
 
       /* Handle options. */
       if (!f_gui)
@@ -700,12 +703,13 @@ static int playerL_cinematics( lua_State *L )
       gl_setDefViewport( 0., 0., SCREEN_W, SCREEN_H );
    }
    else {
+      /* Clean up flags. */
+      player_rmFlag(PLAYER_CINEMATICS);
+      player_rmFlag(PLAYER_CINEMATICS_GUI);
+      player_rmFlag(PLAYER_CINEMATICS_2X);
+
       /* Reset speed properly to player speed. */
       player_resetSpeed();
-
-      /* Clean up flags. */
-      player_rmFlag( PLAYER_CINEMATICS_GUI );
-      player_rmFlag( PLAYER_CINEMATICS_2X );
 
       /* Reload GUI. */
       gui_reload();

@@ -749,6 +749,12 @@ int player_autonavShouldResetSpeed (void)
    if (!player_isFlag(PLAYER_AUTONAV))
       return 0;
 
+   /* Always reset speed during cinematics. */
+   if (player_isFlag(PLAYER_CINEMATICS)) {
+      player_autonavResetSpeed();
+      return 1;
+   }
+
    /* Reset on lockons. */
    if (player.p->lockons > 0) {
       player_autonavResetSpeed();

@@ -1307,9 +1307,13 @@ void player_weapSetPress( int id, double value, int repeat )
  */
 void player_resetSpeed (void)
 {
-   double spd = player.speed * player_dt_default();
-   pause_setSpeed( spd );
-   sound_setSpeed( spd );
+   double spd = player.speed;
+
+   if (!player_isFlag(PLAYER_CINEMATICS))
+      spd *= player_dt_default();
+
+   pause_setSpeed(spd);
+   sound_setSpeed(spd);
 }
 
 

@@ -919,7 +919,8 @@ void display_fps( const double dt )
    }
 
    if ((player.p != NULL) && !player_isFlag(PLAYER_DESTROYED) &&
-         !player_isFlag(PLAYER_CREATING)) {
+         !player_isFlag(PLAYER_CREATING)
+         && !player_isFlag(PLAYER_CINEMATICS)) {
       dt_mod_base = player_dt_default();
    }
    if (dt_mod != dt_mod_base)
