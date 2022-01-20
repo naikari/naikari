@@ -176,7 +176,7 @@ static int camL_setZoom( lua_State *L )
  *    @luatreturn number Zoom level of the camera.
  *    @luatreturn number Maximum zoom level of the camera (furthest).
  *    @luatreturn number Minimum zoom level of the camera (closest).
- * @luafunc get
+ * @luafunc getZoom
  */
 static int camL_getZoom( lua_State *L )
 {
