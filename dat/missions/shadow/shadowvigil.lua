@@ -300,7 +300,8 @@ end
 
 function traitor_timer(leader)
     player.pilot():setInvincible()
-    player.cinematics(true, {no2x=true})
+    player.pilot():control()
+    player.cinematics()
     camera.set(leader, true)
     leader:control(false)
     for i, p in ipairs(leader:followers()) do
@@ -335,6 +336,7 @@ end
 
 function diplomat_death_timer()
     player.pilot():setInvincible(false)
+    player.pilot():control(false)
     player.cinematics(false)
     camera.set()
 
