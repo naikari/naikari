@@ -2020,13 +2020,9 @@ void player_targetSet( unsigned int id )
 
    /* The player should not continue following if the target pilot has 
     * been changed as doing so would cause the player to start following
-    * the new target, usually not what we want. Note: we force-abort
-    * autonav here because this is not an abort that should be prevented
-    * by the player pilot being under manual control; if manual control
-    * is forcing the player to follow a target, cinematics mode should
-    * also be used to stop the player from changing targets. */
+    * the new target, usually not what we want. */
    if (player_isFlag(PLAYER_AUTONAV) && player.autonav == AUTONAV_PLT_FOLLOW)
-      player_autonavAbort(NULL, 1);
+      player_autonavAbort(NULL, 0);
 }
 
 
