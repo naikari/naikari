@@ -71,7 +71,8 @@ int nlua_loadCamera( nlua_env env )
 /**
  * @brief Sets the camera.
  *
- * @note Make sure to reset camera after using it or we'll run into trouble.
+ * @note Make sure to reset camera after using it or we'll run into
+ *    trouble.
  *
  * @usage camera.set() -- Resets the camera to the pilot hard.
  * @usage camera.set(a_pilot, true) -- Flies camera over to a_pilot.
@@ -83,6 +84,7 @@ int nlua_loadCamera( nlua_env env )
  *       should fly over rather than instantly teleport.
  *    @luaparam[opt=2500] speed Speed at which to fly over if soft_over
  *       is true.
+ * @luasee player.cinematics
  * @luafunc set
  */
 static int camL_set( lua_State *L )
