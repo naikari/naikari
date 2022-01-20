@@ -574,8 +574,13 @@ static int playerL_autonavDest( lua_State *L )
  */
 static int playerL_autonavAbort( lua_State *L )
 {
-   const char *str = luaL_checkstring(L,1);
-   player_autonavAbort( str );
+   const char *str = luaL_checkstring(L, 1);
+
+   /* Force-abort autonav since this is script-controlled, and we don't
+    * want a script's decision to abort autonav to be overridden if the
+    * player pilot is under manual control. */
+   player_autonavAbort(str, 1);
+
    return 0;
 }
 
@@ -679,8 +684,10 @@ static int playerL_cinematics( lua_State *L )
       sound_setSpeed( 1. );
       pause_setSpeed( 1. );
 
-      /* Get rid of stuff that could be bothersome. */
-      player_autonavAbort( abort_msg );
+      /* Get rid of stuff that could be bothersome. We force-abort
+       * autonav here in case the player pilot is under manual
+       * control. */
+      player_autonavAbort(abort_msg, 1);
       ovr_setOpen(0);
 
       /* Handle options. */

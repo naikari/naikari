@@ -300,7 +300,7 @@ void player_autonavAbortJump( const char *reason )
       return;
 
    /* It's definitely not in-system autonav. */
-   player_autonavAbort(reason);
+   player_autonavAbort(reason, 0);
 }
 
 
@@ -308,8 +308,10 @@ void player_autonavAbortJump( const char *reason )
  * @brief Aborts autonav.
  *
  *    @param reason Human-readable string describing abort condition.
+ *    @param force Whether or not to force abortion even if pilot is
+ *       under manual control.
  */
-void player_autonavAbort( const char *reason )
+void player_autonavAbort(const char *reason, int force)
 {
    /* No point if player is beyond aborting. */
    if ((player.p==NULL) || pilot_isFlag(player.p, PILOT_HYPERSPACE))
@@ -317,7 +319,7 @@ void player_autonavAbort( const char *reason )
 
    /* Cooldown (handled later) may be script-initiated and we don't
     * want to make it player-abortable while under manual control. */
-   if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ))
+   if (!force && pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
       return;
 
    if (player_isFlag(PLAYER_AUTONAV)) {
@@ -467,7 +469,7 @@ static void player_autonav (void)
                ret = player_hailPlanet(0);
                if (ret) {
                   if (pnt->faction < 0) {
-                     player_autonavAbort(NULL);
+                     player_autonavAbort(NULL, 0);
                      break;
                   }
                   else {
@@ -517,7 +519,7 @@ static void player_autonav (void)
             else if (ret == PLAYER_LAND_AGAIN)
                player.autonav = AUTONAV_PNT_APPROACH;
             else
-               player_autonavAbort(NULL);
+               player_autonavAbort(NULL, 0);
          }
 
          /* See if should ramp down. */
@@ -561,7 +563,7 @@ static void player_autonav (void)
             if (ret == PLAYER_BOARD_OK)
                player_autonavEnd();
             else if (ret != PLAYER_BOARD_RETRY)
-               player_autonavAbort(NULL);
+               player_autonavAbort(NULL, 0);
          }
          break;
    }
@@ -808,11 +810,11 @@ void player_thinkAutonav( Pilot *pplayer, double dt )
          (player.autonav == AUTONAV_JUMP_BRAKE)) {
       /* If we're already at the target. */
       if (player.p->nav_hyperspace == -1)
-         player_autonavAbort(_("Target changed to current system"));
+         player_autonavAbort(_("Target changed to current system"), 0);
 
       /* Need fuel. */
       else if (pplayer->fuel < pplayer->fuel_consumption)
-         player_autonavAbort(_("Not enough fuel for autonav to continue"));
+         player_autonavAbort(_("Not enough fuel for autonav to continue"), 0);
 
       else
          player_autonav();

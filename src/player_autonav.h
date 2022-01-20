@@ -31,7 +31,7 @@ void player_autonavResetSpeed (void);
 void player_autonavStart (void);
 void player_autonavEnd (void);
 void player_autonavAbortJump( const char *reason );
-void player_autonavAbort( const char *reason );
+void player_autonavAbort(const char *reason, int force);
 int player_autonavShouldResetSpeed (void);
 void player_autonavStartWindow( unsigned int wid, char *str);
 void player_autonavPos( double x, double y );

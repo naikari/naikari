@@ -398,7 +398,7 @@ static void comm_close( unsigned int wid, char *unused )
       if (comm_planet->bribed)
          player_land(0);
       else
-         player_autonavAbort(NULL);
+         player_autonavAbort(NULL, 0);
    }
 
    gl_freeTexture(comm_graphic);

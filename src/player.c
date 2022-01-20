@@ -1327,7 +1327,7 @@ void player_restoreControl( int reason, const char *str )
    if (reason != PINPUT_AUTONAV) {
       /* Autonav should be harder to abort when paused. */
       if (!paused || reason != PINPUT_MOVEMENT)
-         player_autonavAbort(str);
+         player_autonavAbort(str, 0);
    }
 
    if (reason != PINPUT_BRAKING) {
@@ -2014,9 +2014,15 @@ void player_targetSet( unsigned int id )
    }
    gui_setTarget();
 
-   /* The player should not continue following if the target pilot has been changed. */
+   /* The player should not continue following if the target pilot has 
+    * been changed as doing so would cause the player to start following
+    * the new target, usually not what we want. Note: we force-abort
+    * autonav here because this is not an abort that should be prevented
+    * by the player pilot being under manual control; if manual control
+    * is forcing the player to follow a target, cinematics mode should
+    * also be used to stop the player from changing targets. */
    if (player_isFlag(PLAYER_AUTONAV) && player.autonav == AUTONAV_PLT_FOLLOW)
-      player_autonavAbort(NULL);
+      player_autonavAbort(NULL, 1);
 }
 
 
