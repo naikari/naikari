@@ -634,7 +634,8 @@ static int playerL_autonavReset( lua_State *L )
  * -- Disables cinematics.
  * player.cinematics(false)
  *
- *    @luatparam[opt=false] boolean enable If true sets cinematics mode, if false disables. Defaults to disable.
+ *    @luatparam[opt=true] boolean enable If true sets cinematics mode,
+ *       if false disables.
  *    @luatparam[opt] table options Table of options. See above for
  *       information about what options can be passed.
  * @luafunc cinematics
