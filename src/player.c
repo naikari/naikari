@@ -1287,18 +1287,18 @@ void player_weapSetPress( int id, double value, int repeat )
    if (repeat)
       return;
 
-   type = (value>=0) ? +1 : -1;
+   type = (value >= 0) ? 1 : -1;
 
-   if ((type>0) && toolkit_isOpen())
+   if ((type > 0)
+         && (pilot_isFlag(player.p, PILOT_HYP_PREP)
+            || pilot_isFlag(player.p, PILOT_HYPERSPACE)
+            || pilot_isFlag(player.p, PILOT_LANDING)
+            || pilot_isFlag(player.p, PILOT_TAKEOFF)
+            || pilot_isFlag(player.p, PILOT_MANUAL_CONTROL)
+            || toolkit_isOpen()))
       return;
 
-   if ((type>0) && (pilot_isFlag(player.p, PILOT_HYP_PREP) ||
-         pilot_isFlag(player.p, PILOT_HYPERSPACE) ||
-         pilot_isFlag(player.p, PILOT_LANDING) ||
-         pilot_isFlag(player.p, PILOT_TAKEOFF)))
-      return;
-
-   pilot_weapSetPress( player.p, id, type );
+   pilot_weapSetPress(player.p, id, type);
 }
 
 
