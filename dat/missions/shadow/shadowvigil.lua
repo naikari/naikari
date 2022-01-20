@@ -34,7 +34,7 @@ ask_text = _([["Greetings, {player}," the pilot of the Vendetta says to you as s
 
 noclaim_text = _([["Oh! Sorry, I mistook you for somebody else. Here, I know you're busy and I've interrupted you, so as an apology I've deposited a small sum of credits into your account." The strange pilot ceases communication, leaving you stunned, but not as stunned as when you find that a small sum of credits has indeed been deposited into your account from an unknown source. Odd, how did they know your account details?…]])
 
-dock_text = _([[You dock with the Seiryuu and shut down your engines, now knowing that the person you're meeting is in fact Rebina, the mysterious woman you had met before near Klantar. At the airlock, you are welcomed by two nondescript crewmen in gray uniforms who tell you to follow them into the ship. They lead you through corridors and passages that seem to lead to the bridge, allowing you to get a good view at the ship's interior. You can't help but look around you in wonder. The ship isn't anything you're used to seeing. While some parts can be identified as such common features as doors and viewports, a lot of the equipment in the compartments and niches seems strange, almost alien to you. Clearly the Seiryuu is no ordinary ship.
+dock_text = _([[You dock with the Seiryuu and shut down your engines, now knowing that the person you're meeting is in fact Rebina, the mysterious woman you had met before near Klantar. At the airlock, you are welcomed by two nondescript crewmen in gray uniforms who tell you to follow them into the ship. They lead you through corridors and passages that seem to lead to the bridge, allowing you to get a good view at the ship's interior. You can't help but look around in wonder. The ship isn't anything you're used to seeing. While some parts can be identified as such common features as doors and viewports, a lot of the equipment in the compartments and niches seems strange, almost alien to you. Clearly the Seiryuu is no ordinary ship.
 
 At the bridge, you immediately spot the Seiryuu's captain, Rebina, seated in the captain's chair. The chair, too, is designed in the strange fashion that you've been seeing all over the ship. It sports several controls that you can't place, despite the fact that you're an experienced pilot yourself. The rest of the bridge is no different. All the regular stations and consoles seem to be there, but there are some others whose purpose you can only guess.
 
@@ -60,9 +60,13 @@ accepttext = _([["Excellent, {player}." Rebina smiles at you. "I've told my crew
 
 brief_text = _([[After finishing docking procedures, you locate and meet up with the Four Winds pilots you will be working with, and the diplomat you will be escorting. The Four Winds pilots mostly keep to themselves and curtly but politely inform you that they will meet you out in space.]])
 
-pay_text = _([[Captain Rebina angrily drums her fingers on her captain's chair as she watches the reconstruction made from your sensor logs. Her eyes narrow when both diplomatic ships explode under the onslaught of weapons the escorts should not have had onboard. "This is bad, {player}," she says when the replay shuts down. "Worse than I had even thought possible. The death of the Imperial and Dvaered diplomats is going to spark a political incident, with each faction accusing the other of treachery." She stands up and begins pacing up and down the Seiryuu's bridge. "But that's not the worst of it. You saw what happened. The diplomats were killed by their own escorts, by Four Winds operatives! This is an outrage!"
+diplomat_death_text = _([[Before you can even react, the other Four Winds escorts open fire on the diplomat. By the time you've processed what's happened, the traitorous pilots are already making their escape. You wonder if you should try to capture one of the traitors and interrogate them. In any case, you will need to report what happened to Rebina.
 
-Captain Rebina brings herself back under control through an effort of will. "{player}, this does not bode well. We have a problem, and I fear I'm going to need your help again before the end. But not yet. I have a lot to do. I have to get to the bottom of this, and I have to try to keep this situation from escalating into a disaster. I will contact you again when I know more. In the mean time, you will have plenty of time to spend your reward; it's already in your account."
+#rCONTENT WARNING: Boarding one of the Four Winds escorts will lead to an optional scene depicting graphic violence. If you wish to avoid this, you can simply ignore the Four Winds escorts and complete the next mission objective; there is no penalty for doing so.#0]])
+
+pay_text = _([[Captain Rebina angrily drums her fingers on her captain's chair as she watches the reconstruction made from your sensor logs. Her eyes narrow when the escorts suddenly open fire on the diplomatic vessel they were meant to protect. "This is bad, {player}," she says when the replay shuts down. "Worse than I had even thought possible. The death of the Imperial diplomat is going to spark a political incident, with the Empire accusing the Dvaered of treachery and the Dvaered accusing the Empire of a false-flag operation." She stands up and begins pacing up and down the Seiryuu's bridge. "But that's not the worst of it. You saw what happened. The diplomat was killed by their own escorts, by Four Winds operatives! This is an outrage!"
+
+Captain Rebina brings herself back under control through an effort of will. "{player}, this does not bode well. We have a problem, and I fear I'm going to need your help again before the end. But not yet. I have a lot to do. I have to get to the bottom of this, and I have to try to keep this situation from escalating into a disaster. I will contact you again when I know more. In the meantime, you will have plenty of time to spend your reward; it's already in your account."
 
 Following this, you are swiftly escorted off the Seiryuu. Back in your cockpit, you can't help but feel a little anxious about this Four Winds. Who are they, what do they want, and what is your role in all of it? Only time will tell.]])
 
@@ -81,8 +85,6 @@ misn_desc = _([[Captain Rebina of the Four Winds has asked you to help Four Wind
 misn_reward = _("A sum of credits")
 
 osd_title0 = _("Mysterious Meeting")
-osd_msg0 = _("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it")
-
 misn_desc0 = _("You have been invited to a meeting in the {system} system, though you don't know with whom.")
 misn_reward0 = _("Unknown")
 
@@ -116,10 +118,13 @@ function create()
     misn.setReward(misn_reward0)
 
     marker = misn.markerAdd(rebinasys, "low")
-    osd_msg0 = fmt.f(osd_msg0, {system=rebinasys:name()})
-    misn.osdCreate(osd_title0, {osd_msg0})
+    local osd_msg = {
+        fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it"),
+            {system=rebinasys:name()}),
+    }
+    misn.osdCreate(osd_title0, osd_msg)
 
-    hook.jumpin("jumpin")
+    hook.enter("enter")
 end
 
 
@@ -130,13 +135,8 @@ function meeting()
         accept_m()
     else
         tk.msg("", refusetext)
-        seiryuu:changeAI("flee")
-        seiryuu:setHilight(false)
-        seiryuu:setActiveBoard(false)
-        seiryuu:control(false)
         misn.finish(false)
     end
-    player.unboard()
 end
 
 
@@ -165,7 +165,6 @@ function accept_m()
     
     hook.land("land")
     hook.jumpout("jumpout")
-    hook.enter("enter")
 end
 
 
@@ -223,11 +222,18 @@ end
 function enter()
     if stage == 2 then
         if jumped and system.cur() == nextsys then
+            if system.cur() == destsys then
+                pilot.toggleSpawn(false)
+                pilot.clear()
+            end
             spawnDiplomat()
         else
             fail(_("MISSION FAILED: You abandoned the diplomat."))
         end
     elseif system.cur() == rebinasys and (stage == 0 or stage == 3) then
+        pilot.toggleSpawn(false)
+        pilot.clear()
+
         seiryuu = pilot.add("Starbridge", "Four Winds", vec2.new(1500, -2000),
                 _("Seiryuu"), {ai="trader", noequip=true})
         seiryuu:control()
@@ -251,13 +257,8 @@ function spawnDiplomat()
         p:setVisplayer()
     end
 
-    diplomat:outfitAdd("Beat Up Small Engine")
-    diplomat:setSpeedLimit(130)
-    diplomat:setInvincPlayer()
-    diplomat:setVisplayer()
-    diplomat:setHilight()
-    diplomat:setFriendly()
     diplomat:control()
+    diplomat:outfitAdd("Beat Up Small Engine")
 
     if system.cur() == destsys then
         diplomat:outfitAdd("Previous Generation Small Systems")
@@ -266,8 +267,6 @@ function spawnDiplomat()
         diplomat:setNoLand()
 
         diplomat:land(destpla)
-        pilot.toggleSpawn(false)
-        pilot.clear()
         hook.timer(5, "traitor_timer", diplomat)
     else
         diplomat:outfitAdd("Milspec Aegis 3601 Core System")
@@ -280,19 +279,34 @@ function spawnDiplomat()
         diplomat:hyperspace(getNextSystem(system.cur(), destsys))
     end
 
+    diplomat:setHealth(100, 100)
+    diplomat:setEnergy(100)
+    diplomat:setFuel(true)
+    diplomat:setSpeedLimit(130)
+    -- Unset invincibility meant for the escorts
+    diplomat:setInvincible(false)
+    diplomat:setInvincPlayer()
+    diplomat:setVisible()
+    diplomat:setHilight()
+    diplomat:setFriendly()
+
     jumped = false
 
-    hook.pilot(diplomat, "death", "diplomat_death")
-    hook.pilot(diplomat, "jump", "diplomat_jump")
+    hook.pilot(diplomat, "death", "diplomat_death", escorts)
+    hook.pilot(diplomat, "jump", "diplomat_jump", escorts)
     update_osd()
 end
 
 
 function traitor_timer(leader)
+    player.pilot():setInvincible()
+    player.cinematics(true, {no2x=true})
+    camera.set(leader, true)
     leader:control(false)
     for i, p in ipairs(leader:followers()) do
         if p:exists() then
             p:setLeader(nil)
+            p:changeAI("baddie_norun")
             p:control()
             p:attack(leader)
         end
@@ -300,10 +314,9 @@ function traitor_timer(leader)
 end
 
 
-function diplomat_death(leader, attacker)
-    for i, p in ipairs(leader:followers()) do
+function diplomat_death(leader, attacker, escorts)
+    for i, p in ipairs(escorts) do
         if p:exists() then
-            p:changeAI("mercenary")
             p:setInvincible(false)
             p:setVisplayer(false)
             p:control()
@@ -313,22 +326,33 @@ function diplomat_death(leader, attacker)
     end
 
     if system.cur() == destsys then
-        stage = 3
-        pilot.toggleSpawn(true)
-        misn.markerAdd(rebinasys, "low")
-        local osd_msg = {
-            fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it"),
-                    {system=rebinasys:name()})
-        }
-        misn.osdCreate(osd_title, {osd_msg0})
+        hook.timer(3, "diplomat_death_timer")
     else
         fail(_("MISSION FAILED: Imperial Diplomat died."))
     end
 end
 
 
-function diplomat_jump(leader)
-    for i, p in ipairs(leader:followers()) do
+function diplomat_death_timer()
+    player.pilot():setInvincible(false)
+    player.cinematics(false)
+    camera.set()
+
+    stage = 3
+    pilot.toggleSpawn(true)
+    misn.markerAdd(rebinasys, "low")
+    local osd_msg = {
+        fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it"),
+            {system=rebinasys:name()}),
+    }
+    misn.osdCreate(osd_title, osd_msg)
+
+    tk.msg("", diplomat_death_text)
+end
+
+
+function diplomat_jump(leader, jp, escorts)
+    for i, p in ipairs(escorts) do
         if p:exists() then
             p:setLeader(nil)
             p:control()
@@ -342,16 +366,19 @@ end
 
 
 function board()
+    player.unboard()
+
+    pilot.toggleSpawn(true)
+
+    seiryuu:changeAI("flee")
+    seiryuu:setHilight(false)
+    seiryuu:setActiveBoard(false)
+    seiryuu:control(false)
+
     if stage == 0 then
         misn.markerRm(marker)
-        misn.osdDestroy()
         meeting()
     elseif stage == 3 then
-        player.unboard()
-        seiryuu:control()
-        seiryuu:hyperspace()
-        seiryuu:setActiveBoard(false)
-        seiryuu:setHilight(false)
         tk.msg("", fmt.f(pay_text, {player=player.name()}))
         player.pay(700000)
         shadow_addLog(log_text_intro)

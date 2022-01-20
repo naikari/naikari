@@ -4197,19 +4197,19 @@ static int pilotL_attack( lua_State *L )
    NLUA_CHECKRW(L);
 
    /* Get parameters. */
-   p  = luaL_validpilot(L,1);
-   if (lua_isnoneornil(L,2)) {
-      pt  = luaL_validpilot(L,2);
+   p = luaL_validpilot(L, 1);
+   if (!lua_isnoneornil(L, 2)) {
+      pt = luaL_validpilot(L, 2);
       pid = pt->id;
    }
    else {
-      pid = pilot_getNearestEnemy( p );
+      pid = pilot_getNearestEnemy(p);
       if (pid == 0) /* No enemy found. */
          return 0;
    }
 
    /* Set the task. */
-   t        = pilotL_newtask( L, p, "attack" );
+   t = pilotL_newtask(L, p, "attack_forced");
    lua_pushpilot(L, pid);
    t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
 

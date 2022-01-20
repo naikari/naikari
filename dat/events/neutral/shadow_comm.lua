@@ -43,8 +43,7 @@ end
 function hail(p)
     player.commClose()
     hook.rm(hailhook)
-    vendetta:control()
-    vendetta:hyperspace()
+    vendetta:control(false)
 
     naev.missionStart("Shadow Vigil")
     evt.finish()
