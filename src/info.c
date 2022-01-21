@@ -123,10 +123,6 @@ void menu_info( int window )
    size_t i;
    const char *names[INFO_WINDOWS];
 
-   /* Not under manual control. */
-   if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ))
-      return;
-
    /* Open closes when previously opened. */
    if (menu_isOpen(MENU_INFO) || dialogue_isOpen()) {
       if ((info_wid > 0) && !window_isTop(info_wid))
@@ -843,12 +839,16 @@ static void cargo_update( unsigned int wid, char* str )
    window_modifyText(wid, "txtCargoName", "");
    window_modifyText(wid, "txtCargoDesc", "");
 
-   if (array_size(player.p->commodities)==0)
-      return; /* No cargo */
-
-   /* Can jettison all but mission cargo when not landed*/
-   if (landed)
+   if (array_size(player.p->commodities) == 0) {
       window_disableButton(wid, "btnJettisonCargo");
+      return; /* No cargo */
+   }
+
+   /* Don't allow jettisoning cargo if under manual control, since this
+    * can abort a mission and aborting a mission can leave the player
+    * stuck under said manual control. */
+   if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
+      window_disableButtonSoft(wid, "btnJettisonCargo");
    else
       window_enableButton(wid, "btnJettisonCargo");
 
@@ -875,6 +875,12 @@ static void cargo_jettison( unsigned int wid, char* str )
    (void)str;
    int i, j, f, pos, ret;
    Mission *misn;
+
+   if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL)) {
+      dialogue_alert(_("You cannot jettison cargo right now as your ship is"
+            " being controlled by a mission or event."));
+      return;
+   }
 
    if (array_size(player.p->commodities)==0)
       return; /* No cargo, redundant check */
@@ -926,10 +932,11 @@ static void cargo_jettison( unsigned int wid, char* str )
    }
    else {
       /* Remove the cargo */
-      commodity_Jettison( player.p->id, player.p->commodities[pos].commodity,
-            player.p->commodities[pos].quantity );
-      pilot_cargoRm( player.p, player.p->commodities[pos].commodity,
-            player.p->commodities[pos].quantity );
+      if (!landed)
+         commodity_Jettison(player.p->id, player.p->commodities[pos].commodity,
+               player.p->commodities[pos].quantity);
+      pilot_cargoRm(player.p, player.p->commodities[pos].commodity,
+            player.p->commodities[pos].quantity);
    }
 
    /* We reopen the menu to recreate the list now. */
@@ -1071,6 +1078,13 @@ static void info_openMissions( unsigned int wid )
          BUTTON_WIDTH, BUTTON_HEIGHT, "btnAbortMission", _("Abort"),
          mission_menu_abort, SDLK_a );
 
+   /* If player is under manual control, we must prevent missions from
+    * being aborted. Otherwise the player could prevent a mission which
+    * is controlling them from executing the hook that would free
+    * them. */
+   if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
+      window_disableButton(wid, "btnAbortMission");
+
    /* text */
    window_addText( wid, 300+40, -60,
          200, 40, 0, "txtSReward",
@@ -1142,7 +1156,10 @@ static void mission_menu_update( unsigned int wid, char* str )
    misn = player_missions[ toolkit_getListPos(wid, "lstMission" ) ];
    window_modifyText( wid, "txtReward", misn->reward );
    window_modifyText( wid, "txtDesc", misn->desc );
-   window_enableButton( wid, "btnAbortMission" );
+   if (!pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
+      window_enableButton(wid, "btnAbortMission");
+   else
+      window_disableButtonSoft(wid, "btnAbortMission");
 
    /* Select the system. */
    if (misn->markers != NULL)
@@ -1158,6 +1175,12 @@ static void mission_menu_abort( unsigned int wid, char* str )
    int pos;
    Mission *misn;
    int ret;
+
+   if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL)) {
+      dialogue_alert(_("You cannot abort missions right now as your ship is"
+            " being controlled by a mission or event."));
+      return;
+   }
 
    if (dialogue_YesNo( _("Abort Mission"),
             _("Are you sure you want to abort this mission?") )) {
@@ -1183,6 +1206,10 @@ static void mission_menu_abort( unsigned int wid, char* str )
 
       /* Regenerate list. */
       mission_menu_genList(wid ,0);
+
+      /* Regenerate cargo list as well since the mission might have had
+       * mission cargo. */
+      cargo_genList(info_windows[INFO_WIN_CARGO]);
 
       /* Regenerate bar if landed. */
       bar_regen();
