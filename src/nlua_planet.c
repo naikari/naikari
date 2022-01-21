@@ -49,7 +49,6 @@ static int planetL_radius( lua_State *L );
 static int planetL_faction( lua_State *L );
 static int planetL_colour( lua_State *L );
 static int planetL_class( lua_State *L );
-static int planetL_classLong( lua_State *L );
 static int planetL_position( lua_State *L );
 static int planetL_services( lua_State *L );
 static int planetL_canland( lua_State *L );
@@ -79,7 +78,6 @@ static const luaL_Reg planet_methods[] = {
    { "faction", planetL_faction },
    { "colour", planetL_colour },
    { "class", planetL_class },
-   { "classLong", planetL_classLong },
    { "pos", planetL_position },
    { "services", planetL_services },
    { "canLand", planetL_canland },
@@ -566,14 +564,11 @@ static int planetL_colour( lua_State *L )
 
 
 /**
- * @brief Gets the planet's class.
- *
- * Usually classes are characters for planets and numbers
- * for stations.
+ * @brief Gets the planet's (untranslated) class.
  *
  * @usage c = p:class()
  *    @luatparam Planet p Planet to get the class of.
- *    @luatreturn string The class of the planet in a one char identifier.
+ *    @luatreturn string The class of the planet.
  * @luafunc class
  */
 static int planetL_class(lua_State *L )
@@ -581,23 +576,6 @@ static int planetL_class(lua_State *L )
    Planet *p;
    p = luaL_validplanet(L,1);
    lua_pushstring(L,p->class);
-   return 1;
-}
-
-
-/**
- * @brief Gets the planet's class in long human-readable format already translated.
- *
- * @usage c = p:classLong()
- *    @luatparam Planet p Planet to get the class of.
- *    @luatreturn string The class of the planet in descriptive form such as "Pelagic".
- * @luafunc classLong
- */
-static int planetL_classLong(lua_State *L )
-{
-   Planet *p;
-   p = luaL_validplanet(L,1);
-   lua_pushstring(L, planet_getClassName(p->class));
    return 1;
 }
 

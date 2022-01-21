@@ -852,14 +852,14 @@ void land_updateMainTab (void)
    snprintf(buf, sizeof(buf),
          _("#nStationed at#0 %s\n"
          "#nSystem:#0 %s\n"
-         "#nClass:#0 %s (%s)\n"
+         "#nClass:#0 %s\n"
          "#nFaction:#0 %s\n"
          "#nPopulation:#0 %s\n"
          "\n"
          "#nFree Space:#0 %s\n"
          "#nMoney:#0 %s"),
          _(land_planet->name), _(cur_system->name),
-         _(land_planet->class), planet_getClassName(land_planet->class),
+         _(land_planet->class),
          land_planet->faction >= 0 ?
             _(faction_name(land_planet->faction)) : _("None"),
          pop, tons, cred);
