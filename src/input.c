@@ -728,6 +728,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    unsigned int t;
    HookParam hparam[3];
    Planet *pnt;
+   int ret;
 
    /* Repetition stuff. */
    if (conf.repeat_delay != 0) {
@@ -941,10 +942,15 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    } else if (KEY("land") && INGAME() && NOHYP() && NOLAND() && NODEAD()) {
       if (value==KEY_PRESS) {
          /* First try player_land() in case no planet is selected. */
-         if (player_land(0) != PLAYER_LAND_OK) {
-            if (player.p->nav_planet != -1) {
+         ret = player_land(0);
+         if (ret != PLAYER_LAND_OK) {
+            if ((ret != PLAYER_LAND_IMPOSSIBLE)
+                  && (player.p->nav_planet != -1)) {
                pnt = cur_system->planets[player.p->nav_planet];
-               if ((player_land(0) != PLAYER_LAND_OK)
+               /* Second player_land() attempt now using the planet
+                * selected by the previous player_land() call. */
+               ret = player_land(0);
+               if (((ret == PLAYER_LAND_AGAIN) || (ret == PLAYER_LAND_DENIED))
                      && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
                   player_rmFlag(PLAYER_BASICAPPROACH);
                   player_autonavPnt(pnt->name);
@@ -1502,7 +1508,12 @@ int input_clickedPlanet( int planet, int autonav )
    if (planet == player.p->nav_planet && input_isDoubleClick((void*)pnt)) {
       player_hyperspacePreempt(0);
       ret = player_land(0);
-      if (ret != PLAYER_LAND_OK) {
+      if (ret == PLAYER_LAND_IMPOSSIBLE) {
+         player_setFlag(PLAYER_BASICAPPROACH);
+         player_autonavPnt(pnt->name);
+         return 1;
+      }
+      else if (ret != PLAYER_LAND_OK) {
          if (planet_hasService(pnt, PLANET_SERVICE_LAND)) {
             player_rmFlag(PLAYER_BASICAPPROACH);
             player_autonavPnt(pnt->name);

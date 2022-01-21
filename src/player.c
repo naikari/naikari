@@ -1482,27 +1482,46 @@ int player_land( int loud )
 
    if (landed) { /* player is already landed */
       takeoff(1);
-      return PLAYER_LAND_DENIED;
+      return PLAYER_LAND_IMPOSSIBLE;
    }
 
-   /* Not under manual control or disabled. */
-   if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ) ||
-         pilot_isDisabled(player.p))
+   /* Not under manual control. */
+   if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
+      return PLAYER_LAND_IMPOSSIBLE;
+
+   /* Already landing. */
+   if (pilot_isFlag(player.p, PILOT_LANDING))
+      return PLAYER_LAND_IMPOSSIBLE;
+
+   /* Check if there are planets to land on. */
+   if (array_size(cur_system->planets) == 0) {
+      if (loud)
+         player_messageRaw(_("#rThere are no planets to land on."));
+      return PLAYER_LAND_IMPOSSIBLE;
+   }
+
+   /* Landing disabled by a script. */
+   if (player_isFlag(PLAYER_NOLAND)) {
+      if (loud)
+         player_message("#r%s", player_message_noland);
+      return PLAYER_LAND_IMPOSSIBLE;
+   }
+
+   /* Landing disabled by a script. */
+   if (pilot_isFlag(player.p, PILOT_NOLAND)) {
+      if (loud)
+         player_messageRaw(
+               _("#rDocking stabilizers malfunctioning: cannot land."));
+      return PLAYER_LAND_IMPOSSIBLE;
+   }
+
+   /* Can't land while disabled. */
+   if (pilot_isDisabled(player.p))
       return PLAYER_LAND_AGAIN;
 
    /* Still taking off. */
    if (pilot_isFlag(player.p, PILOT_TAKEOFF))
       return PLAYER_LAND_AGAIN;
-
-   /* Already landing. */
-   if (pilot_isFlag(player.p, PILOT_LANDING))
-      return PLAYER_LAND_DENIED;
-
-   /* Check if there are planets to land on. */
-   if (array_size(cur_system->planets) == 0) {
-      player_messageRaw( _("#rThere are no planets to land on.") );
-      return PLAYER_LAND_DENIED;
-   }
 
    if (player.p->nav_planet == -1) { /* get nearest planet target */
       td = -1; /* temporary distance */
@@ -1535,35 +1554,29 @@ int player_land( int loud )
       if (player.p->nav_planet < 0) {
          if (loud)
             player_messageRaw(_("#rNo suitable planet to land on found."));
-         return PLAYER_LAND_DENIED;
+         return PLAYER_LAND_IMPOSSIBLE;
       }
 
       silent = 1; /* Suppress further targeting noises. */
    }
+
+   /* attempt to land at selected planet */
+   planet = cur_system->planets[player.p->nav_planet];
+   if (!planet_hasService(planet, PLANET_SERVICE_LAND)) {
+      if (loud)
+         player_messageRaw(_("#rYou can't land here."));
+      return PLAYER_LAND_IMPOSSIBLE;
+   }
+
    /*check if planet is in range*/
-   else if (!pilot_inRangePlanet(player.p, player.p->nav_planet)) {
+   if (!pilot_inRangePlanet(player.p, player.p->nav_planet)) {
       if (loud)
          player_planetOutOfRangeMsg();
 
       return PLAYER_LAND_AGAIN;
    }
 
-   if (player_isFlag(PLAYER_NOLAND)) {
-      player_message("#r%s", player_message_noland);
-      return PLAYER_LAND_DENIED;
-   }
-   else if (pilot_isFlag( player.p, PILOT_NOLAND)) {
-      player_message(_("#rDocking stabilizers malfunctioning: cannot land."));
-      return PLAYER_LAND_DENIED;
-   }
-
-   /* attempt to land at selected planet */
-   planet = cur_system->planets[player.p->nav_planet];
-   if (!planet_hasService(planet, PLANET_SERVICE_LAND)) {
-      player_messageRaw(_("#rYou can't land here."));
-      return PLAYER_LAND_DENIED;
-   }
-   else if (!player_isFlag(PLAYER_LANDACK)) { /* no landing authorization */
+   if (!player_isFlag(PLAYER_LANDACK)) { /* no landing authorization */
       if (planet_hasService(planet,PLANET_SERVICE_INHABITED)) { /* Basic services */
          if (planet->can_land || (planet->land_override > 0))
             player_message("#%c%s>#0 %s", planet_getColourChar(planet),
@@ -1586,12 +1599,14 @@ int player_land( int loud )
 
       return player_land(loud);
    }
-   else if (vect_dist2(&player.p->solid->pos,&planet->pos) > pow2(planet->radius)) {
+
+   if (vect_dist2(&player.p->solid->pos,&planet->pos) > pow2(planet->radius)) {
       if (loud)
          player_message(_("#rYou are too far away to land on %s."), _(planet->name));
       return PLAYER_LAND_AGAIN;
    }
-   else if ((pow2(VX(player.p->solid->vel)) + pow2(VY(player.p->solid->vel))) >
+
+   if ((pow2(VX(player.p->solid->vel)) + pow2(VY(player.p->solid->vel))) >
          (double)pow2(MAX_HYPERSPACE_VEL)) {
       if (loud)
          player_message(_("#rYou are going too fast to land on %s."), _(planet->name));
@@ -1859,10 +1874,14 @@ int player_jump(int loud)
          player_message(
             _("#rYou are too far from a jump point to initiate hyperspace."));
    }
-   else if (i == -2)
-      player_message(_("#rHyperspace drive is offline."));
-   else if (i == -3)
-      player_message(_("#rYou do not have enough fuel to hyperspace jump."));
+   else if (i == -2) {
+      if (loud)
+         player_message(_("#rHyperspace drive is offline."));
+   }
+   else if (i == -3) {
+      if (loud)
+         player_message(_("#rYou do not have enough fuel to hyperspace jump."));
+   }
    else {
       player_message(_("#oPreparing for hyperspace."));
       /* Stop acceleration noise. */

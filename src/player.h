@@ -45,7 +45,8 @@ enum {
 enum {
    PLAYER_LAND_OK,      /**< landed successfully. */
    PLAYER_LAND_AGAIN,   /**< not yet close/slow enough to land. */
-   PLAYER_LAND_DENIED,  /**< cannot land here. */
+   PLAYER_LAND_DENIED,  /**< not authorized to land. */
+   PLAYER_LAND_IMPOSSIBLE, /**< impossible to land. */
 };
 
 typedef char PlayerFlags[ PLAYER_FLAGS_MAX ];
