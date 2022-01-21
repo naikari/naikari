@@ -22,47 +22,61 @@
 require "missions/neutral/common"
 
 
-text = {}
-text[1] = _([[Suddenly, your instruments go haywire, and your ship careens out of control. The controls aren't responding! Something is wrong with your systems!]])
-text[2] = _([[You've found the cause of the problem. One of the little rodents you transported for that Siriusite apparently got out of the crate on the way, and gnawed through some of your ship's circuitry. The creature died in the ensuing short-circuit. You've fixed the damage, and your ship is under control again.]])
+start_text = _([[You look at your instruments in confusion as you realize that your ship isn't able to jump or land. Before you can make sense of it, your instruments go haywire and your ship careens out of control. Uh-oh.
 
-title = {}
-title[1] = _("Panic!")
-title[2] = _("Calm")
+You frantically try to work the controls to regain control of your ship, but it's no use. You swear to yourself and hurriedly exit your cockpit to look for the problem, hoping you don't get attacked in your defenseless state while you do so.]])
+
+end_text = _([[You've found the cause of the problem. One of the little rodents you transported for that Siriusite apparently got out of the crate on the way, and gnawed through some of your ship's circuitry. The creature died in the ensuing short-circuit. You've fixed the damage, and your ship is under control again.]])
 
 log_text = _([[You found that one of the rodents you transported for that Siriusite got out of the crate on the way, gnawed through some of your ship's circuitry, and died from short-circuit caused by said gnawing, which also caused your ship to go haywire. After you fixed the damage, your ship's controls were brought back to normal.]])
 
 
 function create ()
-    -- Allow some time before the problems start
-    hook.timer(45.0, "startProblems")
-    bucks = 6
+    if not evt.claim(system.cur()) then
+        print("No claim")
+        evt.finish(false)
+    end
+    print("Go")
+
+    pilot.toggleSpawn(false)
+    pilot.clear()
+    player.pilot():setNoJump()
+    player.pilot():setNoLand()
+
+    hook.timer(5.0, "startProblems")
+    bucks = 3
+
+    hook.land("leave")
+    hook.jumpout("leave")
 end
 
+
 function startProblems()
-    -- Cancel autonav.
-    player.cinematics(true)
-    player.cinematics(false)
-    tk.msg(title[1], text[1])
-    ps = player.pilot()
-    ps:control()
+    tk.msg("", start_text)
+
+    player.cinematics(true, {gui=true})
+    player.pilot():control()
+
     hook.timer(7.0, "buck")
-    hook.pilot(ps, "idle", "continueProblems")
+    hook.pilot(player.pilot(), "idle", "continueProblems")
     continueProblems()
 end
+
 
 function continueProblems()
     -- Fly off in a random direction
     dist = 1000
-    angle = rnd.rnd() * 90 + ps:dir() -- In theory, never deviate more than 90 degrees from the current course.
+    -- Never deviate more than 90 degrees from the current direction.
+    angle = rnd.rnd()*90 + player.pilot():dir()
     newlocation = vec2.newP(dist, angle)
 
-    ps:taskClear()
-    ps:moveto(ps:pos() + newlocation, false, false)
+    player.pilot():taskClear()
+    player.pilot():moveto(player.pilot():pos() + newlocation, false, false)
 end
 
+
 function buck()
-    bucks = bucks -1
+    bucks = bucks - 1
     if bucks == 0 then
         endProblems()
     end
@@ -70,10 +84,16 @@ function buck()
     continueProblems()
 end
 
+
 function endProblems()
-    tk.msg(title[2], text[2])
-    ps:control(false)
+    tk.msg("", end_text)
+
+    pilot.toggleSpawn(true)
+    player.cinematics(false)
+    player.pilot():control(false)
+
     var.pop("shipinfested")
-    addMiscLog( log_text )
+
+    addMiscLog(log_text)
     evt.finish(true)
 end

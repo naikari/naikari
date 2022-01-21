@@ -86,9 +86,8 @@ landmsg = _("%s just landed at %s and finished the race")
 
 
 function create ()
-   
    this_planet, this_system = planet.cur()
-   missys = {this_system}
+   missys = this_system
    if not misn.claim(missys) then
       misn.finish(false)
    end
@@ -284,14 +283,17 @@ function board(ship)
    end
 end
 
+
 function jumpin()
    tk.msg("", ftext[2])
    misn.finish(false)
 end
 
+
 function racerland(p)
    player.msg(string.format(landmsg, p:name(), curplanet:name()))
 end
+
 
 function land()
    if target[4] == 4 then
@@ -307,4 +309,13 @@ function land()
       tk.msg("", ftext[2])
       misn.finish(false)
    end
+end
+
+
+function abort()
+   if system.cur() == missys then
+      -- Restore control in case it's currently taken away.
+      player.pilot():control(false)
+   end
+   misn.finish(false)
 end
