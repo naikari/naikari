@@ -487,8 +487,15 @@ static void player_autonav (void)
                }
             }
             else {
-               /* Call player_land to let player know of clearance. */
-               player_land(0);
+               /* Call player_land to let player know of clearance. If
+                * it is an approved land, we're done; happens when
+                * autoland was started while taking off and can
+                * theoretically happen by astounding coincidence in
+                * other circumstances. Not returning here in that case
+                * leads to an amusing, but harmless bug where the ship
+                * moves while landing. */
+               if (player_land(0) == PLAYER_LAND_OK)
+                  return;
             }
          }
 
@@ -515,7 +522,7 @@ static void player_autonav (void)
          if (ret) {
             ret = player_land(0);
             if (ret == PLAYER_LAND_OK)
-               player_autonavEnd();
+               return;
             else if (ret == PLAYER_LAND_AGAIN)
                player.autonav = AUTONAV_PNT_APPROACH;
             else
