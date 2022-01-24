@@ -139,7 +139,7 @@ void background_initStars(int n)
       star_vertex[14*i+3] = star_vertex[14*i+2] + RNGF()*0.2;
       star_vertex[14*i+10] = star_vertex[14*i+3];
       /* Set the color. */
-      if (RNGF() < 0.5) {
+      if (RNGF() < 0.25) {
          /* Less colorful star. */
          star_vertex[14*i+4] = RNGF()*0.2 + 0.8;
          star_vertex[14*i+5] = RNGF()*0.2 + 0.8;
