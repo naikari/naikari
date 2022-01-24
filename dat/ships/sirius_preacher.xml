@@ -45,5 +45,7 @@
   <thrust_mod>10</thrust_mod>
   <shield_mod>10</shield_mod>
   <stress_dissipation>20</stress_dissipation>
+  <launch_range>20</launch_range>
+  <ammo_capacity>25</ammo_capacity>
  </stats>
 </ship>
