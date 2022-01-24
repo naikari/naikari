@@ -21,8 +21,9 @@ unsigned int background_addImage( glTexture *image, double x, double y,
       double move, double scale, const glColour *col, int foreground );
 
 /* Stars. */
-void background_initStars( int n );
-void background_renderStars(const double dt, const int stationary);
+void background_initStars(int n);
+void background_initDust(void);
+void background_renderStars(const double dt, const int is_stars);
 void background_moveStars( double x, double y );
 
 /* Init. */

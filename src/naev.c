@@ -527,7 +527,8 @@ void loadscreen_load (void)
    loading_txt = ndata_read( file_path, &nbuf );
 
    /* Create the stars. */
-   background_initStars( 1000 );
+   background_initStars(1000);
+   background_initDust();
 
    /* Clean up. */
    PHYSFS_freeList( loadpaths );
