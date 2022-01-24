@@ -15,13 +15,13 @@
  <trail_generator x="-12" y="-40" h="0">nebula</trail_generator>
  <fabricator>House Dvaered</fabricator>
  <license>Medium Combat Vessel License</license>
- <description>This military grade version of the Phalanx has slightly stronger armor compared to its standard counterpart, and it also features a special cooling chamber for its forward-mounted weapons that doubles as additional cargo space.</description>
+ <description>Not satisfied with the armor strength of the civilian grade Phalanx, the Dvaered military decided to thicken the ship's armor before deploying it for military service. The job required tearing out a reactor, making its energy regeneration even worse than a standard Phalanx, but this also had a nice side-effect of making it easier for heat to dissipate from the ship's forward-mounted weapons, and also lowering its mass.</description>
  <health>
   <armour>220</armour>
   <armour_regen>1</armour_regen>
  </health>
  <characteristics>
-  <mass>190</mass>
+  <mass>180</mass>
   <fuel_consumption>200</fuel_consumption>
   <rdr_range>7500</rdr_range>
   <rdr_jump_range>3000</rdr_jump_range>
@@ -46,9 +46,9 @@
  </slots>
  <stats>
   <speed_mod>-10</speed_mod>
-  <armour_mod>20</armour_mod>
+  <armour_mod>30</armour_mod>
   <energy_mod>20</energy_mod>
-  <energy_regen_mod>-10</energy_regen_mod>
+  <energy_regen_mod>-25</energy_regen_mod>
   <fwd_heat>-10</fwd_heat>
   <launch_range>20</launch_range>
   <ammo_capacity>25</ammo_capacity>
