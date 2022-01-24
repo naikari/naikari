@@ -17,7 +17,7 @@
  <description>While somewhat technologically antiquated, the Phalanx's large energy capacity and heavy armor allow it to remain an effective combat vessel.</description>
  <health>
   <armour>210</armour>
-  <armour_regen>0</armour_regen>
+  <armour_regen>1</armour_regen>
  </health>
  <characteristics>
   <mass>190</mass>

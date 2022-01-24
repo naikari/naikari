@@ -18,7 +18,7 @@
  <description>This military grade version of the Phalanx has slightly stronger armor compared to its standard counterpart, and it also features a special cooling chamber for its forward-mounted weapons that doubles as additional cargo space.</description>
  <health>
   <armour>220</armour>
-  <armour_regen>0</armour_regen>
+  <armour_regen>1</armour_regen>
  </health>
  <characteristics>
   <mass>190</mass>
