@@ -14,10 +14,10 @@
   <spfx_shield>ExpL</spfx_shield>
   <spfx_armour>ExpL</spfx_armour>
   <trail_generator x="-15">zalek-missileL</trail_generator>
-  <duration blowup="armour">30</duration>
-  <thrust>150</thrust>
-  <turn>40</turn>
-  <speed>220</speed>
+  <duration blowup="armour">60</duration>
+  <thrust>35</thrust>
+  <turn>10</turn>
+  <speed>120</speed>
   <damage>
    <type>normal</type>
    <penetrate>90</penetrate>

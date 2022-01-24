@@ -15,7 +15,7 @@
  <trail_generator x="-25" y="-7" h="-7" always_under="1">zalek</trail_generator>
  <fabricator>Za'lek Fabricators</fabricator>
  <license>Medium Combat Vessel License</license>
- <description>The Sting Corvette is rather large for its size, but its advanced sensor suite, impressive weapons loadout, and tough shields makes it a good backbone to the fleet of House Za'lek.</description>
+ <description>The Sting is the smallest Za'lek ship, capable of carrying only missile launchers and miniaturized bomb drones. Stings are regularly tasked with monitoring drones to ensure that they don't go haywire, and giving them fire support from a distance.</description>
  <health>
   <armour>230</armour>
   <armour_regen>0</armour_regen>
@@ -48,5 +48,7 @@
   <shield_mod>40</shield_mod>
   <shield_regen_mod>30</shield_regen_mod>
   <stress_dissipation>10</stress_dissipation>
+  <launch_range>20</launch_range>
+  <ammo_capacity>25</ammo_capacity>
  </stats>
 </ship>
