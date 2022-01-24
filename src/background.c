@@ -124,38 +124,42 @@ void background_initStars(int n)
    nstars = (unsigned int)(size/(1280.*720.));
 
    /* Create data. */
-   star_vertex = malloc(nstars * sizeof(GLfloat) * 12);
+   star_vertex = malloc(nstars * sizeof(GLfloat) * 14);
 
-   for (i=0; i < nstars; i++) {
+   for (i=0; i<nstars; i++) {
       /* Set the position. */
-      star_vertex[12*i+0] = RNGF()*w - hw;
-      star_vertex[12*i+1] = RNGF()*h - hh;
-      star_vertex[12*i+6] = star_vertex[12*i+0];
-      star_vertex[12*i+7] = star_vertex[12*i+1];
-      /* Set the colour. */
-      star_vertex[12*i+2] = RNGF()*0.6 + 0.2;
+      star_vertex[14*i+0] = RNGF()*w - hw;
+      star_vertex[14*i+1] = RNGF()*h - hh;
+      star_vertex[14*i+7] = star_vertex[14*i+0];
+      star_vertex[14*i+8] = star_vertex[14*i+1];
+      /* Set the brightness. */
+      star_vertex[14*i+2] = RNGF()*0.6 + 0.2;
+      star_vertex[14*i+9] = star_vertex[14*i+2];
+      /* Set relative speed based on brightness (with variation). */
+      star_vertex[14*i+3] = star_vertex[14*i+2] + RNGF()*0.2;
+      star_vertex[14*i+10] = star_vertex[14*i+3];
+      /* Set the color. */
       if (RNGF() < 0.5) {
          /* Less colorful star. */
-         star_vertex[12*i+3] = RNGF()*0.2 + 0.8;
-         star_vertex[12*i+4] = RNGF()*0.2 + 0.8;
-         star_vertex[12*i+5] = RNGF()*0.2 + 0.8;
+         star_vertex[14*i+4] = RNGF()*0.2 + 0.8;
+         star_vertex[14*i+5] = RNGF()*0.2 + 0.8;
+         star_vertex[14*i+6] = RNGF()*0.2 + 0.8;
       }
       else {
          /* More colorful star. */
-         star_vertex[12*i+3] = RNGF()*0.8 + 0.2;
-         star_vertex[12*i+4] = RNGF()*0.8 + 0.2;
-         star_vertex[12*i+5] = RNGF()*0.8 + 0.2;
+         star_vertex[14*i+4] = RNGF()*0.8 + 0.2;
+         star_vertex[14*i+5] = RNGF()*0.8 + 0.2;
+         star_vertex[14*i+6] = RNGF()*0.8 + 0.2;
       }
-      star_vertex[12*i+8] = star_vertex[12*i+2];
-      star_vertex[12*i+9] = star_vertex[12*i+3];
-      star_vertex[12*i+10] = star_vertex[12*i+4];
-      star_vertex[12*i+11] = star_vertex[12*i+5];
+      star_vertex[14*i+11] = star_vertex[14*i+4];
+      star_vertex[14*i+12] = star_vertex[14*i+5];
+      star_vertex[14*i+13] = star_vertex[14*i+6];
    }
 
    /* Recreate VBO. */
    gl_vboDestroy(star_vertexVBO);
    star_vertexVBO = gl_vboCreateStatic(
-         nstars * sizeof(GLfloat) * 12, star_vertex);
+         nstars * sizeof(GLfloat) * 14, star_vertex);
 
    free(star_vertex);
 }
@@ -190,38 +194,42 @@ void background_initDust(void)
    ndust = (unsigned int)(size/(1280.*720.));
 
    /* Create data. */
-   dust_vertex = malloc(ndust * sizeof(GLfloat) * 12);
+   dust_vertex = malloc(ndust * sizeof(GLfloat) * 14);
 
-   for (i=0; i < ndust; i++) {
+   for (i=0; i<ndust; i++) {
       /* Set the position. */
-      dust_vertex[12*i+0] = RNGF()*w - hw;
-      dust_vertex[12*i+1] = RNGF()*h - hh;
-      dust_vertex[12*i+6] = dust_vertex[12*i+0];
-      dust_vertex[12*i+7] = dust_vertex[12*i+1];
-      /* Set the colour. */
-      dust_vertex[12*i+2] = RNGF()*0.6 + 0.2;
+      dust_vertex[14*i+0] = RNGF()*w - hw;
+      dust_vertex[14*i+1] = RNGF()*h - hh;
+      dust_vertex[14*i+7] = dust_vertex[14*i+0];
+      dust_vertex[14*i+8] = dust_vertex[14*i+1];
+      /* Set the brightness. */
+      dust_vertex[14*i+2] = RNGF()*0.2 + 0.05;
+      dust_vertex[14*i+9] = dust_vertex[14*i+2];
+      /* Set relative speed. Note: values less than 0.5 may flicker. */
+      dust_vertex[14*i+3] = RNGF()*0.5 + 0.5;
+      dust_vertex[14*i+10] = dust_vertex[14*i+3];
+      /* Set the color. */
       if (RNGF() < 0.5) {
          /* Less colorful particle. */
-         dust_vertex[12*i+3] = RNGF()*0.2 + 0.8;
-         dust_vertex[12*i+4] = RNGF()*0.2 + 0.8;
-         dust_vertex[12*i+5] = RNGF()*0.2 + 0.8;
+         dust_vertex[14*i+4] = RNGF()*0.2 + 0.8;
+         dust_vertex[14*i+5] = RNGF()*0.2 + 0.8;
+         dust_vertex[14*i+6] = RNGF()*0.2 + 0.8;
       }
       else {
          /* More colorful particle. */
-         dust_vertex[12*i+3] = RNGF()*0.8 + 0.2;
-         dust_vertex[12*i+4] = RNGF()*0.8 + 0.2;
-         dust_vertex[12*i+5] = RNGF()*0.8 + 0.2;
+         dust_vertex[14*i+4] = RNGF()*0.8 + 0.2;
+         dust_vertex[14*i+5] = RNGF()*0.8 + 0.2;
+         dust_vertex[14*i+6] = RNGF()*0.8 + 0.2;
       }
-      dust_vertex[12*i+8] = dust_vertex[12*i+2];
-      dust_vertex[12*i+9] = dust_vertex[12*i+3];
-      dust_vertex[12*i+10] = dust_vertex[12*i+4];
-      dust_vertex[12*i+11] = dust_vertex[12*i+5];
+      dust_vertex[14*i+11] = dust_vertex[14*i+4];
+      dust_vertex[14*i+12] = dust_vertex[14*i+5];
+      dust_vertex[14*i+13] = dust_vertex[14*i+6];
    }
 
    /* Recreate VBO. */
    gl_vboDestroy(dust_vertexVBO);
    dust_vertexVBO = gl_vboCreateStatic(
-         ndust * sizeof(GLfloat) * 12, dust_vertex);
+         ndust * sizeof(GLfloat) * 14, dust_vertex);
 
    free(dust_vertex);
 }
@@ -312,7 +320,10 @@ void background_renderStars(const double dt, const int is_stars)
             y = m*sin(VANGLE(player.p->solid->vel));
          }
       }
-      use_lines = (x >= 2.) || (x <= -2.) || (y >= 2.) || (y <= -2.);
+      /* Check if we want to use lines or dots. If length is less than
+       * 2, assume we want a dot. Note: the values we're checking here
+       * are modified per-star by the relative speed component. */
+      use_lines = (fabs(x) >= 2.) || (fabs(y) >= 2.);
       if (!use_lines) {
          x = y = 0.;
       }
@@ -321,16 +332,20 @@ void background_renderStars(const double dt, const int is_stars)
    /* Render. */
    glEnableVertexAttribArray(shaders.stars.vertex);
    glEnableVertexAttribArray(shaders.stars.brightness);
+   glEnableVertexAttribArray(shaders.stars.relspeed);
    glEnableVertexAttribArray(shaders.stars.color);
    gl_vboActivateAttribOffset(is_stars ? star_vertexVBO : dust_vertexVBO,
          shaders.stars.vertex, 0, 2, GL_FLOAT,
-         6 * sizeof(GLfloat));
+         7 * sizeof(GLfloat));
    gl_vboActivateAttribOffset(is_stars ? star_vertexVBO : dust_vertexVBO,
          shaders.stars.brightness, 2 * sizeof(GLfloat), 1, GL_FLOAT,
-         6 * sizeof(GLfloat));
+         7 * sizeof(GLfloat));
    gl_vboActivateAttribOffset(is_stars ? star_vertexVBO : dust_vertexVBO,
-         shaders.stars.color, 3 * sizeof(GLfloat), 3, GL_FLOAT,
-         6 * sizeof(GLfloat));
+         shaders.stars.relspeed, 3 * sizeof(GLfloat), 1, GL_FLOAT,
+         7 * sizeof(GLfloat));
+   gl_vboActivateAttribOffset(is_stars ? star_vertexVBO : dust_vertexVBO,
+         shaders.stars.color, 4 * sizeof(GLfloat), 3, GL_FLOAT,
+         7 * sizeof(GLfloat));
 
    gl_Matrix4_Uniform(shaders.stars.projection, projection);
    glUniform2f(shaders.stars.star_xy, is_stars ? star_x : dust_x,
@@ -344,6 +359,8 @@ void background_renderStars(const double dt, const int is_stars)
    /* Disable vertex array. */
    glDisableVertexAttribArray(shaders.stars.vertex);
    glDisableVertexAttribArray(shaders.stars.brightness);
+   glDisableVertexAttribArray(shaders.stars.relspeed);
+   glDisableVertexAttribArray(shaders.stars.color);
 
    glLineWidth(1. / gl_screen.scale);
    glPointSize(1. / gl_screen.scale);
@@ -682,6 +699,7 @@ void background_free (void)
    dust_vertexVBO = NULL;
 
    nstars = 0;
+   ndust = 0;
 }
 
 /**
