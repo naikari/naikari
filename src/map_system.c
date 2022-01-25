@@ -34,8 +34,8 @@
 #include "space.h"
 #include "toolkit.h"
 
-#define BUTTON_WIDTH    80 /**< Map button width. */
-#define BUTTON_HEIGHT   30 /**< Map button height. */
+#define BUTTON_WIDTH  200 /**< Map button width. */
+#define BUTTON_HEIGHT  30 /**< Map button height. */
 
 static StarSystem *cur_sys_sel = NULL; /**< Currently selected system */
 static int cur_planet_sel = 0; /**< Current planet selected by user (0 = star). */
@@ -201,11 +201,13 @@ void map_system_open( int sys_selected )
          &gl_defFont, &cFontGreen, _(cur_sys_sel->name) );
    window_addImage( wid, -90 + 32, h-30, 0, 0, "imgFaction", NULL, 0 );
    /* Close button */
-   window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnClose", _("Close"), map_system_window_close );
+   window_addButton(wid, -20, 20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnClose", _("Close"), map_system_window_close);
    /* commodity price purchase button */
-   window_addButton( wid, -40-BUTTON_WIDTH, 20, BUTTON_WIDTH*3, BUTTON_HEIGHT,
-                     "btnBuyCommodPrice", _("Buy commodity price info"), map_system_buyCommodPrice );
+   window_addButton(wid, -20 - (BUTTON_WIDTH+10), 20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnBuyCommodPrice", _("Buy Price Info"), map_system_buyCommodPrice);
    window_disableButton( wid, "btnBuyCommodPrice");
 
    /* Load the planet gfx if necessary */
@@ -997,8 +999,7 @@ void map_system_buyCommodPrice( unsigned int wid, char *str )
       syslist = map_getJumpPath(cur_system->name, cur_sys_sel->name, 1, 0, NULL);
       if (syslist == NULL) {
          /* no route */
-         dialogue_msg(
-               "",
+         dialogue_msg(_("Commodity Prices"),
                _("We don't have the commodity prices for %s available here at"
                   " the moment."),
                _(cur_planetObj_sel->name));
@@ -1015,22 +1016,20 @@ void map_system_buyCommodPrice( unsigned int wid, char *str )
    tdiff = ntime_create(0, 2 * njumps, 0);
    t -= tdiff;
 
-   credits2str( coststr, cost, -1 );
+   credits2str(coststr, cost, 1);
    if ( !player_hasCredits( cost ) ) {
-      dialogue_msg(
-            "",
+      dialogue_msg(_("Commodity Prices"),
             _("We are selling this information for %s, which you don't have."),
             coststr);
    } else if (array_size(cur_planetObj_sel->commodities) == 0) {
       dialogue_msgRaw("",_("We don't know of any commodities sold here."));
    } else if (cur_planetObj_sel->commodityPrice[0].updateTime >= t) {
-      dialogue_msgRaw(
-            "", _("You already have newer information than we can sell."));
+      dialogue_msgRaw(_("Commodity Prices"),
+            _("You already have newer information than we can sell."));
    } else {
-      ret = dialogue_YesNo(
-            "",
-            _("Commodity prices on %s will cost %s. The latest information we"
-               " have is %s old. Purchase commodity prices?"),
+      ret = dialogue_YesNo(_("Commodity Prices"),
+            _("Commodity prices for %s will cost %s. The latest information we"
+               " have has an age of %s. Purchase commodity prices?"),
             _(cur_planetObj_sel->name), coststr, ntime_pretty(tdiff, 0));
       if (ret) {
          player_modCredits( -cost );
