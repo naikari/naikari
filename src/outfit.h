@@ -33,16 +33,27 @@
 /* Outfit filter labels. [Doc comments are also translator notes and must precede the #define.] */
 /* Abbreviation for "Weapon [outfit]", short enough to use as a
  * tab/column title. */
-#define OUTFIT_LABEL_WEAPON            N_(" W ")
+#define OUTFIT_LABEL_WEAPON  N_(" W ")
 /* Abbreviation for "Utility [outfit]", short enough to use as a
  * tab/column title. */
-#define OUTFIT_LABEL_UTILITY           N_(" U ")
+#define OUTFIT_LABEL_UTILITY  N_(" U ")
 /* Abbreviation for "Structure [outfit]", short enough to use as a
  * tab/column title. */
-#define OUTFIT_LABEL_STRUCTURE         N_(" S ")
+#define OUTFIT_LABEL_STRUCTURE  N_(" S ")
 /* Abbreviation for "Core [outfit]", short enough to use as a
  * tab/column title. */
-#define OUTFIT_LABEL_CORE              N_("Core")
+#define OUTFIT_LABEL_CORE  N_("Core")
+
+
+/* Outfit type labels (used for image array). Comments are also
+ * translator notes and must precede the #define.
+ */
+/* Abbreviation for "Small [outfit]"; must be only one character. */
+#define OUTFIT_TLABEL_LIGHT  N_("S")
+/* Abbreviation for "Medium [outfit]"; must be only one character. */
+#define OUTFIT_TLABEL_MEDIUM  N_("M")
+/* Abbreviation for "Large [outfit]"; must be only one character. */
+#define OUTFIT_TLABEL_HEAVY  N_("L")
 
 
 /*

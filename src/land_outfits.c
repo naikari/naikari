@@ -613,6 +613,7 @@ ImageArrayCell *outfits_imageArrayCells( const Outfit **outfits, int *noutfits )
    const Outfit *o;
    const char *typename;
    glTexture *t;
+   size_t n;
 
    /* Allocate. */
    coutfits = calloc( MAX(1,*noutfits), sizeof(ImageArrayCell) );
@@ -645,13 +646,25 @@ ImageArrayCell *outfits_imageArrayCells( const Outfit **outfits, int *noutfits )
             outfit_altText( coutfits[i].alt, STRMAX, o );
          }
 
-         /* Slot type. */
-         if ( (strcmp(outfit_slotName(o), "N/A") != 0)
-               && (strcmp(outfit_slotName(o), "NULL") != 0) ) {
-            typename       = outfit_slotName(o);
-            coutfits[i].slottype = malloc(2);
-            coutfits[i].slottype[0] = typename[0];
-            coutfits[i].slottype[1] = '\0';
+         /* Slot type (outfit size). */
+         switch (o->slot.size) {
+            case OUTFIT_SLOT_SIZE_LIGHT:
+               typename = _(OUTFIT_TLABEL_LIGHT);
+               break;
+            case OUTFIT_SLOT_SIZE_MEDIUM:
+               typename = _(OUTFIT_TLABEL_MEDIUM);
+               break;
+            case OUTFIT_SLOT_SIZE_HEAVY:
+               typename = _(OUTFIT_TLABEL_HEAVY);
+               break;
+            default:
+               typename = NULL;
+         }
+         if (typename != NULL) {
+            /* Add one for the terminating null character. */
+            n = strlen(typename) + 1;
+            coutfits[i].slottype = malloc(n);
+            strcpy(coutfits[i].slottype, typename);
          }
 
          /* Layers. */
