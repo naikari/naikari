@@ -58,6 +58,7 @@ if buildExec.disabled() == false
    config_data.set('DEBUG_ARRAYS', debug_arrays ? 1 : false)
    config_data.set('DEBUGGING', debug ? 1 : false)
    config_data.set('DEBUG_PARANOID', paranoid ? 1 : false)
+   config_data.set('NOLOGPRINTFCONSOLE', 1)
    summary('Enabled' , debug   , section: 'Debug', bool_yn: true)
    summary('Paranoid', paranoid, section: 'Debug', bool_yn: true)
 
@@ -90,10 +91,7 @@ if buildExec.disabled() == false
       libxml2,
       sdl,
       sdl_image,
-      declare_dependency(
-         dependencies: dependency('libpng', required: true),
-         compile_args: '-DNOLOGPRINTFCONSOLE',
-         link_args: '-DNOLOGPRINTFCONSOLE'),
+      dependency('libpng', required: true),
       dependency('libwebp', required: true),
    ]
 
