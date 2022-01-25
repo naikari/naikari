@@ -343,7 +343,7 @@ void map_open (void)
    /* System Info button */
    window_addButtonKey(wid, -20 - 3*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnSystemMap", _("System Info"), map_buttonSystemMap, SDLK_n);
+         "btnSystemMap", _("System Info"), map_buttonSystemMap, SDLK_s);
    /* Autonav button */
    window_addButtonKey(wid, -20 - 4*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
