@@ -821,6 +821,10 @@ static int map_findSearchOutfits( unsigned int parent, const char *name )
          continue;
       pnt = map_known_planets[i];
 
+      /* Must have an outfitter. */
+      if (!planet_hasService(pnt, PLANET_SERVICE_OUTFITS))
+         continue;
+
       /* System must be known. */
       sysname = planet_getSystem( pnt->name );
       if (sysname == NULL)
@@ -938,6 +942,10 @@ static int map_findSearchShips( unsigned int parent, const char *name )
       if (j < 0)
          continue;
       pnt = map_known_planets[i];
+
+      /* Must have a shipyard. */
+      if (!planet_hasService(pnt, PLANET_SERVICE_SHIPYARD))
+         continue;
 
       /* System must be known. */
       sysname = planet_getSystem( pnt->name );
