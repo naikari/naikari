@@ -7,7 +7,7 @@
  <avail>
   <priority>20</priority>
   <done>Sharkman Is Back</done>
-  <chance>3</chance>
+  <chance>10</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -32,50 +32,41 @@
 
 --]]
 
-require "numstring"
+local fmt = require "fmt"
 require "missions/shark/common"
 
 
-text = {}
-osd_msg = {}
-npc_desc = {}
-bar_desc = {}
+ask_text = _([[You sit at Smith's table and ask him if he has a job for you. "Of course," he answers. "But this time, it's… well…
 
-text[1] = _([[You sit at Smith's table and ask him if he has a job for you. "Of course," he answers. "But this time, it's… well…
+"Listen, I need to explain some background. As you know, Nexus designs are used far and wide not only by the Empire military, but by smaller militaries and mercenaries as well. Aerosys dug into a lot of the Fighter market with their Hyena design, but we were successful in convincing them to join a partnership with us, bundling the ships with Nexus engines and paying us a royalty for each sale. On the other hand, our former dominance in the Cruiser market was shattered by the sudden appearance of Krain Industries, who produced a lighter and cheaper Cruiser, and rather than accepting our deal to bundle our engines, they created their own Remige Engines. We still sell Hawkings, of course, but pirates have taken a liking to Krain's design and we just no longer make as much money in that market as we used to.
 
-"Listen, I need to explain some background. As you know, Nexus designs are used far and wide in smaller militaries. The Empire is definitely our biggest customer, but the Frontier also notably makes heavy use of our Lancelot design, as do many independent systems. Still, competition is stiff; House Dvaered's Vendetta design, for instance, is quite popular with the FLF, ironically enough.
+"Recently, we have discovered that another small start-up has cropped up in Sirius space, planning to launch test markets in Frontier space. When we reached out to them, they refused a partnership with us. They're turning into another Krain Industries, and we cannot have that. Nexus dominance in the Fighter market must be sustained.
 
-"But matters just got a little worse for us: it seems that House Sirius is looking to get in on the shipbuilding business as well, and the Frontier are prime targets. If they succeed, the Lancelot design could be completely pushed out of Frontier space, and we would be crushed in that market between House Dvaered and House Sirius. Sure, the FLF would still be using a few Pacifiers, but it would be a token business at best, and not to mention the authorities would start associating us with terrorism.
-
-"So we've conducted a bit of espionage. We have an agent who has recorded some hopefully revealing conversations between a House Sirius sales manager and representatives of the Frontier. All we need you to do is meet with the agent, get the recordings, and bring them back to me on %s in the %s system." You raise an eyebrow.
-
-"It's not exactly legal. That being said, you're just doing the delivery, so you almost certainly won't be implicated. What do you say? Is this something you can do?"]])
+"So we've conducted a bit of espionage. We have an agent who has recorded some hopefully revealing conversations between a sales manager of the new startup and representatives of the Frontier. All we need you to do is meet with the agent, get the recordings, and bring them back to me on {planet} in the {system} system. It's not exactly legal. That being said, you're just doing the delivery, so you almost certainly won't be implicated. What do you say? Is this something you can do?"]])
 
 refusetext = _([["OK, sorry to bother you."]])
 
-text[2] = _([["I'm glad to hear it. Go meet our agent on %s in the %s system. Oh, yes, and I suppose I should mention that I'm known as 'James Neptune' to the agent. Good luck!"]])
+accept_text = _([["I'm glad to hear it. Go meet our agent on {planet} in the {system} system. Oh, yes, and I suppose I should mention that I'm known as 'James Neptune' to the agent. Good luck!"]])
 
-text[3] = _([[The Nexus employee greets you as you reach the ground. "Excellent! I will just need to spend a few hectoseconds analyzing these recordings. See if you can find me in the bar soon; I might have another job for you."]])
+meet_text = _([[You approach the agent and obtain the package without issue. Before you leave, he suggests that you stay vigilant. "They might come after you," he says.]])
 
-text[4] = _([[You approach the agent and obtain the package without issue. Before you leave, he suggests that you stay vigilant. "They might come after you," he says.]])
+pay_text = _([[The Nexus employee greets you as you reach the ground. "Excellent! I will just need to spend a few hectoseconds analyzing these recordings. See if you can find me in the bar soon; I might have another job for you."]])
 
 
 -- Mission details
-misn_title = _("Unfair Competition")
+misn_title = _("Corporate Espionage")
 misn_desc = _("Nexus Shipyards is in competition with House Sirius.")
 
 -- NPC
-npc_desc[1] = _("Arnold Smith")
-bar_desc[1] = _([[Arnold Smith is here. Perhaps he might have another job for you.]])
-npc_desc[2] = _("Nexus's agent")
-bar_desc[2] = _([[This guy seems to be the agent Arnold Smith was talking about.]])
+arnold_name = _("Arnold Smith")
+arnold_desc = _([[Arnold Smith looks at you and motions you over.]])
+agent_name = _("Nexus's agent")
+agent_desc = _([[This guy seems to be the agent Arnold Smith was talking about.]])
 
 -- OSD
-osd_title = _("Unfair Competition")
-osd_msg[1] = _("Land on %s (%s system) and meet the Nexus agent")
-osd_msg[2] = _("Land on %s (%s system)")
+osd_title = _("Corporate Espionage")
 
-log_text = _([[You helped Nexus Shipyards gather information in an attempt to sabotage competition from House Sirius. Arnold Smith said to meet him in the bar soon; he may have another job for you.]])
+log_text = _([[You helped Nexus Shipyards gather information in an attempt to sabotage competition from a new startup. Arnold Smith said to meet him in the bar soon; he may have another job for you.]])
 
 
 function create ()
@@ -87,10 +78,9 @@ function create ()
 
    pplname = "Darkshed"
    psyname = "Alteris"
-   paysys = system.get(psyname)
-   paypla = planet.get(pplname)
+   paypla, paysys = planet.get("Darkshed")
 
-   misn.setNPC(npc_desc[1], "neutral/unique/arnoldsmith.png", bar_desc[1])
+   misn.setNPC(arnold_name, "neutral/unique/arnoldsmith.png", arnold_desc)
 end
 
 
@@ -100,17 +90,22 @@ function accept()
    reward = 750000
    proba = 0.3  --the chances you have to get an ambush
 
-   if tk.yesno("", text[1]:format(pplname, psyname)) then
+   if tk.yesno("", fmt.f(ask_text,
+            {planet=paypla:name(), system=paysys:name()})) then
       misn.accept()
-      tk.msg("", text[2]:format(mispla:name(), missys:name()))
+      tk.msg("", accept_text:format(mispla:name(), missys:name()))
 
-      osd_msg[1] = osd_msg[1]:format(mispla:name(), missys:name())
-      osd_msg[2] = osd_msg[2]:format(pplname, psyname)
+      local osd_msg = {
+         fmt.f(_("Land on {planet} ({system} system)"),
+            {planet=mispla:name(), system=missys:name()}),
+         fmt.f(_("Land on {planet} ({system} system)"),
+            {planet=paypla:name(), system=paysys:name()}),
+      }
 
       misn.setTitle(misn_title)
-      misn.setReward(creditstring(reward))
+      misn.setReward(fmt.credits(reward))
       misn.setDesc(misn_desc)
-      osd = misn.osdCreate(osd_title, osd_msg)
+      misn.osdCreate(osd_title, osd_msg)
       misn.osdActive(1)
 
       marker = misn.markerAdd(missys, "low")
@@ -119,7 +114,7 @@ function accept()
       enterhook = hook.enter("enter")
    else
       tk.msg("", refusetext)
-      misn.finish(false)
+      misn.finish()
    end
 end
 
@@ -127,18 +122,15 @@ end
 function land()
    --The player is landing on the mission planet to get the box
    if stage == 0 and planet.cur() == mispla then
-      agent = misn.npcAdd("beginrun", npc_desc[2],
-            "neutral/unique/nexus_agent.png", bar_desc[2])
+      agent = misn.npcAdd("beginrun", agent_name,
+            "neutral/unique/nexus_agent.png", agent_desc)
    end
 
    --Job is done
    if stage == 1 and planet.cur() == paypla then
       if misn.cargoRm(records) then
-         tk.msg("", text[3])
+         tk.msg("", pay_text)
          player.pay(reward)
-         misn.osdDestroy(osd)
-         hook.rm(enterhook)
-         hook.rm(landhook)
          shark_addLog(log_text)
          misn.finish(true)
       end
@@ -159,8 +151,10 @@ end
 
 
 function beginrun()
-   tk.msg("", text[4])
-   records = misn.cargoAdd("Box", 0)  --Adding the cargo
+   tk.msg("", meet_text)
+   local c = misn.cargoNew(N_("Recordings"),
+         _("Recordings obtained by a Nexus agent in an act of corporate espionage."))
+   records = misn.cargoAdd(c, 0)
    stage = 1
    misn.osdActive(2)
    misn.markerRm(marker)
@@ -175,16 +169,12 @@ function ambush()
    badguys = {}
    ship_choices = {
       "Hyena", "Shark", "Lancelot", "Vendetta", "Ancestor", "Admonisher",
-      "Phalanx", "Kestrel", "Hawking"}
+      "Phalanx", "Kestrel", "Hawking", "Llama",
+   }
 
    for i=1,4 do
       local choice = ship_choices[rnd.rnd(1, #ship_choices)]
-      badguys[i] = pilot.add(choice, "Mercenary", nil, string.format(
-               _("Mercenary %s"), choice))
-   end
-
-   --and a Llama for variety :
-   if rnd.rnd() < 0.5 then
-      add_llama()
+      badguys[i] = pilot.add(choice, "Mercenary", nil,
+            fmt.f(_("Mercenary {ship}"), {ship=choice}))
    end
 end
