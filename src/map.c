@@ -44,7 +44,7 @@ typedef enum MapMode_ {
 
 #define MAP_SIDEBAR_WIDTH  240 /**< Map window sidebar width. */
 
-#define BUTTON_WIDTH    120 /**< Map button width. */
+#define BUTTON_WIDTH    140 /**< Map button width. */
 #define BUTTON_HEIGHT   30 /**< Map button height. */
 
 
@@ -112,6 +112,7 @@ static void map_reset (void);
 static int map_keyHandler( unsigned int wid, SDL_Keycode key, SDL_Keymod mod );
 static void map_buttonZoom( unsigned int wid, char* str );
 static void map_buttonCommodity( unsigned int wid, char* str );
+static void map_buttonSystemMap(unsigned int wid, char* str);
 static void map_selectCur (void);
 static void map_genModeList(void);
 static void map_update_commod_av_price();
@@ -332,16 +333,21 @@ void map_open (void)
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnClose", _("Close"), map_window_close );
    /* Commodity button */
-   window_addButtonKey(wid, -20 - (BUTTON_WIDTH+20), 20,
+   window_addButtonKey(wid, -20 - (BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnCommod", _("Mode"), map_buttonCommodity, SDLK_o);
    /* Find button */
-   window_addButtonKey(wid, -20 - 2*(BUTTON_WIDTH+20), 20,
+   window_addButtonKey(wid, -20 - 2*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnFind", _("Find"), map_inputFind, SDLK_f);
+   /* System Info button */
+   window_addButtonKey(wid, -20 - 3*(BUTTON_WIDTH+10), 20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnSystemMap", _("System Info"), map_buttonSystemMap, SDLK_n);
    /* Autonav button */
-   window_addButtonKey( wid, -20 - 3*(BUTTON_WIDTH+20), 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnAutonav", _("Autonav"), player_autonavStartWindow, SDLK_a );
+   window_addButtonKey(wid, -20 - 4*(BUTTON_WIDTH+10), 20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnAutonav", _("Autonav"), player_autonavStartWindow, SDLK_a);
 
    /*
     * Bottom stuff
@@ -357,7 +363,7 @@ void map_open (void)
 
    /* Situation text */
    window_addText(wid, 20+30+10, 10,
-         w - (20+30+10) - 4*(BUTTON_WIDTH+20), BUTTON_HEIGHT,
+         w - (20+30+10) - 5*(BUTTON_WIDTH+10), BUTTON_HEIGHT,
          0, "txtSystemStatus", &gl_smallFont, NULL, NULL);
 
    /* Player info text */
@@ -1945,12 +1951,6 @@ static int map_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
             y = sys->pos.y * map_zoom;
 
             if ((pow2(mx-x)+pow2(my-y)) < t) {
-               if (map_selected != -1) {
-                  if (sys == system_getIndex( map_selected ) && sys_isKnown(sys)) {
-                     map_system_open( map_selected );
-                     map_drag = 0;
-                  }
-               }
                map_select( sys, (SDL_GetModState() & KMOD_SHIFT) );
                break;
             }
@@ -2157,6 +2157,27 @@ static void map_buttonCommodity( unsigned int wid, char* str )
          window_setFocus(wid, "lstMapMode");
       }
    }
+}
+
+
+/**
+ * @brief Handles the button commodity clicks.
+ *
+ *    @param wid Window widget.
+ *    @param str Name of the button creating the event.
+ */
+static void map_buttonSystemMap(unsigned int wid, char* str)
+{
+   (void) wid;
+   (void) str;
+
+   if (map_selected == -1)
+      return;
+
+   if (!sys_isKnown(system_getIndex(map_selected)))
+      return;
+
+   map_system_open(map_selected);
 }
 
 
