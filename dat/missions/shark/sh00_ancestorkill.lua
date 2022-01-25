@@ -130,7 +130,7 @@ function accept()
       enterhook = hook.enter("enter")
    else
       tk.msg("", refusetext)
-      misn.finish(false)
+      misn.finish()
    end
 end
 
