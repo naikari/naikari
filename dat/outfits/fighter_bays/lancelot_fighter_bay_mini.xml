@@ -14,6 +14,6 @@
   <ammo>Lancelot Fighter</ammo>
   <delay>6</delay>
   <reload_time>240</reload_time>
-  <amount>1</amount>
+  <amount>2</amount>
  </specific>
 </outfit>

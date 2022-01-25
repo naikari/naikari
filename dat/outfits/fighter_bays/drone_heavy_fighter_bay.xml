@@ -15,6 +15,6 @@
   <ammo>Heavy Drone Fighter</ammo>
   <delay>5</delay>
   <reload_time>180</reload_time>
-  <amount>2</amount>
+  <amount>3</amount>
  </specific>
 </outfit>
