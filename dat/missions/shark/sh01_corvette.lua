@@ -34,16 +34,12 @@
 
 --]]
 
+local fmt = require "fmt"
 require "numstring"
 require "missions/shark/common"
 
 
-text = {}
-osd_msg = {}
-npc_desc = {}
-bar_desc = {}
-
-text[1] = _([["I have another job for you. The Baron was unfortunately not as impressed as we hoped. So we need a better demonstration, and we think we know what to do: we're going to demonstrate that the Lancelot, our higher-end fighter design, is more than capable of defeating destroyer class ships.
+ask_text = _([["I have another job for you. The Baron was unfortunately not as impressed as we hoped. So we need a better demonstration, and we think we know what to do: we're going to demonstrate that the Lancelot, our higher-end fighter design, is more than capable of defeating destroyer class ships.
 
 "Now, one small problem we face is that pirates almost never use destroyer class ships; they tend to stick to fighters, corvettes, and cruisers. More importantly, actually sending a fighter after a Destroyer is exceedingly dangerous, even if we could find a pirate piloting one. So we have another plan: we want someone to pilot a destroyer class ship and just let another pilot disable them with ion cannons.
 
@@ -51,24 +47,23 @@ text[1] = _([["I have another job for you. The Baron was unfortunately not as im
 
 refusetext = _([["OK, that's alright."]])
 
-text[2] = _([["Great! Go and meet our pilot in %s. After the job is done, meet me on %s in the %s system."]])
+accept_text = _([["Great! Go and meet our pilot in the {destsys} system. After the job is done, meet me at {payplanet} in the {paysys} system."]])
 
-text[3] = _([[As you land, you see Arnold Smith waiting for you. He explains that the Baron was so impressed by the battle that he signed an updated contract with Nexus Shipyards, solidifying Nexus as the primary supplier of ships for his fleet. As a reward, they give you twice the sum of credits they promised to you.]])
-
-text[4] = _([[Your mission failed.]])
+pay_text = _([[As you land, you see Arnold Smith waiting for you. He explains that the Baron was so impressed by the battle that he signed an updated contract with Nexus Shipyards, solidifying Nexus as the primary supplier of ships for his fleet. As a reward, they give you twice the sum of credits they promised to you.]])
 
 -- Mission details
 misn_title = _("Sharkman is back")
 misn_desc = _("Nexus Shipyards wants you to fake a loss against a Lancelot while piloting a Destroyer class ship.")
 
 -- NPC
-npc_desc[1] = _("Arnold Smith")
-bar_desc[1] = _([[The Nexus employee seems to be looking for pilots. Maybe he has an other task for you.]])
+npc_desc = _("Arnold Smith")
+bar_desc = _([[The Nexus employee seems to be looking for pilots. Maybe he has an other task for you.]])
 
 -- OSD
 osd_title = _("Sharkman Is Back")
-osd_msg[1] = _("Fly to %s with a destroyer class ship and let the Lancelot disable you")
-osd_msg[2] = _("Land on %s (%s system) to collect your pay")
+osd_msg = {}
+osd_msg[1] = _("Fly to {system} with a Destroyer-class ship and let the Lancelot disable you")
+osd_msg[2] = _("Land on {planet} ({system} system) to collect your pay")
 
 msg_run = _("MISSION FAILED: You ran away.")
 msg_destroyed = _("MISSION FAILED: You destroyed the Lancelot.")
@@ -93,23 +88,26 @@ function create ()
       misn.finish(false)
    end
 
-   misn.setNPC(npc_desc[1], "neutral/unique/arnoldsmith.png", bar_desc[1])
+   misn.setNPC(npc_desc, "neutral/unique/arnoldsmith.png", bar_desc)
 end
 
 function accept()
 
    stage = 0
-   reward = 750000
+   reward = 600000
 
-   if tk.yesno("", text[1]:format(battlesys:name(), numstring(reward/2))) then
+   if tk.yesno("", ask_text:format(battlesys:name(), fmt.credits(reward/2))) then
       misn.accept()
-      tk.msg("", text[2]:format(battlesys:name(), paypla:name(), paysys:name()))
+      tk.msg("", fmt.f(accept_text,
+            {destsys=battlesys:name(), payplanet=paypla:name(),
+               paysys=paysys:name()}))
 
-      osd_msg[1] = osd_msg[1]:format(battlesys:name())
-      osd_msg[2] = osd_msg[2]:format(paypla:name(), paysys:name())
+      osd_msg[1] = fmt.f(osd_msg[1], {system=battlesys:name()})
+      osd_msg[2] = fmt.f(osd_msg[2],
+            {planet=paypla:name(), system=paysys:name()})
 
       misn.setTitle(misn_title)
-      misn.setReward(creditstring(reward/2))
+      misn.setReward(fmt.credits(reward/2))
       misn.setDesc(misn_desc)
       osd = misn.osdCreate(osd_title, osd_msg)
       misn.osdActive(1)
@@ -145,7 +143,7 @@ function land()
       misn.finish(false)
    end
    if stage == 2 and planet.cur() == paypla then
-      tk.msg("", text[3])
+      tk.msg("", pay_text)
       player.pay(reward)
       misn.osdDestroy(osd)
       hook.rm(enterhook)
@@ -215,7 +213,8 @@ function disabled(pilot, attacker)
    sharkboy:control()
    --making sure the shark doesn't continue attacking the player
    sharkboy:hyperspace(escapesys)
-   sharkboy:setNoDeath(true)
+   sharkboy:setNoDeath()
+   sharkboy:setNoDisable()
 
    -- Clean up now unneeded hooks
    hook.rm(shark_dead_hook)
