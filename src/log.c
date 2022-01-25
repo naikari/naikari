@@ -20,7 +20,6 @@
 #include "log.h"
 
 #include "conf.h"
-#include "console.h"
 #include "ndata.h"
 #include "nstring.h"
 
@@ -56,7 +55,7 @@ static void log_cleanStream( PHYSFS_File **file, const char *fname, const char *
 static void log_purge (void);
 
 /**
- * @brief Like fprintf but also prints to the naev console.
+ * @brief Like fprintf, but automatically teed to log files (and line-terminated if \p newline is true).
  */
 int logprintf( FILE *stream, int newline, const char *fmt, ... )
 {
@@ -74,17 +73,6 @@ int logprintf( FILE *stream, int newline, const char *fmt, ... )
       va_end( ap );
 
    }
-
-#ifndef NOLOGPRINTFCONSOLE
-   /* Add to console. */
-   if (stream == stderr) {
-      buf[0] = '#';
-      buf[1] = 'r';
-      cli_addMessage( buf );
-   }
-   else
-      cli_addMessage( &buf[2] );
-#endif /* NOLOGPRINTFCONSOLE */
 
    /* Finally add newline if necessary. */
    if (newline) {
