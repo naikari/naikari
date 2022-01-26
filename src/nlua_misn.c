@@ -467,7 +467,10 @@ static int misn_markerRm( lua_State *L )
    Mission *cur_mission;
 
    /* Handle parameters. */
-   id    = luaL_checkinteger( L, 1 );
+   if (lua_isnil(L, 1))
+      /* Allow safely passing nil with no effect. */
+      return 0;
+   id = luaL_checkinteger(L, 1);
 
    cur_mission = misn_getFromLua(L);
 
