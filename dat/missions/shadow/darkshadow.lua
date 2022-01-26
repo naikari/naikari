@@ -127,17 +127,14 @@ function create()
     safesys = system.get("Eiderdown")
 
     if not misn.claim({seirsys, joreksys2, ambushsys}) then
-        abort()
+        misn.finish(false)
     end
+
+    misn.accept()
 
     tk.msg("", fmt.f(start_text,
             {player=player.name(), planet=seirplanet:name(),
                 system=seirsys:name()}))
-end
-
-
-function accept()
-    misn.accept()
 
     misn.setTitle(osd_title)
     misn.setDesc(fmt.f(misn_desc1, {system=seirsys:name()}))
@@ -258,7 +255,7 @@ function enter()
     elseif system.cur() == ambushsys and stage == 4 then
         tk.msg("", fmt.f(joefailtext, {player=player.name()}))
         shadow_addLog(log_text_fail)
-        abort()
+        misn.finish(false)
     elseif genbuspawned and stage == 5 then
         spawnGenbu(playerlastsys)
         continueAmbush()
