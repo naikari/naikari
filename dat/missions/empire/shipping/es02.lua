@@ -215,7 +215,7 @@ end
 
 
 function tutorial_timer ()
-   if tuthook ~= nil then hook.rm(tuthook) end
+   hook.rm(tuthook)
 
    tutExplainBoarding(btutorial_text:format(
             system.cur():name(), player.name(), tutGetKey("target_next"),
@@ -224,7 +224,7 @@ end
 
 
 function jumpout ()
-   if tuthook ~= nil then hook.rm(tuthook) end
+   hook.rm(tuthook)
 
    -- Storing the system the player jumped from.
    prevsys = system.cur()

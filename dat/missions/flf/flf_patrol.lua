@@ -187,7 +187,7 @@ end
 
 
 function leave ()
-   if spawner ~= nil then hook.rm(spawner) end
+   hook.rm(spawner)
    dv_ships_left = 0
    last_system = system.cur()
 end

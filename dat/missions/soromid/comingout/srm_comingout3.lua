@@ -280,41 +280,41 @@ function chelsea_jump( p, jump_point )
 end
 
 
-function chelsea_land( p, planet )
+function chelsea_land(p, planet)
    if planet == misplanet then
       player.msg(chelland_msg:format(planet:name()))
       chelsea_jumped = true
       misn.osdActive(2)
-      if distress_timer_hook ~= nil then hook.rm(distress_timer_hook) end
+      hook.rm(distress_timer_hook)
    else
       fail(chelflee_msg)
    end
 end
 
 
-function chelsea_attacked ()
+function chelsea_attacked()
    if chelsea ~= nil and chelsea:exists() then
       chelsea:control(false)
-      if distress_timer_hook ~= nil then hook.rm(distress_timer_hook) end
+      hook.rm(distress_timer_hook)
       distress_timer_hook = hook.timer(1, "chelsea_distress_timer")
    end
 end
 
 
-function chelsea_distress_timer ()
+function chelsea_distress_timer()
    jumpNext()
 end
 
 
-function gangster_removed ()
+function gangster_removed()
    spawnGangster()
-   if distress_timer_hook ~= nil then hook.rm( distress_timer_hook ) end
+   hook.rm(distress_timer_hook)
    jumpNext()
 end
 
 
 -- Fail the mission, showing message to the player.
-function fail( message )
+function fail(message)
    if message ~= nil then
       -- Pre-colourized, do nothing.
       if message:find("#") then

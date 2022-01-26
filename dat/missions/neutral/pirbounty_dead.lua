@@ -232,7 +232,7 @@ function pilot_board(p, boarder)
       target_ship:changeAI("dummy")
       target_ship:setHilight(false)
       target_ship:disable() -- Stop it from coming back
-      if death_hook ~= nil then hook.rm(death_hook) end
+      hook.rm(death_hook)
    else
       target_ship:changeAI("dummy")
       target_ship:setHilight(false)
@@ -317,8 +317,8 @@ end
 
 
 function hunter_hail(arg)
-   if hailer ~= nil then hook.rm(hailer) end
-   if rehailer ~= nil then hook.rm(rehailer) end
+   hook.rm(hailer)
+   hook.rm(rehailer)
    player.commClose()
 
    local text = share_text[rnd.rnd(1, #share_text)]
@@ -410,15 +410,9 @@ end
 function succeed ()
    job_done = true
    misn.osdActive(3)
-   if marker ~= nil then
-      misn.markerRm(marker)
-   end
-   if pir_jump_hook ~= nil then
-      hook.rm(pir_jump_hook)
-   end
-   if pir_land_hook ~= nil then
-      hook.rm(pir_land_hook)
-   end
+   misn.markerRm(marker)
+   hook.rm(pir_jump_hook)
+   hook.rm(pir_land_hook)
 end
 
 

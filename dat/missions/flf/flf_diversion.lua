@@ -110,7 +110,7 @@ end
 
 
 function leave ()
-   if update_dv_hook ~= nil then hook.rm(update_dv_hook) end
+   hook.rm(update_dv_hook)
 end
 
 
@@ -129,7 +129,7 @@ function add_attention(p)
    if not job_done then
       dv_attention = dv_attention + 1
       if dv_attention >= dv_attention_target and dv_attention - 1 < dv_attention_target then
-         if success_hook ~= nil then hook.rm(success_hook) end
+         hook.rm(success_hook)
          success_hook = hook.timer(30.0, "timer_mission_success")
       end
 
@@ -142,7 +142,7 @@ end
 function rm_attention ()
    dv_attention = math.max(dv_attention - 1, 0)
    if dv_attention < dv_attention_target then
-      if success_hook ~= nil then hook.rm(success_hook) end
+      hook.rm(success_hook)
    end
 end
 
@@ -186,7 +186,7 @@ function timer_mission_success ()
       job_done = true
       misn.osdActive(3)
       misn.markerRm(marker)
-      if update_dv_hook ~= nil then hook.rm(update_dv_hook) end
+      hook.rm(update_dv_hook)
       hook.land("land")
       tk.msg("", success_text[rnd.rnd(1, #success_text)])
 

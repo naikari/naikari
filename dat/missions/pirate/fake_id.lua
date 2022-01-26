@@ -120,8 +120,8 @@ function standing(f, delta, secondary)
 end
 
 
-function abort ()
-   if standhook ~= nil then hook.rm(standhook) end
+function abort()
+   hook.rm(standhook)
    
    for i, fn in ipairs(factions) do
       if orig_standing[fn] ~= nil then

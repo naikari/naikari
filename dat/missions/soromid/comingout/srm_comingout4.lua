@@ -375,7 +375,7 @@ end
 function chelsea_attacked ()
    if chelsea ~= nil and chelsea:exists() then
       chelsea:control(false)
-      if distress_timer_hook ~= nil then hook.rm(distress_timer_hook) end
+      hook.rm(distress_timer_hook)
       distress_timer_hook = hook.timer(1, "chelsea_distress_timer")
    end
 end

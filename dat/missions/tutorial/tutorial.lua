@@ -238,7 +238,7 @@ end
 
 
 function timer ()
-   if timer_hook ~= nil then hook.rm(timer_hook) end
+   hook.rm(timer_hook)
    timer_hook = hook.timer(1, "timer")
 
    if stage == 1 then
@@ -281,7 +281,7 @@ end
 
 
 function land ()
-   if timer_hook ~= nil then hook.rm(timer_hook) end
+   hook.rm(timer_hook)
    if stage == 2 then
       stage = 3
       tk.msg("", land_text)
@@ -306,53 +306,53 @@ end
 
 
 function land_bar ()
-   if bar_hook ~= nil then hook.rm(bar_hook) end
+   hook.rm(bar_hook)
    tk.msg("", bar_text)
 end
 
 
 function land_mission ()
-   if mission_hook ~= nil then hook.rm(mission_hook) end
+   hook.rm(mission_hook)
    tk.msg("", mission_text:format(tutGetKey("info")))
 end
 
 
 function land_outfits ()
-   if outfits_hook ~= nil then hook.rm(outfits_hook) end
+   hook.rm(outfits_hook)
    tk.msg("", outfits_text)
 end
 
 
 function land_shipyard ()
-   if shipyard_hook ~= nil then hook.rm(shipyard_hook) end
+   hook.rm(shipyard_hook)
    tk.msg("", shipyard_text)
 end
 
 
 function land_equipment ()
-   if equipment_hook ~= nil then hook.rm(equipment_hook) end
+   hook.rm(equipment_hook)
    tk.msg("", equipment_text)
 end
 
 
 function land_commodity ()
-   if commodity_hook ~= nil then hook.rm(commodity_hook) end
+   hook.rm(commodity_hook)
    tk.msg("", commodity_text:format(tutGetKey("starmap")))
 end
 
 
 function takeoff ()
-   if bar_hook ~= nil then hook.rm(bar_hook) end
-   if mission_hook ~= nil then hook.rm(mission_hook) end
-   if outfits_hook ~= nil then hook.rm(outfits_hook) end
-   if shipyard_hook ~= nil then hook.rm(shipyard_hook) end
-   if equipment_hook ~= nil then hook.rm(equipment_hook) end
-   if commodity_hook ~= nil then hook.rm(commodity_hook) end
+   hook.rm(bar_hook)
+   hook.rm(mission_hook)
+   hook.rm(outfits_hook)
+   hook.rm(shipyard_hook)
+   hook.rm(equipment_hook)
+   hook.rm(commodity_hook)
 end
 
 
 function enter ()
-   if timer_hook ~= nil then hook.rm(timer_hook) end
+   hook.rm(timer_hook)
    timer_hook = hook.timer(5, "timer")
    hook.timer(2, "enter_timer")
 end

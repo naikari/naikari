@@ -182,9 +182,9 @@ end
 
 
 function leave ()
-   if spawner ~= nil then hook.rm(spawner) end
-   if hailer ~= nil then hook.rm(hailer) end
-   if rehailer ~= nil then hook.rm(rehailer) end
+   hook.rm(spawner)
+   hook.rm(hailer)
+   hook.rm(rehailer)
    reinforcements_arrived = false
    dv_ships_left = 0
 end
@@ -231,7 +231,7 @@ end
 
 
 function timer_hail ()
-   if hailer ~= nil then hook.rm(hailer) end
+   hook.rm(hailer)
    if boss ~= nil and boss:exists() then
       timer_rehail()
       hailer = hook.pilot(boss, "hail", "hail")
@@ -240,7 +240,7 @@ end
 
 
 function timer_rehail ()
-   if rehailer ~= nil then hook.rm(rehailer) end
+   hook.rm(rehailer)
    if boss ~= nil and boss:exists() then
       boss:hailPlayer()
       rehailer = hook.timer(8, "timer_rehail")
@@ -249,8 +249,8 @@ end
 
 
 function hail(hailed_pilot)
-   if hailer ~= nil then hook.rm(hailer) end
-   if rehailer ~= nil then hook.rm(rehailer) end
+   hook.rm(hailer)
+   hook.rm(rehailer)
    player.commClose()
    tk.msg("", DVtext[1])
    tk.msg("", DVtext[2])
@@ -349,9 +349,9 @@ end
 function pilot_death_dv ()
    dv_ships_left = dv_ships_left - 1
    if dv_ships_left <= 0 then
-      if spawner ~= nil then hook.rm(spawner) end
-      if hailer ~= nil then hook.rm(hailer) end
-      if rehailer ~= nil then hook.rm(rehailer) end
+      hook.rm(spawner)
+      hook.rm(hailer)
+      hook.rm(rehailer)
 
       job_done = true
       local standing = faction.get("Dvaered"):playerStanding()
