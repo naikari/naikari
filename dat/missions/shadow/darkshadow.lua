@@ -220,6 +220,8 @@ end
 
 function enter()
     if system.cur() == seirsys then
+        pilot.clear()
+        pilot.toggleSpawn(false)
         seiryuu = pilot.add("Starbridge", "Four Winds",
                 vec2.new(300, 300) + seirplanet:pos(), _("Seiryuu"),
                 {ai="trader", noequip=true})
