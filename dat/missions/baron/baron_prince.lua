@@ -127,8 +127,8 @@ nomoneytext = _("You can't currently afford to buy this artifact. You need %s.")
 
 -- OSD stuff
 osd_msg_baron1 = _("Fly to the {system} system")
-osd_msg_baron2 = _("Hail Kahan Pinnacle (orbiting {planet}) by either double-clicking on it or pressing {hail_key}")
-osd_msg_baron3 = _("Dock with (board) Kahan Pinnacle by either double-clicking on it or pressing {board_key}")
+osd_msg_baron2 = _("Hail Kahan Pinnacle (orbiting {planet}) by double-clicking on it")
+osd_msg_baron3 = _("Dock with (board) Kahan Pinnacle by double-clicking on it")
 
 log_text = _([[Baron Sauterfeldt sent you on a wild goose chase to find some ancient artifact known as a "skate-board", which you found for him.]])
 
@@ -166,9 +166,7 @@ function accept()
       misn.setDesc(misn_desc[1]:format(baronsys:name()))
 
       osd_msg_baron1 = fmt.f(osd_msg_baron1, {system=baronsys:name()})
-      osd_msg_baron2 = fmt.f(osd_msg_baron2,
-            {planet=baronpla:name(), hail_key=naev.keyGet("hail")})
-      osd_msg_baron3 = fmt.f(osd_msg_baron3, {board_key=naev.keyGet("board")})
+      osd_msg_baron2 = fmt.f(osd_msg_baron2, {planet=baronpla:name()})
       local osd_msg = {osd_msg_baron1, osd_msg_baron2, osd_msg_baron3}
       misn.osdCreate(misn_title, osd_msg)
       marker = misn.markerAdd(baronsys, "low")
@@ -211,7 +209,7 @@ function set_osd()
    local osd_msg = {
       artifact_osd,
       fmt.f(_("Take artifact to Flintley on {planet} ({system} system)"),
-            {flintplanet:name(), flintsys:name()}),
+            {planet=flintplanet:name(), system=flintsys:name()}),
       osd_msg_baron1,
       osd_msg_baron2,
       osd_msg_baron3,
