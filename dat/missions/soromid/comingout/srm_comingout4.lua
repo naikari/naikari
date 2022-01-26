@@ -280,7 +280,7 @@ function land ()
    if stage == 1 and planet.cur() == startplanet then
       tk.msg("", darkshed_text:format(player.name()))
       stage = 2
-      if marker ~= nil then misn.markerRm(marker) end
+      misn.markerRm(marker)
       marker = misn.markerAdd(destsys, "high")
    elseif stage == 2 then
       if chelsea_jumped and planet.cur() == destplanet then
@@ -290,7 +290,7 @@ function land ()
          tk.msg("", home_text[4]:format(startplanet:name()))
 
          stage = 3
-         if marker ~= nil then misn.markerRm(marker) end
+         misn.markerRm(marker)
          marker = misn.markerAdd(startsys, "high")
 
          player.allowSave(false)

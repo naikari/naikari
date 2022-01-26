@@ -344,7 +344,7 @@ function pilot_death_station(pilot, attacker, arg)
    completed = true
    pilot.toggleSpawn(true)
    misn.osdActive(4)
-   if marker ~= nil then misn.markerRm(marker) end
+   misn.markerRm(marker)
    hook.land("land")
 end
 

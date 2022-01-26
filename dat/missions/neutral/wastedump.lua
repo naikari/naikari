@@ -108,7 +108,7 @@ end
 function accept ()
    misn.accept()
 
-   if tempmarker ~= nil then misn.markerRm(tempmarker) end
+   misn.markerRm(tempmarker)
    for i, v in ipairs(dest_planets) do
       local p, sys
       p, sys = planet.get(v)

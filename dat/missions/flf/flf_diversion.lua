@@ -185,7 +185,7 @@ function timer_mission_success ()
    if dv_attention >= dv_attention_target then
       job_done = true
       misn.osdActive(3)
-      if marker ~= nil then misn.markerRm(marker) end
+      misn.markerRm(marker)
       if update_dv_hook ~= nil then hook.rm(update_dv_hook) end
       hook.land("land")
       tk.msg("", success_text[rnd.rnd(1, #success_text)])

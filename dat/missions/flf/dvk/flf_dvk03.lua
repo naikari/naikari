@@ -377,7 +377,7 @@ function timer_station ()
    faction.get("Empire"):setPlayerStanding(-100)
    diff.apply("flf_vs_empire")
    misn.osdActive(4)
-   if marker ~= nil then misn.markerRm(marker) end
+   misn.markerRm(marker)
    hook.land("land")
 end
 

@@ -278,8 +278,7 @@ function land ()
 
       stage = 2
       misn.osdActive(2)
-      if marker ~= nil then misn.markerRm(marker) end
-      marker = misn.markerAdd(invsys, "low")
+      misn.markerMove(marker, invsys)
    elseif stage == 2 and planet.cur() == invpla then
       for i, s in ipairs(jorlan_text[motive]) do
          if i == #jorlan_text[motive] then
@@ -290,8 +289,7 @@ function land ()
 
       stage = 3
       misn.osdActive(3)
-      if marker ~= nil then misn.markerRm(marker) end
-      marker = misn.markerAdd(resistsys, "low")
+      misn.markerMove(marker, resistsys)
    elseif stage == 3 and planet.cur() == resistpla then
       tk.msg("", norpin_text[1])
       tk.msg("", norpin_text[2])
