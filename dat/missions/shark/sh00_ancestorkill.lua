@@ -84,28 +84,22 @@ noshark_msg = _("MISSION FAILED: You were supposed to use a Shark.")
 log_text = _([[You helped Nexus Shipyards demonstrate the capabilities of their ships by destroying a Pirate Ancestor.]])
 
 
-function create ()
-
-   --Change here to change the planet and the system
-   local sysname = "Ingot"
-   local planame = "Ulios"
-   local bsyname = "Toaxis"
-   missys = system.get(sysname)
-   mispla = planet.get(planame)
-   battlesys = system.get(bsyname)
+function create()
+   mispla, missys = planet.get("Ulios")
+   battlesys = system.get("Toaxis")
 
    if not misn.claim(battlesys) then
       misn.finish(false)
    end
 
-   misn.setNPC(npc_desc[1], "neutral/unique/arnoldsmith.png", bar_desc[1])
-end
-
-function accept()
-
    stage = 0
    reward = 500000
 
+   misn.setNPC(npc_desc[1], "neutral/unique/arnoldsmith.png", bar_desc[1])
+end
+
+
+function accept()
    if tk.yesno("", ask_text) then
       misn.accept()
       piratename = pirate_name()
@@ -120,7 +114,7 @@ function accept()
       misn.setTitle(misn_title)
       misn.setReward(fmt.credits(reward))
       misn.setDesc(misn_desc)
-      osd = misn.osdCreate(osd_title, osd_msg)
+      misn.osdCreate(osd_title, osd_msg)
       misn.osdActive(1)
 
       markeri = misn.markerAdd(missys, "low")
@@ -134,55 +128,45 @@ function accept()
    end
 end
 
--- landing on any planet system
-function land()
 
-   -- Did the player reach Ulios ?
-   if planet.cur() == mispla and stage == 0 then
+function land()
+   local playershipname = player.pilot():ship():nameRaw()
+   if planet.cur() == mispla and stage == 0
+         and (playershipname == "Shark"
+            or playershipname == "Empire Shark") then
       smith = misn.npcAdd("beginbattle", npc_desc[2],
             "neutral/unique/arnoldsmith.png", bar_desc[2])
       var.push(string.format("_escort_disable_%s", battlesys:nameRaw()), true)
    end
 
-   -- Did the player land again on Ulios after having killed the pirate
    if planet.cur() == mispla and stage == 4 then
       tk.msg("", pay_text)
       player.pay(reward)
-      misn.osdDestroy(osd)
-      hook.rm(enterhook)
-      hook.rm(landhook)
-      hook.rm(jumpouthook)
       shark_addLog(log_text)
       misn.finish(true)
    end
 end
 
---jumping out the system
+
 function jumpout()
-   if stage == 2 then   --You were supposed to kill him, not to go away !
+   if stage == 2 then
       player.msg("#r" .. leave_msg .. "#0")
       misn.finish(false)
    end
 end
 
+
 function enter()
-   --Jumping in Toaxis for the battle
    if system.cur() == battlesys and stage == 1 then
-
-      --Check if the player uses a Shark
-      playership = player.pilot():ship()
-      playershipname = playership:nameRaw()
-
+      local playershipname = player.pilot():ship():nameRaw()
       if playershipname ~= "Shark" and playershipname ~= "Empire Shark" then
          player.msg("#r" .. noshark_msg .. "#0")
          misn.finish(false)
       end
 
-      --Be sure that nobody unexpected will take part in our epic battle
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      -- spawns the bad guy
       badboy = pilot.add("Pirate Ancestor", "Pirate", system.get("Raelid"))
       badboy:rename(piratename)
       badboy:setHostile()
@@ -196,9 +180,8 @@ function enter()
    end
 end
 
---Chatting with Smith and begin the battle
-function beginbattle()
 
+function beginbattle()
    misn.markerRm(markeri)
 
    tk.msg("", fmt.f(brief_text, {system=battlesys:name()}))
@@ -206,15 +189,16 @@ function beginbattle()
    stage = 1
 
    marker1 = misn.markerAdd(battlesys, "low")
-   player.takeoff()
 end
 
-function pirate_jump()  --he went away
+
+function pirate_jump()
    player.msg("#r" .. piratejump_msg .. "#0")
    misn.finish(false)
 end
 
-function pirate_dead()  --wou win
+
+function pirate_dead()
    player.pilot():setVisible(false)
    stage = 4
    misn.markerRm(marker1)
