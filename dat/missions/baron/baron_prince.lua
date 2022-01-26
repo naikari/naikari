@@ -183,18 +183,10 @@ end
 
 
 function set_osd()
-   if markerA ~= nil then
-      misn.markerRm(markerA)
-   end
-   if markerB ~= nil then
-      misn.markerRm(markerB)
-   end
-   if markerC ~= nil then
-      misn.markerRm(markerC)
-   end
-   if flintmarker ~= nil then
-      misn.markerRm(flintmarker)
-   end
+   misn.markerRm(markerA)
+   misn.markerRm(markerB)
+   misn.markerRm(markerC)
+   misn.markerRm(flintmarker)
 
    local artifact_osd = _("Approach artifact seller at one of the following locations and buy the artifact:")
    if not artifactAfound then
