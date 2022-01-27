@@ -103,13 +103,13 @@ function enter ()
          update_dv()
       else
          misn.osdActive(1)
-         dv_attention = 0
       end
    end
 end
 
 
 function leave ()
+   dv_attention = 0
    hook.rm(update_dv_hook)
 end
 
