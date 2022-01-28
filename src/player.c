@@ -972,6 +972,10 @@ void player_render( double dt )
                if (o == NULL)
                   continue;
                
+               /* Ignore fighter bays as they don't need aim lines. */
+               if (outfit_isFighterBay(o))
+                  continue;
+
                time = pilot_weapFlyTime(o, player.p, &target->solid->pos,
                      &target->solid->vel);
                if (outfit_duration(o) < time)
