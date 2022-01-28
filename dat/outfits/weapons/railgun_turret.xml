@@ -6,7 +6,7 @@
   <mass>65</mass>
   <license>Heavy Weapon License</license>
   <price>105000</price>
-  <description>While one 150mm railgun is a formidable weapon, the ultimate in brute-force capital ship weaponry is the 150mm railgun turret. Mounting two railguns in a specialized turret housing, it manages to mitigate the recoil normally associated with railguns at a slight velocity cost.</description>
+  <description>It is natural that one weapon turned to for adaptation to capital-class weaponry was the powerful Railgun. This effort culminated in the Railgun turret which, while nowhere near as energy-efficient as the standard forward-mounted Railgun, is nonetheless invaluable to bulky Carriers which can't turn fast enough to aim forward-facing weapons.</description>
   <gfx_store>railgunturret.webp</gfx_store>
   <cpu>-350</cpu>
  </general>
