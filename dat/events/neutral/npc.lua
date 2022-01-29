@@ -377,7 +377,7 @@ msg_mhint = {
 -- Event hint messages. Each element should be a table containing the event name and the corresponding hint.
 -- Make sure the hints are always faction neutral.
 msg_ehint = {
-   {"FLF/DV Derelicts", _([["The FLF and the Dvaered sometimes clash in Surano. If you go there, you might find something of interest… or not."]])},
+   {"FLF/DV Derelicts", _([["Clashes between the FLF and Dvaered patrols can get quite intense. Sometimes when things get real bad the Dvaered forces will enlist the help of willing civilians."]])},
 }
 
 -- Mission after-care messages. Each element should be a table containing the mission name and a line of text.
