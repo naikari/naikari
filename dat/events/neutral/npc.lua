@@ -262,15 +262,14 @@ msg_lore["Thurion"] = {
 }
 
 msg_lore["Proteron"] = {
-   _([["Our system of government is clearly superior to all others. Nothing could be more obvious."]]),
-   _([["The Incident really set back our plan for galactic dominance, but that was only temporary."]]),
-   _([["We don't have time for fun and games. The whole reason we're so great is because we're more productive than any other society."]]),
-   _([["We are superior, so of course we deserve control over the galaxy. It's our destiny."]]),
-   _([["The Empire is weak, obsolete. That is why we must replace them."]]),
-   _([["Slaves? Of course we're not slaves. Slaves are beaten and starved. We are in top shape so we can serve our country better."]]),
-   _([["I can't believe the Empire continues to allow families. So primitive. Obviously, all this does is make them less productive."]]),
-   _([["The exact cause of the Incident is a tightly-kept secret, but the government says it was caused by the Empire. I would expect nothing less."]]),
-   _([["I came across some heathen a few months back who claimed, get this, that we Proterons were the cause of the Incident! What slanderous nonsense. Being the perfect society we are, of course we would never cause such a massive catastrophe."]]),
+   _([["The old Empire will pay for blowing up Sol. We all know they did it on purpose."]]),
+   _([["The obsolete old Empire knew we were destined to replace them, so they blew up Sol in an effort to wipe us out. But they weren't thorough enough, and we won't forgive them!"]]),
+   _([["Personally I think the old Empire has been weakened by Soromid influence. Those damn freaks have been a scourge on the galaxy ever since they flooded into it."]]),
+   _([["It is our destiny as Proteron to rule the galaxy. We are the rightful successor to the Empire. We will take what is ours."]]),
+   _([["One of my co-workers was spreading lies about us Proteron causing the Incident. Naturally, I reported him to the police, and they took him away. I'd bet he was a secret Soromid sympathizer trying to bring down the great Proteron Empire."]]),
+   _([["We must all work hard to ensure our destiny as Proteron is fulfilled."]]),
+   _([["The Empire is weak and obsolete, and they know it. That's why they went so low as to blow Earth up to try to get rid of us."]]),
+   _([["I'm thinking of enlisting in the military so I can join the fight against the Soromid elite and the traitorous old Empire."]]),
 }
 
 msg_lore["Frontier"] = {
