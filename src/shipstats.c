@@ -100,7 +100,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Turn"),
       NULL),
    D_ELEM(SS_TYPE_D_THRUST_MOD, thrust_mod,
-      N_("%+G%% Thrust"),
+      N_("%+G%% Acceleration"),
       NULL),
    D_ELEM(SS_TYPE_D_CARGO_MOD, cargo_mod,
       N_("%+G%% Cargo Space"),
@@ -252,7 +252,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+.0f%% Jump Point Radius")),
 
    A_ELEM(SS_TYPE_A_THRUST, thrust,
-      N_("%+G MN/t Thrust"),
+      N_("%+G km/s² Acceleration"),
       NULL),
    A_ELEM(SS_TYPE_A_TURN, turn,
       N_("%+G deg/s Turn Rate"),

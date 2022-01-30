@@ -222,7 +222,7 @@ void shipyard_update( unsigned int wid, char* str )
 
    if (ship->thrust != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            _("\n#nThrust:#0 %G MN/t"), ship->thrust);
+            _("\n#nAcceleration:#0 %G km/s²"), ship->thrust);
 
    if (ship->speed != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,

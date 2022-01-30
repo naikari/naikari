@@ -465,7 +465,7 @@ static void ship_update( unsigned int wid )
          "#nSpeed Penalty:#0 %.0f%%\n"
          "#nJump Time:#0 %s\n"
          "#nTakeoff Time:#0 %s\n"
-         "#nThrust:#0 %.0f MN/t\n"
+         "#nAcceleration:#0 %.0f km/s²\n"
          "#nSpeed:#0 %.0f km/s (max %.0f km/s)\n"
          "#nTurn:#0 %.0f deg/s\n"
          "#nTime Constant:#0 %.0f%%\n"

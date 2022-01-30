@@ -621,7 +621,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
 
       if (ship->thrust != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nThrust:#0 %G MN/t"), ship->thrust);
+               _("\n#nAcceleration:#0 %G km/s²"), ship->thrust);
 
       if (ship->speed != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,

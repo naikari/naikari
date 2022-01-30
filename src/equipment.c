@@ -1689,7 +1689,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "#nMass:#0 %.0f t\n"
          "#nJump Time:#0 %s\n"
          "#nTakeoff Time:#0 %s\n"
-         "#nThrust:#0 #%c%s%.0f#0 MN/t\n"
+         "#nAcceleration:#0 #%c%s%.0f#0 km/s²\n"
          "#nSpeed:#0 #%c%s%.0f#0 km/s (max %.0f km/s)\n"
          "#nTurn:#0 #%c%s%.0f#0 deg/s\n"
          "#nTime Constant:#0 #%c%s%.0f%%#0\n"
