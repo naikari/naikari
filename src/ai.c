@@ -1761,11 +1761,13 @@ static int aiL_face( lua_State *L )
    }
    else {
       /* If pilot position is the same as target position, don't change
-       * face angle. TODO: It might be slightly better to instead choose
-       * angle based on velocities, predicting where the next angle
-       * would be. In cases where this matters, though, this would only
-       * happen for a single frame and be largely unnoticeable. */
+       * face angle. */
       diff = 0.;
+      if (vel) {
+         /* Unless compensating for velocity, in which case rotate to
+          * the opposite direction of velocity. */
+         diff = angle_diff(cur_pilot->solid->dir, atan2(-vx, -vy));
+      }
    }
 
    /* Make pilot turn. */
