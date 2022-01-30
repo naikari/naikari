@@ -1689,7 +1689,7 @@ static int aiL_turn( lua_State *L )
  * @usage ai.face( a_pilot, true ) -- Face away from a pilot
  * @usage ai.face( a_pilot, nil, true ) -- Compensate velocity facing a pilot
  *
- *    @luatparam Pilot|Vec2|number target Target to face.
+ *    @luatparam Pilot|Vec2 target Target to face.
  *    @luatparam boolean invert Invert away from target.
  *    @luatparam boolean compensate Compensate for velocity?
  *    @luatreturn number Angle offset in degrees.
@@ -1707,13 +1707,6 @@ static int aiL_face( lua_State *L )
       p = luaL_validpilot(L,1);
       /* Target vector. */
       tv = &p->solid->pos;
-   }
-   else if (lua_isnumber(L,1)) {
-      d = (double)lua_tonumber(L,1);
-      if (d < 0.)
-         tv = &cur_pilot->solid->pos;
-      else
-         NLUA_INVALID_PARAMETER(L);
    }
    else if (lua_isvector(L,1))
       tv = lua_tovector(L,1);
@@ -1746,20 +1739,34 @@ static int aiL_face( lua_State *L )
    /* Direction vector. */
    dx = tv->x - cur_pilot->solid->pos.x;
    dy = tv->y - cur_pilot->solid->pos.y;
-   if (vel) {
-      /* Calculate dot product. */
-      d = (vx * dx + vy * dy) / (dx*dx + dy*dy);
-      /* Calculate tangential velocity. */
-      vx = vx - d * dx;
-      vy = vy - d * dy;
 
-      /* Add velocity compensation. */
-      dx += -k_vel * vx;
-      dy += -k_vel * vy;
+   /* If pilot's position is the same as target's position, attempting
+    * to calculate a direction with velocity compensation can cause a
+    * division by zero, so handle that case specially. */
+   if ((dx != 0.) || (dy != 0.)) {
+      if (vel) {
+         /* Calculate dot product. */
+         d = (vx*dx + vy*dy) / (dx*dx + dy*dy);
+         /* Calculate tangential velocity. */
+         vx = vx - d * dx;
+         vy = vy - d * dy;
+
+         /* Add velocity compensation. */
+         dx += -k_vel * vx;
+         dy += -k_vel * vy;
+      }
+
+      /* Compensate error and rotate. */
+      diff = angle_diff(cur_pilot->solid->dir, atan2(dy, dx));
    }
-
-   /* Compensate error and rotate. */
-   diff = angle_diff( cur_pilot->solid->dir, atan2( dy, dx ) );
+   else {
+      /* If pilot position is the same as target position, don't change
+       * face angle. TODO: It might be slightly better to instead choose
+       * angle based on velocities, predicting where the next angle
+       * would be. In cases where this matters, though, this would only
+       * happen for a single frame and be largely unnoticeable. */
+      diff = 0.;
+   }
 
    /* Make pilot turn. */
    pilot_turn = k_diff * diff;
