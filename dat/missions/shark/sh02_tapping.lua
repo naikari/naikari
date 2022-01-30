@@ -50,12 +50,12 @@ accept_text = _([["I'm glad to hear it. Go meet our agent on {planet} in the {sy
 
 meet_text = _([[You approach the agent and obtain the package without issue. Before you leave, he suggests that you stay vigilant. "They might come after you," he says.]])
 
-pay_text = _([[The Nexus employee greets you as you reach the ground. "Excellent! I will just need to spend a few hectoseconds analyzing these recordings. See if you can find me in the bar soon; I might have another job for you."]])
+pay_text = _([[The Nexus employee greets you as you reach the ground. "Excellent! This should help us put an end to the new startup and retain our dominance. You have been of great service to Nexus Shipyards. Thank you."]])
 
 
 -- Mission details
 misn_title = _("Corporate Espionage")
-misn_desc = _("Nexus Shipyards is in competition with House Sirius.")
+misn_desc = _("Nexus Shipyards has tasked you with delivering a package that will enable them to sabotage a new startup seeking to get into the Fighter market.")
 
 -- NPC
 arnold_name = _("Arnold Smith")
@@ -66,7 +66,7 @@ agent_desc = _([[This guy seems to be the agent Arnold Smith was talking about.]
 -- OSD
 osd_title = _("Corporate Espionage")
 
-log_text = _([[You helped Nexus Shipyards gather information in an attempt to sabotage competition from a new startup. Arnold Smith said to meet him in the bar soon; he may have another job for you.]])
+log_text = _([[You helped Nexus Shipyards gather information in an attempt to sabotage competition from a new startup.]])
 
 
 function create ()
@@ -87,7 +87,7 @@ end
 function accept()
 
    stage = 0
-   reward = 750000
+   reward = 600000
    proba = 0.3  --the chances you have to get an ambush
 
    if tk.yesno("", fmt.f(ask_text,
