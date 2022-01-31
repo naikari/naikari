@@ -37,7 +37,7 @@ system_ambient_songs = {
 
 function choose( str )
    -- Stores all the available sound types and their functions
-   choose_table = {
+   local choose_table = {
       ["load"]    = choose_load,
       ["intro"]   = choose_intro,
       ["credits"] = choose_credits,
@@ -66,20 +66,24 @@ function choose( str )
       str = "ambient"
    end
 
-   -- If we are over idling then we do weird stuff
    local changed = false
-   if str == "idle" and last ~= "idle" then
-
-      -- We'll play the same as last unless it was takeoff
-      if last == "takeoff" then
-         changed = choose_ambient()
+   if str == "idle" then
+      -- If selecting for idle, choose last music or ambient if last was
+      -- takeoff music.
+      if last ~= "idle" then
+         -- We'll play the same as last unless it was takeoff
+         if last == "takeoff" then
+            changed = choose_ambient()
+         else
+            changed = choose(last)
+         end
       else
-         changed = choose(last)
+         changed = choose_ambient()
+         warn(_("'last' variable set to 'idle'; resetting to ambient."))
       end
-
-   -- Normal case
    else
-      changed = choose_table[ str ]()
+      -- Normal case
+      changed = choose_table[str]()
    end
 
    if changed and str ~= "idle" then
@@ -209,19 +213,11 @@ function choose_ambient ()
    -- Check to see if we want to update
    if music.isPlaying() then
       if last == "takeoff" then
+         -- This is a lie, but say we changed the music so it becomes
+         -- the "last" value, for when music goes idle.
          return true
       elseif last == "ambient" then
          force = false
-      end
-
-      -- Get music information.
-      local songname, songpos = music.current()
-
-      -- Do not change songs so soon
-      if songpos < 10. then
-         music.delay("ambient", 10. - songpos)
-         last = "ambient"
-         return false
       end
    end
 
