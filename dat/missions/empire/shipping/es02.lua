@@ -36,6 +36,7 @@
       3) VIP died or jump out of system without VIP  --> mission failure.
 ]]--
 
+local fleet = require "fleet"
 require "numstring"
 require "missions/empire/common"
 require "events/tutorial/tutorial_common"
@@ -167,23 +168,20 @@ function enter ()
       hook.pilot(v, "death", "death")
 
       -- FLF Spawn around the Gawain
-      p = pilot.addFleet("FLF Med Force", enter_vect)
+      p = fleet.add({2, 1, 1, 1},
+            {"Hyena", "Lancelot", "Vendetta", "Pacifier"}, "FLF", enter_vect,
+            {N_("FLF Hyena"), N_("FLF Lancelot"), N_("FLF Vendetta"),
+               N_("FLF Pacifier")})
       for k,v in ipairs(p) do
          v:setHostile()
-      end
-      -- To make it more interesting a vendetta will solely target the player.
-      p = pilot.add("Vendetta", "FLF", enter_vect , _("FLF Vendetta"))
-      p:setHostile()
-      -- If player is seen, have them target player
-      local pp = player.pilot()
-      if p:inrange(pp) then
-         p:control()
-         p:attack(pp)
       end
       
       -- Now Dvaered
       -- They will jump together with you in the system at the jump point. (A.)
-      p = pilot.addFleet("Dvaered Med Force", prevsys)
+      p = fleet.add({2, 2, 1, 1},
+            {"Dvaered Vendetta", "Dvaered Ancestor", "Dvaered Phalanx",
+               "Dvaered Vigilance"},
+            "Dvaered", prevsys)
       for k,v in ipairs(p) do
          v:setFriendly()
       end
@@ -234,7 +232,8 @@ function delay_flf ()
    end
 
    -- More ships to pressure player from behind
-   p = pilot.addFleet("FLF Sml Force", prevsys)
+   p = fleet.add(1, {"Hyena", "Lancelot", "Vendetta"}, "FLF", prevsys,
+         {N_("FLF Hyena"), N_("FLF Lancelot"), N_("FLF Vendetta")})
    for k,v in ipairs(p) do
       v:setHostile()
    end
