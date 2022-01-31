@@ -58,37 +58,39 @@ static int nlua_loadBasic( lua_State* L );
 /* gettext */
 static int nlua_gettext( lua_State *L );
 static int nlua_ngettext( lua_State *L );
+static int nlua_pgettext(lua_State *L);
 static int nlua_gettext_noop( lua_State *L );
 static const luaL_Reg gettext_methods[] = {
-   { "gettext",  nlua_gettext },
-   { "ngettext", nlua_ngettext },
-   { "gettext_noop", nlua_gettext_noop },
-   {0,0}
+   {"gettext",  nlua_gettext},
+   {"ngettext", nlua_ngettext},
+   {"pgettext", nlua_pgettext},
+   {"gettext_noop", nlua_gettext_noop},
+   {0, 0}
 }; /**< Vector metatable methods. */
 
 /**
  * @brief gettext support.
  *
  * @usage _( str )
- *    @luatparam str String to gettext on.
- *    @luatreturn The string converted to gettext.
+ *    @luatparam string msgid String to gettext on.
+ *    @luatreturn string The string converted to gettext.
  * @luafunc gettext
  */
 static int nlua_gettext( lua_State *L )
 {
    const char *str;
    str = luaL_checkstring(L, 1);
-   lua_pushstring(L, _(str) );
+   lua_pushstring(L, _(str));
    return 1;
 }
 
 /**
  * @brief gettext support for singular and plurals.
  *
- * @usage ngettext( str )
- *    @luatparam msgid1 Singular form.
- *    @luatparam msgid2 Plural form.
- *    @luatparam n Number of elements.
+ * @usage ngettext("%d apple", "%d apples", n)
+ *    @luatparam string msgid1 Singular form.
+ *    @luatparam string msgid2 Plural form.
+ *    @luatparam number n Number of elements.
  *    @luatreturn The string converted to gettext.
  * @luafunc ngettext
  */
@@ -98,8 +100,30 @@ static int nlua_ngettext( lua_State *L )
    int n;
    stra = luaL_checkstring(L, 1);
    strb = luaL_checkstring(L, 2);
-   n    = luaL_checkinteger(L,3);
-   lua_pushstring(L, n_( stra, strb, n ) );
+   n = luaL_checkinteger(L,3);
+   lua_pushstring(L, n_(stra, strb, n));
+   return 1;
+}
+
+/**
+ * @brief gettext with context support
+ *
+ * @usage pgettext(context, message)
+ *    @luatparam string msgctxt Context of the string.
+ *    @luatparam string msgid English text to be translated.
+ *    @luatreturn string The string converted to gettext.
+ * @luafunc ngettext
+ */
+static int nlua_pgettext(lua_State *L)
+{
+   const char *stra, *strb;
+   char buf[STRMAX];
+
+   stra = luaL_checkstring(L, 1);
+   strb = luaL_checkstring(L, 2);
+   snprintf(buf, sizeof(buf), "%s%s%s", stra, GETTEXT_CONTEXT_GLUE, strb);
+
+   lua_pushstring(L, gettext_pgettext(buf, strb));
    return 1;
 }
 
@@ -107,15 +131,15 @@ static int nlua_ngettext( lua_State *L )
  * @brief gettext support (noop). Does not actually do anything, but gets detected by gettext.
  *
  * @usage N_( str )
- *    @luatparam str String to gettext on.
- *    @luatreturn The string converted to gettext.
+ *    @luatparam string msgid String to gettext on.
+ *    @luatreturn string The string converted to gettext.
  * @luafunc gettext_noop
  */
 static int nlua_gettext_noop( lua_State *L )
 {
    const char *str;
    str = luaL_checkstring(L, 1);
-   lua_pushstring(L, str );
+   lua_pushstring(L, str);
    return 1;
 }
 
@@ -395,6 +419,7 @@ static int nlua_loadBasic( lua_State* L )
    lua_register(L, "_", nlua_gettext);
    lua_register(L, "N_", nlua_gettext_noop);
    lua_register(L, "n_", nlua_ngettext);
+   lua_register(L, "p_", nlua_pgettext);
    luaL_register(L, "gettext", gettext_methods);
 
    /* Sandbox "io" and "os". */
