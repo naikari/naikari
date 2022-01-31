@@ -168,8 +168,9 @@ function accept2()
 
     misn.markerMove(marker, joreksys1)
 
-    landhook = hook.land("land")
-    jumpouthook = hook.jumpout("jumpout")
+    hook.land("land")
+    hook.load("load")
+    hook.jumpout("jumpout")
 end
 
 
@@ -209,12 +210,8 @@ end
 
 function jumpout()
     playerlastsys = system.cur()
-    if not (patroller == nil) then
-        hook.rm(patroller)
-    end
-    if not (spinter == nil) then
-        hook.rm(spinter)
-    end
+    hook.rm(patroller)
+    hook.rm(spinter)
 end
 
 
@@ -241,7 +238,7 @@ function enter()
     elseif system.cur() == joreksys2 and stage == 4 then
         pilot.clear()
         pilot.toggleSpawn(false)
-        player.allowLand(false)
+        player.allowLand(false, _("It's not safe to land right now."))
         -- Meet Joe, our informant.
         joe = pilot.add("Vendetta", "Four Winds", vec2.new(-500, -4000),
                 _("Four Winds Informant"), {ai="trader"})
@@ -300,7 +297,7 @@ function spawnSquads(highlight)
         for j, p in ipairs(squad) do
             hook.pilot(p, "attacked", "attacked")
             if j ~= 1 then
-                k:setLeader(squad[1])
+                p:setLeader(squad[1])
             end
         end
     end
@@ -349,7 +346,8 @@ end
 function patrolPoll()
     for i, patroller in ipairs(leader) do
         for j, p in patroller:getVisible() do
-            if p == player.pilot() then
+            if (p == player.pilot() or p:leader() == player.pilot())
+                    and patroller:pos():dist(p:pos()) < 3500 then
                 patroller:broadcast(patrolcomm)
                 attacked()
                 return
