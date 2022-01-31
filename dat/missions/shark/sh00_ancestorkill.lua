@@ -25,7 +25,7 @@
 --]]
 --[[
 
-   This is the first mission of the Shark's teeth campaign. The player has to kill a pirate ancestor with a shark.
+   This is the first mission of the Shark's teeth campaign. The player has to kill a pirate vendetta with a shark.
 
    Stages :
    0) Way to Ulios in Ingot
@@ -43,7 +43,7 @@ require "missions/shark/common"
 
 ask_text = _([[You approach the man and he introduces himself. "Hello, my name is Arnold Smith; I work for Nexus Shipyards. I'm looking for a talented pilot to make a demonstration to one of our potential customers.
 
-"Pretty simple, really: we want someone to show how great Nexus ship designs are by destroying a Pirate Ancestor with just one of our smallest ship model, the Shark. Of course, the pilot of the Ancestor has a bounty on his head, so it won't be illegal. The sum of the bounty will be paid to you and Nexus will add a little extra. Would you be interested?"]])
+"Pretty simple, really: we want someone to show how great Nexus ship designs are by destroying a Pirate Vendetta with just one of our smallest ship model, the Shark. Of course, the pilot of the Vendetta has a bounty on his head, so it won't be illegal. The sum of the bounty will be paid to you and Nexus will add a little extra. Would you be interested?"]])
 
 refusetext = _([["That's your choice," the man says. "Don't hesitate to tell me if you change your mind."]])
 
@@ -51,7 +51,7 @@ yes_text = _([["Great! I knew I could trust you. I'll meet you on {planet} in th
 
 brief_text = _([["Nice to see you again," he says with a smile. "I hope you are ready to kick that pirate's ass! Please follow me. I will introduce you to my boss, the sales manager of Nexus Shipyards. Oh, and the Baron, too."
 
-Arnold Smith guides you to some kind of control room where you see some important-looking people. After introducing you to some of them, he goes over the mission, rather over-emphasizing the threat involved; it's just a Pirate Ancestor, after all. Nonetheless, the Baron is intrigued.
+Arnold Smith guides you to some kind of control room where you see some important-looking people. After introducing you to some of them, he goes over the mission, rather over-emphasizing the threat involved; it's just one pirate, after all. Nonetheless, the Baron is intrigued.
 
 Arnold Smith gets a call. After answering, he turns to you. "Perfect timing! The pirate has just arrived at {system}. Now go show them what your ship can do!" Time to head back to the ship, then.]])
 
@@ -59,7 +59,7 @@ pay_text = _([[As you step on the ground, Arnold Smith greets you. "That was a g
 
 -- Mission details
 misn_title = _("A Shark Bites")
-misn_desc = _("Nexus Shipyards needs you to demonstrate to Baron Sauterfeldt the capabilities of Nexus designs.")
+misn_desc = _("Nexus Shipyards has hired you to demonstrate to Baron Sauterfeldt the capabilities of Nexus ship designs.")
 
 -- NPC
 npc_desc = {}
@@ -81,7 +81,7 @@ leave_msg = _("MISSION FAILED: You left the pirate.")
 piratejump_msg = _("MISSION FAILED: The pirate ran away.")
 noshark_msg = _("MISSION FAILED: You were supposed to use a Shark.")
 
-log_text = _([[You helped Nexus Shipyards demonstrate the capabilities of their ships by destroying a Pirate Ancestor.]])
+log_text = _([[You helped Nexus Shipyards demonstrate the capabilities of their ships by destroying a Pirate Vendetta.]])
 
 
 function create()
@@ -167,7 +167,7 @@ function enter()
       pilot.clear()
       pilot.toggleSpawn(false)
 
-      badboy = pilot.add("Pirate Ancestor", "Pirate", system.get("Raelid"))
+      badboy = pilot.add("Pirate Vendetta", "Pirate", system.get("Raelid"))
       badboy:rename(piratename)
       badboy:setHostile()
       badboy:setVisplayer()
@@ -183,6 +183,7 @@ end
 
 function beginbattle()
    misn.markerRm(markeri)
+   misn.npcRm(smith)
 
    tk.msg("", fmt.f(brief_text, {system=battlesys:name()}))
    misn.osdActive(2)
@@ -193,12 +194,14 @@ end
 
 
 function pirate_jump()
+   pilot.toggleSpawn(true)
    player.msg("#r" .. piratejump_msg .. "#0")
    misn.finish(false)
 end
 
 
 function pirate_dead()
+   pilot.toggleSpawn(true)
    player.pilot():setVisible(false)
    stage = 4
    misn.markerRm(marker1)
