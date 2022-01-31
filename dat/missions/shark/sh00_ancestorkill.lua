@@ -73,7 +73,7 @@ bar_desc[2] = _([[The Nexus employee who recruited you for a very special demo o
 -- OSD
 osd_title = _("A Shark Bites")
 osd_msg = {}
-osd_msg[1] = _("Land on {planet} ({system} system) with a Shark (but not a Pirate Shark)")
+osd_msg[1] = _("Land on {planet} ({system} system) with a Shark (but not a Pirate Shark) and speak to Arnold Smith")
 osd_msg[2] = _("Go to the {system} system and kill the pirate with your Shark")
 osd_msg[3] = _("Land on {planet} ({system} system)")
 
