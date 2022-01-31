@@ -1561,7 +1561,7 @@ void pilot_updateDisable( Pilot* p, const unsigned int shooter )
       pilot_rmFlag(p, PILOT_HYPERSPACE);
 
       /* If hostile, must add counter. */
-      if (pilot_isHostile(p))
+      if (pilot_isHostile(p) && pilot_isFlag(p, PILOT_HOSTILE))
          player.disabled_enemies++;
 
       /* Disabled ships don't use up presence. */
@@ -1598,7 +1598,7 @@ void pilot_updateDisable( Pilot* p, const unsigned int shooter )
       pilot_rmFlag( p, PILOT_BOARDING ); /* Can get boarded again. */
 
       /* If hostile, must remove counter. */
-      if (pilot_isHostile(p)) {
+      if (pilot_isHostile(p) && pilot_isFlag(p, PILOT_HOSTILE)) {
          player.disabled_enemies--;
          /* Time to play combat music. */
          music_choose("combat");

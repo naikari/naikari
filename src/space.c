@@ -1486,9 +1486,9 @@ void space_init( const char* sysname )
       }
    }
 
-   /* See if we should get a new music song. */
+   /* Reset music to ambient. */
    if (player.p != NULL)
-      music_choose(NULL);
+      music_choose("ambient");
 
    /* Reset player enemies. */
    player.enemies = 0;
