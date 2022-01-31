@@ -168,13 +168,4 @@
   <faction_modifier type="Thurion">0.8</faction_modifier>
   <faction_modifier type="Za'lek">0.5</faction_modifier>
  </commodity>
- <commodity>
-  <name>Packages</name>
- </commodity>
- <commodity>
-  <name>Prisoners</name>
- </commodity>
- <commodity>
-  <name>VIP</name>
- </commodity>
 </Commodities>

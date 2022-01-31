@@ -101,7 +101,6 @@ function accept ()
    misn_marker = misn.markerAdd(destsys, "low")
 
    misn_stage = 0
-   prisoners = misn.cargoAdd("Prisoners", 0)
 
    -- Set hooks
    hook.land("land")
@@ -113,23 +112,21 @@ end
 function land ()
    landed = planet.cur()
    if landed == dest and misn_stage == 0 then
-      if misn.cargoRm(prisoners) then
-         misn_stage = 1
+      misn_stage = 1
 
-         tk.msg("", land_text)
-         tk.msg("", land2_text)
+      tk.msg("", land_text)
+      tk.msg("", land2_text)
 
-         misn.markerMove(misn_marker, retsys)
-         misn.osdActive(2)
+      misn.markerMove(misn_marker, retsys)
+      misn.osdActive(2)
 
-         -- Prevent players from saving on the destination planet
-         player.allowSave(false)
+      -- Prevent players from saving on the destination planet
+      player.allowSave(false)
 
-         player.takeoff()
+      player.takeoff()
 
-         -- Saving should be disabled for as short a time as possible
-         player.allowSave()
-      end
+      -- Saving should be disabled for as short a time as possible
+      player.allowSave()
    elseif landed == ret and misn_stage == 1 then
       player.pay(reward)
       faction.modPlayer("Empire", 2)

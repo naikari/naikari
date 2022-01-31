@@ -130,20 +130,13 @@ function land ()
    if landed == ret then
       -- Successfully rescued the VIP
       if misn_stage == 2 then
-
-         -- VIP gets off
-         misn.cargoRm(vip)
-
-         -- Rewards
          player.pay(reward)
          emp_modReputation(5) -- Bump cap a bit
          faction.modPlayer("Empire", 2)
 
-         -- Flavour text
          tk.msg("", text[5])
 
          emp_addShippingLog(log_text_success)
-
          misn.finish(true)
       end
    end
@@ -249,18 +242,13 @@ end
 
 
 function board ()
-   -- VIP boards
-   vip = misn.cargoAdd("VIP", 0)
+   player.unboard()
    tk.msg("", text[4])
 
-   -- Update mission details
    misn_stage = 2
    misn.markerMove(misn_marker, retsys)
    misn.setDesc(string.format(misn_desc[2], ret:name(), retsys:name()))
    misn.osdCreate(misn_title, {misn_desc[2]:format(ret:name(),retsys:name())})
-
-   -- Force unboard
-   player.unboard()
 end
 
 
