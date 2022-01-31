@@ -31,6 +31,7 @@ static int cache_table = LUA_NOREF; /* No reference. */
 
 /* Naev methods. */
 static int naevL_version( lua_State *L );
+static int naevL_language(lua_State *L);
 static int naevL_lastplayed( lua_State *L );
 static int naevL_ticks( lua_State *L );
 static int naevL_keyGet( lua_State *L );
@@ -43,6 +44,7 @@ static int naevL_conf( lua_State *L );
 static int naevL_cache( lua_State *L );
 static const luaL_Reg naev_methods[] = {
    { "version", naevL_version },
+   { "language", naevL_language },
    { "lastplayed", naevL_lastplayed },
    { "ticks", naevL_ticks },
    { "keyGet", naevL_keyGet },
@@ -99,6 +101,20 @@ static int naevL_version( lua_State *L )
    else
       lua_pushstring( L, player.loaded_version );
    return 2;
+}
+
+
+/**
+ * @brief Gets the current language locale.
+ *
+ *    @luatreturn string Current language locale (such as "en" for
+ *       English, "de" for German, or "ja" for Japanese).
+ * @luafunc language
+ */
+static int naevL_language(lua_State *L)
+{
+   lua_pushstring(L, gettext_getLanguage());
+   return 1;
 }
 
 
