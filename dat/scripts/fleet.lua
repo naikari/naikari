@@ -13,6 +13,9 @@ All arguments passed except for the parameters argument can be either
 the argument to pass to pilot.add() itself, or tables of arguments to
 pass to each ship. If a table is passed as an argument, the size of the
 table must be exactly the same as the size of the ship argument table.
+nil values are allowed in the location and pilotname tables, since they
+are indexed directly based on looping through the ship table rather than
+used directly.
 
    @usage pilots = fleet.add(2, {"Rhino", "Koala"}, "Trader")
    @usage pilots = fleet.add(1, {"Mule", "Llama"}, {"Trader", "Civilian"})
@@ -20,7 +23,12 @@ table must be exactly the same as the size of the ship argument table.
       @param count Number of times to repeat the pattern.
       @param ship Ship to add.
       @param faction Faction to give the pilot.
-      @param location Location to jump in from, take off from, or appear at.
+      @param location Location to jump in from, take off from, or appear
+         at. If set to nil (and not a table), all pilots will spawn from
+         the same random point, based on the faction of the first pilot
+         in the fleet. If set to a table containing nil values, each
+         pilot with a nil location will spawn in its own individually
+         determined random location.
       @param pilotname Name to give the pilot.
       @param parameters Table of extra parameters to pass pilot.add().
       @param leader A pilot to add to the start of the fleet and make
@@ -57,13 +65,22 @@ function fleet.add(count, ship, faction, location, pilotname, parameters,
    if type(ship) ~= "table" then
       ship = {ship}
    end
+
    if count == nil then
       count = 1
    end
+
    counts = _buildDupeTable(count, #ship)
-   pilotnames = _buildDupeTable(pilotname, #ship)
-   locations = _buildDupeTable(location, #ship)
    factions = _buildDupeTable(faction, #ship)
+   pilotnames = _buildDupeTable(pilotname, #ship, true)
+
+   -- When nil is used as the location, group the fleet together.
+   if location == nil then
+      location = pilot.choosePoint(factions[1], false, false)
+   end
+
+   locations = _buildDupeTable(location, #ship, true)
+
    if factions[1] == nil then
       print(_("fleet.add: Error, raw ships must have factions!"))
       return
@@ -95,10 +112,10 @@ function fleet.add(count, ship, faction, location, pilotname, parameters,
 end
 
 
-function _buildDupeTable( input, count )
+function _buildDupeTable(input, count, ignore_length)
    local tmp = {}
    if type(input) == "table" then
-      if #input ~= count then
+      if not ignore_length and #input ~= count then
          print(_("Warning: Tables are different lengths."))
       end
       return input
