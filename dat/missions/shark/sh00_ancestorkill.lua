@@ -7,7 +7,7 @@
  <avail>
   <priority>20</priority>
   <cond>planet.cur() ~= planet.get("Ulios") and player.numOutfit("Mercenary License") &gt; 0</cond>
-  <chance>3</chance>
+  <chance>10</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
