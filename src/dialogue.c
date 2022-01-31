@@ -273,8 +273,8 @@ void dialogue_msgRaw( const char* caption, const char *msg )
    window_setData( msg_wid, &done );
    window_addText(msg_wid, 20, strcmp(caption, "") != 0 ? -40 : -20,
          w-40, h,  0, "txtMsg", font, NULL, msg);
-   window_addButton( msg_wid, (w-50)/2, 20, 50, 30, "btnOK", _("OK"),
-         dialogue_close );
+   window_addButton(msg_wid, (w-120) / 2, 20, 120, 30,
+         "btnOK", _("OK"), dialogue_close);
 
    toolkit_loop( &done, NULL );
 }
@@ -331,8 +331,8 @@ void dialogue_msgImgRaw( const char* caption, const char *msg, const char *img, 
          img_width, img_height, "ImgGFX", gfx, 0);
 
    /* Add the OK button */
-   window_addButton( msg_wid, (img_width+w -50)/2, 20, 50, 30, "btnOK", _("OK"),
-         dialogue_close );
+   window_addButton(msg_wid, (img_width+w-120) / 2, 20, 120, 30,
+         "btnOK", _("OK"), dialogue_close);
 
    toolkit_loop( &done, NULL );
 }
