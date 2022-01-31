@@ -29,7 +29,6 @@ planet_songs = {
 
 -- System-specific songs
 system_ambient_songs = {
-   Taiomi = { "/snd/sounds/songs/inca-spa.ogg" },
 }
 
 function choose( str )
