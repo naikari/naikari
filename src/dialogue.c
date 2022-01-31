@@ -268,10 +268,11 @@ void dialogue_msgRaw( const char* caption, const char *msg )
    font = dialogue_getSize( caption, msg, &w, &h );
 
    /* create the window */
-   msg_wid = window_create( "dlgMsg", caption, -1, -1, w, 110 + h );
+   msg_wid = window_create("dlgMsg", caption, -1, -1,
+         w, 110 + h - (strcmp(caption, "") == 0 ? 20 : 0));
    window_setData( msg_wid, &done );
-   window_addText( msg_wid, 20, -40, w-40, h,  0, "txtMsg",
-         font, NULL, msg );
+   window_addText(msg_wid, 20, strcmp(caption, "") != 0 ? -40 : -20,
+         w-40, h,  0, "txtMsg", font, NULL, msg);
    window_addButton( msg_wid, (w-50)/2, 20, 50, 30, "btnOK", _("OK"),
          dialogue_close );
 
@@ -313,20 +314,21 @@ void dialogue_msgImgRaw( const char* caption, const char *msg, const char *img, 
    }
 
    /* Create the window */
-   msg_wid = window_create( "dlgMsgImg", caption, -1, -1, img_width + w, 110 + h );
+   msg_wid = window_create("dlgMsgImg", caption, -1, -1,
+         img_width + w, 110 + h - (strcmp(caption, "") == 0 ? 20 : 0));
    window_setData( msg_wid, &done );
 
    /* Add the text box */
-   window_addText( msg_wid, img_width+40, -40, w-40, h,  0, "txtMsg",
-         font, NULL, msg );
+   window_addText(msg_wid, img_width+40, strcmp(caption, "") != 0 ? -40 : -20,
+         w-40, h,  0, "txtMsg", font, NULL, msg);
 
    /* Add a placeholder rectangle for the image */
-   window_addRect( msg_wid, 20, -40, img_width, img_height,
-         "rctGFX", &cGrey10, 1 );
+   window_addRect(msg_wid, 20, strcmp(caption, "") != 0 ? -40 : -20,
+         img_width, img_height, "rctGFX", &cGrey10, 1);
 
    /* Actually add the texture in the rectangle */
-   window_addImage( msg_wid, 20, -40, img_width, img_height,
-         "ImgGFX", gfx, 0 );
+   window_addImage(msg_wid, 20, strcmp(caption, "") != 0 ? -40 : -20,
+         img_width, img_height, "ImgGFX", gfx, 0);
 
    /* Add the OK button */
    window_addButton( msg_wid, (img_width+w -50)/2, 20, 50, 30, "btnOK", _("OK"),
@@ -376,11 +378,12 @@ int dialogue_YesNoRaw( const char* caption, const char *msg )
    font = dialogue_getSize( caption, msg, &w, &h );
 
    /* create window */
-   wid = window_create( "dlgYesNo", caption, -1, -1, w, h+110 );
+   wid = window_create("dlgYesNo", caption, -1, -1,
+         w, h+110 - (strcmp(caption, "") == 0 ? 20 : 0));
    window_setData( wid, &done );
    /* text */
-   window_addText( wid, 20, -40, w-40, h,  0, "txtYesNo",
-         font, NULL, msg );
+   window_addText(wid, 20, strcmp(caption, "") != 0 ? -40 : -20,
+         w-40, h,  0, "txtYesNo", font, NULL, msg);
    /* buttons */
    window_addButtonKey( wid, w/2-100-10, 20, 100, 30, "btnYes", _("Yes"),
          dialogue_YesNoClose, SDLK_y );
@@ -703,8 +706,8 @@ int dialogue_listPanelRaw(const char* title, char **items, int nitems,
    /* Create the window. */
    wid = window_create( "dlgListPanel", title, -1, -1, winw, winh );
    window_setData( wid, &done );
-   window_addText( wid, 20, -40, w-40, text_height,  0, "txtMsg",
-         font, NULL, msg );
+   window_addText(wid, 20, strcmp(title, "") != 0 ? -40 : -20,
+         w-40, text_height,  0, "txtMsg", font, NULL, msg);
    window_setAccept( wid, dialogue_listClose );
    window_setCancel( wid, dialogue_listCancel );
 
@@ -761,10 +764,12 @@ void dialogue_makeChoice( const char *caption, const char *msg, int opts )
    font           = dialogue_getSize( caption, msg, &w, &h );
 
    /* create window */
-   choice_wid     = window_create( "dlgChoice", caption, -1, -1, w, h+100+40*choice_nopts-30 );
+   choice_wid = window_create("dlgChoice", caption, -1, -1,
+         w, h + 100 + 40*choice_nopts - 30
+            - (strcmp(caption, "") == 0 ? 20 : 0));
    /* text */
-   window_addText( choice_wid, 20, -40, w-40, h,  0, "txtChoice",
-         font, NULL, msg );
+   window_addText(choice_wid, 20, strcmp(caption, "") != 0 ? -40 : -20,
+         w-40, h,  0, "txtChoice", font, NULL, msg);
 }
 /**
  * @brief Add a choice to the dialog.
