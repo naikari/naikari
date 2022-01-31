@@ -1097,8 +1097,6 @@ dat/assets/virtual_flf_small.xml
 dat/assets/virtual_flf_unpresence.xml
 dat/assets/virtual_frontier_small.xml
 dat/assets/virtual_frontier_unpresence.xml
-dat/assets/virtual_independent_trader_area.xml
-dat/assets/virtual_independent_trader_local.xml
 dat/assets/virtual_miner_local.xml
 dat/assets/virtual_miner_small.xml
 dat/assets/virtual_pirate_medium.xml
@@ -1428,6 +1426,8 @@ dat/outfits/core_system/unicorp_pt3400_core_system.xml
 dat/outfits/core_system/unicorp_pt400_core_system.xml
 dat/outfits/core_system/unicorp_pt750_core_system.xml
 dat/outfits/core_system/unicorp_pt80_core_system.xml
+dat/outfits/fighter_bays/brigand_fighter_bay.xml
+dat/outfits/fighter_bays/derivative_fighter_bay.xml
 dat/outfits/fighter_bays/drone_fighter_bay.xml
 dat/outfits/fighter_bays/drone_heavy_fighter_bay.xml
 dat/outfits/fighter_bays/empire_lancelot_fighter_bay.xml
@@ -1439,6 +1439,8 @@ dat/outfits/fighter_bays/lancelot_fighter_bay_mini.xml
 dat/outfits/fighter_bays/zalek_bomber_drone_fighter_bay.xml
 dat/outfits/fighter_bays/zalek_heavy_drone_fighter_bay.xml
 dat/outfits/fighter_bays/zalek_light_drone_fighter_bay.xml
+dat/outfits/fighters/brigand_fighter.xml
+dat/outfits/fighters/derivative_fighter.xml
 dat/outfits/fighters/drone_fighter.xml
 dat/outfits/fighters/drone_heavy_fighter.xml
 dat/outfits/fighters/empire_lancelot_fighter.xml
@@ -1770,7 +1772,6 @@ dat/ssys/chloe.xml
 dat/ssys/chraan.xml
 dat/ssys/churchill.xml
 dat/ssys/cleai.xml
-dat/ssys/coliseum.xml
 dat/ssys/copernicus.xml
 dat/ssys/corinth.xml
 dat/ssys/coriolis.xml
@@ -2274,8 +2275,6 @@ dat/missions/neutral/commodity_run.lua
 dat/missions/neutral/common.lua
 dat/missions/neutral/diy-nerds.lua
 dat/missions/neutral/drunkard.lua
-dat/missions/neutral/foodbiz/delivercake.lua
-dat/missions/neutral/foodbiz/deliverlove.lua
 dat/missions/neutral/lovetrain.lua
 dat/missions/neutral/nebu_satellite.lua
 dat/missions/neutral/oldwoman.lua
@@ -2311,15 +2310,8 @@ dat/missions/shark/common.lua
 dat/missions/shark/sh00_ancestorkill.lua
 dat/missions/shark/sh01_corvette.lua
 dat/missions/shark/sh02_tapping.lua
-dat/missions/shark/sh03_hailing.lua
-dat/missions/shark/sh04_meeting.lua
-dat/missions/shark/sh05_flf.lua
-dat/missions/shark/sh06_arandon.lua
-dat/missions/shark/sh07_pirates.lua
 dat/missions/sirius/achack/achack01.lua
 dat/missions/sirius/achack/achack02.lua
-dat/missions/sirius/achack/achack03.lua
-dat/missions/sirius/achack/achack04.lua
 dat/missions/sirius/animaltransport.lua
 dat/missions/sirius/common.lua
 dat/missions/soromid/comingout/srm_comingout.lua
