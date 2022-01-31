@@ -25,9 +25,6 @@ factional = {
 
 -- Planet-specific songs
 planet_songs = {
-   ["Minerva Station"] = { "meeting_mtfox" },
-   ["Strangelove Lab"] = { "landing_sinister" },
-   ["One-Wing Goddard"] = { "/snd/sounds/songs/inca-spa.ogg" },
 }
 
 -- System-specific songs
