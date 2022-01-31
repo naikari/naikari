@@ -7,7 +7,7 @@
  <avail>
   <priority>15</priority>
   <cond>system.get("Churchill"):jumpDist() ~= nil and system.get("Churchill"):jumpDist() &lt; 4</cond>
-  <done>Sirian Bounty</done>
+  <done>Sirius Bounty</done>
   <chance>10</chance>
   <location>Bar</location>
   <faction>Sirius</faction>
@@ -105,6 +105,7 @@ log_text = _([[Joanne, the Serra military officer who Harja tried to hire you to
 
 
 function create()
+   misn.finish(false)
    if not misn.claim ( {system.get("Humdrum"), system.get("Lapis")} ) then
       misn.finish(false)
    end
