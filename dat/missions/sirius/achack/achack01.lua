@@ -24,7 +24,7 @@ local fmt = require "fmt"
 require "missions/sirius/common"
 
 
-ask_text = _([[Curious the young Fyrra man, you decide to find out why he is here. As you approach, the Siriusite waves and greets you. "Well met, stranger. My name is Harja. I'm looking for a bounty hunter who can help me with this… problem I have. But nobody I've talked to so far seems interested! I thought this place was supposed to be filled with mercenaries and killers for hire. I can't believe how difficult this is!"
+ask_text = _([[Curious about the young Fyrra man, you decide to find out why he is here. As you approach, he waves and greets you. "Well met, stranger. My name is Harja. I'm looking for a bounty hunter who can help me with this… problem I have. But nobody I've talked to so far seems interested! I thought this place was supposed to be filled with mercenaries and killers for hire. I can't believe how difficult this is!"
 
 You instinctively raise an eyebrow, wondering why anyone would expect to find a bounty hunter in a place like this. Seemingly not noticing your expression, Harja continues. "Listen, I don't intend to bore you with my personal sob story, so let's just say there's someone I want dead, a dangerous criminal. This woman did something to me cycles ago that just can't go unpunished. I've got money, I'm willing to pay. All you need to do is locate her, and discreetly take her out. I don't care how you do it. I don't even care if you enjoy it. Just come back when she's dead, and I'll pay you {credits}. Do we have a deal?"]])
 

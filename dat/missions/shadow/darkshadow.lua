@@ -130,6 +130,11 @@ function create()
         misn.finish(false)
     end
 
+    -- Avoid weirdness of telling the player to go to current system.
+    if system.cur() == seirsys then
+        misn.finish(false)
+    end
+
     misn.accept()
 
     tk.msg("", fmt.f(start_text,
