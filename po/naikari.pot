@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naikari 0.1.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-01-31 03:22-0500\n"
+"POT-Creation-Date: 2022-01-31 03:38-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49365,9 +49365,8 @@ msgstr ""
 msgid "Cycles through jump points."
 msgstr ""
 
-#. create the window.
-#: src/input.c:100 src/map.c:257 src/outfit.c:820
-msgid "Star Map"
+#: src/input.c:100
+msgid "Open Star Map"
 msgstr ""
 
 #: src/input.c:100
@@ -50319,6 +50318,12 @@ msgstr ""
 #: src/log.h:27
 #, c-format
 msgid "ERROR %s:%d [%s]: "
+msgstr ""
+
+#. create the window.
+#: src/map.c:257
+msgctxt "titlebar"
+msgid "Star Map"
 msgstr ""
 
 #: src/map.c:300
@@ -52640,6 +52645,10 @@ msgstr ""
 
 #: src/outfit.c:816
 msgid "Ship Modification"
+msgstr ""
+
+#: src/outfit.c:820
+msgid "Star Map"
 msgstr ""
 
 #: src/outfit.c:821 src/outfit.c:850

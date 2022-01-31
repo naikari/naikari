@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-01-31 03:22-0500\n"
+"POT-Creation-Date: 2022-01-31 03:38-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -50465,9 +50465,8 @@ msgstr ""
 msgid "Cycles through jump points."
 msgstr ""
 
-#. create the window.
-#: src/input.c:100 src/map.c:257 src/outfit.c:820
-msgid "Star Map"
+#: src/input.c:100
+msgid "Open Star Map"
 msgstr ""
 
 #: src/input.c:100
@@ -51460,6 +51459,12 @@ msgstr "경고: [%s] "
 #, c-format
 msgid "ERROR %s:%d [%s]: "
 msgstr "오류 %s:%d[ %s]: "
+
+#. create the window.
+#: src/map.c:257
+msgctxt "titlebar"
+msgid "Star Map"
+msgstr ""
 
 #: src/map.c:300
 msgid "Faction:"
@@ -53821,6 +53826,10 @@ msgstr "터레 티드 가우스 건"
 #, fuzzy
 msgid "Ship Modification"
 msgstr "선체 수정"
+
+#: src/outfit.c:820
+msgid "Star Map"
+msgstr ""
 
 #: src/outfit.c:821 src/outfit.c:850
 msgid "Local Map"

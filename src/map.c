@@ -254,7 +254,7 @@ void map_open (void)
    h = MAP_HEIGHT;
 
    /* create the window. */
-   wid = window_create( MAP_WDWNAME, _("Star Map"), -1, -1, w, h );
+   wid = window_create(MAP_WDWNAME, p_("titlebar", "Star Map"), -1, -1, w, h);
    window_setCancel( wid, map_window_close );
    window_handleKeys( wid, map_keyHandler );
 

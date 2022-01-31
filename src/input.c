@@ -97,7 +97,7 @@ const char *keybind_info[][3] = {
    { "target_planet", N_("Target Planet"), N_("Cycles through planet targets.") },
    { "land", N_("Land"), N_("Attempts to land on the targeted planet or targets the nearest landable planet. Requests permission if necessary.") },
    { "thyperspace", N_("Target Jumpgate"), N_("Cycles through jump points.") },
-   { "starmap", N_("Star Map"), N_("Opens the star map.") },
+   { "starmap", N_("Open Star Map"), N_("Opens the star map.") },
    { "jump", N_("Initiate Jump"), N_("Attempts to jump via a jump point.") },
    { "overlay", N_("Overlay Map"), N_("Opens the in-system overlay map.") },
    { "mousefly", N_("Mouse Flight"), N_("Toggles mouse flying.") },
