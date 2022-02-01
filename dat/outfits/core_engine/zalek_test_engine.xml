@@ -6,17 +6,17 @@
   <size>small</size>
   <rarity>6</rarity>
   <mass>15</mass>
-  <price>15000</price>
-  <description>Built by Za'lek Fabricators, this engine doesn't aim to be an efficient engine. Its goal is to be easily moddable in order to allow Za'lek scientists to test new refrigeration and propulsion systems. These engines are very often modded by students, which makes them unreliable.</description>
+  <price>100000</price>
+  <description>This is an experimental engine modded by students to test new propulsion techniques. It is a well-performing engine, but it is unreliable and dangerous due to its experimental nature. As such, engines like this are generally not available for sale due to safety concerns.</description>
   <gfx_store>engine4.webp</gfx_store>
   <priority>3</priority>
  </general>
  <specific type="modification">
-  <thrust>100</thrust>
-  <turn>85</turn>
-  <speed>175</speed>
+  <thrust>150</thrust>
+  <turn>130</turn>
+  <speed>300</speed>
   <fuel>200</fuel>
-  <energy_regen_malus>10</energy_regen_malus>
+  <energy_regen_malus>6</energy_regen_malus>
   <engine_limit>300</engine_limit>
  </specific>
 </outfit>
