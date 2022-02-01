@@ -40,6 +40,7 @@ function create ()
     pilot.clear()
     player.pilot():setNoJump()
     player.pilot():setNoLand()
+    player.autonavAbort(_("Jumping and landing systems have gone offline."))
 
     hook.timer(5.0, "startProblems")
     bucks = 3

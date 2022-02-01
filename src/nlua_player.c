@@ -569,12 +569,12 @@ static int playerL_autonavDest( lua_State *L )
  * @usage player.autonavAbort()
  * @usage player.autonavAbort(_("Your engines malfunctioned!"))
  *
- *    @luatparam string msg Abort message.
+ *    @luatparam[opt] string msg Abort message.
  * @luafunc autonavAbort
  */
 static int playerL_autonavAbort( lua_State *L )
 {
-   const char *str = luaL_checkstring(L, 1);
+   const char *str = luaL_optstring(L, 1, NULL);
 
    /* Force-abort autonav since this is script-controlled, and we don't
     * want a script's decision to abort autonav to be overridden if the
