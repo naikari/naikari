@@ -43,9 +43,6 @@ function create ()
 
     hook.timer(5.0, "startProblems")
     bucks = 3
-
-    hook.land("leave")
-    hook.jumpout("leave")
 end
 
 
