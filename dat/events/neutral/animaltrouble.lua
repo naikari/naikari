@@ -33,10 +33,8 @@ log_text = _([[You found that one of the rodents you transported for that Sirius
 
 function create ()
     if not evt.claim(system.cur()) then
-        print("No claim")
         evt.finish(false)
     end
-    print("Go")
 
     pilot.toggleSpawn(false)
     pilot.clear()
