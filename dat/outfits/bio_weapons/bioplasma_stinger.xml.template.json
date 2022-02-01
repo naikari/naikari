@@ -1,0 +1,45 @@
+{
+    "stages": 4,
+    "tags": {
+        "potential": {
+            "text": {
+                "default": "As with all organs, it starts out weak, but over time it grows and improves.",
+                "stage": {
+                    "X": "This organ has reached Stage X, its full potential."
+                }
+            }
+        },
+        "rarity": {
+            "text": {
+                "default": "2",
+                "stage": {
+                    "X": "6"
+                }
+            }
+        },
+        "price": {
+            "min": 4500,
+            "max": 9000
+        },
+        "speed": {
+            "min": 550,
+            "max": 700
+        },
+        "range": {
+            "min": 750,
+            "max": 900
+        },
+        "falloff": {
+            "min": 450,
+            "max": 750
+        },
+        "heatup": {
+            "min": 25,
+            "max": 40
+        },
+        "physical": {
+            "min": 12,
+            "max": 25
+        }
+    }
+}

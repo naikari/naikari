@@ -6,12 +6,12 @@
   <rarity>6</rarity>
   <mass>6</mass>
   <price>9000</price>
-  <description>The BioPlasma Stinger is the most basic organic weaponry available, and one of the most common. While it is not especially powerful, it is prized for its reliability and low cognitive requirements. This organ has reached Stage X, its full potential.</description>
+  <description>The BioPlasma Stinger is the most basic organic weapon available, and one of the most common. While it is not especially powerful, it is prized for its reliability and low cognitive requirements. This organ has reached Stage X, its full potential.</description>
   <gfx_store>organic_plasma_s1.webp</gfx_store>
   <cpu>-1</cpu>
  </general>
  <specific type="bolt">
-  <gfx>plasma2.png</gfx>
+  <gfx>plasma.png</gfx>
   <sound>plasma</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
