@@ -378,6 +378,7 @@
   <item>Laser Cannon MK2</item>
   <item>Laser Turret MK2</item>
   <item>Heavy Ripper Cannon</item>
+  <item>Heavy Ripper Turret</item>
  </tech>
  <tech name="Laser 3">
   <item>Heavy Ripper Turret</item>
@@ -409,6 +410,7 @@
   <item>Turreted Vulcan Gun</item>
   <item>Shredder</item>
   <item>Mass Driver</item>
+  <item>Turreted Mass Driver</item>
  </tech>
  <tech name="Kinetic 3">
   <item>Railgun</item>
