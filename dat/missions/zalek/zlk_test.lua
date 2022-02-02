@@ -3,8 +3,8 @@
 <mission name="Za'lek Test">
  <avail>
   <priority>60</priority>
-  <cond>faction.playerStanding("Za'lek") &gt; 5 and planet.cur():services()["outfits"] == "Outfits"</cond>
-  <chance>450</chance>
+  <cond>player.numOutfit("Mercenary License") &gt; 0 and not player.misnActive("Za'lek Test") and faction.playerStanding("Za'lek") &gt;= 5 and (planet.cur():services()["outfits"] or planet.cur():services()["shipyard"])</cond>
+  <chance>80</chance>
   <location>Computer</location>
   <faction>Za'lek</faction>
  </avail>
@@ -12,354 +12,61 @@
 --]]
 --[[
 
-   Handles the randomly generated Za'lek test missions.
-   (Based on the ES lua code)
+   Za'lek Test
 
-   stages :
-             0 : everything normal
-             1 : the player has forgotten the engine
-]]
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
-require "scripts/cargo_common"
-require "scripts/numstring"
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
 
-misn_title = _("ZT test of %s")
-misn_desc = _("A Za'lek research team needs you to travel to %s in %s using an engine in order to test it.")
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-msg_title = {}
-msg_title[1] = _("Mission Accepted")
-msg_title[2] = _("Too many missions")
-msg_title[3] = _("Successful Landing")
-msg_title[4] = _("Didn't you forget something?")
+--
 
-engines = {_("engine with phase-change material cooling"), 
-           _("engine controlled with Zermatt-Henry theory"),   --Some random scientists names
-           _("engine using a new electron propelling system"),
-           _("engine using the fifth law of thermodynamics"),      --In these times, there will maybe exist more thermo laws...
-           _("engine for system identification using the fe-method"),
-           _("engine with uncontrolled geometrical singularities"),
-           _("5-cycle-old child's engine invention"),
-           _("engine using ancestral propellant technology"),
-           _("UHP-nanobond engine"),
-           _("ancient engine discovered at an old crash site"),
-           _("engine controlled by the MegaSys Wondigs operating system"),
-           _("engine controlled by XF Cell-Ethyrial particles"),
-           _("engine with ancient Beeline Technology axis"),
-           _("unnamed engine prototype"),
-           _("engine constructed with experimental Bob-Bens technology"),
-           _("new IDS-1024 experimental engine design"),
-           _("engine with new Dili-Gent Circle conduction"),
-           _("engine with experimental DEI-Z controller"),
-           }
+   MISSION: Za'lek Test
+   DESCRIPTION: You are given a Za'lek Test Engine to test.
 
-znpcs = {}
-znpcs[1] = _([[A group of university students greets you. "If your flight goes well, we will validate our aerospace course! The last engine exploded during the flight, but this one is much more reliable... Hopefully."]])
-znpcs[2] = _([[A very old Za'lek researcher needs you to fly with an instrumented device in order to take measurements.]])
-znpcs[3] = _([[A Za'lek student says: "Hello, I am preparing a Ph.D in system reliability. I need to make precise measurements on this engine in order to validate a stochastic failure model I developed."]])
-znpcs[4] = _([[A Za'lek researcher needs you to test the new propelling system they have implemented in this engine.]])
+--]]
 
-msg_msg = {}
-msg_msg[1] = _("Za'lek technicians give you the engine. You will have to travel to %s in %s with this engine. The system will automatically take measures during the flight. Don't forget to equip the engine.")
-msg_msg[2] = _("You have too many active missions.")
-msg_msg[3] = _("Happy to be still alive, you land and give back the engine to a group of Za'lek scientists who were expecting you, collecting your fee along the way.")
-msg_msg[4] = _("It seems you forgot the engine you are supposed to test. Land again and put it on your ship.")
-misst = _("Mission failed")
-miss = _("You traveled without the engine.")
+local fmt = require "fmt"
+require "cargo_common"
 
-teleport_title = _("What the hell is happening?")
-teleport_text = _("You suddenly feel a huge acceleration, as if your ship was going into hyperspace, then a sudden shock causes you to pass out. As you wake up, you find that your ship is damaged and you have ended up somewhere in the %s system!")
 
-slow_title = _("Where has the power gone?")
-slow_text = _("The engine makes a loud noise, and you notice that the engine has lost its ability to thrust at the rate that it's supposed to.")
-speed_title = _("Power is back.")
-speed_text = _("It seems the engine decided to work properly again.")
+misn_title = _("Engine Test to {planet} ({system} system)")
+misn_desc = _([[A Za'lek student research team needs a pilot to test an experimental engine by equipping a ship with it and flying to {planet} in the {system} system. You can take however long you want and whatever route you want, but you must have the test engine equipped every time you use a jump gate or you will fail the mission.
 
-outOf_title = _("This wasn't supposed to happen")
-outOf_text = _("Your ship is totally out of control. You curse under your breath at the defective engine.")
-noAn_title = _("Engine is dead")
-noAn_text = _("The engine has stopped working. It had better start working again soon; you don't want to die out here!")
-baTo_title = _("Back to normal")
-baTo_text = _("The engine is working again. You breathe a sigh of relief.")
+You will be required to pay a deposit of {credits} up-front; this will be refunded when you return the engine, either by finishing the mission or by aborting it.
 
-cannot_title = _("You cannot accept this mission")
-cannot_text = _("You are already testing another engine.")
+Please note that the experimental nature of the engine means you may encounter dangerous malfunctions.]])
 
-osd_title = _("Za'lek Test")
-osd_msg = {_("Fly to %s in the %s system")}
+nodeposit_text = _([[You do not have enough credits to pay the deposit for the engine. The deposit is {credits}.]])
+
+accept_text = _([[You are given a dangerous-looking Za'lek Test Engine. You will have to equip it to your ship through the Equipment tab.]])
+
+pay_text = {
+   _([[You arrive at your destination, happy to be safe, and return the experimental engine. You are given your pay plus a refund of the deposit you paid for the engine.]]),
+}
+
 
 function create()
-   origin_p, origin_s = planet.cur()
-   local routesys = origin_s
-   local routepos = origin_p:pos()
-
-   -- target destination
-   destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
-   if destplanet == nil then
+   destpla, destsys, njumps, dist, cargo, risk, tier = cargo_calculateRoute()
+   if destpla == nil then
       misn.finish(false)
    end
 
-   --All the mission must go to Za'lek planets with a place to change outfits
-   if destplanet:faction() ~= faction.get( "Za'lek" ) or not destplanet:services()["outfits"] then
+   if destpla:faction() ~= faction.get("Za'lek") then
       misn.finish(false)
    end
 
-   -- mission generics
-   stuperpx   = 0.3 - 0.015 * tier
-   stuperjump = 11000 - 75 * tier
-   stupertakeoff = 15000
-    
-   -- Choose mission reward. This depends on the mission tier.
-   finished_mod = 2.0 -- Modifier that should tend towards 1.0 as Naev is finished as a game
-   jumpreward = 1000
-   distreward = 0.25
-   riskreward = 50
-   reward     = (1.5 ^ tier) * (avgrisk*riskreward + numjumps * jumpreward + traveldist * distreward) * finished_mod * (1. + 0.05*rnd.twosigma())
-    
-   local typeOfEng = engines[rnd.rnd(1, #engines)]
-
-   misn.setTitle( misn_title:format( typeOfEng ))
-   misn.markerAdd(destsys, "computer")
-   cargo_setDesc( misn_desc:format( destplanet:name(), destsys:name() ), nil, nil, destplanet )
-   misn.setReward(creditstring(reward))
-end
-
-function accept()
-
-   if player.misnActive("Za'lek Test") then
-       tk.msg(cannot_title, cannot_text)
-       misn.finish(false)
-   end
-
-   if misn.accept() then -- able to accept the mission
-      stage = 0
-      player.outfitAdd("Za'lek Test Engine")
-      tk.msg( msg_title[1], znpcs[ rnd.rnd(1, #znpcs) ] )
-      tk.msg( msg_title[1], string.format( msg_msg[1], destplanet:name(), destsys:name() ))
-
-      osd_msg[1] = string.format( osd_msg[1], destplanet:name(), destsys:name() )
-      misn.osdCreate(osd_title, osd_msg)
-      takehook = hook.takeoff( "takeoff" )
-      enterhook = hook.enter("enter")
-   else
-      tk.msg( msg_title[2], msg_msg [2] )
+   if not destpla:services()["outfits"] then
       misn.finish(false)
    end
-
-   isSlow = false     --Flag to know if the pilot has limited speed
-   curplanet = planet.cur()
-end
-
-function takeoff()  --must trigger at every takeoff to check if the player forgot the engine
-
-   if landhook == nil then
-      landhook = hook.land( "land" )
-   end
-
-   if isMounted("Za'lek Test Engine") then  --everything is OK : now wait for landing
-      stage = 0
-
-      else   --Player has forgotten the engine
-      stage = 1
-      tk.msg( msg_title[4], msg_msg [4] )
-   end
-end
-
-function enter()  --Generates a random breakdown
-   local luck = rnd.rnd()
-
-   --If the player doesn't have the experimental engine, there can't be any bug
-   if not isMounted("Za'lek Test Engine") then
-      luck = 0.9
-   end
-
-   local time = 10.0*(1 + 0.3*rnd.twosigma())
-   if luck < 0.06 then  --player is teleported to a random place around the current system
-      hook.timer(time, "teleport")
-      elseif luck < 0.12 then  --player's ship slows down a lot
-      hook.timer(time, "slow")
-      elseif luck < 0.18 then   --ship gets out of control for some time
-      hook.timer(time, "outOfControl")
-      elseif luck < 0.24 then   --ship doesn't answer to command for some time
-      hook.timer(time, "noAnswer")
-   end
-
-end
-
-function land()
-
-   if isSlow then   --The player is still slow and will recover normal velocity
-      player.pilot():setSpeedLimit(0)
-      isSlow = false
-   end
-
-   if planet.cur() == destplanet and stage == 0 then
-      tk.msg( msg_title[3], msg_msg[3])
-      player.pay(reward)
-      player.outfitRm("Za'lek Test Engine")
-
-      -- increase faction
-      faction.modPlayer("Za'lek", 1)
-      rmTheOutfit()
-      misn.finish(true)
-   end
-
-   if planet.cur() ~= curplanet and stage == 1 then  --Lands elsewhere without the engine
-      tk.msg( misst, miss)
-      abort()
-   end
-
-   curplanet = planet.cur()
-end
-
---  Breakdowns
-
---Player is teleported in another system
-function teleport()
-   hook.safe("teleportation")
-   hook.rm(enterhook)  --It's enough problem for one travel
-end
-
-function teleportation()
-   local newsyslist = getsysatdistance(system.cur(), 1, 3)
-   local newsys = newsyslist[rnd.rnd(1, #newsyslist)]
-   player.teleport(newsys)
-   tk.msg(teleport_title, teleport_text:format(newsys:name()))
-   player.pilot():setHealth(50, 0)
-   player.pilot():setEnergy(0)
-end
-
---player is slowed
-function slow()
-
-   -- Cancel autonav.
-   player.cinematics(true)
-   player.cinematics(false)
-
-   local maxspeed = player.pilot():stats().speed
-   local speed = maxspeed/3*(1 + 0.1*rnd.twosigma())
-
-   hook.timer(1.0, "slowtext")
-
-   isSlow = true
-
-   -- If the player is not too unlucky, the velocity is soon back to normal
-   if rnd.rnd() > 0.8 then
-      local time = 20.0*(1 + 0.3*rnd.twosigma())
-      hook.timer(time, "backToNormal")
-      isSlow = false
-   end
-
-   player.pilot():setSpeedLimit(speed)
-end
-
---Player is no longer slowed
-function backToNormal()
-   player.pilot():setSpeedLimit(0)
-   hook.timer(1.0, "speedtext")
-end
-
---Player's ship run amok and behaves randomly
-function outOfControl()
-
-   -- Cancel autonav.
-   player.cinematics(true)
-
-   player.pilot():control()
-   for i = 1, 4, 1 do
-      local deltax, deltay = rnd.rnd()*1000, rnd.rnd()*1000
-      player.pilot():moveto ( player.pos() + vec2.new( deltax, deltay ), false, false )
-   end
-   hook.timer(20.0, "backToControl")
-   hook.timer(1.0, "outOftext")
-end
-
---The player can't control his ship anymore
-function noAnswer()
-
-   -- Cancel autonav.
-   player.cinematics(true)
-
-   player.pilot():control()
-   hook.timer(10.0, "backToControl")
-   hook.timer(1.0, "noAntext")
-end
-
---Just de-control the player's ship
-function backToControl()
-   player.cinematics(false)
-   player.pilot():control(false)
-   hook.timer(1.0, "baTotext")
-end
-
---Displays texts
-function slowtext()
-   tk.msg(slow_title, slow_text)
-end
-
-function speedtext()
-   tk.msg(speed_title, speed_text)
-end
-
-function outOftext()
-   tk.msg(outOf_title, outOf_text)
-end
-
-function noAntext()
-   tk.msg(noAn_title, noAn_text)
-end
-
-function baTotext()
-   tk.msg(baTo_title, baTo_text)
-end
-
-function abort()
-   rmTheOutfit( true )
    misn.finish(false)
 end
 
-function rmTheOutfit( addengine )
-   if isMounted("Za'lek Test Engine") then
-      player.pilot():outfitRm("Za'lek Test Engine")
-   end
-
-   -- Give them a bad engine just in case they are landed or on a planet
-   -- where they can't equip. The bad engine is free so it shouldn't matter.
-   if addengine then
-      player.pilot():outfitAdd("Beat Up Small Engine")
-   end
-
-   -- TODO Remove copies from all ships
-   --[[
-   for k,v in ipairs(player.ships()) do
-      local o = player.shipOutfits(v.name)
-      if isMounted("Za'lek Test Engine", o) then
-      end
-   end
-   --]]
-
-   -- Remove owned copies
-   while isOwned("Za'lek Test Engine") do
-      player.outfitRm("Za'lek Test Engine")
-   end
-end
-
---Check if the player has an outfit mounted
-function isMounted( itemName, outfits )
-   outfits = outfits or player.pilot():outfits()
-   for i, j in ipairs(outfits) do
-      if j == outfit.get(itemName) then
-         return true
-      end
-   end
-   return false
-end
-
---Check if the player owns an outfit
-function isOwned(itemName)
-   for i, j in ipairs(player.outfits()) do
-      if j == outfit.get(itemName) then
-         return true
-      end
-   end
-   return false
-end
