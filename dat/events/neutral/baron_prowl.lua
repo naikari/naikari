@@ -2,8 +2,9 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Prowling baron">
  <trigger>enter</trigger>
+ <priority>100</priority>
  <chance>100</chance>
- <cond>player.misnActive("Baron") == false and player.misnActive("Prince") == false and system.cur() == system.get("Ingot")</cond>
+ <cond>system.cur() == system.get("Ingot")</cond>
  <flags>
  </flags>
  <notes>
@@ -16,13 +17,12 @@
 --]]
 
 function create()
-    -- TODO: Change this to the Krieger once the Baron has it. Needs "King" mission first.
-    shipname = "Pinnacle"
-    baronship = pilot.add( "Proteron Kahan", "Proteron", planet.get("Ulios"):pos() + vec2.new(-400,-400), nil, {ai="trader"} )
-    baronship:setFaction("Civilian")
-    baronship:rename(shipname)
+    baronship = pilot.add("Proteron Kahan", "Civilian",
+         planet.get("Ulios"):pos() + vec2.new(-400,-400), _("Pinnacle"),
+         {ai="trader"})
     baronship:setInvincible(true)
     baronship:setFriendly()
+    baronship:setSpeedLimit(100)
     baronship:control()
     baronship:moveto(planet.get("Ulios"):pos() + vec2.new( 500, -500), false, false)
     hook.pilot(baronship, "idle", "idle")

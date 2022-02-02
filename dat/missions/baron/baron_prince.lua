@@ -134,8 +134,11 @@ log_text = _([[Baron Sauterfeldt sent you on a wild goose chase to find some anc
 
 
 function create ()
-   -- Note: this mission makes no system claims.
    baronpla, baronsys = planet.get("Ulios")
+   if not misn.claim(baronsys) then
+      misn.finish(false)
+   end
+
    artifactplanetA, artifactsysA = planet.get("Varaati")
    artifactplanetB, artifactsysB = planet.get("Sinclair")
    artifactplanetC, artifactsysC = planet.get("Hurada")
@@ -228,6 +231,10 @@ end
 
 
 function board()
+   player.unboard()
+   pinnacle:setHilight(false)
+   pinnacle:setActiveBoard(false)
+
    if stage == 1 then
       local pname = player.name()
       local sname = player.pilot():name()
@@ -244,25 +251,19 @@ function board()
       set_osd()
 
       hook.land("land")
-      player.unboard()
-      pinnacle:setHealth(100,100)
       idle()
    elseif stage == 2 then
       tk.msg("", not_done_text)
-      player.unboard()
-      pinnacle:setHealth(100,100)
       idle()
    elseif stage == 3 then
       local pname = player.name()
       local sname = player.pilot():name()
       tk.msg("", fmt.f(pay_text, {player=sname, ship=pname}))
-      player.unboard()
-      pinnacle:setHealth(100,100)
-      pinnacle:control(false)
+      pinnacle:taskClear()
+      pinnacle:land()
       player.pay(reward)
       misn.finish(true)
    end
-   pinnacle:setHilight(false)
 end
 
 
@@ -414,6 +415,7 @@ function enter()
             baronpla:pos() + vec2.new(-400,-400), _("Pinnacle"), {ai="trader"})
       pinnacle:setInvincible(true)
       pinnacle:setFriendly()
+      pinnacle:setSpeedLimit(100)
       pinnacle:control()
       pinnacle:setHilight(true)
       pinnacle:moveto(baronpla:pos() + vec2.new(500, -500), false, false)

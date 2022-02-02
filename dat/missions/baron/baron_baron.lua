@@ -100,7 +100,7 @@ log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pi
 function create ()
    mispla, missys = planet.get("Varia")
    paypla, paysys = planet.get("Ulios")
-   if not misn.claim(missys) then
+   if not misn.claim({missys, paysys}) then
       misn.finish(false)
    end
 
@@ -166,8 +166,10 @@ function jumpin()
                paypla:pos() + vec2.new(-400,-400), N_("Pinnacle"),
                {ai="trader"})
          pinnacle:setInvincible(true)
-         pinnacle:control()
+         pinnacle:setFriendly()
+         pinnacle:setSpeedLimit(100)
          pinnacle:setHilight(true)
+         pinnacle:control()
          pinnacle:moveto(paypla:pos() + vec2.new(400, -400), false)
          idlehook = hook.pilot(pinnacle, "idle", "idle")
          hook.pilot(pinnacle, "hail", "hail")
@@ -198,14 +200,14 @@ function hail()
 end
 
 function board()
+   player.unboard()
    tk.msg("", board_text)
    tk.msg("", pay_text)
    player.pay(credits)
-   player.refuel()
-   player.unboard()
-   pinnacle:control(false)
    pinnacle:setHilight(false)
    pinnacle:setActiveBoard(false)
+   pinnacle:taskClear()
+   pinnacle:land()
    baron_addLog(log_text_succeed)
    misn.finish(true)
 end
