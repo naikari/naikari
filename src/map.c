@@ -63,7 +63,6 @@ static int map_drag = 0; /**< Is the user dragging the map? */
 static int map_selected = -1; /**< What system is selected on the map. */
 double map_alpha_decorators = 1.;
 double map_alpha_faction = 1.;
-double map_alpha_env = 1.;
 double map_alpha_path = 1.;
 double map_alpha_names = 1.;
 double map_alpha_markers = 1.;
@@ -887,7 +886,6 @@ else (x) = MAX( y, (x) - dt )
       case MAPMODE_TRAVEL:
          AMAX( map_alpha_decorators );
          AMAX( map_alpha_faction );
-         AMAX( map_alpha_env );
          AMAX( map_alpha_path );
          AMAX( map_alpha_names );
          AMAX( map_alpha_markers );
@@ -896,7 +894,6 @@ else (x) = MAX( y, (x) - dt )
       case MAPMODE_DISCOVER:
          AMIN(map_alpha_decorators);
          ATAR(map_alpha_faction, 0.5);
-         AMIN(map_alpha_env);
          ATAR(map_alpha_path, 0.1);
          AMAX(map_alpha_names);
          ATAR(map_alpha_markers, 0.5);
@@ -905,7 +902,6 @@ else (x) = MAX( y, (x) - dt )
       case MAPMODE_TRADE:
          AMIN( map_alpha_decorators );
          AMIN( map_alpha_faction );
-         AMIN( map_alpha_env );
          AMIN( map_alpha_path );
          AMIN( map_alpha_names );
          AMIN( map_alpha_markers );
@@ -2271,12 +2267,11 @@ void map_clear (void)
 static void map_reset (void)
 {
    map_mode = MAPMODE_TRAVEL;
-   map_alpha_decorators   = 1.;
-   map_alpha_faction      = 1.;
-   map_alpha_env          = 1.;
-   map_alpha_path         = 1.;
-   map_alpha_names        = 1.;
-   map_alpha_markers      = 1.;
+   map_alpha_decorators = 1.;
+   map_alpha_faction = 1.;
+   map_alpha_path = 1.;
+   map_alpha_names = 1.;
+   map_alpha_markers = 1.;
 }
 
 
