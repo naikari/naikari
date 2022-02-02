@@ -921,7 +921,7 @@ else (x) = MAX( y, (x) - dt )
          AMIN(map_alpha_faction);
          ATAR(map_alpha_path, 0.1);
          AMIN(map_alpha_names);
-         AMIN(map_alpha_markers);
+         ATAR(map_alpha_markers, 0.1);
          break;
    }
 #undef AMAX
