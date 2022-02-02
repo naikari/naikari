@@ -1,39 +1,53 @@
---[[
+--[[--
+Generic mission-helping functions.
 
-   Mission Helper
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+@module misnhelper
 --]]
 
+local fmt = require "fmt"
 
---[[
+local misnhelper = {}
+
+
+--[[--
 -- @brief Wrapper for player.misnActive that works on a table of missions.
 --
--- @usage if anyMissionActive( { "Cargo", "Cargo Rush" } ) then -- at least one Cargo or Cargo Rush is active
+-- @usage if anyMissionActive({"Cargo", "Cargo Rush"}) then
 --
---    @luaparam names Table of names of missions to check
---    @luareturn true if any of the listed missions are active
---
--- @luafunc anyMissionActive( names )
+--    @tparam table names Table of names of missions to check
+--    @luatreturn boolean true if any of the listed missions are active,
+--       or false otherwise.
 --]]
-function anyMissionActive( names )
-   for i, j in ipairs( names ) do
-      if player.misnActive( j ) then
+function misnhelper.anyMissionActive(names)
+   for i, name in ipairs(names) do
+      if player.misnActive(name) then
          return true
       end
    end
 
    return false
 end
+
+
+--[[--
+-- @brief Shows a player message informing of a mission failure.
+--
+-- Note: this does not actually end the mission. It should be followed
+-- up with a misn.finish(false) call.
+--
+-- @usage showFailMsg(_("You failed to deliver the cake!"))
+--
+--    @tparam[opt] string reason The reason the player failed the
+--       mission.
+--]]
+function misnhelper.showFailMsg(reason)
+   if reason ~= nil then
+      local message = fmt.f(_("MISSION FAILED: {reason}"), {reason=reason})
+      player.msg("#r" .. message .. "#0")
+   else
+      player.msg("#r" .. _("MISSION FAILED!") .. "#0")
+   end
+end
+
+
+return misnhelper

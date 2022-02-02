@@ -29,7 +29,7 @@
 --]]
 
 local fleet = require "fleet"
-require "misnhelper"
+local mh = require "misnhelper"
 require "missions/flf/flf_common"
 
 
@@ -113,7 +113,7 @@ function enter_bar ()
       "FLF Commodity Run", "Eliminate a Dvaered Patrol",
       "Divert the Dvaered Forces", "Eliminate an Empire Patrol",
       "FLF Pirate Disturbance", "Rogue FLF" }
-   if not anyMissionActive(flf_missions) then
+   if not mh.anyMissionActive(flf_missions) then
       hook.rm(bar_hook)
       hook.rm(abort_hook)
       music.stop()
