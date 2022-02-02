@@ -19,7 +19,7 @@ function create()
    smallfont_h = gfx.fontSize(true)
    gui.viewport( 0, 28, screen_w, screen_h - 28 )
 
-   fps_y = 32
+   fps_y = 48 + deffont_h
 
    --Colors
    col_txt_bar = colour.new( 192/255, 198/255, 217/255 )

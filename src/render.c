@@ -239,13 +239,17 @@ void render_all( double game_dt, double real_dt )
    if (pp_gui)
       render_fbo_list( dt, pp_shaders_list[PP_LAYER_GUI], &cur, !pp_final );
 
-   /* We set the to fullscreen, ignoring the GUI modifications. */
-   gl_viewport(0, 0, gl_screen.nw, gl_screen.nh);
-
    /* Top stuff. */
    ovr_render(dt);
    display_fps( real_dt ); /* Exception using real_dt. */
+
+   /* We set the viewport to fullscreen, ignoring the GUI setting. */
+   gl_viewport(0, 0, gl_screen.nw, gl_screen.nh);
+
    toolkit_render();
+
+   /* Restore viewport so it doesn't mess anything else up. */
+   gl_defViewport();
 
    /* Final post-processing. */
    if (pp_final)

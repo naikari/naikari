@@ -1672,10 +1672,16 @@ void input_handle( SDL_Event* event )
    }
 
    if (toolkit_isOpen()) { /* toolkit handled completely separately */
+      /* We set the viewport to fullscreen, ignoring the GUI setting. */
+      gl_viewport(0, 0, gl_screen.nw, gl_screen.nh);
+
       if (toolkit_input(event))
          return; /* we don't process it if toolkit grabs it */
       if (ismouse)
          return; /* Toolkit absorbs everything mousy. */
+
+      /* Restore viewport so it doesn't mess anything else up. */
+      gl_defViewport();
    }
 
    if (ovr_isOpen())
