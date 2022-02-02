@@ -894,12 +894,12 @@ else (x) = MAX( y, (x) - dt )
          break;
 
       case MAPMODE_DISCOVER:
-         ATAR( map_alpha_decorators, 0.5 );
-         ATAR( map_alpha_faction, 0.5 );
-         AMIN( map_alpha_env );
-         AMIN( map_alpha_path );
-         AMAX( map_alpha_names );
-         AMIN( map_alpha_markers );
+         AMIN(map_alpha_decorators);
+         ATAR(map_alpha_faction, 0.5);
+         AMIN(map_alpha_env);
+         ATAR(map_alpha_path, 0.1);
+         AMAX(map_alpha_names);
+         ATAR(map_alpha_markers, 0.5);
          break;
 
       case MAPMODE_TRADE:
