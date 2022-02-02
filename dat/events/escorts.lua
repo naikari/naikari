@@ -418,13 +418,26 @@ function pilot_hail(p, arg)
             edata.name, edata.ship, fmt.credits(edata.deposit),
             edata.royalty * 100, scredits, getTotalRoyalties() * 100))
 
-   local n, s = tk.choice("", approachtext, _("Fire pilot"), _("Do nothing"))
+   local n, s = tk.choice("", approachtext,
+         _("Fire pilot"), _("Issue Order"), _("Do nothing"))
 
    if s == _("Fire pilot") and tk.yesno("", fmt.f(
             _("Are you sure you want to fire {pilot}? This cannot be undone and you will not get any of the deposit back."),
             {pilot=edata.name})) then
       pilot_disbanded(edata)
       player.msg(fmt.f(_("You have fired {pilot}."), {pilot=edata.name}))
+   elseif s == _("Issue Order") then
+      local n, s = tk.choice(_("Escort Orders"),
+            _("Select the order to give to this escort."),
+            _("Hold Position"), _("Return To Ship"), _("Clear Orders"),
+            _("Cancel"))
+      if s == _("Hold Position") then
+         player.pilot():msg(edata.pilot, "e_hold", 0)
+      elseif s == _("Return To Ship") then
+         player.pilot():msg(edata.pilot, "e_return", 0)
+      elseif s == _("Clear Orders") then
+         player.pilot():msg(edata.pilot, "e_clear", 0)
+      end
    end
 end
 
