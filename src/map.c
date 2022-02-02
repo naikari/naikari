@@ -61,11 +61,13 @@ static double map_xpos = 0.; /**< Map X position. */
 static double map_ypos = 0.; /**< Map Y position. */
 static int map_drag = 0; /**< Is the user dragging the map? */
 static int map_selected = -1; /**< What system is selected on the map. */
-double map_alpha_decorators = 1.;
-double map_alpha_faction = 1.;
-double map_alpha_path = 1.;
-double map_alpha_names = 1.;
-double map_alpha_markers = 1.;
+static double map_alpha_decorators = 1.;
+static double map_alpha_faction = 1.;
+static double map_alpha_path = 1.;
+static double map_alpha_names = 1.;
+static double map_alpha_markers = 1.;
+static int map_minimal = 0;
+static int set_map_minimal = 0;
 static MapMode map_mode = MAPMODE_TRAVEL; /**< Current map mode. */
 static MapMode set_map_mode = MAPMODE_TRAVEL; /**< User map mode choice. */
 static StarSystem **map_path = NULL; /**< Array (array.h): The path to current selected system. */
@@ -110,6 +112,7 @@ static int map_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
 static void map_reset (void);
 static int map_keyHandler( unsigned int wid, SDL_Keycode key, SDL_Keymod mod );
 static void map_buttonZoom( unsigned int wid, char* str );
+static void map_chkMinimal(unsigned int wid, char* str);
 static void map_buttonCommodity( unsigned int wid, char* str );
 static void map_buttonSystemMap(unsigned int wid, char* str);
 static void map_selectCur (void);
@@ -222,6 +225,7 @@ void map_open (void)
    map_reset();
    listMapModeVisible = 0;
    map_mode = set_map_mode;
+   map_minimal = set_map_minimal;
 
    /* Not under manual control. */
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ))
@@ -359,6 +363,10 @@ void map_open (void)
    window_addButtonKey(wid, 20, 20+10+BUTTON_HEIGHT,
          30, BUTTON_HEIGHT, "btnZoomIn", "+",
          map_buttonZoom, SDLK_EQUALS);
+
+   /* Minimal display checkbox */
+   window_addCheckbox(wid, 20, -10, (w-20) / 3, 20,
+         "chkMinimal", _("Minimal Mode"), map_chkMinimal, set_map_minimal);
 
    /* Situation text */
    window_addText(wid, 20+30+10, 10,
@@ -884,27 +892,36 @@ if ((x) < y) (x) = MIN( y, (x) + dt ); \
 else (x) = MAX( y, (x) - dt )
    switch (map_mode) {
       case MAPMODE_TRAVEL:
-         AMAX( map_alpha_decorators );
-         AMAX( map_alpha_faction );
-         AMAX( map_alpha_path );
-         AMAX( map_alpha_names );
-         AMAX( map_alpha_markers );
+         if (map_minimal) {
+            AMIN(map_alpha_decorators);
+            AMIN(map_alpha_faction);
+         }
+         else {
+            AMAX(map_alpha_decorators);
+            AMAX(map_alpha_faction);
+         }
+         AMAX(map_alpha_path);
+         AMAX(map_alpha_names);
+         AMAX(map_alpha_markers);
          break;
 
       case MAPMODE_DISCOVER:
          AMIN(map_alpha_decorators);
-         ATAR(map_alpha_faction, 0.5);
+         if (map_minimal)
+            AMIN(map_alpha_faction);
+         else
+            ATAR(map_alpha_faction, 0.5);
          ATAR(map_alpha_path, 0.1);
          AMAX(map_alpha_names);
          ATAR(map_alpha_markers, 0.5);
          break;
 
       case MAPMODE_TRADE:
-         AMIN( map_alpha_decorators );
-         AMIN( map_alpha_faction );
-         AMIN( map_alpha_path );
-         AMIN( map_alpha_names );
-         AMIN( map_alpha_markers );
+         AMIN(map_alpha_decorators);
+         AMIN(map_alpha_faction);
+         ATAR(map_alpha_path, 0.1);
+         AMIN(map_alpha_names);
+         AMIN(map_alpha_markers);
          break;
    }
 #undef AMAX
@@ -2002,6 +2019,18 @@ static void map_buttonZoom( unsigned int wid, char* str )
 }
 
 /**
+ * @brief Handles changes to the minimal mode checkbox.
+ *
+ *    @param wid Window sending events.
+ *    @param str Name of the checkbox causing the event.
+ */
+static void map_chkMinimal(unsigned int wid, char* str)
+{
+   set_map_minimal = window_checkboxState(wid, str);
+   map_minimal = set_map_minimal;
+}
+
+/**
  * @brief Generates the list of map modes, i.e. commodities that have been seen so far.
  */
 static void map_genModeList(void)
@@ -2272,6 +2301,7 @@ static void map_reset (void)
    map_alpha_path = 1.;
    map_alpha_names = 1.;
    map_alpha_markers = 1.;
+   map_minimal = 0;
 }
 
 
