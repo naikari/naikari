@@ -17,30 +17,32 @@ nil values are allowed in the location and pilotname tables, since they
 are indexed directly based on looping through the ship table rather than
 used directly.
 
-   @usage pilots = fleet.add(2, {"Rhino", "Koala"}, "Trader")
-   @usage pilots = fleet.add(1, {"Mule", "Llama"}, {"Trader", "Civilian"})
 
-      @param count Number of times to repeat the pattern.
-      @param ship Ship to add.
-      @param faction Faction to give the pilot.
-      @param location Location to jump in from, take off from, or appear
-         at. If set to nil (and not a table), all pilots will spawn from
-         the same random point, based on the faction of the first pilot
-         in the fleet. If set to a table containing nil values, each
-         pilot with a nil location will spawn in its own individually
-         determined random location.
-      @param pilotname Name to give the pilot.
-      @param parameters Table of extra parameters to pass pilot.add().
-      @param leader A pilot to add to the start of the fleet and make
-         into the fleet's leader, true to automatically assign the first
-         ship added as the fleet's leader, or nil (default) for no
-         leader.
-      @return Ordered table of created pilots.
+
+@usage pilots = fleet.add(2, {"Rhino", "Koala"}, "Trader")
+@usage pilots = fleet.add(1, {"Mule", "Llama"}, {"Trader", "Civilian"})
+
+   @param count Number of times to repeat the pattern.
+   @param ship Ship to add.
+   @param faction Faction to give the pilot.
+   @param[opt] location Location to jump in from, take off from, or
+      appear at. If set to nil (and not a table), all pilots will spawn
+      from the same random point, based on the faction of the first
+      pilot in the fleet. If set to a table containing nil values, each
+      pilot with a nil location will spawn in its own individually
+      determined random location.
+   @param[opt] pilotname Name to give the pilot.
+   @param[opt] parameters Table of extra parameters to pass pilot.add().
+   @param[opt] leader A pilot to add to the start of the fleet and make
+      into the fleet's leader, true to automatically assign the first
+      ship added as the fleet's leader, or nil (default) for no
+      leader.
+   @treturn {Pilot,...} Ordered table of created pilots.
 --]]
--- TODO: With a little work we can support a table of parameters tables,
--- but no one even wants that. (Yet?)
 function fleet.add(count, ship, faction, location, pilotname, parameters,
       leader)
+   -- TODO: With a little work we can support a table of parameters
+   -- tables, but no one even wants that. (Yet?)
    local pilotnames = {}
    local locations = {}
    local factions = {}
