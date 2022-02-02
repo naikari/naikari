@@ -1,8 +1,21 @@
+--[[--
+Functions for formatting strings.
+
+@module fmt
+--]]
 local fmt = {}
 
 
--- Converts an integer into a human readable string, delimiting every third digit with a comma.
--- Note: rounds input to the nearest integer.
+--[[--
+Converts an integer into a human readable string.
+
+The conversion rounds to the nearest integer and inserts commas every
+three places.
+
+@usage s = fmt.number(60000000) -- Converts to "60,000,000"
+   @tparam number number Number to convert.
+   @treturn string The converted string.
+--]]
 function fmt.number(number)
    number = math.floor(number + 0.5)
    local numberstring = ""
@@ -15,16 +28,15 @@ function fmt.number(number)
 end
 
 
---[[
--- @brief Converts a number of credits to a string (e.g. "10 ¢").
---
--- The conversion method is the same as in C credits2str function, but
--- locked to using 2 decimal places.
---
--- @usage misn.setReward(fmt.credits(100000))
---
---    @param credits Number of credits.
---    @return A string taking the form of "X ¤".
+--[[--
+Converts a number of credits to a string (e.g. "10.00 k¢").
+
+The conversion method is the same as in C credits2str function, but
+locked to using 2 decimal places.
+
+@usage misn.setReward(fmt.credits(100000))
+   @tparam number credits Number of credits.
+   @treturn string The converted string.
 --]]
 function fmt.credits(credits)
    if credits >= 1e18 then
@@ -45,15 +57,15 @@ function fmt.credits(credits)
 end
 
 
---[[
--- @brief Converts a number of tonnes to a string.
---
--- DO NOT USE THIS WITHIN SENTENCES. Relying on it for that use-case can
--- lead to sentences which cannot be properly translated. Use this
--- function ONLY for cases where a number of tonnes is shown alone.
---
---    @param tonnes Number of tonnes.
---    @return A string taking the form of "X tonne" or "X tonnes".
+--[[--
+Converts a number of tonnes to a string.
+
+DO NOT USE THIS WITHIN SENTENCES. Relying on it for that use-case can
+lead to sentences which cannot be properly translated. Use this
+function ONLY for cases where a number of tonnes is shown alone.
+
+   @tparam number tonnes Number of tonnes.
+   @treturn string The converted string.
 --]]
 function fmt.tonnes(tonnes)
    -- Translator note: this form represents an abbreviation of "_ tonnes".
@@ -69,9 +81,9 @@ Inspired by
 similar to Python's str.format() and simplified. Prefer this over
 string.format because it allows translations to change the word order.
 
-   @usage fmt.f(_("Land on {pntname} ({sysname} system)"), {pntname=returnpnt:name(), sysname=returnsys:name()})
-   @usage fmt.f(_("As easy as {1}, {2}, {3}"), {"one", "two", "three"})
-   @usage fmt.f(_("A few digits of pi: {1:.2f}"), {math.pi})
+@usage fmt.f(_("Land on {pntname} ({sysname} system)"), {pntname=returnpnt:name(), sysname=returnsys:name()})
+@usage fmt.f(_("As easy as {1}, {2}, {3}"), {"one", "two", "three"})
+@usage fmt.f(_("A few digits of pi: {1:.2f}"), {math.pi})
 
    @tparam string str Format string which may include placeholders of
       the form "{var}" or "{var:%6.3f}" (where the expression after the
