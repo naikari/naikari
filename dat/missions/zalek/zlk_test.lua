@@ -50,6 +50,7 @@ accept_text = _([[You are given a dangerous-looking Za'lek Test Engine. You will
 
 pay_text = {
    _([[You arrive at your destination, happy to be safe, and return the experimental engine. You are given your pay plus a refund of the deposit you paid for the engine.]]),
+   _([[As you collect your pay and deposit, you ask one of the researchers why they don't use drones for dangerous jobs like this. The researcher incredulously answers that they wouldn't want to risk destroying a precious drone.]]),
 }
 
 refund_text = _([[The experimental engine is returned and you are given your {credits} deposit back.]])
@@ -91,19 +92,19 @@ function create()
       riskreward = 0
    elseif risk <= 25 then
       risktext = piracyrisk[2]
-      riskreward = 40
+      riskreward = 250
    elseif risk > 25 and risk <= 100 then
       risktext = piracyrisk[3]
-      riskreward = 100
+      riskreward = 500
    else
       risktext = piracyrisk[4]
-      riskreward = 200
+      riskreward = 500
    end
 
    jumpreward = 10000
-   distreward = 0.01
+   distreward = 0.1
    reward = (1.25^tier
-         * (risk*riskreward + njumps*jumpreward + dist*distreward + 50000)
+         * (risk*riskreward + njumps*jumpreward + dist*distreward + 75000)
          * (1 + 0.05*rnd.twosigma()))
    deposit = outfit.price("Za'lek Test Engine")
 
