@@ -224,7 +224,7 @@ int escorts_attack( Pilot *parent )
       lua_pop(naevL, 1);
    }
    if ((ret == 0) && (parent == player.p))
-      player_message(_("#gEscorts: #0Attacking %s."), t->name);
+      player_message(_("#FEscorts:#0 Attacking %s."), t->name);
    return ret;
 }
 /**
@@ -237,7 +237,7 @@ int escorts_hold( Pilot *parent )
    int ret;
    ret = escort_command( parent, "e_hold", 0 );
    if ((ret == 0) && (parent == player.p))
-         player_message(_("#gEscorts: #0Holding position."));
+      player_message(_("#FEscorts#0: Holding formation."));
    return ret;
 }
 /**
@@ -250,7 +250,7 @@ int escorts_return( Pilot *parent )
    int ret;
    ret = escort_command( parent, "e_return", 0 );
    if ((ret == 0) && (parent == player.p))
-      player_message(_("#gEscorts: #0Returning to ship."));
+      player_message(_("#FEscorts:#0 Returning to ship."));
    return ret;
 }
 /**
@@ -263,7 +263,7 @@ int escorts_clear( Pilot *parent )
    int ret;
    ret = escort_command( parent, "e_clear", 0 );
    if ((ret == 0) && (parent == player.p))
-      player_message(_("#gEscorts: #0Clearing orders."));
+      player_message(_("#FEscorts:#0 Clearing orders."));
    return ret;
 }
 
@@ -282,7 +282,7 @@ int escort_playerCommand( Pilot *e )
    /* "Attack My Target" order is omitted deliberately since e is your
     * target, making "Attack My Target" a useless command. */
    const char *opts[] = {
-      _("Hold Position"),
+      _("Hold Formation"),
       _("Return To Ship"),
       _("Clear Orders"),
       _("Cancel")
@@ -304,15 +304,18 @@ int escort_playerCommand( Pilot *e )
    ret = dialogue_runChoice();
    if (ret != NULL) {
       if (strcmp(ret, opts[0]) == 0) { /* Hold position */
-         pilot_msg( player.p, e, "e_hold", 0 );
+         pilot_msg(player.p, e, "e_hold", 0);
+         player_message(_("#F%s#0: Holding formation."), e->name);
          return 0;
       }
       else if (strcmp(ret, opts[1]) == 0) { /* Return to ship */
-         pilot_msg( player.p, e, "e_return", 0 );
+         pilot_msg(player.p, e, "e_return", 0);
+         player_message(_("#F%s:#0 Returning to ship."), e->name);
          return 0;
       }
       else if (strcmp(ret, opts[2]) == 0) { /* Clear orders */
-         pilot_msg( player.p, e, "e_clear", 0 );
+         pilot_msg(player.p, e, "e_clear", 0);
+         player_message(_("#F%s:#0 Clearing orders."), e->name);
          return 0;
       }
    }

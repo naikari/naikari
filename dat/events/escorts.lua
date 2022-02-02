@@ -429,14 +429,17 @@ function pilot_hail(p, arg)
    elseif s == _("Issue Order") then
       local n, s = tk.choice(_("Escort Orders"),
             _("Select the order to give to this escort."),
-            _("Hold Position"), _("Return To Ship"), _("Clear Orders"),
+            _("Hold Formation"), _("Return To Ship"), _("Clear Orders"),
             _("Cancel"))
-      if s == _("Hold Position") then
+      if s == _("Hold Formation") then
          player.pilot():msg(p, "e_hold", 0)
+         player.msg(string.format(_("#F%s:#0 Holding formation."), p:name()))
       elseif s == _("Return To Ship") then
          player.pilot():msg(p, "e_return", 0)
+         player.msg(string.format(_("#F%s:#0 Returning to ship."), p:name()))
       elseif s == _("Clear Orders") then
          player.pilot():msg(p, "e_clear", 0)
+         player.msg(string.format(_("#F%s:#0 Clearing orders."), p:name()))
       end
    end
 end
