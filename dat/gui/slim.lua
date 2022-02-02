@@ -3,7 +3,7 @@
 --]]
 
 require "numstring"
-playerform = require "scripts/playerform"
+eh = require "escorthelper"
 
 function create()
 
@@ -748,7 +748,7 @@ function render( dt, dt_mod )
       button.y = y
       button.w = width
       button.h = height
-      button.action = playerform
+      button.action = eh.playerform
 
       local col = colour.new( .10, .10, .10 )
       if button.state == "mouseover" then

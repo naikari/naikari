@@ -3,8 +3,7 @@
 --]]
 
 require "numstring"
-local playerform = require "scripts/playerform"
-local formation = require "scripts/formation"
+local eh = require "escorthelper"
 
 function create()
    --Get Player
@@ -956,9 +955,15 @@ function render( dt )
       base_x = nil
       y = tbar_y - height
 
-      local my_buttons = { "formation" }
-      local button_text = { formation = _("Set formation") }
-      local button_action = { formation = playerform }
+      local my_buttons = {"formation", "orders"}
+      local button_text = {
+         formation = _("Set Formation"),
+         orders = _("Issue Orders"),
+      }
+      local button_action = {
+         formation = eh.playerform,
+         orders = eh.issue_orders,
+      }
 
       if ta_flt_pane_x ~= nil and ta_flt_pane_y ~= nil then
          base_x = ta_flt_pane_x + ta_flt_pane_w/2

@@ -432,11 +432,11 @@ function pilot_hail(p, arg)
             _("Hold Position"), _("Return To Ship"), _("Clear Orders"),
             _("Cancel"))
       if s == _("Hold Position") then
-         player.pilot():msg(edata.pilot, "e_hold", 0)
+         player.pilot():msg(p, "e_hold", 0)
       elseif s == _("Return To Ship") then
-         player.pilot():msg(edata.pilot, "e_return", 0)
+         player.pilot():msg(p, "e_return", 0)
       elseif s == _("Clear Orders") then
-         player.pilot():msg(edata.pilot, "e_clear", 0)
+         player.pilot():msg(p, "e_clear", 0)
       end
    end
 end
