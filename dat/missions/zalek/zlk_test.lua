@@ -70,3 +70,57 @@ function create()
    misn.finish(false)
 end
 
+
+function outfit_mounted(oname, outfits)
+   outfits = outfits or player.pilot():outfits()
+   for i, o in ipairs(outfits) do
+      if o == outfit.get(oname) then
+         return true
+      end
+   end
+   return false
+end
+
+
+function outfit_owned(oname)
+   for i, o in ipairs(player.outfits()) do
+      if o == outfit.get(oname) then
+         return true
+      end
+   end
+   return false
+end
+
+
+function remove_engine()
+   if player.isLanded() and outfit_mounted("Za'lek Test Engine") then
+      player.pilot():outfitRm("Za'lek Test Engine")
+      if not planet.cur():services()["outfits"] then
+         player.pilot():outfitAdd("Beat Up Small Engine")
+      end
+      return true
+   end
+
+   if outfit_owned("Za'lek Test Engine") then
+      player.outfitRm("Za'lek Test Engine")
+      return true
+   end
+
+   for i, s in ipairs(player.ships()) do
+      if outfit_mounted("Za'lek Test Engine", player.shipOutfits(s.name)) then
+         player.shipOutfitRm(s.name, "Za'lek Test Engine")
+         return true
+      end
+   end
+
+   return false
+end
+
+
+function abort()
+   if remove_engine() then
+      player.pay(outfit.price("Za'lek Test Engine"), "adjust")
+   end
+   misn.finish(false)
+end
+
