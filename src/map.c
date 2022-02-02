@@ -462,7 +462,10 @@ static void map_update( unsigned int wid )
    int i;
    StarSystem *sys;
    StarSystem **path;
-   int f, h, x, y;
+   int h, x, y;
+   int f, new_f;
+   double f_presence;
+   int f_multiple;
    unsigned int services_u, services_q;
    unsigned int services_f, services_n, services_r, services_h;
    int hasPlanets;
@@ -568,25 +571,28 @@ static void map_update( unsigned int wid )
    window_modifyText( wid, "txtSysname", _(sys->name) );
 
    f = -1;
+   f_presence = 0.;
+   f_multiple = 0;
    for (i=0; i<array_size(sys->planets); i++) {
       if (sys->planets[i]->real != ASSET_REAL)
          continue;
       if (!planet_isKnown(sys->planets[i]))
          continue;
-      if ( (sys->planets[i]->faction > 0)
-            && (!faction_isKnown(sys->planets[i]->faction)) )
+
+      new_f = sys->planets[i]->faction;
+
+      if ((new_f > 0) && !faction_isKnown(new_f))
          continue;
 
-      if ((f == -1) && (sys->planets[i]->faction > 0)) {
-         f = sys->planets[i]->faction;
-      }
-      else if (f != sys->planets[i]->faction /** @todo more verbosity */
-               && (sys->planets[i]->faction > 0)) {
-         f = sys->faction;
-         snprintf( buf, sizeof(buf), _("Multiple") );
-         break;
+      if ((f != new_f) && (f > 0) && (new_f > 0))
+         f_multiple = 1;
+
+      if ((new_f > 0) && (system_getPresence(sys, new_f) > f_presence)) {
+         f = new_f;
+         f_presence = system_getPresence(sys, new_f);
       }
    }
+
    if (f == -1) {
       window_modifyImage( wid, "imgFaction", NULL, 0, 0 );
       window_modifyText( wid, "txtFaction", _("N/A") );
@@ -594,8 +600,10 @@ static void map_update( unsigned int wid )
       h = gl_smallFont.h;
    }
    else {
-      if (i==array_size(sys->planets)) /* saw them all and all the same */
-         snprintf( buf, sizeof(buf), "%s", faction_longname(f) );
+      if (f_multiple)
+         snprintf(buf, sizeof(buf), "%s", _("Multiple"));
+      else
+         snprintf(buf, sizeof(buf), "%s", faction_longname(f));
 
       /* Modify the image. */
       logo = faction_logoSmall(f);
@@ -675,22 +683,25 @@ static void map_update( unsigned int wid )
    services_r = 0;
    services_h = 0;
    for (i=0; i<array_size(sys->planets); i++) {
-      if (planet_isKnown(sys->planets[i])) {
-         if (!planet_hasService(sys->planets[i], PLANET_SERVICE_INHABITED))
-            services_u |= sys->planets[i]->services;
-         else if (!faction_isKnown(sys->planets[i]->faction))
-            services_q |= sys->planets[i]->services;
-         else if (sys->planets[i]->can_land) {
-            if (areAllies(FACTION_PLAYER, sys->planets[i]->faction))
-               services_f |= sys->planets[i]->services;
-            else
-               services_n |= sys->planets[i]->services;
-         }
-         else if (areEnemies(FACTION_PLAYER, sys->planets[i]->faction))
-            services_h |= sys->planets[i]->services;
+      if (!planet_isKnown(sys->planets[i]))
+         continue;
+
+      planet_updateLand(sys->planets[i]);
+
+      if (!planet_hasService(sys->planets[i], PLANET_SERVICE_INHABITED))
+         services_u |= sys->planets[i]->services;
+      else if (!faction_isKnown(sys->planets[i]->faction))
+         services_q |= sys->planets[i]->services;
+      else if (sys->planets[i]->can_land) {
+         if (areAllies(FACTION_PLAYER, sys->planets[i]->faction))
+            services_f |= sys->planets[i]->services;
          else
-            services_r |= sys->planets[i]->services;
+            services_n |= sys->planets[i]->services;
       }
+      else if (areEnemies(FACTION_PLAYER, sys->planets[i]->faction))
+         services_h |= sys->planets[i]->services;
+      else
+         services_r |= sys->planets[i]->services;
    }
    buf[0] = '\0';
    p = 0;
@@ -1307,8 +1318,11 @@ void map_renderSystems( double bx, double by, double x, double y,
       double w, double h, double r, int editor)
 {
    int i, j;
-   int f;
+   int f, new_f;
+   double f_presence;
    int has_planet;
+   unsigned int services_u, services_q;
+   unsigned int services_f, services_n, services_r, services_h;
    const glColour *col;
    StarSystem *sys;
    double tx, ty;
@@ -1345,6 +1359,7 @@ void map_renderSystems( double bx, double by, double x, double y,
 
          f = -1;
          has_planet = 0;
+         f_presence = 0.;
          for (j=0; j<array_size(sys->planets); j++) {
             if (sys->planets[j]->real != ASSET_REAL)
                continue;
@@ -1352,38 +1367,74 @@ void map_renderSystems( double bx, double by, double x, double y,
                continue;
 
             has_planet = 1;
+            new_f = sys->planets[j]->faction;
 
-            if (!editor && (sys->planets[j]->faction > 0)
-                  && (!faction_isKnown(sys->planets[j]->faction)))
+            if (!editor && (new_f > 0) && (!faction_isKnown(new_f)))
                continue;
 
-            if ((f == -1) && (sys->planets[j]->faction > 0)) {
-               f = sys->planets[j]->faction;
-            }
-            else if (f != sys->planets[j]->faction
-                  && (sys->planets[j]->faction > 0)) {
+            if (new_f == sys->faction) {
                f = sys->faction;
                break;
+            }
+            else if ((new_f > 0)
+                  && (system_getPresence(sys, new_f) > f_presence)) {
+               f = new_f;
+               f_presence = system_getPresence(sys, new_f);
             }
          }
 
          if (!has_planet)
             continue;
 
-         /* Planet colours */
-         if (f < 0)
-            col = &cInert;
-         else if (editor)
-            col = &cNeutral;
-         else
-            col = faction_getColour(f);
+         services_u = 0;
+         services_q = 0;
+         services_f = 0;
+         services_n = 0;
+         services_r = 0;
+         services_h = 0;
+         for (j=0; j<array_size(sys->planets); j++) {
+            if (!planet_isKnown(sys->planets[j]))
+               continue;
 
+            planet_updateLand(sys->planets[j]);
+
+            if (!planet_hasService(sys->planets[j], PLANET_SERVICE_INHABITED))
+               services_u |= sys->planets[j]->services;
+            else if (!faction_isKnown(sys->planets[j]->faction))
+               services_q |= sys->planets[j]->services;
+            else if (sys->planets[j]->can_land) {
+               if (areAllies(FACTION_PLAYER, sys->planets[j]->faction))
+                  services_f |= sys->planets[j]->services;
+               else
+                  services_n |= sys->planets[j]->services;
+            }
+            else if (areEnemies(FACTION_PLAYER, sys->planets[j]->faction))
+               services_h |= sys->planets[j]->services;
+            else {
+               services_r |= sys->planets[j]->services;
+            }
+         }
+
+         /* Planet colours */
          if (editor) {
+            col = (f < 0) ? &cInert : &cNeutral;
+
             /* Radius slightly shorter. */
             gl_drawCircle( tx, ty, 0.5 * r, col, 1 );
          }
-         else
+         else {
+            if ((services_r & PLANET_SERVICE_LAND)
+                  && !(services_f & PLANET_SERVICE_LAND)
+                  && !(services_n & PLANET_SERVICE_LAND)
+                  && !(services_u & PLANET_SERVICE_LAND)
+                  && !(services_h & PLANET_SERVICE_LAND)
+                  && !(services_q & PLANET_SERVICE_LAND))
+               col = &cRestricted;
+            else
+               col = faction_getColour(f);
+
             gl_drawCircle( tx, ty, 0.65 * r, col, 1 );
+         }
       }
       else if (map_mode == MAPMODE_DISCOVER) {
          gl_drawCircle( tx, ty, r, &cInert, 0 );
