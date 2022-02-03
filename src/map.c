@@ -2077,8 +2077,8 @@ static void map_buttonZoom( unsigned int wid, char* str )
  */
 static void map_chkMinimal(unsigned int wid, char* str)
 {
-   set_map_minimal = window_checkboxState(wid, str);
-   map_minimal = set_map_minimal;
+   map_minimal = window_checkboxState(wid, str);
+   set_map_minimal = map_minimal;
 }
 
 /**
@@ -2319,6 +2319,7 @@ void map_cleanup(void)
 
    /* Reset map mode choice as well as that is session-specific. */
    set_map_mode = MAPMODE_TRAVEL;
+   set_map_minimal = 0;
 }
 
 
@@ -2329,6 +2330,7 @@ void map_clear (void)
 {
    map_setZoom(1.);
    map_mode = MAPMODE_TRAVEL;
+   map_minimal = 0;
    if (cur_system != NULL) {
       map_xpos = cur_system->pos.x;
       map_ypos = cur_system->pos.y;
