@@ -462,10 +462,10 @@ static void load_menu_load( unsigned int wdw, char *str )
    pos = toolkit_getListPos( wid, "lstSaves" );
 
    /* Check version. */
-   diff = naev_versionCompare( load_saves[pos].version );
-   if (ABS(diff) >= 2) {
+   diff = naev_versionCompare(load_saves[pos].version);
+   if (ABS(diff) <= -2) {
       if (!dialogue_YesNo( _("Save game version mismatch"),
-            _("Save game '%s' version does not match Naikari version:\n"
+            _("Save game '%s' version is newer than Naikari version:\n"
             "   Save version: #r%s#0\n"
             "   Naikari version: %s\n"
             "Are you sure you want to load this game? It may lose data."),
@@ -519,7 +519,7 @@ static void load_menu_delete( unsigned int wdw, char *str )
 
 static void load_compatSlots (void)
 {
-   /* Vars for loading old saves. */
+   /* Corrects for too new save versions. */
    int i,j;
    char **sships;
    glTexture **tships;
@@ -668,7 +668,7 @@ static int load_gameInternal( const char* file, const char* version )
 
    /* Sanitize for new version. */
    if (version_diff <= -2) {
-      WARN( _("Old version detected. Sanitizing ships for slots") );
+      WARN(_("New save data detected. Sanitizing ships for slots"));
       load_compatSlots();
    }
 
