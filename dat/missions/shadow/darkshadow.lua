@@ -87,8 +87,6 @@ joefailtext = _([[Jorek is enraged. "Dammit, {player}! I told you to pick up tha
 
 patrolcomm = _("All pilots, we've detected McArthy on that ship! Break and intercept!")
 
-bar_enter_text = _([[You step into the bar, expecting to find Jorek McArthy sitting somewhere at a table. However, you don't see him anywhere. You decide to go for a drink to contemplate your next move. Then, you notice the barman is giving you a curious look.]])
-
 NPCdesc = _("The barman seems to be eyeing you in particular.")
 
 Jordesc = _("There he is, Jorek McArthy, the man you've been chasing across half the galaxy. What he's doing on this piece of junk is unclear.")
@@ -406,7 +404,6 @@ end
 function land()
     if planet.cur() == jorekplanet1 and stage == 2 then
         -- Thank you player, but our SHITMAN is in another castle.
-        tk.msg("", bar_enter_text)
         barmanNPC = misn.npcAdd("barman", _("Barman"), "neutral/barman.png",
                 NPCdesc, 20)
     elseif planet.cur() == jorekplanet2 and stage == 3 then
