@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="BioPlasma Fang Stage X">
+<outfit name="BioPlasma Fang Stage {stage}">
  <general>
   <slot prop="bio_weapon">weapon</slot>
   <size>small</size>
   <license>Medium Weapon License</license>
-  <rarity>6</rarity>
+  <rarity>{rarity}</rarity>
   <mass>30</mass>
-  <price>42000</price>
-  <description>The BioPlasma Fang takes the enhancement of the BioPlasma Claw even further. While its cognitive requirements are relatively high, they're still low enough for medium-sized organisms to handle. They are commonly found on Soromid Odiums, which usually have enough brain capacity left over to render the damage upgrade worthwhile. This organ has reached Stage X, its full potential.</description>
+  <price>{price}</price>
+  <description>The BioPlasma Fang takes the enhancement of the BioPlasma Claw even further. While its cognitive requirements are relatively high, they're still low enough for medium-sized organisms to handle. They are commonly found on Soromid Odiums, which usually have enough brain capacity left over to render the damage upgrade worthwhile. {potential}</description>
   <gfx_store>organic_plasma_s3.webp</gfx_store>
   <cpu>-32</cpu>
  </general>
@@ -17,19 +17,19 @@
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
   <delay>1.8</delay>
-  <speed>700</speed>
-  <range>1100</range>
-  <falloff>950</falloff>
+  <speed>{speed}</speed>
+  <range>{range}</range>
+  <falloff>{falloff}</falloff>
   <gfx_end>plasma2-end.png</gfx_end>
   <energy>45</energy>
-  <heatup>45</heatup>
+  <heatup>{heatup}</heatup>
   <rdr_range>1400</rdr_range>
   <rdr_range_max>1800</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>heat</type>
    <penetrate>24</penetrate>
-   <physical>63</physical>
+   <physical>{physical}</physical>
    <disable>3.6</disable>
   </damage>
  </specific>

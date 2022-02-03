@@ -29,7 +29,7 @@
   <damage>
    <type>heat</type>
    <penetrate>12</penetrate>
-   <physical>33</physical>
+   <physical>36</physical>
    <disable>2</disable>
   </damage>
  </specific>

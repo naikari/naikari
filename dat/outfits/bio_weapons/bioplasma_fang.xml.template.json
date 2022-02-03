@@ -1,5 +1,5 @@
 {
-    "stages": 5,
+    "stages": 6,
     "tags": {
         "potential": {
             "text": {
@@ -18,28 +18,28 @@
             }
         },
         "price": {
-            "min": 9500,
-            "max": 15000
+            "min": 30000,
+            "max": 42000
         },
         "speed": {
-            "min": 550,
+            "min": 500,
             "max": 700
         },
         "range": {
-            "min": 850,
-            "max": 1000
+            "min": 900,
+            "max": 1100
         },
         "falloff": {
-            "min": 550,
-            "max": 850
+            "min": 750,
+            "max": 950
         },
         "heatup": {
-            "min": 20,
-            "max": 35
+            "min": 25,
+            "max": 45
         },
         "physical": {
-            "min": 24,
-            "max": 40
+            "min": 45,
+            "max": 63
         }
     }
 }

@@ -6,7 +6,7 @@
   <license>Medium Weapon License</license>
   <rarity>2</rarity>
   <mass>30</mass>
-  <price>37800</price>
+  <price>39600</price>
   <description>The BioPlasma Fang takes the enhancement of the BioPlasma Claw even further. While its cognitive requirements are relatively high, they're still low enough for medium-sized organisms to handle. They are commonly found on Soromid Odiums, which usually have enough brain capacity left over to render the damage upgrade worthwhile. As with all organs, it starts out weak, but over time it grows and improves.</description>
   <gfx_store>organic_plasma_s3.webp</gfx_store>
   <cpu>-32</cpu>
@@ -16,21 +16,21 @@
   <sound>plasma</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
-  <delay>1.2</delay>
-  <speed>670</speed>
+  <delay>1.8</delay>
+  <speed>660</speed>
   <range>1060</range>
   <falloff>910</falloff>
   <gfx_end>plasma2-end.png</gfx_end>
-  <energy>30</energy>
-  <heatup>27</heatup>
+  <energy>45</energy>
+  <heatup>41</heatup>
   <rdr_range>1400</rdr_range>
   <rdr_range_max>1800</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>heat</type>
    <penetrate>24</penetrate>
-   <physical>34</physical>
-   <disable>2.1</disable>
+   <physical>59</physical>
+   <disable>3.6</disable>
   </damage>
  </specific>
 </outfit>
