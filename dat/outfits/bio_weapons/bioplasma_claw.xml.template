@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="BioPlasma Claw Stage X">
+<outfit name="BioPlasma Claw Stage {stage}">
  <general>
   <slot prop="bio_weapon">weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
-  <rarity>6</rarity>
+  <rarity>{rarity}</rarity>
   <mass>18</mass>
-  <price>15000</price>
-  <description>A more powerful cousin of the BioPlasma Stinger, the BioPlasma Claw uses more precious brain capacity, but features markedly increased damage output in return. This organ has reached Stage X, its full potential.</description>
+  <price>{price}</price>
+  <description>A more powerful cousin of the BioPlasma Stinger, the BioPlasma Claw uses more precious brain capacity, but features markedly increased damage output in return. {potential}</description>
   <gfx_store>organic_plasma_s2.webp</gfx_store>
   <cpu>-8</cpu>
  </general>
@@ -17,19 +17,19 @@
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
   <delay>1.4</delay>
-  <speed>700</speed>
-  <range>1000</range>
-  <falloff>850</falloff>
+  <speed>{speed}</speed>
+  <range>{range}</range>
+  <falloff>{falloff}</falloff>
   <gfx_end>plasma2-end.png</gfx_end>
   <energy>14</energy>
-  <heatup>35</heatup>
+  <heatup>{heatup}</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1700</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>heat</type>
    <penetrate>12</penetrate>
-   <physical>36</physical>
+   <physical>{physical}</physical>
    <disable>2</disable>
   </damage>
  </specific>

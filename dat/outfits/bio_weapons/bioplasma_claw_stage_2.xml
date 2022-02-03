@@ -6,7 +6,7 @@
   <license>Light Weapon License</license>
   <rarity>2</rarity>
   <mass>18</mass>
-  <price>10600</price>
+  <price>10875</price>
   <description>A more powerful cousin of the BioPlasma Stinger, the BioPlasma Claw uses more precious brain capacity, but features markedly increased damage output in return. As with all organs, it starts out weak, but over time it grows and improves.</description>
   <gfx_store>organic_plasma_s2.webp</gfx_store>
   <cpu>-8</cpu>
@@ -16,12 +16,12 @@
   <sound>plasma</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
-  <delay>1.0</delay>
-  <speed>575</speed>
-  <range>850</range>
-  <falloff>700</falloff>
+  <delay>1.4</delay>
+  <speed>587</speed>
+  <range>887</range>
+  <falloff>625</falloff>
   <gfx_end>plasma2-end.png</gfx_end>
-  <energy>10</energy>
+  <energy>14</energy>
   <heatup>23</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1700</rdr_range_max>
@@ -29,8 +29,8 @@
   <damage>
    <type>heat</type>
    <penetrate>12</penetrate>
-   <physical>16</physical>
-   <disable>1.25</disable>
+   <physical>27</physical>
+   <disable>2</disable>
   </damage>
  </specific>
 </outfit>
