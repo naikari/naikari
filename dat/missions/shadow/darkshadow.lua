@@ -174,7 +174,7 @@ function accept2()
     misn.markerMove(marker, joreksys1)
 
     hook.land("land")
-    hook.load("load")
+    hook.load("land")
     hook.jumpout("jumpout")
 end
 
