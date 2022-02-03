@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="BioPlasma Tentacle Stage 7">
+<outfit name="BioPlasma Tentacle Stage {stage}">
  <general>
   <slot prop="bio_weapon">weapon</slot>
   <size>large</size>
   <license>Heavy Weapon License</license>
-  <rarity>2</rarity>
+  <rarity>{rarity}</rarity>
   <mass>75</mass>
-  <price>177142</price>
-  <description>The BioPlasma Tentacle is hands-down the strongest and most versatile organic weapon grown by the Soromid. It has the distinction of being the only rotating organic weapon while also boasting a damage output that is unmatched by most weaponry found throughout the galaxy once fully developed. As with all organs, it starts out weak, but over time it grows and improves.</description>
+  <price>{price}</price>
+  <description>The BioPlasma Tentacle is hands-down the strongest and most versatile organic weapon grown by the Soromid. It has the distinction of being the only rotating organic weapon while also boasting a damage output that is unmatched by most weaponry found throughout the galaxy once fully developed. {potential}</description>
   <gfx_store>organic_plasma_t.webp</gfx_store>
   <cpu>-200</cpu>
  </general>
@@ -17,18 +17,18 @@
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <delay>2.5</delay>
-  <speed>571</speed>
-  <range>2314</range>
-  <falloff>1728</falloff>
+  <speed>{speed}</speed>
+  <range>{range}</range>
+  <falloff>{falloff}</falloff>
   <gfx_end>massL-end.png</gfx_end>
   <energy>225</energy>
-  <heatup>54</heatup>
+  <heatup>{heatup}</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1600</rdr_range_max>
   <damage>
    <type>heat</type>
    <penetrate>100</penetrate>
-   <physical>148</physical>
+   <physical>{physical}</physical>
    <disable>5</disable>
   </damage>
  </specific>

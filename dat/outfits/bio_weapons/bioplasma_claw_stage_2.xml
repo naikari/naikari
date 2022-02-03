@@ -21,7 +21,7 @@
   <range>887</range>
   <falloff>625</falloff>
   <gfx_end>plasma2-end.png</gfx_end>
-  <energy>14</energy>
+  <energy>12</energy>
   <heatup>23</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1700</rdr_range_max>
