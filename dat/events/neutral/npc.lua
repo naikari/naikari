@@ -396,6 +396,7 @@ msg_mdone = {
 -- Make sure the messages are always faction neutral.
 msg_edone = {
    {"Animal trouble", _([["What? You had rodents sabotage your ship? Damn, you're lucky to be alive. If it had hit the wrong power line…"]])},
+   {"Test Engine Troubles", _([[That really happened to you with an experimental engine?! You're lucky to be alive! No way I'd ever use one of those things even if you paid me.]])},
 }
 
 

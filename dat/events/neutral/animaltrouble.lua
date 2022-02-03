@@ -63,7 +63,7 @@ function continueProblems()
     -- Fly off in a random direction
     dist = 1000
     -- Never deviate more than 90 degrees from the current direction.
-    angle = rnd.rnd()*90 + player.pilot():dir()
+    angle = player.pilot():dir() + rnd.uniform(-90, 90)
     newlocation = vec2.newP(dist, angle)
 
     player.pilot():taskClear()
