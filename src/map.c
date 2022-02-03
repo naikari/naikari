@@ -2343,6 +2343,8 @@ void map_clear (void)
    /* default system is current system */
    if (map_selected == -1)
       map_selectCur();
+   else
+      map_select(map_getDestination(NULL), 0);
 }
 
 
