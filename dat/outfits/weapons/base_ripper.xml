@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Base Ripper MK2">
+<outfit name="Base Ripper">
  <general>
   <slot>weapon</slot>
-  <size>small</size>
-  <license>Medium Weapon License</license>
-  <mass>12</mass>
-  <price>1</price>
-  <description>This weapon is a cheat. It is not meant to be used by players.</description>
-  <gfx_store>ripper.webp</gfx_store>
-  <cpu>-12</cpu>
+  <size>large</size>
+  <license>Heavy Weapon License</license>
+  <rarity>6</rarity>
+  <mass>1000</mass>
+  <price>2000000</price>
+  <description>This tremendously massive, high-power variant of the Heavy Ripper Turret is far too massive and uses far too much processing power to fit on any ship, but is incredibly powerful. It is typically mounted onto armed stations as a defensive weapon.</description>
+  <gfx_store>ripperturret.webp</gfx_store>
+  <cpu>-8000</cpu>
   <rarity>6</rarity>
  </general>
  <specific type="turret bolt">
@@ -21,15 +22,15 @@
   <range>2800</range>
   <falloff>2200</falloff>
   <gfx_end>ripperM-end.png</gfx_end>
-  <energy>1</energy>
+  <energy>500</energy>
   <heatup>10000</heatup>
   <rdr_range>4400</rdr_range>
   <rdr_range_max>5600</rdr_range_max>
   <damage>
    <type>normal</type>
    <penetrate>100</penetrate>
-   <physical>80</physical>
-   <disable>1</disable>
+   <physical>400</physical>
+   <disable>4</disable>
   </damage>
  </specific>
 </outfit>

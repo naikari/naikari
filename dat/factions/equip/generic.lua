@@ -350,7 +350,7 @@ equip_classOutfits_weapons = {
    },
    ["Station"] = {
       {
-         "Base Ripper MK2",
+         "Base Ripper",
       },
    }
 }

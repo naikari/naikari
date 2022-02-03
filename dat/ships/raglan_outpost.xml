@@ -21,14 +21,14 @@
   <shield_regen>1</shield_regen>
   <armour>7000</armour>
   <armour_regen>10</armour_regen>
-  <energy>10000</energy>
-  <energy_regen>100</energy_regen>
+  <energy>100000</energy>
+  <energy_regen>3000</energy_regen>
  </health>
  <characteristics>
-  <cpu>500</cpu>
-  <mass>30000</mass>
-  <fuel>1</fuel>
-  <fuel_consumption>1</fuel_consumption>
+  <cpu>80000</cpu>
+  <mass>100000</mass>
+  <fuel>1000000</fuel>
+  <fuel_consumption>2000</fuel_consumption>
   <rdr_range>7500</rdr_range>
   <rdr_jump_range>3000</rdr_jump_range>
   <cargo>5000</cargo>
