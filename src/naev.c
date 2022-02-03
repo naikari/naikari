@@ -377,16 +377,16 @@ int main( int argc, char** argv )
    while (SDL_PollEvent(&event));
 
    /* Incomplete game note (shows every time version number changes). */
-   if ( conf.lastversion == NULL || naev_versionCompare(conf.lastversion) != 0 ) {
-      free( conf.lastversion );
-      conf.lastversion = strdup( naev_version(0) );
+   if (conf.lastversion == NULL
+         || (naev_versionCompare(conf.lastversion)) >= 2) {
+      free(conf.lastversion);
+      conf.lastversion = strdup(naev_version(0));
       dialogue_msg(
          _("Welcome to Naikari"),
          _("Welcome to Naikari version %s, and thank you for playing! We hope"
             " you enjoy this game and all it has to offer. This is a passion"
-            " project developed exclusively by volunteers, and it would give"
-            " us great joy if there are others who love this game as much as"
-            " we do!\n"
+            " project and it would give us great joy if there are others who"
+            " love this game as much as we do!\n"
             "\n"
             "Of course, please note that this is an incomplete game. You"
             " will encounter dead ends to storylines, missing storylines, and"
@@ -398,7 +398,7 @@ int main( int argc, char** argv )
             "\n"
             "For more information about the game and its development"
             " state, take a look at naikari.github.io; it has all the relevant"
-            " links. And again, thank you for playing!"), conf.lastversion );
+            " links. And again, thank you for playing!"), conf.lastversion);
    }
 
    /* primary loop */
@@ -1090,7 +1090,13 @@ binary_comparison (int x, int y) {
 /**
  * @brief Compares the version against the current naev version.
  *
- *    @return positive if version is newer or negative if version is older.
+ *    @param version The version string to check.
+ *    @return a number: postive if the binary version is newer than the
+ *       checked version string, or negative if the binary version is
+ *       older than the checked version string; and with a magnitude of
+ *       3 if the difference is in the major version number, 2 if the
+ *       difference is in the minor version number, and 1 if the
+ *       difference is in the bugfix version number.
  */
 int naev_versionCompare( const char *version )
 {
