@@ -64,23 +64,23 @@ function create()
    local cargoes = {
       {
          N_("Unmarked Boxes"),
-         _("A collection of unmarked boxes you were not told the contents of.")
+         N_("A collection of unmarked boxes you were not told the contents of.")
       },
       {
          N_("Weapons"),
-         _("Assorted crates of illegally sourced weapons to be sold on the black market.")
+         N_("Assorted crates of illegally sourced weapons to be sold on the black market.")
       },
       {
          N_("Drugs"),
-         _("A collection of various illegal drugs that will surely net a large profit.")
+         N_("A collection of various illegal drugs that will surely net a large profit.")
       },
       {
          N_("Exotic Animals"),
-         _("Several exotic animal species being trafficked from all around the galaxy.")
+         N_("Several exotic animal species being trafficked from all around the galaxy.")
       },
       {
          N_("Radioactive Materials"),
-         _("Highly dangerous, yet highly useful, radioactive materials being sold on the black market, outside of regulatory bodies.")
+         N_("Highly dangerous, yet highly useful, radioactive materials being sold on the black market, outside of regulatory bodies.")
       },
    }
    cargo = cargoes[rnd.rnd(1, #cargoes)]

@@ -131,7 +131,7 @@ function land ()
       else
          tk.msg("", pickup_text)
          local c = misn.cargoNew(N_("Goods"),
-               _("Some sort of cargo you picked up for some countess."))
+               N_("Some sort of cargo you picked up for some countess."))
          cargoID = misn.cargoAdd(c, cargoAmount)
          pickedup = true
 

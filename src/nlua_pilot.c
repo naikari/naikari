@@ -744,12 +744,13 @@ static int pilotL_addFleet( lua_State *L )
  * @usage p = pilot.add("Empire Pacifier", "Empire", system.get("Goddard")) -- Have the pilot jump in from the system.
  * @usage p = pilot.add("Goddard", "Goddard", planet.get("Zhiru") , _("Goddard Goddard")) -- Have the pilot take off from a planet.
  *
- *    @luatparam string shipname Name of the ship to add.
+ *    @luatparam string shipname Raw (untranslated) name of the ship to
+ *       add.
  *    @luatparam Faction faction Faction to give the pilot.
  *    @luatparam[opt] System|Planet|vec2|boolean source Where to create
  *       the pilot; see above for a complete explanation.
- *    @luatparam[opt] string pilotname Name to give the pilot. Defaults
- *       to shipname.
+ *    @luatparam[opt] string pilotname Translated name to give the
+ *       pilot. Defaults to the translated version of shipname.
  *    @luatparam[opt] table parameters Table of extra keyword arguments.
  *       See above for supported arguments.
  *    @luatreturn Pilot The created pilot.

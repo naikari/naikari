@@ -154,7 +154,7 @@ end
 function beginrun()
    tk.msg("", meet_text)
    local c = misn.cargoNew(N_("Recordings"),
-         _("Recordings obtained by a Nexus agent in an act of corporate espionage."))
+         N_("Recordings obtained by a Nexus agent in an act of corporate espionage."))
    records = misn.cargoAdd(c, 0)
    stage = 1
    misn.osdActive(2)

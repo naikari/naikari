@@ -1194,7 +1194,7 @@ static int playerL_shipOutfitAdd( lua_State *L )
  * "all" will remove all outfits except cores.
  * "cores" will remove all cores, but nothing else.
  *
- * @note The outfit is removed in the same manner as pilot.outfitAdd. It
+ * @note The outfit is removed in the same manner as pilot.outfitRm. It
  *    does not return the outfit to the player's outfits list, but
  *    instead deletes it entirely.
  *

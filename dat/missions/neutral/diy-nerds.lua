@@ -375,9 +375,9 @@ end
 -- helper functions, used repeatedly
 function addNerdCargo()
    local comm1 = misn.cargoNew(N_("Nerds"),
-         _("A group of nerds you are transporting."))
+         N_("A group of nerds you are transporting."))
    local comm2 = misn.cargoNew(N_("Processing Box"),
-         _("A box the nerds put together for the Homebrew Processing Box Masters contest."))
+         N_("A box the nerds put together for the Homebrew Processing Box Masters contest."))
    cargo1 = misn.cargoAdd(comm1, 0)
    cargo2 = misn.cargoAdd(comm2, 4)
 end

@@ -659,11 +659,22 @@ static int misn_finish( lua_State *L )
 
 
 /**
- * @brief Creates a new temporary commodity meant for missions. If a temporary commodity with the same name exists, that gets returned instead.
+ * @brief Creates a new temporary commodity meant for missions.
  *
- *    @luatparam string cargo Name of the cargo to add. This must not match a cargo name defined in commodity.xml.
- *    @luatparam string decription Description of the cargo to add.
- *    @luatparam[opt=nil] table params Table of named parameters. Currently supported is "gfx_space".
+ * Arguments that can be passed to the "params" parameter:<br/>
+ * <ul>
+ *    <li>"gfx_space" (string): The graphic to use for the commodity
+ *       if it is in space as a result of being mined from an
+ *       asteroid.</li>
+ * </ul>
+ * <br/>
+ *
+ *    @luatparam string cargo Raw (untranslated) name of the cargo to
+ *       add. This must not match a cargo name defined in commodity.xml.
+ *    @luatparam string decription Raw (untranslated) description of the
+ *       cargo to add.
+ *    @luatparam[opt=nil] table params Table of extra keyword arguments.
+ *       See above for supported arguments.
  *    @luatreturn Commodity The newly created commodity or an existing temporary commodity with the same name.
  * @luafunc cargoNew
  */

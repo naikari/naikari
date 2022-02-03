@@ -617,10 +617,12 @@ static int factionL_setknown( lua_State *L )
  *
  * @note Created faction is known by default.
  *
- *    @luatparam Faction|nil base Faction to base it off of or nil for
- *       no base faction.
- *    @luatparam string name Name to give the faction.
- *    @luatparam[opt] string display Display name to give the faction.
+ *    @luatparam Faction|string|nil base Faction or raw (untranslated)
+ *       name of faction to base it off of or nil for no base faction.
+ *    @luatparam string name Raw (untranslated) name to give the
+ *       faction.
+ *    @luatparam[opt] string display Raw (untranslated) display name to
+ *       give the faction.
  *    @luatparam[opt] table params Table of extra keyword arguments. See
  *       above for supported arguments.
  * @luafunc dynAdd
