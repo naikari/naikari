@@ -223,10 +223,10 @@ function theFunBegins()
    hook.timer(17.5, "release")
 
    --hook up timer for re-hailing player
-   hailHook=hook.date(time.create(0, 0, 1000), "reHail") --hail every 1000 STU till player answers
+   hailHook = hook.timer(5, "reHail")
 
    --when hailed, the preacher preaches to you
-   hook.pilot(preacher, "hail", "hail")
+   answerHook = hook.pilot(preacher, "hail", "hail")
 end
 
 function preacherSpeak()
@@ -244,6 +244,7 @@ end
 function reHail()
    if preacher:exists() then
       preacher:hailPlayer()
+      hailHook = hook.timer(5, "reHail")
    end
 end
 
@@ -371,7 +372,8 @@ end
 function hail()
    tk.msg("", commtext)
    player.commClose()
-   hook.rm(hailHook) --no more hailing
+   hook.rm(hailHook)
+   hook.rm(answerHook)
 end
 
 --everything is done
