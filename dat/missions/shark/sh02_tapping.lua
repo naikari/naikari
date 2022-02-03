@@ -93,10 +93,11 @@ function accept()
    if tk.yesno("", fmt.f(ask_text,
             {planet=paypla:name(), system=paysys:name()})) then
       misn.accept()
-      tk.msg("", accept_text:format(mispla:name(), missys:name()))
+      tk.msg("", fmt.f(accept_text,
+            {planet=mispla:name(), system=missys:name()}))
 
       local osd_msg = {
-         fmt.f(_("Land on {planet} ({system} system)"),
+         fmt.f(_("Land on {planet} ({system} system) and speak with the Nexus agent at the bar"),
             {planet=mispla:name(), system=missys:name()}),
          fmt.f(_("Land on {planet} ({system} system)"),
             {planet=paypla:name(), system=paysys:name()}),
@@ -175,6 +176,6 @@ function ambush()
    for i=1,4 do
       local choice = ship_choices[rnd.rnd(1, #ship_choices)]
       badguys[i] = pilot.add(choice, "Mercenary", nil,
-            fmt.f(_("Mercenary {ship}"), {ship=choice}))
+            fmt.f(_("Mercenary {ship}"), {ship=_(choice)}))
    end
 end
