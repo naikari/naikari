@@ -1044,7 +1044,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
          } else {
             player.speed = 1.;
          }
-         player_resetSpeed();
+         player_autonavResetSpeed();
       }
    /* opens a small menu */
    } else if (KEY("menu") && NODEAD() && !repeat) {

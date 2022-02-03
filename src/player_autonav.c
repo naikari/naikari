@@ -33,7 +33,6 @@
 extern double player_acc; /**< Player acceleration. */
 
 static double tc_mod = 1.; /**< Time compression modifier. */
-static double tc_base = 1.; /**< Base compression modifier. */
 static double tc_down = 0.; /**< Rate of decrement. */
 static int tc_rampdown = 0; /**< Ramping down time compression? */
 static double lasts;
@@ -57,7 +56,7 @@ static int player_autonavBrake (void);
  */
 void player_autonavResetSpeed (void)
 {
-   tc_mod = 1.;
+   tc_mod = player_dt_default() * player.speed;
    player_resetSpeed();
 }
 
@@ -114,8 +113,7 @@ static int player_autonavSetup (void)
    player_restoreControl( PINPUT_AUTONAV, NULL );
 
    if (!player_isFlag(PLAYER_AUTONAV)) {
-      tc_base   = player_dt_default() * player.speed;
-      tc_mod    = tc_base;
+      tc_mod = player_dt_default() * player.speed;
       if (conf.compression_mult >= 1.)
          player.tc_max = MIN( conf.compression_velocity / solid_maxspeed(player.p->solid, player.p->speed, player.p->thrust), conf.compression_mult );
       else
@@ -138,8 +136,8 @@ static int player_autonavSetup (void)
 
    /* Set flag and tc_mod just in case. */
    player_setFlag(PLAYER_AUTONAV);
-   pause_setSpeed( tc_mod );
-   sound_setSpeed( tc_mod );
+   pause_setSpeed(tc_mod);
+   sound_setSpeed(tc_mod / player_dt_default());
 
    /* Make sure time acceleration starts immediately. */
    player.autonav_timer = 0.;
@@ -273,13 +271,15 @@ static void player_autonavRampdown( double d )
 {
    double t, tint;
    double vel;
+   double tc_base;
 
-   vel   = MIN( 1.5*player.p->speed, VMOD(player.p->solid->vel) );
-   t     = d / vel * (1. - 0.075 * tc_base);
-   tint  = 3. + 0.5*(3.*(tc_mod-tc_base));
+   tc_base = player_dt_default() * player.speed;
+   vel = MIN(1.5 * player.p->speed, VMOD(player.p->solid->vel));
+   t = d / vel * (1. - 0.075*tc_base);
+   tint = 3. + 0.5*(3.*(tc_mod-tc_base));
    if (t < tint) {
       tc_rampdown = 1;
-      tc_down     = (tc_mod-tc_base) / 3.;
+      tc_down = (tc_mod-tc_base) / 3.;
    }
 }
 
@@ -358,19 +358,22 @@ static void player_autonav (void)
    double vel;
    double a, diff;
    double error_margin;
+   double tc_base;
 
-   (void)map_getDestination( &map_npath );
+   (void)map_getDestination(&map_npath);
+
+   tc_base = player_dt_default() * player.speed;
 
    switch (player.autonav) {
       case AUTONAV_JUMP_APPROACH:
          /* Target jump. */
-         jp    = &cur_system->jumps[ player.p->nav_hyperspace ];
-         ret   = player_autonavApproach( &jp->pos, &d, 0 );
+         jp = &cur_system->jumps[player.p->nav_hyperspace];
+         ret = player_autonavApproach(&jp->pos, &d, 0);
          if (ret)
             player.autonav = AUTONAV_JUMP_BRAKE;
          else if (!tc_rampdown && (map_npath<=1)) {
-            vel   = MIN( 1.5*player.p->speed, VMOD(player.p->solid->vel) );
-            t     = d / vel * (1.2 - .1 * tc_base);
+            vel = MIN(1.5 * player.p->speed, VMOD(player.p->solid->vel));
+            t = d/vel * (1.2 - 0.1*tc_base);
             /* tint is the integral of the time in per time units.
              *
              * tc_mod
@@ -389,10 +392,10 @@ static void player_autonav (void)
              *  tc_mod to 1 during 3 seconds. This can be used then to compare when we want to
              *  start decrementing.
              */
-            tint  = 3. + 0.5*(3.*(tc_mod-tc_base));
+            tint = 3. + 0.5*(3.*(tc_mod-tc_base));
             if (t < tint) {
                tc_rampdown = 1;
-               tc_down     = (tc_mod-tc_base) / 3.;
+               tc_down = (tc_mod-tc_base) / 3.;
             }
          }
          break;
@@ -446,7 +449,7 @@ static void player_autonav (void)
          /* See if should ramp down. */
          if (!tc_rampdown && (map_npath<=1)) {
             tc_rampdown = 1;
-            tc_down     = (tc_mod-tc_base) / 3.;
+            tc_down = (tc_mod-tc_base) / 3.;
          }
          break;
 
@@ -850,9 +853,12 @@ void player_updateAutonav( double dt )
    const double dis_mod = 5.0;
    const double dis_max = 10.0;
    const double dis_ramp = 2.0;
+   double tc_base;
 
    if (paused || (player.p==NULL) || pilot_isFlag(player.p, PILOT_DEAD))
       return;
+
+   tc_base = player_dt_default() * player.speed;
 
    /* We handle disabling here. */
    if (pilot_isFlag(player.p, PILOT_DISABLED)) {
@@ -867,20 +873,20 @@ void player_updateAutonav( double dt )
        *
        * For triangles we have to add the rectangle and triangle areas.
        */
-      tc_base = player_dt_default();
       /* 5 second deadtime. */
       if (player.p->dtimer_accum < dis_dead)
          tc_mod = tc_base;
       else {
          /* Ramp down. */
-         if (player.p->dtimer - player.p->dtimer_accum < dis_dead + (dis_max-tc_base)*dis_ramp/2 + tc_base*dis_ramp)
-            tc_mod = MAX( tc_base, tc_mod - dis_mod*dt );
+         if (player.p->dtimer - player.p->dtimer_accum
+               < dis_dead + (dis_max-tc_base)*dis_ramp/2 + tc_base*dis_ramp)
+            tc_mod = MAX(tc_base, tc_mod - dis_mod*dt);
          /* Normal. */
          else
-            tc_mod = MIN( dis_max, tc_mod + dis_mod*dt );
+            tc_mod = MIN(dis_max, tc_mod + dis_mod*dt);
       }
-      pause_setSpeed( tc_mod );
-      sound_setSpeed( tc_mod / player_dt_default() );
+      pause_setSpeed(tc_mod);
+      sound_setSpeed(tc_mod / player_dt_default());
       return;
    }
 
@@ -891,9 +897,9 @@ void player_updateAutonav( double dt )
    /* Ramping down. */
    if (tc_rampdown) {
       if (tc_mod != tc_base) {
-         tc_mod = MAX( tc_base, tc_mod-tc_down*dt );
-         pause_setSpeed( tc_mod );
-         sound_setSpeed( tc_mod / player_dt_default() );
+         tc_mod = MAX(tc_base, tc_mod - tc_down*dt);
+         pause_setSpeed(tc_mod);
+         sound_setSpeed(tc_mod / player_dt_default());
       }
       return;
    }
@@ -906,8 +912,8 @@ void player_updateAutonav( double dt )
    /* Avoid going over. */
    if (tc_mod > player.tc_max)
       tc_mod = player.tc_max;
-   pause_setSpeed( tc_mod );
-   sound_setSpeed( tc_mod / player_dt_default() );
+   pause_setSpeed(tc_mod);
+   sound_setSpeed(tc_mod / player_dt_default());
 }
 
 

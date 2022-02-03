@@ -761,8 +761,8 @@ void player_cleanup (void)
    sound_stopAll();
 
    /* Reset time compression. */
-   pause_setSpeed( 1. );
-   sound_setSpeed( 1. );
+   pause_setSpeed(1.);
+   sound_setSpeed(1.);
 
    free( player.loaded_version );
    player.loaded_version = NULL;
@@ -1317,7 +1317,7 @@ void player_resetSpeed (void)
       spd *= player_dt_default();
 
    pause_setSpeed(spd);
-   sound_setSpeed(spd);
+   sound_setSpeed(player.speed);
 }
 
 
