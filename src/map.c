@@ -115,7 +115,6 @@ static void map_buttonZoom( unsigned int wid, char* str );
 static void map_chkMinimal(unsigned int wid, char* str);
 static void map_buttonCommodity( unsigned int wid, char* str );
 static void map_buttonSystemMap(unsigned int wid, char* str);
-static void map_selectCur (void);
 static void map_genModeList(void);
 static void map_update_commod_av_price();
 static void map_window_close( unsigned int wid, char *str );
@@ -2343,8 +2342,6 @@ void map_clear (void)
    /* default system is current system */
    if (map_selected == -1)
       map_selectCur();
-   else
-      map_select(map_getDestination(NULL), 0);
 }
 
 
@@ -2363,13 +2360,16 @@ static void map_reset (void)
 /**
  * @brief Tries to select the current system.
  */
-static void map_selectCur (void)
+void map_selectCur(void)
 {
    if (cur_system != NULL)
       map_selected = cur_system - systems_stack;
    else
       /* will probably segfault now */
       map_selected = -1;
+
+   array_free(map_path);
+   map_path = NULL;
 }
 
 

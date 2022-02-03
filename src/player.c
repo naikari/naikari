@@ -350,6 +350,7 @@ static int player_newMake (void)
    player.p->credits = start_credits();
 
    /* clear the map */
+   map_cleanup();
    map_clear();
 
    /* Start the economy. */
@@ -1736,7 +1737,9 @@ void player_targetHyperspace (void)
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ))
       return;
 
-   map_clear(); /* clear the current map path */
+   /* clear the current map path */
+   map_selectCur();
+   map_clear();
 
    for (id=player.p->nav_hyperspace+1; id<array_size(cur_system->jumps); id++)
       if (jp_isKnown( &cur_system->jumps[id]))
@@ -2121,6 +2124,7 @@ void player_targetClear (void)
          && !pilot_isFlag(player.p, PILOT_HYP_PREP)) {
       player.p->nav_hyperspace = -1;
       player_hyperspacePreempt(0);
+      map_selectCur();
       map_clear();
    }
    else if (player.p->target == PLAYER_ID)
@@ -3590,7 +3594,8 @@ static Planet* player_parse( xmlNodePtr parent )
    player.p->solid->dir = RNG(0,359) * M_PI/180.;
 
    /* initialize the system */
-   space_init( sys->name );
+   space_init(sys->name);
+   map_cleanup();
    map_clear(); /* sets the map up */
 
    /* initialize the sound */

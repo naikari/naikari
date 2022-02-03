@@ -36,6 +36,7 @@ void map_setZoom( double zoom );
 void map_select( StarSystem *sys, char shifted );
 void map_cleanup(void);
 void map_clear (void);
+void map_selectCur(void);
 void map_jump (void);
 
 /* manipulate universe stuff */
