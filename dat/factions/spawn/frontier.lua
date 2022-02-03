@@ -1,5 +1,4 @@
 local scom = require "factions.spawn.lib.common"
-local merc = require "factions.spawn.lib.mercenary"
 
 -- @brief Spawns a small patrol fleet.
 function spawn_patrol ()
