@@ -134,6 +134,10 @@ end
 
 --the preaching's about to begin!
 function theFunBegins()
+   if not evt.claim(system.cur()) then
+      evt.finish(false)
+   end
+
    if rep < 0 then
       local dist = vec2.dist(jump.get(system.cur(),curr):pos(),player.pos()) --please note the order of system.cur() and curr matters!
       if dist < 6000 then
