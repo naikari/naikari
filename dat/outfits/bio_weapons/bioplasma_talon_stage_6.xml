@@ -6,7 +6,7 @@
   <license>Heavy Weapon License</license>
   <rarity>2</rarity>
   <mass>50</mass>
-  <price>66000</price>
+  <price>115833</price>
   <description>The BioPlasma Talon is the strongest forward-facing organic weapon in existence. Boasting damage which puts it in line with some of the strongest weapons in the galaxy with incredibly low cognitive requirements for its damage output, Soromid ships equipped with this weapon are rightly feared. As with all organs, it starts out weak, but over time it grows and improves.</description>
   <gfx_store>organic_plasma_l.webp</gfx_store>
   <cpu>-35</cpu>
@@ -17,21 +17,21 @@
   <sound_hit>medexp0</sound_hit>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
-  <delay>1.7</delay>
-  <speed>675</speed>
+  <delay>2.5</delay>
+  <speed>658</speed>
   <range>2100</range>
-  <falloff>1500</falloff>
+  <falloff>1533</falloff>
   <gfx_end>massL-end.png</gfx_end>
-  <energy>60</energy>
-  <heatup>70</heatup>
+  <energy>88</energy>
+  <heatup>69</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1600</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>heat</type>
    <penetrate>72</penetrate>
-   <physical>69</physical>
-   <disable>3.1</disable>
+   <physical>117</physical>
+   <disable>5</disable>
   </damage>
  </specific>
 </outfit>

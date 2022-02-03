@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="BioPlasma Talon Stage 3">
+<outfit name="BioPlasma Talon Stage {stage}">
  <general>
   <slot prop="bio_weapon">weapon</slot>
   <size>large</size>
   <license>Heavy Weapon License</license>
-  <rarity>2</rarity>
+  <rarity>{rarity}</rarity>
   <mass>50</mass>
-  <price>103333</price>
-  <description>The BioPlasma Talon is the strongest forward-facing organic weapon in existence. Boasting damage which puts it in line with some of the strongest weapons in the galaxy with incredibly low cognitive requirements for its damage output, Soromid ships equipped with this weapon are rightly feared. As with all organs, it starts out weak, but over time it grows and improves.</description>
+  <price>{price}</price>
+  <description>The BioPlasma Talon is the strongest forward-facing organic weapon in existence. Boasting damage which puts it in line with some of the strongest weapons in the galaxy with incredibly low cognitive requirements for its damage output, Soromid ships equipped with this weapon are rightly feared. {potential}</description>
   <gfx_store>organic_plasma_l.webp</gfx_store>
   <cpu>-35</cpu>
  </general>
@@ -18,19 +18,19 @@
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <delay>2.5</delay>
-  <speed>533</speed>
-  <range>1800</range>
-  <falloff>1333</falloff>
+  <speed>{speed}</speed>
+  <range>{range}</range>
+  <falloff>{falloff}</falloff>
   <gfx_end>massL-end.png</gfx_end>
   <energy>88</energy>
-  <heatup>51</heatup>
+  <heatup>{heatup}</heatup>
   <rdr_range>1200</rdr_range>
   <rdr_range_max>1600</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>heat</type>
    <penetrate>72</penetrate>
-   <physical>99</physical>
+   <physical>{physical}</physical>
    <disable>5</disable>
   </damage>
  </specific>
