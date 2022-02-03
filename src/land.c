@@ -553,6 +553,7 @@ static void misn_open( unsigned int wid )
 {
    int w, h;
    int y;
+   int th;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_MISSION);
@@ -573,15 +574,14 @@ static void misn_open( unsigned int wid )
 
    /* text */
    y = -60;
-   window_addText( wid, w/2 + 10, y,
-         w/2 - 30, 40, 0,
-         "txtSDate", NULL, NULL,
-         _("Date:\n"
-         "Free Space:"));
-   window_addText( wid, w/2 + 110, y,
-         w/2 - 130, 40, 0,
-         "txtDate", NULL, NULL, NULL );
-   y -= 2 * gl_defFont.h + 50;
+   th = gl_printHeightRaw(&gl_defFont, w/2 - 30,
+         _("#nDate:#0 N/A\n"
+            "#nFree Space:#0 N/A\n"
+            "#nMoney:#0 N/A"));
+   window_addText(wid, w/2 + 10, y,
+         w/2 - 30, th, 0,
+         "txtDate", NULL, NULL, NULL);
+   y -= th + 40;
    window_addText( wid, w/2 + 10, y,
          w/2 - 30, 20, 0,
          "txtReward", &gl_defFont, NULL, _("#nReward:#0 None") );
@@ -717,18 +717,23 @@ static void misn_update( unsigned int wid, char* str )
    (void) str;
    char *active_misn;
    Mission* misn;
-   char txt[512], *buf;
+   char txt[STRMAX], *buf;
+   char tons[STRMAX_SHORT], cred[ECON_CRED_STRLEN];
 
    /* Clear computer markers. */
    space_clearComputerMarkers();
 
    /* Update date stuff. */
-   buf = ntime_pretty( 0, 2 );
-   snprintf( txt, sizeof(txt), n_(
-            "%s\n%d t", "%s\n%d t", player.p->cargo_free),
-         buf, player.p->cargo_free );
+   buf = ntime_pretty(0, 2);
+   tonnes2str(tons, player.p->cargo_free);
+   credits2str(cred, player.p->credits, 2);
+   snprintf(txt, sizeof(txt),
+         _("#nDate:#0 %s\n"
+            "#nFree Space:#0 %s\n"
+            "#nMoney:#0 %s"),
+         buf, tons, cred);
    free(buf);
-   window_modifyText( wid, "txtDate", txt );
+   window_modifyText(wid, "txtDate", txt);
 
    active_misn = toolkit_getList( wid, "lstMission" );
    if (strcmp(active_misn,_("No Missions"))==0) {
