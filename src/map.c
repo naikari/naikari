@@ -2399,7 +2399,10 @@ void map_jump (void)
    int j;
 
    /* set selected system to self */
-   map_selectCur();
+   if (cur_system != NULL)
+      map_selected = cur_system - systems_stack;
+   else
+      ERR(_("Attempted to call map_jump() while there is no system!"));
 
    map_xpos = cur_system->pos.x;
    map_ypos = cur_system->pos.y;
