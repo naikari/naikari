@@ -157,8 +157,8 @@ function takeoff ()
    -- Spawn FLF ships
    flf_ships = fleet.add({5, 10, 10, 4},
          {"Pacifier", "Vendetta", "Lancelot", "Hyena"}, "FLF", ss:pos(),
-         {N_("FLF Pacifier"), N_("FLF Vendetta"), N_("FLF Lancelot"),
-            N_("FLF Hyena")}, {ai="flf_norun"})
+         {_("FLF Pacifier"), _("FLF Vendetta"), _("FLF Lancelot"),
+            _("FLF Hyena")}, {ai="flf_norun"})
    for i, j in ipairs(flf_ships) do
       j:setVisible()
       j:memory("aggressive", true)

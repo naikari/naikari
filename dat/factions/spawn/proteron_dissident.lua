@@ -5,10 +5,10 @@ local scom = require "factions.spawn.lib.common"
 function spawn_patrol ()
    local pilots = {}
    local civships = {
-      {"Schroedinger", 8, N_("Civilian Schroedinger")},
-      {"Llama", 8, N_("Civilian Llama")},
-      {"Gawain", 8, N_("Civilian Gawain")},
-      {"Hyena", 13, N_("Civilian Hyena")},
+      {"Schroedinger", 8, _("Civilian Schroedinger")},
+      {"Llama", 8, _("Civilian Llama")},
+      {"Gawain", 8, _("Civilian Gawain")},
+      {"Hyena", 13, _("Civilian Hyena")},
    }
    local shp = civships[rnd.rnd(1, #civships)]
    scom.addPilot(pilots, shp[1], shp[2], {name=shp[3]})

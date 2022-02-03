@@ -8,17 +8,17 @@ function spawn_patrol ()
 
    if r < 0.5 then
       scom.addPilot(pilots, "Schroedinger", 12,
-            {name=N_("Independent Schroedinger")})
+            {name=_("Independent Schroedinger")})
    elseif r < 0.8 then
       scom.addPilot(pilots, "Schroedinger", 12,
-            {name=N_("Independent Schroedinger")})
-      scom.addPilot(pilots, "Gawain", 7, {name=N_("Independent Gawain")})
+            {name=_("Independent Schroedinger")})
+      scom.addPilot(pilots, "Gawain", 7, {name=_("Independent Gawain")})
    else
       scom.addPilot(pilots, "Schroedinger", 12,
-            {name=N_("Independent Schroedinger")})
+            {name=_("Independent Schroedinger")})
       scom.addPilot(pilots, "Schroedinger", 12,
-            {name=N_("Independent Schroedinger")})
-      scom.addPilot(pilots, "Gawain", 7, {name=N_("Independent Gawain")})
+            {name=_("Independent Schroedinger")})
+      scom.addPilot(pilots, "Gawain", 7, {name=_("Independent Gawain")})
    end
 
    return pilots
@@ -32,21 +32,21 @@ function spawn_squad ()
 
    if r < 0.5 then
       scom.addPilot(pilots, "Schroedinger", 5,
-            {name=N_("Independent Schroedinger")})
-      scom.addPilot(pilots, "Gawain", 5, {name=N_("Independent Gawain")})
-      scom.addPilot(pilots, "Gawain", 5, {name=N_("Independent Gawain")})
-      scom.addPilot(pilots, "Hyena", 10, {name=N_("Independent Hyena")})
+            {name=_("Independent Schroedinger")})
+      scom.addPilot(pilots, "Gawain", 5, {name=_("Independent Gawain")})
+      scom.addPilot(pilots, "Gawain", 5, {name=_("Independent Gawain")})
+      scom.addPilot(pilots, "Hyena", 10, {name=_("Independent Hyena")})
    elseif r < 0.8 then
-      scom.addPilot(pilots, "Gawain", 5, {name=N_("Independent Gawain")})
-      scom.addPilot(pilots, "Gawain", 5, {name=N_("Independent Gawain")})
-      scom.addPilot(pilots, "Gawain", 5, {name=N_("Independent Gawain")})
-      scom.addPilot(pilots, "Hyena", 10, {name=N_("Independent Hyena")})
-      scom.addPilot(pilots, "Hyena", 10, {name=N_("Independent Hyena")})
+      scom.addPilot(pilots, "Gawain", 5, {name=_("Independent Gawain")})
+      scom.addPilot(pilots, "Gawain", 5, {name=_("Independent Gawain")})
+      scom.addPilot(pilots, "Gawain", 5, {name=_("Independent Gawain")})
+      scom.addPilot(pilots, "Hyena", 10, {name=_("Independent Hyena")})
+      scom.addPilot(pilots, "Hyena", 10, {name=_("Independent Hyena")})
    else
-      scom.addPilot(pilots, "Hyena", 10, {name=N_("Independent Hyena")})
-      scom.addPilot(pilots, "Hyena", 10, {name=N_("Independent Hyena")})
-      scom.addPilot(pilots, "Hyena", 10, {name=N_("Independent Hyena")})
-      scom.addPilot(pilots, "Hyena", 10, {name=N_("Independent Hyena")})
+      scom.addPilot(pilots, "Hyena", 10, {name=_("Independent Hyena")})
+      scom.addPilot(pilots, "Hyena", 10, {name=_("Independent Hyena")})
+      scom.addPilot(pilots, "Hyena", 10, {name=_("Independent Hyena")})
+      scom.addPilot(pilots, "Hyena", 10, {name=_("Independent Hyena")})
    end
 
    return pilots

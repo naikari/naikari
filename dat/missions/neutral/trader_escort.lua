@@ -277,25 +277,25 @@ function spawnConvoy ()
    end
 
    if convoysize == 1 then
-      convoy = fleet.add(3, "Llama", "Trader", origin, N_("Convoy Llama"))
+      convoy = fleet.add(3, "Llama", "Trader", origin, _("Convoy Llama"))
 
       ambush = fleet.add({1, 1, 2},
             {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-            ambush_src, {nil, nil, N_("Pirate Hyena")})
+            ambush_src, {nil, nil, _("Pirate Hyena")})
    elseif convoysize == 2 then
-      convoy = fleet.add(4, "Koala", "Trader", origin, N_("Convoy Koala"))
+      convoy = fleet.add(4, "Koala", "Trader", origin, _("Convoy Koala"))
 
       ambush = fleet.add({1, rnd.rnd(1, 3), 2},
             {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-            ambush_src, {nil, nil, N_("Pirate Hyena")})
+            ambush_src, {nil, nil, _("Pirate Hyena")})
    elseif convoysize == 3 then
       convoy = fleet.add({2, 3}, {"Rhino", "Mule"}, "Trader", origin,
-            {N_("Convoy Rhino"), N_("Convoy Mule")})
+            {_("Convoy Rhino"), _("Convoy Mule")})
 
       if rnd.rnd() < 0.5 then
          ambush = fleet.add({1, 3, 2},
                {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-               ambush_src, {nil, nil, N_("Pirate Hyena")})
+               ambush_src, {nil, nil, _("Pirate Hyena")})
       else
          ambush = fleet.add({1, 2, 2},
                {"Pirate Admonisher", "Pirate Rhino", "Pirate Shark"}, "Pirate",
@@ -303,18 +303,18 @@ function spawnConvoy ()
       end
    elseif convoysize == 4 then
       convoy = fleet.add(3, {"Rhino", "Mule"}, "Trader", origin,
-            {N_("Convoy Rhino"), N_("Convoy Mule")})
+            {_("Convoy Rhino"), _("Convoy Mule")})
 
       local r = rnd.rnd()
       if r < 0.33 then
          ambush = fleet.add({1, 3, 2},
                {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-               ambush_src, {nil, nil, N_("Pirate Hyena")})
+               ambush_src, {nil, nil, _("Pirate Hyena")})
       elseif r < 0.66 then
          ambush = fleet.add({1, 2, 2, 2},
                {"Pirate Admonisher", "Pirate Phalanx", "Pirate Shark",
                   "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, N_("Pirate Hyena")})
+               {nil, nil, nil, _("Pirate Hyena")})
       else
          ambush = fleet.add({1, 2, 2},
                {"Pirate Admonisher", "Pirate Rhino", "Pirate Shark"}, "Pirate",
@@ -322,24 +322,24 @@ function spawnConvoy ()
       end
    else
       convoy = fleet.add(4, {"Rhino", "Mule"}, "Trader", origin,
-            {N_("Convoy Rhino"), N_("Convoy Mule")})
+            {_("Convoy Rhino"), _("Convoy Mule")})
 
       local r = rnd.rnd()
       if r < 0.33 then
          ambush = fleet.add({1, 2, 2, 2},
                {"Pirate Admonisher", "Pirate Phalanx", "Pirate Shark",
                   "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, N_("Pirate Hyena")})
+               {nil, nil, nil, _("Pirate Hyena")})
       elseif r < 0.66 then
          ambush = fleet.add({1, 1, 1, 2, 3},
                {"Pirate Kestrel", "Pirate Admonisher", "Pirate Rhino",
                   "Pirate Shark", "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, nil, N_("Pirate Hyena")})
+               {nil, nil, nil, nil, _("Pirate Hyena")})
       else
          ambush = fleet.add({1, 2, 2, 2},
                {"Pirate Admonisher", "Pirate Phalanx", "Pirate Shark",
                   "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, N_("Pirate Hyena")})
+               {nil, nil, nil, _("Pirate Hyena")})
       end
    end
 

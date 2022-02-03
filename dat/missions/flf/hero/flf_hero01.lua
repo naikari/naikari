@@ -214,7 +214,7 @@ function spawnFLF()
    end
 
    flfships = fleet.add({4, 8, 8}, {"Pacifier", "Lancelot", "Vendetta"}, "FLF",
-         origin, {N_("FLF Pacifier"), N_("FLF Lancelot"), N_("FLF Vendetta")},
+         origin, {_("FLF Pacifier"), _("FLF Lancelot"), _("FLF Vendetta")},
          {ai="flf_norun"})
 
    -- Make Pacifiers no-death to ensure that Flint still lives.
@@ -237,22 +237,22 @@ function spawnDV()
    f2:dynEnemy(f1)
 
    local goda = pilot.add("Dvaered Goddard", f1, invsrc,
-         N_("Invading Warlord"), {ai="dvaered_norun"})
+         _("Invading Warlord"), {ai="dvaered_norun"})
    local attackers = fleet.add({1, 2, 6, 8},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"},
-         f1, invsrc, N_("Invading Warlord Force"), {ai="dvaered_norun"}, goda)
+         f1, invsrc, _("Invading Warlord Force"), {ai="dvaered_norun"}, goda)
 
    for i, p in ipairs(attackers) do
       dvships[#dvships + 1] = p
    end
 
-   local godd = pilot.add("Dvaered Goddard", f2, mispla, N_("Local Warlord"),
+   local godd = pilot.add("Dvaered Goddard", f2, mispla, _("Local Warlord"),
          {ai="dvaered_norun"})
    local defenders = fleet.add({1, 2, 4, 4},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"},
-         f2, mispla, N_("Local Warlord Force"), {ai="dvaered_norun"}, godd)
+         f2, mispla, _("Local Warlord Force"), {ai="dvaered_norun"}, godd)
 
    for i, p in ipairs(defenders) do
       dvships[#dvships + 1] = p

@@ -74,7 +74,7 @@ function merchant()
    if faction.get("Dvaered"):playerStanding() < 0 then
       return
    end
-   trader = pilot.add("Llama", "Civilian", source_system, N_("Civilian Llama"))
+   trader = pilot.add("Llama", "Civilian", source_system, _("Civilian Llama"))
    hook.timer(2, "hailme")
 end
 
@@ -111,12 +111,12 @@ function attack()
    attAttHook = {}
 
    goda = pilot.add("Dvaered Goddard", f1, source_system,
-         N_("Invading Warlord"))
+         _("Invading Warlord"))
    attackers = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"}, f1, source_system,
-         N_("Invading Warlord Force"), nil, goda)
+         _("Invading Warlord Force"), nil, goda)
 
    attackers = arrangeList(attackers)
    form = formation.random_key()
@@ -137,12 +137,12 @@ function attack()
 
    defAttHook = {}
 
-   godd = pilot.add("Dvaered Goddard", f2, source_planet, N_("Local Warlord"))
+   godd = pilot.add("Dvaered Goddard", f2, source_planet, _("Local Warlord"))
    defenders = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta"}, f2, source_planet,
-         N_("Local Warlord Force"), nil, godd)
+         _("Local Warlord Force"), nil, godd)
 
    defenders = arrangeList(defenders)
    form = formation.random_key()

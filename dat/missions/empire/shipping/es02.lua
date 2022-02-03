@@ -170,8 +170,8 @@ function enter ()
       -- FLF Spawn around the Gawain
       p = fleet.add({2, 1, 1, 1},
             {"Hyena", "Lancelot", "Vendetta", "Pacifier"}, "FLF", enter_vect,
-            {N_("FLF Hyena"), N_("FLF Lancelot"), N_("FLF Vendetta"),
-               N_("FLF Pacifier")})
+            {_("FLF Hyena"), _("FLF Lancelot"), _("FLF Vendetta"),
+               _("FLF Pacifier")})
       for k,v in ipairs(p) do
          v:setHostile()
       end
@@ -233,7 +233,7 @@ function delay_flf ()
 
    -- More ships to pressure player from behind
    p = fleet.add(1, {"Hyena", "Lancelot", "Vendetta"}, "FLF", prevsys,
-         {N_("FLF Hyena"), N_("FLF Lancelot"), N_("FLF Vendetta")})
+         {_("FLF Hyena"), _("FLF Lancelot"), _("FLF Vendetta")})
    for k,v in ipairs(p) do
       v:setHostile()
    end

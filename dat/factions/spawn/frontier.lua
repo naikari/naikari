@@ -7,13 +7,13 @@ function spawn_patrol ()
    local r = rnd.rnd()
 
    if r < 0.5 then
-      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=_("Frontier Lancelot")})
    elseif r < 0.8 then
-      scom.addPilot(pilots, "Hyena", 20, {name=N_("Frontier Hyena")})
-      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Hyena", 20, {name=_("Frontier Hyena")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=_("Frontier Lancelot")})
    else
-      scom.addPilot(pilots, "Hyena", 20, {name=N_("Frontier Hyena")})
-      scom.addPilot(pilots, "Ancestor", 25, {name=N_("Frontier Ancestor")})
+      scom.addPilot(pilots, "Hyena", 20, {name=_("Frontier Hyena")})
+      scom.addPilot(pilots, "Ancestor", 25, {name=_("Frontier Ancestor")})
    end
 
    return pilots
@@ -26,12 +26,12 @@ function spawn_squad ()
    local r = rnd.rnd()
 
    if r < 0.5 then
-      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
-      scom.addPilot(pilots, "Phalanx", 55, {name=N_("Frontier Phalanx")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Phalanx", 55, {name=_("Frontier Phalanx")})
    else
-      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
-      scom.addPilot(pilots, "Lancelot", 30, {name=N_("Frontier Lancelot")})
-      scom.addPilot(pilots, "Ancestor", 25, {name=N_("Frontier Ancestor")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Lancelot", 30, {name=_("Frontier Lancelot")})
+      scom.addPilot(pilots, "Ancestor", 25, {name=_("Frontier Ancestor")})
    end
 
    return pilots

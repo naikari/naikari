@@ -213,11 +213,11 @@ function enemies()
    local leader = nil
    if rnd.rnd() < 0.9 then
       local choices = {
-         {"Pacifier", N_("Mercenary Pacifier")},
-         {"Vigilance", N_("Mercenary Vigilance")},
-         {"Phalanx", N_("Mercenary Phalanx")},
-         {"Admonisher", N_("Mercenary Admonisher")},
-         {"Ancestor", N_("Mercenary Ancestor")},
+         {"Pacifier", _("Mercenary Pacifier")},
+         {"Vigilance", _("Mercenary Vigilance")},
+         {"Phalanx", _("Mercenary Phalanx")},
+         {"Admonisher", _("Mercenary Admonisher")},
+         {"Ancestor", _("Mercenary Ancestor")},
       }
       local choice = choices[rnd.rnd(1, #choices)]
       leader = pilot.add(choice[1], "Mercenary", source, choice[2])
@@ -225,7 +225,7 @@ function enemies()
 
    local flt = fleet.add({rnd.rnd(0, 2), rnd.rnd(0, 2)},
          {"Lancelot", "Vendetta"}, "Mercenary", source,
-         {N_("Mercenary Lancelot"), N_("Mercenary Vendetta")}, leader)
+         {_("Mercenary Lancelot"), _("Mercenary Vendetta")}, leader)
    for i, p in ipairs(flt) do
       p:setHostile()
    end
