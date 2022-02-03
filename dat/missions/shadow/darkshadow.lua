@@ -73,13 +73,13 @@ You ask Jorek why he didn't just lie low on some world until the coast was clear
 
 board_text = _([[You board the Four Winds vessel, and as soon as the airlock opens a nervous looking man enters your ship. He eyes you warily, but when he sees that Jorek is with you his tension fades. "Come on, {player}," Jorek says. "Let's not waste any more time here. We got what we came for. Now let's give these damn vultures the slip, eh?"]])
 
-ambush_text = _([[Suddenly, your long range sensors pick up a ship jumping in behind you. Jorek checks the telemetry beside you. Suddenly, his eyes go wide and he groans. The Four Winds informant turns pale.
+ambush_text = _([[Suddenly, your long range sensors pick up a ship jumping in. Jorek checks the telemetry beside you. Suddenly, his eyes go wide and he groans. The Four Winds informant turns pale.
 
 "Oh, damn it all," Jorek curses. "{player}, that's the Genbu, Giornio's flagship. I never expected him to take an interest in me personally! Damn, this is bad. Listen, if you have anything to boost our speed, now would be the time. We got to get outta here as if all hell was hot on our heels, which it kinda is! If that thing catches us, we're toast. I really mean it, you don't wanna get into a fight against her, not on your own. Get your ass movin' to Sirius space. Giornio ain't gonna risk getting into a scrap with the Sirius military, so we'll be safe once we get there. Come on, what are you waitin' for? Step on it!"]])
 
 pay_text = _([[You find yourself back on the Seiryuu, in the company of Jorek and the Four Winds informant. The informant is escorted deeper into the ship by gray-uniformed crew members, while Jorek takes you up to the bridge for a meeting with Captain Rebina. "Welcome back, Jorek, {player}," Rebina greets on your arrival. "I've already got a preliminary report on the situation, but let's have ourselves a proper debriefing. Have a seat."
 
-You and Jorek sit down at the holotable in the middle of the bridge and report on the events surrounding Jorek's retrieval. When you're done, Captain Rebina calls up a schematic view of the Genbu from the holotable. "It would seem that Giornio and his comrades have a vested interest in keeping me away from the truth. It's a good thing you managed to get out of that ambush and bring me that informant. I do hope he'll be able to shed more light on the situation. I've got a bad premonition, a hunch that we're going to have to act soon if we're going to avert disaster, whatever that may be. I trust that you will be willing to aid us again when that time comes, {player}. We're going to need all the help we can get. For now, you will find a modest amount of credits in your account. I will be in touch when things are clearer."
+You and Jorek sit down at the holotable in the middle of the bridge and report on the events surrounding Jorek's retrieval. When you're done, Captain Rebina calls up a schematic view of the Genbu from the holotable. "It would seem that Giornio and his comrades have a vested interest in keeping me away from the truth. It's a good thing you managed to get out of that ambush and bring me that informant. I do hope he'll be able to shed more light on the situation. I've got a bad premonition, a hunch that we're going to have to act soon if we're going to avert disaster, whatever that may be. I trust that you will be willing to aid us again when that time comes, {player}. We're going to need all the help we can get. For now, you will find a generous amount of credits in your account. I will be in touch when things are clearer."
 
 You return to your ship and undock from the Seiryuu. You reflect that you had to run for your life this time around, and by all accounts, things will only get worse with the Four Winds in the future. Many people would be nervous in your position.]])
 
@@ -95,7 +95,7 @@ Jordesc = _("There he is, Jorek McArthy, the man you've been chasing across half
 osd_title = _("Dark Shadow")
 osd_msg_0 = _("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it")
 osd_msg_1 = _("Land on {planet} ({system} system) and look for Jorek at the bar")
-osd_msg_2 = _("Fetch the Four Winds informant from his ship")
+osd_msg_2 = _("Board the Four Winds Informant's ship without getting spotted")
 
 misn_desc1 = _([[You have been summoned to the {system} system, where the Seiryuu is supposedly waiting for you.]])
 misn_desc2 = _([[You have been tasked by Captain Rebina of the Four Winds to assist Jorek McArthy.]])
@@ -114,7 +114,6 @@ log_text_suspicion = _([[Rebina has reported that she suspects there are traitor
 log_text_succeed = _([[You found Jorek and successfully retrieved his informant on behalf of Captain Rebina. The Genbu ambushed you, but you managed to get away and dock the Seiryuu. Captain Rebina remarked on the situation. "I've got a bad premonition, a hunch that we're going to have to act soon if we're going to avert disaster, whatever that may be. I trust that you will be willing to aid us again when that time comes, {player}. We're going to need all the help we can get. For now, you will find a modest amount of credits in your account. I will be in touch when things are clearer."
 
 She said she may need your services again in the future.]])
-log_text_fail = _([[You failed to pick up Jorek's informant. As such, he refused to allow you to take him to the Seiryuu.]])
 
 
 function create()
@@ -122,9 +121,9 @@ function create()
     jorekplanet1, joreksys1 = planet.get("Manis")
     jorekplanet2, joreksys2 = planet.get("The Wringer")
     ambushsys = system.get("Herakin")
-    safesys = system.get("Eiderdown")
+    genbusys = system.get("Anrique")
 
-    if not misn.claim({seirsys, joreksys2, ambushsys}) then
+    if not misn.claim({seirsys, joreksys2, ambushsys, genbusys}) then
         misn.finish(false)
     end
 
@@ -202,19 +201,28 @@ function seiryuuBoard()
 end
 
 
-function joeBoard()
-    tk.msg("", fmt.f(board_text, {player=player.name()}))
+function joeBoard(p)
     player.unboard()
+    tk.msg("", fmt.f(board_text, {player=player.name()}))
     misn.markerMove(marker, seirsys)
     misn.osdActive(2)
     stage = 5
+    if p:exists() then
+        p:hookClear()
+        p:setHilight(false)
+        p:setVisplayer(false)
+        p:setActiveBoard(false)
+        p:disable()
+        p:setNoboard()
+    end
 end
 
 
 function jumpout()
     playerlastsys = system.cur()
-    hook.rm(patroller)
+    hook.rm(poller)
     hook.rm(spinter)
+    player.pilot():setVisible(false)
 end
 
 
@@ -238,35 +246,45 @@ function enter()
         pilot.clear()
         pilot.toggleSpawn(false)
         spawnSquads(false)
-    elseif system.cur() == joreksys2 and stage == 4 then
-        pilot.clear()
-        pilot.toggleSpawn(false)
-        player.allowLand(false, _("It's not safe to land right now."))
-        -- Meet Joe, our informant.
-        joe = pilot.add("Vendetta", "Four Winds", vec2.new(-500, -4000),
-                _("Four Winds Informant"), {ai="trader"})
-        joe:control()
-        joe:setHilight(true)
-        joe:setVisplayer()
-        joe:setInvincible(true)
-        joe:disable()
-        spawnSquads(true)
+    elseif stage == 4 then
+        if system.cur() == joreksys2 then
+            pilot.clear()
+            pilot.toggleSpawn(false)
+            player.allowLand(false, _("It's not safe to land right now."))
+            -- Meet Joe, our informant.
+            joe = pilot.add("Vendetta", "Four Winds", vec2.new(-500, -4000),
+                    _("Four Winds Informant"), {ai="trader"})
+            joe:control()
+            joe:setHilight()
+            joe:setVisplayer()
+            joe:setInvincible()
+            joe:setActiveBoard()
+            spawnSquads(true)
 
-        hook.pilot(joe, "board", "joeBoard")
-        poller = hook.timer(0.5, "patrolPoll")
-    elseif system.cur() == ambushsys and stage == 4 then
-        tk.msg("", fmt.f(joefailtext, {player=player.name()}))
-        shadow_addLog(log_text_fail)
-        misn.finish(false)
-    elseif genbuspawned and stage == 5 then
-        spawnGenbu(playerlastsys)
-        continueAmbush()
-    elseif system.cur() == ambushsys and stage == 5 then
-        pilot.clear()
-        pilot.toggleSpawn(false)
-        hook.timer(3, "startAmbush")
-    elseif system.cur() == safesys and stage == 5 then
-        stage = 6 -- stop spawning the Genbu
+            hook.pilot(joe, "board", "joeBoard")
+            poller = hook.timer(0.5, "patrolPoll")
+        else
+            hook.timer(3, "failtimer")
+        end
+    elseif stage == 5 then
+        if system.cur():faction() == faction.get("Sirius") and stage == 5 then
+            stage = 6
+        elseif genbuspawned then
+            if system.cur() == joreksys2 or system.cur() == ambushsys
+                    or system.cur() == genbusys then
+                pilot.clear()
+                pilot.toggleSpawn(false)
+                player.allowLand(false, _("It's not safe to land right now."))
+            end
+            spawnGenbu(playerlastsys)
+            continueAmbush()
+            player.pilot():setVisible()
+        elseif system.cur() == ambushsys then
+            pilot.clear()
+            pilot.toggleSpawn(false)
+            player.pilot():setVisible()
+            hook.timer(3, "startAmbush")
+        end
     end
 end
 
@@ -292,16 +310,13 @@ function spawnSquads(highlight)
 
     squads = {}
     for i, start in ipairs(leaderstart) do
-        squads[i] = fleet.add(4, "Vendetta", "Rogue Four Winds", start,
-            _("Four Winds Patrol"))
+        squads[i] = fleet.add(4, "Vendetta", "Four Winds", start,
+            _("Four Winds Patrol"), {ai="baddie_norun"}, true)
     end
 
     for i, squad in ipairs(squads) do
         for j, p in ipairs(squad) do
             hook.pilot(p, "attacked", "attacked")
-            if j ~= 1 then
-                p:setLeader(squad[1])
-            end
         end
     end
     
@@ -321,23 +336,31 @@ end
 
 
 function attacked()
+    hook.rm(poller)
     player.pilot():setVisible()
     for i, squad in ipairs(squads) do
         for j, p in ipairs(squad) do
-            p:control(false)
-            p:setHostile()
+            if p:exists() then
+                p:hookClear()
+                p:taskClear()
+                p:control(false)
+                p:setHilight(false)
+                p:setVisible(false)
+                p:setHostile()
+                p:setLeader(nil)
+            end
         end
     end
 end
 
 
-function leaderIdle(pilot)
+function leaderIdle(plt)
     for i, j in ipairs(leader) do
-        if j == pilot then
+        if j == plt then
             if tick[i] then
-                pilot:moveto(leaderdest[i], false)
+                plt:moveto(leaderdest[i], false)
             else
-                pilot:moveto(leaderstart[i], false)
+                plt:moveto(leaderstart[i], false)
             end
             tick[i] = not tick[i]
             return
@@ -348,12 +371,14 @@ end
 
 function patrolPoll()
     for i, patroller in ipairs(leader) do
-        for j, p in patroller:getVisible() do
-            if (p == player.pilot() or p:leader() == player.pilot())
-                    and patroller:pos():dist(p:pos()) < 3500 then
-                patroller:broadcast(patrolcomm)
-                attacked()
-                return
+        if patroller:exists() then
+            for j, p in ipairs(patroller:getVisible()) do
+                if (p == player.pilot() or p:leader() == player.pilot())
+                        and patroller:pos():dist(p:pos()) < 3500 then
+                    patroller:broadcast(patrolcomm)
+                    attacked()
+                    return
+                end
             end
         end
     end
@@ -361,21 +386,26 @@ function patrolPoll()
 end
 
 
+function failtimer()
+    tk.msg("", fmt.f(joefailtext, {player=player.name()}))
+    misn.finish(false)
+end
+
+
 function spawnGenbu(sys)
-    genbu = pilot.add("Starbridge", "Rogue Four Winds", sys, _("Genbu"),
-            {noequip=true})
+    genbu = pilot.add("Starbridge", "Four Winds", sys, _("Genbu"),
+            {ai="baddie_norun", noequip=true})
     genbu:setHostile()
-    genbu:setHilight()
     genbu:setVisplayer()
     genbu:setNoDeath()
     genbu:setNoDisable()
-    genbu:setNoBoard()
+    genbu:setNoboard()
     genbuspawned = true
 end
 
 
 function startAmbush()
-    spawnGenbu(system.get("Anrique"))
+    spawnGenbu(genbusys)
     tk.msg("", fmt.f(ambush_text, {player=player.name()}))
     continueAmbush()
 end
@@ -389,8 +419,9 @@ end
 
 
 function spawnInterceptors()
-    inters = fleet.add(3, "Lancelot", "Rogue Four Winds", genbu:pos(),
-            _("Four Winds Lancelot"))
+    local po
+    inters = fleet.add(3, "Lancelot", "Four Winds", genbu:pos(),
+            _("Four Winds Lancelot"), {ai="baddie_norun"})
     for i, p in ipairs(inters) do
         p:setHostile()
     end
@@ -438,4 +469,37 @@ function jorek()
     misn.osdCreate(osd_title, osd_msg)
 
     stage = 4
+end
+
+
+function abort()
+    if system.cur() == joreksys2 or system.cur() == ambushsys
+            or system.cur() == genbusys then
+        -- Try to blend any spawned pilots in as reasonably as possible.
+        player.allowLand(true)
+        pilot.toggleSpawn(true)
+        player.pilot():setVisible(false)
+        if squads ~= nil then
+            for i, p in ipairs(leader) do
+                if p:exists() then
+                    p:hookClear()
+                    p:taskClear()
+                    p:control(false)
+                    p:setHilight(false)
+                    p:setVisible(false)
+                end
+            end
+        end
+        if joe ~= nil and joe:exists() then
+            joe:control(false)
+            joe:setHilight(false)
+            joe:setVisplayer(false)
+            joe:setInvincible(false)
+            joe:setActiveBoard(false)
+        end
+        if genbu ~= nil and genbu:exists() then
+            genbu:setVisplayer(false)
+        end
+    end
+    misn.finish(false)
 end
