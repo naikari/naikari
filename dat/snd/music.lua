@@ -37,8 +37,8 @@ function choose( str )
       ["load"]    = choose_load,
       ["intro"]   = choose_intro,
       ["credits"] = choose_credits,
-      ["land"]    = choose_land,
-      ["takeoff"] = choose_takeoff,
+      ["land"]    = choose_ambient,
+      ["takeoff"] = choose_ambient,
       ["ambient"] = choose_ambient,
       ["combat"]  = choose_combat
    }
@@ -218,23 +218,42 @@ function choose_ambient ()
    end
 
    -- Get information about the current system
-   local sys                  = system.cur()
-   local factions             = sys:presences()
-   local nebu_dens, nebu_vol  = sys:nebula()
-
-   -- System
-   local override = system_ambient_songs[ sys:nameRaw() ]
-   if override then
-      music.load( override[ rnd.rnd(1, #override) ] )
-      music.play()
-      return true
-   end
+   local sys = system.cur()
+   local factions = sys:presences()
+   local nebu_dens, nebu_vol = sys:nebula()
 
    local strongest = var.peek("music_ambient_force")
+
+   if player.isLanded() then
+      local pnt = planet.cur()
+
+      -- Planet override
+      local override = planet_songs[pnt:nameRaw()]
+      if override then
+         music.load(override[rnd.rnd(1, #override)])
+         music.play()
+         return true
+      end
+
+      if strongest == nil then
+         if pnt:faction() ~= nil then
+            strongest = pnt:faction():nameRaw()
+         end
+      end
+   else
+      -- System override
+      local override = system_ambient_songs[sys:nameRaw()]
+      if override then
+         music.load(override[rnd.rnd(1, #override)])
+         music.play()
+         return true
+      end
+   end
+
    if strongest == nil then
       if factions then
          local strongest_amount = 0
-         for k, v in pairs( factions ) do
+         for k, v in pairs(factions) do
             if v > strongest_amount then
                strongest = k
                strongest_amount = v
@@ -246,10 +265,7 @@ function choose_ambient ()
    -- Check to see if changing faction zone
    if strongest ~= last_sysFaction then
       force = true
-
-      if force then
-         last_sysFaction = strongest
-      end
+      last_sysFaction = strongest
    end
 
    -- Check to see if entering nebula
