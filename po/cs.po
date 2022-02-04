@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-02-03 14:54-0500\n"
+"POT-Creation-Date: 2022-02-03 19:13-0500\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -49355,7 +49355,7 @@ msgid ""
 "Most likely Lua file has improper syntax, please check"
 msgstr ""
 
-#: src/faction.c:1588 src/map.c:2980 src/outfit.c:1080 src/ship.c:431
+#: src/faction.c:1588 src/map.c:2983 src/outfit.c:1080 src/ship.c:431
 #: src/ship.c:887 src/space.c:1694 src/space.c:3194 src/tech.c:122
 #, c-format
 msgid "Malformed %s file: does not contain elements"
@@ -51048,7 +51048,7 @@ msgstr ""
 #: src/load.c:468
 #, c-format
 msgid ""
-"Save game '%s' version does not match Naikari version:\n"
+"Save game '%s' version is newer than Naikari version:\n"
 "   Save version: #r%s#0\n"
 "   Naikari version: %s\n"
 "Are you sure you want to load this game? It may lose data."
@@ -51079,7 +51079,7 @@ msgid "#gWelcome to %s!"
 msgstr ""
 
 #: src/load.c:671
-msgid "Old version detected. Sanitizing ships for slots"
+msgid "New save data detected. Sanitizing ships for slots"
 msgstr ""
 
 #: src/log.c:129
@@ -51221,17 +51221,21 @@ msgstr ""
 msgid "%s: Trade"
 msgstr ""
 
-#: src/map.c:2974
+#: src/map.c:2405
+msgid "Attempted to call map_jump() while there is no system!"
+msgstr ""
+
+#: src/map.c:2977
 #, c-format
 msgid "Malformed %s file: missing root element 'map'"
 msgstr ""
 
-#: src/map.c:2992 src/slots.c:83 src/start.c:126 src/tech.c:136
+#: src/map.c:2995 src/slots.c:83 src/start.c:126 src/tech.c:136
 #, c-format
 msgid "'%s' has unknown node '%s'."
 msgstr ""
 
-#: src/map.c:2997
+#: src/map.c:3000
 #, c-format
 msgid "Loaded %d map decorator"
 msgid_plural "Loaded %d map decorators"
@@ -51239,12 +51243,12 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/map.c:3024
+#: src/map.c:3027
 #, c-format
 msgid "Could not load map decorator texture '%s'."
 msgstr ""
 
-#: src/map.c:3029
+#: src/map.c:3032
 #, c-format
 msgid "Map decorator has unknown node '%s'."
 msgstr ""
@@ -51800,7 +51804,7 @@ msgstr ""
 msgid "Music thread did not exit when asked, ignoring..."
 msgstr ""
 
-#: src/naev.c:189 src/naev.c:1102
+#: src/naev.c:189 src/naev.c:1108
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr ""
@@ -51883,18 +51887,17 @@ msgstr ""
 msgid "Reached main menu"
 msgstr ""
 
-#: src/naev.c:384
+#: src/naev.c:385
 #, fuzzy
 msgid "Welcome to Naikari"
 msgstr "Vítejte v mlhovině"
 
-#: src/naev.c:385
+#: src/naev.c:386
 #, c-format
 msgid ""
 "Welcome to Naikari version %s, and thank you for playing! We hope you enjoy "
-"this game and all it has to offer. This is a passion project developed "
-"exclusively by volunteers, and it would give us great joy if there are "
-"others who love this game as much as we do!\n"
+"this game and all it has to offer. This is a passion project and it would "
+"give us great joy if there are others who love this game as much as we do!\n"
 "\n"
 "Of course, please note that this is an incomplete game. You will encounter "
 "dead ends to storylines, missing storylines, and possibly even some bugs, "
@@ -52029,16 +52032,16 @@ msgstr ""
 msgid " debug"
 msgstr ""
 
-#: src/naev.c:1130
+#: src/naev.c:1136
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr ""
 
-#: src/naev.c:1140
+#: src/naev.c:1146
 msgid "SDL is newer than compiled version"
 msgstr ""
 
-#: src/naev.c:1142
+#: src/naev.c:1148
 msgid "SDL is older than compiled version."
 msgstr ""
 
