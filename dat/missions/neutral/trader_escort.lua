@@ -73,15 +73,26 @@ function create()
    if avgrisk == 0 then
       piracyrisk = piracyrisk[1]
       riskreward = 0
+      riskmod = 5
    elseif avgrisk <= 25 then
       piracyrisk = piracyrisk[2]
-      riskreward = 400
+      riskreward = 20
+      riskmod = 10
+   elseif avgrisk <= 50 then
+      -- Note: duplication of piracy risk descriptions here is
+      -- intentional, for consistency with other missions that don't
+      -- have this level of granularity.
+      piracyrisk = piracyrisk[3]
+      riskreward = 30
+      riskmod = 15
    elseif avgrisk <= 100 then
       piracyrisk = piracyrisk[3]
-      riskreward = 500
+      riskreward = 50
+      riskmod = 20
    else
       piracyrisk = piracyrisk[4]
-      riskreward = 500
+      riskreward = 100
+      riskmod = 25
    end
     
    convoysize = rnd.rnd(1,5)
@@ -89,20 +100,20 @@ function create()
    -- Choose mission reward.
    -- Reward depends on type of cargo hauled. Hauling expensive commodities gives a better deal.
    if convoysize == 1 then
-      jumpreward = 120 * commodity.price(cargo)
-      distreward = math.log(1000*commodity.price(cargo)) / 10
+      jumpreward = 6 * riskmod * commodity.price(cargo)
+      distreward = riskmod * math.log(500*commodity.price(cargo))/100
    elseif convoysize == 2 then
-      jumpreward = 140 * commodity.price(cargo)
-      distreward = math.log(1400*commodity.price(cargo)) / 10
+      jumpreward = 7 * riskmod * commodity.price(cargo)
+      distreward = riskmod * math.log(700*commodity.price(cargo))/100
    elseif convoysize == 3 then
-      jumpreward = 160 * commodity.price(cargo)
-      distreward = math.log(1600*commodity.price(cargo)) / 10
+      jumpreward = 8 * riskmod * commodity.price(cargo)
+      distreward = riskmod * math.log(800*commodity.price(cargo))/100
    elseif convoysize == 4 then
-      jumpreward = 180 * commodity.price(cargo)
-      distreward = math.log(1800*commodity.price(cargo)) / 10
+      jumpreward = 9 * riskmod * commodity.price(cargo)
+      distreward = riskmod * math.log(900*commodity.price(cargo))/100
    elseif convoysize == 5 then
-      jumpreward = 200 * commodity.price(cargo)
-      distreward = math.log(2000*commodity.price(cargo)) / 10
+      jumpreward = 10 * riskmod * commodity.price(cargo)
+      distreward = riskmod * math.log(1000*commodity.price(cargo))/100
    end
    reward = (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward)
          * (1 + 0.05*rnd.twosigma())
