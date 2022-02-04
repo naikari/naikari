@@ -28,12 +28,13 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 --]]
 
+local fmt = require "fmt"
 require "events/tutorial/tutorial_common"
 
 
 nofuel_text = _([[As you enter the system and look for a place to land, realizing you're out of fuel, Captain T. Practice shows up on your display. "Hi there! I see you've run out of fuel, and what a predicament, too; there aren't any planets that you can land on here. But don't worry, you can still refuel! It'll just be a little harder and more costly.
 
-See you can hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with %s and pressing %s. Once you've hailed them, you can request to be refueled. This isn't likely to work on military ships, but many civilians and traders will happily sell you some of their fuel for a nominal fee. When you find someone willing to refuel you, you will need to stop your ship, which you can do easily with %s, and wait for them to reach your ship and finish the fuel transfer.
+See you can hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with {target_next_key} and pressing {hail_key}. Once you've hailed them, you can request to be refueled. This isn't likely to work on military ships, but many civilians and traders will happily sell you some of their fuel for a nominal fee. When you find someone willing to refuel you, you will need to stop your ship, which you can do easily with {autobrake_key}, and wait for them to reach your ship and finish the fuel transfer.
 
 "If there aren't any civilians or traders in the area, there's one other way: if you hail a pirate, you can usually bribe them to convince them to leave you alone. After you've bribed them, there's a good chance they'll be willing to sell you fuel as well if you hail them again! While having to trust a pilot isn't ideal, it's at least better than being stuck in open space with no rescue.
 
@@ -44,19 +45,19 @@ If there are no civilians or traders in the system, you can alternatively attemp
 
 hostile_presence_text = _([[Captain T. Practice shows up again. "It seems you've entered a system with hostile pilots! This is the first of many, I'm afraid, so it's important that you know what to do to protect yourself.
 
-"Obviously, one thing you can do is fight, assuming you have the capability. However, if you're outnumbered or unable to fight, there's still one more thing you can do: if you either #bdouble-click#0 on a hostile pilot, or target them with %s and then press %s, you can open the communication window, where you can bribe the pilot so that they stop attacking you. This usually works with pirate scum, though it may be less effective against other factions.
+"Obviously, one thing you can do is fight, assuming you have the capability. However, if you're outnumbered or unable to fight, there's still one more thing you can do: if you either #bdouble-click#0 on a hostile pilot, or target them with {target_hostile_key} and then press {hail_key}, you can open the communication window, where you can bribe the pilot so that they stop attacking you. This usually works with pirate scum, though it may be less effective against other factions.
 
-"You can always check the faction presences of a given system by pressing %s to open the starmap. On the right, you will see a list of all factions present in the currently selected system, along with a number indicating how strong their presence is. This can help you stay out of hostile systems in the first place, if you wish.
+"You can always check the faction presences of a given system by pressing {starmap_key} to open the star map. On the right, you will see a list of all factions present in the currently selected system, along with a number indicating how strong their presence is. This can help you stay out of hostile systems in the first place, if you wish.
 
 "However you choose to do, stay safe!"]])
 hail_hostile_log = _([[You can hail a hostile pilot either by double-clicking on the pilot, or by targeting them with the Target Nearest Hostile key (R by default) and pressing the Hail key (Y by default). From there, you can bribe the pilot so that they stop attacking you. This is particularly effective against pirates.]])
 hostile_presence_log = _([[You can check faction the presences of a given known system by pressing the Open Star Map key (M by default) and selecting the system on the map. Each faction present in the system is listed on the right, along with a number indicating how strong their presence is.]])
 
-nebu_volat_text = _([[You begin to notice your shielding equipment behaving somewhat erratically as you see Captain T. Practice show up on your view screen. "Exploring the nebula, eh? It seems you're in a portion of the nebula with some volatility. Specifically, the system you're in has a volatility rating of %g GW. That means you are right now constantly taking that amount of damage. Your shields repel 85%% of the damage due to the unique qualities of shielding, but your armor does not; if you run out of shields, your armor will begin to rapidly lose its integrity. For this reason, you should try not to be put in a situation where your shields are inactive.
+nebu_volat_text = _([[You begin to notice your shielding equipment behaving somewhat erratically as you see Captain T. Practice show up on your view screen. "Exploring the nebula, eh? It seems you're in a portion of the nebula with some volatility. Specifically, the system you're in has a volatility rating of {volatility} GW. That means you are right now constantly taking that amount of damage. Your shields repel 85% of the damage due to the unique qualities of shielding, but your armor does not; if you run out of shields, your armor will begin to rapidly lose its integrity. For this reason, you should try not to be put in a situation where your shields are inactive.
 
-"You can see the volatility of the nebula in any given system via the starmap, which you can open by pressing %s. Information about the selected system, which includes volatility, can be found in the bottom-left. Try not to go too far into the nebula, and if you see your shields starting to drop, I advise you retreat to where you came from immediately. Stay safe!"]])
+"You can see the volatility of the nebula in any given system via the star map, which you can open by pressing {starmap_key}. Information about the selected system, which includes volatility, can be found in the bottom-left. Try not to go too far into the nebula, and if you see your shields starting to drop, I advise you retreat to where you came from immediately. Stay safe!"]])
 nebu_volat_log = _([[Systems with a nebula volatility rating constantly cause damage to ships within them. The volatility rating corresponds to the damage they constantly inflict. Shields repel 85% of the damage inflicted on them, but armor, if left without shields, will take full damage and rapidly start to lose its integrity.]])
-map_volat_log = _([[You can see the volatility of the nebula in any given system via the starmap, which you can open by pressing the Open Star Map key (M by default). Information about the selected system, which includes nebula volatility, can be found in the bottom-left.]])
+map_volat_log = _([[You can see the volatility of the nebula in any given system via the star map, which you can open by pressing the Open Star Map key (M by default). Information about the selected system, which includes nebula volatility, can be found in the bottom-left.]])
 
 
 function create ()
@@ -85,25 +86,28 @@ function timer ()
    if not var.peek("tutorial_nofuel") and not landable_planets
          and player.jumps() == 0 then
       if var.peek("_tutorial_passive_active") then
-         tk.msg("", nofuel_text:format(
-                  tutGetKey("target_next"), tutGetKey("hail"),
-                  tutGetKey("autobrake")))
+         tk.msg("", fmt.f(nofuel_text,
+                  {target_next_key=tutGetKey("target_next"),
+                     hail_key=tutGetKey("hail"),
+                     autobrake_key=tutGetKey("autobrake")}))
       end
       addTutLog(nofuel_log, N_("Hailing"))
       var.push("tutorial_nofuel", true)
    elseif not var.peek("tutorial_hostile_presence")
          and sys:presence("hostile") > 0 then
       if var.peek("_tutorial_passive_active") then
-         tk.msg("", hostile_presence_text:format(
-                  tutGetKey("target_hostile"), tutGetKey("hail"),
-                  tutGetKey("starmap")))
+         tk.msg("", fmt.f(hostile_presence_text,
+                  {target_hostile_key=tutGetKey("target_hostile"),
+                     hail_key=tutGetKey("hail"),
+                     starmap_key=tutGetKey("starmap")}))
       end
       addTutLog(hail_hostile_log, N_("Combat"))
       addTutLog(hostile_presence_log, N_("Navigation"))
       var.push("tutorial_hostile_presence", true)
    elseif not var.peek("tutorial_nebula_volatility") and nebu_volat > 0 then
       if var.peek("_tutorial_passive_active") then
-         tk.msg("", nebu_volat_text:format(nebu_volat, tutGetKey("starmap")))
+         tk.msg("", fmt.f(nebu_volat_text,
+               {volatility=nebu_volat, starmap_key=tutGetKey("starmap")}))
       end
       addTutLog(nebu_volat_log, N_("Nebula"))
       addTutLog(map_volat_log, N_("Nebula"))
