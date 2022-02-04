@@ -431,6 +431,7 @@ end
 
 function continueToDest(p)
    if p ~= nil and p:exists() then
+      p:taskClear()
       p:control(true)
       p:setNoJump(false)
       p:setNoLand(false)
