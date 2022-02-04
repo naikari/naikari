@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-02-03 14:54-0500\n"
+"POT-Creation-Date: 2022-02-03 19:13-0500\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -60374,7 +60374,7 @@ msgstr ""
 "%s\n"
 "Wahrscheinlich hat die Luadatei eine fehlerhafte Syntax, bitte überprüfen"
 
-#: src/faction.c:1588 src/map.c:2980 src/outfit.c:1080 src/ship.c:431
+#: src/faction.c:1588 src/map.c:2983 src/outfit.c:1080 src/ship.c:431
 #: src/ship.c:887 src/space.c:1694 src/space.c:3194 src/tech.c:122
 #, c-format
 msgid "Malformed %s file: does not contain elements"
@@ -62202,7 +62202,7 @@ msgstr "Spielstandsversionskonflikt"
 #: src/load.c:468
 #, fuzzy, c-format
 msgid ""
-"Save game '%s' version does not match Naikari version:\n"
+"Save game '%s' version is newer than Naikari version:\n"
 "   Save version: #r%s#0\n"
 "   Naikari version: %s\n"
 "Are you sure you want to load this game? It may lose data."
@@ -62238,7 +62238,8 @@ msgid "#gWelcome to %s!"
 msgstr "#gWillkommen bei %s!"
 
 #: src/load.c:671
-msgid "Old version detected. Sanitizing ships for slots"
+#, fuzzy
+msgid "New save data detected. Sanitizing ships for slots"
 msgstr "Alte Version erfasst. Schiffe werden für Plätze aufgeräumt"
 
 #: src/log.c:129
@@ -62388,29 +62389,33 @@ msgstr "%s: Kosten"
 msgid "%s: Trade"
 msgstr "%s: Handel"
 
-#: src/map.c:2974
+#: src/map.c:2405
+msgid "Attempted to call map_jump() while there is no system!"
+msgstr ""
+
+#: src/map.c:2977
 #, c-format
 msgid "Malformed %s file: missing root element 'map'"
 msgstr "Defekte „%s“-Datei: fehlendes Wurzelelement „map“"
 
-#: src/map.c:2992 src/slots.c:83 src/start.c:126 src/tech.c:136
+#: src/map.c:2995 src/slots.c:83 src/start.c:126 src/tech.c:136
 #, c-format
 msgid "'%s' has unknown node '%s'."
 msgstr "„%s“ hat unbekannten Node „%s“."
 
-#: src/map.c:2997
+#: src/map.c:3000
 #, c-format
 msgid "Loaded %d map decorator"
 msgid_plural "Loaded %d map decorators"
 msgstr[0] "%d Kartendekorator geladen"
 msgstr[1] "%d Kartendekoratoren geladen"
 
-#: src/map.c:3024
+#: src/map.c:3027
 #, c-format
 msgid "Could not load map decorator texture '%s'."
 msgstr "Kartendekoratortextur „%s“ konnte nicht geladen werden."
 
-#: src/map.c:3029
+#: src/map.c:3032
 #, c-format
 msgid "Map decorator has unknown node '%s'."
 msgstr "Kartendekorator hat unbekannen Node „%s“."
@@ -63005,7 +63010,7 @@ msgid "Music thread did not exit when asked, ignoring..."
 msgstr ""
 "Musik-Thread hat sich nach einer Anfrage nicht beendet, wird ignoriert …"
 
-#: src/naev.c:189 src/naev.c:1102
+#: src/naev.c:189 src/naev.c:1108
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr "Versionszeichenkette „%s“ konnte nicht geparst werden!"
@@ -63090,18 +63095,17 @@ msgstr "Das Nebeluntersystem konnte nicht initialisiert werden!"
 msgid "Reached main menu"
 msgstr "Hauptmenü erreicht"
 
-#: src/naev.c:384
+#: src/naev.c:385
 #, fuzzy
 msgid "Welcome to Naikari"
 msgstr "Willkommen bei Naev"
 
-#: src/naev.c:385
+#: src/naev.c:386
 #, fuzzy, c-format
 msgid ""
 "Welcome to Naikari version %s, and thank you for playing! We hope you enjoy "
-"this game and all it has to offer. This is a passion project developed "
-"exclusively by volunteers, and it would give us great joy if there are "
-"others who love this game as much as we do!\n"
+"this game and all it has to offer. This is a passion project and it would "
+"give us great joy if there are others who love this game as much as we do!\n"
 "\n"
 "Of course, please note that this is an incomplete game. You will encounter "
 "dead ends to storylines, missing storylines, and possibly even some bugs, "
@@ -63253,16 +63257,16 @@ msgstr "Konnte icon.png nicht laden!"
 msgid " debug"
 msgstr " debug"
 
-#: src/naev.c:1130
+#: src/naev.c:1136
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr "SDL: %d.%d.%d [kompiliert: %d.%d.%d]"
 
-#: src/naev.c:1140
+#: src/naev.c:1146
 msgid "SDL is newer than compiled version"
 msgstr "SDL ist neuer als die kompilierte Version"
 
-#: src/naev.c:1142
+#: src/naev.c:1148
 msgid "SDL is older than compiled version."
 msgstr "SDL ist älter als die kompilierte Version."
 
