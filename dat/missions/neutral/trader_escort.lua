@@ -72,12 +72,16 @@ function create()
    
    if avgrisk == 0 then
       piracyrisk = piracyrisk[1]
+      riskreward = 0
    elseif avgrisk <= 25 then
       piracyrisk = piracyrisk[2]
+      riskreward = 400
    elseif avgrisk <= 100 then
       piracyrisk = piracyrisk[3]
+      riskreward = 500
    else
       piracyrisk = piracyrisk[4]
+      riskreward = 500
    end
     
    convoysize = rnd.rnd(1,5)
@@ -85,22 +89,23 @@ function create()
    -- Choose mission reward.
    -- Reward depends on type of cargo hauled. Hauling expensive commodities gives a better deal.
    if convoysize == 1 then
-      jumpreward = 6*commodity.price(cargo)
-      distreward = math.log(500*commodity.price(cargo))/100
+      jumpreward = 120 * commodity.price(cargo)
+      distreward = math.log(1000*commodity.price(cargo)) / 10
    elseif convoysize == 2 then
-      jumpreward = 7*commodity.price(cargo)
-      distreward = math.log(700*commodity.price(cargo))/100
+      jumpreward = 140 * commodity.price(cargo)
+      distreward = math.log(1400*commodity.price(cargo)) / 10
    elseif convoysize == 3 then
-      jumpreward = 8*commodity.price(cargo)
-      distreward = math.log(800*commodity.price(cargo))/100
+      jumpreward = 160 * commodity.price(cargo)
+      distreward = math.log(1600*commodity.price(cargo)) / 10
    elseif convoysize == 4 then
-      jumpreward = 9*commodity.price(cargo)
-      distreward = math.log(900*commodity.price(cargo))/100
+      jumpreward = 180 * commodity.price(cargo)
+      distreward = math.log(1800*commodity.price(cargo)) / 10
    elseif convoysize == 5 then
-      jumpreward = 10*commodity.price(cargo)
-      distreward = math.log(1000*commodity.price(cargo))/100
+      jumpreward = 200 * commodity.price(cargo)
+      distreward = math.log(2000*commodity.price(cargo)) / 10
    end
-   reward = 2.0 * (avgrisk * numjumps * jumpreward + traveldist * distreward) * (1. + 0.05*rnd.twosigma())
+   reward = (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward)
+         * (1 + 0.05*rnd.twosigma())
    
    misn.setTitle(fmt.f(misn_title[convoysize],
          {planet=destplanet:name(), system=destsys:name()}))
