@@ -1087,11 +1087,8 @@ static void info_openMissions( unsigned int wid )
 
    /* text */
    window_addText( wid, 300+40, -60,
-         200, 40, 0, "txtSReward",
-         &gl_smallFont, NULL, _("#nReward:#0") );
-   window_addText( wid, 300+40, -80,
          200, 40, 0, "txtReward", &gl_smallFont, NULL, NULL );
-   window_addText( wid, 300+40, -120,
+   window_addText( wid, 300+40, -100,
          w - (300+40+40), h - BUTTON_HEIGHT - 120 - 20, 0,
          "txtDesc", &gl_defFont, NULL, NULL );
 
@@ -1142,20 +1139,27 @@ static void mission_menu_update( unsigned int wid, char* str )
    (void)str;
    char *active_misn;
    Mission* misn;
+   char buf[STRMAX];
 
-   active_misn = toolkit_getList( wid, "lstMission" );
+   active_misn = toolkit_getList(wid, "lstMission");
    if ((active_misn==NULL) || (strcmp(active_misn,_("No Missions"))==0)) {
-      window_modifyText( wid, "txtReward", _("None") );
-      window_modifyText( wid, "txtDesc",
-            _("You currently have no active missions.") );
-      window_disableButton( wid, "btnAbortMission" );
+      window_modifyText(wid, "txtReward", _("#nReward:#0 None"));
+      window_modifyText(wid, "txtDesc",
+            _("You currently have no active missions."));
+      window_disableButton(wid, "btnAbortMission");
       return;
    }
 
    /* Modify the text. */
-   misn = player_missions[ toolkit_getListPos(wid, "lstMission" ) ];
-   window_modifyText( wid, "txtReward", misn->reward );
-   window_modifyText( wid, "txtDesc", misn->desc );
+   misn = player_missions[toolkit_getListPos(wid, "lstMission")];
+   if (misn->reward != NULL) {
+      snprintf(buf, sizeof(buf), _("#nReward:#0 %s"), misn->reward);
+      window_modifyText(wid, "txtReward", buf);
+   }
+   else {
+      window_modifyText(wid, "txtReward", _("#nReward:#0 None"));
+   }
+   window_modifyText(wid, "txtDesc", misn->desc);
    if (!pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
       window_enableButton(wid, "btnAbortMission");
    else
@@ -1163,7 +1167,7 @@ static void mission_menu_update( unsigned int wid, char* str )
 
    /* Select the system. */
    if (misn->markers != NULL)
-      map_center( system_getIndex( misn->markers[0].sys )->name );
+      map_center(system_getIndex(misn->markers[0].sys)->name);
 }
 /**
  * @brief Aborts a mission in the mission menu.
