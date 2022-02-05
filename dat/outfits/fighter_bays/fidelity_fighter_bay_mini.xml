@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Mini Fidelity Fighter Bay">
+ <general>
+  <slot prop="fighter_bay">weapon</slot>
+  <size>medium</size>
+  <license>Light Combat Vessel License</license>
+  <rarity>2</rarity>
+  <mass>30</mass>
+  <price>470000</price>
+  <gfx_store>fidelity_fighter.webp</gfx_store>
+  <description>This miniaturized fighter bay allows your ship to carry two Sirius Fidelity fighters, blessed by Sirichana himself. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
+  <cpu>-110</cpu>
+ </general>
+ <specific type="fighter bay" secondary="1">
+  <ammo>Fidelity Fighter</ammo>
+  <delay>4</delay>
+  <reload_time>180</reload_time>
+  <amount>2</amount>
+ </specific>
+</outfit>

@@ -147,15 +147,26 @@
   <item>Jump Scanner</item>
   <item>Hyena Fighter Bay</item>
   <item>Mini Hyena Fighter Bay</item>
+  <item>Shark Fighter Bay</item>
+  <item>Mini Shark Fighter Bay</item>
   <item>Lancelot Fighter Bay</item>
   <item>Mini Lancelot Fighter Bay</item>
+  <item>Pirate Shark Fighter Bay</item>
+  <item>Mini Pirate Shark Fighter Bay</item>
   <item>Brigand Fighter Bay</item>
   <item>Derivative Fighter Bay</item>
+  <item>Mini Derivative Fighter Bay</item>
   <item>Empire Lancelot Fighter Bay</item>
+  <item>Mini Empire Lancelot Fighter Bay</item>
+  <item>Empire Shark Fighter Bay</item>
+  <item>Mini Empire Shark Fighter Bay</item>
   <item>Fidelity Fighter Bay</item>
+  <item>Mini Fidelity Fighter Bay</item>
   <item>Drone Fighter Bay</item>
+  <item>Mini Drone Fighter Bay</item>
   <item>Heavy Drone Fighter Bay</item>
   <item>Za'lek Light Drone Fighter Bay</item>
+  <item>Mini Za'lek Light Drone Fighter Bay</item>
   <item>Za'lek Heavy Drone Fighter Bay</item>
   <item>Za'lek Bomber Drone Fighter Bay</item>
   <item>Large Civilian Vessel License</item>
@@ -643,6 +654,8 @@
   <item>Star Maps</item>
   <item>Milspec Scrambler</item>
   <item>Milspec Jammer</item>
+  <item>Shark Fighter Bay</item>
+  <item>Mini Shark Fighter Bay</item>
   <item>Lancelot Fighter Bay</item>
   <item>Mini Lancelot Fighter Bay</item>
   <item>Light Weapon License</item>
@@ -691,7 +704,10 @@
  <!-- Faction outfits -->
  <tech name="Empire Military Outfits">
   <item>Turbolaser</item>
+  <item>Empire Shark Fighter Bay</item>
+  <item>Mini Empire Shark Fighter Bay</item>
   <item>Empire Lancelot Fighter Bay</item>
+  <item>Mini Empire Lancelot Fighter Bay</item>
  </tech>
  <tech name="Dvaered Military Outfits">
   <item>Repeating Railgun</item>
@@ -700,11 +716,13 @@
  <tech name="Sirius Military Outfits">
   <item>Heavy Razor Turret</item>
   <item>Fidelity Fighter Bay</item>
+  <item>Mini Fidelity Fighter Bay</item>
  </tech>
  <tech name="Za'lek Military Outfits">
   <item>Za'lek Hunter Launcher</item>
   <item>Za'lek Reaper Launcher</item>
   <item>Za'lek Light Drone Fighter Bay</item>
+  <item>Mini Za'lek Light Drone Fighter Bay</item>
   <item>Za'lek Heavy Drone Fighter Bay</item>
   <item>Za'lek Bomber Drone Fighter Bay</item>
  </tech>
@@ -719,6 +737,7 @@
  </tech>
  <tech name="Proteron Military Outfits">
   <item>Derivative Fighter Bay</item>
+  <item>Mini Derivative Fighter Bay</item>
  </tech>
 
  <!-- Bioship outfits -->
@@ -828,6 +847,8 @@
   <item>Pirate Rhino</item>
   <item>Pirate Shark</item>
   <item>Pirate Vendetta</item>
+  <item>Pirate Shark Fighter Bay</item>
+  <item>Mini Pirate Shark Fighter Bay</item>
  </tech>
  <tech name="Proteron Military Ships">
   <item>Proteron Archimedes</item>
@@ -875,6 +896,7 @@
   <item>Neutron Disruptor</item>
   <item>Electron Burst Cannon</item>
   <item>Drone Fighter Bay</item>
+  <item>Mini Drone Fighter Bay</item>
   <item>Heavy Drone Fighter Bay</item>
   <item>Drone</item>
   <item>Heavy Drone</item>

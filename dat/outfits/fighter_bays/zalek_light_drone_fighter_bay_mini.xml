@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Mini Za'lek Light Drone Fighter Bay">
+ <general>
+  <slot prop="fighter_bay">weapon</slot>
+  <size>medium</size>
+  <license>Light Combat Vessel License</license>
+  <rarity>2</rarity>
+  <mass>30</mass>
+  <price>600000</price>
+  <gfx_store>zalek_drone_light_fighter.webp</gfx_store>
+  <description>While they struggled to do so, House Za'lek successfully developed this miniaturized Za'lek Light Drone fighter bay. It can only carry two of the drones, but even so, their strength must not be underestimated.</description>
+  <cpu>-110</cpu>
+ </general>
+ <specific type="fighter bay" secondary="1">
+  <ammo>Za'lek Light Drone Fighter</ammo>
+  <delay>3</delay>
+  <reload_time>180</reload_time>
+  <amount>2</amount>
+ </specific>
+</outfit>

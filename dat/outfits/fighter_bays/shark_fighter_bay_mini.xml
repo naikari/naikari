@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Mini Shark Fighter Bay">
+ <general>
+  <slot prop="fighter_bay">weapon</slot>
+  <size>medium</size>
+  <license>Light Combat Vessel License</license>
+  <mass>35</mass>
+  <price>300000</price>
+  <gfx_store>shark_fighter.webp</gfx_store>
+  <description>This miniaturized fighter bay allows your ship to carry two Shark fighters. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
+  <cpu>-100</cpu>
+ </general>
+ <specific type="fighter bay" secondary="1">
+  <ammo>Shark Fighter</ammo>
+  <delay>5</delay>
+  <reload_time>240</reload_time>
+  <amount>2</amount>
+ </specific>
+</outfit>
