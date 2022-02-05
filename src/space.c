@@ -1232,10 +1232,10 @@ void space_update( const double dt )
     */
    nebu_update( dt );
    if (cur_system->nebu_volatility > 0.) {
-      dmg.type          = dtype_get("nebula");
-      dmg.damage        = cur_system->nebu_volatility * dt;
-      dmg.penetration   = 1.; /* Full penetration. */
-      dmg.disable       = 0.;
+      dmg.type = dtype_get("nebula");
+      dmg.damage = cur_system->nebu_volatility * dt;
+      dmg.penetration = 1.; /* Full penetration. */
+      dmg.disable = 0.;
 
       /* Damage pilots in volatile systems. */
       pilot_stack = pilot_getAll();
@@ -1404,6 +1404,8 @@ void space_init( const char* sysname )
    AsteroidAnchor *ast;
    Asteroid *a;
    Debris *d;
+   Damage dmg;
+   double dshield, darmor;
 
    /* cleanup some stuff */
    player_clear(); /* clears targets */
@@ -1434,9 +1436,17 @@ void space_init( const char* sysname )
       nt = ntime_pretty(0, 2);
       player_message(_("#oEntering System %s on %s."), _(sysname), nt);
       if (cur_system->nebu_volatility > 0.) {
+         dmg.type = dtype_get("nebula");
+         dmg.damage = cur_system->nebu_volatility;
+         dmg.penetration = 1.; /* Full penetration. */
+         dmg.disable = 0.;
+
+         dtype_calcDamage(&dshield, &darmor, 1., NULL,
+               &dmg, &player.p->stats);
          player_message(
-               _("#rWARNING - Volatile nebula detected in %s! Taking %G GW of damage!"),
-               _(sysname), cur_system->nebu_volatility);
+               _("#rWARNING: Volatile nebula (%G GW) detected in %s! Taking"
+                  " %.0f GW of damage to shield and %.0f GW damage to armor."),
+               cur_system->nebu_volatility, _(sysname), dshield, darmor);
       }
       free(nt);
 
