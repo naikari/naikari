@@ -17,8 +17,8 @@
 * Several new fighter bays have been added (mostly miniaturized versions
   of existing fighter bays, but also three variations of a Shark
   fighter bay).
-* Hired escorts that are created on factional planets now pilot
-  factional ships.
+* Hired escorts that are created on restricted planets and stations now
+  pilot factional military ships.
 
 ## 0.1.0 (unreleased)
 
