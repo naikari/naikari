@@ -195,7 +195,13 @@ void menu_main (void)
    if (curlocaltime.tm_mon == 3) {
       /* Autism Acceptance Month */
       tex = gl_newImage(GFX_PATH"naikari-red.png", 0);
-      main_tagline = _("#rLighting up red#0 for Autism Acceptance Month");
+      main_tagline = _("Lighting up red for Autism Acceptance Month."
+            " ##ActuallyAutistic");
+   }
+   else if (curlocaltime.tm_mon == 5) {
+      /* Queer Pride Month */
+      tex = gl_newImage(GFX_PATH"naikari-rainbow.png", 0);
+      main_tagline = _("We're here. We're queer. Get used to it. ##QueerPride");
    }
    else {
       tex = gl_newImage(GFX_PATH"naikari.png", 0);
