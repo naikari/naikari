@@ -19,6 +19,7 @@
 #include "dialogue.h"
 #include "equipment.h"
 #include "gui.h"
+#include "gui_osd.h"
 #include "land.h"
 #include "log.h"
 #include "map.h"
@@ -1086,11 +1087,13 @@ static void info_openMissions( unsigned int wid )
       window_disableButton(wid, "btnAbortMission");
 
    /* text */
-   window_addText( wid, 300+40, -60,
-         200, 40, 0, "txtReward", &gl_smallFont, NULL, NULL );
-   window_addText( wid, 300+40, -100,
+   window_addText(wid, 300+40, -60,
+         w - (300+40+40), 40, 0, "txtReward", &gl_smallFont, NULL, NULL);
+   window_addText(wid, 300+40, -100,
+         w - (300+40+40), 40, 0, "txtActiveOSD", &gl_smallFont, NULL, NULL);
+   window_addText(wid, 300+40, -140,
          w - (300+40+40), h - BUTTON_HEIGHT - 120 - 20, 0,
-         "txtDesc", &gl_defFont, NULL, NULL );
+         "txtDesc", &gl_defFont, NULL, NULL);
 
    /* Put a map. */
    map_show( wid, 20, 20, 300, 260, 0.75 );
@@ -1139,27 +1142,76 @@ static void mission_menu_update( unsigned int wid, char* str )
    (void)str;
    char *active_misn;
    Mission* misn;
+   char **osd_items;
+   int osd_active;
    char buf[STRMAX];
+   int w, h;
+   int x, y, tw, th;
+
+   window_dimWindow(wid, &w, &h);
+
+   x = 300+40;
+   y = -60;
 
    active_misn = toolkit_getList(wid, "lstMission");
    if ((active_misn==NULL) || (strcmp(active_misn,_("No Missions"))==0)) {
+      strcpy(buf, _("#nReward:#0 None"));
       window_modifyText(wid, "txtReward", _("#nReward:#0 None"));
-      window_modifyText(wid, "txtDesc",
-            _("You currently have no active missions."));
+      window_dimWidget(wid, "txtReward", &tw, &th);
+      th = gl_printHeightRaw(&gl_smallFont, tw, buf);
+      window_resizeWidget(wid, "txtReward", tw, th);
+      window_moveWidget(wid, "txtReward", x, y);
+
+      y -= th + 20;
+
+      window_modifyText(wid, "txtActiveOSD", NULL);
+
+      strcpy(buf, _("You currently have no active missions."));
+      window_modifyText(wid, "txtDesc", buf);
+      window_dimWidget(wid, "txtDesc", &tw, &th);
+      th = gl_printHeightRaw(&gl_defFont, tw, buf);
+      window_resizeWidget(wid, "txtDesc", tw, th);
+      window_moveWidget(wid, "txtDesc", x, y);
+
       window_disableButton(wid, "btnAbortMission");
       return;
    }
 
-   /* Modify the text. */
    misn = player_missions[toolkit_getListPos(wid, "lstMission")];
-   if (misn->reward != NULL) {
+   if (misn->reward != NULL)
       snprintf(buf, sizeof(buf), _("#nReward:#0 %s"), misn->reward);
-      window_modifyText(wid, "txtReward", buf);
+   else
+      strcpy(buf, _("#nReward:#0 None"));
+   window_modifyText(wid, "txtReward", buf);
+   window_dimWidget(wid, "txtReward", &tw, &th);
+   th = gl_printHeightRaw(&gl_smallFont, tw, buf);
+   window_resizeWidget(wid, "txtReward", tw, th);
+   window_moveWidget(wid, "txtReward", x, y);
+
+   y -= th + 20;
+
+   osd_items = osd_getItems(misn->osd);
+   osd_active = osd_getActive(misn->osd);
+   if ((osd_items != NULL) && (osd_active != -1)) {
+      snprintf(buf, sizeof(buf), _("#nCurrent Objective:#0 %s"),
+            osd_items[osd_active]);
+      window_modifyText(wid, "txtActiveOSD", buf);
+      window_dimWidget(wid, "txtActiveOSD", &tw, &th);
+      th = gl_printHeightRaw(&gl_smallFont, tw, buf);
+      window_resizeWidget(wid, "txtActiveOSD", tw, th);
+      window_moveWidget(wid, "txtActiveOSD", x, y);
+
+      y -= th + 20;
    }
-   else {
-      window_modifyText(wid, "txtReward", _("#nReward:#0 None"));
-   }
+   else
+      window_modifyText(wid, "txtActiveOSD", NULL);
+
    window_modifyText(wid, "txtDesc", misn->desc);
+   window_dimWidget(wid, "txtDesc", &tw, &th);
+   th = h - y - BUTTON_HEIGHT - 20 - 10;
+   window_resizeWidget(wid, "txtDesc", tw, th);
+   window_moveWidget(wid, "txtDesc", x, y);
+
    if (!pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
       window_enableButton(wid, "btnAbortMission");
    else

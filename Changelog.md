@@ -16,6 +16,8 @@
   fighter bay).
 * Hired escorts that are created on restricted planets and stations now
   pilot factional military ships.
+* The Info window's missions tab now displays the current objective
+  according to the OSD.
 
 ## 0.1.0 (unreleased)
 
