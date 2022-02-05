@@ -1445,7 +1445,7 @@ void space_init( const char* sysname )
                &dmg, &player.p->stats);
          player_message(
                _("#rWARNING: Volatile nebula (%G GW) detected in %s! Taking"
-                  " %.0f GW of damage to shield and %.0f GW damage to armor."),
+                  " %.1f GW of damage to shield and %.1f GW damage to armor."),
                cur_system->nebu_volatility, _(sysname), dshield, darmor);
       }
       free(nt);
