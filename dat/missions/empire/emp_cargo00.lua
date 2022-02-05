@@ -5,7 +5,7 @@
   <unique />
  </flags>
  <avail>
-  <priority>70</priority>
+  <priority>10</priority>
   <chance>40</chance>
   <location>Bar</location>
   <faction>Empire</faction>
