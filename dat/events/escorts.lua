@@ -172,6 +172,25 @@ function createPilotNPCs ()
       def_ai = "dvaered"
       portrait_func = portrait.getMil
       portrait_arg = "Dvaered"
+   elseif pr == "srs_mil_restricted" or pr == "srs_mil_mutris" then
+      ship_choices = {
+         {ship = "Sirius Fidelity", royalty = 0.075, deposit_mod = 1/10},
+         {ship = "Sirius Shaman", royalty = 0.15, deposit_mod = 1/6},
+         {ship = "Sirius Preacher", royalty = 0.2, deposit_mod = 1/5},
+      }
+      fac = faction.get("Sirius")
+      def_ai = "sirius"
+      portrait_func = portrait.getMil
+      portrait_arg = "Sirius"
+   elseif pr == "zlk_mil_restricted" or pr == "zlk_ruadan" then
+      ship_choices = {
+         {ship = "Za'lek Sting", royalty = 0.2, deposit_mod = 1/5},
+         {ship = "Za'lek Demon", royalty = 0.3, deposit_mod = 1/4},
+      }
+      fac = faction.get("Za'lek")
+      def_ai = "zalek"
+      portrait_func = portrait.getMil
+      portrait_arg = "Za'lek"
    elseif pr == "srm_mil_restricted" or pr == "srm_mil_kataka" then
       ship_choices = {
          {ship = "Soromid Brigand", royalty = 0.075, deposit_mod = 1/10},
@@ -184,15 +203,6 @@ function createPilotNPCs ()
       def_ai = "soromid"
       portrait_func = portrait.getMil
       portrait_arg = "Soromid"
-   elseif pr == "zlk_mil_restricted" or pr == "zlk_ruadan" then
-      ship_choices = {
-         {ship = "Za'lek Sting", royalty = 0.2, deposit_mod = 1/5},
-         {ship = "Za'lek Demon", royalty = 0.3, deposit_mod = 1/4},
-      }
-      fac = faction.get("Za'lek")
-      def_ai = "zalek"
-      portrait_func = portrait.getMil
-      portrait_arg = "Za'lek"
    end
 
    if fac == nil or fac:playerStanding() < 0 then
