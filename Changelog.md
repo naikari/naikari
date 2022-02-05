@@ -14,6 +14,11 @@
   now shows exactly how much damage your shield and armor take from it,
   rather than only showing the direct volatility rating.
 * AI pilots now launch fighters if they have fighter bays.
+* Several new fighter bays have been added (mostly miniaturized versions
+  of existing fighter bays, but also three variations of a Shark
+  fighter bay).
+* Hired escorts that are created on factional planets now pilot
+  factional ships.
 
 ## 0.1.0 (unreleased)
 
