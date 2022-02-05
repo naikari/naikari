@@ -76,19 +76,24 @@ void window_addText( const unsigned int wid,
  */
 static void txt_render( Widget* txt, double bx, double by )
 {
+   int tw;
+
    /* Must have text to display. */
    if (txt->dat.txt.text==NULL)
       return;
 
-   if (txt->dat.txt.centered)
-      gl_printMidRaw( txt->dat.txt.font, txt->w,
+   tw = gl_printWidthRaw(txt->dat.txt.font, txt->dat.txt.text);
+
+   if (txt->dat.txt.centered && (tw <= txt->w)) {
+      gl_printMidRaw(txt->dat.txt.font, txt->w,
             bx + txt->x,
-            by + txt->y + (txt->h - txt->dat.txt.font->h)/2.,
-            &txt->dat.txt.colour, -1., txt->dat.txt.text );
+            by + txt->y + (txt->h-txt->dat.txt.font->h)/2.,
+            &txt->dat.txt.colour, -1., txt->dat.txt.text);
+   }
    else
-      gl_printTextRaw( txt->dat.txt.font, txt->w, txt->h,
+      gl_printTextRaw(txt->dat.txt.font, txt->w, txt->h,
             bx + txt->x, by + txt->y, 0,
-            &txt->dat.txt.colour, -1., txt->dat.txt.text );
+            &txt->dat.txt.colour, -1., txt->dat.txt.text);
 }
 
 

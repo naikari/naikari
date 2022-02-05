@@ -18,6 +18,7 @@
   pilot factional military ships.
 * The Info window's missions tab now displays the current objective
   according to the OSD.
+* Logo now lights up red for Autism Acceptance Month.
 
 ## 0.1.0 (unreleased)
 
