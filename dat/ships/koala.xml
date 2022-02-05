@@ -25,8 +25,8 @@
   <cargo>30</cargo>
  </characteristics>
  <slots>
-  <weapon size="small" x="11" y="0" h="-7" />
-  <weapon size="small" x="-5" y="0" h="3" />
+  <weapon size="small" x="11" y="0" h="-7">Laser Turret MK1</weapon>
+  <weapon size="small" x="-5" y="0" h="3">Laser Turret MK1</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-80 Core System</utility>
   <utility size="small" />
   <utility size="small" />

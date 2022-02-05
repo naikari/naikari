@@ -28,10 +28,10 @@
   <cargo>100</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="25" y="-3" h="4" />
-  <weapon size="large" x="25" y="3" h="4" />
+  <weapon size="large" x="25" y="-3" h="4">Heavy Ripper Turret</weapon>
+  <weapon size="large" x="25" y="3" h="4">Heavy Ripper Turret</weapon>
   <weapon size="medium" prop="fighter_bay" x="-15" y="-3" h="4" />
-  <weapon size="medium" prop="fighter_bay" x="-15" y="3" h="4" />
+  <weapon size="medium" prop="fighter_bay" x="-15" y="3" h="4">Enygma Systems Turreted Fury Launcher</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Unicorp PT-400 Core System</utility>
   <utility size="medium" />
   <utility size="medium" />

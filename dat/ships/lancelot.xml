@@ -27,10 +27,10 @@
   <cargo>15</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" x="12" y="0" h="0" />
+  <weapon size="medium" x="12" y="0" h="0">Unicorp Fury Launcher</weapon>
   <weapon size="small" x="12" y="0" h="0" />
-  <weapon size="small" x="-3" y="0" h="2" />
-  <weapon size="small" x="-3" y="0" h="2" />
+  <weapon size="small" x="-3" y="0" h="2">Laser Cannon MK2</weapon>
+  <weapon size="small" x="-3" y="0" h="2">Laser Cannon MK2</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-80 Core System</utility>
   <utility size="small" />
   <utility size="small" />

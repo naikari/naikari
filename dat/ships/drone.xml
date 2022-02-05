@@ -24,8 +24,8 @@
   <cargo>0</cargo>
  </characteristics>
  <slots>
-  <weapon size="small" x="5" y="0" h="-5" />
-  <weapon size="small" x="5" y="0" h="-5" />
+  <weapon size="small" x="5" y="0" h="-5">Laser Cannon MK1</weapon>
+  <weapon size="small" x="5" y="0" h="-5">Laser Cannon MK1</weapon>
   <weapon size="small" x="5" y="0" h="-5" />
   <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-18 Core System</utility>
   <utility size="small" />

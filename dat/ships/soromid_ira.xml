@@ -30,13 +30,13 @@
   <cargo>110</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" prop="bio_weapon" x="40" y="0" h="2" />
-  <weapon size="large" prop="bio_weapon" x="25" y="0" h="2" />
-  <weapon size="large" prop="bio_weapon" x="12" y="-6" h="0" />
-  <weapon size="large" prop="bio_weapon" x="12" y="6" h="0" />
+  <weapon size="large" prop="bio_weapon" x="40" y="0" h="2">BioPlasma Talon Stage 1</weapon>
+  <weapon size="large" prop="bio_weapon" x="25" y="0" h="2">BioPlasma Talon Stage 1</weapon>
+  <weapon size="large" prop="bio_weapon" x="12" y="-6" h="0">BioPlasma Talon Stage 1</weapon>
+  <weapon size="large" prop="bio_weapon" x="12" y="6" h="0">BioPlasma Talon Stage 1</weapon>
   <weapon size="large" prop="bio_weapon" x="0" y="0" h="7" />
   <weapon size="large" prop="bio_weapon" x="-15" y="0" h="7" />
-  <weapon size="large" prop="bio_weapon" x="-33" y="0" h="7" />
+  <weapon size="large" prop="bio_weapon" x="-33" y="0" h="7">Enygma Systems Turreted Fury Launcher</weapon>
   <utility size="large" prop="bio_systems" exclusive="1" required="1">Heavy Brain Stage 1</utility>
   <utility size="large" />
   <utility size="large" />

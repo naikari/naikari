@@ -25,8 +25,8 @@
   <cargo>10</cargo>
  </characteristics>
  <slots>
-  <weapon size="small" prop="bio_weapon" x="12" y="0" h="0" />
-  <weapon size="small" prop="bio_weapon" x="-3" y="0" h="2" />
+  <weapon size="small" prop="bio_weapon" x="12" y="0" h="0">BioPlasma Stinger Stage 1</weapon>
+  <weapon size="small" prop="bio_weapon" x="-3" y="0" h="2">BioPlasma Stinger Stage 1</weapon>
   <weapon size="small" prop="bio_weapon" x="3" y="0" h="2" />
   <utility size="small" prop="bio_systems" exclusive="1" required="1">Ultralight Brain Stage 1</utility>
   <utility size="small" />

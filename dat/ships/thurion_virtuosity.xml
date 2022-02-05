@@ -31,10 +31,10 @@
   <cargo>25</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" x="16" y="0" h="-2" />
-  <weapon size="medium" x="-5" y="11" h="0" />
-  <weapon size="medium" x="-5" y="-11" h="0" />
-  <weapon size="small" x="24" y="0" h="-2" />
+  <weapon size="medium" x="16" y="0" h="-2">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" x="-5" y="11" h="0">Unicorp Headhunter Launcher</weapon>
+  <weapon size="medium" x="-5" y="-11" h="0">Unicorp Headhunter Launcher</weapon>
+  <weapon size="small" x="24" y="0" h="-2">Ripper Cannon</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Unicorp PT-280 Core System</utility>
   <utility size="medium" />
   <utility size="medium" />

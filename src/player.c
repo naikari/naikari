@@ -349,6 +349,10 @@ static int player_newMake (void)
    /* Monies. */
    player.p->credits = start_credits();
 
+   /* Update player weapon sets (in case a weapon or activated outfit
+    * is a default outfit). */
+   pilot_weaponAuto(player.p);
+
    /* clear the map */
    map_cleanup();
    map_clear();

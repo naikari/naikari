@@ -26,20 +26,20 @@
   <cargo>80</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="-23" y="-15" h="5" />
-  <weapon size="large" x="-23" y="15" h="5" />
-  <weapon size="large" x="-24" y="-8" h="8" />
-  <weapon size="large" x="-24" y="8" h="8" />
+  <weapon size="large" x="-23" y="-15" h="5">Railgun</weapon>
+  <weapon size="large" x="-23" y="15" h="5">Railgun</weapon>
+  <weapon size="large" x="-24" y="-8" h="8">Railgun</weapon>
+  <weapon size="large" x="-24" y="8" h="8">Railgun</weapon>
   <weapon size="medium" prop="fighter_bay" x="-6" y="0" h="12" />
-  <weapon size="medium" prop="fighter_bay" x="44" y="0" h="0" />
-  <utility size="large" prop="systems" exclusive="1" required="1">Previous Generation Large Systems</utility>
+  <weapon size="medium" prop="fighter_bay" x="44" y="0" h="0">Unicorp Fury Launcher</weapon>
+  <utility size="large" prop="systems" exclusive="1" required="1">Unicorp PT-750 Core System</utility>
   <utility size="large" />
   <utility size="large" />
   <utility size="large" />
   <utility size="large" />
   <utility size="medium" />
   <structure size="large" prop="engines" exclusive="1" required="1">Krain Remige Engine</structure>
-  <structure size="large" prop="hull" exclusive="1" required="1">Patchwork Heavy Plating</structure>
+  <structure size="large" prop="hull" exclusive="1" required="1">Unicorp D-48 Heavy Plating</structure>
   <structure size="large" />
   <structure size="large" />
   <structure size="large" />
