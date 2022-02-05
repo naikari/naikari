@@ -176,6 +176,7 @@ msg_lore["general"] = {
    _([["Sometimes I look at the stars and wonder… are we the only sentient species in the universe?"]]),
    _([["Hey, you ever wonder why we're here?" You respond that it's one of the great mysteries of the universe. Why are we here? Are we the product of some cosmic coincidence or is there some great cosmic plan for us? You don't know, but it sometimes keeps you up at night. As you say this, the citizen stares at you incredulously. "What?? No, I mean why are we in here, in this bar?"]]),
    _([["Don't be fooled by those distances your ship's instruments show you; the places you travel through are actually about 100,000 times larger on average. Unbelievable, I know! But traveling through systems in any reasonable amount of time would require traveling significantly faster than the speed of light, so every modern ship uses quantum triangulation to slip our ships through naturally occurring miniature dark matter wormholes, and since these are the same for every ship, your ship's computer is able to calculate a consistent position in an artificial 2-D space. Pretty cool, don't you think?"]]),
+   _([["I've been a pilot long enough to remember the days when ships were sold completely bare with no defenses built-in. Something about regulatory agencies not allowing them to bundle restricted weapons. Thankfully they eventually saw sense and now you can fly a new ship right away without having to worry that a pirate is going to blow you to smithereens."]]),
 }
 
 msg_lore["Independent"] = {
@@ -306,6 +307,7 @@ msg_lore["Pirate"] = {
    _([["You know, I got into this business by accident to tell the truth. But what can you do? I could get a fake ID and pretend to be someone else but I'd get caught eventually anyway. Might as well make the best of what I have now."]]),
    _([["One of my favorite things to do is buy a fake ID and then deliver as much contraband as I can before I get caught. It's great fun, and finding out that my identity's been discovered gives me a rush!"]]),
    _([["Back when I started out in this business all you could do was go around delivering packages for other people. Becoming a pirate was real hard back then, but I got so bored I became a pirate anyway. Nowadays things are way more exciting for normies, but I don't regret my choice one bit!"]]),
+   _([["The Skull and Bones used to sell garbage ships. I mean, don't get me wrong, they still worked great, but they were always in terrible shape when you bought them, like they'd just come out of a meat grinder: scrappy and thrown together hulls that barely held together, outdated core systems, and the engines would barely even propel you through space. Back then you had to immediately get to work replacing everything in your 'new' ship just so they would function. It's much better nowadays, thankfully."]]),
 }
 
 msg_lore["Trader"] = {
