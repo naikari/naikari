@@ -10,6 +10,7 @@
 
 
 /** @cond */
+#include <time.h>
 #include "physfs.h"
 #include "SDL.h"
 
@@ -70,6 +71,7 @@ int menu_open = 0; /**< Stores the opened/closed menus. */
 
 
 static glTexture *main_naevLogo = NULL; /**< Naev Logo texture. */
+static const char *main_tagline = NULL; /**< Tagline (for events). */
 
 
 /*
@@ -170,6 +172,9 @@ void menu_main (void)
    unsigned int bwid, wid;
    glTexture *tex;
    int h, y;
+   int th;
+   time_t curtime = time(NULL);
+   struct tm curlocaltime = *localtime(&curtime);
 
    if (menu_isOpen(MENU_MAIN)) {
       WARN( _("Menu main is already open.") );
@@ -187,7 +192,15 @@ void menu_main (void)
    music_choose("load");
 
    /* Load background and friends. */
-   tex = gl_newImage( GFX_PATH"naikari.png", 0 );
+   if (curlocaltime.tm_mon == 3) {
+      /* Autism Acceptance Month */
+      tex = gl_newImage(GFX_PATH"naikari-red.png", 0);
+      main_tagline = _("#rLighting up red#0 for Autism Acceptance Month");
+   }
+   else {
+      tex = gl_newImage(GFX_PATH"naikari.png", 0);
+      main_tagline = NULL;
+   }
    main_naevLogo = tex;
    menu_main_bkg_system();
 
@@ -201,8 +214,13 @@ void menu_main (void)
 
    /* Calculate Logo and window offset. */
    freespace = SCREEN_H - tex->sh - h;
+   th = 0;
+   if (main_tagline != NULL) {
+      th = gl_printHeightRaw(&gl_defFont, SCREEN_W, main_tagline);
+      freespace -= th;
+   }
    if (freespace < 0) { /* Not enough freespace, this can get ugly. */
-      offset_logo = SCREEN_W - tex->sh;
+      offset_logo = SCREEN_H - tex->sh;
       offset_wdw  = 0;
    }
    /* Otherwise space evenly. */
@@ -212,12 +230,15 @@ void menu_main (void)
    }
 
    /* create background image window */
-   bwid = window_create( "wdwBG", "", -1, -1, -1, -1 );
-   window_onClose( bwid, menu_main_cleanBG );
-   window_setBorder( bwid, 0 );
-   window_addImage( bwid, (SCREEN_W-tex->sw)/2., offset_logo, 0, 0, "imgLogo", tex, 0 );
-   window_addText( bwid, 0, 10, SCREEN_W, 30., 1, "txtBG", NULL,
-         &cWhite, naev_version(1) );
+   bwid = window_create("wdwBG", "", -1, -1, -1, -1);
+   window_onClose(bwid, menu_main_cleanBG);
+   window_setBorder(bwid, 0);
+   window_addImage(bwid, (SCREEN_W-tex->sw) / 2, offset_logo, 0, 0,
+         "imgLogo", tex, 0);
+   window_addText(bwid, 0, offset_logo - tex->sh, SCREEN_W, th, 1, 
+         "txtTagline", NULL, NULL, main_tagline);
+   window_addText(bwid, 0, 10, SCREEN_W, 30, 1,
+         "txtBG", NULL, NULL, naev_version(1));
 
    /* create menu window */
    wid = window_create( "wdwMainMenu", _("Main Menu"), -1, offset_wdw, MAIN_WIDTH, h );
@@ -283,6 +304,11 @@ void menu_main_resize (void)
    window_dimWindow( bg_id, &bgw, &bgh );
 
    freespace = SCREEN_H - main_naevLogo->sh - h;
+   th = 0;
+   if (main_tagline != NULL) {
+      th = gl_printHeightRaw(&gl_defFont, SCREEN_W, main_tagline);
+      freespace -= th;
+   }
    if (freespace < 0) {
       offset_logo = SCREEN_H - main_naevLogo->sh;
       offset_wdw  = 0;
@@ -292,11 +318,13 @@ void menu_main_resize (void)
       offset_wdw  = freespace/2;
    }
 
-   window_moveWidget( bg_id, "imgLogo",
-         (bgw - main_naevLogo->sw)/2., offset_logo );
+   window_moveWidget(bg_id, "imgLogo",
+         (bgw-main_naevLogo->sw) / 2, offset_logo);
+   window_resizeWidget(bg_id, "txtTagline", SCREEN_W, th);
+   window_moveWidget(bg_id, "txtTagline",
+         0, offset_logo - main_naevLogo->sh);
 
-   window_dimWidget( bg_id, "txtBG", &tw, &th );
-
+   window_dimWidget(bg_id, "txtBG", &tw, &th);
    if (tw > SCREEN_W) {
       /* RIP abstractions. X must be set manually because window_moveWidget
        * transforms negative coordinates. */
