@@ -1,9 +1,7 @@
 require "factions/equip/generic"
 
 
-equip_typeOutfits_coreSystems["Shark"] = {
-   "Milspec Orion 2301 Core System",
-}
+equip_typeOutfits_coreSystems["Shark"] = equip_shipOutfits_coreSystems["Empire Shark"]
 equip_typeOutfits_coreSystems["Lancelot"] = equip_shipOutfits_coreSystems["Empire Lancelot"]
 equip_typeOutfits_coreSystems["Admonisher"] = {
    "Milspec Orion 4801 Core System",
@@ -18,9 +16,7 @@ equip_typeOutfits_coreSystems["Peacemaker"] = {
    "Milspec Orion 9901 Core System",
 }
 
-equip_typeOutfits_engines["Shark"] = {
-   "Tricon Zephyr Engine",
-}
+equip_typeOutfits_engines["Shark"] = equip_shipOutfits_engines["Empire Shark"]
 equip_typeOutfits_engines["Lancelot"] = equip_shipOutfits_engines["Empire Lancelot"]
 equip_typeOutfits_engines["Admonisher"] = {
    "Tricon Cyclone Engine",
@@ -35,9 +31,7 @@ equip_typeOutfits_engines["Peacemaker"] = {
    "Melendez Mammoth XL Engine",
 }
 
-equip_typeOutfits_hulls["Shark"] = {
-   "S&K Ultralight Stealth Plating", "S&K Ultralight Combat Plating",
-}
+equip_typeOutfits_hulls["Shark"] = equip_shipOutfits_hulls["Empire Shark"]
 equip_typeOutfits_hulls["Lancelot"] = equip_shipOutfits_hulls["Empire Lancelot"]
 equip_typeOutfits_hulls["Admonisher"] = {
    "S&K Medium Stealth Plating", "S&K Medium Combat Plating",
@@ -52,16 +46,7 @@ equip_typeOutfits_hulls["Peacemaker"] = {
    "S&K Superheavy Combat Plating",
 }
 
-equip_typeOutfits_weapons["Shark"] = {
-   {
-      num = 1;
-      "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
-   },
-   {
-      "Laser Cannon MK1", "Plasma Blaster MK1", "Ion Cannon",
-   },
-}
+equip_typeOutfits_weapons["Shark"] = equip_shipOutfits_weapons["Empire Shark"]
 equip_typeOutfits_weapons["Lancelot"] = equip_shipOutfits_weapons["Empire Lancelot"]
 equip_typeOutfits_weapons["Admonisher"] = {
    {
@@ -90,15 +75,31 @@ equip_typeOutfits_weapons["Pacifier"] = {
       num = 1;
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Empire Shark Fighter Bay",
+      "Mini Empire Lancelot Fighter Bay",
    },
    {
       num = 1;
       "Laser Turret MK2", "Plasma Turret MK2", "Orion Beam",
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Empire Shark Fighter Bay",
+      "Mini Empire Lancelot Fighter Bay",
    },
    {
       "Laser Turret MK2", "Plasma Turret MK2", "Orion Beam",
+   },
+}
+equip_typeOutfits_weapons["Peacemaker"] = {
+   {
+      varied = true;
+      "Empire Shark Fighter Bay", "Empire Lancelot Fighter Bay",
+   },
+   {
+      "Turbolaser", "Heavy Laser Turret", "Ragnarok Beam",
+   },
+   {
+      "Heavy Ripper Turret", "Plasma Cluster Turret",
    },
 }
 
@@ -107,34 +108,6 @@ equip_typeOutfits_weapons["Pacifier"] = {
 --
 --    @param p Pilot to equip
 --]]
-function equip( p )
-   if diff.isApplied( "collective_dead" ) then
-      equip_typeOutfits_weapons["Peacemaker"] = {
-         {
-            varied = true;
-            "Empire Lancelot Fighter Bay", "Drone Fighter Bay",
-         },
-         {
-            "Turbolaser", "Heavy Laser Turret", "Ragnarok Beam",
-         },
-         {
-            "Heavy Ripper Turret", "Plasma Cluster Turret",
-         },
-      }
-   else
-      equip_typeOutfits_weapons["Peacemaker"] = {
-         {
-            varied = true;
-            "Empire Lancelot Fighter Bay",
-         },
-         {
-            "Turbolaser", "Heavy Laser Turret", "Ragnarok Beam",
-         },
-         {
-            "Heavy Ripper Turret", "Plasma Cluster Turret",
-         },
-      }
-   end
-   
-   equip_generic( p )
+function equip(p)
+   equip_generic(p)
 end

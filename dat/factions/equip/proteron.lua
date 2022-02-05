@@ -1,9 +1,7 @@
 require "factions/equip/generic"
 
 
-equip_typeOutfits_coreSystems["Derivative"] = {
-   "Milspec Orion 2301 Core System",
-}
+equip_typeOutfits_coreSystems["Derivative"] = equip_shipOutfits_coreSystems["Proteron Derivative"]
 equip_typeOutfits_coreSystems["Kahan"] = {
    "Milspec Orion 5501 Core System"
 }
@@ -14,9 +12,7 @@ equip_typeOutfits_coreSystems["Watson"] = {
    "Milspec Orion 9901 Core System"
 }
 
-equip_typeOutfits_engines["Derivative"] = {
-   "Tricon Zephyr Engine",
-}
+equip_typeOutfits_engines["Derivative"] = equip_shipOutfits_engines["Proteron Derivative"]
 equip_typeOutfits_engines["Kahan"] = {
    "Tricon Cyclone II Engine",
 }
@@ -27,9 +23,7 @@ equip_typeOutfits_engines["Watson"] = {
    "Melendez Mammoth XL Engine",
 }
 
-equip_typeOutfits_hulls["Derivative"] = {
-   "S&K Ultralight Stealth Plating",
-}
+equip_typeOutfits_hulls["Derivative"] = equip_shipOutfits_hulls["Proteron Derivative"]
 equip_typeOutfits_hulls["Kahan"] = {
    "S&K Medium-Heavy Stealth Plating",
 }
@@ -40,15 +34,7 @@ equip_typeOutfits_hulls["Watson"] = {
    "S&K Superheavy Combat Plating",
 }
 
-equip_typeOutfits_weapons["Derivative"] = {
-   {
-      num = 1;
-      "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-   },
-   {
-      "Laser Cannon MK1", "Plasma Blaster MK1",
-   }
-}
+equip_typeOutfits_weapons["Derivative"] = equip_shipOutfits_weapons["Proteron Derivative"]
 equip_typeOutfits_weapons["Kahan"] = {
    {
       num = 2;
@@ -57,6 +43,7 @@ equip_typeOutfits_weapons["Kahan"] = {
    {
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Derivative Fighter Bay",
    }
 }
 equip_typeOutfits_weapons["Archimedes"] = {
@@ -65,12 +52,14 @@ equip_typeOutfits_weapons["Archimedes"] = {
       num = 1;
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
+      "Derivative Fighter Bay",
    },
    {
       "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
+      "Derivative Fighter Bay",
    },
    {
-      "Heavy Razor Turret", "Grave Beam",
+      "Heavy Ripper Turret", "Grave Beam",
    },
 }
 equip_typeOutfits_weapons["Watson"] = {
@@ -82,7 +71,7 @@ equip_typeOutfits_weapons["Watson"] = {
       "Derivative Fighter Bay",
    },
    {
-      "Heavy Razor Turret", "Grave Beam",
+      "Heavy Ripper Turret", "Grave Beam",
    },
 }
 

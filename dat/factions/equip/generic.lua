@@ -216,10 +216,14 @@ equip_classOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
       {
          "Laser Turret MK2", "Razor Turret MK2", "Turreted Vulcan Gun",
          "Plasma Turret MK2", "Orion Beam",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
    },
    ["Armored Transport"] = {
@@ -231,12 +235,16 @@ equip_classOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
       {
          "Laser Turret MK2", "Razor Turret MK2", "Turreted Vulcan Gun",
          "Plasma Turret MK2", "Orion Beam", "EMP Grenade Launcher",
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
    },
    ["Fighter"] = {
@@ -292,6 +300,8 @@ equip_classOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
       {
          num = 1;
@@ -300,6 +310,8 @@ equip_classOutfits_weapons = {
          "Razor Turret MK2", "Turreted Vulcan Gun", "Plasma Turret MK2",
          "Orion Beam", "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
       {
          "Heavy Ripper Cannon", "Mass Driver", "Plasma Cluster Cannon",
@@ -313,19 +325,23 @@ equip_classOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
       },
       {
          "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
+         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
       },
       {
          "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
          "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
    },
    ["Carrier"] = {
       {
          varied = true;
-         "Lancelot Fighter Bay",
+         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
       },
       {
          "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
@@ -995,11 +1011,15 @@ equip_typeOutfits_weapons = {
       {
          num = 1;
          "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
       {
          varied = true;
          "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
          "Heavy Ripper Cannon", "Mass Driver", "Plasma Cluster Cannon",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
    },
    ["Kestrel"] = {
@@ -1011,6 +1031,8 @@ equip_typeOutfits_weapons = {
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
          "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
+         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
    },
    ["Hawking"] = {
@@ -1018,6 +1040,13 @@ equip_typeOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
+      },
+      {
+         num = 1;
+         "Heavy Ripper Turret", "Plasma Cluster Turret",
+         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
+         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
       },
       {
          "Heavy Ripper Turret", "Plasma Cluster Turret",
@@ -1029,6 +1058,12 @@ equip_typeOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
+         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
+      },
+      {
+         num = 1;
+         "Railgun", "Heavy Ripper Turret", "Railgun Turret",
+         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
       },
       {
          "Railgun", "Heavy Ripper Turret", "Railgun Turret",
@@ -1221,44 +1256,77 @@ equip_typeOutfits_structurals = {
 
 -- Table of available core systems by ship.
 equip_shipOutfits_coreSystems = {
-   ["Empire Lancelot"] = { "Milspec Orion 3701 Core System" },
-   ["Sirius Fidelity"] = { "Milspec Prometheus 2203 Core System" },
-   ["Za'lek Scout Drone"] = { "Milspec Aegis 2201 Core System" },
-   ["Za'lek Light Drone"] = { "Milspec Orion 2301 Core System" },
-   ["Za'lek Heavy Drone"] = {  "Milspec Orion 3701 Core System" },
-   ["Za'lek Bomber Drone"] = { "Milspec Aegis 3601 Core System" },
+   ["Pirate Shark"] = {
+      "Unicorp PT-18 Core System", "Milspec Prometheus 2203 Core System",
+   },
+   ["Empire Shark"] = {"Milspec Orion 2301 Core System"},
+   ["Empire Lancelot"] = {"Milspec Orion 3701 Core System"},
+   ["Sirius Fidelity"] = {"Milspec Prometheus 2203 Core System"},
+   ["Za'lek Scout Drone"] = {"Milspec Aegis 2201 Core System"},
+   ["Za'lek Light Drone"] = {"Milspec Orion 2301 Core System"},
+   ["Za'lek Heavy Drone"] = {"Milspec Orion 3701 Core System"},
+   ["Za'lek Bomber Drone"] = {"Milspec Aegis 3601 Core System"},
+   ["Proteron Derivative"] = {"Milspec Orion 2301 Core System"},
 }
 
 
 -- Table of available engines by ship.
 equip_shipOutfits_engines = {
-   ["Empire Lancelot"] = { "Tricon Zephyr II Engine" },
-   ["Sirius Fidelity"] = { "Tricon Zephyr Engine" },
-   ["Za'lek Scout Drone"] = { "Tricon Zephyr Engine" },
-   ["Za'lek Light Drone"] = { "Tricon Zephyr Engine" },
-   ["Za'lek Heavy Drone"] = { "Tricon Zephyr II Engine" },
-   ["Za'lek Bomber Drone"] = { "Tricon Zephyr II Engine" },
+   ["Empire Shark"] = {"Tricon Zephyr Engine"},
+   ["Empire Lancelot"] = {"Tricon Zephyr II Engine"},
+   ["Sirius Fidelity"] = {"Tricon Zephyr Engine"},
+   ["Za'lek Scout Drone"] = {"Tricon Zephyr Engine"},
+   ["Za'lek Light Drone"] = {"Tricon Zephyr Engine"},
+   ["Za'lek Heavy Drone"] = {"Tricon Zephyr II Engine"},
+   ["Za'lek Bomber Drone"] = {"Tricon Zephyr II Engine"},
+   ["Proteron Derivative"] = {"Tricon Zephyr Engine"},
 }
 
 
 -- Table of available hulls by ship.
 equip_shipOutfits_hulls = {
+   ["Empire Shark"] = {
+      "S&K Ultralight Stealth Plating", "S&K Ultralight Combat Plating",
+   },
    ["Empire Lancelot"] = {
       "S&K Light Stealth Plating", "S&K Light Combat Plating",
    },
    ["Sirius Fidelity"] = {
       "S&K Ultralight Stealth Plating", "S&K Ultralight Combat Plating",
    },
-   ["Za'lek Scout Drone"] = { "S&K Ultralight Stealth Plating" },
-   ["Za'lek Light Drone"] = { "S&K Ultralight Combat Plating" },
-   ["Za'lek Heavy Drone"] = { "S&K Light Combat Plating" },
-   ["Za'lek Bomber Drone"] = { "S&K Light Stealth Plating" },
+   ["Za'lek Scout Drone"] = {"S&K Ultralight Stealth Plating"},
+   ["Za'lek Light Drone"] = {"S&K Ultralight Combat Plating"},
+   ["Za'lek Heavy Drone"] = {"S&K Light Combat Plating"},
+   ["Za'lek Bomber Drone"] = {"S&K Light Stealth Plating"},
+   ["Proteron Derivative"] = {"S&K Ultralight Stealth Plating"},
 }
 
 
 -- Tables of available weapons by ship.
 -- See equip_set function for more info.
 equip_shipOutfits_weapons = {
+   ["Pirate Shark"] = {
+      {
+         num = 2;
+         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
+         "Ion Cannon",
+      },
+      {
+         varied = true;
+         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
+         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      },
+   },
+   ["Empire Shark"] = {
+      {
+         num = 1;
+         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
+         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      },
+      {
+         "Laser Cannon MK1", "Plasma Blaster MK1", "Ion Cannon",
+      },
+   },
    ["Empire Lancelot"] = {
       {
          num = 1;
@@ -1313,6 +1381,15 @@ equip_shipOutfits_weapons = {
          "Particle Lance"
       },
    },
+   ["Proteron Derivative"] = {
+      {
+         num = 1;
+         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
+      },
+      {
+         "Laser Cannon MK1", "Plasma Blaster MK1",
+      }
+   }
 }
 
 
@@ -1363,7 +1440,7 @@ end
 -- "Bar", and "Baz", with no "probability" table, each outfit will have a 1/3
 -- chance of being selected; however, with this "probability" table:
 --
---    probability = { ["Foo"] = 6, ["Bar"] = 2 }
+--    probability = {["Foo"] = 6, ["Bar"] = 2}
 --
 -- This will lead to "Foo" having a 6/9 (2/3) chance, "Bar" will have a 2/9
 -- chance, and "Baz" will have a 1/9 chance

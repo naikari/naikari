@@ -69,11 +69,13 @@ equip_typeOutfits_weapons["Demon"] = {
       num = 1;
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Za'lek Light Drone Fighter Bay",
    },
    {
       num = 1;
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Za'lek Light Drone Fighter Bay",
       "Grave Lance", "Orion Beam",
    },
    {
@@ -99,9 +101,13 @@ equip_typeOutfits_weapons["Mephisto"] = {
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
       "Za'lek Hunter Launcher",
+      "Za'lek Light Drone Fighter Bay", "Za'lek Heavy Drone Fighter Bay",
+      "Za'lek Bomber Drone Fighter Bay",
    },
    {
       "Grave Beam",
+      "Za'lek Light Drone Fighter Bay", "Za'lek Heavy Drone Fighter Bay",
+      "Za'lek Bomber Drone Fighter Bay",
    },
 }
 equip_typeOutfits_weapons["Hephaestus"] = {

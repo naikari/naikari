@@ -37,6 +37,8 @@ equip_classOutfits_weapons["Freighter"] = {
    },
    {
       "Enygma Systems Turreted Fury Launcher",
+      "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+      "Mini Lancelot Fighter Bay",
    },
 }
 

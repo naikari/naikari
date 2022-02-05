@@ -17,10 +17,8 @@ equip_classCargo["Carrier"] = .5
 equip_classCargo["Drone"] = .1
 equip_classCargo["Heavy Drone"] = .1
 
-equip_typeOutfits_coreSystems["Hyena"] = {
-   "Unicorp PT-18 Core System", "Milspec Prometheus 2203 Core System",
-}
-equip_typeOutfits_coreSystems["Shark"] = equip_typeOutfits_coreSystems["Hyena"]
+equip_typeOutfits_coreSystems["Hyena"] = equip_shipOutfits_coreSystems["Pirate Shark"]
+equip_typeOutfits_coreSystems["Shark"] = equip_shipOutfits_coreSystems["Pirate Shark"]
 equip_typeOutfits_coreSystems["Vendetta"] = {
    "Unicorp PT-80 Core System", "Milspec Prometheus 3603 Core System",
 }
@@ -41,20 +39,17 @@ equip_typeOutfits_engines["Rhino"] = {
    "Unicorp Falcon 1200 Engine", "Tricon Cyclone II Engine",
 }
 
-equip_typeOutfits_hulls["Shark"] = {
-   "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
-}
-
-equip_typeOutfits_weapons["Shark"] = {
+equip_typeOutfits_weapons["Shark"] = equip_shipOutfits_weapons["Pirate Shark"]
+equip_typeOutfits_weapons["Kestrel"] = {
    {
-      num = 2;
-      "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-      "Ion Cannon",
+      "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
+      "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
    },
    {
-      varied = true;
-      "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
+      "Mini Pirate Shark Fighter Bay",
    },
 }
 

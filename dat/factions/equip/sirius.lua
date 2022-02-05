@@ -105,6 +105,7 @@ equip_typeOutfits_weapons["Dogma"] = {
       num = 1;
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
+      "Fidelity Fighter Bay",
    },
    {
       "Heavy Razor Turret",
@@ -115,7 +116,7 @@ equip_typeOutfits_weapons["Dogma"] = {
 }
 equip_typeOutfits_weapons["Divinity"] = {
    {
-      "Fidelity Fighter Bay"
+      "Fidelity Fighter Bay",
    },
    {
       "Heavy Razor Turret", "Ragnarok Beam",
