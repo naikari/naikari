@@ -224,6 +224,9 @@ function control ()
       mem.tickssincecooldown = mem.tickssincecooldown + 1
    end
 
+   -- Always launch fighters ASAP
+   ai.weapset("fighter_bay")
+
    -- Reset distress if not fighting/running
    if not si.fighting then
       mem.attacked = nil

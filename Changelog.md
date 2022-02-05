@@ -13,6 +13,7 @@
 * The warning shown when warping into a system with a volatile nebula
   now shows exactly how much damage your shield and armor take from it,
   rather than only showing the direct volatility rating.
+* AI pilots now launch fighters if they have fighter bays.
 
 ## 0.1.0 (unreleased)
 
