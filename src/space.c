@@ -1565,7 +1565,6 @@ void asteroid_init( Asteroid *ast, AsteroidAnchor *field )
    int attempts = 0;
 
    ast->parent = field->id;
-   ast->scanned = 0;
 
    /* randomly init the type of asteroid */
    i = RNG(0,field->ntype-1);
@@ -3404,6 +3403,7 @@ static void space_renderAsteroid( const Asteroid *a )
    AsteroidType *at;
    Commodity *com;
    char c[20];
+   int fh;
 
    /* Skip invisible asteroids */
    if (a->appearing == ASTEROID_INVISIBLE)
@@ -3422,14 +3422,19 @@ static void space_renderAsteroid( const Asteroid *a )
    gl_blitSpriteInterpolateScale( at->gfxs[a->gfxID], at->gfxs[a->gfxID], 1,
                                   a->pos.x, a->pos.y, scale, scale, 0, 0, NULL );
 
-   /* Add the commodities if scanned. */
-   if (!a->scanned) return;
-   gl_gameToScreenCoords( &nx, &ny, a->pos.x, a->pos.y );
+   /* Add the commodities if player has an asteroid scanner. */
+   if ((player.p == NULL) || (!player.p->stats.misc_asteroid_scan))
+      return;
+
+   /* Add a buffer to font height to give space for the outline. */
+   fh = gl_smallFont.h + 2;
+   gl_gameToScreenCoords(&nx, &ny, a->pos.x, a->pos.y);
    for (i=0; i<array_size(at->material); i++) {
       com = at->material[i];
-      gl_blitSprite( com->gfx_space, a->pos.x, a->pos.y-10.*i, 0, 0, NULL );
-      snprintf(c, sizeof(c), "x%i", at->quantity[i]);
-      gl_printRaw( &gl_smallFont, nx+10, ny-5-10.*i, &cFontWhite, -1., c );
+      gl_blitSprite(com->gfx_space, a->pos.x, a->pos.y - fh*i, 0, 0, NULL);
+      snprintf(c, sizeof(c), "×%d", at->quantity[i]);
+      gl_printRaw(&gl_smallFont, nx + 10, ny - fh/2 - fh*i,
+            &cFontWhite, -1., c);
    }
 }
 

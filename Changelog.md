@@ -20,6 +20,8 @@
   according to the OSD.
 * Logo now lights up red for Autism Acceptance Month and turns into a
   rainbow for Queer Pride Month.
+* Asteroid Scanner now always shows you scan information for asteroids
+  you can see, rather than only after you've targeted them.
 
 ## 0.1.0 (unreleased)
 

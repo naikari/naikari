@@ -245,7 +245,6 @@ typedef struct Asteroid_ {
    double timer; /**< Internal timer for animations. */
    int appearing; /**< 1: appearing, 2: disappaering, 3: exploding, 0 otherwise. */
    int type; /**< The ID of the asteroid type */
-   int scanned; /**< Wether the player already scanned this asteroid. */
    double armour; /**< Current "armour" of the asteroid. */
 } Asteroid;
 extern glTexture **asteroid_gfx; /**< Asteroid graphics list. */

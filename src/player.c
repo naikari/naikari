@@ -1407,6 +1407,8 @@ void player_targetAsteroidSet( int field, int id )
    Asteroid *ast;
    AsteroidType *at;
    Commodity *com;
+   char buf[STRMAX];
+   size_t l;
 
    if ((player.p == NULL) || pilot_isFlag( player.p, PILOT_LANDING ))
       return;
@@ -1424,15 +1426,23 @@ void player_targetAsteroidSet( int field, int id )
             ast = &anchor->asteroids[id];
             at = space_getType( ast->type );
 
-            player_message( _("Asteroid targeted, composition: ") );
-            for (i=0; i<array_size(at->material); i++) {
-              com = at->material[i];
-              player_message(_("%s×%d"), _(com->name), at->quantity[i]);
+            if (array_size(at->material) > 0) {
+               l = scnprintf(buf, sizeof(buf), "%s",
+                     _("Asteroid targeted; composition:"));
+               for (i=0; i<array_size(at->material); i++) {
+                  com = at->material[i];
+                  l += scnprintf(&buf[l], sizeof(buf) - l,
+                        n_("\n%s (%d part)", "\n%s (%d parts)",
+                           at->quantity[i]),
+                        _(com->name), at->quantity[i]);
+               }
+               player_message(buf);
             }
-            ast->scanned = 1;
+            else
+               player_message(_("Asteroid targeted; composition: empty"));
          }
          else
-            player_message( _("Asteroid targeted") );
+            player_message(_("Asteroid targeted"));
       }
    }
 
