@@ -128,6 +128,7 @@ unsigned int escort_create( Pilot *p, char *ship,
    unsigned int e;
    PilotFlags f;
    unsigned int parent;
+   char buf[STRMAX_SHORT];
 
    /* Get important stuff. */
    parent = p->id;
@@ -142,7 +143,9 @@ unsigned int escort_create( Pilot *p, char *ship,
       pilot_setFlagRaw( f, PILOT_CARRIED );
 
    /* Create the pilot. */
-   e = pilot_create( s, NULL, p->faction, "escort", dir, pos, vel, f, parent, dockslot );
+   snprintf(buf, sizeof(buf), _("Escort %s"), _(s->name));
+   e = pilot_create(s, buf, p->faction, "escort", dir, pos, vel, f, parent,
+         dockslot);
    pe = pilot_get(e);
    pe->parent = parent;
 
