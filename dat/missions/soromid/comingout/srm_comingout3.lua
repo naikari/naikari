@@ -146,7 +146,7 @@ function spawnChelseaShip( param )
    chelsea:outfitAdd("Unicorp D-4 Light Plating")
    chelsea:outfitAdd("Plasma Turret MK1", 2)
    chelsea:outfitAdd("Small Shield Booster")
-   chelsea:outfitAdd("Improved Refrigeration Cycle")
+   chelsea:outfitAdd("Rotary Turbo Modulator")
    chelsea:outfitAdd("Cargo Pod", 2)
 
    chelsea:setHealth(100, 100)

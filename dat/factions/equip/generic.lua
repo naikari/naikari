@@ -380,7 +380,7 @@ equip_classOutfits_utilities = {
          varied = true;
          "Reactor Class I", "Unicorp Scrambler", "Jump Scanner",
          "Generic Afterburner", "Small Shield Booster", "Solar Panel",
-         "Sensor Array",
+         "Sensor Array", "Rotary Turbo Modulator",
       },
    },
    ["Luxury Yacht"] = {
@@ -404,7 +404,7 @@ equip_classOutfits_utilities = {
          varied = true;
          "Reactor Class I", "Unicorp Scrambler", "Jump Scanner",
          "Generic Afterburner", "Small Shield Booster", "Solar Panel",
-         "Improved Refrigeration Cycle",
+         "Rotary Turbo Modulator",
       },
    },
    ["Freighter"] = {
@@ -413,6 +413,7 @@ equip_classOutfits_utilities = {
          "Reactor Class II", "Medium Shield Booster", "Droid Repair Crew",
          "Targeting Array", "Improved Power Regulator",  "Milspec Scrambler",
          "Milspec Jammer", "Emergency Shield Booster",
+         "Rotary Turbo Modulator",
       },
    },
    ["Armored Transport"] = {
@@ -421,6 +422,7 @@ equip_classOutfits_utilities = {
          "Reactor Class II", "Medium Shield Booster", "Droid Repair Crew",
          "Targeting Array", "Improved Power Regulator",  "Milspec Scrambler",
          "Milspec Jammer", "Emergency Shield Booster",
+         "Rotary Turbo Modulator",
       },
    },
    ["Fighter"] = {
@@ -461,7 +463,7 @@ equip_classOutfits_utilities = {
          "Forward Shock Absorbers", "Power Regulation Override",
          "Targeting Array", "Improved Power Regulator",
          "Turreted Weapons Ionizer", "Solar Panel", "Hellburner",
-         "Emergency Shield Booster", "Sensor Array",
+         "Emergency Shield Booster", "Sensor Array", "Rotary Turbo Modulator",
       },
    },
    ["Cruiser"] = {
@@ -470,6 +472,7 @@ equip_classOutfits_utilities = {
          "Reactor Class III", "Large Shield Booster", "Droid Repair Crew",
          "Targeting Array", "Improved Power Regulator",
          "Turreted Weapons Ionizer", "Solar Panel", "Sensor Array",
+         "Rotary Turbo Modulator",
       },
    },
    ["Carrier"] = {
@@ -477,6 +480,7 @@ equip_classOutfits_utilities = {
          varied = true;
          "Reactor Class III", "Large Shield Booster", "Droid Repair Crew",
          "Targeting Array", "Turreted Weapons Ionizer", "Sensor Array",
+         "Rotary Turbo Modulator",
       },
    },
    ["Drone"] = {

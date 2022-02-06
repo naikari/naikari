@@ -22,6 +22,10 @@
   rainbow for Queer Pride Month.
 * Asteroid Scanner now always shows you scan information for asteroids
   you can see, rather than only after you've targeted them.
+* Replaced Improved Refrigeration Cycle with the Rotary Turbo Modulator,
+  which does the opposite of what the Improved Refrigeration Cycle did
+  and serves as an equivalent to the Power Regulation Override outfit
+  for turrets.
 
 ## 0.1.0 (unreleased)
 
