@@ -1088,9 +1088,9 @@ static void info_openMissions( unsigned int wid )
 
    /* text */
    window_addText(wid, 300+40, -60,
-         w - (300+40+40), 40, 0, "txtReward", &gl_smallFont, NULL, NULL);
+         w - (300+40+40), 40, 0, "txtReward", &gl_defFont, NULL, NULL);
    window_addText(wid, 300+40, -100,
-         w - (300+40+40), 40, 0, "txtActiveOSD", &gl_smallFont, NULL, NULL);
+         w - (300+40+40), 40, 0, "txtActiveOSD", &gl_defFont, NULL, NULL);
    window_addText(wid, 300+40, -140,
          w - (300+40+40), h - BUTTON_HEIGHT - 120 - 20, 0,
          "txtDesc", &gl_defFont, NULL, NULL);
@@ -1158,7 +1158,7 @@ static void mission_menu_update( unsigned int wid, char* str )
       strcpy(buf, _("#nReward:#0 None"));
       window_modifyText(wid, "txtReward", _("#nReward:#0 None"));
       window_dimWidget(wid, "txtReward", &tw, &th);
-      th = gl_printHeightRaw(&gl_smallFont, tw, buf);
+      th = gl_printHeightRaw(&gl_defFont, tw, buf);
       window_resizeWidget(wid, "txtReward", tw, th);
       window_moveWidget(wid, "txtReward", x, y);
 
@@ -1184,7 +1184,7 @@ static void mission_menu_update( unsigned int wid, char* str )
       strcpy(buf, _("#nReward:#0 None"));
    window_modifyText(wid, "txtReward", buf);
    window_dimWidget(wid, "txtReward", &tw, &th);
-   th = gl_printHeightRaw(&gl_smallFont, tw, buf);
+   th = gl_printHeightRaw(&gl_defFont, tw, buf);
    window_resizeWidget(wid, "txtReward", tw, th);
    window_moveWidget(wid, "txtReward", x, y);
 
@@ -1197,7 +1197,7 @@ static void mission_menu_update( unsigned int wid, char* str )
             osd_items[osd_active]);
       window_modifyText(wid, "txtActiveOSD", buf);
       window_dimWidget(wid, "txtActiveOSD", &tw, &th);
-      th = gl_printHeightRaw(&gl_smallFont, tw, buf);
+      th = gl_printHeightRaw(&gl_defFont, tw, buf);
       window_resizeWidget(wid, "txtActiveOSD", tw, th);
       window_moveWidget(wid, "txtActiveOSD", x, y);
 
