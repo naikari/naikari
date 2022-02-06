@@ -3328,7 +3328,7 @@ static int player_saveMetadata( xmlTextWriterPtr writer )
    /* Save the stuff. */
    xmlw_saveTime(writer, "last_played", time(NULL));
    xmlw_saveTime(writer, "date_created", player.date_created);
-   xmlw_elem(writer,"time_played","%f",player.time_played);
+   xmlw_saveTime(writer, "time_played", player.time_played);
 
    /* Damage stuff. */
    xmlw_elem(writer, "dmg_done_shield", "%f", player.dmg_done_shield);
@@ -3768,7 +3768,7 @@ static int player_parseMetadata( xmlNodePtr parent )
       if (xml_isNode(node,"last_played"))
          xml_parseTime(node, &player.last_played);
       else if (xml_isNode(node,"time_played"))
-         player.time_played = xml_getFloat(node);
+         xml_parseTime(node, &player.time_played);
       else if (xml_isNode(node,"date_created"))
          xml_parseTime(node, &player.date_created);
       else if (xml_isNode(node,"dmg_done_shield"))

@@ -229,7 +229,7 @@ static void info_openMain( unsigned int wid )
          "#nShip:#0 %s\n"
          "#nFuel:#0 %d (%s)\n"
          "\n"
-         "#nTime played (D:HH:MM):#0 %.0f:%02llu:%02llu\n"
+         "#nTime played (D:HH:MM):#0 %lld:%02lld:%02lld\n"
          "#nDamage done:#0 %.0f GJ\n"
          "#nDamage taken:#0 %.0f GJ\n"
          "#nShips destroyed:#0 %u"),
@@ -238,7 +238,7 @@ static void info_openMain( unsigned int wid )
          creds,
          player.p->name,
          player.p->fuel, str2,
-         player.time_played / 86400.,
+         (long long)player.time_played / 86400,
          ((long long)player.time_played%86400) / 3600,
          ((long long)player.time_played%3600) / 60,
          player.dmg_done_shield + player.dmg_done_armour,
