@@ -134,10 +134,12 @@ function handle_messages ()
             end
          -- Hold position
          elseif msgtype == "e_hold" then
-            ai.pushtask("hold" )
+            p:taskClear()
+            ai.pushtask("hold")
          -- Return to carrier
          elseif msgtype == "e_return" then
-            ai.pushtask( "flyback", p:flags().carried )
+            p:taskClear()
+            ai.pushtask("flyback", p:flags().carried)
          -- Clear orders
          elseif msgtype == "e_clear" then
             p:taskClear()
