@@ -12,6 +12,6 @@
  </general>
  <specific type="modification">
   <fwd_heat>-15</fwd_heat>
-  <tur_firerate>-5</tur_firerate>
+  <fwd_firerate>-5</fwd_firerate>
  </specific>
 </outfit>
