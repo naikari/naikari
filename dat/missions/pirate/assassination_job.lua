@@ -38,7 +38,8 @@
 
 --]]
 
-require "numstring"
+local fmt = require "fmt"
+local mh = require "misnhelper"
 require "jumpdist"
 require "missions/pirate/common"
 require "pilot/generic"
@@ -57,7 +58,7 @@ desc_illegal_warning = _("WARNING: This mission is illegal and will get you in t
 
 -- Messages
 ran_msg = _("MISSION FAILURE! Target got away.")
-stolen_msg = _("MISSION FAILURE! Another pilot eliminated your target.")
+stolen_msg = _("Another pilot eliminated {pilot}.")
 abandoned_msg = _("MISSION FAILURE! You have left the %s system.")
 pay_msg = _("MISSION SUCCESS! Pay has been transferred into your account.")
 
@@ -146,7 +147,7 @@ function create ()
             .. "\n\n" .. desc_illegal_warning)
    end
 
-   misn.setReward(creditstring(credits))
+   misn.setReward(fmt.credits(credits))
    marker = misn.markerAdd(missys, "computer")
 end
 
@@ -240,7 +241,8 @@ function pilot_death(p, attacker)
       elseif player_hits >= top_hits / 2 and rnd.rnd() < 0.5 then
          succeed()
       else
-         fail(stolen_msg)
+         mh.showFailMsg(fmt.f(stolen_msg, {pilot=name}))
+         misn.finish(false)
       end
    end
 end
@@ -541,6 +543,17 @@ function spawn_target(source)
          hook.pilot(target_ship, "land", "pilot_jump")
       else
          fail(ran_msg)
+      end
+   else
+      local needed = system.cur():jumpDist(missys, true)
+      if needed ~= nil and needed > jumps_permitted then
+         -- Mission is now impossible to beat and therefore in a sort of
+         -- "zombie" state, so immediately fail the mission. We use the
+         -- "beaten" fail text here because the player isn't inside the
+         -- system, so they wouldn't know that the pirate is no longer
+         -- there, but they would know if someone else did the job.
+         mh.showFailMsg(fmt.f(stolen_msg, {pilot=name}))
+         misn.finish(false)
       end
    end
 end
