@@ -11,7 +11,7 @@
   <cpu>-4</cpu>
  </general>
  <specific type="modification">
-  <misc_reverse_thrust>1</misc_reverse_thrust>
+  <misc_reverse_thrust/>
   <energy_regen_malus>3</energy_regen_malus>
  </specific>
 </outfit>

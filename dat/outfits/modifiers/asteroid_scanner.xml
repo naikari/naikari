@@ -12,6 +12,6 @@
  </general>
  <specific type="modification">
   <energy_regen_malus>0.2</energy_regen_malus>
-  <misc_asteroid_scan>1</misc_asteroid_scan>
+  <misc_asteroid_scan/>
  </specific>
 </outfit>

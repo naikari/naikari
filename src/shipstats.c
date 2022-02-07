@@ -361,34 +361,34 @@ ShipStatList* ss_listFromXML( xmlNodePtr node )
    ShipStatsType type;
 
    /* Try to get type. */
-   type = ss_typeFromName( (char*) node->name );
+   type = ss_typeFromName((char*) node->name);
    if (type == SS_TYPE_NIL)
       return NULL;
 
    /* Allocate. */
-   ll = malloc( sizeof(ShipStatList) );
-   ll->next    = NULL;
-   ll->target  = 0;
-   ll->type    = type;
+   ll = malloc(sizeof(ShipStatList));
+   ll->next = NULL;
+   ll->target = 0;
+   ll->type = type;
 
    /* Set the data. */
    sl = &ss_lookup[ type ];
    switch (sl->data) {
       case SS_DATA_TYPE_DOUBLE:
       case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
-         ll->d.d     = xml_getFloat(node) / 100.;
+         ll->d.d = xml_getFloat(node) / 100.;
          break;
 
       case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
-         ll->d.d     = xml_getFloat(node);
-         break;
-
-      case SS_DATA_TYPE_BOOLEAN:
-         ll->d.i     = !!xml_getInt(node);
+         ll->d.d = xml_getFloat(node);
          break;
 
       case SS_DATA_TYPE_INTEGER:
-         ll->d.i     = xml_getInt(node);
+         ll->d.i = xml_getInt(node);
+         break;
+
+      case SS_DATA_TYPE_BOOLEAN:
+         ll->d.i = 1;
          break;
    }
 
@@ -507,7 +507,7 @@ int ss_statsMerge( ShipStats *dest, const ShipStats *src )
          case SS_DATA_TYPE_BOOLEAN:
             destint = (int*) &destptr[ sl->offset ];
             srcint = (const int*) &srcptr[ sl->offset ];
-            *destint = !!((*destint) + (*srcint));
+            *destint = ((*destint) || (*srcint));
             break;
       }
    }
