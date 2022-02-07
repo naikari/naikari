@@ -1173,7 +1173,7 @@ static int pilot_shootWeapon( Pilot* p, PilotOutfitSlot* w, double time )
       weapon_add( w->outfit, w->heat_T, p->solid->dir,
             &vp, &vv, p, p->target, time );
 
-      pilot_rmAmmo( p, w, 1 );
+      pilot_rmAmmo(p, w, 1);
 
       /* Make the AI aware a seeker has been shot */
       if (outfit_isSeeker(w->outfit))
@@ -1205,9 +1205,7 @@ static int pilot_shootWeapon( Pilot* p, PilotOutfitSlot* w, double time )
       escort_create( p, w->u.ammo.outfit->u.fig.ship,
             &vp, &p->solid->vel, p->solid->dir, ESCORT_TYPE_BAY, 1, dockslot );
 
-      w->u.ammo.quantity -= 1; /* we just shot it */
-      p->mass_outfit     -= w->u.ammo.outfit->mass;
-      pilot_updateMass( p );
+      pilot_rmAmmo(p, w, 1);
    }
    else
       WARN(_("Shooting unknown weapon type: %s"), w->outfit->name);

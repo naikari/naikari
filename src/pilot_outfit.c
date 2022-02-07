@@ -713,16 +713,17 @@ int pilot_addAmmo( Pilot* pilot, PilotOutfitSlot *s, const Outfit* ammo, int qua
    }
 
    /* Set the ammo type. */
-   s->u.ammo.outfit    = ammo;
+   s->u.ammo.outfit = ammo;
 
    /* Add the ammo. */
-   max                 = pilot_maxAmmoO(pilot,s->outfit) - s->u.ammo.deployed;
-   q                   = s->u.ammo.quantity; /* Amount have. */
+   max = pilot_maxAmmoO(pilot,s->outfit) - s->u.ammo.deployed;
+   q = s->u.ammo.quantity; /* Amount have. */
    s->u.ammo.quantity += quantity;
-   s->u.ammo.quantity  = MIN( max, s->u.ammo.quantity );
-   q                   = s->u.ammo.quantity - q; /* Amount actually added. */
+   s->u.ammo.quantity = MIN(max, s->u.ammo.quantity);
+   q = s->u.ammo.quantity - q; /* Amount actually added. */
    pilot->mass_outfit += q * s->u.ammo.outfit->mass;
-   pilot_updateMass( pilot );
+   pilot_updateMass(pilot);
+   pilot_calcStats(pilot);
 
    return q;
 }
@@ -757,10 +758,11 @@ int pilot_rmAmmo( Pilot* pilot, PilotOutfitSlot *s, int quantity )
       return 0;
 
    /* Remove ammo. */
-   q                   = MIN( quantity, s->u.ammo.quantity );
+   q = MIN(quantity, s->u.ammo.quantity);
    s->u.ammo.quantity -= q;
    pilot->mass_outfit -= q * s->u.ammo.outfit->mass;
-   pilot_updateMass( pilot );
+   pilot_updateMass(pilot);
+   pilot_calcStats(pilot);
    /* We don't set the outfit to null so it "remembers" old ammo. */
 
    return q;
