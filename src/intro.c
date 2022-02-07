@@ -288,14 +288,14 @@ static int intro_draw_text( char **const sb_list, int sb_size, int sb_index, dou
       x += IMAGE_WIDTH;
 
    i = sb_index;
-   y = SCREEN_H + offset - line_height;
+   y = SCREEN_H + offset - ceil(line_height);
    do {
       if ( sb_list[ i ] != NULL ) {
          stop = 0;
-         gl_printRaw( &intro_font, x, y, &cFontGreen, -1, sb_list[ i ] );
+         gl_printRaw(&intro_font, x, y, &cFontGreen, -1, sb_list[i]);
       }
 
-      y -= line_height;
+      y -= ceil(line_height);
       i = ( i + 1 ) % sb_size;
    } while ( i != sb_index );
 
@@ -311,19 +311,19 @@ static int intro_draw_text( char **const sb_list, int sb_size, int sb_index, dou
  */
 int intro_display( const char *text, const char *mus )
 {
-   double       offset;           /* distance from bottom of the top line. */
-   double       line_height;      /* # pixels per line. */
-   int          lines_per_screen; /* max appearing lines on the screen. */
-   char **      sb_arr;           /* array of lines to render. */
-   int          sb_index;         /* Position in the line array. */
-   double       vel  = 16.;       /* velocity: speed of text. */
-   int          stop = 0;         /* stop the intro. */
+   double offset; /* distance from bottom of the top line. */
+   double line_height; /* # pixels per line. */
+   int lines_per_screen; /* max appearing lines on the screen. */
+   char **sb_arr; /* array of lines to render. */
+   int sb_index; /* Position in the line array. */
+   double vel  = 16.; /* velocity: speed of text. */
+   int stop = 0; /* stop the intro. */
    unsigned int tcur, tlast, tlag;/* timers. */
-   double       delta;            /* time diff from last render to this one. */
-   int          cmd_index = 0;   /* index into the big list of intro lines. */
-   intro_img_t  side_image;       /* image to go along with the text. */
-   intro_img_t  transition;       /* image for transitioning. */
-   glPrintLineIterator iter;      /* the renderable lines coming from the current text directive. */
+   double delta; /* time diff from last render to this one. */
+   int cmd_index = 0; /* index into the big list of intro lines. */
+   intro_img_t side_image; /* image to go along with the text. */
+   intro_img_t transition; /* image for transitioning. */
+   glPrintLineIterator iter; /* the renderable lines coming from the current text directive. */
 
    /* Load the introduction. */
    if (intro_load(text) < 0)
@@ -338,8 +338,8 @@ int intro_display( const char *text, const char *mus )
 
    /* Do a few calculations to figure out how many lines can be present on the
       screen at any given time. */
-   line_height = (double)intro_font.h * 1.3;
-   lines_per_screen = (int)(SCREEN_H / line_height + 1.5); /* round up + 1 */
+   line_height = (double)ceil(intro_font.h * 1.3);
+   lines_per_screen = (int)(SCREEN_H/line_height + 1.5); /* round up + 1 */
 
    /* Initialize the lines. */
    gl_printLineIteratorInit( &iter, &intro_font, "", SCREEN_W - 2*SIDE_MARGIN - IMAGE_WIDTH );
@@ -362,7 +362,7 @@ int intro_display( const char *text, const char *mus )
 
       /* Increment position. */
       offset += vel * delta;
-      while (! (offset < line_height)) {
+      while (offset >= line_height) {
          /* One line has scrolled off, and another one on. */
          if (gl_printLineIteratorNext( &iter )) {
             free( sb_arr[sb_index] );
@@ -394,7 +394,7 @@ int intro_display( const char *text, const char *mus )
             offset -= line_height;
             sb_index = ( sb_index + 1 ) % lines_per_screen;
          }
-      } /* while (offset > line_height) */
+      }
 
       /* Fade the side image. */
       if (side_image.tex != NULL && side_image.c.a < 1.0) {
@@ -436,7 +436,8 @@ int intro_display( const char *text, const char *mus )
       music_update( 0. );
 
       /* Draw text. */
-      stop = intro_draw_text( sb_arr, lines_per_screen, sb_index, offset, line_height );
+      stop = intro_draw_text(sb_arr, lines_per_screen, sb_index, offset,
+            line_height);
 
       if (NULL != side_image.tex)
          /* Draw the image next to the text. */
