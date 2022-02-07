@@ -25,7 +25,7 @@
   <armour>50</armour>
   <commodity>
    <name>Ore</name>
-   <quantity>5</quantity>
+   <quantity>25</quantity>
   </commodity>
  </asteroid>
  <asteroid>
@@ -43,10 +43,14 @@
   <gfx>asteroid-D16.webp</gfx>
   <gfx>asteroid-D21.webp</gfx>
   <gfx>asteroid-D23.webp</gfx>
-  <armour>100</armour>
+  <armour>200</armour>
   <commodity>
    <name>Ore</name>
-   <quantity>15</quantity>
+   <quantity>75</quantity>
+  </commodity>
+  <commodity>
+   <name>Gold</name>
+   <quantity>5</quantity>
   </commodity>
  </asteroid>
  <asteroid>
@@ -62,14 +66,14 @@
   <gfx>asteroid-D14.webp</gfx>
   <gfx>asteroid-D16.webp</gfx>
   <gfx>asteroid-D21.webp</gfx>
-  <armour>70</armour>
-  <commodity>
-   <name>Ore</name>
-   <quantity>4</quantity>
-  </commodity>
+  <armour>700</armour>
   <commodity>
    <name>Gold</name>
-   <quantity>3</quantity>
+   <quantity>50</quantity>
+  </commodity>
+  <commodity>
+   <name>Diamond</name>
+   <quantity>5</quantity>
   </commodity>
  </asteroid>
  <asteroid>
@@ -94,14 +98,14 @@
   <gfx>asteroid-D22.webp</gfx>
   <gfx>asteroid-D23.webp</gfx>
   <gfx>asteroid-D24.webp</gfx>
-  <armour>150</armour>
-  <commodity>
-   <name>Ore</name>
-   <quantity>12</quantity>
-  </commodity>
+  <armour>600</armour>
   <commodity>
    <name>Diamond</name>
-   <quantity>4</quantity>
+   <quantity>75</quantity>
+  </commodity>
+  <commodity>
+   <name>Water</name>
+   <quantity>5</quantity>
   </commodity>
  </asteroid>
  <asteroid>
@@ -127,12 +131,12 @@
   <gfx>asteroid-D24.webp</gfx>
   <armour>40</armour>
   <commodity>
-   <name>Ore</name>
-   <quantity>4</quantity>
+   <name>Water</name>
+   <quantity>75</quantity>
   </commodity>
   <commodity>
-   <name>Water</name>
-   <quantity>4</quantity>
+   <name>Ore</name>
+   <quantity>5</quantity>
   </commodity>
  </asteroid>
 </Asteroid_types>
