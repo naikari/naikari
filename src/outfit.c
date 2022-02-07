@@ -1988,10 +1988,12 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
          _("%s\n"
          "%+.0f TFLOPS CPU\n"
          "%.2f LPS Launch Rate\n"
+         "%.1f s/fighter Rebuild Time\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
          temp->cpu,
          1. / temp->u.bay.delay,
+         temp->u.bay.reload_time,
          temp->u.bay.amount, _(temp->u.bay.ammo_name) );
 
 #define MELEMENT(o,s) \
@@ -2649,20 +2651,22 @@ static void outfit_launcherDesc( Outfit* o )
    a = o->u.lau.ammo;
 
    o->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
-   l = scnprintf(o->desc_short, OUTFIT_SHORTDESC_MAX,
-         "%s\n", _(outfit_getType(o)));
+   l = scnprintf(o->desc_short, OUTFIT_SHORTDESC_MAX, _("%s (%s)\n"),
+         _(outfit_getType(o)),
+         outfit_isSeeker(o) ? _("Seeker") : _("Unguided"));
    
    if (o->cpu != 0.)
       l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%+.0f TFLOPS CPU\n"), o->cpu);
 
-   if (outfit_isSeeker(o))
-      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+   if (o->u.lau.lockon > 0.)
+      l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%G s Lock-on\n"),
-            o->u.lau.lockon );
-   else
-      l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("No Tracking\n") );
+            o->u.lau.lockon);
+
+   l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+         _("%.1f s/round Reload Time\n"),
+         o->u.lau.reload_time);
 
    l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          n_("Holds %d %s:\n", "Holds %d %s:\n", o->u.lau.amount),
