@@ -1378,15 +1378,16 @@ static void shiplog_menu_genList( unsigned int wid, int first )
    /* list log entries of selected log */
    shiplog_listLog(logIDs[selectedLog], info_getLogTypeFilter(selectedLogType), &nentries, &logentries, 1);
    logWidgetsReady=0;
-   window_addList( wid, 20, 80 + BUTTON_HEIGHT + 3*LOGSPACING/4 ,
-                   w-40, LOGSPACING / 4,
-         "lstLogType", logTypes, ntypes, 0, shiplog_menu_update, NULL );
-   window_addList( wid, 20, 60 + BUTTON_HEIGHT + LOGSPACING / 2,
-                   w-40, LOGSPACING / 4,
-         "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL );
-   window_addList( wid, 20, 40 + BUTTON_HEIGHT,
-                   w-40, LOGSPACING / 2-20,
-                   "lstLogEntries", logentries, nentries, 0, shiplog_menu_update, info_shiplogView );
+   window_addList(wid, 20, 40 + BUTTON_HEIGHT,
+         w-40, LOGSPACING / 2-20,
+         "lstLogEntries", logentries, nentries, 0, shiplog_menu_update,
+         info_shiplogView);
+   window_addList(wid, 20, 60 + BUTTON_HEIGHT + LOGSPACING/2,
+         w-40, LOGSPACING / 4,
+         "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL);
+   window_addList(wid, 20, 80 + BUTTON_HEIGHT + 3*LOGSPACING/4,
+         w-40, LOGSPACING / 4,
+         "lstLogType", logTypes, ntypes, 0, shiplog_menu_update, NULL);
    logWidgetsReady=1;
 }
 

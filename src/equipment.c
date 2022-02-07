@@ -345,24 +345,24 @@ void equipment_open( unsigned int wid )
    equipment_addAmmo();
 
    /* buttons */
-   window_addButtonKey( wid, -10, -40-ch-10,
-         cw, bh, "btnRenameShip",
-         _("Rename"), equipment_renameShip, SDLK_r );
-   window_addButtonKey( wid, -10, -40-ch-10 - (10+bh),
-         cw, bh, "btnUnequipShip",
-         _("Unequip"), equipment_unequipShip, SDLK_u );
+   window_addButtonKey(wid, -10, 20, bw, bh, "btnCloseEquipment",
+         _("Take Off"), land_buttonTakeoff, SDLK_t);
 
-   window_addButtonKey( wid, 10 + sw + 10, 20, bw, bh,
-         "btnSellOutfit", _("Sell Outfit"), equipment_sellOutfit, SDLK_o );
-   window_addButtonKey( wid, 10+sw+10 + (10+bw), 20,
-         bw, bh, "btnChangeShip",
-         _("Swap Ship"), equipment_transChangeShip, SDLK_p );
-   window_addButtonKey( wid, 10+sw+10 + (10+bw)*2, 20,
+   window_addButtonKey(wid, 10+sw+10 + (10+bw)*2, 20,
          bw, bh, "btnSellShip",
-         _("Sell Ship"), equipment_sellShip, SDLK_s );
+         _("Sell Ship"), equipment_sellShip, SDLK_s);
+   window_addButtonKey(wid, 10+sw+10 + (10+bw), 20,
+         bw, bh, "btnChangeShip",
+         _("Swap Ship"), equipment_transChangeShip, SDLK_p);
+   window_addButtonKey(wid, 10 + sw + 10, 20, bw, bh,
+         "btnSellOutfit", _("Sell Outfit"), equipment_sellOutfit, SDLK_o);
 
-   window_addButtonKey( wid, -10, 20, bw, bh, "btnCloseEquipment",
-         _("Take Off"), land_buttonTakeoff, SDLK_t );
+   window_addButtonKey(wid, -10, -40-ch-10 - (10+bh),
+         cw, bh, "btnUnequipShip",
+         _("Unequip"), equipment_unequipShip, SDLK_u);
+   window_addButtonKey(wid, -10, -40-ch-10,
+         cw, bh, "btnRenameShip",
+         _("Rename"), equipment_renameShip, SDLK_r);
 
    x = 10 + sw + 10 + ew + 10;
    y = -40;
@@ -1411,11 +1411,11 @@ int equipment_shipStats( char *buf, int max_len,  const Pilot *s, int dpseps )
  */
 static void equipment_genLists( unsigned int wid )
 {
-   /* Ship list. */
-   equipment_genShipList( wid );
-
    /* Outfit list. */
-   equipment_genOutfitList( wid );
+   equipment_genOutfitList(wid);
+
+   /* Ship list. */
+   equipment_genShipList(wid);
 
    /* Update window. */
    equipment_updateOutfits(wid, NULL);
