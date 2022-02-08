@@ -3,7 +3,7 @@
 
 ![Naikari](https://naikari.github.io/images/logo.png)
 
-Naikari is a 2-D space trading and mercenary game forked from the
+Naikari is a 2-D space trading and mercenary sandbox game forked from the
 [Naev](https://naev.org) project. Naikari's primary inspirations are
 [Star Wraith 2](https://archive.org/details/swizzle_demu_SW2),
 [RiftSpace](https://archive.org/details/RiftSpace), and to a lesser extent,
