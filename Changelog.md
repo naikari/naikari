@@ -3,7 +3,7 @@
 ## 0.2.0 (unreleased)
 
 * Changed the land and takeoff music to be the same as ambient music.
-* Adjusted balancing of ships a bit, most noticeably changing the
+* Adjusted balancing of outfits and ships, most noticeably changing the
   Kestrel's two large fighter bay slots to medium fighter bay slots.
 * All ships now come with pre-installed weapons when you buy them, not
   just your first ship.
