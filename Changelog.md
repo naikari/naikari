@@ -27,6 +27,6 @@
   and serves as an equivalent to the Power Regulation Override outfit
   for turrets.
 
-## 0.1.0 (unreleased)
+## 0.1.0
 
 Initial release.
