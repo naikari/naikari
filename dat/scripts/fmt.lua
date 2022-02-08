@@ -1,6 +1,8 @@
 --[[--
 Functions for formatting strings.
 
+@usage local fmt = require "fmt"
+
 @module fmt
 --]]
 local fmt = {}
@@ -86,7 +88,7 @@ string.format because it allows translations to change the word order.
 @usage fmt.f(_("A few digits of pi: {1:.2f}"), {math.pi})
 
    @tparam string str Format string which may include placeholders of
-      the form "{var}" or "{var:%6.3f}" (where the expression after the
+      the form "{var}" or "{var:6.3f}" (where the expression after the
       colon is any directive string.format understands). A var which is
       a number is treated as a number; all other var definition is
       treated as a string. This value is used to index the argument
