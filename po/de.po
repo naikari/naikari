@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-02-03 19:13-0500\n"
+"POT-Creation-Date: 2022-02-07 21:25-0500\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -11726,7 +11726,7 @@ msgstr ""
 #: src/land_trade.c:85 src/land_trade.c:87 src/land_trade.c:121 src/load.c:370
 #: src/load.c:415 src/load.c:459 src/map.c:664 src/map.c:728 src/map.c:1951
 #: src/map_find.c:699 src/map_system.c:568 src/map_system.c:596
-#: src/pilot_outfit.c:902
+#: src/pilot_outfit.c:904
 #, c-format
 msgid "None"
 msgstr "Keine"
@@ -18274,14 +18274,14 @@ msgstr "Abrtrünniger FLF-Lancelot"
 #. Calculate spawn data
 #: dat/fleet.xml:224 dat/fleet.xml:982 dat/fleet.xml:983 dat/fleet.xml:984
 #: dat/fleet.xml:985 dat/factions/spawn/pirate.lua:4
-#: dat/missions/neutral/trader_escort.lua:284
-#: dat/missions/neutral/trader_escort.lua:290
-#: dat/missions/neutral/trader_escort.lua:298
-#: dat/missions/neutral/trader_escort.lua:312
-#: dat/missions/neutral/trader_escort.lua:317
-#: dat/missions/neutral/trader_escort.lua:332
-#: dat/missions/neutral/trader_escort.lua:337
-#: dat/missions/neutral/trader_escort.lua:342
+#: dat/missions/neutral/trader_escort.lua:300
+#: dat/missions/neutral/trader_escort.lua:306
+#: dat/missions/neutral/trader_escort.lua:314
+#: dat/missions/neutral/trader_escort.lua:328
+#: dat/missions/neutral/trader_escort.lua:333
+#: dat/missions/neutral/trader_escort.lua:348
+#: dat/missions/neutral/trader_escort.lua:353
+#: dat/missions/neutral/trader_escort.lua:358
 msgid "Pirate Hyena"
 msgstr "Piraten-Hyäne"
 
@@ -18631,29 +18631,29 @@ msgstr "Piratenangreifer"
 #. Shuts him up for at least 5s.
 #. Make it interesting
 #: dat/fleet.xml:866 dat/fleet.xml:867 dat/fleet.xml:868
-#: dat/missions/neutral/trader_escort.lua:280
+#: dat/missions/neutral/trader_escort.lua:296
 msgid "Convoy Llama"
 msgstr "Konvoi-Lama"
 
 #: dat/fleet.xml:875 dat/fleet.xml:876 dat/fleet.xml:877 dat/fleet.xml:878
-#: dat/missions/neutral/trader_escort.lua:286
+#: dat/missions/neutral/trader_escort.lua:302
 msgid "Convoy Koala"
 msgstr "Konvoi-Koala"
 
 #: dat/fleet.xml:885 dat/fleet.xml:886 dat/fleet.xml:896 dat/fleet.xml:897
 #: dat/fleet.xml:898 dat/fleet.xml:908 dat/fleet.xml:909 dat/fleet.xml:912
-#: dat/fleet.xml:913 dat/missions/neutral/trader_escort.lua:293
-#: dat/missions/neutral/trader_escort.lua:306
-#: dat/missions/neutral/trader_escort.lua:325
+#: dat/fleet.xml:913 dat/missions/neutral/trader_escort.lua:309
+#: dat/missions/neutral/trader_escort.lua:322
+#: dat/missions/neutral/trader_escort.lua:341
 msgid "Convoy Rhino"
 msgstr "Konvoi-Rhino"
 
 #: dat/fleet.xml:887 dat/fleet.xml:888 dat/fleet.xml:889 dat/fleet.xml:899
 #: dat/fleet.xml:900 dat/fleet.xml:901 dat/fleet.xml:910 dat/fleet.xml:911
 #: dat/fleet.xml:914 dat/fleet.xml:915
-#: dat/missions/neutral/trader_escort.lua:293
-#: dat/missions/neutral/trader_escort.lua:306
-#: dat/missions/neutral/trader_escort.lua:325
+#: dat/missions/neutral/trader_escort.lua:309
+#: dat/missions/neutral/trader_escort.lua:322
+#: dat/missions/neutral/trader_escort.lua:341
 msgid "Convoy Mule"
 msgstr "Konvoi-Muli"
 
@@ -33317,9 +33317,9 @@ msgstr ""
 #, fuzzy
 msgid ""
 "\"These computer symbols can be confusing sometimes! I've figured it out, "
-"though: '#F+#0' means friendly, '#N~#0' means neutral, '#H!!#0' means "
-"hostile, '#R*#0' means restricted, and '#I=#0' means uninhabited but "
-"landable. I wish someone had told me that!\""
+"though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, "
+"#R*#0 means restricted, and #I=#0 means uninhabited but landable. I wish "
+"someone had told me that!\""
 msgstr ""
 "„Diese Computersymbole können manchmal verwirrend sein! Ich habe es aber "
 "herausgefunden: ‚%s‘ bedeutet freundlich, ‚%s‘ bedeutet neutral, ‚%s‘ "
@@ -37790,7 +37790,7 @@ msgstr "Imperiale Kollektiv-Kampagne"
 #. <unique />
 #. </flags>
 #. <avail>
-#. <priority>70</priority>
+#. <priority>10</priority>
 #. <chance>40</chance>
 #. <location>Bar</location>
 #. <faction>Empire</faction>
@@ -47153,15 +47153,18 @@ msgstr "Konvoischiffe unter Beschuss! Sofortige Hilfe erbeten!"
 #. This mission does not make any system claims
 #. have to escort them at least one jump!
 #. needs to be a little bit of piracy possible along route
+#. Note: duplication of piracy risk descriptions here is
+#. intentional, for consistency with other missions that don't
+#. have this level of granularity.
 #. Choose mission reward.
 #. Reward depends on type of cargo hauled. Hauling expensive commodities gives a better deal.
-#: dat/missions/neutral/trader_escort.lua:117
+#: dat/missions/neutral/trader_escort.lua:133
 msgid "The destination is {distance} jump away. "
 msgid_plural "The destination is {distance} jumps away. "
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/trader_escort.lua:120
+#: dat/missions/neutral/trader_escort.lua:136
 #, fuzzy
 msgid ""
 "You only have enough fuel for {range} jump. You cannot stop to refuel. "
@@ -47178,18 +47181,18 @@ msgstr[1] ""
 
 #. This variable holds the system the player is supposed to jump to NEXT.
 #. The place where the AI ships spawn from.
-#: dat/missions/neutral/trader_escort.lua:154
+#: dat/missions/neutral/trader_escort.lua:170
 msgid "MISSION FAILED! You jumped into the wrong system."
 msgstr "MISSION FEHLGESCHLAGEN! Du bist ins falsche System gesprungen."
 
-#: dat/missions/neutral/trader_escort.lua:162
+#: dat/missions/neutral/trader_escort.lua:178
 msgid "MISSION FAILED! You jumped before the convoy you were escorting."
 msgstr ""
 "MISSION FEHLGESCHLAGEN! Du bist gesprungen, bevor es der Konvoi, welchen du "
 "beschützen solltest, tat."
 
 #. Treat those that didn't exit as dead
-#: dat/missions/neutral/trader_escort.lua:199
+#: dat/missions/neutral/trader_escort.lua:215
 msgid "MISSION FAILED! The convoy you were escorting has been destroyed."
 msgstr ""
 "MISSION FAILED! Der Konvoi, dem du Geleitschutz geben solltest, wurde "
@@ -47197,19 +47200,19 @@ msgstr ""
 
 #. No more left to defend, proceed to follow the rest
 #. Handle the jumps of convoy.
-#: dat/missions/neutral/trader_escort.lua:213
+#: dat/missions/neutral/trader_escort.lua:229
 #, fuzzy
 msgid "{ship} has jumped to {system}."
 msgstr "%s ist nach %s gesprungen."
 
 #. Handle landing of convoy
-#: dat/missions/neutral/trader_escort.lua:231
+#: dat/missions/neutral/trader_escort.lua:247
 #, fuzzy
 msgid "{ship} has landed on {planet}."
 msgstr "%s ist auf %s gelandet."
 
 #. Shouldn't happen
-#: dat/missions/neutral/trader_escort.lua:451
+#: dat/missions/neutral/trader_escort.lua:468
 #, fuzzy
 msgid ""
 "Protect the convoy ships and wait for them to land on {planet} ({landed}/"
@@ -47217,14 +47220,14 @@ msgid ""
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
-#: dat/missions/neutral/trader_escort.lua:454
+#: dat/missions/neutral/trader_escort.lua:471
 #: dat/missions/shadow/shadowvigil.lua:176
 #: dat/missions/soromid/comingout/srm_comingout5.lua:191
 #, fuzzy
 msgid "Land on {planet}"
 msgstr "Lande auf %s"
 
-#: dat/missions/neutral/trader_escort.lua:461
+#: dat/missions/neutral/trader_escort.lua:478
 #, fuzzy
 msgid ""
 "Protect the convoy ships and wait for them to jump to {system} ({jumped}/"
@@ -47232,14 +47235,14 @@ msgid ""
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
-#: dat/missions/neutral/trader_escort.lua:464
+#: dat/missions/neutral/trader_escort.lua:481
 #: dat/missions/shadow/shadowvigil.lua:185
 #: dat/missions/soromid/comingout/srm_comingout5.lua:201
 #, fuzzy
 msgid "Jump to {system}"
 msgstr "Kehre nach %s zurück"
 
-#: dat/missions/neutral/trader_escort.lua:468
+#: dat/missions/neutral/trader_escort.lua:485
 #: dat/missions/shadow/shadowvigil.lua:189
 msgid "{remaining} more jump after this one"
 msgid_plural "{remaining} more jumps after this one"
@@ -65504,12 +65507,12 @@ msgstr ""
 "Pilot „%s“: Versuchte, Munition zu Ausstattung hinzuzufügen, obwohl sie "
 "bereits Munition hat."
 
-#: src/pilot_outfit.c:746
+#: src/pilot_outfit.c:747
 #, c-format
 msgid "Pilot '%s': Trying to remove ammo from unequipped slot."
 msgstr "Pilot „%s“: Versuchte, Munition von leerem Platz zu entfernen."
 
-#: src/pilot_outfit.c:750
+#: src/pilot_outfit.c:751
 #, c-format
 msgid ""
 "Pilot '%s': Trying to remove ammo from non-launcher/fighter bay type outfit "
@@ -65526,7 +65529,7 @@ msgstr ""
 #. f, p
 #. f, p, po
 #.
-#: src/pilot_outfit.c:1247
+#: src/pilot_outfit.c:1249
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s''s outfit '%s' -> 'init':\n"
@@ -65542,7 +65545,7 @@ msgstr "Pilot „%s“ KI -> „%s“: %s"
 #. f, p, po
 #. f, p, po, dt
 #.
-#: src/pilot_outfit.c:1285
+#: src/pilot_outfit.c:1287
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s''s outfit '%s' -> 'update':\n"
@@ -65557,7 +65560,7 @@ msgstr "Pilot „%s“ KI -> „attacked“: %s"
 #. f, p
 #. f, p, po
 #.
-#: src/pilot_outfit.c:1323
+#: src/pilot_outfit.c:1325
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s''s outfit '%s' -> 'outofenergy':\n"
@@ -65575,7 +65578,7 @@ msgstr "Pilot „%s“ KI -> „attacked“: %s"
 #. f, p, po, a, s
 #. f, p, po, a, s, attacker
 #.
-#: src/pilot_outfit.c:1367
+#: src/pilot_outfit.c:1369
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s''s outfit '%s' -> 'onhit':\n"
@@ -65591,7 +65594,7 @@ msgstr "Pilot „%s“ KI -> „distress“: %s"
 #. f, p, po
 #. f, p, po, on
 #.
-#: src/pilot_outfit.c:1400
+#: src/pilot_outfit.c:1402
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s''s outfit '%s' -> 'ontoggle':\n"
@@ -65600,7 +65603,7 @@ msgstr "Pilot „%s“ KI -> „attacked“: %s"
 
 #. f, p, po, done, timer
 #.
-#: src/pilot_outfit.c:1448
+#: src/pilot_outfit.c:1450
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s''s outfit '%s' -> 'cooldown':\n"
@@ -65615,7 +65618,7 @@ msgstr "Pilot „%s“ KI -> „distress“: %s"
 #. f, p
 #. f, p, po
 #.
-#: src/pilot_outfit.c:1490
+#: src/pilot_outfit.c:1492
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s''s outfit '%s' -> 'cleanup':\n"
@@ -65638,7 +65641,7 @@ msgstr "Waffen – Sofort"
 msgid "Abilities - Toggled"
 msgstr "Fähigkeiten – Umgeschaltet"
 
-#: src/pilot_weapon.c:1213
+#: src/pilot_weapon.c:1211
 #, c-format
 msgid "Shooting unknown weapon type: %s"
 msgstr "Feuern eines unbekannten Waffentyps: %s"
