@@ -1739,7 +1739,7 @@ void equipment_updateShips( unsigned int wid, char* str )
       EQ_COMP(ship->shield_max,
             (ship->ship->shield+ship->ship->stats_array.shield)
                * ship->ship->stats_array.shield_mod,
-            0, ship->shield_max < 0.),
+            0, ship->shield_max <= 0.),
       EQ_COMP(ship->shield_regen,
             (ship->ship->shield_regen+ship->ship->stats_array.shield_regen)
                * ship->ship->stats_array.shield_regen_mod
@@ -1757,12 +1757,12 @@ void equipment_updateShips( unsigned int wid, char* str )
       EQ_COMP(ship->energy_max,
             (ship->ship->energy+ship->ship->stats_array.energy)
                * ship->ship->stats_array.energy_mod,
-            0, ship->energy_max < 0.),
+            0, ship->energy_max <= 0.),
       EQ_COMP(ship->energy_regen,
             (ship->ship->energy_regen+ship->ship->stats_array.energy_regen)
                * ship->ship->stats_array.energy_regen_mod
                - ship->ship->stats_array.energy_regen_malus,
-            0, ship->energy_regen < 0.),
+            0, ship->energy_regen <= 0.05),
       /* Misc. */
       pilot_cargoUsed(ship),
       EQ_COMP(cargo,
