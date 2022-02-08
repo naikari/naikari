@@ -5,7 +5,7 @@ set -e
 usage() {
     echo "usage: $(basename "$0") [-d] [-n] (set this for nightly builds) -s <SOURCEROOT> (Sets location of source) -b <BUILDROOT> (Sets location of build directory) -r <RUNNER> (must be specified)"
     cat <<EOF
-DMG Packaging Script for Naev
+DMG Packaging Script for Naikari
 
 This should be run after meson install -C build, and can be run from the source root. Requires genisoimage
 
@@ -51,7 +51,7 @@ mkdir -p "$WORKPATH"
 cp -r "$SOURCEPATH"/extras/macos/dmg_assets/. "$WORKPATH"
 
 # Extract Naev app bundle to BundleDir
-cp -r "$BUILDPATH"/dist/Naev.app "$WORKPATH"
+cp -r "$BUILDPATH"/dist/Naikari.app "$WORKPATH"
 
 # Generate DMG image
-genisoimage -V Naev -D -R -apple -no-pad -o "$BUILDPATH"/dist/naev.dmg "$WORKPATH"
+genisoimage -V Naikari -D -R -apple -no-pad -o "$BUILDPATH"/dist/naikari.dmg "$WORKPATH"
