@@ -685,7 +685,7 @@ function render( dt )
 
    for k, v in ipairs( pwset ) do
       v.is_outfit = false
-      if v.level ~= 0 then
+      if v.level ~= 0 or v.instant then
          wset[ #wset + 1 ] = v
       end
    end

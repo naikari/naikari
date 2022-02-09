@@ -26,6 +26,7 @@
   which does the opposite of what the Improved Refrigeration Cycle did
   and serves as an equivalent to the Power Regulation Override outfit
   for turrets.
+* Instant mode weapons now  show up on the weapon bar in the Brushed GUI.
 
 ## 0.1.0
 

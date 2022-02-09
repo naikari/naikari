@@ -1270,19 +1270,25 @@ static int pilotL_activeWeapset( lua_State *L )
  *
  * The weapon sets have the following structure: <br />
  * <ul>
- *  <li> name: name of the set. </li>
- *  <li> cooldown: [0:1] value indicating if ready to shoot (1 is ready). </li>
- *  <li> charge: [0:1] charge level of beam weapon (1 is full). </li>
- *  <li> ammo: Name of the ammo or nil if not applicable. </li>
- *  <li> left: Absolute ammo left or nil if not applicable. </li>
- *  <li> left_p: Relative ammo left [0:1] or nil if not applicable </li>
- *  <li> lockon: Lock-on [0:1] for seeker weapons or nil if not applicable. </li>
- *  <li> in_arc: Whether or not the target is in targeting arc or nil if not applicable. </li>
- *  <li> level: Level of the weapon (1 is primary, 2 is secondary). </li>
- *  <li> temp: Temperature of the weapon. </li>
- *  <li> type: Type of the weapon. </li>
- *  <li> dtype: Damage type of the weapon. </li>
- *  <li> track: Tracking level of the weapon. </li>
+ *    <li>name: name of the set. </li>
+ *    <li>cooldown: [0:1] value indicating if ready to shoot (1 is
+ *       ready).</li>
+ *    <li>charge: [0:1] charge level of beam weapon (1 is full).</li>
+ *    <li>ammo: Name of the ammo or nil if not applicable.</li>
+ *    <li>left: Absolute ammo left or nil if not applicable.</li>
+ *    <li>left_p: Relative ammo left [0:1] or nil if not applicable</li>
+ *    <li>lockon: Lock-on [0:1] for seeker weapons or nil if not
+ *       applicable.</li>
+ *    <li>in_arc: Whether or not the target is in targeting arc or nilif
+ *       not applicable.</li>
+ *    <li>level: Level of the weapon (1 is primary, 2 is secondary, 0
+ *       is neither primary nor secondary)).</li>
+ *    <li>instant: Whether or not the weapon is in an instant mode
+ *       weapon set.</li>
+ *    <li>temp: Temperature of the weapon.</li>
+ *    <li>type: Type of the weapon.</li>
+ *    <li>dtype: Damage type of the weapon.</li>
+ *    <li>track: Tracking level of the weapon.</li>
  * </ul>
  *
  * An example would be:
@@ -1296,12 +1302,14 @@ static int pilotL_activeWeapset( lua_State *L )
  * end
  * @endcode
  *
- * @usage set_name, slots = p:weapset( true ) -- Gets info for all active weapons
+ * @usage set_name, slots = p:weapset(true) -- Gets info for all active weapons
  * @usage set_name, slots = p:weapset() -- Get info about the current set
- * @usage set_name, slots = p:weapset( 5 ) -- Get info about the set number 5
+ * @usage set_name, slots = p:weapset(5) -- Get info about the set number 5
  *
  *    @luatparam Pilot p Pilot to get weapset weapon of.
- *    @luatparam[opt] number id ID of the set to get information of. Defaults to currently active set.
+ *    @luatparam[opt] number|boolean id ID of the set to get information
+ *       of. Set to true to get all active weapons. Defaults to the
+ *       current weapon set.
  *    @luatreturn string The name of the set.
  *    @luatreturn table A table with each slot's information.
  * @luafunc weapset
@@ -1309,8 +1317,9 @@ static int pilotL_activeWeapset( lua_State *L )
 static int pilotL_weapset( lua_State *L )
 {
    Pilot *p, *target;
-   int i, j, k, n;
+   int i, j, k, n, ii, ij;
    PilotWeaponSetOutfit *po_list;
+   PilotWeaponSetOutfit *temp_po_list;
    PilotOutfitSlot *slot;
    const Outfit *ammo, *o;
    double delay, firemod, enermod, t;
@@ -1318,10 +1327,11 @@ static int pilotL_weapset( lua_State *L )
    int is_lau, is_fb;
    const Damage *dmg;
    int has_beamid;
+   int is_instant;
 
    /* Parse parameters. */
    all = 0;
-   p   = luaL_validpilot(L,1);
+   p = luaL_validpilot(L,1);
    if (lua_gettop(L) > 1) {
       if (lua_isnumber(L,2))
          id = luaL_checkinteger(L,2) - 1;
@@ -1359,27 +1369,42 @@ static int pilotL_weapset( lua_State *L )
       for (i=0; i<n; i++) {
          /* Get base look ups. */
          slot = all ?  p->outfits[i] : po_list[i].slot;
-         o        = slot->outfit;
+         o = slot->outfit;
          if (o == NULL)
             continue;
-         is_lau   = outfit_isLauncher(o);
-         is_fb    = outfit_isFighterBay(o);
+         is_lau = outfit_isLauncher(o);
+         is_fb = outfit_isFighterBay(o);
 
          /* Must be valid weapon. */
-         if (all && !(outfit_isBolt(o) || outfit_isBeam(o)
-               || is_lau || is_fb))
+         if (all && !outfit_isBolt(o) && !outfit_isBeam(o)
+               && !is_lau && !is_fb)
             continue;
 
-         level    = slot->level;
+         level = slot->level;
 
          /* Must match level. */
          if (level != level_match)
             continue;
 
          /* Must be weapon. */
-         if (outfit_isMod(o) ||
-               outfit_isAfterburner(o))
+         if (outfit_isMod(o) || outfit_isAfterburner(o))
             continue;
+
+         is_instant = 0;
+         for (ii=0; ii<PLAYER_WEAPON_SETS; ii++) {
+            if (pilot_weapSetTypeCheck(p, ii) != WEAPSET_TYPE_WEAPON)
+               continue;
+
+            temp_po_list = pilot_weapSetList(p, ii);
+            for (ij=0; ij<array_size(temp_po_list); ij++) {
+               if (temp_po_list[ij].slot->outfit->name == slot->outfit->name) {
+                  is_instant = 1;
+                  break;
+               }
+            }
+            if (is_instant)
+               break;
+         }
 
          /* Set up for creation. */
          lua_pushnumber(L,++k);
@@ -1469,6 +1494,11 @@ static int pilotL_weapset( lua_State *L )
          lua_pushstring(L,"level");
          lua_pushnumber(L, level+1);
          lua_rawset(L,-3);
+
+         /* Instant weapon. */
+         lua_pushstring(L, "instant");
+         lua_pushboolean(L, is_instant);
+         lua_rawset(L, -3);
 
          /* Temperature. */
          lua_pushstring(L,"temp");
