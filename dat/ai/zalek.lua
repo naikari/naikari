@@ -29,8 +29,8 @@ function create()
       return
    end
 
-   -- Not too many credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/200, ai.pilot():ship():price()/50) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 200, sprice / 50))
 
    -- Get refuel chance
    local p = player.pilot()

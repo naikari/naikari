@@ -5,8 +5,8 @@ require "numstring"
 
 
 function create ()
-
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/500, ai.pilot():ship():price()/200) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 100, sprice / 25))
 
    -- Communication stuff
    mem.bribe_no = _("\"I don't want any problem.\"")

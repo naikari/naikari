@@ -26,7 +26,8 @@ function create ()
    end
 
    -- Not too much money
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/80 , ai.pilot():ship():price()/30) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 500, sprice / 100))
 
    -- Deal with bribeability
    if rnd.rnd() < 0.05 then

@@ -12,9 +12,8 @@ mem.careful       = true
 
 
 function create ()
-
-   -- Give monies.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/600 , ai.pilot():ship():price()/100) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 1000, sprice / 400))
 
    -- Get standing.
    local p = player.pilot()

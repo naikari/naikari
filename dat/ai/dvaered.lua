@@ -8,9 +8,8 @@ mem.aggressive = true
 
 -- Create function
 function create ()
-
-   -- Credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/300, ai.pilot():ship():price()/100) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 200, sprice / 50))
 
    -- Handle bribing
    if rnd.rnd() > 0.4 then

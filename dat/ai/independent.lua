@@ -8,9 +8,8 @@ mem.careful   = false
 
 
 function create ()
-
-   -- Credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/500, ai.pilot():ship():price()/200) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 200, sprice / 50))
 
    -- No bribe
    local bribe_msg = {

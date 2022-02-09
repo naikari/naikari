@@ -1,6 +1,6 @@
-require("ai/tpl/generic")
-require("ai/personality/patrol")
-require "numstring"
+local fmt = require "fmt"
+require "ai/tpl/generic"
+require "ai/personality/patrol"
 
 -- Settings
 mem.armour_run = 40
@@ -9,8 +9,8 @@ mem.aggressive = true
 
 
 function create ()
-   -- Not too many credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/300, ai.pilot():ship():price()/70) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 100, sprice / 25))
 
    -- Get refuel chance
    local p = player.pilot()
@@ -27,13 +27,17 @@ function create ()
          mem.refuel = mem.refuel * 0.6
       end
       -- Most likely no chance to refuel
-      mem.refuel_msg = string.format( _("\"I suppose I could spare some fuel for %s.\""), creditstring(mem.refuel) )
+      mem.refuel_msg = fmt.f(
+            _("\"I suppose I could spare some fuel for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    end
 
    -- See if can be bribed
    if rnd.rnd() > 0.7 then
-      mem.bribe = math.sqrt( ai.pilot():stats().mass ) * (500. * rnd.rnd() + 1750.)
-      mem.bribe_prompt = string.format(_("\"For some %s I could forget about seeing you.\""), creditstring(mem.bribe) )
+      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (500.*rnd.rnd() + 1750.)
+      mem.bribe_prompt = fmt.f(
+            _("\"For {credits} I could forget about seeing you.\""),
+            {credits=fmt.credits(mem.bribe)})
       mem.bribe_paid = _("\"Now scram before I change my mind.\"")
    else
      bribe_no = {

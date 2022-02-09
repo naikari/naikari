@@ -9,8 +9,8 @@ mem.aggressive = true
 
 
 function create ()
-   -- Not too many credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/300, ai.pilot():ship():price()/70) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 100, sprice / 25))
 
    -- Get refuel chance
    local p = player.pilot()

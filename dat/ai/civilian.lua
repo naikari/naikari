@@ -7,7 +7,8 @@ require "numstring"
 function create ()
 
    -- Credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/500, ai.pilot():ship():price()/200) )
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 50, sprice / 10))
 
    -- No bribe
    local bribe_msg = {

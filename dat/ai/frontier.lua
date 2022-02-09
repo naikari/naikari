@@ -8,10 +8,8 @@ mem.aggressive = true
 
 -- Create function
 function create ()
-
-   -- Credits.
    local price = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(price / 300, price / 100))
+   ai.setcredits(rnd.rnd(price / 500, price / 200))
 
    -- Handle bribing
    local bribe_no = {

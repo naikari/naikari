@@ -11,7 +11,7 @@ mem.aggressive = true
 function create ()
    local p = ai.pilot()
    local price = p:ship():price()
-   ai.setcredits(rnd.rnd(price / 150, price / 50))
+   ai.setcredits(rnd.rnd(price / 100, price / 25))
 
    if rnd.rnd() > 0.7 then
       mem.bribe = math.sqrt(p:stats().mass) * (750. * rnd.rnd() + 2500.)

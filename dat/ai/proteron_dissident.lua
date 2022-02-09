@@ -1,19 +1,18 @@
-require("ai/tpl/generic")
-require("ai/personality/civilian")
-require "numstring"
+local fmt = require "fmt"
+require "ai/tpl/generic"
+require "ai/personality/civilian"
 
 
 mem.shield_run = 100
 mem.armour_run = 100
-mem.defensive  = false
+mem.defensive = false
 mem.enemyclose = 500
-mem.careful   = true
+mem.careful = true
 
 
 function create ()
-
-   -- Credits.
-   ai.setcredits( rnd.rnd(ai.pilot():ship():price()/500, ai.pilot():ship():price()/200) )
+   sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(sprice / 500, sprice / 200))
 
    -- No bribe
    local bribe_msg = {
@@ -27,8 +26,9 @@ function create ()
    mem.refuel = rnd.rnd( 1000, 3000 )
    local p = player.pilot()
    if p:exists() then
-      mem.refuel_msg = string.format(_("\"I'll supply your ship with fuel for %s.\""),
-            creditstring(mem.refuel));
+      mem.refuel_msg = fmt.f(
+            _("\"I'll supply your ship with fuel for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
