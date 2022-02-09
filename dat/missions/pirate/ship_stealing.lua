@@ -4,7 +4,7 @@
  <avail>
   <priority>40</priority>
   <cond>planet.cur():blackmarket() or (faction.playerStanding("Pirate") &gt;= 0 and player.numOutfit("Mercenary License") &gt; 0)</cond>
-  <chance>10</chance>
+  <chance>810</chance>
   <location>Bar</location>
   <faction>Pirate</faction>
   <faction>Independent</faction>
@@ -43,6 +43,7 @@
 
 local fmt = require "fmt"
 local portrait = require "portrait"
+local mh = require "misnhelper"
 require "missions/pirate/common"
 require "events/tutorial/tutorial_common"
 require "pilot/generic"
@@ -57,6 +58,10 @@ ask_text = _([[You approach the pirate informer. "I have a fantastic offer for y
 explain_text = _([[You pay the informant. "Heh heh, thanks! The ship is being piloted by someone called {pilot}. It can be found in the {system} system and it's been damaged by a failed pirate attack. All you need to do is locate the ship, disable it, board it, and let me take care of sneaking it out of the system. We'll meet up on a nearby planet somewhere after that; I'll let you choose which one."]])
 
 nomoney_text = _([["You don't even have enough money! Don't waste my time!"]])
+
+offer_newtarget_free_text = _([[As you prepare to board your target, the pirate informer who you paid {credits} to help you steal the {shiptype} stops you. "Wait a moment, friend. I have an offer just for you! For no additional cost, I can steal this ship for you instead of the target we were originally going to go after. Well? What do you say?"]])
+
+offer_newtarget_text = _([[As you prepare to board your target, the pirate informer who you paid {credits} to help you steal the {shiptype} stops you. "Wait a moment, friend. I have an offer just for you! For just {extracredits} more, I can steal this ship for you instead of the target we were originally going to go after. Well? What do you say?"]])
 
 subdue_text = {
    _("You successfully infiltrate the ship. The pirate informer takes control of the ship and prepares to make the getaway."),
@@ -74,16 +79,11 @@ btutorial_text = _([[As you enter the system and begin to search for your target
 Captain T. Practice's eyes widen and they start to sweat. "Oh! You're, um… well, I see you're very busy, so good luck on your… mission."]])
 
 -- Messages
-ran_msg = _("MISSION FAILURE! {pilot} got away.")
-died_msg = _("MISSION FAILURE! Target ship has been destroyed.")
-abandoned_msg = _("MISSION FAILURE! You have left the {system} system.")
+ran_msg = _("{pilot} got away.")
+died_msg = _("Target ship has been destroyed.")
+abandoned_msg = _("You have left the {system} system.")
 
 osd_title = _("Ship Stealing")
-osd_msg = {}
-osd_msg[1] = _("Fly to the {system} system")
-osd_msg[2] = _("Disable and board {pilot}")
-osd_msg[3] = _("Land on any planet or station")
-osd_msg["__save"] = true
 
 
 function create()
@@ -177,17 +177,21 @@ function accept()
    misn.setReward(_("A shiny new ship"))
    marker = misn.markerAdd(missys, "computer")
 
-   osd_msg[1] = fmt.f(osd_msg[1], {system=missys:name()})
-   osd_msg[2] = fmt.f(osd_msg[2], {pilot=name})
+   local osd_msg = {
+      fmt.f(_("Fly to the {system} system"), {system=missys:name()}),
+      fmt.f(_("Disable and board {pilot}"), {pilot=name}),
+      _("Land on any planet or station"),
+   }
    misn.osdCreate(osd_title, osd_msg)
 
    last_sys = system.cur()
    job_done = false
    soutfits = nil
 
-   hook.jumpin("jumpin")
-   hook.jumpout("jumpout")
-   hook.takeoff("takeoff")
+   jumpin_hook = hook.jumpin("jumpin")
+   jumpout_hook = hook.jumpout("jumpout")
+   takeoff_hook = hook.takeoff("takeoff")
+   board_hook = hook.board("board")
    hook.land("land")
 end
 
@@ -198,12 +202,16 @@ function jumpin()
       return
    end
 
-   local pos = jump.pos(system.cur(), last_sys)
-   local offset_ranges = {{-5000, -2500}, {2500, 5000}}
-   local xrange = offset_ranges[rnd.rnd(1, #offset_ranges)]
-   local yrange = offset_ranges[rnd.rnd(1, #offset_ranges)]
-   pos = pos + vec2.new(rnd.rnd(xrange[1], xrange[2]),
-            rnd.rnd(yrange[1], yrange[2]))
+   local jp = jump.get(system.cur(), last_sys)
+   local pos = nil
+   if jp ~= nil then
+      local pos = jump.pos(jp)
+      local offset_ranges = {{-5000, -2500}, {2500, 5000}}
+      local xrange = offset_ranges[rnd.rnd(1, #offset_ranges)]
+      local yrange = offset_ranges[rnd.rnd(1, #offset_ranges)]
+      pos = pos + vec2.new(rnd.rnd(xrange[1], xrange[2]),
+               rnd.rnd(yrange[1], yrange[2]))
+   end
    spawn_target(pos)
 end
 
@@ -241,6 +249,50 @@ function land()
 
       misn.finish(true)
    end
+end
+
+
+function board(target, arg)
+   -- Make sure another pirate informer didn't just offer to steal the
+   -- ship, since getting multiple offers in a row would be annoying.
+   if var.peek("board_nosteal") then
+      return
+   end
+
+   local n, price = target:ship():price()
+   for i, o in ipairs(target:outfits()) do
+      price = price + o:price()
+   end
+
+   local t
+   local diff = price - credits
+   if diff > player.credits() then
+      return
+   elseif diff > 0 then
+      t = fmt.f(offer_newtarget_text,
+            {credits=fmt.credits(credits), shiptype=_(shiptype),
+               extracredits=fmt.credits(diff)})
+   else
+      t = fmt.f(offer_newtarget_free_text,
+            {credits=fmt.credits(credits), shiptype=_(shiptype)})
+   end
+
+   var.push("board_nosteal", true)
+   hook.safe("safe_restoreOffer")
+
+   if not tk.yesno("", t) then
+      return
+   end
+
+   if diff > 0 then
+      player.pay(-diff, "adjust")
+   end
+   pilot_boarding(target, player.pilot())
+end
+
+
+function safe_restoreOffer()
+   var.pop("board_nosteal")
 end
 
 
@@ -339,8 +391,8 @@ function bounty_setup()
 
    shiptype = fshiplist[rnd.rnd(1, #fshiplist)]
 
-   local s = ship.get(shiptype)
-   credits = s:price() * rnd.uniform(0.4, 0.8)
+   local n, price = ship.get(shiptype):price()
+   credits = price * rnd.uniform(0.4, 0.8)
 end
 
 
@@ -354,6 +406,7 @@ function spawn_target(source)
 
          local target_ship = pilot.add(shiptype, target_faction, source, name)
          target_ship:setHilight()
+         target_ship:setVisible()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
 
@@ -377,29 +430,51 @@ function succeed()
    pilot.toggleSpawn(true)
    job_done = true
    misn.osdActive(3)
-   if marker ~= nil then
-      misn.markerRm(marker)
-   end
-   if target_jump_hook ~= nil then
-      hook.rm(target_jump_hook)
-   end
-   if target_land_hook ~= nil then
-      hook.rm(target_land_hook)
-   end
+   misn.markerRm(marker)
+   hook.rm(jumpin_hook)
+   hook.rm(jumpout_hook)
+   hook.rm(takeoff_hook)
+   hook.rm(board_hook)
+   hook.rm(target_jump_hook)
+   hook.rm(target_land_hook)
 end
 
 
 -- Fail the mission, showing message to the player.
-function fail(message)
-   pilot.toggleSpawn(true)
-   if message ~= nil then
-      -- Pre-colourized, do nothing.
-      if message:find("#") then
-         player.msg(message)
-      -- Colourize in red.
-      else
-         player.msg("#r" .. message .. "#0")
-      end
+function fail(reason)
+   if system.cur() == missys then
+      pilot.toggleSpawn(true)
+   end
+   -- Don't show fail message after already failed.
+   if failed then
+      return
+   end
+
+   mh.showFailMsg(reason)
+
+   -- Change objective
+   local osd_msg = {
+      fmt.f(_("Fly to the {system} system"), {system=missys:name()}),
+      _("Disable and board any ship and see if the pirate informer will steal it for you"),
+      _("Land on any planet or station"),
+   }
+   misn.osdCreate(osd_title, osd_msg)
+   misn.osdActive(2)
+   misn.markerRm(marker)
+   hook.rm(jumpin_hook)
+   hook.rm(jumpout_hook)
+   hook.rm(takeoff_hook)
+   hook.rm(board_hook)
+   hook.rm(target_jump_hook)
+   hook.rm(target_land_hook)
+
+   failed = true
+end
+
+
+function abort()
+   if system.cur() == missys then
+      pilot.toggleSpawn(true)
    end
    misn.finish(false)
 end
