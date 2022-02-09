@@ -26,7 +26,13 @@
   which does the opposite of what the Improved Refrigeration Cycle did
   and serves as an equivalent to the Power Regulation Override outfit
   for turrets.
-* Instant mode weapons now  show up on the weapon bar in the Brushed GUI.
+* Instant mode weapons now show up on the weapon bar in the Brushed GUI.
+* Ship Stealing mission now allows stealing of non-designated targets,
+  at the cost of having to pay for the entire value of the ship (meaning
+  it can't be used to make credits, it can only be used to steal
+  particular ships you want to add to your collection). If it fails, it
+  keeps running so you can steal a ship of your choice instead, and the
+  OSD message changes to note this.
 
 ## 0.1.0
 
