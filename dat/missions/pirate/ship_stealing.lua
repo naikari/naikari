@@ -406,7 +406,6 @@ function spawn_target(source)
 
          local target_ship = pilot.add(shiptype, target_faction, source, name)
          target_ship:setHilight()
-         target_ship:setVisible()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
 
