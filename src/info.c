@@ -1190,21 +1190,22 @@ static void mission_menu_update( unsigned int wid, char* str )
 
    y -= th + 20;
 
-   osd_items = osd_getItems(misn->osd);
-   osd_active = osd_getActive(misn->osd);
-   if ((osd_items != NULL) && (osd_active != -1)) {
-      snprintf(buf, sizeof(buf), _("#nCurrent Objective:#0 %s"),
-            osd_items[osd_active]);
-      window_modifyText(wid, "txtActiveOSD", buf);
-      window_dimWidget(wid, "txtActiveOSD", &tw, &th);
-      th = gl_printHeightRaw(&gl_defFont, tw, buf);
-      window_resizeWidget(wid, "txtActiveOSD", tw, th);
-      window_moveWidget(wid, "txtActiveOSD", x, y);
+   window_modifyText(wid, "txtActiveOSD", NULL);
+   if (misn->osd > 0) {
+      osd_items = osd_getItems(misn->osd);
+      osd_active = osd_getActive(misn->osd);
+      if ((osd_items != NULL) && (osd_active != -1)) {
+         snprintf(buf, sizeof(buf), _("#nCurrent Objective:#0 %s"),
+               osd_items[osd_active]);
+         window_modifyText(wid, "txtActiveOSD", buf);
+         window_dimWidget(wid, "txtActiveOSD", &tw, &th);
+         th = gl_printHeightRaw(&gl_defFont, tw, buf);
+         window_resizeWidget(wid, "txtActiveOSD", tw, th);
+         window_moveWidget(wid, "txtActiveOSD", x, y);
 
-      y -= th + 20;
+         y -= th + 20;
+      }
    }
-   else
-      window_modifyText(wid, "txtActiveOSD", NULL);
 
    window_modifyText(wid, "txtDesc", misn->desc);
    window_dimWidget(wid, "txtDesc", &tw, &th);
