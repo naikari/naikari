@@ -39,6 +39,8 @@
   carry very little).
 * Ship Stealing targets now lose most of their ammo in addition to armor
   and battery.
+* Made the Huntsman torpedo much stronger (it was far too weak for a
+  missile designed to disable capital ships).
 
 ## 0.1.0
 
