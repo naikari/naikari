@@ -18,9 +18,9 @@
   <asset>Takeru</asset>
   <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Empire Small</asset>
-  <asset>Virtual Trader Local</asset>
   <asset>Virtual Miner Small</asset>
   <asset>Virtual Trader Area</asset>
+  <asset>Virtual Trader Local</asset>
  </assets>
  <jumps>
   <jump target="Coriolis">
