@@ -110,7 +110,7 @@ function spawn_merc(source)
 
    local merc_ship
    local nescorts = 0
-   if rnd.rnd() < 0.7 then
+   if max_mercenaries - mercenaries < 1 or rnd.rnd() < 0.7 then
       merc_ship = choices_small[rnd.rnd(1, #choices_small)]
       nescorts = rnd.rnd(0, 6)
    elseif rnd.rnd() < 0.2 then
