@@ -72,7 +72,7 @@ function background_nebula ()
    local a     = 2*math.pi*prng:random()
    local x     = r*math.cos(a)
    local y     = r*math.sin(a)
-   local move  = 0.001 + prng:random()*0.001
+   local move  = 0.0001 + prng:random()*0.0001
    local scale = 1 + (prng:random()*0.5 + 0.5)*((2000+2000)/(w+h))
    if scale > 1.9 then scale = 1.9 end
    bkg.image( img, x, y, move, scale )
@@ -134,7 +134,7 @@ function star_add( added, num_added )
    local a = 2 * math.pi * prng:random()
    local x = r * math.cos(a)
    local y = r * math.sin(a)
-   local move = 0.005 + prng:random()*0.005
+   local move = 0.0005 + prng:random()*0.0005
    local base_w = 200 + prng:random()*200
    local scale = base_w^2 / (w*h)
    bkg.image(img, x, y, move, scale)
