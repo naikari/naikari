@@ -33,6 +33,12 @@
   particular ships you want to add to your collection). If it fails, it
   keeps running so you can steal a ship of your choice instead, and the
   OSD message changes to note this.
+* Adjusted how much money ships carry to hopefully make illegal piracy
+  more rewarding and make pirating pirates less rewarding, while also
+  adding variety to piracy (some factions carry a lot of credits, some
+  carry very little).
+* Ship Stealing targets now lose most of their ammo in addition to armor
+  and battery.
 
 ## 0.1.0
 
