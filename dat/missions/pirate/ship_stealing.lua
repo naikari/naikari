@@ -85,6 +85,20 @@ abandoned_msg = _("You have left the {system} system.")
 
 osd_title = _("Ship Stealing")
 
+-- List of ships that you are never allowed to steal.
+forbidden_ships = {
+   -- Collective drones
+   "Drone", "Heavy Drone",
+
+   -- Za'lek drones
+   "Za'lek Scout Drone", "Za'lek Light Drone", "Za'lek Heavy Drone",
+   "Za'lek Bomber Drone",
+
+   -- Stations
+   "Sindbad", "Raelid Outpost", "Raglan Outpost",
+}
+forbidden_ships.__save = true
+
 
 function create()
    paying_faction = faction.get("Pirate")
@@ -256,6 +270,13 @@ function board(target, arg)
    -- Make sure it's not the target we're set to steal anyway
    if target == target_ship then
       return
+   end
+
+   -- Make sure the ship isn't forbidden.
+   for i, sname in ipairs(forbidden_ships) do
+      if sname == target:ship():nameRaw() then
+         return
+      end
    end
 
    -- Make sure another pirate informer didn't just offer to steal the
