@@ -416,6 +416,7 @@ function spawn_target(source)
          target_ship:setHilight()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
+         target_ship:intrinsicSet("armour_regen", 0, true)
 
          hook.pilot(target_ship, "boarding", "pilot_boarding")
          hook.pilot(target_ship, "death", "pilot_death")
