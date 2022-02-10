@@ -440,7 +440,7 @@ function spawn_target(source)
 
          -- Lower ammo
          for i, amm in ipairs(target_ship:ammo()) do
-            target_ship:outfitRm(amm.name, math.ceil(amm.quantity * 0.75))
+            target_ship:outfitRm(amm.name, math.ceil(amm.quantity * 0.6))
          end
 
          hook.pilot(target_ship, "boarding", "pilot_boarding")
