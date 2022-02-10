@@ -135,7 +135,7 @@ function star_add( added, num_added )
    local x = r * math.cos(a)
    local y = r * math.sin(a)
    local move = 0.005 + prng:random()*0.005
-   local base_w = 200 + prng:random()*100
+   local base_w = 200 + prng:random()*200
    local scale = base_w^2 / (w*h)
    bkg.image(img, x, y, move, scale)
    return num
