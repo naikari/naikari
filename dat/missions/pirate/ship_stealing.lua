@@ -97,7 +97,6 @@ forbidden_ships = {
    -- Stations
    "Sindbad", "Raelid Outpost", "Raglan Outpost",
 }
-forbidden_ships.__save = true
 
 
 function create()
