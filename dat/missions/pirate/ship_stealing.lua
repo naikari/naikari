@@ -418,6 +418,11 @@ function spawn_target(source)
          target_ship:setEnergy(10)
          target_ship:intrinsicSet("armour_regen", 0, true)
 
+         -- Lower ammo
+         for i, amm in ipairs(target_ship:ammo()) do
+            target_ship:outfitRm(amm.name, math.ceil(amm.quantity * 0.75))
+         end
+
          hook.pilot(target_ship, "boarding", "pilot_boarding")
          hook.pilot(target_ship, "death", "pilot_death")
          target_jump_hook = hook.pilot(target_ship, "jump", "pilot_jump")

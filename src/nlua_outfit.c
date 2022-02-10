@@ -41,31 +41,33 @@ static int outfitL_slot( lua_State *L );
 static int outfitL_limit( lua_State *L );
 static int outfitL_icon( lua_State *L );
 static int outfitL_price( lua_State *L );
+static int outfitL_ammo(lua_State *L);
 static int outfitL_description( lua_State *L );
 static int outfitL_unique( lua_State *L );
 static int outfitL_getShipStat( lua_State *L );
 static int outfitL_weapStats( lua_State *L );
 static int outfitL_specificStats( lua_State *L );
 static const luaL_Reg outfitL_methods[] = {
-   { "__tostring", outfitL_name },
-   { "__eq", outfitL_eq },
-   { "get", outfitL_get },
-   { "getAll", outfitL_getAll },
-   { "name", outfitL_name },
-   { "nameRaw", outfitL_nameRaw },
-   { "type", outfitL_type },
-   { "typeBroad", outfitL_typeBroad },
-   { "cpu", outfitL_cpu },
-   { "mass", outfitL_mass },
-   { "slot", outfitL_slot },
-   { "limit", outfitL_limit },
-   { "icon", outfitL_icon },
-   { "price", outfitL_price },
-   { "description", outfitL_description },
-   { "unique", outfitL_unique },
-   { "shipstat", outfitL_getShipStat },
-   { "weapstats", outfitL_weapStats },
-   { "specificstats", outfitL_specificStats },
+   {"__tostring", outfitL_name},
+   {"__eq", outfitL_eq},
+   {"get", outfitL_get},
+   {"getAll", outfitL_getAll},
+   {"name", outfitL_name},
+   {"nameRaw", outfitL_nameRaw},
+   {"type", outfitL_type},
+   {"typeBroad", outfitL_typeBroad},
+   {"cpu", outfitL_cpu},
+   {"mass", outfitL_mass},
+   {"slot", outfitL_slot},
+   {"limit", outfitL_limit},
+   {"icon", outfitL_icon},
+   {"price", outfitL_price},
+   {"ammo", outfitL_ammo},
+   {"description", outfitL_description},
+   {"unique", outfitL_unique},
+   {"shipstat", outfitL_getShipStat},
+   {"weapstats", outfitL_weapStats},
+   {"specificstats", outfitL_specificStats},
    {0,0}
 }; /**< Outfit metatable methods. */
 
@@ -434,6 +436,30 @@ static int outfitL_price( lua_State *L )
    const Outfit *o = luaL_validoutfit(L,1);
    lua_pushnumber(L, o->price);
    return 1;
+}
+
+
+/**
+ * @brief Gets the ammo of an outfit.
+ *
+ * @usage ammo = o:ammo()
+ *
+ *    @luatparam Outfit o Outfit to get the ammo of.
+ *    @luatreturn Outfit|nil The outfit's ammo, or nil if the outfit has
+ *       no ammo.
+ * @luafunc ammo
+ */
+static int outfitL_ammo(lua_State *L)
+{
+   const Outfit *o = luaL_validoutfit(L, 1);
+   const Outfit *amm = outfit_ammo(o);
+
+   if (amm != NULL)
+      lua_pushoutfit(L, amm);
+   else
+      lua_pushnil(L);
+
+   return 2;
 }
 
 

@@ -80,6 +80,7 @@ static int pilotL_weapset( lua_State *L );
 static int pilotL_weapsetHeat( lua_State *L );
 static int pilotL_actives( lua_State *L );
 static int pilotL_outfits( lua_State *L );
+static int pilotL_ammo(lua_State *L);
 static int pilotL_outfitByID( lua_State *L );
 static int pilotL_rename( lua_State *L );
 static int pilotL_position( lua_State *L );
@@ -176,37 +177,38 @@ static const luaL_Reg pilotL_methods[] = {
    { "getVisible", pilotL_getVisible },
    { "__eq", pilotL_eq },
    /* Info. */
-   { "name", pilotL_name },
-   { "id", pilotL_id },
-   { "exists", pilotL_exists },
-   { "target", pilotL_target },
-   { "setTarget", pilotL_setTarget },
-   { "inrange", pilotL_inrange },
-   { "nav", pilotL_nav },
-   { "activeWeapset", pilotL_activeWeapset },
-   { "weapset", pilotL_weapset },
-   { "weapsetHeat", pilotL_weapsetHeat },
-   { "actives", pilotL_actives },
-   { "outfits", pilotL_outfits },
-   { "outfitByID", pilotL_outfitByID },
-   { "rename", pilotL_rename },
-   { "pos", pilotL_position },
-   { "vel", pilotL_velocity },
-   { "dir", pilotL_dir },
-   { "ew", pilotL_ew },
-   { "temp", pilotL_temp },
-   { "mass", pilotL_mass },
-   { "cooldown", pilotL_cooldown },
-   { "faction", pilotL_faction },
-   { "spaceworthy", pilotL_spaceworthy },
-   { "health", pilotL_getHealth },
-   { "energy", pilotL_getEnergy },
-   { "lockon", pilotL_getLockon },
-   { "stats", pilotL_getStats },
-   { "shipstat", pilotL_getShipStat },
-   { "colour", pilotL_getColour },
-   { "hostile", pilotL_getHostile },
-   { "flags", pilotL_flags },
+   {"name", pilotL_name},
+   {"id", pilotL_id},
+   {"exists", pilotL_exists},
+   {"target", pilotL_target},
+   {"setTarget", pilotL_setTarget},
+   {"inrange", pilotL_inrange},
+   {"nav", pilotL_nav},
+   {"activeWeapset", pilotL_activeWeapset},
+   {"weapset", pilotL_weapset},
+   {"weapsetHeat", pilotL_weapsetHeat},
+   {"actives", pilotL_actives},
+   {"outfits", pilotL_outfits},
+   {"ammo", pilotL_ammo},
+   {"outfitByID", pilotL_outfitByID},
+   {"rename", pilotL_rename},
+   {"pos", pilotL_position},
+   {"vel", pilotL_velocity},
+   {"dir", pilotL_dir},
+   {"ew", pilotL_ew},
+   {"temp", pilotL_temp},
+   {"mass", pilotL_mass},
+   {"cooldown", pilotL_cooldown},
+   {"faction", pilotL_faction},
+   {"spaceworthy", pilotL_spaceworthy},
+   {"health", pilotL_getHealth},
+   {"energy", pilotL_getEnergy},
+   {"lockon", pilotL_getLockon},
+   {"stats", pilotL_getStats},
+   {"shipstat", pilotL_getShipStat},
+   {"colour", pilotL_getColour},
+   {"hostile", pilotL_getHostile},
+   {"flags", pilotL_flags},
    /* System. */
    { "clear", pilotL_clear },
    { "toggleSpawn", pilotL_toggleSpawn },
@@ -1894,6 +1896,72 @@ static int pilotL_outfits( lua_State *L )
 
 
 /**
+ * @brief Gets the ammo of a pilot.
+ *
+ * Returned table contains inner tables each representing a particular
+ * weapon's ammo, with the following keys:<br />
+ * <ul>
+ *    <li>"name": Raw (untranslated) name of the ammo.</li>
+ *    <li>"quantity": The quantity of the ammo the pilot currently has.</li>
+ * </ul>
+ * <br />
+ *
+ * @usage
+ * -- Remove all ammo
+ * for i, amm in ipairs(p:ammo()) do
+ *    p:outfitRm(amm.name, amm.quantity)
+ * end
+ *
+ *    @luatparam Pilot p Pilot to get ammo of.
+ *    @luatreturn {table,...} Ordered list of ammo info tables; see
+ *       above for the contents of the ammo info tables.
+ * @luafunc ammo
+ */
+static int pilotL_ammo(lua_State *L)
+{
+   Pilot *p;
+   PilotOutfitSlot* po;
+   const Outfit *o;
+   const Outfit *amm;
+   int i, j;
+
+   p = luaL_validpilot(L, 1);
+
+   j = 1;
+   lua_newtable(L); /* t */
+   for (i=0; i<array_size(p->outfits); i++) {
+      po = p->outfits[i];
+      if (po == NULL)
+         continue;
+
+      o = po->outfit;
+      if (o == NULL)
+         continue;
+
+      amm = outfit_ammo(o);
+      if (amm == NULL)
+         continue;
+
+      lua_pushnumber(L, j++); /* t, i */
+
+      lua_newtable(L); /* t, i, t */
+
+      lua_pushstring(L, "name"); /* t, i, t, k */
+      lua_pushstring(L, amm->name); /* t, i, t, k, s */
+      lua_rawset(L, -3); /* t, i, t */
+
+      lua_pushstring(L, "quantity"); /* t, i, t, k */
+      lua_pushnumber(L, po->u.ammo.quantity); /* t, i, t, k, n */
+      lua_rawset(L, -3); /* t, i, t */
+
+      lua_rawset(L, -3); /* t */
+   }
+
+   return 1;
+}
+
+
+/**
  * @brief Gets a pilot's outfit by ID.
  *
  *    @luatparam Pilot p Pilot to get outf of.
@@ -2814,9 +2882,11 @@ static int pilotL_outfitRm( lua_State *L )
 {
    int i;
    Pilot *p;
+   PilotOutfitSlot *po;
    const char *outfit;
-   const Outfit *o;
+   const Outfit *o, *amm;
    int q, removed, matched = 0;
+   int temp_r;
 
    NLUA_CHECKRW(L);
 
@@ -2861,14 +2931,27 @@ static int pilotL_outfitRm( lua_State *L )
          if (q <= 0)
             break;
 
-         /* Not found. */
-         if (p->outfits[i]->outfit != o)
+         po = p->outfits[i];
+
+         /* Must not be NULL. */
+         if (po->outfit == NULL)
             continue;
 
-         /* Remove outfit. */
-         pilot_rmOutfit( p, p->outfits[i] );
-         q--;
-         removed++;
+         if (strcmp(po->outfit->name, o->name) == 0) {
+            /* Remove outfit. */
+            pilot_rmOutfit(p, po);
+            q--;
+            removed++;
+         }
+         else {
+            amm = outfit_ammo(po->outfit);
+            if ((amm != NULL) && (strcmp(amm->name, o->name) == 0)) {
+               /* Remove the ammo. */
+               temp_r = pilot_rmAmmo(p, po, q);
+               q -= temp_r;
+               removed += temp_r;
+            }
+         }
       }
    }
 
