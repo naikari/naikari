@@ -253,6 +253,11 @@ end
 
 
 function board(target, arg)
+   -- Make sure it's not the target we're set to steal anyway
+   if target == target_ship then
+      return
+   end
+
    -- Make sure another pirate informer didn't just offer to steal the
    -- ship, since getting multiple offers in a row would be annoying.
    if var.peek("board_nosteal") then
@@ -404,7 +409,7 @@ function spawn_target(source)
          pilot.toggleSpawn(false)
          misn.osdActive(2)
 
-         local target_ship = pilot.add(shiptype, target_faction, source, name)
+         target_ship = pilot.add(shiptype, target_faction, source, name)
          target_ship:setHilight()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
