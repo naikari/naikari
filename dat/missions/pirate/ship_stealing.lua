@@ -314,6 +314,9 @@ function pilot_boarding(p, boarder)
       p:control()
       p:hyperspace()
 
+      -- Set ship type in case we're boarding a different ship
+      shiptype = p:ship():nameRaw()
+
       -- Store the outfits on the ship
       soutfits = {}
       soutfits["__save"] = true
