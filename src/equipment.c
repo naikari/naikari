@@ -981,6 +981,7 @@ static int equipment_mouseColumn( unsigned int wid, SDL_Event* event,
       Pilot *p, int selected, CstSlotWidget *wgt )
 {
    int ret, exists, level;
+   int wstype;
 
    ret = equipment_mouseInColumn( y, h, array_size(os), my );
    if (ret < 0)
@@ -998,7 +999,8 @@ static int equipment_mouseColumn( unsigned int wid, SDL_Event* event,
       /* Viewing weapon slots. */
       else {
          /* See if it exists. */
-         exists = pilot_weapSetCheck( p, wgt->weapons, &os[ret] );
+         exists = pilot_weapSetCheck(p, wgt->weapons, &os[ret]);
+         wstype = pilot_weapSetTypeCheck(p, wgt->weapons);
          /* Get the level of the selection. */
          if (event->button.button == SDL_BUTTON_LEFT)
             level = 0;
@@ -1007,8 +1009,9 @@ static int equipment_mouseColumn( unsigned int wid, SDL_Event* event,
          else
             return 0; /* We ignore this type of click. */
          /* See if we should add it or remove it. */
-         if (exists==level)
-            pilot_weapSetRm( p, wgt->weapons, &os[ret] );
+         if ((exists == level)
+               || ((wstype == WEAPSET_TYPE_WEAPON) && (exists != -1)))
+            pilot_weapSetRm(p, wgt->weapons, &os[ret]);
          else {
             /* This is a bloody awful place to do this. I hate it. HATE!. */
             /* Case active outfit, convert the weapon group to active outfit. */
@@ -1020,15 +1023,16 @@ static int equipment_mouseColumn( unsigned int wid, SDL_Event* event,
             }
             /* Case change weapon groups or active weapon. */
             else {
-               pilot_weapSetRmSlot( p, wgt->weapons, OUTFIT_SLOT_STRUCTURE );
-               pilot_weapSetRmSlot( p, wgt->weapons, OUTFIT_SLOT_UTILITY );
-               if (pilot_weapSetTypeCheck( p, wgt->weapons) == WEAPSET_TYPE_CHANGE)
-                  pilot_weapSetType( p, wgt->weapons, WEAPSET_TYPE_CHANGE );
-               else {
-                  pilot_weapSetType( p, wgt->weapons, WEAPSET_TYPE_WEAPON );
+               pilot_weapSetRmSlot(p, wgt->weapons, OUTFIT_SLOT_STRUCTURE);
+               pilot_weapSetRmSlot(p, wgt->weapons, OUTFIT_SLOT_UTILITY);
+
+               if (wstype == WEAPSET_TYPE_ACTIVE)
+                  wstype = WEAPSET_TYPE_CHANGE;
+               else if (wstype == WEAPSET_TYPE_WEAPON)
                   level = 0;
-               }
-               pilot_weapSetAdd( p, wgt->weapons, &os[ret], level );
+
+               pilot_weapSetType(p, wgt->weapons, wstype);
+               pilot_weapSetAdd(p, wgt->weapons, &os[ret], level);
             }
          }
          p->autoweap = 0; /* Disable autoweap. */

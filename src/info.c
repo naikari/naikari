@@ -623,8 +623,8 @@ static void weapons_update( unsigned int wid, char *str )
    info_eq_weaps.weapons = pos;
 
    /* Update fire mode. */
-   window_checkboxSet( wid, "chkFire",
-         (pilot_weapSetTypeCheck( player.p, pos ) == WEAPSET_TYPE_WEAPON) );
+   window_checkboxSet(wid, "chkFire",
+         (pilot_weapSetTypeCheck(player.p, pos) == WEAPSET_TYPE_WEAPON));
 
    /* Update inrange. */
    window_checkboxSet( wid, "chkInrange",
@@ -675,8 +675,13 @@ static void weapons_fire( unsigned int wid, char *str )
 
    /* See how to handle. */
    t = pilot_weapSetTypeCheck( player.p, info_eq_weaps.weapons );
-   if (t == WEAPSET_TYPE_ACTIVE)
+   if (t == WEAPSET_TYPE_ACTIVE) {
+      window_checkboxSet(wid, "chkFire", 0);
+      dialogue_alert(
+            _("Instant mode is unavailable for activated outfit weapon"
+               " sets."));
       return;
+   }
 
    if (state)
       c = WEAPSET_TYPE_WEAPON;
@@ -691,13 +696,16 @@ static void weapons_fire( unsigned int wid, char *str )
 
    /* Not able to set them all to fire groups. */
    if (i >= PLAYER_WEAPON_SETS) {
-      dialogue_alert( _("You can not set all your weapon sets to fire groups!") );
+      dialogue_alert(_("You cannot set all your weapon sets to fire groups!"));
       pilot_weapSetType( player.p, info_eq_weaps.weapons, WEAPSET_TYPE_CHANGE );
       window_checkboxSet( wid, str, 0 );
    }
 
    /* Set default if needs updating. */
    pilot_weaponSetDefault( player.p );
+
+   /* Disable automatic handling of weapons */
+   player.p->autoweap = 0;
 
    /* Must regen. */
    weapons_genList( wid );
