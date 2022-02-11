@@ -37,10 +37,24 @@
   more rewarding and make pirating pirates less rewarding, while also
   adding variety to piracy (some factions carry a lot of credits, some
   carry very little).
+* Pirates no longer have a one-way hidden jump to Collective space
+  (which served no purpose and was essentially just a death trap).
+* Adjusted speed and size range of background nebulae and stars so they
+  look nicer.
 * Ship Stealing targets now lose most of their ammo in addition to armor
-  and battery.
+  and battery, and their armor regeneration is now disabled.
 * Made the Huntsman torpedo much stronger (it was far too weak for a
   missile designed to disable capital ships).
+* Added a limit to mercenary group size in systems with low paying
+  faction presence.
+* Normalized some wonky presence costs, which in particular prevents
+  Za'lek drones from outnumbering pirates in systems where they're
+  supposed to have lower presence than them.
+* Added a new set of stations and hidden jumps to help pirates get to
+  Sirius space.
+* The Brushed and Slim GUIs now hide the radar while the overlay is
+  open.
+* Various minor fixes.
 
 ## 0.1.0
 
