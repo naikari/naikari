@@ -79,6 +79,8 @@ int gui_getMapOverlayBoundLeft(void);
  * Radar.
  */
 int gui_radarInit( int circle, int w, int h );
+void gui_radarOpen(void);
+void gui_radarClose(void);
 void gui_radarRender( double x, double y );
 void gui_radarGetRes( double* res );
 int gui_radarClickEvent( SDL_Event* event );

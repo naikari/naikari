@@ -21,6 +21,7 @@
 #include "gui_osd.h"
 #include "info.h"
 #include "log.h"
+#include "map_overlay.h"
 #include "menu.h"
 #include "nlua_tex.h"
 #include "nluadef.h"
@@ -33,6 +34,8 @@ static int guiL_osdInit( lua_State *L );
 static int guiL_mesgInit( lua_State *L );
 static int guiL_omsgInit( lua_State *L );
 static int guiL_radarInit( lua_State *L );
+static int guiL_radarOpen(lua_State *L);
+static int guiL_radarClose(lua_State *L);
 static int guiL_radarRender( lua_State *L );
 static int guiL_targetPlanetGFX( lua_State *L );
 static int guiL_targetPilotGFX( lua_State *L );
@@ -40,22 +43,26 @@ static int guiL_mouseClickEnable( lua_State *L );
 static int guiL_mouseMoveEnable( lua_State *L );
 static int guiL_menuInfo( lua_State *L );
 static int guiL_menuSmall( lua_State *L );
+static int guiL_overlayOpen(lua_State *L);
 static int guiL_setMapOverlayBounds( lua_State *L );
 static const luaL_Reg guiL_methods[] = {
-   { "viewport", guiL_viewport },
-   { "fpsPos", guiL_fpsPos },
-   { "osdInit", guiL_osdInit },
-   { "mesgInit", guiL_mesgInit },
-   { "omsgInit", guiL_omsgInit },
-   { "radarInit", guiL_radarInit },
-   { "radarRender", guiL_radarRender },
-   { "targetPlanetGFX", guiL_targetPlanetGFX },
-   { "targetPilotGFX", guiL_targetPilotGFX },
-   { "mouseClickEnable", guiL_mouseClickEnable },
-   { "mouseMoveEnable", guiL_mouseMoveEnable },
-   { "menuInfo", guiL_menuInfo },
-   { "menuSmall", guiL_menuSmall },
-   { "setMapOverlayBounds", guiL_setMapOverlayBounds },
+   {"viewport", guiL_viewport},
+   {"fpsPos", guiL_fpsPos},
+   {"osdInit", guiL_osdInit},
+   {"mesgInit", guiL_mesgInit},
+   {"omsgInit", guiL_omsgInit},
+   {"radarInit", guiL_radarInit},
+   {"radarOpen", guiL_radarOpen},
+   {"radarClose", guiL_radarClose},
+   {"radarRender", guiL_radarRender},
+   {"targetPlanetGFX", guiL_targetPlanetGFX},
+   {"targetPilotGFX", guiL_targetPilotGFX},
+   {"mouseClickEnable", guiL_mouseClickEnable},
+   {"mouseMoveEnable", guiL_mouseMoveEnable},
+   {"menuInfo", guiL_menuInfo},
+   {"menuSmall", guiL_menuSmall},
+   {"overlayOpen", guiL_overlayOpen},
+   {"setMapOverlayBounds", guiL_setMapOverlayBounds},
    {0,0}
 }; /**< GUI methods. */
 
@@ -253,6 +260,43 @@ static int guiL_radarInit( lua_State *L )
 
 
 /**
+ * @brief Opens (un-closes) the radar.
+ *
+ * This function doesn't need to be used unless you also use
+ * gui.radarClose(). This simply allows re-opening the radar without
+ * having to re-initialize it.
+ *
+ * @note can only be used after gui.radarInit() has been used to
+ *    initialize the radar.
+ *
+ * @luasee radarInit
+ * @luasee radarClose
+ * @luafunc radarOpen
+ */
+static int guiL_radarOpen(lua_State *L)
+{
+   NLUA_CHECKRW(L);
+   gui_radarOpen();
+   return 0;
+}
+
+
+/**
+ * @brief Closes the radar.
+ *
+ * @luasee radarInit
+ * @luasee radarOpen
+ * @luafunc radarClose
+ */
+static int guiL_radarClose(lua_State *L)
+{
+   NLUA_CHECKRW(L);
+   gui_radarClose();
+   return 0;
+}
+
+
+/**
  * @brief Renders the radar.
  *
  * @usage gui.radarRender( 50, 50 )
@@ -425,6 +469,19 @@ static int guiL_menuSmall( lua_State *L )
       return 0;
    menu_small();
    return 0;
+}
+
+
+/**
+ * @brief Gets whether or not the overlay map is open.
+ *
+ *    @luatreturn boolean true if the overlay is open, false otherwise.
+ * @luafunc overlayOpen
+ */
+static int guiL_overlayOpen(lua_State *L)
+{
+   lua_pushboolean(L, ovr_isOpen());
+   return 1;
 }
 
 

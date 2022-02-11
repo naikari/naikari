@@ -153,7 +153,10 @@ function create()
    radar_w, radar_h = radar_gfx:dim()
    radar_x = pl_pane_x - radar_w + 24
    radar_y = pl_pane_y + 31
-   gui.radarInit( false, 124, 124 )
+   gui.radarInit(false, 124, 124)
+   if gui.overlayOpen() then
+      gui.radarClose()
+   end
 
    bar_w, bar_h = bg_shield:dim()
 
@@ -621,7 +624,12 @@ function render( dt, dt_mod )
 
    --Radar
    gfx.renderTex( radar_gfx, radar_x, radar_y )
-   gui.radarRender( radar_x + 2, radar_y + 2 )
+   if not gui.overlayOpen() then
+      gui.radarOpen()
+      gui.radarRender(radar_x + 2, radar_y + 2)
+   else
+      gui.radarClose()
+   end
 
    --Player pane
    gfx.renderTex( player_pane_t, pl_pane_x, pl_pane_y )

@@ -161,6 +161,7 @@ typedef struct Radar_ {
    double y; /**< Y position. */
    RadarShape shape; /**< Shape */
    double res; /**< Resolution */
+   int closed; /**< Whether the radar is closed. */
 } Radar;
 /* radar resolutions */
 #define RADAR_RES_MAX      300. /**< Maximum radar resolution. */
@@ -996,11 +997,30 @@ int gui_getMapOverlayBoundLeft(void)
  */
 int gui_radarInit( int circle, int w, int h )
 {
-   gui_radar.shape   = circle ? RADAR_CIRCLE : RADAR_RECT;
-   gui_radar.w       = w;
-   gui_radar.h       = h;
+   gui_radar.shape = circle ? RADAR_CIRCLE : RADAR_RECT;
+   gui_radar.w = w;
+   gui_radar.h = h;
+   gui_radar.closed = 0;
    gui_setRadarResolution( player.radar_res );
    return 0;
+}
+
+
+/**
+ * @brief Opens (un-closes) the radar.
+ */
+void gui_radarOpen(void)
+{
+   gui_radar.closed = 0;
+}
+
+
+/**
+ * @brief Disables the radar.
+ */
+void gui_radarClose(void)
+{
+   gui_radar.closed = 1;
 }
 
 
@@ -1022,6 +1042,9 @@ void gui_radarRender( double x, double y )
    radar = &gui_radar;
    gui_radar.x = x;
    gui_radar.y = y;
+
+   if (gui_radar.closed)
+      return;
 
    /* TODO: modifying gl_view_matrix like this is a bit of a hack */
    /* TODO: use stensil test for RADAR_CIRCLE */
@@ -2176,6 +2199,9 @@ int gui_radarClickEvent( SDL_Event* event )
 {
    int mxr, myr, in_bounds;
    double x, y, cx, cy;
+
+   if (gui_radar.closed)
+      return 0;
 
    gui_eventToScreenPos( &mxr, &myr, event->button.x, event->button.y );
    if (gui_radar.shape == RADAR_RECT) {

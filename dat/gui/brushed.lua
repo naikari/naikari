@@ -137,7 +137,10 @@ function create()
    radar_y = 5
    radar_w = 114
    radar_h = 120
-   gui.radarInit( false, radar_w, radar_h )
+   gui.radarInit(false, radar_w, radar_h)
+   if gui.overlayOpen() then
+      gui.radarClose()
+   end
 
    bar_y = 2
    bar_x = 46
@@ -765,7 +768,12 @@ function render( dt )
 
    --Main window left
    gfx.renderTex( main, mod_x, mod_y )
-   gui.radarRender( radar_x + mod_x, radar_y + mod_y )
+   if not gui.overlayOpen() then
+      gui.radarOpen()
+      gui.radarRender(radar_x + mod_x, radar_y + mod_y)
+   else
+      gui.radarClose()
+   end
 
    if lockons > 0 then
       gfx.renderTex( icon_lockon, 379 + mod_x, 30 + mod_y )
