@@ -458,11 +458,8 @@ static void equipment_renderColumn( double x, double y, double w, double h,
          dc = outfit_slotSizeColour( &lst[i].sslot->slot );
 
       /* Fallback in case slot size color is undefined. */
-      if (dc == NULL) {
-         WARN(_("Slot size '%s' has no defined color."),
-               slotSize(lst[i].sslot->slot.size));
+      if (dc == NULL)
          dc = &cRed;
-      }
 
       /* Draw background. */
       if (i==selected)
