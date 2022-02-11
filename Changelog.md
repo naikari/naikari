@@ -4,7 +4,8 @@
 
 * Changed the land and takeoff music to be the same as ambient music.
 * Adjusted balancing of outfits and ships, most noticeably changing the
-  Kestrel's two large fighter bay slots to medium fighter bay slots.
+  Kestrel's two large fighter bay slots to medium fighter bay slots and
+  making the Huntsman torpedo much stronger.
 * All ships now come with pre-installed weapons when you buy them, not
   just your first ship.
 * The warning shown when warping into a system with a volatile nebula
@@ -43,8 +44,6 @@
   look nicer.
 * Ship Stealing targets now lose most of their ammo in addition to armor
   and battery, and their armor regeneration is now disabled.
-* Made the Huntsman torpedo much stronger (it was far too weak for a
-  missile designed to disable capital ships).
 * Added a limit to mercenary group size in systems with low paying
   faction presence.
 * Normalized some wonky presence costs, which in particular prevents
@@ -54,7 +53,6 @@
   Sirius space.
 * The Brushed and Slim GUIs now hide the radar while the overlay is
   open.
-* Various minor fixes.
 
 ## 0.1.0
 
