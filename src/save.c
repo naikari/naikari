@@ -28,6 +28,7 @@
 #include "menu.h"
 #include "news.h"
 #include "ndata.h"
+#include "nfile.h"
 #include "nlua_var.h"
 #include "nstring.h"
 #include "nxml.h"
@@ -177,6 +178,36 @@ err:
    xmlFreeDoc(doc);
    return -1;
 }
+
+
+/**
+ * @brief Copy the latest save to a snapshot file.
+ *
+ *    @param annotation The annotation to give the snapshot.
+ *    @return 0 on success.
+ */
+int save_snapshot(const char *annotation)
+{
+   char file[PATH_MAX], path[PATH_MAX], snapfile[PATH_MAX], buf[PATH_MAX];
+
+   str2filename(buf, sizeof(buf), player.name);
+   if (snprintf(file, sizeof(file), "saves/%s.ns", buf) < 0)
+      WARN(_("Save file name was truncated: %s"), file);
+
+   if (!nfile_fileExists(file))
+      return -1;
+
+   if (snprintf(path, sizeof(path), "saves/%s-snapshots", buf) < 0)
+      WARN(_("Snapshot directory name was truncated: %s"), path);
+
+   nfile_dirMakeExist(buf);
+
+   if (snprintf(snapfile, sizeof(snapfile), "%s/%s.ns", path, annotation) < 0)
+      WARN(_("Snapshot file name was truncated: %s"), snapfile);
+
+   return nfile_copyIfExists(file, snapfile);
+}
+
 
 /**
  * @brief Reload the current saved game.
