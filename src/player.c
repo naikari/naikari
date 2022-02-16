@@ -2946,6 +2946,10 @@ char **player_getLicenses ()
  */
 void player_runHooks (void)
 {
+   /* Player must exist. */
+   if (player.p == NULL)
+      return;
+
    if (player_isFlag( PLAYER_HOOK_HYPER )) {
       player_brokeHyperspace();
       player_rmFlag( PLAYER_HOOK_HYPER );
@@ -2958,7 +2962,8 @@ void player_runHooks (void)
       player_rmFlag( PLAYER_HOOK_JUMPIN );
    }
    if (player_isFlag( PLAYER_HOOK_LAND )) {
-      land( cur_system->planets[ player.p->nav_planet ], 0 );
+      if (player.p->nav_planet >= 0)
+         land(cur_system->planets[player.p->nav_planet], 0);
       player_rmFlag( PLAYER_HOOK_LAND );
    }
 }
