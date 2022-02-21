@@ -175,6 +175,7 @@ void menu_main (void)
    int th;
    time_t curtime = time(NULL);
    struct tm curlocaltime = *localtime(&curtime);
+   int offset;
 
    if (menu_isOpen(MENU_MAIN)) {
       WARN( _("Menu main is already open.") );
@@ -206,6 +207,31 @@ void menu_main (void)
    else {
       tex = gl_newImage(GFX_PATH"naikari.png", 0);
       main_tagline = NULL;
+
+      /* Other events that can't be checked simply. */
+      /* Aromantic Spectrum Awareness Week is the first week following
+       * Valentine's Day (Feburary 14th). */
+      if ((curlocaltime.tm_mon == 1) && (curlocaltime.tm_mday > 14)) {
+         /* Find an offset to see what day the month started on, then
+          * use that to find an offset for Valentine's Day. 0 is Sunday,
+          * 1 is Monday, etc. */
+         offset = (curlocaltime.tm_wday+1 - curlocaltime.tm_mday - 1) % 7;
+         DEBUG("%d offset", offset);
+         /* Convert % operator's negative values to positive. */
+         if (offset < 0)
+            offset += 7;
+         /* Invert the offset; this inverted offset is ASAW's offset. */
+         offset = 7 - offset;
+         DEBUG("%d corrected offset", offset);
+
+         if ((curlocaltime.tm_mday - offset >= 14)
+               && (curlocaltime.tm_mday - offset < 21))
+         {
+            gl_freeTexture(tex);
+            tex = gl_newImage(GFX_PATH"naikari-aro.png", 0);
+            main_tagline = _("Love comes in many forms. ##AromanticSpectrumAwarenessWeek");
+         }
+      }
    }
    main_naevLogo = tex;
    menu_main_bkg_system();
