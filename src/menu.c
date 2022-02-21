@@ -211,7 +211,7 @@ void menu_main (void)
       /* Other events that can't be checked simply. */
       /* Aromantic Spectrum Awareness Week is the first week following
        * Valentine's Day (Feburary 14th). */
-      if ((curlocaltime.tm_mon == 1) && (curlocaltime.tm_mday > 14)) {
+      if (curlocaltime.tm_mon == 1) {
          /* Find an offset to see what day the month started on, then
           * use that to find an offset for Valentine's Day. 0 is Sunday,
           * 1 is Monday, etc. */
