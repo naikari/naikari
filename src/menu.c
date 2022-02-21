@@ -227,7 +227,8 @@ void menu_main (void)
          {
             gl_freeTexture(tex);
             tex = gl_newImage(GFX_PATH"naikari-aro.png", 0);
-            main_tagline = _("Love comes in many forms. ##AromanticSpectrumAwarenessWeek");
+            main_tagline = _("Love takes many forms."
+                  " ##AromanticSpectrumAwarenessWeek");
          }
       }
    }
