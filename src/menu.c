@@ -216,13 +216,11 @@ void menu_main (void)
           * use that to find an offset for Valentine's Day. 0 is Sunday,
           * 1 is Monday, etc. */
          offset = (curlocaltime.tm_wday+1 - curlocaltime.tm_mday - 1) % 7;
-         DEBUG("%d offset", offset);
          /* Convert % operator's negative values to positive. */
          if (offset < 0)
             offset += 7;
          /* Invert the offset; this inverted offset is ASAW's offset. */
          offset = 7 - offset;
-         DEBUG("%d corrected offset", offset);
 
          if ((curlocaltime.tm_mday - offset >= 14)
                && (curlocaltime.tm_mday - offset < 21))
