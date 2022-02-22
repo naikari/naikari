@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-02-08 14:18-0500\n"
+"POT-Creation-Date: 2022-02-22 00:12-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -47638,7 +47638,7 @@ msgid "Loaded %d AI Profile"
 msgid_plural "Loaded %d AI Profiles"
 msgstr[0] ""
 
-#: src/ai.c:601 src/land.c:1497
+#: src/ai.c:601 src/land.c:1498
 #, c-format
 msgid ""
 "Error loading file: %s\n"
@@ -50973,23 +50973,23 @@ msgstr ""
 msgid "No refueling services."
 msgstr ""
 
-#: src/land.c:1382
+#: src/land.c:1383
 msgid "Ship not fit for flight"
 msgstr ""
 
-#: src/land.c:1437
+#: src/land.c:1438
 msgid ""
 "Failed to save game! You should exit and check the log to see what happened "
 "and then file a bug report!"
 msgstr ""
 
-#: src/land.c:1446
+#: src/land.c:1447
 #, c-format
 msgid "#oTaking off from %s on %s."
 msgstr ""
 
 #. error has occurred
-#: src/land.c:1510
+#: src/land.c:1511
 #, c-format
 msgid "Rescue: 'rescue' : '%s'"
 msgstr ""
