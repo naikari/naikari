@@ -1327,6 +1327,7 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
                torun_hook = "commodity";
                break;
             case LAND_WINDOW_EQUIPMENT:
+               equipment_open(w);
                equipment_updateShips( w, NULL );
                equipment_updateOutfits( w, NULL );
                to_visit   = VISITED_EQUIPMENT;
