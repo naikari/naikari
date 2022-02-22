@@ -55,7 +55,7 @@
 * The Brushed and Slim GUIs now hide the radar while the overlay is
   open.
 
-## 0.1.1 (unreleased)
+## 0.1.1
 
 * Fixed a segfault when completing the DIY Nerds mission.
 
