@@ -1058,6 +1058,25 @@ void land_genWindows( int load, int changetab )
    /* Set as landed. */
    landed = 1;
 
+   /* Run hooks. */
+   if (!regen) {
+      music_choose("land"); /* Must be before hooks in case hooks change music. */
+      /* We don't run the "land" hook when loading. If you want to have it do stuff when loading, use the "load" hook.
+       * Note that you can use the same function for both hooks. */
+      if (!load)
+         hooks_run("land");
+      events_trigger( EVENT_TRIGGER_LAND );
+
+      /* Generate computer and bar missions. */
+      /* Generate bar missions first for claims. */
+      if (planet_hasService(land_planet, PLANET_SERVICE_BAR) && !planet_isFlag(land_planet, PLANET_NOMISNSPAWN))
+         npc_generateMissions(); /* Generate bar npc. */
+      if (planet_hasService(land_planet, PLANET_SERVICE_MISSIONS))
+         mission_computer = missions_genList( &mission_ncomputer,
+               land_planet->faction, land_planet->name, cur_system->name,
+               MIS_AVAIL_COMPUTER );
+   }
+
    /* Create other tabs. */
 #define should_open(s, w) \
    (planet_hasService(land_planet, s) && (!land_tabGenerated(w)))
@@ -1088,24 +1107,7 @@ void land_genWindows( int load, int changetab )
       commodity_exchange_open( land_getWid(LAND_WINDOW_COMMODITY) );
 #undef should_open
 
-   /* Run hooks. */
    if (!regen) {
-      music_choose("land"); /* Must be before hooks in case hooks change music. */
-      /* We don't run the "land" hook when loading. If you want to have it do stuff when loading, use the "load" hook.
-       * Note that you can use the same function for both hooks. */
-      if (!load)
-         hooks_run("land");
-      events_trigger( EVENT_TRIGGER_LAND );
-
-      /* Generate computer and bar missions. */
-      /* Generate bar missions first for claims. */
-      if (planet_hasService(land_planet, PLANET_SERVICE_BAR) && !planet_isFlag(land_planet, PLANET_NOMISNSPAWN))
-         npc_generateMissions(); /* Generate bar npc. */
-      if (planet_hasService(land_planet, PLANET_SERVICE_MISSIONS))
-         mission_computer = missions_genList( &mission_ncomputer,
-               land_planet->faction, land_planet->name, cur_system->name,
-               MIS_AVAIL_COMPUTER );
-
       /* Reset markers if needed. */
       mission_sysMark();
 
@@ -1295,37 +1297,51 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
          last_window = i;
          w = land_getWid( i );
 
-         /* Must regenerate outfits. */
+         /* Ensure the tab being switched to is generated (in case we're
+          * duing this during a land hook), and also regenerate lists as
+          * needed. */
          switch (i) {
             case LAND_WINDOW_MAIN:
                land_updateMainTab();
                break;
             case LAND_WINDOW_OUTFITS:
+               if (!land_tabGenerated(i))
+                  outfits_open(w, NULL);
                outfits_update( w, NULL );
                to_visit   = VISITED_OUTFITS;
                torun_hook = "outfits";
                break;
             case LAND_WINDOW_SHIPYARD:
+               if (!land_tabGenerated(i))
+                  shipyard_open(w);
                shipyard_update( w, NULL );
                to_visit   = VISITED_SHIPYARD;
                torun_hook = "shipyard";
                break;
             case LAND_WINDOW_BAR:
+               if (!land_tabGenerated(i))
+                  bar_open(w);
                bar_update( w, NULL );
                to_visit   = VISITED_BAR;
                torun_hook = "bar";
                break;
             case LAND_WINDOW_MISSION:
+               if (!land_tabGenerated(i))
+                  misn_open(w);
                misn_update( w, NULL );
                to_visit   = VISITED_MISSION;
                torun_hook = "mission";
                break;
             case LAND_WINDOW_COMMODITY:
+               if (!land_tabGenerated(i))
+                  commodity_exchange_open(w);
                commodity_update( w, NULL );
                to_visit   = VISITED_COMMODITY;
                torun_hook = "commodity";
                break;
             case LAND_WINDOW_EQUIPMENT:
+               if (!land_tabGenerated(i))
+                  equipment_open(w);
                equipment_updateShips( w, NULL );
                equipment_updateOutfits( w, NULL );
                to_visit   = VISITED_EQUIPMENT;
