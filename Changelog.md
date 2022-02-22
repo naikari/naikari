@@ -19,8 +19,9 @@
   pilot factional military ships.
 * The Info window's missions tab now displays the current objective
   according to the OSD.
-* Logo now lights up red for Autism Acceptance Month and turns into a
-  rainbow for Queer Pride Month.
+* Logo now lights up red for Autism Acceptance Month, turns into a
+  rainbow for Queer Pride Month, and turns into aromantic pride colors
+  for Aromantic Spectrum Awareness Week.
 * Asteroid Scanner now always shows you scan information for asteroids
   you can see, rather than only after you've targeted them.
 * Replaced Improved Refrigeration Cycle with the Rotary Turbo Modulator,
