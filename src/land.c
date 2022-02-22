@@ -1049,34 +1049,16 @@ void land_genWindows( int load, int changetab )
     *  4) Create other tabs - lists depend on NPC and missions.
     */
 
-   /* 1) Create main tab. */
+   /* Create main tab. */
    land_createMainTab( land_getWid(LAND_WINDOW_MAIN) );
 
    /* Add local system map button. */
    land_updateMainTab();
 
-   /* 2) Set as landed and run hooks. */
-   if (!regen) {
-      landed = 1;
-      music_choose("land"); /* Must be before hooks in case hooks change music. */
-      /* We don't run the "land" hook when loading. If you want to have it do stuff when loading, use the "load" hook.
-       * Note that you can use the same function for both hooks. */
-      if (!load)
-         hooks_run("land");
-      events_trigger( EVENT_TRIGGER_LAND );
+   /* Set as landed. */
+   landed = 1;
 
-      /* 3) Generate computer and bar missions. */
-      /* Generate bar missions first for claims. */
-      if (planet_hasService(land_planet, PLANET_SERVICE_BAR) && !planet_isFlag(land_planet, PLANET_NOMISNSPAWN))
-         npc_generateMissions(); /* Generate bar npc. */
-      if (planet_hasService(land_planet, PLANET_SERVICE_MISSIONS))
-         mission_computer = missions_genList( &mission_ncomputer,
-               land_planet->faction, land_planet->name, cur_system->name,
-               MIS_AVAIL_COMPUTER );
-   }
-
-
-   /* 4) Create other tabs. */
+   /* Create other tabs. */
 #define should_open(s, w) \
    (planet_hasService(land_planet, s) && (!land_tabGenerated(w)))
 
@@ -1106,7 +1088,24 @@ void land_genWindows( int load, int changetab )
       commodity_exchange_open( land_getWid(LAND_WINDOW_COMMODITY) );
 #undef should_open
 
+   /* Run hooks. */
    if (!regen) {
+      music_choose("land"); /* Must be before hooks in case hooks change music. */
+      /* We don't run the "land" hook when loading. If you want to have it do stuff when loading, use the "load" hook.
+       * Note that you can use the same function for both hooks. */
+      if (!load)
+         hooks_run("land");
+      events_trigger( EVENT_TRIGGER_LAND );
+
+      /* Generate computer and bar missions. */
+      /* Generate bar missions first for claims. */
+      if (planet_hasService(land_planet, PLANET_SERVICE_BAR) && !planet_isFlag(land_planet, PLANET_NOMISNSPAWN))
+         npc_generateMissions(); /* Generate bar npc. */
+      if (planet_hasService(land_planet, PLANET_SERVICE_MISSIONS))
+         mission_computer = missions_genList( &mission_ncomputer,
+               land_planet->faction, land_planet->name, cur_system->name,
+               MIS_AVAIL_COMPUTER );
+
       /* Reset markers if needed. */
       mission_sysMark();
 
@@ -1327,7 +1326,6 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
                torun_hook = "commodity";
                break;
             case LAND_WINDOW_EQUIPMENT:
-               equipment_open(w);
                equipment_updateShips( w, NULL );
                equipment_updateOutfits( w, NULL );
                to_visit   = VISITED_EQUIPMENT;
