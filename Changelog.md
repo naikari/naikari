@@ -1,8 +1,13 @@
 # NAIKARI CHANGELOG
 
-## 0.1.1 (unreleased)
+## 0.1.2
 
-* Fixed a segfault when completing the DIY Nerds mission.
+* Properly fixed a segfault in 0.1.0. Version 0.1.1 attempted a fix, but
+  the fix turned out to be faulty and led to breakage.
+
+## 0.1.1
+
+* Faulty release.
 
 ## 0.1.0
 
