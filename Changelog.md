@@ -55,9 +55,14 @@
 * The Brushed and Slim GUIs now hide the radar while the overlay is
   open.
 
+## 0.1.2
+
+* Properly fixed a segfault in 0.1.0. Version 0.1.1 attempted a fix, but
+  the fix turned out to be faulty and led to breakage.
+
 ## 0.1.1
 
-* Fixed a segfault when completing the DIY Nerds mission.
+* Faulty release.
 
 ## 0.1.0
 
