@@ -163,8 +163,6 @@ function launchSatellite ()
    misn_stage = 1
    player.msg(_("Probe launch successful."))
    misn.cargoJet(cargo)
-   misn.setDesc(mdesc[2]:format(homeworld:name(), homeworld_sys:name()))
-   misn.osdCreate(mtitle,
-         {mdesc[2]:format(homeworld:name(), homeworld_sys:name())})
+   misn.osdActive(2)
    misn.markerMove(misn_marker, homeworld_sys)
 end
