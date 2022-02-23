@@ -2,11 +2,9 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Prowling baron">
  <trigger>enter</trigger>
- <priority>100</priority>
+ <priority>99</priority>
  <chance>100</chance>
  <cond>system.cur() == system.get("Ingot")</cond>
- <flags>
- </flags>
  <notes>
   <campaign>Baron Sauterfeldt</campaign>
  </notes>
