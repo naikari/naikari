@@ -1435,17 +1435,18 @@ void space_init( const char* sysname )
 
       nt = ntime_pretty(0, 2);
       player_message(_("#oEntering System %s on %s."), _(sysname), nt);
-      if (cur_system->nebu_volatility > 0.) {
+      if ((player.p != NULL) && (cur_system->nebu_volatility > 0.)) {
          dmg.type = dtype_get("nebula");
          dmg.damage = cur_system->nebu_volatility;
          dmg.penetration = 1.; /* Full penetration. */
          dmg.disable = 0.;
 
-         dtype_calcDamage(&dshield, &darmor, 1., NULL,
-               &dmg, &player.p->stats);
+         dtype_calcDamage(&dshield, &darmor, 1., NULL, &dmg, &player.p->stats);
          player_message(
                _("#rWARNING: Volatile nebula (%G GW) detected in %s! Taking"
-                  " %.1f GW of damage to shield and %.1f GW damage to armor."),
+                  " damage:\n"
+                  "%.1f GW of damage to shield\n"
+                  "%.1f GW of damage to armor"),
                cur_system->nebu_volatility, _(sysname), dshield, darmor);
       }
       free(nt);
