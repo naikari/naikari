@@ -93,7 +93,7 @@ function accept()
    local job_description = fmt.f(n_(
             "If I don't get this {tonnes} tonne of {cargo} to {planet}…",
             "If I don't get these {tonnes} tonnes of {cargo} to {planet}…",
-            cargo_size)
+            cargo_size),
          {tonnes=cargo_size, cargo=_(cargo), planet=dest_planet:name()})
    if not tk.yesno("", fmt.f(ask_text,
          {job_description=job_description, planet=dest_planet:name(),
@@ -117,7 +117,7 @@ function accept()
       misn.finish()
    end
    player.pilot():cargoAdd("Food", cargo_size)
-   local playerbest = cargoGetTransit(time_limit, numjumps, traveldist)
+   local playerbest = cargoGetTransit(time_limit, num_jumps, travel_dist)
    player.pilot():cargoRm("Food", cargo_size)
    if time_limit < playerbest then
       local tlimit = time_limit - time.get()
