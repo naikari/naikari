@@ -55,6 +55,10 @@
 * The Brushed and Slim GUIs now hide the radar while the overlay is
   open.
 
+## 0.1.3
+
+* Fixed a bug which prevented the Drunkard mission from starting up.
+
 ## 0.1.2
 
 * Properly fixed a segfault in 0.1.0. Version 0.1.1 attempted a fix, but
