@@ -1,6 +1,6 @@
 # NAIKARI CHANGELOG
 
-## 0.2.0 (unreleased)
+## 0.2.0
 
 * Changed the land and takeoff music to be the same as ambient music.
 * Adjusted balancing of outfits and ships, most noticeably changing the
