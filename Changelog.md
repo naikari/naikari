@@ -2,7 +2,10 @@
 
 ## 0.1.3
 
-* Fixed a bug which prevented the Drunkard mission from starting up.
+* Bugfixes:
+  * Drunkard mission not being able to start up.
+  * Nebula Probe mission failing to advance to the next step after
+    launching the probe (making it impossible to complete).
 
 ## 0.1.2
 
