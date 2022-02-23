@@ -386,8 +386,7 @@ function __choose_land_target ()
    if mem.land == nil then
       local landplanet = ai.landplanet()
       if landplanet ~= nil then
-         mem.land = landplanet
-
+         mem.land = landplanet:pos()
       -- Bail out if no valid planet could be found.
       else
          warn(string.format(_("Pilot '%s' tried to land with no landable assets!"),
