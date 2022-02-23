@@ -23,7 +23,7 @@
 
 ]]--
 
-require "numstring"
+local fmt = require "fmt"
 require "missions/neutral/common"
 
 
