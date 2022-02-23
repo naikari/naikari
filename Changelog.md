@@ -2,10 +2,12 @@
 
 ## 0.1.3
 
-* Bugfixes:
-  * Drunkard mission not being able to start up.
-  * Nebula Probe mission failing to advance to the next step after
-    launching the probe (making it impossible to complete).
+* Fixed Drunkard mission not being able to start up.
+* Fixed Nebula Probe mission failing to advance to the next step after
+  launching the probe (making it impossible to complete).
+* Fixed extra copy of the Pinnacle during the Baron campaign missions.
+* Fixed Pinnacle stalling after completing Baron missions (caused by a
+  long-standing API bug).
 
 ## 0.1.2
 
