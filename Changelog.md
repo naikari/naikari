@@ -63,6 +63,7 @@
 * Fixed extra copy of the Pinnacle during the Baron campaign missions.
 * Fixed Pinnacle stalling after completing Baron missions (caused by a
   long-standing API bug).
+* Fixed Anxious Merchant mission being unable to be accepted.
 
 ## 0.1.2
 
