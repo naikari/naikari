@@ -90,8 +90,8 @@ osd_title = _("Baron")
 osd_msg = {}
 osd_msg[1] = _("Land on {planet} ({system} system)")
 osd_msg[2] = _("Fly to the {system} system")
-osd_msg[3] = _("Hail Kahan Pinnacle (orbiting {planet}) by either double-clicking on it or pressing {hail_key}")
-osd_msg[4] = _("Dock with (board) Kahan Pinnacle by either double-clicking on it or pressing {board_key}")
+osd_msg[3] = _("Hail Kahan Pinnacle (orbiting {planet}) by double-clicking on it")
+osd_msg[4] = _("Dock with (board) Kahan Pinnacle by double-clicking on it")
 
 log_text_succeed = _([[You helped some selfish baron steal a Dvaered holopainting and were paid a measly sum of credits.]])
 log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pilot, but you rudely refused to accept the job. It seems whoever the pilot worked for won't be contacting you again.]])
@@ -131,9 +131,7 @@ function accept()
 
    osd_msg[1] = fmt.f(osd_msg[1], {planet=mispla:name(), system=missys:name()})
    osd_msg[2] = fmt.f(osd_msg[2], {system=paysys:name()})
-   osd_msg[3] = fmt.f(osd_msg[3],
-         {planet=paypla:name(), hail_key=naev.keyGet("hail")})
-   osd_msg[4] = fmt.f(osd_msg[4], {board_key=naev.keyGet("board")})
+   osd_msg[3] = fmt.f(osd_msg[3], {planet=paypla:name()})
    misn.osdCreate(osd_title, osd_msg)
 
    misn_marker = misn.markerAdd(missys, "low")
