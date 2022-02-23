@@ -137,7 +137,6 @@ end
 --]]
 function beginLaunch ()
    player.msg(_("Preparing to launch probe…"))
-   misn.osdDestroy()
    hook.timer(3, "beginCountdown")
 end
 function beginCountdown ()
