@@ -5,7 +5,7 @@
   <mass>0</mass>
   <price>250000</price>
   <description>This map contains the position of a series of hidden jumps passing around Dvaered space straight into Sirius space. It also contains three pirate-friendly places to refuel along the way.</description>
-  <gfx_store>map.webp</gfx_store>
+  <gfx_store>map_sagittarius_bypass.png</gfx_store>
  </general>
  <specific type="map">
   <sys name="Kretogg">
