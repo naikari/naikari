@@ -54,6 +54,10 @@
   Sirius space.
 * The Brushed and Slim GUIs now hide the radar while the overlay is
   open.
+* Maps now each have their own individual graphics, rather than all of
+  them sharing the same graphic. The graphics are screenshots showing a
+  Discovery mode map window showing just the information provided by the
+  respective map.
 
 ## 0.1.3
 
