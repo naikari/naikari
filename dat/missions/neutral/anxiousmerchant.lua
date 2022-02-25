@@ -119,6 +119,7 @@ function accept()
    player.pilot():cargoAdd("Food", cargo_size)
    local playerbest = cargoGetTransit(time_limit, num_jumps, travel_dist)
    player.pilot():cargoRm("Food", cargo_size)
+   local mindist = system.cur():jumpDist(destsys, true, true)
    if time_limit < playerbest then
       local tlimit = time_limit - time.get()
       local tmore = playerbest - time.get()
@@ -128,8 +129,7 @@ function accept()
                   planet=dest_planet:name()})) then
          misn.finish()
       end
-   elseif system.cur():jumpDist(destsys, true, true) == nil
-         or system.cur():jumpDist(destsys, true, true) > numjumps then
+   elseif mindist == nil or mindist > num_jumps then
       local text = n_(
             "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jump may cause you to miss the deadline. Accept the mission anyway?",
             "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jumps may cause you to miss the deadline. Accept the mission anyway?",
