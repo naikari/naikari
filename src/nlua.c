@@ -111,8 +111,8 @@ static int nlua_ngettext( lua_State *L )
  * @usage pgettext(context, message)
  *    @luatparam string msgctxt Context of the string.
  *    @luatparam string msgid English text to be translated.
- *    @luatreturn string The string converted to gettext.
- * @luafunc ngettext
+ *    @luatreturn string The string converted with gettext.
+ * @luafunc pgettext
  */
 static int nlua_pgettext(lua_State *L)
 {

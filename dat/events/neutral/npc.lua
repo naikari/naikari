@@ -21,6 +21,13 @@ local portrait = require "portrait"
 -- of the main universe (Thurion, Proteron).
 nongeneric_factions = {"Pirate", "FLF", "Thurion", "Proteron"}
 
+-- Special names for certain factions' civilian NPCs (to replace the
+-- generic "{faction} Civilian" naming normally used).
+civ_name = {
+   FLF = _("Frontier Civilian"),
+   Pirate = p_("individual", "Pirate"),
+}
+
 -- Land-restricted NPC names for the spaceport bar. This correlates
 -- land restriction function names (returned by planet.restriction())
 -- with what NPCs on planets with those restrictions should be called.
@@ -39,7 +46,7 @@ mil_name = {
    zlk_ruadan = _("Za'lek Scientist"),
    flf_sindbad = _("FLF Soldier"),
    ptn_mil_restricted = _("Proteron Officer"),
-   pir_clanworld = _("Pirate"),
+   pir_clanworld = p_("individual", "Pirate"),
 }
 
 -- Civilian descriptions for the spaceport bar.
@@ -62,6 +69,24 @@ civ_desc = {
    _("A worker sits and drinks instead of working."),
    _("A worker slouched against the bar, nursing a drink."),
    _("This worker seems bored with everything but their drink."),
+}
+
+-- Same as civ_desc, but for particular factions (replacing the default
+-- civ_desc table), organized by faction name.
+pciv_desc = {}
+pciv_desc["Pirate"] = {
+   _("This pirate seems to be here to relax."),
+   _("There is a pirate sitting on one of the tables."),
+   _("There is a pirate sitting there, looking somewhere else."),
+   _("A pirate sits at the bar, seemingly serious about the cocktails on offer."),
+   _("There is a pirate sitting in the corner."),
+   _("A pirate feverishly concentrating on a fluorescing drink."),
+   _("A pirate drinking alone."),
+   _("A pirate sitting at the bar."),
+   _("This pirate is idly browsing a news terminal."),
+   _("A worker sits and drinks instead of working."),
+   _("A worker slouched against the bar, nursing a drink."),
+   _("This pirate seems bored with everything but their drink."),
 }
 
 -- Same as civ_desc, but for land-restricted NPCs, organized by land
@@ -143,20 +168,7 @@ mil_desc.ptn_mil_restricted = {
    _("A Proteron officer sitting in the corner."),
    _("A nervous-looking Proteron officer gently sips a drink while reading government propaganda."),
 }
-mil_desc.pir_clanworld = {
-   _("This pirate seems to be here to relax."),
-   _("There is a pirate sitting on one of the tables."),
-   _("There is a pirate sitting there, looking somewhere else."),
-   _("A pirate sits at the bar, seemingly serious about the cocktails on offer."),
-   _("There is a pirate sitting in the corner."),
-   _("A pirate feverishly concentrating on a fluorescing drink."),
-   _("A pirate drinking alone."),
-   _("A pirate sitting at the bar."),
-   _("This pirate is idly browsing a news terminal."),
-   _("A worker sits and drinks instead of working."),
-   _("A worker slouched against the bar, nursing a drink."),
-   _("This pirate seems bored with everything but their drink."),
-}
+mil_desc.pir_clanworld = pciv_desc["Pirate"]
 
 -- Lore messages. These come in general and factional varieties.
 -- General lore messages will be said by non-faction NPCs, OR by faction
@@ -444,7 +456,7 @@ function spawnNPC()
 
    -- Append the faction to the civilian name, unless there is no faction.
    if fac ~= "general" then
-      npcname = string.format( _("%s Civilian"), _(fac) )
+      npcname = civ_name[fac] or string.format(_("%s Civilian"), _(fac))
    end
 
    local restriction = planet.cur():restriction()
@@ -461,7 +473,8 @@ function spawnNPC()
    else
       -- Select a civilian portrait and description.
       image = portrait.get(fac)
-      desc = civ_desc[rnd.rnd(1, #civ_desc)]
+      local desclist = pciv_desc[fac] or civ_desc
+      desc = desclist[rnd.rnd(1, #desclist)]
    end
 
    -- Select what this NPC should say.
