@@ -12,15 +12,14 @@ last = "idle"
 
 -- Faction-specific songs.
 factional = {
-   Collective = { "collective1", "automat" },
-   Pirate     = { "pirate1_theme1", "pirates_orchestra", "ambient4",
-                  "terminal" },
-   Empire     = { "empire1", "empire2"; add_neutral = true },
-   Sirius     = { "sirius1", "sirius2"; add_neutral = true },
-   Dvaered    = { "dvaered1", "dvaered2"; add_neutral = true },
-   ["Za'lek"] = { "zalek1", "zalek2"; add_neutral = true },
-   Thurion    = { "motherload", "dark_city", "ambient1", "ambient3" },
-   Proteron   = { "heartofmachine", "imminent_threat", "ambient4" },
+   Collective = {"collective1", "automat"},
+   Pirate = {"pirate1_theme1", "pirates_orchestra", "ambient4", "terminal"},
+   Empire = {"empire1", "empire2"; add_neutral = true},
+   Sirius = {"sirius1", "sirius2"; add_neutral = true},
+   Dvaered = {"dvaered1", "dvaered2"; add_neutral = true},
+   ["Za'lek"] = {"zalek1", "zalek2"; add_neutral = true},
+   Thurion = {"motherload", "dark_city", add_neutral = true},
+   Proteron = {"heartofmachine", "imminent_threat", "ambient4"},
 }
 
 -- Planet-specific songs
@@ -191,14 +190,14 @@ end
 
 
 -- Save old data
-last_sysFaction  = nil
+last_sysFaction = nil
 last_sysNebuDens = nil
-last_sysNebuVol  = nil
-ambient_neutral  = { "ambient2", "mission",
-      "peace1", "peace2", "peace4", "peace6",
-      "void_sensor", "ambiphonic",
-      "ambient4", "terminal", "eureka",
-      "ambient2_5" }
+last_sysNebuVol = nil
+ambient_neutral = {
+   "ambient2", "mission", "peace1", "peace2", "peace4", "peace6",
+   "void_sensor", "ambiphonic", "ambient4", "terminal", "eureka", "ambient2_5",
+}
+ambient_nebula = {"ambient1", "ambient3"}
 --[[
 -- @brief Chooses ambient songs.
 --]]
@@ -278,45 +277,51 @@ function choose_ambient ()
    -- Must be forced
    if force then
       -- Choose the music, bias by faction first
-      local add_neutral = false
+      local ambient = {}
+      local add_neutral = true
       local neutral_prob = 0.6
-      if strongest ~= nil and factional[strongest] then
+      if strongest ~= nil and factional[strongest] ~= nil then
          ambient = factional[strongest]
          add_neutral = factional[strongest].add_neutral
-      elseif nebu then
-         ambient = { "ambient1", "ambient3" }
-         add_neutral = true
-      else
-         ambient = ambient_neutral
       end
 
-      -- Clobber array with generic songs if allowed.
-      if add_neutral and rnd.rnd() < neutral_prob then
-         ambient = ambient_neutral
+      -- Add generic songs if allowed.
+      if add_neutral then
+         local amcache = ambient
+         ambient = {}
+         for i, track in ipairs(amcache) do
+            ambient[#ambient + 1] = track
+         end
+         local neut = nebu and ambient_nebula or ambient_neutral
+         for i, track in ipairs(neut) do
+            ambient[#ambient + 1] = track
+         end
       end
 
       -- Make sure it's not already in the list or that we have to stop the
       -- currently playing song.
       if music.isPlaying() then
          local cur = music.current()
-         for k,v in pairs(ambient) do
-            if cur == v then
+         for i, track in ipairs(ambient) do
+            if cur == track then
                return false
             end
          end
 
          music.stop()
-         return true
+         if not player.isLanded() then
+            return true
+         end
       end
 
       -- Load music and play
-      local new_track = ambient[ rnd.rnd(1,#ambient) ]
+      local new_track = ambient[rnd.rnd(1, #ambient)]
 
       -- Make it very unlikely (but not impossible) for the same music
       -- to play twice
-      for i=1, 3 do
+      for i=1,3 do
          if new_track == last_track then
-            new_track = ambient[ rnd.rnd(1,#ambient) ]
+            new_track = ambient[rnd.rnd(1, #ambient)]
          else
             break
          end
