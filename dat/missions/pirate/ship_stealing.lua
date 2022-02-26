@@ -224,6 +224,9 @@ function jumpin()
       local yrange = offset_ranges[rnd.rnd(1, #offset_ranges)]
       pos = pos + vec2.new(rnd.rnd(xrange[1], xrange[2]),
                rnd.rnd(yrange[1], yrange[2]))
+   else
+      local r = system.cur():radius()
+      pos = vec2.new(rnd.uniform(-r, r), rnd.uniform(-r, r))
    end
    spawn_target(pos)
 end
@@ -239,7 +242,9 @@ end
 
 
 function takeoff()
-   spawn_target()
+   local r = system.cur():radius()
+   local pos = vec2.new(rnd.uniform(-r, r), rnd.uniform(-r, r))
+   spawn_target(pos)
 end
 
 
@@ -329,6 +334,8 @@ function pilot_boarding(p, boarder)
       succeed()
 
       -- Pirate takes over the ship
+      p:setHostile(false)
+      p:setFriendly()
       p:setHilight(false)
       p:setNoDeath()
       p:control()
@@ -357,6 +364,20 @@ end
 
 function pilot_jump()
    fail(fmt.f(ran_msg, {pilot=name}))
+end
+
+
+function anti_regen_timer(p)
+   if p == nil or not p:exists() then
+      return
+   end
+
+   local armor, shield, stress, disabled = p:health()
+   local energy = p:energy()
+   p:setHealth(math.min(armor, 25), shield, stress)
+   p:setEnergy(math.min(energy, 50))
+
+   anti_regen_hook = hook.timer(0.1, "anti_regen_timer", p)
 end
 
 
@@ -436,7 +457,11 @@ function spawn_target(source)
          target_ship:setHilight()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
-         target_ship:intrinsicSet("armour_regen", 0, true)
+         target_ship:memory().armour_run = 0
+         target_ship:memory().shield_run = 0
+         target_ship:memory().norun = true
+         target_ship:memory().careful = true
+         target_ship:memory().loiter = 10000
 
          -- Lower ammo
          for i, amm in ipairs(target_ship:ammo()) do
@@ -447,6 +472,7 @@ function spawn_target(source)
          hook.pilot(target_ship, "death", "pilot_death")
          target_jump_hook = hook.pilot(target_ship, "jump", "pilot_jump")
          target_land_hook = hook.pilot(target_ship, "land", "pilot_jump")
+         anti_regen_hook = hook.timer(0.1, "anti_regen_timer", target_ship)
 
          target_ship:taskClear()
 
@@ -470,6 +496,7 @@ function succeed()
    hook.rm(board_hook)
    hook.rm(target_jump_hook)
    hook.rm(target_land_hook)
+   hook.rm(anti_regen_hook)
 end
 
 
@@ -500,6 +527,7 @@ function fail(reason)
    hook.rm(board_hook)
    hook.rm(target_jump_hook)
    hook.rm(target_land_hook)
+   hook.rm(anti_regen_hook)
 
    failed = true
 end
