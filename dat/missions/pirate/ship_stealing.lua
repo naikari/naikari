@@ -491,7 +491,10 @@ end
 
 -- Succeed the capture, proceed to landing on the planet
 function succeed()
-   pilot.toggleSpawn(true)
+   if system.cur() == missys then
+      pilot.toggleSpawn(true)
+      hook.safe("safe_restoreOffer")
+   end
    job_done = true
    misn.osdActive(3)
    misn.markerRm(marker)
@@ -502,7 +505,6 @@ function succeed()
    hook.rm(target_jump_hook)
    hook.rm(target_land_hook)
    hook.rm(anti_regen_hook)
-   hook.safe("safe_restoreOffer")
 end
 
 
