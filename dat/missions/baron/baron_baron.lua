@@ -167,6 +167,7 @@ function jumpin()
          pinnacle:setFriendly()
          pinnacle:setSpeedLimit(100)
          pinnacle:setHilight(true)
+         pinnacle:memory().nosteal = true
          pinnacle:control()
          pinnacle:moveto(paypla:pos() + vec2.new(400, -400), false)
          idlehook = hook.pilot(pinnacle, "idle", "idle")

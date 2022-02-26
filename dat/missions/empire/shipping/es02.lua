@@ -162,6 +162,7 @@ function enter ()
       v:disable()
       v:setHilight(true)
       v:setVisplayer(true)
+      v:memory().noboard = true
       v:setFaction("Empire")
       v:rename(_("VIP"))
       hook.pilot(v, "board", "board")

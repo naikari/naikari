@@ -234,6 +234,7 @@ function enter()
                 vec2.new(300, 300) + seirplanet:pos(), _("Seiryuu"),
                 {ai="trader", noequip=true})
         seiryuu:setInvincible(true)
+        seiryuu:memory().nosteal = true
         seiryuu:control()
         if stage == 1 or stage == 6 then
             seiryuu:setActiveBoard(true)
@@ -259,6 +260,7 @@ function enter()
             joe:setVisplayer()
             joe:setInvincible()
             joe:setActiveBoard()
+            joe:memory().nosteal = true
             spawnSquads(true)
 
             hook.pilot(joe, "board", "joeBoard")
@@ -316,6 +318,7 @@ function spawnSquads(highlight)
 
     for i, squad in ipairs(squads) do
         for j, p in ipairs(squad) do
+            p:memory().nosteal = true
             hook.pilot(p, "attacked", "attacked")
         end
     end
@@ -348,6 +351,7 @@ function attacked()
                 p:setVisible(false)
                 p:setHostile()
                 p:setLeader(nil)
+                p:memory().nosteal = false
             end
         end
     end
@@ -400,6 +404,7 @@ function spawnGenbu(sys)
     genbu:setNoDeath()
     genbu:setNoDisable()
     genbu:setNoboard()
+    genbu:memory().nosteal = true
     genbuspawned = true
 end
 

@@ -217,6 +217,7 @@ function spawnDVReinforcements ()
       j:setHostile()
       j:setVisible(true)
       j:setHilight(true)
+      j:memory().nosteal = true
       fleetDV[ #fleetDV + 1 ] = j
       dv_ships_left = dv_ships_left + 1
    end
@@ -332,17 +333,7 @@ function timer_spawnHostileFLF ()
       j:setVisible()
    end
 
-   hook.pilot(player.pilot(), "death", "returnFLFControl")
    fleetFLF[1]:broadcast(flfcomm[2]:format(player.name()))
-end
-
-
-function returnFLFControl()
-   for i, j in ipairs(fleetFLF) do
-      if j:exists() then
-         j:control(false)
-      end
-   end
 end
 
 

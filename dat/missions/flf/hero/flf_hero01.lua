@@ -260,6 +260,7 @@ function spawnDV()
 
    for i, p in ipairs(dvships) do
       p:setVisible()
+      p:memory().nosteal = true
 
       hook.pilot(p, "attacked", "pilot_attacked_dv")
       hook.pilot(p, "death", "pilot_death_dv")

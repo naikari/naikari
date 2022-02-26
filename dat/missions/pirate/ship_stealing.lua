@@ -283,11 +283,15 @@ function board(target, arg)
       end
    end
 
+   -- Allow ships to be marked as unstealable. This check also prevents
+   -- offers when you're in the process of hunting down a target for a
+   -- specific ship stealing mission, which avoids breaking collisions.
+   if target:memory().nosteal then
+      return
+   end
+
    -- Make sure another pirate informer didn't just offer to steal the
    -- ship, since getting multiple offers in a row would be annoying.
-   -- This check also prevents offers when you're in the process of
-   -- hunting down a target for a specific mission, which avoids
-   -- breaking collisions.
    if var.peek("board_nosteal") then
       return
    end
@@ -454,8 +458,6 @@ function spawn_target(source)
       if jumps_permitted >= 0 then
          pilot.clear()
          pilot.toggleSpawn(false)
-         -- Prevent collisions with other ship stealing missions.
-         var.push("board_nosteal", true)
          misn.osdActive(2)
 
          target_ship = pilot.add(shiptype, target_faction, source, name)
@@ -467,6 +469,12 @@ function spawn_target(source)
          target_ship:memory().norun = true
          target_ship:memory().careful = true
          target_ship:memory().loiter = 10000
+         -- This might be a bit confusing, but the nosteal variable
+         -- specifically specifies that the ship can't be stolen as a
+         -- generic target, which is important because we're stealing it
+         -- as a specific target (don't want to offer stealing from
+         -- another mission as this would just be a loss).
+         target_ship:memory().nosteal = true
 
          -- Lower ammo
          for i, amm in ipairs(target_ship:ammo()) do
@@ -493,7 +501,6 @@ end
 function succeed()
    if system.cur() == missys then
       pilot.toggleSpawn(true)
-      hook.safe("safe_restoreOffer")
    end
    job_done = true
    misn.osdActive(3)
@@ -512,7 +519,6 @@ end
 function fail(reason)
    if system.cur() == missys then
       pilot.toggleSpawn(true)
-      hook.safe("safe_restoreOffer")
    end
    -- Don't show fail message after already failed.
    if failed then
@@ -545,7 +551,6 @@ end
 function abort()
    if system.cur() == missys then
       pilot.toggleSpawn(true)
-      hook.safe("safe_restoreOffer")
    end
    misn.finish(false)
 end

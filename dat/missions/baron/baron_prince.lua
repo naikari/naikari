@@ -418,6 +418,7 @@ function enter()
       pinnacle:setSpeedLimit(100)
       pinnacle:control()
       pinnacle:setHilight(true)
+      pinnacle:memory().nosteal = true
       pinnacle:moveto(baronpla:pos() + vec2.new(500, -500), false, false)
       idlehook = hook.pilot(pinnacle, "idle", "idle")
       hhail = hook.pilot(pinnacle, "hail", "hail")

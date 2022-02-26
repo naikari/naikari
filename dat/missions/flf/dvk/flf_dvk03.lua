@@ -184,6 +184,7 @@ function enter ()
          for i, j in ipairs(dv_fleet) do
             j:control()
             j:setVisible()
+            j:memory().nosteal = true
             hook.pilot(j, "attacked", "pilot_attacked")
          end
 
@@ -199,6 +200,7 @@ function enter ()
             j:face(dv_base:pos(), true)
             j:setVisplayer()
             j:setHilight()
+            j:memory().nosteal = true
             hook.pilot(j, "attacked", "pilot_attacked")
          end
 
@@ -246,6 +248,7 @@ function timer_start ()
          j:control()
          j:hyperspace(dest)
          j:setVisible()
+         j:memory().nosteal = true
          hook.pilot(j, "attacked", "pilot_attacked_civilian")
       end
    else
@@ -276,6 +279,7 @@ function timer_pirates ()
       j:control()
       j:setVisible()
       j:setFriendly()
+      j:memory().nosteal = true
       j:attack()
       hook.pilot(j, "attacked", "pilot_attacked")
    end

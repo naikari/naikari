@@ -148,6 +148,10 @@ function enter()
             local p = pilot.add( "Pacifier", "FLF", jumppos, _("FLF Pacifier"), {ai="flf_norun"} )
             fleetFLF[#fleetFLF + 1] = p
         end
+
+        for i, p in ipairs(fleetFLF) do
+            p:memory().nosteal = true
+        end
         
         faction.get("FLF"):setPlayerStanding( -100 )
         

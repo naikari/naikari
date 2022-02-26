@@ -241,6 +241,7 @@ function enter()
         seiryuu:setInvincible()
         seiryuu:setHilight()
         seiryuu:setVisplayer()
+        seiryuu:memory().nosteal = true
         hook.pilot(seiryuu, "board", "board")
     end
 end
@@ -255,6 +256,7 @@ function spawnDiplomat()
     for i, p in ipairs(escorts) do
         p:setInvincible()
         p:setVisplayer()
+        p:memory().nosteal = true
     end
 
     diplomat:control()
@@ -289,6 +291,7 @@ function spawnDiplomat()
     diplomat:setVisible()
     diplomat:setHilight()
     diplomat:setFriendly()
+    diplomat:memory().nosteal = true
 
     jumped = false
 

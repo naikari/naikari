@@ -124,6 +124,7 @@ function attack()
    for i, j in ipairs(attackers) do
       j:memory().formation = form
       j:memory().aggressive = false
+      j:memory().nosteal = true
 
       attAttHook[i] = hook.pilot(j, "attacked", "attackerAttacked")
       hook.pilot(j, "death", "attackerDeath")
@@ -150,6 +151,7 @@ function attack()
    for i, j in ipairs(defenders) do
       j:memory().formation = form
       j:memory().aggressive = false
+      j:memory().nosteal = true
 
       defAttHook[i] = hook.pilot(j, "attacked", "defenderAttacked")
       hook.pilot(j, "death", "defenderDeath")
