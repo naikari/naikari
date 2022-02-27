@@ -58,6 +58,10 @@
   them sharing the same graphic. The graphics are screenshots showing a
   Discovery mode map window showing just the information provided by the
   respective map.
+* Improved the way music tracks are chosen, preventing needless music
+  changes and allowing nebula ambient music in factional areas.
+* Fixed some pirates on pirate worlds being described as civilians.
+* Afterburners no longer cause the screen to wobble.
 
 ## 0.1.3
 
