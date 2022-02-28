@@ -62,6 +62,10 @@
   changes and allowing nebula ambient music in factional areas.
 * Fixed some pirates on pirate worlds being described as civilians.
 * Afterburners no longer cause the screen to wobble.
+* Removed the "Time Constant" tutorial, both to avoid making the system
+  look more significant than it is and because the information about how
+  to equip ships is redundant now that this is effectively
+  self-documented (with all ships coming with reasonable weapons).
 
 ## 0.1.3
 
