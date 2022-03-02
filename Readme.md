@@ -3,15 +3,15 @@
 
 ![Naikari](https://naikari.github.io/images/logo.png)
 
-Naikari is a 2-D space trading and mercenary sandbox game forked from the
-[Naev](https://naev.org) project. Naikari's primary inspirations are
-[Star Wraith 2](https://archive.org/details/swizzle_demu_SW2),
+Naikari is a 2-D space trading and mercenary sandbox game. Its primary
+inspirations are [Star Wraith 2](https://archive.org/details/swizzle_demu_SW2),
 [RiftSpace](https://archive.org/details/RiftSpace), and to a lesser extent,
-[Endless Sky](https://endless-sky.github.io). It may also be similar to the
+[Endless Sky](https://endless-sky.github.io). It may also incidentally be
+similar to the
 [Escape Velocity](https://en.wikipedia.org/wiki/Escape_Velocity_(video_game))
-series since Naev and Endless Sky are inspired by that, although the Escape
-Velocity series is not a direct influence and Naikari does not necessarily
-seek to be like it.
+series since Naev (which Naikari is a fork of) and Endless Sky are inspired by
+that, although the Escape Velocity series is not a direct influence and Naikari
+does not necessarily seek to be like it.
 
 You pilot space ships from a top-down perspective which you can collect and
 customize more or less however you want. To get new ships, you can deliver
