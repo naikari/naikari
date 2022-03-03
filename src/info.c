@@ -71,9 +71,6 @@ static CstSlotWidget info_eq_weaps;
 static int *info_factions;
 
 static int selectedLog = 0;
-static int selectedLogType = 0;
-static char **logTypes=NULL;
-static int ntypes=0;
 static int nlogs=0;
 static char **logs=NULL;
 static int *logIDs=NULL;
@@ -112,7 +109,6 @@ static void mission_menu_abort( unsigned int wid, char* str );
 static void mission_menu_genList( unsigned int wid, int first );
 static void mission_menu_update( unsigned int wid, char* str );
 static void info_openShipLog( unsigned int wid );
-static const char* info_getLogTypeFilter( int lstPos );
 
 
 /**
@@ -1290,9 +1286,8 @@ static void mission_menu_abort( unsigned int wid, char* str )
  */
 static void shiplog_menu_update( unsigned int wid, char* str )
 {
-   int regenerateEntries=0;
    int w, h;
-   int logType, log;
+   int log;
    int nentries;
    char **logentries;
 
@@ -1300,55 +1295,27 @@ static void shiplog_menu_update( unsigned int wid, char* str )
       return;
 
    /* This is called when something is selected.
-    * If a new log type has been selected, need to regenerate the log lists.
     * If a new log has been selected, need to regenerate the entries. */
-   if (strcmp(str, "lstLogEntries" ) != 0) {
-      /* has selected a type of log or a log */
+   if (strcmp(str, "lstLogEntries") != 0) {
+      /* has selected a log */
       window_dimWindow( wid, &w, &h );
       logWidgetsReady=0;
 
-      logType = toolkit_getListPos( wid, "lstLogType" );
       log = toolkit_getListPos( wid, "lstLogs" );
 
-      if (logType != selectedLogType) {
-         /* new log type selected */
-         selectedLogType = logType;
-         window_destroyWidget( wid, "lstLogs" );
-         logs = NULL;
-         shiplog_listLogsOfType( info_getLogTypeFilter(selectedLogType), &nlogs, &logs, &logIDs, 1 );
-         if (selectedLog >= nlogs)
-            selectedLog = 0;
-         window_addList( wid, 20, 60 + BUTTON_HEIGHT  + LOGSPACING / 2,
-                         w-40, LOGSPACING / 4,
-                         "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL );
-
-         toolkit_setListPos( wid, "lstLogs", selectedLog );
-         regenerateEntries=1;
-      }
-      if (regenerateEntries || selectedLog != log) {
+      if (selectedLog != log) {
          selectedLog = CLAMP( 0, nlogs-1, log );
-         /* list log entries of selected log type */
+         /* list log entries of selected log */
          window_destroyWidget( wid, "lstLogEntries" );
-         shiplog_listLog( logIDs[selectedLog], info_getLogTypeFilter(selectedLogType), &nentries, &logentries, 1 );
+         shiplog_listLogEntries(logIDs[selectedLog], &nentries, &logentries, 1);
          window_addList( wid, 20, 40 + BUTTON_HEIGHT,
                          w-40, LOGSPACING / 2-20,
                          "lstLogEntries", logentries, nentries, 0, shiplog_menu_update, info_shiplogView );
          toolkit_setListPos( wid, "lstLogEntries", 0 );
 
       }
-      logWidgetsReady=1;
+      logWidgetsReady = 1;
    }
-}
-
-
-/**
- * @brief Translates a position in "lstLogType" to a shiplog "type" filter.
- */
-static const char* info_getLogTypeFilter( int lstPos )
-{
-   if (lstPos < 1)
-      return NULL; /* "All" */
-   return logTypes[lstPos];
 }
 
 
@@ -1368,7 +1335,6 @@ static void shiplog_menu_genList( unsigned int wid, int first )
     * 3. Listing of the selected log
     */
    if (!first) {
-      window_destroyWidget( wid, "lstLogType" );
       window_destroyWidget( wid, "lstLogs" );
       logs = NULL;
       window_destroyWidget( wid, "lstLogEntries" );
@@ -1376,17 +1342,13 @@ static void shiplog_menu_genList( unsigned int wid, int first )
    /* Get the dimensions. */
    window_dimWindow( wid, &w, &h );
 
-   /* list log types */
-   shiplog_listTypes(&ntypes, &logTypes, 1);
-   if ( selectedLogType >= ntypes )
-      selectedLogType = 0;
-   /* list logs of selected type */
-   shiplog_listLogsOfType(info_getLogTypeFilter(selectedLogType), &nlogs, &logs, &logIDs, 1);
+   /* list logs */
+   shiplog_listLogs(&nlogs, &logs, &logIDs, 1);
    if ( selectedLog >= nlogs )
       selectedLog = 0;
    /* list log entries of selected log */
-   shiplog_listLog(logIDs[selectedLog], info_getLogTypeFilter(selectedLogType), &nentries, &logentries, 1);
-   logWidgetsReady=0;
+   shiplog_listLogEntries(logIDs[selectedLog], &nentries, &logentries, 1);
+   logWidgetsReady = 0;
    window_addList(wid, 20, 40 + BUTTON_HEIGHT,
          w-40, LOGSPACING / 2-20,
          "lstLogEntries", logentries, nentries, 0, shiplog_menu_update,
@@ -1394,10 +1356,7 @@ static void shiplog_menu_genList( unsigned int wid, int first )
    window_addList(wid, 20, 60 + BUTTON_HEIGHT + LOGSPACING/2,
          w-40, LOGSPACING / 4,
          "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL);
-   window_addList(wid, 20, 80 + BUTTON_HEIGHT + 3*LOGSPACING/4,
-         w-40, LOGSPACING / 4,
-         "lstLogType", logTypes, ntypes, 0, shiplog_menu_update, NULL);
-   logWidgetsReady=1;
+   logWidgetsReady = 1;
 }
 
 static void info_shiplogView( unsigned int wid, char *str )
@@ -1410,9 +1369,7 @@ static void info_shiplogView( unsigned int wid, char *str )
    i = toolkit_getListPos( wid, "lstLogEntries" );
    if ( i < 0 )
       return;
-   shiplog_listLog(
-         logIDs[selectedLog], info_getLogTypeFilter(selectedLogType), &nentries,
-         &logentries, 1);
+   shiplog_listLogEntries(logIDs[selectedLog], &nentries, &logentries, 1);
 
    if ( i < nentries )
       dialogue_msgRaw( _("Log message"), logentries[i] );
@@ -1431,24 +1388,25 @@ static void info_shiplogView( unsigned int wid, char *str )
 static void info_shiplogAdd( unsigned int wid, char *str )
 {
    char *tmp;
-   int logType, log;
+   int log;
    int logid;
    (void) str;
 
-   logType = toolkit_getListPos( wid, "lstLogType" );
    log = toolkit_getListPos( wid, "lstLogs" );
    if ( log < 0 || logIDs[log] == LOG_ID_ALL ) {
-      tmp = dialogue_inputRaw( _("Add a log entry"), 0, 4096, _("Add an entry to your diary:") );
+      tmp = dialogue_inputRaw(_("Add Log Entry"), 0, 4096,
+            _("Add an entry to your journal:"));
       if ( ( tmp != NULL ) && ( strlen(tmp) > 0 ) ) {
-         if ( shiplog_getID( "Diary" ) == -1 )
-              shiplog_create( "Diary", _("Your Diary"), "Diary", 0, 0 );
-         shiplog_append( "Diary", tmp );
+         if (shiplog_getID( "Diary") == -1)
+              shiplog_create("Diary", p_("log", "Journal"), 0, 0 );
+         shiplog_append("Diary", tmp);
          free( tmp );
       }
    } else {
-      tmp = dialogue_input( _("Add a log entry"), 0, 4096, _("Add an entry to the log titled '%s':"), logs[log] );
+      tmp = dialogue_input(_("Add Log Entry"), 0, 4096,
+            _("Add an entry to the log titled '%s':"), logs[log]);
       if ( ( tmp != NULL ) && ( strlen(tmp) > 0 ) ) {
-         logid = shiplog_getIdOfLogOfType( info_getLogTypeFilter(logType), log-1 );
+         logid = shiplog_getLogID(log-1);
          if ( logid >= 0 )
             shiplog_appendByID( logid, tmp );
          else
@@ -1471,7 +1429,6 @@ static void info_openShipLog( unsigned int wid )
    int w, h, texth;
    /* re-initialise the statics */
    selectedLog = 0;
-   selectedLogType = 0;
 
    /* Get the dimensions. */
    window_dimWindow( wid, &w, &h );
@@ -1486,9 +1443,6 @@ static void info_openShipLog( unsigned int wid )
          info_shiplogAdd );
    /* Description text */
    texth = gl_printHeightRaw( &gl_smallFont, w, "Select log type" );
-   window_addText( wid, 20, 80 + BUTTON_HEIGHT + LOGSPACING,
-                   w - 40, texth, 0,
-                   "logDesc1", &gl_smallFont, NULL, _("Select log type:") );
 
    window_addText( wid, 20, 60 + BUTTON_HEIGHT + 3* LOGSPACING / 4,
                    w - 40, texth, 0,

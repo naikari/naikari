@@ -16,12 +16,12 @@ end
 
 
 function emp_addShippingLog( text )
-   shiplog.create("empire_shipping", _("Empire Shipping"), _("Empire"))
+   shiplog.create("empire_shipping", p_("log", "Empire Shipping"))
    shiplog.append("empire_shipping", text)
 end
 
 
 function emp_addCollectiveLog( text )
-   shiplog.create("empire_collective", _("Empire Collective Campaign"), _("Empire"))
+   shiplog.create("empire_collective", p_("log", "Empire Collective Campaign"))
    shiplog.append("empire_collective", text)
 end

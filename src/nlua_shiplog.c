@@ -89,7 +89,6 @@ int nlua_loadShiplog( nlua_env env )
  *
  *    @luatparam string idstr ID string to identify this log, or empty string for unnamed logsets.
  *    @luatparam string logname Name for this log.
- *    @luatparam string logtype Type of log (e.g travel, trade, etc, can be anything).
  *    @luatparam[opt=false] boolean overwrite Whether to remove previous entries of this logname and type.
  *    @luatparam[opt=0] number maxLen Maximum length of the log (zero for infinite) - if greater than this length, new entries appended will result in old entries being removed.
  *
@@ -97,16 +96,15 @@ int nlua_loadShiplog( nlua_env env )
  */
 static int shiplog_createLog( lua_State *L )
 {
-   const char *idstr, *logname, *logtype;
+   const char *idstr, *logname;
    int overwrite,maxLen;
    /* Parameters. */
-   idstr       = luaL_checkstring(L,1);
-   logname     = luaL_checkstring(L,2);
-   logtype     = luaL_checkstring(L,3);
-   overwrite   = lua_toboolean(L,4);
-   maxLen      = luaL_optinteger(L,5,0);
+   idstr = luaL_checkstring(L, 1);
+   logname = luaL_checkstring(L, 2);
+   overwrite = lua_toboolean(L, 3);
+   maxLen = luaL_optinteger(L, 4, 0);
    /* Create a new shiplog */
-   shiplog_create( idstr, logname, logtype, overwrite, maxLen );
+   shiplog_create(idstr, logname, overwrite, maxLen);
    return 0;
 }
 

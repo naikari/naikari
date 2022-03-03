@@ -8,6 +8,6 @@ end
 
 
 function dv_addAntiFLFLog( text )
-   shiplog.create( "dv_antiflf", _("Anti-FLF Campaign"), _("Dvaered") )
-   shiplog.append( "dv_antiflf", text )
+   shiplog.create("dv_antiflf", p_("log", "Dvaered Anti-FLF Campaign"))
+   shiplog.append("dv_antiflf", text)
 end

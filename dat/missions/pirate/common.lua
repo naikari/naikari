@@ -16,6 +16,6 @@ end
 
 
 function pir_addMiscLog( text )
-   shiplog.create("pir_misc", _("Miscellaneous"), _("Pirate"))
+   shiplog.create("pir_misc", p_("log", "Piracy"))
    shiplog.append("pir_misc", text)
 end

@@ -153,7 +153,7 @@ function pay(amount, reason)
    local exp_gain = math.floor(amount / 10000)
    if amount > 0 and reason ~= "adjust" and reason ~= "loot"
          and has_bioship() then
-      shiplog.create("bioship", _("Bioship Log"), _("Ship"), false, 50)
+      shiplog.create("bioship", p_("log", "Bioship XP"), false, 50)
       local exp = var.peek("_bioship_exp") or 0
       exp = exp + exp_gain
       local s = string.format(

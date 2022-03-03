@@ -19,6 +19,6 @@
 
 
 function shadow_addLog( text )
-   shiplog.create( "shadow", _("Shadow"), _("Shadow") )
-   shiplog.append( "shadow", text )
+   shiplog.create("shadow", p_("log", "Shadow"))
+   shiplog.append("shadow", text)
 end

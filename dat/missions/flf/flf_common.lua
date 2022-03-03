@@ -79,6 +79,6 @@ end
 
 -- Add an entry to the FLF campaign log.
 function flf_addLog( text )
-   shiplog.create( "flf", _("FLF"), _("Frontier") )
-   shiplog.append( "flf", text )
+   shiplog.create("flf", p_("log", "FLF"))
+   shiplog.append("flf", text)
 end

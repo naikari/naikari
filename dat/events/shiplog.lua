@@ -38,7 +38,7 @@ land_text = _("Landed on %s in the %s system")
 
 
 function create ()
-   shiplog.create( "travel", _("Travel Log"), _("Travel"), false, 20 )
+   shiplog.create("travel", p_("log", "Travel"), false, 20)
 
    lastsys = system.cur()
    attacked = false
