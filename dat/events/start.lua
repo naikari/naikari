@@ -6,13 +6,14 @@
 --]]
 function name()
    local names = {
-      _("Aluminum Mallard"), -- Because we might as well allude to an existing parody. Proper spelling would be "Aluminium", by the way.
+      _("Aluminum Mallard"),
       _("Armchair Traveller"),
       _("Attitude Adjuster"),
       _("Commuter"),
       _("Death Trap"),
       _("Eclipse"),
       _("Exitprise"),
+      _("Firefly"),
       _("Fire Hazard"),
       _("Gunboat Diplomat"),
       _("Heart of Lead"),
@@ -28,7 +29,7 @@ function name()
       _("Shove Off"),
       _("Sky Cutter"),
       _("Terminal Velocity"),
-      _("Titanic MLXVII"),
+      _("Titanic MCCCXII"),
       _("Vagabond"),
       _("Vindicator"),
       _("Windjammer"),
