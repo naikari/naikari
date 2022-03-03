@@ -1400,33 +1400,6 @@ static void shiplog_menu_genList( unsigned int wid, int first )
    logWidgetsReady=1;
 }
 
-static void info_shiplogMenuDelete( unsigned int wid, char* str )
-{
-   char buf[256];
-   int ret, logid;
-   (void) str;
-
-   if ( logIDs[selectedLog] == LOG_ID_ALL ) {
-      dialogue_msg( "", _("You are currently viewing all logs in the selected log type. Please select a log title to delete.") );
-      return;
-   }
-
-   snprintf( buf, 256,
-         _("This will delete ALL \"%s\" log entries. This operation cannot be undone. Are you sure?"),
-         logs[selectedLog]);
-   ret = dialogue_YesNoRaw( "", buf );
-   if ( ret ) {
-      /* There could be several logs of the same name, so make sure we get the correct one. */
-      /* selectedLog-1 since not including the "All" */
-      logid = shiplog_getIdOfLogOfType( info_getLogTypeFilter(selectedLogType), selectedLog-1 );
-      if ( logid >= 0 )
-         shiplog_delete( logid );
-      selectedLog = 0;
-      selectedLogType = 0;
-      shiplog_menu_genList(wid, 0);
-   }
-}
-
 static void info_shiplogView( unsigned int wid, char *str )
 {
    char **logentries;
@@ -1505,13 +1478,10 @@ static void info_openShipLog( unsigned int wid )
    /* buttons */
    window_addButton( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
          "closeShipLog", _("Close"), info_close );
-   window_addButton( wid, -20 - 1*(20+BUTTON_WIDTH), 20,
-         BUTTON_WIDTH, BUTTON_HEIGHT, "btnDeleteLog", _("Delete"),
-         info_shiplogMenuDelete );
-   window_addButton( wid, -20 - 2*(20+BUTTON_WIDTH), 20, BUTTON_WIDTH,
+   window_addButton( wid, -20 - 1*(20+BUTTON_WIDTH), 20, BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnViewLog", _("View Entry"),
          info_shiplogView );
-   window_addButton( wid, -20 - 3*(20+BUTTON_WIDTH), 20, BUTTON_WIDTH,
+   window_addButton( wid, -20 - 2*(20+BUTTON_WIDTH), 20, BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnAddLog", _("Add Entry"),
          info_shiplogAdd );
    /* Description text */
