@@ -1277,8 +1277,6 @@ static void mission_menu_abort( unsigned int wid, char* str )
    }
 }
 
-/* amount of screen available for logs: -20 below button, -20 above button, -40 from top, -20 x2 between logs.*/
-#define LOGSPACING (h - 120 - BUTTON_HEIGHT )
 
 /**
  * @brief Updates the mission menu mission information based on what's selected.
@@ -1289,17 +1287,19 @@ static void shiplog_menu_update( unsigned int wid, char* str )
    int w, h;
    int log;
    int nentries;
+   char **newlogentries;
+   int entry;
+   int i;
    char **logentries;
 
    if (!logWidgetsReady)
       return;
 
-   /* This is called when something is selected.
-    * If a new log has been selected, need to regenerate the entries. */
-   if (strcmp(str, "lstLogEntries") != 0) {
+   /* If a new log has been selected, need to regenerate the entries. */
+   if ((str != NULL) && (strcmp(str, "lstLogs") == 0)) {
       /* has selected a log */
       window_dimWindow( wid, &w, &h );
-      logWidgetsReady=0;
+      logWidgetsReady = 0;
 
       log = toolkit_getListPos( wid, "lstLogs" );
 
@@ -1307,15 +1307,31 @@ static void shiplog_menu_update( unsigned int wid, char* str )
          selectedLog = CLAMP( 0, nlogs-1, log );
          /* list log entries of selected log */
          window_destroyWidget( wid, "lstLogEntries" );
-         shiplog_listLogEntries(logIDs[selectedLog], &nentries, &logentries, 1);
-         window_addList( wid, 20, 40 + BUTTON_HEIGHT,
-                         w-40, LOGSPACING / 2-20,
-                         "lstLogEntries", logentries, nentries, 0, shiplog_menu_update, info_shiplogView );
-         toolkit_setListPos( wid, "lstLogEntries", 0 );
-
+         shiplog_listLogEntries(logIDs[selectedLog], &nentries,
+               &newlogentries, 1);
+         window_addList(wid, 20, -40 - (140+10), w/2 - 20 - 10,
+               h - 40 - (140+10) - (10+BUTTON_HEIGHT+20),
+               "lstLogEntries", newlogentries, nentries, 0,
+               shiplog_menu_update, info_shiplogView);
+         toolkit_setListPos(wid, "lstLogEntries", 0);
       }
+
       logWidgetsReady = 1;
    }
+
+   entry = toolkit_getListPos(wid, "lstLogEntries");
+   if (entry < 0) {
+      window_modifyText(wid, "txtLogEntry", NULL);
+      return;
+   }
+
+   shiplog_listLogEntries(logIDs[selectedLog], &nentries, &logentries, 1);
+   if (entry < nentries)
+      window_modifyText(wid, "txtLogEntry", logentries[entry]);
+
+   for (i=0; i<nentries; i++)
+      free(logentries[i]);
+   free(logentries);
 }
 
 
@@ -1349,14 +1365,21 @@ static void shiplog_menu_genList( unsigned int wid, int first )
    /* list log entries of selected log */
    shiplog_listLogEntries(logIDs[selectedLog], &nentries, &logentries, 1);
    logWidgetsReady = 0;
-   window_addList(wid, 20, 40 + BUTTON_HEIGHT,
-         w-40, LOGSPACING / 2-20,
+   /* XXX: This ordering is illogical for tab selection, but can't be
+    * avoided because this is the order it'll end up in anyway when
+    * lstLogEntries is destroyed and recreated due to selecting a log.
+    */
+   window_addList(wid, 20, -40, w/2 - 20 - 10, 140,
+         "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL);
+   window_addList(wid, 20, -40 - (140+10), w/2 - 20 - 10,
+         h - 40 - (140+10) - (10+BUTTON_HEIGHT+20),
          "lstLogEntries", logentries, nentries, 0, shiplog_menu_update,
          info_shiplogView);
-   window_addList(wid, 20, 60 + BUTTON_HEIGHT + LOGSPACING/2,
-         w-40, LOGSPACING / 4,
-         "lstLogs", logs, nlogs, 0, shiplog_menu_update, NULL);
+
    logWidgetsReady = 1;
+
+   /* Update text. */
+   shiplog_menu_update(wid, NULL);
 }
 
 static void info_shiplogView( unsigned int wid, char *str )
@@ -1426,7 +1449,8 @@ static void info_shiplogAdd( unsigned int wid, char *str )
  */
 static void info_openShipLog( unsigned int wid )
 {
-   int w, h, texth;
+   int w, h;
+   int x;
    /* re-initialise the statics */
    selectedLog = 0;
 
@@ -1441,18 +1465,11 @@ static void info_openShipLog( unsigned int wid )
    window_addButton( wid, -20 - 2*(20+BUTTON_WIDTH), 20, BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnAddLog", _("Add Entry"),
          info_shiplogAdd );
-   /* Description text */
-   texth = gl_printHeightRaw( &gl_smallFont, w, "Select log type" );
 
-   window_addText( wid, 20, 60 + BUTTON_HEIGHT + 3* LOGSPACING / 4,
-                   w - 40, texth, 0,
-                   "logDesc2", &gl_smallFont, NULL, _("Select log title:") );
+   x = w/2 + 10;
+   window_addText(wid, x, -40, w - x - 20, h - 40 - (10+BUTTON_HEIGHT+20), 0,
+         "txtLogEntry", NULL, NULL, NULL);
 
-   window_addText( wid, 20, 25 + BUTTON_HEIGHT + LOGSPACING / 2,
-                   w - 40, texth, 0,
-                   "logDesc3", &gl_smallFont, NULL, _("Log entries:") );
-
-#undef LOGSPACING
    /* list */
    shiplog_menu_genList(wid ,1);
 }
