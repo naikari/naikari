@@ -66,6 +66,11 @@
   look more significant than it is and because the information about how
   to equip ships is redundant now that this is effectively
   self-documented (with all ships coming with reasonable weapons).
+* Removed the ability to delete ship logs, which was a feature that
+  didn't have any real utility for the player and risked deleting
+  important information.
+* Simplified the ship log display, removing the "log type" selector and
+  adding a display of the currently selected log.
 
 ## 0.1.3
 
