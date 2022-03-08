@@ -7,33 +7,30 @@ assignees: ''
 
 ---
 
-**Naikari version**
+#### Naikari version
 Let us know what version of Naikari this report is for.
 
-**Describe the bug**
+#### Describe the bug
 A clear and concise description of what the bug is.
 
-**To Reproduce**
+#### To Reproduce
 Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+#### Expected behavior
 A clear and concise description of what you expected to happen.
 
-**Screenshots (optional)**
+#### Screenshots (optional)
 If applicable, add screenshots to help explain your problem.
 
-**Log (optional)**
-If possible, it may be helpful to attach the most recent log file. Consult the table below for where logs can be found:
+#### Log (optional)
+If possible, it may be helpful to attach the most recent log file. The location of the logs depends on your OS ("stdout.txt" is probably the one you want):
+* Windows: %APPDATA%\naikari\logs\
+* macOS: ~/Library/Application Support/naikari/logs/
+* Linux: ~/.local/share/naikari/logs/
 
-| OS |Path |
-| --- | --- |
-| Windows | %APPDATA%\naikari\logs\ |
-| macOS | ~/Library/Application Support/naikari/logs/ |
-| Linux | ~/.local/share/naikari/logs/ |
-
-**Additional context**
+#### Additional context (optional)
 Add any other context about the problem here.
