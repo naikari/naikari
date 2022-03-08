@@ -36,10 +36,10 @@ function create ()
    else
       bribe_no = {
          _("\"Snivelling waste of carbon.\""),
-         _("\"Money won't save you from being purged from the gene pool.\""),
-         _("\"Culling you will be doing humanity a service.\""),
+         _("\"Money won't save your hide.\""),
          _("\"We do not consort with vermin.\""),
-         _("\"Who do you take us for, the Empire?\"")
+         _("\"I have nothing further to say to scum like you.\""),
+         _("\"Who do you take us for, the Empire?\""),
       }
       mem.bribe_no = bribe_no[ rnd.rnd(1,#bribe_no) ]
    end
@@ -62,19 +62,19 @@ function taunt ( target, offense )
    if offense then
       taunts = {
          _("There is no room in this universe for scum like you!"),
-         _("Culling you will be doing humanity a service."),
-         _("Enjoy your last moments, worm!"),
-         _("Time for a little natural selection!"),
-         _("Might makes right!"),
-         _("Embrace your weakness!")
+         _("You give humanity a bad name!"),
+         _("Enjoy your last moments, you worm!"),
+         _("You're a discrace to all of humanity! Now you die!"),
+         _("You insult me with your presence!"),
+         _("Enemies of Sorom do not belong here!"),
       }
    else
       taunts = {
          _("Cunning, but foolish."),
-         _("Ambush! Defend yourselves!"),
-         _("You should have picked easier prey!"),
+         _("How dare you attack the warriors of Sorom?!"),
          _("You'll regret that!"),
-         _("That was a fatal mistake!")
+         _("That was a fatal mistake!"),
+         _("You dare harm my precious ship?!"),
       }
    end
 
