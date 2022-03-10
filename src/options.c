@@ -887,7 +887,7 @@ static void opt_audioLevelStr( char *buf, int max, int type, double pos )
       snprintf(buf, max, _("Muted"));
    else {
       magic = -48. / log(0.00390625); /* -48 dB minimum divided by logarithm of volume floor. */
-      snprintf(buf, max, _("%.2f (%.0f dB)"), pos, log(vol) * magic);
+      snprintf(buf, max, _("%.0f%% (%.0f dB)"), pos * 100., log(vol) * magic);
    }
 }
 
