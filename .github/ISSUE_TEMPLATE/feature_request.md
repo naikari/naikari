@@ -7,13 +7,13 @@ assignees: ''
 
 ---
 
-#### Is your feature request related to a problem? Please describe.
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+#### Rationale
+Please provide here a clear and concise description of the rationale for the request, e.g. the problem(s) the feature request is in response to. Example: I'm always frustrated when [...]
 
-#### Describe the solution you'd like
+#### Proposal
 A clear and concise description of what you want to happen.
 
-#### Describe alternatives you've considered
+#### Alternative solutions
 A clear and concise description of any alternative solutions or features you've considered.
 
 #### Additional context
