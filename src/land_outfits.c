@@ -569,7 +569,10 @@ int outfit_altText( char *buf, int n, const Outfit *o )
 {
    int p;
    double mass;
+   char buf_price[ECON_CRED_STRLEN];
    char buf_mass[STRMAX_SHORT];
+
+   credits2str(buf_price, o->price, 2);
 
    mass = o->mass;
    if ((outfit_isLauncher(o) || outfit_isFighterBay(o)) &&
@@ -585,7 +588,7 @@ int outfit_altText( char *buf, int n, const Outfit *o )
       snprintf(buf_mass, sizeof(buf_mass), _("%.0f t"), mass);
    }
 
-   p  = scnprintf( &buf[0], n, "%s\n", _(o->name) );
+   p  = scnprintf(&buf[0], n, "%s\n", _(o->name));
    if (o->slot.type != OUTFIT_SLOT_NA) {
       p += scnprintf(&buf[p], n-p, _("%s slot (%s)"),
             (o->slot.spid == 0) ?
@@ -593,11 +596,15 @@ int outfit_altText( char *buf, int n, const Outfit *o )
             outfit_slotSize(o));
       p += scnprintf(&buf[p], n-p, "\n");
    }
-   if (outfit_isProp(o, OUTFIT_PROP_UNIQUE))
-      p += scnprintf( &buf[p], n-p, _("#oUnique#0\n") );
-   p += scnprintf( &buf[p], n-p, "\n%s", o->desc_short );
    if ((o->mass > 0.) && (p < n))
-      scnprintf(&buf[p], n-p, "\n%s", buf_mass);
+      p += scnprintf(&buf[p], n-p, "%s\n", buf_mass);
+   if (o->price > 0.)
+      p += scnprintf(&buf[p], n-p, "%s\n", buf_price);
+   if (outfit_isProp(o, OUTFIT_PROP_UNIQUE))
+      p += scnprintf(&buf[p], n-p, "#o%s#0\n", p_("outfit", "Unique"));
+
+   p += scnprintf( &buf[p], n-p, "\n%s", o->desc_short );
+
    return 0;
 }
 
