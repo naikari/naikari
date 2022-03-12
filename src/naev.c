@@ -376,31 +376,6 @@ int main( int argc, char** argv )
     * creates button events that results in the player starting out acceling */
    while (SDL_PollEvent(&event));
 
-   /* Incomplete game note (shows every time version number changes). */
-   if (conf.lastversion == NULL
-         || (naev_versionCompare(conf.lastversion)) >= 2) {
-      free(conf.lastversion);
-      conf.lastversion = strdup(naev_version(0));
-      dialogue_msg(
-         _("Welcome to Naikari"),
-         _("Welcome to Naikari version %s, and thank you for playing! We hope"
-            " you enjoy this game and all it has to offer. This is a passion"
-            " project and it would give us great joy if there are others who"
-            " love this game as much as we do!\n"
-            "\n"
-            "Of course, please note that this is an incomplete game. You"
-            " will encounter dead ends to storylines, missing storylines, and"
-            " possibly even some bugs, although we try to keep those to a"
-            " minimum of course. So be prepared for some rough edges for the"
-            " time being. That said, we are working on this game every day and"
-            " hope to one day finish this massive project on our hands."
-            " Perhaps you could become one of us, who knows?\n"
-            "\n"
-            "For more information about the game and its development"
-            " state, take a look at naikari.github.io; it has all the relevant"
-            " links. And again, thank you for playing!"), conf.lastversion);
-   }
-
    /* primary loop */
    while (!quit) {
       while (!quit && SDL_PollEvent(&event)) { /* event loop */

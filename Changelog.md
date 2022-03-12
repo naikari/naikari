@@ -8,6 +8,7 @@
   than the raw floating-point numbers that were previously displayed.
 * The alt text when hovering your mouse over an outfit has been
   slightly rearranged and a credits display has been added to it.
+* Removed the once-per-version "Welcome to Naikari" message.
 
 ## 0.2.0
 

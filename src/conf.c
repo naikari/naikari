@@ -154,10 +154,9 @@ void conf_setDefaults (void)
 
    /* Misc. */
    conf.redirect_file = 1;
-   conf.nosave       = 0;
-   conf.devmode      = 0;
-   conf.devautosave  = 0;
-   conf.lastversion = strdup( "" );
+   conf.nosave = 0;
+   conf.devmode = 0;
+   conf.devautosave = 0;
 
    /* Gameplay. */
    conf_setGameplayDefaults();
@@ -271,7 +270,6 @@ void conf_cleanup (void)
    free(conf.ndata);
    free(conf.language);
    free(conf.joystick_nam);
-   free(conf.lastversion);
    free(conf.dev_save_sys);
    free(conf.dev_save_map);
    free(conf.dev_save_asset);
@@ -412,7 +410,6 @@ int conf_loadConfig ( const char* file )
       conf_loadBool( lEnv, "devmode", conf.devmode );
       conf_loadBool( lEnv, "devautosave", conf.devautosave );
       conf_loadBool( lEnv, "conf_nosave", conf.nosave );
-      conf_loadString( lEnv, "lastversion", conf.lastversion );
 
       /* Debugging. */
       conf_loadBool( lEnv, "fpu_except", conf.fpu_except );
@@ -1022,10 +1019,6 @@ int conf_saveConfig ( const char* file )
 
    conf_saveComment(_("Save the config every time game exits (rewriting this bit)"));
    conf_saveInt("conf_nosave",conf.nosave);
-   conf_saveEmptyLine();
-
-   conf_saveComment(_("Indicates the last version the game has run in before"));
-   conf_saveString("lastversion", conf.lastversion);
    conf_saveEmptyLine();
 
    /* Debugging. */
