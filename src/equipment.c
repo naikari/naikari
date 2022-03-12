@@ -1520,7 +1520,8 @@ static void equipment_genOutfitList( unsigned int wid )
       outfit_filterCore
    };
    const char *tabnames[] = {
-      _("All"), _(OUTFIT_LABEL_WEAPON), _(OUTFIT_LABEL_UTILITY), _(OUTFIT_LABEL_STRUCTURE), _(OUTFIT_LABEL_CORE)
+      OUTFIT_LABEL_ALL, OUTFIT_LABEL_WEAPON, OUTFIT_LABEL_UTILITY,
+      OUTFIT_LABEL_STRUCTURE, OUTFIT_LABEL_CORE
    };
 
    int noutfits, active;

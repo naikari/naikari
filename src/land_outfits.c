@@ -263,7 +263,8 @@ static void outfits_genList( unsigned int wid )
       outfit_filterOther
    };
    const char *tabnames[] = {
-      _("All"), _(OUTFIT_LABEL_WEAPON), _(OUTFIT_LABEL_UTILITY), _(OUTFIT_LABEL_STRUCTURE), _(OUTFIT_LABEL_CORE), _("Other")
+      OUTFIT_LABEL_ALL, OUTFIT_LABEL_WEAPON, OUTFIT_LABEL_UTILITY,
+      OUTFIT_LABEL_STRUCTURE, OUTFIT_LABEL_CORE, OUTFIT_LABEL_OTHER
    };
 
    int active;
@@ -656,13 +657,16 @@ ImageArrayCell *outfits_imageArrayCells( const Outfit **outfits, int *noutfits )
          /* Slot type (outfit size). */
          switch (o->slot.size) {
             case OUTFIT_SLOT_SIZE_LIGHT:
-               typename = _(OUTFIT_TLABEL_LIGHT);
+               /* Abbreviation for "Small"; must be only one character. */
+               typename = p_("outfit_size", "S");
                break;
             case OUTFIT_SLOT_SIZE_MEDIUM:
-               typename = _(OUTFIT_TLABEL_MEDIUM);
+               /* Abbreviation for "Medium"; must be only one character. */
+               typename = p_("outfit_size", "M");
                break;
             case OUTFIT_SLOT_SIZE_HEAVY:
-               typename = _(OUTFIT_TLABEL_HEAVY);
+               /* Abbreviation for "Large"; must be only one character. */
+               typename = p_("outfit_size", "L");
                break;
             default:
                typename = NULL;
