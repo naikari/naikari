@@ -9,6 +9,8 @@
 * The alt text when hovering your mouse over an outfit has been
   slightly rearranged and a credits display has been added to it.
 * Removed the once-per-version "Welcome to Naikari" message.
+* Pirate names are now generated in a different way which should be a
+  bit nicer.
 
 ## 0.2.0
 
