@@ -208,15 +208,15 @@ end
 function getclueplanet ( mini, maxi )
    local planets = {}
 
-   getsysatdistance( system.cur(), mini, maxi,
+   getsysatdistance(system.cur(), mini, maxi,
       function(s)
          for i, v in ipairs(s:planets()) do
             if not isPrevPlanet(v) and v:services()["bar"] and v:canLand() then
                planets[#planets + 1] = {v, s}
             end
          end
-      return false
-   end )
+         return false
+      end)
    if #planets == 0 then abort() end
    local index = rnd.rnd(1, #planets)
 

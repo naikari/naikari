@@ -87,7 +87,7 @@ function create()
    misn.markerAdd(destsys, "computer")
    cargo_setDesc(fmt.f(misn_desc[tier],
             {planet=destplanet:name(), system=destsys:name()}),
-         cargo, amount, destplanet, nil, piracyrisk);
+         cargo, amount, destplanet, numjumps, nil, piracyrisk);
    misn.setReward(fmt.credits(reward))
 end
 

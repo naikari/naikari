@@ -122,7 +122,7 @@ function create()
          {planet=destplanet:name(), system=destsys:name()}))
    cargo_setDesc(fmt.f(misn_desc,
             {planet=destplanet:name(), system=destsys:name()}),
-         cargo, nil, destplanet, nil, piracyrisk)
+         cargo, nil, destplanet, numjumps, nil, piracyrisk)
    misn.markerAdd(destsys, "computer")
    misn.setReward(fmt.credits(reward))
 end

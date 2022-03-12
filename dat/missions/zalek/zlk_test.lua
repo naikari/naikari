@@ -113,7 +113,7 @@ function create()
    local desc = fmt.f(misn_desc,
          {planet=destpla:name(), system=destsys:name(),
             credits=fmt.credits(deposit)})
-   cargo_setDesc(desc, nil, nil, destpla, nil, risktext)
+   cargo_setDesc(desc, nil, nil, destpla, njumps, nil, risktext)
    misn.setReward(fmt.credits(reward))
 
    misn.markerAdd(destsys, "computer")

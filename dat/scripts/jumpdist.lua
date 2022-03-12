@@ -67,8 +67,8 @@ function getsysatdistance(sys, min, max, filter, data, hidden, hypergates)
    -- Now we filter the solutions
    finalset = {}
    for i,s in pairs(close) do
-      if dist[i] >= min and dist[i] <= max and
-            (filter == nil or filter(s,data)) then
+      if dist[i] >= min and dist[i] <= max
+            and (filter == nil or filter(s, dist[i], data)) then
          finalset[#finalset+1] = s
       end
    end

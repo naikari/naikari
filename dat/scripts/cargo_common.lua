@@ -27,13 +27,13 @@ end
 function cargo_selectPlanets(missdist, routepos)
    local planets = {}
    getsysatdistance(system.cur(), missdist, missdist,
-      function(s)
+      function(s, dist)
          for i, v in ipairs(s:planets()) do
             if v:services()["inhabited"] and v ~= planet.cur()
                   and not (s == system.cur()
-                     and ( vec2.dist( v:pos(), routepos ) < 2500 ) )
-                  and v:canLand() and cargoValidDest( v ) then
-               planets[#planets + 1] = {v, s}
+                     and (vec2.dist(v:pos(), routepos) < 2500))
+                  and v:canLand() and cargoValidDest(v) then
+               planets[#planets + 1] = {v, s, dist}
             end
          end
          return true
@@ -86,12 +86,12 @@ function cargo_calculateRoute ()
    local index = rnd.rnd(1, #planets)
    local destplanet = planets[index][1]
    local destsys = planets[index][2]
+   local numjumps = planets[index][3]
    
    -- We have a destination, now we need to calculate how far away it is by simulating the journey there.
    -- Assume shortest route with no interruptions.
    -- This is used to calculate the reward.
 
-   local numjumps = origin_s:jumpDist(destsys, cargo_use_hidden) or 0
    local traveldist = cargo_calculateDistance(routesys, routepos, destsys, destplanet)
    
    
@@ -181,16 +181,21 @@ function difference(a, b)
    return r
 end
 
---[[
--- @brief Returns a block of mission-description text for the given cargo.
--- @tparam string misn_desc Translated title-level description, e.g. _("Cargo transport to %s in the %s system."):format(...).
--- @tparam string cargo Cargo type (raw name). May be nil.
--- @tparam number amount Cargo amount in tonnes. May be nil.
--- @param target Target planet for the delivery.
--- @param deadline Target delivery time. May be nil.
--- @param notes Any additional text the user should see on its own detail line, such as piracy risk. May be nil.
--- ]]
-function cargo_setDesc( misn_desc, cargo, amount, target, deadline, notes )
+--[[--
+Returns a block of mission-description text for the given cargo.
+
+   @tparam string misn_desc Translated title-level description, e.g.
+      _("Cargo transport to %s in the %s system."):format(...).
+   @tparam string|nil cargo Cargo type as a raw (untranslated) name.
+   @tparam number|nil amount Cargo amount in tonnes. May be nil.
+   @tparam Planet target Target planet for the delivery.
+   @tparam[opt] number numjumps Number of jumps to the target planet.
+   @tparam[opt] Time deadline Target delivery time.
+   @tparam[opt] string notes Any additional text the user should see on
+      its own detail line, such as piracy risk.
+--]]
+function cargo_setDesc(misn_desc, cargo, amount, target, numjumps, deadline,
+      notes)
    local t = {misn_desc, ""};
    if amount ~= nil then
       table.insert(t, fmt.f(_("Cargo: {cargoname} ({amount})"),
@@ -199,7 +204,6 @@ function cargo_setDesc( misn_desc, cargo, amount, target, deadline, notes )
       table.insert(t, fmt.f(_("Cargo: {cargoname}"), {cargoname=_(cargo)}))
    end
 
-   local numjumps = system.cur():jumpDist(target:system(), cargo_use_hidden)
    if numjumps ~= nil then
       table.insert(t, string.format(
             n_("Jumps: %d", "Jumps: %d", numjumps), numjumps))
