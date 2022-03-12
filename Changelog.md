@@ -1,5 +1,14 @@
 # NAIKARI CHANGELOG
 
+## 0.3.0
+
+* Changed Soromid taunts (the old ones inherited from Naev sounded too
+  much like social darwinism, a harmful and pseudo-scientific ideology).
+* Changed volume sliders to show a percentage in a standard form rather
+  than the raw floating-point numbers that were previously displayed.
+* The alt text when hovering your mouse over an outfit has been
+  slightly rearranged and a credits display has been added to it.
+
 ## 0.2.0
 
 * Changed the land and takeoff music to be the same as ambient music.
