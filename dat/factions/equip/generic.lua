@@ -1634,8 +1634,14 @@ function equip_generic(p)
 
       if #avail_cargo > 0 then
          for i=1,rnd.rnd(1,3) do
-            local ncargo = rnd.rnd(0, math.floor(p:cargoFree()*pb))
-            p:cargoAdd(avail_cargo[rnd.rnd(1, #avail_cargo)]:nameRaw(), ncargo)
+            -- Ensure that 0 tonnes of cargo doesn't get added.
+            local freespace = p:cargoFree()
+            if freespace < 1 then
+               break
+            end
+            local cargotype = avail_cargo[rnd.rnd(1, #avail_cargo)]
+            local ncargo = rnd.rnd(1, freespace)
+            p:cargoAdd(cargotype, ncargo)
          end
       end
    end
