@@ -18,7 +18,8 @@
 * Fixed a cosmetic bug which could lead to you having phantom cargo
   after stealing cargo from ships (caused by a condition that would lead
   to AI pilots having 0 tonnes of a cargo added to them).
-
+* Bombers now have a 20% radar range bonus (which makes their missiles
+  more accurate).
 
 ## 0.2.0
 
