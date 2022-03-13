@@ -11,6 +11,14 @@
 * Removed the once-per-version "Welcome to Naikari" message.
 * Pirate names are now generated in a different way which should be a
   bit nicer.
+* Added many more possibilities for the randomly generated pilot names.
+* Fixed a bug which caused pirate cargo missions to incorrectly
+  calculate number of jumps to the destination (leading to lower
+  rewards and a warning about you not knowing the fastest route).
+* Fixed a cosmetic bug which could lead to you having phantom cargo
+  after stealing cargo from ships (caused by a condition that would lead
+  to AI pilots having 0 tonnes of a cargo added to them).
+
 
 ## 0.2.0
 
