@@ -18,11 +18,11 @@
  <license>Light Combat Vessel License</license>
  <description>The Thurion Scintillation is a bomber designed to attack from a large distance. It is better armed than any other Thurion ship of comparable size, but still not as well as other bombers.</description>
  <health>
-  <armour>125</armour>
+  <armour>75</armour>
   <armour_regen>0</armour_regen>
  </health>
  <characteristics>
-  <mass>95</mass>
+  <mass>90</mass>
   <fuel>300</fuel>
   <fuel_consumption>100</fuel_consumption>
   <rdr_range>7500</rdr_range>
@@ -40,23 +40,17 @@
   <structure size="small" prop="engines" exclusive="1" required="1">Unicorp Hawk 300 Engine</structure>
   <structure size="small" prop="hull" exclusive="1" required="1">Unicorp D-4 Light Plating</structure>
   <structure size="small" />
-  <structure size="small" />
-  <structure size="small" />
  </slots>
  <stats>
-  <speed_mod>-20</speed_mod>
-  <turn_mod>-10</turn_mod>
-  <thrust_mod>-10</thrust_mod>
-  <armour_mod>10</armour_mod>
-  <shield_mod>10</shield_mod>
-  <launch_rate>10</launch_rate>
-  <launch_range>15</launch_range>
+  <cpu_mod>-50</cpu_mod>
+  <engine_limit_rel>5</engine_limit_rel>
+  <launch_rate>15</launch_rate>
+  <launch_range>10</launch_range>
   <ammo_capacity>50</ammo_capacity>
-  <cpu_mod>10</cpu_mod>
   <nebu_absorb_shield>80</nebu_absorb_shield>
   <nebu_absorb_armour>97</nebu_absorb_armour>
   <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
-  <rdr_range_mod>125</rdr_range_mod>
+  <rdr_range_mod>170</rdr_range_mod>
   <rdr_jump_range_mod>50</rdr_jump_range_mod>
  </stats>
 </ship>

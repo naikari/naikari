@@ -41,6 +41,7 @@
   <launch_rate>10</launch_rate>
   <launch_range>15</launch_range>
   <ammo_capacity>50</ammo_capacity>
+  <rdr_range_mod>20</rdr_range_mod>
   <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
  </stats>
 </ship>
