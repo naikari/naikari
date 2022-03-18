@@ -43,9 +43,9 @@ local fleet = require "fleet"
 require "missions/flf/flf_common"
 
 
-ask_text = _([[You approach Flint and he looks at you with faint surprise, then grins slightly. "Well, if it isn't {player}! I see you've made the right choice. I heard about your antics with those Dvaereds that ambushed you. Good on you for making the right call! We of course would've obliterated you like the rest of them if you'd taken the Dvaereds' side." He winks, and you laugh somewhat nervously as you thank him for teaching you about the plight of the frontier. When you do, you see his eyes glow in a way you've never seen them glow before. "You're welcome, and I'm glad it turned out!" he says with another wink. "You seem to be turning out to be a fine pilot, and we need all the good pilots we can get.
+ask_text = _([[You approach Flint and he looks at you with faint surprise, then grins slightly. "Well, if it isn't {player}! I see you've made the right choice. I heard about your antics with those Dvaereds that ambushed you. Good on you for making the right call! We of course would've obliterated you like the rest of them if you'd taken the Dvaereds' side." He winks, and you laugh somewhat nervously.
 
-"Speaking of, maybe you could join me for a bit of a mission I'm about to go on! See, we've noticed that one of those Dvaered warlords is about to attack another Dvaered warlord in the {system} system, so we're going to take advantage of the situation and obliterate them in the chaos! How about it, {player}? Are you in?"]])
+"Speaking of," Flint continues, "maybe you could join me for a bit of a mission I'm about to go on! See, we've noticed that one of those Dvaered warlords is about to attack another Dvaered warlord in the {system} system, so we're going to take advantage of the situation and obliterate them in the chaos! How about it, {player}? Are you in?"]])
 
 ask_again_text = _([["Changed your mind, {player}? It'll be great chaos over in {system} pretty soon! Would you like to join us in obliterating those Dvaered warlord fleets?"]])
 
