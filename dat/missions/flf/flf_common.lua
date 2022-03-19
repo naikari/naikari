@@ -71,9 +71,10 @@ function flf_getPirateSystem ()
 end
 
 
--- Change the reputation cap for the FLF.
-function flf_setReputation( newcap )
-   var.push( "_fcap_flf", math.max(newcap, var.peek("_fcap_flf") or 5) )
+-- Increase the FLF's reputation cap.
+function flf_modCap(diff)
+   local cap = var.peek("_fcap_flf") or 5
+   var.push("_fcap_flf", cap + diff)
 end
 
 

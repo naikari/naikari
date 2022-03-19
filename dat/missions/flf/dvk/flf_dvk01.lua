@@ -40,11 +40,11 @@ require "missions/flf/flf_diversion"
 require "missions/flf/flf_common"
 
 
-approach_text = _([[Benito smiles as you approach her. "Hello again, %s!" she says. "I have another mission for you, should you choose to accept it. See, we have... an important covert operation we need to launch in Raelid. I won't bore you with the details of that operation, but I need someone to distract the Dvaered forces while we do this. You'll basically need to travel to the %s system and wreak havoc there so that the Dvaereds go after you and not the soldiers conducting the operation.
+approach_text = _([[Benito smiles as you approach her. "Hello again, %s!" she says. "I have another mission for you, should you choose to accept it. See, we have… an important covert operation we need to launch in Raelid. I won't bore you with the details of that operation, but I need someone to distract the Dvaered forces while we do this. You'll basically need to travel to the %s system and wreak havoc there so that the Dvaereds go after you and not the soldiers conducting the operation.
 
 "Of course, this will be a highly dangerous mission, and I can't guarantee any backup for you. You will be paid substantially, however, and this will surely earn you more respect among our ranks. Would you be interested?"]])
 
-yes_text = _([["Great! The team in charge of the operation will be hiding out around Raelid until they get an opening from your efforts. I will message you when they succeed. I would recommend a very small fighter for this mission so that you can outrun any ships the Dvaereds throw at you. Good luck, and try not to get yourself killed!" She grins, and you grin back. Now to cause some mayhem...]])
+yes_text = _([["Great! The team in charge of the operation will be hiding out around Raelid until they get an opening from your efforts. I will message you when they succeed. I would recommend a very small fighter for this mission so that you can outrun any ships the Dvaereds throw at you. Good luck, and try not to get yourself killed!" She grins, and you grin back. Now to cause some mayhem.…]])
 
 no_text = _([["OK, then. Feel free to come back later if you change your mind."]])
 
@@ -106,7 +106,7 @@ function land ()
    if planet.cur():faction() == faction.get("FLF") then
       tk.msg("", pay_text[rnd.rnd(1, #pay_text)])
       player.pay(credits)
-      flf_setReputation(20)
+      flf_modCap(5)
       faction.get("FLF"):modPlayer(reputation)
       flf_addLog(log_text)
       misn.finish(true)

@@ -11,10 +11,9 @@
   <location>Bar</location>
   <faction>FLF</faction>
   <faction>Frontier</faction>
-  <cond>faction.playerStanding("FLF") &gt;= 20</cond>
+  <cond>faction.playerStanding("FLF") &gt;= 10</cond>
  </avail>
  <notes>
-  <done_misn name="Diversion from Raelid"/>
   <campaign>FLF Hero</campaign>
  </notes>
 </mission>
@@ -150,7 +149,7 @@ function land()
    if stage == 1 and planet.cur():faction() == faction.get("FLF") then
       tk.msg("", fmt.f(pay_text, {player=player.name()}))
       player.pay(credits)
-      flf_setReputation(30)
+      flf_modCap(5)
       faction.get("FLF"):modPlayer(reputation)
       flf_addLog(log_text)
       misn.finish(true)

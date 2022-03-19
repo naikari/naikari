@@ -13,7 +13,6 @@
   <cond>faction.playerStanding("FLF") &gt;= 30</cond>
  </avail>
  <notes>
-  <done_misn name="FLF Weak Point"/>
   <campaign>Save the Frontier</campaign>
  </notes>
 </mission>
@@ -227,7 +226,7 @@ function land()
 
       diff.apply("flf_pirate_ally")
       player.pay(credits)
-      flf_setReputation(40)
+      flf_modCap(5)
       faction.get("FLF"):modPlayer(reputation)
 
       local pf = faction.get("Pirate")
