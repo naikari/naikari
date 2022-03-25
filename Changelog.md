@@ -20,6 +20,10 @@
   to AI pilots having 0 tonnes of a cargo added to them).
 * Bombers now have a 20% radar range bonus (which makes their missiles
   more accurate).
+* Restructured the FLF campaign so that the "Anti-Dvaered" and "Hero"
+  storylines happen in parallel, rather than in an entangled fashion.
+* Tutorial has been streamlined so that it introduces the game much
+  better than before.
 
 ## 0.2.0
 
