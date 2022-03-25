@@ -66,7 +66,9 @@ static void ndata_testVersion (void)
    char *buf, cbuf[PATH_MAX];
    int diff;
 
-   if (!ndata_found())
+   if (ndata_found())
+      LOG(_("Found game data successfully."));
+   else
       ERR( _("Unable to find game data. You may need to install, specify a datapath, or run using naev.sh (if developing).") );
 
    /* Parse version. */
