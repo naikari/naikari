@@ -40,7 +40,7 @@ require "pilot/pirate"
 require "events/tutorial/tutorial_common"
 
 
-tutorial_text = _([[Captain T. Practice pipes up. "Ah, it looks like there's pilots available for hire here at the bar! Let me explain: throughout the galaxy, there are many pilots who seek to work as escorts for other pilots, whether for experience or just to make good money. Having escorts can really make a lot of missions easier for you.
+tutorial_text = _([[Ian Structure pipes up. "Ah, it looks like there's pilots available for hire here at the bar! Let me explain: throughout the galaxy, there are many pilots who seek to work as escorts for other pilots, whether for experience or just to make good money. Having escorts can really make a lot of missions easier for you.
 
 "I would recommend at least talking to any pilots you find and seeing if you might want to hire them to join your fleet. Each pilot has a deposit that you have to pay up-front, and a royalty, which is a percentage of your mission earnings that you have to pay them whenever you get paid for a mission. The deposit is partially refunded when you fire them while landed, based on how much they have earned in royalties. However, you cannot get the deposit back if the pilot dies or if you fire them while out in space.
 
