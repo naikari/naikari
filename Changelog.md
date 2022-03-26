@@ -1,5 +1,9 @@
 # NAIKARI CHANGELOG
 
+## 0.2.1
+
+* Fixed a bug that caused the game to not start under Windows.
+
 ## 0.2.0
 
 * Changed the land and takeoff music to be the same as ambient music.
