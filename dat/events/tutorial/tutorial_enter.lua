@@ -49,7 +49,7 @@ hostile_presence_text = _([[Ian Structure shows up again. "It seems you've enter
 
 "You can always check the faction presences of a given system by pressing {starmap_key} to open the star map. On the right, you will see a list of all factions present in the currently selected system, along with a number indicating how strong their presence is. This can help you stay out of hostile systems in the first place, if you wish.
 
-"However you choose to do, stay safe!"]])
+"However you choose to do so, stay safe!"]])
 hail_hostile_log = _([[You can hail a hostile pilot either by double-clicking on the pilot, or by targeting them with the Target Nearest Hostile key (R by default) and pressing the Hail key (Y by default). From there, you can bribe the pilot so that they stop attacking you. This is particularly effective against pirates.]])
 hostile_presence_log = _([[You can check faction the presences of a given known system by pressing the Open Star Map key (M by default) and selecting the system on the map. Each faction present in the system is listed on the right, along with a number indicating how strong their presence is.]])
 
