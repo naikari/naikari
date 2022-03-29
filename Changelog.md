@@ -27,6 +27,7 @@
 * System names for unknown systems that are marked by a mission are now
   consistently displayed everywhere (whereas previously they were
   displayed in the starmap's sidebar, but nowhere else).
+* Fixed some problems with the Waste Dump mission.
 
 ## 0.2.1
 
