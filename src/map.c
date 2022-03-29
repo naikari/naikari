@@ -524,7 +524,7 @@ static void map_update( unsigned int wid )
       /*
        * Right Text
        */
-      if (sys_isFlag(sys, SYSTEM_MARKED | SYSTEM_CMARKED))
+      if (sys_isMarked(sys))
          window_modifyText( wid, "txtSysname", _(sys->name) );
       else
          window_modifyText( wid, "txtSysname", _("Unknown") );
@@ -1530,8 +1530,7 @@ void map_renderNames( double bx, double by, double x, double y,
          continue;
 
       /* Skip system. */
-      if ((!editor && !sys_isKnown(sys)
-               && !sys_isFlag(sys, SYSTEM_MARKED | SYSTEM_CMARKED))
+      if ((!editor && !sys_isKnown(sys) && !sys_isMarked(sys))
             || (map_zoom <= 0.5))
          continue;
 

@@ -1075,7 +1075,7 @@ static int systemL_setknown( lua_State *L )
 static int systemL_marked(lua_State *L)
 {
    StarSystem *sys = luaL_validsystem(L, 1);
-   lua_pushboolean(L, sys_isFlag(sys, SYSTEM_MARKED | SYSTEM_CMARKED));
+   lua_pushboolean(L, sys_isMarked(sys));
    return 1;
 }
 

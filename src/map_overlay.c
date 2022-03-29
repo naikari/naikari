@@ -155,8 +155,7 @@ void ovr_refresh (void)
          continue;
       /* Initialize the map overlay stuff. */
       snprintf(buf, sizeof(buf), "%s%s", jump_getSymbol(jp),
-            (sys_isKnown(jp->target)
-                  || sys_isFlag(jp->target, SYSTEM_MARKED | SYSTEM_CMARKED)) ?
+            (sys_isKnown(jp->target) || sys_isMarked(jp->target)) ?
                _(jp->target->name) : _("Unknown"));
       pos[items] = &jp->pos;
       mo[items]  = &jp->mo;
