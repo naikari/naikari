@@ -154,7 +154,10 @@ void ovr_refresh (void)
       if (!jp_isUsable(jp) || !jp_isKnown(jp))
          continue;
       /* Initialize the map overlay stuff. */
-      snprintf( buf, sizeof(buf), "%s%s", jump_getSymbol(jp), sys_isKnown(jp->target) ? _(jp->target->name) : _("Unknown") );
+      snprintf(buf, sizeof(buf), "%s%s", jump_getSymbol(jp),
+            (sys_isKnown(jp->target)
+                  || sys_isFlag(jp->target, SYSTEM_MARKED | SYSTEM_CMARKED)) ?
+               _(jp->target->name) : _("Unknown"));
       pos[items] = &jp->pos;
       mo[items]  = &jp->mo;
       mo[items]->radius = jumppoint_gfx->sw / 2.;
