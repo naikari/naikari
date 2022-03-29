@@ -1530,7 +1530,9 @@ void map_renderNames( double bx, double by, double x, double y,
          continue;
 
       /* Skip system. */
-      if ((!editor && !sys_isKnown(sys)) || (map_zoom <= 0.5 ))
+      if ((!editor && !sys_isKnown(sys)
+               && !sys_isFlag(sys, SYSTEM_MARKED | SYSTEM_CMARKED))
+            || (map_zoom <= 0.5))
          continue;
 
       font = (map_zoom >= 1.5) ? &gl_defFont : &gl_smallFont;
@@ -1543,7 +1545,7 @@ void map_renderNames( double bx, double by, double x, double y,
       if (!rectOverlap(tx, ty, textw, font->h, bx, by, w, h))
          continue;
 
-      col = cWhite;
+      col = sys_isKnown(sys) ? cFontWhite : cFontGrey;
       col.a = alpha;
       gl_printRaw( font, tx, ty, &col, -1, _(sys->name) );
 
