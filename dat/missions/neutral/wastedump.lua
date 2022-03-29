@@ -35,6 +35,7 @@
 
 --]]
 
+local fmt = require "fmt"
 require "numstring"
 
 text = {}
@@ -58,6 +59,8 @@ abort_landed_text = _("In your desperation to rid yourself of the garbage, you c
 abort_landed_broke_text = _([[In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of %s.
 
 When you explain that you don't have enough money to pay the fine, the officials confiscate outfits and cargo you own to make up the difference.]])
+
+nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold being equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
 
 noland_msg = _("Get lost, waste dumping scum! We don't want you here!")
 
@@ -89,8 +92,7 @@ function create ()
 
    -- Note: this mission makes no system claims
 
-   credits_factor = 1000 * dist
-   credits_mod = 10000 * rnd.sigma()
+   credits_factor = math.max(200, 1000*dist + 500*rnd.sigma())
 
    landed = true
 
@@ -101,11 +103,18 @@ function create ()
    -- Set mission details
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
-   misn.setReward(misn_reward:format(creditstring(credits_factor)))
+   misn.setReward(fmt.f(n_("{price} ¢/t", "{price} ¢/t", credits_factor),
+         {price=fmt.number(credits_factor)}))
 end
 
 
 function accept ()
+   local q = player.pilot():cargoFree()
+   if q < 1 then
+      tk.msg("", nospace_text)
+      misn.finish()
+   end
+
    misn.accept()
 
    misn.markerRm(tempmarker)
@@ -114,12 +123,11 @@ function accept ()
       p, sys = planet.get(v)
       misn.markerAdd(sys, "computer")
    end
-   
-   local q = player.pilot():cargoFree()
-   credits = credits_factor * q + credits_mod
+
+   credits = credits_factor * q
 
    local txt = text[rnd.rnd(1, #text)]
-   tk.msg("", txt:format(creditstring(credits)))
+   tk.msg("", txt:format(fmt.credits(credits)))
 
    local c = misn.cargoNew(N_("Waste Containers"), N_("A bunch of waste containers leaking all sorts of indescribable liquids."))
    cid = misn.cargoAdd(c, q)
@@ -157,9 +165,9 @@ function abort ()
       local fine = 2 * credits
       local money = player.credits()
       if money >= fine then
-         tk.msg("", abort_landed_text:format(creditstring(fine)))
+         tk.msg("", abort_landed_text:format(fmt.credits(fine)))
       else
-         tk.msg("", abort_landed_broke_text:format(creditstring(fine)))
+         tk.msg("", abort_landed_broke_text:format(fmt.credits(fine)))
 
          -- Start by confiscating cargo...
          local pla = planet.cur()
