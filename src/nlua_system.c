@@ -55,41 +55,43 @@ static int systemL_presence( lua_State *L );
 static int systemL_radius( lua_State *L );
 static int systemL_isknown( lua_State *L );
 static int systemL_setknown( lua_State *L );
+static int systemL_marked(lua_State *L);
 static int systemL_hidden( lua_State *L );
 static int systemL_setHidden( lua_State *L );
 static int systemL_mrkClear( lua_State *L );
 static int systemL_mrkAdd( lua_State *L );
 static int systemL_mrkRm( lua_State *L );
 static const luaL_Reg system_methods[] = {
-   { "cur", systemL_cur },
-   { "get", systemL_get },
-   { "getAll", systemL_getAll },
-   { "__eq", systemL_eq },
-   { "__tostring", systemL_name },
-   { "name", systemL_name },
-   { "nameRaw", systemL_nameRaw },
-   { "faction", systemL_faction },
-   { "nebula", systemL_nebula },
-   { "jumpDist", systemL_jumpdistance },
-   { "jumpPath", systemL_jumpPath },
-   { "adjacentSystems", systemL_adjacent },
-   { "jumps", systemL_jumps },
-   { "asteroidFields", systemL_asteroidFields },
-   { "asteroid", systemL_asteroid },
-   { "asteroidPos", systemL_asteroidPos },
-   { "asteroidDestroyed", systemL_asteroidDestroyed },
-   { "addGatherable", systemL_addGatherable },
-   { "presences", systemL_presences },
-   { "planets", systemL_planets },
-   { "presence", systemL_presence },
-   { "radius", systemL_radius },
-   { "known", systemL_isknown },
-   { "setKnown", systemL_setknown },
-   { "hidden", systemL_hidden },
-   { "setHidden", systemL_setHidden },
-   { "mrkClear", systemL_mrkClear },
-   { "mrkAdd", systemL_mrkAdd },
-   { "mrkRm", systemL_mrkRm },
+   {"cur", systemL_cur},
+   {"get", systemL_get},
+   {"getAll", systemL_getAll},
+   {"__eq", systemL_eq},
+   {"__tostring", systemL_name},
+   {"name", systemL_name},
+   {"nameRaw", systemL_nameRaw},
+   {"faction", systemL_faction},
+   {"nebula", systemL_nebula},
+   {"jumpDist", systemL_jumpdistance},
+   {"jumpPath", systemL_jumpPath},
+   {"adjacentSystems", systemL_adjacent},
+   {"jumps", systemL_jumps},
+   {"asteroidFields", systemL_asteroidFields},
+   {"asteroid", systemL_asteroid},
+   {"asteroidPos", systemL_asteroidPos},
+   {"asteroidDestroyed", systemL_asteroidDestroyed},
+   {"addGatherable", systemL_addGatherable},
+   {"presences", systemL_presences},
+   {"planets", systemL_planets},
+   {"presence", systemL_presence},
+   {"radius", systemL_radius},
+   {"known", systemL_isknown},
+   {"setKnown", systemL_setknown},
+   {"marked", systemL_marked},
+   {"hidden", systemL_hidden},
+   {"setHidden", systemL_setHidden},
+   {"mrkClear", systemL_mrkClear},
+   {"mrkAdd", systemL_mrkAdd},
+   {"mrkRm", systemL_mrkRm},
    {0,0}
 }; /**< System metatable methods. */
 
@@ -1058,6 +1060,23 @@ static int systemL_setknown( lua_State *L )
    outfits_updateEquipmentOutfits();
 
    return 0;
+}
+
+
+/**
+ * @brief Checks to see if a system is marked (e.g. by a mission).
+ *
+ * @usage b = s:marked()
+ *
+ *    @luatparam System s System to check.
+ *    @luatreturn boolean true if the system is marked.
+ * @luafunc marked
+ */
+static int systemL_marked(lua_State *L)
+{
+   StarSystem *sys = luaL_validsystem(L, 1);
+   lua_pushboolean(L, sys_isFlag(sys, SYSTEM_MARKED | SYSTEM_CMARKED));
+   return 1;
 }
 
 

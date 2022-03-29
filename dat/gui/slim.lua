@@ -387,7 +387,7 @@ function update_nav()
       gui.fpsPos(15, screen_h - fps_y)
    end
    if nav_hyp then
-      if nav_hyp:known() then
+      if nav_hyp:known() or nav_hyp:marked() then
          navstring = nav_hyp:name()
       else
          navstring = _("Unknown")

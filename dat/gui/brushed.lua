@@ -378,7 +378,7 @@ function update_nav()
       end
    end
    if nav_hyp then
-      if nav_hyp:known() then
+      if nav_hyp:known() or nav_hyp:marked() then
          navstring = nav_hyp:name()
       else
          navstring = _("Unknown")
@@ -882,7 +882,7 @@ function render( dt )
    end
    if autonav_hyp ~= nil then
       local name = autonav_hyp:name()
-      if not autonav_hyp:known() then
+      if not autonav_hyp:known() and not autonav_hyp:marked() then
          name = _("Unknown")
       end
       renderField( name .. " (" .. tostring(autonav_jumps) .. ")", fields_x + fields_w + 12, fields_y, fields_w, col_text, icon_nav_target )
