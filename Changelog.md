@@ -24,6 +24,9 @@
   storylines happen in parallel, rather than in an entangled fashion.
 * Tutorial has been streamlined so that it introduces the game much
   better than before.
+* System names for unknown systems that are marked by a mission are now
+  consistently displayed everywhere (whereas previously they were
+  displayed in the starmap's sidebar, but nowhere else).
 
 ## 0.2.1
 
