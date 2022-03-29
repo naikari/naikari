@@ -118,7 +118,7 @@ Traveling long distances that way can be rather repetitive and inconvenient, how
 
 starmap_text = _([["Behold, perhaps the most useful tool in your arsenal! This map shows all systems that you know about, where you need to go for missions, and even detailed information about each system! The starmap also allows for much easier travel. By selecting a destination system that you know the route to and clicking the 'Autonav' button, autonav automatically plans a route for you and will pilot your ship all the way to the destination system, as long as your ship has enough fuel. Let me show you!
 
-"I've taken the liberty of placing a destination marker on your starmap for the {system} system. You probably can't see the name of the system, but you should nonetheless see the marker I placed on your starmap. All you need to do is click on that system, and then click on the 'Autonav' button. Once you've done that, you can sit back and relax as autonav takes care of the rest!"]])
+"I've taken the liberty of placing a destination marker on your starmap for the {system} system. All you need to do is click on that system, and then click on the 'Autonav' button. Once you've done that, you can sit back and relax as autonav takes care of the rest!"]])
 
 fuel_text = _([["Was that easy, or was that easy? As you can see, the trip consumed fuel. You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks. In any case, you will want to plan your routes so that you don't end up in a system where you can't land without fuel.
 
