@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Alive Bounty">
  <avail>
-  <priority>41</priority>
+  <priority>42</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
   <chance>360</chance>
   <location>Computer</location>

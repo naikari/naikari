@@ -2,9 +2,9 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Trader Escort">
  <avail>
-  <priority>49</priority>
+  <priority>40</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
-  <chance>560</chance>
+  <chance>360</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -59,7 +59,6 @@ traderdistress = _("Convoy ships under attack! Requesting immediate assistance!"
 
 
 function create()
-   --This mission does not make any system claims
    destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
    
    if destplanet == nil then
@@ -68,6 +67,14 @@ function create()
       misn.finish(false) -- have to escort them at least one jump!
    elseif avgrisk * numjumps <= 25 then
       misn.finish(false) -- needs to be a little bit of piracy possible along route
+   end
+
+   local claimsys = {system.cur()}
+   for i, jp in ipairs(system.cur():jumpPath(destsys)) do
+      claimsys[#claimsys + 1] = jp:dest()
+   end
+   if not misn.claim(claimsys) then
+      misn.finish(false)
    end
    
    if avgrisk == 0 then
