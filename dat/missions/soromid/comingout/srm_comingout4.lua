@@ -107,7 +107,14 @@ Chelsea has vowed to strengthen their ship so they aren't left in a vulnerable p
 function create ()
    startplanet, startsys = planet.get("Darkshed")
    destplanet, destsys = planet.get("Durea")
-   if not misn.claim(destsys) then misn.finish(false) end
+
+   local claimsys = {startsys}
+   for i, jp in ipairs(startsys:jumpPath(destsys)) do
+      claimsys[#claimsys + 1] = jp:dest()
+   end
+   if not misn.claim(claimsys) then
+      misn.finish(false)
+   end
 
    credits = 600000
    started = false

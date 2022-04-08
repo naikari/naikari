@@ -81,6 +81,14 @@ function create ()
       misn.finish(false)
    end
 
+   local claimsys = {system.cur()}
+   for i, jp in ipairs(system.cur():jumpPath(missys)) do
+      claimsys[#claimsys + 1] = jp:dest()
+   end
+   if not misn.claim(claimsys) then
+      misn.finish(false)
+   end
+
    credits = 500000
    started = false
 

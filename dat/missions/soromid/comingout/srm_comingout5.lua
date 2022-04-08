@@ -66,7 +66,16 @@ log_text = _([[You helped Chelsea get rid of a load of garbage they naively agre
 
 function create ()
    misplanet, missys = planet.get("The Stinker")
-   if misplanet == nil or missys == nil or system.cur():jumpDist(missys) > 4 then
+   if misplanet == nil or missys == nil
+         or system.cur():jumpDist(missys) > 4 then
+      misn.finish(false)
+   end
+
+   local claimsys = {system.cur()}
+   for i, jp in ipairs(system.cur():jumpPath(missys)) do
+      claimsys[#claimsys + 1] = jp:dest()
+   end
+   if not misn.claim(claimsys) then
       misn.finish(false)
    end
 
