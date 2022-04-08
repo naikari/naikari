@@ -28,6 +28,15 @@
   consistently displayed everywhere (whereas previously they were
   displayed in the starmap's sidebar, but nowhere else).
 * Fixed some problems with the Waste Dump mission.
+* Pulled new beam store graphics from Naev.
+* Escort missions now have hardened claims, preventing edge cases of
+  escort missions conflicting with other missions that do things like
+  clear the system. A side effect of this is that trader escort missions
+  are now only offered one at a time. In tandem with this, escort
+  missions' probability has been adjusted so that they are still seen
+  frequently, and the trader escort mission in particular has been given
+  a higher priority so that bounty missions don't prevent it from
+  showing up.
 
 ## 0.2.1
 
