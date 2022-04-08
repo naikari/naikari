@@ -5,8 +5,8 @@
   <unique />
  </flags>
  <avail>
-  <priority>4</priority>
-  <chance>5</chance>
+  <priority>20</priority>
+  <chance>100</chance>
   <location>Bar</location>
  </avail>
 </mission>
@@ -134,7 +134,7 @@ function create ()
    -- available portraits in artwork/gfx/portraits.
    misn.setNPC(
          _("A well-dressed man"),
-         "neutral/unique/youngbusinessman.webp",
+         "neutral/unique/youngbusinessman.png",
          _("This guy is wearing a nice suit."))
 end
 
@@ -170,7 +170,7 @@ function accept ()
             n_("So I'll tell you what, give me a ride and I'll pay you {credits} credit for it!",
                "So I'll tell you what, give me a ride and I'll pay you {credits} credits for it!",
                credits),
-            {credits=fmt.number(credits)}
+            {credits=fmt.number(credits)})
       text = fmt.f(ask_text,
             {planet=misplanet:name(), system=missys:name(),
                reward_sentence=reward_text})
@@ -233,7 +233,7 @@ function land ()
       -- Mission accomplished! Now we do an outro dialog and reward the
       -- player. Rewards are usually credits, as shown here, but
       -- other rewards can also be given depending on the circumstances.
-      tk.msg("", finish_text:format(misplanet:name(), reward_text)
+      tk.msg("", finish_text:format(misplanet:name(), reward_text))
 
       -- Reward the player. Rewards are usually credits, as shown here,
       -- but other rewards can also be given depending on the
