@@ -37,6 +37,7 @@
   frequently, and the trader escort mission in particular has been given
   a higher priority so that bounty missions don't prevent it from
   showing up.
+* Fixed glitchy text in overlay when appearing over other text.
 
 ## 0.2.1
 

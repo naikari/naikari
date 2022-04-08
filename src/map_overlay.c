@@ -530,6 +530,9 @@ void ovr_render( double dt )
    h     = map_overlay_height();
    res   = ovr_res;
 
+   /* The overlay might draw text over other text, e.g. messages. */
+   glClear(GL_DEPTH_BUFFER_BIT);
+
    /* First render the background overlay. */
    if (conf.map_overlay_opacity > 0.) {
       x = gui_getMapOverlayBoundLeft();
