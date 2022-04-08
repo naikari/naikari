@@ -7,7 +7,7 @@
  <avail>
   <priority>20</priority>
   <done>Visiting Family</done>
-  <chance>70</chance>
+  <chance>90</chance>
   <location>Bar</location>
   <faction>Soromid</faction>
  </avail>
