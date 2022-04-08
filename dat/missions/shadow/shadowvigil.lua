@@ -99,7 +99,11 @@ function create()
     startpla, startsys = planet.get("Amphion")
     destpla, destsys = planet.get("Praxis")
 
-    if not misn.claim({rebinasys, destsys}) then
+    local claimsys = {rebinasys, startsys}
+    for i, jp in ipairs(startsys:jumpPath(destsys)) do
+        claimsys[#claimsys + 1] = jp:dest()
+    end
+    if not misn.claim(claimsys) then
         tk.msg("", noclaim_text)
         -- Small consolation pay
         player.pay(10000)
