@@ -112,6 +112,9 @@ function create ()
    for i, jp in ipairs(startsys:jumpPath(destsys)) do
       claimsys[#claimsys + 1] = jp:dest()
    end
+   for i, jp in ipairs(destsys:jumpPath(startsys)) do
+      claimsys[#claimsys + 1] = jp:dest()
+   end
    if not misn.claim(claimsys) then
       misn.finish(false)
    end
