@@ -40,6 +40,25 @@ equip_typeOutfits_engines["Rhino"] = {
 }
 
 equip_typeOutfits_weapons["Shark"] = equip_shipOutfits_weapons["Pirate Shark"]
+equip_typeOutfits_weapons["Rhino"] = {
+   {
+      "Heavy Ripper Turret", "Plasma Cluster Turret",
+      "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
+   },
+   {
+      num = 1;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
+   },
+   {
+      "Laser Turret MK2", "Razor Turret MK2", "Turreted Vulcan Gun",
+      "Plasma Turret MK2", "Orion Beam", "EMP Grenade Launcher",
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
+   },
+}
 equip_typeOutfits_weapons["Kestrel"] = {
    {
       "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
@@ -49,7 +68,7 @@ equip_typeOutfits_weapons["Kestrel"] = {
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
       "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-      "Mini Pirate Shark Fighter Bay",
+      "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
    },
 }
 
