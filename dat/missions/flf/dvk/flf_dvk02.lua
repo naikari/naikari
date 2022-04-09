@@ -7,7 +7,7 @@
  <avail>
   <priority>10</priority>
   <chance>30</chance>
-  <done>Diversion from Raelid</done>
+  <done>Diversion from Doranthex</done>
   <location>Bar</location>
   <faction>FLF</faction>
   <cond>faction.playerStanding("FLF") &gt;= 30</cond>

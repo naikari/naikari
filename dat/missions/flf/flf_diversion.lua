@@ -4,7 +4,7 @@
  <avail>
   <priority>30</priority>
   <chance>550</chance>
-  <done>Diversion from Raelid</done>
+  <done>Diversion from Doranthex</done>
   <location>Computer</location>
   <faction>FLF</faction>
   <faction>Frontier</faction>
@@ -31,6 +31,7 @@
 
 --]]
 
+local fmt = require "fmt"
 require "numstring"
 require "missions/flf/flf_common"
 
@@ -44,7 +45,7 @@ pay_text = {}
 pay_text[1] = _("The FLF commander in charge of the primary operation thanks you for your contribution and hands you your pay.")
 pay_text[2] = _("You greet the FLF commander in charge of the primary operation, who seems happy that the mission was a success. You congratulate each other, and the commander hands you your pay.")
 
-misn_desc = _("A fleet of FLF ships will be conducting an operation against the Dvaered forces. Create a diversion from this operation by wreaking havoc in the nearby %s system.")
+misn_desc = _("An FLF special task force needs an opening to complete a mission without too much Dvaered interference. Create this opening by wreaking havoc in the nearby {system} system.")
 
 msg = _("%s has warped in!")
 
@@ -74,7 +75,7 @@ function create ()
 
    -- Set mission details
    misn.setTitle(misn_title:format(missys:name()))
-   misn.setDesc(misn_desc:format(missys:name()))
+   misn.setDesc(fmt.f(misn_desc, {system=missys:name()}))
    misn.setReward(creditstring(credits))
    marker = misn.markerAdd(missys, "computer")
 end

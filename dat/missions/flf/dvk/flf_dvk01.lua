@@ -1,6 +1,6 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
-<mission name="Diversion from Raelid">
+<mission name="Diversion from Doranthex">
  <flags>
   <unique />
  </flags>
@@ -19,7 +19,7 @@
 --]]
 --[[
 
-   Diversion from Raelid.
+   Diversion from Doranthex
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -36,15 +36,16 @@
 
 --]]
 
+local fmt = require "fmt"
 require "missions/flf/flf_diversion"
 require "missions/flf/flf_common"
 
 
-approach_text = _([[Benito smiles as you approach her. "Hello again, %s!" she says. "I have another mission for you, should you choose to accept it. See, we have… an important covert operation we need to launch in Raelid. I won't bore you with the details of that operation, but I need someone to distract the Dvaered forces while we do this. You'll basically need to travel to the %s system and wreak havoc there so that the Dvaereds go after you and not the soldiers conducting the operation.
+approach_text = _([[Benito smiles as you approach her. "Hello again, {player}!" she says. "I have another mission for you, should you choose to accept it. We're trying to evacuate some of ours stranded in Doranthex, a Dvaered-owned system. Security is tight and we just can't find an opening. I need someone to distract the Dvaered forces so we can give them more of a fighting chance. You'll basically need to travel to the {system} system and wreak havoc there so that the Dvaereds go after you and not the soldiers trying to escape Doranthex.
 
 "Of course, this will be a highly dangerous mission, and I can't guarantee any backup for you. You will be paid substantially, however, and this will surely earn you more respect among our ranks. Would you be interested?"]])
 
-yes_text = _([["Great! The team in charge of the operation will be hiding out around Raelid until they get an opening from your efforts. I will message you when they succeed. I would recommend a very small fighter for this mission so that you can outrun any ships the Dvaereds throw at you. Good luck, and try not to get yourself killed!" She grins, and you grin back. Now to cause some mayhem.…]])
+yes_text = _([["Great! The rescue team will await an opening from a safe location in the vicinity of Doranthex. I will message you when they succeed in rescuing the stranded soldiers. I would recommend a very small fighter for this mission so that you can outrun any ships the Dvaereds throw at you. Good luck, and try not to get yourself killed!" She winks, and you laugh both nervously and in amusement at the same time. Now to cause some mayhem.…]])
 
 no_text = _([["OK, then. Feel free to come back later if you change your mind."]])
 
@@ -61,7 +62,7 @@ misn_reward = _("Substantial pay and a great amount of respect")
 npc_name = _("Benito")
 npc_desc = _("Benito seems to want to speak with you.")
 
-log_text = _([[You helped the FLF conduct some kind of operation in Raelid by distracting the Dvaereds in another system.]])
+log_text = _([[You helped the FLF rescue stranded soldiers from Doranthex by by distracting the Dvaereds in another system.]])
 
 
 function create ()
@@ -77,7 +78,8 @@ end
 
 
 function accept ()
-   if tk.yesno("", approach_text:format(player.name(), missys:name())) then
+   if tk.yesno("", fmt.f(approach_text,
+            {playter=player.name(), system=missys:name()})) then
       tk.msg("", yes_text)
 
       misn.accept()
