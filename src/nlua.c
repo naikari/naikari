@@ -117,13 +117,14 @@ static int nlua_ngettext( lua_State *L )
 static int nlua_pgettext(lua_State *L)
 {
    const char *stra, *strb;
-   char buf[STRMAX];
+   char *buf = NULL;
 
    stra = luaL_checkstring(L, 1);
    strb = luaL_checkstring(L, 2);
-   snprintf(buf, sizeof(buf), "%s%s%s", stra, GETTEXT_CONTEXT_GLUE, strb);
+   asprintf(&buf, "%s" GETTEXT_CONTEXT_GLUE "%s", stra, strb);
 
    lua_pushstring(L, gettext_pgettext(buf, strb));
+   free(buf);
    return 1;
 }
 
