@@ -54,6 +54,7 @@ function pilot_name ()
       p_("pilot_name", "Dynamite {number}"),
       p_("pilot_name", "Eagle {number}"),
       p_("pilot_name", "Earthquake {number}"),
+      p_("pilot_name", "Eclipse {number}"),
       p_("pilot_name", "Electron {number}"),
       p_("pilot_name", "Emerald {number}"),
       p_("pilot_name", "Evolution {number}"),
