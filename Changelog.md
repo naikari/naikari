@@ -137,7 +137,7 @@
 
 ## 0.1.1
 
-* Faulty release.
+Faulty release.
 
 ## 0.1.0
 
