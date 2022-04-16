@@ -38,6 +38,11 @@
   a higher priority so that bounty missions don't prevent it from
   showing up.
 * Fixed glitchy text in overlay when appearing over other text.
+* Fixed pirates sometimes using Lancelot fighter bays.
+* Added several new texts for the Love Train mission.
+* Changed the story context of the first FLF diversion mission; it is
+  now a diversion to rescue FLF soldiers trapped in a Dvaered system.
+* Added several new components for randomly generated pilot names.
 
 ## 0.2.1
 
