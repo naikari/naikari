@@ -69,7 +69,7 @@ function create ()
    missys = system.get("Tuoladis")
    if not misn.claim(missys) then misn.finish(false) end
 
-   dv_attention_target = 20
+   dv_attention_target = 10
    credits = 250000
    reputation = 2
 
