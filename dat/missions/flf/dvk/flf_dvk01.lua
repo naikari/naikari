@@ -79,7 +79,7 @@ end
 
 function accept ()
    if tk.yesno("", fmt.f(approach_text,
-            {playter=player.name(), system=missys:name()})) then
+            {player=player.name(), system=missys:name()})) then
       tk.msg("", yes_text)
 
       misn.accept()
