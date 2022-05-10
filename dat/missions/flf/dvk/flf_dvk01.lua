@@ -53,10 +53,10 @@ success_text = {}
 success_text[1] = _([[You receive a transmission. It's from Benito. "Operation successful!" she says. "You should get back to the base now before you get killed! I'll be waiting for you there."]])
 
 pay_text = {}
-pay_text[1] = _([[As you dock the station, Benito approaches you with a smile. "Thank you for your help," she says. "The mission was a rousing success! What we've accomplished will greatly help our efforts against the Dvaereds in the future." She hands you a credit chip. "That's your payment. Until next time!" Benito sees herself out as a number of additional FLF soldiers congratulate you. It occurs to you that you never learned what the mission actually was. Perhaps you will find out some other time.]])
+pay_text[1] = _([[As you dock the station, Benito approaches you with a smile. "Thank you for your help," she says. "The mission was a rousing success! All of our stranded soldiers have been successfully evacuated." She hands you a credit chip. "That's your payment. Until next time!" Benito sees herself out as some of the soldiers you helped rescue personally come up to thank you for risking your life to save theirs.]])
 
-misn_title = _("Diversion from Raelid")
-misn_desc = _("A covert operation is being conducted in Raelid. You are to create a diversion from this operation by wreaking havoc in the nearby %s system.")
+misn_title = _("Diversion from Doranthex")
+misn_desc = _("You have been tasked with creating mayhem for Dvaered ships in the {system} system to distract the Dvaereds while an FLF rescue team helps some trapped soldiers escape from Doranthex.")
 misn_reward = _("Substantial pay and a great amount of respect")
 
 npc_name = _("Benito")
@@ -87,7 +87,7 @@ function accept ()
       osd_desc[1] = osd_desc[1]:format(missys:name())
       misn.osdCreate(osd_title, osd_desc)
       misn.setTitle(misn_title)
-      misn.setDesc(misn_desc:format(missys:name()))
+      misn.setDesc(fmt.f(misn_desc, {system=missys:name()}))
       marker = misn.markerAdd(missys, "plot")
       misn.setReward(misn_reward)
 
