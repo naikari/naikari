@@ -1,6 +1,6 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
-<mission name="FLF Weak Point">
+<mission name="Diversion from Doranthex">
  <flags>
   <unique />
  </flags>
@@ -20,7 +20,7 @@
 --]]
 --[[
 
-   Weak Point
+   Diversion from Doranthex
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -38,86 +38,69 @@
 --]]
 
 local fmt = require "fmt"
-local fleet = require "fleet"
+require "missions/flf/flf_diversion"
 require "missions/flf/flf_common"
 
 
-ask_text = _([[You approach Flint and he looks at you with faint surprise, then grins slightly. "Well, if it isn't {player}! I see you've made the right choice. I heard about your antics with those Dvaereds that ambushed you. Good on you for making the right call! We of course would've obliterated you like the rest of them if you'd taken the Dvaereds' side." He winks, and you laugh somewhat nervously.
+approach_text = _([[You approach Flint and he looks at you with faint surprise. "Oh, {player}! I see you've made the right choice. I heard about your antics with those Dvaereds that ambushed you. Good on you for making the right call! We of course would've obliterated you like the rest of them if you'd taken the Dvaereds' side." He grins and winks, prompting you to laugh somewhat nervously.
 
-"Speaking of," Flint continues, "maybe you could join me for a bit of a mission I'm about to go on! See, we've noticed that one of those Dvaered warlords is about to attack another Dvaered warlord in the {system} system, so we're going to take advantage of the situation and obliterate them in the chaos! How about it, {player}? Are you in?"]])
+Flint's expression becomes more serious. "{player}, since you've proven yourself, maybe I can count on you for an important mission. See, some of my comrades are stranded in the Doranthex system. We're trying to assemble a rescue party, but the place is just crawling with Dvaereds. But if we could create a distraction by wreaking havok in the nearby {system} system, maybe that would give us just the opening that we need! That's where you come in. I can't guarantee any backup for you, and of course this will be a highly dangerous mission, but if you do this, I can guarantee you that we'll never forget your bravery. How about it, {player}? Are you in?"]])
 
-ask_again_text = _([["Changed your mind, {player}? It'll be great chaos over in {system} pretty soon! Would you like to join us in obliterating those Dvaered warlord fleets?"]])
+yes_text = _([[Flint's expression relaxes into one of relief. "Thank you so much! The rescue team will await an opening from a safe location in the vicinity of Doranthex. I will message you when we succeed in rescuing the stranded soldiers, and we can regroup at Sindbad.
 
-yes_text = _([["Great! We'll all meet you at {system}. Let's show those Dvaereds what we're made of!"]])
+"I would recommend a very small fighter that you can outrun any ships the Dvaereds throw at you. Being able to dodge their volleys of bullets and stay alive is a lot more important than actually destroying them, after all. Just keep harassing them by shooting whatever weapons you have and I'm sure the Dvaereds will get angry and send reinforcements in. Also, I know I said I couldn't guarantee backup, but I'll try to see if I can find others to join you. Your act of bravery might be contagious, you know? In any case, good luck, comrade!" Your mouth instinctively opens in surprise as you hear him refer to you as "comrade", then you smile and nod. Now to cause some mayhem.…]])
 
-no_text = _([[Flint shrugs. "Suit yourself. You'll be missing out, though. Let me know if you change your mind!"]])
+no_text = _([["OK, then. I understand. Let me know if you change your mind, OK?"]])
 
-pay_text = _([[You find Flint among a crowd and when he sees you, he gives you a high-five. "That was awesome!" he says. "Those Dvaereds didn't know what hit them! Glad to see how much you've grown, {player}. Hope to work with you again soon!" You give Flint a thumbs-up, then continue chatting for awhile before heading off.]])
+success_text = {}
+success_text[1] = _([[You receive a transmission. It's from Flint. "We got 'em out!" he exclaims. "Nice work! The Dvaereds were all thinned out thanks you you! We're all set, comrade; we'll meet you back at the base!"]])
 
-win_msg = _("Hahaha, yes! We got them all! Let's get out of here, {player}! See you at Sindbad!")
+pay_text = {}
+pay_text[1] = _([[You find Flint among a crowd and when he sees you, he approaches you with a warm smile and gives you a high-five. "We did it! We rescued all of them! You did a fantastic job. I can't possibly thank you enough." As the fact that you led the efforts to distract the Dvaereds becomes clear to the crowd, several voices speak up as the comrades you rescued thank you. After a celebration, you part ways as Flint wishes you good luck on your next mission.]])
 
-misn_title = _("Weak Point")
-misn_desc = _("You are joining Flint in on an effort to take advantage of fighting between Dvaered warlords and wipe out both sides.")
+misn_title = _("Diversion from Doranthex")
+misn_desc = _("You have been tasked with creating mayhem for Dvaered ships in the {system} system to distract the Dvaereds while an FLF rescue team helps some trapped soldiers escape from Doranthex.")
 
 npc_name = _("Flint")
 npc_desc = _("You see Flint and remember you never got a chance to thank him for teaching you about the Frontier's struggle. Perhaps you should do so.")
 
-osd_title = _("Weak Point")
-osd_desc = {}
-osd_desc[1] = _("Fly to the {system} system")
-osd_desc[2] = _("Destroy all Dvaereds present, taking advantage of the warlord conflict")
-osd_desc[3] = _("Return to FLF base")
-osd_desc["__save"] = true
-
-log_text = _([[You helped Flint on a mission to destroy the fleets of two warlords that were fighting each other. He complimented you on your performance and said he hopes to work with you again soon.]])
+log_text = _([[You helped Flint rescue stranded soldiers from Doranthex by by distracting the Dvaereds in another system.]])
 
 
 function create()
-   mispla, missys = planet.get("Thar")
+   missys = system.get("Tuoladis")
    if not misn.claim(missys) then
       misn.finish(false)
    end
 
-   asked = false
+   dv_attention_target = 10
+   credits = 250000
+   reputation = 2
 
    misn.setNPC(npc_name, "flf/unique/flint.png", npc_desc)
 end
 
 
 function accept()
-   local txt = ask_again_text
-
-   if not asked then
-      asked = true
-      txt = ask_text
-   end
-
-   if tk.yesno("", fmt.f(txt,
+   if tk.yesno("", fmt.f(approach_text,
             {player=player.name(), system=missys:name()})) then
-      tk.msg("", fmt.f(yes_text, {system=missys:name()}))
+      tk.msg("", yes_text)
 
       misn.accept()
 
-      lastsys = system.cur()
-      stage = 0
-      flfships = {}
-      dvships = {}
-
-      credits = 300000
-      reputation = 1
-
-      osd_desc[1] = fmt.f(osd_desc[1], {system=missys:name()})
+      osd_desc[1] = osd_desc[1]:format(missys:name())
       misn.osdCreate(osd_title, osd_desc)
-
       misn.setTitle(misn_title)
-      misn.setDesc(misn_desc)
+      misn.setDesc(fmt.f(misn_desc, {system=missys:name()}))
+      marker = misn.markerAdd(missys, "plot")
       misn.setReward(fmt.credits(credits))
 
-      marker = misn.markerAdd(missys, "high")
+      dv_attention = 0
+      job_done = false
 
-      hook.jumpout("jumpout")
       hook.enter("enter")
-      hook.land("land")
+      hook.jumpout("leave")
+      hook.land("leave")
    else
       tk.msg("", no_text)
       misn.finish()
@@ -125,29 +108,9 @@ function accept()
 end
 
 
-function jumpout()
-   lastsys = system.cur()
-end
-
-
-function enter()
-   if stage == 0 then
-      if system.cur() == missys then
-         pilot.clear()
-         pilot.toggleSpawn(false)
-         spawnFLF()
-         spawnDV()
-         misn.osdActive(2)
-      else
-         misn.osdActive(1)
-      end
-   end
-end
-
-
 function land()
-   if stage == 1 and planet.cur():faction() == faction.get("FLF") then
-      tk.msg("", fmt.f(pay_text, {player=player.name()}))
+   if planet.cur():faction() == faction.get("FLF") then
+      tk.msg("", pay_text[rnd.rnd(1, #pay_text)])
       player.pay(credits)
       flf_modCap(5)
       faction.get("FLF"):modPlayer(reputation)
@@ -155,121 +118,3 @@ function land()
       misn.finish(true)
    end
 end
-
-
-function pilot_attacked_dv(dvpilot, attacker)
-   if attacker ~= nil and attacker:faction() == faction.get("FLF") then
-      for i, p in ipairs(dvships) do
-         if p:exists() then
-            p:setHostile()
-         end
-      end
-
-      for i, p in ipairs(flfships) do
-         if p:exists() then
-            p:setVisible()
-         end
-      end
-   end
-end
-
-
-function pilot_death_dv(dvpilot)
-   local nalive = 0  
-   for i, p in ipairs(dvships) do
-      if p:exists() and p ~= dvpilot then
-         nalive = nalive + 1
-      end
-   end
-
-   if nalive <= 0 then
-      local messaged = false
-      for i, p in ipairs(flfships) do
-         if p:exists() then
-            -- Message player for end of mission
-            if not messaged then
-               messaged = true
-               p:comm(fmt.f(win_msg, {player=player.name()}), true)
-            end
-
-            local armor, shield = p:health()
-            p:setHealth(armor, shield, 0)
-            p:changeAI("flf")
-         end
-      end
-
-      stage = 1
-      misn.osdActive(3)
-      misn.markerMove(marker, system.get("Sigur"))
-      pilot.toggleSpawn(true)
-   end
-end
-
-
-function spawnFLF()
-   local origin = lastsys
-   if origin == system.cur then
-      origin = nil
-   end
-
-   flfships = fleet.add({4, 8, 8}, {"Pacifier", "Lancelot", "Vendetta"}, "FLF",
-         origin, {_("FLF Pacifier"), _("FLF Lancelot"), _("FLF Vendetta")},
-         {ai="flf_norun"})
-
-   -- Make Pacifiers no-death to ensure that Flint still lives.
-   for i, p in ipairs(flfships) do
-      p:setVisplayer()
-      if p:ship():nameRaw() == "Pacifier" or rnd.rnd() < 0.2 then
-         p:setNoDeath()
-      end
-   end
-end
-
-
-function spawnDV()
-   dvships = {}
-   local invsrc = vec2.new(0, 2700)
-
-   local f1 = faction.dynAdd("Dvaered", N_("Invaders"))
-   local f2 = faction.dynAdd("Dvaered", N_("Locals"))
-   f1:dynEnemy(f2)
-   f2:dynEnemy(f1)
-
-   local goda = pilot.add("Dvaered Goddard", f1, invsrc,
-         _("Invading Warlord"), {ai="dvaered_norun"})
-   local attackers = fleet.add({1, 2, 6, 8},
-         {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
-            "Dvaered Vendetta"},
-         f1, invsrc, _("Invading Warlord Force"), {ai="dvaered_norun"}, goda)
-
-   for i, p in ipairs(attackers) do
-      dvships[#dvships + 1] = p
-   end
-
-   local godd = pilot.add("Dvaered Goddard", f2, mispla, _("Local Warlord"),
-         {ai="dvaered_norun"})
-   local defenders = fleet.add({1, 2, 4, 4},
-         {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
-            "Dvaered Vendetta"},
-         f2, mispla, _("Local Warlord Force"), {ai="dvaered_norun"}, godd)
-
-   for i, p in ipairs(defenders) do
-      dvships[#dvships + 1] = p
-   end
-
-   for i, p in ipairs(dvships) do
-      p:setVisible()
-      p:memory().nosteal = true
-
-      hook.pilot(p, "attacked", "pilot_attacked_dv")
-      hook.pilot(p, "death", "pilot_death_dv")
-
-      -- Treat landing and jumping as death so the mission doesn't end
-      -- up hanging if something goes wrong. These should never get
-      -- triggered, though, because the AI should be set to the norun
-      -- AI.
-      hook.pilot(p, "jump", "pilot_death_dv")
-      hook.pilot(p, "land", "pilot_death_dv")
-   end
-end
-
