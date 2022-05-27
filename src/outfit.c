@@ -701,7 +701,6 @@ double outfit_range( const Outfit* o )
 double outfit_speed( const Outfit* o )
 {
    Outfit *amm;
-   double t;
    if (outfit_isBolt(o)) return o->u.blt.speed;
    else if (outfit_isAmmo(o))
       return o->u.amm.speed;
