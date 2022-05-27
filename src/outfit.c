@@ -1698,9 +1698,9 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
    MELEMENT(temp->u.amm.spfx_shield==-1,"spfx_shield");
    MELEMENT(temp->u.amm.spfx_armour==-1,"spfx_armour");
    MELEMENT((sound_disabled!=0) && (temp->u.amm.sound<0),"sound");
-   /* MELEMENT(temp->u.amm.thrust==0,"thrust"); */
    /* Unguided missiles don't need everything */
    if (outfit_isSeeker(temp)) {
+      MELEMENT(temp->u.amm.thrust==0,"thrust");
       MELEMENT(temp->u.amm.turn==0,"turn");
    }
    MELEMENT(temp->u.amm.speed==0,"speed");
