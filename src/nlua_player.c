@@ -1251,6 +1251,7 @@ static int playerL_shipOutfitRm( lua_State *L )
    }
 
    matched = 0;
+   removed = 0;
    if (lua_isstring(L, 2)) {
       outfit = luaL_checkstring(L, 2);
 

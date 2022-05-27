@@ -551,7 +551,6 @@ static void map_system_array_update( unsigned int wid, char* str ) {
    int i, l;
    Outfit *outfit;
    Ship *ship;
-   double mass;
    char buf_price[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT];
 
    i = toolkit_getImageArrayPos( wid, str );
@@ -572,11 +571,6 @@ static void map_system_array_update( unsigned int wid, char* str ) {
       else
          snprintf( buf_license, sizeof( buf_license ), "#r%s#0", _(outfit->license) );
 
-      mass = outfit->mass;
-      if ( (outfit_isLauncher(outfit) || outfit_isFighterBay(outfit)) &&
-          (outfit_ammo(outfit) != NULL) ) {
-         mass += outfit_amount( outfit ) * outfit_ammo( outfit )->mass;
-      }
       snprintf(infobuf, sizeof(infobuf),
                  _("%s\n\n"
                    "#nOwned:#0 %d\n"

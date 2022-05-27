@@ -1436,7 +1436,7 @@ void player_targetAsteroidSet( int field, int id )
                            at->quantity[i]),
                         _(com->name), at->quantity[i]);
                }
-               player_message(buf);
+               player_message("%s", buf);
             }
             else
                player_message(_("Asteroid targeted; composition: empty"));
