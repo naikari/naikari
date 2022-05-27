@@ -703,16 +703,8 @@ double outfit_speed( const Outfit* o )
    Outfit *amm;
    double t;
    if (outfit_isBolt(o)) return o->u.blt.speed;
-   else if (outfit_isAmmo(o)) {
-      if (o->u.amm.thrust == 0)
-         return o->u.amm.speed;
-      else {     /*Gets the average speed*/
-         t = o->u.amm.speed / o->u.amm.thrust; /*time to reach max speed*/
-         if (t < o->u.amm.duration)
-            return ( o->u.amm.thrust * t * t / 2 + o->u.amm.speed * ( o->u.amm.duration - t ) ) / o->u.amm.duration;
-         else return o->u.amm.thrust * o->u.amm.duration/2;
-      }
-   }
+   else if (outfit_isAmmo(o))
+      return o->u.amm.speed;
    else if (outfit_isLauncher(o)) {
       amm = outfit_ammo(o);
       if (amm != NULL)
