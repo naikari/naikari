@@ -382,11 +382,9 @@ static void think_seeker( Weapon* w, const double dt )
    }
 
    /* Limit speed here */
-   w->real_vel = MIN( w->outfit->u.amm.speed, w->real_vel + w->outfit->u.amm.thrust*dt );
-   vect_pset( &w->solid->vel, /* ewtrack * */ w->real_vel, w->solid->dir );
-
-   /* Modulate max speed. */
-   //w->solid->speed_max = w->outfit->u.amm.speed * ewtrack;
+   w->real_vel = MIN(w->outfit->u.amm.speed,
+         w->real_vel + w->outfit->u.amm.thrust*dt);
+   vect_pset(&w->solid->vel, w->real_vel, w->solid->dir);
 }
 
 
@@ -1548,11 +1546,10 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    else if (rdir >= 2.*M_PI)
       rdir -= 2.*M_PI;
 
-   /* If thrust is 0. we assume it starts out at speed. */
+   /* Start out at max speed. */
    v = *vel;
-   if (ammo->u.amm.thrust == 0.)
-      vect_cadd( &v, cos(rdir) * w->outfit->u.amm.speed,
-            sin(rdir) * w->outfit->u.amm.speed );
+   vect_cadd(&v, cos(rdir) * w->outfit->u.amm.speed,
+         sin(rdir) * w->outfit->u.amm.speed);
    w->real_vel = VMOD(v);
 
    /* Set up ammo details. */
