@@ -79,20 +79,33 @@ function merchant()
 end
 
 function hailme()
-    trader:hailPlayer()
-    hailhook = hook.pilot(trader, "hail", "hail")
+   if not trader:exists() then
+      return
+   end
+
+   trader:hailPlayer()
+   hailhook = hook.pilot(trader, "hail", "hail")
 end
 
-function hail()
+function hail(p)
    hook.rm(hailhook)
+
+   if p:hostile() then
+      return
+   end
+
    tk.msg("", fmt.f(explain_text,
          {system=source_system:name(), planet=source_planet:name()}))
    player.commClose()
 end
 
 function hailmeagain()
-    warrior:hailPlayer()
-    hailhook = hook.pilot(warrior, "hail", "hailagain")
+   hook.rm(hailhook)
+   if warrior == nil then
+      return
+   end
+   warrior:hailPlayer()
+   hailhook = hook.pilot(warrior, "hail", "hailagain")
 end
 
 function hailagain()
@@ -186,13 +199,20 @@ function startBattle()
             p:memory().aggressive = true
          end
       end
-      getLeader(attackers):control(false)
+      local attleader = getLeader(attackers)
+      if attleader ~= nil and attleader:exists() then
+         attleader:control(false)
+      end
+
       for i, p in ipairs(defenders) do
          if p:exists() then
             p:memory().aggressive = true
          end
       end
-      getLeader(defenders):control(false)
+      local defleader = getLeader(defenders)
+      if defleader ~= nil and defleader:exists() then
+         defleader:control(false)
+      end
       inForm = false
    end
 end
@@ -235,19 +255,24 @@ function attackerDeath(victim, attacker)
    if batInProcess then
       attdeath = attdeath + 1
 
-      if attacker == player.pilot() or attacker:leader() == player.pilot() then
+      if attacker ~= nil
+            and (attacker == player.pilot()
+               or attacker:leader() == player.pilot()) then
          attkilled = attkilled + victim:stats().mass
       end
 
       if attdeath >= attnum then  --all the enemies are dead
          local lead = getLeader(defenders)
+         if lead == nil then
+            return
+         end
+
          lead:control()
          lead:land(source_planet)
          batInProcess = false -- Battle ended
 
          --Time to get rewarded
-         if side == "defender"
-               and faction.get("Dvaered"):playerStanding() >= 0 then
+         if side == "defender" and playerIsFriendly(defenders) then
             warrior = chooseInList(defenders)
             computeReward(true, attkilled)
             hook.timer(1.0, "hailmeagain")
@@ -260,19 +285,24 @@ function defenderDeath(victim, attacker)
    if batInProcess then
       defdeath = defdeath + 1
 
-      if attacker == player.pilot() or attacker:leader() == player.pilot() then
+      if attacker ~= nil
+            and (attacker == player.pilot()
+               or attacker:leader() == player.pilot()) then
          defkilled = defkilled + victim:stats().mass
       end
 
       if defdeath >= defnum then  -- all the defenders died : the winner lands on his planet
          local lead = getLeader(attackers)
+         if lead == nil then
+            return
+         end
+
          lead:control()
          lead:land(source_planet)
          batInProcess = false -- Battle ended
 
          --Time to get rewarded
-         if side == "attacker"
-               and faction.get("Dvaered"):playerStanding() >= 0 then
+         if side == "attacker" and playerIsFriendly(attackers) then
             warrior = chooseInList(attackers)
             computeReward(true, defkilled)
             hook.timer(1.0, "hailmeagain")
@@ -294,6 +324,10 @@ end
 -- Returns leader of fleet
 function getLeader(list)
    local p = chooseInList(list)
+   if p == nil then
+      return nil
+   end
+
    if p:leader() == nil or not p:leader():exists() then
       return p
    else
@@ -301,13 +335,29 @@ function getLeader(list)
    end
 end
 
---chooses the first non nil pilot in a list
+-- Chooses the first alive pilot in a list, or nil if all are dead
 function chooseInList(list)
    for i, p in ipairs(list) do
-      if p ~= nil and p:exists() then
+      if p:exists() then
          return p
       end
    end
+   return nil
+end
+
+-- Returns true if player is friendly to the fleet, false otherwise
+function playerIsFriendly(list)
+   if faction.get("Dvaered"):playerStanding() < 0 then
+      return false
+   end
+
+   for i, p in ipairs(list) do
+      if p:exists() and p:hostile() then
+         return false
+      end
+   end
+
+   return true
 end
 
 --Arranges a list of pilot with their mass
