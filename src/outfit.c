@@ -1230,9 +1230,10 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
     */
    C = pilot_heatCalcOutfitC(temp);
    area = pilot_heatCalcOutfitArea(temp);
-   temp->u.blt.heat     = ((800.-CONST_SPACE_STAR_TEMP)*C +
-            STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area)) /
-         temp->u.blt.heatup * temp->u.blt.delay;
+   temp->u.blt.heat = ((800.-CONST_SPACE_STAR_TEMP)*C
+            + STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area))
+         * temp->u.blt.delay
+         / temp->u.blt.heatup;
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
@@ -1426,9 +1427,9 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    temp->u.bem.turn     *= M_PI/180.; /* Convert to rad/s. */
    C = pilot_heatCalcOutfitC(temp);
    area = pilot_heatCalcOutfitArea(temp);
-   temp->u.bem.heat     = ((800.-CONST_SPACE_STAR_TEMP)*C +
-            STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area)) /
-         temp->u.bem.heatup * (temp->u.bem.delay+temp->u.bem.warmup+temp->u.bem.duration) / temp->u.bem.delay;
+   temp->u.bem.heat = ((800.-CONST_SPACE_STAR_TEMP)*C
+            + STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area))
+         / temp->u.bem.heatup;
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
@@ -1912,9 +1913,9 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
    temp->u.afb.speed  /= 100.;
    C = pilot_heatCalcOutfitC(temp);
    area = pilot_heatCalcOutfitArea(temp);
-   temp->u.afb.heat    = ((800.-CONST_SPACE_STAR_TEMP)*C +
-            STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area)) /
-         temp->u.afb.heatup;
+   temp->u.afb.heat = ((800.-CONST_SPACE_STAR_TEMP)*C
+            + STEEL_HEAT_CONDUCTIVITY * ((800-CONST_SPACE_STAR_TEMP) * area))
+         / temp->u.afb.heatup;
 
    /* Set default outfit size if necessary. */
    if (temp->slot.size == OUTFIT_SLOT_SIZE_NA)
