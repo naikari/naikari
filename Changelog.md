@@ -43,6 +43,14 @@
 * Changed the story context of the first FLF diversion mission; it is
   now a diversion to rescue FLF soldiers trapped in a Dvaered system.
 * Added several new components for randomly generated pilot names.
+* Mace rockets no longer have thrust, and rockets with thrust no longer
+  start at 0 speed. This change was made because the calculations the
+  game made for range were not even close when trying to account for the
+  acceleration component (a problem that has existed for many years in
+  Naev but only became a problem because of mace rockets' reduced
+  range). Thrust is now used solely for guided missiles.
+* Removed the planet named "Sheik Hall" since it has no gameplay value
+  and its name sounds uncomfortably similar to a nazi slogan.
 
 ## 0.2.1
 

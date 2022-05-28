@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-04-29 18:47-0400\n"
+"POT-Creation-Date: 2022-05-27 21:54-0400\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -11724,8 +11724,8 @@ msgstr ""
 #: src/land_outfits.c:360 src/land_outfits.c:388 src/land_outfits.c:632
 #: src/land_shipyard.c:126 src/land_shipyard.c:195 src/land_trade.c:85
 #: src/land_trade.c:87 src/land_trade.c:121 src/load.c:370 src/load.c:415
-#: src/load.c:459 src/map.c:664 src/map.c:728 src/map.c:1952 src/map_find.c:699
-#: src/map_system.c:568 src/map_system.c:596 src/pilot_outfit.c:904
+#: src/load.c:459 src/map.c:664 src/map.c:728 src/map.c:1945 src/map_find.c:699
+#: src/map_system.c:567 src/map_system.c:590 src/pilot_outfit.c:904
 #, c-format
 msgid "None"
 msgstr "Keine"
@@ -12823,39 +12823,6 @@ msgstr ""
 "Station ein beliebtes Ziel für Angriffe der FLF, und trotz der vielen "
 "zusätzlichen Sicherheitsmaßnahmen, die in den vergangenen Zyklen umgesetzt "
 "wurden, häufen sich die Verluste weiter an."
-
-#: dat/assets/sheik_hall.xml:2
-msgid "Sheik Hall"
-msgstr "Scheik-Hall"
-
-#: dat/assets/sheik_hall.xml:26
-msgid ""
-"Since well before the rise of House Dvaered, Sheik Hall has been an "
-"important exporter of precious metals and valuable minerals. The people on "
-"this planet make their living by mining those resources, and crafting "
-"jewellery out of them. Though the planet's raw output isn't very high by any "
-"standard, the amount of money involved is on par with a medium-sized mining "
-"colony."
-msgstr ""
-"Schon lange vor dem Aufstieg von Haus Dvaered war Scheik-Hall ein wichtiger "
-"Exporteur von Edelmetallen und wertvollen Mineralien. Die Menschen auf "
-"diesem Planeten verdienen ihren Lebensunterhalt mit dem Abbau dieser "
-"Ressourcen und der Herstellung von Schmuck daraus. Obwohl die Rohproduktion "
-"des Planeten in keinem Vergleich sehr hoch ist, entspricht die Menge an Geld "
-"einer mittelgroßen Bergbaukolonie."
-
-#: dat/assets/sheik_hall.xml:27
-msgid ""
-"The bar is ornately decorated with all that glitters and gleams. Of course, "
-"everything you can see here is a replica, as the real valuables are all "
-"shipped offworld. Nevertheless, it's attractive to pretend that you're "
-"surrounded by riches for a moment."
-msgstr ""
-"Die Kneipe ist reich verziert mit allem, was glitzert und schimmert. "
-"Natürlich ist alles, was man hier sehen kann, eine Nachbildung, da die "
-"echten Wertgegenstände alle in die Galaxie verschickt werden. Trotzdem ist "
-"es attraktiv, für einen Moment so zu tun, als wäre man von Reichtümern "
-"umgeben."
 
 #: dat/assets/shiarta.xml:2
 msgid "Shiarta"
@@ -18137,7 +18104,7 @@ msgstr "Front-Ahne"
 #: dat/missions/dvaered/antiflf/dv_antiflf03.lua:364
 #: dat/missions/empire/shipping/es00.lua:174
 #: dat/missions/empire/shipping/es02.lua:175
-#: dat/missions/flf/hero/flf_hero01.lua:216
+#: dat/missions/flf/dvk/flf_dvk01.lua:213
 #: dat/missions/flf/prelude/flf_pre01.lua:148
 msgid "FLF Pacifier"
 msgstr "FLF Befrieder"
@@ -18182,9 +18149,9 @@ msgstr "FLF Befrieder"
 #: dat/missions/empire/shipping/es00.lua:174
 #: dat/missions/empire/shipping/es02.lua:174
 #: dat/missions/empire/shipping/es02.lua:237
+#: dat/missions/flf/dvk/flf_dvk01.lua:213
 #: dat/missions/flf/dvk/flf_dvk03.lua:195
 #: dat/missions/flf/dvk/flf_dvk06.lua:172 dat/missions/flf/flf_patrol.lua:271
-#: dat/missions/flf/hero/flf_hero01.lua:216
 #: dat/missions/flf/prelude/flf_pre01.lua:145
 #: dat/missions/flf/prelude/flf_pre03.lua:312
 msgid "FLF Vendetta"
@@ -18258,8 +18225,8 @@ msgstr "FLF Vendetta"
 #: dat/missions/empire/shipping/es00.lua:174
 #: dat/missions/empire/shipping/es02.lua:174
 #: dat/missions/empire/shipping/es02.lua:237
+#: dat/missions/flf/dvk/flf_dvk01.lua:213
 #: dat/missions/flf/dvk/flf_dvk06.lua:172 dat/missions/flf/flf_patrol.lua:268
-#: dat/missions/flf/hero/flf_hero01.lua:216
 #: dat/missions/flf/prelude/flf_pre03.lua:312
 msgid "FLF Lancelot"
 msgstr "FLF Lancelot"
@@ -18772,7 +18739,7 @@ msgstr ""
 "nachlassen, und er wird sich schließlich ganz abschalten."
 
 #: dat/outfits/activated/generic_afterburner.xml:10
-#: dat/outfits/activated/hellburner.xml:10 src/outfit.c:817 src/outfit.c:846
+#: dat/outfits/activated/hellburner.xml:10 src/outfit.c:799 src/outfit.c:828
 msgid "Afterburner"
 msgstr "Nachbrenner"
 
@@ -24417,7 +24384,7 @@ msgstr "Vendetta"
 #: dat/ships/proteron_derivative.xml:8 dat/ships/shark.xml:7
 #: dat/ships/sirius_fidelity.xml:8 dat/ships/soromid_brigand.xml:8
 #: dat/ships/soromid_reaver.xml:8 dat/ships/thurion_ingenuity.xml:8
-#: dat/ships/vendetta.xml:7 src/outfit.c:819 src/outfit.c:848
+#: dat/ships/vendetta.xml:7 src/outfit.c:801 src/outfit.c:830
 msgid "Fighter"
 msgstr "Kämpfer"
 
@@ -25620,7 +25587,7 @@ msgstr ""
 "Kapazität des Gehirns im Vergleich zu synthetischen Konstrukten "
 "auszugleichen."
 
-#: dat/slots.xml:44 src/outfit.c:818 src/outfit.c:847
+#: dat/slots.xml:44 src/outfit.c:800 src/outfit.c:829
 msgid "Fighter Bay"
 msgstr "Kämpferbucht"
 
@@ -29309,38 +29276,38 @@ msgstr ""
 "„Hallo, Kapitän!“, sagt ein Dvaered-Offizier. „Sie haben uns in diesem Kampf "
 "geholfen. Ich bin autorisiert, Ihnen %s als Belohnung zu geben.“"
 
-#. Make Pacifiers no-death to ensure that Flint still lives.
-#: dat/events/dvaered/warlords_battle.lua:106
-#: dat/missions/flf/hero/flf_hero01.lua:233
+#. Make Pacifiers no-death to ensure that some wingmates still live.
+#: dat/events/dvaered/warlords_battle.lua:119
+#: dat/missions/flf/dvk/flf_dvk01.lua:230
 msgid "Invaders"
 msgstr ""
 
-#: dat/events/dvaered/warlords_battle.lua:107
-#: dat/missions/flf/hero/flf_hero01.lua:234
+#: dat/events/dvaered/warlords_battle.lua:120
+#: dat/missions/flf/dvk/flf_dvk01.lua:231
 #, fuzzy
 msgid "Locals"
 msgstr "Lokale Karte"
 
-#: dat/events/dvaered/warlords_battle.lua:114
-#: dat/missions/flf/hero/flf_hero01.lua:239
+#: dat/events/dvaered/warlords_battle.lua:127
+#: dat/missions/flf/dvk/flf_dvk01.lua:236
 #, fuzzy
 msgid "Invading Warlord"
 msgstr "Dvaered-Kriegsherrn"
 
-#: dat/events/dvaered/warlords_battle.lua:119
-#: dat/missions/flf/hero/flf_hero01.lua:243
+#: dat/events/dvaered/warlords_battle.lua:132
+#: dat/missions/flf/dvk/flf_dvk01.lua:240
 msgid "Invading Warlord Force"
 msgstr ""
 
 #. mass of the player's victims
-#: dat/events/dvaered/warlords_battle.lua:141
-#: dat/missions/flf/hero/flf_hero01.lua:249
+#: dat/events/dvaered/warlords_battle.lua:154
+#: dat/missions/flf/dvk/flf_dvk01.lua:246
 #, fuzzy
 msgid "Local Warlord"
 msgstr "Kriegsherrn"
 
-#: dat/events/dvaered/warlords_battle.lua:146
-#: dat/missions/flf/hero/flf_hero01.lua:254
+#: dat/events/dvaered/warlords_battle.lua:159
+#: dat/missions/flf/dvk/flf_dvk01.lua:251
 msgid "Local Warlord Force"
 msgstr ""
 
@@ -29356,7 +29323,8 @@ msgstr ""
 #. Time to get rewarded
 #. Computes the reward
 #. Returns leader of fleet
-#. chooses the first non nil pilot in a list
+#. Chooses the first alive pilot in a list, or nil if all are dead
+#. Returns true if player is friendly to the fleet, false otherwise
 #. Arranges a list of pilot with their mass
 #. Processing of the equality case
 #.
@@ -35091,8 +35059,8 @@ msgstr "Keine Spawnfunktion gefunden"
 #: dat/gui/slim.lua:963 dat/missions/shadow/darkshadow.lua:143
 #: dat/missions/shadow/shadowvigil.lua:89 src/gui.c:1664 src/map.c:530
 #: src/map.c:536 src/map.c:542 src/map.c:548 src/map.c:554 src/map.c:560
-#: src/map.c:1949 src/map_overlay.c:159 src/outfit.c:284 src/outfit.c:304
-#: src/outfit.c:853 src/player_autonav.c:236
+#: src/map.c:1942 src/map_overlay.c:159 src/outfit.c:284 src/outfit.c:304
+#: src/outfit.c:835 src/player_autonav.c:236
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -36461,8 +36429,8 @@ msgstr "Lande auf %s im „%s“-System."
 #. Change objective
 #: dat/missions/baron/baron_baron.lua:92
 #: dat/missions/baron/baron_prince.lua:129
-#: dat/missions/flf/dvk/flf_dvk02.lua:100
-#: dat/missions/flf/hero/flf_hero01.lua:67 dat/missions/neutral/teenager.lua:61
+#: dat/missions/flf/dvk/flf_dvk01.lua:64 dat/missions/flf/dvk/flf_dvk02.lua:100
+#: dat/missions/neutral/teenager.lua:61
 #: dat/missions/pirate/ship_stealing.lua:194
 #: dat/missions/pirate/ship_stealing.lua:532
 #, fuzzy
@@ -38923,7 +38891,7 @@ msgstr "VIP"
 #. If aborted you'll also leave the VIP to fate. (A.)
 #.
 #. <?xml version='1.0' encoding='utf8'?>
-#. <mission name="Diversion from Doranthex">
+#. <mission name="FLF Weak Point">
 #. <flags>
 #. <unique />
 #. </flags>
@@ -38942,7 +38910,7 @@ msgstr "VIP"
 #. --
 #.
 #.
-#. Diversion from Doranthex
+#. Weak Point
 #.
 #. This program is free software: you can redistribute it and/or modify
 #. it under the terms of the GNU General Public License as published by
@@ -38959,119 +38927,94 @@ msgstr "VIP"
 #.
 #. --
 #: dat/missions/flf/dvk/flf_dvk01.lua:44
-#, fuzzy
 msgid ""
 "Benito smiles as you approach her. \"Hello again, {player}!\" she says. \"I "
-"have another mission for you, should you choose to accept it. We're trying "
-"to evacuate some of ours stranded in Doranthex, a Dvaered-owned system. "
-"Security is tight and we just can't find an opening. I need someone to "
-"distract the Dvaered forces so we can give them more of a fighting chance. "
-"You'll basically need to travel to the {system} system and wreak havoc there "
-"so that the Dvaereds go after you and not the soldiers trying to escape "
-"Doranthex.\n"
-"\n"
-"\"Of course, this will be a highly dangerous mission, and I can't guarantee "
-"any backup for you. You will be paid substantially, however, and this will "
-"surely earn you more respect among our ranks. Would you be interested?\""
+"have another mission for you, should you choose to accept it. See, we've "
+"noticed that one of those Dvaered warlords is about to attack another "
+"Dvaered warlord in the {system} system, so we're going to take advantage of "
+"the situation and obliterate them in the chaos! These two warlords are "
+"particularly vocal about wanting to invade the Frontier, so eliminating both "
+"of them should strike a blow to invasionist sentiment, at least temporarily. "
+"Would you be interested in joining the operation?\""
 msgstr ""
-"Benito lächelt, als du dich ihr näherst. „Hallo nochmal, %s!“ sagt sie. „Ich "
-"habe eine andere Mission für dich, solltest du sie annehmen wollen. Siehst "
-"du, wir haben … eine wichtige verdeckte Operation, die wir in Raelid starten "
-"müssen. Ich will dich nicht mit den Details dieser Operation langweilen, "
-"aber ich brauche jemanden, der die Dvaered-Streitkräfte ablenkt, während wir "
-"es tun. Du musst im Grunde genommen in das „%s“-System reisen und dort Chaos "
-"anrichten, damit die Dvaered hinter dir her sind und nicht die Soldaten, die "
-"die Operation durchführen.\n"
-"    Natürlich wird dies eine sehr gefährliche Mission sein und ich kann "
-"keine Unterstützung für dich garantieren. Du wirst jedoch erheblich bezahlt "
-"werden, und das wird dir sicherlich mehr Respekt in unseren Reihen "
-"einbringen. Wärst du interessiert?“"
+
+#: dat/missions/flf/dvk/flf_dvk01.lua:46
+msgid ""
+"\"Oh, {player}, it's you again! Well, have you changed your mind? Would you "
+"like to help obliterate those Dvaered warlord fleets in the {system} system?"
+"\""
+msgstr ""
 
 #: dat/missions/flf/dvk/flf_dvk01.lua:48
-#, fuzzy
 msgid ""
-"\"Great! The rescue team will await an opening from a safe location in the "
-"vicinity of Doranthex. I will message you when they succeed in rescuing the "
-"stranded soldiers. I would recommend a very small fighter for this mission "
-"so that you can outrun any ships the Dvaereds throw at you. Good luck, and "
-"try not to get yourself killed!\" She winks, and you laugh both nervously "
-"and in amusement at the same time. Now to cause some mayhem.…"
+"\"Fantastic! The rest of the fleet will meet you in the {system} system. Try "
+"not to get yourself killed!\" She winks, and you let out a slightly nervous "
+"laugh."
 msgstr ""
-"„Großartig! Das Team, das für die Operation verantwortlich ist, wird sich in "
-"der Nähe von Raelid verstecken, bis sich dank deiner Bemühungen für sie eine "
-"Möglichkeit eröffnet. Ich werde dir eine Nachricht zukommen lassen, wenn sie "
-"Erfolg haben. Viel Glück, und versuche, dich nicht umbringen zu lassen!“ Sie "
-"grinst, und du grinst zurück. Und jetzt geht’s darum, etwas Chaos "
-"anzurichten …"
 
 #: dat/missions/flf/dvk/flf_dvk01.lua:50
-msgid "\"OK, then. Feel free to come back later if you change your mind.\""
-msgstr "„OK. Komm zu mir später zurück, wenn du deine Meinung änderst.“"
+#, fuzzy
+msgid "\"OK, I understand. Let me know if you change your mind.\""
+msgstr "„Ah, OK. Lass mich wissen, wenn du deine Meinung geändert hast.“"
 
-#: dat/missions/flf/dvk/flf_dvk01.lua:53
+#: dat/missions/flf/dvk/flf_dvk01.lua:52
 msgid ""
-"You receive a transmission. It's from Benito. \"Operation successful!\" she "
-"says. \"You should get back to the base now before you get killed! I'll be "
-"waiting for you there.\""
+"As you dock, you see that Benito is already waiting for you with a warm "
+"smile. She gives you a thumbs-up as you approach. \"You did a fine job,\" "
+"she says. \"Those Dvaereds didn't know what hit them! Glad to see how much "
+"you've grown, {player}. I look forward to working with you again soon.\" You "
+"give Benito a thumbs-up in return, then she excuses herself to attend to "
+"other matters while you meet up with the others you fought with and "
+"celebrate the victory."
 msgstr ""
-"Du erhältst eine Übertragung. Sie ist von Benito. „Operation erfolgreich!“, "
-"sagt sie. „Du solltest jetzt zur Basis zurückkehren, bevor du getötet wirst! "
-"Ich werde dort auf dich warten.“"
 
-#: dat/missions/flf/dvk/flf_dvk01.lua:56
+#: dat/missions/flf/dvk/flf_dvk01.lua:54
 msgid ""
-"As you dock the station, Benito approaches you with a smile. \"Thank you for "
-"your help,\" she says. \"The mission was a rousing success! What we've "
-"accomplished will greatly help our efforts against the Dvaereds in the "
-"future.\" She hands you a credit chip. \"That's your payment. Until next "
-"time!\" Benito sees herself out as a number of additional FLF soldiers "
-"congratulate you. It occurs to you that you never learned what the mission "
-"actually was. Perhaps you will find out some other time."
+"Hahaha, yes! We got them all! Let's get out of here, {player}! See you at "
+"Sindbad!"
 msgstr ""
-"Als du an der Station andockst, kommt Benito mit einem Lächeln auf dich zu. "
-"„Danke für deine Hilfe.“, sagt sie. „Die Mission war ein schlagender Erfolg! "
-"Was wir erreicht haben, wird unseren Bemühungen gegen die Dvaered in der "
-"Zukunft sehr helfen.“. Sie überreicht dir einen Credit-Jeton. „Dies ist "
-"deine Bezahlung. Bis zum nächsten Mal!“. Benito geht hinaus, während dir "
-"einige FLF-Soldaten gratulieren. Es fällt dir auf, dass du nie erfahren "
-"hast, was die Mission eigentlich war. Vielleicht wirst du es ein anderes Mal "
-"herausfinden."
 
-#: dat/missions/flf/dvk/flf_dvk01.lua:58
-msgid "Diversion from Raelid"
-msgstr "Ablenkung von Raelid"
+#: dat/missions/flf/dvk/flf_dvk01.lua:56 dat/missions/flf/dvk/flf_dvk01.lua:62
+#, fuzzy
+msgid "Weak Point"
+msgstr "Patrouillenpunkt"
 
-#: dat/missions/flf/dvk/flf_dvk01.lua:59
-#, lua-format
+#: dat/missions/flf/dvk/flf_dvk01.lua:57
 msgid ""
-"A covert operation is being conducted in Raelid. You are to create a "
-"diversion from this operation by wreaking havoc in the nearby %s system."
+"You are joining and FLF fleet in on an effort to take advantage of fighting "
+"between Dvaered warlords and wipe out both sides."
 msgstr ""
-"In Raelid wird eine verdeckte Operation durchgeführt. Du sollst von dieser "
-"Operation ablenken, indem du im nahegelegenen „%s“-System Chaos anrichtest."
 
-#: dat/missions/flf/dvk/flf_dvk01.lua:60
-msgid "Substantial pay and a great amount of respect"
-msgstr "Großzügige Bezahlung und sehr viel Respekt"
-
-#: dat/missions/flf/dvk/flf_dvk01.lua:62 dat/missions/flf/dvk/flf_dvk02.lua:95
+#: dat/missions/flf/dvk/flf_dvk01.lua:59 dat/missions/flf/dvk/flf_dvk02.lua:95
 #: dat/missions/flf/dvk/flf_dvk03.lua:74 dat/missions/flf/dvk/flf_dvk06.lua:65
 msgid "Benito"
 msgstr "Benito"
 
-#: dat/missions/flf/dvk/flf_dvk01.lua:63
+#: dat/missions/flf/dvk/flf_dvk01.lua:60
 msgid "Benito seems to want to speak with you."
 msgstr "Benito scheint mit dir reden zu wollen."
 
 #: dat/missions/flf/dvk/flf_dvk01.lua:65
-#, fuzzy
-msgid ""
-"You helped the FLF rescue stranded soldiers from Doranthex by by distracting "
-"the Dvaereds in another system."
+msgid "Destroy all Dvaereds present, taking advantage of the warlord conflict"
 msgstr ""
-"Du hast der FLF geholfen, eine Art Operation in Raelid durchzuführen, indem "
-"du die Dvaered in einem anderen System abgelenkt hast."
 
+#: dat/missions/flf/dvk/flf_dvk01.lua:66 dat/missions/flf/dvk/flf_dvk02.lua:219
+#: dat/missions/flf/dvk/flf_dvk03.lua:82 dat/missions/flf/dvk/flf_dvk06.lua:73
+#: dat/missions/flf/flf_diversion.lua:56 dat/missions/flf/flf_empatrol.lua:50
+#: dat/missions/flf/flf_patrol.lua:59
+msgid "Return to FLF base"
+msgstr "Kehre zur FLF-Basis zurück"
+
+#: dat/missions/flf/dvk/flf_dvk01.lua:69
+msgid ""
+"You participated in a mission to destroy the fleets of two warlords that "
+"were fighting each other."
+msgstr ""
+
+#. Treat landing and jumping as death so the mission doesn't end
+#. up hanging if something goes wrong. These should never get
+#. triggered, though, because the AI should be set to the norun
+#. AI.
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <mission name="FLF Pirate Alliance">
@@ -39332,13 +39275,6 @@ msgid ""
 "contemporaries could benefit from working together with the FLF if they "
 "don't misbehave."
 msgstr ""
-
-#: dat/missions/flf/dvk/flf_dvk02.lua:219 dat/missions/flf/dvk/flf_dvk03.lua:82
-#: dat/missions/flf/dvk/flf_dvk06.lua:73 dat/missions/flf/flf_diversion.lua:56
-#: dat/missions/flf/flf_empatrol.lua:50 dat/missions/flf/flf_patrol.lua:59
-#: dat/missions/flf/hero/flf_hero01.lua:69
-msgid "Return to FLF base"
-msgstr "Kehre zur FLF-Basis zurück"
 
 #.
 #. <?xml version='1.0' encoding='utf8'?>
@@ -40182,7 +40118,7 @@ msgstr " Eine Goddard ist unter ihnen, also musst du sehr vorsichtig vorgehen."
 
 #.
 #. <?xml version='1.0' encoding='utf8'?>
-#. <mission name="FLF Weak Point">
+#. <mission name="Diversion from Doranthex">
 #. <flags>
 #. <unique />
 #. </flags>
@@ -40202,7 +40138,7 @@ msgstr " Eine Goddard ist unter ihnen, also musst du sehr vorsichtig vorgehen."
 #. --
 #.
 #.
-#. Weak Point
+#. Diversion from Doranthex
 #.
 #. This program is free software: you can redistribute it and/or modify
 #. it under the terms of the GNU General Public License as published by
@@ -40220,95 +40156,98 @@ msgstr " Eine Goddard ist unter ihnen, also musst du sehr vorsichtig vorgehen."
 #. --
 #: dat/missions/flf/hero/flf_hero01.lua:45
 msgid ""
-"You approach Flint and he looks at you with faint surprise, then grins "
-"slightly. \"Well, if it isn't {player}! I see you've made the right choice. "
-"I heard about your antics with those Dvaereds that ambushed you. Good on you "
-"for making the right call! We of course would've obliterated you like the "
-"rest of them if you'd taken the Dvaereds' side.\" He winks, and you laugh "
-"somewhat nervously.\n"
+"You approach Flint and he looks at you with faint surprise. \"Oh, {player}! "
+"I see you've made the right choice. I heard about your antics with those "
+"Dvaereds that ambushed you. Good on you for making the right call! We of "
+"course would've obliterated you like the rest of them if you'd taken the "
+"Dvaereds' side.\" He grins and winks, prompting you to laugh somewhat "
+"nervously.\n"
 "\n"
-"\"Speaking of,\" Flint continues, \"maybe you could join me for a bit of a "
-"mission I'm about to go on! See, we've noticed that one of those Dvaered "
-"warlords is about to attack another Dvaered warlord in the {system} system, "
-"so we're going to take advantage of the situation and obliterate them in the "
-"chaos! How about it, {player}? Are you in?\""
+"Flint's expression becomes more serious. \"{player}, since you've proven "
+"yourself, maybe I can count on you for an important mission. See, some of my "
+"comrades are stranded in the Doranthex system. We're trying to assemble a "
+"rescue party, but the place is just crawling with Dvaereds. If we could "
+"create a distraction by wreaking havok in the nearby {system} system, maybe "
+"that would give us just the opening that we need! That's where you come in. "
+"I can't guarantee any backup for you, and of course this will be a highly "
+"dangerous mission, but if you do this, I can guarantee you that we'll never "
+"forget your bravery. How about it, {player}? Are you in?\""
 msgstr ""
 
 #: dat/missions/flf/hero/flf_hero01.lua:49
 msgid ""
-"\"Changed your mind, {player}? It'll be great chaos over in {system} pretty "
-"soon! Would you like to join us in obliterating those Dvaered warlord fleets?"
-"\""
-msgstr ""
-
-#: dat/missions/flf/hero/flf_hero01.lua:51
-msgid ""
-"\"Great! We'll all meet you at {system}. Let's show those Dvaereds what "
-"we're made of!\""
+"Flint's expression relaxes into one of relief. \"Thank you so much! The "
+"rescue team will await an opening from a safe location in the vicinity of "
+"Doranthex. I will message you when we succeed in rescuing the stranded "
+"soldiers, and we can regroup at Sindbad.\n"
+"\n"
+"\"I would recommend a very small fighter that can outrun any ships the "
+"Dvaereds throw at you. Being able to dodge their volleys of bullets and stay "
+"alive is a lot more important than actually destroying them, after all. Just "
+"keep harassing them by shooting whatever weapons you have and I'm sure the "
+"Dvaereds will get angry and send reinforcements in. Also, I know I said I "
+"couldn't guarantee backup, but I'll try to see if I can find others to join "
+"you. Your act of bravery might be contagious, you know? In any case, good "
+"luck, comrade!\" Your mouth instinctively opens in surprise as you hear him "
+"refer to you as \"comrade\", then you smile and nod. Now to cause some "
+"mayhem.…"
 msgstr ""
 
 #: dat/missions/flf/hero/flf_hero01.lua:53
 #, fuzzy
-msgid ""
-"Flint shrugs. \"Suit yourself. You'll be missing out, though. Let me know if "
-"you change your mind!\""
-msgstr ""
-"„Ah, du bist beschäftigt, eh? Ach so. Lass mich wissen, wenn du deine "
-"Meinung änderst, OK?“"
+msgid "\"OK, then. I understand. Let me know if you change your mind, OK?\""
+msgstr "„Okay. Lass mich nur wissen, wenn du deine Meinung geändert hast.“"
 
-#: dat/missions/flf/hero/flf_hero01.lua:55
+#: dat/missions/flf/hero/flf_hero01.lua:56
 msgid ""
-"You find Flint among a crowd and when he sees you, he gives you a high-five. "
-"\"That was awesome!\" he says. \"Those Dvaereds didn't know what hit them! "
-"Glad to see how much you've grown, {player}. Hope to work with you again "
-"soon!\" You give Flint a thumbs-up, then continue chatting for awhile before "
-"heading off."
-msgstr ""
-
-#: dat/missions/flf/hero/flf_hero01.lua:57
-msgid ""
-"Hahaha, yes! We got them all! Let's get out of here, {player}! See you at "
-"Sindbad!"
+"You receive a transmission. It's from Flint. \"We got 'em out!\" he "
+"exclaims. \"Nice work! The Dvaereds were all thinned out thanks you you! "
+"We're all set, comrade; we'll meet you back at the base!\""
 msgstr ""
 
 #: dat/missions/flf/hero/flf_hero01.lua:59
-#: dat/missions/flf/hero/flf_hero01.lua:65
-#, fuzzy
-msgid "Weak Point"
-msgstr "Patrouillenpunkt"
-
-#: dat/missions/flf/hero/flf_hero01.lua:60
 msgid ""
-"You are joining Flint in on an effort to take advantage of fighting between "
-"Dvaered warlords and wipe out both sides."
+"You find Flint among a crowd and when he sees you, he approaches you with a "
+"warm smile and gives you a high-five. \"We did it! We rescued all of them! "
+"You did a fantastic job. I can't possibly thank you enough.\" As the fact "
+"that you led the efforts to distract the Dvaereds becomes clear to the "
+"crowd, several voices speak up as the comrades you rescued thank you. After "
+"a celebration, you part ways as Flint wishes you good luck on your next "
+"mission."
 msgstr ""
 
+#: dat/missions/flf/hero/flf_hero01.lua:61
+#, fuzzy
+msgid "Diversion from Doranthex"
+msgstr "Ablenkung von Raelid"
+
 #: dat/missions/flf/hero/flf_hero01.lua:62
+msgid ""
+"You have been tasked with creating mayhem for Dvaered ships in the {system} "
+"system to distract the Dvaereds while an FLF rescue team helps some trapped "
+"soldiers escape from Doranthex."
+msgstr ""
+
+#: dat/missions/flf/hero/flf_hero01.lua:64
 #, fuzzy
 msgid "Flint"
 msgstr "Flintley"
 
-#: dat/missions/flf/hero/flf_hero01.lua:63
+#: dat/missions/flf/hero/flf_hero01.lua:65
 msgid ""
 "You see Flint and remember you never got a chance to thank him for teaching "
 "you about the Frontier's struggle. Perhaps you should do so."
 msgstr ""
 
-#: dat/missions/flf/hero/flf_hero01.lua:68
-msgid "Destroy all Dvaereds present, taking advantage of the warlord conflict"
-msgstr ""
-
-#: dat/missions/flf/hero/flf_hero01.lua:72
+#: dat/missions/flf/hero/flf_hero01.lua:67
+#, fuzzy
 msgid ""
-"You helped Flint on a mission to destroy the fleets of two warlords that "
-"were fighting each other. He complimented you on your performance and said "
-"he hopes to work with you again soon."
+"You helped Flint rescue stranded soldiers from Doranthex by by distracting "
+"the Dvaereds in another system."
 msgstr ""
+"Du hast der FLF geholfen, eine Art Operation in Raelid durchzuführen, indem "
+"du die Dvaered in einem anderen System abgelenkt hast."
 
-#. Treat landing and jumping as death so the mission doesn't end
-#. up hanging if something goes wrong. These should never get
-#. triggered, though, because the AI should be set to the norun
-#. AI.
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <mission name="Deal with the FLF agent">
@@ -55832,7 +55771,7 @@ msgstr "MISSION FEHLGESCHLAGEN: VIP ist tot."
 #. -- Deprecated. Do not use.
 #. --
 #: dat/scripts/numstring.lua:41 src/equipment.c:1684 src/info.c:208
-#: src/info.c:453 src/map.c:793
+#: src/info.c:453 src/map.c:786
 #, fuzzy
 msgid "∞ jumps"
 msgstr "%s Sprung"
@@ -59655,7 +59594,7 @@ msgstr "Credits"
 msgid "Fuel"
 msgstr "Treibstoff"
 
-#: src/board.c:119 src/outfit.c:844
+#: src/board.c:119 src/outfit.c:826
 msgid "Ammo"
 msgstr "Munition"
 
@@ -59771,7 +59710,7 @@ msgid_plural "%d hL"
 msgstr[0] "%+.d Treibstoff"
 msgstr[1] "%+.d Treibstoff"
 
-#: src/board.c:580 src/board.c:621 src/map.c:748 src/map.c:760 src/map.c:770
+#: src/board.c:580 src/board.c:621 src/map.c:748 src/map.c:760 src/map.c:768
 msgid ", "
 msgstr ", "
 
@@ -60732,7 +60671,7 @@ msgstr ""
 "Bist du dir sicher, dass du das Sternensystem um %.2f (von %.2f nach %.2f) "
 "skalieren möchtest?"
 
-#: src/dev_sysedit.c:712 src/map.c:777
+#: src/dev_sysedit.c:712 src/map.c:770
 msgid "Asteroid Field"
 msgstr "Asterioidenfeld"
 
@@ -61247,7 +61186,7 @@ msgstr "Schiffsstatistiken\n"
 msgid "Filter…"
 msgstr ""
 
-#: src/equipment.c:1681 src/info.c:206 src/info.c:451 src/map.c:790
+#: src/equipment.c:1681 src/info.c:206 src/info.c:451 src/map.c:783
 #, fuzzy, c-format
 msgid "%d jump"
 msgid_plural "%d jumps"
@@ -61668,7 +61607,7 @@ msgstr ""
 "%s\n"
 "Wahrscheinlich hat die Luadatei eine fehlerhafte Syntax, bitte überprüfen"
 
-#: src/faction.c:1588 src/map.c:2984 src/outfit.c:1080 src/ship.c:431
+#: src/faction.c:1588 src/map.c:2977 src/outfit.c:1062 src/ship.c:431
 #: src/ship.c:887 src/space.c:1704 src/space.c:3204 src/tech.c:122
 #, c-format
 msgid "Malformed %s file: does not contain elements"
@@ -63177,35 +63116,35 @@ msgstr ""
 "#nGeld:#0\n"
 "#nLizenz:#0\n"
 
-#: src/land_shipyard.c:218 src/map_system.c:617
+#: src/land_shipyard.c:218 src/map_system.c:611
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nCPU:#0 %.0f TFLOPS"
 msgstr "%+.0f CPU"
 
-#: src/land_shipyard.c:221 src/map_system.c:620
+#: src/land_shipyard.c:221 src/map_system.c:614
 #, c-format
 msgid ""
 "\n"
 "#nMass:#0 %.0f t"
 msgstr ""
 
-#: src/land_shipyard.c:225 src/map_system.c:624
+#: src/land_shipyard.c:225 src/map_system.c:618
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nAcceleration:#0 %G km/s²"
 msgstr "#nBelohnung:#0 %s"
 
-#: src/land_shipyard.c:229 src/map_system.c:628
+#: src/land_shipyard.c:229 src/map_system.c:622
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nSpeed:#0 %G km/s"
 msgstr "#nBelohnung:#0 %s"
 
-#: src/land_shipyard.c:233 src/map_system.c:632
+#: src/land_shipyard.c:233 src/map_system.c:626
 #, c-format
 msgid ""
 "\n"
@@ -63219,63 +63158,63 @@ msgid ""
 "#nTime Constant:#0 %.0f%%\n"
 msgstr "Der FLF-Kontakt"
 
-#: src/land_shipyard.c:240 src/map_system.c:639
+#: src/land_shipyard.c:240 src/map_system.c:633
 #, c-format
 msgid ""
 "\n"
 "#nAbsorption:#0 %.0f%%"
 msgstr ""
 
-#: src/land_shipyard.c:244 src/map_system.c:643
+#: src/land_shipyard.c:244 src/map_system.c:637
 #, c-format
 msgid ""
 "\n"
 "#nShield:#0 %G GJ (%G GW)"
 msgstr ""
 
-#: src/land_shipyard.c:249 src/map_system.c:648
+#: src/land_shipyard.c:249 src/map_system.c:642
 #, c-format
 msgid ""
 "\n"
 "#nArmor:#0 %G GJ (%G GW)"
 msgstr ""
 
-#: src/land_shipyard.c:254 src/map_system.c:653
+#: src/land_shipyard.c:254 src/map_system.c:647
 #, c-format
 msgid ""
 "\n"
 "#nEnergy:#0 %G GJ (%G GW)"
 msgstr ""
 
-#: src/land_shipyard.c:259 src/map_system.c:658
+#: src/land_shipyard.c:259 src/map_system.c:652
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nCargo Space:#0 %.0f t"
 msgstr "#nDu hast:#0 %d Tonne\n"
 
-#: src/land_shipyard.c:263 src/map_system.c:662
+#: src/land_shipyard.c:263 src/map_system.c:656
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nFuel:#0 %d hL"
 msgstr "#nDu hast:#0 %d Tonne\n"
 
-#: src/land_shipyard.c:266 src/map_system.c:665
+#: src/land_shipyard.c:266 src/map_system.c:659
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nFuel Use:#0 %d hL"
 msgstr "#nDu hast:#0 %d Tonne\n"
 
-#: src/land_shipyard.c:269 src/map_system.c:668
+#: src/land_shipyard.c:269 src/map_system.c:662
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nRadar Range:#0 %.0f km"
 msgstr "Energiemodifikator"
 
-#: src/land_shipyard.c:272 src/map_system.c:671
+#: src/land_shipyard.c:272 src/map_system.c:665
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -63647,26 +63586,26 @@ msgstr "Nebel: Volatil, "
 msgid "%+G%% radar range"
 msgstr "Reichweite"
 
-#: src/map.c:780
+#: src/map.c:773
 #, fuzzy, c-format
 msgid "#n%s:#0 %s"
 msgstr "#nBelohnung:#0 %s"
 
-#: src/map.c:801
+#: src/map.c:794
 #, fuzzy, c-format
 msgid "(%d jump)"
 msgid_plural "(%d jumps)"
 msgstr[0] "%s Sprung"
 msgstr[1] "%s Sprünge"
 
-#: src/map.c:808
+#: src/map.c:801
 #, c-format
 msgid ""
 "#nCredits:#0 %s    #nFuel:#0 %d hL (%s)    #nCurrent System:#0 %s    "
 "#nTarget System:#0 %s %s"
 msgstr ""
 
-#: src/map.c:1893
+#: src/map.c:1886
 #, c-format
 msgid ""
 "No price info for\n"
@@ -63675,52 +63614,52 @@ msgstr ""
 "Keine Preisinformation\n"
 "für %s"
 
-#: src/map.c:2123
+#: src/map.c:2116
 msgid "Travel (Default)"
 msgstr "Reise (Standard)"
 
-#: src/map.c:2124
+#: src/map.c:2117
 #, fuzzy
 msgid "Discovery"
 msgstr "Konflikt"
 
-#: src/map.c:2126
+#: src/map.c:2119
 #, c-format
 msgid "%s: Cost"
 msgstr "%s: Kosten"
 
-#: src/map.c:2127
+#: src/map.c:2120
 #, c-format
 msgid "%s: Trade"
 msgstr "%s: Handel"
 
-#: src/map.c:2406
+#: src/map.c:2399
 msgid "Attempted to call map_jump() while there is no system!"
 msgstr ""
 
-#: src/map.c:2978
+#: src/map.c:2971
 #, c-format
 msgid "Malformed %s file: missing root element 'map'"
 msgstr "Defekte „%s“-Datei: fehlendes Wurzelelement „map“"
 
-#: src/map.c:2996 src/slots.c:83 src/start.c:126 src/tech.c:136
+#: src/map.c:2989 src/slots.c:83 src/start.c:126 src/tech.c:136
 #, c-format
 msgid "'%s' has unknown node '%s'."
 msgstr "„%s“ hat unbekannten Node „%s“."
 
-#: src/map.c:3001
+#: src/map.c:2994
 #, c-format
 msgid "Loaded %d map decorator"
 msgid_plural "Loaded %d map decorators"
 msgstr[0] "%d Kartendekorator geladen"
 msgstr[1] "%d Kartendekoratoren geladen"
 
-#: src/map.c:3028
+#: src/map.c:3021
 #, c-format
 msgid "Could not load map decorator texture '%s'."
 msgstr "Kartendekoratortextur „%s“ konnte nicht geladen werden."
 
-#: src/map.c:3033
+#: src/map.c:3026
 #, c-format
 msgid "Map decorator has unknown node '%s'."
 msgstr "Kartendekorator hat unbekannen Node „%s“."
@@ -63936,7 +63875,7 @@ msgstr "Dienste:"
 msgid "None\n"
 msgstr "Keine"
 
-#: src/map_system.c:581
+#: src/map_system.c:575
 #, c-format
 msgid ""
 "%s\n"
@@ -63946,7 +63885,7 @@ msgid ""
 "#nLicense:#0 %s"
 msgstr ""
 
-#: src/map_system.c:606
+#: src/map_system.c:600
 #, c-format
 msgid ""
 "%s (%s)\n"
@@ -63955,28 +63894,28 @@ msgid ""
 "#nLicense:#0 %s"
 msgstr ""
 
-#: src/map_system.c:635
+#: src/map_system.c:629
 #, fuzzy, c-format
 msgid ""
 "\n"
 "#nTime Constant:#0 %.0f%%"
 msgstr "Der FLF-Kontakt"
 
-#: src/map_system.c:697
+#: src/map_system.c:691
 #, fuzzy, c-format
 msgid "#nYou have:#0 %d t, purchased at %s/t\n"
 msgid_plural "#nYou have:#0 %d t, purchased at %s/t\n"
 msgstr[0] "#nDu hast:#0 %d Tonne, gekauft für %s/t\n"
 msgstr[1] "#nDu hast:#0 %d Tonnen, gekauft für %s/t\n"
 
-#: src/map_system.c:703
+#: src/map_system.c:697
 #, fuzzy, c-format
 msgid "#nYou have:#0 %d t\n"
 msgid_plural "#nYou have:#0 %d t\n"
 msgstr[0] "#nDu hast:#0 %d Tonne\n"
 msgstr[1] "#nDu hast:#0 %d Tonnen\n"
 
-#: src/map_system.c:708
+#: src/map_system.c:702
 #, c-format
 msgid ""
 "#nAverage price seen here:#0 %s/t ± %s/t\n"
@@ -63985,41 +63924,41 @@ msgstr ""
 "#nDurchschnittspreis hier gesehen:#0 %s/t ± %s/t\n"
 "#nDurchschnittspreis überall gesehen:#0 %s/t ± %s/t\n"
 
-#: src/map_system.c:713
+#: src/map_system.c:707
 msgid "Unexpected call to map_system_array_update\n"
 msgstr "Unerwarteter Aufruf von map_system_array_update\n"
 
 #. no route
-#: src/map_system.c:1002 src/map_system.c:1021 src/map_system.c:1027
-#: src/map_system.c:1030
+#: src/map_system.c:996 src/map_system.c:1015 src/map_system.c:1021
+#: src/map_system.c:1024
 #, fuzzy
 msgid "Commodity Prices"
 msgstr "Waren"
 
-#: src/map_system.c:1003
+#: src/map_system.c:997
 #, fuzzy, c-format
 msgid "We don't have the commodity prices for %s available here at the moment."
 msgstr ""
 "Es tut mir Leid, aber wir haben im Moment die Warenpreise für %s nicht."
 
-#: src/map_system.c:1022
+#: src/map_system.c:1016
 #, fuzzy, c-format
 msgid "We are selling this information for %s, which you don't have."
 msgstr ""
 "Es tut uns leid, aber wir verkaufen diese Informationen für %s, die Sie "
 "nicht haben."
 
-#: src/map_system.c:1025
+#: src/map_system.c:1019
 #, fuzzy
 msgid "We don't know of any commodities sold here."
 msgstr "Hier wird nichts verkauft"
 
-#: src/map_system.c:1028
+#: src/map_system.c:1022
 #, fuzzy
 msgid "You already have newer information than we can sell."
 msgstr "Du hast bereits neuere Informationen"
 
-#: src/map_system.c:1031
+#: src/map_system.c:1025
 #, fuzzy, c-format
 msgid ""
 "Commodity prices for %s will cost %s. The latest information we have has an "
@@ -64127,7 +64066,7 @@ msgstr "Kartenausstattungen"
 msgid "Exit to Main Menu"
 msgstr "Zurück zum Hauptmenü"
 
-#: src/mission.c:113 src/nlua_player.c:1533 src/nlua_player.c:1562
+#: src/mission.c:113 src/nlua_player.c:1534 src/nlua_player.c:1563
 #, c-format
 msgid "Mission '%s' not found in stack"
 msgstr "Mission „%s“ nicht im Stack gefunden"
@@ -64776,8 +64715,8 @@ msgstr "Ware ist ungültig."
 msgid "Commodity '%s' not found!"
 msgstr "Ware „%s“ nicht gefunden!"
 
-#: src/nlua_commodity.c:330 src/nlua_commodity.c:366 src/nlua_player.c:1669
-#: src/nlua_player.c:1688
+#: src/nlua_commodity.c:330 src/nlua_commodity.c:366 src/nlua_player.c:1670
+#: src/nlua_player.c:1689
 #, c-format
 msgid "Planet '%s' does not belong to a system."
 msgstr "Planet „%s“ gehört zu keinem System."
@@ -65197,30 +65136,30 @@ msgstr "Muss gelandet sein, um das aktive Landungsfenster zu setzen."
 msgid "Player does not own a ship named '%s'"
 msgstr "Dem Spieler gehört kein Schiff namens „%s“"
 
-#: src/nlua_player.c:1588 src/nlua_player.c:1618
+#: src/nlua_player.c:1589 src/nlua_player.c:1619
 #, c-format
 msgid "Event '%s' not found in stack"
 msgstr "Ereignis „%s“ nicht im Stack gefunden"
 
-#: src/nlua_player.c:1651
+#: src/nlua_player.c:1652
 msgid "Can not teleport the player while landed!"
 msgstr "Kann den Spieler nicht teleportieren, während er gelandet ist!"
 
-#: src/nlua_player.c:1653
+#: src/nlua_player.c:1654
 msgid "Can not teleport the player while the comm is open!"
 msgstr ""
 "Kann den Spieler nicht teleportieren, während die Kommunikation offen ist!"
 
-#: src/nlua_player.c:1655
+#: src/nlua_player.c:1656
 msgid "Can not teleport the player while they are boarded!"
 msgstr "Kann den Spieler nicht teleportieren, während er geentert wird!"
 
-#: src/nlua_player.c:1683
+#: src/nlua_player.c:1684
 #, c-format
 msgid "'%s' is not a valid teleportation target."
 msgstr "„%s“ ist kein gültiges Teleportationsziel."
 
-#: src/nlua_player.c:1700
+#: src/nlua_player.c:1701
 #, c-format
 msgid "System '%s' does not exist."
 msgstr "System „%s“ existiert nicht."
@@ -66023,108 +65962,108 @@ msgstr "„%s“ passt auf keine Ausstattungsplatzgrößen."
 msgid "Outfit '%s' has implicit slot size, setting to '%s'."
 msgstr "Ausstattung „%s“ hat implizite Platzgröße, wird zu „%s“ gesetzt."
 
-#: src/outfit.c:808
+#: src/outfit.c:790
 msgid "NULL"
 msgstr "NULL"
 
-#: src/outfit.c:809
+#: src/outfit.c:791
 msgid "Bolt Cannon"
 msgstr "Blitzkanone"
 
-#: src/outfit.c:810
+#: src/outfit.c:792
 msgid "Beam"
 msgstr ""
 
-#: src/outfit.c:811
+#: src/outfit.c:793
 msgid "Bolt Turret"
 msgstr "Blitzgeschützturm"
 
-#: src/outfit.c:812
+#: src/outfit.c:794
 #, fuzzy
 msgid "Turret Beam"
 msgstr "Geschützturm"
 
-#: src/outfit.c:813 src/outfit.c:843
+#: src/outfit.c:795 src/outfit.c:825
 msgid "Launcher"
 msgstr "Werfer"
 
-#: src/outfit.c:814
+#: src/outfit.c:796
 msgid "Ammunition"
 msgstr "Munition"
 
-#: src/outfit.c:815
+#: src/outfit.c:797
 msgid "Turret Launcher"
 msgstr "Geschützturmwerfer"
 
-#: src/outfit.c:816
+#: src/outfit.c:798
 msgid "Ship Modification"
 msgstr "Schiffsmodifikation"
 
-#: src/outfit.c:820
+#: src/outfit.c:802
 msgid "Star Map"
 msgstr "Sternenkarte"
 
-#: src/outfit.c:821 src/outfit.c:850
+#: src/outfit.c:803 src/outfit.c:832
 msgid "Local Map"
 msgstr "Lokale Karte"
 
-#: src/outfit.c:822 src/outfit.c:851
+#: src/outfit.c:804 src/outfit.c:833
 msgid "GUI"
 msgstr "GUI"
 
-#: src/outfit.c:823 src/outfit.c:852
+#: src/outfit.c:805 src/outfit.c:834
 msgid "License"
 msgstr "Lizenz"
 
-#: src/outfit.c:841
+#: src/outfit.c:823
 msgid "Bolt Weapon"
 msgstr "Blitzwaffe"
 
-#: src/outfit.c:842
+#: src/outfit.c:824
 msgid "Beam Weapon"
 msgstr "Strahlwaffe"
 
-#: src/outfit.c:845
+#: src/outfit.c:827
 msgid "Modification"
 msgstr "Modifikation"
 
-#: src/outfit.c:849
+#: src/outfit.c:831
 msgid "Map"
 msgstr "Karte"
 
-#: src/outfit.c:865 src/outfit.c:2656
+#: src/outfit.c:847 src/outfit.c:2638
 msgid "Unguided"
 msgstr "Ungelenkt"
 
-#: src/outfit.c:866
+#: src/outfit.c:848
 msgid "Seek"
 msgstr "Suchen"
 
-#: src/outfit.c:867
+#: src/outfit.c:849
 msgid "Smart"
 msgstr "Schlau"
 
-#: src/outfit.c:871
+#: src/outfit.c:853
 #, c-format
 msgid "Outfit '%s' is not an ammo outfit"
 msgstr "Ausstattung „%s“ ist keine Munitionsausstattung"
 
-#: src/outfit.c:986
+#: src/outfit.c:968
 #, c-format
 msgid "Invalid outfit type: '%s'"
 msgstr "Ungültiger Ausstattungstyp „%s“"
 
-#: src/outfit.c:1030
+#: src/outfit.c:1012
 #, c-format
 msgid "Unknown damage type '%s'"
 msgstr "Unbekannter Schadenstyp „%s“"
 
-#: src/outfit.c:1033
+#: src/outfit.c:1015
 #, c-format
 msgid "Damage has unknown node '%s'"
 msgstr "Schaden hat unbekannen Node „%s“"
 
-#: src/outfit.c:1062
+#: src/outfit.c:1044
 #, c-format
 msgid ""
 "%s xml collision polygon does not exist!\n"
@@ -66135,12 +66074,12 @@ msgstr ""
 "                Bitte benutze das Skript „polygon_from_sprite.py“, welches "
 "in Naevs „artwork“-Repository gefunden werden kann."
 
-#: src/outfit.c:1163 src/outfit.c:1628
+#: src/outfit.c:1145 src/outfit.c:1610
 #, c-format
 msgid "Outfit '%s' has invalid blowup property: '%s'"
 msgstr "Ausstattung „%s“ hat ungültige „blowup“-Eigenschaft: „%s“"
 
-#: src/outfit.c:1189 src/outfit.c:1654
+#: src/outfit.c:1171 src/outfit.c:1636
 #, c-format
 msgid ""
 "Outfit '%s': the number of collision polygons is wrong.\n"
@@ -66149,50 +66088,50 @@ msgstr ""
 "Ausstattung „%s“: Die Anzahl der Kollisionspolygone ist falsch.\n"
 "                     npolygon = %i und sx*sy = %i"
 
-#: src/outfit.c:1233 src/outfit.c:1439 src/outfit.c:1568 src/outfit.c:1702
-#: src/outfit.c:1815 src/outfit.c:1894 src/outfit.c:1978 src/outfit.c:2026
-#: src/outfit.c:2098 src/outfit.c:2121 src/outfit.c:2163 src/outfit.c:2202
-#: src/outfit.c:2236 src/outfit.c:2368 src/outfit.c:2449
+#: src/outfit.c:1215 src/outfit.c:1421 src/outfit.c:1550 src/outfit.c:1684
+#: src/outfit.c:1797 src/outfit.c:1876 src/outfit.c:1960 src/outfit.c:2008
+#: src/outfit.c:2080 src/outfit.c:2103 src/outfit.c:2145 src/outfit.c:2184
+#: src/outfit.c:2218 src/outfit.c:2350 src/outfit.c:2431
 #, c-format
 msgid "Outfit '%s' has unknown node '%s'"
 msgstr "Ausstattung „%s“ hat unbekannen Node „%s“"
 
-#: src/outfit.c:1266 src/outfit.c:1462 src/outfit.c:1906 src/outfit.c:2660
+#: src/outfit.c:1248 src/outfit.c:1444 src/outfit.c:1888 src/outfit.c:2642
 #, fuzzy, c-format
 msgid "%+.0f TFLOPS CPU\n"
 msgstr "%+.0f CPU"
 
-#: src/outfit.c:1270 src/outfit.c:1466 src/outfit.c:2677
+#: src/outfit.c:1252 src/outfit.c:1448 src/outfit.c:2659
 #, fuzzy, c-format
 msgid "%G%% Penetration\n"
 msgstr "Panzerungsregenerierung"
 
-#: src/outfit.c:1277 src/outfit.c:2683
+#: src/outfit.c:1259 src/outfit.c:2665
 #, fuzzy, c-format
 msgid "%.2f GW Shield Damage [%.1f GJ/shot]\n"
 msgstr "%.2f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 
-#: src/outfit.c:1281 src/outfit.c:2687
+#: src/outfit.c:1263 src/outfit.c:2669
 #, fuzzy, c-format
 msgid "%.2f GW Armor Damage [%.1f GJ/shot]\n"
 msgstr "%.2f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 
-#: src/outfit.c:1285 src/outfit.c:1485 src/outfit.c:2691
+#: src/outfit.c:1267 src/outfit.c:1467 src/outfit.c:2673
 #, c-format
 msgid "%G%% Knockback\n"
 msgstr ""
 
-#: src/outfit.c:1290
+#: src/outfit.c:1272
 #, fuzzy, c-format
 msgid "%.2f GW Disable [%G GJ/shot]\n"
 msgstr "%.2f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 
-#: src/outfit.c:1296 src/outfit.c:2700
+#: src/outfit.c:1278 src/outfit.c:2682
 #, fuzzy, c-format
 msgid "%.1f GW Energy Loss [%G GJ/shot]\n"
 msgstr "%.1f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 
-#: src/outfit.c:1300
+#: src/outfit.c:1282
 #, fuzzy, c-format
 msgid ""
 "%.1f RPS Fire Rate\n"
@@ -66205,21 +66144,21 @@ msgstr ""
 "%.0f Reichweite\n"
 "%.1f Sekunden Aufhitzung"
 
-#: src/outfit.c:1310 src/outfit.c:2713
+#: src/outfit.c:1292 src/outfit.c:2695
 #, fuzzy, c-format
 msgid ""
 "\n"
 "%G km Radar Optimal Range"
 msgstr "Reichweite"
 
-#: src/outfit.c:1315 src/outfit.c:2718
+#: src/outfit.c:1297 src/outfit.c:2700
 #, fuzzy, c-format
 msgid ""
 "\n"
 "%G km Radar Maximum Range"
 msgstr "Reichweite"
 
-#: src/outfit.c:1320 src/outfit.c:1510 src/outfit.c:2723
+#: src/outfit.c:1302 src/outfit.c:1492 src/outfit.c:2705
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -66228,29 +66167,29 @@ msgstr ""
 "\n"
 "%.1f Grad Drehung"
 
-#: src/outfit.c:1327 src/outfit.c:1515 src/outfit.c:1713 src/outfit.c:1942
-#: src/outfit.c:2000 src/outfit.c:2036 src/outfit.c:2137 src/outfit.c:2176
-#: src/outfit.c:2211 src/outfit.c:2246 src/outfit.c:2453
+#: src/outfit.c:1309 src/outfit.c:1497 src/outfit.c:1695 src/outfit.c:1924
+#: src/outfit.c:1982 src/outfit.c:2018 src/outfit.c:2119 src/outfit.c:2158
+#: src/outfit.c:2193 src/outfit.c:2228 src/outfit.c:2435
 #, c-format
 msgid "Outfit '%s' missing/invalid '%s' element"
 msgstr "Ausstattung „%s“ fehlt oder hat ungültiges „%s“-Element"
 
-#: src/outfit.c:1473
+#: src/outfit.c:1455
 #, fuzzy, c-format
 msgid "%.2f GW Shield Damage [%.0f GW avg.]\n"
 msgstr "%.0f Unfähigmachung/s\n"
 
-#: src/outfit.c:1479
+#: src/outfit.c:1461
 #, fuzzy, c-format
 msgid "%.2f GW Armor Damage [%.0f GW avg.]\n"
 msgstr "%.0f Unfähigmachung/s\n"
 
-#: src/outfit.c:1490
+#: src/outfit.c:1472
 #, fuzzy, c-format
 msgid "%G GW Disable [%.0f GW avg.]\n"
 msgstr "%.0f Unfähigmachung/s\n"
 
-#: src/outfit.c:1496
+#: src/outfit.c:1478
 #, fuzzy, c-format
 msgid ""
 "%G GW Energy Loss [%.0f GW avg.]\n"
@@ -66264,29 +66203,29 @@ msgstr ""
 "%.0f Reichweite\n"
 "%.1f Sekunden Aufhitzung"
 
-#: src/outfit.c:1580
+#: src/outfit.c:1562
 #, c-format
 msgid "Outfit '%s' missing '%s' element"
 msgstr "Ausstattung „%s“ fehlt „%s“-Element"
 
-#: src/outfit.c:1698
+#: src/outfit.c:1680
 #, c-format
 msgid "Ammo '%s' has unknown ai type '%s'."
 msgstr "Munition „%s“ hat unbekannten „ai“-Typ „%s“."
 
-#: src/outfit.c:1775
+#: src/outfit.c:1757
 #, fuzzy, c-format
 msgid "Outfit '%s' failed to read Lua '%s'!"
 msgstr "Ausstattung „%s“ hat ungültige „blowup“-Eigenschaft: „%s“"
 
-#: src/outfit.c:1787
+#: src/outfit.c:1769
 #, fuzzy, c-format
 msgid ""
 "Outfit '%s' Lua error:\n"
 "%s"
 msgstr "Ereignis-Lua „%s“ Syntaxfehler: %s"
 
-#: src/outfit.c:1829
+#: src/outfit.c:1811
 #, fuzzy
 msgid ""
 "\n"
@@ -66295,21 +66234,21 @@ msgstr ""
 "\n"
 "#rAktivierbare Ausstattung#0"
 
-#: src/outfit.c:1833
+#: src/outfit.c:1815
 #, fuzzy, c-format
 msgid ""
 "\n"
 "%+.0f TFLOPS CPU"
 msgstr "%+.0f CPU"
 
-#: src/outfit.c:1837
+#: src/outfit.c:1819
 #, c-format
 msgid ""
 "\n"
 "%s (limit 1 per ship)"
 msgstr ""
 
-#: src/outfit.c:1900
+#: src/outfit.c:1882
 #, fuzzy, c-format
 msgid ""
 "%s\n"
@@ -66318,12 +66257,12 @@ msgstr ""
 "\n"
 "#rAktivierbare Ausstattung#0"
 
-#: src/outfit.c:1910
+#: src/outfit.c:1892
 #, c-format
 msgid "%s (limit 1 per ship)\n"
 msgstr ""
 
-#: src/outfit.c:1914
+#: src/outfit.c:1896
 #, c-format
 msgid ""
 "%G t Mass Limit\n"
@@ -66333,7 +66272,7 @@ msgid ""
 "%G Rumble"
 msgstr ""
 
-#: src/outfit.c:1988
+#: src/outfit.c:1970
 #, fuzzy, c-format
 msgid ""
 "%s\n"
@@ -66347,145 +66286,145 @@ msgstr ""
 "%.1f Starts pro Sekunde\n"
 "Fasst %d %s"
 
-#: src/outfit.c:2087
+#: src/outfit.c:2069
 #, c-format
 msgid "Map '%s' has invalid asset '%s'"
 msgstr "Karte „%s“ hat ungültige Mediendaten „%s“"
 
-#: src/outfit.c:2095
+#: src/outfit.c:2077
 #, c-format
 msgid "Map '%s' has invalid jump point '%s'"
 msgstr "Karte „%s“ hat ungültigen Sprungpunkt „%s“"
 
-#: src/outfit.c:2102
+#: src/outfit.c:2084
 #, c-format
 msgid "Map '%s' has invalid system '%s'"
 msgstr "Karte „%s“ hat ungültiges System „%s“"
 
-#: src/outfit.c:2208
+#: src/outfit.c:2190
 #, c-format
 msgid "GUI (Graphical User Interface)"
 msgstr "GUI (Grafische Benutzeroberfläche)"
 
-#: src/outfit.c:2275 src/outfit.c:2598 src/slots.c:74 src/space.c:3103
+#: src/outfit.c:2257 src/outfit.c:2580 src/slots.c:74 src/space.c:3103
 #: src/spfx.c:1158 src/start.c:74
 #, c-format
 msgid "Malformed '%s' file: does not contain elements"
 msgstr "Defekte „%s“-Datei: enthält keine Elemente"
 
-#: src/outfit.c:2285
+#: src/outfit.c:2267
 #, c-format
 msgid "Outfit in %s has invalid or no name"
 msgstr "Mission in %s hat ungültigen oder keinen Namen"
 
-#: src/outfit.c:2331
+#: src/outfit.c:2313
 #, c-format
 msgid "Outfit '%s' has an slot type invalid."
 msgstr "Ausstattung „%s“ hat einen ungültigen Platztyp."
 
-#: src/outfit.c:2339
+#: src/outfit.c:2321
 #, c-format
 msgid "Outfit '%s' has unknown slot type '%s'."
 msgstr "Ausstattung „%s“ hat einen unbekannten Platztyp „%s“."
 
-#: src/outfit.c:2352
+#: src/outfit.c:2334
 #, c-format
 msgid "Outfit '%s' has unknown general node '%s'"
 msgstr "Ausstattung „%s“ hat einen unbekannten generellen Node „%s“"
 
-#: src/outfit.c:2378
+#: src/outfit.c:2360
 #, c-format
 msgid "Outfit '%s' element 'specific' missing property 'type'"
 msgstr ""
 "Bei Ausstattung „%s“ fehlt dem Element „specific“ die Eigenschaft „type“"
 
-#: src/outfit.c:2394
+#: src/outfit.c:2376
 #, fuzzy, c-format
 msgid "Outfit '%s' has group '%d', should be in the 0–%d range"
 msgstr "Ausstattung „%s“ hat Gruppe „%d“, sie sollte im Wertebereich 1-%d sein"
 
-#: src/outfit.c:2405
+#: src/outfit.c:2387
 #, c-format
 msgid "Outfit '%s' is of type NONE"
 msgstr "Ausstattung „%s“ ist vom Typ NONE"
 
-#: src/outfit.c:2524
+#: src/outfit.c:2506
 #, c-format
 msgid "Outfit '%s' missing/invalid 'lockon' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „lockon“-Element"
 
-#: src/outfit.c:2526
+#: src/outfit.c:2508
 #, c-format
 msgid "Outfit '%s' missing/invalid 'arc' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „arc“-Element"
 
-#: src/outfit.c:2531
+#: src/outfit.c:2513
 #, fuzzy, c-format
 msgid "Outfit '%s' missing/invalid 'rdr_range' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „ew_target“-Element"
 
-#: src/outfit.c:2533
+#: src/outfit.c:2515
 #, fuzzy, c-format
 msgid "Outfit '%s' missing/invalid 'rdr_range_max' element"
 msgstr "Ausstattung „%s“ hat fehlendes/ungültiges „ew_target“-Element"
 
-#: src/outfit.c:2559
+#: src/outfit.c:2541
 #, c-format
 msgid "Name collision! %d outfit is named '%s'"
 msgid_plural "Name collision! %d outfits are named '%s'"
 msgstr[0] "Namenskollision! %d Ausstattung haben den Namen „%s“"
 msgstr[1] "Namenskollision! %d Ausstattungen haben den Namen „%s“"
 
-#: src/outfit.c:2566
+#: src/outfit.c:2548
 #, c-format
 msgid "Loaded %d Outfit"
 msgid_plural "Loaded %d Outfits"
 msgstr[0] "%d Ausstattung geladen"
 msgstr[1] "%d Ausstattungen geladen"
 
-#: src/outfit.c:2591
+#: src/outfit.c:2573
 #, c-format
 msgid "%s file is invalid xml!"
 msgstr "„%s“-Datei ist ungültiges XML!"
 
-#: src/outfit.c:2647
+#: src/outfit.c:2629
 #, c-format
 msgid "Outfit '%s' already has a short description"
 msgstr "Ausstattung „%s“ hat bereits eine kurze Beschreibung"
 
-#: src/outfit.c:2654
+#: src/outfit.c:2636
 #, fuzzy, c-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)"
 
-#: src/outfit.c:2656
+#: src/outfit.c:2638
 #, fuzzy
 msgid "Seeker"
 msgstr "Suchen"
 
-#: src/outfit.c:2664
+#: src/outfit.c:2646
 #, fuzzy, c-format
 msgid "%G s Lock-on\n"
 msgstr "%.1f Sekunden Zielerfassung\n"
 
-#: src/outfit.c:2668
+#: src/outfit.c:2650
 #, c-format
 msgid "%.1f s/round Reload Time\n"
 msgstr ""
 
-#: src/outfit.c:2672
+#: src/outfit.c:2654
 #, c-format
 msgid "Holds %d %s:\n"
 msgid_plural "Holds %d %s:\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/outfit.c:2696
+#: src/outfit.c:2678
 #, fuzzy, c-format
 msgid "%.1f GW Disable [%G GJ/shot]\n"
 msgstr "%.1f Unfähigmachung/s [%.0f Unfähigmachung]\n"
 
-#: src/outfit.c:2705
+#: src/outfit.c:2687
 #, fuzzy, c-format
 msgid ""
 "%.1f RPS Fire Rate\n"
@@ -69134,42 +69073,42 @@ msgstr "Node „diff“ sollte den Namen eines Unidiffs enthalten. War leer."
 msgid "Unknown weapon status for '%s'"
 msgstr "Unbekannter Waffenstatus für „%s“"
 
-#: src/weapon.c:511 src/weapon.c:668 src/weapon.c:1752
+#: src/weapon.c:509 src/weapon.c:666 src/weapon.c:1749
 msgid "Unknown weapon layer!"
 msgstr "Unbekannte Waffenebene!"
 
-#: src/weapon.c:618
+#: src/weapon.c:616
 #, c-format
 msgid "Weapon of type '%s' has no update implemented yet!"
 msgstr "Waffe von Typ „%s“ hat noch kein „update“ implementiert!"
 
-#: src/weapon.c:792
+#: src/weapon.c:790
 #, c-format
 msgid "Weapon of type '%s' has no render implemented yet!"
 msgstr "Waffe von Typ „%s“ hat noch kein „render“ implementiert!"
 
-#: src/weapon.c:1699
+#: src/weapon.c:1696
 #, c-format
 msgid "Weapon of type '%s' has no create implemented yet!"
 msgstr "Waffe von Typ „%s“ hat noch kein „create“ implementiert!"
 
-#: src/weapon.c:1735
+#: src/weapon.c:1732
 msgid "Trying to create a Weapon from a non-Weapon type Outfit"
 msgstr ""
 "Versuche, Waffe aus einer Ausstattung, die nicht vom Typ Waffe ist, zu "
 "erstellen"
 
-#: src/weapon.c:1795
+#: src/weapon.c:1792
 msgid "Trying to create a Beam Weapon from a non-beam outfit."
 msgstr ""
 "Versuch, eine Strahlenwaffe aus einer Ausstattung, die nicht vom Typ "
 "Strahlenwaffe ist, zu erstellen."
 
-#: src/weapon.c:1815 src/weapon.c:1862 src/weapon.c:2012
+#: src/weapon.c:1812 src/weapon.c:1859 src/weapon.c:2009
 msgid "Invalid WEAPON_LAYER specified"
 msgstr "Ungültiger WEAPON_LAYER angegeben"
 
-#: src/weapon.c:1868
+#: src/weapon.c:1865
 #, fuzzy
 msgid "Trying to remove beam with ID 0!"
 msgstr "Versuch, den verdammten Spieler zu entfernen!"
