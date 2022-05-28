@@ -193,6 +193,10 @@ static void info_openMain( unsigned int wid )
 {
    char str[STRMAX_SHORT], **buf, creds[ECON_CRED_STRLEN];
    char str2[STRMAX_SHORT];
+   char buf_worth[ECON_CRED_STRLEN];
+   credits_t networth;
+   const PlayerShip_t *ships;
+   const PlayerOutfit_t *outfits;
    char **licenses;
    int jumps;
    int nlicenses;
@@ -214,10 +218,22 @@ static void info_openMain( unsigned int wid )
    /* Get the dimensions. */
    window_dimWindow( wid, &w, &h );
 
+   /* Calculate net worth. */
+   networth = player.p->credits + player_shipPrice(player.p->name);
+   ships = player_getShipStack();
+   outfits = player_getOutfits();
+   for (i=0; i<array_size(ships); i++) {
+      networth += player_shipPrice(ships[i].p->name);
+   }
+   for (i=0; i<array_size(outfits); i++) {
+      networth += outfits[i].o->price * outfits[i].q;
+   }
+
    /* pilot generics */
-   nt = ntime_pretty( ntime_get(), 2 );
-   credits2str( creds, player.p->credits, 2 );
-   snprintf( str, sizeof(str),
+   nt = ntime_pretty(ntime_get(), 2);
+   credits2str(creds, player.p->credits, 2);
+   credits2str(buf_worth, networth, 2);
+   snprintf(str, sizeof(str),
          _("#nPilot:#0 %s\n"
          "#nDate:#0 %s\n"
          "\n"
@@ -226,6 +242,7 @@ static void info_openMain( unsigned int wid )
          "#nFuel:#0 %d (%s)\n"
          "\n"
          "#nTime played (D:HH:MM):#0 %lld:%02lld:%02lld\n"
+         "#nNet Worth:#0 %s\n"
          "#nDamage done:#0 %.0f GJ\n"
          "#nDamage taken:#0 %.0f GJ\n"
          "#nShips destroyed:#0 %u"),
@@ -237,12 +254,13 @@ static void info_openMain( unsigned int wid )
          (long long)player.time_played / 86400,
          ((long long)player.time_played%86400) / 3600,
          ((long long)player.time_played%3600) / 60,
+         buf_worth,
          player.dmg_done_shield + player.dmg_done_armour,
          player.dmg_taken_shield + player.dmg_taken_armour,
          player.ships_destroyed );
    window_addText( wid, 40, 20,
          w-40-20-2*BUTTON_WIDTH-20-20, h-80,
-         0, "txtPilot", &gl_defFont, NULL, str );
+         0, "txtPilot", &gl_defFont, NULL, str);
    free(nt);
 
    /* menu */
