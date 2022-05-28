@@ -1640,6 +1640,7 @@ void equipment_updateShips( unsigned int wid, char* str )
 {
    (void)str;
    char *buf, buf2[ECON_CRED_STRLEN], buf3[STRMAX_SHORT];
+   char buf_money[ECON_CRED_STRLEN];
    char errorReport[STRMAX_SHORT];
    int problems;
    char *shipname;
@@ -1667,6 +1668,7 @@ void equipment_updateShips( unsigned int wid, char* str )
 
    /* update text */
    credits2str(buf2, player_shipPrice(shipname), 2); /* sell price */
+   credits2str(buf_money, player.p->credits, 2);
    cargo = pilot_cargoFree(ship) + pilot_cargoUsed(ship);
    nt = ntime_pretty(pilot_hyperspaceDelay( ship ), 2);
    nt2 = ntime_pretty(
@@ -1687,9 +1689,9 @@ void equipment_updateShips( unsigned int wid, char* str )
    /* Fill the buffer. */
    asprintf(&buf,
       _("#nName:#0 %s\n"
-         "#nModel:#0 %s\n"
-         "#nClass:#0 %s\n"
+         "#nModel:#0 %s (%s class)\n"
          "#nValue:#0 %s\n"
+         "#nMoney:#0 %s\n"
          "\n"
          "#nMass:#0 %.0f t\n"
          "#nJump Time:#0 %s\n"
@@ -1715,6 +1717,7 @@ void equipment_updateShips( unsigned int wid, char* str )
       _(ship->ship->name),
       _(ship->ship->class),
       buf2,
+      buf_money,
       /* Movement. */
       ship->solid->mass,
       nt,
