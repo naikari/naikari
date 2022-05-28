@@ -437,6 +437,7 @@ static void ship_update( unsigned int wid )
 {
    char *hyp_delay, *land_delay;
    char buf[STRMAX], buf2[STRMAX_SHORT];
+   char buf_price[ECON_CRED_STRLEN];
    int cargo;
    int jumps;
 
@@ -451,11 +452,12 @@ static void ship_update( unsigned int wid )
       snprintf(buf2, sizeof(buf2), n_("%d jump", "%d jumps", jumps), jumps);
    else
       strcpy(buf2, _("∞ jumps"));
+   credits2str(buf_price, player_shipPrice(player.p->name), 2);
 
    snprintf(buf, sizeof(buf),
          _("#nName:#0 %s\n"
-         "#nModel:#0 %s\n"
-         "#nClass:#0 %s\n"
+         "#nModel:#0 %s (%s class)\n"
+         "#nValue:#0 %s\n"
          "\n"
          "#nMass:#0 %.0f t\n"
          "#nMass Limit Left:#0 %.0f / %.0f t\n"
@@ -480,6 +482,7 @@ static void ship_update( unsigned int wid )
          player.p->name,
          _(player.p->ship->name),
          _(player.p->ship->class),
+         buf_price,
          /* Movement. */
          player.p->solid->mass,
          player.p->stats.engine_limit - player.p->solid->mass,
