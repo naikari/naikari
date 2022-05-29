@@ -1,5 +1,17 @@
 # NAIKARI CHANGELOG
 
+## 0.4.0
+
+* Corrected the calculation for beam heat-up; the previous inaccuracy
+  led to beams heating up faster than they were supposed to.
+* Adjusted the Equipment screen and the Info ship tab, showing the
+  player's credits on the Equipment screen and the ship's value on the
+  Info ship tab.
+* Added a Net Worth stat to the Info overview tab, showing the total
+  value of your credits, ships, and outfits combined.
+* Added some NPC messages.
+* Fixed and adjusted some missions.
+
 ## 0.3.0
 
 * Changed Soromid taunts (the old ones inherited from Naev sounded too
