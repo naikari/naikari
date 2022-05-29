@@ -193,6 +193,10 @@ msg_lore["general"] = {
 msg_lore["Independent"] = {
    _([["We're not part of any of the galactic superpowers. We can take care of ourselves!"]]),
    _([["Sometimes I worry that our lack of a standing military leaves us vulnerable to attack. I hope nobody will get any ideas about conquering us!"]]),
+   _([["I find it rather odd that anyone would answer to some bureaucrat who doesn't even live on the same planet as them. What a strange universe we live in."]]),
+   _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
+   _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
+   _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
 
 msg_lore["Empire"] = {
@@ -319,13 +323,6 @@ msg_lore["Pirate"] = {
    _([["One of my favorite things to do is buy a fake ID and then deliver as much contraband as I can before I get caught. It's great fun, and finding out that my identity's been discovered gives me a rush!"]]),
    _([["Back when I started out in this business all you could do was go around delivering packages for other people. Becoming a pirate was real hard back then, but I got so bored I became a pirate anyway. Nowadays things are way more exciting for normies, but I don't regret my choice one bit!"]]),
    _([["The Skull and Bones used to sell garbage ships. I mean, don't get me wrong, they still worked great, but they were always in terrible shape when you bought them, like they'd just come out of a meat grinder: scrappy and thrown together hulls that barely held together, outdated core systems, and the engines would barely even propel you through space. Back then you had to immediately get to work replacing everything in your 'new' ship just so they would function. It's much better nowadays, thankfully."]]),
-}
-
-msg_lore["Trader"] = {
-   _([["Just another link in the Great Chain, right?"]]),
-   _([["You win some, you lose some, but if you don't try you're never going to win."]]),
-   _([["If you don't watch the markets then you'll be hopping between planets in a jury-rigged ship in no time."]]),
-   _([["Them blimming pirates, stopping honest folk from making an honest living - it's not like we're exploiting the needy!"]]),
 }
 
 -- Gameplay tip messages.
