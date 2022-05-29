@@ -127,8 +127,7 @@ nomoneytext = _("You can't currently afford to buy this artifact. You need %s.")
 
 -- OSD stuff
 osd_msg_baron1 = _("Fly to the {system} system")
-osd_msg_baron2 = _("Hail Kahan Pinnacle (orbiting {planet}) by double-clicking on it")
-osd_msg_baron3 = _("Dock with (board) Kahan Pinnacle by double-clicking on it")
+osd_msg_baron2 = _("Hail and then dock with (board) Kahan Pinnacle (orbiting {planet})")
 
 log_text = _([[Baron Sauterfeldt sent you on a wild goose chase to find some ancient artifact known as a "skate-board", which you found for him.]])
 
@@ -170,7 +169,7 @@ function accept()
 
       osd_msg_baron1 = fmt.f(osd_msg_baron1, {system=baronsys:name()})
       osd_msg_baron2 = fmt.f(osd_msg_baron2, {planet=baronpla:name()})
-      local osd_msg = {osd_msg_baron1, osd_msg_baron2, osd_msg_baron3}
+      local osd_msg = {osd_msg_baron1, osd_msg_baron2}
       misn.osdCreate(misn_title, osd_msg)
       marker = misn.markerAdd(baronsys, "low")
 
@@ -215,7 +214,6 @@ function set_osd()
             {planet=flintplanet:name(), system=flintsys:name()}),
       osd_msg_baron1,
       osd_msg_baron2,
-      osd_msg_baron3,
    }
    misn.osdCreate(misn_title, osd_msg)
 end
@@ -469,13 +467,6 @@ end
 
 function hail()
    player.commClose()
-
-   if stage == 1 then
-      misn.osdActive(3)
-   elseif stage == 3 then
-      misn.osdActive(5)
-   end
-
    tk.msg("", hail_text)
    pinnacle:taskClear()
    pinnacle:brake()
