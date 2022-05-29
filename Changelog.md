@@ -50,7 +50,7 @@
   Naev but only became a problem because of mace rockets' reduced
   range). Thrust is now used solely for guided missiles.
 * Removed the planet named "Sheik Hall" since it has no gameplay value
-  and its name sounds uncomfortably similar to a nazi slogan.
+  and its name is iffy.
 
 ## 0.2.1
 
