@@ -266,6 +266,18 @@ function hail(hailed_pilot)
          faction.get("Dvaered"):setPlayerStanding(0)
       end
 
+      -- Remove knowledge of hidden jumps
+      jump.get("Sigur", "Arcanis"):setKnown(false)
+      jump.get("Arcanis", "Sigur"):setKnown(false)
+      jump.get("Myad", "Gilligan's Light"):setKnown(false)
+      jump.get("Gilligan's Light", "Myad"):setKnown(false)
+      jump.get("Tuoladis", "Ingot"):setKnown(false)
+      jump.get("Ingot", "Tuoladis"):setKnown(false)
+      jump.get("Ingot", "Gilligan's Light"):setKnown(false)
+      jump.get("Gilligan's Light", "Ingot"):setKnown(false)
+      jump.get("Theras", "Klantar"):setKnown(false)
+      jump.get("Klantar", "Theras"):setKnown(false)
+
       hailed_pilot:setNoDeath()
       for i, j in ipairs(fleetDV) do
          if j:exists() then
