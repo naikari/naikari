@@ -614,8 +614,12 @@ static void ovr_mrkRenderAll( double res )
       y = mrk->u.pt.y / res + map_overlay_center_y();
       gl_renderCross( x, y, 5., &cRadar_hilight );
 
-      if (mrk->text != NULL)
+      if (mrk->text != NULL) {
+         /* Marker text can render over other overlay text. */
+         glClear(GL_DEPTH_BUFFER_BIT);
+
          gl_printMarkerRaw( &gl_smallFont, x+10., y-gl_smallFont.h/2., &cRadar_hilight, mrk->text );
+      }
    }
 }
 
