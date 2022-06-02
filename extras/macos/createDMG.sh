@@ -53,5 +53,6 @@ cp -r "$SOURCEPATH"/extras/macos/dmg_assets/. "$WORKPATH"
 # Extract Naev app bundle to BundleDir
 cp -r "$BUILDPATH"/dist/Naikari.app "$WORKPATH"
 
-# Generate DMG image
-genisoimage -V Naikari -D -R -apple -no-pad -o "$BUILDPATH"/dist/naikari.dmg "$WORKPATH"
+# Generate ISO image and compress into DMG
+genisoimage -V Naikari -D -R -apple -no-pad -o "$BUILDPATH"/naikari.iso "$WORKPATH"
+dmg "$BUILDPATH"/naikari.iso "$BUILDPATH"/dist/naikari.dmg
