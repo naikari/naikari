@@ -43,7 +43,6 @@ elif ! [ -x "$(command -v dmg)" ]; then
     echo "Get it from https://github.com/fanquake/libdmg-hfsplus"
     exit 1
 fi
-fi
 
 
 # Creates temp directory
