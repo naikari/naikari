@@ -9,10 +9,12 @@
    and faction.get("Pirate"):playerStanding() &lt; 0
    and system.cur():presences()["FLF"]
    and system.cur():presences()["Dvaered"]
+   and not system.cur():presences()["Frontier"]
    and not player.misnDone("Take the Dvaered crew home")
    and not player.misnDone("Deal with the FLF agent")
    and not player.misnActive("Deal with the FLF agent")
    and not player.misnActive("Take the Dvaered crew home")
+   and player.numOutfit("Mercenary License") &gt; 0
  </cond>
 </event>
 --]]
