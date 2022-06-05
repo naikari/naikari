@@ -11,6 +11,10 @@
   value of your credits, ships, and outfits combined.
 * Added some NPC messages.
 * Fixed and adjusted some missions.
+* Knowledge of the FLF's hidden jumps is now erased if you betray them.
+* Fixed bad rendering of marker text.
+* The FLF/Dvaered derelicts event now requires a Mercenary License and
+  can only occur outside of Frontier space.
 
 ## 0.3.0
 
