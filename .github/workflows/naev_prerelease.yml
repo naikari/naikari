@@ -8,6 +8,12 @@ on:
 
 name: Pre-Release
 
+permissions:
+  id-token: "write"
+  contents: "write"
+  packages: "write"
+  pull-requests: "read"
+
 jobs:
   "Package_Source":
     runs-on: ubuntu-latest
