@@ -49,8 +49,8 @@
    there (that name is not displayed to players, but is used to identify
    missions internally).
 
-   MISSION: <NAME GOES HERE>
-   DESCRIPTION: <DESCRIPTION GOES HERE>
+   MISSION: <NAME GOES HERE>
+   DESCRIPTION: <DESCRIPTION GOES HERE>
 
 --]]
 
