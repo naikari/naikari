@@ -98,7 +98,7 @@ git config submodule.recurse true
 
 ### COMPILATION
 
-Run:
+After checking out submodules (see above), run:
 
 ```bash
 meson setup builddir .
