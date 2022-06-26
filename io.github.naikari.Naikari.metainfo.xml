@@ -20,6 +20,8 @@
     </p>
   </description>
 
+  <content_rating type="oars-1.1" />
+
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
   <screenshots>
     <screenshot type="default">
@@ -42,8 +44,27 @@
     </screenshot>
   </screenshots>
 
-  <icon type="stock">naikari</icon>
-  
+  <releases>
+    <release version="v0.3.0" date="2022-06-09" type="stable">
+      <url>https://github.com/naikari/naikari/releases/tag/v0.3.0</url>
+    </release>
+    <release version="v0.2.1" date="2022-03-26" type="stable">
+      <url>https://github.com/naikari/naikari/releases/tag/v0.2.1</url>
+    </release>
+    <release version="v0.2.0" date="2022-03-13" type="stable">
+      <url>https://github.com/naikari/naikari/releases/tag/v0.2.0</url>
+    </release>
+    <release version="v0.1.3" date="2022-03-01" type="stable">
+      <url>https://github.com/naikari/naikari/releases/tag/v0.1.3</url>
+    </release>
+    <release version="v0.1.2" date="2022-02-22" type="stable">
+      <url>https://github.com/naikari/naikari/releases/tag/v0.1.2</url>
+    </release>
+    <release version="v0.1.0" date="2022-02-08" type="stable">
+      <url>https://github.com/naikari/naikari/releases/tag/v0.1.0</url>
+    </release>
+  </releases>
+
   <categories>
     <category>Game</category>
     <category>AdventureGame</category>
