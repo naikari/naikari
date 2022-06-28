@@ -73,6 +73,8 @@
     </release>
   </releases>
 
+  <icon type="stock">naikari</icon>
+
   <categories>
     <category>Game</category>
     <category>AdventureGame</category>
