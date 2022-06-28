@@ -51,16 +51,9 @@
 #include "toolkit.h"
 
 
-#define MAIN_WIDTH 240 /**< Main menu width. */
+#define MENU_WIDTH 240 /**< Window width for all menus. */
 
-#define MENU_WIDTH MAIN_WIDTH /**< Escape menu width. */
-#define MENU_HEIGHT 250 /**< Escape menu height. */
-
-
-#define DEATH_WIDTH MAIN_WIDTH /**< Death menu width. */
-#define DEATH_HEIGHT 150 /**< Death menu height. */
-
-#define BUTTON_WIDTH (MAIN_WIDTH - 40) /**< Button width for all menus. */
+#define BUTTON_WIDTH (MENU_WIDTH - 40) /**< Button width for all menus. */
 #define BUTTON_HEIGHT 30 /**< Button height, standard across menus. */
 
 #define EDITORS_EXTRA_WIDTH 60 /**< Editors menu extra width. */
@@ -272,7 +265,8 @@ void menu_main (void)
          "txtBG", NULL, NULL, naev_version(1));
 
    /* create menu window */
-   wid = window_create( "wdwMainMenu", _("Main Menu"), -1, offset_wdw, MAIN_WIDTH, h );
+   wid = window_create("wdwMainMenu", _("Main Menu"), -1, offset_wdw,
+         MENU_WIDTH, h);
    window_setCancel( wid, main_menu_promptClose );
 
    /* Buttons. */
@@ -481,21 +475,22 @@ void menu_small (void)
             menu_isOpen(MENU_DEATH) ))
       return;
 
-   wid = window_create( "wdwMenuSmall", _("Menu"), -1, -1, MENU_WIDTH, MENU_HEIGHT );
+   wid = window_create("wdwMenuSmall", _("Menu"), -1, -1, MENU_WIDTH,
+         50 + 4*(BUTTON_HEIGHT+20));
 
-   window_setCancel( wid, menu_small_close );
+   window_setCancel(wid, menu_small_close);
 
-   window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT*3 + 20*3,
+   window_addButtonKey(wid, 20, 20 + 3*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnResume", _("Resume"), menu_small_close, SDLK_r );
-   window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT*2 + 20*2,
+   window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnInfo", _("Info"), menu_small_info, SDLK_i );
-   window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT + 20,
+         "btnInfo", _("Info"), menu_small_info, SDLK_i);
+   window_addButtonKey(wid, 20, 20 + 1*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnOptions", _("Options"), menu_options_button, SDLK_o );
-   window_addButtonKey( wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnExit", _("Exit to Title"), menu_small_exit, SDLK_x );
+         "btnOptions", _("Options"), menu_options_button, SDLK_o);
+   window_addButtonKey(wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnExit", _("Exit to Title"), menu_small_exit, SDLK_x);
 
    menu_Open(MENU_SMALL);
 }
@@ -615,7 +610,8 @@ void menu_death (void)
    unsigned int wid;
    char path[PATH_MAX];
 
-   wid = window_create( "wdwRIP", _("Death"), -1, -1, DEATH_WIDTH, DEATH_HEIGHT );
+   wid = window_create("wdwRIP", _("Death"), -1, -1, MENU_WIDTH,
+         50 + 2*(BUTTON_HEIGHT+20));
    window_onClose(wid, menu_death_close);
 
    /* Allow the player to continue if the saved game exists, if not, propose to restart */
