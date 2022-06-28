@@ -188,24 +188,25 @@ err:
  */
 int save_snapshot(const char *annotation)
 {
-   char file[PATH_MAX], path[PATH_MAX], snapfile[PATH_MAX], buf[PATH_MAX];
+   char buf[PATH_MAX];
+   char *file, *path, *snapfile;
+   int ret = -1;
 
    str2filename(buf, sizeof(buf), player.name);
-   if (snprintf(file, sizeof(file), "saves/%s.ns", buf) < 0)
-      WARN(_("Save file name was truncated: %s"), file);
+   asprintf(&file, "saves/%s.ns", buf);
+   asprintf(&path, "saves/%s-snapshots", buf);
+   asprintf(&snapfile, "%s/%s.ns", path, annotation);
 
-   if (!nfile_fileExists(file))
-      return -1;
+   if (nfile_fileExists(file)) {
+      nfile_dirMakeExist(path);
+      ret = nfile_copyIfExists(file, snapfile);
+   }
 
-   if (snprintf(path, sizeof(path), "saves/%s-snapshots", buf) < 0)
-      WARN(_("Snapshot directory name was truncated: %s"), path);
+   free(file);
+   free(path);
+   free(snapfile);
 
-   nfile_dirMakeExist(buf);
-
-   if (snprintf(snapfile, sizeof(snapfile), "%s/%s.ns", path, annotation) < 0)
-      WARN(_("Snapshot file name was truncated: %s"), snapfile);
-
-   return nfile_copyIfExists(file, snapfile);
+   return ret;
 }
 
 
