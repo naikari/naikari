@@ -51,22 +51,22 @@
 #include "toolkit.h"
 
 
-#define MAIN_WIDTH      200 /**< Main menu width. */
+#define MAIN_WIDTH 240 /**< Main menu width. */
 
-#define MENU_WIDTH      200 /**< Escape menu width. */
-#define MENU_HEIGHT     250 /**< Escape menu height. */
+#define MENU_WIDTH MAIN_WIDTH /**< Escape menu width. */
+#define MENU_HEIGHT 250 /**< Escape menu height. */
 
 
-#define DEATH_WIDTH     200 /**< Death menu width. */
-#define DEATH_HEIGHT    150 /**< Death menu height. */
+#define DEATH_WIDTH MAIN_WIDTH /**< Death menu width. */
+#define DEATH_HEIGHT 150 /**< Death menu height. */
 
-#define BUTTON_WIDTH    160 /**< Button width, standard across menus. */
-#define BUTTON_HEIGHT   30 /**< Button height, standard across menus. */
+#define BUTTON_WIDTH (MAIN_WIDTH - 40) /**< Button width for all menus. */
+#define BUTTON_HEIGHT 30 /**< Button height, standard across menus. */
 
-#define EDITORS_EXTRA_WIDTH  60 /**< Editors menu extra width. */
+#define EDITORS_EXTRA_WIDTH 60 /**< Editors menu extra width. */
 
-#define menu_Open(f)    (menu_open |= (f)) /**< Marks a menu as opened. */
-#define menu_Close(f)   (menu_open &= ~(f)) /**< Marks a menu as closed. */
+#define menu_Open(f) (menu_open |= (f)) /**< Marks a menu as opened. */
+#define menu_Close(f) (menu_open &= ~(f)) /**< Marks a menu as closed. */
 int menu_open = 0; /**< Stores the opened/closed menus. */
 
 
