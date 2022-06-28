@@ -69,9 +69,6 @@ misn_reward = _("%s per tonne")
 misn_desc = _("Take as many waste containers off of here as your ship can hold and drop them off at any authorized garbage collection facility. You will be paid immediately, but any attempt to illegally jettison the waste into space will be severely punished if you are caught.")
 
 osd_title = _("Waste Dump")
-osd_msg = {}
-osd_msg[1] = _("Land on any garbage collection facility (indicated on your map) to drop off the Waste Containers")
-osd_msg[2] = _("Alternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the Info window (press %s to open), and jump out of the system before you are discovered")
 
 -- List of possible waste dump planets.
 dest_planets = {"The Stinker", "Vaal", "Domestica", "Blossom"}
@@ -133,7 +130,10 @@ function accept ()
    cid = misn.cargoAdd(c, q)
    player.pay(credits)
 
-   osd_msg[2] = osd_msg[2]:format(naev.keyGet("info"))
+   local osd_msg = {
+      fmt.f(_("Land on any garbage collection facility (indicated on your map) to drop off the Waste Containers\n\tAlternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the ship computer (press {infokey} to open), and jump out of the system before you are discovered"),
+            {infokey=naev.keyGet("info")}),
+   }
    misn.osdCreate(osd_title, osd_msg)
 
    hook.takeoff("takeoff")

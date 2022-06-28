@@ -15,6 +15,7 @@
 * Fixed bad rendering of marker text.
 * The FLF/Dvaered derelicts event now requires a Mercenary License and
   can only occur outside of Frontier space.
+* Changed the name of the Info Window to Ship Computer.
 
 ## 0.3.0
 

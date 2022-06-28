@@ -396,19 +396,23 @@ static int guiL_mouseMoveEnable( lua_State *L )
 
 
 /**
- * @brief Opens the info menu window.
+ * @brief Opens the ship computer window.
  *
- * Possible window targets are: <br />
- *  - "main" : Main window.<br />
- *  - "ship" : Ship info window.<br />
- *  - "weapons" : Weapon configuration window.<br />
- *  - "cargo" : Cargo view window.<br />
- *  - "missions" : Mission view window.<br />
- *  - "standings" : Standings view window.<br />
+ * Possible window targets are:<br />
+ * <ul>
+ *    <li>"main": Overview tab.</li>
+ *    <li>"ship": Ship info tab.</li>
+ *    <li>"weapons": Weapon configuration tab.</li>
+ *    <li>"cargo": Cargo tab.</li>
+ *    <li>"missions": Mission tab.</li>
+ *    <li>"standings": Standings tab.</li>
+ *    <li>"shiplog": Ship log.</li>
+ * </ul>
  *
- * @usage gui.menuInfo( "ship" ) -- Opens ship tab
+ * @usage gui.menuInfo("ship") -- Opens ship tab
  *
- *    @luatparam[opt="main"] string window parameter indicating the tab to open at.
+ *    @luatparam[opt="main"] string window parameter indicating the tab
+ *       to open at (see above).
  * @luafunc menuInfo
  */
 static int guiL_menuInfo( lua_State *L )
@@ -430,20 +434,22 @@ static int guiL_menuInfo( lua_State *L )
    }
 
    /* Parse string. */
-   if (strcasecmp( str, "main" )==0)
+   if (strcasecmp(str, "main") == 0)
       window = INFO_MAIN;
-   else if (strcasecmp( str, "ship" )==0)
+   else if (strcasecmp(str, "ship") == 0)
       window = INFO_SHIP;
-   else if (strcasecmp( str, "weapons" )==0)
+   else if (strcasecmp(str, "weapons") == 0)
       window = INFO_WEAPONS;
-   else if (strcasecmp( str, "cargo" )==0)
+   else if (strcasecmp(str, "cargo") == 0)
       window = INFO_CARGO;
-   else if (strcasecmp( str, "missions" )==0)
+   else if (strcasecmp(str, "missions") == 0)
       window = INFO_MISSIONS;
-   else if (strcasecmp( str, "standings" )==0)
+   else if (strcasecmp(str, "standings") == 0)
       window = INFO_STANDINGS;
+   else if (strcasecmp(str, "shiplog") == 0)
+      window = INFO_SHIPLOG;
    else {
-      NLUA_ERROR(L,_("Invalid window info name '%s'."), str);
+      NLUA_ERROR(L,_("Invalid ship computer window name '%s'."), str);
       return 0;
    }
 

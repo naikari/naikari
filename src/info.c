@@ -54,7 +54,7 @@
 #define INFO_WIN_STAND     5
 #define INFO_WIN_SHIPLOG   6
 static const char *info_names[INFO_WINDOWS] = {
-   N_("Main"),
+   N_("Overview"),
    N_("Ship"),
    N_("Weapons"),
    N_("Cargo"),
@@ -137,7 +137,7 @@ void menu_info( int window )
    h = 600;
 
    /* Create the window. */
-   info_wid = window_create( "wdwInfo", _("Info"), -1, -1, w, h );
+   info_wid = window_create("wdwInfo", _("Ship Computer"), -1, -1, w, h);
    window_setCancel( info_wid, info_close );
 
    /* Create tabbed window. */

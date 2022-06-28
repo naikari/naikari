@@ -485,7 +485,7 @@ void menu_small (void)
          "btnResume", _("Resume"), menu_small_close, SDLK_r );
    window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnInfo", _("Info"), menu_small_info, SDLK_i);
+         "btnInfo", _("Ship Computer"), menu_small_info, SDLK_c);
    window_addButtonKey(wid, 20, 20 + 1*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnOptions", _("Options"), menu_options_button, SDLK_o);

@@ -115,7 +115,7 @@ const char *keybind_info[][3] = {
    { "pause", N_("Pause"), N_("Pauses the game.") },
    { "speed", N_("Toggle Speed"), N_("Toggles speed modifier.") },
    { "menu", N_("Small Menu"), N_("Opens the small in-game menu.") },
-   { "info", N_("Information Menu"), N_("Opens the information menu.") },
+   { "info", N_("Ship Computer"), N_("Opens the ship computer.") },
    { "console", N_("Lua Console"), N_("Opens the Lua console.") },
    { "switchtab1", N_("Switch Tab 1"), N_("Switches to tab 1.") },
    { "switchtab2", N_("Switch Tab 2"), N_("Switches to tab 2.") },
