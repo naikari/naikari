@@ -1,59 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.naikari.Naikari</id>
+  <metadata_license>CC0-1.0</metadata_license>
 
   <name>Naikari</name>
   <summary>2-D space-trading sandbox game</summary>
   <icon type="stock">io.github.naikari.Naikari</icon>
-  <url type="homepage">https://naikari.github.io</url>
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0-or-later</project_license>
-
-  <recommends>
-    <display_length compare="ge">720</display_length>
-    <control>pointing</control>
-    <control>keyboard</control>
-  </recommends>
-  <supports>
-    <control>gamepad</control>
-  </supports>
 
   <description>
     <p>A 2-D space trading and mercenary sandbox game, similar to games like Endless Sky, but with a heavier emphesis on survival and combat.</p>
     <p>You pilot space ships from a top-down perspective which you can collect and customize more or less however you want. To get new ships, you can deliver cargo, hunt bounties, join and assist various factions, or even turn to piracy if you dare go against the Empire. Additionally, to keep the game feeling fresh and allow you to seek out goals beyond just getting more credits and ships, several storylines are available which you can proceed through if you wish. All storylines are optional and kept out of the way if you have no interest in them.</p>
   </description>
 
-  <content_rating type="oars-1.1">
-    <content_attribute id="violence-fantasy">moderate</content_attribute>
-    <content_attribute id="drugs-alcohol">mild</content_attribute>
-    <content_attribute id="drugs-narcotics">mild</content_attribute>
-    <content_attribute id="drugs-tobacco">mild</content_attribute>
-    <content_attribute id="language-profanity">moderate</content_attribute>
-    <content_attribute id="language-discrimination">intense</content_attribute>
-    <content_attribute id="money-gambling">mild</content_attribute>
-  </content_rating>
+  <categories>
+    <category>Game</category>
+    <category>AdventureGame</category>
+  </categories>
+
+  <url type="homepage">https://naikari.github.io</url>
+  <url type="bugtracker">https://github.com/naikari/naikari/issues</url>
+  <url type="faq">https://github.com/naikari/naikari/wiki/FAQ</url>
+  <url type="help">https://github.com/naikari/naikari/wiki</url>
+  <url type="donation">https://www.patreon.com/diligentcircle</url>
+  <url type="vcs-browser">https://github.com/naikari/naikari</url>
+  <url type="contribute">https://github.com/naikari/naikari/blob/main/Contributing.md</url>
 
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
-  <screenshots>
-    <screenshot type="default">
-      <image>https://naikari.github.io/images/screenshot1.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://naikari.github.io/images/screenshot10.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://naikari.github.io/images/screenshot5.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://naikari.github.io/images/screenshot11.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://naikari.github.io/images/screenshot17.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://naikari.github.io/images/screenshot14.png</image>
-    </screenshot>
-  </screenshots>
 
   <releases>
     <release version="v0.3.0" date="2022-06-09" type="stable">
@@ -76,12 +48,51 @@
     </release>
   </releases>
 
-  <categories>
-    <category>Game</category>
-    <category>AdventureGame</category>
-  </categories>
-
   <provides>
     <binary>naikari</binary>
   </provides>
+
+  <recommends>
+    <display_length compare="ge">720</display_length>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
+  <supports>
+    <control>gamepad</control>
+  </supports>
+
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://naikari.github.io/images/screenshot1.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://naikari.github.io/images/screenshot10.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://naikari.github.io/images/screenshot5.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://naikari.github.io/images/screenshot11.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://naikari.github.io/images/screenshot17.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://naikari.github.io/images/screenshot14.png</image>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-fantasy">moderate</content_attribute>
+    <content_attribute id="drugs-alcohol">mild</content_attribute>
+    <content_attribute id="drugs-narcotics">mild</content_attribute>
+    <content_attribute id="drugs-tobacco">mild</content_attribute>
+    <content_attribute id="language-profanity">moderate</content_attribute>
+    <content_attribute id="language-discrimination">intense</content_attribute>
+    <content_attribute id="money-gambling">mild</content_attribute>
+  </content_rating>
+
+  <update_contact>diligentcircle_AT_riseup.net</update_contact>
 </component>
