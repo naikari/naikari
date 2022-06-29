@@ -10,9 +10,13 @@
   <project_license>GPL-3.0-or-later</project_license>
 
   <recommends>
+    <display_length compare="ge">720</display_length>
     <control>pointing</control>
     <control>keyboard</control>
   </recommends>
+  <supports>
+    <control>gamepad</control>
+  </supports>
 
   <description>
     <p>
