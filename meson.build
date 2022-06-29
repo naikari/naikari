@@ -325,7 +325,7 @@ if buildExec.disabled() == false
       install_data(metainfo_file, install_dir: get_option('datadir') / 'metainfo')
 
       install_data(['extras/logos/logo16.png', 'extras/logos/logo32.png', 'extras/logos/logo64.png', 'extras/logos/logo128.png', 'extras/logos/naikari.png'],
-             rename : ['16x16/apps/naikari.png', '32x32/apps/naikari.png', '64x64/apps/naikari.png', '128x128/apps/naikari.png', '256x256/apps/naikari.png'],
+             rename : ['16x16/apps/io.github.naikari.Naikari.png', '32x32/apps/io.github.naikari.Naikari.png', '64x64/apps/io.github.naikari.Naikari.png', '128x128/apps/io.github.naikari.Naikari.png', '256x256/apps/io.github.naikari.Naikari.png'],
              install_dir: get_option('datadir') / 'icons/hicolor')
       install_man('naikari.6')
    endif

@@ -4,6 +4,7 @@
 
   <name>Naikari</name>
   <summary>2-D space-trading sandbox game</summary>
+  <icon type="stock">io.github.naikari.Naikari</icon>
   <url type="homepage">https://naikari.github.io</url>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
@@ -72,8 +73,6 @@
       <url>https://github.com/naikari/naikari/releases/tag/v0.1.0</url>
     </release>
   </releases>
-
-  <icon type="stock">naikari</icon>
 
   <categories>
     <category>Game</category>
