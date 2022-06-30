@@ -182,3 +182,13 @@ If this is too involved, feel free to instead open an issue on the
 [issue tracker](https://github.com/naikari/naikari/issues), and we can
 get it sorted for you. Be sure to indicate the open content license your
 contribution is under and how you wish to be credited.
+
+## Contributing Without GitHub
+
+If you cannot or don't wish to use GitHub, you are still welcome to
+contribute. In that case, the easiest way to do so is to contact us via
+email at [diligentcircle@riseup.net](mailto:diligentcircle@riseup.net).
+For contributing code, diff patches are acceptable, or (more preferably)
+you can send us a link to your own public Naikari Git repository clone
+with your changes committed. If you need assistance with this, feel free
+to ask.
