@@ -183,7 +183,9 @@ err:
 /**
  * @brief Copy the latest save to a snapshot file.
  *
- *    @param annotation The annotation to give the snapshot.
+ *    @param annotation The annotation to give the snapshot. Caller must
+ *       ensure that this is an acceptable filename and prompt the user
+ *       if it will replace existing data.
  *    @return 0 on success.
  */
 int save_snapshot(const char *annotation)

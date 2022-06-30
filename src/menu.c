@@ -113,7 +113,7 @@ static int menu_main_bkg_system (void)
    sys = NULL;
 
    /* Refresh saves. */
-   load_refresh();
+   load_refresh(NULL);
 
    /* Load saves. */
    ns = load_getList();
@@ -396,7 +396,7 @@ static void menu_main_load( unsigned int wid, char* str )
 {
    (void) str;
    (void) wid;
-   load_loadGameMenu();
+   load_loadGameMenu(NULL);
 }
 /**
  * @brief Function to active the new game menu.

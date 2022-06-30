@@ -37,12 +37,12 @@ typedef struct nsave_s {
 } nsave_t;
 
 
-void load_loadGameMenu (void);
+void load_loadGameMenu(const char *player);
 int load_gameDiff( const char* file );
 int load_gameFile( const char* file );
 int load_game( nsave_t *ns );
 
-int load_refresh (void);
+int load_refresh(const char *player);
 void load_free (void);
 const nsave_t *load_getList (void);
 

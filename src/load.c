@@ -30,6 +30,7 @@
 #include "mission.h"
 #include "news.h"
 #include "ndata.h"
+#include "nfile.h"
 #include "nlua_var.h"
 #include "nstring.h"
 #include "nxml.h"
@@ -40,11 +41,11 @@
 #include "toolkit.h"
 #include "unidiff.h"
 
-#define LOAD_WIDTH      600 /**< Load window width. */
-#define LOAD_HEIGHT     500 /**< Load window height. */
+#define LOAD_WIDTH 720 /**< Load window width. */
+#define LOAD_HEIGHT 600 /**< Load window height. */
 
-#define BUTTON_WIDTH    200 /**< Button width. */
-#define BUTTON_HEIGHT   30 /**< Button height. */
+#define BUTTON_WIDTH ((LOAD_WIDTH-80) / 3) /**< Button width. */
+#define BUTTON_HEIGHT 30 /**< Button height. */
 
 
 /**
@@ -56,6 +57,7 @@ typedef struct filedata {
 } filedata_t;
 
 
+static const char *load_player = NULL; /**< Player saves are listed for. */
 static nsave_t *load_saves = NULL; /**< Array of save.s */
 extern int save_loaded; /**< From save.c */
 
@@ -183,9 +185,13 @@ static int load_load( nsave_t *save, const char *path )
 
 /**
  * @brief Loads or refreshes saved games.
+ *
+ *    @param player Player name to load snapshots of, or NULL to load
+ *       the list of primary save files.
  */
-int load_refresh (void)
+int load_refresh(const char *player)
 {
+   char *path;
    char buf[PATH_MAX];
    filedata_t *files, tmp;
    size_t len;
@@ -195,13 +201,24 @@ int load_refresh (void)
    if (load_saves != NULL)
       load_free();
 
+   if (player == NULL)
+      path = strdup("saves");
+   else {
+      asprintf(&path, "saves/%s-snapshots", player);
+      nfile_dirMakeExist(path);
+   }
+
+   /* Store player name for later use. */
+   load_player = player;
+
    /* load the saves */
    files = array_create( filedata_t );
    PHYSFS_enumerate( "saves", load_enumerateCallback, &files );
    qsort(files, array_size(files), sizeof(filedata_t), load_sortCompare);
 
    if (array_size(files) == 0) {
-      array_free( files );
+      array_free(files);
+      free(path);
       return 0;
    }
 
@@ -230,8 +247,8 @@ int load_refresh (void)
    for (i=0; i<array_size(files); i++) {
       if (!ok)
          ns = &array_grow( &load_saves );
-      snprintf( buf, sizeof(buf), "saves/%s", files[i].name );
-      ok = load_load( ns, buf );
+      snprintf(buf, sizeof(buf), "%s/%s", path, files[i].name);
+      ok = load_load(ns, buf);
    }
 
    /* If the save was invalid, array is 1 member too large. */
@@ -242,6 +259,7 @@ int load_refresh (void)
    for (i=0; i<array_size(files); i++)
       free( files[i].name );
    array_free( files );
+   free(path);
 
    return 0;
 }
@@ -333,8 +351,11 @@ const nsave_t *load_getList (void)
 
 /**
  * @brief Opens the load game menu.
+ *
+ *    @param player Player name to load snapshots of, or NULL to load
+ *       the list of primary save files.
  */
-void load_loadGameMenu (void)
+void load_loadGameMenu(const char *player)
 {
    unsigned int wid;
    char **names, buf[PATH_MAX];
@@ -347,7 +368,7 @@ void load_loadGameMenu (void)
    window_setCancel( wid, load_menu_close );
 
    /* Load loads. */
-   load_refresh();
+   load_refresh(player);
 
    /* load the saves */
    n = array_size( load_saves );
@@ -372,20 +393,27 @@ void load_loadGameMenu (void)
    }
 
    /* Player text. */
-   window_addText( wid, -20, -40, 240, LOAD_HEIGHT-40-20-2*(BUTTON_HEIGHT+20),
-         0, "txtPilot", &gl_smallFont, NULL, NULL );
+   window_addText(wid, -20, -40, LOAD_WIDTH/2 - 30,
+         LOAD_HEIGHT - 40 - 20 - (player != NULL ? 2 : 1)*(BUTTON_HEIGHT+20),
+         0, "txtPilot", NULL, NULL, NULL);
 
-   window_addList( wid, 20, -50,
-         LOAD_WIDTH-240-60, LOAD_HEIGHT-110,
-         "lstSaves", names, n, 0, load_menu_update, load_menu_load );
+   window_addList(wid, 20, -40, LOAD_WIDTH/2 - 30,
+         LOAD_HEIGHT - 40 - 20 - 1*(BUTTON_HEIGHT+20),
+         "lstSaves", names, n, 0, load_menu_update, load_menu_load);
 
    /* Buttons */
-   window_addButtonKey( wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnBack", _("Back"), load_menu_close, SDLK_b );
-   window_addButtonKey( wid, -20, 20 + BUTTON_HEIGHT+20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnLoad", _("Load"), load_menu_load, SDLK_l );
-   window_addButton( wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnDelete", _("Delete"), load_menu_delete );
+   if (player != NULL) {
+      window_addButtonKey(wid, -20, 20 + 1*(BUTTON_HEIGHT+20),
+            BUTTON_WIDTH, BUTTON_HEIGHT,
+            "btnSave", _("Save"), load_menu_close, SDLK_s);
+   }
+   window_addButtonKey(wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnLoad", _("Load"), load_menu_load, SDLK_l);
+   window_addButton(wid, 20 + 1*(BUTTON_WIDTH+20), 20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnDelete", _("Delete"), load_menu_delete);
+   window_addButtonKey(wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnBack", _("Back"), load_menu_close, SDLK_b);
 }
 /**
  * @brief Closes the load game menu.
@@ -423,20 +451,13 @@ static void load_menu_update( unsigned int wid, char *str )
    credits2str( credits, ns->credits, 2 );
    ntime_prettyBuf( date, sizeof(date), ns->date, 2 );
    snprintf( buf, sizeof(buf),
-         _("#nName:\n"
-         "#0   %s\n\n"
-         "#nVersion:\n"
-         "#0   %s\n\n"
-         "#nDate:\n"
-         "#0   %s\n\n"
-         "#nPlanet:\n"
-         "#0   %s\n\n"
-         "#nCredits:\n"
-         "#0   %s\n\n"
-         "#nShip Name:\n"
-         "#0   %s\n\n"
-         "#nShip Model:\n"
-         "#0   %s"),
+         _("#nName:#0 %s\n\n"
+            "#nVersion:#0 %s\n\n"
+            "#nDate:#0 %s\n\n"
+            "#nPlanet:#0 %s\n\n"
+            "#nCredits:#0 %s\n\n"
+            "#nShip Name:#0 %s\n\n"
+            "#nShip Model:#0 %s"),
          ns->name, ns->version, date, ns->planet,
          credits, ns->shipname, ns->shipmodel );
    window_modifyText( wid, "txtPilot", buf );
@@ -483,7 +504,7 @@ static void load_menu_load( unsigned int wdw, char *str )
    if (load_game( &load_saves[pos] )) {
       /* Failed so reopen both. */
       menu_main();
-      load_loadGameMenu();
+      load_loadGameMenu(load_player);
    }
 }
 /**
@@ -513,7 +534,7 @@ static void load_menu_delete( unsigned int wdw, char *str )
 
    /* need to reload the menu */
    load_menu_close(wdw, NULL);
-   load_loadGameMenu();
+   load_loadGameMenu(load_player);
 }
 
 
