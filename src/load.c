@@ -482,6 +482,17 @@ static void load_menu_load( unsigned int wdw, char *str )
 
    pos = toolkit_getListPos( wid, "lstSaves" );
 
+   /* Always confirm if loading a snapshot. */
+   if ((load_player != NULL)
+         && !dialogue_YesNo(_("Load Snapshot"),
+            _("Warning: After loading a snapshot, automatic saving will"
+               " continue, which will erase any progress which is not"
+               " saved to a snapshot.\n\n"
+               "Are you sure you want to load '%s'?"),
+            save)) {
+      return;
+   }
+
    /* Check version. */
    diff = naev_versionCompare(load_saves[pos].version);
    if (ABS(diff) <= -2) {
