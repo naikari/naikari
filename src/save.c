@@ -123,6 +123,7 @@ int save_all (void)
    xmlw_startElem(writer,"version");
    xmlw_elem( writer, "naev", "%s", VERSION );
    xmlw_elem( writer, "data", "%s", start_name() );
+   xmlw_elem(writer, "annotation", "%s", player.name);
    xmlw_endElem(writer); /* "version" */
 
    /* Save last played. */
@@ -181,34 +182,83 @@ err:
 
 
 /**
- * @brief Copy the latest save to a snapshot file.
+ * @brief Saves data to a snapshot file.
  *
  *    @param annotation The annotation to give the snapshot. Caller must
- *       ensure that this is an acceptable filename and prompt the user
- *       if it will replace existing data.
+ *       prompt the user if it will replace existing data.
  *    @return 0 on success.
  */
 int save_snapshot(const char *annotation)
 {
    char buf[PATH_MAX];
-   char *file, *path, *snapfile;
-   int ret = -1;
+   char *path, *snapfile;
+   xmlDocPtr doc;
+   xmlTextWriterPtr writer;
 
-   str2filename(buf, sizeof(buf), player.name);
-   asprintf(&file, "saves/%s.ns", buf);
-   asprintf(&path, "saves/%s-snapshots", buf);
-   asprintf(&snapfile, "%s/%s.ns", path, annotation);
-
-   if (nfile_fileExists(file)) {
-      nfile_dirMakeExist(path);
-      ret = nfile_copyIfExists(file, snapfile);
+   /* Create the writer. */
+   writer = xmlNewTextWriterDoc(&doc, conf.save_compress);
+   if (writer == NULL) {
+      ERR(_("testXmlwriterDoc: Error creating the xml writer"));
+      return -1;
    }
 
-   free(file);
+   /* Set the writer parameters. */
+   xmlw_setParams(writer);
+
+   /* Start element. */
+   xmlw_start(writer);
+   xmlw_startElem(writer, "naev_save");
+
+   /* Save the version and such. */
+   xmlw_startElem(writer,"version");
+   xmlw_elem(writer, "naev", "%s", VERSION);
+   xmlw_elem(writer, "data", "%s", start_name());
+   xmlw_elem(writer, "annotation",
+         p_("snapshot_name", "%s (%s)"), annotation, player.name);
+   xmlw_endElem(writer); /* "version" */
+
+   /* Save last played. */
+   xmlw_saveTime(writer, "last_played", time(NULL));
+
+   /* Save the data. */
+   if (save_data(writer) < 0) {
+      ERR(_("Error trying to save game data"));
+      goto err_writer;
+   }
+
+   /* Finish element. */
+   xmlw_endElem(writer); /* "naev_save" */
+   xmlw_done(writer);
+
+   /* Write to file. */
+   str2filename(buf, sizeof(buf), player.name);
+   asprintf(&path, "saves/%s-snapshots", buf);
+   str2filename(buf, sizeof(buf), annotation);
+   asprintf(&snapfile, "%s/%s.ns", path, buf);
+
+   if (PHYSFS_mkdir(path) == 0) {
+      WARN(_("Path '%s' does not exist and unable to create: %s"), path,
+            PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
+      goto err_writer;
+   }
+
+   xmlFreeTextWriter(writer);
+   /* TODO: write via physfs */
+   if (xmlSaveFileEnc(snapfile, doc, "UTF-8") < 0) {
+      WARN(_("Failed to write snapshot."));
+      goto err;
+   }
+   xmlFreeDoc(doc);
+
+   return 0;
+
+err_writer:
+   xmlFreeTextWriter(writer);
+err:
+   xmlFreeDoc(doc);
    free(path);
    free(snapfile);
-
-   return ret;
+   return -1;
 }
 
 

@@ -125,6 +125,9 @@ static int load_load( nsave_t *save, const char *path )
    /* Save path. */
    save->path = strdup(path);
 
+   /* Initialize name. */
+   save->name = NULL;
+
    /* Iterate inside the naev_save. */
    parent = root->xmlChildrenNode;
    do {
@@ -136,13 +139,15 @@ static int load_load( nsave_t *save, const char *path )
          do {
             xmlr_strd(node, "naev", save->version);
             xmlr_strd(node, "data", save->data);
+            xmlr_strd(node, "annotation", save->name);
          } while (xml_nextNode(node));
          continue;
       }
 
       else if (xml_isNode(parent, "player")) {
-         /* Get name. */
-         xmlr_attr_strd(parent, "name", save->name);
+         /* Get name (old method, used as a backup). */
+         if (save->name == NULL)
+            xmlr_attr_strd(parent, "name", save->name);
          /* Parse rest. */
          node = parent->xmlChildrenNode;
          do {
@@ -394,7 +399,7 @@ void load_loadGameMenu(const char *player)
 
    /* Player text. */
    window_addText(wid, -20, -40, LOAD_WIDTH/2 - 30,
-         LOAD_HEIGHT - 40 - 20 - (player != NULL ? 2 : 1)*(BUTTON_HEIGHT+20),
+         LOAD_HEIGHT - 40 - 20 - 1*(BUTTON_HEIGHT+20),
          0, "txtPilot", NULL, NULL, NULL);
 
    window_addList(wid, 20, -40, LOAD_WIDTH/2 - 30,
@@ -402,11 +407,6 @@ void load_loadGameMenu(const char *player)
          "lstSaves", names, n, 0, load_menu_update, load_menu_load);
 
    /* Buttons */
-   if (player != NULL) {
-      window_addButtonKey(wid, -20, 20 + 1*(BUTTON_HEIGHT+20),
-            BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnSave", _("Save"), load_menu_close, SDLK_s);
-   }
    window_addButtonKey(wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnLoad", _("Load"), load_menu_load, SDLK_l);
    window_addButton(wid, 20 + 1*(BUTTON_WIDTH+20), 20,
@@ -498,12 +498,14 @@ static void load_menu_load( unsigned int wdw, char *str )
    load_menu_close(wdw, NULL);
 
    /* Close the main menu. */
-   menu_main_close();
+   if (load_player == NULL)
+      menu_main_close();
 
    /* Try to load the game. */
    if (load_game( &load_saves[pos] )) {
-      /* Failed so reopen both. */
-      menu_main();
+      /* Failed so reopen closed menus. */
+      if (load_player == NULL)
+         menu_main();
       load_loadGameMenu(load_player);
    }
 }
