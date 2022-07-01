@@ -195,6 +195,10 @@ int save_snapshot(const char *annotation)
    xmlDocPtr doc;
    xmlTextWriterPtr writer;
 
+   /* Do not save if saving is off. */
+   if (player_isFlag(PLAYER_NOSAVE))
+      return 0;
+
    /* Create the writer. */
    writer = xmlNewTextWriterDoc(&doc, conf.save_compress);
    if (writer == NULL) {
