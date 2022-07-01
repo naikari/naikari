@@ -2,7 +2,7 @@
 Type=Application
 Name=Naikari
 GenericName=Naikari
-Comment=2-D space-trading sandbox game, forked from the Naev project
+Comment=2-D space-trading sandbox game
 Icon=io.github.naikari.Naikari
 Exec=naikari
 Categories=Game;AdventureGame;
