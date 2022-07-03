@@ -309,18 +309,7 @@ if buildExec.disabled() == false
    if host_machine.system() not in ['windows', 'cygwin', 'emscripten', 'android', 'darwin']
       metainfo_file = 'io.github.naikari.Naikari.metainfo.xml'
 
-      if (ascli_exe.found())
-         # Create desktop-entry file from metainfo
-         custom_target('gen-desktop-entry',
-            input : [metainfo_file],
-            output : ['io.github.naikari.Naikari.desktop'],
-            command : [ascli_exe, 'make-desktop-file', '@INPUT@', '@OUTPUT@'],
-            install: true,
-            install_dir: join_paths (get_option ('datadir'), 'applications')
-         )
-      else
-         install_data('io.github.naikari.Naikari.desktop', install_dir: join_paths (get_option ('datadir'), 'applications'))
-      endif
+      install_data('io.github.naikari.Naikari.desktop', install_dir: join_paths (get_option ('datadir'), 'applications'))
 
       install_data(metainfo_file, install_dir: get_option('datadir') / 'metainfo')
 

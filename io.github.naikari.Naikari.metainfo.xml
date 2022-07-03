@@ -5,7 +5,6 @@
 
   <name>Naikari</name>
   <summary>2-D space-trading sandbox game</summary>
-  <icon type="stock">io.github.naikari.Naikari</icon>
 
   <description>
     <p>A 2-D space trading and mercenary sandbox game, similar to games like Endless Sky, but with a heavier emphesis on survival and combat.</p>
