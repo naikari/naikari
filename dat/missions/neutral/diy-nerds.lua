@@ -21,6 +21,7 @@
    --]]
 
 require "numstring"
+local fmt = require "fmt"
 
 
 -- Bar information, describes how the NPC appears in the bar
@@ -28,7 +29,7 @@ bar_desc = _("You see a bunch of guys and gals, excitedly whispering over some p
 
 -- Mission details.
 misn_title = _("DIY Nerds") 
-misn_reward = creditstring(20000) -- 20K
+misn_reward = fmt.credits(20000) -- 20K
 misn_desc = _("Cart some nerds to their contest, and back.")
 
 text = {}
@@ -88,7 +89,7 @@ text[10] = _([[You look around, but the nerds are nowhere to be found. That is n
 text[11] = _([[Seeing that it is already too late to pick up the nerds, and that you're quite far from %s, you decide it's better to forget about them completely.]])
 
 -- you return the nerds, who have won the contest
-text[12] = _([[The nerds, finally exhausted from all the partying, still smile as they pack up their prize-winning box and leave your ship. Mia beams as she turns to you. "Well done, %s. You see, since we got loads of prize money, we decided to give you a bonus. After all, we wouldn't have gotten there without your service. Here, have 30,000. Good day to you."]])
+text[12] = _([[The nerds, finally exhausted from all the partying, still smile as they pack up their prize-winning box and leave your ship. Mia beams as she turns to you. "Well done, %s. You see, since we got loads of prize money, we decided to give you a bonus. After all, we wouldn't have gotten there without your service. Here, have 30 k¢. Good day to you."]])
 
 -- you return the nerds, who did not win the contest
 text[13] = _([[With sagging shoulders, the nerds unload their box. Mia turns to address you, not bold at all this time. "Um, we got a bit of a problem here. You know, we intended to pay the trip from our prize money. Now we don't have no prize money."
