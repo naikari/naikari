@@ -62,7 +62,7 @@ representative at an online or offline event.
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement:
 
-* [diligentcircle](https://github.com/diligentcircle) (project head): via email at <bobbens@gmail.com>, or via Discord at `diligentcircle 丸#5156`
+* [diligentcircle](https://github.com/diligentcircle) (project head): via email at <naikari@riseup.net>, or via Discord at `diligentcircle 丸#5156`
 
 All complaints will be reviewed and investigated promptly and fairly.
 

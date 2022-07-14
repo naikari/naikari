@@ -187,7 +187,7 @@ contribution is under and how you wish to be credited.
 
 If you cannot or don't wish to use GitHub, you are still welcome to
 contribute. In that case, the easiest way to do so is to contact us via
-email at [diligentcircle@riseup.net](mailto:diligentcircle@riseup.net).
+email at [naikari@riseup.net](mailto:naikari@riseup.net).
 For contributing code, diff patches are acceptable, or (more preferably)
 you can send us a link to your own public Naikari Git repository clone
 with your changes committed. If you need assistance with this, feel free
