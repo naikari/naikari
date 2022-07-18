@@ -259,6 +259,7 @@ void debug_sigClose (void)
 {
 #if LINUX && HAS_BFD && DEBUGGING
    bfd_close( abfd );
+   abfd = NULL;
 #endif /* LINUX && HAS_BFD && DEBUGGING */
 }
 
