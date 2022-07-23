@@ -194,6 +194,7 @@ msg_lore["Independent"] = {
    _([["We're not part of any of the galactic superpowers. We can take care of ourselves!"]]),
    _([["Sometimes I worry that our lack of a standing military leaves us vulnerable to attack. I hope nobody will get any ideas about conquering us!"]]),
    _([["I find it rather odd that anyone would answer to some bureaucrat who doesn't even live on the same planet as them. What a strange universe we live in."]]),
+   _([["Don't listen to those conspiracy theories about the Incident. We don't know what happened, sure, but why on Earth would someone blow up… you know, Earth… on purpose?"]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
@@ -206,6 +207,7 @@ msg_lore["Empire"] = {
    _([["I'm still waiting for my pilot license application to get through. Oh well, it's only been half a cycle, I just have to be patient."]]),
    _([["Between you and me, the laws the Council passes can get really ridiculous! Most planets find creative ways of ignoring them.…"]]),
    _([["Don't pay attention to the naysayers. The Empire is still strong. Have you ever seen a Peacemaker up close? I doubt any ship fielded by any other power could stand up to one."]]),
+   _([["I don't know who did it, but believe me, the Incident was no accident! It was definitely a terrorist attack orchestrated by those disloyal Great Houses in an effort to take down the Empire."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
@@ -221,6 +223,7 @@ msg_lore["Dvaered"] = {
    _([["I'm thinking about joining the military. Every time I see or hear news about those rotten FLF bastards, it makes my blood boil! They should all be pounded into space dust!"]]),
    _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
    _([["Did you know that House Dvaered was named after a hero of the revolt? At least that's what my grandparents told me."]]),
+   _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to create that nebula so they would have a place to hide. Damn criminals…"]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
@@ -235,6 +238,7 @@ msg_lore["Sirius"] = {
    _([["House Sirius is officially part of the Empire, but everyone knows that's only true on paper. The Emperor has nothing to say in these systems. We follow Sirichana, and no-one else."]]),
    _([["You can easily tell the different echelons apart. Every Sirius citizen and soldier wears clothing appropriate to his or her echelon."]]),
    _([["I hope to meet one of the Touched one day!"]]),
+   _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into his plan, and he punished the Empire for having started that so-called 'Great Project'."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
@@ -245,7 +249,8 @@ msg_lore["Soromid"] = {
    _([["Yes, it's true, our military ships are alive. Us normal folk don't get to own bioships though, we have to make do with synthetic constructs just like everyone else."]]),
    _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
    _([["Our cosmetic gene treatments are even safer now for non-Soromids, with a rate of survival of 99.4%!"]]),
-   _([["We have been rebuilding and enhancing our bodies for so long, I say we've become a new species, one above human."]]),
+   _([["We have been rebuilding and enhancing our bodies for so long, we've practically evolved into a new species."]]),
+   _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
 }
 
@@ -260,6 +265,7 @@ msg_lore["Za'lek"] = {
    _([["I am worried about my sister. She's on trial for 'abusive self-citing' and the public prosecutor has requested a life sentence."]]),
    _([["They opened two professor positions on precision machining in Atryssa Central Manufacturing Lab, and none in Bedimann Advanced Process Lab, but everyone knows that the BAPL needs reinforcement ever since three of its professors retired last cycle. People say it's because a member of Atryssa's lab posted a positive review of the president of the Za'lek central scientific recruitment committee."]]),
    _([["Even if our labs are the best in the galaxy, other factions have their own labs as well. For example, Dvaer Prime Lab for Advanced Mace Rocket Studies used to be very successful until it was nuked by mistake by a warlord during an invasion of the planet."]]),
+   _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but through the discovery of more data, we can uncover the true answer."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
 }
 
@@ -296,6 +302,7 @@ msg_lore["Frontier"] = {
    _([["There are twelve true Frontier worlds, because twelve colony ships successfully completed their journey in the First Growth. But did you know that there were twenty colony ships to begin with? Eight of them never made it. Some are said to have mysteriously disappeared. I wonder what happened to them?"]]),
    _([["We don't have much here in the Frontier, other than our long history leading directly back to Earth. But I don't mind. I'm happy living here, and I wouldn't want to move anywhere else."]]),
    _([["You know the Frontier Liberation Front? They're the guerrilla movement that fights for the Frontier. I hope they can continue to hold out."]]),
+   _([["The Incident? Oh, I don't think about it too much. It's a tragedy, but we have enough of our own problems to deal with as-is."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
