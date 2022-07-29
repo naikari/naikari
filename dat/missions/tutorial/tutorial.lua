@@ -473,8 +473,8 @@ end
 
 
 function spawn_drone()
-   local f = faction.dynAdd(
-         nil, N_("Melendez"), N_("Melendez Corporation"), {ai="baddie_norun"})
+   local f = faction.dynAdd(nil, N_("Tutorial"),
+         N_("Tutorial Machines Inc."), {ai="baddie_norun"})
    local p = pilot.add("Hyena", f, dest_planet, _("Practice Drone"),
          {naked=true})
 

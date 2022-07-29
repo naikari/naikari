@@ -2,6 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Escort Handler">
  <trigger>load</trigger>
+ <priority>100</priority>
  <chance>100</chance>
  <flags>
   <unique />
@@ -405,6 +406,10 @@ function enter ()
             hook.pilot(edata.pilot, "death", "pilot_death", i)
             hook.pilot(edata.pilot, "attacked", "pilot_attacked", i)
             hook.pilot(edata.pilot, "hail", "pilot_hail", i)
+
+            -- Trigger a hook to allow missions to do things with the
+            -- escorts.
+            hook.trigger("escort_spawn", edata.pilot)
          else
             edata.alive = false
          end
