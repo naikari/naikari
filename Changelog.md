@@ -16,6 +16,7 @@
 * The FLF/Dvaered derelicts event now requires a Mercenary License and
   can only occur outside of Frontier space.
 * Changed the name of the Info Window to Ship Computer.
+* New combat practice mission available through the mission computer.
 
 ## 0.3.0
 
