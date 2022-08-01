@@ -155,6 +155,10 @@ if buildExec.disabled() == false
 
    ### Soft deps (required: false)
 
+   # libdl can be used for debugging stack traces. On non-Windows platforms, GLAD relies on dlopen().
+   glad_requires_libdl = not cc.has_header('windows.h')
+   libdl = cc.find_library('dl', required: glad_requires_libdl)
+
    # BFD
    if get_option('debug')
       bfd = cc.find_library('bfd', required: false)
@@ -174,7 +178,7 @@ if buildExec.disabled() == false
    vorbisfile = dependency('vorbisfile', required: true)
    ogg = dependency('ogg', required: true)  # Transitive dependency. At least some MSYS2 build envs may miss it.
 
-   naev_deps += [openal, ogg, vorbis, vorbisfile]
+   naev_deps += [libdl, openal, ogg, vorbis, vorbisfile]
 
    # Standard library feature tests
    config_data.set10('HAVE_ASPRINTF', cc.has_function('asprintf'))
@@ -184,6 +188,7 @@ if buildExec.disabled() == false
    config_data.set10('HAVE_FEENABLEEXCEPT', cc.has_header_symbol('fenv.h', 'feenableexcept'))
    config_data.set10('HAVE_ALLOCA_H', cc.has_header('alloca.h'))
    config_data.set10('HAVE_BFD_H', bfd.found())
+   config_data.set10('HAVE_DLADDR', cc.has_function('dladdr') and libdl.found())
    config_data.set10('HAVE_EXECINFO_H', cc.has_header('execinfo.h'))
    config_data.set10('HAVE_FENV_H', cc.has_header('fenv.h'))
    config_data.set10('HAVE_MALLOC_H', cc.has_header('malloc.h'))
@@ -217,16 +222,11 @@ if buildExec.disabled() == false
    )
    add_project_arguments('-include', 'config.h', language: 'c')
 
-   # GLAD
-   if not cc.has_header('windows.h')
-      naev_deps += cc.find_library('dl', required: true)
-   endif
-
-   include_dirs = include_directories(
+   include_dirs = [include_directories(
       'src',
       'src/tk',
       'src/tk/widget'
-   )
+   )]
 
    libsdf = static_library('sdf', sdf_source, include_directories: include_dirs, override_options: ['optimization=3'])
    naev_deps += declare_dependency(link_with: libsdf)
