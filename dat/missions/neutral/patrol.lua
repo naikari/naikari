@@ -293,8 +293,8 @@ function timer ()
 
          player.msg(secure_msg)
          osd_msg[2] = gettext.ngettext(
-            "Go to indicated point (%d remaining)",
-            "Go to indicated point (%d remaining)",
+            "Go to point indicated on overlay map (%d remaining)",
+            "Go to point indicated on overlay map (%d remaining)",
             #points
         ):format(#points)
          misn.osdCreate(osd_title, osd_msg)
