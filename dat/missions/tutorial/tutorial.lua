@@ -164,7 +164,7 @@ jumping_log = _([[Traveling through systems is accomplished through jump points,
 jumping_log2 = _([[You can open your starmap by pressing the Open Star Map key (M by default). Through your starmap, you can click on a system and click on the Autonav button to be automatically transported to the system. This only works if you know a valid route to get there.]])
 fuel_log = _([[You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks.]])
 
-misn_title = _("Tutorial")
+misn_title = _("Flight School")
 misn_desc = _("Ian Structure has offered to teach you how to fly your ship.")
 misn_reward = _("None")
 
