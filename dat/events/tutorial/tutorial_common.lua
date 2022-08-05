@@ -43,7 +43,7 @@ end
 --    @luaparam text Text of the log entry.
 --    @luaparam logname_raw The raw (untranslated) name of the log to use.
 function addTutLog(text)
-   shiplog.create("tutorial", p_("log", "Tutorial"))
+   shiplog.create("tutorial", p_("log", "Pilot's Manual"))
    shiplog.append("tutorial", text)
 end
 

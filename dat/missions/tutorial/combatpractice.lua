@@ -38,7 +38,7 @@ local fleet = require "fleet"
 local misnhelper = require "misnhelper"
 
 -- Mission details
-misn_title = _("TUTORIAL: Combat Practice")
+misn_title = _("Combat Practice")
 misn_desc = _([[Combat practice session against AI-powered drones (type chosen by you) to take place in the next system you enter in which no missions or events are taking place. You and your hired escorts cannot be destroyed during the practice fight, but can be damaged and disabled. Landing or leaving the system will instantly abort the mission.]])
 
 
@@ -188,8 +188,8 @@ function start_hook()
       dispname = _("Watson")
    end
 
-   local fac = faction.dynAdd(nil, N_("Tutorial"),
-         N_("Tutorial Machines Inc."), {ai="baddie_norun"})
+   local fac = faction.dynAdd(nil, N_("Training"),
+         N_("Training Machines, Inc."), {ai="baddie_norun"})
 
    local boss_p = pilot.add(boss, fac, pos, dispname)
    drones = {boss_p}
