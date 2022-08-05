@@ -40,13 +40,15 @@ require "missions/neutral/common"
 a_commodity = commodity.get("Water")
 an_outfit = outfit.get("Heavy Laser Turret")
 
-intro_text  = _([["Congratulations on your first space ship, {player}!" Ian Structure, who sold the {shipname} to you, says through the radio. "You have made an excellent decision to purchase from Melendez Corporation! Our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You are skeptical of the sales pitch, of course; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.
+intro_text  = _([["Welcome to space, {player}!" a voice finally says through the radio. It felt like you must have been waiting a whole period since you were sent into space to begin your flight training, sponsored by the manufacturer of your ship, Melendez Corporation. "I am Ian Structure, and I will be your guide today. On behalf of Melendez Corporation, I would like to say that I believe your new ship, the {shipname}, will serve you well! Our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank Ian Structure.]])
 
-"Now that we have you out in space for the first time, how about I go over your new ship's controls with you real quick? No charge!"]])
+movement_text = _([["Alright, let's go over how to pilot your new ship, then! There are two basic ways to pilot your ship: keyboard flight, and mouse flight. I will explain both so you can choose which method is best for you.
 
-nothanks_text  = _([["Ha, I guess you're eager to start, eh? Well, I won't hold you back. I have uploaded some useful information which you can review any time you like by checking the Tutorial section of your ship log. The ship log can be found in the ship computer, which you can access by pressing {infokey}, or by pressing {menukey} and clicking the 'Ship Computer' button. Good luck!" With Ian Structure now gone, you set off on your journey.]])
+"To move via keyboard flight, rotate your ship with {leftkey} and {rightkey}, and thrust to move your ship forward with {accelkey}. You can also use {reversekey} to rotate your ship to the direction opposite of your current movement, which can be useful for bringing your vessel to a stop.
 
-movement_text = _([["Alright, let's go over how to pilot your new state-of-the-art ship from Melendez Corporation, then!" You resist the urge to roll your eyes. "Moving is pretty simple: rotate your ship with {leftkey} and {rightkey}, and thrust to move your ship forward with {accelkey}! You can also use {reversekey} to rotate your ship to the direction opposite of your current movement, or to reverse thrust if you purchase and install a Reverse Thruster onto your Melendez Corporation starship. Give it a try by flying over to {planet}! You see it on your screen, right? It 's the planet right next to you."]])
+"To move via mouse flight, you must first enable it by pressing {mouseflykey}. While mouse flight is enabled, your ship will automatically turn toward your #bmouse pointer#0. You can then thrust either with {accelkey}, as you would do in keyboard flight, or you can alternatively use the #bmiddle mouse button#0 or either of the #bextra mouse buttons#0.
+
+"Why don't you give both systems a try? Experiment with the flight controls as much as you'd like, then fly over to where {planet} is. You see it on your screen, right? It's the planet right next to you."]])
 
 objectives_text = _([["Perfect! That was easy enough, right? We at Melendez Corporation recommend this manner of flight, which we call 'keyboard flight'.
 
@@ -54,7 +56,11 @@ However, there is one other way you can fly if you so choose: press {mouseflykey
 
 "Ah, you may also have noticed the mission on-screen display on your monitor! As you can see, you completed your first objective of the Tutorial mission, so the next objective is now being highlighted."]])
 
-landing_text = _([["On that note, let's go over landing! All kinds of actions, like landing on planets, hailing ships, boarding disabled ships, and jumping to other systems can be accomplished by #bdouble-clicking#0 on an applicable target, or alternatively by pressing certain buttons on your control console. How about you try landing on {planet}? You can engage the automatic landing procedure either by #bdouble-clicking#0 on the planet or its radar icon, or by targeting the planet with {target_planet_key} and then pressing {landkey}. Give it a try!"]])
+landing_text = _([["Great job! I know the controls can be difficult to get used to, but if you give it some time, I'm sure you'll be moving your ship like a pro in no time.
+
+"Of course, moving through space is only a small part of navigation, so let's go over an equally important aspect: landing! Yes, yes, I know, you bought this ship to go off-world, but space is an empty place and it's other planets that make the long journeys worthwhile. Luckily, landing with modern spacecraft is a simple, automated procedure! All you have to do is either #bdouble-click#0 on a planet, or if you prefer to use your keyboard, you can target a planet with {target_planet_key} and then press {landkey}. Oh, and if you don't have a planet selected, you can just press {landkey} to land on the nearest landable planet.
+
+"How about you try landing on {planet}? Again, feel free to choose whichever method you prefer."]])
 
 land_text = _([["Excellent! The landing was successful. Melendez Corporation uses advanced artificial intelligence technology so that you never have to worry about your ship crashing. It may seem like a small thing, but it wasn't long ago when pilots had to land manually and crashes were commonplace! We at Melendez Corporation pride ourselves in protecting the safety of our valued customers and ensuring that your ship is reliable and resilient.
 
@@ -162,7 +168,7 @@ misn_title = _("Tutorial")
 misn_desc = _("Ian Structure has offered to teach you how to fly your ship.")
 misn_reward = _("None")
 
-log_text = _([[Ian Structure, the Melendez employee who sold you your first ship, gave you a tutorial on how to pilot it, claiming afterwards that you are "a natural-born pilot".]])
+log_text = _([[Ian Structure, an employee of Melendez Corporation, taught you how to pilot a ship, claiming afterwards that you are "a natural-born pilot".]])
 
 
 function create ()
@@ -181,9 +187,11 @@ function create ()
       misn.finish(false)
    end
 
+   credits = 15000
+
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
-   misn.setReward(misn_reward)
+   misn.setReward(fmt.credits(credits))
 
    accept()
 end
@@ -212,26 +220,21 @@ function accept ()
    addTutLog(jumping_log2)
    addTutLog(fuel_log)
 
-   if tk.yesno("", fmt.f(intro_text,
-            {player=player.name(), shipname=player.pilot():name()})) then
-      timer_hook = hook.timer(5, "timer")
-      hook.land("land")
-      hook.takeoff("takeoff")
-      hook.enter("enter")
-      hook.input("input")
+   timer_hook = hook.timer(5, "timer")
+   hook.land("land")
+   hook.takeoff("takeoff")
+   hook.enter("enter")
+   hook.input("input")
 
-      stage = 1
-      create_osd()
+   stage = 1
+   create_osd()
 
-      tk.msg("", fmt.f(movement_text,
-            {leftkey=tutGetKey("left"), rightkey=tutGetKey("right"),
-               accelkey=tutGetKey("accel"), reversekey=tutGetKey("reverse"),
-               planet=start_planet:name()}))
-   else
-      tk.msg("", fmt.f(nothanks_text,
-            {infokey=tutGetKey("info"), menukey=tutGetKey("menu")}))
-      misn.finish(true)
-   end
+   tk.msg("", fmt.f(intro_text,
+         {player=player.name(), shipname=player.pilot():name()}))
+   tk.msg("", fmt.f(movement_text,
+         {leftkey=tutGetKey("left"), rightkey=tutGetKey("right"),
+            accelkey=tutGetKey("accel"), reversekey=tutGetKey("reverse"),
+            mouseflykey=tutGetKey("mousefly"), planet=start_planet:name()}))
 end
 
 
@@ -263,7 +266,7 @@ function create_osd()
          {system=destsys:name()}),
    }
 
-   misn.osdCreate(_("Tutorial"), osd_desc)
+   misn.osdCreate(_("Flight School"), osd_desc)
    misn.osdActive(stage)
 end
 
@@ -281,9 +284,6 @@ function timer ()
          stage = 2
          create_osd()
 
-         tk.msg("", fmt.f(objectives_text,
-               {mouseflykey=tutGetKey("mousefly"),
-                  accelkey=tutGetKey("accel")}))
          tk.msg("", fmt.f(landing_text,
                {planet=start_planet:name(),
                   target_planet_key=tutGetKey("target_planet"),
@@ -410,6 +410,7 @@ function enter_timer ()
                {infokey=tutGetKey("info"), menukey=tutGetKey("menu")}))
       end
 
+      player.pay(credits)
       misn.finish(true)
    end
 end
