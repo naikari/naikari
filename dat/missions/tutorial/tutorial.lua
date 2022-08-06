@@ -50,43 +50,43 @@ movement_text = _([["Alright, let's go over how to pilot your new ship, then! Th
 
 "Why don't you give both systems a try? Experiment with the flight controls as much as you'd like, then fly over to where {planet} is. You see it on your screen, right? It's the planet right next to you."]])
 
-objectives_text = _([["Perfect! That was easy enough, right? We at Melendez Corporation recommend this manner of flight, which we call 'keyboard flight'.
-
-However, there is one other way you can fly if you so choose: press {mouseflykey} on your console and your Melendez Corporation ship will turn toward your #bmouse pointer#0 automatically! You can then thrust either with {accelkey}, the #bmiddle mouse button#0, or either of the #bextra mouse buttons#0. What method you use to pilot your ship is entirely up to you.
-
-"Ah, you may also have noticed the mission on-screen display on your monitor! As you can see, you completed your first objective of the Tutorial mission, so the next objective is now being highlighted."]])
-
 landing_text = _([["Great job! I know the controls can be difficult to get used to, but if you give it some time, I'm sure you'll be moving your ship like a pro in no time.
 
 "Of course, moving through space is only a small part of navigation, so let's go over an equally important aspect: landing! Yes, yes, I know, you bought this ship to go off-world, but space is an empty place and it's other planets that make the long journeys worthwhile. Luckily, landing with modern spacecraft is a simple, automated procedure! All you have to do is either #bdouble-click#0 on a planet, or if you prefer to use your keyboard, you can target a planet with {target_planet_key} and then press {landkey}. Oh, and if you don't have a planet selected, you can just press {landkey} to land on the nearest landable planet.
 
 "How about you try landing on {planet}? Again, feel free to choose whichever method you prefer."]])
 
-land_text = _([["Excellent! The landing was successful. Melendez Corporation uses advanced artificial intelligence technology so that you never have to worry about your ship crashing. It may seem like a small thing, but it wasn't long ago when pilots had to land manually and crashes were commonplace! We at Melendez Corporation pride ourselves in protecting the safety of our valued customers and ensuring that your ship is reliable and resilient.
+land_text = _([[You watch in amazement as your ship automatically initiates landing procedures, taking you safely through the atmosphere and into the planet's space port, touching down at an empty spot reserved for you. As your hatch opens and you step out of your ship, an exhausted dock worker greets you and makes you sign a form. Once you've done so, she pushes some buttons and you watch in amazement as robotic drones immediately get to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
 
-"When you land, your ship is refueled automatically and you can do things such as talk to civilians at the bar, buy new ship components, configure your ship, and most importantly, accept missions from the Mission Computer. Why don't we look around? As you can see, we are currently on the Landing Main tab, where you can learn about the planet and buy a local map. Click all the other tabs below and I'll give you a tour through what else you can do on a planet. When you are done, click the 'Take Off' button so we can continue."]])
+"Ah, there you are, {player}!" the voice of Ian Structure interrupts. You look in the direction of the voice and see an obnoxiously dressed man with a huge grin. "I see your Melendez Corporation starship is serving you well." The worker rolls her eyes, mumbles something you can't make out, and leaves to assist another ship which is about to land. Ian Structure seemingly doesn't notice. "I need to go attend to some matters. Why don't you meet my colleague at the bar while you wait? You can navigate to there with those tabs at the bottom. I'll meet up with you later!" You try to protest, but before you can get a word out, he's already gone. Defeated, you figure you might as well go see this colleague, to pass the time if nothing else.]])
 
-bar_text = _([["This is the Spaceport Bar, where you can read the latest news, but more importantly, you can meet civilians, hire pilots to join your fleet, and sometimes find unique mission opportunities! I recommend regularly talking to patrons at the bar, at least early on. Some may have useful tips for you, or you may even find a local to help you find nearby systems!"]])
+approach_text = _([[You approach a well-dressed man who you suppose must be Ian Structure's colleague and ask if indeed he is. The man lets out a small chuckle. "Ah, of course. I do know him, though I do think 'colleague' is stretching it a bit. Let me guess: he excused himself to 'attend to some matters'?" Dumbstruck, you simply slowly nod, causing the man to erupt in laughter. "He's quite the character, I'll say. I've told him a thousand times it's okay to just say he's going on his lunch break.
 
-mission_text = _([["This is the Mission Computer, where you can find basic missions in the official mission database. Missions are how you make your living as a pilot, so I recommend you check this screen often to see where the money-making opportunities are!
+"Oh, but where are my manners? I haven't introduced myself." He offers his hand, which you shake. "My name is Albert. I'm, you could say, a casual pilot. I take easy jobs here and there, trade commodities, that sort of thing. I was actually stopping by here to grab some cargo for a client, but I got distracted by an enthralling story on the news terminal.
 
-"When picking missions, pay attention to how much they pay. You'll want to strike a balance of choosing missions that you're capable of doing, but getting paid as much as possible to do them. Once you've accepted a mission, you can review it at any time via the ship computer by pressing {infokey}."]])
+"Hm, say, could you get that cargo for me? I'll give you the credits for it." Albert presses a credit chip into your hand. "I just need 5 t of Food. You should be able to find it in the Commodities tab." Figuring this diversion is better than sitting around doing nothing, you agree to get the cargo for him and he gets back to reading his news article, nodding appreciatively.]])
 
-outfits_text = _([["This is the Outfitter, where you can buy new outfits to make your Melendez Corporation starship even better! You can fit your ship with new weapons, extra cargo space, more powerful core systems, and more! Regional maps which can help you explore the galaxy more easily can also be purchased here, as well as licenses required for higher-end weaponry and starships (such as our top-of-the-line Melendez Mule Bulk Cargo Starship, widely sought after for its unmatched cargo capacity).
+ask_cargo_text = _([[You ask Albert what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "I have trouble remembering stuff too. It's 5 t of Food. You should be able to find it in the Commodities tab. Let me know when you have it!"]])
 
-"As you can see, a series of tabs at the top of your screen allow you to filter outfits by type: 'W' for weapons, 'U' for utilities, 'S' for structurals, 'Core' for cores, and 'Other' for anything else. Different planets have different outfits available; if you don't see a specific outfit you're looking for, you can search for it via the 'Find Outfits' button."]])
+give_cargo_text = _([[You approach Albert and inform him that you successfully bought the cargo he needs. "Ah, perfect timing!" he responds. "I just got done reading that article. Thanks a bunch!" You point out that the cost of the cargo was less than what Albert gave you and attempt to return the rest of his credits to him, but he waves dismissively. "No, it's OK. Keep it as a thank you for your assistance. You did part of my job for me, after all, so it's only fair that you get a share of the payment!
 
-shipyard_text = _([["This is the Shipyard, where you can buy new starships to either replace the one you've got, or to add to your collection! You can then either buy a ship with the 'Buy' button, or trade your current ship in for the new ship with the 'Trade-In' button. Different planets have different ships available; if you don't see a specific ship you're looking for, you can search for it via the 'Find Ships' button.
+"Say, I'm going to be on this planet for awhile longer, so do you want to come along with me while you wait for Ian?" You shrug your shoulders and muse that you might as well, seeing as you have nothing better to do. "That's the spirit! My first stop is the mission computer. Just click on the tab labeled 'Missions' to navigate us to there."]])
 
-"You have no need for this screen right now, but later on, when you've saved up enough, you'll likely want to upgrade your ship to an even better one, depending on what kinds of tasks you will be performing. I highly recommend either our Melendez Quicksilver Rush Cargo Starship for cargo missions that have a time limit, or our Melendez Koala Compact Bulk Cargo Starship for missions that require carrying large amounts of cargo. We sincerely thank you for shopping with Melendez Corporation!"]])
+mission_text = _([[You and Albert approach the mission computer and Albert immediately begins browsing through the available missions. You watch closely as he mutters to himself. "Let's see, this one is too dangerous, this one I don't have enough cargo for, this one doesn't pay enough… aha! Perfect!" Seemingly content with one of the missions he found, he presses the Accept button and the mission disappears from the list of available missions.
 
-equipment_text = _([["This is the Equipment screen, available on all planets and stations with an outfitter or a shipyard. Here, you can equip your ships with outfits you own and sell outfits you have no more use for. If the planet or station you're landed at has a shipyard, you can also change which ship you're flying and sell unneeded ships and outfits. Selling a ship that still has outfits equipped will also lead to those outfits being sold along with the ship, so do keep that in mind.
+"Oh!" he interjects to himself. "Shit, that's the wrong one. Let's abort that…" You see Albert pressing {infokey} on his wrist computer, which causes a window to pop up which seems to be an interface to his ship's computer. He navigates over to the Missions tab on this window, selects the mission he just accepted, and presses the Abort button, which causes the mission to disappear from his active missions. "There," he mutters. He then returns to the mission computer and accepts a different mission this time, presumably the one he meant to accept in the first place.
 
-"You will notice that your ship comes with two laser cannons by default. If you make any changes to your ship now, please ensure that you still have two weapons equipped, as you will need those later for practicing combat. Besides, flying around space without any weapons can be very risky."]])
+"Alright," he says this time to you, "I've chosen my mission! Next stop, the outfitter. Click on the 'Outfits' tab to take us there when you're ready."]])
 
-commodity_text = _([["This is the Commodity screen, where you can buy and sell commodities. Commodity prices vary from planet to planet and even over time, so you can use this screen to attempt to make money by buying low and selling high. Here, it's useful to hold the Shift and/or Ctrl keys to adjust how many tonnes of the commodity you're buying or selling at once.
+outfits_text = _([[As you enter the outfitter, you can't help but look around in wonder at all the choices. Albert, meanwhile, seems used to the display. He browses the catalog for a moment before finding what he's looking for: a Milspec Prometheus 3603 Core System. "Finally!" he exclaims. "I've been looking for this thing all over the place. You know, this place has a great selection. I'll have to come back here some other time.
 
-"If you're unsure what's profitable to buy or sell, the starmap (which we will cover later) allows you to compare known average prices across the galaxy. The news terminal at the bar also includes up-to-date price information for specific nearby planets."]])
+"Alright, just one more stop for me! I need to go to the Equipment screen so I can actually put this on my ship. It won't do me much good just sitting in my inventory, eh? Click on the 'Equipment' tab whenever you're ready."]])
+
+equipment_text = _([[You see through the Equipment screen that Albert has three ships: a Koala, a Quicksilver, and a Gawain, in addition to a modest collection of outfits. He uses the interface to remove the Unicorp PT-80 Core System on his Quicksilver, then install his new Milspec Prometheus 3603 Core System onto the Core System slot. "All set!" he says.
+
+"Well, I suppose I'm done here now. Hey, thanks again for helping me out on my mission, and it was nice to meet you. Maybe we'll see each other in space some other time!" You part ways with Albert as he goes back into space. With little else to do, you decide to wander around some more while you wait for Ian Structure to show up.
+
+Suddenly, you get a call on your wrist computer from Ian Structure. "Sorry for the wait," he says. "But I'm back and ready to continue your flight training! Go ahead and click on the 'Take Off' button whenever you're ready."]])
 
 overlay_text = _([["Welcome back to space, {player}! Let's continue discussing moving around in space. As mentioned before, you can move around space manually, no problem. However, you will often want to travel large distances, and navigating everywhere manually could be a bit tedious. That is why we at Melendez Corporation always include the latest Autonav technology with all of our ships! When your ship is piloted with autonav, while the trip takes just as long in real time, advanced Melendez Corporation technology allows you to step away from your controls, making it seem as though time is passing at a faster rate (a phenomenon we call 'time compression'). And don't worry; if any hostile pilots are detected, our Autonav system automatically alerts you so you can return to your controls, ending time compression. This can be configured in the Options menu.
 
@@ -246,7 +246,17 @@ function create_osd()
             reversekey=naev.keyGet("reverse"), rightkey=naev.keyGet("right")}),
       fmt.f(_("Land on {planet} ({system} system) by double-clicking on it"),
          {planet=start_planet:name(), system=missys:name()}),
-      _("Explore the planet as much as you want, then take off by clicking the \"Take Off\" button"),
+      fmt.f(_("Talk to Ian Structure's colleague at the bar on {planet} ({system} system})"),
+         {planet=start_planet:name(), system=missys:name()}),
+      fmt.f(_("Buy 5 t of Food from the Commodities tab and then talk to Albert at the bar on {planet} ({system} system)"),
+         {planet=start_planet:name(), system=missys:name()}),
+      fmt.f(_("Go to the mission computer (Missions tab) on {planet} ({system} system)"),
+         {planet=start_planet:name(), system=missys:name()}),
+      fmt.f(_("Go to the outfitter (Outfits tab) on {planet} ({system} system)"),
+         {planet=start_planet:name(), system=missys:name()}),
+      fmt.f(_("Go to the Equipment tab on {planet} ({system} system)"),
+         {planet=start_planet:name(), system=missys:name()}),
+      _("Press the Take Off button to return to space"),
       fmt.f(_("Press {overlaykey} to open your overlay map"),
          {overlaykey=naev.keyGet("overlay")}),
       fmt.f(_("Autonav to {planet} ({system} system) by right-clicking its icon on the overlay map"),
@@ -289,21 +299,21 @@ function timer ()
                   target_planet_key=tutGetKey("target_planet"),
                   landkey=tutGetKey("land")}))
       end
-   elseif stage == 5 then
+   elseif stage == 10 then
       if system.cur() == missys
             and player.pos():dist(dest_planet:pos()) <= dest_planet_r then
-         stage = 6
+         stage = 11
          create_osd()
          tk.msg("", fmt.f(target_text,
                {planet=dest_planet:name(),
                   target_hostile_key=tutGetKey("target_hostile")}))
          spawn_drone()
       end
-   elseif stage == 8 then
+   elseif stage == 13 then
       if player.pilot():temp() <= 250 then
          player.allowLand(true)
          player.pilot():setNoJump(false)
-         stage = 9
+         stage = 14
          create_osd()
          marker = misn.markerAdd(jumpsys, "high")
          tk.msg("", fmt.f(jumping_text, {starmapkey=tutGetKey("starmap")}))
@@ -312,56 +322,98 @@ function timer ()
 end
 
 
-function land ()
+function land()
    hook.rm(timer_hook)
    if stage == 2 then
+      if planet.cur() ~= start_planet then
+         return
+      end
+
       stage = 3
       create_osd()
-      tk.msg("", land_text)
+      tk.msg("", fmt.f(land_text, {player=player.name()}))
+   elseif stage == 4 then
+      if planet.cur() ~= start_planet then
+         return
+      end
 
-      bar_hook = hook.land("land_bar", "bar")
-      mission_hook = hook.land("land_mission", "mission")
-      outfits_hook = hook.land("land_outfits", "outfits")
-      shipyard_hook = hook.land("land_shipyard", "shipyard")
-      equipment_hook = hook.land("land_equipment", "equipment")
-      commodity_hook = hook.land("land_commodity", "commodity")
+      npc = misn.npcAdd("approach_albert", _("Albert"),
+            "neutral/youngbusinessman2.png",
+            _("Albert is still reading the news terminal."), 0)
+   end
+
+   if stage == 3 then
+      if planet.cur() ~= start_planet then
+         return
+      end
+
+      npc = misn.npcAdd("approach_albert", _("Ian's Colleague"),
+            "neutral/youngbusinessman2.png",
+            _("You see a well-dressed young man sitting alone at the bar, looking intently at the news terminal. Perhaps this is the \"colleague\" Ian Structure spoke of."),
+            0)
    end
 end
 
 
-function land_bar ()
-   hook.rm(bar_hook)
-   tk.msg("", bar_text)
+function approach_albert()
+   if stage == 3 then
+      tk.msg("", approach_text)
+
+      stage = 4
+      create_osd()
+      misn.npcRm(npc)
+      npc = misn.npcAdd("approach_albert", _("Albert"),
+            "neutral/youngbusinessman2.png",
+            _("Albert is still reading the news terminal."), 0)
+
+      -- We intentionally give the player more money than is actually
+      -- needed to buy the commodity, to give both a buffer and a
+      -- small reward.
+      local cost = commodity.get("Food"):priceAtTime(planet.cur(), time.get())
+      player.pay(cost * 15, "adjust")
+   elseif stage == 4 then
+      local ftonnes = player.pilot():cargoHas("Food")
+      if ftonnes and ftonnes >= 5 then
+         player.pilot():cargoRm("food", 5)
+         tk.msg("", give_cargo_text)
+
+         stage = 5
+         create_osd()
+         misn.npcRm(npc)
+         mission_hook = hook.land("land_mission", "mission")
+      else
+         tk.msg("", ask_cargo_text)
+      end
+   end
 end
 
 
-function land_mission ()
+function land_mission()
    hook.rm(mission_hook)
    tk.msg("", fmt.f(mission_text, {infokey=tutGetKey("info")}))
+
+   stage = 6
+   create_osd()
+   outfits_hook = hook.land("land_outfits", "outfits")
 end
 
 
-function land_outfits ()
+function land_outfits()
    hook.rm(outfits_hook)
    tk.msg("", outfits_text)
-end
 
-
-function land_shipyard ()
-   hook.rm(shipyard_hook)
-   tk.msg("", shipyard_text)
+   stage = 7
+   create_osd()
+   equipment_hook = hook.land("land_equipment", "equipment")
 end
 
 
 function land_equipment ()
    hook.rm(equipment_hook)
    tk.msg("", equipment_text)
-end
 
-
-function land_commodity ()
-   hook.rm(commodity_hook)
-   tk.msg("", commodity_text)
+   stage = 8
+   create_osd()
 end
 
 
@@ -383,21 +435,21 @@ end
 
 
 function enter_timer ()
-   if stage == 3 then
-      stage = 4
+   if stage == 8 then
+      stage = 9
       create_osd()
       tk.msg("", fmt.f(overlay_text,
             {player=player.name(), overlaykey=tutGetKey("overlay")}))
-   elseif (stage == 6 or stage == 7) and system.cur() == missys then
-      stage = 6
+   elseif (stage == 11 or stage == 12) and system.cur() == missys then
+      stage = 11
       create_osd()
       spawn_drone()
-   elseif stage == 10 and system.cur() == jumpsys then
-      stage = 11
+   elseif stage == 15 and system.cur() == jumpsys then
+      stage = 16
       create_osd()
       misn.markerMove(marker, destsys)
       tk.msg("", fmt.f(fuel_text, {system=destsys:name()}))
-   elseif stage == 11 and system.cur() == destsys then
+   elseif stage == 16 and system.cur() == destsys then
       addMiscLog(log_text)
 
       if tk.yesno("", fmt.f(ask_continue_text,
@@ -421,19 +473,19 @@ function input(inputname, inputpress, arg)
       return
    end
 
-   if stage == 4 and inputname == "overlay" then
-      stage = 5
+   if stage == 9 and inputname == "overlay" then
+      stage = 10
       create_osd()
       hook.safe("safe_overlay")
-   elseif stage == 6 and inputname == "target_hostile" then
-      stage = 7
+   elseif stage == 11 and inputname == "target_hostile" then
+      stage = 12
       create_osd()
       if not combat_text_shown then
          combat_text_shown = true
          hook.safe("safe_combat")
       end
-   elseif stage == 9 and inputname == "starmap" then
-      stage = 10
+   elseif stage == 14 and inputname == "starmap" then
+      stage = 15
       create_osd()
       hook.safe("safe_starmap")
    end
@@ -464,8 +516,8 @@ function pilot_death ()
 end
 
 
-function pilot_death_timer ()
-   stage = 8
+function pilot_death_timer()
+   stage = 13
    create_osd()
    tk.msg("", fmt.f(infoscreen_text,
          {infokey=tutGetKey("info"), menukey=tutGetKey("menu")}))
