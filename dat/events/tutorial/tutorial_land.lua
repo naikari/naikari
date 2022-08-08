@@ -6,9 +6,6 @@
  <flags>
   <unique />
  </flags>
- <notes>
-  <requires name="Continued Tutorial"/>
- </notes>
 </event>
 --]]
 --[[

@@ -8,9 +8,6 @@
   <priority>1</priority>
   <location>None</location>
  </avail>
- <notes>
-  <provides name="Continued Tutorial">If you say yes to more help</provides>
- </notes>
 </mission>
 --]]
 --[[
@@ -80,25 +77,25 @@ mission_text = _([[You and Albert approach the mission computer and Albert immed
 
 outfits_text = _([[As you enter the outfitter, you can't help but look around in wonder at all the choices. Albert, meanwhile, seems used to the display. He browses the catalog for a moment before finding what he's looking for: a Milspec Prometheus 3603 Core System. "Finally!" he exclaims. "I've been looking for this thing all over the place. You know, this place has a great selection. I'll have to come back here some other time.
 
-"Alright, just one more stop for me! I need to go to the Equipment screen so I can actually put this on my ship. It won't do me much good just sitting in my inventory, eh? Click on the 'Equipment' tab whenever you're ready."]])
+"Just one more stop for me! I need to go to the Equipment screen so I can actually put this on my ship. It won't do me much good just sitting in my inventory, eh? Click on the 'Equipment' tab whenever you're ready."]])
 
-equipment_text = _([[You see through the Equipment screen that Albert has three ships: a Koala, a Quicksilver, and a Gawain, in addition to a modest collection of outfits. He uses the interface to remove the Unicorp PT-80 Core System on his Quicksilver, then install his new Milspec Prometheus 3603 Core System onto the Core System slot. "All set!" he says.
+equipment_text = _([[You see through Albert's information on the Equipment screen that Albert has three ships: a Koala, a Quicksilver, and a Gawain, in addition to a modest collection of outfits. He uses the interface to remove the Unicorp PT-80 Core System on his Quicksilver, then install his new Milspec Prometheus 3603 Core System onto the Core System slot. "All set!" he says. You take a moment to look at your own information on the Equipment screen as well; sure enough you see the ship you just purchased, along with your comparatively barren collection of outfits.
 
 "Well, I suppose I'm done here now. Hey, thanks again for helping me out on my mission, and it was nice to meet you. Maybe we'll see each other in space some other time!" You part ways with Albert as he goes back into space. With little else to do, you decide to wander around some more while you wait for Ian Structure to show up.
 
-Suddenly, you get a call on your wrist computer from Ian Structure. "Sorry for the wait," he says. "But I'm back and ready to continue your flight training! Go ahead and click on the 'Take Off' button whenever you're ready."]])
+Suddenly, you get a call on your wrist computer from Ian Structure. "Sorry for the wait," he says. "I'm back and ready to continue your flight training! Go ahead and click on the 'Take Off' button whenever you're ready."]])
 
-overlay_text = _([["Welcome back to space, {player}! Let's continue discussing moving around in space. As mentioned before, you can move around space manually, no problem. However, you will often want to travel large distances, and navigating everywhere manually could be a bit tedious. That is why we at Melendez Corporation always include the latest Autonav technology with all of our ships! When your ship is piloted with autonav, while the trip takes just as long in real time, advanced Melendez Corporation technology allows you to step away from your controls, making it seem as though time is passing at a faster rate (a phenomenon we call 'time compression'). And don't worry; if any hostile pilots are detected, our Autonav system automatically alerts you so you can return to your controls, ending time compression. This can be configured in the Options menu.
+overlay_text = _([["Welcome back to space, {player}! Let's continue discussing moving around in space. As mentioned before, you can move around space manually, no problem. However, you will often want to travel large distances, and navigating everywhere manually could be a bit tedious. That is why ships from Melendez Corporation always include the latest Autonav technology! When your ship is piloted with autonav, while the trip takes just as long in real time, computerized technology allows you to step away from your controls, making it seem as though time is passing at a faster rate (a phenomenon we call 'time compression'). And don't worry; if any hostile pilots are detected, our Autonav system automatically alerts you so you can return to your controls, ending time compression. This can be configured in the Options menu.
 
 "Allow me to demonstrate. To start with, please press {overlaykey} to open your ship's overlay map."]])
 
-autonav_text = _([["Good job! As you can see, your overlay map shows several indicator icons. These icons represent objects in the current system that are visible to you: planets, jump points, ships, and asteroids. These icons are color-coded to indicate whether the objects are friendly, neutral, or hostile, and planets are also marked with symbols which serve the same purpose for colorblind accessibility.
+autonav_text = _([["As you can see, your overlay map shows several indicator icons. These icons represent objects in the current system that are visible to you: planets, jump points, ships, and asteroids. These icons are color-coded to indicate whether the objects are friendly, neutral, or hostile, and planets are also marked with symbols which serve the same purpose for colorblind accessibility.
 
 "Now that the overlay map is open, you can use your mouse to interact with objects the same way you would with the actual object. In addition, you can fly to any location in the system automatically by #bright-clicking#0 on its corresponding location on the overlay map.
 
-"Why don't you give it a try by using Autonav to fly over to {planet}? Simply #bright-click#0 on your overlay map's {planet} icon and watch in amazement as autonav takes you there quickly, easily, and painlessly."]])
+"Why don't you give it a try by using Autonav to fly over to {planet}? Simply #bright-click#0 on your overlay map's {planet} icon and watch in amazement as autonav takes you there quickly, easily, and painlessly!"]])
 
-target_text = _([["Great job! As you can see, by using Autonav, the perceived duration of your trip was cut substantially. You will grow to appreciate this feature in your Melendez Corporation ship in time, especially as you travel from system to system delivering goods and such.
+target_text = _([["Convenient, isn't it? By using Autonav, the perceived duration of your trip was cut substantially. You will grow to appreciate this feature in time, especially as you travel from system to system delivering goods and such.
 
 "Let's now practice combat. You won't need this if you stick to the safe systems in the southern Empire core, but sadly, you are likely to encounter pirate scum if you venture further out, so you need to know how to defend yourself. Fortunately, your ship comes pre-equipped with state-of-the-art laser cannons for just that reason!
 
@@ -110,33 +107,29 @@ combat_text = _([["Easy, isn't it? It's also possible to target any ship by clic
 
 "Your weapons are fired with {primarykey} and {secondarykey}. Give it a try and shoot the practice drone down!"]])
 
-infoscreen_text =_([["Excellent work taking out that drone! By the way, you can configure the way your weapons shoot from the Weapons tab of the ship computer, which can be accessed by pressing {infokey} or by pressing {menukey} and then clicking on the Ship Computer button. The ship computer also lets you view information about your ship, cargo, current missions, and reputation with the various factions. You will likely be referencing it a lot.]])
+infoscreen_text =_([["Excellent work taking out that drone! Of course, that was nothing like a real fight against a real pirate. If you would like some more practice, I would recommend giving the Combat Practice mission a try from any mission computer, which you can try as many times as you like.
 
-cooldown_text = _([["Now, as you may have noticed while you shot down the practice drone, shield regenerates over time, but armor does not. This is not universal, of course; some ships, particularly larger ships, feature advanced armor repair technology. But even then, armor regeneration is usually much slower than shield regeneration.
+By the way, you can configure the way your weapons shoot from the Weapons tab of the ship computer, which can be accessed by pressing {infokey} or by pressing {menukey} and then clicking on the Ship Computer button. If you are unsatisfied with the way your weapons are configured by default, you may find this useful, although your ship's default configuration should be reasonable for most situations. The Ship Computer also has other useful functions, like managing your missions and cargo.]])
 
-"You may have also noticed your heat meters going up and your weapons becoming less accurate as your ship and weapons got hot. This is normal, but too much heat can make your weapons difficult to use, which is why we at Melendez Corporation recommend using active cooldown when it is safe to do so. Let's practice using it. Engage active cooldown and wait for it to cool your ship down completely. You can engage active cooldown by pressing {autobrake_key} twice."]])
+cooldown_text = _([["Now, while you shot down the practice drone, you may have noticed your heat meters going up and your weapons becoming less accurate as your ship and weapons got hot. This is normal, but too much heat can make your weapons difficult to use, which is why Melendez Corporation recommends using active cooldown when it is safe to do so. Let's practice using it. Engage active cooldown and wait for it to cool your ship down completely. You can engage active cooldown by pressing {autobrake_key} twice."]])
 
-jumping_text = _([["Good job! Your ship is now fully cooled off. In addition to using Active Cooldown, you can also cool off by landing on any planet or station.
+jumping_text = _([["Good job! Your ship is now fully cooled off. In addition to using Active Cooldown, you can also cool off by landing on any planet or station. However, not all systems have a friendly planet for you to land on, so Active Cooldown can be life-saving in many situations.
 
-"I think it's about time for a change in scenery, don't you? There are many systems in the universe; this one is but a tiny sliver of what can be found out there! Traveling through systems is accomplished through jump points. Like planets, you usually need to find these by exploring the area, talking to the locals, or buying maps. Once you have found a jump point, you can use it by #bdouble-clicking#0 on it.
+"Anyway, I think it's about time for a change in scenery, don't you? There are many systems in the universe; this one is but a tiny sliver of what can be found out there! Traveling through systems is accomplished through jump points. Like planets, you usually need to find these by exploring the area, talking to the locals, or buying maps.
 
-Traveling long distances that way can be rather repetitive and inconvenient, however, so let's take a look at a better interface for traveling between stars: the starmap! To start with, please open the starmap by pressing {starmapkey}.]])
+You can of course use a jump point by #bdouble-clicking#0 on it, but traveling long distances that way can be rather repetitive and inconvenient, so let's take a look at a better interface for traveling between stars: the starmap! To start with, please open the starmap by pressing {starmapkey}.]])
 
-starmap_text = _([["Behold, perhaps the most useful tool in your arsenal! This map shows all systems that you know about, where you need to go for missions, and even detailed information about each system! The starmap also allows for much easier travel. By selecting a destination system that you know the route to and clicking the 'Autonav' button, autonav automatically plans a route for you and will pilot your ship all the way to the destination system, as long as your ship has enough fuel. Let me show you!
+starmap_text = _([["Behold, perhaps the most useful tool in your arsenal! This map shows all systems that you know about, markers showing where you need to go for missions, and even detailed information about each system! The starmap also allows for much easier travel. By selecting a destination system that you know the route to and clicking the 'Autonav' button, Autonav automatically plans a route for you and will pilot your ship all the way to the destination system, as long as your ship has enough fuel. Let me show you!
 
-"I've taken the liberty of placing a destination marker on your starmap for the {system} system. All you need to do is click on that system, and then click on the 'Autonav' button. Once you've done that, you can sit back and relax as autonav takes care of the rest!"]])
+"I've taken the liberty of placing a destination marker on your starmap for the {system} system. All you need to do is click on that system, and then click on the 'Autonav' button. Once you've done that, you can sit back and relax as Autonav takes care of the rest!"]])
 
-fuel_text = _([["Was that easy, or was that easy? As you can see, the trip consumed fuel. You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks. In any case, you will want to plan your routes so that you don't end up in a system where you can't land without fuel.
+fuel_text = _([["Was that easy, or was that easy? As you can see, the trip consumed fuel. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks. In any case, you will want to plan your routes so that you don't end up in a system where you can't land without fuel.
 
-"Now, then, why don't we put your knowledge to the test? I have placed a new marker on your starmap showing the location of your final destination: {system}, the heart of the Empire and home to the Emperor's famous warship, the Emperor's Wrath. This time, you will need to use what I taught you to find your way to your destination on your own. Let's see what you've learned!"]])
+"Now, then, why don't we put your knowledge to the test? I have placed a new marker on your starmap showing the location of your final destination: {system}, the heart of the Empire and home to the Emperor's famous warship, the Emperor's Wrath. This time, you will need to use what I taught you to find your way to your destination on your own. As a reward, I am authorized to give you {credits} when you complete this test. Let's see what you've learned!"]])
 
-ask_continue_text = _([[Ian Structure gives you a round of applause as you enter {system}. "Phenominal piloting, {player}! Truly stunning! I must say, you are a natural-born pilot and your new Melendez Corporation Starship suits you well! I have no doubt about it, you are ready to make your way in space, and I'm sure you will have millions of credits in no time!
+pay_text = _([[Ian Structure gives you a round of applause as you enter {system}. "Phenominal piloting, {player}! Truly stunning! I must say, you are a natural-born pilot and your new Melendez Corporation Starship suits you well. I have no doubt about it, you are ready to make your way in space! Ah, and as promised, your reward for completing the test has been deposited into your account.
 
-"That said, there are other aspects of piloting I wasn't able to get into here. If you like, I can continue to give you guidance, free of charge! I promise to be unobtrusive; I'll just pop in and let you know about some other things when they become relevant. What do you say?"]])
-
-continue_yes_text = _([["Splendid! I'll leave you to your travels and keep an eye out. If you miss or forget anything, check the Tutorial section of your ship log; it can be found in the ship computer, which you can access by pressing {infokey}, or by pressing {menukey} and then clicking the 'Ship Computer' button. Best of luck!"]])
-
-continue_no_text = _([["Ah, ok! In that case, I wish you good luck in your travels. You can review all the information we've gone through by checking the Tutorial section of your ship log; it can be found in the ship computer, which you can access by pressing {infokey}, or by pressing {menukey} and clicking the 'Ship Computer' button. I may add additional entries to the Tutorial log if I think of them, as well. Thank you for shopping with Melendez Corporation!" Ian Structure ceases contact and you let out a sigh of relief. You had no idea the level of annoyance you were getting into. At least you learned how to pilot the ship, though!]])
+"If you ever need a refresher on the information we have gone over, a copy of your pilot's manual can be found in your ship log, which can be found on the ship computer. Good luck, {player}, and I hope to see you again one day as the expert pilot I am sure you will become!" Ian Structure ceases contact and you are now left to your own devices, now knowing how to pilot your ship. You grin to yourself, wondering what to do first with your newfound freedom. The prize money for completing the flight training is just the icing on the cake.]])
 
 movement_log = _([[Basic movement can be accomplished by the movement keys (Accelerate, Turn Left, Turn Right, and Reverse; W, A, D, and S by default). The Reverse key either turns your ship to the direction opposite of your current movement, or thrusts backwards if you have a Reverse Thruster equipped.
 
@@ -168,7 +161,7 @@ misn_title = _("Flight School")
 misn_desc = _("Ian Structure has offered to teach you how to fly your ship.")
 misn_reward = _("None")
 
-log_text = _([[Ian Structure, an employee of Melendez Corporation, taught you how to pilot a ship, claiming afterwards that you are "a natural-born pilot".]])
+log_text = _([[Ian Structure, an employee of Melendez Corporation, taught you how to pilot a ship, claiming afterwards that you are "a natural-born pilot". Along the way, you met another pilot named Albert.]])
 
 
 function create ()
@@ -448,21 +441,13 @@ function enter_timer ()
       stage = 16
       create_osd()
       misn.markerMove(marker, destsys)
-      tk.msg("", fmt.f(fuel_text, {system=destsys:name()}))
+      tk.msg("", fmt.f(fuel_text,
+            {system=destsys:name(), credits=fmt.credits(credits)}))
    elseif stage == 16 and system.cur() == destsys then
-      addMiscLog(log_text)
-
-      if tk.yesno("", fmt.f(ask_continue_text,
-               {system=destsys:name(), player=player.name()})) then
-         var.push("_tutorial_passive_active", true)
-         tk.msg("", fmt.f(continue_yes_text,
-               {infokey=tutGetKey("info"), menukey=tutGetKey("menu")}))
-      else
-         tk.msg("", fmt.f(continue_no_text,
-               {infokey=tutGetKey("info"), menukey=tutGetKey("menu")}))
-      end
-
       player.pay(credits)
+      tk.msg("", fmt.f(pay_text,
+            {system=destsys:name(), player=player.name()}))
+      addMiscLog(log_text)
       misn.finish(true)
    end
 end
