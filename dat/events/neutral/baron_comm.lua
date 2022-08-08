@@ -4,14 +4,12 @@
  <trigger>enter</trigger>
  <chance>4</chance>
  <cond>
-  not var.peek("baron_hated") and
-  not player.misnDone("Baron") and
-  not player.misnActive("Baron") and
-  (
-     system.cur():faction() == faction.get("Empire") or
-     system.cur():faction() == faction.get("Dvaered") or
-     system.cur():faction() == faction.get("Sirius")
-  )
+  not var.peek("baron_hated")
+  and not player.misnDone("Baron")
+  and not player.misnActive("Baron")
+  and (system.cur():faction() == faction.get("Empire")
+     or system.cur():faction() == faction.get("Dvaered")
+     or system.cur():faction() == faction.get("Sirius"))
  </cond>
  <flags>
  </flags>
