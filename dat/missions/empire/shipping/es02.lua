@@ -39,7 +39,6 @@
 local fleet = require "fleet"
 require "numstring"
 require "missions/empire/common"
-require "events/tutorial/tutorial_common"
 
 -- Mission details
 bar_desc = _("Commander Soldner is waiting for you.")
@@ -60,12 +59,6 @@ text[4] = _([[The ship's hatch opens and immediately an unconscious VIP is broug
 text[5] = _([[You land at the starport. It looks like the VIP has already recovered. He thanks you profusely before heading off. You proceed to pay Commander Soldner a visit. He seems to be happy, for once.
 
 "It seems like you managed to pull it off. I had my doubts at first, but you've proven to be a very skilled pilot. We have nothing more for you now, but check in periodically in case something comes up for you."]])
-
-btutorial_text = _([[As you enter the %s system and prepare to rescue the VIP, Ian Structure butts in on your view screen. "This is a dangerous situation, %s, I know, but I can't help but notice you've taken a mission that requires you to #bboard#0 a ship, so I'd like to go over how to do that real quick.
-
-"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board. However, some missions allow you to board certain ships without disabling them. As it happens, this is one of those missions; the target you need to board is already disabled. Once a ship is disabled or otherwise can be boarded, you can do so by either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes, like in this mission, it can trigger special mission events instead (in this case, you must rescue the Empire's VIP by boarding the transport ship).
-
-"That's all. Good luck on the rescue!"]])
 
 msg = {}
 msg[1] = _("MISSION FAILED: VIP is dead.")
@@ -187,9 +180,6 @@ function enter ()
          v:setFriendly()
       end
 
-      -- Tutorial timer
-      tuthook = hook.timer(1000, "tutorial_timer")
-
       -- Add more ships on a timer to make this messy
       hook.timer(rnd.rnd(3, 5) , "delay_flf")
 
@@ -206,18 +196,7 @@ function enter ()
 end
 
 
-function tutorial_timer ()
-   hook.rm(tuthook)
-
-   tutExplainBoarding(btutorial_text:format(
-            system.cur():name(), player.name(), tutGetKey("target_next"),
-            tutGetKey("board")))
-end
-
-
 function jumpout ()
-   hook.rm(tuthook)
-
    -- Storing the system the player jumped from.
    prevsys = system.cur()
 

@@ -27,14 +27,13 @@
 --
 --]]
 
-require "numstring"
-require "events/tutorial/tutorial_common"
+local fmt = require "fmt"
 
 
 text = {}
 ftext = {}
 
-text[1] = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. You have to bring a Yacht class ship, and there's a prize of %s if you win. Interested?"]])
+text[1] = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. You have to bring a Yacht class ship, and there's a prize of {credits} if you win. Interested?"]])
 
 text[2] = _([["That's great! Here's how it works: We will all be in a Yacht class ship. Once we take off from %s, there will be a countdown, and then we will proceed to the various checkpoints in order, boarding them before going to the next checkpoint. After the last checkpoint has been boarded, head back to %s and land. Let's have some fun!"]])
 
@@ -42,16 +41,8 @@ text[3] = _("Checkpoint %s reached. Proceed to Checkpoint %s.")
 
 text[4] = _("Checkpoint %s reached. Land on %s.")
 
-btutorial_text = _([[As you begin takeoff procedures to prepare for the race, Ian Structure shows up on your screen once again. "I see you're going on a race! I just wanted to check and make sure you know how to #bboard#0 ships, since that's required for this race, so let me explain how boarding works very quick.
-
-"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board. However, some missions allow you to board certain ships without disabling them, and as it happens, this race is one of them! Once a ship is disabled or otherwise can be boarded, you can do so by either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes, like in this race, it can trigger special mission events instead (in this case, boarding one "checkpoint" ship will let you move on to the next one).
-
-"That's all! Good luck on the race!"]])
-
-refusetitle = _("Refusal")
 refusetext = _([["I guess we'll need to find another pilot."]])
 
-wintitle = _("You Won!")
 wintext = _([[The laid back person comes up to you and hands you a credit chip. 
 
 "Nice racing! Here's your prize money. Let's race again sometime soon!"]])
@@ -104,16 +95,16 @@ end
 
 
 function accept ()
-   if tk.yesno("", text[1]:format(creditstring(credits))) then
+   if tk.yesno("", fmt.f(text[1], {credits=fmt.credits(credits)})) then
       misn.accept()
       OSD[4] = string.format(OSD[4], curplanet:name())
       misn.setDesc(misndesc)
-      misn.setReward(creditstring(credits))
+      misn.setReward(fmt.credits(credits))
       misn.osdCreate(OSDtitle, OSD)
       tk.msg("", string.format(text[2], curplanet:name(), curplanet:name()))
       hook.takeoff("takeoff")
    else
-      tk.msg(refusetitle, refusetext)
+      tk.msg("", refusetext)
    end
 end
 
@@ -123,9 +114,6 @@ function takeoff()
       tk.msg("", ftext[1])
       misn.finish(false)
    end
-
-   tutExplainBoarding(btutorial_text:format(
-            tutGetKey("target_next"), tutGetKey("board")))
 
    planetvec = planet.pos(curplanet)
    misn.osdActive(1)
@@ -290,7 +278,7 @@ end
 function land()
    if target[4] == 4 then
       if racers[1]:exists() and racers[2]:exists() and racers[3]:exists() then
-         tk.msg(wintitle, wintext)
+         tk.msg("", wintext)
          player.pay(credits)
          misn.finish(true)
       else

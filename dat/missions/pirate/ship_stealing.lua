@@ -45,7 +45,6 @@ local fmt = require "fmt"
 local portrait = require "portrait"
 local mh = require "misnhelper"
 require "missions/pirate/common"
-require "events/tutorial/tutorial_common"
 require "pilot/generic"
 require "jumpdist"
 
@@ -55,7 +54,7 @@ misn_desc = _("You and a pirate informer have conspired to steal a vulnerable {s
 
 ask_text = _([[You approach the pirate informer. "I have a fantastic offer for you," they say. "There's a practically defenseless {shiptype} just waiting to be… taken off its pilot's hands. For just {credits}, I'll tell you the ship's location and even help you get the ship! Well? What do you say?"]])
 
-explain_text = _([[You pay the informant. "Heh heh, thanks! The ship is being piloted by someone called {pilot}. It can be found in the {system} system and it's been damaged by a failed pirate attack. All you need to do is locate the ship, disable it, board it, and let me take care of sneaking it out of the system. We'll meet up on a nearby planet somewhere after that; I'll let you choose which one."]])
+explain_text = _([[You pay the informant. "Heh heh, thanks! The ship is being piloted by someone called {pilot}. It can be found in the {system} system and it's been damaged by a failed pirate attack. All you need to do is locate the ship, disable it, board it, and let me take care of sneaking it out of the system. Don't forget to equip ion cannons or Medusa missiles or something like that so you don't accidentally blow the ship up. We'll meet up on a nearby planet somewhere after that; I'll let you choose which one."]])
 
 nomoney_text = _([["You don't even have enough money! Don't waste my time!"]])
 
@@ -71,12 +70,6 @@ subdue_text = {
 }
 
 finish_text = _([[You meet back up with the pirate, who delivers the promised ship.]])
-
-btutorial_text = _([[As you enter the system and begin to search for your target, Ian Structure butts into your screen out of nowhere. You frown. "Hello! I haven't checked the details yet, but it looks like you need to #bboard#0 a ship for a mission, right? I don't believe I've had a chance to explain how to do this yet, so let me go over boarding basics!
-
-"Generally, before boarding, you must use disabling weapons, such as ion cannons, to disable what you want to board, though some missions may override this requirement. Once a ship is disabled or otherwise can be boarded, you can do so by either #bdouble-clicking#0 on it, or targeting it with %s and then pressing %s. In most cases, boarding lets you steal the ship's credits, cargo, ammo, and/or fuel, but sometimes it can trigger special mission events instead, like in this mission, where…"
-
-Ian Structure's eyes widen and they start to sweat. "Oh! You're, um… well, I see you're very busy, so good luck on your… mission."]])
 
 -- Messages
 ran_msg = _("{pilot} got away.")
@@ -388,12 +381,6 @@ function anti_regen_timer(p)
 end
 
 
-function enter_timer()
-   tutExplainBoarding(btutorial_text:format(
-            tutGetKey("target_next"), tutGetKey("board")))
-end
-
-
 -- Set up the ship to steal and calculate cost
 function bounty_setup()
    local ship_choices = {
@@ -488,8 +475,6 @@ function spawn_target(source)
          anti_regen_hook = hook.timer(0.1, "anti_regen_timer", target_ship)
 
          target_ship:taskClear()
-
-         hook.timer(2, "enter_timer")
       else
          fail(fmt.f(ran_msg, {pilot=name}))
       end

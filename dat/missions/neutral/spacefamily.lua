@@ -19,62 +19,44 @@
 -- See dat/events/neutral/shipwreck
 --]]
 
+local fmt = require "fmt"
 require "jumpdist"
 require "missions/neutral/common"
 
 
-shipname = _("August") --The ship will have a unique name
+board_text = _([[The airlock opens, and you are greeted by a nervous-looking man, an upset woman, and three scared children.
 
-text = {}
+"Thank God you are here," the man says. "I don't know how much longer we could've held out. A group of pirates attacked us, disabled our ship with ion cannons, and then boarded us and stole everything we had! They left us for dead, you know. No fuel, no food, and only auxiliary power to sustain us." He then begins to incoherently tell you how much his group has suffered in the past few periods, but you cut him short, not willing to put up with his endless babbling.
+
+With a few to-the-point questions you learn that the man's name is Harrus and his wife's name is Luna. They live, or at least used to live, aboard their trading vessel. "It was a good life, you know," Harrus tells you. "You get to see the galaxy, meet people and see planets, and all that while working from home because, haha, you take your home with you!"]])
+board_text2 = _([["Some great life," Luna interjects. "I told you we needed more weapons, but no, you thought we were safe because 'there's so many patrol ships nearby'! You're lucky you didn't get us killed with your damn arrogance!"
+
+Harrus is about to launch into a retort when you defuse the situation by reminding both of them that they're safe now and offering to drop them off at a nearby planet so they can start over. At this, Harrus brightens up. "Everything's going to be fine now," he says cheerfully.]])
+
 directions = {}
+directions[1] = _([["Thank you for your generous offer, captain. I know just the place," Harrus tells you. "Take us to {planet} in the {system} system. I'm sure a man of my caliber can find everything he needs there. Please notify me when we arrive." With a plan settled, the family makes themselves comfortable in your quarters and you cross your fingers hoping another argument doesn't break out.]])
 
-text[1] = _([[The airlock opens, and you are greeted by a nervous-looking man, a shy woman, and three neurotic children.
+directions[2] = _([[Harrus and Luna both step out of your ship and take a look around. Harris looks around seemingly pleased with what he sees, but Luna frowns. "No, no. This won't do at all," she says disapprovingly. "This place is a mess! How are we supposed to make a decent living in a place like this?" Harrus and Luna argue as one of their older children looks at you apologetically from inside your ship.
 
-"Thank God you are here," the man says. "I don't know how much longer we could've held out. They left us for dead, you know. No fuel, no food and only auxiliary power to sustain us." He then begins to incoherently tell you how much his group has suffered in the past few periods, but you cut him short, not willing to put up with his endless babbling.
+Eventually, Luna turns her attention to you. "Look, I'm sorry to do this, but could you please take us to a different place, maybe {planet} in the {system} system? I'm sure we can live a comfortable life there." Harrus begrudgingly agrees to the plan and they both stomp back into your ship. You heave a sigh and proceed to get the docking formalities out of the way with the worker who has been awkwardly standing there the whole time.]])
+directions[3] = _([["The sky! Have you LOOKED at it?" Harrus rounds on Luna with a furious expression. He clearly isn't happy. "It's completely the wrong color! It's a mockery of our standards of living, and it's right there overhead! Do you want the children to grow up believing the sky is supposed to look like, like… like THAT?" Harrus again looks up at the heavens that offend him so.
 
-With a few to-the-point questions you learn that the man's name is Harrus, and that he and his wife and children live, or at least used to live, aboard their trading vessel. "It was a good life, you know," Harrus tells you. "You get to see the galaxy, meet people and see planets, and all that while working from home because, haha, you take your home with you!"
+"It's just a damn sky!" Luna retorts. "Look at how great this place is! Forget the color of the sky, everything here is perfect!"
 
-You can't help but glance at Harrus's kids, who have begun enthusiastically stampeding through your ship, pressing any buttons low enough for them to reach, despite their mother's hopeless attempts to keep them under control.]])
-text[2] = _([[Harrus is about to launch into another anecdote about his existence as a trader, but you manage to forestall him. You soon learn that his family's lifestyle has come to an abrupt change at the hands of a minor gang of pirates. Though the %s had some weaponry and shielding systems, the attackers were too much for a single cargo ship.
+Before Harrus can offer a retort, one of their kids speaks up. "Why can't we just go to {planet}?" Hearing this, Harrus and Luna both in unison let out a sigh and agree to the plan, much to your relief. Hopefully this should be the last stop, finally.]])
 
-"I never thought it would end like this," Harrus sighs. "I mean, I knew space was dangerous, but I stayed clear of the unsafe areas. Stuck to the patrolled lanes. Didn't take any risks. I've got a family, you know."
+pay_text = _([[You land at your final stop in your quest to take the space family home. Harrus and Luna sheepishly thank you as they leave, and the kids follow behind them and also thank you.
 
-Then Harrus brightens up, apparently putting his recent misfortune behind him in the blink of an eye. "Everything's going to be fine now," he says cheerfully. "We've been rescued, and all we need now is for you to take us to a suitable world where we can build a new life."
+Surveying your now deserted quarters, you see that the place is spotless, as if Harrus and Luna felt ashamed for acting like children throughout the journey while their own children remained patient all throughout.
 
-Without further ado, and without so much as formally asking for the favor, Harrus and his family proceed onto your ship and install themselves into your living quarters. They do not seem about to leave.]])
-
-directions[1] = _([["I know just the place," Harrus tells you. "Take us to planet %s in the %s system. I'm sure a man of my caliber can find everything he needs there. Captain, please notify me when we arrive." With that, Harrus turns and rejoins his family. The kids seem in the process of redecorating (if not wrecking) your quarters, and despite the apologetic glance the woman gives you you can't help but wonder if you did the right thing responding to that SOS.]])
-
-harrass_msg = _([[You are going over a routine navigation check when Harrus enters your cabin unannounced. He seems to have recovered from his distressed state, and now radiates confidence.
-
-"Captain," he says to you. "I hope I don't have to remind you that we must get to our destination as soon as possible. I have a wife and children to think of and frankly I find your, ah, facilities a bit lacking."
-
-You consider ordering Harrus off your bridge, but he doesn't seem the kind of man to back off, so the only thing you would accomplish is to sour the mood on your ship. You inform Harrus that you're making every effort to get his family to a safe haven, which seems to satisfy him. Finally alone again, you take a moment to subside before completing that check.]])
-directions[2] = _([[Harrus steps out of your ship and takes a look around the spaceport you docked at. "No, no. This won't do at all," he says disapprovingly. "This place is a mess! Look at the dust and grime!" He rounds on you. "How are we supposed to make a decent living in a dump like this? You've brought us to the wrong place altogether. I must say I'm disappointed. I demand you take us away from this abysmal hole this minute! Let's see... Yes, %s in %s will do. At least they're civilized there!"
-
-You attempt to remind Harrus that it was in fact he who asked you to take him to this system in the first place, and that the spaceport is hardly a representation of the entire world, but the man doesn't want to hear it. He stalks back into your ship without another word, leaving you annoyed and frustrated. Harrus's wife worriedly peeks around the corner of the hatch, silently eyeing you her sympathy.
-
-You heave a sigh, and proceed to the registration desk to get the docking formalities out of the way.]])
-directions[3] = _([["The sky! Have you LOOKED at it?"
-
-Harrus rounds on you with a furious expression. Your keen understanding of the human body language tells you he isn't happy. You thought he might be satisfied with the state of the spacedock, since it's kept in prime condition, and indeed he was. That changed as soon as he looked up.
-
-"It's com-plete-ly the wrong color!" Harrus fumes. "It's a mockery of our standards of living, and it's right there overhead! Do you want my children to grow up believing the sky is supposed to look like, like... like THAT?" Harrus again looks up at the heavens that offend him so. "No, captain, my patience is at an end. I expect you to take me and my family to %s in the %s system. We've got relatives there who will take us in. I will waste my time with this pointless endeavor no longer!" 
-
-Before you get a chance at making a snappy retort, Harrus storms back to his (your) quarters, leaving you to either vent your anger on his wife, who is hovering nearby, or keep it to yourself. Since the poor woman has done nothing wrong, you grimly return to the bridge.]])
-
-text[3] = _([[You land at your final stop in your quest to take the space family home, and not a moment too soon for both you and Harrus. Harrus stomps off your ship without so much as a greeting, his wife and children in tow, and you are just as happy to see them gone.
-
-Surveying your now deserted quarters, you are appalled at how much damage the temporary inhabitants have managed to do along the way. You console yourself with the thought that at least you'll have something to do during the dull periods in hyperspace and turn to tend to your ships needs, when your eye falls on a small box that you don't remember seeing here before.
-
-Inside the box, you find a sum of credits and a note written in neat, feminine handwriting that says, "Sorry for the trouble."]])
+As you admire their workmanship, your eye falls on a small box that you don't remember seeing here before. Inside the box, you find a sum of credits and a note written in neat handwriting. It says simply, "Sorry for the trouble."]])
 
 -- Mission details
 misn_title = _("The Space Family")
 misn_reward = _("A clear conscience.")
 misn_desc = {}
-misn_desc[1] = _("A shipwrecked space family has enlisted your aid. Can you take them to safety?")
-misn_desc[2] = _("Land on %s (%s system) to drop off the space family")
+misn_desc[1] = _("A shipwrecked space family has enlisted your aid.")
+osd_text = _("Land on {planet} ({system} system) to drop off the space family")
 
 -- Aborted mission
 msg_abort_space = _([[Sick of their bullshit, you unceremoniously shove the space family out of the airlock and into the coldness of space.]])
@@ -91,11 +73,10 @@ function create ()
    misn.setDesc(misn_desc[1])
 
    inspace = true -- For lack of a test, we'll just have to keep track ourselves.
-   harrassmsg = true
 
    -- Intro text, player meets family
-   tk.msg("", text[1])
-   tk.msg("", string.format(text[2], shipname))
+   tk.msg("", board_text)
+   tk.msg("", board_text2)
 
    local commod = misn.cargoNew(N_("Space Family"), N_("An obnoxious family that you rescued from a shipwreck and are trying to get off your back."))
    carg_id = misn.cargoAdd(commod, 0)
@@ -107,8 +88,12 @@ function create ()
    if #targsys == 0 then targsys = {system.get("Apez")} end -- In case no systems were found.
    destsys = targsys[rnd.rnd(1, #targsys)]
    destplanet = getlandable(destsys) -- pick a landable planet in the destination system
-   tk.msg("", string.format(directions[nextstop], destplanet:name(), destsys:name())) -- NPC telling you where to go
-   misn.osdCreate(misn_title, {misn_desc[2]:format(destplanet:name(), destsys:name())})
+   tk.msg("", fmt.f(directions[nextstop],
+         {planet=destplanet:name(), system=destsys:name()}))
+   misn.osdCreate(misn_title, {
+            fmt.f(osd_text,
+               {planet=destplanet:name(), system=destsys:name()})
+         })
    misn_marker = misn.markerAdd(destsys, "low")
 
    -- Force unboard
@@ -116,7 +101,6 @@ function create ()
 
    hook.land("land")
    hook.takeoff("takeoff")
-   hook.enter("enter")
 end
 
 function islandable(p)
@@ -138,7 +122,7 @@ end
 function land()
    if planet.cur() == destplanet then -- We've arrived!
       if nextstop >= 3 then -- This is the last stop
-         tk.msg("", string.format(text[3], destsys:name())) -- Final message
+         tk.msg("", string.format(pay_text, destsys:name())) -- Final message
          player.pay(500000)
          misn.cargoJet(carg_id)
          addMiscLog(log_text)
@@ -150,8 +134,12 @@ function land()
          if #targsys == 0 then targsys = {system.get("Apez")} end -- In case no systems were found.
          destsys = targsys[rnd.rnd(1, #targsys)]
          destplanet = getlandable(destsys) -- pick a landable planet in the destination system
-         tk.msg("", string.format(directions[nextstop], destplanet:name(), destsys:name())) -- NPC telling you where to go
-         misn.osdCreate(misn_title, {misn_desc[2]:format(destplanet:name(), destsys:name())})
+         tk.msg("", fmt.f(directions[nextstop],
+               {planet=destplanet:name(), system=destsys:name()}))
+         misn.osdCreate(misn_title, {
+                  fmt.f(osd_text,
+                     {planet=destplanet:name(), system=destsys:name()}),
+               })
          misn.markerMove(misn_marker, destsys)
       end
    end
@@ -174,18 +162,6 @@ end
 
 function takeoff()
    inspace = true
-end
-
-function enter()
-   if harrassmsg then
-      hook.timer(3.0, "harrassme")
-      harrassmsg = false
-   else
-   end
-end
-
-function harrassme()
-   tk.msg("", harrass_msg)
 end
 
 function abort ()

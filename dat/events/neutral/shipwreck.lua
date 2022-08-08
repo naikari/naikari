@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Shipwreck">
  <trigger>enter</trigger>
- <chance>3</chance>
+ <chance>100</chance>
  <cond>system.cur():presence("Pirate") &gt; 0 and not player.misnDone("The Space Family") and not player.misnActive("The Space Family")</cond>
  <flags>
   <unique />
@@ -19,15 +19,22 @@
 --]]
 
 -- Text
-broadcastmsg = _("SOS. This is %s. We are shipwrecked. Please #bboard#0 us by #bdouble-clicking#0 on our ship.")
-shipname = _("August") --The ship will have a unique name
-shipwreck = _("Shipwrecked %s")
+broadcastmsg = _("SOS. This is the August. We are shipwrecked. Please #bboard#0 us by #bdouble-clicking#0 on our ship.")
 
-function create ()
+function create()
     local nebu_dens, nebu_vol = system.cur():nebula()
     if nebu_vol > 0 then
         evt.finish()
     end
+
+    -- This non-standard way of checking chance ensures that it always
+    -- shows up immediately when entering pirate-infested space at least
+    -- once.
+    if var.peek("shipwreck_repeated") and rnd.rnd() < 0.1 then
+        evt.finish()
+    end
+
+    var.push("shipwreck_repeated", true)
 
     -- The shipwreck will be a random trader vessel.
     r = rnd.rnd()
@@ -44,10 +51,9 @@ function create ()
     local angle = rnd.rnd() * 2 * math.pi
     local dist = rnd.rnd(2000, 3000) -- place it a ways out
     local pos = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
-    local p = pilot.add(ship, f, pos, shipwreck:format(shipname),
+    local p = pilot.add(ship, f, pos, _("Shipwrecked August"),
             {ai="dummy"})
     p:disable()
-    p:rename(shipwreck:format(shipname))
     -- Added extra visibility for big systems (A.)
     p:setVisplayer(true)
     p:setHilight(true)
@@ -66,7 +72,7 @@ function broadcast(p)
     if p == nil or not p:exists() then
         return
     end
-    p:broadcast(string.format(broadcastmsg, shipname), true)
+    p:broadcast(broadcastmsg, true)
     bctimer = hook.timer(15, "broadcast", p)
 end
 

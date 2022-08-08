@@ -156,6 +156,7 @@ cooldown_log = _([[As you fire your weapons, they and subsequently your ship get
 jumping_log = _([[Traveling through systems is accomplished through jump points, which you usually need to find by exploring the area, talking to locals, or buying maps. Once you have found a jump point, you can use it by double-clicking on it.]])
 jumping_log2 = _([[You can open your starmap by pressing the Open Star Map key (M by default). Through your starmap, you can click on a system and click on the Autonav button to be automatically transported to the system. This only works if you know a valid route to get there.]])
 fuel_log = _([[You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks.]])
+boarding_log = _("To board a ship, you generally must first use disabling weapons, such as ion cannons, to disable it, although some missions and events allow you to board certain ships without disabling them. Once the ship is disabled or otherwise can be boarded, you can board it by either double-clicking on it, or targeting it with the Target Nearest key (T by default) and then pressing the Board Target key (B by default). From there, you generally can steal the ship's credits, cargo, ammo, and/or fuel. Boarding ships can also trigger special mission events.")
 
 misn_title = _("Flight School")
 misn_desc = _("Ian Structure has offered to teach you how to fly your ship.")
@@ -212,6 +213,7 @@ function accept ()
    addTutLog(jumping_log)
    addTutLog(jumping_log2)
    addTutLog(fuel_log)
+   addTutLog(boarding_log)
 
    timer_hook = hook.timer(5, "timer")
    hook.land("land")
