@@ -103,33 +103,29 @@ target_text = _([["Convenient, isn't it? By using Autonav, the perceived duratio
 
 "I will launch a combat practice drone off of {planet} now for you to fight. Don't worry; our drone does not have any weapons and will not harm you. To start with, target the drone by pressing {target_hostile_key}."]])
 
-combat_text = _([["Easy, isn't it? It's also possible to target any ship by clicking on it, but that method is often too slow for the heat of battle.
+combat_text = _([["Perfect! For the heat of battle, this method of selecting hostile ships is much safer and more reliable than selection via the mouse.
 
-"As you can see, targeting the drone allows you to see information about the ship. More importantly, though, targeting the drone enables automatic weapon tracking systems which help ease aiming. When you are within firing range of a targeted ship, you will see a series of lines around your ship to help with aiming. The circle indicates where the targeted ship is expected to be by the time your bullets reach them, on average. If your weapons are within firing range of the target, you will also see a cross which indicates where your weapons are pointed at and a pair of lines on either side of the cross indicating how much your weapons will swivel to compensate for imprecise aiming.
+"Targeting enemy ships is important not only because of the useful information display, but also because it enables automatic weapon tracking systems which help ease aiming. All weapons have some capability to swivel in order to compensate for imprecise aim, but you need to have an enemy ship targeted for this feature to work.
 
-"Your weapons are fired with {primarykey} and {secondarykey}. Give it a try and shoot the practice drone down!"]])
+"Your weapons are fired with {primarykey} and {secondarykey}. Give them a try and shoot the practice drone down!"]])
 
-infoscreen_text =_([["Excellent work taking out that drone! Of course, that was nothing like a real fight against a real pirate. If you would like some more practice, I would recommend giving the Combat Practice mission a try from any mission computer, which you can try as many times as you like.
+cooldown_text = _([["Excellent work taking out that drone! Of course, that was nothing like a real fight against a real pirate. If you would like some more practice, I would recommend giving the Combat Practice mission a try from any mission computer, which you can try as many times as you like.
 
-By the way, you can configure the way your weapons shoot from the Weapons tab of the ship computer, which can be accessed by pressing {infokey} or by pressing {menukey} and then clicking on the Ship Computer button. If you are unsatisfied with the way your weapons are configured by default, you may find this useful, although your ship's default configuration should be reasonable for most situations. The Ship Computer also has other useful functions, like managing your missions and cargo.]])
+"Of course, all that shooting has caused your weapons to heat up a little. This is normal, but too much heat can make your weapons difficult to use, which is why Melendez Corporation recommends using active cooldown when it is safe to do so. Please engage active cooldown and wait for it to cool your ship down completely. You can do this by pressing {autobrake_key} twice."]])
 
-cooldown_text = _([["Now, while you shot down the practice drone, you may have noticed your heat meters going up and your weapons becoming less accurate as your ship and weapons got hot. This is normal, but too much heat can make your weapons difficult to use, which is why Melendez Corporation recommends using active cooldown when it is safe to do so. Let's practice using it. Engage active cooldown and wait for it to cool your ship down completely. You can engage active cooldown by pressing {autobrake_key} twice."]])
+jumping_text = _([["There, your ship is now fully cooled off. Of course you could have cooled off by landing in this case, but not all systems have a friendly planet for you to land on, so Active Cooldown can be life-saving in many situations.
 
-jumping_text = _([["Good job! Your ship is now fully cooled off. In addition to using Active Cooldown, you can also cool off by landing on any planet or station. However, not all systems have a friendly planet for you to land on, so Active Cooldown can be life-saving in many situations.
+"Anyway, I think it's about time for a change in scenery, don't you? There are many systems in the universe; this one is but a tiny sliver of what can be found out there! Let's take a look at the best interface for traveling between stars: the starmap. To start with, please open the starmap by pressing {starmapkey}.]])
 
-"Anyway, I think it's about time for a change in scenery, don't you? There are many systems in the universe; this one is but a tiny sliver of what can be found out there! Traveling through systems is accomplished through jump points. Like planets, you usually need to find these by exploring the area, talking to the locals, or buying maps.
-
-You can of course use a jump point by #bdouble-clicking#0 on it, but traveling long distances that way can be rather repetitive and inconvenient, so let's take a look at a better interface for traveling between stars: the starmap! To start with, please open the starmap by pressing {starmapkey}.]])
-
-starmap_text = _([["Behold, perhaps the most useful tool in your arsenal! This map shows all systems that you know about, markers showing where you need to go for missions, and even detailed information about each system! The starmap also allows for much easier travel. By selecting a destination system that you know the route to and clicking the 'Autonav' button, Autonav automatically plans a route for you and will pilot your ship all the way to the destination system, as long as your ship has enough fuel. Let me show you!
+starmap_text = _([["Behold, perhaps the most useful tool in your arsenal! By selecting a destination system that you know the route to and clicking the 'Autonav' button, Autonav automatically plans a route for you and will pilot your ship all the way to the destination system, as long as your ship has enough fuel. Let me show you!
 
 "I've taken the liberty of placing a destination marker on your starmap for the {system} system. All you need to do is click on that system, and then click on the 'Autonav' button. Once you've done that, you can sit back and relax as Autonav takes care of the rest!"]])
 
-fuel_text = _([["Was that easy, or was that easy? As you can see, the trip consumed fuel. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks. In any case, you will want to plan your routes so that you don't end up in a system where you can't land without fuel.
+fuel_text = _([["Was that easy, or was that easy? As you can see, the trip consumed fuel. Do keep this in mind and plan your routes accordingly; for long journeys, you will want to plan stops so you don't run out at an inopportune time.
 
-"Now, then, why don't we put your knowledge to the test? I have placed a new marker on your starmap showing the location of your final destination: {system}, the heart of the Empire and home to the Emperor's famous warship, the Emperor's Wrath. This time, you will need to use what I taught you to find your way to your destination on your own. As a reward, I am authorized to give you {credits} when you complete this test. Let's see what you've learned!"]])
+"Now, then, why don't we put your knowledge to the test? I have placed a new marker on your starmap showing the location of your final destination: {system}, the heart of the Empire and home to the Emperor's famous warship, the Emperor's Wrath. This time, you will need to find your way to the destination on your own. As a reward, I am authorized to give you {credits} when you complete this test. Good luck!"]])
 
-pay_text = _([[Ian Structure gives you a round of applause as you enter {system}. "Phenominal piloting, {player}! Truly stunning! I must say, you are a natural-born pilot and your new Melendez Corporation Starship suits you well. I have no doubt about it, you are ready to make your way in space! Ah, and as promised, your reward for completing the test has been deposited into your account.
+pay_text = _([[Ian Structure gives you a round of applause as you enter {system}. "Phenominal piloting, {player}! Truly stunning! I must say, you are a natural-born pilot and your new Melendez Corporation starship suits you well. I have no doubt about it, you are ready to make your way in space! Ah, and as promised, your reward for completing the test has been deposited into your account.
 
 "If you ever need a refresher on the information we have gone over, a copy of your pilot's manual can be found in your ship log, which can be found on the ship computer. Good luck, {player}, and I hope to see you again one day as the expert pilot I am sure you will become!" Ian Structure ceases contact and you are now left to your own devices, now knowing how to pilot your ship. You grin to yourself, wondering what to do first with your newfound freedom. The prize money for completing the flight training is just the icing on the cake.]])
 
@@ -164,10 +160,9 @@ nofuel_log = _([[You can hail any other pilot by either double-clicking on them,
 If there are no civilians or traders in the system, you can alternatively attempt to get fuel from a pirate. To do so, you must first hail them and offer a bribe, and if you successfully bribe them, they will often be willing to refuel you if you hail them again and ask for it.]])
 
 misn_title = _("Flight Training")
-misn_desc = _("Ian Structure has offered to teach you how to fly your ship.")
-misn_reward = _("None")
+misn_desc = _("Ian Structure is in the process of teaching you how to fly your ship through a flight training course sponsored by Melendez Corporation.")
 
-log_text = _([[Ian Structure, an employee of Melendez Corporation, taught you how to pilot a ship, claiming afterwards that you are "a natural-born pilot". Along the way, you met another pilot named Albert.]])
+log_text = _([[Ian Structure, an employee of Melendez Corporation, taught you how to pilot a ship, claiming afterwards that you are "a natural-born pilot". Along the way, you met another pilot named Albert and helped him complete a mission.]])
 
 
 function create ()
@@ -274,7 +269,7 @@ function create_osd()
          {starmapkey=naev.keyGet("starmap")}),
       fmt.f(_("Select {system} by clicking on it in your starmap, then click \"Autonav\" and wait for Autonav to fly you there"),
          {system=jumpsys:name()}),
-      fmt.f(_("Make use of what you've learned to fly to {system} (marked on your starmap)"),
+      fmt.f(_("Fly to {system}"),
          {system=destsys:name()}),
    }
 
@@ -513,8 +508,6 @@ end
 function pilot_death_timer()
    stage = 13
    create_osd()
-   tk.msg("", fmt.f(infoscreen_text,
-         {infokey=tutGetKey("info"), menukey=tutGetKey("menu")}))
    tk.msg("", fmt.f(cooldown_text, {autobrake_key=tutGetKey("autobrake")}))
 end
 
