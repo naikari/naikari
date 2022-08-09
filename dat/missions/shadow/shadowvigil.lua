@@ -123,7 +123,7 @@ function create()
 
     marker = misn.markerAdd(rebinasys, "low")
     local osd_msg = {
-        fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it"),
+        fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu"),
             {system=rebinasys:name()}),
     }
     misn.osdCreate(osd_title0, osd_msg)
@@ -351,7 +351,7 @@ function diplomat_death_timer()
     pilot.toggleSpawn(true)
     misn.markerAdd(rebinasys, "low")
     local osd_msg = {
-        fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu by double-clicking on it"),
+        fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu"),
             {system=rebinasys:name()}),
     }
     misn.osdCreate(osd_title, osd_msg)
