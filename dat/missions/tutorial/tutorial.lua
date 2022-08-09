@@ -157,6 +157,9 @@ jumping_log = _([[Traveling through systems is accomplished through jump points,
 jumping_log2 = _([[You can open your starmap by pressing the Open Star Map key (M by default). Through your starmap, you can click on a system and click on the Autonav button to be automatically transported to the system. This only works if you know a valid route to get there.]])
 fuel_log = _([[You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks.]])
 boarding_log = _("To board a ship, you generally must first use disabling weapons, such as ion cannons, to disable it, although some missions and events allow you to board certain ships without disabling them. Once the ship is disabled or otherwise can be boarded, you can board it by either double-clicking on it, or targeting it with the Target Nearest key (T by default) and then pressing the Board Target key (B by default). From there, you generally can steal the ship's credits, cargo, ammo, and/or fuel. Boarding ships can also trigger special mission events.")
+nofuel_log = _([[You can hail any other pilot by either double-clicking on them, or by targeting them with the Target Nearest key (T by default) and then pressing the Hail Target key (Y by default). From there, you can ask to be refueled. Most military ships will not be willing to help you, but many civilians and traders will be willing to sell you some fuel for a nominal fee. When you find someone willing to refuel you, you need to stop your ship, which you can do with the Autobrake key (Ctrl+B by default), and wait for them to reach your ship and finish the fuel transfer.
+
+If there are no civilians or traders in the system, you can alternatively attempt to get fuel from a pirate. To do so, you must first hail them and offer a bribe, and if you successfully bribe them, they will often be willing to refuel you if you hail them again and ask for it.]])
 
 misn_title = _("Flight School")
 misn_desc = _("Ian Structure has offered to teach you how to fly your ship.")
@@ -214,6 +217,7 @@ function accept ()
    addTutLog(jumping_log2)
    addTutLog(fuel_log)
    addTutLog(boarding_log)
+   addTutLog(nofuel_log)
 
    timer_hook = hook.timer(5, "timer")
    hook.land("land")

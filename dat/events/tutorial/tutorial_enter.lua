@@ -29,48 +29,20 @@ local fmt = require "fmt"
 require "events/tutorial/tutorial_common"
 
 
-nofuel_text = _([[As you enter the system and look for a place to land, realizing you're out of fuel, Ian Structure shows up on your display. "Hi there! I see you've run out of fuel, and what a predicament, too; there aren't any planets that you can land on here. But don't worry, you can still refuel! It'll just be a little harder and more costly.
+nofuel_text = _([[Soon after you realize to your horror that you are out of fuel in a system with no planets to land on that you can find, you are hailed by another pilot and decide to answer her hail. "Hi, any chance that I could get a fuel transfer from you?" she asks. You explain, defeated, that you are out of fuel yourself. "Dang," she responds. "Oh well. I guess you should ask around for fuel, too. Oh! You don't know how to do it, do you? Let me explain real quick.
 
-See you can hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with {target_next_key} and pressing {hail_key}. Once you've hailed them, you can request to be refueled. This isn't likely to work on military ships, but many civilians and traders will happily sell you some of their fuel for a nominal fee. When you find someone willing to refuel you, you will need to stop your ship, which you can do easily with {autobrake_key}, and wait for them to reach your ship and finish the fuel transfer.
+"Hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with {target_next_key} and pressing {hail_key}. You can request a refuel from there. Not everyone is generous enough to do it and those military bastards are particular stuck-ups about their fuel, but with a little luck you should be able to find someone who'll be willing to sell you some of their fuel. Heck, not long ago I even managed to convince a pirate to sell me some of their fuel, funny enough, and they didn't even steal anything! I'm sure it helps that I bribed them beforehand.
 
-"If there aren't any civilians or traders in the area, there's one other way: if you hail a pirate, you can usually bribe them to convince them to leave you alone. After you've bribed them, there's a good chance they'll be willing to sell you fuel as well if you hail them again! While having to trust a pilot isn't ideal, it's at least better than being stuck in open space with no rescue.
-
-"Good luck!" Ian Structure terminates the communication. It looks like you'll have to talk to the other pilots in the system.…]])
-nofuel_log = _([[You can hail any other pilot by either double-clicking on them, or by targeting them with the Target Nearest key (T by default) and then pressing the Hail Target key (Y by default). From there, you can ask to be refueled. Most military ships will not be willing to help you, but many civilians and traders will be willing to sell you some fuel for a nominal fee. When you find someone willing to refuel you, you need to stop your ship, which you can do with the Autobrake key (Ctrl+B by default), and wait for them to reach your ship and finish the fuel transfer.
-
-If there are no civilians or traders in the system, you can alternatively attempt to get fuel from a pirate. To do so, you must first hail them and offer a bribe, and if you successfully bribe them, they will often be willing to refuel you if you hail them again and ask for it.]])
-
-hostile_presence_text = _([[Ian Structure shows up again. "It seems you've entered a system with hostile pilots! This is the first of many, I'm afraid, so it's important that you know what to do to protect yourself.
-
-"Obviously, one thing you can do is fight, assuming you have the capability. However, if you're outnumbered or unable to fight, there's still one more thing you can do: if you either #bdouble-click#0 on a hostile pilot, or target them with {target_hostile_key} and then press {hail_key}, you can open the communication window, where you can bribe the pilot so that they stop attacking you. This usually works with pirate scum, though it may be less effective against other factions.
-
-"You can always check the faction presences of a given system by pressing {starmap_key} to open the star map. On the right, you will see a list of all factions present in the currently selected system, along with a number indicating how strong their presence is. This can help you stay out of hostile systems in the first place, if you wish.
-
-"However you choose to do so, stay safe!"]])
-hail_hostile_log = _([[You can hail a hostile pilot either by double-clicking on the pilot, or by targeting them with the Target Nearest Hostile key (R by default) and pressing the Hail key (Y by default). From there, you can bribe the pilot so that they stop attacking you. This is particularly effective against pirates.]])
-hostile_presence_log = _([[You can check faction the presences of a given known system by pressing the Open Star Map key (M by default) and selecting the system on the map. Each faction present in the system is listed on the right, along with a number indicating how strong their presence is.]])
-
-nebu_volat_text = _([[You begin to notice your shielding equipment behaving somewhat erratically as you see Ian Structure show up on your view screen. "Exploring the nebula, eh? It seems you're in a portion of the nebula with some volatility. Specifically, the system you're in has a volatility rating of {volatility} GW. That means you are right now constantly taking that amount of damage. Your shields repel 85% of the damage due to the unique qualities of shielding, but your armor does not. You can see on your display that a warning is being shown indicating exactly how much shield and armor damage you are taking, based on the nebula's volatility rating. If you run out of shields, your armor will begin to rapidly lose its integrity. For this reason, you should try not to be put in a situation where your shields are inactive while traversing a volatile nebula.
-
-"You can see the volatility of the nebula in any given system via the star map, which you can open by pressing {starmap_key}. Information about the selected system, which includes volatility, can be found in the bottom-left. Try not to go too far into the nebula, and if you see your shields starting to drop, I advise you retreat to where you came from immediately. Stay safe!"]])
-nebu_volat_log = _([[Systems with a nebula volatility rating constantly cause damage to ships within them. The volatility rating corresponds to the damage they constantly inflict. Shields repel 85% of the damage inflicted on them, but armor, if left without shields, will take full damage and rapidly start to lose its integrity.]])
-map_volat_log = _([[You can see the volatility of the nebula in any given system via the star map, which you can open by pressing the Open Star Map key (M by default). Information about the selected system, which includes nebula volatility, can be found in the bottom-left.]])
+"Anyway, I'm going to continue my search. Good luck on yours!"]])
 
 
 function create ()
-   -- Delay the event by a bit so it doesn't happen in the middle of
-   -- the transition between the systems.
-   hook.timer(3, "timer")
-   hook.jumpout("jumpout")
-end
-
-
-function timer ()
-   local sys = system.cur()
-   local nebu_dens, nebu_volat = sys:nebula()
-   local landable_planets = false
+   hook.jumpout("exit")
+   hook.land("exit")
 
    if not var.peek("tutorial_nofuel") and player.jumps() == 0 then
+      local sys = system.cur()
+      local landable_planets = false
       for i, pl in ipairs(sys:planets()) do
          local landable, bribable = pl:canLand()
          if landable or bribable then
@@ -78,44 +50,41 @@ function timer ()
             break
          end
       end
-   end
 
-   if not var.peek("tutorial_nofuel") and not landable_planets
-         and player.jumps() == 0 then
-      if var.peek("_tutorial_passive_active") then
-         tk.msg("", fmt.f(nofuel_text,
-                  {target_next_key=tutGetKey("target_next"),
-                     hail_key=tutGetKey("hail"),
-                     autobrake_key=tutGetKey("autobrake")}))
+      if not landable_planets then
+         local offset = vec2.new(rnd.uniform(-1000, 1000),
+               rnd.uniform(-1000, 1000))
+         local pos = player.pilot():pos() + offset
+         local p = pilot.add("Gawain", "Civilian", pos, _("Civilian Gawain"))
+         p:setFuel(100)
+         p:setVisplayer()
+         timer_hook = hook.timer(3, "timer_nofuel", p)
       end
-      addTutLog(nofuel_log, N_("Hailing"))
-      var.push("tutorial_nofuel", true)
-   elseif not var.peek("tutorial_hostile_presence")
-         and sys:presence("hostile") > 0 then
-      if var.peek("_tutorial_passive_active") then
-         tk.msg("", fmt.f(hostile_presence_text,
-                  {target_hostile_key=tutGetKey("target_hostile"),
-                     hail_key=tutGetKey("hail"),
-                     starmap_key=tutGetKey("starmap")}))
-      end
-      addTutLog(hail_hostile_log, N_("Combat"))
-      addTutLog(hostile_presence_log, N_("Navigation"))
-      var.push("tutorial_hostile_presence", true)
-   elseif not var.peek("tutorial_nebula_volatility") and nebu_volat > 0 then
-      if var.peek("_tutorial_passive_active") then
-         tk.msg("", fmt.f(nebu_volat_text,
-               {volatility=nebu_volat, starmap_key=tutGetKey("starmap")}))
-      end
-      addTutLog(nebu_volat_log, N_("Nebula"))
-      addTutLog(map_volat_log, N_("Nebula"))
-      var.push("tutorial_nebula_volatility", true)
    end
+end
 
+
+function timer_nofuel(p)
+   hook.rm(timer_hook)
+   if not p:exists() then
+      evt.finish()
+   end
+   p:hailPlayer()
+   hook.pilot(p, "hail", "pilot_hail_nofuel")
+end
+
+
+function pilot_hail_nofuel(p)
+   tk.msg("", fmt.f(nofuel_text,
+            {target_next_key=tutGetKey("target_next"),
+               hail_key=tutGetKey("hail")}))
+   var.push("tutorial_nofuel", true)
+   p:setVisplayer(false)
    evt.finish()
 end
 
 
-function jumpout ()
+function exit()
    -- In the unlikely event that a player leaves the system too quickly
    -- to see a message before jumping out, this prevents it from showing
    -- the message to prevent weirdness of looking like it's referring to
