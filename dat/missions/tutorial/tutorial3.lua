@@ -65,7 +65,7 @@ dest_text = _([["Ahhh, that's much better. I'm sure your weapons will work a lot
 
 "Alright, I need you to take this Ore to {planet}. You should be able to see it on your overlay map, right? You can interact with its icon the same way you would interact with the planet itself, so you should be able to tell Autonav to land us there no problem."]])
 
-pay_text = _([[Albert steps out of your ship and stretches his arms, seemingly happy to be back on a planet, even if it isn't the planet he was on previously. "Thank you for your service once again," he says as he hands you a credit chip with your payment. "If you like, I have one more job for you. Meet me at the bar in a bit."]])
+pay_text = _([[Albert steps out of your ship and stretches his arms, seemingly happy to be back in atmosphere. "Thank you for your service once again," he says as he hands you a credit chip with your payment. "If you like, I have one more job for you. Meet me at the bar in a bit."]])
 
 misn_desc = _("Albert needs you to mine ore from some asteroids.")
 misn_log = _([[You accepted another job from Albert, this time mining some ore from asteroids for him. He asked you to speak with him again on {planet} ({system} system) for another job.]])
@@ -115,13 +115,11 @@ end
 
 
 function enter()
-   enter_timer_hook = hook.timer(1, "timer_enter")
+   hook.timer(1, "timer_enter")
 end
 
 
 function timer_enter()
-   hook.rm(enter_timer_hook)
-
    player.allowLand(false)
    player.pilot():setNoJump(true)
 
@@ -131,12 +129,11 @@ function timer_enter()
    misn.osdActive(2)
 
    local pos = vec2.new(18000, -1200)
-   mark = system.cur():mrkAdd(_("Asteroid Field"), pos)
+   mark = system.mrkAdd(_("Asteroid Field"), pos)
 
    input_hook = hook.input("input", "overlay")
-   prox_hook = hook.timer(0.5, "proximity",
+   hook.timer(0.5, "proximity",
          {location=pos, radius=2500, funcname="asteroid_proximity"})
-   mining_hook = hook.timer(0.5, "timer_mining")
 end
 
 
@@ -162,39 +159,39 @@ end
 
 function asteroid_proximity()
    hook.rm(input_hook)
-   hook.rm(prox_hook)
-   system.cur():mrkRm(mark)
+   system.mrkRm(mark)
 
    tk.msg("", fmt.f(mining_text,
          {primarykey=tutGetKey("primary"),
             secondarykey=tutGetKey("secondary")}))
    misn.osdActive(4)
+
+   hook.timer(0.5, "timer_mining")
 end
 
 
 function timer_mining()
    if player.pilot():cargoFree() > 0 then
+      hook.timer(0.5, "timer_mining")
       return
    end
 
    hook.rm(input_hook)
-   hook.rm(prox_hook)
-   hook.rm(mining_hook)
-   system.cur():mrkRm(mark)
+   system.mrkRm(mark)
 
    tk.msg("", fmt.f(cooldown_text, {autobrake_key=tutGetKey("autobrake")}))
    misn.osdActive(5)
 
-   cooldown_hook = hook.timer(1, "timer_cooldown")
+   hook.timer(1, "timer_cooldown")
 end
 
 
 function timer_cooldown()
    if player.pilot():temp() > 250 then
+      hook.timer(1, "timer_cooldown")
       return
    end
 
-   hook.rm(cooldown_hook)
    player.allowLand(true)
    player.pilot():setNoJump(false)
 
@@ -226,6 +223,7 @@ function abort()
    if system.cur() == missys then
       player.allowLand(true)
       player.pilot():setNoJump(false)
+      system.mrkRm(mark)
    end
    misn.finish(false)
 end

@@ -34,13 +34,13 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase!" the salesperson who sold you this ship says through the radio. "I am sure the {shipname} will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
+intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase!" the salesperson who sold you the {shipname} says through the radio. "I am sure your new ship will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
 
 movement_text = _([["Now, so that your test flight goes as smoothly as possible, I will explain the controls of your state-of-the art Melendez Corporation starship! There are two basic modes: keyboard flight, and mouse flight.
 
 "To move via keyboard flight, rotate your ship with {leftkey} and {rightkey}, and thrust to move your ship forward with {accelkey}. You can also use {reversekey} to rotate your ship to the direction opposite of your current movement, which can be useful for bringing your vessel to a stop.
 
-"To move via mouse flight, you must first enable it by pressing {mouseflykey}. While mouse flight is enabled, your ship will automatically turn toward your #bmouse pointer#0, like magic! You can then thrust either with {accelkey}, as you would do in keyboard flight, or you can alternatively use the #bmiddle mouse button#0 or either of the #bextra mouse buttons#0.
+"To move via mouse flight, you must first enable it by pressing {mouseflykey}. While mouse flight is enabled, your ship will automatically turn toward your #bmouse pointer#0, like magic! You can then thrust either with {accelkey}, as you would in keyboard flight, or you can alternatively use the #bmiddle mouse button#0 or either of the #bextra mouse buttons#0.
 
 "Why don't you give both systems a try? Experiment with the flight controls as much as you'd like, then fly over to where {planet} is. You see it on your screen, right? It's the planet right next to you."]])
 
@@ -48,7 +48,7 @@ landing_text = _([["I see you have a great handle on the controls of your new Me
 
 "You may continue to practice flying for as long as you need. When you are ready, please return to {planet} to finalize your paperwork. To do so, simply #bdouble-click#0 on the planet, or if you prefer to use your keyboard, target it with {target_planet_key} and then press {landkey}. I will be waiting for you at the spaceport!"]])
 
-land_text = _([[You watch as your ship automatically initiates landing procedures, taking you safely through the atmosphere and into the planet's space port, touching down at an empty spot reserved for you. As your hatch opens and you step out of your ship, an exhausted dock worker greets you and makes you sign a form. Once you've done so, she pushes some buttons and you watch in amazement as robotic drones immediately get to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
+land_text = _([[You watch as your ship automatically initiates landing procedures, taking you safely through the atmosphere and into the planet's space port, then touching down at an empty spot reserved for you. As your hatch opens and you step out of your ship, an exhausted dock worker greets you and makes you sign a form. Once you've done so, she pushes some buttons and you watch in amazement as robotic drones immediately get to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
 
 "Ah, there you are, {player}!" the voice of the salesperson interrupts. You look in the direction of the voice and see an obnoxiously dressed person with a huge grin. "I see your Melendez Corporation starship is serving you well. Now, if you would follow me, we can finalize that paperwork."
 
@@ -90,12 +90,12 @@ misn_desc = _("You have purchased a new ship from Melendez and are in the proces
 
 function create ()
    -- Note: This mission makes no system claims.
-   start_planet = planet.get("Em 1")
+   start_planet, missys = planet.get("Em 1")
    start_planet_r = 200
 
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
-   misn.setReward(fmt.credits(credits))
+   misn.setReward(_("None"))
 
    accept()
 end
@@ -164,7 +164,7 @@ function timer ()
    -- Recreate OSD in case key binds have changed.
    create_osd()
 
-   if system.cur() == missys
+   if stage == 1 and system.cur() == missys
          and player.pos():dist(start_planet:pos()) <= start_planet_r then
       stage = 2
 

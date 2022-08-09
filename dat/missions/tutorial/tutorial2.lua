@@ -97,6 +97,9 @@ function accept()
       }
       misn.osdCreate(_("Albert's Shopping"), osd_desc)
 
+      local cost = commodity.get("Food"):priceAtTime(planet.cur(), time.get())
+      player.pay(cost * 30, "adjust")
+
       land()
 
       hook.land("land")

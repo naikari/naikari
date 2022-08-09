@@ -8,7 +8,7 @@
   <priority>1</priority>
   <chance>100</chance>
   <location>Bar</location>
-  <planet>Em 1</planet>
+  <planet>Em 5</planet>
   <done>Tutorial Part 3</done>
  </avail>
 </mission>
@@ -101,7 +101,7 @@ function accept()
          fmt.f(_("Press {starmapkey} to open your starmap"),
             {starmapkey=naev.keyGet("starmap")}),
          fmt.f(_("Select {system} by clicking on it in your starmap, then click \"Autonav\" and wait for Autonav to fly you there"),
-            {system=jumpsys:name()}),
+            {system=missys:name()}),
          fmt.f(_("Press {target_hostile_key} to target the hostile ship"),
             {target_hostile_key=naev.keyGet("target_hostile")}),
          _("Destroy the Pirate Hyena"),
@@ -119,15 +119,14 @@ end
 
 function enter_start()
    hook.rm(enter_hook)
-   enter_timer_hook = hook.timer(1, "timer_enter_start")
+   hook.timer(1, "timer_enter_start")
+   enter_hook = hook.enter("enter_ambush")
 end
 
 
 function timer_enter_start()
-   hook.rm(enter_timer_hook)
-
    tk.msg("", fmt.f(starmap_text,
-            {player=player.name(), overlaykey=tutGetKey("starmap")}))
+            {player=player.name(), starmapkey=tutGetKey("starmap")}))
 
    misn.osdActive(2)
 
@@ -154,8 +153,6 @@ end
 function safe_starmap()
    tk.msg("", fmt.f(jump_text, {system=missys}))
    misn.osdActive(3)
-
-   enter_hook = hook.enter("enter_ambush")
 end
 
 
@@ -164,6 +161,8 @@ function enter_ambush()
       return
    end
 
+   hook.rm(input_hook)
+   hook.rm(safe_hook)
    hook.rm(enter_hook)
 
    player.allowLand(false)
@@ -172,7 +171,7 @@ function enter_ambush()
    pilot.toggleSpawn(false)
    pilot.clear()
 
-   local pos = player.pilot():pos() + vec2.new(-500, -500)
+   local pos = jump.get("Eneguoz", "Hakoi"):pos() + vec2.new(1000, 1500)
    local pirate = pilot.add("Hyena", "Pirate", pos, _("Pirate Hyena"),
          {ai="pirate_norun", naked=true})
 
@@ -182,6 +181,8 @@ function enter_ambush()
    pirate:outfitAdd("Jump Scanner") -- Lowers energy regeneration
    pirate:outfitAdd("Laser Cannon MK1")
 
+   pirate:setHealth(100, 100)
+   pirate:setEnergy(100)
    pirate:setVisible()
    pirate:setHostile()
 
@@ -189,16 +190,15 @@ function enter_ambush()
    hook.pilot(pirate, "jump", "pirate_death")
    hook.pilot(pirate, "land", "pirate_land")
 
-   timer_hook = hook.timer(2, "timer_enter_ambush", pirate)
+   hook.timer(2, "timer_enter_ambush", pirate)
    input_hook = hook.input("input", "target_hostile")
 end
 
 
 function timer_enter_ambush(pirate)
-   hook.rm(timer_hook)
-
    tk.msg("", fmt.f(target_nearest_text,
-         {missys:name(), player.name(), tutGetKey("target_hostile")}))
+         {system=missys:name(), player=player.name(),
+            target_hostile_key=tutGetKey("target_hostile")}))
    misn.osdActive(4)
 end
 
@@ -210,13 +210,17 @@ end
 
 
 function pirate_death(p)
-   hook.rm(timer_hook)
    hook.rm(input_hook)
    hook.rm(safe_hook)
    if p:exists() then
       p:hookClear()
    end
 
+   hook.timer(3, "timer_pirate_death")
+end
+
+
+function timer_pirate_death()
    tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
    misn.osdActive(6)
 

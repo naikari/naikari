@@ -1176,9 +1176,15 @@ static int systemL_mrkAdd( lua_State *L )
 static int systemL_mrkRm( lua_State *L )
 {
    unsigned int id;
+
    NLUA_CHECKRW(L);
-   id = luaL_checklong( L, 1 );
-   ovr_mrkRm( id );
+
+   if (lua_isnil(L, 1))
+      /* Allow safely passing nil with no effect. */
+      return 0;
+   id = luaL_checklong(L, 1);
+
+   ovr_mrkRm(id);
    return 0;
 }
 
