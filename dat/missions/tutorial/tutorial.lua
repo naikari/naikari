@@ -34,9 +34,6 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-a_commodity = commodity.get("Water")
-an_outfit = outfit.get("Heavy Laser Turret")
-
 intro_text  = _([["Welcome to space, {player}!" a voice finally says through the radio. It felt like you must have been waiting a whole period since you were sent into space to begin your flight training, sponsored by the manufacturer of your ship, Melendez Corporation. "I am Ian Structure, and I will be your guide today. On behalf of Melendez Corporation, I would like to say that I believe your new ship, the {shipname}, will serve you well! Our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank Ian Structure.]])
 
 movement_text = _([["Alright, let's go over how to pilot your new ship, then! There are two basic ways to pilot your ship: keyboard flight, and mouse flight. I will explain both so you can choose which method is best for you.
