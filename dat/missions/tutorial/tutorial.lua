@@ -61,9 +61,9 @@ approach_text = _([[You approach a well-dressed man who you suppose must be Ian 
 
 "Oh, but where are my manners? I haven't introduced myself." He offers his hand, which you shake. "My name is Albert. I'm, you could say, a casual pilot. I take easy jobs here and there, trade commodities, that sort of thing. I was actually stopping by here to grab some cargo for a client, but I got distracted by an enthralling story on the news terminal.
 
-"Hm, say, could you get that cargo for me? I'll give you the credits for it." Albert presses a credit chip into your hand. "I just need 5 t of Food. You should be able to find it in the Commodities tab." Figuring this diversion is better than sitting around doing nothing, you agree to get the cargo for him and he gets back to reading his news article, nodding appreciatively.]])
+"Hm, say, could you get that cargo for me? I'll give you the credits for it." Albert presses a credit chip into your hand. "I just need 10 t of Food. You should be able to find it in the Commodity tab." Figuring this diversion is better than sitting around doing nothing, you agree to get the cargo for him and he gets back to reading his news article, nodding appreciatively.]])
 
-ask_cargo_text = _([[You ask Albert what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "I have trouble remembering stuff too. It's 5 t of Food. You should be able to find it in the Commodities tab. Let me know when you have it!"]])
+ask_cargo_text = _([[You ask Albert what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "I have trouble remembering stuff too. It's 10 t of Food. You should be able to find it in the Commodity tab. Let me know when you have it!"]])
 
 give_cargo_text = _([[You approach Albert and inform him that you successfully bought the cargo he needs. "Ah, perfect timing!" he responds. "I just got done reading that article. Thanks a bunch!" You point out that the cost of the cargo was less than what Albert gave you and attempt to return the rest of his credits to him, but he waves dismissively. "No, it's OK. Keep it as a thank you for your assistance. You did part of my job for me, after all, so it's only fair that you get a share of the payment!
 
@@ -75,25 +75,27 @@ mission_text = _([[You and Albert approach the mission computer and Albert immed
 
 "Alright," he says this time to you, "I've chosen my mission! Next stop, the outfitter. Click on the 'Outfits' tab to take us there when you're ready."]])
 
-outfits_text = _([[As you enter the outfitter, you can't help but look around in wonder at all the choices. Albert, meanwhile, seems used to the display. He browses the catalog for a moment before finding what he's looking for: a Milspec Prometheus 3603 Core System. "Finally!" he exclaims. "I've been looking for this thing all over the place. You know, this place has a great selection. I'll have to come back here some other time.
+outfits_text = _([[As you enter the outfitter, you can't help but look around in wonder at all the choices. Albert, meanwhile, seems used to the display. He browses the catalog for a moment before finding what he's looking for: a Melendez Ox XL Engine. "Finally!" he exclaims. "I've been looking for this thing all over the place.
 
 "Just one more stop for me! I need to go to the Equipment screen so I can actually put this on my ship. It won't do me much good just sitting in my inventory, eh? Click on the 'Equipment' tab whenever you're ready."]])
 
-equipment_text = _([[You see through Albert's information on the Equipment screen that Albert has three ships: a Koala, a Quicksilver, and a Gawain, in addition to a modest collection of outfits. He uses the interface to remove the Unicorp PT-80 Core System on his Quicksilver, then install his new Milspec Prometheus 3603 Core System onto the Core System slot. "All set!" he says. You take a moment to look at your own information on the Equipment screen as well; sure enough you see the ship you just purchased, along with your comparatively barren collection of outfits.
+equipment_text = _([[You see through Albert's information on the Equipment screen that he has three ships: a Koala, a Quicksilver, and a Gawain, in addition to a modest collection of outfits. He uses the interface to remove the Unicorp Hawk 300 Engine from his Koala, then install his new Melendez Ox XL Engine onto the Engine slot. "All set!" he says. You take a moment to look at your own information on the Equipment screen as well; sure enough, you see the ship you just purchased, along with your comparatively barren collection of outfits.
 
-"Well, I suppose I'm done here now. Hey, thanks again for helping me out on my mission, and it was nice to meet you. Maybe we'll see each other in space some other time!" You part ways with Albert as he goes back into space. With little else to do, you decide to wander around some more while you wait for Ian Structure to show up.
+"Well, I suppose I'm done here now," Albert says. "Hey, thanks again for helping me out on my mission, and it was nice to meet you. Maybe we'll see each other in space some other time!" You part ways with Albert as he goes back into space. With little else to do, you decide to wander around some more while you wait for Ian Structure to show up.
 
 Suddenly, you get a call on your wrist computer from Ian Structure. "Sorry for the wait," he says. "I'm back and ready to continue your flight training! Go ahead and click on the 'Take Off' button whenever you're ready."]])
 
-overlay_text = _([["Welcome back to space, {player}! Let's continue discussing moving around in space. As mentioned before, you can move around space manually, no problem. However, you will often want to travel large distances, and navigating everywhere manually could be a bit tedious. That is why ships from Melendez Corporation always include the latest Autonav technology! When your ship is piloted with autonav, while the trip takes just as long in real time, computerized technology allows you to step away from your controls, making it seem as though time is passing at a faster rate (a phenomenon we call 'time compression'). And don't worry; if any hostile pilots are detected, our Autonav system automatically alerts you so you can return to your controls, ending time compression. This can be configured in the Options menu.
+overlay_text = _([["Welcome back to space, {player}! Let's continue discussing moving around in space. As mentioned before, you can move around space manually, no problem. However, you will often want to travel large distances, and navigating everywhere manually could be a bit tedious. That is why ships from Melendez Corporation always include the latest Autonav technology!
 
-"Allow me to demonstrate. To start with, please press {overlaykey} to open your ship's overlay map."]])
+When your ship is piloted with Autonav, while the trip takes just as long in real time, advanced automation technology allows you to step away from your controls, making it seem as though time is passing at a faster rate (a phenomenon we call 'time compression'). And don't worry; if any hostile pilots are detected, the Autonav system automatically alerts you so you can return to your controls, ending time compression. This can be configured in the Options menu.
+
+"Allow me to demonstrate how this system works! To start with, please press {overlaykey} to open your ship's overlay map."]])
 
 autonav_text = _([["As you can see, your overlay map shows several indicator icons. These icons represent objects in the current system that are visible to you: planets, jump points, ships, and asteroids. These icons are color-coded to indicate whether the objects are friendly, neutral, or hostile, and planets are also marked with symbols which serve the same purpose for colorblind accessibility.
 
 "Now that the overlay map is open, you can use your mouse to interact with objects the same way you would with the actual object. In addition, you can fly to any location in the system automatically by #bright-clicking#0 on its corresponding location on the overlay map.
 
-"Why don't you give it a try by using Autonav to fly over to {planet}? Simply #bright-click#0 on your overlay map's {planet} icon and watch in amazement as autonav takes you there quickly, easily, and painlessly!"]])
+"Why don't you give it a try by using Autonav to fly over to {planet}? Simply #bright-click#0 on your overlay map's {planet} icon and watch in amazement as Autonav takes you there quickly, easily, and painlessly!"]])
 
 target_text = _([["Convenient, isn't it? By using Autonav, the perceived duration of your trip was cut substantially. You will grow to appreciate this feature in time, especially as you travel from system to system delivering goods and such.
 
@@ -161,7 +163,7 @@ nofuel_log = _([[You can hail any other pilot by either double-clicking on them,
 
 If there are no civilians or traders in the system, you can alternatively attempt to get fuel from a pirate. To do so, you must first hail them and offer a bribe, and if you successfully bribe them, they will often be willing to refuel you if you hail them again and ask for it.]])
 
-misn_title = _("Flight School")
+misn_title = _("Flight Training")
 misn_desc = _("Ian Structure has offered to teach you how to fly your ship.")
 misn_reward = _("None")
 
@@ -221,6 +223,7 @@ function accept ()
 
    timer_hook = hook.timer(5, "timer")
    hook.land("land")
+   hook.load("land")
    hook.takeoff("takeoff")
    hook.enter("enter")
    hook.input("input")
@@ -247,7 +250,7 @@ function create_osd()
          {planet=start_planet:name(), system=missys:name()}),
       fmt.f(_("Talk to Ian Structure's colleague at the bar on {planet} ({system} system})"),
          {planet=start_planet:name(), system=missys:name()}),
-      fmt.f(_("Buy 5 t of Food from the Commodities tab and then talk to Albert at the bar on {planet} ({system} system)"),
+      fmt.f(_("Buy 10 t of Food from the Commodity tab and then talk to Albert at the bar on {planet} ({system} system)"),
          {planet=start_planet:name(), system=missys:name()}),
       fmt.f(_("Go to the mission computer (Missions tab) on {planet} ({system} system)"),
          {planet=start_planet:name(), system=missys:name()}),
@@ -269,13 +272,13 @@ function create_osd()
          {autobrake_key=naev.keyGet("autobrake")}),
       fmt.f(_("Press {starmapkey} to open your starmap"),
          {starmapkey=naev.keyGet("starmap")}),
-      fmt.f(_("Select {system} (marked on your starmap) by clicking on it in your starmap, then click \"Autonav\" and wait for autonav to fly you there"),
+      fmt.f(_("Select {system} by clicking on it in your starmap, then click \"Autonav\" and wait for Autonav to fly you there"),
          {system=jumpsys:name()}),
       fmt.f(_("Make use of what you've learned to fly to {system} (marked on your starmap)"),
          {system=destsys:name()}),
    }
 
-   misn.osdCreate(_("Flight School"), osd_desc)
+   misn.osdCreate(_("Flight Training"), osd_desc)
    misn.osdActive(stage)
 end
 
@@ -337,7 +340,7 @@ function land()
       end
 
       npc = misn.npcAdd("approach_albert", _("Albert"),
-            "neutral/youngbusinessman2.png",
+            "neutral/unique/youngbusinessman2.png",
             _("Albert is still reading the news terminal."), 0)
    end
 
@@ -347,7 +350,7 @@ function land()
       end
 
       npc = misn.npcAdd("approach_albert", _("Ian's Colleague"),
-            "neutral/youngbusinessman2.png",
+            "neutral/unique/youngbusinessman2.png",
             _("You see a well-dressed young man sitting alone at the bar, looking intently at the news terminal. Perhaps this is the \"colleague\" Ian Structure spoke of."),
             0)
    end
@@ -362,18 +365,18 @@ function approach_albert()
       create_osd()
       misn.npcRm(npc)
       npc = misn.npcAdd("approach_albert", _("Albert"),
-            "neutral/youngbusinessman2.png",
+            "neutral/unique/youngbusinessman2.png",
             _("Albert is still reading the news terminal."), 0)
 
       -- We intentionally give the player more money than is actually
       -- needed to buy the commodity, to give both a buffer and a
       -- small reward.
       local cost = commodity.get("Food"):priceAtTime(planet.cur(), time.get())
-      player.pay(cost * 15, "adjust")
+      player.pay(cost * 30, "adjust")
    elseif stage == 4 then
       local ftonnes = player.pilot():cargoHas("Food")
-      if ftonnes and ftonnes >= 5 then
-         player.pilot():cargoRm("food", 5)
+      if ftonnes and ftonnes >= 10 then
+         player.pilot():cargoRm("Food", 10)
          tk.msg("", give_cargo_text)
 
          stage = 5
