@@ -3,6 +3,7 @@
 <event name="Enter Tutorial Event">
  <trigger>enter</trigger>
  <chance>100</chance>
+ <priority>0</priority>
  <flags>
   <unique />
  </flags>
@@ -36,7 +37,7 @@ nofuel_text = _([[Soon after you realize to your horror that you are out of fuel
 "Anyway, I'm going to continue my search. Good luck on yours!"]])
 
 
-function create ()
+function create()
    hook.jumpout("exit")
    hook.land("exit")
 
@@ -52,6 +53,10 @@ function create ()
       end
 
       if not landable_planets then
+         if not evt.claim(system.cur()) then
+            evt.finish()
+         end
+
          local offset = vec2.new(rnd.uniform(-1000, 1000),
                rnd.uniform(-1000, 1000))
          local pos = player.pilot():pos() + offset
@@ -59,8 +64,12 @@ function create ()
          p:setFuel(100)
          p:setVisplayer()
          timer_hook = hook.timer(3, "timer_nofuel", p)
+
+         return
       end
    end
+
+   evt.finish()
 end
 
 

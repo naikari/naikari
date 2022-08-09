@@ -27,6 +27,10 @@ function create()
         evt.finish()
     end
 
+    if not evt.claim(system.cur()) then
+        evt.finish()
+    end
+
     -- This non-standard way of checking chance ensures that it always
     -- shows up immediately when entering pirate-infested space at least
     -- once.

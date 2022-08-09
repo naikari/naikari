@@ -30,4 +30,12 @@
    <hidden/>
   </jump>
  </jumps>
+ <asteroids>
+  <asteroid>
+   <type>small</type>
+   <radius>5000.000000</radius>
+   <pos x="18000.000000" y="-1200.000000"/>
+   <density>0.150000</density>
+  </asteroid>
+ </asteroids>
 </ssys>
