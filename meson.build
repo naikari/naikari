@@ -164,7 +164,14 @@ if buildExec.disabled() == false
 
    # libdl can be used for debugging stack traces. On non-Windows platforms, GLAD relies on dlopen().
    glad_requires_libdl = not cc.has_header('windows.h')
-   libdl = cc.find_library('dl', required: glad_requires_libdl or debug)
+   if glad_requires_libdl or debug
+     libdl = cc.find_library('dl', required: host_machine.system()!='windows')
+     if libdl.found()
+       naev_deps += libdl
+     else
+       naev_deps += subproject('dlfcn-win32').get_variable('dl_dep')
+     endif
+   endif
 
    if get_option('debug')
       libbacktrace = cc.find_library('backtrace', has_headers: 'backtrace.h', required: false)
@@ -178,12 +185,12 @@ if buildExec.disabled() == false
    ascli_exe = find_program('appstreamcli', version: '>=0.12.9', required: false)
 
    # Audio
-   openal    = dependency('openal', required: true)
+   openal = dependency('openal', required: true)
    vorbis = dependency('vorbis', required: true)
    vorbisfile = dependency('vorbisfile', required: true)
    ogg = dependency('ogg', required: true)  # Transitive dependency. At least some MSYS2 build envs may miss it.
 
-   naev_deps += [libdl, openal, ogg, vorbis, vorbisfile]
+   naev_deps += [openal, ogg, vorbis, vorbisfile]
 
    # Standard library feature tests
    config_data.set10('HAVE_ASPRINTF', cc.has_function('asprintf'))
