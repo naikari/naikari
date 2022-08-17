@@ -88,7 +88,7 @@ articles["Generic"] = {
    --]]
    {
       tag = N_("Techs Probe for Sol"),
-      desc = _("Technicians recently returned from a new effort to understand the Sol Incident. They expect the first data to arrive in 50 decaperiods' time.")
+      desc = _("Technicians recently returned from a new effort to understand the Sol Incident. They expect the first data to arrive in two months' time.")
    },
    {
       tag = N_("Sand Monster Caught On Tape"),
@@ -119,7 +119,7 @@ articles["Generic"] = {
    --]]
    {
       tag = N_("Fullerton Reports Quarterly Loss"),
-      desc = _("Engine maker Fullerton Industries has posted a c47B loss over the past 25 decaperiods. A company spokeswoman attributed the loss to the high cost of deuterium fuel and falling sales.")
+      desc = _("Engine maker Fullerton Industries has posted a c47B loss over the past month. A company spokeswoman attributed the loss to the high cost of deuterium fuel and falling sales.")
    },
    {
       tag = N_("Genetric Board Meets"),
@@ -145,7 +145,7 @@ articles["Generic"] = {
    },
    {
       tag = N_("Amazing Survival Story"),
-      desc = _("An Xing Long was rescued after two decaperiods floating in space. \"I used meditation to slow my breathing,\" Xing Long told us. \"It was hard because I was scared.\"")
+      desc = _("An Xing Long was rescued after two days floating in space. \"I used meditation to slow my breathing,\" Xing Long told us. \"It was hard because I was scared.\"")
    },
    {
       tag = N_("The Best Spaceport Bars"),
@@ -196,7 +196,7 @@ articles["Dvaered"] = {
    },
    {
       tag = N_("FLF Terrorist Trial Ends"),
-      desc = _("FLF Terrorist Trial ended this cycle with an unsurprising death sentence for all five members of the Nor spaceport bombing. Execution is scheduled in 10 periods.")
+      desc = _("FLF Terrorist Trial ended this cycle with an unsurprising death sentence for all five members of the Nor spaceport bombing. Execution is scheduled in 10 hours.")
    },
    {
       tag = N_("New Challenges for New Times"),
@@ -386,10 +386,6 @@ articles["Frontier"] = {
       Politics
    --]]
    {
-      tag = N_("Election on Caladan Marred by Fraud"),
-      desc = _("As many as two of every hundred votes counted after the recent polling decaperiod may be falsified, an ombudsman reports. The opposition party demanded the election be annulled.")
-   },
-   {
       tag = N_("Empire Relies on Prison Labor"),
       desc = _("A recent report by the Soromid House Ways and Means Committee suggests infrastructure may be too dependent the on the incarcerated population.")
    },
@@ -427,8 +423,8 @@ function get_econ_article( commod_name, plnt_name, credits )
       {
          title = _("Shipping Company Goes Out of Business"),
          desc = gettext.ngettext(
-            "A small shipping business failed just this decaperiod. While it was already failing, what finally put the company under was a poorly-timed trade of %s on %s for %s credit per tonne. \"It was poor executive decision,\" one analyst asserts. \"Patience is key when trading, and it's clear that the owner of this company didn't have enough of that.\"",
-            "A small shipping business failed just this decaperiod. While it was already failing, what finally put the company under was a poorly-timed trade of %s on %s for %s credits per tonne. \"It was poor executive decision,\" one analyst asserts. \"Patience is key when trading, and it's clear that the owner of this company didn't have enough of that.\"",
+            "A small shipping business failed just today. While it was already failing, what finally put the company under was a poorly-timed trade of %s on %s for %s credit per tonne. \"It was poor executive decision,\" one analyst asserts. \"Patience is key when trading, and it's clear that the owner of this company didn't have enough of that.\"",
+            "A small shipping business failed just today. While it was already failing, what finally put the company under was a poorly-timed trade of %s on %s for %s credits per tonne. \"It was poor executive decision,\" one analyst asserts. \"Patience is key when trading, and it's clear that the owner of this company didn't have enough of that.\"",
             credits )
       },
       {

@@ -50,7 +50,7 @@ dock3_text = _([["You may not know this, but there are tensions between the Impe
 
 "That will be all. I offer you a suitable monetary reward should you choose to accept. Can I count on you to undertake this task?"]])
 
-refusetext = _([[Captain Rebina sighs. "I see. I don't mind admitting that I hoped you would accept, but it's your decision. I won't force you to do anything you feel uncomfortable with. My agents will be in touch in case you change your mind." Mere hectoseconds later you find yourself back in your cockpit, and the Seiryuu is leaving. It doesn't really come as a surprise that you can't find any reference to your rendezvous with the Seiryuu in your flight logs.
+refusetext = _([[Captain Rebina sighs. "I see. I don't mind admitting that I hoped you would accept, but it's your decision. I won't force you to do anything you feel uncomfortable with. My agents will be in touch in case you change your mind." Mere minutes later you find yourself back in your cockpit, and the Seiryuu is leaving. It doesn't really come as a surprise that you can't find any reference to your rendezvous with the Seiryuu in your flight logs.
 
 Suddenly, you feel a strange headache. What were you doing just now?… You take a look at your flight logs, which say you were running away from pirates and narrowly escaped. You figure you must have hit your head during the encounter and carry on with your business, whatever that may be.]])
 

@@ -167,22 +167,22 @@ int lua_istime( lua_State *L, int ind )
  * @usage t = time.create( 591, 3271, 12801 ) -- Gets a time near when the incident happened.
  *
  *    @luatparam number cycles Cycles for the new time.
- *    @luatparam number periods Periods for the new time.
+ *    @luatparam number hours Hours for the new time.
  *    @luatparam number seconds Seconds for the new time.
  *    @luatreturn Time A newly created time metatable.
  * @luafunc create
  */
 static int time_create( lua_State *L )
 {
-   int cycles, periods, seconds;
+   int cycles, hours, seconds;
 
    /* Parameters. */
    cycles = luaL_checkint(L,1);
-   periods = luaL_checkint(L,2);
+   hours = luaL_checkint(L,2);
    seconds = luaL_checkint(L,3);
 
    /* Create the time. */
-   lua_pushtime( L, ntime_create( cycles, periods, seconds ) );
+   lua_pushtime(L, ntime_create(cycles, hours, seconds));
    return 1;
 }
 /**
@@ -190,7 +190,7 @@ static int time_create( lua_State *L )
  *
  * Overrides the addition operator.
  *
- * @usage new_time = time.get() + time.create( 0, 5, 0 ) -- Adds 5 periods to the current date
+ * @usage new_time = time.get() + time.create(0, 5, 0) -- Adds 5 hours to the current date
  *
  *    @luatparam Time t1 Time metatable to add to.
  *    @luatparam Time t2 Time metatable added.
@@ -233,7 +233,7 @@ static int time_add__( lua_State *L )
  *
  * Overrides the subtraction operator.
  *
- * @usage new_time = time.get() - time.create( 0, 3, 0 ) -- Subtracts 3 periods from the current date
+ * @usage new_time = time.get() - time.create(0, 3, 0) -- Subtracts 3 hours from the current date
  *
  *    @luatparam Time t1 Time metatable to subtract from.
  *    @luatparam Time t2 Time metatable subtracted.
@@ -345,7 +345,7 @@ static int time_get( lua_State *L )
  *
  * @usage strt = time.str() -- Gets current time
  * @usage strt = time.str( nil, 5 ) -- Gets current time with full decimals
- * @usage strt = time.str( time.get() + time.create(0,5,0) ) -- Gets time in 5 periods
+ * @usage strt = time.str(time.get() + time.create(0,5,0)) -- Gets time in 5 hours
  * @usage strt = t:str() -- Gets the string of t
  *
  *    @luatparam Time t Time to convert to pretty format.  If omitted, current time is used.

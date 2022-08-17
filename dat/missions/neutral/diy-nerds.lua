@@ -53,7 +53,7 @@ As the others scramble to get up from their cramped table and start to gather th
 "Really? You'll do it? Um, great. Fantastic. I just knew that eventually, someone desperate would turn up. OK, we're set to go. We'd better take off immediately and go directly to %s, or we'll be late for the contest!"]])
   
 -- right planet, in time
-text[3] = _([["Good job, %s," Mia compliments you upon arrival. "We'll now go win the competition and celebrate a bit. You better stay in the system. We will hail you in about 4 or 5 periods, so you can pick us up and bring us back to %s."
+text[3] = _([["Good job, %s," Mia compliments you upon arrival. "We'll now go win the competition and celebrate a bit. You better stay in the system. We will hail you in about 4 or 5 hours, so you can pick us up and bring us back to %s."
 
 That said, the nerds shoulder the box and rushes towards a banner which reads "Admissions".]])
 
@@ -70,7 +70,7 @@ text[5] = _([[The nerds quickly and quietly pack up their box and start to leave
 -- you are hailed to pick them up again
 text[6] = _([[A beep from your communications equipment tells you that someone wants to talk to you. You realize it is the nerds, and return the hail. "Yo! This is Mia," comes a familiar voice from the speaker. "We're done here. Time to come back and pick us up, we have things to do on %s."]])
 
-text[7] = _([[Your comm link comes up again. It is the nerds, whom you'd almost forgotten. You hear Mia's voice: "Hey, what are you waiting for? You'd better be here within one period, or we'll get another pilot and pay them, not you!"]])
+text[7] = _([[Your comm link comes up again. It is the nerds, whom you'd almost forgotten. You hear Mia's voice: "Hey, what are you waiting for? You'd better be here within one hour, or we'll get another pilot and pay them, not you!"]])
 
 -- you pick up the nerds in time, they won
 text[8] = _([[As soon as you get of your ship, you are surrounded by the group of nerds, who are enthusiastic. "We won!" one of the dudes shouts at you. Surprisingly, the group seems to not completely be dependent on Mia when it comes to communicating with outsiders. Maybe the booze the group is obviously intoxicated with did help a little. "Take us back to %s," one of them says, "we'll continue to celebrate on the way."]])
@@ -94,13 +94,13 @@ text[12] = _([[The nerds, finally exhausted from all the partying, still smile a
 -- you return the nerds, who did not win the contest
 text[13] = _([[With sagging shoulders, the nerds unload their box. Mia turns to address you, not bold at all this time. "Um, we got a bit of a problem here. You know, we intended to pay the trip from our prize money. Now we don't have no prize money."
 
-As you're trying to decide what to make of the situation, one of the other nerds creeps up behind Mia and cautiously gestures for her to join the group a few yards away, all the time avoiding your eyes. Strange guy, you think, as if he was not accustomed to be socializing with strangers. Mia joins the group, and some whispering ensues. Mia returns to you after a few hectoseconds.
+As you're trying to decide what to make of the situation, one of the other nerds creeps up behind Mia and cautiously gestures for her to join the group a few yards away, all the time avoiding your eyes. Strange guy, you think, as if he was not accustomed to be socializing with strangers. Mia joins the group, and some whispering ensues. Mia returns to you after a few minutes.
 
 "OK, we have just solved our problem. See, that ass of a champion won the contest with a ship's processing unit. We can do it the other way round. We'll modify our box so that it can be used as a ship's core system, and you can have it as a compensation for your troubles. Interested?"]])
 
 text[14] = _([["Honestly, there is nothing you can do about it," Mia says impatiently, as if you were a small child complaining about the finiteness of an ice cream cone. "Just stand by while we rig the thing up."]])
 
-text[15] = _([["You can wait for it, won't take longer than half a period," Mia informs you. You stand by as the nerds start to mod their box. As they are going for it, you wonder if they're actually wrecking it and you'll maybe be left with a piece of worthless junk.
+text[15] = _([["You can wait for it, won't take more than half an hour," Mia informs you. You stand by as the nerds start to mod their box. As they are going for it, you wonder if they're actually wrecking it and you'll maybe be left with a piece of worthless junk.
 
 Finally, the modified box is set before you. "Here you are. Now you're the proud owner of the system's only home-made core system. It's gotten a bit bulkier than we thought, with all this rigging for energy and coolant supply, but it should work just fine, about equivalent to the %s. We need to go now and think about something more advanced for the next competition. Have a nice day."
 
@@ -123,7 +123,7 @@ textosd[1] = _("Bring the nerds and their box to %s before %s")
 textosd[2] = _("You have %s remaining")
 textosd[3] = _("You're late and the nerds are getting angry and abusive; land to get rid of the nerds and their box")
 -- stage 2
-textosd[4] = _("Wait in this system for several periods until hailed by the nerds for their return trip")
+textosd[4] = _("Wait in this system for several hours until hailed by the nerds for their return trip")
 textosd[5] = _("Pick up the nerds on %s for their return trip to %s")
 textosd[6] = _("The nerds are getting impatient")
 textosd[7] = _("You didn't pick up the nerds in time")

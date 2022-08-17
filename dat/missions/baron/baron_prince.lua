@@ -86,7 +86,7 @@ You dispose of the counterfeit artifact. Hopefully the next one will be what Sau
 
 flintdeftext = _([[Flintley greets you. "Do you have any objects for me to look at, {player}? No? Well, alright. I'll be here if you need me. Good luck out there."]])
 
-realartifact_text = _([[Flintley carefully studies the object in front of him, turning it around and consulting the online database via the bar table's terminal. After several hectoseconds he leans back and whistles. "Well I never. This has to be it, {player}. I'd do a carbon dating if I could, but even without I'm positive. This object dates back to pre-Growth Earth. And it's in an amazingly good condition!"
+realartifact_text = _([[Flintley carefully studies the object in front of him, turning it around and consulting the online database via the bar table's terminal. After several minutes he leans back and whistles. "Well I never. This has to be it, {player}. I'd do a carbon dating if I could, but even without I'm positive. This object dates back to pre-Growth Earth. And it's in an amazingly good condition!"
 
 You take another look at the thing. It resembles a small flat surface, apart from the crook at one end. On one side, there are cylindrical, solid protrusions that don't seem to serve any useful purpose at all. You are at a loss as to the artifact's purpose.
 

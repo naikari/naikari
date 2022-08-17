@@ -39,7 +39,7 @@ misn_reward = _("None")
 
 lowmoney = _("You don't have enough money to buy a fake ID. The price is %s.")
 
-noticed_onplanet = _([[During a routine check, you hand over your fake ID as usual, but the person checking your ID eyes it strangely for a time that seems to be periods long. Eventually you are handed your ID back, but this is not a good sign.
+noticed_onplanet = _([[During a routine check, you hand over your fake ID as usual, but the person checking your ID eyes it strangely for what feels like hours. Eventually you are handed your ID back, but this is not a good sign.
 
 When you check, you see that the secrecy of your identity is in jeopardy. You're safe for now, but you make a mental note to prepare for the worst when you take off, because your fake ID probably won't be of any further use by then.]])
 

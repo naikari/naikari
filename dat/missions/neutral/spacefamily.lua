@@ -26,7 +26,7 @@ require "missions/neutral/common"
 
 board_text = _([[The airlock opens, and you are greeted by a nervous-looking man, an upset woman, and three scared children.
 
-"Thank God you are here," the man says. "I don't know how much longer we could've held out. A group of pirates attacked us, disabled our ship with ion cannons, and then boarded us and stole everything we had! They left us for dead, you know. No fuel, no food, and only auxiliary power to sustain us." He then begins to incoherently tell you how much his group has suffered in the past few periods, but you cut him short, not willing to put up with his endless babbling.
+"Thank God you are here," the man says. "I don't know how much longer we could've held out. A group of pirates attacked us, disabled our ship with ion cannons, and then boarded us and stole everything we had! They left us for dead, you know. No fuel, no food, and only auxiliary power to sustain us." He then begins to incoherently tell you how much his group has suffered in the past few hours, but you cut him short, not willing to put up with his endless babbling.
 
 With a few to-the-point questions you learn that the man's name is Harrus and his wife's name is Luna. They live, or at least used to live, aboard their trading vessel. "It was a good life, you know," Harrus tells you. "You get to see the galaxy, meet people and see planets, and all that while working from home because, haha, you take your home with you!"]])
 board_text2 = _([["Some great life," Luna interjects. "I told you we needed more weapons, but no, you thought we were safe because 'there's so many patrol ships nearby'! You're lucky you didn't get us killed with your damn arrogance!"

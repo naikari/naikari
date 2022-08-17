@@ -30,7 +30,7 @@ bar_desc = _("An old man sits at a table with some missing person papers.")
 title = _("The Search for Cynthia")
 misn_desc_pre_accept = _([[Approaching him, he hands you a paper. It offers a 100,000 credit reward for the finding of a "Cynthia" person.
 
-"That's my girl. She disappeared quite a few decaperiods ago. We managed to track her down to here, but where she went afterwards remains a mystery. We know she was kidnapped, but if you know anything..." The man begins to cry. "Have you seen any trace of her?"]])
+"That's my girl. She disappeared weeks ago. We managed to track her down to here, but where she went afterwards remains a mystery. We know she was kidnapped, but if you know anything..." The man begins to cry. "Have you seen any trace of her?"]])
 misn_desc = _("Search for Cynthia.")
 
 post_accept = {}

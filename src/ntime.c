@@ -219,7 +219,7 @@ void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
    if ((cycles == 0) && (periods == 0)) /* only seconds */
       snprintf( str, max, _("%04d s"), seconds );
    else if ((cycles == 0) || (d==0))
-      snprintf( str, max, _("%.*f p"), d, periods + 0.0001 * seconds );
+      snprintf( str, max, _("%.*f h"), d, periods + 0.0001 * seconds );
    else /* UST format */
       snprintf( str, max, _("UST %d:%.*f"), cycles, d, periods + 0.0001 * seconds );
 }

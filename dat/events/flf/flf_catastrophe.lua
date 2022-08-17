@@ -66,7 +66,7 @@ text[9] = _([["So the FLF is dead, I see. Well, not so much dead as a shadow of 
 text[10] = _([[Before you can even respond, the mysterious figure disappears. You detect no presences nearby, but you notice that your ship has been refueled somehow! Odd. In any case, it looks like you have two choices: do you brave the dangers of the nebula and proceed to Metsys, or do you turn back now? The figure said that you can only make this decision once, so you'd better make sure it's the right one.]])
 
 title[11] = _("Welcome To the Nebula")
-text[11] = _([[As you land on the mysterious station, armed guards immediately surround your ship and order you out into the hangar. You comply, and they take you to a room that appears to be an interrogation room, where you wait for a few nerve-wracking hectoseconds. Finally, a holoscreen flickers on, showing the figure you had seen earlier. She looks in your direction.
+text[11] = _([[As you land on the mysterious station, armed guards immediately surround your ship and order you out into the hangar. You comply, and they take you to a room that appears to be an interrogation room, where you wait for a few nerve-wracking minutes. Finally, a holoscreen flickers on, showing the figure you had seen earlier. She looks in your direction.
     "Well met," she says. "I see you have made the right choice and survived the nebula. Very good."]])
 
 text[12] = _([["I'm sure you're wondering who we are. We are the Thurion, a civilization left over from one of the Empire's former secret projects. Have you met the Za'lek? The Collective? Those too were the Empire's "great projects", as were the now dead Proteron. But we were kept a lot more in the dark.
