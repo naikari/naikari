@@ -41,11 +41,13 @@ require "pilot/pirate"
 require "events/tutorial/tutorial_common"
 
 
-tutorial_text = _([[Ian Structure pipes up. "Ah, it looks like there's pilots available for hire here at the bar! Let me explain: throughout the galaxy, there are many pilots who seek to work as escorts for other pilots, whether for experience or just to make good money. Having escorts can really make a lot of missions easier for you.
+tutorial_text = _([[As you walk into the bar, someone else confidently strolls up to you. "Salutations!" she says. "You're a pilot, right? Would you per chance be willing to join my fleet?" You explain that you prefer to do things your own way rather than taking orders from others. "Fair enough!" she says. "I'm the same way. Having a fleet can be real helpful though, so I've been asking pilots if they'd join my fleet. Do you have a fleet yet?"
 
-"I would recommend at least talking to any pilots you find and seeing if you might want to hire them to join your fleet. Each pilot has a deposit that you have to pay up-front, and a royalty, which is a percentage of your mission earnings that you have to pay them whenever you get paid for a mission. The deposit is partially refunded when you fire them while landed, based on how much they have earned in royalties. However, you cannot get the deposit back if the pilot dies or if you fire them while out in space.
+You answer that you are currently doing things alone and haven't built a fleet. "Ah, well I'd highly recommend you give hiring other pilots a try! Usually I just approach pilots at bars and ask them what their rates are. Usually they'll charge a security deposit up-front, plus a royalty which is a percentage of your mission earnings they take. You get a partial refund of the deposit based on how much they've earned in royalties if you fire them while landed, but not if they die or if you fire them while out in space.
 
-"Of course, do make sure that your ship is able to defend itself if caught without escorts as your first priority; being alone and able to defend yourself is probably better than depending on other pilots! You should also try to pick pilots that can keep up with your ship have good synergy with the rest of your fleet."]])
+"I always try to pick pilots that can keep up with my ship and synergize together. One time I was piloting a Quicksilver and hired an Ancestor escort. Big mistake; he wasn't able to keep up with me and got caught in a fight with some slow hostiles I was able to outrun easily, then I myself got blocked off and had to retreat, losting my contract! That was a real mess and I took a big financial hit for that. I later got a pair of Hyena pilots and they were much more suitable.
+
+"Anyway, I'm rambling. Sorry about that. I'm off to find some pilots. Nice meeting you!"]])
 tutorial_log = _([[Pilots which are available for hire can be found at the Spaceport Bar. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. The deposit can be partially refunded when you fire them while landed; the amount refunded depends on how much the pilot has earned in royalties. If you fire them while out in space or if they die, none of the deposit is refunded. Each pilot is different, so you should try to pick pilots that will work well for you as a fleet.]])
 
 npctext = {}
@@ -298,9 +300,7 @@ end
 
 function land_bar ()
    if next(npcs) ~= nil and not var.peek("tutorial_escorts_done") then
-      if var.peek("_tutorial_passive_active") then
-         tk.msg("", tutorial_text)
-      end
+      tk.msg("", tutorial_text)
       addTutLog(tutorial_log, N_("Escorts"))
 
       var.push("tutorial_escorts_done", true)
