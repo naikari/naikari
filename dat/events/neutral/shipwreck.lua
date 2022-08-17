@@ -34,7 +34,7 @@ function create()
     -- This non-standard way of checking chance ensures that it always
     -- shows up immediately when entering pirate-infested space at least
     -- once.
-    if var.peek("shipwreck_repeated") and rnd.rnd() < 0.1 then
+    if var.peek("shipwreck_repeated") and rnd.rnd() >= 0.1 then
         evt.finish()
     end
 
