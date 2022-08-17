@@ -11,24 +11,25 @@
  * 1 period = 10e3 seconds
  *
  * Generally displayed as:
- *  UST \<cycles\>:\<periods\>.\<seconds\>
+ *  GCT \<cycles\>:\<periods\>.\<seconds\>
  * The number of seconds digits can be variable, for example:
  *
- *  UST 630:3726.1
- *  UST 630:3726.12
- *  UST 630:3726.124
- *  UST 630:3726.1248
- *  UST 630:3726.12489
+ *  GCT 630:3726.1
+ *  GCT 630:3726.12
+ *  GCT 630:3726.124
+ *  GCT 630:3726.1248
+ *  GCT 630:3726.12489
  *
  * Are all valid.
  *
  * Definitions / abbreviations:
- *    - UST: Universal Synchronized Time, the name of the time system.
+ *    - GCT: Galactic Common Time, the name of the time system.
  *    - seconds: Smallest named time unit. Equal to the Earth second.
- *    - periods: Most commonly used time unit. Periods are the new hours.
- *       1 period = 10,000 seconds (about 2.8 Earth hours).
- *    - cycles: Used for long-term time periods. 1 cycle = 5000 periods
- *       (about 579 Earth days).
+ *    - hours: Most commonly used time unit, named after the Earth hour
+ *       but defined differently, officially known as "galactic hours".
+ *       1 galactic hour = 10,000 seconds (about 2.8 Earth hours).
+ *    - cycles: Used for long-term time periods. 1 cycle = 5000
+ *       galactic hours (about 579 Earth days).
  */
 
 
@@ -212,7 +213,7 @@ void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
    else
       nt = t;
 
-   /* UST (Universal Synchronized Time) - unit is seconds */
+   /* GCT (Galactic Common Time) - unit is seconds */
    cycles = ntime_getCycles( nt );
    periods = ntime_getPeriods( nt );
    seconds = ntime_getSeconds( nt );
@@ -220,8 +221,8 @@ void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
       snprintf( str, max, _("%04d s"), seconds );
    else if ((cycles == 0) || (d==0))
       snprintf( str, max, _("%.*f h"), d, periods + 0.0001 * seconds );
-   else /* UST format */
-      snprintf( str, max, _("UST %d:%.*f"), cycles, d, periods + 0.0001 * seconds );
+   else /* GCT format */
+      snprintf( str, max, _("GCT %d:%.*f"), cycles, d, periods + 0.0001 * seconds );
 }
 
 
