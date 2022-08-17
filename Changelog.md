@@ -17,6 +17,10 @@
   can only occur outside of Frontier space.
 * Changed the name of the Info Window to Ship Computer.
 * New combat practice mission available through the mission computer.
+* New map showing waste disposal locations.
+* Opening tutorial replaced with a new start-of-game mission that
+  teaches the basics of playing the game in a more natural and
+  integrated fashion.
 
 ## 0.3.0
 
