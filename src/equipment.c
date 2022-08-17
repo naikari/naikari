@@ -761,7 +761,9 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    double tw;
    int n, m;
    PilotOutfitSlot *slot;
-   char alt[STRMAX];
+   char slot_alt[STRMAX];
+   char outfit_alt[STRMAX];
+   char *alt;
    int pos;
    const Outfit *o;
    CstSlotWidget *wgt;
@@ -814,40 +816,46 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    /* For comfortability. */
    o = slot->outfit;
 
+   if (slot->sslot->slot.spid)
+      pos = scnprintf(slot_alt, sizeof(slot_alt), _("%s slot (%s)"),
+            _(sp_display(slot->sslot->slot.spid)),
+            slotSize(slot->sslot->slot.size));
+   else {
+      pos = scnprintf(slot_alt, sizeof(slot_alt), _("%s slot (%s)"),
+            _(slotName(slot->sslot->slot.type)),
+            _(slotSize(slot->sslot->slot.size)));
+   }
+   if (slot->sslot->slot.exclusive && (pos < (int)sizeof(slot_alt)))
+      pos += scnprintf(&slot_alt[pos], sizeof(slot_alt)-pos,
+            _(" #o[Exclusive]#0"));
+
    /* Slot is empty. */
    if (o == NULL) {
       if (slot->sslot->slot.spid)
-         pos = scnprintf(alt, sizeof(alt), _("%s slot (%s)"),
-               _(sp_display( slot->sslot->slot.spid)),
-               slotSize(slot->sslot->slot.size));
-      else {
-         pos = scnprintf(alt, sizeof(alt), _("%s slot (%s)"),
-               _(slotName(slot->sslot->slot.type)),
-               _(slotSize(slot->sslot->slot.size)));
-      }
-      if (slot->sslot->slot.exclusive && (pos < (int)sizeof(alt)))
-         pos += scnprintf( &alt[pos], sizeof(alt)-pos,
-               _(" #o[Exclusive]#0") );
-      if (slot->sslot->slot.spid)
-         scnprintf( &alt[pos], sizeof(alt)-pos,
-               "\n\n%s", _( sp_description( slot->sslot->slot.spid ) ) );
-      toolkit_drawAltText( bx + wgt->altx, by + wgt->alty, alt );
+         scnprintf(&slot_alt[pos], sizeof(slot_alt)-pos,
+               "\n\n%s", _(sp_description(slot->sslot->slot.spid)));
+      toolkit_drawAltText(bx + wgt->altx, by + wgt->alty, slot_alt);
       return;
    }
 
    /* Get text. */
    if (o->desc_short == NULL)
       return;
-   outfit_altText( alt, sizeof(alt), o );
+   outfit_altText(outfit_alt, sizeof(outfit_alt), o);
 
    /* Display temporary bonuses. */
    if (slot->lua_mem != LUA_NOREF) {
-      slen = strlen(alt);
-      ss_statsDesc(&slot->lua_stats, &alt[slen], sizeof(alt)-slen, 1, 0);
+      slen = strlen(outfit_alt);
+      ss_statsDesc(&slot->lua_stats, &outfit_alt[slen],
+            sizeof(outfit_alt) - slen, 1, 0);
    }
 
+   asprintf(&alt, _("#n%s\n\n#nEquipped outfit:#0\n%s"),
+         slot_alt, outfit_alt);
+
    /* Draw the text. */
-   toolkit_drawAltText( bx + wgt->altx, by + wgt->alty, alt );
+   toolkit_drawAltText(bx + wgt->altx, by + wgt->alty, alt);
+   free(alt);
 }
 
 

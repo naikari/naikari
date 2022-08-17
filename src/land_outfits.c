@@ -591,7 +591,7 @@ int outfit_altText( char *buf, int n, const Outfit *o )
 
    p  = scnprintf(&buf[0], n, "%s\n", _(o->name));
    if (o->slot.type != OUTFIT_SLOT_NA) {
-      p += scnprintf(&buf[p], n-p, _("%s slot (%s)"),
+      p += scnprintf(&buf[p], n-p, _("Requires %s slot (%s)"),
             (o->slot.spid == 0) ?
                _(outfit_slotName(o)) : _(sp_display(o->slot.spid)),
             outfit_slotSize(o));
