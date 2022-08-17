@@ -23,7 +23,9 @@
 
 local fmt = require "fmt"
 local fleet = require "fleet"
+local mh = require "misnhelper"
 require "nextjump"
+require "proximity"
 require "cargo_common"
 
 
@@ -134,6 +136,7 @@ function create()
    misn.setReward(fmt.credits(reward))
 end
 
+
 function accept()
    local pjumps = player.jumps()
    if pjumps ~= nil and pjumps < numjumps then
@@ -156,7 +159,6 @@ function accept()
    alive = nil
    exited = 0
    misnfail = false
-   unsafe = false
 
    misn.accept()
    misn.osdCreate(osd_title,
@@ -168,21 +170,24 @@ function accept()
    hook.land("land")
 end
 
+
 function takeoff()
    spawnConvoy()
 end
 
+
 function jumpin()
    if system.cur() ~= nextsys then
-      fail(_("MISSION FAILED! You jumped into the wrong system."))
+      mh.showFailMsg(_("You jumped into the wrong system."))
    else
       spawnConvoy()
    end
 end
 
+
 function jumpout()
    if alive <= 0 or exited <= 0 then
-      fail(_("MISSION FAILED! You jumped before the convoy you were escorting."))
+      mh.showFailMsg(_("You jumped before the convoy you were escorting."))
    else
       -- Treat those that didn't exit as dead
       alive = math.min(alive, exited)
@@ -215,16 +220,20 @@ function land()
    end
 end
 
+
 function traderDeath()
    alive = alive - 1
    updateOSD()
    if alive <= 0 then
-      fail(_("MISSION FAILED! The convoy you were escorting has been destroyed."))
+      mh.showFailMsg(_("The convoy you were escorting has been destroyed."))
    elseif exited >= alive then
       -- No more left to defend, proceed to follow the rest
       misn.osdActive(2)
+   else
+      organize_fleet(convoy)
    end
 end
+
 
 -- Handle the jumps of convoy.
 function traderJump(p, j)
@@ -243,6 +252,7 @@ function traderJump(p, j)
       traderDeath()
    end
 end
+
 
 --Handle landing of convoy
 function traderLand(p, plnt)
@@ -265,11 +275,6 @@ end
 
 -- Handle the convoy getting attacked.
 function traderAttacked(p, attacker)
-   unsafe = true
-   p:control(false)
-   p:setNoJump(true)
-   p:setNoLand(true)
-
    if not shuttingup then
       shuttingup = true
       p:comm(player.pilot(), traderdistress)
@@ -277,22 +282,13 @@ function traderAttacked(p, attacker)
    end
 end
 
+
 function traderShutup()
     shuttingup = false
 end
 
-function timer_traderSafe()
-   hook.timer(2, "timer_traderSafe")
 
-   if unsafe then
-      unsafe = false
-      for i, j in ipairs(convoy) do
-         continueToDest(j)
-      end
-   end
-end
-
-function spawnConvoy ()
+function spawnConvoy()
    --Make it interesting
    local ambush_src = destplanet
    if system.cur() ~= destsys then
@@ -366,57 +362,20 @@ function spawnConvoy ()
       end
    end
 
-   local minspeed = nil
    for i, p in ipairs(convoy) do
       if alive ~= nil and alive < i then
          p:rm()
       end
       if p:exists() then
-         p:outfitRm("cores")
-         for j, o in ipairs(p:outfits()) do
-            if o == "Improved Stabilizer" then
-               p:outfitRm("Improved Stabilizer")
-               p:outfitAdd("Cargo Pod")
-            end
-         end
-
          for j, c in ipairs(p:cargoList()) do
             p:cargoRm(c.name, c.q)
          end
 
-         local class = p:ship():class()
-         if class == "Yacht" or class == "Luxury Yacht" or class == "Scout"
-               or class == "Courier" or class == "Fighter" or class == "Bomber"
-               or class == "Drone" or class == "Heavy Drone" then
-            p:outfitAdd("Unicorp PT-80 Core System")
-            p:outfitAdd("Melendez Ox XL Engine")
-            p:outfitAdd("S&K Small Cargo Hull")
-         elseif class == "Freighter" or class == "Armored Transport"
-               or class == "Corvette" or class == "Destroyer" then
-            p:outfitAdd("Unicorp PT-400 Core System")
-            p:outfitAdd("Melendez Buffalo XL Engine")
-            p:outfitAdd("S&K Medium Cargo Hull")
-         elseif class == "Cruiser" or class == "Carrier" then
-            p:outfitAdd("Unicorp PT-400 Core System")
-            p:outfitAdd("Melendez Mammoth XL Engine")
-            p:outfitAdd("S&K Large Cargo Hull")
-         end
-
-         p:setHealth(100, 100)
-         p:setEnergy(100)
-         p:setTemp(0)
          p:setFuel(true)
          p:cargoAdd(cargo, p:cargoFree())
 
-         local myspd = p:stats().speed_max
-         if minspeed == nil or myspd < minspeed then
-            minspeed = myspd
-         end
-
-         p:control()
          p:setHilight(true)
          p:setInvincPlayer()
-         continueToDest(p)
 
          hook.pilot(p, "death", "traderDeath")
          hook.pilot(p, "attacked", "traderAttacked", p)
@@ -425,13 +384,7 @@ function spawnConvoy ()
       end
    end
 
-   if minspeed ~= nil then
-      for i, p in ipairs(convoy) do
-         if p ~= nil and p:exists() then
-            p:setSpeedLimit(minspeed)
-         end
-      end
-   end
+   organize_fleet(convoy)
 
    exited = 0
    if orig_alive == nil then
@@ -444,28 +397,91 @@ function spawnConvoy ()
       alive = orig_alive
 
       -- Shouldn't happen
-      if orig_alive <= 0 then misn.finish(false) end
+      if orig_alive <= 0 then
+         misn.finish(false)
+      end
    end
 
    updateOSD()
-
-   hook.timer(1, "timer_traderSafe")
 end
 
-function continueToDest(p)
-   if p ~= nil and p:exists() then
-      p:taskClear()
-      p:control(true)
-      p:setNoJump(false)
-      p:setNoLand(false)
 
-      if system.cur() == destsys then
-         p:land(destplanet, true)
-      else
-         p:hyperspace(getNextSystem(system.cur(), destsys), true)
+function organize_fleet(convoy)
+   local minspeed = nil
+   local leader = nil
+   for i, p in ipairs(convoy) do
+      if p:exists() then
+         -- Remove any existing speed limit (in case the leader changed).
+         p:setSpeedLimit(0)
+
+         local myspd = p:stats().speed_max
+         if minspeed == nil or myspd < minspeed then
+            minspeed = myspd
+            leader = p
+         end
+
+         p:taskClear()
+         p:setNoJump()
+         p:setNoLand()
+         p:control(false)
+      end
+   end
+
+   if minspeed == nil or leader == nil then
+      -- This should never happen, but is here as a failsafe.
+      warn(_("No minspeed or leader set for convoy, maybe the table is empty."))
+      return
+   end
+
+   local plmax = player.pilot():stats().speed_max - 1
+   if plmax < minspeed then
+      leader:setSpeedLimit(plmax)
+   end
+
+   for i, p in ipairs(convoy) do
+      if p ~= leader and p:exists() then
+         p:setLeader(leader)
+      end
+   end
+
+   leader:memory().formation = "wall"
+   leader:setNoJump(false)
+   leader:setNoLand(false)
+   leader:control()
+
+   local dest
+   if system.cur() == destsys then
+      leader:land(destplanet, true)
+      dest = destplanet:pos()
+   else
+      local nextsys = getNextSystem(system.cur(), destsys)
+      leader:hyperspace(nextsys, true)
+      dest = jump.get(system.cur(), nextsys):pos()
+   end
+
+   -- Note: This might create multiple proximity hooks, so the hook's
+   -- return function has to tolerate that.
+   hook.timer(0.5, "proximity",
+         {location=dest, radius=500, funcname="prox_jump", focus=leader})
+end
+
+
+function prox_jump()
+   for i, p in ipairs(convoy) do
+      if p:exists() then
+         p:setNoJump(false)
+         p:setNoLand(false)
+         p:control()
+         if system.cur() == destsys then
+            p:land(destplanet, true)
+         else
+            local nextsys = getNextSystem(system.cur(), destsys)
+            p:hyperspace(nextsys, true)
+         end
       end
    end
 end
+
 
 function updateOSD()
    misn.osdDestroy()
@@ -495,18 +511,4 @@ function updateOSD()
       end
       misn.osdCreate(osd_title, osd_desc)
    end
-end
-
--- Fail the mission, showing message to the player.
-function fail(message)
-   if message ~= nil then
-      -- Pre-colourized, do nothing.
-      if message:find("#") then
-         player.msg(message)
-      -- Colourize in red.
-      else
-         player.msg("#r" .. message .. "#0")
-      end
-   end
-   misn.finish(false)
 end
