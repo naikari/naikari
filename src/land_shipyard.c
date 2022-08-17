@@ -23,12 +23,14 @@
 #include "array.h"
 #include "dialogue.h"
 #include "hook.h"
+#include "land_outfits.h"
 #include "land_takeoff.h"
 #include "log.h"
 #include "map_find.h"
 #include "ndata.h"
 #include "nstring.h"
 #include "player.h"
+#include "slots.h"
 #include "space.h"
 #include "tk/toolkit_priv.h"
 #include "toolkit.h"
@@ -39,6 +41,9 @@
  */
 static Ship **shipyard_list = NULL; /**< Array (array.h): Available ships, valid when the shipyard image-array widget is. */
 static Ship* shipyard_selected = NULL; /**< Currently selected shipyard ship. */
+static ShipOutfitSlot* shipyard_mouseover = NULL;
+static double shipyard_altx = 0;
+static double shipyard_alty = 0;
 
 
 /*
@@ -48,7 +53,15 @@ static void shipyard_buy( unsigned int wid, char* str );
 static void shipyard_trade( unsigned int wid, char* str );
 static void shipyard_rmouse( unsigned int wid, char* widget_name );
 static void shipyard_renderSlots( double bx, double by, double bw, double bh, void *data );
-static void shipyard_renderSlotsRow( double bx, double by, double bw, const char *str, ShipOutfitSlot *s );
+static void shipyard_renderSlotsRow(double bx, double by, double bw,
+      const char *str, ShipOutfitSlot *s);
+static void shipyard_renderOverlaySlots(double bx, double by,
+      double bw, double bh, void *data);
+static int shipyard_mouseSlots(unsigned int wid, SDL_Event* event,
+      double mx, double my, double bw, double bh,
+      double rx, double ry, void *data);
+static void shipyard_mouseSlotsRow(double bx, double by, double bw,
+      double mx, double my, ShipOutfitSlot *s);
 static void shipyard_find( unsigned int wid, char* str );
 
 
@@ -102,8 +115,10 @@ void shipyard_open( unsigned int wid )
    (void)off;
 
    /* slot types */
-   window_addCust( wid, -100, -30, 224, 80, "cstSlots", 0.,
-         shipyard_renderSlots, NULL, NULL );
+   window_addCust(wid, -100, -30, 224, 80, "cstSlots", 0.,
+         shipyard_renderSlots, shipyard_mouseSlots, NULL);
+   window_custSetClipping(wid, "cstSlots", 0);
+   window_custSetOverlay(wid, "cstSlots", shipyard_renderOverlaySlots);
 
    /* stat text */
    window_addText( wid, -4, -30-80-20, 320, -30-80-20+h-bh, 0, "txtStats",
@@ -185,6 +200,7 @@ void shipyard_update( unsigned int wid, char* str )
 
    ship = shipyard_list[i];
    shipyard_selected = ship;
+   shipyard_mouseover = NULL;
 
    /* update text */
    window_modifyText( wid, "txtStats", ship->desc_stats );
@@ -561,10 +577,9 @@ static void shipyard_renderSlots( double bx, double by, double bw, double bh, vo
    if (ship == NULL)
       return;
 
-   y = by + bh;
+   y = by + bh - 15;
 
    /* Draw rotated text. */
-   y -= 10+5;
    gl_print( &gl_defFont, bx, y, &cFontWhite, _("Slots:") );
 
    x = bx + 10.;
@@ -588,7 +603,8 @@ static void shipyard_renderSlots( double bx, double by, double bw, double bh, vo
 /**
  * @brief Renders a row of ship slots.
  */
-static void shipyard_renderSlotsRow( double bx, double by, double bw, const char *str, ShipOutfitSlot *s )
+static void shipyard_renderSlotsRow(double bx, double by, double bw,
+      const char *str, ShipOutfitSlot *s)
 {
    (void) bw;
    int i;
@@ -618,5 +634,147 @@ static void shipyard_renderSlotsRow( double bx, double by, double bw, const char
          toolkit_drawTriangle( x, by, x+10, by+10, x, by+10, &cBlack );
 
       gl_renderRectEmpty( x, by, 10, 10, &cBlack );
+   }
+}
+
+
+/**
+ * @brief Renders the slots overlay.
+ *
+ *    @param bx Base X position of the widget.
+ *    @param by Base Y position of the widget.
+ *    @param bw Width of the widget.
+ *    @param bh Height of the widget.
+ *    @param data Custom widget data.
+ */
+static void shipyard_renderOverlaySlots(double bx, double by,
+      double bw, double bh, void *data)
+{
+   (void) bw;
+   (void) bh;
+   (void) data;
+   ShipOutfitSlot *slot;
+   const Outfit *o;
+   char slot_alt[STRMAX];
+   char outfit_alt[STRMAX];
+   char *alt;
+   size_t l;
+
+   if (shipyard_mouseover == NULL)
+      return;
+
+   slot = shipyard_mouseover;
+   o = slot->data;
+
+   if (slot->slot.spid)
+      l = scnprintf(slot_alt, sizeof(slot_alt), _("%s slot (%s)"),
+            _(sp_display(slot->slot.spid)),
+            slotSize(slot->slot.size));
+   else {
+      l = scnprintf(slot_alt, sizeof(slot_alt), _("%s slot (%s)"),
+            _(slotName(slot->slot.type)),
+            _(slotSize(slot->slot.size)));
+   }
+   if (slot->slot.exclusive && (l < (int)sizeof(slot_alt)))
+      l += scnprintf(&slot_alt[l], sizeof(slot_alt) - l,
+            _(" #o[Exclusive]#0"));
+
+   /* Slot is empty. */
+   if ((o == NULL) || (o->desc_short == NULL)) {
+      if (slot->slot.spid)
+         scnprintf(&slot_alt[l], sizeof(slot_alt) - l,
+               "\n\n%s", _(sp_description(slot->slot.spid)));
+      toolkit_drawAltText(bx + shipyard_altx, by + shipyard_alty, slot_alt);
+      return;
+   }
+
+   /* Get text. */
+   outfit_altText(outfit_alt, sizeof(outfit_alt), o);
+
+   asprintf(&alt, _("#n%s\n\n#nEquipped outfit:#0\n%s"),
+         slot_alt, outfit_alt);
+
+   /* Draw the text. */
+   toolkit_drawAltText(bx + shipyard_altx, by + shipyard_alty, alt);
+   free(alt);
+}
+
+
+/**
+ * @brief Does mouse input for the custom slots widget.
+ *
+ *    @param wid Parent window id.
+ *    @param event Mouse input event.
+ *    @param mx Mouse X event position.
+ *    @param my Mouse Y event position.
+ *    @param bw Base window width.
+ *    @param bh Base window height.
+ *    @param rx Relative X movement (only valid for motion).
+ *    @param ry Relative Y movement (only valid for motion).
+ *    @param data Custom widget data.
+ */
+static int shipyard_mouseSlots(unsigned int wid, SDL_Event* event,
+      double mx, double my, double bw, double bh,
+      double rx, double ry, void *data)
+{
+   (void) wid;
+   (void) bh;
+   (void) rx;
+   (void) ry;
+   (void) data;
+   Ship *ship;
+   double x, y, w;
+
+   /* Make sure a valid ship is selected. */
+   ship = shipyard_selected;
+   if (ship == NULL)
+      return 0;
+
+   if (event->type != SDL_MOUSEMOTION)
+      return 0;
+
+   shipyard_mouseover = NULL;
+
+   x = 10.;
+   y = bh - 15.;
+   w = bw - 10.;
+
+   /* Weapon slots. */
+   y -= 20;
+   shipyard_mouseSlotsRow(x, y, w, mx, my, ship->outfit_weapon);
+
+   /* Utility slots. */
+   y -= 20;
+   shipyard_mouseSlotsRow(x, y, w, mx, my, ship->outfit_utility);
+
+   /* Structure slots. */
+   y -= 20;
+   shipyard_mouseSlotsRow(x, y, w, mx, my, ship->outfit_structure);
+
+   return 0;
+}
+
+
+static void shipyard_mouseSlotsRow(double bx, double by, double bw,
+      double mx, double my, ShipOutfitSlot *s)
+{
+   (void) bw;
+   int i;
+   double x;
+
+   if (shipyard_mouseover != NULL)
+      return;
+
+   x = bx;
+
+   /* Draw squares. */
+   for (i=0; i<array_size(s); i++) {
+      x += 15.;
+      if ((mx > x) && (mx < x + 10) && (my > by) && (my < by + 10)) {
+         shipyard_mouseover = &s[i];
+         shipyard_altx = mx;
+         shipyard_alty = my;
+         return;
+      }
    }
 }

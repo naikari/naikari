@@ -830,7 +830,7 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
             _(" #o[Exclusive]#0"));
 
    /* Slot is empty. */
-   if (o == NULL) {
+   if ((o == NULL) || (o->desc_short == NULL)) {
       if (slot->sslot->slot.spid)
          scnprintf(&slot_alt[pos], sizeof(slot_alt)-pos,
                "\n\n%s", _(sp_description(slot->sslot->slot.spid)));
@@ -839,8 +839,6 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    }
 
    /* Get text. */
-   if (o->desc_short == NULL)
-      return;
    outfit_altText(outfit_alt, sizeof(outfit_alt), o);
 
    /* Display temporary bonuses. */
