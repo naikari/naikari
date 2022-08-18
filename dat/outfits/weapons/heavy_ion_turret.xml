@@ -7,7 +7,7 @@
   <license>Heavy Weapon License</license>
   <price>150000</price>
   <description>The Heavy Ion Turret is a Sirius military design, applying brute force to its target's internal systems. When coupled with Razor weaponry, it is terribly efficient at reducing enemy warships to tumbling hunks of junk.</description>
-  <gfx_store>ionturret.webp</gfx_store>
+  <gfx_store>heavy_ionturret.webp</gfx_store>
   <cpu>-90</cpu>
  </general>
  <specific type="turret bolt">
