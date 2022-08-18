@@ -821,6 +821,14 @@
   <item>Empire Peacemaker</item>
   <item>Empire Shark</item>
  </tech>
+ <tech name="Empire Light Military Ships">
+  <item>Empire Shark</item>
+  <item>Empire Lancelot</item>
+ </tech>
+ <tech name="Empire Medium Military Ships">
+  <item>Empire Admonisher</item>
+  <item>Empire Pacifier</item>
+ </tech>
  <tech name="FLF Ships">
   <item>Hyena</item>
   <item>Lancelot</item>
