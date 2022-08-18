@@ -565,14 +565,10 @@ static void menu_small_exit( unsigned int wid, char* str )
  */
 static void exit_game (void)
 {
-   /* if landed we must save anyways */
-   if (landed && planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
+   /* if landed we must save */
+   if (landed && planet_hasService(land_planet, PLANET_SERVICE_REFUEL))
       save_all();
-      land_cleanup();
-   }
-   SDL_Event quit;
-   quit.type = SDL_QUIT;
-   SDL_PushEvent(&quit);
+   naev_quit();
 }
 
 

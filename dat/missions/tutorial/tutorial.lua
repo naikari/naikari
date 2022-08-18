@@ -34,7 +34,7 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase!" the salesperson who sold you the {shipname} says through the radio. "I am sure your new ship will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
+intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase," the salesperson who sold you the {shipname} says through the radio. "I am sure your new ship will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
 
 movement_text = _([["Now, so that your test flight goes as smoothly as possible, I will explain the controls of your state-of-the art Melendez Corporation starship! There are two basic modes: keyboard flight, and mouse flight.
 
@@ -48,11 +48,13 @@ landing_text = _([["I see you have a great handle on the controls of your new Me
 
 "You may continue to practice flying for as long as you need. When you are ready, please return to {planet} to finalize your paperwork. To do so, simply #bdouble-click#0 on the planet, or if you prefer to use your keyboard, target it with {target_planet_key} and then press {landkey}. I will be waiting for you at the spaceport!"]])
 
-land_text = _([[You watch as your ship automatically initiates landing procedures, taking you safely through the atmosphere and into the planet's space port, then touching down at an empty spot reserved for you. As your hatch opens and you step out of your ship, an exhausted dock worker greets you and makes you sign a form. Once you've done so, she pushes some buttons and you watch in amazement as robotic drones immediately get to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
+land_text = _([[You watch as the ship automatically guides you safely through the atmosphere and into the planet's space port, then touches down at an empty spot reserved for you. As soon as the hatch opens and you step out, an exhausted dock worker greets you and makes you sign a form, stating that it's "just the standard waiver". Once you've done so, she pushes some buttons and you stare as you see robotic drones immediately getting to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
 
-"Ah, there you are, {player}!" the voice of the salesperson interrupts. You look in the direction of the voice and see an obnoxiously dressed person with a huge grin. "I see your Melendez Corporation starship is serving you well. Now, if you would follow me, we can finalize that paperwork."
+"Ah, there you are, {player}!" the voice of the salesperson interrupts, prompting the worker to roll her eyes and walk off. You look in the direction of the voice and see an obnoxiously dressed person with a huge grin. "I see your Melendez Corporation starship is serving you well. Now, if you would follow me, we can finalize that paperwork."]])
 
-Several signatures later, you are officially bequeathed ownership of the Llama. The salesperson pats you on the back. "You have made an excellent choice, {player}! I'm sure you'll be making millions of credits in no time! In fact, I know just where to start. A gentleman at the bar is looking for a hired hand, and I assure you, he pays good credits! I've told him about you and he said he would be thrilled to hire you for a job!" After shaking the salesperson's hand one last time, you figure you might as well meet this man the salesperson mentioned and see if the job is worthwhile.]])
+finish_text = _([[The salesperson makes you sign dozens of forms: tax forms, waivers, indemnity agreements, and much more that you aren't given enough time to process. When you finish, the salesperson pats you on the back. "You have made an excellent choice, {player}! I'm sure you'll be making millions of credits in no time. In fact, I know just where to start. A gentleman at the bar is looking for a hired hand, and I assure you, he pays good rates! I've told him about you and he said he would be thrilled to hire you for a job!" The salesperson offers their hand and, not wanting to be combative, you shake it. "Good luck, {player}!" they say before swiftly escorting you out of their office.
+
+A bit dizzy and confused, you figure you might as well meet this man at the Spaceport Bar the salesperson mentioned and see if the job is worthwhile.]])
 
 movement_log = _([[Basic movement can be accomplished by the movement keys (Accelerate, Turn Left, Turn Right, and Reverse; W, A, D, and S by default). The Reverse key either turns your ship to the direction opposite of your current movement, or thrusts backwards if you have a Reverse Thruster equipped.
 
@@ -190,5 +192,6 @@ function land()
    end
 
    tk.msg("", fmt.f(land_text, {player=player.name()}))
+   tk.msg("", fmt.f(finish_text, {player=player.name()}))
    misn.finish(true)
 end
