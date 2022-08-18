@@ -21,6 +21,44 @@
 * Opening tutorial replaced with a new start-of-game mission that
   teaches the basics of playing the game in a more natural and
   integrated fashion.
+* Reworked the trader escort mission: the trader convoy now travels as
+  a more natural fleet (going into a formation), and it also limits its
+  speed so it isn't faster than you.
+* Replaced the UST time system inherited from Naev with a slightly
+  different time system which is called GCT, or Galactic Common Time.
+  The time units are the same, but "periods" are now called "galactic
+  hours", "hectoseconds" are now called "galactic minutes",
+  "decaperiods" are now called "galactic days", and the words "week"
+  and "month" are now colloquially used to describe time units similar
+  to a week or a month.
+* The Equipment screen's slot tooltips now show slot properties even
+  when an item is equipped, alongside the properties of the equipped
+  item.
+* Added tooltips when the mouse is placed over the shipyard slot
+  indicator squares. The tooltips are identical to the tooltips shown on
+  the Equipment screen; they show what kind of slot they indicate and
+  what outfit comes with the ship in that slot, if any.
+* Right-clicking on jump points no longer engages auto-hyperspace
+  behavior and instead simply falls back to standard location-based
+  autonav. This is for consistency with planet auto-landing.
+* The detail of shipyards being required to manage ships you aren't
+  currently flying in the Equipment screen has been removed; the
+  Equipment screen now functions identically on all planets that have
+  them. The previous paradigm was unnecessarily confusing and didn't
+  really add anything to the game.
+* Added a quantity display to the image array in the Commodity tab,
+  allowing you to see at a glance what cargo you're carrying.
+* Added a "Follow Target" keyboard control (bound to F by default).
+* The Target Nearest key now will not ever target your own escorts,
+  since this is not something you're likely to want to do. The Target
+  Next and Target Previous keys can still target your escorts if needed.
+* Added a jump that's easy to miss to the Frontier map.
+* Imported new ion and razor weaponry graphics from Naev.
+* The Brushed GUI now displays the instant mode weapon set for weapons
+  assigned to them. This is particularly important as it shows the
+  player how to launch fighters from fighter bays with the default
+  weapon configuration. To accommodate this change and keep it looking
+  consistent, the Brushed GUI has been altered slightly.
 
 ## 0.3.0
 
