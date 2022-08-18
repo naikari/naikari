@@ -35,10 +35,39 @@
 #include "tk/toolkit_priv.h"
 #include "toolkit.h"
 
-/*
- * Quantity to buy on one click
-*/
+
 static int commodity_mod = 10;
+static iar_data_t *iar_data = NULL; /**< Stored image array positions. */
+
+
+static void commodity_getSize(unsigned int wid, int *w, int *h,
+      int *iw, int *ih, int *dw, int *bw);
+static void commodity_regenList(unsigned int wid);
+static void commodity_genList(unsigned int wid);
+
+
+/**
+ * @brief Gets the size of the commodities window.
+ */
+static void commodity_getSize(unsigned int wid, int *w, int *h,
+      int *iw, int *ih, int *dw, int *bw)
+{
+   /* Get window dimensions. */
+   window_dimWindow(wid, w, h);
+
+   /* Calculate image array dimensions. */
+   /* Window size minus right column size minus space on left and right */
+   if (iw != NULL)
+      *iw = 565 + (*w - LAND_WIDTH);
+   if (ih != NULL)
+      *ih = *h - 60;
+
+   if (dw != NULL)
+      *dw = *w - (iw!=NULL?*iw:0) - 60;
+
+   if (bw != NULL)
+      *bw = ((dw!=NULL?*dw:*w) - 40) / 3;
+}
 
 
 /**
@@ -46,26 +75,21 @@ static int commodity_mod = 10;
  */
 void commodity_exchange_open( unsigned int wid )
 {
-   int i, ngoods;
-   ImageArrayCell *cgoods;
    int w, h, iw, ih, dw, bw, titleHeight, infoHeight;
    const char *bufSInfo;
-   int iconsize;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_COMMODITY);
 
-   /* Get window dimensions. */
-   window_dimWindow( wid, &w, &h );
+   commodity_getSize(wid, &w, &h, &iw, &ih, &dw, &bw);
 
-   /* Calculate image array dimensions. */
-   /* Window size minus right column size minus space on left and right */
-   iw = 565 + (w - LAND_WIDTH);
-   ih = h - 60;
-   dw = w - iw - 60;
+   /* Initialize stored positions. */
+   if (iar_data == NULL)
+      iar_data = calloc(1, sizeof(iar_data_t));
+   else
+      memset(iar_data, 0, sizeof(iar_data_t));
 
    /* buttons */
-   bw = (dw - 40) / 3;
    window_addButtonKey( wid, 40 + iw, 20, bw, LAND_BUTTON_HEIGHT,
          "btnCommodityBuy", _("Buy"), commodity_buy, SDLK_b );
    window_addButtonKey( wid, 60 + iw + bw, 20, bw, LAND_BUTTON_HEIGHT,
@@ -105,31 +129,83 @@ void commodity_exchange_open( unsigned int wid )
          dw, h - (80+titleHeight+infoHeight) - (40+LAND_BUTTON_HEIGHT), 0,
          "txtDesc", &gl_smallFont, NULL, NULL );
 
-   /* goods list */
+   commodity_genList(wid);
+
+   /* Set default keyboard focuse to the list */
+   window_setFocus( wid , "iarTrade" );
+}
+
+
+/**
+ * @brief Regenerates the commodities list.
+ *
+ *    @param wid Window to generate the list on.
+ */
+static void commodity_regenList(unsigned int wid)
+{
+   char *focused;
+
+   /* Save focus. */
+   focused = window_getFocus(wid);
+
+   /* Save positions. */
+   toolkit_saveImageArrayData(wid, "iarTrade", iar_data);
+
+   /* Destroy and recreate. */
+   window_destroyWidget(wid, "iarTrade");
+   commodity_genList(wid);
+
+   /* Restore positions. */
+   toolkit_setImageArrayPos(wid, "iarTrade", iar_data->pos);
+   toolkit_setImageArrayOffset(wid, "iarTrade", iar_data->offset);
+
+   commodity_update(wid, NULL);
+
+   /* Restore focus. */
+   window_setFocus(wid, focused);
+   free(focused);
+}
+
+
+/**
+ * @brief Generates the commodities list.
+ *
+ *    @param wid Window to generate the list on.
+ */
+static void commodity_genList(unsigned int wid)
+{
+   int i, ngoods;
+   ImageArrayCell *cgoods;
+   int w, h, iw, ih;
+   int iconsize;
+
+   commodity_getSize(wid, &w, &h, &iw, &ih, NULL, NULL);
+
    if (array_size(land_planet->commodities) > 0) {
-      ngoods = array_size( land_planet->commodities );
-      cgoods = calloc( ngoods, sizeof(ImageArrayCell) );
+      ngoods = array_size(land_planet->commodities);
+      cgoods = calloc(ngoods, sizeof(ImageArrayCell));
       for (i=0; i<ngoods; i++) {
          cgoods[i].image = gl_dupTexture(land_planet->commodities[i]->gfx_store);
-         cgoods[i].caption = strdup( _(land_planet->commodities[i]->name) );
+         cgoods[i].caption = strdup(_(land_planet->commodities[i]->name));
+         cgoods[i].quantity = pilot_cargoOwned(player.p,
+               land_planet->commodities[i]);
       }
    }
    else {
-      ngoods   = 1;
-      cgoods   = calloc( ngoods, sizeof(ImageArrayCell) );
+      ngoods = 1;
+      cgoods = calloc(ngoods, sizeof(ImageArrayCell));
       cgoods[0].image = NULL;
       cgoods[0].caption = strdup(_("None"));
    }
 
    /* set up the goods to buy/sell */
    iconsize = 128;
-   window_addImageArray( wid, 20, 20,
+   window_addImageArray(wid, 20, 20,
          iw, ih, "iarTrade", iconsize, iconsize,
-         cgoods, ngoods, commodity_update, commodity_update, commodity_update );
+         cgoods, ngoods, commodity_update, commodity_update, commodity_update);
 
-   /* Set default keyboard focuse to the list */
-   window_setFocus( wid , "iarTrade" );
- }
+   commodity_update(wid, NULL);
+}
 
 
 /**
@@ -292,17 +368,19 @@ void commodity_buy( unsigned int wid, char* str )
    com->lastPurchasePrice = price; /* To show the player how much they paid for it */
    price *= q;
    player_modCredits( -price );
-   commodity_update(wid, NULL);
 
    /* Run hooks. */
-   hparam[0].type    = HOOK_PARAM_STRING;
-   hparam[0].u.str   = com->name;
-   hparam[1].type    = HOOK_PARAM_NUMBER;
-   hparam[1].u.num   = q;
-   hparam[2].type    = HOOK_PARAM_SENTINEL;
-   hooks_runParam( "comm_buy", hparam );
+   hparam[0].type = HOOK_PARAM_STRING;
+   hparam[0].u.str= com->name;
+   hparam[1].type = HOOK_PARAM_NUMBER;
+   hparam[1].u.num = q;
+   hparam[2].type = HOOK_PARAM_SENTINEL;
+   hooks_runParam("comm_buy", hparam);
    if (land_takeoff)
       takeoff(1);
+
+   /* Regenerate list. */
+   commodity_regenList(wid);
 }
 /**
  * @brief Attempts to sell a commodity.
@@ -334,17 +412,19 @@ void commodity_sell( unsigned int wid, char* str )
    player_modCredits( price );
    if ( pilot_cargoOwned( player.p, com ) == 0 ) /* None left, set purchase price to zero, in case missions add cargo. */
      com->lastPurchasePrice = 0;
-   commodity_update(wid, NULL);
 
    /* Run hooks. */
-   hparam[0].type    = HOOK_PARAM_STRING;
-   hparam[0].u.str   = com->name;
-   hparam[1].type    = HOOK_PARAM_NUMBER;
-   hparam[1].u.num   = q;
-   hparam[2].type    = HOOK_PARAM_SENTINEL;
-   hooks_runParam( "comm_sell", hparam );
+   hparam[0].type = HOOK_PARAM_STRING;
+   hparam[0].u.str = com->name;
+   hparam[1].type = HOOK_PARAM_NUMBER;
+   hparam[1].u.num = q;
+   hparam[2].type = HOOK_PARAM_SENTINEL;
+   hooks_runParam("comm_sell", hparam);
    if (land_takeoff)
       takeoff(1);
+
+   /* Regenerate list. */
+   commodity_regenList(wid);
 }
 
 /**
