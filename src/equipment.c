@@ -1457,11 +1457,8 @@ static void equipment_genShipList( unsigned int wid )
    /* Ship list. */
    if (!widget_exists( wid, EQUIPMENT_SHIPS )) {
       eq_wgt.selected = NULL;
-      if (planet_hasService(land_planet, PLANET_SERVICE_SHIPYARD))
-         nships   = player_nships()+1;
-      else
-         nships   = 1;
-      cships   = calloc( nships, sizeof(ImageArrayCell) );
+      nships = player_nships() + 1;
+      cships = calloc(nships, sizeof(ImageArrayCell));
       /* Add player's current ship. */
       cships[0].image = gl_dupTexture(player.p->ship->gfx_store);
       cships[0].caption = strdup(player.p->name);
@@ -1473,18 +1470,19 @@ static void equipment_genShipList( unsigned int wid )
          t = gl_newImage( r, OPENGL_TEX_MIPMAPS );
          cships[0].layers = gl_addTexArray( cships[0].layers, &cships[0].nlayers, t );
       }
-      if (planet_hasService(land_planet, PLANET_SERVICE_SHIPYARD)) {
-         player_shipsSort();
-         ps = player_getShipStack();
-         for (i=1; i<=array_size(ps); i++) {
-            cships[i].image = gl_dupTexture( ps[i-1].p->ship->gfx_store );
-            cships[i].caption = strdup( ps[i-1].p->name );
-            cships[i].layers = gl_copyTexArray( ps[i-1].p->ship->gfx_overlays, &cships[i].nlayers );
-            if (ps[i-1].p->ship->rarity > 0) {
-               snprintf( r, sizeof(r), OVERLAY_GFX_PATH"rarity_%d.webp", ps[i-1].p->ship->rarity );
-               t = gl_newImage( r, OPENGL_TEX_MIPMAPS );
-               cships[i].layers = gl_addTexArray( cships[i].layers, &cships[i].nlayers, t );
-            }
+      player_shipsSort();
+      ps = player_getShipStack();
+      for (i=1; i<=array_size(ps); i++) {
+         cships[i].image = gl_dupTexture(ps[i-1].p->ship->gfx_store);
+         cships[i].caption = strdup(ps[i-1].p->name);
+         cships[i].layers = gl_copyTexArray(ps[i-1].p->ship->gfx_overlays,
+               &cships[i].nlayers);
+         if (ps[i-1].p->ship->rarity > 0) {
+            snprintf(r, sizeof(r), OVERLAY_GFX_PATH"rarity_%d.webp",
+                  ps[i-1].p->ship->rarity);
+            t = gl_newImage(r, OPENGL_TEX_MIPMAPS);
+            cships[i].layers = gl_addTexArray(cships[i].layers,
+                  &cships[i].nlayers, t);
          }
       }
       /* Ship stats in alt text. */
