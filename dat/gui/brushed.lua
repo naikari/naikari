@@ -496,7 +496,7 @@ end
 function renderWeapBar( weapon, x, y )
    local offsets = { 2, 2, 4, 54, 13, 23, 47 } --third last is y of icon_weapon1, last two are the centers of the two weapon icons
    local outfit_yoffset = 31
-   local name_offset = 17
+   local name_offset = 16
    if weapon ~= nil then
       if weapon.ammo ~= nil then
          width = bar_w/2
@@ -594,9 +594,25 @@ function renderWeapBar( weapon, x, y )
             gfx.renderTex( icon_weapon1, x + offsets[1], y + offsets[5] )
          end
 
-         --Weapon-specific Icon
-         gfx.renderTex( top_icon, x + offsets[1] + bar_w/2 - top_icon_w/2, y + offsets[2] + offsets[7] - top_icon_h/2 )
-         gfx.renderTex( bottom_icon, x + offsets[1] + bar_w/2 - bottom_icon_w/2, y + offsets[2] +  offsets[6] - bottom_icon_h/2, col )
+         --Weapon-specific icon and number if applicable
+         gfx.renderTex(bottom_icon,
+            x + offsets[1] + bar_w/2 - bottom_icon_w/2,
+            y + offsets[2] + offsets[7] - bottom_icon_h/2)
+         if weapon.instant ~= nil then
+            local ws_name
+            if weapon.instant == 10 then
+               ws_name = "0"
+            else
+               ws_name = string.format("%d", weapon.instant)
+            end
+            gfx.print(false, ws_name,
+               x + offsets[1], y + offsets[2] + name_offset,
+               col_text, 40, true)
+         else
+            gfx.renderTex(top_icon,
+               x + offsets[1] + bar_w/2 - top_icon_w/2,
+               y + offsets[2] + offsets[6] - top_icon_h/2, col)
+         end
       end
       if weapon.is_outfit then
          gfx.renderTex( bar_frame_light, x, y ) -- Frame with light
@@ -688,7 +704,7 @@ function render( dt )
 
    for k, v in ipairs( pwset ) do
       v.is_outfit = false
-      if v.level ~= 0 or v.instant then
+      if v.level ~= 0 or v.instant ~= nil then
          wset[ #wset + 1 ] = v
       end
    end

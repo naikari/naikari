@@ -1285,7 +1285,8 @@ static int pilotL_activeWeapset( lua_State *L )
  *       not applicable.</li>
  *    <li>level: Level of the weapon (1 is primary, 2 is secondary, 0
  *       is neither primary nor secondary)).</li>
- *    <li>instant: Whether or not the weapon is in an instant mode
+ *    <li>instant: The instant mode weapon set the weapon is in if
+ *       applicable, or nil if the weapon is not in an instant mode
  *       weapon set.</li>
  *    <li>temp: Temperature of the weapon.</li>
  *    <li>type: Type of the weapon.</li>
@@ -1329,7 +1330,7 @@ static int pilotL_weapset( lua_State *L )
    int is_lau, is_fb;
    const Damage *dmg;
    int has_beamid;
-   int is_instant;
+   int instant;
 
    /* Parse parameters. */
    all = 0;
@@ -1392,19 +1393,19 @@ static int pilotL_weapset( lua_State *L )
          if (outfit_isMod(o) || outfit_isAfterburner(o))
             continue;
 
-         is_instant = 0;
+         instant = -1;
          for (ii=0; ii<PLAYER_WEAPON_SETS; ii++) {
             if (pilot_weapSetTypeCheck(p, ii) != WEAPSET_TYPE_WEAPON)
                continue;
 
             temp_po_list = pilot_weapSetList(p, ii);
             for (ij=0; ij<array_size(temp_po_list); ij++) {
-               if (temp_po_list[ij].slot->outfit->name == slot->outfit->name) {
-                  is_instant = 1;
+               if (temp_po_list[ij].slot->id == slot->id) {
+                  instant = ii;
                   break;
                }
             }
-            if (is_instant)
+            if (instant >= 0)
                break;
          }
 
@@ -1499,7 +1500,10 @@ static int pilotL_weapset( lua_State *L )
 
          /* Instant weapon. */
          lua_pushstring(L, "instant");
-         lua_pushboolean(L, is_instant);
+         if (instant >= 0)
+            lua_pushnumber(L, instant + 1);
+         else
+            lua_pushnil(L);
          lua_rawset(L, -3);
 
          /* Temperature. */
