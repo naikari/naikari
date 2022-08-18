@@ -160,11 +160,11 @@ if buildExec.disabled() == false
    libdl = cc.find_library('dl', required: glad_requires_libdl or debug)
 
    if get_option('debug')
-      bfd = cc.find_library('bfd', required: false)
-      if not bfd.found() or 'bfd' in forced_fallbacks or get_option('wrap_mode') == 'forcefallback'
-         bfd = dependency('bfd', fallback: ['binutils', 'libbfd_dep'], required: true)
+      libbacktrace = cc.find_library('backtrace', has_headers: 'backtrace.h', required: false)
+      if not libbacktrace.found() or 'backtrace' in forced_fallbacks or 'libbacktrace' in forced_fallbacks or get_option('wrap_mode') == 'forcefallback'
+         libbacktrace = dependency('backtrace', fallback: ['libbacktrace', 'libbacktrace_dep'], required: true)
       endif
-      naev_deps += bfd
+      naev_deps += libbacktrace
    endif
 
    # Appstream (Used for generating desktop files and verifying metadata)

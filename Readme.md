@@ -35,7 +35,6 @@ Naikari requires the following:
 * libwebp
 * OpenAL
 * libvorbis >= 1.2.2
-* binutils
 * intltool
 * python3
 * ninja
