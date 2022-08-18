@@ -57,80 +57,105 @@ typedef struct Keybind_ {
 /* name of each keybinding */
 const char *keybind_info[][3] = {
    /* Movement */
-   { "accel", N_("Accelerate"), N_("Makes your ship accelerate forward.") },
-   { "left", N_("Turn Left"), N_("Makes your ship turn left.") },
-   { "right", N_("Turn Right"), N_("Makes your ship turn right.") },
-   { "reverse", N_("Reverse"), N_("Makes your ship face the direction you're moving from. Useful for braking.") },
+   {"accel", N_("Accelerate"), N_("Makes your ship accelerate forward.")},
+   {"left", N_("Turn Left"), N_("Makes your ship turn left.")},
+   {"right", N_("Turn Right"), N_("Makes your ship turn right.")},
+   {"reverse", N_("Reverse"),
+      N_("Makes your ship face the direction you're moving from. Useful for"
+         " braking.")},
    /* Targeting */
-   { "target_next", N_("Target Next"), N_("Cycles through ship targets.") },
-   { "target_prev", N_("Target Previous"), N_("Cycles backwards through ship targets.") },
-   { "target_nearest", N_("Target Nearest"), N_("Targets the nearest non-disabled ship.") },
-   { "target_nextHostile", N_("Target Next Hostile"), N_("Cycles through hostile ship targets.") },
-   { "target_prevHostile", N_("Target Previous Hostile"), N_("Cycles backwards through hostile ship targets.") },
-   { "target_hostile", N_("Target Nearest Hostile"), N_("Targets the nearest hostile ship.") },
-   { "target_clear", N_("Clear Target"), N_("Clears the currently-targeted ship, planet or jump point.") },
+   {"target_next", N_("Target Next"), N_("Cycles through ship targets.")},
+   {"target_prev", N_("Target Previous"),
+      N_("Cycles backwards through ship targets.")},
+   {"target_nearest", N_("Target Nearest"),
+      N_("Targets the nearest non-disabled ship.")},
+   {"target_nextHostile", N_("Target Next Hostile"),
+      N_("Cycles through hostile ship targets.")},
+   {"target_prevHostile", N_("Target Previous Hostile"),
+      N_("Cycles backwards through hostile ship targets.")},
+   {"target_hostile", N_("Target Nearest Hostile"),
+      N_("Targets the nearest hostile ship.")},
+   {"target_clear", N_("Clear Target"),
+      N_("Clears the currently-targeted ship, planet or jump point.")},
    /* Fighting */
-   { "primary", N_("Fire Primary Weapon"), N_("Fires primary weapons.") },
-   { "face", N_("Face Target"), N_("Faces the targeted ship if one is targeted, otherwise faces targeted planet or jump point.") },
-   { "board", N_("Board Target"), N_("Attempts to board the targeted ship.") },
+   {"primary", N_("Fire Primary Weapon"), N_("Fires primary weapons.")},
+   {"face", N_("Face Target"),
+      N_("Faces the targeted ship if one is targeted, otherwise faces targeted"
+         " planet or jump point.")},
+   {"follow", N_("Follow Target"), N_("Follows the targeted ship.")},
+   {"board", N_("Board Target"), N_("Attempts to board the targeted ship.")},
    /* Secondary Weapons */
-   { "secondary", N_("Fire Secondary Weapon"), N_("Fires secondary weapons.") },
-   { "weapset1", N_("Weapon Set 1"), N_("Activates weapon set 1.") },
-   { "weapset2", N_("Weapon Set 2"), N_("Activates weapon set 2.") },
-   { "weapset3", N_("Weapon Set 3"), N_("Activates weapon set 3.") },
-   { "weapset4", N_("Weapon Set 4"), N_("Activates weapon set 4.") },
-   { "weapset5", N_("Weapon Set 5"), N_("Activates weapon set 5.") },
-   { "weapset6", N_("Weapon Set 6"), N_("Activates weapon set 6.") },
-   { "weapset7", N_("Weapon Set 7"), N_("Activates weapon set 7.") },
-   { "weapset8", N_("Weapon Set 8"), N_("Activates weapon set 8.") },
-   { "weapset9", N_("Weapon Set 9"), N_("Activates weapon set 9.") },
-   { "weapset0", N_("Weapon Set 0"), N_("Activates weapon set 0.") },
+   {"secondary", N_("Fire Secondary Weapon"), N_("Fires secondary weapons.")},
+   {"weapset1", N_("Weapon Set 1"), N_("Activates weapon set 1.")},
+   {"weapset2", N_("Weapon Set 2"), N_("Activates weapon set 2.")},
+   {"weapset3", N_("Weapon Set 3"), N_("Activates weapon set 3.")},
+   {"weapset4", N_("Weapon Set 4"), N_("Activates weapon set 4.")},
+   {"weapset5", N_("Weapon Set 5"), N_("Activates weapon set 5.")},
+   {"weapset6", N_("Weapon Set 6"), N_("Activates weapon set 6.")},
+   {"weapset7", N_("Weapon Set 7"), N_("Activates weapon set 7.")},
+   {"weapset8", N_("Weapon Set 8"), N_("Activates weapon set 8.")},
+   {"weapset9", N_("Weapon Set 9"), N_("Activates weapon set 9.")},
+   {"weapset0", N_("Weapon Set 0"), N_("Activates weapon set 0.")},
    /* Escorts */
-   { "e_targetNext", N_("Target Next Escort"), N_("Cycles through your escorts.") },
-   { "e_targetPrev", N_("Target Previous Escort"), N_("Cycles backwards through your escorts.") },
-   { "e_attack", N_("Escort Attack Command"), N_("Orders escorts to attack your target.") },
-   { "e_hold", N_("Escort Hold Command"), N_("Orders escorts to hold their positions in the formation.") },
-   { "e_return", N_("Escort Return Command"), N_("Orders escorts to return to your ship hangars.") },
-   { "e_clear", N_("Escort Clear Commands"), N_("Clears your escorts of commands.") },
+   {"e_targetNext", N_("Target Next Escort"),
+      N_("Cycles through your escorts.")},
+   {"e_targetPrev", N_("Target Previous Escort"),
+      N_("Cycles backwards through your escorts.")},
+   {"e_attack", N_("Escort Attack Command"),
+      N_("Orders escorts to attack your target.")},
+   {"e_hold", N_("Escort Hold Command"),
+      N_("Orders escorts to hold their positions in the formation.")},
+   {"e_return", N_("Escort Return Command"),
+      N_("Orders escorts to return to your ship hangars.")},
+   {"e_clear", N_("Escort Clear Commands"),
+      N_("Clears your escorts of commands.")},
    /* Space Navigation */
-   { "autonav", N_("Autonavigation On"), N_("Initializes the autonavigation system.") },
-   { "target_planet", N_("Target Planet"), N_("Cycles through planet targets.") },
-   { "land", N_("Land"), N_("Attempts to land on the targeted planet or targets the nearest landable planet. Requests permission if necessary.") },
-   { "thyperspace", N_("Target Jumpgate"), N_("Cycles through jump points.") },
-   { "starmap", N_("Open Star Map"), N_("Opens the star map.") },
-   { "jump", N_("Initiate Jump"), N_("Attempts to jump via a jump point.") },
-   { "overlay", N_("Overlay Map"), N_("Opens the in-system overlay map.") },
-   { "mousefly", N_("Mouse Flight"), N_("Toggles mouse flying.") },
-   { "autobrake", N_("Autobrake"), N_("Begins automatic braking or active cooldown, if stopped.") },
+   {"autonav", N_("Autonavigation On"),
+      N_("Initializes the autonavigation system.")},
+   {"target_planet", N_("Target Planet"), N_("Cycles through planet targets.")},
+   {"land", N_("Land"),
+      N_("Attempts to land on the targeted planet or targets the nearest"
+         " landable planet. Requests permission if necessary.")},
+   {"thyperspace", N_("Target Jumpgate"), N_("Cycles through jump points.")},
+   {"starmap", N_("Open Star Map"), N_("Opens the star map.")},
+   {"jump", N_("Initiate Jump"), N_("Attempts to jump via a jump point.")},
+   {"overlay", N_("Overlay Map"), N_("Opens the in-system overlay map.")},
+   {"mousefly", N_("Mouse Flight"), N_("Toggles mouse flying.")},
+   {"autobrake", N_("Autobrake"),
+      N_("Begins automatic braking or active cooldown, if stopped.")},
    /* Communication */
-   { "log_up", N_("Log Scroll Up"), N_("Scrolls the log upwards.") },
-   { "log_down", N_("Log Scroll Down"), N_("Scrolls the log downwards.") },
-   { "hail", N_("Hail Target"), N_("Attempts to initialize communication with the targeted ship.") },
-   { "autohail", N_("Autohail"), N_("Automatically initialize communication with a ship that is hailing you.") },
+   {"log_up", N_("Log Scroll Up"), N_("Scrolls the log upwards.")},
+   {"log_down", N_("Log Scroll Down"), N_("Scrolls the log downwards.")},
+   {"hail", N_("Hail Target"),
+      N_("Attempts to initialize communication with the targeted ship.")},
+   {"autohail", N_("Autohail"),
+      N_("Automatically initialize communication with a ship that is hailing"
+         " you.")},
    /* Misc. */
-   { "mapzoomin", N_("Radar Zoom In"), N_("Zooms in on the radar.") },
-   { "mapzoomout", N_("Radar Zoom Out"), N_("Zooms out on the radar.") },
-   { "screenshot", N_("Screenshot"), N_("Takes a screenshot.") },
-   { "togglefullscreen", N_("Toggle Fullscreen"), N_("Toggles between windowed and fullscreen mode.") },
-   { "pause", N_("Pause"), N_("Pauses the game.") },
-   { "speed", N_("Toggle Speed"), N_("Toggles speed modifier.") },
-   { "menu", N_("Small Menu"), N_("Opens the small in-game menu.") },
-   { "info", N_("Ship Computer"), N_("Opens the ship computer.") },
-   { "console", N_("Lua Console"), N_("Opens the Lua console.") },
-   { "switchtab1", N_("Switch Tab 1"), N_("Switches to tab 1.") },
-   { "switchtab2", N_("Switch Tab 2"), N_("Switches to tab 2.") },
-   { "switchtab3", N_("Switch Tab 3"), N_("Switches to tab 3.") },
-   { "switchtab4", N_("Switch Tab 4"), N_("Switches to tab 4.") },
-   { "switchtab5", N_("Switch Tab 5"), N_("Switches to tab 5.") },
-   { "switchtab6", N_("Switch Tab 6"), N_("Switches to tab 6.") },
-   { "switchtab7", N_("Switch Tab 7"), N_("Switches to tab 7.") },
-   { "switchtab8", N_("Switch Tab 8"), N_("Switches to tab 8.") },
-   { "switchtab9", N_("Switch Tab 9"), N_("Switches to tab 9.") },
-   { "switchtab0", N_("Switch Tab 0"), N_("Switches to tab 0.") },
+   {"mapzoomin", N_("Radar Zoom In"), N_("Zooms in on the radar.")},
+   {"mapzoomout", N_("Radar Zoom Out"), N_("Zooms out on the radar.")},
+   {"screenshot", N_("Screenshot"), N_("Takes a screenshot.")},
+   {"togglefullscreen", N_("Toggle Fullscreen"),
+      N_("Toggles between windowed and fullscreen mode.")},
+   {"pause", N_("Pause"), N_("Pauses the game.")},
+   {"speed", N_("Toggle Speed"), N_("Toggles speed modifier.")},
+   {"menu", N_("Small Menu"), N_("Opens the small in-game menu.")},
+   {"info", N_("Ship Computer"), N_("Opens the ship computer.")},
+   {"console", N_("Lua Console"), N_("Opens the Lua console.")},
+   {"switchtab1", N_("Switch Tab 1"), N_("Switches to tab 1.")},
+   {"switchtab2", N_("Switch Tab 2"), N_("Switches to tab 2.")},
+   {"switchtab3", N_("Switch Tab 3"), N_("Switches to tab 3.")},
+   {"switchtab4", N_("Switch Tab 4"), N_("Switches to tab 4.")},
+   {"switchtab5", N_("Switch Tab 5"), N_("Switches to tab 5.")},
+   {"switchtab6", N_("Switch Tab 6"), N_("Switches to tab 6.")},
+   {"switchtab7", N_("Switch Tab 7"), N_("Switches to tab 7.")},
+   {"switchtab8", N_("Switch Tab 8"), N_("Switches to tab 8.")},
+   {"switchtab9", N_("Switch Tab 9"), N_("Switches to tab 9.")},
+   {"switchtab0", N_("Switch Tab 0"), N_("Switches to tab 0.")},
    /* Console-main. */
-   { "paste", N_("Paste"), N_("Paste from the operating system's clipboard.") },
+   {"paste", N_("Paste"), N_("Paste from the operating system's clipboard.")},
    /* Must terminate in NULL. */
-   { NULL, NULL, NULL }
+   {NULL, NULL, NULL}
 }; /**< Names of possible keybindings. */
 
 static Keybind *input_keybinds; /**< contains the players keybindings */
@@ -240,9 +265,10 @@ void input_setDefault(int layout)
    if (layout == LAYOUT_WASD)
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
    else
-      input_setKeybind( "face", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY );
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
 
-   input_setKeybind( "board", KEYBIND_KEYBOARD, SDLK_b, NMOD_NONE );
+   input_setKeybind("follow", KEYBIND_KEYBOARD, SDLK_f, NMOD_NONE);
+   input_setKeybind("board", KEYBIND_KEYBOARD, SDLK_b, NMOD_NONE);
    /* Secondary Weapons */
    input_setKeybind( "secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY );
    input_setKeybind( "weapset1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ANY );
@@ -869,20 +895,35 @@ static void input_key( int keynum, double value, double kabs, int repeat )
       if (value==KEY_PRESS) player_targetHostile();
    } else if (INGAME() && NODEAD() && KEY("target_clear")) {
       if (value==KEY_PRESS) player_targetClear();
+   }
+   /* follow target */
+   else if (KEY("follow") && INGAME() && NOHYP() && NODEAD()) {
+      if (value == KEY_PRESS) {
+         if (player.p->target == PLAYER_ID)
+            player_targetNearest();
 
+         if (player.p->target != PLAYER_ID) {
+            player_restoreControl(0, NULL);
+            player_autonavPil(player.p->target);
+         }
+         else {
+            player_message(_("#rNo targets available to follow."));
+         }
+      }
+   }
    /* board them ships */
-   } else if (KEY("board") && INGAME() && NOHYP() && NODEAD() && !repeat) {
+   else if (KEY("board") && INGAME() && NOHYP() && NODEAD() && !repeat) {
       if (value==KEY_PRESS) {
          player_restoreControl( 0, NULL );
          if (player_board() == PLAYER_BOARD_RETRY)
             player_autonavBoard(player.p->target);
       }
-
+   }
 
    /*
     * Escorts.
     */
-   } else if (INGAME() && NODEAD() && KEY("e_targetNext") && !repeat) {
+   else if (INGAME() && NODEAD() && KEY("e_targetNext") && !repeat) {
       if (value==KEY_PRESS) player_targetEscort(0);
    } else if (INGAME() && NODEAD() && KEY("e_targetPrev") && !repeat) {
       if (value==KEY_PRESS) player_targetEscort(1);
