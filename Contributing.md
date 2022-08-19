@@ -17,6 +17,8 @@ to, the following:
   low-quality or duplicated, and new components for and improvements to
   the character portrait template.
 * Improving the design of the universe by editing systems and planets.
+* Translating the game's text into other languages, or improving
+  existing translations.
 * Playing the game and giving feedback. Yes, really. Simply letting us
   know what you think is probably more valuable than you realize. All
   feedback is welcome and encouraged!
