@@ -43,17 +43,17 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-ask_text = _([[You approach Ian and wave. When he notices you, he smiles. "Ah, {player}!" He offers your hand, which you shake. "Pleased to meet you once again. Ah, look at that, you have a Mercenary License now! I knew you would make it this far with all that talent you showed me before when…" Ian pauses and stares blankly into space for a moment before snapping back into awareness of where he is. "Sorry. Anyway, I was just looking for a qualified pilot, and I know there's no pilot I trust more than the one who personally saved my life!
+ask_text = _([[You approach Ian and wave. When he notices you, he smiles. "Ah, {player}!" He stands and firmly shakes your hand. "Pleased to meet you once again. Ah, look at that, you have a Mercenary License now! I knew you would make it this far with all that talent you showed me before when…" Ian pauses and stares blankly into space for a moment before snapping back into awareness of where he is. "Sorry. Anyway, I was just looking for a qualified pilot, and I know there's no pilot I trust more than the one who personally saved my life!
 
 "Specifically, I need an escort to {planet} in the {system} system. See, you were such an inspiration to me, I decided to get myself a pilot license so I can travel through space on my own. I'd just like some protection for the first time, and I'll pay you {credits} to escort me. Can you do it?"]])
 
-accept_text = _([["Thank you, and I know it's a bit of a silly. The area should be safe. It's just… you remember what happened before, right? And what if my engines fail or something and I get stuck in space? I just need some support for my first journey.
+accept_text = _([["Thank you, I know it's a bit silly. The area should be safe. It's just… you remember what happened before, right? And what if my engines fail or something and I get stuck? I just need some support for my first journey.
 
 "Anyway, I'll meet you out in space!"]])
 
 takeoff_text = _([[As you begin the takeoff procedure, you receive a hail from a Llama piloted by Ian. "Well met," he says. "Alright, I'm initiating takeoff. When we get into space, I will start going for the jump to {system}. All you need to do is follow me, wait for me to jump, and then jump after me. Then, when we get to {system}, you'll just need to follow me to {planet}, wait for me to land, and then land after me.
 
-"I don't suppose you know how to tell Autonav to follow a target, do you? It'll make the journey much easier. Just target my ship by #bleft-clicking#0 on it or pressing {target_nearest_key}, then initiate following by either #bright-clicking#0 on my ship or pressing {followkey}"]])
+"I don't suppose you know how to tell Autonav to follow a target, do you? It'll make the journey much easier. Just target my ship by #bleft-clicking#0 on it or pressing {target_nearest_key}, then press {followkey} to initiate automatic following."]])
 
 pay_text = _([[You and Albert successfully land at his destination. When you meet up with him at the spaceport, you can tell that he's relieved nothing bad happened as he hands you your payment. "Thank you again for your assistance," he reiterates. "I think I feel a bit better about flying now, thanks to you. It'll be awhile before I can feel comfortable going into hostile space, but in the heavily patrolled places, I can rest assured now that I'm competent enough to fly on my own. Maybe I should hire some escorts, too.
 
@@ -69,7 +69,7 @@ function create()
    missys = nil
    for i, jp in ipairs(startsys:jumps()) do
       if not jp:hidden() and not jp:exitonly() then
-         local sys = jp:system()
+         local sys = jp:dest()
          if not sys:presences()["Pirate"] then
             for j, pla in ipairs(sys:planets()) do
                if pla:canLand() then
@@ -111,9 +111,9 @@ function accept()
       misn.setDesc(misn_desc)
 
       local osd_desc = {
-         fmt.f(_("Follow Ian Structure by left-clicking and then right-clicking on his ship and wait for him to jump to {system}"),
-            {system=missys:name()}),
-         fmt.f(_("Jump to {system"), {system=missys:name()}),
+         fmt.f(_("Follow Ian Structure by left-clicking on his ship and then pressing {followkey}\n\tWait for Ian Structure to jump to {system}"),
+            {followkey=naev.keyGet("follow"), system=missys:name()}),
+         fmt.f(_("Jump to {system}"), {system=missys:name()}),
          fmt.f(_("Follow Ian Structure and wait for him to land on {planet}"),
             {planet=misplanet:name()}),
          fmt.f(_("Land on {planet}"), {planet=misplanet:name()}),
@@ -139,6 +139,12 @@ function spawn_ian(src)
    p:setHilight()
    p:setVisplayer()
    p:setInvincible()
+
+   local plmaxspeed = player.pilot():stats().speed_max * 0.75
+   local maxspeed = p:stats().speed_max
+   if maxspeed > plmaxspeed then
+      p:setSpeedLimit(plmaxspeed)
+   end
 
    hook.pilot(p, "jump", "ian_jump")
    hook.pilot(p, "land", "ian_land")
@@ -176,7 +182,7 @@ function jumpin()
 
    ian = spawn_ian(startsys)
    ian:control()
-   ian:land(mispla)
+   ian:land(misplanet)
 
    misn.osdActive(3)
 end
