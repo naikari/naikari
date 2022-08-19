@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ssys name="Gomyo">
  <general>
-  <background>solarwind</background>
   <radius>7000.000000</radius>
   <stars>500</stars>
   <nebula volatility="0.000000">0.000000</nebula>
