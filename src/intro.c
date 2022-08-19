@@ -332,6 +332,7 @@ int intro_display( const char *text, const char *mus )
    intro_img_t side_image; /* image to go along with the text. */
    intro_img_t transition; /* image for transitioning. */
    glPrintLineIterator iter; /* the renderable lines coming from the current text directive. */
+   int i;
 
    /* Load the introduction. */
    if (intro_load(text) < 0)
@@ -470,6 +471,10 @@ int intro_display( const char *text, const char *mus )
    } /* while (!stop) */
 
    /* free malloc'd memory. */
+   for (i=0; i<lines_per_screen; i++) {
+      free(sb_arr[i]);
+      sb_arr[i] = NULL;
+   }
    free( sb_arr );
    gl_freeTexture( side_image.tex );
    gl_freeTexture( transition.tex );
