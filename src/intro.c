@@ -30,9 +30,10 @@
 #include "toolkit.h"
 
 
-#define INTRO_SPEED        30. /**< Speed of text in characters / second. */
-#define SIDE_MARGIN       100. /**< Minimum space on either side of the text. */
-#define IMAGE_WIDTH       300. /**< Width to reserve for images on the side. */
+#define INTRO_SPEED 30. /**< Speed of text in characters / second. */
+#define MARGIN 20. /**< Space between the image and text. */
+#define IMAGE_WIDTH 300. /**< Width to reserve for images on the side. */
+#define TEXT_WIDTH 720. /**< Maximum width of the text. */
 
 
 /** @brief Intro Image: to be displayed to the side of the scrolling. */
@@ -169,7 +170,8 @@ static void load_image( intro_img_t *img, const char *img_file )
       img->tex = gl_newImage( img_file, 0 );
       img->w = MIN( img->tex->w, IMAGE_WIDTH );
       img->h = img->tex->h * img->w / img->tex->w;
-      img->x = (IMAGE_WIDTH + SIDE_MARGIN - img->w) / 2.0;
+      img->x = (IMAGE_WIDTH + MARGIN - img->w) / 2.0;
+      img->x = SCREEN_W/2 - (TEXT_WIDTH+IMAGE_WIDTH+MARGIN)/2;
       img->y = (double)SCREEN_H / 2.0 - (img->h / 2.0);
       img->c.a = 0.0;
       img->fade_rate = 0.1;
@@ -283,9 +285,10 @@ static int intro_draw_text( char **const sb_list, int sb_size, int sb_index, dou
    int          i;
    register int stop = 1;
 
-   x = SIDE_MARGIN;
    if (has_side_gfx)
-      x += IMAGE_WIDTH;
+      x = SCREEN_W/2 - TEXT_WIDTH/2 + (IMAGE_WIDTH+MARGIN)/2;
+   else
+      x = SCREEN_W/2 - TEXT_WIDTH/2;
 
    i = sb_index;
    y = SCREEN_H + offset - ceil(line_height);
@@ -342,7 +345,7 @@ int intro_display( const char *text, const char *mus )
    lines_per_screen = (int)(SCREEN_H/line_height + 1.5); /* round up + 1 */
 
    /* Initialize the lines. */
-   gl_printLineIteratorInit( &iter, &intro_font, "", SCREEN_W - 2*SIDE_MARGIN - IMAGE_WIDTH );
+   gl_printLineIteratorInit(&iter, &intro_font, "", TEXT_WIDTH);
    (void) gl_printLineIteratorNext( &iter );
    sb_arr   = calloc( lines_per_screen, sizeof( char * ) );
    sb_index = 0;
