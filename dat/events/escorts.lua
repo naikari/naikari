@@ -41,28 +41,29 @@ require "pilot/pirate"
 require "events/tutorial/tutorial_common"
 
 
-tutorial_text = _([[As you walk into the bar, someone else confidently strolls up to you. "Salutations!" she says. "You're a pilot, right? Would you per chance be willing to join my fleet?" You politely decline the offer, explaining that you prefer to be your own boss. "Fair enough!" she says. "I'm the same way.
+tutorial_text = _([[As you walk into the bar, someone else confidently strolls up to you. "Salutations!" she says. "You're a pilot, right? Would you per chance be willing to join my fleet?" You politely decline the offer, explaining that you prefer to be your own boss. "Fair enough!" she says. "I'm the same way. Having a fleet can be real helpful though, so I've been asking pilots if they'd join my fleet.
 
-"Having a fleet can be real helpful though, so I've been asking pilots if they'd join my fleet. I'd highly recommend you give it a try! Usually I just approach pilots at bars and ask them what their rates are. They charge a security deposit up-front, plus a royalty which is a percentage of your mission earnings they take. You get a partial refund of the deposit based on how much they've earned in royalties if you fire them while landed, but not if they die or if you fire them while out in space. It's like an insurance kind of thing, a guaranteed amount of payment even if things go south.
+"I'd definitely recommend you give it a try at some point! Usually I just approach pilots at bars and ask them what their rates are. They charge a security deposit up-front, plus a royalty which is a percentage of your mission earnings they take whenever you get paid. You can get some of the deposit back when you fire them; it's like an insurance kind of thing, a guaranteed payment for their families if they die.
 
-"I always try to pick pilots that can keep up with my ship and synergize together. One time I was piloting a Quicksilver and hired an Ancestor escort. Big mistake; he wasn't able to keep up with me and got caught in a fight with some slow hostiles I was able to outrun easily. That was a real mess. I later got a pair of Hyena pilots and they were much more suitable.
-
-"Anyway, I'm rambling. Sorry about that. I'm off to find some pilots. Nice meeting you!"]])
+"Anyway, sorry to bother you. I'll get back to looking for pilots to join my fleet. Nice meeting you!"]])
 tutorial_log = _([[Pilots which are available for hire can be found at the Spaceport Bar. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. The deposit can be partially refunded when you fire them while landed; the amount refunded depends on how much the pilot has earned in royalties. If you fire them while out in space or if they die, none of the deposit is refunded. Each pilot is different, so you should try to pick pilots that will work well for you as a fleet.]])
 
-npctext = {}
-npctext[1] = _([["Hi there! I'm looking to get some piloting experience. Here are my credentials. Would you be interested in hiring me?"]])
-npctext[2] = _([["Hello! I'm looking to join someone's fleet. Here's my credentials. What do you say, would you like me on board?"]])
-npctext[3] = _([["Hi! You look like you could use a pilot! I'm available and charge some of the best rates in the galaxy, and I promise you I'm perfect for the job! Here's my info. Well, what do you think? Would you like to add me to your fleet?"]])
+npctext = {
+   _([["Hi there! I'm looking to get some piloting experience. Here are my credentials. Would you be interested in hiring me?"]]),
+   _([["Hello! I'm looking to join someone's fleet. Here's my credentials. What do you say, would you like me on board?"]]),
+   _([["Hi! You look like you could use a pilot! I'm available and charge some of the best rates in the galaxy, and I promise you I'm perfect for the job! Here's my info. Well, what do you think? Would you like to add me to your fleet?"]]),
+}
 
 credentials = _([[
-Pilot name: %s
-Ship: %s
-Deposit: %s
-Royalty: %.1f%% of mission earnings
+#nPilot name:#0 {name}
+#nShip:#0 {ship}
+#nSpeed:#0 {speed} km/s
+#nDeposit:#0 {deposit}
+#nRoyalty:#0 {royalty:.1f}% of mission earnings
 
-Money: %s
-Current total royalties: %.1f%% of mission earnings]])
+#nYour speed:#0 {plspeed:.0f} km/s
+#nMoney:#0 {plmoney}
+#nCurrent total royalties:#0 {plroyalties:.1f}% of mission earnings]])
 
 pilot_action_text = _([[Would you like to do something with this pilot?
 
@@ -229,6 +230,7 @@ function createPilotNPCs ()
       deposit = math.floor((deposit + 0.2*deposit*rnd.sigma()) * mod)
       if deposit <= player.credits() then
          newpilot.ship = shipchoice.ship
+         newpilot.speed = p:stats().speed_max
          newpilot.deposit = deposit
          newpilot.royalty = (
                shipchoice.royalty + 0.1*shipchoice.royalty*rnd.sigma())
@@ -243,8 +245,41 @@ function createPilotNPCs ()
          npcs[id] = newpilot
       end
    end
+end
 
-   
+
+function getCredentials(edata)
+   -- This is horribly ugly, but we need to define this here for
+   -- compatibility with previously running instances of the event.
+
+   -- Translators: {color} is used to color {speed} and must precede it
+   -- (it is replaced with either "#0" or "#r!! ").
+   local credentials = _([[
+#nPilot name:#0 {name}
+#nShip:#0 {ship}
+#nSpeed:#0 {speed} km/s
+#nDeposit:#0 {deposit}
+#nRoyalty:#0 {royalty:.1f}% of mission earnings
+
+#nYour speed:#0 {plspeed:.0f} km/s
+#nMoney:#0 {plmoney}
+#nCurrent total royalties:#0 {plroyalties:.1f}% of mission earnings]])
+
+   local credits, scredits = player.credits(2)
+   local plspeed = player.pilot():stats().speed_max
+   local speed
+   if edata.speed then
+      local color = edata.speed > plspeed and "#0" or "#r!! "
+      speed = string.format("%s%.0f#0", color, edata.speed)
+   else
+      speed = "?"
+   end
+
+   return fmt.f(credentials,
+         {name=edata.name, ship=edata.ship, speed=speed,
+            deposit=fmt.credits(edata.deposit), royalty=edata.royalty*100,
+            plspeed=plspeed, plmoney=scredits,
+            plroyalties=getTotalRoyalties()*100})
 end
 
 
@@ -396,6 +431,11 @@ function enter ()
          edata.pilot:setEnergy(energy)
          edata.pilot:setFuel(true)
 
+         -- For older saves: populate the speed value now.
+         if edata.speed == nil then
+            edata.speed = edata.pilot:stats().speed_max
+         end
+
          if f == nil or f:playerStanding() >= 0 then
             edata.pilot:changeAI("escort_player")
             edata.pilot:memory().carrier = false
@@ -480,11 +520,7 @@ function pilot_hail(p, arg)
    end
 
    player.commClose()
-   local credits, scredits = player.credits(2)
-   local approachtext = (
-         pilot_action_text .. "\n\n" .. credentials:format(
-            edata.name, edata.ship, fmt.credits(edata.deposit),
-            edata.royalty * 100, scredits, getTotalRoyalties() * 100))
+   local approachtext = pilot_action_text .. "\n\n" .. getCredentials(edata)
 
    local n, s = tk.choice("", approachtext,
          _("Fire pilot"), _("Issue Order"), _("Do nothing"))
@@ -580,11 +616,7 @@ function approachEscort(npc_id)
       return
    end
 
-   local credits, scredits = player.credits(2)
-   local approachtext = (
-         pilot_action_text .. "\n\n" .. credentials:format(
-            edata.name, edata.ship, fmt.credits(edata.deposit),
-            edata.royalty * 100, scredits, getTotalRoyalties() * 100))
+   local approachtext = pilot_action_text .. "\n\n" .. getCredentials(edata)
 
    local dock_choice = _("Dock pilot")
    if edata.docked then
@@ -647,10 +679,7 @@ function approachPilot(npc_id)
       return
    end
 
-   local credits, scredits = player.credits(2)
-   local cstr = credentials:format(
-         pdata.name, pdata.ship, fmt.credits(pdata.deposit),
-         pdata.royalty * 100, scredits, getTotalRoyalties() * 100)
+   local cstr = getCredentials(pdata)
 
    if tk.yesno("", pdata.approachtext .. "\n\n" .. cstr) then
       if pdata.deposit and pdata.deposit > player.credits() then

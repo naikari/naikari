@@ -33,7 +33,9 @@
 --
 
    MISSION: Tutorial Part 4
-   DESCRIPTION: Player mines ore from asteroids, then takes it to Em 5.
+   DESCRIPTION:
+      Player transports Ian Structure to another system, then gets
+      unexpectedly attacked by a lone pirate.
 
 --]]
 
@@ -42,7 +44,7 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-ask_text = _([["Ah, {player}! I was just thinking about you. I have one last job for you, if you would be willing. This one is simple: I just need a transport. Are you willing to do it?"]])
+ask_text = _([["Ah, {player}! I was just thinking about you. I have one last job for you, if you would be willing. This one is simple: I just need you to ferry me to a neighboring system, and I'll pay you {credits} for it. Are you willing to do it?"]])
 
 accept_text = _([["Thank you very much. I'll be at your ship when you're ready for me. I'll show you where we need to go once we're in space."]])
 
@@ -52,24 +54,24 @@ jump_text = _([["Thank you. As you can see, I've marked the {system} system on y
 
 target_nearest_text = _([[As you enter {system}, you see an icon indicating another ship on your radar. However, something seems off. Sirens blare as you realize that the ship is hostile!
 
-Seeing this, Albert's face goes pale. "N-no way! This is supposed to be the safe part of Empire space! Quick, {player}! Press {target_hostile_key} so you can aim your weapons at whatever that ship is!"]])
+Seeing this, Ian's face goes pale. "N-no way! This is supposed to be the safe part of Empire space! Quick, {player}! Press {target_hostile_key} so you can aim your weapons at whatever that ship is!"]])
 
-fight_text = _([[You engage the control indicated by Albert and see that it automatically sets your designated target to the nearest hostile ship, which is the one you noticed on your radar. With the ship targeted, you can see what it is now: a Pirate Hyena. The sight makes Albert hyperventilate despite your best efforts to calm him down.
+fight_text = _([[You see that the control you engaged automatically sets your designated target to the nearest hostile ship, which is the one you noticed on your radar. With the ship targeted, your weapons swerve as much as they can to point to it. You can also see what it is now: a Pirate Hyena. The sight makes Ian hyperventilate despite your best efforts to calm him down.
 
-Finally, Albert speaks again. "P-please, whatever you do, don't let that pirate kill us! Shoot them down or something!"]])
+"P-please," Ian urges, "whatever you do, don't let that pirate kill us! Shoot them down or something!" As Ian continues to panic, you grab your ship's combat controls, telling yourself against your own instincts that this will be just like the asteroid mining you did previously.]])
 
-dest_text = _([[With the pirate now defeated, you see Albert visibly relax, though he continues to sweat nervously. "Th-thank you," he stutters.
+dest_text = _([[With the pirate now defeated, you see Ian visibly relax, though he continues to sweat nervously. "Th-thank you," he stutters. You yourself breathe a sigh of relief.
 
-"OK. I'm OK. Um, we need to get to {planet}. I don't know where it is exactly, but if you have enough talent to take out a p-pirate all by yourself, I'm sure you can manage. I know it's somewhere in this system, so you could either look around the system yourself or buy a map. You can use either…" Albert passes out from exhaustion before he can finish his sentence, and you decide to let him rest while you search for his destination.]])
+"OK. I'm OK. Um, we need to get to {planet}. I don't know where it is exactly, but if you have enough talent to take out a p-pirate all by yourself, I'm sure you can manage. I know it's somewhere in this system, so you could either look around the system yourself or buy a map. Either method should…" Ian passes out in his chair from exhaustion before he can finish his sentence. You consider waking him, but quickly decide to let him rest while you search for his destination.]])
 
-pay_text = _([[As you finish the landing procedures and arrive on the surface of {planet}, you gently wake Albert. He flinches in surprise, but when he sees it's just you, he immediately relaxes. You tell him that you've arrived at his destination and in hearing this, he breathes a sigh of relief and follows you out of your ship. Once both of you enter the spaceport, he exhales and hands you a credit chip.
+pay_text = _([[As you finish the landing procedures and arrive on the surface of {planet}, you gently wake Ian Structure. He flinches in surprise, but when he sees it's just you, he immediately relaxes. You tell him that you've arrived at his destination and upon hearing this, he breathes a sigh of relief and follows you out of your ship.
 
-"Thank you," Albert says. "You've outperformed my expectations, saving me from certain death like that. I can't possibly thank you enough. As a token of my appreciation, I'm giving you double the fee I originally agreed to pay you." You take your payment and thank him for his kind words.
+"Thank you," Ian says as both of you enter the spaceport. "You've outperformed my expectations, saving me from certain death like that. I can't possibly thank you enough. As a token of my appreciation, I'm giving you double the fee I originally agreed to pay you." You take your payment and thank him for his kind words.
 
-"Good luck on your travels, {player}, and I hope to meet you again some day!" Albert offers his hand, which you shake before he walks off.]])
+"Good luck on your travels, {player}, and I hope to meet you again someday!" Ian offers his hand, which you shake before he walks off.]])
 
-misn_desc = _("Albert needs you to give him transport to another planet.")
-misn_log = _([[You helped transport Albert to another planet in another system, fighting off an unexpected pirate along the way. Albert thanked you for your service and said he hopes to meet you again in the future.]])
+misn_desc = _("Ian Structure has hired you to give him transport to another planet.")
+misn_log = _([[You helped transport Ian Structure to another planet in another system, fighting off an unexpected pirate along the way. He thanked you for keeping him safe and said he hopes to meet you again in the future.]])
 
 
 function create()
@@ -80,19 +82,20 @@ function create()
       misn.finish(false)
    end
 
-   misn.setNPC(_("Albert"),
+   misn.setNPC(_("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
-         _("You see Albert waiting for you at the bar again."))
+         _("You see Ian Structure waiting for you at the bar again."))
 end
 
 
 function accept()
-   if tk.yesno("", fmt.f(ask_text, {player=player.name()})) then
+   if tk.yesno("", fmt.f(ask_text,
+         {player=player.name(), credits=fmt.credits(credits)})) then
       tk.msg("", fmt.f(accept_text, {player=player.name()}))
 
       misn.accept()
 
-      misn.setTitle(_("Albert's Transport"))
+      misn.setTitle(_("Ian's Transport"))
       misn.setReward(fmt.credits(credits))
       misn.setDesc(misn_desc)
 
@@ -108,7 +111,7 @@ function accept()
          fmt.f(_("Land on {planet} ({system} system)"),
             {planet=misplanet:name(), system=missys:name()}),
       }
-      misn.osdCreate(_("Albert's Transport"), osd_desc)
+      misn.osdCreate(_("Ian's Transport"), osd_desc)
 
       enter_hook = hook.enter("enter_start")
    else

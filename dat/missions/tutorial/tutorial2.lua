@@ -41,24 +41,24 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. In response, he smiles. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Albert. I run a business near this area and I was hoping to find a suitable pilot. Don't worry, it's a simple job, and you will of course be paid fairly for your services. What do you say?"]])
+ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I was hoping to find a suitable pilot. Don't worry, it's a simple job, and you will of course be paid fairly for your services. What do you say?"]])
 
 ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise I won't bite, and the payment will be worth it!"]])
 
 accept_text = _([["Excellent! I look forward to working with you.
 
-"Now, to start with, I need you to buy 10 t of Food on my behalf." You begin to protest, but Albert holds up his hand to interrupt. "Have no fear, {player}. I wouldn't make you pay for it using your own credits, of course." He pulls out a credit chip and hands it to you. "That should be sufficient to pay for what I need. I put some extra on just to be absolutely sure it will cover the cost; you can keep the extra credits left over in addition to your payment.
+"Now, to start with, I need you to buy 10 t of Food on my behalf." You begin to protest, but Ian holds up his hand to interrupt. "Have no fear, {player}. I wouldn't make you pay for it using your own credits, of course." He pulls out a credit chip and hands it to you. "That should be sufficient to pay for what I need. I put some extra on just to be absolutely sure it will cover the cost; you can keep the extra credits left over in addition to your payment.
 
 "You can buy the Food from the Commodity tab. Once you've picked it up, return here so we can transfer the Food to my storage unit."]])
 
-reminder_text = _([[You ask Albert what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 t of Food. You should be able to find it in the Commodity tab. Let me know when you have it!"]])
+reminder_text = _([[You ask Ian what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 t of Food. You should be able to find it in the Commodity tab. Let me know when you have it!"]])
 
-finish_text = _([[You approach Albert and inform him that you have the cargo he needs. "Ah, perfect!" he responds. "Let's initiate that transfer, then.…" Albert pushes a series of buttons on his datapad and you see that the cargo has been removed from your ship.
+finish_text = _([[You approach Ian and inform him that you have the cargo he needs. "Ah, perfect!" he responds. "Let's initiate that transfer, then.…" Ian Structure pushes a series of buttons on his datapad and you see that the cargo has been removed from your ship.
 
-"You have been of good service to me," Albert says. "I have transferred the payment I promised into your account. If you would be willing to do it, I have another job for you. Talk to me here at the bar again when you're ready for it."]])
+"You saved me some trouble by doing that for me," Ian says. "Thank you. I have transferred the payment I promised into your account. If you would be willing to do it, I have another job for you. Talk to me here at the bar again when you're ready for it."]])
 
-misn_desc = _("A businessman named Albert has given you the task of buying 10 t of Food for him.")
-misn_log = _([[You helped a businessman named Albert acquire some Food. He asked you to speak with him again on {planet} ({system} system) for another job.]])
+misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 t of Food for him.")
+misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system} system) for another job.]])
 
 
 function create()
@@ -87,15 +87,15 @@ function accept()
 
       misn.accept()
 
-      misn.setTitle(_("Albert's Shopping"))
+      misn.setTitle(_("Ian's Structure"))
       misn.setReward(fmt.credits(credits))
       misn.setDesc(misn_desc)
 
       local osd_desc = {
-         fmt.f(_("Buy 10 t of Food from the Commodity tab and then talk to Albert at the bar on {planet} ({system} system)"),
+         fmt.f(_("Buy 10 t of Food from the Commodity tab and then talk to Ian Structure at the bar on {planet} ({system} system)"),
             {planet=misplanet:name(), system=missys:name()}),
       }
-      misn.osdCreate(_("Albert's Shopping"), osd_desc)
+      misn.osdCreate(_("Ian's Structure"), osd_desc)
 
       local cost = commodity.get("Food"):priceAtTime(planet.cur(), time.get())
       player.pay(cost * 30, "adjust")
@@ -111,9 +111,9 @@ end
 
 
 function land()
-   npc = misn.npcAdd("approach", _("Albert"),
+   npc = misn.npcAdd("approach", _("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
-         _("Albert is in the bar doing some sort of work on his datapad."), 1)
+         _("Ian is in the bar doing some sort of work on his datapad."), 1)
 end
 
 
