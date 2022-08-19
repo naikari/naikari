@@ -59,6 +59,8 @@
   player how to launch fighters from fighter bays with the default
   weapon configuration. To accommodate this change and keep it looking
   consistent, the Brushed GUI has been altered slightly.
+* Hired escorts now list their speed so you can know in advance whether
+  or not they can keep up with your ship.
 
 ## 0.3.0
 
