@@ -227,6 +227,11 @@ static void intro_event_handler( int *stop, double *offset, double *vel )
    SDL_Event event;           /* user key-press, mouse-push, etc. */
 
    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) {
+         naev_quit();
+         continue;
+      }
+
       if (event.type == SDL_WINDOWEVENT &&
             event.window.event == SDL_WINDOWEVENT_RESIZED) {
          naev_resize();
@@ -358,7 +363,7 @@ int intro_display( const char *text, const char *mus )
    initialize_image( &transition );
 
    tlast = SDL_GetTicks();
-   while (!stop) {
+   while (!stop && !naev_isQuit()) {
       tcur = SDL_GetTicks();
       delta = (double)(tcur - tlast) / 1000.;
       tlast = tcur;
