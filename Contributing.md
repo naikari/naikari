@@ -4,6 +4,26 @@ Want to contribute to Naikari? Great! We appreciate your generosity.
 This document provides a general guideline for how to contribute to this
 project.
 
+We can use pretty much any kind of contribution, no matter how small it
+seems. Things you can do to help Naikari include, but are not limited
+to, the following:
+
+* Reporting bugs and design problems as you see them.
+* Coding, whether for bugfixing, general maintenance, or implementing
+  improvements.
+* Mission development, particularly story missions that extend existing
+  campaigns.
+* Artwork, particularly suitable replacements for artwork which is
+  low-quality or duplicated, and new components for and improvements to
+  the character portrait template.
+* Improving the design of the universe by editing systems and planets.
+* Playing the game and giving feedback. Yes, really. Simply letting us
+  know what you think is probably more valuable than you realize. All
+  feedback is welcome and encouraged!
+
+The following sections explain standards for contributions and how to
+make contributions.
+
 ## Code of Conduct
 
 All contributors, including leaders, are expected to follow our
@@ -29,7 +49,7 @@ have a question, please also see our
 [FAQ](https://github.com/naikari/naikari/wiki/FAQ) as it may be answered
 there.
 
-## Contributing Code
+## Contributing Code (including missions)
 
 In general, the best way to contribute to Naikari's code is to fork the
 repository, make changes to your fork, and then submit a pull request.
@@ -167,8 +187,8 @@ information. All artwork contributed to the Naikari project should be
 under an open content license. Usually CC BY or CC BY-SA is a good
 choice.
 
-As a general rule, when contributing artwork, it is best to submit both
-a pull request to `naikari-artwork` and to `naikari-artwork-production`,
+As a general rule, when contributing artwork, it is best to submit pull
+requests both to `naikari-artwork` and to `naikari-artwork-production`,
 ensuring that your authorship and licensing is properly documented in
 `naikari-artwork-production`. You should also add your name to
 [dat/AUTHORS](dat/AUTHORS) under the appropriate section so you can be

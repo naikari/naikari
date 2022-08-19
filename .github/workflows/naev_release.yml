@@ -165,7 +165,7 @@ jobs:
               --cross-file='source/utils/build/macos_cross_osxcross.ini' \
               --buildtype=release \
               -Dnightly=false \
-              -Db_lto=false \
+              -Db_lto=true \
               -Dauto_features=enabled \
               -Ddocs_c=disabled \
               -Ddocs_lua=disabled
@@ -177,7 +177,6 @@ jobs:
       - name: Meson Install
         run: |
           meson install -C build
-          ./source/extras/macos/createDMG.sh -s source -b build
           cd build/dist
           zip -r naikari-macos.zip Naikari.app/*
           rm -rf Naikari.app

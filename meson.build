@@ -6,7 +6,14 @@ project('naikari', 'c',
       'c_std=gnu11',
       'werror=false'
    ],
-   meson_version: '>=0.55.0')
+   meson_version: '>=0.54.0')
+
+if meson.version().startswith('0.54.')
+   warning('This version of Meson is nearly too old to work, but partially supported for subproject-free builds (e.g., for distro packages). In most cases you will need to upgrade Meson or use the included meson.sh wrapper script.')
+   forced_fallbacks = []
+else
+   forced_fallbacks = get_option('force_fallback_for')
+endif
 
 issue_address = 'https://github.com/naikari/naikari/issues'
 copyright_holder = 'Naikari Dev Team'
@@ -74,7 +81,7 @@ if buildExec.disabled() == false
       libxml2 = cc.find_library('xml2', required: true)  # e.g., MacOSX SDK
    endif
 
-   use_system_physfs = ('physfs' not in get_option('force_fallback_for') and 'forcefallback' != get_option('wrap_mode'))
+   use_system_physfs = ('physfs' not in forced_fallbacks and 'forcefallback' != get_option('wrap_mode'))
    if use_system_physfs
       system_physfs = dependency('physfs', required: false)
       if not system_physfs.found()
@@ -90,10 +97,7 @@ if buildExec.disabled() == false
       libxml2,
       sdl,
       sdl_image,
-      declare_dependency(
-         dependencies: dependency('libpng', required: true),
-         compile_args: '-DNOLOGPRINTFCONSOLE',
-         link_args: '-DNOLOGPRINTFCONSOLE'),
+      dependency('libpng', required: true),
       dependency('libwebp', required: true),
    ]
 
@@ -113,8 +117,8 @@ if buildExec.disabled() == false
    naev_deps += lua
 
    # Linear Algebra
-   use_system_glpk = ('glpk' not in get_option('force_fallback_for') and 'forcefallback' != get_option('wrap_mode'))
-   use_system_suitesparse = ('SuiteSparse' not in get_option('force_fallback_for') and 'forcefallback' != get_option('wrap_mode'))
+   use_system_glpk = ('glpk' not in forced_fallbacks and 'forcefallback' != get_option('wrap_mode'))
+   use_system_suitesparse = ('SuiteSparse' not in forced_fallbacks and 'forcefallback' != get_option('wrap_mode'))
 
    if use_system_glpk
       system_glpk = cc.find_library('glpk', required: false, has_headers: ['glpk.h'])
@@ -125,7 +129,7 @@ if buildExec.disabled() == false
    if use_system_suitesparse
       message('Note: Naikari needs the following SuiteSparse libraries: amd, colamd, cholmod, and either csparse or cxsparse. ' +
               'It can use its own copies if you run "meson configure --force-fallback-for=SuiteSparse".')
-      foreach csparse_name : ['csparse', 'cxsparse']
+      foreach csparse_name : ['cxsparse', 'csparse']
          system_csparse = cc.find_library(csparse_name, required: false)
          if system_csparse.found()
             break
@@ -158,22 +162,30 @@ if buildExec.disabled() == false
 
    ### Soft deps (required: false)
 
-   # BFD
-   if get_option('debug')
-      bfd = cc.find_library('bfd', required: false)
-   else
-      bfd = dependency('', required: false)
+   # libdl can be used for debugging stack traces. On non-Windows platforms, GLAD relies on dlopen().
+   glad_requires_libdl = not cc.has_header('windows.h')
+   if glad_requires_libdl or debug
+     libdl = cc.find_library('dl', required: host_machine.system()!='windows')
+     if libdl.found()
+       naev_deps += libdl
+     else
+       naev_deps += subproject('dlfcn-win32').get_variable('dl_dep')
+     endif
    endif
-   summary('BFD', bfd.found(), section: 'Debug', bool_yn: true)
 
-   naev_deps += bfd
-   config_data.set10('HAS_BFD', bfd.found())
+   if get_option('debug')
+      libbacktrace = cc.find_library('backtrace', has_headers: 'backtrace.h', required: false)
+      if not libbacktrace.found() or 'backtrace' in forced_fallbacks or 'libbacktrace' in forced_fallbacks or get_option('wrap_mode') == 'forcefallback'
+         libbacktrace = dependency('backtrace', fallback: ['libbacktrace', 'libbacktrace_dep'], required: true)
+      endif
+      naev_deps += libbacktrace
+   endif
 
    # Appstream (Used for generating desktop files and verifying metadata)
    ascli_exe = find_program('appstreamcli', version: '>=0.12.9', required: false)
 
    # Audio
-   openal    = dependency('openal', required: true)
+   openal = dependency('openal', required: true)
    vorbis = dependency('vorbis', required: true)
    vorbisfile = dependency('vorbisfile', required: true)
    ogg = dependency('ogg', required: true)  # Transitive dependency. At least some MSYS2 build envs may miss it.
@@ -193,6 +205,7 @@ if buildExec.disabled() == false
    # strndup() detectin must work around this bug: https://github.com/mesonbuild/meson/issues/3672
    config_data.set10('HAVE_STRNDUP', cc.has_header_symbol('string.h', 'strndup') and cc.has_function('strndup'))
    config_data.set10('HAVE_STRNSTR', cc.has_function('strnstr'))
+   config_data.set10('HAVE_STRSIGNAL', cc.has_function('strsignal'))
    config_data.set10('HAVE_VASPRINTF', cc.has_function('vasprintf'))
 
    # OS declaration (Shows which OS we built this with in the options menu)
@@ -218,16 +231,11 @@ if buildExec.disabled() == false
    )
    add_project_arguments('-include', 'config.h', language: 'c')
 
-   # GLAD
-   if not cc.has_header('windows.h')
-      naev_deps += cc.find_library('dl', required: true)
-   endif
-
-   include_dirs = include_directories(
+   include_dirs = [include_directories(
       'src',
       'src/tk',
       'src/tk/widget'
-   )
+   )]
 
    libsdf = static_library('sdf', sdf_source, include_directories: include_dirs, override_options: ['optimization=3'])
    naev_deps += declare_dependency(link_with: libsdf)
@@ -271,7 +279,7 @@ if buildExec.disabled() == false
       naev_source,
       include_directories: include_dirs,
       dependencies: naev_deps,
-      export_dynamic: bfd.found(),
+      export_dynamic: get_option('debug'),
       install: true)
 
    naev_sh = configure_file(
@@ -322,9 +330,12 @@ if buildExec.disabled() == false
    subdir('test')
 
    if host_machine.system() == 'windows'
-     meson.add_install_script('extras/windows/packageWindows.sh', '-n', get_option('nightly').to_string())
+      meson.add_install_script('extras/windows/packageWindows.sh', '-n', get_option('nightly').to_string())
    endif
    if host_machine.system() == 'darwin'
-     meson.add_install_script('extras/macos/bundle.py')
+      meson.add_install_script('extras/macos/bundle.py', debug ? '-d' : [])
+      if get_option('dmg')
+	 meson.add_install_script('extras/macos/createDMG.sh', '-s', meson.source_root() , '-b', meson.current_build_dir())
+      endif
    endif
 endif

@@ -9,41 +9,28 @@
  */
 
 /** @cond */
-#include "naev.h"
-
-#if LINUX && HAS_BFD && DEBUGGING
-#include <signal.h>
-#include <execinfo.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <bfd.h>
 #include <assert.h>
-#endif /* LINUX && HAS_BFD && DEBUGGING */
+#include <signal.h>
+
+#if DEBUGGING
+#include <backtrace.h>
+
+#define __USE_GNU /* Grrr... */
+#include <dlfcn.h>
+#undef __USE_GNU
+#endif /* DEBUGGING */
+
+#include "naev.h"
 /** @endcond */
+
+#include "debug.h"
 
 #include "log.h"
 
-#if HAVE_FENV_H && DEBUGGING
-/* This module uses GNU extensions to enable FPU exceptions. */
-#define _GNU_SOURCE
-#include <fenv.h>
-#endif /* HAVE_FENV_H && DEBUGGING */
-
-
-#if LINUX && HAS_BFD && DEBUGGING
-static bfd *abfd      = NULL;
-static asymbol **syms = NULL;
-#endif /* LINUX && HAS_BFD && DEBUGGING */
-
-
-#ifdef DEBUGGING
-/* Initialize debugging flags. */
-#include "debug.h"
+#if DEBUGGING
+static struct backtrace_state *debug_bs = NULL;
 DebugFlags debug_flags;
-#endif /* DEBUGGING */
 
-
-#if LINUX && HAS_BFD && DEBUGGING
 /**
  * @brief Gets the string related to the signal code.
  *
@@ -55,187 +42,190 @@ const char* debug_sigCodeToStr( int sig, int sig_code )
 {
    if (sig == SIGFPE)
       switch (sig_code) {
+#ifdef SI_USER
          case SI_USER: return _("SIGFPE (raised by program)");
+#endif /* SI_USER */
+#ifdef FPE_INTDIV
          case FPE_INTDIV: return _("SIGFPE (integer divide by zero)");
+#endif /* FPE_INTDIV */
+#ifdef FPE_INTOVF
          case FPE_INTOVF: return _("SIGFPE (integer overflow)");
+#endif /* FPE_INTOVF */
+#ifdef FPE_FLTDIV
          case FPE_FLTDIV: return _("SIGFPE (floating-point divide by zero)");
+#endif /* FPE_FLTDIV */
+#ifdef FPE_FLTOVF
          case FPE_FLTOVF: return _("SIGFPE (floating-point overflow)");
+#endif /* FPE_FLTOVF */
+#ifdef FPE_FLTUND
          case FPE_FLTUND: return _("SIGFPE (floating-point underflow)");
+#endif /* FPE_FLTUND */
+#ifdef FPE_FLTRES
          case FPE_FLTRES: return _("SIGFPE (floating-point inexact result)");
+#endif /* FPE_FLTRES */
+#ifdef FPE_FLTINV
          case FPE_FLTINV: return _("SIGFPE (floating-point invalid operation)");
+#endif /* FPE_FLTINV */
+#ifdef FPE_FLTSUB
          case FPE_FLTSUB: return _("SIGFPE (subscript out of range)");
+#endif /* FPE_FLTSUB */
          default: return _("SIGFPE");
       }
    else if (sig == SIGSEGV)
       switch (sig_code) {
+#ifdef SI_USER
          case SI_USER: return _("SIGSEGV (raised by program)");
+#endif /* SI_USER */
+#ifdef SEGV_MAPERR
          case SEGV_MAPERR: return _("SIGSEGV (address not mapped to object)");
+#endif /* SEGV_MAPERR */
+#ifdef SEGV_ACCERR
          case SEGV_ACCERR: return _("SIGSEGV (invalid permissions for mapped object)");
+#endif /* SEGV_ACCERR */
          default: return _("SIGSEGV");
       }
    else if (sig == SIGABRT)
       switch (sig_code) {
+#ifdef SI_USER
          case SI_USER: return _("SIGABRT (raised by program)");
+#endif /* SI_USER */
          default: return _("SIGABRT");
       }
 
    /* No suitable code found. */
+#if HAVE_STRSIGNAL
    return strsignal(sig);
+#else /* HAVE_STRSIGNAL */
+   {
+      static char buf[128];
+      snprintf( buf, sizeof(buf), _("signal %d"), sig );
+      return buf;
+   }
+#endif /* HAVE_STRSIGNAL */
+}
+#endif /* DEBUGGING */
+
+#if DEBUGGING
+typedef struct { void* data; uintptr_t pc; const char* file; int line; const char* func; } FrameInfo;
+
+static void debug_backtrace_syminfo_callback( void* data, uintptr_t pc, const char* symname, uintptr_t symval, uintptr_t symsize )
+{
+   (void) symsize;
+   FrameInfo *fi = data;
+   Dl_info addr = {0};
+   dladdr( (void*) pc, &addr );
+   uintptr_t offset = pc - (symval ? symval : (uintptr_t)addr.dli_fbase);
+   pc -= (uintptr_t) addr.dli_fbase;
+   symname = symname ? symname : "??";
+   fi->func = fi->func ? fi->func : symname;
+   fi->file = fi->file ? fi->file : "??";
+   addr.dli_fname = addr.dli_fname ? addr.dli_fname : "??";
+   int width = snprintf( NULL, 0, "%s at %s:%u", fi->func, fi->file, fi->line );
+   int pad = MAX( 0, 80 - width );
+   LOGERR( "[%#14"PRIxPTR"] %s at %s:%u %*s| %s(%s+%#"PRIxPTR")", pc, fi->func, fi->file, fi->line, pad, "", addr.dli_fname, symval ? symname : "", offset );
+}
+
+static void debug_backtrace_error_callback( void* data, const char* msg, int errnum )
+{
+   FrameInfo *fi = data;
+   (void) msg;
+   (void) errnum;
+   debug_backtrace_syminfo_callback( data, fi->pc, "??", 0, 0 );
 }
 
 /**
  * @brief Translates and displays the address as something humans can enjoy.
- *
- * @TODO Remove the conditional defines which are to support old BFD (namely Ubuntu 16.04).
  */
-static void debug_translateAddress( const char *symbol, bfd_vma address )
+static int debug_backtrace_full_callback( void* data, uintptr_t pc, const char* file, int line, const char* func )
 {
-   const char *file, *func;
-   unsigned int line;
-   asection *section;
+   FrameInfo fi = { .data = data, .pc = pc, .file = file, .line = line, .func = func };
+   if (pc != 0 && ~pc != 0)
+      backtrace_syminfo( debug_bs, pc, debug_backtrace_syminfo_callback, debug_backtrace_error_callback, &fi );
 
-   for (section = abfd->sections; section != NULL; section = section->next) {
-#ifdef bfd_get_section_flags
-      if ((bfd_get_section_flags(abfd, section) & SEC_ALLOC) == 0)
-#else /* bfd_get_section_flags */
-      if ((bfd_section_flags(section) & SEC_ALLOC) == 0)
-#endif /* bfd_get_section_flags */
-         continue;
-
-#ifdef bfd_get_section_vma
-      bfd_vma vma = bfd_get_section_vma(abfd, section);
-#else /* bfd_get_section_vma */
-      bfd_vma vma = bfd_section_vma(section);
-#endif /* bfd_get_section_vma */
-
-#ifdef bfd_get_section_size
-      bfd_size_type size = bfd_get_section_size(section);
-#else /* bfd_get_section_size */
-      bfd_size_type size = bfd_section_size(section);
-#endif /* bfd_get_section_size */
-      if (address < vma || address >= vma + size)
-         continue;
-
-      if (!bfd_find_nearest_line(abfd, section, syms, address - vma,
-            &file, &func, &line))
-         continue;
-
-      do {
-         if (func == NULL || func[0] == '\0')
-            func = "??";
-         if (file == NULL || file[0] == '\0')
-            file = "??";
-         DEBUG("%s %s(...):%u %s", symbol, func, line, file);
-      } while (bfd_find_inliner_info(abfd, &file, &func, &line));
-
-      return;
-   }
-
-   DEBUG("%s %s(...):%u %s", symbol, "??", 0, "??");
+   return 0;
 }
 
-
-/**
- * @brief Backtrace signal handler for Linux.
- *
- *    @param sig Signal.
- *    @param info Signal information.
- *    @param unused Unused.
- */
+#if HAVE_SIGACTION
 static void debug_sigHandler( int sig, siginfo_t *info, void *unused )
+#else /* HAVE_SIGACTION */
+static void debug_sigHandler( int sig )
+#endif /* HAVE_SIGACTION */
 {
-   (void)sig;
-   (void)unused;
-   int i, num;
-   void *buf[64];
-   char **symbols;
+   (void) sig;
+#if HAVE_SIGACTION
+   (void) unused;
+#endif /* HAVE_SIGACTION */
 
-   num      = backtrace(buf, 64);
-   symbols  = backtrace_symbols(buf, num);
+   LOGERR( _("Naev received %s!"),
+#if HAVE_SIGACTION
+         debug_sigCodeToStr( info->si_signo, info->si_code )
+#else /* HAVE_SIGACTION */
+         debug_sigCodeToStr( sig, 0 )
+#endif /* HAVE_SIGACTION */
+	);
 
-   DEBUG( _("Naev received %s!"),
-         debug_sigCodeToStr(info->si_signo, info->si_code) );
-   for (i=0; i<num; i++) {
-      if (abfd != NULL)
-         debug_translateAddress(symbols[i], (bfd_vma) (bfd_hostptr_t) buf[i]);
-      else
-         DEBUG("   %s", symbols[i]);
-   }
-   DEBUG( _("Report this to project maintainer with the backtrace.") );
+   backtrace_full( debug_bs, 0, debug_backtrace_full_callback, NULL, NULL );
+   LOGERR( _("Report this to project maintainer with the backtrace.") );
 
    /* Always exit. */
    exit(1);
 }
-#endif /* LINUX && HAS_BFD && DEBUGGING */
-
+#endif /* DEBUGGING */
 
 /**
- * @brief Sets up the SignalHandler for Linux.
+ * @brief Sets up the back-tracing signal handler.
  */
 void debug_sigInit (void)
 {
-#if LINUX && HAS_BFD && DEBUGGING
-   char **matching;
-   struct sigaction sa, so;
-   long symcount;
-   unsigned int size;
+#if DEBUGGING
+   Dl_info addr = {0};
+#if WIN32
+   dladdr( debug_sigInit, &addr );  /* Get the filename using dlfcn-win32; libbacktrace fucks this up (as of 2022-08-18). */
+#endif /* WIN32 */
 
-   bfd_init();
-
-   /* Read the executable */
-   abfd = bfd_openr("/proc/self/exe", NULL);
-   if (abfd != NULL) {
-      bfd_check_format_matches(abfd, bfd_object, &matching);
-
-      /* Read symbols */
-      if (bfd_get_file_flags(abfd) & HAS_SYMS) {
-
-         /* static */
-         symcount = bfd_read_minisymbols (abfd, FALSE, (void **)&syms, &size);
-         if ( symcount == 0 && abfd != NULL ) /* dynamic */
-            symcount = bfd_read_minisymbols (abfd, TRUE, (void **)&syms, &size);
-         assert(symcount >= 0);
-      }
-   }
+   debug_bs = backtrace_create_state( addr.dli_fname, /*threaded:*/ 1, NULL, NULL );
 
    /* Set up handler. */
-   sa.sa_handler   = NULL;
+#if HAVE_SIGACTION
+   const char *str = _("Unable to set up %s signal handler.");
+   struct sigaction so, sa = { .sa_handler = NULL, .sa_flags = SA_SIGINFO };
    sa.sa_sigaction = debug_sigHandler;
    sigemptyset(&sa.sa_mask);
-   sa.sa_flags     = SA_SIGINFO;
 
-   /* Attach signals. */
    sigaction(SIGSEGV, &sa, &so);
    if (so.sa_handler == SIG_IGN)
-      DEBUG( _("Unable to set up SIGSEGV signal handler.") );
+      DEBUG( str, "SIGSEGV" );
    sigaction(SIGFPE, &sa, &so);
    if (so.sa_handler == SIG_IGN)
-      DEBUG( _("Unable to set up SIGFPE signal handler.") );
+      DEBUG( str, "SIGFPE" );
    sigaction(SIGABRT, &sa, &so);
    if (so.sa_handler == SIG_IGN)
-      DEBUG( _("Unable to set up SIGABRT signal handler.") );
-   DEBUG( _("BFD backtrace catching enabled.") );
-#endif /* LINUX && HAS_BFD && DEBUGGING */
+      DEBUG( str, "SIGABRT" );
+#else /* HAVE_SIGACTION */
+   signal( SIGSEGV, debug_sigHandler );
+   signal( SIGFPE,  debug_sigHandler );
+   signal( SIGABRT, debug_sigHandler );
+#endif /* HAVE_SIGACTION */
+#endif /* DEBUGGING */
 }
 
 
 /**
- * @brief Closes the SignalHandler for Linux.
+ * @brief Closes the back-tracing signal handler.
  */
 void debug_sigClose (void)
 {
-#if LINUX && HAS_BFD && DEBUGGING
-   bfd_close( abfd );
-#endif /* LINUX && HAS_BFD && DEBUGGING */
+#if DEBUGGING
+   signal( SIGSEGV, SIG_DFL );
+   signal( SIGFPE,  SIG_DFL );
+   signal( SIGABRT, SIG_DFL );
+#endif /* DEBUGGING */
 }
 
 
 /**
- * @brief Enables FPU exceptions. Artificially limited to Linux until link issues are figured out.
+ * @brief Does nothing. Calling this tells our debug scripts to stop tracing.
  */
-void debug_enableFPUExcept (void)
+void debug_enableLeakSanitizer (void)
 {
-#if HAVE_FEENABLEEXCEPT && DEBUGGING
-      feenableexcept( FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW );
-#endif /* HAVE_FEENABLEEXCEPT && DEBUGGING */
 }

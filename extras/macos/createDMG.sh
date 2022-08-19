@@ -38,6 +38,10 @@ done
 if ! [ -x "$(command -v genisoimage)" ]; then
     echo "You don't have genisoimage in PATH"
     exit 1
+elif ! [ -x "$(command -v dmg)" ]; then
+    echo "You don't have dmg in PATH"
+    echo "Get it from https://github.com/fanquake/libdmg-hfsplus"
+    exit 1
 fi
 
 
@@ -53,5 +57,6 @@ cp -r "$SOURCEPATH"/extras/macos/dmg_assets/. "$WORKPATH"
 # Extract Naev app bundle to BundleDir
 cp -r "$BUILDPATH"/dist/Naikari.app "$WORKPATH"
 
-# Generate DMG image
-genisoimage -V Naikari -D -R -apple -no-pad -o "$BUILDPATH"/dist/naikari.dmg "$WORKPATH"
+# Generate ISO image and compress into DMG
+genisoimage -V Naikari -D -R -apple -no-pad -o "$WORKPATH"/naikari.iso "$WORKPATH"
+dmg "$WORKPATH"/naikari.iso "$BUILDPATH"/dist/naikari.dmg
