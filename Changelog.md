@@ -61,6 +61,10 @@
   consistent, the Brushed GUI has been altered slightly.
 * Hired escorts now list their speed so you can know in advance whether
   or not they can keep up with your ship.
+* Removed the intro crawl when starting a new game. It didn't really add
+  anything necessary, it was basically just a history lesson delivered
+  in a rather boring manner. Any such information could easily be
+  conveyed in better ways and most of it already is.
 
 ## 0.3.0
 
