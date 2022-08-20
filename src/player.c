@@ -272,9 +272,6 @@ void player_new (void)
    if (player_newMake())
       return;
 
-   /* Display the intro. */
-   intro_display( INTRO_PATH, "intro" );
-
    /* Play music. */
    music_choose( "ambient" );
 
