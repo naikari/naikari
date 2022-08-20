@@ -19,6 +19,7 @@
 #include "array.h"
 #include "economy.h"
 #include "gui.h"
+#include "land_trade.h"
 #include "log.h"
 
 
@@ -155,6 +156,10 @@ int pilot_cargoAddRaw( Pilot* pilot, const Commodity* cargo,
    pilot->solid->mass   += pilot->stats.cargo_inertia * q;
    pilot_updateMass( pilot );
    gui_setGeneric( pilot );
+
+   /* Allow the Commodity tab to update its owned cargo display. */
+   if (pilot->faction == FACTION_PLAYER)
+      commodity_updateOwnedCargo();
 
    return q;
 }
@@ -333,6 +338,11 @@ int pilot_cargoRmRaw( Pilot* pilot, const Commodity* cargo, int quantity, int cl
        * the Lua code to be run with a half-assed pilot state crashing the game. */
       if (!cleanup)
          gui_setGeneric( pilot );
+
+      /* Allow the Commodity tab to update its owned cargo display. */
+      if (pilot->faction == FACTION_PLAYER)
+         commodity_updateOwnedCargo();
+
       return q;
    }
    return 0; /* pilot didn't have it */

@@ -42,7 +42,6 @@ static iar_data_t *iar_data = NULL; /**< Stored image array positions. */
 
 static void commodity_getSize(unsigned int wid, int *w, int *h,
       int *iw, int *ih, int *dw, int *bw);
-static void commodity_regenList(unsigned int wid);
 static void commodity_genList(unsigned int wid);
 
 
@@ -141,7 +140,7 @@ void commodity_exchange_open( unsigned int wid )
  *
  *    @param wid Window to generate the list on.
  */
-static void commodity_regenList(unsigned int wid)
+void commodity_regenList(unsigned int wid)
 {
    char *focused;
 
@@ -297,6 +296,24 @@ void commodity_update( unsigned int wid, char* str )
       window_enableButton( wid, "btnCommoditySell" );
    else
       window_disableButtonSoft( wid, "btnCommoditySell" );
+}
+
+
+/**
+ * @brief Updates the outfitter and equipment outfit image arrays.
+ */
+void commodity_updateOwnedCargo(void)
+{
+   int w;
+
+   if (!landed || !land_doneLoading())
+      return;
+
+   if (!planet_hasService(land_planet, PLANET_SERVICE_COMMODITY))
+      return;
+
+   w = land_getWid(LAND_WINDOW_COMMODITY);
+   commodity_regenList(w);
 }
 
 
