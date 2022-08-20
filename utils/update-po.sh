@@ -38,7 +38,6 @@ deterministic_sort() { LC_ALL=C sort; }
 
 # shellcheck disable=SC2046
 po/credits_pot.py \
-   dat/intro \
    dat/AUTHORS \
    $(cd artwork; find_files gfx/loading txt | sed 's|^|artwork/|') \
    > po/credits.pot

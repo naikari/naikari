@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-08-19 05:56-0400\n"
+"POT-Creation-Date: 2022-08-19 20:45-0400\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -17,123 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 4.6-dev\n"
-
-#: dat/intro:2
-msgid ""
-"A lightless void. That is what most of space is. Yet in spite of this, "
-"humankind has long looked up at the night sky in wonder, wishing to bask in "
-"the light of the tiny specks tucked throughout the sea of darkness."
-msgstr ""
-
-#: dat/intro:4
-msgid ""
-"For centuries, it seemed impossible. The distances were far too vast to make "
-"it to any other star alive, let alone the nearest stars which showed promise "
-"of hospitable planets. Even exploring our own tiny solar system was a "
-"daunting task, one which we could only achieve over the course of decades "
-"with the aid of robots. Earth was the only home we knew."
-msgstr ""
-
-#: dat/intro:7
-msgid ""
-"So when cyrogenic freezing became advanced enough to preserve human life for "
-"periods of time long enough to survive a trip to nearby stars, some people "
-"jumped at the chance. Thousands of people locked their sleeping bodies into "
-"hulking metal boxes which were hurled out into the void."
-msgstr ""
-
-#: dat/intro:9
-msgid ""
-"Many perished in the long journey. But the First Growth had begun. Humanity "
-"had now spread itself to new stars, which became known as the Frontier."
-msgstr ""
-
-#: dat/intro:11
-msgid ""
-"The Frontier colonies were isolated, not only from the Earth, but from each "
-"other. The distances were too vast, the time scales required for regular "
-"communication too great. Space travel was rare and almost certainly one-way."
-msgstr ""
-
-#: dat/intro:14
-msgid ""
-"When a method of creating weaknesses in the fabric of spacetime led to the "
-"discovery of hyperspace, everything changed. Now it was possible to create "
-"\"jump gates\", paths through hyperspace which could take a ship many light-"
-"years away in the span of only a few hours."
-msgstr ""
-
-#: dat/intro:16
-msgid ""
-"The Second Growth had begun, with earthlings spreading through hyperspace "
-"from star to star, the goal being to finally unite Earth with the colonies "
-"of the Frontier."
-msgstr ""
-
-#: dat/intro:18
-msgid ""
-"However, before the Frontier could be reached, the Faction Wars rippled "
-"through the galaxy as various people tried to obtain power and wealth for "
-"themselves."
-msgstr ""
-
-#: dat/intro:21
-msgid ""
-"After decades of war, a man named Daedris would reign supreme. He and his "
-"army established the first Galactic Empire with an iron fist. Interplanetary "
-"relations improved. Trade routes operated again for the first time in living "
-"memory. And what's more, the goal of connecting to the Frontier was finally "
-"completed. Many cheered for the Empire's success, seeing it as the protector "
-"of a new era of peace."
-msgstr ""
-
-#: dat/intro:23
-#, fuzzy
-msgid ""
-"After Daedris, under his successors, the light of the empire waned. Civil "
-"strife and religious division weakened social bonds. The Great Projects of "
-"the Empire went awry. In some regions, administration fell into the hands of "
-"other powers. The Great Houses now policed the space lanes."
-msgstr ""
-"Po Daedrisovi, pod jeho nástupci, světlo říše sláblo. Občanské spory a "
-"náboženské rozdělení oslabily sociální vazby. Velké projekty imperia se "
-"zhoršily. V některých regionech se správa dostala do rukou jiných mocností. "
-"Velké domy nyní hlídaly vesmírné cesty."
-
-#: dat/intro:25
-#, fuzzy
-msgid ""
-"But the political troubles of the Empire were nothing compared to the "
-"Incident. From Earth, a cataclysmic explosion ripped through space, "
-"annihilating stars, vaporizing worlds. Billions died. Dozens of systems "
-"disappeared into the mysterious nebula left behind. House Proteron, a newly "
-"established economic powerhouse of the Empire, was entirely obliterated. Now "
-"the great, galaxy-spanning Empire hangs on as a shadow of its former glory."
-msgstr ""
-"Ze Země proběhla vesmírem kataklyzmatická exploze, ničící hvězdy, vypařující "
-"světy. Miliardy zemřely. Desítky systémů zmizely v tajemné mlhovině po sobě "
-"zanechané. Předtím velká civilizace rozkládající se po galaxiích nyní "
-"přežívá jako stín své bývalé slávy."
-
-#: dat/intro:28
-msgid "What else remains? Questions."
-msgstr "Co ještě zbývá? Dotazy."
-
-#: dat/intro:30
-#, fuzzy
-msgid ""
-"Ten galactic cycles have passed in a universe ruled by the shards of a "
-"decaying empire. After the Incident, corruption and piracy run rampant. But "
-"where there is chaos, there is also opportunity."
-msgstr ""
-"Deset standardních cyklů uplynulo ve vesmíru ovládaném střepy rozpadající se "
-"říše. Po incidentu je na denním pořádku korupce a pirátství, ale tam, kde je "
-"chaos, existuje také příležitost."
-
-#: dat/intro:32
-#, fuzzy
-msgid "Welcome to the eye of the Imperial storm.…"
-msgstr "Vítejte ve vesmíru Naev..."
 
 #: dat/AUTHORS:1
 #, fuzzy
@@ -50202,7 +50085,7 @@ msgstr ""
 msgid "Are you sure you want to sell your %s for %s?"
 msgstr "„Byl bych schopen natankovat vaši loď za %s.“"
 
-#: src/equipment.c:2160 src/player.c:397
+#: src/equipment.c:2160 src/player.c:394
 msgid "Ship Name"
 msgstr ""
 
@@ -50215,7 +50098,7 @@ msgstr ""
 msgid "Name Collision"
 msgstr ""
 
-#: src/equipment.c:2171 src/player.c:460
+#: src/equipment.c:2171 src/player.c:457
 msgid "Please do not give the ship the same name as another of your ships."
 msgstr ""
 
@@ -51612,16 +51495,16 @@ msgstr ""
 msgid "#oAutonav: auto-landing sequence engaged."
 msgstr ""
 
-#: src/input.c:1544 src/player.c:1385
+#: src/input.c:1544 src/player.c:1382
 msgid "#oAutonav: auto-landing sequence aborted."
 msgstr ""
 
 #. Scrolling is happening faster than fading...
-#: src/intro.c:202
+#: src/intro.c:204
 msgid "Intro scrolling too fast!"
 msgstr ""
 
-#: src/intro.c:383
+#: src/intro.c:392
 msgid "Tried to fade out without an image."
 msgstr ""
 
@@ -52243,7 +52126,7 @@ msgid "Saved game '%s' invalid!"
 msgstr ""
 
 #. Welcome message - must be before space_init.
-#: src/load.c:693 src/player.c:322
+#: src/load.c:693 src/player.c:319
 #, c-format
 msgid "#gWelcome to %s!"
 msgstr ""
@@ -54089,7 +53972,7 @@ msgstr ""
 msgid "No such material %s"
 msgstr ""
 
-#: src/opengl.c:119 src/player.c:2246
+#: src/opengl.c:119 src/player.c:2243
 msgid "Aborting screenshot"
 msgstr ""
 
@@ -55467,58 +55350,58 @@ msgstr ""
 msgid "You already have a pilot named %s. Overwrite?"
 msgstr ""
 
-#: src/player.c:284
+#: src/player.c:281
 #, c-format
 msgid "Failed to run start mission '%s'."
 msgstr ""
 
-#: src/player.c:290
+#: src/player.c:287
 #, c-format
 msgid "Failed to run start event '%s'."
 msgstr ""
 
-#: src/player.c:329
+#: src/player.c:326
 msgid "Ship not properly set by module."
 msgstr ""
 
-#: src/player.c:398
+#: src/player.c:395
 msgid "Please name your new ship:"
 msgstr ""
 
-#: src/player.c:422
+#: src/player.c:419
 msgid "Player ship isn't valid... This shouldn't happen!"
 msgstr ""
 
-#: src/player.c:459
+#: src/player.c:456
 msgid "Name collision"
 msgstr ""
 
-#: src/player.c:538
+#: src/player.c:535
 msgid ""
 "Something seriously wonky went on, newly created player does not exist, "
 "bailing!"
 msgstr ""
 
-#: src/player.c:615
+#: src/player.c:612
 #, c-format
 msgid "Unable to swap player.p with ship '%s': ship does not exist!"
 msgstr ""
 
-#: src/player.c:644
+#: src/player.c:641
 #, c-format
 msgid "Unable to find price for player's ship '%s': ship does not exist!"
 msgstr ""
 
-#: src/player.c:1367
+#: src/player.c:1364
 #, c-format
 msgid "Trying to set player's planet target to invalid ID '%d'"
 msgstr ""
 
-#: src/player.c:1431
+#: src/player.c:1428
 msgid "Asteroid targeted; composition:"
 msgstr ""
 
-#: src/player.c:1435
+#: src/player.c:1432
 #, c-format
 msgid ""
 "\n"
@@ -55530,99 +55413,99 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/player.c:1442
+#: src/player.c:1439
 msgid "Asteroid targeted; composition: empty"
 msgstr ""
 
-#: src/player.c:1445
+#: src/player.c:1442
 msgid "Asteroid targeted"
 msgstr ""
 
-#: src/player.c:1518
+#: src/player.c:1515
 msgid "#rThere are no planets to land on."
 msgstr ""
 
-#: src/player.c:1533
+#: src/player.c:1530
 msgid "#rDocking stabilizers malfunctioning: cannot land."
 msgstr ""
 
-#: src/player.c:1575
+#: src/player.c:1572
 msgid "#rNo suitable planet to land on found."
 msgstr ""
 
-#: src/player.c:1586
+#: src/player.c:1583
 msgid "#rYou can't land here."
 msgstr ""
 
 #. No shoes, no shirt, no lifeforms, no service.
-#: src/player.c:1613
+#: src/player.c:1610
 #, c-format
 msgid "#oReady to land on %s."
 msgstr ""
 
-#: src/player.c:1624
+#: src/player.c:1621
 #, c-format
 msgid "#rYou are too far away to land on %s."
 msgstr ""
 
-#: src/player.c:1631
+#: src/player.c:1628
 #, c-format
 msgid "#rYou are going too fast to land on %s."
 msgstr ""
 
-#: src/player.c:1672
+#: src/player.c:1669
 msgid "Player has landing permission, but no valid planet targeted."
 msgstr ""
 
-#: src/player.c:1683
+#: src/player.c:1680
 #, c-format
 msgid "#%c%s>#0 Landing permission revoked."
 msgstr ""
 
-#: src/player.c:1710
+#: src/player.c:1707
 msgid "You are not allowed to land at this moment."
 msgstr ""
 
-#: src/player.c:1724
+#: src/player.c:1721
 #, c-format
 msgid "Trying to set player's hyperspace target to invalid ID '%d'"
 msgstr ""
 
-#: src/player.c:1828
+#: src/player.c:1825
 #, c-format
 msgid "#rReceiving hail! Press %s to respond."
 msgstr ""
 
-#: src/player.c:1870
+#: src/player.c:1867
 msgid "#rNo known jump point found."
 msgstr ""
 
-#: src/player.c:1887
+#: src/player.c:1884
 msgid "#rAborting hyperspace sequence."
 msgstr ""
 
-#: src/player.c:1896
+#: src/player.c:1893
 msgid "#rYou are too far from a jump point to initiate hyperspace."
 msgstr ""
 
-#: src/player.c:1900 src/player_autonav.c:88
+#: src/player.c:1897 src/player_autonav.c:88
 msgid "#rHyperspace drive is offline."
 msgstr ""
 
-#: src/player.c:1904
+#: src/player.c:1901
 msgid "#rYou do not have enough fuel to hyperspace jump."
 msgstr ""
 
-#: src/player.c:1907
+#: src/player.c:1904
 msgid "#oPreparing for hyperspace."
 msgstr ""
 
-#: src/player.c:1991
+#: src/player.c:1988
 #, c-format
 msgid "#oAutonav arrived at the %s system."
 msgstr ""
 
-#: src/player.c:1997
+#: src/player.c:1994
 #, c-format
 msgid "#oAutonav continuing until destination (%d jump left)."
 msgid_plural "#oAutonav continuing until destination (%d jumps left)."
@@ -55631,199 +55514,199 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. in case the crap system breaks :)
-#: src/player.c:2258
+#: src/player.c:2255
 msgid "You have reached the maximum amount of screenshots [999]"
 msgstr ""
 
 #. now proceed to take the screenshot
-#: src/player.c:2263
+#: src/player.c:2260
 #, c-format
 msgid "Taking screenshot [%03d]..."
 msgstr ""
 
-#: src/player.c:2299
+#: src/player.c:2296
 #, c-format
 msgid "#r%s is out of comm range, unable to contact."
 msgstr ""
 
-#: src/player.c:2323 src/player.c:2352
+#: src/player.c:2320 src/player.c:2349
 msgid "#rNo target selected to hail."
 msgstr ""
 
-#: src/player.c:2390
+#: src/player.c:2387
 msgid "#rYou haven't been hailed by any pilots."
 msgstr ""
 
-#: src/player.c:2401
+#: src/player.c:2398
 msgid "#oMouse flying enabled."
 msgstr ""
 
-#: src/player.c:2407
+#: src/player.c:2404
 msgid "#rMouse flying disabled."
 msgstr ""
 
-#: src/player.c:2623
+#: src/player.c:2620
 #, c-format
 msgid "Player ship '%s' not found in stack"
 msgstr ""
 
-#: src/player.c:3047
+#: src/player.c:3044
 msgid "Escort is undeployed"
 msgstr ""
 
-#: src/player.c:3270
+#: src/player.c:3267
 msgid "Found mission cargo without associated mission."
 msgstr ""
 
-#: src/player.c:3271
+#: src/player.c:3268
 msgid "Please reload save game to remove the dead cargo."
 msgstr ""
 
-#: src/player.c:3464
+#: src/player.c:3461
 msgid "Malformed time in save game!"
 msgstr ""
 
-#: src/player.c:3498
+#: src/player.c:3495
 #, c-format
 msgid "Outfit '%s' was saved but does not exist!"
 msgstr ""
 
-#: src/player.c:3504
+#: src/player.c:3501
 #, c-format
 msgid "Outfit '%s' was saved without quantity!"
 msgstr ""
 
-#: src/player.c:3524
+#: src/player.c:3521
 msgid "Player ship does not exist!"
 msgstr ""
 
-#: src/player.c:3527
+#: src/player.c:3524
 msgid "Player has no other ships, giving starting ship."
 msgstr ""
 
-#: src/player.c:3538
+#: src/player.c:3535
 #, c-format
 msgid "Giving player ship '%s'."
 msgstr ""
 
-#: src/player.c:3544
+#: src/player.c:3541
 msgid "Something went horribly wrong, player does not exist after load..."
 msgstr ""
 
-#: src/player.c:3554
+#: src/player.c:3551
 msgid "Save has no time information, setting to start information."
 msgstr ""
 
-#: src/player.c:3563
+#: src/player.c:3560
 #, c-format
 msgid ""
 "Player starts out in non-existent or invalid planet '%s',trying to find a "
 "suitable one instead."
 msgstr ""
 
-#: src/player.c:3593
+#: src/player.c:3590
 #, c-format
 msgid "Could not find a planet satisfying criteria %d."
 msgstr ""
 
-#: src/player.c:3597
+#: src/player.c:3594
 msgid "Could not find a suitable planet. Choosing a random planet."
 msgstr ""
 
-#: src/player.c:3656
+#: src/player.c:3653
 #, c-format
 msgid "Mission '%s' doesn't seem to exist anymore, removing from save."
 msgstr ""
 
-#: src/player.c:3684
+#: src/player.c:3681
 #, c-format
 msgid "Event '%s' doesn't seem to exist anymore, removing from save."
 msgstr ""
 
-#: src/player.c:3712
+#: src/player.c:3709
 msgid "License node is missing name attribute."
 msgstr ""
 
-#: src/player.c:3743
+#: src/player.c:3740
 #, c-format
 msgid "Escort has invalid type '%s'."
 msgstr ""
 
-#: src/player.c:3803
+#: src/player.c:3800
 #, c-format
 msgid ""
 "Outfit '%s' does not fit designated slot on player's pilot '%s', adding to "
 "stock."
 msgstr ""
 
-#: src/player.c:3811
+#: src/player.c:3808
 #, c-format
 msgid "Outfit '%s' does not fit on player's pilot '%s', adding to stock."
 msgstr ""
 
-#: src/player.c:3833
+#: src/player.c:3830
 msgid "Empty ship slot node found, skipping."
 msgstr ""
 
-#: src/player.c:3901
+#: src/player.c:3898
 #, c-format
 msgid "Player ship '%s' not found!"
 msgstr ""
 
-#: src/player.c:3951
+#: src/player.c:3948
 msgid "Outfit slot out of range, not adding to ship."
 msgstr ""
 
-#: src/player.c:3964 src/player.c:3977
+#: src/player.c:3961 src/player.c:3974
 msgid "Outfit slot out of range, not adding."
 msgstr ""
 
-#: src/player.c:3994
+#: src/player.c:3991
 #, c-format
 msgid "Unknown commodity '%s' detected, removing."
 msgstr ""
 
-#: src/player.c:4016
+#: src/player.c:4013
 #, c-format
 msgid ""
 "Player ship '%s' failed slot validity check , removing all outfits and "
 "adding to stock."
 msgstr ""
 
-#: src/player.c:4060
+#: src/player.c:4057
 #, c-format
 msgid ""
 "Player ship '%s' has unknown node '%s' in 'weaponsets' (expected "
 "'weaponset')."
 msgstr ""
 
-#: src/player.c:4068
+#: src/player.c:4065
 #, c-format
 msgid "Player ship '%s' missing 'id' tag for weapon set."
 msgstr ""
 
-#: src/player.c:4072
+#: src/player.c:4069
 #, c-format
 msgid "Player ship '%s' has invalid weapon set id '%d' [max %d]."
 msgstr ""
 
-#: src/player.c:4087
+#: src/player.c:4084
 #, c-format
 msgid "Player ship '%s' missing 'type' tag for weapon set."
 msgstr ""
 
-#: src/player.c:4100
+#: src/player.c:4097
 #, c-format
 msgid ""
 "Player ship '%s' has unknown 'weaponset' child node '%s' (expected 'weapon')."
 msgstr ""
 
-#: src/player.c:4108
+#: src/player.c:4105
 #, c-format
 msgid "Player ship '%s' missing 'level' tag for weapon set weapon."
 msgstr ""
 
-#: src/player.c:4113
+#: src/player.c:4110
 #, c-format
 msgid "Player ship '%s' has invalid weapon id %d [max %d]."
 msgstr ""
@@ -57601,3 +57484,47 @@ msgstr ""
 #: src/weapon.c:1865
 msgid "Trying to remove beam with ID 0!"
 msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "After Daedris, under his successors, the light of the empire waned. Civil "
+#~ "strife and religious division weakened social bonds. The Great Projects "
+#~ "of the Empire went awry. In some regions, administration fell into the "
+#~ "hands of other powers. The Great Houses now policed the space lanes."
+#~ msgstr ""
+#~ "Po Daedrisovi, pod jeho nástupci, světlo říše sláblo. Občanské spory a "
+#~ "náboženské rozdělení oslabily sociální vazby. Velké projekty imperia se "
+#~ "zhoršily. V některých regionech se správa dostala do rukou jiných "
+#~ "mocností. Velké domy nyní hlídaly vesmírné cesty."
+
+#, fuzzy
+#~ msgid ""
+#~ "But the political troubles of the Empire were nothing compared to the "
+#~ "Incident. From Earth, a cataclysmic explosion ripped through space, "
+#~ "annihilating stars, vaporizing worlds. Billions died. Dozens of systems "
+#~ "disappeared into the mysterious nebula left behind. House Proteron, a "
+#~ "newly established economic powerhouse of the Empire, was entirely "
+#~ "obliterated. Now the great, galaxy-spanning Empire hangs on as a shadow "
+#~ "of its former glory."
+#~ msgstr ""
+#~ "Ze Země proběhla vesmírem kataklyzmatická exploze, ničící hvězdy, "
+#~ "vypařující světy. Miliardy zemřely. Desítky systémů zmizely v tajemné "
+#~ "mlhovině po sobě zanechané. Předtím velká civilizace rozkládající se po "
+#~ "galaxiích nyní přežívá jako stín své bývalé slávy."
+
+#~ msgid "What else remains? Questions."
+#~ msgstr "Co ještě zbývá? Dotazy."
+
+#, fuzzy
+#~ msgid ""
+#~ "Ten galactic cycles have passed in a universe ruled by the shards of a "
+#~ "decaying empire. After the Incident, corruption and piracy run rampant. "
+#~ "But where there is chaos, there is also opportunity."
+#~ msgstr ""
+#~ "Deset standardních cyklů uplynulo ve vesmíru ovládaném střepy rozpadající "
+#~ "se říše. Po incidentu je na denním pořádku korupce a pirátství, ale tam, "
+#~ "kde je chaos, existuje také příležitost."
+
+#, fuzzy
+#~ msgid "Welcome to the eye of the Imperial storm.…"
+#~ msgstr "Vítejte ve vesmíru Naev..."
