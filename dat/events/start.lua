@@ -45,6 +45,11 @@ function create()
    jump.setKnown("Hakoi", "Eneguoz")
    var.push("player_formation", "circle")
 
+   local exp = time.get() + time.create(0, 250, 0)
+   news.add("Empire", _("Remembering the Incident"),
+         _([[GCT 603:3726 marks the ten cycle anniversary of the Incident, where a mysterious cataclysmic explosion ripped through the heart of the Empire, destroying Earth and eradicating House Proteron. The Emperor delivered a speech to commemorate the tragedy today. "We mourn with sorrow the loss of many on that dreadful day, and the loss of our precious homeworld. We still don't know what caused the Incident for certain, but rest assured: the Empire will not let this happen again, and if terrorists are to blame, we will find them and bring them to justice."]]),
+         exp)
+
    -- Give all GUIs
    -- XXX: Would be better to remove these outfits and the association,
    -- but they're so tightly integrated atm (with no other way to define
