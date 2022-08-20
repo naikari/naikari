@@ -25,6 +25,7 @@
 #include "dialogue.h"
 #include "economy.h"
 #include "hook.h"
+#include "land.h"
 #include "land_shipyard.h"
 #include "log.h"
 #include "map_find.h"

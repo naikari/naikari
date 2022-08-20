@@ -52,6 +52,7 @@ enum {
  * Landed at.
  */
 extern int landed;
+extern int land_takeoff;
 extern Planet* land_planet;
 
 
