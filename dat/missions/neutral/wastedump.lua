@@ -131,8 +131,8 @@ function accept ()
    player.pay(credits)
 
    local osd_msg = {
-      fmt.f(_("Land on any garbage collection facility (indicated on your map) to drop off the Waste Containers\n\tAlternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the ship computer (press {infokey} to open), and jump out of the system before you are discovered"),
-            {infokey=naev.keyGet("info")}),
+      _("Land on any garbage collection facility (indicated on your map) to drop off the Waste Containers"),
+      _("Alternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the Ship Computer, and jump out of the system before you are discovered"),
    }
    misn.osdCreate(osd_title, osd_msg)
 
