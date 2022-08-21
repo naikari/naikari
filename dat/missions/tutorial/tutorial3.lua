@@ -51,9 +51,7 @@ overlay_text = _([["It's been awhile since I've been in space," Ian notes somewh
 
 "To that end, I've marked an asteroid field in this system on your ship's overlay map. Could you press {overlaykey} to open your overlay map so I can show you, please?"]])
 
-autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to #bright-click#0 that area so we can be taken there as fast as possible with Autonav. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous.
-
-"Here, I brought a nice game we can play while Autonav takes us to the asteroid field! It's a sandbox game where you control a space trader coming up in a time of turmoil, taking odd jobs, acquiring ships, and hiring pilots as you build your fortune. As the game progresses, you have a chance to aid various factions to win their favor and decide the ultimate fate of the galaxy amid chaos as the Galactic Federation collapses! Sounds fun, right?"]])
+autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to #bright-click#0 that area so we can be taken there as fast as possible with Autonav. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous.]])
 
 mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, usually ore, and you can pick the commodity up simply by flying over its location.
 
