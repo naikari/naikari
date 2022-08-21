@@ -452,6 +452,17 @@
  </tech>
 
  <!-- Generic Outfits -->
+ <tech name="Common Outfits">
+  <item>Laser Cannon MK1</item>
+  <item>Asteroid Scanner</item>
+  <item>Solar Panel</item>
+  <item>Shield Capacitor</item>
+  <item>Battery</item>
+  <item>Fuel Pod</item>
+  <item>Crappy Core Systems</item>
+  <item>Star Maps</item>
+  <item>Mercenary License</item>
+ </tech>
  <tech name="Crappy Core Systems">
   <item>Previous Generation Small Systems</item>
   <item>Previous Generation Medium Systems</item>
@@ -462,6 +473,49 @@
   <item>Patchwork Light Plating</item>
   <item>Patchwork Medium Plating</item>
   <item>Patchwork Heavy Plating</item>
+ </tech>
+ <tech name="Basic Yacht Cores">
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp D-4 Light Plating</item>
+ </tech>
+ <tech name="Elite Yacht Cores">
+  <item>Milspec Aegis 2201 Core System</item>
+  <item>Milspec Hermes 2202 Core System</item>
+  <item>Milspec Prometheus 2203 Core System</item>
+  <item>Milspec Aegis 3601 Core System</item>
+  <item>Milspec Prometheus 3603 Core System</item>
+  <item>Tricon Zephyr Engine</item>
+  <item>Tricon Zephyr II Engine</item>
+  <item>S&amp;K Ultralight Combat Plating</item>
+ </tech>
+ <tech name="Basic Courier Cores">
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
+ </tech>
+ <tech name="Elite Courier Cores">
+  <item>Milspec Aegis 3601 Core System</item>
+  <item>Milspec Hermes 3602 Core System</item>
+  <item>Milspec Prometheus 3603 Core System</item>
+  <item>Tricon Zephyr II Engine</item>
+  <item>Melendez Ox XL Engine</item>
+  <item>S&amp;K Small Cargo Hull</item>
+ </tech>
+ <tech name="Basic Freighter Cores">
+  <item>Unicorp PT-750 Core System</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-24 Medium Plating</item>
+ </tech>
+ <tech name="Elite Freighter Cores">
+  <item>Milspec Aegis 4701 Core System</item>
+  <item>Milspec Hermes 4702 Core System</item>
+  <item>Milspec Prometheus 4703 Core System</item>
+  <item>Melendez Buffalo XL Engine</item>
+  <item>S&amp;K Medium Cargo Hull</item>
  </tech>
  <tech name="Basic Outfits 1">
   <item>Laser Cannon MK1</item>
