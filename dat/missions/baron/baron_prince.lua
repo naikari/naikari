@@ -190,19 +190,19 @@ function set_osd()
 
    local artifact_osd = _("Approach artifact seller at one of the following locations and buy the artifact:")
    if not artifactAfound then
-      artifact_osd = artifact_osd .. "\n\t"
+      artifact_osd = artifact_osd .. "\n"
             .. fmt.f(_("{planet} ({system} system)"),
                {planet=artifactplanetA:name(), system=artifactsysA:name()})
       markerA = misn.markerAdd(artifactsysA, "low")
    end
    if not artifactBfound then
-      artifact_osd = artifact_osd .. "\n\t"
+      artifact_osd = artifact_osd .. "\n"
             .. fmt.f(_("{planet} ({system} system)"),
                {planet=artifactplanetB:name(), system=artifactsysB:name()})
       markerB = misn.markerAdd(artifactsysB, "low")
    end
    if not artifactCfound then
-      artifact_osd = artifact_osd .. "\n\t"
+      artifact_osd = artifact_osd .. "\n"
             .. fmt.f(_("{planet} ({system} system)"),
                {planet=artifactplanetC:name(), system=artifactsysC:name()})
       markerC = misn.markerAdd(artifactsysC, "low")

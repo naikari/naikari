@@ -96,9 +96,12 @@ function accept()
          fmt.f(_("Press {overlaykey} to open your overlay map"),
             {overlaykey=naev.keyGet("overlay")}),
          _("Fly to Asteroid Field indicated on overlay map by right-clicking the area"),
-         fmt.f(_("Mine ore from asteroids until your cargo hold is full:\n\tSelect an asteroid by left-clicking on it\n\tUse {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid\n\tFly to the location of dropped Ore to collect it"),
+         _("Mine ore from asteroids until your cargo hold is full:"),
+         "\t- " .. _("Select an asteroid by left-clicking on it"),
+         "\t- " .. fmt.f(_("Use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid"),
             {primarykey=naev.keyGet("primary"),
                secondarykey=naev.keyGet("secondary")}),
+         "\t- " .. _("Fly to the location of dropped Ore to collect it"),
          fmt.f(_("Engage Active Cooldown by pressing {autobrake_key} twice, then wait for your ship to fully cool down"),
             {autobrake_key=naev.keyGet("autobrake")}),
          fmt.f(_("Land on {planet} ({system} system)"),
@@ -114,14 +117,15 @@ end
 
 
 function enter()
-   hook.timer(1, "timer_enter")
+   player.allowLand(false)
+   player.pilot():setNoJump(true)
+
+   hook.rm(timer_hook)
+   timer_hook = hook.timer(2, "timer_enter")
 end
 
 
 function timer_enter()
-   player.allowLand(false)
-   player.pilot():setNoJump(true)
-
    tk.msg("", fmt.f(overlay_text,
             {player=player.name(), overlaykey=tutGetKey("overlay")}))
 
@@ -179,7 +183,7 @@ function timer_mining()
    system.mrkRm(mark)
 
    tk.msg("", fmt.f(cooldown_text, {autobrake_key=tutGetKey("autobrake")}))
-   misn.osdActive(5)
+   misn.osdActive(8)
 
    hook.timer(1, "timer_cooldown")
 end
@@ -195,7 +199,7 @@ function timer_cooldown()
    player.pilot():setNoJump(false)
 
    tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
-   misn.osdActive(6)
+   misn.osdActive(9)
 
    hook.land("land")
 end

@@ -111,7 +111,7 @@ function accept()
       misn.setDesc(misn_desc)
 
       local osd_desc = {
-         fmt.f(_("Follow Ian Structure by left-clicking on his ship and then pressing {followkey}\n\tWait for Ian Structure to jump to {system}"),
+         fmt.f(_("Follow Ian Structure by left-clicking on his ship and then pressing {followkey}, then wait for Ian Structure to jump to {system}"),
             {followkey=naev.keyGet("follow"), system=missys:name()}),
          fmt.f(_("Jump to {system}"), {system=missys:name()}),
          fmt.f(_("Follow Ian Structure and wait for him to land on {planet}"),
