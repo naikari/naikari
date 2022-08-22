@@ -25,7 +25,6 @@ local fmt = require "fmt"
 local fleet = require "fleet"
 local mh = require "misnhelper"
 require "nextjump"
-require "proximity"
 require "cargo_common"
 
 
@@ -221,7 +220,7 @@ function land()
 end
 
 
-function traderDeath()
+function traderDeath(p)
    alive = alive - 1
    updateOSD()
    if alive <= 0 then
@@ -376,9 +375,10 @@ function spawnConvoy()
 
          p:setHilight(true)
          p:setInvincPlayer()
+         p:setVisplayer()
 
-         hook.pilot(p, "death", "traderDeath")
-         hook.pilot(p, "attacked", "traderAttacked", p)
+         hook.pilot(p, "exploded", "traderDeath")
+         hook.pilot(p, "attacked", "traderAttacked")
          hook.pilot(p, "land", "traderLand")
          hook.pilot(p, "jump", "traderJump")
       end
@@ -459,14 +459,25 @@ function organize_fleet(convoy)
       dest = jump.get(system.cur(), nextsys):pos()
    end
 
-   -- Note: This might create multiple proximity hooks, so the hook's
-   -- return function has to tolerate that.
-   hook.timer(0.5, "proximity",
-         {location=dest, radius=500, funcname="prox_jump", focus=leader})
+   hook.rm(prox_timer)
+   prox_timer = hook.timer(0.5, "prox_jump", dest)
 end
 
 
-function prox_jump()
+function prox_jump(dest)
+   local nearby = false
+   for i, p in ipairs(convoy) do
+      if p:exists() and vec2.dist(p:pos(), dest) <= 1000 then
+         nearby = true
+         break
+      end
+   end
+
+   if not nearby then
+      prox_timer = hook.timer(0.5, "prox_jump", dest)
+      return
+   end
+
    for i, p in ipairs(convoy) do
       if p:exists() then
          p:setNoJump(false)
