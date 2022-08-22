@@ -54,7 +54,7 @@ land_text = _([[You watch as the ship – your ship – automatically guides you
 
 finish_text = _([[The salesperson makes you sign dozens of forms: tax forms, waivers, indemnity agreements, and much more that you aren't given enough time to process. When you finish, the salesperson pats you on the back. "You have made an excellent choice, {player}! I'm sure you'll be making millions of credits in no time.
 
-In fact, I know just where to start. A gentleman at the bar is looking for a hired hand, and I assure you, he pays good rates! I've told him about you and he said he would be thrilled to hire you for a job!" The salesperson offers their hand and, not wanting to be combative, you shake it. "Good luck, {player}!" they say before swiftly escorting you out of their office.
+"In fact, I know just where to start. A gentleman at the bar is looking for a hired hand, and I assure you, he pays good rates! I've told him about you and he said he would be thrilled to hire you for a job!" The salesperson offers their hand and, not wanting to be combative, you shake it. "Good luck, {player}!" they say before swiftly escorting you out of their office.
 
 A bit dizzy and confused, you figure you might as well meet this man at the Spaceport Bar the salesperson mentioned and see if the job is worthwhile.]])
 
