@@ -181,32 +181,22 @@ msg_lore = {}
 msg_lore["general"] = {
    _([["I heard the nebula is haunted! My uncle told me he saw one of the ghost ships himself over in Arandon."]]),
    _([["I don't believe in those nebula ghost stories. The people who spread them are just trying to scare you."]]),
-   _([["Have you seen that ship the Emperor lives on? It's huge! But if you ask me, it looks a bit like a… No, never mind."]]),
-   _([["They say Eduard Manual Goddard is drifting in space somewhere, entombed amidst a cache of his inventions! What I wouldn't give to rummage through there.…"]]),
    _([["Don't try to fly into the inner nebula. I've known people who tried, and none of them came back."]]),
-   _([["Sometimes I look at the stars and wonder… are we the only sentient species in the universe?"]]),
-   _([["Hey, you ever wonder why we're here?" You respond that it's one of the great mysteries of the universe. Why are we here? Are we the product of some cosmic coincidence or is there some great cosmic plan for us? You don't know, but it sometimes keeps you up at night. As you say this, the citizen stares at you incredulously. "What?? No, I mean why are we in here, in this bar?"]]),
-   _([["Don't be fooled by those distances your ship's instruments show you; the places you travel through are actually about 100,000 times larger on average. Unbelievable, I know! But traveling through systems in any reasonable amount of time would require traveling significantly faster than the speed of light, so every modern ship uses quantum triangulation to slip our ships through naturally occurring miniature dark matter wormholes, and since these are the same for every ship, your ship's computer is able to calculate a consistent position in an artificial 2-D space. Pretty cool, don't you think?"]]),
-   _([["I've been a pilot long enough to remember the days when ships were sold completely bare with no defenses built-in. Something about regulatory agencies not allowing them to bundle restricted weapons. Thankfully they eventually saw sense and now you can fly a new ship right away without having to worry that a pirate is going to blow you to smithereens."]]),
-   _([["Did you know that the Galactic Common Time system almost did away with terms like 'hours' and 'seconds'? It's true! The guy who originally proposed the system wanted to rename seconds to 'Standard Time Units' and call galactic hours 'Standard Time Periods'. What's more, he wanted us all to use the abbreviations 'STU', 'STP', and 'SCU' to refer to seconds, hours, and cycles! There were massive protests back then, believe it or not, and many planets threatened to not adopt the system, so they relented and simply reused 'hours' and 'seconds' for the new time definitions."]]),
+   _([["Don't be fooled by those distances your ship's instruments show you; the places you travel through are actually about 100,000 times larger on average. Unbelievable, I know! But traveling through systems in any reasonable amount of time would require traveling significantly faster than the speed of light, so every modern ship uses quantum triangulation to slip our ships through naturally occurring miniature dark matter wormholes, and since these are the same for every ship, your ship's computer is able to calculate a consistent position in an artificial 2-D space."]]),
 }
 
 msg_lore["Independent"] = {
-   _([["We're not part of any of the galactic superpowers. We can take care of ourselves!"]]),
-   _([["Sometimes I worry that our lack of a standing military leaves us vulnerable to attack. I hope nobody will get any ideas about conquering us!"]]),
-   _([["I find it rather odd that anyone would answer to some bureaucrat who doesn't even live on the same planet as them. What a strange universe we live in."]]),
    _([["Don't listen to those conspiracy theories about the Incident. We don't know what happened, sure, but why on Earth would someone blow up… you know, Earth… on purpose?"]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
+   _([["I won't lie, the Soromid freak me the hell out. Something's just… fishy about them. You know what I mean?"]]),
 }
 
 msg_lore["Empire"] = {
    _([["Things are getting worse by the cycle. What happened to the Empire? We used to be the lords and masters over the whole galaxy!"]]),
-   _([["Did you know that House Za'lek was originally a Great Project initiated by the Empire? Well, now you do! There was also a Project Proteron, but that didn't go so well."]]),
-   _([["The Emperor lives on a giant supercruiser in Gamma Polaris. It's said to be the biggest ship in the galaxy! I totally want one."]]),
-   _([["I'm still waiting for my pilot license application to get through. Oh well, it's only been half a cycle, I just have to be patient."]]),
-   _([["Between you and me, the laws the Council passes can get really ridiculous! Most planets find creative ways of ignoring them.…"]]),
+   _([["Did you know that House Za'lek was originally a Great Project initiated by the Empire? There was also a Project Proteron, but that one didn't go so well."]]),
+   _([["The Emperor lives on a giant supercruiser in Gamma Polaris. It's said to be the biggest ship in the galaxy! I wish I could have one."]]),
    _([["Don't pay attention to the naysayers. The Empire is still strong. Have you ever seen a Peacemaker up close? I doubt any ship fielded by any other power could stand up to one."]]),
    _([["I don't know who did it, but believe me, the Incident was no accident! It was definitely a terrorist attack orchestrated by those disloyal Great Houses in an effort to take down the Empire."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
@@ -216,14 +206,11 @@ msg_lore["Empire"] = {
 }
 
 msg_lore["Dvaered"] = {
-   _([["Our Warlord is currently fighting for control over another planet. We all support him unconditionally, of course! Of course.…"]]),
    _([["My great-great-great-grandfather fought in the Dvaered Revolts! We still have the holovids he made. I'm proud to be a Dvaered!"]]),
-   _([["I've got lots of civilian commendations! It's important to have commendations if you're a Dvaered."]]),
-   _([["You better not mess with House Dvaered. Our military is the largest and strongest in the galaxy. Nobody can stand up to us!"]]),
+   _([["You'd better not mess with the Dvaered. Our military is the largest and strongest in the galaxy. Nobody can stand up to us!"]]),
    _([["House Dvaered? House? The Empire is weak and useless, we don't need them anymore! I say we declare ourselves an independent faction today. What are they going to do, subjugate us? We all know how well that went last time! Ha!"]]),
    _([["I'm thinking about joining the military. Every time I see or hear news about those rotten FLF bastards, it makes my blood boil! They should all be pounded into space dust!"]]),
    _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
-   _([["Did you know that House Dvaered was named after a hero of the revolt? At least that's what my grandparents told me."]]),
    _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to create that nebula so they would have a place to hide. Damn criminals…"]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
@@ -233,41 +220,31 @@ msg_lore["Dvaered"] = {
 msg_lore["Sirius"] = {
    _([["Greetings, traveler. May Sirichana's wisdom guide you as it guides me."]]),
    _([["I once met one of the Touched in person. Well, it wasn't really a meeting, our eyes simply met… but that instant alone was awe-inspiring."]]),
-   _([["They say Sirichana lives and dies like any other man, but each new Sirichana is the same as the last. How is that possible?"]]),
    _([["My cousin was called to Mutris a cycle ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
    _([["Some people say Sirius society is unfair because our echelons are determined by birth. But even though we are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
-   _([["House Sirius is officially part of the Empire, but everyone knows that's only true on paper. The Emperor has nothing to say in these systems. We follow Sirichana, and no-one else."]]),
-   _([["You can easily tell the different echelons apart. Every Sirius citizen and soldier wears clothing appropriate to his or her echelon."]]),
+   _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has nothing to say in these systems. We follow Sirichana, and no one else."]]),
    _([["I hope to meet one of the Touched one day!"]]),
-   _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into his plan, and he punished the Empire for having started that so-called 'Great Project'."]]),
+   _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into His plan, and He punished the Empire for having started that so-called 'Great Project'."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
 
 msg_lore["Soromid"] = {
-   _("Hello. Can I interest you in one of our galaxy famous cosmetic gene treatments? You look like you could use them.…"),
-   _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got burnt to a crisp! Even now, cycles later, I still can't believe it."]]),
+   _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got burnt to a crisp hours before I was set to arrive! Even now, cycles later, I still can't believe I came so close to losing my life."]]),
    _([["Yes, it's true, our military ships are alive. Us normal folk don't get to own bioships though, we have to make do with synthetic constructs just like everyone else."]]),
    _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
-   _([["Our cosmetic gene treatments are even safer now for non-Soromids, with a rate of survival of 99.4%!"]]),
-   _([["We have been rebuilding and enhancing our bodies for so long, we've practically evolved into a new species."]]),
    _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
+   _([["Sometimes I worry a little about the growing anti-Soromid sentiment. We never really did fully move away from the Empire's stigmatization of us during the Great Quarantine."]]),
+   _([["I don't trust the Empire, so I'm frankly glad it's in decline. First we had the Great Quarantine, and then the Incident wiped out our homeworld. I'm not saying the Empire caused the Incident on purpose, but considering Sol was at the center of it and the Empire controlled all of Sol, I'm sure the Empire is at least partially to blame."]]),
+   _([["They don't teach about the Great Quarantine in the Empire, do they? A few hundred cycles ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only through the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
 }
 
 msg_lore["Za'lek"] = {
-   _([["It's not easy, dancing to those scientists' tunes. They give you the most impossible tasks! Like, where am I supposed to get a triple redundant helitron converter? Honestly."]]),
-   _([["The Soromids? Hah! We Za'lek are the only true scientists in this galaxy."]]),
-   _([["I don't understand why we bother sending our research results to the Empire. These asshats can't understand the simplest formulas!"]]),
-   _([["Do you know why many optimization algorithms require your objective function to be convex? It's not only because of the question of local minima, but also because if your function is locally concave around the current iterate, the next one will lead to a greater value of your objective function. There are still too many people who don't know this!"]]),
-   _([["There are so many algorithms for solving the non-linear eigenvalues problem, I never know which one to choose. Which one do you prefer?"]]),
-   _([["I recently attended a very interesting conference about the history of applied mathematics before the space age. Even in those primitive times, people used to do numerical algebra. They didn't even have quantic computers back at that time! Imagine: they had to wait for hours to solve a problem with only a dozen billion degrees of freedom!"]]),
-   _([["Last time I had to solve a deconvolution problem, its condition number was so high that its inverse reached numerical zero on Octuple Precision!"]]),
-   _([["I am worried about my sister. She's on trial for 'abusive self-citing' and the public prosecutor has requested a life sentence."]]),
-   _([["They opened two professor positions on precision machining in Atryssa Central Manufacturing Lab, and none in Bedimann Advanced Process Lab, but everyone knows that the BAPL needs reinforcement ever since three of its professors retired last cycle. People say it's because a member of Atryssa's lab posted a positive review of the president of the Za'lek central scientific recruitment committee."]]),
-   _([["Even if our labs are the best in the galaxy, other factions have their own labs as well. For example, Dvaer Prime Lab for Advanced Mace Rocket Studies used to be very successful until it was nuked by mistake by a warlord during an invasion of the planet."]]),
    _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but through the discovery of more data, we can uncover the true answer."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
+   _([["I'll admit that the living Soromid ships are marginally interesting, but truly, they can't beat the best synthetic technology."]]),
+   _([["I don't know why we even bother sending our research results to the Empire anymore. Everyone knows it's just charity at this point."]]),
 }
 
 msg_lore["Thurion"] = {
@@ -298,9 +275,6 @@ msg_lore["Proteron"] = {
 msg_lore["Frontier"] = {
    _([["We value our autonomy. We don't want to be ruled by those Dvaered Warlords! Can't they just shoot at each other instead of threatening us? If it wasn't for the Liberation Front…"]]),
    _([["Have you studied your galactic history? The Frontier worlds were the first to be colonized by humans. That makes our worlds the oldest human settlements in the galaxy, now that Earth is gone."]]),
-   _([["We have the Dvaered encroaching on our territory on one side, and the Sirius zealots on the other. Sometimes I worry that in a few decacycles, the Frontier will no longer exist."]]),
-   _([["Have you visited the Frontier Museum? They've got a scale model of a First Growth colony ship on display in one of the big rooms. Even scaled down like that, it's massive! Imagine how overwhelming the real ones must have been."]]),
-   _([["There are twelve true Frontier worlds, because twelve colony ships successfully completed their journey in the First Growth. But did you know that there were twenty colony ships to begin with? Eight of them never made it. Some are said to have mysteriously disappeared. I wonder what happened to them?"]]),
    _([["We don't have much here in the Frontier, other than our long history leading directly back to Earth. But I don't mind. I'm happy living here, and I wouldn't want to move anywhere else."]]),
    _([["You know the Frontier Liberation Front? They're the guerrilla movement that fights for the Frontier. I hope they can continue to hold out."]]),
    _([["The Incident? Oh, I don't think about it too much. It's a tragedy, but we have enough of our own problems to deal with as-is."]]),
@@ -309,28 +283,18 @@ msg_lore["Frontier"] = {
 }
 
 msg_lore["FLF"] = {
-   _([["I can't stand Dvaereds. I just want to wipe them all off the map. Don't you?"]]),
-   _([["One of these days, we will completely rid the Frontier of Dvaered oppressors. Mark my words!"]]),
    _([["Have you ever wondered about our chances of actually winning over the Dvaereds? Sometimes I worry a little."]]),
    _([["I was in charge of a bombing run recently. The mission was a success, but I lost a lot of comrades in the process. I wish I could bring them back, but in lieu of that, I fight for their honor as well as my own."]]),
-   _([["It's true that lots of Frontier officials fund our operations. They have to keep it all hush-hush for political reasons, but no one in the Frontier wants the Dvaered to be allowed to do what they're doing."]]),
    _([["They'll always label us as 'terrorists'. It's nothing more than Dvaered propaganda designed to divide us. We are fighting for the Frontier against the Dvaereds, and the Dvaereds won't ever be OK with that."]]),
+   _([["It's important not to forget the action needed on the ground. Fighting is a part of our work, yes, but we also have to preserve a Frontier worth protecting."]]),
 }
 
 msg_lore["Pirate"] = {
-   _([["Hi mate. Money or your life! Heh heh, just messing with you."]]),
-   _([["Hey, look at these new scars I got!"]]),
-   _([["Have you heard of the Pirates' Code? They're more guidelines than rules.…"]]),
-   _([["My gran once said to me, 'Never trust a pirate.' Well, she was right! I got a pretty credit chip out of her wallet last time I saw her, and I'd do it again."]]),
-   _([["I don't understand why some pirates talk like 16th-century Earth pirates even though that planet is literally dead."]]),
    _([["I may be a pirate who blows up ships and steals for a living, but that inner nebula still kind of freaks me out."]]),
-   _([["Damn Empire stopped my heist a few days ago. Just wait till they see me again.…"]]),
-   _([["There's a pirate clanworld I really wanted to get to, but they wouldn't let me in because I'm a 'small-time pirate'! Sometimes I think I'll never make it in this line of work.…"]]),
    _([["I was around before Haven was destroyed, you know! Funny times. All the pirates were panicking and the Empire was cheering thinking that we were done for. Ha! As if! It barely even made a difference. We just relocated to New Haven and resumed business as usual."]]),
-   _([["You know, I got into this business by accident to tell the truth. But what can you do? I could get a fake ID and pretend to be someone else but I'd get caught eventually anyway. Might as well make the best of what I have now."]]),
+   _([["You know, I got into this business by accident to tell the truth. But what can you do? I could get a fake ID and pretend to be someone else but I'd get caught eventually. Might as well make the best of what I have now."]]),
    _([["One of my favorite things to do is buy a fake ID and then deliver as much contraband as I can before I get caught. It's great fun, and finding out that my identity's been discovered gives me a rush!"]]),
-   _([["Back when I started out in this business all you could do was go around delivering packages for other people. Becoming a pirate was real hard back then, but I got so bored I became a pirate anyway. Nowadays things are way more exciting for normies, but I don't regret my choice one bit!"]]),
-   _([["The Skull and Bones used to sell garbage ships. I mean, don't get me wrong, they still worked great, but they were always in terrible shape when you bought them, like they'd just come out of a meat grinder: scrappy and thrown together hulls that barely held together, outdated core systems, and the engines would barely even propel you through space. Back then you had to immediately get to work replacing everything in your 'new' ship just so they would function. It's much better nowadays, thankfully."]]),
+   _([["If you ask me, the Incident was some sort of alien dimensional phenomenon. I heard rumors of ghost ships flying about that look like nothing humanity has ever invented. Whether the Incident was intentional or just an accidental slip-up, I don't know."]]),
 }
 
 -- Gameplay tip messages.
@@ -339,31 +303,21 @@ msg_lore["Pirate"] = {
 msg_tip = {
    _([["I heard you can set your weapons to only fire when your target is in range, or just let them fire when you pull the trigger. Sounds handy!"]]),
    string.format( _([["Did you know that if a planet doesn't like you, you can often bribe the spaceport operators and land anyway? Just hail the planet with %s, and click the bribe button! Careful though, it doesn't always work."]]), tutGetKey("hail") ),
-   _([["These new-fangled missile systems! You can't even fire them unless you get a target lock first! But the same thing goes for your opponents. You can actually make it harder for them to lock on to your ship by equipping scramblers or jammers. Scout class ships are also harder to target."]]),
    _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
-   _([["If you're on a mission you just can't beat, you can open the information panel and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
-   _([["Some weapons have a different effect on shields than they do on armor. Keep that in mind when equipping your ship."]]),
+   _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
    _([["Afterburners can speed you up a lot, but when they get hot they don't work as well anymore. Don't use them carelessly!"]]),
-   _([["There are passive outfits and active outfits. The passive ones modify your ship continuously, but the active ones only work if you turn them on. You usually can't keep an active outfit on all the time, so you need to be careful only to use it when you need it."]]),
    _([["If you're new to the galaxy, I recommend you buy a map or two. It can make exploration a bit easier."]]),
    _([["Scramblers and jammers make it harder for missiles to track you. They can be very handy if your enemies use missiles."]]),
    string.format( _([["If you're having trouble with overheating weapons or outfits, you can press %s twice to put your ship into Active Cooldown; that'll dissipate all heat from your ship and also refill your rocket ammunition. Careful though, your energy and shields won't recharge while you do it!"]]), tutGetKey("autobrake") ),
-   _([["If you're having trouble shooting other ships face on, try outfitting with turrets or use an afterburner to avoid them entirely!"]]),
    _([["You know how time speeds up when Autonav is on, but then goes back to normal when enemies are around? Turns out you can't disable the return to normal speed entirely, but you can control what amount of danger triggers it. Really handy if you want to ignore enemies that aren't actually hitting you."]]),
    _([["Flying bigger ships is awesome, but it's a bit tougher than flying smaller ships. There's so much more you have to do for the same actions, time just seems to fly by faster. I guess the upside of that is that you don't notice how slow your ship is as much."]]),
-   _([["I know it can be tempting to fly the big and powerful ships, but don't underestimate smaller ones! Given their simpler designs and lesser crew size, you have a lot more time to react with a smaller vessel. Some are even so simple to pilot that time seems to slow down all around you!"]]),
    _([["Mining can be an easy way to earn some extra credits, but every once in a while an asteroid will just randomly explode for no apparent reason, so you have to watch out for that. Yeah, I don't know why they do that either."]]),
-   _([["Rich folk will pay extra to go on an offworld sightseeing tour in a luxury yacht. I don't get it personally; it's all the same no matter what ship you're in."]]),
-   _([["Different ships should be built and piloted differently. One of the hardest lessons I learned as a pilot was to stop worrying so much about the damage my ship was taking in battle while piloting a large ship. These ships are too slow for dodging, not to mention so complicated that they reduce your reaction time, so you need to learn to just take the hits and focus your attention on firing back at your enemies."]]),
-   _([["Remember that when you pilot a big ship, you perceive time passing a lot faster than you do when you pilot a small ship. It can be easy to forget just how slow these larger ships are when you're frantically trying to depressurize the exhaust valve while also configuring the capacitance array. In a way the slow speed of the ship becomes a pretty huge relief!"]]),
-   _([["There's always an exception to the rule, but I wouldn't recommend using forward-facing weapons on larger ships. Large ships' slower turn rates aren't able to keep up with the dashing and dodging of smaller ships, and aiming is harder anyway what with how complex these ships are. Turrets are much better; they aim automatically and usually do a very good job!"]]),
+   _([["Different ships should be built and piloted differently. One of the hardest lessons I learned as a pilot was to stop worrying so much about the damage my ship was taking in battle while piloting a large ship. These ships are too slow for dodging, so you need to learn to just take the hits and focus your attention on firing back at your enemies."]]),
    _([["Don't forget to have your target selected. Even if you have forward-facing weapons, the weapons will swivel a bit to track your target. But it's absolutely essential for turreted weapons."]]),
-   _("\"Did you know that you can automatically follow a pilot with Autonav? It's true! Just #bleft-click#0 the pilot to target them and then #bright-click#0 your target to follow! I like to use this feature for escort missions. It makes them a lot less tedious.\""),
    _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's sometimes expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
    _([["If you're piloting a medium ship, I'd recommend you invest in at least one turreted missile launcher. I had a close call a few days ago where a bomber nearly blew me to bits outside the range of my Laser Turrets. Luckily I just barely managed to escape to a nearby planet. I've not had that problem ever since I equipped a turreted missile launcher."]]),
-   _([["These computer symbols can be confusing sometimes! I've figured it out, though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable. I wish someone had told me that!"]]),
+   _([["These computer symbols can be confusing sometimes! I've figured it out, though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
    _([["This can be a bit dangerous, but if you ever run out of fuel in a system with nothing to land on and no friendly pilots willing to refuel you, pirates will often be willing to sell you some of their fuel. You just have to bribe them first. It'll put a drain on your credits, but at least you can make it out alive!"]]),
-   _([["A lot of interfaces that give you a bunch of images to select and a button to click also allow you to right-click on the images. Here at the bar, right-clicking on one of us is the same as clicking the 'Approach' button. Give it a try!"]]),
    _([["Launchers and fighter bays have their mass listed as a range rather than just a flat mass because the ammo has its own mass. When they're empty, their mass is the minimum mass, and when they're full, their mass is the maximum mass."]]),
    _([["Those new combat practice missions in the mission computer are real handy! You can even fight against Proteron ship look-alikes, but don't be fooled; they're not the real deal."]]),
 }
@@ -404,8 +358,6 @@ msg_ehint = {
 msg_mdone = {
    {"Baron", _([["Some thieves broke into a museum on Varia and stole a holopainting! Most of the thieves were caught, but the one who carried the holopainting offworld is still at large. No leads."]])},
    {"Destroy the FLF base!", _([["The Dvaered scored a major victory against the FLF recently. They went into Sigur and blew the hidden base there to bits! I bet that was a serious setback for the FLF."]])},
-   {"Nebula Satellite", _([["Heard some reckless scientists got someone to put a satellite inside the nebula for them. I thought everyone with half a brain knew to stay out of there, but oh well."]])},
-   {"Racing Skills 2", _([["You won one of the big races? That's awesome! I'd love to join a race some day."]])},
    {"Shadow Vigil", _([["Did you hear? There was some big incident during a diplomatic meeting between the Empire and the Dvaered. Nobody knows what exactly happened, but both diplomats died. Now both sides are accusing the other of foul play. Could get ugly."]])},
 }
 
