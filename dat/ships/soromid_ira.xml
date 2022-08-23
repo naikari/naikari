@@ -25,8 +25,8 @@
  <characteristics>
   <mass>1700</mass>
   <fuel_consumption>400</fuel_consumption>
-  <rdr_range>7500</rdr_range>
-  <rdr_jump_range>3000</rdr_jump_range>
+  <rdr_range>15000</rdr_range>
+  <rdr_jump_range>6000</rdr_jump_range>
   <cargo>110</cargo>
  </characteristics>
  <slots>

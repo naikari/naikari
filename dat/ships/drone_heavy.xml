@@ -20,8 +20,8 @@
   <mass>60</mass>
   <cargo>0</cargo>
   <fuel_consumption>100</fuel_consumption>
-  <rdr_range>7500</rdr_range>
-  <rdr_jump_range>3000</rdr_jump_range>
+  <rdr_range>15000</rdr_range>
+  <rdr_jump_range>6000</rdr_jump_range>
  </characteristics>
  <slots>
   <weapon size="medium" x="8" y="1" h="-5">Unicorp Fury Launcher</weapon>

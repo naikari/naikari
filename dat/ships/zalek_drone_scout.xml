@@ -20,8 +20,8 @@
   <fuel>300</fuel>
   <cargo>0</cargo>
   <fuel_consumption>1</fuel_consumption>
-  <rdr_range>7500</rdr_range>
-  <rdr_jump_range>3000</rdr_jump_range>
+  <rdr_range>15000</rdr_range>
+  <rdr_jump_range>6000</rdr_jump_range>
  </characteristics>
  <slots>
   <weapon size="small" x="0" y="0" h="-2">Laser Cannon MK1</weapon>
