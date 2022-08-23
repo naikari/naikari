@@ -476,10 +476,10 @@ char* dialogue_inputRaw( const char* title, int min, int max, const char *msg )
    /* input */
    window_addInput( input_dialogue.input_wid, 20, 20+30+10, w, 30,"inpInput", max, 1, NULL );
    /* button */
-   window_addButton( input_dialogue.input_wid, -20, 20, (w-20)/2, 30,
-         "btnClose", _("Done"), dialogue_inputClose );
-   window_addButton( input_dialogue.input_wid, 20, 20, (w-20)/2, 30,
-         "btnCancel", _("Cancel"), dialogue_cancel );
+   window_addButton(input_dialogue.input_wid, -20, 20, (w-20)/2, 30,
+         "btnCancel", _("Cancel"), dialogue_cancel);
+   window_addButton(input_dialogue.input_wid, 20, 20, (w-20)/2, 30,
+         "btnClose", _("Done"), dialogue_inputClose);
 
    /* tricky secondary loop */
    done  = 0;
