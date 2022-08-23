@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-08-19 20:45-0400\n"
+"POT-Creation-Date: 2022-08-23 19:07-0400\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -9091,7 +9091,7 @@ msgstr ""
 #: src/dev_sysedit.c:1880 src/dev_sysedit.c:1917 src/dev_sysedit.c:1952
 #: src/dev_sysedit.c:1958 src/dev_uniedit.c:949 src/dev_uniedit.c:1128
 #: src/dev_uniedit.c:1361 src/dev_uniedit.c:1427 src/info.c:279 src/info.c:383
-#: src/info.c:835 src/input.c:601 src/land.c:869 src/land_outfits.c:360
+#: src/info.c:835 src/input.c:601 src/land.c:870 src/land_outfits.c:360
 #: src/land_outfits.c:388 src/land_outfits.c:632 src/land_shipyard.c:141
 #: src/land_shipyard.c:211 src/land_trade.c:109 src/land_trade.c:111
 #: src/land_trade.c:198 src/load.c:396 src/load.c:443 src/load.c:480
@@ -14003,14 +14003,14 @@ msgstr ""
 #. Calculate spawn data
 #: dat/fleet.xml:224 dat/fleet.xml:982 dat/fleet.xml:983 dat/fleet.xml:984
 #: dat/fleet.xml:985 dat/factions/spawn/pirate.lua:4
-#: dat/missions/neutral/trader_escort.lua:303
-#: dat/missions/neutral/trader_escort.lua:309
-#: dat/missions/neutral/trader_escort.lua:317
-#: dat/missions/neutral/trader_escort.lua:331
-#: dat/missions/neutral/trader_escort.lua:336
-#: dat/missions/neutral/trader_escort.lua:351
-#: dat/missions/neutral/trader_escort.lua:356
-#: dat/missions/neutral/trader_escort.lua:361
+#: dat/missions/neutral/trader_escort.lua:302
+#: dat/missions/neutral/trader_escort.lua:308
+#: dat/missions/neutral/trader_escort.lua:316
+#: dat/missions/neutral/trader_escort.lua:330
+#: dat/missions/neutral/trader_escort.lua:335
+#: dat/missions/neutral/trader_escort.lua:350
+#: dat/missions/neutral/trader_escort.lua:355
+#: dat/missions/neutral/trader_escort.lua:360
 #: dat/missions/tutorial/tutorial4.lua:178
 msgid "Pirate Hyena"
 msgstr ""
@@ -14361,29 +14361,29 @@ msgstr ""
 #. Shuts him up for at least 5s.
 #. Make it interesting
 #: dat/fleet.xml:866 dat/fleet.xml:867 dat/fleet.xml:868
-#: dat/missions/neutral/trader_escort.lua:299
+#: dat/missions/neutral/trader_escort.lua:298
 msgid "Convoy Llama"
 msgstr ""
 
 #: dat/fleet.xml:875 dat/fleet.xml:876 dat/fleet.xml:877 dat/fleet.xml:878
-#: dat/missions/neutral/trader_escort.lua:305
+#: dat/missions/neutral/trader_escort.lua:304
 msgid "Convoy Koala"
 msgstr ""
 
 #: dat/fleet.xml:885 dat/fleet.xml:886 dat/fleet.xml:896 dat/fleet.xml:897
 #: dat/fleet.xml:898 dat/fleet.xml:908 dat/fleet.xml:909 dat/fleet.xml:912
-#: dat/fleet.xml:913 dat/missions/neutral/trader_escort.lua:312
-#: dat/missions/neutral/trader_escort.lua:325
-#: dat/missions/neutral/trader_escort.lua:344
+#: dat/fleet.xml:913 dat/missions/neutral/trader_escort.lua:311
+#: dat/missions/neutral/trader_escort.lua:324
+#: dat/missions/neutral/trader_escort.lua:343
 msgid "Convoy Rhino"
 msgstr ""
 
 #: dat/fleet.xml:887 dat/fleet.xml:888 dat/fleet.xml:889 dat/fleet.xml:899
 #: dat/fleet.xml:900 dat/fleet.xml:901 dat/fleet.xml:910 dat/fleet.xml:911
 #: dat/fleet.xml:914 dat/fleet.xml:915
-#: dat/missions/neutral/trader_escort.lua:312
-#: dat/missions/neutral/trader_escort.lua:325
-#: dat/missions/neutral/trader_escort.lua:344
+#: dat/missions/neutral/trader_escort.lua:311
+#: dat/missions/neutral/trader_escort.lua:324
+#: dat/missions/neutral/trader_escort.lua:343
 msgid "Convoy Mule"
 msgstr ""
 
@@ -23744,7 +23744,7 @@ msgstr ""
 #. Run callback.
 #: dat/events/escorts.lua:537 dat/rescue.lua:44 dat/rescue.lua:55
 #: dat/rescue.lua:115 dat/rescue.lua:164 dat/scripts/escorthelper.lua:26
-#: src/dialogue.c:482 src/dialogue.c:723 src/escort.c:291 src/map_find.c:246
+#: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:291 src/map_find.c:246
 #: src/options.c:280 src/options.c:794 src/options.c:914 src/options.c:1176
 #: src/options.c:1238
 msgid "Cancel"
@@ -29421,7 +29421,7 @@ msgstr ""
 #: dat/missions/shark/sh00_ancestorkill.lua:78
 #: dat/missions/shark/sh02_tapping.lua:102
 #: dat/missions/sirius/animaltransport.lua:44
-#: dat/missions/tutorial/tutorial3.lua:106
+#: dat/missions/tutorial/tutorial3.lua:107
 #: dat/missions/tutorial/tutorial4.lua:111 dat/missions/zalek/zlk_test.lua:141
 msgid "Land on {planet} ({system} system)"
 msgstr ""
@@ -30682,28 +30682,28 @@ msgstr ""
 #: dat/missions/empire/es_cargo.lua:27
 #: dat/missions/empire/es_longdistancecargo.lua:30
 #: dat/missions/neutral/cargo.lua:39 dat/missions/neutral/cargo_rush.lua:31
-#: dat/missions/neutral/trader_escort.lua:42 dat/missions/zalek/zlk_test.lua:66
+#: dat/missions/neutral/trader_escort.lua:41 dat/missions/zalek/zlk_test.lua:66
 msgid "Piracy Risk: None"
 msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:28
 #: dat/missions/empire/es_longdistancecargo.lua:31
 #: dat/missions/neutral/cargo.lua:40 dat/missions/neutral/cargo_rush.lua:32
-#: dat/missions/neutral/trader_escort.lua:43 dat/missions/zalek/zlk_test.lua:67
+#: dat/missions/neutral/trader_escort.lua:42 dat/missions/zalek/zlk_test.lua:67
 msgid "Piracy Risk: Low"
 msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:29
 #: dat/missions/empire/es_longdistancecargo.lua:32
 #: dat/missions/neutral/cargo.lua:41 dat/missions/neutral/cargo_rush.lua:33
-#: dat/missions/neutral/trader_escort.lua:44 dat/missions/zalek/zlk_test.lua:68
+#: dat/missions/neutral/trader_escort.lua:43 dat/missions/zalek/zlk_test.lua:68
 msgid "Piracy Risk: Medium"
 msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:30
 #: dat/missions/empire/es_longdistancecargo.lua:33
 #: dat/missions/neutral/cargo.lua:42 dat/missions/neutral/cargo_rush.lua:34
-#: dat/missions/neutral/trader_escort.lua:45 dat/missions/zalek/zlk_test.lua:69
+#: dat/missions/neutral/trader_escort.lua:44 dat/missions/zalek/zlk_test.lua:69
 msgid "Piracy Risk: High"
 msgstr ""
 
@@ -38180,70 +38180,70 @@ msgstr ""
 #. </mission>
 #. --
 #. Escort a convoy of traders to a destination--
-#: dat/missions/neutral/trader_escort.lua:33
+#: dat/missions/neutral/trader_escort.lua:32
 msgid "Escort: Tiny Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:34
+#: dat/missions/neutral/trader_escort.lua:33
 msgid "Escort: Small Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:35
+#: dat/missions/neutral/trader_escort.lua:34
 msgid "Escort: Medium Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:36
+#: dat/missions/neutral/trader_escort.lua:35
 msgid "Escort: Large Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:37
+#: dat/missions/neutral/trader_escort.lua:36
 msgid "Escort: Huge Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:39
+#: dat/missions/neutral/trader_escort.lua:38
 msgid ""
 "A convoy of traders needs protection while they go to {planet} in the "
 "{system} system. You must stick with the convoy at all times, waiting to "
 "jump or land until the entire convoy has done so."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:47
+#: dat/missions/neutral/trader_escort.lua:46
 msgid "Convey Escort"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:48
+#: dat/missions/neutral/trader_escort.lua:47
 msgid "Escort a convoy of traders to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:50
+#: dat/missions/neutral/trader_escort.lua:49
 msgid ""
 "You successfully escorted the trading convoy to the destination. There "
 "wasn't a single casualty and you are rewarded the full amount."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:53
+#: dat/missions/neutral/trader_escort.lua:52
 msgid ""
 "You've arrived with the trading convoy more or less intact. Your pay is "
 "docked slightly due to the loss of part of the convoy."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:54
+#: dat/missions/neutral/trader_escort.lua:53
 msgid ""
 "You arrive with what's left of the convoy. It's not much, but it's better "
 "than nothing. You are paid a steeply discounted amount."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:56
+#: dat/missions/neutral/trader_escort.lua:55
 msgid "You have landed, abandoning your mission to escort the trading convoy."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:58
+#: dat/missions/neutral/trader_escort.lua:57
 msgid ""
 "You landed at the planet before ensuring that the rest of your convoy was "
 "safe. You have abandoned your duties, and failed your mission."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:60
+#: dat/missions/neutral/trader_escort.lua:59
 msgid "Convoy ships under attack! Requesting immediate assistance!"
 msgstr ""
 
@@ -38254,14 +38254,14 @@ msgstr ""
 #. have this level of granularity.
 #. Choose mission reward.
 #. Reward depends on type of cargo hauled. Hauling expensive commodities gives a better deal.
-#: dat/missions/neutral/trader_escort.lua:143
+#: dat/missions/neutral/trader_escort.lua:142
 msgid "The destination is {distance} jump away. "
 msgid_plural "The destination is {distance} jumps away. "
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: dat/missions/neutral/trader_escort.lua:146
+#: dat/missions/neutral/trader_escort.lua:145
 msgid ""
 "You only have enough fuel for {range} jump. You cannot stop to refuel. "
 "Accept the mission anyway?"
@@ -38274,28 +38274,28 @@ msgstr[2] ""
 
 #. This variable holds the system the player is supposed to jump to NEXT.
 #. The place where the AI ships spawn from.
-#: dat/missions/neutral/trader_escort.lua:181
+#: dat/missions/neutral/trader_escort.lua:180
 #: dat/missions/tutorial/tutorial_follow.lua:176
 msgid "You jumped into the wrong system."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:190
+#: dat/missions/neutral/trader_escort.lua:189
 msgid "You jumped before the convoy you were escorting."
 msgstr ""
 
 #. Treat those that didn't exit as dead
-#: dat/missions/neutral/trader_escort.lua:228
+#: dat/missions/neutral/trader_escort.lua:227
 msgid "The convoy you were escorting has been destroyed."
 msgstr ""
 
 #. No more left to defend, proceed to follow the rest
 #. Handle the jumps of convoy.
-#: dat/missions/neutral/trader_escort.lua:245
+#: dat/missions/neutral/trader_escort.lua:244
 msgid "{ship} has jumped to {system}."
 msgstr ""
 
 #. Handle landing of convoy
-#: dat/missions/neutral/trader_escort.lua:264
+#: dat/missions/neutral/trader_escort.lua:263
 msgid "{ship} has landed on {planet}."
 msgstr ""
 
@@ -38306,35 +38306,33 @@ msgstr ""
 msgid "No minspeed or leader set for convoy, maybe the table is empty."
 msgstr ""
 
-#. Note: This might create multiple proximity hooks, so the hook's
-#. return function has to tolerate that.
-#: dat/missions/neutral/trader_escort.lua:491
+#: dat/missions/neutral/trader_escort.lua:502
 msgid ""
 "Protect the convoy ships and wait for them to land on {planet} ({landed}/"
 "{remaining})"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:494
+#: dat/missions/neutral/trader_escort.lua:505
 #: dat/missions/shadow/shadowvigil.lua:180
 #: dat/missions/soromid/comingout/srm_comingout5.lua:200
 #: dat/missions/tutorial/tutorial_follow.lua:119
 msgid "Land on {planet}"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:501
+#: dat/missions/neutral/trader_escort.lua:512
 msgid ""
 "Protect the convoy ships and wait for them to jump to {system} ({jumped}/"
 "{remaining})"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:504
+#: dat/missions/neutral/trader_escort.lua:515
 #: dat/missions/shadow/shadowvigil.lua:189
 #: dat/missions/soromid/comingout/srm_comingout5.lua:210
 #: dat/missions/tutorial/tutorial_follow.lua:116
 msgid "Jump to {system}"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:508
+#: dat/missions/neutral/trader_escort.lua:519
 #: dat/missions/shadow/shadowvigil.lua:193
 msgid "{remaining} more jump after this one"
 msgid_plural "{remaining} more jumps after this one"
@@ -38507,10 +38505,14 @@ msgstr ""
 #: dat/missions/neutral/wastedump.lua:134
 msgid ""
 "Land on any garbage collection facility (indicated on your map) to drop off "
-"the Waste Containers\n"
-"\tAlternatively: fly to a system where you won't get caught by authorities, "
-"illegally jettison the cargo via the ship computer (press {infokey} to "
-"open), and jump out of the system before you are discovered"
+"the Waste Containers"
+msgstr ""
+
+#: dat/missions/neutral/wastedump.lua:135
+msgid ""
+"Alternatively: fly to a system where you won't get caught by authorities, "
+"illegally jettison the cargo via the Ship Computer, and jump out of the "
+"system before you are discovered"
 msgstr ""
 
 #. Start by confiscating cargo...
@@ -43062,8 +43064,8 @@ msgid ""
 "made an excellent choice, {player}! I'm sure you'll be making millions of "
 "credits in no time.\n"
 "\n"
-"In fact, I know just where to start. A gentleman at the bar is looking for a "
-"hired hand, and I assure you, he pays good rates! I've told him about you "
+"\"In fact, I know just where to start. A gentleman at the bar is looking for "
+"a hired hand, and I assure you, he pays good rates! I've told him about you "
 "and he said he would be thrilled to hire you for a job!\" The salesperson "
 "offers their hand and, not wanting to be combative, you shake it. \"Good "
 "luck, {player}!\" they say before swiftly escorting you out of their "
@@ -43418,7 +43420,7 @@ msgstr ""
 
 #. Note: This mission makes no system claims.
 #: dat/missions/tutorial/tutorial2.lua:114
-#: dat/missions/tutorial/tutorial3.lua:79
+#: dat/missions/tutorial/tutorial3.lua:77
 #: dat/missions/tutorial/tutorial4.lua:85
 #: dat/missions/tutorial/tutorial_follow.lua:95
 #: dat/missions/tutorial/tutorial_follow.lua:136
@@ -43501,17 +43503,10 @@ msgid ""
 "be taken there as fast as possible with Autonav. I mean, of course, the trip "
 "will take the same duration in real-time, but giving the work to Autonav "
 "will allow you to leave the captain's chair and do other things; it makes "
-"the time passage feel almost instantaneous.\n"
-"\n"
-"\"Here, I brought a nice game we can play while Autonav takes us to the "
-"asteroid field! It's a sandbox game where you control a space trader coming "
-"up in a time of turmoil, taking odd jobs, acquiring ships, and hiring pilots "
-"as you build your fortune. As the game progresses, you have a chance to aid "
-"various factions to win their favor and decide the ultimate fate of the "
-"galaxy amid chaos as the Galactic Federation collapses! Sounds fun, right?\""
+"the time passage feel almost instantaneous."
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:58
+#: dat/missions/tutorial/tutorial3.lua:56
 msgid ""
 "Alright, let's start mining! Of course, mining is done with the same "
 "weaponry you would use to defend yourself against pirates should you be "
@@ -43525,14 +43520,14 @@ msgid ""
 "I'll let you know what to do with it when your cargo hold is full.\""
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:62
+#: dat/missions/tutorial/tutorial3.lua:60
 msgid ""
 "\"That should do it! Great job! Whew, firing those weapons sure makes it "
 "warm in here, doesn't it? I'm sorry to trouble you, but could you please "
 "engage active cooldown by pressing {autobrake_key} twice?\""
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:64
+#: dat/missions/tutorial/tutorial3.lua:62
 msgid ""
 "\"Ahhh, that's much better. I'm sure your weapons will work a lot better if "
 "they're not overheated, too, though, um, we of course shouldn't run into "
@@ -43545,7 +43540,7 @@ msgid ""
 "Autonav to land us there no problem.\""
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:68
+#: dat/missions/tutorial/tutorial3.lua:66
 msgid ""
 "Ian steps out of your ship and stretches his arms, seemingly happy to be "
 "back in atmosphere. \"Thank you for your service once again,\" he says as he "
@@ -43553,57 +43548,66 @@ msgid ""
 "job for you. Meet me at the bar in a bit.\""
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:70
+#: dat/missions/tutorial/tutorial3.lua:68
 msgid ""
 "Ian Structure has hired you to mine ore from some asteroids, claiming that "
 "he needs specifically asteroid-mined Ore for his purposes."
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:71
+#: dat/missions/tutorial/tutorial3.lua:69
 msgid ""
 "You accepted another job from Ian Structure, this time mining some ore from "
 "asteroids for him. He asked you to speak with him again on {planet} "
 "({system} system) for another job."
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:81
+#: dat/missions/tutorial/tutorial3.lua:79
 msgid "Ian is idling at the bar. He said he has another job for you."
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:92
-#: dat/missions/tutorial/tutorial3.lua:109
+#: dat/missions/tutorial/tutorial3.lua:90
+#: dat/missions/tutorial/tutorial3.lua:110
 msgid "Ian's Supplies"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:97
+#: dat/missions/tutorial/tutorial3.lua:95
 msgid "Press the Take Off button to go into space"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:98
+#: dat/missions/tutorial/tutorial3.lua:96
 msgid "Press {overlaykey} to open your overlay map"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:100
+#: dat/missions/tutorial/tutorial3.lua:98
 msgid ""
 "Fly to Asteroid Field indicated on overlay map by right-clicking the area"
 msgstr ""
 
+#: dat/missions/tutorial/tutorial3.lua:99
+msgid "Mine ore from asteroids until your cargo hold is full:"
+msgstr ""
+
+#: dat/missions/tutorial/tutorial3.lua:100
+msgid "Select an asteroid by left-clicking on it"
+msgstr ""
+
 #: dat/missions/tutorial/tutorial3.lua:101
 msgid ""
-"Mine ore from asteroids until your cargo hold is full:\n"
-"\tSelect an asteroid by left-clicking on it\n"
-"\tUse {primarykey} and {secondarykey} to fire your weapons and destroy the "
-"targeted asteroid\n"
-"\tFly to the location of dropped Ore to collect it"
+"Use {primarykey} and {secondarykey} to fire your weapons and destroy the "
+"targeted asteroid"
 msgstr ""
 
 #: dat/missions/tutorial/tutorial3.lua:104
+msgid "Fly to the location of dropped Ore to collect it"
+msgstr ""
+
+#: dat/missions/tutorial/tutorial3.lua:105
 msgid ""
 "Engage Active Cooldown by pressing {autobrake_key} twice, then wait for your "
 "ship to fully cool down"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:133 src/dev_sysedit.c:712 src/map.c:770
+#: dat/missions/tutorial/tutorial3.lua:135 src/dev_sysedit.c:712 src/map.c:770
 msgid "Asteroid Field"
 msgstr ""
 
@@ -43898,8 +43902,7 @@ msgstr ""
 #: dat/missions/tutorial/tutorial_follow.lua:114
 msgid ""
 "Follow Ian Structure by left-clicking on his ship and then pressing "
-"{followkey}\n"
-"\tWait for Ian Structure to jump to {system}"
+"{followkey}, then wait for Ian Structure to jump to {system}"
 msgstr ""
 
 #: dat/missions/tutorial/tutorial_follow.lua:117
@@ -45060,7 +45063,7 @@ msgstr ""
 #.
 #. -- Deprecated. Do not use.
 #. --
-#: dat/scripts/numstring.lua:41 src/equipment.c:1690 src/info.c:212
+#: dat/scripts/numstring.lua:41 src/equipment.c:1689 src/info.c:212
 #: src/info.c:472 src/map.c:786
 msgid "∞ jumps"
 msgstr ""
@@ -48317,7 +48320,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/ai.c:601 src/land.c:1512
+#: src/ai.c:601 src/land.c:1513
 #, c-format
 msgid ""
 "Error loading file: %s\n"
@@ -49428,7 +49431,7 @@ msgid "Remove"
 msgstr ""
 
 #: src/dev_sysedit.c:222 src/dev_sysedit.c:1284 src/dev_uniedit.c:197
-#: src/dev_uniedit.c:1232 src/equipment.c:365
+#: src/dev_uniedit.c:1232 src/equipment.c:364
 msgid "Rename"
 msgstr ""
 
@@ -49845,7 +49848,7 @@ msgstr ""
 msgid "Unknown button clicked in YesNo dialogue!"
 msgstr ""
 
-#: src/dialogue.c:480
+#: src/dialogue.c:482
 msgid "Done"
 msgstr ""
 
@@ -49908,81 +49911,81 @@ msgstr ""
 msgid "Planet '%s' has saved economy data but doesn't exist!"
 msgstr ""
 
-#: src/equipment.c:349 src/land.c:285 src/land.c:570 src/land.c:1260
+#: src/equipment.c:348 src/land.c:286 src/land.c:571 src/land.c:1261
 #: src/land_outfits.c:165 src/land_shipyard.c:105 src/land_trade.c:98
 msgid "Take Off"
 msgstr ""
 
 #. Check if player really wants to sell.
-#: src/equipment.c:353 src/equipment.c:2057
+#: src/equipment.c:352 src/equipment.c:2056
 msgid "Sell Ship"
 msgstr ""
 
-#: src/equipment.c:356
+#: src/equipment.c:355
 msgid "Swap Ship"
 msgstr ""
 
 #. Check if player really wants to sell.
-#: src/equipment.c:358 src/equipment.c:2125
+#: src/equipment.c:357 src/equipment.c:2124
 msgid "Sell Outfit"
 msgstr ""
 
-#: src/equipment.c:362
+#: src/equipment.c:361
 msgid "Unequip"
 msgstr ""
 
-#: src/equipment.c:374
+#: src/equipment.c:373
 msgid "Available Ships"
 msgstr ""
 
-#: src/equipment.c:376
+#: src/equipment.c:375
 msgid "Available Outfits"
 msgstr ""
 
-#: src/equipment.c:573 src/outfit.c:282
+#: src/equipment.c:572 src/outfit.c:282
 msgid "Weapon"
 msgstr ""
 
-#: src/equipment.c:581 src/outfit.c:280
+#: src/equipment.c:580 src/outfit.c:280
 msgid "Utility"
 msgstr ""
 
-#: src/equipment.c:589 src/outfit.c:278
+#: src/equipment.c:588 src/outfit.c:278
 msgid "Structure"
 msgstr ""
 
-#: src/equipment.c:625
+#: src/equipment.c:624
 msgid "CPU Free"
 msgstr ""
 
-#: src/equipment.c:637
+#: src/equipment.c:636
 msgid "Mass Limit Left"
 msgstr ""
 
-#: src/equipment.c:652
+#: src/equipment.c:651
 #, c-format
 msgid "!! %.0f%% Slower !!"
 msgstr ""
 
-#: src/equipment.c:699
+#: src/equipment.c:698
 msgid "Right click to remove"
 msgstr ""
 
-#: src/equipment.c:710
+#: src/equipment.c:709
 msgid "Right click to add"
 msgstr ""
 
-#: src/equipment.c:820 src/equipment.c:824 src/land_shipyard.c:670
+#: src/equipment.c:819 src/equipment.c:823 src/land_shipyard.c:670
 #: src/land_shipyard.c:674
 #, c-format
 msgid "%s slot (%s)"
 msgstr ""
 
-#: src/equipment.c:830 src/land_shipyard.c:680
+#: src/equipment.c:829 src/land_shipyard.c:680
 msgid " #o[Exclusive]#0"
 msgstr ""
 
-#: src/equipment.c:851 src/land_shipyard.c:694
+#: src/equipment.c:850 src/land_shipyard.c:694
 #, c-format
 msgid ""
 "#n%s\n"
@@ -49991,23 +49994,23 @@ msgid ""
 "%s"
 msgstr ""
 
-#: src/equipment.c:1411
+#: src/equipment.c:1410
 #, c-format
 msgid ""
 "%s%.1f GW Weapon Damage\n"
 "%.1f GW Weapon Energy"
 msgstr ""
 
-#: src/equipment.c:1492
+#: src/equipment.c:1491
 #, c-format
 msgid "Ship Stats\n"
 msgstr ""
 
-#: src/equipment.c:1562 src/land_outfits.c:297
+#: src/equipment.c:1561 src/land_outfits.c:297
 msgid "Filter…"
 msgstr ""
 
-#: src/equipment.c:1687 src/info.c:210 src/info.c:470 src/map.c:783
+#: src/equipment.c:1686 src/info.c:210 src/info.c:470 src/map.c:783
 #, c-format
 msgid "%d jump"
 msgid_plural "%d jumps"
@@ -50015,7 +50018,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/equipment.c:1695
+#: src/equipment.c:1694
 #, c-format
 msgid ""
 "#nName:#0 %s\n"
@@ -50044,26 +50047,26 @@ msgid ""
 "#%c%s#0"
 msgstr ""
 
-#: src/equipment.c:1982
+#: src/equipment.c:1981
 msgid "You can not unequip your ship while you have deployed fighters!"
 msgstr ""
 
-#: src/equipment.c:1987
+#: src/equipment.c:1986
 msgid ""
 "You can not unequip your ship when you have more cargo than it can hold "
 "without modifications!"
 msgstr ""
 
-#: src/equipment.c:1991
+#: src/equipment.c:1990
 msgid "Unequip Ship"
 msgstr ""
 
 #. confirm
-#: src/equipment.c:1992
+#: src/equipment.c:1991
 msgid "Are you sure you want to remove all equipment from your ship?"
 msgstr ""
 
-#: src/equipment.c:2058
+#: src/equipment.c:2057
 #, c-format
 msgid ""
 "Are you sure you want to sell your ship %s for %s? All equipped outfits will "
@@ -50071,34 +50074,34 @@ msgid ""
 msgstr ""
 
 #. Display widget.
-#: src/equipment.c:2076
+#: src/equipment.c:2075
 msgid "Ship Sold"
 msgstr ""
 
-#: src/equipment.c:2077
+#: src/equipment.c:2076
 #, c-format
 msgid "You have sold your ship %s for %s."
 msgstr ""
 
-#: src/equipment.c:2126
+#: src/equipment.c:2125
 #, fuzzy, c-format
 msgid "Are you sure you want to sell your %s for %s?"
 msgstr "„Byl bych schopen natankovat vaši loď za %s.“"
 
-#: src/equipment.c:2160 src/player.c:394
+#: src/equipment.c:2159 src/player.c:394
 msgid "Ship Name"
 msgstr ""
 
-#: src/equipment.c:2161
+#: src/equipment.c:2160
 #, c-format
 msgid "Please enter a new name for your %s:"
 msgstr ""
 
-#: src/equipment.c:2170
+#: src/equipment.c:2169
 msgid "Name Collision"
 msgstr ""
 
-#: src/equipment.c:2171 src/player.c:457
+#: src/equipment.c:2170 src/player.c:457
 msgid "Please do not give the ship the same name as another of your ships."
 msgstr ""
 
@@ -50631,7 +50634,7 @@ msgstr ""
 msgid "Ship"
 msgstr ""
 
-#: src/info.c:61 src/land.c:1016 src/space.c:167
+#: src/info.c:61 src/land.c:1017 src/space.c:167
 msgid "Missions"
 msgstr ""
 
@@ -50813,12 +50816,12 @@ msgstr ""
 
 #. no missions
 #. Make sure you have missions.
-#: src/info.c:1154 src/info.c:1182 src/land.c:630 src/land.c:698 src/land.c:739
+#: src/info.c:1154 src/info.c:1182 src/land.c:631 src/land.c:699 src/land.c:740
 msgid "No Missions"
 msgstr ""
 
-#: src/info.c:1183 src/info.c:1184 src/info.c:1209 src/land.c:587
-#: src/land.c:740
+#: src/info.c:1183 src/info.c:1184 src/info.c:1209 src/land.c:588
+#: src/land.c:741
 msgid "#nReward:#0 None"
 msgstr ""
 
@@ -50826,7 +50829,7 @@ msgstr ""
 msgid "You currently have no active missions."
 msgstr ""
 
-#: src/info.c:1207 src/land.c:751
+#: src/info.c:1207 src/land.c:752
 #, c-format
 msgid "#nReward:#0 %s"
 msgstr ""
@@ -51555,12 +51558,12 @@ msgid "Unable to initialize the joystick subsystem"
 msgstr ""
 
 #. Already onboard.
-#: src/land.c:172
+#: src/land.c:173
 #, c-format
 msgid "You're already onboard the %s."
 msgstr ""
 
-#: src/land.c:178
+#: src/land.c:179
 #, c-format
 msgid "You have %d tonne more cargo than the new ship can hold."
 msgid_plural "You have %d tonnes more cargo than the new ship can hold."
@@ -51568,34 +51571,34 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/land.c:288
+#: src/land.c:289
 msgid "Approach"
 msgstr ""
 
-#: src/land.c:358 src/land.c:364
+#: src/land.c:359 src/land.c:365
 msgid "News"
 msgstr ""
 
-#: src/land.c:573 src/land.c:641
+#: src/land.c:574 src/land.c:642
 msgid "Accept Mission"
 msgstr ""
 
-#: src/land.c:578
+#: src/land.c:579
 msgid ""
 "#nDate:#0 N/A\n"
 "#nFree Space:#0 N/A\n"
 "#nMoney:#0 N/A"
 msgstr ""
 
-#: src/land.c:637 src/npc.c:631
+#: src/land.c:638 src/npc.c:631
 msgid "You have too many active missions."
 msgstr ""
 
-#: src/land.c:642
+#: src/land.c:643
 msgid "Are you sure you want to accept this mission?"
 msgstr ""
 
-#: src/land.c:731
+#: src/land.c:732
 #, c-format
 msgid ""
 "#nDate:#0 %s\n"
@@ -51603,16 +51606,16 @@ msgid ""
 "#nMoney:#0 %s"
 msgstr ""
 
-#: src/land.c:742
+#: src/land.c:743
 msgid "There are no missions available here."
 msgstr ""
 
-#: src/land.c:797 src/land.c:882
+#: src/land.c:798 src/land.c:883
 #, c-format
 msgid "Outfit '%s' does not exist!"
 msgstr ""
 
-#: src/land.c:858
+#: src/land.c:859
 #, c-format
 msgid ""
 "#nStationed at#0 %s\n"
@@ -51625,56 +51628,56 @@ msgid ""
 "#nMoney:#0 %s"
 msgstr ""
 
-#: src/land.c:893
+#: src/land.c:894
 #, c-format
 msgid "Buy Local Map (%s)"
 msgstr ""
 
-#: src/land.c:1007
+#: src/land.c:1008
 msgid "Landing Main"
 msgstr ""
 
-#: src/land.c:1011
+#: src/land.c:1012
 msgid "Spaceport Bar"
 msgstr ""
 
-#: src/land.c:1021 src/map_find.c:1076 src/space.c:169
+#: src/land.c:1022 src/map_find.c:1076 src/space.c:169
 msgid "Outfits"
 msgstr ""
 
-#: src/land.c:1026 src/space.c:170
+#: src/land.c:1027 src/space.c:170
 msgid "Shipyard"
 msgstr ""
 
-#: src/land.c:1032
+#: src/land.c:1033
 msgid "Equipment"
 msgstr ""
 
-#: src/land.c:1037 src/space.c:168
+#: src/land.c:1038 src/space.c:168
 msgid "Commodity"
 msgstr ""
 
-#: src/land.c:1266
+#: src/land.c:1267
 msgid "No refueling services."
 msgstr ""
 
-#: src/land.c:1397
+#: src/land.c:1398
 msgid "Ship not fit for flight"
 msgstr ""
 
-#: src/land.c:1452
+#: src/land.c:1453
 msgid ""
 "Failed to save game! You should exit and check the log to see what happened "
 "and then file a bug report!"
 msgstr ""
 
-#: src/land.c:1461
+#: src/land.c:1462
 #, c-format
 msgid "#oTaking off from %s on %s."
 msgstr ""
 
 #. error has occurred
-#: src/land.c:1525
+#: src/land.c:1526
 #, c-format
 msgid "Rescue: 'rescue' : '%s'"
 msgstr ""
@@ -51759,7 +51762,7 @@ msgid "You already have this license."
 msgstr ""
 
 #: src/land_outfits.c:735 src/land_shipyard.c:422 src/land_shipyard.c:490
-#: src/land_trade.c:315
+#: src/land_trade.c:333
 #, c-format
 msgid "You need %s more."
 msgstr ""
@@ -51785,7 +51788,7 @@ msgstr ""
 msgid "You can't sell a license."
 msgstr ""
 
-#: src/land_outfits.c:843 src/land_trade.c:334
+#: src/land_outfits.c:843 src/land_trade.c:352
 msgid "You can't sell something you don't have!"
 msgstr ""
 
@@ -52026,7 +52029,7 @@ msgid ""
 "#nMoney:#0 %s"
 msgstr ""
 
-#: src/land_trade.c:319
+#: src/land_trade.c:337
 msgid "No cargo space available!"
 msgstr ""
 
@@ -55042,7 +55045,7 @@ msgstr ""
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 
-#: src/pilot_cargo.c:82
+#: src/pilot_cargo.c:83
 #, c-format
 msgid "Unable to copy cargo over from pilot '%s' to '%s'. Leaving cargo as is."
 msgstr ""
