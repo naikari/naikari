@@ -17,12 +17,12 @@
   <spfx_armour>ExpS</spfx_armour>
   <delay>0.35</delay>
   <speed>500</speed>
-  <range blowup="armour">1900</range>
+  <range blowup="armour">3800</range>
   <gfx_end>ripperM-end.png</gfx_end>
   <energy>6</energy>
   <heatup>150</heatup>
   <rdr_range>1200</rdr_range>
-  <rdr_range_max>1600</rdr_range_max>
+  <rdr_range_max>3200</rdr_range_max>
   <damage>
    <type>impact</type>
    <penetrate>62</penetrate>
