@@ -7,6 +7,11 @@
  <avail>
   <priority>20</priority>
   <chance>2</chance>
+  <cond>
+   player.misnDone("Tutorial Part 4")
+   or (system.cur() ~= system.get("Hakoi")
+      and system.cur() ~= system.get("Eneguoz"))
+  </cond>
   <location>Bar</location>
  </avail>
 </mission>

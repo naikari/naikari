@@ -65,7 +65,6 @@ nospace_text = _([[You almost accept a mission to fill your ship's cargo hold wi
 noland_msg = _("Get lost, waste dumping scum! We don't want you here!")
 
 misn_title = _("Waste Dump")
-misn_reward = _("%s per tonne")
 misn_desc = _("Take as many waste containers off of here as your ship can hold and drop them off at any authorized garbage collection facility. You will be paid immediately, but any attempt to illegally jettison the waste into space will be severely punished if you are caught.")
 
 osd_title = _("Waste Dump")

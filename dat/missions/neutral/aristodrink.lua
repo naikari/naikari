@@ -7,6 +7,11 @@
  <avail>
   <priority>29</priority>
   <chance>5</chance>
+  <cond>
+   player.misnDone("Tutorial Part 4")
+   or (system.cur() ~= system.get("Hakoi")
+      and system.cur() ~= system.get("Eneguoz"))
+  </cond>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
