@@ -244,6 +244,7 @@ function land()
    tk.msg("", fmt.f(pay_text, {planet=misplanet:name(), player=player.name()}))
 
    player.pay(2 * credits)
+   diff.apply("hakoi_pirates")
 
    addMiscLog(misn_log)
    misn.finish(true)
