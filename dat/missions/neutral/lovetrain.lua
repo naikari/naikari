@@ -13,7 +13,13 @@
   <faction>Sirius</faction>
   <faction>Soromid</faction>
   <faction>Za'lek</faction>
-  <cond>not planet.cur():restriction() or planet.cur():restriction() == "lowclass" or planet.cur():restriction() == "hiclass"</cond>
+  <cond>
+   (not planet.cur():restriction() or planet.cur():restriction() == "lowclass"
+      or planet.cur():restriction() == "hiclass")
+   and (player.misnDone("Tutorial Part 4")
+      or (system.cur() ~= system.get("Hakoi")
+         and system.cur() ~= system.get("Eneguoz")))
+  </cond>
  </avail>
 </mission>
 --]]

@@ -6,7 +6,12 @@
  </flags>
  <avail>
   <priority>10</priority>
-  <chance>40</chance>
+  <chance>100</chance>
+  <cond>
+   player.misnDone("Tutorial Part 4")
+   or (system.cur() ~= system.get("Hakoi")
+      and system.cur() ~= system.get("Eneguoz"))
+  </cond>
   <location>Bar</location>
   <faction>Empire</faction>
  </avail>
@@ -58,7 +63,18 @@ function create ()
            end 
            return false
        end) 
-   if #planets == 0 then abort() end -- In case no suitable planets are in range. 
+   if #planets == 0 then
+      misn.finish(false)
+   end
+
+   -- Use a non-standard method of creating a random chance of the
+   -- mission showing up to ensure that it's guaranteed to show up at
+   -- least once.
+   if var.peek("es_initiated") and rnd.rnd() >= 0.4 then
+      misn.finish(false)
+   end
+   var.push("es_initiated", true)
+
    local index = rnd.rnd(1, #planets)
    dest = planets[index][1]
    sys = planets[index][2]

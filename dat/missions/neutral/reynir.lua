@@ -16,15 +16,20 @@
   <faction>Sirius</faction>
   <faction>Soromid</faction>
   <faction>Za'lek</faction>
-  <cond>(function ()
-           local count = 0
-           for i, p in pairs(system.cur():planets()) do
-              if p:services()["inhabited"] then
-                 count=count+1
-              end
-           end
-           return count &gt; 1
-        end)()</cond>
+  <cond>
+   (function ()
+      local count = 0
+      for i, p in pairs(system.cur():planets()) do
+         if p:services()["inhabited"] then
+            count=count+1
+         end
+      end
+      return count &gt; 1
+   end)()
+   and (player.misnDone("Tutorial Part 4")
+      or (system.cur() ~= system.get("Hakoi")
+         and system.cur() ~= system.get("Eneguoz")))
+  </cond>
  </avail>
 </mission>
 --]]
