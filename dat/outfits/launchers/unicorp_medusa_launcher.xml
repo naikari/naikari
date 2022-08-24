@@ -17,7 +17,7 @@
   <amount>6</amount>
   <lockon>6</lockon>
   <arc>120</arc>
-  <rdr_range>2800</rdr_range>
-  <rdr_range_max>3600</rdr_range_max>
+  <rdr_range>4200</rdr_range>
+  <rdr_range_max>7200</rdr_range_max>
  </specific>
 </outfit>

@@ -16,7 +16,7 @@
   <reload_time>60</reload_time>
   <amount>35</amount>
   <lockon>7</lockon>
-  <rdr_range>3600</rdr_range>
-  <rdr_range_max>4700</rdr_range_max>
+  <rdr_range>5400</rdr_range>
+  <rdr_range_max>9400</rdr_range_max>
  </specific>
 </outfit>
