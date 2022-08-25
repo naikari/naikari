@@ -33,7 +33,7 @@ function spawn_squad ()
       scom.addPilot(pilots, "Empire Admonisher", 45)
       scom.addPilot(pilots, "Empire Lancelot", 25)
    else
-      scom.addPilot(pilots, "Empire Pacifier", 70)
+      scom.addPilot(pilots, "Empire Pacifier", 110)
       scom.addPilot(pilots, "Empire Lancelot", 25)
       scom.addPilot(pilots, "Empire Shark", 20)
    end
@@ -49,9 +49,9 @@ function spawn_capship ()
 
    -- Generate the capship
    if r < 0.7 then
-      scom.addPilot(pilots, "Empire Hawking", 140)
+      scom.addPilot(pilots, "Empire Hawking", 215)
    else
-      scom.addPilot(pilots, "Empire Peacemaker", 165)
+      scom.addPilot(pilots, "Empire Peacemaker", 615)
    end
 
    -- Generate the escorts

@@ -48,9 +48,9 @@ function spawn_capship ()
    local r = rnd.rnd()
    -- Generate the capship
    if r < 0.5 then
-      scom.addPilot(pilots, "Sirius Dogma", 145)
+      scom.addPilot(pilots, "Sirius Dogma", 165)
    else
-      scom.addPilot(pilots, "Sirius Divinity", 165)
+      scom.addPilot(pilots, "Sirius Divinity", 465)
    end
 
    -- Generate the escorts

@@ -32,13 +32,13 @@ function spawn_squad ()
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
    elseif r < 0.8 then
-      scom.addPilot(pilots, "Proteron Kahan", 70)
+      scom.addPilot(pilots, "Proteron Kahan", 90)
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
    else
-      scom.addPilot(pilots, "Proteron Kahan", 70)
-      scom.addPilot(pilots, "Proteron Kahan", 70)
+      scom.addPilot(pilots, "Proteron Kahan", 90)
+      scom.addPilot(pilots, "Proteron Kahan", 90)
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
    end
@@ -54,9 +54,9 @@ function spawn_capship ()
 
    -- Generate the capship
    if r < 0.7 then
-      scom.addPilot(pilots, "Proteron Archimedes", 145)
+      scom.addPilot(pilots, "Proteron Archimedes", 165)
    else
-      scom.addPilot(pilots, "Proteron Watson", 165)
+      scom.addPilot(pilots, "Proteron Watson", 525)
    end
 
    -- Generate the escorts
@@ -67,13 +67,13 @@ function spawn_capship ()
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
    elseif r < 0.8 then
-      scom.addPilot(pilots, "Proteron Kahan", 70)
+      scom.addPilot(pilots, "Proteron Kahan", 90)
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
    else
-      scom.addPilot(pilots, "Proteron Kahan", 70)
-      scom.addPilot(pilots, "Proteron Kahan", 70)
+      scom.addPilot(pilots, "Proteron Kahan", 90)
+      scom.addPilot(pilots, "Proteron Kahan", 90)
       scom.addPilot(pilots, "Proteron Derivative", 20)
       scom.addPilot(pilots, "Proteron Derivative", 20)
    end

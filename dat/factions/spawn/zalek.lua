@@ -21,7 +21,7 @@ function spawn_patrol ()
       scom.addPilot(pilots, "Za'lek Light Drone", 20)
       scom.addPilot(pilots, "Za'lek Light Drone", 20)
    else
-      scom.addPilot(pilots, "Za'lek Demon", 75)
+      scom.addPilot(pilots, "Za'lek Demon", 115)
    end
 
    return pilots
@@ -68,9 +68,9 @@ function spawn_capship ()
 
    -- Generate the capship
    if r < 0.5 then
-      scom.addPilot(pilots, "Za'lek Mephisto", 140)
+      scom.addPilot(pilots, "Za'lek Mephisto", 220)
    else
-      scom.addPilot(pilots, "Za'lek Diablo", 150)
+      scom.addPilot(pilots, "Za'lek Diablo", 650)
    end
 
    -- Generate the escorts

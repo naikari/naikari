@@ -37,7 +37,7 @@ function spawn_squad ()
       scom.addPilot(pilots, "Vendetta", 25, {name=_("FLF Vendetta")})
    else
       scom.addPilot(pilots, "Lancelot", 25, {name=_("FLF Lancelot")})
-      scom.addPilot(pilots, "Pacifier", 70, {name=_("FLF Pacifier")})
+      scom.addPilot(pilots, "Pacifier", 110, {name=_("FLF Pacifier")})
    end
 
    return pilots
