@@ -96,10 +96,10 @@ COLOURS = [
     Colour( "Energy", 0.2, 0.8, 0.2 ),
     Colour( "Fuel", 0.9, 0.1, 0.4 ),
     # Slot sizes
-    Colour("SlotSmall", 249/255, 255/255, 102/255),
-    Colour("SlotMedium", 204/255, 115/255, 51/255),
-    Colour("SlotLarge", 102/255, 28/255, 26/255),
-    Colour("SlotRequired", 153/255, 181/255, 255/255),
+    Colour("SlotSmall", 218/255, 167/255, 16/255),
+    Colour("SlotMedium", 185/255, 79/255, 0/255),
+    Colour("SlotLarge", 152/255, 4/255, 0/255),
+    Colour("SlotRequired", 0/255, 23/255, 82/255),
 
     # Deiz's Super Font Palette
     Colour( "FontRed", 1.0, 0.4, 0.4 ),
