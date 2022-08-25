@@ -77,22 +77,22 @@ function create()
       riskreward = 0
    elseif avgrisk <= 25 then
       piracyrisk = piracyrisk[2]
-      riskreward = 10
+      riskreward = 150
    elseif avgrisk > 25 and avgrisk <= 100 then
       piracyrisk = piracyrisk[3]
-      riskreward = 25
+      riskreward = 300
    else
       piracyrisk = piracyrisk[4]
-      riskreward = 50
+      riskreward = 450
    end
  
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
    amount = rnd.rnd(10 + 3*tier, 20 + 4*tier)
-   jumpreward = commodity.price(cargo) * 1.5
-   distreward = math.log(300*commodity.price(cargo)) / 100
-   reward = (1.5^tier
+   jumpreward = (commodity.price(cargo) * (25+riskreward)) / 100
+   distreward = math.log((100+riskreward)*commodity.price(cargo)) / 100
+   reward = (1.75^tier
          * (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward
-            + 75000)
+            + 15000)
          * (1 + 0.05*rnd.twosigma()))
 
    local title = n_("ES: Cargo: {amount} t to {planet} ({system} system)",
