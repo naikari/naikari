@@ -166,7 +166,7 @@ function accept()
         shadowrun = 2
 
         gen_osd()
-        misn_marker = misn.markerAdd(sys, "low")
+        misn_marker = misn.markerAdd(sys, "high")
 
         datehook = hook.date(time.create(0, 0, 100), "date")
         hook.land("land")

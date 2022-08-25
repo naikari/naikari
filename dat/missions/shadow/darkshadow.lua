@@ -149,7 +149,7 @@ function create()
 
     stage = 1
 
-    marker = misn.markerAdd(seirsys, "low")
+    marker = misn.markerAdd(seirsys, "high")
 
     hook.enter("enter")
 end

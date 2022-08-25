@@ -73,7 +73,7 @@ function accept ()
       misn.finish()
    end
 
-   misn.markerAdd(sys, "low")
+   misn.markerAdd(sys, "high")
 
    -- Accept the mission
    misn.accept()

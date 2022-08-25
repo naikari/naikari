@@ -107,7 +107,7 @@ function create()
     misn.setDesc(misn_desc)
     misn.setTitle(misn_title)
     misn.setReward(misn_reward)
-    misn.markerAdd(system.get(destsysname), "low")
+    misn.markerAdd(system.get(destsysname), "high")
     
     hook.enter("enter")
     hook.land("land")
