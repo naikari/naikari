@@ -79,11 +79,11 @@ COLOURS = [
     Colour( "Hostile", 170./255., 68./255., 153./255. ),
     Colour( "Restricted", 153./255., 153./255., 51./255. ),
     # Mission Markers
-    Colour( "MarkerNew", 221./255., 142./255., 249./255. ),
-    Colour( "MarkerComputer", 208./255., 231./255., 202./255. ),
-    Colour( "MarkerLow", 234./255., 240./255., 181./255. ),
-    Colour( "MarkerHigh", 252./255., 247./255., 213./255. ),
-    Colour( "MarkerPlot", 255./255., 255./255., 255./255. ),
+    Colour( "MarkerNew", 142./255., 203./255., 233./255. ),
+    Colour( "MarkerComputer", 251./255., 255./255., 164./255. ),
+    Colour( "MarkerLow", 238./255., 238./255., 18./255. ),
+    Colour( "MarkerHigh", 255./255., 173./255., 95./255. ),
+    Colour( "MarkerPlot", 255./255., 100./255., 108./255. ),
     # Radar
     Colour( "Radar_player", 102/255, 255/255, 230/255 ),
     Colour( "Radar_tPilot", 1.0, 1.0, 1.0 ),
