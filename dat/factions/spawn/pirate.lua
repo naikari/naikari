@@ -49,7 +49,7 @@ function spawn_squad ()
       scom.addPilot(pilots, "Pirate Ancestor", 30)
    elseif r < 0.8 then
       scom.addPilot(pilots, "Pirate Shark", 20)
-      scom.addPilot(pilots, "Pirate Rhino", 35)
+      scom.addPilot(pilots, "Pirate Rhino", 75)
       scom.addPilot(pilots, "Pirate Phalanx", 45)
    else
       add_hyena(pilots)
@@ -71,7 +71,7 @@ function spawn_capship ()
    local r = rnd.rnd()
 
    -- Generate the capship
-   scom.addPilot(pilots, "Pirate Kestrel", 125)
+   scom.addPilot(pilots, "Pirate Kestrel", 165)
 
    -- Generate the escorts
    if r < 0.5 then

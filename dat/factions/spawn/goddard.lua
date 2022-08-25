@@ -6,7 +6,7 @@ function spawn_capship ()
     local pilots = {}
 
     -- Generate the capship
-    scom.addPilot(pilots, "Goddard", 145, {name=_("Goddard Goddard")})
+    scom.addPilot(pilots, "Goddard", 230, {name=_("Goddard Goddard")})
 
     -- Generate the escorts
     local r = rnd.rnd()

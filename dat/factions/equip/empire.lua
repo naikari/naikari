@@ -90,6 +90,24 @@ equip_typeOutfits_weapons["Pacifier"] = {
       "Laser Turret MK2", "Plasma Turret MK2", "Orion Beam",
    },
 }
+equip_typeOutfits_weapons["Hawking"] = {
+   {
+      num = 1;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Empire Shark Fighter Bay", "Empire Lancelot Fighter Bay",
+   },
+   {
+      num = 1;
+      "Heavy Ripper Turret", "Plasma Cluster Turret",
+      "Grave Beam", "Heavy Ion Turret",
+      "Empire Shark Fighter Bay", "Empire Lancelot Fighter Bay",
+   },
+   {
+      "Heavy Ripper Turret", "Plasma Cluster Turret",
+      "Grave Beam", "Heavy Ion Turret",
+   },
+}
 equip_typeOutfits_weapons["Peacemaker"] = {
    {
       varied = true;

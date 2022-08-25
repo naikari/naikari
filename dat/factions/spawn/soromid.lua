@@ -49,7 +49,7 @@ function spawn_capship ()
    if r < 0.7 then
       scom.addPilot(pilots, "Soromid Ira", 140)
    else
-      scom.addPilot(pilots, "Soromid Arx", 165)
+      scom.addPilot(pilots, "Soromid Arx", 525)
    end
 
    -- Generate the escorts
