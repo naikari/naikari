@@ -98,7 +98,7 @@ function accept ()
    misn.setReward(creditstring(reward))
 
    misn.setDesc(string.format(misn_desc, targetworld:name(), targetworld_sys:name()))
-   runawayMarker = misn.markerAdd(system.get("Dohriabi"), "low")
+   runawayMarker = misn.markerAdd(system.get("Dohriabi"), "high")
 
    tk.msg("", post_accept[1])
 

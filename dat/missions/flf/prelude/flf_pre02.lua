@@ -274,7 +274,7 @@ function accept ()
       }
       misn.osdCreate(misn_title, osd_desc)
 
-      marker = misn.markerAdd(homesys, "low")
+      marker = misn.markerAdd(homesys, "plot")
 
       hook.land("land")
    else

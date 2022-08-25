@@ -293,7 +293,7 @@ function hail(hailed_pilot)
       misn.osdActive(1)
       misn.osdCreate(misn_title, osd_desc)
       misn.markerRm(marker)
-      marker = misn.markerAdd(DVsys, "high")
+      marker = misn.markerAdd(DVsys, "plot")
 
       spawner = hook.timer(3, "timer_spawnHostileFLF")
       hook.land("land_dv")

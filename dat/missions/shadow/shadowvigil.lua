@@ -121,7 +121,7 @@ function create()
     misn.setDesc(fmt.f(misn_desc0, {system=rebinasys:name()}))
     misn.setReward(misn_reward0)
 
-    marker = misn.markerAdd(rebinasys, "low")
+    marker = misn.markerAdd(rebinasys, "high")
     local osd_msg = {
         fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu"),
             {system=rebinasys:name()}),
