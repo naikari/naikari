@@ -72,7 +72,7 @@ misn_log = _([[You accepted another job from Ian Structure, this time mining som
 function create()
    -- Note: This mission makes no system claims.
    misplanet, missys = planet.get("Em 5")
-   credits = 15000
+   credits = 10000
 
    misn.setNPC(_("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
