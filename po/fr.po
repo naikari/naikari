@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-08-23 19:07-0400\n"
+"POT-Creation-Date: 2022-08-26 05:02-0400\n"
 "PO-Revision-Date: 2021-03-17 07:18+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/naev/naev/fr/>\n"
@@ -18971,7 +18971,7 @@ msgid ""
 msgstr ""
 
 #: dat/ships/proteron_archimedes.xml:3 dat/ships/starbridge.xml:3
-#: dat/missions/tutorial/combatpractice.lua:186
+#: dat/missions/tutorial/combatpractice.lua:191
 msgid "Archimedes"
 msgstr ""
 
@@ -18993,14 +18993,14 @@ msgstr ""
 #. Common amount variable (for homogenous fleets)
 #. Choose the fleet based on ship type and chosen fleet size.
 #: dat/ships/proteron_derivative.xml:3
-#: dat/missions/tutorial/combatpractice.lua:182
-#: dat/missions/tutorial/combatpractice.lua:303
+#: dat/missions/tutorial/combatpractice.lua:187
 #: dat/missions/tutorial/combatpractice.lua:308
-#: dat/missions/tutorial/combatpractice.lua:312
-#: dat/missions/tutorial/combatpractice.lua:315
-#: dat/missions/tutorial/combatpractice.lua:321
-#: dat/missions/tutorial/combatpractice.lua:325
-#: dat/missions/tutorial/combatpractice.lua:329
+#: dat/missions/tutorial/combatpractice.lua:313
+#: dat/missions/tutorial/combatpractice.lua:317
+#: dat/missions/tutorial/combatpractice.lua:320
+#: dat/missions/tutorial/combatpractice.lua:326
+#: dat/missions/tutorial/combatpractice.lua:330
+#: dat/missions/tutorial/combatpractice.lua:334
 msgid "Derivative"
 msgstr ""
 
@@ -19014,12 +19014,12 @@ msgid ""
 "of battle on many occasions."
 msgstr ""
 
-#: dat/ships/proteron_kahan.xml:3 dat/missions/tutorial/combatpractice.lua:184
-#: dat/missions/tutorial/combatpractice.lua:308
-#: dat/missions/tutorial/combatpractice.lua:312
-#: dat/missions/tutorial/combatpractice.lua:321
-#: dat/missions/tutorial/combatpractice.lua:325
-#: dat/missions/tutorial/combatpractice.lua:329
+#: dat/ships/proteron_kahan.xml:3 dat/missions/tutorial/combatpractice.lua:189
+#: dat/missions/tutorial/combatpractice.lua:313
+#: dat/missions/tutorial/combatpractice.lua:317
+#: dat/missions/tutorial/combatpractice.lua:326
+#: dat/missions/tutorial/combatpractice.lua:330
+#: dat/missions/tutorial/combatpractice.lua:334
 msgid "Kahan"
 msgstr ""
 
@@ -19031,7 +19031,7 @@ msgid ""
 "makes up for it with its lower mass and expanded structural space."
 msgstr ""
 
-#: dat/ships/proteron_watson.xml:3 dat/missions/tutorial/combatpractice.lua:188
+#: dat/ships/proteron_watson.xml:3 dat/missions/tutorial/combatpractice.lua:193
 msgid "Watson"
 msgstr ""
 
@@ -30145,16 +30145,17 @@ msgid ""
 "He hits a couple buttons on his wrist computer, which springs into action. "
 "\"It looks like we already have a simple task for you. Deliver these parcels "
 "to {planet}. The best pilots started delivering papers and ended up flying "
-"into combat against gigantic warships with the Interception Division.\""
+"into combat against gigantic warships with the Interception Division. Good "
+"luck!\""
 msgstr ""
 
 #: dat/missions/empire/emp_cargo00.lua:39
 msgid ""
 "You deliver the parcels to the Empire Shipping station at the {planet} "
 "spaceport. Afterwards, they make you do some paperwork to formalise your "
-"participation with the Empire. They tell you to keep an eye out for missions "
-"labeled ES, which stands for Empire Shipping, in the mission computer, to "
-"which you now have access.\n"
+"participation with the Empire. They tell you to keep an eye out in the "
+"mission computer for missions labeled ES, which stands for Empire Shipping, "
+"to which you now have access.\n"
 " \n"
 "You aren't too sure of what to make of your encounter with the Empire. Only "
 "time will tell.…"
@@ -42299,7 +42300,7 @@ msgstr ""
 #. --
 #. Mission details
 #: dat/missions/tutorial/combatpractice.lua:41
-#: dat/missions/tutorial/combatpractice.lua:139
+#: dat/missions/tutorial/combatpractice.lua:144
 msgid "Combat Practice"
 msgstr ""
 
@@ -42353,87 +42354,91 @@ msgid "Lancelot (heavy fighter)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:98
-msgid "Ancestor (bomber)"
+msgid "Vendetta (heavy fighter)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:99
-msgid "Admonisher (corvette)"
+msgid "Ancestor (bomber)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:100
-msgid "Phalanx (corvette)"
+msgid "Admonisher (corvette)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:101
-msgid "Pacifier (destroyer)"
+msgid "Phalanx (corvette)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:102
-msgid "Vigilance (destroyer)"
+msgid "Pacifier (destroyer)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:103
-msgid "Kahan (destroyer)"
+msgid "Vigilance (destroyer)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:104
-msgid "Kestrel (light cruiser)"
+msgid "Kahan (destroyer)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:105
-msgid "Hawking (cruiser)"
+msgid "Kestrel (light cruiser)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:106
-msgid "Goddard (heavy cruiser)"
+msgid "Hawking (cruiser)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:107
-msgid "Archimedes (heavy cruiser)"
+msgid "Goddard (heavy cruiser)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:108
-msgid "Watson (carrier)"
+msgid "Archimedes (heavy cruiser)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:109
+msgid "Watson (carrier)"
+msgstr ""
+
+#: dat/missions/tutorial/combatpractice.lua:110
 msgctxt "ship_type"
 msgid "Random"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:112
+#: dat/missions/tutorial/combatpractice.lua:113
 msgid "Select the leader of the practice drone fleet."
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:120
+#: dat/missions/tutorial/combatpractice.lua:121
 msgid "Random ship chosen: {ship}"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:124
+#: dat/missions/tutorial/combatpractice.lua:129
 msgid "Select how large of a fleet the leader should have."
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:125
+#: dat/missions/tutorial/combatpractice.lua:130
 msgctxt "fleet_size"
 msgid "None (no escorts)"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:126
+#: dat/missions/tutorial/combatpractice.lua:131
 msgctxt "fleet_size"
 msgid "Small (~3 escorts)"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:127
+#: dat/missions/tutorial/combatpractice.lua:132
 msgctxt "fleet_size"
 msgid "Medium (~6 escorts)"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:128
+#: dat/missions/tutorial/combatpractice.lua:133
 msgctxt "fleet_size"
 msgid "Large (~10 escorts)"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:132
+#: dat/missions/tutorial/combatpractice.lua:137
 msgid ""
 "{desc}\n"
 "\n"
@@ -42441,19 +42446,19 @@ msgid ""
 "Fleet size: {fleet_size}"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:136
+#: dat/missions/tutorial/combatpractice.lua:141
 msgid "Fly to any system which is not being used by a mission or event"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:137
+#: dat/missions/tutorial/combatpractice.lua:142
 msgid "Defeat the practice drones"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:191
+#: dat/missions/tutorial/combatpractice.lua:196
 msgid "Training"
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:192
+#: dat/missions/tutorial/combatpractice.lua:197
 msgid "Training Machines, Inc."
 msgstr ""
 
@@ -42461,15 +42466,15 @@ msgstr ""
 #. Remove this pilot from the list in case it still exists.
 #. Check to see if any other drones are still alive.
 #. If we're here, no drones are left alive, so finish the mission.
-#: dat/missions/tutorial/combatpractice.lua:386
+#: dat/missions/tutorial/combatpractice.lua:391
 msgid "MISSION SUCCESSFUL: All practice drones are defeated."
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:407
+#: dat/missions/tutorial/combatpractice.lua:412
 msgid "Your ship has been disabled by the practice drones."
 msgstr ""
 
-#: dat/missions/tutorial/combatpractice.lua:418
+#: dat/missions/tutorial/combatpractice.lua:423
 msgid "You ran away from the practice drones, thus aborting the mission."
 msgstr ""
 
