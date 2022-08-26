@@ -38,20 +38,14 @@ local fmt = require "fmt"
 local portrait = require "portrait"
 require "pilot/generic"
 require "pilot/pirate"
-require "events/tutorial/tutorial_common"
 
-
-tutorial_text = _([[As you walk into the bar, someone else confidently strolls up to you. "Salutations!" she says. "You're a pilot, right? Would you per chance be willing to join my fleet?" You politely decline the offer, explaining that you prefer to be your own boss. "Fair enough!" she says. "I'm the same way. Having a fleet can be real helpful though, so I've been asking pilots if they'd join my fleet.
-
-"I'd definitely recommend you give it a try at some point! Usually I just approach pilots at bars and ask them what their rates are. They charge a security deposit up-front, plus a royalty which is a percentage of your mission earnings they take whenever you get paid. You can get some of the deposit back when you fire them; it's like an insurance kind of thing, a guaranteed payment for their families if they die.
-
-"Anyway, sorry to bother you. I'll get back to looking for pilots to join my fleet. Nice meeting you!"]])
-tutorial_log = _([[Pilots which are available for hire can be found at the Spaceport Bar. Each pilot has a deposit you have to pay up-front, and a royalty, which is a percentage of your mission earnings you have to pay them every time you complete a mission. The deposit can be partially refunded when you fire them while landed; the amount refunded depends on how much the pilot has earned in royalties. If you fire them while out in space or if they die, none of the deposit is refunded. Each pilot is different, so you should try to pick pilots that will work well for you as a fleet.]])
 
 npctext = {
    _([["Hi there! I'm looking to get some piloting experience. Here are my credentials. Would you be interested in hiring me?"]]),
    _([["Hello! I'm looking to join someone's fleet. Here's my credentials. What do you say, would you like me on board?"]]),
    _([["Hi! You look like you could use a pilot! I'm available and charge some of the best rates in the galaxy, and I promise you I'm perfect for the job! Here's my info. Well, what do you think? Would you like to add me to your fleet?"]]),
+   _([["Ah, you look like you could use a pilot! Well, as it happens, I'm available to fill that need! I promise you my performance won't disappoint, and as you can see from my credentials here, I offer reasonable rates. What do you say, will you take me aboard and boost the power of your fleet today?"]]),
+   _([["You need a co-pilot? Well, you're talking to just the one for the job! I have a fantastic track-record, having successfully dispatched hundreds of hostiles in my years of service, and as you can see, my credentials speek for themselves. Are you ready to take me on and bolster your fleet?"]]),
 }
 
 credentials = _([[
@@ -79,7 +73,6 @@ function create ()
 
    hook.land("land")
    hook.load("land")
-   hook.land("land_bar", "bar")
    hook.jumpout("jumpout")
    hook.enter("enter")
    hook.pay("pay")
@@ -254,7 +247,7 @@ function getCredentials(edata)
 
    -- Translators: {color} is used to color {speed} and must precede it
    -- (it is replaced with either "#0" or "#r!! ").
-   local credentials = _([[
+   credentials = _([[
 #nPilot name:#0 {name}
 #nShip:#0 {ship}
 #nSpeed:#0 {speed} km/s
@@ -334,12 +327,6 @@ end
 
 
 function land_bar ()
-   if next(npcs) ~= nil and not var.peek("tutorial_escorts_done") then
-      tk.msg("", tutorial_text)
-      addTutLog(tutorial_log, N_("Escorts"))
-
-      var.push("tutorial_escorts_done", true)
-   end
 end
 
 
@@ -673,6 +660,12 @@ end
 
 
 function approachPilot(npc_id)
+   local explain_text = _([["Of course. There are two parts: the deposit, and the royalty.
+
+"The deposit is paid up-front when you hire me. It's partially refundable if you terminate my employment while landed, with the refund amount based on how much in total I have been paid in royalties.
+
+"The royalty is simply a percentage of your mission earnings I will take as payment each time you go on a mission. So for example, since my royalty is {royalty:.1f}%, that means if you earn {credits} from a mission while I am employed by you, you will have to pay me {payment}."]])
+
    local pdata = npcs[npc_id]
    if pdata == nil then
       evt.npcRm(npc_id)
@@ -681,7 +674,23 @@ function approachPilot(npc_id)
 
    local cstr = getCredentials(pdata)
 
-   if tk.yesno("", pdata.approachtext .. "\n\n" .. cstr) then
+   local hire = false
+   local n, s
+   repeat
+      n, s = tk.choice("", pdata.approachtext .. "\n\n" .. cstr,
+            _("Hire pilot"), _("Explain rates"), _("Do nothing"))
+      if s == _("Hire pilot") then
+         hire = true
+      elseif s == _("Explain rates") then
+         local credits = 100000
+         local payment = credits * pdata.royalty
+         tk.msg("", fmt.f(explain_text,
+               {credits=fmt.credits(credits), payment=fmt.credits(payment),
+                  royalty=pdata.royalty*100}))
+      end
+   until s ~= _("Explain rates")
+
+   if hire then
       if pdata.deposit and pdata.deposit > player.credits() then
          tk.msg("", _("You don't have enough credits to pay for this pilot's deposit."))
          return
