@@ -76,7 +76,7 @@ misn_log = _([[You helped transport Ian Structure to another planet in another s
 
 function create()
    misplanet, missys = planet.get("Shiarta")
-   credits = 20000
+   credits = 15000
 
    if not misn.claim(missys) then
       misn.finish(false)

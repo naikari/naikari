@@ -64,7 +64,7 @@ misn_log = _([[You helped a businessman named Ian Structure acquire some Food. H
 function create()
    -- Note: This mission makes no system claims.
    misplanet, missys = planet.get("Em 1")
-   credits = 10000
+   credits = 5000
    talked = false
 
    misn.setNPC(_("A well-dressed man"),
