@@ -59,8 +59,6 @@ end
 
 
 function accept()
-   misn.accept()
-
    local boss_choices = {
       "Llama",
       "Gawain",
@@ -72,6 +70,7 @@ function accept()
       "Shark",
       "Proteron Derivative",
       "Lancelot",
+      "Vendetta",
       "Ancestor",
       "Admonisher",
       "Phalanx",
@@ -83,6 +82,7 @@ function accept()
       "Goddard",
       "Proteron Archimedes",
       "Proteron Watson",
+      true,
    }
    local boss_disp = {
       _("Llama (yacht)"),
@@ -95,6 +95,7 @@ function accept()
       _("Shark (light fighter)"),
       _("Derivative (light fighter)"),
       _("Lancelot (heavy fighter)"),
+      _("Vendetta (heavy fighter)"),
       _("Ancestor (bomber)"),
       _("Admonisher (corvette)"),
       _("Phalanx (corvette)"),
@@ -113,12 +114,16 @@ function accept()
          unpack(boss_disp))
 
    boss = boss_choices[n]
-   if boss == nil then
+   if boss == true then
       local n = rnd.rnd(1, #boss_choices)
       boss = boss_choices[n]
       boss_text = boss_disp[n]
       tk.msg("", fmt.f(_("Random ship chosen: {ship}"), {ship=boss_text}))
+   elseif boss == nil then
+      misn.finish()
    end
+
+   misn.accept()
 
    local n, fleet_text = tk.choice("",
          _("Select how large of a fleet the leader should have."),
@@ -203,7 +208,7 @@ function start_hook()
       if boss == "Gawain" or boss == "Hyena" or boss == "Shark" then
          drones = fleet.add(amt, "Hyena", fac, pos, nil, nil, boss_p)
       elseif boss == "Llama" or boss == "Quicksilver" or boss == "Lancelot"
-            or boss == "Ancestor" then
+            or boss == "Vendetta" or boss == "Ancestor" then
          if fleet_size == 3 then
             drones = fleet.add({4, 6}, {"Shark", "Hyena"},
                   fac, pos, nil, nil, boss_p)
