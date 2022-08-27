@@ -83,6 +83,10 @@
   anything necessary, it was basically just a history lesson delivered
   in a rather boring manner. Any such information could easily be
   conveyed in better ways and most of it already is.
+* Changed the mission marker colors and slot size colors to yellow,
+  orange, and red, retaining full colorblind accessibility and the
+  gradual color shift of the previous coloring while making the colors
+  used more distinct.
 
 ## 0.3.0
 
