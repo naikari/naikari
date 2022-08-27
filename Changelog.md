@@ -2,17 +2,10 @@
 
 ## 0.5.0
 
-* The missions with Ian Structure are now integrated into the Empire
-  campaign; after your run-in with the pirate in Eneguoz, the map
-  changes so that Hakoi has pirates in it and Czesc invites you to join
-  the Empire specifically because of the work you did for Ian Structure.
 * All bar missions are prevented from spawning in Hakoi and Eneguez
   until you finish the Ian Structure missions.
 * Cargo missions now reward much more credits if they are on a route
   that has pirate presence.
-* AI ships that come with fighter bays now count more toward filling the
-  presence quota, which means they no longer inflate the amount of ships
-  in the system like they used to.
 
 ## 0.4.0
 
