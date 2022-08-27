@@ -18,9 +18,12 @@
 * Changed the name of the Info Window to Ship Computer.
 * New combat practice mission available through the mission computer.
 * New map showing waste disposal locations.
-* Opening tutorial replaced with a new start-of-game mission that
+* Opening tutorial replaced with a new start-of-game campaign that
   teaches the basics of playing the game in a more natural and
-  integrated fashion.
+  integrated fashion. This new campaign is now integrated with the
+  Empire Recruitment mission, used as the basis for why you are
+  recruited by the Empire rather than them just randomly choosing a warm
+  body.
 * Reworked the trader escort mission: the trader convoy now travels as
   a more natural fleet (going into a formation), and it also limits its
   speed so it isn't faster than you.
@@ -69,6 +72,9 @@
   orange, and red, retaining full colorblind accessibility and the
   gradual color shift of the previous coloring while making the colors
   used more distinct.
+* AI ships that come with fighter bays now count more toward filling the
+  presence quota, which means they no longer inflate the amount of ships
+  in the system like they used to.
 
 ## 0.3.0
 
