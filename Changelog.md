@@ -10,10 +10,6 @@
   until you finish the Ian Structure missions.
 * Cargo missions now reward much more credits if they are on a route
   that has pirate presence.
-* Changed the mission marker colors and slot size colors to yellow,
-  orange, and red, retaining full colorblind accessibility and the
-  gradual color shift of the previous coloring while making the colors
-  used more distinct.
 * AI ships that come with fighter bays now count more toward filling the
   presence quota, which means they no longer inflate the amount of ships
   in the system like they used to.
