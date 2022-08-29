@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-08-26 05:02-0400\n"
+"POT-Creation-Date: 2022-08-29 04:22-0400\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -1129,6 +1129,11 @@ msgstr "Amarock I"
 #: dat/assets/amaroq_iii.xml:2
 msgid "Amaroq III"
 msgstr "Amarock III"
+
+#: dat/assets/amaru.xml:2
+#, fuzzy
+msgid "Amaru"
+msgstr "Amarock"
 
 #: dat/assets/amatiri_i.xml:2
 msgid "Amatiri I"
@@ -6736,10 +6741,6 @@ msgstr ""
 "Wissenschaftler in Ruadan ist er so gut wie aufgegeben worden. Sein einziger "
 "Zweck ist nun ein Tankstopp für den dünn besiedelten Süden des Za'lek-Raums."
 
-#: dat/assets/inca.xml:2
-msgid "Inca"
-msgstr "Inka"
-
 #: dat/assets/infinity_iii.xml:2
 msgid "Infinity III"
 msgstr "Infinto III"
@@ -8651,10 +8652,6 @@ msgstr ""
 "den und aus dem Sirius-Raum beliebt macht. Die Maus-Station will dafür "
 "sorgen, dass die Sicherheit in diesem Gebiet genauso streng ist wie überall "
 "sonst."
-
-#: dat/assets/maya.xml:2
-msgid "Maya"
-msgstr "Maya"
 
 #: dat/assets/medenus_observatory.xml:2
 msgid "Medenus Observatory"
@@ -11576,7 +11573,7 @@ msgstr ""
 #. Make sure it's valid.
 #. text
 #: dat/assets/regensburg.xml:26 dat/gui/brushed.lua:897 dat/gui/brushed.lua:906
-#: dat/missions/flf/prelude/flf_pre02.lua:265
+#: dat/missions/flf/prelude/flf_pre02.lua:259
 #: dat/missions/pirate/fake_id.lua:38
 #: dat/missions/tutorial/combatpractice.lua:57
 #: dat/missions/tutorial/tutorial.lua:102 src/dev_sysedit.c:1291
@@ -16036,6 +16033,11 @@ msgstr "Virtuell: Bergarbeiter klein"
 #: dat/assets/virtual_miner_small.xml:2
 msgid "Virtual Miner Small"
 msgstr "Virtuell: Bergarbeiter klein"
+
+#: dat/assets/virtual_pirate_local.xml:2
+#, fuzzy
+msgid "Virtual Pirate Local"
+msgstr "Virtuell: Piraten klein"
 
 #: dat/assets/virtual_pirate_medium.xml:2
 msgid "Virtual Pirate Medium"
@@ -29274,49 +29276,17 @@ msgstr ""
 #. --
 #: dat/events/escorts.lua:44
 msgid ""
-"As you walk into the bar, someone else confidently strolls up to you. "
-"\"Salutations!\" she says. \"You're a pilot, right? Would you per chance be "
-"willing to join my fleet?\" You politely decline the offer, explaining that "
-"you prefer to be your own boss. \"Fair enough!\" she says. \"I'm the same "
-"way. Having a fleet can be real helpful though, so I've been asking pilots "
-"if they'd join my fleet.\n"
-"\n"
-"\"I'd definitely recommend you give it a try at some point! Usually I just "
-"approach pilots at bars and ask them what their rates are. They charge a "
-"security deposit up-front, plus a royalty which is a percentage of your "
-"mission earnings they take whenever you get paid. You can get some of the "
-"deposit back when you fire them; it's like an insurance kind of thing, a "
-"guaranteed payment for their families if they die.\n"
-"\n"
-"\"Anyway, sorry to bother you. I'll get back to looking for pilots to join "
-"my fleet. Nice meeting you!\""
-msgstr ""
-
-#: dat/events/escorts.lua:49
-msgid ""
-"Pilots which are available for hire can be found at the Spaceport Bar. Each "
-"pilot has a deposit you have to pay up-front, and a royalty, which is a "
-"percentage of your mission earnings you have to pay them every time you "
-"complete a mission. The deposit can be partially refunded when you fire them "
-"while landed; the amount refunded depends on how much the pilot has earned "
-"in royalties. If you fire them while out in space or if they die, none of "
-"the deposit is refunded. Each pilot is different, so you should try to pick "
-"pilots that will work well for you as a fleet."
-msgstr ""
-
-#: dat/events/escorts.lua:52
-msgid ""
 "\"Hi there! I'm looking to get some piloting experience. Here are my "
 "credentials. Would you be interested in hiring me?\""
 msgstr ""
 
-#: dat/events/escorts.lua:53
+#: dat/events/escorts.lua:45
 msgid ""
 "\"Hello! I'm looking to join someone's fleet. Here's my credentials. What do "
 "you say, would you like me on board?\""
 msgstr ""
 
-#: dat/events/escorts.lua:54
+#: dat/events/escorts.lua:46
 msgid ""
 "\"Hi! You look like you could use a pilot! I'm available and charge some of "
 "the best rates in the galaxy, and I promise you I'm perfect for the job! "
@@ -29324,11 +29294,28 @@ msgid ""
 "fleet?\""
 msgstr ""
 
+#: dat/events/escorts.lua:47
+msgid ""
+"\"Ah, you look like you could use a pilot! Well, as it happens, I'm "
+"available to fill that need! I promise you my performance won't disappoint, "
+"and as you can see from my credentials here, I offer reasonable rates. What "
+"do you say, will you take me aboard and boost the power of your fleet today?"
+"\""
+msgstr ""
+
+#: dat/events/escorts.lua:48
+msgid ""
+"\"You need a co-pilot? Well, you're talking to just the one for the job! I "
+"have a fantastic track-record, having successfully dispatched hundreds of "
+"hostiles in my years of service, and as you can see, my credentials speek "
+"for themselves. Are you ready to take me on and bolster your fleet?\""
+msgstr ""
+
 #. This is horribly ugly, but we need to define this here for
 #. compatibility with previously running instances of the event.
 #. Translators: {color} is used to color {speed} and must precede it
 #. (it is replaced with either "#0" or "#r!! ").
-#: dat/events/escorts.lua:57 dat/events/escorts.lua:257
+#: dat/events/escorts.lua:51 dat/events/escorts.lua:250
 msgid ""
 "#nPilot name:#0 {name}\n"
 "#nShip:#0 {ship}\n"
@@ -29341,18 +29328,18 @@ msgid ""
 "#nCurrent total royalties:#0 {plroyalties:.1f}% of mission earnings"
 msgstr ""
 
-#: dat/events/escorts.lua:68
+#: dat/events/escorts.lua:62
 msgid ""
 "Would you like to do something with this pilot?\n"
 "\n"
 "Pilot credentials:"
 msgstr ""
 
-#: dat/events/escorts.lua:243
+#: dat/events/escorts.lua:236
 msgid "Pilot"
 msgstr "Pilot"
 
-#: dat/events/escorts.lua:244
+#: dat/events/escorts.lua:237
 #, fuzzy
 msgid "This pilot seems to be looking for work."
 msgstr "Dieser Za'lek-Wissenschaftler scheint sich nach jemanden umzusehen."
@@ -29361,18 +29348,13 @@ msgstr "Dieser Za'lek-Wissenschaftler scheint sich nach jemanden umzusehen."
 #. existing escorts.
 #. No sense continuing is there is no bar on the planet.
 #. Create NPCs for pilots you can hire.
-#: dat/events/escorts.lua:339
-#, fuzzy
-msgid "Escorts"
-msgstr "Geleit"
-
 #. Disabling escorts for this system has been requested.
 #. Limit this to 99 so we don't have the weirdness of a
 #. disabled ship warping in.
 #. For older saves: populate the speed value now.
 #. Trigger a hook to allow missions to do things with the
 #. escorts.
-#: dat/events/escorts.lua:487
+#: dat/events/escorts.lua:474
 msgid ""
 "{escort} has left your wing because you now have a negative standing with "
 "the {faction} faction."
@@ -29380,29 +29362,30 @@ msgstr ""
 
 #. Pilot is no longer employed by the player
 #. Pilot was hailed by the player
-#: dat/events/escorts.lua:526 dat/events/escorts.lua:528
-#: dat/events/escorts.lua:627 dat/events/escorts.lua:642
+#: dat/events/escorts.lua:513 dat/events/escorts.lua:515
+#: dat/events/escorts.lua:614 dat/events/escorts.lua:629
 #, fuzzy
 msgid "Fire pilot"
 msgstr "Seltsamer Pilot"
 
-#: dat/events/escorts.lua:526 dat/events/escorts.lua:533
+#: dat/events/escorts.lua:513 dat/events/escorts.lua:520
 #, fuzzy
 msgid "Issue Order"
 msgstr "Befehle leeren"
 
-#: dat/events/escorts.lua:526 dat/events/escorts.lua:627
+#: dat/events/escorts.lua:513 dat/events/escorts.lua:614
+#: dat/events/escorts.lua:681
 msgid "Do nothing"
 msgstr ""
 
-#: dat/events/escorts.lua:529
+#: dat/events/escorts.lua:516
 #, fuzzy
 msgid ""
 "Are you sure you want to fire {pilot}? This cannot be undone and you will "
 "not get any of the deposit back."
 msgstr "Bist du dir sicher, dass du diese Mission abbrechen willst?"
 
-#: dat/events/escorts.lua:532
+#: dat/events/escorts.lua:519
 #, fuzzy
 msgid "You have fired {pilot}."
 msgstr "Dir fehlt: %s."
@@ -29454,28 +29437,28 @@ msgstr "Dir fehlt: %s."
 #.
 #. Example usage: my_enum = enumerate({"first", "second", "third"})
 #. Example usage: print(my_enum.first)
-#: dat/events/escorts.lua:534 dat/scripts/escorthelper.lua:23 src/escort.c:299
+#: dat/events/escorts.lua:521 dat/scripts/escorthelper.lua:23 src/escort.c:299
 msgid "Escort Orders"
 msgstr "Geleitbefehle"
 
-#: dat/events/escorts.lua:535 dat/scripts/escorthelper.lua:24 src/escort.c:300
+#: dat/events/escorts.lua:522 dat/scripts/escorthelper.lua:24 src/escort.c:300
 msgid "Select the order to give to this escort."
 msgstr "Befehl für diesen Geleit auswählen."
 
-#: dat/events/escorts.lua:536 dat/events/escorts.lua:538
+#: dat/events/escorts.lua:523 dat/events/escorts.lua:525
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:33
 #: src/escort.c:288
 #, fuzzy
 msgid "Hold Formation"
 msgstr "Position halten"
 
-#: dat/events/escorts.lua:536 dat/events/escorts.lua:541
+#: dat/events/escorts.lua:523 dat/events/escorts.lua:528
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:36
 #: src/escort.c:289
 msgid "Return To Ship"
 msgstr "Zurück zum Schiff"
 
-#: dat/events/escorts.lua:536 dat/events/escorts.lua:544
+#: dat/events/escorts.lua:523 dat/events/escorts.lua:531
 #: dat/scripts/escorthelper.lua:26 dat/scripts/escorthelper.lua:39
 #: src/escort.c:290
 msgid "Clear Orders"
@@ -29488,7 +29471,7 @@ msgstr "Befehle leeren"
 #. "Cancel"
 #. Only "Cancel" remains, nothing to do.
 #. Run callback.
-#: dat/events/escorts.lua:537 dat/rescue.lua:44 dat/rescue.lua:55
+#: dat/events/escorts.lua:524 dat/rescue.lua:44 dat/rescue.lua:55
 #: dat/rescue.lua:115 dat/rescue.lua:164 dat/scripts/escorthelper.lua:26
 #: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:291 src/map_find.c:246
 #: src/options.c:280 src/options.c:794 src/options.c:914 src/options.c:1176
@@ -29496,23 +29479,23 @@ msgstr "Befehle leeren"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: dat/events/escorts.lua:540
+#: dat/events/escorts.lua:527
 #, fuzzy, lua-format
 msgid "#F%s:#0 Holding formation."
 msgstr "#gGeleit: #0Stellung halten."
 
-#: dat/events/escorts.lua:543 src/escort.c:316
+#: dat/events/escorts.lua:530 src/escort.c:316
 #, fuzzy, c-format, lua-format
 msgid "#F%s:#0 Returning to ship."
 msgstr "#gGeleit: #0Zum Schiff zurückkehren."
 
-#: dat/events/escorts.lua:546 src/escort.c:321
+#: dat/events/escorts.lua:533 src/escort.c:321
 #, fuzzy, c-format, lua-format
 msgid "#F%s:#0 Clearing orders."
 msgstr "#gGeleit: #0Befehle verwerfen."
 
 #. Must have an attacker
-#: dat/events/escorts.lua:563
+#: dat/events/escorts.lua:550
 msgid "{pilot} has left your wing and turned against you!"
 msgstr ""
 
@@ -29520,50 +29503,50 @@ msgstr ""
 #. Must have an attacker
 #. Since all the escorts will turn on the player, we might as well
 #. just have them all disband at once and attack.
-#: dat/events/escorts.lua:589
+#: dat/events/escorts.lua:576
 msgid ""
 "You have caused infighting within your wing, causing all of your escorts to "
 "quit and turn on you in retaliation!"
 msgstr ""
 
 #. Escort got killed
-#: dat/events/escorts.lua:603
+#: dat/events/escorts.lua:590
 msgid "{pilot} [docked]"
 msgstr ""
 
-#: dat/events/escorts.lua:607
+#: dat/events/escorts.lua:594
 msgid "This is one of the pilots currently under your wing."
 msgstr ""
 
-#: dat/events/escorts.lua:621 dat/events/escorts.lua:628
+#: dat/events/escorts.lua:608 dat/events/escorts.lua:615
 #, fuzzy
 msgid "Dock pilot"
 msgstr "Dvaered-Pilot"
 
-#: dat/events/escorts.lua:623 dat/events/escorts.lua:637
+#: dat/events/escorts.lua:610 dat/events/escorts.lua:624
 #, fuzzy
 msgid "Undock pilot"
 msgstr "Gute Arbeit, Pilot!"
 
-#: dat/events/escorts.lua:630
+#: dat/events/escorts.lua:617
 msgid ""
 "Are you sure you want to dock {pilot}? They will still be paid royalties, "
 "but will not join you in space until you undock them."
 msgstr ""
 
-#: dat/events/escorts.lua:648
+#: dat/events/escorts.lua:635
 msgid "You will be refunded the full {deposit} deposit."
 msgstr ""
 
-#: dat/events/escorts.lua:652
+#: dat/events/escorts.lua:639
 msgid "You will be refunded {refund} of the {deposit} deposit."
 msgstr ""
 
-#: dat/events/escorts.lua:657
+#: dat/events/escorts.lua:644
 msgid "You will not be refunded any of the {deposit} deposit."
 msgstr ""
 
-#: dat/events/escorts.lua:662
+#: dat/events/escorts.lua:649
 #, fuzzy
 msgid ""
 "Are you sure you want to fire {pilot}? This cannot be undone. "
@@ -29572,12 +29555,37 @@ msgstr "Bist du dir sicher, dass du diese Mission abbrechen willst?"
 
 #. We just set alive to false for now and let them get cleaned
 #. up next time we land.
-#: dat/events/escorts.lua:686
+#: dat/events/escorts.lua:663
+msgid ""
+"\"Of course. There are two parts: the deposit, and the royalty.\n"
+"\n"
+"\"The deposit is paid up-front when you hire me. It's partially refundable "
+"if you terminate my employment while landed, with the refund amount based on "
+"how much in total I have been paid in royalties.\n"
+"\n"
+"\"The royalty is simply a percentage of your mission earnings I will take as "
+"payment each time you go on a mission. So for example, since my royalty is "
+"{royalty:.1f}%, that means if you earn {credits} from a mission while I am "
+"employed by you, you will have to pay me {payment}.\""
+msgstr ""
+
+#: dat/events/escorts.lua:681 dat/events/escorts.lua:682
+#, fuzzy
+msgid "Hire pilot"
+msgstr "Seltsamer Pilot"
+
+#: dat/events/escorts.lua:681 dat/events/escorts.lua:684
+#: dat/events/escorts.lua:691
+#, fuzzy
+msgid "Explain rates"
+msgstr "Galaktische Piraten"
+
+#: dat/events/escorts.lua:695
 #, fuzzy
 msgid "You don't have enough credits to pay for this pilot's deposit."
 msgstr "Du hast nicht ausreichend Credits für die Bestechung."
 
-#: dat/events/escorts.lua:690
+#: dat/events/escorts.lua:699
 msgid ""
 "Hiring this pilot will lead to you paying more in royalties than you earn "
 "from missions, meaning you will lose credits when doing missions. Are you "
@@ -36188,17 +36196,18 @@ msgstr ""
 #. Flavour text and mini-briefing
 #. Intro text
 #. Accept mission
-#: dat/missions/baron/baron_baron.lua:91 dat/missions/empire/emp_cargo00.lua:91
+#: dat/missions/baron/baron_baron.lua:91
+#: dat/missions/empire/emp_cargo00.lua:104
 #: dat/missions/empire/shipping/es00.lua:94
 #: dat/missions/empire/shipping/es00.lua:96
 #: dat/missions/empire/shipping/es01.lua:100
 #: dat/missions/empire/shipping/es01.lua:155
 #: dat/missions/flf/dvk/flf_dvk02.lua:200
-#: dat/missions/flf/prelude/flf_pre02.lua:268
-#: dat/missions/flf/prelude/flf_pre02.lua:270
-#: dat/missions/flf/prelude/flf_pre02.lua:272 dat/missions/neutral/cargo.lua:45
-#: dat/missions/neutral/drunkard.lua:96
-#: dat/missions/neutral/nebu_satellite.lua:107
+#: dat/missions/flf/prelude/flf_pre02.lua:262
+#: dat/missions/flf/prelude/flf_pre02.lua:264
+#: dat/missions/flf/prelude/flf_pre02.lua:266 dat/missions/neutral/cargo.lua:45
+#: dat/missions/neutral/drunkard.lua:101
+#: dat/missions/neutral/nebu_satellite.lua:112
 #: dat/missions/neutral/teenager.lua:56 dat/missions/pirate/hitman.lua:37
 #: dat/missions/pirate/hitman2.lua:38 dat/missions/shadow/shadowvigil.lua:163
 #: dat/missions/shark/sh00_ancestorkill.lua:78
@@ -36830,7 +36839,7 @@ msgstr ""
 #: dat/missions/baron/baron_prince.lua:194
 #: dat/missions/baron/baron_prince.lua:200
 #: dat/missions/baron/baron_prince.lua:206
-#: dat/missions/neutral/lovetrain.lua:126
+#: dat/missions/neutral/lovetrain.lua:132
 #, fuzzy
 msgid "{planet} ({system} system)"
 msgstr "Lande auf %s im „%s“-System."
@@ -37773,9 +37782,10 @@ msgstr "Imperiale Kollektiv-Kampagne"
 #. </flags>
 #. <avail>
 #. <priority>10</priority>
-#. <chance>40</chance>
+#. <chance>100</chance>
 #. <location>Bar</location>
 #. <faction>Empire</faction>
+#. <done>Tutorial Part 4</done>
 #. </avail>
 #. </mission>
 #. --
@@ -37788,28 +37798,30 @@ msgstr "Imperiale Kollektiv-Kampagne"
 #.
 #.
 #.
-#: dat/missions/empire/emp_cargo00.lua:28
+#: dat/missions/empire/emp_cargo00.lua:29
 msgid "You see an Empire Lieutenant who seems to be looking at you."
 msgstr "Du siehst einen Leutnant des Imperiums, der dich anzusehen scheint."
 
-#: dat/missions/empire/emp_cargo00.lua:29
+#: dat/missions/empire/emp_cargo00.lua:30
 msgid "Empire Recruitment"
 msgstr "Imperiumsrekrutierung"
 
-#: dat/missions/empire/emp_cargo00.lua:30
+#: dat/missions/empire/emp_cargo00.lua:31
 msgid ""
 "You are being recruited for the Empire shipping division by Liutenant Czesc. "
 "Your first task is to deliver some parcels to {planet}."
 msgstr ""
 
-#: dat/missions/empire/emp_cargo00.lua:33
+#: dat/missions/empire/emp_cargo00.lua:34
 #, fuzzy
 msgid ""
 "You approach the Empire Lieutenant.\n"
 "\n"
 "\"Hello, I'm Lieutenant Czesc from the Empire Armada Shipping Division. "
 "We're having another recruitment operation and would be interested in having "
-"another pilot among us. Would you be interested in working for the Empire?\""
+"another skilled pilot among us. We've heard of the work you've done for Mr. "
+"Ian Structure and think you would be a perfect candidate. Would you be "
+"interested in working for the Empire?\""
 msgstr ""
 "Du näherst dich dem Imperiums-Leutnant an.\n"
 "„Hallo, ich bin Leutnant Czesc von der Armadalogistikdivision des Imperiums. "
@@ -37817,7 +37829,7 @@ msgstr ""
 "einen weiteren Piloten in unseren Reihen zu zählen. Wären Sie daran "
 "interessiert, für das Imperium zu arbeiten?“"
 
-#: dat/missions/empire/emp_cargo00.lua:36
+#: dat/missions/empire/emp_cargo00.lua:37
 #, fuzzy
 msgid ""
 "\"Welcome aboard,\" says Czesc before giving you a firm handshake. \"At "
@@ -37843,7 +37855,7 @@ msgstr ""
 "Papiere auszuliefern und flogen später in die Schlacht gegen gigantische "
 "Kriegsschiffe in der Abfangdivision.“"
 
-#: dat/missions/empire/emp_cargo00.lua:39
+#: dat/missions/empire/emp_cargo00.lua:40
 #, fuzzy
 msgid ""
 "You deliver the parcels to the Empire Shipping station at the {planet} "
@@ -37863,7 +37875,7 @@ msgstr ""
 "    Du bist dir nicht sicher, was du mit dieser Begegnung mit dem Imperium "
 "anstellen sollst. Nur die Zeit wird es verraten …"
 
-#: dat/missions/empire/emp_cargo00.lua:43
+#: dat/missions/empire/emp_cargo00.lua:44
 #, fuzzy
 msgid ""
 "You were recruited into the Empire's shipping division and can now do "
@@ -37877,17 +37889,19 @@ msgstr ""
 
 #. Note: this mission does not make any system claims.
 #. target destination
-#. In case no suitable planets are in range.
-#: dat/missions/empire/emp_cargo00.lua:66
+#. Use a non-standard method of creating a random chance of the
+#. mission showing up to ensure that it's guaranteed to show up at
+#. least once.
+#: dat/missions/empire/emp_cargo00.lua:79
 msgid "Lieutenant"
 msgstr "Leutnant"
 
 #. Set up the goal
-#: dat/missions/empire/emp_cargo00.lua:97
+#: dat/missions/empire/emp_cargo00.lua:110
 msgid "Parcels"
 msgstr "Pakete"
 
-#: dat/missions/empire/emp_cargo00.lua:97
+#: dat/missions/empire/emp_cargo00.lua:110
 msgid "A bunch of Empire parcels."
 msgstr ""
 
@@ -37982,7 +37996,7 @@ msgstr "Imperiale Lieferung"
 
 #: dat/missions/empire/es_cargo.lua:35
 #: dat/missions/empire/es_longdistancecargo.lua:38
-#: dat/missions/neutral/anxiousmerchant.lua:44
+#: dat/missions/neutral/anxiousmerchant.lua:49
 #: dat/missions/neutral/cargo_rush.lua:39 dat/missions/pirate/pir_cargo.lua:30
 #, fuzzy
 msgid ""
@@ -38012,7 +38026,7 @@ msgstr[1] ""
 #. Mission is accepted
 #: dat/missions/empire/es_cargo.lua:114
 #: dat/missions/empire/es_longdistancecargo.lua:126
-#: dat/missions/neutral/anxiousmerchant.lua:106
+#: dat/missions/neutral/anxiousmerchant.lua:111
 #: dat/missions/neutral/cargo.lua:98 dat/missions/neutral/cargo_rush.lua:132
 #: dat/missions/pirate/pir_cargo.lua:130
 #, fuzzy
@@ -38032,9 +38046,9 @@ msgstr[1] ""
 #: dat/missions/empire/es_cargo.lua:119
 #: dat/missions/empire/es_longdistancecargo.lua:131
 #: dat/missions/empire/shipping/es01.lua:126
-#: dat/missions/neutral/anxiousmerchant.lua:111
+#: dat/missions/neutral/anxiousmerchant.lua:116
 #: dat/missions/neutral/cargo.lua:103 dat/missions/neutral/cargo_rush.lua:137
-#: dat/missions/neutral/drunkard.lua:125 dat/missions/pirate/pir_cargo.lua:135
+#: dat/missions/neutral/drunkard.lua:130 dat/missions/pirate/pir_cargo.lua:135
 msgid "You need {shortfall} more tonne of empty space."
 msgid_plural "You need {shortfall} more tonnes of empty space."
 msgstr[0] ""
@@ -38042,7 +38056,7 @@ msgstr[1] ""
 
 #: dat/missions/empire/es_cargo.lua:134
 #: dat/missions/empire/es_longdistancecargo.lua:146
-#: dat/missions/neutral/anxiousmerchant.lua:127
+#: dat/missions/neutral/anxiousmerchant.lua:132
 #: dat/missions/neutral/cargo_rush.lua:152
 #: dat/missions/pirate/pir_cargo.lua:150
 #, fuzzy
@@ -38057,7 +38071,7 @@ msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:142
 #: dat/missions/empire/es_longdistancecargo.lua:154
-#: dat/missions/neutral/anxiousmerchant.lua:134
+#: dat/missions/neutral/anxiousmerchant.lua:139
 #: dat/missions/neutral/cargo_rush.lua:160
 #: dat/missions/pirate/pir_cargo.lua:158
 #, fuzzy
@@ -38474,7 +38488,7 @@ msgid "Soldner"
 msgstr "Soldner"
 
 #: dat/missions/empire/shipping/es01.lua:95
-#: dat/missions/neutral/drunkard.lua:91
+#: dat/missions/neutral/drunkard.lua:96
 #, fuzzy
 msgid "Land on {planet} ({system} system) to pick up {tonnes} t of cargo"
 msgid_plural ""
@@ -40442,7 +40456,7 @@ msgstr ""
 msgid ""
 "You approach and greet the man with a friendly gesture, but he is unmoved "
 "and maintains his icy stare. After spending what feels like an eternity "
-"staring into his piercing gaze, he finally speaks up.\n"
+"looking into his piercing gaze, he finally speaks up.\n"
 "\n"
 "\"I don't trust you,\" he bluntly states. \"I doubt anyone here trusts you. "
 "You may have helped out one of our own, but I don't know your motives. You "
@@ -40626,31 +40640,18 @@ msgid ""
 "As you begin to enter the atmosphere, you notice Flint looking up at a "
 "Dvaered formation nearby. \"Damn Dvaereds, acting like they own the place.…"
 "\" The fleet slowly fades from view as you enter the planet's atmosphere. "
-"Flint sighs and looks down at the oceanic world. You say that it's a "
-"beautiful world and that it would be a shame if the Dvaereds turned it into "
-"a mining colony. Flint looks at you like you've grown two heads.\n"
+"Flint sighs and looks down at the oceanic world. You also look down and are "
+"taken in by the beauty of it, voicing this on reflex. Flint sighs with "
+"annoyance.\n"
 "\n"
-"\"Do you honestly think that's what our struggle is about? Pretty oceans? "
-"There's much more at stake here than that. We're people who the Dvaereds are "
-"trying to rule over. This is our struggle for our freedom and autonomy, not "
-"to protect nature.\n"
-"\n"
-"\"Besides that, this planet isn't just looks, you know. It's home to a "
-"special algae that we use as medicine, and it's both vital to the health of "
-"people in the entire Frontier and in need of delicate conservation, which "
-"we've balanced for hundreds of cycles. The threat of losing our lives "
-"because we lose our supply of vital medicine is far greater than any risk of "
-"a mining operation ruining a damn view that you apparently think we'd risk "
-"our lives for.\""
+"\"You said you wanted to 'help', right? So you'd better not be treating this "
+"like a damn field trip. I don't know what you see, but what I see is my "
+"homeworld which is in danger of being conquered by the Dvaereds.\" An "
+"awkward silence fills your cockpit as landing completes."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:110
+#: dat/missions/flf/prelude/flf_pre02.lua:108
 msgid ""
-"A brief pause passes, and you stammer out an apology. Flint sighs. \"This is "
-"the problem with Imperials like you. Always thinking you know everything "
-"when you know absolutely nothing.\" An awkward silence fills your cockpit as "
-"you land your ship.\n"
-"\n"
 "\"Ok, I want you to keep your mouth shut, follow me, and listen,\" Flint "
 "tells you as soon as you finish landing procedures. Not wanting to make him "
 "more upset than he already is, you comply. He softly introduces you to "
@@ -40660,52 +40661,43 @@ msgid ""
 "had recently with the Dvaereds.\n"
 "\n"
 "One story stands out to you in particular: an adolescent, no older than "
-"maybe 10 cycles, mentions their mother, who was an official Frontier peace-"
-"keeping volunteer. She was accused of being an FLF pilot after getting into "
+"maybe 10 cycles, mentions their mother who was an official Frontier peace-"
+"keeping volunteer. She was accused of being with the FLF after getting into "
 "an argument with a Dvaered pilot who was harassing a civilian, and during "
 "the argument, the Dvaered opened fire and killed her."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:115
+#: dat/missions/flf/prelude/flf_pre02.lua:111
 msgid ""
-"Eventually, Flint finishes introducing you to people. He turns to you as you "
-"and he walk back toward the spaceport. \"Hopefully you'll have an inkling of "
-"what's actually at stake here now,\" he says. You apologize for making "
-"assumptions about the plight of the Frontier, and he silently turns his head "
-"to face the direction he's walking in again.\n"
+"Eventually, Flint finishes introducing you to people. You walk back to the "
+"spaceport with him in silence.\n"
 "\n"
 "When you arrive at the spaceport and Flint starts to return to your ship, "
 "Flint tells you that your next stop will be {planet} and that he's ready to "
 "leave when you are."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:119
+#: dat/missions/flf/prelude/flf_pre02.lua:115
 msgid ""
 "As you begin to enter the atmosphere, you notice Flint looking up at a "
 "Dvaered formation nearby. \"Damn Dvaereds, acting like they own the place.…"
 "\" The fleet slowly fades from view as you enter the planet's atmosphere. "
 "Flint sighs and looks down at the oceanic world.\n"
 "\n"
-"A moment of silence passes before Flint begins to speak. \"This planet is "
-"beautiful, but it's not just looks. It's home to a special algae that we use "
-"as medicine, and it's both vital to the health of people in the entire "
-"Frontier and in need of delicate conservation, which we've balanced for "
-"hundreds of cycles.\" You respond by saying that's very interesting. Flint "
-"frowns. \"Is that what our struggle is to you? Just something interesting?\n"
-"\n"
-"\"Not only is our freedom on the line here, if the Dvaereds take over this "
-"planet, they'll probably screw up the ecosystem and drive the algae extinct. "
-"Planets all throughout the Frontier depend on the medicine we produce. "
-"Billions would die!\""
+"A moment of silence passes before Flint begins to speak. \"I'm going to "
+"introduce you to some of the people we fight for.\" Nervous, you express "
+"concern with being out in the open as a part of the FLF. Flint facepalms in "
+"response. \"God damn, it's like Dvaered propaganda has a direct connection "
+"to your brain. Why the hell would you think we'd get anything other than a "
+"warm reception as a part of the FLF?\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:124
+#: dat/missions/flf/prelude/flf_pre02.lua:118
 msgid ""
-"Unsure of what else to say, you stammer out an apology for your callousness. "
-"Flint sighs. \"See, this is the problem with you. You approach our "
-"oppression like some sort of damn curiosity and not as horrible human "
-"suffering. Do you not care about us at all?\" An awkward pause follows where "
-"you're not sure what to say.\n"
+"Unsure of what else to say, you stammer out an apology for assuming. Flint "
+"sighs. \"See, this is the problem with you Imperials. You hear the "
+"propaganda and you never take a moment to question it, consider that the "
+"whole 'terrorist' moniker isn't something most in the Frontier agree with.\n"
 "\n"
 "\"Well, no matter. I'll drill some sense into you by introducing you to some "
 "of the actual people who are suffering because of what the Dvaereds are "
@@ -40713,7 +40705,7 @@ msgid ""
 "saying and actually try to think about how it feels in our shoes.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:127
+#: dat/missions/flf/prelude/flf_pre02.lua:121
 msgid ""
 "When you finish landing procedures, Flint wastes no time. He softly "
 "introduces you to several people he seems to know as \"a potential new "
@@ -40722,26 +40714,24 @@ msgid ""
 "personal experiences they've had recently with Dvaered officers.\n"
 "\n"
 "One story stands out to you in particular: an adolescent, no older than "
-"maybe 10 cycles, mentions their mother, who was an official Frontier peace-"
-"keeping volunteer. She was accused of being an FLF pilot after getting into "
+"maybe 10 cycles, mentions their mother who was an official Frontier peace-"
+"keeping volunteer. She was accused of being with the FLF after getting into "
 "an argument with a Dvaered pilot who was harassing a civilian, and during "
-"the argument, the Dvaered officer opened fire and killed her."
+"the argument, the Dvaered opened fire and killed her."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:130
+#: dat/missions/flf/prelude/flf_pre02.lua:124
 msgid ""
-"Eventually, Flint finishes introducing you to people. He turns to you as you "
-"and he walk back toward the spaceport. \"Hopefully you'll have an inkling of "
-"what's at stake here now,\" he says. You apologize for minimizing the "
-"situation, and he silently turns his head to face the direction he's walking "
-"in again.\n"
+"Eventually, Flint finishes introducing you to people. He speaks to you as "
+"you and he walk back toward the spaceport. \"See? We're not hated or feared "
+"here. We're the only protectors the Frontier has.\"\n"
 "\n"
 "When you arrive at the spaceport and Flint starts to return to your ship, "
 "Flint tells you that your next stop will be {planet} and that he's ready to "
 "leave when you are."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:134
+#: dat/missions/flf/prelude/flf_pre02.lua:128
 msgid ""
 "As you begin to enter the atmosphere, you notice Flint looking up at a "
 "Dvaered formation nearby. \"Damn Dvaereds, acting like they own the place.…"
@@ -40759,7 +40749,7 @@ msgid ""
 "from us.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:137
+#: dat/missions/flf/prelude/flf_pre02.lua:131
 msgid ""
 "You muse about how living here must be hard since it's right next to Dvaered "
 "territory. Flint nods. \"It's not as bad as Jorlan, but we do get more than "
@@ -40773,24 +40763,24 @@ msgid ""
 "\n"
 "One story stands out to you in particular: an adolescent, no older than "
 "maybe 10 cycles, mentions their mother who was an official Frontier peace-"
-"keeping volunteer. She was accused of being an FLF pilot after getting into "
+"keeping volunteer. She was accused of being with the FLF after getting into "
 "an argument with a Dvaered pilot who was harassing a civilian, and during "
 "the argument, the Dvaered opened fire and killed her."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:142
+#: dat/missions/flf/prelude/flf_pre02.lua:136
 msgid ""
-"Eventually, Flint finishes introducing you to people. He turns to you as you "
-"and he walk back toward the spaceport. You thank Flint for helping you "
-"properly understand some of the struggles of the Frontier, and he raises his "
-"eyebrows in surprise again. \"Oh! Uh, you're welcome,\" he says.\n"
+"Eventually, Flint finishes introducing you to people. You thank Flint for "
+"helping you properly understand some of the struggles of the Frontier, and "
+"he raises his eyebrows in surprise again. \"Oh! Uh, you're welcome,\" he "
+"says.\n"
 "\n"
 "When you arrive at the spaceport and Flint starts to return to your ship, "
 "Flint tells you that your next stop will be {planet} and that he's ready to "
 "leave when you are."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:148
+#: dat/missions/flf/prelude/flf_pre02.lua:142
 msgid ""
 "You land on Jorlan, a rocky, lifeless planet. \"This place has basically no "
 "atmosphere,\" Flint explains. \"The Santa Maria was possibly one of the most "
@@ -40805,7 +40795,7 @@ msgid ""
 "volunteer. Let's show {player} the ropes, eh?\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:152
+#: dat/missions/flf/prelude/flf_pre02.lua:146
 msgid ""
 "Flint and the worker direct you to assist in taking several crates "
 "containing goods off of a ship and transporting them to various "
@@ -40832,7 +40822,7 @@ msgid ""
 "of Frontier territory?\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:155
+#: dat/missions/flf/prelude/flf_pre02.lua:149
 msgid ""
 "Your eyes widen as you realize what Flint is saying. Flint grins for a "
 "moment, before his expression becomes serious again. \"Invasion,\" he says. "
@@ -40850,7 +40840,7 @@ msgid ""
 "promise that most of the galaxy has forgotten about.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:158
+#: dat/missions/flf/prelude/flf_pre02.lua:152
 msgid ""
 "Flint grins. \"But there's one thing the Dvaereds didn't count on, one thing "
 "stopping them from successfully invading the Frontier: our fighting spirit! "
@@ -40858,10 +40848,10 @@ msgid ""
 "like. When you're ready, I'll show you the strength of our undying "
 "commitment to fight the Dvaereds, and who you'll be up against if you betray "
 "us. The higher-ups of Sindbad may be the brains of the FLF, but the people "
-"on the ground are the blood, muscle, and heart of the FLF.\""
+"on the ground are its blood, muscle, and heart.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:160
+#: dat/missions/flf/prelude/flf_pre02.lua:154
 msgid ""
 "You land on Jorlan, a rocky, lifeless planet. \"This place has basically no "
 "atmosphere,\" Flint explains. \"The Santa Maria was possibly one of the most "
@@ -40876,7 +40866,7 @@ msgid ""
 "to say, you sheepishly agree to help them."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:164
+#: dat/missions/flf/prelude/flf_pre02.lua:158
 msgid ""
 "You assist Flint and the worker in taking several crates containing goods "
 "off of a ship and transporting them to various destinations, mostly "
@@ -40903,7 +40893,7 @@ msgid ""
 "ships inside of Frontier territory?\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:167
+#: dat/missions/flf/prelude/flf_pre02.lua:161
 msgid ""
 "Unsure of what he's getting at, you say honestly that you don't know what "
 "the purpose could be, acknowledging that you can't think of any good reason "
@@ -40926,12 +40916,12 @@ msgid ""
 "promise that most of the galaxy has forgotten about.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:170
+#: dat/missions/flf/prelude/flf_pre02.lua:164
 msgid ""
 "Flint looks toward you. \"The one thing stopping the Dvaereds from "
 "successfully invading the Frontier is the thing they didn't count on: our "
 "fighting spirit. Sindbad may be the brains of the FLF, but those of us who "
-"work on the ground are the blood, muscle, and heart of the FLF!\"\n"
+"work on the ground are its blood, muscle, and heart!\"\n"
 "\n"
 "You notice a poorly contained burst of passion from Flint, which piques your "
 "interest. Wondering what other FLF soldiers are really like, you ask Flint "
@@ -40942,7 +40932,7 @@ msgid ""
 "I'm ready when you are.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:174
+#: dat/missions/flf/prelude/flf_pre02.lua:168
 msgid ""
 "You land on Jorlan, a rocky, lifeless planet. \"This place has basically no "
 "atmosphere,\" Flint explains. \"The Santa Maria was possibly one of the most "
@@ -40958,7 +40948,7 @@ msgid ""
 "\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:178
+#: dat/missions/flf/prelude/flf_pre02.lua:172
 msgid ""
 "You assist Flint and the worker in taking several crates containing goods "
 "off of a ship and transporting them to various destinations, mostly "
@@ -40982,7 +40972,7 @@ msgid ""
 "ships inside of Frontier territory?\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:181
+#: dat/missions/flf/prelude/flf_pre02.lua:175
 msgid ""
 "Your eyes widen as you realize what Flint is saying. \"Invasion,\" he says. "
 "\"The Dvaereds for years have wanted to expand their territory into the "
@@ -41000,18 +40990,18 @@ msgid ""
 "about.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:184
+#: dat/missions/flf/prelude/flf_pre02.lua:178
 msgid ""
 "Flint grins. \"But there's one thing the Dvaereds didn't count on, one thing "
 "stopping them from successfully invading the Frontier: our fighting spirit! "
 "Our final stop will be {planet}. Feel free to take a look around here if you "
 "like. When you're ready, I'll show you the strength of our undying "
 "commitment to fight the Dvaereds! The higher-ups of Sindbad may be the "
-"brains of the FLF, but the people on the ground are the blood, muscle, and "
-"heart of the FLF.\""
+"brains of the FLF, but the people on the ground are its blood, muscle, and "
+"heart.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:187
+#: dat/missions/flf/prelude/flf_pre02.lua:181
 msgid ""
 "As you exit your ship after landing, several faces warmly greet Flint and "
 "some begin to question who you are. Flint explains that you're a former "
@@ -41026,7 +41016,7 @@ msgid ""
 "to their jobs."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:190
+#: dat/missions/flf/prelude/flf_pre02.lua:184
 msgid ""
 "The two of you begin approaching the bar. \"You may have heard rumors that "
 "the shipyard here supplies ships for us,\" Flint says. \"That's actually "
@@ -41038,17 +41028,18 @@ msgid ""
 "will be the case for Frontier ships as well.\n"
 "\n"
 "\"The Dvaereds are scared of us, as they should be.\" You and Flint reach "
-"the bar, where you see someone in a Dvaered military outfit demanding a "
-"drink from the bartender, accompanied by another person in a Dvaered "
+"the bar, where you see someone in a Dvaered military outfit harassing a "
+"visibly nervous bartender, accompanied by another person in a Dvaered "
 "military outfit. \"Well, apparently this guy clearly isn't scared enough… "
 "but that's just about to change. Pay close attention, {player}.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:193
+#: dat/missions/flf/prelude/flf_pre02.lua:187
 msgid ""
 "As if on cue, a group of three visibly angry patrons steps up behind the "
 "Dvaered soldiers. \"It seems we have ourselves a problem here,\" one of them "
-"blurts out as the bartender turns to look away from the scene.\n"
+"blurts out as the bartender sighs in relief and turns to look away from the "
+"scene.\n"
 "\n"
 "The Dvaered soldiers turn to face the patrons. \"Oh yeah? You'd dare talk to "
 "someone of my standing like that? I'll have you know—\" One of the patrons "
@@ -41063,19 +41054,18 @@ msgid ""
 "other, and he introduces you to them."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:198
+#: dat/missions/flf/prelude/flf_pre02.lua:192
 msgid ""
 "You and Flint walk out of the bar with the group. Flint speaks to you. "
 "\"That's not the biggest part of our job, of course, but it's certainly the "
-"hardest. We don't let the Dvaered oppressors intimidate us, and if they come "
-"into our territory, we stand our ground and fight if we must. So then, "
-"{player}, what do you think?\" You think about your answer for a moment, but "
-"you don't have long before you and the group spot the same two Dvaered "
-"soldiers you spotted at the bar. \"Get away from the group,\" he says to "
-"you. \"This could get ugly and we'll probably be separated. Don't worry "
-"about me, I've got plenty of connections here and I'll be able to get off "
-"with my own ship no problem.\" He grins. \"I'm sure I'll see you again, one "
-"way or another.\"\n"
+"hardest. We don't let the Dvaered oppressors intimidate us or our Frontier "
+"brethren. So then, {player}, what do you think?\" You think about your "
+"answer for a moment, but you don't have long before you and the group spot "
+"the same two Dvaered soldiers you spotted at the bar. \"Get away from the "
+"group,\" he says to you. \"This could get ugly and we'll probably be "
+"separated. Don't worry about me, I've got plenty of connections here and "
+"I'll be able to get off with my own ship no problem.\" He grins. \"I'm sure "
+"I'll see you again, one way or another.\"\n"
 "\n"
 "You do as he says and leave the group, placing yourself inconspicuously on a "
 "bench a distance away. You manage to do this not a moment too soon, it "
@@ -41084,7 +41074,7 @@ msgid ""
 "notice, however, is the Dvaereds drawing what appear to be laser guns."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:201
+#: dat/missions/flf/prelude/flf_pre02.lua:195
 msgid ""
 "The FLF group immediately responds by drawing their own laser guns and "
 "before you know it, a gunfight ensues. Someone from the FLF side is hit "
@@ -41103,28 +41093,28 @@ msgid ""
 "will go the next time you meet Flint."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:208
+#: dat/missions/flf/prelude/flf_pre02.lua:202
 msgid "To help the FLF"
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:209
+#: dat/missions/flf/prelude/flf_pre02.lua:203
 msgid "Just helping a pilot in need"
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:210
+#: dat/missions/flf/prelude/flf_pre02.lua:204
 msgid "To learn about the Frontier's struggle"
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:212
+#: dat/missions/flf/prelude/flf_pre02.lua:206
 msgid "This man eyes you with a very icy stare. It seems he doesn't trust you."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:214
+#: dat/missions/flf/prelude/flf_pre02.lua:208
 #, fuzzy
 msgid "Plight of the Frontier"
 msgstr "Für die Front!"
 
-#: dat/missions/flf/prelude/flf_pre02.lua:216
+#: dat/missions/flf/prelude/flf_pre02.lua:210
 msgid ""
 "You angered an FLF soldier called Flint when you told him that you seek to "
 "help the Frontier. In response, he offered to \"show you personally what's "
@@ -41132,7 +41122,7 @@ msgid ""
 "shitty pretentiousness of yours out the window\"."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:217
+#: dat/missions/flf/prelude/flf_pre02.lua:211
 msgid ""
 "You angered an FLF soldier called Flint when you told him that you're "
 "neutral in the conflict between the FLF and House Dvaered. In response, he "
@@ -41140,7 +41130,7 @@ msgid ""
 "\"see soon why being neutral in this conflict is unacceptable\"."
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:218
+#: dat/missions/flf/prelude/flf_pre02.lua:212
 msgid ""
 "You surprised an FLF soldier called Flint when you told him that you wish to "
 "learn more about the Frontier and the struggles of the FLF. In response, he "
@@ -41149,7 +41139,7 @@ msgid ""
 "enlighten you.\""
 msgstr ""
 
-#: dat/missions/flf/prelude/flf_pre02.lua:220
+#: dat/missions/flf/prelude/flf_pre02.lua:214
 msgid ""
 "An FLF soldier named Flint showed you around the frontier so that you could "
 "understand the struggles of the Frontier better. You ended up separated from "
@@ -41160,7 +41150,7 @@ msgstr ""
 #. or "learn". nil indicates that the player hasn't given a reason
 #. yet.
 #. Stage variable to keep track of what planet is next.
-#: dat/missions/flf/prelude/flf_pre02.lua:236
+#: dat/missions/flf/prelude/flf_pre02.lua:230
 msgid "A skeptical man"
 msgstr ""
 
@@ -41684,6 +41674,11 @@ msgstr ""
 #. <avail>
 #. <priority>50</priority>
 #. <chance>1</chance>
+#. <cond>
+#. player.misnDone("Tutorial Part 4")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz"))
+#. </cond>
 #. <location>Bar</location>
 #. <faction>Dvaered</faction>
 #. <faction>Empire</faction>
@@ -41709,18 +41704,18 @@ msgstr ""
 #.
 #.
 #.
-#: dat/missions/neutral/anxiousmerchant.lua:37
+#: dat/missions/neutral/anxiousmerchant.lua:42
 msgid "You see a merchant at the bar in a clear state of anxiety."
 msgstr "Du siehst einen Händler an der Bar in einem deutlichen Angstzustand."
 
 #. - Missions details
 #. OSD
-#: dat/missions/neutral/anxiousmerchant.lua:40
-#: dat/missions/neutral/anxiousmerchant.lua:43
+#: dat/missions/neutral/anxiousmerchant.lua:45
+#: dat/missions/neutral/anxiousmerchant.lua:48
 msgid "Anxious Merchant"
 msgstr "Angstvoller Händler"
 
-#: dat/missions/neutral/anxiousmerchant.lua:45
+#: dat/missions/neutral/anxiousmerchant.lua:50
 #, fuzzy
 msgid ""
 "Land on {planet} ({system} system) before {deadline}\n"
@@ -41729,7 +41724,7 @@ msgstr ""
 "Flieg nach %s im „%s“-System vor %s\n"
 "(%s verbleibend)"
 
-#: dat/missions/neutral/anxiousmerchant.lua:47
+#: dat/missions/neutral/anxiousmerchant.lua:52
 #, fuzzy
 msgid ""
 "You decided to help a fraught merchant by delivering some goods to {planet}."
@@ -41737,7 +41732,7 @@ msgstr ""
 "Du hast dich entschieden, einen angespannten Händler dabei zu helfen, einige "
 "Güter nach %s zu befördern."
 
-#: dat/missions/neutral/anxiousmerchant.lua:49
+#: dat/missions/neutral/anxiousmerchant.lua:54
 #, fuzzy
 msgid ""
 "As you sit down the merchant looks up at you with a panicked expression, "
@@ -41786,7 +41781,7 @@ msgstr ""
 "Könnten Sie das? Ich gebe Ihnen die Bezahlung für die Mission, wenn Sie es "
 "tun; das würde mir eine Menge bedeuten!“"
 
-#: dat/missions/neutral/anxiousmerchant.lua:55
+#: dat/missions/neutral/anxiousmerchant.lua:60
 #, fuzzy
 msgid ""
 "The merchant sighs in relief. \"Thank you so much for this. Just bring the "
@@ -41797,7 +41792,7 @@ msgstr ""
 "Sie die Ladung einfach nach %s zum Frachtführer. Er sollte Ihnen %s zahlen, "
 "wenn Sie dort ankommen. Kommen Sie nicht zu spät, OK?“"
 
-#: dat/missions/neutral/anxiousmerchant.lua:57
+#: dat/missions/neutral/anxiousmerchant.lua:62
 #, fuzzy
 msgid ""
 "As you touch down at the spaceport you see the NGL depot surrounded by a "
@@ -41815,7 +41810,7 @@ msgstr ""
 "kann ich Ihnen irgendwann mal einen Drink spendieren!“ Du lachst und ihr "
 "gehst getrennte Wege."
 
-#: dat/missions/neutral/anxiousmerchant.lua:59
+#: dat/missions/neutral/anxiousmerchant.lua:64
 #, fuzzy
 msgid ""
 "Landing at the spaceport you see the NGL depot surrounded by a fraught hum "
@@ -41861,13 +41856,13 @@ msgstr ""
 
 #. Note: this mission does not make any system claims.
 #. Calculate the route, distance, jumps and cargo to take
-#: dat/missions/neutral/anxiousmerchant.lua:73
+#: dat/missions/neutral/anxiousmerchant.lua:78
 msgid "Merchant"
 msgstr "Händler"
 
 #. Allow extra time for refuelling stops.
 #. Range of 5-10 tons for tier 0, 21-58 for tier 4.
-#: dat/missions/neutral/anxiousmerchant.lua:94
+#: dat/missions/neutral/anxiousmerchant.lua:99
 msgid "If I don't get this {tonnes} tonne of {cargo} to {planet}…"
 msgid_plural "If I don't get these {tonnes} tonnes of {cargo} to {planet}…"
 msgstr[0] ""
@@ -41882,6 +41877,11 @@ msgstr[1] ""
 #. <avail>
 #. <priority>29</priority>
 #. <chance>5</chance>
+#. <cond>
+#. player.misnDone("Tutorial Part 4")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz"))
+#. </cond>
 #. <location>Bar</location>
 #. <faction>Dvaered</faction>
 #. <faction>Empire</faction>
@@ -41903,7 +41903,7 @@ msgstr[1] ""
 #.
 #.
 #.
-#: dat/missions/neutral/aristodrink.lua:36
+#: dat/missions/neutral/aristodrink.lua:41
 msgid ""
 "You see an aristocrat sitting at a table in the middle of the bar, drinking "
 "a swirling concoction in a martini glass with a disappointed look on his "
@@ -41919,26 +41919,26 @@ msgstr ""
 #. mission text
 #. Note: this mission does not make any system claims.
 #. creates the NPC at the bar to create the mission
-#: dat/missions/neutral/aristodrink.lua:39
-#: dat/missions/neutral/aristodrink.lua:57
-#: dat/missions/neutral/aristodrink.lua:104
+#: dat/missions/neutral/aristodrink.lua:44
+#: dat/missions/neutral/aristodrink.lua:62
+#: dat/missions/neutral/aristodrink.lua:109
 msgid "Drinking Aristocrat"
 msgstr "Trinkender Aristokrat"
 
-#: dat/missions/neutral/aristodrink.lua:40
+#: dat/missions/neutral/aristodrink.lua:45
 msgid "He will pay handsomely."
 msgstr "Er wird dich gut bezahlen."
 
-#: dat/missions/neutral/aristodrink.lua:41
+#: dat/missions/neutral/aristodrink.lua:46
 msgid "Go find a specific drink for an aristocrat."
 msgstr "Finde einen ganz bestimmten Drink für einen Aristokraten."
 
 #. OSD
-#: dat/missions/neutral/aristodrink.lua:44
+#: dat/missions/neutral/aristodrink.lua:49
 msgid "Find the Drink"
 msgstr "Finde den Drink"
 
-#: dat/missions/neutral/aristodrink.lua:45
+#: dat/missions/neutral/aristodrink.lua:50
 #, fuzzy, lua-format
 msgid ""
 "Land on %s (%s system) and look for the special drink that the Aristocrat "
@@ -41947,7 +41947,7 @@ msgstr ""
 "Gehe zu %s im „%s“-System und halte nach dem besonderen Drink, den der "
 "Aristokrat möchte, Ausschau"
 
-#: dat/missions/neutral/aristodrink.lua:58
+#: dat/missions/neutral/aristodrink.lua:63
 #, fuzzy, lua-format
 msgid ""
 "You begin to approach the aristocrat. Next to him stands a well dressed and "
@@ -41984,11 +41984,11 @@ msgstr ""
 "Spezialität der Bar. Sie werden wissen, wovon du sprichst. Du solltest mir "
 "einen bringen. Kannst du sofort gehen?“"
 
-#: dat/missions/neutral/aristodrink.lua:62
+#: dat/missions/neutral/aristodrink.lua:67
 msgid "Leave Immediately"
 msgstr "Sofort verlassen"
 
-#: dat/missions/neutral/aristodrink.lua:63
+#: dat/missions/neutral/aristodrink.lua:68
 msgid ""
 "\"Oh good! Of course you will be paid handsomely for your efforts. I trust "
 "you can figure out how to get it here intact on your own.\" The aristocrat "
@@ -42001,11 +42001,11 @@ msgstr ""
 "Mal ein schreckliches Gesicht, wenn er ihn probiert, und ignoriert dich. Du "
 "gehst weg, ein bisschen verwirrt."
 
-#: dat/missions/neutral/aristodrink.lua:65
+#: dat/missions/neutral/aristodrink.lua:70
 msgid "Refuse"
 msgstr "Ablehnen"
 
-#: dat/missions/neutral/aristodrink.lua:66
+#: dat/missions/neutral/aristodrink.lua:71
 msgid ""
 "\"What do you mean, you can't leave right away? Then why even bother? Remove "
 "yourself from my sight.\" The aristocrat makes a horrible face, and sips his "
@@ -42018,11 +42018,11 @@ msgstr ""
 "auszusehen. Er stellt sein Getränk wieder auf den Tisch und wendet sich an "
 "den Barkeeper und ignoriert dich von nun an."
 
-#: dat/missions/neutral/aristodrink.lua:68
+#: dat/missions/neutral/aristodrink.lua:73
 msgid "Clue"
 msgstr "Hinweis"
 
-#: dat/missions/neutral/aristodrink.lua:69
+#: dat/missions/neutral/aristodrink.lua:74
 #, lua-format
 msgid ""
 "You walk into the bar and approach the bartender. You describe the drink, "
@@ -42035,11 +42035,11 @@ msgstr ""
 "dem er meint, er könnte dir vielleicht helfen, und zwar bei %s im „%s“-"
 "System."
 
-#: dat/missions/neutral/aristodrink.lua:71
+#: dat/missions/neutral/aristodrink.lua:76
 msgid "A bit more info..."
 msgstr "Ein paar weitere Infos …"
 
-#: dat/missions/neutral/aristodrink.lua:73
+#: dat/missions/neutral/aristodrink.lua:78
 #, lua-format
 msgid ""
 "You walk in and see someone behind the bar. When you approach and describe "
@@ -42058,7 +42058,7 @@ msgstr ""
 "weggegangen war. Viel Glück!“ Mit großen Hoffnungen beschließt du, dich auf "
 "den Weg dorthin zu machen."
 
-#: dat/missions/neutral/aristodrink.lua:74
+#: dat/missions/neutral/aristodrink.lua:79
 #, lua-format
 msgid ""
 "You walk in and see someone behind the bar. When you approach and describe "
@@ -42077,7 +42077,7 @@ msgstr ""
 "weggegangen war. Viel Glück!“ Mit großen Hoffnungen beschließt du, dich auf "
 "den Weg dorthin zu machen."
 
-#: dat/missions/neutral/aristodrink.lua:75
+#: dat/missions/neutral/aristodrink.lua:80
 #, lua-format
 msgid ""
 "You walk in and see someone behind the bar. When you approach and describe "
@@ -42096,11 +42096,11 @@ msgstr ""
 "weggegangen war. Viel Glück!“ Mit großen Hoffnungen beschließt du, dich auf "
 "den Weg dorthin zu machen."
 
-#: dat/missions/neutral/aristodrink.lua:77
+#: dat/missions/neutral/aristodrink.lua:82
 msgid "Is this it?"
 msgstr "Ist es das?"
 
-#: dat/missions/neutral/aristodrink.lua:78
+#: dat/missions/neutral/aristodrink.lua:83
 #, lua-format
 msgid ""
 "You walk into the bar fully confident that this is the bar. You walk up to "
@@ -42114,11 +42114,11 @@ msgstr ""
 "einen weiteren möglichen Hinweis, %s im „%s“-System, und machst dich auf den "
 "Weg."
 
-#: dat/missions/neutral/aristodrink.lua:80
+#: dat/missions/neutral/aristodrink.lua:85
 msgid "This is it!"
 msgstr "Das ist es!"
 
-#: dat/missions/neutral/aristodrink.lua:82
+#: dat/missions/neutral/aristodrink.lua:87
 #, fuzzy
 msgid ""
 "You walk into the bar and know instantly that you are finally here! This is "
@@ -42151,7 +42151,7 @@ msgstr ""
 "probierst ihn und erwartest etwas Unglaubliches. Er ist in Ordnung, aber du "
 "bezweifelst, dass dies die ganze Mühe wert war."
 
-#: dat/missions/neutral/aristodrink.lua:85
+#: dat/missions/neutral/aristodrink.lua:90
 #, fuzzy
 msgid ""
 "You walk into the bar and know instantly that you are finally here! This is "
@@ -42184,7 +42184,7 @@ msgstr ""
 "Unglaubliches. Er ist in Ordnung, aber du bezweifelst, dass dies die ganze "
 "Mühe wert war."
 
-#: dat/missions/neutral/aristodrink.lua:88
+#: dat/missions/neutral/aristodrink.lua:93
 #, fuzzy
 msgid ""
 "You walk into the bar and know instantly that you are finally here! This is "
@@ -42217,11 +42217,11 @@ msgstr ""
 "Unglaubliches. Er ist in Ordnung, aber du bezweifelst, dass dies die ganze "
 "Mühe wert war."
 
-#: dat/missions/neutral/aristodrink.lua:92
+#: dat/missions/neutral/aristodrink.lua:97
 msgid "Delivery"
 msgstr "Lieferung"
 
-#: dat/missions/neutral/aristodrink.lua:93
+#: dat/missions/neutral/aristodrink.lua:98
 #, fuzzy, lua-format
 msgid ""
 "\"Ahh! I was just thinking how much I wanted one of those drinks! I'm so "
@@ -42255,7 +42255,7 @@ msgstr ""
 "    Als du zu deinem Schiff zurückkehrst, merkst du, dass du noch einen "
 "Drink übrig hast. Vielleicht macht er sich gut als Deko."
 
-#: dat/missions/neutral/aristodrink.lua:97
+#: dat/missions/neutral/aristodrink.lua:102
 msgid "You delivered a special drink called a Swamp Bombing to an aristocrat."
 msgstr ""
 "Du hast einen besonderen Drink namens „Sumpfbombe“ an einen Aristokraten "
@@ -42273,7 +42273,7 @@ msgstr ""
 #. find another bar that the bartender used to work at
 #. next planet
 #. get the drink
-#: dat/missions/neutral/aristodrink.lua:236
+#: dat/missions/neutral/aristodrink.lua:241
 #, lua-format
 msgid "Return the drink to the Aristocrat at %s in the %s system."
 msgstr "Bringe den Drink zum Aristokraten bei %s im „%s“-System zurück."
@@ -42626,7 +42626,7 @@ msgstr "Bringe %s zu %s im „%s“-System"
 #. Note: this mission makes no system claims
 #. Set mission details
 #: dat/missions/neutral/commodity_run.lua:113
-#: dat/missions/neutral/wastedump.lua:103
+#: dat/missions/neutral/wastedump.lua:102
 msgid "{price} ¢/t"
 msgid_plural "{price} ¢/t"
 msgstr[0] ""
@@ -42666,6 +42666,11 @@ msgstr "Sonstige"
 #. <avail>
 #. <priority>20</priority>
 #. <chance>2</chance>
+#. <cond>
+#. player.misnDone("Tutorial Part 4")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz"))
+#. </cond>
 #. <location>Bar</location>
 #. </avail>
 #. </mission>
@@ -42679,7 +42684,7 @@ msgstr "Sonstige"
 #. AUTHOR: thilo <thilo@thiloernst.de>
 #. --
 #. Bar information, describes how the NPC appears in the bar
-#: dat/missions/neutral/diy-nerds.lua:28
+#: dat/missions/neutral/diy-nerds.lua:33
 msgid ""
 "You see a bunch of guys and gals, excitedly whispering over some papers, "
 "which seem to contain column after column of raw numbers. Two of them don't "
@@ -42691,17 +42696,17 @@ msgstr ""
 "an."
 
 #. Mission details.
-#: dat/missions/neutral/diy-nerds.lua:31
+#: dat/missions/neutral/diy-nerds.lua:36
 msgid "DIY Nerds"
 msgstr "Bastelnerds"
 
 #. 20K
-#: dat/missions/neutral/diy-nerds.lua:33
+#: dat/missions/neutral/diy-nerds.lua:38
 msgid "Cart some nerds to their contest, and back."
 msgstr "Bring ein paar Nerds zu ihrem Wettbewerb und zurück."
 
 #. The nerd's job proposal
-#: dat/missions/neutral/diy-nerds.lua:38
+#: dat/missions/neutral/diy-nerds.lua:43
 #, fuzzy, lua-format
 msgid ""
 "As you approach the group, the babbling ceases and the papers are quickly "
@@ -42735,7 +42740,7 @@ msgstr ""
 "sie schon ihre Ungeduld signalisiert. „Was jetzt, tust du es?“"
 
 #. you accept
-#: dat/missions/neutral/diy-nerds.lua:49
+#: dat/missions/neutral/diy-nerds.lua:54
 #, fuzzy, lua-format
 msgid ""
 "Upon accepting the task, you see the entire group relax visibly, and you can "
@@ -42763,7 +42768,7 @@ msgstr ""
 "zu spät zum Wettbewerb!“"
 
 #. right planet, in time
-#: dat/missions/neutral/diy-nerds.lua:56
+#: dat/missions/neutral/diy-nerds.lua:61
 #, fuzzy, lua-format
 msgid ""
 "\"Good job, %s,\" Mia compliments you upon arrival. \"We'll now go win the "
@@ -42781,7 +42786,7 @@ msgstr ""
 "zu, auf dem „Annahme“ steht."
 
 #. right planet, late
-#: dat/missions/neutral/diy-nerds.lua:61
+#: dat/missions/neutral/diy-nerds.lua:66
 #, fuzzy, lua-format
 msgid ""
 "Mia fumes. \"Great. Just great! We're late, you jerk.\" She points to a "
@@ -42806,7 +42811,7 @@ msgstr ""
 "ist."
 
 #. wrong planet, late
-#: dat/missions/neutral/diy-nerds.lua:66
+#: dat/missions/neutral/diy-nerds.lua:71
 #, fuzzy
 msgid ""
 "The nerds quickly and quietly pack up their box and start to leave your "
@@ -42834,7 +42839,7 @@ msgstr ""
 "ihrer Gruppe an, und sie sind weg."
 
 #. you are hailed to pick them up again
-#: dat/missions/neutral/diy-nerds.lua:71
+#: dat/missions/neutral/diy-nerds.lua:76
 #, lua-format
 msgid ""
 "A beep from your communications equipment tells you that someone wants to "
@@ -42848,7 +42853,7 @@ msgstr ""
 "sind hier fertig. Es wird Zeit, dass du zurückkommst und uns abholst, wir "
 "haben noch etwas auf %s zu erledigen.“"
 
-#: dat/missions/neutral/diy-nerds.lua:73
+#: dat/missions/neutral/diy-nerds.lua:78
 #, fuzzy
 msgid ""
 "Your comm link comes up again. It is the nerds, whom you'd almost forgotten. "
@@ -42861,7 +42866,7 @@ msgstr ""
 "holen wir einen anderen Piloten und bezahlen ihn, nicht dich!“"
 
 #. you pick up the nerds in time, they won
-#: dat/missions/neutral/diy-nerds.lua:76
+#: dat/missions/neutral/diy-nerds.lua:81
 #, lua-format
 msgid ""
 "As soon as you get of your ship, you are surrounded by the group of nerds, "
@@ -42880,7 +42885,7 @@ msgstr ""
 "werden auf dem Weg weiter feiern.“"
 
 #. you pick up the nerds in time, they didn't win
-#: dat/missions/neutral/diy-nerds.lua:79
+#: dat/missions/neutral/diy-nerds.lua:84
 #, fuzzy, lua-format
 msgid ""
 "As you get of your ship, you do not immediately see the nerds. You finally "
@@ -42912,14 +42917,14 @@ msgstr ""
 "paar Mal durchgeatmet hat, um sich zu beruhigen. „Bring uns zurück zu %s.“"
 
 #. you do not pickup the nerds in time
-#: dat/missions/neutral/diy-nerds.lua:86
+#: dat/missions/neutral/diy-nerds.lua:91
 msgid ""
 "You look around, but the nerds are nowhere to be found. That is not much of "
 "a surprise, seeing that you are way too late."
 msgstr ""
 
 #. you do not pickup the nerds in time, and don't even land on the right planet
-#: dat/missions/neutral/diy-nerds.lua:89
+#: dat/missions/neutral/diy-nerds.lua:94
 #, lua-format
 msgid ""
 "Seeing that it is already too late to pick up the nerds, and that you're "
@@ -42930,7 +42935,7 @@ msgstr ""
 "vergessen."
 
 #. you return the nerds, who have won the contest
-#: dat/missions/neutral/diy-nerds.lua:92
+#: dat/missions/neutral/diy-nerds.lua:97
 #, fuzzy, lua-format
 msgid ""
 "The nerds, finally exhausted from all the partying, still smile as they pack "
@@ -42947,7 +42952,7 @@ msgstr ""
 "30.000. Ich wünsche dir einen schönen Tag.“"
 
 #. you return the nerds, who did not win the contest
-#: dat/missions/neutral/diy-nerds.lua:95
+#: dat/missions/neutral/diy-nerds.lua:100
 #, fuzzy
 msgid ""
 "With sagging shoulders, the nerds unload their box. Mia turns to address "
@@ -42983,7 +42988,7 @@ msgstr ""
 "modifizieren, dass sie als Hauptsystem eines Schiffes verwendet werden kann, "
 "und du kannst sie als Entschädigung für deine Mühen haben. Interessiert?“"
 
-#: dat/missions/neutral/diy-nerds.lua:101
+#: dat/missions/neutral/diy-nerds.lua:106
 msgid ""
 "\"Honestly, there is nothing you can do about it,\" Mia says impatiently, as "
 "if you were a small child complaining about the finiteness of an ice cream "
@@ -42993,7 +42998,7 @@ msgstr ""
 "wärst du ein kleines Kind, das sich über die Endlichkeit einer Eistüte "
 "beschwert. „Warte einfach ab, während wir das Ding auftakeln.“"
 
-#: dat/missions/neutral/diy-nerds.lua:103
+#: dat/missions/neutral/diy-nerds.lua:108
 #, fuzzy, lua-format
 msgid ""
 "\"You can wait for it, won't take more than half an hour,\" Mia informs you. "
@@ -43030,7 +43035,7 @@ msgstr ""
 "zumindest verkaufen kannst."
 
 #. for use in accept(), if any of the mission's preconditions are not met
-#: dat/missions/neutral/diy-nerds.lua:110
+#: dat/missions/neutral/diy-nerds.lua:115
 #, fuzzy
 msgid ""
 "\"Oh, I forgot to mention. We would of course need 4 tonnes of free cargo "
@@ -43040,7 +43045,7 @@ msgstr ""
 "Laderaum für unsere Box.“"
 
 #. additional text for stage 2 cargo space test
-#: dat/missions/neutral/diy-nerds.lua:113
+#: dat/missions/neutral/diy-nerds.lua:118
 #, lua-format
 msgid ""
 "\"Aw %s,\" Mia complains, \"as if you didn't know that our box needs 4 "
@@ -43050,7 +43055,7 @@ msgstr ""
 "Tonnen freien Laderaum braucht. Mach jetzt Platz und hol uns an der Kneipe "
 "ab.“"
 
-#: dat/missions/neutral/diy-nerds.lua:115
+#: dat/missions/neutral/diy-nerds.lua:120
 msgid ""
 "The nerds follow you to your ship and finally stow away their box. Now, "
 "you're all set to go."
@@ -43058,7 +43063,7 @@ msgstr ""
 "Die Nerds folgen dir zu deinem Schiff und verstauen schließlich ihre Box. "
 "Jetzt bist du bereit zum Aufbruch."
 
-#: dat/missions/neutral/diy-nerds.lua:117
+#: dat/missions/neutral/diy-nerds.lua:122
 msgid ""
 "As you enter the bar, the nerds are immediately upon you. \"What is it with "
 "you?\" Mia asks. \"Is it so hard to make some room for our box? I am fed up "
@@ -43075,17 +43080,17 @@ msgstr ""
 
 #. OSD texts
 #. stage 1
-#: dat/missions/neutral/diy-nerds.lua:122
+#: dat/missions/neutral/diy-nerds.lua:127
 #, lua-format
 msgid "Bring the nerds and their box to %s before %s"
 msgstr "Bring die Nerds und ihre Kiste nach %s vor %s"
 
-#: dat/missions/neutral/diy-nerds.lua:123
+#: dat/missions/neutral/diy-nerds.lua:128
 #, lua-format
 msgid "You have %s remaining"
 msgstr "Du hast noch %s"
 
-#: dat/missions/neutral/diy-nerds.lua:124
+#: dat/missions/neutral/diy-nerds.lua:129
 msgid ""
 "You're late and the nerds are getting angry and abusive; land to get rid of "
 "the nerds and their box"
@@ -43094,7 +43099,7 @@ msgstr ""
 "Nerds und ihre Kiste loszuwerden"
 
 #. stage 2
-#: dat/missions/neutral/diy-nerds.lua:126
+#: dat/missions/neutral/diy-nerds.lua:131
 #, fuzzy
 msgid ""
 "Wait in this system for several hours until hailed by the nerds for their "
@@ -43102,33 +43107,33 @@ msgid ""
 msgstr ""
 "Warte einige Perioden, bis du von den Nerds für die Rückreise angefunkt wirst"
 
-#: dat/missions/neutral/diy-nerds.lua:127
+#: dat/missions/neutral/diy-nerds.lua:132
 #, lua-format
 msgid "Pick up the nerds on %s for their return trip to %s"
 msgstr "Nimm die Nerds auf %s für ihre Rückreise nach %s auf"
 
-#: dat/missions/neutral/diy-nerds.lua:128
+#: dat/missions/neutral/diy-nerds.lua:133
 msgid "The nerds are getting impatient"
 msgstr "Die Nerds werden ungeduldig"
 
-#: dat/missions/neutral/diy-nerds.lua:129
+#: dat/missions/neutral/diy-nerds.lua:134
 msgid "You didn't pick up the nerds in time"
 msgstr "Du hast die Nerds nicht rechtzeitig aufgesammelt"
 
 #. stage 3
-#: dat/missions/neutral/diy-nerds.lua:131
+#: dat/missions/neutral/diy-nerds.lua:136
 #, lua-format
 msgid "Return the nerds to %s"
 msgstr "Bring die Nerds nach %s zurück"
 
 #. displayed if you leave without the nerd's authorization
-#: dat/missions/neutral/diy-nerds.lua:135
+#: dat/missions/neutral/diy-nerds.lua:140
 msgid "Have the nerds not told you to stay in the system? Mission failed!"
 msgstr ""
 "Haben dir die Nerds nicht gesagt, dass du im System bleiben sollst? Mission "
 "fehlgeschlagen!"
 
-#: dat/missions/neutral/diy-nerds.lua:136
+#: dat/missions/neutral/diy-nerds.lua:141
 msgid "Have the nerds not told you to pick them up at the bar? Mission failed!"
 msgstr ""
 "Haben dir die Nerds nicht gesagt, dass du sie an der Kneipe abholen sollst? "
@@ -43136,7 +43141,7 @@ msgstr ""
 
 #. the outfit name as in outfit.xml
 #. the mission cannot be started with less than two landable assets in the system
-#: dat/missions/neutral/diy-nerds.lua:147
+#: dat/missions/neutral/diy-nerds.lua:152
 msgid "Young People"
 msgstr "Junge Leute"
 
@@ -43164,20 +43169,20 @@ msgstr "Junge Leute"
 #. hooked to 'land' in the final stage (returning the nerds)
 #. to check if the assets in the current system have at least _amount_ of _service_
 #. helper functions, used repeatedly
-#: dat/missions/neutral/diy-nerds.lua:378
+#: dat/missions/neutral/diy-nerds.lua:383
 #, fuzzy
 msgid "Nerds"
 msgstr "Bastelnerds"
 
-#: dat/missions/neutral/diy-nerds.lua:379
+#: dat/missions/neutral/diy-nerds.lua:384
 msgid "A group of nerds you are transporting."
 msgstr ""
 
-#: dat/missions/neutral/diy-nerds.lua:380
+#: dat/missions/neutral/diy-nerds.lua:385
 msgid "Processing Box"
 msgstr ""
 
-#: dat/missions/neutral/diy-nerds.lua:381
+#: dat/missions/neutral/diy-nerds.lua:386
 msgid ""
 "A box the nerds put together for the Homebrew Processing Box Masters contest."
 msgstr ""
@@ -43191,6 +43196,11 @@ msgstr ""
 #. <avail>
 #. <priority>25</priority>
 #. <chance>3</chance>
+#. <cond>
+#. player.misnDone("Tutorial Part 4")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz"))
+#. </cond>
 #. <location>Bar</location>
 #. <faction>Dvaered</faction>
 #. <faction>Empire</faction>
@@ -43208,7 +43218,7 @@ msgstr ""
 #.
 #.
 #. Bar Description
-#: dat/missions/neutral/drunkard.lua:31
+#: dat/missions/neutral/drunkard.lua:36
 msgid ""
 "You see a drunkard at the bar mumbling about how he was so close to getting "
 "his break."
@@ -43219,16 +43229,16 @@ msgstr ""
 #. Mission Details
 #. Note: this mission does not make any system claims.
 #. Must be landable
-#: dat/missions/neutral/drunkard.lua:34 dat/missions/neutral/drunkard.lua:68
+#: dat/missions/neutral/drunkard.lua:39 dat/missions/neutral/drunkard.lua:73
 msgid "Drunkard"
 msgstr "Trinker"
 
-#: dat/missions/neutral/drunkard.lua:35
+#: dat/missions/neutral/drunkard.lua:40
 #, fuzzy
 msgid "An undisclosed sum of credits"
 msgstr "Eine Geldsumme."
 
-#: dat/missions/neutral/drunkard.lua:36
+#: dat/missions/neutral/drunkard.lua:41
 #, fuzzy
 msgid ""
 "You've decided to help some drunkard at the bar by picking up some goods for "
@@ -43238,7 +43248,7 @@ msgstr ""
 "für eine Gräfin abholst. Obwohl du dir nicht sicher bist, warum du "
 "angenommen hast."
 
-#: dat/missions/neutral/drunkard.lua:38
+#: dat/missions/neutral/drunkard.lua:43
 msgid ""
 "You sit next to the drunk man at the bar and listen to him almost sob into "
 "his drink. \"I was so close! I almost had it! I could feel it in my grasp! "
@@ -43255,7 +43265,7 @@ msgstr ""
 "mir helfen? Du kannst mir helfen! Es wird gut für dich sein, es wird gut für "
 "mich sein, es wird gut für alle sein! Wirst du mir helfen?“"
 
-#: dat/missions/neutral/drunkard.lua:40
+#: dat/missions/neutral/drunkard.lua:45
 #, fuzzy
 msgid ""
 "\"Oh, thank the ancestors! I knew you would help me!\" The man relaxes "
@@ -43313,7 +43323,7 @@ msgstr ""
 "verschwinden, bevor die Drinks, die er getrunken hat, ihn noch tiefer im "
 "Griff haben und die Flasche dich in sich aufsaugt."
 
-#: dat/missions/neutral/drunkard.lua:44
+#: dat/missions/neutral/drunkard.lua:49
 msgid ""
 "You land on the planet and hand the manager of the docks the crumpled claim "
 "slip that the drunkard gave you, realizing now that you don't think he even "
@@ -43329,7 +43339,7 @@ msgstr ""
 "prompt hinausbefördert wird, nachdem er einen Code auf seinem elektronischen "
 "Pad eingegeben hat."
 
-#: dat/missions/neutral/drunkard.lua:46
+#: dat/missions/neutral/drunkard.lua:51
 #, fuzzy
 msgid ""
 "You finally arrive at your destination, bringing your ship down to land "
@@ -43365,7 +43375,7 @@ msgstr ""
 "zurück auf dein Schiff kommst, siehst du eine Karte auf dem Boden liegen, "
 "auf der nur ihr Name steht: Gräfin Amelia Vollana."
 
-#: dat/missions/neutral/drunkard.lua:50
+#: dat/missions/neutral/drunkard.lua:55
 msgid ""
 "As you finish your takeoff procedures and once again enter the cold black of "
 "space, you can't help but feel relieved. You might not have gotten paid, but "
@@ -43384,7 +43394,7 @@ msgid ""
 "you have your life, though!"
 msgstr ""
 
-#: dat/missions/neutral/drunkard.lua:56
+#: dat/missions/neutral/drunkard.lua:61
 msgid ""
 "You helped some drunkard deliver goods for some countess. You thought you "
 "might get killed along the way, but you survived and got a generous payment."
@@ -43396,7 +43406,7 @@ msgstr ""
 #. Extra hooks in case the player lands on the pickup system without
 #. enough cargo space, so the player doesn't have to takeoff and
 #. re-land.
-#: dat/missions/neutral/drunkard.lua:120
+#: dat/missions/neutral/drunkard.lua:125
 msgid ""
 "You don't have enough cargo space to pick up the goods. The goods weigh "
 "{required} tonne. Please increase your cargo capacity and go to the "
@@ -43408,11 +43418,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/drunkard.lua:133
+#: dat/missions/neutral/drunkard.lua:138
 msgid "Goods"
 msgstr "Güter"
 
-#: dat/missions/neutral/drunkard.lua:134
+#: dat/missions/neutral/drunkard.lua:139
 msgid "Some sort of cargo you picked up for some countess."
 msgstr ""
 
@@ -43431,7 +43441,13 @@ msgstr ""
 #. <faction>Sirius</faction>
 #. <faction>Soromid</faction>
 #. <faction>Za'lek</faction>
-#. <cond>not planet.cur():restriction() or planet.cur():restriction() == "lowclass" or planet.cur():restriction() == "hiclass"</cond>
+#. <cond>
+#. (not planet.cur():restriction() or planet.cur():restriction() == "lowclass"
+#. or planet.cur():restriction() == "hiclass")
+#. and (player.misnDone("Tutorial Part 4")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz")))
+#. </cond>
 #. </avail>
 #. </mission>
 #. --
@@ -43453,79 +43469,79 @@ msgstr ""
 #. along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #.
 #. --
-#: dat/missions/neutral/lovetrain.lua:46
+#: dat/missions/neutral/lovetrain.lua:52
 msgid ""
 "The man is ecstatic when you explain that you are delivering a package for "
 "him and who it is from. He thanks you excitedly and leaves."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:47
+#: dat/missions/neutral/lovetrain.lua:53
 msgid ""
 "The man squeals with glee when he sees the name on the package. You smile at "
 "him as he rushes out without even finishing his drink."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:48
+#: dat/missions/neutral/lovetrain.lua:54
 msgid ""
 "The man laughs nervously as you hand him the package, but nonetheless thanks "
 "you."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:49
+#: dat/missions/neutral/lovetrain.lua:55
 msgid ""
 "The man tears up with joy as he opens his package, thanking you for "
 "delivering it."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:52
+#: dat/missions/neutral/lovetrain.lua:58
 msgid ""
 "The woman is ecstatic when you explain that you are delivering a package for "
 "her and who it is from. She thanks you excitedly and leaves."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:53
+#: dat/missions/neutral/lovetrain.lua:59
 msgid ""
 "The woman squeals with glee when she sees the name on the package. You smile "
 "at her as she rushes out without even finishing her drink."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:54
+#: dat/missions/neutral/lovetrain.lua:60
 msgid ""
 "The woman laughs nervously as you hand her the package, but nonetheless "
 "thanks you."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:55
+#: dat/missions/neutral/lovetrain.lua:61
 msgid ""
 "The woman tears up with joy as she opens her package, thanking you for "
 "delivering it."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:58
+#: dat/missions/neutral/lovetrain.lua:64
 msgid ""
 "The lover is ecstatic when you explain that you are delivering a package for "
 "them and who it is from. They thank you excitedly and leave."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:59
+#: dat/missions/neutral/lovetrain.lua:65
 msgid ""
 "The lover squeals with glee when they see the name on the package. You smile "
 "at them as they rush out without even finishing their drink."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:60
+#: dat/missions/neutral/lovetrain.lua:66
 msgid ""
 "The lover laughs nervously as you hand them the package, but nonetheless "
 "thanks you."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:61
+#: dat/missions/neutral/lovetrain.lua:67
 msgid ""
 "The lover tears up with joy as they open their package, thanking you for "
 "delivering it."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:66
+#: dat/missions/neutral/lovetrain.lua:72
 #, fuzzy
 msgid ""
 "Not long after you finish your delivery, you see your reward has been "
@@ -43534,43 +43550,43 @@ msgstr ""
 "Niemand wird diesen gesetzlosen Piloten vermissen! Das Kopfgeld wurde auf "
 "Ihr Konto überwiesen."
 
-#: dat/missions/neutral/lovetrain.lua:67
+#: dat/missions/neutral/lovetrain.lua:73
 msgid "You soon see your payment added to your account's balance."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:68
+#: dat/missions/neutral/lovetrain.lua:74
 msgid ""
 "Shortly after you finish the job, you see that your payment has been sent to "
 "your account."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:69
+#: dat/missions/neutral/lovetrain.lua:75
 msgid ""
 "Soon after finishing the job, you check your account balance and find that "
 "the promised payment has been wired into your account."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:72
+#: dat/missions/neutral/lovetrain.lua:78
 #, fuzzy
 msgid "Unusual Patron"
 msgstr "%s-Zivilist"
 
-#: dat/missions/neutral/lovetrain.lua:74
+#: dat/missions/neutral/lovetrain.lua:80
 msgid "A patron stares longingly at something with a smile on their face."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:75
+#: dat/missions/neutral/lovetrain.lua:81
 #, fuzzy
 msgid "A patron sitting alone tries to grab your attention."
 msgstr "Ein Zivilist sitzt an der Bar."
 
-#: dat/missions/neutral/lovetrain.lua:76
+#: dat/missions/neutral/lovetrain.lua:82
 #, fuzzy
 msgid ""
 "A patron sits at a table with some sort of package, grinning to themself."
 msgstr "Ein alter Mann sitzt an einem Tisch mit ein paar Vermisstenanzeigen."
 
-#: dat/missions/neutral/lovetrain.lua:77
+#: dat/missions/neutral/lovetrain.lua:83
 #, fuzzy
 msgid ""
 "You see a patron glancing around the bar, perhaps trying to find a suitable "
@@ -43580,39 +43596,39 @@ msgstr ""
 "scheint, der sich in der Kneipe umsieht, anscheinend auf der Suche nach "
 "einem geeigneten Piloten."
 
-#: dat/missions/neutral/lovetrain.lua:80
+#: dat/missions/neutral/lovetrain.lua:86
 #, fuzzy
 msgid "Lover"
 msgstr "Liebe "
 
-#: dat/missions/neutral/lovetrain.lua:82
+#: dat/missions/neutral/lovetrain.lua:88
 msgid "This must be the lover you've been hired to deliver a package to."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:83
+#: dat/missions/neutral/lovetrain.lua:89
 msgid ""
 "The lover you have been sent to deliver a package to sits at the bar in "
 "anticipation."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:84
+#: dat/missions/neutral/lovetrain.lua:90
 msgid ""
 "You see the lover you've been tasked with delivering a package to, fidgeting "
 "in their seat."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:85
+#: dat/missions/neutral/lovetrain.lua:91
 msgid ""
 "A patron looks every which way around the bar. This seems to be the lover "
 "you're supposed to deliver a package to."
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:88
+#: dat/missions/neutral/lovetrain.lua:94
 #, fuzzy
 msgid "Love Train"
 msgstr "Tarnung"
 
-#: dat/missions/neutral/lovetrain.lua:95
+#: dat/missions/neutral/lovetrain.lua:101
 msgid ""
 "\"Oh, h-hi!\" The patron blushes. \"Y-you're a pilot, aren't you? I was "
 "wondering if, um, you could do a job for me d-delivering a special package "
@@ -43636,7 +43652,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:98
+#: dat/missions/neutral/lovetrain.lua:104
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to {numpartners} of my "
@@ -43660,7 +43676,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:101
+#: dat/missions/neutral/lovetrain.lua:107
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -43686,7 +43702,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:104
+#: dat/missions/neutral/lovetrain.lua:110
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -43715,7 +43731,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:109
+#: dat/missions/neutral/lovetrain.lua:115
 msgid ""
 "\"Oh, h-hi!\" The patron smiles nervously. \"Y-you're a pilot, aren't you? I "
 "was wondering if, um, you could do a job for me d-delivering a special "
@@ -43739,7 +43755,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:112
+#: dat/missions/neutral/lovetrain.lua:118
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to {numpartners} of my "
@@ -43763,7 +43779,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:115
+#: dat/missions/neutral/lovetrain.lua:121
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -43789,7 +43805,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:118
+#: dat/missions/neutral/lovetrain.lua:124
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -43817,7 +43833,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:139
+#: dat/missions/neutral/lovetrain.lua:145
 msgid ""
 "\"Oh, h-hi!\" The patron blushes. \"Y-you're a pilot, aren't you? I was "
 "wondering if, um, you could do a job for me d-delivering a special package "
@@ -43826,7 +43842,7 @@ msgid ""
 "{credits} for it. C-can you do it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:140
+#: dat/missions/neutral/lovetrain.lua:146
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to my boyfriend. He's on "
@@ -43835,7 +43851,7 @@ msgid ""
 "plan. \"I'll pay you {credits} for the service. What do you say?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:141
+#: dat/missions/neutral/lovetrain.lua:147
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -43845,7 +43861,7 @@ msgid ""
 "and I'll give you {credits}. What do you think?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:142
+#: dat/missions/neutral/lovetrain.lua:148
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -43857,7 +43873,7 @@ msgid ""
 "the package. Well? How about it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:145
+#: dat/missions/neutral/lovetrain.lua:151
 msgid ""
 "\"Oh, h-hi!\" The patron blushes. \"Y-you're a pilot, aren't you? I was "
 "wondering if, um, you could do a job for me d-delivering a special package "
@@ -43866,7 +43882,7 @@ msgid ""
 "{credits} for it. C-can you do it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:146
+#: dat/missions/neutral/lovetrain.lua:152
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to my girlfriend. She's "
@@ -43875,7 +43891,7 @@ msgid ""
 "plan. \"I'll pay you {credits} for the service. What do you say?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:147
+#: dat/missions/neutral/lovetrain.lua:153
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -43885,7 +43901,7 @@ msgid ""
 "and I'll give you {credits}. What do you think?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:148
+#: dat/missions/neutral/lovetrain.lua:154
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -43897,7 +43913,7 @@ msgid ""
 "the package. Well? How about it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:151
+#: dat/missions/neutral/lovetrain.lua:157
 msgid ""
 "\"Oh, h-hi!\" The patron blushes. \"Y-you're a pilot, aren't you? I was "
 "wondering if, um, you could do a job for me d-delivering a special package "
@@ -43906,7 +43922,7 @@ msgid ""
 "{credits} for it. C-can you do it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:152
+#: dat/missions/neutral/lovetrain.lua:158
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to my sweetheart. They're "
@@ -43915,7 +43931,7 @@ msgid ""
 "the plan. \"I'll pay you {credits} for the service. What do you say?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:153
+#: dat/missions/neutral/lovetrain.lua:159
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -43925,7 +43941,7 @@ msgid ""
 "and I'll give you {credits}. What do you think?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:154
+#: dat/missions/neutral/lovetrain.lua:160
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -43937,7 +43953,7 @@ msgid ""
 "delivery of the package. Well? How about it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:159
+#: dat/missions/neutral/lovetrain.lua:165
 msgid ""
 "\"Oh, h-hi!\" The patron smiles nervously. \"Y-you're a pilot, aren't you? I "
 "was wondering if, um, you could do a job for me d-delivering a special "
@@ -43946,7 +43962,7 @@ msgid ""
 "{credits} for it. C-can you do it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:160
+#: dat/missions/neutral/lovetrain.lua:166
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to my QPP. He's on "
@@ -43955,7 +43971,7 @@ msgid ""
 "plan. \"I'll pay you {credits} for the service. What do you say?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:161
+#: dat/missions/neutral/lovetrain.lua:167
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -43965,7 +43981,7 @@ msgid ""
 "give you {credits}. What do you think?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:162
+#: dat/missions/neutral/lovetrain.lua:168
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -43977,7 +43993,7 @@ msgid ""
 "package. Well? How about it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:165
+#: dat/missions/neutral/lovetrain.lua:171
 msgid ""
 "\"Oh, h-hi!\" The patron smiles nervously. \"Y-you're a pilot, aren't you? I "
 "was wondering if, um, you could do a job for me d-delivering a special "
@@ -43986,7 +44002,7 @@ msgid ""
 "{credits} for it. C-can you do it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:166
+#: dat/missions/neutral/lovetrain.lua:172
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to my QPP. She's on "
@@ -43995,7 +44011,7 @@ msgid ""
 "plan. \"I'll pay you {credits} for the service. What do you say?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:167
+#: dat/missions/neutral/lovetrain.lua:173
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -44005,7 +44021,7 @@ msgid ""
 "give you {credits}. What do you think?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:168
+#: dat/missions/neutral/lovetrain.lua:174
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -44017,7 +44033,7 @@ msgid ""
 "package. Well? How about it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:171
+#: dat/missions/neutral/lovetrain.lua:177
 msgid ""
 "\"Oh, h-hi!\" The patron smiles nervously. \"Y-you're a pilot, aren't you? I "
 "was wondering if, um, you could do a job for me d-delivering a special "
@@ -44026,7 +44042,7 @@ msgid ""
 "{credits} for it. C-can you do it?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:172
+#: dat/missions/neutral/lovetrain.lua:178
 msgid ""
 "\"Why, hello there! You look to be a capable pilot, so could you help me "
 "out? I was thinking of sending a special something to my QPP. They're on "
@@ -44035,7 +44051,7 @@ msgid ""
 "plan. \"I'll pay you {credits} for the service. What do you say?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:173
+#: dat/missions/neutral/lovetrain.lua:179
 msgid ""
 "\"Ah, perfect! I was hoping I'd find someone like you! You're a pilot, "
 "right? I can tell! Look, I have an easy job for you. I wanted to send "
@@ -44045,7 +44061,7 @@ msgid ""
 "give you {credits}. What do you think?\""
 msgstr ""
 
-#: dat/missions/neutral/lovetrain.lua:174
+#: dat/missions/neutral/lovetrain.lua:180
 msgid ""
 "Seeing you, the patron recoils in surprise. You apologize for startling "
 "them, but the patron waves off your concern with a blush. \"No, no, that's "
@@ -44065,7 +44081,7 @@ msgstr ""
 #. equally as rewarding as spread apart systems; this should lead
 #. a higher travel distance to be calculated for more spread out
 #. destinations, on average.
-#: dat/missions/neutral/lovetrain.lua:308
+#: dat/missions/neutral/lovetrain.lua:314
 msgid ""
 "The patron hands you {number} package. You will be paid when it is delivered."
 msgid_plural ""
@@ -44074,14 +44090,14 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:317
+#: dat/missions/neutral/lovetrain.lua:323
 msgid "You have been tasked with delivering a package to someone's partner."
 msgid_plural ""
 "You have been tasked with delivering packages to someone's partners."
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/lovetrain.lua:342
+#: dat/missions/neutral/lovetrain.lua:348
 #, fuzzy
 msgid "Talk to lover in bar on {planet} ({system} system)"
 msgstr "Lande auf %s im „%s“-System."
@@ -44096,6 +44112,11 @@ msgstr "Lande auf %s im „%s“-System."
 #. <avail>
 #. <priority>29</priority>
 #. <chance>10</chance>
+#. <cond>
+#. player.misnDone("Tutorial Part 4")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz"))
+#. </cond>
 #. <location>Bar</location>
 #. <faction>Dvaered</faction>
 #. <faction>Empire</faction>
@@ -44113,17 +44134,17 @@ msgstr "Lande auf %s im „%s“-System."
 #.
 #.
 #.
-#: dat/missions/neutral/nebu_satellite.lua:31
+#: dat/missions/neutral/nebu_satellite.lua:36
 msgid "A bunch of scientists seem to be chattering nervously among themselves."
 msgstr "Ein paar Wissenschaftler scheinen sich nervös zu unterhalten."
 
-#: dat/missions/neutral/nebu_satellite.lua:32
-#: dat/missions/neutral/nebu_satellite.lua:90
+#: dat/missions/neutral/nebu_satellite.lua:37
+#: dat/missions/neutral/nebu_satellite.lua:95
 #, fuzzy
 msgid "Nebula Probe"
 msgstr "Nebel"
 
-#: dat/missions/neutral/nebu_satellite.lua:33
+#: dat/missions/neutral/nebu_satellite.lua:38
 #, fuzzy
 msgid ""
 "You have been tasked with helping a group of scientists launch a special "
@@ -44132,7 +44153,7 @@ msgstr ""
 "Du hast einer Gruppe von Wissenschaftlern geholfen, eine Forschungssonde in "
 "den Nebel zu starten."
 
-#: dat/missions/neutral/nebu_satellite.lua:35
+#: dat/missions/neutral/nebu_satellite.lua:40
 #, fuzzy
 msgid ""
 "You approach the scientists. They seem a bit nervous and one mutters "
@@ -44148,7 +44169,7 @@ msgstr ""
 "    „Hallo, Kapitän, wir suchen nach einem Schiff, das uns in den Sol-Nebel "
 "bringt. Wären Sie bereit, uns dorthin zu bringen?“"
 
-#: dat/missions/neutral/nebu_satellite.lua:38
+#: dat/missions/neutral/nebu_satellite.lua:43
 #, fuzzy
 msgid ""
 "\"We had a trip scheduled with a space trader ship, but they backed out at "
@@ -44174,7 +44195,7 @@ msgstr ""
 "tieferen Gebiete nicht sehr freundlich zu unseren Instrumenten. Deshalb "
 "haben wir diesen Satelliten entworfen, den wir starten werden.“"
 
-#: dat/missions/neutral/nebu_satellite.lua:41
+#: dat/missions/neutral/nebu_satellite.lua:46
 #, fuzzy
 msgid ""
 "\"The plan is for you to take us to {launchsystem} so we can launch the "
@@ -44187,7 +44208,7 @@ msgstr ""
 "Heimat zurückbringen. Wenn alles gut geht, wird uns die Sonde automatisch "
 "die Daten schicken, die wir brauchen. Sie erhalten %s, wenn wir ankommen.“"
 
-#: dat/missions/neutral/nebu_satellite.lua:42
+#: dat/missions/neutral/nebu_satellite.lua:47
 #, fuzzy
 msgid ""
 "The scientists thank you for your help and pay you before going back to "
@@ -44198,11 +44219,11 @@ msgstr ""
 "als Andenken ein Modell des Satelliten, bei dessen Start du ihnen geholfen "
 "hast."
 
-#: dat/missions/neutral/nebu_satellite.lua:48
+#: dat/missions/neutral/nebu_satellite.lua:53
 msgid "Scientists Launch Research Probe Into Nebula"
 msgstr "Wissenschaftler schicken Forschungssonde in den Nebel"
 
-#: dat/missions/neutral/nebu_satellite.lua:49
+#: dat/missions/neutral/nebu_satellite.lua:54
 msgid ""
 "A group of scientists have successfully launched a science probe into the "
 "Nebula. The probe was specifically designed to be resistant to the corrosive "
@@ -44214,7 +44235,7 @@ msgstr ""
 "die korrosive Umgebung des Nebels resistent zu sein, und soll neue Hinweise "
 "über die Natur des Gases und woher es stammt, liefern."
 
-#: dat/missions/neutral/nebu_satellite.lua:53
+#: dat/missions/neutral/nebu_satellite.lua:58
 msgid ""
 "You helped a group of scientists launch a research probe into the Nebula."
 msgstr ""
@@ -44225,11 +44246,11 @@ msgstr ""
 #. Set up mission variables
 #. Not too unstable
 #. Set stuff up for the spaceport bar
-#: dat/missions/neutral/nebu_satellite.lua:70
+#: dat/missions/neutral/nebu_satellite.lua:75
 msgid "Scientists"
 msgstr "Wissenschaftler"
 
-#: dat/missions/neutral/nebu_satellite.lua:81
+#: dat/missions/neutral/nebu_satellite.lua:86
 #, fuzzy, lua-format
 msgid ""
 "\"Ah, sorry, I forgot to mention that you need %d tonne of cargo space. Let "
@@ -44244,12 +44265,12 @@ msgstr[1] ""
 "„Ach, ich vergaß!“, fügt sie hinzu. „Wir bräuchten natürlich 4 Tonnen freien "
 "Laderaum für unsere Box.“"
 
-#: dat/missions/neutral/nebu_satellite.lua:91
+#: dat/missions/neutral/nebu_satellite.lua:96
 msgid ""
 "A small probe loaded with sensors for exploring the depths of the nebula."
 msgstr ""
 
-#: dat/missions/neutral/nebu_satellite.lua:105
+#: dat/missions/neutral/nebu_satellite.lua:110
 #, fuzzy
 msgid "Fly to the {system} system and wait for the probe to launch"
 msgstr "Gehe zum „%s“-System und funke den Prototypen an"
@@ -44257,20 +44278,20 @@ msgstr "Gehe zum „%s“-System und funke den Prototypen an"
 #.
 #. Launch process
 #. --
-#: dat/missions/neutral/nebu_satellite.lua:139
+#: dat/missions/neutral/nebu_satellite.lua:144
 #, fuzzy
 msgid "Preparing to launch probe…"
 msgstr "Vorbereitung des Starts des Sondensatelliten …"
 
-#: dat/missions/neutral/nebu_satellite.lua:145
-#: dat/missions/neutral/nebu_satellite.lua:154
+#: dat/missions/neutral/nebu_satellite.lua:150
+#: dat/missions/neutral/nebu_satellite.lua:159
 #, fuzzy, lua-format
 msgid "Launch in %d…"
 msgid_plural "Launch in %d…"
 msgstr[0] "Start in 5 …"
 msgstr[1] "Start in 5 …"
 
-#: dat/missions/neutral/nebu_satellite.lua:163
+#: dat/missions/neutral/nebu_satellite.lua:168
 #, fuzzy
 msgid "Probe launch successful."
 msgstr "Satellitenstart erfolgreich!"
@@ -45473,7 +45494,8 @@ msgstr ""
 #. <faction>Sirius</faction>
 #. <faction>Soromid</faction>
 #. <faction>Za'lek</faction>
-#. <cond>(function ()
+#. <cond>
+#. (function ()
 #. local count = 0
 #. for i, p in pairs(system.cur():planets()) do
 #. if p:services()["inhabited"] then
@@ -45481,7 +45503,11 @@ msgstr ""
 #. end
 #. end
 #. return count &gt; 1
-#. end)()</cond>
+#. end)()
+#. and (player.misnDone("Tutorial Part 4")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz")))
+#. </cond>
 #. </avail>
 #. </mission>
 #. --
@@ -45500,7 +45526,7 @@ msgstr ""
 #.
 #. --
 #. Bar information, describes how he appears in the bar
-#: dat/missions/neutral/reynir.lua:51
+#: dat/missions/neutral/reynir.lua:56
 msgid ""
 "You see an old man with a cap on, on which the letters R-E-Y-N-I-R are "
 "imprinted."
@@ -45509,26 +45535,26 @@ msgstr ""
 "R eingeprägt sind."
 
 #. Mission details. We store some text for the mission with specific variables.
-#: dat/missions/neutral/reynir.lua:54
+#: dat/missions/neutral/reynir.lua:59
 msgid "Rich reward from space!"
 msgstr "Große Belohnung aus dem Weltraum!"
 
-#: dat/missions/neutral/reynir.lua:55
+#: dat/missions/neutral/reynir.lua:60
 msgid "Lots of cash"
 msgstr "Viel Geld"
 
-#: dat/missions/neutral/reynir.lua:56
+#: dat/missions/neutral/reynir.lua:61
 msgid "Reynir wants to travel to space and will reward you richly."
 msgstr "Reynir will in den Weltraum reisen und dich reich belohnen."
 
 #. Stage one
 #. We store mission text in tables.  As we need them, we create them.
-#: dat/missions/neutral/reynir.lua:63
+#: dat/missions/neutral/reynir.lua:68
 msgid "\"Do you like money?\""
 msgstr "„Magst du Geld?“"
 
 #. Use double brackets _([[]]) for block quotes over several lines.
-#: dat/missions/neutral/reynir.lua:65
+#: dat/missions/neutral/reynir.lua:70
 #, fuzzy
 msgid ""
 "\"Ever since I was a kid I've wanted to go to space. However, my doctor says "
@@ -45547,7 +45573,7 @@ msgstr ""
 "besitze eine Hotdog-Fabrik, also kann ich dich reich belohnen! Wirst du es "
 "tun?“"
 
-#: dat/missions/neutral/reynir.lua:68
+#: dat/missions/neutral/reynir.lua:73
 #, lua-format
 msgid ""
 "\"Thank you so much! Just fly me around in the system, preferably near %s.\""
@@ -45555,7 +45581,7 @@ msgstr ""
 "„Danke sehr! Flieg mich einfach im System herum, am besten in der Nähe von "
 "%s.“"
 
-#: dat/missions/neutral/reynir.lua:70
+#: dat/missions/neutral/reynir.lua:75
 #, lua-format
 msgid ""
 "Reynir walks out of the ship. You notice that he's bleeding out of both "
@@ -45564,7 +45590,7 @@ msgstr ""
 "Reynir verlässt das Schiff. Du bemerkst, dass er aus beiden Ohren blutet. "
 "„Wo hast du mich hingebracht? Bring mich sofort zurück nach %s!“"
 
-#: dat/missions/neutral/reynir.lua:71
+#: dat/missions/neutral/reynir.lua:76
 #, lua-format
 msgid ""
 "\"Thank you so much! Here's %s of hot dogs. They're worth more than their "
@@ -45573,7 +45599,7 @@ msgstr ""
 "„Vielen Dank! Hier sind %s Tonnen Hot Dogs. Sie sind mehr als ihr Gewicht in "
 "Gold wert, nicht wahr?“"
 
-#: dat/missions/neutral/reynir.lua:72
+#: dat/missions/neutral/reynir.lua:77
 #, fuzzy, lua-format
 msgid ""
 "Reynir walks out of the ship, amazed by the view. \"So this is what %s looks "
@@ -45583,7 +45609,7 @@ msgstr ""
 "aus! Ich habe mich schon immer gefragt … Ich möchte jetzt bitte zurück zu %s "
 "gehen.“"
 
-#: dat/missions/neutral/reynir.lua:73
+#: dat/missions/neutral/reynir.lua:78
 #, fuzzy, lua-format
 msgid ""
 "Reynir doesn't look happy when you meet him outside the ship.\n"
@@ -45598,13 +45624,13 @@ msgstr ""
 "Belohnung, %s Tonnen Hotdogs …“"
 
 #. Other text for the mission -- ??
-#: dat/missions/neutral/reynir.lua:79
+#: dat/missions/neutral/reynir.lua:84
 #, lua-format
 msgid "Fly around in the system, preferably near %s"
 msgstr "Flieg im System umher, am besten in der Nähe von %s"
 
 #. Note: This mission does not make system claims
-#: dat/missions/neutral/reynir.lua:80
+#: dat/missions/neutral/reynir.lua:85
 #: dat/missions/soromid/comingout/srm_comingout.lua:147
 #: dat/missions/soromid/comingout/srm_comingout.lua:151
 #: dat/missions/soromid/comingout/srm_comingout2.lua:66
@@ -45613,7 +45639,7 @@ msgstr "Flieg im System umher, am besten in der Nähe von %s"
 msgid "Land on %s (%s system)"
 msgstr "Lande auf %s im „%s“-System."
 
-#: dat/missions/neutral/reynir.lua:82
+#: dat/missions/neutral/reynir.lua:87
 #, lua-format
 msgid ""
 "You took an old man named Reynir on a ride in outer space. He was happy and "
@@ -45623,7 +45649,7 @@ msgstr ""
 "mitgenommen. Er war glücklich und hat dich in Form von %s Tonnen Hotdogs "
 "bezahlt."
 
-#: dat/missions/neutral/reynir.lua:83
+#: dat/missions/neutral/reynir.lua:88
 #, lua-format
 msgid ""
 "You took an old man named Reynir on a ride in outer space, but he was made "
@@ -45640,11 +45666,11 @@ msgstr ""
 #. Mission variables
 #. make sure there are at least 2 inhabited planets
 #. For missions from the Bar only.
-#: dat/missions/neutral/reynir.lua:88 dat/missions/neutral/reynir.lua:118
+#: dat/missions/neutral/reynir.lua:93 dat/missions/neutral/reynir.lua:123
 msgid "Reynir"
 msgstr "Reynir"
 
-#: dat/missions/neutral/reynir.lua:118
+#: dat/missions/neutral/reynir.lua:123
 msgid "An old man named Reynir who wanted to fly in space."
 msgstr ""
 
@@ -47463,16 +47489,11 @@ msgstr ""
 msgid "Get lost, waste dumping scum! We don't want you here!"
 msgstr "Verschwinde, du Zumüller! Wir wollen dich hier nicht!"
 
-#: dat/missions/neutral/wastedump.lua:67 dat/missions/neutral/wastedump.lua:71
+#: dat/missions/neutral/wastedump.lua:67 dat/missions/neutral/wastedump.lua:70
 msgid "Waste Dump"
 msgstr "Mülldeponie"
 
 #: dat/missions/neutral/wastedump.lua:68
-#, lua-format
-msgid "%s per tonne"
-msgstr "%s pro Tonne"
-
-#: dat/missions/neutral/wastedump.lua:69
 msgid ""
 "Take as many waste containers off of here as your ship can hold and drop "
 "them off at any authorized garbage collection facility. You will be paid "
@@ -47484,23 +47505,23 @@ msgstr ""
 "jeder Versuch, den Abfall illegal in den Weltraum zu werfen, wird streng "
 "bestraft, falls du erwischt wirst."
 
-#: dat/missions/neutral/wastedump.lua:129
+#: dat/missions/neutral/wastedump.lua:128
 #: dat/missions/soromid/comingout/srm_comingout5.lua:153
 msgid "Waste Containers"
 msgstr "Abfallbehälter"
 
-#: dat/missions/neutral/wastedump.lua:129
+#: dat/missions/neutral/wastedump.lua:128
 #: dat/missions/soromid/comingout/srm_comingout5.lua:153
 msgid "A bunch of waste containers leaking all sorts of indescribable liquids."
 msgstr ""
 
-#: dat/missions/neutral/wastedump.lua:134
+#: dat/missions/neutral/wastedump.lua:133
 msgid ""
 "Land on any garbage collection facility (indicated on your map) to drop off "
 "the Waste Containers"
 msgstr ""
 
-#: dat/missions/neutral/wastedump.lua:135
+#: dat/missions/neutral/wastedump.lua:134
 msgid ""
 "Alternatively: fly to a system where you won't get caught by authorities, "
 "illegally jettison the cargo via the Ship Computer, and jump out of the "
@@ -69089,50 +69110,3 @@ msgstr "Ungültiger WEAPON_LAYER angegeben"
 #, fuzzy
 msgid "Trying to remove beam with ID 0!"
 msgstr "Versuch, den verdammten Spieler zu entfernen!"
-
-#, fuzzy
-#~ msgid ""
-#~ "After Daedris, under his successors, the light of the empire waned. Civil "
-#~ "strife and religious division weakened social bonds. The Great Projects "
-#~ "of the Empire went awry. In some regions, administration fell into the "
-#~ "hands of other powers. The Great Houses now policed the space lanes."
-#~ msgstr ""
-#~ "Nach Daedris, unter seinen Nachfolgern, erlosch das Licht des Imperiums. "
-#~ "Bürgerkriege und religiöse Spaltung schwächten die sozialen Bindungen. "
-#~ "Die großen Projekte des Imperiums verliefen im Sande. In einigen Regionen "
-#~ "fiel die Verwaltung in die Hände anderer Mächte. Die Großen Häuser "
-#~ "kontrollierten nun die Raumfahrtzonen."
-
-#, fuzzy
-#~ msgid ""
-#~ "But the political troubles of the Empire were nothing compared to the "
-#~ "Incident. From Earth, a cataclysmic explosion ripped through space, "
-#~ "annihilating stars, vaporizing worlds. Billions died. Dozens of systems "
-#~ "disappeared into the mysterious nebula left behind. House Proteron, a "
-#~ "newly established economic powerhouse of the Empire, was entirely "
-#~ "obliterated. Now the great, galaxy-spanning Empire hangs on as a shadow "
-#~ "of its former glory."
-#~ msgstr ""
-#~ "Von der Erde aus breitete sich eine katastrophale Explosion durch das "
-#~ "Weltall aus, löschte Sterne aus und verdampfte Welten. Milliarden "
-#~ "starben. Dutzende von Systemen verschwanden in dem mysteriösen Nebel, der "
-#~ "zurückblieb. Jetzt überlebt die große, galaxisumspannende Zivilisation "
-#~ "nur noch als ein Schatten ihrer einstigen Pracht."
-
-#~ msgid "What else remains? Questions."
-#~ msgstr "Was bleibt noch? Fragen."
-
-#, fuzzy
-#~ msgid ""
-#~ "Ten galactic cycles have passed in a universe ruled by the shards of a "
-#~ "decaying empire. After the Incident, corruption and piracy run rampant. "
-#~ "But where there is chaos, there is also opportunity."
-#~ msgstr ""
-#~ "Zehn Standard-Zyklen sind in einem Universum vergangen, das von den "
-#~ "Scherben eines zerfallenden Imperiums beherrscht wird. Nach dem "
-#~ "Geschehnis wuchern Korruption und Piraterie, doch wo Chaos herrscht, gibt "
-#~ "es auch Möglichkeiten."
-
-#, fuzzy
-#~ msgid "Welcome to the eye of the Imperial storm.…"
-#~ msgstr "Willkommen im Universum von Naev …"

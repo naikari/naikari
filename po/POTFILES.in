@@ -31,6 +31,7 @@ dat/assets/alteris_v.xml
 dat/assets/aluben.xml
 dat/assets/amaroq_i.xml
 dat/assets/amaroq_iii.xml
+dat/assets/amaru.xml
 dat/assets/amatiri_i.xml
 dat/assets/amatiri_ia.xml
 dat/assets/amatiri_ii.xml
@@ -425,7 +426,6 @@ dat/assets/icarus.xml
 dat/assets/idio.xml
 dat/assets/imk.xml
 dat/assets/impala.xml
-dat/assets/inca.xml
 dat/assets/infinity_iii.xml
 dat/assets/infinity_iv.xml
 dat/assets/infinity_vii.xml
@@ -563,7 +563,6 @@ dat/assets/maus_i.xml
 dat/assets/maus_ii.xml
 dat/assets/maus_iii.xml
 dat/assets/maus_station.xml
-dat/assets/maya.xml
 dat/assets/medenus_observatory.xml
 dat/assets/megala.xml
 dat/assets/megan_station.xml
@@ -1100,6 +1099,7 @@ dat/assets/virtual_frontier_small.xml
 dat/assets/virtual_frontier_unpresence.xml
 dat/assets/virtual_miner_local.xml
 dat/assets/virtual_miner_small.xml
+dat/assets/virtual_pirate_local.xml
 dat/assets/virtual_pirate_medium.xml
 dat/assets/virtual_pirate_small.xml
 dat/assets/virtual_pirate_unpresence.xml
@@ -2121,6 +2121,7 @@ dat/unidiff/collective_dead.xml
 dat/unidiff/flf_dead.xml
 dat/unidiff/flf_pirate_ally.xml
 dat/unidiff/flf_vs_empire.xml
+dat/unidiff/hakoi_pirates.xml
 dat/unidiff/raelid_outpost_death.xml
 dat/unidiff/raglan_outpost_death.xml
 dat/ai/baddie.lua
