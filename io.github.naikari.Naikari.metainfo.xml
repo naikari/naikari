@@ -27,6 +27,9 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
+    <release version="v0.4.0" date="2022-08-29" type="stable">
+      <url>https://github.com/naikari/naikari/releases/tag/v0.4.0</url>
+    </release>
     <release version="v0.3.0" date="2022-06-09" type="stable">
       <url>https://github.com/naikari/naikari/releases/tag/v0.3.0</url>
     </release>

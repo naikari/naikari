@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: naikari 0.4.0-rc.7\n"
+"Project-Id-Version: naikari 0.4.0\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-08-29 04:22-0400\n"
+"POT-Creation-Date: 2022-08-29 20:05-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
