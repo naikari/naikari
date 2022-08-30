@@ -47,11 +47,11 @@ ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise I won'
 
 accept_text = _([["Excellent! I look forward to working with you.
 
-"Now, to start with, I need you to buy 10 t of Food on my behalf." You begin to protest, but Ian holds up his hand to interrupt. "Have no fear, {player}. I wouldn't make you pay for it using your own credits, of course." He pulls out a credit chip and hands it to you. "That should be sufficient to pay for what I need. I put some extra on just to be absolutely sure it will cover the cost; you can keep the extra credits left over in addition to your payment.
+"Now, to start with, I need you to buy 10 t #n[10 tonnes]#0 of Food on my behalf." You begin to protest, but Ian holds up his hand to interrupt. "Have no fear, {player}. I wouldn't make you pay for it using your own credits, of course." He pulls out a credit chip and hands it to you. "That should be sufficient to pay for what I need. I put some extra on just to be absolutely sure it will cover the cost; you can keep the extra credits left over in addition to your payment.
 
 "You can buy the Food from the Commodity tab. Once you've picked it up, return here so we can transfer the Food to my storage unit."]])
 
-reminder_text = _([[You ask Ian what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 t of Food. You should be able to find it in the Commodity tab. Let me know when you have it!"]])
+reminder_text = _([[You ask Ian what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 t #n[10 tonnes]#0 of Food. You should be able to find it in the Commodity tab. Let me know when you have it!"]])
 
 finish_text = _([[You approach Ian and inform him that you have the cargo he needs. "Ah, perfect!" he responds. "Let's initiate that transfer, then.…" Ian Structure pushes a series of buttons on his datapad and you see that the cargo has been removed from your ship.
 
