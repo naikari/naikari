@@ -43,7 +43,7 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-ask_text = _([["Hello again, {player}! Are you ready for that other job I had for you? It's a little more effort than the last job, but still not too hard, and I'll pay you a nice {credits} reward for it."]])
+ask_text = _([["Hello again, {player}! Are you ready for that other job I had for you? It's a little more effort than the last job, but still not too hard, and I'll pay you a nice {credits} #n[{credits_conv}]#0 reward for it."]])
 
 accept_text = _([["Perfect! Alright, this time we will be going into space; I will be joining you. I'll make my way to your ship now and wait for you there. When you're ready to begin, press the Take Off button."]])
 
@@ -81,8 +81,12 @@ end
 
 
 function accept()
+   local credits_conv = fmt.f(
+         n_("{credits} credit", "{credits} credits", credits),
+         {credits=fmt.number(credits)})
    if tk.yesno("", fmt.f(ask_text,
-         {player=player.name(), credits=fmt.credits(credits)})) then
+         {player=player.name(), credits=fmt.credits(credits),
+            credits_conv=credits_conv})) then
       tk.msg("", fmt.f(accept_text, {player=player.name()}))
 
       misn.accept()
