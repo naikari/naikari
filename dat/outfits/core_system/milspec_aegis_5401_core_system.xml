@@ -12,7 +12,7 @@
  </general>
  <specific type="modification">
   <cpu_max>400</cpu_max>
-  <shield>700</shield>
+  <shield>1250</shield>
   <shield_regen>14</shield_regen>
   <energy>1500</energy>
   <energy_regen>75</energy_regen>

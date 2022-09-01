@@ -1,0 +1,33 @@
+{
+    "stages": 7,
+    "tags": {
+        "potential": {
+            "text": {
+                "default": "All shells start off undeveloped, but over time, just like the ships themselves, they grow and improve.",
+                "stage": {
+                    "X": "This shell has reached stage X, its full potential."
+                }
+            }
+        },
+        "rarity": {
+            "text": {
+                "default": "0",
+                "stage": {
+                    "X": "6"
+                }
+            }
+        },
+        "price": {
+            "min": 1100000,
+            "max": 2200000
+        },
+        "absorb": {
+            "min": 38,
+            "max": 56
+        },
+        "armor": {
+            "min": 1400,
+            "max": 2000
+        }
+    }
+}

@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Medium-Heavy Shell Stage 4">
  <general>
-  <rarity>2</rarity>
   <typename>Bioship Shell</typename>
   <slot prop="bio_hull">structure</slot>
   <size>medium</size>
+  <rarity>0</rarity>
   <priority>7</priority>
   <mass>310</mass>
   <price>512000</price>
@@ -14,8 +14,8 @@
  <specific type="modification">
   <cargo>36</cargo>
   <absorb>26</absorb>
-  <armour>584</armour>
+  <armour>980</armour>
   <armour_regen>0</armour_regen>
-  <rdr_enemy_range_mod>-18</rdr_enemy_range_mod>
+  <rdr_enemy_range_mod>-18.0</rdr_enemy_range_mod>
  </specific>
 </outfit>

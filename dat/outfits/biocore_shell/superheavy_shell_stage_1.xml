@@ -4,6 +4,7 @@
   <typename>Bioship Shell</typename>
   <slot prop="bio_hull">structure</slot>
   <size>large</size>
+  <rarity>0</rarity>
   <priority>7</priority>
   <mass>1950</mass>
   <price>1450000</price>
@@ -13,7 +14,7 @@
  <specific type="modification">
   <cargo>90</cargo>
   <absorb>59</absorb>
-  <armour>1700</armour>
+  <armour>2600</armour>
   <armour_regen>0</armour_regen>
  </specific>
 </outfit>

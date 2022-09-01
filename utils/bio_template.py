@@ -94,6 +94,8 @@ def export_stage(basefname, template_text, stages, tags, cur_stage):
                 v = minv + diff*cur_stage/(stages-1)
                 if diff / (stages-1) >= 2:
                     v = math.floor(v)
+                else:
+                    v = round(v, 2)
                 cur_tags[tag] = v
 
     xml_out = template_text.format(**cur_tags)

@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Heavy Brain Stage 5">
  <general>
-  <rarity>2</rarity>
   <typename>Bioship Brain</typename>
   <slot prop="bio_systems">utility</slot>
   <size>large</size>
+  <rarity>0</rarity>
   <priority>7</priority>
   <mass>660</mass>
   <price>2500000</price>
@@ -13,9 +13,9 @@
  </general>
  <specific type="modification">
   <cpu_max>320</cpu_max>
-  <shield>900</shield>
-  <shield_regen>15</shield_regen>
-  <energy>3000</energy>
+  <shield>1566</shield>
+  <shield_regen>16.33</shield_regen>
+  <energy>3083</energy>
   <energy_regen>125</energy_regen>
  </specific>
 </outfit>
