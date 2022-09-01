@@ -17,18 +17,18 @@
   <spfx_armour>ExpS</spfx_armour>
   <delay>1.2</delay>
   <speed>700</speed>
-  <range>1100</range>
-  <falloff>950</falloff>
+  <range>2200</range>
+  <falloff>1800</falloff>
   <gfx_end>razorS-end.png</gfx_end>
   <energy>30</energy>
   <heatup>30</heatup>
-  <rdr_range>1400</rdr_range>
-  <rdr_range_max>1800</rdr_range_max>
+  <rdr_range>2800</rdr_range>
+  <rdr_range_max>3600</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>ion</type>
    <penetrate>24</penetrate>
-   <physical>38</physical>
+   <physical>60</physical>
    <disable>2.4</disable>
   </damage>
  </specific>

@@ -17,17 +17,17 @@
   <spfx_armour>ExpM</spfx_armour>
   <delay>1.7</delay>
   <speed>650</speed>
-  <range>2200</range>
-  <falloff>1600</falloff>
+  <range>6600</range>
+  <falloff>4800</falloff>
   <gfx_end>laser2L.png</gfx_end>
   <energy>153</energy>
   <heatup>60</heatup>
-  <rdr_range>1200</rdr_range>
-  <rdr_range_max>1600</rdr_range_max>
+  <rdr_range>3500</rdr_range>
+  <rdr_range_max>6000</rdr_range_max>
   <damage>
    <type>normal</type>
    <penetrate>72</penetrate>
-   <physical>76</physical>
+   <physical>255</physical>
    <disable>3.4</disable>
   </damage>
  </specific>

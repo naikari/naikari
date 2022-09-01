@@ -18,16 +18,16 @@
   <spfx_armour>ExpS</spfx_armour>
   <delay>0.35</delay>
   <speed>500</speed>
-  <range blowup="armour">3800</range>
+  <range blowup="armour">5800</range>
   <energy>5.25</energy>
   <heatup>100</heatup>
-  <rdr_range>1600</rdr_range>
-  <rdr_range_max>4000</rdr_range_max>
+  <rdr_range>2400</rdr_range>
+  <rdr_range_max>6000</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>impact</type>
    <penetrate>48</penetrate>
-   <physical>12</physical>
+   <physical>19.25</physical>
    <disable>0.525</disable>
   </damage>
  </specific>

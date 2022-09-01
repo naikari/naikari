@@ -17,18 +17,18 @@
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <delay>1.45</delay>
-  <speed>600</speed>
-  <range>2400</range>
-  <falloff>1800</falloff>
+  <speed>650</speed>
+  <range>6600</range>
+  <falloff>4800</falloff>
   <gfx_end>razorL-end.png</gfx_end>
   <energy>174</energy>
   <heatup>60</heatup>
-  <rdr_range>1200</rdr_range>
-  <rdr_range_max>1600</rdr_range_max>
+  <rdr_range>3500</rdr_range>
+  <rdr_range_max>6000</rdr_range_max>
   <damage>
    <type>ion</type>
    <penetrate>100</penetrate>
-   <physical>80</physical>
+   <physical>218</physical>
    <disable>20</disable>
   </damage>
  </specific>

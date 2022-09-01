@@ -17,17 +17,17 @@
   <spfx_armour>ExpS</spfx_armour>
   <delay>1.0</delay>
   <speed>700</speed>
-  <range>1100</range>
-  <falloff>950</falloff>
+  <range>2200</range>
+  <falloff>1800</falloff>
   <gfx_end>laser1M.png</gfx_end>
   <energy>30</energy>
   <heatup>50</heatup>
-  <rdr_range>1100</rdr_range>
-  <rdr_range_max>1500</rdr_range_max>
+  <rdr_range>2200</rdr_range>
+  <rdr_range_max>3000</rdr_range_max>
   <damage>
    <type>normal</type>
    <penetrate>36</penetrate>
-   <physical>32</physical>
+   <physical>50</physical>
    <disable>2</disable>
   </damage>
  </specific>

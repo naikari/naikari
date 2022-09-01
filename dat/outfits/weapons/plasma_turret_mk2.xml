@@ -17,16 +17,16 @@
   <spfx_armour>PlaS2</spfx_armour>
   <delay>1.4</delay>
   <speed>700</speed>
-  <range>1100</range>
-  <falloff>950</falloff>
+  <range>2200</range>
+  <falloff>1800</falloff>
   <energy>42</energy>
   <heatup>50</heatup>
-  <rdr_range>1100</rdr_range>
-  <rdr_range_max>1500</rdr_range_max>
+  <rdr_range>2200</rdr_range>
+  <rdr_range_max>3000</rdr_range_max>
   <damage>
    <type>heat</type>
    <penetrate>36</penetrate>
-   <physical>44</physical>
+   <physical>70</physical>
    <disable>2.8</disable>
   </damage>
  </specific>

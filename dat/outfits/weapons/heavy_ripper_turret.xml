@@ -17,17 +17,17 @@
   <spfx_armour>ExpS</spfx_armour>
   <delay>1.4</delay>
   <speed>700</speed>
-  <range>1750</range>
-  <falloff>1400</falloff>
+  <range>2900</range>
+  <falloff>2500</falloff>
   <gfx_end>ripperM-end.png</gfx_end>
   <energy>49</energy>
   <heatup>75</heatup>
-  <rdr_range>1200</rdr_range>
-  <rdr_range_max>1600</rdr_range_max>
+  <rdr_range>2300</rdr_range>
+  <rdr_range_max>2700</rdr_range_max>
   <damage>
    <type>normal</type>
    <penetrate>62</penetrate>
-   <physical>48</physical>
+   <physical>77</physical>
    <disable>2.8</disable>
   </damage>
  </specific>
