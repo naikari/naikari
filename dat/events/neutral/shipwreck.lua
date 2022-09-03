@@ -80,7 +80,10 @@ function broadcast(p)
     bctimer = hook.timer(15, "broadcast", p)
 end
 
-function rescue ()
+function rescue(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     -- Player boards the shipwreck and rescues the crew, this spawns a new mission.
     hook.rm(bctimer)
     naev.missionStart("The Space Family")

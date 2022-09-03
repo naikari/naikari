@@ -374,7 +374,10 @@ function diplomat_jump(leader, jp, escorts)
 end
 
 
-function board()
+function board(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     player.unboard()
 
     pilot.toggleSpawn(true)
@@ -397,14 +400,17 @@ function board()
 end
 
 
-function board_escort(pilot)
+function board_escort(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     player.unboard()
     if not boarded_escort then
         tk.msg("", disable_text)
     else
         tk.msg("", disable_again_text)
     end
-    pilot:setHealth(0, 0) -- Make ship explode
+    p:setHealth(0, 0) -- Make ship explode
     boarded_escort = true
 end
 

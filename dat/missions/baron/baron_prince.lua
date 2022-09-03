@@ -228,7 +228,10 @@ function osd_toflintley()
 end
 
 
-function board()
+function board(p, boarder)
+   if boarder ~= player.pilot() then
+      return
+   end
    player.unboard()
    pinnacle:setHilight(false)
    pinnacle:setActiveBoard(false)

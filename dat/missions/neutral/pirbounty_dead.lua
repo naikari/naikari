@@ -224,6 +224,9 @@ end
 
 
 function pilot_board(p, boarder)
+   if boarder ~= player.pilot() then
+      return
+   end
    if boarder == player.pilot() then
       local t = subdue_text[rnd.rnd(1, #subdue_text)]:format(name)
       tk.msg("", t)

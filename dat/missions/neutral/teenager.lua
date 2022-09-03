@@ -142,7 +142,10 @@ function targetDeath()
     misn.finish(false)
 end
 
-function targetBoard()
+function targetBoard(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     player.unboard()
 
     tk.msg("", board_text)

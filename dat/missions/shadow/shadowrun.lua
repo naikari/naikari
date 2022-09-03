@@ -280,7 +280,10 @@ function enter()
     end
 end
 
-function board()
+function board(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     player.unboard()
     seiryuu:changeAI("flee")
     seiryuu:setHilight(false)

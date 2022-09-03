@@ -198,7 +198,10 @@ function hail()
    end
 end
 
-function board()
+function board(p, boarder)
+   if boarder ~= player.pilot() then
+      return
+   end
    player.unboard()
    tk.msg("", board_text)
    tk.msg("", pay_text)

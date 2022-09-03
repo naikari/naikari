@@ -94,7 +94,10 @@ function broadcastFLF()
     timerFLF = hook.timer(20.0, "broadcastFLF")
 end
 
-function boardFLF()
+function boardFLF(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     if shipDV:exists() then
         shipDV:setHilight(false)
         shipDV:setNoboard(true)
@@ -115,7 +118,10 @@ function deathDV()
     end
 end
 
-function boardDV()
+function boardDV(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     if shipFLF:exists() then
         shipFLF:setHilight(false)
         shipFLF:setNoboard(true)

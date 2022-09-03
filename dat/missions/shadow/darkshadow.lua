@@ -176,7 +176,10 @@ function accept2()
 end
 
 
-function seiryuuBoard()
+function seiryuuBoard(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     seiryuu:setActiveBoard(false)
     seiryuu:setHilight(false)
     player.unboard()
@@ -201,7 +204,10 @@ function seiryuuBoard()
 end
 
 
-function joeBoard(p)
+function joeBoard(p, boarder)
+    if boarder ~= player.pilot() then
+        return
+    end
     player.unboard()
     tk.msg("", fmt.f(board_text, {player=player.name()}))
     misn.markerMove(marker, seirsys)

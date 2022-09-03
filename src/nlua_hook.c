@@ -42,7 +42,6 @@ static int hook_jumpout( lua_State *L );
 static int hook_jumpin( lua_State *L );
 static int hook_enter( lua_State *L );
 static int hook_hail( lua_State *L );
-static int hook_boarding( lua_State *L );
 static int hook_board( lua_State *L );
 static int hook_timer( lua_State *L );
 static int hook_date( lua_State *L );
@@ -74,7 +73,6 @@ static const luaL_Reg hook_methods[] = {
    { "jumpin", hook_jumpin },
    { "enter", hook_enter },
    { "hail", hook_hail },
-   { "boarding", hook_boarding },
    { "board", hook_board },
    { "timer", hook_timer },
    { "date", hook_date },
@@ -446,22 +444,6 @@ static int hook_enter( lua_State *L )
 static int hook_hail( lua_State *L )
 {
    unsigned long h = hook_generic( L, "hail", 0., 1, 0 );
-   lua_pushnumber( L, h );
-   return 1;
-}
-/**
- * @brief Hooks the function to the player boarding any ship.
- *
- * The hook receives a single parameter which is the ship doing the boarding.
- *
- *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
- *    @luatreturn number Hook identifier.
- * @luafunc boarding
- */
-static int hook_boarding( lua_State *L )
-{
-   unsigned long h = hook_generic( L, "boarding", 0., 1, 0 );
    lua_pushnumber( L, h );
    return 1;
 }
