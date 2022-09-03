@@ -15,8 +15,8 @@
   <sound>laser</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>ExpS</spfx_armour>
-  <delay>1.0</delay>
-  <speed>700</speed>
+  <delay>1.4</delay>
+  <speed>1300</speed>
   <range>1500</range>
   <falloff>1350</falloff>
   <gfx_end>laser1S.png</gfx_end>
@@ -28,7 +28,7 @@
   <damage>
    <type>normal</type>
    <penetrate>12</penetrate>
-   <physical>27</physical>
+   <physical>19</physical>
    <disable>2</disable>
   </damage>
  </specific>
