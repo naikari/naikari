@@ -868,7 +868,7 @@ static int hook_trigger( lua_State *L )
 /**
  * @brief Hooks the function to a specific pilot.
  *
- * <p>You can hook to different actions. Currently hook system supports:</p>
+ * You can hook to different actions. Currently hook system supports:
  * <ul>
  *    <li>"death": triggered when the pilot dies (before marked as
  *       dead). Hook parameters are the dying pilot and the pilot that
@@ -905,12 +905,12 @@ static int hook_trigger( lua_State *L )
  *       target. Hook parameter is the pilot which achieved the
  *       lockon.</li>
  * </ul>
- * <p>If you pass nil as pilot, it will set it as a global hook that
- * will jump for all pilots.</p>
  *
- * <p><strong>Do not do unsafe things in pilot hooks. This means stuff
- * like player.teleport(). If you have doubts, use a "safe"
- * hook.</strong></p>
+ * If you pass nil as pilot, it will set it as a global hook that
+ * will jump for all pilots.
+ *
+ * <strong>Do not do unsafe things in pilot hooks. This means stuff like
+ * player.teleport(). If you have doubts, use a "safe" hook.</strong>
  *
  *    @luatparam Pilot|nil pilot Pilot identifier to hook (or nil for all).
  *    @luatparam string type One of the supported hook types.
