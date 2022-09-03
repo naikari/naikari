@@ -705,13 +705,18 @@ static int hook_pay( lua_State *L )
    return 1;
 }
 /**
- * @brief Hook run once at the end of the next frame regardless of anything that can happen.
+ * @brief Hook run once at the end of the next frame.
  *
- * This hook is a good way to do possibly breaking stuff like for example player.teleport().
+ * This hook runs once (and only once) at the end of the next frame,
+ * regardless of anything that can happen, and removes itself. This is
+ * a good way to do possibly breaking stuff like for example
+ * player.teleport().
  *
- *    @luatparam string funcname Name of function to run when hook is triggered.
+ *    @luatparam string funcname Name of function to run when hook is
+ *       triggered.
  *    @luaparam arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
+ * @see update
  * @luafunc safe
  */
 static int hook_safe( lua_State *L )
@@ -721,16 +726,22 @@ static int hook_safe( lua_State *L )
    return 1;
 }
 /**
- * @brief Hook run at the end of each frame when the update routine is run (game is not paused, etc.).
+ * @brief Hook run at the end of each frame when the update routine is run.
  *
- * It is closely related to hook.safe(), but you have to manually remove it or it continues forever.
+ * This hook is similar to hook.safe(), but you have to manually remove
+ * it or it continues forever. Also, it is not run while the game is
+ * paused or a modal dialog is open, whereas hook.safe() will run even
+ * in those cases.
  *
- * The current delta-tick (time passed in game) and real delta-tick (independent of game status) are passed as parameters:<br/>
- * function f( dt, real_dt, args )
+ * The parameters passed to the function are the current delta-tick
+ * (time passed in game) and real delta-tick (independent of game
+ * status).
  *
- *    @luatparam string funcname Name of function to run when hook is triggered.
+ *    @luatparam string funcname Name of function to run when hook is
+ *       triggered.
  *    @luaparam arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
+ * @see safe
  * @luafunc update
  */
 static int hook_update( lua_State *L )
@@ -768,13 +779,19 @@ static int hook_renderfg( lua_State *L )
    return 1;
 }
 /**
- * @brief Hook run once at the end of the next frame regardless when manually triggered.
+ * @brief Custom hook that must be manually triggered.
  *
- *    @luatparam string hookname Name to give the hook. This should not overlap with standard names.
- *    @luatparam string funcname Name of function to run when hook is triggered.
+ * Custom hooks can be used to cause missions and events to affect each
+ * other. Use hook.trigger() to trigger the hook at the appropriate
+ * time.
+ *
+ *    @luatparam string hookname Name to give the hook. This should not
+ *       overlap with standard names.
+ *    @luatparam string funcname Name of function to run when hook is
+ *       triggered.
  *    @luaparam arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
- * @see safe
+ * @see trigger
  * @luafunc custom
  */
 static int hook_custom( lua_State *L )
@@ -785,11 +802,16 @@ static int hook_custom( lua_State *L )
    return 1;
 }
 /**
- * @brief Triggers manually a hook stack. This is run deferred (next frame). Meant mainly to be used with hook.custom, but can work with other hooks too (if you know what you are doing).
+ * @brief Manually triggers a hook.
  *
- * You can pass multiple parameters that get directly passed to the hook. However, this is limited by HOOK_MAX_PARAM.
+ * This is run deferred (next frame) globally (i.e. it affects all
+ * missions and events). Meant mainly to be used with hook.custom(), but
+ * can work with other hooks too (if you know what you are doing).
  *
  *    @luatparam string hookname Name of the hook to be run.
+ *    @luaparam params Arguments to pass to the hook's parameters. You
+ *       can pass multiple arguments, but this is limited by
+ *       HOOK_MAX_PARAM (which is defined in hook.h).
  * @see custom
  * @luafunc trigger
  */
@@ -889,7 +911,7 @@ static int hook_trigger( lua_State *L )
  * </ul>
  *
  * If you pass nil as pilot, it will set it as a global hook that
- * will jump for all pilots.
+ * will trigger for all pilots.
  *
  * <strong>Do not do unsafe things in pilot hooks. This means stuff like
  * player.teleport(). If you have doubts, use a "safe" hook.</strong>
