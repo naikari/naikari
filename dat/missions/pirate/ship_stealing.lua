@@ -317,7 +317,7 @@ function board(target, arg)
    if diff > 0 then
       player.pay(-diff, "adjust")
    end
-   pilot_boarding(target, player.pilot())
+   pilot_board(target, player.pilot())
 end
 
 
@@ -326,7 +326,7 @@ function safe_restoreOffer()
 end
 
 
-function pilot_boarding(p, boarder)
+function pilot_board(p, boarder)
    if boarder == player.pilot() then
       player.unboard()
       local t = subdue_text[rnd.rnd(1, #subdue_text)]
@@ -468,7 +468,7 @@ function spawn_target(source)
             target_ship:outfitRm(amm.name, math.ceil(amm.quantity * 0.6))
          end
 
-         hook.pilot(target_ship, "boarding", "pilot_boarding")
+         hook.pilot(target_ship, "board", "pilot_board")
          hook.pilot(target_ship, "death", "pilot_death")
          target_jump_hook = hook.pilot(target_ship, "jump", "pilot_jump")
          target_land_hook = hook.pilot(target_ship, "land", "pilot_jump")

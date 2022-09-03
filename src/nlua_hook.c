@@ -868,52 +868,50 @@ static int hook_trigger( lua_State *L )
 /**
  * @brief Hooks the function to a specific pilot.
  *
- * You can hook to different actions.  Currently hook system only supports:<br />
+ * <p>You can hook to different actions. Currently hook system supports:</p>
  * <ul>
- *    <li> "death" : triggered when pilot dies (before marked as dead). </li>
- *    <li> "exploded" : triggered when pilot has died and the final explosion has begun. </li>
- *    <li> "boarding" : triggered when a pilot boards another ship (start of boarding).</li>
- *    <li> "board" : triggered when a pilot is boarded (start of boarding).</li>
- *    <li> "disable" : triggered when pilot is disabled (with disable set).</li>
- *    <li> "undisable" : triggered when pilot recovers from being disabled.</li>
- *    <li> "jump" : triggered when pilot jumps to hyperspace (before he actually jumps out).</li>
- *    <li> "hail" : triggered when pilot is hailed.</li>
- *    <li> "land" : triggered when pilot is landing (right when starting land descent).</li>
- *    <li> "attacked" : triggered when the pilot is attacked. </li>
- *    <li> "idle" : triggered when the pilot becomes idle in manual control.</li>
- *    <li> "lockon" : triggered when the pilot locked on a missile on it's target.</li>
+ *    <li>"death": triggered when the pilot dies (before marked as
+ *       dead). Hook parameters are the dying pilot and the pilot that
+ *       killed them (or nil if not killed by a pilot).</li>
+ *    <li>"exploded": triggered when the pilot has died and the final
+ *       explosion has begun. Hook parameter is the exploded pilot.</li>
+ *    <li>"kill": triggered when the pilot kills another pilot (before
+ *       marked as dead). Hook parameters are the killing pilot and the
+ *       killed pilot.</li>
+ *    <li>"boarding": triggered when the pilot boards another pilot
+ *       (start of boarding). Hook parameters are the boarding pilot and
+ *       the pilot being boarded.</li>
+ *    <li>"board": triggered when the pilot is boarded (start of
+ *       boarding). Hook parameters are the pilot being boarded and the
+ *       boarding pilot.</li>
+ *    <li>"disable": triggered when the pilot is disabled (with disable
+ *       set). Hook parameters are the disabled pilot and the pilot that
+ *       disabled them (or nil if not disabled by a pilot).</li>
+ *    <li>"undisable": triggered when the pilot recovers from being
+ *       disabled. Hook parameter is the recovered pilot.</li>
+ *    <li>"jump": triggered when the pilot jumps to hyperspace (before
+ *       they actually jump out). Hook parameters are the jumping
+ *       pilot and the jump point being jumped through.</li>
+ *    <li>"hail": triggered when the pilot is hailed by the player. Hook
+ *       parameter is the pilot being hailed.</li>
+ *    <li>"land": triggered when the pilot is landing (right when
+ *       starting land descent). Hook parameters are the landing
+ *       pilot and the planet being landed on.</li>
+ *    <li>"attacked": triggered when the pilot is attacked. Hook
+ *       parameters are the attacked pilot and the attacking pilot.</li>
+ *    <li>"idle": triggered when the pilot becomes idle in manual
+ *       control. Hook parameter is the idle pilot.</li>
+ *    <li>"lockon": triggered when the pilot locked on a missile on its
+ *       target. Hook parameter is the pilot which achieved the
+ *       lockon.</li>
  * </ul>
- * <br />
- * If you pass nil as pilot, it will set it as a global hook that will jump for all pilots.<br />
- * <br />
- * DO NOT DO UNSAFE THINGS IN PILOT HOOKS. THIS MEANS STUFF LIKE player.teleport(). IF YOU HAVE DOUBTS USE A "safe" HOOK.<br />
- * <br />
- * These hooks all pass the pilot triggering the hook as a parameter, so they should have the structure of:
- * <p>
- *    function my_hook( pilot, arg )<br />
- *    end
- * </p>
- * The combat hooks also pass the pilot acting on it, so for example the pilot
- *  that disabled, attacked or killed the selected pilot. They have the
- *  following format:
- * <p>
- *    function combat_hook( pilot, attacker, arg )<br />
- *    end
- * </p>
- * Please note that in the case of disable or death hook the attacker may be nil
- *  indicating that it was killed by other means like for example the shockwave
- *  of a dying ship or nebula volatility.<br />
- * <br />
- * The land and jump hooks also pass the asset or jump point the pilot is
- * landing at or jumped from, respectively:
- * <p>
- *    function land_hook( pilot, planet, arg )<br />
- *    end
- * </p>
- * <p style="margin-bottom: 0">
- *    function jump_hook( pilot, jump_point, arg )<br />
- *    end
- * </p>
+ * <p>If you pass nil as pilot, it will set it as a global hook that
+ * will jump for all pilots.</p>
+ *
+ * <p><strong>Do not do unsafe things in pilot hooks. This means stuff
+ * like player.teleport(). If you have doubts, use a "safe"
+ * hook.</strong></p>
+ *
  *    @luatparam Pilot|nil pilot Pilot identifier to hook (or nil for all).
  *    @luatparam string type One of the supported hook types.
  *    @luatparam string funcname Name of function to run when hook is triggered.
@@ -941,18 +939,32 @@ static int hook_pilot( lua_State *L )
    hook_type   = luaL_checkstring(L,2);
 
    /* Check to see if hook_type is valid */
-   if (strcmp(hook_type,"death")==0)         type = PILOT_HOOK_DEATH;
-   else if (strcmp(hook_type,"exploded")==0) type = PILOT_HOOK_EXPLODED;
-   else if (strcmp(hook_type,"boarding")==0) type = PILOT_HOOK_BOARDING;
-   else if (strcmp(hook_type,"board")==0)    type = PILOT_HOOK_BOARD;
-   else if (strcmp(hook_type,"disable")==0)  type = PILOT_HOOK_DISABLE;
-   else if (strcmp(hook_type,"undisable")==0) type = PILOT_HOOK_UNDISABLE;
-   else if (strcmp(hook_type,"jump")==0)     type = PILOT_HOOK_JUMP;
-   else if (strcmp(hook_type,"hail")==0)     type = PILOT_HOOK_HAIL;
-   else if (strcmp(hook_type,"land")==0)     type = PILOT_HOOK_LAND;
-   else if (strcmp(hook_type,"attacked")==0) type = PILOT_HOOK_ATTACKED;
-   else if (strcmp(hook_type,"idle")==0)     type = PILOT_HOOK_IDLE;
-   else if (strcmp(hook_type,"lockon")==0)   type = PILOT_HOOK_LOCKON;
+   if (strcmp(hook_type, "death") == 0)
+      type = PILOT_HOOK_DEATH;
+   else if (strcmp(hook_type, "exploded") == 0)
+      type = PILOT_HOOK_EXPLODED;
+   else if (strcmp(hook_type, "kill") == 0)
+      type = PILOT_HOOK_KILL;
+   else if (strcmp(hook_type, "boarding") == 0)
+      type = PILOT_HOOK_BOARDING;
+   else if (strcmp(hook_type, "board") == 0)
+      type = PILOT_HOOK_BOARD;
+   else if (strcmp(hook_type, "disable") == 0)
+      type = PILOT_HOOK_DISABLE;
+   else if (strcmp(hook_type, "undisable") == 0)
+      type = PILOT_HOOK_UNDISABLE;
+   else if (strcmp(hook_type, "jump") == 0)
+      type = PILOT_HOOK_JUMP;
+   else if (strcmp(hook_type, "hail") == 0)
+      type = PILOT_HOOK_HAIL;
+   else if (strcmp(hook_type, "land") == 0)
+      type = PILOT_HOOK_LAND;
+   else if (strcmp(hook_type, "attacked") == 0)
+      type = PILOT_HOOK_ATTACKED;
+   else if (strcmp(hook_type, "idle") == 0)
+      type = PILOT_HOOK_IDLE;
+   else if (strcmp(hook_type, "lockon") == 0)
+      type = PILOT_HOOK_LOCKON;
    else { /* hook_type not valid */
       NLUA_ERROR(L, _("Invalid pilot hook type: '%s'"), hook_type);
       return 0;

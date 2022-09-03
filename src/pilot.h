@@ -52,19 +52,20 @@
 
 /* hooks */
 enum {
-   PILOT_HOOK_NONE,      /**< No hook. */
-   PILOT_HOOK_DEATH,     /**< Pilot died. */
-   PILOT_HOOK_BOARDING,  /**< Pilot is boarding. */
-   PILOT_HOOK_BOARD,     /**< Pilot got boarded. */
-   PILOT_HOOK_DISABLE,   /**< Pilot got disabled. */
+   PILOT_HOOK_NONE, /**< No hook. */
+   PILOT_HOOK_DEATH, /**< Pilot died. */
+   PILOT_HOOK_KILL, /**< Pilot killed something. */
+   PILOT_HOOK_BOARDING, /**< Pilot is boarding. */
+   PILOT_HOOK_BOARD, /**< Pilot got boarded. */
+   PILOT_HOOK_DISABLE, /**< Pilot got disabled. */
    PILOT_HOOK_UNDISABLE, /**< Pilot recovered from being disabled. */
-   PILOT_HOOK_JUMP,      /**< Pilot jumped. */
-   PILOT_HOOK_HAIL,      /**< Pilot is hailed. */
-   PILOT_HOOK_LAND,      /**< Pilot is landing. */
-   PILOT_HOOK_ATTACKED,  /**< Pilot is in manual override and is being attacked. */
-   PILOT_HOOK_IDLE,      /**< Pilot is in manual override and has just become idle. */
-   PILOT_HOOK_EXPLODED,  /**< Pilot died and exploded (about to be removed). */
-   PILOT_HOOK_LOCKON     /**< Pilot had a launcher lockon. */
+   PILOT_HOOK_JUMP, /**< Pilot jumped. */
+   PILOT_HOOK_HAIL, /**< Pilot is hailed. */
+   PILOT_HOOK_LAND, /**< Pilot is landing. */
+   PILOT_HOOK_ATTACKED, /**< Pilot is in manual override and is being attacked. */
+   PILOT_HOOK_IDLE, /**< Pilot is in manual override and has just become idle. */
+   PILOT_HOOK_EXPLODED, /**< Pilot died and exploded (about to be removed). */
+   PILOT_HOOK_LOCKON /**< Pilot had a launcher lockon. */
 };
 
 

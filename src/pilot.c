@@ -1651,12 +1651,17 @@ static void pilot_dead( Pilot* p, unsigned int killer )
 
    /* Pilot must die before setting death flag and probably messing with other flags. */
    if (killer > 0) {
-      hparam.type       = HOOK_PARAM_PILOT;
-      hparam.u.lp       = killer;
+      hparam.type = HOOK_PARAM_PILOT;
+      hparam.u.lp = p->id;
+      pilot_runHookParam(pilot_get(killer), PILOT_HOOK_KILL, &hparam, 1);
+
+      hparam.type = HOOK_PARAM_PILOT;
+      hparam.u.lp = killer;
    }
    else
-      hparam.type       = HOOK_PARAM_NIL;
-   pilot_runHookParam( p, PILOT_HOOK_DEATH, &hparam, 1 );
+      hparam.type = HOOK_PARAM_NIL;
+
+   pilot_runHookParam(p, PILOT_HOOK_DEATH, &hparam, 1);
 
    /* Need a check here in case the hook "regenerates" the pilot. */
    if (p->armour <= 0.)
