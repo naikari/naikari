@@ -338,6 +338,8 @@ function start_hook()
       end
    end
 
+   numdrones = #drones
+
    for i, p in ipairs(drones) do
       p:setHostile()
       p:setHilight()
@@ -366,6 +368,8 @@ function pilot_death(plt)
    if plt:exists() then
       plt:setHostile(false)
       plt:setHilight(false)
+      plt:setInvincible()
+      plt:setFuel(true)
       plt:control()
       plt:hyperspace()
    end
@@ -388,39 +392,55 @@ function pilot_death(plt)
 
    -- If we're here, no drones are left alive, so finish the mission.
    remove_safety()
-   player.msg(_("MISSION SUCCESSFUL: All practice drones are defeated."))
+   player.msg(n_("MISSION SUCCESSFUL: The practice drone is defeated.",
+         "MISSION SUCCESSFUL: All practice drones are defeated."), numdrones)
    misn.finish(true)
 end
 
 
 function player_disable(plt)
    if started then
-      if drones then
-         for i, p in ipairs(drones) do
+      for i, p in ipairs(drones) do
+         if p:exists() then
             p:setHostile(false)
             p:setHilight(false)
+            p:setInvincible()
+            p:setFuel(true)
             p:control()
             p:hyperspace()
-            for j, f in ipairs(p:followers()) do
+         end
+         for j, f in ipairs(p:followers()) do
+            if f:exists() then
                f:setHostile(false)
+               f:setInvincible()
+               f:setFuel(true)
                f:control()
                f:hyperspace()
             end
          end
       end
 
-      misnhelper.showFailMsg(_("Your ship has been disabled by the practice drones."))
+      misnhelper.showFailMsg(_("Your ship has been disabled."))
       misn.osdDestroy()
       player.pilot():hookClear()
-      hook.timer(2, "timer_loss")
+      loss_timer = hook.timer(2, "timer_loss")
+      hook.pilot(player.pilot(), "attacked", "player_post_attacked")
    end
+end
+
+
+function player_post_attacked(plt)
+   -- Reset the loss hook if the player is hit by another bullet. This
+   -- presents things like losing to a beam that's still firing.
+   hook.rm(loss_timer)
+   loss_timer = hook.timer(2, "timer_loss")
 end
 
 
 function exit()
    if started then
       remove_safety()
-      misnhelper.showFailMsg(_("You ran away from the practice drones, thus aborting the mission."))
+      misnhelper.showFailMsg(_("You ran away from the practice fight, thus aborting it."))
       misn.finish(false)
    end
 end
@@ -445,14 +465,20 @@ function remove_safety()
          p:setHealth(100, 100, stress)
       end
 
-      if drones then
-         for i, p in ipairs(drones) do
+      for i, p in ipairs(drones) do
+         if p:exists() then
             p:setHostile(false)
             p:setHilight(false)
+            p:setInvincible()
+            p:setFuel(true)
             p:control()
             p:hyperspace()
-            for j, f in ipairs(p:followers()) do
+         end
+         for j, f in ipairs(p:followers()) do
+            if f:exists() then
                f:setHostile(false)
+               f:setInvincible()
+               f:setFuel(true)
                f:control()
                f:hyperspace()
             end

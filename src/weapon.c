@@ -27,6 +27,7 @@
 #include "collision.h"
 #include "explosion.h"
 #include "gui.h"
+#include "hook.h"
 #include "log.h"
 #include "nstring.h"
 #include "opengl.h"
@@ -1274,6 +1275,7 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
    WeaponLayer spfx_layer;
    Damage dmg;
    const Damage *odmg;
+   HookParam hparam[2];
 
    /* Get general details. */
    odmg              = outfit_damage( w->outfit );
@@ -1307,6 +1309,17 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
 
       /* Inform AI that it's been hit, to not saturate ai Lua with messages. */
       weapon_hitAI( p, parent, damage );
+   }
+   else {
+       /* Even if we don't inform the AI, run the attacked hook,
+        * otherwise we'll have weird broken cases in Lua code that
+        * expects all damage to count. */
+      hparam[0].type = HOOK_PARAM_PILOT;
+      hparam[0].u.lp = parent->id;
+      hparam[1].type = HOOK_PARAM_NUMBER;
+      hparam[1].u.num = damage;
+
+      pilot_runHookParam(p, PILOT_HOOK_ATTACKED, hparam, 2);
    }
 }
 
