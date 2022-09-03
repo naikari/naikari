@@ -18,13 +18,13 @@
   <spfx_armour>PlaS2</spfx_armour>
   <delay>1.4</delay>
   <speed>587</speed>
-  <range>887</range>
-  <falloff>625</falloff>
+  <range>1012</range>
+  <falloff>750</falloff>
   <gfx_end>plasma2-end.png</gfx_end>
   <energy>12</energy>
   <heatup>23</heatup>
-  <rdr_range>1200</rdr_range>
-  <rdr_range_max>1700</rdr_range_max>
+  <rdr_range>1800</rdr_range>
+  <rdr_range_max>2700</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>heat</type>

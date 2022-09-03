@@ -26,20 +26,20 @@
             "max": 700
         },
         "range": {
-            "min": 1600,
-            "max": 2200
+            "min": 2800,
+            "max": 6600
         },
         "falloff": {
-            "min": 1200,
-            "max": 1600
+            "min": 2400,
+            "max": 4800
         },
         "heatup": {
             "min": 40,
             "max": 75
         },
         "physical": {
-            "min": 88,
-            "max": 123
+            "min": 120,
+            "max": 200
         }
     }
 }

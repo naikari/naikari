@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>6</mass>
   <price>12000</price>
-  <license>Medium Weapon License</license>
+  <license>Light Weapon License</license>
   <rarity>3</rarity>
   <description>The Neutron Disruptor uses high-energy pulses that alter the base composition of molecules, causing heavy damage. This weapon was first popular with the Collective, whose drones were immune to early versions' lethal backscatter radiation.</description>
   <gfx_store>neutron.webp</gfx_store>
@@ -23,12 +23,12 @@
   <gfx_end>neutron-end.png</gfx_end>
   <energy>5</energy>
   <heatup>40</heatup>
-  <rdr_range>1400</rdr_range>
-  <rdr_range_max>1800</rdr_range_max>
+  <rdr_range>4500</rdr_range>
+  <rdr_range_max>6000</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>normal</type>
-   <penetrate>0</penetrate>
+   <penetrate>100</penetrate>
    <physical>34</physical>
    <disable>1.6</disable>
   </damage>

@@ -15,8 +15,8 @@
   <delay>0.25</delay>
   <reload_time>3</reload_time>
   <amount>75</amount>
-  <rdr_range>2600</rdr_range>
-  <rdr_range_max>3400</rdr_range_max>
+  <rdr_range>3500</rdr_range>
+  <rdr_range_max>4400</rdr_range_max>
   <swivel>22</swivel>
  </specific>
 </outfit>

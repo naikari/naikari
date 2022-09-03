@@ -23,8 +23,8 @@
   <gfx_end>massL-end.png</gfx_end>
   <energy>225</energy>
   <heatup>{heatup}</heatup>
-  <rdr_range>1200</rdr_range>
-  <rdr_range_max>1600</rdr_range_max>
+  <rdr_range>3500</rdr_range>
+  <rdr_range_max>6000</rdr_range_max>
   <damage>
    <type>heat</type>
    <penetrate>100</penetrate>

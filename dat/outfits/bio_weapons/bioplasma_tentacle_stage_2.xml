@@ -18,17 +18,17 @@
   <spfx_armour>ExpM</spfx_armour>
   <delay>2.5</delay>
   <speed>428</speed>
-  <range>1885</range>
-  <falloff>1371</falloff>
+  <range>3342</range>
+  <falloff>2742</falloff>
   <gfx_end>massL-end.png</gfx_end>
   <energy>225</energy>
   <heatup>25</heatup>
-  <rdr_range>1200</rdr_range>
-  <rdr_range_max>1600</rdr_range_max>
+  <rdr_range>3500</rdr_range>
+  <rdr_range_max>6000</rdr_range_max>
   <damage>
    <type>heat</type>
    <penetrate>100</penetrate>
-   <physical>130</physical>
+   <physical>218</physical>
    <disable>5</disable>
   </damage>
  </specific>

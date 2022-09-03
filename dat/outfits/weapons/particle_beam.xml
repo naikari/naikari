@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Particle Lance">
+<outfit name="Particle Beam">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
-  <mass>4</mass>
-  <price>9800</price>
-  <description>This is the smallest direct beam weapon built, purpose-built by the Za'lek for their drones.</description>
-  <gfx_store>particle_lance.webp</gfx_store>
-  <cpu>-5</cpu>
+  <mass>14</mass>
+  <price>110000</price>
+  <description>This turret-mounted beam is highly sought after by traders for its incredible defensive capability. While its range is short, its ability to nearly instantly vaporize any pursuing fighter more than makes up for it.</description>
+  <gfx_store>particle_beam.webp</gfx_store>
+  <cpu>-24</cpu>
  </general>
- <specific type="beam">
+ <specific type="turret beam">
   <delay>1.5</delay>
   <duration>2</duration>
   <range>350</range>
+  <turn>180</turn>
   <energy>5</energy>
-  <heatup>40</heatup>
-  <swivel>22</swivel>
+  <heatup>35</heatup>
   <damage>
    <type>normal</type>
    <penetrate>0</penetrate>

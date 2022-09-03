@@ -17,13 +17,13 @@
   <spfx_armour>ExpS</spfx_armour>
   <delay>1.4</delay>
   <speed>600</speed>
-  <range>1750</range>
-  <falloff>1400</falloff>
+  <range>2900</range>
+  <falloff>2500</falloff>
   <gfx_end>ionL-end.png</gfx_end>
   <energy>42</energy>
   <heatup>60</heatup>
-  <rdr_range>1400</rdr_range>
-  <rdr_range_max>1800</rdr_range_max>
+  <rdr_range>2400</rdr_range>
+  <rdr_range_max>3000</rdr_range_max>
   <swivel>22</swivel>
   <damage>
    <type>ion</type>
