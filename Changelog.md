@@ -6,6 +6,13 @@
   until you finish the Ian Structure missions.
 * Cargo missions now reward much more credits if they are on a route
   that has pirate presence.
+* Added conversion brackets to the starting missions showing what the
+  "t" and "¢" suffixes mean.
+* Increased the amount of health medium-heavy and heavier ships have.
+* Weapons have been heavily altered. Weapon damage, range, and behavior
+  vary a lot more widely than before.
+* Fixed some problems with the way the Combat Practice mission closed
+  out.
 
 ## 0.4.0
 
