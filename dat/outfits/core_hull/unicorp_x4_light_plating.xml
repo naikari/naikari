@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Unicorp X-4 Light Plating">
+ <general>
+  <typename>Hull</typename>
+  <slot prop="hull">structure</slot>
+  <size>small</size>
+  <priority>7</priority>
+  <mass>65</mass>
+  <price>100000</price>
+  <description>The Unicorp X-4 Light Plating is a refinement of the original D-4 with heavier armor and crude passive radar absorption. While not the most high-performing plating on the market, it is sometimes used by pilots seeking to strike a balance between armor strength and cloaking capability, or pilots who simply cannot afford better.</description>
+  <gfx_store>refined_hull_s.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <cargo>10</cargo>
+  <absorb>4</absorb>
+  <armour>100</armour>
+  <armour_regen>0</armour_regen>
+  <rdr_enemy_range_mod>-5</rdr_enemy_range_mod>
+ </specific>
+</outfit>

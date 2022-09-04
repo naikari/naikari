@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Unicorp X-24 Medium Plating">
+ <general>
+  <typename>Hull</typename>
+  <slot prop="hull">structure</slot>
+  <size>medium</size>
+  <priority>7</priority>
+  <mass>255</mass>
+  <price>265000</price>
+  <description>Unicorp's premium medium-heavy plating option is seen by many pilots as the middle child among Unicorp's plating offerings. Still, it continues to see occasional use.</description>
+  <gfx_store>refined_hull_h.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <cargo>40</cargo>
+  <absorb>24</absorb>
+  <armour>875</armour>
+  <armour_regen>0</armour_regen>
+  <rdr_enemy_range_mod>-5</rdr_enemy_range_mod>
+ </specific>
+</outfit>
