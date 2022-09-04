@@ -455,6 +455,10 @@
  <!-- Generic Outfits -->
  <tech name="Common Outfits">
   <item>Laser Cannon MK1</item>
+  <item>Plasma Blaster MK1</item>
+  <item>Gauss Gun</item>
+  <item>Razor MK1</item>
+  <item>Particle Lance</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
   <item>Shield Capacitor</item>
@@ -517,6 +521,64 @@
   <item>Milspec Prometheus 4703 Core System</item>
   <item>Melendez Buffalo XL Engine</item>
   <item>S&amp;K Medium Cargo Hull</item>
+  <item>S&amp;K Large Cargo Hull</item>
+ </tech>
+ <tech name="Basic Light Fighter Cores">
+  <item>Unicorp PT-18 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+ </tech>
+ <tech name="Elite Light Fighter Cores">
+  <item>Milspec Aegis 2201 Core System</item>
+  <item>Milspec Hermes 2202 Core System</item>
+  <item>Milspec Prometheus 2203 Core System</item>
+  <item>Milspec Orion 2301 Core System</item>
+  <item>Tricon Zephyr Engine</item>
+  <item>S&amp;K Ultralight Combat Plating</item>
+  <item>S&amp;K Ultralight Stealth Plating</item>
+ </tech>
+ <tech name="Basic Fighter Cores">
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
+ </tech>
+ <tech name="Elite Fighter Cores">
+  <item>Milspec Aegis 3601 Core System</item>
+  <item>Milspec Hermes 3602 Core System</item>
+  <item>Milspec Prometheus 3603 Core System</item>
+  <item>Milspec Orion 3701 Core System</item>
+  <item>Tricon Zephyr II Engine</item>
+  <item>S&amp;K Light Combat Plating</item>
+  <item>S&amp;K Light Stealth Plating</item>
+ </tech>
+ <tech name="Basic Bomber Cores">
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
+ </tech>
+ <tech name="Elite Bomber Cores">
+  <item>Milspec Aegis 3601 Core System</item>
+  <item>Milspec Hermes 3602 Core System</item>
+  <item>Milspec Prometheus 3603 Core System</item>
+  <item>Milspec Orion 3701 Core System</item>
+  <item>Melendez Ox XL Engine</item>
+  <item>Tricon Zephyr II Engine</item>
+  <item>S&amp;K Light Combat Plating</item>
+  <item>S&amp;K Light Stealth Plating</item>
+ </tech>
+ <tech name="Basic Corvette Cores">
+  <item>Unicorp PT-280 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
+ </tech>
+ <tech name="Elite Corvette Cores">
+  <item>Milspec Aegis 4701 Core System</item>
+  <item>Milspec Hermes 4702 Core System</item>
+  <item>Milspec Prometheus 4703 Core System</item>
+  <item>Milspec Orion 4801 Core System</item>
+  <item>Tricon Cyclone Engine</item>
+  <item>S&amp;K Medium Combat Plating</item>
+  <item>S&amp;K Medium Stealth Plating</item>
  </tech>
  <tech name="Basic Outfits 1">
   <item>Laser Cannon MK1</item>
