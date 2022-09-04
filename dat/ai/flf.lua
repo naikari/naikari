@@ -11,9 +11,10 @@ mem.land_planet    = false
 mem.careful       = true
 
 
-function create ()
-   sprice = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(sprice / 1000, sprice / 400))
+function create()
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
+   mem.kill_reward = rnd.rnd(0.25 * sprice, 1 * sprice)
 
    -- Get standing.
    local p = player.pilot()

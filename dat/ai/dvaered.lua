@@ -1,6 +1,6 @@
 require("ai/tpl/generic")
 require("ai/personality/patrol")
-require "numstring"
+local fmt = require "fmt"
 
 -- Settings
 mem.aggressive = true
@@ -8,32 +8,40 @@ mem.aggressive = true
 
 -- Create function
 function create ()
-   sprice = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(sprice / 200, sprice / 50))
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
+   mem.kill_reward = rnd.rnd(0.25 * sprice, 0.75 * sprice)
 
    -- Handle bribing
-   if rnd.rnd() > 0.4 then
-      mem.bribe_no = _("\"I shall especially enjoy your death.\"")
+   if rnd.rnd() < 0.4 then
+      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (500*rnd.rnd() + 1750)
+      mem.bribe_prompt = fmt.f(
+            _("\"For {credits} I'll pretend I didn't see you.\""),
+            {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = _("\"Good. Now get out of my face.\"")
    else
       bribe_no = {
-            _("\"You insult my honor.\""),
-            _("\"I find your lack of honor disturbing.\""),
-            _("\"You disgust me.\""),
-            _("\"Bribery carries a harsh penalty.\""),
-            _("\"House Dvaered does not lower itself to common scum.\"")
-     }
-     mem.bribe_no = bribe_no[ rnd.rnd(1,#bribe_no) ]
+         _("\"You insult my honor.\""),
+         _("\"I find your lack of honor disturbing.\""),
+         _("\"You disgust me.\""),
+         _("\"Bribery carries a harsh penalty.\""),
+         _("\"We do not lower ourselves to common scum.\""),
+         _("\"I will especially enjoy your death!\""),
+      }
+      mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
 
    -- Handle refueling
    local p = player.pilot()
    if p:exists() then
-      local standing = ai.getstanding( p ) or -1
-      mem.refuel = rnd.rnd( 1000, 3000 )
+      local standing = ai.getstanding(p) or -1
+      mem.refuel = rnd.rnd(1000, 3000)
       if standing < 50 then
          mem.refuel_no = _("\"You are not worthy of my attention.\"")
       else
-         mem.refuel_msg = string.format(_("\"For you I could make an exception for %s.\""), creditstring(mem.refuel))
+         mem.refuel_msg = fmt.f(
+               _("\"For you, I could make an exception for {credits}.\""),
+               {credits=fmt.credits(mem.refuel)})
       end
    end
 
@@ -57,8 +65,9 @@ function taunt ( target, offense )
        _("I shall wash my hull in your blood!"),
        _("Your head will make a great trophy!"),
        _("You're no match for the Dvaered!"),
-       _("Death awaits you!")
+       _("Death awaits you!"),
+       _("You have once again intruded on the territory of the Dvaered!"),
    }
-   ai.pilot():comm( target, taunts[ rnd.rnd(1,#taunts) ] )
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 

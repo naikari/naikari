@@ -7,31 +7,32 @@ local formation = require("scripts/formation")
 --
 -- These variables can be used to adjust the generic AI to suit other roles.
 --]]
-mem.enemyclose     = nil -- Distance at which an enemy is considered close
-mem.armour_run     = 0 -- At which damage to run at
-mem.armour_return  = 0 -- At which armour to return to combat
-mem.shield_run     = 0 -- At which shield to run
-mem.shield_return  = 0 -- At which shield to return to combat
-mem.aggressive     = false -- Should pilot actively attack enemies?
-mem.defensive      = true -- Should pilot defend itself
-mem.cooldown       = false -- Whether the pilot is currently cooling down.
-mem.heatthreshold  = 0.5 -- Weapon heat to enter cooldown at [0-2 or nil]
-mem.safe_distance  = 300 -- Safe distance from enemies to jump
-mem.land_planet    = true -- Should land on planets?
-mem.land_friendly  = false -- Only land on friendly planets?
-mem.distress       = true -- AI distresses
-mem.distressrate   = 3 -- Number of ticks before calling for help
-mem.distressmsg    = nil -- Message when calling for help
+mem.enemyclose = nil -- Distance at which an enemy is considered close
+mem.armour_run = 0 -- At which damage to run at
+mem.armour_return = 0 -- At which armour to return to combat
+mem.shield_run = 0 -- At which shield to run
+mem.shield_return = 0 -- At which shield to return to combat
+mem.aggressive = false -- Should pilot actively attack enemies?
+mem.defensive = true -- Should pilot defend itself
+mem.cooldown = false -- Whether the pilot is currently cooling down.
+mem.heatthreshold = 0.5 -- Weapon heat to enter cooldown at [0-2 or nil]
+mem.safe_distance = 300 -- Safe distance from enemies to jump
+mem.land_planet = true -- Should land on planets?
+mem.land_friendly = false -- Only land on friendly planets?
+mem.distress = true -- AI distresses
+mem.distressrate = 3 -- Number of ticks before calling for help
+mem.distressmsg = nil -- Message when calling for help
 mem.distressmsgfunc = nil -- Function to call when distressing
-mem.weapset        = "all_nonseek" -- Weapon set that should be used (tweaked based on heat).
+mem.weapset = "all_nonseek" -- Weapon set that should be used (tweaked based on heat).
 mem.tickssincecooldown = 0 -- Prevents overly-frequent cooldown attempts.
-mem.norun         = false -- Do not run away.
-mem.careful       = false -- Should the pilot try to avoid enemies?
+mem.norun = false -- Do not run away.
+mem.careful = false -- Should the pilot try to avoid enemies?
+mem.kill_reward = nil -- Credits rewarded by enemies for killing the pilot
 
-mem.formation     = "circle" -- Formation to use when commanding fleet
-mem.form_pos      = nil -- Position in formation (for follower)
+mem.formation = "circle" -- Formation to use when commanding fleet
+mem.form_pos = nil -- Position in formation (for follower)
 mem.leadermaxdist = nil -- Distance from leader to run back to leader
-mem.gather_range  = 800 -- Radius in which the pilot looks for gatherables
+mem.gather_range = 800 -- Radius in which the pilot looks for gatherables
 
 --[[Control parameters: mem.radius and mem.angle are the polar coordinates 
 of the point the pilot has to follow when using follow_accurate.
@@ -40,14 +41,14 @@ For example, radius = 100 and angle = 180 means that the pilot will stay
 behind his target at a distance of 100 units.
 angle = 90 will make the pilot try to be on the left of his target,
 angle = 0 means that the pilot tries to be in front of the target.]]
-mem.radius         = 100 --  Requested distance between follower and target
-mem.angle          = 180 --  Requested angle between follower and target's velocity
-mem.Kp             = 10 --  First control coefficient
-mem.Kd             = 20 -- Second control coefficient
+mem.radius = 100 --  Requested distance between follower and target
+mem.angle = 180 --  Requested angle between follower and target's velocity
+mem.Kp = 10 --  First control coefficient
+mem.Kd = 20 -- Second control coefficient
 
 -- Required control rate that represents the number of seconds between each
 -- control() call
-control_rate   = 2
+control_rate = 2
 
 --[[
    Binary flags for the different states that default to nil (false).

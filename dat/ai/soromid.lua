@@ -1,6 +1,6 @@
 require("ai/tpl/generic")
 require("ai/personality/patrol")
-require "numstring"
+local fmt = require "fmt"
 
 -- Settings
 mem.armour_run = 40
@@ -8,40 +8,47 @@ mem.armour_return = 70
 mem.aggressive = true
 
 
-function create ()
-   sprice = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(sprice / 200, sprice / 50))
+function create()
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
+   mem.kill_reward = rnd.rnd(0.25 * sprice, 0.75 * sprice)
 
    -- Get refuel chance
    local p = player.pilot()
    if p:exists() then
       local standing = ai.getstanding( p ) or -1
-      mem.refuel = rnd.rnd( 2000, 4000 )
+      mem.refuel = rnd.rnd(2000, 4000)
       if standing < 20 then
          mem.refuel_no = _("\"The warriors of Sorom are not your personal refueller.\"")
       elseif standing < 70 then
-         if rnd.rnd() > 0.2 then
+         if rnd.rnd() < 0.8 then
             mem.refuel_no = _("\"The warriors of Sorom are not your personal refueller.\"")
          end
       else
          mem.refuel = mem.refuel * 0.6
       end
       -- Most likely no chance to refuel
-      mem.refuel_msg = string.format( _("\"I suppose I could spare some fuel for %s.\""), creditstring(mem.refuel) )
+      mem.refuel_msg = fmt.f(
+            _("\"I suppose I could spare some fuel for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    end
 
    -- Handle bribing
-   if rnd.rnd() > 0.4 then
-      mem.bribe_no = _("\"I shall especially enjoy your death.\"")
+   if rnd.rnd() < 0.2 then
+      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (500.*rnd.rnd() + 1750.)
+      mem.bribe_prompt = fmt.f(
+            _("\"I'll let you go free for {credits}.\""),
+            {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = _("\"Very well, away with you before I change my mind.\"")
    else
       bribe_no = {
-         _("\"Snivelling waste of carbon.\""),
          _("\"Money won't save your hide.\""),
-         _("\"We do not consort with vermin.\""),
-         _("\"I have nothing further to say to scum like you.\""),
+         _("\"I have nothing further to say to you.\""),
+         _("\"I have no interest in your money.\""),
          _("\"Who do you take us for, the Empire?\""),
+         _("\"You can't buy your way out of this.\""),
       }
-      mem.bribe_no = bribe_no[ rnd.rnd(1,#bribe_no) ]
+      mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
@@ -65,7 +72,6 @@ function taunt ( target, offense )
          _("You give humanity a bad name!"),
          _("Enjoy your last moments, you worm!"),
          _("You're a discrace to all of humanity! Now you die!"),
-         _("You insult me with your presence!"),
          _("Enemies of Sorom do not belong here!"),
       }
    else

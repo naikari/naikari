@@ -1,6 +1,6 @@
 require("ai/tpl/generic")
 require("ai/personality/patrol")
-require "numstring"
+local fmt = require "fmt"
 
 -- Settings
 mem.armour_run = 40
@@ -10,16 +10,17 @@ mem.aggressive = true
 
 function create ()
    local p = ai.pilot()
-   local price = p:ship():price()
-   ai.setcredits(rnd.rnd(price / 100, price / 25))
+   local sprice = p:ship():price()
+   ai.setcredits(rnd.rnd(0.5 * sprice, 1 * sprice))
+   mem.kill_reward = rnd.rnd(0.2 * sprice, 0.5 * sprice)
 
-   if rnd.rnd() > 0.7 then
+   if rnd.rnd() < 0.3 then
       mem.bribe = math.sqrt(p:stats().mass) * (750. * rnd.rnd() + 2500.)
-      mem.bribe_prompt = string.format(_("\"Your life is worth %s to me.\""),
-            creditstring(mem.bribe))
+      mem.bribe_prompt = fmt.f(_("\"Your life is worth {credits} to me.\""),
+            {credits=fmt.credits(mem.bribe)})
       mem.bribe_paid = _("\"Beat it.\"")
    else
-      if rnd.rnd() > 0.5 then
+      if rnd.rnd() < 0.5 then
          mem.bribe_no = _("\"You won't buy your way out of this one.\"")
       else
          mem.bribe_no = _("\"I'm afraid you can't make it worth my while.\"")
@@ -30,9 +31,9 @@ function create ()
    mem.refuel = rnd.rnd(3000, 5000)
    local pp = player.pilot()
    if pp:exists() then
-      mem.refuel_msg = string.format(
-            _("\"I'll supply your ship with fuel for %s.\""),
-            creditstring(mem.refuel))
+      mem.refuel_msg = fmt.f(
+            _("\"I'll supply your ship with fuel for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
@@ -42,7 +43,7 @@ function create ()
 end
 
 -- taunts
-function taunt ( target, offense )
+function taunt(target, offense)
 
    -- Only 20% of actually taunting.
    if rnd.rnd(0,4) ~= 0 then
@@ -64,7 +65,7 @@ function taunt ( target, offense )
       }
    end
 
-   ai.pilot():comm(target, taunts[ rnd.rnd(1,#taunts) ])
+   ai.pilot():comm(target, taunts[rnd.rnd(1,#taunts)])
 end
 
 

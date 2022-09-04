@@ -1,20 +1,29 @@
 require("ai/tpl/generic")
 require("ai/personality/trader")
 require("ai/include/distress_behaviour")
-require "numstring"
+local fmt = require "fmt"
 
 
-function create ()
-   sprice = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(sprice / 100, sprice / 25))
+function create()
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.25 * sprice, 0.75 * sprice))
+   mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
+
+   -- No bribe
+   local bribe_msg = {
+      _("\"Just leave me alone!\""),
+      _("\"What do you want from me!?\""),
+      _("\"Get away from me!\"")
+   }
+   mem.bribe_no = bribe_msg[rnd.rnd(1, #bribe_msg)]
 
    -- Communication stuff
-   mem.bribe_no = _("\"The Space Traders do not negotiate with criminals.\"")
-   mem.refuel = rnd.rnd( 3000, 5000 )
-   p = player.pilot()
+   mem.refuel = rnd.rnd(3000, 5000)
+   local p = player.pilot()
    if p:exists() then
-      mem.refuel_msg = string.format(_("\"I'll supply your ship with fuel for %s.\""),
-            creditstring(mem.refuel));
+      mem.refuel_msg = fmt.f(
+            _("\"I'll supply your ship with fuel for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    end
 
    -- Finish up creation

@@ -1,15 +1,16 @@
 require("ai/tpl/generic")
 require("ai/personality/patrol")
-require "numstring"
+local fmt = require "fmt"
 
 -- Settings
 mem.aggressive = true
 
 
 -- Create function
-function create ()
-   local price = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(price / 500, price / 200))
+function create()
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.25 * sprice, 0.75 * sprice))
+   mem.kill_reward = rnd.rnd(0.25 * sprice, 0.75 * sprice)
 
    -- Handle bribing
    local bribe_no = {
@@ -24,16 +25,16 @@ function create ()
    -- Handle refueling
    local p = player.pilot()
    if p:exists() then
-      local standing = ai.getstanding( p ) or -1
+      local standing = ai.getstanding(p) or -1
       local flf_standing = faction.get("FLF"):playerStanding()
 
       mem.refuel = rnd.rnd( 1000, 3000 )
       if flf_standing < 50 then
          mem.refuel_no = _("\"Sorry, I can't spare fuel for you.\"")
       elseif standing < 50 then
-         mem.refuel_msg = string.format(
-               _("\"For you I could make an exception for %s.\""),
-               creditstring(mem.refuel))
+         mem.refuel_msg = fmt.f(
+               _("\"Sure, just {credits} and I'll give you some fuel.\""),
+               {credits=fmt.credits(mem.refuel)})
       else
          mem.refuel = 0
          mem.refuel_msg = _("\"Sure, friend, I can refuel you. On my way.\"")
@@ -47,7 +48,7 @@ function create ()
 end
 
 -- taunts
-function taunt ( target, offense )
+function taunt(target, offense)
 
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
@@ -68,6 +69,6 @@ function taunt ( target, offense )
          _("To hell with you!"),
       }
    end
-   ai.pilot():comm( target, taunts[ rnd.rnd(1,#taunts) ] )
+   ai.pilot():comm(target, taunts[rnd.rnd(1,#taunts)])
 end
 

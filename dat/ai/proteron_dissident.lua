@@ -10,9 +10,10 @@ mem.enemyclose = 500
 mem.careful = true
 
 
-function create ()
-   sprice = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(sprice / 500, sprice / 200))
+function create()
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
+   mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
 
    -- No bribe
    local bribe_msg = {
@@ -20,10 +21,10 @@ function create ()
       _("\"What do you want from me!?\""),
       _("\"Get away from me!\"")
    }
-   mem.bribe_no = bribe_msg[ rnd.rnd(1,#bribe_msg) ]
+   mem.bribe_no = bribe_msg[rnd.rnd(1, #bribe_msg)]
 
    -- Refuel
-   mem.refuel = rnd.rnd( 1000, 3000 )
+   mem.refuel = rnd.rnd(1000, 3000)
    local p = player.pilot()
    if p:exists() then
       mem.refuel_msg = fmt.f(

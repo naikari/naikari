@@ -1,6 +1,6 @@
 require("ai/tpl/generic")
 require("ai/personality/patrol")
-require "numstring"
+local fmt = require "fmt"
 
 -- We’ll consider the Za'lek prefer to turn a bad (i.e. battle) situation into
 -- a profitable one by getting money and selling fuel if possible if the player
@@ -19,11 +19,9 @@ local drones = {
 
 function create()
    -- See if a drone
-   mem.isdrone = drones[ ai.pilot():ship():nameRaw() ]
+   mem.isdrone = drones[ai.pilot():ship():nameRaw()]
    if mem.isdrone then
-      local msg = _([["Access denied"]])
-      mem.refuel_no = msg
-      mem.bribe_no = msg
+      mem.comm_no = _("No response.")
       mem.armour_run = 0 -- Drones don't run
       create_post()
       return
@@ -43,25 +41,27 @@ function create()
          mem.refuel = mem.refuel * 0.6
       end
       -- Most likely no chance to refuel
-      mem.refuel_msg = string.format( _("\"I will agree to refuel your ship for %s.\""), creditstring(mem.refuel) )
+      mem.refuel_msg = fmt.f(
+            _("\"I will agree to refuel your ship for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    end
 
    -- See if can be bribed
-   if rnd.rnd() > 0.7 then
-      mem.bribe = math.sqrt( ai.pilot():stats().mass ) * (500. * rnd.rnd() + 1750.)
-      mem.bribe_prompt = string.format(_("\"We will agree to end the battle for %s.\""), creditstring(mem.bribe) )
+   if rnd.rnd() < 0.3 then
+      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (500*rnd.rnd() + 1750)
+      mem.bribe_prompt = fmt.f(
+            _("\"We will agree to end the battle for {credits}.\""),
+            {credits=fmt.credits(mem.bribe)})
       mem.bribe_paid = _("\"Temporarily stopping fire.\"")
    else
-      -- FIXME: Could be made more Za'lek-like.
-      -- Will this work? ~Areze
       local bribe_no = {
-         _("\"Keep your cash, you troglodyte.\""),
-         _("\"Don't make me laugh. Eat laser beam!\""),
-         _("\"My drones aren't interested in your ill-gotten gains and neither am I!\""),
-         _("\"Ahaha! Nice one! Oh, you're actually serious? Ahahahaha!\""),
-         _("\"While I admire the spirit of it, testing my patience is suicide, NOT science.\"")
+         _("\"Keep your cash.\""),
+         _("\"Don't make me laugh.!\""),
+         _("\"My drones aren't interested in your money and neither am I!\""),
+         _("\"Hahaha! Nice one! Oh, you're actually serious? Of course not, fool!\""),
+         _("\"While I admire the spirit of it, testing my patience is not science.\""),
       }
-      mem.bribe_no = bribe_no[ rnd.rnd(1,#bribe_no) ]
+      mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
 
    mem.loiter = 2 -- This is the amount of waypoints the pilot will pass through before leaving the system
@@ -78,19 +78,18 @@ function taunt ( target, offense )
 
    if offense then
       taunts = {
-         _("Move drones in to engage. Cook this clown!"),
-         _("Say hello to my little friends!"),
-         _("Ooh, more victi- ah, volunteers for our experiments!"),
-         _("We need a test subject to test our attack on; you'll do nicely!"),
-         _("Ready for a physics lesson, punk?"),
-         _("After we wax you, we can return to our experiments!")
+         _("I will show you the power of the Za'lek fleet!"),
+         _("Commencing battle test by eradicating outlaw pilots."),
+         _("Your days are over!"),
+         _("You interfere with the progress of science!"),
+         _("Feel the wrath of our combat drones!"),
       }
    else
       taunts = {
-         _("We're being attacked! Prepare defence protocols!"),
          _("You just made a big mistake!"),
-         _("Our technology will fix your attitude!"),
-         _("You wanna do this? Have it your way.")
+         _("You wanna do this? Have it your way."),
+         _("How dare you?! I just got this ship customized!"),
+         _("Aggressor! How dare you attack the Za'lek?!"),
       }
    end
 
