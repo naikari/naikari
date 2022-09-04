@@ -504,10 +504,9 @@ double pilot_getNearestPos( const Pilot *p, unsigned int *tp, double x, double y
       if (pilot_stack[i] == p)
          continue;
 
-      /* Player doesn't select escorts. */
-      if ((p->faction == FACTION_PLAYER)
-            && ((pilot_stack[i]->faction == FACTION_PLAYER)
-               || (pilot_stack[i]->parent == PLAYER_ID)))
+      /* Player doesn't select escorts (unless disabled is active). */
+      if (!disabled && (p->faction == FACTION_PLAYER)
+            && (pilot_stack[i]->faction == FACTION_PLAYER))
          continue;
 
       /* Shouldn't be disabled. */
