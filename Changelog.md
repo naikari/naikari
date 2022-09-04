@@ -13,6 +13,10 @@
   vary a lot more widely than before.
 * Fixed some problems with the way the Combat Practice mission closed
   out.
+* Remove the faction standing cap system. You can now gain as much
+  reputation as you want with all factions (even the Collective). This
+  also means all ships and outfits are available to obtain without
+  having to resort to piracy.
 
 ## 0.4.0
 
