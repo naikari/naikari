@@ -426,6 +426,7 @@ function enter ()
          if f == nil or f:playerStanding() >= 0 then
             edata.pilot:changeAI("escort_player")
             edata.pilot:memory().carrier = false
+            edata.pilot:memory().comm_no = nil
             edata.pilot:setLeader(pp)
             edata.pilot:setVisplayer(true)
             edata.pilot:setInvincPlayer(true)
