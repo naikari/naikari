@@ -129,7 +129,7 @@ function land ()
       player.allowSave()
    elseif landed == ret and misn_stage == 1 then
       player.pay(reward)
-      faction.modPlayer("Empire", 2)
+      faction.modPlayer("Empire", 5)
 
       tk.msg("", pay_text)
 

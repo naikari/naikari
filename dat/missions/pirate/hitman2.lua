@@ -126,8 +126,7 @@ function landed()
    if planet.cur() == misn_base then
       tk.msg("", pay_text)
       player.pay(500000) -- 500K
-      pir_modReputation(3)
-      faction.modPlayer("Pirate", 2)
+      faction.modPlayer("Pirate", 5)
       pir_addMiscLog(log_text)
       misn.finish(true)
    end

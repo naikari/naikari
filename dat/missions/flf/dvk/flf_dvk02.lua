@@ -139,7 +139,7 @@ function accept()
       missys2known = missys2:known()
 
       credits = 300000
-      reputation = 1
+      reputation = 5
 
       osd_desc[1] = fmt.f(osd_desc[1], {system=missys:name()})
       misn.osdCreate(osd_title, osd_desc)
@@ -226,7 +226,6 @@ function land()
 
       diff.apply("flf_pirate_ally")
       player.pay(credits)
-      flf_modCap(5)
       faction.get("FLF"):modPlayer(reputation)
 
       local pf = faction.get("Pirate")

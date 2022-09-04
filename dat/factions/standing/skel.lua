@@ -4,20 +4,17 @@
    wild.
 --]]
 
--- Faction caps.
-_fcap_kill       = 20 -- Kill cap
+-- Reputation settings.
 _fdelta_distress = {-1, 0} -- Maximum change constraints
-_fdelta_kill     = {-5, 1} -- Maximum change constraints
-_fcap_misn       = 30 -- Starting mission cap, gets overwritten
-_fcap_misn_var   = nil -- Mission variable to use for limits
+_fdelta_kill = {-5, 1} -- Maximum change constraints
 
 -- Secondary hit modifiers.
-_fmod_distress_enemy  = 0 -- Distress of the faction's enemies
+_fmod_distress_enemy = 0 -- Distress of the faction's enemies
 _fmod_distress_friend = 0.3 -- Distress of the faction's allies
-_fmod_kill_enemy      = 0.3 -- Kills of the faction's enemies
-_fmod_kill_friend     = 0.3 -- Kills of the faction's allies
-_fmod_misn_enemy      = 0.3 -- Missions done for the faction's enemies
-_fmod_misn_friend     = 0.3 -- Missions done for the faction's allies
+_fmod_kill_enemy = 0.3 -- Kills of the faction's enemies
+_fmod_kill_friend = 0.3 -- Kills of the faction's allies
+_fmod_misn_enemy = 0.3 -- Missions done for the faction's enemies
+_fmod_misn_friend = 0.3 -- Missions done for the faction's allies
 
 _fstanding_friendly = 70
 _fstanding_neutral = 0
@@ -25,20 +22,20 @@ _fstanding_neutral = 0
 
 _ftext_standing = {}
 _ftext_standing[100] = _("Legend")
-_ftext_standing[90]  = _("Hero")
-_ftext_standing[70]  = _("Comrade")
-_ftext_standing[50]  = _("Ally")
-_ftext_standing[30]  = _("Partner")
-_ftext_standing[10]  = _("Associate")
-_ftext_standing[0]   = _("Neutral")
-_ftext_standing[-1]  = _("Outlaw")
+_ftext_standing[90] = _("Hero")
+_ftext_standing[70] = _("Comrade")
+_ftext_standing[50] = _("Ally")
+_ftext_standing[30] = _("Partner")
+_ftext_standing[10] = _("Associate")
+_ftext_standing[0] = _("Neutral")
+_ftext_standing[-1] = _("Outlaw")
 _ftext_standing[-30] = _("Criminal")
 _ftext_standing[-50] = _("Enemy")
 
 _ftext_friendly = _("Friendly")
-_ftext_neutral  = _("Neutral")
-_ftext_hostile  = _("Hostile")
-_ftext_bribed   = _("Bribed")
+_ftext_neutral = _("Neutral")
+_ftext_hostile = _("Hostile")
+_ftext_bribed = _("Bribed")
 
 
 --[[
@@ -98,11 +95,9 @@ function default_hit( current, amount, source, secondary )
    local f = current
    local delta = {-200, 200}
 
-   -- Set caps and/or deltas based on source
-   local cap
+   -- Set deltas based on source
    local mod = 1
    if source == "distress" then
-      cap   = _fcap_kill
       delta = clone(_fdelta_distress)
 
       -- Adjust for secondary hit
@@ -114,7 +109,6 @@ function default_hit( current, amount, source, secondary )
          end
       end
    elseif source == "kill" then
-      cap   = _fcap_kill
       delta = clone(_fdelta_kill)
 
       -- Adjust for secondary hit
@@ -126,16 +120,6 @@ function default_hit( current, amount, source, secondary )
          end
       end
    else
-      if _fcap_misn_var == nil then
-         cap   = _fcap_misn
-      else
-         cap   = var.peek( _fcap_misn_var )
-         if cap == nil then
-            cap = _fcap_misn
-            var.push( _fcap_misn_var, cap )
-         end
-      end
-
       -- Adjust for secondary hit
       if secondary then
          if amount > 0 then
@@ -152,40 +136,32 @@ function default_hit( current, amount, source, secondary )
 
    -- Faction gain
    if amount > 0 then
-      -- Must be under cap
-      if f < cap then
-         if source == "kill" then
-            local has_planet
-            -- Positive kill, which means an enemy of this faction got killed.
-            -- We need to check if this happened in the faction's territory, otherwise it doesn't count.
-            -- NOTE: virtual assets are NOT counted when determining territory!
-            for _, planet in ipairs(system.cur():planets()) do
-                if planet:faction() == _fthis then
-                   -- Planet belonging to this faction found. Modify reputation.
-                   f = math.min( cap, f + math.min(delta[2], amount * clerp( f, 0, 1, cap, 0.2 )) )
-                   has_planet = true
-                   break
-                end
-            end
-            local witness = pilot.get( { _fthis } )
-            if not has_planet and witness then
-               for _, pilot in ipairs(witness) do
-                  if player.pos():dist( pilot:pos() ) < 5000 then
-                     -- Halve impact relative to a normal secondary hit.
-                     f = math.min( cap, f + math.min(delta[2], amount * 0.5 * clerp( f, 0, 1, cap, 0.2 )) )
-                     break
-                  end
+      if source == "kill" or source == "distress" then
+         local has_planet
+         -- Positive kill, which means an enemy of this faction got
+         -- killed. We need to check if this happened in the faction's
+         -- territory, otherwise it doesn't count.
+         local diff = 0
+         local witness = pilot.get({_fthis})
+         if witness and #witness > 0 then
+            diff = math.min(delta[2], 0.5 * amount * clerp(f, 0, 1, 100, 0.2))
+            for i, p in ipairs(witness) do
+               if player.pos():dist(p:pos()) < 5000 then
+                  -- Witness is close by, so more reputation is gained.
+                  diff = math.min(delta[2], amount * clerp(f, 0, 1, 100, 0.2))
+                  break
                end
             end
-         else
-            -- Script induced change. No diminishing returns on these.
-            f = math.min( cap, f + math.min(delta[2], amount) )
          end
+         f = math.min(100, f + diff)
+      else
+         -- Script induced change. No diminishing returns on these.
+         f = math.min(100, f + math.min(delta[2], amount))
       end
    -- Faction loss.
    else
       -- No diminishing returns on loss.
-      f = math.max( -100, f + math.max(delta[1], amount) )
+      f = math.max(-100, f + math.max(delta[1], amount))
    end
    return f
 end

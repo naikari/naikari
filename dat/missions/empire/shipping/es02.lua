@@ -125,8 +125,7 @@ function land ()
       -- Successfully rescued the VIP
       if misn_stage == 2 then
          player.pay(reward)
-         emp_modReputation(5) -- Bump cap a bit
-         faction.modPlayer("Empire", 2)
+         faction.modPlayer("Empire", 5)
 
          tk.msg("", text[5])
 

@@ -9,7 +9,7 @@
   <chance>30</chance>
   <location>Bar</location>
   <faction>FLF</faction>
-  <cond>faction.playerStanding("FLF") &gt;= 80</cond>
+  <cond>false and faction.playerStanding("FLF") &gt;= 80</cond>
  </avail>
  <notes>
   <campaign>Save the Frontier</campaign>
@@ -363,7 +363,6 @@ end
 
 function finish ()
    player.pay(credits)
-   flf_modCap(10)
    faction.get("FLF"):modPlayer(reputation)
    flf_addLog(log_text)
    misn.finish(true)

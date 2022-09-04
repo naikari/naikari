@@ -161,7 +161,7 @@ function land ()
       tk.msg("", pay_text)
 
       player.pay(reward)
-      faction.modPlayer("Empire", 2)
+      faction.modPlayer("Empire", 5)
 
       emp_addShippingLog(log_text)
 

@@ -101,7 +101,7 @@ function accept()
       dvships = {}
 
       credits = 300000
-      reputation = 1
+      reputation = 5
 
       osd_desc[1] = fmt.f(osd_desc[1], {system=missys:name()})
       misn.osdCreate(osd_title, osd_desc)
@@ -146,7 +146,6 @@ function land()
    if stage == 1 and planet.cur():faction() == faction.get("FLF") then
       tk.msg("", fmt.f(pay_text, {player=player.name()}))
       player.pay(credits)
-      flf_modCap(5)
       faction.get("FLF"):modPlayer(reputation)
       flf_addLog(log_text)
       misn.finish(true)

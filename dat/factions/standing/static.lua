@@ -21,6 +21,6 @@
 require "factions/standing/skel"
 
 
-function faction_hit( current, amount, source, secondary )
+function faction_hit(current, amount, source, secondary)
    return current
 end

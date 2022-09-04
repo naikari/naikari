@@ -71,13 +71,6 @@ function flf_getPirateSystem ()
 end
 
 
--- Increase the FLF's reputation cap.
-function flf_modCap(diff)
-   local cap = var.peek("_fcap_flf") or 5
-   var.push("_fcap_flf", cap + diff)
-end
-
-
 -- Add an entry to the FLF campaign log.
 function flf_addLog( text )
    shiplog.create("flf", p_("log", "FLF"))

@@ -387,14 +387,19 @@ end
 
 function land_flf ()
    leave()
-   if planet.cur():faction() == faction.get("FLF") then
+   local f = faction.get("FLF")
+   if planet.cur():faction() == f then
       tk.msg("", text[4])
       tk.msg("", text[5]:format(player.name()))
       tk.msg("", text[6])
       tk.msg("", text[7])
       player.pay(100000)
-      flf_modCap(5)
-      faction.get("FLF"):modPlayer(1)
+
+      f:modPlayer(5)
+      if f:playerStanding() < 10 then
+         f:setPlayerStanding(10)
+      end
+
       var.pop("flfbase_intro")
       flf_addLog(log_text_flf)
       misn.finish(true)
@@ -410,7 +415,9 @@ function land_dv ()
       tk.msg("", DVtext[8])
       player.pay(70000)
       var.push("flfbase_intro", 3)
-      if diff.isApplied("FLF_base") then diff.remove("FLF_base") end
+      if diff.isApplied("FLF_base") then
+         diff.remove("FLF_base")
+      end
       dv_addAntiFLFLog(log_text_dv)
       misn.finish(true)
    end

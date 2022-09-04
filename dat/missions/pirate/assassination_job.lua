@@ -564,29 +564,6 @@ function succeed ()
    player.msg("#g" .. pay_msg .. "#0")
    player.pay(credits)
 
-   -- Pirate rep cap increase
-   local bounty_done = var.peek("pir_bounty_done")
-   var.push("pir_bounty_done", true)
-   if bounty_done ~= true then
-      pir_modReputation(5)
-   end
-
-   if level >= 5 then
-      local done = var.peek("pir_bounty_dangerous_done")
-      var.push("pir_bounty_dangerous_done", true)
-      if done ~= true then
-         pir_modReputation(2)
-      end
-
-      if level >= 6 then
-         local done = var.peek("pir_bounty_highly_dangerous_done")
-         var.push("pir_bounty_highly_dangerous_done", true)
-         if done ~= true then
-            pir_modReputation(3)
-         end
-      end
-   end
-
    paying_faction:modPlayer(reputation)
    misn.finish(true)
 end

@@ -10,7 +10,7 @@
   <done>FLF Pirate Alliance</done>
   <location>Bar</location>
   <faction>FLF</faction>
-  <cond>faction.playerStanding("FLF") &gt;= 50</cond>
+  <cond>false and faction.playerStanding("FLF") &gt;= 50</cond>
  </avail>
  <notes>
   <provides name="The Empire and the FLF are enemies">Because they're caught in the battle</provides>
@@ -396,7 +396,6 @@ end
 
 function finish ()
    player.pay(credits)
-   flf_modCap(10)
    faction.get("FLF"):modPlayer(reputation)
    flf_addLog(log_text)
    misn.finish(true)
