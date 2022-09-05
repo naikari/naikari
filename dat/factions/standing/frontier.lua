@@ -22,5 +22,15 @@ _fthis = faction.get("Frontier")
 
 
 function faction_hit(current, amount, source, secondary)
-    return default_hit(current, amount, source, secondary)
+    local ret = default_hit(current, amount, source, secondary)
+
+    local flf = faction.get("FLF")
+    local flf_rep = flf:playerStanding()
+    if ret < 0 then
+        -- If you make enemies with the Frontier, FLF standing will
+        -- drop to match.
+        flf:setPlayerStanding(math.min(flf_rep, ret))
+    end
+
+    return ret
 end
