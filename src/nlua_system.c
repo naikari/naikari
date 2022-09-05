@@ -363,15 +363,21 @@ static int systemL_nameRaw( lua_State *L )
  * @brief Gets system faction.
  *
  *    @luatparam System s System to get the faction of.
- *    @luatreturn Faction The dominant faction in the system.
+ *    @luatreturn Faction|nil The faction which owns the system, or nil
+ *       if no faction owns the system.
  * @luafunc faction
  */
 static int systemL_faction( lua_State *L )
 {
-   StarSystem *s = luaL_validsystem(L,1);
+   StarSystem *s;
+
+   s = luaL_validsystem(L, 1);
+
    if (s->faction == -1)
-      return 0;
-   lua_pushfaction(L,s->faction);
+      lua_pushnil(L);
+   else
+      lua_pushfaction(L, s->faction);
+
    return 1;
 
 }
