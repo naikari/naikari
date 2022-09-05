@@ -19,11 +19,6 @@ mem.careful = true
 
 
 function create()
-   -- Some pirates do kill
-   if rnd.rnd() < 0.1 then
-      mem.atk_kill = true
-   end
-
    local sprice = ai.pilot():ship():price()
    ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
    mem.kill_reward = rnd.rnd(0.2 * sprice, 0.5 * sprice)
