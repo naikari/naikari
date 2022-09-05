@@ -459,6 +459,17 @@
  </tech>
 
  <!-- Generic Outfits -->
+ <tech name="Star Maps">
+  <item>Map: Nebula Edge</item>
+  <item>Map: Dvaered-Soromid trade route</item>
+  <item>Map: Dvaered-Za'lek trade route</item>
+  <item>Map: Sirius border systems</item>
+  <item>Map: The Frontier</item>
+  <item>Map: Sol</item>
+  <item>Map: Empire Core</item>
+  <item>Map: Waste Disposal Sites</item>
+  <item>Local System Map</item>
+ </tech>
  <tech name="Common Outfits">
   <item>Laser Cannon MK1</item>
   <item>Plasma Blaster MK1</item>
@@ -474,6 +485,23 @@
   <item>Star Maps</item>
   <item>Mercenary License</item>
  </tech>
+ <tech name="Proteron Common Outfits">
+  <item>Laser Cannon MK1</item>
+  <item>Plasma Blaster MK1</item>
+  <item>Gauss Gun</item>
+  <item>Razor MK1</item>
+  <item>Particle Lance</item>
+  <item>Asteroid Scanner</item>
+  <item>Solar Panel</item>
+  <item>Shield Capacitor</item>
+  <item>Battery</item>
+  <item>Fuel Pod</item>
+  <item>Crappy Core Systems</item>
+  <item>Local System Map</item>
+  <item>Mercenary License</item>
+ </tech>
+
+ <!-- Cores -->
  <tech name="Crappy Core Systems">
   <item>Previous Generation Small Systems</item>
   <item>Previous Generation Medium Systems</item>
@@ -655,13 +683,22 @@
   <item>Melendez Mammoth XL Engine</item>
   <item>S&amp;K Superheavy Combat Plating</item>
  </tech>
- <tech name="Light Fighter Missiles">
+
+ <!-- Generic Weapons -->
+ <tech name="Basic Missiles">
+  <item>Unicorp Mace Launcher</item>
   <item>Unicorp Banshee Launcher</item>
-  <item>TeraCom Banshee Launcher</item>
-  <item>Light Weapon License</item>
- </tech>
- <tech name="Fighter Missiles">
   <item>Unicorp Fury Launcher</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Elite Missiles">
+  <item>TeraCom Mace Launcher</item>
+  <item>TeraCom Banshee Launcher</item>
+  <item>TeraCom Fury Launcher</item>
+  <item>Unicorp Headhunter Launcher</item>
+  <item>Unicorp Medusa Launcher</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Turret Missiles">
@@ -690,6 +727,18 @@
   <item>Enygma Systems Huntsman Launcher</item>
   <item>Heavy Weapon License</item>
  </tech>
+ <tech name="Aerosys Fighter Bays">
+  <item>Mini Hyena Fighter Bay</item>
+  <item>Hyena Fighter Bay</item>
+ </tech>
+ <tech name="Nexus Fighter Bays">
+  <item>Mini Shark Fighter Bay</item>
+  <item>Shark Fighter Bay</item>
+  <item>Mini Lancelot Fighter Bay</item>
+  <item>Lancelot Fighter Bay</item>
+ </tech>
+
+ <!-- Regional Weapons -->
  <tech name="Small Laser">
   <item>Laser Cannon MK1</item>
   <item>Laser Cannon MK2</item>
@@ -707,6 +756,85 @@
   <item>Heavy Laser Turret</item>
   <item>Heavy Weapon License</item>
  </tech>
+ <tech name="Small Beam">
+  <item>Particle Lance</item>
+  <item>Orion Lance</item>
+  <item>Particle Beam</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Beam">
+  <item>Grave Lance</item>
+  <item>Orion Beam</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Beam">
+  <item>Grave Beam</item>
+  <item>Ragnarok Beam</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Plasma">
+  <item>Plasma Blaster MK1</item>
+  <item>Plasma Blaster MK2</item>
+  <item>Plasma Turret MK1</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Plasma">
+  <item>Plasma Cannon</item>
+  <item>Plasma Cluster Cannon</item>
+  <item>Plasma Turret MK2</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Plasma">
+  <item>Plasma Cluster Turret</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Razor">
+  <item>Razor MK1</item>
+  <item>Razor MK2</item>
+  <item>Razor Turret MK1</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Razor">
+  <item>Slicer</item>
+  <item>Heavy Ripper Cannon</item>
+  <item>Razor Turret MK2</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Small Kinetic">
+  <item>Gauss Gun</item>
+  <item>Vulcan Gun</item>
+  <item>Turreted Gauss Gun</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Kinetic">
+  <item>Shredder</item>
+  <item>Mass Driver</item>
+  <item>Turreted Vulcan Gun</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Kinetic">
+  <item>Railgun</item>
+  <item>Turreted Mass Driver</item>
+  <item>Railgun Turret</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Ion">
+  <item>Ion Cannon</item>
+  <item>Weapons Ionizer</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Ion">
+  <item>Heavy Ion Cannon</item>
+  <item>Laser Turret MK2</item>
+  <item>EMP Grenade Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Ion">
+  <item>Heavy Ion Turret</item>
+  <item>Heavy Laser Turret</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+
  <tech name="Basic Outfits 1">
   <item>Laser Cannon MK1</item>
   <item>Plasma Blaster MK1</item>
@@ -936,25 +1064,14 @@
   <item>Enygma Systems Turreted Headhunter Launcher</item>
   <item>Unicorp Vengeance Launcher</item>
  </tech>
- <tech name="Star Maps">
-  <item>Map: Nebula Edge</item>
-  <item>Map: Dvaered-Soromid trade route</item>
-  <item>Map: Dvaered-Za'lek trade route</item>
-  <item>Map: Sirius border systems</item>
-  <item>Map: The Frontier</item>
-  <item>Map: Sol</item>
-  <item>Map: Empire Core</item>
-  <item>Map: Waste Disposal Sites</item>
-  <item>Local System Map</item>
- </tech>
 
  <!-- Faction outfits -->
  <tech name="Empire Military Outfits">
   <item>Turbolaser</item>
-  <item>Empire Shark Fighter Bay</item>
   <item>Mini Empire Shark Fighter Bay</item>
-  <item>Empire Lancelot Fighter Bay</item>
+  <item>Empire Shark Fighter Bay</item>
   <item>Mini Empire Lancelot Fighter Bay</item>
+  <item>Empire Lancelot Fighter Bay</item>
  </tech>
  <tech name="Dvaered Military Outfits">
   <item>Repeating Railgun</item>
@@ -962,14 +1079,14 @@
  </tech>
  <tech name="Sirius Military Outfits">
   <item>Heavy Razor Turret</item>
-  <item>Fidelity Fighter Bay</item>
   <item>Mini Fidelity Fighter Bay</item>
+  <item>Fidelity Fighter Bay</item>
  </tech>
  <tech name="Za'lek Military Outfits">
   <item>Za'lek Hunter Launcher</item>
   <item>Za'lek Reaper Launcher</item>
-  <item>Za'lek Light Drone Fighter Bay</item>
   <item>Mini Za'lek Light Drone Fighter Bay</item>
+  <item>Za'lek Light Drone Fighter Bay</item>
   <item>Za'lek Heavy Drone Fighter Bay</item>
   <item>Za'lek Bomber Drone Fighter Bay</item>
  </tech>
@@ -983,8 +1100,11 @@
   <item>Nebular Shielding Prototype</item>
  </tech>
  <tech name="Proteron Military Outfits">
-  <item>Derivative Fighter Bay</item>
   <item>Mini Derivative Fighter Bay</item>
+  <item>Derivative Fighter Bay</item>
+ </tech>
+ <tech name="Collective Military Outfits">
+  <item>Mini Drone Fighter Bay</item>
  </tech>
 
  <!-- Bioship outfits -->

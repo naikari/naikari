@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Engine Reroute">
  <general>
-  <typename>Maneuverability Modifier</typename>
   <slot>structure</slot>
   <size>small</size>
   <mass>0</mass>

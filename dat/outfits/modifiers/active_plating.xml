@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Active Plating">
  <general>
-  <typename>Armor Modifier</typename>
   <slot>structure</slot>
   <size>medium</size>
   <rarity>2</rarity>

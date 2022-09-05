@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Battery III">
  <general>
-  <typename>Power Modifier</typename>
   <slot>structure</slot>
   <size>large</size>
   <mass>36</mass>
