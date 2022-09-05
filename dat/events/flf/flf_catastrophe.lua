@@ -3,7 +3,13 @@
 <event name="FLF Catastrophe">
  <trigger>enter</trigger>
  <chance>70</chance>
- <cond>system.cur() == system.get("Sigur") and faction.get("FLF"):playerStanding() &gt;= 98</cond>
+ <cond>
+   system.cur() == system.get("Sigur")
+   and faction.get("FLF"):playerStanding() &gt;= 100
+   and diff.isApplied("flf_vs_empire")
+   and player.misnDone("FLF Pirate Alliance")
+   and false
+ </cond>
  <notes>
   <campaign>Save the Frontier</campaign>
  </notes>
@@ -28,6 +34,7 @@
 
 --]]
 
+local fmt = require "fmt"
 local fleet = require "fleet"
 local mh = require "misnhelper"
 require "missions/flf/flf_common"
@@ -36,8 +43,17 @@ require "missions/flf/flf_common"
 title = {}
 text = {}
 
-title[1] = _("Catastrophe Looms")
-text[1] = _([[As you enter the bar on Sindbad, you immediately know that something is wrong. Everyone is frantic and you sense dread around your comrades. You are about to ask around when Benito approaches.]])
+start_text_1 = _([[As you enter the bar on Sindbad, you immediately know that something is wrong. Everyone is frantic and you sense dread around your comrades. You are about to ask around to find out what's going on when Benito approaches with the most panicked expression you've ever seen from her.
+
+"{player}!" She calls out. "My God am I glad to see you. This is a terrible situation. Those damn Dvaereds, they found our base! The Empire assisted them in tracking us down now that they want us gone too. They even figured out the locations of our hidden jump points!" Your eyes widen when you hear the news. Now the commotion makes perfect sense, but this was the last thing you wanted to hear.]])
+
+start_text_2 = _([["Listen," Benito hurriedly continues, "we don't have much longer. as we speak, a giant combined Empire and Dvaered force is approaching from the {system} system as we speak. They've got Peacemakers, Hawkings, Goddards, Pacifiers, Phalanxes, you name it. {player}, I don't know how to say this, but… this base is doomed.
+
+"Listen, I need your help one last time. There's no way we'll be able to win this fight, so we've ordered a full-scale evacuation. I need you to join small a team and keep the Imperials and Dvaereds at bay long enough so that as many soldiers as possible can escape to Frontier space. We will help from our end as much as we possibly can; this base's defenses won't hold up to the onslaught, but we can at least slow them down a little."]])
+
+start_text_3 = _([[Benito reaches into her pocket to retrieve a data chip, which she presses into your hand. "I'm entrusting you to this," she says. "It's a map that leads into the unknown reaches of the Inner Nebula. It was sent to us recently from an unknown source. Alongside it was a simple message: 'Come here for your salvation.'
+
+"After you've done as much as you can to help our comrades escape to the Frontier, I want you to investigate. Whoever contacted us, whether they're aliens or survivors of the Incident or whatever, they may be sympathetic to our cause… or they may be trying to sabotage it."]])
 
 text[2] = _([["%s, it's horrible," she says with a look of dread in her eyes. "They found us. The damn Empire found us! I'm going to be frank, I don't even know if we can survive this." You stammer for a moment. No, it can't be true! It has to be some mistake! How can the FLF be defeated like this? Now the commotion makes perfect sense.
     "It's those damn traitors!" Benito continues. "One of them went off and told the Empire where our base is, and they even told them where our hidden jumps are! This is terrible!"]])
@@ -120,11 +136,11 @@ function enter_bar ()
       music.load("tension")
       music.play()
       var.push("music_off", true)
-      tk.msg(title[1], text[1])
-      tk.msg(title[1], text[2]:format(player.name()))
-      tk.msg(title[1], text[3]:format(emp_srcsys:name(), player.name()))
-      tk.msg(title[1], text[4])
-      tk.msg(title[1], text[5])
+      tk.msg("", text[1])
+      tk.msg("", text[2]:format(player.name()))
+      tk.msg("", text[3]:format(emp_srcsys:name(), player.name()))
+      tk.msg("", text[4])
+      tk.msg("", text[5])
       var.pop("music_off")
 
       takeoff_hook = hook.enter("takeoff")
