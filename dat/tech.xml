@@ -491,7 +491,9 @@
   <item>Nexus Dart 150 Engine</item>
   <item>Unicorp Hawk 300 Engine</item>
   <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp X-2 Light Plating</item>
   <item>Unicorp D-4 Light Plating</item>
+  <item>Unicorp X-4 Light Plating</item>
  </tech>
  <tech name="Elite Yacht Cores">
   <item>Milspec Aegis 2201 Core System</item>
@@ -502,11 +504,28 @@
   <item>Tricon Zephyr Engine</item>
   <item>Tricon Zephyr II Engine</item>
   <item>S&amp;K Ultralight Combat Plating</item>
+  <item>S&amp;K Ultralight Stealth Plating</item>
+ </tech>
+ <tech name="Basic Scout Cores">
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp X-2 Light Plating</item>
+ </tech>
+ <tech name="Elite Scout Cores">
+  <item>Milspec Aegis 2201 Core System</item>
+  <item>Milspec Hermes 2202 Core System</item>
+  <item>Milspec Prometheus 2203 Core System</item>
+  <item>Milspec Orion 2301 Core System</item>
+  <item>Tricon Zephyr Engine</item>
+  <item>S&amp;K Ultralight Stealth Plating</item>
  </tech>
  <tech name="Basic Courier Cores">
   <item>Unicorp PT-80 Core System</item>
   <item>Unicorp Hawk 300 Engine</item>
   <item>Unicorp D-4 Light Plating</item>
+  <item>Unicorp X-4 Light Plating</item>
  </tech>
  <tech name="Elite Courier Cores">
   <item>Milspec Aegis 3601 Core System</item>
@@ -520,6 +539,7 @@
   <item>Unicorp PT-750 Core System</item>
   <item>Unicorp Falcon 1200 Engine</item>
   <item>Unicorp D-24 Medium Plating</item>
+  <item>Unicorp X-24 Medium Plating</item>
  </tech>
  <tech name="Elite Freighter Cores">
   <item>Milspec Aegis 4701 Core System</item>
@@ -533,6 +553,7 @@
   <item>Unicorp PT-18 Core System</item>
   <item>Nexus Dart 150 Engine</item>
   <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp X-2 Light Plating</item>
  </tech>
  <tech name="Elite Light Fighter Cores">
   <item>Milspec Aegis 2201 Core System</item>
@@ -547,6 +568,7 @@
   <item>Unicorp PT-80 Core System</item>
   <item>Unicorp Hawk 300 Engine</item>
   <item>Unicorp D-4 Light Plating</item>
+  <item>Unicorp X-4 Light Plating</item>
  </tech>
  <tech name="Elite Fighter Cores">
   <item>Milspec Aegis 3601 Core System</item>
@@ -561,6 +583,7 @@
   <item>Unicorp PT-80 Core System</item>
   <item>Unicorp Hawk 300 Engine</item>
   <item>Unicorp D-4 Light Plating</item>
+  <item>Unicorp X-4 Light Plating</item>
  </tech>
  <tech name="Elite Bomber Cores">
   <item>Milspec Aegis 3601 Core System</item>
@@ -576,6 +599,7 @@
   <item>Unicorp PT-280 Core System</item>
   <item>Nexus Arrow 700 Engine</item>
   <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp X-12 Medium Plating</item>
  </tech>
  <tech name="Elite Corvette Cores">
   <item>Milspec Aegis 4701 Core System</item>
@@ -585,6 +609,103 @@
   <item>Tricon Cyclone Engine</item>
   <item>S&amp;K Medium Combat Plating</item>
   <item>S&amp;K Medium Stealth Plating</item>
+ </tech>
+ <tech name="Basic Destroyer Cores">
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-24 Medium Plating</item>
+  <item>Unicorp X-24 Medium Plating</item>
+ </tech>
+ <tech name="Elite Destroyer Cores">
+  <item>Milspec Aegis 5401 Core System</item>
+  <item>Milspec Hermes 5402 Core System</item>
+  <item>Milspec Prometheus 5403 Core System</item>
+  <item>Milspec Orion 5501 Core System</item>
+  <item>Tricon Cyclone II Engine</item>
+  <item>S&amp;K Medium-Heavy Combat Plating</item>
+  <item>S&amp;K Medium-Heavy Stealth Plating</item>
+ </tech>
+ <tech name="Basic Cruiser Cores">
+  <item>Unicorp PT-750 Core System</item>
+  <item>Nexus Bolt 4500 Engine</item>
+  <item>Unicorp D-48 Heavy Plating</item>
+  <item>Unicorp X-48 Heavy Plating</item>
+ </tech>
+ <tech name="Elite Cruiser Cores">
+  <item>Milspec Aegis 8501 Core System</item>
+  <item>Milspec Hermes 8502 Core System</item>
+  <item>Milspec Prometheus 8503 Core System</item>
+  <item>Milspec Orion 8601 Core System</item>
+  <item>Krain Remige Engine</item>
+  <item>Tricon Typhoon Engine</item>
+  <item>S&amp;K Heavy Combat Plating</item>
+ </tech>
+ <tech name="Basic Carrier Cores">
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
+  <item>Unicorp X-72 Heavy Plating</item>
+ </tech>
+ <tech name="Elite Carrier Cores">
+  <item>Milspec Aegis 9801 Core System</item>
+  <item>Milspec Hermes 9802 Core System</item>
+  <item>Milspec Prometheus 9803 Core System</item>
+  <item>Milspec Orion 9901 Core System</item>
+  <item>Tricon Typhoon II Engine</item>
+  <item>Melendez Mammoth XL Engine</item>
+  <item>S&amp;K Superheavy Combat Plating</item>
+ </tech>
+ <tech name="Light Fighter Missiles">
+  <item>Unicorp Banshee Launcher</item>
+  <item>TeraCom Banshee Launcher</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Fighter Missiles">
+  <item>Unicorp Fury Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Turret Missiles">
+  <item>Enygma Systems Turreted Fury Launcher</item>
+  <item>Enygma Systems Turreted Headhunter Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Anti-Fighter Missiles">
+  <item>Unicorp Fury Launcher</item>
+  <item>TeraCom Fury Launcher</item>
+  <item>Unicorp Headhunter Launcher</item>
+  <item>TeraCom Headhunter Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Anti-Destroyer Missiles">
+  <item>Enygma Systems Spearhead Launcher</item>
+  <item>Unicorp Vengeance Launcher</item>
+  <item>TeraCom Vengeance Launcher</item>
+  <item>Unicorp Medusa Launcher</item>
+  <item>TeraCom Medusa Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Anti-Cruiser Missiles">
+  <item>Unicorp Caesar IV Launcher</item>
+  <item>TeraCom Imperator Launcher</item>
+  <item>Enygma Systems Huntsman Launcher</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Laser">
+  <item>Laser Cannon MK1</item>
+  <item>Laser Cannon MK2</item>
+  <item>Laser Turret MK1</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Laser">
+  <item>Ripper Cannon</item>
+  <item>Heavy Ripper Cannon</item>
+  <item>Laser Turret MK2</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Laser">
+  <item>Heavy Ripper Turret</item>
+  <item>Heavy Laser Turret</item>
+  <item>Heavy Weapon License</item>
  </tech>
  <tech name="Basic Outfits 1">
   <item>Laser Cannon MK1</item>
