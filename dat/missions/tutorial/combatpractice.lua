@@ -137,9 +137,18 @@ function accept()
    misn.setDesc(fmt.f(_("{desc}\n\nLeader: {boss}\nFleet size: {fleet_size}"),
          {desc=misn_desc, boss=boss_text, fleet_size=fleet_text}))
 
+   numdrones = 1
+   if fleet_size == 3 then
+      numdrones = 11
+   elseif fleet_size == 2 then
+      numdrones = 7
+   elseif fleet_size == 1 then
+      numdrones = 4
+   end
+
    local osd_msg = {
       _("Fly to any system which is not being used by a mission or event"),
-      _("Defeat the practice drones"),
+      n_("Defeat the practice drone", "Defeat the practice drones", numdrones),
    }
    misn.osdCreate(_("Combat Practice"), osd_msg)
 
