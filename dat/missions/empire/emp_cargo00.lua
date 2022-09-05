@@ -50,11 +50,12 @@ function create ()
 
    -- target destination
    local planets = {} 
-   getsysatdistance(system.cur(), 1, 6,
+   getsysatdistance(system.cur(), 1, 2,
       function(s)
          for i, v in ipairs(s:planets()) do
             if v:faction() == faction.get("Empire") and v:canLand()
-                  and v:services()["missions"] then
+                  and v:services()["missions"]
+                  and v:services()["commodity"] then
                planets[#planets + 1] = {v, s}
             end
          end 
