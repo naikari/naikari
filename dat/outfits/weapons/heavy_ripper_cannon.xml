@@ -16,7 +16,7 @@
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>ExpS</spfx_armour>
   <delay>1.4</delay>
-  <speed>1300</speed>
+  <speed>700</speed>
   <range>2900</range>
   <falloff>2500</falloff>
   <gfx_end>ripperM-end.png</gfx_end>
@@ -28,7 +28,7 @@
   <damage>
    <type>normal</type>
    <penetrate>48</penetrate>
-   <physical>57.75</physical>
+   <physical>77</physical>
    <disable>2.8</disable>
   </damage>
  </specific>
