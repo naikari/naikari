@@ -187,6 +187,18 @@ int outfit_compareTech( const void *outfit1, const void *outfit2 )
    o1 = * (const Outfit**) outfit1;
    o2 = * (const Outfit**) outfit2;
 
+   /* Compare ship outfits vs. maps, licenses, etc. */
+   if ((o1->type >= OUTFIT_TYPE_MAP) && (o2->type < OUTFIT_TYPE_MAP))
+      return +1;
+   else if ((o1->type < OUTFIT_TYPE_MAP) && (o2->type >= OUTFIT_TYPE_MAP))
+      return -1;
+
+   /* Compare required vs. optional. */
+   if (sp_required(o1->slot.spid) && !sp_required(o2->slot.spid))
+      return +1;
+   else if (!sp_required(o1->slot.spid) && sp_required(o2->slot.spid))
+      return -1;
+
    /* Compare slot type. */
    if (o1->slot.type < o2->slot.type)
       return +1;
@@ -198,6 +210,14 @@ int outfit_compareTech( const void *outfit1, const void *outfit2 )
       return -1;
    else if (o1->type > o2->type)
       return +1;
+
+   /* Compare type-dependent attributes. */
+   if (o1->type == OUTFIT_TYPE_MODIFICATION) {
+      if (o1->u.mod.active && !o2->u.mod.active)
+         return -1;
+      else if (!o1->u.mod.active && o2->u.mod.active)
+         return +1;
+   }
 
    /* Compare named types. */
    if ((o1->typename == NULL) && (o2->typename != NULL))
@@ -786,29 +806,59 @@ double outfit_cooldown( const Outfit* o )
  */
 const char* outfit_getType( const Outfit* o )
 {
-   const char* outfit_typename[] = {
-         N_("NULL"),
-         N_("Bolt Cannon"),
-         N_("Beam"),
-         N_("Bolt Turret"),
-         N_("Turret Beam"),
-         N_("Launcher"),
-         N_("Ammunition"),
-         N_("Turret Launcher"),
-         N_("Ship Modification"),
-         N_("Afterburner"),
-         N_("Fighter Bay"),
-         N_("Fighter"),
-         N_("Star Map"),
-         N_("Local Map"),
-         N_("GUI"),
-         N_("License"),
-   };
-
    /* Name override. */
    if (o->typename != NULL)
       return o->typename;
-   return outfit_typename[o->type];
+
+   switch (o->type) {
+      case OUTFIT_TYPE_BOLT:
+         return N_("Bolt Cannon");
+         break;
+      case OUTFIT_TYPE_BEAM:
+         return N_("Beam");
+         break;
+      case OUTFIT_TYPE_TURRET_BOLT:
+         return N_("Bolt Turret");
+         break;
+      case OUTFIT_TYPE_TURRET_BEAM:
+         return N_("Turret Beam");
+         break;
+      case OUTFIT_TYPE_LAUNCHER:
+         return N_("Launcher");
+         break;
+      case OUTFIT_TYPE_TURRET_LAUNCHER:
+         return N_("Turret Launcher");
+         break;
+      case OUTFIT_TYPE_AMMO:
+         return N_("Ammunition");
+         break;
+      case OUTFIT_TYPE_FIGHTER_BAY:
+         return N_("Fighter Bay");
+         break;
+      case OUTFIT_TYPE_FIGHTER:
+         return N_("Fighter");
+         break;
+      case OUTFIT_TYPE_AFTERBURNER:
+         return N_("Afterburner");
+         break;
+      case OUTFIT_TYPE_MODIFICATION:
+         return N_("Ship Modification");
+         break;
+      case OUTFIT_TYPE_MAP:
+         return N_("Star Map");
+         break;
+      case OUTFIT_TYPE_LOCALMAP:
+         return N_("Local Map");
+         break;
+      case OUTFIT_TYPE_GUI:
+         return N_("GUI");
+         break;
+      case OUTFIT_TYPE_LICENSE:
+         return N_("License");
+         break;
+      default:
+         return N_("NULL");
+   }
 }
 
 
@@ -820,19 +870,32 @@ const char* outfit_getType( const Outfit* o )
  */
 const char* outfit_getTypeBroad( const Outfit* o )
 {
-   if (outfit_isBolt(o))            return N_("Bolt Weapon");
-   else if (outfit_isBeam(o))       return N_("Beam Weapon");
-   else if (outfit_isLauncher(o))   return N_("Launcher");
-   else if (outfit_isAmmo(o))       return N_("Ammo");
-   else if (outfit_isMod(o))        return N_("Modification");
-   else if (outfit_isAfterburner(o)) return N_("Afterburner");
-   else if (outfit_isFighterBay(o)) return N_("Fighter Bay");
-   else if (outfit_isFighter(o))    return N_("Fighter");
-   else if (outfit_isMap(o))        return N_("Map");
-   else if (outfit_isLocalMap(o))   return N_("Local Map");
-   else if (outfit_isGUI(o))        return N_("GUI");
-   else if (outfit_isLicense(o))    return N_("License");
-   else                             return N_("Unknown");
+   if (outfit_isBolt(o))
+      return N_("Bolt Weapon");
+   else if (outfit_isBeam(o))
+      return N_("Beam Weapon");
+   else if (outfit_isLauncher(o))
+      return N_("Launcher");
+   else if (outfit_isAmmo(o))
+      return N_("Ammo");
+   else if (outfit_isMod(o))
+      return N_("Modification");
+   else if (outfit_isAfterburner(o))
+      return N_("Afterburner");
+   else if (outfit_isFighterBay(o))
+      return N_("Fighter Bay");
+   else if (outfit_isFighter(o))
+      return N_("Fighter");
+   else if (outfit_isMap(o))
+      return N_("Map");
+   else if (outfit_isLocalMap(o))
+      return N_("Local Map");
+   else if (outfit_isGUI(o))
+      return N_("GUI");
+   else if (outfit_isLicense(o))
+      return N_("License");
+   else
+      return N_("Unknown");
 }
 
 

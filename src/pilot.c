@@ -1625,7 +1625,7 @@ void pilot_updateDisable( Pilot* p, const unsigned int shooter )
 static void pilot_dead( Pilot* p, unsigned int killer )
 {
    HookParam hparam;
-   const Pilot *killer_p;
+   Pilot *killer_p;
 
    if (pilot_isFlag(p,PILOT_DEAD))
       return; /* he's already dead */
