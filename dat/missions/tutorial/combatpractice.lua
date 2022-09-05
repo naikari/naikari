@@ -393,7 +393,7 @@ function pilot_death(plt)
    -- If we're here, no drones are left alive, so finish the mission.
    remove_safety()
    player.msg(n_("MISSION SUCCESSFUL: The practice drone is defeated.",
-         "MISSION SUCCESSFUL: All practice drones are defeated."), numdrones)
+         "MISSION SUCCESSFUL: All practice drones are defeated.", numdrones))
    misn.finish(true)
 end
 
