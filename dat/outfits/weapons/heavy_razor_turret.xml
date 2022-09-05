@@ -16,8 +16,8 @@
   <sound>ion</sound>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
-  <delay>1.45</delay>
-  <speed>700</speed>
+  <delay>2.9</delay>
+  <speed>1200</speed>
   <range>6800</range>
   <falloff>4800</falloff>
   <gfx_end>razorL-end.png</gfx_end>

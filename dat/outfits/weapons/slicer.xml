@@ -15,8 +15,8 @@
   <sound>ion</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>ExpS</spfx_armour>
-  <delay>1.2</delay>
-  <speed>700</speed>
+  <delay>2.4</delay>
+  <speed>1300</speed>
   <range>2200</range>
   <falloff>1800</falloff>
   <gfx_end>razorS-end.png</gfx_end>
