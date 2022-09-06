@@ -501,6 +501,173 @@
   <item>Mercenary License</item>
  </tech>
 
+ <!-- Generic Weapons -->
+ <tech name="Basic Missiles">
+  <item>Unicorp Mace Launcher</item>
+  <item>Unicorp Banshee Launcher</item>
+  <item>Unicorp Fury Launcher</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Elite Missiles">
+  <item>TeraCom Mace Launcher</item>
+  <item>TeraCom Banshee Launcher</item>
+  <item>TeraCom Fury Launcher</item>
+  <item>Unicorp Headhunter Launcher</item>
+  <item>Unicorp Medusa Launcher</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Turret Missiles">
+  <item>Enygma Systems Turreted Fury Launcher</item>
+  <item>Enygma Systems Turreted Headhunter Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Anti-Fighter Missiles">
+  <item>Unicorp Fury Launcher</item>
+  <item>TeraCom Fury Launcher</item>
+  <item>Unicorp Headhunter Launcher</item>
+  <item>TeraCom Headhunter Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Anti-Destroyer Missiles">
+  <item>Enygma Systems Spearhead Launcher</item>
+  <item>Unicorp Vengeance Launcher</item>
+  <item>TeraCom Vengeance Launcher</item>
+  <item>Unicorp Medusa Launcher</item>
+  <item>TeraCom Medusa Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Anti-Cruiser Missiles">
+  <item>Unicorp Caesar IV Launcher</item>
+  <item>TeraCom Imperator Launcher</item>
+  <item>Enygma Systems Huntsman Launcher</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Aerosys Fighter Bays">
+  <item>Mini Hyena Fighter Bay</item>
+  <item>Hyena Fighter Bay</item>
+ </tech>
+ <tech name="Nexus Fighter Bays">
+  <item>Mini Shark Fighter Bay</item>
+  <item>Shark Fighter Bay</item>
+  <item>Mini Lancelot Fighter Bay</item>
+  <item>Lancelot Fighter Bay</item>
+ </tech>
+
+ <!-- Regional Weapons -->
+ <tech name="Small Laser">
+  <item>Laser Cannon MK1</item>
+  <item>Laser Cannon MK2</item>
+  <item>Laser Turret MK1</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Laser">
+  <item>Ripper Cannon</item>
+  <item>Heavy Ripper Cannon</item>
+  <item>Laser Turret MK2</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Laser">
+  <item>Heavy Ripper Turret</item>
+  <item>Heavy Laser Turret</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Beam">
+  <item>Particle Lance</item>
+  <item>Orion Lance</item>
+  <item>Particle Beam</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Beam">
+  <item>Grave Lance</item>
+  <item>Orion Beam</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Beam">
+  <item>Grave Beam</item>
+  <item>Ragnarok Beam</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Plasma">
+  <item>Plasma Blaster MK1</item>
+  <item>Plasma Blaster MK2</item>
+  <item>Plasma Turret MK1</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Plasma">
+  <item>Plasma Cannon</item>
+  <item>Plasma Cluster Cannon</item>
+  <item>Plasma Turret MK2</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Plasma">
+  <item>Plasma Cluster Turret</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Razor">
+  <item>Razor MK1</item>
+  <item>Razor MK2</item>
+  <item>Razor Turret MK1</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Razor">
+  <item>Slicer</item>
+  <item>Heavy Ripper Cannon</item>
+  <item>Razor Turret MK2</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Small Kinetic">
+  <item>Gauss Gun</item>
+  <item>Vulcan Gun</item>
+  <item>Turreted Gauss Gun</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Kinetic">
+  <item>Shredder</item>
+  <item>Mass Driver</item>
+  <item>Turreted Vulcan Gun</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Kinetic">
+  <item>Railgun</item>
+  <item>Turreted Mass Driver</item>
+  <item>Railgun Turret</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+ <tech name="Small Ion">
+  <item>Ion Cannon</item>
+  <item>Weapons Ionizer</item>
+  <item>Light Weapon License</item>
+ </tech>
+ <tech name="Medium Ion">
+  <item>Heavy Ion Cannon</item>
+  <item>Laser Turret MK2</item>
+  <item>EMP Grenade Launcher</item>
+  <item>Medium Weapon License</item>
+ </tech>
+ <tech name="Heavy Ion">
+  <item>Heavy Ion Turret</item>
+  <item>Heavy Laser Turret</item>
+  <item>Heavy Weapon License</item>
+ </tech>
+
+ <!-- Utilities -->
+ <tech name="Basic Yacht Utilities">
+  <item>Unicorp Scrambler</item>
+  <item>Rotary Turbo Modulator</item>
+  <item>Sensor Array</item>
+  <item>Unicorp Jammer</item>
+  <item>Generic Afterburner</item>
+ </tech>
+ <tech name="Elite Yacht Utilities">
+  <item>Small Shield Booster</item>
+  <item>Reactor Class I</item>
+  <item>Emergency Shield Booster</item>
+  <item>Milspec Jammer</item>
+  <item>Hellburner</item>
+ </tech>
+
  <!-- Cores -->
  <tech name="Crappy Core Systems">
   <item>Previous Generation Small Systems</item>
@@ -682,157 +849,6 @@
   <item>Tricon Typhoon II Engine</item>
   <item>Melendez Mammoth XL Engine</item>
   <item>S&amp;K Superheavy Combat Plating</item>
- </tech>
-
- <!-- Generic Weapons -->
- <tech name="Basic Missiles">
-  <item>Unicorp Mace Launcher</item>
-  <item>Unicorp Banshee Launcher</item>
-  <item>Unicorp Fury Launcher</item>
-  <item>Light Weapon License</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Elite Missiles">
-  <item>TeraCom Mace Launcher</item>
-  <item>TeraCom Banshee Launcher</item>
-  <item>TeraCom Fury Launcher</item>
-  <item>Unicorp Headhunter Launcher</item>
-  <item>Unicorp Medusa Launcher</item>
-  <item>Light Weapon License</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Turret Missiles">
-  <item>Enygma Systems Turreted Fury Launcher</item>
-  <item>Enygma Systems Turreted Headhunter Launcher</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Anti-Fighter Missiles">
-  <item>Unicorp Fury Launcher</item>
-  <item>TeraCom Fury Launcher</item>
-  <item>Unicorp Headhunter Launcher</item>
-  <item>TeraCom Headhunter Launcher</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Anti-Destroyer Missiles">
-  <item>Enygma Systems Spearhead Launcher</item>
-  <item>Unicorp Vengeance Launcher</item>
-  <item>TeraCom Vengeance Launcher</item>
-  <item>Unicorp Medusa Launcher</item>
-  <item>TeraCom Medusa Launcher</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Anti-Cruiser Missiles">
-  <item>Unicorp Caesar IV Launcher</item>
-  <item>TeraCom Imperator Launcher</item>
-  <item>Enygma Systems Huntsman Launcher</item>
-  <item>Heavy Weapon License</item>
- </tech>
- <tech name="Aerosys Fighter Bays">
-  <item>Mini Hyena Fighter Bay</item>
-  <item>Hyena Fighter Bay</item>
- </tech>
- <tech name="Nexus Fighter Bays">
-  <item>Mini Shark Fighter Bay</item>
-  <item>Shark Fighter Bay</item>
-  <item>Mini Lancelot Fighter Bay</item>
-  <item>Lancelot Fighter Bay</item>
- </tech>
-
- <!-- Regional Weapons -->
- <tech name="Small Laser">
-  <item>Laser Cannon MK1</item>
-  <item>Laser Cannon MK2</item>
-  <item>Laser Turret MK1</item>
-  <item>Light Weapon License</item>
- </tech>
- <tech name="Medium Laser">
-  <item>Ripper Cannon</item>
-  <item>Heavy Ripper Cannon</item>
-  <item>Laser Turret MK2</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Heavy Laser">
-  <item>Heavy Ripper Turret</item>
-  <item>Heavy Laser Turret</item>
-  <item>Heavy Weapon License</item>
- </tech>
- <tech name="Small Beam">
-  <item>Particle Lance</item>
-  <item>Orion Lance</item>
-  <item>Particle Beam</item>
-  <item>Light Weapon License</item>
- </tech>
- <tech name="Medium Beam">
-  <item>Grave Lance</item>
-  <item>Orion Beam</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Heavy Beam">
-  <item>Grave Beam</item>
-  <item>Ragnarok Beam</item>
-  <item>Heavy Weapon License</item>
- </tech>
- <tech name="Small Plasma">
-  <item>Plasma Blaster MK1</item>
-  <item>Plasma Blaster MK2</item>
-  <item>Plasma Turret MK1</item>
-  <item>Light Weapon License</item>
- </tech>
- <tech name="Medium Plasma">
-  <item>Plasma Cannon</item>
-  <item>Plasma Cluster Cannon</item>
-  <item>Plasma Turret MK2</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Heavy Plasma">
-  <item>Plasma Cluster Turret</item>
-  <item>Heavy Weapon License</item>
- </tech>
- <tech name="Small Razor">
-  <item>Razor MK1</item>
-  <item>Razor MK2</item>
-  <item>Razor Turret MK1</item>
-  <item>Light Weapon License</item>
- </tech>
- <tech name="Medium Razor">
-  <item>Slicer</item>
-  <item>Heavy Ripper Cannon</item>
-  <item>Razor Turret MK2</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Small Kinetic">
-  <item>Gauss Gun</item>
-  <item>Vulcan Gun</item>
-  <item>Turreted Gauss Gun</item>
-  <item>Light Weapon License</item>
- </tech>
- <tech name="Medium Kinetic">
-  <item>Shredder</item>
-  <item>Mass Driver</item>
-  <item>Turreted Vulcan Gun</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Heavy Kinetic">
-  <item>Railgun</item>
-  <item>Turreted Mass Driver</item>
-  <item>Railgun Turret</item>
-  <item>Heavy Weapon License</item>
- </tech>
- <tech name="Small Ion">
-  <item>Ion Cannon</item>
-  <item>Weapons Ionizer</item>
-  <item>Light Weapon License</item>
- </tech>
- <tech name="Medium Ion">
-  <item>Heavy Ion Cannon</item>
-  <item>Laser Turret MK2</item>
-  <item>EMP Grenade Launcher</item>
-  <item>Medium Weapon License</item>
- </tech>
- <tech name="Heavy Ion">
-  <item>Heavy Ion Turret</item>
-  <item>Heavy Laser Turret</item>
-  <item>Heavy Weapon License</item>
  </tech>
 
  <tech name="Basic Outfits 1">
