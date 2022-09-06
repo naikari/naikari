@@ -1012,21 +1012,21 @@ if (strcasecmp(buf,(s))==0) return t /**< Define to help with outfit_strToOutfit
  */
 static OutfitType outfit_strToOutfitType( char *buf )
 {
-   O_CMP("bolt",           OUTFIT_TYPE_BOLT);
-   O_CMP("beam",           OUTFIT_TYPE_BEAM);
-   O_CMP("turret bolt",    OUTFIT_TYPE_TURRET_BOLT);
-   O_CMP("turret beam",    OUTFIT_TYPE_TURRET_BEAM);
-   O_CMP("launcher",       OUTFIT_TYPE_LAUNCHER);
-   O_CMP("ammo",           OUTFIT_TYPE_AMMO);
-   O_CMP("turret launcher",OUTFIT_TYPE_TURRET_LAUNCHER);
-   O_CMP("modification",   OUTFIT_TYPE_MODIFICATION);
-   O_CMP("afterburner",    OUTFIT_TYPE_AFTERBURNER);
-   O_CMP("fighter bay",    OUTFIT_TYPE_FIGHTER_BAY);
-   O_CMP("fighter",        OUTFIT_TYPE_FIGHTER);
-   O_CMP("map",            OUTFIT_TYPE_MAP);
-   O_CMP("localmap",       OUTFIT_TYPE_LOCALMAP);
-   O_CMP("license",        OUTFIT_TYPE_LICENSE);
-   O_CMP("gui",            OUTFIT_TYPE_GUI);
+   O_CMP("bolt", OUTFIT_TYPE_BOLT);
+   O_CMP("beam", OUTFIT_TYPE_BEAM);
+   O_CMP("turret bolt", OUTFIT_TYPE_TURRET_BOLT);
+   O_CMP("turret beam", OUTFIT_TYPE_TURRET_BEAM);
+   O_CMP("launcher", OUTFIT_TYPE_LAUNCHER);
+   O_CMP("ammo", OUTFIT_TYPE_AMMO);
+   O_CMP("turret launcher", OUTFIT_TYPE_TURRET_LAUNCHER);
+   O_CMP("modification", OUTFIT_TYPE_MODIFICATION);
+   O_CMP("afterburner", OUTFIT_TYPE_AFTERBURNER);
+   O_CMP("fighter bay", OUTFIT_TYPE_FIGHTER_BAY);
+   O_CMP("fighter", OUTFIT_TYPE_FIGHTER);
+   O_CMP("map", OUTFIT_TYPE_MAP);
+   O_CMP("localmap", OUTFIT_TYPE_LOCALMAP);
+   O_CMP("license", OUTFIT_TYPE_LICENSE);
+   O_CMP("gui", OUTFIT_TYPE_GUI);
 
    WARN(_("Invalid outfit type: '%s'"),buf);
    return  OUTFIT_TYPE_NULL;
