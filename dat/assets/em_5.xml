@@ -31,11 +31,11 @@
   <bar>The Drunken Lobster has a plaque commemorating the time the Emperor spent on Em 5. It seems unlikely he ever visited this bar, though, given its less than refined patrons and threadbare furniture.</bar>
  </general>
  <tech>
-  <item>Systems Medium</item>
-  <item>Hulls Medium</item>
-  <item>Laser 2</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Outfits 2</item>
-  <item>Hulls High</item>
+  <item>Common Outfits</item>
+  <item>Small Laser</item>
+  <item>Basic Courier Utilities</item>
+  <item>Basic Courier Structurals</item>
+  <item>Basic Courier Cores</item>
+  <item>Couriers</item>
  </tech>
 </asset>
