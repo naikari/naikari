@@ -723,6 +723,16 @@
   <item>Heavy Laser Turret</item>
   <item>Heavy Weapon License</item>
  </tech>
+ <tech name="Small Bioplasma">
+  <item>BioPlasma Stinger Stage 1</item>
+  <item>BioPlasma Claw Stage 1</item>
+ </tech>
+ <tech name="Medium Bioplasma">
+  <item>BioPlasma Fang Stage 1</item>
+ </tech>
+ <tech name="Heavy Bioplasma">
+  <item>BioPlasma Talon Stage 1</item>
+ </tech>
 
  <!-- Yacht Outfits -->
  <tech name="Basic Yacht Utilities">
@@ -1216,6 +1226,44 @@
   <item>S&amp;K Superheavy Combat Plating</item>
  </tech>
 
+ <!-- Bioship outfits -->
+ <tech name="Small Bio Cores">
+  <item>Ultralight Brain Stage 1</item>
+  <item>Light Brain Stage 1</item>
+  <item>Ultralight Fast Fin Stage 1</item>
+  <item>Ultralight Strong Fin Stage 1</item>
+  <item>Light Fast Fin Stage 1</item>
+  <item>Light Strong Fin Stage 1</item>
+  <item>Ultralight Shell Stage 1</item>
+  <item>Light Shell Stage 1</item>
+ </tech>
+ <tech name="Medium Bio Cores">
+  <item>Medium Brain Stage 1</item>
+  <item>Medium-Heavy Brain Stage 1</item>
+  <item>Medium Fast Fin Stage 1</item>
+  <item>Medium-Heavy Fast Fin Stage 1</item>
+  <item>Medium Strong Fin Stage 1</item>
+  <item>Medium-Heavy Strong Fin Stage 1</item>
+  <item>Medium Shell Stage 1</item>
+  <item>Medium-Heavy Shell Stage 1</item>
+ </tech>
+ <tech name="Large Bio Cores">
+  <item>Heavy Brain Stage 1</item>
+  <item>Superheavy Brain Stage 1</item>
+  <item>Heavy Shell Stage 1</item>
+  <item>Superheavy Shell Stage 1</item>
+  <item>Heavy Fast Fin Stage 1</item>
+  <item>Superheavy Fast Fin Stage 1</item>
+  <item>Heavy Strong Fin Stage 1</item>
+  <item>Superheavy Strong Fin Stage 1</item>
+ </tech>
+
+ <!-- Military Outfits -->
+ <tech name="Soromid Military Outfits">
+  <item>BioPlasma Tentacle Stage 1</item>
+  <item>Brigand Fighter Bay</item>
+ </tech>
+
  <!-- Generic Ships -->
  <tech name="Civilian Ships">
   <item>Llama</item>
@@ -1329,7 +1377,7 @@
 
  <!-- Sirius Ships -->
  <tech name="Sirius Small Ships">
-  <item>Shroedinger</item>
+  <item>Schroedinger</item>
   <item>Sirius Fidelity</item>
  </tech>
  <tech name="Sirius Medium Ships">
