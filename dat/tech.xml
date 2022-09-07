@@ -500,6 +500,68 @@
   <item>Local System Map</item>
   <item>Mercenary License</item>
  </tech>
+ <tech name="Radar Modifiers">
+  <item>Jump Scanner</item>
+  <item>Unicorp Scrambler</item>
+  <item>Sensor Array</item>
+  <item>Milspec Scrambler</item>
+  <item>Unicorp Jammer</item>
+  <item>Milspec Jammer</item>
+ </tech>
+ <tech name="Agility Modifiers">
+  <item>Reverse Thrusters</item>
+  <item>Generic Afterburner</item>
+  <item>Hellburner</item>
+  <item>Steering Thrusters</item>
+  <item>Engine Reroute</item>
+  <item>Improved Stabilizer</item>
+ </tech>
+ <tech name="Cannon Modifiers">
+  <item>Forward Shock Absorbers</item>
+  <item>Power Regulation Override</item>
+  <item>Weapons Ionizer</item>
+ </tech>
+ <tech name="Turret Modifiers">
+  <item>Rotary Turbo Modulator</item>
+  <item>Targeting Array</item>
+  <item>Improved Power Regulator</item>
+  <item>Turreted Weapons Ionizer</item>
+ </tech>
+ <tech name="Shield Modifiers">
+  <item>Small Shield Booster</item>
+  <item>Medium Shield Booster</item>
+  <item>Large Shield Booster</item>
+  <item>Emergency Shield Booster</item>
+  <item>Shield Capacitor</item>
+  <item>Shield Capacitor II</item>
+  <item>Shield Capacitor III</item>
+  <item>Shield Capacitor IV</item>
+ </tech>
+ <tech name="Armor Modifiers">
+  <item>Droid Repair Crew</item>
+  <item>Plasteel Plating</item>
+  <item>Nanobond Plating</item>
+  <item>Biometal Armor</item>
+ </tech>
+ <tech name="Energy Modifiers">
+  <item>Solar Panel</item>
+  <item>Reactor Class I</item>
+  <item>Reactor Class II</item>
+  <item>Reactor Class III</item>
+  <item>Battery</item>
+  <item>Battery II</item>
+  <item>Battery III</item>
+ </tech>
+ <tech name="Fuel Modifiers">
+  <item>Fuel Pod</item>
+  <item>Medium Fuel Pod</item>
+  <item>Large Fuel Pod</item>
+ </tech>
+ <tech name="Cargo Modifiers">
+  <item>Cargo Pod</item>
+  <item>Medium Cargo Pod</item>
+  <item>Large Cargo Pod</item>
+ </tech>
  <tech name="Crappy Core Systems">
   <item>Previous Generation Small Systems</item>
   <item>Previous Generation Medium Systems</item>
@@ -1012,6 +1074,25 @@
  </tech>
 
  <!-- Destroyer Outfits -->
+ <tech name="Basic Destroyer Utilities">
+  <item>Reverse Thrusters</item>
+  <item>Forward Shock Absorbers</item>
+  <item>Power Regulation Override</item>
+  <item>Rotary Turbo Modulator</item>
+  <item>Medium Shield Booster</item>
+  <item>Targeting Array</item>
+  <item>Reactor Class II</item>
+  <item>Weapons Ionizer</item>
+ </tech>
+ <tech name="Elite Destroyer Utilities">
+  <item>Sensor Array</item>
+  <item>Improved Power Regulator</item>
+  <item>Droid Repair Crew</item>
+  <item>Large Shield Booster</item>
+  <item>Reactor Class III</item>
+  <item>Emergency Shield Booster</item>
+  <item>Turreted Weapons Ionizer</item>
+ </tech>
  <tech name="Basic Destroyer Structurals">
   <item>Plasteel Plating</item>
   <item>Medium Fuel Pod</item>
@@ -1040,6 +1121,25 @@
  </tech>
 
  <!-- Cruiser Outfits -->
+ <tech name="Basic Cruiser Utilities">
+  <item>Reverse Thrusters</item>
+  <item>Forward Shock Absorbers</item>
+  <item>Power Regulation Override</item>
+  <item>Rotary Turbo Modulator</item>
+  <item>Medium Shield Booster</item>
+  <item>Targeting Array</item>
+  <item>Reactor Class II</item>
+  <item>Weapons Ionizer</item>
+ </tech>
+ <tech name="Elite Cruiser Utilities">
+  <item>Sensor Array</item>
+  <item>Improved Power Regulator</item>
+  <item>Droid Repair Crew</item>
+  <item>Large Shield Booster</item>
+  <item>Reactor Class III</item>
+  <item>Emergency Shield Booster</item>
+  <item>Turreted Weapons Ionizer</item>
+ </tech>
  <tech name="Basic Cruiser Structurals">
   <item>Plasteel Plating</item>
   <item>Medium Fuel Pod</item>
@@ -1071,6 +1171,21 @@
  </tech>
 
  <!-- Carrier / Heavy Cruiser Outfits -->
+ <tech name="Basic Carrier Utilities">
+  <item>Rotary Turbo Modulator</item>
+  <item>Medium Shield Booster</item>
+  <item>Targeting Array</item>
+  <item>Droid Repair Crew</item>
+  <item>Reactor Class II</item>
+  <item>Emergency Shield Booster</item>
+ </tech>
+ <tech name="Elite Carrier Utilities">
+  <item>Sensor Array</item>
+  <item>Improved Power Regulator</item>
+  <item>Large Shield Booster</item>
+  <item>Reactor Class III</item>
+  <item>Turreted Weapons Ionizer</item>
+ </tech>
  <tech name="Basic Carrier Structurals">
   <item>Plasteel Plating</item>
   <item>Medium Fuel Pod</item>
