@@ -1216,6 +1216,189 @@
   <item>S&amp;K Superheavy Combat Plating</item>
  </tech>
 
+ <!-- Generic Ships -->
+ <tech name="Civilian Ships">
+  <item>Llama</item>
+  <item>Schroedinger</item>
+  <item>Hyena</item>
+  <item>Gawain</item>
+ </tech>
+ <tech name="Couriers">
+  <item>Llama</item>
+  <item>Quicksilver</item>
+  <item>Koala</item>
+ </tech>
+ <tech name="Freighters">
+  <item>Mule</item>
+  <item>Rhino</item>
+  <item>Large Civilian Vessel License</item>
+ </tech>
+ <tech name="Generic Light Fighters">
+  <item>Llama</item>
+  <item>Hyena</item>
+ </tech>
+ <tech name="Generic Fighters">
+  <item>Vendetta</item>
+  <item>Lancelot</item>
+ </tech>
+ <tech name="Generic Bombers">
+  <item>Ancestor</item>
+ </tech>
+ <tech name="Generic Corvettes">
+  <item>Phalanx</item>
+  <item>Admonisher</item>
+ </tech>
+ <tech name="Generic Destroyers">
+  <item>Vigilance</item>
+  <item>Pacifier</item>
+ </tech>
+ <tech name="Generic Cruisers">
+  <item>Kestrel</item>
+  <item>Hawking</item>
+ </tech>
+
+ <!-- Generic ships sorted by manufacturer -->
+ <tech name="Nexus Small Ships">
+  <item>Shark</item>
+  <item>Lancelot</item>
+ </tech>
+ <tech name="Nexus Medium Ships">
+  <item>Admonisher</item>
+  <item>Pacifier</item>
+ </tech>
+ <tech name="Nexus Large Ships">
+  <item>Hawking</item>
+ </tech>
+ <tech name="Dvaered Civilian Small Ships">
+  <item>Vendetta</item>
+  <item>Ancestor</item>
+ </tech>
+ <tech name="Dvaered Civilian Medium Ships">
+  <item>Phalanx</item>
+  <item>Vigilance</item>
+ </tech>
+
+ <!-- Pirate Ships -->
+ <tech name="Pirate Small Ships">
+  <item>Pirate Shark</item>
+  <item>Pirate Vendetta</item>
+  <item>Pirate Ancestor</item>
+ </tech>
+ <tech name="Pirate Medium Ships">
+  <item>Pirate Phalanx</item>
+  <item>Pirate Admonisher</item>
+  <item>Pirate Rhino</item>
+ </tech>
+ <tech name="Pirate Large Ships">
+  <item>Pirate Kestrel</item>
+ </tech>
+
+ <!-- Empire Ships -->
+ <tech name="Empire Small Ships">
+  <item>Empire Shark</item>
+  <item>Empire Lancelot</item>
+ </tech>
+ <tech name="Empire Medium Ships">
+  <item>Empire Admonisher</item>
+  <item>Empire Pacifier</item>
+ </tech>
+ <tech name="Empire Large Ships">
+  <item>Empire Hawking</item>
+ </tech>
+ <tech name="Empire Restricted Ships">
+  <item>Empire Peacemaker</item>
+ </tech>
+
+ <!-- Goddard Ships -->
+ <tech name="Goddard Ships">
+  <item>Goddard</item>
+ </tech>
+
+ <!-- Dvaered Ships -->
+ <tech name="Dvaered Military Small Ships">
+  <item>Dvaered Vendetta</item>
+  <item>Dvaered Ancestor</item>
+ </tech>
+ <tech name="Dvaered Military Medium Ships">
+  <item>Dvaered Phalanx</item>
+  <item>Dvaered Vigilance</item>
+ </tech>
+ <tech name="Dvaered Restricted Ships">
+  <item>Dvaered Goddard</item>
+ </tech>
+
+ <!-- Sirius Ships -->
+ <tech name="Sirius Small Ships">
+  <item>Shroedinger</item>
+  <item>Sirius Fidelity</item>
+ </tech>
+ <tech name="Sirius Medium Ships">
+  <item>Sirius Shaman</item>
+  <item>Sirius Preacher</item>
+ </tech>
+ <tech name="Sirius Large Ships">
+  <item>Sirius Dogma</item>
+ </tech>
+ <tech name="Sirius Restricted Ships">
+  <item>Sirius Divinity</item>
+ </tech>
+
+ <!-- Za'lek Ships -->
+ <tech name="Za'lek Medium Ships">
+  <item>Za'lek Sting</item>
+  <item>Za'lek Demon</item>
+ </tech>
+ <tech name="Za'lek Large Ships">
+  <item>Za'lek Diablo</item>
+ </tech>
+ <tech name="Za'lek Restricted Ships">
+  <item>Za'lek Mephisto</item>
+  <item>Za'lek Hephaestus</item>
+ </tech>
+
+ <!-- Soromid Ships -->
+ <tech name="Soromid Small Ships">
+  <item>Soromid Brigand</item>
+  <item>Soromid Reaver</item>
+  <item>Soromid Marauder</item>
+ </tech>
+ <tech name="Soromid Medium Ships">
+  <item>Soromid Odium</item>
+  <item>Soromid Nyx</item>
+ </tech>
+ <tech name="Soromid Large Ships">
+  <item>Soromid Ira</item>
+ </tech>
+ <tech name="Soromid Restricted Ships">
+  <item>Soromid Arx</item>
+  <item>Soromid Vox</item>
+ </tech>
+
+ <!-- Thurion ships -->
+ <tech name="Thurion Small Ships">
+  <item>Thurion Perspicacity</item>
+  <item>Thurion Ingenuity</item>
+ </tech>
+ <tech name="Thurion Cargo Ships">
+  <item>Thurion Taciturnity</item>
+ </tech>
+ <tech name="Thurion Medium Ships">
+  <item>Thurion Scintillation</item>
+  <item>Thurion Virtuosity</item>
+ </tech>
+ <tech name="Thurion Restricted Ships">
+  <item>Thurion Apprehension</item>
+  <item>Thurion Certitude</item>
+ </tech>
+
+ <!-- Proteron Ships -->
+ <tech name="Proteron Ships">
+  <item>Proteron Derivative</item>
+  <item>Proteron Kahan</item>
+  <item>Proteron Archimedes</item>
+  <item>Proteron Watson</item>
+ </tech>
+
  <tech name="Basic Outfits 1">
   <item>Laser Cannon MK1</item>
   <item>Plasma Blaster MK1</item>
