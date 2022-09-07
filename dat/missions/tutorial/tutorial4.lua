@@ -209,6 +209,13 @@ end
 function safe_target_hostile()
    tk.msg("", fight_text)
    misn.osdActive(5)
+
+   -- Ensure the player has weapons.
+   local p = player.pilot()
+   local n = #p:outfits("weapon")
+   if n < 2 then
+      p:outfitAdd("Laser Cannon MK1", 2 - n)
+   end
 end
 
 

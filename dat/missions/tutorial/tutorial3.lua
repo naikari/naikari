@@ -173,6 +173,13 @@ function asteroid_proximity()
             secondarykey=tutGetKey("secondary")}))
    misn.osdActive(4)
 
+   -- Ensure the player has weapons.
+   local p = player.pilot()
+   local n = #p:outfits("weapon")
+   if n < 2 then
+      p:outfitAdd("Laser Cannon MK1", 2 - n)
+   end
+
    hook.timer(0.5, "timer_mining")
 end
 
