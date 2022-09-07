@@ -1259,9 +1259,43 @@
  </tech>
 
  <!-- Military Outfits -->
+ <tech name="Empire Military Outfits">
+  <item>Turbolaser</item>
+  <item>Mini Empire Shark Fighter Bay</item>
+  <item>Empire Shark Fighter Bay</item>
+  <item>Mini Empire Lancelot Fighter Bay</item>
+  <item>Empire Lancelot Fighter Bay</item>
+ </tech>
+ <tech name="Dvaered Military Outfits">
+  <item>Repeating Railgun</item>
+  <item>Active Plating</item>
+ </tech>
+ <tech name="Sirius Military Outfits">
+  <item>Heavy Razor Turret</item>
+  <item>Mini Fidelity Fighter Bay</item>
+  <item>Fidelity Fighter Bay</item>
+ </tech>
+ <tech name="Za'lek Military Outfits">
+  <item>Za'lek Hunter Launcher</item>
+  <item>Za'lek Reaper Launcher</item>
+  <item>Mini Za'lek Light Drone Fighter Bay</item>
+  <item>Za'lek Light Drone Fighter Bay</item>
+  <item>Za'lek Heavy Drone Fighter Bay</item>
+  <item>Za'lek Bomber Drone Fighter Bay</item>
+ </tech>
  <tech name="Soromid Military Outfits">
   <item>BioPlasma Tentacle Stage 1</item>
   <item>Brigand Fighter Bay</item>
+ </tech>
+ <tech name="Thurion Military Outfits">
+  <item>Nebular Shielding Prototype</item>
+ </tech>
+ <tech name="Proteron Military Outfits">
+  <item>Mini Derivative Fighter Bay</item>
+  <item>Derivative Fighter Bay</item>
+ </tech>
+ <tech name="Collective Military Outfits">
+  <item>Mini Drone Fighter Bay</item>
  </tech>
 
  <!-- Generic Ships -->
@@ -1678,45 +1712,11 @@
  </tech>
 
  <!-- Faction outfits -->
- <tech name="Empire Military Outfits">
-  <item>Turbolaser</item>
-  <item>Mini Empire Shark Fighter Bay</item>
-  <item>Empire Shark Fighter Bay</item>
-  <item>Mini Empire Lancelot Fighter Bay</item>
-  <item>Empire Lancelot Fighter Bay</item>
- </tech>
- <tech name="Dvaered Military Outfits">
-  <item>Repeating Railgun</item>
-  <item>Active Plating</item>
- </tech>
- <tech name="Sirius Military Outfits">
-  <item>Heavy Razor Turret</item>
-  <item>Mini Fidelity Fighter Bay</item>
-  <item>Fidelity Fighter Bay</item>
- </tech>
- <tech name="Za'lek Military Outfits">
-  <item>Za'lek Hunter Launcher</item>
-  <item>Za'lek Reaper Launcher</item>
-  <item>Mini Za'lek Light Drone Fighter Bay</item>
-  <item>Za'lek Light Drone Fighter Bay</item>
-  <item>Za'lek Heavy Drone Fighter Bay</item>
-  <item>Za'lek Bomber Drone Fighter Bay</item>
- </tech>
  <tech name="Thurion Outfits">
   <item>Convulsion Launcher</item>
   <item>Turreted Convulsion Launcher</item>
   <item>Adaptive Stealth Plating</item>
   <item>Map: Thurion Core</item>
- </tech>
- <tech name="Thurion Military Outfits">
-  <item>Nebular Shielding Prototype</item>
- </tech>
- <tech name="Proteron Military Outfits">
-  <item>Mini Derivative Fighter Bay</item>
-  <item>Derivative Fighter Bay</item>
- </tech>
- <tech name="Collective Military Outfits">
-  <item>Mini Drone Fighter Bay</item>
  </tech>
 
  <!-- Bioship outfits -->
