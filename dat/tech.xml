@@ -525,6 +525,7 @@
  <tech name="Turret Missiles">
   <item>Enygma Systems Turreted Fury Launcher</item>
   <item>Enygma Systems Turreted Headhunter Launcher</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Anti-Fighter Missiles">
@@ -532,6 +533,7 @@
   <item>TeraCom Fury Launcher</item>
   <item>Unicorp Headhunter Launcher</item>
   <item>TeraCom Headhunter Launcher</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Anti-Destroyer Missiles">
@@ -540,23 +542,28 @@
   <item>TeraCom Vengeance Launcher</item>
   <item>Unicorp Medusa Launcher</item>
   <item>TeraCom Medusa Launcher</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Anti-Cruiser Missiles">
   <item>Unicorp Caesar IV Launcher</item>
   <item>TeraCom Imperator Launcher</item>
   <item>Enygma Systems Huntsman Launcher</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
  </tech>
  <tech name="Aerosys Fighter Bays">
   <item>Mini Hyena Fighter Bay</item>
   <item>Hyena Fighter Bay</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Nexus Fighter Bays">
   <item>Mini Shark Fighter Bay</item>
   <item>Shark Fighter Bay</item>
   <item>Mini Lancelot Fighter Bay</item>
   <item>Lancelot Fighter Bay</item>
+  <item>Light Combat Vessel License</item>
  </tech>
 
  <!-- Regional Weapons -->
@@ -570,11 +577,14 @@
   <item>Ripper Cannon</item>
   <item>Heavy Ripper Cannon</item>
   <item>Laser Turret MK2</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Heavy Laser">
   <item>Heavy Ripper Turret</item>
   <item>Heavy Laser Turret</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
  </tech>
  <tech name="Small Beam">
@@ -586,11 +596,14 @@
  <tech name="Medium Beam">
   <item>Grave Lance</item>
   <item>Orion Beam</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Heavy Beam">
   <item>Grave Beam</item>
   <item>Ragnarok Beam</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
  </tech>
  <tech name="Small Plasma">
@@ -603,10 +616,13 @@
   <item>Plasma Cannon</item>
   <item>Plasma Cluster Cannon</item>
   <item>Plasma Turret MK2</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Heavy Plasma">
   <item>Plasma Cluster Turret</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
  </tech>
  <tech name="Small Razor">
@@ -619,6 +635,7 @@
   <item>Slicer</item>
   <item>Heavy Ripper Cannon</item>
   <item>Razor Turret MK2</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Small Kinetic">
@@ -631,12 +648,15 @@
   <item>Shredder</item>
   <item>Mass Driver</item>
   <item>Turreted Vulcan Gun</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Heavy Kinetic">
   <item>Railgun</item>
   <item>Turreted Mass Driver</item>
   <item>Railgun Turret</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
  </tech>
  <tech name="Small Ion">
@@ -647,22 +667,31 @@
   <item>Heavy Ion Cannon</item>
   <item>Laser Turret MK2</item>
   <item>EMP Grenade Launcher</item>
+  <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Heavy Ion">
   <item>Heavy Ion Turret</item>
   <item>Heavy Laser Turret</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
  </tech>
  <tech name="Small Bioplasma">
   <item>BioPlasma Stinger Stage 1</item>
   <item>BioPlasma Claw Stage 1</item>
+  <item>Light Weapon License</item>
  </tech>
  <tech name="Medium Bioplasma">
   <item>BioPlasma Fang Stage 1</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
  </tech>
  <tech name="Heavy Bioplasma">
   <item>BioPlasma Talon Stage 1</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+  <item>Heavy Weapon License</item>
  </tech>
 
  <!-- Yacht Outfits -->
@@ -1196,15 +1225,26 @@
   <item>Empire Shark Fighter Bay</item>
   <item>Mini Empire Lancelot Fighter Bay</item>
   <item>Empire Lancelot Fighter Bay</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+  <item>Heavy Weapon License</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Military Outfits">
   <item>Repeating Railgun</item>
   <item>Active Plating</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+  <item>Heavy Weapon License</item>
  </tech>
  <tech name="Sirius Military Outfits">
   <item>Heavy Razor Turret</item>
   <item>Mini Fidelity Fighter Bay</item>
   <item>Fidelity Fighter Bay</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+  <item>Heavy Weapon License</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Za'lek Military Outfits">
   <item>Za'lek Hunter Launcher</item>
@@ -1213,10 +1253,18 @@
   <item>Za'lek Light Drone Fighter Bay</item>
   <item>Za'lek Heavy Drone Fighter Bay</item>
   <item>Za'lek Bomber Drone Fighter Bay</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+  <item>Heavy Weapon License</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Soromid Military Outfits">
   <item>BioPlasma Tentacle Stage 1</item>
   <item>Brigand Fighter Bay</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+  <item>Heavy Weapon License</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Thurion Military Outfits">
   <item>Nebular Shielding Prototype</item>
@@ -1224,9 +1272,11 @@
  <tech name="Proteron Military Outfits">
   <item>Mini Derivative Fighter Bay</item>
   <item>Derivative Fighter Bay</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Collective Military Outfits">
   <item>Mini Drone Fighter Bay</item>
+  <item>Light Combat Vessel License</item>
  </tech>
 
  <!-- Generic Ships -->
@@ -1253,42 +1303,60 @@
  <tech name="Generic Fighters">
   <item>Vendetta</item>
   <item>Lancelot</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Generic Bombers">
   <item>Ancestor</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Generic Corvettes">
   <item>Phalanx</item>
   <item>Admonisher</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Generic Destroyers">
   <item>Vigilance</item>
   <item>Pacifier</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Generic Cruisers">
   <item>Kestrel</item>
   <item>Hawking</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Generic ships sorted by manufacturer -->
  <tech name="Nexus Small Ships">
   <item>Shark</item>
   <item>Lancelot</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Nexus Medium Ships">
   <item>Admonisher</item>
   <item>Pacifier</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Nexus Large Ships">
   <item>Hawking</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Civilian Small Ships">
   <item>Vendetta</item>
   <item>Ancestor</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Civilian Medium Ships">
   <item>Phalanx</item>
   <item>Vigilance</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
 
  <!-- Pirate Ships -->
@@ -1310,63 +1378,98 @@
  <tech name="Empire Small Ships">
   <item>Empire Shark</item>
   <item>Empire Lancelot</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Empire Medium Ships">
   <item>Empire Admonisher</item>
   <item>Empire Pacifier</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Empire Large Ships">
   <item>Empire Hawking</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="Empire Restricted Ships">
   <item>Empire Peacemaker</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Goddard Ships -->
  <tech name="Goddard Ships">
   <item>Goddard</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Dvaered Ships -->
  <tech name="Dvaered Military Small Ships">
   <item>Dvaered Vendetta</item>
   <item>Dvaered Ancestor</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Military Medium Ships">
   <item>Dvaered Phalanx</item>
   <item>Dvaered Vigilance</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Restricted Ships">
   <item>Dvaered Goddard</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Sirius Ships -->
  <tech name="Sirius Small Ships">
   <item>Schroedinger</item>
   <item>Sirius Fidelity</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Sirius Medium Ships">
   <item>Sirius Shaman</item>
   <item>Sirius Preacher</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Sirius Large Ships">
   <item>Sirius Dogma</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="Sirius Restricted Ships">
   <item>Sirius Divinity</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Za'lek Ships -->
  <tech name="Za'lek Medium Ships">
   <item>Za'lek Sting</item>
   <item>Za'lek Demon</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Za'lek Large Ships">
   <item>Za'lek Diablo</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="Za'lek Restricted Ships">
   <item>Za'lek Mephisto</item>
   <item>Za'lek Hephaestus</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Soromid Ships -->
@@ -1374,34 +1477,50 @@
   <item>Soromid Brigand</item>
   <item>Soromid Reaver</item>
   <item>Soromid Marauder</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Soromid Medium Ships">
   <item>Soromid Odium</item>
   <item>Soromid Nyx</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Soromid Large Ships">
   <item>Soromid Ira</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="Soromid Restricted Ships">
   <item>Soromid Arx</item>
   <item>Soromid Vox</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Thurion ships -->
  <tech name="Thurion Small Ships">
   <item>Thurion Perspicacity</item>
   <item>Thurion Ingenuity</item>
+  <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Thurion Cargo Ships">
   <item>Thurion Taciturnity</item>
+  <item>Large Civilian Vessel License</item>
  </tech>
  <tech name="Thurion Medium Ships">
   <item>Thurion Scintillation</item>
   <item>Thurion Virtuosity</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Thurion Restricted Ships">
   <item>Thurion Apprehension</item>
   <item>Thurion Certitude</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
  <!-- Proteron Ships -->
@@ -1410,6 +1529,9 @@
   <item>Proteron Kahan</item>
   <item>Proteron Archimedes</item>
   <item>Proteron Watson</item>
+  <item>Light Combat Vessel License</item>
+  <item>Medium Combat Vessel License</item>
+  <item>Heavy Combat Vessel License</item>
  </tech>
 
 
