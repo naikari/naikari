@@ -30,13 +30,12 @@
   <bar>Semper is an immigrant world, which is reflected in its spaceport bar. The design betrays influences from all over the galaxy, such as a holograph of a Dvaered cruiser, a Sirius crest on some of the furniture and even some Soromid-oriented drinks.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Systems Medium</item>
-  <item>Hulls Medium</item>
-  <item>Engines Low</item>
-  <item>Laser 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Basic Civilian Ships</item>
+  <item>Common Outfits</item>
+  <item>Small Laser</item>
+  <item>Basic Yacht Cores</item>
+  <item>Basic Scout Utilities</item>
+  <item>Basic Scout Structurals</item>
+  <item>Basic Scout Cores</item>
+  <item>Civilian Ships</item>
  </tech>
 </asset>

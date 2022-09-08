@@ -29,9 +29,10 @@
   <bar>In what might be a slight case of overreaction, Reidd's bar is underground, so as not to have to sacrifice any land surface. Still, the primary difference between this bar and most others in the galaxy is that pilots have to take an elevator to reach this one.</bar>
  </general>
  <tech>
-  <item>Hulls Medium</item>
-  <item>Laser 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
+  <item>Common Outfits</item>
+  <item>Cargo Modifiers</item>
+  <item>Elite Courier Utilities</item>
+  <item>Elite Courier Structurals</item>
+  <item>Elite Courier Cores</item>
  </tech>
 </asset>
