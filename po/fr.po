@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-08-29 20:05-0400\n"
+"POT-Creation-Date: 2022-09-09 10:39-0400\n"
 "PO-Revision-Date: 2021-03-17 07:18+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/naev/naev/fr/>\n"
@@ -28977,7 +28977,7 @@ msgstr ""
 #: dat/missions/shark/sh00_ancestorkill.lua:78
 #: dat/missions/shark/sh02_tapping.lua:102
 #: dat/missions/sirius/animaltransport.lua:44
-#: dat/missions/tutorial/tutorial3.lua:107
+#: dat/missions/tutorial/tutorial3.lua:111
 #: dat/missions/tutorial/tutorial4.lua:111 dat/missions/zalek/zlk_test.lua:141
 msgid "Land on {planet} ({system} system)"
 msgstr ""
@@ -42888,13 +42888,13 @@ msgstr ""
 msgid ""
 "\"Excellent! I look forward to working with you.\n"
 "\n"
-"\"Now, to start with, I need you to buy 10 t of Food on my behalf.\" You "
-"begin to protest, but Ian holds up his hand to interrupt. \"Have no fear, "
-"{player}. I wouldn't make you pay for it using your own credits, of course."
-"\" He pulls out a credit chip and hands it to you. \"That should be "
-"sufficient to pay for what I need. I put some extra on just to be absolutely "
-"sure it will cover the cost; you can keep the extra credits left over in "
-"addition to your payment.\n"
+"\"Now, to start with, I need you to buy 10 t #n[10 tonnes]#0 of Food on my "
+"behalf.\" You begin to protest, but Ian holds up his hand to interrupt. "
+"\"Have no fear, {player}. I wouldn't make you pay for it using your own "
+"credits, of course.\" He pulls out a credit chip and hands it to you. \"That "
+"should be sufficient to pay for what I need. I put some extra on just to be "
+"absolutely sure it will cover the cost; you can keep the extra credits left "
+"over in addition to your payment.\n"
 "\n"
 "\"You can buy the Food from the Commodity tab. Once you've picked it up, "
 "return here so we can transfer the Food to my storage unit.\""
@@ -42904,8 +42904,8 @@ msgstr ""
 msgid ""
 "You ask Ian what cargo it was that he needed again, apologizing for "
 "forgetting already. \"Oh, that's no problem!\" he assures you. \"It's 10 t "
-"of Food. You should be able to find it in the Commodity tab. Let me know "
-"when you have it!\""
+"#n[10 tonnes]#0 of Food. You should be able to find it in the Commodity tab. "
+"Let me know when you have it!\""
 msgstr ""
 
 #: dat/missions/tutorial/tutorial2.lua:56
@@ -43011,7 +43011,7 @@ msgstr ""
 msgid ""
 "\"Hello again, {player}! Are you ready for that other job I had for you? "
 "It's a little more effort than the last job, but still not too hard, and "
-"I'll pay you a nice {credits} reward for it.\""
+"I'll pay you a nice {credits} #n[{credits_conv}]#0 reward for it.\""
 msgstr ""
 
 #: dat/missions/tutorial/tutorial3.lua:48
@@ -43103,49 +43103,55 @@ msgstr ""
 msgid "Ian is idling at the bar. He said he has another job for you."
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:90
-#: dat/missions/tutorial/tutorial3.lua:110
+#: dat/missions/tutorial/tutorial3.lua:85
+msgid "{credits} credit"
+msgid_plural "{credits} credits"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dat/missions/tutorial/tutorial3.lua:94
+#: dat/missions/tutorial/tutorial3.lua:114
 msgid "Ian's Supplies"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:95
+#: dat/missions/tutorial/tutorial3.lua:99
 msgid "Press the Take Off button to go into space"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:96
+#: dat/missions/tutorial/tutorial3.lua:100
 msgid "Press {overlaykey} to open your overlay map"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:98
+#: dat/missions/tutorial/tutorial3.lua:102
 msgid ""
 "Fly to Asteroid Field indicated on overlay map by right-clicking the area"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:99
+#: dat/missions/tutorial/tutorial3.lua:103
 msgid "Mine ore from asteroids until your cargo hold is full:"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:100
+#: dat/missions/tutorial/tutorial3.lua:104
 msgid "Select an asteroid by left-clicking on it"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:101
+#: dat/missions/tutorial/tutorial3.lua:105
 msgid ""
 "Use {primarykey} and {secondarykey} to fire your weapons and destroy the "
 "targeted asteroid"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:104
+#: dat/missions/tutorial/tutorial3.lua:108
 msgid "Fly to the location of dropped Ore to collect it"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:105
+#: dat/missions/tutorial/tutorial3.lua:109
 msgid ""
 "Engage Active Cooldown by pressing {autobrake_key} twice, then wait for your "
 "ship to fully cool down"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:135 src/dev_sysedit.c:712 src/map.c:770
+#: dat/missions/tutorial/tutorial3.lua:139 src/dev_sysedit.c:712 src/map.c:770
 msgid "Asteroid Field"
 msgstr ""
 
@@ -52412,48 +52418,48 @@ msgstr ""
 msgid "Music thread did not exit when asked, ignoring..."
 msgstr ""
 
-#: src/naev.c:189 src/naev.c:1092
+#: src/naev.c:189 src/naev.c:1084
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr ""
 
-#: src/naev.c:209
+#: src/naev.c:201
 #, c-format
 msgid "Unable to initialize SDL: %s"
 msgstr ""
 
-#: src/naev.c:226 src/opengl.c:450
+#: src/naev.c:218 src/opengl.c:450
 #, c-format
 msgid "Unable to initialize SDL Video: %s"
 msgstr ""
 
-#: src/naev.c:250
+#: src/naev.c:242
 #, c-format
 msgid "Unable to create config directory '%s'"
 msgstr ""
 
 #. now that we can find translations
-#: src/naev.c:263
+#: src/naev.c:255
 #, c-format
 msgid "Loaded configuration: %s"
 msgstr ""
 
-#: src/naev.c:265
+#: src/naev.c:257
 msgid "Read locations, searched in order:"
 msgstr ""
 
 #. Logging the cache path is noisy, noisy is good at the DEBUG level.
-#: src/naev.c:270
+#: src/naev.c:262
 #, c-format
 msgid "Cache location: %s"
 msgstr ""
 
-#: src/naev.c:271
+#: src/naev.c:263
 #, c-format
 msgid "Write location: %s\n"
 msgstr ""
 
-#: src/naev.c:279
+#: src/naev.c:271
 msgid "Failed to load module start data."
 msgstr ""
 
@@ -52461,130 +52467,130 @@ msgstr ""
 #. * OpenGL
 #.
 #. initializes video output
-#: src/naev.c:294
+#: src/naev.c:286
 msgid "Initializing video output failed, exiting..."
 msgstr ""
 
-#: src/naev.c:311
+#: src/naev.c:303
 msgid "Initializing subsystems..."
 msgstr ""
 
-#: src/naev.c:319
+#: src/naev.c:311
 msgid "Error initializing joystick input"
 msgstr ""
 
-#: src/naev.c:322 src/naev.c:329
+#: src/naev.c:314 src/naev.c:321
 msgid "Failure to open any joystick, falling back to default keybinds"
 msgstr ""
 
-#: src/naev.c:338
+#: src/naev.c:330
 msgid "Sound is disabled!"
 msgstr ""
 
-#: src/naev.c:343
+#: src/naev.c:335
 msgid "Problem setting up sound!"
 msgstr ""
 
 #. Initializes the nebula
 #. An error has happened
-#: src/naev.c:353
+#: src/naev.c:345
 msgid "Unable to initialize the Nebula subsystem!"
 msgstr ""
 
-#: src/naev.c:375
+#: src/naev.c:367
 msgid "Reached main menu"
 msgstr ""
 
-#: src/naev.c:487
+#: src/naev.c:479
 msgid "No loading screens found!"
 msgstr ""
 
 #. order is very important as they're interdependent
-#: src/naev.c:609
+#: src/naev.c:601
 msgid "Loading Commodities..."
 msgstr ""
 
 #. dep for space
-#: src/naev.c:612
+#: src/naev.c:604
 msgid "Loading Special Effects..."
 msgstr ""
 
 #. no dep
-#: src/naev.c:615
+#: src/naev.c:607
 msgid "Loading Damage Types..."
 msgstr ""
 
 #. dep for outfits
-#: src/naev.c:618
+#: src/naev.c:610
 msgid "Loading Outfits..."
 msgstr ""
 
 #. dep for ships, factions
-#: src/naev.c:621
+#: src/naev.c:613
 msgid "Loading Ships..."
 msgstr ""
 
 #. dep for fleet
-#: src/naev.c:624
+#: src/naev.c:616
 msgid "Loading Factions..."
 msgstr ""
 
 #. dep for fleet, space, missions, AI
-#: src/naev.c:627
+#: src/naev.c:619
 msgid "Loading Events..."
 msgstr ""
 
 #. no dep
-#: src/naev.c:630
+#: src/naev.c:622
 msgid "Loading Missions..."
 msgstr ""
 
 #. no dep
-#: src/naev.c:633
+#: src/naev.c:625
 msgid "Loading AI..."
 msgstr ""
 
 #. dep for fleets
-#: src/naev.c:636
+#: src/naev.c:628
 msgid "Loading Fleets..."
 msgstr ""
 
 #. dep for space
-#: src/naev.c:639
+#: src/naev.c:631
 msgid "Loading Techs..."
 msgstr ""
 
 #. dep for space
-#: src/naev.c:642
+#: src/naev.c:634
 msgid "Loading the Universe..."
 msgstr ""
 
-#: src/naev.c:645
+#: src/naev.c:637
 msgid "Loading the UniDiffs..."
 msgstr ""
 
-#: src/naev.c:648
+#: src/naev.c:640
 msgid "Populating Maps..."
 msgstr ""
 
-#: src/naev.c:651
+#: src/naev.c:643
 msgid "Initializing Details.."
 msgstr ""
 
 #. Initialize player stuff.
-#: src/naev.c:658
+#: src/naev.c:650
 msgid "Loading Completed!"
 msgstr ""
 
-#: src/naev.c:801
+#: src/naev.c:793
 msgid "clock_gettime failed, disabling POSIX time."
 msgstr ""
 
-#: src/naev.c:826
+#: src/naev.c:818
 msgid "clock_gettime failed!"
 msgstr ""
 
-#: src/naev.c:902
+#: src/naev.c:894
 #, c-format
 msgid "%.2f FPS"
 msgstr ""
@@ -52595,37 +52601,37 @@ msgstr ""
 #. * to. The number displayed is the rate of time passage as a
 #. * percentage (e.g. 200% if time is passing twice as fast as
 #. * normal).
-#: src/naev.c:918
+#: src/naev.c:910
 #, c-format
 msgid "TC %.0f%%"
 msgstr ""
 
-#: src/naev.c:925
+#: src/naev.c:917
 msgid "PAUSED"
 msgstr ""
 
-#: src/naev.c:1026
+#: src/naev.c:1018
 msgid "Icon (icon.png) not found!"
 msgstr ""
 
-#: src/naev.c:1031
+#: src/naev.c:1023
 msgid "Unable to load icon.png!"
 msgstr ""
 
-#: src/naev.c:1056
+#: src/naev.c:1048
 msgid " debug"
 msgstr ""
 
-#: src/naev.c:1120
+#: src/naev.c:1112
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr ""
 
-#: src/naev.c:1130
+#: src/naev.c:1122
 msgid "SDL is newer than compiled version"
 msgstr ""
 
-#: src/naev.c:1132
+#: src/naev.c:1124
 msgid "SDL is older than compiled version."
 msgstr ""
 
@@ -54513,67 +54519,67 @@ msgstr ""
 msgid "Solid initialization did not specify correct update function!"
 msgstr ""
 
-#: src/pilot.c:897
+#: src/pilot.c:896
 msgid "#oActive cooldown engaged."
 msgstr ""
 
-#: src/pilot.c:955
+#: src/pilot.c:954
 msgid "#oActive cooldown completed."
 msgstr ""
 
-#: src/pilot.c:958
+#: src/pilot.c:957
 #, c-format
 msgid "#rActive cooldown aborted: %s!"
 msgstr ""
 
-#: src/pilot.c:960
+#: src/pilot.c:959
 msgid "#rActive cooldown aborted!"
 msgstr ""
 
-#: src/pilot.c:1126
+#: src/pilot.c:1125
 #, c-format
 msgid "#%cComm %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:1154
+#: src/pilot.c:1153
 #, c-format
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:2450 src/pilot.c:2499
+#: src/pilot.c:2449 src/pilot.c:2498
 msgid "#rJump aborted: strayed too far from jump point."
 msgstr ""
 
-#: src/pilot.c:2457
+#: src/pilot.c:2456
 msgid "#rJump aborted: afterburner active."
 msgstr ""
 
-#: src/pilot.c:2471
+#: src/pilot.c:2470
 msgid "#rJump aborted."
 msgstr ""
 
-#: src/pilot.c:2519
+#: src/pilot.c:2518
 #, c-format
 msgid "Pilot '%s' trying to jump through exit-only jump from '%s' to '%s'"
 msgstr ""
 
-#: src/pilot.c:2870
+#: src/pilot.c:2869
 #, c-format
 msgid ""
 "Pilot '%s' failed safety check:\n"
 "%s"
 msgstr ""
 
-#: src/pilot.c:2873
+#: src/pilot.c:2872
 #, c-format
 msgid "   [%d] %s"
 msgstr ""
 
-#: src/pilot.c:2967 src/pilot.c:3004
+#: src/pilot.c:2966 src/pilot.c:3003
 msgid "Unable to allocate memory"
 msgstr ""
 
-#: src/pilot.c:3091
+#: src/pilot.c:3090
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 

@@ -1,5 +1,15 @@
 # NAIKARI CHANGELOG
 
+## 0.4.1
+
+* Added conversion brackets indicating what the "t" and "¢" suffixes
+  mean.
+* Reverted the change that causes Target Nearest to exclude escorts, as
+  this caused a regression where you couldn't target them by clicking on
+  them.
+* Reverted an experimental SDL hint which broke the non-Linux builds and
+  likely wasn't necessary anyway.
+
 ## 0.4.0
 
 * Corrected the calculation for beam heat-up; the previous inaccuracy
