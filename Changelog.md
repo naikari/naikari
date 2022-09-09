@@ -11,10 +11,36 @@
   vary a lot more widely than before.
 * Fixed some problems with the way the Combat Practice mission closed
   out.
-* Remove the faction standing cap system. You can now gain as much
+* Removed the faction standing cap system. You can now gain as much
   reputation as you want with all factions (even the Collective). This
   also means all ships and outfits are available to obtain without
   having to resort to piracy.
+* Added refined Unicorp platings, which serve as a middle-ground between
+  the basic plating and the S&K platings. These new Unicorp X platings
+  use the graphics of the Unicorp B platings Naev used to have.
+* Added automatic bounties awarded whenever you kill a faction's enemy
+  within a system it has presence in (e.g. killing pirates in systems
+  with Empire presence, or killing FLF pilots in systems with Dvaered
+  presence).
+* The Empire Recruitment mission is now guaranteed to send you to a
+  nearby planet with commodities as well as missions.
+* Removed a random chance that existed of pirates attacking to kill
+  (meaning they will now always stop attacking and board you as soon as
+  you're disabled).
+* Coupled together Frontier and FLF standing: if you are enemies with
+  the Frontier, FLF standing will not go any higher than your Frontier
+  standing (and your reputation will drop to enemy status when you
+  become enemies with the Frontier).
+* Buffed the Rotary Turbo Modulator.
+* Buffed the Gawain's speed and takeoff speed. (It was already the
+  fastest ship in the galaxy before, but the difference is now more
+  pronounced.)
+* Added some rescue code to the starting missions in case the player
+  takes off their weapons, installing new laser cannons for them in the
+  moment that they're needed.
+* Fixed the rescue script that activates when you take off, which had
+  several small problems in how it worked caused by changes that weren't
+  properly accommodated.
 
 ## 0.4.1
 
