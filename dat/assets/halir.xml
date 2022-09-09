@@ -30,16 +30,12 @@
   <bar>Halir's bar has everything the weary traveller could hope for, from drinks to data uplink terminals to per-table sound dampening fields and music generators. In short it is a luxurious place, which is largely due to Halir's long history of economic success. Anything you can't find in the bar you can find in the pleasure district, which is just a single tube station away.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Engines Low</item>
-  <item>Engines Cargo</item>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Basic Civilian Ships</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Bulk Trade Ships</item>
+  <item>Common Outfits</item>
+  <item>Turret Missiles</item>
+  <item>Medium Laser</item>
+  <item>Basic Freighter Utilities</item>
+  <item>Basic Freighter Structurals</item>
+  <item>Basic Freighter Cores</item>
+  <item>Freighters</item>
  </tech>
 </asset>
