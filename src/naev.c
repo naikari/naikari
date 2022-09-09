@@ -195,14 +195,6 @@ int main( int argc, char** argv )
       LOG( "AppImage detected. Running from: %s", env.appdir );
    else
       DEBUG( "AppImage not detected." );
-   
-   /* Prefer Wayland over X11 where available. Should hopefully avoid
-    * problems. Requires SDL 2.0.22 or later. (This is contained in an
-    * #ifdef statement because SDL_HINT_VIDEODRIVER is not a valid CPP
-    * macro in SDL versions prior to 2.0.22.) */
-#ifdef SDL_HINT_VIDEODRIVER
-   SDL_SetHint(SDL_HINT_VIDEODRIVER, "wayland,x11");
-#endif
 
    /* Initializes SDL for possible warnings. */
    if ( SDL_Init( 0 ) ) {
