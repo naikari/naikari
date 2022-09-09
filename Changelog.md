@@ -6,8 +6,6 @@
   until you finish the Ian Structure missions.
 * Cargo missions now reward much more credits if they are on a route
   that has pirate presence.
-* Added conversion brackets to the starting missions showing what the
-  "t" and "¢" suffixes mean.
 * Increased the amount of health medium-heavy and heavier ships have.
 * Weapons have been heavily altered. Weapon damage, range, and behavior
   vary a lot more widely than before.
@@ -17,6 +15,16 @@
   reputation as you want with all factions (even the Collective). This
   also means all ships and outfits are available to obtain without
   having to resort to piracy.
+
+## 0.4.1
+
+* Added conversion brackets to the starting missions showing what the
+  "t" and "¢" suffixes mean.
+* Reverted the change that causes Target Nearest to exclude escorts, as
+  this caused a regression where you couldn't target them by clicking on
+  them.
+* Reverted an experimental SDL hint which broke the non-Linux builds and
+  likely wasn't necessary anyway.
 
 ## 0.4.0
 
