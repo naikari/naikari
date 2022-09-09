@@ -180,6 +180,13 @@ function asteroid_proximity()
       p:outfitAdd("Laser Cannon MK1", 2 - n)
    end
 
+   -- If this happens, that likely means not enough CPU is available for
+   -- weapons, so we'll override the CPU limitation and just let them
+   -- have a weapon they shouldn't.
+   if #p:outfits("weapon") <= 0 then
+      p:outfitAdd("Laser Cannon MK1", 1, true, true)
+   end
+
    hook.timer(0.5, "timer_mining")
 end
 
