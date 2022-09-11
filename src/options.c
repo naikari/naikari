@@ -1211,7 +1211,10 @@ static void opt_unsetKey( unsigned int wid, char *str )
 static void opt_video( unsigned int wid )
 {
    (void) wid;
-   int i, j, nres, res_def;
+   int i, k, n;
+   int display_index;
+   int def_missing;
+   int nres, res_def;
    char buf[STRMAX_SHORT];
    int cw;
    int w, h, y, x, l;
@@ -1251,21 +1254,20 @@ static void opt_video( unsigned int wid )
    window_setInputFilter( wid, "inpRes", INPUT_FILTER_RESOLUTION );
    y -= 30;
    SDL_DisplayMode mode;
-   int k;
-   int display_index = SDL_GetWindowDisplayIndex( gl_screen.window );
-   int n = SDL_GetNumDisplayModes( display_index );
-   j = 1;
+   display_index = SDL_GetWindowDisplayIndex(gl_screen.window);
+   n = SDL_GetNumDisplayModes( display_index );
+   def_missing = 1;
    for (i=0; i<n; i++) {
       SDL_GetDisplayMode( display_index, i, &mode  );
-      if ((mode.w == conf.width) && (mode.h == conf.height))
-         j = 0;
+      if ((mode.w == RESOLUTION_W_DEFAULT) && (mode.h == RESOLUTION_H_DEFAULT))
+         def_missing = 0;
    }
-   res   = malloc( sizeof(char*) * (i+j) );
+   res = malloc(sizeof(char*) * (i+def_missing));
    nres  = 0;
-   res_def = 0;
-   if (j) {
-      asprintf( &res[0], "%dx%d", conf.width, conf.height );
-      nres     = 1;
+   res_def = -1;
+   if (def_missing) {
+      asprintf(&res[0], "%dx%d", RESOLUTION_W_DEFAULT, RESOLUTION_H_DEFAULT);
+      nres = 1;
    }
    for (i=0; i<n; i++) {
       SDL_GetDisplayMode( display_index, i, &mode  );
@@ -1282,7 +1284,7 @@ static void opt_video( unsigned int wid )
 
       /* Add as default if necessary and increment. */
       if ((mode.w == conf.width) && (mode.h == conf.height))
-         res_def = i;
+         res_def = i + def_missing;
       nres++;
    }
    window_addList( wid, x, y, 140, 100, "lstRes", res, nres, -1, opt_videoRes, NULL );
@@ -1320,7 +1322,8 @@ static void opt_video( unsigned int wid )
    window_addText( wid, x, y, l, 20, 1, "txtSFPS",
          &gl_smallFont, NULL, s );
    window_addInput( wid, x+l+20, y, 40, 20, "inpFPS", 4, 1, &gl_smallFont );
-   toolkit_setListPos( wid, "lstRes", res_def);
+   if (res_def != -1)
+      toolkit_setListPos(wid, "lstRes", res_def);
    window_setInputFilter( wid, "inpFPS", INPUT_FILTER_NUMBER );
    snprintf( buf, sizeof(buf), "%d", conf.fps_max );
    window_setInput( wid, "inpFPS", buf );
@@ -1578,12 +1581,12 @@ static void opt_getVideoMode( int *w, int *h, int *fullscreen )
     * Mitigation: be strict about how the setup is done in opt_setVideoMode / gl_setupFullscreen, and never bypass them. */
    *fullscreen = (SDL_GetWindowFlags(gl_screen.window) & SDL_WINDOW_FULLSCREEN) != 0;
    if (*fullscreen && conf.modesetting) {
-      SDL_GetWindowDisplayMode( gl_screen.window, &mode );
+      SDL_GetWindowDisplayMode(gl_screen.window, &mode);
       *w = mode.w;
       *h = mode.h;
    }
    else
-      SDL_GetWindowSize( gl_screen.window, w, h );
+      SDL_GetWindowSize(gl_screen.window, w, h);
 }
 
 

@@ -217,12 +217,10 @@ void conf_setVideoDefaults (void)
    SDL_DisplayMode resolution;
 
    /* More complex resolution handling. */
+   w = RESOLUTION_W_DEFAULT;
+   h = RESOLUTION_H_DEFAULT;
    f = 0;
-   if (SDL_GetCurrentDisplayMode( 0, &resolution ) == 0) {
-      /* Try higher resolution. */
-      w = RESOLUTION_W_DEFAULT;
-      h = RESOLUTION_H_DEFAULT;
-
+   if (SDL_GetCurrentDisplayMode(0, &resolution) == 0) {
       /* Fullscreen and fit everything onscreen. */
       if ((resolution.w <= w) || (resolution.h <= h)) {
          w = resolution.w;
@@ -230,34 +228,30 @@ void conf_setVideoDefaults (void)
          f = FULLSCREEN_DEFAULT;
       }
    }
-   else {
-      w = 800;
-      h = 600;
-   }
 
    /* OpenGL. */
-   conf.fsaa         = FSAA_DEFAULT;
-   conf.vsync        = VSYNC_DEFAULT;
+   conf.fsaa = FSAA_DEFAULT;
+   conf.vsync = VSYNC_DEFAULT;
 
    /* Window. */
-   conf.fullscreen   = f;
-   conf.width        = w;
-   conf.height       = h;
+   conf.fullscreen = f;
+   conf.width = w;
+   conf.height = h;
    conf.explicit_dim = 0; /* No need for a define, this is only for first-run. */
-   conf.scalefactor  = SCALE_FACTOR_DEFAULT;
-   conf.nebu_scale   = NEBULA_SCALE_FACTOR_DEFAULT;
+   conf.scalefactor = SCALE_FACTOR_DEFAULT;
+   conf.nebu_scale = NEBULA_SCALE_FACTOR_DEFAULT;
    conf.resizable = RESIZABLE_DEFAULT;
-   conf.minimize     = MINIMIZE_DEFAULT;
-   conf.colorblind   = COLORBLIND_DEFAULT;
+   conf.minimize = MINIMIZE_DEFAULT;
+   conf.colorblind = COLORBLIND_DEFAULT;
    conf.bg_brightness = BG_BRIGHTNESS_DEFAULT;
    conf.gamma_correction = GAMMA_CORRECTION_DEFAULT;
 
    /* FPS. */
-   conf.fps_show     = SHOW_FPS_DEFAULT;
-   conf.fps_max      = FPS_MAX_DEFAULT;
+   conf.fps_show = SHOW_FPS_DEFAULT;
+   conf.fps_max = FPS_MAX_DEFAULT;
 
    /* Pause. */
-   conf.pause_show   = SHOW_PAUSE_DEFAULT;
+   conf.pause_show = SHOW_PAUSE_DEFAULT;
 }
 
 
