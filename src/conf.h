@@ -7,56 +7,60 @@
 #ifndef CONF_H
 #  define CONF_H
 
+
+#define RESOLUTION_W_MIN 1280 /**< Min width (below which we downscale). */
+#define RESOLUTION_H_MIN 720 /**< Min height (below which we downscale). */
+#define AFTERBURNER_SENSITIVITY 250 /**< Doubletap afterburn sensitivity. */
+
 /**
  * CONFIGURATION DEFAULTS
  */
-/* Gameplay options */
-#define AFTERBURNER_SENSITIVITY_DEFAULT      250   /**< Default afterburner sensitivity. */
-#define TIME_COMPRESSION_DEFAULT_MAX         5000. /**< Maximum default level of time compression (target speed to match). */
-#define TIME_COMPRESSION_DEFAULT_MULT        200   /**< Default level of time compression multiplier. */
-#define REDIRECT_FILE_DEFAULT                1     /**< Whether output should be redirected to a file. */
-#define SAVE_COMPRESSION_DEFAULT             1     /**< Whether or not saved games should be compressed. */
-#define MOUSE_THRUST_DEFAULT                 1     /**< Whether or not to use mouse thrust controls. */
-#define MOUSE_DOUBLECLICK_TIME               0.5   /**< How long to consider double-clicks for. */
-#define AUTONAV_RESET_SPEED_DEFAULT          1.    /**< Shield level (0-1) to reset autonav speed at. 1 means at enemy presence, 0 means at armour damage. */
-#define MANUAL_ZOOM_DEFAULT                  0     /**< Whether or not to enable manual zoom controls. */
-#define ZOOM_FAR_DEFAULT                     0.5   /**< Far zoom distance (smaller is further) */
-#define ZOOM_NEAR_DEFAULT                    1.    /**< Close zoom distance (bigger is larger) */
-#define MAP_OVERLAY_OPACITY_DEFAULT          0.55  /**< Opacity fraction (0-1) for the overlay map. */
-#define INPUT_MESSAGES_DEFAULT               5     /**< Amount of messages to display. */
-#define DT_MOD_DEFAULT                       1.    /**< Base game speed. */
-/* Video options */
-#define RESOLUTION_W_MIN                     1280  /**< Minimum screen width (below which graphics are downscaled). */
-#define RESOLUTION_H_MIN                     720   /**< Minimum screen height (below which graphics are downscaled). */
-#define RESOLUTION_W_DEFAULT                 RESOLUTION_W_MIN /**< Default screen width. */
-#define RESOLUTION_H_DEFAULT                 RESOLUTION_H_MIN /**< Default screen height. */
-#define FULLSCREEN_DEFAULT                   0     /**< Whether to run in fullscreen mode. */
-#define FULLSCREEN_MODESETTING               0     /**< Whether fullscreen uses video modesetting. */
-#define FSAA_DEFAULT                         1     /**< Whether to use Full Screen Anti-Aliasing. */
-#define VSYNC_DEFAULT                        0     /**< Whether to wait for vertical sync. */
-#define SCALE_FACTOR_DEFAULT                 1.    /**< Default scale factor. */
-#define NEBULA_SCALE_FACTOR_DEFAULT          4.    /**< Default scale factor for nebula rendering. */
-#define SHOW_FPS_DEFAULT                     0     /**< Whether to display FPS on screen. */
-#define FPS_MAX_DEFAULT                      60    /**< Maximum FPS. */
-#define SHOW_PAUSE_DEFAULT                   1     /**< Whether to display pause status. */
-#define RESIZABLE_DEFAULT 1 /**< Whether window is resizable. */
-#define MINIMIZE_DEFAULT                     1     /**< Whether to minimize on focus loss. */
-#define COLORBLIND_DEFAULT                   0     /**< Whether to enable colorblindness simulation. */
-#define BG_BRIGHTNESS_DEFAULT                1.    /**< How much to darken (or lighten) the backgrounds. */
-#define GAMMA_CORRECTION_DEFAULT             1.    /**< How much gamma correction to do. */
-#define FONT_SIZE_CONSOLE_DEFAULT            10    /**< Default console font size. */
-#define FONT_SIZE_INTRO_DEFAULT              18    /**< Default intro font size. */
-#define FONT_SIZE_DEF_DEFAULT                14    /**< Default font size. */
-#define FONT_SIZE_SMALL_DEFAULT              11    /**< Default small font size. */
-/* Audio options */
-#define USE_EFX_DEFAULT                      1     /**< Whether or not to use EFX (if using OpenAL). */
-#define MUTE_SOUND_DEFAULT                   0     /**< Whether sound should be disabled. */
-#define SOUND_VOLUME_DEFAULT                 0.6   /**< Default sound volume. */
-#define MUSIC_VOLUME_DEFAULT                 0.8   /**< Default music volume. */
-/* Editor Options */
-#define DEV_SAVE_SYSTEM_DEFAULT           "../dat/ssys/"
-#define DEV_SAVE_ASSET_DEFAULT            "../dat/assets/"
-#define DEV_SAVE_MAP_DEFAULT              "../dat/outfits/maps/"
+/* Gameplay option defaults */
+#define MOUSE_DOUBLECLICK_TIME 0.5 /**< conf.mouse_doubleclick */
+#define MANUAL_ZOOM_DEFAULT 0 /**< conf.zoom_manual */
+#define DOUBLETAP_AFTERBURN_DEFAULT 0 /**< conf.doubletap_afterburn */
+#define SAVE_COMPRESSION_DEFAULT 1 /**< conf.save_compress */
+#define INPUT_MESSAGES_DEFAULT 5 /**< conf.mesg_visible */
+#define TIME_COMPRESSION_DEFAULT_MAX 5000. /**< conf.compression_velocity */
+#define TIME_COMPRESSION_DEFAULT_MULT 200 /**< conf.compression_mult */
+#define DT_MOD_DEFAULT 1. /**< conf.dt_mod */
+#define AUTONAV_RESET_SPEED_DEFAULT 1. /**< conf.autonav_reset_speed */
+/* Video option defaults */
+#define RESOLUTION_W_DEFAULT RESOLUTION_W_MIN /**< conf.width */
+#define RESOLUTION_H_DEFAULT RESOLUTION_H_MIN /**< conf.height */
+#define RESIZABLE_DEFAULT 1 /**< conf.resizable */
+#define FULLSCREEN_DEFAULT 0 /**< conf.fullscreen */
+#define FULLSCREEN_MODESETTING 0 /**< conf.modesetting */
+#define FSAA_DEFAULT 1 /**< conf.fsaa */
+#define VSYNC_DEFAULT 0 /**< conf.vsync */
+#define MINIMIZE_DEFAULT 1 /**< conf.minimize */
+#define COLORBLIND_DEFAULT 0 /**< conf.colorblind */
+#define FPS_MAX_DEFAULT 60 /**< conf.fps_max */
+#define SHOW_FPS_DEFAULT 0 /**< conf.fps_show */
+#define SHOW_PAUSE_DEFAULT 1 /**< conf.pause_show */
+#define SCALE_FACTOR_DEFAULT 1. /**< conf.scalefactor */
+#define NEBULA_SCALE_FACTOR_DEFAULT 4. /**< conf.nebu_scale */
+#define GAMMA_CORRECTION_DEFAULT 1. /**< conf.gamma_correction */
+#define BG_BRIGHTNESS_DEFAULT 1. /**< conf.bg_brightness */
+#define MAP_OVERLAY_OPACITY_DEFAULT 0.55 /**< conf.map_overlay_opacity */
+#define ZOOM_FAR_DEFAULT 0.5 /**< conf.zoom_far */
+#define ZOOM_NEAR_DEFAULT 1. /**< conf.zoom_near */
+/* Audio option defaults */
+#define MUTE_SOUND_DEFAULT 0 /**< conf.nosound */
+#define USE_EFX_DEFAULT 1 /**< conf.al_efx */
+#define SOUND_VOLUME_DEFAULT 0.6 /**< conf.sound */
+#define MUSIC_VOLUME_DEFAULT 0.8 /**< conf.music */
+/* Font size defaults */
+#define FONT_SIZE_CONSOLE_DEFAULT 10 /**< conf.font_size_console */
+#define FONT_SIZE_INTRO_DEFAULT 18 /**< conf.font_size_intro */
+#define FONT_SIZE_DEF_DEFAULT 14 /**< conf.font_size_def */
+#define FONT_SIZE_SMALL_DEFAULT 11 /**< conf.font_size_small */
+/* Debugging option defaults */
+#define REDIRECT_FILE_DEFAULT 1 /**< conf.redirect_file */
+/* Editor option defaults */
+#define DEV_SAVE_SYSTEM_DEFAULT "../dat/ssys/" /**< conf.dev_save_sys */
+#define DEV_SAVE_ASSET_DEFAULT "../dat/assets/" /**< conf.dev_save_asset */
+#define DEV_SAVE_MAP_DEFAULT "../dat/outfits/maps/" /**< conf.dev_save_map */
 
 
 /**
@@ -73,87 +77,83 @@ typedef struct PlayerConf_s {
    /* Language. */
    char *language; /**< Language to use. */
 
-   /* OpenGL properties. */
-   int fsaa; /**< Full Scene Anti-Aliasing to use. */
-   int vsync; /**< Whether or not to use vsync. */
+   /* Gameplay options */
+   double mouse_doubleclick; /**< How long to consider double-clicks for. */
+   int zoom_manual; /**< Whether zoom is under manual control. */
+   int doubletap_afterburn; /**< Whether double-tapping thrust afterburns. */
+   int save_compress; /**< Whether to compress saved games. */
+   int mesg_visible; /**< Amount of visible messages. */
+   double compression_velocity; /**< Velocity to compress to. */
+   double compression_mult; /**< Maximum time multiplier. */
+   double dt_mod; /**< Static modifier of dt applied to the game as a whole. */
 
-   /* Video options. */
+   /**
+    * Shield level (0-1) to reset autonav speed.
+    * 1 means at enemy presence, 0 means at armor damage.
+    */
+   double autonav_reset_speed;
+
+   /* Video options */
    int width; /**< Width of the window to use. */
    int height; /**< Height of the window to use. */
    int explicit_dim; /**< Dimension is explicit. */
-   double scalefactor; /**< Amount to reduce resolution by. */
-   double nebu_scale; /**< Downscaling factor for the expensively rendered nebula. */
-   int fullscreen; /**< Whether or not game is fullscreen. */
-   int modesetting; /**< Whether to use modesetting for fullscreen. */
    int resizable; /**< Whether or not window is resizable. */
    int borderless; /**< Whether to disable window decorations. */
+   int fullscreen; /**< Whether or not game is fullscreen. */
+   int modesetting; /**< Whether to use modesetting for fullscreen. */
+   int fsaa; /**< Full Scene Anti-Aliasing to use. */
+   int vsync; /**< Whether or not to use vsync. */
    int minimize; /**< Whether to minimize on focus loss. */
    int colorblind; /**< Whether to enable colorblindness simulation. */
-   double bg_brightness; /**< How much to darken the background stuff. */
-   double gamma_correction; /**< How much gamma correction to do. */
-
-   /* Sound. */
-   int al_efx; /**< Should EFX extension be used? (only applicable for OpenAL) */
-   int nosound; /**< Whether or not sound is on. */
-   double sound; /**< Sound level for sound effects. */
-   double music; /**< Sound level for music. */
-
-   /* FPS. */
-   int fps_show; /**< Whether or not FPS should be shown */
    int fps_max; /**< Maximum FPS to limit to. */
-
-   /* Pause. */
+   int fps_show; /**< Whether or not FPS should be shown */
    int pause_show; /**< Whether pause status should be shown. */
+   double scalefactor; /**< Scale factor (for high DPI) */
+   double nebu_scale; /**< Nebula scale factor (for reducing render expense) */
+   double gamma_correction; /**< How much gamma correction to do. */
+   double bg_brightness; /**< Background brightness. */
+   double map_overlay_opacity; /**< Map overlay opacity. */
+   double zoom_far; /**< Far zoom distance (smaller is further) */
+   double zoom_near; /**< Near zoom distance (larger is closer) */
+
+   /* Audio options */
+   int nosound; /**< Whether to disable all audio. */
+   int al_efx; /**< Whether to use EFX. */
+   double sound; /**< Volume level for sound effects. */
+   double music; /**< Volume level for music. */
 
    /* Joystick. */
    int joystick_ind; /**< Index of joystick to use. */
    char *joystick_nam; /**< Name of joystick to use. */
-
-   /* GUI. */
-   int mesg_visible; /**< Amount of visible messages. */
-   double map_overlay_opacity; /**< Map overlay opacity. */
-
-   /* Accessibility. */
-   double dt_mod; /**< Static modifier of dt applied to the game as a whole. */
 
    /* Keyrepeat. */
    unsigned int repeat_delay; /**< Time in ms before start repeating. */
    unsigned int repeat_freq; /**< Time in ms between each repeat once started repeating. */
 
    /* Zoom. */
-   int zoom_manual; /**< Zoom is under manual control. */
-   double zoom_far; /**< Maximum in-game zoom to use should be less then zoom_near. */
-   double zoom_near; /**< Minimum in-game zoom to use. */
    double zoom_speed; /**< Maximum zoom speed change. */
    double zoom_stars; /**< How much stars can zoom (modulates zoom_[mix|max]). */
 
    /* Font sizes. */
    int font_size_console; /**< Console monospaced font size. */
-   int font_size_intro;   /**< Intro text font size. */
-   int font_size_def;     /**< Default large font size. */
-   int font_size_small;   /**< Default small font size. */
+   int font_size_intro; /**< Intro text font size. */
+   int font_size_def; /**< Default (large) font size. */
+   int font_size_small; /**< Small font size. */
 
    /* Misc. */
-   double compression_velocity; /**< Velocity to compress to. */
-   double compression_mult; /**< Maximum time multiplier. */
-   int redirect_file; /**< Redirect output to files. */
-   int save_compress; /**< Compress saved game. */
-   unsigned int afterburn_sens; /**< Afterburn sensibility. */
-   int mouse_thrust; /**< Whether mouse flying controls thrust. */
-   double mouse_doubleclick; /**< How long to consider double-clicks for. */
-   double autonav_reset_speed; /**< Condition for resetting autonav speed. */
    int nosave; /**< Disables conf saving. */
    int devmode; /**< Developer mode. */
    int devautosave; /**< Developer mode autosave. */
    char *lastversion; /**< The last version the game was ran in. */
 
    /* Debugging. */
+   int redirect_file; /**< Whether to redirect logs and errors to files. */
    int fpu_except; /**< Enable FPU exceptions? */
 
    /* Editor. */
    char *dev_save_sys; /**< Path to save systems to. */
-   char *dev_save_map; /**< Path to save maps to. */
    char *dev_save_asset; /**< Path to save assets to. */
+   char *dev_save_map; /**< Path to save maps to. */
 
 } PlayerConf_t;
 extern PlayerConf_t conf; /**< Player configuration. */

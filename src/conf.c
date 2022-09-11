@@ -185,13 +185,15 @@ void conf_setDefaults (void)
  */
 void conf_setGameplayDefaults (void)
 {
-   conf.afterburn_sens        = AFTERBURNER_SENSITIVITY_DEFAULT;
-   conf.compression_velocity  = TIME_COMPRESSION_DEFAULT_MAX;
-   conf.compression_mult      = TIME_COMPRESSION_DEFAULT_MULT;
-   conf.save_compress         = SAVE_COMPRESSION_DEFAULT;
-   conf.mouse_doubleclick     = MOUSE_DOUBLECLICK_TIME;
-   conf.autonav_reset_speed   = AUTONAV_RESET_SPEED_DEFAULT;
-   conf.zoom_manual           = MANUAL_ZOOM_DEFAULT;
+   conf.doubletap_afterburn = DOUBLETAP_AFTERBURN_DEFAULT;
+   conf.compression_velocity = TIME_COMPRESSION_DEFAULT_MAX;
+   conf.compression_mult = TIME_COMPRESSION_DEFAULT_MULT;
+   conf.save_compress = SAVE_COMPRESSION_DEFAULT;
+   conf.mouse_doubleclick = MOUSE_DOUBLECLICK_TIME;
+   conf.zoom_manual = MANUAL_ZOOM_DEFAULT;
+   conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
+   conf.dt_mod = DT_MOD_DEFAULT;
+   conf.autonav_reset_speed = AUTONAV_RESET_SPEED_DEFAULT;
 }
 
 
@@ -317,6 +319,9 @@ int conf_loadConfig ( const char* file )
       /* Language. */
       conf_loadString( lEnv, "language", conf.language );
 
+      /* Gampelay options */
+      conf_loadInt(lEnv, "doubletap_afterburn", conf.doubletap_afterburn);
+
       /* OpenGL. */
       conf_loadInt( lEnv, "fsaa", conf.fsaa );
       conf_loadBool( lEnv, "vsync", conf.vsync );
@@ -368,7 +373,7 @@ int conf_loadConfig ( const char* file )
       /* GUI. */
       conf_loadInt( lEnv, "mesg_visible", conf.mesg_visible );
       if (conf.mesg_visible <= 0)
-         conf.mesg_visible = 5;
+         conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
       conf_loadFloat( lEnv, "map_overlay_opacity", conf.map_overlay_opacity );
       conf.map_overlay_opacity = CLAMP(0, 1, conf.map_overlay_opacity);
 
@@ -398,7 +403,6 @@ int conf_loadConfig ( const char* file )
       conf_loadFloat( lEnv, "compression_mult", conf.compression_mult );
       conf_loadBool( lEnv, "redirect_file", conf.redirect_file );
       conf_loadBool( lEnv, "save_compress", conf.save_compress );
-      conf_loadInt( lEnv, "afterburn_sensitivity", conf.afterburn_sens );
       conf_loadFloat( lEnv, "mouse_doubleclick", conf.mouse_doubleclick );
       conf_loadFloat( lEnv, "autonav_abort", conf.autonav_reset_speed );
       conf_loadBool( lEnv, "devmode", conf.devmode );
@@ -820,6 +824,11 @@ int conf_saveConfig ( const char* file )
    conf_saveString("language",conf.language);
    conf_saveEmptyLine();
 
+   /* Gameplay options */
+   conf_saveComment(_("Whether double-tapping thrust starts afterburn"));
+   conf_saveInt("doubletap_afterburn", conf.doubletap_afterburn);
+   conf_saveEmptyLine();
+
    /* OpenGL. */
    conf_saveComment(_("The factor to use in Full-Scene Anti-Aliasing"));
    conf_saveComment(_("Anything lower than 2 will simply disable FSAA"));
@@ -989,10 +998,6 @@ int conf_saveConfig ( const char* file )
 
    conf_saveComment(_("Enables compression on saved games"));
    conf_saveBool("save_compress",conf.save_compress);
-   conf_saveEmptyLine();
-
-   conf_saveComment(_("Afterburner sensitivity"));
-   conf_saveInt("afterburn_sensitivity",conf.afterburn_sens);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Maximum interval to count as a double-click (0 disables)."));

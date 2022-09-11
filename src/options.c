@@ -398,8 +398,9 @@ static void opt_gameplay( unsigned int wid )
    window_addCheckbox( wid, x, y, cw, 20,
          "chkZoomManual", _("Enable manual zoom control"), NULL, conf.zoom_manual );
    y -= 25;
-   window_addCheckbox( wid, x, y, cw, 20,
-         "chkAfterburn", _("Enable double-tap afterburn"), NULL, conf.afterburn_sens );
+   window_addCheckbox(wid, x, y, cw, 20,
+         "chkAfterburn", _("Enable double-tap afterburn"), NULL,
+         conf.doubletap_afterburn);
    y -= 25;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkCompress", _("Enable saved game compression"), NULL, conf.save_compress );
@@ -430,7 +431,7 @@ static void opt_gameplay( unsigned int wid )
 static int opt_gameplaySave( unsigned int wid, char *str )
 {
    (void) str;
-   int f, p, newlang;
+   int p, newlang;
    char *vmsg, *tmax, *s;
 
    /* List. */
@@ -447,12 +448,9 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    }
 
    /* Checkboxes. */
-   f = window_checkboxState( wid, "chkAfterburn" );
-   if (!!conf.afterburn_sens != f)
-      conf.afterburn_sens = (!!f)*250;
-
-   conf.zoom_manual = window_checkboxState( wid, "chkZoomManual" );
-   conf.save_compress = window_checkboxState( wid, "chkCompress" );
+   conf.zoom_manual = window_checkboxState(wid, "chkZoomManual");
+   conf.doubletap_afterburn = window_checkboxState(wid, "chkAfterburn");
+   conf.save_compress = window_checkboxState(wid, "chkCompress");
 
    /* Faders. */
    conf.autonav_reset_speed = window_getFaderValue(wid, "fadAutonav");
@@ -483,9 +481,9 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
 
    /* Restore. */
    /* Checkboxes. */
-   window_checkboxSet( wid, "chkZoomManual", MANUAL_ZOOM_DEFAULT );
-   window_checkboxSet( wid, "chkAfterburn", AFTERBURNER_SENSITIVITY_DEFAULT );
-   window_checkboxSet( wid, "chkCompress", SAVE_COMPRESSION_DEFAULT );
+   window_checkboxSet(wid, "chkZoomManual", MANUAL_ZOOM_DEFAULT);
+   window_checkboxSet(wid, "chkAfterburn", DOUBLETAP_AFTERBURN_DEFAULT);
+   window_checkboxSet(wid, "chkCompress", SAVE_COMPRESSION_DEFAULT);
 
    /* Faders. */
    window_faderValue( wid, "fadAutonav", AUTONAV_RESET_SPEED_DEFAULT );
@@ -507,9 +505,9 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    char vmsg[16], tmax[16];
 
    /* Checkboxes. */
-   window_checkboxSet( wid, "chkZoomManual", conf.zoom_manual );
-   window_checkboxSet( wid, "chkAfterburn", conf.afterburn_sens );
-   window_checkboxSet( wid, "chkCompress", conf.save_compress );
+   window_checkboxSet(wid, "chkZoomManual", conf.zoom_manual);
+   window_checkboxSet(wid, "chkAfterburn", conf.doubletap_afterburn);
+   window_checkboxSet(wid, "chkCompress", conf.save_compress);
 
    /* Faders. */
    window_faderValue( wid, "fadAutonav", conf.autonav_reset_speed );

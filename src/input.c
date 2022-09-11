@@ -796,9 +796,9 @@ static void input_key( int keynum, double value, double kabs, int repeat )
 
          /* double tap accel = afterburn! */
          t = SDL_GetTicks();
-         if ((conf.afterburn_sens != 0) &&
-               (value==KEY_PRESS) && INGAME() && NOHYP() && NODEAD() &&
-               (t-input_accelLast <= conf.afterburn_sens))
+         if (conf.doubletap_afterburn && (value == KEY_PRESS)
+               && INGAME() && NOHYP() && NODEAD()
+               && (t-input_accelLast <= AFTERBURNER_SENSITIVITY))
             pilot_afterburn( player.p );
          else if (value==KEY_RELEASE)
             pilot_afterburnOver( player.p );
@@ -1309,9 +1309,9 @@ static void input_clickevent( SDL_Event* event )
 
          /* double tap accel = afterburn! */
          t = SDL_GetTicks();
-         if ((conf.afterburn_sens != 0) &&
-               (event->type == SDL_MOUSEBUTTONDOWN) && INGAME() && NOHYP()
-               && NODEAD() && (t-input_accelLast <= conf.afterburn_sens))
+         if (conf.doubletap_afterburn && (event->type == SDL_MOUSEBUTTONDOWN)
+               && INGAME() && NOHYP() && NODEAD()
+               && (t-input_accelLast <= AFTERBURNER_SENSITIVITY))
             pilot_afterburn( player.p );
          else if (event->type == SDL_MOUSEBUTTONUP)
             pilot_afterburnOver( player.p );
