@@ -71,7 +71,7 @@ function emp_mil_omega( pnt )
 end
 
 -- Empire Emperor's Wrath.
-function emp_mil_wrath( pnt )
+function emp_mil_eye(pnt)
    return land_military(pnt, 90,
          _("The Emperor permits you to land."),
          _("You may not approach the Emperor."),

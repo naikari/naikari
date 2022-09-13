@@ -36,7 +36,7 @@ civ_name = {
 mil_name = {
    emp_mil_restricted = _("Empire Officer"),
    emp_mil_omega = _("Empire Officer"),
-   emp_mil_wrath = _("Empire Officer"),
+   emp_mil_eye = _("Empire Officer"),
    srs_mil_restricted = _("Sirius Officer"),
    srs_mil_mutris = _("Sirius Officer"),
    dv_mil_restricted = _("Dvaered Officer"),
@@ -103,7 +103,7 @@ mil_desc.emp_mil_restricted = {
    _("An Empire officer sitting in the corner."),
 }
 mil_desc.emp_mil_omega = mil_desc.emp_mil_restricted
-mil_desc.emp_mil_wrath = mil_desc.emp_mil_restricted
+mil_desc.emp_mil_eye = mil_desc.emp_mil_restricted
 mil_desc.srs_mil_restricted = {
    _("A Sirius officer sits idly at one of the tables."),
    _("This Sirius officer seems somewhat spaced-out."),

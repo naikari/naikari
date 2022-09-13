@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asset name="Emperor's Eye">
+ <pos>
+  <x>15431.021960</x>
+  <y>4917.887630</y>
+ </pos>
+ <GFX>
+  <space>moon-O01.webp</space>
+  <exterior>coastal_landing_site_sunset.webp</exterior>
+ </GFX>
+ <presence>
+  <faction>Empire</faction>
+  <value>50.000000</value>
+  <range>0</range>
+ </presence>
+ <general>
+  <class>M</class>
+  <population>10000</population>
+  <services>
+   <land>emp_mil_eye</land>
+   <refuel/>
+   <bar/>
+   <missions/>
+   <outfits/>
+   <shipyard/>
+   <uninhabited/>
+  </services>
+  <commodities/>
+  <description>Emperor's Eye is the moon of Emperor's Fist and serves as the Emperor's personal planet ever since the destruction of Sol as a result of the Incident. Only those approved by the Emperor himself are allowed onto the planet, and tight security is maintained to protect the Emperor's safety and comfort.</description>
+  <bar>The bar's patrons mainly consist of Empire personnel who provide security, and the occasional important politician. Ordinary civilians are generally not allowed, and there is a special alarm in place to order immediate clearing of the bar should the Emperor decide to pay a visit.</bar>
+ </general>
+ <tech>
+  <item>Common Outfits</item>
+  <item>Turret Missiles</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Medium Laser</item>
+  <item>Heavy Laser</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Basic Corvette Cores</item>
+  <item>Elite Destroyer Utilities</item>
+  <item>Elite Destroyer Structurals</item>
+  <item>Basic Destroyer Cores</item>
+  <item>Elite Destroyer Cores</item>
+  <item>Elite Cruiser Utilities</item>
+  <item>Elite Cruiser Structurals</item>
+  <item>Basic Cruiser Cores</item>
+  <item>Elite Cruiser Cores</item>
+  <item>Basic Carrier Utilities</item>
+  <item>Elite Carrier Utilities</item>
+  <item>Basic Carrier Structurals</item>
+  <item>Elite Carrier Structurals</item>
+  <item>Basic Carrier Cores</item>
+  <item>Elite Carrier Cores</item>
+  <item>Empire Military Outfits</item>
+  <item>Nexus Medium Ships</item>
+  <item>Nexus Large Ships</item>
+  <item>Empire Medium Ships</item>
+  <item>Empire Large Ships</item>
+  <item>Empire Restricted Ships</item>
+  <item>Shield Modifiers</item>
+ </tech>
+</asset>
