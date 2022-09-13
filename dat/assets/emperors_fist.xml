@@ -6,7 +6,7 @@
  </pos>
  <GFX>
   <space>C00.webp</space>
-  <exterior>mining5.webp</exterior>
+  <exterior>desertic.webp</exterior>
  </GFX>
  <presence>
   <faction>Empire</faction>
@@ -17,13 +17,20 @@
   <class>C</class>
   <population>127000</population>
   <services>
-   <land>land_hiclass</land>
+   <land/>
    <refuel/>
    <bar/>
    <missions/>
+   <outfits/>
   </services>
   <commodities/>
-  <description>Emperor's Fist is intended to be the new homeworld of the Emperor himself since the last one was destroyed in the Incident. It's a massive project that is attempting to completely transform a C-class world into one which is suitable for the highest ranks of the Empire's aristocracy. Currently it possesses few amenities beyond the Starport.</description>
-  <bar>The bar is designed for those working on the terraforming project. Small compared to many planetary bars, it nonetheless has a steady flow of patrons, largely consisting of the off-duty aforementioned terraforming workers.</bar>
+  <description>Emperor's Fist is intended to be a new homeworld for the Empire. Work was started shortly after the Incident vaporized old Earth, with plans to terraform this class C planet, chosen for its similar orbital and rotational periods to those of old Earth, into a new Earth-like world. The project is overseen by the Emperor himself, who lives aboard the Emperor's Wrath stationed nearby.</description>
+  <bar>The bar is clearly designed to harken back to the lost Old Earth, containing various ancient artifacts and even old-school Earth clocks, albeit recalibrated slightly to better match the day length of Emperor's Fist.</bar>
  </general>
+ <tech>
+  <item>Common Outfits</item>
+  <item>Elite Courier Utilities</item>
+  <item>Elite Courier Structurals</item>
+  <item>Elite Courier Cores</item>
+ </tech>
 </asset>

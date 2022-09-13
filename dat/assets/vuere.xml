@@ -5,7 +5,7 @@
   <y>17341.104186</y>
  </pos>
  <GFX>
-  <space>C01.webp</space>
+  <space>H03.webp</space>
   <exterior>oceanic2.webp</exterior>
  </GFX>
  <presence>
@@ -14,17 +14,34 @@
   <range>2</range>
  </presence>
  <general>
-  <class>C</class>
+  <class>H</class>
   <population>50000000</population>
   <services>
-   <land>land_hiclass</land>
+   <land/>
    <refuel/>
    <bar/>
    <missions/>
    <commodity/>
+   <outfits/>
+   <shipyard/>
   </services>
   <commodities/>
-  <description>The Emperor's Fist project needs labor. A lot of labor. And so long as the world itself remains unfit for habitation, the workforce needs someplace else to live. The inhabitants of Halir refused to provide them shelter, invoking various complicated rights and regulations, so rather than persuade the local government, the Imperial Council decided to deploy prefab survival units on Vuere. As such, Vuere should be considered a temporary camp rather than a colony. However, with a population this size and a projected duration of stay this long, it is doubtful if Vuere will ever truly be abandoned.</description>
-  <bar>The bar is surprisingly hospitable for such a makeshift settlement. The inhabitants apparently feel the need to make up for the harsh environment of their C-class planet by making their indoor areas as comfortable and appealing as they can. The bar is a prime example of this.</bar>
+  <description>Originally intended as a temporary colony to house those who work on terraforming Emperor's Fist, Vuere has become a permanent settlement as it turned out to be much easier to terraform. As such, public interest in the Emperor's Fist project has diminished despite the Emperor's continued insistence on completing the project.</description>
+  <bar>The bar is decorated with posters calling for Vuere to become the new homeworld of the Empire, a sentiment which many patrons seem to agree with.</bar>
  </general>
+ <tech>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Small Laser</item>
+  <item>Small Ion</item>
+  <item>Basic Light Fighter Cores</item>
+  <item>Basic Fighter Cores</item>
+  <item>Basic Bomber Utilities</item>
+  <item>Elite Bomber Utilities</item>
+  <item>Basic Bomber Structurals</item>
+  <item>Basic Bomber Cores</item>
+  <item>Elite Bomber Cores</item>
+  <item>Nexus Small Ships</item>
+ </tech>
 </asset>
