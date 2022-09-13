@@ -147,7 +147,7 @@ function createPilotNPCs ()
          }
       end
    elseif pr == "emp_mil_restricted" or pr == "emp_mil_omega"
-         or pr == "emp_mil_wrath" then
+         or pr == "emp_mil_eye" then
       ship_choices = {
          {ship = "Empire Shark", royalty = 0.075, deposit_mod = 1/10},
          {ship = "Empire Lancelot", royalty = 0.1, deposit_mod = 1/7},
