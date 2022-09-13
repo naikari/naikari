@@ -390,17 +390,6 @@
  </tech>
 
  <!-- Generic Outfits -->
- <tech name="Star Maps">
-  <item>Map: Nebula Edge</item>
-  <item>Map: Dvaered-Soromid trade route</item>
-  <item>Map: Dvaered-Za'lek trade route</item>
-  <item>Map: Sirius border systems</item>
-  <item>Map: The Frontier</item>
-  <item>Map: Sol</item>
-  <item>Map: Empire Core</item>
-  <item>Map: Waste Disposal Sites</item>
-  <item>Local System Map</item>
- </tech>
  <tech name="Common Outfits">
   <item>Laser Cannon MK1</item>
   <item>Plasma Blaster MK1</item>
@@ -503,6 +492,17 @@
   <item>Patchwork Light Plating</item>
   <item>Patchwork Medium Plating</item>
   <item>Patchwork Heavy Plating</item>
+ </tech>
+ <tech name="Star Maps">
+  <item>Map: Nebula Edge</item>
+  <item>Map: Dvaered-Soromid trade route</item>
+  <item>Map: Dvaered-Za'lek trade route</item>
+  <item>Map: Sirius border systems</item>
+  <item>Map: The Frontier</item>
+  <item>Map: Sol</item>
+  <item>Map: Empire Core</item>
+  <item>Map: Waste Disposal Sites</item>
+  <item>Local System Map</item>
  </tech>
 
  <!-- Generic Weapons -->
