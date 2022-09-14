@@ -1267,6 +1267,7 @@ static void opt_video( unsigned int wid )
       asprintf(&res[0], "%dx%d", RESOLUTION_W_DEFAULT, RESOLUTION_H_DEFAULT);
       nres = 1;
    }
+   DEBUG("Configured size: %d×%d", conf.width, conf.height);
    for (i=0; i<n; i++) {
       SDL_GetDisplayMode( display_index, i, &mode  );
       asprintf( &res[ nres ], "%dx%d", mode.w, mode.h );
