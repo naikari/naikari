@@ -227,7 +227,6 @@ void opt_resize (void)
 
    /* Update the resolution input widget. */
    opt_getVideoMode( &w, &h, &fullscreen );
-   DEBUG("opt_resize: Read window size as %dx%d", w, h);
    snprintf( buf, sizeof(buf), "%dx%d", w, h );
    window_setInput( opt_windows[OPT_WIN_VIDEO], "inpRes", buf );
 }
@@ -1263,7 +1262,7 @@ static void opt_video( unsigned int wid )
    }
    res = malloc(sizeof(char*) * (i+def_missing));
    nres  = 0;
-   res_def = -1;
+   res_def = 0;
    if (def_missing) {
       asprintf(&res[0], "%dx%d", RESOLUTION_W_DEFAULT, RESOLUTION_H_DEFAULT);
       nres = 1;
@@ -1286,7 +1285,10 @@ static void opt_video( unsigned int wid )
          res_def = i + def_missing;
       nres++;
    }
-   window_addList( wid, x, y, 140, 100, "lstRes", res, nres, -1, opt_videoRes, NULL );
+   window_addList(wid, x, y, 140, 100, "lstRes",
+         res, nres, -1, opt_videoRes, NULL);
+   toolkit_setListPos(wid, "lstRes", res_def);
+
    y -= 120;
 
    window_addText( wid, x, y, 100, 20, 0, "txtVideoChecksHeader",
@@ -1297,7 +1299,9 @@ static void opt_video( unsigned int wid )
          "chkFullscreen", _("Fullscreen"), NULL, conf.fullscreen );
    y -= 25;
 
-   /* Sets inpRes to current resolution, must be after lstRes is added. */
+   /* Sets inpRes to current resolution, must be after lstRes is added
+    * and after its initial selection is set, to prevent it from
+    * overriding the real window size. */
    opt_resize();
 
    /* OpenGL options. */
@@ -1321,8 +1325,6 @@ static void opt_video( unsigned int wid )
    window_addText( wid, x, y, l, 20, 1, "txtSFPS",
          &gl_smallFont, NULL, s );
    window_addInput( wid, x+l+20, y, 40, 20, "inpFPS", 4, 1, &gl_smallFont );
-   if (res_def != -1)
-      toolkit_setListPos(wid, "lstRes", res_def);
    window_setInputFilter( wid, "inpFPS", INPUT_FILTER_NUMBER );
    snprintf( buf, sizeof(buf), "%d", conf.fps_max );
    window_setInput( wid, "inpFPS", buf );
@@ -1580,15 +1582,12 @@ static void opt_getVideoMode( int *w, int *h, int *fullscreen )
     * Mitigation: be strict about how the setup is done in opt_setVideoMode / gl_setupFullscreen, and never bypass them. */
    *fullscreen = (SDL_GetWindowFlags(gl_screen.window) & SDL_WINDOW_FULLSCREEN) != 0;
    if (*fullscreen && conf.modesetting) {
-      DEBUG("%s", "Using modesetting while getting window size.");
       SDL_GetWindowDisplayMode(gl_screen.window, &mode);
       *w = mode.w;
       *h = mode.h;
    }
    else
       SDL_GetWindowSize(gl_screen.window, w, h);
-
-   DEBUG("opt_getVideoMode: SDL returned window size: %dx%d", *w, *h);
 }
 
 
