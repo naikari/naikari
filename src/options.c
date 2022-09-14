@@ -227,6 +227,7 @@ void opt_resize (void)
 
    /* Update the resolution input widget. */
    opt_getVideoMode( &w, &h, &fullscreen );
+   DEBUG("opt_resize: Read window size as %dx%d", w, h);
    snprintf( buf, sizeof(buf), "%dx%d", w, h );
    window_setInput( opt_windows[OPT_WIN_VIDEO], "inpRes", buf );
 }
@@ -1579,12 +1580,15 @@ static void opt_getVideoMode( int *w, int *h, int *fullscreen )
     * Mitigation: be strict about how the setup is done in opt_setVideoMode / gl_setupFullscreen, and never bypass them. */
    *fullscreen = (SDL_GetWindowFlags(gl_screen.window) & SDL_WINDOW_FULLSCREEN) != 0;
    if (*fullscreen && conf.modesetting) {
+      DEBUG("%s", "Using modesetting while getting window size.");
       SDL_GetWindowDisplayMode(gl_screen.window, &mode);
       *w = mode.w;
       *h = mode.h;
    }
    else
       SDL_GetWindowSize(gl_screen.window, w, h);
+
+   DEBUG("opt_getVideoMode: SDL returned window size: %dx%d", *w, *h);
 }
 
 
