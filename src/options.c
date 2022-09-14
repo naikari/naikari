@@ -1267,7 +1267,6 @@ static void opt_video( unsigned int wid )
       asprintf(&res[0], "%dx%d", RESOLUTION_W_DEFAULT, RESOLUTION_H_DEFAULT);
       nres = 1;
    }
-   DEBUG("Configured size: %d×%d", conf.width, conf.height);
    for (i=0; i<n; i++) {
       SDL_GetDisplayMode( display_index, i, &mode  );
       asprintf( &res[ nres ], "%dx%d", mode.w, mode.h );
@@ -1282,8 +1281,12 @@ static void opt_video( unsigned int wid )
       }
 
       /* Add as default if necessary and increment. */
-      if ((mode.w == conf.width) && (mode.h == conf.height))
+      if ((mode.w == conf.width) && (mode.h == conf.height)) {
+         DEBUG("Configured size (%dx%d) matches mode: %dx%d",
+               conf.width, conf.height, mode.w, mode.h);
          res_def = i + def_missing;
+         DEBUG("Resolution selection set to index %d.", res_def);
+      }
       nres++;
    }
    window_addList(wid, x, y, 140, 100, "lstRes",
