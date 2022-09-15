@@ -273,142 +273,6 @@ int economy_getAveragePrice( const Commodity *com, credits_t *mean, double *std 
 }
 
 
-#if 0
-/**
- * @brief Calculates the resistance between two star systems.
- *
- *    @param A Star system to calculate the resistance between.
- *    @param B Star system to calculate the resistance between.
- *    @return Resistance between A and B.
- */
-static double econ_calcJumpR( StarSystem *A, StarSystem *B )
-{
-   double R;
-
-   /* Set to base to ensure price change. */
-   R = ECON_BASE_RES;
-
-   /* Modify based on system conditions. */
-   R += (A->nebu_density + B->nebu_density) / 1000.; /* Density shouldn't affect much. */
-   R += (A->nebu_volatility + B->nebu_volatility) / 100.; /* Volatility should. */
-
-   /* Modify based on global faction. */
-   if ((A->faction != -1) && (B->faction != -1)) {
-      if (areEnemies(A->faction, B->faction))
-         R += ECON_FACTION_MOD * ECON_BASE_RES;
-      else if (areAllies(A->faction, B->faction))
-         R -= ECON_FACTION_MOD * ECON_BASE_RES;
-   }
-
-   /* @todo Modify based on fleets. */
-
-   return R;
-}
-
-
-/**
- * @brief Calculates the intensity in a system node.
- *
- * @todo Make it time/item dependent.
- */
-static double econ_calcSysI( unsigned int dt, StarSystem *sys, int price )
-{
-   int i;
-   double I;
-   double prodfactor, p;
-   double ddt;
-   Planet *planet;
-
-   ddt = (double)(dt / NTIME_UNIT_LENGTH);
-
-   /* Calculate production level. */
-   p = 0.;
-   for (i=0; i<sys->nplanets; i++) {
-      planet = sys->planets[i];
-      if (planet_hasService(planet, PLANET_SERVICE_INHABITED)) {
-         /*
-          * Calculate production.
-          */
-         /* We base off the current production. */
-         prodfactor  = planet->cur_prodfactor;
-         /* Add a variability factor based on the Gaussian distribution. */
-         prodfactor += ECON_PROD_VAR * RNG_2SIGMA() * ddt;
-         /* Add a tendency to return to the planet's base production. */
-         prodfactor -= ECON_PROD_VAR *
-               (planet->cur_prodfactor - prodfactor)*ddt;
-         /* Save for next iteration. */
-         planet->cur_prodfactor = prodfactor;
-         /* We base off the sqrt of the population otherwise it changes too fast. */
-         p += prodfactor * sqrt(planet->population);
-      }
-   }
-
-   /* The intensity is basically the modified production. */
-   I = p / ECON_PROD_MODIFIER;
-
-   return I;
-}
-
-
-/**
- * @brief Creates the admittance matrix.
- *
- *    @return 0 on success.
- */
-static int econ_createGMatrix (void)
-{
-   int ret;
-   int i, j;
-   double R, Rsum;
-   cs *M;
-   StarSystem *sys;
-
-   /* Create the matrix. */
-   M = cs_spalloc( array_size(systems_stack), array_size(systems_stack), 1, 1, 1 );
-   if (M == NULL)
-      ERR(_("Unable to create CSparse Matrix."));
-
-   /* Fill the matrix. */
-   for (i=0; i < array_size(systems_stack); i++) {
-      sys   = &systems_stack[i];
-      Rsum = 0.;
-
-      /* Set some values. */
-      for (j=0; j < array_size(sys->jumps); j++) {
-
-         /* Get the resistances. */
-         R     = econ_calcJumpR( sys, sys->jumps[j].target );
-         R     = 1./R; /* Must be inverted. */
-         Rsum += R;
-
-         /* Matrix is symmetrical and non-diagonal is negative. */
-         ret = cs_entry( M, i, sys->jumps[j].target->id, -R );
-         if (ret != 1)
-            WARN(_("Unable to enter CSparse Matrix Cell."));
-         ret = cs_entry( M, sys->jumps[j].target->id, i, -R );
-         if (ret != 1)
-            WARN(_("Unable to enter CSparse Matrix Cell."));
-      }
-
-      /* Set the diagonal. */
-      Rsum += 1./ECON_SELF_RES; /* We add a resistance for dampening. */
-      cs_entry( M, i, i, Rsum );
-   }
-
-   /* Compress M matrix and put into G. */
-   cs_spfree( econ_G );
-   econ_G = cs_compress( M );
-   if (econ_G == NULL)
-      ERR(_("Unable to create economy G Matrix."));
-
-   /* Clean up. */
-   cs_spfree(M);
-
-   return 0;
-}
-#endif
-
-
 /**
  * @brief Initializes the economy.
  *
@@ -471,10 +335,6 @@ int economy_refresh (void)
    if (econ_initialized == 0)
       return 0;
 
-   /* Create the resistance matrix. */
-   //if (econ_createGMatrix())
-   //   return -1;
-
    /* Initialize the prices. */
    economy_update( 0 );
 
@@ -490,74 +350,6 @@ int economy_refresh (void)
 int economy_update( unsigned int dt )
 {
    (void)dt;
-#if 0
-   int i, j;
-   double *X;
-   double scale, offset;
-   /*double min, max;*/
-
-   /* Economy must be initialized. */
-   if (econ_initialized == 0)
-      return 0;
-
-   /* Create the vector to solve the system. */
-   X = malloc(sizeof(double)*array_size(systems_stack));
-   if (X == NULL) {
-      WARN(_("Out of Memory"));
-      return -1;
-   }
-
-   /* Calculate the results for each price set. */
-   for (j=0; j<array_size(econ_comm); j++) {
-
-
-      /* First we must load the vector with intensities. */
-      for (i=0; i<array_size(systems_stack); i++)
-         X[i] = econ_calcSysI( dt, &systems_stack[i], j );
-
-      /* Solve the system. */
-      /** @TODO This should be improved to try to use better factorizations (LU/Cholesky)
-       * if possible or just outright try to use some other library that does fancy stuff
-       * like UMFPACK. Would be also interesting to see if it could be optimized so we
-       * store the factorization or update that instead of handling it individually. Another
-       * point of interest would be to split loops out to make the solving faster, however,
-       * this may be trickier to do (although it would surely let us use cholesky always if we
-       * enforce that condition). */
-      ret = cs_qrsol( 3, econ_G, X );
-      if (ret != 1)
-         WARN(_("Failed to solve the Economy System."));
-
-      /*
-       * Get the minimum and maximum to scale.
-       */
-      /*
-      min = +HUGE_VALF;
-      max = -HUGE_VALF;
-      for (i=0; i<array_size(systems_stack); i++) {
-         if (X[i] < min)
-            min = X[i];
-         if (X[i] > max)
-            max = X[i];
-      }
-      scale = 1. / (max - min);
-      offset = 0.5 - min * scale;
-      */
-
-      /*
-       * I'm not sure I like the filtering of the results, but it would take
-       * much more work to get a good system working without the need of post
-       * filtering.
-       */
-      scale    = 1.;
-      offset   = 1.;
-      for (i=0; i<array_size(systems_stack); i++)
-         systems_stack[i].prices[j] = X[i] * scale + offset;
-   }
-
-   /* Clean up. */
-   free(X);
-
-#endif
    econ_queued = 0;
    return 0;
 }
@@ -624,10 +416,6 @@ static int economy_calcPrice( Planet *planet, Commodity *commodity, CommodityPri
    commodityPrice->price *= scale;
    commodityPrice->planetVariation = 0.5;
    commodityPrice->sysVariation = 0.;
-   /*commodityPrice->sum = 0.;
-   commodityPrice->sum2 = 0.;
-   commodityPrice->cnt = 0;
-   commodityPrice->updateTime = 0;*/
    /* Use filename to specify a variation period. */
    base = 100;
    commodity->period = 32 * (planet->gfx_spaceName[strlen(PLANET_GFX_SPACE_PATH)] % 32) + planet->gfx_spaceName[strlen(PLANET_GFX_SPACE_PATH) + 1] % 32;
