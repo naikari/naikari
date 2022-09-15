@@ -1675,7 +1675,7 @@ void equipment_updateShips( unsigned int wid, char* str )
    cargo = pilot_cargoFree(ship) + pilot_cargoUsed(ship);
    nt = ntime_pretty(pilot_hyperspaceDelay( ship ), 2);
    nt2 = ntime_pretty(
-      ntime_create(0, 0, (int)(NT_PERIOD_SECONDS * ship->stats.land_delay)),
+      ntime_create(0, 0, (int)(NT_HOUR_SECONDS * ship->stats.land_delay)),
       2);
 
    /* Get ship error report. */

@@ -12,24 +12,24 @@
 /** @endcond */
 
 
-#define NT_CYCLE_PERIODS (3600) /**< galactic hours in a galactic year */
-#define NT_PERIOD_SECONDS (10000) /**< seconds in a galactic hour */
+#define NT_YEAR_HOURS (3600) /**< galactic hours in a galactic year */
+#define NT_HOUR_SECONDS (10000) /**< galactic seconds in a galactic hour */
 
 
 typedef int64_t ntime_t; /**< Core time type. */
 
 /* Create. */
-ntime_t ntime_create( int scu, int stp, int stu );
+ntime_t ntime_create(int year, int hour, int second);
 
 /* update */
 void ntime_update( double dt );
 
 /* get */
 ntime_t ntime_get (void);
-void ntime_getR( int *cycles, int *periods, int *seconds, double *rem );
-int ntime_getCycles( ntime_t t );
-int ntime_getPeriods( ntime_t t );
-int ntime_getSeconds( ntime_t t );
+void ntime_getR(int *years, int *hours, int *seconds, double *rem);
+int ntime_getYears(ntime_t t);
+int ntime_getHours(ntime_t t);
+int ntime_getSeconds(ntime_t t);
 double ntime_convertSeconds( ntime_t t );
 double ntime_getRemainder( ntime_t t );
 char* ntime_pretty( ntime_t t, int d );

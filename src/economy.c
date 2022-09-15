@@ -122,7 +122,7 @@ credits_t economy_getPriceAtTime( const Commodity *com,
     * Time does not advance when on a planet.
     * Journey with a single jump takes approx 3e7, so about 3 periods.
     */
-   t = ntime_convertSeconds( tme ) / NT_PERIOD_SECONDS;
+   t = ntime_convertSeconds(tme) / NT_HOUR_SECONDS;
 
    /* Get position in stack. */
    k = com - commodity_stack;

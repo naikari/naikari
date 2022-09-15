@@ -47,11 +47,16 @@
 #include "nstring.h"
 
 
-#define NT_SECONDS_DIV   (1000)      /* Divider for extracting seconds. */
-#define NT_SECONDS_DT    (30)        /* Update rate, how many seconds are in a real second. */
-#define NT_CYCLE_SECONDS   ((ntime_t)NT_CYCLE_PERIODS*(ntime_t)NT_PERIOD_SECONDS) /* Seconds in a cycle */
-#define NT_PERIODS_DIV   ((ntime_t)NT_PERIOD_SECONDS*(ntime_t)NT_SECONDS_DIV) /* Divider for extracting periods. */
-#define NT_CYCLES_DIV   ((ntime_t)NT_CYCLE_SECONDS*(ntime_t)NT_SECONDS_DIV) /* Divider for extracting cycles. */
+/* Divider for extracting galactic seconds. */
+#define NT_SECONDS_DIV (1000)
+/* Update rate, how many seconds are in a real second. */
+#define NT_SECONDS_DT (30)
+/* Galactic seconds in a galactic year */
+#define NT_YEAR_SECONDS ((ntime_t)NT_YEAR_HOURS*(ntime_t)NT_HOUR_SECONDS)
+/* Divider for extracting galactic hours. */
+#define NT_HOURS_DIV ((ntime_t)NT_HOUR_SECONDS*(ntime_t)NT_SECONDS_DIV)
+/* Divider for extracting galactic years. */
+#define NT_YEARS_DIV ((ntime_t)NT_YEAR_SECONDS*(ntime_t)NT_SECONDS_DIV)
 
 
 /**
@@ -99,13 +104,13 @@ void ntime_update( double dt )
 /**
  * @brief Creates a time structure.
  */
-ntime_t ntime_create( int scu, int stp, int stu )
+ntime_t ntime_create(int year, int hour, int second)
 {
-   ntime_t tscu, tstp, tstu;
-   tscu = scu;
-   tstp = stp;
-   tstu = stu;
-   return tscu*NT_CYCLES_DIV + tstp*NT_PERIODS_DIV + tstu*NT_SECONDS_DIV;
+   ntime_t ty, th, ts;
+   ty = year;
+   th = hour;
+   ts = second;
+   return ty*NT_YEARS_DIV + th*NT_HOURS_DIV + ts*NT_SECONDS_DIV;
 }
 
 
@@ -123,39 +128,39 @@ ntime_t ntime_get (void)
 /**
  * @brief Gets the current time broken into individual components.
  */
-void ntime_getR( int *cycles, int *periods, int *seconds, double *rem )
+void ntime_getR(int *years, int *hours, int *seconds, double *rem)
 {
-   *cycles = ntime_getCycles( naev_time );
-   *periods = ntime_getPeriods( naev_time );
-   *seconds = ntime_getSeconds( naev_time );
-   *rem = ntime_getRemainder( naev_time ) + naev_remainder;
+   *years = ntime_getYears(naev_time);
+   *hours = ntime_getHours(naev_time);
+   *seconds = ntime_getSeconds(naev_time);
+   *rem = ntime_getRemainder(naev_time) + naev_remainder;
 }
 
 
 /**
  * @brief Gets the cycles of a time.
  */
-int ntime_getCycles( ntime_t t )
+int ntime_getYears(ntime_t t)
 {
-   return (t / NT_CYCLES_DIV);
+   return (t/NT_YEARS_DIV);
 }
 
 
 /**
  * @brief Gets the periods of a time.
  */
-int ntime_getPeriods( ntime_t t )
+int ntime_getHours(ntime_t t)
 {
-   return (t / NT_PERIODS_DIV) % NT_CYCLE_PERIODS;
+   return (t/NT_HOURS_DIV) % NT_YEAR_HOURS;
 }
 
 
 /**
  * @brief Gets the seconds of a time.
  */
-int ntime_getSeconds( ntime_t t )
+int ntime_getSeconds(ntime_t t)
 {
-   return (t / NT_SECONDS_DIV) % NT_PERIOD_SECONDS;
+   return (t/NT_SECONDS_DIV) % NT_HOUR_SECONDS;
 }
 
 
@@ -214,9 +219,9 @@ void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
       nt = t;
 
    /* GCT (Galactic Common Time) - unit is seconds */
-   cycles = ntime_getCycles( nt );
-   periods = ntime_getPeriods( nt );
-   seconds = ntime_getSeconds( nt );
+   cycles = ntime_getYears(nt);
+   periods = ntime_getHours(nt);
+   seconds = ntime_getSeconds(nt);
    if ((cycles == 0) && (periods == 0)) /* only seconds */
       snprintf( str, max, _("%04d s"), seconds );
    else if ((cycles == 0) || (d==0))
