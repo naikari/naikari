@@ -153,7 +153,7 @@ function enter()
             p:memory().nosteal = true
         end
         
-        faction.get("FLF"):setPlayerStanding( -100 )
+        faction.get("FLF"):setPlayerStanding(-1)
         
         hook.timer(2, "commFLF")
         hook.timer(15, "wakeUpGregarYouLazyBugger")
@@ -190,9 +190,22 @@ end
 -- Gregar wakes up and calls off the FLF attackers. They agree to guide you to their hidden base.
 -- If the player has destroyed the FLF ships, nothing happens and a flag is set. In this case, the player can only do the Dvaered side of the mini-campaign.
 function wakeUpGregarYouLazyBugger()
-    flfdead = true -- Prevents failure if ALL the ships are dead.
+    -- Record that the FLF is dead to start with, then reset it to false
+    -- if in fact we can proceed to the guiding phase. This ensures that
+    -- the text for proceeding doesn't show if we're in a weird limbo
+    -- state for some reason, and also ensures proper handling of low
+    -- Frontier standing.
+    flfdead = true
+
+    if faction.get("Frontier"):playerStanding() < 0 then
+        -- If the player is enemies with the Frontier, the mission
+        -- cannot proceed on the FLF side, so Gregar will simply never
+        -- wake up and you will have to turn him into the Dvaereds.
+        return
+    end
+
     for i, p in ipairs(fleetFLF) do
-        if p ~= nil and p:exists() then
+        if p:exists() then
             p:setInvincible(true)
             p:setFriendly()
             p:setHealth(100,100)
@@ -206,7 +219,7 @@ function wakeUpGregarYouLazyBugger()
     if not flfdead then
         tk.msg("", wake_text)
         tk.msg("", fight_end_text)
-        faction.get("FLF"):setPlayerStanding( 5 ) -- Small buffer to ensure it doesn't go negative again right away.
+        faction.get("FLF"):setPlayerStanding(5)
         misn.osdCreate(misn_title, {osd_desc[1]:format(destsysname), osd_adddesc, osd_desc[2]})
         misn.osdActive(2)
         hook.timer(0.5, "inRange")

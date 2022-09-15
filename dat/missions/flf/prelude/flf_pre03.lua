@@ -395,6 +395,10 @@ function land_flf ()
       tk.msg("", text[7])
       player.pay(100000)
 
+      if faction.get("Frontier"):playerStanding() < 0 then
+         faction.get("Frontier"):setPlayerStanding(0)
+      end
+
       f:modPlayer(5)
       if f:playerStanding() < 10 then
          f:setPlayerStanding(10)
