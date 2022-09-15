@@ -30,20 +30,19 @@
  </general>
  <tech>
   <item>Common Outfits</item>
-  <item>Small Laser</item>
-  <item>Medium Laser</item>
-  <item>Small Ion</item>
   <item>Basic Missiles</item>
-  <item>Basic Light Fighter Utilities</item>
-  <item>Elite Light Fighter Utilities</item>
-  <item>Basic Light Fighter Structurals</item>
-  <item>Elite Light Fighter Structurals</item>
-  <item>Basic Light Fighter Cores</item>
-  <item>Elite Light Fighter Cores</item>
-  <item>Basic Fighter Utilities</item>
-  <item>Basic Fighter Structurals</item>
-  <item>Basic Fighter Cores</item>
-  <item>Nexus Small Ships</item>
-  <item>Empire Small Ships</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Medium Laser</item>
+  <item>Heavy Laser</item>
+  <item>Elite Corvette Utilities</item>
+  <item>Basic Corvette Structurals</item>
+  <item>Basic Corvette Cores</item>
+  <item>Basic Destroyer Utilities</item>
+  <item>Elite Destroyer Utilities</item>
+  <item>Elite Destroyer Structurals</item>
+  <item>Elite Destroyer Cores</item>
+  <item>Nexus Medium Ships</item>
+  <item>Empire Medium Ships</item>
  </tech>
 </asset>

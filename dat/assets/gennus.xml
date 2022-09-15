@@ -28,10 +28,13 @@
   <bar>It's hard to find a smiling face in this spaceport bar. Not too surprising, given how unpleasant life on this planet is.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Medium Laser</item>
+  <item>Basic Corvette Utilities</item>
+  <item>Basic Corvette Structurals</item>
+  <item>Basic Corvette Cores</item>
+  <item>Basic Destroyer Cores</item>
+  <item>Nexus Medium Ships</item>
  </tech>
 </asset>

@@ -30,14 +30,16 @@
   <bar>The bar caters to its clientele with considerable efficiency. Since Fuzka has quite a high amount of civilian traffic, its bar needs to handle the many passengers who are waiting for their transport to depart.</bar>
  </general>
  <tech>
-  <item>Hulls Medium</item>
-  <item>Engines Low</item>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Basic Civilian Ships</item>
-  <item>Light Civilian Combat Ships</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Laser</item>
+  <item>Basic Light Fighter Utilities</item>
+  <item>Basic Light Fighter Structurals</item>
+  <item>Basic Light Fighter Cores</item>
+  <item>Basic Fighter Utilities</item>
+  <item>Basic Fighter Structurals</item>
+  <item>Basic Fighter Cores</item>
+  <item>Nexus Small Ships</item>
+  <item>Empire Small Ships</item>
  </tech>
 </asset>
