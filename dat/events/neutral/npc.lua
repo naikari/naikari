@@ -194,7 +194,7 @@ msg_lore["Independent"] = {
 }
 
 msg_lore["Empire"] = {
-   _([["Things are getting worse by the cycle. What happened to the Empire? We used to be the lords and masters over the whole galaxy!"]]),
+   _([["Things are getting worse every year. What happened to the Empire? We used to be the lords and masters over the whole galaxy!"]]),
    _([["Did you know that House Za'lek was originally a Great Project initiated by the Empire? There was also a Project Proteron, but that one didn't go so well."]]),
    _([["The Emperor lives on a giant supercruiser in Gamma Polaris. It's said to be the biggest ship in the galaxy! I wish I could have one."]]),
    _([["Don't pay attention to the naysayers. The Empire is still strong. Have you ever seen a Peacemaker up close? I doubt any ship fielded by any other power could stand up to one."]]),
@@ -220,7 +220,7 @@ msg_lore["Dvaered"] = {
 msg_lore["Sirius"] = {
    _([["Greetings, traveler. May Sirichana's wisdom guide you as it guides me."]]),
    _([["I once met one of the Touched in person. Well, it wasn't really a meeting, our eyes simply met… but that instant alone was awe-inspiring."]]),
-   _([["My cousin was called to Mutris a cycle ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
+   _([["My cousin was called to Mutris a year ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
    _([["Some people say Sirius society is unfair because our echelons are determined by birth. But even though we are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
    _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has nothing to say in these systems. We follow Sirichana, and no one else."]]),
    _([["I hope to meet one of the Touched one day!"]]),
@@ -230,14 +230,14 @@ msg_lore["Sirius"] = {
 }
 
 msg_lore["Soromid"] = {
-   _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got burnt to a crisp hours before I was set to arrive! Even now, cycles later, I still can't believe I came so close to losing my life."]]),
+   _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got burnt to a crisp hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
    _([["Yes, it's true, our military ships are alive. Us normal folk don't get to own bioships though, we have to make do with synthetic constructs just like everyone else."]]),
    _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
    _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["Sometimes I worry a little about the growing anti-Soromid sentiment. We never really did fully move away from the Empire's stigmatization of us during the Great Quarantine."]]),
    _([["I don't trust the Empire, so I'm frankly glad it's in decline. First we had the Great Quarantine, and then the Incident wiped out our homeworld. I'm not saying the Empire caused the Incident on purpose, but considering Sol was at the center of it and the Empire controlled all of Sol, I'm sure the Empire is at least partially to blame."]]),
-   _([["They don't teach about the Great Quarantine in the Empire, do they? A few hundred cycles ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only through the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
+   _([["They don't teach about the Great Quarantine in the Empire, do they? A few centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only through the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
 }
 
 msg_lore["Za'lek"] = {

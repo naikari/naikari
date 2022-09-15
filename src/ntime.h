@@ -12,11 +12,11 @@
 /** @endcond */
 
 
-#define NT_CYCLE_PERIODS   (5000)      /**< periods in a cycle */
-#define NT_PERIOD_SECONDS   (10000)     /**< seconds in a period */
+#define NT_CYCLE_PERIODS (3000) /**< galactic hours in a galactic year */
+#define NT_PERIOD_SECONDS (10000) /**< seconds in a galactic hour */
 
 
-typedef int64_t ntime_t;         /**< Core time type. */
+typedef int64_t ntime_t; /**< Core time type. */
 
 /* Create. */
 ntime_t ntime_create( int scu, int stp, int stu );
