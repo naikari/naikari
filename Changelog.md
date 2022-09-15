@@ -41,6 +41,19 @@
 * Fixed the rescue script that activates when you take off, which had
   several small problems in how it worked caused by changes that weren't
   properly accommodated.
+* The Options menu now always shows 1280×720 as a stock resolution
+  choice, even if not listed as a supported mode by the OS (since that
+  is Naikari's default resolution), and no longer shows a choice with
+  the resolution you were at when opening the Options menu (since you
+  can return to that simply by pressing the Cancel button).
+* Double-tap afterburn is now disabled by default.
+* Increased variation of commodity prices.
+* Fixed a bug which caused the game to sometimes try to change to an
+  arbitrary small resolution (640×480 in all observed cases) on some
+  systems (noticed on Windows, but may have affected others) when
+  clicking OK in the options menu.
+* Replaced "cycles" with "galactic years", which are 30,000,000 seconds
+  long (approximately 347.22 Earth days).
 
 ## 0.4.1
 
