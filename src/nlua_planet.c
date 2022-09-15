@@ -63,7 +63,6 @@ static int planetL_isBlackMarket( lua_State *L );
 static int planetL_getRestriction( lua_State *L );
 static int planetL_isKnown( lua_State *L );
 static int planetL_setKnown( lua_State *L );
-static int planetL_recordCommodityPriceAtTime( lua_State *L );
 static const luaL_Reg planet_methods[] = {
    { "cur", planetL_cur },
    { "get", planetL_get },
@@ -92,7 +91,6 @@ static const luaL_Reg planet_methods[] = {
    { "restriction", planetL_getRestriction },
    { "known", planetL_isKnown },
    { "setKnown", planetL_setKnown },
-   { "recordCommodityPriceAtTime", planetL_recordCommodityPriceAtTime },
    {0,0}
 }; /**< Planet metatable methods. */
 
@@ -964,25 +962,5 @@ static int planetL_setKnown( lua_State *L )
    if (changed)
       outfits_updateEquipmentOutfits();
 
-   return 0;
-}
-
-/**
- * @brief Records commodity prices at a given time, adding to players stats.
- *
- * @usage p:recordCommodityPriceAtTime( t )
- *    @luatparam Planet p Planet to record prices at
- *    @luatparam ntime_t t Time at which to record prices.
- * @luafunc recordCommodityPriceAtTime
- */
-static int planetL_recordCommodityPriceAtTime( lua_State *L )
-{
-   ntime_t t;
-   Planet *p;
-   NLUA_CHECKRW(L);
-
-   p = luaL_validplanet(L,1);
-   t = luaL_validtime(L, 2);
-   planet_averageSeenPricesAtTime( p, t );
    return 0;
 }

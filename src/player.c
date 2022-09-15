@@ -313,8 +313,6 @@ static int player_newMake (void)
 
    /* Time. */
    ntime_set( start_date() );
-   /* Clear known economy info */
-   economy_clearKnown();
    /* Welcome message - must be before space_init. */
    player_message( _("#gWelcome to %s!"), APPNAME );
    player_message( "#g v%s", naev_version(0) );

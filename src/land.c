@@ -1191,9 +1191,6 @@ void land( Planet* p, int load )
    if (planet_hasService(land_planet, PLANET_SERVICE_BAR))
       news_load();
 
-   /* Average economy prices that player has seen */
-   economy_averageSeenPrices( p );
-
    /* Clear the NPC. */
    npc_clear();
 

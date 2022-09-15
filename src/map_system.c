@@ -85,7 +85,6 @@ static void map_system_genTradeList( unsigned int wid, float goodsSpace, float o
 
 static void map_system_array_update( unsigned int wid, char* str );
 
-void map_system_buyCommodPrice( unsigned int wid, char *str );
 
 /**
  * @brief Initializes the system map subsystem.
@@ -204,11 +203,6 @@ void map_system_open( int sys_selected )
    window_addButton(wid, -20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnClose", _("Close"), map_system_window_close);
-   /* commodity price purchase button */
-   window_addButton(wid, -20 - (BUTTON_WIDTH+10), 20,
-         BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnBuyCommodPrice", _("Buy Price Info"), map_system_buyCommodPrice);
-   window_disableButton( wid, "btnBuyCommodPrice");
 
    /* Load the planet gfx if necessary */
    if ( cur_sys_sel != cur_system ) {
@@ -772,7 +766,6 @@ static void map_system_updateSelected( unsigned int wid )
          noutfits = 0;
          nships = 0;
          ngoods = 0;
-         window_disableButton( wid, "btnBuyCommodPrice" );
       } else {
          /* get number of each to decide how much space the lists can have */
          outfits = tech_getOutfit( cur_planetObj_sel->tech );
@@ -782,11 +775,6 @@ static void map_system_updateSelected( unsigned int wid )
          nships = array_size( ships );
          array_free( ships );
          ngoods = array_size( cur_planetObj_sel->commodities );
-         /* to buy commodity info, need to be landed, and the selected system must sell them! */
-         if ( landed && planet_hasService( cur_planetObj_sel, PLANET_SERVICE_COMMODITY ) )
-            window_enableButton( wid, "btnBuyCommodPrice" );
-         else
-            window_disableButton( wid, "btnBuyCommodPrice" );
       }
       /* determine the ratio of space */
       s=g=o=0;
@@ -967,69 +955,6 @@ static void map_system_genTradeList( unsigned int wid, float goodsSpace, float o
          xw, yh, MAPSYS_TRADE, iconsize, iconsize,
          cgoods, ngoods, map_system_array_update, NULL, NULL );
       toolkit_unsetSelection( wid, MAPSYS_TRADE );
-   }
-}
-
-
-/**
- * @brief Handles the button to buy commodity prices
- */
-void map_system_buyCommodPrice( unsigned int wid, char *str )
-{
-   (void)wid;
-   (void)str;
-   int njumps = 0;
-   StarSystem **syslist;
-   int cost,ret;
-   char coststr[ECON_CRED_STRLEN];
-   ntime_t t = ntime_get();
-   ntime_t tdiff;
-
-   /* find number of jumps */
-   if ((strcmp(cur_system->name, cur_sys_sel->name) == 0)) {
-      cost = 500;
-      njumps = 0;
-   } else {
-      syslist = map_getJumpPath(cur_system->name, cur_sys_sel->name, 1, 0, NULL);
-      if (syslist == NULL) {
-         /* no route */
-         dialogue_msg(_("Commodity Prices"),
-               _("We don't have the commodity prices for %s available here at"
-                  " the moment."),
-               _(cur_planetObj_sel->name));
-         return;
-      } else {
-         njumps = array_size(syslist);
-         cost = 500 + 300*njumps;
-         array_free(syslist);
-      }
-   }
-
-   /* Get the time at which this purchase will be made
-    * (2 periods per jump) */
-   tdiff = ntime_create(0, 2 * njumps, 0);
-   t -= tdiff;
-
-   credits2str(coststr, cost, 1);
-   if ( !player_hasCredits( cost ) ) {
-      dialogue_msg(_("Commodity Prices"),
-            _("We are selling this information for %s, which you don't have."),
-            coststr);
-   } else if (array_size(cur_planetObj_sel->commodities) == 0) {
-      dialogue_msgRaw("",_("We don't know of any commodities sold here."));
-   } else if (cur_planetObj_sel->commodityPrice[0].updateTime >= t) {
-      dialogue_msgRaw(_("Commodity Prices"),
-            _("You already have newer information than we can sell."));
-   } else {
-      ret = dialogue_YesNo(_("Commodity Prices"),
-            _("Commodity prices for %s will cost %s. The latest information we"
-               " have has an age of %s. Purchase commodity prices?"),
-            _(cur_planetObj_sel->name), coststr, ntime_pretty(tdiff, 0));
-      if (ret) {
-         player_modCredits( -cost );
-         economy_averageSeenPricesAtTime( cur_planetObj_sel, t );
-         map_system_array_update( wid,  MAPSYS_TRADE );
-      }
    }
 }
 

@@ -232,17 +232,6 @@ credits_t planet_commodityPriceAtTime( const Planet *p, const Commodity *c, ntim
    return economy_getPriceAtTime( c, sys, p, t );
 }
 
-/**
- * @brief Adds cost of commodities on planet p to known statistics at time t.
- *
- *     @param p Planet to get price at
- *     @param t time to get prices at
- */
-void planet_averageSeenPricesAtTime( const Planet *p, const ntime_t tupdate )
-{
-   economy_averageSeenPricesAtTime( p, tupdate );
-}
-
 
 /**
  * @brief Gets the average price of a commodity at a planet that has been seen so far.
@@ -2177,8 +2166,6 @@ int system_addPlanet( StarSystem *sys, const char *planetname )
    array_push_back( &systemname_stack, sys->name );
 
    economy_addQueuedUpdate();
-   /* This is required to clear the player statistics for this planet */
-   economy_clearSinglePlanet(planet);
 
    /* Add the presence. */
    if (!systems_loading) {
