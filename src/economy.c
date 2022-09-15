@@ -159,7 +159,7 @@ credits_t economy_getPriceAtTime( const Commodity *com,
 }
 
 /**
- * @brief Gets the average price of a good on a planet in a system, using a rolling average over the times the player has landed here.
+ * @brief Gets the average price of a good on a planet.
  *
  *    @param com Commodity to get price of.
  *    @param p Planet to get price of commodity.
@@ -180,10 +180,10 @@ int economy_getAveragePlanetPrice( const Commodity *com, const Planet *p, credit
          break;
 
    /* Check if found */
-   if ( i>= array_size(econ_comm)) {
+   if (i >= array_size(econ_comm)) {
       WARN(_("Average price for commodity '%s' not known."), com->name);
-      *mean=0;
-      *std=0;
+      *mean = 0;
+      *std = 0;
       return -1;
    }
 
@@ -198,16 +198,10 @@ int economy_getAveragePlanetPrice( const Commodity *com, const Planet *p, credit
       *std = 0;
       return -1;
    }
+
    commPrice = &p->commodityPrice[i];
-   if ( commPrice->cnt>0 ) {
-      *mean = (credits_t)(commPrice->sum/commPrice->cnt + 0.5); /* +0.5 to round*/
-      *std = (sqrt(commPrice->sum2 / commPrice->cnt
-               - (commPrice->sum * commPrice->sum)
-                  / (commPrice->cnt * commPrice->cnt)));
-   } else {
-      *mean = 0;
-      *std = 0;
-   }
+   *mean = commPrice->price;
+   *std = commPrice->sysVariation + commPrice->planetVariation;
    return 0;
 }
 
