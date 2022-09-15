@@ -1212,7 +1212,9 @@ static void opt_video( unsigned int wid )
    int i, k, n;
    int display_index;
    int def_missing;
-   int nres, res_def;
+   int nres;
+   int duplicate_res;
+   int res_def;
    char buf[STRMAX_SHORT];
    int cw;
    int w, h, y, x, l;
@@ -1261,32 +1263,32 @@ static void opt_video( unsigned int wid )
          def_missing = 0;
    }
    res = malloc(sizeof(char*) * (i+def_missing));
-   nres  = 0;
+   nres = 0;
+   duplicate_res = 0;
    res_def = 0;
    if (def_missing) {
       asprintf(&res[0], "%dx%d", RESOLUTION_W_DEFAULT, RESOLUTION_H_DEFAULT);
       nres = 1;
    }
    for (i=0; i<n; i++) {
-      SDL_GetDisplayMode( display_index, i, &mode  );
-      asprintf( &res[ nres ], "%dx%d", mode.w, mode.h );
+      SDL_GetDisplayMode(display_index, i, &mode);
+      asprintf(&res[nres], "%dx%d", mode.w, mode.h);
 
-      /* Make sure doesn't already exist. */
+      /* Make sure the mode doesn't already exist. If it does, count
+       * the duplicate resolution so the index we use for setting the
+       * default list position doesn't get downshifted. */
       for (k=0; k<nres; k++)
-         if (strcmp( res[k], res[nres] )==0)
+         if (strcmp(res[k], res[nres]) == 0)
             break;
-      if (k<nres) {
-         free( res[nres] );
+      if (k < nres) {
+         free(res[nres]);
+         ++duplicate_res;
          continue;
       }
 
       /* Add as default if necessary and increment. */
-      if ((mode.w == conf.width) && (mode.h == conf.height)) {
-         DEBUG("Configured size (%dx%d) matches mode: %dx%d",
-               conf.width, conf.height, mode.w, mode.h);
-         res_def = i + def_missing;
-         DEBUG("Resolution selection set to index %d.", res_def);
-      }
+      if ((mode.w == conf.width) && (mode.h == conf.height))
+         res_def = i+def_missing - duplicate_res;
       nres++;
    }
    window_addList(wid, x, y, 140, 100, "lstRes",
