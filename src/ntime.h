@@ -12,7 +12,7 @@
 /** @endcond */
 
 
-#define NT_CYCLE_PERIODS (3000) /**< galactic hours in a galactic year */
+#define NT_CYCLE_PERIODS (3600) /**< galactic hours in a galactic year */
 #define NT_PERIOD_SECONDS (10000) /**< seconds in a galactic hour */
 
 

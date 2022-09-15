@@ -52,8 +52,10 @@
   arbitrary small resolution (640×480 in all observed cases) on some
   systems (noticed on Windows, but may have affected others) when
   clicking OK in the options menu.
-* Replaced "cycles" with "galactic years", which are 30,000,000 seconds
-  long (approximately 347.22 Earth days).
+* Replaced "cycles" with "galactic years", which are 36,000,000 galactic
+  seconds long (360 galactic days). Lore-wise, time units are now
+  defined in relation to our 24-hour Earth days, meaning the new
+  galactic year is exactly 360 days.
 
 ## 0.4.1
 
