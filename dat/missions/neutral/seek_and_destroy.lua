@@ -42,6 +42,7 @@ clue_text = {
    _([["I would suggest going to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
    _([["If I was looking for {pilot}, I would look in the {system} system. That's probably a good bet."]]),
    _([["Oh, I know that scum. Bad memories. If I were you, I'd check the {system} system. Good luck!"]]),
+   _([["{pilot} is the asshole who borrowed a bunch of credits from me and never paid me back! Yeah, I know where you can find them. {system} system. Good luck."]]),
 }
 
 noclue_text = {
@@ -109,6 +110,11 @@ cold_text = {
    _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, though! It was glorious."]]),
    _([["Er, someone else already killed {pilot}, but if you like, I could show you a picture of their ship exploding! It was quite a sight to behold."]]),
 }
+enemy_cold_text = {
+   _([["Didn't you hear? {pilot} is dead! Got blown up in an asteroid field is what I heard."]]),
+   _([["Ha ha, you're still looking for {pilot}? You're wasting your time; another bounty hunter beat you to it!"]]),
+   _([["Imagine going up to an outlaw trying to find another outlaw who's already dead! Ha! Are you trying to join {pilot} in hell?"]]),
+}
 
 noinfo_text = {
    _([[The pilot asks you to give them one good reason to give you that information.]]),
@@ -164,6 +170,18 @@ base_reward = {
 
 target_faction = faction.get("Pirate")
 name_func = pirate_name
+
+virtual_allies = {}
+
+enemy_know_chance = 0.1
+enemy_tell_chance = 0.5
+neutral_know_chance = 0
+neutral_tell_chance = 0
+ally_know_chance = 0.7
+ally_tell_chance = 0.05
+
+fearless_factions = {}
+loyal_factions = {}
 
 
 function create ()
@@ -331,6 +349,29 @@ function hail_ad()
    tk.msg("", advice_text) -- Give advice to the player
 end
 
+
+function is_target_ally(f)
+   -- See if it's the same faction
+   if target_faction == f then
+      return true
+   end
+
+   -- See if it's a real ally
+   if target_faction:areAllies(f) then
+      return true
+   end
+
+   -- See if it's a virtual ally
+   for i, fn in ipairs(virtual_allies) do
+      if f == faction.get(fn) then
+         return true
+      end
+   end
+
+   return false
+end
+
+
 -- Player hails a ship for info
 function hail(p)
    if p:leader() == player.pilot() then
@@ -343,21 +384,29 @@ function hail(p)
       hailed[#hailed+1] = p -- A pilot can be hailed only once
 
       if cursys+1 >= nbsys then -- No more claimed system : need to finish the mission
-         tk.msg("", fmt.f(cold_text[rnd.rnd(1, #cold_text)], {pilot=name}))
+         if is_target_ally(p:faction()) then
+            tk.msg("", fmt.f(enemy_cold_text[rnd.rnd(1, #enemy_cold_text)],
+                  {pilot=name}))
+         else
+            tk.msg("", fmt.f(cold_text[rnd.rnd(1, #cold_text)], {pilot=name}))
+         end
          misn.finish(false)
       else
-         -- If hailed pilot is enemy to the target, there is less chance he knows
          if target_faction:areEnemies(p:faction()) then
-            know = (rnd.rnd() < 0.1)
+            know = (rnd.rnd() < enemy_know_chance)
+            tells = (rnd.rnd() < enemy_tell_chance)
+         elseif is_target_ally(p:faction()) then
+            know = (rnd.rnd() < ally_know_chance)
+            tells = (rnd.rnd() < ally_tell_chance)
          else
-            know = (rnd.rnd() < 0.7)
+            know = (rnd.rnd() < neutral_know_chance)
+            tells = (rnd.rnd() < neutral_tell_chance)
          end
 
-         -- If hailed pilot is enemy to the player, there is less chance he tells
-         if p:hostile() then
-            tells = (rnd.rnd() < 0.05)
-         else
-            tells = (rnd.rnd() < 0.5)
+         -- Hostile ships automatically are less inclined to tell
+         -- regardless of affiliation.
+         if p:hostile() and rnd.rnd() < 0.95 then
+            tells = false
          end
 
          if not know then -- NPC does not know the target
@@ -379,11 +428,14 @@ end
 
 -- The NPC knows the target. The player has to convince him to give info
 function space_clue(p)
-   -- FLF are loyal to each other.
+   -- Some factions are loyal to each other
    local loyal = false
-   local flf = faction.get("FLF")
-   if target_faction == flf and p:faction() == flf then
-      loyal = true
+   for i, fn in ipairs(loyal_factions) do
+      local f = faction.get(fn)
+      if p:faction() == f and is_target_ally(f) then
+         loyal = true
+         break
+      end
    end
 
    if loyal or p:hostile() then
@@ -431,7 +483,7 @@ function space_clue(p)
       else -- Threaten the pilot
          -- Everybody except the pirates takes offence if you threaten them
          if p:faction() ~= faction.get("Pirate") then
-            faction.modPlayerSingle(p:faction(), -1)
+            faction.modPlayerSingle(p:faction(), -0.5)
          end
 
          if isScared(p) then
@@ -455,11 +507,13 @@ end
 
 -- Player attacks an informant who has refused to give info
 function clue_attacked(p, attacker)
-   -- FLF has no fear.
-   local flf = faction.get("FLF")
-   if target_faction == flf and p:faction() == flf then
-      hook.rm(attack)
-      return
+   -- Some factions have no fear.
+   for i, fn in ipairs(fearless_factions) do
+      local f = faction.get(fn)
+      if p:faction() == f and is_target_ally(f) then
+         hook.rm(attack)
+         return
+      end
    end
 
    -- Target was hit sufficiently to get more talkative
@@ -476,10 +530,12 @@ end
 
 -- Decides if the pilot is scared by the player
 function isScared(t)
-   -- FLF has no fear.
-   local flf = faction.get("FLF")
-   if target_faction == flf and t:faction() == flf then
-      return false
+   -- Some factions have no fear.
+   for i, fn in ipairs(fearless_factions) do
+      local f = faction.get(fn)
+      if t:faction() == f and is_target_ally(f) then
+         return false
+      end
    end
 
    local pstat = player.pilot():stats()
@@ -493,10 +549,6 @@ function isScared(t)
 
    -- If target is quicker, no fear
    if tstat.speed_max > pstat.speed_max and rnd.rnd() < 0.95 then
-      if t:hostile() then
-         t:control()
-         t:runaway(player.pilot())
-      end
       return false
    end
 
