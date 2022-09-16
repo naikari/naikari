@@ -13,7 +13,6 @@
    <faction>Proteron</faction>
    <faction>Sirius</faction>
    <faction>Soromid</faction>
-   <faction>Thurion</faction>
    <faction>Za'lek</faction>
   </avail>
  </mission>
@@ -52,20 +51,20 @@ abandon_text = {
 }
 
 -- Mission details
-misn_title = _("Patrol of the %s system")
-misn_desc = _("Patrol specified points in the %s system, eliminating any hostiles you encounter.")
+misn_title = _("Patrol: {faction} territory ({system} system)")
+misn_desc = _("Local {faction} police are enlisting qualified mercenaries to assist in patrolling the {system} system. For this mission, you will have to patrol specified points in the system, eliminating any hostiles you encounter. Upon entering, you must remain in the system until the patrol is completed, and you are not permitted to land during the patrol, or else the contract is void and you will not be paid.")
 
 -- Messages
 secure_msg = _("Point secure.")
 hostiles_msg = _("Hostiles detected. Engage hostiles.")
 continue_msg = _("Hostiles eliminated.")
+pay_msg = _("{credits} awarded for keeping {faction} space safe.")
 
 osd_title = _("Patrol")
 osd_msg = {}
-osd_msg[1] = _("Fly to the %s system")
+osd_msg[1] = _("Fly to the {system} system")
 osd_msg[2] = "(null)"
 osd_msg[3] = _("Eliminate hostiles")
-osd_msg[4] = _("Land in %s territory to collect your pay")
 osd_msg["__save"] = true
 
 mark_name = _("Patrol Point")
@@ -143,8 +142,10 @@ function create ()
    reputation = math.floor(n_enemies / 75)
 
    -- Set mission details
-   misn.setTitle(misn_title:format(missys:name()))
-   misn.setDesc(misn_desc:format(missys:name()))
+   misn.setTitle(fmt.f(misn_title,
+         {faction=paying_faction:name(), system=missys:name()}))
+   misn.setDesc(fmt.f(misn_desc,
+         {faction=paying_faction:name(), system=missys:name()}))
    misn.setReward(fmt.credits(credits))
    marker = misn.markerAdd(missys, "computer")
 end
@@ -153,12 +154,11 @@ end
 function accept ()
    misn.accept()
 
-   osd_msg[1] = osd_msg[1]:format(missys:name())
+   osd_msg[1] = fmt.f(osd_msg[1], {system=missys:name()})
    osd_msg[2] = string.format(n_(
          "Go to point indicated on overlay map (%d remaining)",
          "Go to point indicated on overlay map (%d remaining)", #points),
       #points)
-   osd_msg[4] = osd_msg[4]:format(paying_faction:name())
    misn.osdCreate(osd_title, osd_msg)
 
    hook.enter("enter")
@@ -231,7 +231,7 @@ function timer ()
          end
          if not already_in then
             if player_pos:dist(j:pos()) < 1500 then
-               j:setVisible(true)
+               j:setVisplayer(true)
                j:setHilight(true)
                j:setHostile(true)
                hook.pilot(j, "death", "pilot_leave")
@@ -271,11 +271,11 @@ function timer ()
          points["__save"] = true
 
          player.msg(secure_msg)
-         osd_msg[2] = gettext.ngettext(
-            "Go to point indicated on overlay map (%d remaining)",
-            "Go to point indicated on overlay map (%d remaining)",
-            #points
-        ):format(#points)
+         osd_msg[2] = string.format(n_(
+               "Go to point indicated on overlay map (%d remaining)",
+               "Go to point indicated on overlay map (%d remaining)",
+               #points),
+            #points)
          misn.osdCreate(osd_title, osd_msg)
          misn.osdActive(2)
          if mark ~= nil then
@@ -284,8 +284,7 @@ function timer ()
          end
       end
    else
-      mh.showWinMsg(
-         fmt.f(_("{credits} awarded for keeping {faction} space safe."),
+      mh.showWinMsg(fmt.f(pay_msg,
             {credits=fmt.credits(credits), faction=paying_faction:name()}))
 
       player.pay(credits)
