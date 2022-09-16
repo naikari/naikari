@@ -43,18 +43,13 @@
 --]]
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 require "jumpdist"
 
 
-pay_text = {}
-pay_text[1] = _("After going through some paperwork, an officer hands you your pay and sends you off.")
-pay_text[2] = _("A tired-looking officer verifies your mission log and hands you your pay.")
-pay_text[3] = _("The officer you deal with thanks you for your work, hands you your pay, and sends you off.")
-pay_text[4] = _("An officer goes through the necessary paperwork, looking bored the entire time, and hands you your fee.")
-
-abandon_text    = {}
-abandon_text[1] = _("You are sent a message informing you that landing in the middle of a patrol mission is considered to be abandonment. As such, your contract is void and you will not receive payment.")
-
+abandon_text = {
+   _("You are sent a message informing you that landing in the middle of a patrol mission is considered to be abandonment. As such, your contract is void and you will not receive payment."),
+}
 
 -- Mission details
 misn_title = _("Patrol of the %s system")
@@ -64,12 +59,9 @@ misn_desc = _("Patrol specified points in the %s system, eliminating any hostile
 secure_msg = _("Point secure.")
 hostiles_msg = _("Hostiles detected. Engage hostiles.")
 continue_msg = _("Hostiles eliminated.")
-done_msg = _("Patrol complete. You can now collect your pay.")
-late_msg = _("MISSION FAILURE! You showed up too late.")
-abandoned_msg = _("MISSION FAILURE! You have left the %s system.")
 
-osd_title  = _("Patrol")
-osd_msg    = {}
+osd_title = _("Patrol")
+osd_msg = {}
 osd_msg[1] = _("Fly to the %s system")
 osd_msg[2] = "(null)"
 osd_msg[3] = _("Eliminate hostiles")
@@ -138,7 +130,6 @@ function create ()
       misn.finish(false)
    end
 
-   jumps_permitted = system.cur():jumpDist(missys, use_hidden_jumps) + 3
    hostiles = {}
    hostiles["__save"] = true
    hostiles_encountered = false
@@ -163,14 +154,12 @@ function accept ()
    misn.accept()
 
    osd_msg[1] = osd_msg[1]:format(missys:name())
-   osd_msg[2] = gettext.ngettext(
-      "Go to point indicated on overlay map (%d remaining)",
-      "Go to point indicated on overlay map (%d remaining)",
-      #points):format(#points)
+   osd_msg[2] = string.format(n_(
+         "Go to point indicated on overlay map (%d remaining)",
+         "Go to point indicated on overlay map (%d remaining)", #points),
+      #points)
    osd_msg[4] = osd_msg[4]:format(paying_faction:name())
    misn.osdCreate(osd_title, osd_msg)
-
-   job_done = false
 
    hook.enter("enter")
    hook.jumpout("jumpout")
@@ -179,7 +168,7 @@ end
 
 
 function enter ()
-   if system.cur() == missys and not job_done then
+   if system.cur() == missys then
       timer()
    end
 end
@@ -191,14 +180,11 @@ function jumpout ()
       mark = nil
    end
 
-   jumps_permitted = jumps_permitted - 1
    local last_sys = system.cur()
-   if not job_done then
-      if last_sys == missys then
-         fail(abandoned_msg:format(last_sys:name()))
-      elseif jumps_permitted < 0 then
-         fail(late_msg)
-      end
+   if last_sys == missys then
+      mh.showFailMsg(fmt.f(_("You have left the {system} system."),
+            {system=last_sys:name()}))
+      misn.finish(false)
    end
 end
 
@@ -209,14 +195,7 @@ function land ()
       mark = nil
    end
 
-   jumps_permitted = jumps_permitted - 1
-   if job_done and planet.cur():faction() == paying_faction then
-      local txt = pay_text[rnd.rnd(1, #pay_text)]
-      tk.msg("", txt)
-      player.pay(credits)
-      paying_faction:modPlayer(reputation)
-      misn.finish(true)
-   elseif not job_done and system.cur() == missys then
+   if system.cur() == missys then
       local txt = abandon_text[rnd.rnd(1, #abandon_text)]
       tk.msg("", txt)
       misn.finish(false)
@@ -305,30 +284,14 @@ function timer ()
          end
       end
    else
-      job_done = true
-      player.msg(done_msg)
-      misn.osdActive(4)
-      if marker ~= nil then
-         misn.markerRm(marker)
-      end
+      mh.showWinMsg(
+         fmt.f(_("{credits} awarded for keeping {faction} space safe."),
+            {credits=fmt.credits(credits), faction=paying_faction:name()}))
+
+      player.pay(credits)
+      paying_faction:modPlayer(reputation)
+      misn.finish(true)
    end
 
-   if not job_done then
-      timer_hook = hook.timer(0.05, "timer")
-   end
-end
-
-
--- Fail the mission, showing message to the player.
-function fail(message)
-   if message ~= nil then
-      -- Pre-colourized, do nothing.
-      if message:find("#") then
-         player.msg(message)
-      -- Colourize in red.
-      else
-         player.msg("#r" .. message .. "#0")
-      end
-   end
-   misn.finish(false)
+   timer_hook = hook.timer(0.05, "timer")
 end
