@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Seek And Destroy">
  <avail>
-  <priority>43</priority>
+  <priority>41</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
   <chance>875</chance>
   <location>Computer</location>
@@ -102,46 +102,68 @@ intimidated_text = {
    _([["OK, OK, I get the message! The {system} system! {pilot} is in the {system} system! Just leave me alone!"]]),
 }
 
-cold_text    = {}
-cold_text[1] = _("When you ask for information about %s, they tell you that this outlaw has already been killed by someone else.")
-cold_text[2] = _([["Didn't you hear? That outlaw's dead. Got blown up in an asteroid field is what I heard."]])
-cold_text[3] = _([["Ha ha, you're still looking for that outlaw? You're wasting your time; they've already been taken care of."]])
-cold_text[4] = _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, though! It was glorious."]])
+cold_text = {
+   _("When you ask for information about {pilot}, they tell you that this pirate has already been killed by someone else."),
+   _([["Didn't you hear? That pirate's dead. Got blown up in an asteroid field is what I heard."]]),
+   _([["Ha ha, you're still looking for {pilot}? You're wasting your time; that outlaw's already been taken care of."]]),
+   _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, though! It was glorious."]]),
+   _([["Er, someone else already killed {pilot}, but if you like, I could show you a picture of their ship exploding! It was quite a sight to behold."]]),
+}
 
-noinfo_text    = {}
-noinfo_text[1] = _("The pilot asks you to give them one good reason to give you that information.")
-noinfo_text[2] = _([["What if I know where your target is and I don't want to tell you, eh?"]])
-noinfo_text[3] = _([["Piss off! I won't tell anything to the likes of you!"]])
-noinfo_text[4] = _([["And why exactly should I give you that information?"]])
-noinfo_text[5] = _([["And why should I help you, eh? Get lost!"]])
+noinfo_text = {
+   _([[The pilot asks you to give them one good reason to give you that information.]]),
+   _([["What if I know where your target is and I don't want to tell you, eh?"]]),
+   _([["Piss off! I won't tell anything to the likes of you!"]]),
+   _([["And why exactly should I give you that information?"]]),
+   _([["And why should I help you, eh? Get lost!"]]),
+   _([["Piss off and stop asking questions about {pilot}, you nosey little snob!"]]),
+}
 
 advice_text  = _([["Hi there", says the pilot. "You seem to be lost." As you explain that you're looking for an outlaw pilot and have no idea where to find your target, the pilot laughs. "So, you've taken a Seek and Destroy job, but you have no idea how it works. Well, there are two ways to get information on an outlaw: first way is to land on a planet and ask questions at the bar. The second way is to ask pilots in space. By the way, pilots of the same faction of your target are most likely to have information, but won't give it easily. Good luck with your search!"]])
 
 brief_text = _("{pilot} is a notorious pirate who is wanted by the authorities, dead or alive. Any citizen who can find and neutralize {pilot} by any means necessary will be given {credits} as a reward. {faction} authorities have lost track of this pilot in the {system} system. It is very likely that the target is no longer there, but this system may be a good place to start an investigation.")
 
-flee_text = _("You had a chance to neutralize %s, and you wasted it! Now you have to start all over. Maybe some other pilots in %s know where your target is going.")
+flee_text = _("You had a chance to neutralize {pilot}, and you wasted it! Now you have to start all over. Maybe some other pilots in {system} know where {pilot} is going.")
 
-Tflee_text = _("That was close, but unfortunately, %s ran away. Maybe some other pilots in this system know where your target is heading.")
+Tflee_text = _("That was close, but unfortunately, {pilot} ran away. Maybe some other pilots in this system know where your target is heading.")
 
 pay_text    = {}
 pay_text[1] = _("An officer hands you your pay.")
 pay_text[2] = _("No one will miss this outlaw pilot! The bounty has been deposited into your account.")
 
 osd_title = _("Seek and Destroy")
-osd_msg    = {}
-osd_msg1_r = _("Fly to %s and search for clues")
+osd_msg = {}
+osd_msg1_r = _("Fly to {system} and search for clues")
 osd_msg[1] = " "
-osd_msg[2] = _("Kill %s")
+osd_msg[2] = _("Kill {pilot}")
 osd_msg["__save"] = true
 
 npc_desc = _("Shifty Person")
 bar_desc = _("This person might be an outlaw, a pirate, or even worse, a bounty hunter. You normally wouldn't want to get close to this kind of person, but they may be a useful source of information.")
 
--- Mission details
-misn_title  = _("Seek And Destroy Mission, starting in %s")
-misn_desc   = _("The %s pilot known as %s is wanted dead or alive by %s authorities. He was last seen in the %s system.")
+misn_desc = _("A pirate known as {pilot} is wanted dead or alive by {faction} authorities. {pilot} was last seen in the {system} system. Any mercenary who can track down and eliminate this pirate will be awarded substantially.")
+
+misn_title = {
+   _("Seek and Destroy: Small Pirate Bounty ({system} system)"),
+   _("Seek and Destroy: Moderate Pirate Bounty ({system} system)"),
+   _("Seek and Destroy: Difficult Pirate Bounty ({system} system)"),
+   _("Seek and Destroy: Dangerous Pirate Bounty ({system} system)"),
+}
+ship_choices = {
+   {"Pirate Vendetta", "Pirate Ancestor"},
+   {"Pirate Admonisher", "Pirate Phalanx"},
+   {"Pirate Rhino"},
+   {"Pirate Kestrel"},
+}
+base_reward = {
+   750000,
+   1100000,
+   2100000,
+   6300000,
+}
 
 target_faction = faction.get("Pirate")
+name_func = pirate_name
 
 
 function create ()
@@ -183,21 +205,18 @@ function create ()
       misn.finish(false)
    end
 
-   if target_faction == faction.get("FLF") then
-      name = pilot_name()
-      ships = {"Lancelot", "Vendetta", "Pacifier"}
-   else -- default Pirate
-      name = pirate_name()
-      ships = {"Pirate Shark", "Pirate Vendetta", "Pirate Admonisher"}
-   end
-
-   ship = ships[rnd.rnd(1,#ships)]
-   credits = 500000 + rnd.rnd()*200000 + rnd.sigma()*10000
+   difficulty = rnd.rnd(1, #misn_title)
+   local ships = ship_choices[difficulty]
+   ship = ships[rnd.rnd(1, #ships)]
+   name = name_func()
+   credits = base_reward[difficulty]
+   credits = credits + 0.1*credits*rnd.sigma()
    cursys = 1
 
    -- Set mission details
-   misn.setTitle(misn_title:format(mysys[1]:name()))
-   misn.setDesc(misn_desc:format(target_faction:name(), name, paying_faction:name(), mysys[1]:name()))
+   misn.setTitle(fmt.f(misn_title[difficulty], {system=mysys[1]:name()}))
+   misn.setDesc(fmt.f(misn_desc,
+         {pilot=name, faction=paying_faction:name(), system=mysys[1]:name()}))
    misn.setReward(fmt.credits(credits))
    marker = misn.markerAdd(mysys[1], "computer")
 
@@ -228,8 +247,8 @@ function accept ()
    hailhook = hook.hail("hail")
    landhook = hook.land("land")
 
-   osd_msg[1] = osd_msg1_r:format(mysys[1]:name())
-   osd_msg[2] = osd_msg[2]:format(name)
+   osd_msg[1] = fmt.f(osd_msg1_r, {system=mysys[1]:name()})
+   osd_msg[2] = fmt.f(osd_msg[2], {pilot=name})
    misn.osdCreate(osd_title, osd_msg)
 end
 
@@ -245,7 +264,7 @@ function enter ()
    if stage <= 2 and system.cur() == mysys[cursys] then
       -- This system will contain the pirate
       -- cursys > pisys means the player has failed once (or more).
-      if cursys == pisys or (cursys > pisys and rnd.rnd() > .5) then
+      if cursys == pisys or (cursys > pisys and rnd.rnd() < 0.5) then
          stage = 2
       end
 
@@ -276,6 +295,9 @@ function enter ()
          target_ship:setHilight(true)
          target_ship:setVisplayer()
          target_ship:setHostile()
+
+         -- We're overriding the kill reward.
+         target_ship:memory().kill_reward = nil
 
          death_hook = hook.pilot(target_ship, "death", "target_death")
          pir_jump_hook = hook.pilot(target_ship, "jump", "target_flee")
@@ -321,22 +343,21 @@ function hail(p)
       hailed[#hailed+1] = p -- A pilot can be hailed only once
 
       if cursys+1 >= nbsys then -- No more claimed system : need to finish the mission
-         tk.msg("", cold_text[rnd.rnd(1,#cold_text)]:format(name))
+         tk.msg("", fmt.f(cold_text[rnd.rnd(1, #cold_text)], {pilot=name}))
          misn.finish(false)
       else
-
          -- If hailed pilot is enemy to the target, there is less chance he knows
          if target_faction:areEnemies(p:faction()) then
-            know = (rnd.rnd() > .9)
+            know = (rnd.rnd() < 0.1)
          else
-            know = (rnd.rnd() > .3)
+            know = (rnd.rnd() < 0.7)
          end
 
          -- If hailed pilot is enemy to the player, there is less chance he tells
          if p:hostile() then
-            tells = (rnd.rnd() > .95)
+            tells = (rnd.rnd() < 0.05)
          else
-            tells = (rnd.rnd() > .5)
+            tells = (rnd.rnd() < 0.5)
          end
 
          if not know then -- NPC does not know the target
@@ -367,7 +388,8 @@ function space_clue(p)
 
    if loyal or p:hostile() then
       local s = noinfo_text[rnd.rnd(1, #noinfo_text)]
-      local choice = tk.choice("", s, backoff_choice, threaten_choice)
+      local choice = tk.choice("", fmt.f(s, {pilot=name}),
+            backoff_choice, threaten_choice)
       if choice == 1 then
          return
       else -- Threaten the pilot
@@ -552,13 +574,13 @@ end
 
 function next_sys ()
    misn.markerMove (marker, mysys[cursys+1])
-   osd_msg[1] = osd_msg1_r:format(mysys[cursys+1]:name())
+   osd_msg[1] = fmt.f(osd_msg1_r, {system=mysys[cursys+1]:name()})
    misn.osdCreate(osd_title, osd_msg)
    increment = true
 end
 
 function player_flee ()
-   tk.msg("", flee_text:format(name, system.cur():name()))
+   tk.msg("", fmt.f(flee_text, {pilot=name, system=system.cur():name()}))
    stage = 0
    misn.osdActive(1)
 
@@ -571,7 +593,7 @@ end
 function target_flee ()
    -- Target ran away. Unfortunately, we cannot continue the mission
    -- on the other side because the system has not been claimed...
-   tk.msg("", Tflee_text:format(name))
+   tk.msg("", fmt.f(Tflee_text, {pilot=name}))
    pilot.toggleSpawn(true)
    stage = 0
    misn.osdActive(1)
