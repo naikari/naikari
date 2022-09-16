@@ -30,6 +30,27 @@ end
 
 
 --[[--
+-- @brief Shows a player message informing of a mission success.
+--
+-- Note: this does not actually end the mission. It should be followed
+-- up with a misn.finish(true) call.
+--
+-- @usage showWinMsg(_("You delivered the cake!"))
+--
+--    @tparam[opt] string congrats Congratulation message for winning.
+--]]
+function misnhelper.showWinMsg(congrats)
+   if congrats ~= nil then
+      local message = fmt.f(_("MISSION SUCCESSFUL! {congrats}"),
+            {congrats=congrats})
+      player.msg("#g" .. message .. "#0")
+   else
+      player.msg("#g" .. _("MISSION SUCCESSFUL!") .. "#0")
+   end
+end
+
+
+--[[--
 -- @brief Shows a player message informing of a mission failure.
 --
 -- Note: this does not actually end the mission. It should be followed
