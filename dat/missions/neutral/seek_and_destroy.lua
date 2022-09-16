@@ -36,7 +36,7 @@ require "pilot/pirate"
 
 
 clue_text = {
-   _("The pilot tells you that {pilot} is supposed to have business in {system} soon."),
+   _([[The pilot tells you that {pilot} is supposed to have business in {system} soon.]]),
    _([["I've heard that {pilot} likes to hang around in {system}."]]),
    _([["You can probably catch {pilot} in {system}."]]),
    _([["I would suggest going to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
@@ -46,8 +46,8 @@ clue_text = {
 }
 
 noclue_text = {
-   _("This person has never heard of {pilot}. It seems you will have to ask someone else."),
-   _("This pilot is also looking for {pilot}, but doesn't seem to know anything you don't."),
+   _([[This person has never heard of {pilot}. It seems you will have to ask someone else.]]),
+   _([[This pilot is also looking for {pilot}, but doesn't seem to know anything you don't.]]),
    _([["{pilot}? Nope, I haven't seen that person in years at this point."]]),
    _([["Sorry, I have no idea where {pilot} is."]]),
    _([["Oh, hell no, I stay as far away from {pilot} as I possibly can."]]),
@@ -126,8 +126,6 @@ noinfo_text = {
    _([["Piss off and stop asking questions about {pilot}, you nosey little snob!"]]),
 }
 
-advice_text  = _([["Hi there", says the pilot. "You seem to be lost." As you explain that you're looking for an outlaw pilot and have no idea where to find your target, the pilot laughs. "So, you've taken a Seek and Destroy job, but you have no idea how it works. Well, there are two ways to get information on an outlaw: first way is to land on a planet and ask questions at the bar. The second way is to ask pilots in space. By the way, pilots of the same faction of your target are most likely to have information, but won't give it easily. Good luck with your search!"]])
-
 found_msg = _("Target presence detected. Prepare to engage.")
 flee_msg = _("OBJECTIVE FAILED: You ran away from target. Resume search for {pilot} in {system}.")
 Tflee_msg = _("OBJECTIVE FAILED: Target ran away. Resume search for {pilot} in {system}.")
@@ -172,8 +170,8 @@ virtual_allies = {}
 
 enemy_know_chance = 0.1
 enemy_tell_chance = 0.5
-neutral_know_chance = 0
-neutral_tell_chance = 0
+neutral_know_chance = 0.1
+neutral_tell_chance = 0.5
 ally_know_chance = 0.7
 ally_tell_chance = 0.05
 
