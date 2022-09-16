@@ -29,6 +29,7 @@
 #include "ndata.h"
 #include "nstring.h"
 #include "nxml.h"
+#include "player.h"
 #include "space.h"
 
 
@@ -614,6 +615,7 @@ static int diff_patch( xmlNodePtr parent )
    xmlNodePtr node;
    char *target;
    int nfailed;
+   Pilot *const *pilots;
 
    /* Prepare it. */
    diff = diff_newDiff();
@@ -722,6 +724,19 @@ static int diff_patch( xmlNodePtr parent )
    /* Prune presences if necessary. */
    if (univ_update)
       space_reconstructPresences();
+
+   /* Clear nav target from all pilots. Might prevent a segfault in rare
+    * cases where unidiff changes while out in space, as seen in Naev
+    * GitHub issue #2135: https://github.com/naev/naev/issues/2135 */
+   pilots = pilot_getAll();
+   if ((cur_system != NULL) && (player.p != NULL) && (pilots != NULL)) {
+      for (i=0; i<array_size(pilots); i++) {
+         pilots[i]->nav_planet = -1;
+         pilots[i]->nav_hyperspace = -1;
+      }
+      player_targetPlanetSet(-1);
+      player_targetHyperspaceSet(-1);
+   }
 
    /* Update overlay map just in case. */
    ovr_refresh();
@@ -1042,6 +1057,7 @@ static int diff_removeDiff( UniDiff_t *diff )
 static void diff_cleanup( UniDiff_t *diff )
 {
    int i;
+   Pilot *const *pilots;
 
    free(diff->name);
    for (i=0; i<array_size(diff->applied); i++)
@@ -1051,6 +1067,19 @@ static void diff_cleanup( UniDiff_t *diff )
       diff_cleanupHunk(&diff->failed[i]);
    array_free(diff->failed);
    memset(diff, 0, sizeof(UniDiff_t));
+
+   /* Clear nav target from all pilots. Might prevent a segfault in rare
+    * cases where unidiff changes while out in space, as seen in Naev
+    * GitHub issue #2135: https://github.com/naev/naev/issues/2135 */
+   pilots = pilot_getAll();
+   if ((cur_system != NULL) && (player.p != NULL) && (pilots != NULL)) {
+      for (i=0; i<array_size(pilots); i++) {
+         pilots[i]->nav_planet = -1;
+         pilots[i]->nav_hyperspace = -1;
+      }
+      player_targetPlanetSet(-1);
+      player_targetHyperspaceSet(-1);
+   }
 }
 
 
@@ -1117,6 +1146,7 @@ int diff_save( xmlTextWriterPtr writer )
 
 }
 
+
 /**
  * @brief Loads the diffs.
  *
@@ -1126,7 +1156,7 @@ int diff_save( xmlTextWriterPtr writer )
 int diff_load( xmlNodePtr parent )
 {
    xmlNodePtr node, cur;
-   char *     diffName;
+   char *diffName;
 
    diff_clear();
 
@@ -1148,7 +1178,4 @@ int diff_load( xmlNodePtr parent )
    } while (xml_nextNode(node));
 
    return 0;
-
 }
-
-
