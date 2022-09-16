@@ -4,7 +4,7 @@
  <avail>
   <priority>41</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
-  <chance>875</chance>
+  <chance>450</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -23,7 +23,6 @@
    Stages :
    0) Next system will give a clue
    2) Next system will contain the target
-   4) Target was killed
 
 --]]
 
@@ -31,6 +30,7 @@ local fmt = require "fmt"
 local mh = require "misnhelper"
 local portrait = require "portrait"
 require "jumpdist"
+require "proximity"
 require "pilot/generic"
 require "pilot/pirate"
 
@@ -86,9 +86,10 @@ poor_text  = _("You don't have enough money.")
 
 not_scared_text = {
    _([["As if the likes of you would ever try to fight me!"]]),
-   _("The pilot simply sighs and cuts the connection."),
+   _([[The pilot simply sighs and cuts the connection.]]),
    _([["What a lousy attempt to scare me."]]),
    _([["Was I not clear enough the first time? Piss off!"]]),
+   _([["You're kidding, right? You think you can threaten me?"]]),
 }
 
 scared_text = {
@@ -104,7 +105,7 @@ intimidated_text = {
 }
 
 cold_text = {
-   _("When you ask for information about {pilot}, they tell you that this pirate has already been killed by someone else."),
+   _([[When you ask for information about {pilot}, they tell you that this pirate has already been killed by someone else.]]),
    _([["Didn't you hear? That pirate's dead. Got blown up in an asteroid field is what I heard."]]),
    _([["Ha ha, you're still looking for {pilot}? You're wasting your time; that outlaw's already been taken care of."]]),
    _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, though! It was glorious."]]),
@@ -127,15 +128,9 @@ noinfo_text = {
 
 advice_text  = _([["Hi there", says the pilot. "You seem to be lost." As you explain that you're looking for an outlaw pilot and have no idea where to find your target, the pilot laughs. "So, you've taken a Seek and Destroy job, but you have no idea how it works. Well, there are two ways to get information on an outlaw: first way is to land on a planet and ask questions at the bar. The second way is to ask pilots in space. By the way, pilots of the same faction of your target are most likely to have information, but won't give it easily. Good luck with your search!"]])
 
-brief_text = _("{pilot} is a notorious pirate who is wanted by the authorities, dead or alive. Any citizen who can find and neutralize {pilot} by any means necessary will be given {credits} as a reward. {faction} authorities have lost track of this pilot in the {system} system. It is very likely that the target is no longer there, but this system may be a good place to start an investigation.")
-
-flee_text = _("You had a chance to neutralize {pilot}, and you wasted it! Now you have to start all over. Maybe some other pilots in {system} know where {pilot} is going.")
-
-Tflee_text = _("That was close, but unfortunately, {pilot} ran away. Maybe some other pilots in this system know where your target is heading.")
-
-pay_text    = {}
-pay_text[1] = _("An officer hands you your pay.")
-pay_text[2] = _("No one will miss this outlaw pilot! The bounty has been deposited into your account.")
+found_msg = _("Target presence detected. Prepare to engage.")
+flee_msg = _("OBJECTIVE FAILED: You ran away from target. Resume search for {pilot} in {system}.")
+Tflee_msg = _("OBJECTIVE FAILED: Target ran away. Resume search for {pilot} in {system}.")
 
 osd_title = _("Seek and Destroy")
 osd_msg = {}
@@ -147,7 +142,9 @@ osd_msg["__save"] = true
 npc_desc = _("Shifty Person")
 bar_desc = _("This person might be an outlaw, a pirate, or even worse, a bounty hunter. You normally wouldn't want to get close to this kind of person, but they may be a useful source of information.")
 
-misn_desc = _("A pirate known as {pilot} is wanted dead or alive by {faction} authorities. {pilot} was last seen in the {system} system. Any mercenary who can track down and eliminate this pirate will be awarded substantially.")
+misn_desc = _([[A notorious pirate known as {pilot} is wanted dead or alive by {faction} authorities, last seen in the {system} system. Any mercenary who can track down and eliminate this pirate will be awarded substantially.
+
+Mercenaries who accept this mission are advised to go to the indicated system and talk to others in the area, either by hailing pilots while out in space or by talking to people on planets in the system, if applicable. Pirates are more likely to know where {pilot} is, so interrogating pirates in the system is highly recommended.]])
 
 misn_title = {
    _("Seek and Destroy: Small Pirate Bounty ({system} system)"),
@@ -206,16 +203,14 @@ function create ()
       misn.finish(false)
    end
 
-   mysys[1] = systems[ rnd.rnd(1, #systems) ]
+   mysys[1] = systems[rnd.rnd(1, #systems)]
 
-   -- There will probably be lot of failure in this loop.
-   -- Just increase the mission probability to compensate.
-   for i = 2, nbsys do
-      thesys = systems[ rnd.rnd(1, #systems) ]
+   for i=2,nbsys do
       -- Don't re-use the previous system
-      if thesys == mysys[i-1] then
-         misn.finish(false)
-      end
+      repeat
+         thesys = systems[rnd.rnd(1, #systems)]
+      until thesys ~= mysys[i-1]
+
       mysys[i] = thesys
    end
 
@@ -242,6 +237,7 @@ function create ()
    mysys["__save"] = true
 end
 
+
 -- Test if an element is in a list
 function elt_inlist(elt, list)
    for i, elti in ipairs(list) do
@@ -252,15 +248,13 @@ function elt_inlist(elt, list)
    return false
 end
 
+
 function accept ()
    misn.accept()
 
    stage = 0
    increment = false
    last_sys = system.cur()
-   tk.msg("", fmt.f(brief_text,
-         {pilot=name, credits=fmt.credits(credits),
-            faction=paying_faction:name(), system=mysys[1]:name()}))
    jumphook = hook.enter("enter")
    hailhook = hook.hail("hail")
    landhook = hook.land("land")
@@ -269,6 +263,7 @@ function accept ()
    osd_msg[2] = fmt.f(osd_msg[2], {pilot=name})
    misn.osdCreate(osd_title, osd_msg)
 end
+
 
 function enter ()
    hailed = {}
@@ -286,23 +281,10 @@ function enter ()
          stage = 2
       end
 
-      if stage == 0 then  -- Clue system
-         if not var.peek("got_advice") then -- A bounty hunter who explains how it works
-            var.push("got_advice", true)
-            spawn_advisor ()
-         end
-      elseif stage == 2 then  -- Target system
-         misn.osdActive(2)
-         
+      if stage == 2 then
          -- Get the position of the target
-         jp  = jump.get(system.cur(), last_sys)
-         if jp ~= nil then
-            x = 8000 * rnd.rnd() - 4000
-            y = 8000 * rnd.rnd() - 4000
-            pos = jp:pos() + vec2.new(x,y)
-         else
-            pos = nil
-         end
+         local rad = system.cur():radius()
+         local pos = vec2.new(rnd.uniform(-rad, rad), rnd.uniform(-rad, rad))
 
          -- Spawn the target
          pilot.toggleSpawn(false)
@@ -310,43 +292,35 @@ function enter ()
 
          target_ship = pilot.add(ship, target_faction, pos)
          target_ship:rename(name)
-         target_ship:setHilight(true)
-         target_ship:setVisplayer()
-         target_ship:setHostile()
+         target_ship:setHilight()
+
+         -- Give the target a very high loiter value so it won't leave
+         -- anytime soon.
+         target_ship:memory().loiter = 10000
 
          -- We're overriding the kill reward.
          target_ship:memory().kill_reward = nil
 
+         -- Record that we haven't found the target yet.
+         target_found = false
+
+         hook.timer(0.5, "proximityScan",
+               {focus=target_ship, funcname="prox_found_target"})
+
          death_hook = hook.pilot(target_ship, "death", "target_death")
          pir_jump_hook = hook.pilot(target_ship, "jump", "target_flee")
          pir_land_hook = hook.pilot(target_ship, "land", "target_land")
-         jumpout = hook.jumpout("player_flee")
       end
    end
    last_sys = system.cur()
 end
 
-function spawn_advisor ()
-   jp     = jump.get(system.cur(), last_sys)
-   x = 4000 * rnd.rnd() - 2000
-   y = 4000 * rnd.rnd() - 2000
-   pos = jp:pos() + vec2.new(x,y)
 
-   advisor = pilot.add("Lancelot", "Mercenary", pos, nil, {ai="baddie_norun"})
-   hailie = hook.timer(2, "hailme")
-
-   hailed[#hailed+1] = advisor
-end
-
-function hailme()
-    advisor:hailPlayer()
-    hailie2 = hook.pilot(advisor, "hail", "hail_ad")
-end
-
-function hail_ad()
-   hook.rm(hailie)
-   hook.rm(hailie2)
-   tk.msg("", advice_text) -- Give advice to the player
+function prox_found_target()
+   target_found = true
+   misn.osdActive(2)
+   player.msg(found_msg)
+   jumpout = hook.jumpout("player_flee")
 end
 
 
@@ -392,6 +366,7 @@ function hail(p)
          end
          misn.finish(false)
       else
+         local know, tells
          if target_faction:areEnemies(p:faction()) then
             know = (rnd.rnd() < enemy_know_chance)
             tells = (rnd.rnd() < enemy_tell_chance)
@@ -561,41 +536,28 @@ end
 
 -- Spawn NPCs at bar, that give info
 function land ()
-   -- Player flees from combat
-   if stage == 2 then
+   if stage == 2 and target_found then
       player_flee()
-
-   -- Player seek for a clue
    elseif system.cur() == mysys[cursys] and stage == 0 then
-      if rnd.rnd() < .3 then -- NPC does not know the target
-         know = 0
-      elseif rnd.rnd() < .5 then -- NPC wants money
-         know = 1
-         price = (5 + 5*rnd.rnd()) * 1000
-      else -- NPC tells the clue
-         know = 2
-      end
+      know = (rnd.rnd() < 0.7)
+      tells = (rnd.rnd() < 0.2)
       mynpc = misn.npcAdd("clue_bar", npc_desc, portrait.get("Pirate"), bar_desc)
-
-   -- Player wants to be paid
-   elseif planet.cur():faction() == paying_faction and stage == 4 then
-      tk.msg("", pay_text[rnd.rnd(1,#pay_text)])
-      player.pay(credits)
-      paying_faction:modPlayer(rnd.rnd(1,2))
-      misn.finish(true)
    end
 end
 
 -- The player ask for clues in the bar
 function clue_bar()
-   if cursys+1 >= nbsys then
+   if cursys + 1 >= nbsys then
       tk.msg("", cold_text[rnd.rnd(1, #cold_text)]:format(name))
       misn.finish(false)
    else
-
-      if know == 0 then -- NPC does not know the target
+      if not know then
          tk.msg("", fmt.f(noclue_text[rnd.rnd(1, #noclue_text)], {pilot=name}))
-      elseif know == 1 then -- NPC wants money
+      elseif tells then
+         local s = clue_text[rnd.rnd(1, #clue_text)]
+         tk.msg("", fmt.f(s, {pilot=name, system=mysys[cursys+1]:name()}))
+         next_sys()
+      else
          local s = money_text[rnd.rnd(1,#money_text)]
          choice = tk.choice("",
                fmt.f(s, {pilot=name, credits=fmt.credits(price)}),
@@ -610,16 +572,8 @@ function clue_bar()
             else
                tk.msg("", poor_text)
             end
-         else
-            -- End of function
          end
-
-      else -- NPC tells the clue
-         local s = clue_text[rnd.rnd(1, #clue_text)]
-         tk.msg("", fmt.f(s, {pilot=name, system=mysys[cursys+1]:name()}))
-         next_sys()
       end
-
    end
    misn.npcRm(mynpc)
 end
@@ -632,7 +586,8 @@ function next_sys ()
 end
 
 function player_flee ()
-   tk.msg("", fmt.f(flee_text, {pilot=name, system=system.cur():name()}))
+   player.msg(fmt.f("#r" .. flee_msg .. "#0",
+         {pilot=name, system=system.cur():name()}))
    stage = 0
    misn.osdActive(1)
 
@@ -643,9 +598,10 @@ function player_flee ()
 end
 
 function target_flee ()
-   -- Target ran away. Unfortunately, we cannot continue the mission
-   -- on the other side because the system has not been claimed...
-   tk.msg("", fmt.f(Tflee_text, {pilot=name}))
+   if target_found then
+      player.msg(fmt.f("#r" .. Tflee_msg .. "#0",
+            {pilot=name, system=system.cur():name()}))
+   end
    pilot.toggleSpawn(true)
    stage = 0
    misn.osdActive(1)
@@ -663,4 +619,6 @@ function target_death ()
    mh.showWinMsg(fmt.f(s, {credits=fmt.credits(credits), pilot=name}))
    player.pay(credits)
    paying_faction:modPlayer(rnd.uniform(0.2, 2))
+
+   misn.finish(true)
 end

@@ -175,7 +175,7 @@ function start_hook()
    -- Make the player visible to the AI for a short while so it knows
    -- where to go initially.
    player.pilot():setVisible()
-   hook.timer(5, "timer_visible")
+   hook.timer(0.5, "timer_visible")
 
    -- Just in case, we set existing pilots to no-death (in case hired
    -- escorts have spawned already). The escort_spawn event handles
