@@ -211,7 +211,8 @@ char* ntime_pretty( ntime_t t, int d )
 void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
 {
    ntime_t nt;
-   int cycles, periods, seconds;
+   int years, hours, seconds;
+   double days;
 
    if (t==0)
       nt = naev_time;
@@ -219,15 +220,18 @@ void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
       nt = t;
 
    /* GCT (Galactic Common Time) - unit is seconds */
-   cycles = ntime_getYears(nt);
-   periods = ntime_getHours(nt);
+   years = ntime_getYears(nt);
+   hours = ntime_getHours(nt);
    seconds = ntime_getSeconds(nt);
-   if ((cycles == 0) && (periods == 0)) /* only seconds */
-      snprintf( str, max, _("%04d s"), seconds );
-   else if ((cycles == 0) || (d==0))
-      snprintf( str, max, _("%.*f h"), d, periods + 0.0001 * seconds );
-   else /* GCT format */
-      snprintf( str, max, _("GCT %d:%.*f"), cycles, d, periods + 0.0001 * seconds );
+   if ((years == 0) && (hours == 0))
+      snprintf(str, max, _("%g m"), (double)seconds/NT_MINUTE_SECONDS);
+   else if ((years == 0) || (d == 0))
+      snprintf(str, max, _("%.*f h"),
+            d, hours + (double)seconds/NT_HOUR_SECONDS);
+   else {
+      days = (hours + (double)seconds/NT_HOUR_SECONDS) / NT_DAY_HOURS;
+      snprintf(str, max, _("GCT %d:%0*.*f"), years, d + 4, d, days);
+   }
 }
 
 

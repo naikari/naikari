@@ -12,8 +12,15 @@
 /** @endcond */
 
 
-#define NT_YEAR_HOURS (3600) /**< galactic hours in a galactic year */
-#define NT_HOUR_SECONDS (10000) /**< galactic seconds in a galactic hour */
+#define NT_YEAR_DAYS (360) /**< galactic days in a galactic year */
+#define NT_DAY_HOURS (10) /**< galactic hours in a galactic day */
+#define NT_HOUR_MINUTES (100) /**< galactic minutes in a galactic hour */
+#define NT_MINUTE_SECONDS (100) /**< galactic seconds in a galactic minute */
+
+/** galactic hours in a galactic year */
+#define NT_YEAR_HOURS ((ntime_t)NT_YEAR_DAYS*(ntime_t)NT_DAY_HOURS)
+/** galactic seconds in a galactic hour */
+#define NT_HOUR_SECONDS ((ntime_t)NT_HOUR_MINUTES*(ntime_t)NT_MINUTE_SECONDS)
 
 
 typedef int64_t ntime_t; /**< Core time type. */
