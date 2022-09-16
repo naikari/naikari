@@ -16,9 +16,11 @@ require "factions/standing/skel"
 
 
 _fdelta_distress = {-1, 0} -- Maximum change constraints
-_fdelta_kill = {-5, 0.25} -- Maximum change constraints
+_fdelta_kill = {-5, 0.5} -- Maximum change constraints
 
 _fthis = faction.get("Collective")
+
+_fmod_kill_enemy = 0.05
 
 
 function faction_hit(current, amount, source, secondary)
