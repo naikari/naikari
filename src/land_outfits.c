@@ -398,12 +398,12 @@ void outfits_update( unsigned int wid, char* str )
       /* Translation note: this is a range from one mass to another,
        * indicating minimum and maximum mass of a launcher or fighter
        * bay. */
-      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f t"),
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f kt"),
             outfit->mass,
             outfit->mass + outfit_amount(outfit)*outfit_ammo(outfit)->mass);
    }
    else {
-      snprintf(buf_mass, sizeof(buf_mass), _("%.0f t"), outfit->mass);
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f kt"), outfit->mass);
    }
 
    window_modifyText(wid, "txtOutfitName", _(outfit->name));
@@ -582,11 +582,11 @@ int outfit_altText( char *buf, int n, const Outfit *o )
       /* Translation note: this is a range from one mass to another,
        * indicating minimum and maximum mass of a launcher or fighter
        * bay. */
-      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f t"),
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f kt"),
             o->mass, mass);
    }
    else {
-      snprintf(buf_mass, sizeof(buf_mass), _("%.0f t"), mass);
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f kt"), mass);
    }
 
    p  = scnprintf(&buf[0], n, "%s\n", _(o->name));

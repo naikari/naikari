@@ -93,8 +93,8 @@ function accept ()
 
    local osd_desc = {
       fmt.f(
-         n_("Land on {planet} ({system} system) to pick up {tonnes} t of cargo",
-            "Land on {planet} ({system} system) to pick up {tonnes} t of cargo",
+         n_("Land on {planet} ({system} system) to pick up {tonnes} kt of cargo",
+            "Land on {planet} ({system} system) to pick up {tonnes} kt of cargo",
             cargoAmount),
          {planet=pickupWorld:name(), system=pickupSys:name(),
             tonnes=fmt.number(cargoAmount)}),
@@ -122,13 +122,13 @@ function land ()
    if planet.cur() == pickupWorld and not pickedup then
       if player.pilot():cargoFree() < cargoAmount then
          local required_text = n_(
-               "You don't have enough cargo space to pick up the goods. The goods weigh {required} tonne. Please increase your cargo capacity and go to the Commodity tab to try again. ",
-               "You don't have enough cargo space to pick up the goods. The goods weigh {required} tonnes. Please increase your cargo capacity and go to the Commodity tab to try again. ",
+               "You don't have enough cargo space to pick up the goods. The goods weigh {required} kt. Please increase your cargo capacity and go to the Commodity tab to try again. ",
+               "You don't have enough cargo space to pick up the goods. The goods weigh {required} kt. Please increase your cargo capacity and go to the Commodity tab to try again. ",
                cargoAmount)
          local shortfall = cargoAmount - player.pilot():cargoFree()
          local shortfall_text = n_(
-               "You need {shortfall} more tonne of empty space.",
-               "You need {shortfall} more tonnes of empty space.",
+               "You need {shortfall} kt more of empty space.",
+               "You need {shortfall} kt more of empty space.",
                shortfall)
          tk.msg("", fmt.f(required_text .. shortfall_text,
                {required=fmt.number(cargoAmount),

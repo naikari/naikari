@@ -111,12 +111,6 @@ Finally, the modified box is set before you. "Here you are. Now you're the proud
 
 With that, the nerds leave. Having gotten nothing else out of this, you think you should visit an outfitter to see if the homemade core system may actually be of any use, or if you can at least sell it.]])
 
--- for use in accept(), if any of the mission's preconditions are not met
-text[16] = _([["Oh, I forgot to mention. We would of course need 4 tonnes of free cargo space for our box."]])
-
--- additional text for stage 2 cargo space test
-text[18] = _([["Aw %s," Mia complains, "as if you didn't know that our box needs 4 tonnes of free cargo space. Make room now, and pick us up at the bar."]])
-
 text[19] = _([[The nerds follow you to your ship and finally stow away their box. Now, you're all set to go.]])
 
 text[20] = _([[As you enter the bar, the nerds are immediately upon you. "What is it with you?" Mia asks. "Is it so hard to make some room for our box? I am fed up with you. Consider our agreement nullified. I hope to never again have business with you." Some angry stares later, the nerds are gone, trying to find another pilot.]])
@@ -165,11 +159,6 @@ function accept ()
    if not tk.yesno("", string.format(text[1], destPlanet:name())) then
       misn.finish()
    else
-      if player.pilot():cargoFree() < 4 then
-         tk.msg("", text[16])
-         misn.finish()
-      end
-
       misn.accept()
       misn.setTitle(misn_title)
       misn.setReward(misn_reward)
@@ -181,7 +170,6 @@ function accept ()
       local stuperpx = 1 / player.pilot():stats().speed_max * 30 -- from cargo_common
       expiryDate = time.get() + time.create(0, 0, 10010 + distance * stuperpx + 3300) -- takeoff + min travel time + leeway
 
-      addNerdCargo()
       lhook = hook.land("nerds_land1", "land")
       misn.osdCreate(misn_title, {string.format(textosd[1], destPlanet:name(), time.str(expiryDate, 1)), string.format(textosd[2], time.str(expiryDate - time.get(), 1))})
       dhook = hook.date(time.create(0, 0, 100), "nerds_fly1")
@@ -197,7 +185,6 @@ function nerds_land1()
       return
    end
 
-   rmNerdCargo()
    hook.rm(lhook)
    hook.rm(dhook)
 
@@ -260,16 +247,7 @@ function nerds_land2()
          tk.msg("", string.format(text[9], srcPlanet:name()))
       end
       cleanup()
-
-         if player.pilot():cargoFree() >= 4 then
-      -- player has enough free cargo
-         nerds_return()
-      else
-      -- player has not enough free cargo space, give him last chance to make room
-         tk.msg("", string.format(text[18], player.name()))
-         lhook = hook.land("nerds_bar", "bar")
-         jhook = hook.takeoff("nerds_takeoff")
-      end
+      nerds_return()
 
    elseif not intime and planet.cur() == destPlanet then
    -- you're late for the pickup
@@ -310,37 +288,15 @@ function nerds_fly2()
    end
 end
 
--- hooked to entering the bar in stage 2
-function nerds_bar()
-   hook.rm(jhook)
-   hook.rm(lhook)
-   if player.pilot():cargoFree() >= 4 then
-      tk.msg("", text[19])
-      nerds_return()
-   else
-      tk.msg("", text[20])
-      misn.finish(true)
-   end
-end
-
 -- hooked to leaving the system in stage 2
 function nerds_jump()
    player.msg(textmsg[1])
    misn.finish(true)
 end
 
--- hooked to inappropriately taking off in stage 2
-function nerds_takeoff()
-   hook.rm(jhook)
-   hook.rm(lhook)
-   player.msg(textmsg[2])
-   misn.finish(true)
-end
-
 
 -- common prep for the final stage
 function nerds_return()
-   addNerdCargo()
    misn.osdCreate(misn_title, { string.format(textosd[8], srcPlanet:name()) })
    lhook = hook.land("nerds_land3", "land")
 end
@@ -377,19 +333,3 @@ function system_hasAtLeast (amount, service)
    end
    return #p >= amount
 end
-
--- helper functions, used repeatedly
-function addNerdCargo()
-   local comm1 = misn.cargoNew(N_("Nerds"),
-         N_("A group of nerds you are transporting."))
-   local comm2 = misn.cargoNew(N_("Processing Box"),
-         N_("A box the nerds put together for the Homebrew Processing Box Masters contest."))
-   cargo1 = misn.cargoAdd(comm1, 0)
-   cargo2 = misn.cargoAdd(comm2, 4)
-end
-
-function rmNerdCargo()
-   misn.cargoRm(cargo1)
-   misn.cargoRm(cargo2)
-end
-

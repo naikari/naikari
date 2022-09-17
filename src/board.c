@@ -528,7 +528,7 @@ static void board_update( unsigned int wdw )
    if (fuel <= 0)
       snprintf( str, sizeof(str), _("none") );
    else
-      snprintf( str, sizeof(str), n_( "%d hL", "%d hL", fuel ), fuel );
+      snprintf(str, sizeof(str), n_("%d kL", "%d kL", fuel), fuel);
    window_modifyText( wdw, "txtDataFuel", str );
 
    /* Missiles */
@@ -628,7 +628,7 @@ static void board_update( unsigned int wdw )
       total_cargo = round(c);
       if (total_cargo > 0)
          snprintf(str, sizeof(str),
-               n_("%d t (%s)", "%d t (%s)", total_cargo),
+               n_("%d kt (%s)", "%d kt (%s)", total_cargo),
                total_cargo, str2);
    }
    window_modifyText( wdw, "txtDataCargo", str );

@@ -83,8 +83,8 @@ function accept ()
    end
 
    if player.pilot():cargoFree() < probe_mass then
-      local t = n_("\"Ah, sorry, I forgot to mention that you need %d tonne of cargo space. Let us know if you manage to free up enough.\"",
-               "\"Ah, sorry, I forgot to mention that you need %d tonnes of cargo space. Let us know if you manage to free up enough.\"",
+      local t = n_("\"Ah, sorry, I forgot to mention that you need %d kt of cargo space. Let us know if you manage to free up enough.\"",
+               "\"Ah, sorry, I forgot to mention that you need %d kt of cargo space. Let us know if you manage to free up enough.\"",
                probe_mass)
       tk.msg("", t:format(probe_mass))
       misn.finish()

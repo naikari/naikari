@@ -96,8 +96,8 @@ end
 
 function accept()
    local job_description = fmt.f(n_(
-            "If I don't get this {tonnes} tonne of {cargo} to {planet}…",
-            "If I don't get these {tonnes} tonnes of {cargo} to {planet}…",
+            "If I don't get this {tonnes} kt of {cargo} to {planet}…",
+            "If I don't get these {tonnes} kt of {cargo} to {planet}…",
             cargo_size),
          {tonnes=cargo_size, cargo=_(cargo), planet=dest_planet:name()})
    if not tk.yesno("", fmt.f(ask_text,
@@ -108,13 +108,13 @@ function accept()
 
    if player.pilot():cargoFree() < cargo_size then
       local required_text = n_(
-            "You don't have enough cargo space to accept this mission. It requires {required} tonne of free space. ",
-            "You don't have enough cargo space to accept this mission. It requires {required} tonnes of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} kt of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} kt of free space. ",
             cargo_size)
       local shortfall = cargo_size - player.pilot():cargoFree()
       local shortfall_text = n_(
-            "You need {shortfall} more tonne of empty space.",
-            "You need {shortfall} more tonnes of empty space.",
+            "You need {shortfall} kt more of empty space.",
+            "You need {shortfall} kt more of empty space.",
             shortfall)
       tk.msg("", fmt.f(required_text .. shortfall_text,
             {required=fmt.number(cargo_size),

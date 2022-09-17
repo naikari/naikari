@@ -234,7 +234,7 @@ void shipyard_update( unsigned int wid, char* str )
             _("\n#nCPU:#0 %.0f TFLOPS"), ship->cpu);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         _("\n#nMass:#0 %.0f t"), ship->mass);
+         _("\n#nMass:#0 %.0f kt"), ship->mass);
 
    if (ship->thrust != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,
@@ -272,14 +272,14 @@ void shipyard_update( unsigned int wid, char* str )
 
    if (ship->cap_cargo != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            _("\n#nCargo Space:#0 %.0f t"), ship->cap_cargo);
+            _("\n#nCargo Space:#0 %.0f kt"), ship->cap_cargo);
 
    if (ship->fuel != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            _("\n#nFuel:#0 %d hL"), ship->fuel);
+            _("\n#nFuel:#0 %d kL"), ship->fuel);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         _("\n#nFuel Use:#0 %d hL"), ship->fuel_consumption);
+         _("\n#nFuel Use:#0 %d kL"), ship->fuel_consumption);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
          _("\n#nRadar Range:#0 %.0f km"), ship->rdr_range);

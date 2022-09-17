@@ -92,25 +92,25 @@ function create()
 
    local title, desc
    if tier <= 0 then
-      title = n_("Courier Cargo: {amount} t to {planet} ({system} system)",
-            "Courier Cargo: {amount} t to {planet} ({system} system)", amount)
+      title = n_("Courier Cargo: {amount} kt to {planet} ({system} system)",
+            "Courier Cargo: {amount} kt to {planet} ({system} system)", amount)
       desc = _("Courier cargo transport to {planet} in the {system} system.")
    elseif tier <= 1 then
-      title = n_("Priority Cargo: {amount} t to {planet} ({system} system)",
-            "Priority Cargo: {amount} t to {planet} ({system} system)", amount)
+      title = n_("Priority Cargo: {amount} kt to {planet} ({system} system)",
+            "Priority Cargo: {amount} kt to {planet} ({system} system)", amount)
       desc = _("Priority cargo shipment to {planet} in the {system} system.")
    elseif tier <= 2 then
-      title = n_("Pressing Cargo: {amount} t to {planet} ({system} system)",
-            "Pressing Cargo: {amount} t to {planet} ({system} system)", amount)
+      title = n_("Pressing Cargo: {amount} kt to {planet} ({system} system)",
+            "Pressing Cargo: {amount} kt to {planet} ({system} system)", amount)
       desc = _("Pressing cargo delivery to {planet} in the {system} system.")
    elseif tier <= 3 then
-      title = n_("Urgent Cargo: {amount} t to {planet} ({system} system)",
-            "Urgent Cargo: {amount} t to {planet} ({system} system)", amount)
+      title = n_("Urgent Cargo: {amount} kt to {planet} ({system} system)",
+            "Urgent Cargo: {amount} kt to {planet} ({system} system)", amount)
       desc = _("Urgent cargo delivery to {planet} in the {system} system.")
    else
       title = n_(
-            "Emergency Cargo: {amount} t to {planet} ({system} system)",
-            "Emergency Cargo: {amount} t to {planet} ({system} system)",
+            "Emergency Cargo: {amount} kt to {planet} ({system} system)",
+            "Emergency Cargo: {amount} kt to {planet} ({system} system)",
             amount)
       desc = _("Emergency cargo delivery to {planet} in the {system} system.")
    end
@@ -129,13 +129,13 @@ end
 function accept()
    if player.pilot():cargoFree() < amount then
       local required_text = n_(
-            "You don't have enough cargo space to accept this mission. It requires {required} tonne of free space. ",
-            "You don't have enough cargo space to accept this mission. It requires {required} tonnes of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} kt of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} kt of free space. ",
             amount)
       local shortfall = amount - player.pilot():cargoFree()
       local shortfall_text = n_(
-            "You need {shortfall} more tonne of empty space.",
-            "You need {shortfall} more tonnes of empty space.",
+            "You need {shortfall} kt more of empty space.",
+            "You need {shortfall} kt more of empty space.",
             shortfall)
       tk.msg("", fmt.f(required_text .. shortfall_text,
             {required=fmt.number(amount),

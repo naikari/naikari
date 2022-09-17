@@ -40,7 +40,7 @@ misn_desc = _("There is a need to supply {planet} with more {commodity}. Find a 
 cargo_land = {}
 cargo_land[1] = _("The containers of {commodity} are carried out of your ship and tallied. After making sure nothing was missed from your cargo hold, you are paid {credits}, thanked for assisting the FLF's operations, and dismissed.")
 cargo_land[2] = _("The containers of {commodity} are quickly and efficiently unloaded and transported to the storage facility. The FLF officer in charge thanks you with a credit chip worth {credits}.")
-cargo_land[3] = _("The containers of {commodity} are unloaded from your vessel by a team of FLF soldiers who are in no rush to finish, eventually delivering {credits} after the number of tonnes is determined.")
+cargo_land[3] = _("The containers of {commodity} are unloaded from your vessel by a team of FLF soldiers who are in no rush to finish, eventually delivering {credits} after the number of kilotonnes is determined.")
 
 osd_title = _("FLF Supply Run")
 

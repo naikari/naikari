@@ -79,8 +79,8 @@ function create()
             + 5000)
          * (1 + 0.05*rnd.twosigma()))
 
-   local title = n_("Cargo: {amount} t to {planet} ({system} system)",
-         "Cargo: {amount} t to {planet} ({system} system)", amount)
+   local title = n_("Cargo: {amount} kt to {planet} ({system} system)",
+         "Cargo: {amount} kt to {planet} ({system} system)", amount)
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name(),
             amount=fmt.number(amount)}))
@@ -95,13 +95,13 @@ end
 function accept()
    if player.pilot():cargoFree() < amount then
       local required_text = n_(
-            "You don't have enough cargo space to accept this mission. It requires {required} tonne of free space. ",
-            "You don't have enough cargo space to accept this mission. It requires {required} tonnes of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} kt of free space. ",
+            "You don't have enough cargo space to accept this mission. It requires {required} kt of free space. ",
             amount)
       local shortfall = amount - player.pilot():cargoFree()
       local shortfall_text = n_(
-            "You need {shortfall} more tonne of empty space.",
-            "You need {shortfall} more tonnes of empty space.",
+            "You need {shortfall} kt more of empty space.",
+            "You need {shortfall} kt more of empty space.",
             shortfall)
       tk.msg("", fmt.f(required_text .. shortfall_text,
             {required=fmt.number(amount),

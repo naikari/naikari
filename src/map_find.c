@@ -707,12 +707,12 @@ static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, 
       /* Translation note: this is a range from one mass to another,
        * indicating minimum and maximum mass of a launcher or fighter
        * bay. */
-      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f t"),
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f–%.0f kt"),
             outfit->mass,
             outfit->mass + outfit_amount(outfit)*outfit_ammo(outfit)->mass);
    }
    else {
-      snprintf(buf_mass, sizeof(buf_mass), _("%.0f t"), outfit->mass);
+      snprintf(buf_mass, sizeof(buf_mass), _("%.0f kt"), outfit->mass);
    }
 
    window_modifyText(wid, "txtOutfitName", _(outfit->name));

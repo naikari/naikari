@@ -477,8 +477,8 @@ static void ship_update( unsigned int wid )
          "#nModel:#0 %s (%s class)\n"
          "#nValue:#0 %s\n"
          "\n"
-         "#nMass:#0 %.0f t\n"
-         "#nMass Limit Left:#0 %.0f / %.0f t\n"
+         "#nMass:#0 %.0f kt\n"
+         "#nMass Limit Left:#0 %.0f / %.0f kt\n"
          "#nSpeed Penalty:#0 %.0f%%\n"
          "#nJump Time:#0 %s\n"
          "#nTakeoff Time:#0 %s\n"
@@ -491,8 +491,8 @@ static void ship_update( unsigned int wid )
          "#nShield:#0 %.0f / %.0f GJ (%.1f GW)\n"
          "#nArmor:#0 %.0f / %.0f GJ (%.1f GW)\n"
          "#nEnergy:#0 %.0f / %.0f GJ (%.1f GW)\n"
-         "#nCargo:#0 %d / %d t\n"
-         "#nFuel:#0 %d / %d hL (%s)\n"
+         "#nCargo:#0 %d / %d kt\n"
+         "#nFuel:#0 %d / %d kL (%s)\n"
          "#nRadar Range:#0 %.0f km\n"
          "#nJump Detect Range:#0 %.0f km\n"
          "\n"),
@@ -839,7 +839,7 @@ static void cargo_genList( unsigned int wid )
       /* List the player's cargo */
       buf = malloc( sizeof(char*) * array_size(player.p->commodities) );
       for (i=0; i<array_size(player.p->commodities); i++) {
-         asprintf(&buf[i], "%s%s (%d t)",
+         asprintf(&buf[i], "%s%s (%d kt)",
                _(player.p->commodities[i].commodity->name),
                (player.p->commodities[i].id != 0) ? "*" : "",
                player.p->commodities[i].quantity);
@@ -884,7 +884,7 @@ static void cargo_update( unsigned int wid, char* str )
    pos = toolkit_getListPos(wid, "lstCargo");
    com = player.p->commodities[pos].commodity;
 
-   snprintf(buf, sizeof(buf), "%s%s (%d t)", _(com->name),
+   snprintf(buf, sizeof(buf), "%s%s (%d kt)", _(com->name),
          (player.p->commodities[pos].id != 0) ? "*" : "",
          player.p->commodities[pos].quantity);
    window_modifyText(wid, "txtCargoName", buf);

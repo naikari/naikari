@@ -53,7 +53,7 @@ no_text = _([["OK, I understand. I guess I'll have to find some other way to get
 
 ask_again_text = _([["I'm not having any luck coming up with a plan to get rid of all of this garbage without getting jumped by those gangsters. Is there any chance you could reconsider escorting me? It would be a big help."]])
 
-success_text = _([[As you dock, you can't help but notice the foul smell of garbage all around you. The planet really does fit the name. You grimace as you watch workers unload what must be hundreds of tonnes of garbage from Chelsea's ship, some of which is leaking. Eventually Chelsea's ship is emptied and you and Chelsea are handed your credit chips for the job. You and Chelsea part ways, with you vowing to take a shower immediately while Chelsea vows to scrub the cargo hold of their ship clean.]])
+success_text = _([[As you dock, you can't help but notice the foul smell of garbage all around you. The planet really does fit the name. You grimace as you watch workers unload what must be hundreds of kilotonnes of garbage from Chelsea's ship, some of which is leaking. Eventually Chelsea's ship is emptied and you and Chelsea are handed your credit chips for the job. You and Chelsea part ways, with you vowing to take a shower immediately while Chelsea vows to scrub the cargo hold of their ship clean.]])
 
 misn_title = _("Waste Collector")
 misn_desc = _("Chelsea needs an escort to %s so they can get rid of the garbage now filling their ship.")

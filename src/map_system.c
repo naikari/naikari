@@ -390,8 +390,8 @@ static void map_system_render( double bx, double by, double w, double h, void *d
       if (sys->nebu_density > 0. ) {
          /* Volatility */
          if (sys->nebu_volatility > 0.)
-            cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt,
-                  _("Nebula: %G GW volatility\n"), sys->nebu_volatility );
+            cnt += scnprintf(&buf[cnt], sizeof(buf)-cnt,
+                  _("Nebula: %G GW volatility\n"), sys->nebu_volatility);
          else
             cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Nebula: Stable\n") );
       }
@@ -602,22 +602,22 @@ static void map_system_array_update( unsigned int wid, char* str ) {
 
       if (ship->cpu != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nCPU:#0 %.0f TFLOPS"), ship->cpu);
+               _("\n#nCPU:#0 %.0f TFLOPS"), ship->cpu);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nMass:#0 %.0f t"), ship->mass);
+            _("\n#nMass:#0 %.0f kt"), ship->mass);
 
       if (ship->thrust != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nAcceleration:#0 %G km/s²"), ship->thrust);
+               _("\n#nAcceleration:#0 %G km/s²"), ship->thrust);
 
       if (ship->speed != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nSpeed:#0 %G km/s"), ship->speed);
+               _("\n#nSpeed:#0 %G km/s"), ship->speed);
 
       if (ship->turn != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nTurn:#0 %.0f deg/s"), ship->turn*180./M_PI);
+               _("\n#nTurn:#0 %.0f deg/s"), ship->turn*180./M_PI);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
             _("\n#nTime Constant:#0 %.0f%%"), ship->dt_default*100.);
@@ -628,35 +628,35 @@ static void map_system_array_update( unsigned int wid, char* str ) {
 
       if ((ship->shield != 0.) || (ship->shield_regen != 0.))
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nShield:#0 %G GJ (%G GW)"),
+               _("\n#nShield:#0 %G GJ (%G GW)"),
                ship->shield, ship->shield_regen);
 
       if ((ship->armour != 0.) || (ship->armour_regen != 0.))
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nArmor:#0 %G GJ (%G GW)"),
+               _("\n#nArmor:#0 %G GJ (%G GW)"),
                ship->armour, ship->armour_regen);
 
       if ((ship->energy != 0.) || (ship->energy_regen != 0.))
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nEnergy:#0 %G GJ (%G GW)"),
+               _("\n#nEnergy:#0 %G GJ (%G GW)"),
                ship->energy, ship->energy_regen);
 
       if (ship->cap_cargo != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nCargo Space:#0 %.0f t"), ship->cap_cargo);
+               _("\n#nCargo Space:#0 %.0f kt"), ship->cap_cargo);
 
       if (ship->fuel != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nFuel:#0 %d hL"), ship->fuel);
+               _("\n#nFuel:#0 %d kL"), ship->fuel);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nFuel Use:#0 %d hL"), ship->fuel_consumption);
+            _("\n#nFuel Use:#0 %d kL"), ship->fuel_consumption);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nRadar Range:#0 %.0f km"), ship->rdr_range);
+            _("\n#nRadar Range:#0 %.0f km"), ship->rdr_range);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nJump Detect Range:#0 %.0f km"), ship->rdr_jump_range);
+            _("\n#nJump Detect Range:#0 %.0f km"), ship->rdr_jump_range);
    } else if ( ( strcmp( str, MAPSYS_TRADE ) == 0 ) ) {
       Commodity *com;
       credits_t mean;
@@ -671,9 +671,11 @@ static void map_system_array_update( unsigned int wid, char* str ) {
       economy_getAveragePrice( com, &globalmean, &globalstd );
       economy_getAveragePlanetPrice( com, cur_planetObj_sel, &mean, &std );
       credits2str( buf_mean, mean, -1 );
-      snprintf( buf_std, sizeof(buf_std), "%.1f ¢", std ); /* TODO credit2str could learn to do this... */
+      /* TODO credit2str could learn to do this... */
+      snprintf(buf_std, sizeof(buf_std), "%.1f ¢", std);
       credits2str( buf_globalmean, globalmean, -1 );
-      snprintf( buf_globalstd, sizeof(buf_globalstd), "%.1f ¢", globalstd ); /* TODO credit2str could learn to do this... */
+      /* TODO credit2str could learn to do this... */
+      snprintf(buf_globalstd, sizeof(buf_globalstd), "%.1f ¢", globalstd);
       owned=pilot_cargoOwned( player.p, com );
 
       infobuf[0] = '\0';
@@ -682,19 +684,19 @@ static void map_system_array_update( unsigned int wid, char* str ) {
       if ( owned > 0 ) {
          credits2str( buf_buy_price, com->lastPurchasePrice, -1 );
          i += scnprintf( &infobuf[i], sizeof(infobuf)-i, n_(
-                         "#nYou have:#0 %d t, purchased at %s/t\n",
-                         "#nYou have:#0 %d t, purchased at %s/t\n",
+                         "#nYou have:#0 %d kt, purchased at %s/kt\n",
+                         "#nYou have:#0 %d kt, purchased at %s/kt\n",
                          owned), owned, buf_buy_price );
       }
       else
          i += scnprintf( &infobuf[i], sizeof(infobuf)-i, n_(
-                         "#nYou have:#0 %d t\n",
-                         "#nYou have:#0 %d t\n",
+                         "#nYou have:#0 %d kt\n",
+                         "#nYou have:#0 %d kt\n",
                          owned), owned );
 
       i += scnprintf( &infobuf[i], sizeof(infobuf)-i,
-                      _("#nAverage price seen here:#0 %s/t ± %s/t\n"
-                         "#nAverage price seen everywhere:#0 %s/t ± %s/t\n"),
+                      _("#nAverage price seen here:#0 %s/kt ± %s/kt\n"
+                         "#nAverage price seen everywhere:#0 %s/kt ± %s/kt\n"),
                       buf_mean, buf_std, buf_globalmean, buf_globalstd );
    }
    else

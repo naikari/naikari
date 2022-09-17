@@ -295,7 +295,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G TFLOPS CPU Capacity"),
       NULL),
    A_ELEM(SS_TYPE_A_ENGINE_LIMIT, engine_limit,
-      N_("%+G t Engine Mass Limit"),
+      N_("%+G kt Engine Mass Limit"),
       NULL),
 
    P_ELEM(SS_TYPE_P_ABSORB, absorb,
@@ -310,10 +310,10 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%.0f%% Nebula Resistance (Armor)")),
 
    I_ELEM(SS_TYPE_I_FUEL, fuel,
-      N_("%+d hL Fuel"),
+      N_("%+d kL Fuel"),
       NULL),
    I_ELEM(SS_TYPE_I_CARGO, cargo,
-      N_("%+d t Cargo Space"),
+      N_("%+d kt Cargo Space"),
       NULL),
 
    B_ELEM(SS_TYPE_B_INSTANT_JUMP, misc_instant_jump,

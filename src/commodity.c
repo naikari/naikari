@@ -101,27 +101,27 @@ void credits2str( char *str, credits_t credits, int decimals )
     */
 
    if (decimals < 0)
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f ¢"), 0, (double)credits);
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f ¢"), 0, (double)credits);
    else if (credits >= 1000000000000000000LL - 5*(long long)pow(10, 16-decimals))
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f E¢"), decimals,
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f E¢"), decimals,
             (double)credits / 1000000000000000000.);
    else if (credits >= 1000000000000000LL - 5*(long long)pow(10, 13-decimals))
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f P¢"), decimals,
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f P¢"), decimals,
             (double)credits / 1000000000000000.);
    else if (credits >= 1000000000000LL - 5*(long long)pow(10, 10-decimals))
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f T¢"), decimals,
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f T¢"), decimals,
             (double)credits / 1000000000000.);
    else if (credits >= 1000000000L - 5*(long)pow(10, 7-decimals))
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f G¢"), decimals,
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f G¢"), decimals,
             (double)credits / 1000000000.);
    else if (credits >= 1000000 - 5*(int)pow(10, 4-decimals))
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f M¢"), decimals,
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f M¢"), decimals,
             (double)credits / 1000000.);
    else if (credits >= 1000 - 5*(int)pow(10, 1-decimals))
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f k¢"), decimals,
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f k¢"), decimals,
             (double)credits / 1000.);
    else
-      snprintf(str, ECON_CRED_STRLEN, _("%.*f ¢"), decimals, (double)credits);
+      snprintf(str, ECON_CRED_STRLEN, _("%.*f ¢"), decimals, (double)credits);
 }
 
 /**
@@ -154,7 +154,7 @@ void price2str(char *str, credits_t price, credits_t credits, int decimals )
  */
 void tonnes2str( char *str, int tonnes )
 {
-   snprintf( str, ECON_MASS_STRLEN, n_( "%d t", "%d t", tonnes ), tonnes );
+   snprintf(str, ECON_MASS_STRLEN, n_("%d kt", "%d kt", tonnes), tonnes);
 }
 
 /**

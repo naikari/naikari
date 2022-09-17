@@ -71,7 +71,7 @@ function ONLY for cases where a number of tonnes is shown alone.
 --]]
 function fmt.tonnes(tonnes)
    -- Translator note: this form represents an abbreviation of "_ tonnes".
-   return n_("%s t", "%s t", tonnes):format(fmt.number(tonnes))
+   return n_("%s kt", "%s kt", tonnes):format(fmt.number(tonnes))
 end
 
 

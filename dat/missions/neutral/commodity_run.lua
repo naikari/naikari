@@ -46,7 +46,7 @@ cargo_land_title = _("Delivery success!")
 cargo_land = {}
 cargo_land[1] = _("The containers of {commodity} are carried out of your ship and tallied. After several different men double-check the register to confirm the amount, you are paid {credits} and summarily dismissed.")
 cargo_land[2] = _("The containers of {commodity} are quickly and efficiently unloaded, labeled, and readied for distribution. The delivery manager thanks you with a credit chip worth {credits}.")
-cargo_land[3] = _("The containers of {commodity} are unloaded from your vessel by a team of dockworkers who are in no rush to finish, eventually delivering {credits} after the number of tonnes is determined.")
+cargo_land[3] = _("The containers of {commodity} are unloaded from your vessel by a team of dockworkers who are in no rush to finish, eventually delivering {credits} after the number of kilotonnes is determined.")
 cargo_land[4] = _("The containers of {commodity} are unloaded by robotic drones that scan and tally the contents. The human overseer hands you {credits} when they finish.")
 
 osd_title = _("Commodity Delivery")

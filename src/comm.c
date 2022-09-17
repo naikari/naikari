@@ -604,7 +604,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
    if (price > 0) {
       price2str(creditstr, price, player.p->credits, -1);
       ret = dialogue_YesNo(_("Request Fuel"),
-            _("%s\n\nPay %s for %d hL of fuel?"), msg, creditstr, q);
+            _("%s\n\nPay %s for %d kL of fuel?"), msg, creditstr, q);
       if (ret == 0) {
          dialogue_msg(_("Request Fuel"), _("You decide not to pay."));
          return;
