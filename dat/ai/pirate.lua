@@ -93,7 +93,6 @@ function taunt (target, offense)
    if offense then
       taunts = {
          _("Prepare to be boarded!"),
-         _("Prepare to have your booty plundered!"),
          _("Give me your credits or die!"),
          _("Your ship's mine!"),
          _("Oh ho ho, what do I see here?"),
