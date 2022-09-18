@@ -29,11 +29,8 @@
   <bar>The bar is where traders wait until their cargo is loaded and unloaded. Pilots who come here expecting a glimpse of the rich lands that cover the surface of the planet will be disappointed, as there is very little to see here.</bar>
  </general>
  <tech>
-  <item>Systems Medium</item>
-  <item>Hulls Low</item>
-  <item>Hulls Medium</item>
-  <item>Engines Low</item>
-  <item>Laser 1</item>
-  <item>Basic Outfits 2</item>
+  <item>Common Outfits</item>
+  <item>Elite Corvette Utilities</item>
+  <item>Elite Corvette Structurals</item>
  </tech>
 </asset>

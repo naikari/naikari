@@ -29,11 +29,15 @@
   <bar>Fishing is the name of the game on Crylo and the spaceport bar is nothing if not in character. Almost everything in here is fish-themed, including the bar, which has been made out of the spine of some gargantuan aquatic creature. Some of the more experimental drinks might also be better avoided unless you like your ingredients very fresh indeed.</bar>
  </general>
  <tech>
-  <item>Engines Low</item>
-  <item>Laser 2</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Basic Outfits 2</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
+  <item>Common Outfits</item>
+  <item>Small Laser</item>
+  <item>Elite Yacht Utilities</item>
+  <item>Elite Yacht Structurals</item>
+  <item>Elite Yacht Cores</item>
+  <item>Elite Scout Utilities</item>
+  <item>Elite Scout Structurals</item>
+  <item>Elite Scout Cores</item>
+  <item>Civilian Ships</item>
+  <item>Couriers</item>
  </tech>
 </asset>
