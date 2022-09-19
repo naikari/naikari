@@ -30,12 +30,7 @@
  <tech>
   <item>Common Outfits</item>
   <item>Agility Modifiers</item>
-  <item>Cannon Modifiers</item>
-  <item>Basic Missiles</item>
-  <item>Elite Missiles</item>
-  <item>Small Laser</item>
-  <item>Medium Laser</item>
-  <item>Small Ion</item>
-  <item>Medium Ion</item>
+  <item>Turret Modifiers</item>
+  <item>Energy Modifiers</item>
  </tech>
 </asset>

@@ -30,15 +30,10 @@
  </general>
  <tech>
   <item>Common Outfits</item>
-  <item>Radar Modifiers</item>
   <item>Basic Missiles</item>
   <item>Small Laser</item>
   <item>Small Ion</item>
-  <item>Basic Light Fighter Utilities</item>
-  <item>Elite Light Fighter Utilities</item>
-  <item>Basic Light Fighter Structurals</item>
-  <item>Basic Fighter Utilities</item>
-  <item>Basic Fighter Structurals</item>
-  <item>Elite Fighter Structurals</item>
+  <item>Radar Modifiers</item>
+  <item>Cannon Modifiers</item>
  </tech>
 </asset>

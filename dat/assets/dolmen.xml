@@ -31,13 +31,8 @@
   <item>Turret Modifiers</item>
   <item>Shield Modifiers</item>
   <item>Elite Missiles</item>
-  <item>Elite Yacht Structurals</item>
-  <item>Elite Yacht Cores</item>
-  <item>Elite Scout Utilities</item>
-  <item>Elite Scout Cores</item>
-  <item>Elite Courier Structurals</item>
-  <item>Elite Courier Cores</item>
-  <item>Elite Freighter Structurals</item>
-  <item>Elite Freighter Cores</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Elite Outfits</item>
  </tech>
 </asset>

@@ -31,12 +31,11 @@
  <tech>
   <item>Common Outfits</item>
   <item>Basic Missiles</item>
+  <item>Unguided Rockets</item>
   <item>Small Laser</item>
-  <item>Basic Light Fighter Utilities</item>
-  <item>Elite Light Fighter Utilities</item>
-  <item>Basic Light Fighter Structurals</item>
-  <item>Elite Light Fighter Structurals</item>
-  <item>Basic Light Fighter Cores</item>
-  <item>Generic Light Fighters</item>
+  <item>Small Low Outfits</item>
+  <item>Aerosys Small Ships</item>
+  <item>Nexus Small Ships</item>
+  <item>Empire Small Ships</item>
  </tech>
 </asset>
