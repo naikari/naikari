@@ -29,14 +29,20 @@
   <bar>The bar has a few games on, and the drinks are cold. There is food, but it is mostly pre-packaged stuff. Not bad, but not amazing either.</bar>
  </general>
  <tech>
-  <item>Engines Low</item>
-  <item>Engines Medium</item>
-  <item>Laser 1</item>
-  <item>Kinetic 1</item>
-  <item>Basic Civilian Ships</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
+  <item>Common Outfits</item>
+  <item>Shield Modifiers</item>
+  <item>Energy Modifiers</item>
+  <item>Turret Missiles</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Medium Laser</item>
+  <item>Heavy Laser</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Elite Cruiser Utilities</item>
+  <item>Elite Cruiser Structurals</item>
+  <item>Elite Cruiser Cores</item>
+  <item>Empire Military Outfits</item>
+  <item>Nexus Large Ships</item>
+  <item>Empire Large Ships</item>
  </tech>
 </asset>

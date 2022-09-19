@@ -29,13 +29,14 @@
   <bar>This is a typical stationside bar. It has viewports looking into space, which are of course ignored by everyone, since anyone who comes to a station like this has seen all the space they could possibly want to.</bar>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Missiles 1</item>
-  <item>Low Tech Upgrades</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Laser</item>
+  <item>Basic Light Fighter Utilities</item>
+  <item>Elite Light Fighter Utilities</item>
+  <item>Basic Light Fighter Structurals</item>
+  <item>Elite Light Fighter Structurals</item>
+  <item>Basic Light Fighter Cores</item>
+  <item>Generic Light Fighters</item>
  </tech>
 </asset>
