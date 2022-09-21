@@ -38,8 +38,15 @@
   <item>Heavy Laser</item>
   <item>Medium Ion</item>
   <item>Heavy Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Large Mid Outfits</item>
   <item>Empire Military Outfits</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
   <item>Nexus Large Ships</item>
+  <item>Empire Small Ships</item>
+  <item>Empire Medium Ships</item>
   <item>Empire Large Ships</item>
  </tech>
 </asset>

@@ -28,10 +28,12 @@
   <bar>On Brooks everything is expensive, something that comes with most economically booming worlds. However, most traders put up with the inflated prices for refreshments and services at the spaceport bar, Brooks, after all, is a boom world and where profit is to made.</bar>
  </general>
  <tech>
-  <item>Engines Medium</item>
-  <item>Laser 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Missiles 2</item>
+  <item>Common Outfits</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Large Elite Outfits</item>
+  <item>Turret Modifiers</item>
+  <item>Shield Modifiers</item>
+  <item>Fuel Modifiers</item>
  </tech>
 </asset>
