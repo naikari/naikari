@@ -30,23 +30,14 @@
  </general>
  <tech>
   <item>Common Outfits</item>
-  <item>Shield Modifiers</item>
-  <item>Energy Modifiers</item>
-  <item>Turret Missiles</item>
-  <item>Nexus Fighter Bays</item>
-  <item>Medium Laser</item>
-  <item>Heavy Laser</item>
-  <item>Medium Ion</item>
-  <item>Heavy Ion</item>
-  <item>Small Low Outfits</item>
-  <item>Medium Low Outfits</item>
-  <item>Large Mid Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Small Laser</item>
+  <item>Radar Modifiers</item>
   <item>Empire Military Outfits</item>
+  <item>Aerosys Small Ships</item>
   <item>Nexus Small Ships</item>
-  <item>Nexus Medium Ships</item>
-  <item>Nexus Large Ships</item>
   <item>Empire Small Ships</item>
-  <item>Empire Medium Ships</item>
-  <item>Empire Large Ships</item>
+  <item>Small Low Outfits</item>
  </tech>
 </asset>
