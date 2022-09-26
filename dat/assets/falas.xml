@@ -10,19 +10,12 @@
  </GFX>
  <presence>
   <faction>Empire</faction>
-  <value>30.000000</value>
+  <value>0.000000</value>
   <range>0</range>
  </presence>
  <general>
   <class>D</class>
-  <population>17500</population>
-  <services>
-   <land/>
-   <refuel/>
-   <bar/>
-  </services>
-  <commodities/>
-  <description>Falas is a sparsely populated garrison planet with little to no resources of any use. However, it was cheaper to build an outpost here than to build a whole new space station.</description>
-  <bar>The bar is host to several off-duty personnel. There aren't many of them here and the bar is mostly empty.</bar>
+  <population>0</population>
+  <services/>
  </general>
 </asset>

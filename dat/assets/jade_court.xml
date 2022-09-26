@@ -17,13 +17,11 @@
   <class>0</class>
   <population>24000</population>
   <services>
-   <land>emp_mil_restricted</land>
+   <land/>
    <refuel/>
-   <bar/>
    <missions/>
   </services>
   <commodities/>
-  <description>Jade Court is a large judiciary installation. Though owned by the Empire, the station itself counts as neutral territory. Cases here come from all over the galaxy, presided over by judges who are not affiliated with any of the major factions. Typically, any large international case that local law enforcement is unable to handle on its own will be taken to Jade.</description>
-  <bar>This is just an ordinary bar. Lawyers don't come here much, as they all have their own private offices aboard the station.</bar>
+  <description>Jade Court is a large judiciary installation. Though owned and operated directly by the Empire, the station is open to the public. Cases come here from all across the galaxy, presided over by judges who are officially not affiliated with any of the major factions, though it is an open secret that most judges are Empire loyalists.</description>
  </general>
 </asset>
