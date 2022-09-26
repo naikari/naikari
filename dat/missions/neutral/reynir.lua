@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>20</priority>
-  <chance>2</chance>
+  <chance>20</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -99,19 +99,8 @@ end
 
 
 function accept ()
-   -- make sure there are at least 2 inhabited planets
-   if (function () 
-            local count = 0
-            for i, p in ipairs (system.cur():planets()) do
-               if p:services()["inhabited"] then
-                  count=count+1
-               end
-            end
-            return count > 1
-         end) ()
-      and tk.yesno("", text[1]) and tk.yesno("", text[2]) then
-
-      misn.accept()  -- For missions from the Bar only.
+   if tk.yesno("", text[1]) and tk.yesno("", text[2]) then
+      misn.accept()
 
       misn.setTitle(misn_title)
       misn.setReward(misn_reward)
