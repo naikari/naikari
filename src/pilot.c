@@ -2415,28 +2415,36 @@ static void pilot_hyperspace( Pilot* p, double dt )
    /* pilot is actually in hyperspace */
    if (pilot_isFlag(p, PILOT_HYPERSPACE)) {
       /* Time to play sound. */
-      if (pilot_isPlayer(p) &&
-            (p->ptimer < sound_getLength(snd_hypPowUpJump)) &&
-            (p->timer[0] == -1.)) {
+      if (pilot_isPlayer(p)
+            && !pilot_isFlag(p, PILOT_LOCALJUMP)
+            && (p->ptimer < sound_getLength(snd_hypPowUpJump))
+            && (p->timer[0] == -1.)) {
          p->timer[0] = -2.;
-         player_soundPlay( snd_hypPowUpJump, 1 );
+         player_soundPlay(snd_hypPowUpJump, 1);
       }
 
       /* has jump happened? */
       if (p->ptimer < 0.) {
-         pilot_setFlag( p, PILOT_HYP_END );
-         pilot_setThrust( p, 0. );
-         if (p->id == PLAYER_ID) /* player.p just broke hyperspace */
-            player_setFlag( PLAYER_HOOK_HYPER );
+         pilot_setFlag(p, PILOT_HYP_END);
+         pilot_setThrust(p, 0.);
+         if (pilot_isFlag(p, PILOT_LOCALJUMP)) {
+            p->energy = 0.;
+            if (p->id == PLAYER_ID)
+               player_soundPlay(snd_hypJump, 1);
+         }
          else {
-            hparam.type        = HOOK_PARAM_JUMP;
-            hparam.u.lj.srcid  = cur_system->id;
-            hparam.u.lj.destid = cur_system->jumps[ p->nav_hyperspace ].targetid;
+            if (p->id == PLAYER_ID) /* player.p just broke hyperspace */
+               player_setFlag(PLAYER_HOOK_HYPER);
+            else {
+               hparam.type = HOOK_PARAM_JUMP;
+               hparam.u.lj.srcid = cur_system->id;
+               hparam.u.lj.destid = cur_system->jumps[p->nav_hyperspace].targetid;
 
-            /* Should be run before messing with delete flag. */
-            pilot_runHookParam( p, PILOT_HOOK_JUMP, &hparam, 1 );
+               /* Should be run before messing with delete flag. */
+               pilot_runHookParam(p, PILOT_HOOK_JUMP, &hparam, 1);
 
-            pilot_delete(p);
+               pilot_delete(p);
+            }
          }
          return;
       }
@@ -2531,6 +2539,7 @@ static void pilot_hyperspace( Pilot* p, double dt )
                   pilot_setTurn( p, 0. );
                   p->ptimer = HYPERSPACE_ENGINE_DELAY * !p->stats.misc_instant_jump;
                   pilot_setFlag(p, PILOT_HYP_BEGIN);
+                  pilot_rmFlag(p, PILOT_LOCALJUMP);
                   /* Player plays sound. */
                   if ((p->id == PLAYER_ID) && !p->stats.misc_instant_jump)
                      player_soundPlay( snd_hypPowUp, 1 );

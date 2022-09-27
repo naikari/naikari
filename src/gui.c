@@ -865,13 +865,15 @@ void gui_render( double dt )
 
    /* Determine if we need to fade in/out. */
    fade = direction = 0.;
-   if (pilot_isFlag(player.p, PILOT_HYPERSPACE) &&
-         (player.p->ptimer < HYPERSPACE_FADEOUT)) {
+   if (pilot_isFlag(player.p, PILOT_HYPERSPACE)
+         && !pilot_isFlag(player.p, PILOT_LOCALJUMP)
+         && (player.p->ptimer < HYPERSPACE_FADEOUT)) {
       fade = (HYPERSPACE_FADEOUT-player.p->ptimer) / HYPERSPACE_FADEOUT;
       direction = VANGLE(player.p->solid->vel);
    }
-   else if (pilot_isFlag(player.p, PILOT_HYP_END) &&
-         player.p->ptimer > 0.) {
+   else if (pilot_isFlag(player.p, PILOT_HYP_END)
+         && !pilot_isFlag(player.p, PILOT_LOCALJUMP)
+         && player.p->ptimer > 0.) {
       fade = player.p->ptimer / HYPERSPACE_FADEIN;
       direction = VANGLE(player.p->solid->vel) + M_PI;
    }

@@ -26,12 +26,14 @@ enum {
     * Dinamic flags
     */
    /* Hyperspace. */
-   PILOT_HYP_PREP,      /**< Pilot is getting ready for hyperspace. */
-   PILOT_HYP_BRAKE,     /**< PIlot has already braked before jumping. */
-   PILOT_HYP_BEGIN,     /**< Pilot is starting engines. */
-   PILOT_HYPERSPACE,    /**< Pilot is in hyperspace. */
-   PILOT_HYP_END,       /**< Pilot is exiting hyperspace. */
-   PILOT_HAILING,       /**< Pilot is hailing the player. */
+   PILOT_HYP_PREP, /**< Pilot is getting ready for hyperspace. */
+   PILOT_HYP_BRAKE, /**< Pilot has already braked before jumping. */
+   PILOT_HYP_BEGIN, /**< Pilot is starting engines. */
+   PILOT_HYPERSPACE, /**< Pilot is in hyperspace. */
+   PILOT_HYP_END, /**< Pilot is exiting hyperspace. */
+   PILOT_LOCALJUMP, /**< Pilot is performing a local jump. */
+   /* Hailing. */
+   PILOT_HAILING, /**< Pilot is hailing the player. */
    /* Boarding. */
    PILOT_BOARDABLE,     /**< Pilot can be boarded even while active. */
    PILOT_BOARDED,       /**< Pilot has been boarded already. */
