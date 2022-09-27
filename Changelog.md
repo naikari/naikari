@@ -44,8 +44,7 @@
 * The Options menu now always shows 1280×720 as a stock resolution
   choice, even if not listed as a supported mode by the OS (since that
   is Naikari's default resolution), and no longer shows a choice with
-  the resolution you were at when opening the Options menu (since you
-  can return to that simply by pressing the Cancel button).
+  the resolution you were at when opening the Options menu.
 * Double-tap afterburn is now disabled by default.
 * Increased variation of commodity prices.
 * Fixed a bug which caused the game to sometimes try to change to an
@@ -56,6 +55,31 @@
   seconds long (360 galactic days). Lore-wise, time units are now
   defined in relation to our 24-hour Earth days, meaning the new
   galactic year is exactly 360 days.
+* The economy system no longer tracks "price knowledge". The player now
+  always has perfect knowledge of pricing variation for all discovered
+  planets and systems.
+* Removed the mission computer bounty missions and the Assault on
+  Unicorn mission as these are now redundant (bounties are earned
+  without having to have a corresponding quest).
+* Significantly improved the Seek and Destroy mission: difficulty levels
+  have been added (like the old bounty missions had), the way NPCs
+  behave is now more customized per-faction, and when you arrive at the
+  appropriate system, you now need to locate your target within the
+  system (similar to the ship stealing mission). The mission also now
+  rewards you immediately upon completion instead of requiring you to
+  land to collect your reward.
+* The patrol mission now rewards you immediately upon completion without
+  having to land in the faction's territory first.
+* Replaced the news entry generator, which previously just generated
+  random filler with no connection to the story, with news entries that
+  are relevant to the player, like mission hints.
+* Changed the unit of mass used from tonnes to kilotonnes (meaning we no
+  longer have the silliness of space carriers weighing less than naval
+  aircraft carriers, etc).
+* Made the Hot Dogs from Space mission more likely to appear.
+* The game no longer refuses to resize a maximized window if you tell it
+  to in the Options menu. (This change also fixes bugs with the code
+  that implemented this restriction.)
 
 ## 0.4.1
 
