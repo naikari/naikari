@@ -1531,26 +1531,29 @@ int opt_setVideoMode( int w, int h, int fullscreen, int confirm )
 {
    int status;
    int old_w, old_h, old_f, new_w, new_h, new_f;
-   int changed_size, maximized;
+   int change_size_attempted, changed_size;
 
-   opt_getVideoMode( &old_w, &old_h, &old_f );
+   opt_getVideoMode(&old_w, &old_h, &old_f);
+   change_size_attempted = (w != old_w) || (h != old_h);
+
    conf.width = w;
    conf.height = h;
    conf.fullscreen = fullscreen;
 
    status = gl_setupFullscreen();
-   if (status == 0 && !fullscreen && (w != old_w || h != old_h)) {
-      SDL_SetWindowSize( gl_screen.window, w, h );
-      SDL_SetWindowPosition( gl_screen.window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED );
+   if (status == 0 && !fullscreen && change_size_attempted) {
+      /* Un-maximize the window if it is maximized. */
+      if (SDL_GetWindowFlags(gl_screen.window) & SDL_WINDOW_MAXIMIZED)
+         SDL_RestoreWindow(gl_screen.window);
+
+      SDL_SetWindowSize(gl_screen.window, w, h);
+      SDL_SetWindowPosition(gl_screen.window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
    }
    naev_resize();
 
-   opt_getVideoMode( &new_w, &new_h, &new_f );
-   changed_size = new_w != old_w || new_h != old_h;
-   maximized = !new_f && (SDL_GetWindowFlags(gl_screen.window) & SDL_WINDOW_MAXIMIZED);
+   opt_getVideoMode(&new_w, &new_h, &new_f);
+   changed_size = (new_w != old_w) || (new_h != old_h);
 
-   if (confirm && !changed_size && maximized)
-      dialogue_alert(_("Resolution can't be changed while maximized."));
    if (confirm && (status != 0 || new_f != fullscreen))
       opt_needRestart();
 
