@@ -17,7 +17,7 @@
   <class>M</class>
   <population>100000000</population>
   <services>
-   <land/>
+   <land>land_hiclass</land>
    <refuel/>
    <bar/>
    <missions/>
@@ -30,12 +30,14 @@
   <bar>On Ian, it's all about being seen. The bar never goes quiet, though the level of noise also never grows to uncivilized proportions. Both the gentry and the rich up-starts come to the recreational facilities to mingle and to strut their stuff to the offworlders who come here on business.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Low</item>
-  <item>Engines Medium</item>
-  <item>Laser 1</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
+  <item>Common Outfits</item>
+  <item>Medium Laser</item>
+  <item>Heavy Laser</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
+  <item>Empire Small Ships</item>
+  <item>Empire Medium Ships</item>
  </tech>
 </asset>

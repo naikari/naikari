@@ -27,8 +27,8 @@
   <bar>The bar is mostly a dingy little place with a few groups of people making shady deals. There are a bunch of drunks at scattered parts, and the bartender always keeps a hand under the bar. Not the most relaxing place.</bar>
  </general>
  <tech>
-  <item>Bulk Trade Ships</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Basic Trade Ships</item>
+  <item>Civilian Ships</item>
+  <item>Nexus Small Ships</item>
+  <item>Empire Small Ships</item>
  </tech>
 </asset>
