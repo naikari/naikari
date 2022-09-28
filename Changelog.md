@@ -80,6 +80,10 @@
 * The game no longer refuses to resize a maximized window if you tell it
   to in the Options menu. (This change also fixes bugs with the code
   that implemented this restriction.)
+* Added "local jumps", which allow you to engage your hyperspace engine
+  without actually going into hyperspace, taking you to a distant part
+  of the system at a cost of one jump of fuel and all of your battery
+  charge. (The maneuver takes you a distance of around 30,000 km.)
 
 ## 0.4.1
 
