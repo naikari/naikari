@@ -84,6 +84,9 @@ const char *keybind_info[][3] = {
          " planet or jump point.")},
    {"follow", N_("Follow Target"), N_("Follows the targeted ship.")},
    {"board", N_("Board Target"), N_("Attempts to board the targeted ship.")},
+   {"local_jump", N_("Local Jump"),
+      N_("Performs a local jump without entering hyperspace, to escape"
+         " dangerous situations.")},
    /* Secondary Weapons */
    {"secondary", N_("Fire Secondary Weapon"), N_("Fires secondary weapons.")},
    {"weapset1", N_("Weapon Set 1"), N_("Activates weapon set 1.")},
@@ -269,6 +272,7 @@ void input_setDefault(int layout)
 
    input_setKeybind("follow", KEYBIND_KEYBOARD, SDLK_f, NMOD_NONE);
    input_setKeybind("board", KEYBIND_KEYBOARD, SDLK_b, NMOD_NONE);
+   input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_v, NMOD_NONE);
    /* Secondary Weapons */
    input_setKeybind( "secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY );
    input_setKeybind( "weapset1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ANY );
@@ -969,11 +973,24 @@ static void input_key( int keynum, double value, double kabs, int repeat )
       player_weapSetPress( 8, value, repeat );
    } else if (NODEAD() && KEY("weapset0")) {
       player_weapSetPress( 9, value, repeat );
+   }
 
    /*
     * Space
     */
-   } else if (KEY("autonav") && INGAME() && NOHYP() && NODEAD()) {
+   else if (KEY("local_jump") && INGAME() && NOHYP() && NODEAD()) {
+      if ((value == KEY_PRESS)
+            && (player.p->fuel >= player.p->fuel_consumption)) {
+         pilot_setThrust(player.p, 0);
+         pilot_setTurn(player.p, 0);
+         player.p->ptimer = HYPERSPACE_FLY_DELAY;
+         player.p->timer[0] = -2.;
+         pilot_setFlag(player.p, PILOT_LOCALJUMP);
+         pilot_setFlag(player.p, PILOT_HYP_PREP);
+         pilot_setFlag(player.p, PILOT_HYPERSPACE);
+      }
+   }
+   else if (KEY("autonav") && INGAME() && NOHYP() && NODEAD()) {
       if (value == KEY_PRESS)
          player_autonavStart();
    /* target planet (cycles like target) */

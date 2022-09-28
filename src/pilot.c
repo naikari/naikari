@@ -2416,7 +2416,6 @@ static void pilot_hyperspace( Pilot* p, double dt )
    if (pilot_isFlag(p, PILOT_HYPERSPACE)) {
       /* Time to play sound. */
       if (pilot_isPlayer(p)
-            && !pilot_isFlag(p, PILOT_LOCALJUMP)
             && (p->ptimer < sound_getLength(snd_hypPowUpJump))
             && (p->timer[0] == -1.)) {
          p->timer[0] = -2.;
@@ -2428,9 +2427,19 @@ static void pilot_hyperspace( Pilot* p, double dt )
          pilot_setFlag(p, PILOT_HYP_END);
          pilot_setThrust(p, 0.);
          if (pilot_isFlag(p, PILOT_LOCALJUMP)) {
-            p->energy = 0.;
+            /* Ending a local jump. */
             if (p->id == PLAYER_ID)
                player_soundPlay(snd_hypJump, 1);
+
+            /* Pay the cost for the local jump. */
+            p->energy = 0.;
+            p->fuel -= p->fuel_consumption;
+
+            /* stop hyperspace */
+            pilot_rmFlag(p, PILOT_HYPERSPACE);
+            pilot_rmFlag(p, PILOT_HYP_BEGIN);
+            pilot_rmFlag(p, PILOT_HYP_BRAKE);
+            pilot_rmFlag(p, PILOT_HYP_PREP);
          }
          else {
             if (p->id == PLAYER_ID) /* player.p just broke hyperspace */
