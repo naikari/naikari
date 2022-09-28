@@ -752,7 +752,8 @@ static int player_autonavBrake (void)
 int player_autonavShouldResetSpeed (void)
 {
    double failpc, shield, armour;
-   int i;
+   double dist;
+   int i, j;
    Pilot *const*pstk;
    int hostiles, will_reset;
 
@@ -780,11 +781,33 @@ int player_autonavShouldResetSpeed (void)
 
    pstk = pilot_getAll();
    for (i=0; i<array_size(pstk); i++) {
-      if ( ( pstk[i]->id != PLAYER_ID ) && pilot_isHostile( pstk[i] )
-            && pilot_inRangePilot( player.p, pstk[i], NULL ) == 1
-            && !pilot_isDisabled( pstk[i] ) ) {
-         hostiles = 1;
-         break;
+      if ((pstk[i]->id != PLAYER_ID) && pilot_isHostile(pstk[i])
+            && (pilot_inRangePilot(player.p, pstk[i], NULL) == 1)
+            && !pilot_isDisabled(pstk[i])) {
+         dist = vect_dist(&pstk[i]->solid->pos, &player.p->solid->pos);
+
+         /* If the pilot is hostile or can see the player, be more
+          * careful and check weapon set distances against just 80% of
+          * the distance between the two. Otherwise, check against 90%
+          * of the distance. */
+         if (pilot_inRangePilot(pstk[i], player.p, NULL)
+               || pilot_isFlag(pstk[i], PILOT_HOSTILE))
+            dist *= 0.8;
+         else
+            dist *= 0.9;
+         
+         /* Check weapon set ranges of both the hostile pilot and the
+          * player. Only count it as hostile presence if one of the two
+          * is near their weapon range. */
+         for (j=0; j<PILOT_WEAPON_SETS; j++) {
+            if ((pilot_weapSetRange(pstk[i], j, -1) >= dist)
+                  || (pilot_weapSetRange(player.p, j, -1) >= dist)) {
+               hostiles = 1;
+               break;
+            }
+         }
+         if (hostiles)
+            break;
       }
    }
 
