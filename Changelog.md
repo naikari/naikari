@@ -84,6 +84,12 @@
   without actually going into hyperspace, taking you to a distant part
   of the system at a cost of one jump of fuel and all of your battery
   charge. (The maneuver takes you a distance of around 30,000 km.)
+* Changed the way autonav detects "hostile presence" for the purposes
+  of determining whether to reset the speed that time passes. It now
+  only counts ships that are close enough that one of the two ships
+  will be within weapon range soon (or already are). This avoids most
+  unnecessary time slowdowns while also being cautious enough to give
+  advance warning to the player.
 
 ## 0.4.1
 
