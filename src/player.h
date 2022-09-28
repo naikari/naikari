@@ -299,6 +299,7 @@ int player_jump(int loud);
 void player_screenshot (void);
 void player_accel( double acc );
 void player_accelOver (void);
+void player_localJump(void);
 void player_hail (void);
 int player_hailPlanet(int loud);
 void player_autohail (void);

@@ -1044,6 +1044,54 @@ double pilot_aimAngle( Pilot *p, const Pilot *target )
    return VANGLE(tv);
 }
 
+
+/**
+ * @brief Return whether or not a pilot can local jump.
+ *
+ *    @param p Pilot to check.
+ *    @param loud Whether or not to tell the player about the results
+ *       (for use with player ship control).
+ *    @return 1 if a local jump is possible, 0 otherwise.
+ */
+int pilot_canLocalJump(Pilot *p, int loud)
+{
+   /* Must have fuel. */
+   if (p->fuel < p->fuel_consumption) {
+      if (loud)
+         player_message(_("#rNot enough fuel to perform local jump."));
+      return 0;
+   }
+
+   return 1;
+}
+
+
+/**
+ * @brief Attempts a local jump for the pilot.
+ *
+ *    @param p Pilot to start a local jump for.
+ *    @return 1 if the local jump was initiated, 0 otherwise.
+ */
+int pilot_localJump(Pilot *p)
+{
+   /* Must have fuel. */
+   if (!pilot_canLocalJump(p, 0))
+      return 0;
+
+   pilot_setThrust(p, 0);
+   pilot_setTurn(p, 0);
+   p->ptimer = HYPERSPACE_FLY_DELAY;
+   pilot_setFlag(p, PILOT_LOCALJUMP);
+   pilot_setFlag(p, PILOT_HYP_PREP);
+   pilot_setFlag(p, PILOT_HYPERSPACE);
+
+   if (pilot_isPlayer(p))
+      p->timer[0] = -2.;
+
+   return 1;
+}
+
+
 /**
  * @brief Marks pilot as hostile to player.
  *

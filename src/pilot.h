@@ -416,6 +416,8 @@ int pilot_interceptPos( Pilot *p, double x, double y );
 void pilot_cooldown( Pilot *p );
 void pilot_cooldownEnd( Pilot *p, const char *reason );
 double pilot_aimAngle( Pilot *p, const Pilot *target );
+int pilot_canLocalJump(Pilot *p, int loud);
+int pilot_localJump(Pilot *p);
 
 
 /* Outfits */

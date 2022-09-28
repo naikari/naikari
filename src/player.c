@@ -2038,6 +2038,15 @@ void player_accelOver (void)
 
 
 /**
+ * @brief Attempts a local jump for the player.
+ */
+void player_localJump(void)
+{
+   pilot_localJump(player.p);
+}
+
+
+/**
  * @brief Sets the player's target.
  *
  *    @param id Target to set for the player.
