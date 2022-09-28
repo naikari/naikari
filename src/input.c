@@ -981,6 +981,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    else if (KEY("local_jump") && INGAME() && NOHYP() && NODEAD()) {
       if ((value == KEY_PRESS)
             && (player.p->fuel >= player.p->fuel_consumption)) {
+         player_restoreControl(PINPUT_MOVEMENT, NULL);
          pilot_setThrust(player.p, 0);
          pilot_setTurn(player.p, 0);
          player.p->ptimer = HYPERSPACE_FLY_DELAY;
