@@ -1062,6 +1062,23 @@ int pilot_canLocalJump(Pilot *p, int loud)
       return 0;
    }
 
+   /* Must not be taking off. */
+   if (pilot_isFlag(p, PILOT_TAKEOFF))
+      return 0;
+
+   /* Must not be landing. */
+   if (pilot_isFlag(p, PILOT_LANDING))
+      return 0;
+
+   /* Must not be jumping. */
+   if (pilot_isFlag(p, PILOT_HYP_PREP)
+         || pilot_isFlag(p, PILOT_HYPERSPACE))
+      return 0;
+
+   /* Must not be disabled. */
+   if (pilot_isDisabled(p))
+      return 0;
+
    return 1;
 }
 
@@ -1074,13 +1091,12 @@ int pilot_canLocalJump(Pilot *p, int loud)
  */
 int pilot_localJump(Pilot *p)
 {
-   /* Must have fuel. */
    if (!pilot_canLocalJump(p, 0))
       return 0;
 
    pilot_setThrust(p, 0);
    pilot_setTurn(p, 0);
-   p->ptimer = HYPERSPACE_FLY_DELAY;
+   p->ptimer = HYPERSPACE_FLY_DELAY * (0.75 + 0.25*RNGF());
    pilot_setFlag(p, PILOT_LOCALJUMP);
    pilot_setFlag(p, PILOT_HYP_PREP);
    pilot_setFlag(p, PILOT_HYPERSPACE);
@@ -2481,6 +2497,8 @@ static void pilot_hyperspace( Pilot* p, double dt )
 
             /* Pay the cost for the local jump. */
             p->energy = 0.;
+            p->shield = ceil(p->shield / 2.);
+            p->armour = ceil(p->armour / 2.);
             p->fuel -= p->fuel_consumption;
 
             /* stop hyperspace */

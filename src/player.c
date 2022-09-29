@@ -2042,6 +2042,10 @@ void player_accelOver (void)
  */
 void player_localJump(void)
 {
+   /* Must not be under manual control. */
+   if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
+      return;
+
    pilot_localJump(player.p);
 }
 
