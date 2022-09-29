@@ -289,16 +289,17 @@ function round(num)
    return math.floor( num + 0.5 )
 end
 
-function largeNumber( number, idp )
+function largeNumber(number)
    local formatted
-   local units = { "k", "M", "B", "T", "Q" }
-   if number < 1e4 then
-      formatted = math.floor(number)
-   elseif number < 1e18 then
-      len = math.floor(math.log10(number))
-      formatted = roundto( number / 10^math.floor(len-len%3), idp) .. units[(math.floor(len/3))]
+   local au_km = 149597870.7
+   if number < 1000 then
+      formatted = string.format(_("%d km"), math.floor(number))
+   elseif number < 1e6 then
+      formatted = string.format(_("%.1f Mm"), number / 1000)
+   --elseif number < 1e7 then
+      --formatted = string.format(_("%.1f Gm"), number / 1e6)
    else
-      formatted = _("Too big!")
+      formatted = string.format(_("%.2g au"), number / au_km)
    end
    return formatted
 end
@@ -954,7 +955,7 @@ function render( dt )
       gfx.print( true, _("TARGETED"), ta_pnt_pane_x + 14, ta_pnt_pane_y + 170, col_text )
       gfx.print( true, planet.name, ta_pnt_pane_x + 14, ta_pnt_pane_y + 150, planet.col )
       gfx.print( true, string.format(
-            _("DISTANCE: %s"), largeNumber(ta_pnt_dist, 1) ),
+            _("DISTANCE: %s"), largeNumber(ta_pnt_dist)),
          ta_pnt_pane_x + 14, ta_pnt_pane_y - 20, col_text )
       gfx.print( true, string.format( _("CLASS: %s"), planet.class ),
          ta_pnt_pane_x + 14, ta_pnt_pane_y - 40, col_text )
