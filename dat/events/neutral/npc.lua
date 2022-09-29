@@ -222,9 +222,10 @@ msg_lore["Sirius"] = {
    _([["I once met one of the Touched in person. Well, it wasn't really a meeting, our eyes simply met… but that instant alone was awe-inspiring."]]),
    _([["My cousin was called to Mutris a year ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
    _([["Some people say Sirius society is unfair because our echelons are determined by birth. But even though we are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
-   _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has nothing to say in these systems. We follow Sirichana, and no one else."]]),
+   _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has no influence on these systems. We follow Sirichana, and no one else."]]),
    _([["I hope to meet one of the Touched one day!"]]),
    _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into His plan, and He punished the Empire for having started that so-called 'Great Project'."]]),
+   _([["I don't think the Incident is an isolated event. The explosion of Sol was just the first of many. Soon, all who do not follow Sirichana will fall just as Earth did, and only we, His devoted servants, will remain."]]),
    _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
@@ -245,19 +246,18 @@ msg_lore["Za'lek"] = {
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
    _([["I'll admit that the living Soromid ships are marginally interesting, but truly, they can't beat the best synthetic technology."]]),
    _([["I don't know why we even bother sending our research results to the Empire anymore. Everyone knows it's just charity at this point."]]),
+   _([["I would love to get my hands on a genuine Proteron ship one day! They've always been a danger to the galaxy, but I'd be lying if I said their ship tech wasn't incredible."]]),
 }
 
 msg_lore["Thurion"] = {
    _([["Did you know that even the slightest bit of brain damage can lead to death during the upload process? That's why we're very careful to not allow our brains to be damaged, even a little."]]),
    _([["My father unfortunately hit his head when he was young, so he couldn't be safely uploaded. It's okay, though; he had a long and fulfilling life, for a non-uploaded human, that is."]]),
    _([["One great thing once you're uploaded is that you can choose to forget things you don't want to remember. My great-grandfather had a movie spoiled for him before he could watch it, so once he got uploaded, he deleted that memory and watched it with a fresh perspective. Cool, huh?"]]),
-   _([["The best part of our lives is after we're uploaded, but that doesn't mean we lead boring lives before then. We have quite easy and satisfying biological lives before uploading."]]),
+   _([["The best part of our lives is after we're uploaded, but that doesn't mean we live boring lives before then. Pre-upload life continues to offer many wonders and marvels."]]),
    _([["Being uploaded allows you to live forever, but that doesn't mean you're forced to. Any uploaded Thurion can choose to end their own life if they want, though few have chosen to do so."]]),
    _([["Uploading is a choice in our society. No one is forced to do it. It's just that, well, what kind of person would turn down the chance to live a second life on the network?"]]),
    _([["We were lucky to not get touched by the Incident. In fact, we kind of benefited from it. The nebula that resulted gave us a great cover and sealed off the Empire from us."]]),
-   _([["We don't desire galactic dominance. That being said, we do want to spread our way of life to the rest of the galaxy, so that everyone can experience the joy of being uploaded."]]),
    _([["I think you're from the outside, aren't you? That's awesome! I've never met a foreigner before. What's it like outside the nebula?"]]),
-   _([["We actually make occasional trips outside of the nebula, though only rarely, and we always make sure to not get discovered by the Empire."]]),
    _([["The Soromid have a rough history. Have you read up on it? First the Empire confined them to a deadly planet and doomed them to extinction. Then, when they overcame those odds, the Incident blew up their homeworld. The fact that they're still thriving now despite that is phenomenal, I must say."]]),
 }
 
