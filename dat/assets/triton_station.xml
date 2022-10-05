@@ -17,10 +17,9 @@
   <class>0</class>
   <population>1500</population>
   <services>
-   <land/>
+   <land>land_hiclass</land>
    <refuel/>
    <bar/>
-   <commodity/>
    <shipyard/>
   </services>
   <commodities/>
@@ -28,7 +27,11 @@
   <bar>The spaceport bar is a public facility onboard the station, and so the Empire runs it. As such, the bar complies with galactic standards, something that might not have been the case if Nexus had been in charge.</bar>
  </general>
  <tech>
-  <item>Light Civilian Combat Ships</item>
-  <item>Basic Civilian Ships</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
+  <item>Nexus Large Ships</item>
+  <item>Empire Small Ships</item>
+  <item>Empire Medium Ships</item>
+  <item>Empire Large Ships</item>
  </tech>
 </asset>

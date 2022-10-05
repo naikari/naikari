@@ -30,14 +30,13 @@
   <bar>The Goddard Bar is, unsurprisingly, an obsolete model of their eponymous ship, stripped and refitted in the form of a bar. It's surprisingly comfortable and cozy as a bar, although every so often you can hear creaking in the ancient metal frame.</bar>
  </general>
  <tech>
-  <item>Hulls Medium</item>
-  <item>Engines Medium</item>
-  <item>Laser 1</item>
-  <item>Kinetic 1</item>
-  <item>Basic Civilian Ships</item>
-  <item>Goddard Ship</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
+  <item>Common Outfits</item>
+  <item>Turret Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Heavy Kinetic</item>
+  <item>Large Low Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Nexus Large Ships</item>
+  <item>Goddard Ships</item>
  </tech>
 </asset>
