@@ -247,7 +247,6 @@ typedef struct Asteroid_ {
    int type; /**< The ID of the asteroid type */
    double armour; /**< Current "armour" of the asteroid. */
 } Asteroid;
-extern glTexture **asteroid_gfx; /**< Asteroid graphics list. */
 
 
 

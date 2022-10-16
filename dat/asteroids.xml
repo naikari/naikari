@@ -2,26 +2,26 @@
 <Asteroid_types>
  <asteroid>
   <id>default</id>
-  <gfx>asteroid-D00.webp</gfx>
-  <gfx>asteroid-D01.webp</gfx>
-  <gfx>asteroid-D02.webp</gfx>
-  <gfx>asteroid-D03.webp</gfx>
-  <gfx>asteroid-D04.webp</gfx>
-  <gfx>asteroid-D05.webp</gfx>
-  <gfx>asteroid-D06.webp</gfx>
-  <gfx>asteroid-D07.webp</gfx>
-  <gfx>asteroid-D08.webp</gfx>
-  <gfx>asteroid-D09.webp</gfx>
-  <gfx>asteroid-D10.webp</gfx>
-  <gfx>asteroid-D11.webp</gfx>
-  <gfx>asteroid-D12.webp</gfx>
-  <gfx>asteroid-D13.webp</gfx>
-  <gfx>asteroid-D15.webp</gfx>
-  <gfx>asteroid-D16.webp</gfx>
-  <gfx>asteroid-D21.webp</gfx>
-  <gfx>asteroid-D22.webp</gfx>
-  <gfx>asteroid-D23.webp</gfx>
-  <gfx>asteroid-D24.webp</gfx>
+  <gfx>asteroid-00.webp</gfx>
+  <gfx>asteroid-01.webp</gfx>
+  <gfx>asteroid-02.webp</gfx>
+  <gfx>asteroid-03.webp</gfx>
+  <gfx>asteroid-04.webp</gfx>
+  <gfx>asteroid-05.webp</gfx>
+  <gfx>asteroid-06.webp</gfx>
+  <gfx>asteroid-07.webp</gfx>
+  <gfx>asteroid-08.webp</gfx>
+  <gfx>asteroid-09.webp</gfx>
+  <gfx>asteroid-10.webp</gfx>
+  <gfx>asteroid-11.webp</gfx>
+  <gfx>asteroid-12.webp</gfx>
+  <gfx>asteroid-13.webp</gfx>
+  <gfx>asteroid-15.webp</gfx>
+  <gfx>asteroid-16.webp</gfx>
+  <gfx>asteroid-21.webp</gfx>
+  <gfx>asteroid-22.webp</gfx>
+  <gfx>asteroid-23.webp</gfx>
+  <gfx>asteroid-24.webp</gfx>
   <armour>50</armour>
   <commodity>
    <name>Ore</name>
@@ -30,14 +30,14 @@
  </asteroid>
  <asteroid>
   <id>small</id>
-  <gfx>asteroid-D01.webp</gfx>
-  <gfx>asteroid-D02.webp</gfx>
-  <gfx>asteroid-D03.webp</gfx>
-  <gfx>asteroid-D04.webp</gfx>
-  <gfx>asteroid-D05.webp</gfx>
-  <gfx>asteroid-D06.webp</gfx>
-  <gfx>asteroid-D22.webp</gfx>
-  <gfx>asteroid-D24.webp</gfx>
+  <gfx>asteroid-01.webp</gfx>
+  <gfx>asteroid-02.webp</gfx>
+  <gfx>asteroid-03.webp</gfx>
+  <gfx>asteroid-04.webp</gfx>
+  <gfx>asteroid-05.webp</gfx>
+  <gfx>asteroid-06.webp</gfx>
+  <gfx>asteroid-22.webp</gfx>
+  <gfx>asteroid-24.webp</gfx>
   <armour>50</armour>
   <commodity>
    <name>Ore</name>
@@ -46,19 +46,19 @@
  </asteroid>
  <asteroid>
   <id>massive</id>
-  <gfx>asteroid-D00.webp</gfx>
-  <gfx>asteroid-D07.webp</gfx>
-  <gfx>asteroid-D08.webp</gfx>
-  <gfx>asteroid-D09.webp</gfx>
-  <gfx>asteroid-D10.webp</gfx>
-  <gfx>asteroid-D11.webp</gfx>
-  <gfx>asteroid-D12.webp</gfx>
-  <gfx>asteroid-D13.webp</gfx>
-  <gfx>asteroid-D14.webp</gfx>
-  <gfx>asteroid-D15.webp</gfx>
-  <gfx>asteroid-D16.webp</gfx>
-  <gfx>asteroid-D21.webp</gfx>
-  <gfx>asteroid-D23.webp</gfx>
+  <gfx>asteroid-00.webp</gfx>
+  <gfx>asteroid-07.webp</gfx>
+  <gfx>asteroid-08.webp</gfx>
+  <gfx>asteroid-09.webp</gfx>
+  <gfx>asteroid-10.webp</gfx>
+  <gfx>asteroid-11.webp</gfx>
+  <gfx>asteroid-12.webp</gfx>
+  <gfx>asteroid-13.webp</gfx>
+  <gfx>asteroid-14.webp</gfx>
+  <gfx>asteroid-15.webp</gfx>
+  <gfx>asteroid-16.webp</gfx>
+  <gfx>asteroid-21.webp</gfx>
+  <gfx>asteroid-23.webp</gfx>
   <armour>200</armour>
   <commodity>
    <name>Ore</name>
@@ -71,17 +71,17 @@
  </asteroid>
  <asteroid>
   <id>golden</id>
-  <gfx>asteroid-D00.webp</gfx>
-  <gfx>asteroid-D07.webp</gfx>
-  <gfx>asteroid-D08.webp</gfx>
-  <gfx>asteroid-D09.webp</gfx>
-  <gfx>asteroid-D10.webp</gfx>
-  <gfx>asteroid-D11.webp</gfx>
-  <gfx>asteroid-D12.webp</gfx>
-  <gfx>asteroid-D13.webp</gfx>
-  <gfx>asteroid-D14.webp</gfx>
-  <gfx>asteroid-D16.webp</gfx>
-  <gfx>asteroid-D21.webp</gfx>
+  <gfx>asteroid-00.webp</gfx>
+  <gfx>asteroid-07.webp</gfx>
+  <gfx>asteroid-08.webp</gfx>
+  <gfx>asteroid-09.webp</gfx>
+  <gfx>asteroid-10.webp</gfx>
+  <gfx>asteroid-11.webp</gfx>
+  <gfx>asteroid-12.webp</gfx>
+  <gfx>asteroid-13.webp</gfx>
+  <gfx>asteroid-14.webp</gfx>
+  <gfx>asteroid-16.webp</gfx>
+  <gfx>asteroid-21.webp</gfx>
   <armour>700</armour>
   <commodity>
    <name>Gold</name>
@@ -94,26 +94,26 @@
  </asteroid>
  <asteroid>
   <id>diamond</id>
-  <gfx>asteroid-D00.webp</gfx>
-  <gfx>asteroid-D01.webp</gfx>
-  <gfx>asteroid-D02.webp</gfx>
-  <gfx>asteroid-D03.webp</gfx>
-  <gfx>asteroid-D04.webp</gfx>
-  <gfx>asteroid-D05.webp</gfx>
-  <gfx>asteroid-D06.webp</gfx>
-  <gfx>asteroid-D07.webp</gfx>
-  <gfx>asteroid-D08.webp</gfx>
-  <gfx>asteroid-D09.webp</gfx>
-  <gfx>asteroid-D10.webp</gfx>
-  <gfx>asteroid-D11.webp</gfx>
-  <gfx>asteroid-D12.webp</gfx>
-  <gfx>asteroid-D13.webp</gfx>
-  <gfx>asteroid-D15.webp</gfx>
-  <gfx>asteroid-D16.webp</gfx>
-  <gfx>asteroid-D21.webp</gfx>
-  <gfx>asteroid-D22.webp</gfx>
-  <gfx>asteroid-D23.webp</gfx>
-  <gfx>asteroid-D24.webp</gfx>
+  <gfx>asteroid-00.webp</gfx>
+  <gfx>asteroid-01.webp</gfx>
+  <gfx>asteroid-02.webp</gfx>
+  <gfx>asteroid-03.webp</gfx>
+  <gfx>asteroid-04.webp</gfx>
+  <gfx>asteroid-05.webp</gfx>
+  <gfx>asteroid-06.webp</gfx>
+  <gfx>asteroid-07.webp</gfx>
+  <gfx>asteroid-08.webp</gfx>
+  <gfx>asteroid-09.webp</gfx>
+  <gfx>asteroid-10.webp</gfx>
+  <gfx>asteroid-11.webp</gfx>
+  <gfx>asteroid-12.webp</gfx>
+  <gfx>asteroid-13.webp</gfx>
+  <gfx>asteroid-15.webp</gfx>
+  <gfx>asteroid-16.webp</gfx>
+  <gfx>asteroid-21.webp</gfx>
+  <gfx>asteroid-22.webp</gfx>
+  <gfx>asteroid-23.webp</gfx>
+  <gfx>asteroid-24.webp</gfx>
   <armour>600</armour>
   <commodity>
    <name>Diamond</name>
@@ -126,25 +126,25 @@
  </asteroid>
  <asteroid>
   <id>liquid</id>
-  <gfx>asteroid-D00.webp</gfx>
-  <gfx>asteroid-D01.webp</gfx>
-  <gfx>asteroid-D02.webp</gfx>
-  <gfx>asteroid-D03.webp</gfx>
-  <gfx>asteroid-D04.webp</gfx>
-  <gfx>asteroid-D05.webp</gfx>
-  <gfx>asteroid-D06.webp</gfx>
-  <gfx>asteroid-D07.webp</gfx>
-  <gfx>asteroid-D08.webp</gfx>
-  <gfx>asteroid-D09.webp</gfx>
-  <gfx>asteroid-D10.webp</gfx>
-  <gfx>asteroid-D11.webp</gfx>
-  <gfx>asteroid-D12.webp</gfx>
-  <gfx>asteroid-D13.webp</gfx>
-  <gfx>asteroid-D14.webp</gfx>
-  <gfx>asteroid-D16.webp</gfx>
-  <gfx>asteroid-D21.webp</gfx>
-  <gfx>asteroid-D22.webp</gfx>
-  <gfx>asteroid-D24.webp</gfx>
+  <gfx>asteroid-00.webp</gfx>
+  <gfx>asteroid-01.webp</gfx>
+  <gfx>asteroid-02.webp</gfx>
+  <gfx>asteroid-03.webp</gfx>
+  <gfx>asteroid-04.webp</gfx>
+  <gfx>asteroid-05.webp</gfx>
+  <gfx>asteroid-06.webp</gfx>
+  <gfx>asteroid-07.webp</gfx>
+  <gfx>asteroid-08.webp</gfx>
+  <gfx>asteroid-09.webp</gfx>
+  <gfx>asteroid-10.webp</gfx>
+  <gfx>asteroid-11.webp</gfx>
+  <gfx>asteroid-12.webp</gfx>
+  <gfx>asteroid-13.webp</gfx>
+  <gfx>asteroid-14.webp</gfx>
+  <gfx>asteroid-16.webp</gfx>
+  <gfx>asteroid-21.webp</gfx>
+  <gfx>asteroid-22.webp</gfx>
+  <gfx>asteroid-24.webp</gfx>
   <armour>40</armour>
   <commodity>
    <name>Water</name>

@@ -12,6 +12,8 @@
  */
 #define PLANET_GFX_SPACE_PATH    "gfx/planet/space/" /**< Location of planet space graphics. */
 #define PLANET_GFX_EXTERIOR_PATH "gfx/planet/exterior/" /**< Location of planet exterior graphics (when landed). */
+#define ASTEROID_GFX_PATH "gfx/planet/space/asteroid/"
+#define ASTEROID_DEBRIS_GFX_PATH "gfx/planet/space/asteroid/debris/"
 #define GFX_PATH                 "gfx/" /**< Location of the graphics root. */
 #define OVERLAY_GFX_PATH         "gfx/overlays/" /**< Location of overlays such as those used with graphics and ships. */
 #define GUI_GFX_PATH             "gfx/gui/" /**< Location of the GUI graphics. */

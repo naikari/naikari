@@ -707,10 +707,6 @@ static void sysedit_renderAsteroidsField( double bx, double by, AsteroidAnchor *
 {
    double tx, ty, z;
 
-   /* Render icon */
-   sysedit_renderSprite( asteroid_gfx[0], bx, by, ast->pos.x, ast->pos.y,
-                         0, 0, NULL, selected, _("Asteroid Field") );
-
    /* Inits. */
    z  = sysedit_zoom;
 
@@ -718,7 +714,11 @@ static void sysedit_renderAsteroidsField( double bx, double by, AsteroidAnchor *
    tx = bx + ast->pos.x*z;
    ty = by + ast->pos.y*z;
 
-   gl_drawCircle( tx, ty, ast->radius * sysedit_zoom, &cOrange, 0 );
+   gl_printMidRaw(&gl_smallFont, 100,
+         tx - 50, ty - gl_smallFont.h - 5, selected ? &cRed : NULL, -1.,
+         _("Asteroid Field"));
+
+   gl_drawCircle(tx, ty, ast->radius * sysedit_zoom, &cOrange, 0);
 }
 
 /**

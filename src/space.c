@@ -105,8 +105,8 @@ static glTexture *jumpbuoy_gfx = NULL; /**< Jump buoy graphics. */
 static nlua_env landing_env = LUA_NOREF; /**< Landing lua env. */
 static int space_fchg = 0; /**< Faction change counter, to avoid unnecessary calls. */
 static int space_simulating = 0; /**< Are we simulating space? */
-glTexture **asteroid_gfx = NULL;
-static size_t nasterogfx = 0; /**< Nb of asteroid gfx. */
+glTexture **asteroid_debris_gfx = NULL;
+static size_t nasterogfx = 0; /**< Nb of asteroid debris gfx. */
 static Planet *space_landQueuePlanet = NULL;
 
 /*
@@ -3016,13 +3016,14 @@ int space_load (void)
       return ret;
 
    /* Load asteroid graphics. */
-   asteroid_files = PHYSFS_enumerateFiles( PLANET_GFX_SPACE_PATH"asteroid/" );
+   asteroid_files = PHYSFS_enumerateFiles(ASTEROID_DEBRIS_GFX_PATH);
    for (nasterogfx=0; asteroid_files[nasterogfx]!=NULL; nasterogfx++) {}
-   asteroid_gfx = malloc( sizeof(glTexture*) * nasterogfx );
+   asteroid_debris_gfx = malloc(sizeof(glTexture*) * nasterogfx);
 
    for (i=0; asteroid_files[i]!=NULL; i++) {
-      snprintf( file, sizeof(file), "%s%s", PLANET_GFX_SPACE_PATH"asteroid/", asteroid_files[i] );
-      asteroid_gfx[i] = gl_newImage( file, OPENGL_TEX_MIPMAPS );
+      snprintf(file, sizeof(file), "%s%s",
+            ASTEROID_DEBRIS_GFX_PATH, asteroid_files[i]);
+      asteroid_debris_gfx[i] = gl_newImage(file, OPENGL_TEX_MIPMAPS);
    }
 
    /* Done loading. */
@@ -3104,7 +3105,9 @@ static int asteroidTypes_load (void)
          cur = node->children;
          do {
             if (xml_isNode(cur,"gfx"))
-               array_push_back( &at->gfxs, xml_parseTexture( cur, PLANET_GFX_SPACE_PATH"asteroid/%s", 1, 1,  OPENGL_TEX_MAPTRANS | OPENGL_TEX_MIPMAPS ) );
+               array_push_back(&at->gfxs,
+                     xml_parseTexture(cur, ASTEROID_GFX_PATH"%s", 1, 1, 
+                        OPENGL_TEX_MAPTRANS | OPENGL_TEX_MIPMAPS));
 
             else if (xml_isNode(cur,"id"))
                at->ID = xml_getStrd(cur);
@@ -3442,8 +3445,9 @@ static void space_renderDebris( const Debris *d, double x, double y )
    testVect->y = d->pos.y + y;
 
    if ( space_isInField( testVect ) == 0 )
-      gl_blitSpriteInterpolateScale( asteroid_gfx[d->gfxID], asteroid_gfx[d->gfxID], 1,
-                                     testVect->x, testVect->y, scale, scale, 0, 0, &cInert );
+      gl_blitSpriteInterpolateScale(
+         asteroid_debris_gfx[d->gfxID], asteroid_debris_gfx[d->gfxID], 1,
+         testVect->x, testVect->y, scale, scale, 0, 0, &cInert);
    free(testVect);
 }
 
@@ -3467,8 +3471,8 @@ void space_exit (void)
 
    /* Free asteroid graphics. */
    for (i=0; i<(int)nasterogfx; i++)
-      gl_freeTexture(asteroid_gfx[i]);
-   free(asteroid_gfx);
+      gl_freeTexture(asteroid_debris_gfx[i]);
+   free(asteroid_debris_gfx);
 
    /* Free the names. */
    array_free(planetname_stack);
