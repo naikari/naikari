@@ -197,8 +197,11 @@ function abort ()
 
    misn.cargoJet(cid)
 
+   local pp = player.pilot()
    for i, p in ipairs(pilot.get()) do
-      p:setHostile()
+      if p ~= pp and p:leader() ~= pp then
+         p:setHostile()
+      end
    end
 
    -- No landing, filthy waste dumper!
