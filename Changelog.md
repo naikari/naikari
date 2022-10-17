@@ -82,14 +82,23 @@
   that implemented this restriction.)
 * Added "local jumps", which allow you to engage your hyperspace engine
   without actually going into hyperspace, taking you to a distant part
-  of the system at a cost of one jump of fuel and all of your battery
-  charge. (The maneuver takes you a distance of around 30,000 km.)
+  of the system at a cost of one jump of fuel, all of your battery
+  charge, half of your remaining shield, and half of your remaining
+  armor. (The maneuver takes you a distance of around 30,000 km.)
 * Changed the way autonav detects "hostile presence" for the purposes
   of determining whether to reset the speed that time passes. It now
   only counts ships that are close enough that one of the two ships
   will be within weapon range soon (or already are). This avoids most
   unnecessary time slowdowns while also being cautious enough to give
   advance warning to the player.
+* Converted the Reynir mission into a hidden tutorial for the local
+  jumps feature and changed the rewarded commodity from Food (hot dogs)
+  to Luxury Goods (robot teddy bears), making it more rewarding.
+* Fixed a problem where the Waste Dump mission would make your own
+  escorts hostile toward you if you aborted it while in space.
+* Made it so that the debris graphics in asteroid fields are entirely
+  separate from the asteroids themselves, making it more obvious which
+  asteroids are real and which are just decoration.
 
 ## 0.4.1
 
