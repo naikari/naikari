@@ -30,14 +30,9 @@
   <bar>Perhaps uniquely in the galaxy, both the spaceport and its associated facilities are afloat without tethers. This means that the location of the spaceport itself changes over time as the platform is carried on the major currents that span the face of the planet.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Low</item>
-  <item>Engines Low</item>
-  <item>Engines Medium</item>
-  <item>Laser 2</item>
-  <item>Heavy Civilian Combat Ships</item>
-  <item>Basic Outfits 2</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
+  <item>Common Outfits</item>
+  <item>Small Laser</item>
+  <item>Small Low Outfits</item>
+  <item>Civilian Ships</item>
  </tech>
 </asset>

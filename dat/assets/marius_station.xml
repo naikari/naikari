@@ -28,10 +28,22 @@
   <bar>This bar is self-service most of the time. All Empire personnel on board have their hands full with double shifts, repair duties and briefings. Few have the spare time to even visit the spacedock bar, let alone staff it.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Heavy Civilian Combat Ships</item>
-  <item>Basic Outfits 2</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Small Laser</item>
+  <item>Medium Laser</item>
+  <item>Heavy Laser</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Radar Modifiers</item>
+  <item>Empire Military Outfits</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
+  <item>Nexus Large Ships</item>
+  <item>Empire Small Ships</item>
+  <item>Empire Medium Ships</item>
+  <item>Empire Large Ships</item>
  </tech>
 </asset>
