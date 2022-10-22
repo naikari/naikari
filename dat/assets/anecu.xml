@@ -30,9 +30,13 @@
   <bar>The spaceport bar is approximately three kilometres below the surface of the planet. The walls are constructed from a hardened, transparent polymer that allows you to see into the darkness of the water. Every so often you can see gelatinous creatures sliding around, barely illuminated by the bar's lighting.</bar>
  </general>
  <tech>
-  <item>Kinetic 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Hulls High</item>
-  <item>Basic Civilian Ships</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Small Low Outfits</item>
+  <item>Civilian Ships</item>
+  <item>Couriers</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Military Small Ships</item>
  </tech>
 </asset>
