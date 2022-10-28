@@ -17,10 +17,9 @@
   <class>0</class>
   <population>3500</population>
   <services>
-   <land/>
+   <land>land_hiclass</land>
    <refuel/>
    <bar/>
-   <commodity/>
    <shipyard/>
   </services>
   <commodities/>
@@ -28,7 +27,11 @@
   <bar>The spacedock bar provides visitors with a view over part of the assembly line. It is quite impressive to see a spacecraft being built, even if it is only a relatively small one.</bar>
  </general>
  <tech>
-  <item>Light Civilian Combat Ships</item>
-  <item>Basic Trade Ships</item>
+  <item>Couriers</item>
+  <item>Freighters</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Dvaered Military Small Ships</item>
+  <item>Dvaered Military Medium Ships</item>
  </tech>
 </asset>

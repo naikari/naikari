@@ -26,19 +26,28 @@
   <description>This is Dvaered High Command, the true seat of power over all Dvaered controlled territories. It is here that the Dvaered Generals come together and decide on a course of action for the Dvaered military forces. Understandably, Dvaered High Command is a military stronghold, one of the most heavily guarded places in the galaxy. One needs a certain number of Dvaered commendations to be even allowed to set foot on the station.</description>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls High</item>
-  <item>Hulls Elite</item>
-  <item>Engines Medium</item>
-  <item>Kinetic 1</item>
-  <item>Kinetic 2</item>
-  <item>Kinetic 3</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Small Mid Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Cannon Modifiers</item>
+  <item>Armor Modifiers</item>
+  <item>Energy Modifiers</item>
   <item>Dvaered Military Outfits</item>
-  <item>Dvaered Military Ships</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>Heavy Weapons 1</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Dvaered Military Small Ships</item>
+  <item>Dvaered Military Medium Ships</item>
+  <item>Dvaered Restricted Ships</item>
  </tech>
 </asset>

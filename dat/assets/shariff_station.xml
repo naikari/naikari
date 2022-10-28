@@ -19,16 +19,26 @@
   <services>
    <land>dv_mil_restricted</land>
    <refuel/>
+   <outfits/>
    <shipyard/>
   </services>
   <commodities/>
   <description>For being a Dvaered military base, Shariff Station has it tough. This close to Frontier space, the station is a popular target for FLF raids, and despite the many extra security measures that have been implemented in recent years, the losses continue to pile up.</description>
  </general>
  <tech>
+  <item>Common Outfits</item>
+  <item>Elite Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
   <item>Dvaered Civilian Small Ships</item>
   <item>Dvaered Civilian Medium Ships</item>
   <item>Dvaered Military Small Ships</item>
   <item>Dvaered Military Medium Ships</item>
-  <item>Dvaered Restricted Ships</item>
  </tech>
 </asset>

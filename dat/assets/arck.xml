@@ -17,7 +17,7 @@
   <class>M</class>
   <population>9000000000</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
    <bar/>
    <missions/>
