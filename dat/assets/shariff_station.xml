@@ -17,10 +17,18 @@
   <class>0</class>
   <population>2000</population>
   <services>
-   <land>srs_mil_restricted</land>
+   <land>dv_mil_restricted</land>
    <refuel/>
+   <shipyard/>
   </services>
   <commodities/>
   <description>For being a Dvaered military base, Shariff Station has it tough. This close to Frontier space, the station is a popular target for FLF raids, and despite the many extra security measures that have been implemented in recent years, the losses continue to pile up.</description>
  </general>
+ <tech>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Dvaered Military Small Ships</item>
+  <item>Dvaered Military Medium Ships</item>
+  <item>Dvaered Restricted Ships</item>
+ </tech>
 </asset>

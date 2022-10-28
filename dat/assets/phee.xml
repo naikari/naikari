@@ -30,11 +30,17 @@
   <bar>The owner of the bar has served in several Dvaered campaigns in his day, and it shows. The bar is decorated with trophies and other memorabilia from those days, and the man will tell anyone who will listen about what he calls his glory days.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Engines Low</item>
-  <item>Kinetic 1</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Outfits 1</item>
-  <item>Engines High</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Turret Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Armor Modifiers</item>
+  <item>Civilian Ships</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Military Small Ships</item>
  </tech>
 </asset>
