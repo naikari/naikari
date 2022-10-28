@@ -19,6 +19,7 @@
   <services>
    <land>dv_mil_restricted</land>
    <refuel/>
+   <missions/>
    <outfits/>
    <shipyard/>
   </services>
@@ -26,15 +27,19 @@
   <description>Since well-to-do Dvaereds have laid complete claim to Varia's surface, all industrial and military enterprises have been moved offworld to Stalwart Station. While two-thirds of the station's decks are in use by major Dvaered corporations, there is enough space left for a respectable military wing. In fact, Stalwart Station features as the base of most military operations in the surrounding systems.</description>
  </general>
  <tech>
-  <item>Systems Medium</item>
-  <item>Engines Medium</item>
-  <item>Kinetic 2</item>
-  <item>Kinetic 3</item>
-  <item>Beam 1</item>
-  <item>Heavy Weapons 1</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Heavy Civilian Combat Ships</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Armor Modifiers</item>
+  <item>Dvaered Military Outfits</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Dvaered Military Small Ships</item>
+  <item>Dvaered Military Medium Ships</item>
  </tech>
 </asset>

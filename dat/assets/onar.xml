@@ -10,30 +10,38 @@
  </GFX>
  <presence>
   <faction>Dvaered</faction>
-  <value>50.000000</value>
+  <value>150.000000</value>
   <range>2</range>
  </presence>
  <general>
   <class>O</class>
   <population>700000</population>
   <services>
-   <land/>
+   <land>land_hiclass</land>
    <refuel/>
-   <bar/>
-   <missions/>
    <commodity/>
    <outfits/>
   </services>
   <commodities/>
   <description>Onar serves as one of House Dvaered's foremost weapons development facilities. The planet has a peculiar characteristic that causes its gravity to fluctuate from region to region, which makes for an ideal testing environment to test ballistic weaponry.</description>
-  <bar>Every visitor to Onar is required to check in at the spaceport bar immediately after landing. Nobody is allowed off the premises of the spaceport without a good reason, and even then they will be accompanied by an official Dvaered chaperone. Most visitors therefore find themselves confined to the spaceport bar.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Medium</item>
-  <item>Kinetic 2</item>
-  <item>Basic Outfits 2</item>
-  <item>Missiles 2</item>
-  <item>Heavy Weapons 1</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Cannon Modifiers</item>
+  <item>Turret Modifiers</item>
  </tech>
 </asset>
