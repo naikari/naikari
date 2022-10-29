@@ -101,6 +101,16 @@
   asteroids are real and which are just decoration.
 * "High-class" planets now require 10% reputation instead of 0% to land
   on.
+* Removed the DIY-Nerds mission (the one where you take a group of nerds
+  to a science fair or something). It never felt all that important and
+  wasn't really worth doing.
+* Changed the relation between real-world time passage and in-universe
+  time passage: one real-world second is now equal to 650 in-universe
+  seconds, rather than 30 in-universe seconds as before. In tandem, the
+  primary components to a date have been changed from year, hour, second
+  to year, day, second.
+* Changed the distance unit used from kilomiters to thousanths of an
+  astronomical unit (mAU).
 
 ## 0.4.1
 
