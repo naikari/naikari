@@ -536,7 +536,7 @@ void shiplog_listLogEntries(int logid, int *nentries, char ***logentries,
       if ( use != NULL ) {
          n++;
          entries = realloc(entries, sizeof(char*) * n);
-         ntime_prettyBuf(buf, sizeof(buf), use->time, 2);
+         ntime_prettyBuf(buf, sizeof(buf), use->time, 5);
          pos = strlen(buf);
          pos += scnprintf(&buf[pos], sizeof(buf)-pos, ":  %s", use->msg);
          entries[n-1] = strdup(buf);

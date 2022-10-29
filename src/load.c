@@ -464,7 +464,7 @@ static void load_menu_update( unsigned int wid, char *str )
 
    /* Display text. */
    credits2str( credits, ns->credits, 2 );
-   ntime_prettyBuf( date, sizeof(date), ns->date, 2 );
+   ntime_prettyBuf(date, sizeof(date), ns->date, 3);
    snprintf( buf, sizeof(buf),
          _("#nName:#0 %s\n\n"
             "#nVersion:#0 %s\n\n"

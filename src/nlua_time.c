@@ -343,13 +343,17 @@ static int time_get( lua_State *L )
 /**
  * @brief Converts the time to a pretty human readable format.
  *
- * @usage strt = time.str() -- Gets current time
- * @usage strt = time.str( nil, 5 ) -- Gets current time with full decimals
- * @usage strt = time.str(time.get() + time.create(0,5,0)) -- Gets time in 5 hours
- * @usage strt = t:str() -- Gets the string of t
+ * @usage s = time.str() -- Gets current time
+ * @usage s = time.str(nil, 5) -- Gets current time with full decimals
+ * @usage s = time.str(time.get() + time.create(0,5,0)) -- Gets time in 5 days
+ * @usage s = t:str() -- Gets the string of t
  *
- *    @luatparam Time t Time to convert to pretty format.  If omitted, current time is used.
- *    @luatparam[opt=2] number d Decimals to use for displaying seconds (should be between 0 and 5).
+ *    @luatparam Time t Time to convert to pretty format. If omitted,
+ *       current time is used.
+ *    @luatparam[opt=1] number d Decimals to use for the remainder
+ *       portion after days. Should be between 0 and 5; the values 1,
+ *       3, and 5 are preferred as they correspond to displaying exact
+ *       hours, minutes, or seconds respectively.
  *    @luatreturn string The time in human readable format.
  * @luafunc str
  */
@@ -366,7 +370,7 @@ static int time_str( lua_State *L )
       t = luaL_validtime(L,1);
    else
       t = ntime_get();
-   d = luaL_optinteger(L,2,2); /* Defaults to 2 decimals. */
+   d = luaL_optinteger(L, 2, 1);
 
    /* Push string. */
    ntime_prettyBuf( nt, sizeof(nt), t, d );
