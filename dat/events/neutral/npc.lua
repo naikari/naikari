@@ -182,7 +182,6 @@ msg_lore["general"] = {
    _([["I heard the nebula is haunted! My uncle told me he saw one of the ghost ships himself over in Arandon."]]),
    _([["I don't believe in those nebula ghost stories. The people who spread them are just trying to scare you."]]),
    _([["Don't try to fly into the inner nebula. I've known people who tried, and none of them came back."]]),
-   _([["Don't be fooled by those distances your ship's instruments show you; the places you travel through are actually about 100,000 times larger on average. Unbelievable, I know! But traveling through systems in any reasonable amount of time would require going significantly faster than the speed of light, so every modern ship uses quantum triangulation to slip our ships through naturally occurring miniature dark matter wormholes, and since these are the same for every ship, your ship's computer is able to calculate a consistent position in an artificial 2-D space."]]),
 }
 
 msg_lore["Independent"] = {
