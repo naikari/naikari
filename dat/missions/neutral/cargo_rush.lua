@@ -51,11 +51,11 @@ function create()
    
    -- Calculate time limit. Depends on tier and distance.
    -- The second time limit is for the reduced reward.
-   stuperpx = 0.2 - 0.025*tier
-   stuperjump = 10300 - 600*tier
-   stupertakeoff = 10300 - 75*tier
+   stuperpx = 4 - 0.5*tier
+   stuperjump = 103000 - 6000*tier
+   stupertakeoff = 103000 - 750*tier
    allowance = traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
-         + 240*numjumps
+         + 2400*numjumps
    
    -- Allow extra time for refuelling stops.
    local jumpsperstop = 2 + math.min(tier-1, 2)
@@ -175,7 +175,7 @@ function accept()
             deadline=timelimit:str(), time=(timelimit - time.get()):str()})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land")
-   hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
+   hook.date(time.create(0, 0, 1000), "tick")
 end
 
 -- Land hook

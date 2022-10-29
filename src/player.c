@@ -3097,7 +3097,7 @@ int player_save( xmlTextWriterPtr writer )
    int i;
    MissionData *m;
    const char *ev;
-   int cycles, periods, seconds;
+   int years, days, seconds;
    double rem;
 
    xmlw_startElem(writer,"player");
@@ -3114,11 +3114,11 @@ int player_save( xmlTextWriterPtr writer )
 
    /* Time. */
    xmlw_startElem(writer,"time");
-   ntime_getR( &cycles, &periods, &seconds, &rem );
-   xmlw_elem(writer,"SCU","%d", cycles);
-   xmlw_elem(writer,"STP","%d", periods);
-   xmlw_elem(writer,"STU","%d", seconds);
-   xmlw_elem(writer,"Remainder","%lf", rem);
+   ntime_getR(&years, &days, &seconds, &rem);
+   xmlw_elem(writer, "years", "%d", years);
+   xmlw_elem(writer, "days", "%d", days);
+   xmlw_elem(writer, "seconds", "%d", seconds);
+   xmlw_elem(writer, "Remainder", "%lf", rem);
    xmlw_endElem(writer); /* "time" */
 
    /* Current ship. */
@@ -3423,7 +3423,8 @@ static Planet* player_parse( xmlNodePtr parent )
    double a, r;
    Pilot *old_ship;
    PilotFlags flags;
-   int cycles, periods, seconds, time_set;
+   int years, days, seconds, time_set;
+   int cycles, periods, stu;
    double rem;
 
    xmlr_attr_strd(parent, "name", player.name);
@@ -3460,18 +3461,35 @@ static Planet* player_parse( xmlNodePtr parent )
       /* Time. */
       if (xml_isNode(node,"time")) {
          cur = node->xmlChildrenNode;
-         cycles = periods = seconds = -1;
+         years = days = seconds = -1;
+         cycles = periods = stu = -1;
          rem = -1.;
          do {
+            /* Compatibility for old saves. */
             xmlr_int(cur, "SCU", cycles);
             xmlr_int(cur, "STP", periods);
-            xmlr_int(cur, "STU", seconds);
+            xmlr_int(cur, "STU", stu);
+            /* Modern save data. */
+            xmlr_int(cur, "years", years);
+            xmlr_int(cur, "days", days);
+            xmlr_int(cur, "seconds", seconds);
             xmlr_float(cur, "Remainder", rem);
          } while (xml_nextNode(cur));
-         if ((cycles < 0) || (periods < 0) || (seconds < 0) || (rem<0.))
+
+         /* Use the old format data if and only if the new format
+          * data is unavailable. */
+         if (years == -1)
+            years = cycles;
+         if (days == -1)
+            days = periods / NT_DAY_HOURS;
+         if (seconds == -1)
+            seconds = stu;
+
+         if ((years < 0) || (days < 0) || (seconds < 0) || (rem < 0.))
             WARN(_("Malformed time in save game!"));
-         ntime_setR( cycles, periods, seconds, rem );
-         if ((cycles >= 0) || (periods >= 0) || (seconds >= 0))
+
+         ntime_setR(years, days, seconds, rem);
+         if ((years >= 0) || (days >= 0) || (seconds >= 0))
             time_set = 1;
       }
 

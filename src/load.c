@@ -103,7 +103,8 @@ static int load_load( nsave_t *save, const char *path )
 {
    xmlDocPtr doc;
    xmlNodePtr root, parent, node, cur;
-   int cycles, periods, seconds;
+   int cycles, periods, stu;
+   int years, days, seconds;
 
    memset( save, 0, sizeof(nsave_t) );
 
@@ -158,13 +159,29 @@ static int load_load( nsave_t *save, const char *path )
             /* Time. */
             if (xml_isNode(node, "time")) {
                cur = node->xmlChildrenNode;
-               cycles = periods = seconds = 0;
+               cycles = periods = stu = 0;
+               years = days = seconds = -1;
                do {
+                  /* Compatibility for old saves. */
                   xmlr_int(cur, "SCU", cycles);
                   xmlr_int(cur, "STP", periods);
-                  xmlr_int(cur, "STU", seconds);
+                  xmlr_int(cur, "STU", stu);
+                  /* Modern save data. */
+                  xmlr_int(cur, "years", years);
+                  xmlr_int(cur, "days", days);
+                  xmlr_int(cur, "seconds", seconds);
                } while (xml_nextNode(cur));
-               save->date = ntime_create( cycles, periods, seconds );
+
+               /* Use the old format data if and only if the new format
+                * data is unavailable. */
+               if (years == -1)
+                  years = cycles;
+               if (days == -1)
+                  days = periods / NT_DAY_HOURS;
+               if (seconds == -1)
+                  seconds = stu;
+
+               save->date = ntime_create(years, days, seconds);
                continue;
             }
 

@@ -87,12 +87,12 @@ function create()
    cargo["__save"] = true
 
    -- mission generics
-   stuperpx = 0.3 - 0.015*tier
-   stuperjump = 15000
-   stupertakeoff = 15000
+   stuperpx = 6 - 0.3*tier
+   stuperjump = 150000
+   stupertakeoff = 150000
    timelimit = time.get() + time.create(0, 0,
             traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
-               + 480*numjumps)
+               + 4800*numjumps)
 
    -- Allow extra time for refuelling stops.
    local jumpsperstop = 3
@@ -175,7 +175,7 @@ function accept()
             deadline=timelimit:str(), time=(timelimit - time.get()):str()})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land") -- only hook after accepting
-   hook.date(time.create(0, 0, 100), "tick") -- 100STU per tick
+   hook.date(time.create(0, 0, 1000), "tick")
 end
 
 -- Land hook

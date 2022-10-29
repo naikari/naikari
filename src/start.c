@@ -51,11 +51,11 @@ int start_load (void)
 {
    xmlNodePtr node, cur, tmp;
    xmlDocPtr doc;
-   int cycles, periods, seconds;
+   int years, days, seconds;
 
    /* Defaults. */
-   cycles = -1;
-   periods = -1;
+   years = -1;
+   days = -1;
    seconds = -1;
 
    /* Try to read the file. */
@@ -115,9 +115,9 @@ int start_load (void)
          do {
             xml_onlyNodes(cur);
 
-            xmlr_int( cur, "scu", cycles );
-            xmlr_int( cur, "stp", periods );
-            xmlr_int( cur, "stu", seconds );
+            xmlr_int(cur, "years", years);
+            xmlr_int(cur, "days", days);
+            xmlr_int(cur, "seconds", seconds);
             WARN(_("'%s' has unknown date node '%s'."), START_DATA_PATH, cur->name);
          } while (xml_nextNode(cur));
          continue;
@@ -132,17 +132,17 @@ int start_load (void)
    /* Safety checking. */
 #define MELEMENT(o,s) \
    if (o) WARN(_("Module start data missing/invalid '%s' element"), s) /**< Define to help check for data errors. */
-   MELEMENT( start_data.name==NULL, "name" );
-   MELEMENT( start_data.credits==0, "credits" );
-   MELEMENT( start_data.ship==NULL, "ship" );
-   MELEMENT( start_data.system==NULL, "player system" );
-   MELEMENT( cycles<0, "scu" );
-   MELEMENT( periods<0, "stp" );
-   MELEMENT( seconds<0, "stu" );
+   MELEMENT(start_data.name==NULL, "name");
+   MELEMENT(start_data.credits==0, "credits");
+   MELEMENT(start_data.ship==NULL, "ship");
+   MELEMENT(start_data.system==NULL, "player system");
+   MELEMENT(years<0, "years");
+   MELEMENT(days<0, "periods");
+   MELEMENT(seconds<0, "seconds");
 #undef MELEMENT
 
    /* Post process. */
-   start_data.date = ntime_create( cycles, periods, seconds );
+   start_data.date = ntime_create(years, days, seconds);
 
    return 0;
 }

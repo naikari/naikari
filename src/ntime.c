@@ -24,12 +24,12 @@
  *
  * Definitions / abbreviations:
  *    - GCT: Galactic Common Time, the name of the time system.
- *    - seconds: Smallest named time unit. Equal to the Earth second.
- *    - hours: Most commonly used time unit, named after the Earth hour
- *       but defined differently, officially known as "galactic hours".
- *       1 galactic hour = 10,000 seconds (about 2.8 Earth hours).
- *    - cycles: Used for long-term time periods. 1 cycle = 5000
- *       galactic hours (about 579 Earth days).
+ *    - days: Base time unit, named after and defined as equal to the
+ *       Earth day.
+ *    - years: Used for long-term time periods. 1 year = 360 galactic
+ *       days.
+ *    - seconds: Smallest named time unit, equal to 1/100,000 of a
+ *       galactic day.
  */
 
 
@@ -50,11 +50,11 @@
 /* Divider for extracting galactic seconds. */
 #define NT_SECONDS_DIV (1000)
 /* Update rate, how many seconds are in a real second. */
-#define NT_SECONDS_DT (30)
+#define NT_SECONDS_DT (650)
 /* Galactic seconds in a galactic year */
-#define NT_YEAR_SECONDS ((ntime_t)NT_YEAR_HOURS*(ntime_t)NT_HOUR_SECONDS)
-/* Divider for extracting galactic hours. */
-#define NT_HOURS_DIV ((ntime_t)NT_HOUR_SECONDS*(ntime_t)NT_SECONDS_DIV)
+#define NT_YEAR_SECONDS ((ntime_t)NT_YEAR_DAYS*(ntime_t)NT_DAY_SECONDS)
+/* Divider for extracting galactic days. */
+#define NT_DAYS_DIV ((ntime_t)NT_DAY_SECONDS*(ntime_t)NT_SECONDS_DIV)
 /* Divider for extracting galactic years. */
 #define NT_YEARS_DIV ((ntime_t)NT_YEAR_SECONDS*(ntime_t)NT_SECONDS_DIV)
 
@@ -104,13 +104,13 @@ void ntime_update( double dt )
 /**
  * @brief Creates a time structure.
  */
-ntime_t ntime_create(int year, int hour, int second)
+ntime_t ntime_create(int year, int day, int second)
 {
-   ntime_t ty, th, ts;
+   ntime_t ty, td, ts;
    ty = year;
-   th = hour;
+   td = day;
    ts = second;
-   return ty*NT_YEARS_DIV + th*NT_HOURS_DIV + ts*NT_SECONDS_DIV;
+   return ty*NT_YEARS_DIV + td*NT_DAYS_DIV + ts*NT_SECONDS_DIV;
 }
 
 
@@ -128,10 +128,10 @@ ntime_t ntime_get (void)
 /**
  * @brief Gets the current time broken into individual components.
  */
-void ntime_getR(int *years, int *hours, int *seconds, double *rem)
+void ntime_getR(int *years, int *days, int *seconds, double *rem)
 {
    *years = ntime_getYears(naev_time);
-   *hours = ntime_getHours(naev_time);
+   *days = ntime_getDays(naev_time);
    *seconds = ntime_getSeconds(naev_time);
    *rem = ntime_getRemainder(naev_time) + naev_remainder;
 }
@@ -149,9 +149,9 @@ int ntime_getYears(ntime_t t)
 /**
  * @brief Gets the periods of a time.
  */
-int ntime_getHours(ntime_t t)
+int ntime_getDays(ntime_t t)
 {
-   return (t/NT_HOURS_DIV) % NT_YEAR_HOURS;
+   return (t/NT_DAYS_DIV) % NT_YEAR_DAYS;
 }
 
 
@@ -160,7 +160,7 @@ int ntime_getHours(ntime_t t)
  */
 int ntime_getSeconds(ntime_t t)
 {
-   return (t/NT_SECONDS_DIV) % NT_HOUR_SECONDS;
+   return (t/NT_SECONDS_DIV) % NT_DAY_SECONDS;
 }
 
 
@@ -211,8 +211,7 @@ char* ntime_pretty( ntime_t t, int d )
 void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
 {
    ntime_t nt;
-   int years, hours, seconds;
-   double days;
+   int years, days, seconds;
 
    if (t==0)
       nt = naev_time;
@@ -221,16 +220,16 @@ void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
 
    /* GCT (Galactic Common Time) - unit is seconds */
    years = ntime_getYears(nt);
-   hours = ntime_getHours(nt);
+   days = ntime_getDays(nt);
    seconds = ntime_getSeconds(nt);
-   if ((years == 0) && (hours == 0))
-      snprintf(str, max, _("%g m"), (double)seconds/NT_MINUTE_SECONDS);
+   if ((years == 0) && (days == 0))
+      snprintf(str, max, _("%g h"), (double)seconds/NT_HOUR_SECONDS);
    else if ((years == 0) || (d == 0))
-      snprintf(str, max, _("%.*f h"),
-            d, hours + (double)seconds/NT_HOUR_SECONDS);
+      snprintf(str, max, _("%.*f d"), d,
+            days + (double)seconds/NT_DAY_SECONDS);
    else {
-      days = (hours + (double)seconds/NT_HOUR_SECONDS) / NT_DAY_HOURS;
-      snprintf(str, max, _("GCT %d:%0*.*f"), years, d + 4, d, days);
+      snprintf(str, max, _("GCT %d:%0*.*f"), years, d + 4, d,
+            days + (double)seconds/NT_DAY_SECONDS);
    }
 }
 
@@ -250,11 +249,11 @@ void ntime_set( ntime_t t )
 /**
  * @brief Loads time including remainder.
  */
-void ntime_setR( int cycles, int periods, int seconds, double rem )
+void ntime_setR(int years, int days, int seconds, double rem)
 {
-   naev_time   = ntime_create( cycles, periods, seconds );
-   naev_time  += floor(rem);
-   naev_remainder = fmod( rem, 1. );
+   naev_time = ntime_create(years, days, seconds);
+   naev_time += floor(rem);
+   naev_remainder = fmod(rem, 1.);
 }
 
 

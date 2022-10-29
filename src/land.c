@@ -1381,7 +1381,7 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
  */
 void takeoff( int delay )
 {
-   int h, stu;
+   int h, seconds;
    char *nt;
    double a, r;
 
@@ -1452,8 +1452,8 @@ void takeoff( int delay )
    /* time goes by, triggers hook before takeoff */
    if (delay) {
       /* TODO should this depend on something else? */
-      stu = (int)(NT_HOUR_SECONDS * player.p->stats.land_delay);
-      ntime_inc( ntime_create( 0, 0, stu ) );
+      seconds = (int)(NT_DAY_SECONDS * player.p->stats.land_delay);
+      ntime_inc(ntime_create(0, 0, seconds));
    }
    nt = ntime_pretty( 0, 2 );
    player_message( _("#oTaking off from %s on %s."), _(land_planet->name), nt);

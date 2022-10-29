@@ -164,25 +164,25 @@ int lua_istime( lua_State *L, int ind )
 /**
  * @brief Creates a time. This can be absolute or relative.
  *
- * @usage t = time.create( 591, 3271, 12801 ) -- Gets a time near when the incident happened.
+ * @usage t = time.create(592, 327, 12801)
  *
  *    @luatparam number years Years for the new time.
- *    @luatparam number hours Hours for the new time.
+ *    @luatparam number days Days for the new time.
  *    @luatparam number seconds Seconds for the new time.
  *    @luatreturn Time A newly created time metatable.
  * @luafunc create
  */
 static int time_create( lua_State *L )
 {
-   int years, hours, seconds;
+   int years, days, seconds;
 
    /* Parameters. */
    years = luaL_checkint(L, 1);
-   hours = luaL_checkint(L, 2);
+   days = luaL_checkint(L, 2);
    seconds = luaL_checkint(L, 3);
 
    /* Create the time. */
-   lua_pushtime(L, ntime_create(years, hours, seconds));
+   lua_pushtime(L, ntime_create(years, days, seconds));
    return 1;
 }
 /**

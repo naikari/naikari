@@ -2750,9 +2750,9 @@ static void pilot_refuel( Pilot *p, double dt )
  */
 ntime_t pilot_hyperspaceDelay( Pilot *p )
 {
-   int stu;
-   stu = (int)(NT_HOUR_SECONDS * p->stats.jump_delay);
-   return ntime_create( 0, 0, stu );
+   int seconds;
+   seconds = (int)(NT_DAY_SECONDS * p->stats.jump_delay);
+   return ntime_create(0, 0, seconds);
 }
 
 

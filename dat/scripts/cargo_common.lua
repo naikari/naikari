@@ -130,9 +130,9 @@ end
 -- Calculates the minimum possible time taken for the player to reach a destination.
 function cargoGetTransit( timelimit, numjumps, traveldist )
    local pstats   = player.pilot():stats()
-   local stuperpx = 1 / pstats.speed_max * 30
+   local stuperpx = 1/pstats.speed_max * 650
    local arrivalt = time.get() + time.create(0, 0, traveldist * stuperpx +
-         numjumps * pstats.jump_delay + 10180 + 240 * numjumps)
+         numjumps * pstats.jump_delay + 101800 + 2400 * numjumps)
    return arrivalt
 end
 

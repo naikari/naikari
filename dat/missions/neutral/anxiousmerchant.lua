@@ -77,9 +77,9 @@ function create()
 
    misn.setNPC(_("Merchant"), portrait.get("Trader"), bar_desc)
 
-   stu_distance = 0.2 * travel_dist
-   stu_jumps = 10300 * num_jumps
-   stu_takeoff = 10300
+   stu_distance = 4 * travel_dist
+   stu_jumps = 103000 * num_jumps
+   stu_takeoff = 103000
    time_limit = time.get() + time.create(0, 0, stu_distance + stu_jumps + stu_takeoff)
 
     -- Allow extra time for refuelling stops.
@@ -168,7 +168,7 @@ function accept()
 
    intime = true
    hook.land("land")
-   date_hook = hook.date(time.create(0, 0, 100), "tick")
+   date_hook = hook.date(time.create(0, 0, 1000), "tick")
 end
 
 function land()

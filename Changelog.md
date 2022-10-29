@@ -99,6 +99,8 @@
 * Made it so that the debris graphics in asteroid fields are entirely
   separate from the asteroids themselves, making it more obvious which
   asteroids are real and which are just decoration.
+* "High-class" planets now require 10% reputation instead of 0% to land
+  on.
 
 ## 0.4.1
 
