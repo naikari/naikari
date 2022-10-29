@@ -293,13 +293,17 @@ function largeNumber(number)
    local formatted
    local au_km = 149597870.7
    if number < 1000 then
-      formatted = string.format(_("%d km"), math.floor(number))
+      formatted = string.format(_("%d mAU"), math.floor(number))
    elseif number < 1e6 then
-      formatted = string.format(_("%.1f Mm"), number / 1000)
-   --elseif number < 1e7 then
-      --formatted = string.format(_("%.1f Gm"), number / 1e6)
-   else
-      formatted = string.format(_("%.2g au"), number / au_km)
+      formatted = string.format(_("%.1f AU"), number / 1000)
+   elseif number < 1e9 then
+      formatted = string.format(_("%.1f kAU"), number / 1e6)
+   elseif number < 1e12 then
+      formatted = string.format(_("%.1f MAU"), number / 1e9)
+   elseif number < 1e15 then
+      formatted = string.format(_("%.1f GAU"), number / 1e12)
+   elseif number < 1e18 then
+      formatted = string.format(_("%.1f TAU"), number / 1e15)
    end
    return formatted
 end

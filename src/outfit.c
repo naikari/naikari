@@ -1344,8 +1344,8 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
 
    l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%.1f RPS Fire Rate\n"
-         "%G km Range\n"
-         "%G km/s Speed\n"
+         "%G mAU Range\n"
+         "%G mAU/s Speed\n"
          "%G s Heat Up"),
          1./temp->u.blt.delay,
          temp->u.blt.range,
@@ -1353,12 +1353,12 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          temp->u.blt.heatup);
    if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%G km Radar Optimal Range"),
+            _("\n%G mAU Radar Optimal Range"),
             temp->u.blt.rdr_range );
    }
    if (temp->u.blt.rdr_range_max > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%G km Radar Maximum Range"),
+            _("\n%G mAU Radar Maximum Range"),
             temp->u.blt.rdr_range_max );
    }
    if ((!outfit_isTurret(temp)) && (temp->u.blt.swivel != 0.)) {
@@ -1542,7 +1542,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
          _("%G GW Energy Loss [%.0f GW avg.]\n"
          "%G s Duration\n"
          "%G s Cooldown\n"
-         "%G km Range\n"
+         "%G mAU Range\n"
          "%G s heat up"),
          temp->u.bem.energy,
          temp->u.bem.energy * temp->u.bem.duration
@@ -2749,19 +2749,19 @@ static void outfit_launcherDesc( Outfit* o )
 
    l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          _("%.1f RPS Fire Rate\n"
-         "%.0f km Range [%G duration]\n"
-         "%G km/s Maximum Speed"),
+         "%.0f mAU Range [%G duration]\n"
+         "%G mAU/s Maximum Speed"),
          1. / o->u.lau.delay,
          outfit_range(a), a->u.amm.duration,
          a->u.amm.speed );
    if (o->u.lau.rdr_range > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%G km Radar Optimal Range"),
+            _("\n%G mAU Radar Optimal Range"),
             o->u.lau.rdr_range );
    }
    if (o->u.lau.rdr_range_max > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%G km Radar Maximum Range"),
+            _("\n%G mAU Radar Maximum Range"),
             o->u.lau.rdr_range_max );
    }
    if ((!outfit_isTurret(o)) && (o->u.lau.swivel != 0)) {

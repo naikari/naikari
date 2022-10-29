@@ -482,8 +482,8 @@ static void ship_update( unsigned int wid )
          "#nSpeed Penalty:#0 %.0f%%\n"
          "#nJump Time:#0 %s\n"
          "#nTakeoff Time:#0 %s\n"
-         "#nAcceleration:#0 %.0f km/s²\n"
-         "#nSpeed:#0 %.0f km/s (max %.0f km/s)\n"
+         "#nAcceleration:#0 %.0f mAU/s²\n"
+         "#nSpeed:#0 %.0f mAU/s (max %.0f mAU/s)\n"
          "#nTurn:#0 %.0f deg/s\n"
          "#nTime Constant:#0 %.0f%%\n"
          "\n"
@@ -493,8 +493,8 @@ static void ship_update( unsigned int wid )
          "#nEnergy:#0 %.0f / %.0f GJ (%.1f GW)\n"
          "#nCargo:#0 %d / %d kt\n"
          "#nFuel:#0 %d / %d kL (%s)\n"
-         "#nRadar Range:#0 %.0f km\n"
-         "#nJump Detect Range:#0 %.0f km\n"
+         "#nRadar Range:#0 %.0f mAU\n"
+         "#nJump Detect Range:#0 %.0f mAU\n"
          "\n"),
          /* Generic */
          player.p->name,

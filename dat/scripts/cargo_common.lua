@@ -211,9 +211,8 @@ function cargo_setDesc(misn_desc, cargo, amount, target, numjumps, deadline,
 
    local dist = cargo_calculateDistance(system.cur(), planet.cur():pos(),
          target:system(), target)
-   table.insert(t, fmt.f(n_("Travel distance: {distance} km",
-               "Travel distance: {distance} km", dist),
-            {distance=fmt.number(dist)}))
+   table.insert(t, fmt.f(_("Travel distance: {distance} AU"),
+            {distance=fmt.number(dist / 1000)}))
 
    if notes ~= nil then
       table.insert(t, notes);

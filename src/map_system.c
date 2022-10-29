@@ -609,11 +609,11 @@ static void map_system_array_update( unsigned int wid, char* str ) {
 
       if (ship->thrust != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nAcceleration:#0 %G km/s²"), ship->thrust);
+               _("\n#nAcceleration:#0 %G mAU/s²"), ship->thrust);
 
       if (ship->speed != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nSpeed:#0 %G km/s"), ship->speed);
+               _("\n#nSpeed:#0 %G mAU/s"), ship->speed);
 
       if (ship->turn != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
@@ -653,10 +653,10 @@ static void map_system_array_update( unsigned int wid, char* str ) {
             _("\n#nFuel Use:#0 %d kL"), ship->fuel_consumption);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nRadar Range:#0 %.0f km"), ship->rdr_range);
+            _("\n#nRadar Range:#0 %.0f mAU"), ship->rdr_range);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nJump Detect Range:#0 %.0f km"), ship->rdr_jump_range);
+            _("\n#nJump Detect Range:#0 %.0f mAU"), ship->rdr_jump_range);
    } else if ( ( strcmp( str, MAPSYS_TRADE ) == 0 ) ) {
       Commodity *com;
       credits_t mean;

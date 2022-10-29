@@ -48,17 +48,6 @@ npctext = {
    _([["You need a co-pilot? Well, you're talking to just the one for the job! I have a fantastic track-record, having successfully dispatched hundreds of hostiles in my years of service, and as you can see, my credentials speek for themselves. Are you ready to take me on and bolster your fleet?"]]),
 }
 
-credentials = _([[
-#nPilot name:#0 {name}
-#nShip:#0 {ship}
-#nSpeed:#0 {speed} km/s
-#nDeposit:#0 {deposit}
-#nRoyalty:#0 {royalty:.1f}% of mission earnings
-
-#nYour speed:#0 {plspeed:.0f} km/s
-#nMoney:#0 {plmoney}
-#nCurrent total royalties:#0 {plroyalties:.1f}% of mission earnings]])
-
 pilot_action_text = _([[Would you like to do something with this pilot?
 
 Pilot credentials:]])
@@ -250,11 +239,11 @@ function getCredentials(edata)
    credentials = _([[
 #nPilot name:#0 {name}
 #nShip:#0 {ship}
-#nSpeed:#0 {speed} km/s
+#nSpeed:#0 {speed} mAU/s
 #nDeposit:#0 {deposit}
 #nRoyalty:#0 {royalty:.1f}% of mission earnings
 
-#nYour speed:#0 {plspeed:.0f} km/s
+#nYour speed:#0 {plspeed:.0f} mAU/s
 #nMoney:#0 {plmoney}
 #nCurrent total royalties:#0 {plroyalties:.1f}% of mission earnings]])
 
