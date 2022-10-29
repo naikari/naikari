@@ -188,8 +188,8 @@ function gen_osd()
     local time2 = deadline2 - time.get()
     osd_msg[1] = fmt.f(osd_msg1,
             {planet=pnt:name(), system=sys:name(), deadline=deadline1:str(),
-                time=time1:str()})
-    osd_msg[2] = fmt.f(osd_msg2, {system=sys2:name(), time=time2:str()})
+                time=time.str(time1, 2)})
+    osd_msg[2] = fmt.f(osd_msg2, {system=sys2:name(), time=time.str(time2, 2)})
     misn.osdCreate(osd_title, osd_msg)
     if shadowrun > 2 then
         misn.osdActive(2)

@@ -77,7 +77,7 @@ function create()
 
    misn.setNPC(_("Merchant"), portrait.get("Trader"), bar_desc)
 
-   stu_distance = 4 * travel_dist
+   stu_distance = 4.6 * travel_dist
    stu_jumps = 103000 * num_jumps
    stu_takeoff = 103000
    time_limit = time.get() + time.create(0, 0, stu_distance + stu_jumps + stu_takeoff)
@@ -159,7 +159,7 @@ function accept()
       fmt.f(osd_desc_1,
             {planet=dest_planet:name(), system=dest_sys:name(),
                deadline=time_limit:str(),
-               time=(time_limit - time.get()):str()})
+               time=time.str(time_limit - time.get(), 2)})
    }
    misn.osdCreate(osd_title, osd_msg)
 
@@ -191,7 +191,7 @@ function tick()
          fmt.f(osd_desc_1,
                {planet=dest_planet:name(), system=dest_sys:name(),
                   deadline=time_limit:str(),
-                  time=(time_limit - time.get()):str()})
+                  time=time.str(time_limit - time.get(), 2)})
       }
    else
       osd_msg = {

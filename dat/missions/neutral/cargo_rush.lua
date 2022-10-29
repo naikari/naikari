@@ -51,7 +51,7 @@ function create()
    
    -- Calculate time limit. Depends on tier and distance.
    -- The second time limit is for the reduced reward.
-   stuperpx = 4 - 0.5*tier
+   stuperpx = 4.6 - 0.57*tier
    stuperjump = 103000 - 6000*tier
    stupertakeoff = 103000 - 750*tier
    allowance = traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
@@ -172,7 +172,8 @@ function accept()
    local osd_msg = {}
    osd_msg[1] = fmt.f(osd_msg1,
          {planet=destplanet:name(), system=destsys:name(),
-            deadline=timelimit:str(), time=(timelimit - time.get()):str()})
+            deadline=timelimit:str(),
+            time=time.str(timelimit - time.get(), 2)})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land")
    hook.date(time.create(0, 0, 1000), "tick")
@@ -215,7 +216,8 @@ function tick()
       local osd_msg = {}
       osd_msg[1] = fmt.f(osd_msg1,
             {planet=destplanet:name(), system=destsys:name(),
-               deadline=timelimit:str(), time=(timelimit - time.get()):str()})
+               deadline=timelimit:str(),
+               time=time.str(timelimit - time.get(), 2)})
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit2 <= time.get() then
       -- Case missed second deadline

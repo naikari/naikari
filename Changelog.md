@@ -105,7 +105,7 @@
   to a science fair or something). It never felt all that important and
   wasn't really worth doing.
 * Changed the relation between real-world time passage and in-universe
-  time passage: one real-world second is now equal to 650 in-universe
+  time passage: one real-world second is now equal to 750 in-universe
   seconds, rather than 30 in-universe seconds as before. In tandem, the
   primary components to a date have been changed from year, hour, second
   to year, day, second.

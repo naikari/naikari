@@ -87,7 +87,7 @@ function create()
    cargo["__save"] = true
 
    -- mission generics
-   stuperpx = 6 - 0.3*tier
+   stuperpx = 7 - 0.3*tier
    stuperjump = 150000
    stupertakeoff = 150000
    timelimit = time.get() + time.create(0, 0,
@@ -172,7 +172,8 @@ function accept()
    local osd_msg = {}
    osd_msg[1] = fmt.f(osd_msg1,
          {planet=destplanet:name(), system=destsys:name(),
-            deadline=timelimit:str(), time=(timelimit - time.get()):str()})
+            deadline=timelimit:str(),
+            time=time.str(timelimit - time.get(), 2)})
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land") -- only hook after accepting
    hook.date(time.create(0, 0, 1000), "tick")
@@ -215,7 +216,8 @@ function tick()
       local osd_msg = {}
       osd_msg[1] = fmt.f(osd_msg1,
             {planet=destplanet:name(), system=destsys:name(),
-               deadline=timelimit:str(), time=(timelimit - time.get()):str()})
+               deadline=timelimit:str(),
+               time=time.str(timelimit - time.get(), 2)})
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit <= time.get() then
       -- Case missed deadline

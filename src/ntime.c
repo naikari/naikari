@@ -50,7 +50,7 @@
 /* Divider for extracting galactic seconds. */
 #define NT_SECONDS_DIV (1000)
 /* Update rate, how many seconds are in a real second. */
-#define NT_SECONDS_DT (650)
+#define NT_SECONDS_DT (750)
 /* Galactic seconds in a galactic year */
 #define NT_YEAR_SECONDS ((ntime_t)NT_YEAR_DAYS*(ntime_t)NT_DAY_SECONDS)
 /* Divider for extracting galactic days. */
@@ -223,7 +223,7 @@ void ntime_prettyBuf( char *str, int max, ntime_t t, int d )
    days = ntime_getDays(nt);
    seconds = ntime_getSeconds(nt);
    if ((years == 0) && (days == 0))
-      snprintf(str, max, _("%g h"), (double)seconds/NT_HOUR_SECONDS);
+      snprintf(str, max, _("%.*f h"), d, (double)seconds/NT_HOUR_SECONDS);
    else if ((years == 0) || (d == 0))
       snprintf(str, max, _("%.*f d"), d,
             days + (double)seconds/NT_DAY_SECONDS);
