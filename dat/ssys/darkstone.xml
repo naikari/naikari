@@ -21,6 +21,7 @@
  <jumps>
   <jump target="Dvaer">
    <autopos/>
+   <express/>
   </jump>
   <jump target="Verex">
    <autopos/>

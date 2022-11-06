@@ -19,6 +19,7 @@
  <jumps>
   <jump target="Dvaer">
    <autopos/>
+   <express/>
   </jump>
   <jump target="Ginger">
    <autopos/>

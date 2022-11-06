@@ -27,9 +27,11 @@
  <jumps>
   <jump target="Awowa">
    <autopos/>
+   <express/>
   </jump>
   <jump target="Darkstone">
    <autopos/>
+   <express/>
   </jump>
   <jump target="Gremlin">
    <autopos/>

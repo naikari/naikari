@@ -20,12 +20,22 @@
    <land>dv_mil_restricted</land>
    <refuel/>
    <commodity/>
+   <outfits/>
    <shipyard/>
   </services>
   <commodities/>
-  <description>Eist Shipyard is one of the primary ship construction facilities in Dvaered space. Most of the Dvaered's heavy military vessels are produced here, though production of the lighter ships is taken care of by shipyards beyond Dvaer. Eist Shipyard also supplies civilian models to some individuals and organisations.</description>
+  <description>Eist Shipyard is one of the primary ship construction facilities in Dvaered space. Most of the Dvaered's heavy military vessels are produced here, though the heaviest models must be purchased at Dvaered High Command. Eist Shipyard also supplies civilian models to some individuals and organisations.</description>
  </general>
  <tech>
-  <item>Heavy Civilian Combat Ships</item>
+  <item>Common Outfits</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Medium Low Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Dvaered Military Outfits</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Dvaered Military Medium Ships</item>
  </tech>
 </asset>
