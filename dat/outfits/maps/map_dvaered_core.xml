@@ -8,7 +8,8 @@
  </general>
  <specific type="map">
   <sys name="Dvaer">
-   <jump>Beeklo</jump>
+   <jump>Awowa</jump>
+   <jump>Darkstone</jump>
    <jump>Gremlin</jump>
    <jump>Radix</jump>
    <jump>Urbanus</jump>
@@ -33,25 +34,6 @@
    <asset>Radix III</asset>
    <asset>Stutee</asset>
   </sys>
-  <sys name="Beeklo">
-   <jump>Awowa</jump>
-   <jump>Baf</jump>
-   <jump>Darkstone</jump>
-   <jump>Dvaer</jump>
-   <asset>Adham</asset>
-   <asset>Beeklo II</asset>
-   <asset>Diabolos</asset>
-   <asset>Icarus</asset>
-   <asset>Totoran</asset>
-  </sys>
-  <sys name="Baf">
-   <jump>Beeklo</jump>
-   <asset>BGG-1356</asset>
-   <asset>Baf I</asset>
-   <asset>Baf IV</asset>
-   <asset>Dumas Station</asset>
-   <asset>MGG-1294</asset>
-  </sys>
   <sys name="Daravon">
    <jump>Gremlin</jump>
    <asset>Daravon I</asset>
@@ -60,11 +42,10 @@
    <asset>Vilati Vilata</asset>
   </sys>
   <sys name="Awowa">
-   <jump>Beeklo</jump>
+   <jump>Dvaer</jump>
    <asset>Awowa IV</asset>
    <asset>Awowa V</asset>
    <asset>Odonga</asset>
-   <asset>Odonga m1</asset>
   </sys>
   <sys name="Urbanus">
    <jump>Dvaer</jump>
@@ -75,7 +56,7 @@
    <asset>Urbanus III</asset>
   </sys>
   <sys name="Darkstone">
-   <jump>Beeklo</jump>
+   <jump>Dvaer</jump>
    <asset>Darkstone IV</asset>
    <asset>Darkstone V</asset>
    <asset>Stalwart Station</asset>

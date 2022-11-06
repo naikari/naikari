@@ -19,9 +19,8 @@
   <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
-  <jump target="Beeklo">
+  <jump target="Dvaer">
    <autopos/>
-   <express/>
   </jump>
   <jump target="Verex">
    <autopos/>

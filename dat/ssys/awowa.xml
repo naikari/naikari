@@ -13,14 +13,12 @@
   <asset>Awowa IV</asset>
   <asset>Awowa V</asset>
   <asset>Odonga</asset>
-  <asset>Odonga m1</asset>
   <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Civilian Standard</asset>
  </assets>
  <jumps>
-  <jump target="Beeklo">
+  <jump target="Dvaer">
    <autopos/>
-   <express/>
   </jump>
   <jump target="Ginger">
    <autopos/>

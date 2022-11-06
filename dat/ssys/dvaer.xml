@@ -25,9 +25,11 @@
   <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
-  <jump target="Beeklo">
+  <jump target="Awowa">
    <autopos/>
-   <express/>
+  </jump>
+  <jump target="Darkstone">
+   <autopos/>
   </jump>
   <jump target="Gremlin">
    <autopos/>
