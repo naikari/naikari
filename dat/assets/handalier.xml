@@ -5,8 +5,8 @@
   <y>453.235106</y>
  </pos>
  <GFX>
-  <space>J06.webp</space>
-  <exterior>gas.webp</exterior>
+  <space>K05.webp</space>
+  <exterior>coastal_landing_site.webp</exterior>
  </GFX>
  <presence>
   <faction>Dvaered</faction>
@@ -14,16 +14,16 @@
   <range>5</range>
  </presence>
  <general>
-  <class>J</class>
-  <population>17500</population>
+  <class>K</class>
+  <population>1750000</population>
   <services>
-   <land>dv_mil_restricted</land>
+   <land/>
    <refuel/>
    <bar/>
    <missions/>
   </services>
   <commodities/>
-  <description>Even the Dvaered need to operate testing facilities. Hence the House Dvaered Research Institute on Handalier. It is not known what goes on here, as the Dvaered tightly control the entire planet.</description>
-  <bar>The bar is fairly typical for a Dvaered bar in everything but the security cameras along the walls. Fairly paranoid here, it seems.</bar>
+  <description>Handalier is an unusual bastion of scientific research by Dvaered standards. Researchers here regularly correspond with the neighboring Za'lek on scientific research, which helps to maintain good relations between the two factions.</description>
+  <bar>The bar is fairly typical for a Dvaered bar, except that it has various cutting-edge trinkets throughout which are scarcely seen in other parts of Dvaered space. Researchers regularly visit the bar to discuss their work with their colleagues.</bar>
  </general>
 </asset>
