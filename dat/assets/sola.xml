@@ -14,15 +14,17 @@
   <range>5</range>
  </presence>
  <general>
-  <class>A</class>
+  <class>C</class>
   <population>987450</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
-   <bar/>
+   <outfits/>
   </services>
   <commodities/>
-  <description>A low-profile and somewhat shabby ship parts manufacturing plant is present on Sola. It provides tertiary ship modules such as heads, toilets and gym equipment. The facility is chronically under-funded and its manufacturing wings are in various states of disrepair, but somehow the plant always manages to stay in operation.</description>
-  <bar>A side room off the main bar features a small arena used for Fureng rat fights. Technically such fights are banned across the known galaxy for being cruel and barbaric, and animal rights organizations have tried to close the Solan arena for decades now, but they are being stonewalled by the local Dvaered administration.</bar>
+  <description>A relatively backwater world in Dvaered space, Sola makes its name selling low-quality ship modules and accessories. Most pilots only stop here as a waypoint, if at all.</description>
  </general>
+ <tech>
+  <item>Common Outfits</item>
+ </tech>
 </asset>
