@@ -29,10 +29,8 @@
   <bar>Stutee's bar is located right off the spaceport. Though the planet has been settled and proper infrastructure is now present, the world is not very appealing to any who visit. As such, the spaceport bar is arguably the most important meeting place on the face of the moon.</bar>
  </general>
  <tech>
-  <item>Kinetic 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>Basic Outfits 1</item>
-  <item>Missiles 1</item>
-  <item>Hulls High</item>
+  <item>Common Outfits</item>
+  <item>Small Kinetic</item>
+  <item>Small Low Outfits</item>
  </tech>
 </asset>
