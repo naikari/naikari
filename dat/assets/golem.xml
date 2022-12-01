@@ -17,10 +17,11 @@
   <class>K</class>
   <population>211243</population>
   <services>
-   <land/>
+   <land>land_hiclass</land>
    <refuel/>
    <bar/>
    <missions/>
+   <commodity/>
    <outfits/>
    <shipyard/>
   </services>
@@ -29,22 +30,22 @@
   <bar>This bar is shockingly convivial and clean, all things considered. The locals are determined to make their lives that much more enjoyable, and to prove to outsiders that they can conquer their homeworld's harsh environment.</bar>
  </general>
  <tech>
-  <item>Hulls Medium</item>
-  <item>Engines Medium</item>
-  <item>Engines Cargo</item>
-  <item>Kinetic 1</item>
-  <item>Kinetic 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
-  <item>Star Maps</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
-  <item>Bulk Trade Ships</item>
-  <item>Hulls Elite</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Fuel Modifiers</item>
+  <item>Cargo Modifiers</item>
+  <item>Civilian Ships</item>
+  <item>Couriers</item>
+  <item>Freighters</item>
+  <item>Aerosys Small Ships</item>
  </tech>
 </asset>

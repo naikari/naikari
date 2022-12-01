@@ -21,6 +21,7 @@
    <refuel/>
    <bar/>
    <missions/>
+   <commodity/>
    <outfits/>
   </services>
   <commodities/>
@@ -28,15 +29,10 @@
   <bar>The bar is completely filled with off-duty soldiers tasked with overseeing the prisoners in their mining duties. It must be an easy job, considering how relaxed most of them look. Then again, the planet's environment must do more to beat down the convicts than they ever could.</bar>
  </general>
  <tech>
-  <item>Kinetic 1</item>
-  <item>Kinetic 2</item>
-  <item>Kinetic 3</item>
-  <item>Laser 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>Missiles 1</item>
-  <item>Star Maps</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Small Low Outfits</item>
+  <item>Cargo Modifiers</item>
  </tech>
 </asset>
