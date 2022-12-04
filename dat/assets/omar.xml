@@ -21,6 +21,7 @@
    <refuel/>
    <bar/>
    <missions/>
+   <commodity/>
    <outfits/>
   </services>
   <commodities/>
@@ -28,9 +29,17 @@
   <bar>First time visitors are always taken aback when they enter this spaceport bar. The center of the room is occupied by a real, actual Mass Driver cannon, and it's pointing straight at the door. Local rumor has it that the cannon is loaded and powered at all times, and that the bar's proprietor uses it to discourage people from misbehaving in his bar.</bar>
  </general>
  <tech>
-  <item>Kinetic 1</item>
-  <item>Kinetic 2</item>
-  <item>Missiles 2</item>
-  <item>Systems High</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Cannon Modifiers</item>
+  <item>Turret Modifiers</item>
  </tech>
 </asset>

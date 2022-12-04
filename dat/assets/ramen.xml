@@ -21,6 +21,7 @@
    <refuel/>
    <bar/>
    <missions/>
+   <commodity/>
   </services>
   <commodities/>
   <description>Ramen produces raw materials, in the truest sense of the word. Radioactive slag is mined from the volcanic pits that litter the landscape of this moon, and packaged into storage canisters that are shipped offworld directly. No processing of any kind occurs here.</description>
