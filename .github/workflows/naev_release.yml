@@ -162,12 +162,13 @@ jobs:
       - name: Meson Setup
         run: |
           meson setup build source \
-              --prefix="$(pwd)"/build/dist/Naikari.app \
+              --prefix="$(pwd)"/build/macos/Naikari.app \
               --bindir=Contents/MacOS \
               -Dndata_path=Contents/Resources \
               --cross-file='source/utils/build/macos_cross_osxcross.ini' \
               --buildtype=release \
               -Dinstaller=true \
+              -Drelease=true \
               -Db_lto=true \
               -Dauto_features=enabled \
               -Ddocs_c=disabled \
@@ -180,9 +181,6 @@ jobs:
       - name: Meson Install
         run: |
           meson install -C build
-          cd build/dist
-          zip -r naikari-macos.zip Naikari.app/*
-          rm -rf Naikari.app
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
