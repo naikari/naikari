@@ -187,7 +187,6 @@ msg_lore["general"] = {
 msg_lore["Independent"] = {
    _([["Don't listen to those conspiracy theories about the Incident. We don't know what happened, sure, but why on Earth would someone blow up… you know, Earth… on purpose?"]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
-   _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
    _([["I won't lie, the Soromid freak me the hell out. Something's just… fishy about them. You know what I mean?"]]),
 }
@@ -199,7 +198,6 @@ msg_lore["Empire"] = {
    _([["Don't pay attention to the naysayers. The Empire is still strong. Have you ever seen a Peacemaker up close? I doubt any ship fielded by any other power could stand up to one."]]),
    _([["I don't know who did it, but believe me, the Incident was no accident! It was definitely a terrorist attack orchestrated by those disloyal Great Houses in an effort to take down the Empire."]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
-   _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
    _([["I wouldn't travel north of Alteris if I were you, unless you're a good fighter! That area of space has really gone down the drain since the Incident."]]),
 }
@@ -212,7 +210,6 @@ msg_lore["Dvaered"] = {
    _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
    _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to create that nebula so they would have a place to hide. Damn criminals…"]]),
    _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
-   _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
 
@@ -225,12 +222,11 @@ msg_lore["Sirius"] = {
    _([["I hope to meet one of the Touched one day!"]]),
    _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into His plan, and He punished the Empire for having started that so-called 'Great Project'."]]),
    _([["I don't think the Incident is an isolated event. The explosion of Sol was just the first of many. Soon, all who do not follow Sirichana will fall just as Earth did, and only we, His devoted servants, will remain."]]),
-   _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
 
 msg_lore["Soromid"] = {
-   _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got burnt to a crisp hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
+   _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got vaporized hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
    _([["Yes, it's true, our military ships are alive. Us normal folk don't get to own bioships though, we have to make do with synthetic constructs just like everyone else."]]),
    _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
    _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
@@ -277,7 +273,6 @@ msg_lore["Frontier"] = {
    _([["We don't have much here in the Frontier, other than our long history leading directly back to Earth. But I don't mind. I'm happy living here, and I wouldn't want to move anywhere else."]]),
    _([["You know the Frontier Liberation Front? They're the guerrilla movement that fights for the Frontier. I hope they can continue to hold out."]]),
    _([["The Incident? Oh, I don't think about it too much. It's a tragedy, but we have enough of our own problems to deal with as-is."]]),
-   _([["I heard the Soromid lost their homeworld Sorom in the Incident. Its corpse can still be found in Basel."]]),
    _([["The Soromid fly organic ships! I heard their ships grow and improve as you use them. That's so weird."]]),
 }
 

@@ -14,9 +14,6 @@
   <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
-  <jump target="Basel">
-   <autopos/>
-  </jump>
   <jump target="Iris">
    <autopos/>
   </jump>
