@@ -161,6 +161,7 @@ jobs:
               --buildtype=debug \
               --wrap-mode=forcefallback \
               -Dinstaller=false \
+              -Drelease=false \
               -Db_lto=true \
               -Dauto_features=enabled \
               -Ddocs_c=disabled \
@@ -238,6 +239,7 @@ jobs:
               --cross-file='source/utils/build/${{ matrix.config }}' \
               --buildtype=debug \
               -Dinstaller=false \
+              -Drelease=false \
               -Db_lto=true \
               -Dauto_features=enabled \
               -Ddocs_c=disabled \
