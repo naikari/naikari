@@ -30,11 +30,20 @@
   <bar>The Norpin II bar isn't the safest place around. With a deep-seated loathing of the Dvaered, the local citizens have brawled with Dvaered soldiers on numerous occasions.</bar>
  </general>
  <tech>
-  <item>Engines Cargo</item>
-  <item>Systems Low</item>
-  <item>Hulls Low</item>
-  <item>Engines Low</item>
-  <item>Frontier Military Ships</item>
-  <item>Basic Outfits 1</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Small Laser</item>
+  <item>Medium Laser</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Radar Modifiers</item>
+  <item>Agility Modifiers</item>
+  <item>Aerosys Small Ships</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
  </tech>
 </asset>
