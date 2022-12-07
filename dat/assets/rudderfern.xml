@@ -29,10 +29,18 @@
   <bar>Most planets have spaceport bars. Not Rudderfern. It has a spaceport lounge. It has classy furniture, richly decorated walls and ceilings, and even actual Soromid serving personnel. Rudderfern rather takes pride in officially having the highest class spaceport bar in the known galaxy.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Basic Outfits 1</item>
-  <item>Plasma 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>Missiles 1</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Plasma</item>
+  <item>Medium Plasma</item>
+  <item>Heavy Plasma</item>
+  <item>Small Bioplasma</item>
+  <item>Medium Bioplasma</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Elite Outfits</item>
  </tech>
 </asset>

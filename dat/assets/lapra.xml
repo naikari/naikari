@@ -30,15 +30,19 @@
   <bar>Lapra's bar looks more like a market than a place for relaxation, and indeed that is exactly what it is. Not only do traders come here to make transactions, the local population also uses the bar as a center for commerce. That said, one can still find a drink and a news terminal, if one looks hard enough.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Low</item>
-  <item>Hulls Medium</item>
-  <item>Engines Low</item>
-  <item>Engines Medium</item>
-  <item>Engines Cargo</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Bulk Trade Ships</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Razor</item>
+  <item>Medium Razor</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Civilian Ships</item>
+  <item>Couriers</item>
+  <item>Freighters</item>
+  <item>Krain Large Ships</item>
  </tech>
 </asset>

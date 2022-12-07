@@ -29,6 +29,12 @@
   <bar>Jaegnhild's bar is built into an ancient compartment of the colony ship Pristine, which brought the first human settlers to this world so long ago. Though most of the structure has been rebuilt using newer materials, the original plating can still be seen in places.</bar>
  </general>
  <tech>
-  <item>Basic Trade Ships</item>
+  <item>Generic Light Fighters</item>
+  <item>Generic Fighters</item>
+  <item>Generic Bombers</item>
+  <item>Generic Corvettes</item>
+  <item>Generic Destroyers</item>
+  <item>Generic Cruisers</item>
+  <item>Krain Large Ships</item>
  </tech>
 </asset>

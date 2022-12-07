@@ -14,7 +14,7 @@
   <range>2</range>
  </presence>
  <general>
-  <class>0</class>
+  <class>1</class>
   <population>1300</population>
   <services>
    <land>srm_mil_restricted</land>
@@ -28,14 +28,31 @@
   <bar>It's typically only Soromid officers who frequent the recreational facilities on a military station. Regular Soromid sailors tend to stay with the ships, caring for them and making sure they are in good health.</bar>
  </general>
  <tech>
-  <item>Plasma 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Heavy Weapons 2</item>
-  <item>Missiles 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Bioship Outfits</item>
-  <item>Soromid Military Ships</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Small Plasma</item>
+  <item>Medium Plasma</item>
+  <item>Heavy Plasma</item>
+  <item>Small Bioplasma</item>
+  <item>Medium Bioplasma</item>
+  <item>Heavy Bioplasma</item>
+  <item>Small Mid Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Small Bio Cores</item>
+  <item>Medium Bio Cores</item>
+  <item>Large Bio Cores</item>
+  <item>Soromid Military Outfits</item>
+  <item>Generic Light Fighters</item>
+  <item>Generic Fighters</item>
+  <item>Generic Bombers</item>
+  <item>Generic Corvettes</item>
+  <item>Generic Destroyers</item>
+  <item>Soromid Small Ships</item>
+  <item>Soromid Medium Ships</item>
+  <item>Soromid Large Ships</item>
  </tech>
 </asset>
