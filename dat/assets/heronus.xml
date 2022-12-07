@@ -17,7 +17,7 @@
   <class>O</class>
   <population>600000000</population>
   <services>
-   <land>srm_mil_restricted</land>
+   <land>srm_mil_kataka</land>
    <refuel/>
    <outfits/>
    <shipyard/>
@@ -26,14 +26,21 @@
   <description>The first Soromid bioships were grown on Sorom itself, and it was in those ships that the Soromid spread through the galaxy. But Sorom is no more. Nowadays, most Soromid ships are grown here, on Heronus. The planet's gravitic and atmospheric properties make it ideal for raising ships in all kinds of sizes and shapes. A carrier class vessel can reach maturity in as few as six years.</description>
  </general>
  <tech>
-  <item>Plasma 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Heavy Weapons 2</item>
-  <item>Missiles 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Bioship Outfits</item>
-  <item>Soromid Military Ships</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Plasma</item>
+  <item>Medium Plasma</item>
+  <item>Small Bioplasma</item>
+  <item>Medium Bioplasma</item>
+  <item>Heavy Bioplasma</item>
+  <item>Soromid Military Outfits</item>
+  <item>Soromid Small Ships</item>
+  <item>Soromid Medium Ships</item>
+  <item>Soromid Large Ships</item>
+  <item>Soromid Restricted Ships</item>
  </tech>
 </asset>

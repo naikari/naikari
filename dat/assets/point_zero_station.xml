@@ -17,10 +17,11 @@
   <class>0</class>
   <population>140</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
    <bar/>
    <missions/>
+   <commodity/>
   </services>
   <commodities/>
   <description>Acting as the primary gateway for goods traveling to and from Father's Pride, Point Zero Station is a busy commercial port. Many traders are willing to trade here rather than take the trouble of visiting the systems beyond Point Zero themselves, though there's always the entrepreneur who believes the extra jumps will be worth the payout.</description>

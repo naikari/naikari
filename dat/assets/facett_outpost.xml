@@ -48,16 +48,13 @@
   <item>Large Low Outfits</item>
   <item>Large Mid Outfits</item>
   <item>Armor Modifiers</item>
-  <item>Small Bio Cores</item>
-  <item>Medium Bio Cores</item>
-  <item>Large Bio Cores</item>
   <item>Soromid Military Outfits</item>
   <item>Aerosys Small Ships</item>
   <item>Dvaered Civilian Small Ships</item>
   <item>Dvaered Civilian Medium Ships</item>
   <item>Krain Large Ships</item>
-  <item>Sirius Small Ships</item>
-  <item>Sirius Medium Ships</item>
-  <item>Sirius Large Ships</item>
+  <item>Soromid Small Ships</item>
+  <item>Soromid Medium Ships</item>
+  <item>Soromid Large Ships</item>
  </tech>
 </asset>

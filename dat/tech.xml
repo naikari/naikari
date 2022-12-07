@@ -1235,18 +1235,21 @@
   <item>Soromid Reaver</item>
   <item>Soromid Marauder</item>
   <item>Light Combat Vessel License</item>
+  <item>Small Bio Cores</item>
  </tech>
  <tech name="Soromid Medium Ships">
   <item>Soromid Odium</item>
   <item>Soromid Nyx</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
+  <item>Medium Bio Cores</item>
  </tech>
  <tech name="Soromid Large Ships">
   <item>Soromid Ira</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
+  <item>Large Bio Cores</item>
  </tech>
  <tech name="Soromid Restricted Ships">
   <item>Soromid Arx</item>
@@ -1254,6 +1257,7 @@
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
+  <item>Large Bio Cores</item>
  </tech>
 
  <!-- Thurion ships -->
