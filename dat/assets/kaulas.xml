@@ -10,12 +10,12 @@
  </GFX>
  <presence>
   <faction>Soromid</faction>
-  <value>100.000000</value>
+  <value>250.000000</value>
   <range>5</range>
  </presence>
  <general>
   <class>A</class>
-  <population>142345</population>
+  <population>700000</population>
   <services>
    <land/>
    <refuel/>

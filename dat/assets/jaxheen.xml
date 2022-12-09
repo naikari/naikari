@@ -30,23 +30,33 @@
   <bar>There are four main portals leading into and out of this spaceport bar. One leads to the spaceport facility. The second leads to the central public transit hub in this area of the metroplex that spans much of the continent. The third leads directly to the local commercial node, and the final portal is connected to the emergency service network, a separate infrastructure completely dedicated to emergency vehicles.</bar>
  </general>
  <tech>
-  <item>Engines Cargo</item>
-  <item>Systems Low</item>
-  <item>Hulls Medium</item>
-  <item>Ion 1</item>
-  <item>Ion 2</item>
-  <item>Basic Outfits 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Heavy Weapons 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
-  <item>Star Maps</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
-  <item>Bulk Trade Ships</item>
-  <item>Light Civilian Combat Ships</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Plasma</item>
+  <item>Medium Plasma</item>
+  <item>Heavy Plasma</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Bioplasma</item>
+  <item>Medium Bioplasma</item>
+  <item>Heavy Bioplasma</item>
+  <item>Small Mid Outfits</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Generic Light Fighters</item>
+  <item>Generic Fighters</item>
+  <item>Generic Bombers</item>
+  <item>Generic Corvettes</item>
+  <item>Generic Destroyers</item>
+  <item>Soromid Small Ships</item>
+  <item>Soromid Medium Ships</item>
  </tech>
 </asset>

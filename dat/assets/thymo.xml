@@ -28,10 +28,11 @@
   <bar>Like everything on Thymo, the spaceport bar is sober, utilitarian, efficient. Some pilots like it that way though, as the modest but content clientele testifies.</bar>
  </general>
  <tech>
-  <item>Basic Outfits 1</item>
-  <item>Plasma 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Plasma</item>
+  <item>Medium Plasma</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
  </tech>
 </asset>

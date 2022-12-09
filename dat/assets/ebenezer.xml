@@ -17,7 +17,7 @@
   <class>J</class>
   <population>10000</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
    <bar/>
    <missions/>
