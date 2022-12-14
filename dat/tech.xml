@@ -1032,45 +1032,72 @@
   <item>Schroedinger</item>
   <item>Hyena</item>
   <item>Gawain</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
  </tech>
  <tech name="Couriers">
   <item>Llama</item>
   <item>Quicksilver</item>
   <item>Koala</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
  </tech>
  <tech name="Freighters">
   <item>Mule</item>
   <item>Rhino</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Large Civilian Vessel License</item>
  </tech>
  <tech name="Generic Light Fighters">
   <item>Llama</item>
   <item>Hyena</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
  </tech>
  <tech name="Generic Fighters">
   <item>Vendetta</item>
   <item>Lancelot</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Generic Bombers">
   <item>Ancestor</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Generic Corvettes">
   <item>Phalanx</item>
   <item>Admonisher</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Generic Destroyers">
   <item>Vigilance</item>
   <item>Pacifier</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Generic Cruisers">
   <item>Kestrel</item>
   <item>Hawking</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Nexus Bolt 4500 Engine</item>
+  <item>Unicorp D-48 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1079,20 +1106,38 @@
  <!-- Generic ships sorted by manufacturer -->
  <tech name="Aerosys Small Ships">
   <item>Hyena</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
  </tech>
  <tech name="Nexus Small Ships">
   <item>Shark</item>
   <item>Lancelot</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp D-4 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Nexus Medium Ships">
   <item>Admonisher</item>
   <item>Pacifier</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Nexus Large Ships">
   <item>Hawking</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Nexus Bolt 4500 Engine</item>
+  <item>Unicorp D-48 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1100,17 +1145,29 @@
  <tech name="Dvaered Civilian Small Ships">
   <item>Vendetta</item>
   <item>Ancestor</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Civilian Medium Ships">
   <item>Phalanx</item>
   <item>Vigilance</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Krain Large Ships">
-  <item>Krain Remige Engine</item>
   <item>Kestrel</item>
+  <item>Krain Remige Engine</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Nexus Bolt 4500 Engine</item>
+  <item>Unicorp D-48 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1135,22 +1192,40 @@
  <tech name="Empire Small Ships">
   <item>Empire Shark</item>
   <item>Empire Lancelot</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp D-4 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Empire Medium Ships">
   <item>Empire Admonisher</item>
   <item>Empire Pacifier</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Empire Large Ships">
   <item>Empire Hawking</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Nexus Bolt 4500 Engine</item>
+  <item>Unicorp D-48 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="Empire Restricted Ships">
   <item>Empire Peacemaker</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1159,6 +1234,9 @@
  <!-- Goddard Ships -->
  <tech name="Goddard Ships">
   <item>Goddard</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1168,16 +1246,28 @@
  <tech name="Dvaered Military Small Ships">
   <item>Dvaered Vendetta</item>
   <item>Dvaered Ancestor</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Military Medium Ships">
   <item>Dvaered Phalanx</item>
   <item>Dvaered Vigilance</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Dvaered Restricted Ships">
   <item>Dvaered Goddard</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1187,22 +1277,37 @@
  <tech name="Sirius Small Ships">
   <item>Schroedinger</item>
   <item>Sirius Fidelity</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Sirius Medium Ships">
   <item>Sirius Shaman</item>
   <item>Sirius Preacher</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Sirius Large Ships">
   <item>Sirius Dogma</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
  </tech>
  <tech name="Sirius Restricted Ships">
   <item>Sirius Divinity</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1212,11 +1317,20 @@
  <tech name="Za'lek Medium Ships">
   <item>Za'lek Sting</item>
   <item>Za'lek Demon</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Za'lek Large Ships">
   <item>Za'lek Diablo</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1224,6 +1338,12 @@
  <tech name="Za'lek Restricted Ships">
   <item>Za'lek Mephisto</item>
   <item>Za'lek Hephaestus</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Nexus Bolt 4500 Engine</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-48 Heavy Plating</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1264,21 +1384,42 @@
  <tech name="Thurion Small Ships">
   <item>Thurion Perspicacity</item>
   <item>Thurion Ingenuity</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp D-4 Light Plating</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Thurion Cargo Ships">
   <item>Thurion Taciturnity</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-24 Medium Plating</item>
   <item>Large Civilian Vessel License</item>
  </tech>
  <tech name="Thurion Medium Ships">
   <item>Thurion Scintillation</item>
   <item>Thurion Virtuosity</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-4 Light Plating</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
  </tech>
  <tech name="Thurion Restricted Ships">
   <item>Thurion Apprehension</item>
   <item>Thurion Certitude</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-24 Medium Plating</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
@@ -1290,6 +1431,15 @@
   <item>Proteron Kahan</item>
   <item>Proteron Archimedes</item>
   <item>Proteron Watson</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-24 Medium Plating</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
   <item>Light Combat Vessel License</item>
   <item>Medium Combat Vessel License</item>
   <item>Heavy Combat Vessel License</item>
