@@ -5,7 +5,7 @@
   <priority>50</priority>
   <chance>1</chance>
   <cond>
-   player.misnDone("Tutorial Part 4")
+   player.misnDone("Empire Recruitment")
    or (system.cur() ~= system.get("Hakoi")
       and system.cur() ~= system.get("Eneguoz"))
   </cond>

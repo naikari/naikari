@@ -25,6 +25,9 @@
    and planet.cur():class() ~= "3"
    and planet.cur():services()["refuel"]
    and planet.cur():services()["commodity"]
+   and (player.misnDone("Empire Recruitment")
+      or (system.cur() ~= system.get("Hakoi")
+         and system.cur() ~= system.get("Eneguoz")))
   </cond>
  </avail>
 </mission>

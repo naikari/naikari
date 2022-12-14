@@ -82,23 +82,19 @@ end
 
 
 function accept ()
-   -- Intro text
    if not tk.yesno("", ask_text) then
       misn.finish()
    end
 
    misn.markerAdd(sys, "high")
 
-   -- Accept the mission
    misn.accept()
 
-   -- Mission details
    reward = 30000
    misn.setTitle(misn_title)
    misn.setReward(fmt.credits(reward))
    misn.setDesc(fmt.f(misn_desc, {planet=dest:name()}))
 
-   -- Flavour text and mini-briefing
    tk.msg("", fmt.f(yes_text, {planet=dest:name()}))
 
    local osd_desc = {
@@ -107,7 +103,6 @@ function accept ()
    }
    misn.osdCreate(misn_title, osd_desc)
 
-   -- Set up the goal
    local c = misn.cargoNew(N_("Parcels"), N_("A bunch of Empire parcels."))
    parcels = misn.cargoAdd(c, 0)
    hook.land("land")
@@ -120,7 +115,6 @@ function land()
    if landed == dest then
       if misn.cargoRm(parcels) then
          player.pay(reward)
-         -- More flavour text
          tk.msg("", fmt.f(pay_text, {planet=dest:name()}))
          var.push("es_cargo", true)
          faction.modPlayer("Empire", 3)

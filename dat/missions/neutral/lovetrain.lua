@@ -16,7 +16,7 @@
   <cond>
    (not planet.cur():restriction() or planet.cur():restriction() == "lowclass"
       or planet.cur():restriction() == "hiclass")
-   and (player.misnDone("Tutorial Part 4")
+   and (player.misnDone("Empire Recruitment")
       or (system.cur() ~= system.get("Hakoi")
          and system.cur() ~= system.get("Eneguoz")))
   </cond>
