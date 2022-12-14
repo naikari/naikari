@@ -14,12 +14,13 @@
   <range>5</range>
  </presence>
  <general>
-  <class>0</class>
+  <class>1</class>
   <population>15000</population>
   <services>
    <land>srm_mil_restricted</land>
    <refuel/>
    <bar/>
+   <outfits/>
    <shipyard/>
   </services>
   <commodities/>
@@ -27,7 +28,27 @@
   <bar>The bar has a few off-duty soldiers and the rare civilian relaxing here before duty calls them onward. The bar itself is not particularly engaging, being a pre-fab model built into the station.</bar>
  </general>
  <tech>
-  <item>Basic Civilian Ships</item>
-  <item>Light Civilian Combat Ships</item>
+  <item>Common Outfits</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Small Plasma</item>
+  <item>Medium Plasma</item>
+  <item>Heavy Plasma</item>
+  <item>Small Bioplasma</item>
+  <item>Medium Bioplasma</item>
+  <item>Heavy Bioplasma</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Radar Modifiers</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
+  <item>Nexus Large Ships</item>
+  <item>Soromid Small Ships</item>
+  <item>Soromid Medium Ships</item>
+  <item>Soromid Large Ships</item>
  </tech>
 </asset>
