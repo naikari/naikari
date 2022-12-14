@@ -6,7 +6,18 @@
  </flags>
  <avail>
   <priority>50</priority>
-  <cond>(player.pilot():ship():class() == "Yacht" or player.pilot():ship():class() == "Luxury Yacht") and planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
+  <cond>
+   (player.pilot():ship():class() == "Yacht"
+      or player.pilot():ship():class() == "Luxury Yacht")
+   and planet.cur():class() ~= "1"
+   and planet.cur():class() ~= "2"
+   and planet.cur():class() ~= "3"
+   and system.cur():presences()["Civilian"] ~= nil
+   and system.cur():presences()["Civilian"] &gt; 0
+   and (player.misnDone("Tutorial Part 4")
+      or (system.cur() ~= system.get("Hakoi")
+         and system.cur() ~= system.get("Eneguoz")))
+  </cond>
   <chance>10</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
