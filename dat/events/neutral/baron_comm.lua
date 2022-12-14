@@ -4,7 +4,8 @@
  <trigger>enter</trigger>
  <chance>4</chance>
  <cond>
-  not var.peek("baron_hated")
+  player.misnDone("Teddy Bears from Space")
+  and not var.peek("baron_hated")
   and not player.misnDone("Baron")
   and not player.misnActive("Baron")
   and (system.cur():faction() == faction.get("Empire")
@@ -14,6 +15,7 @@
  <flags>
  </flags>
  <notes>
+  <done_misn name="Teddy Bears from Space"/>
   <campaign>Baron Sauterfeldt</campaign>
  </notes>
 </event>
