@@ -14,15 +14,28 @@
   <range>2</range>
  </presence>
  <general>
-  <class>0</class>
+  <class>1</class>
   <population>1000</population>
   <services>
    <land>srm_mil_restricted</land>
    <refuel/>
    <bar/>
+   <outfits/>
   </services>
   <commodities/>
   <description>This military station was originally supposed to be built in the neighboring system of Bonanza, but the Soromid military chose to change the location for reasons of logistics. Hasselt has several inhabited planets, and in-system supply routes are always easier to maintain than routes leading through a jump point.</description>
   <bar>Most of the people in this bar are Soromid soldiers. There are few officers, since they have their own facility elsewhere on the station.</bar>
  </general>
+ <tech>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Plasma</item>
+  <item>Medium Plasma</item>
+  <item>Heavy Plasma</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Energy Modifiers</item>
+  <item>Soromid Military Outfits</item>
+ </tech>
 </asset>

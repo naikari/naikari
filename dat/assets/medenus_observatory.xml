@@ -17,7 +17,7 @@
   <class>0</class>
   <population>500</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
    <bar/>
   </services>

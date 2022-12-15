@@ -29,20 +29,9 @@
   <bar>This spaceport bar has warning signs mounted over the doors and on the walls. The signs warn travellers of the dry climate on Nocalin. Dehydration is a real risk, and while exposing oneself to the outside air directly isn't harmful in itself, it is a good idea to protect your skin with a moisturizing lotion first.</bar>
  </general>
  <tech>
-  <item>Systems Medium</item>
-  <item>Hulls Medium</item>
-  <item>Engines Low</item>
-  <item>Laser 1</item>
-  <item>Plasma 1</item>
-  <item>Beam 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Missiles 1</item>
-  <item>Star Maps</item>
-  <item>Heavy Civilian Combat Ships</item>
-  <item>Basic Trade Ships</item>
-  <item>Hulls High</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Plasma</item>
+  <item>Civilian Ships</item>
  </tech>
 </asset>
