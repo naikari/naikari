@@ -110,14 +110,15 @@
   to year, day, second.
 * Changed the distance unit used from kilometers to thousandths of an
   astronomical unit (mAU).
-* Completely redesigned tech assignments to planets in the universe. The
-  new design has the following characteristics:
+* Essentially completely redesigned the universe, most notably changing
+  what planets sell, but also changing or removing some planets and
+  systems. The new design has the following characteristics:
   * All planets contain a common set of basic outfits, which includes
     the "MK1" forward-facing variant of each type of weapon, basic stat
     enhancers, maps, the Mercenary License, and the low-quality
     zero-cost cores.
   * Each faction has a different set of weapons that they sell, with
-    Independant and Frontier planets getting the weapons of their
+    Independent and Frontier planets getting the weapons of their
     neighbors. The Empire sells laser weapons, the Soromid sell plasma
     weapons, the Dvaered sell impact weapons, the Za'lek sell beam
     weapons, and the Siriusites sell razor weapons.
