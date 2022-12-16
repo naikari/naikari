@@ -76,7 +76,6 @@
 * Changed the unit of mass used from tonnes to kilotonnes (meaning we no
   longer have the silliness of space carriers weighing less than naval
   aircraft carriers, etc).
-* Made the Hot Dogs from Space mission more likely to appear.
 * The game no longer refuses to resize a maximized window if you tell it
   to in the Options menu. (This change also fixes bugs with the code
   that implemented this restriction.)
@@ -84,7 +83,7 @@
   without actually going into hyperspace, taking you to a distant part
   of the system at a cost of one jump of fuel, all of your battery
   charge, half of your remaining shield, and half of your remaining
-  armor. (The maneuver takes you a distance of around 30,000 km.)
+  armor. (The maneuver takes you a distance of around 30,000 mAU.)
 * Changed the way autonav detects "hostile presence" for the purposes
   of determining whether to reset the speed that time passes. It now
   only counts ships that are close enough that one of the two ships
@@ -109,8 +108,31 @@
   seconds, rather than 30 in-universe seconds as before. In tandem, the
   primary components to a date have been changed from year, hour, second
   to year, day, second.
-* Changed the distance unit used from kilomiters to thousanths of an
+* Changed the distance unit used from kilometers to thousandths of an
   astronomical unit (mAU).
+* Completely redesigned tech assignments to planets in the universe. The
+  new design has the following characteristics:
+  * All planets contain a common set of basic outfits, which includes
+    the "MK1" forward-facing variant of each type of weapon, basic stat
+    enhancers, maps, the Mercenary License, and the low-quality
+    zero-cost cores.
+  * Each faction has a different set of weapons that they sell, with
+    Independant and Frontier planets getting the weapons of their
+    neighbors. The Empire sells laser weapons, the Soromid sell plasma
+    weapons, the Dvaered sell impact weapons, the Za'lek sell beam
+    weapons, and the Siriusites sell razor weapons.
+  * Made sure every planet has a purpose within the system; no more
+    redundant, useless planets that you would never want to land on,
+    unless those planets are "low-class" (making them useful to
+    outlaws).
+  * Planets and stations that require more reputation to land on give
+    progressively more access to exclusive ships and outfits, and
+    progressively better outfits in general.
+  * Planets with both an outfitter and a shipyard have their outfits
+    chosen deliberately to compliment the ships they have on offer.
+  * All licenses needed to purchase all outfits and ships on a given
+    planet are available for purchase on that same planet (no more need
+    to go looking for the license you need).
 
 ## 0.4.1
 
