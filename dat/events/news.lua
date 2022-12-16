@@ -71,7 +71,7 @@ mhint_articles = {
    },
    {
       title = _("Dvaered and FLF Clash"),
-      text = _([[An increased incidence of confrontation between Dvaered and FLF forces has been reported as of late in the north edge of Dvaered space, particularly near Frontier space and near the Outer Nebula. Civilians in the area are advised to be on high alert.]]),
+      text = _([[An increased incidence of confrontation between Dvaered and FLF forces has been reported as of late in the north edge of Dvaered space, particularly between Frontier space and the Outer Nebula. Civilians in the area are advised to be on high alert.]]),
       mission = "Take the Dvaered crew home",
       cond = function()
          return (faction.get("Dvaered"):playerStanding() >= 0
