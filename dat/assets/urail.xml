@@ -29,11 +29,8 @@
   <bar>Every spaceport needs a spaceport bar. That is probably the only reason why Urail has one, since the population would much prefer to use the space so build housing for upper echelon Siriusites. Nevertheless, the bar is comfortable enough, despite the pricey drinks.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Low</item>
-  <item>Engines Low</item>
-  <item>Ion 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Missiles 1</item>
+  <item>Common Outfits</item>
+  <item>Small Razor</item>
+  <item>Small Ion</item>
  </tech>
 </asset>

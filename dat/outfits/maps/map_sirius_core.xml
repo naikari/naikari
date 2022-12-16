@@ -10,10 +10,8 @@
   <sys name="Aesir">
    <jump>Vanir</jump>
    <asset>Aesir IV</asset>
-   <asset>Gayathi</asset>
    <asset>Mutris</asset>
    <asset>Sirius Ordnance</asset>
-   <asset>Sirius Shipyards</asset>
    <asset>Urail</asset>
   </sys>
   <sys name="Vanir">
