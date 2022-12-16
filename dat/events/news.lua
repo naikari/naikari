@@ -78,7 +78,7 @@ mhint_articles = {
             and faction.get("Pirate"):playerStanding() < 0
             and not player.misnDone("Deal with the FLF agent")
             and not player.misnActive("Deal with the FLF agent")
-            and player.numOutfit("Mercenary License") &gt; 0)
+            and player.numOutfit("Mercenary License") > 0)
       end
    },
 }
