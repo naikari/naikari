@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Naev DevTeam
+ * Copyright 2006-2022 Naev DevTeam
  * Copyright 2020-2022 Naikari Dev Team
  *
  * This program is free software: you can redistribute it and/or modify
