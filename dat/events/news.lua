@@ -69,6 +69,18 @@ mhint_articles = {
       done = "Tutorial Part 4",
       faction = "Empire",
    },
+   {
+      title = _("Dvaered and FLF Clash"),
+      text = _([[An increased incidence of confrontation between Dvaered and FLF forces has been reported as of late in the north edge of Dvaered space, particularly near Frontier space and near the Outer Nebula. Civilians in the area are advised to be on high alert.]]),
+      mission = "Take the Dvaered crew home",
+      cond = function()
+         return (faction.get("Dvaered"):playerStanding() >= 0
+            and faction.get("Pirate"):playerStanding() < 0
+            and not player.misnDone("Deal with the FLF agent")
+            and not player.misnActive("Deal with the FLF agent")
+            and player.numOutfit("Mercenary License") &gt; 0)
+      end
+   },
 }
 
 
