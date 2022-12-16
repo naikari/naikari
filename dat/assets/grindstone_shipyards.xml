@@ -27,7 +27,7 @@
   <bar>Titus Grindstone likes to keep his potential customers in a good mood, which is why he has invested into a small yet luxurious spacedock bar on his manufacturing plant. It sports all the standard bar facilities, as well as ready access to the station's ship catalogue.</bar>
  </general>
  <tech>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
+  <item>Civilian Ships</item>
+  <item>Sirius Small Ships</item>
  </tech>
 </asset>

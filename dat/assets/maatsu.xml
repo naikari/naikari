@@ -29,14 +29,11 @@
   <bar>Maatsu sees a fair bit of commerce traffic, so its spaceport bar thrives. Prices of food and drink are exorbitant as a result, but that's nothing new to the average interplanetary trader. So long as the basic facilities are present and readily available, bars can get away with quite a lot.</bar>
  </general>
  <tech>
-  <item>Hulls Low</item>
-  <item>Ion 1</item>
-  <item>Laser 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Star Maps</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Hulls High</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Razor</item>
+  <item>Small Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
  </tech>
 </asset>

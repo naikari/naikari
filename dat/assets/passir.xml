@@ -17,7 +17,7 @@
   <class>O</class>
   <population>1000000</population>
   <services>
-   <land>land_lowclass</land>
+   <land/>
    <refuel/>
    <bar/>
    <missions/>
@@ -29,7 +29,8 @@
   <bar>The spaceport is situated on dry land, and so is the spaceport bar. The bar overlooks the main hall of the spaceport, which is dominated by the massive mega-escalators that take people and goods to and from the nearby submarine settlements.</bar>
  </general>
  <tech>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
+  <item>Civilian Ships</item>
+  <item>Nexus Small Ships</item>
+  <item>Sirius Small Ships</item>
  </tech>
 </asset>
