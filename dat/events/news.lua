@@ -141,7 +141,7 @@ function generate_article()
       local rmdate = time.get() + time.create(0, 360, 0)
       local a = avail_mhint_articles[rnd.rnd(1, #avail_mhint_articles)]
       local tag = string.format("mhint_%s", a.mission)
-      local article = news.add(a.faction, a.title, a.text, rmdate)
+      local article = news.add(a.faction or "Generic", a.title, a.text, rmdate)
       article:bind(tag)
    end
 end
