@@ -189,6 +189,8 @@ function enter_ambush()
    pirate:setVisible()
    pirate:setHostile()
 
+   pirate:memory().kill_reward = 20000
+
    hook.pilot(pirate, "death", "pirate_death")
    hook.pilot(pirate, "jump", "pirate_death")
    hook.pilot(pirate, "land", "pirate_land")
