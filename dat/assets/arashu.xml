@@ -30,12 +30,16 @@
   <bar>The bar features a big display that shows a geological map of the planet which, due to most of the world being covered in ocean, makes for a rather uninteresting map. The display also shows all the volcanic activity going on at the moment, so it is actually quite fascinating interesting to watch, especially once you can place the spaceport and bar!</bar>
  </general>
  <tech>
-  <item>Systems Medium</item>
-  <item>Hulls Low</item>
-  <item>Hulls Medium</item>
-  <item>Heavy Civilian Combat Ships</item>
-  <item>Basic Outfits 1</item>
-  <item>Heavy Weapons 2</item>
-  <item>Systems Elite</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Small Razor</item>
+  <item>Small Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Small Elite Outfits</item>
+  <item>Generic Light Fighters</item>
+  <item>Generic Fighters</item>
+  <item>Sirius Small Ships</item>
  </tech>
 </asset>

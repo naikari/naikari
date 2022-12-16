@@ -29,13 +29,13 @@
   <bar>All the tables in this bar have multiple displays for tracking economic information for the whole of known space. The patrons are mostly engrossed in absorbing the graphs and charts displayed. There is little room for social interaction on Dundrop.</bar>
  </general>
  <tech>
-  <item>Hulls Medium</item>
-  <item>Ion 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Kinetic 1</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
-  <item>Star Maps</item>
-  <item>Low Tech Upgrades</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Small Razor</item>
+  <item>Small Kinetic</item>
+  <item>Shield Modifiers</item>
+  <item>Armor Modifiers</item>
  </tech>
 </asset>
