@@ -14,15 +14,26 @@
   <range>2</range>
  </presence>
  <general>
-  <class>0</class>
+  <class>1</class>
   <population>500</population>
   <services>
    <land>srs_mil_restricted</land>
    <refuel/>
    <bar/>
+   <outfits/>
   </services>
   <commodities/>
   <description>Monsoon Station is the lone bastion of Sirius law enforcement in this area of space. Though the region is generally quiet, the soldiers here take their responsibility seriously.</description>
   <bar>The spacedock bar is a utilitarian, no-frills affair that is kept clean and in prime functioning condition. Most of the facilities are automated, as Monsoon Station doesn't have the space to keep on a full serving staff.</bar>
  </general>
+ <tech>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Razor</item>
+  <item>Medium Razor</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Sirius Military Outfits</item>
+ </tech>
 </asset>

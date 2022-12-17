@@ -11,6 +11,10 @@
  </pos>
  <assets/>
  <jumps>
+  <jump target="Botarn">
+   <autopos/>
+   <exitonly/>
+  </jump>
   <jump target="Herakin">
    <autopos/>
   </jump>

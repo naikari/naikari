@@ -17,6 +17,9 @@
   <asset>Virtual Civilian Standard</asset>
  </assets>
  <jumps>
+  <jump target="Anrique">
+   <autopos/>
+  </jump>
   <jump target="Monogram">
    <autopos/>
   </jump>
