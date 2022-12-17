@@ -20,7 +20,6 @@
   </jump>
   <jump target="Gyrios">
    <autopos/>
-   <exitonly/>
   </jump>
   <jump target="Jackson">
    <autopos/>

@@ -6,8 +6,8 @@
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
-  <x>849.995077</x>
-  <y>-1042.282028</y>
+  <x>737.995077</x>
+  <y>-929.282028</y>
  </pos>
  <assets>
   <asset>Chriik</asset>
@@ -15,11 +15,15 @@
   <asset>Lazuli III</asset>
   <asset>Lazuli Ia</asset>
   <asset>Virtual Civilian Standard</asset>
+  <asset>Virtual Dvaered Unpresence</asset>
   <asset>Virtual Trader Area</asset>
   <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
   <jump target="Lapis">
+   <autopos/>
+  </jump>
+  <jump target="Ruttwi">
    <autopos/>
   </jump>
  </jumps>

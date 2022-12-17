@@ -13,6 +13,9 @@
   <asset>Domestica</asset>
  </assets>
  <jumps>
+  <jump target="Peogas">
+   <autopos/>
+  </jump>
   <jump target="Undergate">
    <autopos/>
   </jump>

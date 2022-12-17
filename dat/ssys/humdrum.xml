@@ -21,8 +21,5 @@
   <jump target="Anarbalis">
    <autopos/>
   </jump>
-  <jump target="Modus Manis">
-   <autopos/>
-  </jump>
  </jumps>
 </ssys>

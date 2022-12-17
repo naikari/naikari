@@ -19,6 +19,9 @@
   <asset>Zero-One</asset>
  </assets>
  <jumps>
+  <jump target="Margarita">
+   <autopos/>
+  </jump>
   <jump target="Tarmak">
    <autopos/>
   </jump>

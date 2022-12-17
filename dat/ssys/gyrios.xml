@@ -23,8 +23,7 @@
  </assets>
  <jumps>
   <jump target="Fulcrum">
-   <pos x="29692.320869" y="-16918.303096"/>
-   <hidden/>
+   <pos x="16177.856844" y="-16587.066233"/>
   </jump>
   <jump target="Karman">
    <autopos/>

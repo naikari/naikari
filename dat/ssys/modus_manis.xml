@@ -20,7 +20,7 @@
   <asset>Virtual Trader Area</asset>
  </assets>
  <jumps>
-  <jump target="Humdrum">
+  <jump target="Rhu">
    <autopos/>
   </jump>
   <jump target="Tarmak">

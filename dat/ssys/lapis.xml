@@ -22,12 +22,6 @@
   <jump target="Lazuli">
    <autopos/>
   </jump>
-  <jump target="Niger">
-   <autopos/>
-  </jump>
-  <jump target="Quai">
-   <autopos/>
-  </jump>
  </jumps>
  <asteroids>
   <asteroid>

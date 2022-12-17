@@ -26,6 +26,9 @@
   <asset>Virtual Trader Local</asset>
  </assets>
  <jumps>
+  <jump target="Modus Manis">
+   <autopos/>
+  </jump>
   <jump target="Ruttwi">
    <autopos/>
   </jump>
