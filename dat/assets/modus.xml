@@ -29,9 +29,12 @@
   <bar>This bar has chosen to constantly play a heavy beat music track. This is not because people like heavy beat music, but rather to mask the tremors the planet's unstable crust sometimes creates.</bar>
  </general>
  <tech>
-  <item>Ion 2</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Hulls High</item>
+  <item>Common Outfits</item>
+  <item>Unguided Rockets</item>
+  <item>Small Razor</item>
+  <item>Small Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Agility Modifiers</item>
  </tech>
 </asset>

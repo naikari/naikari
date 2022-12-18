@@ -30,9 +30,17 @@
   <bar>Though the planet is many years away from being suitable for open-air human life, the spaceport authorities have put up various promotional holovids that showcase the terraforming effort and its predicted effects. It's a mandatory watch for any visitor to the spaceport bar who wishes to use the standard facilities.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Missiles 1</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
+  <item>Common Outfits</item>
+  <item>Elite Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Razor</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Mid Outfits</item>
+  <item>Small Elite Outfits</item>
+  <item>Civilian Ships</item>
+  <item>Generic Light Fighters</item>
+  <item>Generic Fighters</item>
+  <item>Sirius Small Ships</item>
  </tech>
 </asset>

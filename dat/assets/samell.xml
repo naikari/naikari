@@ -17,7 +17,7 @@
   <class>P</class>
   <population>1000000000</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
    <bar/>
    <missions/>
@@ -30,12 +30,13 @@
   <bar>Whoever designed the spaceport placed the spaceport bar at the outside, adding windows so visitors could look out over the frozen landscape. He didn't realize that the windows would soon become frozen over themselves, making them completely useless.</bar>
  </general>
  <tech>
-  <item>Engines Cargo</item>
-  <item>Systems Medium</item>
-  <item>Engines Low</item>
-  <item>Basic Outfits 1</item>
-  <item>Missiles 1</item>
-  <item>Basic Civilian Ships</item>
-  <item>Bulk Trade Ships</item>
+  <item>Common Outfits</item>
+  <item>Small Razor</item>
+  <item>Small Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Civilian Ships</item>
+  <item>Couriers</item>
+  <item>Generic Light Fighters</item>
  </tech>
 </asset>

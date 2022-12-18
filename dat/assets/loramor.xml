@@ -29,10 +29,25 @@
   <bar>Most of Lora-Mor's surface is given over to spacious vacation residences and nature parks. The majority of the planet's permanent population lives around the spaceport, and the spaceport bar is their chief recreational facility. This generally works out, as not many spacers visit Lora-Mor other than to ferry tourists to and fro.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Low</item>
-  <item>Star Maps</item>
-  <item>Missiles 1</item>
-  <item>Basic Outfits 1</item>
+  <item>Common Outfits</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Small Razor</item>
+  <item>Medium Razor</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Small Mid Outfits</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Large Elite Outfits</item>
  </tech>
 </asset>

@@ -30,18 +30,28 @@
   <bar>Burnan doesn't have a separate spaceport bar in the way many other worlds do. The spaceport bar and the main spaceport hall are, instead,  one and the same thing. There are exits to terminals on all sides and the central area is dominated by an island of service interfaces and counters. There is an elevated area that has tables for visitors to sit down at, where they won't get in the way of the bustle and traffic of the main floor.</bar>
  </general>
  <tech>
-  <item>Ion 1</item>
-  <item>Ion 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Missiles 2</item>
-  <item>Star Maps</item>
-  <item>Basic Trade Ships</item>
-  <item>Bulk Trade Ships</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Heavy Civilian Combat Ships</item>
-  <item>Systems High</item>
+  <item>Common Outfits</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Razor</item>
+  <item>Medium Razor</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Couriers</item>
+  <item>Freighters</item>
+  <item>Generic Bombers</item>
+  <item>Generic Corvettes</item>
+  <item>Generic Destroyers</item>
+  <item>Krain Large Ships</item>
+  <item>Sirius Medium Ships</item>
  </tech>
 </asset>

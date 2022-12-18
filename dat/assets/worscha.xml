@@ -30,17 +30,23 @@
   <bar>Many Sirius bars have some sort of layout separation for the various echelons, but Worscha's bar doesn't have anything of the sort. This sometimes leads to Siriusite traders getting confused, as they are used to placing themselves in the correct section of the bar.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Medium</item>
-  <item>Laser 1</item>
-  <item>Ion 2</item>
-  <item>Basic Outfits 2</item>
-  <item>High Tech Upgrades 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>Basic Civilian Ships</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Missiles 1</item>
-  <item>Star Maps</item>
-  <item>Hulls Elite</item>
+  <item>Common Outfits</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Small Razor</item>
+  <item>Medium Razor</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Energy Modifiers</item>
+  <item>Freighters</item>
+  <item>Generic Bombers</item>
+  <item>Generic Corvettes</item>
+  <item>Generic Destroyers</item>
+  <item>Sirius Medium Ships</item>
  </tech>
 </asset>
