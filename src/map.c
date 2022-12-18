@@ -17,6 +17,7 @@
 #include "array.h"
 #include "colour.h"
 #include "dialogue.h"
+#include "economy.h"
 #include "faction.h"
 #include "gui.h"
 #include "log.h"
@@ -413,36 +414,34 @@ static void map_update_commod_av_price()
       double totPrice = 0;
       int totPriceCnt = 0;
       for (i=0; i<array_size(systems_stack); i++) {
-         sys = system_getIndex( i );
+         sys = system_getIndex(i);
 
          /* if system is not known, reachable, or marked. and we are not in the editor */
          if ((!sys_isKnown(sys) && !sys_isFlag(sys, SYSTEM_MARKED | SYSTEM_CMARKED)
               && !space_sysReachable(sys)))
             continue;
          if ((sys_isKnown(sys)) && (system_hasPlanet(sys))) {
-            double sumPrice=0;
-            int sumCnt=0;
+            double sumPrice = 0;
+            int sumCnt = 0;
             double thisPrice;
-            for ( j=0 ; j<array_size(sys->planets); j++) {
-               p=sys->planets[j];
-               for ( k=0; k<array_size(p->commodities); k++) {
-                  if ( p->commodities[k] == c ) {
-                     if ( p->commodityPrice[k].cnt > 0 ) {/*commodity is known about*/
-                        thisPrice = p->commodityPrice[k].sum / p->commodityPrice[k].cnt;
-                        sumPrice+=thisPrice;
-                        sumCnt+=1;
-                        break;
-                     }
+            for (j=0; j<array_size(sys->planets); j++) {
+               p = sys->planets[j];
+               for (k=0; k<array_size(p->commodities); k++) {
+                  if (p->commodities[k] == c) {
+                     thisPrice = economy_getPrice(c, sys, p);
+                     sumPrice += thisPrice;
+                     sumCnt += 1;
+                     break;
                   }
                }
             }
-            if ( sumCnt>0 ) {
+            if (sumCnt > 0) {
                totPrice += sumPrice / sumCnt;
                totPriceCnt++;
             }
          }
       }
-      if ( totPriceCnt > 0 )
+      if (totPriceCnt > 0)
          totPrice /= totPriceCnt;
       commod_av_gal_price = totPrice;
 
@@ -1696,8 +1695,7 @@ void map_renderCommod( double bx, double by, double x, double y,
          for (k=0; k<array_size(land_planet->commodities); k++) {
             if (land_planet->commodities[k] == c) {
                /* current planet has the commodity of interest */
-               curMinPrice = land_planet->commodityPrice[k].sum
-                     / land_planet->commodityPrice[k].cnt;
+               curMinPrice = economy_getPrice(c, sys, land_planet);
                curMaxPrice = curMinPrice;
                break;
             }
@@ -1718,19 +1716,14 @@ void map_renderCommod( double bx, double by, double x, double y,
                p = sys->planets[j];
                for (k=0; k<array_size(p->commodities); k++) {
                   if (p->commodities[k] == c) {
-                     if (p->commodityPrice[k].cnt > 0) {
-                        /* commodity is known about */
-                        thisPrice = p->commodityPrice[k].sum
-                              / p->commodityPrice[k].cnt;
-                        if (thisPrice > maxPrice)
-                           maxPrice = thisPrice;
-                        if ((minPrice == 0) || (thisPrice < minPrice))
-                           minPrice = thisPrice;
-                        break;
-                     }
+                     thisPrice = economy_getPrice(c, sys, p);
+                     if (thisPrice > maxPrice)
+                        maxPrice = thisPrice;
+                     if ((minPrice == 0) || (thisPrice < minPrice))
+                        minPrice = thisPrice;
+                     break;
                   }
                }
-
             }
             if (maxPrice == 0) {
                /* no prices are known here */
@@ -1771,16 +1764,12 @@ void map_renderCommod( double bx, double by, double x, double y,
                p = sys->planets[j];
                for (k=0; k<array_size(p->commodities); k++) {
                   if (p->commodities[k] == c) {
-                     if (p->commodityPrice[k].cnt > 0) {
-                        /* commodity is known about */
-                        thisPrice = p->commodityPrice[k].sum
-                              / p->commodityPrice[k].cnt;
-                        if (thisPrice > maxPrice)
-                           maxPrice = thisPrice;
-                        if ((minPrice == 0) || (thisPrice < minPrice))
-                           minPrice = thisPrice;
-                        break;
-                     }
+                     thisPrice = economy_getPrice(c, sys, p);
+                     if (thisPrice > maxPrice)
+                        maxPrice = thisPrice;
+                     if ((minPrice == 0) || (thisPrice < minPrice))
+                        minPrice = thisPrice;
+                     break;
                   }
                }
             }
@@ -1833,18 +1822,16 @@ void map_renderCommod( double bx, double by, double x, double y,
 
          /* If system is known fill it. */
          if ((sys_isKnown(sys)) && (system_hasPlanet(sys))) {
-            double sumPrice=0;
-            int sumCnt=0;
-            for ( j=0 ; j<array_size(sys->planets); j++) {
-               p=sys->planets[j];
-               for ( k=0; k<array_size(p->commodities); k++) {
-                  if ( p->commodities[k] == c ) {
-                     if ( p->commodityPrice[k].cnt > 0 ) {/*commodity is known about*/
-                        thisPrice = p->commodityPrice[k].sum / p->commodityPrice[k].cnt;
-                        sumPrice+=thisPrice;
-                        sumCnt+=1;
-                        break;
-                     }
+            double sumPrice = 0;
+            int sumCnt = 0;
+            for (j=0 ; j<array_size(sys->planets); j++) {
+               p = sys->planets[j];
+               for (k=0; k<array_size(p->commodities); k++) {
+                  if (p->commodities[k] == c) {
+                     thisPrice = economy_getPrice(c, sys, p);
+                     sumPrice += thisPrice;
+                     sumCnt += 1;
+                     break;
                   }
                }
             }
@@ -2090,21 +2077,20 @@ static void map_genModeList(void)
 
    memset(commod_known,0,sizeof(Commodity*)*commodity_getN());
    for (i=0; i<array_size(systems_stack); i++) {
-      sys = system_getIndex( i );
+      sys = system_getIndex(i);
       for (j=0; j<array_size(sys->planets); j++) {
          p = sys->planets[j];
-         for ( k=0; k<array_size(p->commodities); k++) {
-            if ( p->commodityPrice[k].cnt > 0 ) {/*commodity is known about*/
+         if (planet_isKnown(p)) {
+            for (k=0; k<array_size(p->commodities); k++) {
                /* find out which commodity this is */
-               for ( l=0 ; l<totGot; l++) {
-                  if ( p->commodities[k] == commod_known[l] )
+               for (l=0; l<totGot; l++) {
+                  if (p->commodities[k] == commod_known[l])
                      break;
                }
                if (l == totGot) {
                   commod_known[totGot] = p->commodities[k];
                   totGot++;
                }
-
             }
          }
       }
@@ -2120,8 +2106,8 @@ static void map_genModeList(void)
    odd_template = _("%s: Trade");
    for (i=0; i<totGot; i++) {
       commod_text = _(commod_known[i]->name);
-      asprintf( &array_grow( &map_modes ), even_template, commod_text );
-      asprintf( &array_grow( &map_modes ), odd_template, commod_text );
+      asprintf(&array_grow(&map_modes), even_template, commod_text);
+      asprintf(&array_grow(&map_modes), odd_template, commod_text);
    }
 }
 
