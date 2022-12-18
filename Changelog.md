@@ -110,6 +110,10 @@
   to year, day, second.
 * Changed the distance unit used from kilometers to thousandths of an
   astronomical unit (mAU).
+* Changed the display of unidirectional jumps in the map to use the
+  color black for the exit-only side, rather than white. This is a bit
+  more intuitive and also should be easier to see for colorblind
+  players.
 * Essentially completely redesigned the universe, most notably changing
   what planets sell, but also changing or removing some planets and
   systems. The new design has the following characteristics:
