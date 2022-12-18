@@ -460,10 +460,10 @@ static void ship_update( unsigned int wid )
    int jumps;
 
    cargo = pilot_cargoUsed(player.p) + pilot_cargoFree(player.p);
-   hyp_delay = ntime_pretty(pilot_hyperspaceDelay(player.p), 2);
+   hyp_delay = ntime_pretty(pilot_hyperspaceDelay(player.p), 1);
    land_delay = ntime_pretty(
       ntime_create(0, 0, (int)(NT_DAY_SECONDS * player.p->stats.land_delay)),
-      2);
+      1);
 
    jumps = pilot_getJumps(player.p);
    if (jumps != -1)

@@ -1673,10 +1673,9 @@ void equipment_updateShips( unsigned int wid, char* str )
    credits2str(buf2, player_shipPrice(shipname), 2); /* sell price */
    credits2str(buf_money, player.p->credits, 2);
    cargo = pilot_cargoFree(ship) + pilot_cargoUsed(ship);
-   nt = ntime_pretty(pilot_hyperspaceDelay( ship ), 2);
+   nt = ntime_pretty(pilot_hyperspaceDelay(ship), 1);
    nt2 = ntime_pretty(
-      ntime_create(0, 0, (int)(NT_HOUR_SECONDS * ship->stats.land_delay)),
-      2);
+      ntime_create(0, 0, (int)(NT_DAY_SECONDS * ship->stats.land_delay)), 1);
 
    /* Get ship error report. */
    problems = pilot_reportSpaceworthy(ship, errorReport, sizeof(errorReport));

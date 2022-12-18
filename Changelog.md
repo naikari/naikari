@@ -107,7 +107,9 @@
   time passage: one real-world second is now equal to 750 in-universe
   seconds, rather than 30 in-universe seconds as before. In tandem, the
   primary components to a date have been changed from year, hour, second
-  to year, day, second.
+  to year, day, second. (In-game time-related things have been changed
+  to now use days instead of hours; for example, jump time is now one
+  day instead of one hour.)
 * Changed the distance unit used from kilometers to thousandths of an
   astronomical unit (mAU).
 * Changed the display of unidirectional jumps in the map to use the
