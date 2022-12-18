@@ -1235,14 +1235,14 @@ void map_renderJumps( double x, double y, double r, int editor)
          for (k = 0; k < array_size(jsys->jumps); k++) {
             if (jsys->jumps[k].target == sys) {
                if (jp_isFlag(&jsys->jumps[k], JP_EXITONLY))
-                  cole = &cWhite;
+                  cole = &cBlack;
                else if (jp_isFlag(&jsys->jumps[k], JP_HIDDEN))
                   cole = &cRed;
                break;
             }
          }
          if (jp_isFlag(&sys->jumps[j], JP_EXITONLY))
-            col = &cWhite;
+            col = &cBlack;
          else if (jp_isFlag(&sys->jumps[j], JP_HIDDEN))
             col = &cRed;
          else
@@ -1250,16 +1250,16 @@ void map_renderJumps( double x, double y, double r, int editor)
 
          if (jp_isFlag(&sys->jumps[j], JP_LONGRANGE)) {
             dir = ANGLE(jsys->pos.x - sys->pos.x, jsys->pos.y - sys->pos.y);
-            vertex[0]  = x + sys->pos.x * map_zoom;
-            vertex[1]  = y + sys->pos.y * map_zoom;
-            vertex[2]  = vertex[0] + cos(dir)*8*r;
-            vertex[3]  = vertex[1] + sin(dir)*8*r;
-            vertex[4]  = x + sys->pos.x * map_zoom;
-            vertex[5]  = y + sys->pos.y * map_zoom;
-            vertex[6]  = col->r;
-            vertex[7]  = col->g;
-            vertex[8]  = col->b;
-            vertex[9]  = 1.;
+            vertex[0] = x + sys->pos.x*map_zoom;
+            vertex[1] = y + sys->pos.y*map_zoom;
+            vertex[2] = vertex[0] + cos(dir)*8*r;
+            vertex[3] = vertex[1] + sin(dir)*8*r;
+            vertex[4] = x + sys->pos.x*map_zoom;
+            vertex[5] = y + sys->pos.y*map_zoom;
+            vertex[6] = col->r;
+            vertex[7] = col->g;
+            vertex[8] = col->b;
+            vertex[9] = 1.;
             vertex[10] = col->r;
             vertex[11] = col->g;
             vertex[12] = col->b;
@@ -1273,26 +1273,26 @@ void map_renderJumps( double x, double y, double r, int editor)
          }
          else {
             /* Draw the lines. */
-            vertex[0]  = x + sys->pos.x * map_zoom;
-            vertex[1]  = y + sys->pos.y * map_zoom;
-            vertex[2]  = vertex[0] + (jsys->pos.x - sys->pos.x)/2. * map_zoom;
-            vertex[3]  = vertex[1] + (jsys->pos.y - sys->pos.y)/2. * map_zoom;
-            vertex[4]  = x + jsys->pos.x * map_zoom;
-            vertex[5]  = y + jsys->pos.y * map_zoom;
-            vertex[6]  = col->r;
-            vertex[7]  = col->g;
-            vertex[8]  = col->b;
-            vertex[9]  = 0.2;
-            vertex[10] = (col->r + cole->r)/2.;
-            vertex[11] = (col->g + cole->g)/2.;
-            vertex[12] = (col->b + cole->b)/2.;
+            vertex[0] = x + sys->pos.x*map_zoom;
+            vertex[1] = y + sys->pos.y*map_zoom;
+            vertex[2] = vertex[0] + (jsys->pos.x-sys->pos.x)/2. * map_zoom;
+            vertex[3] = vertex[1] + (jsys->pos.y-sys->pos.y)/2. * map_zoom;
+            vertex[4] = x + jsys->pos.x*map_zoom;
+            vertex[5] = y + jsys->pos.y*map_zoom;
+            vertex[6] = col->r;
+            vertex[7] = col->g;
+            vertex[8] = col->b;
+            vertex[9] = 0.8;
+            vertex[10] = pow((sqrt(col->r) + sqrt(cole->r)) / 2., 2);
+            vertex[11] = pow((sqrt(col->g) + sqrt(cole->g)) / 2., 2);
+            vertex[12] = pow((sqrt(col->b) + sqrt(cole->b)) / 2., 2);
             vertex[13] = 0.8;
             vertex[14] = cole->r;
             vertex[15] = cole->g;
             vertex[16] = cole->b;
-            vertex[17] = 0.2;
-            gl_vboSubData( map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex );
-            glDrawArrays( GL_LINE_STRIP, 0, 3 );
+            vertex[17] = 0.8;
+            gl_vboSubData(map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex);
+            glDrawArrays(GL_LINE_STRIP, 0, 3);
          }
       }
       gl_endSmoothProgram();
