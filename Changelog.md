@@ -134,6 +134,12 @@
   * All licenses needed to purchase all outfits and ships on a given
     planet are available for purchase on that same planet (no more need
     to go looking for the license you need).
+  * Changed jump points in some locations (particularly in Sirius space)
+    to avoid inordinate numbers of dead-end systems. Dead-end systems
+    still exist, but they are now much less common and an effort was
+    made to ensure that the ones that still exist are worth going to
+    for some reason or another, or otherwise serve a legitimate gameplay
+    purpose.
 
 ## 0.4.1
 
