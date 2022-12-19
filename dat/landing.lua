@@ -144,7 +144,11 @@ end
 
 -- Za'lek's military center.
 function zlk_ruadan( pnt )
-   return false, "Permission denied. Ruadan space is off-limits to you."
+   return land_military(pnt, 90,
+         _("Docking sequence transmitted."),
+         _("Authorization level too low for access to Ruadan."),
+         _("Authorization denied."),
+         _("\"Money is irrelevant.\""))
 end
 
 -- Sindbad.
