@@ -29,6 +29,8 @@
   <bar>The spaceport bar here is utterly unremarkable. That's not a bad thing though because bars that distinguish themselves, more often than not, do so in an unpleasant way.</bar>
  </general>
  <tech>
-  <item>Bulk Trade Ships</item>
+  <item>Civilian Ships</item>
+  <item>Generic Light Fighters</item>
+  <item>Sirius Small Ships</item>
  </tech>
 </asset>
