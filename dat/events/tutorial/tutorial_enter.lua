@@ -30,9 +30,9 @@ local fmt = require "fmt"
 require "events/tutorial/tutorial_common"
 
 
-nofuel_text = _([[Soon after you realize to your horror that you are out of fuel in a system with no planets to land on that you can find, you are hailed by another pilot and decide to answer her hail. "Hi, any chance that I could get a fuel transfer from you?" she asks. You explain, defeated, that you are out of fuel yourself. "Dang," she responds. "Oh well. I guess you should ask around for fuel, too. Oh! You don't know how to do it, do you? Let me explain real quick.
+nofuel_text = _([[Soon after you realize to your horror that you are out of fuel in a system with no planets to land on that you can find, you are hailed by another pilot and decide to answer her hail. "Hi, any chance that I could get a fuel transfer from you?" she asks. You explain, defeated, that you are out of fuel yourself. "Dang," she responds. "Oh well. I guess you should ask around for fuel, too. Do you know how to do it? It's pretty easy.
 
-"Hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with {target_next_key} and pressing {hail_key}. You can request a refuel from there. Not everyone is generous enough to do it and those military bastards are particular stuck-ups about their fuel, but with a little luck you should be able to find someone who'll be willing to sell you some of their fuel. Heck, not long ago I even managed to convince a pirate to sell me some of their fuel, funny enough, and they didn't even steal anything! I'm sure it helps that I bribed them beforehand.
+"Hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with {target_next_key} and pressing {hail_key}. You can request a refuel from there.
 
 "Anyway, I'm going to continue my search. Good luck on yours!"]])
 
