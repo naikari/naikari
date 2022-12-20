@@ -63,7 +63,7 @@ log_text = _([[You helped some drunkard deliver goods for some countess. You tho
 
 function create ()
    -- Note: this mission does not make any system claims.
-   pickupWorld, pickupSys = planet.getLandable("INSS-2")
+   pickupWorld, pickupSys = planet.getLandable("Vertigo")
    delivWorld, delivSys = planet.getLandable("Darkshed")
    if pickupWorld == nil or delivWorld == nil then -- Must be landable
       misn.finish(false)
