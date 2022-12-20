@@ -30,12 +30,20 @@
   <bar>This bar serves as a welcome respite from the biting winds and frigid temperatures that pervade the planet. The menu largely consists of hot beverages and hearty food, and the patrons are almost exclusively off-duty Za'lek workers.</bar>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Ion 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Low Tech Upgrades</item>
+  <item>Common Outfits</item>
   <item>Star Maps</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
+  <item>Basic Missiles</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
+  <item>Za'lek Medium Ships</item>
  </tech>
 </asset>
