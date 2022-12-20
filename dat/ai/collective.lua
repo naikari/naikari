@@ -1,3 +1,4 @@
+local fmt = require "fmt"
 require("ai/tpl/generic")
 require("ai/personality/patrol")
 
