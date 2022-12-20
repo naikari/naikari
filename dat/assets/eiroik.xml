@@ -11,9 +11,6 @@
  <general>
   <class>Z</class>
   <population>0</population>
-  <services>
-   <land/>
-  </services>
-  <description>Eiroik was a former mining planet under Empire rule, known for its toxic atmosphere and difficult, rough terrain produced through millennia of volcanic activity. The few human colonies were eradicated by the Collective. The generators have failed and the former spaceport lies in ruins. All that remains is dust.</description>
+  <services/>
  </general>
 </asset>
