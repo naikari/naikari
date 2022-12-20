@@ -562,7 +562,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
    char creditstr[ECON_CRED_STRLEN];
 
    /* Check to see if ship has a no refuel message. */
-   msg = comm_getString( "refuel_no" );
+   msg = comm_getString("refuel_no");
    if (msg != NULL) {
       dialogue_msgRaw(_("Request Fuel"), msg);
       return;
@@ -570,33 +570,37 @@ static void comm_requestFuel( unsigned int wid, char *unused )
 
    /* Must need refueling. */
    if (player.p->fuel >= player.p->fuel_max) {
-      dialogue_msg(_("Request Fuel"),
+      dialogue_msgRaw(_("Request Fuel"),
             _("Your fuel deposits are already full."));
-      return;
-   }
-
-   /* See if pilot has enough fuel. */
-   q = pilot_refuelQuantity(comm_pilot, player.p);
-   if (q <= 0) {
-      dialogue_msg(_("Request Fuel"),
-            _("\"Sorry, I don't have enough fuel to spare at the moment.\""));
       return;
    }
 
    /* See if player can get refueled. */
    val = 0.;
-   ret = comm_getNumber( &val, "refuel" );
-   msg = comm_getString( "refuel_msg" );
+   ret = comm_getNumber(&val, "refuel");
+   msg = comm_getString("refuel_msg");
    if ((ret != 0) || (msg == NULL)
          || pilot_isFlag(comm_pilot, PILOT_MANUAL_CONTROL)) {
-      dialogue_msg(_("Request Fuel"), _("\"Sorry, I'm busy now.\""));
+      dialogue_msg(_("Request Fuel"), _("%s does not respond."),
+            comm_pilot->name);
       return;
    }
    price = (credits_t) val;
 
+   /* See if pilot has enough fuel. */
+   q = pilot_refuelQuantity(comm_pilot, player.p);
+   if (q <= 0) {
+      msg = comm_getString("refuel_cannot");
+      if (msg == NULL)
+         msg = _("\"Sorry, I don't have enough fuel to spare at the moment.\"");
+      dialogue_msgRaw(_("Request Fuel"), msg);
+      return;
+   }
+
    /* Check to see if is already refueling. */
    if (pilot_isFlag(comm_pilot, PILOT_REFUELING)) {
-      dialogue_msg(_("Request Fuel"), _("Pilot is already refueling you."));
+      dialogue_msg(_("Request Fuel"), _("%s is already refueling you."),
+            comm_pilot->name);
       return;
    }
 
@@ -606,7 +610,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
       ret = dialogue_YesNo(_("Request Fuel"),
             _("%s\n\nPay %s for %d kL of fuel?"), msg, creditstr, q);
       if (ret == 0) {
-         dialogue_msg(_("Request Fuel"), _("You decide not to pay."));
+         dialogue_msgRaw(_("Request Fuel"), _("You decide not to pay."));
          return;
       }
    }
@@ -614,7 +618,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
       dialogue_msg(_("Request Fuel"), "%s", msg);
 
    /* Check if they have the money. */
-   if (!player_hasCredits( price )) {
+   if (!player_hasCredits(price)) {
       credits2str(creditstr, price - player.p->credits, -1);
       dialogue_msg(_("Request Fuel"), _("You need %s more!"), creditstr);
       return;
@@ -632,8 +636,12 @@ static void comm_requestFuel( unsigned int wid, char *unused )
    ai_refuel(comm_pilot, player.p->id);
 
    /* Last message. */
-   if (price > 0)
-      dialogue_msg(_("Request Fuel"), _("\"On my way.\""));
+   if (price > 0) {
+      msg = comm_getString("refuel_paid");
+      if (msg == NULL)
+         msg = _("\"On my way.\"");
+      dialogue_msg(_("Request Fuel"), msg);
+   }
 }
 
 
@@ -681,6 +689,10 @@ static int comm_getNumber( double *val, const char* str )
  *    - bribe_no: unbribe message
  *    - bribe_prompt: bribe prompt
  *    - bribe_paid: paid message
+ *    - refuel_no: refuel refusal message
+ *    - refuel_cannot: cannot refuel message
+ *    - refuel_msg: refuel prompt
+ *    - refuel_paid: refuel payment received message
  *
  *    @param str String to get.
  *    @return String matching str.
