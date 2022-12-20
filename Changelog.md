@@ -116,6 +116,13 @@
   color black for the exit-only side, rather than white. This is a bit
   more intuitive and also should be easier to see for colorblind
   players.
+* Auto-saves are no longer disabled when landing on planets that do not
+  refuel you. Instead, the design philosophy is being shifted to
+  ensuring that unwinnable states are impossible anywhere you're allowed
+  to land.
+* Civilians and traders will now always offer to refuel you if you
+  cannot make a jump, even if you don't have credits to pay them.
+* Collective drones will now refuel you if you are friendly to them.
 * Essentially completely redesigned the universe, most notably changing
   what planets sell, but also changing or removing some planets and
   systems. The new design has the following characteristics:
