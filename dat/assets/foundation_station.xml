@@ -20,6 +20,7 @@
    <land/>
    <refuel/>
    <missions/>
+   <commodity/>
    <outfits/>
    <blackmarket/>
   </services>
@@ -27,8 +28,17 @@
   <description>Foundation Station is the northern refuel point of the Qorel Expanse. As with all pirate outposts, it also serves as a trading post in which loot is exchanged.</description>
  </general>
  <tech>
-  <item>Pirate Maps</item>
-  <item>Laser 1</item>
-  <item>Basic Outfits 1</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Small Laser</item>
+  <item>Medium Laser</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Small Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Pirate Outfits</item>
  </tech>
 </asset>

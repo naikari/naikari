@@ -1035,6 +1035,22 @@
   <item>Medium Weapon License</item>
   <item>Light Combat Vessel License</item>
  </tech>
+ <tech name="Pirate Outfits">
+  <item>Pirate Shark Fighter Bay</item>
+  <item>Mini Pirate Shark Fighter Bay</item>
+  <item>Pirate Maps</item>
+ </tech>
+ <tech name="Pirate Maps">
+  <item>Map: Pirate strongholds</item>
+  <item>Map: Qorel Expanse</item>
+ </tech>
+ <tech name="New Haven Maps">
+  <item>Map: New Haven's hidden jump points</item>
+ </tech>
+ <tech name="Kretogg Maps">
+  <item>Map: Kretogg's hidden jump points</item>
+  <item>Map: Sagittarius Bypass</item>
+ </tech>
 
  <!-- Generic Ships -->
  <tech name="Civilian Ships">
@@ -1185,17 +1201,33 @@
 
  <!-- Pirate Ships -->
  <tech name="Pirate Small Ships">
+  <item>Hyena</item>
   <item>Pirate Shark</item>
   <item>Pirate Vendetta</item>
   <item>Pirate Ancestor</item>
+  <item>Unicorp PT-18 Core System</item>
+  <item>Unicorp PT-80 Core System</item>
+  <item>Nexus Dart 150 Engine</item>
+  <item>Unicorp Hawk 300 Engine</item>
+  <item>Unicorp D-2 Light Plating</item>
+  <item>Unicorp D-4 Light Plating</item>
  </tech>
  <tech name="Pirate Medium Ships">
   <item>Pirate Phalanx</item>
   <item>Pirate Admonisher</item>
   <item>Pirate Rhino</item>
+  <item>Unicorp PT-280 Core System</item>
+  <item>Unicorp PT-400 Core System</item>
+  <item>Nexus Arrow 700 Engine</item>
+  <item>Unicorp Falcon 1200 Engine</item>
+  <item>Unicorp D-12 Medium Plating</item>
+  <item>Unicorp D-24 Medium Plating</item>
  </tech>
  <tech name="Pirate Large Ships">
   <item>Pirate Kestrel</item>
+  <item>Krain Remige Engine</item>
+  <item>Unicorp PT-750 Core System</item>
+  <item>Nexus Bolt 4500 Engine</item>
  </tech>
 
  <!-- Empire Ships -->
@@ -2055,16 +2087,5 @@
   <item>S&amp;K Medium-Heavy Stealth Plating</item>
   <item>S&amp;K Heavy Combat Plating</item>
   <item>S&amp;K Superheavy Combat Plating</item>
- </tech>
- <tech name="Pirate Maps">
-  <item>Map: Pirate strongholds</item>
-  <item>Map: Qorel Expanse</item>
- </tech>
- <tech name="New Haven Maps">
-  <item>Map: New Haven's hidden jump points</item>
- </tech>
- <tech name="Kretogg Maps">
-  <item>Map: Kretogg's hidden jump points</item>
-  <item>Map: Sagittarius Bypass</item>
  </tech>
 </Techs>

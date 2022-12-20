@@ -29,22 +29,39 @@
   <bar>A standard pirate bar, with the exception of the local militia making sure no troublemaker stays unharmed.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Pirate Ships</item>
-  <item>Kinetic 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Heavy Weapons 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Ion 1</item>
-  <item>Ion 2</item>
-  <item>Star Maps</item>
-  <item>Missiles 1</item>
-  <item>Hulls Low</item>
-  <item>Engines Low</item>
-  <item>Systems Medium</item>
-  <item>Pirate Maps</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Small Laser</item>
+  <item>Medium Laser</item>
+  <item>Heavy Laser</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Heavy Kinetic</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Large Elite Outfits</item>
+  <item>Pirate Outfits</item>
+  <item>Pirate Small Ships</item>
+  <item>Pirate Medium Ships</item>
+  <item>Pirate Large Ships</item>
  </tech>
 </asset>
