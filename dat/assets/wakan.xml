@@ -19,6 +19,7 @@
   <services>
    <land/>
    <refuel/>
+   <missions/>
    <commodity/>
   </services>
   <commodities/>

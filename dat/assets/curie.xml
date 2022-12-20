@@ -30,18 +30,23 @@
   <bar>The bar has pictures of the famous scientists that the planet was named after, as well as various pictures and holopaintings of some of the phenomena on the planet that those whose interests in geology might find interesting.</bar>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Ion 1</item>
-  <item>Kinetic 1</item>
-  <item>Kinetic 2</item>
-  <item>Plasma 1</item>
-  <item>Plasma 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Star Maps</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
-  <item>Bulk Trade Ships</item>
+  <item>Common Outfits</item>
+  <item>Turret Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Heavy Beam</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Cargo Modifiers</item>
+  <item>Couriers</item>
+  <item>Freighters</item>
  </tech>
 </asset>

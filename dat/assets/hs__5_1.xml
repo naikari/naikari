@@ -30,19 +30,17 @@
   <bar>This bar is even more of a mess than usual for a Za'lek world. The clientele are young, and congregate around the randomly-placed tables and chairs enthusiastically arguing over a myriad of subjects. Unlike most Za'lek worlds, there are few scientists here.</bar>
  </general>
  <tech>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Missiles 1</item>
-  <item>Crappy Core Systems</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Hulls Low</item>
-  <item>Hulls Medium</item>
-  <item>Systems Low</item>
-  <item>Systems Medium</item>
-  <item>Engines Low</item>
-  <item>Engines Cargo</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Civilian Ships</item>
+  <item>Couriers</item>
+  <item>Freighters</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Za'lek Medium Ships</item>
  </tech>
 </asset>

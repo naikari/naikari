@@ -29,30 +29,28 @@
   <bar>Given the the exclusive nature of Ruadan Prime, the atmosphere of the bar is very to-the-point and focused. Everyone here has a reason to be here.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Systems Medium</item>
-  <item>Systems High</item>
-  <item>Systems Elite</item>
-  <item>Engines Low</item>
-  <item>Engines Medium</item>
-  <item>Engines High</item>
-  <item>Hulls Low</item>
-  <item>Hulls Medium</item>
-  <item>Hulls High</item>
-  <item>Hulls Elite</item>
+  <item>Common Outfits</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Heavy Beam</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Large Elite Outfits</item>
   <item>Za'lek Military Outfits</item>
-  <item>Za'lek Military Ships</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Heavy Weapons 2</item>
-  <item>Laser 1</item>
-  <item>Ion 1</item>
-  <item>Beam 1</item>
-  <item>Beam 2</item>
-  <item>Star Maps</item>
+  <item>Za'lek Medium Ships</item>
+  <item>Za'lek Large Ships</item>
+  <item>Za'lek Restricted Ships</item>
  </tech>
 </asset>

@@ -29,12 +29,15 @@
   <bar>The bar is as rambling as many Za'lek institutions, yet seems cozy all the same with booths sunken into the floor and soft lighting. The patrons are disproportionately older.</bar>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Ion 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Crappy Core Systems</item>
-  <item>High Tech Upgrades 1</item>
+  <item>Common Outfits</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Elite Outfits</item>
  </tech>
 </asset>

@@ -30,12 +30,17 @@
   <bar>A simple spaceport bar built entirely out of prefabricated parts. If you want watered-down beer and a filling meal, it will do the job.</bar>
  </general>
  <tech>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
-  <item>Crappy Core Systems</item>
-  <item>Laser 1</item>
-  <item>Ion 1</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Za'lek Medium Ships</item>
  </tech>
 </asset>

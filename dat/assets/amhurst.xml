@@ -30,14 +30,20 @@
   <bar>If one didn't know better, they would assume this was a Dvaered bar. The rough aesthetic, the clientele, almost everything. There is little sign of the usual Za'lek trappings here.</bar>
  </general>
  <tech>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
-  <item>Laser 1</item>
-  <item>Beam 1</item>
-  <item>Systems Low</item>
-  <item>Engines Low</item>
-  <item>Hulls Low</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Unguided Rockets</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Small Elite Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Cannon Modifiers</item>
+  <item>Aerosys Small Ships</item>
+  <item>Dvaered Civilian Small Ships</item>
+  <item>Dvaered Civilian Medium Ships</item>
+  <item>Za'lek Medium Ships</item>
  </tech>
 </asset>
