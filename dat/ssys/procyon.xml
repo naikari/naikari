@@ -32,9 +32,5 @@
   <jump target="Octavian">
    <autopos/>
   </jump>
-  <jump target="Vost">
-   <autopos/>
-   <express/>
-  </jump>
  </jumps>
 </ssys>

@@ -28,25 +28,27 @@
   <bar>This bar is simple and clean. Every inch a military establishment.</bar>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Ion 1</item>
-  <item>Ion 2</item>
-  <item>Kinetic 1</item>
-  <item>Plasma 1</item>
-  <item>Beam 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Heavy Weapons 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>Missiles 1</item>
-  <item>Light Civilian Combat Ships</item>
-  <item>Systems Medium</item>
-  <item>Systems High</item>
-  <item>Systems Elite</item>
-  <item>Hulls Low</item>
-  <item>Hulls Medium</item>
-  <item>Engines Low</item>
-  <item>Engines Medium</item>
+  <item>Common Outfits</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Anti-Cruiser Missiles</item>
+  <item>Ion Missiles</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Heavy Beam</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Large Elite Outfits</item>
+  <item>Za'lek Military Outfits</item>
+  <item>Za'lek Medium Ships</item>
+  <item>Za'lek Large Ships</item>
  </tech>
 </asset>

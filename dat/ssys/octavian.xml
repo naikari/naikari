@@ -23,6 +23,9 @@
   <jump target="Copernicus">
    <autopos/>
   </jump>
+  <jump target="Olympus">
+   <autopos/>
+  </jump>
   <jump target="Procyon">
    <autopos/>
    <express/>

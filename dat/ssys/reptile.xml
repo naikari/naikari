@@ -19,5 +19,8 @@
   <jump target="Newmarch">
    <autopos/>
   </jump>
+  <jump target="Stained Soul">
+   <autopos/>
+  </jump>
  </jumps>
 </ssys>

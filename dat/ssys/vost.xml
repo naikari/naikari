@@ -24,9 +24,5 @@
    <autopos/>
    <express/>
   </jump>
-  <jump target="Procyon">
-   <autopos/>
-   <express/>
-  </jump>
  </jumps>
 </ssys>

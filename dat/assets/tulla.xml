@@ -29,11 +29,9 @@
   <bar>This bar is standard in almost all respects, though the food is respectable.</bar>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Ion 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>Star Maps</item>
-  <item>Basic Civilian Ships</item>
+  <item>Common Outfits</item>
+  <item>Small Beam</item>
+  <item>Small Low Outfits</item>
+  <item>Civilian Ships</item>
  </tech>
 </asset>

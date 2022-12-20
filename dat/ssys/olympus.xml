@@ -6,12 +6,15 @@
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
  <pos>
-  <x>-558.972460</x>
-  <y>-624.875498</y>
+  <x>-578.972460</x>
+  <y>-632.875498</y>
  </pos>
  <assets/>
  <jumps>
   <jump target="Ganth">
+   <autopos/>
+  </jump>
+  <jump target="Octavian">
    <autopos/>
   </jump>
   <jump target="Vost">

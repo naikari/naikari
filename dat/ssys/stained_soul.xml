@@ -17,6 +17,9 @@
   <jump target="Gorman">
    <autopos/>
   </jump>
+  <jump target="Reptile">
+   <autopos/>
+  </jump>
   <jump target="Urdads">
    <autopos/>
   </jump>
