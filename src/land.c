@@ -1445,8 +1445,7 @@ void takeoff( int delay )
 
    /* cleanup */
    /* Saving must be before cleaning up planet */
-   if (planet_hasService(land_planet, PLANET_SERVICE_REFUEL)
-         && (save_all() < 0))
+   if (save_all() < 0)
       dialogue_alert( _("Failed to save game! You should exit and check the log to see what happened and then file a bug report!") );
 
    /* time goes by, triggers hook before takeoff */
