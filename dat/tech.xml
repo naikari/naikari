@@ -615,14 +615,12 @@
  </tech>
  <tech name="Medium Ion">
   <item>Heavy Ion Cannon</item>
-  <item>Laser Turret MK2</item>
   <item>EMP Grenade Launcher</item>
   <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
  </tech>
  <tech name="Heavy Ion">
   <item>Heavy Ion Turret</item>
-  <item>Heavy Laser Turret</item>
   <item>Light Weapon License</item>
   <item>Medium Weapon License</item>
   <item>Heavy Weapon License</item>
@@ -994,6 +992,7 @@
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Za'lek Military Outfits">
+  <item>Electron Burst Cannon</item>
   <item>Za'lek Hunter Launcher</item>
   <item>Za'lek Reaper Launcher</item>
   <item>Mini Za'lek Light Drone Fighter Bay</item>
@@ -1017,12 +1016,23 @@
   <item>Nebular Shielding Prototype</item>
  </tech>
  <tech name="Proteron Military Outfits">
+  <item>Turbolaser</item>
   <item>Mini Derivative Fighter Bay</item>
   <item>Derivative Fighter Bay</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
+  <item>Heavy Weapon License</item>
   <item>Light Combat Vessel License</item>
  </tech>
  <tech name="Collective Military Outfits">
+  <item>Neutron Disruptor</item>
+  <item>Heavy Neutron Disruptor</item>
+  <item>Electron Burst Cannon</item>
   <item>Mini Drone Fighter Bay</item>
+  <item>Drone Fighter Bay</item>
+  <item>Heavy Drone Fighter Bay</item>
+  <item>Light Weapon License</item>
+  <item>Medium Weapon License</item>
   <item>Light Combat Vessel License</item>
  </tech>
 
