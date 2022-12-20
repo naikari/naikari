@@ -2198,7 +2198,9 @@ static int aiL_getplanetfrompos( lua_State *L )
 
    /* cycle through planets */
    for (dist=HUGE_VAL, j=-1, i=0; i<array_size(cur_system->planets); i++) {
-      if (!planet_hasService(cur_system->planets[i],PLANET_SERVICE_INHABITED))
+      if (!planet_hasService(cur_system->planets[i], PLANET_SERVICE_INHABITED))
+         continue;
+      if (!planet_hasService(cur_system->planets[i], PLANET_SERVICE_LAND))
          continue;
       d = vect_dist( &cur_system->planets[i]->pos, pos );
       if ((!areEnemies(cur_pilot->faction,cur_system->planets[i]->faction)) &&
@@ -2269,7 +2271,9 @@ static int aiL_getlandplanet( lua_State *L )
 
    /* Copy friendly planet.s */
    for (i=0; i<array_size(cur_system->planets); i++) {
-      if (!planet_hasService(cur_system->planets[i],PLANET_SERVICE_INHABITED))
+      if (!planet_hasService(cur_system->planets[i], PLANET_SERVICE_INHABITED))
+         continue;
+      if (!planet_hasService(cur_system->planets[i], PLANET_SERVICE_LAND))
          continue;
 
       /* Check conditions. */
@@ -2323,7 +2327,7 @@ static int aiL_land( lua_State *L )
    planet = cur_system->planets[ cur_pilot->nav_planet ];
 
    /* Check landability. */
-   if (!planet_hasService(planet,PLANET_SERVICE_INHABITED))
+   if (!planet_hasService(planet, PLANET_SERVICE_LAND))
       ret++;
 
    /* Check distance. */
