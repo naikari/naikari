@@ -17,7 +17,7 @@
   <class>0</class>
   <population>8500</population>
   <services>
-   <land/>
+   <land>land_hiclass</land>
    <refuel/>
    <bar/>
    <missions/>
@@ -30,15 +30,22 @@
   <bar>There are many Za'lek military officials, scientists, and traders from all over in this large and clean bar. It is much nicer than the one on Outbound Station. Quite a pointed snub.</bar>
  </general>
  <tech>
-  <item>Engines Cargo</item>
-  <item>Laser 1</item>
-  <item>Ion 1</item>
-  <item>Plasma 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Star Maps</item>
-  <item>Basic Civilian Ships</item>
-  <item>Basic Trade Ships</item>
+  <item>Common Outfits</item>
+  <item>Elite Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Small Beam</item>
+  <item>Medium Beam</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Nexus Small Ships</item>
+  <item>Nexus Medium Ships</item>
+  <item>Nexus Large Ships</item>
+  <item>Za'lek Medium Ships</item>
+  <item>Za'lek Large Ships</item>
+  <item>Heavy Beam</item>
  </tech>
 </asset>

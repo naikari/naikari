@@ -14,7 +14,7 @@
   <range>1</range>
  </presence>
  <general>
-  <class>1</class>
+  <class>0</class>
   <population>5000</population>
   <services>
    <land/>
@@ -28,14 +28,9 @@
   <bar>The bar is staffed with traders and Imperial Military officials. It is noteworthy that there is no Za'lek in sight here.</bar>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Heavy Weapons 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>Star Maps</item>
-  <item>Food</item>
-  <item>Medicine</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Laser</item>
+  <item>Small Low Outfits</item>
  </tech>
 </asset>

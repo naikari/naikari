@@ -26,19 +26,10 @@
   <description>Bastion Station is one of the two primary defense, border guard, and patrol base stations leading into Za'lek space. As such, it is one of the few military expenditures that goes (largely) unchallenged even by the notorious Za'lek political scene. The House Za'lek Defense Force conducts most of their foreign contact here, where they can keep an eye on affairs.</description>
  </general>
  <tech>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Ion 1</item>
-  <item>Ion 2</item>
-  <item>Plasma 1</item>
-  <item>Plasma 2</item>
-  <item>Kinetic 1</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Missiles 2</item>
-  <item>Star Maps</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Beam</item>
+  <item>Small Low Outfits</item>
+  <item>Medium Low Outfits</item>
  </tech>
 </asset>
