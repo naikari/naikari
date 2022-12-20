@@ -123,6 +123,9 @@
 * Civilians and traders will now always offer to refuel you if you
   cannot make a jump, even if you don't have credits to pay them.
 * Collective drones will now refuel you if you are friendly to them.
+* Added a rare "refuel request" event which causes an NPC pilot who
+  needs fuel to request assistance from the player in exchange for some
+  credits.
 * Essentially completely redesigned the universe, most notably changing
   what planets sell, but also changing or removing some planets and
   systems. The new design has the following characteristics:
