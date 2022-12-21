@@ -30,13 +30,17 @@
   <bar>The FLF don't have much use for leisures, so it's debatable whether this place can be called a bar. Still, it provides space to sit and talk, and it serves a liquid that seems different from industrial acid, in that it doesn't burn a hole through your stomach. The people here are mostly hard-faced men, and the topics of conversation are limited to the Dvaered and the FLF's cause.</bar>
  </general>
  <tech>
-  <item>Star Maps</item>
-  <item>Map: FLF Hidden Jumps</item>
-  <item>Basic Outfits 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Kinetic 1</item>
-  <item>Ion 1</item>
-  <item>Engines Medium</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Turret Missiles</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Small Plasma</item>
+  <item>Small Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Medium Low Outfits</item>
   <item>FLF Ships</item>
+  <item>Map: FLF Hidden Jumps</item>
  </tech>
 </asset>
