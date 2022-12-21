@@ -111,6 +111,13 @@ static int pilot_cargoAddNeglectingStats( Pilot* pilot, const Commodity* cargo,
    int i, q;
    PilotCommodity *pc;
 
+   /* Non-mission cargo with zero quantity doesn't need to be added, so
+    * to avoid phantom 0 kt cargo here, we simply do nothing in that
+    * case. (Mission cargo, on the other hand, can need to be added with
+    * an amount of 0 kt.) */
+   if ((id == 0) && (quantity == 0))
+      return 0;
+
    q = quantity;
 
    /* If not mission cargo check to see if already exists. */
