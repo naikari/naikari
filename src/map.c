@@ -426,12 +426,14 @@ static void map_update_commod_av_price()
             double thisPrice;
             for (j=0; j<array_size(sys->planets); j++) {
                p = sys->planets[j];
-               for (k=0; k<array_size(p->commodities); k++) {
-                  if (p->commodities[k] == c) {
-                     thisPrice = economy_getPrice(c, sys, p);
-                     sumPrice += thisPrice;
-                     sumCnt += 1;
-                     break;
+               if (planet_isKnown(p)) {
+                  for (k=0; k<array_size(p->commodities); k++) {
+                     if (p->commodities[k] == c) {
+                        thisPrice = economy_getPrice(c, sys, p);
+                        sumPrice += thisPrice;
+                        sumCnt += 1;
+                        break;
+                     }
                   }
                }
             }
@@ -1714,14 +1716,16 @@ void map_renderCommod( double bx, double by, double x, double y,
             maxPrice = 0;
             for (j=0; j<array_size(sys->planets); j++) {
                p = sys->planets[j];
-               for (k=0; k<array_size(p->commodities); k++) {
-                  if (p->commodities[k] == c) {
-                     thisPrice = economy_getPrice(c, sys, p);
-                     if (thisPrice > maxPrice)
-                        maxPrice = thisPrice;
-                     if ((minPrice == 0) || (thisPrice < minPrice))
-                        minPrice = thisPrice;
-                     break;
+               if (planet_isKnown(p)) {
+                  for (k=0; k<array_size(p->commodities); k++) {
+                     if (p->commodities[k] == c) {
+                        thisPrice = economy_getPrice(c, sys, p);
+                        if (thisPrice > maxPrice)
+                           maxPrice = thisPrice;
+                        if ((minPrice == 0) || (thisPrice < minPrice))
+                           minPrice = thisPrice;
+                        break;
+                     }
                   }
                }
             }
@@ -1762,14 +1766,16 @@ void map_renderCommod( double bx, double by, double x, double y,
             maxPrice = 0;
             for (j=0; j<array_size(sys->planets); j++) {
                p = sys->planets[j];
-               for (k=0; k<array_size(p->commodities); k++) {
-                  if (p->commodities[k] == c) {
-                     thisPrice = economy_getPrice(c, sys, p);
-                     if (thisPrice > maxPrice)
-                        maxPrice = thisPrice;
-                     if ((minPrice == 0) || (thisPrice < minPrice))
-                        minPrice = thisPrice;
-                     break;
+               if (planet_isKnown(p)) {
+                  for (k=0; k<array_size(p->commodities); k++) {
+                     if (p->commodities[k] == c) {
+                        thisPrice = economy_getPrice(c, sys, p);
+                        if (thisPrice > maxPrice)
+                           maxPrice = thisPrice;
+                        if ((minPrice == 0) || (thisPrice < minPrice))
+                           minPrice = thisPrice;
+                        break;
+                     }
                   }
                }
             }
@@ -1826,12 +1832,14 @@ void map_renderCommod( double bx, double by, double x, double y,
             int sumCnt = 0;
             for (j=0 ; j<array_size(sys->planets); j++) {
                p = sys->planets[j];
-               for (k=0; k<array_size(p->commodities); k++) {
-                  if (p->commodities[k] == c) {
-                     thisPrice = economy_getPrice(c, sys, p);
-                     sumPrice += thisPrice;
-                     sumCnt += 1;
-                     break;
+               if (planet_isKnown(p)) {
+                  for (k=0; k<array_size(p->commodities); k++) {
+                     if (p->commodities[k] == c) {
+                        thisPrice = economy_getPrice(c, sys, p);
+                        sumPrice += thisPrice;
+                        sumCnt += 1;
+                        break;
+                     }
                   }
                }
             }
