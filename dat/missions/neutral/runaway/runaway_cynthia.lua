@@ -26,7 +26,7 @@ bar_desc = _("A young teenager sits alone at a table.")
 title = _("The Runaway")
 misn_desc_pre_accept = _([[She looks out of place in the bar. As you approach, she seems to stiffen.
 
-"H-H-Hi", she stutters. "My name is Cynthia. Could you give me a lift? I really need to get out of here. I can't pay you much, just what I have on me, %s." You wonder who she must be to have this many credits on her person. "I need you to take me to Zhiru."
+"H-H-Hi", she stutters. "My name is Cynthia. Could you give me a lift? I really need to get out of here. I can't pay you much, just what I have on me, %s." You wonder who she must be to have this many credits on her person. "I need you to take me to Geron."
 
 You wonder who she is, but you dare not ask. Do you accept?]])
 not_enough_cargospace = _("Your cargo hold doesn't have enough free space.")
@@ -39,16 +39,15 @@ misn_accomplished = _([[As you walk into the docking bay, she warns you to look 
 When you look back to where she was, nothing remains but a tidy pile of credit chips and a worthless pendant.]])
 
 osd_text = {}
-osd_text[1] = _("Land on Zhiru (Goddard system)")
+osd_text[1] = _("Land on Geron (Goddard system)")
 
-log_text = _([[You gave a teenage girl named Cynthia a lift to Zhiru. When you got there, she suddenly disappeared, leaving behind a tidy pile of credit chips and a worthless pendant.]])
+log_text = _([[You gave a teenage girl named Cynthia a lift to Geron. When you got there, she suddenly disappeared, leaving behind a tidy pile of credit chips and a worthless pendant.]])
 
 
 function create ()
    startworld, startworld_sys = planet.cur()
 
-   targetworld_sys = system.get("Goddard")
-   targetworld = planet.get("Zhiru")
+   targetworld, targetworld_sys = planet.get("Geron")
 
    reward = 500000
 

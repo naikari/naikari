@@ -54,8 +54,8 @@ osd_text["__save"] = true
 
 -- Can't let them see what's coming up, can I?
 osd3 = _("Catch Cynthia on Torloth in Cygnus")
-osd4 = _("Return Cynthia to her father on Zhiru in the Goddard system")
-osdlie = _("Go to Zhiru in Goddard to lie to Cynthia's father")
+osd4 = _("Return Cynthia to her father on Geron in the Goddard system")
+osdlie = _("Go to Geron in Goddard to lie to Cynthia's father")
 
 log_text_capture = _([[The father of Cynthia, who you had given a lift before, asked you to find her and bring her back to him, thinking that she was kidnapped. Cynthia protested, telling you that she did not want to go back to her parents, but you took her anyway. When she saw her father, she started crying, but seemed to become visibly happier when her father told her that her abusive mother had died.]])
 log_text_release = _([[The father of Cynthia, who you had given a lift before, asked you to find her and bring her back to him, thinking that she was kidnapped. Cynthia protested, telling you that she did not want to go back to her parents. Respecting her wishes, you let her be and lied to her father, saying that you couldn't find her no matter how hard you tried.]])
@@ -137,7 +137,7 @@ function land ()
 
    --If we land on Torloth, change OSD, display message, reset target and carry on.
    elseif planet.cur() == planet.get("Torloth") then
-      targetworld = planet.get("Zhiru")
+      targetworld = planet.get("Geron")
 
       --If you decide to release her, speak appropriately, otherwise carry on
       if not tk.yesno("", misn_torloth) then
@@ -154,8 +154,8 @@ function land ()
 
       misn.markerMove(runawayMarker, system.get("Goddard"))
 
-   --If we land on Zhiru to finish the mission, clean up, reward, and leave.
-   elseif planet.cur() == planet.get("Zhiru") then
+   --If we land on Geron to finish the mission, clean up, reward, and leave.
+   elseif planet.cur() == planet.get("Geron") then
       misn.markerRm(runawayMarker)
 
       --Talk to the father and get the reward
