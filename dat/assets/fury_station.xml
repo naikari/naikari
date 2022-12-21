@@ -25,37 +25,23 @@
    <blackmarket/>
   </services>
   <commodities/>
-  <description>While Fury Station is not the most elaborate of pirate stations, it gets the job done with both a shipyard with all the standard pirate ships and an outfitter with a substantial lineup of goods. It even has some merchandise not offered at the nearby clanworld Sanchez.</description>
+  <description>While Fury Station is not the most elaborate of pirate stations, it gets the job done with both a shipyard with all the standard pirate ships and an outfitter with a decent lineup of goods.</description>
  </general>
  <tech>
-  <item>Pirate Ships</item>
-  <item>Basic Outfits 1</item>
-  <item>Beam 1</item>
-  <item>Heavy Weapons 1</item>
-  <item>Low Tech Upgrades</item>
-  <item>High Tech Upgrades 1</item>
-  <item>High Tech Upgrades 2</item>
-  <item>Plasma 1</item>
-  <item>Plasma 2</item>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>Laser 3</item>
-  <item>Kinetic 1</item>
-  <item>Kinetic 2</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
-  <item>Hulls Low</item>
-  <item>Hulls Medium</item>
-  <item>Hulls High</item>
-  <item>Hulls Elite</item>
-  <item>Systems Low</item>
-  <item>Systems Medium</item>
-  <item>Systems High</item>
-  <item>Systems Elite</item>
-  <item>Engines Low</item>
-  <item>Engines Medium</item>
-  <item>Engines High</item>
-  <item>Star Maps</item>
-  <item>Pirate Maps</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Aerosys Fighter Bays</item>
+  <item>Small Laser</item>
+  <item>Medium Laser</item>
+  <item>Small Kinetic</item>
+  <item>Medium Kinetic</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
+  <item>Medium Low Outfits</item>
+  <item>Pirate Outfits</item>
+  <item>Pirate Small Ships</item>
+  <item>Pirate Medium Ships</item>
  </tech>
 </asset>
