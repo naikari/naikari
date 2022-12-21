@@ -79,7 +79,7 @@
 * The game no longer refuses to resize a maximized window if you tell it
   to in the Options menu. (This change also fixes bugs with the code
   that implemented this restriction.)
-* Added "local jumps", which allow you to engage your hyperspace engine
+* Added "escape jumps", which allow you to engage your hyperspace engine
   without actually going into hyperspace, taking you to a distant part
   of the system at a cost of one jump of fuel, all of your battery
   charge, half of your remaining shield, and half of your remaining
