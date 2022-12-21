@@ -1230,6 +1230,14 @@
   <item>Nexus Bolt 4500 Engine</item>
  </tech>
 
+ <!-- FLF Ships -->
+ <tech name="FLF Ships">
+  <item>Hyena</item>
+  <item>Lancelot</item>
+  <item>Vendetta</item>
+  <item>Pacifier</item>
+ </tech>
+
  <!-- Empire Ships -->
  <tech name="Empire Small Ships">
   <item>Empire Shark</item>
@@ -1884,12 +1892,6 @@
  <tech name="Empire Medium Military Ships">
   <item>Empire Admonisher</item>
   <item>Empire Pacifier</item>
- </tech>
- <tech name="FLF Ships">
-  <item>Hyena</item>
-  <item>Lancelot</item>
-  <item>Vendetta</item>
-  <item>Pacifier</item>
  </tech>
  <tech name="Frontier Military Ships">
   <item>Hyena</item>
