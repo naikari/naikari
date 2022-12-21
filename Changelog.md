@@ -156,6 +156,8 @@
     made to ensure that the ones that still exist are worth going to
     for some reason or another, or otherwise serve a legitimate gameplay
     purpose.
+* Extremely high turn rates no longer have the potential to mess up
+  autonav during time compression.
 
 ## 0.4.1
 
