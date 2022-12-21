@@ -411,9 +411,10 @@ int shipyard_canBuy( const char *shipname, Planet *planet )
    price = ship_buyPrice(ship);
 
    /* Must have enough credits and the necessary license. */
-   if ((!player_hasLicense(ship->license)) &&
-         ((planet == NULL) || (!planet_hasService(planet, PLANET_SERVICE_BLACKMARKET)))) {
-      land_errDialogueBuild( _("You lack the %s."), _(ship->license) );
+   if (!player_hasLicense(ship->license)
+         && ((planet == NULL)
+            || !planet_hasService(planet, PLANET_SERVICE_BLACKMARKET))) {
+      land_errDialogueBuild(_("License needed: %s."), _(ship->license));
       failure = 1;
    }
    if (!player_hasCredits( price )) {
