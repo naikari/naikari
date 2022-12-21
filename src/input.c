@@ -84,7 +84,7 @@ const char *keybind_info[][3] = {
          " planet or jump point.")},
    {"follow", N_("Follow Target"), N_("Follows the targeted ship.")},
    {"board", N_("Board Target"), N_("Attempts to board the targeted ship.")},
-   {"local_jump", N_("Local Jump"),
+   {"local_jump", N_("Escape Jump"),
       N_("Performs a local jump without entering hyperspace, to escape"
          " dangerous situations.")},
    /* Secondary Weapons */

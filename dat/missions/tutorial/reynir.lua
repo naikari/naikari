@@ -42,7 +42,7 @@
    owns a teddy bear factory and will pay you in teddy bears
    (Luxury Goods). Because of his illness, you can't leave the system.
 
-   This mission serves as the tutorial for local jumps.
+   This mission serves as the tutorial for escape jumps.
 
 --]]
 
@@ -73,7 +73,7 @@ accept_text = _([["Thank you so much! I'll wait in your ship. I think it would b
 
 localjump_text = _([[Reynir looks at {planet} in awe, taking in the view. "I'm actually in space," he mutters to himself. He clears his throat and speaks a little more loudly to you. "This is everything I dreamed it would be. Thank you for taking me out here. Seeing my home planet from afar… it's magnificent!
 
-"I have just one more request before we return. As I said, I don't think I can enter hyperspace, but I very much would like to experience what it's like to make a jump." He studies your ship's controls. "I believe pressing {local_jump_key} will initiate your ship's Local Jump procedure. It's like a jump, but it doesn't actually take you into hyperspace, instead it just takes you a great distance away in the current system. Could you do a local jump for me?"]])
+"I have just one more request before we return. As I said, I don't think I can enter hyperspace, but I very much would like to experience what it's like to make a jump." He studies your ship's controls. "I believe pressing {local_jump_key} will initiate your ship's escape jump procedure. It's like a jump, but it doesn't actually take you into hyperspace; instead it just takes you a great distance away in the current system. Could you do an escape jump for me?"]])
 
 done_text = _([[You look over at Reynir, who looks as if he just got off the greatest rollercoaster in the universe. "Fantastic," he mutters. "That was even more thrilling than I expected! Alright, I think that's enough. Let's go back to {planet}."]])
 
@@ -139,7 +139,7 @@ function takeoff_timer()
    tk.msg("", fmt.f(localjump_text, {planet=misn_base:name(), local_jump_key=tutGetKey("local_jump")}))
 
    local osd_msg = {
-      fmt.f(_("Press {local_jump_key} to initiate a local jump\nDo not leave the {system} system"),
+      fmt.f(_("Press {local_jump_key} to initiate an escape jump\nDo not leave the {system} system"),
          {local_jump_key=naev.keyGet("local_jump"),
             system=misn_base_sys:name()}),
       fmt.f(_("Land on {planet} ({system} system)"),

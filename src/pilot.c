@@ -1059,7 +1059,7 @@ int pilot_canLocalJump(Pilot *p, int loud)
    /* Must have fuel. */
    if (p->fuel < p->fuel_consumption) {
       if (loud)
-         player_message(_("#rNot enough fuel to perform local jump."));
+         player_message(_("#rNot enough fuel to perform escape jump."));
       return 0;
    }
 
