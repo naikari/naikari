@@ -272,7 +272,7 @@ void input_setDefault(int layout)
 
    input_setKeybind("follow", KEYBIND_KEYBOARD, SDLK_f, NMOD_NONE);
    input_setKeybind("board", KEYBIND_KEYBOARD, SDLK_b, NMOD_NONE);
-   input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_v, NMOD_NONE);
+   input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_e, NMOD_NONE);
    /* Secondary Weapons */
    input_setKeybind( "secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY );
    input_setKeybind( "weapset1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ANY );
