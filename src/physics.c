@@ -257,18 +257,14 @@ static void solid_update_euler (Solid *obj, const double dt)
    double diff, dest_diff;
 
    diff = obj->dir_vel * dt;
-   if (obj->dir_dest != -1.) {
-      dest_diff = angle_diff(obj->dir, obj->dir_dest);
-      obj->dir += diff;
+   dest_diff = angle_diff(obj->dir, obj->dir_dest);
+   obj->dir += diff;
 
-      if (((diff < 0) == (dest_diff < 0))
-            && (ABS(diff) > ABS(dest_diff))) {
-         obj->dir = obj->dir_dest;
-      }
-      obj->dir_dest = -1;
+   if (((diff < 0) == (dest_diff < 0))
+         && (ABS(diff) > ABS(dest_diff))) {
+      obj->dir = obj->dir_dest;
    }
-   else
-      obj->dir += diff;
+   obj->dir_dest = INFINITY;
 
    /* make sure angle doesn't flip */
    if (obj->dir >= 2*M_PI)
@@ -347,10 +343,7 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    limit = (obj->speed_max >= 0.);
 
    dirdiff = 0.;
-   if (obj->dir_dest != -1.)
-      dirdestdiff = angle_diff(obj->dir, obj->dir_dest);
-   else
-      dirdestdiff = 0.;
+   dirdestdiff = angle_diff(obj->dir, obj->dir_dest);
 
    /* Initial RK parameters. */
    if (dt > RK4_MIN_H)
@@ -413,13 +406,11 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    vect_cset( &obj->vel, vx, vy );
    vect_cset( &obj->pos, px, py );
 
-   if (obj->dir_dest != -1.) {
-      if (((dirdiff < 0) == (dirdestdiff < 0))
-            && (ABS(dirdiff) > ABS(dirdestdiff))) {
-         obj->dir = obj->dir_dest;
-      }
-      obj->dir_dest = -1;
+   if (((dirdiff < 0) == (dirdestdiff < 0))
+         && (ABS(dirdiff) > ABS(dirdestdiff))) {
+      obj->dir = obj->dir_dest;
    }
+   obj->dir_dest = INFINITY;
 
    /* Validity check. */
    if (obj->dir >= 2.*M_PI)
@@ -458,7 +449,7 @@ void solid_init( Solid* dest, const double mass, const double dir,
    dest->dir_vel = 0.;
 
    /* Set empty direction destination. */
-   dest->dir_dest = -1.;
+   dest->dir_dest = INFINITY;
 
    /* Set force. */
    dest->thrust  = 0.;
