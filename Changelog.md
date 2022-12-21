@@ -160,8 +160,6 @@
   autonav during time compression.
 * Fixed a rare bug caused by dying while in the landing procedure.
 * Fixed possibility of dying while landing due to nebula volatility.
-* Added code to prevent phantom 0 kt cargo entries from showing up in
-  your cargo list.
 
 ## 0.4.1
 
