@@ -158,6 +158,8 @@
     purpose.
 * Extremely high turn rates no longer have the potential to mess up
   autonav during time compression.
+* Fixed a rare bug caused by dying while in the landing procedure.
+* Fixed possibility of dying while landing due to nebula volatility.
 
 ## 0.4.1
 

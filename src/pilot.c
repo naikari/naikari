@@ -1808,12 +1808,13 @@ void pilot_render( Pilot* p, const double dt )
       return;
 
    /* Check if needs scaling. */
-   if (pilot_isFlag( p, PILOT_LANDING ))
-      scale = CLAMP( 0., 1., p->ptimer / p->landing_delay );
-   else if (pilot_isFlag( p, PILOT_TAKEOFF ))
-      scale = CLAMP( 0., 1., 1. - p->ptimer / p->landing_delay );
-   else
-      scale = 1.;
+   scale = 1.;
+   if (!pilot_isFlag(p, PILOT_DEAD) && !pilot_isFlag(p, PILOT_HIDE)) {
+      if (pilot_isFlag(p, PILOT_LANDING))
+         scale = CLAMP(0., 1., p->ptimer / p->landing_delay);
+      else if (pilot_isFlag( p, PILOT_TAKEOFF ))
+         scale = CLAMP(0., 1., 1. - p->ptimer / p->landing_delay);
+   }
 
    /* Base ship. */
    if (p->ship->gfx_3d != NULL) {
@@ -2093,26 +2094,7 @@ void pilot_update( Pilot* pilot, double dt )
       }
    }
 
-   /* Handle takeoff/landing. */
-   if (pilot_isFlag(pilot,PILOT_TAKEOFF)) {
-      if (pilot->ptimer < 0.) {
-         pilot_rmFlag(pilot,PILOT_TAKEOFF);
-         return;
-      }
-   }
-   else if (pilot_isFlag(pilot,PILOT_LANDING)) {
-      if (pilot->ptimer < 0.) {
-         if (pilot_isPlayer(pilot)) {
-            player_setFlag( PLAYER_HOOK_LAND );
-            pilot->ptimer = 0.;
-         }
-         else
-            pilot_delete(pilot);
-         return;
-      }
-   }
-   /* he's dead jim */
-   else if (pilot_isFlag(pilot,PILOT_DEAD)) {
+   if (pilot_isFlag(pilot,PILOT_DEAD)) {
 
       /* pilot death sound */
       if (!pilot_isFlag(pilot,PILOT_DEATH_SOUND) &&
@@ -2177,6 +2159,23 @@ void pilot_update( Pilot* pilot, double dt )
          if (pilot->id==PLAYER_ID) /* player.p handled differently */
             player_destroyed();
          pilot_delete(pilot);
+         return;
+      }
+   }
+   else if (pilot_isFlag(pilot, PILOT_TAKEOFF)) {
+      if (pilot->ptimer < 0.) {
+         pilot_rmFlag(pilot,PILOT_TAKEOFF);
+         return;
+      }
+   }
+   else if (pilot_isFlag(pilot, PILOT_LANDING)) {
+      if (pilot->ptimer < 0.) {
+         if (pilot_isPlayer(pilot)) {
+            player_setFlag(PLAYER_HOOK_LAND);
+            pilot->ptimer = 0.;
+         }
+         else
+            pilot_delete(pilot);
          return;
       }
    }
