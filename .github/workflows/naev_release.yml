@@ -214,7 +214,6 @@ jobs:
     steps:
       - name: Checkout Naev Repository
         uses: actions/checkout@v3
-        if: ${{ matrix.releasetype == 'github' }}
 
       - name: Create Release Staging and Output Areas
         run: |
