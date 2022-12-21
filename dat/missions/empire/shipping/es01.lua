@@ -202,7 +202,7 @@ end
 
 function enemies()
    local sources = {}
-   for i, ojp in system.cur():jumps(true) do
+   for i, ojp in ipairs(system.cur():jumps(true)) do
       local jp = jump.get(ojp:dest(), system.cur())
       if jp ~= nil and not jp:exitonly() and not jp:hidden() then
          sources[#sources + 1] = jp:system()

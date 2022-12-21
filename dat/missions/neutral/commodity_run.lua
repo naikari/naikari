@@ -110,7 +110,7 @@ function create ()
    misn.markerAdd(system.cur(), "computer")
    misn.setDesc(fmt.f(misn_desc,
          {planet=misplanet:name(), commodity=comm:name()}))
-   misn.setReward(fmt.f(n_("{price} ¢/t", "{price} ¢/t", price),
+   misn.setReward(fmt.f(n_("{price} ¢/kt", "{price} ¢/kt", price),
          {price=fmt.number(price)}))
 end
 

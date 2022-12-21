@@ -99,7 +99,7 @@ function create ()
    -- Set mission details
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
-   misn.setReward(fmt.f(n_("{price} ¢/t", "{price} ¢/t", credits_factor),
+   misn.setReward(fmt.f(n_("{price} ¢/kt", "{price} ¢/kt", credits_factor),
          {price=fmt.number(credits_factor)}))
 end
 
