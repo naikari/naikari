@@ -254,9 +254,23 @@ static void solid_update_euler (Solid *obj, const double dt)
 {
    double px,py, vx,vy, ax,ay, th;
    double cdir, sdir;
+   double diff, dest_diff;
+
+   diff = obj->dir_vel * dt;
+   if (obj->dir_dest != -1.) {
+      dest_diff = angle_diff(obj->dir, obj->dir_dest);
+      obj->dir += diff;
+
+      if (((diff < 0) == (dest_diff < 0))
+            && (ABS(diff) > ABS(dest_diff))) {
+         obj->dir = obj->dir_dest;
+      }
+      obj->dir_dest = -1;
+   }
+   else
+      obj->dir += diff;
 
    /* make sure angle doesn't flip */
-   obj->dir += obj->dir_vel*dt;
    if (obj->dir >= 2*M_PI)
       obj->dir -= 2*M_PI;
    if (obj->dir < 0.)
@@ -321,6 +335,7 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    double h, px,py, vx,vy; /* pass, and position/velocity values */
    double ix,iy, tx,ty, ax,ay, th; /* initial and temporary cartesian vector values */
    double vmod, vang;
+   double dirdiff, dirdestdiff;
    int vint;
    int limit; /* limit speed? */
 
@@ -330,6 +345,12 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    vx = obj->vel.x;
    vy = obj->vel.y;
    limit = (obj->speed_max >= 0.);
+
+   dirdiff = 0.;
+   if (obj->dir_dest != -1.)
+      dirdestdiff = angle_diff(obj->dir, obj->dir_dest);
+   else
+      dirdestdiff = 0.;
 
    /* Initial RK parameters. */
    if (dt > RK4_MIN_H)
@@ -386,10 +407,19 @@ static void solid_update_rk4 (Solid *obj, const double dt)
       vy += ay * h;
 
       /* rotation. */
-      obj->dir += obj->dir_vel*h;
+      dirdiff += obj->dir_vel * h;
+      obj->dir += obj->dir_vel * h;
    }
    vect_cset( &obj->vel, vx, vy );
    vect_cset( &obj->pos, px, py );
+
+   if (obj->dir_dest != -1.) {
+      if (((dirdiff < 0) == (dirdestdiff < 0))
+            && (ABS(dirdiff) > ABS(dirdestdiff))) {
+         obj->dir = obj->dir_dest;
+      }
+      obj->dir_dest = -1;
+   }
 
    /* Validity check. */
    if (obj->dir >= 2.*M_PI)
@@ -426,6 +456,9 @@ void solid_init( Solid* dest, const double mass, const double dir,
 
    /* Set direction velocity. */
    dest->dir_vel = 0.;
+
+   /* Set empty direction destination. */
+   dest->dir_dest = -1.;
 
    /* Set force. */
    dest->thrust  = 0.;
