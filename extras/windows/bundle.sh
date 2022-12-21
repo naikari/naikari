@@ -39,7 +39,7 @@ for MESON_SUBPROJ_DIR in "${MESON_SOURCE_ROOT}/subprojects" "${MESON_BUILD_ROOT}
 done
 export MINGW_BUNDLEDLLS_SEARCH_PATH
 
-DLL_LIST=$("${MESON_SOURCE_ROOT}/extras/windows/mingw-bundledlls/mingw-bundledlls" "${MESON_BUILD_ROOT}/naev.exe")
+DLL_LIST=$("${MESON_SOURCE_ROOT}/extras/windows/mingw-bundledlls/mingw-bundledlls" "${MESON_BUILD_ROOT}/naikari.exe")
 
 for DLL in $DLL_LIST; do
 cp "$DLL" "${MESON_INSTALL_DESTDIR_PREFIX}"
