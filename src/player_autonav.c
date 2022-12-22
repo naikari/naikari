@@ -10,6 +10,7 @@
 
 
 /** @cond */
+#include <math.h>
 #include <time.h>
 
 #include "naev.h"
@@ -753,6 +754,7 @@ int player_autonavShouldResetSpeed (void)
 {
    double failpc, shield, armour;
    double dist;
+   double their_range, my_range;
    int i, j;
    Pilot *const*pstk;
    int hostiles, will_reset;
@@ -798,10 +800,13 @@ int player_autonavShouldResetSpeed (void)
          
          /* Check weapon set ranges of both the hostile pilot and the
           * player. Only count it as hostile presence if one of the two
-          * is near their weapon range. */
+          * is near their weapon range. Weapon sets with infinite range
+          * (i.e. those with fighter bays) are not counted */
          for (j=0; j<PILOT_WEAPON_SETS; j++) {
-            if ((pilot_weapSetRange(pstk[i], j, -1) >= dist)
-                  || (pilot_weapSetRange(player.p, j, -1) >= dist)) {
+            their_range = pilot_weapSetRange(pstk[i], j, -1);
+            my_range = pilot_weapSetRange(player.p, j, -1);
+            if ((isfinite(their_range) && (their_range >= dist))
+                  || (isfinite(my_range) && (my_range >= dist))) {
                hostiles = 1;
                break;
             }
