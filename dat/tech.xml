@@ -683,6 +683,7 @@
   <item>Unicorp X-2 Light Plating</item>
   <item>Unicorp D-4 Light Plating</item>
   <item>Unicorp X-4 Light Plating</item>
+  <item>S&amp;K Small Cargo Hull</item>
  </tech>
  <tech name="Small Elite Outfits">
   <item>Sensor Array</item>
@@ -757,6 +758,7 @@
   <item>Unicorp X-12 Medium Plating</item>
   <item>Unicorp D-24 Medium Plating</item>
   <item>Unicorp X-24 Medium Plating</item>
+  <item>S&amp;K Medium Cargo Hull</item>
  </tech>
  <tech name="Medium Elite Outfits">
   <item>Sensor Array</item>
@@ -836,6 +838,7 @@
   <item>Unicorp X-48 Heavy Plating</item>
   <item>Unicorp D-72 Heavy Plating</item>
   <item>Unicorp X-72 Heavy Plating</item>
+  <item>S&amp;K Large Cargo Hull</item>
  </tech>
  <tech name="Large Elite Outfits">
   <item>Improved Power Regulator</item>
