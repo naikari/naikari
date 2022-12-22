@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>20</priority>
-  <chance>5</chance>
+  <chance>20</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -33,7 +33,11 @@ local fmt = require "fmt"
 
 ask_text = _([["Excuse me," the man says as you approach him. "I'm looking for a capable pilot to resolve a small matter for me. Perhaps you can help me? You see, it's my son. He's taken my yacht to space without my permission, taking along his girlfriend. That boy is such a handful. I'm sure he's trying to show off his piloting skills to impress her. I need you to get out there, disable the yacht and take them both back here. Can you do this for me? I'll make it worth your while."]])
 
-yes_text = _([["Thank you! The yacht doesn't have a working hyperdrive, so they won't have left the system. It's a Gawain named Credence. Just disable it and board it, then transport my disobedient son and his girlfriend back here. Don't worry about the yacht, I'll have it recovered later. Oh, and one more thing, though it should go without saying: whatever you do, don't destroy the yacht! I don't want to lose my son over this, so make sure you equip some non-lethal weapons, like ion cannons or Medusa missiles. Well then, I hope to see you again soon."]])
+yes_text = _([["Thank you! The yacht doesn't have a working hyperdrive, so they won't have left the system. It's a Gawain named Credence. Just disable it and board it, then transport my disobedient son and his girlfriend back here. Don't worry about the yacht, I'll have it recovered later.
+
+"Oh, and one more thing, though it should go without saying: whatever you do, don't destroy the yacht! I don't want to lose my son over this, so make sure you equip some non-lethal weapons, like ion cannons or Medusa missiles, or maybe a weapons ionizer. You should be able to find something suitable at the outfitter.
+
+"Well then, I hope to see you again soon."]])
 
 fail_text = _([[The Credence has been destroyed! You resolve to get out of here as soon as possible so the father doesn't do something to you.]])
 
@@ -61,6 +65,22 @@ function create ()
     curplanet = planet.cur()
 
     if not misn.claim(cursys) then
+        misn.finish(false)
+    end
+
+    if not planet.cur():services()["outfits"] then
+        misn.finish(false)
+    end
+
+    local ion_available = false
+    for i, o in ipairs(planet.cur():outfitsSold()) do
+        if o == outfit.get("Ion Cannon")
+                or o == outfit.get("Weapons Ionizer") then
+            ion_available = true
+            break
+        end
+    end
+    if not ion_available then
         misn.finish(false)
     end
 
