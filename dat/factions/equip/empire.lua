@@ -60,16 +60,14 @@ equip_typeOutfits_weapons["Admonisher"] = {
    },
    {
       probability = {
-         ["Ripper Cannon"] = 8, ["Plasma Cannon"] = 4,
+         ["Ripper Cannon"] = 8,
       };
-      "Ripper Cannon", "Plasma Cannon", "Laser Cannon MK2",
-      "Plasma Blaster MK2",
+      "Ripper Cannon", "Laser Cannon MK2",
    },
 }
 equip_typeOutfits_weapons["Pacifier"] = {
    {
-      "Heavy Ripper Turret", "Plasma Cluster Turret", "Grave Beam",
-      "Heavy Ion Turret",
+      "Heavy Ripper Turret", "Heavy Ion Turret",
    },
    {
       num = 1;
@@ -80,14 +78,14 @@ equip_typeOutfits_weapons["Pacifier"] = {
    },
    {
       num = 1;
-      "Laser Turret MK2", "Plasma Turret MK2", "Orion Beam",
+      "Laser Turret MK2",
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
       "Mini Empire Shark Fighter Bay",
       "Mini Empire Lancelot Fighter Bay",
    },
    {
-      "Laser Turret MK2", "Plasma Turret MK2", "Orion Beam",
+      "Laser Turret MK2",
    },
 }
 equip_typeOutfits_weapons["Hawking"] = {
@@ -99,13 +97,11 @@ equip_typeOutfits_weapons["Hawking"] = {
    },
    {
       num = 1;
-      "Heavy Ripper Turret", "Plasma Cluster Turret",
-      "Grave Beam", "Heavy Ion Turret",
+      "Heavy Ripper Turret", "Heavy Ion Turret",
       "Empire Shark Fighter Bay", "Empire Lancelot Fighter Bay",
    },
    {
-      "Heavy Ripper Turret", "Plasma Cluster Turret",
-      "Grave Beam", "Heavy Ion Turret",
+      "Heavy Ripper Turret", "Heavy Ion Turret",
    },
 }
 equip_typeOutfits_weapons["Peacemaker"] = {
@@ -114,10 +110,10 @@ equip_typeOutfits_weapons["Peacemaker"] = {
       "Empire Shark Fighter Bay", "Empire Lancelot Fighter Bay",
    },
    {
-      "Turbolaser", "Heavy Laser Turret", "Ragnarok Beam",
+      "Turbolaser", "Heavy Laser Turret",
    },
    {
-      "Heavy Ripper Turret", "Plasma Cluster Turret",
+      "Heavy Ripper Turret",
    },
 }
 

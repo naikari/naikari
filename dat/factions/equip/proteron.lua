@@ -38,7 +38,7 @@ equip_typeOutfits_weapons["Derivative"] = equip_shipOutfits_weapons["Proteron De
 equip_typeOutfits_weapons["Kahan"] = {
    {
       num = 2;
-      "Railgun", "Heavy Razor Turret", "Grave Beam",
+      "Railgun", "Heavy Ripper Turret", "Turreted Mass Driver", "Grave Beam",
    },
    {
       "Enygma Systems Turreted Fury Launcher",
