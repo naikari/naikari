@@ -36,5 +36,5 @@ mkdir -p "${MESON_BUILD_ROOT}"/dist
 
 pushd "${MESON_INSTALL_DESTDIR_PREFIX}"
 cd ../
-zip -r "${MESON_BUILD_ROOT}"/dist/naev-macos.zip Naev.app/*
+zip -r "${MESON_BUILD_ROOT}"/dist/naikari-macos.zip Naikari.app/*
 popd

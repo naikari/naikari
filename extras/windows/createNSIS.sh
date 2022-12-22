@@ -45,7 +45,7 @@ mkdir -p "${MESON_BUILD_ROOT}/dist"
 
 # Copy all installer assets to installer staging area.
 cp -r "${MESON_SOURCE_ROOT}"/extras/windows/installer_assets/. "${MESON_SOURCE_ROOT}"/LICENSE "${MESON_INSTALL_DESTDIR_PREFIX}"/*.ico "$WORKPATH"
-mv "$WORKPATH"/LICENSE "$WORKPATH"/legal/naev-license.txt
+mv "$WORKPATH"/LICENSE "$WORKPATH"/legal/naikari-license.txt
 
 # copy Windows DLLs, binary and dat files to installer staging area.
 cp -r "${MESON_INSTALL_DESTDIR_PREFIX}/." "$WORKPATH/bin"
@@ -54,7 +54,7 @@ cp -r "${MESON_INSTALL_DESTDIR_PREFIX}/." "$WORKPATH/bin"
 VERSION="$(<"${MESON_INSTALL_DESTDIR_PREFIX}/dat/VERSION")"
 
 # Compile NSIS installer
-makensis -DVERSION="$VERSION" "$WORKPATH/naev.nsi"
+makensis -DVERSION="$VERSION" "$WORKPATH/naikari.nsi"
 
 #Clean up
 rm -rf "$WORKPATH"
