@@ -111,7 +111,7 @@ jobs:
       - name: Meson Setup
         run: |
           meson setup build source \
-              --prefix="$(pwd)"/build/windows \
+              --prefix="$(pwd)"/source/extras/windows/installer \
               --bindir=. \
               -Dndata_path=. \
               --cross-file='source/utils/build/windows_cross_mingw.ini' \
