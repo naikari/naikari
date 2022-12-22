@@ -4,7 +4,7 @@
 ;Enables Unicode installer to clear ANSI deprecation message 
 ;Unicode true
 ;Version, Icon and URL
-;!define VERSION "0.5.0-rc.1"
+;!define VERSION "0.5.0-rc.2"
 !define URL "https://naikari.github.io"
 !define MUI_ICON "logo.ico"
 ;!define MUI_UNICON "logo.ico"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-20 18:15-0500\n"
+"POT-Creation-Date: 2022-12-22 00:42-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -3653,8 +3653,7 @@ msgstr "투리온의 불꽃"
 msgid ""
 "While Fury Station is not the most elaborate of pirate stations, it gets the "
 "job done with both a shipyard with all the standard pirate ships and an "
-"outfitter with a substantial lineup of goods. It even has some merchandise "
-"not offered at the nearby clanworld Sanchez."
+"outfitter with a decent lineup of goods."
 msgstr ""
 
 #: dat/assets/fuzka.xml:2
@@ -8019,7 +8018,7 @@ msgstr ""
 #: src/land_outfits.c:388 src/land_outfits.c:632 src/land_shipyard.c:141
 #: src/land_shipyard.c:211 src/land_trade.c:109 src/land_trade.c:111
 #: src/land_trade.c:198 src/load.c:411 src/load.c:458 src/load.c:495
-#: src/map.c:663 src/map.c:727 src/map.c:1932 src/map_find.c:699
+#: src/map.c:665 src/map.c:729 src/map.c:1940 src/map_find.c:699
 #: src/map_system.c:561 src/map_system.c:584 src/pilot_outfit.c:904
 #, c-format
 msgid "None"
@@ -16115,9 +16114,7 @@ msgid "Mercenary License"
 msgstr ""
 
 #: dat/outfits/licenses/mercenary_license.xml:7
-msgid ""
-"This license will authorize you to do mercenary missions and collect "
-"bounties."
+msgid "This license will authorize you to do mercenary missions."
 msgstr ""
 
 #: dat/outfits/maps/localmap.xml:2
@@ -18006,7 +18003,7 @@ msgid ""
 "Not quite satisfied with the maneuverability and detection of the standard "
 "Shark, the Imperial military stripped it of some of its armor, replacing it "
 "with comparatively more lightweight shield generators, and installed "
-"integrated steering thruster and state-of-the art radar sensors. The "
+"integrated steering thrusters and state-of-the art radar sensors. The "
 "resulting ship ensures that enemies of the Empire have no chance of escape."
 msgstr ""
 
@@ -18409,7 +18406,7 @@ msgstr "투리온의 불꽃"
 #: dat/ships/raelid_outpost.xml:12 dat/ships/raglan_outpost.xml:12
 #: dat/ships/sindbad.xml:12 src/dev_uniedit.c:228 src/dev_uniedit.c:234
 #: src/dev_uniedit.c:866 src/dev_uniedit.c:867 src/land_trade.c:265
-#: src/map.c:596 src/map.c:597 src/outfit.c:296 src/outfit.c:316
+#: src/map.c:598 src/map.c:599 src/outfit.c:296 src/outfit.c:316
 msgid "N/A"
 msgstr ""
 
@@ -25454,32 +25451,66 @@ msgstr ""
 #.
 #. --
 #: dat/events/news.lua:37
-msgid "Em 1 Offers Business Opportunities"
+msgid "Missing Girl in Goddard"
 msgstr ""
 
 #: dat/events/news.lua:38
+msgid ""
+"A distraught father seeks his missing daughter in the Goddard system. He is "
+"offering a substantial award to any private investigator willing to find her "
+"and bring her home safely.\""
+msgstr ""
+
+#: dat/events/news.lua:43
+msgid "Mysterious Woman Spotted"
+msgstr ""
+
+#: dat/events/news.lua:44
+msgid ""
+"A mysterious woman has been spotted scouting the area within and around the "
+"Klantar system in Dvaered space. When approached by the media and asked who "
+"or what she is searching for, she declined to comment."
+msgstr ""
+
+#: dat/events/news.lua:48
+msgid "Corrupt Businessmen in Alteris"
+msgstr ""
+
+#: dat/events/news.lua:49
+msgid ""
+"Law-abiding traders are warned to stay clear of the Alteris system due to a "
+"danger of being attacked by corrupt businessmen, which the Imperial "
+"government alleges are hiring assassins to attack innocent traders in an "
+"attempt to corner the market."
+msgstr ""
+
+#: dat/events/news.lua:53
+msgid "Em 1 Offers Business Opportunities"
+msgstr ""
+
+#: dat/events/news.lua:54
 msgid ""
 "Analysts have noted tremendous opportunities on Em 1 (Hakoi system). \"It's "
 "a great start for new pilots,\" a top analyst said. \"Safe, and with many "
 "business opportunities.\""
 msgstr ""
 
-#: dat/events/news.lua:46
+#: dat/events/news.lua:61
 msgid "Em 1 Remains a Great Start"
 msgstr ""
 
-#: dat/events/news.lua:47
+#: dat/events/news.lua:62
 msgid ""
 "Analysts continue to proudly recommend Em 1 (Hakoi system) to new pilots "
 "seeking good payment. \"What better way to start your piloting journey than "
 "in a safe, prosperous system like Hakoi?\" a top analyst noted."
 msgstr ""
 
-#: dat/events/news.lua:56
+#: dat/events/news.lua:70
 msgid "Em 5 Experiences New Growth"
 msgstr ""
 
-#: dat/events/news.lua:57
+#: dat/events/news.lua:71
 msgid ""
 "Economists note an uptick in economic activity and recommend all pilots seek "
 "out new opportunities on Em 5 (Hakoi system). Safe but prosperous, the Hakoi "
@@ -25487,11 +25518,11 @@ msgid ""
 "foreseeable future."
 msgstr ""
 
-#: dat/events/news.lua:66
+#: dat/events/news.lua:79
 msgid "Empire Seeks New Recruits"
 msgstr ""
 
-#: dat/events/news.lua:67
+#: dat/events/news.lua:80
 msgid ""
 "The Empire is on the lookout for talented new recruits into its shipping "
 "division. \"The Empire offers good pay and fantastic opportunities,\" a "
@@ -25499,12 +25530,12 @@ msgid ""
 "Lieutenants seeking talent. Join the Empire today!\""
 msgstr ""
 
-#: dat/events/news.lua:73
+#: dat/events/news.lua:86
 #, fuzzy
 msgid "Dvaered and FLF Clash"
 msgstr "드 베어드 경계"
 
-#: dat/events/news.lua:74
+#: dat/events/news.lua:87
 msgid ""
 "An increased incidence of confrontation between Dvaered and FLF forces has "
 "been reported as of late in the north edge of Dvaered space, particularly "
@@ -25512,8 +25543,7 @@ msgid ""
 "advised to be on high alert."
 msgstr ""
 
-#. Proteron and other factions don't share articles.
-#. Thurion articles aren't shared with other factions.
+#. Proteron don't get generic articles.
 #. Remove mission hints that aren't relevant anymore.
 #.
 #. <?xml version='1.0' encoding='utf8'?>
@@ -26399,9 +26429,9 @@ msgstr ""
 #: dat/gui/brushed.lua:868 dat/gui/brushed.lua:907 dat/gui/legacy.lua:223
 #: dat/gui/legacy.lua:313 dat/gui/legacy.lua:327 dat/gui/slim.lua:393
 #: dat/gui/slim.lua:963 dat/missions/shadow/darkshadow.lua:143
-#: dat/missions/shadow/shadowvigil.lua:89 src/gui.c:1666 src/map.c:529
-#: src/map.c:535 src/map.c:541 src/map.c:547 src/map.c:553 src/map.c:559
-#: src/map.c:1929 src/map_overlay.c:159 src/outfit.c:304 src/outfit.c:324
+#: dat/missions/shadow/shadowvigil.lua:89 src/gui.c:1666 src/map.c:531
+#: src/map.c:537 src/map.c:543 src/map.c:549 src/map.c:555 src/map.c:561
+#: src/map.c:1937 src/map_overlay.c:159 src/outfit.c:304 src/outfit.c:324
 #: src/outfit.c:898 src/player_autonav.c:236
 msgid "Unknown"
 msgstr ""
@@ -27392,8 +27422,9 @@ msgstr ""
 #. Expects the faction, the minimum standing to land, the minimum standing to bribe, and a going rate for bribes.
 #. Returns whether the planet can be bribed, and the cost for doing so.
 #: dat/landing.lua:220
-msgid "\"I'm not dealing with dangerous criminals like you!\""
-msgstr ""
+#, fuzzy
+msgid "\"You won't bribe your way onto here!\""
+msgstr "\"넌 이 것에서 벗어나지 않을거야.\""
 
 #. Calculate bribe price. Note: Assumes bribe floor < land_floor.
 #. TODO: different rates for different factions.
@@ -27484,7 +27515,7 @@ msgid ""
 "things go south, they'll go south well before you are even in the picture. "
 "And even if the authorities somehow get on your case, you'll only have to "
 "deal with the planetary police, not the entirety of House Dvaered. Worst-"
-"case scenario, a simple local jump should be able to get you out of "
+"case scenario, a simple escape jump should be able to get you out of "
 "trouble.\n"
 "\n"
 "You ask the Baron's messenger where this holopainting needs to be delivered. "
@@ -27529,7 +27560,9 @@ msgid ""
 "bridge and into the abyss below. The third manages to get the cart with the "
 "chest into your airlock before catching a round with his chest as well. As "
 "the Dvaered near your ship, you seal the airlock, fire up your engines and "
-"punch it out of the docking hangar."
+"punch it out of the docking hangar. Once you get into space, you may want to "
+"use an escape jump to get away from Varia before the security forces blow "
+"you to bits."
 msgstr ""
 
 #: dat/missions/baron/baron_baron.lua:52 dat/missions/baron/baron_prince.lua:43
@@ -28649,7 +28682,7 @@ msgstr "드 베어드 경계"
 #. If we land on Torloth, change OSD, display message, reset target and carry on.
 #. If you decide to release her, speak appropriately, otherwise carry on
 #. Update the OSD
-#. If we land on Zhiru to finish the mission, clean up, reward, and leave.
+#. If we land on Geron to finish the mission, clean up, reward, and leave.
 #. Talk to the father and get the reward
 #.
 #. <?xml version='1.0' encoding='utf8'?>
@@ -32906,8 +32939,8 @@ msgstr ""
 #. Set mission details
 #: dat/missions/neutral/commodity_run.lua:113
 #: dat/missions/neutral/wastedump.lua:102
-msgid "{price} ¢/t"
-msgid_plural "{price} ¢/t"
+msgid "{price} ¢/kt"
+msgid_plural "{price} ¢/kt"
 msgstr[0] ""
 
 #.
@@ -34496,7 +34529,7 @@ msgid ""
 "\"H-H-Hi\", she stutters. \"My name is Cynthia. Could you give me a lift? I "
 "really need to get out of here. I can't pay you much, just what I have on "
 "me, %s.\" You wonder who she must be to have this many credits on her "
-"person. \"I need you to take me to Zhiru.\"\n"
+"person. \"I need you to take me to Geron.\"\n"
 "\n"
 "You wonder who she is, but you dare not ask. Do you accept?"
 msgstr ""
@@ -34524,12 +34557,13 @@ msgid ""
 msgstr ""
 
 #: dat/missions/neutral/runaway/runaway_cynthia.lua:42
-msgid "Land on Zhiru (Goddard system)"
-msgstr ""
+#, fuzzy
+msgid "Land on Geron (Goddard system)"
+msgstr "프론티어 시스템"
 
 #: dat/missions/neutral/runaway/runaway_cynthia.lua:44
 msgid ""
-"You gave a teenage girl named Cynthia a lift to Zhiru. When you got there, "
+"You gave a teenage girl named Cynthia a lift to Geron. When you got there, "
 "she suddenly disappeared, leaving behind a tidy pile of credit chips and a "
 "worthless pendant."
 msgstr ""
@@ -34659,11 +34693,11 @@ msgid "Catch Cynthia on Torloth in Cygnus"
 msgstr ""
 
 #: dat/missions/neutral/runaway/runaway_search.lua:57
-msgid "Return Cynthia to her father on Zhiru in the Goddard system"
+msgid "Return Cynthia to her father on Geron in the Goddard system"
 msgstr ""
 
 #: dat/missions/neutral/runaway/runaway_search.lua:58
-msgid "Go to Zhiru in Goddard to lie to Cynthia's father"
+msgid "Go to Geron in Goddard to lie to Cynthia's father"
 msgstr ""
 
 #: dat/missions/neutral/runaway/runaway_search.lua:60
@@ -39944,7 +39978,7 @@ msgstr ""
 #. owns a teddy bear factory and will pay you in teddy bears
 #. (Luxury Goods). Because of his illness, you can't leave the system.
 #.
-#. This mission serves as the tutorial for local jumps.
+#. This mission serves as the tutorial for escape jumps.
 #.
 #. --
 #. Bar information, describes how he appears in the bar
@@ -40001,10 +40035,10 @@ msgid ""
 "\"I have just one more request before we return. As I said, I don't think I "
 "can enter hyperspace, but I very much would like to experience what it's "
 "like to make a jump.\" He studies your ship's controls. \"I believe pressing "
-"{local_jump_key} will initiate your ship's Local Jump procedure. It's like a "
-"jump, but it doesn't actually take you into hyperspace, instead it just "
-"takes you a great distance away in the current system. Could you do a local "
-"jump for me?\""
+"{local_jump_key} will initiate your ship's escape jump procedure. It's like "
+"a jump, but it doesn't actually take you into hyperspace; instead it just "
+"takes you a great distance away in the current system. Could you do an "
+"escape jump for me?\""
 msgstr ""
 
 #: dat/missions/tutorial/reynir.lua:78
@@ -40046,10 +40080,11 @@ msgid ""
 msgstr "프론티어 시스템"
 
 #: dat/missions/tutorial/reynir.lua:142
+#, fuzzy
 msgid ""
-"Press {local_jump_key} to initiate a local jump\n"
+"Press {local_jump_key} to initiate an escape jump\n"
 "Do not leave the {system} system"
-msgstr ""
+msgstr "프론티어 시스템"
 
 #: dat/missions/tutorial/reynir.lua:184
 msgid ""
@@ -40722,7 +40757,7 @@ msgid ""
 "ship to fully cool down"
 msgstr ""
 
-#: dat/missions/tutorial/tutorial3.lua:139 src/dev_sysedit.c:719 src/map.c:769
+#: dat/missions/tutorial/tutorial3.lua:139 src/dev_sysedit.c:719 src/map.c:771
 msgid "Asteroid Field"
 msgstr ""
 
@@ -42197,7 +42232,7 @@ msgstr ""
 #. -- Deprecated. Do not use.
 #. --
 #: dat/scripts/numstring.lua:41 src/equipment.c:1688 src/info.c:212
-#: src/info.c:472 src/map.c:785
+#: src/info.c:472 src/map.c:787
 msgid "∞ jumps"
 msgstr ""
 
@@ -46081,7 +46116,7 @@ msgid "%d kL"
 msgid_plural "%d kL"
 msgstr[0] ""
 
-#: src/board.c:580 src/board.c:621 src/map.c:747 src/map.c:759 src/map.c:767
+#: src/board.c:580 src/board.c:621 src/map.c:749 src/map.c:761 src/map.c:769
 msgid ", "
 msgstr ", "
 
@@ -47277,7 +47312,7 @@ msgstr ""
 msgid "Radar Range Mod"
 msgstr ""
 
-#: src/dev_uniedit.c:1275 src/map.c:754
+#: src/dev_uniedit.c:1275 src/map.c:756
 msgid "Nebula"
 msgstr ""
 
@@ -47441,17 +47476,17 @@ msgstr ""
 msgid "Right click to add"
 msgstr ""
 
-#: src/equipment.c:819 src/equipment.c:823 src/land_shipyard.c:670
-#: src/land_shipyard.c:674
+#: src/equipment.c:819 src/equipment.c:823 src/land_shipyard.c:671
+#: src/land_shipyard.c:675
 #, c-format
 msgid "%s slot (%s)"
 msgstr ""
 
-#: src/equipment.c:829 src/land_shipyard.c:680
+#: src/equipment.c:829 src/land_shipyard.c:681
 msgid " #o[Exclusive]#0"
 msgstr ""
 
-#: src/equipment.c:850 src/land_shipyard.c:694
+#: src/equipment.c:850 src/land_shipyard.c:695
 #, c-format
 msgid ""
 "#n%s\n"
@@ -47476,7 +47511,7 @@ msgstr ""
 msgid "Filter…"
 msgstr ""
 
-#: src/equipment.c:1685 src/info.c:210 src/info.c:470 src/map.c:782
+#: src/equipment.c:1685 src/info.c:210 src/info.c:470 src/map.c:784
 #, c-format
 msgid "%d jump"
 msgid_plural "%d jumps"
@@ -47841,8 +47876,8 @@ msgid ""
 "Most likely Lua file has improper syntax, please check"
 msgstr ""
 
-#: src/faction.c:1588 src/map.c:2963 src/outfit.c:1125 src/ship.c:431
-#: src/ship.c:887 src/space.c:1693 src/space.c:3194 src/tech.c:122
+#: src/faction.c:1588 src/map.c:2971 src/outfit.c:1125 src/ship.c:431
+#: src/ship.c:887 src/space.c:1695 src/space.c:3196 src/tech.c:122
 #, c-format
 msgid "Malformed %s file: does not contain elements"
 msgstr ""
@@ -47974,7 +48009,7 @@ msgstr ""
 
 #: src/gui.c:1753 src/ndata.c:196 src/news.c:103 src/nfile.c:492
 #: src/opengl_tex.c:141 src/opengl_tex.c:383 src/perlin.c:399 src/perlin.c:460
-#: src/physics.c:485
+#: src/physics.c:509
 msgid "Out of Memory"
 msgstr ""
 
@@ -48478,7 +48513,7 @@ msgstr ""
 
 #: src/input.c:87
 #, fuzzy
-msgid "Local Jump"
+msgid "Escape Jump"
 msgstr "시스템"
 
 #: src/input.c:88
@@ -49254,15 +49289,15 @@ msgstr ""
 msgid "You already have this license."
 msgstr ""
 
-#: src/land_outfits.c:735 src/land_shipyard.c:422 src/land_shipyard.c:490
+#: src/land_outfits.c:735 src/land_shipyard.c:423 src/land_shipyard.c:491
 #: src/land_trade.c:335
 #, c-format
 msgid "You need %s more."
 msgstr ""
 
-#: src/land_outfits.c:741
+#: src/land_outfits.c:741 src/land_shipyard.c:417
 #, c-format
-msgid "You need the '%s' license to buy this outfit."
+msgid "License needed: %s."
 msgstr ""
 
 #: src/land_outfits.c:819
@@ -49414,8 +49449,8 @@ msgid ""
 "#nJump Detect Range:#0 %.0f mAU"
 msgstr ""
 
-#: src/land_shipyard.c:376 src/land_shipyard.c:531 src/land_shipyard.c:537
-#: src/land_shipyard.c:543
+#: src/land_shipyard.c:376 src/land_shipyard.c:532 src/land_shipyard.c:538
+#: src/land_shipyard.c:544
 msgid "Are you sure?"
 msgstr ""
 
@@ -49425,24 +49460,24 @@ msgstr ""
 msgid "Do you really want to spend %s on a new ship?"
 msgstr ""
 
-#: src/land_shipyard.c:416 src/land_shipyard.c:483
-#, c-format
-msgid "You lack the %s."
-msgstr ""
-
 #. Already on-board.
-#: src/land_shipyard.c:436
+#: src/land_shipyard.c:437
 msgid "You can't sell the ship you're piloting!"
 msgstr ""
 
-#: src/land_shipyard.c:457
+#: src/land_shipyard.c:458
 #, fuzzy, c-format
 msgid "You have %G t more cargo than the new ship can hold."
 msgid_plural "You have %G t more cargo than the new ship can hold."
 msgstr[0] "너는 제국에 걸맞지 않아!"
 
+#: src/land_shipyard.c:484
+#, c-format
+msgid "You lack the %s."
+msgstr ""
+
 #. confirm
-#: src/land_shipyard.c:532
+#: src/land_shipyard.c:533
 #, c-format
 msgid ""
 "Your %s is worth %s, exactly as much as the new ship, so no credits need be "
@@ -49450,7 +49485,7 @@ msgid ""
 msgstr ""
 
 #. confirm
-#: src/land_shipyard.c:538
+#: src/land_shipyard.c:539
 #, c-format
 msgid ""
 "Your %s is worth %s, more than the new ship. For your ship, you will get the "
@@ -49458,7 +49493,7 @@ msgid ""
 msgstr ""
 
 #. confirm
-#: src/land_shipyard.c:544
+#: src/land_shipyard.c:545
 #, c-format
 msgid ""
 "Your %s is worth %s, so the new ship will cost %s. Are you sure you want to "
@@ -49466,7 +49501,7 @@ msgid ""
 msgstr ""
 
 #. Draw rotated text.
-#: src/land_shipyard.c:583
+#: src/land_shipyard.c:584
 msgid "Slots:"
 msgstr ""
 
@@ -49723,7 +49758,7 @@ msgstr "자동nav"
 msgid "Minimal Mode"
 msgstr ""
 
-#: src/map.c:502
+#: src/map.c:504
 #, c-format
 msgid ""
 "%s prices trading from %s shown: Positive/blue values mean a profit\n"
@@ -49731,94 +49766,94 @@ msgid ""
 "system."
 msgstr ""
 
-#: src/map.c:507
+#: src/map.c:509
 #, c-format
 msgid "Known %s prices shown. Galaxy-wide average: %.2f"
 msgstr ""
 
-#: src/map.c:602
+#: src/map.c:604
 msgid "Multiple"
 msgstr "여러개의"
 
-#: src/map.c:752
+#: src/map.c:754
 #, c-format
 msgid "Nebula (%G GW volatility)"
 msgstr ""
 
-#: src/map.c:762
+#: src/map.c:764
 #, c-format
 msgid "%+G%% radar range"
 msgstr ""
 
-#: src/map.c:772
+#: src/map.c:774
 #, c-format
 msgid "#n%s:#0 %s"
 msgstr ""
 
-#: src/map.c:793
+#: src/map.c:795
 #, c-format
 msgid "(%d jump)"
 msgid_plural "(%d jumps)"
 msgstr[0] ""
 
-#: src/map.c:800
+#: src/map.c:802
 #, c-format
 msgid ""
 "#nCredits:#0 %s    #nFuel:#0 %d kL (%s)    #nCurrent System:#0 %s    "
 "#nTarget System:#0 %s %s"
 msgstr ""
 
-#: src/map.c:1873
+#: src/map.c:1881
 #, fuzzy, c-format
 msgid ""
 "No price info for\n"
 "%s here"
 msgstr "가격 정보 없음"
 
-#: src/map.c:2102
+#: src/map.c:2110
 msgid "Travel (Default)"
 msgstr ""
 
-#: src/map.c:2103
+#: src/map.c:2111
 msgid "Discovery"
 msgstr ""
 
-#: src/map.c:2105
+#: src/map.c:2113
 #, c-format
 msgid "%s: Cost"
 msgstr ""
 
-#: src/map.c:2106
+#: src/map.c:2114
 #, c-format
 msgid "%s: Trade"
 msgstr ""
 
-#: src/map.c:2385
+#: src/map.c:2393
 msgid "Attempted to call map_jump() while there is no system!"
 msgstr ""
 
-#: src/map.c:2957
+#: src/map.c:2965
 #, fuzzy, c-format
 msgid "Malformed %s file: missing root element 'map'"
 msgstr "'%s'임무에 대한 잘못된 XML 헤더: 루트 요소 '%s'누락"
 
-#: src/map.c:2975 src/slots.c:83 src/start.c:126 src/tech.c:136
+#: src/map.c:2983 src/slots.c:83 src/start.c:126 src/tech.c:136
 #, c-format
 msgid "'%s' has unknown node '%s'."
 msgstr ""
 
-#: src/map.c:2980
+#: src/map.c:2988
 #, c-format
 msgid "Loaded %d map decorator"
 msgid_plural "Loaded %d map decorators"
 msgstr[0] ""
 
-#: src/map.c:3007
+#: src/map.c:3015
 #, fuzzy, c-format
 msgid "Could not load map decorator texture '%s'."
 msgstr "텍스처 '%s'을 (를) 복제 할 수 없습니다."
 
-#: src/map.c:3012
+#: src/map.c:3020
 #, fuzzy, c-format
 msgid "Map decorator has unknown node '%s'."
 msgstr "'%s'임무에 알 수없는 플래그 노드 '%s'이 (가) 있습니다."
@@ -52363,7 +52398,7 @@ msgstr ""
 msgid "GUI (Graphical User Interface)"
 msgstr ""
 
-#: src/outfit.c:2321 src/outfit.c:2644 src/slots.c:74 src/space.c:3091
+#: src/outfit.c:2321 src/outfit.c:2644 src/slots.c:74 src/space.c:3093
 #: src/spfx.c:1158 src/start.c:74
 #, c-format
 msgid "Malformed '%s' file: does not contain elements"
@@ -52536,38 +52571,38 @@ msgctxt "outfit_type"
 msgid "All"
 msgstr ""
 
-#: src/physics.c:464
+#: src/physics.c:488
 msgid "Solid initialization did not specify correct update function!"
 msgstr ""
 
-#: src/pilot.c:896
+#: src/pilot.c:897
 msgid "#oActive cooldown engaged."
 msgstr ""
 
-#: src/pilot.c:954
+#: src/pilot.c:955
 msgid "#oActive cooldown completed."
 msgstr ""
 
-#: src/pilot.c:957
+#: src/pilot.c:958
 #, c-format
 msgid "#rActive cooldown aborted: %s!"
 msgstr ""
 
-#: src/pilot.c:959
+#: src/pilot.c:960
 msgid "#rActive cooldown aborted!"
 msgstr ""
 
-#: src/pilot.c:1061
+#: src/pilot.c:1062
 #, fuzzy
-msgid "#rNot enough fuel to perform local jump."
+msgid "#rNot enough fuel to perform escape jump."
 msgstr "\"나는 여분의 연료가 없다.\""
 
-#: src/pilot.c:1189
+#: src/pilot.c:1190
 #, c-format
 msgid "#%cComm %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:1217
+#: src/pilot.c:1218
 #, c-format
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr ""
@@ -54326,7 +54361,7 @@ msgstr ""
 msgid "Lua Spawn script for faction '%s' : %s"
 msgstr ""
 
-#: src/space.c:1116 src/space.c:4210
+#: src/space.c:1116 src/space.c:4212
 #, c-format
 msgid "Lua spawn script for faction '%s' failed to return timer value."
 msgstr ""
@@ -54351,30 +54386,30 @@ msgstr ""
 msgid "Lua spawn script for faction '%s' actually spawned a '%s' pilot."
 msgstr ""
 
-#: src/space.c:1254
+#: src/space.c:1256
 #, c-format
 msgid "You discovered #%c%s#0."
 msgstr ""
 
-#: src/space.c:1271
+#: src/space.c:1273
 msgid "You discovered a Jump Point."
 msgstr ""
 
-#: src/space.c:1415
+#: src/space.c:1417
 msgid "Cannot reinit system if there is no system previously loaded"
 msgstr ""
 
-#: src/space.c:1422
+#: src/space.c:1424
 #, c-format
 msgid "System %s not found in stack"
 msgstr ""
 
-#: src/space.c:1426
+#: src/space.c:1428
 #, c-format
 msgid "#oEntering System %s on %s."
 msgstr ""
 
-#: src/space.c:1435
+#: src/space.c:1437
 #, c-format
 msgid ""
 "#rWARNING: Volatile nebula (%G GW) detected in %s! Taking damage:\n"
@@ -54382,7 +54417,7 @@ msgid ""
 "%.1f GW of damage to armor"
 msgstr ""
 
-#: src/space.c:1664
+#: src/space.c:1666
 #, c-format
 msgid ""
 "Failed to load landing file: %s\n"
@@ -54391,54 +54426,54 @@ msgid ""
 msgstr ""
 
 #. error has occurred
-#: src/space.c:1821
+#: src/space.c:1823
 #, c-format
 msgid "Landing: '%s' : %s"
 msgstr ""
 
-#: src/space.c:1831
+#: src/space.c:1833
 #, c-format
 msgid "%s: %s (%s) -> return parameter 2 is not a string!"
 msgstr ""
 
-#: src/space.c:1832
+#: src/space.c:1834
 msgid "Invalid land message"
 msgstr ""
 
-#: src/space.c:1841
+#: src/space.c:1843
 #, c-format
 msgid "%s: %s (%s) -> return parameter 4 is not a string!"
 msgstr ""
 
-#: src/space.c:1842
+#: src/space.c:1844
 msgid "Invalid bribe message"
 msgstr ""
 
-#: src/space.c:1848
+#: src/space.c:1850
 #, c-format
 msgid "%s: %s (%s) -> return parameter 5 is not a string!"
 msgstr ""
 
-#: src/space.c:1849
+#: src/space.c:1851
 msgid "Invalid bribe ack message"
 msgstr ""
 
-#: src/space.c:1855
+#: src/space.c:1857
 #, c-format
 msgid "%s: %s (%s) -> return parameter 3 is not a number or string or nil!"
 msgstr ""
 
-#: src/space.c:2016
+#: src/space.c:2018
 #, c-format
 msgid "Planet '%s' has landing function '%s' which is not found in '%s'."
 msgstr ""
 
-#: src/space.c:2042
+#: src/space.c:2044
 #, c-format
 msgid "Planet '%s' has unknown services tag '%s'"
 msgstr ""
 
-#: src/space.c:2073
+#: src/space.c:2075
 #, c-format
 msgid "Unknown node '%s' in planet '%s'"
 msgstr ""
@@ -54446,124 +54481,124 @@ msgstr ""
 #.
 #. * verification
 #.
-#: src/space.c:2083
+#: src/space.c:2085
 #, c-format
 msgid "Planet '%s' missing '%s' element"
 msgstr ""
 
-#: src/space.c:2197
+#: src/space.c:2199
 #, c-format
 msgid "Unable to remove planet '%s' from NULL system."
 msgstr ""
 
-#: src/space.c:2209
+#: src/space.c:2211
 #, c-format
 msgid "Planet '%s' not found in system '%s' for removal."
 msgstr ""
 
-#: src/space.c:2230
+#: src/space.c:2232
 #, c-format
 msgid "Unable to find planet '%s' and system '%s' in planet<->system stack."
 msgstr ""
 
-#: src/space.c:2295
+#: src/space.c:2297
 #, c-format
 msgid "Unable to remove jump point '%s' from NULL system."
 msgstr ""
 
-#: src/space.c:2307
+#: src/space.c:2309
 #, c-format
 msgid "Jump point '%s' not found in system '%s' for removal."
 msgstr ""
 
-#: src/space.c:2512
+#: src/space.c:2514
 #, c-format
 msgid "Unknown node '%s' in star system '%s'"
 msgstr ""
 
-#: src/space.c:2523
+#: src/space.c:2525
 #, c-format
 msgid "Star System '%s' missing '%s' element"
 msgstr ""
 
-#: src/space.c:2524
+#: src/space.c:2526
 #, c-format
 msgid "Star System '%s' missing 'name' tag"
 msgstr ""
 
-#: src/space.c:2610 src/space.c:2697
+#: src/space.c:2612 src/space.c:2699
 #, c-format
 msgid "JumpPoint node for system '%s' has no target attribute."
 msgstr ""
 
-#: src/space.c:2615 src/space.c:2702
+#: src/space.c:2617 src/space.c:2704
 #, c-format
 msgid "JumpPoint node for system '%s' has invalid target '%s'."
 msgstr ""
 
-#: src/space.c:2628 src/space.c:2715
+#: src/space.c:2630 src/space.c:2717
 #, c-format
 msgid "Star System '%s' has duplicate jump point to '%s'."
 msgstr ""
 
-#: src/space.c:2762
+#: src/space.c:2764
 #, c-format
 msgid ""
 "JumpPoint in system '%s' is missing pos element but does not have autopos "
 "flag."
 msgstr ""
 
-#: src/space.c:2791
+#: src/space.c:2793
 #, c-format
 msgid "System '%s' was not found in the stack for some reason"
 msgstr ""
 
-#: src/space.c:2877
+#: src/space.c:2879
 #, c-format
 msgid "Asteroid field in %s has no position."
 msgstr ""
 
-#: src/space.c:2880
+#: src/space.c:2882
 #, c-format
 msgid "Asteroid field in %s has no radius."
 msgstr ""
 
-#: src/space.c:2941
+#: src/space.c:2943
 #, c-format
 msgid "Asteroid exclusion in %s has no position."
 msgstr ""
 
-#: src/space.c:2944
+#: src/space.c:2946
 #, c-format
 msgid "Asteroid exclusion in %s has no radius."
 msgstr ""
 
-#: src/space.c:3084
+#: src/space.c:3086
 #, c-format
 msgid "Malformed '%s' file: missing root element 'Asteroid_types'"
 msgstr ""
 
-#: src/space.c:3136
+#: src/space.c:3138
 msgid "Asteroid type's commodity lacks name or quantity."
 msgstr ""
 
-#: src/space.c:3141
+#: src/space.c:3143
 msgid "Asteroid type has no gfx associated."
 msgstr ""
 
-#: src/space.c:3232
+#: src/space.c:3234
 #, c-format
 msgid "Loaded %d Star System"
 msgid_plural "Loaded %d Star Systems"
 msgstr[0] ""
 
-#: src/space.c:3233
+#: src/space.c:3235
 #, c-format
 msgid "       with %d Planet"
 msgid_plural "       with %d Planets"
 msgstr[0] ""
 
-#: src/space.c:3644 src/space.c:3688
+#: src/space.c:3646 src/space.c:3690
 msgid "Unknown marker type."
 msgstr ""
 
@@ -54572,7 +54607,7 @@ msgstr ""
 #. f, cur, max, timer
 #. Actually run the function.
 #. error has occurred
-#: src/space.c:4202
+#: src/space.c:4204
 #, c-format
 msgid "Lua decrease script for faction '%s' : %s"
 msgstr ""
