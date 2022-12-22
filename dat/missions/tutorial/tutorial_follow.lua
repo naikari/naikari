@@ -55,7 +55,7 @@ takeoff_text = _([[As you begin the takeoff procedure, you receive a hail from a
 
 "I don't suppose you know how to tell Autonav to follow a target, do you? It'll make the journey much easier. Just target my ship by #bleft-clicking#0 on it or pressing {target_nearest_key}, then press {followkey} to initiate automatic following."]])
 
-pay_text = _([[You and Albert successfully land at his destination. When you meet up with him at the spaceport, you can tell that he's relieved nothing bad happened as he hands you your payment. "Thank you again for your assistance," he reiterates. "I think I feel a bit better about flying now, thanks to you. It'll be awhile before I can feel comfortable going into hostile space, but in the heavily patrolled places, I can rest assured now that I'm competent enough to fly on my own. Maybe I should hire some escorts, too.
+pay_text = _([[You and Ian successfully land at his destination. When you meet up with him at the spaceport, you can tell that he's relieved nothing bad happened as he hands you your payment. "Thank you again for your assistance," he reiterates. "I think I feel a bit better about flying now, thanks to you. It'll be awhile before I can feel comfortable going into hostile space, but in the heavily patrolled places, I can rest assured now that I'm competent enough to fly on my own. Maybe I should hire some escorts, too.
 
 "As always, working with you has been a pleasure. Maybe we'll see each other in space again as fellow pilots!" He shakes your hand and goes off on his own business.]])
 

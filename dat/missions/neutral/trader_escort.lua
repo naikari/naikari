@@ -16,6 +16,7 @@
   <faction>Soromid</faction>
   <faction>Thurion</faction>
   <faction>Za'lek</faction>
+  <done>Follow Tutorial</done>
  </avail>
 </mission>
 --]]
