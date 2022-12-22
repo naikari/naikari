@@ -34,6 +34,17 @@ local fmt = require "fmt"
 
 mhint_articles = {
    {
+      title = _("Missing Girl in Goddard"),
+      text = _([[A distraught father seeks his missing daughter in the Goddard system. He is offering a substantial award to any private investigator willing to find her and bring her home safely."]]),
+      mission = "The Search for Cynthia",
+      done = "The Runaway",
+   },
+   {
+      title = _("Mysterious Woman Spotted"),
+      text = _([[A mysterious woman has been spotted scouting the area within and around the Klantar system in Dvaered space. When approached by the media and asked who or what she is searching for, she declined to comment.]]),
+      mission = "Shadowrun",
+   },
+   {
       title = _("Em 1 Offers Business Opportunities"),
       text = _([[Analysts have noted tremendous opportunities on Em 1 (Hakoi system). "It's a great start for new pilots," a top analyst said. "Safe, and with many business opportunities."]]),
       mission = "Tutorial Part 2",
@@ -67,6 +78,12 @@ mhint_articles = {
       text = _([[The Empire is on the lookout for talented new recruits into its shipping division. "The Empire offers good pay and fantastic opportunities," a spokesperson said. "It doesn't hurt to approach one of the Empire Lieutenants seeking talent. Join the Empire today!"]]),
       mission = "Empire Recruitment",
       done = "Tutorial Part 4",
+      faction = "Empire",
+   },
+   {
+      title = _("Corrupt Businessmen in Alteris"),
+      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to a danger of being attacked by corrupt businessmen, which the Imperial government alleges are hiring assassins to attack innocent traders in an attempt to corner the market.]]),
+      mission = "Hitman 2",
       faction = "Empire",
    },
    {
