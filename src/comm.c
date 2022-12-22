@@ -615,7 +615,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
       }
    }
    else
-      dialogue_msg(_("Request Fuel"), "%s", msg);
+      dialogue_msgRaw(_("Request Fuel"), msg);
 
    /* Check if they have the money. */
    if (!player_hasCredits(price)) {
@@ -640,7 +640,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
       msg = comm_getString("refuel_paid");
       if (msg == NULL)
          msg = _("\"On my way.\"");
-      dialogue_msg(_("Request Fuel"), msg);
+      dialogue_msgRaw(_("Request Fuel"), msg);
    }
 }
 
