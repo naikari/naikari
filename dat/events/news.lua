@@ -45,10 +45,14 @@ mhint_articles = {
       mission = "Shadowrun",
    },
    {
+      title = _("Corrupt Businessmen in Alteris"),
+      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to a danger of being attacked by corrupt businessmen, which the Imperial government alleges are hiring assassins to attack innocent traders in an attempt to corner the market.]]),
+      mission = "Hitman 2",
+   },
+   {
       title = _("Em 1 Offers Business Opportunities"),
       text = _([[Analysts have noted tremendous opportunities on Em 1 (Hakoi system). "It's a great start for new pilots," a top analyst said. "Safe, and with many business opportunities."]]),
       mission = "Tutorial Part 2",
-      faction = "Empire",
       cond = function()
          return planet.cur() ~= planet.get("Em 1")
       end
@@ -58,7 +62,6 @@ mhint_articles = {
       text = _([[Analysts continue to proudly recommend Em 1 (Hakoi system) to new pilots seeking good payment. "What better way to start your piloting journey than in a safe, prosperous system like Hakoi?" a top analyst noted.]]),
       mission = "Tutorial Part 3",
       done = "Tutorial Part 2",
-      faction = "Empire",
       cond = function()
          return planet.cur() ~= planet.get("Em 1")
       end
@@ -68,7 +71,6 @@ mhint_articles = {
       text = _([[Economists note an uptick in economic activity and recommend all pilots seek out new opportunities on Em 5 (Hakoi system). Safe but prosperous, the Hakoi system is tough to beat, and its prosperity is expected to continue for the foreseeable future.]]),
       mission = "Tutorial Part 4",
       done = "Tutorial Part 3",
-      faction = "Empire",
       cond = function()
          return planet.cur() ~= planet.get("Em 5")
       end
@@ -78,12 +80,6 @@ mhint_articles = {
       text = _([[The Empire is on the lookout for talented new recruits into its shipping division. "The Empire offers good pay and fantastic opportunities," a spokesperson said. "It doesn't hurt to approach one of the Empire Lieutenants seeking talent. Join the Empire today!"]]),
       mission = "Empire Recruitment",
       done = "Tutorial Part 4",
-      faction = "Empire",
-   },
-   {
-      title = _("Corrupt Businessmen in Alteris"),
-      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to a danger of being attacked by corrupt businessmen, which the Imperial government alleges are hiring assassins to attack innocent traders in an attempt to corner the market.]]),
-      mission = "Hitman 2",
       faction = "Empire",
    },
    {
@@ -104,8 +100,8 @@ mhint_articles = {
 function create()
    local publish_interval = time.create(0, 120, 0)
    local last_news = var.peek("_news_last")
-   local narticles = #news.get()
-   if (last_news == nil
+   local narticles = #news.get("Generic") + #news.get(planet.cur():faction():nameRaw())
+   if (narticles <= 0 or last_news == nil
             or time.fromnumber(last_news) - time.get() > publish_interval)
          and narticles < 5
          and (narticles < 2 or rnd.rnd() < 0.5) then
@@ -120,23 +116,12 @@ end
 function cleanup_articles()
    local f = planet.cur():faction()
 
-   -- Proteron and other factions don't share articles.
+   -- Proteron don't get generic articles.
    if f == faction.get("Proteron") then
       for i, a in ipairs(news.get()) do
-         if a:faction() ~= "Proteron" then
+         if a:faction() == "Generic" then
             a:rm()
          end
-      end
-   else
-      for i, a in ipairs(news.get("Proteron")) do
-         a:rm()
-      end
-   end
-
-   -- Thurion articles aren't shared with other factions.
-   if f ~= faction.get("Thurion") then
-      for i, a in ipairs(news.get("Thurion")) do
-         a:rm()
       end
    end
 
@@ -159,8 +144,10 @@ function generate_article()
       local existing_articles = news.get(tag) or {}
       if not player.misnDone(a.mission) and not player.misnActive(a.mission)
             and (a.done == nil or player.misnDone(a.done))
-            and (a.cond == nil or a.cond()
-            and #existing_articles <= 0) then
+            and (a.cond == nil or a.cond())
+            and (a.faction == nil or a.faction == "Generic"
+               or faction.get(a.faction) == planet.cur():faction())
+            and #existing_articles <= 0 then
          avail_mhint_articles[#avail_mhint_articles + 1] = a
       end
    end
