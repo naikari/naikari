@@ -182,10 +182,10 @@ end
 
 
 function beginbattle()
+   tk.msg("", fmt.f(brief_text, {system=battlesys:name()}))
+
    misn.markerRm(markeri)
    misn.npcRm(smith)
-
-   tk.msg("", fmt.f(brief_text, {system=battlesys:name()}))
    misn.osdActive(2)
    stage = 1
 
