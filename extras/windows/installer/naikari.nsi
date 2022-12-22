@@ -4,7 +4,8 @@
 ;Enables Unicode installer to clear ANSI deprecation message 
 ;Unicode true
 ;Version, Icon and URL
-;!define VERSION "0.5.0-rc.2"
+
+;!define SUFFIX "0.5.0-win64"
 !define URL "https://naikari.github.io"
 !define MUI_ICON "logo.ico"
 ;!define MUI_UNICON "logo.ico"
@@ -55,7 +56,6 @@ Var StartMenuFolder
 
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "legal\gpl-3.0.txt"
-!insertmacro MUI_PAGE_LICENSE "legal\naikari-license.txt"
 !insertmacro MULTIUSER_PAGE_INSTALLMODE
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
@@ -70,7 +70,7 @@ Var StartMenuFolder
 
 !insertmacro MUI_PAGE_INSTFILES
 
-!define MUI_FINISHPAGE_RUN $INSTDIR\naikari.exe
+!define MUI_FINISHPAGE_RUN $INSTDIR\naikari-${SUFFIX}.exe
 !define MUI_FINISHPAGE_RUN_PARAMETERS
 !insertmacro MUI_PAGE_FINISH
 
@@ -105,13 +105,13 @@ Section "Naikari Engine and Data" BinarySection
    WriteUninstaller "$INSTDIR\Uninstall.exe"
 
    ;Add uninstall information
-   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "DisplayName" "Naikari"
-   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "DisplayIcon" "$\"$INSTDIR\naikari.exe$\""
+   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "DisplayName" "Naev"
+   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "DisplayIcon" "$\"$INSTDIR\naev-${SUFFIX}.exe$\""
    WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "UninstallString" "$\"$INSTDIR\Uninstall.exe$\""
    WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "QuietUninstallString" "$\"$INSTDIR\Uninstall.exe$\" /S"
    WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "URLInfoAbout" "${URL}"
-   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "DisplayVersion" "${VERSION}"
-   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "Publisher" "Naikari Team"
+   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "DisplayVersion" "${SUFFIX}"
+   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "Publisher" "Naev Team"
    WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "NoModify" 1
    WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\Naikari" "NoRepair" 1
 
@@ -119,8 +119,8 @@ Section "Naikari Engine and Data" BinarySection
 
       ;Create shortcuts
       CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
-      CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Naikari.lnk" "$INSTDIR\naikari.exe"
-      CreateShortCut "$DESKTOP\Naikari.lnk" "$INSTDIR\naikari.exe"
+      CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Naikari.lnk" "$INSTDIR\naikari-${SUFFIX}.exe"
+      CreateShortCut "$DESKTOP\Naikari.lnk" "$INSTDIR\naikari-${SUFFIX}.exe"
 
    !insertmacro MUI_STARTMENU_WRITE_END
    ${Else}
