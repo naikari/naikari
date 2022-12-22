@@ -225,7 +225,7 @@ function enemies()
 
    local flt = fleet.add({rnd.rnd(0, 2), rnd.rnd(0, 2)},
          {"Lancelot", "Vendetta"}, "Mercenary", source,
-         {_("Mercenary Lancelot"), _("Mercenary Vendetta")}, leader)
+         {_("Mercenary Lancelot"), _("Mercenary Vendetta")}, nil, leader)
    for i, p in ipairs(flt) do
       p:setHostile()
    end
