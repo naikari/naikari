@@ -77,21 +77,45 @@ function create()
 
    misn.setNPC(_("Merchant"), portrait.get("Trader"), bar_desc)
 
-   stu_distance = 4.6 * travel_dist
-   stu_jumps = 103000 * num_jumps
-   stu_takeoff = 103000
-   time_limit = time.get() + time.create(0, 0, stu_distance + stu_jumps + stu_takeoff)
+   -- Hardcoded tier of 4 ("Emergency" level)
+   tier = 4
 
-    -- Allow extra time for refuelling stops.
-    local jumpsperstop = 3 + math.min(tier, 3)
-    if num_jumps > jumpsperstop then
-        time_limit:add(time.create( 0, 0, math.floor((num_jumps-1) / jumpsperstop) * stu_jumps ))
-    end
+   -- Calculate time limit. Depends on tier and distance.
+   stuperpx = 4.6 - 0.57*tier
+   stuperjump = 103000 - 6000*tier
+   stupertakeoff = 103000 - 750*tier
+   allowance = traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
+         + 2400*numjumps
+   
+   -- Allow extra time for refuelling stops.
+   local jumpsperstop = 2 + math.min(tier-1, 2)
+   if numjumps > jumpsperstop then
+      allowance = allowance + math.floor((num_jumps-1)/jumpsperstop)*stuperjump
+   end
 
-   payment = 20 * (stu_distance + (stu_jumps / 10))
+   time_limit = time.get() + time.create(0, 0, allowance)
 
-   -- Range of 5-10 tons for tier 0, 21-58 for tier 4.
-   cargo_size = rnd.rnd( 5 + 4 * tier, 10 + 12 * tier )
+   if avgrisk == 0 then
+      piracyrisk = piracyrisk[1]
+      riskreward = 0
+   elseif avgrisk <= 25 then
+      piracyrisk = piracyrisk[2]
+      riskreward = 150
+   elseif avgrisk > 25 and avgrisk <= 100 then
+      piracyrisk = piracyrisk[3]
+      riskreward = 300
+   else
+      piracyrisk = piracyrisk[4]
+      riskreward = 450
+   end
+
+   cargo_size = rnd.rnd(10 + 5 * tier, 20 + 15 * tier)
+   jumpreward = (commodity.price(cargo) * (20+riskreward)) / 100
+   distreward = math.log((50+riskreward)*commodity.price(cargo)) / 100
+   payment = (1.85^tier
+         * (avgrisk*riskreward + num_jumps*jumpreward + travel_dist*distreward
+            + 10000)
+         * (1 + 0.05*rnd.twosigma()))
 end
 
 function accept()
