@@ -1230,77 +1230,74 @@ void pilot_broadcast( Pilot *p, const char *msg, int ignore_int )
  *    @param p Pilot sending the distress signal.
  *    @param attacker Attacking pilot.
  *    @param msg Message in distress signal.
- *    @param ignore_int Whether or not should ignore interference.
  */
-void pilot_distress( Pilot *p, Pilot *attacker, const char *msg, int ignore_int )
+void pilot_distress(Pilot *p, Pilot *attacker, const char *msg)
 {
-   int i, r;
-
-   /* Broadcast the message. */
-   if (msg[0] != '\0')
-      pilot_broadcast( p, msg, ignore_int );
+   int i;
+   int player_hit;
 
    /* Use the victim's target if the attacker is unknown. */
    if (attacker == NULL)
       attacker = pilot_get(p->target);
 
-   /* Now proceed to see if player.p should incur faction loss because
-    * of the broadcast signal. */
+   /* If the attacker is still NULL, there's no point in continuing.
+    * Likely it means either the distressing is in error, or the
+    * attacker is long dead and the distressing pilot has no new
+    * target. */
+   if (attacker == NULL)
+      return;
 
-   /* Consider not in range at first. */
-   r = 0;
+   /* Broadcast the message. */
+   if (msg[0] != '\0')
+      pilot_broadcast(p, msg, 0);
 
-   if ((attacker == player.p) && !pilot_isFlag(p, PILOT_DISTRESSED)) {
-      /* Check if planet is in range. */
-      for (i=0; i<array_size(cur_system->planets); i++) {
-         if (planet_hasService(cur_system->planets[i], PLANET_SERVICE_INHABITED) &&
-               (!ignore_int && pilot_inRangePlanet(p, i)) &&
-               !areEnemies(p->faction, cur_system->planets[i]->faction)) {
-            r = 1;
-            break;
-         }
-      }
-   }
+   player_hit = 0;
 
-   /* Now we must check to see if a pilot is in range. */
+   /* Check to see if a pilot is in range. */
    for (i=0; i<array_size(pilot_stack); i++) {
       /* Skip if unsuitable. */
-      if ((pilot_stack[i]->ai == NULL) || (pilot_stack[i]->id == p->id) ||
-            (pilot_isFlag(pilot_stack[i], PILOT_DEAD)) ||
-            (pilot_isFlag(pilot_stack[i], PILOT_DELETE)))
+      if ((pilot_stack[i]->ai == NULL) || (pilot_stack[i]->id == p->id)
+            || (pilot_isFlag(pilot_stack[i], PILOT_DEAD))
+            || (pilot_isFlag(pilot_stack[i], PILOT_DELETE)))
          continue;
 
-      if (!ignore_int) {
-         if (!pilot_inRangePilot(p, pilot_stack[i], NULL)) {
-            /* If the pilots are within sensor range of each other, send the
-             * distress signal. */
-            if (!pilot_inRangePilot(pilot_stack[i], p, NULL)
-                  || ((attacker != NULL)
-                     && !pilot_inRangePilot(pilot_stack[i], attacker, NULL)))
-               continue;
-         }
-
-         /* Send AI the distress signal. */
-         ai_getDistress( pilot_stack[i], p, attacker );
-
-         /* Check if should take faction hit. */
-         if ((attacker == player.p) && !pilot_isFlag(p, PILOT_DISTRESSED) &&
-               !areEnemies(p->faction, pilot_stack[i]->faction))
-            r = 1;
+      if (!pilot_inRangePilot(p, pilot_stack[i], NULL)) {
+         /* If the pilots are within sensor range of each other, send the
+          * distress signal. */
+         if (!pilot_inRangePilot(pilot_stack[i], p, NULL)
+               || !pilot_inRangePilot(pilot_stack[i], attacker, NULL))
+            continue;
       }
+
+      /* Send AI the distress signal. */
+      ai_getDistress(pilot_stack[i], p, attacker);
+
+      /* Check if should take faction hit if player attacked. */
+      if (!areEnemies(p->faction, pilot_stack[i]->faction))
+         player_hit = 1;
    }
 
    /* Player only gets one faction hit per pilot. */
-   if (!pilot_isFlag(p, PILOT_DISTRESSED)) {
+   if (!pilot_isFlag(p, PILOT_DISTRESSED)
+         && ((attacker->faction == FACTION_PLAYER)
+            || (attacker->parent == PLAYER_ID))) {
+      /* Check if planet is in range. */
+      for (i=0; i<array_size(cur_system->planets); i++) {
+         if (planet_hasService(cur_system->planets[i], PLANET_SERVICE_INHABITED)
+               && pilot_inRangePlanet(p, i)
+               && !areEnemies(p->faction, cur_system->planets[i]->faction)) {
+            player_hit = 1;
+            break;
+         }
+      }
 
       /* Modify faction, about 1 for a llama, 4.2 for a hawking */
-      if (r && (attacker != NULL)
-            && ((attacker->faction == FACTION_PLAYER)
-               || (attacker->parent == PLAYER_ID)))
-         faction_modPlayer( p->faction, -(pow(p->base_mass, 0.2) - 1.), "distress" );
+      if (player_hit) {
+         faction_modPlayer(p->faction, -(pow(p->base_mass,0.2)-1.), "distress");
 
-      /* Set flag to avoid a second faction hit. */
-      pilot_setFlag(p, PILOT_DISTRESSED);
+         /* Set flag to avoid a second faction hit. */
+         pilot_setFlag(p, PILOT_DISTRESSED);
+      }
    }
 }
 
