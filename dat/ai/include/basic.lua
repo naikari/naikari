@@ -696,9 +696,22 @@ function __hyp_brake ()
    end
 end
 function __hyp_jump ()
-   if ai.hyperspace() == nil then
-      local p = ai.pilot()
+   local p = ai.pilot()
+   local result = ai.hyperspace()
+   if result == nil then
       p:msg(p:followers(), "hyperspace", ai.nearhyptarget())
+   elseif result == -2 then
+      -- Hyperdrive is offline.
+      debug_print(
+         string.format("'%s' cannot jump (hyperdrive disabled).", p:name()))
+      ai.poptask()
+      return
+   elseif result == -3 then
+      -- Fuel too low; cannot jump.
+      debug_print(
+         string.format("'%s' cannot jump (not enough fuel).", p:name()))
+      ai.poptask()
+      return
    end
    ai.popsubtask() -- Keep the task even if succeeding in case pilot gets pushed away.
 end

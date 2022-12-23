@@ -415,6 +415,7 @@ static int nlua_loadBasic( lua_State* L )
    /* Override print to print in the console. */
    lua_register(L, "print", cli_print);
    lua_register(L, "warn",  cli_warn);
+   lua_register(L, "debug_print", cli_debug);
 
    /* Gettext functionality. */
    lua_register(L, "_", nlua_gettext);

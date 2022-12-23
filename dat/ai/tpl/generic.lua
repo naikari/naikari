@@ -264,8 +264,11 @@ function control ()
       if l then
          local dist = ai.dist( l )
          if lmd < dist then
-            if task ~= "follow_fleet" then
-               if task ~= nil then ai.poptask() end
+            if task ~= "follow_fleet" and task ~= "hyperspace"
+                  and task ~= "land" then
+               if task ~= nil then
+                  ai.poptask()
+               end
                ai.pushtask("follow_fleet", false)
             end
             return

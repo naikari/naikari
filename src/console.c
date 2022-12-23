@@ -83,9 +83,10 @@ static int cli_firstline   = 1; /**< Is this the first line? */
 static int cli_script( lua_State *L );
 //static int cli_printOnly( lua_State *L );
 static const luaL_Reg cli_methods[] = {
-   { "print", cli_print },
-   { "script", cli_script },
-   { "warn", cli_warn },
+   {"print", cli_print},
+   {"script", cli_script},
+   {"warn", cli_warn},
+   {"debug_print", cli_debug},
    {NULL, NULL}
 }; /**< Console only functions. */
 
@@ -188,6 +189,19 @@ int cli_warn( lua_State *L )
    WARN("%s", msg );
    /* Add to console. */
    cli_printCoreString( msg, 1 );
+   return 0;
+}
+
+
+/**
+ * @brief Barebones debug print implementation for Lua.
+ *
+ * @luafunc warn
+ */
+int cli_debug(lua_State *L)
+{
+   const char *msg = luaL_checkstring(L, 1);
+   DEBUG("%s", msg);
    return 0;
 }
 
