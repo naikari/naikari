@@ -1275,8 +1275,8 @@ void pilot_distress( Pilot *p, Pilot *attacker, const char *msg, int ignore_int 
             /* If the pilots are within sensor range of each other, send the
              * distress signal. */
             if (!pilot_inRangePilot(pilot_stack[i], p, NULL)
-                  || (attacker == NULL)
-                  || !pilot_inRangePilot(pilot_stack[i], attacker, NULL))
+                  || ((attacker != NULL)
+                     && !pilot_inRangePilot(pilot_stack[i], attacker, NULL)))
                continue;
          }
 
