@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-22 00:42-0500\n"
+"POT-Creation-Date: 2022-12-23 15:38-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -3833,7 +3833,7 @@ msgstr ""
 msgid "Geron"
 msgstr ""
 
-#: dat/assets/geron.xml:27
+#: dat/assets/geron.xml:28
 msgid ""
 "Geron was once an Imperial colony, but when House Goddard was established "
 "and granted full authority over the system, it also acquired jurisdiction "
@@ -3844,7 +3844,7 @@ msgid ""
 "civilian world that houses the majority of Goddard's citizens."
 msgstr ""
 
-#: dat/assets/geron.xml:28
+#: dat/assets/geron.xml:29
 msgid ""
 "Like many spaceport bars, this one is loud, crowded and a little smelly. In "
 "other words, it's a home away from home for those who make their living in "
@@ -12632,14 +12632,14 @@ msgstr "랜슬롯"
 #. Calculate spawn data
 #: dat/fleet.xml:224 dat/fleet.xml:982 dat/fleet.xml:983 dat/fleet.xml:984
 #: dat/fleet.xml:985 dat/factions/spawn/pirate.lua:4
-#: dat/missions/neutral/trader_escort.lua:302
-#: dat/missions/neutral/trader_escort.lua:308
-#: dat/missions/neutral/trader_escort.lua:316
-#: dat/missions/neutral/trader_escort.lua:330
-#: dat/missions/neutral/trader_escort.lua:335
-#: dat/missions/neutral/trader_escort.lua:350
-#: dat/missions/neutral/trader_escort.lua:355
-#: dat/missions/neutral/trader_escort.lua:360
+#: dat/missions/neutral/trader_escort.lua:303
+#: dat/missions/neutral/trader_escort.lua:309
+#: dat/missions/neutral/trader_escort.lua:317
+#: dat/missions/neutral/trader_escort.lua:331
+#: dat/missions/neutral/trader_escort.lua:336
+#: dat/missions/neutral/trader_escort.lua:351
+#: dat/missions/neutral/trader_escort.lua:356
+#: dat/missions/neutral/trader_escort.lua:361
 #: dat/missions/tutorial/tutorial4.lua:178
 #, fuzzy
 msgid "Pirate Hyena"
@@ -13007,29 +13007,29 @@ msgstr "해적 조상"
 #. Shuts him up for at least 5s.
 #. Make it interesting
 #: dat/fleet.xml:866 dat/fleet.xml:867 dat/fleet.xml:868
-#: dat/missions/neutral/trader_escort.lua:298
+#: dat/missions/neutral/trader_escort.lua:299
 msgid "Convoy Llama"
 msgstr ""
 
 #: dat/fleet.xml:875 dat/fleet.xml:876 dat/fleet.xml:877 dat/fleet.xml:878
-#: dat/missions/neutral/trader_escort.lua:304
+#: dat/missions/neutral/trader_escort.lua:305
 msgid "Convoy Koala"
 msgstr ""
 
 #: dat/fleet.xml:885 dat/fleet.xml:886 dat/fleet.xml:896 dat/fleet.xml:897
 #: dat/fleet.xml:898 dat/fleet.xml:908 dat/fleet.xml:909 dat/fleet.xml:912
-#: dat/fleet.xml:913 dat/missions/neutral/trader_escort.lua:311
-#: dat/missions/neutral/trader_escort.lua:324
-#: dat/missions/neutral/trader_escort.lua:343
+#: dat/fleet.xml:913 dat/missions/neutral/trader_escort.lua:312
+#: dat/missions/neutral/trader_escort.lua:325
+#: dat/missions/neutral/trader_escort.lua:344
 msgid "Convoy Rhino"
 msgstr ""
 
 #: dat/fleet.xml:887 dat/fleet.xml:888 dat/fleet.xml:889 dat/fleet.xml:899
 #: dat/fleet.xml:900 dat/fleet.xml:901 dat/fleet.xml:910 dat/fleet.xml:911
 #: dat/fleet.xml:914 dat/fleet.xml:915
-#: dat/missions/neutral/trader_escort.lua:311
-#: dat/missions/neutral/trader_escort.lua:324
-#: dat/missions/neutral/trader_escort.lua:343
+#: dat/missions/neutral/trader_escort.lua:312
+#: dat/missions/neutral/trader_escort.lua:325
+#: dat/missions/neutral/trader_escort.lua:344
 msgid "Convoy Mule"
 msgstr ""
 
@@ -21529,6 +21529,11 @@ msgstr ""
 #. 2 methods for dir
 #. Need to get closer
 #. Need to start braking
+#. Hyperdrive is offline.
+#. XXX: Special exception for if this is one of the player's
+#. carrier fighters, since those have hyperdrive disabled on
+#. purpose.
+#. Fuel too low; cannot jump.
 #. Keep the task even if succeeding in case pilot gets pushed away.
 #.
 #. -- Boards the target
@@ -21560,7 +21565,7 @@ msgstr ""
 #. make sure pilot exists
 #. Set the target
 #. See if finished refueling
-#: dat/ai/include/basic.lua:833
+#: dat/ai/include/basic.lua:851
 msgid "Finished fuel transfer."
 msgstr ""
 
@@ -22968,29 +22973,29 @@ msgstr ""
 #.
 #. Example usage: my_enum = enumerate({"first", "second", "third"})
 #. Example usage: print(my_enum.first)
-#: dat/events/escorts.lua:511 dat/scripts/escorthelper.lua:23 src/escort.c:299
+#: dat/events/escorts.lua:511 dat/scripts/escorthelper.lua:23 src/escort.c:303
 msgid "Escort Orders"
 msgstr ""
 
-#: dat/events/escorts.lua:512 dat/scripts/escorthelper.lua:24 src/escort.c:300
+#: dat/events/escorts.lua:512 dat/scripts/escorthelper.lua:24 src/escort.c:304
 msgid "Select the order to give to this escort."
 msgstr ""
 
 #: dat/events/escorts.lua:513 dat/events/escorts.lua:515
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:33
-#: src/escort.c:288
+#: src/escort.c:292
 msgid "Hold Formation"
 msgstr ""
 
 #: dat/events/escorts.lua:513 dat/events/escorts.lua:518
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:36
-#: src/escort.c:289
+#: src/escort.c:293
 msgid "Return To Ship"
 msgstr ""
 
 #: dat/events/escorts.lua:513 dat/events/escorts.lua:521
 #: dat/scripts/escorthelper.lua:26 dat/scripts/escorthelper.lua:39
-#: src/escort.c:290
+#: src/escort.c:294
 msgid "Clear Orders"
 msgstr ""
 
@@ -23003,7 +23008,7 @@ msgstr ""
 #. Run callback.
 #: dat/events/escorts.lua:514 dat/rescue.lua:46 dat/rescue.lua:60
 #: dat/rescue.lua:121 dat/rescue.lua:174 dat/scripts/escorthelper.lua:26
-#: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:291 src/map_find.c:246
+#: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:295 src/map_find.c:246
 #: src/options.c:280 src/options.c:792 src/options.c:912 src/options.c:1174
 #: src/options.c:1241
 msgid "Cancel"
@@ -23014,12 +23019,12 @@ msgstr ""
 msgid "#F%s:#0 Holding formation."
 msgstr ""
 
-#: dat/events/escorts.lua:520 src/escort.c:316
+#: dat/events/escorts.lua:520 src/escort.c:320
 #, c-format, lua-format
 msgid "#F%s:#0 Returning to ship."
 msgstr ""
 
-#: dat/events/escorts.lua:523 src/escort.c:321
+#: dat/events/escorts.lua:523 src/escort.c:325
 #, c-format, lua-format
 msgid "#F%s:#0 Clearing orders."
 msgstr ""
@@ -26432,7 +26437,7 @@ msgstr ""
 #: dat/missions/shadow/shadowvigil.lua:89 src/gui.c:1666 src/map.c:531
 #: src/map.c:537 src/map.c:543 src/map.c:549 src/map.c:555 src/map.c:561
 #: src/map.c:1937 src/map_overlay.c:159 src/outfit.c:304 src/outfit.c:324
-#: src/outfit.c:898 src/player_autonav.c:236
+#: src/outfit.c:898 src/player_autonav.c:237
 msgid "Unknown"
 msgstr ""
 
@@ -27688,7 +27693,7 @@ msgstr ""
 #: dat/missions/flf/prelude/flf_pre02.lua:262 dat/missions/neutral/cargo.lua:45
 #: dat/missions/neutral/drunkard.lua:101
 #: dat/missions/neutral/nebu_satellite.lua:112
-#: dat/missions/neutral/teenager.lua:56 dat/missions/pirate/hitman.lua:37
+#: dat/missions/neutral/teenager.lua:60 dat/missions/pirate/hitman.lua:37
 #: dat/missions/pirate/hitman2.lua:38 dat/missions/shadow/shadowvigil.lua:163
 #: dat/missions/shark/sh00_ancestorkill.lua:78
 #: dat/missions/shark/sh02_tapping.lua:102
@@ -27716,7 +27721,7 @@ msgstr "프론티어 시스템"
 #: dat/missions/baron/baron_baron.lua:92
 #: dat/missions/baron/baron_prince.lua:129
 #: dat/missions/flf/dvk/flf_dvk01.lua:64 dat/missions/flf/dvk/flf_dvk02.lua:100
-#: dat/missions/neutral/patrol.lua:65 dat/missions/neutral/teenager.lua:54
+#: dat/missions/neutral/patrol.lua:65 dat/missions/neutral/teenager.lua:58
 #: dat/missions/pirate/patrol.lua:53 dat/missions/pirate/ship_stealing.lua:187
 #: dat/missions/pirate/ship_stealing.lua:517
 #, fuzzy
@@ -29169,28 +29174,28 @@ msgstr ""
 #: dat/missions/empire/es_cargo.lua:27
 #: dat/missions/empire/es_longdistancecargo.lua:30
 #: dat/missions/neutral/cargo.lua:39 dat/missions/neutral/cargo_rush.lua:31
-#: dat/missions/neutral/trader_escort.lua:41 dat/missions/zalek/zlk_test.lua:66
+#: dat/missions/neutral/trader_escort.lua:42 dat/missions/zalek/zlk_test.lua:66
 msgid "Piracy Risk: None"
 msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:28
 #: dat/missions/empire/es_longdistancecargo.lua:31
 #: dat/missions/neutral/cargo.lua:40 dat/missions/neutral/cargo_rush.lua:32
-#: dat/missions/neutral/trader_escort.lua:42 dat/missions/zalek/zlk_test.lua:67
+#: dat/missions/neutral/trader_escort.lua:43 dat/missions/zalek/zlk_test.lua:67
 msgid "Piracy Risk: Low"
 msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:29
 #: dat/missions/empire/es_longdistancecargo.lua:32
 #: dat/missions/neutral/cargo.lua:41 dat/missions/neutral/cargo_rush.lua:33
-#: dat/missions/neutral/trader_escort.lua:43 dat/missions/zalek/zlk_test.lua:68
+#: dat/missions/neutral/trader_escort.lua:44 dat/missions/zalek/zlk_test.lua:68
 msgid "Piracy Risk: Medium"
 msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:30
 #: dat/missions/empire/es_longdistancecargo.lua:33
 #: dat/missions/neutral/cargo.lua:42 dat/missions/neutral/cargo_rush.lua:34
-#: dat/missions/neutral/trader_escort.lua:44 dat/missions/zalek/zlk_test.lua:69
+#: dat/missions/neutral/trader_escort.lua:45 dat/missions/zalek/zlk_test.lua:69
 msgid "Piracy Risk: High"
 msgstr ""
 
@@ -29233,7 +29238,7 @@ msgstr[0] "프론티어 시스템"
 #. Mission is accepted
 #: dat/missions/empire/es_cargo.lua:114
 #: dat/missions/empire/es_longdistancecargo.lua:126
-#: dat/missions/neutral/anxiousmerchant.lua:111
+#: dat/missions/neutral/anxiousmerchant.lua:135
 #: dat/missions/neutral/cargo.lua:98 dat/missions/neutral/cargo_rush.lua:132
 #: dat/missions/pirate/pir_cargo.lua:130
 msgid ""
@@ -29255,7 +29260,7 @@ msgstr[0] ""
 
 #: dat/missions/empire/es_cargo.lua:134
 #: dat/missions/empire/es_longdistancecargo.lua:146
-#: dat/missions/neutral/anxiousmerchant.lua:132
+#: dat/missions/neutral/anxiousmerchant.lua:156
 #: dat/missions/neutral/cargo_rush.lua:152
 #: dat/missions/pirate/pir_cargo.lua:150
 msgid ""
@@ -29266,7 +29271,7 @@ msgstr ""
 
 #: dat/missions/empire/es_cargo.lua:142
 #: dat/missions/empire/es_longdistancecargo.lua:154
-#: dat/missions/neutral/anxiousmerchant.lua:139
+#: dat/missions/neutral/anxiousmerchant.lua:163
 #: dat/missions/neutral/cargo_rush.lua:160
 #: dat/missions/pirate/pir_cargo.lua:158
 msgid ""
@@ -32364,14 +32369,15 @@ msgstr ""
 msgid "Merchant"
 msgstr ""
 
+#. Hardcoded tier of 4 ("Emergency" level)
+#. Calculate time limit. Depends on tier and distance.
 #. Allow extra time for refuelling stops.
-#. Range of 5-10 tons for tier 0, 21-58 for tier 4.
-#: dat/missions/neutral/anxiousmerchant.lua:99
+#: dat/missions/neutral/anxiousmerchant.lua:123
 msgid "If I don't get this {tonnes} kt of {cargo} to {planet}…"
 msgid_plural "If I don't get these {tonnes} kt of {cargo} to {planet}…"
 msgstr[0] ""
 
-#: dat/missions/neutral/anxiousmerchant.lua:116
+#: dat/missions/neutral/anxiousmerchant.lua:140
 msgid "You need {shortfall} kt more of empty space."
 msgid_plural "You need {shortfall} kt more of empty space."
 msgstr[0] ""
@@ -35348,7 +35354,7 @@ msgstr ""
 #. </flags>
 #. <avail>
 #. <priority>20</priority>
-#. <chance>5</chance>
+#. <chance>20</chance>
 #. <location>Bar</location>
 #. <faction>Dvaered</faction>
 #. <faction>Empire</faction>
@@ -35384,20 +35390,24 @@ msgid ""
 "\"Thank you! The yacht doesn't have a working hyperdrive, so they won't have "
 "left the system. It's a Gawain named Credence. Just disable it and board it, "
 "then transport my disobedient son and his girlfriend back here. Don't worry "
-"about the yacht, I'll have it recovered later. Oh, and one more thing, "
-"though it should go without saying: whatever you do, don't destroy the "
-"yacht! I don't want to lose my son over this, so make sure you equip some "
-"non-lethal weapons, like ion cannons or Medusa missiles. Well then, I hope "
-"to see you again soon.\""
+"about the yacht, I'll have it recovered later.\n"
+"\n"
+"\"Oh, and one more thing, though it should go without saying: whatever you "
+"do, don't destroy the yacht! I don't want to lose my son over this, so make "
+"sure you equip some non-lethal weapons, like ion cannons or Medusa missiles, "
+"or maybe a weapons ionizer. You should be able to find something suitable at "
+"the outfitter.\n"
+"\n"
+"\"Well then, I hope to see you again soon.\""
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:38
+#: dat/missions/neutral/teenager.lua:42
 msgid ""
 "The Credence has been destroyed! You resolve to get out of here as soon as "
 "possible so the father doesn't do something to you."
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:40
+#: dat/missions/neutral/teenager.lua:44
 msgid ""
 "You board the Gawain and find an enraged teenage boy and a disillusioned "
 "teenage girl. The boy is furious that you attacked and disabled his ship, "
@@ -35406,7 +35416,7 @@ msgid ""
 "ship and seal the airlock behind you."
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:42
+#: dat/missions/neutral/teenager.lua:46
 msgid ""
 "The boy's father awaits you at the spaceport. He gives his son and the young "
 "lady a stern look and curtly commands them to wait for him in the spaceport "
@@ -35419,44 +35429,44 @@ msgid ""
 "again, and good luck on your travels.\""
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:46
+#: dat/missions/neutral/teenager.lua:50
 msgid "A middle-aged man"
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:47
+#: dat/missions/neutral/teenager.lua:51
 msgid ""
 "You see a middle-aged man, who appears to be one of the locals, looking "
 "around the bar, apparently in search of a suitable pilot."
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:49
+#: dat/missions/neutral/teenager.lua:53
 msgid ""
 "A disgruntled parent has asked you to fetch his son and his son's "
 "girlfriend, who have taken a yacht and are joyriding it in the {system} "
 "system."
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:50
+#: dat/missions/neutral/teenager.lua:54
 msgid "300 k¢"
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:52
+#: dat/missions/neutral/teenager.lua:56
 msgid "The macho teenager"
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:55
+#: dat/missions/neutral/teenager.lua:59
 msgid "Disable and board Gawain Credence"
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:104
+#: dat/missions/neutral/teenager.lua:124
 msgid "Credence"
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:157
+#: dat/missions/neutral/teenager.lua:177
 msgid "Teenagers"
 msgstr ""
 
-#: dat/missions/neutral/teenager.lua:157
+#: dat/missions/neutral/teenager.lua:177
 msgid "Disillusioned teenagers."
 msgstr ""
 
@@ -35479,74 +35489,75 @@ msgstr ""
 #. <faction>Soromid</faction>
 #. <faction>Thurion</faction>
 #. <faction>Za'lek</faction>
+#. <done>Follow Tutorial</done>
 #. </avail>
 #. </mission>
 #. --
 #. Escort a convoy of traders to a destination--
-#: dat/missions/neutral/trader_escort.lua:32
+#: dat/missions/neutral/trader_escort.lua:33
 msgid "Escort: Tiny Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:33
+#: dat/missions/neutral/trader_escort.lua:34
 msgid "Escort: Small Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:34
+#: dat/missions/neutral/trader_escort.lua:35
 msgid "Escort: Medium Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:35
+#: dat/missions/neutral/trader_escort.lua:36
 msgid "Escort: Large Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:36
+#: dat/missions/neutral/trader_escort.lua:37
 msgid "Escort: Huge Convoy to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:38
+#: dat/missions/neutral/trader_escort.lua:39
 msgid ""
 "A convoy of traders needs protection while they go to {planet} in the "
 "{system} system. You must stick with the convoy at all times, waiting to "
 "jump or land until the entire convoy has done so."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:46
+#: dat/missions/neutral/trader_escort.lua:47
 msgid "Convey Escort"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:47
+#: dat/missions/neutral/trader_escort.lua:48
 msgid "Escort a convoy of traders to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:49
+#: dat/missions/neutral/trader_escort.lua:50
 msgid ""
 "You successfully escorted the trading convoy to the destination. There "
 "wasn't a single casualty and you are rewarded the full amount."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:52
+#: dat/missions/neutral/trader_escort.lua:53
 msgid ""
 "You've arrived with the trading convoy more or less intact. Your pay is "
 "docked slightly due to the loss of part of the convoy."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:53
+#: dat/missions/neutral/trader_escort.lua:54
 msgid ""
 "You arrive with what's left of the convoy. It's not much, but it's better "
 "than nothing. You are paid a steeply discounted amount."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:55
+#: dat/missions/neutral/trader_escort.lua:56
 msgid "You have landed, abandoning your mission to escort the trading convoy."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:57
+#: dat/missions/neutral/trader_escort.lua:58
 msgid ""
 "You landed at the planet before ensuring that the rest of your convoy was "
 "safe. You have abandoned your duties, and failed your mission."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:59
+#: dat/missions/neutral/trader_escort.lua:60
 msgid "Convoy ships under attack! Requesting immediate assistance!"
 msgstr ""
 
@@ -35557,12 +35568,12 @@ msgstr ""
 #. have this level of granularity.
 #. Choose mission reward.
 #. Reward depends on type of cargo hauled. Hauling expensive commodities gives a better deal.
-#: dat/missions/neutral/trader_escort.lua:142
+#: dat/missions/neutral/trader_escort.lua:143
 msgid "The destination is {distance} jump away. "
 msgid_plural "The destination is {distance} jumps away. "
 msgstr[0] ""
 
-#: dat/missions/neutral/trader_escort.lua:145
+#: dat/missions/neutral/trader_escort.lua:146
 msgid ""
 "You only have enough fuel for {range} jump. You cannot stop to refuel. "
 "Accept the mission anyway?"
@@ -35573,29 +35584,29 @@ msgstr[0] ""
 
 #. This variable holds the system the player is supposed to jump to NEXT.
 #. The place where the AI ships spawn from.
-#: dat/missions/neutral/trader_escort.lua:180
+#: dat/missions/neutral/trader_escort.lua:181
 #: dat/missions/tutorial/tutorial_follow.lua:176
 msgid "You jumped into the wrong system."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:189
+#: dat/missions/neutral/trader_escort.lua:190
 msgid "You jumped before the convoy you were escorting."
 msgstr ""
 
 #. Treat those that didn't exit as dead
-#: dat/missions/neutral/trader_escort.lua:227
+#: dat/missions/neutral/trader_escort.lua:228
 #, fuzzy
 msgid "The convoy you were escorting has been destroyed."
 msgstr "탑승 준비!"
 
 #. No more left to defend, proceed to follow the rest
 #. Handle the jumps of convoy.
-#: dat/missions/neutral/trader_escort.lua:244
+#: dat/missions/neutral/trader_escort.lua:245
 msgid "{ship} has jumped to {system}."
 msgstr ""
 
 #. Handle landing of convoy
-#: dat/missions/neutral/trader_escort.lua:263
+#: dat/missions/neutral/trader_escort.lua:264
 msgid "{ship} has landed on {planet}."
 msgstr ""
 
@@ -35606,33 +35617,33 @@ msgstr ""
 msgid "No minspeed or leader set for convoy, maybe the table is empty."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:502
+#: dat/missions/neutral/trader_escort.lua:500
 msgid ""
 "Protect the convoy ships and wait for them to land on {planet} ({landed}/"
 "{remaining})"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:505
+#: dat/missions/neutral/trader_escort.lua:503
 #: dat/missions/shadow/shadowvigil.lua:180
 #: dat/missions/soromid/comingout/srm_comingout5.lua:200
 #: dat/missions/tutorial/tutorial_follow.lua:119
 msgid "Land on {planet}"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:512
+#: dat/missions/neutral/trader_escort.lua:510
 msgid ""
 "Protect the convoy ships and wait for them to jump to {system} ({jumped}/"
 "{remaining})"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:515
+#: dat/missions/neutral/trader_escort.lua:513
 #: dat/missions/shadow/shadowvigil.lua:189
 #: dat/missions/soromid/comingout/srm_comingout5.lua:210
 #: dat/missions/tutorial/tutorial_follow.lua:116
 msgid "Jump to {system}"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:519
+#: dat/missions/neutral/trader_escort.lua:517
 #: dat/missions/shadow/shadowvigil.lua:193
 msgid "{remaining} more jump after this one"
 msgid_plural "{remaining} more jumps after this one"
@@ -37694,8 +37705,8 @@ msgid ""
 "\"Pretty simple, really: we want someone to show how great Nexus ship "
 "designs are by destroying a Pirate Vendetta with just one of our smallest "
 "ship model, the Shark. Of course, the pilot of the Vendetta has a bounty on "
-"his head, so it won't be illegal. The sum of the bounty will be paid to you "
-"and Nexus will add a little extra. Would you be interested?\""
+"his head, so it won't be illegal. You will take the bounty as usual, and "
+"Nexus will add a little extra on top of that. Would you be interested?\""
 msgstr ""
 
 #: dat/missions/shark/sh00_ancestorkill.lua:48
@@ -41022,9 +41033,9 @@ msgstr ""
 
 #: dat/missions/tutorial/tutorial_follow.lua:58
 msgid ""
-"You and Albert successfully land at his destination. When you meet up with "
-"him at the spaceport, you can tell that he's relieved nothing bad happened "
-"as he hands you your payment. \"Thank you again for your assistance,\" he "
+"You and Ian successfully land at his destination. When you meet up with him "
+"at the spaceport, you can tell that he's relieved nothing bad happened as he "
+"hands you your payment. \"Thank you again for your assistance,\" he "
 "reiterates. \"I think I feel a bit better about flying now, thanks to you. "
 "It'll be awhile before I can feel comfortable going into hostile space, but "
 "in the heavily patrolled places, I can rest assured now that I'm competent "
@@ -41517,20 +41528,20 @@ msgstr "저지름: %s"
 msgid "Attack Target"
 msgstr ""
 
-#: dat/scripts/escorthelper.lua:32 src/escort.c:230
+#: dat/scripts/escorthelper.lua:32 src/escort.c:234
 #, c-format, lua-format
 msgid "#FEscorts:#0 Attacking %s."
 msgstr ""
 
-#: dat/scripts/escorthelper.lua:35 src/escort.c:243
+#: dat/scripts/escorthelper.lua:35 src/escort.c:247
 msgid "#FEscorts#0: Holding formation."
 msgstr ""
 
-#: dat/scripts/escorthelper.lua:38 src/escort.c:256
+#: dat/scripts/escorthelper.lua:38 src/escort.c:260
 msgid "#FEscorts:#0 Returning to ship."
 msgstr ""
 
-#: dat/scripts/escorthelper.lua:41 src/escort.c:269
+#: dat/scripts/escorthelper.lua:41 src/escort.c:273
 msgid "#FEscorts:#0 Clearing orders."
 msgstr ""
 
@@ -46184,7 +46195,7 @@ msgstr ""
 msgid "Communication Channel"
 msgstr ""
 
-#: src/comm.c:380 src/console.c:676 src/dev_sysedit.c:1363
+#: src/comm.c:380 src/console.c:690 src/dev_sysedit.c:1363
 #: src/dev_sysedit.c:1490 src/dev_sysedit.c:1557 src/dev_sysedit.c:1752
 #: src/dev_sysedit.c:1927 src/dev_sysedit.c:2012 src/dev_uniedit.c:1014
 #: src/dev_uniedit.c:1226 src/dev_uniedit.c:1484 src/info.c:269 src/info.c:354
@@ -46789,17 +46800,17 @@ msgid ""
 "copying your backup configuration over your current configuration."
 msgstr ""
 
-#: src/console.c:613
+#: src/console.c:627
 msgid "Error printing results."
 msgstr ""
 
-#: src/console.c:653
+#: src/console.c:667
 #, fuzzy
 msgid "#gWelcome to the Lua console!"
 msgstr "네뷸라에 온것을 환영합니다"
 
 #. Create the window.
-#: src/console.c:662 src/input.c:147
+#: src/console.c:676 src/input.c:147
 msgid "Lua Console"
 msgstr ""
 
@@ -47605,17 +47616,17 @@ msgid "Please do not give the ship the same name as another of your ships."
 msgstr ""
 
 #. Create the pilot.
-#: src/escort.c:146
+#: src/escort.c:150
 #, c-format
 msgid "Escort %s"
 msgstr ""
 
-#: src/escort.c:311
+#: src/escort.c:315
 #, c-format
 msgid "#F%s#0: Holding formation."
 msgstr ""
 
-#: src/escort.c:348
+#: src/escort.c:352
 msgid "#gEscorts: #0Jumping."
 msgstr ""
 
@@ -50840,11 +50851,11 @@ msgstr ""
 msgid "Failed to create new Lua state."
 msgstr "새 Lua 상태를 생성하지 못했습니다."
 
-#: src/nlua.c:501 src/nlua.c:506
+#: src/nlua.c:502 src/nlua.c:507
 msgid "require: package.path not found."
 msgstr ""
 
-#: src/nlua.c:556
+#: src/nlua.c:557
 #, fuzzy, c-format
 msgid ""
 "require: %s not found in ndata.\n"
@@ -52607,40 +52618,40 @@ msgstr ""
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:2541 src/pilot.c:2590
+#: src/pilot.c:2539 src/pilot.c:2588
 msgid "#rJump aborted: strayed too far from jump point."
 msgstr ""
 
-#: src/pilot.c:2548
+#: src/pilot.c:2546
 msgid "#rJump aborted: afterburner active."
 msgstr ""
 
-#: src/pilot.c:2562
+#: src/pilot.c:2560
 msgid "#rJump aborted."
 msgstr ""
 
-#: src/pilot.c:2610
+#: src/pilot.c:2608
 #, c-format
 msgid "Pilot '%s' trying to jump through exit-only jump from '%s' to '%s'"
 msgstr ""
 
-#: src/pilot.c:2962
+#: src/pilot.c:2960
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s' failed safety check:\n"
 "%s"
 msgstr "Mission Lua '%s'구문 오류: %s"
 
-#: src/pilot.c:2965
+#: src/pilot.c:2963
 #, c-format
 msgid "   [%d] %s"
 msgstr ""
 
-#: src/pilot.c:3059 src/pilot.c:3096
+#: src/pilot.c:3057 src/pilot.c:3094
 msgid "Unable to allocate memory"
 msgstr ""
 
-#: src/pilot.c:3183
+#: src/pilot.c:3181
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 
@@ -53088,7 +53099,7 @@ msgstr ""
 msgid "#rYou are too far from a jump point to initiate hyperspace."
 msgstr ""
 
-#: src/player.c:1895 src/player_autonav.c:88
+#: src/player.c:1895 src/player_autonav.c:89
 msgid "#rHyperspace drive is offline."
 msgstr ""
 
@@ -53310,66 +53321,66 @@ msgstr ""
 msgid "Player ship '%s' has invalid weapon id %d [max %d]."
 msgstr ""
 
-#: src/player_autonav.c:83
+#: src/player_autonav.c:84
 msgid "#rNot enough fuel to jump for autonav."
 msgstr ""
 
-#: src/player_autonav.c:95
+#: src/player_autonav.c:96
 msgid "#oAutonav: auto-hyperspace sequence engaged."
 msgstr ""
 
-#: src/player_autonav.c:183
+#: src/player_autonav.c:184
 #, fuzzy
 msgid "position"
 msgstr "옵션"
 
-#: src/player_autonav.c:235
+#: src/player_autonav.c:236
 #, c-format
 msgid "#oAutonav: following %s."
 msgstr ""
 
-#: src/player_autonav.c:260
+#: src/player_autonav.c:261
 #, c-format
 msgid "#oAutonav: boarding %s."
 msgstr ""
 
-#: src/player_autonav.c:327
+#: src/player_autonav.c:328
 #, c-format
 msgid "#rAutonav aborted: %s"
 msgstr ""
 
-#: src/player_autonav.c:329
+#: src/player_autonav.c:330
 msgid "#rAutonav aborted"
 msgstr ""
 
-#: src/player_autonav.c:338
+#: src/player_autonav.c:339
 msgid "#oAutonav: hyperspace sequence aborted."
 msgstr ""
 
-#: src/player_autonav.c:459
+#: src/player_autonav.c:460
 msgid "#oAutonav: arrived at position."
 msgstr ""
 
-#: src/player_autonav.c:486
+#: src/player_autonav.c:487
 msgid "#oAutonav: hailing planet; please negotiate land clearance."
 msgstr ""
 
-#: src/player_autonav.c:509
+#: src/player_autonav.c:510
 #, c-format
 msgid "#oAutonav: arrived at #%c%s#0."
 msgstr ""
 
 #. TODO : handle the different reasons: pilot is too far, jumped, landed or died.
-#: src/player_autonav.c:548
+#: src/player_autonav.c:549
 #, c-format
 msgid "#oAutonav: following target  %s has been lost."
 msgstr ""
 
-#: src/player_autonav.c:852
+#: src/player_autonav.c:851
 msgid "Target changed to current system"
 msgstr ""
 
-#: src/player_autonav.c:856
+#: src/player_autonav.c:855
 msgid "Not enough fuel for autonav to continue"
 msgstr ""
 
@@ -55070,715 +55081,3 @@ msgstr ""
 #: src/weapon.c:1878
 msgid "Trying to remove beam with ID 0!"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Sirius Shipyards"
-#~ msgstr "시리우스 주술사"
-
-#, fuzzy
-#~ msgid "Sorom"
-#~ msgstr "소로미드 알스"
-
-#, fuzzy
-#~ msgid "Soromid Databank"
-#~ msgstr "소로미드 이라"
-
-#, fuzzy
-#~ msgid "Vigil Station"
-#~ msgstr "각서"
-
-#, fuzzy
-#~ msgid "Weapon Modifier (Cannon)"
-#~ msgstr "플라즈마 터렛 MK1"
-
-#, fuzzy
-#~ msgid "Weapon Modifier (Turret)"
-#~ msgstr "플라즈마 터렛 MK1"
-
-#~ msgid ""
-#~ "This is the smallest direct beam weapon built, purpose-built by the "
-#~ "Za'lek for their drones."
-#~ msgstr ""
-#~ "이것은 Za'lek이 드론을 위해 특별히 제작 한 가장 작은 직접 빔 무기입니다."
-
-#, fuzzy
-#~ msgid ""
-#~ "The Gawain is a very high-end ship, outpacing nearly all other production "
-#~ "vessels. It relies heavily on technology first implemented on the "
-#~ "Lancelot, and is widely used as a sporting vessel as it is extremely "
-#~ "maneuverable, though they rarely see combat due to their meager weapons "
-#~ "space and relative fragility."
-#~ msgstr ""
-#~ "Gawain은 거의 모든 다른 생산 선박을 능가하는 매우 고급스러운 선박입니다. "
-#~ "Lancelot에서 처음 구현 된 기술에 크게 의존하며 무기 공간이 적고 상대적으"
-#~ "로 취약하기 때문에 전투를 거의 보지 못하지만 매우 기동성이 뛰어나 스포츠 "
-#~ "선박으로 널리 사용됩니다."
-
-#, fuzzy, lua-format
-#~ msgid "\"I'll supply your ship with fuel for %s.\""
-#~ msgstr "\"%d 크레딧에 당신의 함선에 연료를 지원하겠습니다.\""
-
-#~ msgid "\"House Goddard does not lower itself to common scum.\""
-#~ msgstr "\"하우스 고다드는 흔한 쓰레기로 자신을 낮추지 않습니다.\""
-
-#~ msgid "You are a parasite!"
-#~ msgstr "너는 기생충이야!"
-
-#~ msgid "\"I don't want any problem.\""
-#~ msgstr "\"나는 어떤 문제도 원하지 않아.\""
-
-#, fuzzy, lua-format
-#~ msgid "\"For you, only %s for some fuel.\""
-#~ msgstr "\"당신에게 100개의 연료에 대해 오직 %d 크레딧만 받겠다.\""
-
-#~ msgid "Yohoho!"
-#~ msgstr "요호호!"
-
-#~ msgid "Arr!"
-#~ msgstr "아!"
-
-#~ msgid "What's a ship like you doing in a place like this?"
-#~ msgstr "너 같은 우주선이 이런 곳에서 뭐 하는 거지?"
-
-#~ msgid "Prepare to have your booty plundered!"
-#~ msgstr "당신의 전리품을 약탈당할 준비를 하라!"
-
-#~ msgid "Back so soon?"
-#~ msgstr "그렇게 일찍 돌아왔나요?"
-
-#~ msgid "What? Were you expecting prince charming?"
-#~ msgstr "뭐? 매력적인 왕자님이길 바랬는가?"
-
-#~ msgid "Long time no see."
-#~ msgstr "오랜만이다."
-
-#~ msgid "I can already taste the rum."
-#~ msgstr "나는 이미 럼주를 맛볼 수 있다."
-
-#~ msgid "How else am I going to pay off my tab?"
-#~ msgstr "그렇지 않다면 내가 어떻게 돈을 갚을 수 있는가?"
-
-#~ msgid "Seems you're being shot at."
-#~ msgstr "총에 맞은 것 같군."
-
-#~ msgid "I'm trying to kill you. Is it working?"
-#~ msgstr "난 너를 죽이려고 하는 것이다. 이게 먹힐까?"
-
-#~ msgid "I'm sorry, I just don't like you."
-#~ msgstr "미안하다, 그냥 너가 마음에 안든다."
-
-#~ msgid "I'm sorry things couldn't work out between us."
-#~ msgstr "우리 사이에 일이 잘 풀리지 않아서 미안하다."
-
-#~ msgid "Shooting back isn't allowed!"
-#~ msgstr "반격은 허용되지 않습니다!"
-
-#~ msgid "You owe me 20 credits!"
-#~ msgstr "나한테 20 크레딧 빚졌잖아!"
-
-#~ msgid "You owe me a new paint job!"
-#~ msgstr "너 나한태 새 페인트 작업 빚지고있다!"
-
-#~ msgid "Fred here said to shoot the red blip."
-#~ msgstr "프레드는 여기서 빨간 블립을 쏘라고 말했다."
-
-#~ msgid "Rot."
-#~ msgstr "썩어라."
-
-#~ msgid "Burn."
-#~ msgstr "불타라."
-
-#, fuzzy
-#~ msgid ""
-#~ "Tell you what, if you can keep dodging for 20 minutes I'll let you live."
-#~ msgstr "20 헥토초만 피하면 살려주겠다."
-
-#~ msgid "The universe shall be cleansed of your presence!"
-#~ msgstr "우주가 너의 존재를 깨끗이 씻어줄 것이다!"
-
-#, fuzzy, lua-format
-#~ msgid "\"I suppose I could spare some fuel for %s.\""
-#~ msgstr "\"%d 크레딧 정도의 여분의 연료는 내가 줄 수 있을 것 같다.\""
-
-#~ msgid "\"Snivelling waste of carbon.\""
-#~ msgstr "\"코로 흡입하는 탄소 폐기물.\""
-
-#~ msgid "\"We do not consort with vermin.\""
-#~ msgstr "\"우리는 해충과 어울리지 않아.\""
-
-#~ msgid "\"The Space Traders do not negotiate with criminals.\""
-#~ msgstr "\"우주무역상은 범죄자와는 거래하지 않는다.\""
-
-#~ msgid "Move drones in to engage. Cook this clown!"
-#~ msgstr "드론을 움직여 참여하세요. 이 광대를 요리하세요!"
-
-#~ msgid "Say hello to my little friends!"
-#~ msgstr "내 작은 친구들에게 인사하세요!"
-
-#~ msgid "Ooh, more victi- ah, volunteers for our experiments!"
-#~ msgstr "우, 더 많은 피해자들, 우리 실험의 자원 봉사자들!"
-
-#~ msgid "We need a test subject to test our attack on; you'll do nicely!"
-#~ msgstr "공격을 테스트 할 테스트 대상이 필요합니다. 당신은 잘할 것입니다!"
-
-#~ msgid "Ready for a physics lesson, punk?"
-#~ msgstr "물리학 수업을 받을 준비가 되었나요?"
-
-#~ msgid "After we wax you, we can return to our experiments!"
-#~ msgstr "왁스 칠을 마치면 실험으로 돌아갈 수 있습니다!"
-
-#~ msgid "We're being attacked! Prepare defence protocols!"
-#~ msgstr "우리가 공격 당하고 있습니다! 방어 프로토콜을 준비하십시오!"
-
-#~ msgid "Our technology will fix your attitude!"
-#~ msgstr "우리의 기술은 당신의 태도를 고칠 것입니다!"
-
-#~ msgid "Catastrophe Looms"
-#~ msgstr "재앙 직조기"
-
-#~ msgid ""
-#~ "As you enter the bar on Sindbad, you immediately know that something is "
-#~ "wrong. Everyone is frantic and you sense dread around your comrades. You "
-#~ "are about to ask around when Benito approaches."
-#~ msgstr ""
-#~ "신드바드에 있는 바에 들어서면, 당신은 즉시 무언가가 잘못되었다는 것을 알"
-#~ "게 된다. 모든 사람들은 정신없고 당신은 동료들 주변에서 두려움을 느낀다. 당"
-#~ "신은 베니토가 다가오면 이리저리 물어보려고 한다."
-
-#, fuzzy
-#~ msgid "We bring you the latest news in the universe."
-#~ msgstr "우리는 당신에게 은하계의 최신 뉴스를 가져다 준다."
-
-#, fuzzy
-#~ msgid "Welcome to Universal News Feed."
-#~ msgstr "엠파이어 뉴스 센터에 오신 것을 환영합니다."
-
-#, fuzzy
-#~ msgid "Welcome to the Empire News Center."
-#~ msgstr "엠파이어 뉴스 센터에 오신 것을 환영합니다."
-
-#, fuzzy
-#~ msgid "Welcome to the Dvaered News Center."
-#~ msgstr "엠파이어 뉴스 센터에 오신 것을 환영합니다."
-
-#, fuzzy
-#~ msgid "Welcome to Goddard News Center."
-#~ msgstr "엠파이어 뉴스 센터에 오신 것을 환영합니다."
-
-#, fuzzy
-#~ msgid "Pirate News Network."
-#~ msgstr "해적 조상"
-
-#~ msgid "Sirius News Reel. Words of the Sirichana for all."
-#~ msgstr "시리우스 뉴스 릴입니다. 모두를 위한 시리차나의 말."
-
-#~ msgid "The word of the Free Resistance."
-#~ msgstr "자유 저항군의 말입니다."
-
-#~ msgid "News from the Frontier Alliance."
-#~ msgstr "프론티어 얼라이언스의 소식입니다."
-
-#~ msgid "Word from the Proteron state."
-#~ msgstr "프로테론 주의 말입니다."
-
-#~ msgid "Scientific, Socioeconomic, and Sundry Events"
-#~ msgstr "과학, 사회경제, 그리고 잡다한 사건들"
-
-#~ msgid "The voice of the future."
-#~ msgstr "미래의 목소리."
-
-#~ msgid "Data Relay Network"
-#~ msgstr "데이터 릴레이 네트워크"
-
-#, fuzzy
-#~ msgid "Interesting events from around the universe."
-#~ msgstr "엠파이어에서 온 새로운 소식입니다."
-
-#, fuzzy
-#~ msgid "All the headlines all the time."
-#~ msgstr ""
-#~ "유니버설 뉴스 피드에 오신 것을 환영합니다. 항상 헤드라인을 장식하고 있습니"
-#~ "다."
-
-#~ msgid "Fresh news from around the Empire."
-#~ msgstr "엠파이어에서 온 새로운 소식입니다."
-
-#~ msgid "Keeping you informed."
-#~ msgstr "계속 알려주고 있다."
-
-#, fuzzy
-#~ msgid "All that happens. In simple words. So you can understand."
-#~ msgstr ""
-#~ "드바에레드 뉴스 센터에 오신 것을 환영합니다. 그런 일은 다 일어납니다. 간단"
-#~ "히 말해서요. 그러니 당신은 이해할 수 있습니다."
-
-#, fuzzy
-#~ msgid "We bring you the news from around the Empire."
-#~ msgstr "엠파이어에서 온 새로운 소식입니다."
-
-#~ msgid "News that matters."
-#~ msgstr "중요한 뉴스."
-
-#~ msgid "On top of the world."
-#~ msgstr "세상 꼭대기에서."
-
-#~ msgid "Piracy has never been better."
-#~ msgstr "불법 복제는 그 어느 때보다 도왔습니다."
-
-#~ msgid "News you can trust."
-#~ msgstr "신뢰할 수 있는 뉴스."
-
-#~ msgid "Stay faithful."
-#~ msgstr "충실한 상태를 유지하십시오."
-
-#~ msgid "Sirichana watches and guides you."
-#~ msgstr "시리차나는 당신을 보고 안내합니다."
-
-#, fuzzy
-#~ msgid "Genetically tailored for you."
-#~ msgstr "유전적으로 당신을 위해 꼬리."
-
-#~ msgid "Techs Probe for Sol"
-#~ msgstr "솔을 위한 테크 프로브"
-
-#, fuzzy
-#~ msgid ""
-#~ "Technicians recently returned from a new effort to understand the Sol "
-#~ "Incident. They expect the first data to arrive in two months' time."
-#~ msgstr ""
-#~ "최근 기술자들은 솔 사건을 이해하기 위한 새로운 노력에서 돌아왔다. 그들은 "
-#~ "첫 번째 데이터가 50 decaperiods의 시간에 도착 할 것으로 예상합니다."
-
-#~ msgid "Sand Monster Caught On Tape"
-#~ msgstr "테이프에 잡힌 모래 괴물"
-
-#~ msgid ""
-#~ "Local residents claim footage from a security camera shows elusive beast "
-#~ "walking through a desert storm. Exobiologists suspect a hoax."
-#~ msgstr ""
-#~ "현지 주민들은 보안 카메라의 영상이 사막 폭풍을 통과하는 애매한 짐승을 보여"
-#~ "줍니다 주장한다. 엑소생물학자들은 가짜를 의심한다."
-
-#~ msgid ""
-#~ "The Dvaered council after a unanimous ruling decided to increase patrols "
-#~ "in Dvaered space due to the recent uprising in FLF terrorism. The new "
-#~ "measure is expected to start within the next cycle."
-#~ msgstr ""
-#~ "드바에레드 의회는 최근 FLF 테러의 폭동으로 드바에레드 우주에 대한 순찰을 "
-#~ "늘리기로 만장일치 결정을 내린 후 이 같은 결정을 내렸다. 새로운 조치는 다"
-#~ "음 사이클 내에서 시작될 것으로 예상된다."
-
-#~ msgid "Sirius Weaker Than Ever"
-#~ msgstr "어느 때보다 약한 시리우스"
-
-#~ msgid ""
-#~ "This cycle breaks the negative record for fewest pilgrims to Mutris since "
-#~ "the formation of House Sirius. This weakness is yet another sign that "
-#~ "House Dvaered must increase patrols on the border and into Sirius space."
-#~ msgstr ""
-#~ "이 사이클은 시리우스 가의 형성 이후 무트리스로 가는 가장 적은 순례자들의 "
-#~ "부정적인 기록을 깨뜨린다. 이 약점은 드바에레드 가가 국경과 시리우스 우주"
-#~ "에 대한 순찰을 늘려야 한다는 또 다른 신호다."
-
-#~ msgid ""
-#~ "Many new scientists are being contracted by House Goddard to investigate "
-#~ "possible improvements. This new strategy will increase the gap with the "
-#~ "competing ship fabricators."
-#~ msgstr ""
-#~ "많은 새로운 과학자들이 가능한 개선점을 조사하기 위해 고다드 가에 의해 계약"
-#~ "되고 있다. 이 새로운 전략은 경쟁 선박 제작 업체들과의 격차를 늘릴 것이다."
-
-#~ msgid "Goddard Earnings on the Rise"
-#~ msgstr "고다드 수익 증가"
-
-#~ msgid ""
-#~ "House Goddard has once again increased its earnings. \"Our investment in "
-#~ "technology and quality has paid off,\" said Kari Baker of House Goddard's "
-#~ "marketing bureau."
-#~ msgstr ""
-#~ "고다드 가문은 다시 한번 수입을 늘렸다. 카리 베이커 하우스 고다드 마케팅국"
-#~ "장은 \"기술과 품질에 대한 투자가 성과를 냈다\"고 말했다."
-
-#~ msgid "Goddard Awarded Best Ship"
-#~ msgstr "고다드 최우수 우주선"
-
-#~ msgid ""
-#~ "Once again the Goddard Battlecruiser was awarded the Best Overall Ship "
-#~ "prize by the Dvaered Armada's annual Ship Awards. \"Very few ships have "
-#~ "reliability like the Goddard,\" said Lord Warthon upon receiving the "
-#~ "award on behalf of House Goddard."
-#~ msgstr ""
-#~ "다시 한번 고다드 전투순양함은 드바에레드 무적함대 연례 선박상으로부터 최우"
-#~ "수 종합선박상을 받았다. 고다드 가문을 대신하여 상을 받은 워슨 경은 \"고다"
-#~ "드처럼 신뢰성이 있는 배는 거의 없다\"고 말했다."
-
-#~ msgid "Aerosys Earnings Drop"
-#~ msgstr "에어로시스 수익 하락"
-
-#~ msgid ""
-#~ "The spaceways may swarm with Hyena-model craft, but today Aerosys "
-#~ "recorded another quarterly loss. The company is investigating the "
-#~ "discrepancy between the popularity of the craft and its sales figures."
-#~ msgstr ""
-#~ "우주선에는 혜나 모형 우주선이 가득할지 모르지만, 오늘 에어로시스는 분기별 "
-#~ "또 다른 손실을 기록했다. 그 회사는 그 공예품의 인기와 판매 수치의 차이를 "
-#~ "조사하고 있다."
-
-#~ msgid "Aerosys Victim of Pirate Manufacturing"
-#~ msgstr "해적 제조의 에어로시스 피해자"
-
-#~ msgid ""
-#~ "The ship manufacturer has released a study indicating its signature Hyena "
-#~ "model is being produced by a hidden system of unlicensed manufacturers."
-#~ msgstr ""
-#~ "이 선박 제조업체는 자사의 대표 모델인 하이에나 모델이 무면허 제조업체의 숨"
-#~ "겨진 시스템에 의해 생산되고 있다는 연구 결과를 발표했다."
-
-#~ msgid "Melendez CEO on Strategy"
-#~ msgstr "멜렌데즈 전략 CEO"
-
-#~ msgid ""
-#~ "The Chief Executive Officer of ship maker Melendez Corp. thinks "
-#~ "manufacturers should follow his company's lead in keeping costs down and "
-#~ "producing for the mass market."
-#~ msgstr ""
-#~ "선박 제조업체인 멜렌데즈사의 최고 경영자는 제조업체들이 비용을 절감하고 대"
-#~ "량생산하는 데 있어 그의 회사의 선례를 따라야 한다고 생각한다."
-
-#~ msgid "The Goddard Exception"
-#~ msgstr "고다드 예외"
-
-#~ msgid ""
-#~ "Why has a community with more expertise sailing than flying produced the "
-#~ "Empire's elite civilian spacecraft?  Lord Warthon says the secret lies in "
-#~ "his family's hands-on tradition of leadership."
-#~ msgstr ""
-#~ "왜 비행보다 더 전문적인 기술을 가진 커뮤니티가 제국의 엘리트 민간 우주선"
-#~ "을 생산했는가? 워튼 경은 그 비밀은 가족의 직접적 전통인 리더십에 있다고 말"
-#~ "한다."
-
-#~ msgid ""
-#~ "Our reporter took a tour through Krain's mysterious space craft. He says "
-#~ "it poses a challenge to the Goddard."
-#~ msgstr ""
-#~ "저희 기자는 크랭의 신비로운 우주선을 둘러보았습니다. 그는 그것이 Goddard에"
-#~ "게 도전이라고 말합니다."
-
-#~ msgid "Trade Meeting at Lorelei"
-#~ msgstr "로렐레이 무역회의"
-
-#~ msgid ""
-#~ "Lorelei, in the Churchill system, is the latest world to host major trade "
-#~ "negotiations between the Fyrra and the Space Traders Guild. The Fyrra "
-#~ "Arch-Canter has indicated that opening up trade routes is a major goal."
-#~ msgstr ""
-#~ "처칠 체제에서는 로렐레이가 피라와 우주무역가 길드 간의 주요 무역협상을 주"
-#~ "최하는 최신 세계다. 피라 아크-칸터는 무역로의 개방이 주요 목표임을 시사했"
-#~ "다."
-
-#~ msgid ""
-#~ "Recent pilgrims headed to Mutris have been telling stories of extortion "
-#~ "and violations by Dvaered operators. Dvaered Warlord Kra'tok claims that "
-#~ "these are \"figments of the touched's imagination\". Official complaints "
-#~ "have been made to the Emperor."
-#~ msgstr ""
-#~ "최근 무트리스로 향하는 순례자들은 드배레드 운영자들에 의해 강탈과 위반에 "
-#~ "대한 이야기를 들려주고 있다. 드바에레드 군벌 크라톡은 이것들이 \"만진자의 "
-#~ "상상력의 형상\"이라고 주장한다. 황제에 대한 공식적인 항의가 있었다."
-
-#~ msgid "Words of Tranquility"
-#~ msgstr "평온의 말"
-
-#~ msgid ""
-#~ "We welcome many new Touched who have recently begun ministering to the "
-#~ "Shaira echelon after their long pilgrimage on Mutris. House Sirius is "
-#~ "still a refugee for the orphans lost in this Universe."
-#~ msgstr ""
-#~ "우리는 무트리스에 대한 오랜 순례 후 샤이라 에슐론에서 목사를 하기 시작한 "
-#~ "많은 새로운 터치들을 환영한다. 시리우스 가문은 여전히 이 우주에서 잃어버"
-#~ "린 고아들의 피난민이다."
-
-#~ msgid "Skull and Bones Improving"
-#~ msgstr "스컬 앤 본즈 개선"
-
-#~ msgid ""
-#~ "The technology behind Skull and Bones is advancing. Not only do they "
-#~ "steal ships, but they improve on the original design. \"This gives us "
-#~ "pirates an edge against the injustice of the Empire,\" says Millicent "
-#~ "Felecia Black, lead Skull and Bones engineer."
-#~ msgstr ""
-#~ "스컬 앤 본즈의 기술은 발전하고 있다. 배를 훔칠 뿐만 아니라 원래 디자인도 "
-#~ "개선한다. \"이것은 해적이 제국의 부당함에 맞서 우위를 점하게 해준다\"고 스"
-#~ "컬 앤 본즈의 수석 엔지니어인 밀리센트 펠레시아 블랙은 말한다."
-
-#~ msgid ""
-#~ "Draconis has recently passed Delta Pavonis in the pirate polls as the "
-#~ "most favored plundering space. The abundance of traders and high "
-#~ "interference make it an excellent place to get some fast credits."
-#~ msgstr ""
-#~ "드라코니스는 최근 해적 투표에서 델타 파보니스를 가장 선호하는 약탈 공간으"
-#~ "로 통과했다. 무역업자의 풍부함과 높은 간섭으로 인해 이곳은 빠른 학점을 받"
-#~ "을 수 있는 훌륭한 장소가 되었다."
-
-#~ msgid ""
-#~ "The Skull and Bones was able to extract a few dozen high quality vessels "
-#~ "from Caladan warehouses under the nose of the Empire. These ships will "
-#~ "help keep production high and booming."
-#~ msgstr ""
-#~ "스컬 앤 본즈는 제국의 코 밑에 있는 칼라단 창고에서 고급 선박 수십 척을 추"
-#~ "출할 수 있었다. 이 배들은 높은 생산량과 호황을 유지하는 데 도움이 될 것이"
-#~ "다."
-
-#~ msgid ""
-#~ "Recent actions demonstrate the inefficiency and weakness of the Emperor. "
-#~ "One of the last irrational decisions left Eridani without a defense fleet "
-#~ "to protect the traders. It's a great time to be a pirate."
-#~ msgstr ""
-#~ "최근의 행동은 황제의 비효율성과 약점을 보여준다. 마지막 불합리한 결정 중 "
-#~ "하나는 에리다니에게 무역상들을 보호할 방어 함대가 없게 만들었다. 해적이 되"
-#~ "기에 좋은 시간이다."
-
-#~ msgid ""
-#~ "An explosion in the cat population of New Haven has created an adoption "
-#~ "campaign with the slogan, \"Pirate Cats, for those lonely space trips.\". "
-#~ "Is your space vessel full of vermin? Adopt a cat today!"
-#~ msgstr ""
-#~ "뉴헤이븐의 고양이 개체수가 폭발적으로 증가하면서 \"고독한 우주여행자를 위"
-#~ "한 해적 고양이\"라는 슬로건을 내걸고 입양 캠페인을 벌이고 있다. 당신의 우"
-#~ "주선은 해충으로 가득 차있는가? 오늘 고양이를 입양해라!"
-
-#~ msgid ""
-#~ "New bleeding-edge terraforming techniques to be tried on Emperor's Fist. "
-#~ "Studies show that these techniques could speed up the terraforming "
-#~ "process by as much as 40%."
-#~ msgstr ""
-#~ "황제의 주먹에 시도될 새로운 최첨단 테라포밍 기술. 연구는 이러한 기술들이 "
-#~ "테라포밍 과정을 40%까지 빠르게 할 수 있다는 것을 보여준다."
-
-#~ msgid ""
-#~ "As they prepare the gardens of the future Imperial compound, "
-#~ "entomologists have established the first colony of the Earth insects on "
-#~ "the planet formerly known as G Scorpeii 5."
-#~ msgstr ""
-#~ "그들이 미래의 제국 화합물의 정원을 준비하면서 곤충학자들은 이전에 G 스콜피"
-#~ "이 5로 알려진 행성에서 지구 곤충의 첫 번째 군집을 설립했다."
-
-#~ msgid ""
-#~ "Recent studies show that reports of piracy on Trader vessels have gone "
-#~ "down by up to 40% in some sectors. This is a demonstration of the "
-#~ "Empire's commitment to eradicating piracy."
-#~ msgstr ""
-#~ "최근 연구에 따르면 트레이더 선박에 대한 해적 행위가 일부 부문에서 최대 40%"
-#~ "까지 감소했다고 한다. 이것은 해적행위를 근절하겠다는 제국의 의지를 보여주"
-#~ "는 것이다."
-
-#~ msgid ""
-#~ "The Empire agreed to terms with shipbuilder Nexus for a new generation of "
-#~ "military craft. The deal extends the partnership with the government for "
-#~ "another 10 cycles."
-#~ msgstr ""
-#~ "제국은 조선업체 넥서스와 새로운 세대의 군사기구를 계약하기로 합의했다. 그 "
-#~ "거래는 정부와의 파트너십을 10사이클 더 연장한다."
-
-#~ msgid ""
-#~ "Emperor's recruiting strategy a success. Many new soldiers joining the "
-#~ "Empire Armada. \"We haven't had such a successful campaign in ages!\" - "
-#~ "Raid Steele, spokesman for recruiting campaign."
-#~ msgstr ""
-#~ "황제의 영입 전략은 성공적이다. 많은 새로운 병사들이 엠파이어 무적다에 합류"
-#~ "했다. \"우리는 오랫동안 그렇게 성공적인 캠페인을 한 적이 없어!\" - 모집 캠"
-#~ "페인 대변인인 레이드 스틸."
-
-#~ msgid ""
-#~ "Imperial Auditors arrested governor Rex Helmer of Anecu on charges of "
-#~ "corruption. He has been removed from office and transported to a holding "
-#~ "facility awaiting trial."
-#~ msgstr ""
-#~ "제국 감사원은 부패 혐의로 아네쿠 주지사 렉스 헬머를 체포했다. 그는 직위해"
-#~ "제되어 재판을 기다리고 있는 유치장으로 이송되었다."
-
-#~ msgid ""
-#~ "The supreme advisory body invited undergraduates from six top schools to "
-#~ "sit in on a day's deliberations. Topics required biodiversity strategy."
-#~ msgstr ""
-#~ "최고자문기구는 6개 명문대 학부생들을 초청해 하루의 심의에 출석시켰다. 주제"
-#~ "는 생물 다양성 전략을 필요로 했다."
-
-#, fuzzy
-#~ msgid ""
-#~ "\"Have you seen that ship the Emperor lives on? It's huge! But if you ask "
-#~ "me, it looks a bit like a… No, never mind.\""
-#~ msgstr ""
-#~ "\"황제가 타고 있는 저 배를 보셨습니까? 그것은 거대합니다! 하지만 나한테 묻"
-#~ "는다면, 그건 좀... 아니, 신경 쓰지 마.\""
-
-#, fuzzy
-#~ msgid ""
-#~ "\"They say Eduard Manual Goddard is drifting in space somewhere, entombed "
-#~ "amidst a cache of his inventions! What I wouldn't give to rummage through "
-#~ "there.…\""
-#~ msgstr ""
-#~ "\"에두아드 매뉴얼 고다드가 자신의 발명품 보관소 속에 갇혀 어딘가로 떠돌아"
-#~ "다니고 있다더군! 그 곳을 뒤져봤자 내가 줄 수 없는 건...\""
-
-#, fuzzy
-#~ msgid ""
-#~ "\"Sometimes I look at the stars and wonder… are we the only sentient "
-#~ "species in the universe?\""
-#~ msgstr ""
-#~ "\"가끔 별을 보고 의아해 할 때가 있는데... 우주에서 우리만이 지각 있는 종인"
-#~ "가?\""
-
-#~ msgid ""
-#~ "\"Hey, you ever wonder why we're here?\" You respond that it's one of the "
-#~ "great mysteries of the universe. Why are we here? Are we the product of "
-#~ "some cosmic coincidence or is there some great cosmic plan for us? You "
-#~ "don't know, but it sometimes keeps you up at night. As you say this, the "
-#~ "citizen stares at you incredulously. \"What?? No, I mean why are we in "
-#~ "here, in this bar?\""
-#~ msgstr ""
-#~ "\"이봐, 우리가 왜 여기 왔는지 궁금해 본 적 있어?\" 당신은 그것이 우주의 위"
-#~ "대한 미스터리 중 하나라고 응답한다. 우리는 왜 여기 있는가? 우리가 어떤 우"
-#~ "주적 우연의 산물인가, 아니면 우리를 위한 어떤 위대한 우주적 계획이 있는"
-#~ "가? 너는 모르지만, 가끔 밤에 잠을 못 자게 해. 이렇게 말하자 시민은 믿을 "
-#~ "수 없다는 듯이 쳐다본다. \"뭐라구? 아니, 우리가 왜 여기 있는 거지, 이 술집"
-#~ "에?\""
-
-#~ msgid ""
-#~ "\"We're not part of any of the galactic superpowers. We can take care of "
-#~ "ourselves!\""
-#~ msgstr "\"우린 은하계 초능력자의 일원이 아니오. 우리가 알아서 할 수 있어!\""
-
-#~ msgid ""
-#~ "\"Sometimes I worry that our lack of a standing military leaves us "
-#~ "vulnerable to attack. I hope nobody will get any ideas about conquering "
-#~ "us!\""
-#~ msgstr ""
-#~ "\"가끔은 우리의 상비군 부재가 우리를 공격에 취약하게 만들까 봐 걱정이오. "
-#~ "누구도 우리를 정복하는 것에 대해 아무런 생각을 갖지 않았으면 좋겠어!\""
-
-#~ msgid ""
-#~ "\"I heard the Soromid lost their homeworld Sorom in the Incident. Its "
-#~ "corpse can still be found in Basel.\""
-#~ msgstr ""
-#~ "\"이번 사건으로 소로미드가 고향 소롬을 잃었다고 하던데. 그것의 시체는 여전"
-#~ "히 바젤에서 발견될 수 있다.\""
-
-#~ msgid ""
-#~ "\"I'm still waiting for my pilot license application to get through. Oh "
-#~ "well, it's only been half a cycle, I just have to be patient.\""
-#~ msgstr ""
-#~ "\"아직도 조종사 자격증 신청이 통과되기를 기다리고 있다. 아, 반 사이클밖에 "
-#~ "안 됐네, 그냥 참기만 하면 돼.\""
-
-#, fuzzy
-#~ msgid ""
-#~ "\"Between you and me, the laws the Council passes can get really "
-#~ "ridiculous! Most planets find creative ways of ignoring them.…\""
-#~ msgstr ""
-#~ "\"너와 나 사이에서는 의회가 통과시키는 법이 정말 우스꽝스러울 수 있어! 대"
-#~ "부분의 행성들은 그들을 무시하는 창의적인 방법을 찾는다..\""
-
-#, fuzzy
-#~ msgid ""
-#~ "\"Our Warlord is currently fighting for control over another planet. We "
-#~ "all support him unconditionally, of course! Of course.…\""
-#~ msgstr ""
-#~ "\"우리 군벌은 현재 다른 행성에 대한 통제를 위해 싸우고 있소. 물론 우리 모"
-#~ "두는 그를 무조건 지지한다! 물론이지...\""
-
-#~ msgid ""
-#~ "\"I've got lots of civilian commendations! It's important to have "
-#~ "commendations if you're a Dvaered.\""
-#~ msgstr "\"민간 표창을 많이 받았어! 드바에레드라면 표창이 중요한데.\""
-
-#~ msgid ""
-#~ "\"Did you know that House Dvaered was named after a hero of the revolt? "
-#~ "At least that's what my grandparents told me.\""
-#~ msgstr ""
-#~ "\"드베레드 가문이 반란의 영웅의 이름을 따서 명명된 것을 알고 있나? 적어도 "
-#~ "조부모님은 그렇게 말해 주셨다.\""
-
-#~ msgid ""
-#~ "\"They say Sirichana lives and dies like any other man, but each new "
-#~ "Sirichana is the same as the last. How is that possible?\""
-#~ msgstr ""
-#~ "\"시리차나는 다른 사람처럼 살고 죽는다고 하지만 새로 온 시리차나는 각각 마"
-#~ "지막과 똑같아. 그게 어떻게 가능하지?\""
-
-#, fuzzy
-#~ msgid ""
-#~ "\"You can easily tell the different echelons apart. Every Sirius citizen "
-#~ "and soldier wears clothing appropriate to his or her echelon.\""
-#~ msgstr ""
-#~ "\"각종 다른 주머니를 쉽게 구별할 수 있지. 시리안의 시민과 군인은 누구나 자"
-#~ "기 처소에 맞는 옷을 입는다.\""
-
-#, fuzzy
-#~ msgid ""
-#~ "Hello. Can I interest you in one of our galaxy famous cosmetic gene "
-#~ "treatments? You look like you could use them.…"
-#~ msgstr ""
-#~ "안녕하세요. 은하계유명 화장품 유전자 트리트먼트에 관심이 있습니까? 당신은 "
-#~ "당신이 그들을 사용할 수있는 것처럼 보인다 ..."
-
-#~ msgid ""
-#~ "\"Our cosmetic gene treatments are even safer now for non-Soromids, with "
-#~ "a rate of survival of 99.4%!\""
-#~ msgstr ""
-#~ "\"우리의 화장품 유전자 처리는 99.4%의 생존율로 비 소로미드를 위해 지금 조"
-#~ "차 안전합니다!\""
-
-#, fuzzy
-#~ msgid ""
-#~ "\"We have been rebuilding and enhancing our bodies for so long, we've "
-#~ "practically evolved into a new species.\""
-#~ msgstr ""
-#~ "\"우리는 오랫동안 몸을 재건하고 강화해 왔으며, 인간보다 더 많은 새로운 종"
-#~ "이 되었다고 말합니다.\""
-
-#~ msgid ""
-#~ "\"It's not easy, dancing to those scientists' tunes. They give you the "
-#~ "most impossible tasks! Like, where am I supposed to get a triple "
-#~ "redundant helitron converter? Honestly.\""
-#~ msgstr ""
-#~ "\"과학자들의 음악에 맞춰 춤을 추는 것은 쉽지 않습니다. 그들은 당신에게 가"
-#~ "장 불가능한 작업을 제공합니다! 마찬가지로, 나는 트리플 중복 헬리론 변환기"
-#~ "를 받아야하는 곳? 솔직히.\""
-
-#~ msgid ""
-#~ "\"The Soromids? Hah! We Za'lek are the only true scientists in this "
-#~ "galaxy.\""
-#~ msgstr ""
-#~ "\"소로미드? 하! 우리 자렉은 이 은하계에서 유일하게 진정한 과학자입니다.\""
-
-#, fuzzy
-#~ msgid ""
-#~ "\"It's true that lots of Frontier officials fund our operations. They "
-#~ "have to keep it all hush-hush for political reasons, but no one in the "
-#~ "Frontier wants the Dvaered to be allowed to do what they're doing.\""
-#~ msgstr ""
-#~ "\"그래, 사실이다, 많은 프론티어 관리들이 우리 작전에 자금을 대고 있어. 만"
-#~ "약 그들이 그렇게 하지 않았다면, 우리는 국경지대의 행성에 착륙하는데 정말 "
-#~ "애를 먹었을 텐데, 우리가 드바에레드에 대항하여 수행하는 작전의 종류는 어떻"
-#~ "게 될 것인가.\""
-
-#, fuzzy, lua-format
-#~ msgid "Patrol of the %s system"
-#~ msgstr "프론티어 시스템"
-
-#, fuzzy, lua-format
-#~ msgid "PIRACY: Patrol of the %s system"
-#~ msgstr "프론티어 시스템"
-
-#, fuzzy
-#~ msgid "Commodity Prices"
-#~ msgstr "상품 '%s'을 (를) 찾을 수 없습니다!"
-
-#, fuzzy, c-format
-#~ msgid ""
-#~ "Commodity prices for %s will cost %s. The latest information we have has "
-#~ "an age of %s. Purchase commodity prices?"
-#~ msgstr ""
-#~ "%s 의 경우 %d크레딧이 필요합니다. 우리가 가지고있는 최신 정보는 %g 기간입"
-#~ "니다."
