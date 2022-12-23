@@ -43,7 +43,7 @@ require "missions/shark/common"
 
 ask_text = _([[You approach the man and he introduces himself. "Hello, my name is Arnold Smith; I work for Nexus Shipyards. I'm looking for a talented pilot to make a demonstration to one of our potential customers.
 
-"Pretty simple, really: we want someone to show how great Nexus ship designs are by destroying a Pirate Vendetta with just one of our smallest ship model, the Shark. Of course, the pilot of the Vendetta has a bounty on his head, so it won't be illegal. The sum of the bounty will be paid to you and Nexus will add a little extra. Would you be interested?"]])
+"Pretty simple, really: we want someone to show how great Nexus ship designs are by destroying a Pirate Vendetta with just one of our smallest ship model, the Shark. Of course, the pilot of the Vendetta has a bounty on his head, so it won't be illegal. You will take the bounty as usual, and Nexus will add a little extra on top of that. Would you be interested?"]])
 
 refusetext = _([["That's your choice," the man says. "Don't hesitate to tell me if you change your mind."]])
 
@@ -93,7 +93,7 @@ function create()
    end
 
    stage = 0
-   reward = 500000
+   reward = 400000
 
    misn.setNPC(npc_desc[1], "neutral/unique/arnoldsmith.png", bar_desc[1])
 end
