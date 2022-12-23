@@ -768,12 +768,6 @@ int player_autonavShouldResetSpeed (void)
       return 1;
    }
 
-   /* Reset on lockons. */
-   if (player.p->lockons > 0) {
-      player_autonavResetSpeed();
-      return 1;
-   }
-
    hostiles = 0;
    will_reset = 0;
 
