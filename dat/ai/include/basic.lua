@@ -702,8 +702,13 @@ function __hyp_jump ()
       p:msg(p:followers(), "hyperspace", ai.nearhyptarget())
    elseif result == -2 then
       -- Hyperdrive is offline.
-      debug_print(
-         string.format("'%s' cannot jump (hyperdrive disabled).", p:name()))
+      -- XXX: Special exception for if this is one of the player's
+      -- carrier fighters, since those have hyperdrive disabled on
+      -- purpose.
+      if not mem.carrier or p:leader() ~= player.pilot() then
+         debug_print(
+            string.format("'%s' cannot jump (hyperdrive disabled).", p:name()))
+      end
       ai.poptask()
       return
    elseif result == -3 then
