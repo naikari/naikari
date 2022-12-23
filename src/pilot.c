@@ -1242,7 +1242,7 @@ void pilot_distress( Pilot *p, Pilot *attacker, const char *msg, int ignore_int 
 
    /* Use the victim's target if the attacker is unknown. */
    if (attacker == NULL)
-      attacker = pilot_get( p->target );
+      attacker = pilot_get(p->target);
 
    /* Now proceed to see if player.p should incur faction loss because
     * of the broadcast signal. */
@@ -1274,8 +1274,9 @@ void pilot_distress( Pilot *p, Pilot *attacker, const char *msg, int ignore_int 
          if (!pilot_inRangePilot(p, pilot_stack[i], NULL)) {
             /* If the pilots are within sensor range of each other, send the
              * distress signal. */
-            if ((!pilot_inRangePilot(pilot_stack[i], p, NULL))
-                  || (!pilot_inRangePilot(pilot_stack[i], attacker, NULL)))
+            if (!pilot_inRangePilot(pilot_stack[i], p, NULL)
+                  || (attacker == NULL)
+                  || !pilot_inRangePilot(pilot_stack[i], attacker, NULL))
                continue;
          }
 
