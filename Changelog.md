@@ -162,6 +162,8 @@
 * Fixed possibility of dying while landing due to nebula volatility.
 * Added code to prevent phantom 0 kt cargo entries from showing up in
   your cargo list.
+* Fixed escorts of AI ships not jumping when their leader jumped (which
+  left them adrift in the system indefinitely).
 
 ## 0.4.1
 
