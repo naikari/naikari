@@ -135,10 +135,14 @@ unsigned int escort_create( Pilot *p, char *ship,
    s = ship_get(ship);
 
    /* Set flags. */
-   pilot_clearFlagsRaw( f );
-   pilot_setFlagRaw( f, PILOT_NOJUMP );
-   if (p->faction == FACTION_PLAYER)
-      pilot_setFlagRaw( f, PILOT_PERSIST );
+   pilot_clearFlagsRaw(f);
+   if (p->faction == FACTION_PLAYER) {
+      pilot_setFlagRaw(f, PILOT_PERSIST);
+      /* FIXME: This flag is necessary to prevent having the player's
+       * escorts disappear between systems, but it's a rather clunky way
+       * to do it. We should come up with a better way. */
+      pilot_setFlagRaw(f, PILOT_NOJUMP);
+   }
    if (type == ESCORT_TYPE_BAY)
       pilot_setFlagRaw( f, PILOT_CARRIED );
 

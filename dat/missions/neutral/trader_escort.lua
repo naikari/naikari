@@ -422,7 +422,6 @@ function organize_fleet(convoy)
          end
 
          p:taskClear()
-         p:setNoJump()
          p:setNoLand()
          p:control(false)
       end
@@ -446,7 +445,6 @@ function organize_fleet(convoy)
    end
 
    leader:memory().formation = "wall"
-   leader:setNoJump(false)
    leader:setNoLand(false)
    leader:control()
 
@@ -481,7 +479,6 @@ function prox_jump(dest)
 
    for i, p in ipairs(convoy) do
       if p:exists() then
-         p:setNoJump(false)
          p:setNoLand(false)
          p:control()
          if system.cur() == destsys then
