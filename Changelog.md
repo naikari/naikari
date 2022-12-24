@@ -164,6 +164,8 @@
   your cargo list.
 * Fixed escorts of AI ships not jumping when their leader jumped (which
   left them adrift in the system indefinitely).
+* Fixed the player being allowed to board and steal credits from their
+  own hired escorts.
 
 ## 0.4.1
 
