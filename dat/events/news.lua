@@ -106,7 +106,7 @@ mhint_articles = {
 
 
 function create()
-   local publish_interval = time.create(0, 120, 0)
+   local publish_interval = time.create(0, 30, 0)
    local last_news = var.peek("_news_last")
    local narticles = #news.get("Generic") + #news.get(planet.cur():faction():nameRaw())
    if (narticles <= 0 or last_news == nil
@@ -162,7 +162,7 @@ function generate_article()
 
    if #avail_mhint_articles > 0 then
       var.push("_news_last", time.get():tonumber())
-      local rmdate = time.get() + time.create(0, 360, 0)
+      local rmdate = time.get() + time.create(0, 120, 0)
       local a = avail_mhint_articles[rnd.rnd(1, #avail_mhint_articles)]
       local tag = string.format("mhint_%s", a.mission)
       local article = news.add(a.faction or "Generic", a.title, a.text, rmdate)
