@@ -315,11 +315,11 @@ function land ()
 end
 
 
-function land_bar ()
+function land_bar()
 end
 
 
-function jumpout ()
+function jumpout()
    for i, edata in ipairs(escorts) do
       if edata.alive then
          if edata.pilot ~= nil and edata.pilot:exists() then
@@ -340,7 +340,7 @@ function jumpout ()
 end
 
 
-function enter ()
+function enter()
    local spawnpoint
    if lastsys == system.cur() then
       spawnpoint = lastplanet
@@ -419,6 +419,7 @@ function enter ()
             edata.pilot:setLeader(pp)
             edata.pilot:setVisplayer(true)
             edata.pilot:setInvincPlayer(true)
+            edata.pilot:setNoboard(true)
             edata.pilot:setNoClear(true)
             hook.pilot(edata.pilot, "death", "pilot_death", i)
             hook.pilot(edata.pilot, "attacked", "pilot_attacked", i)
