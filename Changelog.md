@@ -39,11 +39,22 @@
   system (similar to the ship stealing mission). The mission also now
   rewards you immediately upon completion instead of requiring you to
   land to collect your reward.
+* Replaced the news entry generator, which previously just generated
+  random filler with no connection to the story, with news entries that
+  are relevant to the player, like mission hints.
 * Added "escape jumps", which allow you to engage your hyperspace engine
   without actually going into hyperspace, taking you to a distant part
   of the system at a cost of one jump of fuel, all of your battery
   charge, half of your remaining shield, and half of your remaining
   armor. (The maneuver takes you a distance of around 30,000 mAU.)
+* Converted the Reynir mission into a hidden tutorial for the local
+  jumps feature and changed the rewarded commodity from Food (hot dogs)
+  to Luxury Goods (robot teddy bears), making it more rewarding.
+* "High-class" planets now require 10% reputation instead of 0% to land
+  on.
+* Removed the DIY-Nerds mission (the one where you take a group of nerds
+  to a science fair or something). It never felt all that important and
+  wasn't really worth doing.
 * Civilians and traders will now always offer to refuel you if you
   cannot make a jump, even if you don't have credits to pay them.
 * Collective drones will now refuel you if you are friendly to them.
@@ -107,9 +118,6 @@
   planets and systems.
 * The patrol mission now rewards you immediately upon completion without
   having to land in the faction's territory first.
-* Replaced the news entry generator, which previously just generated
-  random filler with no connection to the story, with news entries that
-  are relevant to the player, like mission hints.
 * Changed the unit of mass used from tonnes to kilotonnes (meaning we no
   longer have the silliness of space carriers weighing less than naval
   aircraft carriers, etc).
@@ -122,17 +130,9 @@
   will be within weapon range soon (or already are). This avoids most
   unnecessary time slowdowns while also being cautious enough to give
   advance warning to the player.
-* Converted the Reynir mission into a hidden tutorial for the local
-  jumps feature and changed the rewarded commodity from Food (hot dogs)
-  to Luxury Goods (robot teddy bears), making it more rewarding.
 * Made it so that the debris graphics in asteroid fields are entirely
   separate from the asteroids themselves, making it more obvious which
   asteroids are real and which are just decoration.
-* "High-class" planets now require 10% reputation instead of 0% to land
-  on.
-* Removed the DIY-Nerds mission (the one where you take a group of nerds
-  to a science fair or something). It never felt all that important and
-  wasn't really worth doing.
 * Changed the relation between real-world time passage and in-universe
   time passage: one real-world second is now equal to 750 in-universe
   seconds, rather than 30 in-universe seconds as before. In tandem, the
