@@ -45,8 +45,8 @@ mhint_articles = {
       mission = "Shadowrun",
    },
    {
-      title = _("Corrupt Businessmen in Alteris"),
-      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to a danger of being attacked by corrupt businessmen, which the Imperial government alleges are hiring assassins to attack innocent traders in an attempt to corner the market.]]),
+      title = _("Assassins in Alteris"),
+      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to an influx of assassins in the area. Authorities suspect that corrupt businessmen are hiring these assassins in an effort to illegally stifle competition. A joint investigation between Imperial and Soromid forces is underway.]]),
       mission = "Hitman 2",
    },
    {
@@ -80,7 +80,6 @@ mhint_articles = {
       text = _([[The Empire is on the lookout for talented new recruits into its shipping division. "The Empire offers good pay and fantastic opportunities," a spokesperson said. "It doesn't hurt to approach one of the Empire Lieutenants seeking talent. Join the Empire today!"]]),
       mission = "Empire Recruitment",
       done = "Tutorial Part 4",
-      faction = "Empire",
    },
    {
       title = _("Dvaered and FLF Clash"),
@@ -92,6 +91,15 @@ mhint_articles = {
             and not player.misnDone("Deal with the FLF agent")
             and not player.misnActive("Deal with the FLF agent")
             and player.numOutfit("Mercenary License") > 0)
+      end
+   },
+   {
+      title = _("Za'lek Students Test Engine Technology"),
+      text = _([[Students all over Za'lek space have been designing new experimental engine designs as part of a new government funded program. These students seek pilots willing to test fly their experimental engine designs for a substantial sum of credits.]]),
+      mission = "Za'lek Test",
+      cond = function()
+         return (player.numOutfit("Mercenary License") > 0
+            and faction.playerStanding("Za'lek") >= 5)
       end
    },
 }
