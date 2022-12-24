@@ -2,15 +2,13 @@
 
 ## 0.5.0
 
-* All bar missions are prevented from spawning in Hakoi and Eneguez
-  until you finish the Ian Structure missions.
+### Major Gameplay and Design Changes
+
 * Cargo missions now reward much more credits if they are on a route
   that has pirate presence.
 * Increased the amount of health medium-heavy and heavier ships have.
 * Weapons have been heavily altered. Weapon damage, range, and behavior
   vary a lot more widely than before.
-* Fixed some problems with the way the Combat Practice mission closed
-  out.
 * Removed the faction standing cap system. You can now gain as much
   reputation as you want with all factions (even the Collective). This
   also means all ships and outfits are available to obtain without
@@ -22,11 +20,6 @@
   within a system it has presence in (e.g. killing pirates in systems
   with Empire presence, or killing FLF pilots in systems with Dvaered
   presence).
-* The Empire Recruitment mission is now guaranteed to send you to a
-  nearby planet with commodities as well as missions.
-* Removed a random chance that existed of pirates attacking to kill
-  (meaning they will now always stop attacking and board you as soon as
-  you're disabled).
 * Coupled together Frontier and FLF standing: if you are enemies with
   the Frontier, FLF standing will not go any higher than your Frontier
   standing (and your reputation will drop to enemy status when you
@@ -35,29 +28,7 @@
 * Buffed the Gawain's speed and takeoff speed. (It was already the
   fastest ship in the galaxy before, but the difference is now more
   pronounced.)
-* Added some rescue code to the starting missions in case the player
-  takes off their weapons, installing new laser cannons for them in the
-  moment that they're needed.
-* Fixed the rescue script that activates when you take off, which had
-  several small problems in how it worked caused by changes that weren't
-  properly accommodated.
-* The Options menu now always shows 1280×720 as a stock resolution
-  choice, even if not listed as a supported mode by the OS (since that
-  is Naikari's default resolution), and no longer shows a choice with
-  the resolution you were at when opening the Options menu.
-* Double-tap afterburn is now disabled by default.
 * Increased variation of commodity prices.
-* Fixed a bug which caused the game to sometimes try to change to an
-  arbitrary small resolution (640×480 in all observed cases) on some
-  systems (noticed on Windows, but may have affected others) when
-  clicking OK in the options menu.
-* Replaced "cycles" with "galactic years", which are 36,000,000 galactic
-  seconds long (360 galactic days). Lore-wise, time units are now
-  defined in relation to our 24-hour Earth days, meaning the new
-  galactic year is exactly 360 days.
-* The economy system no longer tracks "price knowledge". The player now
-  always has perfect knowledge of pricing variation for all discovered
-  planets and systems.
 * Removed the mission computer bounty missions and the Assault on
   Unicorn mission as these are now redundant (bounties are earned
   without having to have a corresponding quest).
@@ -68,58 +39,11 @@
   system (similar to the ship stealing mission). The mission also now
   rewards you immediately upon completion instead of requiring you to
   land to collect your reward.
-* The patrol mission now rewards you immediately upon completion without
-  having to land in the faction's territory first.
-* Replaced the news entry generator, which previously just generated
-  random filler with no connection to the story, with news entries that
-  are relevant to the player, like mission hints.
-* Changed the unit of mass used from tonnes to kilotonnes (meaning we no
-  longer have the silliness of space carriers weighing less than naval
-  aircraft carriers, etc).
-* The game no longer refuses to resize a maximized window if you tell it
-  to in the Options menu. (This change also fixes bugs with the code
-  that implemented this restriction.)
 * Added "escape jumps", which allow you to engage your hyperspace engine
   without actually going into hyperspace, taking you to a distant part
   of the system at a cost of one jump of fuel, all of your battery
   charge, half of your remaining shield, and half of your remaining
   armor. (The maneuver takes you a distance of around 30,000 mAU.)
-* Changed the way autonav detects "hostile presence" for the purposes
-  of determining whether to reset the speed that time passes. It now
-  only counts ships that are close enough that one of the two ships
-  will be within weapon range soon (or already are). This avoids most
-  unnecessary time slowdowns while also being cautious enough to give
-  advance warning to the player.
-* Converted the Reynir mission into a hidden tutorial for the local
-  jumps feature and changed the rewarded commodity from Food (hot dogs)
-  to Luxury Goods (robot teddy bears), making it more rewarding.
-* Fixed a problem where the Waste Dump mission would make your own
-  escorts hostile toward you if you aborted it while in space.
-* Made it so that the debris graphics in asteroid fields are entirely
-  separate from the asteroids themselves, making it more obvious which
-  asteroids are real and which are just decoration.
-* "High-class" planets now require 10% reputation instead of 0% to land
-  on.
-* Removed the DIY-Nerds mission (the one where you take a group of nerds
-  to a science fair or something). It never felt all that important and
-  wasn't really worth doing.
-* Changed the relation between real-world time passage and in-universe
-  time passage: one real-world second is now equal to 750 in-universe
-  seconds, rather than 30 in-universe seconds as before. In tandem, the
-  primary components to a date have been changed from year, hour, second
-  to year, day, second. (In-game time-related things have been changed
-  to now use days instead of hours; for example, jump time is now one
-  day instead of one hour.)
-* Changed the distance unit used from kilometers to thousandths of an
-  astronomical unit (mAU).
-* Changed the display of unidirectional jumps in the map to use the
-  color black for the exit-only side, rather than white. This is a bit
-  more intuitive and also should be easier to see for colorblind
-  players.
-* Auto-saves are no longer disabled when landing on planets that do not
-  refuel you. Instead, the design philosophy is being shifted to
-  ensuring that unwinnable states are impossible anywhere you're allowed
-  to land.
 * Civilians and traders will now always offer to refuel you if you
   cannot make a jump, even if you don't have credits to pay them.
 * Collective drones will now refuel you if you are friendly to them.
@@ -156,6 +80,90 @@
     made to ensure that the ones that still exist are worth going to
     for some reason or another, or otherwise serve a legitimate gameplay
     purpose.
+
+### Other Changes
+
+* All bar missions are prevented from spawning in Hakoi and Eneguez
+  until you finish the Ian Structure missions.
+* The Empire Recruitment mission is now guaranteed to send you to a
+  nearby planet with commodities as well as missions.
+* Removed a random chance that existed of pirates attacking to kill
+  (meaning they will now always stop attacking and board you as soon as
+  you're disabled).
+* Added some rescue code to the starting missions in case the player
+  takes off their weapons, installing new laser cannons for them in the
+  moment that they're needed.
+* The Options menu now always shows 1280×720 as a stock resolution
+  choice, even if not listed as a supported mode by the OS (since that
+  is Naikari's default resolution), and no longer shows a choice with
+  the resolution you were at when opening the Options menu.
+* Double-tap afterburn is now disabled by default.
+* Replaced "cycles" with "galactic years", which are 36,000,000 galactic
+  seconds long (360 galactic days). Lore-wise, time units are now
+  defined in relation to our 24-hour Earth days, meaning the new
+  galactic year is exactly 360 days.
+* The economy system no longer tracks "price knowledge". The player now
+  always has perfect knowledge of pricing variation for all discovered
+  planets and systems.
+* The patrol mission now rewards you immediately upon completion without
+  having to land in the faction's territory first.
+* Replaced the news entry generator, which previously just generated
+  random filler with no connection to the story, with news entries that
+  are relevant to the player, like mission hints.
+* Changed the unit of mass used from tonnes to kilotonnes (meaning we no
+  longer have the silliness of space carriers weighing less than naval
+  aircraft carriers, etc).
+* The game no longer refuses to resize a maximized window if you tell it
+  to in the Options menu. (This change also fixes bugs with the code
+  that implemented this restriction.)
+* Changed the way autonav detects "hostile presence" for the purposes
+  of determining whether to reset the speed that time passes. It now
+  only counts ships that are close enough that one of the two ships
+  will be within weapon range soon (or already are). This avoids most
+  unnecessary time slowdowns while also being cautious enough to give
+  advance warning to the player.
+* Converted the Reynir mission into a hidden tutorial for the local
+  jumps feature and changed the rewarded commodity from Food (hot dogs)
+  to Luxury Goods (robot teddy bears), making it more rewarding.
+* Made it so that the debris graphics in asteroid fields are entirely
+  separate from the asteroids themselves, making it more obvious which
+  asteroids are real and which are just decoration.
+* "High-class" planets now require 10% reputation instead of 0% to land
+  on.
+* Removed the DIY-Nerds mission (the one where you take a group of nerds
+  to a science fair or something). It never felt all that important and
+  wasn't really worth doing.
+* Changed the relation between real-world time passage and in-universe
+  time passage: one real-world second is now equal to 750 in-universe
+  seconds, rather than 30 in-universe seconds as before. In tandem, the
+  primary components to a date have been changed from year, hour, second
+  to year, day, second. (In-game time-related things have been changed
+  to now use days instead of hours; for example, jump time is now one
+  day instead of one hour.)
+* Changed the distance unit used from kilometers to thousandths of an
+  astronomical unit (mAU).
+* Changed the display of unidirectional jumps in the map to use the
+  color black for the exit-only side, rather than white. This is a bit
+  more intuitive and also should be easier to see for colorblind
+  players.
+* Auto-saves are no longer disabled when landing on planets that do not
+  refuel you. Instead, the design philosophy is being shifted to
+  ensuring that unwinnable states are impossible anywhere you're allowed
+  to land.
+
+### Bugfixes
+
+* Fixed some problems with the way the Combat Practice mission closed
+  out.
+* Fixed the rescue script that activates when you take off, which had
+  several small problems in how it worked caused by changes that weren't
+  properly accommodated.
+* Fixed a bug which caused the game to sometimes try to change to an
+  arbitrary small resolution (640×480 in all observed cases) on some
+  systems (noticed on Windows, but may have affected others) when
+  clicking OK in the options menu.
+* Fixed a problem where the Waste Dump mission would make your own
+  escorts hostile toward you if you aborted it while in space.
 * Extremely high turn rates no longer have the potential to mess up
   autonav during time compression.
 * Fixed a rare bug caused by dying while in the landing procedure.
