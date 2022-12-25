@@ -181,6 +181,8 @@
   own hired escorts.
 * Adjusted the music script to hopefully fix an uncommon bug where
   combat music played while landed.
+* Fixed a double land denial message when attempting to land on
+  something you're not allowed to land on with the land key.
 
 ## 0.4.1
 
