@@ -2141,12 +2141,12 @@ dat/events/neutral/baron_comm.lua
 dat/events/neutral/baron_flintley.lua
 dat/events/neutral/baron_prowl.lua
 dat/events/neutral/fuel_request.lua
-dat/events/neutral/npc.lua
 dat/events/neutral/shadow_comm.lua
 dat/events/neutral/shadow_comm2.lua
 dat/events/neutral/shipwreck.lua
 dat/events/neutral/testengine.lua
 dat/events/news.lua
+dat/events/npc.lua
 dat/events/proteron/proteron_discovery.lua
 dat/events/shiplog.lua
 dat/events/sirius/preach.lua

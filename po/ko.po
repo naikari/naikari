@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-23 15:38-0500\n"
+"POT-Creation-Date: 2022-12-25 03:02-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -11927,7 +11927,7 @@ msgstr ""
 #. End event on takeoff.
 #. Spawns an NPC.
 #. Select a faction for the NPC. NPCs may not have a specific faction.
-#: dat/faction.xml:30 dat/faction.xml:82 dat/events/neutral/npc.lua:381
+#: dat/faction.xml:30 dat/faction.xml:82 dat/events/npc.lua:381
 msgid "Civilian"
 msgstr ""
 
@@ -11949,35 +11949,35 @@ msgstr ""
 msgid "Proteron Dissident"
 msgstr "프로 테론 유도체"
 
-#: dat/faction.xml:98 dat/faction.xml:329 dat/faction.xml:403
+#: dat/faction.xml:98 dat/faction.xml:328 dat/faction.xml:400
 msgid "Pirate"
 msgstr ""
 
-#: dat/faction.xml:102 dat/faction.xml:363
+#: dat/faction.xml:102 dat/faction.xml:360
 msgid "Galactic Pirates"
 msgstr ""
 
-#: dat/faction.xml:131
+#: dat/faction.xml:130
 msgid "Empire"
 msgstr ""
 
-#: dat/faction.xml:150 dat/faction.xml:153 dat/ships/proteron_archimedes.xml:20
+#: dat/faction.xml:149 dat/faction.xml:152 dat/ships/proteron_archimedes.xml:20
 #: dat/ships/proteron_derivative.xml:16 dat/ships/proteron_kahan.xml:16
 #: dat/ships/proteron_watson.xml:16
 #, fuzzy
 msgid "Proteron"
 msgstr "프로 테론 카한"
 
-#: dat/faction.xml:167
+#: dat/faction.xml:166
 msgid "Frontier"
 msgstr ""
 
-#: dat/faction.xml:171
+#: dat/faction.xml:170
 #, fuzzy
 msgid "Frontier Alliance"
 msgstr "프론티어 얼라이언스의 소식입니다."
 
-#: dat/faction.xml:183 dat/ships/soromid_arx.xml:20
+#: dat/faction.xml:182 dat/ships/soromid_arx.xml:20
 #: dat/ships/soromid_brigand.xml:13 dat/ships/soromid_ira.xml:18
 #: dat/ships/soromid_marauder.xml:14 dat/ships/soromid_nyx.xml:14
 #: dat/ships/soromid_odium.xml:15 dat/ships/soromid_reaver.xml:13
@@ -11985,11 +11985,11 @@ msgstr "프론티어 얼라이언스의 소식입니다."
 msgid "Soromid"
 msgstr ""
 
-#: dat/faction.xml:198
+#: dat/faction.xml:197
 msgid "Thurion"
 msgstr ""
 
-#: dat/faction.xml:211
+#: dat/faction.xml:210
 msgid "Collective"
 msgstr ""
 
@@ -12001,20 +12001,20 @@ msgstr ""
 #. Safe FLF faction so that the player doesn't lose reputation
 #. with the FLF from doing this mission (in case the player made
 #. the bad decision to fly a Destroyer or something here).
-#: dat/faction.xml:225 dat/missions/empire/shipping/es00.lua:156
+#: dat/faction.xml:224 dat/missions/empire/shipping/es00.lua:156
 msgid "FLF"
 msgstr ""
 
-#: dat/faction.xml:229
+#: dat/faction.xml:228
 #, fuzzy
 msgid "Frontier Liberation Front"
 msgstr "프론티어 순찰대"
 
-#: dat/faction.xml:242
+#: dat/faction.xml:241
 msgid "Dvaered"
 msgstr ""
 
-#: dat/faction.xml:247 dat/ships/ancestor.xml:14
+#: dat/faction.xml:246 dat/ships/ancestor.xml:14
 #: dat/ships/dvaered_ancestor.xml:15 dat/ships/dvaered_phalanx.xml:16
 #: dat/ships/dvaered_vendetta.xml:16 dat/ships/dvaered_vigilance.xml:15
 #: dat/ships/phalanx.xml:15 dat/ships/vendetta.xml:15
@@ -12022,84 +12022,84 @@ msgstr ""
 msgid "House Dvaered"
 msgstr ""
 
-#: dat/faction.xml:261 dat/ssys/zalek.xml:2
+#: dat/faction.xml:260 dat/ssys/zalek.xml:2
 msgid "Za'lek"
 msgstr ""
 
-#: dat/faction.xml:266
+#: dat/faction.xml:265
 msgid "House Za'lek"
 msgstr ""
 
-#: dat/faction.xml:278 dat/faction.xml:433
+#: dat/faction.xml:277 dat/faction.xml:430
 msgid "Sirius"
 msgstr ""
 
-#: dat/faction.xml:283
+#: dat/faction.xml:282
 msgid "House Sirius"
 msgstr ""
 
-#: dat/faction.xml:295 dat/ships/dvaered_goddard.xml:3 dat/ships/goddard.xml:2
+#: dat/faction.xml:294 dat/ships/dvaered_goddard.xml:3 dat/ships/goddard.xml:2
 #: dat/ships/goddard.xml:3 dat/ssys/goddard.xml:2
 #, fuzzy
 msgid "Goddard"
 msgstr "드 베어드 고다드"
 
-#: dat/faction.xml:300 dat/ships/dvaered_goddard.xml:18
+#: dat/faction.xml:299 dat/ships/dvaered_goddard.xml:18
 #: dat/ships/goddard.xml:17
 #, fuzzy
 msgid "House Goddard"
 msgstr "드 베어드 고다드"
 
-#: dat/faction.xml:313
+#: dat/faction.xml:312
 msgid "Rogue FLF"
 msgstr ""
 
-#: dat/faction.xml:327
+#: dat/faction.xml:326
 msgid "Rogue Pirate"
 msgstr ""
 
-#: dat/faction.xml:343 dat/faction.xml:447 dat/faction.xml:461
+#: dat/faction.xml:342 dat/faction.xml:444 dat/faction.xml:458
 msgid "Mercenary"
 msgstr ""
 
-#: dat/faction.xml:357
+#: dat/faction.xml:354
 msgid "Raider"
 msgstr ""
 
-#: dat/faction.xml:373 dat/faction.xml:389
+#: dat/faction.xml:370 dat/faction.xml:386
 msgid "Four Winds"
 msgstr ""
 
-#: dat/faction.xml:387
+#: dat/faction.xml:384
 msgid "Rogue Four Winds"
 msgstr ""
 
-#: dat/faction.xml:401
+#: dat/faction.xml:398
 msgid "Shadow_pirates"
 msgstr ""
 
-#: dat/faction.xml:417
+#: dat/faction.xml:414
 #, fuzzy
 msgid "Diplomatic"
 msgstr "외교 선박"
 
-#: dat/faction.xml:431
+#: dat/faction.xml:428
 msgid "Achack_sirius"
 msgstr ""
 
-#: dat/faction.xml:445
+#: dat/faction.xml:442
 msgid "Achack_mercenary"
 msgstr ""
 
-#: dat/faction.xml:459
+#: dat/faction.xml:456
 msgid "Comingout_associates"
 msgstr ""
 
-#: dat/faction.xml:474
+#: dat/faction.xml:471
 msgid "Comingout_gangsters"
 msgstr ""
 
-#: dat/faction.xml:476
+#: dat/faction.xml:473
 msgid "Gangsters"
 msgstr ""
 
@@ -12912,34 +12912,6 @@ msgstr "해적 조상"
 msgid "Independent Vendetta"
 msgstr "드 베어드 벤데타"
 
-#. Select a military portrait and description.
-#. Select a civilian portrait and description.
-#. Select what this NPC should say.
-#. Jump point message.
-#. Lore message.
-#. Gameplay tip message.
-#. Mission hint message.
-#. Returns a lore message for the given faction.
-#. Select the faction messages for this NPC's faction, if it exists.
-#. Select a string, then remove it from the list of valid strings. This ensures all NPCs have something different to say.
-#. Returns a jump point message and updates jump point known status accordingly. If all jumps are known by the player, defaults to a lore message.
-#. Collect a table of jump points in the system the player does NOT know.
-#. We need to keep track of jump points NPCs will tell the player about so there are no duplicates.
-#. The player already knows all jumps in this system.
-#. All jump messages are valid always.
-#. Don't need to remove messages from tables here, but add whatever jump point we selected to the "selected" table.
-#. Returns a tip message.
-#. All tip messages are valid always.
-#. Returns a mission hint message, a mission after-care message, OR a lore message if no missionlikes are left.
-#. Hints.
-#. Hint messages are only valid if the relevant mission has not been completed and is not currently active.
-#. After-care.
-#. After-care messages are only valid if the relevant mission has been completed.
-#. Select a string, then remove it from the list of valid strings. This ensures all NPCs have something different to say.
-#. Execute NPC specific code
-#.
-#. --    Event is over when player takes off.
-#. --
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <event name="Shadowcomm">
@@ -22590,11 +22562,13 @@ msgstr ""
 msgid "{credits} paid by local crime lord for eliminating {pilot}."
 msgstr ""
 
-#: dat/events/bounty.lua:66
+#: dat/events/bounty.lua:64
 msgctxt "log"
 msgid "Combat"
 msgstr ""
 
+#. Mercenaries are a special case since they have no formal
+#. enemies, but likely should award a bounty.
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <event name="Cinematic Dvaered/FLF battle">
@@ -22893,7 +22867,7 @@ msgstr ""
 #. For older saves: populate the speed value now.
 #. Trigger a hook to allow missions to do things with the
 #. escorts.
-#: dat/events/escorts.lua:464
+#: dat/events/escorts.lua:465
 msgid ""
 "{escort} has left your wing because you now have a negative standing with "
 "the {faction} faction."
@@ -22901,28 +22875,28 @@ msgstr ""
 
 #. Pilot is no longer employed by the player
 #. Pilot was hailed by the player
-#: dat/events/escorts.lua:503 dat/events/escorts.lua:505
-#: dat/events/escorts.lua:604 dat/events/escorts.lua:619
+#: dat/events/escorts.lua:504 dat/events/escorts.lua:506
+#: dat/events/escorts.lua:605 dat/events/escorts.lua:620
 msgid "Fire pilot"
 msgstr ""
 
-#: dat/events/escorts.lua:503 dat/events/escorts.lua:510
+#: dat/events/escorts.lua:504 dat/events/escorts.lua:511
 msgid "Issue Order"
 msgstr ""
 
-#: dat/events/escorts.lua:503 dat/events/escorts.lua:604
-#: dat/events/escorts.lua:671
+#: dat/events/escorts.lua:504 dat/events/escorts.lua:605
+#: dat/events/escorts.lua:672
 msgid "Do nothing"
 msgstr ""
 
-#: dat/events/escorts.lua:506
+#: dat/events/escorts.lua:507
 #, fuzzy
 msgid ""
 "Are you sure you want to fire {pilot}? This cannot be undone and you will "
 "not get any of the deposit back."
 msgstr "Naev를 나가겠습니까?"
 
-#: dat/events/escorts.lua:509
+#: dat/events/escorts.lua:510
 msgid "You have fired {pilot}."
 msgstr ""
 
@@ -22973,27 +22947,27 @@ msgstr ""
 #.
 #. Example usage: my_enum = enumerate({"first", "second", "third"})
 #. Example usage: print(my_enum.first)
-#: dat/events/escorts.lua:511 dat/scripts/escorthelper.lua:23 src/escort.c:303
+#: dat/events/escorts.lua:512 dat/scripts/escorthelper.lua:23 src/escort.c:303
 msgid "Escort Orders"
 msgstr ""
 
-#: dat/events/escorts.lua:512 dat/scripts/escorthelper.lua:24 src/escort.c:304
+#: dat/events/escorts.lua:513 dat/scripts/escorthelper.lua:24 src/escort.c:304
 msgid "Select the order to give to this escort."
 msgstr ""
 
-#: dat/events/escorts.lua:513 dat/events/escorts.lua:515
+#: dat/events/escorts.lua:514 dat/events/escorts.lua:516
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:33
 #: src/escort.c:292
 msgid "Hold Formation"
 msgstr ""
 
-#: dat/events/escorts.lua:513 dat/events/escorts.lua:518
+#: dat/events/escorts.lua:514 dat/events/escorts.lua:519
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:36
 #: src/escort.c:293
 msgid "Return To Ship"
 msgstr ""
 
-#: dat/events/escorts.lua:513 dat/events/escorts.lua:521
+#: dat/events/escorts.lua:514 dat/events/escorts.lua:522
 #: dat/scripts/escorthelper.lua:26 dat/scripts/escorthelper.lua:39
 #: src/escort.c:294
 msgid "Clear Orders"
@@ -23006,7 +22980,7 @@ msgstr ""
 #. "Cancel"
 #. Only "Cancel" remains, nothing to do.
 #. Run callback.
-#: dat/events/escorts.lua:514 dat/rescue.lua:46 dat/rescue.lua:60
+#: dat/events/escorts.lua:515 dat/rescue.lua:46 dat/rescue.lua:60
 #: dat/rescue.lua:121 dat/rescue.lua:174 dat/scripts/escorthelper.lua:26
 #: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:295 src/map_find.c:246
 #: src/options.c:280 src/options.c:792 src/options.c:912 src/options.c:1174
@@ -23014,23 +22988,23 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: dat/events/escorts.lua:517
+#: dat/events/escorts.lua:518
 #, lua-format
 msgid "#F%s:#0 Holding formation."
 msgstr ""
 
-#: dat/events/escorts.lua:520 src/escort.c:320
+#: dat/events/escorts.lua:521 src/escort.c:320
 #, c-format, lua-format
 msgid "#F%s:#0 Returning to ship."
 msgstr ""
 
-#: dat/events/escorts.lua:523 src/escort.c:325
+#: dat/events/escorts.lua:524 src/escort.c:325
 #, c-format, lua-format
 msgid "#F%s:#0 Clearing orders."
 msgstr ""
 
 #. Must have an attacker
-#: dat/events/escorts.lua:540
+#: dat/events/escorts.lua:541
 msgid "{pilot} has left your wing and turned against you!"
 msgstr ""
 
@@ -23038,48 +23012,48 @@ msgstr ""
 #. Must have an attacker
 #. Since all the escorts will turn on the player, we might as well
 #. just have them all disband at once and attack.
-#: dat/events/escorts.lua:566
+#: dat/events/escorts.lua:567
 msgid ""
 "You have caused infighting within your wing, causing all of your escorts to "
 "quit and turn on you in retaliation!"
 msgstr ""
 
 #. Escort got killed
-#: dat/events/escorts.lua:580
+#: dat/events/escorts.lua:581
 msgid "{pilot} [docked]"
 msgstr ""
 
-#: dat/events/escorts.lua:584
+#: dat/events/escorts.lua:585
 msgid "This is one of the pilots currently under your wing."
 msgstr ""
 
-#: dat/events/escorts.lua:598 dat/events/escorts.lua:605
+#: dat/events/escorts.lua:599 dat/events/escorts.lua:606
 msgid "Dock pilot"
 msgstr ""
 
-#: dat/events/escorts.lua:600 dat/events/escorts.lua:614
+#: dat/events/escorts.lua:601 dat/events/escorts.lua:615
 msgid "Undock pilot"
 msgstr ""
 
-#: dat/events/escorts.lua:607
+#: dat/events/escorts.lua:608
 msgid ""
 "Are you sure you want to dock {pilot}? They will still be paid royalties, "
 "but will not join you in space until you undock them."
 msgstr ""
 
-#: dat/events/escorts.lua:625
+#: dat/events/escorts.lua:626
 msgid "You will be refunded the full {deposit} deposit."
 msgstr ""
 
-#: dat/events/escorts.lua:629
+#: dat/events/escorts.lua:630
 msgid "You will be refunded {refund} of the {deposit} deposit."
 msgstr ""
 
-#: dat/events/escorts.lua:634
+#: dat/events/escorts.lua:635
 msgid "You will not be refunded any of the {deposit} deposit."
 msgstr ""
 
-#: dat/events/escorts.lua:639
+#: dat/events/escorts.lua:640
 #, fuzzy
 msgid ""
 "Are you sure you want to fire {pilot}? This cannot be undone. "
@@ -23088,7 +23062,7 @@ msgstr "Naev를 나가겠습니까?"
 
 #. We just set alive to false for now and let them get cleaned
 #. up next time we land.
-#: dat/events/escorts.lua:653
+#: dat/events/escorts.lua:654
 msgid ""
 "\"Of course. There are two parts: the deposit, and the royalty.\n"
 "\n"
@@ -23102,21 +23076,21 @@ msgid ""
 "employed by you, you will have to pay me {payment}.\""
 msgstr ""
 
-#: dat/events/escorts.lua:671 dat/events/escorts.lua:672
+#: dat/events/escorts.lua:672 dat/events/escorts.lua:673
 msgid "Hire pilot"
 msgstr ""
 
-#: dat/events/escorts.lua:671 dat/events/escorts.lua:674
-#: dat/events/escorts.lua:681
+#: dat/events/escorts.lua:672 dat/events/escorts.lua:675
+#: dat/events/escorts.lua:682
 msgid "Explain rates"
 msgstr ""
 
-#: dat/events/escorts.lua:685
+#: dat/events/escorts.lua:686
 #, fuzzy
 msgid "You don't have enough credits to pay for this pilot's deposit."
 msgstr "\"나는 여분의 연료가 없다.\""
 
-#: dat/events/escorts.lua:689
+#: dat/events/escorts.lua:690
 msgid ""
 "Hiring this pilot will lead to you paying more in royalties than you earn "
 "from missions, meaning you will lose credits when doing missions. Are you "
@@ -23935,1261 +23909,6 @@ msgid "I need {amount} kL of fuel."
 msgid_plural "I need {amount} kL of fuel."
 msgstr[0] ""
 
-#.
-#. <?xml version='1.0' encoding='utf8'?>
-#. <event name="Spaceport Bar NPC">
-#. <trigger>land</trigger>
-#. <chance>100</chance>
-#. </event>
-#. --
-#.
-#. -- Event for creating random characters in the spaceport bar.
-#. -- The random NPCs will tell the player things about the Naikari
-#. -- universe in general, about their faction, or about the game itself.
-#. --
-#. Factions which will NOT get generic texts if possible.  Factions
-#. listed here not spawn generic civilian NPCs or get aftercare texts.
-#. Meant for factions which are either criminal (FLF, Pirate) or unaware
-#. of the main universe (Thurion, Proteron).
-#. Special names for certain factions' civilian NPCs (to replace the
-#. generic "{faction} Civilian" naming normally used).
-#: dat/events/neutral/npc.lua:27
-#, fuzzy
-msgid "Frontier Civilian"
-msgstr "프론티어 얼라이언스의 소식입니다."
-
-#: dat/events/neutral/npc.lua:28 dat/events/neutral/npc.lua:49
-#, fuzzy
-msgctxt "individual"
-msgid "Pirate"
-msgstr "해적 벤데타"
-
-#. Land-restricted NPC names for the spaceport bar. This correlates
-#. land restriction function names (returned by planet.restriction())
-#. with what NPCs on planets with those restrictions should be called.
-#. Appearance in this table also implicitly causes portrait.getMil() to
-#. be used for selecting a portrait instead of portrait.get().
-#: dat/events/neutral/npc.lua:37 dat/events/neutral/npc.lua:38
-#: dat/events/neutral/npc.lua:39
-msgid "Empire Officer"
-msgstr ""
-
-#: dat/events/neutral/npc.lua:40 dat/events/neutral/npc.lua:41
-#, fuzzy
-msgid "Sirius Officer"
-msgstr "시리우스 설교자"
-
-#: dat/events/neutral/npc.lua:42 dat/events/neutral/npc.lua:43
-#, fuzzy
-msgid "Dvaered Officer"
-msgstr "드 베어드 조상"
-
-#: dat/events/neutral/npc.lua:44
-#, fuzzy
-msgid "Soromid Officer"
-msgstr "소로미드 오듐"
-
-#: dat/events/neutral/npc.lua:45 dat/events/neutral/npc.lua:46
-msgid "Za'lek Scientist"
-msgstr ""
-
-#: dat/events/neutral/npc.lua:47
-#, fuzzy
-msgid "FLF Soldier"
-msgstr "옹호자"
-
-#: dat/events/neutral/npc.lua:48
-#, fuzzy
-msgid "Proteron Officer"
-msgstr "프로 테론 카한"
-
-#. Civilian descriptions for the spaceport bar.
-#. These descriptions will be picked at random, and may be picked
-#. multiple times in one generation. Remember that any description can
-#. end up with any portrait, so don't make any assumptions about th
-#. appearance of the NPC!
-#: dat/events/neutral/npc.lua:58
-msgid "This person seems to be here to relax."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:59
-msgid "There is a civilian sitting on one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:60
-msgid "There is a civilian sitting there, looking somewhere else."
-msgstr "그곳에는 민간인이 앉아 다른 곳을 바라보고 있다."
-
-#: dat/events/neutral/npc.lua:61
-msgid ""
-"A worker sits at one of the tables, wearing a name tag saying \"Go away\"."
-msgstr "한 노동자가 테이블 중 하나에 앉아 \"가라\"는 명찰을 달고 있다."
-
-#: dat/events/neutral/npc.lua:62
-msgid ""
-"A civilian sits at the bar, seemingly serious about the cocktails on offer."
-msgstr ""
-"한 민간인이 그 술집에 앉아 있는 것이 겉으로 보기에 제공되고 있는 칵테일에 대"
-"해 심각하게 생각하는 것 같다."
-
-#: dat/events/neutral/npc.lua:63
-msgid "There is a civilian sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:64
-msgid "A civilian feverishly concentrating on a fluorescing drink."
-msgstr "한 민간인이 열나게 형광음료에 열중하고 있다."
-
-#: dat/events/neutral/npc.lua:65
-msgid "A civilian drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:66
-msgid "This person seems friendly enough."
-msgstr "이 사람은 충분히 다정한 것 같다."
-
-#: dat/events/neutral/npc.lua:67
-msgid "A civilian sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:68
-msgid "This person is idly browsing a news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:69 dat/events/neutral/npc.lua:87
-#, fuzzy
-msgid "A worker sits and drinks instead of working."
-msgstr "일꾼은 앉아서 술을 마시지만 일을 하지 않는다."
-
-#: dat/events/neutral/npc.lua:70 dat/events/neutral/npc.lua:88
-msgid "A worker slouched against the bar, nursing a drink."
-msgstr "한 노동자가 술집에 기대어 술을 한 잔 마시며 몸을 구부렸다."
-
-#: dat/events/neutral/npc.lua:71
-msgid "This worker seems bored with everything but their drink."
-msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
-
-#. Same as civ_desc, but for particular factions (replacing the default
-#. civ_desc table), organized by faction name.
-#: dat/events/neutral/npc.lua:78
-#, fuzzy
-msgid "This pirate seems to be here to relax."
-msgstr "프로테론이 당신을 지켜보고 있다."
-
-#: dat/events/neutral/npc.lua:79
-#, fuzzy
-msgid "There is a pirate sitting on one of the tables."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:80
-#, fuzzy
-msgid "There is a pirate sitting there, looking somewhere else."
-msgstr "그곳에는 민간인이 앉아 다른 곳을 바라보고 있다."
-
-#: dat/events/neutral/npc.lua:81
-#, fuzzy
-msgid ""
-"A pirate sits at the bar, seemingly serious about the cocktails on offer."
-msgstr ""
-"한 민간인이 그 술집에 앉아 있는 것이 겉으로 보기에 제공되고 있는 칵테일에 대"
-"해 심각하게 생각하는 것 같다."
-
-#: dat/events/neutral/npc.lua:82
-#, fuzzy
-msgid "There is a pirate sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:83
-#, fuzzy
-msgid "A pirate feverishly concentrating on a fluorescing drink."
-msgstr "한 민간인이 열나게 형광음료에 열중하고 있다."
-
-#: dat/events/neutral/npc.lua:84
-#, fuzzy
-msgid "A pirate drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:85
-#, fuzzy
-msgid "A pirate sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:86
-#, fuzzy
-msgid "This pirate is idly browsing a news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:89
-#, fuzzy
-msgid "This pirate seems bored with everything but their drink."
-msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
-
-#. Same as civ_desc, but for land-restricted NPCs, organized by land
-#. restriction function name.
-#: dat/events/neutral/npc.lua:96
-msgid "An Empire officer sits idly at one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:97
-msgid "This Empire officer seems somewhat spaced-out."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:98
-#, fuzzy
-msgid "An Empire officer drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:99
-#, fuzzy
-msgid "An Empire officer sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:100
-#, fuzzy
-msgid "This Empire officer is idly reading the news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:101 dat/events/neutral/npc.lua:113
-#: dat/events/neutral/npc.lua:124 dat/events/neutral/npc.lua:136
-#: dat/events/neutral/npc.lua:166
-#, fuzzy
-msgid "This officer seems bored with everything but their drink."
-msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
-
-#: dat/events/neutral/npc.lua:102 dat/events/neutral/npc.lua:114
-#: dat/events/neutral/npc.lua:125 dat/events/neutral/npc.lua:137
-#: dat/events/neutral/npc.lua:167
-#, fuzzy
-msgid "This officer seems to be relaxing after a hard day's work."
-msgstr "프로테론이 당신을 지켜보고 있다."
-
-#: dat/events/neutral/npc.lua:103
-#, fuzzy
-msgid "An Empire officer sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:108
-msgid "A Sirius officer sits idly at one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:109
-msgid "This Sirius officer seems somewhat spaced-out."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:110
-#, fuzzy
-msgid "A Sirius officer drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:111
-#, fuzzy
-msgid "A Sirius officer sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:112
-#, fuzzy
-msgid "This Sirius officer is idly reading the news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:115
-#, fuzzy
-msgid "A Sirius officer sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:119
-msgid "A Dvaered officer sits idly at one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:120
-msgid "This Dvaered officer seems somewhat spaced-out."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:121
-#, fuzzy
-msgid "A Dvaered officer drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:122
-#, fuzzy
-msgid "A Dvaered officer sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:123
-#, fuzzy
-msgid "This Dvaered officer is idly reading the news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:126
-#, fuzzy
-msgid "A Dvaered officer sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:127
-msgid ""
-"A Dvaered officer suspiciously glancing around, as if expecting to be "
-"attacked by FLF terrorists at any moment."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:131
-msgid "A Soromid officer sits idly at one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:132
-msgid "This Soromid officer seems somewhat spaced-out."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:133
-#, fuzzy
-msgid "A Soromid officer drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:134
-#, fuzzy
-msgid "A Soromid officer sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:135
-#, fuzzy
-msgid "This Soromid officer is idly reading the news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:138
-#, fuzzy
-msgid "A Soromid officer sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:141
-msgid "A Za'lek scientist sits idly at one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:142
-msgid "This Za'lek scientist seems somewhat spaced-out."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:143
-#, fuzzy
-msgid "A Za'lek scientist drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:144
-#, fuzzy
-msgid "A Za'lek scientist sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:145
-#, fuzzy
-msgid "This Za'lek scientist is idly reading the news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:146
-#, fuzzy
-msgid "This scientist seems bored with everything but their drink."
-msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
-
-#: dat/events/neutral/npc.lua:147
-#, fuzzy
-msgid "This scientist seems to be relaxing after a hard day's work."
-msgstr "프로테론이 당신을 지켜보고 있다."
-
-#: dat/events/neutral/npc.lua:148
-#, fuzzy
-msgid "A Za'lek scientist sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:152
-msgid "An FLF soldier sits idly at one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:153
-msgid "This FLF soldier seems somewhat spaced-out."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:154
-#, fuzzy
-msgid "An FLF soldier drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:155
-#, fuzzy
-msgid "An FLF soldier sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:156
-#, fuzzy
-msgid "This FLF soldier is idly reading the news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:157
-#, fuzzy
-msgid "This FLF soldier seems to be relaxing for the moment."
-msgstr "프로테론이 당신을 지켜보고 있다."
-
-#: dat/events/neutral/npc.lua:158
-#, fuzzy
-msgid "An FLF soldier sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:159
-#, fuzzy
-msgid "An FLF soldier drinking with a group of comrades."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:162
-msgid "A Proteron officer sits idly at one of the tables."
-msgstr ""
-
-#: dat/events/neutral/npc.lua:163
-#, fuzzy
-msgid "A Proteron officer drinking alone."
-msgstr "민간인이 혼자 술을 마신다."
-
-#: dat/events/neutral/npc.lua:164
-#, fuzzy
-msgid "A Proteron officer sitting at the bar."
-msgstr "한 민간인이 바에 앉아 있다."
-
-#: dat/events/neutral/npc.lua:165
-#, fuzzy
-msgid "This Proteron officer is idly reading the news terminal."
-msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
-
-#: dat/events/neutral/npc.lua:168
-#, fuzzy
-msgid "A Proteron officer sitting in the corner."
-msgstr "구석에 민간인이 앉아 있다."
-
-#: dat/events/neutral/npc.lua:169
-msgid ""
-"A nervous-looking Proteron officer gently sips a drink while reading "
-"government propaganda."
-msgstr ""
-
-#. Lore messages. These come in general and factional varieties.
-#. General lore messages will be said by non-faction NPCs, OR by faction
-#. NPCs if they have no factional text to say. When adding factional
-#. text, make sure to add it to the table of the appropriate faction.
-#. Does your faction not have a table? Then just add it. The script will
-#. find and use it if it exists. Make sure you spell the faction name
-#. exactly the same as in faction.xml though!
-#: dat/events/neutral/npc.lua:182
-#, fuzzy
-msgid ""
-"\"I heard the nebula is haunted! My uncle told me he saw one of the ghost "
-"ships himself over in Arandon.\""
-msgstr ""
-"\"성운에 귀신이 있다고 들었어! 우리 삼촌 바비가 아란돈에서 유령선 한 척을 직"
-"접 봤다고 했어!\""
-
-#: dat/events/neutral/npc.lua:183
-#, fuzzy
-msgid ""
-"\"I don't believe in those nebula ghost stories. The people who spread them "
-"are just trying to scare you.\""
-msgstr ""
-"\"나는 그 성운 유령 이야기를 믿지 않아. 그 얘기를 하는 사람들은 그저 자네를 "
-"겁주려고 하는 것일세.\""
-
-#: dat/events/neutral/npc.lua:184
-msgid ""
-"\"Don't try to fly into the inner nebula. I've known people who tried, and "
-"none of them came back.\""
-msgstr ""
-"\"안쪽 성운 속으로 날아들려고 하지 마. 시도했던 사람들을 알고 있었는데, 아무"
-"도 돌아오지 않았어.\""
-
-#: dat/events/neutral/npc.lua:188
-msgid ""
-"\"Don't listen to those conspiracy theories about the Incident. We don't "
-"know what happened, sure, but why on Earth would someone blow up… you know, "
-"Earth… on purpose?\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:189 dat/events/neutral/npc.lua:200
-#: dat/events/neutral/npc.lua:212 dat/events/neutral/npc.lua:233
-#: dat/events/neutral/npc.lua:241
-#, fuzzy
-msgid ""
-"\"I wonder why the Siriusites are all so devout. I heard they have these "
-"special priestly people walking around. I wonder what's so special about "
-"them.\""
-msgstr ""
-"\"시리들이 왜 이렇게 경건한가? 특별한 사제들이 돌아다니고 있다고 들었어. 그 "
-"사람들이 뭐가 그리 특별한지 궁금하군.\""
-
-#: dat/events/neutral/npc.lua:190 dat/events/neutral/npc.lua:201
-#: dat/events/neutral/npc.lua:213 dat/events/neutral/npc.lua:225
-#: dat/events/neutral/npc.lua:276
-#, fuzzy
-msgid ""
-"\"The Soromid fly organic ships! I heard their ships grow and improve as you "
-"use them. That's so weird.\""
-msgstr ""
-"\"소로미드가 유기선을 날리다니! 나는 그들의 배가 비행 중에 스스로 치유될 수 "
-"있다고 들었어. 너무 이상해.\""
-
-#: dat/events/neutral/npc.lua:191
-msgid ""
-"\"I won't lie, the Soromid freak me the hell out. Something's just… fishy "
-"about them. You know what I mean?\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:195
-#, fuzzy
-msgid ""
-"\"Things are getting worse every year. What happened to the Empire? We used "
-"to be the lords and masters over the whole galaxy!\""
-msgstr ""
-"\"사정은 사이클로 갈수록 악화되고 있다. 엠파이어는 어떻게 됐지? 우리는 전 은"
-"하계를 지배하는 영주였고 주인이었다!\""
-
-#: dat/events/neutral/npc.lua:196
-#, fuzzy
-msgid ""
-"\"Did you know that House Za'lek was originally a Great Project initiated by "
-"the Empire? There was also a Project Proteron, but that one didn't go so "
-"well.\""
-msgstr ""
-"\"자렉 가문은 원래 제국이 시작한 대프로젝트라는 것을 알고 있었나? 자, 이제 알"
-"겠지! 프로테론 프로젝트도 있었지만, 그렇게 잘 되지는 않았다.\""
-
-#: dat/events/neutral/npc.lua:197
-#, fuzzy
-msgid ""
-"\"The Emperor lives on a giant supercruiser in Gamma Polaris. It's said to "
-"be the biggest ship in the galaxy! I wish I could have one.\""
-msgstr ""
-"\"황제는 감마 폴라리스에 있는 거대한 슈퍼 크루저에 산다. 그것은 은하계에서 가"
-"장 큰 배라고 한다! 나는 완전히 하나를 원한다.\""
-
-#: dat/events/neutral/npc.lua:198
-msgid ""
-"\"Don't pay attention to the naysayers. The Empire is still strong. Have you "
-"ever seen a Peacemaker up close? I doubt any ship fielded by any other power "
-"could stand up to one.\""
-msgstr ""
-"\"반대하는 자들에게는 신경 쓰지 마. 제국은 여전히 건재하다. 피스메이커를 가까"
-"이서 본 적 있어? 다른 어떤 힘으로도 한 척을 견뎌낼 수 있을지 의문이다.\""
-
-#: dat/events/neutral/npc.lua:199
-msgid ""
-"\"I don't know who did it, but believe me, the Incident was no accident! It "
-"was definitely a terrorist attack orchestrated by those disloyal Great "
-"Houses in an effort to take down the Empire.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:202
-#, fuzzy
-msgid ""
-"\"I wouldn't travel north of Alteris if I were you, unless you're a good "
-"fighter! That area of space has really gone down the drain since the "
-"Incident.\""
-msgstr ""
-"\"내가 너라면 알테리스에서 북쪽으로 여행하지 않을 거야, 네가 훌륭한 전투원이 "
-"아니라면! 그 공간은 사건 이후 정말 수포로 돌아갔다.\""
-
-#: dat/events/neutral/npc.lua:206
-msgid ""
-"\"My great-great-great-grandfather fought in the Dvaered Revolts! We still "
-"have the holovids he made. I'm proud to be a Dvaered!\""
-msgstr ""
-"\"우리 증조할아버지가 드바에레드 리볼트에서 싸웠소! 우린 아직 그가 만든 홀로"
-"비드를 가지고 있어. 드바에레드가 된 것이 자랑스럽소!\""
-
-#: dat/events/neutral/npc.lua:207
-#, fuzzy
-msgid ""
-"\"You'd better not mess with the Dvaered. Our military is the largest and "
-"strongest in the galaxy. Nobody can stand up to us!\""
-msgstr ""
-"\"드바에레드 가문을 함부로 다루지 않는 게 좋을 거야. 우리 군대는 은하계에서 "
-"가장 크고 힘이 세다. 아무도 우리에게 대항할 수 없어!\""
-
-#: dat/events/neutral/npc.lua:208
-msgid ""
-"\"House Dvaered? House? The Empire is weak and useless, we don't need them "
-"anymore! I say we declare ourselves an independent faction today. What are "
-"they going to do, subjugate us? We all know how well that went last time! Ha!"
-"\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:209
-msgid ""
-"\"I'm thinking about joining the military. Every time I see or hear news "
-"about those rotten FLF bastards, it makes my blood boil! They should all be "
-"pounded into space dust!\""
-msgstr ""
-"\"군입대를 생각하고 있다. 그 썩은 FLF 새끼들에 대한 소식을 듣거나 볼 때마다 "
-"피가 끓어! 모두 우주 먼지에 박혀야 해!\""
-
-#: dat/events/neutral/npc.lua:210
-msgid ""
-"\"FLF terrorists? I'm not too worried about them. You'll see, High Command "
-"will have smoked them out of their den soon enough, and then the Frontier "
-"will be ours.\""
-msgstr ""
-"\"FLF 테러범? 나는 그들이 너무 걱정되지 않아. 자네도 알겠지만, 하급사령부가 "
-"곧 그들을 그들의 굴에서 쫓아냈을 테니, 그러면 프론티어는 우리의 것이 될 거야."
-"\""
-
-#: dat/events/neutral/npc.lua:211
-msgid ""
-"\"If you ask me, those FLF terrorists caused the Incident. They have a clear "
-"motive: they wanted to create that nebula so they would have a place to "
-"hide. Damn criminals…\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:217
-msgid ""
-"\"Greetings, traveler. May Sirichana's wisdom guide you as it guides me.\""
-msgstr ""
-"\"반갑다, 여행자. 시리차나의 지혜가 나를 인도하는 대로 너를 인도해 주기를.\""
-
-#: dat/events/neutral/npc.lua:218
-msgid ""
-"\"I once met one of the Touched in person. Well, it wasn't really a meeting, "
-"our eyes simply met… but that instant alone was awe-inspiring.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:219
-#, fuzzy
-msgid ""
-"\"My cousin was called to Mutris a year ago. He must be in Crater City by "
-"now. And one day, he will become one of the Touched!\""
-msgstr ""
-"\"내 사촌은 사이클 전에 무트리스로 불려갔어... 그는 지금쯤 크레이터 시티에 있"
-"을 거야. 그리고 언젠가는 터치족 중 한 명이 될 거야!\""
-
-#: dat/events/neutral/npc.lua:220
-msgid ""
-"\"Some people say Sirius society is unfair because our echelons are "
-"determined by birth. But even though we are different, we are all followers "
-"of Sirichana. Spiritually, we are equal.\""
-msgstr ""
-"\"우리 집안이 태생에 의해 결정되기 때문에 시리우스 사회가 불공평하다고 말하"
-"는 사람도 있다. 그러나 비록 우리는 다르지만, 우리는 모두 시리차나의 추종자들"
-"이다. 영적으로 우리는 평등하다.\""
-
-#: dat/events/neutral/npc.lua:221
-#, fuzzy
-msgid ""
-"\"We are officially part of the Empire, but everyone knows that's only true "
-"on paper. The Emperor has no influence on these systems. We follow "
-"Sirichana, and no one else.\""
-msgstr ""
-"\"시리우스 가문은 공식적으로 제국의 일부지만, 모두가 그것이 서류상으로만 사실"
-"이라는 것을 알고 있다. 황제는 이 제도에서 할 말이 없다. 우리는 시리차나를 따"
-"르고, 다른 사람은 아무도 없다.\""
-
-#: dat/events/neutral/npc.lua:222
-msgid "\"I hope to meet one of the Touched one day!\""
-msgstr "\"언젠가 터치드 한 명을 만나고 싶다!\""
-
-#: dat/events/neutral/npc.lua:223
-msgid ""
-"\"The Incident was the righteous divine judgment of Sirichana. He laid "
-"judgment on House Proteron for their intrusion into His plan, and He "
-"punished the Empire for having started that so-called 'Great Project'.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:224
-msgid ""
-"\"I don't think the Incident is an isolated event. The explosion of Sol was "
-"just the first of many. Soon, all who do not follow Sirichana will fall just "
-"as Earth did, and only we, His devoted servants, will remain.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:229
-#, fuzzy
-msgid ""
-"\"Can you believe it? I was going to visit Sorom to find my roots, and then "
-"boom! It got vaporized hours before I was set to arrive! Even now, years "
-"later, I still can't believe I came so close to losing my life.\""
-msgstr ""
-"\"믿을 수 있겠습니까? 나는 내 뿌리를 찾기 위해 소롬을 방문 하려고했다, 다음 "
-"붐! 그것은 선명하게 타버렸습니다! 지금도, 나중에 주기, 나는 아직도 그것을 믿"
-"을 수 없어.\""
-
-#: dat/events/neutral/npc.lua:230
-msgid ""
-"\"Yes, it's true, our military ships are alive. Us normal folk don't get to "
-"own bioships though, we have to make do with synthetic constructs just like "
-"everyone else.\""
-msgstr ""
-"\"네, 우리 군함이 살아 있는 것은 사실입니다. 우리 일반 사람들은 바이오 쉽을 "
-"소유하지 않습니다, 우리는 다른 사람처럼 합성 구조와 함께 할 수 있도록해야합니"
-"다.\""
-
-#: dat/events/neutral/npc.lua:231
-msgid ""
-"\"Everyone knows that we Soromid altered ourselves to survive the deadly "
-"conditions on Sorom during the Great Quarantine. What you don't hear so "
-"often is that billions of us died from the therapy itself. We paid a high "
-"price for survival.\""
-msgstr ""
-"\"우리 소로미드가 위대한 검역 기간 동안 소롬의 치명적인 조건에서 살아남기 위"
-"해 자신을 변화시켰다는 것을 모두가 알고 있습니다. 당신이 자주 듣지 못하는 것"
-"은 우리 중 수십억 명이 치료 자체에서 사망했다는 것입니다. 우리는 생존을 위해 "
-"높은 가격을 지불했습니다.\""
-
-#: dat/events/neutral/npc.lua:232
-msgid ""
-"\"Between you and me, I think House Proteron is to blame for the Incident. "
-"Think about it: they were just mobilizing their troops to attack the Empire, "
-"then poof! A huge explosion happens to occur right at their most likely "
-"invasion point. I don't know how it happened, but they must have "
-"accidentally vaporized themselves and the core of the Empire as they "
-"attempted their assault.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:234
-msgid ""
-"\"Sometimes I worry a little about the growing anti-Soromid sentiment. We "
-"never really did fully move away from the Empire's stigmatization of us "
-"during the Great Quarantine.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:235
-msgid ""
-"\"I don't trust the Empire, so I'm frankly glad it's in decline. First we "
-"had the Great Quarantine, and then the Incident wiped out our homeworld. I'm "
-"not saying the Empire caused the Incident on purpose, but considering Sol "
-"was at the center of it and the Empire controlled all of Sol, I'm sure the "
-"Empire is at least partially to blame.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:236
-msgid ""
-"\"They don't teach about the Great Quarantine in the Empire, do they? A few "
-"centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, "
-"and the Empire condemned us to die. It was only through the use of dangerous "
-"experimental gene treatments that we were able to survive, and even then, "
-"the Empire tried to kill us when we returned to space disease-free.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:240
-msgid ""
-"\"I would be delighted to discover the secrets of the Incident. Rumors "
-"abound, but through the discovery of more data, we can uncover the true "
-"answer.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:242
-msgid ""
-"\"I'll admit that the living Soromid ships are marginally interesting, but "
-"truly, they can't beat the best synthetic technology.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:243
-#, fuzzy
-msgid ""
-"\"I don't know why we even bother sending our research results to the Empire "
-"anymore. Everyone knows it's just charity at this point.\""
-msgstr ""
-"\"왜 우리가 제국에 우리의 연구 결과를 보내는 귀찮게 이해가 안 돼요. 이 아샤트"
-"는 가장 간단한 공식을 이해할 수 없습니다!\""
-
-#: dat/events/neutral/npc.lua:244
-msgid ""
-"\"I would love to get my hands on a genuine Proteron ship one day! They've "
-"always been a danger to the galaxy, but I'd be lying if I said their ship "
-"tech wasn't incredible.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:248
-msgid ""
-"\"Did you know that even the slightest bit of brain damage can lead to death "
-"during the upload process? That's why we're very careful to not allow our "
-"brains to be damaged, even a little.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:249
-msgid ""
-"\"My father unfortunately hit his head when he was young, so he couldn't be "
-"safely uploaded. It's okay, though; he had a long and fulfilling life, for a "
-"non-uploaded human, that is.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:250
-msgid ""
-"\"One great thing once you're uploaded is that you can choose to forget "
-"things you don't want to remember. My great-grandfather had a movie spoiled "
-"for him before he could watch it, so once he got uploaded, he deleted that "
-"memory and watched it with a fresh perspective. Cool, huh?\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:251
-msgid ""
-"\"The best part of our lives is after we're uploaded, but that doesn't mean "
-"we live boring lives before then. Pre-upload life continues to offer many "
-"wonders and marvels.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:252
-msgid ""
-"\"Being uploaded allows you to live forever, but that doesn't mean you're "
-"forced to. Any uploaded Thurion can choose to end their own life if they "
-"want, though few have chosen to do so.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:253
-msgid ""
-"\"Uploading is a choice in our society. No one is forced to do it. It's just "
-"that, well, what kind of person would turn down the chance to live a second "
-"life on the network?\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:254
-msgid ""
-"\"We were lucky to not get touched by the Incident. In fact, we kind of "
-"benefited from it. The nebula that resulted gave us a great cover and sealed "
-"off the Empire from us.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:255
-msgid ""
-"\"I think you're from the outside, aren't you? That's awesome! I've never "
-"met a foreigner before. What's it like outside the nebula?\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:256
-msgid ""
-"\"The Soromid have a rough history. Have you read up on it? First the Empire "
-"confined them to a deadly planet and doomed them to extinction. Then, when "
-"they overcame those odds, the Incident blew up their homeworld. The fact "
-"that they're still thriving now despite that is phenomenal, I must say.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:260
-msgid ""
-"\"The old Empire will pay for blowing up Sol. We all know they did it on "
-"purpose.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:261
-msgid ""
-"\"The obsolete old Empire knew we were destined to replace them, so they "
-"blew up Sol in an effort to wipe us out. But they weren't thorough enough, "
-"and we won't forgive them!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:262
-msgid ""
-"\"Personally I think the old Empire has been weakened by Soromid influence. "
-"Those damn freaks have been a scourge on the galaxy ever since they flooded "
-"into it.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:263
-msgid ""
-"\"It is our destiny as Proteron to rule the galaxy. We are the rightful "
-"successor to the Empire. We will take what is ours.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:264
-msgid ""
-"\"One of my co-workers was spreading lies about us Proteron causing the "
-"Incident. Naturally, I reported him to the police, and they took him away. "
-"I'd bet he was a secret Soromid sympathizer trying to bring down the great "
-"Proteron Empire.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:265
-msgid ""
-"\"We must all work hard to ensure our destiny as Proteron is fulfilled.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:266
-msgid ""
-"\"The Empire is weak and obsolete, and they know it. That's why they went so "
-"low as to blow Earth up to try to get rid of us.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:267
-msgid ""
-"\"I'm thinking of enlisting in the military so I can join the fight against "
-"the Soromid elite and the traitorous old Empire.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:271
-msgid ""
-"\"We value our autonomy. We don't want to be ruled by those Dvaered "
-"Warlords! Can't they just shoot at each other instead of threatening us? If "
-"it wasn't for the Liberation Front…\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:272
-msgid ""
-"\"Have you studied your galactic history? The Frontier worlds were the first "
-"to be colonized by humans. That makes our worlds the oldest human "
-"settlements in the galaxy, now that Earth is gone.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:273
-msgid ""
-"\"We don't have much here in the Frontier, other than our long history "
-"leading directly back to Earth. But I don't mind. I'm happy living here, and "
-"I wouldn't want to move anywhere else.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:274
-msgid ""
-"\"You know the Frontier Liberation Front? They're the guerrilla movement "
-"that fights for the Frontier. I hope they can continue to hold out.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:275
-msgid ""
-"\"The Incident? Oh, I don't think about it too much. It's a tragedy, but we "
-"have enough of our own problems to deal with as-is.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:280
-msgid ""
-"\"Have you ever wondered about our chances of actually winning over the "
-"Dvaereds? Sometimes I worry a little.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:281
-msgid ""
-"\"I was in charge of a bombing run recently. The mission was a success, but "
-"I lost a lot of comrades in the process. I wish I could bring them back, but "
-"in lieu of that, I fight for their honor as well as my own.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:282
-msgid ""
-"\"They'll always label us as 'terrorists'. It's nothing more than Dvaered "
-"propaganda designed to divide us. We are fighting for the Frontier against "
-"the Dvaereds, and the Dvaereds won't ever be OK with that.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:283
-msgid ""
-"\"It's important not to forget the action needed on the ground. Fighting is "
-"a part of our work, yes, but we also have to preserve a Frontier worth "
-"protecting.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:287
-msgid ""
-"\"I may be a pirate who blows up ships and steals for a living, but that "
-"inner nebula still kind of freaks me out.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:288
-msgid ""
-"\"I was around before Haven was destroyed, you know! Funny times. All the "
-"pirates were panicking and the Empire was cheering thinking that we were "
-"done for. Ha! As if! It barely even made a difference. We just relocated to "
-"New Haven and resumed business as usual.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:289
-msgid ""
-"\"You know, I got into this business by accident to tell the truth. But what "
-"can you do? I could get a fake ID and pretend to be someone else but I'd get "
-"caught eventually. Might as well make the best of what I have now.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:290
-msgid ""
-"\"One of my favorite things to do is buy a fake ID and then deliver as much "
-"contraband as I can before I get caught. It's great fun, and finding out "
-"that my identity's been discovered gives me a rush!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:291
-msgid ""
-"\"If you ask me, the Incident was some sort of alien dimensional phenomenon. "
-"I heard rumors of ghost ships flying about that look like nothing humanity "
-"has ever invented. Whether the Incident was intentional or just an "
-"accidental slip-up, I don't know.\""
-msgstr ""
-
-#. Gameplay tip messages.
-#. ALL NPCs have a chance to say one of these lines instead of a lore message.
-#. So, make sure the tips are always faction neutral.
-#: dat/events/neutral/npc.lua:298
-msgid ""
-"\"I heard you can set your weapons to only fire when your target is in "
-"range, or just let them fire when you pull the trigger. Sounds handy!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:299
-#, lua-format
-msgid ""
-"\"Did you know that if a planet doesn't like you, you can often bribe the "
-"spaceport operators and land anyway? Just hail the planet with %s, and click "
-"the bribe button! Careful though, it doesn't always work.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:300
-msgid ""
-"\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them "
-"at a time, and #bshift#0 to buy 100. And if you press them both at once, you "
-"can buy 500 at a time! You can actually do that with outfits too, but why "
-"would you want to buy 50 laser cannons?\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:301
-msgid ""
-"\"If you're on a mission you just can't beat, you can open the ship computer "
-"and abort the mission. There's no penalty for doing it, so don't hesitate to "
-"try the mission again later.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:302
-msgid ""
-"\"Afterburners can speed you up a lot, but when they get hot they don't work "
-"as well anymore. Don't use them carelessly!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:303
-msgid ""
-"\"If you're new to the galaxy, I recommend you buy a map or two. It can make "
-"exploration a bit easier.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:304
-msgid ""
-"\"Scramblers and jammers make it harder for missiles to track you. They can "
-"be very handy if your enemies use missiles.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:305
-#, lua-format
-msgid ""
-"\"If you're having trouble with overheating weapons or outfits, you can "
-"press %s twice to put your ship into Active Cooldown; that'll dissipate all "
-"heat from your ship and also refill your rocket ammunition. Careful though, "
-"your energy and shields won't recharge while you do it!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:306
-msgid ""
-"\"You know how time speeds up when Autonav is on, but then goes back to "
-"normal when enemies are around? Turns out you can't disable the return to "
-"normal speed entirely, but you can control what amount of danger triggers "
-"it. Really handy if you want to ignore enemies that aren't actually hitting "
-"you.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:307
-msgid ""
-"\"Flying bigger ships is awesome, but it's a bit tougher than flying smaller "
-"ships. There's so much more you have to do for the same actions, time just "
-"seems to fly by faster. I guess the upside of that is that you don't notice "
-"how slow your ship is as much.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:308
-msgid ""
-"\"Mining can be an easy way to earn some extra credits, but every once in a "
-"while an asteroid will just randomly explode for no apparent reason, so you "
-"have to watch out for that. Yeah, I don't know why they do that either.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:309
-msgid ""
-"\"Different ships should be built and piloted differently. One of the "
-"hardest lessons I learned as a pilot was to stop worrying so much about the "
-"damage my ship was taking in battle while piloting a large ship. These ships "
-"are too slow for dodging, so you need to learn to just take the hits and "
-"focus your attention on firing back at your enemies.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:310
-msgid ""
-"\"Don't forget to have your target selected. Even if you have forward-facing "
-"weapons, the weapons will swivel a bit to track your target. But it's "
-"absolutely essential for turreted weapons.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:311
-msgid ""
-"\"The '¢' symbol is the official galactic symbol for credits. Supposedly it "
-"comes from the currency symbol of an ancient Earth civilization. It's "
-"sometimes expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' "
-"for millions of credits, and so on.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:312
-msgid ""
-"\"If you're piloting a medium ship, I'd recommend you invest in at least one "
-"turreted missile launcher. I had a close call a few days ago where a bomber "
-"nearly blew me to bits outside the range of my Laser Turrets. Luckily I just "
-"barely managed to escape to a nearby planet. I've not had that problem ever "
-"since I equipped a turreted missile launcher.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:313
-msgid ""
-"\"These computer symbols can be confusing sometimes! I've figured it out, "
-"though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, "
-"#R*#0 means restricted, and #I=#0 means uninhabited but landable.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:314
-msgid ""
-"\"This can be a bit dangerous, but if you ever run out of fuel in a system "
-"with nothing to land on and no friendly pilots willing to refuel you, "
-"pirates will often be willing to sell you some of their fuel. You just have "
-"to bribe them first. It'll put a drain on your credits, but at least you can "
-"make it out alive!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:315
-msgid ""
-"\"Launchers and fighter bays have their mass listed as a range rather than "
-"just a flat mass because the ammo has its own mass. When they're empty, "
-"their mass is the minimum mass, and when they're full, their mass is the "
-"maximum mass.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:316
-msgid ""
-"\"Those new combat practice missions in the mission computer are real handy! "
-"You can even fight against Proteron ship look-alikes, but don't be fooled; "
-"they're not the real deal.\""
-msgstr ""
-
-#. Jump point messages.
-#. For giving the location of a jump point in the current system to the player for free.
-#. All messages must contain exactly one %s, this is the name of the target system.
-#. ALL NPCs have a chance to say one of these lines instead of a lore message.
-#. So, make sure the tips are always faction neutral.
-#: dat/events/neutral/npc.lua:325
-#, lua-format
-msgid ""
-"\"Hi there, traveler. Is your system map up to date? Just in case you didn't "
-"know already, let me give you the location of the jump from here to %s. I "
-"hope that helps.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:326
-#, lua-format
-msgid ""
-"\"Quite a lot of people who come in here complain that they don't know how "
-"to get to %s. I travel there often, so I know exactly where the jump point "
-"is. Here, let me show you.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:327
-#, lua-format
-msgid ""
-"\"So you're still getting to know about this area, huh? Tell you what, I'll "
-"give you the coordinates of the jump to %s. Check your map next time you "
-"take off!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:328
-#, lua-format
-msgid ""
-"\"True fact, there's a direct jump from here to %s. Want to know where it "
-"is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your "
-"map.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:329
-#, lua-format
-msgid ""
-"\"There's a system just one jump away by the name of %s. I can tell you "
-"where the jump point is. There, I've updated your map. Don't mention it.\""
-msgstr ""
-
-#. Mission hint messages. Each element should be a table containing the mission name and the corresponding hint.
-#. ALL NPCs have a chance to say one of these lines instead of a lore message.
-#. So, make sure the hints are always faction neutral.
-#: dat/events/neutral/npc.lua:336
-msgid ""
-"\"There's this obnoxious baron who bought the entire Ulios system for "
-"himself. I hear he flies a Proteron Kahan from before the Incident and sends "
-"people he hires on wild goose chases to find all sorts of weird trinkets. I "
-"don't envy the folks that work for him; he sounds like a real pain.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:337
-msgid ""
-"\"Apparently the Empire is trying to recruit new pilots into their shipping "
-"division. That might be a worthwhile opportunity if you want to make some "
-"credits!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:338
-msgid ""
-"\"There are often shady characters hanging out in the Alteris system. I'd "
-"stay away from there if I were you, someone might offer you a dirty kind of "
-"job!\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:339
-msgid ""
-"\"There's a bunch of folks who organize races from time to time. You have to "
-"fly a Yacht class ship to take part in them. I totally want to join one of "
-"those races some day.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:340
-msgid ""
-"\"Apparently there's a woman who regularly turns up on planets in and around "
-"the Klantar system. I wonder what she's looking for.\""
-msgstr ""
-
-#. Event hint messages. Each element should be a table containing the event name and the corresponding hint.
-#. Make sure the hints are always faction neutral.
-#: dat/events/neutral/npc.lua:346
-msgid ""
-"\"Clashes between the FLF and Dvaered patrols can get quite intense. "
-"Sometimes when things get real bad the Dvaered forces will enlist the help "
-"of willing civilians.\""
-msgstr ""
-
-#. Mission after-care messages. Each element should be a table containing the mission name and a line of text.
-#. This text will be said by NPCs once the player has completed the mission in question.
-#. Make sure the messages are always faction neutral.
-#: dat/events/neutral/npc.lua:353
-msgid ""
-"\"Some thieves broke into a museum on Varia and stole a holopainting! Most "
-"of the thieves were caught, but the one who carried the holopainting "
-"offworld is still at large. No leads.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:354
-msgid ""
-"\"The Dvaered scored a major victory against the FLF recently. They went "
-"into Sigur and blew the hidden base there to bits! I bet that was a serious "
-"setback for the FLF.\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:355
-msgid ""
-"\"Did you hear? There was some big incident during a diplomatic meeting "
-"between the Empire and the Dvaered. Nobody knows what exactly happened, but "
-"both diplomats died. Now both sides are accusing the other of foul play. "
-"Could get ugly.\""
-msgstr ""
-
-#. Event after-care messages. Each element should be a table containing the event name and a line of text.
-#. This text will be said by NPCs once the player has completed the event in question.
-#. Make sure the messages are always faction neutral.
-#: dat/events/neutral/npc.lua:362
-msgid ""
-"\"What? You had rodents sabotage your ship? Damn, you're lucky to be alive. "
-"If it had hit the wrong power line…\""
-msgstr ""
-
-#: dat/events/neutral/npc.lua:363
-msgid ""
-"That really happened to you with an experimental engine?! You're lucky to be "
-"alive! No way I'd ever use one of those things even if you paid me."
-msgstr ""
-
-#. Append the faction to the civilian name, unless there is no faction.
-#: dat/events/neutral/npc.lua:409
-#, lua-format
-msgid "%s Civilian"
-msgstr ""
-
 #. Clean up on events that remove the Vendetta from the game
 #. Make the ship hail the player
 #. Triggered when the player hails the ship
@@ -25478,15 +24197,16 @@ msgid ""
 msgstr ""
 
 #: dat/events/news.lua:48
-msgid "Corrupt Businessmen in Alteris"
+msgid "Assassins in Alteris"
 msgstr ""
 
 #: dat/events/news.lua:49
 msgid ""
-"Law-abiding traders are warned to stay clear of the Alteris system due to a "
-"danger of being attacked by corrupt businessmen, which the Imperial "
-"government alleges are hiring assassins to attack innocent traders in an "
-"attempt to corner the market."
+"Law-abiding traders are warned to stay clear of the Alteris system due to an "
+"influx of assassins in the area. Authorities suspect that corrupt "
+"businessmen are hiring these assassins in an effort to illegally stifle "
+"competition. A joint investigation between Imperial and Soromid forces is "
+"underway."
 msgstr ""
 
 #: dat/events/news.lua:53
@@ -25535,12 +24255,12 @@ msgid ""
 "Lieutenants seeking talent. Join the Empire today!\""
 msgstr ""
 
-#: dat/events/news.lua:86
+#: dat/events/news.lua:85
 #, fuzzy
 msgid "Dvaered and FLF Clash"
 msgstr "드 베어드 경계"
 
-#: dat/events/news.lua:87
+#: dat/events/news.lua:86
 msgid ""
 "An increased incidence of confrontation between Dvaered and FLF forces has "
 "been reported as of late in the north edge of Dvaered space, particularly "
@@ -25548,8 +24268,1299 @@ msgid ""
 "advised to be on high alert."
 msgstr ""
 
+#: dat/events/news.lua:97
+#, fuzzy
+msgid "Za'lek Students Test Engine Technology"
+msgstr "자레크의 찌르기"
+
+#: dat/events/news.lua:98
+msgid ""
+"Students all over Za'lek space have been designing new experimental engine "
+"designs as part of a new government funded program. These students seek "
+"pilots willing to test fly their experimental engine designs for a "
+"substantial sum of credits."
+msgstr ""
+
 #. Proteron don't get generic articles.
 #. Remove mission hints that aren't relevant anymore.
+#.
+#. <?xml version='1.0' encoding='utf8'?>
+#. <event name="Spaceport Bar NPC">
+#. <trigger>land</trigger>
+#. <chance>100</chance>
+#. </event>
+#. --
+#.
+#. -- Event for creating random characters in the spaceport bar.
+#. -- The random NPCs will tell the player things about the Naikari
+#. -- universe in general, about their faction, or about the game itself.
+#. --
+#. Factions which will NOT get generic texts if possible.  Factions
+#. listed here not spawn generic civilian NPCs or get aftercare texts.
+#. Meant for factions which are either criminal (FLF, Pirate) or unaware
+#. of the main universe (Thurion, Proteron).
+#. Special names for certain factions' civilian NPCs (to replace the
+#. generic "{faction} Civilian" naming normally used).
+#: dat/events/npc.lua:27
+#, fuzzy
+msgid "Frontier Civilian"
+msgstr "프론티어 얼라이언스의 소식입니다."
+
+#: dat/events/npc.lua:28 dat/events/npc.lua:49
+#, fuzzy
+msgctxt "individual"
+msgid "Pirate"
+msgstr "해적 벤데타"
+
+#. Land-restricted NPC names for the spaceport bar. This correlates
+#. land restriction function names (returned by planet.restriction())
+#. with what NPCs on planets with those restrictions should be called.
+#. Appearance in this table also implicitly causes portrait.getMil() to
+#. be used for selecting a portrait instead of portrait.get().
+#: dat/events/npc.lua:37 dat/events/npc.lua:38 dat/events/npc.lua:39
+msgid "Empire Officer"
+msgstr ""
+
+#: dat/events/npc.lua:40 dat/events/npc.lua:41
+#, fuzzy
+msgid "Sirius Officer"
+msgstr "시리우스 설교자"
+
+#: dat/events/npc.lua:42 dat/events/npc.lua:43
+#, fuzzy
+msgid "Dvaered Officer"
+msgstr "드 베어드 조상"
+
+#: dat/events/npc.lua:44
+#, fuzzy
+msgid "Soromid Officer"
+msgstr "소로미드 오듐"
+
+#: dat/events/npc.lua:45 dat/events/npc.lua:46
+msgid "Za'lek Scientist"
+msgstr ""
+
+#: dat/events/npc.lua:47
+#, fuzzy
+msgid "FLF Soldier"
+msgstr "옹호자"
+
+#: dat/events/npc.lua:48
+#, fuzzy
+msgid "Proteron Officer"
+msgstr "프로 테론 카한"
+
+#. Civilian descriptions for the spaceport bar.
+#. These descriptions will be picked at random, and may be picked
+#. multiple times in one generation. Remember that any description can
+#. end up with any portrait, so don't make any assumptions about th
+#. appearance of the NPC!
+#: dat/events/npc.lua:58
+msgid "This person seems to be here to relax."
+msgstr ""
+
+#: dat/events/npc.lua:59
+msgid "There is a civilian sitting on one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:60
+msgid "There is a civilian sitting there, looking somewhere else."
+msgstr "그곳에는 민간인이 앉아 다른 곳을 바라보고 있다."
+
+#: dat/events/npc.lua:61
+msgid ""
+"A worker sits at one of the tables, wearing a name tag saying \"Go away\"."
+msgstr "한 노동자가 테이블 중 하나에 앉아 \"가라\"는 명찰을 달고 있다."
+
+#: dat/events/npc.lua:62
+msgid ""
+"A civilian sits at the bar, seemingly serious about the cocktails on offer."
+msgstr ""
+"한 민간인이 그 술집에 앉아 있는 것이 겉으로 보기에 제공되고 있는 칵테일에 대"
+"해 심각하게 생각하는 것 같다."
+
+#: dat/events/npc.lua:63
+msgid "There is a civilian sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:64
+msgid "A civilian feverishly concentrating on a fluorescing drink."
+msgstr "한 민간인이 열나게 형광음료에 열중하고 있다."
+
+#: dat/events/npc.lua:65
+msgid "A civilian drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:66
+msgid "This person seems friendly enough."
+msgstr "이 사람은 충분히 다정한 것 같다."
+
+#: dat/events/npc.lua:67
+msgid "A civilian sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:68
+msgid "This person is idly browsing a news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:69 dat/events/npc.lua:87
+#, fuzzy
+msgid "A worker sits and drinks instead of working."
+msgstr "일꾼은 앉아서 술을 마시지만 일을 하지 않는다."
+
+#: dat/events/npc.lua:70 dat/events/npc.lua:88
+msgid "A worker slouched against the bar, nursing a drink."
+msgstr "한 노동자가 술집에 기대어 술을 한 잔 마시며 몸을 구부렸다."
+
+#: dat/events/npc.lua:71
+msgid "This worker seems bored with everything but their drink."
+msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
+
+#. Same as civ_desc, but for particular factions (replacing the default
+#. civ_desc table), organized by faction name.
+#: dat/events/npc.lua:78
+#, fuzzy
+msgid "This pirate seems to be here to relax."
+msgstr "프로테론이 당신을 지켜보고 있다."
+
+#: dat/events/npc.lua:79
+#, fuzzy
+msgid "There is a pirate sitting on one of the tables."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:80
+#, fuzzy
+msgid "There is a pirate sitting there, looking somewhere else."
+msgstr "그곳에는 민간인이 앉아 다른 곳을 바라보고 있다."
+
+#: dat/events/npc.lua:81
+#, fuzzy
+msgid ""
+"A pirate sits at the bar, seemingly serious about the cocktails on offer."
+msgstr ""
+"한 민간인이 그 술집에 앉아 있는 것이 겉으로 보기에 제공되고 있는 칵테일에 대"
+"해 심각하게 생각하는 것 같다."
+
+#: dat/events/npc.lua:82
+#, fuzzy
+msgid "There is a pirate sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:83
+#, fuzzy
+msgid "A pirate feverishly concentrating on a fluorescing drink."
+msgstr "한 민간인이 열나게 형광음료에 열중하고 있다."
+
+#: dat/events/npc.lua:84
+#, fuzzy
+msgid "A pirate drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:85
+#, fuzzy
+msgid "A pirate sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:86
+#, fuzzy
+msgid "This pirate is idly browsing a news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:89
+#, fuzzy
+msgid "This pirate seems bored with everything but their drink."
+msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
+
+#. Same as civ_desc, but for land-restricted NPCs, organized by land
+#. restriction function name.
+#: dat/events/npc.lua:96
+msgid "An Empire officer sits idly at one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:97
+msgid "This Empire officer seems somewhat spaced-out."
+msgstr ""
+
+#: dat/events/npc.lua:98
+#, fuzzy
+msgid "An Empire officer drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:99
+#, fuzzy
+msgid "An Empire officer sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:100
+#, fuzzy
+msgid "This Empire officer is idly reading the news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:101 dat/events/npc.lua:113 dat/events/npc.lua:124
+#: dat/events/npc.lua:136 dat/events/npc.lua:166
+#, fuzzy
+msgid "This officer seems bored with everything but their drink."
+msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
+
+#: dat/events/npc.lua:102 dat/events/npc.lua:114 dat/events/npc.lua:125
+#: dat/events/npc.lua:137 dat/events/npc.lua:167
+#, fuzzy
+msgid "This officer seems to be relaxing after a hard day's work."
+msgstr "프로테론이 당신을 지켜보고 있다."
+
+#: dat/events/npc.lua:103
+#, fuzzy
+msgid "An Empire officer sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:108
+msgid "A Sirius officer sits idly at one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:109
+msgid "This Sirius officer seems somewhat spaced-out."
+msgstr ""
+
+#: dat/events/npc.lua:110
+#, fuzzy
+msgid "A Sirius officer drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:111
+#, fuzzy
+msgid "A Sirius officer sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:112
+#, fuzzy
+msgid "This Sirius officer is idly reading the news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:115
+#, fuzzy
+msgid "A Sirius officer sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:119
+msgid "A Dvaered officer sits idly at one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:120
+msgid "This Dvaered officer seems somewhat spaced-out."
+msgstr ""
+
+#: dat/events/npc.lua:121
+#, fuzzy
+msgid "A Dvaered officer drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:122
+#, fuzzy
+msgid "A Dvaered officer sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:123
+#, fuzzy
+msgid "This Dvaered officer is idly reading the news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:126
+#, fuzzy
+msgid "A Dvaered officer sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:127
+msgid ""
+"A Dvaered officer suspiciously glancing around, as if expecting to be "
+"attacked by FLF terrorists at any moment."
+msgstr ""
+
+#: dat/events/npc.lua:131
+msgid "A Soromid officer sits idly at one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:132
+msgid "This Soromid officer seems somewhat spaced-out."
+msgstr ""
+
+#: dat/events/npc.lua:133
+#, fuzzy
+msgid "A Soromid officer drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:134
+#, fuzzy
+msgid "A Soromid officer sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:135
+#, fuzzy
+msgid "This Soromid officer is idly reading the news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:138
+#, fuzzy
+msgid "A Soromid officer sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:141
+msgid "A Za'lek scientist sits idly at one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:142
+msgid "This Za'lek scientist seems somewhat spaced-out."
+msgstr ""
+
+#: dat/events/npc.lua:143
+#, fuzzy
+msgid "A Za'lek scientist drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:144
+#, fuzzy
+msgid "A Za'lek scientist sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:145
+#, fuzzy
+msgid "This Za'lek scientist is idly reading the news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:146
+#, fuzzy
+msgid "This scientist seems bored with everything but their drink."
+msgstr "이 일꾼은 술만 빼고 모든 것이 지루해 보인다."
+
+#: dat/events/npc.lua:147
+#, fuzzy
+msgid "This scientist seems to be relaxing after a hard day's work."
+msgstr "프로테론이 당신을 지켜보고 있다."
+
+#: dat/events/npc.lua:148
+#, fuzzy
+msgid "A Za'lek scientist sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:152
+msgid "An FLF soldier sits idly at one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:153
+msgid "This FLF soldier seems somewhat spaced-out."
+msgstr ""
+
+#: dat/events/npc.lua:154
+#, fuzzy
+msgid "An FLF soldier drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:155
+#, fuzzy
+msgid "An FLF soldier sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:156
+#, fuzzy
+msgid "This FLF soldier is idly reading the news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:157
+#, fuzzy
+msgid "This FLF soldier seems to be relaxing for the moment."
+msgstr "프로테론이 당신을 지켜보고 있다."
+
+#: dat/events/npc.lua:158
+#, fuzzy
+msgid "An FLF soldier sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:159
+#, fuzzy
+msgid "An FLF soldier drinking with a group of comrades."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:162
+msgid "A Proteron officer sits idly at one of the tables."
+msgstr ""
+
+#: dat/events/npc.lua:163
+#, fuzzy
+msgid "A Proteron officer drinking alone."
+msgstr "민간인이 혼자 술을 마신다."
+
+#: dat/events/npc.lua:164
+#, fuzzy
+msgid "A Proteron officer sitting at the bar."
+msgstr "한 민간인이 바에 앉아 있다."
+
+#: dat/events/npc.lua:165
+#, fuzzy
+msgid "This Proteron officer is idly reading the news terminal."
+msgstr "이 사람은 멍하니 뉴스 단말기를 검색하고 있다."
+
+#: dat/events/npc.lua:168
+#, fuzzy
+msgid "A Proteron officer sitting in the corner."
+msgstr "구석에 민간인이 앉아 있다."
+
+#: dat/events/npc.lua:169
+msgid ""
+"A nervous-looking Proteron officer gently sips a drink while reading "
+"government propaganda."
+msgstr ""
+
+#. Lore messages. These come in general and factional varieties.
+#. General lore messages will be said by non-faction NPCs, OR by faction
+#. NPCs if they have no factional text to say. When adding factional
+#. text, make sure to add it to the table of the appropriate faction.
+#. Does your faction not have a table? Then just add it. The script will
+#. find and use it if it exists. Make sure you spell the faction name
+#. exactly the same as in faction.xml though!
+#: dat/events/npc.lua:182
+#, fuzzy
+msgid ""
+"\"I heard the nebula is haunted! My uncle told me he saw one of the ghost "
+"ships himself over in Arandon.\""
+msgstr ""
+"\"성운에 귀신이 있다고 들었어! 우리 삼촌 바비가 아란돈에서 유령선 한 척을 직"
+"접 봤다고 했어!\""
+
+#: dat/events/npc.lua:183
+#, fuzzy
+msgid ""
+"\"I don't believe in those nebula ghost stories. The people who spread them "
+"are just trying to scare you.\""
+msgstr ""
+"\"나는 그 성운 유령 이야기를 믿지 않아. 그 얘기를 하는 사람들은 그저 자네를 "
+"겁주려고 하는 것일세.\""
+
+#: dat/events/npc.lua:184
+msgid ""
+"\"Don't try to fly into the inner nebula. I've known people who tried, and "
+"none of them came back.\""
+msgstr ""
+"\"안쪽 성운 속으로 날아들려고 하지 마. 시도했던 사람들을 알고 있었는데, 아무"
+"도 돌아오지 않았어.\""
+
+#: dat/events/npc.lua:188
+msgid ""
+"\"Don't listen to those conspiracy theories about the Incident. We don't "
+"know what happened, sure, but why on Earth would someone blow up… you know, "
+"Earth… on purpose?\""
+msgstr ""
+
+#: dat/events/npc.lua:189 dat/events/npc.lua:200 dat/events/npc.lua:212
+#: dat/events/npc.lua:233 dat/events/npc.lua:241
+#, fuzzy
+msgid ""
+"\"I wonder why the Siriusites are all so devout. I heard they have these "
+"special priestly people walking around. I wonder what's so special about "
+"them.\""
+msgstr ""
+"\"시리들이 왜 이렇게 경건한가? 특별한 사제들이 돌아다니고 있다고 들었어. 그 "
+"사람들이 뭐가 그리 특별한지 궁금하군.\""
+
+#: dat/events/npc.lua:190 dat/events/npc.lua:201 dat/events/npc.lua:213
+#: dat/events/npc.lua:225 dat/events/npc.lua:276
+#, fuzzy
+msgid ""
+"\"The Soromid fly organic ships! I heard their ships grow and improve as you "
+"use them. That's so weird.\""
+msgstr ""
+"\"소로미드가 유기선을 날리다니! 나는 그들의 배가 비행 중에 스스로 치유될 수 "
+"있다고 들었어. 너무 이상해.\""
+
+#: dat/events/npc.lua:191
+msgid ""
+"\"I won't lie, the Soromid freak me the hell out. Something's just… fishy "
+"about them. You know what I mean?\""
+msgstr ""
+
+#: dat/events/npc.lua:195
+#, fuzzy
+msgid ""
+"\"Things are getting worse every year. What happened to the Empire? We used "
+"to be the lords and masters over the whole galaxy!\""
+msgstr ""
+"\"사정은 사이클로 갈수록 악화되고 있다. 엠파이어는 어떻게 됐지? 우리는 전 은"
+"하계를 지배하는 영주였고 주인이었다!\""
+
+#: dat/events/npc.lua:196
+#, fuzzy
+msgid ""
+"\"Did you know that House Za'lek was originally a Great Project initiated by "
+"the Empire? There was also a Project Proteron, but that one didn't go so "
+"well.\""
+msgstr ""
+"\"자렉 가문은 원래 제국이 시작한 대프로젝트라는 것을 알고 있었나? 자, 이제 알"
+"겠지! 프로테론 프로젝트도 있었지만, 그렇게 잘 되지는 않았다.\""
+
+#: dat/events/npc.lua:197
+#, fuzzy
+msgid ""
+"\"The Emperor lives on a giant supercruiser in Gamma Polaris. It's said to "
+"be the biggest ship in the galaxy! I wish I could have one.\""
+msgstr ""
+"\"황제는 감마 폴라리스에 있는 거대한 슈퍼 크루저에 산다. 그것은 은하계에서 가"
+"장 큰 배라고 한다! 나는 완전히 하나를 원한다.\""
+
+#: dat/events/npc.lua:198
+msgid ""
+"\"Don't pay attention to the naysayers. The Empire is still strong. Have you "
+"ever seen a Peacemaker up close? I doubt any ship fielded by any other power "
+"could stand up to one.\""
+msgstr ""
+"\"반대하는 자들에게는 신경 쓰지 마. 제국은 여전히 건재하다. 피스메이커를 가까"
+"이서 본 적 있어? 다른 어떤 힘으로도 한 척을 견뎌낼 수 있을지 의문이다.\""
+
+#: dat/events/npc.lua:199
+msgid ""
+"\"I don't know who did it, but believe me, the Incident was no accident! It "
+"was definitely a terrorist attack orchestrated by those disloyal Great "
+"Houses in an effort to take down the Empire.\""
+msgstr ""
+
+#: dat/events/npc.lua:202
+#, fuzzy
+msgid ""
+"\"I wouldn't travel north of Alteris if I were you, unless you're a good "
+"fighter! That area of space has really gone down the drain since the "
+"Incident.\""
+msgstr ""
+"\"내가 너라면 알테리스에서 북쪽으로 여행하지 않을 거야, 네가 훌륭한 전투원이 "
+"아니라면! 그 공간은 사건 이후 정말 수포로 돌아갔다.\""
+
+#: dat/events/npc.lua:206
+msgid ""
+"\"My great-great-great-grandfather fought in the Dvaered Revolts! We still "
+"have the holovids he made. I'm proud to be a Dvaered!\""
+msgstr ""
+"\"우리 증조할아버지가 드바에레드 리볼트에서 싸웠소! 우린 아직 그가 만든 홀로"
+"비드를 가지고 있어. 드바에레드가 된 것이 자랑스럽소!\""
+
+#: dat/events/npc.lua:207
+#, fuzzy
+msgid ""
+"\"You'd better not mess with the Dvaered. Our military is the largest and "
+"strongest in the galaxy. Nobody can stand up to us!\""
+msgstr ""
+"\"드바에레드 가문을 함부로 다루지 않는 게 좋을 거야. 우리 군대는 은하계에서 "
+"가장 크고 힘이 세다. 아무도 우리에게 대항할 수 없어!\""
+
+#: dat/events/npc.lua:208
+msgid ""
+"\"House Dvaered? House? The Empire is weak and useless, we don't need them "
+"anymore! I say we declare ourselves an independent faction today. What are "
+"they going to do, subjugate us? We all know how well that went last time! Ha!"
+"\""
+msgstr ""
+
+#: dat/events/npc.lua:209
+msgid ""
+"\"I'm thinking about joining the military. Every time I see or hear news "
+"about those rotten FLF bastards, it makes my blood boil! They should all be "
+"pounded into space dust!\""
+msgstr ""
+"\"군입대를 생각하고 있다. 그 썩은 FLF 새끼들에 대한 소식을 듣거나 볼 때마다 "
+"피가 끓어! 모두 우주 먼지에 박혀야 해!\""
+
+#: dat/events/npc.lua:210
+msgid ""
+"\"FLF terrorists? I'm not too worried about them. You'll see, High Command "
+"will have smoked them out of their den soon enough, and then the Frontier "
+"will be ours.\""
+msgstr ""
+"\"FLF 테러범? 나는 그들이 너무 걱정되지 않아. 자네도 알겠지만, 하급사령부가 "
+"곧 그들을 그들의 굴에서 쫓아냈을 테니, 그러면 프론티어는 우리의 것이 될 거야."
+"\""
+
+#: dat/events/npc.lua:211
+msgid ""
+"\"If you ask me, those FLF terrorists caused the Incident. They have a clear "
+"motive: they wanted to create that nebula so they would have a place to "
+"hide. Damn criminals…\""
+msgstr ""
+
+#: dat/events/npc.lua:217
+msgid ""
+"\"Greetings, traveler. May Sirichana's wisdom guide you as it guides me.\""
+msgstr ""
+"\"반갑다, 여행자. 시리차나의 지혜가 나를 인도하는 대로 너를 인도해 주기를.\""
+
+#: dat/events/npc.lua:218
+msgid ""
+"\"I once met one of the Touched in person. Well, it wasn't really a meeting, "
+"our eyes simply met… but that instant alone was awe-inspiring.\""
+msgstr ""
+
+#: dat/events/npc.lua:219
+#, fuzzy
+msgid ""
+"\"My cousin was called to Mutris a year ago. He must be in Crater City by "
+"now. And one day, he will become one of the Touched!\""
+msgstr ""
+"\"내 사촌은 사이클 전에 무트리스로 불려갔어... 그는 지금쯤 크레이터 시티에 있"
+"을 거야. 그리고 언젠가는 터치족 중 한 명이 될 거야!\""
+
+#: dat/events/npc.lua:220
+msgid ""
+"\"Some people say Sirius society is unfair because our echelons are "
+"determined by birth. But even though we are different, we are all followers "
+"of Sirichana. Spiritually, we are equal.\""
+msgstr ""
+"\"우리 집안이 태생에 의해 결정되기 때문에 시리우스 사회가 불공평하다고 말하"
+"는 사람도 있다. 그러나 비록 우리는 다르지만, 우리는 모두 시리차나의 추종자들"
+"이다. 영적으로 우리는 평등하다.\""
+
+#: dat/events/npc.lua:221
+#, fuzzy
+msgid ""
+"\"We are officially part of the Empire, but everyone knows that's only true "
+"on paper. The Emperor has no influence on these systems. We follow "
+"Sirichana, and no one else.\""
+msgstr ""
+"\"시리우스 가문은 공식적으로 제국의 일부지만, 모두가 그것이 서류상으로만 사실"
+"이라는 것을 알고 있다. 황제는 이 제도에서 할 말이 없다. 우리는 시리차나를 따"
+"르고, 다른 사람은 아무도 없다.\""
+
+#: dat/events/npc.lua:222
+msgid "\"I hope to meet one of the Touched one day!\""
+msgstr "\"언젠가 터치드 한 명을 만나고 싶다!\""
+
+#: dat/events/npc.lua:223
+msgid ""
+"\"The Incident was the righteous divine judgment of Sirichana. He laid "
+"judgment on House Proteron for their intrusion into His plan, and He "
+"punished the Empire for having started that so-called 'Great Project'.\""
+msgstr ""
+
+#: dat/events/npc.lua:224
+msgid ""
+"\"I don't think the Incident is an isolated event. The explosion of Sol was "
+"just the first of many. Soon, all who do not follow Sirichana will fall just "
+"as Earth did, and only we, His devoted servants, will remain.\""
+msgstr ""
+
+#: dat/events/npc.lua:229
+#, fuzzy
+msgid ""
+"\"Can you believe it? I was going to visit Sorom to find my roots, and then "
+"boom! It got vaporized hours before I was set to arrive! Even now, years "
+"later, I still can't believe I came so close to losing my life.\""
+msgstr ""
+"\"믿을 수 있겠습니까? 나는 내 뿌리를 찾기 위해 소롬을 방문 하려고했다, 다음 "
+"붐! 그것은 선명하게 타버렸습니다! 지금도, 나중에 주기, 나는 아직도 그것을 믿"
+"을 수 없어.\""
+
+#: dat/events/npc.lua:230
+msgid ""
+"\"Yes, it's true, our military ships are alive. Us normal folk don't get to "
+"own bioships though, we have to make do with synthetic constructs just like "
+"everyone else.\""
+msgstr ""
+"\"네, 우리 군함이 살아 있는 것은 사실입니다. 우리 일반 사람들은 바이오 쉽을 "
+"소유하지 않습니다, 우리는 다른 사람처럼 합성 구조와 함께 할 수 있도록해야합니"
+"다.\""
+
+#: dat/events/npc.lua:231
+msgid ""
+"\"Everyone knows that we Soromid altered ourselves to survive the deadly "
+"conditions on Sorom during the Great Quarantine. What you don't hear so "
+"often is that billions of us died from the therapy itself. We paid a high "
+"price for survival.\""
+msgstr ""
+"\"우리 소로미드가 위대한 검역 기간 동안 소롬의 치명적인 조건에서 살아남기 위"
+"해 자신을 변화시켰다는 것을 모두가 알고 있습니다. 당신이 자주 듣지 못하는 것"
+"은 우리 중 수십억 명이 치료 자체에서 사망했다는 것입니다. 우리는 생존을 위해 "
+"높은 가격을 지불했습니다.\""
+
+#: dat/events/npc.lua:232
+msgid ""
+"\"Between you and me, I think House Proteron is to blame for the Incident. "
+"Think about it: they were just mobilizing their troops to attack the Empire, "
+"then poof! A huge explosion happens to occur right at their most likely "
+"invasion point. I don't know how it happened, but they must have "
+"accidentally vaporized themselves and the core of the Empire as they "
+"attempted their assault.\""
+msgstr ""
+
+#: dat/events/npc.lua:234
+msgid ""
+"\"Sometimes I worry a little about the growing anti-Soromid sentiment. We "
+"never really did fully move away from the Empire's stigmatization of us "
+"during the Great Quarantine.\""
+msgstr ""
+
+#: dat/events/npc.lua:235
+msgid ""
+"\"I don't trust the Empire, so I'm frankly glad it's in decline. First we "
+"had the Great Quarantine, and then the Incident wiped out our homeworld. I'm "
+"not saying the Empire caused the Incident on purpose, but considering Sol "
+"was at the center of it and the Empire controlled all of Sol, I'm sure the "
+"Empire is at least partially to blame.\""
+msgstr ""
+
+#: dat/events/npc.lua:236
+msgid ""
+"\"They don't teach about the Great Quarantine in the Empire, do they? A few "
+"centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, "
+"and the Empire condemned us to die. It was only through the use of dangerous "
+"experimental gene treatments that we were able to survive, and even then, "
+"the Empire tried to kill us when we returned to space disease-free.\""
+msgstr ""
+
+#: dat/events/npc.lua:240
+msgid ""
+"\"I would be delighted to discover the secrets of the Incident. Rumors "
+"abound, but through the discovery of more data, we can uncover the true "
+"answer.\""
+msgstr ""
+
+#: dat/events/npc.lua:242
+msgid ""
+"\"I'll admit that the living Soromid ships are marginally interesting, but "
+"truly, they can't beat the best synthetic technology.\""
+msgstr ""
+
+#: dat/events/npc.lua:243
+#, fuzzy
+msgid ""
+"\"I don't know why we even bother sending our research results to the Empire "
+"anymore. Everyone knows it's just charity at this point.\""
+msgstr ""
+"\"왜 우리가 제국에 우리의 연구 결과를 보내는 귀찮게 이해가 안 돼요. 이 아샤트"
+"는 가장 간단한 공식을 이해할 수 없습니다!\""
+
+#: dat/events/npc.lua:244
+msgid ""
+"\"I would love to get my hands on a genuine Proteron ship one day! They've "
+"always been a danger to the galaxy, but I'd be lying if I said their ship "
+"tech wasn't incredible.\""
+msgstr ""
+
+#: dat/events/npc.lua:248
+msgid ""
+"\"Did you know that even the slightest bit of brain damage can lead to death "
+"during the upload process? That's why we're very careful to not allow our "
+"brains to be damaged, even a little.\""
+msgstr ""
+
+#: dat/events/npc.lua:249
+msgid ""
+"\"My father unfortunately hit his head when he was young, so he couldn't be "
+"safely uploaded. It's okay, though; he had a long and fulfilling life, for a "
+"non-uploaded human, that is.\""
+msgstr ""
+
+#: dat/events/npc.lua:250
+msgid ""
+"\"One great thing once you're uploaded is that you can choose to forget "
+"things you don't want to remember. My great-grandfather had a movie spoiled "
+"for him before he could watch it, so once he got uploaded, he deleted that "
+"memory and watched it with a fresh perspective. Cool, huh?\""
+msgstr ""
+
+#: dat/events/npc.lua:251
+msgid ""
+"\"The best part of our lives is after we're uploaded, but that doesn't mean "
+"we live boring lives before then. Pre-upload life continues to offer many "
+"wonders and marvels.\""
+msgstr ""
+
+#: dat/events/npc.lua:252
+msgid ""
+"\"Being uploaded allows you to live forever, but that doesn't mean you're "
+"forced to. Any uploaded Thurion can choose to end their own life if they "
+"want, though few have chosen to do so.\""
+msgstr ""
+
+#: dat/events/npc.lua:253
+msgid ""
+"\"Uploading is a choice in our society. No one is forced to do it. It's just "
+"that, well, what kind of person would turn down the chance to live a second "
+"life on the network?\""
+msgstr ""
+
+#: dat/events/npc.lua:254
+msgid ""
+"\"We were lucky to not get touched by the Incident. In fact, we kind of "
+"benefited from it. The nebula that resulted gave us a great cover and sealed "
+"off the Empire from us.\""
+msgstr ""
+
+#: dat/events/npc.lua:255
+msgid ""
+"\"I think you're from the outside, aren't you? That's awesome! I've never "
+"met a foreigner before. What's it like outside the nebula?\""
+msgstr ""
+
+#: dat/events/npc.lua:256
+msgid ""
+"\"The Soromid have a rough history. Have you read up on it? First the Empire "
+"confined them to a deadly planet and doomed them to extinction. Then, when "
+"they overcame those odds, the Incident blew up their homeworld. The fact "
+"that they're still thriving now despite that is phenomenal, I must say.\""
+msgstr ""
+
+#: dat/events/npc.lua:260
+msgid ""
+"\"The old Empire will pay for blowing up Sol. We all know they did it on "
+"purpose.\""
+msgstr ""
+
+#: dat/events/npc.lua:261
+msgid ""
+"\"The obsolete old Empire knew we were destined to replace them, so they "
+"blew up Sol in an effort to wipe us out. But they weren't thorough enough, "
+"and we won't forgive them!\""
+msgstr ""
+
+#: dat/events/npc.lua:262
+msgid ""
+"\"Personally I think the old Empire has been weakened by Soromid influence. "
+"Those damn freaks have been a scourge on the galaxy ever since they flooded "
+"into it.\""
+msgstr ""
+
+#: dat/events/npc.lua:263
+msgid ""
+"\"It is our destiny as Proteron to rule the galaxy. We are the rightful "
+"successor to the Empire. We will take what is ours.\""
+msgstr ""
+
+#: dat/events/npc.lua:264
+msgid ""
+"\"One of my co-workers was spreading lies about us Proteron causing the "
+"Incident. Naturally, I reported him to the police, and they took him away. "
+"I'd bet he was a secret Soromid sympathizer trying to bring down the great "
+"Proteron Empire.\""
+msgstr ""
+
+#: dat/events/npc.lua:265
+msgid ""
+"\"We must all work hard to ensure our destiny as Proteron is fulfilled.\""
+msgstr ""
+
+#: dat/events/npc.lua:266
+msgid ""
+"\"The Empire is weak and obsolete, and they know it. That's why they went so "
+"low as to blow Earth up to try to get rid of us.\""
+msgstr ""
+
+#: dat/events/npc.lua:267
+msgid ""
+"\"I'm thinking of enlisting in the military so I can join the fight against "
+"the Soromid elite and the traitorous old Empire.\""
+msgstr ""
+
+#: dat/events/npc.lua:271
+msgid ""
+"\"We value our autonomy. We don't want to be ruled by those Dvaered "
+"Warlords! Can't they just shoot at each other instead of threatening us? If "
+"it wasn't for the Liberation Front…\""
+msgstr ""
+
+#: dat/events/npc.lua:272
+msgid ""
+"\"Have you studied your galactic history? The Frontier worlds were the first "
+"to be colonized by humans. That makes our worlds the oldest human "
+"settlements in the galaxy, now that Earth is gone.\""
+msgstr ""
+
+#: dat/events/npc.lua:273
+msgid ""
+"\"We don't have much here in the Frontier, other than our long history "
+"leading directly back to Earth. But I don't mind. I'm happy living here, and "
+"I wouldn't want to move anywhere else.\""
+msgstr ""
+
+#: dat/events/npc.lua:274
+msgid ""
+"\"You know the Frontier Liberation Front? They're the guerrilla movement "
+"that fights for the Frontier. I hope they can continue to hold out.\""
+msgstr ""
+
+#: dat/events/npc.lua:275
+msgid ""
+"\"The Incident? Oh, I don't think about it too much. It's a tragedy, but we "
+"have enough of our own problems to deal with as-is.\""
+msgstr ""
+
+#: dat/events/npc.lua:280
+msgid ""
+"\"Have you ever wondered about our chances of actually winning over the "
+"Dvaereds? Sometimes I worry a little.\""
+msgstr ""
+
+#: dat/events/npc.lua:281
+msgid ""
+"\"I was in charge of a bombing run recently. The mission was a success, but "
+"I lost a lot of comrades in the process. I wish I could bring them back, but "
+"in lieu of that, I fight for their honor as well as my own.\""
+msgstr ""
+
+#: dat/events/npc.lua:282
+msgid ""
+"\"They'll always label us as 'terrorists'. It's nothing more than Dvaered "
+"propaganda designed to divide us. We are fighting for the Frontier against "
+"the Dvaereds, and the Dvaereds won't ever be OK with that.\""
+msgstr ""
+
+#: dat/events/npc.lua:283
+msgid ""
+"\"It's important not to forget the action needed on the ground. Fighting is "
+"a part of our work, yes, but we also have to preserve a Frontier worth "
+"protecting.\""
+msgstr ""
+
+#: dat/events/npc.lua:287
+msgid ""
+"\"I may be a pirate who blows up ships and steals for a living, but that "
+"inner nebula still kind of freaks me out.\""
+msgstr ""
+
+#: dat/events/npc.lua:288
+msgid ""
+"\"I was around before Haven was destroyed, you know! Funny times. All the "
+"pirates were panicking and the Empire was cheering thinking that we were "
+"done for. Ha! As if! It barely even made a difference. We just relocated to "
+"New Haven and resumed business as usual.\""
+msgstr ""
+
+#: dat/events/npc.lua:289
+msgid ""
+"\"You know, I got into this business by accident to tell the truth. But what "
+"can you do? I could get a fake ID and pretend to be someone else but I'd get "
+"caught eventually. Might as well make the best of what I have now.\""
+msgstr ""
+
+#: dat/events/npc.lua:290
+msgid ""
+"\"One of my favorite things to do is buy a fake ID and then deliver as much "
+"contraband as I can before I get caught. It's great fun, and finding out "
+"that my identity's been discovered gives me a rush!\""
+msgstr ""
+
+#: dat/events/npc.lua:291
+msgid ""
+"\"If you ask me, the Incident was some sort of alien dimensional phenomenon. "
+"I heard rumors of ghost ships flying about that look like nothing humanity "
+"has ever invented. Whether the Incident was intentional or just an "
+"accidental slip-up, I don't know.\""
+msgstr ""
+
+#. Gameplay tip messages.
+#. ALL NPCs have a chance to say one of these lines instead of a lore message.
+#. So, make sure the tips are always faction neutral.
+#: dat/events/npc.lua:298
+msgid ""
+"\"I heard you can set your weapons to only fire when your target is in "
+"range, or just let them fire when you pull the trigger. Sounds handy!\""
+msgstr ""
+
+#: dat/events/npc.lua:299
+#, lua-format
+msgid ""
+"\"Did you know that if a planet doesn't like you, you can often bribe the "
+"spaceport operators and land anyway? Just hail the planet with %s, and click "
+"the bribe button! Careful though, it doesn't always work.\""
+msgstr ""
+
+#: dat/events/npc.lua:300
+msgid ""
+"\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them "
+"at a time, and #bshift#0 to buy 100. And if you press them both at once, you "
+"can buy 500 at a time! You can actually do that with outfits too, but why "
+"would you want to buy 50 laser cannons?\""
+msgstr ""
+
+#: dat/events/npc.lua:301
+msgid ""
+"\"If you're on a mission you just can't beat, you can open the ship computer "
+"and abort the mission. There's no penalty for doing it, so don't hesitate to "
+"try the mission again later.\""
+msgstr ""
+
+#: dat/events/npc.lua:302
+msgid ""
+"\"Afterburners can speed you up a lot, but when they get hot they don't work "
+"as well anymore. Don't use them carelessly!\""
+msgstr ""
+
+#: dat/events/npc.lua:303
+msgid ""
+"\"If you're new to the galaxy, I recommend you buy a map or two. It can make "
+"exploration a bit easier.\""
+msgstr ""
+
+#: dat/events/npc.lua:304
+msgid ""
+"\"Scramblers and jammers make it harder for missiles to track you. They can "
+"be very handy if your enemies use missiles.\""
+msgstr ""
+
+#: dat/events/npc.lua:305
+#, lua-format
+msgid ""
+"\"If you're having trouble with overheating weapons or outfits, you can "
+"press %s twice to put your ship into Active Cooldown; that'll dissipate all "
+"heat from your ship and also refill your rocket ammunition. Careful though, "
+"your energy and shields won't recharge while you do it!\""
+msgstr ""
+
+#: dat/events/npc.lua:306
+msgid ""
+"\"You know how time speeds up when Autonav is on, but then goes back to "
+"normal when enemies are around? Turns out you can't disable the return to "
+"normal speed entirely, but you can control what amount of danger triggers "
+"it. Really handy if you want to ignore enemies that aren't actually hitting "
+"you.\""
+msgstr ""
+
+#: dat/events/npc.lua:307
+msgid ""
+"\"Flying bigger ships is awesome, but it's a bit tougher than flying smaller "
+"ships. There's so much more you have to do for the same actions, time just "
+"seems to fly by faster. I guess the upside of that is that you don't notice "
+"how slow your ship is as much.\""
+msgstr ""
+
+#: dat/events/npc.lua:308
+msgid ""
+"\"Mining can be an easy way to earn some extra credits, but every once in a "
+"while an asteroid will just randomly explode for no apparent reason, so you "
+"have to watch out for that. Yeah, I don't know why they do that either.\""
+msgstr ""
+
+#: dat/events/npc.lua:309
+msgid ""
+"\"Different ships should be built and piloted differently. One of the "
+"hardest lessons I learned as a pilot was to stop worrying so much about the "
+"damage my ship was taking in battle while piloting a large ship. These ships "
+"are too slow for dodging, so you need to learn to just take the hits and "
+"focus your attention on firing back at your enemies.\""
+msgstr ""
+
+#: dat/events/npc.lua:310
+msgid ""
+"\"Don't forget to have your target selected. Even if you have forward-facing "
+"weapons, the weapons will swivel a bit to track your target. But it's "
+"absolutely essential for turreted weapons.\""
+msgstr ""
+
+#: dat/events/npc.lua:311
+msgid ""
+"\"The '¢' symbol is the official galactic symbol for credits. Supposedly it "
+"comes from the currency symbol of an ancient Earth civilization. It's "
+"sometimes expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' "
+"for millions of credits, and so on.\""
+msgstr ""
+
+#: dat/events/npc.lua:312
+msgid ""
+"\"If you're piloting a medium ship, I'd recommend you invest in at least one "
+"turreted missile launcher. I had a close call a few days ago where a bomber "
+"nearly blew me to bits outside the range of my Laser Turrets. Luckily I just "
+"barely managed to escape to a nearby planet. I've not had that problem ever "
+"since I equipped a turreted missile launcher.\""
+msgstr ""
+
+#: dat/events/npc.lua:313
+msgid ""
+"\"These computer symbols can be confusing sometimes! I've figured it out, "
+"though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, "
+"#R*#0 means restricted, and #I=#0 means uninhabited but landable.\""
+msgstr ""
+
+#: dat/events/npc.lua:314
+msgid ""
+"\"This can be a bit dangerous, but if you ever run out of fuel in a system "
+"with nothing to land on and no friendly pilots willing to refuel you, "
+"pirates will often be willing to sell you some of their fuel. You just have "
+"to bribe them first. It'll put a drain on your credits, but at least you can "
+"make it out alive!\""
+msgstr ""
+
+#: dat/events/npc.lua:315
+msgid ""
+"\"Launchers and fighter bays have their mass listed as a range rather than "
+"just a flat mass because the ammo has its own mass. When they're empty, "
+"their mass is the minimum mass, and when they're full, their mass is the "
+"maximum mass.\""
+msgstr ""
+
+#: dat/events/npc.lua:316
+msgid ""
+"\"Those new combat practice missions in the mission computer are real handy! "
+"You can even fight against Proteron ship look-alikes, but don't be fooled; "
+"they're not the real deal.\""
+msgstr ""
+
+#. Jump point messages.
+#. For giving the location of a jump point in the current system to the player for free.
+#. All messages must contain exactly one %s, this is the name of the target system.
+#. ALL NPCs have a chance to say one of these lines instead of a lore message.
+#. So, make sure the tips are always faction neutral.
+#: dat/events/npc.lua:325
+#, lua-format
+msgid ""
+"\"Hi there, traveler. Is your system map up to date? Just in case you didn't "
+"know already, let me give you the location of the jump from here to %s. I "
+"hope that helps.\""
+msgstr ""
+
+#: dat/events/npc.lua:326
+#, lua-format
+msgid ""
+"\"Quite a lot of people who come in here complain that they don't know how "
+"to get to %s. I travel there often, so I know exactly where the jump point "
+"is. Here, let me show you.\""
+msgstr ""
+
+#: dat/events/npc.lua:327
+#, lua-format
+msgid ""
+"\"So you're still getting to know about this area, huh? Tell you what, I'll "
+"give you the coordinates of the jump to %s. Check your map next time you "
+"take off!\""
+msgstr ""
+
+#: dat/events/npc.lua:328
+#, lua-format
+msgid ""
+"\"True fact, there's a direct jump from here to %s. Want to know where it "
+"is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your "
+"map.\""
+msgstr ""
+
+#: dat/events/npc.lua:329
+#, lua-format
+msgid ""
+"\"There's a system just one jump away by the name of %s. I can tell you "
+"where the jump point is. There, I've updated your map. Don't mention it.\""
+msgstr ""
+
+#. Mission hint messages. Each element should be a table containing the mission name and the corresponding hint.
+#. ALL NPCs have a chance to say one of these lines instead of a lore message.
+#. So, make sure the hints are always faction neutral.
+#: dat/events/npc.lua:336
+msgid ""
+"\"There's this obnoxious baron who bought the entire Ulios system for "
+"himself. I hear he flies a Proteron Kahan from before the Incident and sends "
+"people he hires on wild goose chases to find all sorts of weird trinkets. I "
+"don't envy the folks that work for him; he sounds like a real pain.\""
+msgstr ""
+
+#: dat/events/npc.lua:337
+msgid ""
+"\"Apparently the Empire is trying to recruit new pilots into their shipping "
+"division. That might be a worthwhile opportunity if you want to make some "
+"credits!\""
+msgstr ""
+
+#: dat/events/npc.lua:338
+msgid ""
+"\"There are often shady characters hanging out in the Alteris system. I'd "
+"stay away from there if I were you, someone might offer you a dirty kind of "
+"job!\""
+msgstr ""
+
+#: dat/events/npc.lua:339
+msgid ""
+"\"There's a bunch of folks who organize races from time to time. You have to "
+"fly a Yacht class ship to take part in them. I totally want to join one of "
+"those races some day.\""
+msgstr ""
+
+#: dat/events/npc.lua:340
+msgid ""
+"\"Apparently there's a woman who regularly turns up on planets in and around "
+"the Klantar system. I wonder what she's looking for.\""
+msgstr ""
+
+#. Event hint messages. Each element should be a table containing the event name and the corresponding hint.
+#. Make sure the hints are always faction neutral.
+#: dat/events/npc.lua:346
+msgid ""
+"\"Clashes between the FLF and Dvaered patrols can get quite intense. "
+"Sometimes when things get real bad the Dvaered forces will enlist the help "
+"of willing civilians.\""
+msgstr ""
+
+#. Mission after-care messages. Each element should be a table containing the mission name and a line of text.
+#. This text will be said by NPCs once the player has completed the mission in question.
+#. Make sure the messages are always faction neutral.
+#: dat/events/npc.lua:353
+msgid ""
+"\"Some thieves broke into a museum on Varia and stole a holopainting! Most "
+"of the thieves were caught, but the one who carried the holopainting "
+"offworld is still at large. No leads.\""
+msgstr ""
+
+#: dat/events/npc.lua:354
+msgid ""
+"\"The Dvaered scored a major victory against the FLF recently. They went "
+"into Sigur and blew the hidden base there to bits! I bet that was a serious "
+"setback for the FLF.\""
+msgstr ""
+
+#: dat/events/npc.lua:355
+msgid ""
+"\"Did you hear? There was some big incident during a diplomatic meeting "
+"between the Empire and the Dvaered. Nobody knows what exactly happened, but "
+"both diplomats died. Now both sides are accusing the other of foul play. "
+"Could get ugly.\""
+msgstr ""
+
+#. Event after-care messages. Each element should be a table containing the event name and a line of text.
+#. This text will be said by NPCs once the player has completed the event in question.
+#. Make sure the messages are always faction neutral.
+#: dat/events/npc.lua:362
+msgid ""
+"\"What? You had rodents sabotage your ship? Damn, you're lucky to be alive. "
+"If it had hit the wrong power line…\""
+msgstr ""
+
+#: dat/events/npc.lua:363
+msgid ""
+"That really happened to you with an experimental engine?! You're lucky to be "
+"alive! No way I'd ever use one of those things even if you paid me."
+msgstr ""
+
+#. Append the faction to the civilian name, unless there is no faction.
+#: dat/events/npc.lua:409
+#, lua-format
+msgid "%s Civilian"
+msgstr ""
+
+#. Select a military portrait and description.
+#. Select a civilian portrait and description.
+#. Select what this NPC should say.
+#. Jump point message.
+#. Lore message.
+#. Gameplay tip message.
+#. Mission hint message.
+#. Returns a lore message for the given faction.
+#. Select the faction messages for this NPC's faction, if it exists.
+#. Select a string, then remove it from the list of valid strings. This ensures all NPCs have something different to say.
+#. Returns a jump point message and updates jump point known status accordingly. If all jumps are known by the player, defaults to a lore message.
+#. Collect a table of jump points in the system the player does NOT know.
+#. We need to keep track of jump points NPCs will tell the player about so there are no duplicates.
+#. The player already knows all jumps in this system.
+#. All jump messages are valid always.
+#. Don't need to remove messages from tables here, but add whatever jump point we selected to the "selected" table.
+#. Returns a tip message.
+#. All tip messages are valid always.
+#. Returns a mission hint message, a mission after-care message, OR a lore message if no missionlikes are left.
+#. Hints.
+#. Hint messages are only valid if the relevant mission has not been completed and is not currently active.
+#. After-care.
+#. After-care messages are only valid if the relevant mission has been completed.
+#. Select a string, then remove it from the list of valid strings. This ensures all NPCs have something different to say.
+#. Execute NPC specific code
+#.
+#. --    Event is over when player takes off.
+#. --
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <event name="Proteron Discovery">
@@ -28155,6 +28166,10 @@ msgstr ""
 
 #: dat/missions/baron/baron_prince.lua:457
 msgid "Artifact Hunter"
+msgstr ""
+
+#: dat/missions/baron/baron_prince.lua:458
+msgid "Artifact Hunter {shiptype}"
 msgstr ""
 
 #.
@@ -50966,13 +50981,13 @@ msgstr "유효하지 않은 NPC ID!"
 msgid "Event trying to claim but already has."
 msgstr "소유권을 주장하려는 이벤트가 이미 있습니다."
 
-#: src/nlua_faction.c:667
+#: src/nlua_faction.c:687
 #, fuzzy, c-format
 msgid "Faction '%s' already exists!"
 msgstr ""
 "%s의 이름을 %s로 바꾸는 동안 오류가 발생했습니다. %s이 (가) 이미 있습니다"
 
-#: src/nlua_faction.c:706 src/nlua_faction.c:745
+#: src/nlua_faction.c:731 src/nlua_faction.c:770
 msgid "Can only add allies to dynamic factions"
 msgstr ""
 
@@ -51006,31 +51021,31 @@ msgstr ""
 msgid "Invalid ship computer window name '%s'."
 msgstr "창 정보 이름 '%s'이 (가) 잘못되었습니다."
 
-#: src/nlua_hook.c:288
+#: src/nlua_hook.c:290
 msgid "Mission not in stack trying to hook, forgot to run misn.accept()?"
 msgstr ""
 "후크를 시도하는 스택에 임무가 없습니다. misn.accept ()를 실행하는 것을 잊었습"
 "니까?"
 
-#: src/nlua_hook.c:308
+#: src/nlua_hook.c:310
 msgid "Attempting to set a hook outside of a mission or event."
 msgstr ""
 
-#: src/nlua_hook.c:313
+#: src/nlua_hook.c:315
 msgid "No hook target was set."
 msgstr ""
 
-#: src/nlua_hook.c:863
+#: src/nlua_hook.c:883
 #, c-format
 msgid "Unsupported Lua hook paramater type '%s'!"
 msgstr ""
 
-#: src/nlua_hook.c:940
+#: src/nlua_hook.c:960
 msgid "Invalid parameter #1 for hook.pilot, expecting pilot or nil."
 msgstr ""
 
 #. hook_type not valid
-#: src/nlua_hook.c:973
+#: src/nlua_hook.c:993
 #, c-format
 msgid "Invalid pilot hook type: '%s'"
 msgstr ""
@@ -52618,40 +52633,40 @@ msgstr ""
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:2539 src/pilot.c:2588
+#: src/pilot.c:2548 src/pilot.c:2597
 msgid "#rJump aborted: strayed too far from jump point."
 msgstr ""
 
-#: src/pilot.c:2546
+#: src/pilot.c:2555
 msgid "#rJump aborted: afterburner active."
 msgstr ""
 
-#: src/pilot.c:2560
+#: src/pilot.c:2569
 msgid "#rJump aborted."
 msgstr ""
 
-#: src/pilot.c:2608
+#: src/pilot.c:2617
 #, c-format
 msgid "Pilot '%s' trying to jump through exit-only jump from '%s' to '%s'"
 msgstr ""
 
-#: src/pilot.c:2960
+#: src/pilot.c:2969
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s' failed safety check:\n"
 "%s"
 msgstr "Mission Lua '%s'구문 오류: %s"
 
-#: src/pilot.c:2963
+#: src/pilot.c:2972
 #, c-format
 msgid "   [%d] %s"
 msgstr ""
 
-#: src/pilot.c:3057 src/pilot.c:3094
+#: src/pilot.c:3066 src/pilot.c:3103
 msgid "Unable to allocate memory"
 msgstr ""
 
-#: src/pilot.c:3181
+#: src/pilot.c:3190
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 
@@ -53276,47 +53291,47 @@ msgstr ""
 msgid "Unknown commodity '%s' detected, removing."
 msgstr ""
 
-#: src/player.c:4042
+#: src/player.c:4040
 #, c-format
 msgid ""
 "Player ship '%s' failed slot validity check , removing all outfits and "
 "adding to stock."
 msgstr ""
 
-#: src/player.c:4086
+#: src/player.c:4084
 #, c-format
 msgid ""
 "Player ship '%s' has unknown node '%s' in 'weaponsets' (expected "
 "'weaponset')."
 msgstr ""
 
-#: src/player.c:4094
+#: src/player.c:4092
 #, c-format
 msgid "Player ship '%s' missing 'id' tag for weapon set."
 msgstr ""
 
-#: src/player.c:4098
+#: src/player.c:4096
 #, c-format
 msgid "Player ship '%s' has invalid weapon set id '%d' [max %d]."
 msgstr ""
 
-#: src/player.c:4113
+#: src/player.c:4111
 #, c-format
 msgid "Player ship '%s' missing 'type' tag for weapon set."
 msgstr ""
 
-#: src/player.c:4126
+#: src/player.c:4124
 #, c-format
 msgid ""
 "Player ship '%s' has unknown 'weaponset' child node '%s' (expected 'weapon')."
 msgstr ""
 
-#: src/player.c:4134
+#: src/player.c:4132
 #, c-format
 msgid "Player ship '%s' missing 'level' tag for weapon set weapon."
 msgstr ""
 
-#: src/player.c:4139
+#: src/player.c:4137
 #, c-format
 msgid "Player ship '%s' has invalid weapon id %d [max %d]."
 msgstr ""
