@@ -116,7 +116,6 @@
    <enemy>Frontier</enemy>
    <enemy>Goddard</enemy>
    <enemy>Independent</enemy>
-   <enemy>Mercenary</enemy>
    <enemy>Miner</enemy>
    <enemy>Proteron</enemy>
    <enemy>Proteron Dissident</enemy>
@@ -349,9 +348,7 @@
   <standing>static</standing>
   <equip>mercenary</equip>
   <allies />
-  <enemies>
-   <enemy>Pirate</enemy>
-  </enemies>
+  <enemies />
  </faction>
  <faction>
   <name>Raider</name>

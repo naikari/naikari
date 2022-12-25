@@ -148,7 +148,7 @@ end
 function choose_target()
    -- Chance to choose no target
    if rnd.rnd() < 0.5 then
-      return
+      return nil
    end
 
    local presences = system.cur():presences()

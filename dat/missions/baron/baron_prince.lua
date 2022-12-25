@@ -454,8 +454,9 @@ end
 
 
 function spawn_hunter(shiptype)
-   local p = pilot.add(shiptype, "Mercenary", nil, _("Artifact Hunter"),
-         {ai="baddie_norun"})
+   local f = faction.dynAdd("Mercenary", N_("Artifact Hunter"))
+   local pn = fmt.f(_("Artifact Hunter {shiptype}"), {shiptype=shiptype})
+   local p = pilot.add(shiptype, f, nil, pn, {ai="baddie_norun"})
    p:setHostile()
 end
 
