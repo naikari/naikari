@@ -97,6 +97,7 @@ function create()
 
     flfdead = false -- Flag to check if the player destroyed the FLF sentinels
     basefound = false -- Flag to keep track if the player has seen the base
+    prev_standing = 0
     
     destsysname = var.peek("flfbase_sysname")
     destsys = system.get(destsysname)
@@ -153,7 +154,9 @@ function enter()
             p:memory().nosteal = true
         end
         
-        faction.get("FLF"):setPlayerStanding(-1)
+        local f = faction.get("FLF")
+        prev_standing = f:playerStanding()
+        f:setPlayerStanding(-1)
         
         hook.timer(2, "commFLF")
         hook.timer(15, "wakeUpGregarYouLazyBugger")
@@ -219,7 +222,7 @@ function wakeUpGregarYouLazyBugger()
     if not flfdead then
         tk.msg("", wake_text)
         tk.msg("", fight_end_text)
-        faction.get("FLF"):setPlayerStanding(5)
+        faction.get("FLF"):setPlayerStanding(math.max(0, prev_standing))
         misn.osdCreate(misn_title, {osd_desc[1]:format(destsysname), osd_adddesc, osd_desc[2]})
         misn.osdActive(2)
         hook.timer(0.5, "inRange")
