@@ -113,16 +113,27 @@ function accept ()
             {casualcredits=fmt.credits(credits_easy),
                sponsoredcredits=fmt.credits(credits_hard)})
       choice, choicetext = tk.choice("", s, choice1, choice2)
+      local shipchoices
+      ship_list = {}
       if choice == 1 then
          credits = credits_easy
+         shipchoices = {
+            "Llama", "Lancelot", "Koala", "Quicksilver", "Ancestor",
+         }
          tk.msg("", yes_easy_text)
       else
          credits = credits_hard
+         shipchoices = {
+            "Llama", "Gawain", "Hyena", "Shark", "Quicksilver",
+         }
          tk.msg("", yes_hard_text)
       end
       misn.setReward(fmt.credits(credits))
+      for i=1,3 do
+         ship_list[#ship_list + 1] = shipchoices[rnd.rnd(1, #shipchoices)]
+      end
       hook.takeoff("takeoff")
-      else
+   else
       tk.msg("", refusetext)
    end
 end
@@ -163,23 +174,23 @@ function takeoff()
       j:setActiveBoard(true)
       j:setVisible(true)
    end
-   racers[1] = pilot.add("Llama", "Civilian", curplanet)
-   racers[2] = pilot.add("Gawain", "Civilian", curplanet)
-   racers[3] = pilot.add("Hyena", "Civilian", curplanet)
+   for i, s in ipairs(ship_list) do
+      racers[i] = pilot.add(s, "Civilian", curplanet)
+   end
    if choice == 2 then
-      for i in pairs(racers) do
-         racers[i]:outfitRm("all")
-         racers[i]:outfitRm("cores")
+      for i, p in ipairs(racers) do
+         p:outfitRm("all")
+         p:outfitRm("cores")
          
-         racers[i]:outfitAdd("Milspec Prometheus 2203 Core System")
-         racers[i]:outfitAdd("Unicorp D-2 Light Plating")
+         p:outfitAdd("Milspec Prometheus 2203 Core System")
+         p:outfitAdd("Unicorp D-2 Light Plating")
          local en_choices = {
             "Nexus Dart 150 Engine", "Tricon Zephyr Engine" }
-         racers[i]:outfitAdd(en_choices[rnd.rnd(1, #en_choices)])
+         p:outfitAdd(en_choices[rnd.rnd(1, #en_choices)])
          if rnd.rnd() < 0.5 then
-            racers[i]:outfitAdd("Improved Stabilizer")
+            p:outfitAdd("Improved Stabilizer")
          end
-         racers[i]:outfitAdd("Engine Reroute", 2)
+         p:outfitAdd("Engine Reroute", 6)
       end
    end
    for i, j in ipairs(racers) do
@@ -234,7 +245,7 @@ function nexttarget1()
    if target[1] == 4 then
       racers[1]:land(curplanet)
       hook.rm(hp1)
-      else
+   else
       racers[1]:moveto(checkpoint[target[1]]:pos())
    end
 end
@@ -249,7 +260,7 @@ function nexttarget2()
    if target[2] == 4 then
       racers[2]:land(curplanet)
       hook.rm(hp2)
-      else
+   else
       racers[2]:moveto(checkpoint[target[2]]:pos())
    end
 end
