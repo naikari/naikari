@@ -3954,7 +3954,7 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
    free(model);
 
    /* Defaults. */
-   fuel     = -1;
+   fuel = -1;
    autoweap = 1;
    aim_lines = 0;
 
@@ -4024,9 +4024,7 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
                /* actually add the cargo with id hack
                 * Note that the player's cargo_free is ignored here.
                 */
-               pilot_cargoAddRaw( ship, com, quantity, 0 );
-               if (i != 0)
-                  array_back(ship->commodities).id = i;
+               pilot_cargoAddRaw(ship, com, quantity, i);
             }
          } while (xml_nextNode(cur));
       }
