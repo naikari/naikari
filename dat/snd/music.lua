@@ -33,13 +33,13 @@ system_ambient_songs = {
 function choose( str )
    -- Stores all the available sound types and their functions
    local choose_table = {
-      ["load"]    = choose_load,
-      ["intro"]   = choose_intro,
+      ["load"] = choose_load,
+      ["intro"] = choose_intro,
       ["credits"] = choose_credits,
-      ["land"]    = choose_ambient,
+      ["land"] = choose_land,
       ["takeoff"] = choose_ambient,
       ["ambient"] = choose_ambient,
-      ["combat"]  = choose_combat
+      ["combat"] = choose_combat
    }
 
    -- Don't change or play music if a mission or event doesn't want us to
@@ -143,36 +143,11 @@ end
 --[[
 -- @brief Chooses landing songs.
 --]]
-function choose_land ()
-   local pnt   = planet.cur()
-   local class = pnt:class()
-
-   -- Planet override
-   local override = planet_songs[ pnt:nameRaw() ]
-   if override then
-      music.load( override[ rnd.rnd(1, #override) ] )
-      music.play()
-      return true
+function choose_land()
+   if last ~= "ambient" then
+      last = "land"
    end
-
-   -- Standard to do it based on type of planet
-   if class == "M" then
-      mus = { "agriculture" }
-   elseif class == "O" then
-      mus = { "ocean" }
-   elseif class == "P" then
-      mus = { "snow" }
-   else
-      if pnt:services()["inhabited"] then
-         mus = { "cosmostation", "upbeat" }
-      else
-         mus = { "agriculture" }
-      end
-   end
-
-   music.load( mus[ rnd.rnd(1, #mus) ] )
-   music.play()
-   return true
+   return choose_ambient()
 end
 
 
@@ -201,7 +176,7 @@ ambient_nebula = {"ambient1", "ambient3"}
 --[[
 -- @brief Chooses ambient songs.
 --]]
-function choose_ambient ()
+function choose_ambient()
    local force = true
    local add_neutral = false
 
