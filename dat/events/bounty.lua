@@ -81,7 +81,32 @@ function death(target, killer)
 
    local target_f = target:faction()
    local pay_f = system.cur():faction()
-   if pay_f == nil or not pay_f:areEnemies(target_f) then
+   if target_f == faction.get("Mercenary") then
+      -- Mercenaries are a special case since they have no formal
+      -- enemies, but likely should award a bounty.
+      pay_f = nil
+      local presences = system.cur():presences()
+      if presences["Pirate"] and rnd.rnd() < 0.9 then
+         pay_f = faction.get("Pirate")
+      else
+         local f_choices = {}
+         for f, presence in pairs(presences) do
+            local canpay = true
+            for i, f2 in ipairs(nopay_factions) do
+               if f == f2 then
+                  canpay = false
+                  break
+               end
+            end
+            if canpay then
+               f_choices[#f_choices + 1] = f
+            end
+         end
+         if #f_choices > 0 and rnd.rnd() < 0.9 then
+            pay_f = faction.get(f_choices[rnd.rnd(1, #f_choices)])
+         end
+      end
+   elseif pay_f == nil or not pay_f:areEnemies(target_f) then
       pay_f = nil
       local pay_f_presence = 0
       for f, presence in pairs(system.cur():presences()) do
