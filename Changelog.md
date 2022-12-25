@@ -150,6 +150,9 @@
   refuel you. Instead, the design philosophy is being shifted to
   ensuring that unwinnable states are impossible anywhere you're allowed
   to land.
+* Made NPC mercenaries no longer explicitly enemies with pirates (though
+  they will still usually attack pirates due to their "bounty hunting"
+  behavior).
 
 ### Bugfixes
 
@@ -174,6 +177,8 @@
   left them adrift in the system indefinitely).
 * Fixed the player being allowed to board and steal credits from their
   own hired escorts.
+* Adjusted the music script to hopefully fix an uncommon bug where
+  combat music played while landed.
 
 ## 0.4.1
 
