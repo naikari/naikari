@@ -202,7 +202,7 @@ jobs:
         Package_Source,
         Linux_Naev_Release,
         Windows_Naev_Release,
-        Darwin_Naev_Release,
+        #Darwin_Naev_Release,
       ]
     if: ${{ github.repository == 'naikari/naikari' }}
 

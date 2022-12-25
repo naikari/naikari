@@ -285,7 +285,7 @@ jobs:
         Package_Source,
         Linux_Compile_Naev,
         Windows_Compile_Naev,
-        Darwin_Compile_Naev,
+        #Darwin_Compile_Naev,
       ]
 
     steps:
