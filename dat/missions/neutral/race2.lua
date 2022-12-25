@@ -55,7 +55,7 @@ checkpoint_final_text = _("Checkpoint {prev} reached. Land on {planet}.")
 
 refusetext = _([["I guess we'll need to find another pilot."]])
 
-wintext = _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of %s!" He hands you one of those fake oversized cheques for the audience, and then a credit chip with the actual prize money on it.]])
+wintext = _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of %s!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money on it.]])
 
 fail_left_text = _([["Because you left the race, you have been disqualified."]])
 
