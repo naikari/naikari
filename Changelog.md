@@ -91,6 +91,8 @@
     made to ensure that the ones that still exist are worth going to
     for some reason or another, or otherwise serve a legitimate gameplay
     purpose.
+* The race mission no longer requires you to be piloting a yacht ship to
+  participate, and the ships you race against are more varied.
 
 ### Other Changes
 
