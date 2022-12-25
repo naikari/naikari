@@ -586,8 +586,17 @@ static int factionL_setknown( lua_State *L )
 /**
  * @brief Adds a faction dynamically.
  *
- * If "base" is non-nil, the following is copied from the base
- * faction:<br/>
+ * <p>The dynamically added faction lasts until a new system is entered,
+ * or until the game exits, whichever is sooner. You can safely call
+ * this again even if the dynamic faction has already been created, in
+ * which case the already existing dynamic faction will be returned.
+ * However, the dynamic faction must not be the same name as a
+ * non-dynamic faction; attempting to create a dynamic faction with the
+ * same name as a non-dynamic faction will result in an error.</p>
+ *
+ * <p>If "base" is non-nil, the following is copied from the base
+ * faction:</p>
+ *
  * <ul>
  *    <li>The faction's default AI, unless another is specified by the
  *       "ai" argument.</li>
@@ -601,7 +610,13 @@ static int factionL_setknown( lua_State *L )
  *    <li>The faction's equip script.</li>
  * </ul>
  *
- * Arguments that can be passed to the "params" parameter:<br/>
+ * <p>The "params" parameter fine-tunes the dynamic faction, but only if
+ * the function call is actually creating the faction (rather than
+ * returning a previously existing dynamic faction), i.e. these options
+ * only apply at the time the faction is actually created and cannot be
+ * configured afterward. The following arguments can be passed to the
+ * "params" parameter:</p>
+ *
  * <ul>
  *    <li>"ai" (string): Default AI to give to pilots of the faction.
  *       This should be considered required if not basing the faction on
@@ -625,6 +640,8 @@ static int factionL_setknown( lua_State *L )
  *       give the faction.
  *    @luatparam[opt] table params Table of extra keyword arguments. See
  *       above for supported arguments.
+ *    @luatreturn Faction The added faction or the already existing
+ *       dynamic faction with the same name.
  * @luafunc dynAdd
  */
 static int factionL_dynAdd( lua_State *L )
@@ -663,19 +680,27 @@ static int factionL_dynAdd( lua_State *L )
    }
 
    /* Check if exists. */
-   if (faction_exists(name))
-      NLUA_ERROR(L,_("Faction '%s' already exists!"), name);
+   if (faction_exists(name)) {
+      /* Faction exists; attempt to use the existing faction. */
+      newfac = faction_get(name);
+      if (!faction_isDynamic(newfac)) {
+         NLUA_ERROR(L, _("Faction '%s' already exists!"), name);
+         return 0;
+      }
+   }
+   else {
+      /* Create new faction. */
+      newfac = faction_dynAdd(fac, name, display, ai);
 
-   /* Create new faction. */
-   newfac = faction_dynAdd( fac, name, display, ai );
+      /* Clear if necessary. */
+      if (clear_allies)
+         faction_clearAlly(newfac);
+      if (clear_enemies)
+         faction_clearEnemy(newfac);
+   }
 
-   /* Clear if necessary. */
-   if (clear_allies)
-      faction_clearAlly( newfac );
-   if (clear_enemies)
-      faction_clearEnemy( newfac );
+   lua_pushfaction(L, newfac);
 
-   lua_pushfaction( L, newfac );
    return 1;
 }
 
