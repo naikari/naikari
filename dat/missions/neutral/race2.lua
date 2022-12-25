@@ -40,12 +40,12 @@ local mh = require "misnhelper"
 
 ask_text = _([["Hey there, great to see you back! You want to have another race?"]])   
 
-ask_difficulty_text = _([["There are two races you can participate in: a casual one, which is like the first race we had, or the sponsored one one with smaller checkpoints and stronger competition. The casual one has a prize of {casualcredits}, and the sponsored one has a prize of {sponsoredcredits}. Which one do you want to do?"]])
+ask_difficulty_text = _([["There are two races you can participate in: a casual one, which is like the first race we had, or the competitive one one with smaller checkpoints and stronger competition. The casual one has a prize of {casualcredits}, and the competitive one has a prize of {competitivecredits}. Which one do you want to do?"]])
 
 yes_hard_text = _([["You want a challenge huh? We'll all be trying our best, so good luck!"]])
 
 choice1 = _("Casual")
-choice2 = _("Sponsored")
+choice2 = _("Competitive")
 
 yes_easy_text = _([["Let's go have some fun then!"]])
 
@@ -55,7 +55,7 @@ checkpoint_final_text = _("Checkpoint {prev} reached. Land on {planet}.")
 
 refusetext = _([["I guess we'll need to find another pilot."]])
 
-wintext = _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of %s!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money on it.]])
+wintext = _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of {credits}!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money on it.]])
 
 fail_left_text = _([["Because you left the race, you have been disqualified."]])
 
@@ -111,7 +111,7 @@ function accept ()
       misn.osdCreate(OSDtitle, OSD)
       local s = fmt.f(ask_difficulty_text,
             {casualcredits=fmt.credits(credits_easy),
-               sponsoredcredits=fmt.credits(credits_hard)})
+               competitivecredits=fmt.credits(credits_hard)})
       choice, choicetext = tk.choice("", s, choice1, choice2)
       local shipchoices
       ship_list = {}
