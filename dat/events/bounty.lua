@@ -54,11 +54,9 @@ nopay_factions = {
 
 
 function create()
-   hook.pilot(player.pilot(), "kill", "player_kill")
+   hook.death("death")
    hook.jumpout("exit")
    hook.land("exit")
-
-   reset_hooks_timer()
 end
 
 
@@ -68,19 +66,14 @@ function log_entry(text)
 end
 
 
-function reset_hooks_timer()
-   for i, p in ipairs(player.pilot():followers()) do
-      if p:exists() then
-         p:hookClear()
-         hook.pilot(p, "kill", "player_kill")
-      end
+function death(target, killer)
+   if killer == nil then
+      return
+   end
+   if killer ~= player.pilot() and killer:leader() ~= player.pilot() then
+      return
    end
 
-   hook.timer(0.5, "reset_hooks_timer")
-end
-
-
-function player_kill(p, target)
    local reward = target:memory().kill_reward
    if not reward or reward <= 0 then
       return

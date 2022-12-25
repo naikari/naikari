@@ -1688,6 +1688,7 @@ void pilot_updateDisable( Pilot* p, const unsigned int shooter )
 static void pilot_dead( Pilot* p, unsigned int killer )
 {
    HookParam hparam;
+   HookParam ghparam[3];
    Pilot *killer_p;
 
    if (pilot_isFlag(p,PILOT_DEAD))
@@ -1713,6 +1714,8 @@ static void pilot_dead( Pilot* p, unsigned int killer )
    pilot_outfitOffAll( p );
 
    /* Pilot must die before setting death flag and probably messing with other flags. */
+   ghparam[0].type = HOOK_PARAM_PILOT;
+   ghparam[0].u.lp = p->id;
    if (killer > 0) {
       killer_p = pilot_get(killer);
       if (killer_p != NULL) {
@@ -1723,11 +1726,17 @@ static void pilot_dead( Pilot* p, unsigned int killer )
 
       hparam.type = HOOK_PARAM_PILOT;
       hparam.u.lp = killer;
+      ghparam[1].type = HOOK_PARAM_PILOT;
+      ghparam[1].u.lp = killer;
+      ghparam[2].type = HOOK_PARAM_SENTINEL;
    }
-   else
+   else {
       hparam.type = HOOK_PARAM_NIL;
+      ghparam[1].type = HOOK_PARAM_SENTINEL;
+   }
 
    pilot_runHookParam(p, PILOT_HOOK_DEATH, &hparam, 1);
+   hooks_runParam("death", ghparam);
 
    /* Need a check here in case the hook "regenerates" the pilot. */
    if (p->armour <= 0.)

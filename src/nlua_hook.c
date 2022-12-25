@@ -42,6 +42,7 @@ static int hook_jumpout( lua_State *L );
 static int hook_jumpin( lua_State *L );
 static int hook_enter( lua_State *L );
 static int hook_hail( lua_State *L );
+static int hook_death(lua_State *L);
 static int hook_board( lua_State *L );
 static int hook_timer( lua_State *L );
 static int hook_date( lua_State *L );
@@ -65,36 +66,37 @@ static int hook_custom( lua_State *L );
 static int hook_trigger( lua_State *L );
 static int hook_pilot( lua_State *L );
 static const luaL_Reg hook_methods[] = {
-   { "rm", hookL_rm },
-   { "load", hook_load },
-   { "land", hook_land },
-   { "takeoff", hook_takeoff },
-   { "jumpout", hook_jumpout },
-   { "jumpin", hook_jumpin },
-   { "enter", hook_enter },
-   { "hail", hook_hail },
-   { "board", hook_board },
-   { "timer", hook_timer },
-   { "date", hook_date },
-   { "comm_buy", hook_commbuy },
-   { "gather", hook_gather },
-   { "comm_sell", hook_commsell },
-   { "outfit_buy", hook_outfitbuy },
-   { "outfit_sell", hook_outfitsell },
-   { "ship_buy", hook_shipbuy },
-   { "ship_sell", hook_shipsell },
-   { "input", hook_input },
-   { "mouse", hook_mouse },
-   { "safe", hook_safe },
-   { "update", hook_update },
-   { "renderbg", hook_renderbg },
-   { "renderfg", hook_renderfg },
-   { "standing", hook_standing },
-   { "discover", hook_discover },
-   { "pay", hook_pay },
-   { "custom", hook_custom },
-   { "trigger", hook_trigger },
-   { "pilot", hook_pilot },
+   {"rm", hookL_rm},
+   {"load", hook_load},
+   {"land", hook_land},
+   {"takeoff", hook_takeoff},
+   {"jumpout", hook_jumpout},
+   {"jumpin", hook_jumpin},
+   {"enter", hook_enter},
+   {"hail", hook_hail},
+   {"death", hook_death},
+   {"board", hook_board},
+   {"timer", hook_timer},
+   {"date", hook_date},
+   {"comm_buy", hook_commbuy},
+   {"gather", hook_gather},
+   {"comm_sell", hook_commsell},
+   {"outfit_buy", hook_outfitbuy},
+   {"outfit_sell", hook_outfitsell},
+   {"ship_buy", hook_shipbuy},
+   {"ship_sell", hook_shipsell},
+   {"input", hook_input},
+   {"mouse", hook_mouse},
+   {"safe", hook_safe},
+   {"update", hook_update},
+   {"renderbg", hook_renderbg},
+   {"renderfg", hook_renderfg},
+   {"standing", hook_standing},
+   {"discover", hook_discover},
+   {"pay", hook_pay},
+   {"custom", hook_custom},
+   {"trigger", hook_trigger},
+   {"pilot", hook_pilot},
    {0,0}
 }; /**< Hook Lua methods. */
 
@@ -445,6 +447,24 @@ static int hook_hail( lua_State *L )
 {
    unsigned long h = hook_generic( L, "hail", 0., 1, 0 );
    lua_pushnumber( L, h );
+   return 1;
+}
+/**
+ * @brief Hooks the function to any pilot dying.
+ *
+ * The hook receives two parameters: the pilot that died, and pilot that
+ * killed them (or nil if not killed by a pilot).
+ *
+ *    @luatparam string funcname Name of function to run when hook is
+ *       triggered.
+ *    @luaparam arg Argument to pass to hook.
+ *    @luatreturn number Hook identifier.
+ * @luafunc death
+ */
+static int hook_death(lua_State *L)
+{
+   unsigned long h = hook_generic(L, "death", 0., 1, 0);
+   lua_pushnumber(L, h);
    return 1;
 }
 /**
