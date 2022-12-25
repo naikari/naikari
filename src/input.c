@@ -997,22 +997,27 @@ static void input_key( int keynum, double value, double kabs, int repeat )
       if (value==KEY_PRESS) {
          /* First try player_land() in case no planet is selected. */
          ret = player_land(0);
-         if (ret != PLAYER_LAND_OK) {
-            if ((ret != PLAYER_LAND_IMPOSSIBLE)
-                  && (player.p->nav_planet != -1)) {
-               pnt = cur_system->planets[player.p->nav_planet];
+         if ((ret == PLAYER_LAND_IMPOSSIBLE)
+               || (player.p->nav_planet == -1)) {
+            /* Cannot land no matter what; report the result. */
+            player_land(1);
+         }
+         else if (ret != PLAYER_LAND_OK) {
+            pnt = cur_system->planets[player.p->nav_planet];
+
+            if (ret == PLAYER_LAND_AGAIN) {
                /* Second player_land() attempt now using the planet
                 * selected by the previous player_land() call. */
                ret = player_land(0);
-               if (((ret == PLAYER_LAND_AGAIN) || (ret == PLAYER_LAND_DENIED))
-                     && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
-                  player_rmFlag(PLAYER_BASICAPPROACH);
-                  player_autonavPnt(pnt->name);
-                  player_message(
-                        _("#oAutonav: auto-landing sequence engaged."));
-               }
-            } else
-               player_land(1);
+            }
+
+            if (((ret == PLAYER_LAND_AGAIN) || (ret == PLAYER_LAND_DENIED))
+                  && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
+               player_rmFlag(PLAYER_BASICAPPROACH);
+               player_autonavPnt(pnt->name);
+               player_message(
+                     _("#oAutonav: auto-landing sequence engaged."));
+            }
          }
       }
    } else if (KEY("thyperspace") && NOHYP() && NOLAND() && NODEAD()) {
