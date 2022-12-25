@@ -82,6 +82,17 @@ mhint_articles = {
       done = "Tutorial Part 4",
    },
    {
+      title = _("Enthusiasts Organize Racing"),
+      text = _([[A group of enthusiasts have begun to organize informal racing events all across the galaxy. "Just a hobby," one of the organizers said, "but there's a small prize if you win. Racing is a lot of fun!" Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
+      mission = "Racing Skills 1",
+   },
+   {
+      title = _("Melendez Sponsors Race Events"),
+      text = _([[Races organized by a group of enthusiasts have really caught on all across the galaxy, leading to sponsorship of huge sums of prize money from Melendez Corporation. "It's exciting," one of the organizers said. "We still run the casual races for people who are new to the sport, but Melendez really offers a big cheque to the winners of the sponsored races! Competition is high, and that's something I really like seeing." Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
+      mission = "Racing Skills 2",
+      done = "Racing Skills 1",
+   },
+   {
       title = _("Dvaered and FLF Clash"),
       text = _([[An increased incidence of confrontation between Dvaered and FLF forces has been reported as of late in the north edge of Dvaered space, particularly between Frontier space and the Outer Nebula. Civilians in the area are advised to be on high alert.]]),
       mission = "Take the Dvaered crew home",

@@ -3,7 +3,16 @@
 <mission name="Racing Skills 2">
  <avail>
   <priority>50</priority>
-  <cond>(player.pilot():ship():class() == "Yacht" or player.pilot():ship():class() == "Luxury Yacht") and planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
+  <cond>
+   planet.cur():class() ~= "1"
+   and planet.cur():class() ~= "2"
+   and planet.cur():class() ~= "3"
+   and system.cur():presences()["Civilian"] ~= nil
+   and system.cur():presences()["Civilian"] &gt; 0
+   and (player.misnDone("Empire Recruitment")
+      or (system.cur() ~= system.get("Hakoi")
+         and system.cur() ~= system.get("Eneguoz")))
+  </cond>
   <done>Racing Skills 1</done>
   <chance>20</chance>
   <location>Bar</location>
@@ -25,37 +34,32 @@
    --
 --]]
 
-require "numstring"
+local fmt = require "fmt"
+local mh = require "misnhelper"
 
-   
-text = {}
-ftext = {}
 
-text[1] = _([["Hey there, great to see you back! You want to have another race?"]])   
+ask_text = _([["Hey there, great to see you back! You want to have another race?"]])   
 
-text[5] = _([["There are two races you can participate in: an easy one, which is like the first race we had, or a hard one with smaller checkpoints where everyone tries their absolute best. The easy one has a prize of %s, and the hard one has a prize of %s. Which one do you want to do?"]])
+ask_difficulty_text = _([["There are two races you can participate in: a casual one, which is like the first race we had, or the sponsored one one with smaller checkpoints and stronger competition. The casual one has a prize of {casualcredits}, and the sponsored one has a prize of {sponsoredcredits}. Which one do you want to do?"]])
 
-text[6] = _([["You want a challenge huh? Let's go have some fun!"]])
+yes_hard_text = _([["You want a challenge huh? We'll all be trying our best, so good luck!"]])
 
-choice1 = _("Easy")
-choice2 = _("Hard")
+choice1 = _("Casual")
+choice2 = _("Sponsored")
 
-text[2] = _([["Let's go have some fun then!"]])
+yes_easy_text = _([["Let's go have some fun then!"]])
 
-text[3] = _("Checkpoint %s reached. Proceed to Checkpoint %s.")
+checkpoint_text = _("Checkpoint {prev} reached. Proceed to Checkpoint {next}.")
 
-text[4] = _("Checkpoint %s reached. Proceed to land at %s.")
-refusetitle = _("Refusal")
+checkpoint_final_text = _("Checkpoint {prev} reached. Land on {planet}.")
+
 refusetext = _([["I guess we'll need to find another pilot."]])
 
-wintitle = _("You Won!")
 wintext = _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of %s!" He hands you one of those fake oversized cheques for the audience, and then a credit chip with the actual prize money on it.]])
 
-ftext[1] = _([["You have switched to a ship that's not allowed in this race. Mission failed."]])
+fail_left_text = _([["Because you left the race, you have been disqualified."]])
 
-ftext[2] = _([["Because you left the race, you have been disqualified."]])
-
-ftext[3] = _([[As you congratulate the winner on a great race, the laid back person comes up to you.
+lose_text = _([[As you congratulate the winner on a great race, the laid back person comes up to you.
 
 "That was a lot of fun! If you ever have time, let's race again. Maybe you'll win next time!"]])
 
@@ -100,34 +104,30 @@ end
 
 
 function accept ()
-   if tk.yesno("", text[1]) then
+   if tk.yesno("", ask_text) then
       misn.accept()
       OSD[4] = string.format(OSD[4], curplanet:name())
       misn.setDesc(misndesc)
       misn.osdCreate(OSDtitle, OSD)
-      local s = text[5]:format(
-            creditstring(credits_easy), creditstring(credits_hard))
+      local s = fmt.f(ask_difficulty_text,
+            {casualcredits=fmt.credits(credits_easy),
+               sponsoredcredits=fmt.credits(credits_hard)})
       choice, choicetext = tk.choice("", s, choice1, choice2)
       if choice == 1 then
          credits = credits_easy
-         tk.msg("", text[2])
+         tk.msg("", yes_easy_text)
       else
          credits = credits_hard
-         tk.msg("", text[6])
+         tk.msg("", yes_hard_text)
       end
-      misn.setReward(creditstring(credits))
+      misn.setReward(fmt.credits(credits))
       hook.takeoff("takeoff")
       else
-      tk.msg(refusetitle, refusetext)
+      tk.msg("", refusetext)
    end
 end
 
 function takeoff()
-   if player.pilot():ship():class() ~= "Yacht"
-         and player.pilot():ship():class() ~= "Luxury Yacht" then
-      tk.msg("", ftext[1])
-      misn.finish(false)
-   end
    planetvec = planet.pos(curplanet)
    misn.osdActive(1) 
    checkpoint = {}
@@ -165,7 +165,7 @@ function takeoff()
    end
    racers[1] = pilot.add("Llama", "Civilian", curplanet)
    racers[2] = pilot.add("Gawain", "Civilian", curplanet)
-   racers[3] = pilot.add("Llama", "Civilian", curplanet)
+   racers[3] = pilot.add("Hyena", "Civilian", curplanet)
    if choice == 2 then
       for i in pairs(racers) do
          racers[i]:outfitRm("all")
@@ -279,9 +279,10 @@ function board(ship)
          misn.osdActive(i+1)
          target[4] = target[4] + 1
          if target[4] == 4 then
-            tk.msg("", string.format(text[4], i, curplanet:name()))
-            else
-            tk.msg("", string.format(text[3], i, i+1))
+            tk.msg("", fmt.f(checkpoint_final_text,
+                  {prev=i, planet=curplanet:name()}))
+         else
+            tk.msg("", fmt.f(checkpoint_text, {prev=i, next=i+1}))
          end
          break
       end
@@ -290,7 +291,7 @@ end
 
 
 function jumpin()
-   tk.msg("", ftext[2])
+   mh.showFailMsg(_("You left the race."))
    misn.finish(false)
 end
 
@@ -303,15 +304,15 @@ end
 function land()
    if target[4] == 4 then
       if racers[1]:exists() and racers[2]:exists() and racers[3]:exists() then
-         tk.msg(wintitle, wintext:format(creditstring(credits)))
+         tk.msg("", fmt.f(wintext, {credits=fmt.credits(credits)}))
          player.pay(credits)
          misn.finish(true)
       else
-         tk.msg("", ftext[3])
+         tk.msg("", lose_text)
          misn.finish(false)
       end
    else
-      tk.msg("", ftext[2])
+      tk.msg("", fail_left_text)
       misn.finish(false)
    end
 end

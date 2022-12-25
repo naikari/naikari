@@ -7,9 +7,7 @@
  <avail>
   <priority>50</priority>
   <cond>
-   (player.pilot():ship():class() == "Yacht"
-      or player.pilot():ship():class() == "Luxury Yacht")
-   and planet.cur():class() ~= "1"
+   planet.cur():class() ~= "1"
    and planet.cur():class() ~= "2"
    and planet.cur():class() ~= "3"
    and system.cur():presences()["Civilian"] ~= nil
@@ -39,18 +37,16 @@
 --]]
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 
 
-text = {}
-ftext = {}
+ask_text = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. There's a prize of {credits} if you win. Interested?"]])
 
-text[1] = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. You have to bring a Yacht class ship, and there's a prize of {credits} if you win. Interested?"]])
+yes_text = _([["That's great! I'll explain how it works. Once we take off from {planet}, there will be a countdown, and then we will proceed to the various checkpoints in order, boarding them before going to the next checkpoint. After the last checkpoint has been boarded, head back to {planet} and land. Let's have some fun!"]])
 
-text[2] = _([["That's great! Here's how it works: We will all be in a Yacht class ship. Once we take off from %s, there will be a countdown, and then we will proceed to the various checkpoints in order, boarding them before going to the next checkpoint. After the last checkpoint has been boarded, head back to %s and land. Let's have some fun!"]])
+checkpoint_text = _("Checkpoint {prev} reached. Proceed to Checkpoint {next}.")
 
-text[3] = _("Checkpoint %s reached. Proceed to Checkpoint %s.")
-
-text[4] = _("Checkpoint %s reached. Land on %s.")
+checkpoint_final_text = _("Checkpoint {prev} reached. Land on {planet}.")
 
 refusetext = _([["I guess we'll need to find another pilot."]])
 
@@ -58,11 +54,9 @@ wintext = _([[The laid back person comes up to you and hands you a credit chip.
 
 "Nice racing! Here's your prize money. Let's race again sometime soon!"]])
 
-ftext[1] = _([["You have switched to a ship that's not allowed in this race. Mission failed."]])
+fail_left_text = _([["Because you left the race, you have been disqualified."]])
 
-ftext[2] = _([["Because you left the race, you have been disqualified."]])
-
-ftext[3] = _([[As you congratulate the winner on a great race, the laid back person comes up to you.
+lose_text = _([[As you congratulate the winner on a great race, the laid back person comes up to you.
 
 "That was a lot of fun! If you ever have time, let's race again. Maybe you'll win next time!"]])
 
@@ -106,13 +100,13 @@ end
 
 
 function accept ()
-   if tk.yesno("", fmt.f(text[1], {credits=fmt.credits(credits)})) then
+   if tk.yesno("", fmt.f(ask_text, {credits=fmt.credits(credits)})) then
       misn.accept()
       OSD[4] = string.format(OSD[4], curplanet:name())
       misn.setDesc(misndesc)
       misn.setReward(fmt.credits(credits))
       misn.osdCreate(OSDtitle, OSD)
-      tk.msg("", string.format(text[2], curplanet:name(), curplanet:name()))
+      tk.msg("", fmt.f(yes_text, {planet=curplanet:name()}))
       hook.takeoff("takeoff")
    else
       tk.msg("", refusetext)
@@ -121,11 +115,6 @@ end
 
 
 function takeoff()
-   if player.pilot():ship():class() ~= "Yacht" and player.pilot():ship():class() ~= "Luxury Yacht" then
-      tk.msg("", ftext[1])
-      misn.finish(false)
-   end
-
    planetvec = planet.pos(curplanet)
    misn.osdActive(1)
    checkpoint = {}
@@ -265,9 +254,10 @@ function board(ship)
          misn.osdActive(i+1)
          target[4] = target[4] + 1
          if target[4] == 4 then
-            tk.msg("", string.format(text[4], i, curplanet:name()))
+            tk.msg("", fmt.f(checkpoint_final_text,
+                  {prev=i, planet=curplanet:name()}))
          else
-            tk.msg("", string.format(text[3], i, i+1))
+            tk.msg("", fmt.f(checkpoint_text, {prev=i, next=i+1}))
          end
          break
       end
@@ -276,7 +266,7 @@ end
 
 
 function jumpin()
-   tk.msg("", ftext[2])
+   mh.showFailMsg(_("You left the race."))
    misn.finish(false)
 end
 
@@ -293,12 +283,12 @@ function land()
          player.pay(credits)
          misn.finish(true)
       else
-         tk.msg("", ftext[3])
+         tk.msg("", lose_text)
          misn.finish(false)
          
       end
    else
-      tk.msg("", ftext[2])
+      tk.msg("", fail_left_text)
       misn.finish(false)
    end
 end
