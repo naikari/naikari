@@ -35,16 +35,14 @@
 
 --]]
 
-require "numstring"
+local fmt = require "fmt"
 require "nextjump"
 require "missions/soromid/common"
 
 
-ask_text = _([[Chelsea greets you as before. "Hi, %s! It's so nice to see you again!" The two of you talk about your travels once again. "I'm using they/them pronouns again," they eventually say. "I've done more soul-searching and found that nonbinary transfeminine feels right to me." You thank them for telling you. "You're welcome!" they say. "And thank you for respecting that! I sure hope my parents do too. I was thinking of meeting up with them back at %s, but I must admit that I'm a bit nervous and not entirely sure if my ship is up for getting through that part of space yet.
+ask_text = _([[Chelsea greets you as before. "Hi, {player}! It's so nice to see you again!" The two of you talk about your travels once again. "I'm using they/them pronouns again," they eventually say. "I've done more soul-searching and found that nonbinary transfeminine feels right to me." You thank them for telling you. "You're welcome!" they say. "And thank you for respecting that! I sure hope my parents do too. I was thinking of meeting up with them back at {destplanet}, but I must admit that I'm a bit nervous and not entirely sure if my ship is up for getting through that part of space yet.
 
-"Oh! Actually, maybe you could help! I could meet up with you at %s and then you could escort me to %s. And I know I'd feel a lot better talking about this with my parents if you were there. What do you think, is that something you can do? I'll pay you, of course."
-
-#rCONTENT WARNING: This mission contains depictions of transmisia, enbymisia, and fictionalized racism.#0]])
+"Oh! Actually, maybe you could help! I could meet up with you at {startplanet} and then you could escort me to {destplanet}. And I know I'd feel a lot better talking about this with my parents if you were there. What do you think, is that something you can do? I'll pay you, of course."]])
 
 yes_text = _([["Thank you so much! Like I said, I'll meet you at %s; I can get that far on my own. See you soon!"]])
 
@@ -64,7 +62,7 @@ home_text[2] = _([[Chelsea's mother speaks up. "What do you mean, 'humor' them? 
 
 "I mean, you wanna identify as 'nonbinary' or a Kestrel or whatever because it makes you feel better, we both know that's not true, but at least you're not one of those those sorofreaks."
 
-You see a look of shock on Chelsea's face, followed by a glare aimed at their father. "What do you think you're doing, using that slur? The Soromid are people just like us! And I'm not pretending! Do you honestly think I'm fooling around and lying to you because it 'makes me feel better'? I'm telling you that I'm nonbinary because I really am nonbinary."]])
+You see a look of anger on Chelsea's face as they glare at their father. "What do you think you're doing, using that slur? We've been over this! The Soromid are people just like us! And I'm not pretending! Do you honestly think I'm fooling around and lying to you because it 'makes me feel better'? I'm telling you that I'm nonbinary because I really am nonbinary."]])
 home_text[3] = _([[Chelsea's father sighs. "Look, you're my son, and you always will be, but those sorofreaks are messing with your head. You need to come back to the real world eventually. I know you will."
 
 Chelsea snaps back. "I won't sit here and listen to you attacking the Soromid like that! I've made some great friends with Soromid folks! Business partners even! And it was a Soromid who gave me treatments to make me more comfortable in my body!
@@ -131,8 +129,9 @@ function accept ()
    if started then
       txt = ask_again_text:format(player.name(), destplanet:name())
    else
-      txt = ask_text:format(player.name(), destplanet:name(),
-            startplanet:name(), destplanet:name())
+      txt = fmt.f(ask_text,
+            {player=player.name(), destplanet=destplanet:name(),
+               startplanet=startplanet:name()})
    end
    started = true
 
@@ -143,7 +142,7 @@ function accept ()
 
       misn.setTitle(misn_title)
       misn.setDesc(misn_desc:format(destplanet:name(), startplanet:name()))
-      misn.setReward(creditstring(credits))
+      misn.setReward(fmt.credits(credits))
       marker = misn.markerAdd(startsys, "low")
 
       local osd_desc = {}
@@ -244,7 +243,7 @@ function jumpNext ()
             osd_desc[3] = string.format(
                   n_("%s more jump after this one",
                      "%s more jumps after this one", jumps - 1),
-                  numstring(jumps - 1))
+                  fmt.number(jumps - 1))
          end
          misn.osdCreate(misn_title, osd_desc)
       end
