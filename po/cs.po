@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-25 03:02-0500\n"
+"POT-Creation-Date: 2022-12-26 16:05-0500\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -12876,7 +12876,7 @@ msgstr ""
 #: dat/missions/empire/shipping/es00.lua:174
 #: dat/missions/empire/shipping/es02.lua:167
 #: dat/missions/flf/dvk/flf_dvk01.lua:212
-#: dat/missions/flf/prelude/flf_pre01.lua:148
+#: dat/missions/flf/prelude/flf_pre01.lua:149
 msgid "FLF Pacifier"
 msgstr ""
 
@@ -12924,7 +12924,7 @@ msgstr ""
 #: dat/missions/flf/dvk/flf_dvk01.lua:212
 #: dat/missions/flf/dvk/flf_dvk03.lua:195
 #: dat/missions/flf/dvk/flf_dvk06.lua:172 dat/missions/flf/flf_patrol.lua:271
-#: dat/missions/flf/prelude/flf_pre01.lua:145
+#: dat/missions/flf/prelude/flf_pre01.lua:146
 #: dat/missions/flf/prelude/flf_pre03.lua:324
 msgid "FLF Vendetta"
 msgstr ""
@@ -20367,30 +20367,30 @@ msgstr ""
 #. Approaches the target
 #. See if should accel or brake
 #. No bribe
-#: dat/ai/civilian.lua:14 dat/ai/independent.lua:17 dat/ai/miner.lua:14
+#: dat/ai/civilian.lua:13 dat/ai/independent.lua:17 dat/ai/miner.lua:14
 #: dat/ai/proteron_dissident.lua:20 dat/ai/trader.lua:14
 msgid "\"Just leave me alone!\""
 msgstr "\"Nech mě prostě na pokoji!\""
 
-#: dat/ai/civilian.lua:15 dat/ai/independent.lua:18 dat/ai/miner.lua:15
+#: dat/ai/civilian.lua:14 dat/ai/independent.lua:18 dat/ai/miner.lua:15
 #: dat/ai/proteron_dissident.lua:21 dat/ai/trader.lua:15
 msgid "\"What do you want from me!?\""
 msgstr "\"Co ode mě chceš!?\""
 
-#: dat/ai/civilian.lua:16 dat/ai/independent.lua:19 dat/ai/miner.lua:16
+#: dat/ai/civilian.lua:15 dat/ai/independent.lua:19 dat/ai/miner.lua:16
 #: dat/ai/proteron_dissident.lua:22 dat/ai/trader.lua:16
 msgid "\"Get away from me!\""
 msgstr "\"Jdi ode mně pryč!\""
 
 #. Refuel
 #. Communication stuff
-#: dat/ai/civilian.lua:26 dat/ai/independent.lua:28 dat/ai/mercenary.lua:35
+#: dat/ai/civilian.lua:25 dat/ai/independent.lua:28 dat/ai/mercenary.lua:35
 #: dat/ai/miner.lua:25 dat/ai/proteron_dissident.lua:31 dat/ai/trader.lua:29
 #, fuzzy
 msgid "\"I'll supply your ship with fuel for {credits}.\""
 msgstr "„Dodám tvé lodi palivo za %s.“"
 
-#: dat/ai/civilian.lua:29 dat/ai/trader.lua:32
+#: dat/ai/civilian.lua:28 dat/ai/trader.lua:32
 msgid "\"Alright, I'll give you some fuel.\""
 msgstr ""
 
@@ -21257,6 +21257,7 @@ msgstr "Nedám ti palivo!"
 #. Shoot and approach
 #. Shoot while going somewhere
 #. The difference with run_turret is that we pick a new enemy in this one
+#. Always launch fighters ASAP
 #.
 #. -- Attempts to land on a planet.
 #. --
@@ -21264,7 +21265,7 @@ msgstr "Nedám ti palivo!"
 #. Set target if necessary
 #. Make sure mem.land is valid target
 #. Bail out if no valid planet could be found.
-#: dat/ai/include/basic.lua:392
+#: dat/ai/include/basic.lua:395
 #, fuzzy, lua-format
 msgid "Pilot '%s' tried to land with no landable assets!"
 msgstr "Pilot '%s' se pokusil přistát bez přistávacích aktiv!"
@@ -21289,6 +21290,7 @@ msgstr "Pilot '%s' se pokusil přistát bez přistávacích aktiv!"
 #. Afterburner handling.
 #. Shoot the target
 #. See if we have some turret to use
+#. Always launch fighters ASAP
 #. Shoot the target
 #. Go towards jump
 #. Pilot is agile, but too slow to outrun the enemy: dodge
@@ -21342,7 +21344,7 @@ msgstr "Pilot '%s' se pokusil přistát bez přistávacích aktiv!"
 #. make sure pilot exists
 #. Set the target
 #. See if finished refueling
-#: dat/ai/include/basic.lua:851
+#: dat/ai/include/basic.lua:857
 msgid "Finished fuel transfer."
 msgstr "Převod paliva hotov."
 
@@ -21878,7 +21880,7 @@ msgstr "Zemřeš spolu se starým Impériem!"
 #. Get refuel chance
 #. Drones don't run
 #. Get refuel chance
-#: dat/ai/sirius.lua:22 dat/ai/zalek.lua:39
+#: dat/ai/sirius.lua:22 dat/ai/zalek.lua:40
 msgid "\"I do not have fuel to spare.\""
 msgstr "„Nemám palivo nazbyt.“"
 
@@ -22016,21 +22018,21 @@ msgid "Vessel under attack! Requesting help!"
 msgstr "Plavidlo pod útokem! Žádám o pomoc!"
 
 #. No bribe
-#: dat/ai/thurion.lua:33
+#: dat/ai/thurion.lua:34
 #, fuzzy
 msgid "\"We will not be bribed!\""
 msgstr "„Thurion nebude podplácen!“"
 
-#: dat/ai/thurion.lua:34
+#: dat/ai/thurion.lua:35
 msgid "\"I have no use for your money.\""
 msgstr "„Tvé peníze mi jsou k ničemu.“"
 
-#: dat/ai/thurion.lua:35
+#: dat/ai/thurion.lua:36
 msgid "\"Credits are no replacement for a good shield.\""
 msgstr "„Kredity nenahrazují dobrý štít.“"
 
 #. Refuel
-#: dat/ai/thurion.lua:43
+#: dat/ai/thurion.lua:44
 #, fuzzy
 msgid "\"Sure, I can spare some fuel.\""
 msgstr "„Předpokládám, že bych mohl postrádat nějaké palivo pro %s.“"
@@ -22094,42 +22096,42 @@ msgid "Formation '%s' not found"
 msgstr "Formace '%s' nebyla nalezena"
 
 #. Most likely no chance to refuel
-#: dat/ai/zalek.lua:45
+#: dat/ai/zalek.lua:46
 #, fuzzy
 msgid "\"I will agree to refuel your ship for {credits}.\""
 msgstr "„Souhlasím s natankováním vaší lodi za %s.“"
 
 #. See if can be bribed
-#: dat/ai/zalek.lua:53
+#: dat/ai/zalek.lua:54
 #, fuzzy
 msgid "\"We will agree to end the battle for {credits}.\""
 msgstr "„Souhlasíme s ukončením bitvy za %s.“"
 
-#: dat/ai/zalek.lua:55
+#: dat/ai/zalek.lua:56
 msgid "\"Temporarily stopping fire.\""
 msgstr "„Dočasně přerušujeme palbu.“"
 
-#: dat/ai/zalek.lua:58
+#: dat/ai/zalek.lua:59
 #, fuzzy
 msgid "\"Keep your cash.\""
 msgstr "„Nech si své peníze, ty troglodyte.“"
 
-#: dat/ai/zalek.lua:59
+#: dat/ai/zalek.lua:60
 #, fuzzy
 msgid "\"Don't make me laugh.!\""
 msgstr "„Nerozesmívej mě. Sežer dávku z mého laseru!\""
 
-#: dat/ai/zalek.lua:60
+#: dat/ai/zalek.lua:61
 #, fuzzy
 msgid "\"My drones aren't interested in your money and neither am I!\""
 msgstr "„Moje drony se nezajímají o tvé špinavé zisky a ani já ne!“"
 
-#: dat/ai/zalek.lua:61
+#: dat/ai/zalek.lua:62
 #, fuzzy
 msgid "\"Hahaha! Nice one! Oh, you're actually serious? Of course not, fool!\""
 msgstr "„Ahaha! Hezký! Ach, to myslíš vážně? Ahahahaha!“"
 
-#: dat/ai/zalek.lua:62
+#: dat/ai/zalek.lua:63
 #, fuzzy
 msgid ""
 "\"While I admire the spirit of it, testing my patience is not science.\""
@@ -22140,40 +22142,40 @@ msgstr ""
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. Finish up creation
 #. Only 50% of actually taunting.
-#: dat/ai/zalek.lua:81
+#: dat/ai/zalek.lua:82
 msgid "I will show you the power of the Za'lek fleet!"
 msgstr ""
 
-#: dat/ai/zalek.lua:82
+#: dat/ai/zalek.lua:83
 msgid "Commencing battle test by eradicating outlaw pilots."
 msgstr ""
 
-#: dat/ai/zalek.lua:83
+#: dat/ai/zalek.lua:84
 msgid "Your days are over!"
 msgstr ""
 
-#: dat/ai/zalek.lua:84
+#: dat/ai/zalek.lua:85
 #, fuzzy
 msgid "You interfere with the progress of science!"
 msgstr "Zaplatíš za svou zradu!"
 
-#: dat/ai/zalek.lua:85
+#: dat/ai/zalek.lua:86
 msgid "Feel the wrath of our combat drones!"
 msgstr ""
 
-#: dat/ai/zalek.lua:89
+#: dat/ai/zalek.lua:90
 msgid "You just made a big mistake!"
 msgstr "Právě jsi udělal velkou chybu!"
 
-#: dat/ai/zalek.lua:90
+#: dat/ai/zalek.lua:91
 msgid "You wanna do this? Have it your way."
 msgstr "Chceš to udělat? Ať je po tvém."
 
-#: dat/ai/zalek.lua:91
+#: dat/ai/zalek.lua:92
 msgid "How dare you?! I just got this ship customized!"
 msgstr ""
 
-#: dat/ai/zalek.lua:92
+#: dat/ai/zalek.lua:93
 #, fuzzy
 msgid "Aggressor! How dare you attack the Za'lek?!"
 msgstr "Jak se opovažuješ zaútočit na Proterony?!"
@@ -24049,11 +24051,54 @@ msgid ""
 msgstr ""
 
 #: dat/events/news.lua:85
+msgid "Enthusiasts Organize Racing"
+msgstr ""
+
+#: dat/events/news.lua:86
+msgid ""
+"A group of enthusiasts have begun to organize informal racing events all "
+"across the galaxy. \"Just a hobby,\" one of the organizers said, \"but "
+"there's a small prize if you win. Racing is a lot of fun!\" Those wishing to "
+"attend a race are encouraged to seek out organizers at the Spaceport Bar."
+msgstr ""
+
+#: dat/events/news.lua:90
+msgid "Melendez Sponsors Race Events"
+msgstr ""
+
+#: dat/events/news.lua:91
+msgid ""
+"Races organized by a group of enthusiasts have really caught on all across "
+"the galaxy, leading to sponsorship of huge sums of prize money from Melendez "
+"Corporation. \"It's exciting,\" one of the organizers said. \"We still run "
+"the casual races for people who are new to the sport, but Melendez really "
+"offers a big check to the winners of the sponsored races! Competition is "
+"high, and that's something I really like seeing.\" Those wishing to attend a "
+"race are encouraged to seek out organizers at the Spaceport Bar."
+msgstr ""
+
+#: dat/events/news.lua:96
+msgid "Mercenary Registrations Skyrocket"
+msgstr ""
+
+#: dat/events/news.lua:97
+msgid ""
+"Many pilots are realizing just how lucrative the life of a mercenary can be. "
+"\"Missions that require a Mercenary License pay a lot of money,\" one "
+"analyst explained. \"The cost of the Mercenary License may seem high, but it "
+"will easily pay for itself ten times over by granting access to so many "
+"lucrative missions. Not to mention, doing mercenary missions for militaries "
+"around the galaxy is a quick way to gain access to restricted areas.\" A "
+"Mercenary License can be obtained simply by purchasing it at any outfitter, "
+"just like all other licenses."
+msgstr ""
+
+#: dat/events/news.lua:104
 #, fuzzy
 msgid "Dvaered and FLF Clash"
 msgstr "Dvaeredské vrchní velení"
 
-#: dat/events/news.lua:86
+#: dat/events/news.lua:105
 msgid ""
 "An increased incidence of confrontation between Dvaered and FLF forces has "
 "been reported as of late in the north edge of Dvaered space, particularly "
@@ -24061,11 +24106,11 @@ msgid ""
 "advised to be on high alert."
 msgstr ""
 
-#: dat/events/news.lua:97
+#: dat/events/news.lua:116
 msgid "Za'lek Students Test Engine Technology"
 msgstr ""
 
-#: dat/events/news.lua:98
+#: dat/events/news.lua:117
 msgid ""
 "Students all over Za'lek space have been designing new experimental engine "
 "designs as part of a new government funded program. These students seek "
@@ -28185,7 +28230,6 @@ msgid ""
 msgstr ""
 
 #: dat/missions/dvaered/antiflf/dv_antiflf03.lua:84
-#: dat/missions/neutral/race2.lua:48
 msgid "Refusal"
 msgstr ""
 
@@ -33953,9 +33997,7 @@ msgstr ""
 #. <avail>
 #. <priority>50</priority>
 #. <cond>
-#. (player.pilot():ship():class() == "Yacht"
-#. or player.pilot():ship():class() == "Luxury Yacht")
-#. and planet.cur():class() ~= "1"
+#. planet.cur():class() ~= "1"
 #. and planet.cur():class() ~= "2"
 #. and planet.cur():class() ~= "3"
 #. and system.cur():presences()["Civilian"] ~= nil
@@ -33983,55 +34025,46 @@ msgstr ""
 #. -- DESCRIPTION: A person asks you to join a race, where you fly to various checkpoints and board them before landing back at the starting planet
 #. --
 #. --
-#: dat/missions/neutral/race1.lua:47
+#: dat/missions/neutral/race1.lua:43
 msgid ""
 "\"Hiya there! We're having a race around this system system soon and need a "
-"4th person to participate. You have to bring a Yacht class ship, and there's "
-"a prize of {credits} if you win. Interested?\""
+"4th person to participate. There's a prize of {credits} if you win. "
+"Interested?\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:49
-#, lua-format
+#: dat/missions/neutral/race1.lua:45
 msgid ""
-"\"That's great! Here's how it works: We will all be in a Yacht class ship. "
-"Once we take off from %s, there will be a countdown, and then we will "
-"proceed to the various checkpoints in order, boarding them before going to "
-"the next checkpoint. After the last checkpoint has been boarded, head back "
-"to %s and land. Let's have some fun!\""
+"\"That's great! I'll explain how it works. Once we take off from {planet}, "
+"there will be a countdown, and then we will proceed to the various "
+"checkpoints in order, boarding them before going to the next checkpoint. "
+"After the last checkpoint has been boarded, head back to {planet} and land. "
+"Let's have some fun!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:51 dat/missions/neutral/race2.lua:45
-#, lua-format
-msgid "Checkpoint %s reached. Proceed to Checkpoint %s."
+#: dat/missions/neutral/race1.lua:47 dat/missions/neutral/race2.lua:52
+msgid "Checkpoint {prev} reached. Proceed to Checkpoint {next}."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:53
-#, lua-format
-msgid "Checkpoint %s reached. Land on %s."
+#: dat/missions/neutral/race1.lua:49 dat/missions/neutral/race2.lua:54
+msgid "Checkpoint {prev} reached. Land on {planet}."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:55 dat/missions/neutral/race2.lua:49
+#: dat/missions/neutral/race1.lua:51 dat/missions/neutral/race2.lua:56
 msgid "\"I guess we'll need to find another pilot.\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:57
+#: dat/missions/neutral/race1.lua:53
 msgid ""
 "The laid back person comes up to you and hands you a credit chip. \n"
 "\n"
 "\"Nice racing! Here's your prize money. Let's race again sometime soon!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:61 dat/missions/neutral/race2.lua:54
-msgid ""
-"\"You have switched to a ship that's not allowed in this race. Mission "
-"failed.\""
-msgstr ""
-
-#: dat/missions/neutral/race1.lua:63 dat/missions/neutral/race2.lua:56
+#: dat/missions/neutral/race1.lua:57 dat/missions/neutral/race2.lua:60
 msgid "\"Because you left the race, you have been disqualified.\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:65 dat/missions/neutral/race2.lua:58
+#: dat/missions/neutral/race1.lua:59 dat/missions/neutral/race2.lua:62
 msgid ""
 "As you congratulate the winner on a great race, the laid back person comes "
 "up to you.\n"
@@ -34040,91 +34073,95 @@ msgid ""
 "you'll win next time!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:69 dat/missions/neutral/race2.lua:62
+#: dat/missions/neutral/race1.lua:63 dat/missions/neutral/race2.lua:66
 msgid "A laid back person"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:70
+#: dat/missions/neutral/race1.lua:64
 msgid ""
 "You see a laid back person, who appears to be one of the locals, looking "
 "around the bar."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:72
+#: dat/missions/neutral/race1.lua:66
 msgid "You're participating in a race!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:74
+#: dat/missions/neutral/race1.lua:68
 msgid "Racing Skills 1"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:76 dat/missions/neutral/race2.lua:69
+#: dat/missions/neutral/race1.lua:70 dat/missions/neutral/race2.lua:73
 msgid "Board checkpoint 1"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:77 dat/missions/neutral/race2.lua:70
+#: dat/missions/neutral/race1.lua:71 dat/missions/neutral/race2.lua:74
 msgid "Board checkpoint 2"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:78 dat/missions/neutral/race2.lua:71
+#: dat/missions/neutral/race1.lua:72 dat/missions/neutral/race2.lua:75
 msgid "Board checkpoint 3"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:79 dat/missions/neutral/race2.lua:72
+#: dat/missions/neutral/race1.lua:73 dat/missions/neutral/race2.lua:76
 #: dat/missions/soromid/comingout/srm_comingout3.lua:208
-#: dat/missions/soromid/comingout/srm_comingout4.lua:232
+#: dat/missions/soromid/comingout/srm_comingout4.lua:231
 #, lua-format
 msgid "Land on %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:82 dat/missions/neutral/race2.lua:75
+#: dat/missions/neutral/race1.lua:76 dat/missions/neutral/race2.lua:79
 msgid "Let's do this!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:83 dat/missions/neutral/race2.lua:76
+#: dat/missions/neutral/race1.lua:77 dat/missions/neutral/race2.lua:80
 msgid "Wooo!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:84 dat/missions/neutral/race2.lua:77
+#: dat/missions/neutral/race1.lua:78 dat/missions/neutral/race2.lua:81
 msgid "Time to Shake 'n Bake"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:85 dat/missions/neutral/race2.lua:78
+#: dat/missions/neutral/race1.lua:79 dat/missions/neutral/race2.lua:82
 #, lua-format
 msgid "Checkpoint %s baby!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:86 dat/missions/neutral/race2.lua:79
+#: dat/missions/neutral/race1.lua:80 dat/missions/neutral/race2.lua:83
 msgid "Hooyah"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:87 dat/missions/neutral/race2.lua:80
+#: dat/missions/neutral/race1.lua:81 dat/missions/neutral/race2.lua:84
 msgid "Next!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:91 dat/missions/neutral/race2.lua:84
+#: dat/missions/neutral/race1.lua:85 dat/missions/neutral/race2.lua:88
 #, lua-format
 msgid "%s just reached checkpoint %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:92 dat/missions/neutral/race2.lua:85
+#: dat/missions/neutral/race1.lua:86 dat/missions/neutral/race2.lua:89
 #, lua-format
 msgid "%s just landed at %s and finished the race"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:148 dat/missions/neutral/race2.lua:160
+#: dat/missions/neutral/race1.lua:137 dat/missions/neutral/race2.lua:171
 #, lua-format
 msgid "Checkpoint %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:158 dat/missions/neutral/race2.lua:186
+#: dat/missions/neutral/race1.lua:147 dat/missions/neutral/race2.lua:197
 #, lua-format
 msgid "Racer %s"
 msgstr ""
 
 #. seconds
-#: dat/missions/neutral/race1.lua:180 dat/missions/neutral/race2.lua:207
+#: dat/missions/neutral/race1.lua:169 dat/missions/neutral/race2.lua:218
 msgid "Go!"
+msgstr ""
+
+#: dat/missions/neutral/race1.lua:269 dat/missions/neutral/race2.lua:305
+msgid "You left the race."
 msgstr ""
 
 #. Restore control in case it's currently taken away.
@@ -34133,7 +34170,16 @@ msgstr ""
 #. <mission name="Racing Skills 2">
 #. <avail>
 #. <priority>50</priority>
-#. <cond>(player.pilot():ship():class() == "Yacht" or player.pilot():ship():class() == "Luxury Yacht") and planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
+#. <cond>
+#. planet.cur():class() ~= "1"
+#. and planet.cur():class() ~= "2"
+#. and planet.cur():class() ~= "3"
+#. and system.cur():presences()["Civilian"] ~= nil
+#. and system.cur():presences()["Civilian"] &gt; 0
+#. and (player.misnDone("Empire Recruitment")
+#. or (system.cur() ~= system.get("Hakoi")
+#. and system.cur() ~= system.get("Eneguoz")))
+#. </cond>
 #. <done>Racing Skills 1</done>
 #. <chance>20</chance>
 #. <location>Bar</location>
@@ -34154,70 +34200,61 @@ msgstr ""
 #. -- DESCRIPTION: A person asks you to join a race, where you fly to various checkpoints and board them before landing back at the starting planet
 #. --
 #. --
-#: dat/missions/neutral/race2.lua:34
+#: dat/missions/neutral/race2.lua:41
 msgid "\"Hey there, great to see you back! You want to have another race?\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:36
-#, lua-format
-msgid ""
-"\"There are two races you can participate in: an easy one, which is like the "
-"first race we had, or a hard one with smaller checkpoints where everyone "
-"tries their absolute best. The easy one has a prize of %s, and the hard one "
-"has a prize of %s. Which one do you want to do?\""
-msgstr ""
-
-#: dat/missions/neutral/race2.lua:38
-msgid "\"You want a challenge huh? Let's go have some fun!\""
-msgstr ""
-
-#: dat/missions/neutral/race2.lua:40
-msgid "Easy"
-msgstr ""
-
-#: dat/missions/neutral/race2.lua:41
-msgid "Hard"
-msgstr ""
-
 #: dat/missions/neutral/race2.lua:43
-msgid "\"Let's go have some fun then!\""
+msgid ""
+"\"There are two races you can participate in: a casual one, which is like "
+"the first race we had, or the competitive one one with smaller checkpoints "
+"and stronger competition. The casual one has a prize of {casualcredits}, and "
+"the competitive one has a prize of {competitivecredits}. Which one do you "
+"want to do?\""
+msgstr ""
+
+#: dat/missions/neutral/race2.lua:45
+msgid ""
+"\"You want a challenge huh? We'll all be trying our best, so good luck!\""
 msgstr ""
 
 #: dat/missions/neutral/race2.lua:47
-#, lua-format
-msgid "Checkpoint %s reached. Proceed to land at %s."
+msgid "Casual"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:51
-msgid "You Won!"
+#: dat/missions/neutral/race2.lua:48
+msgid "Competitive"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:52
-#, lua-format
+#: dat/missions/neutral/race2.lua:50
+msgid "\"Let's go have some fun then!\""
+msgstr ""
+
+#: dat/missions/neutral/race2.lua:58
 msgid ""
 "A man in a suit and tie takes you up onto a stage. A large name tag on his "
 "jacket says 'Melendez Corporation'. \"Congratulations on your win,\" he "
 "says, shaking your hand, \"that was a great race. On behalf of Melendez "
-"Corporation, I would like to present to you your prize money of %s!\" He "
-"hands you one of those fake oversized cheques for the audience, and then a "
+"Corporation, I would like to present to you your prize money of {credits}!\" "
+"He hands you one of those fake oversized checks for the audience, and then a "
 "credit chip with the actual prize money on it."
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:63
+#: dat/missions/neutral/race2.lua:67
 msgid ""
 "You see a laid back person, who appears to be one of the locals, looking "
 "around the bar, apparently in search of a suitable pilot."
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:65
+#: dat/missions/neutral/race2.lua:69
 msgid "You're participating in another race!"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:67
+#: dat/missions/neutral/race2.lua:71
 msgid "Racing Skills 2"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:83
+#: dat/missions/neutral/race2.lua:87
 msgid ""
 "This race is sponsored by Melendez Corporation. Problem-free ships for "
 "problem-free voyages!"
@@ -37794,7 +37831,7 @@ msgid "Recordings obtained by a Nexus agent in an act of corporate espionage."
 msgstr ""
 
 #. remove the spy
-#: dat/missions/shark/sh02_tapping.lua:179
+#: dat/missions/shark/sh02_tapping.lua:178
 msgid "Mercenary {ship}"
 msgstr ""
 
@@ -38615,7 +38652,7 @@ msgstr ""
 #: dat/missions/soromid/comingout/srm_comingout.lua:147
 #: dat/missions/soromid/comingout/srm_comingout.lua:151
 #: dat/missions/soromid/comingout/srm_comingout2.lua:66
-#: dat/missions/soromid/comingout/srm_comingout4.lua:150
+#: dat/missions/soromid/comingout/srm_comingout4.lua:149
 #, lua-format
 msgid "Land on %s (%s system)"
 msgstr ""
@@ -38724,8 +38761,8 @@ msgstr ""
 #: dat/missions/soromid/comingout/srm_comingout2.lua:62
 #: dat/missions/soromid/comingout/srm_comingout3.lua:66
 #: dat/missions/soromid/comingout/srm_comingout3.lua:151
-#: dat/missions/soromid/comingout/srm_comingout4.lua:90
-#: dat/missions/soromid/comingout/srm_comingout4.lua:170
+#: dat/missions/soromid/comingout/srm_comingout4.lua:88
+#: dat/missions/soromid/comingout/srm_comingout4.lua:169
 #: dat/missions/soromid/comingout/srm_comingout5.lua:61
 #: dat/missions/soromid/comingout/srm_comingout5.lua:134
 #: dat/missions/soromid/comingout/srm_comingout6.lua:64
@@ -38823,7 +38860,7 @@ msgid ""
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:57
-#: dat/missions/soromid/comingout/srm_comingout4.lua:85
+#: dat/missions/soromid/comingout/srm_comingout4.lua:83
 msgid "You have lost contact with Chelsea and therefore failed the mission."
 msgstr ""
 
@@ -38858,19 +38895,19 @@ msgid "You see Chelsea looking contemplative."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:69
-#: dat/missions/soromid/comingout/srm_comingout4.lua:93
+#: dat/missions/soromid/comingout/srm_comingout4.lua:91
 #, lua-format
 msgid "Chelsea has jumped to %s."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:70
-#: dat/missions/soromid/comingout/srm_comingout4.lua:94
+#: dat/missions/soromid/comingout/srm_comingout4.lua:92
 #, lua-format
 msgid "Chelsea has landed on %s."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:71
-#: dat/missions/soromid/comingout/srm_comingout4.lua:95
+#: dat/missions/soromid/comingout/srm_comingout4.lua:93
 #: dat/missions/soromid/comingout/srm_comingout6.lua:67
 msgid ""
 "MISSION FAILED: A rift in the space-time continuum causes you to have never "
@@ -38878,13 +38915,13 @@ msgid ""
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:72
-#: dat/missions/soromid/comingout/srm_comingout4.lua:96
+#: dat/missions/soromid/comingout/srm_comingout4.lua:94
 #: dat/missions/soromid/comingout/srm_comingout6.lua:68
 msgid "MISSION FAILED: Chelsea has abandoned the mission."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:73
-#: dat/missions/soromid/comingout/srm_comingout4.lua:97
+#: dat/missions/soromid/comingout/srm_comingout4.lua:95
 #: dat/missions/soromid/comingout/srm_comingout6.lua:69
 msgid "MISSION FAILED: You have abandoned the mission."
 msgstr ""
@@ -38905,7 +38942,7 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:124
 #: dat/missions/soromid/comingout/srm_comingout3.lua:218
-#: dat/missions/soromid/comingout/srm_comingout4.lua:242
+#: dat/missions/soromid/comingout/srm_comingout4.lua:241
 #: dat/missions/soromid/comingout/srm_comingout5.lua:114
 #, lua-format
 msgid "Jump to %s"
@@ -38913,7 +38950,7 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:126
 #: dat/missions/soromid/comingout/srm_comingout3.lua:221
-#: dat/missions/soromid/comingout/srm_comingout4.lua:245
+#: dat/missions/soromid/comingout/srm_comingout4.lua:244
 #, lua-format
 msgid "%s more jump after this one"
 msgid_plural "%s more jumps after this one"
@@ -38922,7 +38959,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:187
-#: dat/missions/soromid/comingout/srm_comingout4.lua:334
+#: dat/missions/soromid/comingout/srm_comingout4.lua:333
 #: dat/missions/soromid/comingout/srm_comingout5.lua:179
 #, lua-format
 msgid "Gangster %s"
@@ -38973,43 +39010,39 @@ msgstr ""
 #.
 #. --
 #: dat/missions/soromid/comingout/srm_comingout4.lua:43
-#, lua-format
 msgid ""
-"Chelsea greets you as before. \"Hi, %s! It's so nice to see you again!\" The "
-"two of you talk about your travels once again. \"I'm using they/them "
+"Chelsea greets you as before. \"Hi, {player}! It's so nice to see you again!"
+"\" The two of you talk about your travels once again. \"I'm using they/them "
 "pronouns again,\" they eventually say. \"I've done more soul-searching and "
 "found that nonbinary transfeminine feels right to me.\" You thank them for "
 "telling you. \"You're welcome!\" they say. \"And thank you for respecting "
 "that! I sure hope my parents do too. I was thinking of meeting up with them "
-"back at %s, but I must admit that I'm a bit nervous and not entirely sure if "
-"my ship is up for getting through that part of space yet.\n"
+"back at {destplanet}, but I must admit that I'm a bit nervous and not "
+"entirely sure if my ship is up for getting through that part of space yet.\n"
 "\n"
-"\"Oh! Actually, maybe you could help! I could meet up with you at %s and "
-"then you could escort me to %s. And I know I'd feel a lot better talking "
-"about this with my parents if you were there. What do you think, is that "
-"something you can do? I'll pay you, of course.\"\n"
-"\n"
-"#rCONTENT WARNING: This mission contains depictions of transmisia, "
-"enbymisia, and fictionalized racism.#0"
+"\"Oh! Actually, maybe you could help! I could meet up with you at "
+"{startplanet} and then you could escort me to {destplanet}. And I know I'd "
+"feel a lot better talking about this with my parents if you were there. What "
+"do you think, is that something you can do? I'll pay you, of course.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:49
+#: dat/missions/soromid/comingout/srm_comingout4.lua:47
 #, lua-format
 msgid ""
 "\"Thank you so much! Like I said, I'll meet you at %s; I can get that far on "
 "my own. See you soon!\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:51
+#: dat/missions/soromid/comingout/srm_comingout4.lua:49
 msgid "\"Ah, busy, eh? That's OK. Let me know later if you can do it!\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:53
+#: dat/missions/soromid/comingout/srm_comingout4.lua:51
 #, lua-format
 msgid "\"Oh, %s! Have you changed your mind? Can you help me get to %s?\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:55
+#: dat/missions/soromid/comingout/srm_comingout4.lua:53
 #, lua-format
 msgid ""
 "You meet up with Chelsea. \"Hello again, %s!\" they say. \"I'm all ready for "
@@ -39018,7 +39051,7 @@ msgid ""
 "hostilities. See you out in space!\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:58
+#: dat/missions/soromid/comingout/srm_comingout4.lua:56
 #, lua-format
 msgid ""
 "You land and dock on %s, then meet up with both of Chelsea's parents. They "
@@ -39035,7 +39068,7 @@ msgid ""
 "by this."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:63
+#: dat/missions/soromid/comingout/srm_comingout4.lua:61
 msgid ""
 "Chelsea's mother speaks up. \"What do you mean, 'humor' them? You don't "
 "believe your own child about their personal experiences?\"\n"
@@ -39044,14 +39077,14 @@ msgid ""
 "it makes you feel better, we both know that's not true, but at least you're "
 "not one of those those sorofreaks.\"\n"
 "\n"
-"You see a look of shock on Chelsea's face, followed by a glare aimed at "
-"their father. \"What do you think you're doing, using that slur? The Soromid "
-"are people just like us! And I'm not pretending! Do you honestly think I'm "
-"fooling around and lying to you because it 'makes me feel better'? I'm "
-"telling you that I'm nonbinary because I really am nonbinary.\""
+"You see a look of anger on Chelsea's face as they glare at their father. "
+"\"What do you think you're doing, using that slur? We've been over this! The "
+"Soromid are people just like us! And I'm not pretending! Do you honestly "
+"think I'm fooling around and lying to you because it 'makes me feel better'? "
+"I'm telling you that I'm nonbinary because I really am nonbinary.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:68
+#: dat/missions/soromid/comingout/srm_comingout4.lua:66
 msgid ""
 "Chelsea's father sighs. \"Look, you're my son, and you always will be, but "
 "those sorofreaks are messing with your head. You need to come back to the "
@@ -39068,7 +39101,7 @@ msgid ""
 "from being me.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:73
+#: dat/missions/soromid/comingout/srm_comingout4.lua:71
 #, lua-format
 msgid ""
 "Chelsea's father pauses. \"So you're even making business deals with "
@@ -39091,7 +39124,7 @@ msgid ""
 "they're setting course for %s immediately."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:79
+#: dat/missions/soromid/comingout/srm_comingout4.lua:77
 #, lua-format
 msgid ""
 "After docking on %s, you meet up again with Chelsea to see them sobbing and "
@@ -39114,30 +39147,30 @@ msgid ""
 "goodbyes, hoping that Chelsea will be OK."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:87
+#: dat/missions/soromid/comingout/srm_comingout4.lua:85
 msgid "Visiting Family"
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:88
+#: dat/missions/soromid/comingout/srm_comingout4.lua:86
 #, lua-format
 msgid ""
 "Chelsea wants to revisit their family in %s. They have asked you to escort "
 "them to there from %s."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:91
+#: dat/missions/soromid/comingout/srm_comingout4.lua:89
 msgid "You see Chelsea in the bar and feel an urge to say hello."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:99
+#: dat/missions/soromid/comingout/srm_comingout4.lua:97
 msgid "You heard the boss, folks! Get them!"
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:100
+#: dat/missions/soromid/comingout/srm_comingout4.lua:98
 msgid "It's too dangerous to land here right now."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:102
+#: dat/missions/soromid/comingout/srm_comingout4.lua:100
 msgid ""
 "You escorted Chelsea, who requests they/them pronouns now, to Durea so that "
 "they could see their parents. However, Chelsea's father turned on them "
@@ -39152,18 +39185,18 @@ msgid ""
 "vulnerable position again."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:152
+#: dat/missions/soromid/comingout/srm_comingout4.lua:151
 #, lua-format
 msgid "Escort Chelsea to %s"
 msgstr ""
 
 #. Spawn a bunch of Empire to help keep pirates busy
-#: dat/missions/soromid/comingout/srm_comingout4.lua:230
+#: dat/missions/soromid/comingout/srm_comingout4.lua:229
 #, lua-format
 msgid "Protect Chelsea and wait for them to land on %s"
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:240
+#: dat/missions/soromid/comingout/srm_comingout4.lua:239
 #, lua-format
 msgid "Protect Chelsea and wait for them to jump to %s"
 msgstr ""
@@ -47716,7 +47749,7 @@ msgstr ""
 msgid "Adding translations from %s"
 msgstr ""
 
-#: src/gui.c:457 src/input.c:1451
+#: src/gui.c:457 src/input.c:1456
 msgid "Gfx index out of range"
 msgstr ""
 
@@ -48716,11 +48749,11 @@ msgstr ""
 msgid "#rNo targets available to follow."
 msgstr ""
 
-#: src/input.c:1012 src/input.c:1577
+#: src/input.c:1019 src/input.c:1582
 msgid "#oAutonav: auto-landing sequence engaged."
 msgstr ""
 
-#: src/input.c:1557 src/player.c:1380
+#: src/input.c:1562 src/player.c:1380
 msgid "#oAutonav: auto-landing sequence aborted."
 msgstr ""
 
