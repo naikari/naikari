@@ -88,7 +88,7 @@ function death(target, killer)
       local presences = system.cur():presences()
       if presences["Pirate"] and rnd.rnd() < 0.9 then
          pay_f = faction.get("Pirate")
-      else
+      elseif rnd.rnd() < 0.05 then
          local f_choices = {}
          for f, presence in pairs(presences) do
             local canpay = true
@@ -102,7 +102,7 @@ function death(target, killer)
                f_choices[#f_choices + 1] = f
             end
          end
-         if #f_choices > 0 and rnd.rnd() < 0.9 then
+         if #f_choices > 0 then
             pay_f = faction.get(f_choices[rnd.rnd(1, #f_choices)])
          end
       end
