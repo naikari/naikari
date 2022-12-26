@@ -197,8 +197,7 @@ void map_system_open( int sys_selected )
    window_setCancel( wid, map_system_window_close );
    window_handleKeys( wid, map_system_keyHandler );
    window_addText( wid, 40, h-30, 160, 20, 1, "txtSysname",
-         &gl_defFont, &cFontGreen, _(cur_sys_sel->name) );
-   window_addImage( wid, -90 + 32, h-30, 0, 0, "imgFaction", NULL, 0 );
+         &gl_defFont, NULL, _(cur_sys_sel->name) );
    /* Close button */
    window_addButton(wid, -20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
@@ -308,8 +307,9 @@ static void map_system_render( double bx, double by, double w, double h, void *d
                iw = iw * p->gfx_space->w / p->gfx_space->h;
             gl_blitScale( p->gfx_space, bx+2, by+(nshow-j-1)*pitch + (pitch-ih)/2 + offset, iw, ih, &cWhite );
          }
-         gl_printRaw( &gl_smallFont, bx + 5 + pitch, by + (nshow-j-0.5)*pitch + offset,
-               (cur_planet_sel == j ? &cFontGreen : &cFontWhite), -1., _(p->name) );
+         gl_print(&gl_smallFont, bx + 5 + pitch,
+               by + (nshow-j-0.5)*pitch + offset, NULL, "#%c%s%s#0",
+               planet_getColourChar(p), planet_getSymbol(p), _(p->name));
       }
    }
    /* draw the star */
@@ -343,8 +343,8 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          gl_blitScale( bgImages[i], bx+2, by+(nshow-1)*pitch + (pitch-ih)/2 + offset, iw, ih, &ccol );
       }
    }
-   gl_printRaw( &gl_smallFont, bx + 5 + pitch, by + (nshow-0.5)*pitch + offset,
-         (cur_planet_sel == 0 ? &cFontGreen : &cFontWhite), -1., _(sys->name) );
+   gl_printRaw(&gl_smallFont, bx + 5 + pitch, by + (nshow-0.5)*pitch + offset,
+         NULL, -1., _(sys->name));
    if ( cur_planet_sel == 0 && array_size( bgImages ) > 0 ) {
       /* make use of space to draw a nice nebula */
       double imgw,imgh;
@@ -707,8 +707,8 @@ static void map_system_array_update( unsigned int wid, char* str ) {
 static void map_system_updateSelected( unsigned int wid )
 {
    int i;
-   StarSystem *sys=cur_sys_sel;
-   Planet *last=NULL;
+   StarSystem *sys = cur_sys_sel;
+   Planet *last = NULL;
    int planetObjChanged = 0;
    int w, h;
    Planet *p;
@@ -718,11 +718,12 @@ static void map_system_updateSelected( unsigned int wid )
    Ship **ships;
    float g,o,s;
    nameWidth = 0; /* get the widest planet/star name */
-   nshow=1;/* start at 1 for the sun*/
+   nshow = 1; /* start at 1 for the sun */
    for ( i=0; i<array_size(sys->planets); i++) {
       p = sys->planets[i];
       if ( planet_isKnown( p ) && (p->real == ASSET_REAL) ) {
-         textw = gl_printWidthRaw( &gl_smallFont, _(p->name) );
+         textw = gl_printWidth(&gl_smallFont, "#%c%s%s#0",
+               planet_getColourChar(p), planet_getSymbol(p), _(p->name));
          if ( textw > nameWidth )
             nameWidth = textw;
          last = p;

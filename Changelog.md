@@ -93,6 +93,9 @@
     purpose.
 * The race mission no longer requires you to be piloting a yacht ship to
   participate, and the ships you race against are more varied.
+* The System Info display now shows planets' color and character
+  (indicating whether or not they can be landed on) on the selection
+  list, which makes it much easier to navigate.
 
 ### Other Changes
 
