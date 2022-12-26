@@ -363,6 +363,9 @@ function __move_shoot ()
          ai.weapset("turret_seek")
       end
    end
+
+   -- Always launch fighters ASAP
+   ai.weapset("fighter_bay")
 end
 
 
@@ -530,6 +533,9 @@ function __run_turret ()
          end
       end
    end
+
+   -- Always launch fighters ASAP
+   ai.weapset("fighter_bay")
 end
 function __run_hyp ()
    -- Shoot the target
