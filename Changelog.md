@@ -183,6 +183,9 @@
   combat music played while landed.
 * Fixed a double land denial message when attempting to land on
   something you're not allowed to land on with the land key.
+* Fixed a game-breaking bug where the "animal trouble" event made it
+  impossible to proceed with the game without rescuing yourself via the
+  Lua console due to a script error.
 
 ## 0.4.1
 
