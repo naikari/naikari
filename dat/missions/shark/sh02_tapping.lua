@@ -167,7 +167,6 @@ end
 
 
 function ambush()
-   badguys = {}
    ship_choices = {
       "Hyena", "Shark", "Lancelot", "Vendetta", "Ancestor", "Admonisher",
       "Phalanx", "Kestrel", "Hawking", "Llama",
@@ -175,7 +174,8 @@ function ambush()
 
    for i=1,4 do
       local choice = ship_choices[rnd.rnd(1, #ship_choices)]
-      badguys[i] = pilot.add(choice, "Mercenary", nil,
+      local p = pilot.add(choice, "Mercenary", nil,
             fmt.f(_("Mercenary {ship}"), {ship=_(choice)}))
+      p:setHostile()
    end
 end

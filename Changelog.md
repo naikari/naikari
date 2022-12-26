@@ -186,6 +186,9 @@
 * Fixed a game-breaking bug where the "animal trouble" event made it
   impossible to proceed with the game without rescuing yourself via the
   Lua console due to a script error.
+* Fixed spawning of hostile mercenaries by the third Nexus mission (it
+  was spawning the mercenaries, but failed to set them as hostile to the
+  player).
 
 ## 0.4.1
 
