@@ -87,6 +87,8 @@ function endProblems()
     pilot.toggleSpawn(true)
     player.cinematics(false)
     player.pilot():control(false)
+    player.pilot():setNoJump(false)
+    player.pilot():setNoLand(false)
 
     var.pop("shipinfested")
 
