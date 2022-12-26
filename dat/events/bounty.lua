@@ -91,15 +91,17 @@ function death(target, killer)
       elseif rnd.rnd() < 0.05 then
          local f_choices = {}
          for f, presence in pairs(presences) do
-            local canpay = true
-            for i, f2 in ipairs(nopay_factions) do
-               if f == f2 then
-                  canpay = false
-                  break
+            if faction.get(f):playerStanding() >= 0 or f == "Pirate" then
+               local canpay = true
+               for i, f2 in ipairs(nopay_factions) do
+                  if f == f2 then
+                     canpay = false
+                     break
+                  end
                end
-            end
-            if canpay then
-               f_choices[#f_choices + 1] = f
+               if canpay then
+                  f_choices[#f_choices + 1] = f
+               end
             end
          end
          if #f_choices > 0 then
@@ -110,7 +112,9 @@ function death(target, killer)
       pay_f = nil
       local pay_f_presence = 0
       for f, presence in pairs(system.cur():presences()) do
-         if faction.get(f):areEnemies(target_f) then
+         local fac = faction.get(f)
+         if fac:areEnemies(target_f)
+               and (fac:playerStanding() >= 0 or f == "Pirate") then
             local canpay = true
             for i, f2 in ipairs(nopay_factions) do
                if f == f2 then
@@ -119,7 +123,7 @@ function death(target, killer)
                end
             end
             if canpay and (pay_f == nil or presence > pay_f_presence) then
-               pay_f = faction.get(f)
+               pay_f = fac
             end
          end
       end
