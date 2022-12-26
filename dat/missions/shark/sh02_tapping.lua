@@ -172,7 +172,7 @@ function ambush()
       "Phalanx", "Kestrel", "Hawking", "Llama",
    }
 
-   for i=1,4 do
+   for i=1,rnd.rnd(2, 4) do
       local choice = ship_choices[rnd.rnd(1, #ship_choices)]
       local p = pilot.add(choice, "Mercenary", nil,
             fmt.f(_("Mercenary {ship}"), {ship=_(choice)}))
