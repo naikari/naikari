@@ -25,8 +25,9 @@ end
 
 
 function create ()
-   sprice = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(sprice / 500, sprice / 200))
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
+   mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
 
    -- No bribe
    local bribe_msg = {

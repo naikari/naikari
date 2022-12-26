@@ -7,7 +7,6 @@ local fmt = require "fmt"
 function create()
    local sprice = ai.pilot():ship():price()
    ai.setcredits(rnd.rnd(0.5 * sprice, 1 * sprice))
-   mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
 
    -- No bribe
    local bribe_msg = {

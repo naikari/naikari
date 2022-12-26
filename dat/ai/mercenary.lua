@@ -12,7 +12,7 @@ function create ()
    local p = ai.pilot()
    local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.5 * sprice, 1 * sprice))
-   mem.kill_reward = rnd.rnd(0.2 * sprice, 0.5 * sprice)
+   mem.kill_reward = rnd.rnd(0.05 * sprice, 0.1 * sprice)
 
    if rnd.rnd() < 0.3 then
       mem.bribe = math.sqrt(p:stats().mass) * (750. * rnd.rnd() + 2500.)

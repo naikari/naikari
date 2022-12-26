@@ -10,7 +10,7 @@ mem.aggressive = true
 function create()
    local sprice = ai.pilot():ship():price()
    ai.setcredits(rnd.rnd(0.25 * sprice, 0.75 * sprice))
-   mem.kill_reward = rnd.rnd(0.25 * sprice, 0.75 * sprice)
+   mem.kill_reward = rnd.rnd(0.01 * sprice, 0.05 * sprice)
 
    -- Handle bribing
    local bribe_no = {

@@ -27,8 +27,9 @@ function create()
       return
    end
 
-   sprice = ai.pilot():ship():price()
-   ai.setcredits(rnd.rnd(sprice / 200, sprice / 50))
+   local sprice = ai.pilot():ship():price()
+   ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
+   mem.kill_reward = rnd.rnd(0.1 * sprice, 0.15 * sprice)
 
    -- Get refuel chance
    local p = player.pilot()

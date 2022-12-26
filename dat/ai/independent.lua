@@ -10,7 +10,7 @@ mem.careful = false
 function create ()
    local sprice = ai.pilot():ship():price()
    ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
-   mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
+   mem.kill_reward = rnd.rnd(0.01 * sprice, 0.05 * sprice)
 
    -- No bribe
    local bribe_msg = {

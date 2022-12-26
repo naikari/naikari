@@ -10,7 +10,7 @@ mem.land_planet = false
 function create ()
    local p = ai.pilot()
    local sprice = p:ship():price()
-   mem.kill_reward = rnd.rnd(0.25 * sprice, 1 * sprice)
+   mem.kill_reward = rnd.rnd(0.15 * sprice, 0.25 * sprice)
 
    -- No response by default.
    mem.comm_no = _("No response.")
