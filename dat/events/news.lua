@@ -133,6 +133,21 @@ mhint_articles = {
 
 
 function create()
+   -- Special event articles
+   if player.misnDone("Nebula Satellite")
+         and not var.peek("nebu_probe_published") then
+      local t = var.peek("nebu_probe_launch")
+      local delay = time.create(1, 0, 0)
+      if t == nil or time.get() - time.fromnumber(t) > delay then
+         local exp = time.get() + time.create(0, 250, 0)
+         news.add("Generic", _("Scientists Befuddled By Nebula Composition"),
+               _([[A team of scientists which launched a special probe to monitor the Nebula have finally published their results, and their research raises more questions than it answers. The research team notes that the composition of the Nebula is especially surprising. "Its composition doesn't match what we expected from that region of space," explained one of the researchers. "It's as if a whole lot of material teleported into the region out of nowhere." The researchers were unable to conclusively determine the reason for the strange composition of the Inner Nebula, and scientists now rigorously debate where this mysterious anomalous material comes from.]]),
+               exp)
+         var.push("nebu_probe_published", true)
+      end
+   end
+
+   -- Generated articles
    local publish_interval = time.create(0, 30, 0)
    local last_news = var.peek("_news_last")
    local narticles = #news.get("Generic") + #news.get(planet.cur():faction():nameRaw())
@@ -194,19 +209,5 @@ function generate_article()
       local tag = string.format("mhint_%s", a.mission)
       local article = news.add(a.faction or "Generic", a.title, a.text, rmdate)
       article:bind(tag)
-   end
-
-   -- Special event articles
-   if player.misnDone("Nebula Satellite")
-         and not var.peek("nebu_probe_published") then
-      local t = var.peek("nebu_probe_launch")
-      local delay = time.create(1, 0, 0)
-      if t == nil or time.get() - time.fromnumber(t) > delay then
-         local exp = time.get() + time.create(0, 250, 0)
-         news.add("Generic", _("Scientists Befuddled By Nebula Composition"),
-               _([[A team of scientists which launched a special probe to monitor the Nebula have finally published their results, and their research raises more questions than it answers. The research team notes that the composition of the Nebula is especially surprising. "Its composition doesn't match what we expected from that region of space," explained one of the researchers. "It's as if a whole lot of material teleported into the region out of nowhere." The researchers were unable to conclusively determine the reason for the strange composition of the Inner Nebula, and scientists now rigorously debate where this mysterious anomalous material comes from.]]),
-               exp)
-         var.push("nebu_probe_published", true)
-      end
    end
 end
