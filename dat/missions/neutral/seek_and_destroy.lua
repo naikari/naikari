@@ -435,7 +435,7 @@ function space_clue(p)
          end
       end
    else -- Pilot wants payment
-      price = (5 + 5*rnd.rnd()) * 1000
+      local price = (5 + 5*rnd.rnd()) * 1000
       local s = money_text[rnd.rnd(1, #money_text)]
       choice = tk.choice("",
             fmt.f(s, {pilot=name, credits=fmt.credits(price)}),
@@ -461,7 +461,7 @@ function space_clue(p)
 
          if isScared(p) then
             local s = scared_text[rnd.rnd(1, #scared_text)]
-            tk.msg("", s:format(name, mysys[cursys+1]:name()))
+            tk.msg("", fmt.f(s, {pilot=name, system=mysys[cursys+1]:name()}))
             next_sys()
             p:control()
             p:runaway(player.pilot())
@@ -546,7 +546,7 @@ end
 -- The player ask for clues in the bar
 function clue_bar()
    if cursys + 1 >= nbsys then
-      tk.msg("", cold_text[rnd.rnd(1, #cold_text)]:format(name))
+      tk.msg("", fmt.f(cold_text[rnd.rnd(1, #cold_text)], {pilot=name}))
       misn.finish(false)
    else
       if not know then
@@ -556,6 +556,7 @@ function clue_bar()
          tk.msg("", fmt.f(s, {pilot=name, system=mysys[cursys+1]:name()}))
          next_sys()
       else
+         local price = rnd.rnd(7500, 15000)
          local s = money_text[rnd.rnd(1,#money_text)]
          choice = tk.choice("",
                fmt.f(s, {pilot=name, credits=fmt.credits(price)}),
