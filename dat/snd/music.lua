@@ -15,6 +15,7 @@ factional = {
    Collective = {"collective1", "automat"},
    Pirate = {"pirate1_theme1", "pirates_orchestra", "ambient4", "terminal"},
    Empire = {"empire1", "empire2"; add_neutral = true},
+   Goddard = {"empire1", "empire2"; add_neutral = true},
    Sirius = {"sirius1", "sirius2"; add_neutral = true},
    Dvaered = {"dvaered1", "dvaered2"; add_neutral = true},
    ["Za'lek"] = {"zalek1", "zalek2"; add_neutral = true},
