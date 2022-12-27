@@ -15,7 +15,7 @@
   <sound>ion</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>ExpS</spfx_armour>
-  <delay>2.0</delay>
+  <delay>1.3</delay>
   <speed>1300</speed>
   <range>2200</range>
   <falloff>1800</falloff>
@@ -28,7 +28,7 @@
    <type>ion</type>
    <penetrate>36</penetrate>
    <physical>50</physical>
-   <disable>2</disable>
+   <disable>4</disable>
   </damage>
  </specific>
 </outfit>
