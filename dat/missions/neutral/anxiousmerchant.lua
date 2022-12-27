@@ -84,12 +84,12 @@ function create()
    stuperpx = 4.6 - 0.57*tier
    stuperjump = 103000 - 6000*tier
    stupertakeoff = 103000 - 750*tier
-   allowance = traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
-         + 2400*numjumps
+   allowance = travel_dist*stuperpx + num_jumps*stuperjump + stupertakeoff
+         + 2400*num_jumps
    
    -- Allow extra time for refuelling stops.
    local jumpsperstop = 2 + math.min(tier-1, 2)
-   if numjumps > jumpsperstop then
+   if num_jumps > jumpsperstop then
       allowance = allowance + math.floor((num_jumps-1)/jumpsperstop)*stuperjump
    end
 
@@ -148,7 +148,7 @@ function accept()
    player.pilot():cargoAdd("Food", cargo_size)
    local playerbest = cargoGetTransit(time_limit, num_jumps, travel_dist)
    player.pilot():cargoRm("Food", cargo_size)
-   local mindist = system.cur():jumpDist(destsys, true, true)
+   local mindist = system.cur():jumpDist(dest_sys, true, true)
    if time_limit < playerbest then
       local tlimit = time_limit - time.get()
       local tmore = playerbest - time.get()
@@ -162,9 +162,9 @@ function accept()
       local text = n_(
             "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jump may cause you to miss the deadline. Accept the mission anyway?",
             "The fastest route to {planet} is not currently known to you. Landing to buy maps, spending time searching for unknown jumps, or taking a route longer than {jumps} jumps may cause you to miss the deadline. Accept the mission anyway?",
-            numjumps)
+            num_jumps)
       if not tk.yesno("", fmt.f(text,
-               {planet=dest_planet:name(), jumps=numjumps})) then
+               {planet=dest_planet:name(), jumps=num_jumps})) then
          misn.finish()
       end
    end
