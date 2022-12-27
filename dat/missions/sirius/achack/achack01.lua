@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>19</priority>
-  <cond>faction.get("Sirius"):playerStanding() >= 0</cond>
+  <cond>faction.get("Sirius"):playerStanding() &gt;= 0</cond>
   <planet>The Wringer</planet>
   <chance>100</chance>
   <location>Bar</location>

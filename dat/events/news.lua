@@ -40,6 +40,14 @@ mhint_articles = {
       done = "The Runaway",
    },
    {
+      title = _("Criminal Activity Rumors in The Wringer"),
+      text = _([[Rumors abound that The Wringer, a small neglected station in Sirius space, is crawling with dangerous criminals, including crime lords and assassins. Sirius authorities, however, claim that these rumors are unfounded. "People exaggerate," one Sirius officer said. "The Wringer is a hellhole where petty criminals are common, but it's not exactly teeming with professional assassins. Any truly dangerous criminal knows that there's nothing for them at that awful place."]]),
+      mission = "Sirius Bounty",
+      cond = function()
+         return (faction.get("Sirius"):playerStanding() >= 0)
+      end
+   },
+   {
       title = _("Mysterious Woman Spotted"),
       text = _([[A mysterious woman has been spotted scouting the area within and around the Klantar system in Dvaered space. When approached by the media and asked who or what she is searching for, she declined to comment.]]),
       mission = "Shadowrun",
