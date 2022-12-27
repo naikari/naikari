@@ -262,6 +262,11 @@ function land()
    player.pay(2 * credits)
    diff.apply("hakoi_pirates")
 
+   local exp = time.get() + time.create(0, 250, 0)
+   news.add("Empire", _("Pirates in Hakoi"),
+         _([[Residents of the previously peaceful Hakoi system are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling to and from the area to be cautious. An investigation is underway.]]),
+         exp)
+
    addMiscLog(misn_log)
    misn.finish(true)
 end
