@@ -91,12 +91,11 @@
 
   <content_rating type="oars-1.1">
     <content_attribute id="violence-fantasy">moderate</content_attribute>
-    <content_attribute id="drugs-alcohol">mild</content_attribute>
+    <content_attribute id="drugs-alcohol">moderate</content_attribute>
     <content_attribute id="drugs-narcotics">mild</content_attribute>
-    <content_attribute id="drugs-tobacco">mild</content_attribute>
+    <content_attribute id="drugs-tobacco">moderate</content_attribute>
     <content_attribute id="language-profanity">moderate</content_attribute>
     <content_attribute id="language-discrimination">intense</content_attribute>
-    <content_attribute id="money-gambling">mild</content_attribute>
   </content_rating>
 
   <update_contact>naikari_AT_riseup.net</update_contact>
