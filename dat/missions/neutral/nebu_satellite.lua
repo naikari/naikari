@@ -46,15 +46,6 @@ He takes a deep breath, "We hope to be able to find out more secrets of the Sol 
 explain2_text = _([["The plan is for you to take us to {launchsystem} so we can launch the probe, and then return us to our home at {homeplanet} in the {homesystem} system. The probe will automatically send us the data we need if all goes well. You'll be paid {credits} when we arrive."]])
 pay_text = _([[The scientists thank you for your help and pay you before going back to their home to continue their nebula research.]])
 
-articles={}
-articles={
-   {
-      "Generic",
-      _("Scientists Launch Research Probe Into Nebula"),
-      _("A group of scientists have successfully launched a science probe into the Nebula. The probe was specifically designed to be resistant to the corrosive environment of the Nebula and is supposed to find new clues about the nature of the gas and where it's from."), 
-   }
-}
-
 log_text = _([[You helped a group of scientists launch a research probe into the Nebula.]])
 
 
@@ -161,8 +152,7 @@ function countLaunch ()
    end
 end
 function launchSatellite ()
-   articles[1][4] = time.get() + time.create(0, 3, 0)
-   news.add(articles)
+   var.push("nebu_probe_launch", time.get():tonumber())
 
    misn_stage = 1
    player.msg(_("Probe launch successful."))
