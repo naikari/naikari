@@ -125,7 +125,7 @@ function accept()
    if creds < deposit then
       tk.msg("", fmt.f(nodeposit_text,
             {credits=fmt.credits(deposit), player_credits=screds,
-               shortfall_credits=fmt.credits(depisit - creds)}))
+               shortfall_credits=fmt.credits(deposit - creds)}))
       misn.finish()
    end
 
