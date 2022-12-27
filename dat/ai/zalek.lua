@@ -19,7 +19,7 @@ local drones = {
 
 function create()
    -- See if a drone
-   mem.isdrone = drones[ai.pilot():ship():nameRaw()]
+   mem.isdrone = drones[ai.pilot():ship():nameRaw()] or false
    if mem.isdrone then
       mem.comm_no = _("No response.")
       mem.armour_run = 0 -- Drones don't run
