@@ -46,7 +46,7 @@ mhint_articles = {
    },
    {
       title = _("Assassins in Alteris"),
-      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to an influx of assassins in the area. Authorities suspect that corrupt businessmen are hiring these assassins in an effort to illegally stifle competition. A joint investigation between Imperial and Soromid forces is underway.]]),
+      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to an influx of assassins in the area. Authorities suspect that corrupt businessmen are hiring these assassins in an effort to illegally stifle competition. An Imperial investigation is underway.]]),
       mission = "Hitman 2",
    },
    {
