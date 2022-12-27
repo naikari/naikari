@@ -221,23 +221,24 @@ function timer ()
    local player_pos = player.pos()
    local enemies = pilot.get(paying_faction:enemies())
 
-   for i, j in ipairs(enemies) do
-      if j ~= nil and j:exists() then
+   for i, p in ipairs(enemies) do
+      if p:exists() then
          local already_in = false
          for a, b in ipairs(hostiles) do
-            if j == b then
+            if p == b then
                already_in = true
             end
          end
          if not already_in then
-            if player_pos:dist(j:pos()) < 1500 then
-               j:setVisplayer(true)
-               j:setHilight(true)
-               j:setHostile(true)
-               hook.pilot(j, "death", "pilot_leave")
-               hook.pilot(j, "jump", "pilot_leave")
-               hook.pilot(j, "land", "pilot_leave")
-               hostiles[#hostiles + 1] = j
+            local fuzzy_vissible, visible = player.pilot():inrange(p)
+            if visible and player_pos:dist(p:pos()) < 7500 then
+               p:setVisplayer(true)
+               p:setHilight(true)
+               p:setHostile(true)
+               hook.pilot(p, "death", "pilot_leave")
+               hook.pilot(p, "jump", "pilot_leave")
+               hook.pilot(p, "land", "pilot_leave")
+               hostiles[#hostiles + 1] = p
             end
          end
       end
