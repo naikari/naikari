@@ -21,7 +21,7 @@ end
 
 function escorthelper.issue_orders()
    local n, s = tk.choice(_("Escort Orders"),
-         _("Select the order to give to this escort."),
+         _("Select the order to give to your escorts."),
          _("Attack Target"), _("Hold Formation"), _("Return To Ship"),
          _("Clear Orders"), _("Cancel"))
    local order = nil
