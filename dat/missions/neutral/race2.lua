@@ -39,9 +39,9 @@ local mh = require "misnhelper"
 local portrait = require "portrait"
 
 
-ask_text = _([["Hey there, great to see you back! You want to have another race?"]])   
+ask_text = _([["Hey there, it looks like you've participated in our races before. Great to see you back! You want to have another race?"]])   
 
-ask_difficulty_text = _([["There are two races you can participate in: a casual one, which is like the first race we had, or the competitive one one with smaller checkpoints and stronger competition. The casual one has a prize of {casualcredits}, and the competitive one has a prize of {competitivecredits}. Which one do you want to do?"]])
+ask_difficulty_text = _([["There are two races you can participate in: a casual one, which is like the races we had before the Melendez sponsorship, or the competitive one one with smaller checkpoints and stronger competition. The casual one has a prize of {casualcredits}, and the competitive one has a prize of {competitivecredits}. Which one do you want to do?"]])
 
 yes_hard_text = _([["You want a challenge huh? We'll all be trying our best, so good luck!"]])
 
