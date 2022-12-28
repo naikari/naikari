@@ -158,6 +158,15 @@
 * The System Info display now shows planets' color and character
   (indicating whether or not they can be landed on) on the selection
   list, which makes it much easier to navigate.
+* Default weapons for ships now vary (instead of all of them using laser
+  weaponry); Sirius ships have razor weaponry, Dvaered ships have
+  kinetic weaponry, and Za'lek ships have beam weaponry. (Soromid ships
+  already had bio-plasma weaponry since that was the only option.)
+* Improved the patrol mission's detection of hostile ships and made it
+  more sensitive.
+* Reworked bullet graphics to make better use of what's available. There
+  are no longer large numbers of weapons using the same graphics as each
+  other.
 
 ### Bugfixes
 
@@ -192,6 +201,7 @@
 * Fixed spawning of hostile mercenaries by the third Nexus mission (it
   was spawning the mercenaries, but failed to set them as hostile to the
   player).
+* Fixed Za'lek non-drone ships being impossible to hail, as with drones.
 
 ## 0.4.1
 
