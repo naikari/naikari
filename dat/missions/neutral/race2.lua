@@ -36,6 +36,7 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
+local portrait = require "portrait"
 
 
 ask_text = _([["Hey there, great to see you back! You want to have another race?"]])   
@@ -68,7 +69,7 @@ NPCdesc = _("You see a laid back person, who appears to be one of the locals, lo
 
 misndesc = _("You're participating in another race!")
 
-OSDtitle = _("Racing Skills 2")
+OSDtitle = _("Racing Skills")
 OSD = {}
 OSD[1] = _("Board checkpoint 1")
 OSD[2] = _("Board checkpoint 2")
@@ -90,14 +91,12 @@ landmsg = _("%s just landed at %s and finished the race")
 
 
 function create ()
-   this_planet, this_system = planet.cur()
-   missys = this_system
+   curplanet = planet.cur()
+   missys = system.cur()
    if not misn.claim(missys) then
       misn.finish(false)
    end
-   cursys = system.cur()
-   curplanet = planet.cur()
-   misn.setNPC(NPCname, "neutral/unique/laidback.png", NPCdesc)
+   misn.setNPC(NPCname, portrait.get(curplanet:faction()), NPCdesc)
    credits_easy = rnd.rnd(20000, 100000)
    credits_hard = rnd.rnd(200000, 300000)
 end
@@ -107,6 +106,7 @@ function accept ()
    if tk.yesno("", ask_text) then
       misn.accept()
       OSD[4] = string.format(OSD[4], curplanet:name())
+      misn.setTitle(OSDtitle)
       misn.setDesc(misndesc)
       misn.osdCreate(OSDtitle, OSD)
       local s = fmt.f(ask_difficulty_text,

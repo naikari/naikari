@@ -38,6 +38,7 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
+local portrait = require "portrait"
 
 
 ask_text = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. There's a prize of {credits} if you win. Interested?"]])
@@ -65,7 +66,7 @@ NPCdesc = _("You see a laid back person, who appears to be one of the locals, lo
 
 misndesc = _("You're participating in a race!")
 
-OSDtitle = _("Racing Skills 1")
+OSDtitle = _("Racing Skills")
 OSD = {}
 OSD[1] = _("Board checkpoint 1")
 OSD[2] = _("Board checkpoint 2")
@@ -87,14 +88,12 @@ landmsg = _("%s just landed at %s and finished the race")
 
 
 function create ()
-   this_planet, this_system = planet.cur()
-   missys = this_system
+   curplanet = planet.cur()
+   missys = system.cur()
    if not misn.claim(missys) then
       misn.finish(false)
    end
-   cursys = system.cur()
-   curplanet = planet.cur()
-   misn.setNPC(NPCname, "neutral/unique/laidback.png", NPCdesc)
+   misn.setNPC(NPCname, portrait.get(curplanet:faction()), NPCdesc)
    credits = rnd.rnd(20000, 100000)
 end
 
@@ -103,6 +102,7 @@ function accept ()
    if tk.yesno("", fmt.f(ask_text, {credits=fmt.credits(credits)})) then
       misn.accept()
       OSD[4] = string.format(OSD[4], curplanet:name())
+      misn.setTitle(OSDtitle)
       misn.setDesc(misndesc)
       misn.setReward(fmt.credits(credits))
       misn.osdCreate(OSDtitle, OSD)
