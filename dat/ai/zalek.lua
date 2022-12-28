@@ -10,18 +10,14 @@ local fmt = require "fmt"
 mem.armour_run = 75 -- Za'lek armour is pretty crap. They know this, and will dip when their shields go down.
 mem.aggressive = true
 
-local drones = {
-   ["Za'lek Heavy Drone"] = true,
-   ["Za'lek Bomber Drone"] = true,
-   ["Za'lek Light Drone"] = true,
-   ["Za'lek Scout Drone"] = true,
-}
 
 function create()
    local p = ai.pilot()
    -- See if a drone
-   mem.isdrone = drones[p:ship():nameRaw()] or false
-   if mem.isdrone then
+   local shiptype = p:ship():nameRaw()
+   if shiptype == "Za'lek Light Drone" or shiptype == "Za'lek Scout Drone"
+         or shiptype == "Za'lek Heavy Drone"
+         or shiptype == "Za'lek Bomber Drone" then
       mem.comm_no = _("No response.")
       mem.armour_run = 0 -- Drones don't run
       create_post()

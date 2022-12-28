@@ -135,15 +135,15 @@ int comm_openPilot( unsigned int pilot )
       return 0;
    }
 
+   /* Set up for the comm_get* functions. */
+   ai_setPilot(comm_pilot);
+
    /* Check to see if pilot wants to communicate. */
-   msg = comm_getString( "comm_no" );
+   msg = comm_getString("comm_no");
    if (msg != NULL) {
-      player_messageRaw( msg );
+      player_messageRaw(msg);
       return 0;
    }
-
-   /* Set up for the comm_get* functions. */
-   ai_setPilot( comm_pilot );
 
    /* Have pilot stop hailing. */
    pilot_rmFlag( comm_pilot, PILOT_HAILING );

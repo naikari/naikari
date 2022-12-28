@@ -204,6 +204,12 @@
 * Fixed Za'lek non-drone ships being impossible to hail, as with drones.
 * Fixed AI ships which spawned prior to you entering a system being
   uncooperative and/or unresponsive.
+* Fixed a 14-year-old bug where the comm_no flag of AI ships (the one
+  that caused the text "No response" to be printed rather than showing
+  the comm window when you hailed them) pointed to an arbitrary ship,
+  rather than necessarily pointing to the relevant one. This usually
+  didn't have noticeable effects, *except* that it caused Za'lek boss
+  ships to be unresponsive, as if they were drones, most of the time.
 
 ## 0.4.1
 
