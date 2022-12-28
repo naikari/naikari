@@ -12,7 +12,7 @@
   <cpu>-29</cpu>
  </general>
  <specific type="bolt">
-  <gfx>neutron.png</gfx>
+  <gfx>particle.png</gfx>
   <sound>neutron</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>ExpS</spfx_armour>

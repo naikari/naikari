@@ -12,7 +12,7 @@
   <cpu>-200</cpu>
  </general>
  <specific type="turret bolt">
-  <gfx>massL.png</gfx>
+  <gfx>teslaL.webp</gfx>
   <sound>laser</sound>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
@@ -20,7 +20,6 @@
   <speed>457</speed>
   <range>3885</range>
   <falloff>3085</falloff>
-  <gfx_end>massL-end.png</gfx_end>
   <energy>225</energy>
   <heatup>31</heatup>
   <rdr_range>3500</rdr_range>

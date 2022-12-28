@@ -11,7 +11,7 @@
   <cpu>-50</cpu>
  </general>
  <specific type="turret bolt">
-  <gfx>plasma2.png</gfx>
+  <gfx>plasma3.png</gfx>
   <sound>plasma</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
@@ -19,6 +19,7 @@
   <speed>700</speed>
   <range>2200</range>
   <falloff>1800</falloff>
+  <gfx_end>plasma3-end.png</gfx_end>
   <energy>42</energy>
   <heatup>50</heatup>
   <rdr_range>2200</rdr_range>

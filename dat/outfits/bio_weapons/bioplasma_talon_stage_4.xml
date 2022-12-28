@@ -12,7 +12,7 @@
   <cpu>-35</cpu>
  </general>
  <specific type="bolt">
-  <gfx>massL.png</gfx>
+  <gfx>teslaL.webp</gfx>
   <sound>mass</sound>
   <sound_hit>medexp0</sound_hit>
   <spfx_shield>ShiM</spfx_shield>
@@ -21,7 +21,6 @@
   <speed>575</speed>
   <range>4700</range>
   <falloff>3600</falloff>
-  <gfx_end>massL-end.png</gfx_end>
   <energy>65</energy>
   <heatup>57</heatup>
   <rdr_range>3500</rdr_range>

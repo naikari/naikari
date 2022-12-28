@@ -12,7 +12,7 @@
   <cpu>-32</cpu>
  </general>
  <specific type="bolt">
-  <gfx>plasma2.png</gfx>
+  <gfx>plasma3.png</gfx>
   <sound>plasma</sound>
   <spfx_shield>ShiS</spfx_shield>
   <spfx_armour>PlaS2</spfx_armour>
@@ -20,7 +20,7 @@
   <speed>{speed}</speed>
   <range>{range}</range>
   <falloff>{falloff}</falloff>
-  <gfx_end>plasma2-end.png</gfx_end>
+  <gfx_end>plasma3-end.png</gfx_end>
   <energy>35</energy>
   <heatup>{heatup}</heatup>
   <rdr_range>2800</rdr_range>

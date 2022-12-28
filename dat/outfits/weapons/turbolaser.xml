@@ -12,7 +12,7 @@
   <cpu>-350</cpu>
  </general>
  <specific type="turret bolt">
-  <gfx>teslaL.webp</gfx>
+  <gfx>laser4L.png</gfx>
   <sound>laser</sound>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>

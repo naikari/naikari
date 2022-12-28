@@ -19,7 +19,6 @@
   <speed>600</speed>
   <range>800</range>
   <falloff>550</falloff>
-  <gfx_end>plasma2-end.png</gfx_end>
   <energy>5</energy>
   <heatup>30</heatup>
   <rdr_range>1400</rdr_range>

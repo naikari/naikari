@@ -18,7 +18,6 @@
   <delay>0.35</delay>
   <speed>500</speed>
   <range blowup="armour">5800</range>
-  <gfx_end>ripperM-end.png</gfx_end>
   <energy>6</energy>
   <heatup>150</heatup>
   <rdr_range>2300</rdr_range>
