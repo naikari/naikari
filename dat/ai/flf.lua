@@ -12,18 +12,13 @@ mem.careful       = true
 
 
 function create()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
    mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
 
    -- Get standing.
-   local p = player.pilot()
-   local standing
-   if p:exists() then
-      standing = ai.getstanding( p ) or -1
-   else
-      standing = -1
-   end
+   local standing = p:faction():playerStanding()
 
    -- Handle bribes.
    if standing < -30 then

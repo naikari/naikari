@@ -8,7 +8,8 @@ mem.aggressive = true
 
 -- Create function
 function create()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.25 * sprice, 0.75 * sprice))
    mem.kill_reward = rnd.rnd(0.01 * sprice, 0.05 * sprice)
 
@@ -23,22 +24,19 @@ function create()
    mem.bribe_no = bribe_no[rnd.rnd(1,#bribe_no)]
 
    -- Handle refueling
-   local p = player.pilot()
-   if p:exists() then
-      local standing = ai.getstanding(p) or -1
-      local flf_standing = faction.get("FLF"):playerStanding()
+   local standing = p:faction():playerStanding()
+   local flf_standing = faction.get("FLF"):playerStanding()
 
-      mem.refuel = rnd.rnd( 1000, 3000 )
-      if flf_standing < 50 then
-         mem.refuel_no = _("\"Sorry, I can't spare fuel for you.\"")
-      elseif standing < 50 then
-         mem.refuel_msg = fmt.f(
-               _("\"Sure, just {credits} and I'll give you some fuel.\""),
-               {credits=fmt.credits(mem.refuel)})
-      else
-         mem.refuel = 0
-         mem.refuel_msg = _("\"Sure, friend, I can refuel you. On my way.\"")
-      end
+   mem.refuel = rnd.rnd(1000, 3000)
+   if flf_standing < 50 then
+      mem.refuel_no = _("\"Sorry, I can't spare fuel for you.\"")
+   elseif standing < 50 then
+      mem.refuel_msg = fmt.f(
+            _("\"Sure, just {credits} and I'll give you some fuel.\""),
+            {credits=fmt.credits(mem.refuel)})
+   else
+      mem.refuel = 0
+      mem.refuel_msg = _("\"Sure, friend, I can refuel you. On my way.\"")
    end
 
    -- Handle misc stuff

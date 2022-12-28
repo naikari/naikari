@@ -8,13 +8,14 @@ mem.aggressive = true
 
 -- Create function
 function create ()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
    mem.kill_reward = rnd.rnd(0.1 * sprice, 0.15 * sprice)
 
    -- Handle bribing
    if rnd.rnd() < 0.4 then
-      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (500*rnd.rnd() + 1750)
+      mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
             _("\"For {credits} I'll pretend I didn't see you.\""),
             {credits=fmt.credits(mem.bribe)})
@@ -32,17 +33,14 @@ function create ()
    end
 
    -- Handle refueling
-   local p = player.pilot()
-   if p:exists() then
-      local standing = ai.getstanding(p) or -1
-      mem.refuel = rnd.rnd(1000, 3000)
-      if standing < 50 then
-         mem.refuel_no = _("\"You are not worthy of my attention.\"")
-      else
-         mem.refuel_msg = fmt.f(
-               _("\"For you, I could make an exception for {credits}.\""),
-               {credits=fmt.credits(mem.refuel)})
-      end
+   local standing = p:faction():playerStanding()
+   mem.refuel = rnd.rnd(1000, 3000)
+   if standing < 50 then
+      mem.refuel_no = _("\"You are not worthy of my attention.\"")
+   else
+      mem.refuel_msg = fmt.f(
+            _("\"For you, I could make an exception for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    end
 
    -- Handle misc stuff

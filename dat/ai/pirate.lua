@@ -19,7 +19,8 @@ mem.careful = true
 
 
 function create()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
    mem.kill_reward = rnd.rnd(0.05 * sprice, 0.1 * sprice)
 
@@ -27,7 +28,7 @@ function create()
    if rnd.rnd() < 0.05 then
       mem.bribe_no = _("\"You won't be able to slide out of this one!\"")
    else
-      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (300*rnd.rnd() + 850)
+      mem.bribe = math.sqrt(p:stats().mass) * (300*rnd.rnd() + 850)
       bribe_prompt = {
          _("\"It'll cost you {credits} for me to ignore your pile of rubbish.\""),
          _("\"I'm in a good mood so I'll let you go for {credits}.\""),
@@ -65,16 +66,13 @@ function create()
    end
 
    -- Deal with refueling
-   local p = player.pilot()
-   if p:exists() then
-      local standing = ai.getstanding(p) or -1
-      mem.refuel = rnd.rnd(2000, 4000)
-      if standing > 60 then
-         mem.refuel = mem.refuel * 0.5
-      end
-      mem.refuel_msg = fmt.f(_("\"I'll take {credits} for some fuel.\""),
-            {credits=fmt.credits(mem.refuel)});
+   local standing = p:faction():playerStanding()
+   mem.refuel = rnd.rnd(2000, 4000)
+   if standing > 60 then
+      mem.refuel = mem.refuel * 0.5
    end
+   mem.refuel_msg = fmt.f(_("\"I'll take {credits} for some fuel.\""),
+         {credits=fmt.credits(mem.refuel)})
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
 

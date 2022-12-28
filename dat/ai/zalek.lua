@@ -18,8 +18,9 @@ local drones = {
 }
 
 function create()
+   local p = ai.pilot()
    -- See if a drone
-   mem.isdrone = drones[ai.pilot():ship():nameRaw()] or false
+   mem.isdrone = drones[p:ship():nameRaw()] or false
    if mem.isdrone then
       mem.comm_no = _("No response.")
       mem.armour_run = 0 -- Drones don't run
@@ -27,29 +28,25 @@ function create()
       return
    end
 
-   local sprice = ai.pilot():ship():price()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
    mem.kill_reward = rnd.rnd(0.1 * sprice, 0.15 * sprice)
 
    -- Get refuel chance
-   local p = player.pilot()
-   if p:exists() then
-      local standing = ai.getstanding( p ) or -1
-      mem.refuel = rnd.rnd( 1000, 2000 )
-      if standing < -10 then
-         mem.refuel_no = _("\"I do not have fuel to spare.\"")
-      else
-         mem.refuel = mem.refuel * 0.6
-      end
-      -- Most likely no chance to refuel
-      mem.refuel_msg = fmt.f(
-            _("\"I will agree to refuel your ship for {credits}.\""),
-            {credits=fmt.credits(mem.refuel)})
+   local standing = p:faction():playerStanding()
+   mem.refuel = rnd.rnd(1000, 2000)
+   if standing < -10 then
+      mem.refuel_no = _("\"I do not have fuel to spare.\"")
+   else
+      mem.refuel = mem.refuel * 0.6
    end
+   mem.refuel_msg = fmt.f(
+         _("\"I will agree to refuel your ship for {credits}.\""),
+         {credits=fmt.credits(mem.refuel)})
 
    -- See if can be bribed
    if rnd.rnd() < 0.3 then
-      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (500*rnd.rnd() + 1750)
+      mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
             _("\"We will agree to end the battle for {credits}.\""),
             {credits=fmt.credits(mem.bribe)})

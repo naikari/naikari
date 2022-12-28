@@ -8,13 +8,14 @@ mem.aggressive = true
 
 -- Create function
 function create ()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
    mem.kill_reward = rnd.rnd(0.1 * sprice, 0.15 * sprice)
 
    -- Bribing
    if rnd.rnd() < 0.2 then
-      mem.bribe = math.sqrt(ai.pilot():stats().mass) * (500*rnd.rnd() + 1750)
+      mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
             _("\"Hm, transfer over {credits} and I'll forget I saw you.\""),
             {credits=fmt.credits(mem.bribe)})
@@ -32,15 +33,12 @@ function create ()
    end
 
    -- Refueling
-   local p = player.pilot()
-   if p:exists() then
-      local standing = ai.getstanding( p ) or -1
-      mem.refuel = rnd.rnd( 2000, 4000 )
-      if standing > 60 then mem.refuel = mem.refuel * 0.7 end
-      mem.refuel_msg = fmt.f(
-            _("\"I could do you the favor of refueling for {credits}.\""),
-            {credits=fmt.credits(mem.refuel)})
-   end
+   local standing = p:faction():playerStanding()
+   mem.refuel = rnd.rnd(2000, 4000)
+   if standing > 60 then mem.refuel = mem.refuel * 0.7 end
+   mem.refuel_msg = fmt.f(
+         _("\"I could do you the favor of refueling for {credits}.\""),
+         {credits=fmt.credits(mem.refuel)})
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
 

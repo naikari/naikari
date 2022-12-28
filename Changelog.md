@@ -202,6 +202,8 @@
   was spawning the mercenaries, but failed to set them as hostile to the
   player).
 * Fixed Za'lek non-drone ships being impossible to hail, as with drones.
+* Fixed AI ships which spawned prior to you entering a system being
+  uncooperative and/or unresponsive.
 
 ## 0.4.1
 

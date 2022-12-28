@@ -19,18 +19,15 @@ function create()
 
    -- Communication stuff
    mem.refuel = rnd.rnd(3000, 5000)
-   local p = player.pilot()
-   if p:exists() then
-      if player.jumps() < 1 then
-         mem.refuel = math.min(mem.refuel, player.credits())
-      end
-      if mem.refuel > 0 then
-         mem.refuel_msg = fmt.f(
-               _("\"I'll supply your ship with fuel for {credits}.\""),
-               {credits=fmt.credits(mem.refuel)})
-      else
-         mem.refuel_msg = _("\"Alright, I'll give you some fuel.\"")
-      end
+   if player.pilot():exists() and player.jumps() < 1 then
+      mem.refuel = math.min(mem.refuel, player.credits())
+   end
+   if mem.refuel > 0 then
+      mem.refuel_msg = fmt.f(
+            _("\"I'll supply your ship with fuel for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
+   else
+      mem.refuel_msg = _("\"Alright, I'll give you some fuel.\"")
    end
 
    -- Finish up creation

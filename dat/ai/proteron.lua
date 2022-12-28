@@ -9,32 +9,30 @@ mem.aggressive = true
 
 
 function create()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
    mem.kill_reward = rnd.rnd(0.15 * sprice, 0.2 * sprice)
 
    -- Get refuel chance
-   local p = player.pilot()
-   if p:exists() then
-      local standing = ai.getstanding( p ) or -1
-      mem.refuel = rnd.rnd( 2000, 4000 )
-      if standing < 20 then
-         mem.refuel_no = _("\"Begone, commoner. My fuel isn't for sale.\"")
-      elseif standing < 70 then
-         if rnd.rnd() < 0.8 then
-            mem.refuel_no = _("\"My fuel isn't for sale.\"")
-         end
-      else
-         mem.refuel = mem.refuel * 0.6
+   local standing = p:faction():playerStanding()
+   mem.refuel = rnd.rnd(2000, 4000)
+   if standing < 20 then
+      mem.refuel_no = _("\"Begone, commoner. My fuel isn't for sale.\"")
+   elseif standing < 70 then
+      if rnd.rnd() < 0.8 then
+         mem.refuel_no = _("\"My fuel isn't for sale.\"")
       end
-      -- Most likely no chance to refuel
-      mem.refuel_msg = fmt.f(_("\"I can transfer some fuel for {credits}.\""),
-            {credits=fmt.credits(mem.refuel)})
+   else
+      mem.refuel = mem.refuel * 0.6
    end
+   -- Most likely no chance to refuel
+   mem.refuel_msg = fmt.f(_("\"I can transfer some fuel for {credits}.\""),
+         {credits=fmt.credits(mem.refuel)})
 
    -- See if can be bribed
    if rnd.rnd() < 0.4 then
-      mem.bribe = math.sqrt( ai.pilot():stats().mass ) * (500. * rnd.rnd() + 1750.)
+      mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
             _("\"I can always use some income. {credits} and you were never here.\""),
             {credits=fmt.credits(mem.bribe)})

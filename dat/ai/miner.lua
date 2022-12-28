@@ -19,12 +19,9 @@ function create()
 
    -- Refuel
    mem.refuel = rnd.rnd(1000, 3000)
-   local p = player.pilot()
-   if p:exists() then
-      mem.refuel_msg = fmt.f(
-            _("\"I'll supply your ship with fuel for {credits}.\""),
-            {credits=fmt.credits(mem.refuel)})
-   end
+   mem.refuel_msg = fmt.f(
+         _("\"I'll supply your ship with fuel for {credits}.\""),
+         {credits=fmt.credits(mem.refuel)})
 
    create_post()
 end

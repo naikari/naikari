@@ -25,7 +25,8 @@ end
 
 
 function create ()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
    mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
 
@@ -38,11 +39,8 @@ function create ()
    mem.bribe_no = bribe_msg[ rnd.rnd(1,#bribe_msg) ]
 
    -- Refuel
-   local p = player.pilot()
-   if p:exists() then
-      mem.refuel = 0
-      mem.refuel_msg = _("\"Sure, I can spare some fuel.\"")
-   end
+   mem.refuel = 0
+   mem.refuel_msg = _("\"Sure, I can spare some fuel.\"")
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
    create_post()

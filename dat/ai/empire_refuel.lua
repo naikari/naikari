@@ -12,12 +12,8 @@ function create ()
    ai.setcredits( 0 )
 
    -- Get refuel chance
-   local p = player.pilot()
-   if p:exists() then
-      mem.refuel = 0
-      -- Most likely no chance to refuel
-      mem.refuel_msg = _("\"Sure thing.\"")
-   end
+   mem.refuel = 0
+   mem.refuel_msg = _("\"Sure thing.\"")
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
 
