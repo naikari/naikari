@@ -12,20 +12,21 @@ function create ()
    local sprice = p:ship():price()
    mem.kill_reward = rnd.rnd(0.15 * sprice, 0.25 * sprice)
 
-   -- No response by default.
-   mem.comm_no = _("No response.")
-
    -- Refuel available if the player is at least neutral to them.
    local pp = player.pilot()
+   local standing
    if pp:exists() then
-      local standing = ai.getstanding(pp) or -1
-      if standing >= 0 then
-         mem.comm_no = nil
-         mem.bribe_no = fmt.f(_("{pilot} does not respond."), {pilot=p:name()})
-         mem.refuel = 0
-         mem.refuel_msg = _("\"Fuel request accepted. Approaching for fuel transfer.\"")
-         mem.refuel_cannot = _("\"Refuel request declined. Insufficient fuel available.\"")
-      end
+      standing = ai.getstanding(pp) or -1
+   else
+      standing = p:faction():playerStanding()
+   end
+   if standing >= 0 then
+      mem.bribe_no = fmt.f(_("{pilot} does not respond."), {pilot=p:name()})
+      mem.refuel = 0
+      mem.refuel_msg = _("\"Fuel request accepted. Approaching for fuel transfer.\"")
+      mem.refuel_cannot = _("\"Refuel request declined. Insufficient fuel available.\"")
+   else
+      mem.comm_no = _("No response.")
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
