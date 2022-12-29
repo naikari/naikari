@@ -182,30 +182,38 @@ end
 -- Land hook
 function land()
    if planet.cur() == destplanet then
-      if intime then
       -- Semi-random message.
       local cargo_land = {
          _("The containers of {cargotype} are carried out of your ship by a sullen group of workers. The job takes inordinately long to complete, and the leader pays you without speaking a word."),
          _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Before you can even collect your thoughts, one of them presses a credit chip in your hand and departs."),
          _("The containers of {cargotype} are unloaded by an exhausted-looking bunch of dockworkers. Still, they make fairly good time, delivering your pay upon completion of the job."),
       }
+      if intime then
+         if tier >= 3 then
+            cargo_land = {
+               _("A group of workers efficiently unloads the containers of {cargotype} from your ship. When they finish, the leader thanks you with a smile and hands you your pay on a credit chip before moving on to another job."),
+               _("The containers of {cargotype} are rushed out of your veessel by a team that awaits you at the spaceport. Before you know it, the job is done; one of them presses a credit chip into your hand, quickly thanks you, and departs."),
+               _("The containers of {cargotype} are unloaded by a relaxed-looking bunch of dockworkers. They make very good time, thanking you and delivering your pay upon completion of the job."),
+            }
+            local f = planet.cur():faction()
+            if f ~= nil then
+               f:modPlayerSingle(1)
+            end
+         end
+      else
+         -- Semi-random message for being late.
+         cargo_land = {
+            _("The containers of {cargotype} are carried out of your ship by a sullen group of workers. They are not happy that they have to work overtime because you were late. You are paid only half the original reward you were promised."),
+            _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Your late arrival is stretching quite a few schedules! Your pay is only half your original pay because of that."),
+            _("The containers of {cargotype} are unloaded by an exhausted-looking bunch of dockworkers. You missed the deadline, so your reward is only half the amount you were hoping for."),
+         }
+         reward = reward / 2
+      end
 
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
                {cargotype=_(cargo)}))
-   else
-      -- Semi-random message for being late.
-      local cargo_land = {
-         _("The containers of {cargotype} are carried out of your ship by a sullen group of workers. They are not happy that they have to work overtime because you were late. You are paid only half the original reward you were promised."),
-         _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Your late arrival is stretching quite a few schedules! Your pay is only half your original pay because of that."),
-         _("The containers of {cargotype} are unloaded by an exhausted-looking bunch of dockworkers. You missed the deadline, so your reward is only half the amount you were hoping for."),
-      }
-
-      tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
-               {cargotype=_(cargo)}))
-      reward = reward / 2
-   end
-   player.pay(reward)
-   misn.finish(true)
+      player.pay(reward)
+      misn.finish(true)
    end
 end
 

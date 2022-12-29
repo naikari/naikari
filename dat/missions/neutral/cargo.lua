@@ -125,6 +125,17 @@ function land()
          _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Before you can even collect your thoughts, one of them presses a credit chip in your hand and departs."),
          _("The containers of {cargotype} are unloaded by an exhausted-looking bunch of dockworkers. Still, they make fairly good time, delivering your pay upon completion of the job."),
       }
+      if tier >= 3 then
+         cargo_land = {
+            _("A group of workers efficiently unloads the containers of {cargotype} from your ship. When they finish, the leader thanks you with a smile and hands you your pay on a credit chip before moving on to another job."),
+            _("The containers of {cargotype} are rushed out of your veessel by a team that awaits you at the spaceport. Before you know it, the job is done; one of them presses a credit chip into your hand, quickly thanks you, and departs."),
+            _("The containers of {cargotype} are unloaded by a relaxed-looking bunch of dockworkers. They make very good time, thanking you and delivering your pay upon completion of the job."),
+         }
+         local f = planet.cur():faction()
+         if f ~= nil then
+            f:modPlayerSingle(1)
+         end
+      end
 
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
                {cargotype=_(cargo)}))
