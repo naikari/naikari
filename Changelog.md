@@ -167,6 +167,8 @@
 * Reworked bullet graphics to make better use of what's available. There
   are no longer large numbers of weapons using the same graphics as each
   other.
+* Race missions now use random portraits, rather than always one
+  particular portrait.
 
 ### Bugfixes
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-28 04:30-0500\n"
+"POT-Creation-Date: 2022-12-28 19:45-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -20618,7 +20618,7 @@ msgstr ""
 #. Za'lek armour is pretty crap. They know this, and will dip when their shields go down.
 #. See if a drone
 #: dat/ai/collective.lua:22 dat/ai/drone_miner.lua:10 dat/ai/tpl/escort.lua:6
-#: dat/ai/zalek.lua:25
+#: dat/ai/zalek.lua:21
 msgid "No response."
 msgstr "응답이 없습니다."
 
@@ -22076,7 +22076,7 @@ msgstr "옛 제국과 함께 죽어라!"
 #. Get refuel chance
 #. Drones don't run
 #. Get refuel chance
-#: dat/ai/sirius.lua:21 dat/ai/zalek.lua:39
+#: dat/ai/sirius.lua:21 dat/ai/zalek.lua:35
 msgid "\"I do not have fuel to spare.\""
 msgstr "\"나는 여분의 연료가 없다.\""
 
@@ -22291,42 +22291,42 @@ msgstr "\"%d 크레딧 정도의 여분의 연료는 내가 줄 수 있을 것 �
 msgid "Formation '%s' not found"
 msgstr "'%s' 대형은 발견되지 않았다"
 
-#: dat/ai/zalek.lua:44
+#: dat/ai/zalek.lua:40
 #, fuzzy
 msgid "\"I will agree to refuel your ship for {credits}.\""
 msgstr "\"%d 크레딧에 너희 배를 급유해주도록 하지.\""
 
 #. See if can be bribed
-#: dat/ai/zalek.lua:51
+#: dat/ai/zalek.lua:47
 #, fuzzy
 msgid "\"We will agree to end the battle for {credits}.\""
 msgstr "\"우리는 %d 크래딧에 전쟁을 끝낼것에 동의합니다.\""
 
-#: dat/ai/zalek.lua:53
+#: dat/ai/zalek.lua:49
 msgid "\"Temporarily stopping fire.\""
 msgstr "\"일시적으로 폭격을 중단하라.\""
 
-#: dat/ai/zalek.lua:56
+#: dat/ai/zalek.lua:52
 #, fuzzy
 msgid "\"Keep your cash.\""
 msgstr "\"돈을 보관하세요, 당신은 혈거인입니다.\""
 
-#: dat/ai/zalek.lua:57
+#: dat/ai/zalek.lua:53
 #, fuzzy
 msgid "\"Don't make me laugh.!\""
 msgstr "\"나를 웃게 만들지 마. 레이저 빔을 먹어라!\""
 
-#: dat/ai/zalek.lua:58
+#: dat/ai/zalek.lua:54
 #, fuzzy
 msgid "\"My drones aren't interested in your money and neither am I!\""
 msgstr "\"내 드론은 당신의 부당한 이득에 관심이 없으며 나도 마찬가지입니다!\""
 
-#: dat/ai/zalek.lua:59
+#: dat/ai/zalek.lua:55
 #, fuzzy
 msgid "\"Hahaha! Nice one! Oh, you're actually serious? Of course not, fool!\""
 msgstr "\"아하하! 잘했어! 오, 너 정말 진지해? 아하하하!\""
 
-#: dat/ai/zalek.lua:60
+#: dat/ai/zalek.lua:56
 #, fuzzy
 msgid ""
 "\"While I admire the spirit of it, testing my patience is not science.\""
@@ -22337,40 +22337,40 @@ msgstr ""
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. Finish up creation
 #. Only 50% of actually taunting.
-#: dat/ai/zalek.lua:79
+#: dat/ai/zalek.lua:75
 msgid "I will show you the power of the Za'lek fleet!"
 msgstr ""
 
-#: dat/ai/zalek.lua:80
+#: dat/ai/zalek.lua:76
 msgid "Commencing battle test by eradicating outlaw pilots."
 msgstr ""
 
-#: dat/ai/zalek.lua:81
+#: dat/ai/zalek.lua:77
 msgid "Your days are over!"
 msgstr ""
 
-#: dat/ai/zalek.lua:82
+#: dat/ai/zalek.lua:78
 #, fuzzy
 msgid "You interfere with the progress of science!"
 msgstr "반역에 대한 대가를 치르게 될 것이다!"
 
-#: dat/ai/zalek.lua:83
+#: dat/ai/zalek.lua:79
 msgid "Feel the wrath of our combat drones!"
 msgstr ""
 
-#: dat/ai/zalek.lua:87
+#: dat/ai/zalek.lua:83
 msgid "You just made a big mistake!"
 msgstr "당신은 큰 실수를 저질렀습니다!"
 
-#: dat/ai/zalek.lua:88
+#: dat/ai/zalek.lua:84
 msgid "You wanna do this? Have it your way."
 msgstr "너 이거 하고싶어? 네 방식대로 해."
 
-#: dat/ai/zalek.lua:89
+#: dat/ai/zalek.lua:85
 msgid "How dare you?! I just got this ship customized!"
 msgstr ""
 
-#: dat/ai/zalek.lua:90
+#: dat/ai/zalek.lua:86
 #, fuzzy
 msgid "Aggressor! How dare you attack the Za'lek?!"
 msgstr "감히 프로테론을 공격하다니?!"
@@ -22950,7 +22950,7 @@ msgstr ""
 msgid "Escort Orders"
 msgstr ""
 
-#: dat/events/escorts.lua:513 dat/scripts/escorthelper.lua:24 src/escort.c:304
+#: dat/events/escorts.lua:513 src/escort.c:304
 msgid "Select the order to give to this escort."
 msgstr ""
 
@@ -34332,14 +34332,14 @@ msgstr "프론티어 시스템"
 #. -- DESCRIPTION: A person asks you to join a race, where you fly to various checkpoints and board them before landing back at the starting planet
 #. --
 #. --
-#: dat/missions/neutral/race1.lua:43
+#: dat/missions/neutral/race1.lua:44
 msgid ""
 "\"Hiya there! We're having a race around this system system soon and need a "
 "4th person to participate. There's a prize of {credits} if you win. "
 "Interested?\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:45
+#: dat/missions/neutral/race1.lua:46
 msgid ""
 "\"That's great! I'll explain how it works. Once we take off from {planet}, "
 "there will be a countdown, and then we will proceed to the various "
@@ -34348,30 +34348,30 @@ msgid ""
 "Let's have some fun!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:47 dat/missions/neutral/race2.lua:52
+#: dat/missions/neutral/race1.lua:48 dat/missions/neutral/race2.lua:53
 msgid "Checkpoint {prev} reached. Proceed to Checkpoint {next}."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:49 dat/missions/neutral/race2.lua:54
+#: dat/missions/neutral/race1.lua:50 dat/missions/neutral/race2.lua:55
 msgid "Checkpoint {prev} reached. Land on {planet}."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:51 dat/missions/neutral/race2.lua:56
+#: dat/missions/neutral/race1.lua:52 dat/missions/neutral/race2.lua:57
 msgid "\"I guess we'll need to find another pilot.\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:53
+#: dat/missions/neutral/race1.lua:54
 msgid ""
 "The laid back person comes up to you and hands you a credit chip. \n"
 "\n"
 "\"Nice racing! Here's your prize money. Let's race again sometime soon!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:57 dat/missions/neutral/race2.lua:60
+#: dat/missions/neutral/race1.lua:58 dat/missions/neutral/race2.lua:61
 msgid "\"Because you left the race, you have been disqualified.\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:59 dat/missions/neutral/race2.lua:62
+#: dat/missions/neutral/race1.lua:60 dat/missions/neutral/race2.lua:63
 msgid ""
 "As you congratulate the winner on a great race, the laid back person comes "
 "up to you.\n"
@@ -34380,74 +34380,74 @@ msgid ""
 "you'll win next time!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:63 dat/missions/neutral/race2.lua:66
+#: dat/missions/neutral/race1.lua:64 dat/missions/neutral/race2.lua:67
 msgid "A laid back person"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:64
+#: dat/missions/neutral/race1.lua:65
 msgid ""
 "You see a laid back person, who appears to be one of the locals, looking "
 "around the bar."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:66
+#: dat/missions/neutral/race1.lua:67
 msgid "You're participating in a race!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:68
-msgid "Racing Skills 1"
-msgstr ""
-
-#: dat/missions/neutral/race1.lua:70 dat/missions/neutral/race2.lua:73
-msgid "Board checkpoint 1"
+#: dat/missions/neutral/race1.lua:69 dat/missions/neutral/race2.lua:72
+msgid "Racing Skills"
 msgstr ""
 
 #: dat/missions/neutral/race1.lua:71 dat/missions/neutral/race2.lua:74
-msgid "Board checkpoint 2"
+msgid "Board checkpoint 1"
 msgstr ""
 
 #: dat/missions/neutral/race1.lua:72 dat/missions/neutral/race2.lua:75
-msgid "Board checkpoint 3"
+msgid "Board checkpoint 2"
 msgstr ""
 
 #: dat/missions/neutral/race1.lua:73 dat/missions/neutral/race2.lua:76
+msgid "Board checkpoint 3"
+msgstr ""
+
+#: dat/missions/neutral/race1.lua:74 dat/missions/neutral/race2.lua:77
 #: dat/missions/soromid/comingout/srm_comingout3.lua:208
 #: dat/missions/soromid/comingout/srm_comingout4.lua:231
 #, lua-format
 msgid "Land on %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:76 dat/missions/neutral/race2.lua:79
+#: dat/missions/neutral/race1.lua:77 dat/missions/neutral/race2.lua:80
 msgid "Let's do this!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:77 dat/missions/neutral/race2.lua:80
+#: dat/missions/neutral/race1.lua:78 dat/missions/neutral/race2.lua:81
 msgid "Wooo!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:78 dat/missions/neutral/race2.lua:81
+#: dat/missions/neutral/race1.lua:79 dat/missions/neutral/race2.lua:82
 msgid "Time to Shake 'n Bake"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:79 dat/missions/neutral/race2.lua:82
+#: dat/missions/neutral/race1.lua:80 dat/missions/neutral/race2.lua:83
 #, lua-format
 msgid "Checkpoint %s baby!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:80 dat/missions/neutral/race2.lua:83
+#: dat/missions/neutral/race1.lua:81 dat/missions/neutral/race2.lua:84
 msgid "Hooyah"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:81 dat/missions/neutral/race2.lua:84
+#: dat/missions/neutral/race1.lua:82 dat/missions/neutral/race2.lua:85
 msgid "Next!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:85 dat/missions/neutral/race2.lua:88
+#: dat/missions/neutral/race1.lua:86 dat/missions/neutral/race2.lua:89
 #, lua-format
 msgid "%s just reached checkpoint %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:86 dat/missions/neutral/race2.lua:89
+#: dat/missions/neutral/race1.lua:87 dat/missions/neutral/race2.lua:90
 #, lua-format
 msgid "%s just landed at %s and finished the race"
 msgstr ""
@@ -34508,37 +34508,39 @@ msgstr "프론티어 시스템"
 #. -- DESCRIPTION: A person asks you to join a race, where you fly to various checkpoints and board them before landing back at the starting planet
 #. --
 #. --
-#: dat/missions/neutral/race2.lua:41
-msgid "\"Hey there, great to see you back! You want to have another race?\""
+#: dat/missions/neutral/race2.lua:42
+msgid ""
+"\"Hey there, it looks like you've participated in our races before. Great to "
+"see you back! You want to have another race?\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:43
+#: dat/missions/neutral/race2.lua:44
 msgid ""
 "\"There are two races you can participate in: a casual one, which is like "
-"the first race we had, or the competitive one one with smaller checkpoints "
-"and stronger competition. The casual one has a prize of {casualcredits}, and "
-"the competitive one has a prize of {competitivecredits}. Which one do you "
-"want to do?\""
+"the races we had before the Melendez sponsorship, or the competitive one one "
+"with smaller checkpoints and stronger competition. The casual one has a "
+"prize of {casualcredits}, and the competitive one has a prize of "
+"{competitivecredits}. Which one do you want to do?\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:45
+#: dat/missions/neutral/race2.lua:46
 msgid ""
 "\"You want a challenge huh? We'll all be trying our best, so good luck!\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:47
+#: dat/missions/neutral/race2.lua:48
 msgid "Casual"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:48
+#: dat/missions/neutral/race2.lua:49
 msgid "Competitive"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:50
+#: dat/missions/neutral/race2.lua:51
 msgid "\"Let's go have some fun then!\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:58
+#: dat/missions/neutral/race2.lua:59
 msgid ""
 "A man in a suit and tie takes you up onto a stage. A large name tag on his "
 "jacket says 'Melendez Corporation'. \"Congratulations on your win,\" he "
@@ -34548,21 +34550,17 @@ msgid ""
 "credit chip with the actual prize money on it."
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:67
+#: dat/missions/neutral/race2.lua:68
 msgid ""
 "You see a laid back person, who appears to be one of the locals, looking "
 "around the bar, apparently in search of a suitable pilot."
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:69
+#: dat/missions/neutral/race2.lua:70
 msgid "You're participating in another race!"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:71
-msgid "Racing Skills 2"
-msgstr ""
-
-#: dat/missions/neutral/race2.lua:87
+#: dat/missions/neutral/race2.lua:88
 msgid ""
 "This race is sponsored by Melendez Corporation. Problem-free ships for "
 "problem-free voyages!"
@@ -41606,6 +41604,10 @@ msgstr ""
 #, fuzzy
 msgid "Time limit: {time}"
 msgstr "저지름: %s"
+
+#: dat/scripts/escorthelper.lua:24
+msgid "Select the order to give to your escorts."
+msgstr ""
 
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:29
 msgid "Attack Target"
