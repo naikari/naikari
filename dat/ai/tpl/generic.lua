@@ -443,7 +443,7 @@ end
 
 -- Finishes create stuff like choose attack and prepare plans
 function create_post ()
-   mem.tookoff    = ai.pilot():flags().takingoff
+   mem.tookoff = ai.pilot():flags().takingoff
    attack_choose()
 end
 
@@ -454,14 +454,16 @@ end
 
 
 -- Handle distress signals
-function distress ( pilot, attacker )
+function distress(distresser, attacker)
+   local aipilot = ai.pilot()
+
    -- Make sure target exists
    if not attacker:exists() then
       return
    end
 
    -- Make sure pilot is setting their target properly
-   if pilot == attacker then
+   if distresser == attacker then
       return
    end
 
@@ -470,16 +472,21 @@ function distress ( pilot, attacker )
       return
    end
 
-   local pfact  = pilot:faction()
-   local afact  = attacker:faction()
-   local aifact = ai.pilot():faction()
-   local p_ally  = aifact:areAllies(pfact)
-   local a_ally  = aifact:areAllies(afact)
-   local p_enemy = aifact:areEnemies(pfact)
+   -- Player's followers don't help anyone
+   if aipilot:leader() == player.pilot() then
+      return
+   end
+
+   local dfact = distresser:faction()
+   local afact = attacker:faction()
+   local aifact = aipilot:faction()
+   local d_ally = aifact:areAllies(dfact)
+   local a_ally = aifact:areAllies(afact)
+   local d_enemy = aifact:areEnemies(dfact)
    local a_enemy = aifact:areEnemies(afact)
 
    -- Ships should always defend their brethren.
-   if pfact == aifact then
+   if dfact == aifact then
       -- We don't want to cause a complete breakdown in social order.
       if afact == aifact then
          return
@@ -489,8 +496,8 @@ function distress ( pilot, attacker )
    elseif mem.aggressive then
       -- Aggressive ships follow their brethren into battle!
       if afact == aifact then
-         t = pilot
-      elseif p_ally then
+         t = distresser
+      elseif d_ally then
          -- When your allies are fighting, stay out of it.
          if a_ally then
             return
@@ -500,25 +507,25 @@ function distress ( pilot, attacker )
          t = attacker
       -- Victim isn't an ally. Attack the victim if the attacker is our ally.
       elseif a_ally then
-         t = pilot
-      elseif p_enemy then
+         t = distresser
+      elseif d_enemy then
          -- If they're both enemies, may as well let them destroy each other.
          if a_enemy then
             return
          end
 
-         t = pilot
+         t = distresser
       elseif a_enemy then
          t = attacker
       -- We'll be nice and go after the aggressor if the victim is peaceful.
-      elseif not pilot:memory().aggressive then
+      elseif not distresser:memory().aggressive then
          t = attacker
       -- An aggressive, neutral ship is fighting another neutral ship. Who cares?
       else
          return
       end
    -- Non-aggressive ships will flee if their enemies attack neutral or allied vessels.
-   elseif a_enemy and not p_enemy then
+   elseif a_enemy and not d_enemy then
       t = attacker
    else
       return
@@ -532,19 +539,20 @@ function distress ( pilot, attacker )
       local target = ai.taskdata()
 
       if not target:exists() or ai.dist(target) > ai.dist(t) then
-         if ai.pilot():inrange( t ) then
-            ai.pushtask( "attack", t )
+         if aipilot:inrange(t) then
+            ai.pushtask("attack", t)
          end
       end
    -- If not fleeing or refueling, begin attacking
    elseif task ~= "runaway" and task ~= "refuel" then
       if not si.noattack and mem.aggressive then
-         if ai.pilot():inrange( t ) then -- TODO: something to help in the other case
-            clean_task( task )
-            ai.pushtask( "attack", t )
+         -- TODO: something to help in the other case
+         if aipilot:inrange(t) then
+            clean_task(task)
+            ai.pushtask("attack", t)
          end
       else
-         ai.pushtask( "runaway", t )
+         ai.pushtask("runaway", t)
       end
    end
 end
