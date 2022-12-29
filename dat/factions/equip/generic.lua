@@ -121,10 +121,10 @@ equip_classOutfits_engines = {
       "Melendez Mammoth XL Engine",
    },
    ["Drone"] = {
-      "Nexus Dart 150 Engine",
+      "Tricon Zephyr Engine",
    },
    ["Heavy Drone"] = {
-      "Unicorp Hawk 300 Engine",
+      "Tricon Zephyr II Engine",
    },
    ["Station"] = false,
 }
@@ -175,10 +175,10 @@ equip_classOutfits_hulls = {
       "Unicorp D-72 Heavy Plating", "S&K Superheavy Combat Plating"
    },
    ["Drone"] = {
-      "S&K Ultralight Stealth Plating"
+      "S&K Ultralight Combat Plating"
    },
    ["Heavy Drone"] = {
-      "S&K Light Stealth Plating"
+      "S&K Light Combat Plating"
    },
    ["Station"] = false,
 }
@@ -358,6 +358,7 @@ equip_classOutfits_weapons = {
    },
    ["Heavy Drone"] = {
       {
+         num = 2;
          "Heavy Neutron Disruptor",
       },
       {
@@ -491,7 +492,11 @@ equip_classOutfits_utilities = {
    ["Heavy Drone"] = {
       {
          num = 1;
-         "Unicorp Scrambler"
+         "Sensor Array"
+      },
+      {
+         num = 1;
+         "Reverse Thrusters"
       },
       {
          "Reactor Class I"
@@ -604,13 +609,13 @@ equip_classOutfits_structurals = {
    },
    ["Drone"] = {
       {
-         "Steering Thrusters"
+         "Engine Reroute"
       },
    },
    ["Heavy Drone"] = {
       {
-         num = 1;
-         "Battery"
+         num = 2;
+         "Engine Reroute"
       },
       {
          "Steering Thrusters"
