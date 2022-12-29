@@ -12,7 +12,7 @@
   <cpu>-35</cpu>
  </general>
  <specific type="bolt">
-  <gfx>teslaL.webp</gfx>
+  <gfx>plasma4.webp</gfx>
   <sound>mass</sound>
   <sound_hit>medexp0</sound_hit>
   <spfx_shield>ShiM</spfx_shield>
