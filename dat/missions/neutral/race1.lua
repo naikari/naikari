@@ -49,8 +49,6 @@ checkpoint_text = _("Checkpoint {prev} reached. Proceed to Checkpoint {next}.")
 
 checkpoint_final_text = _("Checkpoint {prev} reached. Land on {planet}.")
 
-refusetext = _([["I guess we'll need to find another pilot."]])
-
 wintext = _([[The laid back person comes up to you and hands you a credit chip. 
 
 "Nice racing! Here's your prize money. Let's race again sometime soon!"]])
@@ -109,7 +107,7 @@ function accept ()
       tk.msg("", fmt.f(yes_text, {planet=curplanet:name()}))
       hook.takeoff("takeoff")
    else
-      tk.msg("", refusetext)
+      misn.finish()
    end
 end
 
