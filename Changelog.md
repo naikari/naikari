@@ -1,5 +1,15 @@
 # NAIKARI CHANGELOG
 
+## 0.6.0
+
+* Made the Collective drones stronger. (They were previously nerfed so
+  they wouldn't be too frustrating in the old Collective campaign.)
+* Changed generic cargo missions to have a special set of messages and a
+  small faction standing boost for the destination planet's faction if
+  they were high-tier ("Urgent" or "Emergency" in the case of rush cargo
+  missions, "large cargo delivery" or "bulk freight delivery" in the
+  case of regular cargo missions).
+
 ## 0.5.1
 
 * Fixed a breakage in the Collective AI initialization code.
