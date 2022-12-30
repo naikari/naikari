@@ -1,5 +1,9 @@
 # NAIKARI CHANGELOG
 
+## 0.5.1
+
+* Fixed a breakage in the Collective AI initialization code.
+
 ## 0.5.0
 
 ### Major Gameplay and Design Changes
