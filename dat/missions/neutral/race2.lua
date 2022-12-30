@@ -315,6 +315,9 @@ function land()
       if racers[1]:exists() and racers[2]:exists() and racers[3]:exists() then
          tk.msg("", fmt.f(wintext, {credits=fmt.credits(credits)}))
          player.pay(credits)
+         if choice == 2 then
+            var.push("racing_done", true)
+         end
          misn.finish(true)
       else
          tk.msg("", lose_text)

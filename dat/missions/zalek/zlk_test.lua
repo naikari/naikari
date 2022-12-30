@@ -197,6 +197,7 @@ function land()
          end
          player.pay(deposit, "adjust")
          player.pay(reward)
+         var.push("zalek_test_done", true)
          misn.finish(true)
       else
          if remove_engine() then

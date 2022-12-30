@@ -99,6 +99,9 @@ mhint_articles = {
       text = _([[Races organized by a group of enthusiasts have really caught on all across the galaxy, leading to sponsorship of huge sums of prize money from Melendez Corporation. "It's exciting," one of the organizers said. "We still run the casual races for people who are new to the sport, but Melendez really offers a big check to the winners of the sponsored races! Competition is high, and that's something I really like seeing." Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
       mission = "Racing Skills 2",
       done = "Racing Skills 1",
+      cond = function()
+         return not var.peek("racing_done")
+      end
    },
    {
       title = _("Mercenary Registrations Skyrocket"),
@@ -126,7 +129,8 @@ mhint_articles = {
       mission = "Za'lek Test",
       cond = function()
          return (player.numOutfit("Mercenary License") > 0
-            and faction.playerStanding("Za'lek") >= 5)
+            and faction.playerStanding("Za'lek") >= 5
+            and not var.peek("zalek_test_done"))
       end
    },
 }
