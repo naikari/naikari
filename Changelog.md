@@ -2,6 +2,11 @@
 
 ## 0.5.1
 
+* Made it so that the player's escorts do not respond to AI distress
+  calls. This prevents annoying situations where they pull away from
+  formation unnecessarily or, worse, go to help an ally against a
+  faction who's an enemy to them, but who you would rather remain
+  neutral with.
 * Fixed a breakage in the Collective AI initialization code.
 
 ## 0.5.0
