@@ -12,15 +12,15 @@ last = "idle"
 
 -- Faction-specific songs.
 factional = {
-   Collective = {"collective1", "automat"},
+   Collective = {"collective1", "automat", "ambient4", "terminal", "eureka"},
    Pirate = {"pirate1_theme1", "pirates_orchestra", "ambient4", "terminal"},
-   Empire = {"empire1", "empire2"; add_neutral = true},
+   Empire = {"empire1", "empire2", "intro"; add_neutral = true},
    Goddard = {"empire1", "empire2"; add_neutral = true},
    Sirius = {"sirius1", "sirius2"; add_neutral = true},
    Dvaered = {"dvaered1", "dvaered2"; add_neutral = true},
    ["Za'lek"] = {"zalek1", "zalek2"; add_neutral = true},
    Thurion = {"motherload", "dark_city", add_neutral = true},
-   Proteron = {"heartofmachine", "imminent_threat", "ambient4"},
+   Proteron = {"heartofmachine", "imminent_threat", "ambient4", "intro"},
 }
 
 -- Planet-specific songs
