@@ -184,13 +184,6 @@ function remove_engine()
       return true
    end
 
-   for i, s in ipairs(player.ships()) do
-      if outfit_mounted("Za'lek Test Engine", player.shipOutfits(s.name)) then
-         player.shipOutfitRm(s.name, "Za'lek Test Engine")
-         return true
-      end
-   end
-
    return false
 end
 
