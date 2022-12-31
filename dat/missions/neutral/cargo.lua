@@ -27,20 +27,6 @@ local fmt = require "fmt"
 require "cargo_common"
 
 
-misn_desc = {}
--- Note: indexed from 0 to match mission tiers.
-misn_desc[0] = _("Small shipment to {planet} in the {system} system.")
-misn_desc[1] = _("Medium shipment to {planet} in the {system} system.")
-misn_desc[2] = _("Sizable cargo delivery to {planet} in the {system} system.")
-misn_desc[3] = _("Large cargo delivery to {planet} in the {system} system.")
-misn_desc[4] = _("Bulk freight delivery to {planet} in the {system} system.")
-
-piracyrisk = {}
-piracyrisk[1] = _("Piracy Risk: None")
-piracyrisk[2] = _("Piracy Risk: Low")
-piracyrisk[3] = _("Piracy Risk: Medium")
-piracyrisk[4] = _("Piracy Risk: High")
-
 osd_title = _("Cargo mission")
 osd_msg = _("Land on {planet} ({system} system)")
 
@@ -54,17 +40,18 @@ function create()
       misn.finish(false)
    end
    
+   local piracyrisk, riskreward
    if avgrisk == 0 then
-      piracyrisk = piracyrisk[1]
+      piracyrisk = _("Piracy Risk: None")
       riskreward = 0
    elseif avgrisk <= 25 then
-      piracyrisk = piracyrisk[2]
+      piracyrisk = _("Piracy Risk: Low")
       riskreward = 100
    elseif avgrisk > 25 and avgrisk <= 100 then
-      piracyrisk = piracyrisk[3]
+      piracyrisk = _("Piracy Risk: Medium")
       riskreward = 200
    else
-      piracyrisk = piracyrisk[4]
+      piracyrisk = _("Piracy Risk: High")
       riskreward = 300
    end
 
@@ -79,13 +66,36 @@ function create()
             + 5000)
          * (1 + 0.05*rnd.twosigma()))
 
-   local title = n_("Cargo: {amount} kt to {planet} ({system} system)",
-         "Cargo: {amount} kt to {planet} ({system} system)", amount)
+   local title, desc
+   if tier <= 0 then
+      title = n_("Small Cargo: {amount} kt to {planet} ({system} system)",
+            "Small Cargo: {amount} kt to {planet} ({system} system)", amount)
+      desc = _("Small shipment to {planet} in the {system} system.")
+   elseif tier <= 1 then
+      title = n_("Medium Cargo: {amount} kt to {planet} ({system} system)",
+            "Medium Cargo: {amount} kt to {planet} ({system} system)", amount)
+      desc = _("Medium shipment to {planet} in the {system} system.")
+   elseif tier <= 2 then
+      title = n_("Sizable Cargo: {amount} kt to {planet} ({system} system)",
+            "Sizable Cargo: {amount} kt to {planet} ({system} system)", amount)
+      desc = _("Sizable cargo delivery to {planet} in the {system} system.")
+   elseif tier <= 3 then
+      title = n_("Large Cargo: {amount} kt to {planet} ({system} system)",
+            "Large Cargo: {amount} kt to {planet} ({system} system)", amount)
+      desc = _("Large cargo delivery to {planet} in the {system} system.")
+   else
+      title = n_(
+            "Bulk Cargo: {amount} kt to {planet} ({system} system)",
+            "Bulk Cargo: {amount} kt to {planet} ({system} system)",
+            amount)
+      desc = _("Bulk freight delivery to {planet} in the {system} system.")
+   end
+
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name(),
             amount=fmt.number(amount)}))
    misn.markerAdd(destsys, "computer")
-   cargo_setDesc(fmt.f(misn_desc[tier],
+   cargo_setDesc(fmt.f(desc,
             {planet=destplanet:name(), system=destsys:name()}),
          cargo, amount, destplanet, numjumps, nil, piracyrisk);
    misn.setReward(fmt.credits(reward))

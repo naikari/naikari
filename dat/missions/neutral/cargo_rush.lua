@@ -27,12 +27,6 @@ local fmt = require "fmt"
 require "cargo_common"
 
 
-piracyrisk = {}
-piracyrisk[1] = _("Piracy Risk: None")
-piracyrisk[2] = _("Piracy Risk: Low")
-piracyrisk[3] = _("Piracy Risk: Medium")
-piracyrisk[4] = _("Piracy Risk: High")
-
 msg_timeup = _("The delivery to {system} has been canceled! You were too late.")
 
 osd_title = _("Rush cargo mission")
@@ -66,17 +60,18 @@ function create()
    timelimit = time.get() + time.create(0, 0, allowance)
    timelimit2 = time.get() + time.create(0, 0, allowance * 1.2)
    
+   local piracyrisk, riskreward
    if avgrisk == 0 then
-      piracyrisk = piracyrisk[1]
+      piracyrisk = _("Piracy Risk: None")
       riskreward = 0
    elseif avgrisk <= 25 then
-      piracyrisk = piracyrisk[2]
+      piracyrisk = _("Piracy Risk: Low")
       riskreward = 150
    elseif avgrisk > 25 and avgrisk <= 100 then
-      piracyrisk = piracyrisk[3]
+      piracyrisk = _("Piracy Risk: Medium")
       riskreward = 300
    else
-      piracyrisk = piracyrisk[4]
+      piracyrisk = _("Piracy Risk: High")
       riskreward = 450
    end
    
