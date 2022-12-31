@@ -192,7 +192,7 @@ function create ()
       end)
 
    -- Create the table of system the player will visit now (to claim)
-   nbsys = rnd.rnd(5, 9) -- Total number of available systems (in case the player misses the target first time)
+   nbsys = rnd.rnd(12, 16) -- Total number of available systems (in case the player misses the target first time)
    pisys = rnd.rnd(2, 4) -- System where the target will be
    mysys = {}
 
@@ -348,6 +348,11 @@ end
 function hail(p)
    if p:leader() == player.pilot() then
       -- Don't want the player hailing their own escorts.
+      return
+   end
+   if p:faction() == faction.get("Collective") then
+      -- Don't want Collective drones to participate even if the player
+      -- is allied with them.
       return
    end
 
