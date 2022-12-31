@@ -9,6 +9,19 @@
   they were high-tier ("Urgent" or "Emergency" in the case of rush cargo
   missions, "large cargo delivery" or "bulk freight delivery" in the
   case of regular cargo missions).
+* Changed the Shroedinger's default weapon to the Razor MK1.
+* Za'lek Test mission no longer looks through your other ships to pry
+  off a Za'lek Test Engine from them (meaning you can now use them to
+  hoard these engines, if you want to).
+* Added conditions to prevent news entries for the Za'lek Test and race
+  missions from being regenerated after you've finished them.
+* Increased the number of music tracks used for the Empire and the
+  Collective.
+* Fixed the escorts in Shadow Vigil not actually defending the diplomat
+  they're supposed to be escorting.
+* Seek and Destroy mission now has its trail go cold significantly
+  slower, ensuring you always have at least three chances to catch your
+  target.
 
 ## 0.5.1
 
