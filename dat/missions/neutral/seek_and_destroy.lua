@@ -218,7 +218,7 @@ function create ()
 
    difficulty = rnd.rnd(1, #misn_title)
    local ships = ship_choices[difficulty]
-   ship = ships[rnd.rnd(1, #ships)]
+   shiptype = ships[rnd.rnd(1, #ships)]
    name = name_func()
    credits = base_reward[difficulty]
    credits = credits + 0.1*credits*rnd.sigma()
@@ -288,7 +288,7 @@ function enter ()
          pilot.toggleSpawn(false)
          pilot.clear()
 
-         target_ship = pilot.add(ship, target_faction, pos)
+         target_ship = pilot.add(shiptype, target_faction, pos)
          target_ship:rename(name)
          target_ship:setHilight()
 
