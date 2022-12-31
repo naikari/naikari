@@ -236,7 +236,8 @@ function enter()
     if system.cur() == seirsys then
         pilot.clear()
         pilot.toggleSpawn(false)
-        seiryuu = pilot.add("Starbridge", "Four Winds",
+        local f = faction.dynAdd("Mercenary", N_("Four Winds"))
+        seiryuu = pilot.add("Starbridge", f,
                 vec2.new(300, 300) + seirplanet:pos(), _("Seiryuu"),
                 {ai="trader", noequip=true})
         seiryuu:setInvincible(true)
@@ -259,7 +260,8 @@ function enter()
             pilot.toggleSpawn(false)
             player.allowLand(false, _("It's not safe to land right now."))
             -- Meet Joe, our informant.
-            joe = pilot.add("Vendetta", "Four Winds", vec2.new(-500, -4000),
+            local f = faction.dynAdd("Mercenary", N_("Four Winds"))
+            joe = pilot.add("Vendetta", f, vec2.new(-500, -4000),
                     _("Four Winds Informant"), {ai="trader"})
             joe:control()
             joe:setHilight()
@@ -318,7 +320,9 @@ function spawnSquads(highlight)
 
     squads = {}
     for i, start in ipairs(leaderstart) do
-        squads[i] = fleet.add(4, "Vendetta", "Four Winds", start,
+        local f = faction.dynAdd("Mercenary", N_("Rogue Four Winds"),
+                N_("Four Winds"))
+        squads[i] = fleet.add(4, "Vendetta", f, start,
             _("Four Winds Patrol"), {ai="baddie_norun"}, true)
     end
 
@@ -403,7 +407,9 @@ end
 
 
 function spawnGenbu(sys)
-    genbu = pilot.add("Starbridge", "Four Winds", sys, _("Genbu"),
+    local f = faction.dynAdd("Mercenary", N_("Rogue Four Winds"),
+            N_("Four Winds"))
+    genbu = pilot.add("Starbridge", f, sys, _("Genbu"),
             {ai="baddie_norun", noequip=true})
     genbu:setHostile()
     genbu:setVisplayer()
@@ -431,7 +437,9 @@ end
 
 function spawnInterceptors()
     local po
-    inters = fleet.add(3, "Lancelot", "Four Winds", genbu:pos(),
+    local f = faction.dynAdd("Mercenary", N_("Rogue Four Winds"),
+            N_("Four Winds"))
+    inters = fleet.add(3, "Lancelot", f, genbu:pos(),
             _("Four Winds Lancelot"), {ai="baddie_norun"})
     for i, p in ipairs(inters) do
         p:setHostile()

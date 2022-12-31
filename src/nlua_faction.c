@@ -754,7 +754,7 @@ static int factionL_dynAlly( lua_State *L )
  * unidiff system instead.
  *
  *    @luatparam Faction fac Dynamic faction to adjust.
- *    @luatparam Faction ally Faction to adjust enemy status of.
+ *    @luatparam Faction enemy Faction to adjust enemy status of.
  *    @luatparam[opt=true] boolean enable true to make the factions
  *       enemies, false to make the factions not enemies.
  * @luafunc dynEnemy

@@ -265,7 +265,8 @@ function enter()
     -- Handle the Seiryuu, the last stop on this mission
     if shadowrun >= 2 and system.cur() == sys2 then
         local mypos = vec2.new(-1500, 600)
-        seiryuu = pilot.add("Starbridge", "Four Winds", mypos, _("Seiryuu"),
+        local f = faction.dynAdd("Mercenary", N_("Four Winds"))
+        seiryuu = pilot.add("Starbridge", f, mypos, _("Seiryuu"),
                 {ai="trader", noequip=true})
 
         seiryuu:setActiveBoard()

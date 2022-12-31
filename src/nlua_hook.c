@@ -922,7 +922,8 @@ static int hook_trigger( lua_State *L )
  *       starting land descent). Hook parameters are the landing
  *       pilot and the planet being landed on.</li>
  *    <li>"attacked": triggered when the pilot is attacked. Hook
- *       parameters are the attacked pilot and the attacking pilot.</li>
+ *       parameters are the attacked pilot, the attacking pilot, and the
+ *       damage inflicted.</li>
  *    <li>"idle": triggered when the pilot becomes idle in manual
  *       control. Hook parameter is the idle pilot.</li>
  *    <li>"lockon": triggered when the pilot locked on a missile on its

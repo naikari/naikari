@@ -60,9 +60,7 @@ accepttext = _([["Excellent, {player}." Rebina smiles at you. "I've told my crew
 
 brief_text = _([[After finishing docking procedures, you locate and meet up with the Four Winds pilots you will be working with, and the diplomat you will be escorting. The Four Winds pilots mostly keep to themselves and curtly but politely inform you that they will meet you out in space.]])
 
-diplomat_death_text = _([[Before you can even react, the other Four Winds escorts open fire on the diplomat. By the time you've processed what's happened, the traitorous pilots are already making their escape. You wonder if you should try to capture one of the traitors and interrogate them. In any case, you will need to report what happened to Rebina.
-
-#rCONTENT WARNING: Boarding one of the Four Winds escorts will lead to an optional scene depicting graphic violence. If you wish to avoid this, you can simply ignore the Four Winds escorts and complete the next mission objective; there is no penalty for doing so.#0]])
+diplomat_death_text = _([[Before you can even react, the other Four Winds escorts open fire on the diplomat. By the time you've processed what's happened, the traitorous pilots are already making their escape. You wonder if you should try to capture one of the traitors and interrogate them. In any case, you will need to report what happened to Rebina.]])
 
 pay_text = _([[Captain Rebina angrily drums her fingers on her captain's chair as she watches the reconstruction made from your sensor logs. Her eyes narrow when the escorts suddenly open fire on the diplomatic vessel they were meant to protect. "This is bad, {player}," she says when the replay shuts down. "Worse than I had even thought possible. The death of the Imperial diplomat is going to spark a political incident, with the Empire accusing the Dvaered of treachery and the Dvaered accusing the Empire of a false-flag operation." She stands up and begins pacing up and down the Seiryuu's bridge. "But that's not the worst of it. You saw what happened. The diplomat was killed by their own escorts, by Four Winds operatives! This is an outrage!"
 
@@ -70,9 +68,7 @@ Captain Rebina brings herself back under control through an effort of will. "{pl
 
 Following this, you are swiftly escorted off the Seiryuu. Back in your cockpit, you can't help but feel a little anxious about this Four Winds. Who are they, what do they want, and what is your role in all of it? Only time will tell.]])
 
-disable_text = _([[After managing to bypass the ship's security system, you enter the cockpit and notice that the fighter has been sabotaged and might soon explode. You also see the pilot on his knees coughing painfully. He looks up at you with bulging, bloodshot eyes as he starts to speak in a groan. "Good job out there. But, you see? You won't catch me alive. The pill of silence will make sure of that."
-
-You approach the man and ask him why he killed the diplomats. "You have no idea what's going on, do you? No matter. They will–" The pilot is interrupted as he vomits, then collapses on his side motionless. You wonder if he's fully dead, but in absence of any response, you decide you should leave the ship as soon as possible before it explodes.]])
+disable_text = _([[After managing to bypass the ship's security system, you enter the cockpit and notice that the fighter has been sabotaged and might soon explode. You also see the pilot unconscious on the floor. After verifying by checking his vitals that he is already dead, you make a run for it so you don't get caught in the ensuing explosion.]])
 
 disable_again_text = _([[You try to board another one of the Four Winds escorts hoping for a more successful interrogation, but the ship begins self-destructing before you can complete docking procedures.]])
 
@@ -238,7 +234,8 @@ function enter()
         pilot.toggleSpawn(false)
         pilot.clear()
 
-        seiryuu = pilot.add("Starbridge", "Four Winds", vec2.new(1500, -2000),
+        local f = faction.dynAdd("Mercenary", N_("Four Winds"))
+        seiryuu = pilot.add("Starbridge", f, vec2.new(1500, -2000),
                 _("Seiryuu"), {ai="trader", noequip=true})
         seiryuu:control()
         seiryuu:setActiveBoard()
@@ -255,7 +252,9 @@ function spawnDiplomat()
     local diplomat = pilot.add("Gawain", "Civilian", origin,
             _("Imperial Diplomat"), {naked=true})
 
-    local escorts = fleet.add(3, "Vendetta", "Mercenary", origin,
+    local f = faction.dynAdd("Mercenary", N_("Four Winds"))
+    f:dynEnemy(faction.get("Pirate"))
+    local escorts = fleet.add(3, "Vendetta", f, origin,
             _("Four Winds Escort"), {ai="escort"}, diplomat)
     for i, p in ipairs(escorts) do
         p:setInvincible()
@@ -283,6 +282,7 @@ function spawnDiplomat()
         diplomat:outfitAdd("Shield Capacitor", 2)
 
         diplomat:hyperspace(getNextSystem(system.cur(), destsys))
+        hook.pilot(diplomat, "attacked", "diplomat_attacked", escorts)
     end
 
     diplomat:setHealth(100, 100)
@@ -298,6 +298,7 @@ function spawnDiplomat()
     diplomat:memory().nosteal = true
 
     jumped = false
+    diplomat_shutup = false
 
     hook.pilot(diplomat, "death", "diplomat_death", escorts)
     hook.pilot(diplomat, "jump", "diplomat_jump", escorts)
@@ -322,6 +323,26 @@ function traitor_timer(leader)
 end
 
 
+function diplomat_attacked(leader, attacker, damage, escorts)
+    if diplomat_shutup then
+        return
+    end
+
+    leader:broadcast(_("Diplomatic vessel under attack! Requesting assistance!"))
+    for i, p in ipairs(escorts) do
+        leader:msg(p, "e_attack", attacker)
+    end
+
+    diplomat_shutup = true
+    hook.timer(5, "diplomat_shutup_timer")
+end
+
+
+function diplomat_shutup_timer()
+    diplomat_shutup = false
+end
+
+
 function diplomat_death(leader, attacker, escorts)
     for i, p in ipairs(escorts) do
         if p:exists() then
@@ -329,7 +350,7 @@ function diplomat_death(leader, attacker, escorts)
             p:setVisplayer(false)
             p:control()
             p:hyperspace()
-            hook.pilot(p, "board", "boarded_escort")
+            hook.pilot(p, "board", "board_escort")
         end
     end
 
