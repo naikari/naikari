@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Photon Dagger">
+ <general>
+  <slot>weapon</slot>
+  <size>small</size>
+  <mass>9</mass>
+  <price>9600</price>
+  <description>The Photon Dagger is the most basic secondary weapon available, and often the one a pilot uses first. That said, it should not be underestimated. While it has a slow rate of fire and is difficult to aim due to its lack of swivel, it can be devastating in the hands of a skilled pilot.</description>
+  <gfx_store>photon_dagger.png</gfx_store>
+  <cpu>-5</cpu>
+  </general>
+ <specific type="bolt" secondary="1">
+  <gfx>laser3S.png</gfx>
+  <sound>photon</sound>
+  <sound_hit>empexplode</sound_hit>
+  <spfx_shield>ShiS</spfx_shield>
+  <spfx_armour>ExpS</spfx_armour>
+  <delay>5</delay>
+  <speed>1500</speed>
+  <range blowup="shield">1200</range>
+  <energy>16</energy>
+  <heatup>80</heatup>
+  <rdr_range>0</rdr_range>
+  <rdr_range_max>0</rdr_range_max>
+  <swivel>0</swivel>
+  <damage>
+   <type>ion</type>
+   <penetrate>12</penetrate>
+   <physical>160</physical>
+   <disable>4</disable>
+  </damage>
+ </specific>
+</outfit>
