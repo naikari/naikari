@@ -924,6 +924,7 @@ credits_t player_modCredits( credits_t amount )
 void player_render( double dt )
 {
    double a, b, d, x1, y1, x2, y2, r, theta;
+   int zero_swivel;
    double time;
    int i;
    int inrange;
@@ -965,6 +966,7 @@ void player_render( double dt )
             inrange = 0;
 
             theta = 2*M_PI;
+            zero_swivel = 0;
 
             for (i=0; i<array_size(player.p->outfit_weapon); i++) {
                o = player.p->outfit_weapon[i].outfit;
@@ -986,12 +988,24 @@ void player_render( double dt )
                if (outfit_isTurret(o))
                   continue;
 
-               if (outfit_isBolt(o))
-                  theta = MIN(theta, o->u.blt.swivel);
-               else if (outfit_isBeam(o))
-                  theta = MIN(theta, o->u.bem.swivel);
-               else if (outfit_isLauncher(o))
-                  theta = MIN(theta, MAX(o->u.lau.swivel, o->u.lau.arc));
+               if (outfit_isBolt(o)) {
+                  if (o->u.blt.swivel > 0)
+                     theta = MIN(theta, o->u.blt.swivel);
+                  else
+                     zero_swivel = 1;
+               }
+               else if (outfit_isBeam(o)) {
+                  if (o->u.bem.swivel > 0)
+                     theta = MIN(theta, o->u.bem.swivel);
+                  else
+                     zero_swivel = 1;
+               }
+               else if (outfit_isLauncher(o)) {
+                  if (o->u.lau.arc > 0)
+                     theta = MIN(theta, MAX(o->u.lau.swivel, o->u.lau.arc));
+                  else
+                     zero_swivel = 1;
+               }
             }
 
             /* Reasonable defaults. */
@@ -1001,21 +1015,34 @@ void player_render( double dt )
             c.b = 0.;
             c.a = 1.;
 
-            if (theta < 2*M_PI) {
+            if ((theta < 2*M_PI) && (theta != 0)) {
                a = player.p->solid->dir;
 
                /* The angular error will give the exact colour that is used. */
-               d = ABS( angle_diff(a,b) / (2*theta) );
-               d = MIN( 1, d );
+               d = ABS(angle_diff(a,b) / (2*theta));
+               d = MIN(1, d);
 
                c = cInert;
-               c.a = .3;
-               gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a+theta ),
-                                      player.p->solid->pos.y + r*sin( a+theta ) );
-               gl_drawLine( x1, y1, x2, y2, &c );
-               gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a-theta ),
-                                      player.p->solid->pos.y + r*sin( a-theta ) );
-               gl_drawLine( x1, y1, x2, y2, &c );
+               c.a = 0.3;
+               gl_gameToScreenCoords(&x2, &y2,
+                     player.p->solid->pos.x + r*cos(a+theta),
+                     player.p->solid->pos.y + r*sin(a+theta));
+               gl_drawLine(x1, y1, x2, y2, &c);
+               gl_gameToScreenCoords(&x2, &y2,
+                     player.p->solid->pos.x + r*cos(a-theta),
+                     player.p->solid->pos.y + r*sin(a-theta));
+               gl_drawLine(x1, y1, x2, y2, &c);
+            }
+            else if (zero_swivel) {
+               a = player.p->solid->dir;
+
+               /* A swivel of zero means that only exactly perfect
+                * aiming is sufficient, within a margin of error. We'll
+                * treat that margin of error as pi/360, or 0.5°. */
+               d = (ABS(angle_diff(a, b)) < M_PI / 360.) ? 0. : 1.;
+
+               c = cInert;
+               c.a = 0.3;
             }
 
             if (inrange) {
