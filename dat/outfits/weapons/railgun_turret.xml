@@ -5,6 +5,7 @@
   <size>large</size>
   <mass>65</mass>
   <license>Heavy Weapon License</license>
+  <rarity>1</rarity>
   <price>155000</price>
   <description>It is natural that one weapon turned to for adaptation to capital-class weaponry was the powerful Railgun. This effort culminated in the Railgun turret which, while nowhere near as energy-efficient as the standard forward-mounted Railgun, is nonetheless invaluable to bulky Carriers.</description>
   <gfx_store>railgunturret.webp</gfx_store>

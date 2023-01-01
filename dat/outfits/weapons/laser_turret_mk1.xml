@@ -4,6 +4,7 @@
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
+  <rarity>1</rarity>
   <mass>18</mass>
   <price>17500</price>
   <description>A pair of laser cannons mounted on a rotating turret, providing excellent defensive capabilities. With a full 360 degrees of rotation, laser turrets provide affordable, energy-efficient firepower to courier vessels.</description>
