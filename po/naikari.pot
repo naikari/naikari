@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: naikari 0.5.1\n"
+"Project-Id-Version: naikari 0.5.2\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-31 22:59-0500\n"
+"POT-Creation-Date: 2023-01-01 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50514,7 +50514,7 @@ msgstr ""
 msgid "Invalid #include syntax in '%s%s'!"
 msgstr ""
 
-#: src/opengl_shader.c:254
+#: src/opengl_shader.c:266
 #, c-format
 msgid "Failed to link vertex shader '%s' and fragment shader '%s'!"
 msgstr ""

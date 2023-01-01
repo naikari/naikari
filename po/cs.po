@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-31 22:59-0500\n"
+"POT-Creation-Date: 2023-01-01 03:43-0500\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -51393,7 +51393,7 @@ msgstr ""
 msgid "Invalid #include syntax in '%s%s'!"
 msgstr ""
 
-#: src/opengl_shader.c:254
+#: src/opengl_shader.c:266
 #, c-format
 msgid "Failed to link vertex shader '%s' and fragment shader '%s'!"
 msgstr ""

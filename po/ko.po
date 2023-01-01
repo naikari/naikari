@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-31 22:59-0500\n"
+"POT-Creation-Date: 2023-01-01 03:43-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -51772,7 +51772,7 @@ msgstr "셰이더 '%s'을 (를) 찾을 수 없습니다."
 msgid "Invalid #include syntax in '%s%s'!"
 msgstr "창 정보 이름 '%s'이 (가) 잘못되었습니다."
 
-#: src/opengl_shader.c:254
+#: src/opengl_shader.c:266
 #, c-format
 msgid "Failed to link vertex shader '%s' and fragment shader '%s'!"
 msgstr ""
