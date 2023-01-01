@@ -23,6 +23,12 @@
   slower, ensuring you always have at least three chances to catch your
   target.
 
+## 0.5.2
+
+* Fixed some OpenGL code that made assumptions that are invalid in the
+  OpenGL spec, causing the game to not display on some systems as a
+  result.
+
 ## 0.5.1
 
 * Made it so that the player's escorts do not respond to AI distress
