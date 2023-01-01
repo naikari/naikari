@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-28 19:45-0500\n"
+"POT-Creation-Date: 2022-12-31 22:59-0500\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -25562,6 +25562,7 @@ msgstr ""
 #. Make sure target exists
 #. Make sure pilot is setting their target properly
 #. Don't help if bribed
+#. Player's followers don't help anyone
 #. Ships should always defend their brethren.
 #. We don't want to cause a complete breakdown in social order.
 #. Aggressive ships follow their brethren into battle!

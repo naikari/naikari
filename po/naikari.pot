@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: naikari 0.5.0\n"
+"Project-Id-Version: naikari 0.5.1\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-28 19:45-0500\n"
+"POT-Creation-Date: 2022-12-31 22:59-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19832,6 +19832,7 @@ msgstr ""
 #. Make sure target exists
 #. Make sure pilot is setting their target properly
 #. Don't help if bribed
+#. Player's followers don't help anyone
 #. Ships should always defend their brethren.
 #. We don't want to cause a complete breakdown in social order.
 #. Aggressive ships follow their brethren into battle!

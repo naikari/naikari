@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2022-12-28 19:45-0500\n"
+"POT-Creation-Date: 2022-12-31 22:59-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -20493,6 +20493,7 @@ msgstr ""
 #. Make sure target exists
 #. Make sure pilot is setting their target properly
 #. Don't help if bribed
+#. Player's followers don't help anyone
 #. Ships should always defend their brethren.
 #. We don't want to cause a complete breakdown in social order.
 #. Aggressive ships follow their brethren into battle!
