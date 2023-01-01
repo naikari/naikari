@@ -176,18 +176,25 @@ static GLuint gl_shader_compile( GLuint type, const char *buf,
    glShaderSource(shader, 1, (const char**)&buf, &length);
    glCompileShader(shader);
 
-   /* Check for compile error */
    glGetShaderiv(shader, GL_COMPILE_STATUS, &compile_status);
    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &log_length);
-   //if (GL_COMPILE_STATUS == GL_FALSE) {
+
+   /* Check for logs */
    if (log_length > 0) {
       log = malloc(log_length + 1);
       glGetShaderInfoLog(shader, log_length, &log_length, log);
-      print_with_line_numbers( buf );
-      WARN("%s\n%s\n", filename, log);
+      print_with_line_numbers(buf);
+      if (compile_status == GL_FALSE)
+         WARN("%s\n%s\n", filename, log);
+      else
+         DEBUG("%s\n%s", filename, log);
       free(log);
-      shader = 0;
    }
+
+   /* Check for compile error */
+   if (compile_status == GL_FALSE)
+      shader = 0;
+
    gl_checkErr();
    return shader;
 }
@@ -206,18 +213,23 @@ static int gl_program_link( GLuint program )
 
    glLinkProgram(program);
 
-   /* Check for linking error */
    glGetProgramiv(program, GL_LINK_STATUS, &link_status);
    glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_length);
-   //if (link_status == GL_FALSE) {
+
+   /* Check for logs */
    if (log_length > 0) {
-      glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_length);
       log = malloc(log_length + 1);
       glGetProgramInfoLog(program, log_length, &log_length, log);
-      WARN("%s\n", log);
+      if (link_status == GL_FALSE)
+         WARN("%s\n", log);
+      else
+         DEBUG("%s", log);
       free(log);
-      return -1;
    }
+
+   /* Check for linking error */
+   if (link_status == GL_FALSE)
+      return -1;
 
    return 0;
 }
