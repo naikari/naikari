@@ -12,48 +12,13 @@
  </pos>
  <assets/>
  <jumps>
-  <jump target="Aesir">
-   <pos x="9289.595515" y="-3698.712492"/>
-   <hidden/>
-   <longrange/>
-  </jump>
-  <jump target="Dvaer">
-   <pos x="4655.021503" y="-8815.217823"/>
-   <hidden/>
-   <longrange/>
-  </jump>
-  <jump target="Gamma Polaris">
-   <pos x="-9984.038558" y="-356.098622"/>
-   <hidden/>
-   <longrange/>
-  </jump>
   <jump target="Gomyo">
    <pos x="9921.403503" y="1219.795158"/>
    <hidden/>
    <longrange/>
   </jump>
-  <jump target="Haleb">
-   <pos x="-156.864934" y="-9993.217269"/>
-   <hidden/>
-   <longrange/>
-  </jump>
-  <jump target="Point Zero">
-   <pos x="-7286.582764" y="6833.860733"/>
-   <hidden/>
-   <longrange/>
-  </jump>
-  <jump target="Protera">
-   <pos x="8016.881463" y="5952.238442"/>
-   <hidden/>
-   <longrange/>
-  </jump>
   <jump target="Sol">
    <pos x="18.858185" y="9969.739255"/>
-   <longrange/>
-  </jump>
-  <jump target="Za'lek">
-   <pos x="-6510.379507" y="-7543.217495"/>
-   <hidden/>
    <longrange/>
   </jump>
  </jumps>

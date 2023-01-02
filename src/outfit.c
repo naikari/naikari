@@ -2094,10 +2094,9 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s)
  */
 static void outfit_parseSMap( Outfit *temp, const xmlNodePtr parent )
 {
-   int i, j;
    xmlNodePtr node, cur;
    char *buf;
-   StarSystem *sys, *system_stack;
+   StarSystem *sys;
    Planet *asset;
    JumpPoint *jump;
 
@@ -2107,8 +2106,9 @@ static void outfit_parseSMap( Outfit *temp, const xmlNodePtr parent )
    temp->slot.size         = OUTFIT_SLOT_SIZE_NA;
 
    temp->u.map->systems = array_create(StarSystem*);
-   temp->u.map->assets  = array_create(Planet*);
-   temp->u.map->jumps   = array_create(JumpPoint*);
+   temp->u.map->assets = array_create(Planet*);
+   temp->u.map->jumps = array_create(JumpPoint);
+   temp->u.map->all = 0;
 
    do {
       xml_onlyNodes(node);
@@ -2136,7 +2136,7 @@ static void outfit_parseSMap( Outfit *temp, const xmlNodePtr parent )
                   buf = xml_get(cur);
                   if ((buf != NULL) && ((jump = jump_get(xml_get(cur),
                         temp->u.map->systems[array_size(temp->u.map->systems)-1] )) != NULL))
-                     array_grow( &temp->u.map->jumps ) = jump;
+                     array_grow(&temp->u.map->jumps) = *jump;
                   else
                      WARN(_("Map '%s' has invalid jump point '%s'"), temp->name, buf);
                }
@@ -2153,23 +2153,17 @@ static void outfit_parseSMap( Outfit *temp, const xmlNodePtr parent )
          temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
          snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX, "%s", xml_get(node) );
       }
-      else if (xml_isNode(node,"all")) { /* Add everything to the map */
-         system_stack = system_getAll();
-         for (i=0;i<array_size(system_stack);i++) {
-            array_grow( &temp->u.map->systems ) = &system_stack[i];
-            for (j=0;j<array_size(system_stack[i].planets);j++)
-               array_grow( &temp->u.map->assets ) = system_stack[i].planets[j];
-            for (j=0;j<array_size(system_stack[i].jumps);j++)
-               array_grow( &temp->u.map->jumps ) = &system_stack[i].jumps[j];
-         }
+      else if (xml_isNode(node, "all")) {
+         /* Maps marked as giving full knowledge get special handling. */
+         temp->u.map->all = 1;
       }
       else
          WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
    } while (xml_nextNode(node));
 
-   array_shrink( &temp->u.map->systems );
-   array_shrink( &temp->u.map->assets  );
-   array_shrink( &temp->u.map->jumps   );
+   array_shrink(&temp->u.map->systems);
+   array_shrink(&temp->u.map->assets);
+   array_shrink(&temp->u.map->jumps);
 
    if (temp->desc_short == NULL) {
       /* Set short description based on type. */

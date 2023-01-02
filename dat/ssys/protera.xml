@@ -27,11 +27,6 @@
   <jump target="Haered">
    <autopos/>
   </jump>
-  <jump target="Hypergate Zone">
-   <pos x="3136.406227" y="1806.096197"/>
-   <hidden/>
-   <longrange/>
-  </jump>
   <jump target="Hystera">
    <autopos/>
   </jump>

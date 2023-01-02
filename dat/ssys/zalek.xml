@@ -33,11 +33,6 @@
   <jump target="Hideyoshi's Star">
    <autopos/>
   </jump>
-  <jump target="Hypergate Zone">
-   <pos x="11313.707861" y="8027.218937"/>
-   <hidden/>
-   <longrange/>
-  </jump>
   <jump target="Qulam">
    <autopos/>
   </jump>

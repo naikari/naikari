@@ -2239,43 +2239,20 @@ int system_rmPlanet( StarSystem *sys, const char *planetname )
    return 0;
 }
 
-/**
- * @brief Adds a jump point to a star system from a diff.
- *
- * Note that economy_execQueued should always be run after this.
- *
- *    @param sys Star System to add jump point to.
- *    @param node Parent node containing jump point information.
- *    @return 0 on success.
- */
-int system_addJumpDiff( StarSystem *sys, xmlNodePtr node )
-{
-   if (system_parseJumpPointDiff(node, sys) <= -1)
-      return 0;
-   systems_reconstructJumps();
-   economy_addQueuedUpdate();
-
-   return 1;
-}
-
 
 /**
  * @brief Adds a jump point to a star system.
  *
- * Note that economy_execQueued should always be run after this.
+ * Note that systems_reconstructJumps, economy_addQueuedUpdate, and
+ * economy_execQueued should always be run after this.
  *
  *    @param sys Star System to add jump point to.
  *    @param node Parent node containing jump point information.
  *    @return 0 on success.
  */
-int system_addJump( StarSystem *sys, xmlNodePtr node )
+int system_addJump(StarSystem *sys, xmlNodePtr node)
 {
-   if (system_parseJumpPoint(node, sys) <= -1)
-      return 0;
-   systems_reconstructJumps();
-   economy_refresh();
-
-   return 1;
+   return system_parseJumpPointDiff(node, sys);
 }
 
 
@@ -2638,26 +2615,26 @@ static int system_parseJumpPointDiff( const xmlNodePtr node, StarSystem *sys )
    memset( j, 0, sizeof(JumpPoint) );
 
    /* Handle jump point position. We want both x and y, or we autoposition the jump point. */
-   xmlr_attr_float_def( node, "x", x, HUGE_VAL );
-   xmlr_attr_float_def( node, "y", y, HUGE_VAL );
+   xmlr_attr_float_def(node, "x", x, HUGE_VAL);
+   xmlr_attr_float_def(node, "y", y, HUGE_VAL);
 
    /* Handle jump point settings. */
-   xmlr_attr_strd( node, "hidden", buf );
-   if (strcmp(buf, "yes") == 0)
-      jp_setFlag(j,JP_HIDDEN);
-   free( buf );
-   xmlr_attr_strd( node, "exitonly", buf );
-   if (strcmp(buf, "yes") == 0)
-      jp_setFlag(j,JP_EXITONLY);
-   free( buf );
-   xmlr_attr_strd( node, "express", buf );
-   if (strcmp(buf, "yes") == 0)
-      jp_setFlag(j,JP_EXPRESS);
-   free( buf );
-   xmlr_attr_strd( node, "longrange", buf );
-   if (strcmp(buf, "yes") == 0)
-      jp_setFlag(j,JP_LONGRANGE);
-   free( buf );
+   xmlr_attr_strd(node, "hidden", buf);
+   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
+      jp_setFlag(j, JP_HIDDEN);
+   free(buf);
+   xmlr_attr_strd(node, "exitonly", buf);
+   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
+      jp_setFlag(j, JP_EXITONLY);
+   free(buf);
+   xmlr_attr_strd(node, "express", buf);
+   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
+      jp_setFlag(j, JP_EXPRESS);
+   free(buf);
+   xmlr_attr_strd(node, "longrange", buf);
+   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
+      jp_setFlag(j, JP_LONGRANGE);
+   free(buf);
 
    xmlr_attr_float_def(node, "rdr_range_mod", j->rdr_range_mod, 0);
 

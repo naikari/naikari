@@ -2772,15 +2772,32 @@ StarSystem** map_getJumpPath( const char* sysstart, const char* sysend,
 
 
 /**
- * @brief Marks maps around a radius of currently system as known.
+ * @brief Marks a map's designated systems/assets/jumps as known.
  *
  *    @param targ_sys System at center of the "known" circle.
  *    @param r Radius (in jumps) to mark as known.
- *    @return 0 on success.
+ *    @return 1 on success.
  */
 int map_map( const Outfit *map )
 {
-   int i;
+   int i, j;
+   StarSystem *system_stack;
+   JumpPoint *jump;
+
+   /* Special handling if the map shows all. */
+   if (map->u.map->all) {
+      system_stack = system_getAll();
+      for (i=0; i<array_size(system_stack); i++) {
+         sys_setFlag(&system_stack[i], SYSTEM_KNOWN);
+         for (j=0; j<array_size(system_stack[i].planets); j++) {
+            planet_setKnown(system_stack[i].planets[j]);
+         }
+         for (j=0; j<array_size(system_stack[i].jumps); j++) {
+            jp_setFlag(&system_stack[i].jumps[j], JP_KNOWN);
+         }
+      }
+      return 1;
+   }
 
    for (i=0; i<array_size(map->u.map->systems);i++)
       sys_setFlag(map->u.map->systems[i], SYSTEM_KNOWN);
@@ -2788,8 +2805,11 @@ int map_map( const Outfit *map )
    for (i=0; i<array_size(map->u.map->assets);i++)
       planet_setKnown(map->u.map->assets[i]);
 
-   for (i=0; i<array_size(map->u.map->jumps);i++)
-      jp_setFlag(map->u.map->jumps[i], JP_KNOWN);
+   for (i=0; i<array_size(map->u.map->jumps);i++) {
+      jump = jump_get(map->u.map->jumps[i].target->name,
+            map->u.map->jumps[i].from);
+      jp_setFlag(jump, JP_KNOWN);
+   }
 
    return 1;
 }
@@ -2804,8 +2824,31 @@ int map_map( const Outfit *map )
  */
 int map_isUseless( const Outfit* map )
 {
-   int i;
+   int i, j;
+   StarSystem *system_stack;
    Planet *p;
+   JumpPoint *jump;
+
+   /* Special handling if the map shows all. */
+   if (map->u.map->all) {
+      system_stack = system_getAll();
+      for (i=0; i<array_size(system_stack); i++) {
+         if (!sys_isKnown(&system_stack[i]))
+            return 0;
+         for (j=0; j<array_size(system_stack[i].planets); j++) {
+            p = system_stack[i].planets[j];
+            if ((p->real != ASSET_REAL) || !planet_hasSystem(p->name))
+               continue;
+            if (!planet_isKnown(p))
+               return 0;
+         }
+         for (j=0; j<array_size(system_stack[i].jumps); j++) {
+            if (!jp_isKnown(&system_stack[i].jumps[j]))
+               return 0;
+         }
+      }
+      return 1;
+   }
 
    for (i=0; i<array_size(map->u.map->systems);i++)
       if (!sys_isKnown(map->u.map->systems[i]))
@@ -2819,9 +2862,12 @@ int map_isUseless( const Outfit* map )
          return 0;
    }
 
-   for (i=0; i<array_size(map->u.map->jumps);i++)
-      if (!jp_isKnown(map->u.map->jumps[i]))
+   for (i=0; i<array_size(map->u.map->jumps);i++) {
+      jump = jump_get(map->u.map->jumps[i].target->name,
+            map->u.map->jumps[i].from);
+      if (!jp_isKnown(jump))
          return 0;
+   }
 
    return 1;
 }
