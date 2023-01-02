@@ -1001,7 +1001,7 @@ void player_render( double dt )
                      zero_swivel = 1;
                }
                else if (outfit_isLauncher(o)) {
-                  if (o->u.lau.arc > 0)
+                  if ((o->u.lau.arc > 0) || (o->u.lau.swivel > 0))
                      theta = MIN(theta, MAX(o->u.lau.swivel, o->u.lau.arc));
                   else
                      zero_swivel = 1;
