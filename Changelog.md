@@ -22,6 +22,17 @@
 * Seek and Destroy mission now has its trail go cold significantly
   slower, ensuring you always have at least three chances to catch your
   target.
+* Adjusted rarities of outfits: outfits which are only available in
+  certain regions (but not only at military stations) now have a rarity
+  of 1. Electron Burst Cannon is now rarity 2 instead of 3, since Za'lek
+  military stations offer it.
+* Added a new outfit: the Photon Dagger. This now serves as an
+  introductory secondary weapon: it's available on all outfitters and is
+  equipped to several ships by default (including the player's starting
+  ship). It does high damage, similar to the Banshee rockets, and is
+  very fast (actually the speed of light, if you work it out), but
+  unlike the Banshee rockets, it has to be manually aimed and has a bit
+  of a shorter range.
 * Fixed the class of Vigilance Station (was class A for some reason).
 * Reworked the Dvaered warlords event so that it's more likely to show
   up, offers a higher reward, and the winners become normal Dvaered
