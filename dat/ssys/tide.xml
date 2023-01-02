@@ -10,7 +10,12 @@
   <x>761.000000</x>
   <y>221.000000</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual Dvaered Unpresence</asset>
+  <asset>Virtual Empire Unpresence</asset>
+  <asset>Virtual Proteron Unpresence</asset>
+  <asset>Virtual Za'lek Unpresence</asset>
+ </assets>
  <jumps>
   <jump target="Rotide">
    <autopos/>

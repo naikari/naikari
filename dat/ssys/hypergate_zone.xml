@@ -10,7 +10,10 @@
   <x>752.000000</x>
   <y>-31.000000</y>
  </pos>
- <assets/>
+ <assets>
+  <asset>Virtual FLF Unpresence</asset>
+  <asset>Virtual Frontier Unpresence</asset>
+ </assets>
  <jumps>
   <jump target="Gomyo">
    <pos x="9921.403503" y="1219.795158"/>
@@ -20,6 +23,7 @@
   <jump target="Sol">
    <pos x="18.858185" y="9969.739255"/>
    <longrange/>
+   <rdr_range_mod>-90.000000</rdr_range_mod>
   </jump>
  </jumps>
 </ssys>
