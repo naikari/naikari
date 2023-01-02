@@ -22,6 +22,10 @@
 * Seek and Destroy mission now has its trail go cold significantly
   slower, ensuring you always have at least three chances to catch your
   target.
+* Fixed the class of Vigilance Station (was class A for some reason).
+* Reworked the Dvaered warlords event so that it's more likely to show
+  up, offers a higher reward, and the winners become normal Dvaered
+  ships.
 
 ## 0.5.2
 
