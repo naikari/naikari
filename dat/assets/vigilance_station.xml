@@ -14,7 +14,7 @@
   <range>0</range>
  </presence>
  <general>
-  <class>A</class>
+  <class>1</class>
   <population>3000</population>
   <services>
    <land>zlk_mil_restricted</land>
