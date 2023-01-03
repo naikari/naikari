@@ -37,6 +37,7 @@
 * Reworked the Dvaered warlords event so that it's more likely to show
   up, offers a higher reward, and the winners become normal Dvaered
   ships.
+* You can now hail ships even if disabled.
 
 ## 0.5.2
 
