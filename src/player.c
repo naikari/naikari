@@ -2341,11 +2341,6 @@ static void player_planetOutOfRangeMsg (void)
  */
 void player_hail (void)
 {
-   /* Not under manual control or disabled. */
-   if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ) ||
-         pilot_isDisabled(player.p))
-      return;
-
    if (player.p->target != player.p->id)
       comm_openPilot(player.p->target);
    else if (player.p->nav_planet != -1) {
