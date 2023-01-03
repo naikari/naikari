@@ -3,7 +3,7 @@
 <event name="Preacher">
  <trigger>enter</trigger>
  <chance>1</chance>
- <cond>system.cur():presence(faction.get("Sirius"))&gt;50 and (not player.evtActive ("Preacher")) and ((var.peek("si_convert")==nil) or rnd.rnd(1,var.peek("si_convert")+1)==1)</cond>
+ <cond>system.cur():presence(faction.get("Sirius")) &gt; 50</cond>
  <flags>
   <unique />
  </flags>
@@ -112,13 +112,6 @@ dead = {
 --initialize the event
 function create()
    curr=system.cur() --save the current system
-
-   v = var.peek("si_convert") -- Get the value
-   if v == nil then -- Doesn't exist, so create
-      var.push("si_convert", 1)
-   else
-      var.push("si_convert", v+1)
-   end
 
    --start the fun when the player jumps
    hook.jumpin("funStartsSoon")
