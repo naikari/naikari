@@ -1074,6 +1074,10 @@ static void system_scheduler( double dt, int init )
       if (p->disabled)
          continue;
 
+      /* Don't spawn if presence is 0 (can happen with unidiffs). */
+      if (p->value <= 0)
+         continue;
+
       /* Run the appropriate function. */
       if (init) {
          nlua_getenv( env, "create" ); /* f */

@@ -1051,6 +1051,17 @@ static int diff_removeDiff( UniDiff_t *diff )
          WARN(_("Failed to remove hunk type '%d'."), hunk.type);
    }
 
+   /* Reconstruct jumps. */
+   systems_reconstructJumps();
+
+   /* Re-compute the economy. */
+   economy_addQueuedUpdate();
+   economy_execQueued();
+   economy_initialiseCommodityPrices();
+
+   /* Update outfitter if necessary. */
+   outfits_updateEquipmentOutfits();
+
    diff_cleanup(diff);
    array_erase( &diff_stack, diff, &diff[1] );
    return 0;
