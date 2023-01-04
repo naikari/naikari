@@ -4614,16 +4614,34 @@ static int pilotL_msg( lua_State *L )
  * @brief Gets a pilots leader.
  *
  *    @luatparam Pilot p Pilot to get the leader of.
+ *    @luatparam[opt=false] boolean recursive Whether or not to recurse
+ *       through to find the ultimate leader of the pilot (which is not
+ *       subordinate to another pilot).
  *    @luatreturn Pilot|nil The leader or nil.
  * @luafunc leader
  */
 static int pilotL_leader( lua_State *L ) {
    Pilot *p;
+   Pilot *parent;
+   unsigned int pid;
+   int recursive;
 
    p = luaL_validpilot(L, 1);
+   recursive = 0;
+   if (lua_gettop(L) > 1)
+      recursive = lua_toboolean(L, 2);
 
-   if (p->parent != 0)
-      lua_pushpilot(L, p->parent);
+   pid = p->parent;
+   if (pid != 0) {
+      if (recursive) {
+         parent = pilot_get(pid);
+         while (parent->parent != 0) {
+            pid = parent->parent;
+            parent = pilot_get(pid);
+         }
+      }
+      lua_pushpilot(L, pid);
+   }
    else
       lua_pushnil(L);
 
