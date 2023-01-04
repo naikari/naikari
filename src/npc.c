@@ -11,6 +11,7 @@
 
 /** @cond */
 #include <lua.h>
+#include "physfs.h"
 
 #include "naev.h"
 /** @endcond */
@@ -26,6 +27,7 @@
 #include "nstring.h"
 #include "opengl.h"
 #include "ndata.h"
+#include "rng.h"
 
 
 /**
@@ -559,13 +561,33 @@ const char *npc_getName( int i )
  */
 glTexture *npc_getBackground( int i )
 {
+   char **background_files, file[PATH_MAX];
+   int nbackgrounds;
+   int j;
+
    /* Make sure in bounds. */
    if (i<0 || npc_array == NULL || i>=array_size(npc_array))
       return NULL;
 
-   /* TODO choose the background based on the planet or something. */
-   if (npc_array[i].background == NULL)
-      npc_array[i].background = gl_newImage( GFX_PATH"portraits/background.png", 0 );
+   /* Load background graphics. */
+
+   if (npc_array[i].background == NULL) {
+      /* First load a list of background images. */
+      background_files = PHYSFS_enumerateFiles(PORTRAIT_BACKGROUND_GFX_PATH);
+      nbackgrounds = 0;
+      for (j=0; background_files[j]!=NULL; j++) {
+         nbackgrounds++;
+      }
+
+      /* Choose a random background and load it. */
+      j = RNG(0, nbackgrounds - 1);
+      snprintf(file, sizeof(file), "%s%s",
+            PORTRAIT_BACKGROUND_GFX_PATH, background_files[j]);
+      npc_array[i].background = gl_newImage(file, 0);
+
+      PHYSFS_freeList(background_files);
+   }
+
    return npc_array[i].background;
 }
 
