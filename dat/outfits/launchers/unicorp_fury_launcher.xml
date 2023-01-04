@@ -6,7 +6,7 @@
   <license>Medium Weapon License</license>
   <mass>15</mass>
   <price>25000</price>
-  <description>The Fury class interceptor missile is a lightweight missile propelled by a powerful engine, delivering its payload to its target quickly and efficiently. Its high agility comes at the cost of destructive power, however, limiting its effectiveness to light, nimble fighters.</description>
+  <description>The Unicorp Fury Launcher is the most basic guided missile launcher on the market. Like all forward-mounted guided missile launchers, the pilot using them must first establish a lock by aiming at the target for a short period before firing. Fury missiles have a low damage output, but are excellent at chasing down even the smallest fighters.</description>
   <gfx_store>unicorp_fury_launcher.webp</gfx_store>
   <cpu>-3</cpu>
  </general>
