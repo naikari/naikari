@@ -340,7 +340,7 @@ static unsigned long hook_generic( lua_State *L, const char* stack, double sec, 
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luatparam[opt] string where Where to hook the function.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc land
  */
@@ -365,7 +365,7 @@ static int hook_land( lua_State *L )
  * @usage hook.load( "my_function" ) -- Load calls my_function
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc load
  */
@@ -380,7 +380,7 @@ static int hook_load( lua_State *L )
  * @brief Hooks the function to the player taking off.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc takeoff
  */
@@ -394,7 +394,7 @@ static int hook_takeoff( lua_State *L )
  * @brief Hooks the function to the player jumping (before changing systems).
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc jumpout
  */
@@ -408,7 +408,7 @@ static int hook_jumpout( lua_State *L )
  * @brief Hooks the function to the player jumping (after changing systems).
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc jumpin
  */
@@ -423,7 +423,7 @@ static int hook_jumpin( lua_State *L )
  *  off too).
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc enter
  */
@@ -439,7 +439,7 @@ static int hook_enter( lua_State *L )
  * The hook receives a single parameter which is the ship being hailed.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc hail
  */
@@ -457,7 +457,7 @@ static int hook_hail( lua_State *L )
  *
  *    @luatparam string funcname Name of function to run when hook is
  *       triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc death
  */
@@ -473,7 +473,7 @@ static int hook_death(lua_State *L)
  * The hook receives a single parameter which is the ship being boarded.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc board
  */
@@ -490,7 +490,7 @@ static int hook_board( lua_State *L )
  *
  *    @luatparam number s Seconds to delay.
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc timer
  */
@@ -510,7 +510,7 @@ static int hook_timer( lua_State *L )
  *
  *    @luatparam Time resolution Resolution of the timer (should be a time structure).
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc date
  */
@@ -527,7 +527,7 @@ static int hook_date( lua_State *L )
  * The hook receives the name of the commodity and the quantity being bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc comm_buy
  */
@@ -543,7 +543,7 @@ static int hook_commbuy( lua_State *L )
  * The hook receives the name of the commodity and the quantity being bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc comm_sell
  */
@@ -559,7 +559,7 @@ static int hook_commsell( lua_State *L )
  * The hook receives the name of the commodity and the quantity being gathered.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc gather
  */
@@ -575,7 +575,7 @@ static int hook_gather( lua_State *L )
  * The hook receives the name of the outfit and the quantity being bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc outfit_buy
  */
@@ -591,7 +591,7 @@ static int hook_outfitbuy( lua_State *L )
  * The hook receives the name of the outfit and the quantity being sold.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc outfit_sell
  */
@@ -607,7 +607,7 @@ static int hook_outfitsell( lua_State *L )
  * The hook receives the name of the ship type bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc ship_buy
  */
@@ -623,7 +623,7 @@ static int hook_shipbuy( lua_State *L )
  * The hook receives the name of the ship type sold and the player-given name of the ship.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc ship_sell
  */
@@ -642,7 +642,7 @@ static int hook_shipsell( lua_State *L )
  *   function f( inputname, inputpress, args )
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc input
  */
@@ -658,7 +658,7 @@ static int hook_input( lua_State *L )
  * The parameter passed to the function is the button pressed (1==left,2==middle,3==right).
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc mouse
  */
@@ -676,7 +676,7 @@ static int hook_mouse( lua_State *L )
  * function f(faction, change, secondary, args)
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc standing
  */
@@ -696,7 +696,7 @@ static int hook_standing( lua_State *L )
  * function f( type, discovery )
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc discover
  */
@@ -714,7 +714,7 @@ static int hook_discover( lua_State *L )
  * function f( amount, reason, arg )
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc pay
  */
@@ -734,9 +734,9 @@ static int hook_pay( lua_State *L )
  *
  *    @luatparam string funcname Name of function to run when hook is
  *       triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
- * @see update
+ * @luasee update
  * @luafunc safe
  */
 static int hook_safe( lua_State *L )
@@ -759,9 +759,9 @@ static int hook_safe( lua_State *L )
  *
  *    @luatparam string funcname Name of function to run when hook is
  *       triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
- * @see safe
+ * @luasee safe
  * @luafunc update
  */
 static int hook_update( lua_State *L )
@@ -774,7 +774,7 @@ static int hook_update( lua_State *L )
  * @brief Hook that runs during rendering the background (just above the static background stuff). Meant to be only for rendering things.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc renderbg
  */
@@ -788,7 +788,7 @@ static int hook_renderbg( lua_State *L )
  * @brief Hook that runs during rendering the foreground (just below the gui stuff). Meant to be only for rendering things.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc renderfg
  */
@@ -805,13 +805,16 @@ static int hook_renderfg( lua_State *L )
  * other. Use hook.trigger() to trigger the hook at the appropriate
  * time.
  *
+ * Hook parameters (and number of hook parameters) are chosen by the
+ * respective hook.trigger() call(s).
+ *
  *    @luatparam string hookname Name to give the hook. This should not
  *       overlap with standard names.
  *    @luatparam string funcname Name of function to run when hook is
  *       triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
- * @see trigger
+ * @luasee trigger
  * @luafunc custom
  */
 static int hook_custom( lua_State *L )
@@ -829,10 +832,11 @@ static int hook_custom( lua_State *L )
  * can work with other hooks too (if you know what you are doing).
  *
  *    @luatparam string hookname Name of the hook to be run.
- *    @luaparam params Arguments to pass to the hook's parameters. You
- *       can pass multiple arguments, but this is limited by
- *       HOOK_MAX_PARAM (which is defined in hook.h).
- * @see custom
+ *    @luatparam[opt] nil|number|boolean|string|Pilot|Faction|Planet|Jump
+ *       params Arguments to pass to the hook's parameters. You can pass
+ *       multiple arguments, but this is limited by HOOK_MAX_PARAM
+ *       (which is defined in hook.h).
+ * @luasee custom
  * @luafunc trigger
  */
 static int hook_trigger( lua_State *L )
@@ -840,10 +844,10 @@ static int hook_trigger( lua_State *L )
    int i, n;
    HookParam hp[HOOK_MAX_PARAM], *p;
    const char *hookname = luaL_checkstring(L,1);
-   n = lua_gettop(L);
+   n = lua_gettop(L) - 1;
 
    /* Set up hooks. */
-   for (i=0; i< MIN(n, HOOK_MAX_PARAM-1); i++) {
+   for (i=0; i<MIN(n, HOOK_MAX_PARAM-1); i++) {
       p = &hp[i];
       switch (lua_type(L,i+1)) {
          case LUA_TNIL:
@@ -940,7 +944,7 @@ static int hook_trigger( lua_State *L )
  *    @luatparam Pilot|nil pilot Pilot identifier to hook (or nil for all).
  *    @luatparam string type One of the supported hook types.
  *    @luatparam string funcname Name of function to run when hook is triggered.
- *    @luaparam arg Argument to pass to hook.
+ *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
  * @luafunc pilot
  */
