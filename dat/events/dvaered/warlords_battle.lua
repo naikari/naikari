@@ -232,7 +232,7 @@ function defenderAttacked(victim, attacker, damage)
    if attacker == nil then
       return
    end
-   if attacker == player.pilot() or attacker:leader() == player.pilot() then
+   if attacker == player.pilot() or attacker:leader(true) == player.pilot() then
       for i, p in ipairs(defenders) do
          if p:exists() then
             p:setHostile()
@@ -253,7 +253,7 @@ function attackerAttacked(victim, attacker, damage)
    if attacker == nil then
       return
    end
-   if attacker == player.pilot() or attacker:leader() == player.pilot() then
+   if attacker == player.pilot() or attacker:leader(true) == player.pilot() then
       for i, p in ipairs(attackers) do
          if p:exists() then
             p:setHostile()

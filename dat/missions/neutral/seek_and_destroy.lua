@@ -346,7 +346,7 @@ end
 
 -- Player hails a ship for info
 function hail(p)
-   if p:leader() == player.pilot() then
+   if p:leader(true) == player.pilot() then
       -- Don't want the player hailing their own escorts.
       return
    end
@@ -495,7 +495,7 @@ function clue_attacked(p, attacker)
    end
 
    -- Target was hit sufficiently to get more talkative
-   if (attacker == player.pilot() or attacker:leader() == player.pilot())
+   if (attacker == player.pilot() or attacker:leader(true) == player.pilot())
          and p:health() < 100 then
       p:control()
       p:runaway(player.pilot())

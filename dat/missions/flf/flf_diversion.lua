@@ -149,7 +149,7 @@ end
 
 
 function pilot_attacked_dv(p, attacker)
-   if (attacker == player.pilot() or attacker:leader() == player.pilot())
+   if (attacker == player.pilot() or attacker:leader(true) == player.pilot())
          and not dv_coming and rnd.rnd() < 0.1 then
       dv_coming = true
       hook.timer(10.0, "timer_spawn_dv")
@@ -159,7 +159,8 @@ end
 
 function pilot_death_dv(p, attacker)
    if not dv_coming
-         and (attacker == player.pilot() or attacker:leader() == player.pilot()
+         and (attacker == player.pilot()
+            or attacker:leader(true) == player.pilot()
             or attacker:faction() == faction.get("FLF")) then
       dv_coming = true
       hook.timer(10.0, "timer_spawn_dv")

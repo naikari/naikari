@@ -199,7 +199,7 @@ function abort ()
 
    local pp = player.pilot()
    for i, p in ipairs(pilot.get()) do
-      if p ~= pp and p:leader() ~= pp then
+      if p ~= pp and p:leader(true) ~= pp then
          p:setHostile()
       end
    end

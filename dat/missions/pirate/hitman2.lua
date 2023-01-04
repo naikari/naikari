@@ -96,7 +96,7 @@ function trader_death(hook_pilot, hook_attacker, hook_arg)
 
    if hook_pilot:faction() == faction.get("Trader") and hook_attacker ~= nil
          and (hook_attacker == player.pilot()
-            or hook_attacker:leader() == player.pilot()) then
+            or hook_attacker:leader(true) == player.pilot()) then
       deadTraders = deadTraders + 1
       if deadTraders >= tradersNeeded then
          attack_finished()

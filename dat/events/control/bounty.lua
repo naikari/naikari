@@ -70,7 +70,7 @@ function death(target, killer)
    if killer == nil or not killer:exists() then
       return
    end
-   if killer ~= player.pilot() and killer:leader() ~= player.pilot() then
+   if killer ~= player.pilot() and killer:leader(true) ~= player.pilot() then
       return
    end
 

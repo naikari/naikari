@@ -387,7 +387,7 @@ function patrolPoll()
     for i, patroller in ipairs(leader) do
         if patroller:exists() then
             for j, p in ipairs(patroller:getVisible()) do
-                if (p == player.pilot() or p:leader() == player.pilot())
+                if (p == player.pilot() or p:leader(true) == player.pilot())
                         and patroller:pos():dist(p:pos()) < 3500 then
                     patroller:broadcast(patrolcomm)
                     attacked()
