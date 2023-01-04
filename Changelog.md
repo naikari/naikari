@@ -38,6 +38,14 @@
   up, offers a higher reward, and the winners become normal Dvaered
   ships.
 * You can now hail ships even if disabled.
+* Fixed a bug where a previous running game's addition of faction
+  presence through the Unidiff system could stay added when starting a
+  new game or loading a game without that presence addition. This was
+  most noticeable in Hakoi, where if you started a new game after
+  loading an established game which added pirates to Hakoi, some of
+  those pirates would stick around in the new game even though it's
+  supposed to be pirate-free.
+* Added randomization of NPC backgrounds.
 
 ## 0.5.2
 
