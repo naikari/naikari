@@ -123,19 +123,27 @@ int nlua_loadHook( nlua_env env )
 /**
  * @brief Lua bindings to manipulate hooks.
  *
- * Hooks allow you to trigger functions to certain actions like when the player
- *  jumps or a pilot dies.
+ * Hooks allow you to trigger functions to certain actions like when the
+ * player jumps or a pilot dies.
  *
- * They can have arguments passed to them which will then get passed to the
- *  called hook function.
+ * The function an action is hooked to is passed a list of hook
+ * parameter arguments, plus an optional argument. The hook parameters
+ * (and how many hook parameters there are) vary by the type of action
+ * being hooked.
  *
  * Example usage would be:
  * @code
- * function penter( arg )
- *    -- Function to run when player enters a system
+ * function player_board(target, arg)
+ *    -- Causes the player to get paid any time they board a ship from
+ *    -- the faction specified by the optional argument.
+ *    if target:faction() == arg then
+ *       player.pay(10000)
+ *    end
  * end
  *
- * hookid = hook.enter( "penter", 5 )
+ * -- Hooks the function, specifying the Pirate faction as the optional
+ * -- argument.
+ * hookid = hook.board("player_board", faction.get("Pirate"))
  * @endcode
  *
  * @luamod hook
@@ -325,15 +333,20 @@ static unsigned long hook_generic( lua_State *L, const char* stack, double sec, 
 /**
  * @brief Hooks the function to the player landing.
  *
- * Can also be used to hook the various subparts of the landing menu. Possible targets
- *  for where are:<br />
- *   - "land" - when landed (default with no parameter )<br />
- *   - "outfits" - when visited outfitter<br />
- *   - "shipyard" - when visited shipyard<br />
- *   - "bar" - when visited bar<br />
- *   - "mission" - when visited mission computer<br />
- *   - "commodity" - when visited commodity exchange<br />
- *   - "equipment" - when visiting equipment place<br />
+ * Can also be used to hook the various subparts of the landing menu.
+ * Possible targets for where are:
+ *
+ * <ul>
+ *    <li>"land": when landing (default with no parameter)</li>
+ *    <li>"outfits": when visiting outfitter</li>
+ *    <li>"shipyard": when visiting shipyard</li>
+ *    <li>"bar": when visiting bar</li>
+ *    <li>"mission": when visiting mission computer</li>
+ *    <li>"commodity": when visiting commodity exchange</li>
+ *    <li>"equipment": when visiting equipment screen</li>
+ * </ul>
+ *
+ * The hook receives only the optional argument.
  *
  * @usage hook.land( "my_function" ) -- Land calls my_function
  * @usage hook.land( "my_function", "equipment" ) -- Calls my_function at equipment screen
@@ -362,6 +375,8 @@ static int hook_land( lua_State *L )
 /**
  * @brief Hooks the function to the player loading the game (starts landed).
  *
+ * The hook receives only the optional argument.
+ *
  * @usage hook.load( "my_function" ) -- Load calls my_function
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
@@ -379,6 +394,8 @@ static int hook_load( lua_State *L )
 /**
  * @brief Hooks the function to the player taking off.
  *
+ * The hook receives only the optional argument.
+ *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
@@ -393,6 +410,8 @@ static int hook_takeoff( lua_State *L )
 /**
  * @brief Hooks the function to the player jumping (before changing systems).
  *
+ * The hook receives only the optional argument.
+ *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] Argument to pass to hook.
  *    @luatreturn number Hook identifier.
@@ -406,6 +425,8 @@ static int hook_jumpout( lua_State *L )
 }
 /**
  * @brief Hooks the function to the player jumping (after changing systems).
+ *
+ * The hook receives only the optional argument.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] Argument to pass to hook.
@@ -422,6 +443,8 @@ static int hook_jumpin( lua_State *L )
  * @brief Hooks the function to the player entering a system (triggers when taking
  *  off too).
  *
+ * The hook receives only the optional argument.
+ *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
@@ -436,7 +459,7 @@ static int hook_enter( lua_State *L )
 /**
  * @brief Hooks the function to the player hailing any ship (not a planet).
  *
- * The hook receives a single parameter which is the ship being hailed.
+ * Hook parameter is the ship being hailed.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -452,8 +475,8 @@ static int hook_hail( lua_State *L )
 /**
  * @brief Hooks the function to any pilot dying.
  *
- * The hook receives two parameters: the pilot that died, and pilot that
- * killed them (or nil if not killed by a pilot).
+ * Hook parameters are the pilot that died, and pilot that killed them
+ * (or nil if not killed by a pilot).
  *
  *    @luatparam string funcname Name of function to run when hook is
  *       triggered.
@@ -470,7 +493,7 @@ static int hook_death(lua_State *L)
 /**
  * @brief Hooks the function to the player boarding any ship.
  *
- * The hook receives a single parameter which is the ship being boarded.
+ * Hook parameter is the ship being boarded.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -524,7 +547,8 @@ static int hook_date( lua_State *L )
 /**
  * @brief Hooks the function to the player buying any sort of commodity.
  *
- * The hook receives the name of the commodity and the quantity being bought.
+ * Hook parameter is the raw (untranslated) name of the commodity and
+ * the quantity being bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -540,7 +564,8 @@ static int hook_commbuy( lua_State *L )
 /**
  * @brief Hooks the function to the player selling any sort of commodity.
  *
- * The hook receives the name of the commodity and the quantity being bought.
+ * Hook parameter is the raw (untranslated) name of the commodity and
+ * the quantity being bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -556,7 +581,8 @@ static int hook_commsell( lua_State *L )
 /**
  * @brief Hooks the function to the player gatehring any sort of commodity in space.
  *
- * The hook receives the name of the commodity and the quantity being gathered.
+ * Hook parameter is the raw (untranslated) name of the commodity and
+ * the quantity being gathered.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -572,7 +598,8 @@ static int hook_gather( lua_State *L )
 /**
  * @brief Hooks the function to the player buying any sort of outfit.
  *
- * The hook receives the name of the outfit and the quantity being bought.
+ * Hook parameter is the raw (untranslated) name of the outfit and the
+ * quantity being bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -588,7 +615,8 @@ static int hook_outfitbuy( lua_State *L )
 /**
  * @brief Hooks the function to the player selling any sort of outfit.
  *
- * The hook receives the name of the outfit and the quantity being sold.
+ * Hook parameter is the raw (untranslated) name of the outfit and the
+ * quantity being sold.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -604,7 +632,8 @@ static int hook_outfitsell( lua_State *L )
 /**
  * @brief Hooks the function to the player buying any sort of ship.
  *
- * The hook receives the name of the ship type bought.
+ * Hook parameter is the raw (untranslated) name of the ship type
+ * bought.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -620,7 +649,8 @@ static int hook_shipbuy( lua_State *L )
 /**
  * @brief Hooks the function to the player selling any sort of ship.
  *
- * The hook receives the name of the ship type sold and the player-given name of the ship.
+ * Hook parameter is the raw (untranslated) name of the ship type sold
+ * and the player-given name of the ship.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -634,12 +664,10 @@ static int hook_shipsell( lua_State *L )
    return 1;
 }
 /**
- * @brief Hooks the function to the player pressing any input.
+ * @brief Hooks the function to the player pressing or releasing any input.
  *
- * It returns the name of the key being pressed like "accel" and whether or not it's a press.<br/>
- * <br/>
- * Functions should be in format:<br/>
- *   function f( inputname, inputpress, args )
+ * Hook parameters are the name of the key (e.g. "accel") and whether or
+ * not it's a press.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -655,7 +683,13 @@ static int hook_input( lua_State *L )
 /**
  * @brief Hooks the function to the player clicking the mouse.
  *
- * The parameter passed to the function is the button pressed (1==left,2==middle,3==right).
+ * Hook parameter is the button pressed:
+ *
+ * <ul>
+ *    <li>1: left mouse button</li>
+ *    <li>2: middle mouse button</li>
+ *    <li>3: right mouse button</li>
+ * </ul>
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -671,9 +705,8 @@ static int hook_mouse( lua_State *L )
 /**
  * @brief Hooks the function to any faction standing change.
  *
- * The parameters passed to the function are faction whose standing is being
- * changed, the change amount, and whether or not the change is secondary:<br/>
- * function f(faction, change, secondary, args)
+ * Hook parameters are faction whose standing is being changed, the
+ * change amount, and whether or not the change is secondary.
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -709,9 +742,9 @@ static int hook_discover( lua_State *L )
 /**
  * @brief Hooks the function to when the player receives or loses money through player.pay() (the Lua function only).
  *
- * The amount paid (or taken from the player), and the reason specified by
- *  player.pay() (nil by default), are passed as parameters:<br/>
- * function f( amount, reason, arg )
+ * Hook parameters are the amount paid (will be negative if it was a
+ * loss of money), and the reason specified by player.pay() (nil by
+ * default).
  *
  *    @luatparam string funcname Name of function to run when hook is triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
@@ -731,6 +764,8 @@ static int hook_pay( lua_State *L )
  * regardless of anything that can happen, and removes itself. This is
  * a good way to do possibly breaking stuff like for example
  * player.teleport().
+ *
+ * The hook receives only the optional argument.
  *
  *    @luatparam string funcname Name of function to run when hook is
  *       triggered.
