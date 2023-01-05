@@ -46,6 +46,16 @@
   those pirates would stick around in the new game even though it's
   supposed to be pirate-free.
 * Added randomization of NPC backgrounds.
+* Added some text to the Unicorp Fury Launcher and Laser Turret MK1
+  descriptions to help new players learn about how to properly use
+  guided missiles and turreted weapons, respectively.
+* Missions and events that check whether the player killed or attacked
+  something now recursively check not only direct subordinates, but
+  subordinates of subordinates, etc. This matters if you hire an escort
+  who themself has their own escorts; it means those escorts' kills will
+  now count e.g. for earning bounties.
+* Added a new mission introducing the outfitter and how to customize
+  ships.
 
 ## 0.5.2
 
