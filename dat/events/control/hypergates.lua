@@ -45,7 +45,17 @@ function create()
             var.push("sol_hypergate_discovered", true)
          end
       end
+
+      local standing = faction.get("Dvaered"):playerStanding()
+      if not diff.isApplied("hypergate_dvaered")
+            and (standing >= 20 or standing <= -20) then
+         diff.apply("hypergate_dvaered")
+         news.add("Generic", _("Dvaered Hypergate Constructed"),
+               _([[Dvaered officials have announced today that construction of a hypergate in the Dvaer system is complete, sponsored by the Empire. Dvaered warlords have shown little interest in the project, but traders rejoice as transporting Dvaered ore out of Dvaered space has become less time-consuming.]]),
+               exp)
+      end
    else
+      -- Activate Empire hypergate
       local standing = faction.get("Empire"):playerStanding()
       if standing >= 20 or standing <= -20 then
          diff.apply("hypergate_empire")
