@@ -33,14 +33,25 @@ local fmt = require "fmt"
 
 
 function create()
+   local exp = time.get() + time.create(0, 250, 0)
+
    if diff.isApplied("hypergate_empire") then
+      -- Check to see if the Sol jump news entry should be added.
+      if not var.peek("sol_hypergate_discovered") then
+         if jump.get("Hypergate Zone", "Sol"):known() then
+            news.add("Generic", _("Explorer Finds Hypergate to Sol"),
+                  _([[Explorers have uncovered an unexpected hypergate leading straight to Sol, the dead system which was once the heart of the Empire. "Hypergates are a human construction," one of the explorers explained, "so this is a surprising find indeed." Rumors of a secret Imperial exploration project abound, but Imperial officials have declined to comment, stating only that adventurers should stay clear of the system due to its dangerously volatile nebula.]]),
+                  exp)
+            var.push("sol_hypergate_discovered", true)
+         end
+      end
    else
       local standing = faction.get("Empire"):playerStanding()
       if standing >= 20 or standing <= -20 then
          diff.apply("hypergate_empire")
          news.add("Generic", _("Empire Announces Hypergate Network"),
                _([[The Emperor has announced the creation of a new system of mass transit: hypergates. "Unlike regular jump gates, hypergates operate through a central hub called the Hypergate Zone," a leading researcher in charge of the project explained. Currently, the only working hypergate is found in Gamma Polaris. Imperial officials state that they are working with the Great Houses to finish construction of the hypergate network.]]),
-               time.get() + time.create(0, 250, 0))
+               exp)
       end
    end
 
