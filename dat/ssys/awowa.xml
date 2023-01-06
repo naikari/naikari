@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ssys name="Awowa">
  <general>
-  <radius>16586.375000</radius>
+  <radius>16586.400000</radius>
   <stars>400</stars>
   <nebula volatility="0.000000">0.000000</nebula>
  </general>
@@ -15,6 +15,8 @@
   <asset>Odonga</asset>
   <asset>Virtual Civilian Standard</asset>
   <asset>Virtual Civilian Standard</asset>
+  <asset>Virtual Empire Unpresence</asset>
+  <asset>Virtual Za'lek Unpresence</asset>
  </assets>
  <jumps>
   <jump target="Dvaer">

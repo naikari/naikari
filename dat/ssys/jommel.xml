@@ -11,9 +11,12 @@
  </pos>
  <assets>
   <asset>Virtual Civilian Standard</asset>
+  <asset>Virtual Dvaered Unpresence</asset>
+  <asset>Virtual Empire Unpresence</asset>
   <asset>Virtual Miner Small</asset>
   <asset>Virtual Pirate Small</asset>
   <asset>Virtual Trader Area</asset>
+  <asset>Virtual Za'lek Unpresence</asset>
  </assets>
  <jumps>
   <jump target="Point Zero">
