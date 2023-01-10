@@ -312,6 +312,7 @@ int ndata_copyIfExists( const char* file1, const char* file2 )
    PHYSFS_File *f_in, *f_out;
    char buf[ 8*1024 ];
    PHYSFS_sint64 lr, lw;
+   int ret;
 
    if (file1 == NULL)
       return -1;
@@ -320,44 +321,59 @@ int ndata_copyIfExists( const char* file1, const char* file2 )
    if (!PHYSFS_exists(file1))
       return 0;
 
+   ret = 0;
+   f_in = NULL;
+   f_out = NULL;
+
    /* Open files. */
-   f_in  = PHYSFS_openRead( file1 );
-   f_out = PHYSFS_openWrite( file2 );
-   if ((f_in==NULL) || (f_out==NULL)) {
-      WARN( _("Failure to copy '%s' to '%s': %s"), file1, file2, PHYSFS_getErrorByCode( PHYSFS_getLastErrorCode() ) );
-      if (f_in!=NULL)
-         PHYSFS_close(f_in);
-      return -1;
+   f_in = PHYSFS_openRead(file1);
+   if (f_in == NULL) {
+      ret = -1;
+      goto exit;
+   }
+   f_out = PHYSFS_openWrite(file2);
+   if (f_out == NULL) {
+      ret = -1;
+      goto exit;
    }
 
    /* Copy data over. */
    do {
-      lr = PHYSFS_readBytes( f_in, buf, sizeof(buf) );
-      if (lr == -1)
-         goto err;
+      lr = PHYSFS_readBytes(f_in, buf, sizeof(buf));
+      if (lr == -1) {
+         ret = -1;
+         goto exit;
+      }
       else if (!lr) {
-         if (PHYSFS_eof( f_in ))
+         /* If the end of the file has been reached, we're done.
+          * Otherwise, this is an error. */
+         if (PHYSFS_eof(f_in))
             break;
-         goto err;
+         else {
+            ret = -1;
+            goto exit;
+         }
       }
 
-      lw = PHYSFS_writeBytes( f_out, buf, lr );
-      if (lr != lw)
-         goto err;
+      lw = PHYSFS_writeBytes(f_out, buf, lr);
+      if (lr != lw) {
+         ret = -1;
+         goto exit;
+      }
    } while (lr > 0);
 
+exit:
+   if (ret != 0)
+      WARN(_("Failure to copy '%s' to '%s': %s"), file1, file2,
+            PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
+
    /* Close files. */
-   PHYSFS_close( f_in );
-   PHYSFS_close( f_out );
+   if (f_in != NULL)
+      PHYSFS_close(f_in);
+   if (f_out != NULL)
+      PHYSFS_close(f_out);
 
-   return 0;
-
-err:
-   WARN( _("Failure to copy '%s' to '%s': %s"), file1, file2, PHYSFS_getErrorByCode( PHYSFS_getLastErrorCode() ) );
-   PHYSFS_close( f_in );
-   PHYSFS_close( f_out );
-
-   return -1;
+   return ret;
 }
 
 
