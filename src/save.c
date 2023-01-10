@@ -133,38 +133,34 @@ int save_all (void)
    if (save_data(writer) < 0) {
       ERR(_("Trying to save game data"));
       ret = -1;
+      goto exit;
    }
 
-   if (ret == 0) {
-      /* Finish element. */
-      xmlw_endElem(writer); /* "naev_save" */
-      xmlw_done(writer);
+   /* Finish element. */
+   xmlw_endElem(writer); /* "naev_save" */
+   xmlw_done(writer);
 
-      /* Write to file. */
-      if (PHYSFS_mkdir("saves") == 0) {
-         snprintf(file, sizeof(file), "%s/saves", PHYSFS_getWriteDir());
-         WARN(_("Dir '%s' does not exist and unable to create: %s"), file,
-               PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
+   /* Write to file. */
+   if (PHYSFS_mkdir("saves") == 0) {
+      snprintf(file, sizeof(file), "%s/saves", PHYSFS_getWriteDir());
+      WARN(_("Dir '%s' does not exist and unable to create: %s"), file,
+            PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
+      ret = -1;
+      goto exit;
+   }
+   str2filename(buf, sizeof(buf), player.name);
+   if (snprintf(file, sizeof(file), "saves/%s.ns", buf) < 0)
+      WARN(_("Save file name was truncated: %s"), file);
+
+   /* Back up old saved game. */
+   if (!save_loaded) {
+      if (ndata_backupIfExists(file) < 0) {
+         WARN(_("Aborting save..."));
          ret = -1;
+         goto exit;
       }
    }
-   if (ret == 0) {
-      str2filename(buf, sizeof(buf), player.name);
-      if (snprintf(file, sizeof(file), "saves/%s.ns", buf) < 0)
-         WARN(_("Save file name was truncated: %s"), file);
-
-      /* Back up old saved game. */
-      if (!save_loaded) {
-         if (ndata_backupIfExists(file) < 0) {
-            WARN(_("Aborting save..."));
-            ret = -1;
-         }
-      }
-   }
-   if (ret == 0)
-      save_loaded = 0;
-
-   xmlFreeTextWriter(writer);
+   save_loaded = 0;
 
    /* Critical section, if crashes here player's game gets corrupted.
     * Luckily we have a copy just in case... */
@@ -181,6 +177,8 @@ int save_all (void)
       }
    }
 
+exit:
+   xmlFreeTextWriter(writer);
    xmlFreeDoc(doc);
 
    return ret;
@@ -213,6 +211,9 @@ int save_snapshot(const char *annotation)
       return -1;
    }
 
+   /* path and snapfile need to be NULL by default in case we exit
+    * without using asprintf (otherwise we'd call free() on an arbitrary
+    * location and cause problems). */
    ret = 0;
    path = NULL;
    snapfile = NULL;
@@ -239,36 +240,34 @@ int save_snapshot(const char *annotation)
    if (save_data(writer) < 0) {
       ERR(_("Error trying to save game data"));
       ret = -1;
+      goto exit;
    }
 
-   if (ret == 0) {
-      /* Finish element. */
-      xmlw_endElem(writer); /* "naev_save" */
-      xmlw_done(writer);
+   /* Finish element. */
+   xmlw_endElem(writer); /* "naev_save" */
+   xmlw_done(writer);
 
-      /* Write to file. */
-      str2filename(buf, sizeof(buf), player.name);
-      asprintf(&path, "saves/%s-snapshots", buf);
-      str2filename(buf, sizeof(buf), annotation);
-      asprintf(&snapfile, "%s/%s.ns", path, buf);
+   /* Write to file. */
+   str2filename(buf, sizeof(buf), player.name);
+   asprintf(&path, "saves/%s-snapshots", buf);
+   str2filename(buf, sizeof(buf), annotation);
+   asprintf(&snapfile, "%s/%s.ns", path, buf);
 
-      if (PHYSFS_mkdir(path) == 0) {
-         WARN(_("Path '%s' does not exist and unable to create: %s"), path,
-               PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
-         ret = -1;
-      }
+   if (PHYSFS_mkdir(path) == 0) {
+      WARN(_("Path '%s' does not exist and unable to create: %s"), path,
+            PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
+      ret = -1;
+      goto exit;
    }
 
+   /* TODO: write via physfs */
+   if (xmlSaveFileEnc(snapfile, doc, "UTF-8") < 0) {
+      WARN(_("Failed to write snapshot."));
+      ret = -1;
+   }
+
+exit:
    xmlFreeTextWriter(writer);
-
-   if (ret == 0) {
-      /* TODO: write via physfs */
-      if (xmlSaveFileEnc(snapfile, doc, "UTF-8") < 0) {
-         WARN(_("Failed to write snapshot."));
-         ret = -1;
-      }
-   }
-
    xmlFreeDoc(doc);
    free(path);
    free(snapfile);
