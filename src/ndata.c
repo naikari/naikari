@@ -344,12 +344,10 @@ int ndata_copyIfExists( const char* file1, const char* file2 )
          ret = -1;
          goto exit;
       }
-      else if (!lr) {
-         /* If the end of the file has been reached, we're done.
-          * Otherwise, this is an error. */
-         if (PHYSFS_eof(f_in))
-            break;
-         else {
+      else if (lr < (PHYSFS_sint64)sizeof(buf)) {
+         /* If the end of the file has not been reached,
+          * this is an error. */
+         if (!PHYSFS_eof(f_in)) {
             ret = -1;
             goto exit;
          }
