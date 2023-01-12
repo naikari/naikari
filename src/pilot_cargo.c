@@ -302,15 +302,14 @@ int pilot_rmMissionCargo( Pilot* pilot, unsigned int cargo_id, int jettison )
 
 
 /**
- * @brief Tries to get rid of quantity cargo from pilot.  Can remove mission cargo.
+ * @brief Tries to get rid of quantity cargo from pilot.
  *
  *    @param pilot Pilot to get rid of cargo.
  *    @param cargo Cargo to get rid of.
  *    @param quantity Amount of cargo to get rid of.
- *    @param cleanup Whether we're cleaning up or not (removes mission cargo).
  *    @return Amount of cargo gotten rid of.
  */
-int pilot_cargoRmRaw( Pilot* pilot, const Commodity* cargo, int quantity, int cleanup )
+int pilot_cargoRm(Pilot* pilot, const Commodity* cargo, int quantity)
 {
    int i;
    int q;
@@ -321,8 +320,8 @@ int pilot_cargoRmRaw( Pilot* pilot, const Commodity* cargo, int quantity, int cl
       if (pilot->commodities[i].commodity != cargo)
          continue;
 
-      /* Must not be mission cargo unless cleaning up. */
-      if (!cleanup && (pilot->commodities[i].id != 0))
+      /* Must not be mission cargo. */
+      if (pilot->commodities[i].id != 0)
          continue;
 
       if (quantity >= pilot->commodities[i].quantity) {
@@ -343,8 +342,7 @@ int pilot_cargoRmRaw( Pilot* pilot, const Commodity* cargo, int quantity, int cl
       pilot_updateMass( pilot );
       /* This can call Lua code and be called during takeoff (pilot cleanup), causing
        * the Lua code to be run with a half-assed pilot state crashing the game. */
-      if (!cleanup)
-         gui_setGeneric( pilot );
+      gui_setGeneric(pilot);
 
       /* Allow the Commodity tab to update its owned cargo display. */
       if (pilot->faction == FACTION_PLAYER)
@@ -394,18 +392,3 @@ int pilot_cargoRmAll( Pilot* pilot, int cleanup )
       gui_setGeneric( pilot );
    return q;
 }
-
-/**
- * @brief Tries to get rid of quantity cargo from pilot.
- *
- *    @param pilot Pilot to get rid of cargo.
- *    @param cargo Cargo to get rid of.
- *    @param quantity Amount of cargo to get rid of.
- *    @return Amount of cargo gotten rid of.
- */
-int pilot_cargoRm( Pilot* pilot, const Commodity* cargo, int quantity )
-{
-   return pilot_cargoRmRaw( pilot, cargo, quantity, 0 );
-}
-
-
