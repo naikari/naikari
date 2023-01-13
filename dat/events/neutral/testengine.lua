@@ -71,6 +71,9 @@ falsealarm_text = {
    _([[You prepare for the worst as your engine makes noises and refuses to jump or land, but it soon quiets down and returns to normal. You breathe a sigh of relief.]]),
    _([[You brace yourself for an explosion or something as your engine starts acting up, but it settles down and starts working properly again anticlimactically.]]),
    _([[Your engine sputters and refuses to jump or land. You begin attempting to work on the problem, but before you can start, the engine suddenly starts working normally again.]]),
+   _([[You curse under your breath as your engine stops working properly, but just as you're running through the engine failure checklist, it starts working again inexplicitly. You find that you are now unable to reproduce the problem.]]),
+   _([[You mentally prepare yourself for some difficult troubleshooting when you see your engine starts acting up, but then find yourself baffled as it suddenly starts working perfectly again.]]),
+   _([[Just as soon as you notice a serious problem with your engine and try to work on it, the problem ends as if by magic. You find yourself even more frustrated by the inexplicable return to normal operation than by the occurrence of the original problem, but you ultimately conclude that you're best off leaving things as they are and hoping the problem doesn't return.]]),
 }
 
 
