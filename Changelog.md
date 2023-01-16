@@ -56,6 +56,7 @@
   now count e.g. for earning bounties.
 * Added a new mission introducing the outfitter and how to customize
   ships.
+* Added the Black Market service to several stations.
 
 ## 0.5.2
 
