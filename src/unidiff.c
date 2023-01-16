@@ -87,7 +87,6 @@ typedef enum UniHunkType_ {
    HUNK_TYPE_ASSET_LEGALMARKET,
    HUNK_TYPE_JUMP_ADD,
    HUNK_TYPE_JUMP_REMOVE,
-   HUNK_TYPE_JUMP_RESTORE,
    /* Target should be tech. */
    HUNK_TYPE_TECH_ADD,
    HUNK_TYPE_TECH_REMOVE,
@@ -719,9 +718,6 @@ static int diff_patch( xmlNodePtr parent )
             case HUNK_TYPE_JUMP_REMOVE:
                WARN(_("   [%s] jump remove: '%s'"), target, fail->name);
                break;
-            case HUNK_TYPE_JUMP_RESTORE:
-               WARN(_("   [%s] jump restore: '%s'"), target, fail->name);
-               break;
             case HUNK_TYPE_TECH_ADD:
                WARN(_("   [%s] tech add: '%s'"), target, fail->name);
                break;
@@ -824,9 +820,6 @@ static int diff_patchHunk( UniHunk_t *hunk )
          if (!(hunk->flags & JP_AUTOPOS))
             vect_cset(&hunk->pos, VX(jump->pos), VY(jump->pos));
          return system_rmJump(system_get(hunk->target.name), hunk->name);
-      case HUNK_TYPE_JUMP_RESTORE:
-         return system_addJump(system_get(hunk->target.name), hunk->name,
-               hunk->pos, hunk->data, hunk->flags);
 
       /* Adding a tech. */
       case HUNK_TYPE_TECH_ADD:
@@ -1048,7 +1041,7 @@ static int diff_removeDiff( UniDiff_t *diff )
             hunk.type = HUNK_TYPE_JUMP_REMOVE;
             break;
          case HUNK_TYPE_JUMP_REMOVE:
-            hunk.type = HUNK_TYPE_JUMP_RESTORE;
+            hunk.type = HUNK_TYPE_JUMP_ADD;
             break;
 
          case HUNK_TYPE_TECH_ADD:
