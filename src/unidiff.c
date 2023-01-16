@@ -119,7 +119,7 @@ typedef struct UniHunk_ {
    unsigned int flags; /**< Flags for the hunk. */
 
    union {
-      const char *name;
+      const char *faction;
       unsigned int flags;
    } o; /** Old data (used for undoing diffs). */
 } UniHunk_t;
@@ -833,11 +833,11 @@ static int diff_patchHunk( UniHunk_t *hunk )
          p = planet_get( hunk->target.name );
          if (p==NULL)
             return -1;
-         hunk->o.name = faction_name( p->faction );
+         hunk->o.faction = faction_name( p->faction );
          return planet_setFaction(p, faction_get(hunk->name));
       case HUNK_TYPE_ASSET_FACTION_REMOVE:
          return planet_setFaction(planet_get(hunk->target.name),
-               faction_get(hunk->o.name));
+               faction_get(hunk->o.faction));
 
       /* Making a faction visible. */
       case HUNK_TYPE_FACTION_VISIBLE:
