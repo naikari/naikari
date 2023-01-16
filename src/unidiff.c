@@ -34,6 +34,10 @@
 #include "space.h"
 
 
+#define HFLAG_FACTION_ALLY (1<<0)
+#define HFLAG_FACTION_ENEMY (1<<1)
+
+
 /**
  * @brief Universe diff filepath list.
  */
@@ -64,10 +68,8 @@ typedef enum UniHunkTargetType_ {
  * @brief Represents the hunk's target.
  */
 typedef struct UniHunkTarget_ {
+   char *name; /**< Name of the target. */
    UniHunkTargetType_t type; /**< Type of hunk target. */
-   union {
-      char *name; /**< Name of the target. */
-   } u; /**< Union of possible target types. */
 } UniHunkTarget_t;
 
 
@@ -85,6 +87,7 @@ typedef enum UniHunkType_ {
    HUNK_TYPE_ASSET_LEGALMARKET,
    HUNK_TYPE_JUMP_ADD,
    HUNK_TYPE_JUMP_REMOVE,
+   HUNK_TYPE_JUMP_RESTORE,
    /* Target should be tech. */
    HUNK_TYPE_TECH_ADD,
    HUNK_TYPE_TECH_REMOVE,
@@ -107,17 +110,19 @@ typedef enum UniHunkType_ {
  * @brief Represents a single hunk in the diff.
  */
 typedef struct UniHunk_ {
+   char *name; /**< Hunk's name. */
    UniHunkTarget_t target; /**< Hunk's target. */
 
    UniHunkType_t type; /**< Type of hunk it is. */
-   xmlNodePtr node; /**< Parent node. */
-   union {
-      char *name;
-   } u; /**< Actual data to patch. */
+
+   Vector2d pos; /**< Position for the hunk (used for jumps). */
+   double data; /**< Data for the hunk. */
+   unsigned int flags; /**< Flags for the hunk. */
+
    union {
       const char *name;
-      int data;
-   } o; /** Old data to possibly replace. */
+      unsigned int flags;
+   } o; /** Old data (used for undoing diffs). */
 } UniHunk_t;
 
 
@@ -274,6 +279,9 @@ int diff_apply( const char *name )
    /* Reconstruct jumps. */
    systems_reconstructJumps();
 
+   /* Reconstruct presences. */
+   space_reconstructPresences();
+
    /* Re-compute the economy. */
    economy_addQueuedUpdate();
    economy_execQueued();
@@ -297,13 +305,14 @@ static int diff_patchSystem( UniDiff_t *diff, xmlNodePtr node )
 {
    UniHunk_t base, hunk;
    xmlNodePtr cur;
-   char *buf;
+   char *buf, *buf2;
+   double x, y;
 
    /* Set the target. */
    memset(&base, 0, sizeof(UniHunk_t));
    base.target.type = HUNK_TARGET_SYSTEM;
-   xmlr_attr_strd(node,"name",base.target.u.name);
-   if (base.target.u.name==NULL) {
+   xmlr_attr_strd(node, "name", base.target.name);
+   if (base.target.name == NULL) {
       WARN(_("Unidiff '%s' has a system node without a 'name' tag, not applying."), diff->name);
       return -1;
    }
@@ -320,10 +329,10 @@ static int diff_patchSystem( UniDiff_t *diff, xmlNodePtr node )
          }
 
          hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
+         hunk.target.name = strdup(base.target.name);
 
          /* Get the asset to modify. */
-         xmlr_attr_strd(cur,"name",hunk.u.name);
+         xmlr_attr_strd(cur,"name",hunk.name);
 
          /* Get the type. */
          if (strcmp(buf,"add")==0)
@@ -335,7 +344,8 @@ static int diff_patchSystem( UniDiff_t *diff, xmlNodePtr node )
          else if (strcmp(buf,"legalmarket")==0)
             hunk.type = HUNK_TYPE_ASSET_LEGALMARKET;
          else
-            WARN(_("Unidiff '%s': Unknown hunk type '%s' for asset '%s'."), diff->name, buf, hunk.u.name);
+            WARN(_("Unidiff '%s': Unknown hunk type '%s' for asset '%s'."),
+                  diff->name, buf, hunk.name);
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -351,21 +361,57 @@ static int diff_patchSystem( UniDiff_t *diff, xmlNodePtr node )
             continue;
          }
 
-         hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
-
          /* Get the jump point to modify. */
-         xmlr_attr_strd(cur,"target",hunk.u.name);
+         xmlr_attr_strd(cur, "target", hunk.name);
+         if (hunk.name == NULL) {
+            WARN(_("JumpPoint node for system '%s' has no target attribute."),
+                  base.target.name);
+            continue;
+         }
+
+         hunk.target.type = base.target.type;
+         hunk.target.name = strdup(base.target.name);
 
          /* Get the type. */
-         if (strcmp(buf,"add")==0)
+         if (strcmp(buf, "add") == 0) {
             hunk.type = HUNK_TYPE_JUMP_ADD;
-         else if (strcmp(buf,"remove")==0)
+
+            hunk.flags = 0;
+
+            /* Handle jump point position. We want both x and y, or we
+             * autoposition the jump point. */
+            xmlr_attr_float_def(cur, "x", x, INFINITY);
+            xmlr_attr_float_def(cur, "y", y, INFINITY);
+            if (isfinite(x) && isfinite(y))
+               vect_cset(&hunk.pos, x, y);
+            else
+               hunk.flags |= JP_AUTOPOS;
+
+            /* Handle jump point settings. */
+            xmlr_attr_strd(cur, "hidden", buf2);
+            if ((buf2 != NULL) && (strcmp(buf2, "yes") == 0))
+               hunk.flags |= JP_HIDDEN;
+            free(buf2);
+            xmlr_attr_strd(cur, "exitonly", buf2);
+            if ((buf2 != NULL) && (strcmp(buf2, "yes") == 0))
+               hunk.flags |= JP_EXITONLY;
+            free(buf2);
+            xmlr_attr_strd(cur, "express", buf2);
+            if ((buf2 != NULL) && (strcmp(buf2, "yes") == 0))
+               hunk.flags |= JP_EXPRESS;
+            free(buf2);
+            xmlr_attr_strd(cur, "longrange", buf2);
+            if ((buf2 != NULL) && (strcmp(buf2, "yes") == 0))
+               hunk.flags |= JP_LONGRANGE;
+            free(buf2);
+
+            xmlr_attr_float_def(cur, "rdr_range_mod", hunk.data, 0);
+            hunk.data = (hunk.data+100) / 100;
+         }
+         else if (strcmp(buf, "remove") == 0)
             hunk.type = HUNK_TYPE_JUMP_REMOVE;
          else
-            WARN(_("Unidiff '%s': Unknown hunk type '%s' for jump '%s'."), diff->name, buf, hunk.u.name);
-
-         hunk.node = cur;
+            WARN(_("Unidiff '%s': Unknown hunk type '%s' for jump '%s'."), diff->name, buf, hunk.name);
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -378,8 +424,8 @@ static int diff_patchSystem( UniDiff_t *diff, xmlNodePtr node )
    } while (xml_nextNode(cur));
 
    /* Clean up some stuff. */
-   free(base.target.u.name);
-   base.target.u.name = NULL;
+   free(base.target.name);
+   base.target.name = NULL;
 
    return 0;
 }
@@ -400,8 +446,8 @@ static int diff_patchTech( UniDiff_t *diff, xmlNodePtr node )
    /* Set the target. */
    memset(&base, 0, sizeof(UniHunk_t));
    base.target.type = HUNK_TARGET_TECH;
-   xmlr_attr_strd(node,"name",base.target.u.name);
-   if (base.target.u.name==NULL) {
+   xmlr_attr_strd(node, "name", base.target.name);
+   if (base.target.name == NULL) {
       WARN(_("Unidiff '%s' has an target node without a 'name' tag"), diff->name);
       return -1;
    }
@@ -412,13 +458,13 @@ static int diff_patchTech( UniDiff_t *diff, xmlNodePtr node )
       xml_onlyNodes(cur);
       if (xml_isNode(cur,"add")) {
          hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
+         hunk.target.name = strdup(base.target.name);
 
          /* Outfit type is constant. */
          hunk.type = HUNK_TYPE_TECH_ADD;
 
          /* Get the data. */
-         hunk.u.name = xml_getStrd(cur);
+         hunk.name = xml_getStrd(cur);
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -429,13 +475,13 @@ static int diff_patchTech( UniDiff_t *diff, xmlNodePtr node )
       }
       else if (xml_isNode(cur,"remove")) {
          hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
+         hunk.target.name = strdup(base.target.name);
 
          /* Outfit type is constant. */
          hunk.type = HUNK_TYPE_TECH_REMOVE;
 
          /* Get the data. */
-         hunk.u.name = xml_getStrd(cur);
+         hunk.name = xml_getStrd(cur);
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -448,8 +494,8 @@ static int diff_patchTech( UniDiff_t *diff, xmlNodePtr node )
    } while (xml_nextNode(cur));
 
    /* Clean up some stuff. */
-   free(base.target.u.name);
-   base.target.u.name = NULL;
+   free(base.target.name);
+   base.target.name = NULL;
 
    return 0;
 }
@@ -470,8 +516,8 @@ static int diff_patchAsset( UniDiff_t *diff, xmlNodePtr node )
    /* Set the target. */
    memset(&base, 0, sizeof(UniHunk_t));
    base.target.type = HUNK_TARGET_ASSET;
-   xmlr_attr_strd(node,"name",base.target.u.name);
-   if (base.target.u.name==NULL) {
+   xmlr_attr_strd(node,"name",base.target.name);
+   if (base.target.name == NULL) {
       WARN(_("Unidiff '%s' has an target node without a 'name' tag"), diff->name);
       return -1;
    }
@@ -482,13 +528,13 @@ static int diff_patchAsset( UniDiff_t *diff, xmlNodePtr node )
       xml_onlyNodes(cur);
       if (xml_isNode(cur,"faction")) {
          hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
+         hunk.target.name = strdup(base.target.name);
 
          /* Outfit type is constant. */
          hunk.type = HUNK_TYPE_ASSET_FACTION;
 
          /* Get the data. */
-         hunk.u.name = xml_getStrd(cur);
+         hunk.name = xml_getStrd(cur);
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -501,8 +547,8 @@ static int diff_patchAsset( UniDiff_t *diff, xmlNodePtr node )
    } while (xml_nextNode(cur));
 
    /* Clean up some stuff. */
-   free(base.target.u.name);
-   base.target.u.name = NULL;
+   free(base.target.name);
+   base.target.name = NULL;
 
    return 0;
 }
@@ -524,8 +570,8 @@ static int diff_patchFaction( UniDiff_t *diff, xmlNodePtr node )
    /* Set the target. */
    memset(&base, 0, sizeof(UniHunk_t));
    base.target.type = HUNK_TARGET_FACTION;
-   xmlr_attr_strd(node,"name",base.target.u.name);
-   if (base.target.u.name==NULL) {
+   xmlr_attr_strd(node, "name", base.target.name);
+   if (base.target.name == NULL) {
       WARN(_("Unidiff '%s' has an target node without a 'name' tag"), diff->name);
       return -1;
    }
@@ -536,13 +582,13 @@ static int diff_patchFaction( UniDiff_t *diff, xmlNodePtr node )
       xml_onlyNodes(cur);
       if (xml_isNode(cur,"visible")) {
          hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
+         hunk.target.name = strdup(base.target.name);
 
          /* Faction type is constant. */
          hunk.type = HUNK_TYPE_FACTION_VISIBLE;
 
          /* There is no name. */
-         hunk.u.name = NULL;
+         hunk.name = NULL;
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -553,13 +599,13 @@ static int diff_patchFaction( UniDiff_t *diff, xmlNodePtr node )
       }
       else if (xml_isNode(cur,"invisible")) {
          hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
+         hunk.target.name = strdup(base.target.name);
 
          /* Faction type is constant. */
          hunk.type = HUNK_TYPE_FACTION_INVISIBLE;
 
          /* There is no name. */
-         hunk.u.name = NULL;
+         hunk.name = NULL;
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -576,10 +622,10 @@ static int diff_patchFaction( UniDiff_t *diff, xmlNodePtr node )
          }
 
          hunk.target.type = base.target.type;
-         hunk.target.u.name = strdup(base.target.u.name);
+         hunk.target.name = strdup(base.target.name);
 
          /* Get the faction to set the association of. */
-         xmlr_attr_strd(cur,"name",hunk.u.name);
+         xmlr_attr_strd(cur,"name",hunk.name);
 
          /* Get the type. */
          if (strcmp(buf,"ally")==0)
@@ -589,7 +635,8 @@ static int diff_patchFaction( UniDiff_t *diff, xmlNodePtr node )
          else if (strcmp(buf,"neutral")==0)
             hunk.type = HUNK_TYPE_FACTION_NEUTRAL;
          else
-            WARN(_("Unidiff '%s': Unknown hunk type '%s' for faction '%s'."), diff->name, buf, hunk.u.name);
+            WARN(_("Unidiff '%s': Unknown hunk type '%s' for faction '%s'."),
+                  diff->name, buf, hunk.name);
 
          /* Apply diff. */
          if (diff_patchHunk( &hunk ) < 0)
@@ -602,8 +649,8 @@ static int diff_patchFaction( UniDiff_t *diff, xmlNodePtr node )
    } while (xml_nextNode(cur));
 
    /* Clean up some stuff. */
-   free(base.target.u.name);
-   base.target.u.name = NULL;
+   free(base.target.name);
+   base.target.name = NULL;
 
    return 0;
 }
@@ -617,7 +664,7 @@ static int diff_patchFaction( UniDiff_t *diff, xmlNodePtr node )
  */
 static int diff_patch( xmlNodePtr parent )
 {
-   int i, univ_update;
+   int i;
    UniDiff_t *diff;
    UniHunk_t *fail;
    xmlNodePtr node;
@@ -630,26 +677,17 @@ static int diff_patch( xmlNodePtr parent )
    memset(diff, 0, sizeof(UniDiff_t));
    xmlr_attr_strd(parent,"name",diff->name);
 
-   /* Whether or not we need to update the universe. */
-   univ_update = 0;
-
    node = parent->xmlChildrenNode;
    do {
       xml_onlyNodes(node);
-      if (xml_isNode(node,"system")) {
-         univ_update = 1;
-         diff_patchSystem( diff, node );
-      }
+      if (xml_isNode(node, "system"))
+         diff_patchSystem(diff, node);
       else if (xml_isNode(node, "tech"))
-         diff_patchTech( diff, node );
-      else if (xml_isNode(node, "asset")) {
-         univ_update = 1;
-         diff_patchAsset( diff, node );
-      }
-      else if (xml_isNode(node, "faction")) {
-         univ_update = 1;
-         diff_patchFaction( diff, node );
-      }
+         diff_patchTech(diff, node);
+      else if (xml_isNode(node, "asset"))
+         diff_patchAsset(diff, node);
+      else if (xml_isNode(node, "faction"))
+         diff_patchFaction(diff, node);
       else
          WARN(_("Unidiff '%s' has unknown node '%s'."), diff->name, node->name);
    } while (xml_nextNode(node));
@@ -661,65 +699,61 @@ static int diff_patch( xmlNodePtr parent )
          diff->name, nfailed );
       for (i=0; i<nfailed; i++) {
          fail   = &diff->failed[i];
-         target = fail->target.u.name;
+         target = fail->target.name;
          switch (fail->type) {
             case HUNK_TYPE_ASSET_ADD:
-               WARN(_("   [%s] asset add: '%s'"), target, fail->u.name);
+               WARN(_("   [%s] asset add: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_ASSET_REMOVE:
-               WARN(_("   [%s] asset remove: '%s'"), target, fail->u.name);
+               WARN(_("   [%s] asset remove: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_ASSET_BLACKMARKET:
-               WARN(_("   [%s] asset blackmarket: '%s'"), target, fail->u.name);
+               WARN(_("   [%s] asset blackmarket: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_ASSET_LEGALMARKET:
-               WARN(_("   [%s] asset legalmarket: '%s'"), target, fail->u.name);
+               WARN(_("   [%s] asset legalmarket: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_JUMP_ADD:
-               WARN(_("   [%s] jump add: '%s'"), target, fail->u.name);
+               WARN(_("   [%s] jump add: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_JUMP_REMOVE:
-               WARN(_("   [%s] jump remove: '%s'"), target, fail->u.name);
+               WARN(_("   [%s] jump remove: '%s'"), target, fail->name);
+               break;
+            case HUNK_TYPE_JUMP_RESTORE:
+               WARN(_("   [%s] jump restore: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_TECH_ADD:
-               WARN(_("   [%s] tech add: '%s'"), target,
-                     fail->u.name );
+               WARN(_("   [%s] tech add: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_TECH_REMOVE:
-               WARN(_("   [%s] tech remove: '%s'"), target,
-                     fail->u.name );
+               WARN(_("   [%s] tech remove: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_ASSET_FACTION:
-               WARN(_("   [%s] asset faction: '%s'"), target,
-                     fail->u.name );
+               WARN(_("   [%s] asset faction: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_ASSET_FACTION_REMOVE:
                WARN(_("   [%s] asset faction removal: '%s'"), target,
-                     fail->u.name );
+                     fail->name);
                break;
             case HUNK_TYPE_FACTION_VISIBLE:
-               WARN(_("   [%s] faction visible: '%s'"), target,
-                     fail->u.name );
+               WARN(_("   [%s] faction visible: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_FACTION_INVISIBLE:
-               WARN(_("   [%s] faction invisible: '%s'"), target,
-                     fail->u.name );
+               WARN(_("   [%s] faction invisible: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_FACTION_ALLY:
-               WARN(_("   [%s] faction set ally: '%s'"), target,
-                     fail->u.name );
+               WARN(_("   [%s] faction set ally: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_FACTION_ENEMY:
-               WARN(_("   [%s] faction set enemy: '%s'"), target,
-                     fail->u.name );
+               WARN(_("   [%s] faction set enemy: '%s'"), target, fail->name);
                break;
             case HUNK_TYPE_FACTION_NEUTRAL:
                WARN(_("   [%s] faction set neutral: '%s'"), target,
-                     fail->u.name );
+                     fail->name);
                break;
             case HUNK_TYPE_FACTION_REALIGN:
                WARN(_("   [%s] faction alignment reset: '%s'"), target,
-                     fail->u.name );
+                     fail->name);
                break;
 
             default:
@@ -728,10 +762,6 @@ static int diff_patch( xmlNodePtr parent )
          }
       }
    }
-
-   /* Prune presences if necessary. */
-   if (univ_update)
-      space_reconstructPresences();
 
    /* Clear nav target from all pilots. Might prevent a segfault in rare
     * cases where unidiff changes while out in space, as seen in Naev
@@ -761,118 +791,125 @@ static int diff_patch( xmlNodePtr parent )
 static int diff_patchHunk( UniHunk_t *hunk )
 {
    Planet *p;
+   JumpPoint *jump;
    int a, b;
 
    switch (hunk->type) {
 
       /* Adding an asset. */
       case HUNK_TYPE_ASSET_ADD:
-         planet_updateLand( planet_get(hunk->u.name) );
-         return system_addPlanet( system_get(hunk->target.u.name), hunk->u.name );
+         planet_updateLand(planet_get(hunk->name));
+         return system_addPlanet( system_get(hunk->target.name), hunk->name );
       /* Removing an asset. */
       case HUNK_TYPE_ASSET_REMOVE:
-         return system_rmPlanet( system_get(hunk->target.u.name), hunk->u.name );
+         return system_rmPlanet(system_get(hunk->target.name), hunk->name);
       /* Making an asset a black market. */
       case HUNK_TYPE_ASSET_BLACKMARKET:
-         planet_addService( planet_get(hunk->u.name), PLANET_SERVICE_BLACKMARKET );
+         planet_addService(planet_get(hunk->name), PLANET_SERVICE_BLACKMARKET);
          return 0;
       /* Making an asset a legal market. */
       case HUNK_TYPE_ASSET_LEGALMARKET:
-         planet_rmService( planet_get(hunk->u.name), PLANET_SERVICE_BLACKMARKET );
+         planet_rmService(planet_get(hunk->name), PLANET_SERVICE_BLACKMARKET);
          return 0;
 
       /* Adding a Jump. */
       case HUNK_TYPE_JUMP_ADD:
-         return system_addJump(system_get(hunk->target.u.name), hunk->node);
+         return system_addJump(system_get(hunk->target.name), hunk->name,
+               hunk->pos, hunk->data, hunk->flags);
       /* Removing a jump. */
       case HUNK_TYPE_JUMP_REMOVE:
-         return system_rmJump( system_get(hunk->target.u.name), hunk->u.name );
+         jump = jump_get(hunk->name, system_get(hunk->target.name));
+         hunk->data = jump->rdr_range_mod;
+         hunk->flags = jump->flags;
+         if (!(hunk->flags & JP_AUTOPOS))
+            vect_cset(&hunk->pos, VX(jump->pos), VY(jump->pos));
+         return system_rmJump(system_get(hunk->target.name), hunk->name);
+      case HUNK_TYPE_JUMP_RESTORE:
+         return system_addJump(system_get(hunk->target.name), hunk->name,
+               hunk->pos, hunk->data, hunk->flags);
 
       /* Adding a tech. */
       case HUNK_TYPE_TECH_ADD:
-         return tech_addItem( hunk->target.u.name, hunk->u.name );
+         return tech_addItem(hunk->target.name, hunk->name);
       /* Removing a tech. */
       case HUNK_TYPE_TECH_REMOVE:
-         return tech_rmItem( hunk->target.u.name, hunk->u.name );
+         return tech_rmItem(hunk->target.name, hunk->name);
 
       /* Changing asset faction. */
       case HUNK_TYPE_ASSET_FACTION:
-         p = planet_get( hunk->target.u.name );
+         p = planet_get( hunk->target.name );
          if (p==NULL)
             return -1;
          hunk->o.name = faction_name( p->faction );
-         return planet_setFaction( p, faction_get(hunk->u.name) );
+         return planet_setFaction(p, faction_get(hunk->name));
       case HUNK_TYPE_ASSET_FACTION_REMOVE:
-         return planet_setFaction( planet_get(hunk->target.u.name), faction_get(hunk->o.name) );
+         return planet_setFaction(planet_get(hunk->target.name),
+               faction_get(hunk->o.name));
 
       /* Making a faction visible. */
       case HUNK_TYPE_FACTION_VISIBLE:
-         return faction_setInvisible( faction_get(hunk->target.u.name), 0 );
+         return faction_setInvisible(faction_get(hunk->target.name), 0);
       /* Making a faction invisible. */
       case HUNK_TYPE_FACTION_INVISIBLE:
-         return faction_setInvisible( faction_get(hunk->target.u.name), 1 );
+         return faction_setInvisible(faction_get(hunk->target.name), 1);
       /* Making two factions allies. */
       case HUNK_TYPE_FACTION_ALLY:
-         a = faction_get( hunk->target.u.name );
-         b = faction_get( hunk->u.name );
+         a = faction_get(hunk->target.name);
+         b = faction_get(hunk->name);
+         hunk->o.flags = 0;
          if (areAllies(a, b))
-            hunk->o.data = 'A';
+            hunk->o.flags |= HFLAG_FACTION_ALLY;
          else if (areEnemies(a, b))
-            hunk->o.data = 'E';
-         else
-            hunk->o.data = 0;
-         faction_addAlly( a, b );
-         faction_addAlly( b, a );
+            hunk->o.flags |= HFLAG_FACTION_ENEMY;
+         faction_addAlly(a, b);
+         faction_addAlly(b, a);
          return 0;
       /* Making two factions enemies. */
       case HUNK_TYPE_FACTION_ENEMY:
-         a = faction_get( hunk->target.u.name );
-         b = faction_get( hunk->u.name );
+         a = faction_get(hunk->target.name);
+         b = faction_get(hunk->name);
+         hunk->o.flags = 0;
          if (areAllies(a, b))
-            hunk->o.data = 'A';
+            hunk->o.flags |= HFLAG_FACTION_ALLY;
          else if (areEnemies(a, b))
-            hunk->o.data = 'E';
-         else
-            hunk->o.data = 0;
-         faction_addEnemy( a, b );
-         faction_addEnemy( b, a );
+            hunk->o.flags |= HFLAG_FACTION_ENEMY;
+         faction_addEnemy(a, b);
+         faction_addEnemy(b, a);
          return 0;
       /* Making two factions neutral (removing enemy/ally statuses). */
       case HUNK_TYPE_FACTION_NEUTRAL:
-         a = faction_get( hunk->target.u.name );
-         b = faction_get( hunk->u.name );
+         a = faction_get(hunk->target.name);
+         b = faction_get(hunk->name);
          if (areAllies(a, b))
-            hunk->o.data = 'A';
+            hunk->o.flags |= HFLAG_FACTION_ALLY;
          else if (areEnemies(a, b))
-            hunk->o.data = 'E';
-         else
-            hunk->o.data = 0;
-         faction_rmAlly( a, b );
-         faction_rmAlly( b, a );
-         faction_rmEnemy( a, b );
-         faction_rmEnemy( b, a );
+            hunk->o.flags |= HFLAG_FACTION_ENEMY;
+         faction_rmAlly(a, b);
+         faction_rmAlly(b, a);
+         faction_rmEnemy(a, b);
+         faction_rmEnemy(b, a);
          return 0;
       /* Resetting the alignment state of two factions. */
       case HUNK_TYPE_FACTION_REALIGN:
-         a = faction_get( hunk->target.u.name );
-         b = faction_get( hunk->u.name );
-         if (hunk->o.data == 'A') {
+         a = faction_get(hunk->target.name);
+         b = faction_get(hunk->name);
+         if (hunk->o.flags & HFLAG_FACTION_ALLY) {
             faction_rmEnemy(a, b);
             faction_rmEnemy(b, a);
             faction_addAlly(a, b);
             faction_addAlly(b, a);
          }
-         else if (hunk->o.data == 'E') {
+         else if (hunk->o.flags & HFLAG_FACTION_ENEMY) {
             faction_rmAlly(a, b);
             faction_rmAlly(b, a);
             faction_addEnemy(a, b);
             faction_addAlly(b, a);
          }
          else {
-            faction_rmAlly( a, b );
-            faction_rmAlly( b, a );
-            faction_rmEnemy( a, b );
-            faction_rmEnemy( b, a );
+            faction_rmAlly(a, b);
+            faction_rmAlly(b, a);
+            faction_rmEnemy(a, b);
+            faction_rmEnemy(b, a);
          }
          return 0;
 
@@ -1011,7 +1048,7 @@ static int diff_removeDiff( UniDiff_t *diff )
             hunk.type = HUNK_TYPE_JUMP_REMOVE;
             break;
          case HUNK_TYPE_JUMP_REMOVE:
-            hunk.type = HUNK_TYPE_JUMP_ADD;
+            hunk.type = HUNK_TYPE_JUMP_RESTORE;
             break;
 
          case HUNK_TYPE_TECH_ADD:
@@ -1053,6 +1090,9 @@ static int diff_removeDiff( UniDiff_t *diff )
 
    /* Reconstruct jumps. */
    systems_reconstructJumps();
+
+   /* Reconstruct presences. */
+   space_reconstructPresences();
 
    /* Re-compute the economy. */
    economy_addQueuedUpdate();
@@ -1109,34 +1149,13 @@ static void diff_cleanup( UniDiff_t *diff )
  */
 static void diff_cleanupHunk( UniHunk_t *hunk )
 {
-   free(hunk->target.u.name);
-   hunk->target.u.name = NULL;
+   free(hunk->name);
+   hunk->name = NULL;
 
-   switch (hunk->type) { /* TODO: Does it really matter? */
-      case HUNK_TYPE_ASSET_ADD:
-      case HUNK_TYPE_ASSET_REMOVE:
-      case HUNK_TYPE_ASSET_BLACKMARKET:
-      case HUNK_TYPE_ASSET_LEGALMARKET:
-      case HUNK_TYPE_JUMP_ADD:
-      case HUNK_TYPE_JUMP_REMOVE:
-      case HUNK_TYPE_TECH_ADD:
-      case HUNK_TYPE_TECH_REMOVE:
-      case HUNK_TYPE_ASSET_FACTION:
-      case HUNK_TYPE_ASSET_FACTION_REMOVE:
-      case HUNK_TYPE_FACTION_VISIBLE:
-      case HUNK_TYPE_FACTION_INVISIBLE:
-      case HUNK_TYPE_FACTION_ALLY:
-      case HUNK_TYPE_FACTION_ENEMY:
-      case HUNK_TYPE_FACTION_NEUTRAL:
-      case HUNK_TYPE_FACTION_REALIGN:
-         free(hunk->u.name);
-         hunk->u.name = NULL;
-         break;
+   free(hunk->target.name);
+   hunk->target.name = NULL;
 
-      default:
-         break;
-   }
-   memset( hunk, 0, sizeof(UniHunk_t) );
+   memset(hunk, 0, sizeof(UniHunk_t));
 }
 
 

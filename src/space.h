@@ -387,7 +387,8 @@ void systems_reconstructPlanets (void);
 StarSystem *system_new (void);
 int system_addPlanet( StarSystem *sys, const char *planetname );
 int system_rmPlanet( StarSystem *sys, const char *planetname );
-int system_addJump( StarSystem *sys, xmlNodePtr node );
+int system_addJump(StarSystem *sys, const char *jumpname, Vector2d pos,
+      double rdr_range_mod, unsigned int flags);
 int system_rmJump( StarSystem *sys, const char *jumpname );
 
 /*

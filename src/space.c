@@ -131,7 +131,6 @@ static StarSystem* system_parse( StarSystem *system, const xmlNodePtr parent );
 static int system_parseJumpPoint( const xmlNodePtr node, StarSystem *sys );
 static int system_parseAsteroidField( const xmlNodePtr node, StarSystem *sys );
 static int system_parseAsteroidExclusion( const xmlNodePtr node, StarSystem *sys );
-static int system_parseJumpPointDiff( const xmlNodePtr node, StarSystem *sys );
 static void system_parseJumps( const xmlNodePtr parent );
 static void system_parseAsteroids( const xmlNodePtr parent, StarSystem *sys );
 /* misc */
@@ -2251,12 +2250,55 @@ int system_rmPlanet( StarSystem *sys, const char *planetname )
  * economy_execQueued should always be run after this.
  *
  *    @param sys Star System to add jump point to.
- *    @param node Parent node containing jump point information.
+ *    @param jumpname Name of the jump point to add.
+ *    @param pos Position of the jump point.
+ *    @param rdr_range_mod Radar range modifier of the jump point.
+ *    @param flags Flags of the jump point.
  *    @return 0 on success.
  */
-int system_addJump(StarSystem *sys, xmlNodePtr node)
+int system_addJump(StarSystem *sys, const char *jumpname, Vector2d pos,
+      double rdr_range_mod, unsigned int flags)
 {
-   return system_parseJumpPointDiff(node, sys);
+   JumpPoint *j;
+   StarSystem *target;
+
+   /* Get target. */
+   target = system_get(jumpname);
+   if (target == NULL) {
+      WARN(_("JumpPoint node for system '%s' has invalid target '%s'."),
+            sys->name, jumpname);
+      return -1;
+   }
+
+#ifdef DEBUGGING
+   int i;
+   for (i=0; i<array_size(sys->jumps); i++) {
+      j = &sys->jumps[i];
+      if (j->targetid != target->id)
+         continue;
+
+      WARN(_("Star System '%s' has duplicate jump point to '%s'."),
+            sys->name, target->name );
+      break;
+   }
+#endif /* DEBUGGING */
+
+   /* Allocate more space. */
+   j = &array_grow(&sys->jumps);
+   memset(j, 0, sizeof(JumpPoint));
+
+   /* Set attributes. */
+   j->rdr_range_mod = rdr_range_mod;
+   jp_setFlag(j, flags);
+   if (!jp_isFlag(j, JP_AUTOPOS))
+      vect_cset(&j->pos, VX(pos), VY(pos));
+
+   /* Set some stuff. */
+   j->target = target;
+   j->targetid = j->target->id;
+   j->radius = 200.;
+
+   return 0;
 }
 
 
@@ -2570,91 +2612,6 @@ void system_setFaction( StarSystem *sys )
          return;
       }
    }
-}
-
-
-/**
- * @brief Parses a single jump point for a system, from unidiff.
- *
- *    @param node Parent node containing jump point information.
- *    @param sys System to which the jump point belongs.
- *    @return 0 on success.
- */
-static int system_parseJumpPointDiff( const xmlNodePtr node, StarSystem *sys )
-{
-   JumpPoint *j;
-   char *buf;
-   double x, y;
-   StarSystem *target;
-
-   /* Get target. */
-   xmlr_attr_strd( node, "target", buf );
-   if (buf == NULL) {
-      WARN(_("JumpPoint node for system '%s' has no target attribute."), sys->name);
-      return -1;
-   }
-   target = system_get(buf);
-   if (target == NULL) {
-      WARN(_("JumpPoint node for system '%s' has invalid target '%s'."), sys->name, buf );
-      free(buf);
-      return -1;
-   }
-   free(buf);
-
-#ifdef DEBUGGING
-   int i;
-   for (i=0; i<array_size(sys->jumps); i++) {
-      j = &sys->jumps[i];
-      if (j->targetid != target->id)
-         continue;
-
-      WARN(_("Star System '%s' has duplicate jump point to '%s'."),
-            sys->name, target->name );
-      break;
-   }
-#endif /* DEBUGGING */
-
-   /* Allocate more space. */
-   j = &array_grow( &sys->jumps );
-   memset( j, 0, sizeof(JumpPoint) );
-
-   /* Handle jump point position. We want both x and y, or we autoposition the jump point. */
-   xmlr_attr_float_def(node, "x", x, HUGE_VAL);
-   xmlr_attr_float_def(node, "y", y, HUGE_VAL);
-
-   /* Handle jump point settings. */
-   xmlr_attr_strd(node, "hidden", buf);
-   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
-      jp_setFlag(j, JP_HIDDEN);
-   free(buf);
-   xmlr_attr_strd(node, "exitonly", buf);
-   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
-      jp_setFlag(j, JP_EXITONLY);
-   free(buf);
-   xmlr_attr_strd(node, "express", buf);
-   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
-      jp_setFlag(j, JP_EXPRESS);
-   free(buf);
-   xmlr_attr_strd(node, "longrange", buf);
-   if ((buf != NULL) && (strcmp(buf, "yes") == 0))
-      jp_setFlag(j, JP_LONGRANGE);
-   free(buf);
-
-   xmlr_attr_float_def(node, "rdr_range_mod", j->rdr_range_mod, 0);
-
-   /* Set some stuff. */
-   j->target = target;
-   j->targetid = j->target->id;
-   j->radius = 200.;
-
-   if (x < HUGE_VAL && y < HUGE_VAL)
-      vect_cset( &j->pos, x, y );
-   else
-      jp_setFlag(j,JP_AUTOPOS);
-
-   j->rdr_range_mod = (j->rdr_range_mod+100) / 100;
-
-   return 0;
 }
 
 
