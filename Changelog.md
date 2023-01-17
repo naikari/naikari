@@ -57,6 +57,18 @@
 * Added a new mission introducing the outfitter and how to customize
   ships.
 * Added the Black Market service to several stations.
+* Added "hypergates" which appear as you make friends or enemies of the
+  Empire and the Great Houses. (They function like regular jump gates,
+  but over long distances.)
+* Changed the Collective to be neutral to the player by default, while
+  also adding a standard jump point between Collective and Soromid space
+  (which previously existed but was a one-way hidden jump).
+* Fixed a bug where a ship that was refueling you could abandon the
+  refueling if it got too far away from its leader.
+* Collective Drones are now explicitly labeled as such (rather than
+  being merely labeled as "Drone" or "Heavy Drone").
+* The event where a civilian explains how to ask for fuel now only
+  spawns in systems with civilian presence.
 
 ## 0.5.2
 
