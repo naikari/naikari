@@ -6,5 +6,10 @@
  <system name="Protera">
   <jump target="Hypergate Zone" x="3136.406227" y="1806.096197" longrange="yes">add</jump>
  </system>
+ <faction name="Proteron">
+  <faction name="Collective">enemy</faction>
+  <faction name="Empire">enemy</faction>
+  <faction name="Soromid">enemy</faction>
+ </faction>
 </unidiff>
 
