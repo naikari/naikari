@@ -265,7 +265,7 @@ function control ()
          local dist = ai.dist( l )
          if lmd < dist then
             if task ~= "follow_fleet" and task ~= "hyperspace"
-                  and task ~= "land" then
+                  and task ~= "land" and task ~= "refuel" then
                if task ~= nil then
                   ai.poptask()
                end
