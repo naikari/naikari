@@ -225,7 +225,8 @@ int load_refresh(const char *player_name)
    if (player_name == NULL)
       path = strdup("saves");
    else {
-      asprintf(&path, "saves/%s-snapshots", player_name);
+      str2filename(buf, sizeof(buf), player_name);
+      asprintf(&path, "saves/%s-snapshots", buf);
       nfile_dirMakeExist(path);
    }
 
