@@ -206,10 +206,11 @@ static int load_load( nsave_t *save, const char *path )
 /**
  * @brief Loads or refreshes saved games.
  *
- *    @param player Player name to load snapshots of, or NULL to load
- *       the list of primary save files.
+ *    @param player_name Player name to load snapshots of, or NULL to
+ *       load the list of primary save files.
+ *    @return 0 on success, 1 if there are no saves.
  */
-int load_refresh(const char *player)
+int load_refresh(const char *player_name)
 {
    char *path;
    char buf[PATH_MAX];
@@ -221,15 +222,15 @@ int load_refresh(const char *player)
    if (load_saves != NULL)
       load_free();
 
-   if (player == NULL)
+   if (player_name == NULL)
       path = strdup("saves");
    else {
-      asprintf(&path, "saves/%s-snapshots", player);
+      asprintf(&path, "saves/%s-snapshots", player_name);
       nfile_dirMakeExist(path);
    }
 
    /* Store player name for later use. */
-   load_player = player;
+   load_player = player_name;
 
    /* load the saves */
    files = array_create( filedata_t );
@@ -239,7 +240,7 @@ int load_refresh(const char *player)
    if (array_size(files) == 0) {
       array_free(files);
       free(path);
-      return 0;
+      return 1;
    }
 
    /* Make sure backups are after saves. */
@@ -372,10 +373,10 @@ const nsave_t *load_getList (void)
 /**
  * @brief Opens the load game menu.
  *
- *    @param player Player name to load snapshots of, or NULL to load
- *       the list of primary save files.
+ *    @param player_name Player name to load snapshots of, or NULL to
+ *       load the list of primary save files.
  */
-void load_loadGameMenu(const char *player)
+void load_loadGameMenu(const char *player_name)
 {
    unsigned int wid;
    char **names, buf[PATH_MAX];
@@ -388,7 +389,7 @@ void load_loadGameMenu(const char *player)
    window_setCancel( wid, load_menu_close );
 
    /* Load loads. */
-   load_refresh(player);
+   load_refresh(player_name);
 
    /* load the saves */
    n = array_size( load_saves );

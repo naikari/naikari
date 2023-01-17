@@ -604,15 +604,19 @@ static void menu_death_restart( unsigned int wid, char* str )
 void menu_death (void)
 {
    unsigned int wid;
+   char buf[PATH_MAX];
    char path[PATH_MAX];
 
    wid = window_create("wdwRIP", _("Death"), -1, -1, MENU_WIDTH,
          50 + 2*(BUTTON_HEIGHT+20));
    window_onClose(wid, menu_death_close);
 
-   /* Allow the player to continue if the saved game exists, if not, propose to restart */
-   snprintf( path, sizeof(path), "saves/%s.ns", player.name );
-   if (PHYSFS_exists( path ))
+   /* Allow the player to continue if the saved game exists. If not,
+    * propose to restart. */
+   str2filename(buf, sizeof(buf), player.name);
+   if (snprintf(path, sizeof(path), "saves/%s.ns", buf) < 0)
+      WARN(_("Save file name was truncated: %s"), path);
+   if (PHYSFS_exists(path))
       window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT+20,
             BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnContinue", _("Continue"), menu_death_continue, SDLK_c);
