@@ -27,7 +27,6 @@
   </jump>
   <jump target="Mason">
    <autopos/>
-   <exitonly/>
   </jump>
  </jumps>
 </ssys>
