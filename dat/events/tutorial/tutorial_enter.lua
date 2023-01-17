@@ -41,7 +41,8 @@ function create()
    hook.jumpout("exit")
    hook.land("exit")
 
-   if not var.peek("tutorial_nofuel") and player.jumps() == 0 then
+   if not var.peek("tutorial_nofuel") and player.jumps() == 0
+         and system.cur():presences()["Civilian"] then
       local sys = system.cur()
       local landable_planets = false
       for i, pl in ipairs(sys:planets()) do
