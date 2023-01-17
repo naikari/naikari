@@ -67,8 +67,11 @@
   refueling if it got too far away from its leader.
 * Collective Drones are now explicitly labeled as such (rather than
   being merely labeled as "Drone" or "Heavy Drone").
-* The event where a civilian explains how to ask for fuel now only
-  spawns in systems with civilian presence.
+* The event explaining how to ask for fuel now spawns a different kind
+  of pilot depending on what factions are present in the current system
+  (supporting the same factions as the fuel request event). It also no
+  longer spawns in systems with none of these supported factions
+  present.
 
 ## 0.5.2
 

@@ -41,8 +41,8 @@ function create()
    hook.jumpout("exit")
    hook.land("exit")
 
-   if not var.peek("tutorial_nofuel") and player.jumps() == 0
-         and system.cur():presences()["Civilian"] then
+   local presences = system.cur():presences()
+   if not var.peek("tutorial_nofuel") and player.jumps() == 0 then
       local sys = system.cur()
       local landable_planets = false
       for i, pl in ipairs(sys:planets()) do
@@ -58,10 +58,32 @@ function create()
             evt.finish()
          end
 
+         local shiptype, fac, pilotname
+         if presences["Civilian"] then
+            shiptype = "Gawain"
+            fac = "Civilian"
+            pilotname = _("Civilian Gawain")
+         elseif presences["Independent"] then
+            shiptype = "Hyena"
+            fac = "Independent"
+            pilotname = _("Independent Hyena")
+         elseif presences["Trader"] then
+            shiptype = "Quicksilver"
+            fac = "Trader"
+            pilotname = _("Trader Quicksilver")
+         elseif presences["Miner"] then
+            shiptype = "Koala"
+            fac = "Miner"
+            pilotname = _("Miner Koala")
+         else
+            -- No compatible presences, so we skip the event.
+            evt.finish()
+         end
+
          local offset = vec2.new(rnd.uniform(-1000, 1000),
                rnd.uniform(-1000, 1000))
          local pos = player.pilot():pos() + offset
-         local p = pilot.add("Gawain", "Civilian", pos, _("Civilian Gawain"))
+         local p = pilot.add(shiptype, fac, pos, pilotname)
          p:setFuel(100)
          p:setVisplayer()
          timer_hook = hook.timer(3, "timer_nofuel", p)
