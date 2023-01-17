@@ -54,6 +54,24 @@ function create()
                _([[Dvaered officials have announced today that construction of a hypergate in the Dvaer system is complete, sponsored by the Empire. Dvaered warlords have shown little interest in the project, but traders rejoice as transporting Dvaered ore out of Dvaered space has become less time-consuming.]]),
                exp)
       end
+
+      local standing = faction.get("Za'lek"):playerStanding()
+      if not diff.isApplied("hypergate_zalek")
+            and (standing >= 20 or standing <= -20) then
+         diff.apply("hypergate_zalek")
+         news.add("Generic", _("Za'lek Hypergate Constructed"),
+               _([[Za'lek scientists have excitedly jumped on the hypergate bandwagon, constructing a hypergate in the Za'lek system. The team involved in the construction of the project refused to comment on the hypergate's effect on intergalactic commerce, seemingly more interested in the potential for research the technology creates.]]),
+               exp)
+      end
+
+      local standing = faction.get("Sirius"):playerStanding()
+      if not diff.isApplied("hypergate_sirius")
+            and (standing >= 20 or standing <= -20) then
+         diff.apply("hypergate_sirius")
+         news.add("Generic", _("Sirius Hypergate Constructed"),
+               _([[Sirius officials have announced, as they call it, the "Great Hypergate of Sirichana" in the Aesir system. "It was through the will of Sirichana that the Empire developed this technology," one official stated. "Through this new interconnected galaxy, more people will learn of His might and glory."]]),
+               exp)
+      end
    else
       -- Activate Empire hypergate
       local standing = faction.get("Empire"):playerStanding()
