@@ -8,6 +8,7 @@
 
 
 int save_all (void);
+int save_snapshot(const char *annotation);
 void save_reload (void);
 
 

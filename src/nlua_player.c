@@ -415,6 +415,10 @@ static int playerL_allowSave( lua_State *L )
       player_rmFlag(PLAYER_NOSAVE);
    else
       player_setFlag(PLAYER_NOSAVE);
+
+   if (landed)
+      land_genWindows(0, 1);
+
    return 0;
 }
 

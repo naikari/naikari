@@ -123,9 +123,6 @@ static int load_load( nsave_t *save, const char *path )
    /* Save path. */
    save->path = strdup(path);
 
-   /* Initialize name. */
-   save->name = NULL;
-
    /* Iterate inside the naev_save. */
    parent = root->xmlChildrenNode;
    do {
@@ -137,10 +134,8 @@ static int load_load( nsave_t *save, const char *path )
          do {
             xmlr_strd(node, "naev", save->version);
             xmlr_strd(node, "data", save->data);
-            xmlr_strd(node, "player_name", save->player_name);
             xmlr_strd(node, "annotation", save->name);
-            if (save->player_name == NULL)
-               save->player_name = save->name;
+            xmlr_strd(node, "player_name", save->player_name);
          } while (xml_nextNode(node));
          continue;
       }
@@ -149,7 +144,6 @@ static int load_load( nsave_t *save, const char *path )
          /* Get name (old method, used as a backup). */
          if (save->name == NULL) {
             xmlr_attr_strd(parent, "name", save->name);
-            save->player_name = save->name;
          }
          /* Parse rest. */
          node = parent->xmlChildrenNode;
@@ -202,6 +196,10 @@ static int load_load( nsave_t *save, const char *path )
 
    /* Clean up. */
    xmlFreeDoc(doc);
+
+   /* Fallback for old saves which didn't have player_name defined. */
+   if (save->player_name == NULL)
+      save->player_name = strdup(save->name);
 
    return 0;
 }
@@ -344,6 +342,7 @@ void load_free (void)
       ns = &load_saves[i];
       free(ns->path);
       free(ns->name);
+      free(ns->player_name);
       free(ns->version);
       free(ns->data);
       free(ns->planet);

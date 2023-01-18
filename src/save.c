@@ -259,11 +259,21 @@ int save_snapshot(const char *annotation)
    asprintf(&snapfile, "%s/saves/%s-%s.ns.snapshot",
          PHYSFS_getWriteDir(), buf, buf2);
 
+   if (PHYSFS_exists(snapfile)
+         && !dialogue_YesNo(_("Save Snapshot"),
+            _("You already have a snapshot named '%s'. Overwrite?"),
+            annotation)) {
+      goto exit;
+   }
+
    /* TODO: write via physfs */
    if (xmlSaveFileEnc(snapfile, doc, "UTF-8") < 0) {
       WARN(_("Failed to write snapshot."));
       ret = -1;
+      goto exit;
    }
+
+   dialogue_msg(_("Save Snapshot"), _("Snapshot '%s' saved."), annotation);
 
 exit:
    xmlFreeTextWriter(writer);

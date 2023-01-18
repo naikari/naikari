@@ -121,6 +121,9 @@ static void land_stranded (void);
 static void land_createMainTab( unsigned int wid );
 static void land_cleanupWindow( unsigned int wid, char *name );
 static void land_changeTab( unsigned int wid, char *wgt, int old, int tab );
+/* spaceport */
+static void spaceport_buyMap(unsigned int wid, char *str);
+static void spaceport_saveSnapshot(unsigned int wid, char *str);
 /* spaceport bar */
 static void bar_getDim( int wid,
       int *w, int *h, int *iw, int *ih, int *bw, int *bh );
@@ -816,6 +819,25 @@ static void spaceport_buyMap( unsigned int wid, char *str )
 
 
 /**
+ * @brief Saves a snapshot.
+ */
+static void spaceport_saveSnapshot(unsigned int wid, char *str)
+{
+   (void) wid;
+   (void) str;
+   char *annotation;
+
+   annotation = dialogue_input(_("Save Snapshot"), 1, 60,
+         _("Please enter a name for the snapshot:"));
+
+   if (annotation != NULL)
+      save_snapshot(annotation);
+
+   free(annotation);
+}
+
+
+/**
  * @brief Adds the "Buy Local Map" button if needed and updates info.
  */
 void land_updateMainTab (void)
@@ -892,14 +914,20 @@ void land_updateMainTab (void)
       /* Refuel button. */
       credits2str( cred, o->price, 0 );
       snprintf( buf, sizeof(buf), _("Buy Local Map (%s)"), cred );
-      window_addButtonKey( land_windows[0], -20, 20 + (LAND_BUTTON_HEIGHT + 20),
+      window_addButtonKey(land_windows[0],
+            -20, 20 + 2*(LAND_BUTTON_HEIGHT+20),
             LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnMap",
-            buf, spaceport_buyMap, SDLK_b );
+            buf, spaceport_buyMap, SDLK_b);
    }
 
    /* Make sure player can click it. */
    if (!outfit_canBuy(LOCAL_MAP_NAME, land_planet))
       window_disableButtonSoft( land_windows[0], "btnMap" );
+
+   /* Now handle the Save Snapshot button. */
+   window_enableButton(land_windows[0], "btnSaveSnapshot");
+   if (player_isFlag(PLAYER_NOSAVE))
+      window_disableButton(land_windows[0], "btnSaveSnapshot");
 }
 
 
@@ -1242,7 +1270,7 @@ static void land_createMainTab( unsigned int wid )
     */
    window_addImage( wid, 20, -40, 400, 400, "imgPlanet", gfx_exterior, 1 );
    window_addText( wid, 440, -20-offset,
-         w-460, h-20-offset-60-LAND_BUTTON_HEIGHT*2, 0,
+         w-460, h - 20 - offset - 20 - 3*(LAND_BUTTON_HEIGHT+20), 0,
          "txtPlanetDesc", &gl_smallFont, NULL, _(land_planet->description) );
 
    /* Player stats. */
@@ -1256,12 +1284,16 @@ static void land_createMainTab( unsigned int wid )
    window_addButtonKey( wid, -20, 20,
          LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnTakeoff",
          _("Take Off"), land_buttonTakeoff, SDLK_t );
+   window_addButtonKey(wid, -20, 20 + (LAND_BUTTON_HEIGHT+20),
+         LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnSaveSnapshot",
+         _("Save Snapshot"), spaceport_saveSnapshot, SDLK_s);
 
    /* Add "no refueling" notice if needed. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
-      window_addText( land_windows[0], -20, 20 + (LAND_BUTTON_HEIGHT + 20) + 20,
-               200, gl_defFont.h, 1, "txtRefuel",
-               &gl_defFont, NULL, _("No refueling services.") );
+      window_addText(land_windows[0],
+            -20, 20 + 2*(LAND_BUTTON_HEIGHT+20) + 20,
+            200, gl_defFont.h, 1, "txtRefuel",
+            &gl_defFont, NULL, _("No refueling services."));
    }
 }
 
