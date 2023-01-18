@@ -502,7 +502,7 @@ static void load_menu_load( unsigned int wdw, char *str )
 
    /* Check version. */
    diff = naev_versionCompare(load_saves[pos].version);
-   if (ABS(diff) <= -2) {
+   if (diff <= -2) {
       if (!dialogue_YesNo( _("Save game version mismatch"),
             _("Save game '%s' version is newer than Naikari version:\n"
             "   Save version: #r%s#0\n"
