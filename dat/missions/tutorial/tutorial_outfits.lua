@@ -107,6 +107,11 @@ function create()
    if not cargopod_available then
       misn.finish(false)
    end
+
+   -- Set a default cargo if none chosen.
+   if cargo == nil then
+      cargo = "Luxury Goods"
+   end
    
    credits = 300000
    talked = false
