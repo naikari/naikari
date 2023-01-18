@@ -1446,6 +1446,9 @@ void takeoff( int delay )
    /* Refuel if needed. */
    land_refuel();
 
+   /* Reset last tab so we don't get issues next time we land. */
+   last_window = 0;
+
    /* In case we had paused messy sounds. */
    sound_stopAll();
 
