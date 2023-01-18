@@ -195,6 +195,7 @@ int save_snapshot(const char *annotation)
 {
    char buf[PATH_MAX], buf2[PATH_MAX];
    char *snapfile;
+   char *path;
    xmlDocPtr doc;
    xmlTextWriterPtr writer;
    int ret;
@@ -215,6 +216,7 @@ int save_snapshot(const char *annotation)
     * location and cause problems). */
    ret = 0;
    snapfile = NULL;
+   path = NULL;
 
    /* Set the writer parameters. */
    xmlw_setParams(writer);
@@ -256,8 +258,8 @@ int save_snapshot(const char *annotation)
    }
    str2filename(buf, sizeof(buf), player.name);
    str2filename(buf2, sizeof(buf2), annotation);
-   asprintf(&snapfile, "%s/saves/%s-%s.ns.snapshot",
-         PHYSFS_getWriteDir(), buf, buf2);
+   asprintf(&snapfile, "saves/%s-%s.ns.snapshot", buf, buf2);
+   asprintf(&path, "%s/%s", PHYSFS_getWriteDir(), snapfile);
 
    if (PHYSFS_exists(snapfile)
          && !dialogue_YesNo(_("Save Snapshot"),
@@ -267,7 +269,7 @@ int save_snapshot(const char *annotation)
    }
 
    /* TODO: write via physfs */
-   if (xmlSaveFileEnc(snapfile, doc, "UTF-8") < 0) {
+   if (xmlSaveFileEnc(path, doc, "UTF-8") < 0) {
       WARN(_("Failed to write snapshot."));
       ret = -1;
       goto exit;
@@ -279,6 +281,7 @@ exit:
    xmlFreeTextWriter(writer);
    xmlFreeDoc(doc);
    free(snapfile);
+   free(path);
 
    return ret;
 }
