@@ -4632,10 +4632,10 @@ static int pilotL_leader( lua_State *L ) {
       recursive = lua_toboolean(L, 2);
 
    pid = p->parent;
-   if (pid != 0) {
+   if ((pid != 0) && (pilot_get(pid) != NULL)) {
       if (recursive) {
          parent = pilot_get(pid);
-         while (parent->parent != 0) {
+         while ((parent->parent != 0) && (pilot_get(parent->parent) != NULL)) {
             pid = parent->parent;
             parent = pilot_get(pid);
          }
