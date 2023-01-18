@@ -123,6 +123,7 @@ int save_all (void)
    xmlw_startElem(writer,"version");
    xmlw_elem(writer, "naev", "%s", VERSION);
    xmlw_elem(writer, "data", "%s", start_name());
+   xmlw_elem(writer, "player_name", "%s", player.name);
    xmlw_elem(writer, "annotation", "%s", player.name);
    xmlw_endElem(writer); /* "version" */
 
@@ -164,17 +165,15 @@ int save_all (void)
 
    /* Critical section, if crashes here player's game gets corrupted.
     * Luckily we have a copy just in case... */
-   if (ret == 0) {
-      /* TODO: write via physfs */
-      if (snprintf(file, sizeof(file), "%s/saves/%s.ns", PHYSFS_getWriteDir(),
-            buf) < 0)
-         WARN(_("Save file name was truncated: %s"), file);
-      if (xmlSaveFileEnc(file, doc, "UTF-8") < 0) {
-         WARN(_("Failed to write saved game! You'll most likely have to"
-               " restore it by copying your backup saved game over your"
-               " current saved game."));
-         ret = -1;
-      }
+   /* TODO: write via physfs */
+   if (snprintf(file, sizeof(file), "%s/saves/%s.ns", PHYSFS_getWriteDir(),
+         buf) < 0)
+      WARN(_("Save file name was truncated: %s"), file);
+   if (xmlSaveFileEnc(file, doc, "UTF-8") < 0) {
+      WARN(_("Failed to write saved game! You'll most likely have to"
+            " restore it by copying your backup saved game over your"
+            " current saved game."));
+      ret = -1;
    }
 
 exit:
@@ -194,8 +193,8 @@ exit:
  */
 int save_snapshot(const char *annotation)
 {
-   char buf[PATH_MAX];
-   char *path, *snapfile;
+   char buf[PATH_MAX], buf2[PATH_MAX];
+   char *snapfile;
    xmlDocPtr doc;
    xmlTextWriterPtr writer;
    int ret;
@@ -215,7 +214,6 @@ int save_snapshot(const char *annotation)
     * without using asprintf (otherwise we'd call free() on an arbitrary
     * location and cause problems). */
    ret = 0;
-   path = NULL;
    snapfile = NULL;
 
    /* Set the writer parameters. */
@@ -229,6 +227,7 @@ int save_snapshot(const char *annotation)
    xmlw_startElem(writer,"version");
    xmlw_elem(writer, "naev", "%s", VERSION);
    xmlw_elem(writer, "data", "%s", start_name());
+   xmlw_elem(writer, "player_name", "%s", player.name);
    xmlw_elem(writer, "annotation",
          p_("snapshot_name", "%s (%s)"), annotation, player.name);
    xmlw_endElem(writer); /* "version" */
@@ -248,17 +247,17 @@ int save_snapshot(const char *annotation)
    xmlw_done(writer);
 
    /* Write to file. */
-   str2filename(buf, sizeof(buf), player.name);
-   asprintf(&path, "saves/%s-snapshots", buf);
-   str2filename(buf, sizeof(buf), annotation);
-   asprintf(&snapfile, "%s/%s.ns", path, buf);
-
-   if (PHYSFS_mkdir(path) == 0) {
-      WARN(_("Path '%s' does not exist and unable to create: %s"), path,
+   if (PHYSFS_mkdir("saves") == 0) {
+      snprintf(buf, sizeof(buf), "%s/saves", PHYSFS_getWriteDir());
+      WARN(_("Dir '%s' does not exist and unable to create: %s"), buf,
             PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
       ret = -1;
       goto exit;
    }
+   str2filename(buf, sizeof(buf), player.name);
+   str2filename(buf2, sizeof(buf2), annotation);
+   asprintf(&snapfile, "%s/saves/%s-%s.ns.snapshot",
+         PHYSFS_getWriteDir(), buf, buf2);
 
    /* TODO: write via physfs */
    if (xmlSaveFileEnc(snapfile, doc, "UTF-8") < 0) {
@@ -269,7 +268,6 @@ int save_snapshot(const char *annotation)
 exit:
    xmlFreeTextWriter(writer);
    xmlFreeDoc(doc);
-   free(path);
    free(snapfile);
 
    return ret;

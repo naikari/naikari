@@ -57,7 +57,6 @@ typedef struct filedata {
 } filedata_t;
 
 
-static const char *load_player = NULL; /**< Player saves are listed for. */
 static nsave_t *load_saves = NULL; /**< Array of save.s */
 extern int save_loaded; /**< From save.c */
 
@@ -138,15 +137,20 @@ static int load_load( nsave_t *save, const char *path )
          do {
             xmlr_strd(node, "naev", save->version);
             xmlr_strd(node, "data", save->data);
+            xmlr_strd(node, "player_name", save->player_name);
             xmlr_strd(node, "annotation", save->name);
+            if (save->player_name == NULL)
+               save->player_name = save->name;
          } while (xml_nextNode(node));
          continue;
       }
 
       else if (xml_isNode(parent, "player")) {
          /* Get name (old method, used as a backup). */
-         if (save->name == NULL)
+         if (save->name == NULL) {
             xmlr_attr_strd(parent, "name", save->name);
+            save->player_name = save->name;
+         }
          /* Parse rest. */
          node = parent->xmlChildrenNode;
          do {
@@ -206,13 +210,10 @@ static int load_load( nsave_t *save, const char *path )
 /**
  * @brief Loads or refreshes saved games.
  *
- *    @param player_name Player name to load snapshots of, or NULL to
- *       load the list of primary save files.
  *    @return 0 on success, 1 if there are no saves.
  */
-int load_refresh(const char *player_name)
+int load_refresh(void)
 {
-   char *path;
    char buf[PATH_MAX];
    filedata_t *files, tmp;
    size_t len;
@@ -222,17 +223,6 @@ int load_refresh(const char *player_name)
    if (load_saves != NULL)
       load_free();
 
-   if (player_name == NULL)
-      path = strdup("saves");
-   else {
-      str2filename(buf, sizeof(buf), player_name);
-      asprintf(&path, "saves/%s-snapshots", buf);
-      nfile_dirMakeExist(path);
-   }
-
-   /* Store player name for later use. */
-   load_player = player_name;
-
    /* load the saves */
    files = array_create( filedata_t );
    PHYSFS_enumerate( "saves", load_enumerateCallback, &files );
@@ -240,7 +230,6 @@ int load_refresh(const char *player_name)
 
    if (array_size(files) == 0) {
       array_free(files);
-      free(path);
       return 1;
    }
 
@@ -269,7 +258,7 @@ int load_refresh(const char *player_name)
    for (i=0; i<array_size(files); i++) {
       if (!ok)
          ns = &array_grow( &load_saves );
-      snprintf(buf, sizeof(buf), "%s/%s", path, files[i].name);
+      snprintf(buf, sizeof(buf), "saves/%s", files[i].name);
       ok = load_load(ns, buf);
    }
 
@@ -281,7 +270,6 @@ int load_refresh(const char *player_name)
    for (i=0; i<array_size(files); i++)
       free( files[i].name );
    array_free( files );
-   free(path);
 
    return 0;
 }
@@ -301,8 +289,12 @@ static int load_enumerateCallback( void* data, const char* origdir, const char* 
    dir_len = strlen( origdir );
    name_len = strlen( fname );
 
-   /* no save or backup save extension? */
-   if ((name_len < 4 || strcmp( &fname[name_len-3], ".ns" )) && (name_len < 11 || strcmp( &fname[name_len-10], ".ns.backup" )))
+   /* Check against valid extensions. */
+   if (((name_len < 4) || (strcmp(&fname[name_len-3], ".ns") != 0))
+         && ((name_len < 11)
+            || (strcmp(&fname[name_len-10], ".ns.backup") != 0))
+         && ((name_len < 13)
+            || (strcmp(&fname[name_len-10], ".ns.snapshot") != 0)))
       return PHYSFS_ENUM_OK;
 
    fmt = dir_len && origdir[dir_len-1]=='/' ? "%s%s" : "%s/%s";
@@ -373,11 +365,8 @@ const nsave_t *load_getList (void)
 
 /**
  * @brief Opens the load game menu.
- *
- *    @param player_name Player name to load snapshots of, or NULL to
- *       load the list of primary save files.
  */
-void load_loadGameMenu(const char *player_name)
+void load_loadGameMenu()
 {
    unsigned int wid;
    char **names, buf[PATH_MAX];
@@ -390,7 +379,7 @@ void load_loadGameMenu(const char *player_name)
    window_setCancel( wid, load_menu_close );
 
    /* Load loads. */
-   load_refresh(player_name);
+   load_refresh();
 
    /* load the saves */
    n = array_size( load_saves );
@@ -490,6 +479,7 @@ static void load_menu_load( unsigned int wdw, char *str )
    char *save;
    int wid, pos;
    int diff;
+   unsigned int was_open;
 
    wid = window_get( "wdwLoadGameMenu" );
    save = toolkit_getList( wid, "lstSaves" );
@@ -500,7 +490,7 @@ static void load_menu_load( unsigned int wdw, char *str )
    pos = toolkit_getListPos( wid, "lstSaves" );
 
    /* Always confirm if loading a snapshot. */
-   if ((load_player != NULL)
+   if ((strcmp(load_saves[pos].name, load_saves[pos].player_name) != 0)
          && !dialogue_YesNo(_("Load Snapshot"),
             _("Warning: After loading a snapshot, automatic saving will"
                " continue, which will erase any progress which is not"
@@ -526,15 +516,16 @@ static void load_menu_load( unsigned int wdw, char *str )
    load_menu_close(wdw, NULL);
 
    /* Close the main menu. */
-   if (load_player == NULL)
+   was_open = menu_isOpen(MENU_MAIN);
+   if (was_open)
       menu_main_close();
 
    /* Try to load the game. */
    if (load_game( &load_saves[pos] )) {
       /* Failed so reopen closed menus. */
-      if (load_player == NULL)
+      if (was_open)
          menu_main();
-      load_loadGameMenu(load_player);
+      load_loadGameMenu();
    }
 }
 /**
@@ -564,7 +555,7 @@ static void load_menu_delete( unsigned int wdw, char *str )
 
    /* need to reload the menu */
    load_menu_close(wdw, NULL);
-   load_loadGameMenu(load_player);
+   load_loadGameMenu();
 }
 
 
