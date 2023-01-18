@@ -178,7 +178,11 @@ function create()
    -- Generated articles
    local publish_interval = time.create(0, 30, 0)
    local last_news = var.peek("_news_last")
-   local narticles = #news.get("Generic") + #news.get(planet.cur():faction():nameRaw())
+   local narticles = #news.get("Generic")
+   local f = planet.cur():faction()
+   if f ~= nil then
+      narticles = narticles + #news.get(f:nameRaw())
+   end
    if (narticles <= 0 or last_news == nil
             or time.get() - time.fromnumber(last_news) > publish_interval)
          and narticles < 5
