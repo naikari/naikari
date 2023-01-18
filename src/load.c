@@ -514,16 +514,30 @@ static void load_menu_load( unsigned int wdw, char *str )
    /* Close menus before loading for proper rendering. */
    load_menu_close(wdw, NULL);
 
-   /* Close the main menu. */
-   was_open = menu_isOpen(MENU_MAIN);
-   if (was_open)
+   /* Close any open menu. */
+   was_open = 0;
+   if (menu_isOpen(MENU_DEATH)) {
+      was_open = MENU_DEATH;
+      menu_death_close();
+   }
+   if (menu_isOpen(MENU_SMALL)) {
+      was_open = MENU_SMALL;
+      menu_small_close();
+   }
+   if (menu_isOpen(MENU_MAIN)){
+      was_open = MENU_MAIN;
       menu_main_close();
+   }
 
    /* Try to load the game. */
    if (load_game( &load_saves[pos] )) {
       /* Failed so reopen closed menus. */
-      if (was_open)
+      if (was_open == MENU_MAIN)
          menu_main();
+      else if (was_open == MENU_SMALL)
+         menu_small();
+      else if (was_open == MENU_DEATH)
+         menu_death();
       load_loadGameMenu();
    }
 }

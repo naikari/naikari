@@ -80,15 +80,16 @@ static void menu_main_new( unsigned int wid, char* str );
 static void menu_main_credits( unsigned int wid, char* str );
 static void menu_main_cleanBG( unsigned int wid, char* str );
 /* small menu */
-static void menu_small_close( unsigned int wid, char* str );
-static void menu_small_info( unsigned int wid, char *str );
-static void menu_small_exit( unsigned int wid, char* str );
+static void menu_small_resume(unsigned int wid, char* str);
+static void menu_small_info(unsigned int wid, char *str);
+static void menu_small_load(unsigned int wid, char *str);
+static void menu_small_exit(unsigned int wid, char* str);
 static void exit_game (void);
 /* death menu */
 static void menu_death_continue( unsigned int wid, char* str );
 static void menu_death_restart( unsigned int wid, char* str );
 static void menu_death_main( unsigned int wid, char* str );
-static void menu_death_close( unsigned int wid, char* str );
+static void menu_death_onclose(unsigned int wid, char* str);
 /* editors menu */
 /* - Universe Editor */
 /* - Back to Main Menu */
@@ -476,13 +477,16 @@ void menu_small (void)
       return;
 
    wid = window_create("wdwMenuSmall", _("Menu"), -1, -1, MENU_WIDTH,
-         50 + 4*(BUTTON_HEIGHT+20));
+         50 + 5*(BUTTON_HEIGHT+20));
 
-   window_setCancel(wid, menu_small_close);
+   window_setCancel(wid, menu_small_resume);
 
+   window_addButtonKey(wid, 20, 20 + 4*(BUTTON_HEIGHT+20),
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnResume", _("Resume"), menu_small_resume, SDLK_r);
    window_addButtonKey(wid, 20, 20 + 3*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnResume", _("Resume"), menu_small_close, SDLK_r );
+         "btnLoad", _("Load Game"), menu_small_load, SDLK_l);
    window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnInfo", _("Ship Computer"), menu_small_info, SDLK_c);
@@ -497,13 +501,27 @@ void menu_small (void)
 
 
 /**
+ * @brief Closes the small menu.
+ */
+void menu_small_close(void)
+{
+   if (window_exists("wdwMenuSmall"))
+      window_destroy(window_get("wdwMenuSmall"));
+   else
+      WARN(_("Small menu does not exist."));
+
+   menu_Close(MENU_SMALL);
+}
+
+
+/**
  * @brief Closes the small in-game menu.
  *    @param str Unused.
  */
-static void menu_small_close( unsigned int wid, char* str )
+static void menu_small_resume(unsigned int wid, char* str)
 {
    (void)str;
-   window_destroy( wid );
+   window_destroy(wid);
    menu_Close(MENU_SMALL);
 }
 
@@ -520,6 +538,21 @@ static void menu_small_info( unsigned int wid, char *str )
 
    menu_info( INFO_MAIN );
 }
+
+
+/**
+ * @brief Opens the load game window.
+ *    @param wid Unused.
+ *    @param str Unused.
+ */
+static void menu_small_load(unsigned int wid, char *str)
+{
+   (void) str;
+   (void) wid;
+
+   load_loadGameMenu();
+}
+
 
 /**
  * @brief Closes the small in-game menu and goes back to the main menu.
@@ -598,6 +631,21 @@ static void menu_death_restart( unsigned int wid, char* str )
    player_new();
 }
 
+
+/**
+ * @brief Opens the load game window.
+ *    @param wid Unused.
+ *    @param str Unused.
+ */
+static void menu_death_load(unsigned int wid, char *str)
+{
+   (void) str;
+   (void) wid;
+
+   load_loadGameMenu();
+}
+
+
 /**
  * @brief Player death menu, appears when player got creamed.
  */
@@ -608,8 +656,8 @@ void menu_death (void)
    char path[PATH_MAX];
 
    wid = window_create("wdwRIP", _("Death"), -1, -1, MENU_WIDTH,
-         50 + 2*(BUTTON_HEIGHT+20));
-   window_onClose(wid, menu_death_close);
+         50 + 3*(BUTTON_HEIGHT+20));
+   window_onClose(wid, menu_death_onclose);
 
    /* Allow the player to continue if the saved game exists. If not,
     * propose to restart. */
@@ -617,14 +665,17 @@ void menu_death (void)
    if (snprintf(path, sizeof(path), "saves/%s.ns", buf) < 0)
       WARN(_("Save file name was truncated: %s"), path);
    if (PHYSFS_exists(path))
-      window_addButtonKey( wid, 20, 20 + BUTTON_HEIGHT+20,
+      window_addButtonKey( wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
             BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnContinue", _("Continue"), menu_death_continue, SDLK_c);
    else
-      window_addButtonKey(wid, 20, 20 + BUTTON_HEIGHT+20,
+      window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
             BUTTON_WIDTH, BUTTON_HEIGHT,
             "btnRestart", _("Restart"), menu_death_restart, SDLK_r);
 
+   window_addButtonKey(wid, 20, 20 + 1*(BUTTON_HEIGHT+20),
+            BUTTON_WIDTH, BUTTON_HEIGHT,
+            "btnLoad", _("Load Game"), menu_death_load, SDLK_l);
    window_addButtonKey(wid, 20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnMain", _("Main Menu"), menu_death_main, SDLK_m);
@@ -650,11 +701,25 @@ static void menu_death_main( unsigned int wid, char* str )
 /**
  * @brief Hack to get around the fact the death menu unpauses the game.
  */
-static void menu_death_close( unsigned int wid, char* str )
+static void menu_death_onclose(unsigned int wid, char* str)
 {
    (void) wid;
    (void) str;
    pause_game(); /* Repause the game. */
+}
+
+
+/**
+ * @brief Closes the death menu.
+ */
+void menu_death_close(void)
+{
+   if (window_exists("wdwRIP"))
+      window_destroy(window_get("wdwRIP"));
+   else
+      WARN(_("Death menu does not exist."));
+
+   menu_Close(MENU_DEATH);
 }
 
 

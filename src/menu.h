@@ -34,7 +34,9 @@ int menu_askQuit (void);
 /*
  * Closing.
  */
-void menu_main_close (void);
+void menu_main_close(void);
+void menu_small_close(void);
+void menu_death_close(void);
 
 
 /*
