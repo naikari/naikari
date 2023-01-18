@@ -72,6 +72,11 @@
   (supporting the same factions as the fuel request event). It also no
   longer spawns in systems with none of these supported factions
   present.
+* Fixed a bug that caused the death menu to never show the "continue"
+  option on saves with certain special characters in their names.
+* Added support for saving and loading arbitrary snapshots.
+* Fixed a failure to warn of a version mismatch when attempting to load
+  a save file from a newer version of the game.
 
 ## 0.5.2
 
