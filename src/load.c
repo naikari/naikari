@@ -284,15 +284,15 @@ static int load_enumerateCallback( void* data, const char* origdir, const char* 
    filedata_t *tmp;
    PHYSFS_Stat stat;
 
-   dir_len = strlen( origdir );
-   name_len = strlen( fname );
+   dir_len = strlen(origdir);
+   name_len = strlen(fname);
 
    /* Check against valid extensions. */
    if (((name_len < 4) || (strcmp(&fname[name_len-3], ".ns") != 0))
          && ((name_len < 11)
             || (strcmp(&fname[name_len-10], ".ns.backup") != 0))
          && ((name_len < 13)
-            || (strcmp(&fname[name_len-10], ".ns.snapshot") != 0)))
+            || (strcmp(&fname[name_len-12], ".ns.snapshot") != 0)))
       return PHYSFS_ENUM_OK;
 
    fmt = dir_len && origdir[dir_len-1]=='/' ? "%s%s" : "%s/%s";
