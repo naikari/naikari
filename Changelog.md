@@ -2,6 +2,27 @@
 
 ## 0.6.0
 
+### Major Changes
+
+* Added a new outfit: the Photon Dagger. This now serves as an
+  introductory secondary weapon: it's available on all outfitters and is
+  equipped to several ships by default (including the player's starting
+  ship). It does high damage, similar to the Banshee rockets, and is
+  very fast (actually the speed of light, if you work it out), but
+  unlike the Banshee rockets, it has to be manually aimed and has a bit
+  of a shorter range.
+* Added a new mission introducing the outfitter and how to customize
+  ships.
+* Added "hypergates" which appear as you make friends or enemies of the
+  Empire and the Great Houses. (They function like regular jump gates,
+  but over long distances.)
+* Changed the Collective to be neutral to the player by default, while
+  also adding a standard jump point between Collective and Soromid space
+  (which previously existed but was a one-way hidden jump).
+* Added support for saving and loading arbitrary snapshots.
+
+### Other Changes
+
 * Made the Collective drones stronger. (They were previously nerfed so
   they wouldn't be too frustrating in the old Collective campaign.)
 * Changed generic cargo missions to have a special set of messages and a
@@ -17,8 +38,6 @@
   missions from being regenerated after you've finished them.
 * Increased the number of music tracks used for the Empire and the
   Collective.
-* Fixed the escorts in Shadow Vigil not actually defending the diplomat
-  they're supposed to be escorting.
 * Seek and Destroy mission now has its trail go cold significantly
   slower, ensuring you always have at least three chances to catch your
   target.
@@ -26,25 +45,10 @@
   certain regions (but not only at military stations) now have a rarity
   of 1. Electron Burst Cannon is now rarity 2 instead of 3, since Za'lek
   military stations offer it.
-* Added a new outfit: the Photon Dagger. This now serves as an
-  introductory secondary weapon: it's available on all outfitters and is
-  equipped to several ships by default (including the player's starting
-  ship). It does high damage, similar to the Banshee rockets, and is
-  very fast (actually the speed of light, if you work it out), but
-  unlike the Banshee rockets, it has to be manually aimed and has a bit
-  of a shorter range.
-* Fixed the class of Vigilance Station (was class A for some reason).
 * Reworked the Dvaered warlords event so that it's more likely to show
   up, offers a higher reward, and the winners become normal Dvaered
   ships.
 * You can now hail ships even if disabled.
-* Fixed a bug where a previous running game's addition of faction
-  presence through the Unidiff system could stay added when starting a
-  new game or loading a game without that presence addition. This was
-  most noticeable in Hakoi, where if you started a new game after
-  loading an established game which added pirates to Hakoi, some of
-  those pirates would stick around in the new game even though it's
-  supposed to be pirate-free.
 * Added randomization of NPC backgrounds.
 * Added some text to the Unicorp Fury Launcher and Laser Turret MK1
   descriptions to help new players learn about how to properly use
@@ -54,17 +58,7 @@
   subordinates of subordinates, etc. This matters if you hire an escort
   who themself has their own escorts; it means those escorts' kills will
   now count e.g. for earning bounties.
-* Added a new mission introducing the outfitter and how to customize
-  ships.
 * Added the Black Market service to several stations.
-* Added "hypergates" which appear as you make friends or enemies of the
-  Empire and the Great Houses. (They function like regular jump gates,
-  but over long distances.)
-* Changed the Collective to be neutral to the player by default, while
-  also adding a standard jump point between Collective and Soromid space
-  (which previously existed but was a one-way hidden jump).
-* Fixed a bug where a ship that was refueling you could abandon the
-  refueling if it got too far away from its leader.
 * Collective Drones are now explicitly labeled as such (rather than
   being merely labeled as "Drone" or "Heavy Drone").
 * The event explaining how to ask for fuel now spawns a different kind
@@ -72,9 +66,23 @@
   (supporting the same factions as the fuel request event). It also no
   longer spawns in systems with none of these supported factions
   present.
+
+### Bugfixes
+
+* Fixed the escorts in Shadow Vigil not actually defending the diplomat
+  they're supposed to be escorting.
+* Fixed the class of Vigilance Station (was class A for some reason).
+* Fixed a bug where a previous running game's addition of faction
+  presence through the Unidiff system could stay added when starting a
+  new game or loading a game without that presence addition. This was
+  most noticeable in Hakoi, where if you started a new game after
+  loading an established game which added pirates to Hakoi, some of
+  those pirates would stick around in the new game even though it's
+  supposed to be pirate-free.
+* Fixed a bug where a ship that was refueling you could abandon the
+  refueling if it got too far away from its leader.
 * Fixed a bug that caused the death menu to never show the "continue"
   option on saves with certain special characters in their names.
-* Added support for saving and loading arbitrary snapshots.
 * Fixed a failure to warn of a version mismatch when attempting to load
   a save file from a newer version of the game.
 
