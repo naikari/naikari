@@ -201,8 +201,10 @@ int save_snapshot(const char *annotation)
    int ret;
 
    /* Do not save if saving is off. */
-   if (player_isFlag(PLAYER_NOSAVE))
+   if (player_isFlag(PLAYER_NOSAVE)) {
+      WARN("%s", _("Attempted to save snapshot when saving is not allowed."));
       return 0;
+   }
 
    /* Create the writer. */
    writer = xmlNewTextWriterDoc(&doc, conf.save_compress);

@@ -827,6 +827,14 @@ static void spaceport_saveSnapshot(unsigned int wid, char *str)
    (void) str;
    char *annotation;
 
+   /* Do not attempt to save if saving is off. */
+   if (player_isFlag(PLAYER_NOSAVE)) {
+      dialogue_msgRaw(_("Save Snapshot"),
+            _("Cannot save; saving is currently being restricted by a mission"
+               " or event."));
+      return;
+   }
+
    annotation = dialogue_input(_("Save Snapshot"), 1, 60,
          _("Please enter a name for the snapshot:"));
 
@@ -853,6 +861,11 @@ void land_updateMainTab (void)
       "\xe2\x81\xb9"};
    int state = 0, COEF = 0, E = 1, EXP = 4;
    size_t l = 0;
+
+   /* Handle the Save Snapshot button. */
+   window_enableButton(land_windows[0], "btnSaveSnapshot");
+   if (player_isFlag(PLAYER_NOSAVE))
+      window_disableButton(land_windows[0], "btnSaveSnapshot");
 
    if (p < 1.0e3)
       snprintf(pop, sizeof(pop), "%.0Lf", p);
@@ -923,11 +936,6 @@ void land_updateMainTab (void)
    /* Make sure player can click it. */
    if (!outfit_canBuy(LOCAL_MAP_NAME, land_planet))
       window_disableButtonSoft( land_windows[0], "btnMap" );
-
-   /* Now handle the Save Snapshot button. */
-   window_enableButton(land_windows[0], "btnSaveSnapshot");
-   if (player_isFlag(PLAYER_NOSAVE))
-      window_disableButton(land_windows[0], "btnSaveSnapshot");
 }
 
 
