@@ -241,6 +241,10 @@ static int playerL_pay( lua_State *L )
       hooks_runParam( "pay", p );
    }
 
+   /* Regenerate the land windows so credits displays can update. */
+   if (landed)
+      land_genWindows(0, 1);
+
    return 0;
 }
 /**
@@ -416,6 +420,7 @@ static int playerL_allowSave( lua_State *L )
    else
       player_setFlag(PLAYER_NOSAVE);
 
+   /* Regenerate the land windows for the Save Snapshot button. */
    if (landed)
       land_genWindows(0, 1);
 
