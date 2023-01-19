@@ -1956,20 +1956,18 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
             _("%s (limit 1 per ship)\n"),
             _(temp->limit) );
 
-   i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+   i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
          _("%G t Mass Limit\n"
          "#%c%s%+G%% Thrust#0\n"
          "#%c%s%+G%% Maximum Speed#0\n"
-         "#%c%s%+G GW Energy Loss#0\n"
-         "%G Rumble"),
+         "#%c%s%+G GW Energy Loss#0"),
          temp->u.afb.mass_limit,
          (temp->u.afb.thrust < 0 ? 'r' : 'g'),
          (temp->u.afb.thrust < 0 ? "!! " : ""), temp->u.afb.thrust,
          (temp->u.afb.speed < 0 ? 'r' : 'g'),
          (temp->u.afb.speed < 0 ? "!! " : ""), temp->u.afb.speed,
          (temp->u.afb.energy > 0 ? 'r' : 'g'),
-         (temp->u.afb.energy > 0 ? "!! " : ""), -temp->u.afb.energy,
-         temp->u.afb.rumble );
+         (temp->u.afb.energy > 0 ? "!! " : ""), -temp->u.afb.energy);
 
    /* Post processing. */
    temp->u.afb.thrust /= 100.;
