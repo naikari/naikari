@@ -1909,7 +1909,6 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
 
    do { /* parse the data */
       xml_onlyNodes(node);
-      xmlr_float(node,"rumble",temp->u.afb.rumble);
       if (xml_isNode(node,"sound_on")) {
          temp->u.afb.sound_on = sound_get( xml_get(node) );
          continue;

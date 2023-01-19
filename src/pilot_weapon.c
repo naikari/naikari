@@ -1537,8 +1537,6 @@ int pilot_outfitOffAll( Pilot *p )
  */
 void pilot_afterburn (Pilot *p)
 {
-   double afb_mod;
-
    if (p == NULL)
       return;
 
@@ -1570,11 +1568,6 @@ void pilot_afterburn (Pilot *p)
       /* @todo Make this part of a more dynamic activated outfit sound system. */
       sound_playPos(p->afterburner->outfit->u.afb.sound_on,
             p->solid->pos.x, p->solid->pos.y, p->solid->vel.x, p->solid->vel.y);
-   }
-
-   if (pilot_isPlayer(p)) {
-      afb_mod = MIN( 1., player.p->afterburner->outfit->u.afb.mass_limit / player.p->solid->mass );
-      spfx_shake( afb_mod * player.p->afterburner->outfit->u.afb.rumble );
    }
 }
 

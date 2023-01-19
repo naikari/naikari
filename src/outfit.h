@@ -272,7 +272,6 @@ typedef struct OutfitModificationData_ {
  */
 typedef struct OutfitAfterburnerData_ {
    /* Internal properties. */
-   double rumble;    /**< Percent of rumble */
    int sound_on;     /**< Sound of the afterburner turning on */
    int sound;        /**< Sound of the afterburner being on */
    int sound_off;    /**< Sound of the afterburner turning off */
