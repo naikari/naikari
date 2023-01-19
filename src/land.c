@@ -806,7 +806,7 @@ static void spaceport_buyMap( unsigned int wid, char *str )
    player_addOutfit(o, 1);
 
    /* Disable the button. */
-   window_disableButtonSoft( land_windows[0], "btnMap" );
+   window_disableButtonSoft(land_getWid(LAND_WINDOW_MAIN), "btnMap");
 
    /* Update map quantity in outfitter. */
    w = land_getWid( LAND_WINDOW_OUTFITS );
@@ -863,9 +863,9 @@ void land_updateMainTab (void)
    size_t l = 0;
 
    /* Handle the Save Snapshot button. */
-   window_enableButton(land_windows[0], "btnSaveSnapshot");
+   window_enableButton(land_getWid(LAND_WINDOW_MAIN), "btnSaveSnapshot");
    if (player_isFlag(PLAYER_NOSAVE))
-      window_disableButton(land_windows[0], "btnSaveSnapshot");
+      window_disableButton(land_getWid(LAND_WINDOW_MAIN), "btnSaveSnapshot");
 
    if (p < 1.0e3)
       snprintf(pop, sizeof(pop), "%.0Lf", p);
@@ -904,10 +904,10 @@ void land_updateMainTab (void)
          land_planet->faction >= 0 ?
             _(faction_name(land_planet->faction)) : _("None"),
          pop, tons, cred);
-   window_dimWidget(land_windows[0], "txtDInfo", &w, &h);
+   window_dimWidget(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", &w, &h);
    h = gl_printHeightRaw(&gl_defFont, 200, buf );
-   window_resizeWidget(land_windows[0], "txtDInfo", w, h);
-   window_modifyText(land_windows[0], "txtDInfo", buf);
+   window_resizeWidget(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", w, h);
+   window_modifyText(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", buf);
 
    /* Maps are only offered if the planet provides fuel. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL))
@@ -920,14 +920,14 @@ void land_updateMainTab (void)
    }
 
    /* Just enable button if it exists. */
-   if (widget_exists( land_windows[0], "btnMap" ))
-      window_enableButton( land_windows[0], "btnMap");
+   if (widget_exists(land_getWid(LAND_WINDOW_MAIN), "btnMap"))
+      window_enableButton(land_getWid(LAND_WINDOW_MAIN), "btnMap");
    /* Else create it. */
    else {
       /* Refuel button. */
       credits2str( cred, o->price, 0 );
       snprintf( buf, sizeof(buf), _("Buy Local Map (%s)"), cred );
-      window_addButtonKey(land_windows[0],
+      window_addButtonKey(land_getWid(LAND_WINDOW_MAIN),
             -20, 20 + 2*(LAND_BUTTON_HEIGHT+20),
             LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnMap",
             buf, spaceport_buyMap, SDLK_b);
@@ -935,7 +935,7 @@ void land_updateMainTab (void)
 
    /* Make sure player can click it. */
    if (!outfit_canBuy(LOCAL_MAP_NAME, land_planet))
-      window_disableButtonSoft( land_windows[0], "btnMap" );
+      window_disableButtonSoft(land_getWid(LAND_WINDOW_MAIN), "btnMap");
 }
 
 
@@ -989,7 +989,7 @@ unsigned int land_getWid( int window )
 {
    if (land_windowsMap[window] == -1)
       return 0;
-   return land_windows[ land_windowsMap[window] ];
+   return land_windows[land_windowsMap[window]];
 }
 
 
@@ -1298,7 +1298,7 @@ static void land_createMainTab( unsigned int wid )
 
    /* Add "no refueling" notice if needed. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
-      window_addText(land_windows[0],
+      window_addText(land_getWid(LAND_WINDOW_MAIN),
             -20, 20 + 2*(LAND_BUTTON_HEIGHT+20) + 20,
             200, gl_defFont.h, 1, "txtRefuel",
             &gl_defFont, NULL, _("No refueling services."));
