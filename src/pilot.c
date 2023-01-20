@@ -591,8 +591,8 @@ double pilot_getNearestAng(const Pilot *p, pilotId_t *tp, double ang,
  * @brief Pulls a pilot out of the pilot_stack based on ID.
  *
  * It's a binary search ( O(logn) ) therefore it's pretty fast and can be
- * abused all the time.  Maximum iterations is 32 on a platform with 32 bit
- * unsigned longs.
+ * abused all the time.  Maximum iterations is 32 assuming pilotId_t is
+ * 32-bit.
  *
  *    @param id ID of the pilot to get.
  *    @return The actual pilot who has matching ID or NULL if not found.

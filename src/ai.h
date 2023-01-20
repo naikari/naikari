@@ -12,7 +12,7 @@
 #include "physics.h"
 
 /* Forward declaration to avoid cyclical import. */
-typedef unsigned long pilotId_t;
+typedef uint32_t pilotId_t;
 struct Pilot_;
 typedef struct Pilot_ Pilot;
 

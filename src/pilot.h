@@ -80,7 +80,7 @@ enum {
 #define pilot_isStopped(p)  (VMOD(p->solid->vel) <= MIN_VEL_ERR)
 
 
-typedef unsigned long pilotId_t; /**< Type for pilot IDs. */
+typedef uint32_t pilotId_t; /**< Type for pilot IDs. */
 
 
 /**
