@@ -1731,12 +1731,12 @@ char planet_getColourChar( Planet *p )
       return 'I';
 
    if (p->can_land || p->bribed) {
-      if (areAllies(FACTION_PLAYER, p->faction))
+      if (faction_isPlayerFriend(p->faction))
          return 'F';
       return 'N';
    }
 
-   if (areEnemies(FACTION_PLAYER,p->faction))
+   if (faction_isPlayerEnemy(p->faction))
       return 'H';
    return 'R';
 }
@@ -1757,12 +1757,12 @@ const char *planet_getSymbol( Planet *p )
       return "? ";
 
    if (p->can_land || p->bribed) {
-      if (areAllies(FACTION_PLAYER, p->faction))
+      if (faction_isPlayerFriend(p->faction))
          return "+ ";
       return "~ ";
    }
 
-   if (areEnemies(FACTION_PLAYER, p->faction))
+   if (faction_isPlayerEnemy(p->faction))
       return "!! ";
    return "* ";
 }
@@ -1780,12 +1780,12 @@ const glColour* planet_getColour( Planet *p )
       return &cInert;
 
    if (p->can_land || p->bribed) {
-      if (areAllies(FACTION_PLAYER, p->faction))
+      if (faction_isPlayerFriend(p->faction))
          return &cFriend;
       return &cNeutral;
    }
 
-   if (areEnemies(FACTION_PLAYER, p->faction))
+   if (faction_isPlayerEnemy(p->faction))
       return &cHostile;
    return &cRestricted;
 }

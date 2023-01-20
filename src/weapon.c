@@ -257,8 +257,8 @@ void weapon_minimap( const double res, const double w,
       /* Choose colour based on if it'll hit player. */
       if (outfit_isSeeker(wp->outfit) && (wp->target != PLAYER_ID))
          c = &cNeutral;
-      else if ((wp->target == PLAYER_ID && wp->target != wp->parent) ||
-            areEnemies(FACTION_PLAYER, wp->faction))
+      else if ((wp->target == PLAYER_ID && wp->target != wp->parent)
+            || faction_isPlayerEnemy(wp->faction))
          c = &cHostile;
       else
          c = &cNeutral;

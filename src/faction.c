@@ -1180,10 +1180,10 @@ const glColour* faction_getColour(factionId_t f)
    if (!faction_isKnown(f))
       return &cInert;
 
-   if (areAllies(FACTION_PLAYER, f))
+   if (faction_isPlayerFriend(f))
       return &cFriend;
 
-   if (areEnemies(FACTION_PLAYER, f))
+   if (faction_isPlayerEnemy(f))
       return &cHostile;
 
    return &cNeutral;
@@ -1207,10 +1207,10 @@ char faction_getColourChar(factionId_t f)
    if (!faction_isKnown(f))
       return 'I';
 
-   if (areEnemies(FACTION_PLAYER, f))
+   if (faction_isPlayerEnemy(f))
       return 'H';
 
-   if (areAllies(FACTION_PLAYER, f))
+   if (faction_isPlayerFriend(f))
       return 'F';
 
    return 'N';
@@ -1231,10 +1231,10 @@ const char *faction_getSymbol(factionId_t f)
    if (!faction_isKnown(f))
       return "? ";
 
-   if (areEnemies(FACTION_PLAYER, f))
+   if (faction_isPlayerEnemy(f))
       return "!! ";
 
-   if (areAllies(FACTION_PLAYER, f))
+   if (faction_isPlayerFriend(f))
       return "+ ";
 
    return "~ ";
@@ -1995,7 +1995,7 @@ factionId_t *faction_getGroup(int which)
       case 1: /* 'friendly' */
          group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
-            if (areAllies(FACTION_PLAYER, faction_stack[i].id))
+            if (faction_isPlayerFriend(faction_stack[i].id))
                array_push_back(&group, faction_stack[i].id);
          }
          return group;
@@ -2003,8 +2003,8 @@ factionId_t *faction_getGroup(int which)
       case 2: /* 'neutral' */
          group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
-            if (!areAllies(FACTION_PLAYER, faction_stack[i].id)
-                  && !areEnemies(FACTION_PLAYER, faction_stack[i].id))
+            if (!faction_isPlayerFriend(faction_stack[i].id)
+                  && !faction_isPlayerEnemy(faction_stack[i].id))
                array_push_back(&group, faction_stack[i].id);
          }
          return group;
@@ -2012,7 +2012,7 @@ factionId_t *faction_getGroup(int which)
       case 3: /* 'hostile' */
          group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
-            if (areEnemies(FACTION_PLAYER, faction_stack[i].id))
+            if (faction_isPlayerEnemy(faction_stack[i].id))
                array_push_back(&group, faction_stack[i].id);
          }
          return group;

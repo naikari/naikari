@@ -693,12 +693,12 @@ static void map_update( unsigned int wid )
       else if (!faction_isKnown(sys->planets[i]->faction))
          services_q |= sys->planets[i]->services;
       else if (sys->planets[i]->can_land) {
-         if (areAllies(FACTION_PLAYER, sys->planets[i]->faction))
+         if (faction_isPlayerFriend(sys->planets[i]->faction))
             services_f |= sys->planets[i]->services;
          else
             services_n |= sys->planets[i]->services;
       }
-      else if (areEnemies(FACTION_PLAYER, sys->planets[i]->faction))
+      else if (faction_isPlayerEnemy(sys->planets[i]->faction))
          services_h |= sys->planets[i]->services;
       else
          services_r |= sys->planets[i]->services;
@@ -1396,12 +1396,12 @@ void map_renderSystems( double bx, double by, double x, double y,
             else if (!faction_isKnown(sys->planets[j]->faction))
                services_q |= sys->planets[j]->services;
             else if (sys->planets[j]->can_land) {
-               if (areAllies(FACTION_PLAYER, sys->planets[j]->faction))
+               if (faction_isPlayerFriend(sys->planets[j]->faction))
                   services_f |= sys->planets[j]->services;
                else
                   services_n |= sys->planets[j]->services;
             }
-            else if (areEnemies(FACTION_PLAYER, sys->planets[j]->faction))
+            else if (faction_isPlayerEnemy(sys->planets[j]->faction))
                services_h |= sys->planets[j]->services;
             else {
                services_r |= sys->planets[j]->services;

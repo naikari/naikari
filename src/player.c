@@ -3680,7 +3680,7 @@ static Planet* player_parse( xmlNodePtr parent )
  */
 static int player_filterSuitablePlanet( Planet *p )
 {
-   return !areEnemies(p->faction, FACTION_PLAYER);
+   return !faction_isPlayerEnemy(p->faction);
 }
 
 

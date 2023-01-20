@@ -639,10 +639,10 @@ void pilot_setTurn( Pilot *p, double turn )
  */
 int pilot_isHostile( const Pilot *p )
 {
-   if ( !pilot_isFriendly( p )
-         && !pilot_isFlag( p, PILOT_BRIBED )
-         && (pilot_isFlag( p, PILOT_HOSTILE )
-            || areEnemies( FACTION_PLAYER, p->faction ) ) )
+   if (!pilot_isFriendly(p)
+         && !pilot_isFlag(p, PILOT_BRIBED)
+         && (pilot_isFlag(p, PILOT_HOSTILE)
+            || faction_isPlayerEnemy(p->faction)))
       return 1;
 
    return 0;
@@ -672,7 +672,7 @@ int pilot_isNeutral( const Pilot *p )
 int pilot_isFriendly( const Pilot *p )
 {
    if (pilot_isFlag(p, PILOT_FRIENDLY)
-         || (areAllies(FACTION_PLAYER, p->faction)
+         || (faction_isPlayerFriend(p->faction)
             && !pilot_isFlag(p, PILOT_HOSTILE)))
       return 1;
 
@@ -1329,7 +1329,7 @@ void pilot_rmHostile( Pilot* p )
       }
 
       /* Set "bribed" flag if faction has poor reputation */
-      if (areEnemies( FACTION_PLAYER, p->faction ))
+      if (faction_isPlayerEnemy(p->faction))
          pilot_setFlag(p, PILOT_BRIBED);
    }
 }
