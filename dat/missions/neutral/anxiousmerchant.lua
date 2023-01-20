@@ -96,16 +96,12 @@ function create()
    time_limit = time.get() + time.create(0, 0, allowance)
 
    if avgrisk == 0 then
-      piracyrisk = piracyrisk[1]
       riskreward = 0
    elseif avgrisk <= 25 then
-      piracyrisk = piracyrisk[2]
       riskreward = 150
    elseif avgrisk > 25 and avgrisk <= 100 then
-      piracyrisk = piracyrisk[3]
       riskreward = 300
    else
-      piracyrisk = piracyrisk[4]
       riskreward = 450
    end
 
