@@ -111,7 +111,7 @@ static int fleet_parse( Fleet *temp, const xmlNodePtr parent )
 
    /* Safe defaults and clean up. */
    memset( temp, 0, sizeof(Fleet) );
-   temp->faction = -1;
+   temp->faction = 0;
 
    xmlr_attr_strd(parent,"name",temp->name);
    if (temp->name == NULL)
@@ -191,7 +191,7 @@ static int fleet_parse( Fleet *temp, const xmlNodePtr parent )
 if (o) WARN( _("Fleet '%s' missing '%s' element"), s,temp->name)
 /**< Hack to check for missing fields. */
    MELEMENT(temp->ai==NULL,"ai");
-   MELEMENT(temp->faction==-1,"faction");
+   MELEMENT(temp->faction==0,"faction");
    MELEMENT(temp->pilots==NULL,"pilots");
 #undef MELEMENT
 

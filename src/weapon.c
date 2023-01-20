@@ -61,7 +61,7 @@ typedef struct Weapon_ {
    Solid *solid; /**< Actually has its own solid :) */
    unsigned int ID; /**< Only used for beam weapons. */
 
-   int faction; /**< faction of pilot that shot it */
+   unsigned long faction; /**< faction of pilot that shot it */
    unsigned long parent; /**< pilot that shot it */
    unsigned long target; /**< target to hit, only used by seeking things */
    const Outfit* outfit; /**< related outfit that fired it or whatnot */

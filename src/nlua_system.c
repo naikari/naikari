@@ -373,7 +373,7 @@ static int systemL_faction( lua_State *L )
 
    s = luaL_validsystem(L, 1);
 
-   if (s->faction == -1)
+   if (s->faction == 0)
       lua_pushnil(L);
    else
       lua_pushfaction(L, s->faction);
@@ -925,9 +925,10 @@ static int systemL_planets( lua_State *L )
 static int systemL_presence( lua_State *L )
 {
    StarSystem *sys;
-   int *fct;
+   LuaFaction *fct;
+   LuaFaction f;
    double presence, v;
-   int i, f, used;
+   int i, used;
    const char *cmd;
 
    /* Get parameters. */
@@ -958,8 +959,8 @@ static int systemL_presence( lua_State *L )
 
    if (!used) {
       /* A faction id was given. */
-      f      = luaL_validfaction(L, 2);
-      fct    = array_create(int);
+      f = luaL_validfaction(L, 2);
+      fct = array_create(LuaFaction);
       array_push_back(&fct, f);
    }
 

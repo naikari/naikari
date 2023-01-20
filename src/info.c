@@ -68,7 +68,7 @@ static unsigned int info_wid = 0;
 static unsigned int *info_windows = NULL;
 
 static CstSlotWidget info_eq_weaps;
-static int *info_factions;
+static unsigned long *info_factions;
 
 static int selectedLog = 0;
 static int nlogs=0;

@@ -472,7 +472,7 @@ static void player_autonav (void)
             if (!pnt->can_land && !pnt->bribed && (pnt->land_override <= 0)) {
                ret = player_hailPlanet(0);
                if (ret) {
-                  if (pnt->faction < 0) {
+                  if (pnt->faction == 0) {
                      player_autonavAbort(NULL, 0);
                      break;
                   }

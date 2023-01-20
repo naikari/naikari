@@ -134,7 +134,7 @@ static int system_parseAsteroidExclusion( const xmlNodePtr node, StarSystem *sys
 static void system_parseJumps( const xmlNodePtr parent );
 static void system_parseAsteroids( const xmlNodePtr parent, StarSystem *sys );
 /* misc */
-static int getPresenceIndex( StarSystem *sys, int faction );
+static int getPresenceIndex(StarSystem *sys, unsigned long faction);
 static void system_scheduler( double dt, int init );
 static void asteroid_explode ( Asteroid *a, AsteroidAnchor *field, int give_reward );
 /* Render. */
@@ -252,7 +252,7 @@ int planet_averagePlanetPrice( const Planet *p, const Commodity *c, credits_t *m
  *    @param faction Faction to change to.
  *    @return 0 on success.
  */
-int planet_setFaction( Planet *p, int faction )
+int planet_setFaction(Planet *p, unsigned long faction)
 {
    p->faction = faction;
    return 0;
@@ -381,7 +381,7 @@ int space_calcJumpInPos( StarSystem *in, StarSystem *out, Vector2d *pos, Vector2
  *    @param landable Whether the search is limited to landable planets.
  *    @return An array (array.h) of faction names.  Individual names are not allocated.
  */
-char** space_getFactionPlanet( int *factions, int landable )
+char** space_getFactionPlanet(unsigned long *factions, int landable)
 {
    int i,j,k, f;
    Planet* planet;
@@ -1636,7 +1636,7 @@ Planet *planet_new (void)
    realloced   = (old_stack!=planet_stack);
    memset( p, 0, sizeof(Planet) );
    p->id       = array_size(planet_stack)-1;
-   p->faction  = -1;
+   p->faction = 0;
 
    /* Reconstruct the jumps. */
    if (!systems_loading && realloced)
@@ -2356,7 +2356,7 @@ static void system_init( StarSystem *sys )
    sys->jumps     = array_create( JumpPoint );
    sys->asteroids = array_create( AsteroidAnchor );
    sys->astexclude= array_create( AsteroidExclusion );
-   sys->faction   = -1;
+   sys->faction = 0;
 }
 
 
@@ -2598,7 +2598,7 @@ void system_setFaction( StarSystem *sys )
    if (array_size(sys->presence) != 0)
       qsort( sys->presence, array_size(sys->presence), sizeof(SystemPresence), sys_cmpSysFaction );
 
-   sys->faction = -1;
+   sys->faction = 0;
    for (i=0; i<array_size(sys->presence); i++) {
       for (j=0; j<array_size(sys->planets); j++) { /** @todo Handle multiple different factions. */
          pnt = sys->planets[j];
@@ -3761,7 +3761,7 @@ static int space_parseAssets( xmlNodePtr parent, StarSystem* sys )
  *    @param faction The index of the faction to search for.
  *    @return The index of the presence array for faction.
  */
-static int getPresenceIndex( StarSystem *sys, int faction )
+static int getPresenceIndex(StarSystem *sys, unsigned long faction)
 {
    int i;
 
@@ -3793,7 +3793,8 @@ static int getPresenceIndex( StarSystem *sys, int faction )
  *    @param amount The amount of presence to add (negative to subtract).
  *    @param range The range of spill of the presence.
  */
-void system_addPresence( StarSystem *sys, int faction, double amount, int range )
+void system_addPresence(StarSystem *sys, unsigned long faction, double amount,
+      int range)
 {
    int i, x, curSpill;
    Queue q, qn;
@@ -3801,12 +3802,12 @@ void system_addPresence( StarSystem *sys, int faction, double amount, int range 
 
    /* Check for NULL and display a warning. */
    if (sys == NULL) {
-      WARN("sys == NULL");
+      WARN("%s", _("Attempted to add presence to NULL system."));
       return;
    }
 
-   /* Check that we have a valid faction. (-1 == bobbens == invalid)*/
-   if (faction_isFaction(faction) == 0)
+   /* Check that we have a valid faction. */
+   if (!faction_isFaction(faction))
       return;
 
    /* Check that we're actually adding any. */
@@ -3893,7 +3894,7 @@ sys_cleanup:
  *    @param faction The faction to get the presence for.
  *    @return The amount of presence the faction has in the system.
  */
-double system_getPresence( const StarSystem *sys, int faction )
+double system_getPresence(const StarSystem *sys, unsigned long faction)
 {
    int i;
 
@@ -4110,7 +4111,8 @@ int system_hasPlanet( const StarSystem *sys )
 /**
  * @brief Removes active presence.
  */
-void system_rmCurrentPresence( StarSystem *sys, int faction, double amount )
+void system_rmCurrentPresence(StarSystem *sys, unsigned long faction,
+      double amount)
 {
    int id;
    nlua_env env;

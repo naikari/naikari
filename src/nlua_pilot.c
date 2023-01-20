@@ -830,7 +830,8 @@ static int pilotL_clear( lua_State *L )
  */
 static int pilotL_toggleSpawn( lua_State *L )
 {
-   int i, f, b;
+   int i, b;
+   LuaFaction f;
 
    NLUA_CHECKRW(L);
 
@@ -878,7 +879,7 @@ static int pilotL_toggleSpawn( lua_State *L )
 static int pilotL_getPilots( lua_State *L )
 {
    int i, j, k, d;
-   int *factions;
+   unsigned long *factions;
    Pilot *const* pilot_stack;
 
    /* Whether or not to get disabled. */
@@ -889,12 +890,12 @@ static int pilotL_getPilots( lua_State *L )
    /* Check for belonging to faction. */
    if (lua_istable(L,1) || lua_isfaction(L,1)) {
       if (lua_isfaction(L,1)) {
-         factions = array_create( int );
+         factions = array_create(unsigned long);
          array_push_back( &factions, lua_tofaction(L,1) );
       }
       else {
          /* Get table length and preallocate. */
-         factions = array_create_size( int, lua_objlen(L,1) );
+         factions = array_create_size(unsigned long, lua_objlen(L, 1));
          /* Load up the table. */
          lua_pushnil(L);
          while (lua_next(L, -2) != 0) {
@@ -2366,7 +2367,7 @@ static int pilotL_comm( lua_State *L )
 static int pilotL_setFaction( lua_State *L )
 {
    Pilot *p;
-   int fid;
+   unsigned long fid;
 
    NLUA_CHECKRW(L);
 

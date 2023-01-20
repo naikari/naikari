@@ -362,7 +362,7 @@ static int economy_calcPrice( Planet *planet, Commodity *commodity, CommodityPri
    const char *factionname;
 
    /* Check the faction is not NULL.*/
-   if ( planet->faction == -1 ) {
+   if (planet->faction == 0) {
       WARN(_("Planet '%s' appears to have commodity '%s' defined, but no faction."), planet->name, commodity->name);
       return 1;
    }

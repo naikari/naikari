@@ -1901,7 +1901,8 @@ static void sysedit_btnFaction( unsigned int wid_unused, char *unused )
    (void) wid_unused;
    (void) unused;
    unsigned int wid;
-   int i, j, y, h, bw, *factions;
+   int i, j, y, h, bw;
+   unsigned long *factions;
    char **str;
 
    /* Create the window. */
@@ -1950,7 +1951,7 @@ static void sysedit_btnFactionSet( unsigned int wid, char *unused )
    p = sysedit_sys->planets[ sysedit_select[0].u.planet ];
    /* Set the faction. */
    if (strcmp(selected,_("None"))==0)
-      p->faction = -1;
+      p->faction = 0;
    else
       p->faction = faction_get( selected );
 

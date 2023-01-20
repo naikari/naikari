@@ -267,7 +267,7 @@ static void map_system_render( double bx, double by, double w, double h, void *d
    char buf[1000];
    int cnt;
    double ast_nb, ast_area;
-   double f;
+   unsigned long f;
    int hasPresence = 0;
    double unknownPresence = 0;
    char t;
@@ -411,18 +411,21 @@ static void map_system_render( double bx, double by, double w, double h, void *d
          cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Asteroid field density: %.2g\n"), ast_nb*ASTEROID_REF_AREA/ast_area );
       }
       /* Faction */
-      f = -1;
+      f = 0;
       for ( i=0; i<array_size(sys->planets); i++ ) {
          if (sys->planets[i]->real == ASSET_REAL && planet_isKnown( sys->planets[i] ) ) {
-            if ((f==-1) && (sys->planets[i]->faction>0) ) {
+            if ((f == 0) && (sys->planets[i]->faction > 0)) {
                f = sys->planets[i]->faction;
-            } else if (f != sys->planets[i]->faction &&  (sys->planets[i]->faction>0) ) {
-               cnt+=scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: Multiple\n") );
+            }
+            else if ((f != sys->planets[i]->faction)
+                  && (sys->planets[i]->faction > 0)) {
+               cnt += scnprintf(&buf[cnt], sizeof(buf)-cnt,
+                     _("Faction: Multiple\n"));
                break;
             }
          }
       }
-      if (f == -1 ) {
+      if (f == 0) {
          cnt += scnprintf( &buf[cnt], sizeof(buf)-cnt, _("Faction: N/A\n") );
       }  else {
          if (i==array_size(sys->planets)) /* saw them all and all the same */

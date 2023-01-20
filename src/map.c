@@ -1073,7 +1073,7 @@ void map_renderDecorators( double x, double y, int editor, double alpha )
 void map_renderFactionDisks( double x, double y, double r, int editor, double alpha )
 {
    int i, j;
-   int f;
+   unsigned long f;
    const glColour *col;
    glColour c;
    StarSystem *sys;
@@ -1091,7 +1091,7 @@ void map_renderFactionDisks( double x, double y, double r, int editor, double al
       tx = x + sys->pos.x*map_zoom;
       ty = y + sys->pos.y*map_zoom;
 
-      f = -1;
+      f = 0;
       for (j=0; j<array_size(sys->planets); j++) {
          if (sys->planets[j]->real != ASSET_REAL)
             continue;
@@ -1101,7 +1101,7 @@ void map_renderFactionDisks( double x, double y, double r, int editor, double al
                && (!faction_isKnown(sys->planets[j]->faction)))
             continue;
 
-         if ((f == -1) && (sys->planets[j]->faction > 0)) {
+         if ((f == 0) && (sys->planets[j]->faction > 0)) {
             f = sys->planets[j]->faction;
          }
          else if (f != sys->planets[j]->faction
@@ -1112,7 +1112,7 @@ void map_renderFactionDisks( double x, double y, double r, int editor, double al
       }
 
       /* System has faction and is known or we are in editor. */
-      if (f != -1) {
+      if (f > 0) {
          /* Cache to avoid repeated sqrt() */
          presence = sqrt(sys->ownerpresence);
 
@@ -1311,7 +1311,7 @@ void map_renderSystems( double bx, double by, double x, double y,
       double w, double h, double r, int editor)
 {
    int i, j;
-   int f, new_f;
+   unsigned long f, new_f;
    double f_presence;
    int has_planet;
    unsigned int services_u, services_q;
@@ -1350,7 +1350,7 @@ void map_renderSystems( double bx, double by, double x, double y,
          if (!system_hasPlanet(sys))
             continue;
 
-         f = -1;
+         f = 0;
          has_planet = 0;
          f_presence = 0.;
          for (j=0; j<array_size(sys->planets); j++) {
@@ -1410,7 +1410,7 @@ void map_renderSystems( double bx, double by, double x, double y,
 
          /* Planet colours */
          if (editor) {
-            col = (f < 0) ? &cInert : &cNeutral;
+            col = (f == 0) ? &cInert : &cNeutral;
 
             /* Radius slightly shorter. */
             gl_drawCircle( tx, ty, 0.5 * r, col, 1 );

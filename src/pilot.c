@@ -71,9 +71,9 @@ static const double pilot_commFade     = 5.; /**< Time for text above pilot to f
  */
 /* Create. */
 static void pilot_init(Pilot* dest, const Ship* ship, const char* name,
-      int faction, const char *ai, const double dir, const Vector2d* pos,
-      const Vector2d* vel, const PilotFlags flags, unsigned long dockpilot,
-      int dockslot);
+      unsigned long faction, const char *ai, const double dir,
+      const Vector2d* pos, const Vector2d* vel, const PilotFlags flags,
+      unsigned long dockpilot, int dockslot);
 /* Update. */
 static void pilot_hyperspace( Pilot* pilot, double dt );
 static void pilot_refuel( Pilot *p, double dt );
@@ -2867,9 +2867,9 @@ credits_t pilot_modCredits( Pilot *p, credits_t amount )
  *    @param dockslot The outfit slot which launched this pilot (-1 if N/A).
  */
 static void pilot_init(Pilot* pilot, const Ship* ship, const char* name,
-      int faction, const char *ai, const double dir, const Vector2d* pos,
-      const Vector2d* vel, const PilotFlags flags, unsigned long dockpilot,
-      int dockslot )
+      unsigned long faction, const char *ai, const double dir,
+      const Vector2d* pos, const Vector2d* vel, const PilotFlags flags,
+      unsigned long dockpilot, int dockslot)
 {
    int i, j;
    int inrange_default;
@@ -3060,10 +3060,10 @@ static void pilot_init_trails( Pilot* p )
  *
  * @sa pilot_init
  */
-unsigned long pilot_create(const Ship* ship, const char* name, int faction,
-      const char *ai, const double dir, const Vector2d* pos,
-      const Vector2d* vel, const PilotFlags flags, unsigned long dockpilot,
-      int dockslot)
+unsigned long pilot_create(const Ship* ship, const char* name,
+      unsigned long faction, const char *ai, const double dir,
+      const Vector2d* pos, const Vector2d* vel, const PilotFlags flags,
+      unsigned long dockpilot, int dockslot)
 {
    Pilot *dyn, **p;
 
@@ -3101,8 +3101,8 @@ unsigned long pilot_create(const Ship* ship, const char* name, int faction,
  *    @param flags Flags for tweaking, PILOT_EMPTY is added.
  *    @return Pointer to the new pilot (not added to stack).
  */
-Pilot* pilot_createEmpty( const Ship* ship, const char* name,
-      int faction, const char *ai, PilotFlags flags )
+Pilot* pilot_createEmpty(const Ship* ship, const char* name,
+      unsigned long faction, const char *ai, PilotFlags flags)
 {
    Pilot* dyn;
    dyn = malloc(sizeof(Pilot));
@@ -3140,10 +3140,11 @@ Pilot* pilot_replacePlayer( Pilot* after )
  *
  *
  */
-void pilot_choosePoint( Vector2d *vp, Planet **planet, JumpPoint **jump, int lf, int ignore_rules, int guerilla )
+void pilot_choosePoint(Vector2d *vp, Planet **planet, JumpPoint **jump,
+      unsigned long lf, int ignore_rules, int guerilla )
 {
    int i, j, *ind;
-   int *fact;
+   unsigned long *fact;
    double chance, limit;
    JumpPoint **validJumpPoints;
    JumpPoint *target;

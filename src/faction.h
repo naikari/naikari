@@ -12,59 +12,59 @@
 #include "opengl.h"
 
 
-#define FACTION_PLAYER  0  /**< Hardcoded player faction identifier. */
+#define FACTION_PLAYER 1 /**< Hardcoded player faction identifier. */
 
 
 /* get stuff */
-int faction_isFaction( int f );
-int faction_exists( const char* name );
-int faction_get( const char* name );
-int* faction_getAll();
-int* faction_getKnown();
-int faction_isInvisible( int id );
-int faction_setInvisible( int id, int state );
-int faction_isKnown( int id );
-int faction_isDynamic( int id );
-const char* faction_name( int f );
-const char* faction_shortname( int f );
-const char* faction_longname( int f );
-const char* faction_default_ai( int f );
-void faction_clearEnemy( int f );
-void faction_addEnemy( int f, int o );
-void faction_rmEnemy( int f, int o );
-void faction_clearAlly( int f );
-void faction_addAlly( int f, int o );
-void faction_rmAlly( int f, int o );
-nlua_env faction_getScheduler( int f );
-nlua_env faction_getEquipper( int f );
-glTexture* faction_logoSmall( int f );
-glTexture* faction_logoTiny( int f );
-const glColour* faction_colour( int f );
-int* faction_getEnemies( int f );
-int* faction_getAllies( int f );
-int* faction_getGroup( int which );
+int faction_isFaction(unsigned long f);
+unsigned long faction_exists(const char* name);
+unsigned long faction_get(const char* name);
+unsigned long* faction_getAll();
+unsigned long* faction_getKnown();
+int faction_isInvisible(unsigned long id);
+int faction_setInvisible(unsigned long id, int state);
+int faction_isKnown(unsigned long id);
+int faction_isDynamic(unsigned long id);
+const char* faction_name(unsigned long f);
+const char* faction_shortname(unsigned long f);
+const char* faction_longname(unsigned long f);
+const char* faction_default_ai(unsigned long f);
+void faction_clearEnemy(unsigned long f);
+void faction_addEnemy(unsigned long f, unsigned long o);
+void faction_rmEnemy(unsigned long f, unsigned long o);
+void faction_clearAlly(unsigned long f);
+void faction_addAlly(unsigned long f, unsigned long o);
+void faction_rmAlly(unsigned long f, unsigned long o);
+nlua_env faction_getScheduler(unsigned long f);
+nlua_env faction_getEquipper(unsigned long f);
+glTexture* faction_logoSmall(unsigned long f);
+glTexture* faction_logoTiny(unsigned long f);
+const glColour* faction_colour(unsigned long f);
+unsigned long* faction_getEnemies(unsigned long f);
+unsigned long* faction_getAllies(unsigned long f);
+unsigned long* faction_getGroup(int which);
 
 /* set stuff */
-int faction_setKnown( int id, int state );
+int faction_setKnown(unsigned long id, int state);
 
 /* player stuff */
-void faction_modPlayer( int f, double mod, const char *source );
-void faction_modPlayerSingle( int f, double mod, const char *source );
-void faction_modPlayerRaw( int f, double mod );
-void faction_setPlayer( int f, double value );
-double faction_getPlayer( int f );
-double faction_getPlayerDef( int f );
-int faction_isPlayerFriend( int f );
-int faction_isPlayerEnemy( int f );
-const char *faction_getStandingText( int f );
-const char *faction_getStandingBroad( int f, int bribed, int override );
-const glColour* faction_getColour( int f );
-char faction_getColourChar( int f );
-const char *faction_getSymbol( int f );
+void faction_modPlayer(unsigned long f, double mod, const char *source);
+void faction_modPlayerSingle(unsigned long f, double mod, const char *source);
+void faction_modPlayerRaw(unsigned long f, double mod);
+void faction_setPlayer(unsigned long f, double value);
+double faction_getPlayer(unsigned long f);
+double faction_getPlayerDef(unsigned long f);
+int faction_isPlayerFriend(unsigned long f);
+int faction_isPlayerEnemy(unsigned long f);
+const char *faction_getStandingText(unsigned long f);
+const char *faction_getStandingBroad(unsigned long f, int bribed, int override);
+const glColour* faction_getColour(unsigned long f);
+char faction_getColourChar(unsigned long f);
+const char *faction_getSymbol(unsigned long f);
 
 /* works with only factions */
-int areEnemies( int a, int b );
-int areAllies( int a, int b );
+int areEnemies(unsigned long a, unsigned long b);
+int areAllies(unsigned long a, unsigned long b);
 
 /* load/free */
 int factions_load (void);
@@ -74,7 +74,8 @@ void faction_clearKnown (void);
 
 /* Dynamic factions. */
 void factions_clearDynamic (void);
-int faction_dynAdd( int base, const char* name, const char* display, const char* ai );
+unsigned long faction_dynAdd(unsigned long base, const char* name,
+      const char* display, const char* ai);
 
 
 #endif /* FACTION_H */
