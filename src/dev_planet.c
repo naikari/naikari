@@ -77,7 +77,7 @@ int dpl_savePlanet( const Planet *p )
    }
 
    /* Presence. */
-   if (p->faction > 0) {
+   if (faction_isFaction(p->faction)) {
       xmlw_startElem( writer, "presence" );
       xmlw_elem( writer, "faction", "%s", faction_name( p->faction ) );
       xmlw_elem( writer, "value", "%f", p->presenceAmount );
@@ -131,7 +131,7 @@ int dpl_savePlanet( const Planet *p )
          xmlw_elemEmpty( writer, "uninhabited" );
       xmlw_endElem( writer ); /* "services" */
       if (planet_hasService( p, PLANET_SERVICE_LAND )) {
-         if (p->faction > 0) {
+         if (faction_isFaction(p->faction)) {
             xmlw_startElem( writer, "commodities" );
             for (i=0; i<array_size(p->commodities); i++) {
                if (p->commodities[i]->standard == 0)

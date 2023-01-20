@@ -531,7 +531,7 @@ static int planetL_faction( lua_State *L )
 {
    Planet *p;
    p = luaL_validplanet(L,1);
-   if (p->faction == 0)
+   if (!faction_isFaction(p->faction))
       return 0;
    lua_pushfaction(L, p->faction);
    return 1;

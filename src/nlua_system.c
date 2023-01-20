@@ -373,7 +373,7 @@ static int systemL_faction( lua_State *L )
 
    s = luaL_validsystem(L, 1);
 
-   if (s->faction == 0)
+   if (!faction_isFaction(s->faction))
       lua_pushnil(L);
    else
       lua_pushfaction(L, s->faction);

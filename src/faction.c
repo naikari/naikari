@@ -176,7 +176,7 @@ factionId_t faction_exists(const char* name)
 factionId_t faction_get(const char* name)
 {
    factionId_t id = faction_getRaw(name);
-   if (id == 0)
+   if (!faction_isFaction(id))
       WARN(_("Faction '%s' not found in stack."), name);
    return id;
 }
@@ -1174,7 +1174,7 @@ int faction_isPlayerEnemy(factionId_t f)
  */
 const glColour* faction_getColour(factionId_t f)
 {
-   if (f == 0)
+   if (!faction_isFaction(f))
       return &cInert;
 
    if (!faction_isKnown(f))
@@ -1201,7 +1201,7 @@ const glColour* faction_getColour(factionId_t f)
  */
 char faction_getColourChar(factionId_t f)
 {
-   if (f == 0)
+   if (!faction_isFaction(f))
       return 'I';
 
    if (!faction_isKnown(f))
@@ -1225,7 +1225,7 @@ char faction_getColourChar(factionId_t f)
  */
 const char *faction_getSymbol(factionId_t f)
 {
-   if (f == 0)
+   if (!faction_isFaction(f))
       return "";
 
    if (!faction_isKnown(f))

@@ -119,7 +119,7 @@ static int factionL_get( lua_State *L )
 
    name = luaL_checkstring(L,1);
    f = faction_get(name);
-   if (f == 0) {
+   if (!faction_isFaction(f)) {
       NLUA_ERROR(L,_("Faction '%s' not found in stack."), name );
       return 0;
    }

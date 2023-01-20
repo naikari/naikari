@@ -901,7 +901,7 @@ void land_updateMainTab (void)
          "#nMoney:#0 %s"),
          _(land_planet->name), _(cur_system->name),
          _(land_planet->class),
-         land_planet->faction > 0 ?
+         faction_isFaction(land_planet->faction) ?
             _(faction_name(land_planet->faction)) : _("None"),
          pop, tons, cred);
    window_dimWidget(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", &w, &h);
@@ -1264,7 +1264,7 @@ static void land_createMainTab( unsigned int wid )
     * Faction logo.
     */
    offset = 20;
-   if (land_planet->faction > 0) {
+   if (faction_isFaction(land_planet->faction)) {
       logo = faction_logoSmall(land_planet->faction);
       if (logo != NULL) {
          window_addImage( wid, 440 + (w-460-logo->w)/2, -20,

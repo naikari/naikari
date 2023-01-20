@@ -463,7 +463,7 @@ static void map_update( unsigned int wid )
    StarSystem *sys;
    StarSystem **path;
    int h, x, y;
-   int f, new_f;
+   factionId_t f, new_f;
    double f_presence;
    int f_multiple;
    unsigned int services_u, services_q;
@@ -570,7 +570,7 @@ static void map_update( unsigned int wid )
    /* System is known */
    window_modifyText( wid, "txtSysname", _(sys->name) );
 
-   f = -1;
+   f = 0;
    f_presence = 0.;
    f_multiple = 0;
    for (i=0; i<array_size(sys->planets); i++) {
@@ -581,19 +581,20 @@ static void map_update( unsigned int wid )
 
       new_f = sys->planets[i]->faction;
 
-      if ((new_f > 0) && !faction_isKnown(new_f))
+      if (faction_isFaction(new_f) && !faction_isKnown(new_f))
          continue;
 
-      if ((f != new_f) && (f > 0) && (new_f > 0))
+      if ((f != new_f) && faction_isFaction(f) && faction_isFaction(new_f))
          f_multiple = 1;
 
-      if ((new_f > 0) && (system_getPresence(sys, new_f) > f_presence)) {
+      if (faction_isFaction(new_f)
+            && (system_getPresence(sys, new_f) > f_presence)) {
          f = new_f;
          f_presence = system_getPresence(sys, new_f);
       }
    }
 
-   if (f == -1) {
+   if (f == 0) {
       window_modifyImage( wid, "imgFaction", NULL, 0, 0 );
       window_modifyText( wid, "txtFaction", _("N/A") );
       window_modifyText( wid, "txtStanding", _("N/A") );
