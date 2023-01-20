@@ -23,6 +23,7 @@
 
 #include "array.h"
 #include "economy.h"
+#include "faction.h"
 #include "fleet.h"
 #include "land_outfits.h"
 #include "log.h"
@@ -788,7 +789,7 @@ static int diff_patchHunk( UniHunk_t *hunk )
 {
    Planet *p;
    JumpPoint *jump;
-   int a, b;
+   factionId_t a, b;
 
    switch (hunk->type) {
 
