@@ -466,6 +466,8 @@ int* faction_getAllies( int f )
 void faction_clearEnemy( int f )
 {
    Faction *ff;
+   int i;
+
    /* Get faction. */
    if (faction_isFaction(f))
       ff = &faction_stack[f];
@@ -473,6 +475,13 @@ void faction_clearEnemy( int f )
       WARN(_("Faction id '%d' is invalid."), f);
       return;
    }
+
+   /* Cycle through the enemies and make sure they remove this faction
+    * as an enemy first. */
+   for (i=0; i<array_size(ff->enemies); i++) {
+      faction_rmEnemy(ff->enemies[i], f);
+   }
+
    array_erase( &ff->enemies, array_begin(ff->enemies), array_end(ff->enemies) );
 }
 
@@ -559,6 +568,8 @@ void faction_rmEnemy( int f, int o )
 void faction_clearAlly( int f )
 {
    Faction *ff;
+   int i;
+
    /* Get faction. */
    if (faction_isFaction(f))
       ff = &faction_stack[f];
@@ -566,6 +577,13 @@ void faction_clearAlly( int f )
       WARN(_("Faction id '%d' is invalid."), f);
       return;
    }
+
+   /* Cycle through the allies and make sure they remove this faction
+    * as an ally first. */
+   for (i=0; i<array_size(ff->allies); i++) {
+      faction_rmAlly(ff->allies[i], f);
+   }
+
    array_erase( &ff->allies, array_begin(ff->allies), array_end(ff->allies) );
 }
 
@@ -1830,11 +1848,24 @@ void factions_clearDynamic (void)
 {
    int i;
    Faction *f;
+
+   /* XXX: This code would cause breakages if dynamic factions were ever
+    * earlier in the faction stack than non-dynamic factions. To my
+    * knowledge, that is currently not the case, but this may cause a
+    * problem in the future if that ever changes (and such problems
+    * would be largely unpredictable). */
    for (i=0; i<array_size(faction_stack); i++) {
       f = &faction_stack[i];
       if (faction_isFlag(f, FACTION_DYNAMIC)) {
-         faction_freeOne( f );
-         array_erase( &faction_stack, f, f+1 );
+         /* First clear allies and enemies, so that they don't keep
+          * referencing this deleted faction. */
+         faction_clearEnemy(i);
+         faction_clearAlly(i);
+
+         /* Now free the dynamic faction and decrement i so we stay in
+          * the right place after the array size changes. */
+         faction_freeOne(f);
+         array_erase(&faction_stack, f, f+1);
          i--;
       }
    }

@@ -243,8 +243,18 @@ static int factionL_eq( lua_State *L )
  */
 static int factionL_name( lua_State *L )
 {
-   int f = luaL_validfaction(L,1);
-   lua_pushstring(L, faction_shortname(f));
+   int f;
+   const char *name;
+
+   f = luaL_validfaction(L, 1);
+   name = faction_shortname(f);
+
+   if (name == NULL) {
+      NLUA_ERROR(L, _("Faction is invalid."));
+      return 0;
+   }
+
+   lua_pushstring(L, name);
    return 1;
 }
 
@@ -264,8 +274,18 @@ static int factionL_name( lua_State *L )
  */
 static int factionL_nameRaw( lua_State *L )
 {
-   int f = luaL_validfaction(L,1);
-   lua_pushstring(L, faction_name(f));
+   int f;
+   const char *name;
+
+   f = luaL_validfaction(L, 1);
+   name = faction_name(f);
+
+   if (name == NULL) {
+      NLUA_ERROR(L, _("Faction is invalid."));
+      return 0;
+   }
+
+   lua_pushstring(L, name);
    return 1;
 }
 
@@ -284,8 +304,18 @@ static int factionL_nameRaw( lua_State *L )
  */
 static int factionL_longname( lua_State *L )
 {
-   int f = luaL_validfaction(L,1);
-   lua_pushstring(L, faction_longname(f));
+   int f;
+   const char *name;
+
+   f = luaL_validfaction(L, 1);
+   name = faction_longname(f);
+
+   if (name == NULL) {
+      NLUA_ERROR(L, _("Faction is invalid."));
+      return 0;
+   }
+
+   lua_pushstring(L, name);
    return 1;
 }
 
