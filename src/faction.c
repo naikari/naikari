@@ -1948,14 +1948,13 @@ int pfaction_load( xmlNodePtr parent )
                         if (xml_isNode(sub, "standing")) {
 
                            /* Must not be static. */
-                           if (!faction_isFlag(&faction_stack[faction],
+                           if (!faction_isFlag(&faction_stack[fsp],
                                     FACTION_STATIC))
-                              faction_stack[faction].player = xml_getFloat(sub);
+                              faction_stack[fsp].player = xml_getFloat(sub);
                            continue;
                         }
                         if (xml_isNode(sub,"known")) {
-                           faction_setFlag(&faction_stack[faction],
-                                    FACTION_KNOWN);
+                           faction_setFlag(&faction_stack[fsp], FACTION_KNOWN);
                            continue;
                         }
                      } while (xml_nextNode(sub));
