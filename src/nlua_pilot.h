@@ -20,7 +20,7 @@
 /**
  * @brief Lua Pilot wrapper.
  */
-typedef unsigned int LuaPilot; /**< Wrapper for a Pilot. */
+typedef pilotId_t LuaPilot; /**< Wrapper for a Pilot. */
 
 
 /*

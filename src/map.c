@@ -1073,7 +1073,7 @@ void map_renderDecorators( double x, double y, int editor, double alpha )
 void map_renderFactionDisks( double x, double y, double r, int editor, double alpha )
 {
    int i, j;
-   unsigned long f;
+   factionId_t f;
    const glColour *col;
    glColour c;
    StarSystem *sys;
@@ -1311,7 +1311,7 @@ void map_renderSystems( double bx, double by, double x, double y,
       double w, double h, double r, int editor)
 {
    int i, j;
-   unsigned long f, new_f;
+   factionId_t f, new_f;
    double f_presence;
    int has_planet;
    unsigned int services_u, services_q;

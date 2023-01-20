@@ -56,7 +56,7 @@ int pilot_outfitLInit( Pilot *pilot, PilotOutfitSlot *po );
 void pilot_outfitLUpdate( Pilot *pilot, double dt );
 void pilot_outfitLOutfofenergy( Pilot *pilot );
 void pilot_outfitLOnhit(Pilot *pilot, double armour, double shield,
-      unsigned long attacker);
+      pilotId_t attacker);
 int pilot_outfitLOntoggle( Pilot *pilot, PilotOutfitSlot *po, int on );
 void pilot_outfitLCooldown( Pilot *pilot, int done, int success, double timer );
 void pilot_outfitLCleanup( Pilot *pilot );

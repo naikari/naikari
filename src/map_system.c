@@ -267,7 +267,7 @@ static void map_system_render( double bx, double by, double w, double h, void *d
    char buf[1000];
    int cnt;
    double ast_nb, ast_area;
-   unsigned long f;
+   factionId_t f;
    int hasPresence = 0;
    double unknownPresence = 0;
    char t;

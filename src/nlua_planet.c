@@ -242,7 +242,7 @@ static int planetL_cur( lua_State *L )
 static int planetL_getBackend( lua_State *L, int landable )
 {
    int i;
-   unsigned long *factions;
+   LuaFaction *factions;
    char **planets;
    const char *rndplanet;
    LuaSystem luasys;
@@ -264,7 +264,7 @@ static int planetL_getBackend( lua_State *L, int landable )
 
    /* Get a planet by faction */
    else if (lua_isfaction(L,1)) {
-      factions = array_create(unsigned long);
+      factions = array_create(LuaFaction);
       array_push_back( &factions, lua_tofaction(L,1) );
       planets  = space_getFactionPlanet( factions, landable );
       array_free( factions );
@@ -291,7 +291,7 @@ static int planetL_getBackend( lua_State *L, int landable )
    /* Get a planet from faction list */
    else if (lua_istable(L,1)) {
       /* Get table length and preallocate. */
-      factions = array_create_size(unsigned long, lua_objlen(L, 1));
+      factions = array_create_size(LuaFaction, lua_objlen(L, 1));
       /* Load up the table. */
       lua_pushnil(L);
       while (lua_next(L, -2) != 0) {

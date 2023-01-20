@@ -13,6 +13,9 @@
 /** @endcond */
 
 
+#include "pilot.h"
+
+
 #define NMOD_NONE    0
 #define NMOD_SHIFT   (1<<0)
 #define NMOD_CTRL    (1<<1)
@@ -74,7 +77,7 @@ int input_clickPos( SDL_Event *event, double x, double y, double zoom, double mi
 int input_clickedJump( int jump, int autonav );
 int input_clickedPlanet( int planet, int autonav );
 int input_clickedAsteroid( int field, int asteroid );
-int input_clickedPilot(unsigned long pilot, int autonav);
+int input_clickedPilot(pilotId_t pilot, int autonav);
 void input_clicked( void *clicked );
 int input_isDoubleClick( void *clicked );
 

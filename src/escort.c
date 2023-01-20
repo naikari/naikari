@@ -42,7 +42,7 @@ static int escort_command(Pilot *parent, const char *cmd, unsigned int idx);
  *    @return 0 on success.
  */
 int escort_addList(Pilot *p, char *ship, EscortType_t type,
-      unsigned long id, int persist)
+      pilotId_t id, int persist)
 {
    Escort_t *escort;
 
@@ -94,7 +94,7 @@ void escort_rmListIndex( Pilot *p, int i ) {
  *    @param id ID of the pilot representing the escort.
 
  */
-void escort_rmList(Pilot *p, unsigned long id)
+void escort_rmList(Pilot *p, pilotId_t id)
 {
    int i;
 
@@ -120,14 +120,14 @@ void escort_rmList(Pilot *p, unsigned long id)
  *    @param dockslot The outfit slot which launched the escort (-1 if N/A)
  *    @return The ID of the escort on success.
  */
-unsigned long escort_create(Pilot *p, char *ship, Vector2d *pos, Vector2d *vel,
+pilotId_t escort_create(Pilot *p, char *ship, Vector2d *pos, Vector2d *vel,
       double dir, EscortType_t type, int add, int dockslot)
 {
    Ship *s;
    Pilot *pe;
-   unsigned long e;
+   pilotId_t e;
    PilotFlags f;
-   unsigned long parent;
+   pilotId_t parent;
    char buf[STRMAX_SHORT];
 
    /* Get important stuff. */

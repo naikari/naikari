@@ -9,6 +9,8 @@
 
 #include "nlua.h"
 
+#include "faction.h"
+
 
 #define FACTION_METATABLE  "faction" /**< Faction metatable identifier. */
 
@@ -16,7 +18,7 @@
 /**
  * @brief Lua Faction wrapper.
  */
-typedef unsigned long LuaFaction;
+typedef factionId_t LuaFaction;
 
 
 /*

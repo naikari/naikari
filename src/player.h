@@ -283,7 +283,7 @@ void player_targetAsteroidSet( int id_field, int id );
 void player_targetHyperspaceSet( int id );
 void player_targetHyperspace (void);
 /* Pilots. */
-void player_targetSet(unsigned long id);
+void player_targetSet(pilotId_t id);
 void player_targetHostile (void);
 void player_targetNext( int mode );
 void player_targetPrev( int mode );

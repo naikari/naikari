@@ -484,7 +484,7 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
    Ship *ship;
    const char *fltname, *fltai;
    int i, first, i_parameters;
-   unsigned long p;
+   LuaPilot p;
    double a, r;
    Vector2d vv, vp, vn;
    FleetPilot *plt;
@@ -879,7 +879,7 @@ static int pilotL_toggleSpawn( lua_State *L )
 static int pilotL_getPilots( lua_State *L )
 {
    int i, j, k, d;
-   unsigned long *factions;
+   LuaFaction *factions;
    Pilot *const* pilot_stack;
 
    /* Whether or not to get disabled. */
@@ -890,12 +890,12 @@ static int pilotL_getPilots( lua_State *L )
    /* Check for belonging to faction. */
    if (lua_istable(L,1) || lua_isfaction(L,1)) {
       if (lua_isfaction(L,1)) {
-         factions = array_create(unsigned long);
+         factions = array_create(LuaFaction);
          array_push_back( &factions, lua_tofaction(L,1) );
       }
       else {
          /* Get table length and preallocate. */
-         factions = array_create_size(unsigned long, lua_objlen(L, 1));
+         factions = array_create_size(LuaFaction, lua_objlen(L, 1));
          /* Load up the table. */
          lua_pushnil(L);
          while (lua_next(L, -2) != 0) {
@@ -1161,7 +1161,7 @@ static int pilotL_target( lua_State *L )
 static int pilotL_setTarget( lua_State *L )
 {
    Pilot *p;
-   unsigned long t;
+   pilotId_t t;
    p = luaL_validpilot(L,1);
    if (lua_isnoneornil(L,2))
       t = p->id;
@@ -2367,7 +2367,7 @@ static int pilotL_comm( lua_State *L )
 static int pilotL_setFaction( lua_State *L )
 {
    Pilot *p;
-   unsigned long fid;
+   LuaFaction fid;
 
    NLUA_CHECKRW(L);
 
@@ -4311,7 +4311,7 @@ static int pilotL_attack( lua_State *L )
 {
    Pilot *p, *pt;
    Task *t;
-   unsigned long pid;
+   LuaPilot pid;
 
    NLUA_CHECKRW(L);
 
@@ -4624,7 +4624,7 @@ static int pilotL_msg( lua_State *L )
 static int pilotL_leader( lua_State *L ) {
    Pilot *p;
    Pilot *parent;
-   unsigned long pid;
+   LuaPilot pid;
    int recursive;
 
    p = luaL_validpilot(L, 1);

@@ -12,6 +12,9 @@
 #endif /* PLAYER_H */
 
 
+#include "pilot.h"
+
+
 /* Autonav states. */
 enum {
    AUTONAV_JUMP_APPROACH,  /**< Player is approaching a jump. */
@@ -36,8 +39,8 @@ int player_autonavShouldResetSpeed (void);
 void player_autonavStartWindow( unsigned int wid, char *str);
 void player_autonavPos( double x, double y );
 void player_autonavPnt( char *name );
-void player_autonavPil( unsigned int p );
-void player_autonavBoard(unsigned int p);
+void player_autonavPil(pilotId_t p);
+void player_autonavBoard(pilotId_t p);
 
 
 #endif /* PLAYER_AUTONAV_H */

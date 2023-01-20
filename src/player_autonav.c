@@ -163,7 +163,7 @@ void player_autonavEnd (void)
 /**
  * @brief Starts autonav and closes the window.
  */
-void player_autonavStartWindow( unsigned int wid, char *str)
+void player_autonavStartWindow(unsigned int wid, char *str)
 {
    (void) str;
    player_hyperspacePreempt(1);
@@ -219,7 +219,7 @@ void player_autonavPnt( char *name )
 /**
  * @brief Starts autonav with a pilot to follow.
  */
-void player_autonavPil( unsigned int p )
+void player_autonavPil(pilotId_t p)
 {
    Pilot *pilot;
    int inrange;
@@ -241,7 +241,7 @@ void player_autonavPil( unsigned int p )
 /**
  * @brief Starts autonav with a pilot to board.
  */
-void player_autonavBoard(unsigned int p)
+void player_autonavBoard(pilotId_t p)
 {
    Pilot *pilot;
    int inrange;

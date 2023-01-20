@@ -53,7 +53,7 @@
  * @brief Represents a faction.
  */
 typedef struct Faction_ {
-   unsigned long id; /**< Faction's id. */
+   factionId_t id; /**< Faction's id. */
    char *name; /**< Normal Name. */
    char *longname; /**< Long Name. */
    char *displayname; /**< Display name. */
@@ -65,10 +65,10 @@ typedef struct Faction_ {
    glColour colour; /**< Faction specific colour. */
 
    /* Enemies */
-   unsigned long *enemies; /**< Enemies by ID of the faction. */
+   factionId_t *enemies; /**< Enemies by ID of the faction. */
 
    /* Allies */
-   unsigned long *allies; /**< Allies by ID of the faction. */
+   factionId_t *allies; /**< Allies by ID of the faction. */
 
    /* Player information. */
    double player_def; /**< Default player standing. */
@@ -92,18 +92,18 @@ static Faction* faction_stack = NULL; /**< Faction stack. */
 
 
 /* ID Generators. */
-static unsigned long faction_id = FACTION_PLAYER; /**< Stack of faction ids to assure uniqueness */
+static factionId_t faction_id = FACTION_PLAYER; /**< Stack of faction ids to assure uniqueness */
 
 
 /*
  * Prototypes
  */
 /* static */
-static int faction_getStackPos(const unsigned long id);
-static unsigned long faction_getRaw(const char *name);
+static int faction_getStackPos(const factionId_t id);
+static factionId_t faction_getRaw(const char *name);
 static void faction_freeOne( Faction *f );
 static void faction_sanitizePlayer( Faction* faction );
-static void faction_modPlayerLua(unsigned long f, double mod,
+static void faction_modPlayerLua(factionId_t f, double mod,
       const char *source, int secondary);
 static int faction_parse( Faction* temp, xmlNodePtr parent );
 static void faction_parseSocial( xmlNodePtr parent );
@@ -119,7 +119,7 @@ int pfaction_load( xmlNodePtr parent );
  *    @param id ID of the faction to get.
  *    @return Position of faction in stack or -1 if not found.
  */
-static int faction_getStackPos(const unsigned long id)
+static int faction_getStackPos(const factionId_t id)
 {
    int i;
 
@@ -138,7 +138,7 @@ static int faction_getStackPos(const unsigned long id)
  *    @param name Name of the faction to seek.
  *    @return ID of the faction.
  */
-static unsigned long faction_getRaw(const char* name)
+static factionId_t faction_getRaw(const char* name)
 {
    int i;
    /* Escorts are part of the "player" faction. */
@@ -161,7 +161,7 @@ static unsigned long faction_getRaw(const char* name)
  *    @param name Name of the faction to seek.
  *    @return ID of the faction.
  */
-unsigned long faction_exists(const char* name)
+factionId_t faction_exists(const char* name)
 {
    return faction_getRaw(name) != 0;
 }
@@ -173,9 +173,9 @@ unsigned long faction_exists(const char* name)
  *    @param name Name of the faction to seek.
  *    @return ID of the faction.
  */
-unsigned long faction_get(const char* name)
+factionId_t faction_get(const char* name)
 {
-   unsigned long id = faction_getRaw(name);
+   factionId_t id = faction_getRaw(name);
    if (id == 0)
       WARN(_("Faction '%s' not found in stack."), name);
    return id;
@@ -185,12 +185,12 @@ unsigned long faction_get(const char* name)
 /**
  * @brief Returns all faction IDs in an array (array.h).
  */
-unsigned long* faction_getAll()
+factionId_t* faction_getAll()
 {
    int i;
-   unsigned long *f;
+   factionId_t *f;
 
-   f = array_create_size(unsigned long, array_size(faction_stack));
+   f = array_create_size(factionId_t, array_size(faction_stack));
 
    for (i=0; i<array_size(faction_stack); i++)
       if (!faction_isFlag(&faction_stack[i], FACTION_INVISIBLE))
@@ -202,13 +202,13 @@ unsigned long* faction_getAll()
 /**
  * @brief Gets all the known factions in an array (array.h).
  */
-unsigned long* faction_getKnown()
+factionId_t* faction_getKnown()
 {
    int i;
-   unsigned long *f;
+   factionId_t *f;
 
    /* Set up. */
-   f = array_create_size(unsigned long, array_size(faction_stack));
+   f = array_create_size(factionId_t, array_size(faction_stack));
 
    /* Get IDs. */
    for (i=0; i<array_size(faction_stack); i++)
@@ -234,7 +234,7 @@ void faction_clearKnown()
 /**
  * @brief Is the faction invisible?
  */
-int faction_isInvisible(unsigned long id)
+int faction_isInvisible(factionId_t id)
 {
    int i;
 
@@ -250,7 +250,7 @@ int faction_isInvisible(unsigned long id)
 /**
  * @brief Sets the faction's invisible state
  */
-int faction_setInvisible(unsigned long id, int state)
+int faction_setInvisible(factionId_t id, int state)
 {
    int i;
 
@@ -270,7 +270,7 @@ int faction_setInvisible(unsigned long id, int state)
 /**
  * @brief Is the faction known?
  */
-int faction_isKnown(unsigned long id)
+int faction_isKnown(factionId_t id)
 {
    int i;
 
@@ -287,7 +287,7 @@ int faction_isKnown(unsigned long id)
 /**
  * @brief Is faction dynamic.
  */
-int faction_isDynamic(unsigned long id)
+int faction_isDynamic(factionId_t id)
 {
    int i;
 
@@ -303,7 +303,7 @@ int faction_isDynamic(unsigned long id)
 /**
  * @brief Sets the factions known state
  */
-int faction_setKnown(unsigned long id, int state)
+int faction_setKnown(factionId_t id, int state)
 {
    int i;
 
@@ -327,7 +327,7 @@ int faction_setKnown(unsigned long id, int state)
  *    @param f Faction to get the name of.
  *    @return Name of the faction (internal/English).
  */
-const char* faction_name(unsigned long f)
+const char* faction_name(factionId_t f)
 {
    int i;
 
@@ -351,7 +351,7 @@ const char* faction_name(unsigned long f)
  *    @param f Faction to get the name of.
  *    @return Name of the faction (in player's native language).
  */
-const char* faction_shortname(unsigned long f)
+const char* faction_shortname(factionId_t f)
 {
    int i;
 
@@ -379,7 +379,7 @@ const char* faction_shortname(unsigned long f)
  *    @param f Faction to get the name of.
  *    @return The faction's long name (in player's native language).
  */
-const char* faction_longname(unsigned long f)
+const char* faction_longname(factionId_t f)
 {
    int i;
 
@@ -402,7 +402,7 @@ const char* faction_longname(unsigned long f)
  *    @param f Faction ID.
  *    @return The faction's AI profile name.
  */
-const char* faction_default_ai(unsigned long f)
+const char* faction_default_ai(factionId_t f)
 {
    int i;
 
@@ -422,7 +422,7 @@ const char* faction_default_ai(unsigned long f)
  *    @param f Faction to get the logo of.
  *    @return The faction's small logo image.
  */
-glTexture* faction_logoSmall(unsigned long f)
+glTexture* faction_logoSmall(factionId_t f)
 {
    int i;
 
@@ -442,7 +442,7 @@ glTexture* faction_logoSmall(unsigned long f)
  *    @param f Faction to get the logo of.
  *    @return The faction's tiny logo image.
  */
-glTexture* faction_logoTiny(unsigned long f)
+glTexture* faction_logoTiny(factionId_t f)
 {
    int i;
 
@@ -462,7 +462,7 @@ glTexture* faction_logoTiny(unsigned long f)
  *    @param f Faction to get the colour of.
  *    @return The faction's colour
  */
-const glColour* faction_colour(unsigned long f)
+const glColour* faction_colour(factionId_t f)
 {
    int i;
 
@@ -482,12 +482,12 @@ const glColour* faction_colour(unsigned long f)
  *    @param f Faction to get enemies of.
  *    @return Array (array.h): The enemies of the faction.
  */
-unsigned long* faction_getEnemies(unsigned long f)
+factionId_t* faction_getEnemies(factionId_t f)
 {
    int fsp;
    int i;
-   unsigned long *enemies;
-   unsigned long *tmp;
+   factionId_t *enemies;
+   factionId_t *tmp;
 
    fsp = faction_getStackPos(f);
    if (fsp < 0) {
@@ -497,7 +497,7 @@ unsigned long* faction_getEnemies(unsigned long f)
 
    /* Player's faction ratings can change, so regenerate each call. */
    if (f == FACTION_PLAYER) {
-      enemies = array_create(unsigned long);
+      enemies = array_create(factionId_t);
 
       for (i=0; i<array_size(faction_stack); i++)
          if (faction_isPlayerEnemy(faction_stack[i].id)) {
@@ -519,12 +519,12 @@ unsigned long* faction_getEnemies(unsigned long f)
  *    @param f Faction to get allies of.
  *    @return Array (array.h): The allies of the faction.
  */
-unsigned long* faction_getAllies(unsigned long f)
+factionId_t* faction_getAllies(factionId_t f)
 {
    int fsp;
    int i;
-   unsigned long *allies;
-   unsigned long *tmp;
+   factionId_t *allies;
+   factionId_t *tmp;
 
    fsp = faction_getStackPos(f);
    if (fsp < 0) {
@@ -534,7 +534,7 @@ unsigned long* faction_getAllies(unsigned long f)
 
    /* Player's faction ratings can change, so regenerate each call. */
    if (f == FACTION_PLAYER) {
-      allies = array_create(unsigned long);
+      allies = array_create(factionId_t);
 
       for (i=0; i<array_size(faction_stack); i++)
          if (faction_isPlayerFriend(faction_stack[i].id)) {
@@ -555,7 +555,7 @@ unsigned long* faction_getAllies(unsigned long f)
  *
  *    @param f Faction to clear enemies of.
  */
-void faction_clearEnemy(unsigned long f)
+void faction_clearEnemy(factionId_t f)
 {
    int fsp;
    Faction *ff;
@@ -584,12 +584,12 @@ void faction_clearEnemy(unsigned long f)
  *    @param f The faction to add an enemy to.
  *    @param o The other faction to make an enemy.
  */
-void faction_addEnemy(unsigned long f, unsigned long o)
+void faction_addEnemy(factionId_t f, factionId_t o)
 {
    int fsp;
    Faction *ff;
    int i;
-   unsigned long *tmp;
+   factionId_t *tmp;
 
    if (f == o)
       return;
@@ -627,7 +627,7 @@ void faction_addEnemy(unsigned long f, unsigned long o)
  *    @param f The faction to remove an enemy from.
  *    @param o The other faction to remove as an enemy.
  */
-void faction_rmEnemy(unsigned long f, unsigned long o)
+void faction_rmEnemy(factionId_t f, factionId_t o)
 {
    int fsp;
    Faction *ff;
@@ -657,7 +657,7 @@ void faction_rmEnemy(unsigned long f, unsigned long o)
  *
  *    @param f Faction to clear ally of.
  */
-void faction_clearAlly(unsigned long f)
+void faction_clearAlly(factionId_t f)
 {
    int fsp;
    Faction *ff;
@@ -686,12 +686,12 @@ void faction_clearAlly(unsigned long f)
  *    @param f The faction to add an ally to.
  *    @param o The other faction to make an ally.
  */
-void faction_addAlly(unsigned long f, unsigned long o)
+void faction_addAlly(factionId_t f, factionId_t o)
 {
    int fsp;
    Faction *ff;
    int i;
-   unsigned long *tmp;
+   factionId_t *tmp;
 
    /* player cannot be made an enemy this way */
    if (f == FACTION_PLAYER) {
@@ -726,7 +726,7 @@ void faction_addAlly(unsigned long f, unsigned long o)
  *    @param f The faction to remove an ally from.
  *    @param o The other faction to remove as an ally.
  */
-void faction_rmAlly(unsigned long f, unsigned long o)
+void faction_rmAlly(factionId_t f, factionId_t o)
 {
    int fsp;
    Faction *ff;
@@ -751,7 +751,7 @@ void faction_rmAlly(unsigned long f, unsigned long o)
 /**
  * @brief Gets the state associated to the faction scheduler.
  */
-nlua_env faction_getScheduler(unsigned long f)
+nlua_env faction_getScheduler(factionId_t f)
 {
    int fsp;
 
@@ -768,7 +768,7 @@ nlua_env faction_getScheduler(unsigned long f)
 /**
  * @brief Gets the equipper state associated to the faction scheduler.
  */
-nlua_env faction_getEquipper(unsigned long f)
+nlua_env faction_getEquipper(factionId_t f)
 {
    int fsp;
 
@@ -799,7 +799,7 @@ static void faction_sanitizePlayer(Faction* faction)
 /**
  * @brief Mods player using the power of Lua.
  */
-static void faction_modPlayerLua(unsigned long f, double mod,
+static void faction_modPlayerLua(factionId_t f, double mod,
       const char *source, int secondary)
 {
    int fsp;
@@ -889,7 +889,7 @@ static void faction_modPlayerLua(unsigned long f, double mod,
  *    - "script" : Either a mission or an event.
  *
  */
-void faction_modPlayer(unsigned long f, double mod, const char *source)
+void faction_modPlayer(factionId_t f, double mod, const char *source)
 {
    int fsp;
    int i;
@@ -932,7 +932,7 @@ void faction_modPlayer(unsigned long f, double mod, const char *source)
  *
  * @sa faction_modPlayer
  */
-void faction_modPlayerSingle(unsigned long f, double mod, const char *source)
+void faction_modPlayerSingle(factionId_t f, double mod, const char *source)
 {
    faction_modPlayerLua(f, mod, source, 0);
 }
@@ -948,7 +948,7 @@ void faction_modPlayerSingle(unsigned long f, double mod, const char *source)
  *
  * @sa faction_modPlayer
  */
-void faction_modPlayerRaw(unsigned long f, double mod)
+void faction_modPlayerRaw(factionId_t f, double mod)
 {
    int fsp;
    Faction *faction;
@@ -984,7 +984,7 @@ void faction_modPlayerRaw(unsigned long f, double mod)
  *    @param f Faction to set the player's standing for.
  *    @param value Value to set the player's standing to.
  */
-void faction_setPlayer(unsigned long f, double value)
+void faction_setPlayer(factionId_t f, double value)
 {
    int fsp;
    Faction *faction;
@@ -1022,7 +1022,7 @@ void faction_setPlayer(unsigned long f, double value)
  *    @param f Faction to get player's standing from.
  *    @return The standing the player has with the faction.
  */
-double faction_getPlayer(unsigned long f)
+double faction_getPlayer(factionId_t f)
 {
    int fsp;
 
@@ -1042,7 +1042,7 @@ double faction_getPlayer(unsigned long f)
  *    @param f Faction to get player's default standing from.
  *    @return The default standing the player has with the faction.
  */
-double faction_getPlayerDef(unsigned long f)
+double faction_getPlayerDef(factionId_t f)
 {
    int fsp;
 
@@ -1062,7 +1062,7 @@ double faction_getPlayerDef(unsigned long f)
  *    @param f Faction to check friendliness of.
  *    @return 1 if the player is a friend, 0 otherwise.
  */
-int faction_isPlayerFriend(unsigned long f)
+int faction_isPlayerFriend(factionId_t f)
 {
    int fsp;
    Faction *faction;
@@ -1116,7 +1116,7 @@ int faction_isPlayerFriend(unsigned long f)
  *    @param f Faction to check hostility of.
  *    @return 1 if the player is an enemy, 0 otherwise.
  */
-int faction_isPlayerEnemy(unsigned long f)
+int faction_isPlayerEnemy(factionId_t f)
 {
    int fsp;
    Faction *faction;
@@ -1172,7 +1172,7 @@ int faction_isPlayerEnemy(unsigned long f)
  *    @param f Faction to get the colour of based on player's standing.
  *    @return Pointer to the colour.
  */
-const glColour* faction_getColour(unsigned long f)
+const glColour* faction_getColour(factionId_t f)
 {
    if (f == 0)
       return &cInert;
@@ -1199,7 +1199,7 @@ const glColour* faction_getColour(unsigned long f)
  *    @param f Faction to get the colour of based on player's standing.
  *    @return The character associated to the faction.
  */
-char faction_getColourChar(unsigned long f)
+char faction_getColourChar(factionId_t f)
 {
    if (f == 0)
       return 'I';
@@ -1223,7 +1223,7 @@ char faction_getColourChar(unsigned long f)
  *    @param f Faction to get the colour of based on player's standing.
  *    @return The character associated to the faction.
  */
-const char *faction_getSymbol(unsigned long f)
+const char *faction_getSymbol(factionId_t f)
 {
    if (f == 0)
       return "";
@@ -1247,7 +1247,7 @@ const char *faction_getSymbol(unsigned long f)
  *    @param f Faction to get standing of.
  *    @return Human readable player's standing (in player's native language).
  */
-const char *faction_getStandingText(unsigned long f)
+const char *faction_getStandingText(factionId_t f)
 {
    int fsp;
    Faction *faction;
@@ -1307,7 +1307,7 @@ const char *faction_getStandingText(unsigned long f)
  *    @param override If positive sets to ally, if negative sets to hostile.
  *    @return Human readable broad player's standing.
  */
-const char *faction_getStandingBroad(unsigned long f, int bribed, int override)
+const char *faction_getStandingBroad(factionId_t f, int bribed, int override)
 {
    int fsp;
    Faction *faction;
@@ -1368,7 +1368,7 @@ const char *faction_getStandingBroad(unsigned long f, int bribed, int override)
  *    @param b Faction B.
  *    @return 1 if A and B are enemies, 0 otherwise.
  */
-int areEnemies(unsigned long a, unsigned long b)
+int areEnemies(factionId_t a, factionId_t b)
 {
    int asp, bsp;
    Faction *fa, *fb;
@@ -1418,7 +1418,7 @@ int areEnemies(unsigned long a, unsigned long b)
  *    @param b Faction B.
  *    @return 1 if A and B are allies, 0 otherwise.
  */
-int areAllies(unsigned long a, unsigned long b)
+int areAllies(factionId_t a, factionId_t b)
 {
    int asp, bsp;
    Faction *fa, *fb;
@@ -1468,7 +1468,7 @@ int areAllies(unsigned long a, unsigned long b)
  *    @param f Faction to check for validity.
  *    @return 1 if faction is valid, 0 otherwise.
  */
-int faction_isFaction(unsigned long f)
+int faction_isFaction(factionId_t f)
 {
    return ((f != 0) && (faction_getStackPos(f) >= 0));
 }
@@ -1650,10 +1650,10 @@ static void faction_addStandingScript( Faction* temp, const char* scriptname ) {
 static void faction_parseSocial( xmlNodePtr parent )
 {
    xmlNodePtr node, cur;
-   unsigned long f;
+   factionId_t f;
    int fsp;
    Faction *base;
-   unsigned long *tmp;
+   factionId_t *tmp;
 
    /* Get name. */
    base = NULL;
@@ -1675,8 +1675,8 @@ static void faction_parseSocial( xmlNodePtr parent )
    assert( base != NULL );
 
    /* Create arrays, not much memory so it doesn't really matter. */
-   base->allies = array_create(unsigned long);
-   base->enemies = array_create(unsigned long);
+   base->allies = array_create(factionId_t);
+   base->enemies = array_create(factionId_t);
 
    /* Parse social stuff. */
    node = parent->xmlChildrenNode;
@@ -1762,8 +1762,8 @@ int factions_load (void)
    f->equip_env = LUA_NOREF;
    f->env = LUA_NOREF;
    f->sched_env = LUA_NOREF;
-   f->allies = array_create(unsigned long);
-   f->enemies = array_create(unsigned long);
+   f->allies = array_create(factionId_t);
+   f->enemies = array_create(factionId_t);
 
    /* First pass - gets factions */
    node = factions;
@@ -1927,7 +1927,7 @@ int pfaction_load( xmlNodePtr parent )
 {
    xmlNodePtr node, cur, sub;
    char *str;
-   unsigned long faction;
+   factionId_t faction;
    int fsp;
 
    node = parent->xmlChildrenNode;
@@ -1980,21 +1980,21 @@ int pfaction_load( xmlNodePtr parent )
  *    @param which Which factions to get. (0,1,2,3 : all, friendly, neutral, hostile)
  *    @return Array (array.h): The faction IDs of the specified alignment.
  */
-unsigned long *faction_getGroup(int which)
+factionId_t *faction_getGroup(int which)
 {
-   unsigned long *group;
+   factionId_t *group;
    int i;
 
    switch(which) {
       case 0: /* 'all' */
-         group = array_create(unsigned long);
+         group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
             array_push_back(&group, faction_stack[i].id);
          }
          return group;
 
       case 1: /* 'friendly' */
-         group = array_create(unsigned long);
+         group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
             if (areAllies(FACTION_PLAYER, faction_stack[i].id))
                array_push_back(&group, faction_stack[i].id);
@@ -2002,7 +2002,7 @@ unsigned long *faction_getGroup(int which)
          return group;
 
       case 2: /* 'neutral' */
-         group = array_create(unsigned long);
+         group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
             if (!areAllies(FACTION_PLAYER, faction_stack[i].id)
                   && !areEnemies(FACTION_PLAYER, faction_stack[i].id))
@@ -2011,7 +2011,7 @@ unsigned long *faction_getGroup(int which)
          return group;
 
       case 3: /* 'hostile' */
-         group = array_create(unsigned long);
+         group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
             if (areEnemies(FACTION_PLAYER, faction_stack[i].id))
                array_push_back(&group, faction_stack[i].id);
@@ -2058,7 +2058,7 @@ void factions_clearDynamic (void)
  *    @param display Display name to use.
  *    @param ai Default pilot AI to use (if NULL, inherit from base).
  */
-unsigned long faction_dynAdd(unsigned long base, const char* name,
+factionId_t faction_dynAdd(factionId_t base, const char* name,
       const char* display, const char* ai)
 {
    int fsp;
@@ -2071,8 +2071,8 @@ unsigned long faction_dynAdd(unsigned long base, const char* name,
    f->name = strdup(name);
    f->displayname = (display == NULL) ? NULL : strdup(display);
    f->ai = (ai == NULL) ? NULL : strdup(ai);
-   f->allies = array_create(unsigned long);
-   f->enemies = array_create(unsigned long);
+   f->allies = array_create(factionId_t);
+   f->enemies = array_create(factionId_t);
    f->equip_env = LUA_NOREF;
    f->env = LUA_NOREF;
    f->sched_env = LUA_NOREF;

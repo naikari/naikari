@@ -1902,7 +1902,7 @@ static void sysedit_btnFaction( unsigned int wid_unused, char *unused )
    (void) unused;
    unsigned int wid;
    int i, j, y, h, bw;
-   unsigned long *factions;
+   factionId_t *factions;
    char **str;
 
    /* Create the window. */

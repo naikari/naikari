@@ -12,6 +12,7 @@
 #include "physics.h"
 
 /* Forward declaration to avoid cyclical import. */
+typedef unsigned long pilotId_t;
 struct Pilot_;
 typedef struct Pilot_ Pilot;
 
@@ -89,8 +90,8 @@ void ai_cleartasks( Pilot* p );
 /*
  * Misc functions.
  */
-void ai_attacked(Pilot* attacked, const unsigned long attacker, double dmg);
-void ai_refuel(Pilot* refueler, unsigned long target);
+void ai_attacked(Pilot* attacked, const pilotId_t attacker, double dmg);
+void ai_refuel(Pilot* refueler, pilotId_t target);
 void ai_getDistress( Pilot *p, const Pilot *distressed, const Pilot *attacker );
 void ai_think( Pilot* pilot, const double dt );
 void ai_setPilot( Pilot *p );

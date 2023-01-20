@@ -75,10 +75,10 @@ Fleet* fleet_get( const char* name )
  *
  * @sa pilot_create
  */
-unsigned int fleet_createPilot( Fleet *flt, FleetPilot *plt, double dir,
-      Vector2d *pos, Vector2d *vel, const char* ai, PilotFlags flags )
+pilotId_t fleet_createPilot(Fleet *flt, FleetPilot *plt, double dir,
+      Vector2d *pos, Vector2d *vel, const char* ai, PilotFlags flags)
 {
-   unsigned int p;
+   pilotId_t p;
    p = pilot_create( plt->ship,
          _(plt->name), /* Currently, FleetPilots come from static XML in English, but Pilots have translated names. */
          flt->faction,

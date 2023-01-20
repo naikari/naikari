@@ -80,6 +80,9 @@ enum {
 #define pilot_isStopped(p)  (VMOD(p->solid->vel) <= MIN_VEL_ERR)
 
 
+typedef unsigned long pilotId_t; /**< Type for pilot IDs. */
+
+
 /**
  * @brief Contains the state of the outfit.
  *
@@ -206,7 +209,7 @@ typedef enum EscortType_e {
 typedef struct Escort_s {
    char *ship;          /**< Type of the ship escort is flying. */
    EscortType_t type;   /**< Type of escort. */
-   unsigned long id; /**< ID of in-game pilot. */
+   pilotId_t id; /**< ID of in-game pilot. */
    /* TODO: something better than this */
    int persist;         /**< True if escort should respawn on takeoff/landing */
 } Escort_t;
@@ -217,11 +220,11 @@ typedef struct Escort_s {
  */
 typedef struct Pilot_ {
 
-   unsigned long id; /**< pilot's id, used for many functions */
+   pilotId_t id; /**< pilot's id, used for many functions */
    char* name;       /**< pilot's name (if unique) */
 
    /* Fleet/faction management. */
-   unsigned long faction; /**< Pilot's faction. */
+   factionId_t faction; /**< Pilot's faction. */
    int presence;     /**< Presence being used by the pilot. */
 
    /* Object characteristics */
@@ -322,16 +325,16 @@ typedef struct Pilot_ {
    PilotHook *hooks; /**< Array (array.h): Pilot hooks. */
 
    /* Escort stuff. */
-   unsigned long parent; /**< Pilot's parent. */
+   pilotId_t parent; /**< Pilot's parent. */
    Escort_t *escorts; /**< Array (array.h): Pilot's escorts. */
-   unsigned long dockpilot; /**< Pilot's dock pilot (the pilot it
+   pilotId_t dockpilot; /**< Pilot's dock pilot (the pilot it
          originates from). This is separate from parent because it needs
          to be set in sync with dockslot (below). Used to unset dockslot
          when the dock pilot is destroyed. */
    int dockslot; /**< Outfit slot pilot originates from, index of dockpilot's outfits. */
 
    /* Targeting. */
-   unsigned long target; /**< AI pilot target. */
+   pilotId_t target; /**< AI pilot target. */
    int nav_planet;   /**< Planet land target. */
    int nav_hyperspace; /**< Hyperspace target. */
    int nav_anchor; /**< Asteroid anchor target. */
@@ -381,20 +384,22 @@ typedef struct Pilot_ {
  * getting pilot stuff
  */
 Pilot*const* pilot_getAll (void);
-Pilot* pilot_get(const unsigned long id);
-unsigned long pilot_getNextID(const unsigned long id, int mode);
-unsigned long pilot_getPrevID(const unsigned long id, int mode);
-unsigned long pilot_getNearestEnemy(const Pilot* p);
-unsigned long pilot_getNearestEnemy_size(const Pilot* p, double target_mass_LB,
+Pilot* pilot_get(const pilotId_t id);
+pilotId_t pilot_getNextID(const pilotId_t id, int mode);
+pilotId_t pilot_getPrevID(const pilotId_t id, int mode);
+pilotId_t pilot_getNearestEnemy(const Pilot* p);
+pilotId_t pilot_getNearestEnemy_size(const Pilot* p, double target_mass_LB,
       double target_mass_UB);
-unsigned long pilot_getNearestEnemy_heuristic(const Pilot* p,
+pilotId_t pilot_getNearestEnemy_heuristic(const Pilot* p,
       double mass_factor, double health_factor, double damage_factor,
       double range_factor);
-unsigned long pilot_getNearestHostile(void); /* only for the player */
-unsigned long pilot_getNearestPilot(const Pilot* p);
-unsigned long pilot_getBoss(const Pilot* p);
-double pilot_getNearestPos(const Pilot *p, unsigned long *tp, double x, double y, int disabled );
-double pilot_getNearestAng( const Pilot *p, unsigned long *tp, double ang, int disabled );
+pilotId_t pilot_getNearestHostile(void); /* only for the player */
+pilotId_t pilot_getNearestPilot(const Pilot* p);
+pilotId_t pilot_getBoss(const Pilot* p);
+double pilot_getNearestPos(const Pilot *p, pilotId_t *tp, double x, double y,
+      int disabled);
+double pilot_getNearestAng(const Pilot *p, pilotId_t *tp, double ang,
+      int disabled);
 int pilot_getJumps( const Pilot* p );
 const glColour* pilot_getColour( const Pilot* p );
 int pilot_validTarget( const Pilot* p, const Pilot* target );
@@ -407,10 +412,10 @@ double pilot_relhp( const Pilot* cur_pilot, const Pilot* p );
 /*
  * Combat.
  */
-void pilot_setTarget(Pilot* p, unsigned long id);
-double pilot_hit(Pilot* p, const Solid* w, const unsigned long shooter,
+void pilot_setTarget(Pilot* p, pilotId_t id);
+double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
       const Damage *dmg, int reset);
-void pilot_updateDisable(Pilot* p, const unsigned long shooter);
+void pilot_updateDisable(Pilot* p, const pilotId_t shooter);
 void pilot_explode( double x, double y, double radius, const Damage *dmg, const Pilot *parent );
 double pilot_face( Pilot* p, const double dir );
 int pilot_brake( Pilot* p );
@@ -445,15 +450,15 @@ PilotOutfitSlot* pilot_getDockSlot( Pilot* p );
 /*
  * creation
  */
-unsigned long pilot_create(const Ship* ship, const char* name,
-      unsigned long faction, const char *ai, const double dir,
+pilotId_t pilot_create(const Ship* ship, const char* name,
+      factionId_t faction, const char *ai, const double dir,
       const Vector2d* pos, const Vector2d* vel, const PilotFlags flags,
-      unsigned long dockpilot, int dockslot);
+      pilotId_t dockpilot, int dockslot);
 Pilot* pilot_createEmpty(const Ship* ship, const char* name,
-      unsigned long faction, const char *ai, PilotFlags flags);
+      factionId_t faction, const char *ai, PilotFlags flags);
 Pilot* pilot_replacePlayer( Pilot* after );
 void pilot_choosePoint(Vector2d *vp, Planet **planet, JumpPoint **jump,
-      unsigned long lf, int ignore_rules, int guerilla);
+      factionId_t lf, int ignore_rules, int guerilla);
 void pilot_delete( Pilot *p );
 
 
@@ -490,7 +495,7 @@ void pilot_renderOverlay( Pilot* p, const double dt );
 /*
  * communication
  */
-void pilot_message(Pilot *p, unsigned long target, const char *msg,
+void pilot_message(Pilot *p, pilotId_t target, const char *msg,
       int ignore_int);
 void pilot_broadcast( Pilot *p, const char *msg, int ignore_int );
 void pilot_distress(Pilot *p, Pilot *attacker, const char *msg);

@@ -97,7 +97,7 @@ typedef struct Planet_ {
 
    /* Planet details. */
    char *class; /**< Planet type. Uses Star Trek classification system (https://stexpanded.fandom.com/wiki/Planet_classifications) */
-   unsigned long faction; /**< planet faction */
+   factionId_t faction; /**< planet faction */
    uint64_t population; /**< Population of the planet. */
 
    /* Asset details. */
@@ -163,7 +163,7 @@ typedef struct StarSystem_ StarSystem;
  * @brief Represents presence in a system
  */
 typedef struct SystemPresence_ {
-   unsigned long faction; /**< Faction of this presence. */
+   factionId_t faction; /**< Faction of this presence. */
    double value; /**< Amount of presence. */
    double curUsed; /**< Presence currently used. */
    double timer; /**< Current faction timer. */
@@ -300,7 +300,7 @@ struct StarSystem_ {
    /* Planets. */
    Planet **planets; /**< Array (array.h): planets */
    int *planetsid; /**< Array (array.h): IDs of the planets. */
-   unsigned long faction; /**< overall faction */
+   factionId_t faction; /**< overall faction */
 
    /* Jumps. */
    JumpPoint *jumps; /**< Array (array.h): Jump points in the system */
@@ -363,7 +363,7 @@ credits_t planet_commodityPrice( const Planet *p, const Commodity *c );
 credits_t planet_commodityPriceAtTime( const Planet *p, const Commodity *c, ntime_t t );
 int planet_averagePlanetPrice( const Planet *p, const Commodity *c, credits_t *mean, double *std);
 /* Misc modification. */
-int planet_setFaction(Planet *p, unsigned long faction);
+int planet_setFaction(Planet *p, factionId_t faction);
 /* Land related stuff. */
 char planet_getColourChar( Planet *p );
 const char *planet_getSymbol( Planet *p );
@@ -402,12 +402,12 @@ void planets_render (void);
  * Presence stuff.
  */
 void system_presenceCleanupAll( void );
-void system_addPresence(StarSystem *sys, unsigned long faction, double amount,
+void system_addPresence(StarSystem *sys, factionId_t faction, double amount,
       int range);
-double system_getPresence(const StarSystem *sys, unsigned long faction);
+double system_getPresence(const StarSystem *sys, factionId_t faction);
 void system_addAllPlanetsPresence( StarSystem *sys );
 void space_reconstructPresences( void );
-void system_rmCurrentPresence(StarSystem *sys, unsigned long faction,
+void system_rmCurrentPresence(StarSystem *sys, factionId_t faction,
       double amount);
 
 /*
@@ -434,7 +434,7 @@ int system_index( StarSystem *sys );
 int space_sysReachable( StarSystem *sys );
 int space_sysReallyReachable( char* sysname );
 int space_sysReachableFromSys( StarSystem *target, StarSystem *sys );
-char** space_getFactionPlanet(unsigned long *factions, int landable);
+char** space_getFactionPlanet(factionId_t *factions, int landable);
 char* space_getRndPlanet( int landable, unsigned int services,
       int (*filter)(Planet *p));
 double system_getClosest( const StarSystem *sys, int *pnt, int *jp, int *ast, int *fie, double x, double y );
