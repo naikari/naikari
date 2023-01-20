@@ -120,12 +120,10 @@ static int faction_getRaw( const char* name )
       return FACTION_PLAYER;
 
    if (name != NULL) {
-      for (i=0; i<array_size(faction_stack); i++)
-         if (strcmp(faction_stack[i].name, name)==0)
-            break;
-
-      if (i != array_size(faction_stack))
-         return i;
+      for (i=0; i<array_size(faction_stack); i++) {
+         if (strcmp(faction_stack[i].name, name) == 0)
+            return i;
+      }
    }
    return -1;
 }

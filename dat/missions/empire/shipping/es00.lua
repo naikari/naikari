@@ -181,7 +181,7 @@ function enter ()
 
       -- Player should not be able to reland
       player.allowLand(false,
-            _("The docking stabilizers have been damaged by weapons fire!"))
+            _("Request for landing clearance not heard in the chaos."))
    end
 end
 
