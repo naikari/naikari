@@ -484,7 +484,7 @@ static int pilotL_addFleetFrom( lua_State *L, int from_ship )
    Ship *ship;
    const char *fltname, *fltai;
    int i, first, i_parameters;
-   unsigned int p;
+   unsigned long p;
    double a, r;
    Vector2d vv, vp, vn;
    FleetPilot *plt;
@@ -1160,7 +1160,7 @@ static int pilotL_target( lua_State *L )
 static int pilotL_setTarget( lua_State *L )
 {
    Pilot *p;
-   unsigned int t;
+   unsigned long t;
    p = luaL_validpilot(L,1);
    if (lua_isnoneornil(L,2))
       t = p->id;
@@ -4310,7 +4310,7 @@ static int pilotL_attack( lua_State *L )
 {
    Pilot *p, *pt;
    Task *t;
-   unsigned int pid;
+   unsigned long pid;
 
    NLUA_CHECKRW(L);
 
@@ -4623,7 +4623,7 @@ static int pilotL_msg( lua_State *L )
 static int pilotL_leader( lua_State *L ) {
    Pilot *p;
    Pilot *parent;
-   unsigned int pid;
+   unsigned long pid;
    int recursive;
 
    p = luaL_validpilot(L, 1);

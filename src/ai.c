@@ -843,7 +843,7 @@ void ai_think( Pilot* pilot, const double dt )
  *    @param[in] attacker ID of the attacker.
  *    @param[in] dmg Damage done by the attacker.
  */
-void ai_attacked( Pilot* attacked, const unsigned int attacker, double dmg )
+void ai_attacked(Pilot* attacked, const unsigned long attacker, double dmg)
 {
    HookParam hparam[2];
 
@@ -880,7 +880,7 @@ void ai_attacked( Pilot* attacked, const unsigned int attacker, double dmg )
  *    @param refueler Pilot doing the refueling.
  *    @param target Pilot to refuel.
  */
-void ai_refuel( Pilot* refueler, unsigned int target )
+void ai_refuel(Pilot* refueler, unsigned long target)
 {
    Task *t;
 
@@ -2960,7 +2960,7 @@ static int aiL_shoot( lua_State *L )
  */
 static int aiL_getenemy( lua_State *L )
 {
-   unsigned int id;
+   unsigned long id;
 
    id = pilot_getNearestEnemy(cur_pilot);
 
@@ -2982,7 +2982,7 @@ static int aiL_getenemy( lua_State *L )
  */
 static int aiL_getenemy_size( lua_State *L )
 {
-   unsigned int id;
+   unsigned long id;
    unsigned int LB, UB;
 
    NLUA_MIN_ARGS(2);
@@ -3018,7 +3018,7 @@ static int aiL_getenemy_size( lua_State *L )
 static int aiL_getenemy_heuristic( lua_State *L )
 {
 
-   unsigned int id;
+   unsigned long id;
    double mass_factor, health_factor, damage_factor, range_factor;
 
    mass_factor    = luaL_checklong(L,1);
@@ -3393,7 +3393,7 @@ static int aiL_distress( lua_State *L )
  */
 static int aiL_getBoss( lua_State *L )
 {
-   unsigned int id;
+   unsigned long id;
 
    id = pilot_getBoss( cur_pilot );
 

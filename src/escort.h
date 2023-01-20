@@ -14,14 +14,13 @@
 
 
 /* Creation. */
-int escort_addList( Pilot *p, char *ship, EscortType_t type, unsigned int id,
-                    int persist );
+int escort_addList(Pilot *p, char *ship, EscortType_t type, unsigned long id,
+      int persist);
 void escort_freeList( Pilot *p );
-void escort_rmList( Pilot *p, unsigned int id );
+void escort_rmList(Pilot *p, unsigned long id);
 void escort_rmListIndex( Pilot *p, int i );
-unsigned int escort_create( Pilot *p, char *ship,
-      Vector2d *pos, Vector2d *vel, double dir,
-      EscortType_t type, int add, int dockslot );
+unsigned long escort_create(Pilot *p, char *ship, Vector2d *pos, Vector2d *vel,
+      double dir, EscortType_t type, int add, int dockslot);
 
 /* Keybind commands. */
 int escorts_attack( Pilot *parent );

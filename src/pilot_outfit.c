@@ -1340,7 +1340,8 @@ void pilot_outfitLOutfofenergy( Pilot *pilot )
  *    @param shield Shield amage taken by pilot.
  *    @param attacker The attacker that hit the pilot.
  */
-void pilot_outfitLOnhit( Pilot *pilot, double armour, double shield, unsigned int attacker )
+void pilot_outfitLOnhit(Pilot *pilot, double armour, double shield,
+      unsigned long attacker)
 {
    int i;
    PilotOutfitSlot *po;

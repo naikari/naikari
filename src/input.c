@@ -1285,7 +1285,7 @@ static void input_mouseMove( SDL_Event* event )
 static void input_clickevent( SDL_Event* event )
 {
    unsigned int t;
-   unsigned int pid;
+   unsigned long pid;
    int mx, my, pntid, jpid, astid, fieid;
    int res;
    int autonav;
@@ -1413,7 +1413,7 @@ static void input_clickevent( SDL_Event* event )
  */
 int input_clickPos( SDL_Event *event, double x, double y, double zoom, double minpr, double minr )
 {
-   unsigned int pid;
+   unsigned long pid;
    Pilot *p;
    double r, rp;
    double d, dp;
@@ -1622,7 +1622,7 @@ int input_clickedAsteroid( int field, int asteroid )
  *    @param autonav Whether this is an autonav action.
  *    @return Whether the click was used.
  */
-int input_clickedPilot( unsigned int pilot, int autonav )
+int input_clickedPilot(unsigned long pilot, int autonav)
 {
    Pilot *p;
 

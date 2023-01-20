@@ -62,8 +62,8 @@ typedef struct Weapon_ {
    unsigned int ID; /**< Only used for beam weapons. */
 
    int faction; /**< faction of pilot that shot it */
-   unsigned int parent; /**< pilot that shot it */
-   unsigned int target; /**< target to hit, only used by seeking things */
+   unsigned long parent; /**< pilot that shot it */
+   unsigned long target; /**< target to hit, only used by seeking things */
    const Outfit* outfit; /**< related outfit that fired it or whatnot */
 
    const Outfit* launcher; /**< Launcher that fired, used for ammo */
@@ -118,9 +118,9 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
       const double dir, const Vector2d* pos, const Vector2d* vel, const Pilot* parent, double time );
 static void weapon_createAmmo( Weapon *w, const Outfit* outfit, double T,
       const double dir, const Vector2d* pos, const Vector2d* vel, const Pilot* parent, double time );
-static Weapon* weapon_create( const Outfit* outfit, double T,
+static Weapon* weapon_create(const Outfit* outfit, double T,
       const double dir, const Vector2d* pos, const Vector2d* vel,
-      const Pilot *parent, const unsigned int target, double time );
+      const Pilot *parent, const unsigned long target, double time);
 /* Updating. */
 static void weapon_render( Weapon* w, const double dt );
 static void weapons_updateLayer( const double dt, const WeaponLayer layer );
@@ -805,7 +805,7 @@ static void weapon_render( Weapon* w, const double dt )
 static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
 {
    Pilot *parent;
-   unsigned int leader_id;
+   unsigned long leader_id;
 
    /* Get some data. */
    parent = pilot_get(w->parent);
@@ -1615,9 +1615,9 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
  *    @param time Expected flight time.
  *    @return A pointer to the newly created weapon.
  */
-static Weapon* weapon_create( const Outfit* outfit, double T,
+static Weapon* weapon_create(const Outfit* outfit, double T,
       const double dir, const Vector2d* pos, const Vector2d* vel,
-      const Pilot* parent, const unsigned int target, double time )
+      const Pilot* parent, const unsigned long target, double time)
 {
    double mass, rdir;
    Pilot *pilot_target;
@@ -1731,9 +1731,9 @@ static Weapon* weapon_create( const Outfit* outfit, double T,
  *    @param target Target ID that is getting shot.
  *    @param time Expected flight time.
  */
-void weapon_add( const Outfit* outfit, const double T, const double dir,
+void weapon_add(const Outfit* outfit, const double T, const double dir,
       const Vector2d* pos, const Vector2d* vel,
-      const Pilot *parent, unsigned int target, double time )
+      const Pilot *parent, unsigned long target, double time)
 {
    WeaponLayer layer;
    Weapon *w, **m;
@@ -1791,10 +1791,10 @@ void weapon_add( const Outfit* outfit, const double T, const double dir,
  *
  * @sa beam_end
  */
-unsigned int beam_start( const Outfit* outfit,
+unsigned int beam_start(const Outfit* outfit,
       const double dir, const Vector2d* pos, const Vector2d* vel,
-      const Pilot *parent, const unsigned int target,
-      PilotOutfitSlot *mount )
+      const Pilot *parent, const unsigned long target,
+      PilotOutfitSlot *mount)
 {
    WeaponLayer layer;
    Weapon *w, **m;
@@ -1851,7 +1851,7 @@ unsigned int beam_start( const Outfit* outfit,
  *    @param parent ID of the parent of the beam.
  *    @param beam ID of the beam to destroy.
  */
-void beam_end( const unsigned int parent, unsigned int beam )
+void beam_end(const unsigned long parent, unsigned int beam)
 {
    int i;
    WeaponLayer layer;

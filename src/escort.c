@@ -28,7 +28,7 @@
  * Prototypes.
  */
 /* Static */
-static int escort_command( Pilot *parent, const char *cmd, unsigned int index );
+static int escort_command(Pilot *parent, const char *cmd, unsigned int idx);
 
 
 /**
@@ -41,8 +41,8 @@ static int escort_command( Pilot *parent, const char *cmd, unsigned int index );
  *    @param persist True if escort should respawn on takeoff/landing.
  *    @return 0 on success.
  */
-int escort_addList( Pilot *p, char *ship, EscortType_t type,
-      unsigned int id, int persist )
+int escort_addList(Pilot *p, char *ship, EscortType_t type,
+      unsigned long id, int persist)
 {
    Escort_t *escort;
 
@@ -94,7 +94,8 @@ void escort_rmListIndex( Pilot *p, int i ) {
  *    @param id ID of the pilot representing the escort.
 
  */
-void escort_rmList( Pilot *p, unsigned int id ) {
+void escort_rmList(Pilot *p, unsigned long id)
+{
    int i;
 
    for (i=0; i<array_size(p->escorts); i++) {
@@ -119,15 +120,14 @@ void escort_rmList( Pilot *p, unsigned int id ) {
  *    @param dockslot The outfit slot which launched the escort (-1 if N/A)
  *    @return The ID of the escort on success.
  */
-unsigned int escort_create( Pilot *p, char *ship,
-      Vector2d *pos, Vector2d *vel, double dir,
-      EscortType_t type, int add, int dockslot )
+unsigned long escort_create(Pilot *p, char *ship, Vector2d *pos, Vector2d *vel,
+      double dir, EscortType_t type, int add, int dockslot)
 {
    Ship *s;
    Pilot *pe;
-   unsigned int e;
+   unsigned long e;
    PilotFlags f;
-   unsigned int parent;
+   unsigned long parent;
    char buf[STRMAX_SHORT];
 
    /* Get important stuff. */
@@ -186,7 +186,7 @@ unsigned int escort_create( Pilot *p, char *ship,
  *    @param idx Lua index of argument or 0.
  *    @return 0 on success, 1 if no orders given.
  */
-static int escort_command( Pilot *parent, const char *cmd, unsigned int idx )
+static int escort_command(Pilot *parent, const char *cmd, unsigned int idx)
 {
    int i;
    Pilot *e;

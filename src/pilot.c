@@ -53,7 +53,7 @@
 #define PILOT_SIZE_MIN 128 /**< Minimum chunks to increment pilot_stack by */
 
 /* ID Generators. */
-static unsigned int pilot_id = PLAYER_ID; /**< Stack of pilot ids to assure uniqueness */
+static unsigned long pilot_id = PLAYER_ID; /**< Stack of pilot ids to assure uniqueness */
 
 
 /* stack of pilots */
@@ -70,19 +70,20 @@ static const double pilot_commFade     = 5.; /**< Time for text above pilot to f
  * Prototypes
  */
 /* Create. */
-static void pilot_init( Pilot* dest, const Ship* ship, const char* name, int faction, const char *ai,
-      const double dir, const Vector2d* pos, const Vector2d* vel,
-      const PilotFlags flags, unsigned int dockpilot, int dockslot );
+static void pilot_init(Pilot* dest, const Ship* ship, const char* name,
+      int faction, const char *ai, const double dir, const Vector2d* pos,
+      const Vector2d* vel, const PilotFlags flags, unsigned long dockpilot,
+      int dockslot);
 /* Update. */
 static void pilot_hyperspace( Pilot* pilot, double dt );
 static void pilot_refuel( Pilot *p, double dt );
 /* Clean up. */
-static void pilot_dead( Pilot* p, unsigned int killer );
+static void pilot_dead(Pilot* p, unsigned long killer);
 /* Targeting. */
 static int pilot_validEnemy( const Pilot* p, const Pilot* target );
 /* Misc. */
 static void pilot_setCommMsg( Pilot *p, const char *s );
-static int pilot_getStackPos( const unsigned int id );
+static int pilot_getStackPos(const unsigned long id);
 static void pilot_init_trails( Pilot* p );
 static int pilot_trail_generated( Pilot* p, int generator );
 
@@ -100,7 +101,7 @@ Pilot*const* pilot_getAll (void)
  * @brief Compare id (for use with bsearch)
  */
 static int compid(const void *id, const void *p) {
-    return *((const unsigned int*)id) - (*((Pilot**)p))->id;
+    return *((const unsigned long*)id) - (*((Pilot**)p))->id;
 }
 
 
@@ -110,7 +111,7 @@ static int compid(const void *id, const void *p) {
  *    @param id ID of the pilot to get.
  *    @return Position of pilot in stack or -1 if not found.
  */
-static int pilot_getStackPos( const unsigned int id )
+static int pilot_getStackPos(const unsigned long id)
 {
    /* binary search */
    Pilot **pp = bsearch(&id, pilot_stack, array_size(pilot_stack), sizeof(Pilot*), compid);
@@ -128,7 +129,7 @@ static int pilot_getStackPos( const unsigned int id )
  *    @param mode Method to use when cycling.  0 is normal, 1 is hostiles.
  *    @return ID of next pilot or PLAYER_ID if no next pilot.
  */
-unsigned int pilot_getNextID( const unsigned int id, int mode )
+unsigned long pilot_getNextID(const unsigned long id, int mode)
 {
    int m, p;
 
@@ -177,7 +178,7 @@ unsigned int pilot_getNextID( const unsigned int id, int mode )
  *    @param mode Method to use when cycling.  0 is normal, 1 is hostiles.
  *    @return ID of previous pilot or PLAYER_ID if no previous pilot.
  */
-unsigned int pilot_getPrevID( const unsigned int id, int mode )
+unsigned long pilot_getPrevID(const unsigned long id, int mode)
 {
    int m, p;
 
@@ -297,9 +298,9 @@ static int pilot_validEnemy( const Pilot* p, const Pilot* target )
  *    @param p Pilot to get the nearest enemy of.
  *    @return ID of their nearest enemy.
  */
-unsigned int pilot_getNearestEnemy( const Pilot* p )
+unsigned long pilot_getNearestEnemy(const Pilot* p)
 {
-   unsigned int tp;
+   unsigned long tp;
    int i;
    double d, td;
 
@@ -328,9 +329,10 @@ unsigned int pilot_getNearestEnemy( const Pilot* p )
  *    @param target_mass_UB the upper bound for target mass
  *    @return ID of their nearest enemy.
  */
-unsigned int pilot_getNearestEnemy_size( const Pilot* p, double target_mass_LB, double target_mass_UB )
+unsigned long pilot_getNearestEnemy_size(const Pilot* p, double target_mass_LB,
+      double target_mass_UB)
 {
-   unsigned int tp;
+   unsigned long tp;
    int i;
    double d, td;
 
@@ -365,11 +367,11 @@ unsigned int pilot_getNearestEnemy_size( const Pilot* p, double target_mass_LB, 
  *    @param range_factor weighting for range (typically >> 1)
  *    @return ID of their nearest enemy.
  */
-unsigned int pilot_getNearestEnemy_heuristic( const Pilot* p,
+unsigned long pilot_getNearestEnemy_heuristic(const Pilot* p,
       double mass_factor, double health_factor,
-      double damage_factor, double range_factor )
+      double damage_factor, double range_factor)
 {
-   unsigned int tp;
+   unsigned long tp;
    int i;
    double temp, current_heuristic_value;
    Pilot *target;
@@ -405,9 +407,9 @@ unsigned int pilot_getNearestEnemy_heuristic( const Pilot* p,
  *    @param p Pilot to get the nearest pilot of.
  *    @return The nearest pilot.
  */
-unsigned int pilot_getNearestPilot( const Pilot* p )
+unsigned long pilot_getNearestPilot(const Pilot* p)
 {
-   unsigned int t;
+   unsigned long t;
    pilot_getNearestPos( p, &t, p->solid->pos.x, p->solid->pos.y, 0 );
    return t;
 }
@@ -419,9 +421,9 @@ unsigned int pilot_getNearestPilot( const Pilot* p )
  *    @param p Pilot to get the boss of.
  *    @return The boss.
  */
-unsigned int pilot_getBoss( const Pilot* p )
+unsigned long pilot_getBoss(const Pilot* p)
 {
-   unsigned int t;
+   unsigned long t;
    int i;
    double td, dx, dy;
    double relpower, ppower, curpower;
@@ -491,7 +493,8 @@ unsigned int pilot_getBoss( const Pilot* p )
  *    @param disabled Whether to return disabled pilots.
  *    @return The distance to the nearest pilot.
  */
-double pilot_getNearestPos( const Pilot *p, unsigned int *tp, double x, double y, int disabled )
+double pilot_getNearestPos(const Pilot *p, unsigned long *tp,
+      double x, double y, int disabled)
 {
    int i;
    double d, td;
@@ -537,7 +540,8 @@ double pilot_getNearestPos( const Pilot *p, unsigned int *tp, double x, double y
  *    @param disabled Whether to return disabled pilots.
  *    @return Angle between the pilot and the nearest pilot.
  */
-double pilot_getNearestAng( const Pilot *p, unsigned int *tp, double ang, int disabled )
+double pilot_getNearestAng(const Pilot *p, unsigned long *tp, double ang,
+      int disabled)
 {
    int i;
    double a, ta;
@@ -587,13 +591,13 @@ double pilot_getNearestAng( const Pilot *p, unsigned int *tp, double ang, int di
  * @brief Pulls a pilot out of the pilot_stack based on ID.
  *
  * It's a binary search ( O(logn) ) therefore it's pretty fast and can be
- *  abused all the time.  Maximum iterations is 32 on a platform with 32 bit
- *  unsigned ints.
+ * abused all the time.  Maximum iterations is 32 on a platform with 32 bit
+ * unsigned longs.
  *
  *    @param id ID of the pilot to get.
  *    @return The actual pilot who has matching ID or NULL if not found.
  */
-Pilot* pilot_get( const unsigned int id )
+Pilot* pilot_get(const unsigned long id)
 {
    int m;
 
@@ -1166,7 +1170,8 @@ static void pilot_setCommMsg( Pilot *p, const char *s )
  *    @param msg The message.
  *    @param ignore_int Whether or not should ignore interference.
  */
-void pilot_message( Pilot *p, unsigned int target, const char *msg, int ignore_int )
+void pilot_message(Pilot *p, unsigned long target, const char *msg,
+      int ignore_int)
 {
    Pilot *t;
    char c;
@@ -1394,7 +1399,7 @@ const glColour* pilot_getColour( const Pilot* p )
  *    @param p Pilot to set target of.
  *    @param id ID of the target (set to p->id for none).
  */
-void pilot_setTarget( Pilot* p, unsigned int id )
+void pilot_setTarget(Pilot* p, unsigned long id)
 {
    /* Case no change. */
    if (p->target == id)
@@ -1419,8 +1424,8 @@ void pilot_setTarget( Pilot* p, unsigned int id )
  *    @param reset Whether the shield timer should be reset.
  *    @return The real damage done.
  */
-double pilot_hit( Pilot* p, const Solid* w, const unsigned int shooter,
-      const Damage *dmg, int reset )
+double pilot_hit(Pilot* p, const Solid* w, const unsigned long shooter,
+      const Damage *dmg, int reset)
 {
    int mod;
    double damage_shield, damage_armour, disable, knockback, dam_mod, ddmg, absorb, dmod, start;
@@ -1601,7 +1606,7 @@ double pilot_hit( Pilot* p, const Solid* w, const unsigned int shooter,
  *    @param p The pilot in question.
  *    @param shooter Attacker that shot the pilot.
  */
-void pilot_updateDisable( Pilot* p, const unsigned int shooter )
+void pilot_updateDisable(Pilot* p, const unsigned long shooter)
 {
    HookParam hparam;
 
@@ -1685,7 +1690,7 @@ void pilot_updateDisable( Pilot* p, const unsigned int shooter )
  *    @param p Pilot that just died.
  *    @param killer Pilot killer or 0 if invalid.
  */
-static void pilot_dead( Pilot* p, unsigned int killer )
+static void pilot_dead(Pilot* p, unsigned long killer)
 {
    HookParam hparam;
    HookParam ghparam[3];
@@ -2861,9 +2866,10 @@ credits_t pilot_modCredits( Pilot *p, credits_t amount )
  *    @param dockpilot The pilot which launched this pilot (0 if N/A).
  *    @param dockslot The outfit slot which launched this pilot (-1 if N/A).
  */
-static void pilot_init( Pilot* pilot, const Ship* ship, const char* name, int faction, const char *ai,
-      const double dir, const Vector2d* pos, const Vector2d* vel,
-      const PilotFlags flags, unsigned int dockpilot, int dockslot )
+static void pilot_init(Pilot* pilot, const Ship* ship, const char* name,
+      int faction, const char *ai, const double dir, const Vector2d* pos,
+      const Vector2d* vel, const PilotFlags flags, unsigned long dockpilot,
+      int dockslot )
 {
    int i, j;
    int inrange_default;
@@ -3054,9 +3060,10 @@ static void pilot_init_trails( Pilot* p )
  *
  * @sa pilot_init
  */
-unsigned int pilot_create( const Ship* ship, const char* name, int faction, const char *ai,
-      const double dir, const Vector2d* pos, const Vector2d* vel,
-      const PilotFlags flags, unsigned int dockpilot, int dockslot )
+unsigned long pilot_create(const Ship* ship, const char* name, int faction,
+      const char *ai, const double dir, const Vector2d* pos,
+      const Vector2d* vel, const PilotFlags flags, unsigned long dockpilot,
+      int dockslot)
 {
    Pilot *dyn, **p;
 

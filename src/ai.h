@@ -89,8 +89,8 @@ void ai_cleartasks( Pilot* p );
 /*
  * Misc functions.
  */
-void ai_attacked( Pilot* attacked, const unsigned int attacker, double dmg );
-void ai_refuel( Pilot* refueler, unsigned int target );
+void ai_attacked(Pilot* attacked, const unsigned long attacker, double dmg);
+void ai_refuel(Pilot* refueler, unsigned long target);
 void ai_getDistress( Pilot *p, const Pilot *distressed, const Pilot *attacker );
 void ai_think( Pilot* pilot, const double dt );
 void ai_setPilot( Pilot *p );

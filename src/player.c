@@ -490,7 +490,7 @@ static Pilot* player_newShipMake( const char* name )
    PlayerShip_t *ship;
    Pilot *new_pilot;
    double px, py, dir;
-   unsigned int id;
+   unsigned long id;
 
    /* store the current ship if it exists */
    pilot_clearFlagsRaw( flags );
@@ -2082,9 +2082,9 @@ void player_localJump(void)
  *
  *    @param id Target to set for the player.
  */
-void player_targetSet( unsigned int id )
+void player_targetSet(unsigned long id)
 {
-   unsigned int old;
+   unsigned long old;
    old = player.p->target;
    pilot_setTarget( player.p, id );
    if ((old != id) && (player.p->target != PLAYER_ID)) {
@@ -2109,7 +2109,7 @@ void player_targetSet( unsigned int id )
  */
 void player_targetHostile (void)
 {
-   unsigned int tp;
+   unsigned long tp;
    double d, td;
    int inRange;
    Pilot *const* pilot_stack;
@@ -2250,7 +2250,7 @@ void player_targetEscort( int prev )
  */
 void player_targetNearest (void)
 {
-   unsigned int t, dt;
+   unsigned long t, dt;
    double d;
 
    d = pilot_getNearestPos( player.p, &dt, player.p->solid->pos.x,
@@ -3026,7 +3026,7 @@ int player_addEscorts (void)
    int i, j;
    double a;
    Vector2d v;
-   unsigned int e;
+   unsigned long e;
    Outfit *o;
    int q;
    int dockslot = -1;
@@ -3931,7 +3931,7 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
    /*const char *str;*/
    Commodity *com;
    PilotFlags flags;
-   unsigned int pid;
+   unsigned long pid;
    int autoweap, level, weapid, active_set, aim_lines, in_range, weap_type;
    PlayerShip_t *ps;
 
