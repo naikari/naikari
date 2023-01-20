@@ -161,8 +161,9 @@ LuaFaction luaL_validfaction( lua_State *L, int ind )
       return 0;
    }
 
-   if (id == 0)
-      NLUA_ERROR(L,_("Faction '%s' not found in stack."), lua_tostring(L,ind) );
+   if (!faction_isFaction(id))
+      NLUA_ERROR(L, _("Faction '%s' not found in stack. (FID returned: %ld)"),
+            lua_tostring(L, ind), id);
 
    return id;
 }
