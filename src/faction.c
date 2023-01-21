@@ -161,7 +161,7 @@ static factionId_t faction_getRaw(const char* name)
  *    @param name Name of the faction to seek.
  *    @return ID of the faction.
  */
-factionId_t faction_exists(const char* name)
+int faction_exists(const char* name)
 {
    return faction_getRaw(name) != 0;
 }
@@ -2028,8 +2028,10 @@ factionId_t *faction_getGroup(int which)
  */
 void factions_clearDynamic (void)
 {
-   int i;
+   int i, j;
    Faction *f;
+   factionId_t *others;
+   const char *name;
 
    for (i=0; i<array_size(faction_stack); i++) {
       f = &faction_stack[i];
@@ -2044,6 +2046,31 @@ void factions_clearDynamic (void)
          faction_freeOne(f);
          array_erase(&faction_stack, f, f+1);
          i--;
+      }
+   }
+
+   /* Debug checks. */
+   for (i=0; i<array_size(faction_stack); i++) {
+      f = &faction_stack[i];
+      name = faction_longname(f->id);
+      if (faction_isFlag(f, FACTION_DYNAMIC))
+         WARN(_("Failed to remove dynamic faction: %s (FID %ld)"),
+               name, f->id);
+      else {
+         others = faction_getEnemies(f->id);
+         for (j=0; j<array_size(others); j++) {
+            if (!faction_isFaction(others[j]))
+               WARN(_("Faction '%ld' is not a valid faction, but still enemies"
+                        " with faction: %s (FID %ld)"),
+                     others[j], name, f->id);
+         }
+         others = faction_getAllies(f->id);
+         for (j=0; j<array_size(others); j++) {
+            if (!faction_isFaction(others[j]))
+               WARN(_("Faction '%ld' is not a valid faction, but still allies"
+                        " with faction: %s (FID %ld)"),
+                     others[j], name, f->id);
+         }
       }
    }
 }
