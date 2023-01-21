@@ -74,6 +74,8 @@
 * Changed the "no land" text in the Empire FLF prisoner exchange mission
   to something that makes more sense and avoids potential confusion over
   its meaning.
+* Adjusted the mining AI so that miners are less likely to end up in a
+  limbo state.
 
 ### Bugfixes
 
