@@ -487,7 +487,7 @@ function runaway_nojump ()
 end
 function __run_target ()
    local target = ai.taskdata()
-   local plt    = ai.pilot()
+   local plt = ai.pilot()
 
    -- Target must exist
    if not target:exists() then
@@ -512,7 +512,7 @@ function __run_target ()
 
    -- Afterburner handling.
    if ai.hasafterburner() and plt:energy() > 10 then
-      ai.weapset( 8, true )
+      ai.weapset(8, true)
    end
 
    return false
@@ -549,7 +549,6 @@ function __run_hyp ()
    local plt      = ai.pilot()
 
    if jdist > bdist then
-
       local dozigzag = false
       if ai.taskdata():exists() then
          local relspe = plt:stats().speed_max/ai.taskdata():stats().speed_max
@@ -573,20 +572,20 @@ function __run_hyp ()
             ai.accel()
          end
       end
+
+      -- Afterburner: activate while far away from jump
+      if ai.hasafterburner() and plt:energy() > 10 then
+         if jdist > 3 * bdist then
+            ai.weapset(8, true)
+         else
+            ai.weapset(8, false)
+         end
+      end
    else
       if ai.instantJump() then
          ai.pushsubtask( "__hyp_jump" )
       else
          ai.pushsubtask( "__run_hypbrake" )
-      end
-   end
-
-   --Afterburner: activate while far away from jump
-   if ai.hasafterburner() and plt:energy() > 10 then
-      if jdist > 3 * bdist then
-         ai.weapset( 8, true )
-      else
-         ai.weapset( 8, false )
       end
    end
 end
@@ -613,7 +612,6 @@ function __run_landgo ()
    if dist < bdist then -- Need to start braking
       ai.pushsubtask( "__landstop" )
    else
-
       local dozigzag = false
       if ai.taskdata():exists() then
          local relspe = plt:stats().speed_max/ai.taskdata():stats().speed_max
@@ -640,17 +638,16 @@ function __run_landgo ()
             ai.accel()
          end
       end
-   end
 
-   --Afterburner
-   if ai.hasafterburner() and plt:energy() > 10 then
-      if dist > 3 * bdist then
-         ai.weapset( 8, true )
-      else
-         ai.weapset( 8, false )
+      -- Afterburner
+      if ai.hasafterburner() and plt:energy() > 10 then
+         if dist > 3 * bdist then
+            ai.weapset(8, true)
+         else
+            ai.weapset(8, false)
+         end
       end
    end
-
 end
 
 
