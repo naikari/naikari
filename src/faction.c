@@ -1070,7 +1070,9 @@ int faction_isPlayerFriend(factionId_t f)
 
    fsp = faction_getStackPos(f);
    if (fsp < 0) {
-      WARN(_("Faction id '%ld' is invalid."), f);
+      /* This warning is disabled because it produces false positives
+       * during cleanup of pilots. */
+      //WARN(_("Faction id '%ld' is invalid."), f);
       return 0;
    }
    faction = &faction_stack[fsp];
@@ -1124,7 +1126,9 @@ int faction_isPlayerEnemy(factionId_t f)
 
    fsp = faction_getStackPos(f);
    if (fsp < 0) {
-      WARN(_("Faction id '%ld' is invalid."), f);
+      /* This warning is disabled because it produces false positives
+       * during cleanup of pilots. */
+      //WARN(_("Faction id '%ld' is invalid."), f);
       return 0;
    }
    faction = &faction_stack[fsp];

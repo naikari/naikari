@@ -3373,7 +3373,7 @@ void pilots_clean( int persist )
    }
 
    /* Here we actually clean up stuff. */
-   for (i=0; i < array_size(pilot_stack); i++) {
+   for (i=0; i<array_size(pilot_stack); i++) {
       /* move player and persisted pilots to start */
       if ((pilot_stack[i] == player.p)
             || (persist && pilot_isFlag(pilot_stack[i], PILOT_PERSIST))) {
@@ -3398,7 +3398,7 @@ void pilots_clean( int persist )
       else /* rest get killed */
          pilot_free(pilot_stack[i]);
    }
-   array_erase( &pilot_stack, &pilot_stack[persist_count], array_end(pilot_stack) );
+   array_erase(&pilot_stack, &pilot_stack[persist_count], array_end(pilot_stack));
 
    /* Clear global hooks. */
    pilots_clearGlobalHooks();
