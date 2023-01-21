@@ -66,8 +66,6 @@
   (supporting the same factions as the fuel request event). It also no
   longer spawns in systems with none of these supported factions
   present.
-* Implemented a data type change which generally speeds up the game a
-  bit on 64-bit systems.
 
 ### Bugfixes
 
