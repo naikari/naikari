@@ -254,7 +254,7 @@ unsigned int pilot_addMissionCargo( Pilot* pilot, const Commodity* cargo, int qu
    }
 
    /* Add the cargo. */
-   pilot_cargoAdd( pilot, cargo, quantity, id );
+   pilot_cargoAddRaw(pilot, cargo, quantity, id);
 
    return id;
 }
