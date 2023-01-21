@@ -189,7 +189,7 @@ int pilot_cargoAdd( Pilot* pilot, const Commodity* cargo,
    /* Check to see how much to add. */
    freespace = pilot_cargoFree(pilot);
    if (freespace < quantity)
-      quantity = freespace;
+      quantity = MAX(freespace, 0);
 
    return pilot_cargoAddRaw( pilot, cargo, quantity, id );
 }
