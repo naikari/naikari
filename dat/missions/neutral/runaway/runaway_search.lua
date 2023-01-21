@@ -73,8 +73,7 @@ function create ()
       misn.finish(false)
    end
 
-   targetworld_sys = system.get("Dohriabi")
-   targetworld = planet.get("Niflheim")
+   targetworld, targetworld_sys = planet.get("Niflheim")
 
    releasereward = 75000
    reward = 200000

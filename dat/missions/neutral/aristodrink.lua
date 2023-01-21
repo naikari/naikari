@@ -222,7 +222,9 @@ function getclueplanet ( mini, maxi )
          end
          return false
       end)
-   if #planets == 0 then abort() end
+   if #planets == 0 then
+      misn.finish(false)
+   end
    local index = rnd.rnd(1, #planets)
 
    return planets[index][1], planets[index][2]

@@ -79,7 +79,9 @@ function create ()
             return false
         end)
 
-    if #planets == 0 then abort() end -- In case no suitable planets are in range.
+    if #planets == 0 then
+        misn.finish(false)
+    end
 
     local index = rnd.rnd(1, #planets)
     destplanet = planets[index][1]
@@ -132,12 +134,4 @@ function land()
         addMiscLog(log_text)
         misn.finish(true)
     end
-end
-
-function abort ()
-    -- Remove the passenger.
-    if oldwoman then
-        misn.cargoRm(oldwoman)
-    end
-    misn.finish(false)
 end

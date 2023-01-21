@@ -45,9 +45,10 @@ log_text = _([[You gave a teenage girl named Cynthia a lift to Geron. When you g
 
 
 function create ()
-   startworld, startworld_sys = planet.cur()
-
-   targetworld, targetworld_sys = planet.get("Geron")
+   targetworld, targetworld_sys = planet.getLandable("Geron")
+   if (targetworld == nil)
+      misn.finish(false)
+   end
 
    reward = 500000
 
