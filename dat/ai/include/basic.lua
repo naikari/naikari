@@ -879,30 +879,35 @@ end
 function mine ()
    ai.weapset("all_nonseek")
    local fieldNast = ai.taskdata()
-   local field     = fieldNast[1]
-   local ast       = fieldNast[2]
-   local p         = ai.pilot()
-   local wrange    = ai.getweaprange("all_nonseek")
-   local erange    = 100
-   local trange    = math.min( math.max( erange, wrange * 3 / 4 ), wrange )
-   local mbd       = ai.minbrakedist()
+   local field = fieldNast[1]
+   local ast = fieldNast[2]
+   local p = ai.pilot()
+   local wrange = ai.getweaprange("all_nonseek")
+   local trange = math.min(mem.gather_range * 3 / 4, wrange * 0.9)
+   local mbd = ai.minbrakedist()
 
-   -- See if there's a gatherable; if so, pop this task and gather instead
-   local gat = ai.getgatherable( wrange )
-   if gat ~= nil and ai.gatherablepos( gat ) ~= nil then
+   -- If the asteroid has been destroyed, pop the task and gather.
+   if system.asteroidDestroyed(field, ast) then
       ai.poptask()
       ai.pushtask("gather")
       return
    end
 
-   ai.setasterotarget( field, ast )
+   -- See if there's a gatherable; if so, pop this task and gather instead
+   local gat = ai.getgatherable(mem.gather_range)
+   if gat ~= nil and ai.gatherablepos(gat) ~= nil then
+      ai.poptask()
+      ai.pushtask("gather")
+      return
+   end
 
-   local target, vel = system.asteroidPos( field, ast )
+   ai.setasterotarget(field, ast)
 
-   local dist, angle = vec2.polar( p:pos() - target )
+   local target, vel = system.asteroidPos(field, ast)
+   local dist, angle = vec2.polar(p:pos() - target)
 
    -- First task : place the ship close to the asteroid
-   local goal = ai.face_accurate( target, vel, trange, angle, mem.Kp, mem.Kd )
+   local goal = ai.face_accurate(target, vel, trange, angle, mem.Kp, mem.Kd)
 
    local dir  = ai.face(goal)
    local mod  = ai.dist(goal)
@@ -911,8 +916,8 @@ function mine ()
       ai.accel()
    end
 
-   local relpos = vec2.add( p:pos(), vec2.mul(target,-1) ):mod()
-   local relvel = vec2.add( p:vel(), vec2.mul(vel,-1) ):mod()
+   local relpos = vec2.add(p:pos(), target * -1):mod()
+   local relvel = vec2.add(p:vel(), vel * -1):mod()
 
    if relpos < wrange and relvel < 10 then
       ai.pushsubtask("__killasteroid")
@@ -920,16 +925,23 @@ function mine ()
 end
 function __killasteroid ()
    local fieldNast = ai.taskdata()
-   local field     = fieldNast[1]
-   local ast       = fieldNast[2]
-   local wrange    = ai.getweaprange("all_nonseek")
+   local field = fieldNast[1]
+   local ast = fieldNast[2]
+   local wrange = ai.getweaprange("all_nonseek")
 
-   local target = system.asteroidPos( field, ast )
-   local dir  = ai.face(target)
+   -- If the asteroid has been destroyed, pop the task and gather.
+   if system.asteroidDestroyed(field, ast) then
+      ai.poptask()
+      ai.pushtask("gather")
+      return
+   end
+
+   local target = system.asteroidPos(field, ast)
+   local dir = ai.face(target)
 
     -- See if there's a gatherable; if so, pop this task and gather instead
-   local gat = ai.getgatherable( wrange )
-   if gat ~= nil and ai.gatherablepos( gat ) ~= nil then
+   local gat = ai.getgatherable(mem.gather_range)
+   if gat ~= nil and ai.gatherablepos(gat) ~= nil then
       ai.poptask()
       ai.pushtask("gather")
       return
@@ -937,7 +949,8 @@ function __killasteroid ()
 
    -- Have to start over if we're out of range for some reason
    if ai.dist(target) > wrange then
-      ai.poptask()
+      print("Starting over")
+      ai.popsubtask()
       return
    end
 
@@ -946,11 +959,6 @@ function __killasteroid ()
       ai.weapset("all_nonseek")
       ai.shoot()
       ai.shoot(true)
-   end
-   if system.asteroidDestroyed( field, ast ) then
-      ai.poptask()
-      -- Last task : gather
-      ai.pushtask("gather")
    end
 end
 
@@ -963,23 +971,23 @@ function gather ()
       return
    end
 
-   local gat = ai.getgatherable( mem.gather_range )
+   local gat = ai.getgatherable(mem.gather_range)
 
    if gat == nil then -- Nothing to gather
       ai.poptask()
       return
    end
 
-   local target, vel = ai.gatherablepos( gat )
+   local target, vel = ai.gatherablepos(gat)
    if target == nil then -- gatherable disappeared
       ai.poptask()
       return
    end
 
-   local goal = ai.face_accurate( target, vel, 0, 0, mem.Kp, mem.Kd )
+   local goal = ai.face_accurate(target, vel, 0, 0, mem.Kp, mem.Kd)
 
-   local dir  = ai.face(goal)
-   local mod  = ai.dist(goal)
+   local dir = ai.face(goal)
+   local mod = ai.dist(goal)
 
    if dir < 10 and mod > 100 then
       ai.accel()

@@ -32,7 +32,7 @@ mem.kill_reward = nil -- Credits rewarded by enemies for killing the pilot
 mem.formation = "circle" -- Formation to use when commanding fleet
 mem.form_pos = nil -- Position in formation (for follower)
 mem.leadermaxdist = nil -- Distance from leader to run back to leader
-mem.gather_range = 800 -- Radius in which the pilot looks for gatherables
+mem.gather_range = 1000 -- Radius in which the pilot looks for gatherables
 
 --[[Control parameters: mem.radius and mem.angle are the polar coordinates 
 of the point the pilot has to follow when using follow_accurate.

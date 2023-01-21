@@ -46,7 +46,7 @@ log_text = _([[You gave a teenage girl named Cynthia a lift to Geron. When you g
 
 function create ()
    targetworld, targetworld_sys = planet.getLandable("Geron")
-   if (targetworld == nil)
+   if (targetworld == nil) then
       misn.finish(false)
    end
 
