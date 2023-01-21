@@ -88,7 +88,7 @@ npc_desc = _("These must be the 'agents' hired by this Baron Sauterfeldt. They l
 -- OSD stuff
 osd_title = _("Baron")
 osd_msg = {}
-osd_msg[1] = _("Land on {planet} ({system} system)")
+osd_msg[1] = _("Land on {planet} ({system} system) and talk to Sauterfeldt's agents at the bar")
 osd_msg[2] = _("Fly to the {system} system")
 osd_msg[3] = _("Hail Kahan Pinnacle (orbiting {planet}) by double-clicking on it")
 osd_msg[4] = _("Dock with (board) Kahan Pinnacle")
