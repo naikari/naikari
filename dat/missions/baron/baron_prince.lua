@@ -138,10 +138,15 @@ function create ()
       misn.finish(false)
    end
 
-   artifactplanetA, artifactsysA = planet.get("Varaati")
-   artifactplanetB, artifactsysB = planet.get("Sinclair")
-   artifactplanetC, artifactsysC = planet.get("Hurada")
-   flintplanet, flintsys = planet.get("Tau Station")
+   artifactplanetA, artifactsysA = planet.getLandable("Varaati")
+   artifactplanetB, artifactsysB = planet.getLandable("Sinclair")
+   artifactplanetC, artifactsysC = planet.getLandable("Hurada")
+   flintplanet, flintsys = planet.getLandable("Tau Station")
+   if artifactplanetA == nil or artifactplanetB == nil
+         or artifactplanetC == nil or flintplanet == nil then
+      misn.finish(false)
+   end
+
    misn.setNPC(npc_desc, "neutral/unique/unfamiliarman.png", bar_desc)
 
    stage = 1
