@@ -66,6 +66,14 @@
   (supporting the same factions as the fuel request event). It also no
   longer spawns in systems with none of these supported factions
   present.
+* Slightly improved AI behavior when their leader dies.
+* The Empire Recruitment mission now explicitly tells you where to find
+  the mission computer.
+* Removed the now obsolete afterburner "rumble" display (which always
+  said "0 Rumble", since we don't use the "rumble" feature anymore).
+* Changed the "no land" text in the Empire FLF prisoner exchange mission
+  to something that makes more sense and avoids potential confusion over
+  its meaning.
 
 ### Bugfixes
 
@@ -85,6 +93,10 @@
   option on saves with certain special characters in their names.
 * Fixed a failure to warn of a version mismatch when attempting to load
   a save file from a newer version of the game.
+* Fixed the Anxious Merchant mission failing to spawn.
+* Fixed an occasional, generally non-fatal bug with dynamic factions
+  (used by missions and events) which could eventually cause warnings
+  and potentially unexpected AI behavior.
 
 ## 0.5.2
 
