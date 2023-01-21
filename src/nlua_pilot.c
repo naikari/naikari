@@ -3599,6 +3599,7 @@ static int pilotL_cargoHas( lua_State *L )
  *       commodity.
  *    @luatparam number quantity Quantity of cargo to add.
  *    @luatreturn number The quantity of cargo added.
+ * @luasee misn.cargoAdd
  * @luafunc cargoAdd
  */
 static int pilotL_cargoAdd( lua_State *L )
@@ -3641,6 +3642,7 @@ static int pilotL_cargoAdd( lua_State *L )
  *       all cargo from the pilot, except for mission cargo.
  *    @luatparam number quantity Quantity of the cargo to remove.
  *    @luatreturn number The number of cargo removed.
+ * @luasee misn.cargoRm
  * @luafunc cargoRm
  */
 static int pilotL_cargoRm( lua_State *L )

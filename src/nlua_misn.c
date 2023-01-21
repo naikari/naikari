@@ -715,11 +715,24 @@ static int misn_cargoNew( lua_State *L )
  * automatically aborts the mission. Mission cargo is also removed
  * automatically when the mission ends.
  *
+ * @note You are responsible for ensuring that the player has enough
+ *    cargo space for the mission cargo. If you attempt to add more
+ *    cargo than the player has space for, the player's ship will become
+ *    unspaceworthy until they either increase their cargo capacity,
+ *    sell off some other cargo, or abort the mission. For most
+ *    missions, you should first check the player's cargo capacity with
+ *    pilot.cargoFree() to ensure there's enough space before adding
+ *    mission cargo.
+ *
  *    @luatparam Commodity|string cargo Type of cargo to add, either as
  *       a Commodity object or as the raw (untranslated) name of a
  *       commodity.
  *    @luatparam number quantity Quantity of cargo to add.
  *    @luatreturn number The id of the cargo which can be used in cargoRm.
+ * @luasee cargoRm
+ * @luasee cargoJet
+ * @luasee pilot.cargoFree
+ * @luasee pilot.cargoAdd
  * @luafunc cargoAdd
  */
 static int misn_cargoAdd( lua_State *L )
@@ -742,10 +755,13 @@ static int misn_cargoAdd( lua_State *L )
    return 1;
 }
 /**
- * @brief Removes the mission cargo.
+ * @brief Removes a mission cargo added by misn.cargoAdd().
  *
  *    @luatparam number cargoid Identifier of the mission cargo.
  *    @luatreturn boolean true on success.
+ * @luasee cargoAdd
+ * @luasee cargoJet
+ * @luasee pilot.cargoRm
  * @luafunc cargoRm
  */
 static int misn_cargoRm( lua_State *L )
@@ -771,10 +787,16 @@ static int misn_cargoRm( lua_State *L )
    return 1;
 }
 /**
- * @brief Jettisons the mission cargo.
+ * @brief Jettisons a mission cargo added by misn.cargoAdd().
+ *
+ * This functions the same as misn.cargoRm(), except it spawns a graphic
+ * showing the jettisoned cargo container if the player is in space.
  *
  *    @luatparam number cargoid ID of the cargo to jettison.
  *    @luatreturn boolean true on success.
+ * @luasee cargoAdd
+ * @luasee cargoRm
+ * @luasee pilot.cargoRm
  * @luafunc cargoJet
  */
 static int misn_cargoJet( lua_State *L )
