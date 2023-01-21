@@ -29,7 +29,6 @@ misn_desc_pre_accept = _([[She looks out of place in the bar. As you approach, s
 "H-H-Hi", she stutters. "My name is Cynthia. Could you give me a lift? I really need to get out of here. I can't pay you much, just what I have on me, %s." You wonder who she must be to have this many credits on her person. "I need you to take me to Geron."
 
 You wonder who she is, but you dare not ask. Do you accept?]])
-not_enough_cargospace = _("Your cargo hold doesn't have enough free space.")
 misn_desc = _("Deliver Cynthia safely to %s (%s system).")
 
 post_accept = {}
@@ -60,13 +59,6 @@ function accept ()
    --This mission does not make any system claims
    if not tk.yesno("", misn_desc_pre_accept:format(
             creditstring(reward), targetworld:name())) then
-      misn.finish()
-   end
-
-   --Our *cargo* weighs nothing
-   --This will probably cause a mess if this fails
-   if player.pilot():cargoFree() < 0 then
-      tk.msg("", not_enough_cargospace)
       misn.finish()
    end
 
