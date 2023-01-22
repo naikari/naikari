@@ -938,7 +938,8 @@ static int misn_osdActive( lua_State *L )
 /**
  * @brief Gets the active OSD element.
  *
- *    @luatreturn string Th ename of the active element or nil if none.
+ *    @luatreturn string|nil The full text of the active OSD element or
+ *       nil if there is no OSD.
  * @luafunc osdGetActive
  */
 static int misn_osdGetActiveItem( lua_State *L )
@@ -947,7 +948,7 @@ static int misn_osdGetActiveItem( lua_State *L )
    cur_mission = misn_getFromLua(L);
 
    char **items = osd_getItems(cur_mission->osd);
-   int active   = osd_getActive(cur_mission->osd);
+   int active = osd_getActive(cur_mission->osd);
 
    if (!items || active < 0) {
       lua_pushnil(L);

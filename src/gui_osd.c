@@ -300,7 +300,7 @@ int osd_active( unsigned int osd, int msg )
 
 
 /**
- * @brief Gets the active OSD MESSAGE>
+ * @brief Gets the active OSD message.
  *
  *    @param osd OSD to get active message.
  *    @return The active OSD message or -1 on error.
