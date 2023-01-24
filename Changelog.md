@@ -79,6 +79,7 @@
 * Doubled the size of Suna and the amount of space used by the Dark
   Shadow mission, to bring Dark Shadow in-line with the increased radar
   range introduced in version 0.5.
+* Added another medium Structural slot to the Za'lek Demon.
 
 ### Bugfixes
 
