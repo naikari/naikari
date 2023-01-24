@@ -261,7 +261,7 @@ function enter()
             player.allowLand(false, _("It's not safe to land right now."))
             -- Meet Joe, our informant.
             local f = faction.dynAdd("Mercenary", N_("Four Winds"))
-            joe = pilot.add("Vendetta", f, vec2.new(-500, -4000),
+            joe = pilot.add("Vendetta", f, vec2.new(-1000, -8000),
                     _("Four Winds Informant"), {ai="trader"})
             joe:control()
             joe:setHilight()
@@ -302,20 +302,20 @@ end
 function spawnSquads(highlight)
     -- Start positions for the leaders
     leaderstart = {
-        vec2.new(-2500, -1500),
-        vec2.new(2500, 1000),
-        vec2.new(-3500, -4500),
-        vec2.new(2500, -2500),
-        vec2.new(-2500, -6500),
+        vec2.new(-5000, -3000),
+        vec2.new(5000, 2000),
+        vec2.new(-7000, -9000),
+        vec2.new(5000, -5000),
+        vec2.new(-5000, -13000),
     }
 
     -- Leaders will patrol between their start position and this one
     leaderdest = {
-        vec2.new(2500, -1000),
-        vec2.new(-500, 1500),
-        vec2.new(-4500, -1500),
-        vec2.new(2000, -6000),
-        vec2.new(1000, -1500),
+        vec2.new(5000, -2000),
+        vec2.new(-1000, 3000),
+        vec2.new(-9000, -3000),
+        vec2.new(4000, -12000),
+        vec2.new(2000, -3000),
     }
 
     squads = {}
@@ -388,7 +388,7 @@ function patrolPoll()
         if patroller:exists() then
             for j, p in ipairs(patroller:getVisible()) do
                 if (p == player.pilot() or p:leader(true) == player.pilot())
-                        and patroller:pos():dist(p:pos()) < 3500 then
+                        and patroller:pos():dist(p:pos()) < 7000 then
                     patroller:broadcast(patrolcomm)
                     attacked()
                     return
