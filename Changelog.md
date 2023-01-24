@@ -76,6 +76,9 @@
   its meaning.
 * Adjusted the mining AI so that miners are less likely to end up in a
   limbo state.
+* Doubled the size of Suna and the amount of space used by the Dark
+  Shadow mission, to bring Dark Shadow in-line with the increased radar
+  range introduced in version 0.5.
 
 ### Bugfixes
 
