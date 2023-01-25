@@ -20,6 +20,8 @@
   also adding a standard jump point between Collective and Soromid space
   (which previously existed but was a one-way hidden jump).
 * Added support for saving and loading arbitrary snapshots.
+* Added APUs (Auxiliary Processing Units) which can be used to expand a
+  ship's CPU capacity.
 
 ### Other Changes
 
