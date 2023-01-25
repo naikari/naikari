@@ -105,6 +105,8 @@
 * Fixed an occasional, generally non-fatal bug with dynamic factions
   (used by missions and events) which could eventually cause warnings
   and potentially unexpected AI behavior.
+* Fixed a few planets having a non-existent graphic defined as their
+  land graphics.
 
 ## 0.5.2
 
