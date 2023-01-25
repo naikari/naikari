@@ -95,6 +95,9 @@
   <item>Small Shield Booster</item>
   <item>Medium Shield Booster</item>
   <item>Large Shield Booster</item>
+  <item>Small APU</item>
+  <item>Medium APU</item>
+  <item>Large APU</item>
   <item>Adaptive Stealth Plating</item>
   <item>Plasteel Plating</item>
   <item>Active Plating</item>
@@ -689,6 +692,7 @@
  </tech>
  <tech name="Small Elite Outfits">
   <item>Sensor Array</item>
+  <item>Small APU</item>
   <item>Small Shield Booster</item>
   <item>Reactor Class I</item>
   <item>Milspec Scrambler</item>
@@ -736,6 +740,7 @@
  </tech>
  <tech name="Medium Mid Outfits">
   <item>Reverse Thrusters</item>
+  <item>Small APU</item>
   <item>Small Shield Booster</item>
   <item>Reactor Class I</item>
   <item>Targeting Array</item>
@@ -765,6 +770,7 @@
  </tech>
  <tech name="Medium Elite Outfits">
   <item>Sensor Array</item>
+  <item>Medium APU</item>
   <item>Medium Shield Booster</item>
   <item>Droid Repair Crew</item>
   <item>Reactor Class II</item>
@@ -792,6 +798,7 @@
  <tech name="Large Low Outfits">
   <item>Rotary Turbo Modulator</item>
   <item>Sensor Array</item>
+  <item>Small APU</item>
   <item>Small Shield Booster</item>
   <item>Reactor Class I</item>
   <item>Targeting Array</item>
@@ -813,6 +820,7 @@
   <item>Reverse Thrusters</item>
   <item>Power Regulation Override</item>
   <item>Sensor Array</item>
+  <item>Medium APU</item>
   <item>Medium Shield Booster</item>
   <item>Targeting Array</item>
   <item>Droid Repair Crew</item>
@@ -847,6 +855,7 @@
  <tech name="Large Elite Outfits">
   <item>Improved Power Regulator</item>
   <item>Droid Repair Crew</item>
+  <item>Large APU</item>
   <item>Large Shield Booster</item>
   <item>Reactor Class III</item>
   <item>Turreted Weapons Ionizer</item>
