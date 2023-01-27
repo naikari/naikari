@@ -10,7 +10,7 @@
   <cpu>-6</cpu>
  </general>
  <specific type="modification">
-  <tur_heat>-25</tur_heat>
   <tur_firerate>-10</tur_firerate>
+  <tur_heat>-25</tur_heat>
  </specific>
 </outfit>

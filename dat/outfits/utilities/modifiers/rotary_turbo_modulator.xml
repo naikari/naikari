@@ -11,7 +11,7 @@
  </general>
  <specific type="modification">
   <tur_firerate>30</tur_firerate>
-  <tur_heat>5</tur_heat>
   <tur_energy>5</tur_energy>
+  <tur_heat>5</tur_heat>
  </specific>
 </outfit>

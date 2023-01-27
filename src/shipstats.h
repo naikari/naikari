@@ -24,40 +24,38 @@
 typedef enum ShipStatsType_ {
    SS_TYPE_NIL,               /**< Invalid type. */
 
-   /*
-    * D: Double type data. Should be continuous.
-    */
-   /* General. */
-   SS_TYPE_D_SPEED_MOD,        /**< Speed multiplier. */
-   SS_TYPE_D_TURN_MOD,         /**< Turn multiplier. */
-   SS_TYPE_D_THRUST_MOD,       /**< Acceleration multiplier. */
-   SS_TYPE_D_CARGO_MOD,        /**< Cargo space multiplier. */
-   SS_TYPE_D_ARMOUR_MOD,       /**< Armour multiplier. */
-   SS_TYPE_D_ARMOUR_REGEN_MOD, /**< Armour regeneration multiplier. */
-   SS_TYPE_D_SHIELD_MOD,       /**< Shield multiplier. */
-   SS_TYPE_D_SHIELD_REGEN_MOD, /**< Shield regeneration multiplier. */
-   SS_TYPE_D_ENERGY_MOD,       /**< Energy multiplier. */
-   SS_TYPE_D_ENERGY_REGEN_MOD, /**< Energy regeneration multiplier. */
-   SS_TYPE_D_CPU_MOD,          /**< CPU multiplier. */
-
    /* Freighter-type. */
    SS_TYPE_D_JUMP_DELAY,      /**< Modulates the time that passes during a hyperspace jump. */
    SS_TYPE_D_LAND_DELAY,      /**< Modulates the time that passes during landing. */
    SS_TYPE_D_CARGO_INERTIA,   /**< Modifies the effect of cargo_mass. */
 
    /* Stealth. */
-   SS_TYPE_D_RDR_RANGE,       /**< Radar range. */
-   SS_TYPE_D_RDR_JUMP_RANGE,  /**< Jump detection range. */
-   SS_TYPE_D_RDR_RANGE_MOD,   /**< Radar range modifier. */
+   SS_TYPE_D_RDR_RANGE, /**< Radar range. */
+   SS_TYPE_D_RDR_RANGE_MOD, /**< Radar range modifier. */
+   SS_TYPE_D_RDR_JUMP_RANGE, /**< Jump detection range. */
    SS_TYPE_D_RDR_JUMP_RANGE_MOD, /**< Jump detection range modifier. */
    SS_TYPE_D_RDR_ENEMY_RANGE_MOD, /**< Enemy radar range modifier. */
 
+   /* Forward mounts. */
+   SS_TYPE_D_FORWARD_DAMAGE, /**< Damage done by cannons. */
+   SS_TYPE_D_FORWARD_FIRERATE, /**< Firerate of cannons. */
+   SS_TYPE_D_FORWARD_ENERGY, /**< Energy usage of cannons. */
+   SS_TYPE_D_FORWARD_HEAT, /**< Heat generation for cannons. */
+   SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
+
+   /* Turrets. */
+   SS_TYPE_D_TURRET_DAMAGE, /**< Damage done by turrets. */
+   SS_TYPE_D_TURRET_FIRERATE, /**< Firerate of turrets. */
+   SS_TYPE_D_TURRET_ENERGY, /**< Energy usage of turrets. */
+   SS_TYPE_D_TURRET_HEAT, /**< Heat generation for turrets. */
+   SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
+
    /* Launchers. */
-   SS_TYPE_D_LAUNCH_RATE,     /**< Launch rate for missiles. */
-   SS_TYPE_D_LAUNCH_RANGE,    /**< Launch range for missiles. */
-   SS_TYPE_D_LAUNCH_DAMAGE,   /**< Launch damage for missiles. */
-   SS_TYPE_D_AMMO_CAPACITY,   /**< Capacity of launchers. */
-   SS_TYPE_D_LAUNCH_RELOAD,   /**< Regeneration rate of launcher ammo. */
+   SS_TYPE_D_LAUNCH_DAMAGE, /**< Launch damage for missiles. */
+   SS_TYPE_D_LAUNCH_RATE, /**< Launch rate for missiles. */
+   SS_TYPE_D_LAUNCH_RANGE, /**< Launch range for missiles. */
+   SS_TYPE_D_AMMO_CAPACITY, /**< Capacity of launchers. */
+   SS_TYPE_D_LAUNCH_RELOAD, /**< Regeneration rate of launcher ammo. */
    SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
 
    /* Fighter Bays. */
@@ -67,20 +65,6 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_FBAY_CAPACITY,   /**< Capacity of fighter bays. */
    SS_TYPE_D_FBAY_RATE,       /**< Launch rate for fighter bays. */
    SS_TYPE_D_FBAY_RELOAD,     /**< Regeneration rate of fighters. */
-
-   /* Forward mounts. */
-   SS_TYPE_D_FORWARD_HEAT,    /**< Heat generation for cannons. */
-   SS_TYPE_D_FORWARD_DAMAGE,  /**< Damage done by cannons. */
-   SS_TYPE_D_FORWARD_FIRERATE, /**< Firerate of cannons. */
-   SS_TYPE_D_FORWARD_ENERGY,  /**< Energy usage of cannons. */
-   SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
-
-   /* Turrets. */
-   SS_TYPE_D_TURRET_HEAT,     /**< Heat generation for turrets. */
-   SS_TYPE_D_TURRET_DAMAGE,   /**< Damage done by turrets. */
-   SS_TYPE_D_TURRET_FIRERATE, /**< Firerate of turrets. */
-   SS_TYPE_D_TURRET_ENERGY,   /**< Energy usage of turrets. */
-   SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
 
    /* Misc. */
    SS_TYPE_D_HEAT_DISSIPATION, /**< Ship heat dissipation. */
@@ -93,45 +77,45 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_COOLDOWN_TIME,   /**< Speeds up or slows down the cooldown time. */
    SS_TYPE_D_JUMP_DISTANCE,   /**< Modifies the distance from a jump point at which the pilot can jump. */
 
-   /*
-    * A: Absolute double type data. Should be continuous.
-    */
    /* Movement. */
-   SS_TYPE_A_THRUST,          /**< Thrust modifier. */
-   SS_TYPE_A_TURN,            /**< Turn modifier (in deg/s). */
-   SS_TYPE_A_SPEED,           /**< Speed modifier. */
+   SS_TYPE_A_SPEED, /**< Speed modifier. */
+   SS_TYPE_D_SPEED_MOD, /**< Speed multiplier. */
+   SS_TYPE_A_TURN, /**< Turn modifier (in deg/s). */
+   SS_TYPE_D_TURN_MOD, /**< Turn multiplier. */
+   SS_TYPE_A_THRUST, /**< Acceleration modifier. */
+   SS_TYPE_D_THRUST_MOD, /**< Acceleration multiplier. */
    /* Health. */
-   SS_TYPE_A_ENERGY,          /**< Energy modifier. */
-   SS_TYPE_A_ENERGY_REGEN,    /**< Energy regeneration modifier. */
-   SS_TYPE_A_ENERGY_REGEN_MALUS,/**< Flat energy regeneration modifier (not multiplied). */
-   SS_TYPE_A_ENERGY_LOSS,     /**< Flat energy modifier (not multiplied) and applied linearly. */
-   SS_TYPE_A_SHIELD,          /**< Shield modifier. */
-   SS_TYPE_A_SHIELD_REGEN,    /**< Shield regeneration modifier. */
-   SS_TYPE_A_SHIELD_REGEN_MALUS,/**< Flat shield regeneration modifier (not multiplied). */
-   SS_TYPE_A_ARMOUR,          /**< Armour modifier. */
-   SS_TYPE_A_ARMOUR_REGEN,    /**< Armour regeneration modifier. */
-   SS_TYPE_A_ARMOUR_REGEN_MALUS,/**< Flat armour regeneration modifier (not multiplied). */
-   /* Misc. */
-   SS_TYPE_A_CPU_MAX,         /**< Maximum CPU modifier. */
-   SS_TYPE_A_ENGINE_LIMIT,    /**< Engine's mass limit. */
+   SS_TYPE_A_ENERGY, /**< Energy modifier. */
+   SS_TYPE_D_ENERGY_MOD, /**< Energy multiplier. */
+   SS_TYPE_A_ENERGY_REGEN, /**< Energy regeneration modifier. */
+   SS_TYPE_D_ENERGY_REGEN_MOD, /**< Energy regeneration multiplier. */
+   SS_TYPE_A_ENERGY_REGEN_MALUS, /**< Flat energy regeneration modifier (not multiplied). */
+   SS_TYPE_A_ENERGY_LOSS, /**< Flat energy modifier (not multiplied, applied linearly). */
+   SS_TYPE_A_SHIELD, /**< Shield modifier. */
+   SS_TYPE_D_SHIELD_MOD, /**< Shield multiplier. */
+   SS_TYPE_A_SHIELD_REGEN, /**< Shield regeneration modifier. */
+   SS_TYPE_D_SHIELD_REGEN_MOD, /**< Shield regeneration multiplier. */
+   SS_TYPE_A_SHIELD_REGEN_MALUS, /**< Flat shield regeneration modifier (not multiplied). */
+   SS_TYPE_A_ARMOUR, /**< Armour modifier. */
+   SS_TYPE_D_ARMOUR_MOD, /**< Armour multiplier. */
+   SS_TYPE_A_ARMOUR_REGEN, /**< Armour regeneration modifier. */
+   SS_TYPE_D_ARMOUR_REGEN_MOD, /**< Armour regeneration multiplier. */
+   SS_TYPE_A_ARMOUR_REGEN_MALUS, /**< Flat armour regeneration modifier (not multiplied). */
 
-   /*
-    * P: Absolute percent type datas. Should be continuous.
-    */
-   SS_TYPE_P_ABSORB,          /**< Damage absorption. */
+   SS_TYPE_A_CPU_MAX, /**< Maximum CPU modifier. */
+   SS_TYPE_D_CPU_MOD, /**< CPU multiplier. */
+   SS_TYPE_A_ENGINE_LIMIT, /**< Engine's mass limit. */
+
+   SS_TYPE_P_ABSORB, /**< Damage absorption. */
+
    /* Nebula. */
    SS_TYPE_P_NEBULA_ABSORB_SHIELD, /**< Shield nebula resistance. */
    SS_TYPE_P_NEBULA_ABSORB_ARMOUR, /**< Armour nebula resistance. */
 
-   /*
-    * I: Integer type data. Should be continuous.
-    */
-   SS_TYPE_I_FUEL,            /**< Fuel bonus. */
-   SS_TYPE_I_CARGO,           /**< Cargo bonus. */
+   SS_TYPE_I_FUEL, /**< Fuel bonus. */
+   SS_TYPE_I_CARGO, /**< Cargo bonus. */
+   SS_TYPE_D_CARGO_MOD, /**< Cargo space multiplier. */
 
-   /*
-    * B: Boolean type data. Should be continuous.
-    */
    SS_TYPE_B_INSTANT_JUMP,    /**< Do not require brake or chargeup to jump. */
    SS_TYPE_B_REVERSE_THRUST,  /**< Ship slows down rather than turning on reverse. */
    SS_TYPE_B_ASTEROID_SCAN,   /**< Ship can gather informations from asteroids. */
