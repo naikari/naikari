@@ -949,7 +949,6 @@ function __killasteroid ()
 
    -- Have to start over if we're out of range for some reason
    if ai.dist(target) > wrange then
-      print("Starting over")
       ai.popsubtask()
       return
    end
