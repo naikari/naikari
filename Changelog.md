@@ -87,6 +87,8 @@
 * Added another medium Structural slot to the Za'lek Demon.
 * Changed the order that stats of ships and outfits are displayed to
   make a little more sense.
+* Changed the layout of the buttons on the list dialog (used by the
+  Combat Practice mission) to be consistent with the rest of the UI.
 
 ### Bugfixes
 
@@ -113,6 +115,8 @@
 * Fixed a few planets having a non-existent graphic defined as their
   land graphics.
 * Fixed slightly misleading display of afterburner stats.
+* Fixed a bug where weapon tracking did not behave as intended.
+* Fixed some missions causing your fighter bay escorts to disappear.
 
 ## 0.5.2
 
