@@ -109,7 +109,7 @@ function accept()
       _("Watson (carrier)"),
       p_("ship_type", "Random"),
    }
-   local n, boss_text = tk.list("",
+   local n, boss_text = tk.list(_("Combat Practice"),
          _("Select the leader of the practice drone fleet."),
          unpack(boss_disp))
 
@@ -125,7 +125,7 @@ function accept()
 
    misn.accept()
 
-   local n, fleet_text = tk.choice("",
+   local n, fleet_text = tk.choice(_("Combat Practice"),
          _("Select how large of a fleet the leader should have."),
          p_("fleet_size", "None (no escorts)"),
          p_("fleet_size", "Small (~3 escorts)"),
