@@ -22,6 +22,9 @@
 * Added support for saving and loading arbitrary snapshots.
 * Added APUs (Auxiliary Processing Units) which can be used to expand a
   ship's CPU capacity.
+* Added some medium and large sized weapon enhancement utilities
+  (similar to the Power Regulation Override and Rotary Turbo Modulator
+  outfits).
 
 ### Other Changes
 
@@ -82,6 +85,8 @@
   Shadow mission, to bring Dark Shadow in-line with the increased radar
   range introduced in version 0.5.
 * Added another medium Structural slot to the Za'lek Demon.
+* Changed the order that stats of ships and outfits are displayed to
+  make a little more sense.
 
 ### Bugfixes
 
@@ -107,6 +112,7 @@
   and potentially unexpected AI behavior.
 * Fixed a few planets having a non-existent graphic defined as their
   land graphics.
+* Fixed slightly misleading display of afterburner stats.
 
 ## 0.5.2
 

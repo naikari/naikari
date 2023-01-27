@@ -776,6 +776,8 @@
   <item>Medium APU</item>
   <item>Medium Shield Booster</item>
   <item>Droid Repair Crew</item>
+  <item>Power Amplification Circuit</item>
+  <item>Rotary Power Accelerator</item>
   <item>Reactor Class II</item>
   <item>Turreted Weapons Ionizer</item>
   <item>Plasteel Plating</item>
@@ -827,6 +829,8 @@
   <item>Medium Shield Booster</item>
   <item>Targeting Array</item>
   <item>Droid Repair Crew</item>
+  <item>Power Amplification Circuit</item>
+  <item>Rotary Power Accelerator</item>
   <item>Reactor Class II</item>
   <item>Turreted Weapons Ionizer</item>
   <item>Plasteel Plating</item>
@@ -858,6 +862,7 @@
  <tech name="Large Elite Outfits">
   <item>Improved Power Regulator</item>
   <item>Droid Repair Crew</item>
+  <item>Power Overdrive Module</item>
   <item>Large APU</item>
   <item>Large Shield Booster</item>
   <item>Reactor Class III</item>
