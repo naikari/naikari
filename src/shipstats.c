@@ -907,8 +907,10 @@ int ss_statsDesc(const ShipStats *s, char *buf, int len, int newline,
  */
 void ss_free( ShipStatList *ll )
 {
+   ShipStatList *tmp;
+
    while (ll != NULL) {
-      ShipStatList *tmp = ll;
+      tmp = ll;
       ll = ll->next;
       free(tmp);
    }
