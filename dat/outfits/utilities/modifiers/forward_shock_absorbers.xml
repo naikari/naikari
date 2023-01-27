@@ -10,7 +10,7 @@
   <gfx_store>accuracy_forward.webp</gfx_store>
  </general>
  <specific type="modification">
-  <fwd_firerate>-5</fwd_firerate>
   <fwd_heat>-15</fwd_heat>
+  <fwd_firerate>-5</fwd_firerate>
  </specific>
 </outfit>

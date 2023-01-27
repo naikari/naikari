@@ -12,8 +12,8 @@
  </general>
  <specific type="modification">
   <speed_mod>10</speed_mod>
-  <engine_limit_rel>-5</engine_limit_rel>
   <turn_mod>3</turn_mod>
+  <engine_limit_rel>-5</engine_limit_rel>
   <energy_regen_malus>1.5</energy_regen_malus>
  </specific>
 </outfit>

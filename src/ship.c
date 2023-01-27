@@ -548,8 +548,10 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
    char *buf;
    char str[PATH_MAX];
    int noengine;
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
    ShipTrailEmitter trail;
+
+   tail = NULL;
 
    /* Clear memory. */
    memset( temp, 0, sizeof(Ship) );
@@ -773,10 +775,13 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
          cur = node->children;
          do {
             xml_onlyNodes(cur);
-            ll = ss_listFromXML( cur );
+            ll = ss_listFromXML(cur);
             if (ll != NULL) {
-               ll->next    = temp->stats;
-               temp->stats = ll;
+               if (tail == NULL)
+                  temp->stats = ll;
+               else
+                  tail->next = ll;
+               tail = ll;
                continue;
             }
             WARN(_("Ship '%s' has unknown stat '%s'."), temp->name, cur->name);

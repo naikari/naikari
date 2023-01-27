@@ -10,7 +10,7 @@
   <cpu>-1</cpu>
  </general>
  <specific type="modification">
-  <energy_regen_malus>2</energy_regen_malus>
   <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
+  <energy_regen_malus>2</energy_regen_malus>
  </specific>
 </outfit>

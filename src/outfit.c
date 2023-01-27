@@ -1171,7 +1171,7 @@ that can be found in Naev's artwork repo."), file);
  */
 static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
 {
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
    xmlNodePtr node;
    char *buf;
    double C, area;
@@ -1185,6 +1185,8 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    temp->u.blt.sound_hit      = -1;
    temp->u.blt.falloff        = -1.;
    temp->u.blt.ew_lockon      = 1.;
+
+   tail = NULL;
 
    node = parent->xmlChildrenNode;
    do { /* load all the data */
@@ -1269,10 +1271,13 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       }
 
       /* Stats. */
-      ll = ss_listFromXML( node );
+      ll = ss_listFromXML(node);
       if (ll != NULL) {
-         ll->next    = temp->stats;
-         temp->stats = ll;
+         if (tail == NULL)
+            temp->stats = ll;
+         else
+            tail->next = ll;
+         tail = ll;
          continue;
       }
       WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
@@ -1400,7 +1405,7 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
  */
 static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
 {
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
    int l;
    xmlNodePtr node;
    double C, area;
@@ -1413,6 +1418,8 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    temp->u.bem.sound_warmup = -1;
    temp->u.bem.sound = -1;
    temp->u.bem.sound_off = -1;
+
+   tail = NULL;
 
    node = parent->xmlChildrenNode;
    do { /* load all the data */
@@ -1476,10 +1483,13 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
       }
 
       /* Stats. */
-      ll = ss_listFromXML( node );
+      ll = ss_listFromXML(node);
       if (ll != NULL) {
-         ll->next    = temp->stats;
-         temp->stats = ll;
+         if (tail == NULL)
+            temp->stats = ll;
+         else
+            tail->next = ll;
+         tail = ll;
          continue;
       }
       WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
@@ -1586,8 +1596,10 @@ if (o) WARN( _("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< 
  */
 static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
 {
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
    xmlNodePtr node;
+
+   tail = NULL;
 
    node  = parent->xmlChildrenNode;
    do { /* load all the data */
@@ -1605,10 +1617,13 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
       }
 
       /* Stats. */
-      ll = ss_listFromXML( node );
+      ll = ss_listFromXML(node);
       if (ll != NULL) {
-         ll->next    = temp->stats;
-         temp->stats = ll;
+         if (tail == NULL)
+            temp->stats = ll;
+         else
+            tail->next = ll;
+         tail = ll;
          continue;
       }
       WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
@@ -1786,7 +1801,7 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
 {
    int i;
    xmlNodePtr node;
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
    node = parent->children;
 
    /* Defaults. */
@@ -1798,6 +1813,8 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
    temp->u.mod.lua_onhit = LUA_NOREF;
    temp->u.mod.lua_outofenergy = LUA_NOREF;
    temp->u.mod.lua_cooldown = LUA_NOREF;
+
+   tail = NULL;
 
    do { /* load all the data */
       xml_onlyNodes(node);
@@ -1851,10 +1868,13 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
       }
 
       /* Stats. */
-      ll = ss_listFromXML( node );
+      ll = ss_listFromXML(node);
       if (ll != NULL) {
-         ll->next    = temp->stats;
-         temp->stats = ll;
+         if (tail == NULL)
+            temp->stats = ll;
+         else
+            tail->next = ll;
+         tail = ll;
          continue;
       }
 
@@ -1892,7 +1912,7 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
  */
 static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
 {
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
    xmlNodePtr node;
    node = parent->children;
    double C, area;
@@ -1906,6 +1926,8 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
    /* must be >= 1. */
    temp->u.afb.thrust = 1.;
    temp->u.afb.speed  = 1.;
+
+   tail = NULL;
 
    do { /* parse the data */
       xml_onlyNodes(node);
@@ -1930,10 +1952,13 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"heat_base",temp->u.afb.heat_base);
 
       /* Stats. */
-      ll = ss_listFromXML( node );
+      ll = ss_listFromXML(node);
       if (ll != NULL) {
-         ll->next    = temp->stats;
-         temp->stats = ll;
+         if (tail == NULL)
+            temp->stats = ll;
+         else
+            tail->next = ll;
+         tail = ll;
          continue;
       }
       WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
@@ -2000,9 +2025,11 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
  */
 static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
 {
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
    xmlNodePtr node;
    node = parent->children;
+
+   tail = NULL;
 
    do {
       xml_onlyNodes(node);
@@ -2012,10 +2039,13 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
       xmlr_int(node,"amount",temp->u.bay.amount);
 
       /* Stats. */
-      ll = ss_listFromXML( node );
+      ll = ss_listFromXML(node);
       if (ll != NULL) {
-         ll->next    = temp->stats;
-         temp->stats = ll;
+         if (tail == NULL)
+            temp->stats = ll;
+         else
+            tail->next = ll;
+         tail = ll;
          continue;
       }
       WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
@@ -2301,7 +2331,7 @@ static int outfit_parse( Outfit* temp, const char* file )
    char *prop, *desc_extra;
    const char *cprop;
    int group, l;
-   ShipStatList *ll;
+   ShipStatList *ll, *tail;
 
    xmlDocPtr doc = xml_parsePhysFS( file );
    if (doc == NULL)
@@ -2312,6 +2342,8 @@ static int outfit_parse( Outfit* temp, const char* file )
       ERR( _("Malformed '%s' file: does not contain elements"), OUTFIT_DATA_PATH );
       return -1;
    }
+
+   tail = NULL;
 
    /* Clear data. */
    memset( temp, 0, sizeof(Outfit) );
@@ -2396,10 +2428,13 @@ static int outfit_parse( Outfit* temp, const char* file )
          do {
             xml_onlyNodes(cur);
             /* Stats. */
-            ll = ss_listFromXML( cur );
+            ll = ss_listFromXML(cur);
             if (ll != NULL) {
-               ll->next    = temp->stats;
-               temp->stats = ll;
+               if (tail == NULL)
+                  temp->stats = ll;
+               else
+                  tail->next = ll;
+               tail = ll;
                continue;
             }
             WARN(_("Outfit '%s' has unknown node '%s'"), temp->name, cur->name);
