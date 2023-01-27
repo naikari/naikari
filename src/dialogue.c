@@ -717,10 +717,10 @@ int dialogue_listPanelRaw(const char* title, char **items, int nitems,
          dialogue_listClose );
 
    /* Create the buttons. */
-   window_addButton( wid, -20, 20, 120, 30,
-         "btnOK", _("OK"), dialogue_listClose );
-   window_addButton( wid, -20-120-20, 20, 120, 30,
-         "btnCancel", _("Cancel"), dialogue_listCancel );
+   window_addButton(wid, 20, 20, (w-40-20) / 2, 30,
+         "btnOK", _("OK"), dialogue_listClose);
+   window_addButton(wid, -20, 20, (w-40-20) / 2, 30,
+         "btnCancel", _("Cancel"), dialogue_listCancel);
 
    toolkit_loop( &done, NULL );
    /* cleanup */
