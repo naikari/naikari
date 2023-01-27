@@ -12,6 +12,7 @@
 
 
 /** @cond */
+#include <assert.h>
 #include <math.h>
 
 #include "naev.h"
@@ -207,7 +208,9 @@ int pilot_inRangeJump( const Pilot *p, int i )
 double pilot_weaponTrack(
       const Pilot *p, const Pilot *t, double track_optimal, double track_max )
 {
-   double d, sense, tempmod;
+   double d;
+   double tempmod, mod;
+   double sense, sense_max;
 
    /* pilot must exist */
    if ((p == NULL) || (t == NULL))
@@ -217,15 +220,22 @@ double pilot_weaponTrack(
    
    tempmod = (1 - ((t->heat_T-CONST_SPACE_STAR_TEMP)
             / (t->heat_C-CONST_SPACE_STAR_TEMP)));
-
-   sense = (track_optimal * cur_system->rdr_range_mod * p->stats.rdr_range_mod
+   mod = (cur_system->rdr_range_mod * p->stats.rdr_range_mod
          * t->stats.rdr_enemy_range_mod * tempmod);
+
+   sense = track_optimal * mod;
+   sense_max = track_max * mod;
+
+   if (d >= sense_max)
+      return 0.;
 
    if (d <= sense)
       return 1.;
 
-   if (d >= track_max)
-      return 0.;
+   /* It shouldn't be possible to get here if sense_max is not greater
+    * than sense, because in all such cases, one of the above two checks
+    * should return true. */
+   assert(sense_max > sense);
 
-   return (d-sense) / (track_max-sense);
+   return CLAMP(0., 1., 1. - (d-sense) / (sense_max-sense));
 }
