@@ -1251,6 +1251,7 @@ void map_renderJumps( double x, double y, double r, int editor)
             col = &cLightBlue;
 
          if (jp_isFlag(&sys->jumps[j], JP_LONGRANGE)) {
+            /* Draw the line for the source system. */
             dir = ANGLE(jsys->pos.x - sys->pos.x, jsys->pos.y - sys->pos.y);
             vertex[0] = x + sys->pos.x*map_zoom;
             vertex[1] = y + sys->pos.y*map_zoom;
@@ -1270,8 +1271,31 @@ void map_renderJumps( double x, double y, double r, int editor)
             vertex[15] = col->g;
             vertex[16] = col->b;
             vertex[17] = 1.;
-            gl_vboSubData( map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex );
-            glDrawArrays( GL_LINE_STRIP, 0, 3 );
+            gl_vboSubData(map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex);
+            glDrawArrays(GL_LINE_STRIP, 0, 3);
+
+            /* Draw the line for the dest system. */
+            dir = ANGLE(sys->pos.x - jsys->pos.x, sys->pos.y - jsys->pos.y);
+            vertex[0] = x + jsys->pos.x*map_zoom;
+            vertex[1] = y + jsys->pos.y*map_zoom;
+            vertex[2] = vertex[0] + cos(dir)*8*r;
+            vertex[3] = vertex[1] + sin(dir)*8*r;
+            vertex[4] = x + jsys->pos.x*map_zoom;
+            vertex[5] = y + jsys->pos.y*map_zoom;
+            vertex[6] = cole->r;
+            vertex[7] = cole->g;
+            vertex[8] = cole->b;
+            vertex[9] = 1.;
+            vertex[10] = cole->r;
+            vertex[11] = cole->g;
+            vertex[12] = cole->b;
+            vertex[13] = 0.;
+            vertex[14] = cole->r;
+            vertex[15] = cole->g;
+            vertex[16] = cole->b;
+            vertex[17] = 1.;
+            gl_vboSubData(map_vbo, 0, sizeof(GLfloat) * 3*(2+4), vertex);
+            glDrawArrays(GL_LINE_STRIP, 0, 3);
          }
          else {
             /* Draw the lines. */
