@@ -1991,7 +1991,7 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
          (temp->u.afb.speed < 0 ? 'r' : 'g'),
          (temp->u.afb.speed < 0 ? "!! " : ""), temp->u.afb.speed,
          (temp->u.afb.energy > 0 ? 'r' : 'g'),
-         (temp->u.afb.energy > 0 ? "!! " : ""), -temp->u.afb.energy);
+         (temp->u.afb.energy > 0 ? "!! " : ""), temp->u.afb.energy);
 
    /* Post processing. */
    temp->u.afb.thrust /= 100.;
