@@ -3423,6 +3423,7 @@ void pilots_clear (void)
    int i;
    for (i=0; i < array_size(pilot_stack); i++)
       if (!pilot_isPlayer(pilot_stack[i])
+            && !pilot_isFlag(pilot_stack[i], PILOT_PERSIST)
             && !pilot_isFlag(pilot_stack[i], PILOT_NOCLEAR))
          pilot_delete( pilot_stack[i] );
 }

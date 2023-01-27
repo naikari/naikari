@@ -794,15 +794,21 @@ static int pilotL_remove( lua_State *L )
    return 0;
 }
 /**
- * @brief Clears the current system of pilots.  Used for epic battles and such.
+ * @brief Clears the current system of pilots. Used for epic battles and such.
  *
- * Be careful with this command especially in big systems. It will most likely
- *  cause issues if multiple missions are in the same system.
+ * Pilots which have been set to not clear with pilot.setNoClear(), as
+ * well as the player's fighter bay escorts, are exempt and will remain
+ * in the system.
+ *
+ * Be careful with this function. It will most likely cause issues if
+ * multiple missions are in the same system. For this reason, it should
+ * only be used in a successfully claimed system.
  *
  * @note Clears all global pilot hooks too.
  *
  * @usage pilot.clear()
  *
+ * @luasee setNoClear
  * @luafunc clear
  */
 static int pilotL_clear( lua_State *L )
@@ -2765,6 +2771,7 @@ static int pilotL_setNoLand( lua_State *L )
  *    @luatparam[opt=true] boolean state true to exempt the pilot from
  *       pilot.clear(), false to make the pilot affected by
  *       pilot.clear() normally.
+ * @luasee clear
  * @luafunc setNoClear
  */
 static int pilotL_setNoClear( lua_State *L )
