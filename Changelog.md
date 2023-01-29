@@ -89,6 +89,12 @@
   make a little more sense.
 * Changed the layout of the buttons on the list dialog (used by the
   Combat Practice mission) to be consistent with the rest of the UI.
+* Seek and Destroy mission no longer leaves you able to ask repeat
+  questions after you've already gotten the next location (which had no
+  benefit to the player, only causing the special hail hook to
+  interrupt e.g. attempts to bribe pilots or attempts to refuel
+  needlessly, and introducing the possibility of accidentally paying an
+  extra fee for the exact same information).
 
 ### Bugfixes
 
@@ -117,6 +123,9 @@
 * Fixed slightly misleading display of afterburner stats.
 * Fixed a bug where weapon tracking did not behave as intended.
 * Fixed some missions causing your fighter bay escorts to disappear.
+* Fixed a memory leak caused by the escort command menu.
+* Patched a flaw in the AI code that may fix odd cases of AI pilots
+  getting stuck rotating forever when trying to do certain tasks.
 
 ## 0.5.2
 
