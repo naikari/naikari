@@ -98,6 +98,9 @@
 * Doubled the range that escorts consider to be "close" (to coincide
   with the increased common weapon range).
 * Hired escorts now use the same AI as fighter bay escorts.
+* Auto-aiming now automatically disengages if simply shooting forward is
+  more accurate for a given bullet. This ensures that the auto-aiming
+  system only ever *increases* accuracy, and never reduces accuracy.
 
 ### Bugfixes
 
