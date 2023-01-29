@@ -37,10 +37,9 @@
 # local nowrap = ldoc.wrap and '' or 'nowrap'
 
 <!-- Menu -->
-
 <div id="navigation">
-<br/>
-<h1>$(ldoc.project)</h1>
+<nav title="$(ldoc.project)">
+<h2>$(ldoc.project)</h2>
 
 # if not ldoc.single and module then -- reference back to project index
 <ul>
@@ -51,7 +50,7 @@
 
 # if ldoc.no_summary and module and not ldoc.one then -- bang out the functions on the side
 # for kind, items in module.kinds() do
-<h2>$(kind)</h2>
+<h3>$(kind)</h3>
 <ul class="nowrap">
 # for item in items() do
     <li><a href="#$(item.name)">$(display_name(item))</a></li>
@@ -63,7 +62,7 @@
 # local this_mod = module and module.name
 # for kind, mods, type in ldoc.kinds() do
 #  if ldoc.allowed_in_contents(type,module) then
-<h2>$(kind)</h2>
+<h3>$(kind)</h3>
 <ul class="$(kind=='Topics' and '' or 'nowrap'">
 #  for mod in mods() do local name = ldoc.module_name(mod)
 #   if mod.name == this_mod then
@@ -76,14 +75,16 @@
 </ul>
 # end
 
+</nav>
 </div>
 
 <div id="content">
+<main>
 
 # if ldoc.body then -- verbatim HTML as contents; 'non-code' entries
     $(ldoc.body)
 # elseif module then -- module documentation
-<h1>$(ldoc.module_typename(module)) <code>$(module.name)</code></h1>
+<h2>$(ldoc.module_typename(module)) <code>$(module.name)</code></h2>
 <p>$(M(module.summary,module))</p>
 <p>$(M(module.description,module))</p>
 #   if module.tags.include then
@@ -111,7 +112,7 @@
 # if not ldoc.no_summary then
 # -- bang out the tables of item types for this module (e.g Functions, Tables, etc)
 # for kind,items in module.kinds() do
-<h2><a href="#$(no_spaces(kind))">$(kind)</a></h2>
+<h3><a href="#$(no_spaces(kind))">$(kind)</a></h3>
 <table class="function_list">
 #  for item in items() do
 	<tr>
@@ -133,12 +134,12 @@
 # local show_parms = show_return
 # for kind, items in module.kinds() do
 #   local kitem = module.kinds:get_item(kind)
-    <h2><a name="$(no_spaces(kind))"></a>$(kind)</h2>
+    <h3><a name="$(no_spaces(kind))"></a>$(kind)</h3>
     $(M(module.kinds:get_section_description(kind),nil))
 #   if kitem then
         $(M(ldoc.descript(kitem),kitem))
 #       if kitem.usage then
-            <h3>Usage:</h3>
+            <h4>Usage:</h4>
             <pre class="example">$(ldoc.prettify(kitem.usage[1]))</pre>
 #        end
 #   end
@@ -159,7 +160,7 @@
 #     local tag = item.tags[custom[1]]
 #     if tag and not custom.hidden then
 #      local li,il = use_li(tag)
-    <h3>$(custom.title or custom[1]):</h3>
+    <h4>$(custom.title or custom[1]):</h4>
     <ul>
 #      for value in iter(tag) do
          $(li)$(custom.format and custom.format(value) or M(value))$(il)
@@ -172,7 +173,7 @@
 #  if show_parms and item.params and #item.params > 0 then
 #    local subnames = module.kinds:type_of(item).subnames
 #    if subnames then
-    <h3>$(subnames):</h3>
+    <h4>$(subnames):</h4>
 #    end
     <ul>
 #   for parm in iter(item.params) do
@@ -206,7 +207,7 @@
 #   end -- if params
 
 #  if show_return and item.retgroups then local groups = item.retgroups
-    <h3>Returns:</h3>
+    <h4>Returns:</h4>
 #   for i,group in ldoc.ipairs(groups) do local li,il = use_li(group)
     <ol>
 #   for r in group:iter() do local type, ctypes = item:return_type(r); local rt = ldoc.typename(type)
@@ -227,19 +228,19 @@
 #     end -- for r
     </ol>
 #   if i < #groups then
-     <h3>Or</h3>
+     <h4>Or</h4>
 #   end
 #   end -- for group
 #   end -- if returns
 
 #   if show_return and item.raise then
-    <h3>Raises:</h3>
+    <h4>Raises:</h4>
     $(M(item.raise,item))
 #   end
 
 #   if item.see then
 #     local li,il = use_li(item.see)
-    <h3>See also:</h3>
+    <h4>See also:</h4>
     <ul>
 #     for see in iter(item.see) do
          $(li)<a href="$(ldoc.href(see))">$(see.label)</a>$(il)
@@ -249,7 +250,7 @@
 
 #   if item.usage then
 #     local li,il = use_li(item.usage)
-    <h3>Usage:</h3>
+    <h4>Usage:</h4>
     <ul>
 #     for usage in iter(item.usage) do
         $(li)<pre class="example">$(ldoc.prettify(usage))</pre>$(il)
@@ -266,7 +267,7 @@
 
 <div id="product">
 # if ldoc.description then
-  <h2>$(M(ldoc.description,nil))</h2>
+  <h3>$(M(ldoc.description,nil))</h3>
 # end
 # if ldoc.full_description then
   <div id="product_description">$(M(ldoc.full_description,nil))</div>
@@ -274,7 +275,7 @@
 </div>
 
 # for kind, mods in ldoc.kinds() do
-<h2>$(kind)</h2>
+<h3>$(kind)</h3>
 # kind = kind:lower()
 <table class="module_list">
 # for m in mods() do
@@ -287,6 +288,7 @@
 # end -- for kinds
 # end -- if module
 
+</main>
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
