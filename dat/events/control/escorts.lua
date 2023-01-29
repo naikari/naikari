@@ -437,9 +437,13 @@ end
 
 
 function pay(amount, reason)
-   if amount <= 0 or reason == "adjust" then return end
+   if amount <= 0 or reason == "adjust" then
+      return
+   end
 
+   local plcredits = player.credits()
    local royalty = 0
+   local paid_escorts = {}
    for i, edata in ipairs(escorts) do
       if edata.alive and edata.royalty then
          local this_royalty = amount * edata.royalty
@@ -448,9 +452,24 @@ function pay(amount, reason)
             edata.total_paid = 0
          end
          edata.total_paid = edata.total_paid + this_royalty
+         paid_escorts[#paid_escorts + 1] = edata
       end
    end
    player.pay(-royalty, nil, true)
+
+   -- If the player failed to pay the full royalty, cause an escort to
+   -- disband.
+   if plcredits < royalty and rnd.rnd() < 0.5 and #paid_escorts > 0 then
+      local edata = paid_escorts[rnd.rnd(1, #paid_escorts)]
+      pilot_disbanded(edata)
+      local s = fmt.f(_("{escort} has left your wing because of your failure to pay the agreed upon royalty."),
+            {escort=edata.name})
+      if player.isLanded() then
+         tk.msg("", s)
+      else
+         player.msg(s)
+      end
+   end
 end
 
 
@@ -461,9 +480,13 @@ function standing()
          local f = faction.get(edata.faction)
          if f ~= nil and f:playerStanding() < 0 then
             pilot_disbanded(edata)
-            player.msg(fmt.f(
-               _("{escort} has left your wing because you now have a negative standing with the {faction} faction."),
-               {escort=edata.name, faction=f:name()}))
+            local s =fmt.f(_("{escort} has left your wing because you now have a negative standing with the {faction} faction."),
+               {escort=edata.name, faction=f:name()})
+            if player.isLanded() then
+               tk.msg("", s)
+            else
+               player.msg(s)
+            end
          end
       end
    end
@@ -473,6 +496,7 @@ end
 -- Pilot is no longer employed by the player
 function pilot_disbanded(edata)
    edata.alive = false
+
    local p = edata.pilot
    if p ~= nil and p:exists() then
       if edata.def_ai ~= nil then
@@ -487,6 +511,8 @@ function pilot_disbanded(edata)
       p:setFriendly(false)
       p:hookClear()
    end
+
+   clearNPCs()
 end
 
 
@@ -584,6 +610,25 @@ function spawnNPC(edata)
    local id = evt.npcAdd("approachEscort", name, edata.portrait,
          _("This is one of the pilots currently under your wing."), 80)
    npcs[id] = edata
+end
+
+
+function clearNPCs()
+   if not player.isLanded() then
+      return
+   end
+
+   local dead_npcs = {}
+   for id, edata in pairs(npcs) do
+      if not edata.alive then
+         dead_npcs[#dead_npcs + 1] = id
+      end
+   end
+
+   for i, id in ipairs(dead_npcs) do
+      evt.npcRm(id)
+      npcs[id] = nil
+   end
 end
 
 
