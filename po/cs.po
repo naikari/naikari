@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-01-27 18:03-0500\n"
+"POT-Creation-Date: 2023-01-29 03:53-0500\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -22665,29 +22665,29 @@ msgstr ""
 #. Example usage: my_enum = enumerate({"first", "second", "third"})
 #. Example usage: print(my_enum.first)
 #: dat/events/control/escorts.lua:512 dat/scripts/escorthelper.lua:23
-#: src/escort.c:303
+#: src/escort.c:305
 msgid "Escort Orders"
 msgstr ""
 
-#: dat/events/control/escorts.lua:513 src/escort.c:304
+#: dat/events/control/escorts.lua:513 src/escort.c:306
 msgid "Select the order to give to this escort."
 msgstr ""
 
 #: dat/events/control/escorts.lua:514 dat/events/control/escorts.lua:516
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:33
-#: src/escort.c:292
+#: src/escort.c:294
 msgid "Hold Formation"
 msgstr ""
 
 #: dat/events/control/escorts.lua:514 dat/events/control/escorts.lua:519
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:36
-#: src/escort.c:293
+#: src/escort.c:295
 msgid "Return To Ship"
 msgstr ""
 
 #: dat/events/control/escorts.lua:514 dat/events/control/escorts.lua:522
 #: dat/scripts/escorthelper.lua:26 dat/scripts/escorthelper.lua:39
-#: src/escort.c:294
+#: src/escort.c:296
 msgid "Clear Orders"
 msgstr ""
 
@@ -22700,7 +22700,7 @@ msgstr ""
 #. Run callback.
 #: dat/events/control/escorts.lua:515 dat/rescue.lua:46 dat/rescue.lua:60
 #: dat/rescue.lua:121 dat/rescue.lua:174 dat/scripts/escorthelper.lua:26
-#: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:295 src/map_find.c:246
+#: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:297 src/map_find.c:246
 #: src/options.c:280 src/options.c:792 src/options.c:912 src/options.c:1174
 #: src/options.c:1241
 msgid "Cancel"
@@ -22711,12 +22711,12 @@ msgstr ""
 msgid "#F%s:#0 Holding formation."
 msgstr ""
 
-#: dat/events/control/escorts.lua:521 src/escort.c:320
+#: dat/events/control/escorts.lua:521 src/escort.c:324
 #, c-format, lua-format
 msgid "#F%s:#0 Returning to ship."
 msgstr ""
 
-#: dat/events/control/escorts.lua:524 src/escort.c:325
+#: dat/events/control/escorts.lua:524 src/escort.c:329
 #, c-format, lua-format
 msgid "#F%s:#0 Clearing orders."
 msgstr ""
@@ -34857,7 +34857,6 @@ msgstr ""
 #. Set mission details
 #. Store the table
 #. Test if an element is in a list
-#. Increment the target if needed
 #. This system will contain the pirate
 #. cursys > pisys means the player has failed once (or more).
 #. Get the position of the target
@@ -34895,7 +34894,7 @@ msgstr ""
 #. If target is quicker, no fear
 #. Spawn NPCs at bar, that give info
 #. The player ask for clues in the bar
-#: dat/missions/neutral/seek_and_destroy.lua:622
+#: dat/missions/neutral/seek_and_destroy.lua:615
 msgid "{credits} awarded for successfully hunting down {pilot}."
 msgstr ""
 
@@ -46051,17 +46050,17 @@ msgstr ""
 msgid "Pilot '%s' has no land target"
 msgstr ""
 
-#: src/ai.c:2402
+#: src/ai.c:2404
 msgid "Jump point must be in current system."
 msgstr ""
 
-#: src/ai.c:2849 src/ai.c:3083 src/ai.c:3125 src/ai.c:3168
+#: src/ai.c:2851 src/ai.c:3085 src/ai.c:3127 src/ai.c:3170
 #: src/nlua_pilot.c:1612
 #, c-format
 msgid "'%s' is not a valid weapon set name."
 msgstr ""
 
-#: src/ai.c:2994
+#: src/ai.c:2996
 msgid "Invalid Bounds"
 msgstr ""
 
@@ -46490,7 +46489,7 @@ msgstr ""
 msgid "Cannot gather material: no more cargo space available"
 msgstr ""
 
-#: src/commodity.c:679 src/faction.c:1749 src/tech.c:115
+#: src/commodity.c:679 src/faction.c:1757 src/tech.c:115
 #, c-format
 msgid "Malformed %s file: missing root element '%s'"
 msgstr ""
@@ -47739,12 +47738,12 @@ msgstr ""
 msgid "Escort %s"
 msgstr ""
 
-#: src/escort.c:315
+#: src/escort.c:319
 #, c-format
 msgid "#F%s#0: Holding formation."
 msgstr ""
 
-#: src/escort.c:352
+#: src/escort.c:358
 msgid "#gEscorts: #0Jumping."
 msgstr ""
 
@@ -47804,7 +47803,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/event.c:530 src/faction.c:1613 src/mission.c:900 src/nxml.c:88
+#: src/event.c:530 src/faction.c:1621 src/mission.c:900 src/nxml.c:88
 #, c-format
 msgid "Unable to read data from '%s'"
 msgstr ""
@@ -47884,10 +47883,10 @@ msgstr ""
 #: src/faction.c:641 src/faction.c:668 src/faction.c:708 src/faction.c:737
 #: src/faction.c:760 src/faction.c:777 src/faction.c:812 src/faction.c:900
 #: src/faction.c:959 src/faction.c:996 src/faction.c:1031 src/faction.c:1051
-#: src/faction.c:1266 src/faction.c:1326 src/faction.c:1394 src/faction.c:1399
-#: src/faction.c:1445 src/faction.c:1450 src/faction.c:1671 src/faction.c:1799
-#: src/faction.c:1821 src/faction.c:1967 src/faction.c:2115 src/faction.c:2130
-#: src/faction.c:2140
+#: src/faction.c:1274 src/faction.c:1334 src/faction.c:1402 src/faction.c:1407
+#: src/faction.c:1453 src/faction.c:1458 src/faction.c:1679 src/faction.c:1807
+#: src/faction.c:1829 src/faction.c:1975 src/faction.c:2123 src/faction.c:2138
+#: src/faction.c:2148
 #, c-format
 msgid "Faction id '%ld' is invalid."
 msgstr ""
@@ -47903,8 +47902,8 @@ msgstr ""
 
 #. Call function.
 #. An error occurred.
-#: src/faction.c:841 src/faction.c:1093 src/faction.c:1149 src/faction.c:1284
-#: src/faction.c:1346
+#: src/faction.c:841 src/faction.c:1097 src/faction.c:1157 src/faction.c:1292
+#: src/faction.c:1354
 #, c-format
 msgid "Faction '%s': %s"
 msgstr ""
@@ -47915,49 +47914,49 @@ msgid ""
 "Lua script for faction '%s' did not return a number from 'faction_hit(...)'."
 msgstr ""
 
-#: src/faction.c:1101
+#: src/faction.c:1105
 #, c-format
 msgid ""
 "Lua script for faction '%s' did not return a boolean from "
 "'faction_player_friend(...)'."
 msgstr ""
 
-#: src/faction.c:1157
+#: src/faction.c:1165
 #, c-format
 msgid ""
 "Lua script for faction '%s' did not return a boolean from "
 "'faction_player_enemy(...)'."
 msgstr ""
 
-#: src/faction.c:1262 src/faction.c:1322
+#: src/faction.c:1270 src/faction.c:1330
 msgid "Subordinate"
 msgstr ""
 
-#: src/faction.c:1267 src/faction.c:1272 src/faction.c:1286 src/faction.c:1295
-#: src/faction.c:1327 src/faction.c:1332 src/faction.c:1348 src/faction.c:1357
+#: src/faction.c:1275 src/faction.c:1280 src/faction.c:1294 src/faction.c:1303
+#: src/faction.c:1335 src/faction.c:1340 src/faction.c:1356 src/faction.c:1365
 msgid "???"
 msgstr ""
 
-#: src/faction.c:1292
+#: src/faction.c:1300
 #, c-format
 msgid ""
 "Lua script for faction '%s' did not return a string from "
 "'faction_standing_text(...)'."
 msgstr ""
 
-#: src/faction.c:1354
+#: src/faction.c:1362
 #, c-format
 msgid ""
 "Lua script for faction '%s' did not return a string from "
 "'faction_standing_broad(...)'."
 msgstr ""
 
-#: src/faction.c:1537
+#: src/faction.c:1545
 #, c-format
 msgid "Faction '%s' has duplicate 'spawn' tag."
 msgstr ""
 
-#: src/faction.c:1543
+#: src/faction.c:1551
 #, c-format
 msgid ""
 "Failed to run spawn script: %s\n"
@@ -47965,17 +47964,17 @@ msgid ""
 "Most likely Lua file has improper syntax, please check"
 msgstr ""
 
-#: src/faction.c:1556
+#: src/faction.c:1564
 #, c-format
 msgid "Faction '%s' has duplicate 'standing' tag."
 msgstr ""
 
-#: src/faction.c:1568
+#: src/faction.c:1576
 #, c-format
 msgid "Faction '%s' has duplicate 'equip' tag."
 msgstr ""
 
-#: src/faction.c:1574
+#: src/faction.c:1582
 #, c-format
 msgid ""
 "Failed to run equip script: %s\n"
@@ -47983,27 +47982,27 @@ msgid ""
 "Most likely Lua file has improper syntax, please check"
 msgstr ""
 
-#: src/faction.c:1587
+#: src/faction.c:1595
 #, c-format
 msgid "Faction '%s' has duplicate 'logo' tag."
 msgstr ""
 
-#: src/faction.c:1609
+#: src/faction.c:1617
 #, c-format
 msgid "Unknown node '%s' in faction '%s'"
 msgstr ""
 
-#: src/faction.c:1615
+#: src/faction.c:1623
 #, c-format
 msgid "Faction '%s' missing player tag."
 msgstr ""
 
-#: src/faction.c:1617
+#: src/faction.c:1625
 #, c-format
 msgid "Faction '%s' has no Lua and isn't static!"
 msgstr ""
 
-#: src/faction.c:1638
+#: src/faction.c:1646
 #, c-format
 msgid ""
 "Failed to run standing script: %s\n"
@@ -48011,13 +48010,13 @@ msgid ""
 "Most likely Lua file has improper syntax, please check"
 msgstr ""
 
-#: src/faction.c:1755 src/map.c:3042 src/outfit.c:1125 src/ship.c:431
+#: src/faction.c:1763 src/map.c:3042 src/outfit.c:1125 src/ship.c:431
 #: src/ship.c:892 src/space.c:1698 src/space.c:3134 src/tech.c:122
 #, c-format
 msgid "Malformed %s file: does not contain elements"
 msgstr ""
 
-#: src/faction.c:1841
+#: src/faction.c:1849
 #, c-format
 msgid "Loaded %d Faction"
 msgid_plural "Loaded %d Factions"
@@ -48025,19 +48024,19 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/faction.c:2061
+#: src/faction.c:2069
 #, c-format
 msgid "Failed to remove dynamic faction: %s (FID %ld)"
 msgstr ""
 
-#: src/faction.c:2067
+#: src/faction.c:2075
 #, c-format
 msgid ""
 "Faction '%ld' is not a valid faction, but still enemies with faction: %s "
 "(FID %ld)"
 msgstr ""
 
-#: src/faction.c:2074
+#: src/faction.c:2082
 #, c-format
 msgid ""
 "Faction '%ld' is not a valid faction, but still allies with faction: %s (FID "
