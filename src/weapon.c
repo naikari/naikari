@@ -1385,7 +1385,7 @@ static double weapon_aimTurret(const Pilot *parent, const Pilot *pilot_target,
    Asteroid *ast;
    Vector2d *target_pos;
    Vector2d *target_vel;
-   double rdir, lead;
+   double rdir, adir, lead;
    double rx, ry, x, y, t;
    double off;
 
@@ -1416,25 +1416,31 @@ static double weapon_aimTurret(const Pilot *parent, const Pilot *pilot_target,
    x = (target_pos->x + target_vel->x*t) - (pos->x + vel->x*t);
    y = (target_pos->y + target_vel->y*t) - (pos->y + vel->y*t);
 
-   /* Compute both the angles we want. */
-   rdir        = ANGLE(rx, ry);
+   /* Store the accurate aiming direction. */
+   adir = ANGLE(x, y);
 
+   /* Apply weapon tracking inaccuracy (pilots only, not asteroids). */
    if (pilot_target != NULL) {
       /* Lead angle is determined from ewarfare. */
-      lead     = pilot_weaponTrack(parent, pilot_target, track, track_max);
-      x        = lead * x + (1.-lead) * rx;
-      y        = lead * y + (1.-lead) * ry;
+      lead = pilot_weaponTrack(parent, pilot_target, track, track_max);
+      x = lead * x + (1.-lead) * rx;
+      y = lead * y + (1.-lead) * ry;
    }
-   rdir     = ANGLE(x,y);
+   rdir = ANGLE(x, y);
 
    /* Calculate bounds. */
-   off = angle_diff( rdir, dir );
+   off = angle_diff(rdir, dir);
    if (FABS(off) > swivel) {
       if (off > 0.)
          rdir = dir - swivel;
       else
          rdir = dir + swivel;
    }
+
+   /* If manual aiming is closer to accurate than auto-aiming, use the
+    * manual aiming direction. */
+   if (FABS(angle_diff(rdir, adir)) > FABS(angle_diff(dir, adir)))
+      rdir = dir;
 
    return rdir;
 }
