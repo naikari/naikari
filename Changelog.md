@@ -95,6 +95,9 @@
   interrupt e.g. attempts to bribe pilots or attempts to refuel
   needlessly, and introducing the possibility of accidentally paying an
   extra fee for the exact same information).
+* Doubled the range that escorts consider to be "close" (to coincide
+  with the increased common weapon range).
+* Hired escorts now use the same AI as fighter bay escorts.
 
 ### Bugfixes
 
@@ -126,6 +129,7 @@
 * Fixed a memory leak caused by the escort command menu.
 * Patched a flaw in the AI code that may fix odd cases of AI pilots
   getting stuck rotating forever when trying to do certain tasks.
+* Fixed Akios Station being listed as Class 0 when it should be Class 1.
 
 ## 0.5.2
 
