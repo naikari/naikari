@@ -127,7 +127,7 @@ function __moveto_precise ()
       ai.accel()
 
    -- Need to start braking
-   elseif dist < bdist then
+   elseif dist <= bdist then
       ai.pushsubtask("__subbrake")
    end
 end
@@ -180,7 +180,7 @@ function __moveto_generic( target, dir, brake, subtask )
       ai.accel()
 
    -- Need to start braking
-   elseif dist < bdist then
+   elseif dist <= bdist then
       ai.poptask()
       if brake then
          ai.pushtask("brake")
@@ -423,7 +423,7 @@ function __landgo ()
       ai.accel()
 
    -- Need to start braking
-   elseif dist < bdist then
+   elseif dist <= bdist then
       ai.pushsubtask( "__landstop" )
    end
 
@@ -609,7 +609,7 @@ function __run_landgo ()
    local bdist    = ai.minbrakedist()
    local plt      = ai.pilot()
 
-   if dist < bdist then -- Need to start braking
+   if dist <= bdist then -- Need to start braking
       ai.pushsubtask( "__landstop" )
    else
       local dozigzag = false
@@ -666,10 +666,10 @@ function hyperspace ()
    ai.pushsubtask( "__hyp_approach", pos )
 end
 function __hyp_approach ()
-   local target   = ai.subtaskdata()
+   local target = ai.subtaskdata()
    local dir
-   local dist     = ai.dist( target )
-   local bdist    = ai.minbrakedist()
+   local dist = ai.dist(target)
+   local bdist = ai.minbrakedist()
 
    -- 2 methods for dir
    if not mem.careful or dist < 3*bdist then
@@ -682,7 +682,7 @@ function __hyp_approach ()
    if dir < 10 and dist > bdist then
       ai.accel()
    -- Need to start braking
-   elseif dist < bdist then
+   elseif dist <= bdist then
       if ai.instantJump() then
          ai.pushsubtask("__hyp_jump")
       else
@@ -750,7 +750,7 @@ function board ()
    local bdist = ai.minbrakedist(target)
 
    -- See if must brake or approach
-   if dist < bdist then
+   if dist <= bdist then
       ai.pushsubtask( "__boardstop", target )
    elseif dir < 10 then
       ai.accel()
@@ -826,7 +826,7 @@ function refuel ()
    local bdist = ai.minbrakedist(target)
 
    -- See if must brake or approach
-   if dist < bdist then
+   if dist <= bdist then
       ai.pushsubtask( "__refuelstop", target )
    elseif dir < 10 then
       ai.accel()

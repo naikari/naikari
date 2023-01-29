@@ -2362,21 +2362,23 @@ static int aiL_land( lua_State *L )
 /**
  * @brief Tries to enter hyperspace.
  *
- *    @luatreturn number|nil Distance if too far away.
+ *    @luatreturn number|nil nil on success, -1 if too far away, -2 if
+ *       hyperdrive is offline, -3 if too little fuel.
  *    @luafunc hyperspace
  */
 static int aiL_hyperspace( lua_State *L )
 {
-   int dist;
+   int ret;
 
-   dist = space_hyperspace(cur_pilot);
-   if (dist == 0.) {
+   ret = space_hyperspace(cur_pilot);
+   if (ret == 0) {
       pilot_shootStop( cur_pilot, 0 );
       pilot_shootStop( cur_pilot, 1 );
-      return 0;
+      lua_pushnil(L);
+      return 1;
    }
 
-   lua_pushnumber(L,dist);
+   lua_pushnumber(L, ret);
    return 1;
 }
 
