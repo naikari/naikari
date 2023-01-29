@@ -284,7 +284,9 @@ int escorts_clear( Pilot *parent )
 int escort_playerCommand( Pilot *e )
 {
    int i;
-   const char *title, *caption, *ret;
+   const char *title, *caption;
+   char *choice;
+   int ret;
 
    /* "Attack My Target" order is omitted deliberately since e is your
     * target, making "Attack My Target" a useless command. */
@@ -303,30 +305,34 @@ int escort_playerCommand( Pilot *e )
    title = _("Escort Orders");
    caption = _("Select the order to give to this escort.");
 
-   dialogue_makeChoice( title, caption, nopts );
+   dialogue_makeChoice(title, caption, nopts);
    for (i=0; i<nopts; i++) {
-      dialogue_addChoice( title, caption, opts[i] );
+      dialogue_addChoice(title, caption, opts[i]);
    }
 
-   ret = dialogue_runChoice();
-   if (ret != NULL) {
-      if (strcmp(ret, opts[0]) == 0) { /* Hold position */
+   ret = 1;
+   choice = dialogue_runChoice();
+
+   if (choice != NULL) {
+      if (strcmp(choice, opts[0]) == 0) { /* Hold position */
          pilot_msg(player.p, e, "e_hold", 0);
          player_message(_("#F%s#0: Holding formation."), e->name);
-         return 0;
+         ret = 0;
       }
-      else if (strcmp(ret, opts[1]) == 0) { /* Return to ship */
+      else if (strcmp(choice, opts[1]) == 0) { /* Return to ship */
          pilot_msg(player.p, e, "e_return", 0);
          player_message(_("#F%s:#0 Returning to ship."), e->name);
-         return 0;
+         ret = 0;
       }
-      else if (strcmp(ret, opts[2]) == 0) { /* Clear orders */
+      else if (strcmp(choice, opts[2]) == 0) { /* Clear orders */
          pilot_msg(player.p, e, "e_clear", 0);
          player_message(_("#F%s:#0 Clearing orders."), e->name);
-         return 0;
+         ret = 0;
       }
    }
-   return 1;
+
+   free(choice);
+   return ret;
 }
 
 
