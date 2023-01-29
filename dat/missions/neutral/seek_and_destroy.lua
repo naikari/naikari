@@ -251,7 +251,6 @@ function accept ()
    misn.accept()
 
    stage = 0
-   increment = false
    last_sys = system.cur()
    jumphook = hook.enter("enter")
    hailhook = hook.hail("hail")
@@ -265,12 +264,6 @@ end
 
 function enter ()
    hailed = {}
-
-   -- Increment the target if needed
-   if increment then
-      increment = false
-      cursys = cursys + 1
-   end
 
    if stage <= 2 and system.cur() == mysys[cursys] then
       -- This system will contain the pirate
@@ -582,11 +575,11 @@ function clue_bar()
    misn.npcRm(mynpc)
 end
 
-function next_sys ()
-   misn.markerMove (marker, mysys[cursys+1])
-   osd_msg[1] = fmt.f(osd_msg1_r, {system=mysys[cursys+1]:name()})
+function next_sys()
+   cursys = cursys + 1
+   misn.markerMove (marker, mysys[cursys])
+   osd_msg[1] = fmt.f(osd_msg1_r, {system=mysys[cursys]:name()})
    misn.osdCreate(osd_title, osd_msg)
-   increment = true
 end
 
 function player_flee ()
