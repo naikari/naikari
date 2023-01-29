@@ -241,11 +241,11 @@ function getCredentials(edata)
 #nShip:#0 {ship}
 #nSpeed:#0 {speed} mAU/s
 #nDeposit:#0 {deposit}
-#nRoyalty:#0 {royalty:.1f}% of mission earnings
+#nRoyalty:#0 {royalty:.1f}% of earnings
 
 #nYour speed:#0 {plspeed:.0f} mAU/s
 #nMoney:#0 {plmoney}
-#nCurrent total royalties:#0 {plroyalties:.1f}% of mission earnings]])
+#nCurrent total royalties:#0 {plroyalties:.1f}% of earnings]])
 
    local credits, scredits = player.credits(2)
    local plspeed = player.pilot():stats().speed_max
@@ -655,7 +655,7 @@ function approachPilot(npc_id)
 
 "The deposit is paid up-front when you hire me. It's partially refundable if you terminate my employment while landed, with the refund amount based on how much in total I have been paid in royalties.
 
-"The royalty is simply a percentage of your mission earnings I will take as payment each time you go on a mission. So for example, since my royalty is {royalty:.1f}%, that means if you earn {credits} from a mission while I am employed by you, you will have to pay me {payment}."]])
+"The royalty is simply a percentage of your earnings I will take as payment each time you get paid for something like a mission or a bounty hunt. So for example, since my royalty is {royalty:.1f}%, that means if you earn {credits} from a mission while I am employed by you, you will have to pay me {payment}."]])
 
    local pdata = npcs[npc_id]
    if pdata == nil then
@@ -687,7 +687,7 @@ function approachPilot(npc_id)
          return
       end
       if getTotalRoyalties() + pdata.royalty > 1 then
-         if not tk.yesno("", _("Hiring this pilot will lead to you paying more in royalties than you earn from missions, meaning you will lose credits when doing missions. Are you sure you want to hire this pilot?")) then
+         if not tk.yesno("", _("Hiring this pilot will lead to you paying more in royalties than you earn, meaning you will lose credits any time you get paid. Are you sure you want to hire this pilot?")) then
             return
          end
       end
