@@ -1068,6 +1068,10 @@ int faction_isPlayerFriend(factionId_t f)
    Faction *faction;
    int r;
 
+   /* Player faction is always friends with the player. */
+   if (f == FACTION_PLAYER)
+      return 1;
+
    fsp = faction_getStackPos(f);
    if (fsp < 0) {
       /* This warning is disabled because it produces false positives
@@ -1123,6 +1127,10 @@ int faction_isPlayerEnemy(factionId_t f)
    int fsp;
    Faction *faction;
    int r;
+
+   /* Player faction is never enemies with the player. */
+   if (f == FACTION_PLAYER)
+      return 0;
 
    fsp = faction_getStackPos(f);
    if (fsp < 0) {
