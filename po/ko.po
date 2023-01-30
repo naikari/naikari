@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-01-29 03:53-0500\n"
+"POT-Creation-Date: 2023-01-30 14:07-0500\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -20906,8 +20906,6 @@ msgstr "저 여기서 나가요."
 #. Finish up creation
 #. require("ai/personality/patrol") -- Messes up the ai
 #. Do not distress
-#. Settings
-#. This is the amount of waypoints the pilot will pass through before leaving the system
 #.
 #. ===FLEE AI===
 #. Mission specific AI to make pilots leave the system immediately.
@@ -22764,11 +22762,11 @@ msgid ""
 "#nShip:#0 {ship}\n"
 "#nSpeed:#0 {speed} mAU/s\n"
 "#nDeposit:#0 {deposit}\n"
-"#nRoyalty:#0 {royalty:.1f}% of mission earnings\n"
+"#nRoyalty:#0 {royalty:.1f}% of earnings\n"
 "\n"
 "#nYour speed:#0 {plspeed:.0f} mAU/s\n"
 "#nMoney:#0 {plmoney}\n"
-"#nCurrent total royalties:#0 {plroyalties:.1f}% of mission earnings"
+"#nCurrent total royalties:#0 {plroyalties:.1f}% of earnings"
 msgstr ""
 
 #. Clean up dead escorts so it doesn't build up, and create NPCs for
@@ -22781,7 +22779,15 @@ msgstr ""
 #. For older saves: populate the speed value now.
 #. Trigger a hook to allow missions to do things with the
 #. escorts.
+#. If the player failed to pay the full royalty, cause an escort to
+#. disband.
 #: dat/events/control/escorts.lua:465
+msgid ""
+"{escort} has left your wing because of your failure to pay the agreed upon "
+"royalty."
+msgstr ""
+
+#: dat/events/control/escorts.lua:483
 msgid ""
 "{escort} has left your wing because you now have a negative standing with "
 "the {faction} faction."
@@ -22789,28 +22795,28 @@ msgstr ""
 
 #. Pilot is no longer employed by the player
 #. Pilot was hailed by the player
-#: dat/events/control/escorts.lua:504 dat/events/control/escorts.lua:506
-#: dat/events/control/escorts.lua:605 dat/events/control/escorts.lua:620
+#: dat/events/control/escorts.lua:530 dat/events/control/escorts.lua:532
+#: dat/events/control/escorts.lua:650 dat/events/control/escorts.lua:665
 msgid "Fire pilot"
 msgstr ""
 
-#: dat/events/control/escorts.lua:504 dat/events/control/escorts.lua:511
+#: dat/events/control/escorts.lua:530 dat/events/control/escorts.lua:537
 msgid "Issue Order"
 msgstr ""
 
-#: dat/events/control/escorts.lua:504 dat/events/control/escorts.lua:605
-#: dat/events/control/escorts.lua:672
+#: dat/events/control/escorts.lua:530 dat/events/control/escorts.lua:650
+#: dat/events/control/escorts.lua:717
 msgid "Do nothing"
 msgstr ""
 
-#: dat/events/control/escorts.lua:507
+#: dat/events/control/escorts.lua:533
 #, fuzzy
 msgid ""
 "Are you sure you want to fire {pilot}? This cannot be undone and you will "
 "not get any of the deposit back."
 msgstr "Naev를 나가겠습니까?"
 
-#: dat/events/control/escorts.lua:510
+#: dat/events/control/escorts.lua:536
 msgid "You have fired {pilot}."
 msgstr ""
 
@@ -22861,28 +22867,28 @@ msgstr ""
 #.
 #. Example usage: my_enum = enumerate({"first", "second", "third"})
 #. Example usage: print(my_enum.first)
-#: dat/events/control/escorts.lua:512 dat/scripts/escorthelper.lua:23
+#: dat/events/control/escorts.lua:538 dat/scripts/escorthelper.lua:23
 #: src/escort.c:305
 msgid "Escort Orders"
 msgstr ""
 
-#: dat/events/control/escorts.lua:513 src/escort.c:306
+#: dat/events/control/escorts.lua:539 src/escort.c:306
 msgid "Select the order to give to this escort."
 msgstr ""
 
-#: dat/events/control/escorts.lua:514 dat/events/control/escorts.lua:516
+#: dat/events/control/escorts.lua:540 dat/events/control/escorts.lua:542
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:33
 #: src/escort.c:294
 msgid "Hold Formation"
 msgstr ""
 
-#: dat/events/control/escorts.lua:514 dat/events/control/escorts.lua:519
+#: dat/events/control/escorts.lua:540 dat/events/control/escorts.lua:545
 #: dat/scripts/escorthelper.lua:25 dat/scripts/escorthelper.lua:36
 #: src/escort.c:295
 msgid "Return To Ship"
 msgstr ""
 
-#: dat/events/control/escorts.lua:514 dat/events/control/escorts.lua:522
+#: dat/events/control/escorts.lua:540 dat/events/control/escorts.lua:548
 #: dat/scripts/escorthelper.lua:26 dat/scripts/escorthelper.lua:39
 #: src/escort.c:296
 msgid "Clear Orders"
@@ -22895,7 +22901,7 @@ msgstr ""
 #. "Cancel"
 #. Only "Cancel" remains, nothing to do.
 #. Run callback.
-#: dat/events/control/escorts.lua:515 dat/rescue.lua:46 dat/rescue.lua:60
+#: dat/events/control/escorts.lua:541 dat/rescue.lua:46 dat/rescue.lua:60
 #: dat/rescue.lua:121 dat/rescue.lua:174 dat/scripts/escorthelper.lua:26
 #: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:297 src/map_find.c:246
 #: src/options.c:280 src/options.c:792 src/options.c:912 src/options.c:1174
@@ -22903,23 +22909,23 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: dat/events/control/escorts.lua:518
+#: dat/events/control/escorts.lua:544
 #, lua-format
 msgid "#F%s:#0 Holding formation."
 msgstr ""
 
-#: dat/events/control/escorts.lua:521 src/escort.c:324
+#: dat/events/control/escorts.lua:547 src/escort.c:324
 #, c-format, lua-format
 msgid "#F%s:#0 Returning to ship."
 msgstr ""
 
-#: dat/events/control/escorts.lua:524 src/escort.c:329
+#: dat/events/control/escorts.lua:550 src/escort.c:329
 #, c-format, lua-format
 msgid "#F%s:#0 Clearing orders."
 msgstr ""
 
 #. Must have an attacker
-#: dat/events/control/escorts.lua:541
+#: dat/events/control/escorts.lua:567
 msgid "{pilot} has left your wing and turned against you!"
 msgstr ""
 
@@ -22927,48 +22933,48 @@ msgstr ""
 #. Must have an attacker
 #. Since all the escorts will turn on the player, we might as well
 #. just have them all disband at once and attack.
-#: dat/events/control/escorts.lua:567
+#: dat/events/control/escorts.lua:593
 msgid ""
 "You have caused infighting within your wing, causing all of your escorts to "
 "quit and turn on you in retaliation!"
 msgstr ""
 
 #. Escort got killed
-#: dat/events/control/escorts.lua:581
+#: dat/events/control/escorts.lua:607
 msgid "{pilot} [docked]"
 msgstr ""
 
-#: dat/events/control/escorts.lua:585
+#: dat/events/control/escorts.lua:611
 msgid "This is one of the pilots currently under your wing."
 msgstr ""
 
-#: dat/events/control/escorts.lua:599 dat/events/control/escorts.lua:606
+#: dat/events/control/escorts.lua:644 dat/events/control/escorts.lua:651
 msgid "Dock pilot"
 msgstr ""
 
-#: dat/events/control/escorts.lua:601 dat/events/control/escorts.lua:615
+#: dat/events/control/escorts.lua:646 dat/events/control/escorts.lua:660
 msgid "Undock pilot"
 msgstr ""
 
-#: dat/events/control/escorts.lua:608
+#: dat/events/control/escorts.lua:653
 msgid ""
 "Are you sure you want to dock {pilot}? They will still be paid royalties, "
 "but will not join you in space until you undock them."
 msgstr ""
 
-#: dat/events/control/escorts.lua:626
+#: dat/events/control/escorts.lua:671
 msgid "You will be refunded the full {deposit} deposit."
 msgstr ""
 
-#: dat/events/control/escorts.lua:630
+#: dat/events/control/escorts.lua:675
 msgid "You will be refunded {refund} of the {deposit} deposit."
 msgstr ""
 
-#: dat/events/control/escorts.lua:635
+#: dat/events/control/escorts.lua:680
 msgid "You will not be refunded any of the {deposit} deposit."
 msgstr ""
 
-#: dat/events/control/escorts.lua:640
+#: dat/events/control/escorts.lua:685
 #, fuzzy
 msgid ""
 "Are you sure you want to fire {pilot}? This cannot be undone. "
@@ -22977,7 +22983,7 @@ msgstr "Naev를 나가겠습니까?"
 
 #. We just set alive to false for now and let them get cleaned
 #. up next time we land.
-#: dat/events/control/escorts.lua:654
+#: dat/events/control/escorts.lua:699
 msgid ""
 "\"Of course. There are two parts: the deposit, and the royalty.\n"
 "\n"
@@ -22985,31 +22991,32 @@ msgid ""
 "if you terminate my employment while landed, with the refund amount based on "
 "how much in total I have been paid in royalties.\n"
 "\n"
-"\"The royalty is simply a percentage of your mission earnings I will take as "
-"payment each time you go on a mission. So for example, since my royalty is "
-"{royalty:.1f}%, that means if you earn {credits} from a mission while I am "
-"employed by you, you will have to pay me {payment}.\""
+"\"The royalty is simply a percentage of your earnings I will take as payment "
+"each time you get paid for something like a mission or a bounty hunt. So for "
+"example, since my royalty is {royalty:.1f}%, that means if you earn "
+"{credits} from a mission while I am employed by you, you will have to pay me "
+"{payment}.\""
 msgstr ""
 
-#: dat/events/control/escorts.lua:672 dat/events/control/escorts.lua:673
+#: dat/events/control/escorts.lua:717 dat/events/control/escorts.lua:718
 msgid "Hire pilot"
 msgstr ""
 
-#: dat/events/control/escorts.lua:672 dat/events/control/escorts.lua:675
-#: dat/events/control/escorts.lua:682
+#: dat/events/control/escorts.lua:717 dat/events/control/escorts.lua:720
+#: dat/events/control/escorts.lua:727
 msgid "Explain rates"
 msgstr ""
 
-#: dat/events/control/escorts.lua:686
+#: dat/events/control/escorts.lua:731
 #, fuzzy
 msgid "You don't have enough credits to pay for this pilot's deposit."
 msgstr "\"나는 여분의 연료가 없다.\""
 
-#: dat/events/control/escorts.lua:690
+#: dat/events/control/escorts.lua:735
 msgid ""
-"Hiring this pilot will lead to you paying more in royalties than you earn "
-"from missions, meaning you will lose credits when doing missions. Are you "
-"sure you want to hire this pilot?"
+"Hiring this pilot will lead to you paying more in royalties than you earn, "
+"meaning you will lose credits any time you get paid. Are you sure you want "
+"to hire this pilot?"
 msgstr ""
 
 #.
@@ -35188,7 +35195,7 @@ msgstr "프론티어 시스템"
 #. If target is quicker, no fear
 #. Spawn NPCs at bar, that give info
 #. The player ask for clues in the bar
-#: dat/missions/neutral/seek_and_destroy.lua:615
+#: dat/missions/neutral/seek_and_destroy.lua:616
 msgid "{credits} awarded for successfully hunting down {pilot}."
 msgstr ""
 
@@ -55551,7 +55558,7 @@ msgstr ""
 msgid "Unknown weapon status for '%s'"
 msgstr ""
 
-#: src/weapon.c:510 src/weapon.c:667 src/weapon.c:1762
+#: src/weapon.c:510 src/weapon.c:667 src/weapon.c:1768
 msgid "Unknown weapon layer!"
 msgstr ""
 
@@ -55565,23 +55572,23 @@ msgstr ""
 msgid "Weapon of type '%s' has no render implemented yet!"
 msgstr ""
 
-#: src/weapon.c:1709
+#: src/weapon.c:1715
 #, c-format
 msgid "Weapon of type '%s' has no create implemented yet!"
 msgstr ""
 
-#: src/weapon.c:1745
+#: src/weapon.c:1751
 msgid "Trying to create a Weapon from a non-Weapon type Outfit"
 msgstr ""
 
-#: src/weapon.c:1805
+#: src/weapon.c:1811
 msgid "Trying to create a Beam Weapon from a non-beam outfit."
 msgstr ""
 
-#: src/weapon.c:1825 src/weapon.c:1872 src/weapon.c:2022
+#: src/weapon.c:1831 src/weapon.c:1878 src/weapon.c:2028
 msgid "Invalid WEAPON_LAYER specified"
 msgstr ""
 
-#: src/weapon.c:1878
+#: src/weapon.c:1884
 msgid "Trying to remove beam with ID 0!"
 msgstr ""

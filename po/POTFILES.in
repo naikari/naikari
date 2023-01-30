@@ -2093,7 +2093,6 @@ dat/ai/empire_idle.lua
 dat/ai/empire_norun.lua
 dat/ai/empire_refuel.lua
 dat/ai/escort.lua
-dat/ai/escort_player.lua
 dat/ai/flee.lua
 dat/ai/flf.lua
 dat/ai/flf_norun.lua
