@@ -101,6 +101,13 @@
 * Auto-aiming now automatically disengages if simply shooting forward is
   more accurate for a given bullet. This ensures that the auto-aiming
   system only ever *increases* accuracy, and never reduces accuracy.
+* Improved the hired escorts explanatory text for how royalties work.
+* Hired escorts now have a chance to disband when their payment is less
+  than their promised royalty (which can happen if you run out of
+  credits *and* you hire so many escorts that the total royalties you
+  pay is greater than 100%).
+* The Seek and Destroy mission will no longer spawn NPCs at Class 1
+  stations (as these are restricted military stations).
 
 ### Bugfixes
 
