@@ -108,6 +108,10 @@
   pay is greater than 100%).
 * The Seek and Destroy mission will no longer spawn NPCs at Class 1
   stations (as these are restricted military stations).
+* Changed the music used in the credits to be the same as the music used
+  in the main menu.
+* Increased the Goddard and Dvaered Goddard time constant from 175% to
+  200%.
 
 ### Bugfixes
 
