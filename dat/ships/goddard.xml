@@ -7,7 +7,7 @@
  <class>Cruiser</class>
  <rdr_scale>2</rdr_scale>
  <price>6000000</price>
- <time_mod>1.75</time_mod>
+ <time_mod>2</time_mod>
  <trail_generator x="-17" y="20" h="0" />
  <trail_generator x="-20" y="39" h="0" />
  <trail_generator x="-17" y="-20" h="0" />
