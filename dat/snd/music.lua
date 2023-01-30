@@ -137,7 +137,7 @@ end
 -- @brief Chooses Credit songs.
 --]]
 function choose_credits ()
-   return playIfNotPlaying( "empire1" )
+   return playIfNotPlaying("machina")
 end
 
 
