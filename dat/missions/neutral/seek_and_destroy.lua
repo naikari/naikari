@@ -534,7 +534,8 @@ end
 function land ()
    if stage == 2 and target_found then
       player_flee()
-   elseif system.cur() == mysys[cursys] and stage == 0 then
+   elseif system.cur() == mysys[cursys] and stage == 0
+         and planet.cur():class() ~= "1" then
       know = (rnd.rnd() < 0.7)
       tells = (rnd.rnd() < 0.2)
       mynpc = misn.npcAdd("clue_bar", npc_desc, portrait.get("Pirate"), bar_desc)
