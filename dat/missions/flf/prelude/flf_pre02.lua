@@ -67,7 +67,7 @@ He sighs once again, then stands up. "That said, if you really do want to help, 
 answer_text.neutral = _([[You tell the man that you are just a fellow pilot who helped someone in need. You say that you are neutral on the conflict between House Dvaered and the FLF and promise not to rat out the FLF to the authorities. He frowns and his face becomes filled with rage. "Neutral?! How could you be neutral in this? We in the Frontier are just struggling to live our damn lives! You seriously believe the Dvaered propaganda about us as a 'terrorist organization' without question?!" You knew you weren't trusted, but you certainly didn't expect this level of anger. You open your mouth to answer, but not knowing what to say, you close it again and your eyes shift to the floor below you. Around you, you hear murmurs of agreement; it seems his outburst has attracted an audience, and this audience is firmly against you.
 
 The man lets out another sigh, then stands up. "If it were up to me, I'd exile you from this station right now if not imprison you. Since I can't do that, though, I'll give you a deal. I'm about to go on some errands in the Frontier in a couple hours. Just the everyday stuff the Dvaereds don't tell you we're involved with." The offer takes you by surprise, as does the mention of "everyday stuff" which the Dvaereds don't talk about. Could it be that the FLF does something other than fighting Dvaered ships? You stand there silently, transfixed by the man's eyes as you consider his sudden offer. "Well?" he says, breaking you out of your trance. "I'm doing you a pretty big damn favor with this offer. Are you gonna take me up on it or not?"]])
-answer_text.learn = _([[You tell the man that you don't know much about the Frontier or the FLF, given your background having been raised in the Empire, and that you wish to learn more about the Frontier and the struggles of the FLF. As he raises an eyebrow, you add that you have no ill intent and won't tell anyone about Sindbad. The man pauses. "Uh, you know we fight for the Frontier, right? Up here in the nebula is entirely the wrong place to learn about our struggle for the Frontier. Didn't you consider going to, you know, the Frontier?"
+answer_text.learn = _([[You tell the man that you don't know much about the Frontier or the FLF, given your background having been raised in the Empire, and that you wish to learn more about the Frontier and the struggles of the FLF. The man raises an eyebrow. "Uh, what? You said it yourself, the Frontier is what we're fighting for. Up here in the nebula is entirely the wrong place to learn about our struggle. Didn't you consider going to, you know, the Frontier?"
 
 You open your mouth to speak, but Flint raises his hand in indication that he doesn't want to hear it. "Look, assuming you're not lying to me, you have the right idea. But we're busy in the FLF. We're not here to be your damn teacher." He pauses, then stands up. "I'll tell you what: this is a bit of a pain in the ass, but since I have work to do in the Frontier that'll teach you a thing or two, you can accompany me on some errands. Are you interested?"]])
 
@@ -90,7 +90,7 @@ As Flint walks toward the landing bay, you ponder his words. So-called "algae fa
 response_yes.neutral = _([["Good. Let's nip that shitty perception you have of what we're about in the bud. We'll first be going to my homeworld, {planet}, to help out on the algae farm. Yeah, not exactly the violence you expect from us based on the distorted picture the Dvaereds give you, eh?
 
 "The name's Flint, by the way. Flint as in if you try to turn me over to the Dvaereds, I'll light a fire in your ass." As the FLF soldiers around you chuckle at Flint's remark, you tell Flint your own name, then promise that you won't double-cross him. "Good. I'll meet you at the landing bay. I would fly my own ship, but you being neutral means that we can avoid detection from the Dvaereds and make better time. Besides, I don't trust you to have my back. At least if I'm on your ship, I can kill you and steal the ship, eh?" You let out a nervous laugh as he turns and walks toward the direction of the landing bay. You begin to wonder just what this so-called "algae farm" is about. You thought the FLF was just a military group, but you decide to keep an open mind.]])
-response_yes.learn = _([["Alright, then. I'm sure this'll be the learning experience you were looking for. Don't you forget, though, I'm doing you a favor. Our destination is my homeworld, {planet}.
+response_yes.learn = _([["Alright, then. I'm sure this'll be the learning experience you were looking for. Don't you forget, though, I'm doing you a favor. Our destination is my homeworld, {planet}. I'll let you do the flying.
 
 "Oh, my name's Flint, by the way. And, uh, this should go without saying, but I still don't trust you, and I'm prepared to defend myself if I need to. We FLF soldiers are pretty damn good with a laser gun." He playfully winks. You laugh nervously, introduce yourself in turn, and promise you won't do anything funny. "Good," he responds with a stern look. "I'll be waiting at the landing bay when you're ready."
 
@@ -124,7 +124,7 @@ homeworld_text.learn = {}
 homeworld_text.learn[1] = _([[As you begin to enter the atmosphere, you notice Flint looking up at a Dvaered formation nearby. "Damn Dvaereds, acting like they own the place.…" The fleet slowly fades from view as you enter the planet's atmosphere. Flint sighs and looks down at the oceanic world. You ask if he could tell you about his homeworld, and he raises his eyebrow, a gesture you've seen before. "Uh, I don't mean to be rude, but you do know you can just read the spaceport planet description, right? That's what it's for, so you can learn about it.
 
 "But, I mean, if you want to know what this planet is to me personally? It's my home. It's that simple. And we have a lot of trouble with exports thanks to the damn Dvaereds all over the place, always harassing innocent people and accusing them of being 'FLF terrorists'. I don't even want to think about what they'd do if they annexed us. Probably would destroy everything we have so they could mine that shitty ore beneath the surface."]])
-homeworld_text.learn[2] = _([[After you finish landing, Flint takes you what looks like some sort of algae farm, where he softly introduces you to workers as "a potential new recruit to the cause" and explains that you're volunteering for the algae farm. The workers note their surprise at an outsider volunteer, but nonetheless you were welcomed and assigned a number of tasks before you know it.
+homeworld_text.learn[2] = _([[After you finish landing, Flint takes you to what looks like some sort of algae farm, where he softly introduces you to workers as "a potential new recruit to the cause" and explains that you're volunteering for the algae farm. The workers note their surprise at an outsider volunteer, but nonetheless you are welcomed and assigned a number of tasks before you know it.
 
 While you work, you hear a harrowing tale from one of the workers, who appears to be an adolescent, no older than 16. Their mother, who was an official Frontier peace-keeping volunteer, was accused of being with the FLF after getting into an argument with a Dvaered pilot who was harassing a civilian, and during the argument, the Dvaered opened fire and killed her.]])
 homeworld_text.learn[3] = _([[Eventually, the work is finished and you leave the site incredibly dirty, but nonetheless in high spirits. When you arrive at the spaceport and Flint starts to return to your ship, he tells you that your next stop will be {planet} and that he's ready to leave when you are.]])
@@ -179,13 +179,13 @@ norpin_text[1] = _([[As you exit your ship after landing, several faces warmly g
 Flint turns to you. "Ah, yeah, that's right, I should introduce you. These are some of my comrades. They work here at the shipyard." You introduce yourself, and Flint chats with them for a little longer before they go back to their jobs.]])
 norpin_text[2] = _([[The two of you begin approaching the bar. "You may have heard rumors that the shipyard here supplies ships for us," Flint says. "That's actually true, but this shipyard also supplies ships for the Frontier volunteer peacekeeping force. That's another reason the Dvaereds put Raglan Outpost where they did. It's a choke point; right now, it makes it much harder for FLF ships to be supplied by this shipyard, which is why we also build ships on Sindbad. But if the Dvaereds go to war with the Frontier officially, that will be the case for Frontier ships as well.
 
-"The Dvaereds are scared of us, as they should be." You and Flint reach the bar, where you see someone in a Dvaered military outfit harassing a visibly nervous bartender, accompanied by another person in a Dvaered military outfit. "Well, apparently this guy clearly isn't scared enough… but that's just about to change. Pay close attention, {player}."]])
+"The Dvaereds are scared of us, as they should be." You and Flint reach the bar, where you see someone in a Dvaered military outfit harassing a visibly nervous bartender, accompanied by another person in a Dvaered military outfit. "Well, clearly this asshole isn't scared enough.…"]])
 norpin_text[3] = _([[As if on cue, a group of three visibly angry patrons steps up behind the Dvaered soldiers. "It seems we have ourselves a problem here," one of them blurts out as the bartender sighs in relief and turns to look away from the scene.
 
 The Dvaered soldiers turn to face the patrons. "Oh yeah? You'd dare talk to someone of my standing like that? I'll have you know—" One of the patrons interrupts the soldier with a punch in the face, and a scuffle breaks out between the three patrons and the two soldiers. Eventually, a fourth and fifth patron join the scuffle against the Dvaered soldiers. Overwhelmed, the Dvaered soldiers flee from the bar, Flint grins, and the bartender finally turns back around, feigning ignorance.
 
 With the commotion over, Flint walks over to the patrons who started the scene, greets them, and gives them all high-fives. It seems they know each other, and he introduces you to them.]])
-norpin_text[4] = _([[You and Flint walk out of the bar with the group. Flint speaks to you. "That's not the biggest part of our job, of course, but it's certainly the hardest. We don't let the Dvaered oppressors intimidate us or our Frontier brethren. So then, {player}, what do you think?" You think about your answer for a moment, but you don't have long before you and the group spot the same two Dvaered soldiers you spotted at the bar. "Get away from the group," he says to you. "This could get ugly and we'll probably be separated. Don't worry about me, I've got plenty of connections here and I'll be able to get off with my own ship no problem." He grins. "I'm sure I'll see you again, one way or another."
+norpin_text[4] = _([[You and Flint walk out of the bar with the group. Flint speaks to you. "That's not the biggest part of our job, of course, but it's certainly the hardest. We don't let the Dvaered oppressors intimidate us or our Frontier brethren." Suddenly you and the group spot the same two Dvaered soldiers you spotted at the bar. "Get away from the group," Flint says to you. "This could get ugly and we'll probably be separated. There's no way in hell I trust you enough to not hinder us in this situation. Don't worry about me, I've got plenty of connections here and I'll be able to get off with my own ship no problem." He grins. "I'm sure I'll see you again, one way or another."
 
 You do as he says and leave the group, placing yourself inconspicuously on a bench a distance away. You manage to do this not a moment too soon, it seems, as immediately afterwards the Dvaereds take notice of the group. You hear some back and forth, but can't make out what is being said. What you do notice, however, is the Dvaereds drawing what appear to be laser guns.]])
 norpin_text[5] = _([[The FLF group immediately responds by drawing their own laser guns and before you know it, a gunfight ensues. Someone from the FLF side is hit first, taking a bolt to the leg, followed by one of the Dvaereds getting hit in the stomache, knocking him out. You immediately see a difference between the two sides as while Flint helps his now limping comrade escape while the others continue drawing attention from the uninjured Dvaered, the uninjured Dvaered continues shooting the remainder of the FLF group without so much as a glance to the injured Dvaered.
@@ -279,6 +279,8 @@ function land ()
       for i, s in ipairs(homeworld_text[motive]) do
          if i == #homeworld_text[motive] then
             s = fmt.f(s, {player=player.name(), planet=invpla:name()})
+         else
+            s = fmt.f(s, {player=player.name()})
          end
          tk.msg("", s)
       end
@@ -290,6 +292,8 @@ function land ()
       for i, s in ipairs(jorlan_text[motive]) do
          if i == #jorlan_text[motive] then
             s = fmt.f(s, {player=player.name(), planet=resistpla:name()})
+         else
+            s = fmt.f(s, {player=player.name()})
          end
          tk.msg("", s)
       end
@@ -299,9 +303,7 @@ function land ()
       misn.markerMove(marker, resistsys)
    elseif stage == 3 and planet.cur() == resistpla then
       for i, s in ipairs(norpin_text) do
-         if i == #norpin_text then
-            s = fmt.f(s, {player=player.name(), planet=resistpla:name()})
-         end
+         s = fmt.f(s, {player=player.name(), planet=resistpla:name()})
          tk.msg("", s)
       end
 
