@@ -27,6 +27,20 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
+    <release version="v0.6.0" date="2023-02-07" type="stable">
+      <description>
+        <ul>
+          <li>New outfits.</li>
+          <li>Expanded the "hidden tutorial" at the beginning.</li>
+          <li>Added "hypergates" (long-distance jump gates).</li>
+          <li>Collective is now neutral standing by default.</li>
+          <li>Added support for saving and loading arbitrary snapshots.</li>
+          <li>Improved various missions.</li>
+          <li>Improved the AI in a couple places.</li>
+        </ul>
+      </description>
+      <url>https://github.com/naikari/naikari/releases/tag/v0.6.0</url>
+    </release>
     <release version="v0.5.2" date="2023-01-01" type="stable">
       <description>
         <p>Fixed breakage on some GPUs.</p>
