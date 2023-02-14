@@ -3,7 +3,7 @@
 
 ![Naikari](https://naikari.github.io/images/logo.png)
 
-Naikari is a 2-D space trading and mercenary sandbox game. Its primary
+Naikari is a 2-D freeform space trading and mercenary game. Its primary
 inspirations are [Star Wraith 2](https://archive.org/details/swizzle_demu_SW2),
 [RiftSpace](https://archive.org/details/RiftSpace), and to a lesser extent,
 [Endless Sky](https://endless-sky.github.io). It may also incidentally be
