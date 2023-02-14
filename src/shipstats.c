@@ -310,7 +310,7 @@ static const ShipStatsLookup ss_lookup[] = {
       NULL),
    A_ELEM(SS_TYPE_A_FUEL_REGEN, fuel_regen,
       N_("%+G kL/s Fuel Regeneration"),
-      N_("%+.2f kL/s Fuel Regeneration")),
+      NULL),
 
    I_ELEM(SS_TYPE_I_CARGO, cargo,
       N_("%+d kt Cargo Space"),

@@ -590,9 +590,10 @@ int pilot_reportSpaceworthy( Pilot *p, char *buf, int bufSize )
          _("Insufficient Energy Regeneration"));
 
    /* Misc. */
-   SPACEWORTHY_CHECK(p->fuel_max < 0, _("Insufficient Fuel Maximum"));
-   SPACEWORTHY_CHECK(p->fuel_consumption < 0,
+   SPACEWORTHY_CHECK(p->fuel_max < 0., _("Insufficient Fuel Maximum"));
+   SPACEWORTHY_CHECK(p->fuel_consumption < 0.,
          _("Insufficient Fuel Consumption"));
+   SPACEWORTHY_CHECK(p->fuel_regen < 0., _("Insufficient Fuel Regeneration"));
    SPACEWORTHY_CHECK(p->cargo_free < 0, _("Insufficient Cargo Space"));
 
    if (buf != NULL) {
@@ -942,11 +943,12 @@ void pilot_calcStats( Pilot* pilot )
    ac = (pilot->armour_max > 0.) ? pilot->armour / pilot->armour_max : 0.;
    sc = (pilot->shield_max > 0.) ? pilot->shield / pilot->shield_max : 0.;
    ec = (pilot->energy_max > 0.) ? pilot->energy / pilot->energy_max : 0.;
-   pilot->armour_max    = pilot->ship->armour;
-   pilot->shield_max    = pilot->ship->shield;
-   pilot->fuel_max      = pilot->ship->fuel;
-   pilot->armour_regen  = pilot->ship->armour_regen;
-   pilot->shield_regen  = pilot->ship->shield_regen;
+   pilot->armour_max = pilot->ship->armour;
+   pilot->shield_max = pilot->ship->shield;
+   pilot->fuel_max = pilot->ship->fuel;
+   pilot->armour_regen = pilot->ship->armour_regen;
+   pilot->shield_regen = pilot->ship->shield_regen;
+   pilot->fuel_regen = pilot->ship->fuel_regen;
    /* Absorption. */
    pilot->dmg_absorb    = pilot->ship->dmg_absorb;
    /* Energy. */
@@ -1039,6 +1041,7 @@ void pilot_calcStats( Pilot* pilot )
    pilot->shield_regen += s->shield_regen;
    pilot->energy_max += s->energy;
    pilot->energy_regen += s->energy_regen;
+   pilot->fuel_regen += s->fuel_regen;
    /* Radar. */
    pilot->rdr_range += s->rdr_range;
    pilot->rdr_jump_range += s->rdr_jump_range;

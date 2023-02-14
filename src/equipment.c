@@ -1704,11 +1704,11 @@ void equipment_updateShips( unsigned int wid, char* str )
          "#nTime Constant:#0 #%c%s%.0f%%#0\n"
          "\n"
          "#nAbsorption:#0 #%c%s%.0f%%\n"
-         "#nShield:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
-         "#nArmor:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
-         "#nEnergy:#0 #%c%s%.0f#0 GJ (#%c%s%.1f#0 GW)\n"
+         "#nShield:#0 #%c%s%.0f#0 GJ; #nRegeneration:#0 #%c%s%.1f#0 GW\n"
+         "#nArmor:#0 #%c%s%.0f#0 GJ; #nRegeneration:#0 #%c%s%.1f#0 GW\n"
+         "#nEnergy:#0 #%c%s%.0f#0 GJ; #nRegeneration:#0 #%c%s%.1f#0 GW\n"
          "#nCargo:#0 %d / #%c%s%d#0 kt\n"
-         "#nFuel:#0 #%c%s%.0f#0 kL (%s)\n"
+         "#nFuel:#0 #%c%s%.0f#0 kL (%s); #nRegeneration:#0 #%c%s%.2f#0 kL/s\n"
          "#nRadar Range:#0 #%c%s%.0f#0 mAU\n"
          "#nJump Detect Range:#0 #%c%s%.0f#0 mAU\n"
          "\n"
@@ -1782,6 +1782,9 @@ void equipment_updateShips( unsigned int wid, char* str )
       EQ_COMP(ship->fuel_max, ship->ship->fuel + ship->ship->stats_array.fuel,
             0, ship->fuel_max < ship->fuel_consumption),
       buf3,
+      EQ_COMP(ship->fuel_regen,
+            ship->ship->fuel_regen + ship->ship->stats_array.fuel_regen,
+            0, ship->fuel_regen < 0.),
       EQ_COMP(ship->rdr_range,
             (ship->ship->rdr_range+ship->ship->stats_array.rdr_range)
                * ship->ship->stats_array.rdr_range_mod,

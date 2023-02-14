@@ -488,11 +488,11 @@ static void ship_update( unsigned int wid )
          "#nTime Constant:#0 %.0f%%\n"
          "\n"
          "#nAbsorption:#0 %.0f%%\n"
-         "#nShield:#0 %.0f / %.0f GJ (%.1f GW)\n"
-         "#nArmor:#0 %.0f / %.0f GJ (%.1f GW)\n"
-         "#nEnergy:#0 %.0f / %.0f GJ (%.1f GW)\n"
+         "#nShield:#0 %.0f / %.0f GJ; #nRegeneration:#0 %.1f GW\n"
+         "#nArmor:#0 %.0f / %.0f GJ; #nRegeneration:#0 %.1f GW\n"
+         "#nEnergy:#0 %.0f / %.0f GJ; #nRegeneration:#0 %.1f GW\n"
          "#nCargo:#0 %d / %d kt\n"
-         "#nFuel:#0 %.0f / %.0f kL (%s)\n"
+         "#nFuel:#0 %.0f / %.0f kL (%s); #nRegeneration:#0 %.2f kL/s\n"
          "#nRadar Range:#0 %.0f mAU\n"
          "#nJump Detect Range:#0 %.0f mAU\n"
          "\n"),
@@ -518,7 +518,7 @@ static void ship_update( unsigned int wid )
          player.p->armour, player.p->armour_max, player.p->armour_regen,
          player.p->energy, player.p->energy_max, player.p->energy_regen,
          pilot_cargoUsed( player.p ), cargo,
-         player.p->fuel, player.p->fuel_max, buf2,
+         player.p->fuel, player.p->fuel_max, buf2, player.p->fuel_regen,
          player.p->rdr_range, player.p->rdr_jump_range);
    window_modifyText(wid, "txtDDesc", buf);
 

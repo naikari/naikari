@@ -2234,7 +2234,7 @@ void pilot_update( Pilot* pilot, double dt )
       }
 
       /* Regen fuel. */
-      pilot->fuel += pilot->stats.fuel_regen * dt;
+      pilot->fuel += pilot->fuel_regen * dt;
       if (pilot->fuel > pilot->fuel_max)
          pilot->fuel = pilot->fuel_max;
 

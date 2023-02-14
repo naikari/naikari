@@ -735,8 +735,9 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
             xml_onlyNodes(cur);
             xmlr_float(cur,"mass",temp->mass);
             xmlr_float(cur,"cpu",temp->cpu);
-            xmlr_int(cur,"fuel",temp->fuel);
-            xmlr_int(cur,"fuel_consumption",temp->fuel_consumption);
+            xmlr_float(cur, "fuel", temp->fuel);
+            xmlr_float(cur, "fuel_consumption", temp->fuel_consumption);
+            xmlr_float(cur, "fuel_regen", temp->fuel_regen);
             xmlr_float(cur,"cargo",temp->cap_cargo);
             xmlr_float(cur,"rdr_range",temp->rdr_range);
             xmlr_float(cur,"rdr_jump_range",temp->rdr_jump_range);

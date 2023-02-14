@@ -234,7 +234,7 @@ void shipyard_update( unsigned int wid, char* str )
             _("\n#nCPU:#0 %.0f TFLOPS"), ship->cpu);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         _("\n#nMass:#0 %.0f kt"), ship->mass);
+         _("\n#nMass:#0 %G kt"), ship->mass);
 
    if (ship->thrust != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,
@@ -255,37 +255,66 @@ void shipyard_update( unsigned int wid, char* str )
       l += scnprintf(&buf[l], sizeof(buf) - l,
             _("\n#nAbsorption:#0 %.0f%%"), ship->dmg_absorb*100.);
 
-   if ((ship->shield != 0.) || (ship->shield_regen != 0.))
+   if (ship->shield != 0.) {
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            _("\n#nShield:#0 %G GJ (%G GW)"),
-            ship->shield, ship->shield_regen);
+            _("\n#nShield:#0 %G GJ"), ship->shield);
+      if (ship->shield_regen != 0.)
+         l += scnprintf(&buf[l], sizeof(buf) - l,
+               p_("ship_shield_regen", "; #nRegeneration:#0 %G GW"),
+               ship->shield_regen);
+   }
+   else if (ship->shield_regen != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nShield Regeneration:#0 %G GW"), ship->shield_regen);
 
-   if ((ship->armour != 0.) || (ship->armour_regen != 0.))
+   if (ship->armour != 0.) {
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            _("\n#nArmor:#0 %G GJ (%G GW)"),
-            ship->armour, ship->armour_regen);
+            _("\n#nArmor:#0 %G GJ"), ship->armour);
+      if (ship->armour_regen != 0.)
+         l += scnprintf(&buf[l], sizeof(buf) - l,
+               p_("ship_armor_regen", "; #nRegeneration:#0 %G GW"),
+               ship->armour_regen);
+   }
+   else if (ship->armour_regen != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nArmor Regeneration:#0 %G GW"), ship->armour_regen);
 
-   if ((ship->energy != 0.) || (ship->energy_regen != 0.))
+   if ((ship->energy != 0.) || (ship->energy_regen != 0.)) {
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            _("\n#nEnergy:#0 %G GJ (%G GW)"),
-            ship->energy, ship->energy_regen);
+            _("\n#nEnergy:#0 %G GJ"), ship->energy);
+      if (ship->energy_regen != 0.)
+         l += scnprintf(&buf[l], sizeof(buf) - l,
+               p_("ship_energy_regen", "; #nRegeneration:#0 %G GW"),
+               ship->energy_regen);
+   }
+   else if (ship->energy_regen != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nEnergy Regeneration:#0 %G GW"), ship->energy_regen);
 
    if (ship->cap_cargo != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,
             _("\n#nCargo Space:#0 %.0f kt"), ship->cap_cargo);
 
-   if (ship->fuel != 0.)
+   if (ship->fuel != 0.) {
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            _("\n#nFuel:#0 %.0f kL"), ship->fuel);
+            _("\n#nFuel:#0 %G kL"), ship->fuel);
+      if (ship->fuel_regen != 0.)
+         l += scnprintf(&buf[l], sizeof(buf) - l,
+               p_("ship_fuel_regen", "; #nRegeneration:#0 %G kL/s"),
+               ship->fuel_regen);
+   }
+   else if (ship->fuel_regen != 0.)
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            _("\n#nFuel Regeneration:#0 %G kL/s"), ship->fuel_regen);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         _("\n#nFuel Use:#0 %.0f kL"), ship->fuel_consumption);
+         _("\n#nFuel Use:#0 %G kL"), ship->fuel_consumption);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         _("\n#nRadar Range:#0 %.0f mAU"), ship->rdr_range);
+         _("\n#nRadar Range:#0 %G mAU"), ship->rdr_range);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         _("\n#nJump Detect Range:#0 %.0f mAU"), ship->rdr_jump_range);
+         _("\n#nJump Detect Range:#0 %G mAU"), ship->rdr_jump_range);
 
    y = -35;
    window_modifyText(wid,  "txtDDesc", buf);
