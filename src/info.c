@@ -239,7 +239,7 @@ static void info_openMain( unsigned int wid )
          "\n"
          "#nMoney:#0 %s\n"
          "#nShip:#0 %s\n"
-         "#nFuel:#0 %d (%s)\n"
+         "#nFuel:#0 %.0f (%s)\n"
          "\n"
          "#nTime played (D:HH:MM):#0 %lld:%02lld:%02lld\n"
          "#nNet Worth:#0 %s\n"
@@ -492,7 +492,7 @@ static void ship_update( unsigned int wid )
          "#nArmor:#0 %.0f / %.0f GJ (%.1f GW)\n"
          "#nEnergy:#0 %.0f / %.0f GJ (%.1f GW)\n"
          "#nCargo:#0 %d / %d kt\n"
-         "#nFuel:#0 %d / %d kL (%s)\n"
+         "#nFuel:#0 %.0f / %.0f kL (%s)\n"
          "#nRadar Range:#0 %.0f mAU\n"
          "#nJump Detect Range:#0 %.0f mAU\n"
          "\n"),

@@ -119,8 +119,8 @@ typedef struct Ship_ {
    /* characteristics */
    double mass;             /**< Mass ship has. */
    double cpu;              /**< Amount of CPU the ship has. */
-   int fuel;                /**< How much fuel by default. */
-   int fuel_consumption;    /**< Fuel consumption by engine. */
+   double fuel; /**< How much fuel by default. */
+   double fuel_consumption; /**< Fuel consumption by engine. */
    double cap_cargo;        /**< Cargo capacity (in volume). */
    double dt_default;       /**< Default/minimum time delta. */
    double rdr_range;        /**< Range that the ship can detect objects. */

@@ -305,8 +305,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G pp Nebula Resistance (Armor)"),
       N_("%.0f%% Nebula Resistance (Armor)")),
 
-   I_ELEM(SS_TYPE_I_FUEL, fuel,
-      N_("%+d kL Fuel"),
+   A_ELEM(SS_TYPE_A_FUEL, fuel,
+      N_("%+.0f kL Fuel"),
       NULL),
    I_ELEM(SS_TYPE_I_CARGO, cargo,
       N_("%+d kt Cargo Space"),
