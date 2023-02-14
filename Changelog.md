@@ -1,5 +1,9 @@
 # NAIKARI CHANGELOG
 
+## 0.7.0
+
+* Engines now come with fuel regeneration as standard.
+
 ## 0.6.0
 
 ### Major Changes
