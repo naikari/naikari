@@ -11,11 +11,12 @@
   <gfx_store>unicorp_engine_s.webp</gfx_store>
  </general>
  <specific type="modification">
+  <engine_limit>300</engine_limit>
+  <speed>250</speed>
   <thrust>140</thrust>
   <turn>120</turn>
-  <speed>250</speed>
   <fuel>300</fuel>
+  <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>3</energy_regen_malus>
-  <engine_limit>300</engine_limit>
  </specific>
 </outfit>

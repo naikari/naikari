@@ -11,11 +11,12 @@
   <gfx_store>engine1.webp</gfx_store>
  </general>
  <specific type="modification">
+  <engine_limit>400</engine_limit>
+  <speed>225</speed>
   <thrust>125</thrust>
   <turn>95</turn>
-  <speed>225</speed>
   <fuel>500</fuel>
+  <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>7</energy_regen_malus>
-  <engine_limit>400</engine_limit>
  </specific>
 </outfit>

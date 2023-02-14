@@ -11,11 +11,12 @@
   <priority>3</priority>
  </general>
  <specific type="modification">
+  <engine_limit>700</engine_limit>
+  <speed>200</speed>
   <thrust>115</thrust>
   <turn>100</turn>
-  <speed>200</speed>
   <fuel>600</fuel>
+  <fuel_regen>0.2</fuel_regen>
   <energy_regen_malus>5</energy_regen_malus>
-  <engine_limit>700</engine_limit>
  </specific>
 </outfit>
