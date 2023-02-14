@@ -2233,6 +2233,11 @@ void pilot_update( Pilot* pilot, double dt )
          pilot->shield = CLAMP( 0., pilot->shield_max, pilot->shield );
       }
 
+      /* Regen fuel. */
+      pilot->fuel += pilot->stats.fuel_regen * dt;
+      if (pilot->fuel > pilot->fuel_max)
+         pilot->fuel = pilot->fuel_max;
+
       /*
       * Using RC circuit energy loading.
       *

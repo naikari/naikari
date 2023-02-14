@@ -113,6 +113,8 @@ typedef enum ShipStatsType_ {
    SS_TYPE_P_NEBULA_ABSORB_ARMOUR, /**< Armour nebula resistance. */
 
    SS_TYPE_A_FUEL, /**< Fuel bonus. */
+   SS_TYPE_A_FUEL_REGEN, /** Fuel regeneration modifier. */
+
    SS_TYPE_I_CARGO, /**< Cargo bonus. */
    SS_TYPE_D_CARGO_MOD, /**< Cargo space multiplier. */
 
@@ -258,6 +260,7 @@ typedef struct ShipStats_ {
    int misc_reverse_thrust;  /**< Slows down the ship instead of turning it around. */
    int misc_asteroid_scan;   /**< Able to scan asteroids. */
    double fuel; /**< Maximum fuel modifier. */
+   double fuel_regen; /**< Fuel regeneration modifier. */
    int cargo;                 /**< Maximum cargo modifier. */
    double loot_mod;           /**< Boarding loot reward bonus. */
    double time_mod;           /**< Time dilation modifier. */
