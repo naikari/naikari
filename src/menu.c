@@ -208,16 +208,25 @@ void menu_main (void)
       if (curlocaltime.tm_mon == 1) {
          /* Find an offset to see what day the month started on, then
           * use that to find an offset for Valentine's Day. 0 is Sunday,
-          * 1 is Monday, etc. */
-         offset = (curlocaltime.tm_wday+1 - curlocaltime.tm_mday - 1) % 7;
-         /* Convert % operator's negative values to positive. */
+          * 1 is Monday, etc. Since days of the month are indexed from
+          * 0, Valentine's Day is day 13. */
+         offset = (curlocaltime.tm_wday-curlocaltime.tm_mday + 13) % 7;
+         /* Convert % operator's negative values to positive, ensuring
+          * the resulting range is [0,6]. */
          if (offset < 0)
             offset += 7;
-         /* Invert the offset; this inverted offset is ASAW's offset. */
-         offset = 7 - offset;
+         /* Invert the offset; this inverted offset is the number of
+          * days remaining in the week after Valentine's Day. Adding 1
+          * then gives us an offset for the first day of the following
+          * week, thus giving ASAW's offset compared to Valentine's
+          * Day. */
+         offset = (6-offset) + 1;
 
-         if ((curlocaltime.tm_mday - offset >= 14)
-               && (curlocaltime.tm_mday - offset < 21))
+         /* Use the offset to check if we're in ASAW. ASAW takes place
+          * starting when the current day minus the offset is
+          * Valentine's Day, and ending exactly one week after. */
+         if ((curlocaltime.tm_mday - offset >= 13)
+               && (curlocaltime.tm_mday - offset < 20))
          {
             gl_freeTexture(tex);
             tex = gl_newImage(GFX_PATH"naikari-aro.png", 0);
