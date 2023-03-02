@@ -44,13 +44,13 @@ function create()
 
    -- Override tier based on distance.
    if numjumps <= 1 then
-      tier = 0
-   elseif numjumps <= 2 then
-      tier = 1
-   elseif numjumps <= 4 then
-      tier = 2
-   elseif numjumps <= 6 then
-      tier = 3
+      tier = rnd.rnd(0, 1)
+   elseif numjumps <= 3 then
+      tier = rnd.rnd(1, 2)
+   elseif numjumps <= 5 then
+      tier = rnd.rnd(2, 3)
+   elseif numjumps <= 7 then
+      tier = rnd.rnd(3, 4)
    else
       tier = 4
    end
@@ -91,7 +91,7 @@ function create()
    distreward = math.log(50+riskreward) / 100
    reward = (1.75^tier
          * (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward
-            + 10000)
+            + 5000)
          * (1 + 0.05*rnd.twosigma()))
    stop_reward = 1.75^tier * 10000
 
@@ -197,6 +197,7 @@ function land()
          local credits
          if intime then
             credits = reward + #stops_made*stop_reward
+                  + 0.1*stop_reward*rnd.sigma()
          else
             credits = reward / 2
          end
