@@ -180,10 +180,13 @@ function land()
          if not intime then
             pay_text = {
                _("Passengers rush out of your ship, clearly stressed by how much longer they were out on the cruise than they hoped. Because of the delay, you are only paid {credits}."),
+               _("Your now upset pasengers eagerly disembark back onto {planet}, trying to make up for the lost time you caused by being late. By the end of it, you are only paid {credits} for the botched cruise."),
+               _("Before you know it, your passengers, angry at you for your late return, are out of your ship. There are no tips, and when you count out the total of your fares, you find that you have only been paid {credits}."),
             }
          elseif #stops_made > 1 then
             pay_text = {
                _("Your passengers disembark and return to their homeworld after a nice and enjoyable cruise. In total, you receive {credits} from the passengers in basic fares and tips."),
+               _("Your passengers disembark back onto {planet} in high spirits. The tips are good and in total, you receive {credits}.")
             }
          else
             pay_text = {
@@ -220,7 +223,7 @@ function land()
       if p == planet.cur() then
          local text = {
             _("Passengers disembark onto {planet}, but as they notice they've already been here on this cruise, most of them quickly grow bored and return to your ship."),
-            _("Passengers yawn with disinterest as you land on {planet} again. Some go out onto the surface for a short while, but most decide to just stay behind on your ship."),
+            _("Passengers yawn with disinterest as you land on {planet} again. Some disembark for a short while, but most decide to just stay behind on your ship."),
          }
 
          tk.msg("", fmt.f(text[rnd.rnd(1, #text)],
