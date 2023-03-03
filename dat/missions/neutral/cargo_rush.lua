@@ -29,7 +29,7 @@ require "cargo_common"
 
 msg_timeup = _("The delivery to {system} has been canceled! You were too late.")
 
-osd_title = _("Rush cargo mission")
+osd_title = _("Rush Cargo")
 osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
 osd_timeup = _("Land on {planet} ({system} system) before {deadline}\n(deadline missed, but you can still make a late delivery if you hurry)")
 

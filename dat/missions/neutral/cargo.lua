@@ -27,7 +27,7 @@ local fmt = require "fmt"
 require "cargo_common"
 
 
-osd_title = _("Cargo mission")
+osd_title = _("Cargo")
 osd_msg = _("Land on {planet} ({system} system)")
 
 -- Create the mission
