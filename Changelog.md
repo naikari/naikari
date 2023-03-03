@@ -3,6 +3,9 @@
 ## 0.7.0
 
 * Engines now come with fuel regeneration as standard.
+* Added a new "Cruise" mission to the mission computer, where you take
+  passengers to a destination and can stop by at attractions along the
+  way.
 
 ## 0.6.0
 
