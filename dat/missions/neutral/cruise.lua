@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Luxury Cruise">
  <avail>
-  <priority>58</priority>
+  <priority>76</priority>
   <cond>planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
   <chance>960</chance>
   <location>Computer</location>
@@ -93,30 +93,42 @@ function create()
          * (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward
             + 5000)
          * (1 + 0.05*rnd.twosigma()))
-   stop_reward = 1.75^tier * 10000
+   stop_reward = 1.5^tier * 10000
 
    local title, desc
    if tier <= 0 then
       title = _("Budget Cruise to {planet} ({system} system)")
-      desc = _("Take a group of passengers on a budget cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you make.")
+      desc = _("Take a group of passengers on a budget cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    elseif tier <= 1 then
       title = _("Value Cruise to {planet} ({system} system)")
-      desc = _("Take a group of passengers on a value cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you make.")
+      desc = _("Take a group of passengers on a value cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    elseif tier <= 2 then
       title = _("Modest Cruise to {planet} ({system} system)")
-      desc = _("Take a group of passengers on a modest cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you make.")
+      desc = _("Take a group of passengers on a modest cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    elseif tier <= 3 then
       title = _("Luxury Cruise to {planet} ({system} system)")
-      desc = _("Take a group of passengers on a luxury cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you make.")
+      desc = _("Take a group of passengers on a luxury cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    else
       title = _("Exquisite Cruise to {planet} ({system} system)")
-      desc = _("Take a group of passengers on an exquisite cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you make.")
+      desc = _("Take a group of passengers on an exquisite cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    end
+
+   desc = desc .. "\n\n"
+         .. n_("Jumps: {numjumps}", "Jumps: {numjumps}", numjumps) .. "\n"
+         .. _("Travel distance: {distance} AU") .. "\n"
+         .. _("Time limit: {time}") .. "\n"
+         .. _("Expected tips: {stop_reward} per extra stop")
+   local dist = cargo_calculateDistance(system.cur(), planet.cur():pos(),
+         destsys, destplanet)
 
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name()}))
    marker = misn.markerAdd(destsys, "computer")
-   misn.setDesc(fmt.f(desc, {planet=destplanet:name(), system=destsys:name()}))
+   misn.setDesc(fmt.f(desc,
+         {planet=destplanet:name(), system=destsys:name(), numjumps=numjumps,
+            distance=fmt.number(dist / 1000),
+            time=tostring(timelimit - time.get()),
+            stop_reward=fmt.credits(stop_reward)}))
    misn.setReward(fmt.credits(reward))
 end
 
@@ -160,6 +172,7 @@ function accept()
             {planet=startpla:name(), system=startsys:name(),
                deadline=timelimit:str(),
                time=time.str(timelimit - time.get(), 2)}),
+      _("Land on additional planets along the way to earn extra credits"),
    }
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land")
@@ -177,29 +190,30 @@ function land()
    if planet.cur() == startpla then
       if dest_landed then
          local pay_text
+         local credits
          if not intime then
             pay_text = {
                _("Passengers rush out of your ship, clearly stressed by how much longer they were out on the cruise than they hoped. Because of the delay, you are only paid {credits}."),
                _("Your now upset pasengers eagerly disembark back onto {planet}, trying to make up for the lost time you caused by being late. By the end of it, you are only paid {credits} for the botched cruise."),
                _("Before you know it, your passengers, angry at you for your late return, are out of your ship. There are no tips, and when you count out the total of your fares, you find that you have only been paid {credits}."),
             }
+            credits = reward / 2
          elseif #stops_made > 1 then
             pay_text = {
                _("Your passengers disembark and return to their homeworld after a nice and enjoyable cruise. In total, you receive {credits} from the passengers in basic fares and tips."),
-               _("Your passengers disembark back onto {planet} in high spirits. The tips are good and in total, you receive {credits}.")
+               _("Your passengers disembark back onto {planet} in high spirits. The tips are good and in total, you receive {credits}."),
+               _("You receive a grand total of {credits} from your happy passengers as they exit your ship, talking happily to each other about the amazing experience."),
             }
+            local stops = #stops_made - 1
+            credits = reward + stops*stop_reward
+                  + 0.1*stops*stop_reward*rnd.sigma()
          else
             pay_text = {
                _("Your passengers disembark and return to their homeworld after a nice, albeit not terribly eventful cruise. You unfortunately don't receive any tips, but you receive the promised fare of {credits}."),
+               _("Your passengers return to {planet} content that they went on a decent cruise and you receive your promised fare of {credits}."),
+               _("Having completed the cruise, your passengers return to {planet} satisfied, and you receive your {credits} fare."),
             }
-         end
-
-         local credits
-         if intime then
-            credits = reward + #stops_made*stop_reward
-                  + 0.1*stop_reward*rnd.sigma()
-         else
-            credits = reward / 2
+            credits = reward
          end
 
          tk.msg("", fmt.f(pay_text[rnd.rnd(1, #pay_text)],
@@ -225,6 +239,7 @@ function land()
          local text = {
             _("Passengers disembark onto {planet}, but as they notice they've already been here on this cruise, most of them quickly grow bored and return to your ship."),
             _("Passengers yawn with disinterest as you land on {planet} again. Some disembark for a short while, but most decide to just stay behind on your ship."),
+            _("You hear a collective sigh of disapproval as you land on {planet} yet again. None of your passengers choose to visit."),
          }
 
          tk.msg("", fmt.f(text[rnd.rnd(1, #text)],
@@ -237,6 +252,8 @@ function land()
    if planet.cur() == destplanet then
       text = {
          _("Passengers disembark, excited to see what {planet} has to offer. They seem to be having a good time."),
+         _("Passengers excitedly begin to explore {planet}, marveling at all the sights and sounds."),
+         _("You can see the passengers are excited for the main event, and in mere moments, they're already out of your ship and exploring {planet}."),
       }
       dest_landed = true
       misn.osdActive(2)
@@ -244,6 +261,8 @@ function land()
    else
       text = {
          _("Passengers disembark and spend some time enjoying the sights on {planet}. It seems they're having a good time."),
+         _("You inform passengers that they can now disembark and explore {planet} if they like. Many passengers do so, excited to see an unexpected new location."),
+         _("Passengers step out of your ship and look in awe at the unfamiliar spaceport of {planet} before going off to explore some more."),
       }
    end
 
@@ -263,6 +282,7 @@ function tick()
                {planet=startpla:name(), system=startsys:name(),
                   deadline=timelimit:str(),
                   time=time.str(timelimit - time.get(), 2)}),
+         _("Land on additional planets along the way to earn extra credits"),
       }
       misn.osdCreate(osd_title, osd_msg)
       if dest_landed then
