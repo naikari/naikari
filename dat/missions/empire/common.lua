@@ -7,7 +7,7 @@
 
 
 function emp_addShippingLog( text )
-   shiplog.create("empire_shipping", p_("log", "Empire Shipping"))
+   shiplog.create("empire_shipping", p_("log", "Empire Recruitment"))
    shiplog.append("empire_shipping", text)
 end
 
