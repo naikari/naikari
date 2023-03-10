@@ -9,9 +9,6 @@
   <location>Computer</location>
   <faction>Empire</faction>
  </avail>
- <notes>
-  <campaign>Empire Shipping</campaign>
- </notes>
 </mission>
 --]]
 --[[

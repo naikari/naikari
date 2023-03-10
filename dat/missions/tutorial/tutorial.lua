@@ -8,6 +8,9 @@
   <priority>1</priority>
   <location>None</location>
  </avail>
+ <notes>
+  <campaign>Tutorial</campaign>
+ </notes>
 </mission>
 --]]
 --[[

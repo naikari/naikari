@@ -18,6 +18,7 @@
   </cond>
   <chance>10</chance>
   <location>Bar</location>
+  <done>The Space Family</done>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
   <faction>Frontier</faction>

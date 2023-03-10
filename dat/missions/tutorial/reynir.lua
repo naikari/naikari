@@ -30,6 +30,9 @@
          and system.cur() ~= system.get("Eneguoz")))
   </cond>
  </avail>
+ <notes>
+  <campaign>Tutorial</campaign>
+ </notes>
 </mission>
 --]]
 --[[

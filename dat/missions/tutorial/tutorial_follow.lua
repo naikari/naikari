@@ -11,6 +11,9 @@
   <done>Tutorial Part 4</done>
   <cond>player.numOutfit("Mercenary License") &gt; 0 and not system.cur():presences()["Pirate"]</cond>
  </avail>
+ <notes>
+  <campaign>Tutorial</campaign>
+ </notes>
 </mission>
 --]]
 --[[

@@ -11,7 +11,8 @@
   <planet>Em 1</planet>
  </avail>
  <notes>
-  <done_misn name="Tutorial Part 1"/>
+  <done_misn name="Tutorial"/>
+  <campaign>Tutorial</campaign>
  </notes>
 </mission>
 --]]

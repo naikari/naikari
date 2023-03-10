@@ -11,6 +11,9 @@
   <planet>Em 5</planet>
   <done>Tutorial Part 3</done>
  </avail>
+ <notes>
+  <campaign>Tutorial</campaign>
+ </notes>
 </mission>
 --]]
 --[[

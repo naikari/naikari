@@ -18,6 +18,9 @@
   <faction>Za'lek</faction>
   <done>Teddy Bears from Space</done>
  </avail>
+ <notes>
+  <campaign>Tutorial</campaign>
+ </notes>
 </mission>
 --]]
 --[[

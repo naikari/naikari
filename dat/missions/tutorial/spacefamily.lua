@@ -10,7 +10,8 @@
   <location>None</location>
  </avail>
  <notes>
-  <done_evt name="Shipwreck">If you make the mistake to help Harrus</done_evt>
+  <done_evt name="Shipwreck" />
+  <campaign>Tutorial</campaign>
  </notes>
 </mission>
 --]]

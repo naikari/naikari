@@ -1,13 +1,16 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Combat Practice">
-  <avail>
-   <priority>100</priority>
-   <chance>100</chance>
-   <cond>not player.misnActive("Combat Practice")</cond>
-   <location>Computer</location>
-  </avail>
- </mission>
+ <avail>
+  <priority>100</priority>
+  <chance>100</chance>
+  <cond>not player.misnActive("Combat Practice")</cond>
+  <location>Computer</location>
+ </avail>
+ <notes>
+  <campaign>Tutorial</campaign>
+ </notes>
+</mission>
 --]]
 --[[
 

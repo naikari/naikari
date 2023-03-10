@@ -19,6 +19,7 @@
  </avail>
  <notes>
   <done_misn name="Empire Shipping">3 times or more</done_misn>
+  <campaign>Hakoi Pirates</campaign>
  </notes>
 </mission>
 --]]

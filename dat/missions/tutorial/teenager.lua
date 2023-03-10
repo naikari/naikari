@@ -7,14 +7,24 @@
  <avail>
   <priority>20</priority>
   <chance>20</chance>
+  <done>Outfitter Tutorial</done>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
   <faction>Goddard</faction>
   <faction>Independent</faction>
   <faction>Sirius</faction>
-  <cond>player.numOutfit("Mercenary License") &gt; 0 and planet.cur():class() ~= "0" and planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"</cond>
+  <cond>
+   player.misnDone("The Space Family")
+   and player.numOutfit("Mercenary License") &gt; 0
+   and planet.cur():class() ~= "0" and planet.cur():class() ~= "1"
+   and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
+  </cond>
  </avail>
+ <notes>
+  <done_misn name="The Space Family"/>
+  <campaign>Tutorial</campaign>
+ </notes>
 </mission>
 --]]
 --[[

@@ -7,6 +7,9 @@
  <flags>
   <unique />
  </flags>
+ <notes>
+  <campaign>Tutorial</campaign>
+ </notes>
 </event>
 --]]
 --[[
@@ -34,7 +37,7 @@ function create()
     -- This non-standard way of checking chance ensures that it always
     -- shows up immediately when entering pirate-infested space at least
     -- once.
-    if var.peek("shipwreck_repeated") and rnd.rnd() >= 0.1 then
+    if var.peek("shipwreck_repeated") and rnd.rnd() >= 0.15 then
         evt.finish()
     end
 
@@ -66,7 +69,7 @@ function create()
 
     -- Set hooks
     hook.pilot(p, "board", "rescue")
-    hook.pilot(p, "death", "destroyevent")
+    hook.pilot(p, "death", "endevent")
     hook.enter("endevent")
     hook.land("endevent")
 end
@@ -90,9 +93,6 @@ function rescue(p, boarder)
     evt.finish()
 end
 
-function destroyevent ()
-    evt.finish(true)
-end
 
 function endevent ()
     evt.finish()
