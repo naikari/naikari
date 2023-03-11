@@ -4,7 +4,7 @@
  <avail>
   <priority>76</priority>
   <cond>planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
-  <chance>960</chance>
+  <chance>1260</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -43,35 +43,33 @@ function create()
    end
 
    -- Override tier based on distance.
-   if numjumps <= 1 then
-      tier = rnd.rnd(0, 1)
-   elseif numjumps <= 3 then
-      tier = rnd.rnd(1, 2)
-   elseif numjumps <= 5 then
-      tier = rnd.rnd(2, 3)
-   elseif numjumps <= 7 then
-      tier = rnd.rnd(3, 4)
+   if numjumps < 1 then
+      tier = 0
+   elseif numjumps < 2 then
+      tier = 1
+   elseif numjumps < 3 then
+      tier = 2
+   elseif numjumps < 4 then
+      tier = 3
    else
       tier = 4
    end
    
    -- Calculate time limit. Depends on tier and distance.
    -- The second time limit is for the reduced reward.
-   stuperpx = 4.6 - 0.57*tier
-   stuperjump = 103000 - 6000*tier
-   stupertakeoff = 103000 - 750*tier
-   allowance = traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
-         + 2400*numjumps
-   
-   -- Allow extra time for refuelling stops.
-   local jumpsperstop = 2 + math.min(tier-1, 2)
-   if numjumps > jumpsperstop then
-      allowance = allowance + math.floor((numjumps-1) / jumpsperstop) * stuperjump
-   end
+   stuperpx = 6.9 - 1.15*tier
+   stuperjump = 103000 - 750*tier
+   stupertakeoff = 103000 - 15000*tier
+   takeoffsperjump = 2
+   allowance = traveldist*stuperpx + numjumps*stuperjump
+         + takeoffsperjump*numjumps*stupertakeoff + stupertakeoff
 
    -- All that calculation was for one direction, so multiply by 2 for
    -- the return trip.
    allowance = allowance * 2
+
+   -- And randomize the allowance a bit.
+   allowance = allowance * (1.1 + 0.1*rnd.twosigma())
    
    timelimit = time.get() + time.create(0, 0, allowance)
    timelimit2 = time.get() + time.create(0, 0, allowance * 1.2)
@@ -91,9 +89,9 @@ function create()
    distreward = math.log(50+riskreward) / 100
    reward = (1.75^tier
          * (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward
-            + 5000)
+            + 10000)
          * (1 + 0.05*rnd.twosigma()))
-   stop_reward = 1.5^tier * 10000
+   stop_reward = 1.5^tier * 25000 * (1 + 0.1*rnd.sigma())
 
    local title, desc
    if tier <= 0 then
@@ -181,7 +179,7 @@ end
 
 
 function cargo_selectMissionDistance()
-   return rnd.rnd(0, 8)
+   return rnd.rnd(0, 5)
 end
 
 
