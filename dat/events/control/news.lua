@@ -98,10 +98,24 @@ cond_articles = {
       done = "Tutorial Part 4",
    },
    {
+      title = _("Imperial Investigation Rumors"),
+      text = _([[Rumors abound that the Imperial investigation into the sudden appearance of pirates in the Hakoi system is headquartered at Emperor's Fist (Gamma Polaris system), the capital of the Empire. Many interpret this as an indication that the pirates may be a small part of a larger problem that could threaten intergalactic stability. Imperial officials have declined to comment.]]),
+      tag = "mhint_Undercover in Hakoi",
+      mission = "Undercover in Hakoi",
+      done = "Empire Recruitment",
+      cond = function()
+         return (faction.playerStanding("Empire") >= 10
+            and faction.playerStanding("Dvaered") >= 0
+            and var.peek("es_misn") ~= nil
+            and var.peek("es_misn") >= 3)
+      end,
+   },
+   {
       title = _("Enthusiasts Organize Racing"),
       text = _([[A group of enthusiasts have begun to organize informal racing events all across the galaxy. "Just a hobby," one of the organizers said, "but there's a small prize if you win. Racing is a lot of fun!" Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
       tag = "mhint_Racing Skills 1",
       mission = "Racing Skills 1",
+      done = "The Space Family",
    },
    {
       title = _("Melendez Sponsors Race Events"),
