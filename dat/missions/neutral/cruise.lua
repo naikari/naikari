@@ -31,6 +31,8 @@ osd_title = _("Cruise")
 osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
 osd_timeup = _("Land on {planet} ({system} system) before {deadline}\n(deadline missed, but you can still finish the cruise late if you hurry)")
 
+cargo_always_available = true
+
 
 function create()
    -- Note: this mission does not make any system claims. 
