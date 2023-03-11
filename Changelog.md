@@ -6,6 +6,16 @@
 * Added a new "Cruise" mission to the mission computer, where you take
   passengers to a destination and can stop by at attractions along the
   way.
+* Replaced the Empire Shipping campaign with a new campaign
+  investigating the appearance of pirates in Hakoi.
+* Adjusted prerequisites for the Race mission and the Teenager mission;
+  they now only appear after the Space Family mission is completed, and
+  the Teenager mission additionally requires completion of Terra's
+  Cargo.
+* The Space Family mission can no longer be permanently failed by
+  destroying the ship.
+* The Reynir and Teenager missions now have a 100% chance of showing up,
+  as long as their prerequisites are met.
 
 ## 0.6.0
 
