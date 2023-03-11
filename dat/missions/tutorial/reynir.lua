@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>1</priority>
-  <chance>40</chance>
+  <chance>100</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>

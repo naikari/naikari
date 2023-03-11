@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>20</priority>
-  <chance>20</chance>
+  <chance>100</chance>
   <done>Outfitter Tutorial</done>
   <location>Bar</location>
   <faction>Dvaered</faction>
