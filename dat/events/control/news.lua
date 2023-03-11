@@ -46,7 +46,10 @@ cond_articles = {
       tag = "mhint_Sirius Bounty",
       mission = "Sirius Bounty",
       cond = function()
-         return (faction.get("Sirius"):playerStanding() >= 0)
+         return faction.get("Sirius"):playerStanding() >= 0
+      end,
+      delcond = function()
+         return faction.get("Sirius"):playerStanding() < 0
       end,
    },
    {
@@ -109,6 +112,10 @@ cond_articles = {
             and var.peek("es_misn") ~= nil
             and var.peek("es_misn") >= 3)
       end,
+      delcond = function()
+         return (faction.playerStanding("Empire") < 10
+            or faction.playerStanding("Dvaered") < 0)
+      end,
    },
    {
       title = _("Enthusiasts Organize Racing"),
@@ -154,7 +161,9 @@ cond_articles = {
             and player.numOutfit("Mercenary License") > 0)
       end,
       delcond = function()
-         return player.misnDone("Deal with the FLF agent")
+         return (player.misnDone("Deal with the FLF agent")
+            or faction.get("Dvaered"):playerStanding() < 0
+            or faction.get("Pirate"):playerStanding() >= 0)
       end,
    },
    {
@@ -168,7 +177,8 @@ cond_articles = {
             and not var.peek("zalek_test_done"))
       end,
       delcond = function()
-         var.peek("zalek_test_done")
+         return (var.peek("zalek_test_done")
+            or faction.playerStanding("Za'lek") < 5)
       end,
    },
 }
