@@ -16,6 +16,8 @@
   destroying the ship.
 * The Reynir and Teenager missions now have a 100% chance of showing up,
   as long as their prerequisites are met.
+* You can now preemptively quit the game while it is still loading
+  (instead of needing to wait until loading is finished).
 
 ## 0.6.0
 
