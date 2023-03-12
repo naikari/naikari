@@ -179,6 +179,9 @@ int diff_loadAvailable (void)
    diff_files     = ndata_listRecursive( UNIDIFF_DATA_PATH );
    diff_available = array_create_size( UniDiffData_t, array_size( diff_files ) );
    for ( i = 0; i < array_size( diff_files ); i++ ) {
+      if (naev_pollQuit())
+         break;
+
       /* Parse the header. */
       doc = xml_parsePhysFS( diff_files[i] );
       if (doc == NULL)

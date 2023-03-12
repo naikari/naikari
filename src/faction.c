@@ -1780,6 +1780,9 @@ int factions_load (void)
    /* First pass - gets factions */
    node = factions;
    do {
+      if (naev_pollQuit())
+         break;
+
       if (xml_isNode(node,XML_FACTION_TAG)) {
          f = &array_grow(&faction_stack);
 
@@ -1792,12 +1795,18 @@ int factions_load (void)
    /* Second pass - sets allies and enemies */
    node = factions;
    do {
+      if (naev_pollQuit())
+         break;
+
       if (xml_isNode(node,XML_FACTION_TAG))
          faction_parseSocial(node);
    } while (xml_nextNode(node));
 
    /* Third pass, Make allies/enemies symmetric. */
    for (i=0; i<array_size(faction_stack); i++) {
+      if (naev_pollQuit())
+         break;
+
       f = &faction_stack[i];
 
       /* First run over allies and make sure it's mutual. */

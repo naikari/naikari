@@ -661,6 +661,9 @@ int commodity_load (void)
    gatherable_stack = array_create( Gatherable );
 
    for (size_t i=0; commodities[i]!=NULL; i++) {
+      if (naev_pollQuit())
+         break;
+
       xmlNodePtr node;
       xmlDocPtr doc;
       Commodity *c;
@@ -698,8 +701,6 @@ int commodity_load (void)
    DEBUG( n_( "Loaded %d Commodity", "Loaded %d Commodities", array_size(commodity_stack) ), array_size(commodity_stack) );
 
    return 0;
-
-
 }
 
 

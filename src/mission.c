@@ -862,7 +862,8 @@ int missions_load (void)
    mission_files = ndata_listRecursive( MISSION_DATA_PATH );
    mission_stack = array_create_size( MissionData, array_size( mission_files ) );
    for ( i = 0; i < array_size( mission_files ); i++ ) {
-      mission_parseFile( mission_files[i] );
+      if (!naev_pollQuit())
+         mission_parseFile(mission_files[i]);
       free( mission_files[i] );
    }
    array_free( mission_files );

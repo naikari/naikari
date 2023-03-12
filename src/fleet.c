@@ -229,6 +229,9 @@ static int fleet_loadFleets (void)
 
    mem = 0;
    do {
+      if (naev_pollQuit())
+         break;
+
       if (xml_isNode(node,"fleet")) {
          /* See if memory must grow. */
          nfleets++;

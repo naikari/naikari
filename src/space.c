@@ -1683,6 +1683,9 @@ static int planets_load ( void )
    /* Load XML stuff. */
    planet_files = PHYSFS_enumerateFiles( PLANET_DATA_PATH );
    for (i=0; planet_files[i]!=NULL; i++) {
+      if (naev_pollQuit())
+         break;
+
       if (!ndata_matchExt( planet_files[i], "xml" ))
          continue;
 
@@ -2522,6 +2525,9 @@ static StarSystem* system_parse( StarSystem *sys, const xmlNodePtr parent )
       else if (xml_isNode(node,"assets")) {
          cur = node->children;
          do {
+            if (naev_pollQuit())
+               break;
+
             if (xml_isNode(cur,"asset"))
                system_addPlanet( sys, xml_get(cur) );
          } while (xml_nextNode(cur));
@@ -2739,6 +2745,9 @@ static void system_parseJumps( const xmlNodePtr parent )
       if (xml_isNode(node,"jumps")) {
          cur = node->children;
          do {
+            if (naev_pollQuit())
+               break;
+
             if (xml_isNode(cur,"jump"))
                system_parseJumpPoint( cur, sys );
          } while (xml_nextNode(cur));
@@ -2900,6 +2909,9 @@ static void system_parseAsteroids( const xmlNodePtr parent, StarSystem *sys )
    node  = parent->xmlChildrenNode;
 
    do { /* load all the data */
+      if (naev_pollQuit())
+         break;
+
       if (xml_isNode(node,"asteroids")) {
          cur = node->children;
          do {
@@ -2983,6 +2995,9 @@ int space_load (void)
 
    /* Fine tuning. */
    for (i=0; (int)i<array_size(systems_stack); i++) {
+      if (naev_pollQuit())
+         break;
+
       sys = &systems_stack[i];
 
       /* Save jump indexes. */
@@ -3034,6 +3049,9 @@ static int asteroidTypes_load (void)
 
    asteroid_types = array_create( AsteroidType );
    do {
+      if (naev_pollQuit())
+         break;
+
       if (xml_isNode(node,"asteroid")) {
          /* Load it. */
          at = &array_grow( &asteroid_types );
@@ -3149,6 +3167,9 @@ static int systems_load (void)
     * Second pass - loads all the jump routes.
     */
    for (i=0; system_files[i]!=NULL; i++) {
+      if (naev_pollQuit())
+         break;
+
       asprintf( &file, "%s%s", SYSTEM_DATA_PATH, system_files[i] );
       /* Load the file. */
       doc = xml_parsePhysFS( file );

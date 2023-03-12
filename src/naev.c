@@ -154,6 +154,26 @@ int naev_isQuit (void)
 
 
 /**
+ * @brief Polls SDL events and applies a quit event (used while loading).
+ *
+ *    @return Whether or not we're quitting; shortcut for naev_isQuit().
+ */
+int naev_pollQuit(void)
+{
+   SDL_Event event;
+
+   while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) {
+         quit = 1;
+         break;
+      }
+   }
+
+   return quit;
+}
+
+
+/**
  * @brief The entry point of Naev.
  *
  *    @param[in] argc Number of arguments.
@@ -163,6 +183,7 @@ int naev_isQuit (void)
 int main( int argc, char** argv )
 {
    char conf_file_path[PATH_MAX], **search_path, **p;
+   SDL_Event event;
 
 #ifdef DEBUGGING
    /* Set Debugging flags. */
@@ -371,7 +392,6 @@ int main( int argc, char** argv )
    /*
     * main loop
     */
-   SDL_Event event;
    /* flushes the event loop since I noticed that when the joystick is loaded it
     * creates button events that results in the player starting out acceling */
    while (SDL_PollEvent(&event));
@@ -529,7 +549,6 @@ void loadscreen_render( double done, const char *msg )
    double w;   /**<  Progress Bar Width Basis */
    double h;   /**<  Progress Bar Height Basis */
    double rh;  /**<  Loading Progress Text Relative Height */
-   SDL_Event event;
 
    /* Clear background. */
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -564,11 +583,15 @@ void loadscreen_render( double done, const char *msg )
    glUniform1f( shaders.progressbar.dt, done );
    gl_renderShader( x, y, w, h, 0., &shaders.progressbar, NULL, 0 );
 
-   /* Draw text. */
-   gl_printRaw( &gl_defFont, x, y + h + 3., &cFontWhite, -1., msg );
-
-   /* Get rid of events again. */
-   while (SDL_PollEvent(&event));
+   /* Draw text and poll for SDL events for a quit attempt. */
+   if (naev_pollQuit()) {
+      /* If quitting, report that we're quitting here. */
+      gl_printRaw(&gl_defFont, x, y + h + 3., &cFontWhite, -1.,
+            _("Quitting load sequence…"));
+      DEBUG(_("Canceling: '%s'"), msg);
+   }
+   else
+      gl_printRaw(&gl_defFont, x, y + h + 3., &cFontWhite, -1., msg);
 
    /* Flip buffers. HACK: Also try to catch a late-breaking resize from the WM. */
    SDL_GL_SwapWindow( gl_screen.window );

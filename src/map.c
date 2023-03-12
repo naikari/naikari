@@ -3044,6 +3044,9 @@ int map_load (void)
    }
 
    do {
+      if (naev_pollQuit())
+         break;
+
       xml_onlyNodes(node);
       if (xml_isNode(node, "decorator")) {
          /* Load decorator. */

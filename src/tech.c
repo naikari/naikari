@@ -130,6 +130,9 @@ int tech_load (void)
    ret   = 0;
    tech  = NULL;
    do {
+      if (naev_pollQuit())
+         break;
+
       xml_onlyNodes(node);
       /* Must match tag. */
       if (!xml_isNode(node, XML_TECH_TAG)) {
@@ -146,6 +149,9 @@ int tech_load (void)
    node  = parent->xmlChildrenNode;
    s     = array_size( tech_groups );
    do {
+      if (naev_pollQuit())
+         break;
+
       /* Must match tag. */
       if (!xml_isNode(node, XML_TECH_TAG))
          continue;

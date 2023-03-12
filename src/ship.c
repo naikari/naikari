@@ -873,6 +873,9 @@ int ships_load (void)
       ship_stack = array_create_size(Ship, nfiles);
 
    for (i=0; ship_files[i]!=NULL; i++) {
+      if (naev_pollQuit())
+         break;
+
       if (!ndata_matchExt( ship_files[i], "xml" ))
          continue;
 

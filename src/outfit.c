@@ -2136,6 +2136,9 @@ static void outfit_parseSMap( Outfit *temp, const xmlNodePtr parent )
    temp->u.map->all = 0;
 
    do {
+      if (naev_pollQuit())
+         break;
+
       xml_onlyNodes(node);
 
       if (xml_isNode(node,"sys")) {
@@ -2550,7 +2553,7 @@ static int outfit_loadDir( char *dir )
 
    outfit_files = ndata_listRecursive( dir );
    for ( i = 0; i < array_size( outfit_files ); i++ ) {
-      if (ndata_matchExt( outfit_files[i], "xml" )) {
+      if (!naev_pollQuit() && ndata_matchExt(outfit_files[i], "xml")) {
          ret = outfit_parse( &array_grow(&outfit_stack), outfit_files[i] );
          if (ret < 0) {
             n = array_size(outfit_stack);
@@ -2585,6 +2588,9 @@ int outfit_load (void)
 
    /* Second pass, sets up ammunition relationships. */
    for (i=0; i<noutfits; i++) {
+      if (naev_pollQuit())
+         break;
+
       o = &outfit_stack[i];
       if (outfit_isLauncher(&outfit_stack[i])) {
          o->u.lau.ammo = outfit_get( o->u.lau.ammo_name );
@@ -2674,7 +2680,8 @@ int outfit_mapParse (void)
       xmlr_attr_strd( node, "name", n );
       o = outfit_get( n );
       free(n);
-      if (!outfit_isMap(o)) { /* If its not a map, we don't care. */
+      /* If its not a map, we don't care. */
+      if ((o == NULL) || (!outfit_isMap(o))) {
          free(file);
          xmlFreeDoc(doc);
          continue;

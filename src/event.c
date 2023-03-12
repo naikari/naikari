@@ -492,7 +492,8 @@ int events_load (void)
    event_files = ndata_listRecursive( EVENT_DATA_PATH );
    event_data  = array_create_size( EventData, array_size( event_files ) );
    for ( i = 0; i < array_size( event_files ); i++ ) {
-      event_parseFile( event_files[ i ] );
+      if (!naev_pollQuit())
+         event_parseFile(event_files[i]);
       free( event_files[ i ] );
    }
    array_free( event_files );

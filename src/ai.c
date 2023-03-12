@@ -558,6 +558,9 @@ int ai_load (void)
    /* load the profiles */
    suflen = strlen(AI_SUFFIX);
    for (i=0; files[i]!=NULL; i++) {
+      if (naev_pollQuit())
+         break;
+
       flen = strlen(files[i]);
       if ((flen > suflen) &&
             strncmp(&files[i][flen-suflen], AI_SUFFIX, suflen)==0) {

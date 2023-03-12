@@ -203,6 +203,9 @@ int dtype_load (void)
    /* Load up the individual damage types. */
    dtype_types = array_create(DTYPE);
    do {
+      if (naev_pollQuit())
+         break;
+
       xml_onlyNodes(node);
 
       if (!xml_isNode(node,DTYPE_XML_TAG)) {
