@@ -748,6 +748,12 @@ static void menu_options_button( unsigned int wid, char *str )
  */
 int menu_askQuit (void)
 {
+   /* No need to ask if we're on the main menu. */
+   if (menu_isOpen(MENU_MAIN)) {
+      exit_game();
+      return 1;
+   }
+
    /* Asked twice, quit. */
    if (menu_isOpen( MENU_ASKQUIT )) {
       exit_game();
