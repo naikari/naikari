@@ -2,12 +2,17 @@
 
 ## 0.7.0
 
+### Major Changes
+
 * Engines now come with fuel regeneration as standard.
 * Added a new "Cruise" mission to the mission computer, where you take
   passengers to a destination and can stop by at attractions along the
   way.
 * Replaced the Empire Shipping campaign with a new campaign
   investigating the appearance of pirates in Hakoi.
+
+### Other Changes
+
 * Adjusted prerequisites for the Race mission and the Teenager mission;
   they now only appear after the Space Family mission is completed, and
   the Teenager mission additionally requires completion of Terra's
@@ -18,6 +23,12 @@
   as long as their prerequisites are met.
 * You can now preemptively quit the game while it is still loading
   (instead of needing to wait until loading is finished).
+* Doubled the heat reduction of Forward Shock Absorbers and Targeting
+  Array to make them more appealing.
+* Shadowrun now requires completion of the Teenager mission.
+* The Teenager mission has been revamped to be more thorough in its
+  teaching of how to disable and board ships, and is now given by Terra
+  instead of a nameless NPC.
 
 ## 0.6.0
 
