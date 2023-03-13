@@ -18,7 +18,7 @@
   <done>Empire Recruitment</done>
  </avail>
  <notes>
-  <done_misn name="Empire Shipping">3 times or more</done_misn>
+  <requires name="Completed 3 or more ES deliveries"/>
   <campaign>Hakoi Pirates</campaign>
  </notes>
 </mission>

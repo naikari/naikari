@@ -9,6 +9,9 @@
   <location>Computer</location>
   <faction>Empire</faction>
  </avail>
+ <notes>
+  <provides name="Completed 3 or more ES deliveries"/>
+ </notes>
 </mission>
 --]]
 --[[
