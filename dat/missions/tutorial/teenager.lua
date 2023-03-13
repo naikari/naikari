@@ -39,35 +39,27 @@
 -- Localization, choosing a language if Naev is translated for non-english-speaking locales.
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
+require "events/tutorial/tutorial_common"
 
 
-ask_text = _([["Excuse me," the man says as you approach him. "I'm looking for a capable pilot to resolve a small matter for me. Perhaps you can help me? You see, it's my son. He's taken my yacht to space without my permission, taking along his girlfriend. That boy is such a handful. I'm sure he's trying to show off his piloting skills to impress her. I need you to get out there, disable the yacht and take them both back here. Can you do this for me? I'll make it worth your while."]])
+ask_text = _([["Ah, {player}! Well met, and what perfect timing! Perhaps you can help me resolve another matter.
 
-yes_text = _([["Thank you! The yacht doesn't have a working hyperdrive, so they won't have left the system. It's a Gawain named Credence. Just disable it and board it, then transport my disobedient son and his girlfriend back here. Don't worry about the yacht, I'll have it recovered later.
+"You see, it's my son. He's taken my yacht to space without my permission, taking along his girlfriend. That boy is such a handful. I'm sure he's trying to show off his piloting skills to impress her. I need you to get out there, disable the yacht, and take them both back here. Can you do this for me? I'll pay you {credits} for the trouble."]])
 
-"Oh, and one more thing, though it should go without saying: whatever you do, don't destroy the yacht! I don't want to lose my son over this, so make sure you equip some non-lethal weapons, like ion cannons or Medusa missiles, or maybe a weapons ionizer. You should be able to find something suitable at the outfitter.
+yes_text = _([["Thank you! He doesn't know how to work the hyperdrive, so they won't have left the system. It's a Gawain named Credence.
 
-"Well then, I hope to see you again soon."]])
+"It should go without saying, but whatever you do, don't destroy the ship. I don't want to lose my son over this, so make sure you equip some non-lethal weapons, like ion cannons or Medusa missiles, or maybe a weapons ionizer. You should be able to find something suitable at the outfitter; I checked earlier. Use those non-lethal weapons to disable the Credence, then you can retrieve my disobedient son and his girlfriend by either #bdouble-clicking#0 it or by pressing {board_key}. You can just leave the Credence where you find it; I'll have it recovered later.
 
-fail_text = _([[The Credence has been destroyed! You resolve to get out of here as soon as possible so the father doesn't do something to you.]])
+"Well then, I hope to see you again soon!"]])
 
-board_text = _([[You board the Gawain and find an enraged teenage boy and a disillusioned teenage girl. The boy is furious that you attacked and disabled his ship, but when you mention that his father is quite upset and wants him to come home right now, he quickly pipes down. You march the young couple onto your ship and seal the airlock behind you.]])
+board_text = _([[You board the Gawain and find an enraged teenage boy and a disillusioned teenage girl. The boy is furious that you attacked and disabled his ship, but when you mention that his mother is quite upset and wants him to come back right now, he quickly pipes down. You march the young couple onto your ship and seal the airlock behind you.]])
 
-pay_text = _([[The boy's father awaits you at the spaceport. He gives his son and the young lady a stern look and curtly commands them to wait for him in the spaceport hall. The couple droops off, and the father turns to face you.
+pay_text = _([[Terra awaits you at the spaceport. She gives her son and the young lady a stern look and curtly commands them to wait for her in the spaceport hall. The couple droops off, and Terra turns to face you with a smile.
 
-"You've done me a service, captain," he says. "As promised, I have a reward for a job well done. You'll find it in your bank account. I'm going to give my son a reprimand he'll not soon forget, so hopefully he won't repeat this little stunt anytime soon. Well then, I must be going. Thank you again, and good luck on your travels."]])
+"You've done fantastic work once again, {player}," she says. "As promised, I have deposited your payment into your account. I'm going to give my son a reprimand he'll not soon forget, so hopefully he won't repeat this little stunt anytime soon. Well then, I must be going. Thank you again, and I hope to see you again in the future!"]])
 
-NPCname = _("A middle-aged man")
-NPCdesc = _("You see a middle-aged man, who appears to be one of the locals, looking around the bar, apparently in search of a suitable pilot.")
-
-misndesc = _("A disgruntled parent has asked you to fetch his son and his son's girlfriend, who have taken a yacht and are joyriding it in the {system} system.")
-misnreward = _("300 k¢")
-
-OSDtitle = _("The macho teenager")
-OSD = {}
-OSD[1] = _("Fly to the {system} system")
-OSD[2] = _("Disable and board Gawain Credence")
-OSD[3] = _("Land on {planet} ({system} system)")
+misndesc = _("Terra has asked you to fetch her son and her son's girlfriend, who have taken her yacht, the Credence, and are joyriding it in the {system} system. To fetch them, you must use non-lethal weaponry (such as ion cannons, Medusa missiles, or a weapons ionizer) to disable the Credence, then board the Credence by either #bdouble-clicking#0 it or by targeting it and pressing {board_key}.")
 
 
 function create ()
@@ -94,21 +86,32 @@ function create ()
         misn.finish(false)
     end
 
-    misn.setNPC(NPCname, "neutral/unique/middleaged.png", NPCdesc)
+    misn.setNPC(_("Terra"), "neutral/unique/terra.png",
+        _("You see an acquaintance of yours, Terra, looking around for a suitable pilot."))
 end
 
 
 function accept ()
-    if tk.yesno("", ask_text) then
+    if tk.yesno("", fmt.f(ask_text,
+            {player=player.name(), credits=fmt.credits(credits)})) then
         misn.accept()
 
-        misn.setTitle(OSDtitle)
-        misn.setDesc(fmt.f(misndesc, {system=cursys:name()}))
-        misn.setReward(misnreward)
+        credits = 300000
 
-        OSD[1] = fmt.f(OSD[1], {system=cursys:name()})
-        OSD[3] = fmt.f(OSD[3], {planet=curplanet:name(), system=cursys:name()})
-        misn.osdCreate(OSDtitle, OSD)
+        misn.setTitle(_("Teenager's Joyride"))
+        misn.setDesc(fmt.f(misndesc,
+            {system=cursys:name(), board_key=tutGetKey("board")}))
+        misn.setReward(fmt.credits(credits))
+
+        local osd_msg = {
+            fmt.f(_("Fly to the {system} system"), {system=cursys:name()}),
+            _("Disable Gawain Credence by using non-lethal weaponry (such as ion cannons, Medusa missiles, or a weapons ionizer)"),
+            fmt.f(_("Board Gawain Credence by double-clicking on it or by targeting it and pressing {board_key}"),
+                {board_key=naev.keyGet("board")}),
+            fmt.f(_("Land on {planet} ({system} system)"),
+                {planet=curplanet:name(), system=cursys:name()}),
+        }
+        misn.osdCreate(_("Teenager's Joyride"), osd_msg)
 
         tk.msg("", yes_text)
 
@@ -138,6 +141,8 @@ function enter()
         target:setVisplayer(true)
 
         hidle = hook.pilot(target, "idle", "targetIdle")
+        hook.pilot(target, "disable", "targetDisabled")
+        hook.pilot(target, "undisable", "targetUndisabled")
         hook.pilot(target, "exploded", "targetExploded")
         hook.pilot(target, "board", "targetBoard")
         targetIdle()
@@ -145,6 +150,7 @@ function enter()
         misn.osdActive(1)
     end
 end
+
 
 function targetIdle()
     if not target:exists() then
@@ -160,23 +166,34 @@ function targetIdle()
     hook.timer(5.0, "targetIdle")
 end
 
-function targetExploded()
-    hook.timer(2.0, "targetDeath")
+
+function targetDisabled()
+    if targetlive then
+        misn.osdActive(3)
+    end
 end
 
-function targetDeath()
-    if not targetlive then
-        return
+
+function targetUndisabled()
+    if targetlive then
+        misn.osdActive(2)
     end
-    tk.msg("", fail_text)
+end
+
+
+function targetExploded()
+    mh.showFailMsg(_("The Credence has been destroyed!"))
     misn.finish(false)
 end
+
 
 function targetBoard(p, boarder)
     if boarder ~= player.pilot() then
         return
     end
     player.unboard()
+
+    targetlive = false
 
     tk.msg("", board_text)
 
@@ -187,22 +204,23 @@ function targetBoard(p, boarder)
     local c = misn.cargoNew(N_("Teenagers"), N_("Disillusioned teenagers."))
     cargoID = misn.cargoAdd(c,0)
 
-    targetlive = false
-    misn.osdActive(3)
+    misn.osdActive(4)
 
     hook.land("land")
 end
 
+
 function land()
     if planet.cur() == curplanet and not targetlive then
-        tk.msg("", pay_text)
-        player.pay(300000) -- 300K
+        tk.msg("", fmt.f(pay_text, {player=player.name()}))
+        player.pay(credits)
         misn.finish(true)
     end
 end
 
-function abort ()
-    if target then
+
+function abort()
+    if target ~= nil and target:exists() then
         target:control(false)
         target:setHilight(false)
         target:setVisplayer(false)
