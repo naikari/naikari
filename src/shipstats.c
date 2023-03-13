@@ -227,7 +227,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G deg/s Turn Rate"),
       NULL),
    D_ELEM(SS_TYPE_D_TURN_MOD, turn_mod,
-      N_("%+G%% Turn"),
+      N_("%+G%% Turn Rate"),
       NULL),
    A_ELEM(SS_TYPE_A_THRUST, thrust,
       N_("%+G mAU/s² Acceleration"),
