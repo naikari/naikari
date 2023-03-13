@@ -8,6 +8,7 @@
   <priority>20</priority>
   <chance>80</chance>
   <location>Bar</location>
+  <done>The macho teenager</done>
   <cond>system.get("Klantar"):jumpDist() ~= nil and system.get("Klantar"):jumpDist() &lt; 3</cond>
  </avail>
  <notes>
