@@ -4,9 +4,6 @@
  <trigger>enter</trigger>
  <chance>100</chance>
  <cond>system.cur():presence("Pirate") &gt; 0 and not player.misnDone("The Space Family") and not player.misnActive("The Space Family")</cond>
- <flags>
-  <unique />
- </flags>
  <notes>
   <campaign>Tutorial</campaign>
  </notes>
