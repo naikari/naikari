@@ -58,7 +58,9 @@ require "cargo_common"
 
 ask_text = _([[The woman smiles as you approach her. "Well met," she says. "I believe you are a pilot, yes? I have a job for you, if you are interested. Just a cargo delivery, and it's important enough that I'm willing to pay {credits} for it. Well, does that interest you?"]])
 
-accept_text = _([["I'm glad to hear it! My name is Terra, by the way." You introduce yourself as well. "Pleased to meet you, {player}! {amount_description} We'll just load that onto your ship and you can drop it off at {planet} in the {system} system!"]])
+accept_text = _([["I'm glad to hear it! My name is Terra, by the way." You introduce yourself as well. "Ah, I've heard that name before from an acquaintance of mine, Mr. Ian Structure. A shared acquaintance, I presume? I've heard great things about you. Pleased to finally meet you, {player}!
+
+"{amount_description} We'll just load that onto your ship and you can drop it off at {planet} in the {system} system!"]])
 
 nospace_text = _([[You notice your ship's cargo capacity isn't enough to carry out the delivery, so you sheepishly start explaining to Terra that you won't be able to accept the mission after all. Terra, however, waves her hand to indicate that it isn't a problem. "Not to worry," she reassures. "You're not familiar with how to customize your ship, are you? I happen to know that the outfitter on this planet has Cargo Pods available, so you'll be able to take the mission no problem. Here, I'll show you! To start with, click on the 'Outfits' tab to go to the outfitter." She proceeds to the outfitter ahead of you.]])
 
