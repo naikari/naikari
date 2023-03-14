@@ -36,36 +36,29 @@
 
 --]]
 
-require "numstring"
+local fmt = require "fmt"
 require "missions/soromid/common"
 
 
-text = {}
+ask_text = _([[Chelsea looks up and smiles as she sees you approaching. "{player}! It's good to see you again. It's been a while!" You sit down and ask about how coming out to her parents went. "It went well!" she answers. "They both seem to be supportive. They keep accidentally using the wrong name and pronouns, but they're trying at least.
 
-ask_text = _([[Chelsea smiles and waves as she sees you approaching. "Hi, %s! It's been a while!" You sit down and start a friendly conversation with her. She mentions that her parents seem to be supportive of her decision to transition and her mother in particular apparently has been very helpful.
+"I finally got my pilot's license, by the way! I'm really excited to get started. Just have to get my first ship. Say, could you help me with that? See, I found a ship for a bargain at {planet} in the {system} system, but I need a transport to get there. I could pay you {credits} to take me there. Well? What do you say?"]])
 
-Chelsea perks up a little. "So, remember I said I had ambitions of being a pilot? Well, I have my piloting license now!" You congratulate her and she thanks you before grimacing slightly. "I, uh, can't manage to get a ship here though." You ask if there's anything you can do to help. "Oh!" she responds. "That's very kind of you!
+yes_text = _([["Thank you so much! I really appreciate it, {player}, especially because I know you're not going to treat me like shit on the way. I can't wait to start piloting for real!"]])
 
-"Well, I've done some research and I think I should start at %s in the %s system. Would you be able to take me there? I'll pay you for the transportation, of course."]])
+no_text = _([["Oh, okay. Let me know if you change your mind!"]])
 
-yes_text = _([["Thank you so much! I really appreciate it, %s. I've got %s for you when we get there. I can't wait to start!"]])
-
-no_text = _([["Oh, okay. Let me know later on if you're able to!"]])
-
-ask_again_text = _([["Oh, %s! Are you able to help me out now?"]])
+ask_again_text = _([["Oh, {player}! Are you able to help me out now? Just a transport to {planet} in the {system} system is all I need, for {credits}."]])
 
 landtext = _([[As you dock you can barely stop Chelsea from jumping out of your ship and hurting herself. She seems to know exactly where to go and before you even know what's going on, she's purchased a Llama from the shipyard which is considerably damaged and rusty, but in working order nonetheless. You express concern about the condition of the ship, but she assures you that she will fix it up as she gets enough money to do so. She gives you a friendly hug, thanks you, and hands you a credit chip. "Catch up with me again sometime, okay? I'll be hanging out in Soromid space doing my first missions as a pilot!" As you walk away, you see her getting her first close-up look at the mission computer with a look of excitement in her eyes.]])
 
 misn_title = _("Coming of Age")
-misn_desc = _("Chelsea needs you to take her to %s so she can buy her first ship and kick off her piloting career.")
+misn_desc = _("Chelsea needs you to take her to {planet} ({system} system) so she can buy her first ship and kick off her piloting career.")
 
 npc_name = _("Chelsea")
 npc_desc = _("She seems to just be idly reading the news. It's been a while; maybe you should say hi?")
 
-osd_desc    = {}
-osd_desc[1] = _("Land on %s (%s system)")
-
-log_text = _([[You helped transport Chelsea to Crow, where she was able to buy her first ship, a Llama which is damaged and rusty, but working. As she went on to start her career as a freelance pilot, she asked you to catch up with her again sometime. She expects that she'll be sticking to Soromid space for the time being.]])
+log_text = _([[You helped transport Chelsea to {planet}, where she was able to buy her first ship, a Llama which is damaged and rusty, but working. As she went on to start her career as a freelance pilot, she asked you to catch up with her again sometime. She expects that she'll be sticking to Soromid space for the time being.]])
 
 
 function create ()
@@ -88,17 +81,23 @@ function accept ()
    end
    started = true
 
-   if tk.yesno("", txt) then
-      tk.msg("", yes_text:format(player.name(), creditstring(credits)))
+   if tk.yesno("", fmt.f(txt,
+         {player=player.name(), planet=misplanet:name(),
+            system=missys:name(), credits=fmt.credits(credits)})) then
+      tk.msg("", fmt.f(yes_text, {player=player.name()}))
 
       misn.accept()
 
       misn.setTitle(misn_title)
-      misn.setDesc(misn_desc:format(misplanet:name()))
-      misn.setReward(creditstring(credits))
+      misn.setDesc(fmt.f(misn_desc,
+            {planet=misplanet:name(), system=missys:name()}))
+      misn.setReward(fmt.credits(credits))
       marker = misn.markerAdd(missys, "low")
 
-      osd_desc[1] = osd_desc[1]:format(misplanet:name(), missys:name())
+      local osd_desc = {
+         fmt.f(_("Land on {planet} ({system} system)"),
+               {planet=misplanet:name(), system=missys:name()}),
+      }
       misn.osdCreate(misn_title, osd_desc)
 
       hook.land("land")
@@ -117,7 +116,7 @@ function land ()
       local t = time.get():tonumber()
       var.push("comingout_time", t)
 
-      srm_addComingOutLog(log_text)
+      srm_addComingOutLog(fmt.f(log_text, {planet=misplanet:name()}))
 
       misn.finish(true)
    end
