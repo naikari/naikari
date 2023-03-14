@@ -35,7 +35,6 @@
 --]]
 
 local fmt = require "fmt"
-require "numstring"
 require "missions/soromid/common"
 
 
@@ -56,41 +55,31 @@ When you land, C takes off and goes to do whatever they need to do. By the time 
 
 dest_text[2] = _([[You have many long conversations with C about a number of topics during the trip to this location, including piloting. At some point during the trip, your experience as a pilot came up and you told C about your adventures. "You know, you're an inspiration," C remarks as you land. You feel yourself blushing a little as she continues. "To travel all the way from Empire space into Soromid space really is quite huge! And all those places you've been to along the way! You're exactly the kind of pilot I want to be." You only half-jokingly suggest that maybe you should collaborate with her on a mission when she gets her piloting license. She softly giggles.
 
-This time, you finish docking procedures before C finishes her errands at this location, so you head off on your own for a while. When you get back, you see C has returned, looking slightly sadder than usual, so you ask how her errands went. "Oh, it was fine," she says. "It's just, someone misgendered me while I was there." You ask if she's OK. "Yeah, I'm fine," she affirms. "It wasn't intentional and they corrected themself right after. It just kind of sucks, you know? Just because I look and sound a little different from society's expectation for what a woman is, people assume I'm a man." Unsure of what else to say, you tell her that you're always available to talk with her since you've begun to view her as a friend. She smiles. "Thank you. I appreciate it."]])
+This time, you finish docking procedures before C finishes her errands at this location, so you head off on your own for a while. When you get back, you see C has returned, looking slightly sadder than usual, so you ask how her errands went. "Oh, it was fine," she says. "It's just, someone misgendered me while I was there." You ask if she's OK. "Yeah, I'm fine," she affirms. "It wasn't intentional and they corrected themself right after. It just kind of sucks, you know? But you never assumed my gender. I appreciate that. I wish more people would do the same."]])
 
 dest_text[3] = _([[The trip to this destination was filled with conversation, and you and C have learned a lot about each other. C mentioned several names she was considering, then after some deliberation, came to an answer. "I think I like 'Chelsea'," she said.
 
-Now, as you dock, Chelsea has a very happy look on her face. She goes to do whatever she needs to do with a positive attitude and judging by how she looks when she returns, it seems to have gone well.]])
+Now, as you dock, Chelsea has a very happy look on her face. She goes to do whatever she needs to do in high spirits and judging by how she looks when she returns, it seems to have gone well.]])
 
-dest_text[4] = _([[At this point, talking to Chelsea has become a very natural thing for you. You've gotten used to the constant chatter with your new friend to the point that when she goes off on her errands at this location, the quiet feels strange in comparison.
+dest_text[4] = _([[At this point, talking to Chelsea has become a very natural thing for you. You've gotten used to the constant chatter. When she goes off on her errands at this location, the quiet feels strange in comparison.
 
-When Chelsea returns, you notice that she looks happy, yet almost half-sad at the same time. Just when you were about to ask what's wrong, she speaks up. "Well, I guess the only place to go is back to my home planet, huh?" You nervously laugh, then say it'll almost feel unfamiliar with her not with you in the ship. "You're a really great friend," she says. Her smile grows and the sadness fades. "We should definitely stay in touch after that." You agree. "Actually," she muses, "I think I'd like to come out to my parents. They don't know I'm transgender yet. Can you go with me? Having you there while I come out to them would be a big help." You smile and agree to the request. "Thank you," she responds. "It means a lot."]])
+When Chelsea returns, she heaves a bit of a sigh. "Well, I guess the only place to go is back to my home planet, huh? It's funny, I haven't known you for that long, but I feel like you know me way better than anyone else. It's like I've been pretending to be someone else all my life, you know?
 
-home_text = _([[As you approach Chelsea's parents' home, you can tell that she's nervous about the whole thing. You assure her that everything will be alright.
+"Anyway, I guess it's time to go back to my home planet."]])
 
-She greets her parents and hands them something you don't know anything about, and she introduces you to them. "This is my new friend," she says. "The guy I started with kind of left me somewhere and didn't come back, but %s here helped me the rest of the way."
-
-Her father perks up. "Are you sure he left you? Maybe he just got lost."
-
-An awkward pause follows before Chelsea's mother intervenes. "Well the important thing is that everything went alright in the end." She smiles at Chelsea, then turns to look at you. "And hey, it's nice that you managed to make a friend along the way!" You smile back.]])
-
-home_text_2 = _([[Chelsea briefly pauses and glances at you. You nod encouragingly. "Um, I also managed to do some self-reflection. I'm, um... I'm transgender. I'm changing my name to 'Chelsea' and I'm using she/her pronouns now."
-
-Chelsea's father shrugs. "Whatever makes you happy," he says. "I might take some time getting used to the name." He lets out a slight chuckle. "But however you dress or whatever, that's fine by me."
-
-Chelsea's mother then walks up to Chelsea and pulls her into a warm embrace before she can even react. You see tears starting to appear in Chelsea's eyes as she hugs back. "I'm proud of you for being you, Chelsea," her mother says. Chelsea tightens her grip.]])
-
-home_text_3 = _([[After what seems like a permanent snapshot of the longest hug in human history, Chelsea and her mother let go each other, and Chelsea gives you a friendly hug. "Thank you for being here," she says. "I don't think I would have been able to come out about this without you."
-
-After some further pleasantries, you leave Chelsea's parents' home. "Well," Chelsea says, "I guess you'll probably have to go now, but do come back again soon! Maybe by the time you return I'll have my pilot's license and can start on my journey to become a pilot! Oh, and also, let me give this to you." She hands over a credit chip. "That's the payment I owe you for helping me out. I'll see you later, ok?" You say goodbye and part ways. You'll have to remember to return soon and see how Chelsea's goal of obtaining her pilot's license is going.]])
+home_text = _([["It's so weird," Chelsea remarks as you begin landing procedures. "Coming out to you was easy, but coming out to my parents? Terrifying. I just hope they'll be accepting." When landing is finished and you and Chelsea step out onto the spaceport, she hands you the promised payment. "I hope we meet again some day, {player}. Come back here sometime; maybe I'll finally have my pilot license when you do!" You wish Chelsea good luck in coming out to her parents and in obtaining her pilot license as you part ways. Perhaps you should accept that invitation at some point in the future.]])
 
 misn_title = _("Coming Out")
-misn_desc = _("Your new friend needs you to deliver them to a few locations, then return them to %s.")
+misn_desc = _([[You have been hired to transport someone who was stranded to several locations to run some errands:
+
+{locations_list}
+
+Afterwards, you are to return them to their homeworld, {planet} ({system} system)]])
 
 npc_name = _("Quiet stranger")
 npc_desc = _("A stranger is sitting quietly at a table alone and staring off into space.")
 
-log_text = _([[You have made a new friend, Chelsea. You helped transport her to complete some errands and also supported her in coming out as transgender to her parents. Chelsea has asked you to return to %s to visit soon.]])
+log_text = _([[You have met a woman, Chelsea, who recently came out as transgender. You helped transport her to complete some errands and then returned her to her homeworld. Chelsea has suggested meeting again in the future on {planet} ({system} system).]])
 
 
 function create ()
@@ -119,8 +108,17 @@ function accept ()
 
       misn.accept()
 
+      local locations = {}
+      for i, pn in ipairs(dests) do
+         local pl, sys = planet.get(pn)
+         table.insert(locations, fmt.f(_("{planet} ({system} system)"),
+               {planet=pl:name(), system=sys:name()}))
+      end
+
       misn.setTitle(misn_title)
-      misn.setDesc(misn_desc:format(homeplanet:name()))
+      misn.setDesc(fmt.f(misn_desc,
+            {locations_list=table.concat(locations, "\n"),
+               planet=homeplanet:name(), system=homesys:name()}))
       misn.setReward(fmt.credits(credits))
 
       generate_osd()
@@ -143,12 +141,12 @@ function generate_osd ()
    if #dests > 0 then
       for i, pn in ipairs(dests) do
          local pl, sys = planet.get(pn)
-         osd_desc[#osd_desc + 1] = string.format(
-               _("Land on %s (%s system)"), pl:name(), sys:name())
+         table.insert(osd_desc, fmt.f(_("Land on {planet} ({system} system)"),
+               {planet=pl:name(), system=sys:name()}))
       end
    else
-      osd_desc[1] = string.format(
-            _("Land on %s (%s system)"), homeplanet:name(), homesys:name())
+      osd_desc[1] = fmt.f(_("Land on {planet} ({system} system)"),
+            {planet=homeplanet:name(), system=homesys:name()})
    end
 
    misn.osdCreate(misn_title, osd_desc)
@@ -179,15 +177,14 @@ function land ()
          end 
       end
    elseif planet.cur() == homeplanet then
-      tk.msg("", home_text:format(player.name()))
-      tk.msg("", home_text_2)
-      tk.msg("", home_text_3)
+      tk.msg("", fmt.f(home_text, {player=player.name()}))
       player.pay(credits)
 
       local t = time.get():tonumber()
       var.push("comingout_time", t)
 
-      srm_addComingOutLog(log_text:format(homeplanet:name()))
+      srm_addComingOutLog(fmt.f(log_text,
+            {planet=homeplanet:name(), system=homesys:name()}))
 
       misn.finish(true)
    end
