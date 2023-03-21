@@ -10,7 +10,11 @@
   <chance>70</chance>
   <location>Bar</location>
   <faction>Soromid</faction>
-  <cond>var.peek("comingout_time") == nil or time.get() &gt;= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0)</cond>
+  <cond>
+   faction.get("Soromid"):playerStanding() >= 0
+   and (var.peek("comingout_time") == nil
+      or time.get() &gt;= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0))
+  </cond>
  </avail>
  <notes>
   <campaign>Coming Out</campaign>
@@ -36,43 +40,35 @@
 
 --]]
 
-require "numstring"
+local fmt = require "fmt"
+local mh = require "misnhelper"
 require "cargo_common"
 require "nextjump"
 require "missions/soromid/common"
 
 
-ask_text = _([[Chelsea gleefully waves you over. "It's nice to see you again!" she says. The two of you chat a bit about her venture into the piloting business; all is well from the sound of it. "Say," she says, "someone offered me a really well-paying mission recently, but I had to decline because my ship isn't really up to task. If you could just escort my ship through that mission I could share the pay with you! Your half would be %s. How about it?"]])
+ask_text = _([[Chelsea gleefully waves you over. "{player}! It's nice to see you again!" she says. "And perfect timing! I was just looking for help from another pilot, but everyone I've talked to isn't up to it. With all the adventures you've been on, I'm sure it'll be a cinch for you!
 
-start_text = _([["Awesome! I really appreciate it!
+"See, I got a… well, I can't say exactly, but a special contract that they say is going to get me in some hot water with some sort of militant anti-Soromid gang. Not just pirates, mind; they said I can expect to be bombarded by them like there's no tomorrow, which is why I can't go alone. {planet} in the {system} system is my destination, and as soon as you finish escorting me there, you'll be paid {credits}. So, what do you think? Wanna see how good of a team we make?"]])
 
-"So the mission is in theory a pretty simple one: I need to deliver some cargo to %s in the %s system. Trouble is apparently I'll be getting on the bad side of some gang that hates the Soromid or something.
+start_text = _([["Perfect! I must admit that though I'm a bit scared, I'm also kind of excited to see what my ship can do when I push it to the limit! Remember, follow my lead and make sure I jump before you do. I'll assist with combat as much as I can, but my ship is built for cargo moreso than combat, so just be prepared for that.
 
-"That's where you come in. I just need you to follow me along, make sure I finish jumping or landing before you do, and if we encounter any hostilities, help me shoot them down. Shouldn't be too too hard as long as you've got a decent ship. I'll meet you out in space!"]])
+"I'll meet you out in space when you're ready. See you there!"]])
 
-no_text = _([["Ah, OK. Let me know if you change your mind."]])
+no_text = _([["Dang, you would have been perfect. Oh well, I know it's a lot to ask. Let me know if you change your mind."]])
 
-ask_again_text = _([["I could still use your help with that mission! Could you help me out?"]])
+ask_again_text = _([["Oh, hi again, {player}! Have you changed your mind about escorting me to {planet} in the {system} system? The {credits} offer still stands."]])
 
 left_fail_text = _("You have lost contact with Chelsea and therefore failed the mission.")
 
-success_text = _([[You successfully land and dock alongside Chelsea and she approaches the worker for the cargo delivery. The worker gives her a weird look, but collects the cargo with the help of some robotic drones and hands her a credit chip. When you get back to your ships, Chelsea transfers the sum of %s to your account, and you idly chat with her for a while.
+success_text = _([[As you and Chelsea land, you notice, to your surprise, a contingent of Soromid military forces waiting. Chelsea seems to have been expecting this, however. So that's the kind of contract she got.
 
-"Anyway, I should probably get going now," she says. "But I really appreciated the help there! Get in touch with me again sometime. We make a great team!" You agree, and you both go your separate ways once again.]])
+As Chelsea's cargo is swiftly unloaded, an officer approaches her and says some words to her that you can't make out, handing her a credit chip. The officer then approaches you. "{player}, yes? I must thank you for your assistance in this mission. It sounds like you've done a fantastic service. I apologize for not revealing the full scope of the mission to you, but it was a matter of national security. I trust you understand." She hands you a credit chip with the promised payment. "I hope we meet again sometime, {player}. The same goes for Chelsea." She shakes your hand and leaves you and Chelsea with the cargo containers. You exchange a few pleasantries with Chelsea before seeing her off as well.]])
 
 misn_title = _("A Friend's Aid")
-misn_desc = _("Chelsea needs you to escort her to %s. You must wait for her to jump to or land on her destination before you jump or land, and you must not deviate from her course.")
+misn_desc = _("Chelsea needs you to escort her to {planet} in the {system} system. You must wait for her to jump to or land on her destination before you jump or land, and you must not deviate from her course. You will likely be attacked by gangsters.")
 
-npc_name = _("Chelsea")
-npc_desc = _("You see Chelsea looking contemplative.")
-
-cheljump_msg = _("Chelsea has jumped to %s.")
-chelland_msg = _("Chelsea has landed on %s.")
-chelkill_msg = _("MISSION FAILED: A rift in the space-time continuum causes you to have never met Chelsea in that bar.")
-chelflee_msg = _("MISSION FAILED: Chelsea has abandoned the mission.")
-plflee_msg = _("MISSION FAILED: You have abandoned the mission.")
-
-log_text = _([[You helped escort Chelsea through a dangerous cargo delivery mission where you had to protect her from some sort of gang. She said that she would like to get back in touch with you again sometime for another mission.]])
+log_text = _([[You helped escort Chelsea through a cargo delivery which had some connection to the Soromid government, although you don't know the details. You encountered some kind of anti-Soromid gang along the way.]])
 
 
 function create ()
@@ -92,7 +88,8 @@ function create ()
    credits = 500000
    started = false
 
-   misn.setNPC(npc_name, "soromid/unique/chelsea.png", npc_desc)
+   misn.setNPC(_("Chelsea"), "soromid/unique/chelsea.png",
+         _("You see Chelsea looking around. Perhaps she needs help with something."))
 end
 
 
@@ -101,31 +98,33 @@ function accept ()
    if started then
       txt = ask_again_text
    else
-      txt = ask_text:format(creditstring(credits))
+      txt = ask_text
    end
    started = true
 
-   if tk.yesno("", txt) then
-      tk.msg("", start_text:format(misplanet:name(), missys:name()))
+   if tk.yesno("", fmt.f(txt,
+         {player=player.name(), planet=misplanet:name(), system=missys:name(),
+            credits=fmt.credits(credits)})) then
+      tk.msg("", start_text)
 
       misn.accept()
 
       misn.setTitle(misn_title)
-      misn.setDesc(misn_desc:format(misplanet:name()))
-      misn.setReward(creditstring(credits))
+      misn.setDesc(fmt.f(misn_desc,
+            {planet=misplanet:name(), system=missys:name()}))
+      misn.setReward(fmt.credits(credits))
       marker = misn.markerAdd(missys, "low")
 
       local nextsys = getNextSystem(system.cur(), missys)
       local jumps = system.cur():jumpDist(missys)
-      local osd_desc = {}
-      osd_desc[1] = string.format(
-            _("Protect Chelsea and wait for her to jump to %s"),
-            nextsys:name())
-      osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
-      osd_desc[3] = string.format(
-                  n_("%s more jump after this one",
-                     "%s more jumps after this one", jumps - 1),
-                  numstring(jumps - 1))
+      local osd_desc = {
+         fmt.f(_("Protect Chelsea and wait for her to jump to {system}"),
+               {system=nextsys:name()}),
+         fmt.f(_("Jump to {system}"), {system=nextsys:name()}),
+         fmt.f(n_("{remaining} more jump after this one",
+                  "{remaining} more jumps after this one", jumps - 1),
+               {remaining=fmt.number(jumps - 1)}),
+      }
       misn.osdCreate(misn_title, osd_desc)
 
       startplanet = planet.cur()
@@ -146,9 +145,19 @@ function cargo_selectMissionDistance ()
 end
 
 
-function spawnChelseaShip( param )
-   chelsea = pilot.add(
-         "Llama", "Comingout_associates", param, _("Chelsea"), {naked=true})
+function createFactions()
+   local f1 = faction.dynAdd("Mercenary", "Chelsea_f", N_("Civilian"))
+   local f2 = faction.dynAdd("Mercenary", N_("Imperian Brotherhood"))
+   f1:dynEnemy(f2)
+   f1:dynEnemy("Pirate")
+   f1:setPlayerStanding(100)
+   f2:setPlayerStanding(-20)
+end
+
+
+function spawnChelseaShip(param)
+   local f = faction.dynAdd("Mercenary", "Chelsea_f", N_("Civilian"))
+   chelsea = pilot.add("Llama", f, param, _("Chelsea"), {naked=true})
    chelsea:outfitAdd("Unicorp PT-80 Core System")
    chelsea:outfitAdd("Unicorp Hawk 300 Engine")
    chelsea:outfitAdd("Unicorp D-4 Light Plating")
@@ -180,11 +189,12 @@ end
 
 
 function spawnGangster(param)
+   local f = faction.dynAdd("Mercenary", N_("Imperian Brotherhood"))
    local shiptypes = {"Hyena", "Hyena", "Hyena", "Shark", "Lancelot"}
    local shiptype = shiptypes[rnd.rnd(1, #shiptypes)]
 
-   gangster = pilot.add(shiptype, "Comingout_gangsters", param,
-         _("Gangster %s"):format(_(shiptype)))
+   gangster = pilot.add(shiptype, f, param,
+         fmt.f(_("Gangster {ship}"), {ship=_(shiptype)}))
 
    gangster:setHostile()
 
@@ -201,26 +211,26 @@ function jumpNext ()
       misn.osdDestroy()
       if system.cur() == missys then
          chelsea:land(misplanet, true)
-         local osd_desc = {}
-         osd_desc[1] = string.format(
-               _("Protect Chelsea and wait for her to land on %s"),
-               misplanet:name())
-         osd_desc[2] = string.format(_("Land on %s"), misplanet:name())
+         local osd_desc = {
+            fmt.f(_("Protect Chelsea and wait for her to land on {planet}"),
+                  {planet=misplanet:name()}),
+            fmt.f(_("Land on {planet}"), {planet=misplanet:name()}),
+         }
          misn.osdCreate(misn_title, osd_desc)
       else
          local nextsys = getNextSystem(system.cur(), missys)
          local jumps = system.cur():jumpDist(missys)
          chelsea:hyperspace(nextsys, true)
-         local osd_desc = {}
-         osd_desc[1] = string.format(
-               _("Protect Chelsea and wait for her to jump to %s"),
-               nextsys:name())
-         osd_desc[2] = string.format(_("Jump to %s"), nextsys:name())
+         local osd_desc = {
+            fmt.f(_("Protect Chelsea and wait for her to jump to {system}"),
+                  {system=nextsys:name()}),
+            fmt.f(_("Jump to {system}"), {system=nextsys:name()}),
+         }
          if jumps > 1 then
-            osd_desc[3] = string.format(
-                  n_("%s more jump after this one",
-                     "%s more jumps after this one", jumps - 1),
-                  numstring(jumps - 1))
+            osd_desc[#osd_desc + 1] = fmt.f(
+                  n_("{remaining} more jump after this one",
+                     "{remaining} more jumps after this one", jumps - 1),
+                  {remaining=fmt.number(jumps - 1)})
          end
          misn.osdCreate(misn_title, osd_desc)
       end
@@ -228,7 +238,8 @@ function jumpNext ()
 end
 
 
-function takeoff ()
+function takeoff()
+   createFactions()
    spawnChelseaShip(startplanet)
    jumpNext()
    spawnGangster()
@@ -240,21 +251,24 @@ function jumpout ()
 end
 
 
-function jumpin ()
+function jumpin()
+   createFactions()
    if chelsea_jumped and system.cur() == getNextSystem(lastsys, missys) then
       spawnChelseaShip(lastsys)
       jumpNext()
       hook.timer(5, "gangster_timer")
    else
-      fail(plflee_msg)
+      mh.showFailMsg(_("You have abandoned the mission."))
+      misn.finish(false)
    end
 end
 
 
-function land ()
+function land()
    if chelsea_jumped and planet.cur() == misplanet then
-      tk.msg("", success_text:format(creditstring(credits)))
+      tk.msg("", fmt.f(success_text, {player=player.name()}))
       player.pay(credits)
+      faction.get("Soromid"):modPlayer(3)
       srm_addComingOutLog(log_text)
       misn.finish(true)
    else
@@ -272,30 +286,35 @@ function gangster_timer()
 end
 
 
-function chelsea_death ()
-   fail(chelkill_msg)
+function chelsea_death()
+   mh.showFailMsg(_("A rift in the space-time continuum causes you to have never met Chelsea in that bar."))
+   misn.finish(false)
 end
 
 
 function chelsea_jump( p, jump_point )
    if jump_point:dest() == getNextSystem(system.cur(), missys) then
-      player.msg(cheljump_msg:format(jump_point:dest():name()))
+      player.msg(fmt.f(_("Chelsea has jumped to {system}."),
+            {system=jump_point:dest():name()}))
       chelsea_jumped = true
       misn.osdActive(2)
    else
-      fail(chelflee_msg)
+      mh.showFailMsg(_("Chelsea has abandoned the mission."))
+      misn.finish(false)
    end
 end
 
 
 function chelsea_land(p, planet)
    if planet == misplanet then
-      player.msg(chelland_msg:format(planet:name()))
+      player.msg(fmt.f(_("Chelsea has landed on {planet}."),
+            {planet=planet:name()}))
       chelsea_jumped = true
       misn.osdActive(2)
       hook.rm(distress_timer_hook)
    else
-      fail(chelflee_msg)
+      mh.showFailMsg(_("Chelsea has abandoned the mission."))
+      misn.finish(false)
    end
 end
 
@@ -318,19 +337,4 @@ function gangster_removed()
    spawnGangster()
    hook.rm(distress_timer_hook)
    jumpNext()
-end
-
-
--- Fail the mission, showing message to the player.
-function fail(message)
-   if message ~= nil then
-      -- Pre-colourized, do nothing.
-      if message:find("#") then
-         player.msg(message)
-      -- Colourize in red.
-      else
-         player.msg("#r" .. message .. "#0")
-      end
-   end
-   misn.finish(false)
 end
