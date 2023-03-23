@@ -35,10 +35,15 @@ end
 -- These are systems which have both FLF and Dvaered presence.
 function flf_getTargetSystem ()
    local choices = {}
-   for i, j in ipairs( system.getAll() ) do
-      local p = j:presences()
-      if p["FLF"] and p["Dvaered"] then
-         choices[#choices + 1] = j:nameRaw()
+   for i, sys in ipairs(system.getAll()) do
+      -- Exclude Sigur (Sindbad's location). Shouldn't be necessary,
+      -- but just as a failsafe to be absolutely sure missions aren't
+      -- given there accidentally.
+      if sys ~= system.get("Sigur") then
+         local p = sys:presences()
+         if p["FLF"] and p["Dvaered"] then
+            choices[#choices + 1] = sys:nameRaw()
+         end
       end
    end
    return system.get(choices[rnd.rnd(1, #choices)])
