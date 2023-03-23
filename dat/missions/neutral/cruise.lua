@@ -71,7 +71,7 @@ function create()
    allowance = allowance * 2
 
    -- And randomize the allowance a bit.
-   allowance = allowance * (1.1 + 0.1*rnd.twosigma())
+   allowance = allowance * (1.1 + 0.1*rnd.sigma())
    
    timelimit = time.get() + time.create(0, 0, allowance)
    timelimit2 = time.get() + time.create(0, 0, allowance * 1.2)

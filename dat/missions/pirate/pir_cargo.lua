@@ -107,7 +107,7 @@ function create()
    jumpreward = 3000
    distreward = 0.60
    reward = 1.1^tier * (numjumps*jumpreward + traveldist*distreward)
-         * finished_mod * (1. + 0.05*rnd.twosigma())
+         * finished_mod * (1 + 0.05*rnd.twosigma())
    
    local title = n_(
          "PIRACY: Illegal Cargo: {amount} t to {planet} ({system} system)",
