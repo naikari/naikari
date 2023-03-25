@@ -12,12 +12,15 @@
   <faction>Soromid</faction>
   <cond>
    faction.get("Soromid"):playerStanding() >= 0
+   and player.numOutfit("Mercenary License") &gt; 0
+   and player.misnDone("Follow Tutorial")
    and (var.peek("comingout_time") == nil
       or time.get() &gt;= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0))
   </cond>
  </avail>
  <notes>
   <campaign>Coming Out</campaign>
+  <done_misn name="Follow Tutorial"/>
  </notes>
 </mission>
 --]]
@@ -147,7 +150,7 @@ end
 
 function createFactions()
    local f1 = faction.dynAdd("Mercenary", "Chelsea_f", N_("Civilian"))
-   local f2 = faction.dynAdd("Mercenary", N_("Imperian Brotherhood"))
+   local f2 = faction.dynAdd("Mercenary", N_("Imperyan Brotherhood"))
    f1:dynEnemy(f2)
    f1:dynEnemy("Pirate")
    f1:setPlayerStanding(100)
@@ -189,7 +192,7 @@ end
 
 
 function spawnGangster(param)
-   local f = faction.dynAdd("Mercenary", N_("Imperian Brotherhood"))
+   local f = faction.dynAdd("Mercenary", N_("Imperyan Brotherhood"))
    local shiptypes = {"Hyena", "Hyena", "Hyena", "Shark", "Lancelot"}
    local shiptype = shiptypes[rnd.rnd(1, #shiptypes)]
 
