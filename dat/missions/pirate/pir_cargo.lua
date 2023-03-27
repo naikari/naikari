@@ -191,12 +191,6 @@ function land()
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
                {cargotype=_(cargo[1])}))
       player.pay(reward)
-      n = var.peek("ps_misn")
-      if n ~= nil then
-         var.push("ps_misn", n+1)
-      else
-         var.push("ps_misn", 1)
-      end
 
       -- increase faction
       if player.misnActive("Fake ID") then
