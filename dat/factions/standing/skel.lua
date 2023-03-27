@@ -137,7 +137,6 @@ function default_hit( current, amount, source, secondary )
    -- Faction gain
    if amount > 0 then
       if source == "kill" or source == "distress" then
-         local has_planet
          -- Positive kill, which means an enemy of this faction got
          -- killed. We need to check if this happened in the faction's
          -- territory, otherwise it doesn't count.
