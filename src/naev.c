@@ -41,7 +41,6 @@
 #include "env.h"
 #include "event.h"
 #include "faction.h"
-#include "fleet.h"
 #include "font.h"
 #include "gui.h"
 #include "hook.h"
@@ -634,10 +633,10 @@ void load_all (void)
    outfit_load(); /* dep for ships, factions */
 
    loadscreen_render(5./LOADING_STAGES, _("Loading Ships…"));
-   ships_load(); /* dep for fleet */
+   ships_load(); /* no dep */
 
    loadscreen_render(6./LOADING_STAGES, _("Loading Factions…"));
-   factions_load(); /* dep for fleet, space, missions, AI */
+   factions_load(); /* dep for space, missions, AI */
 
    loadscreen_render(7./LOADING_STAGES, _("Loading Events…"));
    events_load(); /* no dep */
@@ -646,10 +645,7 @@ void load_all (void)
    missions_load(); /* no dep */
 
    loadscreen_render(9./LOADING_STAGES, _("Loading AI…"));
-   ai_load(); /* dep for fleets */
-
-   loadscreen_render(10./LOADING_STAGES, _("Loading Fleets…"));
-   fleet_load(); /* dep for space */
+   ai_load(); /* no dep */
 
    loadscreen_render(11./LOADING_STAGES, _("Loading Techs…"));
    tech_load(); /* dep for space */
@@ -691,7 +687,6 @@ void unload_all (void)
    economy_destroy(); /* must be called before space_exit */
    space_exit(); /* cleans up the universe itself */
    tech_free(); /* Frees tech stuff. */
-   fleet_free();
    ships_free();
    outfit_free();
    spfx_free(); /* gets rid of the special effect */
