@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Baroncomm_baron">
  <trigger>enter</trigger>
- <chance>4</chance>
+ <chance>20</chance>
  <cond>
   player.misnDone("Teddy Bears from Space")
   and not var.peek("baron_hated")
@@ -33,7 +33,6 @@ function create ()
     local lastcomm = var.peek("baroncomm_last")
     if lastcomm == nil then
         var.push("baroncomm_last", time.get():tonumber())
-        evt.finish(false)
     else
         if time.get() - time.fromnumber(lastcomm) < time.create(0, 50, 0) then
             evt.finish(false)
