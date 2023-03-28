@@ -56,7 +56,6 @@
   </allies>
   <enemies>
    <enemy>Pirate</enemy>
-   <enemy>Raider</enemy>
   </enemies>
  </faction>
  <faction>
@@ -73,7 +72,6 @@
   </allies>
   <enemies>
    <enemy>Pirate</enemy>
-   <enemy>Raider</enemy>
   </enemies>
  </faction>
  <faction>
@@ -110,7 +108,6 @@
   <enemies>
    <enemy>Civilian</enemy>
    <enemy>Collective</enemy>
-   <enemy>Comingout_associates</enemy>
    <enemy>Dvaered</enemy>
    <enemy>Empire</enemy>
    <enemy>Frontier</enemy>
@@ -190,7 +187,6 @@
   <allies/>
   <enemies>
    <enemy>Pirate</enemy>
-   <enemy>Comingout_gangsters</enemy>
   </enemies>
  </faction>
  <faction>
@@ -351,22 +347,6 @@
   <enemies />
  </faction>
  <faction>
-  <name>Raider</name>
-  <ai>pirate</ai>
-  <static />
-  <invisible />
-  <known />
-  <logo>pirate</logo>
-  <longname>Galactic Pirates</longname>
-  <player>-100</player>
-  <colour>red</colour>
-  <standing>static</standing>
-  <enemies>
-   <enemy>Miner</enemy>
-   <enemy>Trader</enemy>
-  </enemies>
- </faction>
- <faction>
   <name>Achack_sirius</name>
   <ai>sirius_norun</ai>
   <display>Sirius</display>
@@ -392,36 +372,6 @@
   <standing>static</standing>
   <enemies>
    <enemy>Achack_sirius</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Comingout_associates</name>
-  <ai>mercenary</ai>
-  <display>Mercenary</display>
-  <static />
-  <invisible />
-  <known />
-  <player>70</player>
-  <standing>static</standing>
-  <equip>mercenary</equip>
-  <enemies>
-   <enemy>Pirate</enemy>
-   <enemy>Comingout_gangsters</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Comingout_gangsters</name>
-  <ai>baddie</ai>
-  <display>Gangsters</display>
-  <static />
-  <invisible />
-  <known />
-  <player>-20</player>
-  <standing>static</standing>
-  <equip>pirate</equip>
-  <enemies>
-   <enemy>Comingout_associates</enemy>
-   <enemy>Soromid</enemy>
   </enemies>
  </faction>
 </Factions>

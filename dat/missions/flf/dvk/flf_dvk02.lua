@@ -55,7 +55,7 @@ ask_again_text = _([["Hello again, {player}. Are you able to help us deal with t
 
 yes_text = _([["Perfect! I knew you would do it!
 
-"First, we need to do some investigating, find out why they're there and what they want. I suspect they won't tell you without a fight, so I need you to… persuade them. I would recommend boarding one of them and interrogating them personally. I will leave you to decide what to do after that. Let me know how it goes, what you've found out and what you've accomplished. Good luck!"]])
+"First, we need to do some investigating, find out why they're there and what they want. I suspect they won't tell you without a fight, so I need you to… persuade them. I would recommend boarding one of them and interrogating them personally. I will leave you to decide what to do after that. If you don't have any non-lethal weaponry, there should be some Ion Cannons at the outfitter here on Sindbad. Let me know how it goes, what you've found out and what you've accomplished. Good luck!"]])
 
 no_text = _([[You see a defeated expression on Benito's face. "OK. Let me know if you change your mind."]])
 
