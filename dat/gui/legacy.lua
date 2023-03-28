@@ -1,4 +1,4 @@
-require "numstring"
+local fmt = require "fmt"
 
 --[[
    @brief Obligatory create function.
@@ -156,7 +156,7 @@ function update_cargo ()
       if v.q == 0 then
          misc_cargo = misc_cargo .. v.name
       else
-         misc_cargo = misc_cargo .. tonnestring_short( v.q ) .. " " .. _(v.name)
+         misc_cargo = misc_cargo .. fmt.tonnes(v.q) .. " " .. _(v.name)
       end
       if v.m then
          misc_cargo = misc_cargo .. "*"
@@ -371,7 +371,7 @@ function render_misc ()
    gfx.print( true, creds, misc_x+misc_w-w-3, y, col_white, misc_w, false )
    y = y - h
    gfx.print( true, _("Cargo Free:"), misc_x, y, col_console, misc_w, false )
-   local free = tonnestring_short( pp:cargoFree() )
+   local free = fmt.tonnes(pp:cargoFree())
    w = gfx.printDim( true, free )
    gfx.print( true, free, misc_x+misc_w-w-3, y, col_white, misc_w, false )
    y = y - 5

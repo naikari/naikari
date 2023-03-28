@@ -2,7 +2,7 @@
    The new "slim" GUI
 --]]
 
-require "numstring"
+local fmt = require "fmt"
 eh = require "escorthelper"
 
 function create()
@@ -408,7 +408,7 @@ end
 
 function update_cargo()
    cargol = pp:cargoList()
-   cargofree = string.format( _(" (%s free)"), tonnestring_short( pp:cargoFree() ) )
+   cargofree = fmt.f(_(" ({amount} free)"), {amount=fmt.tonnes(pp:cargoFree()}))
    cargofreel = gfx.printDim( true, cargofree )
    cargoterml = gfx.printDim( true, ", [...]" )
    cargo = {}
@@ -416,7 +416,7 @@ function update_cargo()
       if v.q == 0 then
          cargo[k] = v.name
       else
-         cargo[k] = tonnestring_short(v.q) .. " " .. _(v.name)
+         cargo[k] = fmt.tonnes(v.q) .. " " .. _(v.name)
       end
       if v.m then
          cargo[k] = cargo[k] .. "*"
@@ -1050,7 +1050,9 @@ function render( dt, dt_mod )
    local fuel = player.fuel()
 
    if fuel > 0 then
-      fuelstring = string.format( "%d (%s)", fuel, jumpstring(jumps) )
+      fuelstring = fmt.f(n_("{fuel} ({jumps} jump)", "{fuel} ({jumps} jumps)",
+               jumps),
+            {fuel=fuel, jumps=fmt.number(jumps)})
    else
       fuelstring = _("none")
    end

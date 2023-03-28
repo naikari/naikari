@@ -36,7 +36,7 @@
 --]]
 
 local fmt = require "fmt"
-require "numstring"
+
 
 text = {}
 text[1] = _("The waste containers are loaded onto your ship and you are paid %s. You begin to wonder if accepting this job was really a good idea.")

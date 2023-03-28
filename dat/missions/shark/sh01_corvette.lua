@@ -35,7 +35,6 @@
 --]]
 
 local fmt = require "fmt"
-require "numstring"
 require "missions/shark/common"
 
 

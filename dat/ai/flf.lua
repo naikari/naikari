@@ -1,6 +1,6 @@
 require("ai/tpl/generic")
 require("ai/personality/patrol")
-require "numstring"
+local fmt = require "fmt"
 
 -- Settings
 mem.aggressive     = true
@@ -25,7 +25,8 @@ function create()
       mem.bribe_no = _("\"The only way to deal with scum like you is with cannons!\"")
    else
       mem.bribe = math.sqrt( ai.pilot():stats().mass ) * (300. * rnd.rnd() + 850.)
-      mem.bribe_prompt = string.format(_("\"It'll cost you %s for me to ignore your dirty presence.\""), creditstring(mem.bribe))
+      mem.bribe_prompt = fmt.f(_("\"It'll cost you {credits} for me to ignore your dirty presence.\""),
+            {credits=fmt.credits(mem.bribe)})
       mem.bribe_paid = _("\"Begone before I change my mind.\"")
    end
 
@@ -34,10 +35,12 @@ function create()
       mem.refuel_no = _("\"I can't spare fuel for you.\"")
    elseif standing < 70 then
       mem.refuel = rnd.rnd(1000, 2000)
-      mem.refuel_msg = string.format(_("\"I should be able to spare some fuel for %s.\""), creditstring(mem.refuel))
+      mem.refuel_msg = fmt.f(_("\"I should be able to spare some fuel for {credits}.\""),
+            {credits=fmt.credits(mem.refuel)})
    else
       mem.refuel = 0
-      mem.refuel_msg = string.format(_("Sure thing, %s. On my way."), player.name())
+      mem.refuel_msg = fmt.f(_("Sure thing, {player}. On my way."),
+            {player=player.name()})
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system

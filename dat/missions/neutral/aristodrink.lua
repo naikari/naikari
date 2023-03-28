@@ -33,8 +33,8 @@ Thank you to Bobbens, Deiz, BTAxis, and others that have helped me with learning
 
 ]]--
 
+local fmt = require "fmt"
 require "jumpdist"
-require "numstring"
 require "missions/neutral/common"
 
 
@@ -43,12 +43,7 @@ bar_desc = _("You see an aristocrat sitting at a table in the middle of the bar,
 -- Mission Details
 misn_title = _("Drinking Aristocrat")
 misn_reward = _("He will pay handsomely.")
-misn_desc = _("Go find a specific drink for an aristocrat.")
-
--- OSD
-OSDtitle = _("Find the Drink")
-OSDdesc = _("Land on %s (%s system) and look for the special drink that the Aristocrat wants")
-OSDtable = {}
+misn_desc = _("You've been tasked with finding a special drink for a snobby aristocrat.")
 
 -- defines Previous Planets table
 prevPlanets = {}
@@ -56,33 +51,23 @@ prevPlanets.__save = true
 
 payment = 200000
 
-title = {}  --stage titles
-text = {}   --mission text
+ask_text = _([[You begin to approach the aristocrat. Next to him stands a well dressed and muscular man, perhaps his assistant, or maybe his bodyguard, you're not sure. When you get close to his table, he begins talking to you as if you work for him. "This simply will not do. When I ordered this 'drink', if you can call it that, it seemed interesting. It certainly doesn't taste interesting. It's just bland. The only parts of it that are in any way interesting are not at all pleasing. It just tastes so… common.
 
-title[1] = _("Drinking Aristocrat")
-text[1] = _([[You begin to approach the aristocrat. Next to him stands a well dressed and muscular man, perhaps his assistant, or maybe his bodyguard, you're not sure. When you get close to his table, he begins talking to you as if you work for him. "This simply will not do. When I ordered this 'drink', if you can call it that, it seemed interesting. It certainly doesn't taste interesting. It's just bland. The only parts of it that are in any way interesting are not at all pleasing. It just tastes so… common.
+You know what I would really like? There was this drink at a bar on, what planet was that? Damien, do you remember? The green drink with the red fruit shavings." Damien looks down at him and seems to think for a second before shaking his head. "I believe it might have been {planet} in the {system} system. The drink was something like an Atmospheric Re-Entry or Gaian Bombing or something. It's the bar's specialty. They'll know what you're talking about. You should go get me one. Can you leave right away?"]])
 
-You know what I would really like? There was this drink at a bar on, what planet was that? Damien, do you remember? The green drink with the red fruit shavings." Damien looks down at him and seems to think for a second before shaking his head. "I believe it might have been %s in the %s system. The drink was something like an Atmospheric Re-Entry or Gaian Bombing or something. It's the bar's specialty. They'll know what you're talking about. You should go get me one. Can you leave right away?"]])
+yes_text = _([["Oh, good! Of course you will be paid handsomely for your efforts. Let's say, {credits}. I trust you can figure out how to get it here intact on your own." The aristocrat goes back to sipping his drink, making an awful face every time he tastes it, ignoring you. You walk away, a bit confused.]])
 
-title[2] = _("Leave Immediately")
-text[2] = _([["Oh good! Of course you will be paid handsomely for your efforts. I trust you can figure out how to get it here intact on your own." The aristocrat goes back to sipping his drink, making an awful face every time he tastes it, ignoring you. You walk away, a bit confused.]])
+no_text = _([["What do you mean, you can't leave right away? Then why even bother? Remove yourself from my sight." The aristocrat makes a horrible face, and sips his drink, only to look even more disgusted. He puts his drink back on the table and motions to the bartender, ignoring you beyond now.]])
 
-title[3] = _("Refuse")
-text[3] = _([["What do you mean, you can't leave right away? Then why even bother? Remove yourself from my sight." The aristocrat makes a horrible face, and sips his drink, only to look even more disgusted. He puts his drink back on the table and motions to the bartender, ignoring you beyond now.]])
+cluetxt = _([[You walk into the bar and approach the bartender. You describe the drink, but the bartender doesn't seem to know what you're talking about. There is another bartender that they think may be able to help you though, at {planet} in the {system} system.]])
 
-cluetitle = _("Clue")
-cluetxt = _([[You walk into the bar and approach the bartender. You describe the drink, but the bartender doesn't seem to know what you're talking about. There is another bartender that they think may be able to help you though, at %s in the %s system.]])
-
-moreinfotitle = _("A bit more info...")
 moreinfotxt = {}
-moreinfotxt[1] = _([[You walk in and see someone behind the bar. When you approach and describe the drink, they tell you that the drink isn't the specialty of any one bar, but actually the specialty of a bartender who used to work here. "It's called a Swamp Bombing. I don't know where they work now, but they started working at the bar on %s in the %s system after they left here. Good luck!" With high hopes, you decide to head off to there.]])
-moreinfotxt[2] = _([[You walk in and see someone behind the bar. When you approach and describe the drink, they tell you that the drink isn't the specialty of any one bar, but actually the specialty of a bartender who used to work here. "It's called a Swamp Bombing. I don't know where he works now, but he started working at the bar on %s in the %s system after he left here. Good luck!" With high hopes, you decide to head off to there.]])
-moreinfotxt[3] = _([[You walk in and see someone behind the bar. When you approach and describe the drink, they tell you that the drink isn't the specialty of any one bar, but actually the specialty of a bartender who used to work here. "It's called a Swamp Bombing. I don't know where she works now, but she started working at the bar on %s in the %s system after she left here. Good luck!" With high hopes, you decide to head off to there.]])
+moreinfotxt[1] = _([[You walk in and see someone behind the bar. When you approach and describe the drink, they tell you that the drink isn't the specialty of any one bar, but actually the specialty of a bartender who used to work here. "It's called a Swamp Bombing. I don't know where they work now, but they started working at the bar on {planet} in the {system} system after they left here. Good luck!" With high hopes, you decide to head off to there.]])
+moreinfotxt[2] = _([[You walk in and see someone behind the bar. When you approach and describe the drink, they tell you that the drink isn't the specialty of any one bar, but actually the specialty of a bartender who used to work here. "It's called a Swamp Bombing. I don't know where he works now, but he started working at the bar on {planet} in the {system} system after he left here. Good luck!" With high hopes, you decide to head off to there.]])
+moreinfotxt[3] = _([[You walk in and see someone behind the bar. When you approach and describe the drink, they tell you that the drink isn't the specialty of any one bar, but actually the specialty of a bartender who used to work here. "It's called a Swamp Bombing. I don't know where she works now, but she started working at the bar on {planet} in the {system} system after she left here. Good luck!" With high hopes, you decide to head off to there.]])
 
-exworktitle = _("Is this it?")
-exworktxt = _([[You walk into the bar fully confident that this is the bar. You walk up to the bartender and ask for a Swamp Bombing. "A wha???" Guess this isn't the right bar. You get another possible clue, %s in the %s system, and head on your way.]])
+exworktxt = _([[You walk into the bar fully confident that this is the bar. You walk up to the bartender and ask for a Swamp Bombing. "A wha???" Guess this isn't the right bar. You get another possible clue, {planet} in the {system} system, and head on your way.]])
 
-worktitle = _("This is it!")
 worktxt = {}
 worktxt[1] = _([[You walk into the bar and know instantly that you are finally here! This is the place! You walk up to the bartender, who smiles. This has to be them. You start to describe the drink to them and they interrupt. "A Swamp Bombing. Of course, that's my specialty." You ask if they can make it to go, prompting a bit of a chuckle. "Sure, why not?"
 
@@ -94,10 +79,9 @@ worktxt[3] = _([[You walk into the bar and know instantly that you are finally h
 
 Just as she's about to start making it, though, you stop her and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully her trained hands move, flipping bottles and shaking various containers. Before you know it, she's set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
 
-finishedtitle = _("Delivery")
-finishedtxt = _([["Ahh! I was just thinking how much I wanted one of those drinks! I'm so glad that you managed to find it. You sure seemed to take your time though." You give him his drink and tell him that it wasn't easy, and how many systems you had to go through. "Hmm. That is quite a few systems. No reason for you to be this late though." He takes a sip from his drink. "Ahh! That is good though. I suppose you'll be wanting to get paid for your troubles. You did go through a lot of trouble. Then again, you did take quite a long time. I suppose %s should be appropriate."
+finishedtxt = _([["Ahh! I was just thinking how much I wanted one of those drinks! I'm so glad that you managed to find it. You sure seemed to take your time though." You give him his drink and tell him that it wasn't easy, and how many systems you had to go through. "Hmm. That is quite a few systems. No reason for you to be this late though." He takes a sip from his drink. "Ahh! That is good though. I suppose you'll be wanting your payment. You did go through a lot of trouble. Very well, I suppose the extra effort makes up for the late delivery. I promised {credits}, so here you go."
 
-Considering the amount of effort that you went through, you feel almost cheated. You don't feel like arguing with the snobby aristocrat though, so you just leave him to his drink without another word. It's probably the most that anyone's ever paid for a drink like that anyway.]])
+Considering the amount of effort that you went through, you feel almost cheated. You don't feel like arguing with the snobby aristocrat to try to get a bonus, though, so you just leave him to his drink without another word. It's probably the most that anyone's ever paid for a drink like that anyway.]])
 
 log_text = _([[You delivered a special drink called a Swamp Bombing to an aristocrat.]])
 
@@ -121,8 +105,9 @@ function create ()
 end
 
 function accept ()
-   if not tk.yesno( title[1], text[1]:format( clueplanet:name(), cluesys:name() ) ) then
-      tk.msg( title[3], text[3] )
+   if not tk.yesno("", fmt.f(ask_text,
+         {planet=clueplanet:name(), system=cluesys:name()})) then
+      tk.msg("", no_text)
       misn.finish()
 
    else
@@ -131,11 +116,11 @@ function accept ()
       landmarker = misn.markerAdd( cluesys, "low" )
 
       -- mission details
-      misn.setTitle( misn_title )
-      misn.setReward( misn_reward )
-      misn.setDesc( misn_desc )
+      misn.setTitle(misn_title)
+      misn.setReward(fmt.credits(payment))
+      misn.setDesc(misn_desc)
 
-      tk.msg( title[2], text[2] )
+      tk.msg("", fmt.f(yes_text, {credits=fmt.credits(payment)}))
 
       -- how many systems you'll have to run through
       numclues = rnd.rnd(1,5)
@@ -161,8 +146,8 @@ function land ()
          misn.markerMove( landmarker, cluesys )
          prevPlanets[#prevPlanets+1] = clueplanet
 
-         tk.msg( cluetitle, cluetxt:format(
-            clueplanet:name(), cluesys:name() ) )
+         tk.msg("", fmt.f(cluetxt,
+               {planet=clueplanet:name(), system=cluesys:name()}))
 
       else
          if not foundexwork then   -- find out that it's a bartender's specialty
@@ -175,8 +160,8 @@ function land ()
             misn.markerMove( landmarker, cluesys )
             prevPlanets[#prevPlanets+1] = clueplanet
 
-            tk.msg( moreinfotitle, moreinfotxt[fintendergen]:format(
-               clueplanet:name(), cluesys:name() ) )
+            tk.msg("", fmt.f(moreinfotxt[fintendergen],
+                  {planet=clueplanet:name(), system=cluesys:name()}))
 
          else   -- find another bar that the bartender used to work at
             if numexwork > 0 then
@@ -187,20 +172,20 @@ function land ()
                misn.markerMove( landmarker, cluesys )
                prevPlanets[#prevPlanets+1] = clueplanet
 
-               tk.msg( exworktitle, exworktxt:format(
-                  clueplanet:name(), cluesys:name() ) )
+               tk.msg("", fmt.f(exworktxt,
+                     {planet=clueplanet:name(), system=cluesys:name()}))
 
             elseif not hasDrink then  -- get the drink
                hasDrink = true
 
-               tk.msg( worktitle, worktxt[fintendergen] )
+               tk.msg("", worktxt[fintendergen])
 
                misn.markerMove(landmarker, startsys)
             end
          end
       end
    elseif hasDrink and planet.cur() == startplanet then
-      tk.msg( finishedtitle, finishedtxt:format( creditstring(payment) ) )
+      tk.msg("", fmt.f(finishedtxt, {credits=fmt.credits(payment)}))
       player.pay( payment )
 
       hook.rm(landhook)
@@ -240,12 +225,17 @@ end
 
 function takeoff ()
    if hasDrink then
-      OSDdesc = _("Return the drink to the Aristocrat at %s in the %s system.")
-      OSDtable[1] = OSDdesc:format( startplanet:name(), startsys:name() )
-      misn.osdCreate( OSDtitle, OSDtable )
+      local osd_desc = {
+         fmt.f(_("Land on {planet} ({system} system)"),
+               {planet=startplanet:name(), system=startsys:name()}),
+      }
+      misn.osdCreate(misn_title, osd_desc)
    else
-      OSDtable[1] = OSDdesc:format( clueplanet:name(), cluesys:name() )
-      misn.osdCreate( OSDtitle, OSDtable )
+      local osd_desc = {
+         fmt.f(_("Land on {planet} ({system} system) and look for the special drink that the Aristocrat wants at the bar"),
+               {planet=clueplanet:name(), system=cluesys:name()),
+      }
+      misn.osdCreate(misn_title, osd_desc)
    end
 end
 

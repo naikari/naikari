@@ -1,7 +1,6 @@
 local fmt = require "fmt"
 require "jumpdist"
 require "nextjump"
-require "numstring"
 
 -- Don't use hidden jumps by default; set this to true to use hidden jumps.
 cargo_use_hidden = false
@@ -205,8 +204,8 @@ function cargo_setDesc(misn_desc, cargo, amount, target, numjumps, deadline,
    end
 
    if numjumps ~= nil then
-      table.insert(t, string.format(
-            n_("Jumps: %d", "Jumps: %d", numjumps), numjumps))
+      table.insert(t, fmt.f(n_("Jumps: {jumps}", "Jumps: {jumps}", numjumps),
+            {jumps=fmt.number(numjumps)}))
    end
 
    local dist = cargo_calculateDistance(system.cur(), planet.cur():pos(),

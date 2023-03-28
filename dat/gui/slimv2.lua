@@ -2,7 +2,8 @@
    The revamped version of the slim GUI
 ]]--
 
-require "numstring"
+local fmt = require "fmt"
+
 
 function create()
 
@@ -222,7 +223,7 @@ function update_faction()
 end
 
 function update_cargo()
-   cargo_free = tonnestring_short(pp:cargoFree())
+   cargo_free = fmt.tonnes(pp:cargoFree())
 end
 
 function update_wset()
@@ -494,7 +495,8 @@ function render( dt, dt_mod )
 
    --Bars
    --Fuel
-   txt = string.format( "%.0f (%s)", fuel, jumpstring(jumps) )
+   txt = fmt.f(n_("{fuel} ({jumps} jump)", "{fuel} ({jumps} jumps)", jumps),
+         {fuel=fuel, jumps=fmt.number(jumps)})
    col = col_txt_std
    if jumps == 1 then
       col = col_txt_wrn
