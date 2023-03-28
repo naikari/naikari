@@ -10,13 +10,12 @@
   way.
 * Replaced the Empire Shipping campaign with a new campaign
   investigating the appearance of pirates in Hakoi.
+* Rewrote the story for the Coming Out campaign.
 
 ### Other Changes
 
-* Adjusted prerequisites for the Race mission and the Teenager mission;
-  they now only appear after the Space Family mission is completed, and
-  the Teenager mission additionally requires completion of Terra's
-  Cargo.
+* Adjusted prerequisites for the Race mission and the Teenager mission
+  to integrate them into the introductory missions.
 * The Space Family mission can no longer be permanently failed by
   destroying the ship.
 * The Reynir and Teenager missions now have a 100% chance of showing up,
@@ -25,10 +24,14 @@
   (instead of needing to wait until loading is finished).
 * Doubled the heat reduction of Forward Shock Absorbers and Targeting
   Array to make them more appealing.
-* Shadowrun now requires completion of the Teenager mission.
 * The Teenager mission has been revamped to be more thorough in its
   teaching of how to disable and board ships, and is now given by Terra
   instead of a nameless NPC.
+* Interwove the Reynir mission into the story of the introductory
+  missions a bit better.
+* Shadowrun now requires a Mercenary License.
+* The Baron mission's trigger event is more likely to spawn and no
+  longer prevents it from spawning on the first attempt.
 
 ## 0.6.0
 
