@@ -148,9 +148,9 @@ function accept ()
 
       local osd_desc = {
          fmt.f(_("Land on {planet} ({system} system)"),
-               {planet=startplanet:name(), system=startsys:name()})
+               {planet=startplanet:name(), system=startsys:name()}),
          fmt.f(_("Escort Chelsea to {planet} ({system} system)"),
-            {planet=destplanet:name(), system=destsys:name()})
+               {planet=destplanet:name(), system=destsys:name()}),
       }
       misn.osdCreate(misn_title, osd_desc)
 
