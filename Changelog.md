@@ -5,9 +5,9 @@
 ### Major Changes
 
 * Engines now come with fuel regeneration as standard.
-* Added a new "Cruise" mission to the mission computer, where you take
-  passengers to a destination and can stop by at attractions along the
-  way.
+* Replaced the Sightseeing mission with a new "Cruise" mission, where
+  you take passengers to a destination and can stop by at attractions
+  along the way.
 * Replaced the Empire Shipping campaign with a new campaign
   investigating the appearance of pirates in Hakoi.
 * Rewrote the story for the Coming Out campaign.
