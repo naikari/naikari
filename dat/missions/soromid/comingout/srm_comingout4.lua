@@ -1,6 +1,6 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
-<mission name="Visiting Family">
+<mission name="Family Suspicion">
  <flags>
   <unique />
  </flags>
