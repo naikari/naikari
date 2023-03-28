@@ -100,7 +100,7 @@ function boardFLF(p, boarder)
     end
     if shipDV:exists() then
         shipDV:setHilight(false)
-        shipDV:setNoboard(true)
+        shipDV:setNoBoard(true)
     end
     shipFLF:setHilight(false)
     hook.rm(timerFLF)
@@ -124,7 +124,7 @@ function boardDV(p, boarder)
     end
     if shipFLF:exists() then
         shipFLF:setHilight(false)
-        shipFLF:setNoboard(true)
+        shipFLF:setNoBoard(true)
     end
     shipDV:setHilight(false)
     hook.rm(timerDV)

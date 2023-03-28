@@ -219,7 +219,7 @@ function joeBoard(p, boarder)
         p:setVisplayer(false)
         p:setActiveBoard(false)
         p:disable()
-        p:setNoboard()
+        p:setNoBoard()
     end
 end
 
@@ -248,7 +248,7 @@ function enter()
             seiryuu:setHilight(true)
             hook.pilot(seiryuu, "board", "seiryuuBoard")
         else
-            seiryuu:setNoboard(true)
+            seiryuu:setNoBoard(true)
         end
     elseif system.cur() == joreksys2 and stage == 3 then
         pilot.clear()
@@ -415,7 +415,7 @@ function spawnGenbu(sys)
     genbu:setVisplayer()
     genbu:setNoDeath()
     genbu:setNoDisable()
-    genbu:setNoboard()
+    genbu:setNoBoard()
     genbu:memory().nosteal = true
     genbuspawned = true
 end

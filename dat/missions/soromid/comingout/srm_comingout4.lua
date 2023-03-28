@@ -197,7 +197,7 @@ function spawnChelseaShip(param)
    chelsea:setHilight()
    chelsea:setVisible()
    chelsea:setInvincPlayer()
-   chelsea:setNoboard()
+   chelsea:setNoBoard()
 
    hook.pilot(chelsea, "death", "chelsea_death")
    hook.pilot(chelsea, "jump", "chelsea_jump")
