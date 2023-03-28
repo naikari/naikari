@@ -15,14 +15,12 @@
   <faction>Independent</faction>
   <faction>Sirius</faction>
   <cond>
-   player.misnDone("The Space Family")
-   and player.numOutfit("Mercenary License") &gt; 0
+   player.numOutfit("Mercenary License") &gt; 0
    and planet.cur():class() ~= "0" and planet.cur():class() ~= "1"
    and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
   </cond>
  </avail>
  <notes>
-  <done_misn name="The Space Family"/>
   <campaign>Tutorial</campaign>
  </notes>
 </mission>
