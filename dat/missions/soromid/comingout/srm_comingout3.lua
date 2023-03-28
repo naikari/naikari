@@ -13,14 +13,12 @@
   <cond>
    faction.get("Soromid"):playerStanding() >= 0
    and player.numOutfit("Mercenary License") &gt; 0
-   and player.misnDone("Follow Tutorial")
    and (var.peek("comingout_time") == nil
       or time.get() &gt;= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0))
   </cond>
  </avail>
  <notes>
   <campaign>Coming Out</campaign>
-  <done_misn name="Follow Tutorial"/>
  </notes>
 </mission>
 --]]
