@@ -10,7 +10,12 @@
   along the way.
 * Replaced the Empire Shipping campaign with a new campaign
   investigating the appearance of pirates in Hakoi.
-* Rewrote the story for the Coming Out campaign.
+* Rewrote the story for the Coming Out campaign and removed the fifth
+  and sixth missions in it (to be replaced by missions that relate to
+  the story we're building up). The story always had some level of
+  focus on bigotry, but it's been made more central to its plot, and now
+  involves the Soromid government. This modified Coming Out campaign
+  will serve as a path to join the Soromid.
 
 ### Other Changes
 
