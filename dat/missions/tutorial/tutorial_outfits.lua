@@ -58,7 +58,7 @@ require "cargo_common"
 
 ask_text = _([[The woman smiles as you approach her. "Well met," she says. "I believe you are a pilot, yes? I have a job for you, if you are interested. Just a cargo delivery, and it's important enough that I'm willing to pay {credits} for it. Well, does that interest you?"]])
 
-accept_text = _([["I'm glad to hear it! My name is Terra, by the way." You introduce yourself as well. "Ah, I've heard that name before from an acquaintance of mine, Mr. Ian Structure. A shared acquaintance, I presume? I've heard great things about you. Pleased to finally meet you, {player}!
+accept_text = _([["I'm glad to hear it! My name is Terra, by the way." You introduce yourself as well. "Ah, I've heard that name before. Why, as it happens, I believe you took a personal mission from my company's founder, Reynir. He's retired now, but he spoke quite fondly about his experience with you. Pleased to finally meet you, {player}!
 
 "{amount_description} We'll just load that onto your ship and you can drop it off at {planet} in the {system} system!"]])
 

@@ -51,32 +51,27 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
-require "numstring"
 require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
--- Bar information, describes how he appears in the bar
 bar_desc = _("You see an old man with a name tag that says \"Reynir\".")
 
 misn_title = _("Teddy Bears from Space")
 misn_reward = _("All of the teddy bears (Luxury Goods) your ship can hold")
 misn_desc = _("Reynir wants to travel to space and will reward you richly.")
 
--- Stage one
-text = {}      --We store mission text in tables.  As we need them, we create them.
-
-ask_text = _([["Do you like money?"]])
+ask_text = _([[The man greets you with a tired, but warm expression. "Ah, hello there. You wouldn't happen to be that {player} fellow I've heard of, would you?" With a little surprise, you tell him that is indeed your name. "Ah, so you are! I've heard about you from an acquaintance, Mr. Ian Structure. Good things, I assure you. Tell me: do you like money?"]])
 
 confirm_text = _([["Ever since I was a kid I've wanted to go to space. However, my doctor says I can't go to space because I have elevated pressure in my cochlea, a common disease around here.
 
-"I am getting old now, as you can see. Before I die I want to travel to space, and I want you to fly me there! I own a robot teddy bear factory, so I can reward you richly: in exchange for just flying me around the system a bit, I will give you all of the robot teddy bears your ship can hold. They're worth their weight in gold, I assure you, some of the finest Luxury Goods on the market! Will you do it?"]])
+"I am getting old now, as you can see. I want to travel to space while I'm still kicking, and I want you to fly me there. I own a robot teddy bear factory, so I can reward you richly: in exchange for just flying me around the system a bit, I will give you all of the robot teddy bears your ship can hold. They're worth their weight in gold, I assure you, some of the finest Luxury Goods on the market! Will you do it?"]])
 
 accept_text = _([["Thank you so much! I'll wait in your ship. I think it would be too dangerous for me to enter hyperspace, so it's important that you remain in the {system} system."]])
 
 localjump_text = _([[Reynir looks at {planet} in awe, taking in the view. "I'm actually in space," he mutters to himself. He clears his throat and speaks a little more loudly to you. "This is everything I dreamed it would be. Thank you for taking me out here. Seeing my home planet from afar… it's magnificent!
 
-"I have just one more request before we return. As I said, I don't think I can enter hyperspace, but I very much would like to experience what it's like to make a jump." He studies your ship's controls. "I believe pressing {local_jump_key} will initiate your ship's escape jump procedure. It's like a jump, but it doesn't actually take you into hyperspace; instead it just takes you a great distance away in the current system. Could you do an escape jump for me?"]])
+"I have just one more request before we return. As I said, I don't think I can enter hyperspace, but I very much would like to experience what it's like to make a jump." He studies your ship's controls. "I believe pressing {local_jump_key} will initiate your ship's escape jump procedure. It's like a jump, but it doesn't actually take you into hyperspace; instead it just takes you a great distance away in the current system. Could you do an escape jump or two for me?"]])
 
 done_text = _([[You look over at Reynir, who looks as if he just got off the greatest rollercoaster in the universe. "Fantastic," he mutters. "That was even more thrilling than I expected! Alright, I think that's enough. Let's go back to {planet}."]])
 
@@ -101,7 +96,8 @@ end
 
 
 function accept ()
-   if tk.yesno("", ask_text) and tk.yesno("", confirm_text) then
+   if tk.yesno("", fmt.f(ask_text, {player=player.name()}))
+         and tk.yesno("", confirm_text) then
       misn.accept()
 
       tk.msg("", fmt.f(accept_text, {system=misn_base_sys:name()}))
@@ -184,8 +180,8 @@ function landed()
       local extra_credits = math.max(0, (min_payment-reward) * commprice)
 
       local s = n_(
-         "Thank you so much! My ears are ringing a bit, but that might have been the best experience of my life! As promised, I'm transferring {amount} kt of robot teddy bears to your ship.",
-         "Thank you so much! My ears are ringing a bit, but that might have been the best experience of my life! As promised, I'm transferring {amount} kt of robot teddy bears to your ship.",
+         [["Thank you so much! My ears are ringing a bit, but that might have been the best experience of my life! As promised, I'm transferring {amount} kt of robot teddy bears to your ship."]],
+         [["Thank you so much! My ears are ringing a bit, but that might have been the best experience of my life! As promised, I'm transferring {amount} kt of robot teddy bears to your ship."]],
          reward)
       tk.msg("", fmt.f(s, {amount=fmt.number(reward)}))
 
