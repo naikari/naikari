@@ -37,6 +37,11 @@
 * Shadowrun now requires a Mercenary License.
 * The Baron mission's trigger event is more likely to spawn and no
   longer prevents it from spawning on the first attempt.
+* Removed the minor Cynthia campaign.
+* Touched up some missions.
+* Removed the dependency on GLPK (which Naikari wasn't actually taking
+  advantage of).
+
 
 ## 0.6.0
 
