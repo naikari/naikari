@@ -1,6 +1,8 @@
 --[[--
 Generic mission-helping functions.
 
+@usage local mh = require "misnhelper"
+
 @module misnhelper
 --]]
 
@@ -10,13 +12,12 @@ local misnhelper = {}
 
 
 --[[--
--- @brief Wrapper for player.misnActive that works on a table of missions.
---
--- @usage if anyMissionActive({"Cargo", "Cargo Rush"}) then
---
---    @tparam table names Table of names of missions to check
---    @luatreturn boolean true if any of the listed missions are active,
---       or false otherwise.
+Wrapper for player.misnActive that works on a table of missions.
+
+@usage if mh.anyMissionActive({"Cargo", "Cargo Rush"}) then
+   @tparam table names Table of names of missions to check
+   @treturn boolean true if any of the listed missions are active,
+      or false otherwise.
 --]]
 function misnhelper.anyMissionActive(names)
    for i, name in ipairs(names) do
@@ -30,14 +31,13 @@ end
 
 
 --[[--
--- @brief Shows a player message informing of a mission success.
---
--- Note: this does not actually end the mission. It should be followed
--- up with a misn.finish(true) call.
---
--- @usage showWinMsg(_("You delivered the cake!"))
---
---    @tparam[opt] string congrats Congratulation message for winning.
+Shows a player message informing of a mission success.
+
+Note: this does not actually end the mission. It should be followed
+up with a misn.finish(true) call.
+
+@usage mh.showWinMsg(_("You delivered the cake!"))
+   @tparam[opt] string congrats Congratulation message for winning.
 --]]
 function misnhelper.showWinMsg(congrats)
    if congrats ~= nil then
@@ -51,15 +51,13 @@ end
 
 
 --[[--
--- @brief Shows a player message informing of a mission failure.
---
--- Note: this does not actually end the mission. It should be followed
--- up with a misn.finish(false) call.
---
--- @usage showFailMsg(_("You failed to deliver the cake!"))
---
---    @tparam[opt] string reason The reason the player failed the
---       mission.
+Shows a player message informing of a mission failure.
+
+Note: this does not actually end the mission. It should be followed
+up with a misn.finish(false) call.
+
+@usage showFailMsg(_("You failed to deliver the cake!"))
+   @tparam[opt] string reason The reason the player failed the mission.
 --]]
 function misnhelper.showFailMsg(reason)
    if reason ~= nil then
