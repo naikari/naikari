@@ -179,7 +179,7 @@ cond_articles = {
       text = _([[Anti-Soromid sentiment has been surging on Durea in the Capricorn system lately, an anonymous reporter finds. Rumors abound that Durea may be harboring terrorists belonging to the notorious hate group, the Imperyan Brotherhood. An Imperial representative reassured us that the Empire does not tolerate the organization. "This criminal organization is a remnant of a shameful time in our history. While we do not have jurisdiction over the Capricorn system, the full force of the Empire will come down on any Imperyan Brotherhood members who enter Imperial space, and hate crimes will not be tolerated."]]),
       tag = "mhint_Coming of Age",
       mission = "Coming of Age",
-      done = "Coming Out"
+      done = "Coming Out",
       cond = function()
          return (var.peek("comingout_time") == nil
             or time.get() >= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0))

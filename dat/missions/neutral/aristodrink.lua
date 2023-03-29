@@ -233,7 +233,7 @@ function takeoff ()
    else
       local osd_desc = {
          fmt.f(_("Land on {planet} ({system} system) and look for the special drink that the Aristocrat wants at the bar"),
-               {planet=clueplanet:name(), system=cluesys:name()),
+               {planet=clueplanet:name(), system=cluesys:name()}),
       }
       misn.osdCreate(misn_title, osd_desc)
    end
