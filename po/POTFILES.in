@@ -2135,10 +2135,7 @@ dat/ai/tpl/merchant.lua
 dat/ai/tpl/scout.lua
 dat/ai/trader.lua
 dat/ai/zalek.lua
-dat/bkg/bgshaders.lua
-dat/bkg/crimson_gauntlet.lua
 dat/bkg/default.lua
-dat/bkg/solarwind.lua
 dat/events/baron/baron_comm.lua
 dat/events/baron/baron_flintley.lua
 dat/events/baron/baron_prowl.lua
@@ -2327,7 +2324,6 @@ dat/scripts/love/timer.lua
 dat/scripts/love/touch.lua
 dat/scripts/love/video.lua
 dat/scripts/love/window.lua
-dat/scripts/love_shaders.lua
 dat/scripts/luatk.lua
 dat/scripts/misnhelper.lua
 dat/scripts/nextjump.lua
@@ -2335,7 +2331,6 @@ dat/scripts/numstring.lua
 dat/scripts/pilot/generic.lua
 dat/scripts/pilot/pirate.lua
 dat/scripts/portrait.lua
-dat/scripts/pp_shaders.lua
 dat/scripts/prng.lua
 dat/scripts/proximity.lua
 dat/scripts/selectiveclear.lua
@@ -2516,8 +2511,6 @@ src/nlua_hook.c
 src/nlua_hook.h
 src/nlua_jump.c
 src/nlua_jump.h
-src/nlua_linopt.c
-src/nlua_linopt.h
 src/nlua_misn.c
 src/nlua_misn.h
 src/nlua_music.c
