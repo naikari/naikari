@@ -73,11 +73,10 @@ function update_active_runs(change)
 end
 
 
-function create ()
+function create()
    -- Note: this mission does not make any system claims.
  
-   misplanet = planet.cur()
-   missys = system.cur()
+   misplanet, missys = planet.cur()
    
    if commchoices == nil then
       local std = commodity.getStandard()
@@ -107,7 +106,7 @@ function create ()
 
    -- Set Mission Details
    misn.setTitle(fmt.f(misn_title, {commodity=comm:name()}))
-   misn.markerAdd(system.cur(), "computer")
+   marker = misn.markerAdd(system.cur(), "computer")
    misn.setDesc(fmt.f(misn_desc,
          {planet=misplanet:name(), commodity=comm:name()}))
    misn.setReward(fmt.f(n_("{price} ¢/kt", "{price} ¢/kt", price),
@@ -115,7 +114,7 @@ function create ()
 end
 
 
-function accept ()
+function accept()
    local comm = commodity.get(chosen_comm)
 
    misn.accept()
@@ -126,21 +125,15 @@ function accept ()
          {commodity=comm:name(), planet=misplanet:name(), system=missys:name()})
    misn.osdCreate(osd_title, osd_msg)
 
-   hook.enter("enter")
+   -- Don't need the mission marker until after the goods are obtained.
+   misn.markerRm(marker)
+   marker = nil
+
    hook.land("land")
 end
 
 
-function enter ()
-   if pilot.cargoHas(player.pilot(), chosen_comm) > 0 then
-      misn.osdActive(2)
-   else
-      misn.osdActive(1)
-   end
-end
-
-
-function land ()
+function land()
    local amount = pilot.cargoHas(player.pilot(), chosen_comm)
    local reward = amount * price
 
@@ -152,6 +145,26 @@ function land ()
       player.pay(reward)
       update_active_runs(-1)
       misn.finish(true)
+   else
+      hook.safe("safe_updateCommod")
+   end
+end
+
+
+function safe_updateCommod()
+   if pilot.cargoHas(player.pilot(), chosen_comm) > 0 then
+      misn.osdActive(2)
+      if marker == nil then
+         marker = misn.markerAdd(missys, "computer")
+      end
+   else
+      misn.osdActive(1)
+      misn.markerRm(marker)
+      marker = nil
+   end
+
+   if player.isLanded() then
+      hook.safe("safe_updateCommod")
    end
 end
 
