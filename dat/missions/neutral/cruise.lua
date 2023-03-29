@@ -4,7 +4,7 @@
  <avail>
   <priority>76</priority>
   <cond>planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
-  <chance>1260</chance>
+  <chance>960</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -97,19 +97,19 @@ function create()
 
    local title, desc
    if tier <= 0 then
-      title = _("Budget Cruise to {planet} ({system} system)")
+      title = _("Sightseeing: Budget Cruise to {planet} ({system} system)")
       desc = _("Take a group of passengers on a budget cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    elseif tier <= 1 then
-      title = _("Value Cruise to {planet} ({system} system)")
+      title = _("Sightseeing: Value Cruise to {planet} ({system} system)")
       desc = _("Take a group of passengers on a value cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    elseif tier <= 2 then
-      title = _("Modest Cruise to {planet} ({system} system)")
+      title = _("Sightseeing: Modest Cruise to {planet} ({system} system)")
       desc = _("Take a group of passengers on a modest cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    elseif tier <= 3 then
-      title = _("Luxury Cruise to {planet} ({system} system)")
+      title = _("Sightseeing: Luxury Cruise to {planet} ({system} system)")
       desc = _("Take a group of passengers on a luxury cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    else
-      title = _("Exquisite Cruise to {planet} ({system} system)")
+      title = _("Sightseeing: Exquisite Cruise to {planet} ({system} system)")
       desc = _("Take a group of passengers on an exquisite cruise to {planet} in the {system} system and back within a certain time frame, stopping at as many attractions along the way as possible. The more stops you make, the more money you can make from tips.")
    end
 

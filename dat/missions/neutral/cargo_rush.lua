@@ -87,25 +87,28 @@ function create()
 
    local title, desc
    if tier <= 0 then
-      title = n_("Courier Cargo: {amount} kt to {planet} ({system} system)",
-            "Courier Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Rush Cargo (Courier): {amount} kt to {planet} ({system} system)",
+            "Rush Cargo (Courier): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Courier cargo transport to {planet} in the {system} system.")
    elseif tier <= 1 then
-      title = n_("Priority Cargo: {amount} kt to {planet} ({system} system)",
-            "Priority Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Rush Cargo (Priority): {amount} kt to {planet} ({system} system)",
+            "Rush Cargo (Priority): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Priority cargo shipment to {planet} in the {system} system.")
    elseif tier <= 2 then
-      title = n_("Pressing Cargo: {amount} kt to {planet} ({system} system)",
-            "Pressing Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Rush Cargo (Pressing): {amount} kt to {planet} ({system} system)",
+            "Rush Cargo (Pressing): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Pressing cargo delivery to {planet} in the {system} system.")
    elseif tier <= 3 then
-      title = n_("Urgent Cargo: {amount} kt to {planet} ({system} system)",
-            "Urgent Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Rush Cargo (Urgent): {amount} kt to {planet} ({system} system)",
+            "Rush Cargo (Urgent): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Urgent cargo delivery to {planet} in the {system} system.")
    else
-      title = n_(
-            "Emergency Cargo: {amount} kt to {planet} ({system} system)",
-            "Emergency Cargo: {amount} kt to {planet} ({system} system)",
+      title = n_("Rush Cargo (Emergency): {amount} kt to {planet} ({system} system)",
+            "Rush Cargo (Emergency): {amount} kt to {planet} ({system} system)",
             amount)
       desc = _("Emergency cargo delivery to {planet} in the {system} system.")
    end

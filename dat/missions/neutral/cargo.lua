@@ -68,25 +68,28 @@ function create()
 
    local title, desc
    if tier <= 0 then
-      title = n_("Small Cargo: {amount} kt to {planet} ({system} system)",
-            "Small Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Cargo (Small): {amount} kt to {planet} ({system} system)",
+            "Cargo (Small): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Small shipment to {planet} in the {system} system.")
    elseif tier <= 1 then
-      title = n_("Medium Cargo: {amount} kt to {planet} ({system} system)",
-            "Medium Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Cargo (Medium): {amount} kt to {planet} ({system} system)",
+            "Cargo (Medium): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Medium shipment to {planet} in the {system} system.")
    elseif tier <= 2 then
-      title = n_("Sizable Cargo: {amount} kt to {planet} ({system} system)",
-            "Sizable Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Cargo (Sizable): {amount} kt to {planet} ({system} system)",
+            "Cargo (Sizable): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Sizable cargo delivery to {planet} in the {system} system.")
    elseif tier <= 3 then
-      title = n_("Large Cargo: {amount} kt to {planet} ({system} system)",
-            "Large Cargo: {amount} kt to {planet} ({system} system)", amount)
+      title = n_("Cargo (Large): {amount} kt to {planet} ({system} system)",
+            "Cargo (Large): {amount} kt to {planet} ({system} system)",
+            amount)
       desc = _("Large cargo delivery to {planet} in the {system} system.")
    else
-      title = n_(
-            "Bulk Cargo: {amount} kt to {planet} ({system} system)",
-            "Bulk Cargo: {amount} kt to {planet} ({system} system)",
+      title = n_("Cargo (Bulk): {amount} kt to {planet} ({system} system)",
+            "Cargo (Bulk): {amount} kt to {planet} ({system} system)",
             amount)
       desc = _("Bulk freight delivery to {planet} in the {system} system.")
    end
