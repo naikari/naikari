@@ -36,7 +36,6 @@
 #include "nlua_cli.h"
 #include "nlua_col.h"
 #include "nlua_debug.h"
-#include "nlua_linopt.h"
 #include "nlua_music.h"
 #include "nlua_tex.h"
 #include "nlua_tk.h"
@@ -491,7 +490,6 @@ static int cli_initLua (void)
    nlua_loadMusic( cli_env );
    nlua_loadAudio( cli_env );
    nlua_loadTk( cli_env );
-   nlua_loadLinOpt( cli_env );
 
    /* Mark as console. */
    lua_pushboolean( naevL, 1 );

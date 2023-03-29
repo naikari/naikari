@@ -116,16 +116,7 @@ if buildExec.disabled() == false
 
    naev_deps += lua
 
-   # Linear Algebra
-   use_system_glpk = ('glpk' not in forced_fallbacks and 'forcefallback' != get_option('wrap_mode'))
    use_system_suitesparse = ('SuiteSparse' not in forced_fallbacks and 'forcefallback' != get_option('wrap_mode'))
-
-   if use_system_glpk
-      system_glpk = cc.find_library('glpk', required: false, has_headers: ['glpk.h'])
-      use_system_glpk = system_glpk.found()
-   endif
-   naev_deps += use_system_glpk ? system_glpk : subproject('glpk').get_variable('glpk_dep')
-
    if use_system_suitesparse
       message('Note: Naikari needs the following SuiteSparse libraries: amd, colamd, cholmod, and either csparse or cxsparse. ' +
               'It can use its own copies if you run "meson configure --force-fallback-for=SuiteSparse".')

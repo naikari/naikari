@@ -113,7 +113,7 @@ jobs:
               -Dndata_path=bin \
               --cross-file='source/utils/build/windows_cross_mingw.ini' \
               --buildtype=debug \
-              --force-fallback-for=glpk,SuiteSparse \
+              --force-fallback-for=SuiteSparse \
               -Dnightly=true \
               -Db_lto=true \
               -Dauto_features=enabled \

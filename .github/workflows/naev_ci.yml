@@ -63,7 +63,7 @@ jobs:
               --native-file='source/utils/build/${{ matrix.config }}' \
               --buildtype=debug \
               --wrap-mode=${{ matrix.wrap_mode }} \
-              --force-fallback-for=SuiteSparse,glpk \
+              --force-fallback-for=SuiteSparse \
               -Dnightly=false \
               -Db_lto=true \
               -Dauto_features=enabled \

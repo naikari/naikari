@@ -28,7 +28,6 @@
 #include "nlua_faction.h"
 #include "nlua_file.h"
 #include "nlua_jump.h"
-#include "nlua_linopt.h"
 #include "nlua_naev.h"
 #include "nlua_news.h"
 #include "nlua_outfit.h"
@@ -648,7 +647,6 @@ int nlua_loadStandard( nlua_env env )
    r |= nlua_loadShiplog(env);
    r |= nlua_loadFile(env);
    r |= nlua_loadData(env);
-   r |= nlua_loadLinOpt(env);
    r |= nlua_loadDebug(env);
 
    return r;

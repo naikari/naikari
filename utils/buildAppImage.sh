@@ -87,7 +87,7 @@ fi
 sh "$MESON" setup "$BUILDPATH" "$SOURCEPATH" \
 --native-file "$SOURCEPATH/utils/build/linux.ini" \
 --buildtype "$BUILDTYPE" \
---force-fallback-for=glpk,SuiteSparse \
+--force-fallback-for=SuiteSparse \
 -Dnightly="$NIGHTLY" \
 -Dprefix="/usr" \
 -Db_lto=true \
