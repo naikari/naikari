@@ -54,22 +54,6 @@ function emp_mil_restricted( pnt )
          _("\"Don't attempt to bribe an Empire official, pilot.\""))
 end
 
--- Empire Omega Station.
-function emp_mil_omega( pnt )
-   local required = 50
-
-   if player.misnDone("Empire Shipping 3")
-         or player.misnActive("Empire Shipping 3") then
-      required = 0
-   end
-
-   return land_military(pnt, required,
-         _("Permission to land granted."),
-         _("You are not authorized to land here."),
-         _("Landing request denied."),
-         _("\"Don't attempt to bribe an Empire official, pilot.\""))
-end
-
 -- Empire Emperor's Wrath.
 function emp_mil_eye(pnt)
    return land_military(pnt, 90,
