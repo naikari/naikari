@@ -34,13 +34,6 @@ local fmt = require "fmt"
 
 cond_articles = {
    {
-      title = _("Missing Girl in Goddard"),
-      text = _([[A distraught father seeks his missing daughter in the Goddard system. He is offering a substantial award to any private investigator willing to find her and bring her home safely."]]),
-      tag = "mhint_The Search for Cynthia",
-      mission = "The Search for Cynthia",
-      done = "The Runaway",
-   },
-   {
       title = _("Criminal Activity Rumors in The Wringer"),
       text = _([[Rumors abound that The Wringer, a small neglected station in Sirius space, is crawling with dangerous criminals, including crime lords and assassins. Sirius authorities, however, claim that these rumors are unfounded. "People exaggerate," one Sirius officer said. "The Wringer is a hellhole where petty criminals are common, but it's not exactly teeming with professional assassins. Any truly dangerous criminal knows that there's nothing for them at that awful place."]]),
       tag = "mhint_Sirius Bounty",
