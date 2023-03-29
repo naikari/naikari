@@ -32,32 +32,14 @@
 --]]
 
 local fmt = require "fmt"
-require "numstring"
+local mh = require "misnhelper"
 require "missions/flf/flf_common"
 
--- localization stuff
-misn_title  = _("FLF: Diversion in %s")
-
-success_text = {}
-success_text[1] = _("You receive a transmission from an FLF officer saying that the operation has completed, and you can now return to the base.")
-
-pay_text = {}
-pay_text[1] = _("The FLF commander in charge of the primary operation thanks you for your contribution and hands you your pay.")
-pay_text[2] = _("You greet the FLF commander in charge of the primary operation, who seems happy that the mission was a success. You congratulate each other, and the commander hands you your pay.")
 
 misn_desc = _("An FLF special task force needs an opening to complete a mission without too much Dvaered interference. Create this opening by wreaking havoc in the nearby {system} system.")
 
-msg = _("%s has warped in!")
 
-osd_title   = _("FLF Diversion")
-osd_desc    = {}
-osd_desc[1] = _("Fly to the %s system")
-osd_desc[2] = _("Attack Dvaered ships to get as many pilots' attention as possible")
-osd_desc[3] = _("Return to FLF base")
-osd_desc["__save"] = true
-
-
-function create ()
+function create()
    missys = flf_getTargetSystem()
    if not misn.claim(missys) then misn.finish(false) end
 
@@ -75,18 +57,21 @@ function create ()
    if credits < 10000 then misn.finish(false) end
 
    -- Set mission details
-   misn.setTitle(misn_title:format(missys:name()))
+   misn.setTitle(fmt.f(_("FLF: Diversion in {system}"), {system=missys:name()}))
    misn.setDesc(fmt.f(misn_desc, {system=missys:name()}))
-   misn.setReward(creditstring(credits))
+   misn.setReward(fmt.credits(credits))
    marker = misn.markerAdd(missys, "computer")
 end
 
 
-function accept ()
+function accept()
    misn.accept()
 
-   osd_desc[1] = osd_desc[1]:format(missys:name())
-   misn.osdCreate(osd_title, osd_desc)
+   local osd_desc = {
+      fmt.f(_("Fly to the {system} system"), {system=missys:name()}),
+      _("Attack Dvaered ships to get as many pilots' attention as possible"),
+   }
+   misn.osdCreate(_("FLF Diversion"), osd_desc)
 
    dv_attention = 0
    dv_coming = false
@@ -98,7 +83,7 @@ function accept ()
 end
 
 
-function enter ()
+function enter()
    if not job_done then
       if system.cur() == missys then
          misn.osdActive(2)
@@ -110,13 +95,13 @@ function enter ()
 end
 
 
-function leave ()
+function leave()
    dv_attention = 0
    hook.rm(update_dv_hook)
 end
 
 
-function update_dv ()
+function update_dv()
    for i, j in ipairs(pilot.get({faction.get("Dvaered")})) do
       hook.pilot(j, "attacked", "pilot_attacked_dv")
       hook.pilot(j, "death", "pilot_death_dv")
@@ -141,7 +126,7 @@ function add_attention(p)
 end
 
 
-function rm_attention ()
+function rm_attention()
    dv_attention = math.max(dv_attention - 1, 0)
    if dv_attention < dv_attention_target then
       hook.rm(success_hook)
@@ -169,7 +154,7 @@ function pilot_death_dv(p, attacker)
 end
 
 
-function timer_spawn_dv ()
+function timer_spawn_dv()
    dv_coming = false
    if not job_done then
       local shipnames = {
@@ -177,32 +162,20 @@ function timer_spawn_dv ()
          "Dvaered Vigilance", "Dvaered Goddard",
       }
       local shipname = shipnames[rnd.rnd(1, #shipnames)]
-      player.msg(msg:format(shipname))
+      player.msg(fmt.f(_("{ship} has warped in!"), {ship=_(shipname)}))
       local p = pilot.add(shipname, "Dvaered")
       add_attention(p)
    end
 end
 
 
-function timer_mission_success ()
+function timer_mission_success()
    if dv_attention >= dv_attention_target then
-      job_done = true
-      misn.osdActive(3)
-      misn.markerRm(marker)
-      hook.rm(update_dv_hook)
-      hook.land("land")
-      tk.msg("", success_text[rnd.rnd(1, #success_text)])
-
       for i, p in ipairs(pilot.get(nil, true)) do
          p:setHilight(false)
       end
-   end
-end
 
-
-function land ()
-   if planet.cur():faction() == faction.get("FLF") then
-      tk.msg("", pay_text[rnd.rnd(1, #pay_text)])
+      mh.showWinMsg(_("The operation was completed successfully."))
       player.pay(credits)
       faction.get("FLF"):modPlayer(reputation)
       misn.finish(true)
