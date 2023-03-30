@@ -199,6 +199,7 @@ static int aiL_sethyptarget( lua_State *L );
 static int aiL_nearhyptarget( lua_State *L ); /* pointer rndhyptarget() */
 static int aiL_rndhyptarget( lua_State *L ); /* pointer rndhyptarget() */
 static int aiL_hyperspace( lua_State *L ); /* [number] hyperspace() */
+static int aiL_localjump(lua_State *L);
 
 /* escorts */
 static int aiL_dock( lua_State *L ); /* dock( number ) */
@@ -292,11 +293,12 @@ static const luaL_Reg aiL_methods[] = {
    { "follow_accurate", aiL_follow_accurate },
    { "face_accurate", aiL_face_accurate },
    /* Hyperspace. */
-   { "sethyptarget", aiL_sethyptarget },
-   { "nearhyptarget", aiL_nearhyptarget },
-   { "rndhyptarget", aiL_rndhyptarget },
-   { "hyperspace", aiL_hyperspace },
-   { "dock", aiL_dock },
+   {"sethyptarget", aiL_sethyptarget},
+   {"nearhyptarget", aiL_nearhyptarget},
+   {"rndhyptarget", aiL_rndhyptarget},
+   {"hyperspace", aiL_hyperspace},
+   {"localjump", aiL_localjump},
+   {"dock", aiL_dock},
    /* combat */
    { "aim", aiL_aim },
    { "combat", aiL_combat },
@@ -2358,6 +2360,19 @@ static int aiL_land( lua_State *L )
    }
 
    lua_pushboolean(L,!ret);
+   return 1;
+}
+
+
+/**
+ * @brief Tries to perform an escape jump.
+ *
+ *    @luatreturn boolean Whether the escape jump was successful.
+ *    @luafunc localjump
+ */
+static int aiL_localjump(lua_State *L)
+{
+   lua_pushnumber(L, pilot_localJump(cur_pilot));
    return 1;
 }
 

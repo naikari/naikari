@@ -726,6 +726,16 @@ end
 
 
 --[[
+-- Performs an escape jump (called a "local jump" internally).
+--]]
+function localjump()
+   if ai.localjump() then
+      ai.poptask()
+   end
+end
+
+
+--[[
 -- Boards the target
 --]]
 function board ()

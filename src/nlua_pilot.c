@@ -155,6 +155,7 @@ static int pilotL_follow( lua_State *L );
 static int pilotL_attack( lua_State *L );
 static int pilotL_runaway( lua_State *L );
 static int pilotL_gather( lua_State *L );
+static int pilotL_localjump(lua_State *L);
 static int pilotL_hyperspace( lua_State *L );
 static int pilotL_land( lua_State *L );
 static int pilotL_hailPlayer( lua_State *L );
@@ -257,22 +258,23 @@ static const luaL_Reg pilotL_methods[] = {
    { "cargoList", pilotL_cargoList },
    { "credits", pilotL_credits },
    /* Manual AI control. */
-   { "idle", pilotL_idle },
-   { "control", pilotL_control },
-   { "memory", pilotL_memory },
-   { "task", pilotL_task },
-   { "taskname", pilotL_taskname },
-   { "taskdata", pilotL_taskdata },
-   { "taskClear", pilotL_taskclear },
-   { "moveto", pilotL_moveto },
-   { "face", pilotL_face },
-   { "brake", pilotL_brake },
-   { "follow", pilotL_follow },
-   { "attack", pilotL_attack },
-   { "runaway", pilotL_runaway },
-   { "gather", pilotL_gather },
-   { "hyperspace", pilotL_hyperspace },
-   { "land", pilotL_land },
+   {"idle", pilotL_idle},
+   {"control", pilotL_control},
+   {"memory", pilotL_memory},
+   {"task", pilotL_task},
+   {"taskname", pilotL_taskname},
+   {"taskdata", pilotL_taskdata},
+   {"taskClear", pilotL_taskclear},
+   {"moveto", pilotL_moveto},
+   {"face", pilotL_face},
+   {"brake", pilotL_brake},
+   {"follow", pilotL_follow},
+   {"attack", pilotL_attack},
+   {"runaway", pilotL_runaway},
+   {"gather", pilotL_gather},
+   {"localjump", pilotL_localjump},
+   {"hyperspace", pilotL_hyperspace},
+   {"land", pilotL_land},
    /* Misc. */
    { "hailPlayer", pilotL_hailPlayer },
    { "msg", pilotL_msg },
@@ -4311,6 +4313,32 @@ static int pilotL_gather( lua_State *L )
 
    /* Set the task. */
    t        = pilotL_newtask( L, p, "gather" );
+   t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
+
+   return 0;
+}
+
+
+/**
+ * @brief Makes the pilot perform an escape jump.
+ *
+ * Pilot must be under manual control for this to work.
+ *
+ * @usage p:localjump()
+ *
+ *    @luatparam Pilot p Pilot to tell to perform an escape jump.
+ * @luasee control
+ * @luafunc localjump
+ */
+static int pilotL_localjump(lua_State *L)
+{
+   Pilot *p;
+   Task *t;
+
+   p = luaL_validpilot(L, 1);
+
+   /* Set the task. */
+   t = pilotL_newtask(L, p, "localjump");
    t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
 
    return 0;
