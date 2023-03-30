@@ -168,18 +168,23 @@ end
 function land()
    if planet.cur() == destplanet then
       local cargo_land = {
-         _("The Empire workers unload the {cargotype} at the docks."),
+         _("The Imperial workers unload the {cargotype} at the docks."),
+         _("The {cargotype} is swiftly and professionally unloaded by a team of robots overseen by an Imperial worker."),
       }
+
+      local n = var.peek("es_misn") or 0
+      n = n + 1
+      var.push("es_misn", n)
+      if n >= 3 and faction.playerStanding("Empire") >= 10
+            and faction.playerStanding("Dvaered") >= 0
+            and not player.misnDone("Undercover in Hakoi")
+            and not player.misnActive("Undercover in Hakoi") then
+         cargo_land[#cargo_land + 1] = _("As the cargo is unloaded, the Empire worker in charge hands you a message from an Imperial Commander inviting you to Emperor's Fist for an advancement opportunity.")
+      end
 
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
                {cargotype=_(cargo)}))
       player.pay(reward)
-      n = var.peek("es_misn")
-      if n ~= nil then
-         var.push("es_misn", n+1)
-      else
-         var.push("es_misn", 1)
-      end
 
       -- increase faction
       faction.modPlayer("Empire", 1)

@@ -54,7 +54,7 @@ local portrait = require "portrait"
 require "missions/empire/common"
 
 
-ask_text = _([[You approach and salute the Empire Commander. He smiles and offers his hand, which you shake. "I'm pleased to finally meet you, {player}. I'm Commander Soldner. I've heard good things about you and your commitment to the Empire, and if you are willing, I would like to recruit you on a more prestigious mission than those simple deliveries.
+ask_text = _([[You approach and salute the Imperial Commander. He smiles and offers his hand, which you shake. "I'm pleased to finally meet you, {player}. I'm Commander Soldner. I've heard good things about you and your commitment to the Empire, and if you are willing, I would like to recruit you on a more prestigious mission than those simple deliveries.
 
 "I believe you are a native of {system}, yes? And we are aware that you ran into some trouble there while assisting an acquaintance of yours, Mr. Ian Structure. Of course, {system} used to be peaceful, but as you yourself experienced, pirates showed up in the system out of nowhere recently. We've been able to contain them for now, but we must find out where they came from.
 
@@ -93,7 +93,7 @@ function create()
    talked = false
 
    misn.setNPC(_("Commander"), "empire/unique/soldner.png",
-         _("You see an Empire Commander. He seems to take interest in you."))
+         _("You see an Imperial Commander. He seems to take interest in you."))
 end
 
 
