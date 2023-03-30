@@ -30,6 +30,10 @@ equip_classOutfits_hulls["Yacht"] = {
 }
 equip_classOutfits_weapons["Yacht"] = {
    {
+      num = 1;
+      "Photon Dagger",
+   },
+   {
       "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
       "Ion Cannon",
    },
