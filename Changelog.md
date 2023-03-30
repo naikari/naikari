@@ -50,8 +50,12 @@
 * Added a "Current Missions" button to the Mission Computer, which opens
   the Missions tab of the Ship Computer (showing your current active
   missions).
-* Changed the default controls to bind the "Target Next" key instead of
-  the "Target Nearest" key to the "T" key.
+* Changed the default controls:
+  * "Target Next" is now bound to the "T" key, rather than
+    "Target Nearest". ("Target Nearest" is now unbound by default.)
+  * "Autoface" is now bound to the "E" key under WASD and ZQSD.
+  * "Escape Jump" is now bound to the "Q" key under WASD, the "A" key
+    under ZQSD, and the "E" key under arrow keys.
 * The "Target Next" and "Target Previous" keys will now target the
   nearest applicable target if you are not targeting anything, and then
   cycle through all of the targets like before. This makes these
