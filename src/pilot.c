@@ -140,29 +140,29 @@ pilotId_t pilot_getNextID(const pilotId_t id, int mode)
    /* Get the pilot. */
    m = pilot_getStackPos(id);
 
-   /* Unselect. */
-   if ((m == (array_size(pilot_stack)-1)) || (m == -1))
+   /* If the current pilot isn't in the stack, abort and unselect. */
+   if (m == -1)
       return PLAYER_ID;
 
    /* Get first one in range. */
-   p = m+1;
+   p = (m+1) % array_size(pilot_stack);
    if (mode == 0) {
-      while (p < array_size(pilot_stack)) {
+      while (p != m) {
          if (((pilot_stack[p]->faction != FACTION_PLAYER)
                   || pilot_isDisabled(pilot_stack[p]))
                && pilot_validTarget( player.p, pilot_stack[p] ))
             return pilot_stack[p]->id;
-         p++;
+         p = (p+1) % array_size(pilot_stack);
       }
    }
    /* Get first hostile in range. */
    if (mode == 1) {
-      while (p < array_size(pilot_stack)) {
+      while (p != m) {
          if ((pilot_stack[p]->faction != FACTION_PLAYER)
                && pilot_validTarget( player.p, pilot_stack[p] )
                && pilot_isHostile( pilot_stack[p] ))
             return pilot_stack[p]->id;
-         p++;
+         p = (p+1) % array_size(pilot_stack);
       }
    }
 
@@ -193,29 +193,33 @@ pilotId_t pilot_getPrevID(const pilotId_t id, int mode)
    if (m == -1)
       return PLAYER_ID;
    else if (m == 0)
-      p = array_size(pilot_stack)-1;
+      p = array_size(pilot_stack) - 1;
    else
-      p = m-1;
+      p = m - 1;
 
    /* Get first one in range. */
    if (mode == 0) {
-      while (p >= 0) {
+      while (p != m) {
          if (((pilot_stack[p]->faction != FACTION_PLAYER)
                   || (pilot_isDisabled(pilot_stack[p])))
                && pilot_validTarget( player.p, pilot_stack[p] ))
             return pilot_stack[p]->id;
-         p--;
+         --p;
+         if (p < 0)
+            p += array_size(pilot_stack);
       }
    }
    /* Get first hostile in range. */
    else if (mode == 1) {
-      while (p >= 0) {
+      while (p != m) {
          if ( ( pilot_stack[p]->faction != FACTION_PLAYER ) &&
                !pilot_isFlag( pilot_stack[p], PILOT_HIDE ) &&
                pilot_validTarget( player.p, pilot_stack[p] ) &&
                pilot_isHostile( pilot_stack[p] ) )
             return pilot_stack[p]->id;
-         p--;
+         --p;
+         if (p < 0)
+            p += array_size(pilot_stack);
       }
    }
 

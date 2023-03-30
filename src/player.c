@@ -2147,7 +2147,16 @@ void player_targetHostile (void)
  */
 void player_targetNext( int mode )
 {
-   player_targetSet( pilot_getNextID(player.p->target, mode) );
+   /* Target nearest if nothing is selected. */
+   if (player.p->target == PLAYER_ID) {
+      if (mode == 1)
+         player_targetHostile();
+      else
+         player_targetNearest();
+      return;
+   }
+
+   player_targetSet(pilot_getNextID(player.p->target, mode));
 }
 
 
@@ -2158,7 +2167,16 @@ void player_targetNext( int mode )
  */
 void player_targetPrev( int mode )
 {
-   player_targetSet( pilot_getPrevID(player.p->target, mode) );
+   /* Target nearest if nothing is selected. */
+   if (player.p->target == PLAYER_ID) {
+      if (mode == 1)
+         player_targetHostile();
+      else
+         player_targetNearest();
+      return;
+   }
+
+   player_targetSet(pilot_getPrevID(player.p->target, mode));
 }
 
 
