@@ -66,7 +66,7 @@ static void commodity_getSize(unsigned int wid, int *w, int *h,
       *dw = *w - (iw!=NULL?*iw:0) - 60;
 
    if (bw != NULL)
-      *bw = ((dw!=NULL?*dw:*w) - 40) / 3;
+      *bw = ((dw != NULL ? *dw+20 : *w) - 2*10) / 3;
 }
 
 
@@ -90,12 +90,12 @@ void commodity_exchange_open( unsigned int wid )
       memset(iar_data, 0, sizeof(iar_data_t));
 
    /* buttons */
-   window_addButtonKey( wid, 40 + iw, 20, bw, LAND_BUTTON_HEIGHT,
-         "btnCommodityBuy", _("Buy"), commodity_buy, SDLK_b );
-   window_addButtonKey( wid, 60 + iw + bw, 20, bw, LAND_BUTTON_HEIGHT,
-         "btnCommoditySell", _("Sell"), commodity_sell, SDLK_s );
-   window_addButtonKey( wid, 80 + iw + 2*bw, 20, bw, LAND_BUTTON_HEIGHT,
-         "btnCommodityClose", _("Take Off"), land_buttonTakeoff, SDLK_t );
+   window_addButtonKey(wid, -10, 20, bw, LAND_BUTTON_HEIGHT,
+         "btnCommodityClose", _("Take Off"), land_buttonTakeoff, SDLK_t);
+   window_addButtonKey(wid, -10 - 1*(bw+10), 20, bw, LAND_BUTTON_HEIGHT,
+         "btnCommoditySell", _("Sell"), commodity_sell, SDLK_s);
+   window_addButtonKey(wid, -10 - 2*(bw+10), 20, bw, LAND_BUTTON_HEIGHT,
+         "btnCommodityBuy", _("Buy"), commodity_buy, SDLK_b);
 
       /* cust draws the modifier : # of tons one click buys or sells */
    window_addCust( wid, 40 + iw, 40 + LAND_BUTTON_HEIGHT, 2*bw + 20,

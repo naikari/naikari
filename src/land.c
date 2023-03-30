@@ -29,6 +29,7 @@
 #include "event.h"
 #include "gui.h"
 #include "hook.h"
+#include "info.h"
 #include "land_outfits.h"
 #include "land_shipyard.h"
 #include "land_trade.h"
@@ -137,6 +138,7 @@ static int news_load (void);
 static void misn_open( unsigned int wid );
 static void misn_close( unsigned int wid, char *name );
 static void misn_accept( unsigned int wid, char* str );
+static void misn_currentList(unsigned int wid, char* str);
 static void misn_genList( unsigned int wid, int first );
 static void misn_update( unsigned int wid, char* str );
 
@@ -260,7 +262,7 @@ static void bar_getDim( int wid,
    *ih = *h - 60;
 
    /* Calculate button dimensions. */
-   *bw = (*w - *iw - 80)/2;
+   *bw = (*w - *iw - 20 - 3*10)/2;
    *bh = LAND_BUTTON_HEIGHT;
 }
 /**
@@ -284,10 +286,10 @@ static void bar_open( unsigned int wid )
    window_setAccept( wid, bar_approach );
 
    /* Buttons */
-   window_addButtonKey( wid, -20, 20,
+   window_addButtonKey( wid, -10, 20,
          bw, bh, "btnCloseBar",
          _("Take Off"), land_buttonTakeoff, SDLK_t );
-   window_addButtonKey( wid, -20 - bw - 20, 20,
+   window_addButtonKey( wid, -10 - (bw+10), 20,
          bw, bh, "btnApproach",
          _("Approach"), bar_approach, SDLK_a );
 
@@ -558,6 +560,7 @@ static void misn_open( unsigned int wid )
    int w, h;
    int y;
    int th;
+   int bw;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_MISSION);
@@ -569,12 +572,16 @@ static void misn_open( unsigned int wid )
    window_onClose( wid, misn_close );
 
    /* buttons */
-   window_addButtonKey( wid, -20, 20,
-         LAND_BUTTON_WIDTH,LAND_BUTTON_HEIGHT, "btnCloseMission",
-         _("Take Off"), land_buttonTakeoff, SDLK_t );
-   window_addButtonKey( wid, -20, 40+LAND_BUTTON_HEIGHT,
-         LAND_BUTTON_WIDTH,LAND_BUTTON_HEIGHT, "btnAcceptMission",
-         _("Accept Mission"), misn_accept, SDLK_a );
+   bw = (w/2 - 3*10) / 3;
+   window_addButtonKey(wid, -10, 20,
+         bw, LAND_BUTTON_HEIGHT, "btnCloseMission",
+         _("Take Off"), land_buttonTakeoff, SDLK_t);
+   window_addButtonKey(wid, -10 - 1*(bw+10), 20,
+         bw, LAND_BUTTON_HEIGHT, "btnCurrentMissions",
+         _("Current Missions"), misn_currentList, SDLK_c);
+   window_addButtonKey(wid, -10 - 2*(bw+10), 20,
+         bw, LAND_BUTTON_HEIGHT, "btnAcceptMission",
+         _("Accept Mission"), misn_accept, SDLK_a);
 
    /* text */
    y = -60;
@@ -591,7 +598,7 @@ static void misn_open( unsigned int wid )
          "txtReward", &gl_defFont, NULL, _("#nReward:#0 None") );
    y -= 2 * gl_defFont.h + 20;
    window_addText( wid, w/2 + 10, y,
-         w/2 - 30, y - 40 + h - 2*LAND_BUTTON_HEIGHT, 0,
+         w/2 - 30, h + y - (LAND_BUTTON_HEIGHT+20) - 10, 0,
          "txtDesc", &gl_defFont, NULL, NULL );
 
    /* map */
@@ -664,6 +671,18 @@ static void misn_accept( unsigned int wid, char* str )
       /* Reset markers. */
       mission_sysMark();
    }
+}
+/**
+ * @brief Opens the Ship Computer's missions list.
+ *    @param wid Window of the mission computer.
+ *    @param str Unused.
+ */
+static void misn_currentList(unsigned int wid, char* str)
+{
+   (void) wid;
+   (void) str;
+
+   menu_info(INFO_MISSIONS);
 }
 /**
  * @brief Generates the mission list.
@@ -928,7 +947,7 @@ void land_updateMainTab (void)
       credits2str( cred, o->price, 0 );
       snprintf( buf, sizeof(buf), _("Buy Local Map (%s)"), cred );
       window_addButtonKey(land_getWid(LAND_WINDOW_MAIN),
-            -20, 20 + 2*(LAND_BUTTON_HEIGHT+20),
+            -20, 20 + 2*(LAND_BUTTON_HEIGHT+10),
             LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnMap",
             buf, spaceport_buyMap, SDLK_b);
    }
@@ -1278,7 +1297,7 @@ static void land_createMainTab( unsigned int wid )
     */
    window_addImage( wid, 20, -40, 400, 400, "imgPlanet", gfx_exterior, 1 );
    window_addText( wid, 440, -20-offset,
-         w-460, h - 20 - offset - 20 - 3*(LAND_BUTTON_HEIGHT+20), 0,
+         w-460, h - 20 - offset - 20 - 3*(LAND_BUTTON_HEIGHT+10), 0,
          "txtPlanetDesc", &gl_smallFont, NULL, _(land_planet->description) );
 
    /* Player stats. */
@@ -1292,14 +1311,14 @@ static void land_createMainTab( unsigned int wid )
    window_addButtonKey( wid, -20, 20,
          LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnTakeoff",
          _("Take Off"), land_buttonTakeoff, SDLK_t );
-   window_addButtonKey(wid, -20, 20 + (LAND_BUTTON_HEIGHT+20),
+   window_addButtonKey(wid, -20, 20 + (LAND_BUTTON_HEIGHT+10),
          LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnSaveSnapshot",
          _("Save Snapshot"), spaceport_saveSnapshot, SDLK_s);
 
    /* Add "no refueling" notice if needed. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
       window_addText(land_getWid(LAND_WINDOW_MAIN),
-            -20, 20 + 2*(LAND_BUTTON_HEIGHT+20) + 20,
+            -20, 20 + 2*(LAND_BUTTON_HEIGHT+10) + 20,
             200, gl_defFont.h, 1, "txtRefuel",
             &gl_defFont, NULL, _("No refueling services."));
    }
