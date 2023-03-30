@@ -16,6 +16,12 @@
   focus on bigotry, but it's been made more central to its plot, and now
   involves the Soromid government. This modified Coming Out campaign
   will serve as a path to join the Soromid.
+* A limited selection of AI pilots will now perform the Escape Jump
+  maneuver if their armor drops to a certain threshold in battle. The AI
+  pilots that will do this are: the player's escorts, civilians,
+  traders, and miners. (All other AI pilots intentionally will never
+  perform the maneuver, since this could be annoying to a player trying
+  to do things like hunt bounties.)
 
 ### Other Changes
 
@@ -38,12 +44,18 @@
 * The Baron mission's trigger event is more likely to spawn and no
   longer prevents it from spawning on the first attempt.
 * Removed the minor Cynthia campaign.
-* Touched up some missions.
+* Touched up several missions with small improvements.
 * Removed the dependency on GLPK (which Naikari wasn't actually taking
   advantage of).
 * Added a "Current Missions" button to the Mission Computer, which opens
   the Missions tab of the Ship Computer (showing your current active
   missions).
+* Changed the default controls to bind the "Target Next" key instead of
+  the "Target Nearest" key to the "T" key.
+* The "Target Next" and "Target Previous" keys will now target the
+  nearest applicable target if you are not targeting anything, and then
+  cycle through all of the targets like before. This makes these
+  controls a little easier to use.
 
 
 ## 0.6.0
