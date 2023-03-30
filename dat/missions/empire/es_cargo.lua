@@ -179,7 +179,7 @@ function land()
             and faction.playerStanding("Dvaered") >= 0
             and not player.misnDone("Undercover in Hakoi")
             and not player.misnActive("Undercover in Hakoi") then
-         cargo_land[#cargo_land + 1] = _("As the cargo is unloaded, the Empire worker in charge hands you a message from an Imperial Commander inviting you to Emperor's Fist for an advancement opportunity.")
+         cargo_land[#cargo_land + 1] = _("As the cargo is unloaded, the Imperial worker in charge hands you a message from an Imperial Commander inviting you to Emperor's Fist for an advancement opportunity.")
       end
 
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],

@@ -134,16 +134,17 @@ log_text = _([[Baron Sauterfeldt sent you on a wild goose chase to find some anc
 
 function create ()
    baronpla, baronsys = planet.get("Ulios")
-   if not misn.claim(baronsys) then
-      misn.finish(false)
-   end
-
    artifactplanetA, artifactsysA = planet.getLandable("Varaati")
    artifactplanetB, artifactsysB = planet.getLandable("Sinclair")
    artifactplanetC, artifactsysC = planet.getLandable("Hurada")
    flintplanet, flintsys = planet.getLandable("Tau Station")
    if artifactplanetA == nil or artifactplanetB == nil
          or artifactplanetC == nil or flintplanet == nil then
+      misn.finish(false)
+   end
+
+   if not misn.claim({baronsys, flintsys, artifactsysA, artifactsysB,
+            artifactsysC}) then
       misn.finish(false)
    end
 
@@ -434,7 +435,10 @@ function enter()
       misn.osdActive(3)
    elseif artifactA ~= nil or artifactB ~= nil or artifactC ~= nil
          or artifactReal ~= nil then
-      if rnd.rnd() < 0.75 then
+      if rnd.rnd() < 0.75
+            and (system.cur() == flintsys or system.cur() == artifactsysA
+               or system.cur() == artifactsysB
+               or system.cur() == artifactsysC) then
          hunterhooks = {}
          local choices = {"Llama", "Hyena", "Shark", "Lancelot", "Vendetta"}
          for i=1,10 do
