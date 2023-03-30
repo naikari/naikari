@@ -93,25 +93,25 @@ void shipyard_open( unsigned int wid )
    ih = h - 60;
 
    /* Left padding + per-button padding * nbuttons */
-   padding = 40 + 20 * 4;
+   padding = 20 + 10*5;
 
    /* Calculate button dimensions. */
    bw = (w - iw - padding) / 4;
    bh = LAND_BUTTON_HEIGHT;
 
    /* buttons */
-   window_addButtonKey( wid, off = -20, 20,
+   window_addButtonKey(wid, off = -10, 20,
          bw, bh, "btnCloseShipyard",
-         _("Take Off"), land_buttonTakeoff, SDLK_t );
-   window_addButtonKey( wid, off -= 20+bw, 20,
+         _("Take Off"), land_buttonTakeoff, SDLK_t);
+   window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnTradeShip",
-         _("Trade-In"), shipyard_trade, SDLK_r );
-   window_addButtonKey( wid, off -= 20+bw, 20,
+         _("Trade-In"), shipyard_trade, SDLK_r);
+   window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnBuyShip",
-         _("Buy"), shipyard_buy, SDLK_b );
-   window_addButtonKey( wid, off -= 20+bw, 20,
+         _("Buy"), shipyard_buy, SDLK_b);
+   window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnFindShips",
-         _("Find Ships"), shipyard_find, SDLK_f );
+         _("Find Ships"), shipyard_find, SDLK_f);
    (void)off;
 
    /* slot types */
