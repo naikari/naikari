@@ -41,6 +41,9 @@
 * Touched up some missions.
 * Removed the dependency on GLPK (which Naikari wasn't actually taking
   advantage of).
+* Added a "Current Missions" button to the Mission Computer, which opens
+  the Missions tab of the Ship Computer (showing your current active
+  missions).
 
 
 ## 0.6.0
