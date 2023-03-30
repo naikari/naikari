@@ -56,7 +56,7 @@ accept_text = _([["Thank you, I know it's a bit silly. The area should be safe. 
 
 takeoff_text = _([[As you begin the takeoff procedure, you receive a hail from a Llama piloted by Ian. "Well met," he says. "Alright, I'm initiating takeoff. When we get into space, I will start going for the jump to {system}. All you need to do is follow me, wait for me to jump, and then jump after me. Then, when we get to {system}, you'll just need to follow me to {planet}, wait for me to land, and then land after me.
 
-"I don't suppose you know how to tell Autonav to follow a target, do you? It'll make the journey much easier. Just target my ship by #bleft-clicking#0 on it or pressing {target_nearest_key}, then press {followkey} to initiate automatic following."]])
+"I don't suppose you know how to tell Autonav to follow a target, do you? It'll make the journey much easier. Just target my ship by #bleft-clicking#0 on it or by pressing {target_next_key}, then press {followkey} to initiate automatic following."]])
 
 pay_text = _([[You and Ian successfully land at his destination. When you meet up with him at the spaceport, you can tell that he's relieved nothing bad happened as he hands you your payment. "Thank you again for your assistance," he reiterates. "I think I feel a bit better about flying now, thanks to you. It'll be awhile before I can feel comfortable going into hostile space, but in the heavily patrolled places, I can rest assured now that I'm competent enough to fly on my own. Maybe I should hire some escorts, too.
 
@@ -163,7 +163,7 @@ function takeoff()
 
    tk.msg("", fmt.f(takeoff_text,
          {system=missys:name(), planet=misplanet:name(),
-            target_nearest_key=tutGetKey("target_nearest"),
+            target_next_key=tutGetKey("target_next"),
             followkey=tutGetKey("follow")}))
 end
 

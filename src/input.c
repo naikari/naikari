@@ -235,31 +235,31 @@ void input_setDefault(int layout)
 
    /* Targeting */
    if (layout == LAYOUT_WASD) {
-      input_setKeybind( "target_next", KEYBIND_KEYBOARD, SDLK_e, NMOD_CTRL );
-      input_setKeybind( "target_prev", KEYBIND_KEYBOARD, SDLK_q, NMOD_CTRL );
-      input_setKeybind( "target_nearest", KEYBIND_KEYBOARD, SDLK_t, NMOD_ANY );
-      input_setKeybind( "target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
-      input_setKeybind( "target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
-      input_setKeybind( "target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY );
-      input_setKeybind( "target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY );
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL);
+      input_setKeybind("target_nearest", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY);
+      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY);
    }
    else if (layout == LAYOUT_ZQSD) {
-      input_setKeybind( "target_next", KEYBIND_KEYBOARD, SDLK_e, NMOD_CTRL );
-      input_setKeybind( "target_prev", KEYBIND_KEYBOARD, SDLK_a, NMOD_CTRL );
-      input_setKeybind( "target_nearest", KEYBIND_KEYBOARD, SDLK_t, NMOD_ANY );
-      input_setKeybind( "target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
-      input_setKeybind( "target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
-      input_setKeybind( "target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY );
-      input_setKeybind( "target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY );
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL);
+      input_setKeybind("target_nearest", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY);
+      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY);
    }
    else {
-      input_setKeybind( "target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE );
-      input_setKeybind( "target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL );
-      input_setKeybind( "target_nearest", KEYBIND_KEYBOARD, SDLK_n, NMOD_NONE );
-      input_setKeybind( "target_nextHostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_CTRL );
-      input_setKeybind( "target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
-      input_setKeybind( "target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_NONE );
-      input_setKeybind( "target_clear", KEYBIND_KEYBOARD, SDLK_BACKSPACE, NMOD_ANY );
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL);
+      input_setKeybind("target_nearest", KEYBIND_KEYBOARD, SDLK_n, NMOD_ANY);
+      input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY);
+      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_BACKSPACE, NMOD_ANY);
    }
 
    /* Combat */
