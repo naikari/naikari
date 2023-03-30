@@ -226,7 +226,7 @@ end
 function takeoff ()
    if hasDrink then
       local osd_desc = {
-         fmt.f(_("Land on {planet} ({system} system)"),
+         fmt.f(_("Land on {planet} ({system} system) and give the Swamp Bombing to the aristocrat at the bar"),
                {planet=startplanet:name(), system=startsys:name()}),
       }
       misn.osdCreate(misn_title, osd_desc)

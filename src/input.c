@@ -265,14 +265,21 @@ void input_setDefault(int layout)
    /* Combat */
    input_setKeybind( "primary", KEYBIND_KEYBOARD, SDLK_SPACE, NMOD_ANY );
 
-   if (layout == LAYOUT_WASD)
-      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
-   else
+   if (layout == LAYOUT_WASD) {
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
+   }
+   else if (layout == LAYOUT_ZQSD) {
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
+   }
+   else {
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
+   }
 
    input_setKeybind("follow", KEYBIND_KEYBOARD, SDLK_f, NMOD_NONE);
    input_setKeybind("board", KEYBIND_KEYBOARD, SDLK_b, NMOD_NONE);
-   input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_v, NMOD_NONE);
    /* Secondary Weapons */
    input_setKeybind( "secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY );
    input_setKeybind( "weapset1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ANY );
