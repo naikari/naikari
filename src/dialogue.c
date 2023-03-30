@@ -812,6 +812,14 @@ static void dialogue_choiceClose( unsigned int wid, char* str )
 {
    int *loop_done;
 
+   /* choice_result should never be left-over by the time this is called. */
+   if (choice_result != NULL) {
+      WARN(_("Stray choice result '%s' overwritten by new result '%s'."),
+            choice_result, str);
+      free(choice_result);
+      choice_result = NULL;
+   }
+
    /* Save result. */
    choice_result = strdup(str);
 

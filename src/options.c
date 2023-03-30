@@ -781,7 +781,8 @@ static void menuKeybinds_update( unsigned int wid, char *name )
 static void opt_keyDefaults( unsigned int wid, char *str )
 {
    (void) str;
-   const char *title, *caption, *ret;
+   const char *title, *caption;
+   char *ret;
    int i, ind, layout;
 
    const int n = 4;
@@ -792,7 +793,7 @@ static void opt_keyDefaults( unsigned int wid, char *str )
       _("Cancel")
    };
 
-   title   = _("Restore Defaults");
+   title = _("Restore Defaults");
    caption = _("Which layout do you want to use?");
 
    dialogue_makeChoice( title, caption, n );
@@ -806,11 +807,13 @@ static void opt_keyDefaults( unsigned int wid, char *str )
 
    /* Find the index of the matched option. */
    ind = 0;
-   for (i=0; i<n; i++)
+   for (i=0; i<n; i++) {
       if (strcmp(ret, opts[i]) == 0) {
          ind = i;
          break;
       }
+   }
+   free(ret);
 
    layout = LAYOUT_ARROWS;
    switch (ind) {
