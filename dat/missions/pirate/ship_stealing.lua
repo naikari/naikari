@@ -453,6 +453,7 @@ function spawn_target(source)
          target_ship:setEnergy(10)
          target_ship:memory().armour_run = 0
          target_ship:memory().shield_run = 0
+         target_ship:memory().armor_localjump = 0
          target_ship:memory().norun = true
          target_ship:memory().careful = true
          target_ship:memory().loiter = 10000

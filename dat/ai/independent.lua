@@ -5,6 +5,7 @@ local fmt = require "fmt"
 
 
 mem.careful = false
+mem.armor_localjump = 70
 
 
 function create ()

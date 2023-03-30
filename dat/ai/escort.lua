@@ -4,5 +4,6 @@ require("ai/tpl/escort")
 -- Do not distress
 mem.distress = false
 mem.aggressive = true
+mem.armor_localjump = 70
 mem.enemyclose = 6000
 mem.leadermaxdist = 16000

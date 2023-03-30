@@ -9,7 +9,7 @@ require("ai/personality/patrol")
 
 -- Settings
 mem.aggressive = true
-mem.safe_distance = 500
+mem.safe_distance = 1800
 mem.armour_run = 80
 mem.armour_return = 100
 mem.atk_kill = true

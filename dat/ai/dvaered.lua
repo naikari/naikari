@@ -3,6 +3,8 @@ require("ai/personality/patrol")
 local fmt = require "fmt"
 
 -- Settings
+mem.armour_run = 20
+mem.armour_return = 70
 mem.aggressive = true
 
 

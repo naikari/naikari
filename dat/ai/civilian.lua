@@ -3,6 +3,8 @@ require("ai/personality/civilian")
 require("ai/include/distress_behaviour")
 local fmt = require "fmt"
 
+mem.armor_localjump = 40
+
 
 function create()
    local sprice = ai.pilot():ship():price()

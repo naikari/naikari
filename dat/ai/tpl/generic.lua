@@ -12,11 +12,12 @@ mem.armour_run = 0 -- At which damage to run at
 mem.armour_return = 0 -- At which armour to return to combat
 mem.shield_run = 0 -- At which shield to run
 mem.shield_return = 0 -- At which shield to return to combat
+mem.armor_localjump = 0 -- At which armor to perform an escape jump
 mem.aggressive = false -- Should pilot actively attack enemies?
 mem.defensive = true -- Should pilot defend itself
 mem.cooldown = false -- Whether the pilot is currently cooling down.
 mem.heatthreshold = 0.5 -- Weapon heat to enter cooldown at [0-2 or nil]
-mem.safe_distance = 300 -- Safe distance from enemies to jump
+mem.safe_distance = 1200 -- Safe distance from enemies to jump
 mem.land_planet = true -- Should land on planets?
 mem.land_friendly = false -- Only land on friendly planets?
 mem.distress = true -- AI distresses
@@ -157,20 +158,19 @@ function control_attack( si )
       return
    end
 
+   local p = ai.pilot()
    local target_parmour, target_pshield = target:health()
-   local parmour, pshield = ai.pilot():health()
+   local parmour, pshield = p:health()
 
    -- Pick an appropriate weapon set.
    choose_weapset()
 
-   -- Runaway if needed
    if (mem.shield_run > 0 and pshield < mem.shield_run
-            and pshield < target_pshield ) or
+            and pshield < target_pshield) or
          (mem.armour_run > 0 and parmour < mem.armour_run
-            and parmour < target_parmour ) then
+            and parmour < target_parmour) then
+      -- Run away.
       ai.pushtask("runaway", target)
-
-   -- Think like normal
    else
       -- Cool down, if necessary.
       should_cooldown()
@@ -333,16 +333,16 @@ function control ()
          return
       end
 
-      local dist = ai.dist( target )
+      local dist = ai.dist(target)
 
       -- Should return to combat?
-      local parmour, pshield = ai.pilot():health()
-      if mem.aggressive and ((mem.shield_return > 0 and pshield >= mem.shield_return) or
-            (mem.armour_return > 0 and parmour >= mem.armour_return)) then
+      local parmour, pshield = p:health()
+      if mem.aggressive
+            and ((mem.shield_return > 0 and pshield >= mem.shield_return)
+               or (mem.armour_return > 0 and parmour >= mem.armour_return)) then
          ai.poptask() -- "attack" should be above "runaway"
-
-      -- Try to jump
-      elseif dist > mem.safe_distance then
+      elseif dist >= mem.safe_distance then
+         -- Try to jump
          ai.hyperspace()
       end
 
@@ -378,20 +378,24 @@ function control ()
 end
 
 -- Required "attacked" function
-function attacked( attacker )
+function attacked(attacker)
    local task = ai.taskname()
-   local si = _stateinfo( task )
-   if si.forced then return end
+   local si = _stateinfo(task)
+   if si.forced then
+      return
+   end
 
    -- Notify that pilot has been attacked before
    mem.attacked = true
 
+   local p = ai.pilot()
+   local parmor, pshield = p:health()
+
    -- Cooldown should be left running if not taking heavy damage.
    if mem.cooldown then
-      local _, pshield = ai.pilot():health()
       if pshield < 90 then
          mem.cooldown = false
-         ai.pilot():setCooldown( false )
+         ai.pilot():setCooldown(false)
       else
          return
       end
@@ -403,7 +407,6 @@ function attacked( attacker )
    end
 
    if not si.fighting then
-
       if mem.defensive then
          -- Some taunting
          ai.hostile(attacker) -- Should be done before taunting
@@ -417,16 +420,21 @@ function attacked( attacker )
          -- Runaway
          ai.pushtask("runaway", attacker)
       end
-
-   -- Let attacker profile handle it.
    elseif si.attack then
-      attack_attacked( attacker )
-
+      -- Let attacker profile handle it.
+      attack_attacked(attacker)
    elseif task == "runaway" then
       if ai.taskdata() ~= attacker then
          ai.poptask()
          ai.pushtask("runaway", attacker)
       end
+   end
+
+   -- Check whether we should local jump.
+   if mem.armor_localjump > 0 and parmor < mem.armor_localjump
+         and pshield <= 10 then
+      -- Perform a local jump.
+      ai.localjump()
    end
 end
 
