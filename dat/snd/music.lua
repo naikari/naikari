@@ -285,9 +285,7 @@ function choose_ambient()
          end
 
          music.stop()
-         if not player.isLanded() then
-            return true
-         end
+         return true
       end
 
       -- Load music and play
