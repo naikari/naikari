@@ -84,6 +84,8 @@ function create ()
         misn.finish(false)
     end
 
+    credits = 300000
+
     misn.setNPC(_("Terra"), "neutral/unique/terra.png",
         _("You see an acquaintance of yours, Terra, looking around for a suitable pilot."))
 end
@@ -93,8 +95,6 @@ function accept ()
     if tk.yesno("", fmt.f(ask_text,
             {player=player.name(), credits=fmt.credits(credits)})) then
         misn.accept()
-
-        credits = 300000
 
         misn.setTitle(_("Teenager's Joyride"))
         misn.setDesc(fmt.f(misndesc,
