@@ -119,7 +119,7 @@ function accept()
       misn.setDesc(fmt.f(misn_desc,
             {planet=misplanet:name(), system=missys:name()}))
 
-      misn.markerAdd(missys, "low")
+      marker = misn.markerAdd(missys, "low")
 
       local osd_desc = {
          fmt.f(_("Land on {planet} ({system} system) and speak to civilians at the bar"),
@@ -162,5 +162,6 @@ function approach(npc_id)
    tk.msg("", fmt.f(approach_text, {planet=startpla:name()}))
    misn.npcRm(npc_id)
    job_done = true
+   misn.markerMove(marker, startsys)
    misn.osdActive(2)
 end

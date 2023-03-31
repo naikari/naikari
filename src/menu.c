@@ -190,13 +190,13 @@ void menu_main (void)
    if (curlocaltime.tm_mon == 3) {
       /* Autism Acceptance Month */
       tex = gl_newImage(GFX_PATH"naikari-red.png", 0);
-      main_tagline = _("Lighting up red for Autism Acceptance Month."
-            " ##ActuallyAutistic");
+      main_tagline = _("Proudly autistic and lighting up red for Autism"
+            " Acceptance Month.");
    }
    else if (curlocaltime.tm_mon == 5) {
       /* Queer Pride Month */
       tex = gl_newImage(GFX_PATH"naikari-rainbow.png", 0);
-      main_tagline = _("We're here. We're queer. Get used to it. ##QueerPride");
+      main_tagline = _("We're here. We're queer. Get used to it.");
    }
    else {
       tex = gl_newImage(GFX_PATH"naikari.png", 0);
@@ -230,8 +230,8 @@ void menu_main (void)
          {
             gl_freeTexture(tex);
             tex = gl_newImage(GFX_PATH"naikari-aro.png", 0);
-            main_tagline = _("Love takes many forms."
-                  " ##AromanticSpectrumAwarenessWeek");
+            main_tagline = _("Love takes many forms. Happy Aromantic Spectrum"
+                  " Awareness Week!");
          }
       }
    }
