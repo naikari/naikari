@@ -9,7 +9,8 @@
   you take passengers to a destination and can stop by at attractions
   along the way.
 * Replaced the Empire Shipping campaign with a new campaign
-  investigating the appearance of pirates in Hakoi.
+  investigating the appearance of pirates in Hakoi. (The first two
+  missions in this new campaign are finished as of this release.)
 * Rewrote the story for the Coming Out campaign and removed the fifth
   and sixth missions in it (to be replaced by missions that relate to
   the story we're building up). The story always had some level of
@@ -60,6 +61,9 @@
   nearest applicable target if you are not targeting anything, and then
   cycle through all of the targets like before. This makes these
   controls a little easier to use.
+* The Baron Prince mission now only spawns hostile artifact hunters in
+  the artifact systems, and in the system Flintley is in.
+* Mercenary Llamas now come equipped with Photon Daggers.
 
 
 ## 0.6.0

@@ -2224,6 +2224,7 @@ dat/missions/empire/emp_cargo00.lua
 dat/missions/empire/es_cargo.lua
 dat/missions/empire/es_longdistancecargo.lua
 dat/missions/empire/hakoi_pirates/emp_hp01.lua
+dat/missions/empire/hakoi_pirates/emp_hp02.lua
 dat/missions/flf/dvk/flf_dvk01.lua
 dat/missions/flf/dvk/flf_dvk02.lua
 dat/missions/flf/flf_commodity_run.lua
