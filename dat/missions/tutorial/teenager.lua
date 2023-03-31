@@ -111,7 +111,7 @@ function accept ()
         }
         misn.osdCreate(_("Teenager's Joyride"), osd_msg)
 
-        tk.msg("", yes_text)
+        tk.msg("", fmt.f(yes_text, {board_key=tutGetKey("board")}))
 
         hook.enter("enter")
 

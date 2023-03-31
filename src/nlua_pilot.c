@@ -3729,28 +3729,42 @@ struct pL_flag {
    int id;     /**< Id of the flag. */
 };
 static const struct pL_flag pL_flags[] = {
-   { .name = "hailing", .id = PILOT_HAILING },
-   { .name = "boardable", .id = PILOT_BOARDABLE },
-   { .name = "nojump", .id = PILOT_NOJUMP },
-   { .name = "noland", .id = PILOT_NOLAND },
-   { .name = "nodeath", .id = PILOT_NODEATH },
-   { .name = "nodisable", .id = PILOT_NODISABLE },
-   { .name = "visible", .id = PILOT_VISIBLE },
-   { .name = "visplayer", .id = PILOT_VISPLAYER },
-   { .name = "hilight", .id = PILOT_HILIGHT },
-   { .name = "invisible", .id = PILOT_INVISIBLE },
-   { .name = "norender", .id = PILOT_NORENDER },
-   { .name = "hide", .id = PILOT_HIDE },
-   { .name = "invincible", .id = PILOT_INVINCIBLE },
-   { .name = "invinc_player", .id = PILOT_INVINC_PLAYER },
-   { .name = "friendly", .id = PILOT_FRIENDLY },
-   { .name = "hostile", .id = PILOT_HOSTILE },
-   { .name = "refueling", .id = PILOT_REFUELING },
-   { .name = "disabled", .id = PILOT_DISABLED },
-   { .name = "takingoff", .id = PILOT_TAKEOFF },
-   { .name = "manualcontrol", .id = PILOT_MANUAL_CONTROL },
-   { .name = "combat", .id = PILOT_COMBAT },
-   { .name = "carried", .id = PILOT_CARRIED },
+   {.name = "carried", .id = PILOT_CARRIED},
+   {.name = "hyperspace", .id = PILOT_HYPERSPACE},
+   {.name = "hyperspace_end", .id = PILOT_HYP_END},
+   {.name = "localjump", .id = PILOT_LOCALJUMP},
+   {.name = "hailing", .id = PILOT_HAILING},
+   {.name = "boardable", .id = PILOT_BOARDABLE},
+   {.name = "boarded", .id = PILOT_BOARDED},
+   {.name = "noboard", .id = PILOT_NOBOARD},
+   {.name = "boarding", .id = PILOT_BOARDING},
+   {.name = "nodisable", .id = PILOT_NODISABLE},
+   {.name = "disabled", .id = PILOT_DISABLED},
+   {.name = "disabled_perm", .id = PILOT_DISABLED_PERM},
+   {.name = "nodeath", .id = PILOT_NODEATH},
+   {.name = "invincible", .id = PILOT_INVINCIBLE},
+   {.name = "invinc_player", .id = PILOT_INVINC_PLAYER},
+   {.name = "hostile", .id = PILOT_HOSTILE},
+   {.name = "friendly", .id = PILOT_FRIENDLY},
+   {.name = "combat", .id = PILOT_COMBAT},
+   {.name = "bribed", .id = PILOT_BRIBED},
+   {.name = "distressed", .id = PILOT_DISTRESSED},
+   {.name = "landing", .id = PILOT_LANDING},
+   {.name = "takingoff", .id = PILOT_TAKEOFF},
+   {.name = "norender", .id = PILOT_NORENDER},
+   {.name = "visplayer", .id = PILOT_VISPLAYER},
+   {.name = "visible", .id = PILOT_VISIBLE},
+   {.name = "invisible", .id = PILOT_INVISIBLE},
+   {.name = "hide", .id = PILOT_HIDE},
+   {.name = "hilight", .id = PILOT_HILIGHT},
+   {.name = "afterburner", .id = PILOT_AFTERBURNER},
+   {.name = "refueling", .id = PILOT_REFUELING},
+   {.name = "cooldown", .id = PILOT_COOLDOWN},
+   {.name = "manualcontrol", .id = PILOT_MANUAL_CONTROL},
+   {.name = "nojump", .id = PILOT_NOJUMP},
+   {.name = "noland", .id = PILOT_NOLAND},
+   {.name = "persist", .id = PILOT_PERSIST},
+   {.name = "noclear", .id = PILOT_NOCLEAR},
    {NULL, -1}
 }; /**< Flags to get. */
 /**
@@ -3758,26 +3772,48 @@ static const struct pL_flag pL_flags[] = {
  *
  * Valid flags are:<br/>
  * <ul>
- *  <li> hailing: pilot is hailing the player.</li>
- *  <li> boardable: pilot is boardable while active.</li>
- *  <li> nojump: pilot cannot jump.</li>
- *  <li> noland: pilot cannot land.</li>
- *  <li> nodeath: pilot cannot die.</li>
- *  <li> nodisable: pilot cannot be disabled.</li>
- *  <li> escort: pilot is an escort.</li>
- *  <li> visible: pilot is always visible.</li>
- *  <li> visplayer: pilot is always visible to the player.</li>
- *  <li> hilight: pilot is hilighted on the map.</li>
- *  <li> invisible: pilot is not displayed.</li>
- *  <li> invincible: pilot cannot be hit.</li>
- *  <li> invinc_player: pilot cannot be hit by the player.</li>
- *  <li> friendly: pilot is friendly toward the player.</li>
- *  <li> hostile: pilot is hostile toward the player.</li>
- *  <li> refueling: pilot is refueling another pilot.</li>
- *  <li> disabled: pilot is disabled.</li>
- *  <li> takingoff: pilot is currently taking off.</li>
- *  <li> manualcontrol: pilot is under manual control.</li>
- *  <li> combat: pilot is engaged in combat.</li>
+ *    <li>"carried": Pilot comes from a fighter bay.</li>
+ *    <li>"hyperspace": Pilot is performing a jump. "hyperspace_end" and
+ *       "localjump" can co-occur with this. If both "hyperspace_end"
+ *       and "localjump" are false, "hyperspace" means that the pilot is
+ *       entering hyperspace (exiting the system).</li>
+ *    <li>"hyperspace_end": pilot is exiting hyperspace (entering the
+ *       system).</li>
+ *    <li>"localjump": Pilot is performing a local jump.</li>
+ *    <li>"hailing": Pilot is hailing the player.</li>
+ *    <li>"boardable": Pilot is boardable while active.</li>
+ *    <li>"boarded": Pilot has been boarded already.</li>
+ *    <li>"noboard": Pilot can't be boarded.</li>
+ *    <li>"boarding": Pilot is currently boarding its target.</li>
+ *    <li>"nodisable": Pilot can't be disabled.</li>
+ *    <li>"disabled": Pilot is disabled.</li>
+ *    <li>"disabled_perm": Pilot is permanently disabled.</li>
+ *    <li>"nodeath": Pilot cannot die, will stay at 1 armor.</li>
+ *    <li>"invincible": Pilot cannot be hit.</li>
+ *    <li>"invinc_player": Pilot cannot be hit by the player.</li>
+ *    <li>"hostile": Pilot is hostile toward the player.</li>
+ *    <li>"friendly": Pilot is friendly toward the player.</li>
+ *    <li>"combat": Pilot is engaged in combat.</li>
+ *    <li>"bribed": Pilot has been bribed.</li>
+ *    <li>"distressed": Pilot has distressed already.</li>
+ *    <li>"landing": Pilot is currently landing.</li>
+ *    <li>"takingoff": Pilot is currently taking off.</li>
+ *    <li>"norender": Pilot does not get rendered.</li>
+ *    <li>"visplayer": Pilot is always visible to the player.</li>
+ *    <li>"visible": Pilot is always visible.</li>
+ *    <li>"invisible": Pilot doesn't appear on the radar and cannot be
+ *       targeted, but can still do stuff and is rendered.</li>
+ *    <li>"hide": Pilot is not updated or rendered and cannot be 
+ *       interacted with.</li>
+ *    <li>"hilight": Pilot is hilighted on the map.</li>
+ *    <li>"afterburner": Pilot has their afterburner activated.</li>
+ *    <li>"refueling": Pilot is refueling another pilot.</li>
+ *    <li>"cooldown": Pilot is in active cooldown mode.</li>
+ *    <li>"manualcontrol": Pilot is under manual control.</li>
+ *    <li>"nojump": Pilot cannot jump.</li>
+ *    <li>"noland": Pilot cannot land.</li>
+ *    <li>"persist": Pilot persists when the player jumps.</li>
+ *    <li>"noclear": Pilot isn't removed by pilot.clear().</li>
  * </ul>
  *    @luatparam Pilot p Pilot to get flags of.
  *    @luatreturn table Table with flag names an index, boolean as value.
