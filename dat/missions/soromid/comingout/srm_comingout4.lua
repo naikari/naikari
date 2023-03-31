@@ -144,7 +144,7 @@ function accept ()
       misn.setDesc(fmt.f(misn_desc,
             {planet=destplanet:name(), system=destsys:name()}))
       misn.setReward(fmt.credits(credits))
-      marker = misn.markerAdd(startsys, "low")
+      marker = misn.markerAdd(startsys, "plot")
 
       local osd_desc = {
          fmt.f(_("Land on {planet} ({system} system)"),

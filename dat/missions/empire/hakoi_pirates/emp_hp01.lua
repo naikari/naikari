@@ -25,7 +25,7 @@
 --]]
 --[[
 
-   Mission Template (mission name goes here)
+   Undercover in Hakoi
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -74,11 +74,11 @@ It seems you have gathered enough information and can return to {planet}.]])
 
 finish_text = _([[You locate Commander Soldner and hand him the listening device. "Great job, {player}," he says with a smile. "I'm sure the data you've gathered will be of great help to us in our investigation. The promised payment has already been deposited into your account.
 
-"I'm sure we will have a need to enlist your services again before long. I'll see you again at the bar here on {planet} when I have another mission for you. In the meantime, I would recommend purchasing a Mercenary License, if you haven't already, and giving some basic combat missions a try. I'm sure the experience will prove to be invaluable."]])
+"I will now begin to plan our next course of action. Meet me at the bar soon. I believe I will have another mission for you, if you are willing to be of service to the Empire again."]])
 
 misn_desc = _("You have been tasked by Commander Soldner with going on an undercover mission in {system} to try to find information on where the pirates there came from.")
 
-log_text = _([[You assisted the Empire in an undercover operation to try to find out where the pirates in {destplanet} came from. Commander Soldner, who gave you the mission, suggested getting yourself a Mercenary License and trying some combat missions before returning to {startplanet} ({startsys} system) for another mission.]])
+log_text = _([[You assisted the Empire in an undercover operation to try to find out where the pirates in {destsys} came from. Commander Soldner, who gave you the mission, said you should meet him again soon on {startplanet} ({startsys} system) for another mission.]])
 
 
 function create()
@@ -119,7 +119,7 @@ function accept()
       misn.setDesc(fmt.f(misn_desc,
             {planet=misplanet:name(), system=missys:name()}))
 
-      marker = misn.markerAdd(missys, "low")
+      marker = misn.markerAdd(missys, "plot")
 
       local osd_desc = {
          fmt.f(_("Land on {planet} ({system} system) and speak to civilians at the bar"),
@@ -151,7 +151,7 @@ function land()
       player.pay(credits)
       faction.modPlayer("Empire", 3)
       emp_addShippingLog(fmt.f(log_text,
-            {destplanet=misplanet:name(), startplanet=startpla:name(),
+            {destsys=missys:name(), startplanet=startpla:name(),
                startsys=startsys:name()}))
       misn.finish(true)
    end

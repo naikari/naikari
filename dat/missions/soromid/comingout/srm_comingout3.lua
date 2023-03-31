@@ -114,7 +114,7 @@ function accept ()
       misn.setDesc(fmt.f(misn_desc,
             {planet=misplanet:name(), system=missys:name()}))
       misn.setReward(fmt.credits(credits))
-      marker = misn.markerAdd(missys, "low")
+      marker = misn.markerAdd(missys, "high")
 
       local nextsys = getNextSystem(system.cur(), missys)
       local jumps = system.cur():jumpDist(missys)
