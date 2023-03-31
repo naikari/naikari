@@ -56,7 +56,7 @@ ask_text = _([["Hello again, {player}. It's good to see you. We have another mis
 
 accept_text = _([["I am happy to hear that, {player}! I knew we could count on you. According to the civilian you questioned, pirates seem to be approaching from the direction of the asteroid field. We have reason to believe there must be a hidden jump point somewhere around there which the pirates are jumping into the system through.
 
-"We want you to go to the area of the {system} asteroid field and test this theory. You won't be able to see the jump point itself, but by observing the area, you should be able to catch pirates jumping into the system. We want you to observe until you witness three such pirates.
+"We want you to go to the area of the {system} asteroid field and test this theory. You won't be able to see the jump point itself, but by observing the area, you should be able to catch pirates jumping into the system.
 
 "I would recommend equipping a Sensor Array or two to extend your radar range; you should be able to find those at the outfitter here. Once you have completed your objective, meet with me here on {startplanet}. Good luck!"]])
 
@@ -69,7 +69,7 @@ finish_text = _([[You notice that Commander Soldner is already waiting for you a
 misn_title = _("Hakoi's Hidden Jumps")
 misn_desc = _("Commander Soldner has sent you to the {system} system to scout the area and watch as pirates jump in. He said that he expects the pirates are jumping in through a hidden jump point near the asteroid field.")
 
-log_text = _([[You did some observation in the {destplanet} system for Commander Soldner, watching as pirates jumped into the system. He suggested getting yourself a Mercenary License and trying some combat missions before returning to {startplanet} ({startsys} system) for another mission.]])
+log_text = _([[You did some observation in the {destsys} system for Commander Soldner, watching as pirates jumped into the system. He suggested getting yourself a Mercenary License and trying some combat missions before returning to {startplanet} ({startsys} system) for another mission.]])
 
 
 function create()
@@ -81,7 +81,7 @@ function create()
 
    credits = 400000
    jumps_witnessed = 0
-   jumps_needed = 3
+   jumps_needed = 5
 
    misn.setNPC(_("Soldner"), "empire/unique/soldner.png",
          _("You see Commander Soldner at the bar. He said he would have another mission for you."))
@@ -100,8 +100,7 @@ function accept()
 
       misn.setTitle(misn_title)
       misn.setReward(fmt.credits(credits))
-      misn.setDesc(fmt.f(misn_desc,
-            {planet=misplanet:name(), system=missys:name()}))
+      misn.setDesc(fmt.f(misn_desc, {system=missys:name()}))
 
       marker = misn.markerAdd(missys, "plot")
 
@@ -155,9 +154,11 @@ end
 
 function update()
    for i, p in ipairs(player.pilot():getVisible()) do
-      if p:flags().hyperspace_end and not inList(p, witnessed_pilots) then
+      if p:faction() == faction.get("Pirate") and p:flags().hyperspace_end
+            and not inList(p, witnessed_pilots) then
          jumps_witnessed = jumps_witnessed + 1
          table.insert(witnessed_pilots, p)
+         player.msg(fmt.f(_("Witnessed {pilot} jumping in."), {pilot=p:name()}))
       end
    end
 
