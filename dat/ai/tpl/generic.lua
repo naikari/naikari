@@ -432,7 +432,7 @@ function attacked(attacker)
 
    -- Check whether we should local jump.
    if mem.armor_localjump > 0 and parmor < mem.armor_localjump
-         and pshield <= 10 then
+         and pshield <= 10 and p:stats().jumps >= 2 then
       -- Perform a local jump.
       ai.localjump()
    end
