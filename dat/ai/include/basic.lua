@@ -23,10 +23,16 @@ end
 -- Faces the target.
 --]]
 function __face( target )
-   ai.face( target )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   ai.face(target)
 end
 function __face_towards( target )
-   local off = ai.face( target )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local off = ai.face(target)
    if math.abs(off) < 5 then
       ai.poptask()
    end
@@ -37,6 +43,9 @@ end
 -- Brakes the ship
 --]]
 function brake ()
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    ai.brake()
    if ai.isstopped() then
       ai.stop()
@@ -50,6 +59,9 @@ end
 -- Brakes the ship
 --]]
 function __subbrake ()
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    ai.brake()
    if ai.isstopped() then
       ai.stop()
@@ -91,8 +103,11 @@ end
 -- Goes to a target position without braking
 --]]
 function __moveto_nobrake( target )
-   local dir      = ai.face( target, nil, true )
-   __moveto_generic( target, dir, false )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local dir = ai.face(target, nil, true)
+   __moveto_generic(target, dir, false)
 end
 
 
@@ -100,9 +115,12 @@ end
 -- Goes to a target position without braking
 --]]
 function __moveto_nobrake_raw( target )
-   local target   = ai.taskdata()
-   local dir      = ai.face( target )
-   __moveto_generic( target, dir, false )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local target = ai.taskdata()
+   local dir = ai.face(target)
+   __moveto_generic(target, dir, false)
 end
 
 
@@ -110,9 +128,12 @@ end
 -- Goes to a precise position.
 --]]
 function __moveto_precise ()
-   local target   = ai.taskdata()
-   local dir      = ai.face( target, nil, true )
-   local dist     = ai.dist( target )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local target = ai.taskdata()
+   local dir = ai.face(target, nil, true)
+   local dist = ai.dist(target)
 
    -- Handle finished
    if ai.isstopped() and dist < 10 then
@@ -139,9 +160,12 @@ end
 -- Goes to a target position roughly
 --]]
 function moveto ()
-   local target   = ai.taskdata()
-   local dir      = ai.face( target, nil, true )
-   __moveto_generic( target, dir, true )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local target = ai.taskdata()
+   local dir = ai.face(target, nil, true)
+   __moveto_generic(target, dir, true)
 end
 
 
@@ -157,9 +181,12 @@ end
 -- moveto without velocity compensation.
 --]]
 function moveto_raw ()
-   local target   = ai.taskdata()
-   local dir      = ai.face( target )
-   __moveto_generic( target, dir, true )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local target = ai.taskdata()
+   local dir = ai.face( target )
+   __moveto_generic(target, dir, true)
 end
 
 
@@ -202,8 +229,11 @@ function follow ()
       return
    end
 
-   local dir   = ai.face(target)
-   local dist  = ai.dist(target)
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local dir = ai.face(target)
+   local dist = ai.dist(target)
 
    -- Must approach
    if dir < 10 and dist > 300 then
@@ -220,13 +250,16 @@ function follow_accurate ()
       return
    end
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    local goal = ai.follow_accurate(target, mem.radius,
          mem.angle, mem.Kp, mem.Kd)
 
    local mod = vec2.mod(goal - p:pos())
 
    --  Always face the goal
-   local dir   = ai.face(goal)
+   local dir = ai.face(goal)
 
    if dir < 10 and mod > 300 then
       ai.accel()
@@ -243,6 +276,9 @@ function follow_fleet ()
       ai.poptask()
       return
    end
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    if mem.form_pos == nil then -- Simply follow unaccurately
       local dir  = ai.face(leader)
@@ -410,6 +446,9 @@ function __landgo ()
    local dist     = ai.dist( target )
    local bdist    = ai.minbrakedist()
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- 2 methods depending on mem.careful
    local dir
    if not mem.careful or dist < 3*bdist then
@@ -451,6 +490,9 @@ function runaway ()
    -- Target must exist
    local target = ai.taskdata()
    if not target:exists() then
+      -- Make sure afterburner is off.
+      ai.weapset(8, false)
+
       ai.poptask()
       return
    end
@@ -491,6 +533,9 @@ function __run_target ()
 
    -- Target must exist
    if not target:exists() then
+      -- Make sure afterburner is off.
+      ai.weapset(8, false)
+
       ai.poptask()
       return true
    end
@@ -542,18 +587,18 @@ function __run_hyp ()
    __run_turret()
 
    -- Go towards jump
-   local jump     = ai.subtaskdata()
+   local jump = ai.subtaskdata()
    local jdir
-   local bdist    = ai.minbrakedist()
-   local jdist    = ai.dist(jump)
-   local plt      = ai.pilot()
+   local bdist = ai.minbrakedist()
+   local jdist = ai.dist(jump)
+   local plt = ai.pilot()
 
    if jdist > bdist then
       local dozigzag = false
       if ai.taskdata():exists() then
          local relspe = plt:stats().speed_max/ai.taskdata():stats().speed_max
-         if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile() and
-            (not ai.hasafterburner()) and jdist > 3*bdist then
+         if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile()
+               and not ai.hasafterburner() and jdist > 3*bdist then
             dozigzag = true
          end
       end
@@ -566,7 +611,7 @@ function __run_hyp ()
          if jdist > 3*bdist and plt:stats().mass < 600 then
             jdir = ai.careful_face(jump)
          else --Heavy ships should rush to jump point
-            jdir = ai.face( jump, nil, true )
+            jdir = ai.face(jump, nil, true)
          end
          if jdir < 10 then
             ai.accel()
@@ -671,6 +716,9 @@ function __hyp_approach ()
    local dist = ai.dist(target)
    local bdist = ai.minbrakedist()
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- 2 methods for dir
    if not mem.careful or dist < 3*bdist then
       dir = ai.face( target, nil, true )
@@ -691,6 +739,9 @@ function __hyp_approach ()
    end
 end
 function __hyp_brake ()
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    ai.brake()
    if ai.isstopped() then
       ai.stop()
@@ -699,6 +750,9 @@ function __hyp_brake ()
    end
 end
 function __hyp_jump ()
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    local p = ai.pilot()
    local result = ai.hyperspace()
    if result == nil then
@@ -753,6 +807,9 @@ function board ()
       return
    end
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- Get ready to board
    ai.settarget(target)
    local dir   = ai.face(target)
@@ -785,6 +842,9 @@ function __boardstop ()
       ai.poptask()
       return
    end
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    -- Set target
    ai.settarget(target)
@@ -828,6 +888,9 @@ function refuel ()
       ai.poptask()
       return
    end
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    -- Get ready to board
    ai.settarget(target)
@@ -874,6 +937,9 @@ function __refuelstop ()
       return
    end
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- Just brake
    ai.brake()
 
@@ -916,6 +982,9 @@ function mine ()
    local target, vel = system.asteroidPos(field, ast)
    local dist, angle = vec2.polar(p:pos() - target)
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- First task : place the ship close to the asteroid
    local goal = ai.face_accurate(target, vel, trange, angle, mem.Kp, mem.Kd)
 
@@ -945,6 +1014,9 @@ function __killasteroid ()
       ai.pushtask("gather")
       return
    end
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    local target = system.asteroidPos(field, ast)
    local dir = ai.face(target)
@@ -993,6 +1065,9 @@ function gather ()
       return
    end
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    local goal = ai.face_accurate(target, vel, 0, 0, mem.Kp, mem.Kd)
 
    local dir = ai.face(goal)
@@ -1017,10 +1092,13 @@ function flyback( dock )
       ai.poptask()
       return
    end
-   local goal = ai.follow_accurate(target, 0, 0, mem.Kp, mem.Kd)
 
-   local dir  = ai.face( goal )
-   local dist = ai.dist( goal )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
+   local goal = ai.follow_accurate(target, 0, 0, mem.Kp, mem.Kd)
+   local dir = ai.face(goal)
+   local dist = ai.dist(goal)
 
    if dist > 300 then
       if dir < 10 then

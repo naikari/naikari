@@ -115,6 +115,9 @@ function _atk_d_flyby( target, dist )
       ai.pushsubtask("_atk_zigzag", target)
    end
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- Far away, must approach
    if dist > (3 * range) then
       dir = ai.idir(target)
@@ -178,6 +181,9 @@ function _atk_d_space_sup( target, dist )
    if _atk_decide_zz() then
       ai.pushsubtask("_atk_zigzag", target)
    end
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    --if we're far away from the target, then turn and approach
    if dist > (1.1*range) then

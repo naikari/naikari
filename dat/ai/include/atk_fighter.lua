@@ -93,6 +93,9 @@ function _atk_f_flyby( target, dist )
       end
    end
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- Far away, must approach
    if dist > (3 * range) then
       dir = ai.idir(target)
@@ -163,6 +166,9 @@ function _atk_f_space_sup( target, dist )
          ai.weapset("turret_seek")
       end
    end
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    --if we're far away from the target, then turn and approach
    if dist > (range) then

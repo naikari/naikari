@@ -97,6 +97,9 @@ end
 
 
 function _atk_g_ranged_dogfight( target, dist )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    local dir
    if not mem.careful or dist < 3 * ai.getweaprange("forward_nonseek")
             * mem.atk_approach then
@@ -138,6 +141,9 @@ function _atk_g_ranged_strafe( target, dist )
 
    local p = ai.pilot()
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    -- Estimate the range
    local radial_vel = ai.relvel(target, true)
    local range = ai.getweaprange("all_seek")
@@ -157,7 +163,7 @@ function _atk_g_ranged_strafe( target, dist )
    end
 
    if (mem.mustapproach and not ai.timeup(1) ) or mem.outofrange then
-      local dir   = ai.face(goal)
+      local dir = ai.face(goal)
       if dir < 10 and mod > 300 then
          ai.accel()
          --mem.stabilized = false
@@ -197,6 +203,9 @@ function _atk_g_ranged_strafe( target, dist )
 end
 function _atk_g_ranged_kite( target, dist )
    local p = ai.pilot()
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    -- Try to keep velocity vector away from enemy
    local targetpos = target:pos()
@@ -269,6 +278,9 @@ end
 -- Approaches the target
 --]]
 function _atk_g_approach( target, dist )
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    dir = ai.idir(target)
    if dir < 10 and dir > -10 then
       _atk_keep_distance()
@@ -288,6 +300,9 @@ function _atk_g_melee( target, dist )
    local dir   = ai.aim(target) -- We aim instead of face
    local range = ai.getweaprange("all_nonseek")
    ai.weapset("all_nonseek")
+
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
 
    -- Drifting away we'll want to get closer
    if dir < 10 and dist > 0.5*range and ai.relvel(target) > -10 then

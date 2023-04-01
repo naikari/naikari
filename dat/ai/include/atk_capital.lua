@@ -44,6 +44,9 @@ function _atk_g_capital( target, dist )
    local dir = 0
    local shoot = false
 
+   -- Make sure afterburner is off, since it messes things up here.
+   ai.weapset(8, false)
+
    --capital ships tend to require heavier energy reserves and burst output for maximum effectiveness
    if ai.pilot():energy() <= 1 then
       mem.recharge = true
