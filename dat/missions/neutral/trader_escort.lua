@@ -420,6 +420,9 @@ function organize_fleet(convoy)
             leader = p
          end
 
+         -- Make sure the convoy stays close together.
+         p:memory().leadermaxdist = 1000
+
          p:taskClear()
          p:setNoLand()
          p:control(false)
