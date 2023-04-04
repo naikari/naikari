@@ -77,6 +77,10 @@ function create()
    -- Note: this mission does not make any system claims.
  
    misplanet, missys = planet.cur()
+
+   if not misn.claim("commodity_run_" .. misplanet:name()) then
+      misn.finish(false)
+   end
    
    if commchoices == nil then
       local std = commodity.getStandard()
