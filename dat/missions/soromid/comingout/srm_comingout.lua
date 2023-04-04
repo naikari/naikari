@@ -49,21 +49,19 @@ ask_again_text = _([["Oh! Hi again, {player}! I still could use your help gettin
 yes_text = _([[C seems relieved when you tell them that you'd be happy to help transport them. "Thank you so much," they say. They show you the destinations they need to go to so you can input them on your mission computer. "The order doesn't matter," they say. "I just need to get to all of these destinations, and then I need a transport to my home planet, {planet}." C shudders. "I sure hope my parents don't act like that asshole did.… Anyway, I'll be waiting on your ship."]])
 
 dest_text = {}
-dest_text[1] = _([[You arrive at your first destination after a trip that involved a pretty sizable amount of conversation. "Thank you for helping me with this," C says as you begin to approach. "And thanks for, um, treating me like a human being." You can't help but laugh slightly at the statement as you remark on how incredibly low the bar must be for you to be thanked for that. C laughs along with you.
+dest_text[1] = _([[You arrive at your first destination with C after a relatively quiet, but pleasant trip. "Thank you for helping me with this," C says as you begin to approach. "And for treating me like a human being," they add with a mix of amusement and relief. You can't help but laugh slightly at the statement as you remark on how incredibly low the bar must be for you to be thanked for that. "I know, right? Well hey, the last guy didn't do that, so this is a nice change."
 
-When you land, C takes off and goes to do whatever they need to do. By the time you've finished docking procedures, they return with a cheery look on their face. "Someone just called me 'ma'am'!" they explain excitedly. "That's the first time! I don't know what it is. I guess part of it might have been because I didn't speak. Either way, it felt really validating." You congratulate them. "Thank you! You know what? I'm going to start using she/her pronouns, I think." You give a nod and thank her for telling you.]])
+When you land, C takes off and goes to do whatever they need to do. By the time you've finished docking procedures, they return with a cheery look on their face. "Someone just called me 'ma'am'!" they explain excitedly. "That's the first time! It felt really validating. You know what? I'm going to start using she/her pronouns, I think." You give a nod and thank her for telling you.]])
 
-dest_text[2] = _([[You have many long conversations with C about a number of topics during the trip to this location, including piloting. At some point during the trip, your experience as a pilot came up and you told C about your adventures. "You know, you're an inspiration," C remarks as you land. You feel yourself blushing a little as she continues. "To travel all the way from Empire space into Soromid space really is quite huge! And all those places you've been to along the way! You're exactly the kind of pilot I want to be." You only half-jokingly suggest that maybe you should collaborate with her on a mission when she gets her piloting license. She softly giggles.
+dest_text[2] = _([[You have many long conversations with C about a number of topics during the trip to this location, including piloting. At some point during the trip, your experience as a pilot came up and you told C about your adventures. "You know, you're an inspiration," C remarks as you land. You feel yourself blushing a little as she continues. "To travel all the way from Empire space into Soromid space really is quite huge! And all those places you've been to along the way! You're exactly the kind of pilot I want to be."
 
 This time, you finish docking procedures before C finishes her errands at this location, so you head off on your own for a while. When you get back, you see C has returned, looking slightly sadder than usual, so you ask how her errands went. "Oh, it was fine," she says. "It's just, someone misgendered me while I was there." You ask if she's OK. "Yeah, I'm fine," she affirms. "It wasn't intentional and they corrected themself right after. It just kind of sucks, you know? But you never assumed my gender. I appreciate that. I wish more people would do the same."]])
 
-dest_text[3] = _([[The trip to this destination was filled with conversation, and you and C have learned a lot about each other. C mentioned several names she was considering, then after some deliberation, came to an answer. "I think I like 'Chelsea'," she said.
+dest_text[3] = _([[The trip to this destination was a bit quiet compared to the last one as C spent most of the time thinking to herself about what name she wanted to use. She muttered several names she was considering, then after some deliberation, came to an answer. "I think I like 'Chelsea'," she said.
 
 Now, as you dock, Chelsea has a very happy look on her face. She goes to do whatever she needs to do in high spirits and judging by how she looks when she returns, it seems to have gone well.]])
 
-dest_text[4] = _([[At this point, talking to Chelsea has become a very natural thing for you. You've gotten used to the constant chatter. When she goes off on her errands at this location, the quiet feels strange in comparison.
-
-When Chelsea returns, she heaves a bit of a sigh. "Well, I guess the only place to go is back to my home planet, huh? It's funny, I haven't known you for that long, but I feel like you know me way better than anyone else. It's like I've been pretending to be someone else all my life, you know?
+dest_text[4] = _([[You land at Chelsea's final destination and send her on her way as before. When she returns, she heaves a bit of a sigh. "Well, I guess the only place to go is back to my home planet, huh? It's funny, I haven't known you for that long, but I feel like you know me way better than anyone else. It's like I've been pretending to be someone else all my life, you know?
 
 "Anyway, I guess it's time to go back to my home planet."]])
 
@@ -85,10 +83,19 @@ log_text = _([[You have met a woman, Chelsea, who recently came out as transgend
 function create ()
    -- Note: This mission does not make system claims
    homeplanet, homesys = planet.get("Durea")
-   dests = { "Soromid Wards Alpha", "Jaxheen", "Agino", "Neurri" }
+   dests = {"Soromid Wards Alpha", "Tummalin", "Agino", "Neurri"}
    dests["__save"] = true
    markers = {}
    markers["__save"] = true
+
+   -- Make sure all planets are landable and that the player isn't on
+   -- any of them.
+   for i, pn in ipairs(dests) do
+      local pl, sys = planet.getLandable(pn)
+      if pl == nil or pl == planet.cur() then
+         misn.finish(false)
+      end
+   end
 
    credits = 500000
    started = false
