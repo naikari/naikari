@@ -58,8 +58,6 @@
 
 #define EDITORS_EXTRA_WIDTH 60 /**< Editors menu extra width. */
 
-#define menu_Open(f) (menu_open |= (f)) /**< Marks a menu as opened. */
-#define menu_Close(f) (menu_open &= ~(f)) /**< Marks a menu as closed. */
 int menu_open = 0; /**< Stores the opened/closed menus. */
 
 
@@ -749,19 +747,20 @@ static void menu_options_button( unsigned int wid, char *str )
 int menu_askQuit (void)
 {
    /* No need to ask if we're on the main menu. */
-   if (menu_isOpen(MENU_MAIN)) {
+   if (menu_isOpen(MENU_MAIN) && !menu_isOpen(MENU_OPTIONS)
+         && !menu_isOpen(MENU_LOAD)) {
       exit_game();
       return 1;
    }
 
    /* Asked twice, quit. */
-   if (menu_isOpen( MENU_ASKQUIT )) {
+   if (menu_isOpen(MENU_ASKQUIT)) {
       exit_game();
       return 1;
    }
 
    /* Ask if should quit. */
-   menu_Open( MENU_ASKQUIT );
+   menu_Open(MENU_ASKQUIT);
    if (dialogue_YesNoRaw( _("Quit Naikari"), _("Are you sure you want to quit Naikari?") )) {
       exit_game();
       return 1;

@@ -155,6 +155,8 @@ void opt_menu (void)
    /* Set as need restart if needed. */
    if (opt_restart)
       opt_needRestart();
+
+   menu_Open(MENU_OPTIONS);
 }
 
 
@@ -179,6 +181,7 @@ static void opt_OK( unsigned int wid, char *str )
    /* Close window if no errors occurred. */
    if (!ret) {
       window_destroy(opt_wid);
+      menu_Close(MENU_OPTIONS);
       opt_wid = 0;
    }
 }
@@ -209,6 +212,7 @@ static void opt_close( unsigned int wid, char *name )
    render_setGamma(conf.gamma_correction);
 
    window_destroy(opt_wid);
+   menu_Close(MENU_OPTIONS);
    opt_wid = 0;
 }
 

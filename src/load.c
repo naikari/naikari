@@ -419,6 +419,8 @@ void load_loadGameMenu()
          "btnDelete", _("Delete"), load_menu_delete);
    window_addButtonKey(wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnBack", _("Back"), load_menu_close, SDLK_b);
+
+   menu_Open(MENU_LOAD);
 }
 /**
  * @brief Closes the load game menu.
@@ -428,7 +430,8 @@ void load_loadGameMenu()
 static void load_menu_close( unsigned int wdw, char *str )
 {
    (void)str;
-   window_destroy( wdw );
+   window_destroy(wdw);
+   menu_Close(MENU_LOAD);
 }
 /**
  * @brief Updates the load menu.
