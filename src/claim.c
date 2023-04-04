@@ -59,16 +59,13 @@ Claim_t *claim_create (void)
  */
 int claim_addStr( Claim_t *claim, const char *str )
 {
-   char **s;
-
    assert( !claim->active );
    /* Allocate if necessary. */
    if (claim->strs == NULL)
       claim->strs = array_create( char* );
 
    /* New ID. */
-   s = &array_grow( &claim->strs );
-   *s = strdup( str );
+   array_push_back(&claim->strs, strdup(str));
    return 0;
 }
 
@@ -81,16 +78,13 @@ int claim_addStr( Claim_t *claim, const char *str )
  */
 int claim_addSys( Claim_t *claim, int ss_id )
 {
-   int *id;
-
    assert( !claim->active );
    /* Allocate if necessary. */
    if (claim->ids == NULL)
       claim->ids = array_create( int );
 
    /* New ID. */
-   id  = &array_grow( &claim->ids );
-   *id = ss_id;
+   array_push_back(&claim->ids, ss_id);
    return 0;
 }
 
@@ -202,17 +196,26 @@ int claim_testSys( Claim_t *claim, int sys )
  */
 void claim_destroy( Claim_t *claim )
 {
-   int i;
+   int i, j;
 
    if (claim->active)
       for (i=0; i<array_size(claim->ids); i++)
          sys_rmFlag( system_getIndex(claim->ids[i]), SYSTEM_CLAIMED );
    array_free( claim->ids );
 
-   if (claim->active)
-      for (i=0; i<array_size(claim->strs); i++)
-         free( claim->strs[i] );
-   array_free( claim->strs );
+   for (i=0; i<array_size(claim->strs); i++) {
+      if (claim->active) {
+         for (j=0; j<array_size(claimed_strs); j++) {
+            if (strcmp(claim->strs[i], claimed_strs[j]) == 0) {
+               free(claimed_strs[j]);
+               array_erase(&claimed_strs, &claimed_strs[j], &claimed_strs[j+1]);
+               break;
+            }
+         }
+      }
+      free(claim->strs[i]);
+   }
+   array_free(claim->strs);
    free(claim);
 }
 
@@ -256,7 +259,6 @@ void claim_activateAll (void)
 void claim_activate( Claim_t *claim )
 {
    int i;
-   char **s;
 
    /* Add flags. */
    for (i=0; i<array_size(claim->ids); i++)
@@ -266,8 +268,7 @@ void claim_activate( Claim_t *claim )
    if ((claimed_strs == NULL) && (array_size(claim->strs) > 0))
       claimed_strs = array_create( char* );
    for (i=0; i<array_size(claim->strs); i++) {
-      s = &array_grow( &claimed_strs );
-      *s = strdup( claim->strs[i] );
+      array_push_back(&claimed_strs, strdup(claim->strs[i]));
    }
    claim->active = 1;
 }
