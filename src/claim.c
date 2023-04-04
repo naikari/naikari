@@ -106,7 +106,7 @@ int claim_isNull( Claim_t *claim )
    if (claim == NULL)
       return 1;
 
-   if (array_size(claim->ids) == 0)
+   if ((array_size(claim->ids) == 0) && (array_size(claim->strs) == 0))
       return 1;
 
    return 0;
