@@ -64,6 +64,11 @@
 * The Baron Prince mission now only spawns hostile artifact hunters in
   the artifact systems, and in the system Flintley is in.
 * Mercenary Llamas now come equipped with Photon Daggers.
+* Music now fades out rather than stopping suddenly when music needs to
+  change due to landing on a planet.
+* The AI is now more robust against cases of having the afterburner on
+  when it shouldn't (which could occasionally mess with things like
+  maintaining formation or landing).
 
 
 ## 0.6.0
