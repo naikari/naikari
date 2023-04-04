@@ -24,28 +24,60 @@
   perform the maneuver, since this could be annoying to a player trying
   to do things like hunt bounties.)
 
-### Other Changes
+### Other Mission Changes
 
-* Adjusted prerequisites for the Race mission and the Teenager mission
-  to integrate them into the introductory missions.
-* The Space Family mission can no longer be permanently failed by
-  destroying the ship.
-* The Reynir and Teenager missions now have a 100% chance of showing up,
-  as long as their prerequisites are met.
-* You can now preemptively quit the game while it is still loading
-  (instead of needing to wait until loading is finished).
-* Doubled the heat reduction of Forward Shock Absorbers and Targeting
-  Array to make them more appealing.
+* Changed the OSD titles of Cargo and Rush Cargo to not say "mission".
+* Renamed the "Empire Shipping" log to "Empire Recruitment" (to adapt it
+  to the new Hakoi pirates campaign).
+* The Space Family mission no longer permanently goes away by destroying
+  their ship, and has a higher chance of appearing after the first time.
+* The Reynir and Teenager missions now have a 100% chance of showing up
+  as long as their requirements are met.
 * The Teenager mission has been revamped to be more thorough in its
   teaching of how to disable and board ships, and is now given by Terra
-  instead of a nameless NPC.
-* Interwove the Reynir mission into the story of the introductory
-  missions a bit better.
-* Shadowrun now requires a Mercenary License.
-* The Baron mission's trigger event is more likely to spawn and no
-  longer prevents it from spawning on the first attempt.
+  instead of a nameless NPC. It now requires completion of Terra's Cargo
+  as a prerequisite.
+* Adjusted text to better interweave the Reynir missions with missions
+  preceding and following it.
+* The Shadow campaign now requires a Mercenary License before you can
+  start it.
+* The Baron Comm event has a higher chance of happening and doesn't
+  intentionally delay itself like it used to.
 * Removed the minor Cynthia campaign.
-* Touched up several missions with small improvements.
+* The FLF Diversion mission no longer requires landing on Sindbad to
+  collect your pay.
+* The Commodity Run mission now waits to mark its corresponding system
+  until after the required commodity has been obtained.
+* Improved the prefixes of Cargo and Rush Cargo missions so you can more
+  easily tell them apart at a glance.
+* Added highlighting of some key words in the Terra's Cargo mission.
+* The leader in the Trader Convoy mission now has a maximum speed of
+  80% of its own speed or 90% of the player's speed, whichever is
+  lower. This ensures that all ships involved have a relatively easy
+  time catching up.
+* The Baron Prince mission now only spawns hostile artifact hunters in
+  the artifact systems, and in the system Flintley is in.
+* Adjusted the Trader Convoy AI to make them a little better at staying
+  close together. (This reduces, but does not entirely eliminate, a
+  tendency for the following ships to break formation when a dangerous
+  pirate is nearby.)
+* The Commodity Run mission now prevents multiple Commodity Runs from
+  being accepted at the same planet at the same time.
+* The Trader Escort mission now unmarks escorted ships if you abort
+  while out in space.
+* Removed generation of "Pilot's Manual" log entries by the introductory
+  mission (Point of Sale).
+
+
+### Other Changes
+
+* You can now preemptively quit the game while it is still loading
+  (instead of needing to wait until loading is finished).
+* Attempting to quit the game from the main menu with the close button
+  no longer asks for a confirmation (making it behave the same as the
+  Exit Game button while in the main menu).
+* Doubled the heat reduction of Forward Shock Absorbers and Targeting
+  Array to make them more appealing.
 * Removed the dependency on GLPK (which Naikari wasn't actually taking
   advantage of).
 * Added a "Current Missions" button to the Mission Computer, which opens
@@ -61,14 +93,17 @@
   nearest applicable target if you are not targeting anything, and then
   cycle through all of the targets like before. This makes these
   controls a little easier to use.
-* The Baron Prince mission now only spawns hostile artifact hunters in
-  the artifact systems, and in the system Flintley is in.
 * Mercenary Llamas now come equipped with Photon Daggers.
 * Music now fades out rather than stopping suddenly when music needs to
   change due to landing on a planet.
 * The AI is now more robust against cases of having the afterburner on
   when it shouldn't (which could occasionally mess with things like
   maintaining formation or landing).
+* Enemy Presence, for the purpose of deciding whether to reset time
+  compression during autonav, now considers only the player's exact
+  range as a factor, rather than the player's range plus a buffer. This
+  reduces the occurrence of unactionable slowdowns.
+* Changed Mizar's nebula hue to the default.
 
 
 ## 0.6.0
