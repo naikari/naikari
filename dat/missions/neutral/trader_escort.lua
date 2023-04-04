@@ -435,8 +435,8 @@ function organize_fleet(convoy)
       return
    end
 
-   local plmax = player.pilot():stats().speed_max * 0.95
-   leader:setSpeedLimit(math.min(plmax, minspeed * 0.9))
+   local plmax = player.pilot():stats().speed_max * 0.9
+   leader:setSpeedLimit(math.min(plmax, minspeed * 0.8))
 
    for i, p in ipairs(convoy) do
       if p ~= leader and p:exists() then
