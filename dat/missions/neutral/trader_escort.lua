@@ -521,3 +521,20 @@ function updateOSD()
       misn.osdCreate(osd_title, osd_desc)
    end
 end
+
+
+function abort()
+   if convoy ~= nil then
+      for i, p in ipairs(convoy) do
+         if p:exists() then
+            p:setHilight(false)
+            p:setInvincPlayer(false)
+            p:setVisplayer(false)
+            p:setSpeedLimit(0)
+            p:setNoLand(false)
+            p:control(false)
+            p:taskClear()
+         end
+      end
+   end
+end
