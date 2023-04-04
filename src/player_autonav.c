@@ -754,6 +754,7 @@ int player_autonavShouldResetSpeed (void)
 {
    double failpc, shield, armour;
    double dist;
+   double careful_dist;
    double their_range, my_range;
    int i, j;
    Pilot *const*pstk;
@@ -788,9 +789,9 @@ int player_autonavShouldResetSpeed (void)
           * of the distance. */
          if (pilot_inRangePilot(pstk[i], player.p, NULL)
                || pilot_isFlag(pstk[i], PILOT_HOSTILE))
-            dist *= 0.8;
+            careful_dist = dist * 0.8;
          else
-            dist *= 0.9;
+            careful_dist = dist * 0.9;
          
          /* Check weapon set ranges of both the hostile pilot and the
           * player. Only count it as hostile presence if one of the two
@@ -799,7 +800,7 @@ int player_autonavShouldResetSpeed (void)
          for (j=0; j<PILOT_WEAPON_SETS; j++) {
             their_range = pilot_weapSetRange(pstk[i], j, -1);
             my_range = pilot_weapSetRange(player.p, j, -1);
-            if ((isfinite(their_range) && (their_range >= dist))
+            if ((isfinite(their_range) && (their_range >= careful_dist))
                   || (isfinite(my_range) && (my_range >= dist))) {
                hostiles = 1;
                break;
