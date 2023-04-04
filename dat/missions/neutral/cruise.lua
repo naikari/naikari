@@ -2,13 +2,14 @@
 <?xml version='1.0' encoding='utf8'?>
 <mission name="Luxury Cruise">
  <avail>
-  <priority>76</priority>
+  <priority>59</priority>
   <cond>
    planet.cur():class() ~= "0" and planet.cur():class() ~= "1"
    and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
    and planet.cur():services()["inhabited"]
    and system.cur():presences()["Civilian"] ~= nil
    and system.cur():presences()["Civilian"] &gt; 0
+   and (var.peek("cruises_active") == nil or var.peek("cruises_active") &lt; 3)
   </cond>
   <chance>960</chance>
   <location>Computer</location>
@@ -41,8 +42,8 @@ cargo_always_available = true
 
 
 function create()
-   -- Note: this mission does not make any system claims. 
-   
+   -- Note: this mission does not make any system claims.
+
    -- Calculate the route, distance, jumps, risk of piracy, and cargo to take
    startpla, startsys = planet.cur()
    destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
@@ -62,7 +63,7 @@ function create()
    else
       tier = 4
    end
-   
+
    -- Calculate time limit. Depends on tier and distance.
    -- The second time limit is for the reduced reward.
    stuperpx = 6.9 - 1.15*tier
@@ -78,10 +79,10 @@ function create()
 
    -- And randomize the allowance a bit.
    allowance = allowance * (1.1 + 0.1*rnd.sigma())
-   
+
    timelimit = time.get() + time.create(0, 0, allowance)
    timelimit2 = time.get() + time.create(0, 0, allowance * 1.2)
-   
+
    local piracyrisk, riskreward
    if avgrisk == 0 then
       riskreward = 0
@@ -163,6 +164,7 @@ function accept()
    end
 
    misn.accept()
+   update_active_cruises(1)
 
    intime = true
    dest_landed = false
@@ -183,6 +185,15 @@ function accept()
    misn.osdCreate(osd_title, osd_msg)
    hook.land("land")
    hook.date(time.create(0, 0, 1000), "tick")
+end
+
+
+function update_active_cruises(change)
+   local current_cruises = var.peek("cruises_active")
+   if current_cruises == nil then
+      current_cruises = 0
+   end
+   var.push("cruises_active", math.max(0, current_cruises + change))
 end
 
 
@@ -225,6 +236,7 @@ function land()
          tk.msg("", fmt.f(pay_text[rnd.rnd(1, #pay_text)],
                {planet=startpla:name(), credits=fmt.credits(credits)}))
          player.pay(credits)
+         update_active_cruises(-1)
          misn.finish(true)
       else
          local text = {
@@ -297,6 +309,7 @@ function tick()
    elseif timelimit2 <= time.get() or not dest_landed then
       -- Case missed second deadline
       mh.showFailMsg(_("You failed to complete the cruise on time."))
+      update_active_cruises(-1)
       misn.finish(false)
    elseif intime then
       -- Case missed first deadline
@@ -312,4 +325,9 @@ function tick()
       misn.osdActive(2)
       intime = false
    end
+end
+
+
+function abort()
+   update_active_cruises(-1)
 end
