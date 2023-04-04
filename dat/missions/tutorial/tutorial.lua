@@ -61,36 +61,6 @@ finish_text = _([[The salesperson makes you sign dozens of forms: tax forms, wai
 
 A bit dizzy and confused, you figure you might as well meet this man at the Spaceport Bar the salesperson mentioned and see if the job is worthwhile.]])
 
-movement_log = _([[Basic movement can be accomplished by the movement keys (Accelerate, Turn Left, Turn Right, and Reverse; W, A, D, and S by default). The Reverse key either turns your ship to the direction opposite of your current movement, or thrusts backwards if you have a Reverse Thruster equipped.
-
-Alternatively, you can enable mouse flight by pressing the Mouse Flight key (Ctrl+X by default), which causes your ship to automatically point toward your mouse pointer. You can then thrust with the Accelerate key (W by default), middle mouse button, or either of the extra mouse buttons.]])
-objectives_log = _([[The mission on-screen display highlights your current objective for each mission. When you complete one objective, the next objective is highlighted.]])
-landing_log = _([[You can land on any planet by either double-clicking on it, or by targeting the planet with the Target Planet button and then pressing the Land key (L by default). The landing procedure is automatic. If no planet is selected, pressing the Land key will initiate the automatic landing procedure for the closest suitable planet if possible.]])
-land_log = _([[When you land, your ship is refueled automatically if the planet or station has the "Refuel" service. Most planets and stations have the "Refuel" service, though there are some exceptions.]])
-bar_log = _([[The Spaceport Bar allows you to read the news, meet civilians, hire pilots to join your fleet, and sometimes find unique missions. You can click on any patron of the bar and then click on the Approach button to approach them. Some civilians may lend helpful advice.]])
-mission_log = _([[You can find basic missions in the official mission database via the Mission Computer (Missions tab while landed). You can review your active missions at any time via the ship computer, which you can open by pressing the Ship Computer key (I by default) or by pressing the Small Menu key (Escape by default) and pressing the "Ship Computer" button.]])
-outfits_log = _([[You can buy and sell outfits for your ship at the Outfitter (Outfits tab while landed). You can also buy regional maps, which can help you explore the galaxy more easily, and licenses which are required for higher-end weapons and ships.
-
-The tabs at the top of the outfitter allow you to filter outfits by type: "W" for weapons, "U" for utilities, "S" for structurals, "Core" for cores, and "Other" for anything outside those categories (most notably, maps and licenses). Different planets have different outfits available; if you don't see a specific outfit you're looking for, you can search for it via the "Find Outfits" button.]])
-shipyard_log = _([[You can buy new ships at the Shipyard. You can then either buy a ship you want with the "Buy" button, or trade your current ship in for the new ship with the "Trade-In" button. Different planets have different ships available; if you don't see a specific ship you're looking for, you can search for it via the 'Find Ships' button.
-
-Different ships are specialized for different tasks, so you should choose your ship based on what tasks you will be performing.]])
-equipment_log = _([[The Equipment screen is available on all planets which have either an outfitter or a shipyard. You can use the Equipment screen to equip your ship with outfits you own and sell outfits you have no more use for. If the planet or station you're landed at has a shipyard, you can also change which ship you're flying and sell unneeded ships. Selling a ship that still has outfits equipped will also lead to those outfits being sold along with the ship.]])
-commodity_log = _([[You can buy and sell commodities via the Commodity screen. Commodity prices vary from planet to planet and even over time, so you can use this screen to attempt to make money by buying low and selling high. Here, it's useful to hold the Shift and/or Ctrl keys to adjust how many kilotonnes of the commodity you're buying or selling at once.
-
-If you're unsure what's profitable to buy or sell, you can press the Open Star Map key (M by default) to view the star map and then click on the "Mode" button for various price overviews. The news terminal at the Spaceport Bar also includes price information for specific nearby planets.]])
-autonav_log = _([[You can open your ship's overlay map by pressing the Overlay Map key (Tab by default). Through the overlay map, you can right-click on any location, planet, ship, or jump point to engage Autonav, which will cause you to automatically fly toward what you clicked on. While Autonav is engaged, passage of time will speed up so that you don't have to wait to arrive at your destination in real-time. Time will reset to normal speed if hostile pilots are detected by default. This can be configured from the Options menu, which you can access by pressing the Menu key (Escape by default).]])
-combat_log = _([[You can target an enemy ship either by either clicking on it or by pressing the Target Nearest Hostile key (R by default). You can then fire your weapons at them with the Fire Primary Weapon key (Space by default) and the Fire Secondary Weapon key (Left Shift by default).]])
-infoscreen_log = _([[You can configure the way your weapons shoot from the Weapons tab of the ship computer, which you can open by pressing the Ship Computer key (I by default) or by pressing the Small Menu key (Escape by default) and pressing the "Ship Computer" button.]])
-cooldown_log = _([[As you fire your weapons, they and subsequently your ship get hotter. Too much heat causes your weapons to lose accuracy. You can cool down your ship at any time in space by pressing the Autobrake key (Ctrl+B by default) twice. You can also cool down your ship by landing on any planet or station.]])
-jumping_log = _([[Traveling through systems is accomplished through jump points, which you usually need to find by exploring the area, talking to locals, or buying maps. Once you have found a jump point, you can use it by double-clicking on it.]])
-jumping_log2 = _([[You can open your starmap by pressing the Open Star Map key (M by default). Through your starmap, you can click on a system and click on the Autonav button to be automatically transported to the system. This only works if you know a valid route to get there.]])
-fuel_log = _([[You consume fuel any time you make a jump and can refuel by landing on a friendly planet. Standard engines have enough fuel to make up to three jumps before refueling, though higher-end engines have more fuel capacity and some ships may have their own supplementary fuel tanks.]])
-boarding_log = _("To board a ship, you generally must first use disabling weapons, such as ion cannons, to disable it, although some missions and events allow you to board certain ships without disabling them. Once the ship is disabled or otherwise can be boarded, you can board it by either double-clicking on it, or targeting it with the Target Nearest key (T by default) and then pressing the Board Target key (B by default). From there, you generally can steal the ship's credits, cargo, ammo, and/or fuel. Boarding ships can also trigger special mission events.")
-nofuel_log = _([[You can hail any other pilot by either double-clicking on them, or by targeting them with the Target Nearest key (T by default) and then pressing the Hail Target key (Y by default). From there, you can ask to be refueled. Most military ships will not be willing to help you, but many civilians and traders will be willing to sell you some fuel for a nominal fee. When you find someone willing to refuel you, you need to stop your ship, which you can do with the Autobrake key (Ctrl+B by default), and wait for them to reach your ship and finish the fuel transfer.
-
-If there are no civilians or traders in the system, you can alternatively attempt to get fuel from a pirate. To do so, you must first hail them and offer a bribe, and if you successfully bribe them, they will often be willing to refuel you if you hail them again and ask for it.]])
-
 misn_title = _("Point of Sale")
 misn_desc = _("You have purchased a new ship from Melendez and are in the process of finalizing the sale.")
 
@@ -110,28 +80,6 @@ end
 
 function accept ()
    misn.accept()
-
-   -- Add all tutorial logs at the start; this avoids missing logs if
-   -- the tutorial is aborted early on.
-   addTutLog(movement_log)
-   addTutLog(objectives_log)
-   addTutLog(landing_log)
-   addTutLog(land_log)
-   addTutLog(bar_log)
-   addTutLog(mission_log)
-   addTutLog(outfits_log)
-   addTutLog(shipyard_log)
-   addTutLog(equipment_log)
-   addTutLog(commodity_log)
-   addTutLog(autonav_log)
-   addTutLog(combat_log)
-   addTutLog(infoscreen_log)
-   addTutLog(cooldown_log)
-   addTutLog(jumping_log)
-   addTutLog(jumping_log2)
-   addTutLog(fuel_log)
-   addTutLog(boarding_log)
-   addTutLog(nofuel_log)
 
    timer_hook = hook.timer(5, "timer")
    hook.land("land")
