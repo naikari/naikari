@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-03-31 18:06-0400\n"
+"POT-Creation-Date: 2023-04-04 00:59-0400\n"
 "PO-Revision-Date: 2021-03-17 07:18+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/naev/naev/fr/>\n"
@@ -19943,6 +19943,7 @@ msgstr ""
 #. --This is designed for capital ships with turrets and guided munitions
 #. --As there is no aiming involved this is a turret/capital ship only attack method
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #. capital ships tend to require heavier energy reserves and burst output for maximum effectiveness
 #. if we're far from the target, then turn and approach
 #. at moderate range from the target, prepare to intercept and engage with turrets
@@ -20006,6 +20007,7 @@ msgstr ""
 #. -- This version is slightly less aggressive and cruises by the target
 #. --
 #. First test if we should zz
+#. Make sure afterburner is off, since it messes things up here.
 #. Far away, must approach
 #. _atk_keep_distance()
 #. mod
@@ -20022,6 +20024,7 @@ msgstr ""
 #. --This is designed for drones engaging other drones
 #. --
 #. First test if we should zz
+#. Make sure afterburner is off, since it messes things up here.
 #. if we're far away from the target, then turn and approach
 #. drifting away from target, so emphasize intercept
 #. course facing and accelerate to close
@@ -20063,6 +20066,7 @@ msgstr ""
 #. --
 #. First test if we should zz
 #. Check if in range to shoot missiles
+#. Make sure afterburner is off, since it messes things up here.
 #. Far away, must approach
 #. Midrange
 #. test if we're facing the target. If we are, keep approaching
@@ -20076,6 +20080,7 @@ msgstr ""
 #. --
 #. First test if we should zz
 #. Check if in range to shoot missiles
+#. Make sure afterburner is off, since it messes things up here.
 #. if we're far away from the target, then turn and approach
 #. drifting away from target, so emphasize intercept
 #. course facing and accelerate to close
@@ -20111,6 +20116,7 @@ msgstr ""
 #. We first bias towards range
 #. Now we do an approach
 #. Close enough to melee
+#. Make sure afterburner is off, since it messes things up here.
 #. Normal face the target
 #. Careful method
 #. Check if in range to shoot missiles
@@ -20123,6 +20129,7 @@ msgstr ""
 #. (because the target dodges),
 #. he gives up and just faces the target and shoot (provided he is in range)
 #.
+#. Make sure afterburner is off, since it messes things up here.
 #. Estimate the range
 #. Must approach or stabilize
 #. mustapproach allows a hysteretic behaviour
@@ -20138,6 +20145,7 @@ msgstr ""
 #. If he managed to shoot, reinitialize the timer
 #. The pilot just arrived in the good zone :
 #. From now, if ship doesn't manage to stabilize within a few seconds, shoot anyway
+#. Make sure afterburner is off, since it messes things up here.
 #. Try to keep velocity vector away from enemy
 #. We are flying away, so try to kite
 #. aim instead of facing
@@ -20152,10 +20160,12 @@ msgstr ""
 #.
 #. -- Approaches the target
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Melees the target
 #. --
 #. We aim instead of face
+#. Make sure afterburner is off, since it messes things up here.
 #. Drifting away we'll want to get closer
 #. Shoot if should be shooting.
 #.
@@ -20273,12 +20283,16 @@ msgstr ""
 #.
 #. -- Faces the target.
 #. --
+#. Make sure afterburner is off, since it messes things up here.
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Brakes the ship
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Brakes the ship
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Move in zigzag around a direction
 #. --
@@ -20288,12 +20302,15 @@ msgstr ""
 #.
 #. -- Goes to a target position without braking
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Goes to a target position without braking
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Goes to a precise position.
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #. Handle finished
 #. Finished
 #. Need to get closer
@@ -20301,12 +20318,14 @@ msgstr ""
 #.
 #. -- Goes to a target position roughly
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Goes to a point in order to inspect (same as moveto, but pops when attacking)
 #. --
 #.
 #. -- moveto without velocity compensation.
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #.
 #. -- Generic moveto function.
 #. --
@@ -20316,10 +20335,13 @@ msgstr ""
 #. -- Follows it's target.
 #. --
 #. Will just float without a target to escort.
+#. Make sure afterburner is off, since it messes things up here.
 #. Must approach
 #. Will just float without a target to escort.
+#. Make sure afterburner is off, since it messes things up here.
 #. Always face the goal
 #. Default action for non-leader pilot in fleet
+#. Make sure afterburner is off, since it messes things up here.
 #. Simply follow unaccurately
 #. Must approach
 #. Ship has a precise position in formation
@@ -20353,11 +20375,12 @@ msgstr ""
 #. Set target if necessary
 #. Make sure mem.land is valid target
 #. Bail out if no valid planet could be found.
-#: dat/ai/include/basic.lua:395
+#: dat/ai/include/basic.lua:431
 #, lua-format
 msgid "Pilot '%s' tried to land with no landable assets!"
 msgstr ""
 
+#. Make sure afterburner is off, since it messes things up here.
 #. 2 methods depending on mem.careful
 #. Need to get closer
 #. Need to start braking
@@ -20367,9 +20390,11 @@ msgstr ""
 #. -- Attempts to run away from the target.
 #. --
 #. Target must exist
+#. Make sure afterburner is off.
 #. See if there's a target to use when running
 #. find which one is the closest
 #. Target must exist
+#. Make sure afterburner is off.
 #. Good to set the target for distress calls
 #. See whether we have a chance to outrun the attacker
 #. Pilot is agile, but too slow to outrun the enemy: dodge
@@ -20393,9 +20418,12 @@ msgstr ""
 #.
 #. -- Starts heading away to try to hyperspace.
 #. --
+#. Make sure afterburner is off, since it messes things up here.
 #. 2 methods for dir
 #. Need to get closer
 #. Need to start braking
+#. Make sure afterburner is off, since it messes things up here.
+#. Make sure afterburner is off, since it messes things up here.
 #. Hyperdrive is offline.
 #. XXX: Special exception for if this is one of the player's
 #. carrier fighters, since those have hyperdrive disabled on
@@ -20410,6 +20438,7 @@ msgstr ""
 #. --
 #. Make sure pilot exists
 #. Must be able to board
+#. Make sure afterburner is off, since it messes things up here.
 #. Get ready to board
 #. See if must brake or approach
 #.
@@ -20417,6 +20446,7 @@ msgstr ""
 #. --
 #. make sure pilot exists
 #. Make sure can board
+#. Make sure afterburner is off, since it messes things up here.
 #. Set target
 #. Try to board
 #. Just brake
@@ -20427,6 +20457,7 @@ msgstr ""
 #. Get the target
 #. make sure pilot exists
 #. See if finished refueling
+#. Make sure afterburner is off, since it messes things up here.
 #. Get ready to board
 #. See if must brake or approach
 #.
@@ -20435,12 +20466,13 @@ msgstr ""
 #. make sure pilot exists
 #. Set the target
 #. See if finished refueling
-#: dat/ai/include/basic.lua:864
+#: dat/ai/include/basic.lua:927
 msgid "Finished fuel transfer."
 msgstr ""
 
 #. Untarget
 #. Try to board
+#. Make sure afterburner is off, since it messes things up here.
 #. Just brake
 #. If stopped try again
 #.
@@ -20448,8 +20480,10 @@ msgstr ""
 #. --
 #. If the asteroid has been destroyed, pop the task and gather.
 #. See if there's a gatherable; if so, pop this task and gather instead
+#. Make sure afterburner is off, since it messes things up here.
 #. First task : place the ship close to the asteroid
 #. If the asteroid has been destroyed, pop the task and gather.
+#. Make sure afterburner is off, since it messes things up here.
 #. See if there's a gatherable; if so, pop this task and gather instead
 #. Have to start over if we're out of range for some reason
 #. Second task : destroy it
@@ -20459,8 +20493,10 @@ msgstr ""
 #. No more cargo
 #. Nothing to gather
 #. gatherable disappeared
+#. Make sure afterburner is off, since it messes things up here.
 #. Holds position
 #. Flies back and tries to either dock or stops when back at leader
+#. Make sure afterburner is off, since it messes things up here.
 #. Time to dock
 #.
 #. -- Checks to see if a pilot is visible
@@ -28408,7 +28444,7 @@ msgstr ""
 #: dat/missions/empire/es_cargo.lua:38
 #: dat/missions/empire/es_longdistancecargo.lua:38
 #: dat/missions/neutral/anxiousmerchant.lua:49
-#: dat/missions/neutral/cargo_rush.lua:33 dat/missions/neutral/cruise.lua:31
+#: dat/missions/neutral/cargo_rush.lua:33 dat/missions/neutral/cruise.lua:37
 #: dat/missions/pirate/pir_cargo.lua:30
 msgid ""
 "Land on {planet} ({system} system) before {deadline}\n"
@@ -28470,7 +28506,7 @@ msgstr ""
 #: dat/missions/empire/es_cargo.lua:145
 #: dat/missions/empire/es_longdistancecargo.lua:154
 #: dat/missions/neutral/anxiousmerchant.lua:159
-#: dat/missions/neutral/cargo_rush.lua:158 dat/missions/neutral/cruise.lua:150
+#: dat/missions/neutral/cargo_rush.lua:158 dat/missions/neutral/cruise.lua:156
 #: dat/missions/pirate/pir_cargo.lua:158
 msgid ""
 "The fastest route to {planet} is not currently known to you. Landing to buy "
@@ -31768,7 +31804,7 @@ msgstr ""
 #. List of possible waste dump planets.
 #. Note: this mission makes no system claims
 #. Set mission details
-#: dat/missions/neutral/commodity_run.lua:112
+#: dat/missions/neutral/commodity_run.lua:116
 #: dat/missions/neutral/wastedump.lua:102
 msgid "{price} ¢/kt"
 msgid_plural "{price} ¢/kt"
@@ -31804,8 +31840,14 @@ msgstr ""
 #. <?xml version='1.0' encoding='utf8'?>
 #. <mission name="Luxury Cruise">
 #. <avail>
-#. <priority>76</priority>
-#. <cond>planet.cur():class() ~= "1" and planet.cur():class() ~= "2" and planet.cur():class() ~= "3" and system.cur():presences()["Civilian"] ~= nil and system.cur():presences()["Civilian"] &gt; 0</cond>
+#. <priority>59</priority>
+#. <cond>
+#. planet.cur():class() ~= "0" and planet.cur():class() ~= "1"
+#. and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
+#. and planet.cur():services()["inhabited"]
+#. and system.cur():presences()["Civilian"] ~= nil
+#. and system.cur():presences()["Civilian"] &gt; 0
+#. </cond>
 #. <chance>960</chance>
 #. <location>Computer</location>
 #. <faction>Dvaered</faction>
@@ -31823,11 +31865,11 @@ msgstr ""
 #. Take passengers on a luxury cruise to and from a destination,
 #. stopping at as many attractions as possible.
 #. --
-#: dat/missions/neutral/cruise.lua:30
+#: dat/missions/neutral/cruise.lua:36
 msgid "Cruise"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:32
+#: dat/missions/neutral/cruise.lua:38
 msgid ""
 "Land on {planet} ({system} system) before {deadline}\n"
 "(deadline missed, but you can still finish the cruise late if you hurry)"
@@ -31841,11 +31883,11 @@ msgstr ""
 #. All that calculation was for one direction, so multiply by 2 for
 #. the return trip.
 #. And randomize the allowance a bit.
-#: dat/missions/neutral/cruise.lua:100
-msgid "Sightseeing: Budget Cruise to {planet} ({system} system)"
+#: dat/missions/neutral/cruise.lua:106
+msgid "Cruise: Budget tour to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:101
+#: dat/missions/neutral/cruise.lua:107
 msgid ""
 "Take a group of passengers on a budget cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -31853,11 +31895,11 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:103
-msgid "Sightseeing: Value Cruise to {planet} ({system} system)"
+#: dat/missions/neutral/cruise.lua:109
+msgid "Cruise: Value tour to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:104
+#: dat/missions/neutral/cruise.lua:110
 msgid ""
 "Take a group of passengers on a value cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -31865,11 +31907,11 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:106
-msgid "Sightseeing: Modest Cruise to {planet} ({system} system)"
+#: dat/missions/neutral/cruise.lua:112
+msgid "Cruise: Modest tour to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:107
+#: dat/missions/neutral/cruise.lua:113
 msgid ""
 "Take a group of passengers on a modest cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -31877,11 +31919,11 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:109
-msgid "Sightseeing: Luxury Cruise to {planet} ({system} system)"
+#: dat/missions/neutral/cruise.lua:115
+msgid "Cruise: Luxury tour to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:110
+#: dat/missions/neutral/cruise.lua:116
 msgid ""
 "Take a group of passengers on a luxury cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -31889,11 +31931,11 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:112
-msgid "Sightseeing: Exquisite Cruise to {planet} ({system} system)"
+#: dat/missions/neutral/cruise.lua:118
+msgid "Cruise: Exquisite tour to {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:113
+#: dat/missions/neutral/cruise.lua:119
 msgid ""
 "Take a group of passengers on an exquisite cruise to {planet} in the "
 "{system} system and back within a certain time frame, stopping at as many "
@@ -31901,180 +31943,180 @@ msgid ""
 "money you can make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:117
+#: dat/missions/neutral/cruise.lua:123
 msgid "Jumps: {numjumps}"
 msgid_plural "Jumps: {numjumps}"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/cruise.lua:118 dat/scripts/cargo_common.lua:213
+#: dat/missions/neutral/cruise.lua:124 dat/scripts/cargo_common.lua:213
 msgid "Travel distance: {distance} AU"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:119 dat/scripts/cargo_common.lua:221
+#: dat/missions/neutral/cruise.lua:125 dat/scripts/cargo_common.lua:221
 msgid "Time limit: {time}"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:120
+#: dat/missions/neutral/cruise.lua:126
 msgid "Expected tips: {stop_reward} per extra stop"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:142
+#: dat/missions/neutral/cruise.lua:148
 msgid ""
 "This cruise must finish within {timelimit}, but it will take at least {time} "
 "for your ship to get to {planet} and back, missing the deadline. Accept the "
 "mission anyway?"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:175 dat/missions/neutral/cruise.lua:285
+#: dat/missions/neutral/cruise.lua:181 dat/missions/neutral/cruise.lua:291
 msgid "Land on additional planets along the way to earn extra credits"
 msgstr ""
 
 #. Start planet gets special handling.
-#: dat/missions/neutral/cruise.lua:196
+#: dat/missions/neutral/cruise.lua:202
 msgid ""
 "Passengers rush out of your ship, clearly stressed by how much longer they "
 "were out on the cruise than they hoped. Because of the delay, you are only "
 "paid {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:197
+#: dat/missions/neutral/cruise.lua:203
 msgid ""
 "Your now upset pasengers eagerly disembark back onto {planet}, trying to "
 "make up for the lost time you caused by being late. By the end of it, you "
 "are only paid {credits} for the botched cruise."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:198
+#: dat/missions/neutral/cruise.lua:204
 msgid ""
 "Before you know it, your passengers, angry at you for your late return, are "
 "out of your ship. There are no tips, and when you count out the total of "
 "your fares, you find that you have only been paid {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:203
+#: dat/missions/neutral/cruise.lua:209
 msgid ""
 "Your passengers disembark and return to their homeworld after a nice and "
 "enjoyable cruise. In total, you receive {credits} from the passengers in "
 "basic fares and tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:204
+#: dat/missions/neutral/cruise.lua:210
 msgid ""
 "Your passengers disembark back onto {planet} in high spirits. The tips are "
 "good and in total, you receive {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:205
+#: dat/missions/neutral/cruise.lua:211
 msgid ""
 "You receive a grand total of {credits} from your happy passengers as they "
 "exit your ship, talking happily to each other about the amazing experience."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:212
+#: dat/missions/neutral/cruise.lua:218
 msgid ""
 "Your passengers disembark and return to their homeworld after a nice, albeit "
 "not terribly eventful cruise. You unfortunately don't receive any tips, but "
 "you receive the promised fare of {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:213
+#: dat/missions/neutral/cruise.lua:219
 msgid ""
 "Your passengers return to {planet} content that they went on a decent cruise "
 "and you receive your promised fare of {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:214
+#: dat/missions/neutral/cruise.lua:220
 msgid ""
 "Having completed the cruise, your passengers return to {planet} satisfied, "
 "and you receive your {credits} fare."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:225
+#: dat/missions/neutral/cruise.lua:231
 msgid ""
 "You see that passengers are confused about the fact that you have returned "
 "to their home planet before finishing the cruise. You reassure them that "
 "it's just a temporary stop and the cruise will go underway shortly."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:226
+#: dat/missions/neutral/cruise.lua:232
 msgid ""
 "A passenger complains that they didn't go on this cruise just to land on "
 "their own home planet. You apologize and promise the cruise will begin in "
 "earnest soon."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:227
+#: dat/missions/neutral/cruise.lua:233
 msgid ""
 "Confused as to why you landed on their home planet, passengers decide to "
 "remain in your ship, uninterested in exploring a place they already know so "
 "well."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:228
+#: dat/missions/neutral/cruise.lua:234
 msgid ""
 "Passengers begin to disembark onto {planet}, but soon notice that you've "
 "landed on their homeworld and return to your ship, somewhat annoyed."
 msgstr ""
 
 #. Duplicate planets don't impress the passengers.
-#: dat/missions/neutral/cruise.lua:240
+#: dat/missions/neutral/cruise.lua:246
 msgid ""
 "Passengers disembark onto {planet}, but as they notice they've already been "
 "here on this cruise, most of them quickly grow bored and return to your ship."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:241
+#: dat/missions/neutral/cruise.lua:247
 msgid ""
 "Passengers yawn with disinterest as you land on {planet} again. Some "
 "disembark for a short while, but most decide to just stay behind on your "
 "ship."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:242
+#: dat/missions/neutral/cruise.lua:248
 msgid ""
 "You hear a collective sigh of disapproval as you land on {planet} yet again. "
 "None of your passengers choose to visit."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:254
+#: dat/missions/neutral/cruise.lua:260
 msgid ""
 "Passengers disembark, excited to see what {planet} has to offer. They seem "
 "to be having a good time."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:255
+#: dat/missions/neutral/cruise.lua:261
 msgid ""
 "Passengers excitedly begin to explore {planet}, marveling at all the sights "
 "and sounds."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:256
+#: dat/missions/neutral/cruise.lua:262
 msgid ""
 "You can see the passengers are excited for the main event, and in mere "
 "moments, they're already out of your ship and exploring {planet}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:263
+#: dat/missions/neutral/cruise.lua:269
 msgid ""
 "Passengers disembark and spend some time enjoying the sights on {planet}. It "
 "seems they're having a good time."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:264
+#: dat/missions/neutral/cruise.lua:270
 msgid ""
 "You inform passengers that they can now disembark and explore {planet} if "
 "they like. Many passengers do so, excited to see an unexpected new location."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:265
+#: dat/missions/neutral/cruise.lua:271
 msgid ""
 "Passengers step out of your ship and look in awe at the unfamiliar spaceport "
 "of {planet} before going off to explore some more."
 msgstr ""
 
 #. Case missed second deadline
-#: dat/missions/neutral/cruise.lua:293
+#: dat/missions/neutral/cruise.lua:299
 msgid "You failed to complete the cruise on time."
 msgstr ""
 
@@ -33995,18 +34037,19 @@ msgstr ""
 
 #. Shouldn't happen
 #. Remove any existing speed limit (in case the leader changed).
+#. Make sure the convoy stays close together.
 #. This should never happen, but is here as a failsafe.
-#: dat/missions/neutral/trader_escort.lua:431
+#: dat/missions/neutral/trader_escort.lua:434
 msgid "No minspeed or leader set for convoy, maybe the table is empty."
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:497
+#: dat/missions/neutral/trader_escort.lua:500
 msgid ""
 "Protect the convoy ships and wait for them to land on {planet} ({landed}/"
 "{remaining})"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:500
+#: dat/missions/neutral/trader_escort.lua:503
 #: dat/missions/shadow/shadowvigil.lua:176
 #: dat/missions/soromid/comingout/srm_comingout3.lua:218
 #: dat/missions/soromid/comingout/srm_comingout4.lua:242
@@ -34014,13 +34057,13 @@ msgstr ""
 msgid "Land on {planet}"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:507
+#: dat/missions/neutral/trader_escort.lua:510
 msgid ""
 "Protect the convoy ships and wait for them to jump to {system} ({jumped}/"
 "{remaining})"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:510
+#: dat/missions/neutral/trader_escort.lua:513
 #: dat/missions/shadow/shadowvigil.lua:185
 #: dat/missions/soromid/comingout/srm_comingout3.lua:124
 #: dat/missions/soromid/comingout/srm_comingout3.lua:228
@@ -34029,7 +34072,7 @@ msgstr ""
 msgid "Jump to {system}"
 msgstr ""
 
-#: dat/missions/neutral/trader_escort.lua:514
+#: dat/missions/neutral/trader_escort.lua:517
 #: dat/missions/shadow/shadowvigil.lua:189
 #: dat/missions/soromid/comingout/srm_comingout3.lua:125
 #: dat/missions/soromid/comingout/srm_comingout3.lua:232
@@ -44622,11 +44665,11 @@ msgstr[1] ""
 msgid "#%c%s#0 has plundered %s from your ship!"
 msgstr ""
 
-#: src/claim.c:297
+#: src/claim.c:298
 msgid "System Claim has inexistent system"
 msgstr ""
 
-#: src/claim.c:331
+#: src/claim.c:332
 #, c-format
 msgid "System Claim trying to load system '%s' which doesn't exist"
 msgstr ""

@@ -5,7 +5,7 @@
 ;Unicode true
 ;Version, Icon and URL
 
-;!define SUFFIX "0.5.0-win64"
+;!define SUFFIX "0.7.0-win64"
 !define URL "https://naikari.github.io"
 !define MUI_ICON "logo.ico"
 ;!define MUI_UNICON "logo.ico"
