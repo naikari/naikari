@@ -389,7 +389,10 @@ end
 function chooseInList(list)
    for i, p in ipairs(list) do
       if p:exists() then
-         return p
+         local armor = p:health()
+         if armor > 0 then
+            return p
+         end
       end
    end
    return nil
