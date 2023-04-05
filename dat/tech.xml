@@ -1556,18 +1556,6 @@
   <item>Gauss Gun</item>
   <item>Turreted Gauss Gun</item>
  </tech>
- <tech name="Kinetic 2">
-  <item>Vulcan Gun</item>
-  <item>Turreted Vulcan Gun</item>
-  <item>Shredder</item>
-  <item>Mass Driver</item>
-  <item>Turreted Mass Driver</item>
- </tech>
- <tech name="Kinetic 3">
-  <item>Railgun</item>
-  <item>Turreted Mass Driver</item>
-  <item>Railgun Turret</item>
- </tech>
  <tech name="Plasma 1">
   <item>Plasma Blaster MK1</item>
   <item>Plasma Turret MK1</item>
@@ -1894,72 +1882,11 @@
   <item>Vigilance</item>
   <item>Kestrel</item>
  </tech>
- <tech name="Goddard Ship">
-  <item>Goddard</item>
- </tech>
- <tech name="Empire Military Ships">
-  <item>Empire Admonisher</item>
-  <item>Empire Hawking</item>
-  <item>Empire Lancelot</item>
-  <item>Empire Pacifier</item>
-  <item>Empire Peacemaker</item>
-  <item>Empire Shark</item>
- </tech>
- <tech name="Empire Light Military Ships">
-  <item>Empire Shark</item>
-  <item>Empire Lancelot</item>
- </tech>
- <tech name="Empire Medium Military Ships">
-  <item>Empire Admonisher</item>
-  <item>Empire Pacifier</item>
- </tech>
- <tech name="Frontier Military Ships">
-  <item>Hyena</item>
-  <item>Lancelot</item>
-  <item>Vendetta</item>
-  <item>Ancestor</item>
-  <item>Phalanx</item>
-  <item>Pacifier</item>
- </tech>
- <tech name="Dvaered Military Ships">
-  <item>Dvaered Ancestor</item>
-  <item>Dvaered Goddard</item>
-  <item>Dvaered Phalanx</item>
-  <item>Dvaered Vendetta</item>
-  <item>Dvaered Vigilance</item>
- </tech>
- <tech name="Pirate Ships">
-  <item>Pirate Admonisher</item>
-  <item>Pirate Ancestor</item>
-  <item>Pirate Kestrel</item>
-  <item>Pirate Phalanx</item>
-  <item>Pirate Rhino</item>
-  <item>Pirate Shark</item>
-  <item>Pirate Vendetta</item>
-  <item>Pirate Shark Fighter Bay</item>
-  <item>Mini Pirate Shark Fighter Bay</item>
- </tech>
  <tech name="Proteron Military Ships">
   <item>Proteron Archimedes</item>
   <item>Proteron Derivative</item>
   <item>Proteron Kahan</item>
   <item>Proteron Watson</item>
- </tech>
- <tech name="Sirius Military Ships">
-  <item>Sirius Fidelity</item>
-  <item>Sirius Shaman</item>
-  <item>Sirius Preacher</item>
-  <item>Sirius Divinity</item>
-  <item>Sirius Dogma</item>
- </tech>
- <tech name="Soromid Military Ships">
-  <item>Soromid Brigand</item>
-  <item>Soromid Reaver</item>
-  <item>Soromid Marauder</item>
-  <item>Soromid Odium</item>
-  <item>Soromid Nyx</item>
-  <item>Soromid Ira</item>
-  <item>Soromid Arx</item>
  </tech>
  <tech name="Thurion Civilian Ships">
   <item>Thurion Perspicacity</item>
@@ -1973,22 +1900,6 @@
   <item>Thurion Virtuosity</item>
   <item>Thurion Apprehension</item>
   <item>Thurion Certitude</item>
- </tech>
- <tech name="Za'lek Military Ships">
-  <item>Za'lek Sting</item>
-  <item>Za'lek Demon</item>
-  <item>Za'lek Mephisto</item>
-  <item>Za'lek Diablo</item>
-  <item>Za'lek Hephaestus</item>
- </tech>
- <tech name="__Collective">
-  <item>Neutron Disruptor</item>
-  <item>Electron Burst Cannon</item>
-  <item>Drone Fighter Bay</item>
-  <item>Mini Drone Fighter Bay</item>
-  <item>Heavy Drone Fighter Bay</item>
-  <item>Drone</item>
-  <item>Heavy Drone</item>
  </tech>
 
  <tech name="Systems Low">
