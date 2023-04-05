@@ -67,6 +67,8 @@
   while out in space.
 * Removed generation of "Pilot's Manual" log entries by the introductory
   mission (Point of Sale).
+* Fixed the first Coming Out mission selecting planets that might be
+  unlandable.
 
 
 ### Other Changes
@@ -102,8 +104,12 @@
 * Enemy Presence, for the purpose of deciding whether to reset time
   compression during autonav, now considers only the player's exact
   range as a factor, rather than the player's range plus a buffer. This
-  reduces the occurrence of unactionable slowdowns.
+  reduces the occurrence of unactionable slowdowns. Additionally, the
+  check is more strict with what enemies it considers to be dangerous,
+  for the same reason.
 * Changed Mizar's nebula hue to the default.
+* Fixed several instances of planets that had been missed during the
+  universe overhaul in version 0.5.0.
 
 
 ## 0.6.0
