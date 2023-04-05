@@ -69,6 +69,11 @@
   mission (Point of Sale).
 * Fixed the first Coming Out mission selecting planets that might be
   unlandable.
+* The third Shark mission now utilizes standard mercenaries to create
+  danger for the player rather than spawning its own.
+* The Warlords Battle event has been touched up: the engagement starts
+  earlier, failsafes have been added for anomalous conditions, and a
+  warlord's team is highlighted and visible after the warlord dies.
 
 
 ### Other Changes
