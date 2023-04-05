@@ -140,7 +140,6 @@ function attack()
             "Dvaered Vendetta"}, f1, source_system,
          _("Invading Warlord Force"), nil, goda)
 
-   attackers = arrangeList(attackers)
    form = formation.random_key()
 
    for i, p in ipairs(attackers) do
@@ -155,7 +154,7 @@ function attack()
       hook.pilot(p, "land", "attackerDeath")
    end
 
-   attnum = table.getn(attackers)
+   attnum = #attackers
    attdeath = 0
    attdamage = 0
 
@@ -168,7 +167,6 @@ function attack()
             "Dvaered Vendetta"}, f2, source_planet,
          _("Local Warlord Force"), nil, godd)
 
-   defenders = arrangeList(defenders)
    form = formation.random_key()
 
    for i, p in ipairs(defenders) do
@@ -183,7 +181,7 @@ function attack()
       hook.pilot(p, "land", "defenderDeath")
    end
 
-   defnum = table.getn(defenders)
+   defnum = #defenders
    defdeath = 0
    defdamage = 0
 
@@ -198,7 +196,7 @@ function attack()
    goda:attack(godd)
    godd:attack(goda)
 
-   hook.timer(0.5, "proximity", {anchor=goda, radius=5000,
+   hook.timer(0.5, "proximity", {anchor=goda, radius=10000,
             funcname="startBattle", focus=godd})
 end
 
@@ -232,7 +230,17 @@ function defenderAttacked(victim, attacker, damage)
    if attacker == nil then
       return
    end
+
+   for i, p in ipairs(defenders) do
+      if p == attacker then
+         startBattle()
+         return
+      end
+   end
+
    if attacker == player.pilot() or attacker:leader(true) == player.pilot() then
+      startBattle()
+
       for i, p in ipairs(defenders) do
          if p:exists() then
             p:setHostile()
@@ -253,7 +261,17 @@ function attackerAttacked(victim, attacker, damage)
    if attacker == nil then
       return
    end
+
+   for i, p in ipairs(attackers) do
+      if p == attacker then
+         startBattle()
+         return
+      end
+   end
+
    if attacker == player.pilot() or attacker:leader(true) == player.pilot() then
+      startBattle()
+
       for i, p in ipairs(attackers) do
          if p:exists() then
             p:setHostile()
@@ -273,7 +291,6 @@ end
 function attackerDeath(victim, attacker)
    if batInProcess then
       attdeath = attdeath + 1
-
       if attdeath >= attnum then
          batInProcess = false -- Battle ended
 
@@ -297,6 +314,14 @@ function attackerDeath(victim, attacker)
             local reward = computeReward(attdamage)
             hook.timer(1.0, "hailmeagain", reward)
          end
+      elseif victim == goda then
+         startBattle()
+         for i, p in ipairs(attackers) do
+            if p:exists() then
+               p:setHilight()
+               p:setVisible()
+            end
+         end
       end
    end
 end
@@ -304,7 +329,6 @@ end
 function defenderDeath(victim, attacker)
    if batInProcess then
       defdeath = defdeath + 1
-
       if defdeath >= defnum then
          batInProcess = false -- Battle ended
 
@@ -327,6 +351,14 @@ function defenderDeath(victim, attacker)
             warrior = chooseInList(attackers)
             local reward = computeReward(defdamage)
             hook.timer(1.0, "hailmeagain", reward)
+         end
+      elseif victim == godd then
+         startBattle()
+         for i, p in ipairs(defenders) do
+            if p:exists() then
+               p:setHilight()
+               p:setVisible()
+            end
          end
       end
    end
@@ -378,32 +410,6 @@ function playerIsFriendly(list)
    return true
 end
 
---Arranges a list of pilot with their mass
-function arrangeList(list)
-   newlist = {}
-
-   for i, j in ipairs(list) do
-      local rank = 1
-      for k, l in ipairs(list) do
-         if j:stats().mass < l:stats().mass then
-            rank = rank + 1
-         end
-      end
-
-      --Processing of the equality case
-      local again = true
-      while again do
-         if not newlist[rank] then
-            newlist[rank] = j
-            again = false
-            else
-            rank = rank + 1
-         end
-      end
-   end
-
-   return newlist
-end
 
 function leave ()
    evt.finish()
