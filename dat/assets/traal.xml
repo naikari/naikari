@@ -29,12 +29,10 @@
   <bar>Traal's spaceport bar is heavy on Sirius propaganda. With foreign territories just a jump away, the Siriusites feel the need to spread their beliefs, even if only passively. Though House Sirius has stopped expanding in recent years, the Traalians believe that Sirichana is merely taking a pause to stabilize the existing Sirius worlds. Soon, they say, Fidelis will be Sirius space.</bar>
  </general>
  <tech>
-  <item>Hulls Medium</item>
-  <item>Engines Low</item>
-  <item>Engines Medium</item>
-  <item>Ion 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Low Tech Upgrades</item>
-  <item>Missiles 1</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Razor</item>
+  <item>Small Low Outfits</item>
+  <item>Small Mid Outfits</item>
  </tech>
 </asset>

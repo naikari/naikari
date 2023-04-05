@@ -28,13 +28,23 @@
   <bar>Since traders don't come to this military base, the bar is only frequented by Imperial military personnel. It's more like a canteen than a bar, really.</bar>
  </general>
  <tech>
-  <item>Systems Low</item>
-  <item>Hulls Low</item>
-  <item>Laser 1</item>
-  <item>Laser 2</item>
-  <item>High Tech Upgrades 1</item>
-  <item>Basic Outfits 2</item>
-  <item>Missiles 1</item>
-  <item>Missiles 2</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Elite Missiles</item>
+  <item>Anti-Fighter Missiles</item>
+  <item>Anti-Destroyer Missiles</item>
+  <item>Nexus Fighter Bays</item>
+  <item>Small Laser</item>
+  <item>Medium Laser</item>
+  <item>Heavy Laser</item>
+  <item>Small Ion</item>
+  <item>Medium Ion</item>
+  <item>Heavy Ion</item>
+  <item>Medium Mid Outfits</item>
+  <item>Medium Elite Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Large Mid Outfits</item>
+  <item>Large Elite Outfits</item>
+  <item>Empire Military Outfits</item>
  </tech>
 </asset>

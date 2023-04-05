@@ -17,7 +17,7 @@
   <class>D</class>
   <population>50000</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
    <bar/>
    <missions/>
@@ -29,10 +29,8 @@
   <bar>The spaceport bar is probably the most luxurious public facility on the planet. Not that it's a particularly nice spaceport bar, it's just that all the other facilities are even danker and grubbier than it.</bar>
  </general>
  <tech>
-  <item>Hulls Low</item>
-  <item>Engines Medium</item>
-  <item>Basic Outfits 1</item>
-  <item>Heavy Weapons 1</item>
-  <item>High Tech Upgrades 2</item>
+  <item>Common Outfits</item>
+  <item>Basic Missiles</item>
+  <item>Small Plasma</item>
  </tech>
 </asset>
