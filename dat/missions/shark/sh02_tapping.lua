@@ -69,10 +69,11 @@ osd_title = _("Corporate Espionage")
 log_text = _([[You helped Nexus Shipyards gather information in an attempt to sabotage competition from a new startup.]])
 
 
-function create ()
+function create()
+   -- Note: this mission makes no system claims.
    mispla, missys = planet.getLandable(faction.get("Sirius"))
 
-   if not misn.claim(missys) or not mispla:services()["bar"] then
+   if not mispla:services()["bar"] then
       misn.finish(false)
    end
 
@@ -88,7 +89,6 @@ function accept()
 
    stage = 0
    reward = 600000
-   proba = 0.3  --the chances you have to get an ambush
 
    if tk.yesno("", fmt.f(ask_text,
             {planet=paypla:name(), system=paysys:name()})) then
@@ -112,7 +112,6 @@ function accept()
       marker = misn.markerAdd(missys, "low")
 
       landhook = hook.land("land")
-      enterhook = hook.enter("enter")
    else
       tk.msg("", refusetext)
       misn.finish()
@@ -139,18 +138,6 @@ function land()
 end
 
 
-function enter()
-   -- Ambush !
-   if stage == 1 and rnd.rnd() < proba then
-      hook.timer(2, "ambush")
-      proba = proba - 0.2
-   elseif stage == 1 then
-      --the probability of an ambush goes up when you cross a system without meeting any ennemy
-      proba = proba + 0.1
-   end
-end
-
-
 function beginrun()
    tk.msg("", meet_text)
    local c = misn.cargoNew(N_("Recordings"),
@@ -159,23 +146,18 @@ function beginrun()
    stage = 1
    misn.osdActive(2)
    misn.markerRm(marker)
-   marker2 = misn.markerAdd(paysys, "low")
+   marker2 = misn.markerAdd(paysys, "high")
 
    --remove the spy
    misn.npcRm(agent)
+
+   -- Add a hook to make mercenaries chase the player.
+   hook.custom("merc_spawn", "merc_spawn")
 end
 
 
-function ambush()
-   ship_choices = {
-      "Hyena", "Shark", "Lancelot", "Vendetta", "Ancestor", "Admonisher",
-      "Phalanx", "Kestrel", "Hawking", "Llama",
-   }
-
-   for i=1,rnd.rnd(2, 4) do
-      local choice = ship_choices[rnd.rnd(1, #ship_choices)]
-      local p = pilot.add(choice, "Mercenary", nil,
-            fmt.f(_("Mercenary {ship}"), {ship=_(choice)}))
-      p:setHostile()
+function merc_spawn(p)
+   if rnd.rnd() < 0.7 then
+      p:memory().bounty = player.pilot()
    end
 end

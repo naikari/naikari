@@ -876,46 +876,47 @@ static int hook_custom( lua_State *L )
  */
 static int hook_trigger( lua_State *L )
 {
+   const int param_pos = 2; /**< Position of the first hook param. */
    int i, n;
    HookParam hp[HOOK_MAX_PARAM], *p;
-   const char *hookname = luaL_checkstring(L,1);
+   const char *hookname = luaL_checkstring(L, 1);
    n = lua_gettop(L) - 1;
 
    /* Set up hooks. */
    for (i=0; i<MIN(n, HOOK_MAX_PARAM-1); i++) {
       p = &hp[i];
-      switch (lua_type(L,i+1)) {
+      switch (lua_type(L, i + param_pos)) {
          case LUA_TNIL:
             p->type = HOOK_PARAM_NIL;
             break;
          case LUA_TNUMBER:
             p->type = HOOK_PARAM_NUMBER;
-            p->u.num = lua_tonumber(L,i+1);
+            p->u.num = lua_tonumber(L, i + param_pos);
             break;
          case LUA_TBOOLEAN:
             p->type = HOOK_PARAM_BOOL;
-            p->u.b = lua_toboolean(L,i+1);
+            p->u.b = lua_toboolean(L, i + param_pos);
             break;
          case LUA_TSTRING:
             p->type = HOOK_PARAM_STRING;
-            p->u.str = lua_tostring(L,i+1);
+            p->u.str = lua_tostring(L, i + param_pos);
             break;
          case LUA_TUSERDATA:
-            if (lua_ispilot(L,i+1)) {
+            if (lua_ispilot(L, i + param_pos)) {
                p->type = HOOK_PARAM_PILOT;
-               p->u.lp = lua_topilot(L,i+1);
+               p->u.lp = lua_topilot(L, i + param_pos);
             }
-            else if (lua_isfaction(L,i+1)) {
+            else if (lua_isfaction(L, i + param_pos)) {
                p->type = HOOK_PARAM_FACTION;
-               p->u.lf = lua_tofaction(L,i+1);
+               p->u.lf = lua_tofaction(L, i + param_pos);
             }
-            else if (lua_isplanet(L,i+1)) {
+            else if (lua_isplanet(L, i + param_pos)) {
                p->type = HOOK_PARAM_ASSET;
-               p->u.la = *lua_toplanet(L,i+1);
+               p->u.la = *lua_toplanet(L, i + param_pos);
             }
-            else if (lua_isjump(L,i+1)) {
+            else if (lua_isjump(L, i + param_pos)) {
                p->type = HOOK_PARAM_JUMP;
-               p->u.lj = *lua_tojump(L,i+1);
+               p->u.lj = *lua_tojump(L, i + param_pos);
             }
             break;
          default:
