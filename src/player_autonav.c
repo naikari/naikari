@@ -783,15 +783,15 @@ int player_autonavShouldResetSpeed (void)
             && !pilot_isDisabled(pstk[i])) {
          dist = vect_dist(&pstk[i]->solid->pos, &player.p->solid->pos);
 
-         /* If the pilot is hostile or can see the player, be more
-          * careful and check weapon set distances against just 80% of
-          * the distance between the two. Otherwise, check against 90%
+         /* If the pilot is hostile and can see the player, be more
+          * careful and check weapon set distances against just 90% of
+          * the distance between the two. Otherwise, check against 100%
           * of the distance. */
          if (pilot_inRangePilot(pstk[i], player.p, NULL)
-               || pilot_isFlag(pstk[i], PILOT_HOSTILE))
-            careful_dist = dist * 0.8;
-         else
+               && pilot_isFlag(pstk[i], PILOT_HOSTILE))
             careful_dist = dist * 0.9;
+         else
+            careful_dist = dist;
          
          /* Check weapon set ranges of both the hostile pilot and the
           * player. Only count it as hostile presence if one of the two
