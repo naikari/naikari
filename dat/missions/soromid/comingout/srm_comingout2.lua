@@ -63,7 +63,7 @@ log_text = _([[You helped transport Chelsea to {planet}, where she was able to b
 
 function create ()
    -- Note: This mission does not make system claims
-   misplanet, missys = planet.getLandable("Corax")
+   misplanet, missys = planet.getLandable("Crow")
    if misplanet == nil then
       misn.finish(false)
    end
