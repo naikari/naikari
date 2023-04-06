@@ -1,9 +1,30 @@
-require("ai/tpl/escort")
---require("ai/personality/patrol") -- Messes up the ai
+require "ai.tpl.generic"
 
--- Do not distress
+
+-- Settings
 mem.distress = false
 mem.aggressive = true
-mem.armor_localjump = 70
+mem.norun = true
+mem.carrier = true
+mem.comm_no = _("No response.")
 mem.enemyclose = 6000
 mem.leadermaxdist = 16000
+
+
+function create()
+   local p = ai.pilot()
+   local leader = p:leader()
+
+   -- Player escorts perform local jumps, others don't.
+   if leader == player.pilot() then
+      mem.armor_localjump = 70
+   end
+
+   attack_choose()
+end
+
+
+function idle()
+   -- Just tries to guard mem.escort
+   ai.pushtask("follow_fleet")
+end
