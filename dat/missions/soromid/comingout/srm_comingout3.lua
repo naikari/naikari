@@ -180,6 +180,11 @@ function spawnChelseaShip(param)
    chelsea:setInvincPlayer()
    chelsea:setNoBoard()
 
+   local plmax = player.pilot():stats().speed_max * 0.9
+   if chelsea:stats().speed_max > plmax then
+      chelsea:setSpeedLimit(plmax)
+   end
+
    hook.pilot(chelsea, "death", "chelsea_death")
    hook.pilot(chelsea, "jump", "chelsea_jump")
    hook.pilot(chelsea, "land", "chelsea_land")
