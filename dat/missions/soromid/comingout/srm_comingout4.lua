@@ -103,12 +103,12 @@ function create ()
    startplanet, startsys = planet.get("Darkshed")
    destplanet, destsys = planet.get("Durea")
 
-   local claimsys = {startsys}
+   local claimsys = {startsys, destsys}
    for i, jp in ipairs(startsys:jumpPath(destsys)) do
-      claimsys[#claimsys + 1] = jp:dest()
+      table.insert(claimsys, jp:dest())
    end
    for i, jp in ipairs(destsys:jumpPath(startsys)) do
-      claimsys[#claimsys + 1] = jp:dest()
+      table.insert(claimsys, jp:dest())
    end
    if not misn.claim(claimsys) then
       misn.finish(false)
@@ -257,10 +257,10 @@ function jumpNext ()
             fmt.f(_("Jump to {system}"), {system=nextsys:name()}),
          }
          if jumps > 1 then
-            osd_desc[#osd_desc + 1] = fmt.f(
-                  n_("{remaining} more jump after this one",
-                     "{remaining} more jumps after this one", jumps - 1),
-                  {remaining=fmt.number(jumps - 1)})
+            table.insert(osd_desc,
+                  fmt.f(n_("{remaining} more jump after this one",
+                        "{remaining} more jumps after this one", jumps - 1),
+                     {remaining=fmt.number(jumps - 1)}))
          end
          misn.osdCreate(misn_title, osd_desc)
       end

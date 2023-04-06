@@ -104,7 +104,7 @@ function fleet.add(count, ship, faction, location, pilotname, parameters,
             end
          end
 
-         out[#out + 1] = p
+         table.insert(out, p)
       end
    end
    if #out > 1 then

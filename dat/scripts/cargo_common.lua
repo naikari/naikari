@@ -32,7 +32,7 @@ function cargo_selectPlanets(missdist, routepos)
                   and not (s == system.cur()
                      and (vec2.dist(v:pos(), routepos) < 2500))
                   and v:canLand() and cargoValidDest(v) then
-               planets[#planets + 1] = {v, s, dist}
+               table.insert(planets, {v, s, dist})
             end
          end
          return true
