@@ -408,7 +408,7 @@ end
 
 function update_cargo()
    cargol = pp:cargoList()
-   cargofree = fmt.f(_(" ({amount} free)"), {amount=fmt.tonnes(pp:cargoFree()}))
+   cargofree = fmt.f(_(" ({amount} free)"), {amount=fmt.tonnes(pp:cargoFree())})
    cargofreel = gfx.printDim( true, cargofree )
    cargoterml = gfx.printDim( true, ", [...]" )
    cargo = {}
