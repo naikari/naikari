@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Medium-Heavy Fast Fin Stage X">
  <general>
-  <rarity>6</rarity>
   <typename>Bioship Fin</typename>
   <slot prop="bio_engines">structure</slot>
   <size>medium</size>
+  <rarity>6</rarity>
   <priority>7</priority>
   <mass>25</mass>
   <price>650000</price>
@@ -16,6 +16,7 @@
   <turn>90</turn>
   <speed>175</speed>
   <fuel>800</fuel>
+  <fuel_regen>0.2</fuel_regen>
   <energy_regen_malus>15</energy_regen_malus>
   <engine_limit>1200</engine_limit>
  </specific>

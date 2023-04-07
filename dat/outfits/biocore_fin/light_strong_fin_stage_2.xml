@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Light Strong Fin Stage 2">
  <general>
-  <rarity>2</rarity>
   <typename>Bioship Fin</typename>
   <slot prop="bio_engines">structure</slot>
   <size>small</size>
+  <rarity>0</rarity>
   <priority>7</priority>
   <mass>15</mass>
   <price>60000</price>
@@ -13,9 +13,10 @@
  </general>
  <specific type="modification">
   <thrust>105</thrust>
-  <turn>75</turn>
-  <speed>200</speed>
+  <turn>78</turn>
+  <speed>201</speed>
   <fuel>500</fuel>
+  <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>7</energy_regen_malus>
   <engine_limit>400</engine_limit>
  </specific>

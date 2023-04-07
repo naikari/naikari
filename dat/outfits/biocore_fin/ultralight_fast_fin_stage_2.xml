@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Ultralight Fast Fin Stage 2">
  <general>
-  <rarity>2</rarity>
   <typename>Bioship Fin</typename>
   <slot prop="bio_engines">structure</slot>
   <size>small</size>
+  <rarity>0</rarity>
   <mass>8</mass>
   <price>105000</price>
   <description>The fin is a Soromid bioship's equivalent to engines in synthetic ships. It is charged with moving the organism through space and comes in either a strong form (for heavy loads) or a fast form (for greater speed and agility). All fins start off undeveloped, but over time, just like the ships themselves, they grow and improve.</description>
@@ -16,6 +16,7 @@
   <turn>140</turn>
   <speed>300</speed>
   <fuel>400</fuel>
+  <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>5</energy_regen_malus>
   <engine_limit>150</engine_limit>
  </specific>

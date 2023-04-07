@@ -4,6 +4,7 @@
   <typename>Bioship Fin</typename>
   <slot prop="bio_engines">structure</slot>
   <size>small</size>
+  <rarity>0</rarity>
   <priority>7</priority>
   <mass>12</mass>
   <price>110000</price>
@@ -15,6 +16,7 @@
   <turn>100</turn>
   <speed>215</speed>
   <fuel>400</fuel>
+  <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>8</energy_regen_malus>
   <engine_limit>300</engine_limit>
  </specific>

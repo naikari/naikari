@@ -1,0 +1,37 @@
+{
+    "stages": 7,
+    "tags": {
+        "potential": {
+            "text": {
+                "default": "All fins start off undeveloped, but over time, just like the ships themselves, they grow and improve.",
+                "stage": {
+                    "X": "This fin has reached Stage X, its full potential."
+                }
+            }
+        },
+        "rarity": {
+            "text": {
+                "default": "0",
+                "stage": {
+                    "X": "6"
+                }
+            }
+        },
+        "price": {
+            "min": 550000,
+            "max": 1100000
+        },
+        "thrust": {
+            "min": 34,
+            "max": 47
+        },
+        "turn": {
+            "min": 35,
+            "max": 50
+        },
+        "speed": {
+            "min": 65,
+            "max": 90
+        }
+    }
+}

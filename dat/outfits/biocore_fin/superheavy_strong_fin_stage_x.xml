@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Superheavy Strong Fin Stage X">
  <general>
-  <rarity>6</rarity>
   <typename>Bioship Fin</typename>
   <slot prop="bio_engines">structure</slot>
   <size>large</size>
+  <rarity>6</rarity>
   <priority>7</priority>
   <mass>100</mass>
   <price>1500000</price>
@@ -16,6 +16,7 @@
   <turn>45</turn>
   <speed>70</speed>
   <fuel>2000</fuel>
+  <fuel_regen>0.4</fuel_regen>
   <energy_regen_malus>45</energy_regen_malus>
   <engine_limit>8000</engine_limit>
  </specific>

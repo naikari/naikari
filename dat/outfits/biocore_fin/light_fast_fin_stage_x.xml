@@ -16,6 +16,7 @@
   <turn>140</turn>
   <speed>290</speed>
   <fuel>400</fuel>
+  <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>8</energy_regen_malus>
   <engine_limit>300</engine_limit>
  </specific>

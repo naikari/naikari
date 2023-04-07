@@ -4,6 +4,7 @@
   <typename>Bioship Fin</typename>
   <slot prop="bio_engines">structure</slot>
   <size>small</size>
+  <rarity>0</rarity>
   <mass>10</mass>
   <price>25000</price>
   <description>The fin is a Soromid bioship's equivalent to engines in synthetic ships. It is charged with moving the organism through space and comes in either a strong form (for heavy loads) or a fast form (for greater speed and agility). All fins start off undeveloped, but over time, just like the ships themselves, they grow and improve.</description>
@@ -15,6 +16,7 @@
   <turn>85</turn>
   <speed>200</speed>
   <fuel>500</fuel>
+  <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>4</energy_regen_malus>
   <engine_limit>200</engine_limit>
  </specific>
