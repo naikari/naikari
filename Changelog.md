@@ -52,7 +52,7 @@
   easily tell them apart at a glance.
 * Added highlighting of some key words in the Terra's Cargo mission.
 * The leader in the Trader Convoy mission now has a maximum speed of
-  80% of its own speed or 90% of the player's speed, whichever is
+  80% of its own speed or 80% of the player's speed, whichever is
   lower. This ensures that all ships involved have a relatively easy
   time catching up.
 * The Baron Prince mission now only spawns hostile artifact hunters in
@@ -74,6 +74,8 @@
 * The Warlords Battle event has been touched up: the engagement starts
   earlier, failsafes have been added for anomalous conditions, and a
   warlord's team is highlighted and visible after the warlord dies.
+* Chelsea's speed in the third and fourth Coming Out missions is limited
+  to no more than 80% of the player's speed.
 
 
 ### Other Changes
