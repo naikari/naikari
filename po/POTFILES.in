@@ -476,7 +476,6 @@ dat/assets/kraft_ii.xml
 dat/assets/kraft_iv.xml
 dat/assets/kraft_v.xml
 dat/assets/kraft_vi.xml
-dat/assets/kramer.xml
 dat/assets/kretogg_i.xml
 dat/assets/kretogg_ii.xml
 dat/assets/kretogg_iii.xml
@@ -533,7 +532,6 @@ dat/assets/mason_iv.xml
 dat/assets/massia_i.xml
 dat/assets/massia_iv.xml
 dat/assets/massia_iva.xml
-dat/assets/mastodon_station.xml
 dat/assets/maus_i.xml
 dat/assets/maus_ii.xml
 dat/assets/maus_iii.xml
@@ -658,7 +656,6 @@ dat/assets/oring.xml
 dat/assets/orions_anger.xml
 dat/assets/orions_fist.xml
 dat/assets/orions_might.xml
-dat/assets/orville_shipyard.xml
 dat/assets/outbound_station.xml
 dat/assets/overture_i.xml
 dat/assets/overture_ii.xml
@@ -714,7 +711,6 @@ dat/assets/porro_iii.xml
 dat/assets/possum_ii.xml
 dat/assets/praxis.xml
 dat/assets/priscus.xml
-dat/assets/procyon_shipyards.xml
 dat/assets/protera_sigma.xml
 dat/assets/provectus_nova_i.xml
 dat/assets/provectus_nova_ia.xml
@@ -2064,7 +2060,6 @@ dat/trails.xml
 dat/unidiff/FLF_base.xml
 dat/unidiff/Fury_Station.xml
 dat/unidiff/Thurion_found.xml
-dat/unidiff/collective_dead.xml
 dat/unidiff/flf_dead.xml
 dat/unidiff/flf_pirate_ally.xml
 dat/unidiff/flf_vs_empire.xml
@@ -2129,7 +2124,6 @@ dat/ai/sirius_norun.lua
 dat/ai/soromid.lua
 dat/ai/stationary.lua
 dat/ai/thurion.lua
-dat/ai/tpl/escort.lua
 dat/ai/tpl/generic.lua
 dat/ai/tpl/merchant.lua
 dat/ai/tpl/scout.lua
@@ -2293,17 +2287,13 @@ dat/missions/zalek/zlk_test.lua
 dat/outfits/lua/example.lua
 dat/rescue.lua
 dat/scripts/cargo_common.lua
-dat/scripts/chatter.lua
 dat/scripts/class.lua
-dat/scripts/colour.lua
 dat/scripts/debug/debug.lua
-dat/scripts/enum.lua
 dat/scripts/escorthelper.lua
 dat/scripts/fleet.lua
 dat/scripts/fmt.lua
 dat/scripts/formation.lua
 dat/scripts/jumpdist.lua
-dat/scripts/lmusic.lua
 dat/scripts/love.lua
 dat/scripts/love/audio.lua
 dat/scripts/love/data.lua
@@ -2325,7 +2315,6 @@ dat/scripts/love/timer.lua
 dat/scripts/love/touch.lua
 dat/scripts/love/video.lua
 dat/scripts/love/window.lua
-dat/scripts/luatk.lua
 dat/scripts/misnhelper.lua
 dat/scripts/nextjump.lua
 dat/scripts/numstring.lua
@@ -2336,6 +2325,7 @@ dat/scripts/prng.lua
 dat/scripts/proximity.lua
 dat/scripts/selectiveclear.lua
 dat/scripts/swapship.lua
+dat/scripts/tablehelper.lua
 dat/ship_updater.lua
 dat/snd/music.lua
 src/ai.c

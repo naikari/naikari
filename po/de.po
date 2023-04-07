@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-04-04 00:59-0400\n"
+"POT-Creation-Date: 2023-04-07 14:10-0400\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -4871,7 +4871,7 @@ msgstr ""
 msgid "Galileo"
 msgstr "Galileo"
 
-#: dat/assets/gamma.xml:2 src/options.c:1360
+#: dat/assets/gamma.xml:2 src/options.c:1364
 msgid "Gamma"
 msgstr "Gamma"
 
@@ -7182,33 +7182,6 @@ msgstr "Kraft V"
 msgid "Kraft VI"
 msgstr "Kraft VI"
 
-#: dat/assets/kramer.xml:2
-msgid "Kramer"
-msgstr "Kramer"
-
-#: dat/assets/kramer.xml:28
-msgid ""
-"Kramer is a backwater, almost devoid of an atmosphere. However, the primary "
-"point it has in its favor, the hidden jump point makes it an attractive stop-"
-"over point for pirates on deeper raids into the civilized parts of the "
-"galaxy."
-msgstr ""
-"Kramer ist ein verschlafenes Nest, fast ohne Atmosphäre. Doch sein primärer "
-"Vorteil, der versteckte Sprungpunkt, macht ihn zu einem attraktiven "
-"Zwischenstopp für Piraten auf tieferen Raubzügen in die zivilisierten Teile "
-"der Galaxie."
-
-#: dat/assets/kramer.xml:29
-msgid ""
-"The bar is alive with the fighting and carousing of drunk patrons. A few "
-"patrons busy themselves with card games in a corner and the shadier "
-"merchants talk business over debatably drinkable alcohol. Truly a pirate bar."
-msgstr ""
-"Die Kneipe lebt von den Kämpfen und Saufgelagen betrunkener Stammgäste. Ein "
-"paar Gäste beschäftigen sich in einer Ecke mit Kartenspielen, und die "
-"zwielichtigeren Händler reden bei strittigem Alkohol über das Geschäft. Eine "
-"echte Kneipe für Piraten."
-
 #: dat/assets/kretogg_i.xml:2
 msgid "Kretogg I"
 msgstr "Kretogg I"
@@ -7937,30 +7910,6 @@ msgstr "Massia IV"
 #: dat/assets/massia_iva.xml:2
 msgid "Massia IVa"
 msgstr "Massia IVa"
-
-#: dat/assets/mastodon_station.xml:2
-msgid "Mastodon Station"
-msgstr "Mastodon-Station"
-
-#: dat/assets/mastodon_station.xml:26
-msgid ""
-"Mastodon Station is a power generator, supplying the local planets with "
-"energy cells. It also produces power cores and low power energy weapons for "
-"the ships produced at Orville Shipyard."
-msgstr ""
-"Die Mastodon-Station ist ein Stromgenerator, der die lokalen Planeten mit "
-"Energiezellen versorgt. Sie produziert auch Energiekerne und Waffen mit "
-"niedriger Energie für die in der Orville-Werft hergestellten Schiffe."
-
-#: dat/assets/mastodon_station.xml:27
-msgid ""
-"The spacedock bar is constantly filled with the low hum of heavy machinery. "
-"The entire station reverberates with it, which really gives you the "
-"impression that the place is active."
-msgstr ""
-"Die Kneipe ist ständig mit dem leisen Summen schwerer Maschinen gefüllt. Die "
-"gesamte Station hallt damit nach, was wirklich den Eindruck vermittelt, dass "
-"der Ort aktiv ist."
 
 #: dat/assets/maus_i.xml:2
 msgid "Maus I"
@@ -9610,39 +9559,6 @@ msgstr "Orions Faust"
 msgid "Orion's Might"
 msgstr "Orions Macht"
 
-#: dat/assets/orville_shipyard.xml:2
-msgid "Orville Shipyard"
-msgstr "Orville-Schiffswerft"
-
-#: dat/assets/orville_shipyard.xml:27
-#, fuzzy
-msgid ""
-"Orville Shipyard is a relatively modest ship building facility. The station "
-"relies on Mastodon Station for the ships' energy cores and weaponry, as Rhu "
-"is too far removed from Aesir to send the ships to be outfitted at Sirius "
-"Ordnance."
-msgstr ""
-"Die Orville-Schiffswerft ist eine relativ bescheidene Schiffbauanlage, "
-"obwohl sie für die Inios-Station und die Brandt-Station von unschätzbarem "
-"Wert ist, da die meisten ihrer Verstärkungen von hier kommen. Die Station "
-"ist für die Energiekerne und Waffen der Schiffe auf die Mastodon-Station "
-"angewiesen, da Ru zu weit von Äsir entfernt ist, um die Schiffe zur "
-"Ausstattung nach Sirius-Wehrmaterial zu schicken."
-
-#: dat/assets/orville_shipyard.xml:28
-#, fuzzy
-msgid ""
-"Over the bar in this facility, there is a counter display that keeps track "
-"of the amount of ships that have been produced at Orville Shipyard since it "
-"was commissioned. Clearly, the people here at Rhu take pride in being able "
-"to contribute to the Sirius military effort."
-msgstr ""
-"Über der Kneipe in dieser Anlage befindet sich eine Thekenanzeige, auf der "
-"die Anzahl der Schiffe angezeigt wird, die in der Orville-Schiffswerft seit "
-"ihrer Inbetriebnahme produziert wurden. Es ist offensichtlich, dass die "
-"Menschen hier in Ru stolz darauf sind, einen Beitrag zu den militärischen "
-"Bemühungen der Sirianer leisten zu können."
-
 #: dat/assets/outbound_station.xml:2
 msgid "Outbound Station"
 msgstr "Ausreisestation"
@@ -10218,37 +10134,6 @@ msgstr ""
 msgid "Priscus"
 msgstr "Wisent"
 
-#: dat/assets/procyon_shipyards.xml:2
-msgid "Procyon Shipyards"
-msgstr "Prokyon-Schiffswerft"
-
-#: dat/assets/procyon_shipyards.xml:26
-msgid ""
-"Procyon Shipyard is a mainstay of the Za'lek navy and its merchant marine. "
-"The base is constantly alive with engineers and the sound of hulls being "
-"assembled. It is noisy filthy and there's little room for comfort. "
-"Nevertheless, many spacers call this place home."
-msgstr ""
-"Die Prokyon-Schiffswerft ist eine Hauptstütze der Marine von Za'lek und "
-"ihrer Handelsmarine. Der Stützpunkt ist ständig voller Ingenieure und dem "
-"Klang der Schiffsgerüste, die montiert werden. Es ist dreckig laut und es "
-"gibt wenig Platz für Komfort. Dennoch nennen viele Weltraumreisende diesen "
-"Ort ihr Zuhause."
-
-#: dat/assets/procyon_shipyards.xml:27
-msgid ""
-"The bar is much like the station itself. The beer is only theoretically "
-"drinkable from what you can tell, and fights are surprisingly common. The "
-"patrons are mostly wearing thick suits smeared with all manner of chemicals, "
-"burns and oils. Many older captains seem to be enjoying themselves despite "
-"it all."
-msgstr ""
-"Die Kneipe ist der Station selbst sehr ähnlich. Das Bier ist nur theoretisch "
-"trinkbar, soweit man das beurteilen kann, und Schlägereien sind überraschend "
-"häufig. Die Stammgäste tragen meist dicke Anzüge, die mit allen möglichen "
-"Chemikalien, Verbrennungen und Ölen beschmiert sind. Viele ältere Kapitäne "
-"scheinen sich trotz allem zu amüsieren."
-
 #: dat/assets/protera_sigma.xml:2
 msgid "Protera Sigma"
 msgstr "Protera Sigma"
@@ -10681,7 +10566,7 @@ msgstr ""
 #: dat/missions/flf/prelude/flf_pre02.lua:255
 #: dat/missions/pirate/fake_id.lua:38
 #: dat/missions/tutorial/combatpractice.lua:60
-#: dat/missions/tutorial/tutorial.lua:105 src/dev_sysedit.c:1291
+#: dat/missions/tutorial/tutorial.lua:75 src/dev_sysedit.c:1291
 #: src/dev_sysedit.c:1549 src/dev_sysedit.c:1550 src/dev_sysedit.c:1657
 #: src/dev_sysedit.c:1671 src/dev_sysedit.c:1698 src/dev_sysedit.c:1720
 #: src/dev_sysedit.c:1799 src/dev_sysedit.c:1816 src/dev_sysedit.c:1856
@@ -10691,7 +10576,7 @@ msgstr ""
 #: src/info.c:835 src/input.c:612 src/land.c:924 src/land_outfits.c:360
 #: src/land_outfits.c:388 src/land_outfits.c:632 src/land_shipyard.c:141
 #: src/land_shipyard.c:211 src/land_trade.c:109 src/land_trade.c:111
-#: src/land_trade.c:198 src/load.c:401 src/load.c:448 src/load.c:486
+#: src/land_trade.c:198 src/load.c:401 src/load.c:451 src/load.c:489
 #: src/map.c:666 src/map.c:730 src/map.c:1965 src/map_find.c:699
 #: src/map_system.c:564 src/map_system.c:587 src/pilot_outfit.c:905
 #, c-format
@@ -11491,7 +11376,7 @@ msgstr ""
 msgid "Scorpion Station"
 msgstr "Skorpion-Station"
 
-#: dat/assets/scorpion_station.xml:26
+#: dat/assets/scorpion_station.xml:27
 msgid ""
 "Scorpion is hardly the most prestigious post for a Soromid captain to be "
 "assigned to, but the peace needs to be kept everywhere, even in Hadosh."
@@ -11500,7 +11385,7 @@ msgstr ""
 "soromidischen Kapitän zugewiesen wird, aber der Frieden muss überall gewahrt "
 "werden, selbst in Hadosch."
 
-#: dat/assets/scorpion_station.xml:27
+#: dat/assets/scorpion_station.xml:28
 msgid ""
 "The spacedock bar is a place to meet officers and make formal inquiries. "
 "It's not of much use for anything else."
@@ -12055,7 +11940,7 @@ msgstr "Siru VI"
 msgid "Skater"
 msgstr "Skater"
 
-#: dat/assets/skater.xml:27
+#: dat/assets/skater.xml:28
 msgid ""
 "Originally, Skater was settled as a supply base for traffic between Feye and "
 "the systems beyond. This was in a time when the Soromid were still expanding "
@@ -12072,7 +11957,7 @@ msgstr ""
 "Kolonie ist immer noch da. Die Menschen, die hier leben, betrachten dies "
 "jetzt als ihre Heimat."
 
-#: dat/assets/skater.xml:28
+#: dat/assets/skater.xml:29
 msgid ""
 "Skater was never of much interest to visitors, but it can be a surprisingly "
 "good place to live. If you're a Soromid. The spaceport bar acts as a sort of "
@@ -16027,8 +15912,8 @@ msgstr "Unabhängig"
 #: dat/missions/empire/hakoi_pirates/emp_hp01.lua:144
 #: dat/missions/soromid/comingout/srm_comingout3.lua:150
 #: dat/missions/soromid/comingout/srm_comingout3.lua:160
-#: dat/missions/soromid/comingout/srm_comingout4.lua:171
-#: dat/missions/soromid/comingout/srm_comingout4.lua:181
+#: dat/missions/soromid/comingout/srm_comingout4.lua:178
+#: dat/missions/soromid/comingout/srm_comingout4.lua:188
 msgid "Civilian"
 msgstr "Zivilist"
 
@@ -25021,9 +24906,8 @@ msgstr ""
 #. Settings
 #. Lower control rate
 #. This is the amount of waypoints the pilot will pass through before leaving the system
-#. This is the amount of waypoints the pilot will pass through before leaving the system
-#. Don't run away from master ship
-#. Is a carried fighter
+#. Finish up creation
+#. Settings
 #. Finish up creation
 #. We’ll consider the Za'lek prefer to turn a bad (i.e. battle) situation into
 #. a profitable one by getting money and selling fuel if possible if the player
@@ -25031,7 +24915,7 @@ msgstr ""
 #. Settings
 #. Za'lek armour is pretty crap. They know this, and will dip when their shields go down.
 #. See if a drone
-#: dat/ai/collective.lua:22 dat/ai/drone_miner.lua:10 dat/ai/tpl/escort.lua:6
+#: dat/ai/collective.lua:22 dat/ai/drone_miner.lua:10 dat/ai/escort.lua:9
 #: dat/ai/zalek.lua:21
 msgid "No response."
 msgstr "Keine Antwort."
@@ -25242,9 +25126,8 @@ msgstr "„Sicher.“"
 msgid "I'm out of here."
 msgstr "Ich bin weg."
 
-#. Finish up creation
-#. require("ai/personality/patrol") -- Messes up the ai
-#. Do not distress
+#. Player escorts perform local jumps, others don't.
+#. Just tries to guard mem.escort
 #.
 #. ===FLEE AI===
 #. Mission specific AI to make pilots leave the system immediately.
@@ -26690,10 +26573,7 @@ msgstr "„Credits sind kein Ersatz für einen guten Schild.“"
 msgid "\"Sure, I can spare some fuel.\""
 msgstr "„Ich denke, ich könnte etwas Treibstoff für %s abgeben.“"
 
-#. Simple create function
-#. Disable thinking
-#. mem.atk_think = nil
-#. Just tries to guard mem.escort
+#. This is the amount of waypoints the pilot will pass through before leaving the system
 #.
 #. -- Variables to adjust AI
 #. --
@@ -27257,18 +27137,11 @@ msgstr "Bist du dir sicher, dass du diese Mission abbrechen willst?"
 msgid "You have fired {pilot}."
 msgstr "Dir fehlt: %s."
 
-#. Make a pilot say a line, if he is alive. Mainly useful in sequential chat messages.
-#. argument chat: A table containing:
-#. pilot: The pilot to say the text
-#. text: The text to be said
-#.
-#. Example usage: hook.timer(2.0, "chatter", {pilot = p, text = "Hello, space!"})
 #. Taken from http://lua-users.org/wiki/InheritanceTutorial
 #. Implementation of additional OO properties starts here --
 #. Return the class object of the instance
 #. Return the super class object of the instance
 #. Return true if the caller is an instance of theClass
-#. Deiz's Super font Palette
 #. =======================================================================================
 #.
 #. Debug facility
@@ -27300,10 +27173,6 @@ msgstr "Dir fehlt: %s."
 #. Print message
 #.
 #. =======================================================================================
-#. Enumerates the arguments passed to it. Arguments are used as keys and will be assigned numbers in the order they are passed.
-#.
-#. Example usage: my_enum = enumerate({"first", "second", "third"})
-#. Example usage: print(my_enum.first)
 #: dat/events/control/escorts.lua:538 dat/scripts/escorthelper.lua:23
 #: src/escort.c:305
 msgid "Escort Orders"
@@ -27342,8 +27211,8 @@ msgstr "Befehle leeren"
 #: dat/events/control/escorts.lua:541 dat/rescue.lua:46 dat/rescue.lua:60
 #: dat/rescue.lua:121 dat/rescue.lua:174 dat/scripts/escorthelper.lua:26
 #: src/dialogue.c:480 src/dialogue.c:723 src/escort.c:297 src/map_find.c:246
-#: src/options.c:280 src/options.c:793 src/options.c:915 src/options.c:1177
-#: src/options.c:1244
+#: src/options.c:284 src/options.c:797 src/options.c:919 src/options.c:1181
+#: src/options.c:1248
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -27686,6 +27555,7 @@ msgstr "Söldner-Ahne"
 msgid "Mercenary Hawking"
 msgstr "Söldnerlizenz"
 
+#. Trigger a hook to allow missions to do things with mercenaries.
 #. Chance to choose no target
 #. Copy faction choices table
 #. Delete the chosen faction
@@ -29558,13 +29428,13 @@ msgstr "Dvaered-Kriegsherrn"
 msgid "Invading Warlord Force"
 msgstr ""
 
-#: dat/events/dvaered/warlords_battle.lua:164
+#: dat/events/dvaered/warlords_battle.lua:163
 #: dat/missions/flf/dvk/flf_dvk01.lua:245
 #, fuzzy
 msgid "Local Warlord"
 msgstr "Kriegsherrn"
 
-#: dat/events/dvaered/warlords_battle.lua:169
+#: dat/events/dvaered/warlords_battle.lua:168
 #: dat/missions/flf/dvk/flf_dvk01.lua:250
 msgid "Local Warlord Force"
 msgstr ""
@@ -29580,8 +29450,6 @@ msgstr ""
 #. Returns leader of fleet
 #. Chooses the first alive pilot in a list, or nil if all are dead
 #. Returns true if player is friendly to the fleet, false otherwise
-#. Arranges a list of pilot with their mass
-#. Processing of the equality case
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <event name="FLF/DV Derelicts">
@@ -30707,8 +30575,8 @@ msgstr ""
 #: dat/missions/shadow/darkshadow.lua:324
 #: dat/missions/shadow/darkshadow.lua:411
 #: dat/missions/shadow/darkshadow.lua:441 dat/missions/shadow/shadowrun.lua:272
-#: dat/missions/shadow/shadowvigil.lua:237
-#: dat/missions/shadow/shadowvigil.lua:255
+#: dat/missions/shadow/shadowvigil.lua:236
+#: dat/missions/shadow/shadowvigil.lua:254
 msgid "Four Winds"
 msgstr "Vier Winde"
 
@@ -31307,22 +31175,7 @@ msgstr "Schiffsbrüchiger %s"
 #. --
 #. Finish on the safe hook to ensure that the system claim blocks
 #. lower-priority events (namely the mercenary event).
-#. Capsule function for tk.msg that disables all key input WHILE the msg is open.
-#. Capsule function for enabling the keys passed to it in a table, plus some defaults.
-#. Capsule function for enabling basic, important keys.
 #. Capsule function for naev.keyGet() that adds a color code to the return string.
-#. @brief Create a tutorial log, for referencing tutorial information later.
-#.
-#. @usage addTutLog(_("Insert lesson here"))
-#.
-#. @luaparam text Text of the log entry.
-#. @luaparam logname_raw The raw (untranslated) name of the log to use.
-#: dat/events/tutorial/tutorial_common.lua:46
-#, fuzzy
-msgctxt "log"
-msgid "Pilot's Manual"
-msgstr "Pilot ist ungültig."
-
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <event name="Enter Tutorial Event">
@@ -31871,7 +31724,7 @@ msgstr "Piraten-Hyäne"
 #: dat/gui/brushed.lua:868 dat/gui/brushed.lua:907 dat/gui/legacy.lua:223
 #: dat/gui/legacy.lua:313 dat/gui/legacy.lua:327 dat/gui/slim.lua:393
 #: dat/gui/slim.lua:963 dat/missions/shadow/darkshadow.lua:143
-#: dat/missions/shadow/shadowvigil.lua:85 src/gui.c:1666 src/map.c:531
+#: dat/missions/shadow/shadowvigil.lua:84 src/gui.c:1666 src/map.c:531
 #: src/map.c:537 src/map.c:543 src/map.c:549 src/map.c:555 src/map.c:561
 #: src/map.c:1962 src/map_overlay.c:159 src/outfit.c:304 src/outfit.c:324
 #: src/outfit.c:898 src/player_autonav.c:237
@@ -33850,11 +33703,13 @@ msgid ""
 msgstr ""
 
 #. Note: This mission does not make system claims
+#. Make sure all planets are landable and that the player isn't on
+#. any of them.
 #: dat/missions/baron/baron_prince.lua:200
 #: dat/missions/baron/baron_prince.lua:206
 #: dat/missions/baron/baron_prince.lua:212
 #: dat/missions/neutral/lovetrain.lua:132
-#: dat/missions/soromid/comingout/srm_comingout.lua:114
+#: dat/missions/soromid/comingout/srm_comingout.lua:121
 #, fuzzy
 msgid "{planet} ({system} system)"
 msgstr "Lande auf %s im „%s“-System."
@@ -35169,14 +35024,14 @@ msgstr "Leutnant"
 #: dat/missions/neutral/drunkard.lua:101
 #: dat/missions/neutral/nebu_satellite.lua:103
 #: dat/missions/pirate/hitman.lua:37 dat/missions/pirate/hitman2.lua:38
-#: dat/missions/shadow/shadowvigil.lua:159
+#: dat/missions/shadow/shadowvigil.lua:158
 #: dat/missions/shark/sh00_ancestorkill.lua:78
 #: dat/missions/shark/sh02_tapping.lua:102
 #: dat/missions/sirius/animaltransport.lua:44
-#: dat/missions/soromid/comingout/srm_comingout.lua:144
-#: dat/missions/soromid/comingout/srm_comingout.lua:148
-#: dat/missions/soromid/comingout/srm_comingout2.lua:98
-#: dat/missions/soromid/comingout/srm_comingout4.lua:150
+#: dat/missions/soromid/comingout/srm_comingout.lua:151
+#: dat/missions/soromid/comingout/srm_comingout.lua:155
+#: dat/missions/soromid/comingout/srm_comingout2.lua:101
+#: dat/missions/soromid/comingout/srm_comingout4.lua:157
 #: dat/missions/tutorial/reynir.lua:112 dat/missions/tutorial/reynir.lua:144
 #: dat/missions/tutorial/teenager.lua:109
 #: dat/missions/tutorial/tutorial3.lua:114
@@ -41918,9 +41773,9 @@ msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
 #: dat/missions/neutral/trader_escort.lua:503
-#: dat/missions/shadow/shadowvigil.lua:176
-#: dat/missions/soromid/comingout/srm_comingout3.lua:218
-#: dat/missions/soromid/comingout/srm_comingout4.lua:242
+#: dat/missions/shadow/shadowvigil.lua:175
+#: dat/missions/soromid/comingout/srm_comingout3.lua:224
+#: dat/missions/soromid/comingout/srm_comingout4.lua:255
 #: dat/missions/tutorial/tutorial_follow.lua:122
 #, fuzzy
 msgid "Land on {planet}"
@@ -41935,20 +41790,20 @@ msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
 #: dat/missions/neutral/trader_escort.lua:513
-#: dat/missions/shadow/shadowvigil.lua:185
+#: dat/missions/shadow/shadowvigil.lua:184
 #: dat/missions/soromid/comingout/srm_comingout3.lua:124
-#: dat/missions/soromid/comingout/srm_comingout3.lua:228
-#: dat/missions/soromid/comingout/srm_comingout4.lua:252
+#: dat/missions/soromid/comingout/srm_comingout3.lua:234
+#: dat/missions/soromid/comingout/srm_comingout4.lua:265
 #: dat/missions/tutorial/tutorial_follow.lua:119
 #, fuzzy
 msgid "Jump to {system}"
 msgstr "Kehre nach %s zurück"
 
 #: dat/missions/neutral/trader_escort.lua:517
-#: dat/missions/shadow/shadowvigil.lua:189
+#: dat/missions/shadow/shadowvigil.lua:188
 #: dat/missions/soromid/comingout/srm_comingout3.lua:125
-#: dat/missions/soromid/comingout/srm_comingout3.lua:232
-#: dat/missions/soromid/comingout/srm_comingout4.lua:256
+#: dat/missions/soromid/comingout/srm_comingout3.lua:238
+#: dat/missions/soromid/comingout/srm_comingout4.lua:269
 msgid "{remaining} more jump after this one"
 msgid_plural "{remaining} more jumps after this one"
 msgstr[0] ""
@@ -43680,7 +43535,7 @@ msgstr ""
 "wird."
 
 #: dat/missions/shadow/darkshadow.lua:241 dat/missions/shadow/shadowrun.lua:273
-#: dat/missions/shadow/shadowvigil.lua:239
+#: dat/missions/shadow/shadowvigil.lua:238
 msgid "Seiryuu"
 msgstr "Seiryuu"
 
@@ -44375,7 +44230,7 @@ msgstr "Eine dunkelhaarige Frau"
 #. [
 #. This is the second mission in the "shadow" series.
 #. ]]
-#: dat/missions/shadow/shadowvigil.lua:31
+#: dat/missions/shadow/shadowvigil.lua:30
 #, fuzzy
 msgid ""
 "\"Greetings, {player},\" the pilot of the Vendetta says to you as soon as "
@@ -44408,7 +44263,7 @@ msgstr ""
 "Möglichkeit, um herauszufinden, worum es geht. Vielleicht solltest du eine "
 "Notiz von dem Ort, an dem du sie treffen sollst, machen: das %s-System."
 
-#: dat/missions/shadow/shadowvigil.lua:35
+#: dat/missions/shadow/shadowvigil.lua:34
 msgid ""
 "\"Oh! Sorry, I mistook you for somebody else. Here, I know you're busy and "
 "I've interrupted you, so as an apology I've deposited a small sum of credits "
@@ -44418,7 +44273,7 @@ msgid ""
 "they know your account details?…"
 msgstr ""
 
-#: dat/missions/shadow/shadowvigil.lua:37
+#: dat/missions/shadow/shadowvigil.lua:36
 #, fuzzy
 msgid ""
 "You dock with the Seiryuu and shut down your engines, now knowing that the "
@@ -44470,7 +44325,7 @@ msgstr ""
 "scheint Jorek auch Gefallen an dir gefunden zu haben. Er mag rau erscheinen, "
 "aber im Herzen ist er ein guter Mann.“"
 
-#: dat/missions/shadow/shadowvigil.lua:43
+#: dat/missions/shadow/shadowvigil.lua:42
 #, fuzzy
 msgid ""
 "You choose not to say anything, but Rebina seems to have no trouble reading "
@@ -44512,7 +44367,7 @@ msgstr ""
 "vor und fixiert dich mit einem starren Blick. „Wo wir gerade von "
 "spezifischen Zielen sprechen, ich habe ein solches Ziel für dich.“"
 
-#: dat/missions/shadow/shadowvigil.lua:47
+#: dat/missions/shadow/shadowvigil.lua:46
 #, fuzzy
 msgid ""
 "\"You may not know this, but there are tensions between the Imperial and "
@@ -44561,7 +44416,7 @@ msgstr ""
 "Belohnung, solltest du dich entscheiden, anzunehmen. Kann ich auf dich "
 "zählen, dass du diese Aufgabe übernimmst?“"
 
-#: dat/missions/shadow/shadowvigil.lua:53
+#: dat/missions/shadow/shadowvigil.lua:52
 #, fuzzy
 msgid ""
 "Captain Rebina sighs. \"I see. I don't mind admitting that I hoped you would "
@@ -44587,7 +44442,7 @@ msgstr ""
 "deinen Flugprotokollen keinen Hinweis auf dein Rendezvous mit dem Seiryuu "
 "finden kannst …"
 
-#: dat/missions/shadow/shadowvigil.lua:57
+#: dat/missions/shadow/shadowvigil.lua:56
 #, fuzzy
 msgid ""
 "\"Excellent, {player}.\" Rebina smiles at you. \"I've told my crew to "
@@ -44617,7 +44472,7 @@ msgstr ""
 "Bald lehnst du dich in deinem eigenen Cockpit-Stuhl zurück, bereit zu tun, "
 "was von dir verlangt wurde."
 
-#: dat/missions/shadow/shadowvigil.lua:61
+#: dat/missions/shadow/shadowvigil.lua:60
 msgid ""
 "After finishing docking procedures, you locate and meet up with the Four "
 "Winds pilots you will be working with, and the diplomat you will be "
@@ -44625,7 +44480,7 @@ msgid ""
 "politely inform you that they will meet you out in space."
 msgstr ""
 
-#: dat/missions/shadow/shadowvigil.lua:63
+#: dat/missions/shadow/shadowvigil.lua:62
 msgid ""
 "Before you can even react, the other Four Winds escorts open fire on the "
 "diplomat. By the time you've processed what's happened, the traitorous "
@@ -44634,7 +44489,7 @@ msgid ""
 "to report what happened to Rebina."
 msgstr ""
 
-#: dat/missions/shadow/shadowvigil.lua:65
+#: dat/missions/shadow/shadowvigil.lua:64
 #, fuzzy
 msgid ""
 "Captain Rebina angrily drums her fingers on her captain's chair as she "
@@ -44686,7 +44541,7 @@ msgstr ""
 "zu sein. Wer sind sie, was wollen sie, und welche Rolle spielst du bei all "
 "dem? Das wird die Zeit zeigen müssen."
 
-#: dat/missions/shadow/shadowvigil.lua:71
+#: dat/missions/shadow/shadowvigil.lua:70
 msgid ""
 "After managing to bypass the ship's security system, you enter the cockpit "
 "and notice that the fighter has been sabotaged and might soon explode. You "
@@ -44695,14 +44550,14 @@ msgid ""
 "caught in the ensuing explosion."
 msgstr ""
 
-#: dat/missions/shadow/shadowvigil.lua:73
+#: dat/missions/shadow/shadowvigil.lua:72
 msgid ""
 "You try to board another one of the Four Winds escorts hoping for a more "
 "successful interrogation, but the ship begins self-destructing before you "
 "can complete docking procedures."
 msgstr ""
 
-#: dat/missions/shadow/shadowvigil.lua:75
+#: dat/missions/shadow/shadowvigil.lua:74
 #, fuzzy
 msgid ""
 "You have landed when you were supposed to escort the diplomat, failing your "
@@ -44711,11 +44566,11 @@ msgstr ""
 "Du bist gelandet, aber du solltest den Diplomaten eskortieren. Deine Mission "
 "ist ein Fehlschlag!"
 
-#: dat/missions/shadow/shadowvigil.lua:77
+#: dat/missions/shadow/shadowvigil.lua:76
 msgid "Shadow Vigil"
 msgstr "Schattenwache"
 
-#: dat/missions/shadow/shadowvigil.lua:80
+#: dat/missions/shadow/shadowvigil.lua:79
 msgid ""
 "Captain Rebina of the Four Winds has asked you to help Four Winds agents "
 "protect an Imperial diplomat."
@@ -44723,23 +44578,23 @@ msgstr ""
 "Kapitänin Rebina der Vier Winde hat dich gebeten, den Agenten der Vier Winde "
 "zu helfen, einen imperialen Diplomaten zu beschützen."
 
-#: dat/missions/shadow/shadowvigil.lua:81
+#: dat/missions/shadow/shadowvigil.lua:80
 #, fuzzy
 msgid "A sum of credits"
 msgstr "Eine Geldsumme."
 
-#: dat/missions/shadow/shadowvigil.lua:83
+#: dat/missions/shadow/shadowvigil.lua:82
 #, fuzzy
 msgid "Mysterious Meeting"
 msgstr "Das Treffen"
 
-#: dat/missions/shadow/shadowvigil.lua:84
+#: dat/missions/shadow/shadowvigil.lua:83
 msgid ""
 "You have been invited to a meeting in the {system} system, though you don't "
 "know with whom."
 msgstr ""
 
-#: dat/missions/shadow/shadowvigil.lua:87
+#: dat/missions/shadow/shadowvigil.lua:86
 msgid ""
 "Captain Rebina has revealed some information about the organization she "
 "works for. \"The organization I'm part of is known as the Four Winds, or "
@@ -44760,7 +44615,7 @@ msgstr ""
 "eine private Operation mit sehr spezifischen Zielen vorstellen. Zu diesem "
 "Zeitpunkt ist dies alles, was ich dir sagen kann.“"
 
-#: dat/missions/shadow/shadowvigil.lua:88
+#: dat/missions/shadow/shadowvigil.lua:87
 msgid ""
 "Your attempt to escort a diplomat for the Four Winds was thwarted by "
 "traitors on the inside. Other Four Winds escorts opened fire on the "
@@ -44774,49 +44629,49 @@ msgstr ""
 
 #. After having accepted the mission from the hailing Vendetta
 #. Small consolation pay
-#: dat/missions/shadow/shadowvigil.lua:122
-#: dat/missions/shadow/shadowvigil.lua:375
+#: dat/missions/shadow/shadowvigil.lua:121
+#: dat/missions/shadow/shadowvigil.lua:374
 #, fuzzy
 msgid "Fly to the {system} system and dock with (board) Seiryuu"
 msgstr "Gehe zum „%s“-System und funke den Prototypen an"
 
-#: dat/missions/shadow/shadowvigil.lua:161
+#: dat/missions/shadow/shadowvigil.lua:160
 #, fuzzy
 msgid "Escort the diplomat to {planet} ({system} system)"
 msgstr "Begleite einen Handelskonvoi nach %s im „%s“-System"
 
-#: dat/missions/shadow/shadowvigil.lua:174
+#: dat/missions/shadow/shadowvigil.lua:173
 #, fuzzy
 msgid "Protect the diplomat and wait for them to land on {planet}"
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
-#: dat/missions/shadow/shadowvigil.lua:183
+#: dat/missions/shadow/shadowvigil.lua:182
 #, fuzzy
 msgid "Protect the diplomat and wait for them to jump to {system}"
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
-#: dat/missions/shadow/shadowvigil.lua:231
+#: dat/missions/shadow/shadowvigil.lua:230
 #, fuzzy
 msgid "MISSION FAILED: You abandoned the diplomat."
 msgstr "MISSION FEHLGESCHLAGEN: Du hast den VIP in Stich gelassen."
 
-#: dat/missions/shadow/shadowvigil.lua:253
+#: dat/missions/shadow/shadowvigil.lua:252
 msgid "Imperial Diplomat"
 msgstr "Imperialer Diplomat"
 
-#: dat/missions/shadow/shadowvigil.lua:258
+#: dat/missions/shadow/shadowvigil.lua:257
 msgid "Four Winds Escort"
 msgstr "Vier-Winde-Geleit"
 
 #. Unset invincibility meant for the escorts
-#: dat/missions/shadow/shadowvigil.lua:331
+#: dat/missions/shadow/shadowvigil.lua:330
 #, fuzzy
 msgid "Diplomatic vessel under attack! Requesting assistance!"
 msgstr "%s-Schiff wird angegriffen! Bitte um Hilfe!"
 
-#: dat/missions/shadow/shadowvigil.lua:360
+#: dat/missions/shadow/shadowvigil.lua:359
 #, fuzzy
 msgid "MISSION FAILED: Imperial Diplomat died."
 msgstr "MISSION FEHLGESCHLAGEN: VIP ist tot."
@@ -45372,7 +45227,7 @@ msgstr ""
 "Konkurrenz aus dem Hause Sirius zu sabotieren. Arnold Smith sagte, ich solle "
 "ihn bald in der Kneipe treffen; er hat vielleicht einen anderen Job für dich."
 
-#. the chances you have to get an ambush
+#. Note: this mission makes no system claims.
 #: dat/missions/shark/sh02_tapping.lua:100
 #, fuzzy
 msgid ""
@@ -45383,23 +45238,17 @@ msgstr ""
 
 #. The player is landing on the mission planet to get the box
 #. Job is done
-#. Ambush !
-#. the probability of an ambush goes up when you cross a system without meeting any ennemy
-#: dat/missions/shark/sh02_tapping.lua:156
+#: dat/missions/shark/sh02_tapping.lua:143
 #, fuzzy
 msgid "Recordings"
 msgstr "Entern"
 
-#: dat/missions/shark/sh02_tapping.lua:157
+#: dat/missions/shark/sh02_tapping.lua:144
 msgid "Recordings obtained by a Nexus agent in an act of corporate espionage."
 msgstr ""
 
 #. remove the spy
-#: dat/missions/shark/sh02_tapping.lua:178
-#, fuzzy
-msgid "Mercenary {ship}"
-msgstr "Söldner"
-
+#. Add a hook to make mercenaries chase the player.
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <mission name="Sirius Bounty">
@@ -46331,20 +46180,20 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:52
 msgid ""
-"You arrive at your first destination after a trip that involved a pretty "
-"sizable amount of conversation. \"Thank you for helping me with this,\" C "
-"says as you begin to approach. \"And thanks for, um, treating me like a "
-"human being.\" You can't help but laugh slightly at the statement as you "
-"remark on how incredibly low the bar must be for you to be thanked for that. "
-"C laughs along with you.\n"
+"You arrive at your first destination with C after a relatively quiet, but "
+"pleasant trip. \"Thank you for helping me with this,\" C says as you begin "
+"to approach. \"And for treating me like a human being,\" they add with a mix "
+"of amusement and relief. You can't help but laugh slightly at the statement "
+"as you remark on how incredibly low the bar must be for you to be thanked "
+"for that. \"I know, right? Well hey, the last guy didn't do that, so this is "
+"a nice change.\"\n"
 "\n"
 "When you land, C takes off and goes to do whatever they need to do. By the "
 "time you've finished docking procedures, they return with a cheery look on "
 "their face. \"Someone just called me 'ma'am'!\" they explain excitedly. "
-"\"That's the first time! I don't know what it is. I guess part of it might "
-"have been because I didn't speak. Either way, it felt really validating.\" "
-"You congratulate them. \"Thank you! You know what? I'm going to start using "
-"she/her pronouns, I think.\" You give a nod and thank her for telling you."
+"\"That's the first time! It felt really validating. You know what? I'm going "
+"to start using she/her pronouns, I think.\" You give a nod and thank her for "
+"telling you."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:56
@@ -46356,8 +46205,7 @@ msgid ""
 "yourself blushing a little as she continues. \"To travel all the way from "
 "Empire space into Soromid space really is quite huge! And all those places "
 "you've been to along the way! You're exactly the kind of pilot I want to be."
-"\" You only half-jokingly suggest that maybe you should collaborate with her "
-"on a mission when she gets her piloting license. She softly giggles.\n"
+"\"\n"
 "\n"
 "This time, you finish docking procedures before C finishes her errands at "
 "this location, so you head off on your own for a while. When you get back, "
@@ -46371,10 +46219,10 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:60
 msgid ""
-"The trip to this destination was filled with conversation, and you and C "
-"have learned a lot about each other. C mentioned several names she was "
-"considering, then after some deliberation, came to an answer. \"I think I "
-"like 'Chelsea',\" she said.\n"
+"The trip to this destination was a bit quiet compared to the last one as C "
+"spent most of the time thinking to herself about what name she wanted to "
+"use. She muttered several names she was considering, then after some "
+"deliberation, came to an answer. \"I think I like 'Chelsea',\" she said.\n"
 "\n"
 "Now, as you dock, Chelsea has a very happy look on her face. She goes to do "
 "whatever she needs to do in high spirits and judging by how she looks when "
@@ -46383,19 +46231,16 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:64
 msgid ""
-"At this point, talking to Chelsea has become a very natural thing for you. "
-"You've gotten used to the constant chatter. When she goes off on her errands "
-"at this location, the quiet feels strange in comparison.\n"
-"\n"
-"When Chelsea returns, she heaves a bit of a sigh. \"Well, I guess the only "
-"place to go is back to my home planet, huh? It's funny, I haven't known you "
-"for that long, but I feel like you know me way better than anyone else. It's "
+"You land at Chelsea's final destination and send her on her way as before. "
+"When she returns, she heaves a bit of a sigh. \"Well, I guess the only place "
+"to go is back to my home planet, huh? It's funny, I haven't known you for "
+"that long, but I feel like you know me way better than anyone else. It's "
 "like I've been pretending to be someone else all my life, you know?\n"
 "\n"
 "\"Anyway, I guess it's time to go back to my home planet.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout.lua:70
+#: dat/missions/soromid/comingout/srm_comingout.lua:68
 msgid ""
 "\"It's so weird,\" Chelsea remarks as you begin landing procedures. \"Coming "
 "out to you was easy, but coming out to my parents? Terrifying. I just hope "
@@ -46407,11 +46252,11 @@ msgid ""
 "should accept that invitation at some point in the future."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout.lua:72
+#: dat/missions/soromid/comingout/srm_comingout.lua:70
 msgid "Coming Out"
 msgstr "Coming-Out"
 
-#: dat/missions/soromid/comingout/srm_comingout.lua:73
+#: dat/missions/soromid/comingout/srm_comingout.lua:71
 msgid ""
 "You have been hired to transport someone who was stranded to several "
 "locations to run some errands:\n"
@@ -46422,11 +46267,11 @@ msgid ""
 "system)"
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout.lua:79
+#: dat/missions/soromid/comingout/srm_comingout.lua:77
 msgid "Quiet stranger"
 msgstr "Stiller Fremder"
 
-#: dat/missions/soromid/comingout/srm_comingout.lua:80
+#: dat/missions/soromid/comingout/srm_comingout.lua:78
 #, fuzzy
 msgid ""
 "A stranger is sitting quietly at a table alone and staring off into space."
@@ -46434,7 +46279,7 @@ msgstr ""
 "Ein Fremder sitzt still an einem Tisch, alleine, und blickt um die Bar "
 "herum. Wird hier vielleicht ein geeigneter Pilot gebraucht?"
 
-#: dat/missions/soromid/comingout/srm_comingout.lua:82
+#: dat/missions/soromid/comingout/srm_comingout.lua:80
 #, fuzzy
 msgid ""
 "You have met a woman, Chelsea, who recently came out as transgender. You "
@@ -46566,8 +46411,8 @@ msgstr ""
 #: dat/missions/soromid/comingout/srm_comingout2.lua:58
 #: dat/missions/soromid/comingout/srm_comingout3.lua:92
 #: dat/missions/soromid/comingout/srm_comingout3.lua:161
-#: dat/missions/soromid/comingout/srm_comingout4.lua:120
-#: dat/missions/soromid/comingout/srm_comingout4.lua:182
+#: dat/missions/soromid/comingout/srm_comingout4.lua:127
+#: dat/missions/soromid/comingout/srm_comingout4.lua:189
 msgid "Chelsea"
 msgstr "Chelsea"
 
@@ -46680,7 +46525,7 @@ msgid ""
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:63
-#: dat/missions/soromid/comingout/srm_comingout4.lua:94
+#: dat/missions/soromid/comingout/srm_comingout4.lua:95
 msgid "You have lost contact with Chelsea and therefore failed the mission."
 msgstr ""
 "Du hast Kontakt mit Chelsea verloren. Dadurch ist die Mission gescheitert."
@@ -46698,9 +46543,9 @@ msgid ""
 "I apologize for not revealing the full scope of the mission to you, but it "
 "was a matter of national security. I trust you understand.\" She hands you a "
 "credit chip with the promised payment. \"I hope we meet again sometime, "
-"{player}. The same goes for Chelsea.\" She shakes your hand and leaves you "
-"and Chelsea with the cargo containers. You exchange a few pleasantries with "
-"Chelsea before seeing her off as well."
+"{player}. The same goes for Chelsea.\" She shakes your hand and leaves as "
+"the cargo containers are taken away. You exchange a few pleasantries with "
+"Chelsea before seeing her off."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:69
@@ -46727,39 +46572,42 @@ msgid "You see Chelsea looking around. Perhaps she needs help with something."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:122
-#: dat/missions/soromid/comingout/srm_comingout3.lua:226
+#: dat/missions/soromid/comingout/srm_comingout3.lua:232
 #, fuzzy
 msgid "Protect Chelsea and wait for her to jump to {system}"
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
 #: dat/missions/soromid/comingout/srm_comingout3.lua:151
-#: dat/missions/soromid/comingout/srm_comingout3.lua:193
-#: dat/missions/soromid/comingout/srm_comingout4.lua:172
-#: dat/missions/soromid/comingout/srm_comingout4.lua:346
+#: dat/missions/soromid/comingout/srm_comingout3.lua:198
+#: dat/missions/soromid/comingout/srm_comingout4.lua:179
+#: dat/missions/soromid/comingout/srm_comingout4.lua:362
 msgid "Imperyan Brotherhood"
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout3.lua:198
-#: dat/missions/soromid/comingout/srm_comingout4.lua:353
+#: dat/missions/soromid/comingout/srm_comingout3.lua:203
+#: dat/missions/soromid/comingout/srm_comingout4.lua:369
 #, fuzzy
 msgid "Gangster {ship}"
 msgstr "Panther"
 
-#: dat/missions/soromid/comingout/srm_comingout3.lua:216
+#: dat/missions/soromid/comingout/srm_comingout3.lua:222
 #, fuzzy
 msgid "Protect Chelsea and wait for her to land on {planet}"
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
-#: dat/missions/soromid/comingout/srm_comingout3.lua:262
-#: dat/missions/soromid/comingout/srm_comingout4.lua:294
+#. Spawn the first gangster at the jump from the next system (makes
+#. sure it doesn't spawn right on top of the player right at the
+#. start).
+#: dat/missions/soromid/comingout/srm_comingout3.lua:275
+#: dat/missions/soromid/comingout/srm_comingout4.lua:310
 #, fuzzy
 msgid "You have abandoned the mission."
 msgstr "MISSION FEHLGESCHLAGEN: Du hast die Mission abgebrochen."
 
-#: dat/missions/soromid/comingout/srm_comingout3.lua:291
-#: dat/missions/soromid/comingout/srm_comingout4.lua:370
+#: dat/missions/soromid/comingout/srm_comingout3.lua:304
+#: dat/missions/soromid/comingout/srm_comingout4.lua:386
 #, fuzzy
 msgid ""
 "A rift in the space-time continuum causes you to have never met Chelsea in "
@@ -46768,22 +46616,22 @@ msgstr ""
 "MISSION FEHLGESCHLAGEN: Ein Riss im Raum-Zeit-Kontinuum führt dazu, dass du "
 "Chelsea nie in dieser Kneipe getroffen hast."
 
-#: dat/missions/soromid/comingout/srm_comingout3.lua:298
-#: dat/missions/soromid/comingout/srm_comingout4.lua:381
+#: dat/missions/soromid/comingout/srm_comingout3.lua:311
+#: dat/missions/soromid/comingout/srm_comingout4.lua:397
 #, fuzzy
 msgid "Chelsea has jumped to {system}."
 msgstr "Chelsea ist nach %s gesprungen."
 
-#: dat/missions/soromid/comingout/srm_comingout3.lua:303
-#: dat/missions/soromid/comingout/srm_comingout3.lua:317
-#: dat/missions/soromid/comingout/srm_comingout4.lua:386
-#: dat/missions/soromid/comingout/srm_comingout4.lua:403
+#: dat/missions/soromid/comingout/srm_comingout3.lua:316
+#: dat/missions/soromid/comingout/srm_comingout3.lua:330
+#: dat/missions/soromid/comingout/srm_comingout4.lua:402
+#: dat/missions/soromid/comingout/srm_comingout4.lua:419
 #, fuzzy
 msgid "Chelsea has abandoned the mission."
 msgstr "MISSION FEHLGESCHLAGEN: Chelsea hat die Mission abgebrochen."
 
-#: dat/missions/soromid/comingout/srm_comingout3.lua:311
-#: dat/missions/soromid/comingout/srm_comingout4.lua:398
+#: dat/missions/soromid/comingout/srm_comingout3.lua:324
+#: dat/missions/soromid/comingout/srm_comingout4.lua:414
 #, fuzzy
 msgid "Chelsea has landed on {planet}."
 msgstr "Chelsea ist auf %s gelandet."
@@ -46797,7 +46645,7 @@ msgstr "Chelsea ist auf %s gelandet."
 #. <avail>
 #. <priority>20</priority>
 #. <done>A Friend's Aid</done>
-#. <chance>10</chance>
+#. <chance>40</chance>
 #. <location>Bar</location>
 #. <faction>Soromid</faction>
 #. </avail>
@@ -46824,7 +46672,7 @@ msgstr "Chelsea ist auf %s gelandet."
 #. along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #.
 #. --
-#: dat/missions/soromid/comingout/srm_comingout4.lua:44
+#: dat/missions/soromid/comingout/srm_comingout4.lua:45
 msgid ""
 "Chelsea looks at you with surprise. \"Oh! {player}! It's nice to see you "
 "again! I, uh, decided to change my pronouns. I'm using they/them pronouns "
@@ -46844,16 +46692,16 @@ msgid ""
 "\"Actually, maybe you could help! Could you meet me on {startplanet} in the "
 "{startsystem} system and then escort me to {destplanet} in the {destsystem} "
 "system and back, and back me up while I confront my parents? I could give "
-"you, say, {credits} in exchange. Could you do this for me, {player}?\""
+"you, say, {credits} in exchange.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:50
+#: dat/missions/soromid/comingout/srm_comingout4.lua:51
 msgid ""
 "\"You're a life-saver, {player}, maybe literally! That's perfect. I'll meet "
 "you on {planet}, then, and we'll go from there.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:52
+#: dat/missions/soromid/comingout/srm_comingout4.lua:53
 #, fuzzy
 msgid ""
 "\"Ah, if you're too busy, that's OK. I'll have to investigate some other "
@@ -46862,14 +46710,14 @@ msgstr ""
 "„Ah, du bist beschäftigt, eh? Ach so. Lass mich wissen, wenn du deine "
 "Meinung änderst, OK?“"
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:54
+#: dat/missions/soromid/comingout/srm_comingout4.lua:55
 msgid ""
 "\"Ah, {player}! I could still use your help guiding me from {startplanet} in "
 "the {startsystem} system to {destplanet} in the {destsystem} system and back "
 "for {credits}. Are you up for it now?\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:56
+#: dat/missions/soromid/comingout/srm_comingout4.lua:57
 msgid ""
 "You meet up with Chelsea. \"Hello again, {player}!\" they say with a wave. "
 "\"I'm all ready to head to {planet}! Like last time, I'll need you to follow "
@@ -46877,7 +46725,7 @@ msgid ""
 "shoot down any hostilities. See you out in space!\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:59
+#: dat/missions/soromid/comingout/srm_comingout4.lua:60
 msgid ""
 "You land and dock on {destplanet} with trepidation and meet up with Chelsea. "
 "It seems they're just as tense as you are. They make a phone call, "
@@ -46896,7 +46744,7 @@ msgid ""
 "anymore. It's 'Chelsea'. And I'm using they/them pronouns now.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:62
+#: dat/missions/soromid/comingout/srm_comingout4.lua:63
 msgid ""
 "\"Ah, right, I'm so sorry about that,\" Chelsea's mom says after a short "
 "pause. \"This is so hard! I know I slip up sometimes, but don't you worry, "
@@ -46911,7 +46759,7 @@ msgid ""
 "without realizing it. It dates back to centuries before space travel.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:67
+#: dat/missions/soromid/comingout/srm_comingout4.lua:68
 msgid ""
 "Chelsea's father shrugs. \"I don't get it, but whatever makes you happy, I "
 "guess. So, tell me, son– uh, er, I mean, kid. What brings you here?\"\n"
@@ -46928,7 +46776,7 @@ msgid ""
 "into trouble with… unsavory sorts, right?\" You raise an eyebrow."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:74
+#: dat/missions/soromid/comingout/srm_comingout4.lua:75
 msgid ""
 "\"It's the government I worry about,\" Chelsea's father interjects. \"It's "
 "in the pocket of big genetics, you know? Those bio-augmenters, they're "
@@ -46945,7 +46793,7 @@ msgid ""
 "ploy?!\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:79
+#: dat/missions/soromid/comingout/srm_comingout4.lua:80
 msgid ""
 "Chelsea stares with shock as the truth starts to emerge. Their mother puts "
 "her hand on her husband's shoulder as she speaks to Chelsea. \"Look, you'll "
@@ -46965,7 +46813,7 @@ msgid ""
 "with the Brotherhood, you can become the man you were always meant to be.\""
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:84
+#: dat/missions/soromid/comingout/srm_comingout4.lua:85
 msgid ""
 "\"Mom, dad… I'm not your son, I never was, and I never will be. If you've "
 "been lying to me about accepting it all this time–\"\n"
@@ -46985,11 +46833,11 @@ msgid ""
 "feeling you won't be safe just yet when you get to space."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:90
+#: dat/missions/soromid/comingout/srm_comingout4.lua:91
 msgid ""
 "After finishing docking procedures on {planet}, you meet a dejected Chelsea. "
 "You offer your condolences. \"Thank you, {player},\" they reply. \"You know, "
-"I always knew my parents were perfect, but I thought they were good. I "
+"I always knew my parents weren't perfect, but I thought they were good. I "
 "thought they were telling the truth when they said they accepted me. And I "
 "never fully appreciated the gravity of the things they said, or that they "
 "had such bigoted attitudes toward the Soromid.\n"
@@ -47003,18 +46851,18 @@ msgid ""
 "ways."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:96
+#: dat/missions/soromid/comingout/srm_comingout4.lua:97
 msgid "Family Suspicion"
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:97
+#: dat/missions/soromid/comingout/srm_comingout4.lua:98
 msgid ""
 "Chelsea has hired you to escort her to {planet} in the {system} system so "
 "she can investigate a possible connection between her parents and the "
 "Imperyan Brotherhood."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:99
+#: dat/missions/soromid/comingout/srm_comingout4.lua:100
 msgid ""
 "You assisted Chelsea, who now uses they/them pronouns, in confronting their "
 "parents about a hunch. As you did so, you discovered that their parents were "
@@ -47026,33 +46874,33 @@ msgid ""
 "Brotherhood."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:121
+#: dat/missions/soromid/comingout/srm_comingout4.lua:128
 msgid "Chelsea is staring at a datapad with a troubled expression."
 msgstr ""
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:152
+#: dat/missions/soromid/comingout/srm_comingout4.lua:159
 #, fuzzy
 msgid "Escort Chelsea to {planet} ({system} system)"
 msgstr "Begleite einen Handelskonvoi nach %s im „%s“-System"
 
 #. Spawn a bunch of Empire to help keep pirates busy
-#: dat/missions/soromid/comingout/srm_comingout4.lua:240
+#: dat/missions/soromid/comingout/srm_comingout4.lua:253
 #, fuzzy
 msgid "Protect Chelsea and wait for them to land on {planet}"
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:250
+#: dat/missions/soromid/comingout/srm_comingout4.lua:263
 #, fuzzy
 msgid "Protect Chelsea and wait for them to jump to {system}"
 msgstr ""
 "Schütze Chelsea und hilf dabei, %s gefangen zu töten oder gefangen zu nehmen"
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:271
+#: dat/missions/soromid/comingout/srm_comingout4.lua:287
 msgid "It's too dangerous to land here right now."
 msgstr "Es ist zu gefährlich, hier jetzt zu landen."
 
-#: dat/missions/soromid/comingout/srm_comingout4.lua:363
+#: dat/missions/soromid/comingout/srm_comingout4.lua:379
 #, fuzzy
 msgid "You heard the boss, folks! Get them!"
 msgstr "Sie wagen es, mich anzugreifen?! Holt sie euch!"
@@ -48054,282 +47902,28 @@ msgid ""
 msgstr ""
 
 #: dat/missions/tutorial/tutorial.lua:64
-msgid ""
-"Basic movement can be accomplished by the movement keys (Accelerate, Turn "
-"Left, Turn Right, and Reverse; W, A, D, and S by default). The Reverse key "
-"either turns your ship to the direction opposite of your current movement, "
-"or thrusts backwards if you have a Reverse Thruster equipped.\n"
-"\n"
-"Alternatively, you can enable mouse flight by pressing the Mouse Flight key "
-"(Ctrl+X by default), which causes your ship to automatically point toward "
-"your mouse pointer. You can then thrust with the Accelerate key (W by "
-"default), middle mouse button, or either of the extra mouse buttons."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:67
-msgid ""
-"The mission on-screen display highlights your current objective for each "
-"mission. When you complete one objective, the next objective is highlighted."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:68
-msgid ""
-"You can land on any planet by either double-clicking on it, or by targeting "
-"the planet with the Target Planet button and then pressing the Land key (L "
-"by default). The landing procedure is automatic. If no planet is selected, "
-"pressing the Land key will initiate the automatic landing procedure for the "
-"closest suitable planet if possible."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:69
-msgid ""
-"When you land, your ship is refueled automatically if the planet or station "
-"has the \"Refuel\" service. Most planets and stations have the \"Refuel\" "
-"service, though there are some exceptions."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:70
-msgid ""
-"The Spaceport Bar allows you to read the news, meet civilians, hire pilots "
-"to join your fleet, and sometimes find unique missions. You can click on any "
-"patron of the bar and then click on the Approach button to approach them. "
-"Some civilians may lend helpful advice."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:71
-msgid ""
-"You can find basic missions in the official mission database via the Mission "
-"Computer (Missions tab while landed). You can review your active missions at "
-"any time via the ship computer, which you can open by pressing the Ship "
-"Computer key (I by default) or by pressing the Small Menu key (Escape by "
-"default) and pressing the \"Ship Computer\" button."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:72
-#, fuzzy
-msgid ""
-"You can buy and sell outfits for your ship at the Outfitter (Outfits tab "
-"while landed). You can also buy regional maps, which can help you explore "
-"the galaxy more easily, and licenses which are required for higher-end "
-"weapons and ships.\n"
-"\n"
-"The tabs at the top of the outfitter allow you to filter outfits by type: \"W"
-"\" for weapons, \"U\" for utilities, \"S\" for structurals, \"Core\" for "
-"cores, and \"Other\" for anything outside those categories (most notably, "
-"maps and licenses). Different planets have different outfits available; if "
-"you don't see a specific outfit you're looking for, you can search for it "
-"via the \"Find Outfits\" button."
-msgstr ""
-"„Dies ist der Ausstatter, wo Sie neue Ausstattungen kaufen können, um Ihr "
-"Raumschiff der Melendez-Gesellschaft noch besser zu machen! Sie können Ihr "
-"Schiff mit neuen Waffen, zusätzlichem Frachtraum, leistungsfähigeren "
-"Hauptsystemen und mehr ausstatten! Regionale Karten, die Ihnen helfen, die "
-"Galaxie leichter zu erkunden, können hier ebenso erworben werden wie "
-"Lizenzen, die für höherwertige Waffen und Raumschiffe benötigt werden (zum "
-"Beispiel benötigen Sie eine Großzivilschiffslizenz, um unser Spitzenmodell "
-"Melendez-Muli-Massenfrachtschiff zu kaufen, das wegen seiner unübertroffenen "
-"Frachtkapazität sehr begehrt ist).\n"
-"    Wie Sie sehen, können Sie über eine Reihe von Reitern am oberen Rand "
-"Ihres Bildschirms die Ausstattung nach Typ filtern: ‚W‘ für Waffen, ‚U‘ für "
-"Utensilien, ‚G‘ für Gerüstteile, ‚Haupt‘ für Hauptsysteme und ‚Andere‘ für "
-"alles, was außerhalb dieser Kategorien liegt (vor allem regionale Karten und "
-"Lizenzen). Wenn Sie eine Ausstattung sehen, die Sie interessiert, klicken "
-"Sie darauf, um mehr Informationen darüber zu erhalten, und klicken Sie dann "
-"entweder auf die Schaltfläche ‚Kaufen‘, um sie zu kaufen, oder auf die "
-"Schaltfläche ‚Verkaufen‘, um sie zu verkaufen (wenn Sie eine in Ihrem Besitz "
-"haben). Auf verschiedenen Planeten sind unterschiedliche Ausstattungen "
-"verfügbar; wenn Sie eine bestimmte Ausstattung nicht sehen, können Sie über "
-"die Schaltfläche ‚Ausst. finden‘ danach suchen.“"
-
-#: dat/missions/tutorial/tutorial.lua:75
-msgid ""
-"You can buy new ships at the Shipyard. You can then either buy a ship you "
-"want with the \"Buy\" button, or trade your current ship in for the new ship "
-"with the \"Trade-In\" button. Different planets have different ships "
-"available; if you don't see a specific ship you're looking for, you can "
-"search for it via the 'Find Ships' button.\n"
-"\n"
-"Different ships are specialized for different tasks, so you should choose "
-"your ship based on what tasks you will be performing."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:78
-#, fuzzy
-msgid ""
-"The Equipment screen is available on all planets which have either an "
-"outfitter or a shipyard. You can use the Equipment screen to equip your ship "
-"with outfits you own and sell outfits you have no more use for. If the "
-"planet or station you're landed at has a shipyard, you can also change which "
-"ship you're flying and sell unneeded ships. Selling a ship that still has "
-"outfits equipped will also lead to those outfits being sold along with the "
-"ship."
-msgstr ""
-"„Dies ist der Equipmentbildschirm, der nur auf Planeten verfügbar ist, die "
-"entweder einen Ausstatter oder eine Schiffswerft haben. Hier können Sie Ihr "
-"Schiff mit jeder Ausstattung ausstatten, die Sie beim Ausstatter gekauft "
-"haben. Wenn und nur wenn der aktuelle Planet eine Schiffswerft hat, können "
-"Sie dies auch mit jedem anderen Schiff tun, das Sie besitzen, und Sie können "
-"das Schiff, das Sie gerade steuern, tauschen, indem Sie ein anderes Schiff "
-"auswählen und auf die Schaltfläche ‚Schiff wechseln‘ klicken. Sie können "
-"diese anderen Schiffe (aber nicht Ihr aktuelles Schiff) auch mit der "
-"Schaltfläche ‚Schiff verkaufen‘ verkaufen, wenn Sie sich entscheiden, dass "
-"Sie sie nicht mehr benötigen. Wenn Sie ein Schiff verkaufen, das noch mit "
-"Ausrüstungen ausgestattet ist, werden auch diese Ausrüstungen zusammen mit "
-"dem Schiff verkauft, denken Sie also daran, wenn Sie eine Ausstattung "
-"behalten möchten.\n"
-"    Wenn Sie jetzt Änderungen an Ihrem Schiff vornehmen, stellen Sie bitte "
-"sicher, dass Sie noch zwei Waffen ausgerüstet haben, da Sie diese später zum "
-"Üben von Kämpfen benötigen und das Herumfliegen im Weltraum ohne Waffen "
-"ohnehin sehr riskant sein kann.“"
-
-#: dat/missions/tutorial/tutorial.lua:79
-#, fuzzy
-msgid ""
-"You can buy and sell commodities via the Commodity screen. Commodity prices "
-"vary from planet to planet and even over time, so you can use this screen to "
-"attempt to make money by buying low and selling high. Here, it's useful to "
-"hold the Shift and/or Ctrl keys to adjust how many kilotonnes of the "
-"commodity you're buying or selling at once.\n"
-"\n"
-"If you're unsure what's profitable to buy or sell, you can press the Open "
-"Star Map key (M by default) to view the star map and then click on the \"Mode"
-"\" button for various price overviews. The news terminal at the Spaceport "
-"Bar also includes price information for specific nearby planets."
-msgstr ""
-"„Dies ist der Warenbildschirm, auf dem Sie Waren kaufen und verkaufen "
-"können. Die Warenpreise variieren von Planet zu Planet und sogar im Laufe "
-"der Zeit, so dass Sie auf diesem Bildschirm versuchen können, Geld zu "
-"verdienen, indem Sie niedrig kaufen und hoch verkaufen. Klicken Sie auf "
-"einen Rohstoff, um Informationen über ihn zu erhalten, insbesondere den "
-"durchschnittlichen Preis pro Tonne, und klicken Sie auf die Schaltflächen "
-"‚Kaufen‘ und ‚Verkaufen‘, um einen Teil des Rohstoffs zu kaufen bzw. zu "
-"verkaufen. Hier ist es nützlich, die Umschalt- und/oder Strg-Taste gedrückt "
-"zu halten, um einzustellen, wie viele Tonnen des Rohstoffs Sie auf einmal "
-"kaufen oder verkaufen wollen. Dadurch wird die Anzahl der Klicks auf die "
-"Schaltflächen ‚Kaufen‘ und ‚Verkaufen‘ reduziert.\n"
-"    Wenn Sie sich nicht sicher sind, was sich zum Kaufen oder Verkaufen "
-"lohnt, können Sie %s drücken, um die Sternenkarte anzuzeigen und dann auf "
-"die Schaltfläche ‚Modus‘ klicken, um verschiedene Preisübersichten zu "
-"erhalten. Das Nachrichtenterminal in der Kneipe enthält auch "
-"Preisinformationen für bestimmte Planeten in der Nähe.“"
-
-#: dat/missions/tutorial/tutorial.lua:82
-msgid ""
-"You can open your ship's overlay map by pressing the Overlay Map key (Tab by "
-"default). Through the overlay map, you can right-click on any location, "
-"planet, ship, or jump point to engage Autonav, which will cause you to "
-"automatically fly toward what you clicked on. While Autonav is engaged, "
-"passage of time will speed up so that you don't have to wait to arrive at "
-"your destination in real-time. Time will reset to normal speed if hostile "
-"pilots are detected by default. This can be configured from the Options "
-"menu, which you can access by pressing the Menu key (Escape by default)."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:83
-msgid ""
-"You can target an enemy ship either by either clicking on it or by pressing "
-"the Target Nearest Hostile key (R by default). You can then fire your "
-"weapons at them with the Fire Primary Weapon key (Space by default) and the "
-"Fire Secondary Weapon key (Left Shift by default)."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:84
-msgid ""
-"You can configure the way your weapons shoot from the Weapons tab of the "
-"ship computer, which you can open by pressing the Ship Computer key (I by "
-"default) or by pressing the Small Menu key (Escape by default) and pressing "
-"the \"Ship Computer\" button."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:85
-msgid ""
-"As you fire your weapons, they and subsequently your ship get hotter. Too "
-"much heat causes your weapons to lose accuracy. You can cool down your ship "
-"at any time in space by pressing the Autobrake key (Ctrl+B by default) "
-"twice. You can also cool down your ship by landing on any planet or station."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:86
-msgid ""
-"Traveling through systems is accomplished through jump points, which you "
-"usually need to find by exploring the area, talking to locals, or buying "
-"maps. Once you have found a jump point, you can use it by double-clicking on "
-"it."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:87
-msgid ""
-"You can open your starmap by pressing the Open Star Map key (M by default). "
-"Through your starmap, you can click on a system and click on the Autonav "
-"button to be automatically transported to the system. This only works if you "
-"know a valid route to get there."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:88
-msgid ""
-"You consume fuel any time you make a jump and can refuel by landing on a "
-"friendly planet. Standard engines have enough fuel to make up to three jumps "
-"before refueling, though higher-end engines have more fuel capacity and some "
-"ships may have their own supplementary fuel tanks."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:89
-msgid ""
-"To board a ship, you generally must first use disabling weapons, such as ion "
-"cannons, to disable it, although some missions and events allow you to board "
-"certain ships without disabling them. Once the ship is disabled or otherwise "
-"can be boarded, you can board it by either double-clicking on it, or "
-"targeting it with the Target Nearest key (T by default) and then pressing "
-"the Board Target key (B by default). From there, you generally can steal the "
-"ship's credits, cargo, ammo, and/or fuel. Boarding ships can also trigger "
-"special mission events."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:90
-msgid ""
-"You can hail any other pilot by either double-clicking on them, or by "
-"targeting them with the Target Nearest key (T by default) and then pressing "
-"the Hail Target key (Y by default). From there, you can ask to be refueled. "
-"Most military ships will not be willing to help you, but many civilians and "
-"traders will be willing to sell you some fuel for a nominal fee. When you "
-"find someone willing to refuel you, you need to stop your ship, which you "
-"can do with the Autobrake key (Ctrl+B by default), and wait for them to "
-"reach your ship and finish the fuel transfer.\n"
-"\n"
-"If there are no civilians or traders in the system, you can alternatively "
-"attempt to get fuel from a pirate. To do so, you must first hail them and "
-"offer a bribe, and if you successfully bribe them, they will often be "
-"willing to refuel you if you hail them again and ask for it."
-msgstr ""
-
-#: dat/missions/tutorial/tutorial.lua:94
 #, fuzzy
 msgid "Point of Sale"
 msgstr "Nullpunkt-Station"
 
-#: dat/missions/tutorial/tutorial.lua:95
+#: dat/missions/tutorial/tutorial.lua:65
 msgid ""
 "You have purchased a new ship from Melendez and are in the process of "
 "finalizing the sale."
 msgstr ""
 
-#. Add all tutorial logs at the start; this avoids missing logs if
-#. the tutorial is aborted early on.
-#: dat/missions/tutorial/tutorial.lua:154
+#: dat/missions/tutorial/tutorial.lua:102
 #, fuzzy
 msgid ""
 "Fly to {planet} ({system} system) with the movement keys ({accelkey}, "
-"{leftkey}, {reversekey}, {rightkey})"
+"{leftkey}, {reversekey}, {rightkey}) or with mouse flight (enabled with "
+"{mouseflykey})"
 msgstr "Flieg nach %s im „%s“-System mit den Bewegungstasten"
 
-#: dat/missions/tutorial/tutorial.lua:158
+#: dat/missions/tutorial/tutorial.lua:107
 #, fuzzy
 msgid "Land on {planet} ({system} system) by double-clicking on it"
 msgstr "Lande auf %s im „%s“-System, indem du es doppelklickst"
-
-#: dat/missions/tutorial/tutorial.lua:162
-msgid "Flight Training"
-msgstr ""
 
 #. Recreate OSD in case key binds have changed.
 #.
@@ -49948,33 +49542,6 @@ msgstr ""
 #. Must not have been explored previously
 #. New table becomes the old
 #. Now we filter the solutions
-#. ---
-#. Small music handling library.
-#.
-#. Based on Love2D and Naev API
-#. @module lmusic
-#. --
-#: dat/scripts/lmusic.lua:19
-#, lua-format
-msgid "lmusic: Trying to find music '%s', but it is not playing!"
-msgstr ""
-
-#. ---
-#. Plays a music with fade-in and fade-out.
-#.
-#. @tparam string|file filename Name or file object to open.
-#. @tparam tab params Parameter table.
-#. @treturn tab New music object.
-#. --
-#. Check stopped
-#. ---
-#. Stops a playing music (or all of them)
-#.
-#. @tparam tab|nil m Music to stop, or nil to stop all playing music.
-#. --
-#. ---
-#. Forcibly stops playing music and restarts Naev's game music.
-#. --
 #.
 #.
 #. Love2d API in Naev!!!!!
@@ -50191,38 +49758,6 @@ msgstr "Fallback-Schrift konnte nicht gesetzt werden"
 #. --
 #. function window.getDimensions() return love.w, love.h end -- Removed in Love2D 10.0
 #. Skip unnecessary changing
-#.
-#. -- Implementation of parts of the Naev toolkit... in Lua!
-#. --
-#.
-#. -- Global functions
-#. --
-#.
-#. -- Important functions
-#. --
-#.
-#. -- Window class
-#. --
-#. Draw background
-#. Set scissors
-#. Draw widgets ontop
-#. Restore scissors
-#.
-#. -- Widget class
-#. --
-#.
-#. -- Button widget
-#. --
-#. cFontGrey
-#.
-#. -- Text widget
-#. --
-#.
-#. -- Rectangle widget
-#. --
-#.
-#. -- Image widget
-#. --
 #. --
 #. Generic mission-helping functions.
 #.
@@ -54213,6 +53748,34 @@ msgstr ""
 #. Start with an empty ship
 #. Copy equipment
 #. Delete pilot
+#. --
+#. Functions which assist with working with tables.
+#.
+#. @usage local tablehelper = require "tablehelper"
+#.
+#. @module tablehelper
+#. --
+#. --
+#. Inverts a table's values so that keys become values and vice-versa.
+#.
+#. This returns a table of keys: each value of the original table becomes
+#. a key, and each associated key of the original table becomes a value.
+#. For example, if a list contains the entries "foo", "bar", and "baz",
+#. then a keys table for that list would assign the value 1 to the key
+#. "foo", the value 2 to the key "bar", and the value 3 to the key "baz".
+#.
+#. @usage i = tablehelper.keys({"foo", "bar", "baz"})["bar"] -- i = 2
+#. @tparam table T Table to get the keys table of.
+#. @treturn table The keys table.
+#. --
+#. --
+#. Returns whether or not something is in a table as a value.
+#.
+#. @usage if tablehelper.inTable("foo") then -- "foo" is in the table
+#. @tparam table T The table to search for the value in.
+#. @param x The value to search for.
+#. @treturn bool Whether or not x is a value in T.
+#. --
 #.
 #. Script to update outfits and ships from a saved game in the case they don't exist.
 #. --
@@ -55851,8 +55414,8 @@ msgstr "Name: %s"
 msgid "Alert"
 msgstr ""
 
-#: src/dialogue.c:265 src/dialogue.c:323 src/dialogue.c:721 src/options.c:277
-#: src/options.c:585 src/options.c:912 src/options.c:1241
+#: src/dialogue.c:265 src/dialogue.c:323 src/dialogue.c:721 src/options.c:281
+#: src/options.c:589 src/options.c:916 src/options.c:1245
 msgid "OK"
 msgstr "OK"
 
@@ -56683,7 +56246,7 @@ msgid "Ship log"
 msgstr "Schiffslogbuch"
 
 #. Create the window.
-#: src/info.c:140 src/input.c:146 src/menu.c:501
+#: src/info.c:140 src/input.c:146 src/menu.c:499
 #, fuzzy
 msgid "Ship Computer"
 msgstr "Pendler"
@@ -57516,7 +57079,7 @@ msgstr "Konnte Tastenbelegung „%s“ nicht setzen, dieser Befehl existiert nic
 msgid "Unable to get keybinding '%s', that command doesn't exist"
 msgstr "Konnte Tastenbelegung „%s“ nicht holen, dieser Befehl existiert nicht"
 
-#: src/input.c:555 src/options.c:734
+#: src/input.c:555 src/options.c:738
 #, c-format
 msgid "Not bound"
 msgstr "Nicht gesetzt"
@@ -58281,7 +57844,7 @@ msgid "PhysicsFS: Cannot stat %s: %s"
 msgstr "PhysicsFS: Kann stat auf %s nicht anwenden: %s"
 
 #. window
-#: src/load.c:376 src/menu.c:284 src/menu.c:498 src/menu.c:687
+#: src/load.c:376 src/menu.c:282 src/menu.c:496 src/menu.c:685
 msgid "Load Game"
 msgstr "Spiel laden"
 
@@ -58298,7 +57861,7 @@ msgstr "Löschen"
 msgid "Back"
 msgstr "Zurück"
 
-#: src/load.c:459
+#: src/load.c:462
 #, fuzzy, c-format
 msgid ""
 "#nName:#0 %s\n"
@@ -58336,11 +57899,11 @@ msgstr ""
 "#nSchiffsmodell:\n"
 "#0   %s"
 
-#: src/load.c:493
+#: src/load.c:496
 msgid "Load Snapshot"
 msgstr ""
 
-#: src/load.c:494
+#: src/load.c:497
 #, c-format
 msgid ""
 "Warning: After loading a snapshot, automatic saving will continue, which "
@@ -58349,11 +57912,11 @@ msgid ""
 "Are you sure you want to load '%s'?"
 msgstr ""
 
-#: src/load.c:505
+#: src/load.c:508
 msgid "Save game version mismatch"
 msgstr "Spielstandsversionskonflikt"
 
-#: src/load.c:506
+#: src/load.c:509
 #, fuzzy, c-format
 msgid ""
 "Save game '%s' version is newer than Naikari version:\n"
@@ -58367,31 +57930,31 @@ msgstr ""
 "Bist du dir sicher, dass du dieses Spiel laden möchtest? Ein Datenverlust "
 "könnte auftreten."
 
-#: src/load.c:561
+#: src/load.c:564
 msgid "Permanently Delete?"
 msgstr "Dauerhaft löschen?"
 
-#: src/load.c:562
+#: src/load.c:565
 #, c-format
 msgid "Are you sure you want to permanently delete '%s'?"
 msgstr "Bist du dir sicher, dass du „%s“ dauerhaft löschen möchtest?"
 
-#: src/load.c:630 src/load.c:698
+#: src/load.c:633 src/load.c:701
 msgid "Saved game file seems to have been deleted."
 msgstr "Spielstandsdatei scheint gelöscht zu sein."
 
-#: src/load.c:653 src/load.c:777
+#: src/load.c:656 src/load.c:780
 #, c-format
 msgid "Saved game '%s' invalid!"
 msgstr "Spielstand „%s“ ungültig!"
 
 #. Welcome message - must be before space_init.
-#: src/load.c:714 src/player.c:317
+#: src/load.c:717 src/player.c:317
 #, c-format
 msgid "#gWelcome to %s!"
 msgstr "#gWillkommen bei %s!"
 
-#: src/load.c:726
+#: src/load.c:729
 #, fuzzy
 msgid "New save data detected. Sanitizing ships for slots"
 msgstr "Alte Version erfasst. Schiffe werden für Plätze aufgeräumt"
@@ -58917,117 +58480,117 @@ msgstr ""
 msgid "Unexpected call to map_system_array_update\n"
 msgstr "Unerwarteter Aufruf von map_system_array_update\n"
 
-#: src/menu.c:175
+#: src/menu.c:173
 msgid "Menu main is already open."
 msgstr "Hauptmenü ist bereits offen."
 
-#: src/menu.c:193
+#: src/menu.c:191
 msgid "Proudly autistic and lighting up red for Autism Acceptance Month."
 msgstr ""
 
-#: src/menu.c:199
+#: src/menu.c:197
 msgid "We're here. We're queer. Get used to it."
 msgstr ""
 
-#: src/menu.c:233
+#: src/menu.c:231
 msgid "Love takes many forms. Happy Aromantic Spectrum Awareness Week!"
 msgstr ""
 
 #. create menu window
-#: src/menu.c:278 src/menu.c:690
+#: src/menu.c:276 src/menu.c:688
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: src/menu.c:287
+#: src/menu.c:285
 msgid "New Game"
 msgstr "Neues Spiel"
 
-#: src/menu.c:291 src/menu.c:798
+#: src/menu.c:289 src/menu.c:797
 msgid "Editors"
 msgstr "Editoren"
 
 #. Create window and tabs.
-#: src/menu.c:295 src/menu.c:504 src/options.c:138
+#: src/menu.c:293 src/menu.c:502 src/options.c:138
 msgid "Options"
 msgstr "Einstellungen"
 
-#: src/menu.c:298
+#: src/menu.c:296
 msgctxt "Menu|"
 msgid "Credits"
 msgstr "Mitwirkende"
 
-#: src/menu.c:301
+#: src/menu.c:299
 msgid "Exit Game"
 msgstr "Spiel verlassen"
 
-#: src/menu.c:396
+#: src/menu.c:394
 msgid "Main menu does not exist."
 msgstr "Hauptmenü existiert nicht."
 
-#: src/menu.c:488
+#: src/menu.c:486
 msgid "Menu"
 msgstr "Menü"
 
-#: src/menu.c:495
+#: src/menu.c:493
 msgid "Resume"
 msgstr "Fortfahren"
 
-#: src/menu.c:506
+#: src/menu.c:504
 #, fuzzy
 msgid "Exit to Title"
 msgstr "Zurück zum Hauptmenü"
 
-#: src/menu.c:520
+#: src/menu.c:518
 #, fuzzy
 msgid "Small menu does not exist."
 msgstr "Hauptmenü existiert nicht."
 
 #. Stop player sounds because sometimes they hang.
-#: src/menu.c:595
+#: src/menu.c:593
 msgid "Exited game."
 msgstr "Spiel verlassen."
 
-#: src/menu.c:667
+#: src/menu.c:665
 msgid "Death"
 msgstr "Tod"
 
-#: src/menu.c:675 src/player.c:262 src/save.c:154 src/save.c:171 src/save.c:301
+#: src/menu.c:673 src/player.c:262 src/save.c:154 src/save.c:171 src/save.c:301
 #, c-format
 msgid "Save file name was truncated: %s"
 msgstr ""
 
-#: src/menu.c:679
+#: src/menu.c:677
 msgid "Continue"
 msgstr "Fortfahren"
 
-#: src/menu.c:683
+#: src/menu.c:681
 msgid "Restart"
 msgstr "Neustart"
 
-#: src/menu.c:729
+#: src/menu.c:727
 #, fuzzy
 msgid "Death menu does not exist."
 msgstr "Hauptmenü existiert nicht."
 
-#: src/menu.c:765
+#: src/menu.c:764
 #, fuzzy
 msgid "Quit Naikari"
 msgstr "Naev verlassen"
 
-#: src/menu.c:765
+#: src/menu.c:764
 #, fuzzy
 msgid "Are you sure you want to quit Naikari?"
 msgstr "Willst du Naev wirklich verlassen?"
 
-#: src/menu.c:803
+#: src/menu.c:802
 msgid "Universe Map"
 msgstr "Universumskarte"
 
-#: src/menu.c:806
+#: src/menu.c:805
 msgid "Map Outfits"
 msgstr "Kartenausstattungen"
 
-#: src/menu.c:809
+#: src/menu.c:808
 msgid "Exit to Main Menu"
 msgstr "Zurück zum Hauptmenü"
 
@@ -59839,17 +59402,17 @@ msgstr ""
 msgid "No hook target was set."
 msgstr "Es wurde kein Hookziel gesetzt."
 
-#: src/nlua_hook.c:922
+#: src/nlua_hook.c:923
 #, fuzzy, c-format
 msgid "Unsupported Lua hook paramater type '%s'!"
 msgstr "Unbekannter Luaparametertyp."
 
-#: src/nlua_hook.c:1000
+#: src/nlua_hook.c:1001
 msgid "Invalid parameter #1 for hook.pilot, expecting pilot or nil."
 msgstr "Ungültiger Parameter #1 für hook.pilot, erwartete pilot oder nil."
 
 #. hook_type not valid
-#: src/nlua_hook.c:1033
+#: src/nlua_hook.c:1034
 #, c-format
 msgid "Invalid pilot hook type: '%s'"
 msgstr "Ungültiger Pilot-Hooktyp: „%s“"
@@ -60591,194 +60154,194 @@ msgstr "Ton"
 msgid "Input"
 msgstr "Eingabe"
 
-#: src/options.c:176
+#: src/options.c:178
 msgid "Warning"
 msgstr "Warnung"
 
-#: src/options.c:177 src/options.c:1432
+#: src/options.c:179 src/options.c:1436
 #, fuzzy
 msgid "Restart Naikari for changes to take effect."
 msgstr "Bitte starte Naev neu, damit die Änderungen wirksam werden."
 
-#: src/options.c:246
+#: src/options.c:250
 msgid "system"
 msgstr "System"
 
-#: src/options.c:283 src/options.c:588 src/options.c:918 src/options.c:1247
+#: src/options.c:287 src/options.c:592 src/options.c:922 src/options.c:1251
 msgid "Defaults"
 msgstr "Standard"
 
-#: src/options.c:297
+#: src/options.c:301
 #, c-format
 msgid "ndata: %s"
 msgstr "ndata: %s"
 
-#: src/options.c:313
+#: src/options.c:317
 #, fuzzy
 msgid "Language"
 msgstr "Sprache:"
 
-#: src/options.c:329
+#: src/options.c:333
 #, fuzzy
 msgid "Compilation Flags"
 msgstr "Kompilierungs-Flags:"
 
-#: src/options.c:370
+#: src/options.c:374
 #, fuzzy
 msgid "Base Game Speed"
 msgstr "Spielgeschwindigkeit"
 
-#: src/options.c:383
+#: src/options.c:387
 #, fuzzy
 msgid "Stop Speedup At"
 msgstr "Zeitkompression stoppen bei:"
 
-#: src/options.c:395 src/options.c:1304
+#: src/options.c:399 src/options.c:1308
 #, fuzzy
 msgid "Settings"
 msgstr "Einstellungen:"
 
-#: src/options.c:399
+#: src/options.c:403
 msgid "Enable manual zoom control"
 msgstr "Manuelle Zoomsteuerung aktivieren"
 
-#: src/options.c:402
+#: src/options.c:406
 msgid "Enable double-tap afterburn"
 msgstr "Nachbrenner mit Doppeltippen aktivieren"
 
-#: src/options.c:406
+#: src/options.c:410
 msgid "Enable saved game compression"
 msgstr "Spielstandskompression aktivieren"
 
-#: src/options.c:408
+#: src/options.c:412
 msgid "Visible Messages"
 msgstr "Sichtbare Nachrichten"
 
-#: src/options.c:414
+#: src/options.c:418
 msgid "Max Time Compression Factor"
 msgstr "Max. Zeitkompressionsfaktor"
 
-#: src/options.c:540
+#: src/options.c:544
 #, c-format
 msgid "Enemy Presence"
 msgstr "Feindpräsenz"
 
-#: src/options.c:542
+#: src/options.c:546
 #, c-format
 msgid "%.0f%% Shield"
 msgstr "%.0f%% Schild"
 
-#: src/options.c:544
+#: src/options.c:548
 #, fuzzy, c-format
 msgid "Armor Damage"
 msgstr "Panzerungsschaden"
 
-#: src/options.c:591
+#: src/options.c:595
 msgid "Set Key"
 msgstr "Taste setzen"
 
-#: src/options.c:739
+#: src/options.c:743
 #, c-format
 msgid "keyboard:   %s%s%c"
 msgstr "Tastatur:   %s%s%c"
 
-#: src/options.c:744
+#: src/options.c:748
 #, c-format
 msgid "keyboard:   %s%s%s"
 msgstr "Tastatur:   %s%s%s"
 
-#: src/options.c:750
+#: src/options.c:754
 #, c-format
 msgid "joy axis pos:   <%d>"
 msgstr "Joy-Achsenpos.:   <%d>"
 
-#: src/options.c:753
+#: src/options.c:757
 #, c-format
 msgid "joy axis neg:   <%d>"
 msgstr "Joy-Achse neg..:   <%d>"
 
-#: src/options.c:756
+#: src/options.c:760
 #, c-format
 msgid "joy button:   <%d>"
 msgstr "Joy-Knopf:   <%d>"
 
-#: src/options.c:759
+#: src/options.c:763
 #, c-format
 msgid "joy hat up:   <%d>"
 msgstr "Joy-D-Pad hoch: <%d>"
 
-#: src/options.c:762
+#: src/options.c:766
 #, c-format
 msgid "joy hat down: <%d>"
 msgstr "Joy-D-Pad runter: <%d>"
 
-#: src/options.c:765
+#: src/options.c:769
 #, c-format
 msgid "joy hat left: <%d>"
 msgstr "Joy-D-Pad links: <%d>"
 
-#: src/options.c:768
+#: src/options.c:772
 #, c-format
 msgid "joy hat right:<%d>"
 msgstr "Joy-D-Pad rechts: <%d>"
 
-#: src/options.c:790
+#: src/options.c:794
 msgid "WASD"
 msgstr "WASD"
 
-#: src/options.c:791
+#: src/options.c:795
 msgid "Arrow Keys"
 msgstr "Pfeiltasten"
 
-#: src/options.c:792
+#: src/options.c:796
 msgid "ZQSD"
 msgstr ""
 
-#: src/options.c:796
+#: src/options.c:800
 msgid "Restore Defaults"
 msgstr "Zurücksetzen"
 
-#: src/options.c:797
+#: src/options.c:801
 msgid "Which layout do you want to use?"
 msgstr "Welche Tastenbelegung möchtest du benutzen?"
 
 #. Alert user it worked.
-#: src/options.c:843
+#: src/options.c:847
 msgid "Defaults Restored"
 msgstr "Auf Standard zurückgesetzt"
 
-#: src/options.c:843
+#: src/options.c:847
 msgid "Keybindings restored to defaults."
 msgstr "Die Tastenbelegung wurde auf die Standardbelegung zurückgesetzt."
 
-#: src/options.c:889
+#: src/options.c:893
 #, fuzzy, c-format
 msgid "Muted"
 msgstr "Stumm"
 
 #. -48 dB minimum divided by logarithm of volume floor.
-#: src/options.c:892
+#: src/options.c:896
 #, fuzzy, c-format
 msgid "%.0f%% (%.0f dB)"
 msgstr "%s: %.2f (%.0f dB)"
 
-#: src/options.c:924
+#: src/options.c:928
 msgid "Disable all sound/music"
 msgstr "Ton/Musik komplett deaktivieren"
 
-#: src/options.c:928
+#: src/options.c:932
 msgid "EFX (More CPU)"
 msgstr "EFX (Mehr CPU)"
 
-#: src/options.c:937
+#: src/options.c:941
 msgid "Sound Volume"
 msgstr "Tonlautstärke"
 
-#: src/options.c:949
+#: src/options.c:953
 msgid "Music Volume"
 msgstr "Musiklautstärke"
 
-#: src/options.c:1131
+#: src/options.c:1135
 #, c-format
 msgid ""
 "Key '%s' overlaps with key '%s' that was just set. You may want to correct "
@@ -60787,11 +60350,11 @@ msgstr ""
 "Taste „%s“ kollidiert mit Taste „%s“, die vorhin gesetzt wurde. Du solltest "
 "das korrigieren."
 
-#: src/options.c:1165
+#: src/options.c:1169
 msgid "Set Keybinding"
 msgstr "Tastenzuweisung setzen"
 
-#: src/options.c:1172
+#: src/options.c:1176
 msgid ""
 "To use a modifier key hit that key twice in a row, otherwise it will "
 "register as a modifier. To set with any modifier click the checkbox."
@@ -60800,46 +60363,46 @@ msgstr ""
 "hintereinander, ansonsten wird sie als Modifikator registriert. Um eine "
 "Taste zusammen mit einem Modifikator zu setzen, klicke dieses Kästchen an."
 
-#: src/options.c:1181
+#: src/options.c:1185
 msgid "Unset"
 msgstr "Entfernen"
 
-#: src/options.c:1185
+#: src/options.c:1189
 msgid "Set any modifier"
 msgstr "Beliebigen Modifikator setzen"
 
-#: src/options.c:1254
+#: src/options.c:1258
 msgid "Resolution"
 msgstr "Auflösung"
 
-#: src/options.c:1308
+#: src/options.c:1312
 msgid "Fullscreen"
 msgstr "Vollbild"
 
-#: src/options.c:1318
+#: src/options.c:1322
 msgid "Vertical Sync"
 msgstr "Vertikale Synchronisation"
 
-#: src/options.c:1323
+#: src/options.c:1327
 #, fuzzy
 msgid "Minimize on fullscreen focus loss"
 msgstr "Bei Fokusverlust minimieren"
 
-#: src/options.c:1327
+#: src/options.c:1331
 #, fuzzy
 msgid "Colorblind simulator"
 msgstr "Farbenblindmodus"
 
 #. FPS stuff.
-#: src/options.c:1332
+#: src/options.c:1336
 msgid "FPS Limit"
 msgstr "FPS-Grenze"
 
-#: src/options.c:1342
+#: src/options.c:1346
 msgid "Show FPS"
 msgstr "FPS anzeigen"
 
-#: src/options.c:1349
+#: src/options.c:1353
 #, fuzzy
 msgid "Scaling"
 msgstr "Nokalin"
@@ -60847,57 +60410,57 @@ msgstr "Nokalin"
 #. Not calling opt_setGamma since that would override values outside
 #. * of the slider's bounds (which are not an indication of any strict
 #. * limit).
-#: src/options.c:1370 src/options.c:1653 src/options.c:1673 src/options.c:1698
-#: src/options.c:1719 src/options.c:1738 src/options.c:1758 src/options.c:1780
+#: src/options.c:1374 src/options.c:1657 src/options.c:1677 src/options.c:1702
+#: src/options.c:1723 src/options.c:1742 src/options.c:1762 src/options.c:1784
 #, c-format
 msgid "%.0f%%"
 msgstr "%.0f%%"
 
-#: src/options.c:1375
+#: src/options.c:1379
 msgid "Background Brightness"
 msgstr ""
 
-#: src/options.c:1386
+#: src/options.c:1390
 #, fuzzy
 msgid "Map Overlay Opacity"
 msgstr "Karteneinblendungsundurchsichtigkeit:"
 
-#: src/options.c:1397
+#: src/options.c:1401
 #, fuzzy
 msgid "Far Zoom"
 msgstr "Radar reinzoomen"
 
-#: src/options.c:1408
+#: src/options.c:1412
 #, fuzzy
 msgid "Near Zoom"
 msgstr "Radar reinzoomen"
 
-#: src/options.c:1465
+#: src/options.c:1469
 msgid "Height/Width invalid. Should be formatted like 1024x768."
 msgstr "Höhe/Breite ungültig. Sollte wie „1024x768“ formatiert sein."
 
-#: src/options.c:1563
+#: src/options.c:1567
 msgid "Keep Video Settings"
 msgstr "Grafikeinstellungen behalten"
 
-#: src/options.c:1564
+#: src/options.c:1568
 #, fuzzy, c-format
 msgid "Do you want to keep running at %d×%d %s?"
 msgstr "Möchtest du mit %d×%d %s weiter arbeiten?"
 
-#: src/options.c:1565 src/options.c:1571
+#: src/options.c:1569 src/options.c:1575
 msgid "fullscreen"
 msgstr "Vollbild"
 
-#: src/options.c:1565 src/options.c:1571
+#: src/options.c:1569 src/options.c:1575
 msgid "windowed"
 msgstr "Fenster"
 
-#: src/options.c:1569
+#: src/options.c:1573
 msgid "Video Settings Restored"
 msgstr "Grafikeinstellungen wiederhergestellt"
 
-#: src/options.c:1570
+#: src/options.c:1574
 #, fuzzy, c-format
 msgid "Resolution reset to %d×%d %s."
 msgstr "Auflösung auf %d×%d %s zurückgesetzt."
@@ -62329,11 +61892,11 @@ msgstr "#oAutonav kam an bei #%c%s#0."
 msgid "#oAutonav: following target  %s has been lost."
 msgstr ""
 
-#: src/player_autonav.c:851
+#: src/player_autonav.c:852
 msgid "Target changed to current system"
 msgstr "Ziel geändert zu aktuellem System"
 
-#: src/player_autonav.c:855
+#: src/player_autonav.c:856
 msgid "Not enough fuel for autonav to continue"
 msgstr "Nicht genügend Treibstoff für Autonav, um fortzufahren"
 
