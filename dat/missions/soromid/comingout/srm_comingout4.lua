@@ -199,7 +199,7 @@ function spawnChelseaShip(param)
    chelsea:setInvincPlayer()
    chelsea:setNoBoard()
 
-   local plmax = player.pilot():stats().speed_max * 0.9
+   local plmax = player.pilot():stats().speed_max * 0.8
    if chelsea:stats().speed_max > plmax then
       chelsea:setSpeedLimit(plmax)
    end
@@ -238,6 +238,7 @@ function jumpNext ()
    if chelsea ~= nil and chelsea:exists() then
       chelsea:taskClear()
       chelsea:control()
+
       misn.osdDestroy()
       if system.cur() == missys then
          chelsea:land(misplanet, true)
@@ -263,6 +264,9 @@ function jumpNext ()
                      {remaining=fmt.number(jumps - 1)}))
          end
          misn.osdCreate(misn_title, osd_desc)
+      end
+      if chelsea_jumped then
+         misn.osdActive(2)
       end
    end
 end

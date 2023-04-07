@@ -435,7 +435,7 @@ function organize_fleet(convoy)
       return
    end
 
-   local plmax = player.pilot():stats().speed_max * 0.9
+   local plmax = player.pilot():stats().speed_max * 0.8
    leader:setSpeedLimit(math.min(plmax, minspeed * 0.8))
 
    for i, p in ipairs(convoy) do
