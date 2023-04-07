@@ -4,5 +4,6 @@ lua_source = files(
    'misnhelper.lua',
    'portrait.lua',
    'prng.lua',
+   'tablehelper.lua',
 )
 

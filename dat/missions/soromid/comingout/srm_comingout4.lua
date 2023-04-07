@@ -7,7 +7,7 @@
  <avail>
   <priority>20</priority>
   <done>A Friend's Aid</done>
-  <chance>10</chance>
+  <chance>40</chance>
   <location>Bar</location>
   <faction>Soromid</faction>
  </avail>
@@ -37,6 +37,7 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
+local tablehelper = require "tablehelper"
 require "nextjump"
 require "missions/soromid/common"
 
@@ -45,7 +46,7 @@ ask_text = _([[Chelsea looks at you with surprise. "Oh! {player}! It's nice to s
 
 "But what really troubles me is, I remember my dad talking about 'the brotherhood' on occasion. It could be a coincidence, but if there's a connection… but then again, going there myself could be pretty dangerous. Too many pirates around, and besides, if there's anything behind my hunch, this could go south real fast.
 
-"Actually, maybe you could help! Could you meet me on {startplanet} in the {startsystem} system and then escort me to {destplanet} in the {destsystem} system and back, and back me up while I confront my parents? I could give you, say, {credits} in exchange. Could you do this for me, {player}?"]])
+"Actually, maybe you could help! Could you meet me on {startplanet} in the {startsystem} system and then escort me to {destplanet} in the {destsystem} system and back, and back me up while I confront my parents? I could give you, say, {credits} in exchange."]])
 
 yes_text = _([["You're a life-saver, {player}, maybe literally! That's perfect. I'll meet you on {planet}, then, and we'll go from there."]])
 
@@ -105,10 +106,16 @@ function create ()
 
    local claimsys = {startsys, destsys}
    for i, jp in ipairs(startsys:jumpPath(destsys)) do
-      table.insert(claimsys, jp:dest())
+      local dest = jp:dest()
+      if not tablehelper.inTable(claimsys, dest) then
+         table.insert(claimsys, dest)
+      end
    end
    for i, jp in ipairs(destsys:jumpPath(startsys)) do
-      table.insert(claimsys, jp:dest())
+      local dest = jp:dest()
+      if not tablehelper.inTable(claimsys, dest) then
+         table.insert(claimsys, dest)
+      end
    end
    if not misn.claim(claimsys) then
       misn.finish(false)
