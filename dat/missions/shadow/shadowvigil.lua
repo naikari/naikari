@@ -23,7 +23,6 @@ local fmt = require "fmt"
 local fleet = require "fleet"
 require "proximity"
 require "nextjump"
-require "chatter"
 require "selectiveclear"
 require "missions/shadow/common"
 

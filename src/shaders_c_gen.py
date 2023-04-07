@@ -204,14 +204,6 @@ SHADERS = [
       subroutines = {},
    ),
    Shader(
-      name = "damage",
-      vs_path = "postprocess.vert",
-      fs_path = "damage.frag",
-      attributes = ["VertexPosition"],
-      uniforms = ["ClipSpaceFromLocal", "MainTex", "damage_strength", "love_ScreenSize"],
-      subroutines = {},
-   ),
-   Shader(
       name = "gamma_correction",
       vs_path = "postprocess.vert",
       fs_path = "gamma_correction.frag",

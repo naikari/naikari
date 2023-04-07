@@ -4,7 +4,7 @@
 -- Example usage: pilot.clearSelect("Empire")
 function pilot.clearSelect(facname)
    local ps = pilot.get({faction.get(facname)})
-   for _, j in ipairs(ps) do
+   for i, j in ipairs(ps) do
       if j:exists() then
          j:rm()
       end
