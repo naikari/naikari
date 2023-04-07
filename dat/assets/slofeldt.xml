@@ -17,7 +17,7 @@
   <class>0</class>
   <population>9874</population>
   <services>
-   <land>land_hiclass</land>
+   <land/>
    <refuel/>
    <bar/>
    <outfits/>
@@ -42,7 +42,5 @@
   <item>Nexus Small Ships</item>
   <item>Nexus Medium Ships</item>
   <item>Krain Large Ships</item>
-  <item>Empire Small Ships</item>
-  <item>Empire Medium Ships</item>
  </tech>
 </asset>
