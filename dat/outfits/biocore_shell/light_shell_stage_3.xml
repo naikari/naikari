@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Light Shell Stage 3">
  <general>
-  <rarity>2</rarity>
   <typename>Bioship Shell</typename>
   <slot prop="bio_hull">structure</slot>
   <size>small</size>
+  <rarity>0</rarity>
   <priority>7</priority>
   <mass>60</mass>
   <price>200000</price>
@@ -13,9 +13,9 @@
  </general>
  <specific type="modification">
   <cargo>9</cargo>
-  <absorb>5</absorb>
+  <absorb>5.0</absorb>
   <armour>98</armour>
   <armour_regen>0</armour_regen>
-  <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
+  <rdr_enemy_range_mod>-20.0</rdr_enemy_range_mod>
  </specific>
 </outfit>
