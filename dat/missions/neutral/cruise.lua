@@ -226,7 +226,7 @@ function land()
                {planet=startpla:name(), credits=fmt.credits(credits)}))
          player.pay(credits)
          misn.finish(true)
-      else
+      elseif intime then
          local text = {
             _("You see that passengers are confused about the fact that you have returned to their home planet before finishing the cruise. You reassure them that it's just a temporary stop and the cruise will go underway shortly."),
             _("A passenger complains that they didn't go on this cruise just to land on their own home planet. You apologize and promise the cruise will begin in earnest soon."),
@@ -236,7 +236,27 @@ function land()
 
          tk.msg("", fmt.f(text[rnd.rnd(1, #text)], {planet=startpla:name()}))
          return
+      else
+         local text = {
+            _("Your passengers are furious that you not only failed to take them to {destplanet} as promised, but were also late to return them to {startplanet}. Your passengers refuse to pay anything."),
+            _("Everyone is furious at you for your poor performance. They hurriedly storm out of your ship, no doubt hoping to make up for the scheduling problems you caused for them by returning so late."),
+         }
+
+         tk.msg("", fmt.f(text[rnd.rnd(1, #text)],
+               {startplanet=startpla:name(), destplanet=destplanet:name()}))
+         misn.finish(false)
       end
+   end
+
+   if not intime then
+      local text = {
+         _("Furious that you still haven't returned them to their homeworld, your passengers storm out of your ship to seek a ferry."),
+         _("Your passengers storm out of your ship, visibly upset that you still haven't taken them home. One passenger spits in your face as they exit."),
+      }
+
+      tk.msg("", fmt.f(text[rnd.rnd(1, #text)],
+            {startplanet=startpla:name(), destplanet=destplanet:name()}))
+      misn.finish(false)
    end
 
    -- Duplicate planets don't impress the passengers.
