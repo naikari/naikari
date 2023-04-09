@@ -111,6 +111,7 @@ function accept ()
             {casualcredits=fmt.credits(credits_easy),
                competitivecredits=fmt.credits(credits_hard)})
       choice, choicetext = tk.choice("", s, choice1, choice2)
+
       local shipchoices
       ship_list = {}
       if choice == 1 then
@@ -126,10 +127,12 @@ function accept ()
          }
          tk.msg("", yes_hard_text)
       end
-      misn.setReward(fmt.credits(credits))
       for i=1,3 do
-         ship_list[#ship_list + 1] = shipchoices[rnd.rnd(1, #shipchoices)]
+         table.insert(ship_list, shipchoices[rnd.rnd(1, #shipchoices)])
       end
+      ship_list.__save = true
+
+      misn.setReward(fmt.credits(credits))
       hook.takeoff("takeoff")
    else
       misn.finish()
