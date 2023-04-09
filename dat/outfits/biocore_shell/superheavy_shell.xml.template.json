@@ -28,6 +28,10 @@
         "armor": {
             "min": 2600,
             "max": 3650
+        },
+        "armor_regen": {
+            "min": 5,
+            "max": 10.25
         }
     }
 }

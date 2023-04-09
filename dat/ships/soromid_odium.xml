@@ -17,7 +17,7 @@
  <description>The Odium serves the Soromid fleet well as a capable Corvette class ship. Standard synthetic missile launchers fit neatly in its medium slots, enabling it to demolish even very heavy targets from a safe distance.</description>
  <health>
   <armour>220</armour>
-  <armour_regen>4</armour_regen>
+  <armour_regen>0</armour_regen>
  </health>
  <characteristics>
   <mass>160</mass>

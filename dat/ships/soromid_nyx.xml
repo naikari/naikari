@@ -16,7 +16,7 @@
  <description>The Nyx is the symbol of the Soromid's military might. Able to provide heavy firepower in heated battles and agile enough to withdraw when needed, this ship usually forms the backbone of any sizable Soromid fleet.</description>
  <health>
   <armour>550</armour>
-  <armour_regen>4</armour_regen>
+  <armour_regen>0</armour_regen>
  </health>
  <characteristics>
   <mass>360</mass>

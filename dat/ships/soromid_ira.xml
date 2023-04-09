@@ -20,7 +20,7 @@
  <description>The Ira is a purpose-grown light cruiser commonly found leading Soromid forces. While its armor is somewhat weak, this rarely saves those met with its devastating barrage.</description>
  <health>
   <armour>1700</armour>
-  <armour_regen>5</armour_regen>
+  <armour_regen>0</armour_regen>
  </health>
  <characteristics>
   <mass>1700</mass>

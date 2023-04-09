@@ -29,6 +29,10 @@
             "min": 75,
             "max": 110
         },
+        "armor_regen": {
+            "min": 0.75,
+            "max": 3
+        },
         "rdr_range": {
             "min": 0,
             "max": -30

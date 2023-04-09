@@ -19,7 +19,7 @@
  <description>The Vox is the biggest vessel the Soromid field hands down. This dreadnought serves as the core of any given Soromid war fleet and only called upon in notable engagements.</description>
  <health>
   <armour>2000</armour>
-  <armour_regen>10.5</armour_regen>
+  <armour_regen>0</armour_regen>
  </health>
  <characteristics>
   <mass>2300</mass>

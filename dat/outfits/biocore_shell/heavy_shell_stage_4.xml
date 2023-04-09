@@ -15,6 +15,6 @@
   <cargo>70</cargo>
   <absorb>47</absorb>
   <armour>1700</armour>
-  <armour_regen>0</armour_regen>
+  <armour_regen>4.75</armour_regen>
  </specific>
 </outfit>

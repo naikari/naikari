@@ -15,7 +15,7 @@
   <cargo>36</cargo>
   <absorb>22</absorb>
   <armour>860</armour>
-  <armour_regen>0</armour_regen>
+  <armour_regen>2.0</armour_regen>
   <rdr_enemy_range_mod>-6.0</rdr_enemy_range_mod>
  </specific>
 </outfit>
