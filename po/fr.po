@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-04-07 14:10-0400\n"
+"POT-Creation-Date: 2023-04-09 16:12-0400\n"
 "PO-Revision-Date: 2021-03-17 07:18+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/naev/naev/fr/>\n"
@@ -12424,14 +12424,14 @@ msgstr ""
 #: dat/outfits/biocore_brain/heavy_brain_stage_6.xml:4
 #: dat/outfits/biocore_brain/heavy_brain_stage_x.xml:4
 #: dat/outfits/biocore_brain/light_brain_stage_1.xml:4
-#: dat/outfits/biocore_brain/light_brain_stage_2.xml:5
-#: dat/outfits/biocore_brain/light_brain_stage_3.xml:5
-#: dat/outfits/biocore_brain/light_brain_stage_x.xml:5
+#: dat/outfits/biocore_brain/light_brain_stage_2.xml:4
+#: dat/outfits/biocore_brain/light_brain_stage_3.xml:4
+#: dat/outfits/biocore_brain/light_brain_stage_x.xml:4
 #: dat/outfits/biocore_brain/medium_brain_stage_1.xml:4
 #: dat/outfits/biocore_brain/medium_brain_stage_2.xml:4
-#: dat/outfits/biocore_brain/medium_brain_stage_3.xml:5
-#: dat/outfits/biocore_brain/medium_brain_stage_4.xml:5
-#: dat/outfits/biocore_brain/medium_brain_stage_x.xml:5
+#: dat/outfits/biocore_brain/medium_brain_stage_3.xml:4
+#: dat/outfits/biocore_brain/medium_brain_stage_4.xml:4
+#: dat/outfits/biocore_brain/medium_brain_stage_x.xml:4
 #: dat/outfits/biocore_brain/mediumheavy_brain_stage_1.xml:4
 #: dat/outfits/biocore_brain/mediumheavy_brain_stage_2.xml:4
 #: dat/outfits/biocore_brain/mediumheavy_brain_stage_3.xml:4
@@ -12447,8 +12447,8 @@ msgstr ""
 #: dat/outfits/biocore_brain/superheavy_brain_stage_7.xml:4
 #: dat/outfits/biocore_brain/superheavy_brain_stage_x.xml:4
 #: dat/outfits/biocore_brain/ultralight_brain_stage_1.xml:4
-#: dat/outfits/biocore_brain/ultralight_brain_stage_2.xml:5
-#: dat/outfits/biocore_brain/ultralight_brain_stage_x.xml:5 dat/slots.xml:22
+#: dat/outfits/biocore_brain/ultralight_brain_stage_2.xml:4
+#: dat/outfits/biocore_brain/ultralight_brain_stage_x.xml:4 dat/slots.xml:22
 msgid "Bioship Brain"
 msgstr ""
 
@@ -12458,11 +12458,11 @@ msgstr ""
 #: dat/outfits/biocore_brain/heavy_brain_stage_4.xml:11
 #: dat/outfits/biocore_brain/heavy_brain_stage_5.xml:11
 #: dat/outfits/biocore_brain/heavy_brain_stage_6.xml:11
-#: dat/outfits/biocore_brain/light_brain_stage_1.xml:10
+#: dat/outfits/biocore_brain/light_brain_stage_1.xml:11
 #: dat/outfits/biocore_brain/light_brain_stage_2.xml:11
 #: dat/outfits/biocore_brain/light_brain_stage_3.xml:11
-#: dat/outfits/biocore_brain/medium_brain_stage_1.xml:9
-#: dat/outfits/biocore_brain/medium_brain_stage_2.xml:9
+#: dat/outfits/biocore_brain/medium_brain_stage_1.xml:10
+#: dat/outfits/biocore_brain/medium_brain_stage_2.xml:10
 #: dat/outfits/biocore_brain/medium_brain_stage_3.xml:10
 #: dat/outfits/biocore_brain/medium_brain_stage_4.xml:10
 #: dat/outfits/biocore_brain/mediumheavy_brain_stage_1.xml:11
@@ -12477,7 +12477,7 @@ msgstr ""
 #: dat/outfits/biocore_brain/superheavy_brain_stage_5.xml:11
 #: dat/outfits/biocore_brain/superheavy_brain_stage_6.xml:11
 #: dat/outfits/biocore_brain/superheavy_brain_stage_7.xml:11
-#: dat/outfits/biocore_brain/ultralight_brain_stage_1.xml:9
+#: dat/outfits/biocore_brain/ultralight_brain_stage_1.xml:10
 #: dat/outfits/biocore_brain/ultralight_brain_stage_2.xml:10
 msgid ""
 "The brain is a Soromid bioship's equivalent to core systems in synthetic "
@@ -12634,126 +12634,126 @@ msgstr ""
 
 #: dat/outfits/biocore_fin/heavy_fast_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/heavy_fast_fin_stage_2.xml:4
-#: dat/outfits/biocore_fin/heavy_fast_fin_stage_3.xml:5
-#: dat/outfits/biocore_fin/heavy_fast_fin_stage_4.xml:5
-#: dat/outfits/biocore_fin/heavy_fast_fin_stage_5.xml:5
-#: dat/outfits/biocore_fin/heavy_fast_fin_stage_6.xml:5
+#: dat/outfits/biocore_fin/heavy_fast_fin_stage_3.xml:4
+#: dat/outfits/biocore_fin/heavy_fast_fin_stage_4.xml:4
+#: dat/outfits/biocore_fin/heavy_fast_fin_stage_5.xml:4
+#: dat/outfits/biocore_fin/heavy_fast_fin_stage_6.xml:4
 #: dat/outfits/biocore_fin/heavy_fast_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/heavy_strong_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/heavy_strong_fin_stage_2.xml:4
-#: dat/outfits/biocore_fin/heavy_strong_fin_stage_3.xml:5
-#: dat/outfits/biocore_fin/heavy_strong_fin_stage_4.xml:5
-#: dat/outfits/biocore_fin/heavy_strong_fin_stage_5.xml:5
-#: dat/outfits/biocore_fin/heavy_strong_fin_stage_6.xml:5
+#: dat/outfits/biocore_fin/heavy_strong_fin_stage_3.xml:4
+#: dat/outfits/biocore_fin/heavy_strong_fin_stage_4.xml:4
+#: dat/outfits/biocore_fin/heavy_strong_fin_stage_5.xml:4
+#: dat/outfits/biocore_fin/heavy_strong_fin_stage_6.xml:4
 #: dat/outfits/biocore_fin/heavy_strong_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/light_fast_fin_stage_1.xml:4
-#: dat/outfits/biocore_fin/light_fast_fin_stage_2.xml:5
-#: dat/outfits/biocore_fin/light_fast_fin_stage_3.xml:5
+#: dat/outfits/biocore_fin/light_fast_fin_stage_2.xml:4
+#: dat/outfits/biocore_fin/light_fast_fin_stage_3.xml:4
 #: dat/outfits/biocore_fin/light_fast_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/light_strong_fin_stage_1.xml:4
-#: dat/outfits/biocore_fin/light_strong_fin_stage_2.xml:5
-#: dat/outfits/biocore_fin/light_strong_fin_stage_3.xml:5
+#: dat/outfits/biocore_fin/light_strong_fin_stage_2.xml:4
+#: dat/outfits/biocore_fin/light_strong_fin_stage_3.xml:4
 #: dat/outfits/biocore_fin/light_strong_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/medium_fast_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/medium_fast_fin_stage_2.xml:4
-#: dat/outfits/biocore_fin/medium_fast_fin_stage_3.xml:5
-#: dat/outfits/biocore_fin/medium_fast_fin_stage_4.xml:5
+#: dat/outfits/biocore_fin/medium_fast_fin_stage_3.xml:4
+#: dat/outfits/biocore_fin/medium_fast_fin_stage_4.xml:4
 #: dat/outfits/biocore_fin/medium_fast_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/medium_strong_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/medium_strong_fin_stage_2.xml:4
-#: dat/outfits/biocore_fin/medium_strong_fin_stage_3.xml:5
-#: dat/outfits/biocore_fin/medium_strong_fin_stage_4.xml:5
+#: dat/outfits/biocore_fin/medium_strong_fin_stage_3.xml:4
+#: dat/outfits/biocore_fin/medium_strong_fin_stage_4.xml:4
 #: dat/outfits/biocore_fin/medium_strong_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_2.xml:4
-#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_3.xml:5
-#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_4.xml:5
-#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_5.xml:5
-#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_x.xml:5
+#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_3.xml:4
+#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_4.xml:4
+#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_5.xml:4
+#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_2.xml:4
-#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_3.xml:5
-#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_4.xml:5
-#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_5.xml:5
-#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_x.xml:5
+#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_3.xml:4
+#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_4.xml:4
+#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_5.xml:4
+#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/superheavy_fast_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/superheavy_fast_fin_stage_2.xml:4
 #: dat/outfits/biocore_fin/superheavy_fast_fin_stage_3.xml:4
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_4.xml:5
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_5.xml:5
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_6.xml:5
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_7.xml:5
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_x.xml:5
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_4.xml:4
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_5.xml:4
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_6.xml:4
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_7.xml:4
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/superheavy_strong_fin_stage_1.xml:4
 #: dat/outfits/biocore_fin/superheavy_strong_fin_stage_2.xml:4
 #: dat/outfits/biocore_fin/superheavy_strong_fin_stage_3.xml:4
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_4.xml:5
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_5.xml:5
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_6.xml:5
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_7.xml:5
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_x.xml:5
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_4.xml:4
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_5.xml:4
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_6.xml:4
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_7.xml:4
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/ultralight_fast_fin_stage_1.xml:4
-#: dat/outfits/biocore_fin/ultralight_fast_fin_stage_2.xml:5
+#: dat/outfits/biocore_fin/ultralight_fast_fin_stage_2.xml:4
 #: dat/outfits/biocore_fin/ultralight_fast_fin_stage_x.xml:4
 #: dat/outfits/biocore_fin/ultralight_strong_fin_stage_1.xml:4
-#: dat/outfits/biocore_fin/ultralight_strong_fin_stage_2.xml:5
+#: dat/outfits/biocore_fin/ultralight_strong_fin_stage_2.xml:4
 #: dat/outfits/biocore_fin/ultralight_strong_fin_stage_x.xml:4 dat/slots.xml:34
 msgid "Bioship Fin"
 msgstr ""
 
-#: dat/outfits/biocore_fin/heavy_fast_fin_stage_1.xml:9
-#: dat/outfits/biocore_fin/heavy_fast_fin_stage_2.xml:9
+#: dat/outfits/biocore_fin/heavy_fast_fin_stage_1.xml:10
+#: dat/outfits/biocore_fin/heavy_fast_fin_stage_2.xml:10
 #: dat/outfits/biocore_fin/heavy_fast_fin_stage_3.xml:10
 #: dat/outfits/biocore_fin/heavy_fast_fin_stage_4.xml:10
 #: dat/outfits/biocore_fin/heavy_fast_fin_stage_5.xml:10
 #: dat/outfits/biocore_fin/heavy_fast_fin_stage_6.xml:10
-#: dat/outfits/biocore_fin/heavy_strong_fin_stage_1.xml:9
-#: dat/outfits/biocore_fin/heavy_strong_fin_stage_2.xml:9
+#: dat/outfits/biocore_fin/heavy_strong_fin_stage_1.xml:10
+#: dat/outfits/biocore_fin/heavy_strong_fin_stage_2.xml:10
 #: dat/outfits/biocore_fin/heavy_strong_fin_stage_3.xml:10
 #: dat/outfits/biocore_fin/heavy_strong_fin_stage_4.xml:10
 #: dat/outfits/biocore_fin/heavy_strong_fin_stage_5.xml:10
 #: dat/outfits/biocore_fin/heavy_strong_fin_stage_6.xml:10
-#: dat/outfits/biocore_fin/light_fast_fin_stage_1.xml:10
+#: dat/outfits/biocore_fin/light_fast_fin_stage_1.xml:11
 #: dat/outfits/biocore_fin/light_fast_fin_stage_2.xml:11
 #: dat/outfits/biocore_fin/light_fast_fin_stage_3.xml:11
-#: dat/outfits/biocore_fin/light_strong_fin_stage_1.xml:10
+#: dat/outfits/biocore_fin/light_strong_fin_stage_1.xml:11
 #: dat/outfits/biocore_fin/light_strong_fin_stage_2.xml:11
 #: dat/outfits/biocore_fin/light_strong_fin_stage_3.xml:11
-#: dat/outfits/biocore_fin/medium_fast_fin_stage_1.xml:9
-#: dat/outfits/biocore_fin/medium_fast_fin_stage_2.xml:9
+#: dat/outfits/biocore_fin/medium_fast_fin_stage_1.xml:10
+#: dat/outfits/biocore_fin/medium_fast_fin_stage_2.xml:10
 #: dat/outfits/biocore_fin/medium_fast_fin_stage_3.xml:10
 #: dat/outfits/biocore_fin/medium_fast_fin_stage_4.xml:10
-#: dat/outfits/biocore_fin/medium_strong_fin_stage_1.xml:9
-#: dat/outfits/biocore_fin/medium_strong_fin_stage_2.xml:9
+#: dat/outfits/biocore_fin/medium_strong_fin_stage_1.xml:10
+#: dat/outfits/biocore_fin/medium_strong_fin_stage_2.xml:10
 #: dat/outfits/biocore_fin/medium_strong_fin_stage_3.xml:10
 #: dat/outfits/biocore_fin/medium_strong_fin_stage_4.xml:10
-#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_1.xml:10
-#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_2.xml:10
+#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_1.xml:11
+#: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_2.xml:11
 #: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_3.xml:11
 #: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_4.xml:11
 #: dat/outfits/biocore_fin/mediumheavy_fast_fin_stage_5.xml:11
-#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_1.xml:10
-#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_2.xml:10
+#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_1.xml:11
+#: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_2.xml:11
 #: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_3.xml:11
 #: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_4.xml:11
 #: dat/outfits/biocore_fin/mediumheavy_strong_fin_stage_5.xml:11
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_1.xml:10
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_2.xml:10
-#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_3.xml:10
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_1.xml:11
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_2.xml:11
+#: dat/outfits/biocore_fin/superheavy_fast_fin_stage_3.xml:11
 #: dat/outfits/biocore_fin/superheavy_fast_fin_stage_4.xml:11
 #: dat/outfits/biocore_fin/superheavy_fast_fin_stage_5.xml:11
 #: dat/outfits/biocore_fin/superheavy_fast_fin_stage_6.xml:11
 #: dat/outfits/biocore_fin/superheavy_fast_fin_stage_7.xml:11
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_1.xml:10
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_2.xml:10
-#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_3.xml:10
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_1.xml:11
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_2.xml:11
+#: dat/outfits/biocore_fin/superheavy_strong_fin_stage_3.xml:11
 #: dat/outfits/biocore_fin/superheavy_strong_fin_stage_4.xml:11
 #: dat/outfits/biocore_fin/superheavy_strong_fin_stage_5.xml:11
 #: dat/outfits/biocore_fin/superheavy_strong_fin_stage_6.xml:11
 #: dat/outfits/biocore_fin/superheavy_strong_fin_stage_7.xml:11
-#: dat/outfits/biocore_fin/ultralight_fast_fin_stage_1.xml:9
+#: dat/outfits/biocore_fin/ultralight_fast_fin_stage_1.xml:10
 #: dat/outfits/biocore_fin/ultralight_fast_fin_stage_2.xml:10
-#: dat/outfits/biocore_fin/ultralight_strong_fin_stage_1.xml:9
+#: dat/outfits/biocore_fin/ultralight_strong_fin_stage_1.xml:10
 #: dat/outfits/biocore_fin/ultralight_strong_fin_stage_2.xml:10
 msgid ""
 "The fin is a Soromid bioship's equivalent to engines in synthetic ships. It "
@@ -13054,13 +13054,13 @@ msgstr ""
 #: dat/outfits/biocore_shell/heavy_shell_stage_6.xml:4
 #: dat/outfits/biocore_shell/heavy_shell_stage_x.xml:4
 #: dat/outfits/biocore_shell/light_shell_stage_1.xml:4
-#: dat/outfits/biocore_shell/light_shell_stage_2.xml:5
-#: dat/outfits/biocore_shell/light_shell_stage_3.xml:5
+#: dat/outfits/biocore_shell/light_shell_stage_2.xml:4
+#: dat/outfits/biocore_shell/light_shell_stage_3.xml:4
 #: dat/outfits/biocore_shell/light_shell_stage_x.xml:4
 #: dat/outfits/biocore_shell/medium_shell_stage_1.xml:4
 #: dat/outfits/biocore_shell/medium_shell_stage_2.xml:4
-#: dat/outfits/biocore_shell/medium_shell_stage_3.xml:5
-#: dat/outfits/biocore_shell/medium_shell_stage_4.xml:5
+#: dat/outfits/biocore_shell/medium_shell_stage_3.xml:4
+#: dat/outfits/biocore_shell/medium_shell_stage_4.xml:4
 #: dat/outfits/biocore_shell/medium_shell_stage_x.xml:4
 #: dat/outfits/biocore_shell/mediumheavy_shell_stage_1.xml:4
 #: dat/outfits/biocore_shell/mediumheavy_shell_stage_2.xml:4
@@ -13077,7 +13077,7 @@ msgstr ""
 #: dat/outfits/biocore_shell/superheavy_shell_stage_7.xml:4
 #: dat/outfits/biocore_shell/superheavy_shell_stage_x.xml:4
 #: dat/outfits/biocore_shell/ultralight_shell_stage_1.xml:4
-#: dat/outfits/biocore_shell/ultralight_shell_stage_2.xml:5
+#: dat/outfits/biocore_shell/ultralight_shell_stage_2.xml:4
 #: dat/outfits/biocore_shell/ultralight_shell_stage_x.xml:4 dat/slots.xml:28
 msgid "Bioship Shell"
 msgstr ""
@@ -13088,11 +13088,11 @@ msgstr ""
 #: dat/outfits/biocore_shell/heavy_shell_stage_4.xml:10
 #: dat/outfits/biocore_shell/heavy_shell_stage_5.xml:10
 #: dat/outfits/biocore_shell/heavy_shell_stage_6.xml:10
-#: dat/outfits/biocore_shell/light_shell_stage_1.xml:10
+#: dat/outfits/biocore_shell/light_shell_stage_1.xml:11
 #: dat/outfits/biocore_shell/light_shell_stage_2.xml:11
 #: dat/outfits/biocore_shell/light_shell_stage_3.xml:11
-#: dat/outfits/biocore_shell/medium_shell_stage_1.xml:9
-#: dat/outfits/biocore_shell/medium_shell_stage_2.xml:9
+#: dat/outfits/biocore_shell/medium_shell_stage_1.xml:10
+#: dat/outfits/biocore_shell/medium_shell_stage_2.xml:10
 #: dat/outfits/biocore_shell/medium_shell_stage_3.xml:10
 #: dat/outfits/biocore_shell/medium_shell_stage_4.xml:10
 #: dat/outfits/biocore_shell/mediumheavy_shell_stage_1.xml:11
@@ -13107,7 +13107,7 @@ msgstr ""
 #: dat/outfits/biocore_shell/superheavy_shell_stage_5.xml:11
 #: dat/outfits/biocore_shell/superheavy_shell_stage_6.xml:11
 #: dat/outfits/biocore_shell/superheavy_shell_stage_7.xml:11
-#: dat/outfits/biocore_shell/ultralight_shell_stage_1.xml:9
+#: dat/outfits/biocore_shell/ultralight_shell_stage_1.xml:10
 #: dat/outfits/biocore_shell/ultralight_shell_stage_2.xml:10
 msgid ""
 "The shell is a Soromid bioship's natural protection, equivalent to hulls of "
@@ -21332,23 +21332,23 @@ msgstr ""
 #. the player; each inner table contains, respectively:
 #. * The outfit name
 #. * The corresponding index in bioship_parts
-#: dat/events/control/bioship_upgrade.lua:146
+#: dat/events/control/bioship_upgrade.lua:147
 msgid "#oBioship Log: {text}#0"
 msgstr ""
 
-#: dat/events/control/bioship_upgrade.lua:156
+#: dat/events/control/bioship_upgrade.lua:154
 msgctxt "log"
 msgid "Bioship XP"
 msgstr ""
 
-#: dat/events/control/bioship_upgrade.lua:160
+#: dat/events/control/bioship_upgrade.lua:158
 #, lua-format
 msgid "Gained %d XP"
 msgid_plural "Gained %d XP"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/events/control/bioship_upgrade.lua:162
+#: dat/events/control/bioship_upgrade.lua:160
 #, lua-format
 msgid " (%d more XP until next upgrade)"
 msgid_plural " (%d more XP until next upgrade)"
@@ -21356,18 +21356,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Only check slot stuff, ignore CPU and the rest.
-#: dat/events/control/bioship_upgrade.lua:196
+#: dat/events/control/bioship_upgrade.lua:195
 #, lua-format
 msgid "Unable to upgrade Soromid outfit to %s!"
 msgstr ""
 
 #. Try to add previous one
-#: dat/events/control/bioship_upgrade.lua:199
+#: dat/events/control/bioship_upgrade.lua:198
 msgid "Upgraded {old_part} to {new_part}"
 msgstr ""
 
 #. Reset stats since we leveled up (prevents gameplay problems)
-#: dat/events/control/bioship_upgrade.lua:210
+#: dat/events/control/bioship_upgrade.lua:209
 #, lua-format
 msgid "%d more XP until next upgrade"
 msgid_plural "%d more XP until next upgrade"
@@ -31861,7 +31861,7 @@ msgid ""
 "mission anyway?"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:181 dat/missions/neutral/cruise.lua:291
+#: dat/missions/neutral/cruise.lua:181 dat/missions/neutral/cruise.lua:311
 msgid "Land on additional planets along the way to earn extra credits"
 msgstr ""
 
@@ -31952,64 +31952,90 @@ msgid ""
 "landed on their homeworld and return to your ship, somewhat annoyed."
 msgstr ""
 
+#: dat/missions/neutral/cruise.lua:241
+msgid ""
+"Your passengers are furious that you not only failed to take them to "
+"{destplanet} as promised, but were also late to return them to "
+"{startplanet}. Your passengers refuse to pay anything."
+msgstr ""
+
+#: dat/missions/neutral/cruise.lua:242
+msgid ""
+"Everyone is furious at you for your poor performance. They hurriedly storm "
+"out of your ship, no doubt hoping to make up for the scheduling problems you "
+"caused for them by returning so late."
+msgstr ""
+
+#: dat/missions/neutral/cruise.lua:253
+msgid ""
+"Furious that you still haven't returned them to their homeworld, your "
+"passengers storm out of your ship to seek a ferry."
+msgstr ""
+
+#: dat/missions/neutral/cruise.lua:254
+msgid ""
+"Your passengers storm out of your ship, visibly upset that you still haven't "
+"taken them home. One passenger spits in your face as they exit."
+msgstr ""
+
 #. Duplicate planets don't impress the passengers.
-#: dat/missions/neutral/cruise.lua:246
+#: dat/missions/neutral/cruise.lua:266
 msgid ""
 "Passengers disembark onto {planet}, but as they notice they've already been "
 "here on this cruise, most of them quickly grow bored and return to your ship."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:247
+#: dat/missions/neutral/cruise.lua:267
 msgid ""
 "Passengers yawn with disinterest as you land on {planet} again. Some "
 "disembark for a short while, but most decide to just stay behind on your "
 "ship."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:248
+#: dat/missions/neutral/cruise.lua:268
 msgid ""
 "You hear a collective sigh of disapproval as you land on {planet} yet again. "
 "None of your passengers choose to visit."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:260
+#: dat/missions/neutral/cruise.lua:280
 msgid ""
 "Passengers disembark, excited to see what {planet} has to offer. They seem "
 "to be having a good time."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:261
+#: dat/missions/neutral/cruise.lua:281
 msgid ""
 "Passengers excitedly begin to explore {planet}, marveling at all the sights "
 "and sounds."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:262
+#: dat/missions/neutral/cruise.lua:282
 msgid ""
 "You can see the passengers are excited for the main event, and in mere "
 "moments, they're already out of your ship and exploring {planet}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:269
+#: dat/missions/neutral/cruise.lua:289
 msgid ""
 "Passengers disembark and spend some time enjoying the sights on {planet}. It "
 "seems they're having a good time."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:270
+#: dat/missions/neutral/cruise.lua:290
 msgid ""
 "You inform passengers that they can now disembark and explore {planet} if "
 "they like. Many passengers do so, excited to see an unexpected new location."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:271
+#: dat/missions/neutral/cruise.lua:291
 msgid ""
 "Passengers step out of your ship and look in awe at the unfamiliar spaceport "
 "of {planet} before going off to explore some more."
 msgstr ""
 
 #. Case missed second deadline
-#: dat/missions/neutral/cruise.lua:299
+#: dat/missions/neutral/cruise.lua:319
 msgid "You failed to complete the cruise on time."
 msgstr ""
 
@@ -33411,22 +33437,22 @@ msgstr ""
 msgid "%s just landed at %s and finished the race"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:136 dat/missions/neutral/race2.lua:169
+#: dat/missions/neutral/race1.lua:136 dat/missions/neutral/race2.lua:172
 #, lua-format
 msgid "Checkpoint %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:146 dat/missions/neutral/race2.lua:195
+#: dat/missions/neutral/race1.lua:146 dat/missions/neutral/race2.lua:198
 #, lua-format
 msgid "Racer %s"
 msgstr ""
 
 #. seconds
-#: dat/missions/neutral/race1.lua:168 dat/missions/neutral/race2.lua:216
+#: dat/missions/neutral/race1.lua:168 dat/missions/neutral/race2.lua:219
 msgid "Go!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:268 dat/missions/neutral/race2.lua:303
+#: dat/missions/neutral/race1.lua:268 dat/missions/neutral/race2.lua:306
 msgid "You left the race."
 msgstr ""
 
@@ -53267,7 +53293,7 @@ msgstr ""
 msgid "Unknown weapon status for '%s'"
 msgstr "État d'arme inconnu pour '%s'"
 
-#: src/weapon.c:510 src/weapon.c:667 src/weapon.c:1768
+#: src/weapon.c:510 src/weapon.c:667 src/weapon.c:1771
 msgid "Unknown weapon layer!"
 msgstr "Couche d'arme inconnue !"
 
@@ -53281,27 +53307,27 @@ msgstr "La mise à jour d'Arme de type '%s' n’a pas encore été implémenté 
 msgid "Weapon of type '%s' has no render implemented yet!"
 msgstr "Le rendu d'Arme de type '%s' n’a pas encore été implémenté !"
 
-#: src/weapon.c:1715
+#: src/weapon.c:1718
 #, c-format
 msgid "Weapon of type '%s' has no create implemented yet!"
 msgstr "La création d'Arme de type '%s' n’a pas encore été implémenté !"
 
-#: src/weapon.c:1751
+#: src/weapon.c:1754
 #, fuzzy
 msgid "Trying to create a Weapon from a non-Weapon type Outfit"
 msgstr ""
 "Essai de création d'une Arme à partir d'un Équipement de type non-Arme."
 
-#: src/weapon.c:1811
+#: src/weapon.c:1814
 #, fuzzy
 msgid "Trying to create a Beam Weapon from a non-beam outfit."
 msgstr ""
 "Essai de création d'une Arme Laser à partir d'un équipement sans laser."
 
-#: src/weapon.c:1831 src/weapon.c:1878 src/weapon.c:2028
+#: src/weapon.c:1834 src/weapon.c:1881 src/weapon.c:2031
 msgid "Invalid WEAPON_LAYER specified"
 msgstr "WEAPON_LAYER non valide spécifié"
 
-#: src/weapon.c:1884
+#: src/weapon.c:1887
 msgid "Trying to remove beam with ID 0!"
 msgstr ""
