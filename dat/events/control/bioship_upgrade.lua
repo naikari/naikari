@@ -90,6 +90,7 @@ bioship_parts = {
 
 function create()
    hook.pay("pay")
+   hook.gather("gather")
 end
 
 
@@ -148,70 +149,86 @@ function log_entry(text)
 end
 
 
-function pay(amount, reason)
+function add_xp(exp_gain)
    local pp = player.pilot()
+   shiplog.create("bioship", p_("log", "Bioship XP"), false, 50)
+   local exp = var.peek("_bioship_exp") or 0
+   exp = exp + exp_gain
+   local s = string.format(
+         n_("Gained %d XP", "Gained %d XP", exp_gain), exp_gain)
+   if exp < 100 then
+      s = s .. string.format(n_(" (%d more XP until next upgrade)",
+            " (%d more XP until next upgrade)", 100 - exp), 100 - exp)
+   end
+   log_entry(s)
+
+   while exp >= 100 do
+      exp = exp - 100
+      local parts = get_bioship_parts()
+      if #parts > 0 then
+         local part_t = parts[ rnd.rnd(1, #parts) ]
+         local part = part_t[1]
+         local index = part_t[2]
+         local current_level = 0
+         local max_level = bioship_parts[index][2]
+
+         for i=1,max_level do
+            if part == bioship_parts[index][1]:format(string.format("%d", i)) then
+               current_level = i
+               break
+            end
+         end
+
+         local new_level = current_level + 1
+
+         pp:outfitRm(part)
+         local new_part
+         if new_level > max_level then
+            new_part = bioship_parts[index][1]:format("X") 
+         else
+            local sn = string.format("%d", new_level)
+            new_part = bioship_parts[index][1]:format(sn)
+         end
+         -- Only check slot stuff, ignore CPU and the rest.
+         local q = pp:outfitAdd(new_part, 1, true)
+         if q <= 0 then
+            warn(string.format(_("Unable to upgrade Soromid outfit to %s!"), new_part))
+            pp:outfitAdd(part, 1, true) -- Try to add previous one
+         else
+            log_entry(fmt.f(_("Upgraded {old_part} to {new_part}"),
+                  {old_part=part, new_part=new_part}))
+         end
+
+         -- Reset stats since we leveled up (prevents gameplay problems)
+         pp:setHealth(100, 100)
+         pp:setEnergy(100)
+         pp:setTemp(0)
+         pp:setFuel(true)
+      end
+      if exp < 100 then
+         log_entry(string.format(n_("%d more XP until next upgrade",
+               "%d more XP until next upgrade", 100 - exp), 100 - exp))
+      end
+   end
+
+   var.push("_bioship_exp", exp)
+end
+
+
+function pay(amount, reason)
    local exp_gain = math.floor(amount / 10000)
    if amount > 0 and reason ~= "adjust" and reason ~= "loot"
          and has_bioship() then
-      shiplog.create("bioship", p_("log", "Bioship XP"), false, 50)
-      local exp = var.peek("_bioship_exp") or 0
-      exp = exp + exp_gain
-      local s = string.format(
-            n_("Gained %d XP", "Gained %d XP", exp_gain), exp_gain)
-      if exp < 100 then
-         s = s .. string.format(n_(" (%d more XP until next upgrade)",
-               " (%d more XP until next upgrade)", 100 - exp), 100 - exp)
-      end
-      log_entry(s)
+      exp_gain = math.max(exp_gain, 1)
+      add_xp(exp_gain)
+   end
+end
 
-      while exp >= 100 do
-         exp = exp - 100
-         local parts = get_bioship_parts()
-         if #parts > 0 then
-            local part_t = parts[ rnd.rnd(1, #parts) ]
-            local part = part_t[1]
-            local index = part_t[2]
-            local current_level = 0
-            local max_level = bioship_parts[index][2]
 
-            for i=1,max_level do
-               if part == bioship_parts[index][1]:format(string.format("%d", i)) then
-                  current_level = i
-                  break
-               end
-            end
-
-            local new_level = current_level + 1
-
-            pp:outfitRm(part)
-            local new_part
-            if new_level > max_level then
-               new_part = bioship_parts[index][1]:format("X") 
-            else
-               local sn = string.format("%d", new_level)
-               new_part = bioship_parts[index][1]:format(sn)
-            end
-            local q = pp:outfitAdd(new_part, 1, true) -- Only check slot stuff, ignore CPU and the rest.
-            if q<=0 then
-               warn(string.format(_("Unable to upgrade Soromid outfit to %s!"), new_part))
-               pp:outfitAdd(part, 1, true) -- Try to add previous one
-            else
-               log_entry(fmt.f(_("Upgraded {old_part} to {new_part}"),
-                     {old_part=part, new_part=new_part}))
-            end
-
-            -- Reset stats since we leveled up (prevents gameplay problems)
-            pp:setHealth(100, 100)
-            pp:setEnergy(100)
-            pp:setTemp(0)
-            pp:setFuel(true)
-         end
-         if exp < 100 then
-            log_entry(string.format(n_("%d more XP until next upgrade",
-                  "%d more XP until next upgrade", 100 - exp), 100 - exp))
-         end
-      end
-
-      var.push("_bioship_exp", exp)
+function gather(cargo, quantity)
+   local exp_gain = math.floor(quantity / 10)
+   if quantity > 0 and has_bioship() then
+      exp_gain = math.max(exp_gain, 1)
+      add_xp(exp_gain)
    end
 end
