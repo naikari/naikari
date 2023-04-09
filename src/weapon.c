@@ -1539,23 +1539,26 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    glTexture *gfx;
    Outfit* ammo;
 
+   /* Aim forward by default. */   
+   rdir = dir;
+
    pilot_target = NULL;
    ammo = launcher->u.lau.ammo;
-   if ((w->outfit->type == OUTFIT_TYPE_AMMO) && (parent->id != w->target)
-         && (w->target != 0)) {
-      pilot_target = pilot_get(w->target);
-      if (launcher->type == OUTFIT_TYPE_TURRET_LAUNCHER)
-         rdir = weapon_aimTurret(
-               parent, pilot_target, pos, vel, dir, M_PI, time,
-               launcher->u.lau.rdr_range, launcher->u.lau.rdr_range_max );
-      else
-         rdir = weapon_aimTurret(
-               parent, pilot_target, pos, vel, dir,
-               launcher->u.lau.swivel, time, launcher->u.lau.rdr_range,
-               launcher->u.lau.rdr_range_max );
+   if (w->outfit->type == OUTFIT_TYPE_AMMO) {
+      if ((parent->id != w->target) && (w->target != 0))
+         pilot_target = pilot_get(w->target);
+
+      if ((pilot_target != NULL) || (parent->nav_asteroid >= 0)) {
+         if (launcher->type == OUTFIT_TYPE_TURRET_LAUNCHER)
+            rdir = weapon_aimTurret(parent, pilot_target, pos, vel, dir, M_PI,
+                  time, launcher->u.lau.rdr_range,
+                  launcher->u.lau.rdr_range_max);
+         else
+            rdir = weapon_aimTurret(parent, pilot_target, pos, vel, dir,
+                  launcher->u.lau.swivel, time, launcher->u.lau.rdr_range,
+                  launcher->u.lau.rdr_range_max);
+      }
    }
-   else
-      rdir = dir;
 
    /* Launcher damage. */
    w->dam_mod *= parent->stats.launch_damage;
