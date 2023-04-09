@@ -124,6 +124,9 @@
   it gradually increase as the shell levels up.
 * Changed the Time Constant of the Fidelity and Brigand (setting it to
   0.875 for both, the same as the Shark and other light fighters).
+* Bioships now gain XP from mining in addition to getting paid.
+* Unguided rockets will now auto-aim at asteroids, just like bolt
+  weapons.
 
 
 ## 0.6.0
