@@ -117,6 +117,13 @@
 * Changed Mizar's nebula hue to the default.
 * Fixed several instances of planets that had been missed during the
   universe overhaul in version 0.5.0.
+* Removed the CPU cost of Forward Shock Absorbers.
+* Fixed the Race2 mission having an error when attempting to proceed
+  after loading your save.
+* Moved the armor regeneration stat of bioships to bio-shells and made
+  it gradually increase as the shell levels up.
+* Changed the Time Constant of the Fidelity and Brigand (setting it to
+  0.875 for both, the same as the Shark and other light fighters).
 
 
 ## 0.6.0
