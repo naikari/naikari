@@ -25,7 +25,6 @@ function misnhelper.anyMissionActive(names)
          return true
       end
    end
-
    return false
 end
 
