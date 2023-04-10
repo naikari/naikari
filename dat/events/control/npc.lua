@@ -34,9 +34,8 @@ civ_name = {
 -- Appearance in this table also implicitly causes portrait.getMil() to
 -- be used for selecting a portrait instead of portrait.get().
 mil_name = {
-   emp_mil_restricted = _("Empire Officer"),
-   emp_mil_omega = _("Empire Officer"),
-   emp_mil_eye = _("Empire Officer"),
+   emp_mil_restricted = _("Imperial Officer"),
+   emp_mil_eye = _("Imperial Officer"),
    srs_mil_restricted = _("Sirius Officer"),
    srs_mil_mutris = _("Sirius Officer"),
    dv_mil_restricted = _("Dvaered Officer"),
@@ -93,16 +92,15 @@ pciv_desc["Pirate"] = {
 -- restriction function name.
 mil_desc = {}
 mil_desc.emp_mil_restricted = {
-   _("An Empire officer sits idly at one of the tables."),
-   _("This Empire officer seems somewhat spaced-out."),
-   _("An Empire officer drinking alone."),
-   _("An Empire officer sitting at the bar."),
-   _("This Empire officer is idly reading the news terminal."),
+   _("An Imperial officer sits idly at one of the tables."),
+   _("This Imperial officer seems somewhat spaced-out."),
+   _("An Imperial officer drinking alone."),
+   _("An Imperial officer sitting at the bar."),
+   _("This Imperial officer is idly reading the news terminal."),
    _("This officer seems bored with everything but their drink."),
    _("This officer seems to be relaxing after a hard day's work."),
-   _("An Empire officer sitting in the corner."),
+   _("An Imperial officer sitting in the corner."),
 }
-mil_desc.emp_mil_omega = mil_desc.emp_mil_restricted
 mil_desc.emp_mil_eye = mil_desc.emp_mil_restricted
 mil_desc.srs_mil_restricted = {
    _("A Sirius officer sits idly at one of the tables."),
@@ -259,12 +257,13 @@ msg_lore["Thurion"] = {
 msg_lore["Proteron"] = {
    _([["The old Empire will pay for blowing up Sol. We all know they did it on purpose."]]),
    _([["The obsolete old Empire knew we were destined to replace them, so they blew up Sol in an effort to wipe us out. But they weren't thorough enough, and we won't forgive them!"]]),
-   _([["Personally I think the old Empire has been weakened by Soromid influence. Those damn freaks have been a scourge on the galaxy ever since they flooded into it."]]),
+   _([["Personally I think the old Empire has been weakened by Sorofreak influence. Those damn freaks have been a scourge on the galaxy ever since they flooded into it."]]),
    _([["It is our destiny as Proteron to rule the galaxy. We are the rightful successor to the Empire. We will take what is ours."]]),
-   _([["One of my co-workers was spreading lies about us Proteron causing the Incident. Naturally, I reported him to the police, and they took him away. I'd bet he was a secret Soromid sympathizer trying to bring down the great Proteron Empire."]]),
+   _([["One of my co-workers was spreading lies about us Proteron causing the Incident. Naturally, I reported him to the police, and they took him away. I'd bet he was a secret Sorofreak sympathizer trying to bring down the great Proteron Empire."]]),
    _([["We must all work hard to ensure our destiny as Proteron is fulfilled."]]),
    _([["The Empire is weak and obsolete, and they know it. That's why they went so low as to blow Earth up to try to get rid of us."]]),
-   _([["I'm thinking of enlisting in the military so I can join the fight against the Soromid elite and the traitorous old Empire."]]),
+   _([["I'm thinking of enlisting in the military so I can join the fight against the Sorofreak elite and the traitorous old Empire."]]),
+   _([["It's time for natural selection to take its course. We Proteron are strong, and it's time for us to crush the weak."]]),
 }
 
 msg_lore["Frontier"] = {
