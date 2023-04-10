@@ -27,6 +27,18 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
+    <release version="v0.7.0" date="2023-04-09" type="stable">
+      <description>
+        <ul>
+          <li>Engines now come with fuel regeneration as standard.</li>
+          <li>Replaced the Sightseeing mission with a new "Cruise" mission.</li>
+          <li>Replaced the Empire Shipping campaign with the start of a new Hakoi Pirates campaign.</li>
+          <li>Rewrote the story for the Coming Out campaign.</li>
+          <li>Certain AI pilots now perform escape jumps.</li>
+        </ul>
+      </description>
+      <url>https://github.com/naikari/naikari/releases/tag/v0.6.0</url>
+    </release>
     <release version="v0.6.0" date="2023-02-07" type="stable">
       <description>
         <ul>
