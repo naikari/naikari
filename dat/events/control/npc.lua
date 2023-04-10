@@ -172,24 +172,42 @@ mil_desc.pir_clanworld = pciv_desc["Pirate"]
 
 
 --[[
--- NPC messages. Each is a table with the following values:
--- * "faction": The faction it appears with or a list of them (optional).
--- * "exclude_faction": Like "faction", but prevents appearance (optional).
--- * "text": The text of the message. Can also be a list.
--- * "cond": function returning whether the message can be used (optional).
+NPC messages. Each is a table with the following keys:
+   "faction": The faction it appears with or a list of them. (optional)
+   "exclude_faction": Like "faction", but prevents appearance.
+      (optional)
+   "text": The text of the message. Can also be a list.
+   "cond": function returning whether the message can be used.
+      (optional)
 --]]
 messages = {
+   {
+      text = {
+         _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
+         _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
+         _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's usually expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
+         _([["These computer symbols can be confusing sometimes! I've figured it out, though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
+         _([["I just found out why launchers have their mass listed as a range rather than a single number. It's because of the ammo. The smaller number is what it weighs if you're out of ammo, and the bigger number is what it weighs when your ammo is full."]]),
+         _([["Those new combat practice missions in the mission computer are real handy! You can even fight against Proteron ship look-alikes, but don't be fooled; they're not the real deal."]]),
+         _([["I'm still not used to the randomly exploding asteroids. You'll just be passing through an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),
+         _([["I wonder if we're really alone in the universe. We've never discovered alien life, but maybe we just haven't looked hard enough."]]),
+      },
+   },
    {
       exclude_faction = {"Thurion", "Proteron", "Pirate", "Za'lek"},
       text = {
          _([["I heard the nebula is haunted! My uncle told me he saw one of the ghost ships himself over in Arandon."]]),
          _([["I don't believe in those nebula ghost stories. The people who spread them are just trying to scare you."]]),
          _([["Don't try to fly into the inner nebula. I've known people who tried, and none of them came back."]]),
+         _([["As horrible as the Incident was, it's a good thing that we don't have to worry about House Proteron anymore. That's the one silver lining to it."]]),
       },
    },
    {
-      exclude_faction = "Proteron",
-      text = _([["Don't listen to those conspiracy theories about the Incident. We don't know what happened, sure, but why on Earth would someone blow up… you know, Earth… on purpose?"]]),
+      exclude_faction = {"Thurion", "Proteron"},
+      text = {
+         _([["Don't listen to those conspiracy theories about the Incident. We don't know what happened, sure, but why on Earth would someone blow up… you know, Earth… on purpose?"]]),
+         _([["I wonder if there's anything left in the Inner Nebula. Supposedly everything blew up, but what if some artifact survived that was impervious to it?"]]),
+      },
    },
    {
       exclude_faction = {"Sirius", "Za'lek", "Thurion", "Proteron", "Pirate"},
@@ -208,10 +226,23 @@ messages = {
       end,
    },
    {
+      text = _([["What? You had rodents sabotage your ship? Damn, you're lucky to be alive. If it had hit the wrong power line…"]]),
+      cond = function()
+         return player.evtDone("Animal trouble")
+      end,
+   },
+   {
       faction = "Independent",
       text = {
          _([["I won't lie, the Soromid freak me the hell out. Something's just… fishy about them. You know what I mean?"]]),
          _([["I worry about big genetics, you know? All those gene manipulators, it just isn't natural."]]),
+      },
+   },
+   {
+      faction = "Goddard",
+      text = {
+         _([["We're very proud of the Goddard ship here. If you haven't already, you should consider buying one!"]]),
+         _([["Everyone's all about carriers these days, but let me tell you, when you're up close to a Goddard, it had better be on your side or you'll be blown to space dust in seconds."]]),
       },
    },
    {
@@ -223,6 +254,16 @@ messages = {
          _([["I don't know who did it, but believe me, the Incident was no accident! It was definitely a terrorist attack orchestrated by those disloyal Great Houses in an effort to take down the Empire."]]),
          _([["I wouldn't travel north of Alteris if I were you, unless you're a good fighter! That area of space has really gone down the drain since the Incident."]]),
       },
+   },
+   {
+      faction = "Empire",
+      text = {
+         _([["This thing with pirates showing up in Hakoi worries me. I have a feeling something bad is going to happen to the Empire, but I hope I'm wrong."]]),
+         _([["Those damn pirates are in Hakoi now. What happened to the Empire? We used to be the strongest in all the universe, and now what, we can't stop a few criminals from getting in?"]]),
+      },
+      cond = function()
+         return player.misnDone("Tutorial Part 4")
+      end
    },
    {
       faction = "Dvaered",
@@ -254,8 +295,9 @@ messages = {
          _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but through the discovery of more data, we can uncover the true answer."]]),
          _([["I'll admit that the living Soromid ships are marginally interesting, but truly, they can't beat the best synthetic technology."]]),
          _([["I don't know why we even bother sending our research results to the Empire anymore. Those idiots can't understand even the simplest of formulae."]]),
-         _([["I would love to get my hands on a genuine Proteron ship one day! They've always been a danger to the galaxy, but I'd be lying if I said their ship tech wasn't incredible."]]),
+         _([["I would love to get my hands on a genuine Proteron ship one day! They were always a danger to the galaxy, but I'd be lying if I said their ship tech wasn't incredible."]]),
          _([["Between you and me, for all the negative stuff the Empire says about House Proteron, they were geniuses. Considering all the stupidity that comes from the Empire, we might just be better off if it was House Proteron that survived the Incident instead."]]),
+         _([["Between you and me, while I don't really begrudge our Dvaered neighbors, most of them are kind of stupid. If I have to explain the Goddard-Zak formula to a Dvaered again, I swear I'll lose a brain cell."]]),
       },
    },
    {
@@ -265,10 +307,10 @@ messages = {
          _([["Yes, it's true, our military ships are alive. Us normal folk don't get to own bioships though, we have to make do with synthetic constructs just like everyone else."]]),
          _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
          _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
-         _([["I wonder why the Siriusites are all so devout. I heard they have these special priestly people walking around. I wonder what's so special about them."]]),
          _([["Sometimes I worry a little about the growing anti-Soromid sentiment. We never really did fully move away from the Empire's stigmatization of us during the Great Quarantine."]]),
          _([["I don't trust the Empire, so I'm frankly glad it's in decline. First we had the Great Quarantine, and then the Incident wiped out our homeworld. I'm not saying the Empire caused the Incident on purpose, but considering Sol was at the center of it and the Empire controlled all of Sol, I'm sure the Empire is at least partially to blame."]]),
          _([["They don't teach about the Great Quarantine in the Empire, do they? A few centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only through the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
+         _([["It upsets me that there are still Proteron sympathizers, even after they got wiped out by the Incident. They were violent bigots. I don't give a damn how good their ships were, why are so many people willing to give that a pass?"]]),
       },
    },
    {
@@ -297,6 +339,7 @@ messages = {
          _([["You know, I got into this business by accident to tell the truth. But what can you do? I could get a fake ID and pretend to be someone else but I'd get caught eventually. Might as well make the best of what I have now."]]),
          _([["One of my favorite things to do is buy a fake ID and then deliver as much contraband as I can before I get caught. It's great fun, and finding out that my identity's been discovered gives me a rush!"]]),
          _([["If you ask me, the Incident was some sort of alien dimensional phenomenon. I heard rumors of ghost ships flying about that look like nothing humanity has ever invented. Whether the Incident was intentional or just an accidental slip-up, I don't know."]]),
+         _([["I sure am glad we don't have to go toe-to-toe with the Proteron. That wannabe empire was trying to start shit and then, boom! Sol blows up and takes the Proteron with it. Let me tell you, up close, their ships were terrifying. I'll take Imperial ships over them any day."]]),
       },
    },
    {
@@ -316,26 +359,15 @@ messages = {
    {
       faction = "Thurion",
       text = {
-         _([["We were lucky to not get touched by the Incident. In fact, we kind of benefited from it. The nebula that resulted gave us a great cover and sealed off the Empire from us."]]),
+         _([["We were lucky to not get touched by the explosion of Sol. In fact, we kind of benefited from it. The nebula that resulted gave us a great cover and sealed off the Empire from us."]]),
+         _([["It's a good thing those Proteron folks got vaporized in the explosion of Sol. The Empire is scary, but House Proteron was always much, much worse."]]),
+         _([["Oh, you're from the outside, aren't you? Tell me, what was it like out there?"]]),
       },
    },
    {
-      text = {
-         _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
-         _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
-         _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's usually expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
-         _([["These computer symbols can be confusing sometimes! I've figured it out, though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
-         _([["I just found out why launchers have their mass listed as a range rather than a single number. It's because of the ammo. The smaller number is what it weighs if you're out of ammo, and the bigger number is what it weighs when your ammo is full."]]),
-         _([["Those new combat practice missions in the mission computer are real handy! You can even fight against Proteron ship look-alikes, but don't be fooled; they're not the real deal."]]),
-         _([["I'm still not used to the randomly exploding asteroids. You'll just be passing through an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),
-      },
+      faction = {"Empire", "Za'lek"},
+      text = _([["Have you seen a Proteron ship before? Let me tell you, they were a sight to behold, way ahead of their time. There's still a few scattered throughout the galaxy that survived the Incident, but those are mostly owned by really wealthy aristocrats these days."]]),
    },
-   {
-      text = _([["What? You had rodents sabotage your ship? Damn, you're lucky to be alive. If it had hit the wrong power line…"]]),
-      cond = function()
-         return player.evtDone("Animal trouble")
-      end,
-   }
 }
 
 used_messages = {}

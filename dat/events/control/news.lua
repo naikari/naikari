@@ -32,6 +32,18 @@
 local fmt = require "fmt"
 
 
+--[[
+A list of conditional articles. Each is a table with the following keys:
+   "title": The title of the article.
+   "text": The text of the article.
+   "tag": The tag of the article (must be unique).
+   "mission": Name of a mission which must be available to take.
+      (optional)
+   "done": Name of a mission which must be done. (optional)
+   "cond": Function returning whether to add the article. (optional)
+   "delcond": Function returning whether to remove the article.
+      (optional)
+--]]
 cond_articles = {
    {
       title = _("Criminal Activity Rumors in The Wringer"),
