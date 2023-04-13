@@ -22,6 +22,8 @@ several storylines are available which you can proceed through if you wish.
 All storylines are optional and kept out of the way if you have no interest in
 them.
 
+![](https://naikari.github.io/images/screenshot1.png) ![](https://naikari.github.io/images/screenshot2.png) ![](https://naikari.github.io/images/screenshot3.png)
+
 ## DEPENDENCIES
 
 Naikari's dependencies are intended to be relatively common. In addition to an
