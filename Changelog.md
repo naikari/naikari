@@ -1,5 +1,10 @@
 # NAIKARI CHANGELOG
 
+## 0.8.0
+
+* Improved generic NPC messages.
+* Dvaered Vigilance is now slower than the standard Vigilance.
+
 ## 0.7.0
 
 ### Major Changes
