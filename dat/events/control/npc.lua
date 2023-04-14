@@ -12,9 +12,10 @@
 -- universe in general, about their faction, or about the game itself.
 --]]
 
-require "events/tutorial/tutorial_common"
 local fmt = require "fmt"
 local portrait = require "portrait"
+require "jumpdist"
+
 
 -- Factions which will NOT get generic texts if possible.  Factions
 -- listed here not spawn generic civilian NPCs or get aftercare texts.
@@ -567,6 +568,53 @@ function getJmpMessage(fac)
    -- Don't need to remove messages from tables here, but add whatever jump point we selected to the "selected" table.
    seltargets[chosentarget:dest():nameRaw()] = true
    return fmt.f(retmsg, {system=chosentarget:dest():name()}), myfunc
+end
+
+
+function getDealerMessage(fac)
+   if not planet.cur():blackmarket() then
+      return getMessage(fac), nil
+   end
+
+   local outfits = {}
+   local ships = {}
+   local factions = {}
+
+   getsysatdistance(system.cur(), 0, 6,
+      function(s)
+         if s:presences["Pirate"] then
+            for i, p in ipairs(s:planets()) do
+               factions[p:faction():nameRaw()] = true
+               for j, o in ipairs(p:outfitsSold()) do
+                  if o:rarity() >= 2 then
+                     table.insert(outfits, o)
+                  end
+               end
+               for j, s in ipairs(p:shipsSold()) do
+                  if s:rarity() >= 2 then
+                     table.insert(ships, s)
+                  end
+               end
+            end
+         end
+      end, nil, true)
+
+   for f, avail in pairs(factions) do
+      if f == "Sirius" and fac ~= "Sirius" then
+         table.insert(ships, ship.get("Sirius Reverence"))
+      end
+   end
+
+   local r = rnd.rnd()
+   if r < 0.5 and #outfits > 0 then
+      local outfit_choice = outfits[rnd.rnd(1, #outfits)]
+      -- TODO
+   elseif #ships > 0 then
+      local ship_choice = ships[rnd.rnd(1, #ships)]
+      -- TODO
+   end
+
+   return getMessage(fac), nil
 end
 
 

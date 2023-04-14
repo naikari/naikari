@@ -39,6 +39,7 @@ static int shipL_name( lua_State *L );
 static int shipL_nameRaw( lua_State *L );
 static int shipL_baseType( lua_State *L );
 static int shipL_class( lua_State *L );
+static int shipL_rarity(lua_State *L);
 static int shipL_slots( lua_State *L );
 static int shipL_getSlots( lua_State *L );
 static int shipL_fitsSlot( lua_State *L );
@@ -49,24 +50,25 @@ static int shipL_price( lua_State *L );
 static int shipL_description( lua_State *L );
 static int shipL_getShipStat( lua_State *L );
 static const luaL_Reg shipL_methods[] = {
-   { "__tostring", shipL_name },
-   { "__eq", shipL_eq },
-   { "get", shipL_get },
-   { "getAll", shipL_getAll },
-   { "name", shipL_name },
-   { "nameRaw", shipL_nameRaw },
-   { "baseType", shipL_baseType },
-   { "class", shipL_class },
-   { "slots", shipL_slots },
-   { "getSlots", shipL_getSlots },
-   { "fitsSlot", shipL_fitsSlot },
-   { "cpu", shipL_CPU },
-   { "price", shipL_price },
-   { "gfxTarget", shipL_gfxTarget },
-   { "gfx", shipL_gfx },
-   { "description", shipL_description },
-   { "shipstat", shipL_getShipStat },
-   {0,0}
+   {"__tostring", shipL_name},
+   {"__eq", shipL_eq},
+   {"get", shipL_get},
+   {"getAll", shipL_getAll},
+   {"name", shipL_name},
+   {"nameRaw", shipL_nameRaw},
+   {"baseType", shipL_baseType},
+   {"class", shipL_class},
+   {"rarity", shipL_rarity},
+   {"slots", shipL_slots},
+   {"getSlots", shipL_getSlots},
+   {"fitsSlot", shipL_fitsSlot},
+   {"cpu", shipL_CPU},
+   {"price", shipL_price},
+   {"gfxTarget", shipL_gfxTarget},
+   {"gfx", shipL_gfx},
+   {"description", shipL_description},
+   {"shipstat", shipL_getShipStat},
+   {0, 0}
 }; /**< Ship metatable methods. */
 
 
@@ -334,6 +336,24 @@ static int shipL_class( lua_State *L )
 {
    const Ship *s = luaL_validship(L,1);
    lua_pushstring(L, s->class);
+   return 1;
+}
+
+
+/**
+ * @brief Gets the rarity of a ship.
+ *
+ * @usage rarity = s:rarity()
+ *
+ *    @luatparam Ship|string s Ship or raw (untranslated) name of the
+ *       ship to get the rarity of.
+ *    @luatreturn number The rarity of the ship.
+ * @luafunc rarity
+ */
+static int shipL_rarity(lua_State *L)
+{
+   const Ship *s = luaL_validship(L, 1);
+   lua_pushnumber(L, s->rarity);
    return 1;
 }
 

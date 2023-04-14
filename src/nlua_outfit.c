@@ -43,6 +43,7 @@ static int outfitL_icon( lua_State *L );
 static int outfitL_price( lua_State *L );
 static int outfitL_ammo(lua_State *L);
 static int outfitL_description( lua_State *L );
+static int outfitL_rarity(lua_State *L);
 static int outfitL_unique( lua_State *L );
 static int outfitL_getShipStat( lua_State *L );
 static int outfitL_weapStats( lua_State *L );
@@ -64,11 +65,12 @@ static const luaL_Reg outfitL_methods[] = {
    {"price", outfitL_price},
    {"ammo", outfitL_ammo},
    {"description", outfitL_description},
+   {"rarity", outfitL_rarity},
    {"unique", outfitL_unique},
    {"shipstat", outfitL_getShipStat},
    {"weapstats", outfitL_weapStats},
    {"specificstats", outfitL_specificStats},
-   {0,0}
+   {0, 0}
 }; /**< Outfit metatable methods. */
 
 
@@ -476,6 +478,24 @@ static int outfitL_description( lua_State *L )
 {
    const Outfit *o = luaL_validoutfit(L,1);
    lua_pushstring(L, o->description);
+   return 1;
+}
+
+
+/**
+ * @brief Gets the rarity of an outfit.
+ *
+ * @usage rarity = o:rarity()
+ *
+ *    @luatparam Outfit|string o Outfit or raw (untranslated) name of
+ *       outfit to get the rarity of.
+ *    @luatreturn number The rarity of the outfit.
+ * @luafunc rarity
+ */
+static int outfitL_rarity(lua_State *L)
+{
+   const Outfit *o = luaL_validoutfit(L, 1);
+   lua_pushnumber(L, o->rarity);
    return 1;
 }
 

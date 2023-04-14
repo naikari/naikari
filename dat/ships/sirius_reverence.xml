@@ -2,23 +2,18 @@
 <ship name="Sirius Reverence">
  <base_type>Reverence</base_type>
  <GFX size="70" sx="10" sy="10">preacher</GFX>
- <rarity>2</rarity>
+ <rarity>6</rarity>
  <GUI>brushed</GUI>
  <sound>engine</sound>
  <class>Corvette</class>
  <rdr_scale>1.5</rdr_scale>
- <price>720000</price>
+ <price>1200000</price>
  <time_mod>1.25</time_mod>
  <trail_generator x="-25" y="0" h="0" >sirius</trail_generator>
  <fabricator>Sirius Systems</fabricator>
  <license>Medium Combat Vessel License</license>
  <description>A modified version of the more common Preacher, the Reverence is only available to the purest of the pure, those who carry a fraction of the Sirichana's will within themselves. Protected by the best shields money can buy, the Reverence is nevertheless weak in offense.</description>
  <mission />
- <movement>
-  <thrust>100</thrust>
-  <turn>100</turn>
-  <speed>100</speed>
- </movement>
  <health>
   <armour>150</armour>
   <armour_regen>0</armour_regen>
