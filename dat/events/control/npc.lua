@@ -373,22 +373,8 @@ messages = {
 used_messages = {}
 
 
--- Jump point messages.
--- For giving the location of a jump point in the current system to the player for free.
--- All messages must contain exactly one %s, this is the name of the target system.
--- ALL NPCs have a chance to say one of these lines instead of a lore message.
--- So, make sure the tips are always faction neutral.
-msg_jmp = {
-   _([["Hi there, traveler. Is your system map up to date? Just in case you didn't know already, let me give you the location of the jump from here to %s. I hope that helps."]]),
-   _([["Quite a lot of people who come in here complain that they don't know how to get to %s. I travel there often, so I know exactly where the jump point is. Here, let me show you."]]),
-   _([["So you're still getting to know about this area, huh? Tell you what, I'll give you the coordinates of the jump to %s. Check your map next time you take off!"]]),
-   _([["True fact, there's a direct jump from here to %s. Want to know where it is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your map."]]),
-   _([["There's a system just one jump away by the name of %s. I can tell you where the jump point is. There, I've updated your map. Don't mention it."]]),
-}
-
-
 function create()
-   local num_npc = rnd.rnd(1, 5)
+   local num_npc = rnd.rnd(4, 14)
    npcs = {}
    for i = 0, num_npc do
       spawnNPC()
@@ -402,7 +388,6 @@ end
 function spawnNPC()
    -- Select a faction for the NPC. NPCs may not have a specific faction.
    local npcname = _("Civilian")
-   local func = nil
 
    local nongeneric = false
 
@@ -447,9 +432,10 @@ function spawnNPC()
    end
 
    -- Select what this NPC should say.
-   local select = rnd.rnd()
+   local r = rnd.rnd()
    local msg
-   if select < 0.2 then
+   local func = nil
+   if r < 0.2 then
       -- Jump point message.
       msg, func = getJmpMessage(fac)
    else
@@ -539,11 +525,20 @@ end
 
 -- Returns a jump point message and updates jump point known status accordingly. If all jumps are known by the player, defaults to a lore message.
 function getJmpMessage(fac)
+   local msg_jmp = {
+      _([["Hi there, traveler. Is your system map up to date? Just in case you didn't know already, let me give you the location of the jump from here to {system}. I hope that helps."]]),
+      _([["Quite a lot of people who come in here complain that they don't know how to get to {system}. I travel there often, so I know exactly where the jump point is. Here, let me show you."]]),
+      _([["So you're still getting to know about this area, huh? Tell you what, I'll give you the coordinates of the jump to {system}. Check your map next time you take off!"]]),
+      _([["True fact, there's a direct jump from here to {system}. Want to know where it is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your map."]]),
+      _([["There's a system just one jump away by the name of {system}. I can tell you where the jump point is. There, I've updated your map. Don't mention it."]]),
+   }
+
    -- Collect a table of jump points in the system the player does NOT know.
    local mytargets = {}
    seltargets = seltargets or {} -- We need to keep track of jump points NPCs will tell the player about so there are no duplicates.
    for i, j in ipairs(system.cur():jumps()) do
-      if not j:known() and not j:hidden() and not seltargets[j] then
+      if not j:known() and not j:hidden()
+            and not seltargets[j:dest():nameRaw()] then
          table.insert(mytargets, j)
       end
    end
@@ -558,14 +553,20 @@ function getJmpMessage(fac)
    end
    local retmsg =  msg_jmp[rnd.rnd(1, #msg_jmp)]
    local sel = rnd.rnd(1, #mytargets)
-   local myfunc = function()
-                     mytargets[sel]:setKnown(true)
-                     mytargets[sel]:dest():setKnown(true, false)
-                  end
+   local chosentarget = mytargets[sel]
+   local myfunc = function(id, npcdata)
+      tk.msg("", npcdata.msg)
+      chosentarget:setKnown(true)
+      chosentarget:dest():setKnown(true, false)
+
+      -- Set the NPC to a standard one.
+      npcdata.msg = getMessage(fac)
+      npcdata.func = nil
+   end
 
    -- Don't need to remove messages from tables here, but add whatever jump point we selected to the "selected" table.
-   seltargets[mytargets[sel]] = true
-   return retmsg:format(mytargets[sel]:dest():name()), myfunc
+   seltargets[chosentarget:dest():nameRaw()] = true
+   return fmt.f(retmsg, {system=chosentarget:dest():name()}), myfunc
 end
 
 
@@ -574,10 +575,10 @@ function talkNPC(id)
 
    if npcdata.func then
       -- Execute NPC specific code
-      npcdata.func()
+      npcdata.func(id, npcdata)
+   else
+      tk.msg("", npcdata.msg)
    end
-
-   tk.msg( "", npcdata.msg )
 end
 
 --[[
