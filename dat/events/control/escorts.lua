@@ -233,9 +233,6 @@ end
 function getCredentials(edata)
    -- This is horribly ugly, but we need to define this here for
    -- compatibility with previously running instances of the event.
-
-   -- Translators: {color} is used to color {speed} and must precede it
-   -- (it is replaced with either "#0" or "#r!! ").
    credentials = _([[
 #nPilot name:#0 {name}
 #nShip:#0 {ship}

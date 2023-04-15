@@ -381,6 +381,13 @@ function create()
       spawnNPC()
    end
 
+   if planet.cur():blackmarket() then
+      local num_dealers = rnd.rnd(0, 6)
+      for i=1,num_dealers do
+         spawnDealer()
+      end
+   end
+
    -- End event on takeoff.
    hook.takeoff( "leave" )
 end
@@ -395,7 +402,6 @@ function spawnNPC()
    local f = planet.cur():faction()
    local planfaction = f ~= nil and f:nameRaw() or nil
    local fac = nil
-   local select = rnd.rnd()
    if planfaction ~= nil then
       for i, j in ipairs(nongeneric_factions) do
          if j == planfaction then
@@ -404,7 +410,7 @@ function spawnNPC()
          end
       end
 
-      if nongeneric or select >= (0.5) then
+      if nongeneric or rnd.rnd() < 0.5 then
          fac = planfaction
       end
    end
@@ -442,10 +448,125 @@ function spawnNPC()
    else
       msg = getMessage(fac)
    end
-   local npcdata = {name = npcname, msg = msg, func = func, image = portrait.getFullPath(image)}
+   local npcdata = {msg=msg, func=func}
 
    id = evt.npcAdd("talkNPC", npcname, image, desc, 100)
    npcs[id] = npcdata
+end
+
+
+function spawnDealer()
+   local outfits = {}
+   local ships = {}
+   local factions = {}
+
+   getsysatdistance(system.cur(), 0, 8,
+      function(s)
+         if s:presences()["Pirate"] then
+            for i, p in ipairs(s:planets()) do
+               local f = p:faction()
+               if f ~= nil then
+                  factions[f:nameRaw()] = true
+               end
+               for j, o in ipairs(p:outfitsSold()) do
+                  if o:rarity() >= 2 then
+                     table.insert(outfits, o)
+                  end
+               end
+               for j, s in ipairs(p:shipsSold()) do
+                  if s:rarity() >= 2 then
+                     table.insert(ships, s)
+                  end
+               end
+            end
+         end
+      end, nil, true)
+
+   if factions["Sirius"] then
+      table.insert(ships, ship.get("Sirius Reverence"))
+   end
+
+   local r = rnd.rnd()
+   local npcdata = nil
+   if r < 0.5 and #outfits > 0 then
+      local texts = {
+         _([["Why, hello there! I have a fantastic outfit in my possession, a state-of-the-art {outfit}. This outfit is rare, but it's yours for only {credits}. Would you like it?"]]),
+         _([["Ah, you look like just the kind of pilot who could use this {outfit} in my possession. It's an outfit that's rather hard to come by, I assure you, but for only {credits}, it's all yours. A bargain, don't you think?"]]),
+         _([["Ah, come here, come here. As it happens, I have a rare {outfit} in my possession. You can't get this just anywhere, I assure you. Top-level clearance, but for only {credits}, it's yours right now. What do you think?"]]),
+      }
+      local outfit_choice = outfits[rnd.rnd(1, #outfits)]
+      local price = outfit_choice:price()
+      price = price + 0.2*price*rnd.sigma()
+      local text = fmt.f(texts[rnd.rnd(1, #texts)],
+            {outfit=outfit_choice:name(), credits=fmt.credits(price)})
+      npcdata = {msg=text, outfit=outfit_choice, price=price}
+      npcdata.func = function(id, data)
+            local plcredits, plcredits_str = player.credits(2)
+            local text = (data.msg .. "\n\n"
+                  .. fmt.f(_("You have {credits}."), {credits=plcredits_str}))
+            if tk.yesno("", text) then
+               if plcredits >= data.price then
+                  local sold_texts = {
+                     _([["Hehe, thanks! I'm transferring the {outfit} to your account. You'll see it in your outfits list."]]),
+                     _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {outfit} into your account now."]]),
+                     _([["A wise decision. The {outfit} is now yours. You'll find it along with the rest of your outfits."]]),
+                  }
+                  tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
+                        {outfit=data.outfit:name()}))
+                  player.pay(-data.price, "adjust")
+                  player.outfitAdd(data.outfit:nameRaw())
+                  data.msg = getMessage("Pirate")
+                  data.func = nil
+               else
+                  local s = fmt.f(_([["You're {credits} short. Don't test my patience."]]),
+                        {credits=fmt.credits(data.price - plcredits)})
+                  tk.msg("", s)
+               end
+            end
+         end
+   elseif #ships > 0 then
+      local texts = {
+         _([["Why, hello there! I have a fantastic ship in my possession, a state-of-the-art {ship}. This ship is rare, but it's yours for only {credits}. Would you like it?"]]),
+         _([["Ah, you look like just the kind of pilot who could use this {ship} in my possession. It's a ship that's rather hard to come by, I assure you, but for only {credits}, it's all yours. A bargain, don't you think?"]]),
+         _([["Ah, come here, come here. As it happens, I have a rare {ship} in my possession. You can't get this just anywhere, I assure you. Top-level clearance, but for only {credits}, it's yours right now. What do you think?"]]),
+      }
+      local ship_choice = ships[rnd.rnd(1, #ships)]
+      local price = ship_choice:price()
+      price = price + 0.2*price*rnd.sigma()
+      local text = fmt.f(texts[rnd.rnd(1, #texts)],
+            {ship=ship_choice:name(), credits=fmt.credits(price)})
+      npcdata = {msg=text, ship=ship_choice, price=price}
+      npcdata.func = function(id, data)
+            local plcredits, plcredits_str = player.credits(2)
+            local text = (data.msg .. "\n\n"
+                  .. fmt.f(_("You have {credits}."), {credits=plcredits_str}))
+            if tk.yesno("", text) then
+               if plcredits >= data.price then
+                  local sold_texts = {
+                     _([["Hehe, thanks! I'm transferring the {ship} to your account."]]),
+                     _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {ship} into your account now."]]),
+                     _([["A wise decision. The {ship} is now yours."]]),
+                  }
+                  tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
+                        {ship=data.ship:name()}))
+                  player.pay(-data.price, "adjust")
+                  player.addShip(data.ship:nameRaw())
+                  data.msg = getMessage("Pirate")
+                  data.func = nil
+               else
+                  local s = fmt.f(_([["You're {credits} short. Don't test my patience."]]),
+                        {credits=fmt.credits(data.price - plcredits)})
+                  tk.msg("", s)
+               end
+            end
+         end
+   end
+
+   if npcdata ~= nil and player.credits() >= npcdata.price then
+      id = evt.npcAdd("talkNPC", _("Dealer"), portrait.get("Pirate"),
+            _("This seems to be a dealer in the black market."), 99)
+      npcs[id] = npcdata
+   end
 end
 
 
@@ -568,53 +689,6 @@ function getJmpMessage(fac)
    -- Don't need to remove messages from tables here, but add whatever jump point we selected to the "selected" table.
    seltargets[chosentarget:dest():nameRaw()] = true
    return fmt.f(retmsg, {system=chosentarget:dest():name()}), myfunc
-end
-
-
-function getDealerMessage(fac)
-   if not planet.cur():blackmarket() then
-      return getMessage(fac), nil
-   end
-
-   local outfits = {}
-   local ships = {}
-   local factions = {}
-
-   getsysatdistance(system.cur(), 0, 6,
-      function(s)
-         if s:presences["Pirate"] then
-            for i, p in ipairs(s:planets()) do
-               factions[p:faction():nameRaw()] = true
-               for j, o in ipairs(p:outfitsSold()) do
-                  if o:rarity() >= 2 then
-                     table.insert(outfits, o)
-                  end
-               end
-               for j, s in ipairs(p:shipsSold()) do
-                  if s:rarity() >= 2 then
-                     table.insert(ships, s)
-                  end
-               end
-            end
-         end
-      end, nil, true)
-
-   for f, avail in pairs(factions) do
-      if f == "Sirius" and fac ~= "Sirius" then
-         table.insert(ships, ship.get("Sirius Reverence"))
-      end
-   end
-
-   local r = rnd.rnd()
-   if r < 0.5 and #outfits > 0 then
-      local outfit_choice = outfits[rnd.rnd(1, #outfits)]
-      -- TODO
-   elseif #ships > 0 then
-      local ship_choice = ships[rnd.rnd(1, #ships)]
-      -- TODO
-   end
-
-   return getMessage(fac), nil
 end
 
 
