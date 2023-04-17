@@ -4,6 +4,9 @@
 
 * Improved generic NPC messages.
 * Dvaered Vigilance is now slower than the standard Vigilance.
+* Increased the number of generic NPCs that spawn to 4–14.
+* Added black market dealers to black market planets; they sell you a
+  randomly chosen high rarity outfit.
 
 ## 0.7.0
 
