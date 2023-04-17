@@ -197,9 +197,9 @@ messages = {
    {
       exclude_faction = {"Thurion", "Proteron", "Pirate", "Za'lek"},
       text = {
-         _([["I heard the nebula is haunted! My uncle told me he saw one of the ghost ships himself over in Arandon."]]),
-         _([["I don't believe in those nebula ghost stories. The people who spread them are just trying to scare you."]]),
-         _([["Don't try to fly into the inner nebula. I've known people who tried, and none of them came back."]]),
+         _([["I heard the Nebula is haunted! My uncle told me he saw one of the ghost ships himself over in Arandon."]]),
+         _([["I don't believe in those Nebula ghost stories. The people who spread them are just trying to scare you."]]),
+         _([["Don't try to fly into the Inner Nebula. I've known people who tried, and none of them came back."]]),
          _([["As horrible as the Incident was, it's a good thing that we don't have to worry about House Proteron anymore. That's the one silver lining to it."]]),
       },
    },
@@ -244,6 +244,8 @@ messages = {
       text = {
          _([["We're very proud of the Goddard ship here. If you haven't already, you should consider buying one!"]]),
          _([["Everyone's all about carriers these days, but let me tell you, when you're up close to a Goddard, it had better be on your side or you'll be blown to space dust in seconds."]]),
+         _([["I feel like we get unfairly overlooked. Sure, we only control one system, but that has to count for something."]]),
+         _([["Lots of my contemporaries won't tell it straight, but come on, we're not really a Great House because of our engineering. It's the Dvaereds. The Empire doesn't want to share a border with them, so they granted us autonomy. We're just a buffer for them."]]),
       },
    },
    {
@@ -281,31 +283,42 @@ messages = {
       faction = "Sirius",
       text = {
          _([["Greetings, traveler. May Sirichana's wisdom guide you as it guides me."]]),
-         _([["I once met one of the Touched in person. Well, it wasn't really a meeting, our eyes simply met… but that instant alone was awe-inspiring."]]),
-         _([["My cousin was called to Mutris a year ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
-         _([["Some people say Sirius society is unfair because our echelons are determined by birth. But even though we are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
+         _([["Even though the echelons are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
          _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has no influence on these systems. We follow Sirichana, and no one else."]]),
-         _([["I hope to meet one of the Touched one day!"]]),
          _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into His plan, and He punished the Empire for having started that so-called 'Great Project'."]]),
          _([["I don't think the Incident is an isolated event. The explosion of Sol was just the first of many. Soon, all who do not follow Sirichana will fall just as Earth did, and only we, His devoted servants, will remain."]]),
       },
    },
    {
+      faction = "Sirius",
+      text = {
+         _([["I once met one of the Touched in person. Well, it wasn't really a meeting, our eyes simply met… but that instant alone was awe-inspiring."]]),
+         _([["My cousin was called to Mutris a year ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
+         _([["I hope to meet one of the Touched one day!"]]),
+      },
+      cond = function()
+         local restriction = planet.cur():restriction()
+         return (restriction == nil or restriction == "land_lowclass"
+               or restriction == "land_hiclass")
+      end,
+   },
+   {
       faction = "Za'lek",
       text = {
          _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but through the discovery of more data, we can uncover the true answer."]]),
-         _([["I'll admit that the living Soromid ships are marginally interesting, but truly, they can't beat the best synthetic technology."]]),
+         _([["I'll admit that the living Soromid ships are marginally interesting, but truly, those primitive lifeforms can't beat the best synthetic technology."]]),
          _([["I don't know why we even bother sending our research results to the Empire anymore. Those idiots can't understand even the simplest of formulae."]]),
-         _([["I would love to get my hands on a genuine Proteron ship one day! They were always a danger to the galaxy, but I'd be lying if I said their ship tech wasn't incredible."]]),
+         _([["I would love to get my hands on a genuine Proteron ship one day! They were always a danger to the galaxy, of course, but I'd be lying if I said their ship tech wasn't incredible."]]),
          _([["Between you and me, for all the negative stuff the Empire says about House Proteron, they were geniuses. Considering all the stupidity that comes from the Empire, we might just be better off if it was House Proteron that survived the Incident instead."]]),
          _([["Between you and me, while I don't really begrudge our Dvaered neighbors, most of them are kind of stupid. If I have to explain the Goddard-Zak formula to a Dvaered again, I swear I'll lose a brain cell."]]),
+         _([["My annual IQ test went well! It's to be expected, of course. We Za'lek pride ourselves on our intelligence."]]),
       },
    },
    {
       faction = "Soromid",
       text = {
          _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got vaporized hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
-         _([["Yes, it's true, our military ships are alive. Us normal folk don't get to own bioships though, we have to make do with synthetic constructs just like everyone else."]]),
+         _([["Yes, it's true, our military ships are alive. Most civilians don't get to own bioships, though, and have to make do with synthetic constructs just like everyone else."]]),
          _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
          _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
          _([["Sometimes I worry a little about the growing anti-Soromid sentiment. We never really did fully move away from the Empire's stigmatization of us during the Great Quarantine."]]),
