@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Za'lek S300 Test Engine">
+ <general>
+  <typename>Engine</typename>
+  <slot prop="engines">structure</slot>
+  <size>small</size>
+  <rarity>6</rarity>
+  <mass>15</mass>
+  <price>100000</price>
+  <description>This is an experimental engine modded by students to test new propulsion techniques. It is a well-performing engine, but it is unreliable and dangerous due to its experimental nature. As such, engines like this are generally not available for sale due to safety concerns.</description>
+  <gfx_store>engine4.webp</gfx_store>
+  <priority>7</priority>
+ </general>
+ <specific type="modification">
+  <engine_limit>300</engine_limit>
+  <speed>300</speed>
+  <thrust>150</thrust>
+  <turn>130</turn>
+  <fuel>200</fuel>
+  <fuel_regen>1</fuel_regen>
+  <energy_regen_malus>6</energy_regen_malus>
+ </specific>
+</outfit>

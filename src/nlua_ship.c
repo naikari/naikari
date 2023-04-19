@@ -382,13 +382,32 @@ static int shipL_slots( lua_State *L )
 
 
 /**
- * @brief Get a table of slots of a ship, where a slot is a table with a string size, type, and property
+ * @brief Get an ordered table of slots of a ship.
  *
- * @usage for i, v in ipairs( ship.getSlots( ship.get("Llama") ) ) do print(v["type"]) end
+ * Each slot is a table with the following values:
  *
- *    @luaparam s Ship to get slots of
- *    @luareturn A table of tables with slot properties string "size", string "type", string "property", boolean "required", boolean "exclusive", and (if applicable) outfit "outfit"
- *               (Strings are English.)
+ * <ul>
+ *    <li>"type": The slot type, which is one of: "structure",
+ *       "utility", "weapon".</li>
+ *    <li>"size": The slot size, which is one of: "Small", "Medium",
+ *       "Large".</li>
+ *    <li>"required": Whether or not occupying the slot is required for
+ *       the ship to be spaceworthy.</li>
+ *    <li>"property": The raw (untranslated) display name of the slot's
+ *       property, or nil if the slot has no property.</li>
+ *    <li>"exclusive": Whether or not the slot's property is exclusive
+ *       to outfits with that property, or nil if the slot has no
+ *       property.</li>
+ *    <li>"outfit": The default outfit placed in the slot, or nil if
+ *       the slot is empty by default.</li>
+ * </ul>
+ *
+ * @usage for i, v in ipairs(ship.getSlots("Llama")) do print(v.type) end
+ *
+ *    @luatparam Ship|string s Ship or raw (untranslated) name of ship
+ *       to get slots of.
+ *    @luatreturn {Table,...} The ship's slots. See above for a full
+ *       explanation.
  * @luafunc getSlots
  */
 static int shipL_getSlots( lua_State *L )
@@ -397,11 +416,12 @@ static int shipL_getSlots( lua_State *L )
    const OutfitSlot *slot;
    const ShipOutfitSlot *sslot;
    const Ship *s = luaL_validship(L,1);
-   char *outfit_types[] = {"Structure", "Utility", "Weapon"};
+   char *outfit_types[] = {"structure", "utility", "weapon"};
    const ShipOutfitSlot *outfit_arrays[] = {
          s->outfit_structure,
          s->outfit_utility,
-         s->outfit_weapon };
+         s->outfit_weapon};
+   const char *display;
 
    lua_newtable(L);
    k=1;
@@ -419,20 +439,23 @@ static int shipL_getSlots( lua_State *L )
          lua_rawset(L, -3); /* table[key = value ]*/
 
          lua_pushstring(L, "size"); /* key */
-         lua_pushstring(L, slotSize( slot->size) );
-         lua_rawset(L, -3); /* table[key] = value */
-
-         lua_pushstring(L, "property"); /* key */
-         lua_pushstring( L, sp_display(slot->spid)); /* value */
+         lua_pushstring(L, slotSize(slot->size));
          lua_rawset(L, -3); /* table[key] = value */
 
          lua_pushstring(L, "required"); /* key */
-         lua_pushboolean( L, sp_required(slot->spid)); /* value */
+         lua_pushboolean(L, sslot->required); /* value */
          lua_rawset(L, -3); /* table[key] = value */
 
-         lua_pushstring(L, "exclusive"); /* key */
-         lua_pushboolean( L, sp_exclusive(slot->spid)); /* value */
-         lua_rawset(L, -3); /* table[key] = value */
+         display = sp_display(slot->spid);
+         if (display != NULL) {
+            lua_pushstring(L, "property"); /* key */
+            lua_pushstring(L, display); /* value */
+            lua_rawset(L, -3); /* table[key] = value */
+
+            lua_pushstring(L, "exclusive"); /* key */
+            lua_pushboolean(L, sp_exclusive(slot->spid)); /* value */
+            lua_rawset(L, -3); /* table[key] = value */
+         }
 
          if (sslot->data != NULL) {
             lua_pushstring(L, "outfit"); /* key */

@@ -10,7 +10,9 @@
          return false
       end
       for i, o in ipairs(player.pilot():outfits()) do
-         if o == outfit.get("Za'lek Test Engine") then
+         if o == outfit.get("Za'lek S300 Test Engine")
+               or o == outfit.get("Za'lek M1200 Test Engine")
+               or o == outfit.get("Za'lek L6500 Test Engine") then
             return true
          end
       end

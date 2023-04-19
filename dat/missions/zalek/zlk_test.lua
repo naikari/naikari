@@ -42,11 +42,15 @@ require "cargo_common"
 misn_title = _("Engine Test to {planet} ({system} system)")
 misn_desc = _([[A Za'lek student research team needs a pilot to test an experimental engine by equipping a ship with it and flying to {planet} in the {system} system. You can take however long you want and whatever route you want, but you must have the test engine equipped every time you use a jump gate or you will fail the mission.
 
-You will be required to pay a deposit of {credits} up-front; this will be refunded when you return the engine, either by finishing the mission or by aborting it.]])
+You will be required to pay a deposit up-front; this will be refunded when you return the engine, either by finishing the mission or by aborting it. The deposit depends on the specific engine type you are given to test, which depends on the size of your ship:
+
+Za'lek S300 Test Engine (small): {small_credits}
+Za'lek M1200 Test Engine (medium): {medium_credits}
+Za'lek L6500 Test Engine (large): {large_credits}]])
 
 nodeposit_text = _([[You do not have enough credits to pay the deposit for the engine. The deposit is {credits}, but you only have {player_credits}. You need {shortfall_credits} more.]])
 
-accept_text = _([[You are given a dangerous-looking Za'lek Test Engine. You will have to equip it to your ship through the Equipment tab.]])
+accept_text = _([[You are given a dangerous-looking {engine}. You will have to equip it to your ship through the Equipment tab.]])
 
 pay_text = {
    _([[You arrive at your destination, happy to be safe, and return the experimental engine. You are given your pay plus a refund of the deposit you paid for the engine.]]),
@@ -59,7 +63,7 @@ fail_land_text = _([[You landed on your destination without using the experiment
 
 fail_land_norefund_text = _([[You have landed on your destination without the experimental engine, thus failing your mission. Furthermore, you are not given your deposit back since you no longer have the engine and thus cannot return it.]])
 
-fail_msg = _("You jumped without the Za'lek Test Engine equipped.")
+fail_msg = _("You jumped without the {engine} equipped.")
 refund_msg = _("Engine has been returned and your deposit refunded.")
 
 piracyrisk = {}
@@ -101,18 +105,26 @@ function create()
       riskreward = 500
    end
 
+   misn_engine = "Za'lek S300 Test Engine"
+   deposit = outfit.price(misn_engine)
+
    jumpreward = 10000
    distreward = 0.1
    reward = (1.25^tier
          * (risk*riskreward + njumps*jumpreward + dist*distreward + 75000)
          * (1 + 0.05*rnd.twosigma()))
-   deposit = outfit.price("Za'lek Test Engine")
+
+   deposit_small = outfit.price("Za'lek S300 Test Engine")
+   deposit_medium = outfit.price("Za'lek M1200 Test Engine")
+   deposit_large = outfit.price("Za'lek L6500 Test Engine")
 
    misn.setTitle(fmt.f(misn_title,
             {planet=destpla:name(), system=destsys:name()}))
    local desc = fmt.f(misn_desc,
          {planet=destpla:name(), system=destsys:name(),
-            credits=fmt.credits(deposit)})
+            small_credits=fmt.credits(deposit_small),
+            medium_credits=fmt.credits(deposit_medium),
+            large_credits=fmt.credits(deposit_large)})
    cargo_setDesc(desc, nil, nil, destpla, njumps, nil, risktext)
    misn.setReward(fmt.credits(reward))
 
@@ -121,6 +133,21 @@ end
 
 
 function accept()
+   for i, slot in ipairs(player.pilot():ship():getSlots()) do
+      if slot.type == "structure" and slot.property == "Engine" then
+         if slot.size == "Large" then
+            misn_engine = "Za'lek L6500 Test Engine"
+         elseif slot.size == "Medium" then
+            misn_engine = "Za'lek M1200 Test Engine"
+         else
+            misn_engine = "Za'lek S300 Test Engine"
+         end
+         break
+      end
+   end
+
+   deposit = outfit.price(misn_engine)
+
    local creds, screds = player.credits(2)
    if creds < deposit then
       tk.msg("", fmt.f(nodeposit_text,
@@ -132,12 +159,13 @@ function accept()
    misn.accept()
 
    player.pay(-deposit, "adjust")
-   player.outfitAdd("Za'lek Test Engine")
+   player.outfitAdd(misn_engine)
 
-   tk.msg("", accept_text)
+   tk.msg("", fmt.f(accept_text, {engine=_(misn_engine)}))
 
    local osd_msg = {
-      _("Equip the Za'lek Test Engine onto your ship"),
+      fmt.f(_("Equip the {engine} onto your ship"),
+         {engine=_(misn_engine)}),
       fmt.f(_("Land on {planet} ({system} system)"),
          {planet=destpla:name(), system=destsys:name()}),
    }
@@ -171,13 +199,13 @@ end
 
 
 function remove_engine()
-   if outfit_owned("Za'lek Test Engine") then
-      player.outfitRm("Za'lek Test Engine")
+   if outfit_owned(misn_engine) then
+      player.outfitRm(misn_engine)
       return true
    end
 
-   if player.isLanded() and outfit_mounted("Za'lek Test Engine") then
-      player.pilot():outfitRm("Za'lek Test Engine")
+   if player.isLanded() and outfit_mounted(misn_engine) then
+      player.pilot():outfitRm(misn_engine)
       if not planet.cur():services()["outfits"] then
          player.pilot():outfitAdd("Beat Up Small Engine")
       end
@@ -190,7 +218,7 @@ end
 
 function land()
    if planet.cur() == destpla then
-      if outfit_mounted("Za'lek Test Engine") then
+      if outfit_mounted(misn_engine) then
          tk.msg("", pay_text[rnd.rnd(1, #pay_text)])
          if not remove_engine() then
             warn(_("Failed to remove Za'lek Test Engine even though mounted."))
@@ -213,7 +241,7 @@ end
 
 
 function takeoff()
-   if outfit_mounted("Za'lek Test Engine") then
+   if outfit_mounted(misn_engine) then
       misn.osdActive(2)
    else
       misn.osdActive(1)
@@ -222,8 +250,8 @@ end
 
 
 function jumpin()
-   if not outfit_mounted("Za'lek Test Engine") then
-      mh.showFailMsg(fail_msg)
+   if not outfit_mounted(misn_engine) then
+      mh.showFailMsg(fmt.f(fail_msg, {engine=_(misn_engine)}))
       if remove_engine() then
          player.msg(refund_msg)
          player.pay(deposit, "adjust")
