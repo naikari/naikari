@@ -498,6 +498,11 @@ function spawnDealer()
    if factions["Sirius"] then
       table.insert(ships, ship.get("Sirius Reverence"))
    end
+   if factions["Za'lek"] then
+      table.insert(outfits, outfit.get("Za'lek S300 Test Engine"))
+      table.insert(outfits, outfit.get("Za'lek M1200 Test Engine"))
+      table.insert(outfits, outfit.get("Za'lek L6500 Test Engine"))
+   end
 
    local r = rnd.rnd()
    local npcdata = nil
