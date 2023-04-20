@@ -118,33 +118,82 @@ int strsort( const void *p1, const void *p2 )
 }
 
 
-/**
- * @brief Like vsprintf(), but it allocates a large-enough string and returns the pointer in the first argument.
- *        Conforms to GNU and BSD libc semantics.
+
+/*
+ * vasprintf() is taken from SDL. Original source:
+ * https://github.com/libsdl-org/SDL/blob/0467301baf57389d96fafbe169fb07f4c10169bc/src/stdlib/SDL_string.c
  *
- * @param[out] strp Used to return the allocated char* in case of success. Caller must free.
- *                  In case of failure, *strp is set to NULL, but don't rely on this because the GNU version doesn't guarantee it.
- * @param fmt Same as vsprintf().
- * @param ap Same as vsprintf().
- * @return -1 if it failed, otherwise the number of bytes "printed".
+ * Modified slightly. License is as follows:
+ *
+ * Simple DirectMedia Layer
+ * Copyright (C) 1997-2023 Sam Lantinga <slouken@libsdl.org>
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty.  In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+/**
+ * @brief vasprintf implementation.
+ *
+ *    @param[out] strp Used to return the allocated char* in case of success. Caller must free.
+ *    @param fmt Same as vsprintf().
+ *    @param ap Same as vsprintf().
+ *    @return -1 if it failed, otherwise the number of bytes "printed".
  */
 #if !HAVE_VASPRINTF
 int vasprintf( char** strp, const char* fmt, va_list ap )
 {
-   int n;
-   va_list ap1;
+    int retval;
+    int size = 100; /* Guess we need no more than 100 bytes */
+    char *p, *np;
+    va_list aq;
 
-   va_copy( ap1, ap );
-   n = vsnprintf( NULL, 0, fmt, ap1 );
-   va_end( ap1 );
+    *strp = NULL;
 
-   if (n < 0)
-      return -1;
-   *strp = malloc( n+1 );
-   if (strp == NULL )
-      return -1; /* Not that we'll check. We're Linux fans. We've never heard of malloc() failing. */
+    p = malloc(size);
+    if (p == NULL) {
+        return -1;
+    }
 
-   return vsnprintf( *strp, n+1, fmt, ap );
+    while (1) {
+        /* Try to print in the allocated space */
+        va_copy(aq, ap);
+        retval = vsnprintf(p, size, fmt, aq);
+        va_end(aq);
+
+        /* Check error code */
+        if (retval < 0) {
+            return retval;
+        }
+
+        /* If that worked, return the string */
+        if (retval < size) {
+            *strp = p;
+            return retval;
+        }
+
+        /* Else try again with more space */
+        size = retval + 1; /* Precisely what is needed */
+
+        np = realloc(p, size);
+        if (np == NULL) {
+            free(p);
+            return -1;
+        } else {
+            p = np;
+        }
+    }
 }
 #endif /* !HAVE_VASPRINTF */
 
