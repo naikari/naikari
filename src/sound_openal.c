@@ -867,6 +867,8 @@ static int al_playVoice( alVoice *v, alSound *s,
    if (v->source == 0)
       return -1;
    v->buffer = s->buf;
+   if (s->name != NULL)
+      v->name = strdup(s->name);
 
    soundLock();
 
@@ -1089,27 +1091,15 @@ void sound_al_setSpeedVolume( double vol )
 /**
  * @brief Updates the listener.
  */
-int sound_al_updateListener( double dir, double px, double py,
-      double vx, double vy )
+int sound_al_updateListener(double px, double py, double vx, double vy)
 {
-   double c, s;
-   ALfloat ori[6], pos[3], vel[3];
-
-   c = cos(dir);
-   s = sin(dir);
+   ALfloat pos[3], vel[3];
 
    soundLock();
 
-   ori[0] = c;
-   ori[1] = s;
-   ori[2] = 0.;
-   ori[3] = 0.;
-   ori[4] = 0.;
-   ori[5] = 1.;
-   alListenerfv( AL_ORIENTATION, ori );
    pos[0] = px;
    pos[1] = py;
-   pos[2] = 0.;
+   pos[2] = 100.;
    alListenerfv( AL_POSITION, pos );
    vel[0] = vx;
    vel[1] = vy;

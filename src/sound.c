@@ -169,11 +169,13 @@ void sound_exit (void)
       /* free the voices. */
       while (voice_active != NULL) {
          v = voice_active;
+         free(v->name);
          voice_active = v->next;
          free(v);
       }
       while (voice_pool != NULL) {
          v = voice_pool;
+         free(v->name);
          voice_pool = v->next;
          free(v);
       }
@@ -255,11 +257,19 @@ int sound_play( int sound )
    if ((sound < 0) || (sound >= array_size(sound_list)))
       return -1;
 
-   /* Gets a new voice. */
-   v = voice_new();
-
    /* Get the sound. */
    s = &sound_list[sound];
+
+   /* Cancel any previously playing sound of the same name. */
+   if (s->name != NULL) {
+      for (v=voice_active; v!=NULL; v=v->next) {
+         if ((v->name != NULL) && (strcmp(v->name, s->name) == 0))
+            sound_stop(v->id);
+      }
+   }
+
+   /* Gets a new voice. */
+   v = voice_new();
 
    /* Try to play the sound. */
    if (sound_al_play( v, s ))
@@ -288,6 +298,7 @@ int sound_playPos( int sound, double px, double py, double vx, double vy )
 {
    alVoice *v;
    alSound *s;
+   ALfloat pos[3];
    Pilot *p;
    double cx, cy, dist;
    int target;
@@ -317,11 +328,26 @@ int sound_playPos( int sound, double px, double py, double vx, double vy )
          return 0;
    }
 
-   /* Gets a new voice. */
-   v = voice_new();
-
    /* Get the sound. */
    s = &sound_list[sound];
+
+   alGetListenerfv(AL_POSITION, pos);
+   dist = hypot(px - pos[0], py - pos[1]);
+
+   /* If this new sound is close by, cancel any previous instance of the
+    * sound playing. Also, cancel any previously playing instance of the
+    * sound which is further away than the new one regardless. */
+   if (s->name != NULL) {
+      for (v=voice_active; v!=NULL; v=v->next) {
+         if ((v->name != NULL) && (strcmp(v->name, s->name) == 0)
+               && ((dist <= 1000.)
+                  || (dist < hypot(v->pos[0] - pos[0], v->pos[1] - pos[1]))))
+            sound_stop(v->id);
+      }
+   }
+
+   /* Gets a new voice. */
+   v = voice_new();
 
    /* Try to play the sound. */
    if (sound_al_playPos( v, s, px, py, vx, vy ))
@@ -506,7 +532,6 @@ void sound_stop( int voice )
 /**
  * @brief Updates the sound listener.
  *
- *    @param dir Direction listener is facing.
  *    @param px X position of the listener.
  *    @param py Y position of the listener.
  *    @param vx X velocity of the listener.
@@ -515,13 +540,12 @@ void sound_stop( int voice )
  *
  * @sa sound_playPos
  */
-int sound_updateListener( double dir, double px, double py,
-      double vx, double vy )
+int sound_updateListener(double px, double py, double vx, double vy)
 {
    if (sound_disabled)
       return 0;
 
-   return sound_al_updateListener( dir, px, py, vx, vy );
+   return sound_al_updateListener(px, py, vx, vy);
 }
 
 
@@ -832,11 +856,14 @@ alVoice* voice_new (void)
    if (voice_pool == NULL) {
       v = calloc( 1, sizeof(alVoice) );
       voice_pool = v;
+      v->name = NULL;
       return v;
    }
 
    /* First free voice. */
    v = voice_pool; /* We do not touch the next nor prev, it's still in the pool. */
+   free(v->name);
+   v->name = NULL;
    return v;
 }
 

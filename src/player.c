@@ -1282,14 +1282,6 @@ void player_updateSpecific( Pilot *pplayer, const double dt )
    }
    player_lastEngineSound = engsound;
 
-   /* Sound. */
-   /*
-    * Sound is now camera-specific and thus not player specific. A bit sad really.
-   sound_updateListener( pplayer->solid->dir,
-         pplayer->solid->pos.x, pplayer->solid->pos.y,
-         pplayer->solid->vel.x, pplayer->solid->vel.y );
-   */
-
    /* See if must play hail sound. */
    if (player_hailCounter > 0) {
       player_hailTimer -= dt;

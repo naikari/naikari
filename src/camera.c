@@ -25,9 +25,6 @@
 #include "space.h"
 
 
-#define CAMERA_DIR      (M_PI/2.)
-
-
 static unsigned int camera_followpilot = 0; /**< Pilot to follow. */
 static int zoom_override   = 0; /**< Whether or not to override the zoom. */
 /* Current camera position. */
@@ -132,35 +129,33 @@ void cam_getPos( double *x, double *y )
 void cam_setTargetPilot( unsigned int follow, int soft_over )
 {
    Pilot *p;
-   double dir, x, y;
+   double x, y;
 
    /* Set the target. */
-   camera_followpilot   = follow;
-   dir                  = CAMERA_DIR;
+   camera_followpilot = follow;
 
    /* Set camera if necessary. */
    if (!soft_over) {
       if (follow != 0) {
-         p = pilot_get( follow );
+         p = pilot_get(follow);
          if (p != NULL) {
-            dir      = p->solid->dir;
-            x        = p->solid->pos.x;
-            y        = p->solid->pos.y;
+            x = p->solid->pos.x;
+            y = p->solid->pos.y;
             camera_X = x;
             camera_Y = y;
-            old_X    = x;
-            old_Y    = y;
+            old_X = x;
+            old_Y = y;
          }
       }
       camera_fly = 0;
    }
    else {
-      old_X    = camera_X;
-      old_Y    = camera_Y;
+      old_X = camera_X;
+      old_Y = camera_Y;
       camera_fly = 1;
-      camera_flyspeed = (double) soft_over;
+      camera_flyspeed = (double)soft_over;
    }
-   sound_updateListener( dir, camera_X, camera_Y, 0., 0. );
+   sound_updateListener(camera_X, camera_Y, 0., 0.);
 }
 
 
@@ -188,7 +183,7 @@ void cam_setTargetPos( double x, double y, int soft_over )
       camera_fly = 1;
       camera_flyspeed = (double) soft_over;
    }
-   sound_updateListener( CAMERA_DIR, camera_X, camera_Y, 0., 0. );
+   sound_updateListener(camera_X, camera_Y, 0., 0.);
 }
 
 
@@ -253,12 +248,11 @@ void cam_update( double dt )
    if ((p==NULL) || !SOUND_PILOT_RELATIVE) {
       dx = dt*(dx-camera_X);
       dy = dt*(dy-camera_Y);
-      sound_updateListener( CAMERA_DIR, camera_X, camera_Y, dx, dy );
+      sound_updateListener(camera_X, camera_Y, dx, dy);
    }
    else {
-      sound_updateListener( p->solid->dir,
-            p->solid->pos.x, p->solid->pos.y,
-            p->solid->vel.x, p->solid->vel.y );
+      sound_updateListener(p->solid->pos.x, p->solid->pos.y,
+            p->solid->vel.x, p->solid->vel.y);
    }
 }
 

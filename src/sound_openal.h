@@ -55,6 +55,7 @@ typedef struct alVoice_ {
    struct alVoice_ *next; /**< Linked list next member. */
 
    int id; /**< Identifier of the voice. */
+   char *name; /**< Name of the sound the voice is playing. */
 
    voice_state_t state; /**< Current state of the sound. */
    unsigned int flags; /**< Voice flags. */
@@ -152,8 +153,7 @@ void sound_al_setSpeedVolume( double vol );
 /*
  * Listener.
  */
-int sound_al_updateListener( double dir, double px, double py,
-      double vx, double vy );
+int sound_al_updateListener(double px, double py, double vx, double vy);
 
 /*
  * Groups.

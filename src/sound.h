@@ -21,7 +21,7 @@ extern int sound_disabled;
  * Static configuration.
  */
 #define SOUND_FADEOUT         100
-#define SOUND_VOICES          128   /**< Maximum number of simultaneous sounds to play, must be at least 16. */
+#define SOUND_VOICES 128 /**< Maximum number of simultaneous sounds to play, must be at least 16. */
 #define SOUND_PILOT_RELATIVE  1     /**< Whether the sound is relative to the pilot (as opposed to the camera). */
 #define SOUND_BUFFER_SIZE     128   /**< Size of the buffer (in KiB) to use for music. */
 
@@ -71,8 +71,7 @@ int sound_play( int sound );
 int sound_playPos( int sound, double px, double py, double vx, double vy );
 void sound_stop( int voice );
 int sound_updatePos( int voice, double px, double py, double vx, double vy );
-int sound_updateListener( double dir, double px, double py,
-      double vx, double vy );
+int sound_updateListener(double px, double py, double vx, double vy);
 
 
 /*
