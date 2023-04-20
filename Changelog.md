@@ -7,6 +7,11 @@
 * Increased the number of generic NPCs that spawn to 4–14.
 * Added black market dealers to black market planets; they sell you a
   randomly chosen high rarity outfit.
+* There are now three different variants of the Za'lek Test Engine:
+  small, medium, and large.
+* Sound engine now avoids playing the same sound multiple times at once.
+* Positional audio is more accurate to what you see on the screen and
+  more headphone-friendly.
 
 ## 0.7.0
 
