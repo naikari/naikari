@@ -59,7 +59,7 @@ static alSound *sound_list    = NULL; /**< List of available sounds. */
 /*
  * Voices.
  */
-static int voice_genid        = 0; /**< Voice identifier generator. */
+static voiceId_t voice_genid = 0; /**< Voice identifier generator. */
 alVoice *voice_active         = NULL; /**< Active voices. */
 static alVoice *voice_pool    = NULL; /**< Pool of free voices. */
 static SDL_mutex *voice_mutex = NULL; /**< Lock for voices. */
@@ -209,7 +209,7 @@ void sound_exit (void)
  *    @param name Name of the sound to get the id of.
  *    @return ID of the sound matching name.
  */
-int sound_get( const char* name )
+soundId_t sound_get( const char* name )
 {
    int i;
 
@@ -231,7 +231,7 @@ int sound_get( const char* name )
  *    @param sound ID of the buffer to get the length of..
  *    @return The length of the buffer.
  */
-double sound_getLength( int sound )
+double sound_getLength(soundId_t sound)
 {
    if (sound_disabled)
       return 0.;
@@ -246,7 +246,7 @@ double sound_getLength( int sound )
  *    @param sound Sound to play.
  *    @return Voice identifier on success.
  */
-int sound_play( int sound )
+voiceId_t sound_play(soundId_t sound)
 {
    alVoice *v;
    alSound *s;
@@ -294,7 +294,8 @@ int sound_play( int sound )
  *    @param vy Y velocity of the sound.
  *    @return Voice identifier on success.
  */
-int sound_playPos( int sound, double px, double py, double vx, double vy )
+voiceId_t sound_playPos(soundId_t sound, double px, double py,
+      double vx, double vy)
 {
    alVoice *v;
    alSound *s;
@@ -371,7 +372,8 @@ int sound_playPos( int sound, double px, double py, double vx, double vy )
  *    @param vx New x velocity of the sound.
  *    @param vy New y velocity of the sound.
  */
-int sound_updatePos( int voice, double px, double py, double vx, double vy )
+int sound_updatePos(voiceId_t voice, double px, double py,
+      double vx, double vy)
 {
    alVoice *v;
 
@@ -513,7 +515,7 @@ void sound_stopAll (void)
  *
  *    @param voice Identifier of the voice to stop.
  */
-void sound_stop( int voice )
+void sound_stop(voiceId_t voice)
 {
    alVoice *v;
 
@@ -725,7 +727,7 @@ int sound_createGroup( int size )
  *    @param once Whether to play only once.
  *    @return 0 on success.
  */
-int sound_playGroup( int group, int sound, int once )
+int sound_playGroup(int group, soundId_t sound, int once)
 {
    if (sound_disabled)
       return 0;
@@ -910,7 +912,7 @@ int voice_add( alVoice* v )
  *    @param id Identifier to look for.
  *    @return Voice matching identifier or NULL if not found.
  */
-alVoice* voice_get( int id )
+alVoice* voice_get(voiceId_t id)
 {
    alVoice *v;
 

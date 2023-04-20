@@ -54,7 +54,7 @@ typedef struct alVoice_ {
    struct alVoice_ *prev; /**< Linked list previous member. */
    struct alVoice_ *next; /**< Linked list next member. */
 
-   int id; /**< Identifier of the voice. */
+   voiceId_t id; /**< Identifier of the voice. */
    char *name; /**< Name of the sound the voice is playing. */
 
    voice_state_t state; /**< Current state of the sound. */
@@ -80,7 +80,7 @@ void voice_lock (void);
 void voice_unlock (void);
 alVoice* voice_new (void);
 int voice_add( alVoice* v );
-alVoice* voice_get( int id );
+alVoice* voice_get(voiceId_t id);
 
 
 /*

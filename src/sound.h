@@ -26,6 +26,10 @@ extern int sound_disabled;
 #define SOUND_BUFFER_SIZE     128   /**< Size of the buffer (in KiB) to use for music. */
 
 
+typedef int32_t soundId_t; /**< Type for sound IDs. */
+typedef uint32_t voiceId_t; /**< Type for voice IDs. */
+
+
 /*
  * Environmental features.
  */
@@ -60,17 +64,19 @@ int source_new( const char* filename, unsigned int flags );
 /*
  * sound sample management
  */
-int sound_get( const char* name );
-double sound_getLength( int sound );
+soundId_t sound_get(const char* name);
+double sound_getLength(soundId_t sound);
 
 
 /*
  * voice management
  */
-int sound_play( int sound );
-int sound_playPos( int sound, double px, double py, double vx, double vy );
-void sound_stop( int voice );
-int sound_updatePos( int voice, double px, double py, double vx, double vy );
+voiceId_t sound_play(soundId_t sound);
+voiceId_t sound_playPos(soundId_t sound, double px, double py,
+      double vx, double vy);
+void sound_stop(voiceId_t voice);
+int sound_updatePos(voiceId_t voice, double px, double py,
+      double vx, double vy);
 int sound_updateListener(double px, double py, double vx, double vy);
 
 
@@ -79,7 +85,7 @@ int sound_updateListener(double px, double py, double vx, double vy);
  */
 int sound_reserve( int num );
 int sound_createGroup( int size );
-int sound_playGroup( int group, int sound, int once );
+int sound_playGroup(int group, soundId_t sound, int once);
 void sound_stopGroup( int group );
 void sound_pauseGroup( int group );
 void sound_resumeGroup( int group );
