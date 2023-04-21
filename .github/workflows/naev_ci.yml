@@ -6,10 +6,10 @@ jobs:
   "Package_Source":
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/naev/naev-release:latest"
+      image: "ghcr.io/naikari/naikari-release:latest"
 
     steps:
-      - name: Checkout Naev Repository
+      - name: Checkout Naikari Repository
         uses: actions/checkout@v3
         with:
           path: source
@@ -27,23 +27,23 @@ jobs:
           name: naikari-dist-${{ github.sha }}
           path: ${{ github.workspace }}/build/meson-dist/*
 
-  "Linux_Compile_Naev":
+  "Linux_Compile_Naikari":
     needs: "Package_Source"
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - image: naev-linux-latest
+          - image: naikari-linux-latest
             config: linux.ini
             wrap_mode: forcefallback
-          - image: naev-linux-lts
+          - image: naikari-linux-lts
             config: linux.ini
             wrap_mode: default
 
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/naev/${{ matrix.image }}:latest"
+      image: "ghcr.io/naikari/${{ matrix.image }}:latest"
 
     steps:
       - name: Get Source
@@ -121,19 +121,19 @@ jobs:
           path: |
             ${{ github.workspace }}/appImageBuildLog.txt
 
-  "Windows_Compile_Naev":
+  "Windows_Compile_Naikari":
     needs: "Package_Source"
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - image: naev-windows
+          - image: naikari-windows
             config: windows_cross_mingw.ini
 
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/naev/${{ matrix.image }}:latest"
+      image: "ghcr.io/naikari/${{ matrix.image }}:latest"
 
     steps:
       - name: Get Source
@@ -199,19 +199,19 @@ jobs:
           name: ${{ matrix.image }}-${{ github.sha }}-install-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
 
-  "Darwin_Compile_Naev":
+  "Darwin_Compile_Naikari":
     needs: "Package_Source"
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - image: naev-macos
+          - image: naikari-macos
             config: macos_cross_osxcross.ini
 
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/naev/${{ matrix.image }}:latest"
+      image: "ghcr.io/naikari/${{ matrix.image }}:latest"
 
     steps:
       - name: Get Source
@@ -279,13 +279,13 @@ jobs:
   "Lua_Documentation":
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/naev/naev-linux-latest:latest"
+      image: "ghcr.io/naikari/naikari-linux-latest:latest"
     needs:
       [
         Package_Source,
-        Linux_Compile_Naev,
-        Windows_Compile_Naev,
-        Darwin_Compile_Naev,
+        Linux_Compile_Naikari,
+        Windows_Compile_Naikari,
+        Darwin_Compile_Naikari,
       ]
 
     steps:

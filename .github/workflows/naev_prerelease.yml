@@ -19,10 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/naev/naev-release:latest"
+      image: "ghcr.io/naikari/naikari-release:latest"
 
     steps:
-      - name: Checkout Naev Repository
+      - name: Checkout Naikari Repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -62,12 +62,12 @@ jobs:
           path: ${{ github.workspace }}/build/dist/gh/*
           if-no-files-found: error
 
-  "Linux_Naev_Release":
+  "Linux_Naikari_Release":
     needs: "Package_Source"
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/naev/naev-linux-lts:latest"
+      image: "ghcr.io/naikari/naikari-linux-lts:latest"
 
     steps:
       - name: Get Source
@@ -90,12 +90,12 @@ jobs:
           name: naikari-linux-x86-64
           path: "${{ github.workspace }}/build/dist/*"
 
-  "Windows_Naev_Release":
+  "Windows_Naikari_Release":
     needs: "Package_Source"
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/naev/naev-windows:latest"
+      image: "ghcr.io/naikari/naikari-windows:latest"
 
     steps:
       - name: Get Source
@@ -138,11 +138,11 @@ jobs:
           path: ${{ github.workspace }}/build/dist/*
           if-no-files-found: error
 
-  "Darwin_Naev_Release":
+  "Darwin_Naikari_Release":
     needs: "Package_Source"
     runs-on: ubuntu-latest
     container:
-      image: "ghcr.io/naev/naev-macos:latest"
+      image: "ghcr.io/naikari/naikari-macos:latest"
 
     steps:
       - name: Get Source
@@ -187,26 +187,26 @@ jobs:
           path: ${{ github.workspace }}/build/dist/*
           if-no-files-found: error
 
-  "Upload_Naev_Release":
+  "Upload_Naikari_Release":
     strategy:
       fail-fast: true
 
     runs-on: ubuntu-latest
 
     container:
-      image: "ghcr.io/naev/naev-release:latest"
+      image: "ghcr.io/naikari/naikari-release:latest"
 
     needs:
       [
         Package_Source,
-        Linux_Naev_Release,
-        Windows_Naev_Release,
-        Darwin_Naev_Release,
+        Linux_Naikari_Release,
+        Windows_Naikari_Release,
+        Darwin_Naikari_Release,
       ]
     if: ${{ github.repository == 'naikari/naikari' }}
 
     steps:
-      - name: Checkout Naev Repository
+      - name: Checkout Naikari Repository
         uses: actions/checkout@v3
 
       - name: Create Release Staging and Output Areas
