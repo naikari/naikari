@@ -44,16 +44,17 @@ If you're cross-compiling for Windows, you must install this soft dependency:
 * [physfs](https://icculus.org/physfs/), example package name mingw-w64-physfs
 
 
-### Ubuntu
+### Debian/Ubuntu
 
-Install compile-time dependencies on Ubuntu 16.04 and later with:
+Install compile-time dependencies on Debian 10 or later, or Ubuntu 18.04
+or later, with:
 
-```
-sudo apt install build-essential libsdl2-dev libsdl2-image-dev \
-libgl1-mesa-dev libxml2-dev libfreetype6-dev libpng-dev libwebp-dev \
-libopenal-dev libvorbis-dev binutils-dev libiberty-dev autopoint intltool \
-libfontconfig-dev python3-pip libluajit-5.1-dev libphysfs-dev
-sudo pip3 install meson ninja
+```sh
+sudo apt install build-essential ninja-build libsdl2-dev libsdl2-image-dev \
+    libgl1-mesa-dev libxml2-dev libfreetype6-dev libpng-dev libwebp-dev \
+    libopenal-dev libvorbis-dev binutils-dev libiberty-dev autopoint intltool \
+    libfontconfig-dev python3-pip libluajit-5.1-dev libphysfs-dev
+sudo pip3 install meson
 ```
 
 ### macOS
@@ -82,7 +83,7 @@ package lists for several distributions.
 Naikari requires the artwork submodule to run from git. You can check out the
 submodules from the cloned repository with:
 
-```bash
+```sh
 git submodule init
 git submodule update
 ```
@@ -91,7 +92,7 @@ Note that `git submodule update` has to be run every time you `git pull` to stay
 up to date. This can also be done automatically by setting the following
 configuration:
 
-```bash
+```sh
 git config submodule.recurse true
 ```
 
@@ -99,9 +100,9 @@ git config submodule.recurse true
 
 After checking out submodules (see above), run:
 
-```bash
-meson setup builddir .
-cd builddir
+```sh
+meson setup build .
+cd build
 meson compile
 ./naikari.sh
 ```
@@ -137,14 +138,14 @@ Art assets are partially stored in the naikari-artwork-production repository
 and sometimes are updated. For that reason, it is recommended to periodically
 update the submodules with the following command.
 
-```bash
+```sh
 git submodule update
 ```
 
 You can also set this to be done automatically on git pull with the following
 command:
 
-```bash
+```sh
 git config submodule.recurse true
 ```
 
@@ -157,7 +158,7 @@ If you are a developer, you may need to update translation files as
 text is modified. You can update all translation files with the
 following commands:
 
-```bash
+```sh
 meson compile potfiles           # necessary if files have been added or removed
 meson compile naikari-pot        # necessary if translatable strings changed
 meson compile naikari-update-po  # necessary if translatable strings changed
