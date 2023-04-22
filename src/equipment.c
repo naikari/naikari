@@ -487,7 +487,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       if (wgt->canmodify) {
          if (lst[i].sslot->required)
             rc = cSlotRequired;
-         else if (lst[i].sslot->exclusive)
+         else if (lst[i].sslot->slot.exclusive)
             rc = cWhite;
          else if (lst[i].sslot->slot.spid != 0)
             rc = cBlack;

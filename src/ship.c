@@ -494,24 +494,18 @@ static int ship_parseSlot( Ship *temp, ShipOutfitSlot *slot, OutfitSlotType type
    /* Parse property. */
    xmlr_attr_strd( node, "prop", buf );
    if (buf != NULL) {
-      slot->slot.spid = sp_get( buf );
-      slot->exclusive = sp_exclusive( slot->slot.spid );
-      slot->required  = sp_required( slot->slot.spid );
+      slot->slot.spid = sp_get(buf);
+      slot->slot.exclusive = sp_exclusive(slot->slot.spid);
+      slot->required = sp_required(slot->slot.spid);
       free( buf );
    }
    //TODO: consider inserting those two parse blocks below inside the parse block above
 
    /* Parse exclusive flag, default false. */
-   xmlr_attr_int( node, "exclusive", slot->exclusive );
-   /* TODO: decide if exclusive should even belong in ShipOutfitSlot,
-    * remove this hack, and fix slot->exclusive to slot->slot.exclusive
-    * in it's two previous occurrences, meaning three lines above and 12
-    * lines above */
-   /* hack */
-   slot->slot.exclusive = slot->exclusive;
+   xmlr_attr_int(node, "exclusive", slot->slot.exclusive);
 
    /* Parse required flag, default false. */
-   xmlr_attr_int( node, "required", slot->required );
+   xmlr_attr_int(node, "required", slot->required);
 
    /* Parse default outfit. */
    buf = xml_get(node);
