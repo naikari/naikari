@@ -18,7 +18,6 @@ extras/windows/installer/bin
 dist/*
 dat/VERSION
 release.log
-Naev.app
 Naikari.app
 on compile
 po/credits.pot
