@@ -288,7 +288,9 @@ static int gfxL_renderTexH( lua_State *L )
    glTexture *t;
    const glColour *col;
    LuaShader_t *shader;
+   LuaTexture_t *lt;
    gl_Matrix4 *H, *TH, ID;
+   int i;
 
    ID = gl_Matrix4_Identity();
 
@@ -319,11 +321,11 @@ static int gfxL_renderTexH( lua_State *L )
    /* Set the texture(s). */
    glBindTexture( GL_TEXTURE_2D, t->texture );
    glUniform1i( shader->MainTex, 0 );
-   for (int i=0; i<array_size(shader->tex); i++) {
-      LuaTexture_t *t = &shader->tex[i];
-      glActiveTexture( t->active );
-      glBindTexture( GL_TEXTURE_2D, t->texid );
-      glUniform1i( t->uniform, t->value );
+   for (i=0; i<array_size(shader->tex); i++) {
+      lt = &shader->tex[i];
+      glActiveTexture(lt->active);
+      glBindTexture(GL_TEXTURE_2D, lt->texid);
+      glUniform1i(lt->uniform, lt->value);
    }
    glActiveTexture( GL_TEXTURE0 );
 

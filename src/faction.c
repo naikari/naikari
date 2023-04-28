@@ -1496,7 +1496,7 @@ int faction_isFaction(factionId_t f)
 static int faction_parse( Faction* temp, xmlNodePtr parent )
 {
    xmlNodePtr node;
-   int player;
+   int player_found;
    char buf[PATH_MAX], *dat, *ctmp;
    size_t ndat;
 
@@ -1507,7 +1507,7 @@ static int faction_parse( Faction* temp, xmlNodePtr parent )
    temp->env = LUA_NOREF;
    temp->sched_env = LUA_NOREF;
 
-   player = 0;
+   player_found = 0;
    node   = parent->xmlChildrenNode;
    do {
       /* Only care about nodes. */
@@ -1516,7 +1516,7 @@ static int faction_parse( Faction* temp, xmlNodePtr parent )
       /* Can be 0 or negative, so we have to take that into account. */
       if (xml_isNode(node,"player")) {
          temp->player_def = xml_getFloat(node);
-         player = 1;
+         player_found = 1;
          continue;
       }
 
@@ -1619,7 +1619,7 @@ static int faction_parse( Faction* temp, xmlNodePtr parent )
 
    if (temp->name == NULL)
       WARN(_("Unable to read data from '%s'"), FACTION_DATA_PATH);
-   if (player==0)
+   if (player_found == 0)
       DEBUG(_("Faction '%s' missing player tag."), temp->name);
    if ((temp->env==LUA_NOREF) && !faction_isFlag( temp, FACTION_STATIC ))
       WARN(_("Faction '%s' has no Lua and isn't static!"), temp->name);
