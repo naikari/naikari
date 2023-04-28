@@ -26,17 +26,17 @@
  * @brief A function which passes on a format string to vsnprintf or the like should have PRINTF_FORMAT( i, j )
  *        in front of its prototype, where i is the 1-based index of the format-string argument and j is the
  *        1-based index where the formatted items (if any) start. */
-#define PRINTF_FORMAT( i, j ) FORMAT( BUILTIN_PRINTF_FORMAT, i, j)
+#define PRINTF_FORMAT(i, j) FORMAT(BUILTIN_PRINTF_FORMAT, i, j)
 
-/*const*/ char *strnstr( const char *haystack, const char *needle, size_t size );
-/*const*/ char *strcasestr( const char *haystack, const char *needle );
-char* strndup( const char *s, size_t n );
+char *strnstr(const char *haystack, const char *needle, size_t size);
+char *strcasestr(const char *haystack, const char *needle);
+char *strndup(const char *s, size_t n);
 
-PRINTF_FORMAT( 2, 3 ) int asprintf( char** strp, const char* fmt, ... );
-PRINTF_FORMAT( 2, 0 ) int vasprintf( char** strp, const char* fmt, va_list ap );
-PRINTF_FORMAT( 3, 4 ) int scnprintf( char* text, size_t maxlen, const char* fmt, ... );
+PRINTF_FORMAT(2, 0) int vasprintf(char** strp, const char* fmt, va_list ap);
+PRINTF_FORMAT(2, 3) int asprintf(char** strp, const char* fmt, ...);
+PRINTF_FORMAT(3, 4) int scnprintf(char* text, size_t maxlen, const char* fmt, ...);
 
-int strsort( const void *p1, const void *p2 );
+int strsort(const void *p1, const void *p2);
 
 size_t str2filename(char *out, size_t maxlen, const char *s);
 

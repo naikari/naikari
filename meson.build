@@ -6,14 +6,9 @@ project('naikari', 'c',
       'c_std=gnu11',
       'werror=false'
    ],
-   meson_version: '>=0.54.0')
+   meson_version: '>=0.55.0')
 
-if meson.version().startswith('0.54.')
-   warning('This version of Meson is nearly too old to work, but partially supported for subproject-free builds (e.g., for distro packages). In most cases you will need to upgrade Meson or use the included meson.sh wrapper script.')
-   forced_fallbacks = []
-else
-   forced_fallbacks = get_option('force_fallback_for')
-endif
+forced_fallbacks = get_option('force_fallback_for')
 
 issue_address = 'https://github.com/naikari/naikari/issues'
 copyright_holder = 'Naikari Dev Team'
