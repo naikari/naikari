@@ -299,6 +299,9 @@ Commodity ** standard_commodities (void)
    return com;
 }
 
+
+#define MELEMENT(o, s) \
+   if (o) WARN(_("Commodity '%s' missing '"s"' element"), temp->name)
 /**
  * @brief Loads a commodity.
  *
@@ -311,7 +314,7 @@ static int commodity_parse( Commodity *temp, xmlNodePtr parent )
    xmlNodePtr node;
    CommodityModifier *newdict;
    /* Clear memory. */
-   memset( temp, 0, sizeof(Commodity) );
+   memset(temp, 0, sizeof(Commodity));
    temp->period = 200;
    temp->population_modifier = 0.;
    temp->standard = 0;
@@ -327,12 +330,10 @@ static int commodity_parse( Commodity *temp, xmlNodePtr parent )
          temp->gfx_space = xml_parseTexture( node,
                COMMODITY_GFX_PATH"space/%s", 1, 1, OPENGL_TEX_MIPMAPS );
       if (xml_isNode(node,"gfx_store")) {
-         temp->gfx_store = xml_parseTexture( node,
-               COMMODITY_GFX_PATH"%s", 1, 1, OPENGL_TEX_MIPMAPS );
-         if (temp->gfx_store != NULL) {
-         } else {
-            temp->gfx_store = gl_newImage( COMMODITY_GFX_PATH"_default.webp", 0 );
-         }
+         temp->gfx_store = xml_parseTexture(node,
+               COMMODITY_GFX_PATH"%s", 1, 1, OPENGL_TEX_MIPMAPS);
+         if (temp->gfx_store == NULL)
+            temp->gfx_store = gl_newImage(COMMODITY_GFX_PATH"_default.webp", 0);
          continue;
       }
       if (xml_isNode(node, "standard")) {
@@ -369,19 +370,14 @@ static int commodity_parse( Commodity *temp, xmlNodePtr parent )
          temp->gfx_space = gl_newImage( COMMODITY_GFX_PATH"space/_default.webp", 0 );
    }
 
-
-
-#if 0 /* shouldn't be needed atm */
-#define MELEMENT(o,s)   if (o) WARN( _("Commodity '%s' missing '"s"' element"), temp->name)
-   MELEMENT(temp->description==NULL,"description");
-   MELEMENT(temp->high==0,"high");
-   MELEMENT(temp->medium==0,"medium");
-   MELEMENT(temp->low==0,"low");
-#undef MELEMENT
-#endif
+   MELEMENT(temp->name == NULL, "name");
+   MELEMENT(temp->description == NULL, "description");
+   MELEMENT(temp->price == 0, "price");
+   MELEMENT(temp->gfx_store == NULL, "gfx_store");
 
    return 0;
 }
+#undef MELEMENT
 
 
 /**

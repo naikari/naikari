@@ -228,12 +228,6 @@ static int ship_genTargetGFX( Ship *temp, SDL_Surface *surface, int sx, int sy )
    SDL_Surface *gfx, *gfx_store;
    int x, y, sw, sh;
    SDL_Rect rtemp, dstrect;
-#if 0 /* Required for scanlines. */
-   int i, j;
-   uint32_t *pix;
-   double r, g, b, a;
-   double h, s, v;
-#endif
    char buf[PATH_MAX];
 
    /* Get sprite size. */
