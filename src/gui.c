@@ -418,14 +418,6 @@ static void gui_renderPlanetTarget (void)
        && (player.p->nav_asteroid < 0))
       return;
 
-   /* Make sure targets are still in range. */
-#if 0
-   if (!pilot_inRangePlanet( player.p, player.p->nav_planet )) {
-      player_targetPlanetSet( -1 );
-      return;
-   }
-#endif
-
    /* Draw planet and jump point target graphics. */
    if (player.p->nav_hyperspace >= 0) {
       jp = &cur_system->jumps[player.p->nav_hyperspace];

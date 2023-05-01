@@ -80,7 +80,6 @@ static int cli_firstline   = 1; /**< Is this the first line? */
  * CLI stuff.
  */
 static int cli_script( lua_State *L );
-//static int cli_printOnly( lua_State *L );
 static const luaL_Reg cli_methods[] = {
    {"print", cli_print},
    {"script", cli_script},
@@ -213,15 +212,6 @@ int cli_print( lua_State *L )
    return cli_printCore( L, 0 );
 }
 
-#if 0
-/**
- * @brief Replacement for the internal Lua print to print to console instead of terminal.
- */
-static int cli_printOnly( lua_State *L )
-{
-   return cli_printCore( L, 1 );
-}
-#endif
 
 /**
  * @brief Would be like "dofile" from the base Lua lib.
