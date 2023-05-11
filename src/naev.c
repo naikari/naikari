@@ -205,8 +205,10 @@ int main( int argc, char** argv )
    init_linebreak();
 
    /* Parse version. */
-   if (semver_parse( VERSION, &version_binary ))
-      WARN( _("Failed to parse version string '%s'!"), VERSION );
+   if (semver_parse(VERSION, &version_binary)) {
+      ERR(_("Failed to parse binary version string '%s'!"), VERSION);
+      return -1;
+   }
 
    /* Print the version */
    LOG( " %s v%s (%s)", APPNAME, naev_version(0), HOST );
@@ -1090,25 +1092,28 @@ binary_comparison (int x, int y) {
  *       older than the checked version string; and with a magnitude of
  *       3 if the difference is in the major version number, 2 if the
  *       difference is in the minor version number, and 1 if the
- *       difference is in the bugfix version number.
+ *       difference is in the bugfix version number. 0 indicates that
+ *       the versions are the same, or alternatively, that the version
+ *       string could not be parsed (in which case a warning will be
+ *       printed).
  */
 int naev_versionCompare( const char *version )
 {
    int res;
    semver_t sv;
 
-   if (semver_parse( version, &sv ))
+   if (semver_parse(version, &sv))
    {
-      WARN( _("Failed to parse version string '%s'!"), version );
-      return -1;
+      WARN(_("Failed to parse version string '%s'!"), version);
+      return 0;
    }
 
    if ((res = 3*binary_comparison(version_binary.major, sv.major)) == 0) {
       if ((res = 2*binary_comparison(version_binary.minor, sv.minor)) == 0) {
-         res = semver_compare( version_binary, sv );
+         res = semver_compare(version_binary, sv);
       }
    }
-   semver_free( &sv );
+   semver_free(&sv);
    return res;
 }
 
