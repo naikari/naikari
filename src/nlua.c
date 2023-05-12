@@ -381,7 +381,7 @@ static lua_State *nlua_newState (void)
    /* try to create the new state */
    L = luaL_newstate();
    if (L == NULL) {
-      WARN(_("Failed to create new Lua state."));
+      ERR("%s", _("Failed to create new Lua state."));
       return NULL;
    }
 
