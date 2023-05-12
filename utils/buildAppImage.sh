@@ -102,7 +102,7 @@ sh "$MESON" install -C "$BUILDPATH"
 # Prep dist directory for appimage
 
 # Set ARCH of AppImage
-ARCH=$(arch)
+ARCH=`uname -m`
 
 # Set VERSION and OUTPUT variables
 if [ -f "$SOURCEPATH/dat/VERSION" ]; then
