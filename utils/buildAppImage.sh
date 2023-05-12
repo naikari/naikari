@@ -87,7 +87,7 @@ fi
 sh "$MESON" setup "$BUILDPATH" "$SOURCEPATH" \
 --native-file "$SOURCEPATH/utils/build/linux.ini" \
 --buildtype "$BUILDTYPE" \
---force-fallback-for=SuiteSparse \
+--force-fallback-for=SuiteSparse,luajit \
 -Dnightly="$NIGHTLY" \
 -Dprefix="/usr" \
 -Db_lto=true \
