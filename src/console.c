@@ -198,8 +198,7 @@ int cli_warn( lua_State *L )
  */
 int cli_debug(lua_State *L)
 {
-   const char *msg = luaL_checkstring(L, 1);
-   DEBUG("%s", msg);
+   DEBUG("%s", luaL_checkstring(L, 1));
    return 0;
 }
 
