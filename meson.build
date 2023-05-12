@@ -101,11 +101,7 @@ if buildExec.disabled() == false
    useLuaJIT = get_option('luajit')
    lua = dependency('', required: false)
    if useLuaJIT.disabled() == false
-      if 'luajit' in forced_fallbacks or wrap_mode == 'forcedfallback'
-         lua = subproject('luajit').get_variable('luajit_dep')
-      else
-         lua = dependency('luajit', fallback: ['luajit', 'luajit_dep'], required: useLuaJIT)
-      endif
+      lua = dependency('luajit', fallback: ['luajit', 'luajit_dep'], required: useLuaJIT)
    endif
    config_data.set10('HAVE_LUAJIT', lua.found())
    summary('LuaJIT', lua.found(), section: 'Features', bool_yn: true)
