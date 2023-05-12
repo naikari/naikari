@@ -66,6 +66,7 @@ echo "MESON WRAPPER PATH:  $MESON"
 # Make temp directories
 mkdir -p "$WORKPATH"/{dist,utils,AppDir}
 
+# Make it so Meson installs into the AppDir directory
 DESTDIR="$WORKPATH/AppDir"
 export DESTDIR
 
@@ -135,14 +136,14 @@ fi
 export OUTPUT="$WORKPATH/dist/naikari-$SUFFIX.AppImage"
 
 # Rename metainfo file
-mv "$WORKPATH/AppDir/usr/share/metainfo/io.github.naikari.Naikari.metainfo.xml" "$WORKPATH/AppDir/usr/share/metainfo/io.github.naikari.Naikari.appdata.xml"
+mv "$DESTDIR/usr/share/metainfo/io.github.naikari.Naikari.metainfo.xml" "$DESTDIR/usr/share/metainfo/io.github.naikari.Naikari.appdata.xml"
 
 # Disable appstream test
 export NO_APPSTREAM=1
 
 export UPDATE_INFORMATION="gh-releases-zsync|naikari|naikari|$TAG|naikari-*.AppImage.zsync"
 
-# Run linuxdeploy and generate an AppDir, then generate an AppImage
+# Run linuxdeploy and generate an AppImage
 
 pushd "$WORKPATH"
 
