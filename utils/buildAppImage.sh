@@ -123,15 +123,7 @@ if [[ "$BUILDTYPE" =~ "debug" ]]; then
     export VERSION="$VERSION+DEBUG.$BUILD_DATE"
 fi
 
-SUFFIX="$VERSION-linux"
-
-if [[ "$ARCH" =~ "x86_64" ]]; then
-    SUFFIX="$SUFFIX-x86-64"
-elif [[ "$ARCH" =~ "x86" ]]; then
-    SUFFIX="$SUFFIX-x86"
-else
-    SUFFIX="$SUFFIX-unknown"
-fi
+SUFFIX="$VERSION-linux-$ARCH"
 
 export OUTPUT="$WORKPATH/dist/naikari-$SUFFIX.AppImage"
 

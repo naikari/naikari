@@ -85,10 +85,10 @@ mkdir -p "$OUTDIR"/win64
 
 # Move all build artefacts to deployment locations
 # Move Linux AppImage, zsync files and set AppImage as executable
-cp "$TEMPPATH"/naikari-linux-x86-64/*.AppImage "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage
-cp "$TEMPPATH"/naikari-linux-x86-64/*.zsync "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage.zsync
+cp "$TEMPPATH"/naikari-linux-x86-64/*.AppImage "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage
+cp "$TEMPPATH"/naikari-linux-x86-64/*.zsync "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage.zsync
 
-chmod +x "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage
+chmod +x "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage
 
 # Move macOS dmg image to deployment location
 cp "$TEMPPATH"/naikari-macos/*.dmg "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.dmg
@@ -106,8 +106,8 @@ cp "$TEMPPATH"/naikari-dist/source.tar.xz "$OUTDIR"/dist/naikari-"$SUFFIX"-sourc
 
 if [ "$DRYRUN" == "false" ]; then
     run_gau -version
-    run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage -mediatype "application/octet-stream" -overwrite
-    run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86-64.AppImage.zsync -mediatype "application/octet-stream" -overwrite
+    run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage -mediatype "application/octet-stream" -overwrite
+    run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage.zsync -mediatype "application/octet-stream" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.dmg -mediatype "application/octet-stream" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/win64/naikari-"$SUFFIX"-win64.exe -mediatype "application/vnd.microsoft.portable-executable" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/dist/naikari-"$SUFFIX"-source.tar.xz -mediatype "application/x-gtar" -overwrite
