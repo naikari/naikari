@@ -9,6 +9,7 @@ project('naikari', 'c',
    meson_version: '>=0.55.0')
 
 forced_fallbacks = get_option('force_fallback_for')
+wrap_mode = get_option('wrap_mode')
 
 issue_address = 'https://github.com/naikari/naikari/issues'
 copyright_holder = 'Naikari Dev Team'
@@ -76,7 +77,7 @@ if buildExec.disabled() == false
       libxml2 = cc.find_library('xml2', required: true)  # e.g., MacOSX SDK
    endif
 
-   use_system_physfs = ('physfs' not in forced_fallbacks and 'forcefallback' != get_option('wrap_mode'))
+   use_system_physfs = ('physfs' not in forced_fallbacks and wrap_mode != 'forcefallback')
    if use_system_physfs
       system_physfs = dependency('physfs', required: false)
       if not system_physfs.found()
@@ -100,7 +101,11 @@ if buildExec.disabled() == false
    useLuaJIT = get_option('luajit')
    lua = dependency('', required: false)
    if useLuaJIT.disabled() == false
-      lua = dependency('luajit', fallback: ['luajit', 'luajit_dep'], required: useLuaJIT)
+      if 'luajit' in forced_fallbacks or wrap_mode == 'forcedfallback'
+         lua = subproject('luajit').get_variable('luajit_dep')
+      else
+         lua = dependency('luajit', fallback: ['luajit', 'luajit_dep'], required: useLuaJIT)
+      endif
    endif
    config_data.set10('HAVE_LUAJIT', lua.found())
    summary('LuaJIT', lua.found(), section: 'Features', bool_yn: true)
@@ -111,7 +116,7 @@ if buildExec.disabled() == false
 
    naev_deps += lua
 
-   use_system_suitesparse = ('SuiteSparse' not in forced_fallbacks and 'forcefallback' != get_option('wrap_mode'))
+   use_system_suitesparse = ('SuiteSparse' not in forced_fallbacks and wrap_mode != 'forcefallback')
    if use_system_suitesparse
       message('Note: Naikari needs the following SuiteSparse libraries: amd, colamd, cholmod, and either csparse or cxsparse. ' +
               'It can use its own copies if you run "meson configure --force-fallback-for=SuiteSparse".')
@@ -161,7 +166,7 @@ if buildExec.disabled() == false
 
    if get_option('debug')
       libbacktrace = cc.find_library('backtrace', has_headers: 'backtrace.h', required: false)
-      if not libbacktrace.found() or 'backtrace' in forced_fallbacks or 'libbacktrace' in forced_fallbacks or get_option('wrap_mode') == 'forcefallback'
+      if not libbacktrace.found() or 'backtrace' in forced_fallbacks or 'libbacktrace' in forced_fallbacks or wrap_mode == 'forcefallback'
          libbacktrace = dependency('backtrace', fallback: ['libbacktrace', 'libbacktrace_dep'], required: true)
       endif
       naev_deps += libbacktrace
