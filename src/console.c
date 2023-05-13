@@ -199,6 +199,7 @@ int cli_warn( lua_State *L )
 int cli_debug(lua_State *L)
 {
    DEBUG("%s", luaL_checkstring(L, 1));
+   (void) L;
    return 0;
 }
 
