@@ -29,7 +29,7 @@
 
 
 #define BOARDING_WIDTH  720 /**< Boarding window width. */
-#define BOARDING_HEIGHT (40 + 4*(BUTTON_HEIGHT+20)) /**< Boarding window height. */
+#define BOARDING_HEIGHT (40 + 5*(BUTTON_HEIGHT+20)) /**< Boarding window height. */
 
 #define BUTTON_WIDTH    180 /**< Boarding button width. */
 #define BUTTON_HEIGHT    40 /**< Boarding button height. */
@@ -47,6 +47,7 @@ static unsigned int board_pilot_id = 0;
 static void board_stealCreds( unsigned int wdw, char* str );
 static void board_stealCargo( unsigned int wdw, char* str );
 static void board_stealFuel( unsigned int wdw, char* str );
+static void board_stealAll(unsigned int wdw, char *str);
 static int board_trySteal( Pilot *p );
 static int board_fail( unsigned int wdw );
 static void board_update( unsigned int wdw );
@@ -119,10 +120,13 @@ static int board_hook(void *data)
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
-         2*BUTTON_HEIGHT + 2*20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
+         3*BUTTON_HEIGHT + 3*20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataCargo", &gl_defFont, NULL, NULL);
 
    window_addButton(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealAll", _("Steal All"), board_stealAll);
+
+   window_addButton(wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit);
 
    board_update(wdw);
@@ -355,6 +359,28 @@ static void board_stealFuel( unsigned int wdw, char* str )
 
    board_update( wdw );
    player_message(_("#oYou manage to steal the ship's fuel."));
+}
+
+
+/**
+ * @brief Attempt to steal everything.
+ *
+ *    @param wdw Window triggering the function.
+ *    @param str Unused.
+ */
+static void board_stealAll(unsigned int wdw, char *str)
+{
+   Pilot *p = pilot_get(player.p->target);
+
+   if (p->credits > 0)
+      board_stealCreds(wdw, str);
+
+   if ((p->fuel > 0) && (player.p->fuel < player.p->fuel_max))
+      board_stealFuel(wdw, str);
+
+   if ((array_size(p->commodities) > 0)
+         && (pilot_cargoFree(player.p) > 0))
+      board_stealCargo(wdw, str);
 }
 
 
