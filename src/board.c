@@ -28,10 +28,10 @@
 #include "toolkit.h"
 
 
-#define BOARDING_WIDTH  640 /**< Boarding window width. */
+#define BOARDING_WIDTH  720 /**< Boarding window width. */
 #define BOARDING_HEIGHT (40 + 4*(BUTTON_HEIGHT+20)) /**< Boarding window height. */
 
-#define BUTTON_WIDTH    110 /**< Boarding button width. */
+#define BUTTON_WIDTH    180 /**< Boarding button width. */
 #define BUTTON_HEIGHT    40 /**< Boarding button height. */
 
 
@@ -99,7 +99,7 @@ static int board_hook(void *data)
          BOARDING_HEIGHT);
 
    window_addButton(wdw, 20, -40, BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCredits", _("Credits"), board_stealCreds);
+         BUTTON_HEIGHT, "btnStealCredits", _("Steal Credits"), board_stealCreds);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
@@ -107,7 +107,7 @@ static int board_hook(void *data)
          "txtDataCredits", &gl_defFont, NULL, NULL);
 
    window_addButton( wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealFuel", _("Fuel"), board_stealFuel);
+         BUTTON_HEIGHT, "btnStealFuel", _("Steal Fuel"), board_stealFuel);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 1*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
@@ -115,7 +115,7 @@ static int board_hook(void *data)
          "txtDataFuel", &gl_defFont, NULL, NULL);
 
    window_addButton(wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCargo", _("Cargo"), board_stealCargo);
+         BUTTON_HEIGHT, "btnStealCargo", _("Steal Cargo"), board_stealCargo);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
