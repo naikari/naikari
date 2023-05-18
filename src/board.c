@@ -99,35 +99,40 @@ static int board_hook(void *data)
    wdw = window_create("wdwBoarding", _("Boarding"), -1, -1, BOARDING_WIDTH,
          BOARDING_HEIGHT);
 
-   window_addButton(wdw, 20, -40, BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCredits", _("Steal Credits"), board_stealCreds);
+   window_addButtonKey(wdw, 20, -40, BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealCredits", _("Steal Credits"),
+         board_stealCreds, SDLK_c);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
          BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataCredits", &gl_defFont, NULL, NULL);
 
-   window_addButton( wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealFuel", _("Steal Fuel"), board_stealFuel);
+   window_addButtonKey(wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealFuel", _("Steal Fuel"), board_stealFuel,
+         SDLK_f);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 1*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
          BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataFuel", &gl_defFont, NULL, NULL);
 
-   window_addButton(wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCargo", _("Steal Cargo"), board_stealCargo);
+   window_addButtonKey(wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealCargo", _("Steal Cargo"), board_stealCargo,
+         SDLK_g);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
          3*BUTTON_HEIGHT + 3*20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataCargo", &gl_defFont, NULL, NULL);
 
-   window_addButton(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealAll", _("Steal All"), board_stealAll);
+   window_addButtonKey(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnStealAll", _("Steal All"), board_stealAll,
+         SDLK_a);
 
-   window_addButton(wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit);
+   window_addButtonKey(wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+         BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit,
+         SDLK_v);
 
    board_update(wdw);
    return 0;
@@ -381,6 +386,8 @@ static void board_stealAll(unsigned int wdw, char *str)
    if ((array_size(p->commodities) > 0)
          && (pilot_cargoFree(player.p) > 0))
       board_stealCargo(wdw, str);
+
+   board_exit(wdw, str);
 }
 
 
