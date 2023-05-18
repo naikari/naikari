@@ -29,7 +29,7 @@
 
 
 #define BOARDING_WIDTH  640 /**< Boarding window width. */
-#define BOARDING_HEIGHT (40 + 5*BUTTON_HEIGHT + 5*20) /**< Boarding window height. */
+#define BOARDING_HEIGHT (40 + 4*(BUTTON_HEIGHT+20)) /**< Boarding window height. */
 
 #define BUTTON_WIDTH    110 /**< Boarding button width. */
 #define BUTTON_HEIGHT    40 /**< Boarding button height. */
@@ -47,7 +47,6 @@ static unsigned int board_pilot_id = 0;
 static void board_stealCreds( unsigned int wdw, char* str );
 static void board_stealCargo( unsigned int wdw, char* str );
 static void board_stealFuel( unsigned int wdw, char* str );
-static void board_stealAmmo( unsigned int wdw, char* str );
 static int board_trySteal( Pilot *p );
 static int board_fail( unsigned int wdw );
 static void board_update( unsigned int wdw );
@@ -116,22 +115,14 @@ static int board_hook(void *data)
          "txtDataFuel", &gl_defFont, NULL, NULL);
 
    window_addButton(wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealAmmo", _("Ammo"), board_stealAmmo);
-   window_addText(wdw, 20+BUTTON_WIDTH+10,
-         -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
-         BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
-         BUTTON_HEIGHT + 20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
-         "txtDataAmmo", &gl_defFont, NULL, NULL);
-
-   window_addButton(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealCargo", _("Cargo"), board_stealCargo);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
-         -40 - 3*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
+         -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
          2*BUTTON_HEIGHT + 2*20 - (BUTTON_HEIGHT-gl_defFont.h)/2, 0,
          "txtDataCargo", &gl_defFont, NULL, NULL);
 
-   window_addButton(wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
+   window_addButton(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit);
 
    board_update(wdw);
@@ -368,92 +359,6 @@ static void board_stealFuel( unsigned int wdw, char* str )
 
 
 /**
- * @brief Attempt to steal the boarded ship's ammo.
- *
- *    @param wdw Window triggering the function.
- *    @param str Unused.
- */
-static void board_stealAmmo( unsigned int wdw, char* str )
-{
-     Pilot* p;
-     int nreloaded, i, nammo, x;
-     PilotOutfitSlot *target_outfit_slot, *player_outfit_slot;
-     const Outfit *target_outfit, *ammo, *player_outfit;
-     (void)str;
-     nreloaded = 0;
-     p = pilot_get(player.p->target);
-     /* Target has no ammo */
-     if (pilot_countAmmo(p) <= 0) {
-        player_message(_("#rThe ship has no ammo."));
-        return;
-     }
-     /* Player is already at max ammo */
-     if (pilot_countAmmo(player.p) >= pilot_maxAmmo(player.p)) {
-        player_message(_("#rYou are already at max ammo."));
-        return;
-     }
-     if (board_fail(wdw))
-        return;
-     /* Steal the ammo */
-     for (i=0; i<array_size(p->outfits); i++) {
-        target_outfit_slot = p->outfits[i];
-        if (target_outfit_slot == NULL)
-           continue;
-        target_outfit = target_outfit_slot->outfit;
-        if (target_outfit == NULL)
-           continue;
-        /* outfit isn't a launcher */
-        if (!outfit_isLauncher(target_outfit)) {
-           continue;
-        }
-        nammo = target_outfit_slot->u.ammo.quantity;
-        ammo = target_outfit_slot->u.ammo.outfit;
-        /* launcher has no ammo */
-        if (ammo == NULL)
-           continue;
-        if (nammo <= 0) {
-           continue;
-        }
-        for (x=0; x<array_size(player.p->outfits); x++) {
-           int nadded = 0;
-           player_outfit_slot = player.p->outfits[x];
-           if (player_outfit_slot == NULL)
-              continue;
-           player_outfit = player_outfit_slot->outfit;
-           if (player_outfit == NULL)
-              continue;
-           if (!outfit_isLauncher(player_outfit)) {
-              continue;
-           }
-           if (strcmp(ammo->name, player_outfit_slot->u.ammo.outfit->name) != 0) {
-              continue;
-           }
-           /* outfit's ammo matches; try to add to player and remove from target */
-           nadded = pilot_addAmmo(player.p, player_outfit_slot, ammo, nammo);
-           nammo -= nadded;
-           pilot_rmAmmo(p, target_outfit_slot, nadded);
-           nreloaded += nadded;
-           if (nadded > 0)
-              player_message(_("#oYou looted: %d × %s"), nadded, _(ammo->name));
-           if (nammo <= 0) {
-              break;
-           }
-        }
-        if (nammo <= 0) {
-           continue;
-        }
-     }
-     if (nreloaded <= 0)
-        player_message(_("#rThere is no ammo compatible with your launchers on board."));
-     pilot_updateMass(player.p);
-     pilot_weaponSafe(player.p);
-     pilot_updateMass(p);
-     pilot_weaponSafe(p);
-     board_update(wdw);
-}
-
-
-/**
  * @brief Checks to see if the pilot can steal from its target.
  *
  *    @param p Pilot stealing from its target.
@@ -502,7 +407,7 @@ static int board_fail( unsigned int wdw )
  */
 static void board_update( unsigned int wdw )
 {
-   int i, j, l;
+   int i, l;
    int total_cargo, fuel;
    double c;
    int ic;
@@ -510,12 +415,6 @@ static void board_update( unsigned int wdw )
    char str2[STRMAX_SHORT];
    char cred[ECON_CRED_STRLEN];
    Pilot *p;
-   PilotOutfitSlot *target_outfit_slot;
-   const Outfit *target_outfit, *ammo;
-   int nammo;
-   char **outfit_names = NULL;
-   int noutfit_names;
-   int duplicate;
 
    p = pilot_get(player.p->target);
 
@@ -530,76 +429,6 @@ static void board_update( unsigned int wdw )
    else
       snprintf(str, sizeof(str), n_("%d kL", "%d kL", fuel), fuel);
    window_modifyText( wdw, "txtDataFuel", str );
-
-   /* Missiles */
-   int nmissiles = pilot_countAmmo(p);
-   if (nmissiles <= 0)
-      snprintf( str, sizeof(str), _("none") );
-   else {
-      l = 0;
-      noutfit_names = 0;
-
-      for (i=0; i<array_size(p->outfits); i++) {
-         target_outfit_slot = p->outfits[i];
-         if (target_outfit_slot == NULL)
-            continue;
-
-         target_outfit = target_outfit_slot->outfit;
-         if (target_outfit == NULL)
-            continue;
-
-         /* outfit isn't a launcher */
-         if (!outfit_isLauncher(target_outfit))
-            continue;
-
-         nammo = target_outfit_slot->u.ammo.quantity;
-         ammo = target_outfit_slot->u.ammo.outfit;
-
-         /* launcher has no ammo */
-         if (ammo == NULL)
-            continue;
-
-         if (nammo <= 0)
-            continue;
-
-         /* See if this is already listed. */
-         if (outfit_names != NULL) {
-            duplicate = 0;
-            for (j=0; j<noutfit_names; j++) {
-               if (strcmp(ammo->name, outfit_names[j]) == 0) {
-                  duplicate = 1;
-                  break;
-               }
-            }
-
-            if (duplicate)
-               continue;
-         }
-
-         if (l > 0)
-            l += scnprintf(&str2[l], sizeof(str2)-l, _(", "));
-
-         l += scnprintf(&str2[l], sizeof(str2)-l,
-               "%s", _(ammo->name));
-
-         if (outfit_names == NULL)
-            outfit_names = malloc(sizeof(char*));
-         else
-            outfit_names = realloc(outfit_names, sizeof(char*) * (noutfit_names+1));
-
-         outfit_names[noutfit_names] = ammo->name;
-         noutfit_names++;
-      }
-
-      free(outfit_names);
-      outfit_names = NULL;
-
-      snprintf( str, sizeof(str),
-            n_("%d (%s)", "%d (%s)", nmissiles),
-            nmissiles, str2 );
-   }
-
-   window_modifyText( wdw, "txtDataAmmo", str );
 
    /* Commodities. */
    if ((array_size(p->commodities)==0))
