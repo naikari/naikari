@@ -510,7 +510,8 @@ function spawnDealer()
       local texts = {
          _([["Why, hello there! I have a fantastic outfit in my possession, a state-of-the-art {outfit}. This outfit is rare, but it's yours for only {credits}. Would you like it?"]]),
          _([["Ah, you look like just the kind of pilot who could use this {outfit} in my possession. It's an outfit that's rather hard to come by, I assure you, but for only {credits}, it's all yours. A bargain, don't you think?"]]),
-         _([["Ah, come here, come here. As it happens, I have a rare {outfit} in my possession. You can't get this just anywhere, I assure you. Top-level clearance, but for only {credits}, it's yours right now. What do you think?"]]),
+         _([["Ah, come here, come here. As it happens, I have a rare {outfit} in my possession. You can't get this just anywhere, I assure you. For only {credits}, it's yours right now. What do you think?"]]),
+         _([["Would you like yourself a nice rare outfit? For only {credits}, I can put this {outfit} in your hands right now. You'd better hurry, though, because it's in high demand! What do you say?"]]),
       }
       local outfit_choice = outfits[rnd.rnd(1, #outfits)]
       local price = outfit_choice:price()
@@ -528,6 +529,7 @@ function spawnDealer()
                      _([["Hehe, thanks! I'm transferring the {outfit} to your account. You'll see it in your outfits list."]]),
                      _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {outfit} into your account now."]]),
                      _([["A wise decision. The {outfit} is now yours. You'll find it along with the rest of your outfits."]]),
+                     _([["Good, good! I've transferred the {outfit} to your account. Pleasure doing business with you!"]]),
                   }
                   tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
                         {outfit=data.outfit:name()}))
@@ -547,6 +549,7 @@ function spawnDealer()
          _([["Why, hello there! I have a fantastic ship in my possession, a state-of-the-art {ship}. This ship is rare, but it's yours for only {credits}. Would you like it?"]]),
          _([["Ah, you look like just the kind of pilot who could use this {ship} in my possession. It's a ship that's rather hard to come by, I assure you, but for only {credits}, it's all yours. A bargain, don't you think?"]]),
          _([["Ah, come here, come here. As it happens, I have a rare {ship} in my possession. You can't get this just anywhere, I assure you. Top-level clearance, but for only {credits}, it's yours right now. What do you think?"]]),
+         _([["Would you like yourself a nice rare ship? For only {credits}, I can put this {ship} in your hands right now. You'd better hurry, though, because it's in high demand! What do you say?"]]),
       }
       local ship_choice = ships[rnd.rnd(1, #ships)]
       local price = ship_choice:price()
@@ -564,6 +567,7 @@ function spawnDealer()
                      _([["Hehe, thanks! I'm transferring the {ship} to your account."]]),
                      _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {ship} into your account now."]]),
                      _([["A wise decision. The {ship} is now yours."]]),
+                     _([["Good, good! I've transferred the {ship} to your account. Pleasure doing business with you!"]]),
                   }
                   tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
                         {ship=data.ship:name()}))
