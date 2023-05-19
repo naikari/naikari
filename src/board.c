@@ -336,6 +336,7 @@ static void board_stealFuel( unsigned int wdw, char* str )
 {
    (void)str;
    Pilot* p;
+   double stolen_fuel;
 
    p = pilot_get(player.p->target);
 
@@ -353,15 +354,10 @@ static void board_stealFuel( unsigned int wdw, char* str )
 
    /* Steal fuel. */
    if (player.p->fuel < player.p->fuel_max) {
-      player.p->fuel += round(player.p->stats.loot_mod * (double)p->fuel);
-      p->fuel = 0;
-   }
-
-   /* TODO this can create some fuel of out thin air with loot_mod. */
-   /* Make sure doesn't overflow. */
-   if (player.p->fuel > player.p->fuel_max) {
-      p->fuel = player.p->fuel - player.p->fuel_max;
-      player.p->fuel = player.p->fuel_max;
+      stolen_fuel = MIN(p->fuel, player.p->fuel_max - player.p->fuel);
+      stolen_fuel *= player.p->stats.loot_mod;
+      player.p->fuel = MIN(player.p->fuel + stolen_fuel, player.p->fuel_max);
+      p->fuel = MAX(p->fuel - stolen_fuel, 0);
    }
 
    board_update( wdw );
