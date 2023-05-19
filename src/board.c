@@ -134,6 +134,8 @@ static int board_hook(void *data)
          BUTTON_HEIGHT, "btnBoardingClose", _("Leave"), board_exit,
          SDLK_v);
 
+   window_setFocus(wdw, "btnStealAll");
+
    board_update(wdw);
    return 0;
 }
