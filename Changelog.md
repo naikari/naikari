@@ -12,6 +12,13 @@
 * Sound engine now avoids playing the same sound multiple times at once.
 * Positional audio is more accurate to what you see on the screen and
   more headphone-friendly.
+* Hopefully fixed an uncommon but not entirely rare crash on Linux
+  release builds.
+* Removed ammo stealing from the boarding window, since ammo stealing
+  has never really been useful. You can now only steal credits, fuel,
+  and cargo from boarded ships.
+* Added a "Steal All" button to the boarding window which attempts to
+  steal everything that can be stolen.
 
 ## 0.7.0
 
