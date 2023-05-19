@@ -286,12 +286,12 @@ static void bar_open( unsigned int wid )
    window_setAccept( wid, bar_approach );
 
    /* Buttons */
-   window_addButtonKey( wid, -10, 20,
+   window_addButtonKey(wid, -10, 20,
          bw, bh, "btnCloseBar",
-         _("Take Off"), land_buttonTakeoff, SDLK_t );
-   window_addButtonKey( wid, -10 - (bw+10), 20,
+         _("&Take Off"), land_buttonTakeoff, SDLK_t);
+   window_addButtonKey(wid, -10 - (bw+10), 20,
          bw, bh, "btnApproach",
-         _("Approach"), bar_approach, SDLK_a );
+         _("&Approach"), bar_approach, SDLK_a);
 
    /* Bar description. */
    window_addText( wid, iw + 40, -40,
@@ -575,13 +575,13 @@ static void misn_open( unsigned int wid )
    bw = (w/2 - 3*10) / 3;
    window_addButtonKey(wid, -10, 20,
          bw, LAND_BUTTON_HEIGHT, "btnCloseMission",
-         _("Take Off"), land_buttonTakeoff, SDLK_t);
+         _("&Take Off"), land_buttonTakeoff, SDLK_t);
    window_addButtonKey(wid, -10 - 1*(bw+10), 20,
          bw, LAND_BUTTON_HEIGHT, "btnCurrentMissions",
-         _("Current Missions"), misn_currentList, SDLK_c);
+         _("&Current Missions"), misn_currentList, SDLK_c);
    window_addButtonKey(wid, -10 - 2*(bw+10), 20,
          bw, LAND_BUTTON_HEIGHT, "btnAcceptMission",
-         _("Accept Mission"), misn_accept, SDLK_a);
+         _("&Accept Mission"), misn_accept, SDLK_a);
 
    /* text */
    y = -60;
@@ -945,7 +945,7 @@ void land_updateMainTab (void)
    else {
       /* Refuel button. */
       credits2str( cred, o->price, 0 );
-      snprintf( buf, sizeof(buf), _("Buy Local Map (%s)"), cred );
+      snprintf( buf, sizeof(buf), _("&Buy Local Map (%s)"), cred );
       window_addButtonKey(land_getWid(LAND_WINDOW_MAIN),
             -20, 20 + 2*(LAND_BUTTON_HEIGHT+10),
             LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnMap",
@@ -1308,12 +1308,12 @@ static void land_createMainTab( unsigned int wid )
     * buttons
     */
    /* first column */
-   window_addButtonKey( wid, -20, 20,
+   window_addButtonKey(wid, -20, 20,
          LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnTakeoff",
-         _("Take Off"), land_buttonTakeoff, SDLK_t );
+         _("&Take Off"), land_buttonTakeoff, SDLK_t);
    window_addButtonKey(wid, -20, 20 + (LAND_BUTTON_HEIGHT+10),
          LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnSaveSnapshot",
-         _("Save Snapshot"), spaceport_saveSnapshot, SDLK_s);
+         _("&Save Snapshot"), spaceport_saveSnapshot, SDLK_s);
 
    /* Add "no refueling" notice if needed. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {

@@ -160,24 +160,24 @@ void outfits_open( unsigned int wid, const Outfit **outfits )
 
    /* buttons */
    if (data==NULL) {
-      window_addButtonKey( wid, off = -10, 20,
+      window_addButtonKey(wid, off = -10, 20,
             bw, bh, "btnCloseOutfits",
-            _("Take Off"), land_buttonTakeoff, SDLK_t );
+            _("&Take Off"), land_buttonTakeoff, SDLK_t);
    }
    else {
-      window_addButtonKey( wid, off = -10, 20,
+      window_addButtonKey(wid, off = -10, 20,
             bw, bh, "btnCloseOutfits",
-            _("Close"), window_close, SDLK_t );
+            _("Close"), window_close, SDLK_t);
    }
-   window_addButtonKey( wid, off -= 10+bw, 20,
+   window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnSellOutfit",
-         _("Sell"), outfits_sell, SDLK_s );
-   window_addButtonKey( wid, off -= 10+bw, 20,
+         _("&Sell"), outfits_sell, SDLK_s);
+   window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnBuyOutfit",
-         _("Buy"), outfits_buy, SDLK_b );
-   window_addButtonKey( wid, off -= 10+bw, 20,
+         _("&Buy"), outfits_buy, SDLK_b);
+   window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnFindOutfits",
-         _("Find Outfits"), outfits_find, SDLK_f );
+         _("&Find Outfits"), outfits_find, SDLK_f);
    (void)off;
 
    /* fancy 192x192 image */

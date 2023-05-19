@@ -173,8 +173,9 @@ void uniedit_open( unsigned int wid_unused, char *unused )
    uniedit_wid = wid;
 
    /* Close button. */
-   window_addButtonKey( wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", _("Exit"), uniedit_close, SDLK_x );
+   window_addButtonKey(wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnClose", _("E&xit"), uniedit_close, SDLK_x);
    buttonPos++;
 
    /* Autosave toggle. */
@@ -188,33 +189,39 @@ void uniedit_open( unsigned int wid_unused, char *unused )
 
    /* Jump toggle. */
    buttonPos++;
-   window_addButtonKey( wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnJump", _("Jump"), uniedit_btnJump, SDLK_j );
+   window_addButtonKey(wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnJump", _("&Jump"), uniedit_btnJump, SDLK_j);
    buttonPos++;
 
    /* Rename system. */
-   window_addButtonKey( wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnRename", _("Rename"), uniedit_btnRename, SDLK_r );
+   window_addButtonKey(wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnRename", _("&Rename"), uniedit_btnRename, SDLK_r);
    buttonPos++;
 
    /* Edit system. */
-   window_addButtonKey( wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnEdit", _("Edit"), uniedit_btnEdit, SDLK_e );
+   window_addButtonKey(wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnEdit", _("&Edit"), uniedit_btnEdit, SDLK_e);
    buttonPos++;
 
    /* New system. */
-   window_addButtonKey( wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnNew", _("New Sys"), uniedit_btnNew, SDLK_n );
+   window_addButtonKey(wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnNew", _("&New Sys"), uniedit_btnNew, SDLK_n);
    buttonPos++;
 
    /* Open a system. */
-   window_addButtonKey( wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnOpen", _("Open"), uniedit_btnOpen, SDLK_o );
+   window_addButtonKey(wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnOpen", _("&Open"), uniedit_btnOpen, SDLK_o);
    buttonPos++;
 
    /* Find a system or asset. */
-   window_addButtonKey( wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnFind", _("Find"), uniedit_btnFind, SDLK_f );
+   window_addButtonKey(wid, -20, 20+(BUTTON_HEIGHT+20)*buttonPos,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnFind", _("&Find"), uniedit_btnFind, SDLK_f);
    buttonPos++;
 
    /* Zoom buttons */

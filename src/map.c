@@ -338,19 +338,19 @@ void map_open (void)
    /* Commodity button */
    window_addButtonKey(wid, -20 - (BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnCommod", _("Mode"), map_buttonCommodity, SDLK_o);
+         "btnCommod", _("M&ode"), map_buttonCommodity, SDLK_o);
    /* Find button */
    window_addButtonKey(wid, -20 - 2*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnFind", _("Find"), map_inputFind, SDLK_f);
+         "btnFind", _("&Find"), map_inputFind, SDLK_f);
    /* System Info button */
    window_addButtonKey(wid, -20 - 3*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnSystemMap", _("System Info"), map_buttonSystemMap, SDLK_s);
+         "btnSystemMap", _("&System Info"), map_buttonSystemMap, SDLK_s);
    /* Autonav button */
    window_addButtonKey(wid, -20 - 4*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnAutonav", _("Autonav"), player_autonavStartWindow, SDLK_a);
+         "btnAutonav", _("&Autonav"), player_autonavStartWindow, SDLK_a);
 
    /*
     * Bottom stuff
@@ -359,9 +359,9 @@ void map_open (void)
     */
    /* Zoom buttons */
    window_addButtonKey(wid, 20, 20,
-         30, BUTTON_HEIGHT, "btnZoomOut", "-", map_buttonZoom, SDLK_MINUS);
+         30, BUTTON_HEIGHT, "btnZoomOut", "#w-#0", map_buttonZoom, SDLK_MINUS);
    window_addButtonKey(wid, 20, 20+10+BUTTON_HEIGHT,
-         30, BUTTON_HEIGHT, "btnZoomIn", "+",
+         30, BUTTON_HEIGHT, "btnZoomIn", "#w+#0",
          map_buttonZoom, SDLK_EQUALS);
 
    /* Minimal display checkbox */

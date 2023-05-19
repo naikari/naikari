@@ -102,16 +102,16 @@ void shipyard_open( unsigned int wid )
    /* buttons */
    window_addButtonKey(wid, off = -10, 20,
          bw, bh, "btnCloseShipyard",
-         _("Take Off"), land_buttonTakeoff, SDLK_t);
+         _("&Take Off"), land_buttonTakeoff, SDLK_t);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnTradeShip",
-         _("Trade-In"), shipyard_trade, SDLK_r);
+         _("T&rade-In"), shipyard_trade, SDLK_r);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnBuyShip",
-         _("Buy"), shipyard_buy, SDLK_b);
+         _("&Buy"), shipyard_buy, SDLK_b);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnFindShips",
-         _("Find Ships"), shipyard_find, SDLK_f);
+         _("&Find Ships"), shipyard_find, SDLK_f);
    (void)off;
 
    /* slot types */

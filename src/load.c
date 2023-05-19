@@ -413,12 +413,12 @@ void load_loadGameMenu()
 
    /* Buttons */
    window_addButtonKey(wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnLoad", _("Load"), load_menu_load, SDLK_l);
+         "btnLoad", _("&Load"), load_menu_load, SDLK_l);
    window_addButton(wid, 20 + 1*(BUTTON_WIDTH+20), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnDelete", _("Delete"), load_menu_delete);
    window_addButtonKey(wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnBack", _("Back"), load_menu_close, SDLK_b);
+         "btnBack", _("&Back"), load_menu_close, SDLK_b);
 
    menu_Open(MENU_LOAD);
 }

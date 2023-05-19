@@ -189,8 +189,8 @@ void sysedit_open( StarSystem *sys )
    window_setAccept( wid, sysedit_close );
 
    /* Close button. */
-   window_addButtonKey( wid, -15, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", _("Exit"), sysedit_close, SDLK_x );
+   window_addButtonKey(wid, -15, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnClose", _("E&xit"), sysedit_close, SDLK_x);
    i = 1;
 
    /* Autosave toggle. */
@@ -203,13 +203,15 @@ void sysedit_open( StarSystem *sys )
    i += 1;
 
    /* Reset. */
-   window_addButtonKey( wid, -15, 20+(BUTTON_HEIGHT+20)*i, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnReset", _("Reset Jumps"), sysedit_btnReset, SDLK_r );
+   window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnReset", _("&Reset Jumps"), sysedit_btnReset, SDLK_r);
    i += 1;
 
    /* Editing. */
-   window_addButtonKey( wid, -15, 20+(BUTTON_HEIGHT+20)*i, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnEdit", _("Edit"), sysedit_btnEdit, SDLK_e );
+   window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnEdit", _("&Edit"), sysedit_btnEdit, SDLK_e);
    i += 1;
 
    /* Remove. */
@@ -223,13 +225,15 @@ void sysedit_open( StarSystem *sys )
    i += 1;
 
    /* New planet. */
-   window_addButtonKey( wid, -15, 20+(BUTTON_HEIGHT+20)*i, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnNew", _("New Planet"), sysedit_btnNew, SDLK_n );
+   window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnNew", _("&New Planet"), sysedit_btnNew, SDLK_n);
    i += 2;
 
    /* Toggle Grid. */
-   window_addButtonKey( wid, -15, 20+(BUTTON_HEIGHT+20)*i, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnGrid", _("Grid"), sysedit_btnGrid, SDLK_g );
+   window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnGrid", _("&Grid"), sysedit_btnGrid, SDLK_g);
 
    /* Zoom buttons */
    window_addButton( wid, 40, 20, 30, 30, "btnZoomIn", "+", sysedit_buttonZoom );

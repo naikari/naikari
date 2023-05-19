@@ -202,12 +202,13 @@ static unsigned int comm_openPilotWindow (void)
 static void comm_addPilotSpecialButtons( unsigned int wid )
 {
    if ( pilot_isHostile(comm_pilot) )
-      window_addButtonKey( wid, -20, 20 + BUTTON_HEIGHT + 20,
-            BUTTON_WIDTH, BUTTON_HEIGHT, "btnBribe", _("Bribe"), comm_bribePilot, SDLK_b );
+      window_addButtonKey(wid, -20, 20 + BUTTON_HEIGHT + 20,
+            BUTTON_WIDTH, BUTTON_HEIGHT, "btnBribe", _("&Bribe"),
+            comm_bribePilot, SDLK_b);
    else
       window_addButtonKey( wid, -20, 20 + BUTTON_HEIGHT + 20,
             BUTTON_WIDTH, BUTTON_HEIGHT, "btnRequest",
-            _("Refuel"), comm_requestFuel, SDLK_r );
+            _("&Refuel"), comm_requestFuel, SDLK_r );
 }
 
 

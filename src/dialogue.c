@@ -373,10 +373,10 @@ int dialogue_YesNoRaw( const char* caption, const char *msg )
    window_addText(wid, 20, strcmp(caption, "") != 0 ? -40 : -20,
          w-40, h,  0, "txtYesNo", font, NULL, msg);
    /* buttons */
-   window_addButtonKey( wid, w/2-100-10, 20, 100, 30, "btnYes", _("Yes"),
-         dialogue_YesNoClose, SDLK_y );
-   window_addButtonKey( wid, w/2+10, 20, 100, 30, "btnNo", _("No"),
-         dialogue_YesNoClose, SDLK_n );
+   window_addButtonKey(wid, w/2-100-10, 20, 100, 30, "btnYes",
+         _("&Yes"), dialogue_YesNoClose, SDLK_y);
+   window_addButtonKey(wid, w/2+10, 20, 100, 30, "btnNo",
+         _("&No"), dialogue_YesNoClose, SDLK_n);
 
    /* tricky secondary loop */
    done[1] = -1; /* Default to negative. */

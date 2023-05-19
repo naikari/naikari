@@ -173,24 +173,28 @@ void mapedit_open( unsigned int wid_unused, char *unused )
 
    /* Button : reset the current map. */
    buttonHPos = 2;
-   window_addButtonKey( wid, -20-(BUTTON_WIDTH+20)*buttonHPos, 20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClear", "Reset", mapedit_clear, SDLK_r );
+   window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
+         20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnClear", "&Reset", mapedit_clear, SDLK_r);
    buttonHPos--;
 
    /* Button : open map file. */
-   window_addButtonKey( wid, -20-(BUTTON_WIDTH+20)*buttonHPos, 20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnOpen", "Open", mapedit_btnOpen, SDLK_o );
+   window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
+         20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnOpen", "&Open", mapedit_btnOpen, SDLK_o);
    buttonHPos--;
 
    /* Button : save current map to file. */
-   window_addButtonKey( wid, -20-(BUTTON_WIDTH+20)*buttonHPos, 20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnSaveAs", "Save", mapedit_btnSaveMapAs, SDLK_s );
+   window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
+         20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnSaveAs", "&Save", mapedit_btnSaveMapAs, SDLK_s);
    buttonHPos = 0;
    buttonVPos--;
 
    /* Button : exit editor. */
-   window_addButtonKey( wid, -20-(BUTTON_WIDTH+20)*buttonHPos, 20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", "Exit", mapedit_close, SDLK_x );
+   window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
+         20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnClose", "E&xit", mapedit_close, SDLK_x);
 
    /* Filename. */
    window_addText( wid, -200, -40-textPos*parHeight-linesPos*lineHeight, 100, lineHeight, 0, "txtSFileName",
@@ -264,8 +268,10 @@ void mapedit_open( unsigned int wid_unused, char *unused )
    (void)linesPos;
 
    /* Zoom buttons */
-   window_addButtonKey( wid, 40, 20, 30, 30, "btnZoomIn", "+", mapedit_buttonZoom, SDLK_EQUALS );
-   window_addButtonKey( wid, 80, 20, 30, 30, "btnZoomOut", "-", mapedit_buttonZoom, SDLK_MINUS );
+   window_addButtonKey(wid, 40, 20, 30, 30, "btnZoomIn", "#w+#0",
+         mapedit_buttonZoom, SDLK_EQUALS);
+   window_addButtonKey(wid, 80, 20, 30, 30, "btnZoomOut", "#w-#0",
+         mapedit_buttonZoom, SDLK_MINUS);
 
    /* Selected text. */
    window_addText( wid, 140, 10, SCREEN_W - 350 - 30 - 30 - BUTTON_WIDTH - 20, 30, 0,
@@ -668,8 +674,9 @@ void mapedit_loadMapMenu_open (void)
          "lstMapOutfits", names, n, 0, mapedit_loadMapMenu_update, mapedit_loadMapMenu_load );
 
    /* Buttons */
-   window_addButtonKey( mapedit_widLoad, -20, 20 + BUTTON_HEIGHT+20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnLoad", "Load", mapedit_loadMapMenu_load, SDLK_l );
+   window_addButtonKey(mapedit_widLoad, -20, 20 + BUTTON_HEIGHT+20,
+         BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnLoad", "&Load", mapedit_loadMapMenu_load, SDLK_l);
    window_addButton( mapedit_widLoad, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnBack", "Back", mapedit_loadMapMenu_close );
    window_addButton( mapedit_widLoad, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,

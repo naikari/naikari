@@ -68,8 +68,8 @@ void window_addButtonKey( const unsigned int wid,
    wgt->dat.btn.fptr       = call;
    if (key != 0) {
       wgt->dat.btn.key = key;
-      btn_updateHotkey(wgt);
    }
+   btn_updateHotkey(wgt);
 
    /* position/size */
    wgt->w = (double) w;
@@ -220,8 +220,7 @@ void window_buttonCaption( const unsigned int wid, const char *name, const char 
    free(wgt->dat.btn.display);
    wgt->dat.btn.display = strdup(display);
 
-   if (wgt->dat.btn.key != 0)
-      btn_updateHotkey(wgt);
+   btn_updateHotkey(wgt);
 }
 
 
@@ -230,36 +229,37 @@ void window_buttonCaption( const unsigned int wid, const char *name, const char 
  */
 static void btn_updateHotkey( Widget *btn )
 {
-   char buf[PATH_MAX], *display, target;
-   const char *keyname;
+   char buf[STRMAX], *display;
+   unsigned char target;
    size_t i;
    int match;
 
-   keyname = SDL_GetKeyName(btn->dat.btn.key);
-   if (strlen(keyname) != 1) /* Only interested in single chars. */
-      return;
-
-   target = keyname[0];
-   if (!isalnum(target)) /* We filter to alpha numeric characters. */
-      return;
-   target = tolower(target);
-
-   /* Find first occurence in string. */
-   display  = btn->dat.btn.display;
-   match    = -1;
+   /* Find first occurence of & in string, then see if it's a valid SDL
+    * key code (SDL keycodes that correspond to ASCII are deliberately
+    * equal to those ASCII codes in SDL). If so, change the key to that
+    * respective key and prepare to modify the text. */
+   display = btn->dat.btn.display;
+   match = -1;
    for (i=0; i<strlen(display); i++) {
-      if (tolower(display[i])==target) {
+      if ((display[i] == '&')
+            /* Only allow visible ASCII characters. */
+            && ((target = display[i+1]) > 0x20) && (target < 0x7f)
+            && (strcmp("", SDL_GetKeyName(tolower(target))) != 0)) {
          match = i;
+         btn->dat.btn.key = tolower(target);
          break;
       }
    }
+
+   /* If no & found, leave the string as-is. */
    if (match < 0)
       return;
-   target         = display[match]; /* Store character, can be uppercase. */
-   display[match] = '\0'; /* Cuts the string into two. */
+
+   /* Replace the matched & with \0 to cut the string in two. */
+   display[match] = '\0';
 
    /* Copy both parts and insert the character in the middle. */
-   snprintf( buf, sizeof(buf), "%s#w%c#0%s", display, target, &display[match+1] );
+   snprintf(buf, sizeof(buf), "%s#w%c#0%s", display, target, &display[match+2]);
 
    free(btn->dat.btn.display);
    btn->dat.btn.display = strdup(buf);
