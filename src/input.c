@@ -215,10 +215,10 @@ void input_setDefault(int layout)
 {
    /* Movement */
    if (layout == LAYOUT_WASD) {
-      input_setKeybind( "accel", KEYBIND_KEYBOARD, SDLK_w, NMOD_ANY );
-      input_setKeybind( "left", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY );
-      input_setKeybind( "right", KEYBIND_KEYBOARD, SDLK_d, NMOD_ANY );
-      input_setKeybind( "reverse", KEYBIND_KEYBOARD, SDLK_s, NMOD_ANY );
+      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_w, NMOD_ANY);
+      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
+      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_d, NMOD_ANY);
+      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_s, NMOD_ANY);
    }
    else if (layout == LAYOUT_ZQSD) {
       input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_z, NMOD_ANY);
@@ -226,11 +226,17 @@ void input_setDefault(int layout)
       input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_d, NMOD_ANY);
       input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_s, NMOD_ANY);
    }
+   else if (layout == LAYOUT_IJKL) {
+      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_i, NMOD_ANY);
+      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_j, NMOD_ANY);
+      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_l, NMOD_ANY);
+      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_k, NMOD_ANY);
+   }
    else {
-      input_setKeybind( "accel", KEYBIND_KEYBOARD, SDLK_UP, NMOD_ANY );
-      input_setKeybind( "left", KEYBIND_KEYBOARD, SDLK_LEFT, NMOD_ANY );
-      input_setKeybind( "right", KEYBIND_KEYBOARD, SDLK_RIGHT, NMOD_ANY );
-      input_setKeybind( "reverse", KEYBIND_KEYBOARD, SDLK_DOWN, NMOD_ANY );
+      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_UP, NMOD_ANY);
+      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_LEFT, NMOD_ANY);
+      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_RIGHT, NMOD_ANY);
+      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_DOWN, NMOD_ANY);
    }
 
    /* Targeting */
@@ -252,6 +258,15 @@ void input_setDefault(int layout)
       input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY);
       input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY);
    }
+   else if (layout == LAYOUT_IJKL) {
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_p, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_p, NMOD_CTRL);
+      input_setKeybind("target_nearest", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_o, NMOD_ANY);
+      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_BACKSPACE, NMOD_ANY);
+   }
    else {
       input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE);
       input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL);
@@ -272,6 +287,10 @@ void input_setDefault(int layout)
    else if (layout == LAYOUT_ZQSD) {
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
       input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
+   }
+   else if (layout == LAYOUT_IJKL) {
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_u, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_h, NMOD_ANY);
    }
    else {
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
@@ -300,15 +319,27 @@ void input_setDefault(int layout)
    input_setKeybind( "e_return", KEYBIND_KEYBOARD, SDLK_DELETE, NMOD_ANY );
    input_setKeybind( "e_clear", KEYBIND_KEYBOARD, SDLK_HOME, NMOD_ANY );
    /* Space Navigation */
-   input_setKeybind( "autonav", KEYBIND_KEYBOARD, SDLK_j, NMOD_CTRL );
-   input_setKeybind( "target_planet", KEYBIND_KEYBOARD, SDLK_p, NMOD_NONE );
-   input_setKeybind( "land", KEYBIND_KEYBOARD, SDLK_l, NMOD_NONE );
-   input_setKeybind( "thyperspace", KEYBIND_KEYBOARD, SDLK_h, NMOD_NONE );
    input_setKeybind( "starmap", KEYBIND_KEYBOARD, SDLK_m, NMOD_NONE );
-   input_setKeybind( "jump", KEYBIND_KEYBOARD, SDLK_j, NMOD_NONE );
    input_setKeybind( "overlay", KEYBIND_KEYBOARD, SDLK_TAB, NMOD_ANY );
    input_setKeybind( "mousefly", KEYBIND_KEYBOARD, SDLK_x, NMOD_CTRL );
    input_setKeybind( "autobrake", KEYBIND_KEYBOARD, SDLK_b, NMOD_CTRL );
+
+   if (layout == LAYOUT_IJKL)
+   {
+      input_setKeybind("target_planet", KEYBIND_KEYBOARD, SDLK_s, NMOD_NONE);
+      input_setKeybind("land", KEYBIND_KEYBOARD, SDLK_d, NMOD_NONE);
+      input_setKeybind("thyperspace", KEYBIND_KEYBOARD, SDLK_w, NMOD_NONE);
+      input_setKeybind("autonav", KEYBIND_KEYBOARD, SDLK_n, NMOD_CTRL);
+      input_setKeybind("jump", KEYBIND_KEYBOARD, SDLK_n, NMOD_NONE);
+   }
+   else
+   {
+      input_setKeybind("target_planet", KEYBIND_KEYBOARD, SDLK_p, NMOD_NONE);
+      input_setKeybind("land", KEYBIND_KEYBOARD, SDLK_l, NMOD_NONE);
+      input_setKeybind("thyperspace", KEYBIND_KEYBOARD, SDLK_h, NMOD_NONE);
+      input_setKeybind("autonav", KEYBIND_KEYBOARD, SDLK_j, NMOD_CTRL);
+      input_setKeybind("jump", KEYBIND_KEYBOARD, SDLK_j, NMOD_NONE);
+   }
    /* Communication */
    input_setKeybind( "log_up", KEYBIND_KEYBOARD, SDLK_PAGEUP, NMOD_ANY );
    input_setKeybind( "log_down", KEYBIND_KEYBOARD, SDLK_PAGEDOWN, NMOD_ANY );
@@ -323,7 +354,6 @@ void input_setDefault(int layout)
 
    input_setKeybind( "speed", KEYBIND_KEYBOARD, SDLK_BACKQUOTE, NMOD_ANY );
    input_setKeybind( "menu", KEYBIND_KEYBOARD, SDLK_ESCAPE, NMOD_ANY );
-   input_setKeybind( "info", KEYBIND_KEYBOARD, SDLK_i, NMOD_NONE );
    input_setKeybind( "console", KEYBIND_KEYBOARD, SDLK_F2, NMOD_ANY );
    input_setKeybind( "switchtab1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ALT );
    input_setKeybind( "switchtab2", KEYBIND_KEYBOARD, SDLK_2, NMOD_ALT );
@@ -336,6 +366,13 @@ void input_setDefault(int layout)
    input_setKeybind( "switchtab9", KEYBIND_KEYBOARD, SDLK_9, NMOD_ALT );
    input_setKeybind( "switchtab0", KEYBIND_KEYBOARD, SDLK_0, NMOD_ALT );
    input_setKeybind( "paste", KEYBIND_KEYBOARD, SDLK_v, NMOD_CTRL );
+
+   if (layout == LAYOUT_IJKL) {
+      input_setKeybind("info", KEYBIND_KEYBOARD, SDLK_c, NMOD_NONE);
+   }
+   else {
+      input_setKeybind("info", KEYBIND_KEYBOARD, SDLK_i, NMOD_NONE);
+   }
 }
 
 

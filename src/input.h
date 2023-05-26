@@ -32,7 +32,8 @@
 enum {
    LAYOUT_ARROWS, /**< Arrow keys layout. */
    LAYOUT_WASD, /**< WASD layout (for QWERTY keyboards). */
-   LAYOUT_ZQSD /**< ZQSD layout (for AZERTY keyboards). */
+   LAYOUT_ZQSD, /**< ZQSD layout (for AZERTY keyboards). */
+   LAYOUT_IJKL /**< IJKL layout. */
 };
 
 

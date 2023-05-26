@@ -793,6 +793,7 @@ static void opt_keyDefaults( unsigned int wid, char *str )
    const char *opts[] = {
       _("WASD"),
       _("Arrow Keys"),
+      _("IJKL"),
       _("ZQSD"),
       _("Cancel")
    };
@@ -830,6 +831,10 @@ static void opt_keyDefaults( unsigned int wid, char *str )
          break;
 
       case 2:
+         layout = LAYOUT_IJKL;
+         break;
+
+      case 3:
          layout = LAYOUT_ZQSD;
          break;
 
