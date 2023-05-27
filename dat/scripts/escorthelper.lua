@@ -20,23 +20,27 @@ end
 
 
 function escorthelper.issue_orders()
+   local c_attack_target = _("&Attack Target")
+   local c_formation = _("Hold &Formation")
+   local c_return = _("&Return To Ship")
+   local c_clear = _("Cl&ear Orders")
+   local c_cancel = _("&Cancel")
    local n, s = tk.choice(_("Escort Orders"),
          _("Select the order to give to your escorts."),
-         _("Attack Target"), _("Hold Formation"), _("Return To Ship"),
-         _("Clear Orders"), _("Cancel"))
+         c_attack_target, c_formation, c_return, c_clear, c_cancel)
    local order = nil
    local data = nil
-   if s == _("Attack Target") then
+   if s == c_attack_target then
       order = "e_attack"
       data = player.pilot():target()
       player.msg(string.format(_("#FEscorts:#0 Attacking %s."), data:name()))
-   elseif s == _("Hold Formation") then
+   elseif s == c_formation then
       order = "e_hold"
       player.msg(_("#FEscorts#0: Holding formation."))
-   elseif s == _("Return To Ship") then
+   elseif s == c_return then
       order = "e_return"
       player.msg(_("#FEscorts:#0 Returning to ship."))
-   elseif s == _("Clear Orders") then
+   elseif s == c_clear then
       order = "e_clear"
       player.msg(_("#FEscorts:#0 Clearing orders."))
    end

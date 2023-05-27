@@ -291,10 +291,10 @@ int escort_playerCommand( Pilot *e )
    /* "Attack My Target" order is omitted deliberately since e is your
     * target, making "Attack My Target" a useless command. */
    const char *opts[] = {
-      _("Hold Formation"),
-      _("Return To Ship"),
-      _("Clear Orders"),
-      _("Cancel")
+      _("Hold &Formation"),
+      _("&Return To Ship"),
+      _("Cl&ear Orders"),
+      _("&Cancel")
    };
    int nopts = 4;
 

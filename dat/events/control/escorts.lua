@@ -523,26 +523,32 @@ function pilot_hail(p, arg)
    player.commClose()
    local approachtext = pilot_action_text .. "\n\n" .. getCredentials(edata)
 
+   local c_fire_pilot = _("&Fire pilot")
+   local c_issue_order = _("Issue &Order")
+   local c_do_nothing = _("Do &nothing")
    local n, s = tk.choice("", approachtext,
-         _("Fire pilot"), _("Issue Order"), _("Do nothing"))
+         c_fire_pilot, c_issue_order, c_do_nothing)
 
-   if s == _("Fire pilot") and tk.yesno("", fmt.f(
+   if s == c_fire_pilot and tk.yesno("", fmt.f(
             _("Are you sure you want to fire {pilot}? This cannot be undone and you will not get any of the deposit back."),
             {pilot=edata.name})) then
       pilot_disbanded(edata)
       player.msg(fmt.f(_("You have fired {pilot}."), {pilot=edata.name}))
-   elseif s == _("Issue Order") then
+   elseif s == c_issue_order then
+      local c_formation = _("Hold &Formation")
+      local c_return = _("&Return To Ship")
+      local c_clear = _("Cl&ear Orders")
+      local c_cancel = _("&Cancel")
       local n, s = tk.choice(_("Escort Orders"),
             _("Select the order to give to this escort."),
-            _("Hold Formation"), _("Return To Ship"), _("Clear Orders"),
-            _("Cancel"))
-      if s == _("Hold Formation") then
+            c_formation, c_return, c_clear, c_cancel)
+      if s == c_formation then
          player.pilot():msg(p, "e_hold", 0)
          player.msg(string.format(_("#F%s:#0 Holding formation."), p:name()))
-      elseif s == _("Return To Ship") then
+      elseif s == c_return then
          player.pilot():msg(p, "e_return", 0)
          player.msg(string.format(_("#F%s:#0 Returning to ship."), p:name()))
-      elseif s == _("Clear Orders") then
+      elseif s == c_clear then
          player.pilot():msg(p, "e_clear", 0)
          player.msg(string.format(_("#F%s:#0 Clearing orders."), p:name()))
       end
@@ -638,14 +644,18 @@ function approachEscort(npc_id)
 
    local approachtext = pilot_action_text .. "\n\n" .. getCredentials(edata)
 
-   local dock_choice = _("Dock pilot")
+   local c_dock = _("&Dock pilot")
+   local c_undock = _("Un&dock pilot")
+   local c_fire = _("&Fire pilot")
+   local c_do_nothing = _("Do &nothing")
+   local dock_choice = c_dock
    if edata.docked then
-      dock_choice = _("Undock pilot")
+      dock_choice = c_undock
    end
-
    local n, s = tk.choice("", approachtext,
-         dock_choice, _("Fire pilot"), _("Do nothing"))
-   if s == _("Dock pilot") then
+         dock_choice, c_fire, c_do_nothing)
+
+   if s == c_dock then
       if tk.yesno("", fmt.f(
                _("Are you sure you want to dock {pilot}? They will still be paid royalties, but will not join you in space until you undock them."),
                {pilot=edata.name})) then
@@ -654,12 +664,12 @@ function approachEscort(npc_id)
          npcs[npc_id] = nil
          spawnNPC(edata)
       end
-   elseif s == _("Undock pilot") then
+   elseif s == c_undock then
       edata.docked = false
       evt.npcRm(npc_id)
       npcs[npc_id] = nil
       spawnNPC(edata)
-   elseif s == _("Fire pilot") then
+   elseif s == c_fire then
       local paid = edata.total_paid or 0
       local refund = math.floor(paid / 2)
       local deposit_s
@@ -708,20 +718,23 @@ function approachPilot(npc_id)
    local cstr = getCredentials(pdata)
 
    local hire = false
+   local c_hire = _("&Hire pilot")
+   local c_explain_rates = _("Explain &rates")
+   local c_do_nothing = _("Do &nothing")
    local n, s
    repeat
       n, s = tk.choice("", pdata.approachtext .. "\n\n" .. cstr,
-            _("Hire pilot"), _("Explain rates"), _("Do nothing"))
-      if s == _("Hire pilot") then
+            c_hire, c_explain_rates, c_do_nothing)
+      if s == c_hire then
          hire = true
-      elseif s == _("Explain rates") then
+      elseif s == c_explain_rates then
          local credits = 100000
          local payment = credits * pdata.royalty
          tk.msg("", fmt.f(explain_text,
                {credits=fmt.credits(credits), payment=fmt.credits(payment),
                   royalty=pdata.royalty*100}))
       end
-   until s ~= _("Explain rates")
+   until s ~= c_explain_rates
 
    if hire then
       if pdata.deposit and pdata.deposit > player.credits() then
