@@ -1,21 +1,48 @@
-local formation = require "scripts/formation"
-
 local escorthelper = {}
 
 
 function escorthelper.playerform()
-   local form_names = {}
-   for k, v in ipairs(formation.keys) do
-      form_names[k] = v:gsub("_", " "):gsub("^%l", string.upper)
-   end
+   -- We construct our own list of forms rather than relying on the one
+   -- supplied by formation.lua since we need to preserve a reasonable
+   -- ordering.
+   local forms = {
+      "circle",
+      "cross",
+      "buffer",
+      "vee",
+      "wedge",
+      "echelon_left",
+      "echelon_right",
+      "column",
+      "wall",
+      "fishbone",
+      "chevron",
+   }
+   local form_names = {
+      buffer = p_("formation", "&Buffer"),
+      chevron = p_("formation", "C&hevron"),
+      circle = p_("formation", "&Circle"),
+      column = p_("formation", "C&olumn"),
+      cross = p_("formation", "Cross (&X)"),
+      echelon_left = p_("formation", "Echelon &Left"),
+      echelon_right = p_("formation", "Echelon &Right"),
+      fishbone = p_("formation", "&Fishbone"),
+      vee = p_("formation", "&Vee"),
+      wall = p_("formation", "&Wall"),
+      wedge = p_("formation", "Wed&ge"),
+   }
 
-   form_names[#form_names+1] = "None"
+   local choices = {}
+   for i, f in ipairs(forms) do
+      choices[i] = form_names[f]
+   end
+   table.insert(choices, p_("formation", "&None"))
 
    local choice = tk.choice("Formation", "Choose a formation.",
-                            table.unpack(form_names))
+         table.unpack(choices))
 
-   player.pilot():memory().formation = formation.keys[choice]
-   var.push("player_formation", formation.keys[choice])
+   player.pilot():memory().formation = forms[choice]
+   var.push("player_formation", forms[choice])
 end
 
 

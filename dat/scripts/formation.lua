@@ -10,9 +10,9 @@ local function count_classes(pilots)
    return class_count
 end
 
-local formations = {}
+local formation = {}
 
-function formations.cross(leader)
+function formation.cross(leader)
    local pilots = leader:followers()
    -- Cross logic. Forms an X.
    local angle = 45 -- Spokes start rotated at a 45 degree angle.
@@ -26,7 +26,7 @@ function formations.cross(leader)
    end
 end
 
-function formations.buffer(leader)
+function formation.buffer(leader)
    -- Buffer logic. Consecutive arcs emanating from the fleader. Stored as polar coordinates.
    local pilots = leader:followers()
    local class_count = count_classes(pilots)
@@ -75,7 +75,7 @@ function formations.buffer(leader)
    end
 end
 
-function formations.vee(leader)
+function formation.vee(leader)
    -- The vee formation forms a v, with the fleader at the apex, and the arms extending in front.
    local pilots = leader:followers()
    local angle = 45 -- Arms start at a 45 degree angle.
@@ -89,7 +89,7 @@ function formations.vee(leader)
    end
 end
 
-function formations.wedge(leader)
+function formation.wedge(leader)
    -- The wedge formation forms a v, with the fleader at the apex, and the arms extending out back.
    local pilots = leader:followers()
    local flip = -1
@@ -105,7 +105,7 @@ function formations.wedge(leader)
    end
 end
       
-function formations.echelon_left(leader)
+function formation.echelon_left(leader)
    --This formation forms a "/", with the fleader in the middle.
    local pilots = leader:followers()
    local radius = 100
@@ -121,7 +121,7 @@ function formations.echelon_left(leader)
    end
 end
 
-function formations.echelon_right(leader)
+function formation.echelon_right(leader)
    --This formation forms a "\", with the fleader in the middle.
    local pilots = leader:followers()
    local radius = 100
@@ -137,7 +137,7 @@ function formations.echelon_right(leader)
    end
 end
 
-function formations.column(leader)
+function formation.column(leader)
    --This formation is a simple "|", with fleader in the middle.
    local pilots = leader:followers()
    local radius = 100
@@ -153,7 +153,7 @@ function formations.column(leader)
    end
 end
 
-function formations.wall(leader)
+function formation.wall(leader)
    --This formation is a "-", with the fleader in the middle.
    local pilots = leader:followers()
    local radius = 100
@@ -169,7 +169,7 @@ function formations.wall(leader)
    end
 end
 
-function formations.fishbone(leader)
+function formation.fishbone(leader)
    local pilots = leader:followers()
    local radius = 500
    local flip = -1
@@ -192,7 +192,7 @@ function formations.fishbone(leader)
    end
 end
 
-function formations.chevron(leader)
+function formation.chevron(leader)
    local pilots = leader:followers()
    local radius = 500
    local flip = -1
@@ -215,7 +215,7 @@ function formations.chevron(leader)
    end
 end
 
-function formations.circle(leader)
+function formation.circle(leader)
    -- Default to circle.
    local pilots = leader:followers()
    local angle = 360 / #pilots -- The angle between each ship, in radians.
@@ -228,18 +228,18 @@ function formations.circle(leader)
 end
 
 local keys = {}
-for k, _ in pairs(formations) do
-   keys[#keys+1] = k
+for k, v in pairs(formation) do
+   table.insert(keys, k)
 end
 
-formations.keys = keys
+formation.keys = keys
 
 -- Clear formation; not really a 'formation' so it is not in keys
-function formations.clear(leader)
+function formation.clear(leader)
    leader:msg(leader:followers(), "form-pos", nil)
 end
 
-function formations.random_key()
+function formation.random_key()
    return keys[rnd.rnd(1, #keys)]
 end
 
@@ -247,7 +247,7 @@ end
 -- Custom formation, used only in missions go there
 
 -- Custom large circle
-function formations.circleLarge(leader)
+function formation.circleLarge(leader)
    local pilots = leader:followers()
    local angle = 360 / #pilots -- The angle between each ship, in radians.
    local radius = 1500
@@ -257,4 +257,4 @@ function formations.circleLarge(leader)
 end
 
 
-return formations
+return formation
