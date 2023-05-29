@@ -17,11 +17,15 @@ function escorthelper.playerform()
       "wall",
       "fishbone",
       "chevron",
+      -- nil (for "None" choice) marks the end of where looping happens,
+      -- and then we have an extra entry for "Cancel".
+      nil,
+      player.pilot():memory().formation,
    }
    local form_names = {
       buffer = p_("formation", "&Buffer"),
       chevron = p_("formation", "C&hevron"),
-      circle = p_("formation", "&Circle"),
+      circle = p_("formation", "Circle (&O)"),
       column = p_("formation", "C&olumn"),
       cross = p_("formation", "Cross (&X)"),
       echelon_left = p_("formation", "Echelon &Left"),
@@ -37,6 +41,7 @@ function escorthelper.playerform()
       choices[i] = form_names[f]
    end
    table.insert(choices, p_("formation", "&None"))
+   table.insert(choices, _("&Cancel"))
 
    local choice = tk.choice("Formation", "Choose a formation.",
          table.unpack(choices))
