@@ -1306,7 +1306,9 @@ dat/outfits/core_engine/tricon_zephyr_ii_engine.xml
 dat/outfits/core_engine/unicorp_eagle_6500_engine.xml
 dat/outfits/core_engine/unicorp_falcon_1200_engine.xml
 dat/outfits/core_engine/unicorp_hawk_300_engine.xml
-dat/outfits/core_engine/zalek_test_engine.xml
+dat/outfits/core_engine/zalek_l6500_test_engine.xml
+dat/outfits/core_engine/zalek_m1200_test_engine.xml
+dat/outfits/core_engine/zalek_s300_test_engine.xml
 dat/outfits/core_hull/patchwork_heavy_plating.xml
 dat/outfits/core_hull/patchwork_light_plating.xml
 dat/outfits/core_hull/patchwork_medium_plating.xml
@@ -2363,7 +2365,6 @@ src/debris.c
 src/debris.h
 src/debug.c
 src/debug.h
-src/debug_fpu.c
 src/dev_mapedit.c
 src/dev_mapedit.h
 src/dev_planet.c
