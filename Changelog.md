@@ -19,6 +19,9 @@
   and cargo from boarded ships.
 * Added a "Steal All" button to the boarding window which attempts to
   steal everything that can be stolen.
+* Added an IJKL layout option as one of the defaults.
+* Added hotkeys to several dialog boxes.
+* Removed a nebula background which had sharp edges.
 
 ## 0.7.0
 
