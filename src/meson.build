@@ -18,7 +18,6 @@ source = files(
    'damagetype.c',
    'debris.c',
    'debug.c',
-   'debug_fpu.c',
    'dev_mapedit.c',
    'dev_planet.c',
    'dev_sysedit.c',

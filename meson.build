@@ -41,7 +41,7 @@ subdir('docs')
 subdir('po')
 
 ####
-# Naev
+# Naikari
 ####
 buildExec = get_option('executable')
 if buildExec.disabled() == false
@@ -61,6 +61,9 @@ if buildExec.disabled() == false
    config_data.set('DEBUG_ARRAYS', debug_arrays ? 1 : false)
    config_data.set('DEBUGGING', debug ? 1 : false)
    config_data.set('DEBUG_PARANOID', paranoid ? 1 : false)
+   # Debug mode on Linux requires _GNU_SOURCE for use of dladdr() and
+   # to give access to feenableexcept().
+   config_data.set('_GNU_SOURCE', debug ? 1 : false)
    summary('Enabled' , debug   , section: 'Debug', bool_yn: true)
    summary('Paranoid', paranoid, section: 'Debug', bool_yn: true)
 

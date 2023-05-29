@@ -15,9 +15,13 @@
 #if DEBUGGING
 #include <backtrace.h>
 
-#define __USE_GNU /* Grrr... */
+/* Requires _GNU_SOURCE for use of dladdr() and the Dl_info type. */
 #include <dlfcn.h>
-#undef __USE_GNU
+
+#if HAVE_FENV_H
+/* Requires _GNU_SOURCE for use of feenableexcept(). */
+#include <fenv.h>
+#endif /* HAVE_FENV_H */
 #endif /* DEBUGGING */
 
 #include "naev.h"
@@ -233,6 +237,17 @@ void debug_sigClose (void)
    signal( SIGFPE,  SIG_DFL );
    signal( SIGABRT, SIG_DFL );
 #endif /* DEBUGGING */
+}
+
+
+/**
+ * @brief Enables FPU exceptions. Artificially limited to Linux until link issues are figured out.
+ */
+void debug_enableFPUExcept(void)
+{
+#if HAVE_FEENABLEEXCEPT && DEBUGGING
+   feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
+#endif /* HAVE_FEENABLEEXCEPT && DEBUGGING */
 }
 
 
