@@ -22,6 +22,7 @@
 * Added an IJKL layout option as one of the defaults.
 * Added hotkeys to several dialog boxes.
 * Removed a nebula background which had sharp edges.
+* Improved several NPC portraits.
 
 ## 0.7.0
 
