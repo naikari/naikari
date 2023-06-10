@@ -204,7 +204,7 @@ function create ()
    mysys[1] = systems[rnd.rnd(1, #systems)]
 
    for i=2,nbsys do
-      -- Don't re-use the previous system
+      -- Don't reüse the previous system
       repeat
          thesys = systems[rnd.rnd(1, #systems)]
       until thesys ~= mysys[i-1]

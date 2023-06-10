@@ -74,8 +74,8 @@ end
 -- follow it are ignored, so you can only use either the
 -- reload/lock/icon/weapon number graphic *or* text, not both.
 --
---    @tparam number x Location X coordinate.
---    @tparam number y Location Y coordinate.
+--    @tparam number x Location X coördinate.
+--    @tparam number y Location Y coördinate.
 --    @tparam Colour col Color of the bar.
 --    @tparam Colour col_end Color of the tip of the bar.
 --    @tparam number pct Percent of the bar to fill.

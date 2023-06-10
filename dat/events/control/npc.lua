@@ -672,7 +672,7 @@ function getJmpMessage(fac)
    local msg_jmp = {
       _([["Hi there, traveler. Is your system map up to date? Just in case you didn't know already, let me give you the location of the jump from here to {system}. I hope that helps."]]),
       _([["Quite a lot of people who come in here complain that they don't know how to get to {system}. I travel there often, so I know exactly where the jump point is. Here, let me show you."]]),
-      _([["So you're still getting to know about this area, huh? Tell you what, I'll give you the coordinates of the jump to {system}. Check your map next time you take off!"]]),
+      _([["So you're still getting to know about this area, huh? Tell you what, I'll give you the coördinates of the jump to {system}. Check your map next time you take off!"]]),
       _([["True fact, there's a direct jump from here to {system}. Want to know where it is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your map."]]),
       _([["There's a system just one jump away by the name of {system}. I can tell you where the jump point is. There, I've updated your map. Don't mention it."]]),
    }
