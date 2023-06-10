@@ -175,6 +175,53 @@ y = 7000;
 Other than that, please use your best judgment and focus on making the
 code readable and consistent above all else.
 
+### Writing Style
+
+If your contribution includes writing user-facing dialog, you should be
+aware of the writing style we use:
+
+* All user-facing text should be in U.S. English, including U.S. English
+  spelling and U.S. English grammar and vocabulary.
+* The word "OK" should always be spelled as "OK" (just the two letters,
+  fully capitalized, with no additional punctuation). This is to ensure
+  consistency.
+* Paragraphs must be separated by double-newline breaks where
+  applicable.
+* Story text in dialog boxes are meant to resemble the writing of a
+  novel, with a mixture of descriptions and quotations. Note the
+  following writing style specifics:
+  * All narrative writing must be in the present tense.
+  * For writing purposes, the player is treated as if they *are* their
+    character. Thus, the player's character must be written about in the
+    second-person (i.e. referred to as "you", as if you are speaking of
+    the player).
+  * The player's character must *not* be given quoted dialog under any
+    circumstance. Where the player's character needs to speak, such
+    speech must be instead described in as ambiguous of terms as
+    possible, to preserve the illusion that the player *is* their
+    character.
+* Where there is a lot of story text, textboxes should be text-dense
+  so that players don't have to advance to another textbox too often.
+  For average-sized paragraphs, each textbox should generally contain
+  2–3 paragraphs.
+* Where there are multiple textboxes presented in a row, each textbox
+  should be understandable on its own. For example, a yes/no dialog box
+  which contains only the text, "Will you do it?" would not be
+  acceptable, even if a previous dialog box explained what "it" is,
+  since it's impossible for the player to review previous text to
+  develop even a basic understanding.
+  * This does *not* mean that all context must be present in every
+    dialog box; it only means that there must be *some* context which
+    helps players understand the core of what the dialog box is about,
+    even if they didn't notice important context in a previous dialog
+    box. For example, it is perfectly acceptable (and even preferred)
+    for subsequent approaches to a mission-granting NPC to present an
+    abbreviated version of their request, but the abbreviated version
+    must be understandable enough for the player to reasonably make an
+    informed decision on whether or not to accept the mission, even if
+    they don't understand the story reason for *why* they're being given
+    the mission.
+
 ## Contributing Artwork
 
 Artwork is stored in a separate repository, known as a submodule, so if
