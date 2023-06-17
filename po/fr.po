@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-05-29 19:06-0400\n"
+"POT-Creation-Date: 2023-06-17 02:23-0400\n"
 "PO-Revision-Date: 2021-03-17 07:18+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/naev/naev/fr/>\n"
@@ -3562,7 +3562,7 @@ msgstr ""
 msgid ""
 "Facett Outpost is little more than a local police station. It was created as "
 "a precaution against the pirate threat coming from Khaas, but the Soromid "
-"know that no single station could withstand a coordinated attack. Facett is "
+"know that no single station could withstand a coördinated attack. Facett is "
 "mostly a visible sign of Soromid presence in Hatter. It puts the local "
 "population at ease. The real security has to come from Hartwell Station in "
 "the neighboring system of Father's Pride."
@@ -9980,7 +9980,7 @@ msgid ""
 "the Soromid have turned this backwater planet into a giant, globe-"
 "encompassing landfill. Some people prefer to use the term \"worldfill\" to "
 "describe it. Waste materials of all kinds are brought to this planet, "
-"usually delivered by simple means of a re-entry orbit. There's also a "
+"usually delivered by simple means of a reëntry orbit. There's also a "
 "rudimentary spaceport on the surface in case something needs to be carried "
 "down aboard a ship for some reason. Otherwise, there is no real reason why "
 "anyone would want to land here."
@@ -17235,7 +17235,7 @@ msgstr ""
 msgid ""
 "The heart of the Proteron battle fleet is formed by the Watsons. Acting as a "
 "mobile launch base as well as a command and control unit, this vessel "
-"coordinates the others in the fight for dominance over the galaxy."
+"coördinates the others in the fight for dominance over the galaxy."
 msgstr ""
 
 #: dat/ships/quicksilver.xml:2 dat/ships/quicksilver.xml:3
@@ -18060,8 +18060,8 @@ msgstr ""
 msgid "Castellan"
 msgstr ""
 
-#: dat/ssys/chloe.xml:2
-msgid "Chloe"
+#: dat/ssys/chlo.xml:2
+msgid "Chloë"
 msgstr ""
 
 #: dat/ssys/chraan.xml:2
@@ -22153,12 +22153,12 @@ msgid ""
 "just like all other licenses."
 msgstr ""
 
-#: dat/events/control/news.lua:157
+#: dat/events/control/news.lua:158
 #, fuzzy
 msgid "Dvaered and FLF Clash"
 msgstr "Haut commandement Dvaered"
 
-#: dat/events/control/news.lua:158
+#: dat/events/control/news.lua:159
 msgid ""
 "An increased incidence of confrontation between Dvaered and FLF forces has "
 "been reported as of late in the north edge of Dvaered space, particularly "
@@ -22166,11 +22166,11 @@ msgid ""
 "advised to be on high alert."
 msgstr ""
 
-#: dat/events/control/news.lua:175
+#: dat/events/control/news.lua:176
 msgid "Za'lek Students Test Engine Technology"
 msgstr ""
 
-#: dat/events/control/news.lua:176
+#: dat/events/control/news.lua:177
 msgid ""
 "Students all over Za'lek space have been designing new experimental engine "
 "designs as part of a new government funded program. These students seek "
@@ -22178,11 +22178,11 @@ msgid ""
 "substantial sum of credits."
 msgstr ""
 
-#: dat/events/control/news.lua:190
+#: dat/events/control/news.lua:191
 msgid "Anti-Soromid Sentiment Grows"
 msgstr ""
 
-#: dat/events/control/news.lua:191
+#: dat/events/control/news.lua:192
 msgid ""
 "Anti-Soromid sentiment has been surging on Durea in the Capricorn system "
 "lately, an anonymous reporter finds. Rumors abound that Durea may be "
@@ -22196,11 +22196,11 @@ msgid ""
 msgstr ""
 
 #. Special event articles
-#: dat/events/control/news.lua:211
+#: dat/events/control/news.lua:212
 msgid "Scientists Befuddled By Nebula Composition"
 msgstr ""
 
-#: dat/events/control/news.lua:212
+#: dat/events/control/news.lua:213
 msgid ""
 "A team of scientists which launched a special probe to monitor the Nebula "
 "have finally published their results, and their research raises more "
@@ -22216,7 +22216,7 @@ msgstr ""
 #. Generated articles
 #. Proteron don't get generic articles.
 #. Remove mission hints that aren't relevant anymore.
-#: dat/events/control/news.lua:259 dat/events/control/news.lua:283
+#: dat/events/control/news.lua:260 dat/events/control/news.lua:284
 msgid "Conditional news entry {index} ({title}) has no tag!"
 msgstr ""
 
@@ -23347,7 +23347,7 @@ msgstr ""
 #: dat/events/control/npc.lua:675
 msgid ""
 "\"So you're still getting to know about this area, huh? Tell you what, I'll "
-"give you the coordinates of the jump to {system}. Check your map next time "
+"give you the coördinates of the jump to {system}. Check your map next time "
 "you take off!\""
 msgstr ""
 
@@ -26122,8 +26122,8 @@ msgstr ""
 #. -- follow it are ignored, so you can only use either the
 #. -- reload/lock/icon/weapon number graphic *or* text, not both.
 #. --
-#. --    @tparam number x Location X coordinate.
-#. --    @tparam number y Location Y coordinate.
+#. --    @tparam number x Location X coördinate.
+#. --    @tparam number y Location Y coördinate.
 #. --    @tparam Colour col Color of the bar.
 #. --    @tparam Colour col_end Color of the tip of the bar.
 #. --    @tparam number pct Percent of the bar to fill.
@@ -30384,7 +30384,7 @@ msgid ""
 "the purpose could be, acknowledging that you can't think of any good reason "
 "for it. \"Damn, you really are as naïve as you look, aren't you?\" He sighs. "
 "\"They're planning an invasion.\" You stare blankly, unsure of what to say, "
-"then look up at the station and then back to him. You non-noncommittally "
+"then look up at the station and then back to him. You noncommittally "
 "acknowledge the possibility. Indeed, it does make sense that the outpost "
 "would serve that purpose well. Flint sighs and continues. \"The Dvaereds "
 "have wanted to expand their territory into the Frontier for a long time "
@@ -31183,9 +31183,9 @@ msgid ""
 "planet was that? Damien, do you remember? The green drink with the red fruit "
 "shavings.\" Damien looks down at him and seems to think for a second before "
 "shaking his head. \"I believe it might have been {planet} in the {system} "
-"system. The drink was something like an Atmospheric Re-Entry or Gaian "
-"Bombing or something. It's the bar's specialty. They'll know what you're "
-"talking about. You should go get me one. Can you leave right away?\""
+"system. The drink was something like an Atmospheric Reëntry or Gaian Bombing "
+"or something. It's the bar's specialty. They'll know what you're talking "
+"about. You should go get me one. Can you leave right away?\""
 msgstr ""
 
 #: dat/missions/neutral/aristodrink.lua:58
@@ -33739,7 +33739,7 @@ msgstr ""
 #. Total number of available systems (in case the player misses the target first time)
 #. System where the target will be
 #. Not enough systems
-#. Don't re-use the previous system
+#. Don't reüse the previous system
 #. Set mission details
 #. Store the table
 #. Test if an element is in a list
@@ -35786,7 +35786,7 @@ msgid ""
 "trajectories, that sort of thing. It hasn't become a public affair yet, and "
 "the respective authorities don't want it to come to that. This is why "
 "they've arranged a secret diplomatic meeting to smooth things over and make "
-"arrangements to de-escalate the situation.\n"
+"arrangements to deëscalate the situation.\n"
 "\n"
 "\"This is where we come in. Without going into the details, suffice to say "
 "we have an interest in making sure that this meeting does not meet with any "
