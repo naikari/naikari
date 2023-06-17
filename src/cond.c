@@ -71,21 +71,10 @@ int cond_check( const char* cond )
    lua_concat(naevL, 2);
    ret = nlua_dobufenv(cond_env, lua_tostring(naevL,-1),
                        lua_strlen(naevL,-1), "Lua Conditional");
-   switch (ret) {
-      case  LUA_ERRSYNTAX:
-         WARN(_("Lua conditional syntax error: %s"), lua_tostring(naevL, -1));
-         goto cond_err;
-      case LUA_ERRRUN:
-         WARN(_("Lua Conditional had a runtime error: %s"), lua_tostring(naevL, -1));
-         goto cond_err;
-      case LUA_ERRMEM:
-         WARN(_("Lua Conditional ran out of memory: %s"), lua_tostring(naevL, -1));
-         goto cond_err;
-      case LUA_ERRERR:
-         WARN(_("Lua Conditional had an error while handling error function: %s"), lua_tostring(naevL, -1));
-         goto cond_err;
-      default:
-         break;
+   if (ret != 0) {
+      WARN(_("Lua conditional error: %s"), lua_tostring(naevL, -1));
+      DEBUG("Conditional text:\n%s", cond);
+      goto cond_err;
    }
 
    b = lua_toboolean(naevL, -1);
