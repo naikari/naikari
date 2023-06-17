@@ -4,7 +4,7 @@
  <avail>
   <priority>70</priority>
   <cond>faction.playerStanding("Empire") &gt;= 0 and var.peek("es_cargo") == true</cond>
-  <chance>350</chance>
+  <chance>650</chance>
   <done>Empire Recruitment</done>
   <location>Computer</location>
   <faction>Empire</faction>

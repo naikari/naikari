@@ -3,8 +3,8 @@
 <mission name="Long Distance Empire Shipping">
  <avail>
   <priority>71</priority>
-  <cond>faction.playerStanding("Empire") &gt;= 0</cond>
-  <chance>350</chance>
+  <cond>faction.playerStanding("Empire") &gt;= 5</cond>
+  <chance>250</chance>
   <done>Empire Recruitment</done>
   <location>Computer</location>
   <faction>Empire</faction>
