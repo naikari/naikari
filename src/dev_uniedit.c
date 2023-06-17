@@ -651,10 +651,10 @@ char *uniedit_nameFilter( char *name )
    int i, pos;
    char *out;
 
-   out = calloc( 1, (strlen(name)+1)  );
+   out = calloc(1, strlen(name) + 1);
    pos = 0;
    for (i=0; i<(int)strlen(name); i++) {
-      if (!ispunct(name[i])) {
+      if (!ispunct(name[i]) && (name[i] >= 32) && (name[i] < 127)) {
          if (name[i] == ' ')
             out[pos] = '_';
          else

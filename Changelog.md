@@ -23,6 +23,7 @@
 * Added hotkeys to several dialog boxes.
 * Removed a nebula background which had sharp edges.
 * Improved several NPC portraits.
+* Made use of the old-fashioned diaeresis in English text.
 
 ## 0.7.0
 
