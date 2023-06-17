@@ -150,6 +150,9 @@ function land()
          end
       end
 
+      -- Mark the initial tutorial as complete.
+      var.push("tut_complete", true)
+
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
                {cargotype=_(cargo)}))
       player.pay(reward)

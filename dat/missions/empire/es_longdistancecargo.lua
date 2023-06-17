@@ -181,6 +181,9 @@ function land()
          _("The crates of {cargotype} are swiftly and professionally unloaded by a team of robots overseen by an Imperial worker."),
       }
 
+      -- Mark the initial tutorial as complete.
+      var.push("tut_complete", true)
+
       local n = var.peek("es_misn") or 0
       n = n + 1
       var.push("es_misn", n)

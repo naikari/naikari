@@ -16,9 +16,8 @@
   <cond>
    (not planet.cur():restriction() or planet.cur():restriction() == "lowclass"
       or planet.cur():restriction() == "hiclass")
-   and (player.misnDone("Empire Recruitment")
-      or (system.cur() ~= system.get("Hakoi")
-         and system.cur() ~= system.get("Eneguoz")))
+   and (var.peek("tut_complete") == true
+      or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
  </avail>
 </mission>

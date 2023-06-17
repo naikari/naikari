@@ -25,7 +25,7 @@
    and planet.cur():class() ~= "3"
    and planet.cur():services()["refuel"]
    and planet.cur():services()["commodity"]
-   and ((var.peek("es_misn") ~= nil and var.peek("es_misn") &gt; 0)
+   and (var.peek("tut_complete") == true
       or planet.cur():faction() ~= faction.get("Empire")
       or var.peek("tut_reynir_show") == true)
   </cond>

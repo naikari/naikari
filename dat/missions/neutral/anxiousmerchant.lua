@@ -5,9 +5,8 @@
   <priority>50</priority>
   <chance>1</chance>
   <cond>
-   player.misnDone("Empire Recruitment")
-   or (system.cur() ~= system.get("Hakoi")
-      and system.cur() ~= system.get("Eneguoz"))
+   var.peek("tut_complete") == true
+   or planet.cur():faction() ~= faction.get("Empire")
   </cond>
   <location>Bar</location>
   <faction>Dvaered</faction>

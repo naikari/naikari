@@ -12,9 +12,8 @@
    and planet.cur():class() ~= "3"
    and system.cur():presences()["Civilian"] ~= nil
    and system.cur():presences()["Civilian"] &gt; 0
-   and (player.misnDone("Empire Recruitment")
-      or (system.cur() ~= system.get("Hakoi")
-         and system.cur() ~= system.get("Eneguoz")))
+   and (var.peek("tut_complete") == true
+      or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
   <chance>10</chance>
   <location>Bar</location>
