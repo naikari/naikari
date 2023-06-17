@@ -25,9 +25,9 @@
    and planet.cur():class() ~= "3"
    and planet.cur():services()["refuel"]
    and planet.cur():services()["commodity"]
-   and (player.misnDone("Empire Recruitment")
-      or (system.cur() ~= system.get("Hakoi")
-         and system.cur() ~= system.get("Eneguoz")))
+   and ((var.peek("es_misn") ~= nil and var.peek("es_misn") &gt; 0)
+      or planet.cur():faction() ~= faction.get("Empire")
+      or var.peek("tut_reynir_show") == true)
   </cond>
  </avail>
  <notes>
@@ -87,6 +87,10 @@ function create ()
    if not misn.claim(misn_base_sys) then
       misn.finish(false)
    end
+
+   -- Override delaying of this mission once it shows up (so if the
+   -- player leaves Empire space, it can now spawn in Empire space).
+   var.push("tut_reynir_show", true)
 
    misn.setNPC(_("Reynir"), "neutral/unique/reynir.png", bar_desc)
 
