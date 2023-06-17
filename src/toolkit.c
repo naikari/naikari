@@ -680,6 +680,9 @@ unsigned int window_createFlags( const char* name, const char *displayname,
 {
    Window *wcur, *wlast, *wdw;
 
+   /* Make sure player controls don't get stuck. */
+   input_clearAll();
+
    /* Allocate memory. */
    wdw = calloc( 1, sizeof(Window) );
 

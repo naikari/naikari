@@ -1854,3 +1854,29 @@ void input_handle( SDL_Event* event )
    }
 }
 
+
+/**
+ * @brief Clears all input to ensure no phantom control of player's ship.
+ */
+void input_clearAll(void)
+{
+   /* Turn off acceleration. */
+   player_accelOver();
+   player_rmFlag(PLAYER_ACCEL);
+   input_accelButton = 0;
+
+   /* Turn off afterburner. */
+   pilot_afterburnOver(player.p);
+
+   /* Turn off turning. */
+   player_rmFlag(PLAYER_TURN_LEFT);
+   player_left = 0.;
+   player_rmFlag(PLAYER_TURN_RIGHT);
+   player_right = 0.;
+   player_rmFlag(PLAYER_FACE);
+
+   /* Turn off weapons firing. */
+   player_rmFlag(PLAYER_PRIMARY);
+   player_rmFlag(PLAYER_SECONDARY);
+}
+

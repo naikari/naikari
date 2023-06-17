@@ -97,7 +97,7 @@ void input_exit (void);
  * Updating.
  */
 void input_update( double dt );
-
+void input_clearAll(void);
 
 /*
  * Mouse.
