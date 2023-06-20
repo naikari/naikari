@@ -457,7 +457,7 @@ function spawnNPC()
    local func = nil
    if r < 0.2 then
       -- Jump point message.
-      msg, func = getJmpMessage(fac)
+      msg, func = getRewardMessage(fac)
    else
       msg = getMessage(fac)
    end
@@ -711,6 +711,55 @@ function getJmpMessage(fac)
    -- Don't need to remove messages from tables here, but add whatever jump point we selected to the "selected" table.
    seltargets[chosentarget:dest():nameRaw()] = true
    return fmt.f(retmsg, {system=chosentarget:dest():name()}), myfunc
+end
+
+
+function getGiveCargoMessage(fac)
+   local msg_cargo = {
+      _([[Hey, you have a ship, right? See, I have some {cargo} that I need to get rid of, but this place doesn't have commodities available, so I can't sell it here. Would you like to take it off my hands?]]),
+      _([[Ah, another pilot! Perfect! See, I have some {cargo} on my ship. I need to get rid of it to free up some space, but they don't have commodity trading here, so if I can't get someone to take it, it'll just have to go to waste disposal or I'll have to jettison it into space, which would be such a waste. Would you like the {cargo}?]]),
+   }
+
+   local fallback_msg = getMessage(fac)
+
+   if planet.cur():services().commodity then
+      -- Don't spawn this if there's commodity trading available here.
+      return fallback_msg, nil
+   end
+
+   local commodities = commodity.getStandard()
+   local commodity = commodities[rnd.rnd(1, #commodities)]
+   local amount = rnd.rnd(10, 30)
+   local retmsg = msg_cargo[rnd.rnd(1, #msg_cargo)]
+   local myfunc = function(id, npcdata)
+      local give_amount = math.min(amount, player.pilot():cargoFree())
+      if give_amount <= 0 then
+         -- Player can't take cargo, so use the fallback message.
+         tk.msg("", fallback_msg)
+      elseif tk.yesno("", npcdata.msg) then
+         give_msg = n_("Thanks! I'll transfer the {amount} t of {cargo} to your ship.",
+               "Thanks! I'll transfer the {amount} t of {cargo} to your ship.",
+               give_amount)
+         tk.msg("", fmt.f(give_msg,
+               {cargo=commodity:name(), amount=fmt.number(give_amount)}))
+         player.pilot():cargoAdd(commodity, give_amount)
+
+         -- Set the NPC to a standard one.
+         npcdata.msg = fallback_msg
+         npcdata.func = nil
+      end
+   end
+
+   return fmt.f(retmsg, {cargo=commodity:name()}), myfunc
+end
+
+
+-- Selects an eligible reward message and returns the message string
+-- and approach function.
+function getRewardMessage(fac)
+   local funcs = {"getJmpMessage", "getGiveCargoMessage"}
+
+   return _G[funcs[rnd.rnd(1, #funcs)]]()
 end
 
 
