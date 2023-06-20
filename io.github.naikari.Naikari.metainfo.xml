@@ -36,6 +36,8 @@
           <li>Improved several dialog boxes.</li>
           <li>Added a "Steal All" option when boarding another ship.</li>
           <li>Improved several NPC portraits.</li>
+          <li>Bar NPCs now sometimes give you free cargo.</li>
+          <li>Improved the new game experience.</li>
         </ul>
       </description>
       <url>https://github.com/naikari/naikari/releases/tag/v0.8.0</url>

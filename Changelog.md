@@ -24,6 +24,17 @@
 * Removed a nebula background which had sharp edges.
 * Improved several NPC portraits.
 * Made use of the old-fashioned diaeresis in English text.
+* Fixed a bug where dialog boxes could cause the game to register
+  unpressed keys as pressed.
+* Slightly modified introductory missions' appearance times to improve
+  the new user experience and in particular to avoid overloading new
+  players early on.
+* Standard ES cargo missions are now more common than long-distance,
+  and long-distance ES cargo missions now require 5% Empire reputation.
+* Bar NPCs will now sometimes give you a small amount of cargo when you
+  approach them.
+* Fixed a bug which could cause the Hyperspace key to incorrectly
+  perform an escape jump if you had performed an escape jump recently.
 
 ## 0.7.0
 
