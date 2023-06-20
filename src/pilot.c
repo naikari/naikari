@@ -2527,6 +2527,7 @@ static void pilot_hyperspace( Pilot* p, double dt )
             pilot_rmFlag(p, PILOT_HYP_BEGIN);
             pilot_rmFlag(p, PILOT_HYP_BRAKE);
             pilot_rmFlag(p, PILOT_HYP_PREP);
+            pilot_rmFlag(p, PILOT_LOCALJUMP);
          }
          else {
             if (p->id == PLAYER_ID) /* player.p just broke hyperspace */

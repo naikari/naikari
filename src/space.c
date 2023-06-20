@@ -311,6 +311,8 @@ int space_hyperspace( Pilot* p )
 
    /* pilot is now going to get automatically ready for hyperspace */
    pilot_setFlag(p, PILOT_HYP_PREP);
+   pilot_rmFlag(p, PILOT_LOCALJUMP);
+
    return 0;
 }
 
