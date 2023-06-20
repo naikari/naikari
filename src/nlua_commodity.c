@@ -222,7 +222,8 @@ static int commodityL_get( lua_State *L )
 /**
  * @brief Gets the list of standard commodities.
  *
- * @luatreturn table A table containing commodity objects, namely those which are standard (buyable/sellable anywhere).
+ * @luatreturn {Commodity,...} A table containing commodity objects,
+ *    namely those which are standard (buyable/sellable anywhere).
  * @luafunc getStandard
  */
 static int commodityL_getStandard( lua_State *L )
