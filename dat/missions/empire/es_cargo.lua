@@ -59,6 +59,11 @@ function create()
       misn.finish(false)
    end
 
+   -- Override tiers with only low tiers if tutorial is incomplete.
+   if not var.peek("tut_complete") then
+      tier = rnd.rnd(0, 1)
+   end
+
    -- mission generics
    stuperpx = 7 - 0.3*tier
    stuperjump = 150000

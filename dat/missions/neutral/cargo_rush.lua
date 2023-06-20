@@ -42,6 +42,11 @@ function create()
    if destplanet == nil then
       misn.finish(false)
    end
+
+   -- Override tiers with only low tiers if tutorial is incomplete.
+   if not var.peek("tut_complete") then
+      tier = rnd.rnd(0, 1)
+   end
    
    -- Calculate time limit. Depends on tier and distance.
    -- The second time limit is for the reduced reward.
