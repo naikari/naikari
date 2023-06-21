@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naikari 0.8.0-rc.2\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-21 03:36-0400\n"
+"POT-Creation-Date: 2023-06-21 04:03-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40168,7 +40168,7 @@ msgstr ""
 
 #: dat/scripts/pilot/generic.lua:30
 msgctxt "pilot_name"
-msgid "Boa {number}"
+msgid "Boä {number}"
 msgstr ""
 
 #: dat/scripts/pilot/generic.lua:31
@@ -40288,7 +40288,7 @@ msgstr ""
 
 #: dat/scripts/pilot/generic.lua:54
 msgctxt "pilot_name"
-msgid "Deity {number}"
+msgid "Deïty {number}"
 msgstr ""
 
 #: dat/scripts/pilot/generic.lua:55
@@ -40913,7 +40913,7 @@ msgstr ""
 
 #: dat/scripts/pilot/generic.lua:179
 msgctxt "pilot_name"
-msgid "Sierra {number}"
+msgid "Siërra {number}"
 msgstr ""
 
 #: dat/scripts/pilot/generic.lua:180
@@ -41530,1122 +41530,1122 @@ msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:81
 msgctxt "pirate_name_descriptor"
-msgid "Lesser"
+msgid "Learnèd"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:82
 msgctxt "pirate_name_descriptor"
-msgid "Lightspeed"
+msgid "Lesser"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:83
 msgctxt "pirate_name_descriptor"
-msgid "Lone"
+msgid "Lightspeed"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:84
 msgctxt "pirate_name_descriptor"
-msgid "Loose"
+msgid "Lone"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:85
 msgctxt "pirate_name_descriptor"
-msgid "Loud"
+msgid "Loose"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:86
 msgctxt "pirate_name_descriptor"
-msgid "Lovely"
+msgid "Loud"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:87
 msgctxt "pirate_name_descriptor"
-msgid "Lustful"
+msgid "Lovely"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:88
 msgctxt "pirate_name_descriptor"
-msgid "Malodorous"
+msgid "Lustful"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:89
 msgctxt "pirate_name_descriptor"
-msgid "Mellow"
+msgid "Malodorous"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:90
 msgctxt "pirate_name_descriptor"
-msgid "Messy"
+msgid "Mellow"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:91
 msgctxt "pirate_name_descriptor"
-msgid "Mighty"
+msgid "Messy"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:92
 msgctxt "pirate_name_descriptor"
-msgid "Morbid"
+msgid "Mighty"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:93
 msgctxt "pirate_name_descriptor"
-msgid "Murderous"
+msgid "Morbid"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:94
 msgctxt "pirate_name_descriptor"
-msgid "Naïve"
+msgid "Murderous"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:95
 msgctxt "pirate_name_descriptor"
-msgid "New"
+msgid "Naïve"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:96
 msgctxt "pirate_name_descriptor"
-msgid "Night's"
+msgid "New"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:97
 msgctxt "pirate_name_descriptor"
-msgid "Nimble"
+msgid "Night's"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:98
 msgctxt "pirate_name_descriptor"
-msgid "No Good"
+msgid "Nimble"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:99
 msgctxt "pirate_name_descriptor"
-msgid "Numb"
+msgid "No Good"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:100
 msgctxt "pirate_name_descriptor"
-msgid "Old"
+msgid "Numb"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:101
 msgctxt "pirate_name_descriptor"
-msgid "Pale"
+msgid "Old"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:102
 msgctxt "pirate_name_descriptor"
-msgid "Perilous"
+msgid "Pale"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:103
 msgctxt "pirate_name_descriptor"
-msgid "Pirate's"
+msgid "Perilous"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:104
 msgctxt "pirate_name_descriptor"
-msgid "Pocket"
+msgid "Pirate's"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:105
 msgctxt "pirate_name_descriptor"
-msgid "Princeless"
+msgid "Pocket"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:106
 msgctxt "pirate_name_descriptor"
-msgid "Psychic"
+msgid "Princeless"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:107
 msgctxt "pirate_name_descriptor"
-msgid "Quick"
+msgid "Psychic"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:108
 msgctxt "pirate_name_descriptor"
-msgid "Radical"
+msgid "Quick"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:109
 msgctxt "pirate_name_descriptor"
-msgid "Raging"
+msgid "Radical"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:110
 msgctxt "pirate_name_descriptor"
-msgid "Reclusive"
+msgid "Raging"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:111
 msgctxt "pirate_name_descriptor"
-msgid "Relentless"
+msgid "Reclusive"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:112
 msgctxt "pirate_name_descriptor"
-msgid "Rough"
+msgid "Relentless"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:113
 msgctxt "pirate_name_descriptor"
-msgid "Ruthless"
+msgid "Rough"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:114
 msgctxt "pirate_name_descriptor"
-msgid "Saccharin"
+msgid "Ruthless"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:115
 msgctxt "pirate_name_descriptor"
-msgid "Salty"
+msgid "Saccharin"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:116
 msgctxt "pirate_name_descriptor"
-msgid "Satanic"
+msgid "Salty"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:117
 msgctxt "pirate_name_descriptor"
-msgid "Secluded"
+msgid "Satanic"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:118
 msgctxt "pirate_name_descriptor"
-msgid "Serial"
+msgid "Secluded"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:119
 msgctxt "pirate_name_descriptor"
-msgid "Sharing"
+msgid "Serial"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:120
 msgctxt "pirate_name_descriptor"
-msgid "Silly"
+msgid "Sharing"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:121
 msgctxt "pirate_name_descriptor"
-msgid "Single"
+msgid "Silly"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:122
 msgctxt "pirate_name_descriptor"
-msgid "Sleepy"
+msgid "Single"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:123
 msgctxt "pirate_name_descriptor"
-msgid "Slimy"
+msgid "Sleepy"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:124
 msgctxt "pirate_name_descriptor"
-msgid "Smelly"
+msgid "Slimy"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:125
 msgctxt "pirate_name_descriptor"
-msgid "Solar"
+msgid "Smelly"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:126
 msgctxt "pirate_name_descriptor"
-msgid "Sonic"
+msgid "Solar"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:127
 msgctxt "pirate_name_descriptor"
-msgid "Space"
+msgid "Sonic"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:128
 msgctxt "pirate_name_descriptor"
-msgid "Spicy"
+msgid "Space"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:129
 msgctxt "pirate_name_descriptor"
-msgid "Spirit"
+msgid "Spicy"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:130
 msgctxt "pirate_name_descriptor"
-msgid "Stained"
+msgid "Spirit"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:131
 msgctxt "pirate_name_descriptor"
-msgid "Static"
+msgid "Stained"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:132
 msgctxt "pirate_name_descriptor"
-msgid "Steel"
+msgid "Static"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:133
 msgctxt "pirate_name_descriptor"
-msgid "Strange"
+msgid "Steel"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:134
 msgctxt "pirate_name_descriptor"
-msgid "Strawhat"
+msgid "Strange"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:135
 msgctxt "pirate_name_descriptor"
-msgid "Super"
+msgid "Strawhat"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:136
 msgctxt "pirate_name_descriptor"
-msgid "Supreme"
+msgid "Super"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:137
 msgctxt "pirate_name_descriptor"
-msgid "Sweet"
+msgid "Supreme"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:138
 msgctxt "pirate_name_descriptor"
-msgid "Tall"
+msgid "Sweet"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:139
 msgctxt "pirate_name_descriptor"
-msgid "Terrible"
+msgid "Tall"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:140
 msgctxt "pirate_name_descriptor"
-msgid "Tired"
+msgid "Terrible"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:141
 msgctxt "pirate_name_descriptor"
-msgid "Titanic"
+msgid "Tired"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:142
 msgctxt "pirate_name_descriptor"
-msgid "Toothless"
+msgid "Titanic"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:143
 msgctxt "pirate_name_descriptor"
-msgid "Tropical"
+msgid "Toothless"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:144
 msgctxt "pirate_name_descriptor"
-msgid "Typical"
+msgid "Tropical"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:145
 msgctxt "pirate_name_descriptor"
-msgid "Ultimate"
+msgid "Typical"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:146
 msgctxt "pirate_name_descriptor"
-msgid "Uncombed"
+msgid "Ultimate"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:147
 msgctxt "pirate_name_descriptor"
-msgid "Undead"
+msgid "Uncombed"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:148
 msgctxt "pirate_name_descriptor"
-msgid "Unhealthy"
+msgid "Undead"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:149
 msgctxt "pirate_name_descriptor"
-msgid "Unreal"
+msgid "Unhealthy"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:150
 msgctxt "pirate_name_descriptor"
-msgid "Unsightly"
+msgid "Unreal"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:151
 msgctxt "pirate_name_descriptor"
-msgid "Vengeful"
+msgid "Unsightly"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:152
 msgctxt "pirate_name_descriptor"
-msgid "Very Bad"
+msgid "Vengeful"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:153
 msgctxt "pirate_name_descriptor"
-msgid "Vindictive"
+msgid "Very Bad"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:154
 msgctxt "pirate_name_descriptor"
-msgid "Violent"
+msgid "Vindictive"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:155
 msgctxt "pirate_name_descriptor"
-msgid "Weeping"
+msgid "Violent"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:156
 msgctxt "pirate_name_descriptor"
-msgid "Wild"
+msgid "Weeping"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:157
 msgctxt "pirate_name_descriptor"
-msgid "Wiley"
+msgid "Wild"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:158
 msgctxt "pirate_name_descriptor"
-msgid "Winged"
+msgid "Wiley"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:159
 msgctxt "pirate_name_descriptor"
-msgid "Wretched"
+msgid "Winged"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:160
 msgctxt "pirate_name_descriptor"
-msgid "Yummy"
+msgid "Wretched"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:161
 msgctxt "pirate_name_descriptor"
-msgid "Zany"
+msgid "Yummy"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:164
-msgctxt "pirate_name_color"
-msgid "Amber"
+#: dat/scripts/pilot/pirate.lua:162
+msgctxt "pirate_name_descriptor"
+msgid "Zany"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:165
 msgctxt "pirate_name_color"
-msgid "Aquamarine"
+msgid "Amber"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:166
 msgctxt "pirate_name_color"
-msgid "Azure"
+msgid "Aquamarine"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:167
 msgctxt "pirate_name_color"
-msgid "Beige"
+msgid "Azure"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:168
 msgctxt "pirate_name_color"
-msgid "Blue"
+msgid "Beige"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:169
 msgctxt "pirate_name_color"
-msgid "Chartreuse"
+msgid "Blue"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:170
 msgctxt "pirate_name_color"
-msgid "Crimson"
+msgid "Chartreuse"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:171
 msgctxt "pirate_name_color"
-msgid "Cyan"
+msgid "Crimson"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:172
 msgctxt "pirate_name_color"
-msgid "Emerald"
+msgid "Cyan"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:173
 msgctxt "pirate_name_color"
-msgid "Fuchsia"
+msgid "Emerald"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:174
 msgctxt "pirate_name_color"
-msgid "Golden"
+msgid "Fuchsia"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:175
 msgctxt "pirate_name_color"
-msgid "Gray"
+msgid "Golden"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:176
 msgctxt "pirate_name_color"
-msgid "Green"
+msgid "Gray"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:177
 msgctxt "pirate_name_color"
-msgid "Indigo"
+msgid "Green"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:178
 msgctxt "pirate_name_color"
-msgid "Ivory"
+msgid "Indigo"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:179
 msgctxt "pirate_name_color"
-msgid "Khaki"
+msgid "Ivory"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:180
 msgctxt "pirate_name_color"
-msgid "Lavender"
+msgid "Khaki"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:181
 msgctxt "pirate_name_color"
-msgid "Magenta"
+msgid "Lavender"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:182
 msgctxt "pirate_name_color"
-msgid "Maroon"
+msgid "Magenta"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:183
 msgctxt "pirate_name_color"
-msgid "Mauve"
+msgid "Maroon"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:184
 msgctxt "pirate_name_color"
-msgid "Olive"
+msgid "Mauve"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:185
 msgctxt "pirate_name_color"
-msgid "Pink"
+msgid "Olive"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:186
 msgctxt "pirate_name_color"
-msgid "Purple"
+msgid "Pink"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:187
 msgctxt "pirate_name_color"
-msgid "Red"
+msgid "Purple"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:188
 msgctxt "pirate_name_color"
-msgid "Silver"
+msgid "Red"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:189
 msgctxt "pirate_name_color"
-msgid "Teal"
+msgid "Silver"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:190
 msgctxt "pirate_name_color"
-msgid "Turquoise"
+msgid "Teal"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:191
 msgctxt "pirate_name_color"
-msgid "Violet"
+msgid "Turquoise"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:192
 msgctxt "pirate_name_color"
-msgid "Yellow"
+msgid "Violet"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:195
-msgctxt "pirate_name_actor"
-msgid "Alphabet Soup"
+#: dat/scripts/pilot/pirate.lua:193
+msgctxt "pirate_name_color"
+msgid "Yellow"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:196
 msgctxt "pirate_name_actor"
-msgid "Angel"
+msgid "Alphabet Soup"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:197
 msgctxt "pirate_name_actor"
-msgid "Angle Grinder"
+msgid "Angel"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:198
 msgctxt "pirate_name_actor"
-msgid "Anvil"
+msgid "Angle Grinder"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:199
 msgctxt "pirate_name_actor"
-msgid "Arrow"
+msgid "Anvil"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:200
 msgctxt "pirate_name_actor"
-msgid "Ass"
+msgid "Arrow"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:201
 msgctxt "pirate_name_actor"
-msgid "Aunt"
+msgid "Ass"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:202
 msgctxt "pirate_name_actor"
-msgid "Avenger"
+msgid "Aunt"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:203
 msgctxt "pirate_name_actor"
-msgid "Axis"
+msgid "Avenger"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:204
 msgctxt "pirate_name_actor"
-msgid "Ball"
+msgid "Axis"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:205
 msgctxt "pirate_name_actor"
-msgid "Band Saw"
+msgid "Ball"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:206
 msgctxt "pirate_name_actor"
-msgid "Bat"
+msgid "Band Saw"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:207
 msgctxt "pirate_name_actor"
-msgid "Beam"
+msgid "Bat"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:208
 msgctxt "pirate_name_actor"
-msgid "Beard"
+msgid "Beam"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:209
 msgctxt "pirate_name_actor"
-msgid "Belt Sander"
+msgid "Beard"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:210
 msgctxt "pirate_name_actor"
-msgid "Bench Grinder"
+msgid "Belt Sander"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:211
 msgctxt "pirate_name_actor"
-msgid "Black Hole"
+msgid "Bench Grinder"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:212
 msgctxt "pirate_name_actor"
-msgid "Blizzard"
+msgid "Black Hole"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:213
 msgctxt "pirate_name_actor"
-msgid "Blood"
+msgid "Blizzard"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:214
 msgctxt "pirate_name_actor"
-msgid "Blunder"
+msgid "Blood"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:215
 msgctxt "pirate_name_actor"
-msgid "Boom"
+msgid "Blunder"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:216
 msgctxt "pirate_name_actor"
-msgid "Boot"
+msgid "Boom"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:217
 msgctxt "pirate_name_actor"
-msgid "Bolt Cutter"
+msgid "Boot"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:218
 msgctxt "pirate_name_actor"
-msgid "Brain"
+msgid "Bolt Cutter"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:219
 msgctxt "pirate_name_actor"
-msgid "Breeze"
+msgid "Brain"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:220
 msgctxt "pirate_name_actor"
-msgid "Bride"
+msgid "Breeze"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:221
 msgctxt "pirate_name_actor"
-msgid "Brigand"
+msgid "Bride"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:222
 msgctxt "pirate_name_actor"
-msgid "Bulk"
+msgid "Brigand"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:223
 msgctxt "pirate_name_actor"
-msgid "Burglar"
+msgid "Bulk"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:224
 msgctxt "pirate_name_actor"
-msgid "Cane"
+msgid "Burglar"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:225
 msgctxt "pirate_name_actor"
-msgid "Cannon"
+msgid "Cane"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:226
 msgctxt "pirate_name_actor"
-msgid "Chainsaw"
+msgid "Cannon"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:227
 msgctxt "pirate_name_actor"
-msgid "Cheese"
+msgid "Chainsaw"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:228
 msgctxt "pirate_name_actor"
-msgid "Cheese Grater"
+msgid "Cheese"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:229
 msgctxt "pirate_name_actor"
-msgid "Chi"
+msgid "Cheese Grater"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:230
 msgctxt "pirate_name_actor"
-msgid "Chicken"
+msgid "Chi"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:231
 msgctxt "pirate_name_actor"
-msgid "Chin"
+msgid "Chicken"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:232
 msgctxt "pirate_name_actor"
-msgid "Circle"
+msgid "Chin"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:233
 msgctxt "pirate_name_actor"
-msgid "Claw"
+msgid "Circle"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:234
 msgctxt "pirate_name_actor"
-msgid "Claw Hammer"
+msgid "Claw"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:235
 msgctxt "pirate_name_actor"
-msgid "Club"
+msgid "Claw Hammer"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:236
 msgctxt "pirate_name_actor"
-msgid "Coconut"
+msgid "Club"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:237
 msgctxt "pirate_name_actor"
-msgid "Coot"
+msgid "Coconut"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:238
 msgctxt "pirate_name_actor"
-msgid "Corsair"
+msgid "Coot"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:239
 msgctxt "pirate_name_actor"
-msgid "Cougar"
+msgid "Corsair"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:240
 msgctxt "pirate_name_actor"
-msgid "Coyote"
+msgid "Cougar"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:241
 msgctxt "pirate_name_actor"
-msgid "Crisis"
+msgid "Coyote"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:242
 msgctxt "pirate_name_actor"
-msgid "Crow"
+msgid "Crisis"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:243
 msgctxt "pirate_name_actor"
-msgid "Crowbar"
+msgid "Crow"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:244
 msgctxt "pirate_name_actor"
-msgid "Crusader"
+msgid "Crowbar"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:245
 msgctxt "pirate_name_actor"
-msgid "Curse"
+msgid "Crusader"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:246
 msgctxt "pirate_name_actor"
-msgid "Cyborg"
+msgid "Curse"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:247
 msgctxt "pirate_name_actor"
-msgid "Darkness"
+msgid "Cyborg"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:248
 msgctxt "pirate_name_actor"
-msgid "Death"
+msgid "Darkness"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:249
 msgctxt "pirate_name_actor"
-msgid "Deity"
+msgid "Death"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:250
 msgctxt "pirate_name_actor"
-msgid "Demon"
+msgid "Deïty"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:251
 msgctxt "pirate_name_actor"
-msgid "Destruction"
+msgid "Demon"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:252
 msgctxt "pirate_name_actor"
-msgid "Devil"
+msgid "Destruction"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:253
 msgctxt "pirate_name_actor"
-msgid "Dictator"
+msgid "Devil"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:254
 msgctxt "pirate_name_actor"
-msgid "Disaster"
+msgid "Dictator"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:255
 msgctxt "pirate_name_actor"
-msgid "Discord"
+msgid "Disaster"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:256
 msgctxt "pirate_name_actor"
-msgid "Donkey"
+msgid "Discord"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:257
 msgctxt "pirate_name_actor"
-msgid "Doom"
+msgid "Donkey"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:258
 msgctxt "pirate_name_actor"
-msgid "Dragon"
+msgid "Doom"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:259
 msgctxt "pirate_name_actor"
-msgid "Dread"
+msgid "Dragon"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:260
 msgctxt "pirate_name_actor"
-msgid "Drifter"
+msgid "Dread"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:261
 msgctxt "pirate_name_actor"
-msgid "Drill Press"
+msgid "Drifter"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:262
 msgctxt "pirate_name_actor"
-msgid "Duckling"
+msgid "Drill Press"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:263
 msgctxt "pirate_name_actor"
-msgid "Eagle"
+msgid "Duckling"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:264
 msgctxt "pirate_name_actor"
-msgid "Eggplant"
+msgid "Eagle"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:265
 msgctxt "pirate_name_actor"
-msgid "Ego"
+msgid "Eggplant"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:266
 msgctxt "pirate_name_actor"
-msgid "Electricity"
+msgid "Ego"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:267
 msgctxt "pirate_name_actor"
-msgid "Emperor"
+msgid "Electricity"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:268
 msgctxt "pirate_name_actor"
-msgid "Engine"
+msgid "Emperor"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:269
 msgctxt "pirate_name_actor"
-msgid "Fang"
+msgid "Engine"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:270
 msgctxt "pirate_name_actor"
-msgid "Flare"
+msgid "Fang"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:271
 msgctxt "pirate_name_actor"
-msgid "Flash"
+msgid "Flare"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:272
 msgctxt "pirate_name_actor"
-msgid "Fox"
+msgid "Flash"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:273
 msgctxt "pirate_name_actor"
-msgid "Friend"
+msgid "Fox"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:274
 msgctxt "pirate_name_actor"
-msgid "Fruit"
+msgid "Friend"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:275
 msgctxt "pirate_name_actor"
-msgid "Fugitive"
+msgid "Fruit"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:276
 msgctxt "pirate_name_actor"
-msgid "Game"
+msgid "Fugitive"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:277
 msgctxt "pirate_name_actor"
-msgid "Gamma Ray"
+msgid "Game"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:278
 msgctxt "pirate_name_actor"
-msgid "Giant"
+msgid "Gamma Ray"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:279
 msgctxt "pirate_name_actor"
-msgid "Gift"
+msgid "Giant"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:280
 msgctxt "pirate_name_actor"
-msgid "Goose"
+msgid "Gift"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:281
 msgctxt "pirate_name_actor"
-msgid "Gorilla"
+msgid "Goose"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:282
 msgctxt "pirate_name_actor"
-msgid "Gun"
+msgid "Gorilla"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:283
 msgctxt "pirate_name_actor"
-msgid "Hamburger"
+msgid "Gun"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:284
 msgctxt "pirate_name_actor"
-msgid "Hammer"
+msgid "Hamburger"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:285
 msgctxt "pirate_name_actor"
-msgid "Headache"
+msgid "Hammer"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:286
 msgctxt "pirate_name_actor"
-msgid "Hedgehog"
+msgid "Headache"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:287
 msgctxt "pirate_name_actor"
-msgid "Hero"
+msgid "Hedgehog"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:288
 msgctxt "pirate_name_actor"
-msgid "Hex"
+msgid "Hero"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:289
 msgctxt "pirate_name_actor"
-msgid "Horror"
+msgid "Hex"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:290
 msgctxt "pirate_name_actor"
-msgid "Hunter"
+msgid "Horror"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:291
 msgctxt "pirate_name_actor"
-msgid "Hurricane"
+msgid "Hunter"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:292
 msgctxt "pirate_name_actor"
-msgid "Husband"
+msgid "Hurricane"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:293
 msgctxt "pirate_name_actor"
-msgid "Id"
+msgid "Husband"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:294
 msgctxt "pirate_name_actor"
-msgid "Impact Wrench"
+msgid "Id"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:295
 msgctxt "pirate_name_actor"
-msgid "Ionizer"
+msgid "Impact Wrench"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:296
 msgctxt "pirate_name_actor"
-msgid "Jalapeño"
+msgid "Ionizer"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:297
 msgctxt "pirate_name_actor"
-msgid "Jigsaw"
+msgid "Jalapeño"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:298
 msgctxt "pirate_name_actor"
-msgid "Jinx"
+msgid "Jigsaw"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:299
 msgctxt "pirate_name_actor"
-msgid "Kamikaze"
+msgid "Jinx"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:300
 msgctxt "pirate_name_actor"
-msgid "Kappa"
+msgid "Kamikazé"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:301
 msgctxt "pirate_name_actor"
-msgid "Karaoke"
+msgid "Kappa"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:302
 msgctxt "pirate_name_actor"
-msgid "Katana"
+msgid "Karaöké"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:303
 msgctxt "pirate_name_actor"
-msgid "Keel"
+msgid "Katana"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:304
 msgctxt "pirate_name_actor"
-msgid "Ketchup"
+msgid "Keel"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:305
 msgctxt "pirate_name_actor"
-msgid "Ki"
+msgid "Ketchup"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:306
 msgctxt "pirate_name_actor"
-msgid "Killer"
+msgid "Ki"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:307
 msgctxt "pirate_name_actor"
-msgid "King"
+msgid "Killer"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:308
 msgctxt "pirate_name_actor"
-msgid "Kirin"
+msgid "King"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:309

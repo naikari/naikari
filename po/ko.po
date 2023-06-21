@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-21 03:36-0400\n"
+"POT-Creation-Date: 2023-06-21 04:03-0400\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -41126,9 +41126,10 @@ msgid "Blue {number}"
 msgstr ""
 
 #: dat/scripts/pilot/generic.lua:30
+#, fuzzy
 msgctxt "pilot_name"
-msgid "Boa {number}"
-msgstr ""
+msgid "Boä {number}"
+msgstr "프로 테론 카한"
 
 #: dat/scripts/pilot/generic.lua:31
 msgctxt "pilot_name"
@@ -41248,9 +41249,10 @@ msgid "Death {number}"
 msgstr ""
 
 #: dat/scripts/pilot/generic.lua:54
+#, fuzzy
 msgctxt "pilot_name"
-msgid "Deity {number}"
-msgstr ""
+msgid "Deïty {number}"
+msgstr "시스템"
 
 #: dat/scripts/pilot/generic.lua:55
 #, fuzzy
@@ -41914,7 +41916,7 @@ msgstr "투리온의 불꽃"
 #: dat/scripts/pilot/generic.lua:179
 #, fuzzy
 msgctxt "pilot_name"
-msgid "Sierra {number}"
+msgid "Siërra {number}"
 msgstr "투리온의 불꽃"
 
 #: dat/scripts/pilot/generic.lua:180
@@ -42554,1138 +42556,1138 @@ msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:81
 msgctxt "pirate_name_descriptor"
-msgid "Lesser"
+msgid "Learnèd"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:82
+msgctxt "pirate_name_descriptor"
+msgid "Lesser"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:83
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Lightspeed"
 msgstr "빛 "
 
-#: dat/scripts/pilot/pirate.lua:83
+#: dat/scripts/pilot/pirate.lua:84
 msgctxt "pirate_name_descriptor"
 msgid "Lone"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:84
+#: dat/scripts/pilot/pirate.lua:85
 msgctxt "pirate_name_descriptor"
 msgid "Loose"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:85
+#: dat/scripts/pilot/pirate.lua:86
 msgctxt "pirate_name_descriptor"
 msgid "Loud"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:86
+#: dat/scripts/pilot/pirate.lua:87
 msgctxt "pirate_name_descriptor"
 msgid "Lovely"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:87
+#: dat/scripts/pilot/pirate.lua:88
 msgctxt "pirate_name_descriptor"
 msgid "Lustful"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:88
+#: dat/scripts/pilot/pirate.lua:89
 msgctxt "pirate_name_descriptor"
 msgid "Malodorous"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:89
+#: dat/scripts/pilot/pirate.lua:90
 msgctxt "pirate_name_descriptor"
 msgid "Mellow"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:90
+#: dat/scripts/pilot/pirate.lua:91
 msgctxt "pirate_name_descriptor"
 msgid "Messy"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:91
+#: dat/scripts/pilot/pirate.lua:92
 msgctxt "pirate_name_descriptor"
 msgid "Mighty"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:92
+#: dat/scripts/pilot/pirate.lua:93
 msgctxt "pirate_name_descriptor"
 msgid "Morbid"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:93
+#: dat/scripts/pilot/pirate.lua:94
 msgctxt "pirate_name_descriptor"
 msgid "Murderous"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:94
+#: dat/scripts/pilot/pirate.lua:95
 msgctxt "pirate_name_descriptor"
 msgid "Naïve"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:95
+#: dat/scripts/pilot/pirate.lua:96
 msgctxt "pirate_name_descriptor"
 msgid "New"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:96
+#: dat/scripts/pilot/pirate.lua:97
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Night's"
 msgstr "빛 "
 
-#: dat/scripts/pilot/pirate.lua:97
+#: dat/scripts/pilot/pirate.lua:98
 msgctxt "pirate_name_descriptor"
 msgid "Nimble"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:98
+#: dat/scripts/pilot/pirate.lua:99
 msgctxt "pirate_name_descriptor"
 msgid "No Good"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:99
+#: dat/scripts/pilot/pirate.lua:100
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Numb"
 msgstr "렌더링: %s"
 
-#: dat/scripts/pilot/pirate.lua:100
+#: dat/scripts/pilot/pirate.lua:101
 msgctxt "pirate_name_descriptor"
 msgid "Old"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:101
+#: dat/scripts/pilot/pirate.lua:102
 msgctxt "pirate_name_descriptor"
 msgid "Pale"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:102
+#: dat/scripts/pilot/pirate.lua:103
 msgctxt "pirate_name_descriptor"
 msgid "Perilous"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:103
+#: dat/scripts/pilot/pirate.lua:104
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Pirate's"
 msgstr "해적 벤데타"
 
-#: dat/scripts/pilot/pirate.lua:104
+#: dat/scripts/pilot/pirate.lua:105
 msgctxt "pirate_name_descriptor"
 msgid "Pocket"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:105
+#: dat/scripts/pilot/pirate.lua:106
 msgctxt "pirate_name_descriptor"
 msgid "Princeless"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:106
+#: dat/scripts/pilot/pirate.lua:107
 msgctxt "pirate_name_descriptor"
 msgid "Psychic"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:107
+#: dat/scripts/pilot/pirate.lua:108
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Quick"
 msgstr "수은"
 
-#: dat/scripts/pilot/pirate.lua:108
+#: dat/scripts/pilot/pirate.lua:109
 msgctxt "pirate_name_descriptor"
 msgid "Radical"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:109
+#: dat/scripts/pilot/pirate.lua:110
 msgctxt "pirate_name_descriptor"
 msgid "Raging"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:110
+#: dat/scripts/pilot/pirate.lua:111
 msgctxt "pirate_name_descriptor"
 msgid "Reclusive"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:111
+#: dat/scripts/pilot/pirate.lua:112
 msgctxt "pirate_name_descriptor"
 msgid "Relentless"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:112
+#: dat/scripts/pilot/pirate.lua:113
 msgctxt "pirate_name_descriptor"
 msgid "Rough"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:113
+#: dat/scripts/pilot/pirate.lua:114
 msgctxt "pirate_name_descriptor"
 msgid "Ruthless"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:114
+#: dat/scripts/pilot/pirate.lua:115
 msgctxt "pirate_name_descriptor"
 msgid "Saccharin"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:115
+#: dat/scripts/pilot/pirate.lua:116
 msgctxt "pirate_name_descriptor"
 msgid "Salty"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:116
+#: dat/scripts/pilot/pirate.lua:117
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Satanic"
 msgstr "패닉!"
 
-#: dat/scripts/pilot/pirate.lua:117
+#: dat/scripts/pilot/pirate.lua:118
 msgctxt "pirate_name_descriptor"
 msgid "Secluded"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:118
+#: dat/scripts/pilot/pirate.lua:119
 msgctxt "pirate_name_descriptor"
 msgid "Serial"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:119
+#: dat/scripts/pilot/pirate.lua:120
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Sharing"
 msgstr "상어"
 
-#: dat/scripts/pilot/pirate.lua:120
+#: dat/scripts/pilot/pirate.lua:121
 msgctxt "pirate_name_descriptor"
 msgid "Silly"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:121
+#: dat/scripts/pilot/pirate.lua:122
 msgctxt "pirate_name_descriptor"
 msgid "Single"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:122
+#: dat/scripts/pilot/pirate.lua:123
 msgctxt "pirate_name_descriptor"
 msgid "Sleepy"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:123
+#: dat/scripts/pilot/pirate.lua:124
 msgctxt "pirate_name_descriptor"
 msgid "Slimy"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:124
+#: dat/scripts/pilot/pirate.lua:125
 msgctxt "pirate_name_descriptor"
 msgid "Smelly"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:125
+#: dat/scripts/pilot/pirate.lua:126
 msgctxt "pirate_name_descriptor"
 msgid "Solar"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:126
+#: dat/scripts/pilot/pirate.lua:127
 msgctxt "pirate_name_descriptor"
 msgid "Sonic"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:127
+#: dat/scripts/pilot/pirate.lua:128
 msgctxt "pirate_name_descriptor"
 msgid "Space"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:128
+#: dat/scripts/pilot/pirate.lua:129
 msgctxt "pirate_name_descriptor"
 msgid "Spicy"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:129
+#: dat/scripts/pilot/pirate.lua:130
 msgctxt "pirate_name_descriptor"
 msgid "Spirit"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:130
+#: dat/scripts/pilot/pirate.lua:131
 msgctxt "pirate_name_descriptor"
 msgid "Stained"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:131
+#: dat/scripts/pilot/pirate.lua:132
 #, fuzzy
 msgctxt "pirate_name_descriptor"
 msgid "Static"
 msgstr "투리온의 불꽃"
 
-#: dat/scripts/pilot/pirate.lua:132
+#: dat/scripts/pilot/pirate.lua:133
 msgctxt "pirate_name_descriptor"
 msgid "Steel"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:133
+#: dat/scripts/pilot/pirate.lua:134
 msgctxt "pirate_name_descriptor"
 msgid "Strange"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:134
+#: dat/scripts/pilot/pirate.lua:135
 msgctxt "pirate_name_descriptor"
 msgid "Strawhat"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:135
+#: dat/scripts/pilot/pirate.lua:136
 msgctxt "pirate_name_descriptor"
 msgid "Super"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:136
+#: dat/scripts/pilot/pirate.lua:137
 msgctxt "pirate_name_descriptor"
 msgid "Supreme"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:137
+#: dat/scripts/pilot/pirate.lua:138
 msgctxt "pirate_name_descriptor"
 msgid "Sweet"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:138
+#: dat/scripts/pilot/pirate.lua:139
 msgctxt "pirate_name_descriptor"
 msgid "Tall"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:139
+#: dat/scripts/pilot/pirate.lua:140
 msgctxt "pirate_name_descriptor"
 msgid "Terrible"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:140
+#: dat/scripts/pilot/pirate.lua:141
 msgctxt "pirate_name_descriptor"
 msgid "Tired"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:141
+#: dat/scripts/pilot/pirate.lua:142
 msgctxt "pirate_name_descriptor"
 msgid "Titanic"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:142
+#: dat/scripts/pilot/pirate.lua:143
 msgctxt "pirate_name_descriptor"
 msgid "Toothless"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:143
+#: dat/scripts/pilot/pirate.lua:144
 msgctxt "pirate_name_descriptor"
 msgid "Tropical"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:144
+#: dat/scripts/pilot/pirate.lua:145
 msgctxt "pirate_name_descriptor"
 msgid "Typical"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:145
+#: dat/scripts/pilot/pirate.lua:146
 msgctxt "pirate_name_descriptor"
 msgid "Ultimate"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:146
+#: dat/scripts/pilot/pirate.lua:147
 msgctxt "pirate_name_descriptor"
 msgid "Uncombed"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:147
+#: dat/scripts/pilot/pirate.lua:148
 msgctxt "pirate_name_descriptor"
 msgid "Undead"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:148
+#: dat/scripts/pilot/pirate.lua:149
 msgctxt "pirate_name_descriptor"
 msgid "Unhealthy"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:149
+#: dat/scripts/pilot/pirate.lua:150
 msgctxt "pirate_name_descriptor"
 msgid "Unreal"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:150
+#: dat/scripts/pilot/pirate.lua:151
 msgctxt "pirate_name_descriptor"
 msgid "Unsightly"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:151
+#: dat/scripts/pilot/pirate.lua:152
 msgctxt "pirate_name_descriptor"
 msgid "Vengeful"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:152
+#: dat/scripts/pilot/pirate.lua:153
 msgctxt "pirate_name_descriptor"
 msgid "Very Bad"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:153
+#: dat/scripts/pilot/pirate.lua:154
 msgctxt "pirate_name_descriptor"
 msgid "Vindictive"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:154
+#: dat/scripts/pilot/pirate.lua:155
 msgctxt "pirate_name_descriptor"
 msgid "Violent"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:155
+#: dat/scripts/pilot/pirate.lua:156
 msgctxt "pirate_name_descriptor"
 msgid "Weeping"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:156
+#: dat/scripts/pilot/pirate.lua:157
 msgctxt "pirate_name_descriptor"
 msgid "Wild"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:157
+#: dat/scripts/pilot/pirate.lua:158
 msgctxt "pirate_name_descriptor"
 msgid "Wiley"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:158
+#: dat/scripts/pilot/pirate.lua:159
 msgctxt "pirate_name_descriptor"
 msgid "Winged"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:159
+#: dat/scripts/pilot/pirate.lua:160
 msgctxt "pirate_name_descriptor"
 msgid "Wretched"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:160
+#: dat/scripts/pilot/pirate.lua:161
 msgctxt "pirate_name_descriptor"
 msgid "Yummy"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:161
+#: dat/scripts/pilot/pirate.lua:162
 msgctxt "pirate_name_descriptor"
 msgid "Zany"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:164
+#: dat/scripts/pilot/pirate.lua:165
 msgctxt "pirate_name_color"
 msgid "Amber"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:165
+#: dat/scripts/pilot/pirate.lua:166
 msgctxt "pirate_name_color"
 msgid "Aquamarine"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:166
+#: dat/scripts/pilot/pirate.lua:167
 msgctxt "pirate_name_color"
 msgid "Azure"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:167
+#: dat/scripts/pilot/pirate.lua:168
 msgctxt "pirate_name_color"
 msgid "Beige"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:168
+#: dat/scripts/pilot/pirate.lua:169
 msgctxt "pirate_name_color"
 msgid "Blue"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:169
+#: dat/scripts/pilot/pirate.lua:170
 msgctxt "pirate_name_color"
 msgid "Chartreuse"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:170
+#: dat/scripts/pilot/pirate.lua:171
 msgctxt "pirate_name_color"
 msgid "Crimson"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:171
+#: dat/scripts/pilot/pirate.lua:172
 msgctxt "pirate_name_color"
 msgid "Cyan"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:172
+#: dat/scripts/pilot/pirate.lua:173
 msgctxt "pirate_name_color"
 msgid "Emerald"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:173
+#: dat/scripts/pilot/pirate.lua:174
 msgctxt "pirate_name_color"
 msgid "Fuchsia"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:174
+#: dat/scripts/pilot/pirate.lua:175
 msgctxt "pirate_name_color"
 msgid "Golden"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:175
+#: dat/scripts/pilot/pirate.lua:176
 msgctxt "pirate_name_color"
 msgid "Gray"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:176
+#: dat/scripts/pilot/pirate.lua:177
 msgctxt "pirate_name_color"
 msgid "Green"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:177
+#: dat/scripts/pilot/pirate.lua:178
 msgctxt "pirate_name_color"
 msgid "Indigo"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:178
+#: dat/scripts/pilot/pirate.lua:179
 msgctxt "pirate_name_color"
 msgid "Ivory"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:179
+#: dat/scripts/pilot/pirate.lua:180
 msgctxt "pirate_name_color"
 msgid "Khaki"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:180
+#: dat/scripts/pilot/pirate.lua:181
 msgctxt "pirate_name_color"
 msgid "Lavender"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:181
+#: dat/scripts/pilot/pirate.lua:182
 msgctxt "pirate_name_color"
 msgid "Magenta"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:182
+#: dat/scripts/pilot/pirate.lua:183
 msgctxt "pirate_name_color"
 msgid "Maroon"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:183
+#: dat/scripts/pilot/pirate.lua:184
 msgctxt "pirate_name_color"
 msgid "Mauve"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:184
+#: dat/scripts/pilot/pirate.lua:185
 msgctxt "pirate_name_color"
 msgid "Olive"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:185
+#: dat/scripts/pilot/pirate.lua:186
 msgctxt "pirate_name_color"
 msgid "Pink"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:186
+#: dat/scripts/pilot/pirate.lua:187
 msgctxt "pirate_name_color"
 msgid "Purple"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:187
+#: dat/scripts/pilot/pirate.lua:188
 msgctxt "pirate_name_color"
 msgid "Red"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:188
+#: dat/scripts/pilot/pirate.lua:189
 msgctxt "pirate_name_color"
 msgid "Silver"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:189
+#: dat/scripts/pilot/pirate.lua:190
 msgctxt "pirate_name_color"
 msgid "Teal"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:190
+#: dat/scripts/pilot/pirate.lua:191
 msgctxt "pirate_name_color"
 msgid "Turquoise"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:191
+#: dat/scripts/pilot/pirate.lua:192
 msgctxt "pirate_name_color"
 msgid "Violet"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:192
+#: dat/scripts/pilot/pirate.lua:193
 msgctxt "pirate_name_color"
 msgid "Yellow"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:195
+#: dat/scripts/pilot/pirate.lua:196
 msgctxt "pirate_name_actor"
 msgid "Alphabet Soup"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:196
+#: dat/scripts/pilot/pirate.lua:197
 msgctxt "pirate_name_actor"
 msgid "Angel"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:197
+#: dat/scripts/pilot/pirate.lua:198
 msgctxt "pirate_name_actor"
 msgid "Angle Grinder"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:198
+#: dat/scripts/pilot/pirate.lua:199
 msgctxt "pirate_name_actor"
 msgid "Anvil"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:199
+#: dat/scripts/pilot/pirate.lua:200
 msgctxt "pirate_name_actor"
 msgid "Arrow"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:200
+#: dat/scripts/pilot/pirate.lua:201
 msgctxt "pirate_name_actor"
 msgid "Ass"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:201
+#: dat/scripts/pilot/pirate.lua:202
 msgctxt "pirate_name_actor"
 msgid "Aunt"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:202
+#: dat/scripts/pilot/pirate.lua:203
 msgctxt "pirate_name_actor"
 msgid "Avenger"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:203
+#: dat/scripts/pilot/pirate.lua:204
 msgctxt "pirate_name_actor"
 msgid "Axis"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:204
+#: dat/scripts/pilot/pirate.lua:205
 msgctxt "pirate_name_actor"
 msgid "Ball"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:205
+#: dat/scripts/pilot/pirate.lua:206
 msgctxt "pirate_name_actor"
 msgid "Band Saw"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:206
+#: dat/scripts/pilot/pirate.lua:207
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Bat"
 msgstr "팩션:"
 
-#: dat/scripts/pilot/pirate.lua:207
+#: dat/scripts/pilot/pirate.lua:208
 msgctxt "pirate_name_actor"
 msgid "Beam"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:208
+#: dat/scripts/pilot/pirate.lua:209
 msgctxt "pirate_name_actor"
 msgid "Beard"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:209
+#: dat/scripts/pilot/pirate.lua:210
 msgctxt "pirate_name_actor"
 msgid "Belt Sander"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:210
+#: dat/scripts/pilot/pirate.lua:211
 msgctxt "pirate_name_actor"
 msgid "Bench Grinder"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:211
+#: dat/scripts/pilot/pirate.lua:212
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Black Hole"
 msgstr "그렇게 일찍 돌아왔나요?"
 
-#: dat/scripts/pilot/pirate.lua:212
+#: dat/scripts/pilot/pirate.lua:213
 msgctxt "pirate_name_actor"
 msgid "Blizzard"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:213
+#: dat/scripts/pilot/pirate.lua:214
 msgctxt "pirate_name_actor"
 msgid "Blood"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:214
+#: dat/scripts/pilot/pirate.lua:215
 msgctxt "pirate_name_actor"
 msgid "Blunder"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:215
+#: dat/scripts/pilot/pirate.lua:216
 msgctxt "pirate_name_actor"
 msgid "Boom"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:216
+#: dat/scripts/pilot/pirate.lua:217
 msgctxt "pirate_name_actor"
 msgid "Boot"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:217
+#: dat/scripts/pilot/pirate.lua:218
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Bolt Cutter"
 msgstr "레일 건 터렛"
 
-#: dat/scripts/pilot/pirate.lua:218
+#: dat/scripts/pilot/pirate.lua:219
 msgctxt "pirate_name_actor"
 msgid "Brain"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:219
+#: dat/scripts/pilot/pirate.lua:220
 msgctxt "pirate_name_actor"
 msgid "Breeze"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:220
+#: dat/scripts/pilot/pirate.lua:221
 msgctxt "pirate_name_actor"
 msgid "Bride"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:221
+#: dat/scripts/pilot/pirate.lua:222
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Brigand"
 msgstr "소로 미드 브 리간드"
 
-#: dat/scripts/pilot/pirate.lua:222
+#: dat/scripts/pilot/pirate.lua:223
 msgctxt "pirate_name_actor"
 msgid "Bulk"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:223
+#: dat/scripts/pilot/pirate.lua:224
 msgctxt "pirate_name_actor"
 msgid "Burglar"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:224
+#: dat/scripts/pilot/pirate.lua:225
 msgctxt "pirate_name_actor"
 msgid "Cane"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:225
+#: dat/scripts/pilot/pirate.lua:226
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Cannon"
 msgstr "리퍼 캐논"
 
-#: dat/scripts/pilot/pirate.lua:226
+#: dat/scripts/pilot/pirate.lua:227
 msgctxt "pirate_name_actor"
 msgid "Chainsaw"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:227
+#: dat/scripts/pilot/pirate.lua:228
 msgctxt "pirate_name_actor"
 msgid "Cheese"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:228
+#: dat/scripts/pilot/pirate.lua:229
 msgctxt "pirate_name_actor"
 msgid "Cheese Grater"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:229
+#: dat/scripts/pilot/pirate.lua:230
 msgctxt "pirate_name_actor"
 msgid "Chi"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:230
+#: dat/scripts/pilot/pirate.lua:231
 msgctxt "pirate_name_actor"
 msgid "Chicken"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:231
+#: dat/scripts/pilot/pirate.lua:232
 msgctxt "pirate_name_actor"
 msgid "Chin"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:232
+#: dat/scripts/pilot/pirate.lua:233
 msgctxt "pirate_name_actor"
 msgid "Circle"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:233
+#: dat/scripts/pilot/pirate.lua:234
 msgctxt "pirate_name_actor"
 msgid "Claw"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:234
+#: dat/scripts/pilot/pirate.lua:235
 msgctxt "pirate_name_actor"
 msgid "Claw Hammer"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:235
+#: dat/scripts/pilot/pirate.lua:236
 msgctxt "pirate_name_actor"
 msgid "Club"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:236
+#: dat/scripts/pilot/pirate.lua:237
 msgctxt "pirate_name_actor"
 msgid "Coconut"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:237
+#: dat/scripts/pilot/pirate.lua:238
 msgctxt "pirate_name_actor"
 msgid "Coot"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:238
+#: dat/scripts/pilot/pirate.lua:239
 msgctxt "pirate_name_actor"
 msgid "Corsair"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:239
+#: dat/scripts/pilot/pirate.lua:240
 msgctxt "pirate_name_actor"
 msgid "Cougar"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:240
+#: dat/scripts/pilot/pirate.lua:241
 msgctxt "pirate_name_actor"
 msgid "Coyote"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:241
+#: dat/scripts/pilot/pirate.lua:242
 msgctxt "pirate_name_actor"
 msgid "Crisis"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:242
+#: dat/scripts/pilot/pirate.lua:243
 msgctxt "pirate_name_actor"
 msgid "Crow"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:243
+#: dat/scripts/pilot/pirate.lua:244
 msgctxt "pirate_name_actor"
 msgid "Crowbar"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:244
+#: dat/scripts/pilot/pirate.lua:245
 msgctxt "pirate_name_actor"
 msgid "Crusader"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:245
+#: dat/scripts/pilot/pirate.lua:246
 msgctxt "pirate_name_actor"
 msgid "Curse"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:246
+#: dat/scripts/pilot/pirate.lua:247
 msgctxt "pirate_name_actor"
 msgid "Cyborg"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:247
+#: dat/scripts/pilot/pirate.lua:248
 msgctxt "pirate_name_actor"
 msgid "Darkness"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:248
+#: dat/scripts/pilot/pirate.lua:249
 msgctxt "pirate_name_actor"
 msgid "Death"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:249
-msgctxt "pirate_name_actor"
-msgid "Deity"
-msgstr ""
-
 #: dat/scripts/pilot/pirate.lua:250
 msgctxt "pirate_name_actor"
-msgid "Demon"
+msgid "Deïty"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:251
 msgctxt "pirate_name_actor"
-msgid "Destruction"
+msgid "Demon"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:252
 msgctxt "pirate_name_actor"
-msgid "Devil"
+msgid "Destruction"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:253
 msgctxt "pirate_name_actor"
-msgid "Dictator"
+msgid "Devil"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:254
 msgctxt "pirate_name_actor"
-msgid "Disaster"
+msgid "Dictator"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:255
 msgctxt "pirate_name_actor"
-msgid "Discord"
+msgid "Disaster"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:256
 msgctxt "pirate_name_actor"
-msgid "Donkey"
+msgid "Discord"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:257
 msgctxt "pirate_name_actor"
-msgid "Doom"
+msgid "Donkey"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:258
 msgctxt "pirate_name_actor"
-msgid "Dragon"
+msgid "Doom"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:259
 msgctxt "pirate_name_actor"
-msgid "Dread"
+msgid "Dragon"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:260
 msgctxt "pirate_name_actor"
-msgid "Drifter"
+msgid "Dread"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:261
 msgctxt "pirate_name_actor"
-msgid "Drill Press"
+msgid "Drifter"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:262
 msgctxt "pirate_name_actor"
-msgid "Duckling"
+msgid "Drill Press"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:263
 msgctxt "pirate_name_actor"
-msgid "Eagle"
+msgid "Duckling"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:264
 msgctxt "pirate_name_actor"
-msgid "Eggplant"
+msgid "Eagle"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:265
 msgctxt "pirate_name_actor"
-msgid "Ego"
+msgid "Eggplant"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:266
+msgctxt "pirate_name_actor"
+msgid "Ego"
+msgstr ""
+
+#: dat/scripts/pilot/pirate.lua:267
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Electricity"
 msgstr "투리온의 통찰력"
 
-#: dat/scripts/pilot/pirate.lua:267
+#: dat/scripts/pilot/pirate.lua:268
 msgctxt "pirate_name_actor"
 msgid "Emperor"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:268
+#: dat/scripts/pilot/pirate.lua:269
 msgctxt "pirate_name_actor"
 msgid "Engine"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:269
+#: dat/scripts/pilot/pirate.lua:270
 msgctxt "pirate_name_actor"
 msgid "Fang"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:270
+#: dat/scripts/pilot/pirate.lua:271
 msgctxt "pirate_name_actor"
 msgid "Flare"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:271
+#: dat/scripts/pilot/pirate.lua:272
 msgctxt "pirate_name_actor"
 msgid "Flash"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:272
+#: dat/scripts/pilot/pirate.lua:273
 msgctxt "pirate_name_actor"
 msgid "Fox"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:273
+#: dat/scripts/pilot/pirate.lua:274
 msgctxt "pirate_name_actor"
 msgid "Friend"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:274
+#: dat/scripts/pilot/pirate.lua:275
 msgctxt "pirate_name_actor"
 msgid "Fruit"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:275
+#: dat/scripts/pilot/pirate.lua:276
 msgctxt "pirate_name_actor"
 msgid "Fugitive"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:276
+#: dat/scripts/pilot/pirate.lua:277
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Game"
 msgstr "새로운 게임"
 
-#: dat/scripts/pilot/pirate.lua:277
+#: dat/scripts/pilot/pirate.lua:278
 msgctxt "pirate_name_actor"
 msgid "Gamma Ray"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:278
+#: dat/scripts/pilot/pirate.lua:279
 msgctxt "pirate_name_actor"
 msgid "Giant"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:279
+#: dat/scripts/pilot/pirate.lua:280
 msgctxt "pirate_name_actor"
 msgid "Gift"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:280
+#: dat/scripts/pilot/pirate.lua:281
 msgctxt "pirate_name_actor"
 msgid "Goose"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:281
+#: dat/scripts/pilot/pirate.lua:282
 msgctxt "pirate_name_actor"
 msgid "Gorilla"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:282
+#: dat/scripts/pilot/pirate.lua:283
 msgctxt "pirate_name_actor"
 msgid "Gun"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:283
+#: dat/scripts/pilot/pirate.lua:284
 msgctxt "pirate_name_actor"
 msgid "Hamburger"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:284
+#: dat/scripts/pilot/pirate.lua:285
 msgctxt "pirate_name_actor"
 msgid "Hammer"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:285
+#: dat/scripts/pilot/pirate.lua:286
 #, fuzzy
 msgctxt "pirate_name_actor"
 msgid "Headache"
 msgstr "시리우스 설교자"
 
-#: dat/scripts/pilot/pirate.lua:286
+#: dat/scripts/pilot/pirate.lua:287
 msgctxt "pirate_name_actor"
 msgid "Hedgehog"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:287
+#: dat/scripts/pilot/pirate.lua:288
 msgctxt "pirate_name_actor"
 msgid "Hero"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:288
+#: dat/scripts/pilot/pirate.lua:289
 msgctxt "pirate_name_actor"
 msgid "Hex"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:289
+#: dat/scripts/pilot/pirate.lua:290
 msgctxt "pirate_name_actor"
 msgid "Horror"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:290
+#: dat/scripts/pilot/pirate.lua:291
 msgctxt "pirate_name_actor"
 msgid "Hunter"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:291
+#: dat/scripts/pilot/pirate.lua:292
 msgctxt "pirate_name_actor"
 msgid "Hurricane"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:292
+#: dat/scripts/pilot/pirate.lua:293
 msgctxt "pirate_name_actor"
 msgid "Husband"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:293
+#: dat/scripts/pilot/pirate.lua:294
 msgctxt "pirate_name_actor"
 msgid "Id"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:294
+#: dat/scripts/pilot/pirate.lua:295
 msgctxt "pirate_name_actor"
 msgid "Impact Wrench"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:295
+#: dat/scripts/pilot/pirate.lua:296
 msgctxt "pirate_name_actor"
 msgid "Ionizer"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:296
+#: dat/scripts/pilot/pirate.lua:297
 msgctxt "pirate_name_actor"
 msgid "Jalapeño"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:297
+#: dat/scripts/pilot/pirate.lua:298
 msgctxt "pirate_name_actor"
 msgid "Jigsaw"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:298
+#: dat/scripts/pilot/pirate.lua:299
 msgctxt "pirate_name_actor"
 msgid "Jinx"
 msgstr ""
 
-#: dat/scripts/pilot/pirate.lua:299
-msgctxt "pirate_name_actor"
-msgid "Kamikaze"
-msgstr ""
-
 #: dat/scripts/pilot/pirate.lua:300
 msgctxt "pirate_name_actor"
-msgid "Kappa"
+msgid "Kamikazé"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:301
 msgctxt "pirate_name_actor"
-msgid "Karaoke"
+msgid "Kappa"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:302
 msgctxt "pirate_name_actor"
-msgid "Katana"
+msgid "Karaöké"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:303
 msgctxt "pirate_name_actor"
-msgid "Keel"
+msgid "Katana"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:304
 msgctxt "pirate_name_actor"
-msgid "Ketchup"
+msgid "Keel"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:305
 msgctxt "pirate_name_actor"
-msgid "Ki"
+msgid "Ketchup"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:306
 msgctxt "pirate_name_actor"
-msgid "Killer"
+msgid "Ki"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:307
 msgctxt "pirate_name_actor"
-msgid "King"
+msgid "Killer"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:308
 msgctxt "pirate_name_actor"
-msgid "Kirin"
+msgid "King"
 msgstr ""
 
 #: dat/scripts/pilot/pirate.lua:309
@@ -54009,350 +54011,3 @@ msgstr ""
 #: src/weapon.c:1887
 msgid "Trying to remove beam with ID 0!"
 msgstr ""
-
-#, lua-format
-#~ msgid ""
-#~ "\"%s, it's horrible,\" she says with a look of dread in her eyes. \"They "
-#~ "found us. The damn Empire found us! I'm going to be frank, I don't even "
-#~ "know if we can survive this.\" You stammer for a moment. No, it can't be "
-#~ "true! It has to be some mistake! How can the FLF be defeated like this? "
-#~ "Now the commotion makes perfect sense.\n"
-#~ "    \"It's those damn traitors!\" Benito continues. \"One of them went "
-#~ "off and told the Empire where our base is, and they even told them where "
-#~ "our hidden jumps are! This is terrible!\""
-#~ msgstr ""
-#~ "\"%s, 끔찍하군요.\" 그녀는 두려운 표정으로 말했다. \"그들은 우릴 찾았어"
-#~ "요. 제국이 우릴 찾았어요! 솔직히 말해서 우리가 살아남을 수 있을지 모르겠어"
-#~ "요.\" 당신은 잠시 말을 더듬는다. 아니, 사실 일 수 없어! 사소한 실수가 일어"
-#~ "난 거야! FLF를 어떻게 물리 칠 수 있지? 이제 그 소동이 완벽하게 들어맞는"
-#~ "다.\n"
-#~ "     \"그 빌어 먹을 반역자야!\" Benito가 계속 얘기한다. \"그 중 한 명이 떠"
-#~ "나서 제국에 우리 기지가 어디에 있는지 말했고 심지어 우리의 숨겨진 점프가 "
-#~ "어디 있는지 말해 줬어요! 이건 끔찍 하군요!\""
-
-#, lua-format
-#~ msgid ""
-#~ "\"Listen, we don't have much longer. A combined Empire and Dvaered fleet "
-#~ "is just about to enter from %s. They have Peacemakers, Hawkings, "
-#~ "Goddards, Pacifiers, you name it. They're ready to wipe us off the map. "
-#~ "%s, I don't know how to say this, but...\" Benito digs in her pockets a "
-#~ "bit before pulling out a small data chip. \"Here, take this,\" she says "
-#~ "as she presses it into your hand. \"That's plan B. I hope it doesn't come "
-#~ "to that, but... keep it safe, just in case.\"\n"
-#~ "    Benito clears her throat. \"But I'm sure you can guess what your "
-#~ "mission is. You need to join with the others in the fight against the "
-#~ "incoming Empire ships. You have to destroy all of the ships. I will be "
-#~ "here helping to man the station; our defenses are weak, but better than "
-#~ "nothing.\""
-#~ msgstr ""
-#~ "\"잘 들어, 우리에겐 얼마 남지 않았어. 엠파이어와 드배레드 연합 함대가 %s에"
-#~ "서 막 진입하려고 한다. 피스메이커스, 호킹스, 고다드, 페이셔스, 누구든 말해"
-#~ "봐. 우릴 지도에서 지울 준비가 됐어. %s, 어떻게 말해야 할지 모르겠지만.. 베"
-#~ "니토는 작은 데이터 칩을 꺼내기 전에 주머니에 손을 넣는다. \"여기, 이거 받"
-#~ "아.\" 그녀가 손으로 누르면서 말한다. \"그건 플랜 B야. 그런 일이 없었으면 "
-#~ "좋겠지만... 만일의 경우를 대비해서 안전하게 보관해.\"\n"
-#~ "베니토는 목청을 가다듬는다. \"하지만 임무가 무엇인지 짐작은 할 수 있을거"
-#~ "야. 엠파이어 함선과의 싸움에 다른 함대와 합류해서 모든 배를 파괴해야 해. "
-#~ "내가 여기 와서 스테이션의 사람을 도울게. 우리의 방어는 약하지만, 없는 것보"
-#~ "다는 나으니까.'"
-
-#~ msgid ""
-#~ "Silence seems to engulf the room. You see the mouths of your comrades "
-#~ "frantically talking, but you cannot hear them. Benito puts her hand on "
-#~ "your shoulder and looks at you in the eye. \"Don't die, soldier,\" she "
-#~ "says, only this time, it's not in the usual playful tone you tend to "
-#~ "expect of her. She then hurriedly exits toward the station's weapon "
-#~ "controls room."
-#~ msgstr ""
-#~ "침묵이 방을 뒤덮고 있는 것 같다. 정신없이 지껄이는 전우들의 입을 보지만 들"
-#~ "리지 않는다. 베니토는 네 어깨에 손을 얹고 네 눈을 바라본다. \"죽지 말게, "
-#~ "병사여.\"라고 그녀가 말하는데, 이번만은 그녀에게 기대하기 쉬운 평소 장난"
-#~ "기 어린 말투가 아니다. 그리고 나서 그녀는 서둘러 역의 무기 통제실 쪽으로 "
-#~ "빠져나간다."
-
-#~ msgid ""
-#~ "There's no time to lose. You go to the hangar bay and immediately take "
-#~ "off."
-#~ msgstr "지체할 시간이 없다. 격납고 만으로 가서 즉시 이륙한다."
-
-#~ msgid "Escape and Live On"
-#~ msgstr "탈출하고 살아남다"
-
-#~ msgid ""
-#~ "As the last shot penetrates the hull of Sindbad, a sense of dread comes "
-#~ "over you. The FLF, Benito, your comrades... no...\n"
-#~ "    Just as you think this, the now exploding station hails you. You "
-#~ "immediately accept, and you see Benito on your screen once again. You "
-#~ "hear sirens and explosions in the background, but you pay them no mind."
-#~ msgstr ""
-#~ "마지막 사격이 신밧드의 선체를 뚫고 들어올 때, 공포감이 엄습합니다. FLF, 베"
-#~ "니토, 동지들... 아니...\n"
-#~ "     당신이 생각하는 것처럼 지금 폭발하는 station은 당신을 환영합니다. 즉"
-#~ "시 수락하면 화면에 Benito가 다시 표시됩니다. 배경에서 사이렌과 폭발음이 들"
-#~ "리지만 신경 쓰지 않아도 됩니다."
-
-#, lua-format
-#~ msgid ""
-#~ "\"Well, this is it, soldier. My last transmission to you. I can't say I "
-#~ "wanted it to go this way, but...\n"
-#~ "    \"Listen. That chip I handed you before? It's a map. It shows the "
-#~ "location of a hidden jump from Iris to an unknown system deep in the "
-#~ "nebula. Go straight there, right now. Escape the Empire, find what lies "
-#~ "beyond, and live on. Perhaps, in your future travels, you'll find a way "
-#~ "to destroy the Dvaereds, and the Empire, once and for all.\" Benito "
-#~ "smiles as more and more of the station detonates around her. \"Goodbye, "
-#~ "%s. Stay vigilant.\" The transmission then cuts as you are forced to "
-#~ "watch Sindbad finally erupt in a fiery explosion."
-#~ msgstr ""
-#~ "\"음, 바로 이거야, 병사. 너에게 보내는 내 마지막 전보다. 이 길로 가고 싶었"
-#~ "다고 말할 수는 없어. 하지만...\n"
-#~ "    \"들어봐. 내가 전에 건네준 칩? 그건 지도야. 성운 깊은 곳에서 아이리스"
-#~ "에서 미지의 시스템으로 숨겨진 점프의 위치를 보여주지. 바로 가, 지금 당장. "
-#~ "제국을 탈출하고, 그 너머에 있는 것을 찾아서 꼭 살아. 아마 앞으로 여행에서 "
-#~ "드바에레드와 제국을 완전히 파괴할 방법을 찾을 수 있을 거야.\" 점점 더 많"
-#~ "은 스테이션이 그녀 주위에서 폭발할 때 베니토는 미소를 짓는다. \"안녕,  "
-#~ "%s. 조심해.\" 신드바드가 마침내 불꽃 같은 폭발로 폭발하는 것을 보게 되면"
-#~ "서 전송이 중단된다."
-
-#~ msgid "Strange Happenings"
-#~ msgstr "이상한 사건들"
-
-#~ msgid ""
-#~ "Your instruments go haywire and your ship goes dark. You swear under your "
-#~ "breath as you try to get the system back online. This isn't good. How "
-#~ "could your core system fail, and at such a critical moment? Is this going "
-#~ "to be the end for you, just like Benito and your other comrades moments "
-#~ "ago?\n"
-#~ "    Just as you start to panic, the power comes back on and you breathe a "
-#~ "sigh of relief. An unfamiliar face appears on your viewscreen. She glares "
-#~ "silently for what seems like an eternity. Finally, she speaks up."
-#~ msgstr ""
-#~ "당신의 장비는 무너지고 배는 어두워집니다. 시스템을 온라인 상태로 되돌리려"
-#~ "고 하는 순간, 숨을 죽이고 맹세합니다. 이것은 좋지 않습니다. 핵심 시스템이 "
-#~ "어떻게 그토록 중요한 순간에 실패 할 수 있습니까? 얼마 전 베니토와 다른 동"
-#~ "지들처럼 이것이 당신에게 끝을 가져올까요?\n"
-#~ "     당황하기 시작할 때, 전원이 다시 켜지고 당신은 안도의 한숨을 쉬게됩니"
-#~ "다. 보기 화면에 낯선 얼굴이 나타납니다. 그녀는 조용히 눈부신 빛을 발합니"
-#~ "다. 마침내 그녀는 말합니다."
-
-#~ msgid ""
-#~ "\"So the FLF is dead, I see. Well, not so much dead as a shadow of its "
-#~ "former self. I can see that you did manage to more or less achieve your "
-#~ "goal; Dvaered forces have largely withdrawn from Frontier space. I "
-#~ "suppose that was the double-edged sword you wielded when you got pirates "
-#~ "involved. The Empire was never going to allow you to live once you did "
-#~ "that, but it did give you the edge you needed to weaken the Dvaered "
-#~ "forces temporarily.\n"
-#~ "    \"Not that it matters anyway, of course. The ultimate result will be "
-#~ "the same either way. But that's neither here nor there. FLF pilot, I can "
-#~ "see that you have acquired some insider knowledge. That said, you still "
-#~ "know nothing in the grand scheme of things. So I'll tell you what: "
-#~ "proceed to Metsys if you dare. I will explain everything then. Be warned: "
-#~ "the nebula here is highly unstable, so your shields had better be up to "
-#~ "par. If you don't have the guts for it, turn back now while you still "
-#~ "can. But if you do, you turn back for good.\""
-#~ msgstr ""
-#~ "\"그래서 FLF는 죽었군요. 글쎄요, 이전 자아의 그림자만큼 FLF는 죽지 않았습"
-#~ "니다. 당신이 어느 정도 목표를 달성했다는 것을 알 수 있습니다. Dvaered 군대"
-#~ "는 프론티어 공간에서 거의 철수했습니다. 해적과 연루되었을 때 사용했던 양날"
-#~ "의 검입니다. 일시적으로 Dvaered 군대를 약화시키기 위해 드리는겁니다.\n"
-#~ "     \"물론 그게 문제가 되지는 않습니다. 궁극적인 결과는 어느 쪽이든 같을 "
-#~ "것입니다. 그러나 그것은 여기도 거기도 아닙니다. FLF 조종사님, 당신이 내부"
-#~ "자 지식을 습득 한 것을 알 수 있습니다. 즉, 당신은 여전히 아무것도 모릅니"
-#~ "다. 웅장한 계획입니다. 그래서 감히 하나 말씀 드리죠: Metsys로 가십시오. 그"
-#~ "때 모든 것을 설명하겠습니다. 경고합니다: 여기에있는 성운은 매우 불안정합니"
-#~ "다. 따라서 당신의 방어막이 평형을 이루는 것이 더 낫습니다. 배짱이 없으니 "
-#~ "지금 할 수있을 때 다시 돌아 오세요. 하지만 그렇게 한다면 영원히 돌아서세"
-#~ "요. \""
-
-#~ msgid ""
-#~ "Before you can even respond, the mysterious figure disappears. You detect "
-#~ "no presences nearby, but you notice that your ship has been refueled "
-#~ "somehow! Odd. In any case, it looks like you have two choices: do you "
-#~ "brave the dangers of the nebula and proceed to Metsys, or do you turn "
-#~ "back now? The figure said that you can only make this decision once, so "
-#~ "you'd better make sure it's the right one."
-#~ msgstr ""
-#~ "당신이 응답하기 전에, 신비한 그림이 사라집니다. 당신은 근처에 존재를 감지"
-#~ "하지 않습니다,하지만 당신은 당신의 배가 어떻게 든 급유 된 것을 알 수 있습"
-#~ "니다! 이상한. 어쨌든, 당신은 두 가지 선택이있는 것처럼 보인다 : 당신은 성"
-#~ "운의 위험을 용감하고 메츠로 진행합니까, 아니면 지금 다시 돌아? 이 수치는 "
-#~ "이 결정을 한 번만 내릴 수 있다고 말했기 때문에 올바른 결정을 내리는 것이 "
-#~ "좋습니다."
-
-#~ msgid "Welcome To the Nebula"
-#~ msgstr "네뷸라에 온것을 환영합니다"
-
-#, fuzzy
-#~ msgid ""
-#~ "As you land on the mysterious station, armed guards immediately surround "
-#~ "your ship and order you out into the hangar. You comply, and they take "
-#~ "you to a room that appears to be an interrogation room, where you wait "
-#~ "for a few nerve-wracking minutes. Finally, a holoscreen flickers on, "
-#~ "showing the figure you had seen earlier. She looks in your direction.\n"
-#~ "    \"Well met,\" she says. \"I see you have made the right choice and "
-#~ "survived the nebula. Very good.\""
-#~ msgstr ""
-#~ "당신이 신비한 역에 착륙으로, 무장 경비원은 즉시 배를 둘러싸고 격납고에 당"
-#~ "신을 주문. 당신은 준수하고, 그들은 당신이 몇 가지 신경 을 곤두 세우는 "
-#~ "hectoseconds를 기다리는 심문실로 보이는 방으로 데려다. 마지막으로, 홀로스"
-#~ "크린이 깜박이면 이전에 본 그림을 보여 주었습니다. 그녀는 당신의 방향을 바"
-#~ "라봅니다.\n"
-#~ "    \"잘 만났어.\" 그녀가 말한다. \"네가 올바른 선택을 하고 성운에서 살아"
-#~ "남은 것을 본다. 아주 좋아요.\""
-
-#~ msgid ""
-#~ "\"I'm sure you're wondering who we are. We are the Thurion, a "
-#~ "civilization left over from one of the Empire's former secret projects. "
-#~ "Have you met the Za'lek? The Collective? Those too were the Empire's "
-#~ "\"great projects\", as were the now dead Proteron. But we were kept a lot "
-#~ "more in the dark.\n"
-#~ "    \"You see, when the Empire gave up on Project Thurion many cycles "
-#~ "ago, they tried to kill us so that word of our existence would never get "
-#~ "out. They thought us an embarrassment to the Empire. Little did they "
-#~ "know, however, that we had discovered a method of uploading the human "
-#~ "mind to a computer, and so when they came after us, we uploaded ourselves "
-#~ "and escaped into what are now our core systems to rebuild.\""
-#~ msgstr ""
-#~ "\"우리가 누구인지 궁금하다고 확신합니다. 우리는 제국의 이전 비밀 프로젝트 "
-#~ "중 하나에서 남은 문명인 투리온입니다. 자렉을 만났나요? 집단? 그 것도 제국"
-#~ "의 \"위대한 프로젝트\"였고, 지금은 죽은 프로테론도 마찬가지였습니다. 그러"
-#~ "나 우리는 어둠 속에서 더 많이 유지되었습니다.\n"
-#~ "    \"제국이 여러 주기 전에 프로젝트 투리온을 포기했을 때, 그들은 우리 존"
-#~ "재의 말이 결코 나오지 않도록 우리를 죽이려고 노력했습니다. 그들은 우리에"
-#~ "게 제국에 당황한다고 생각했습니다. 그러나 인간의 마음을 컴퓨터에 업로드하"
-#~ "는 방법을 발견했다는 것을 거의 알지 못했고, 그래서 그들이 우리를 따라 왔"
-#~ "을 때, 우리는 자신을 업로드하고 지금 우리의 핵심 시스템으로 다시 구축했습"
-#~ "니다.\""
-
-#~ msgid ""
-#~ "\"Now, about half of us are uploaded, myself included. This face you see "
-#~ "and this voice you hear are but projections, a reflection of myself that "
-#~ "I have freely chosen. Being uploaded is wonderful, I must say; there is "
-#~ "no suffering, we are immortal, and we can have whatever human experiences "
-#~ "we desire and much more. And when we decide we have lived to our fullest, "
-#~ "we can delete ourselves and disappear into the emptiness just like any "
-#~ "other person does when they die. It's not uncommon for people to choose "
-#~ "to self-terminate after they have been uploaded for about 200 cycles or "
-#~ "so. I, however, have stuck around from the very beginning. I very much "
-#~ "enjoy seeing the biological Thurion grow, learn, and join us in uploaded "
-#~ "consciousness when their human bodies grow old and weary.\n"
-#~ "    \"Sadly, I don't think you can be uploaded. The uploading process "
-#~ "tends to fail with people who have even the slightest brain damage, and "
-#~ "you outsiders usually drink far too many brain-damaging substances. That "
-#~ "said, the time to check if you are eligible for uploading is many cycles "
-#~ "away anyhow, so we'll see when we get there, should you have an interest "
-#~ "in being uploaded.\""
-#~ msgstr ""
-#~ "\"지금, 우리 중 절반 정도가 업로드되고, 나 자신도 포함되어 있습니다. 당신"
-#~ "이 보는이 얼굴과 당신이 듣는이 목소리는 내가 자유롭게 선택한 나 자신을 반"
-#~ "영, 프로젝션에 불과하다. 업로드되는 것은 훌륭합니다, 나는 말해야한다; 고통"
-#~ "은 없으며, 우리는 불멸이며, 우리가 원하는 인간의 경험과 훨씬 더 많은 것을 "
-#~ "가질 수 있습니다. 그리고 우리가 최선을 다해 살았다고 결정할 때, 우리는 자"
-#~ "신을 삭제하고 다른 사람이 죽을 때와 마찬가지로 공허함 속으로 사라질 수 있"
-#~ "습니다. 사람들이 약 200사이클 정도 업로드된 후 스스로 해지하도록 선택하는 "
-#~ "것은 드문 일이 아닙니다. 그러나 나는 처음부터 주변에 붙어있다. 나는 생물학"
-#~ "적 Thurion이 성장하고, 배우고, 인간의 몸이 늙고 지친 때 업로드 된 의식에 "
-#~ "우리와 함께하는 것을 보는 것을 매우 즐긴다.\n"
-#~ "    \"슬프게도, 난 당신이 업로드 할 수 있다고 생각하지 않습니다. 업로드 과"
-#~ "정은 사소한 뇌 손상도 가진 사람들과 실패하는 경향이, 당신은 외부인은 일반"
-#~ "적으로 너무 많은 뇌 손상 물질을 마십니다. 즉, 업로드 할 자격이 있는지 확인"
-#~ "하는 시간은 어쨌든 많은 사이클이므로 업로드에 관심이 있다면 우리가 거기에 "
-#~ "도착하면 볼 수 있습니다.\""
-
-#, lua-format
-#~ msgid ""
-#~ "Fascinated, you finally speak up, prompting a smile from the uploaded "
-#~ "Thurion and a fairly long, friendly discussion about her experiences as "
-#~ "an uploaded Thurion and your experience as a pilot on the outside. You "
-#~ "find out that her name is Alicia. Somewhere in the conversation, a pair "
-#~ "of human Thurion guards enters the room. They ask Alicia how it went, and "
-#~ "she says that you've been properly introduced to Thurion culture and can "
-#~ "be trusted to roam free. The two guards then smile and shake your hand. "
-#~ "\"Welcome to the nebula, %s,\" one of them says. \"You now have "
-#~ "permission to roam Thurion space freely and conduct your business. Of "
-#~ "course, I trust you won't reveal our secret location to anyone. That "
-#~ "would be just as bad for you as it would be for us.\"\n"
-#~ "    You affirm that you will keep the Thurion's secret safe. \"Yes, "
-#~ "welcome,\" Alicia says. \"And do check out our bars and mission computers "
-#~ "from time to time. We very well might have some missions for you in the "
-#~ "future. In the meantime, buy yourself one of our nebula-resistant ships, "
-#~ "and make yourself comfortable. You are our honored guest and, I hope, the "
-#~ "first of many outsiders to learn the wonders of our way of life.\"\n"
-#~ "    The guards then promptly but politely escort you back to your ship, "
-#~ "which has been refueled while you were gone. This should be an "
-#~ "interesting experience...."
-#~ msgstr ""
-#~ "매료된 여러분은 마침내 업로드된 Thurion의 미소를 불러일으키고, 업로드된 "
-#~ "Thurion으로서의 경험과 외부에서 조종사로서의 경험에 대해 상당히 길고 친절"
-#~ "한 토론을 합니다. 당신은 그녀의 이름이 알리시아 것을 알아. 대화 어딘가에"
-#~ "서, 한 쌍의 인간 투리온 경비병이 방으로 들어갑니다. 그들은 얼리샤에게 어떻"
-#~ "게 갔는지 물어보고, 그녀는 당신이 투리온 문화를 제대로 소개받았으며 자유롭"
-#~ "게 로밍할 수 있다고 말합니다. 그런 다음 두 경비병은 미소를 지으며 악수를 "
-#~ "합니다. \"성운에 오신 것을 환영합니다, %s,\" 그들 중 하나는 말한다. \"이"
-#~ "제 Thurion 공간을 자유롭게 로밍하고 비즈니스를 수행할 수 있는 권한이 있습"
-#~ "니다. 물론, 나는 당신이 누구에게도 우리의 비밀 위치를 공개하지 않을 것이라"
-#~ "고 믿습니다. 그것은 우리에게 도무지 나쁘지 않을 것입니다.\"\n"
-#~ "    당신은 당신이 Thurion의 비밀을 안전하게 유지합니다 것을 단언. \"네, 환"
-#~ "영합니다.\" 알리시아가 말한다. \"그리고 때때로 우리의 바 및 임무 컴퓨터를 "
-#~ "체크 아웃 합니까. 우리는 아주 잘 미래에 당신을 위해 몇 가지 임무를 가질 "
-#~ "수 있습니다. 그 동안, 우리 성운에 강한 선박 중 하나를 구입하고, 자신을 편"
-#~ "안하게. 당신은 우리의 존경받는 손님이며, 나는 많은 외부인중 첫 번째가 우리"
-#~ "의 삶의 방식의 경이로움을 배울 수 있기를 바랍니다.\"\n"
-#~ "    경비원은 즉시 하지만 정중하게 당신이 사라진 동안 급유되었습니다 당신"
-#~ "의 배에 다시 호위. 이것은 흥미로운 경험이어야합니다...."
-
-#, lua-format
-#~ msgid ""
-#~ "The Empire discovered Sindbad. Try as you might, you and your comrades "
-#~ "could not stop the combined onslaught of the Empire and the Dvaereds, and "
-#~ "Sindbad erupted in a fiery explosion, killing Benito and all of your "
-#~ "other comrades who were within Sindbad. Before the station exploded, "
-#~ "Benito gave you a map leading into the unknown reaches of the inner "
-#~ "nebula and told you to use the map to find what lies within in the hopes "
-#~ "that one day, you can help the FLF rise again and defeat the Dvaereds "
-#~ "once and for all. Her last words were short, but memorable: \"Goodbye, "
-#~ "%s. Stay vigilant.\""
-#~ msgstr ""
-#~ "제국은 신드바드를 발견했다. 당신과 당신의 동지는 제국과 드베에르의 결합 "
-#~ "된 공격을 막을 수 없었고, 신드바드는 불타는 폭발로 분출하여 베니토와 신드"
-#~ "바드 내에 있던 다른 모든 동지들을 죽였습니다. 역이 폭발하기 전에 베니토는 "
-#~ "당신에게 내면성운의 알 수없는 도달으로 이어지는지도를 주고 언젠가 FLF가 다"
-#~ "시 상승하고 모두를 위해 Dvaereds를 물리 칠 수 있다는 희망에 안에 무엇이 있"
-#~ "는지 찾기 위해지도를 사용하라고 말했다. 그녀의 마지막 말은 짧지만 기억에 "
-#~ "남는 : \"안녕, %s. 경계하십시오.\""
-
-#~ msgid ""
-#~ "Having braved the nebula, you were introduced to the Thurion by Alicia, "
-#~ "one of many uploaded Thurion. The Thurion are the remnants of a secret "
-#~ "project initiated by the Empire, Project Thurion. The Za'lek, the "
-#~ "Collective, and the now-dead Proteron were also \"great projects\" of the "
-#~ "Empire, but Project Thurion was seen as an embarrassment, prompting the "
-#~ "Empire to attempt to kill the Thurion so word of their existence wouldn't "
-#~ "get out. However, the Thurion learned a way to upload the human mind to a "
-#~ "computer, allowing them to escape and rebuild.\n"
-#~ "    Now, the Thurion have formed a secret civilization. About half of the "
-#~ "Thurion population is uploaded and Alicia was quick to extol the virtues "
-#~ "of being uploaded, but also noted that you probably can't be uploaded due "
-#~ "to a likelihood of excessive brain damage.\n"
-#~ "    In any case, you have earned the Thurion's trust and have been "
-#~ "granted permission to roam Thurion space freely. You have promised to "
-#~ "keep the Thurion's secret safe. Alicia has said that the Thurion may have "
-#~ "missions for you in the future and has also recommended that you buy one "
-#~ "of the Thurion's nebula-resistant ships."
-#~ msgstr ""
-#~ "성운을 용감하게 한 후, 당신은 많은 업로드 투리온 중 하나 인 알리시아에 의"
-#~ "해 Thurion에 소개되었습니다. 투리온은 제국, 프로젝트 투리온에 의해 시작 비"
-#~ "밀 프로젝트의 잔재입니다. 자렉, 집단, 그리고 지금 죽은 프로테론은 제국의 "
-#~ "\"위대한 프로젝트\"였지만, 프로젝트 투리온은 당황한 것으로 여겨졌고, 제국"
-#~ "은 튀리온을 죽이려 한다는 속삭임으로 인해 그들의 존재에 대한 소문이 나오"
-#~ "지 않았다. 그러나 Thurion은 인간의 마음을 컴퓨터에 업로드하여 탈출하고 재"
-#~ "건할 수 있는 방법을 배웠습니다.\n"
-#~ "    이제 투리온은 비밀 문명을 형성했다. Thurion 인구의 약 절반이 업로드되"
-#~ "고 얼리샤는 업로드되는 미덕을 빠르게 찬양했지만 과도한 뇌 손상의 가능성으"
-#~ "로 인해 업로드 할 수 없다고 지적했습니다.\n"
-#~ "    어쨌든, 당신은 Thurion의 신뢰를 얻고 자유롭게 Thurion 공간을 로밍 할 "
-#~ "수있는 권한을 부여받았습니다. 당신은 튀리온의 비밀을 안전하게 지키겠다고 "
-#~ "약속했습니다. 얼리샤는 투리온이 미래에 여러분을 위한 임무를 가질 수 있다"
-#~ "고 말했으며, 또한 투리온의 성운에 강한 배 중 하나를 구입하는 것이 좋습니"
-#~ "다."
