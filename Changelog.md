@@ -35,6 +35,9 @@
   approach them.
 * Fixed a bug which could cause the Hyperspace key to incorrectly
   perform an escape jump if you had performed an escape jump recently.
+* The special revered class of Siriusites is now referred to as the
+  "Touchèd", rather than the "Touched" (indicating that the "E" is
+  pronounced, as in "learnèd" and "blessèd").
 
 ## 0.7.0
 

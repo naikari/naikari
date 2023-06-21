@@ -293,9 +293,9 @@ messages = {
    {
       faction = "Sirius",
       text = {
-         _([["I once met one of the Touched in person. Well, it wasn't really a meeting, our eyes simply met… but that instant alone was awe-inspiring."]]),
-         _([["My cousin was called to Mutris a year ago. He must be in Crater City by now. And one day, he will become one of the Touched!"]]),
-         _([["I hope to meet one of the Touched one day!"]]),
+         _([["I once met one of the Touchèd in person. Well, it wasn't really a meeting, our eyes simply met… but that instant alone was awe-inspiring."]]),
+         _([["My cousin was called to Mutris a year ago. He must be in Crater City by now. And one day, he will become one of the Touchèd!"]]),
+         _([["I hope to meet one of the Touchèd one day!"]]),
       },
       cond = function()
          local restriction = planet.cur():restriction()

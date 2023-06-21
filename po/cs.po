@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-20 21:43-0400\n"
+"POT-Creation-Date: 2023-06-21 03:11-0400\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -1552,7 +1552,7 @@ msgstr "Arch Arai"
 #, fuzzy
 msgid ""
 "Once an independent world, home to pirates and black market traders, Arch "
-"Arai has long since fallen under the spell of the Touched. Now it is a "
+"Arai has long since fallen under the spell of the Touchèd. Now it is a "
 "fairly law-abiding Sirius world, earning its existence through trade and "
 "industry like almost every other planet."
 msgstr ""
@@ -4088,9 +4088,9 @@ msgstr ""
 
 #: dat/assets/freshwater_station.xml:28
 msgid ""
-"The bar is dominated by the likeness of the Touched who officially blessed "
+"The bar is dominated by the likeness of the Touchèd who officially blessed "
 "the station. The local Sirius workers seem to take particular pride in the "
-"visit since the Touched usually operate only in population centers."
+"visit since the Touchèd usually operate only in population centers."
 msgstr ""
 
 #: dat/assets/fried_i.xml:2
@@ -6785,7 +6785,7 @@ msgstr ""
 msgid ""
 "Mutris. The very heart of Sirius space. This is where Crater City is to be "
 "found, home of Sirichana and the many Sirius pilgrims who will one day "
-"become the Touched. Crater City beïng the most holy of places, the airspace "
+"become the Touchèd. Crater City beïng the most holy of places, the airspace "
 "in a wide areä around it is closed. The spaceport is located thousands of "
 "kilometers away. All approaches happen under a tight escort, and non-"
 "Siriusites are confined to the commercial district of the planet's political "
@@ -10264,7 +10264,7 @@ msgid ""
 "Since then, the station has been claimed by petty criminals and loners, "
 "people who are persona non grata in whatever region they come from, but are "
 "unwilling or unable to turn pirate. Needless to say, the Wringer is not the "
-"most pleasant of places, and few come here by choice. Even the Touched avoid "
+"most pleasant of places, and few come here by choice. Even the Touchèd avoid "
 "the Wringer, despite the fact that Suna is within Sirius borders."
 msgstr ""
 
@@ -10854,7 +10854,7 @@ msgid ""
 "Urail is a halfway decently habitable planet. Its proximity to Mutris makes "
 "it a very popular place to live for Siriusites, which has driven the price "
 "of real estate to almost ridiculous heights. Many Siriusites believe that "
-"living on Urail gives them a better chance of meeting a Touched, or even "
+"living on Urail gives them a better chance of meeting a Touchèd, or even "
 "beïng called to Crater City themselves. There is no indication that this is "
 "indeed the case, however."
 msgstr ""
@@ -23198,18 +23198,18 @@ msgstr ""
 
 #: dat/events/control/npc.lua:296
 msgid ""
-"\"I once met one of the Touched in person. Well, it wasn't really a meeting, "
+"\"I once met one of the Touchèd in person. Well, it wasn't really a meeting, "
 "our eyes simply met… but that instant alone was awe-inspiring.\""
 msgstr ""
 
 #: dat/events/control/npc.lua:297
 msgid ""
 "\"My cousin was called to Mutris a year ago. He must be in Crater City by "
-"now. And one day, he will become one of the Touched!\""
+"now. And one day, he will become one of the Touchèd!\""
 msgstr ""
 
 #: dat/events/control/npc.lua:298
-msgid "\"I hope to meet one of the Touched one day!\""
+msgid "\"I hope to meet one of the Touchèd one day!\""
 msgstr ""
 
 #: dat/events/control/npc.lua:309
@@ -24551,7 +24551,7 @@ msgstr ""
 #. </flags>
 #. </event>
 #. --
-#. Preliminary draft of a new event where the player meets one of the Touched, who tries to convert him
+#. Event where the player meets one of the Touchèd, who tries to convert them
 #. Sudarshan S <ssoxygen@users.sf.net>
 #: dat/events/sirius/preach.lua:18
 msgid ""
@@ -24648,7 +24648,7 @@ msgid "No more shall we commit sins!"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:53
-msgid "Serves you right for attacking a Touched!"
+msgid "Serves you right for attacking a Touchèd!"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:54
@@ -24712,7 +24712,7 @@ msgid "You are jerked awake by a mysterious but compelling urge"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:78
-msgid "You feel... Touched... by a magical power"
+msgid "You feel… touched… by a magical power"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:82
@@ -24732,7 +24732,7 @@ msgid "Hell awaits, fools!"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:89
-msgid "Oh no! The Touched One is dead!"
+msgid "Oh no! The Touchèd One is dead!"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:90
@@ -24740,7 +24740,7 @@ msgid "Sirichana save our souls!"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:91
-msgid "We shall never forget You, O Touched One!"
+msgid "We shall never forget You, O Touchèd One!"
 msgstr ""
 
 #: dat/events/sirius/preach.lua:92
@@ -24809,7 +24809,7 @@ msgstr ""
 #. Pick a follower ship at random.
 #. The table now contains pilots, not ship names.
 #. set up a table to store attackers
-#. make these followers follow the Touched one
+#. make these followers follow the Touchèd one
 #. if Sirius is an enemy still keep these guys neutral... at first
 #. pick a random follower and have him praise Sirichana, after a delay
 #. have the preacher say something cool

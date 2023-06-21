@@ -9,8 +9,8 @@
  </flags>
 </event>
 --]]
---Preliminary draft of a new event where the player meets one of the Touched, who tries to convert him
---Sudarshan S <ssoxygen@users.sf.net>
+-- Event where the player meets one of the Touchèd, who tries to convert them
+-- Sudarshan S <ssoxygen@users.sf.net>
 
 local fleet = require "fleet"
 
@@ -50,7 +50,7 @@ praiseSirichana = {
 }
 
 attackerPunished = {
-   _("Serves you right for attacking a Touched!"),
+   _("Serves you right for attacking a Touchèd!"),
    _("Fry in hell, demon!"),
    _("May you suffer eternal torment!"),
    _("Your doom is Sirichana's curse!"),
@@ -75,7 +75,7 @@ presence = {
    _("You feel an overwhelming presence nearby!"),
    _("Something compels you to stop"),
    _("You are jerked awake by a mysterious but compelling urge"),
-   _("You feel... Touched... by a magical power"),
+   _("You feel… touched… by a magical power"),
 }
 
 startCombat = {
@@ -86,9 +86,9 @@ startCombat = {
 }
 
 preacherDead = {
-   _("Oh no! The Touched One is dead!"),
+   _("Oh no! The Touchèd One is dead!"),
    _("Sirichana save our souls!"),
-   _("We shall never forget You, O Touched One!"),
+   _("We shall never forget You, O Touchèd One!"),
    _("We swear eternal revenge!"),
 }
 
@@ -198,7 +198,7 @@ function theFunBegins()
    --set up a table to store attackers
    attackers={}
 
-   --make these followers follow the Touched one
+   --make these followers follow the Touchèd one
    --if Sirius is an enemy still keep these guys neutral... at first
    for i, p in ipairs(followers) do
       p:setFriendly()
