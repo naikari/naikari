@@ -557,9 +557,11 @@ static void info_openWeapons( unsigned int wid )
    window_addText( wid, 220, y, wlen, 20, 0, "txtLocal", NULL, NULL,
          _("Current Set Settings"));
    y -= 30;
-   window_addCheckbox( wid, 220, y, wlen, 20,
-         "chkFire", _("Enable instant mode (only for weapons)"), weapons_fire,
-         (pilot_weapSetTypeCheck( player.p, info_eq_weaps.weapons )==WEAPSET_TYPE_WEAPON) );
+   window_addCheckbox(wid, 220, y, wlen, 20, "chkFire",
+         _("Instantly fire with weapon set key (only for weapons)"),
+         weapons_fire,
+         (pilot_weapSetTypeCheck(player.p, info_eq_weaps.weapons)
+            == WEAPSET_TYPE_WEAPON));
    y -= 25;
    window_addCheckbox( wid, 220, y, wlen, 20,
          "chkInrange", _("Only shoot weapons that are in range"), weapons_inrange,
@@ -772,12 +774,14 @@ static void weapons_renderLegend( double bx, double by, double bw, double bh, vo
    y -= 30.;
    toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
    toolkit_drawTriangle( x, y, x+10, y+5, x, y+10, &cWhite );
-   gl_print( &gl_smallFont, x+20, y, &cFontWhite, _("Primary Weapon (Left click toggles)") );
+   gl_print(&gl_smallFont, x+20, y, &cFontWhite,
+         _("Primary Weapon / Activated Outfit (Left-click slot to toggle)"));
 
    y -= 25.;
    toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
    toolkit_drawTriangle( x, y, x+10, y+5, x, y+10, &cBlack );
-   gl_print( &gl_smallFont, x+20, y, &cFontWhite, _("Secondary Weapon (Right click toggles)") );
+   gl_print(&gl_smallFont, x+20, y, &cFontWhite,
+         _("Secondary Weapon (Right-click slot to toggle)"));
 }
 
 

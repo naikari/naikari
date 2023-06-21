@@ -391,9 +391,12 @@ const char *pilot_weapSetName( Pilot* p, int id )
    if (array_size(ws->slots)==0)
       return _("Unused");
    switch (ws->type) {
-      case WEAPSET_TYPE_CHANGE: return _("Weapons - Switched");  break;
-      case WEAPSET_TYPE_WEAPON: return _("Weapons - Instant");   break;
-      case WEAPSET_TYPE_ACTIVE: return _("Abilities - Toggled"); break;
+      case WEAPSET_TYPE_CHANGE:
+         return _("Weapons – Switched");
+      case WEAPSET_TYPE_WEAPON:
+         return _("Weapons – Instant Firing");
+      case WEAPSET_TYPE_ACTIVE:
+         return _("Abilities – Toggled");
    }
    return NULL;
 }

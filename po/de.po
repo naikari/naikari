@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-21 03:11-0400\n"
+"POT-Creation-Date: 2023-06-21 03:36-0400\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -10650,7 +10650,7 @@ msgstr ""
 #: src/dev_sysedit.c:1884 src/dev_sysedit.c:1922 src/dev_sysedit.c:1957
 #: src/dev_sysedit.c:1963 src/dev_uniedit.c:956 src/dev_uniedit.c:1135
 #: src/dev_uniedit.c:1368 src/dev_uniedit.c:1434 src/info.c:279 src/info.c:383
-#: src/info.c:835 src/input.c:649 src/land.c:924 src/land_outfits.c:360
+#: src/info.c:839 src/input.c:649 src/land.c:924 src/land_outfits.c:360
 #: src/land_outfits.c:388 src/land_outfits.c:632 src/land_shipyard.c:141
 #: src/land_shipyard.c:211 src/land_trade.c:109 src/land_trade.c:111
 #: src/land_trade.c:198 src/load.c:401 src/load.c:451 src/load.c:489
@@ -31515,7 +31515,7 @@ msgstr "Abbezahlt"
 #. Kills of the faction's allies
 #. Missions done for the faction's enemies
 #. Missions done for the faction's allies
-#: dat/factions/standing/skel.lua:24 src/info.c:770
+#: dat/factions/standing/skel.lua:24 src/info.c:772
 msgid "Legend"
 msgstr "Legende"
 
@@ -53970,8 +53970,8 @@ msgstr "Kommunikationskanal"
 #: src/dev_sysedit.c:1494 src/dev_sysedit.c:1561 src/dev_sysedit.c:1756
 #: src/dev_sysedit.c:1932 src/dev_sysedit.c:2017 src/dev_uniedit.c:1021
 #: src/dev_uniedit.c:1233 src/dev_uniedit.c:1491 src/info.c:269 src/info.c:354
-#: src/info.c:436 src/info.c:582 src/info.c:798 src/info.c:1015 src/info.c:1102
-#: src/info.c:1482 src/land_outfits.c:170 src/map.c:337 src/map_find.c:1065
+#: src/info.c:436 src/info.c:584 src/info.c:802 src/info.c:1019 src/info.c:1106
+#: src/info.c:1486 src/land_outfits.c:170 src/map.c:337 src/map_find.c:1065
 #: src/map_system.c:204
 msgid "Close"
 msgstr "Schließen"
@@ -56155,31 +56155,32 @@ msgid "Current Set Settings"
 msgstr "Aktuelle Set-Einstellungen"
 
 #: src/info.c:561
-msgid "Enable instant mode (only for weapons)"
+#, fuzzy
+msgid "Instantly fire with weapon set key (only for weapons)"
 msgstr "Sofortmodus aktivieren (nur für Waffen)"
 
-#: src/info.c:565
+#: src/info.c:567
 msgid "Only shoot weapons that are in range"
 msgstr "Nur Waffen, die in Reichweite sind, feuern"
 
-#: src/info.c:569
+#: src/info.c:571
 msgid "Global Settings"
 msgstr "Globale Einstellungen"
 
-#: src/info.c:572
+#: src/info.c:574
 msgid "Automatically handle weapons"
 msgstr "Waffen automatisch bedienen"
 
-#: src/info.c:575
+#: src/info.c:577
 #, fuzzy
 msgid "Aiming helper"
 msgstr "Nahkampfzielhelfer"
 
-#: src/info.c:667
+#: src/info.c:669
 msgid "Enable autoweapons?"
 msgstr "Autowaffen aktivieren?"
 
-#: src/info.c:668
+#: src/info.c:670
 msgid ""
 "Are you sure you want to enable automatic weapon groups for the ship?\n"
 "\n"
@@ -56190,120 +56191,122 @@ msgstr ""
 "\n"
 "Dies wird alle manuell angepassten Waffengruppen überschreiben."
 
-#: src/info.c:698
+#: src/info.c:700
 msgid "Instant mode is unavailable for activated outfit weapon sets."
 msgstr ""
 
-#: src/info.c:716
+#: src/info.c:718
 #, fuzzy
 msgid "You cannot set all your weapon sets to fire groups!"
 msgstr "Du kannst nicht all deine Waffengruppen auf Feuergruppen setzen!"
 
-#: src/info.c:775
-msgid "Primary Weapon (Left click toggles)"
+#: src/info.c:778
+#, fuzzy
+msgid "Primary Weapon / Activated Outfit (Left-click slot to toggle)"
 msgstr "Primärwaffe (Rechtsklick schaltet um)"
 
-#: src/info.c:780
-msgid "Secondary Weapon (Right click toggles)"
+#: src/info.c:784
+#, fuzzy
+msgid "Secondary Weapon (Right-click slot to toggle)"
 msgstr "Sekundärwaffe (Rechtsklick schaltet um)"
 
-#: src/info.c:800
+#: src/info.c:804
 msgid "Jettison"
 msgstr "Wegwerfen"
 
-#: src/info.c:906
+#: src/info.c:910
 msgid ""
 "You cannot jettison cargo right now as your ship is being controlled by a "
 "mission or event."
 msgstr ""
 
-#: src/info.c:918 src/info.c:1267
+#: src/info.c:922 src/info.c:1271
 msgid "Abort Mission"
 msgstr "Mission abbrechen"
 
-#: src/info.c:919 src/info.c:1268
+#: src/info.c:923 src/info.c:1272
 msgid "Are you sure you want to abort this mission?"
 msgstr "Bist du dir sicher, dass du diese Mission abbrechen willst?"
 
-#: src/info.c:935
+#: src/info.c:939
 #, c-format
 msgid "Cargo '%d' does not belong to any active mission."
 msgstr "Ware „%d“ gehört zu keiner aktiven Mission."
 
-#: src/info.c:1105
+#: src/info.c:1109
 #, fuzzy
 msgid "&Abort"
 msgstr "Abbrechen"
 
 #. no missions
 #. Make sure you have missions.
-#: src/info.c:1154 src/info.c:1182 src/land.c:641 src/land.c:721 src/land.c:762
+#: src/info.c:1158 src/info.c:1186 src/land.c:641 src/land.c:721 src/land.c:762
 msgid "No Missions"
 msgstr "Keine Missionen"
 
-#: src/info.c:1183 src/info.c:1184 src/info.c:1209 src/land.c:598
+#: src/info.c:1187 src/info.c:1188 src/info.c:1213 src/land.c:598
 #: src/land.c:763
 msgid "#nReward:#0 None"
 msgstr "#nBelohnung:#0 Keine"
 
-#: src/info.c:1194
+#: src/info.c:1198
 msgid "You currently have no active missions."
 msgstr "Du hast im Moment keine aktiven Missionen."
 
-#: src/info.c:1207 src/land.c:774
+#: src/info.c:1211 src/land.c:774
 #, c-format
 msgid "#nReward:#0 %s"
 msgstr "#nBelohnung:#0 %s"
 
-#: src/info.c:1223
+#: src/info.c:1227
 #, c-format
 msgid "#nCurrent Objective:#0 %s"
 msgstr ""
 
-#: src/info.c:1262
+#: src/info.c:1266
 msgid ""
 "You cannot abort missions right now as your ship is being controlled by a "
 "mission or event."
 msgstr ""
 
-#: src/info.c:1419
+#: src/info.c:1423
 msgid "Log message"
 msgstr "Logbuchnachricht"
 
-#: src/info.c:1441 src/info.c:1450
+#: src/info.c:1445 src/info.c:1454
 #, fuzzy
 msgid "Add Log Entry"
 msgstr "Neuer Eintrag"
 
-#: src/info.c:1442
+#: src/info.c:1446
 #, fuzzy
 msgid "Add an entry to your journal:"
 msgstr "Eintrag für dein Tagebuch hinzufügen:"
 
-#: src/info.c:1445
+#: src/info.c:1449
 #, fuzzy
 msgctxt "log"
 msgid "Journal"
 msgstr "Burnan"
 
-#: src/info.c:1451
+#: src/info.c:1455
 #, c-format
 msgid "Add an entry to the log titled '%s':"
 msgstr "Eintrag zum Logbuch namens ‚%s‘ hinzufügen:"
 
-#: src/info.c:1457
+#: src/info.c:1461
 msgid "Cannot add log"
 msgstr "Kann nicht hinzufügen"
 
-#: src/info.c:1457
+#: src/info.c:1461
 msgid "Cannot find this log!  Something went wrong here!"
 msgstr "Dieses Protokoll kann nicht gefunden werden! Etwas lief hier falsch!"
 
-#: src/info.c:1484
+#: src/info.c:1488
 msgid "View Entry"
 msgstr "Eintrag ansehen"
 
-#: src/info.c:1487
+#: src/info.c:1491
 msgid "Add Entry"
 msgstr "Neuer Eintrag"
 
@@ -61267,19 +61270,22 @@ msgstr "Pilot „%s“ KI -> „attacked“: %s"
 msgid "Unused"
 msgstr "Unbenutzt"
 
-#: src/pilot_weapon.c:394
-msgid "Weapons - Switched"
+#: src/pilot_weapon.c:395
+#, fuzzy
+msgid "Weapons – Switched"
 msgstr "Waffen – Gewechselt"
 
-#: src/pilot_weapon.c:395
-msgid "Weapons - Instant"
+#: src/pilot_weapon.c:397
+#, fuzzy
+msgid "Weapons – Instant Firing"
 msgstr "Waffen – Sofort"
 
-#: src/pilot_weapon.c:396
-msgid "Abilities - Toggled"
+#: src/pilot_weapon.c:399
+#, fuzzy
+msgid "Abilities – Toggled"
 msgstr "Fähigkeiten – Umgeschaltet"
 
-#: src/pilot_weapon.c:1211
+#: src/pilot_weapon.c:1214
 #, c-format
 msgid "Shooting unknown weapon type: %s"
 msgstr "Feuern eines unbekannten Waffentyps: %s"
