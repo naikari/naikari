@@ -45,7 +45,7 @@
    MISSION: Undercover in Hakoi
    DESCRIPTION:
       The Empire tasks the player with talking to civilians in Hakoi in
-      an effort to find out where the pirates in the area came from.
+      an effort to find out where the pirates in the areä came from.
 
 --]]
 

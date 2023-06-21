@@ -202,7 +202,7 @@ function land()
          if not intime then
             pay_text = {
                _("Passengers rush out of your ship, clearly stressed by how much longer they were out on the cruise than they hoped. Because of the delay, you are only paid {credits}."),
-               _("Your now upset pasengers eagerly disembark back onto {planet}, trying to make up for the lost time you caused by being late. By the end of it, you are only paid {credits} for the botched cruise."),
+               _("Your now upset pasengers eagerly disembark back onto {planet}, trying to make up for the lost time you caused by returning late. By the end of it, you are only paid {credits} for the botched cruise."),
                _("Before you know it, your passengers, angry at you for your late return, are out of your ship. There are no tips, and when you count out the total of your fares, you find that you have only been paid {credits}."),
             }
             credits = reward / 2

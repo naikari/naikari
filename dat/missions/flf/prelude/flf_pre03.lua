@@ -70,7 +70,7 @@ text[4] = _([[When you left Sindbad Station, it was a cold, lonely place for you
 
 But now that you have returned victorious over the Dvaered, the place has become considerably more hospitable. There are more smiles on people's faces, and some even tell you you did a fine job. Among them is Corporal Benito. She walks up to you and offers you her hand.]])
 
-text[5] = _([["Welcome back, %s, and congratulations. I didn't expect the Dvaered to send reinforcements, much less a Vigilance. I certainly wouldn't have sent you alone if I did, and I might not have sent you at all. But then, you're still in one piece, so maybe I shouldn't worry so much, eh?"]])
+text[5] = _([["Welcome back, %s, and congratulations. I didn't expect the Dvaered to send reënforcements, much less a Vigilance. I certainly wouldn't have sent you alone if I did, and I might not have sent you at all. But then, you're still in one piece, so maybe I shouldn't worry so much, eh?"]])
 
 text[6] = _([[Benito takes you to the station's bar and buys you what for lack of a better word must be called a drink.
 

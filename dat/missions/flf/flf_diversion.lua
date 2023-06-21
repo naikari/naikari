@@ -36,7 +36,7 @@ local mh = require "misnhelper"
 require "missions/flf/flf_common"
 
 
-misn_desc = _("An FLF special task force needs an opening to complete a mission without too much Dvaered interference. Create this opening by wreaking havoc in the nearby {system} system.")
+misn_desc = _("An FLF special task force needs an opening to complete a mission without too much Dvaered interference. Creäte this opening by wreaking havoc in the nearby {system} system.")
 
 
 function create()

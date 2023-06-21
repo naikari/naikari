@@ -43,9 +43,9 @@ slow_start_text = {
 }
 
 slow_end_text = {
-   _([[Suddenly, you hear a loud crack from your engine, and it starts to operate more quietly and at its full capacity again.]]),
+   _([[Suddenly, you hear a loud crack from your engine, and it starts to operate more quiëtly and at its full capacity again.]]),
    _([[Suddenly you feel a jolt and hear a strange noise coming from your engine. Shortly after, the engine returns to normal.]]),
-   _([[Your engine gets even louder and you brace yourself for an explosion or something, but then it quiets down and returns to normal, much to your surprise, confusion, and relief.]]),
+   _([[Your engine gets even louder and you brace yourself for an explosion or something, but then it quiëts down and returns to normal, much to your surprise, confusion, and relief.]]),
 }
 
 slow_land_text = {
@@ -66,11 +66,11 @@ haywire_start_text = {
 
 haywire_end_text = {
    _([[You regain control of your ship as suddenly and as you lost it. Confused but happy to be alive, you breathe a sigh of relief.]]),
-   _([[Suddenly, you see sparks coming from your console. Your lights flicker and you prepare for the worst, but then everything quiets down and control of your ship is restored.]]),
+   _([[Suddenly, you see sparks coming from your console. Your lights flicker and you prepare for the worst, but then everything quiëts down and control of your ship is restored.]]),
 }
 
 falsealarm_text = {
-   _([[You prepare for the worst as your engine makes noises and refuses to jump or land, but it soon quiets down and returns to normal. You breathe a sigh of relief.]]),
+   _([[You prepare for the worst as your engine makes noises and refuses to jump or land, but it soon quiëts down and returns to normal. You breathe a sigh of relief.]]),
    _([[You brace yourself for an explosion or something as your engine starts acting up, but it settles down and starts working properly again anticlimactically.]]),
    _([[Your engine sputters and refuses to jump or land. You begin attempting to work on the problem, but before you can start, the engine suddenly starts working normally again.]]),
    _([[You curse under your breath as your engine stops working properly, but just as you're running through the engine failure checklist, it starts working again inexplicably. You find that you are now unable to reproduce the problem.]]),

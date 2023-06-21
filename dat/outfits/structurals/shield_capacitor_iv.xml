@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>72</mass>
   <price>400000</price>
-  <description>The pinnacle in shield boosting technology, reinforcing the defenses of ships fighting on the front lines.</description>
+  <description>The pinnacle in shield boosting technology, reënforcing the defenses of ships fighting on the front lines.</description>
   <gfx_store>capacitor8.webp</gfx_store>
  </general>
  <specific type="modification">

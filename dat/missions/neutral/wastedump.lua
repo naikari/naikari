@@ -38,10 +38,11 @@
 local fmt = require "fmt"
 
 
-text = {}
-text[1] = _("The waste containers are loaded onto your ship and you are paid %s. You begin to wonder if accepting this job was really a good idea.")
-text[2] = _("Workers pack your cargo hold full of as much garbage as it can hold, then hastily hand you a credit chip containing %s. Smelling the garbage, you immediately regret taking the job.")
-text[3] = _("Your hold is crammed full with garbage and you are summarily paid %s. By the time the overpowering stench emanating from your cargo hold is apparent to you, it's too late to back down; you're stuck with this garbage until you can find some place to get rid of it.")
+text = {
+   _("The waste containers are loaded onto your ship and you are paid {credits}. You begin to wonder if accepting this job was really a good ideä."),
+   _("Workers pack your cargo hold full of as much garbage as it can hold, then hastily hand you a credit chip containing {credits}. Smelling the garbage, you immediately regret taking the job."),
+   _("Your hold is crammed full with garbage and you are summarily paid {credits}. By the time the overpowering stench emanating from your cargo hold is apparent to you, it's too late to back down; you're stuck with this garbage until you can find some place to get rid of it."),
+}
 
 finish_text = {}
 finish_text[1] = _("You drop the garbage off, relieved to have it out of your ship.")
@@ -54,13 +55,13 @@ abort_text[1] = _("Sick and tired of smelling garbage, you illegally jettison th
 abort_text[2] = _("You decide that the nearest waste dump location is too far away for you to bother to go to and simply jettison the containers of waste. You hope you don't get caught.")
 abort_text[3] = _("You dump the waste containers into space illegally, noting that you should make sure not to get caught by authorities.")
 
-abort_landed_text = _("In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of %s.")
+abort_landed_text = _("In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of {credits}.")
 
-abort_landed_broke_text = _([[In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of %s.
+abort_landed_broke_text = _([[In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of {credits}.
 
 When you explain that you don't have enough money to pay the fine, the officials confiscate outfits and cargo you own to make up the difference.]])
 
-nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold being equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
+nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold beïng equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
 
 noland_msg = _("Get lost, waste dumping scum! We don't want you here!")
 
@@ -123,7 +124,7 @@ function accept ()
    credits = credits_factor * q
 
    local txt = text[rnd.rnd(1, #text)]
-   tk.msg("", txt:format(fmt.credits(credits)))
+   tk.msg("", fmt.f(txt, {credits=fmt.credits(credits)}))
 
    local c = misn.cargoNew(N_("Waste Containers"), N_("A bunch of waste containers leaking all sorts of indescribable liquids."))
    cid = misn.cargoAdd(c, q)
@@ -164,9 +165,9 @@ function abort ()
       local fine = 2 * credits
       local money = player.credits()
       if money >= fine then
-         tk.msg("", abort_landed_text:format(fmt.credits(fine)))
+         tk.msg("", fmt.f(abort_landed_text, {credits=fmt.credits(fine)}))
       else
-         tk.msg("", abort_landed_broke_text:format(fmt.credits(fine)))
+         tk.msg("", fmt.f(abort_landed_broke_text, {credits=fmt.credits(fine)}))
 
          -- Start by confiscating cargo...
          local pla = planet.cur()

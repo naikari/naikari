@@ -8,7 +8,7 @@
   <mass>30</mass>
   <price>600000</price>
   <gfx_store>drone_fighter.webp</gfx_store>
-  <description>This miniaturized fighter bay uses advanced Collective technologies to sustain a pair of Drone Fighters. All the equipment needed to create and take care of them is provided with the bay.</description>
+  <description>This miniaturized fighter bay uses advanced Collective technologies to sustain a pair of Drone Fighters. All the equipment needed to build and take care of them is provided with the bay.</description>
   <cpu>-110</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
