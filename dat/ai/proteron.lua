@@ -34,18 +34,19 @@ function create()
    if rnd.rnd() < 0.4 then
       mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
-            _("\"I can always use some income. {credits} and you were never here.\""),
-            {credits=fmt.credits(mem.bribe)})
-      mem.bribe_paid = _("\"Get lost before I have to dispose of you.\"")
+         p_("bribe_prompt", "\"I can always use some income. {credits} and you were never here.\""),
+         {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = p_("bribe_paid", "\"Get lost before I have to dispose of you.\"")
    else
       bribe_no = {
-         _("\"You won't buy your way out of this one.\""),
-         _("\"We like to make examples out of scum like you.\""),
-         _("\"You've made a huge mistake.\""),
-         _("\"Bribery carries a harsh penalty, scum.\""),
-         _("\"I'm not interested in your blood money!\""),
-         _("\"All the money in the universe won't save you now!\""),
-         _("\"Of course common scum like you would try bribery! You die!\""),
+         p_("bribe_no", "\"You won't buy your way out of this one.\""),
+         p_("bribe_no", "\"We like to make examples out of scum like you.\""),
+         p_("bribe_no", "\"You've made a huge mistake.\""),
+         p_("bribe_no", "\"Bribery carries a harsh penalty, scum.\""),
+         p_("bribe_no", "\"I'm not interested in your blood money!\""),
+         p_("bribe_no", "\"All the money in the universe won't save you now!\""),
+         p_("bribe_no", "\"Of course common scum like you would try bribery! You die!\""),
+         p_("bribe_no", "\"I would never take money from degenerate scum like you!\""),
       }
       mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
@@ -67,22 +68,27 @@ function taunt ( target, offense )
    -- some taunts
    if offense then
       taunts = {
-            _("Animals like you don't deserve to live!"),
-            _("Begone from this universe, inferior scum!"),
-            _("We will cleanse you and all other scum from this universe!"),
-            _("Enemies of the state will not be tolerated!"),
-            _("Long live the Proteron!"),
-            _("War is peace!"),
-            _("Freedom is slavery!"),
+         p_("taunt", "Animals like you don't deserve to live!"),
+         p_("taunt", "Begone from this universe, inferior scum!"),
+         p_("taunt", "We will cleanse you and all other scum from this universe!"),
+         p_("taunt", "Enemies of the state will not be tolerated!"),
+         p_("taunt", "Long live the Proteron!"),
+         p_("taunt", "War is peace!"),
+         p_("taunt", "Freedom is slavery!"),
+         p_("taunt", "Hail the great leader!"),
+         p_("taunt", "It's time to make the galaxy great again!"),
+         p_("taunt", "I will cleanse the galaxy of degenerate scum like you!"),
       }
    else
       taunts = {
-            _("How dare you attack the Proteron?!"),
-            _("I will have your head!"),
-            _("You'll regret that!"),
-            _("Your fate has been sealed, dissident!"),
-            _("You will pay for your treason!"),
-            _("Die along with the old Empire!"),
+         p_("taunt_defensive", "How dare you attack the Proteron?!"),
+         p_("taunt_defensive", "I will have your head!"),
+         p_("taunt_defensive", "You'll regret that!"),
+         p_("taunt_defensive", "Your fate has been sealed, dissident!"),
+         p_("taunt_defensive", "You will pay for your treason!"),
+         p_("taunt_defensive", "Die along with the old Empire!"),
+         p_("taunt_defensive", "Inferior scum! How dare you attack me?!"),
+         p_("taunt_defensive", "Degenerate scum! You die!"),
       }
    end
 

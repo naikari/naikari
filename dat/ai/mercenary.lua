@@ -16,14 +16,15 @@ function create ()
 
    if rnd.rnd() < 0.3 then
       mem.bribe = math.sqrt(p:stats().mass) * (750. * rnd.rnd() + 2500.)
-      mem.bribe_prompt = fmt.f(_("\"Your life is worth {credits} to me.\""),
-            {credits=fmt.credits(mem.bribe)})
-      mem.bribe_paid = _("\"Beat it.\"")
+      mem.bribe_prompt = fmt.f(
+         p_("bribe_prompt", "\"Your life is worth {credits} to me.\""),
+         {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = p_("bribe_paid", "\"Beat it.\"")
    else
       if rnd.rnd() < 0.5 then
-         mem.bribe_no = _("\"You won't buy your way out of this one.\"")
+         mem.bribe_no = p_("bribe_no", "\"You won't buy your way out of this one.\"")
       else
-         mem.bribe_no = _("\"I'm afraid you can't make it worth my while.\"")
+         mem.bribe_no = p_("bribe_no", "\"I'm afraid you can't make it worth my while.\"")
       end
    end
 
@@ -50,15 +51,18 @@ function taunt(target, offense)
    -- some taunts
    if offense then
       taunts = {
-            _("Don't take this personally."),
-            _("It's just business.")
+         p_("taunt", "Don't take this personally."),
+         p_("taunt", "It's just business."),
+         p_("taunt", "Sorry."),
+         p_("taunt", "Nothing personal."),
       }
    else
       taunts = {
-            _("Your skull will make a great hood ornament."),
-            _("I've destroyed ships twice the size of yours!"),
-            _("I'll crush you like a grape!"),
-            _("This isn't what I signed up for!")
+         p_("taunt_defensive", "Your skull will make a great hood ornament!"),
+         p_("taunt_defensive", "I've destroyed ships twice the size of yours!"),
+         p_("taunt_defensive", "I'll crush you like a grape!"),
+         p_("taunt_defensive", "This isn't what I signed up for!"),
+         p_("taunt_defensive", "Oh, now you're in for it!"),
       }
    end
 

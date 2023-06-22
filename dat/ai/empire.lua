@@ -35,17 +35,17 @@ function create()
    if rnd.rnd() < 0.3 then
       mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
-            _("\"For {credits} I could forget about seeing you.\""),
-            {credits=fmt.credits(mem.bribe)})
-      mem.bribe_paid = _("\"Now scram before I change my mind.\"")
+         p_("bribe_prompt", ("\"For {credits} I could forget about seeing you.\""),
+         {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = p_("bribe_paid", "\"Now scram before I change my mind.\"")
    else
       bribe_no = {
-         _("\"You won't buy your way out of this one.\""),
-         _("\"The Empire likes to make examples out of scum like you.\""),
-         _("\"You've made a huge mistake.\""),
-         _("\"Bribery carries a harsh penalty, scum.\""),
-         _("\"I'm not interested in your blood money!\""),
-         _("\"All the money in the world won't save you now!\"")
+         p_("bribe_no", "\"You won't buy your way out of this one.\""),
+         p_("bribe_no", "\"The Empire likes to make examples out of scum like you.\""),
+         p_("bribe_no", "\"You've made a huge mistake.\""),
+         p_("bribe_no", "\"Bribery carries a harsh penalty, scum.\""),
+         p_("bribe_no", "\"I'm not interested in your blood money!\""),
+         p_("bribe_no", "\"All the money in the world won't save you now!\"")
       }
       mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
@@ -66,19 +66,19 @@ function taunt ( target, offense )
    -- some taunts
    if offense then
       taunts = {
-         _("There is no room in this universe for scum like you!"),
-         _("The Empire will enjoy your death!"),
-         _("Your head will make a fine gift for the Emperor!"),
-         _("None survive the wrath of the Emperor!"),
-         _("Enjoy your last moments, criminal!"),
+         p_("taunt", "There is no room in this universe for scum like you!"),
+         p_("taunt", "The Empire will enjoy your death!"),
+         p_("taunt", "Your head will make a fine gift for the Emperor!"),
+         p_("taunt", "None survive the wrath of the Emperor!"),
+         p_("taunt", "Enjoy your last moments, criminal!"),
       }
    else
       taunts = {
-         _("You dare attack me?!"),
-         _("You are no match for the Empire!"),
-         _("The Empire will have your head!"),
-         _("You'll regret that!"),
-         _("That was a fatal mistake!"),
+         p_("taunt_defensive", "You dare attack me?!"),
+         p_("taunt_defensive", "You are no match for the Empire!"),
+         p_("taunt_defensive", "The Empire will have your head!"),
+         p_("taunt_defensive", "You'll regret that!"),
+         p_("taunt_defensive", "That was a fatal mistake!"),
       }
    end
 

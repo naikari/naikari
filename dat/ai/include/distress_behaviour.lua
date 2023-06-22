@@ -1,4 +1,5 @@
 -- Basic behaviour for non-combat ships when in distress
+local fmt = require "fmt"
 
 mem.shield_run = 100
 mem.armour_run = 100
@@ -11,15 +12,17 @@ mem.careful   = true
 function sos ()
    local plt = ai.pilot()
    msg = {
-      _("Local security: requesting assistance!"),
-      _("Mayday! We are under attack!"),
-      _("Requesting assistance. We are under attack!"),
-      string.format(_("%s vessel under attack! Requesting help!"), plt:faction()),
-      _("Help! Ship under fire!"),
-      _("Taking hostile fire! Need assistance!"),
-      _("We are under attack, require support!"),
-      _("Mayday! Ship taking damage!"),
-      string.format(_("Mayday! %s %s being assaulted!"), plt:faction(), string.lower(plt:ship():class()))
+      p_("sos", "Local security: requesting assistance!"),
+      p_("sos", "Mayday! We are under attack!"),
+      p_("sos", "Requesting assistance. We are under attack!"),
+      fmt.f(p_("sos", "{faction} vessel under attack! Requesting help!"),
+         {faction=plt:faction()}),
+      p_("sos", "Help! Ship under fire!"),
+      p_("sos", "Taking hostile fire! Need assistance!"),
+      p_("sos", "We are under attack, require support!"),
+      p_("sos", "Mayday! Ship taking damage!"),
+      fmt.f(p_("sos", "Mayday! {faction} {shipclass} being assaulted!"),
+         {faction=plt:faction(), shipclass=_(plt:ship():class())}),
    }
    ai.settarget(ai.taskdata())
    ai.distress(msg[rnd.rnd(1,#msg)])

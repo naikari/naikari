@@ -30,37 +30,37 @@ function create()
    else
       mem.bribe = math.sqrt(p:stats().mass) * (300*rnd.rnd() + 850)
       bribe_prompt = {
-         _("\"It'll cost you {credits} for me to ignore your pile of rubbish.\""),
-         _("\"I'm in a good mood so I'll let you go for {credits}.\""),
-         _("\"Send me {credits} or you're dead.\""),
-         _("\"Pay up {credits} or it's the end of the line.\""),
-         _("\"Your money or your life. {credits} and make the choice quickly.\""),
-         _("\"Money talks bub. {credits} up front or get off my channel.\""),
-         _("\"Shut up and give me your money! {credits} now.\""),
-         _("\"You're either really desperate or really rich. {credits} or shut up.\""),
-         _("\"If you're willing to negotiate I'll gladly take {credits} to not kill you.\""),
-         _("\"You give me {credits} and I'll act like I never saw you.\""),
-         _("\"So this is the part where you pay up or get shot up. Your choice. What'll be, {credits} or…?\""),
-         _("\"Pay up or don't. {credits} now just means I'll wait till later to collect the rest.\""),
-         _("\"This is a toll road, pay up {credits} or die.\""),
+         p_("bribe_prompt", "\"It'll cost you {credits} for me to ignore your pile of rubbish.\""),
+         p_("bribe_prompt", "\"I'm in a good mood so I'll let you go for {credits}.\""),
+         p_("bribe_prompt", "\"Send me {credits} or you're dead.\""),
+         p_("bribe_prompt", "\"Pay up {credits} or it's the end of the line.\""),
+         p_("bribe_prompt", "\"Your money or your life. {credits} and make the choice quickly.\""),
+         p_("bribe_prompt", "\"Money talks bub. {credits} up front or get off my channel.\""),
+         p_("bribe_prompt", "\"Shut up and give me your money! {credits} now.\""),
+         p_("bribe_prompt", "\"You're either really desperate or really rich. {credits} or shut up.\""),
+         p_("bribe_prompt", "\"If you're willing to negotiate I'll gladly take {credits} to not kill you.\""),
+         p_("bribe_prompt", "\"You give me {credits} and I'll act like I never saw you.\""),
+         p_("bribe_prompt", "\"So this is the part where you pay up or get shot up. Your choice. What'll be, {credits} or…?\""),
+         p_("bribe_prompt", "\"Pay up or don't. {credits} now just means I'll wait till later to collect the rest.\""),
+         p_("bribe_prompt", "\"This is a toll road, pay up {credits} or die.\""),
       }
       mem.bribe_prompt = fmt.f(bribe_prompt[rnd.rnd(1, #bribe_prompt)],
             {credits=fmt.credits(mem.bribe)})
       bribe_paid = {
-         _("\"You're lucky I'm so kind.\""),
-         _("\"Life doesn't get easier than this.\""),
-         _("\"Pleasure doing business.\""),
-         _("\"See you again, real soon.\""),
-         _("\"I'll be around if you get generous again.\""),
-         _("\"Lucky day, lucky day!\""),
-         _("\"And I didn't even have to kill anyone!\""),
-         _("\"See, this is how we become friends.\""),
-         _("\"Now if I kill you it'll be just for fun!\""),
-         _("\"You just made a good financial decision today.\""),
-         _("\"Know what? I won't kill you.\""),
-         _("\"Something feels strange. It's almost as if my urge to kill you has completely dissipated.\""),
-         _("\"Can I keep shooting you anyhow? No? You sure? Fine.\""),
-         _("\"And it only cost you an arm and a leg.\""),
+         p_("bribe_paid", "\"You're lucky I'm so kind.\""),
+         p_("bribe_paid", "\"Life doesn't get easier than this.\""),
+         p_("bribe_paid", "\"Pleasure doing business.\""),
+         p_("bribe_paid", "\"See you again, real soon.\""),
+         p_("bribe_paid", "\"I'll be around if you get generous again.\""),
+         p_("bribe_paid", "\"Lucky day, lucky day!\""),
+         p_("bribe_paid", "\"And I didn't even have to kill anyone!\""),
+         p_("bribe_paid", "\"See, this is how we become friends.\""),
+         p_("bribe_paid", "\"Now if I kill you it'll be just for fun!\""),
+         p_("bribe_paid", "\"You just made a good financial decision today.\""),
+         p_("bribe_paid", "\"Know what? I won't kill you.\""),
+         p_("bribe_paid", "\"Something feels strange. It's almost as if my urge to kill you has completely dissipated.\""),
+         p_("bribe_paid", "\"Can I keep shooting you anyhow? No? You sure? Fine.\""),
+         p_("bribe_paid", "\"And it only cost you an arm and a leg.\""),
       }
       mem.bribe_paid = bribe_paid[rnd.rnd(1,#bribe_paid)]
    end
@@ -71,8 +71,9 @@ function create()
    if standing > 60 then
       mem.refuel = mem.refuel * 0.5
    end
-   mem.refuel_msg = fmt.f(_("\"I'll take {credits} for some fuel.\""),
-         {credits=fmt.credits(mem.refuel)})
+   mem.refuel_msg = fmt.f(
+      p_("refuel", "\"I'll take {credits} for some fuel.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
 
@@ -90,38 +91,35 @@ function taunt (target, offense)
    -- some taunts
    if offense then
       taunts = {
-         _("Prepare to be boarded!"),
-         _("Give me your credits or die!"),
-         _("Your ship's mine!"),
-         _("Oh ho ho, what do I see here?"),
-         _("You may want to send that distress signal now."),
-         _("It's time to die."),
-         _("Nothing personal, just business."),
-         _("Nothing personal."),
-         _("Just business."),
-         _("Sorry, but I'm a private tracker."),
-         _("Looks like you've picked the wrong sector of space!"),
-         _("Give me your credits now if you want to live!"),
-         _("Hey, space is a tough place where wimps eat flaming plasma death."),
+         p_("taunt", "Prepare to be boarded!"),
+         p_("taunt", "Give me your credits or die!"),
+         p_("taunt", "Your ship's mine!"),
+         p_("taunt", "Oh ho ho, what do I see here?"),
+         p_("taunt", "You may want to send that distress signal now."),
+         p_("taunt", "It's time to die."),
+         p_("taunt", "Nothing personal, just business."),
+         p_("taunt", "Nothing personal."),
+         p_("taunt", "Just business."),
+         p_("taunt", "Sorry, but I'm a private tracker."),
+         p_("taunt", "Looks like you've picked the wrong sector of space!"),
+         p_("taunt", "Give me your credits now if you want to live!"),
+         p_("taunt", "Hey, space is a tough place where wimps eat flaming plasma death."),
       }
    else
       taunts = {
-         _("You dare attack me?!"),
-         _("You think that you can take me on?"),
-         _("Die!"),
-         _("You'll regret this!"),
-         _("You can either pray now or sit in hell later."),
-         _("Game over, you're dead!"),
-         _("Knock it off!"),
-         _("Now you're in for it!"),
-         _("Did you really think you would get away with that?"),
-         _("I just painted this thing!"),
-         _("I can't wait to see you burn."),
-         _("Just. Stop. Moving!"),
-         _("Die already!"),
-         _("Stop dodging!"),
-         _("Okay, that's enough of that!"),
-         _("I'm gonna torrent you to bits!"),
+         p_("taunt_defensive", "You dare attack me?!"),
+         p_("taunt_defensive", "You think that you can take me on?"),
+         p_("taunt_defensive", "Die!"),
+         p_("taunt_defensive", "You'll regret this!"),
+         p_("taunt_defensive", "You can either pray now or sit in hell later."),
+         p_("taunt_defensive", "Game over, you're dead!"),
+         p_("taunt_defensive", "Knock it off!"),
+         p_("taunt_defensive", "Now you're in for it!"),
+         p_("taunt_defensive", "Did you really think you would get away with that?"),
+         p_("taunt_defensive", "I just painted this thing!"),
+         p_("taunt_defensive", "I can't wait to see you burn!"),
+         p_("taunt_defensive", "Okay, that's enough of that!"),
+         p_("taunt_defensive", "I'm gonna torrent you to bits!"),
       }
    end
 

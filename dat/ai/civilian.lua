@@ -12,9 +12,9 @@ function create()
 
    -- No bribe
    local bribe_msg = {
-      _("\"Just leave me alone!\""),
-      _("\"What do you want from me!?\""),
-      _("\"Get away from me!\"")
+      p_("bribe_no", "\"Just leave me alone!\""),
+      p_("bribe_no", "\"What do you want from me!?\""),
+      p_("bribe_no", "\"Get away from me!\"")
    }
    mem.bribe_no = bribe_msg[rnd.rnd(1, #bribe_msg)]
 
