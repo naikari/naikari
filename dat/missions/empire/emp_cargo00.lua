@@ -28,7 +28,7 @@ require "missions/empire/common"
 
 bar_desc = _("You see an Imperial Lieutenant who seems to be looking at you.")
 misn_title = _("Empire Recruitment")
-misn_desc = _("You are beïng recruited to the Imperial Armada Shipping Division by Liutenant Czesc. Your first task is to deliver some parcels to {planet}.")
+misn_desc = _("You are being recruited to the Imperial Armada Shipping Division by Liutenant Czesc. Your first task is to deliver some parcels to {planet}.")
 
 text = {}
 ask_text = _([[You approach the Imperial Lieutenant.

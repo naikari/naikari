@@ -15,7 +15,7 @@
  <trail_generator x="-20" y="-5" h="0" />
  <fabricator>Nexus Shipyards</fabricator>
  <license>Light Combat Vessel License</license>
- <description>The military-grade version of the Lancelot is more balanced than its civilian counterpart, beïng somewhat less armored, but having improved shielding and missile deployment systems. Enemies of the Empire know well to fear this vessel.</description>
+ <description>The military-grade version of the Lancelot is more balanced than its civilian counterpart, being somewhat less armored, but having improved shielding and missile deployment systems. Enemies of the Empire know well to fear this vessel.</description>
  <health>
   <armour>60</armour>
   <armour_regen>0.25</armour_regen>

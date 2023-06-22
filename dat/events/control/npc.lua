@@ -237,7 +237,7 @@ messages = {
       text = {
          _([["I won't lie, the Soromid freak me the hell out. Something's just… fishy about them. You know what I mean?"]]),
          _([["I worry about big genetics, you know? All those gene manipulators, it just isn't natural."]]),
-         _([["I've been spending a lot of time around the Soromid lately. It's nice to be back home. Not like I really mind beïng around the Soromid, of course. Fine people, the Soromid. They just start giving you the creeps after a while, know what I mean?"]]),
+         _([["I've been spending a lot of time around the Soromid lately. It's nice to be back home. Not like I really mind being around the Soromid, of course. Fine people, the Soromid. They just start giving you the creeps after a while, know what I mean?"]]),
       },
    },
    {
