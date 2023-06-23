@@ -22,8 +22,8 @@ function create()
    -- Refuel
    mem.refuel = rnd.rnd(1000, 3000)
    mem.refuel_msg = fmt.f(
-         _("\"I'll supply your ship with fuel for {credits}.\""),
-         {credits=fmt.credits(mem.refuel)})
+      p_("refuel_prompt", "\"I'll supply your ship with fuel for {credits}.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    create_post()
 end

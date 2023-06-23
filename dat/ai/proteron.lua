@@ -18,17 +18,18 @@ function create()
    local standing = p:faction():playerStanding()
    mem.refuel = rnd.rnd(2000, 4000)
    if standing < 20 then
-      mem.refuel_no = _("\"Begone, commoner. My fuel isn't for sale.\"")
+      mem.refuel_no = p_("refuel_no", "\"Begone. My fuel isn't for sale.\"")
    elseif standing < 70 then
       if rnd.rnd() < 0.8 then
-         mem.refuel_no = _("\"My fuel isn't for sale.\"")
+         mem.refuel_no = p_("refuel_no", "\"My fuel isn't for sale.\"")
       end
    else
       mem.refuel = mem.refuel * 0.6
    end
    -- Most likely no chance to refuel
-   mem.refuel_msg = fmt.f(_("\"I can transfer some fuel for {credits}.\""),
-         {credits=fmt.credits(mem.refuel)})
+   mem.refuel_msg = fmt.f(
+      p_("refuel_prompt", "\"I can transfer some fuel for {credits}.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    -- See if can be bribed
    if rnd.rnd() < 0.4 then

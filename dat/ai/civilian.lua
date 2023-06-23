@@ -22,10 +22,10 @@ function create()
    mem.refuel = math.min(rnd.rnd(1000, 3000), player.credits())
    if mem.refuel > 0 then
       mem.refuel_msg = fmt.f(
-            _("\"I'll supply your ship with fuel for {credits}.\""),
-            {credits=fmt.credits(mem.refuel)})
+         p_("refuel_prompt", "\"I'll supply your ship with fuel for {credits}.\""),
+         {credits=fmt.credits(mem.refuel)})
    else
-      mem.refuel_msg = _("\"Alright, I'll give you some fuel.\"")
+      mem.refuel_msg = p_("refuel", "\"Alright, I'll give you some fuel.\"")
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system

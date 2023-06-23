@@ -15,11 +15,11 @@ function create()
 
    -- Handle bribing
    local bribe_no = {
-         _("\"The only way to deal with scum like you is with cannons!\""),
-         _("\"I don't want your money.\""),
-         _("\"I'm here for the Frontier, not money.\""),
-         _("\"Not interested.\""),
-         _("\"I won't let you off that easily.\""),
+      p_("bribe_no", "\"The only way to deal with scum like you is with cannons!\""),
+      p_("bribe_no", "\"I don't want your money.\""),
+      p_("bribe_no", "\"I'm here for the Frontier, not money.\""),
+      p_("bribe_no", "\"Not interested.\""),
+      p_("bribe_no", "\"I won't let you off that easily.\""),
    }
    mem.bribe_no = bribe_no[rnd.rnd(1,#bribe_no)]
 
@@ -29,14 +29,14 @@ function create()
 
    mem.refuel = rnd.rnd(1000, 3000)
    if flf_standing < 50 then
-      mem.refuel_no = _("\"Sorry, I can't spare fuel for you.\"")
+      mem.refuel_no = p_("refuel_no", "\"Sorry, I can't spare fuel for you.\"")
    elseif standing < 50 then
       mem.refuel_msg = fmt.f(
-            _("\"Sure, just {credits} and I'll give you some fuel.\""),
-            {credits=fmt.credits(mem.refuel)})
+         p_("refuel_prompt", "\"Sure, just {credits} and I'll give you some fuel.\""),
+         {credits=fmt.credits(mem.refuel)})
    else
       mem.refuel = 0
-      mem.refuel_msg = _("\"Sure, friend, I can refuel you. On my way.\"")
+      mem.refuel_msg = p_("refuel", "\"Sure, friend, I can refuel you. On my way.\"")
    end
 
    -- Handle misc stuff
@@ -55,16 +55,17 @@ function taunt(target, offense)
 
    if offense then
       taunts = {
-         _("For the Frontier!"),
-         _("You'll make great target practice!"),
-         _("You won't get away with your actions!"),
+         p_("taunt", "For the Frontier!"),
+         p_("taunt", "You'll make great target practice!"),
+         p_("taunt", "You won't get away with your actions!"),
       }
    else
       taunts = {
-         _("You'll regret that!"),
-         _("Death to enemies of the Frontier!"),
-         _("I won't go down without a fight!"),
-         _("To hell with you!"),
+         p_("taunt_defensive", "Frontier vessel under attack! Requesting assistance!"),
+         p_("taunt_defensive", "You'll regret that!"),
+         p_("taunt_defensive", "I won't go down without a fight!"),
+         p_("taunt_defensive", "To hell with you!"),
+         p_("taunt_defensive", "You won't get away with this!"),
       }
    end
    ai.pilot():comm(target, taunts[rnd.rnd(1,#taunts)])

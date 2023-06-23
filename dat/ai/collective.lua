@@ -14,12 +14,13 @@ function create ()
 
    -- Refuel available if the player is at least neutral to them.
    if p:faction():playerStanding() >= 0 then
-      mem.bribe_no = fmt.f(_("{pilot} does not respond."), {pilot=p:name()})
+      mem.bribe_no = fmt.f(
+         p_("bribe_no", "{pilot} does not respond."), {pilot=p:name()})
       mem.refuel = 0
-      mem.refuel_msg = _("\"Fuel request accepted. Approaching for fuel transfer.\"")
-      mem.refuel_cannot = _("\"Refuel request declined. Insufficient fuel available.\"")
+      mem.refuel_msg = p_("refuel", "\"Fuel request accepted. Approaching for fuel transfer.\"")
+      mem.refuel_cannot = p_("refuel_cannot", "\"Refuel request declined. Insufficient fuel available.\"")
    else
-      mem.comm_no = _("No response.")
+      mem.comm_no = p_("comm_no", "No response.")
    end
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system

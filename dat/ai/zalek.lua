@@ -18,7 +18,7 @@ function create()
    if shiptype == "Za'lek Light Drone" or shiptype == "Za'lek Scout Drone"
          or shiptype == "Za'lek Heavy Drone"
          or shiptype == "Za'lek Bomber Drone" then
-      mem.comm_no = _("No response.")
+      mem.comm_no = p_("comm_no", "No response.")
       mem.armour_run = 0 -- Drones don't run
       create_post()
       return
@@ -32,28 +32,28 @@ function create()
    local standing = p:faction():playerStanding()
    mem.refuel = rnd.rnd(1000, 2000)
    if standing < -10 then
-      mem.refuel_no = _("\"I do not have fuel to spare.\"")
+      mem.refuel_no = p_("refuel_no", "\"I do not have fuel to spare.\"")
    else
       mem.refuel = mem.refuel * 0.6
    end
    mem.refuel_msg = fmt.f(
-         _("\"I will agree to refuel your ship for {credits}.\""),
-         {credits=fmt.credits(mem.refuel)})
+      p_("refuel_prompt", "\"I will agree to refuel your ship for {credits}.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    -- See if can be bribed
    if rnd.rnd() < 0.3 then
       mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
-            _("\"We will agree to end the battle for {credits}.\""),
-            {credits=fmt.credits(mem.bribe)})
-      mem.bribe_paid = _("\"Temporarily stopping fire.\"")
+         p_("bribe_prompt", "\"We will agree to end the battle for {credits}.\""),
+         {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = p_("bribe_paid", "\"Temporarily stopping fire.\"")
    else
       local bribe_no = {
-         _("\"Keep your cash.\""),
-         _("\"Don't make me laugh.!\""),
-         _("\"My drones aren't interested in your money and neither am I!\""),
-         _("\"Hahaha! Nice one! Oh, you're actually serious? Of course not, fool!\""),
-         _("\"While I admire the spirit of it, testing my patience is not science.\""),
+         p_("bribe_no", "\"Keep your cash.\""),
+         p_("bribe_no", "\"Don't make me laugh!\""),
+         p_("bribe_no", "\"My drones aren't interested in your money and neither am I!\""),
+         p_("bribe_no", "\"Hahaha! Nice one! Oh, you're actually serious? Of course not, dumbass!\""),
+         p_("bribe_no", "\"While I admire the spirit of it, testing my patience is not science.\""),
       }
       mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
@@ -64,7 +64,15 @@ function create()
    create_post()
 end
 
-function taunt ( target, offense )
+function taunt(target, offense)
+   -- See if a drone
+   local shiptype = p:ship():nameRaw()
+   if shiptype == "Za'lek Light Drone" or shiptype == "Za'lek Scout Drone"
+         or shiptype == "Za'lek Heavy Drone"
+         or shiptype == "Za'lek Bomber Drone" then
+      return
+   end
+
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
       return
@@ -72,18 +80,20 @@ function taunt ( target, offense )
 
    if offense then
       taunts = {
-         _("I will show you the power of the Za'lek fleet!"),
-         _("Commencing battle test by eradicating outlaw pilots."),
-         _("Your days are over!"),
-         _("You interfere with the progress of science!"),
-         _("Feel the wrath of our combat drones!"),
+         p_("taunt", "I will show you the power of the Za'lek fleet!"),
+         p_("taunt", "Commencing battle test by eradicating outlaw pilots."),
+         p_("taunt", "Your days are over!"),
+         p_("taunt", "You interfere with the progress of science!"),
+         p_("taunt", "Feel the wrath of our combat drones!"),
+         p_("taunt", "Die, you brainless worm!"),
       }
    else
       taunts = {
-         _("You just made a big mistake!"),
-         _("You wanna do this? Have it your way."),
-         _("How dare you?! I just got this ship customized!"),
-         _("Aggressor! How dare you attack the Za'lek?!"),
+         p_("taunt_defensive", "You just made a big mistake!"),
+         p_("taunt_defensive", "You wanna do this? Have it your way."),
+         p_("taunt_defensive", "How dare you?! I just got this ship customized!"),
+         p_("taunt_defensive", "Idiots! How dare you attack the Za'lek?!"),
+         p_("taunt_defensive", "Attacking me was a stupid mistake!"),
       }
    end
 

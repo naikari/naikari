@@ -14,8 +14,8 @@ mem.armour_run = 80
 mem.armour_return = 100
 mem.atk_kill = true
 mem.atk_board = false
-mem.bribe_no = _("Money won't save your hide!")
-mem.refuel_no = _("Piss off. You can't have my fuel.")
+mem.bribe_no = p_("bribe_no", "Money won't save your hide!")
+mem.refuel_no = p_("refuel_no", "Piss off. You can't have my fuel.")
 
 
 function create ()

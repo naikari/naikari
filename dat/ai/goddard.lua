@@ -17,17 +17,17 @@ function create ()
    if rnd.rnd() < 0.2 then
       mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
-            _("\"Hm, transfer over {credits} and I'll forget I saw you.\""),
-            {credits=fmt.credits(mem.bribe)})
-      mem.bribe_paid = _("\"Get out of my sight before I change my mind.\"")
+         p_("bribe_prompt", "\"Hm, transfer over {credits} and I'll forget I saw you.\""),
+         {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = p_("bribe_paid", "\"Get out of my sight before I change my mind.\"")
    else
       bribe_no = {
-         _("\"You insult my honor.\""),
-         _("\"I find your lack of honor disturbing.\""),
-         _("\"You disgust me.\""),
-         _("\"Bribery carries a harsh penalty.\""),
-         _("\"We do not lower ourselves to common scum.\""),
-         _("\"I will especially enjoy your death!\""),
+         p_("bribe_no", "\"You insult my honor.\""),
+         p_("bribe_no", "\"I find your lack of honor disturbing.\""),
+         p_("bribe_no", "\"You disgust me.\""),
+         p_("bribe_no", "\"Bribery carries a harsh penalty.\""),
+         p_("bribe_no", "\"We do not lower ourselves to common scum.\""),
+         p_("bribe_no", "\"I will especially enjoy your death!\""),
       }
       mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
@@ -37,8 +37,8 @@ function create ()
    mem.refuel = rnd.rnd(2000, 4000)
    if standing > 60 then mem.refuel = mem.refuel * 0.7 end
    mem.refuel_msg = fmt.f(
-         _("\"I could do you the favor of refueling for {credits}.\""),
-         {credits=fmt.credits(mem.refuel)})
+      p_("refuel_prompt", "\"I could do you the favor of refueling for {credits}.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
 
@@ -50,11 +50,11 @@ end
 function taunt(target, offense)
    -- Offense is not actually used
    taunts = {
-         _("Prepare to face annihilation!"),
-         _("Your head will make a great trophy!"),
-         _("These moments will be your last!"),
-         _("Parasite! You die!"),
-         _("Prepare to face the wrath of House Goddard!"),
+      p_("taunt", "Prepare to face annihilation!"),
+      p_("taunt", "Your head will make a great trophy!"),
+      p_("taunt", "These moments will be your last!"),
+      p_("taunt", "Parasite! You die!"),
+      p_("taunt", "Prepare to face the wrath of House Goddard!"),
    }
    ai.pilot():comm(target, taunts[rnd.rnd(1,#taunts)])
 end

@@ -19,17 +19,17 @@ function create ()
    if rnd.rnd() < 0.4 then
       mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
-            _("\"For {credits} I'll pretend I didn't see you.\""),
-            {credits=fmt.credits(mem.bribe)})
-      mem.bribe_paid = _("\"Good. Now get out of my face.\"")
+         p_("bribe_prompt", "\"For {credits} I'll pretend I didn't see you.\""),
+         {credits=fmt.credits(mem.bribe)})
+      mem.bribe_paid = p_("bribe_paid", "\"Good. Now get out of my face.\"")
    else
       bribe_no = {
-         _("\"You insult my honor.\""),
-         _("\"I find your lack of honor disturbing.\""),
-         _("\"You disgust me.\""),
-         _("\"Bribery carries a harsh penalty.\""),
-         _("\"We do not lower ourselves to common scum.\""),
-         _("\"I will especially enjoy your death!\""),
+         p_("bribe_no", "\"You insult my honor.\""),
+         p_("bribe_no", "\"I find your lack of honor disturbing.\""),
+         p_("bribe_no", "\"You disgust me.\""),
+         p_("bribe_no", "\"Bribery carries a harsh penalty.\""),
+         p_("bribe_no", "\"We do not lower ourselves to common scum.\""),
+         p_("bribe_no", "\"I will especially enjoy your death!\""),
       }
       mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
@@ -38,11 +38,11 @@ function create ()
    local standing = p:faction():playerStanding()
    mem.refuel = rnd.rnd(1000, 3000)
    if standing < 50 then
-      mem.refuel_no = _("\"You are not worthy of my attention.\"")
+      mem.refuel_no = p_("refuel_no", "\"You are not worthy of my attention.\"")
    else
       mem.refuel_msg = fmt.f(
-            _("\"For you, I could make an exception for {credits}.\""),
-            {credits=fmt.credits(mem.refuel)})
+         p_("refuel_prompt", "\"For you, I could make an exception for {credits}.\""),
+         {credits=fmt.credits(mem.refuel)})
    end
 
    -- Handle misc stuff
@@ -52,7 +52,7 @@ function create ()
 end
 
 -- taunts
-function taunt ( target, offense )
+function taunt(target, offense)
 
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
@@ -61,13 +61,19 @@ function taunt ( target, offense )
 
    -- Offense is not actually used
    taunts = {
-       _("Prepare to face annihilation!"),
-       _("I shall wash my hull in your blood!"),
-       _("Your head will make a great trophy!"),
-       _("You're no match for the Dvaered!"),
-       _("Death awaits you!"),
-       _("You have once again intruded on the territory of the Dvaered!"),
+      p_("taunt", "Prepare to face annihilation!"),
+      p_("taunt", "I will wash my hull in your blood!"),
+      p_("taunt", "Your head will make a great trophy!"),
+      p_("taunt", "You're no match for us!"),
+      p_("taunt", "Death awaits you!"),
+      p_("taunt", "Death to all who oppose us!"),
+      p_("taunt", "Eat flaming death, you gravy-sucking pig!"),
    }
+   if faction.get("Dvaered"):playerStanding() < 0 then
+      table.insert(taunts, p_("taunt", "Now you must pay for your crimes!"))
+      table.insert(taunts, p_("taunt", "You're no match for the Dvaered!"))
+      table.insert(taunts, p_("taunt", "Criminal scum! You die!"))
+   end
    ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 

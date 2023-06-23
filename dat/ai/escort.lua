@@ -6,7 +6,7 @@ mem.distress = false
 mem.aggressive = true
 mem.norun = true
 mem.carrier = true
-mem.comm_no = _("No response.")
+mem.comm_no = p_("comm_no", "No response.")
 mem.enemyclose = 6000
 mem.leadermaxdist = 16000
 

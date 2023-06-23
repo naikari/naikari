@@ -7,16 +7,16 @@ require("ai/tpl/generic")
 --]]
 
 -- Settings
-mem.aggressive    = true
-mem.atk_kill      = true
-mem.atk_board     = false
-mem.bribe_no      = _("You can't bribe me!")
-mem.refuel_no     = _("I won't give you fuel!")
-mem.guardpos      = vec2.new( 0, 0 ) -- defaults to origin
-mem.guardbrake    = 500
-mem.guarddodist   = 3000 -- distance at which to start activities
+mem.aggressive = true
+mem.atk_kill = true
+mem.atk_board = false
+mem.bribe_no = p_("bribe_no", "You can't bribe me!")
+mem.refuel_no = p_("refuel_no", "I won't give you fuel!")
+mem.guardpos = vec2.new(0, 0) -- defaults to origin
+mem.guardbrake = 500
+mem.guarddodist = 3000 -- distance at which to start activities
 mem.guardreturndist = 6000 -- distance at which to return
-mem.enemyclose    = mem.guarddodist
+mem.enemyclose = mem.guarddodist
 
 function create ()
    -- Choose attack format

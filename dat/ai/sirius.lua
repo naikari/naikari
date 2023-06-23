@@ -18,21 +18,21 @@ function create()
    local standing = p:faction():playerStanding()
    mem.refuel = rnd.rnd(1000, 2000)
    if standing < 70 then
-      mem.refuel_no = _("\"I do not have fuel to spare.\"")
+      mem.refuel_no = p_("refuel_no", "\"I do not have fuel to spare.\"")
    else
       mem.refuel = mem.refuel * 0.6
    end
    -- Most likely no chance to refuel
    mem.refuel_msg = fmt.f(
-         _("\"I would be able to refuel your ship for {credits}.\""),
-         {credits=fmt.credits(mem.refuel)})
+      p_("refuel_prompt", "\"I would be able to refuel your ship for {credits}.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    -- Can't be bribed
    bribe_no = {
-          _("\"Your money is of no interest to me.\""),
-          _("\"No amount of money can steer me from the will of Sirichana.\""),
-          _("\"May Sirichana cleanse your soul after I kill you.\""),
-          _("\"You cannot buy your way out of this, heathen.\""),
+      p_("bribe_no", "\"Your money is of no interest to me.\""),
+      p_("bribe_no", "\"No amount of money can steer me from the will of Sirichana.\""),
+      p_("bribe_no", "\"May Sirichana cleanse your soul after I kill you.\""),
+      p_("bribe_no", "\"You cannot buy your way out of this, heathen.\""),
    }
    mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
 
@@ -43,7 +43,7 @@ function create()
 end
 
 -- taunts
-function taunt ( target, offense )
+function taunt(target, offense)
 
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
@@ -53,16 +53,16 @@ function taunt ( target, offense )
    -- some taunts
    if offense then
       taunts = {
-            _("Die, heathen!"),
-            _("Sirichana wishes for your death!"),
-            _("Say your prayers!"),
-            _("Die and face Sirichana's divine judgment!"),
+         p_("taunt", "Die, heathen!"),
+         p_("taunt", "Sirichana wishes for your death!"),
+         p_("taunt", "Say your prayers!"),
+         p_("taunt", "Die and face Sirichana's divine judgment!"),
       }
    else
       taunts = {
-            _("Sirichana protect me!"),
-            _("You have made a grave error!"),
-            _("You do wrong in your provocations!"),
+         p_("taunt_defensive", "Sirichana protect me!"),
+         p_("taunt_defensive", "You have made a grave error!"),
+         p_("taunt_defensive", "You do wrong in your provocations!"),
       }
    end
 

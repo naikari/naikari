@@ -14,17 +14,17 @@ function create ()
 
    -- No bribe
    local bribe_msg = {
-      _("\"Just leave me alone!\""),
-      _("\"What do you want from me!?\""),
-      _("\"Get away from me!\"")
+      p_("bribe_no", "\"Just leave me alone!\""),
+      p_("bribe_no", "\"What do you want from me!?\""),
+      p_("bribe_no", "\"Get away from me!\"")
    }
    mem.bribe_no = bribe_msg[rnd.rnd(1,#bribe_msg)]
 
    -- Refuel
    mem.refuel = rnd.rnd(1000, 3000)
    mem.refuel_msg = fmt.f(
-         _("\"I'll supply your ship with fuel for {credits}.\""),
-         {credits=fmt.credits(mem.refuel)})
+      p_("refuel_prompt", "\"I'll supply your ship with fuel for {credits}.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
    create_post()

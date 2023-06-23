@@ -18,24 +18,24 @@ function create()
    local standing = p:faction():playerStanding()
    mem.refuel = rnd.rnd(2000, 4000)
    if standing < 20 then
-      mem.refuel_no = _("\"My fuel is property of the Empire.\"")
+      mem.refuel_no = p_("refuel_no", "\"My fuel is property of the Empire.\"")
    elseif standing < 70 then
       if rnd.rnd() < 0.8 then
-         mem.refuel_no = _("\"My fuel is property of the Empire.\"")
+         mem.refuel_no = p_("refuel_no", "\"My fuel is property of the Empire.\"")
       end
    else
       mem.refuel = mem.refuel * 0.6
    end
    -- Most likely no chance to refuel
    mem.refuel_msg = fmt.f(
-         _("\"I suppose I could spare some fuel for {credits}.\""),
-         {credits=fmt.credits(mem.refuel)})
+      p_("refuel_prompt", "\"I suppose I could spare some fuel for {credits}.\""),
+      {credits=fmt.credits(mem.refuel)})
 
    -- See if can be bribed
    if rnd.rnd() < 0.3 then
       mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
-         p_("bribe_prompt", ("\"For {credits} I could forget about seeing you.\""),
+         p_("bribe_prompt", "\"For {credits} I could forget about seeing you.\""),
          {credits=fmt.credits(mem.bribe)})
       mem.bribe_paid = p_("bribe_paid", "\"Now scram before I change my mind.\"")
    else
