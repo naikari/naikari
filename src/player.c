@@ -326,7 +326,6 @@ static int player_newMake (void)
    }
    /* Setting a default name in the XML prevents naming prompt. */
    if (player_newShip( ship, shipname, 0, (shipname==NULL) ? 0 : 1 ) == NULL) {
-      player_new();
       return -1;
    }
    start_position( &x, &y );
