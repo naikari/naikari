@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naikari 0.8.0-rc.2\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-21 04:03-0400\n"
+"POT-Creation-Date: 2023-06-22 23:04-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -669,7 +669,7 @@ msgstr ""
 msgid ""
 "Agino is a bustling planet mostly full of middle-class Soromid citizens. The "
 "planet doesn't excel in any areä when compared to the worlds in the Soromid "
-"core but, this beïng a remote part of Soromid space, it is still a local "
+"core but, this being a remote part of Soromid space, it is still a local "
 "highlight."
 msgstr ""
 
@@ -1269,7 +1269,7 @@ msgstr ""
 #: dat/assets/arashu.xml:30
 msgid ""
 "The bar features a big display that shows a geological map of the planet "
-"which, due to most of the world beïng covered in ocean, makes for a rather "
+"which, due to most of the world being covered in ocean, makes for a rather "
 "uninteresting map. The display also shows all the volcanic activity going on "
 "at the moment, so it is actually quite fascinating interesting to watch, "
 "especially once you can place the spaceport and bar."
@@ -1432,7 +1432,7 @@ msgstr ""
 msgid ""
 "As the habitats of this inhospitable world were built, little thought was "
 "given to less essential amenities. This bar was added by grafting it onto "
-"the side of the spaceport. Beïng an afterthought anywhere else in the galaxy "
+"the side of the spaceport. Being an afterthought anywhere else in the galaxy "
 "would likely have resulted in a rather cramped, run-down bar, but here in "
 "Soromid space, it has given it a more organic feel. It almost feels like "
 "it's growing."
@@ -1635,7 +1635,7 @@ msgstr ""
 #: dat/assets/belltower_station.xml:27
 msgid ""
 "Belltower Station is a small Soromid military outpost whose main purpose is "
-"to keep the Adiadus system in line. Beïng this far from the Soromid core "
+"to keep the Adiadus system in line. Being this far from the Soromid core "
 "there is little interstellar traffic, some of the inhabitants occasionally "
 "start to wonder if they're really part of the Soromid collective at all. "
 "Belltower is here to remind them that they are."
@@ -1790,7 +1790,7 @@ msgstr ""
 #: dat/assets/boowoy.xml:29
 msgid ""
 "The locals don't like outsiders, but they keep the spaceport running because "
-"beïng cut off from the galaxy would be fatal for a world so dependent on "
+"being cut off from the galaxy would be fatal for a world so dependent on "
 "imports. Nonetheless, the glances you get from the working staff and the "
 "local patrons makes it clear they'd prefer it if you weren't here for long, "
 "at all."
@@ -1874,7 +1874,7 @@ msgid ""
 "Not as nice as Varia in the Darkstone system, Buritt is, never the less, a "
 "reasonably habitable world. You will find much of the Dvaered middle class "
 "here, such as it is. You will also find a large-scale pollution of the "
-"natural environment but, with the Dvaered beïng Dvaered, no attempt is beïng "
+"natural environment but, with the Dvaered being Dvaered, no attempt is being "
 "made to address this."
 msgstr ""
 
@@ -1923,7 +1923,7 @@ msgid ""
 "equipment unnecessary. Habitable land is often characterized by soft "
 "meadows, swamps and dense forests. The resource base of Caladan consists "
 "mainly of agriculture and biomass, with the locally bred and grown pundi "
-"rice beïng its main export, and fishing, a traditional source of sustenance "
+"rice being its main export, and fishing, a traditional source of sustenance "
 "for its people. Other traditional products include wine and various "
 "livestock, most prominently cattle."
 msgstr ""
@@ -1954,7 +1954,7 @@ msgstr ""
 #: dat/assets/cantina_station.xml:28
 msgid ""
 "This bar lives up to the name of the station itself. Indeed, it seems to be "
-"the main attraction, beïng a massive ring-shaped casino-esque room with many "
+"the main attraction, being a massive ring-shaped casino-esque room with many "
 "bartenders treating the patrons, music in the background, and good food. The "
 "only sign that the bar is Za'lek in origin is the casual use of bafflingly "
 "advanced technology and the fact that at least half of the populace look "
@@ -1996,7 +1996,7 @@ msgstr ""
 
 #: dat/assets/castellan_iii.xml:27
 msgid ""
-"Castellan III's bar is surprisingly good. Perhaps it has to do with it beïng "
+"Castellan III's bar is surprisingly good. Perhaps it has to do with it being "
 "a favored haven for Dvaered officers. Perhaps it's that someone in a "
 "position of some power or influence decided that a nice place for the miners "
 "to relax and recuperate was a good way to show off their philanthropy. "
@@ -2062,7 +2062,7 @@ msgid ""
 "The bar is very large and yet has fairly few patrons. You notice the drinks "
 "list has a \"living\" menu. When you ask the bartender about them, he says "
 "they specialize in drinks containing living creatures. Generally jellyfish, "
-"but sometimes small cephalopods or more exotic beïngs. As exotic cultures "
+"but sometimes small cephalopods or more exotic beings. As exotic cultures "
 "go, Cetrat is among the stranger."
 msgstr ""
 
@@ -2174,7 +2174,7 @@ msgid ""
 "Given the relative stability of this world the bar looks rather more Empire "
 "standard-issue than on many Soromid worlds. There are tables, chairs, "
 "dispensers, a barman and, most importantly, drinks. These there are in "
-"profusion, though with this beïng a smaller world, not in any great variëty. "
+"profusion, though with this being a smaller world, not in any great variëty. "
 "If you ask for a cocktail though, you'll likely be directed to one of the "
 "local sulphurous hot-water geysers."
 msgstr ""
@@ -2228,7 +2228,7 @@ msgstr ""
 
 #: dat/assets/corvus_vib.xml:25
 msgid ""
-"Beïng a small moon in an already growing system, few colonists have paid "
+"Being a small moon in an already growing system, few colonists have paid "
 "attention to Corvus VI-b; the name itself is a bit of a giveaway."
 msgstr ""
 
@@ -2247,7 +2247,7 @@ msgid ""
 "Despite bordering on a dangerous sector of space, the Corvus system, and "
 "Crow in particular, are thriving. The planet is a frontier of culture, "
 "commerce, and prosperity. Even for the Soromid, one of the youngest "
-"sociëties in the galaxy, beïng away from the core worlds can give people the "
+"sociëties in the galaxy, being away from the core worlds can give people the "
 "breathing room to live on the edge."
 msgstr ""
 
@@ -2340,7 +2340,7 @@ msgstr ""
 
 #: dat/assets/cutha.xml:30
 msgid ""
-"Cutha's bar is very close to beïng an open-air bar. The airspace is still "
+"Cutha's bar is very close to being an open-air bar. The airspace is still "
 "fully enclosed but most of the surfaces, that aren't the actual floor, are "
 "transparent. The ceiling, in particular, is made of a material that's all "
 "but invisible to the naked eye, with the artificial breeze that blows "
@@ -2821,7 +2821,7 @@ msgstr ""
 #: dat/assets/duran_shipyard.xml:27
 msgid ""
 "The spacedock bar provides visitors with a view over part of the assembly "
-"line. It is quite impressive to see a spacecraft beïng built, even if it is "
+"line. It is quite impressive to see a spacecraft being built, even if it is "
 "only a relatively small one."
 msgstr ""
 
@@ -3978,7 +3978,7 @@ msgstr ""
 
 #: dat/assets/golem.xml:29
 msgid ""
-"Despite beïng hellish, Golem has a respectably large population, albeit a "
+"Despite being hellish, Golem has a respectably large population, albeit a "
 "population restricted to hab units at the top of mountains. The gasses here "
 "are useful, and hence mined, but the world is not harsh enough to justify "
 "making it a prison planet. Many lower-class Dvaered make their homes here, "
@@ -4651,7 +4651,7 @@ msgstr ""
 
 #: dat/assets/ian.xml:30
 msgid ""
-"On Ian, it's all about beïng seen. The bar never goes quiët, though the "
+"On Ian, it's all about being seen. The bar never goes quiët, though the "
 "level of noise also never grows to unbearable proportions. Both the gentry "
 "and the rich up-starts come to the recreätional facilities to mingle and to "
 "strut their stuff to the offworlders who come here on business."
@@ -5079,7 +5079,7 @@ msgstr ""
 #: dat/assets/jorla.xml:30
 msgid ""
 "This bar bears a closer resemblance to a family restaurant, with the average "
-"patron beïng about late middle age."
+"patron being about late middle age."
 msgstr ""
 
 #: dat/assets/jorlan.xml:2
@@ -5091,7 +5091,7 @@ msgid ""
 "Jorlan is one of the least successful Frontier worlds. Its colony ship, "
 "Santa Maria, arrived to find a barren, desolate rock that had next to no "
 "potential for human inhabitants. But with the only other reachable planet "
-"beïng a gas giant, Santa Maria's captain was faced with the choice to settle "
+"being a gas giant, Santa Maria's captain was faced with the choice to settle "
 "or perish. Somehow, his expedition has managed to eke out an existence on "
 "Jorlan. Jorlan's inhabitants are mostly part of the ore refining process, as "
 "it supplies most of the Frontier with all sorts of alloys. Gas miners are "
@@ -5206,7 +5206,7 @@ msgstr ""
 msgid ""
 "With the loss of Sorom, the Soromid had to decide on a new political "
 "capital. After some debate, it was decided that Kataka would fill this "
-"position. Kataka is by no means a pleasant world, but the Soromid beïng the "
+"position. Kataka is by no means a pleasant world, but the Soromid being the "
 "Soromid, that made no difference. Present day, Kataka is home to most if not "
 "all of the influential Soromid citizens. Authorities on all aspects of "
 "Soromid can be found here."
@@ -5326,7 +5326,7 @@ msgstr ""
 
 #: dat/assets/koga.xml:26
 msgid ""
-"Koga has a highly active crust, and may describe the surface as beïng a "
+"Koga has a highly active crust, and may describe the surface as being a "
 "reasonable facsimile of hell. They may not be too far off the mark, as lava "
 "flows and sullen rubble from the earth are quite common."
 msgstr ""
@@ -5627,7 +5627,7 @@ msgstr ""
 msgid ""
 "Because the Siriusites didn't want to waste space on a full-fledged "
 "spaceport bar, the bar on Lorelei is a virtual one. Visitors enter a VR "
-"booth and are given the illusion of beïng in a large, luxurious spaceport "
+"booth and are given the illusion of being in a large, luxurious spaceport "
 "bar, where they can interact with other visitors and the uplink avatars. It "
 "is even possible to consume beverages in the virtual bar, as the VR booth is "
 "capable of stimulating the part of the human brain that deals with food and "
@@ -5954,7 +5954,7 @@ msgid ""
 "of Soromid space as well as the outer fringe of human inhabited space, its "
 "main purpose is to learn more about the universe that lies beyond. Although "
 "hyperspace travel has made classical astronomy largely obsolete, there is "
-"still merit in beïng able to see the universe as it was in the distant past."
+"still merit in being able to see the universe as it was in the distant past."
 msgstr ""
 
 #: dat/assets/medenus_observatory.xml:26
@@ -6312,7 +6312,7 @@ msgstr ""
 msgid ""
 "Mutris. The very heart of Sirius space. This is where Crater City is to be "
 "found, home of Sirichana and the many Sirius pilgrims who will one day "
-"become the Touchèd. Crater City beïng the most holy of places, the airspace "
+"become the Touchèd. Crater City being the most holy of places, the airspace "
 "in a wide areä around it is closed. The spaceport is located thousands of "
 "kilometers away. All approaches happen under a tight escort, and non-"
 "Siriusites are confined to the commercial district of the planet's political "
@@ -6378,7 +6378,7 @@ msgstr ""
 #: dat/assets/naga.xml:30
 msgid ""
 "This bar is built on one of the upper decks of the underwater cities, with "
-"the entire ceiling beïng a window out into Naga's oceans. The sight is "
+"the entire ceiling being a window out into Naga's oceans. The sight is "
 "nothing short of breathtaking."
 msgstr ""
 
@@ -6389,7 +6389,7 @@ msgstr ""
 #: dat/assets/nanek.xml:28
 msgid ""
 "Nanek is a rarity in Dvaered space: a world devoted to something other than "
-"mining. Despite beïng mostly desert and ocean, Nanek is a popular retirement "
+"mining. Despite being mostly desert and ocean, Nanek is a popular retirement "
 "point for soldiers, officers, and anyone else who can afford it. This makes "
 "it a very popular world for warlords to conquer, and fighting here is "
 "endemic. No warlord is bold enough to interfere with the relaxed lifestyles "
@@ -6537,7 +6537,7 @@ msgstr ""
 msgid ""
 "New Dortmund was founded by the very first colony ship to leave Earth, "
 "Genesis. The planet itself was known only by its systematic designation for "
-"a long time, New Dortmund beïng the name of the settlement. However, since "
+"a long time, New Dortmund being the name of the settlement. However, since "
 "the settlement was the only thing the colonists knew for many years, its "
 "name became synonymous with the world. The moon Folevo was named after the "
 "leader of the Genesis expedition, who sadly perished only a few years after "
@@ -6759,7 +6759,7 @@ msgstr ""
 #: dat/assets/norpin_ii.xml:29
 msgid ""
 "Norpin II is truly at the edge of the frontier, a barely-habitable world "
-"beïng mined and terraformed, though the latter is beïng done as cheaply as "
+"being mined and terraformed, though the latter is being done as cheaply as "
 "possible, resulting in very poor conditions. The Dvaered are loathed here, "
 "and it's rumored that the local shipyard is a major source of FLF vessels."
 msgstr ""
@@ -7037,7 +7037,7 @@ msgid ""
 "weather and frequent seismic activity. All of this makes it a favored "
 "dumping ground for criminals and other undesirables of Dvaered sociëty. "
 "Soldiers assigned here consider it to be a punishment almost as severe as "
-"beïng a prisoner. It's one of the few planets controlled by the central "
+"being a prisoner. It's one of the few planets controlled by the central "
 "Dvaered government, as no sensible warlord wants the place."
 msgstr ""
 
@@ -7889,7 +7889,7 @@ msgstr ""
 #: dat/assets/raptor_station.xml:28
 msgid ""
 "The bar has a few off-duty soldiers and the rare civilian relaxing before "
-"duty calls them onward. The bar itself is not particularly engaging, beïng a "
+"duty calls them onward. The bar itself is not particularly engaging, being a "
 "pre-fab model built into the station."
 msgstr ""
 
@@ -8149,7 +8149,7 @@ msgstr ""
 msgid ""
 "Ruadan has recently become the nerve center of the Za'lek. Most of the "
 "Za'lek's strength is concentrated here, and they don't allow anyone but the "
-"highest level captains to land here. Even beïng allowed to be here is "
+"highest level captains to land here. Even being allowed to be here is "
 "considered a great honor."
 msgstr ""
 
@@ -8390,8 +8390,8 @@ msgstr ""
 
 #: dat/assets/sanchez.xml:28
 msgid ""
-"Old King Cole's moon Sanchez is a rather dirty place. Beïng the only pirate "
-"hold for some distance contributes to this, as well as beïng a little small "
+"Old King Cole's moon Sanchez is a rather dirty place. Being the only pirate "
+"hold for some distance contributes to this, as well as being a little small "
 "for the duty. The local clanworld tries to make up for this lack by "
 "exploiting the resources of other planets in the system."
 msgstr ""
@@ -8417,7 +8417,7 @@ msgstr ""
 
 #: dat/assets/sanctity.xml:28
 msgid ""
-"The bar is tidy and clean, with most of the visitors beïng locals rather "
+"The bar is tidy and clean, with most of the visitors being locals rather "
 "than spacefaring pilots, although some foreigners stand out."
 msgstr ""
 
@@ -8448,7 +8448,7 @@ msgstr ""
 msgid ""
 "Saraab is a small mining colony. The planet's core is comprised of valuable "
 "metals and has almost completely cooled, which makes this world one giant "
-"strip mine. The planet is slowly beïng dismantled and taken to various "
+"strip mine. The planet is slowly being dismantled and taken to various "
 "manufacturing plants elsewhere in the galaxy. In fact, since the planet was "
 "first settled around the end of the Imperial Golden Age, its gravity has "
 "decreased by 17%."
@@ -8855,7 +8855,7 @@ msgstr ""
 
 #: dat/assets/sinclair.xml:30
 msgid ""
-"Sinclair's spaceport bar is run by entrepreneurs, not warriors. But beïng "
+"Sinclair's spaceport bar is run by entrepreneurs, not warriors. But being "
 "entrepreneurs, they recognize the value of catering to the locals and to "
 "those that pass through, and so it is that this bar has a large holoportrait "
 "of Godfried Sinclair hanging over the bar, and his family's weapon can be "
@@ -8911,7 +8911,7 @@ msgstr ""
 msgid ""
 "A hot magma world, Sirk was once an important trading destination. Ever "
 "since the Collective started attacking, however, business to the planet "
-"rapidly decayed amid fears of beïng destroyed by the terrifying drones."
+"rapidly decayed amid fears of being destroyed by the terrifying drones."
 msgstr ""
 
 #: dat/assets/sirk.xml:28
@@ -9053,7 +9053,7 @@ msgstr ""
 
 #: dat/assets/socrates_military_academy.xml:26
 msgid ""
-"Many students are seen studying here at the spaceport bar. Beïng accepted "
+"Many students are seen studying here at the spaceport bar. Being accepted "
 "here is a feat in itself, and only top-notch performance is accepted by the "
 "teachers. Needless to say, most students have little time for social "
 "pleasantries."
@@ -9588,7 +9588,7 @@ msgstr ""
 #: dat/assets/tartarus.xml:27
 msgid ""
 "Trainers and students alike unwind here after a hard day's \"work\", doing "
-"things that no reasonable human beïng would consider. That they seem so "
+"things that no reasonable human being would consider. That they seem so "
 "relaxed about this is enough to chill anyone."
 msgstr ""
 
@@ -9725,7 +9725,7 @@ msgstr ""
 #: dat/assets/thavma.xml:27
 msgid ""
 "Thavma was an unexpected and welcome discovery for the Proteron, an "
-"undiscovered lush planet perfect for agriculture. Not beïng ones to miss an "
+"undiscovered lush planet perfect for agriculture. Not being ones to miss an "
 "opportunity, the Proteron immediately set to work turning the planet into a "
 "supplier of food and water."
 msgstr ""
@@ -9742,7 +9742,7 @@ msgstr ""
 
 #: dat/assets/the_crucible.xml:24
 msgid ""
-"The Crucible infamous for beïng a safe harbor for pirates in the areä, with "
+"The Crucible infamous for being a safe harbor for pirates in the areä, with "
 "residents of Selphod regularly lobbying for its demolition. However, though "
 "the station is within Empire controlled territory, Imperial officials refuse "
 "to do anything on the grounds that it is privately owned and not officially "
@@ -10033,7 +10033,7 @@ msgstr ""
 #: dat/assets/trevis_station.xml:27
 msgid ""
 "Trevis Station is one of those places where young military personnel are "
-"stationed to get some field experience under their belt before beïng sent to "
+"stationed to get some field experience under their belt before being sent to "
 "the more dangerous systems. Many of them will complain at each other in the "
 "bar about how bored they are and how they hope to get a real position "
 "sometime soon, but the more experienced soldiers know that few posts are as "
@@ -10336,7 +10336,7 @@ msgid ""
 "Many spaceport bars play music, but few spaceport bars allow their customers "
 "control over it. This one does. A central platform contains a control "
 "interface that patrons can use to request specific pieces of music to play "
-"in the bar. This beïng Ummula, customers have to pay a fee to access the "
+"in the bar. This being Ummula, customers have to pay a fee to access the "
 "controls."
 msgstr ""
 
@@ -10382,7 +10382,7 @@ msgid ""
 "it a very popular place to live for Siriusites, which has driven the price "
 "of real estate to almost ridiculous heights. Many Siriusites believe that "
 "living on Urail gives them a better chance of meeting a Touchèd, or even "
-"beïng called to Crater City themselves. There is no indication that this is "
+"being called to Crater City themselves. There is no indication that this is "
 "indeed the case, however."
 msgstr ""
 
@@ -10475,7 +10475,7 @@ msgstr ""
 #: dat/assets/vaal.xml:17
 msgid ""
 "This strange, stormy world was once of scientific interest to the Za'lek, "
-"but the Za'lek have since abandoned it, with its only remaining use beïng as "
+"but the Za'lek have since abandoned it, with its only remaining use being as "
 "a quasi-legal dumping ground, due to its atmosphere's tendency to vaporize "
 "any waste thrown into it rather quickly."
 msgstr ""
@@ -10676,7 +10676,7 @@ msgstr ""
 
 #: dat/assets/vennis.xml:30
 msgid ""
-"Though the planet is many years away from beïng suitable for open-air human "
+"Though the planet is many years away from being suitable for open-air human "
 "life, the spaceport authorities have put up various promotional holovids "
 "that showcase the terraforming effort and its predicted effects. It's a "
 "mandatory watch for any visitor to the spaceport bar who wishes to use the "
@@ -10748,7 +10748,7 @@ msgstr ""
 #: dat/assets/vigilance_station.xml:27
 msgid ""
 "Vigilance Station is the defense center for Procyon. Unusually for a Za'lek "
-"military asset, it is well-supplied and cared for, with the staff beïng "
+"military asset, it is well-supplied and cared for, with the staff being "
 "ready at a moment's notice to come to Procyon's aid."
 msgstr ""
 
@@ -11066,7 +11066,7 @@ msgstr ""
 msgid ""
 "A simple lunar outpost built primarily to mine the local X-class world for "
 "its resources and ship them to other parts of Za'lek space. There are rumors "
-"of the world beïng used for weapons testing, but there is little evidence to "
+"of the world being used for weapons testing, but there is little evidence to "
 "support that."
 msgstr ""
 
@@ -11230,7 +11230,7 @@ msgid ""
 "Waterhole's Moon wouldn't be Waterhole's Moon if its bar wasn't called The "
 "Waterhole. Though the place is open to visitors from all origins and walks "
 "of life, the majority of the cliëntele is Imperial in nature. It seems that "
-"nothing creätes a longing for home like beïng away from it for prolonged "
+"nothing creätes a longing for home like being away from it for prolonged "
 "periods of time."
 msgstr ""
 
@@ -11286,7 +11286,7 @@ msgstr ""
 
 #: dat/assets/westeros_station.xml:28
 msgid ""
-"Beïng a station primarily for merchants, the bar is posh, with comforting "
+"Being a station primarily for merchants, the bar is posh, with comforting "
 "seats looking out over big views of the planetary system."
 msgstr ""
 
@@ -11354,13 +11354,13 @@ msgid ""
 "from humanity, but that doesn't mean research into genetic alteration isn't "
 "still ongoing. Woncloak hosts one of the largest bioresearch centers in "
 "Soromid space. Many of the commercially sold gene treatments were developed "
-"here, and beïng a researcher on Woncloak carries a lot of prestige with the "
+"here, and being a researcher on Woncloak carries a lot of prestige with the "
 "Soromid."
 msgstr ""
 
 #: dat/assets/wonclock.xml:29
 msgid ""
-"Beïng such an important location for Soromid sociëty, security on Woncloak "
+"Being such an important location for Soromid sociëty, security on Woncloak "
 "is pretty tight. In particular, visitors have their background checked to "
 "make sure they're not here with a Za'lek agenda. The spaceport bar can only "
 "be accessed after pilots have passed all the security protocols."
@@ -11378,7 +11378,7 @@ msgstr ""
 msgid ""
 "Worscha is a relatively wealthy Sirius world with a mild climate and "
 "pleasant planetary conditions. Its rotation is a bit on the long side, about "
-"25% longer than that of old Earth, which has led to the daily rhythm beïng a "
+"25% longer than that of old Earth, which has led to the daily rhythm being a "
 "little slower than elsewhere."
 msgstr ""
 
@@ -11419,7 +11419,7 @@ msgstr ""
 
 #: dat/assets/yrina.xml:27
 msgid ""
-"Yrina is a resource world that's beïng strip-mined by the Siriusites. The "
+"Yrina is a resource world that's being strip-mined by the Siriusites. The "
 "climate is harsh and almost all of the planet's surface is frozen, but in "
 "some cases that is actually desirable, as substances that would normally be "
 "fluid are now solid, and therefore mined more easily. Yrina supplies mostly "
@@ -12131,7 +12131,7 @@ msgstr ""
 #: dat/outfits/bio_weapons/bioplasma_tentacle_stage_7.xml:10
 msgid ""
 "The BioPlasma Tentacle is hands-down the strongest and most versatile "
-"organic weapon grown by the Soromid. It has the distinction of beïng the "
+"organic weapon grown by the Soromid. It has the distinction of being the "
 "only rotating organic weapon while also boasting a damage output that is "
 "unmatched by most weaponry found throughout the galaxy once fully developed. "
 "As with all organs, it starts out weak, but over time it grows and improves."
@@ -12168,7 +12168,7 @@ msgstr ""
 #: dat/outfits/bio_weapons/bioplasma_tentacle_stage_x.xml:10
 msgid ""
 "The BioPlasma Tentacle is hands-down the strongest and most versatile "
-"organic weapon grown by the Soromid. It has the distinction of beïng the "
+"organic weapon grown by the Soromid. It has the distinction of being the "
 "only rotating organic weapon while also boasting a damage output that is "
 "unmatched by most weaponry found throughout the galaxy once fully developed. "
 "This organ has reached Stage X, its full potential."
@@ -12874,7 +12874,7 @@ msgstr ""
 msgid ""
 "The shell is a Soromid bioship's natural protection, equivalent to hulls of "
 "synthetic ships. The shell is responsible both for protecting the organism's "
-"internal organs and for creäting camouflage to reduce the risk of beïng "
+"internal organs and for creäting camouflage to reduce the risk of being "
 "detected by hostiles. All shells start off undeveloped, but over time, just "
 "like the ships themselves, they grow and improve."
 msgstr ""
@@ -12912,7 +12912,7 @@ msgstr ""
 msgid ""
 "The shell is a Soromid bioship's natural protection, equivalent to hulls of "
 "synthetic ships. The shell is responsible both for protecting the organism's "
-"internal organs and for creäting camouflage to reduce the risk of beïng "
+"internal organs and for creäting camouflage to reduce the risk of being "
 "detected by hostiles. This shell has reached stage X, its full potential."
 msgstr ""
 
@@ -15827,7 +15827,7 @@ msgid ""
 "The Gauss Gun is one of the oldest weapon designs in the galaxy today, "
 "dating back to the times of the Federation. It fires a rapid stream of high "
 "velocity projectiles at a target, dealing damage through sheer kinetic "
-"impact. Gauss Guns are popular among small time pirates for beïng an easy to "
+"impact. Gauss Guns are popular among small time pirates for being an easy to "
 "use, reliable weapon. House Dvaered has also taken a particular liking to "
 "the style, although Dvaered pilots typically use their own higher-powered "
 "versions of the weapon."
@@ -16158,7 +16158,7 @@ msgstr ""
 #: dat/outfits/weapons/plasma_turret_mk1.xml:10
 msgid ""
 "The Plasma Turret essentially takes a Plasma Blaster and mounts it on a "
-"turret. Its slow fire rate leads to it beïng used less commonly than other "
+"turret. Its slow fire rate leads to it being used less commonly than other "
 "turrets, but those traders who do use it often swear by its reliability."
 msgstr ""
 
@@ -16597,7 +16597,7 @@ msgstr ""
 #: dat/ships/empire_lancelot.xml:18
 msgid ""
 "The military-grade version of the Lancelot is more balanced than its "
-"civilian counterpart, beïng somewhat less armored, but having improved "
+"civilian counterpart, being somewhat less armored, but having improved "
 "shielding and missile deployment systems. Enemies of the Empire know well to "
 "fear this vessel."
 msgstr ""
@@ -16906,7 +16906,7 @@ msgid ""
 "The Pirate Vendetta is even more intimidating than its regular counterpart. "
 "It's been heavily tweaked to be more adjusted to the pirate style of flying. "
 "Some of the armor has been removed to make more room for loot, while the "
-"reactor has been jacked up by a dubious technician. The ship ends up beïng "
+"reactor has been jacked up by a dubious technician. The ship ends up being "
 "substantially better than the original, but every so often the reactor goes "
 "nova destroying the ship. You hope it won't happen to you if you get in one."
 msgstr ""
@@ -17192,7 +17192,7 @@ msgstr ""
 msgid ""
 "The Brigand is a fast, maneuverable bioship that the Soromid use for system "
 "patrols and police duties. The ship is lightly armored and fairly fragile, "
-"but it makes up for this by beïng fast to grow and therefore relatively "
+"but it makes up for this by being fast to grow and therefore relatively "
 "expendable."
 msgstr ""
 
@@ -19034,10 +19034,12 @@ msgstr ""
 #.
 #. Settings
 #: dat/ai/baddie.lua:17
+msgctxt "bribe_no"
 msgid "Money won't save your hide!"
 msgstr ""
 
 #: dat/ai/baddie.lua:18
+msgctxt "refuel_no"
 msgid "Piss off. You can't have my fuel."
 msgstr ""
 
@@ -19178,27 +19180,32 @@ msgstr ""
 #. No bribe
 #: dat/ai/civilian.lua:15 dat/ai/independent.lua:17 dat/ai/miner.lua:16
 #: dat/ai/proteron_dissident.lua:20 dat/ai/trader.lua:16
+msgctxt "bribe_no"
 msgid "\"Just leave me alone!\""
 msgstr ""
 
 #: dat/ai/civilian.lua:16 dat/ai/independent.lua:18 dat/ai/miner.lua:17
 #: dat/ai/proteron_dissident.lua:21 dat/ai/trader.lua:17
+msgctxt "bribe_no"
 msgid "\"What do you want from me!?\""
 msgstr ""
 
 #: dat/ai/civilian.lua:17 dat/ai/independent.lua:19 dat/ai/miner.lua:18
 #: dat/ai/proteron_dissident.lua:22 dat/ai/trader.lua:18
+msgctxt "bribe_no"
 msgid "\"Get away from me!\""
 msgstr ""
 
 #. Refuel
 #. Communication stuff
-#: dat/ai/civilian.lua:25 dat/ai/independent.lua:26 dat/ai/mercenary.lua:33
+#: dat/ai/civilian.lua:25 dat/ai/independent.lua:26 dat/ai/mercenary.lua:34
 #: dat/ai/miner.lua:25 dat/ai/proteron_dissident.lua:29 dat/ai/trader.lua:29
+msgctxt "refuel_prompt"
 msgid "\"I'll supply your ship with fuel for {credits}.\""
 msgstr ""
 
 #: dat/ai/civilian.lua:28 dat/ai/trader.lua:32
+msgctxt "refuel"
 msgid "\"Alright, I'll give you some fuel.\""
 msgstr ""
 
@@ -19206,15 +19213,18 @@ msgstr ""
 #. Settings
 #. Lower control rate
 #. Refuel available if the player is at least neutral to them.
-#: dat/ai/collective.lua:17
+#: dat/ai/collective.lua:18
+msgctxt "bribe_no"
 msgid "{pilot} does not respond."
 msgstr ""
 
-#: dat/ai/collective.lua:19
+#: dat/ai/collective.lua:20
+msgctxt "refuel"
 msgid "\"Fuel request accepted. Approaching for fuel transfer.\""
 msgstr ""
 
-#: dat/ai/collective.lua:20
+#: dat/ai/collective.lua:21
+msgctxt "refuel_cannot"
 msgid "\"Refuel request declined. Insufficient fuel available.\""
 msgstr ""
 
@@ -19231,8 +19241,9 @@ msgstr ""
 #. Settings
 #. Za'lek armour is pretty crap. They know this, and will dip when their shields go down.
 #. See if a drone
-#: dat/ai/collective.lua:22 dat/ai/drone_miner.lua:10 dat/ai/escort.lua:9
+#: dat/ai/collective.lua:23 dat/ai/drone_miner.lua:10 dat/ai/escort.lua:9
 #: dat/ai/zalek.lua:21
+msgctxt "comm_no"
 msgid "No response."
 msgstr ""
 
@@ -19250,43 +19261,53 @@ msgstr ""
 #. Create function
 #. Handle bribing
 #: dat/ai/dvaered.lua:22
+msgctxt "bribe_prompt"
 msgid "\"For {credits} I'll pretend I didn't see you.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:24
+msgctxt "bribe_paid"
 msgid "\"Good. Now get out of my face.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:27 dat/ai/goddard.lua:25
+msgctxt "bribe_no"
 msgid "\"You insult my honor.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:28 dat/ai/goddard.lua:26
+msgctxt "bribe_no"
 msgid "\"I find your lack of honor disturbing.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:29 dat/ai/goddard.lua:27
+msgctxt "bribe_no"
 msgid "\"You disgust me.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:30 dat/ai/goddard.lua:28
+msgctxt "bribe_no"
 msgid "\"Bribery carries a harsh penalty.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:31 dat/ai/goddard.lua:29
+msgctxt "bribe_no"
 msgid "\"We do not lower ourselves to common scum.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:32 dat/ai/goddard.lua:30
+msgctxt "bribe_no"
 msgid "\"I will especially enjoy your death!\""
 msgstr ""
 
 #. Handle refueling
 #: dat/ai/dvaered.lua:41
+msgctxt "refuel_no"
 msgid "\"You are not worthy of my attention.\""
 msgstr ""
 
 #: dat/ai/dvaered.lua:44
+msgctxt "refuel_prompt"
 msgid "\"For you, I could make an exception for {credits}.\""
 msgstr ""
 
@@ -19300,70 +19321,106 @@ msgstr ""
 #. taunts
 #. Offense is not actually used
 #: dat/ai/dvaered.lua:64 dat/ai/goddard.lua:53
+msgctxt "taunt"
 msgid "Prepare to face annihilation!"
 msgstr ""
 
 #: dat/ai/dvaered.lua:65
-msgid "I shall wash my hull in your blood!"
+msgctxt "taunt"
+msgid "I will wash my hull in your blood!"
 msgstr ""
 
 #: dat/ai/dvaered.lua:66 dat/ai/goddard.lua:54
+msgctxt "taunt"
 msgid "Your head will make a great trophy!"
 msgstr ""
 
 #: dat/ai/dvaered.lua:67
-msgid "You're no match for the Dvaered!"
+msgctxt "taunt"
+msgid "You're no match for us!"
 msgstr ""
 
 #: dat/ai/dvaered.lua:68
+msgctxt "taunt"
 msgid "Death awaits you!"
 msgstr ""
 
 #: dat/ai/dvaered.lua:69
-msgid "You have once again intruded on the territory of the Dvaered!"
+msgctxt "taunt"
+msgid "Death to all who oppose us!"
+msgstr ""
+
+#: dat/ai/dvaered.lua:70
+msgctxt "taunt"
+msgid "Eat flaming death, you gravy-sucking pig!"
+msgstr ""
+
+#: dat/ai/dvaered.lua:73
+msgctxt "taunt"
+msgid "Now you must pay for your crimes!"
+msgstr ""
+
+#: dat/ai/dvaered.lua:74
+msgctxt "taunt"
+msgid "You're no match for the Dvaered!"
+msgstr ""
+
+#: dat/ai/dvaered.lua:75
+msgctxt "taunt"
+msgid "Criminal scum! You die!"
 msgstr ""
 
 #. Settings
 #. Get refuel chance
 #: dat/ai/empire.lua:21 dat/ai/empire.lua:24
+msgctxt "refuel_no"
 msgid "\"My fuel is property of the Empire.\""
 msgstr ""
 
 #. Most likely no chance to refuel
 #: dat/ai/empire.lua:31 dat/ai/soromid.lua:31
+msgctxt "refuel_prompt"
 msgid "\"I suppose I could spare some fuel for {credits}.\""
 msgstr ""
 
 #. See if can be bribed
 #: dat/ai/empire.lua:38
+msgctxt "bribe_prompt"
 msgid "\"For {credits} I could forget about seeing you.\""
 msgstr ""
 
 #: dat/ai/empire.lua:40
+msgctxt "bribe_paid"
 msgid "\"Now scram before I change my mind.\""
 msgstr ""
 
-#: dat/ai/empire.lua:43 dat/ai/mercenary.lua:24 dat/ai/proteron.lua:42
+#: dat/ai/empire.lua:43 dat/ai/mercenary.lua:25 dat/ai/proteron.lua:43
+msgctxt "bribe_no"
 msgid "\"You won't buy your way out of this one.\""
 msgstr ""
 
 #: dat/ai/empire.lua:44
+msgctxt "bribe_no"
 msgid "\"The Empire likes to make examples out of scum like you.\""
 msgstr ""
 
-#: dat/ai/empire.lua:45 dat/ai/proteron.lua:44
+#: dat/ai/empire.lua:45 dat/ai/proteron.lua:45
+msgctxt "bribe_no"
 msgid "\"You've made a huge mistake.\""
 msgstr ""
 
-#: dat/ai/empire.lua:46 dat/ai/proteron.lua:45
+#: dat/ai/empire.lua:46 dat/ai/proteron.lua:46
+msgctxt "bribe_no"
 msgid "\"Bribery carries a harsh penalty, scum.\""
 msgstr ""
 
-#: dat/ai/empire.lua:47 dat/ai/proteron.lua:46
+#: dat/ai/empire.lua:47 dat/ai/proteron.lua:47
+msgctxt "bribe_no"
 msgid "\"I'm not interested in your blood money!\""
 msgstr ""
 
 #: dat/ai/empire.lua:48
+msgctxt "bribe_no"
 msgid "\"All the money in the world won't save you now!\""
 msgstr ""
 
@@ -19372,44 +19429,54 @@ msgstr ""
 #. taunts
 #. Only 50% of actually taunting.
 #. some taunts
-#: dat/ai/empire.lua:69 dat/ai/soromid.lua:69
+#: dat/ai/empire.lua:69
+msgctxt "taunt"
 msgid "There is no room in this universe for scum like you!"
 msgstr ""
 
 #: dat/ai/empire.lua:70
+msgctxt "taunt"
 msgid "The Empire will enjoy your death!"
 msgstr ""
 
 #: dat/ai/empire.lua:71
+msgctxt "taunt"
 msgid "Your head will make a fine gift for the Emperor!"
 msgstr ""
 
 #: dat/ai/empire.lua:72
+msgctxt "taunt"
 msgid "None survive the wrath of the Emperor!"
 msgstr ""
 
 #: dat/ai/empire.lua:73
+msgctxt "taunt"
 msgid "Enjoy your last moments, criminal!"
 msgstr ""
 
-#: dat/ai/empire.lua:77 dat/ai/pirate.lua:109
+#: dat/ai/empire.lua:77 dat/ai/pirate.lua:106
+msgctxt "taunt_defensive"
 msgid "You dare attack me?!"
 msgstr ""
 
 #: dat/ai/empire.lua:78
+msgctxt "taunt_defensive"
 msgid "You are no match for the Empire!"
 msgstr ""
 
 #: dat/ai/empire.lua:79
+msgctxt "taunt_defensive"
 msgid "The Empire will have your head!"
 msgstr ""
 
-#: dat/ai/empire.lua:80 dat/ai/flf.lua:70 dat/ai/frontier.lua:64
-#: dat/ai/proteron.lua:82 dat/ai/soromid.lua:79
+#: dat/ai/empire.lua:80 dat/ai/flf.lua:71 dat/ai/frontier.lua:65
+#: dat/ai/proteron.lua:87 dat/ai/soromid.lua:80
+msgctxt "taunt_defensive"
 msgid "You'll regret that!"
 msgstr ""
 
-#: dat/ai/empire.lua:81 dat/ai/soromid.lua:80
+#: dat/ai/empire.lua:81 dat/ai/soromid.lua:81
+msgctxt "taunt_defensive"
 msgid "That was a fatal mistake!"
 msgstr ""
 
@@ -19454,27 +19521,33 @@ msgstr ""
 #. Create function
 #. Handle bribing
 #: dat/ai/flf.lua:24 dat/ai/frontier.lua:18
+msgctxt "bribe_no"
 msgid "\"The only way to deal with scum like you is with cannons!\""
 msgstr ""
 
-#: dat/ai/flf.lua:27
+#: dat/ai/flf.lua:28
+msgctxt "bribe_prompt"
 msgid "\"It'll cost you {credits} for me to ignore your dirty presence.\""
 msgstr ""
 
-#: dat/ai/flf.lua:29
+#: dat/ai/flf.lua:30
+msgctxt "bribe_paid"
 msgid "\"Begone before I change my mind.\""
 msgstr ""
 
 #. Handle refueling.
-#: dat/ai/flf.lua:34
+#: dat/ai/flf.lua:35
+msgctxt "refuel_no"
 msgid "\"I can't spare fuel for you.\""
 msgstr ""
 
-#: dat/ai/flf.lua:37
+#: dat/ai/flf.lua:39
+msgctxt "refuel_prompt"
 msgid "\"I should be able to spare some fuel for {credits}.\""
 msgstr ""
 
-#: dat/ai/flf.lua:41
+#: dat/ai/flf.lua:43
+msgctxt "refuel"
 msgid "Sure thing, {player}. On my way."
 msgstr ""
 
@@ -19486,96 +19559,118 @@ msgstr ""
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. taunts
 #. Only 50% of actually taunting.
-#: dat/ai/flf.lua:62 dat/ai/frontier.lua:58
+#: dat/ai/flf.lua:64 dat/ai/frontier.lua:58
+msgctxt "taunt"
 msgid "For the Frontier!"
 msgstr ""
 
-#: dat/ai/flf.lua:63 dat/ai/frontier.lua:59
+#: dat/ai/flf.lua:65 dat/ai/frontier.lua:59
+msgctxt "taunt"
 msgid "You'll make great target practice!"
 msgstr ""
 
-#: dat/ai/flf.lua:64
+#: dat/ai/flf.lua:66
+msgctxt "taunt"
 msgid "Purge the oppressors!"
 msgstr ""
 
-#: dat/ai/flf.lua:68
-msgid "You are no match for the FLF!"
+#: dat/ai/flf.lua:70 dat/ai/frontier.lua:64
+msgctxt "taunt_defensive"
+msgid "Frontier vessel under attack! Requesting assistance!"
 msgstr ""
 
-#: dat/ai/flf.lua:69
-msgid "I've killed scum far more dangerous than you!"
+#: dat/ai/flf.lua:72 dat/ai/frontier.lua:66
+msgctxt "taunt_defensive"
+msgid "I won't go down without a fight!"
 msgstr ""
 
-#: dat/ai/flf.lua:71 dat/ai/frontier.lua:65
-msgid "Death to enemies of the Frontier!"
+#: dat/ai/flf.lua:73 dat/ai/frontier.lua:67
+msgctxt "taunt_defensive"
+msgid "To hell with you!"
+msgstr ""
+
+#: dat/ai/flf.lua:74 dat/ai/frontier.lua:68
+msgctxt "taunt_defensive"
+msgid "You won't get away with this!"
+msgstr ""
+
+#: dat/ai/flf.lua:75
+msgctxt "taunt_defensive"
+msgid "For the Frontier!"
 msgstr ""
 
 #: dat/ai/frontier.lua:19
+msgctxt "bribe_no"
 msgid "\"I don't want your money.\""
 msgstr ""
 
 #: dat/ai/frontier.lua:20
+msgctxt "bribe_no"
 msgid "\"I'm here for the Frontier, not money.\""
 msgstr ""
 
 #: dat/ai/frontier.lua:21
+msgctxt "bribe_no"
 msgid "\"Not interested.\""
 msgstr ""
 
 #: dat/ai/frontier.lua:22
+msgctxt "bribe_no"
 msgid "\"I won't let you off that easily.\""
 msgstr ""
 
 #. Handle refueling
 #: dat/ai/frontier.lua:32
+msgctxt "refuel_no"
 msgid "\"Sorry, I can't spare fuel for you.\""
 msgstr ""
 
 #: dat/ai/frontier.lua:35
+msgctxt "refuel_prompt"
 msgid "\"Sure, just {credits} and I'll give you some fuel.\""
 msgstr ""
 
 #: dat/ai/frontier.lua:39
+msgctxt "refuel"
 msgid "\"Sure, friend, I can refuel you. On my way.\""
 msgstr ""
 
 #: dat/ai/frontier.lua:60
+msgctxt "taunt"
 msgid "You won't get away with your actions!"
-msgstr ""
-
-#: dat/ai/frontier.lua:66
-msgid "I won't go down without a fight!"
-msgstr ""
-
-#: dat/ai/frontier.lua:67
-msgid "To hell with you!"
 msgstr ""
 
 #. Settings
 #. Create function
 #. Bribing
 #: dat/ai/goddard.lua:20
+msgctxt "bribe_prompt"
 msgid "\"Hm, transfer over {credits} and I'll forget I saw you.\""
 msgstr ""
 
 #: dat/ai/goddard.lua:22
+msgctxt "bribe_paid"
 msgid "\"Get out of my sight before I change my mind.\""
 msgstr ""
 
 #. Refueling
 #: dat/ai/goddard.lua:40
+msgctxt "refuel_prompt"
 msgid "\"I could do you the favor of refueling for {credits}.\""
 msgstr ""
 
 #: dat/ai/goddard.lua:55
+msgctxt "taunt"
 msgid "These moments will be your last!"
 msgstr ""
 
 #: dat/ai/goddard.lua:56
+msgctxt "taunt"
 msgid "Parasite! You die!"
 msgstr ""
 
 #: dat/ai/goddard.lua:57
+msgctxt "taunt"
 msgid "Prepare to face the wrath of House Goddard!"
 msgstr ""
 
@@ -19586,10 +19681,12 @@ msgstr ""
 #. --
 #. Settings
 #: dat/ai/guard.lua:13
+msgctxt "bribe_no"
 msgid "You can't bribe me!"
 msgstr ""
 
 #: dat/ai/guard.lua:14
+msgctxt "refuel_no"
 msgid "I won't give you fuel!"
 msgstr ""
 
@@ -20208,71 +20305,65 @@ msgstr ""
 #. --
 #. Basic behaviour for non-combat ships when in distress
 #. Send a distress signal which causes faction loss
-#: dat/ai/include/distress_behaviour.lua:14
+#: dat/ai/include/distress_behaviour.lua:15
+msgctxt "sos"
 msgid "Local security: requesting assistance!"
 msgstr ""
 
-#: dat/ai/include/distress_behaviour.lua:15
+#: dat/ai/include/distress_behaviour.lua:16
+msgctxt "sos"
 msgid "Mayday! We are under attack!"
 msgstr ""
 
-#.
-#.
-#. AI for stationary turrets.
-#.
-#. --
-#. Must not be same
-#. Engage closest
-#. Do nothing
-#. Stop attacking if it doesn't exist
-#. Set the target
-#. Choose how to face
-#. In melee
-#. Forward
-#. Turret
-#. Long-range
-#. Sends a distress signal which causes faction loss
-#: dat/ai/include/distress_behaviour.lua:16 dat/ai/thurion.lua:15
+#: dat/ai/include/distress_behaviour.lua:17
+msgctxt "sos"
 msgid "Requesting assistance. We are under attack!"
 msgstr ""
 
-#: dat/ai/include/distress_behaviour.lua:17
-#, lua-format
-msgid "%s vessel under attack! Requesting help!"
+#: dat/ai/include/distress_behaviour.lua:18
+msgctxt "sos"
+msgid "{faction} vessel under attack! Requesting help!"
 msgstr ""
 
-#: dat/ai/include/distress_behaviour.lua:18 dat/ai/thurion.lua:17
+#: dat/ai/include/distress_behaviour.lua:20 dat/ai/thurion.lua:17
+msgctxt "sos"
 msgid "Help! Ship under fire!"
 msgstr ""
 
-#: dat/ai/include/distress_behaviour.lua:19 dat/ai/thurion.lua:18
+#: dat/ai/include/distress_behaviour.lua:21 dat/ai/thurion.lua:18
+msgctxt "sos"
 msgid "Taking hostile fire! Need assistance!"
 msgstr ""
 
-#: dat/ai/include/distress_behaviour.lua:20 dat/ai/thurion.lua:19
+#: dat/ai/include/distress_behaviour.lua:22 dat/ai/thurion.lua:19
+msgctxt "sos"
 msgid "We are under attack, require support!"
 msgstr ""
 
-#: dat/ai/include/distress_behaviour.lua:21 dat/ai/thurion.lua:20
+#: dat/ai/include/distress_behaviour.lua:23 dat/ai/thurion.lua:20
+msgctxt "sos"
 msgid "Mayday! Ship taking damage!"
 msgstr ""
 
-#: dat/ai/include/distress_behaviour.lua:22
-#, lua-format
-msgid "Mayday! %s %s being assaulted!"
+#: dat/ai/include/distress_behaviour.lua:24
+msgctxt "sos"
+msgid "Mayday! {faction} {shipclass} being assaulted!"
 msgstr ""
 
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. Settings
-#: dat/ai/mercenary.lua:19
+#: dat/ai/mercenary.lua:20
+msgctxt "bribe_prompt"
 msgid "\"Your life is worth {credits} to me.\""
 msgstr ""
 
-#: dat/ai/mercenary.lua:21
+#: dat/ai/mercenary.lua:22
+msgctxt "bribe_paid"
 msgid "\"Beat it.\""
 msgstr ""
 
-#: dat/ai/mercenary.lua:26
+#: dat/ai/mercenary.lua:27
+msgctxt "bribe_no"
 msgid "\"I'm afraid you can't make it worth my while.\""
 msgstr ""
 
@@ -20281,28 +20372,49 @@ msgstr ""
 #. taunts
 #. Only 20% of actually taunting.
 #. some taunts
-#: dat/ai/mercenary.lua:53
+#: dat/ai/mercenary.lua:54
+msgctxt "taunt"
 msgid "Don't take this personally."
 msgstr ""
 
-#: dat/ai/mercenary.lua:54
+#: dat/ai/mercenary.lua:55
+msgctxt "taunt"
 msgid "It's just business."
 msgstr ""
 
-#: dat/ai/mercenary.lua:58
-msgid "Your skull will make a great hood ornament."
+#: dat/ai/mercenary.lua:56
+msgctxt "taunt"
+msgid "Sorry."
 msgstr ""
 
-#: dat/ai/mercenary.lua:59
-msgid "I've destroyed ships twice the size of yours!"
-msgstr ""
-
-#: dat/ai/mercenary.lua:60
-msgid "I'll crush you like a grape!"
+#: dat/ai/mercenary.lua:57 dat/ai/pirate.lua:97
+msgctxt "taunt"
+msgid "Nothing personal."
 msgstr ""
 
 #: dat/ai/mercenary.lua:61
+msgctxt "taunt_defensive"
+msgid "Your skull will make a great hood ornament!"
+msgstr ""
+
+#: dat/ai/mercenary.lua:62
+msgctxt "taunt_defensive"
+msgid "I've destroyed ships twice the size of yours!"
+msgstr ""
+
+#: dat/ai/mercenary.lua:63
+msgctxt "taunt_defensive"
+msgid "I'll crush you like a grape!"
+msgstr ""
+
+#: dat/ai/mercenary.lua:64
+msgctxt "taunt_defensive"
 msgid "This isn't what I signed up for!"
+msgstr ""
+
+#: dat/ai/mercenary.lua:65
+msgctxt "taunt_defensive"
+msgid "Oh, now you're in for it!"
 msgstr ""
 
 #. No idle function, ship won't react until it detects enemies
@@ -20336,130 +20448,154 @@ msgstr ""
 #.
 #. --
 #. Settings
-#. Deal with bribeability
-#: dat/ai/pirate.lua:29
-msgid "\"You won't be able to slide out of this one!\""
-msgstr ""
-
-#: dat/ai/pirate.lua:33
+#. Deal with bribing
+#: dat/ai/pirate.lua:30
+msgctxt "bribe_prompt"
 msgid "\"It'll cost you {credits} for me to ignore your pile of rubbish.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:34
+#: dat/ai/pirate.lua:31
+msgctxt "bribe_prompt"
 msgid "\"I'm in a good mood so I'll let you go for {credits}.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:35
+#: dat/ai/pirate.lua:32
+msgctxt "bribe_prompt"
 msgid "\"Send me {credits} or you're dead.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:36
+#: dat/ai/pirate.lua:33
+msgctxt "bribe_prompt"
 msgid "\"Pay up {credits} or it's the end of the line.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:37
+#: dat/ai/pirate.lua:34
+msgctxt "bribe_prompt"
 msgid "\"Your money or your life. {credits} and make the choice quickly.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:38
+#: dat/ai/pirate.lua:35
+msgctxt "bribe_prompt"
 msgid "\"Money talks bub. {credits} up front or get off my channel.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:39
+#: dat/ai/pirate.lua:36
+msgctxt "bribe_prompt"
 msgid "\"Shut up and give me your money! {credits} now.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:40
+#: dat/ai/pirate.lua:37
+msgctxt "bribe_prompt"
 msgid ""
 "\"You're either really desperate or really rich. {credits} or shut up.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:41
+#: dat/ai/pirate.lua:38
+msgctxt "bribe_prompt"
 msgid ""
 "\"If you're willing to negotiate I'll gladly take {credits} to not kill you."
 "\""
 msgstr ""
 
-#: dat/ai/pirate.lua:42
+#: dat/ai/pirate.lua:39
+msgctxt "bribe_prompt"
 msgid "\"You give me {credits} and I'll act like I never saw you.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:43
+#: dat/ai/pirate.lua:40
+msgctxt "bribe_prompt"
 msgid ""
 "\"So this is the part where you pay up or get shot up. Your choice. What'll "
 "be, {credits} or…?\""
 msgstr ""
 
-#: dat/ai/pirate.lua:44
+#: dat/ai/pirate.lua:41
+msgctxt "bribe_prompt"
 msgid ""
 "\"Pay up or don't. {credits} now just means I'll wait till later to collect "
 "the rest.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:45
+#: dat/ai/pirate.lua:42
+msgctxt "bribe_prompt"
 msgid "\"This is a toll road, pay up {credits} or die.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:50
+#: dat/ai/pirate.lua:47
+msgctxt "bribe_paid"
 msgid "\"You're lucky I'm so kind.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:51
+#: dat/ai/pirate.lua:48
+msgctxt "bribe_paid"
 msgid "\"Life doesn't get easier than this.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:52
+#: dat/ai/pirate.lua:49
+msgctxt "bribe_paid"
 msgid "\"Pleasure doing business.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:53
+#: dat/ai/pirate.lua:50
+msgctxt "bribe_paid"
 msgid "\"See you again, real soon.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:54
+#: dat/ai/pirate.lua:51
+msgctxt "bribe_paid"
 msgid "\"I'll be around if you get generous again.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:55
+#: dat/ai/pirate.lua:52
+msgctxt "bribe_paid"
 msgid "\"Lucky day, lucky day!\""
 msgstr ""
 
-#: dat/ai/pirate.lua:56
+#: dat/ai/pirate.lua:53
+msgctxt "bribe_paid"
 msgid "\"And I didn't even have to kill anyone!\""
 msgstr ""
 
-#: dat/ai/pirate.lua:57
+#: dat/ai/pirate.lua:54
+msgctxt "bribe_paid"
 msgid "\"See, this is how we become friends.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:58
+#: dat/ai/pirate.lua:55
+msgctxt "bribe_paid"
 msgid "\"Now if I kill you it'll be just for fun!\""
 msgstr ""
 
-#: dat/ai/pirate.lua:59
+#: dat/ai/pirate.lua:56
+msgctxt "bribe_paid"
 msgid "\"You just made a good financial decision today.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:60
+#: dat/ai/pirate.lua:57
+msgctxt "bribe_paid"
 msgid "\"Know what? I won't kill you.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:61
+#: dat/ai/pirate.lua:58
+msgctxt "bribe_paid"
 msgid ""
 "\"Something feels strange. It's almost as if my urge to kill you has "
 "completely dissipated.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:62
+#: dat/ai/pirate.lua:59
+msgctxt "bribe_paid"
 msgid "\"Can I keep shooting you anyhow? No? You sure? Fine.\""
 msgstr ""
 
-#: dat/ai/pirate.lua:63
+#: dat/ai/pirate.lua:60
+msgctxt "bribe_paid"
 msgid "\"And it only cost you an arm and a leg.\""
 msgstr ""
 
 #. Deal with refueling
-#: dat/ai/pirate.lua:74
+#: dat/ai/pirate.lua:71
+msgctxt "refuel_prompt"
 msgid "\"I'll take {credits} for some fuel.\""
 msgstr ""
 
@@ -20467,152 +20603,173 @@ msgstr ""
 #. Finish up creation
 #. Only 50% of actually taunting.
 #. some taunts
-#: dat/ai/pirate.lua:93
+#: dat/ai/pirate.lua:90
+msgctxt "taunt"
 msgid "Prepare to be boarded!"
 msgstr ""
 
-#: dat/ai/pirate.lua:94
+#: dat/ai/pirate.lua:91
+msgctxt "taunt"
 msgid "Give me your credits or die!"
 msgstr ""
 
-#: dat/ai/pirate.lua:95
+#: dat/ai/pirate.lua:92
+msgctxt "taunt"
 msgid "Your ship's mine!"
 msgstr ""
 
-#: dat/ai/pirate.lua:96
+#: dat/ai/pirate.lua:93
+msgctxt "taunt"
 msgid "Oh ho ho, what do I see here?"
 msgstr ""
 
-#: dat/ai/pirate.lua:97
+#: dat/ai/pirate.lua:94
+msgctxt "taunt"
 msgid "You may want to send that distress signal now."
 msgstr ""
 
-#: dat/ai/pirate.lua:98
+#: dat/ai/pirate.lua:95
+msgctxt "taunt"
 msgid "It's time to die."
 msgstr ""
 
-#: dat/ai/pirate.lua:99
+#: dat/ai/pirate.lua:96
+msgctxt "taunt"
 msgid "Nothing personal, just business."
 msgstr ""
 
-#: dat/ai/pirate.lua:100
-msgid "Nothing personal."
-msgstr ""
-
-#: dat/ai/pirate.lua:101
+#: dat/ai/pirate.lua:98
+msgctxt "taunt"
 msgid "Just business."
 msgstr ""
 
-#: dat/ai/pirate.lua:102
+#: dat/ai/pirate.lua:99
+msgctxt "taunt"
 msgid "Sorry, but I'm a private tracker."
 msgstr ""
 
-#: dat/ai/pirate.lua:103
+#: dat/ai/pirate.lua:100
+msgctxt "taunt"
 msgid "Looks like you've picked the wrong sector of space!"
 msgstr ""
 
-#: dat/ai/pirate.lua:104
+#: dat/ai/pirate.lua:101
+msgctxt "taunt"
 msgid "Give me your credits now if you want to live!"
 msgstr ""
 
-#: dat/ai/pirate.lua:105
+#: dat/ai/pirate.lua:102
+msgctxt "taunt"
 msgid "Hey, space is a tough place where wimps eat flaming plasma death."
 msgstr ""
 
-#: dat/ai/pirate.lua:110
+#: dat/ai/pirate.lua:107
+msgctxt "taunt_defensive"
 msgid "You think that you can take me on?"
 msgstr ""
 
-#: dat/ai/pirate.lua:111
+#: dat/ai/pirate.lua:108
+msgctxt "taunt_defensive"
 msgid "Die!"
 msgstr ""
 
-#: dat/ai/pirate.lua:112
+#: dat/ai/pirate.lua:109
+msgctxt "taunt_defensive"
 msgid "You'll regret this!"
 msgstr ""
 
-#: dat/ai/pirate.lua:113
+#: dat/ai/pirate.lua:110
+msgctxt "taunt_defensive"
 msgid "You can either pray now or sit in hell later."
 msgstr ""
 
-#: dat/ai/pirate.lua:114
+#: dat/ai/pirate.lua:111
+msgctxt "taunt_defensive"
 msgid "Game over, you're dead!"
 msgstr ""
 
-#: dat/ai/pirate.lua:115
+#: dat/ai/pirate.lua:112
+msgctxt "taunt_defensive"
 msgid "Knock it off!"
 msgstr ""
 
-#: dat/ai/pirate.lua:116
+#: dat/ai/pirate.lua:113
+msgctxt "taunt_defensive"
 msgid "Now you're in for it!"
 msgstr ""
 
-#: dat/ai/pirate.lua:117
+#: dat/ai/pirate.lua:114
+msgctxt "taunt_defensive"
 msgid "Did you really think you would get away with that?"
 msgstr ""
 
-#: dat/ai/pirate.lua:118
+#: dat/ai/pirate.lua:115
+msgctxt "taunt_defensive"
 msgid "I just painted this thing!"
 msgstr ""
 
-#: dat/ai/pirate.lua:119
-msgid "I can't wait to see you burn."
+#: dat/ai/pirate.lua:116
+msgctxt "taunt_defensive"
+msgid "I can't wait to see you burn!"
 msgstr ""
 
-#: dat/ai/pirate.lua:120
-msgid "Just. Stop. Moving!"
-msgstr ""
-
-#: dat/ai/pirate.lua:121
-msgid "Die already!"
-msgstr ""
-
-#: dat/ai/pirate.lua:122
-msgid "Stop dodging!"
-msgstr ""
-
-#: dat/ai/pirate.lua:123
+#: dat/ai/pirate.lua:117
+msgctxt "taunt_defensive"
 msgid "Okay, that's enough of that!"
 msgstr ""
 
-#: dat/ai/pirate.lua:124
+#: dat/ai/pirate.lua:118
+msgctxt "taunt_defensive"
 msgid "I'm gonna torrent you to bits!"
 msgstr ""
 
 #. Settings
 #. Get refuel chance
 #: dat/ai/proteron.lua:21
-msgid "\"Begone, commoner. My fuel isn't for sale.\""
+msgctxt "refuel_no"
+msgid "\"Begone. My fuel isn't for sale.\""
 msgstr ""
 
 #: dat/ai/proteron.lua:24
+msgctxt "refuel_no"
 msgid "\"My fuel isn't for sale.\""
 msgstr ""
 
 #. Most likely no chance to refuel
-#: dat/ai/proteron.lua:30
+#: dat/ai/proteron.lua:31
+msgctxt "refuel_prompt"
 msgid "\"I can transfer some fuel for {credits}.\""
 msgstr ""
 
 #. See if can be bribed
-#: dat/ai/proteron.lua:37
+#: dat/ai/proteron.lua:38
+msgctxt "bribe_prompt"
 msgid "\"I can always use some income. {credits} and you were never here.\""
 msgstr ""
 
-#: dat/ai/proteron.lua:39
+#: dat/ai/proteron.lua:40
+msgctxt "bribe_paid"
 msgid "\"Get lost before I have to dispose of you.\""
 msgstr ""
 
-#: dat/ai/proteron.lua:43
+#: dat/ai/proteron.lua:44
+msgctxt "bribe_no"
 msgid "\"We like to make examples out of scum like you.\""
 msgstr ""
 
-#: dat/ai/proteron.lua:47
+#: dat/ai/proteron.lua:48
+msgctxt "bribe_no"
 msgid "\"All the money in the universe won't save you now!\""
 msgstr ""
 
-#: dat/ai/proteron.lua:48
+#: dat/ai/proteron.lua:49
+msgctxt "bribe_no"
 msgid "\"Of course common scum like you would try bribery! You die!\""
+msgstr ""
+
+#: dat/ai/proteron.lua:50
+msgctxt "bribe_no"
+msgid "\"I would never take money from degenerate scum like you!\""
 msgstr ""
 
 #. This is the amount of waypoints the pilot will pass through before leaving the system
@@ -20620,52 +20777,89 @@ msgstr ""
 #. taunts
 #. Only 50% of actually taunting.
 #. some taunts
-#: dat/ai/proteron.lua:70
+#: dat/ai/proteron.lua:72
+msgctxt "taunt"
 msgid "Animals like you don't deserve to live!"
 msgstr ""
 
-#: dat/ai/proteron.lua:71
+#: dat/ai/proteron.lua:73
+msgctxt "taunt"
 msgid "Begone from this universe, inferior scum!"
 msgstr ""
 
-#: dat/ai/proteron.lua:72
+#: dat/ai/proteron.lua:74
+msgctxt "taunt"
 msgid "We will cleanse you and all other scum from this universe!"
 msgstr ""
 
-#: dat/ai/proteron.lua:73
+#: dat/ai/proteron.lua:75
+msgctxt "taunt"
 msgid "Enemies of the state will not be tolerated!"
 msgstr ""
 
-#: dat/ai/proteron.lua:74
+#: dat/ai/proteron.lua:76
+msgctxt "taunt"
 msgid "Long live the Proteron!"
 msgstr ""
 
-#: dat/ai/proteron.lua:75
+#: dat/ai/proteron.lua:77
+msgctxt "taunt"
 msgid "War is peace!"
 msgstr ""
 
-#: dat/ai/proteron.lua:76
+#: dat/ai/proteron.lua:78
+msgctxt "taunt"
 msgid "Freedom is slavery!"
 msgstr ""
 
+#: dat/ai/proteron.lua:79
+msgctxt "taunt"
+msgid "Hail the great leader!"
+msgstr ""
+
 #: dat/ai/proteron.lua:80
-msgid "How dare you attack the Proteron?!"
+msgctxt "taunt"
+msgid "It's time to make the galaxy great again!"
 msgstr ""
 
 #: dat/ai/proteron.lua:81
-msgid "I will have your head!"
-msgstr ""
-
-#: dat/ai/proteron.lua:83
-msgid "Your fate has been sealed, dissident!"
-msgstr ""
-
-#: dat/ai/proteron.lua:84
-msgid "You will pay for your treason!"
+msgctxt "taunt"
+msgid "I will cleanse the galaxy of degenerate scum like you!"
 msgstr ""
 
 #: dat/ai/proteron.lua:85
+msgctxt "taunt_defensive"
+msgid "How dare you attack the Proteron?!"
+msgstr ""
+
+#: dat/ai/proteron.lua:86
+msgctxt "taunt_defensive"
+msgid "I will have your head!"
+msgstr ""
+
+#: dat/ai/proteron.lua:88
+msgctxt "taunt_defensive"
+msgid "Your fate has been sealed, dissident!"
+msgstr ""
+
+#: dat/ai/proteron.lua:89
+msgctxt "taunt_defensive"
+msgid "You will pay for your treason!"
+msgstr ""
+
+#: dat/ai/proteron.lua:90
+msgctxt "taunt_defensive"
 msgid "Die along with the old Empire!"
+msgstr ""
+
+#: dat/ai/proteron.lua:91
+msgctxt "taunt_defensive"
+msgid "Inferior scum! How dare you attack me?!"
+msgstr ""
+
+#: dat/ai/proteron.lua:92
+msgctxt "taunt_defensive"
+msgid "Degenerate scum! You die!"
 msgstr ""
 
 #. This is the amount of waypoints the pilot will pass through before leaving the system
@@ -20674,28 +20868,34 @@ msgstr ""
 #. Drones don't run
 #. Get refuel chance
 #: dat/ai/sirius.lua:21 dat/ai/zalek.lua:35
+msgctxt "refuel_no"
 msgid "\"I do not have fuel to spare.\""
 msgstr ""
 
 #. Most likely no chance to refuel
 #: dat/ai/sirius.lua:27
+msgctxt "refuel_prompt"
 msgid "\"I would be able to refuel your ship for {credits}.\""
 msgstr ""
 
 #. Can't be bribed
 #: dat/ai/sirius.lua:32
+msgctxt "bribe_no"
 msgid "\"Your money is of no interest to me.\""
 msgstr ""
 
 #: dat/ai/sirius.lua:33
+msgctxt "bribe_no"
 msgid "\"No amount of money can steer me from the will of Sirichana.\""
 msgstr ""
 
 #: dat/ai/sirius.lua:34
+msgctxt "bribe_no"
 msgid "\"May Sirichana cleanse your soul after I kill you.\""
 msgstr ""
 
 #: dat/ai/sirius.lua:35
+msgctxt "bribe_no"
 msgid "\"You cannot buy your way out of this, heathen.\""
 msgstr ""
 
@@ -20705,41 +20905,50 @@ msgstr ""
 #. Only 50% of actually taunting.
 #. some taunts
 #: dat/ai/sirius.lua:56
+msgctxt "taunt"
 msgid "Die, heathen!"
 msgstr ""
 
 #: dat/ai/sirius.lua:57
+msgctxt "taunt"
 msgid "Sirichana wishes for your death!"
 msgstr ""
 
 #: dat/ai/sirius.lua:58
+msgctxt "taunt"
 msgid "Say your prayers!"
 msgstr ""
 
 #: dat/ai/sirius.lua:59
+msgctxt "taunt"
 msgid "Die and face Sirichana's divine judgment!"
 msgstr ""
 
 #: dat/ai/sirius.lua:63
+msgctxt "taunt_defensive"
 msgid "Sirichana protect me!"
 msgstr ""
 
 #: dat/ai/sirius.lua:64
+msgctxt "taunt_defensive"
 msgid "You have made a grave error!"
 msgstr ""
 
 #: dat/ai/sirius.lua:65
+msgctxt "taunt_defensive"
 msgid "You do wrong in your provocations!"
 msgstr ""
 
 #. Settings
 #. Get refuel chance
 #: dat/ai/soromid.lua:21 dat/ai/soromid.lua:24
+msgctxt "refuel_no"
 msgid "\"The warriors of Sorom are not your personal refueller.\""
 msgstr ""
 
 #. Handle bribing
 #: dat/ai/soromid.lua:38
+msgctxt "bribe_prompt"
 msgid "\"I'll let you go free for {credits}.\""
 msgstr ""
 
@@ -20748,72 +20957,125 @@ msgid "\"Very well, away with you before I change my mind.\""
 msgstr ""
 
 #: dat/ai/soromid.lua:43
+msgctxt "bribe_no"
 msgid "\"Money won't save your hide.\""
 msgstr ""
 
 #: dat/ai/soromid.lua:44
+msgctxt "bribe_no"
 msgid "\"I have nothing further to say to you.\""
 msgstr ""
 
 #: dat/ai/soromid.lua:45
+msgctxt "bribe_no"
 msgid "\"I have no interest in your money.\""
 msgstr ""
 
 #: dat/ai/soromid.lua:46
+msgctxt "bribe_no"
 msgid "\"Who do you take us for, the Empire?\""
 msgstr ""
 
 #: dat/ai/soromid.lua:47
+msgctxt "bribe_no"
 msgid "\"You can't buy your way out of this.\""
 msgstr ""
 
-#: dat/ai/soromid.lua:70
+#. This is the amount of waypoints the pilot will pass through before leaving the system
+#. Finish up creation
+#. taunts
+#. Only 50% of actually taunting.
+#. some taunts
+#: dat/ai/soromid.lua:69
+msgctxt "taunt"
 msgid "You give humanity a bad name!"
 msgstr ""
 
-#: dat/ai/soromid.lua:71
-msgid "Enjoy your last moments, you worm!"
+#: dat/ai/soromid.lua:70
+msgctxt "taunt"
+msgid "Enjoy your last moments!"
 msgstr ""
 
-#: dat/ai/soromid.lua:72
+#: dat/ai/soromid.lua:71
+msgctxt "taunt"
 msgid "You're a discrace to all of humanity! Now you die!"
 msgstr ""
 
-#: dat/ai/soromid.lua:73
+#: dat/ai/soromid.lua:72
+msgctxt "taunt"
 msgid "Enemies of Sorom do not belong here!"
 msgstr ""
 
-#: dat/ai/soromid.lua:77
-msgid "Cunning, but foolish."
+#: dat/ai/soromid.lua:73
+msgctxt "taunt"
+msgid "Prepare to feel the wrath of the warriors of Sorom!"
+msgstr ""
+
+#: dat/ai/soromid.lua:74
+msgctxt "taunt"
+msgid "The warriros of Sorom won't let you get away with your crimes!"
 msgstr ""
 
 #: dat/ai/soromid.lua:78
+msgctxt "taunt_defensive"
+msgid "A reckless move!"
+msgstr ""
+
+#: dat/ai/soromid.lua:79
+msgctxt "taunt_defensive"
 msgid "How dare you attack the warriors of Sorom?!"
 msgstr ""
 
-#: dat/ai/soromid.lua:81
+#: dat/ai/soromid.lua:82
+msgctxt "taunt_defensive"
 msgid "You dare harm my precious ship?!"
 msgstr ""
 
+#.
+#.
+#. AI for stationary turrets.
+#.
+#. --
+#. Must not be same
+#. Engage closest
+#. Do nothing
+#. Stop attacking if it doesn't exist
+#. Set the target
+#. Choose how to face
+#. In melee
+#. Forward
+#. Turret
+#. Long-range
+#. Sends a distress signal which causes faction loss
+#: dat/ai/thurion.lua:15
+msgctxt "sos"
+msgid "Requesting assistance! We are under attack!"
+msgstr ""
+
 #: dat/ai/thurion.lua:16
+msgctxt "sos"
 msgid "Vessel under attack! Requesting help!"
 msgstr ""
 
 #. No bribe
 #: dat/ai/thurion.lua:35
+msgctxt "bribe_no"
 msgid "\"We will not be bribed!\""
 msgstr ""
 
 #: dat/ai/thurion.lua:36
+msgctxt "bribe_no"
 msgid "\"I have no use for your money.\""
 msgstr ""
 
 #: dat/ai/thurion.lua:37
+msgctxt "bribe_no"
 msgid "\"Credits are no replacement for a good shield.\""
 msgstr ""
 
 #. Refuel
 #: dat/ai/thurion.lua:43
+msgctxt "refuel"
 msgid "\"Sure, I can spare some fuel.\""
 msgstr ""
 
@@ -20874,76 +21136,105 @@ msgid "Formation '%s' not found"
 msgstr ""
 
 #: dat/ai/zalek.lua:40
+msgctxt "refuel_prompt"
 msgid "\"I will agree to refuel your ship for {credits}.\""
 msgstr ""
 
 #. See if can be bribed
 #: dat/ai/zalek.lua:47
+msgctxt "bribe_prompt"
 msgid "\"We will agree to end the battle for {credits}.\""
 msgstr ""
 
 #: dat/ai/zalek.lua:49
+msgctxt "bribe_paid"
 msgid "\"Temporarily stopping fire.\""
 msgstr ""
 
 #: dat/ai/zalek.lua:52
+msgctxt "bribe_no"
 msgid "\"Keep your cash.\""
 msgstr ""
 
 #: dat/ai/zalek.lua:53
-msgid "\"Don't make me laugh.!\""
+msgctxt "bribe_no"
+msgid "\"Don't make me laugh!\""
 msgstr ""
 
 #: dat/ai/zalek.lua:54
+msgctxt "bribe_no"
 msgid "\"My drones aren't interested in your money and neither am I!\""
 msgstr ""
 
 #: dat/ai/zalek.lua:55
-msgid "\"Hahaha! Nice one! Oh, you're actually serious? Of course not, fool!\""
+msgctxt "bribe_no"
+msgid ""
+"\"Hahaha! Nice one! Oh, you're actually serious? Of course not, dumbass!\""
 msgstr ""
 
 #: dat/ai/zalek.lua:56
+msgctxt "bribe_no"
 msgid ""
 "\"While I admire the spirit of it, testing my patience is not science.\""
 msgstr ""
 
 #. This is the amount of waypoints the pilot will pass through before leaving the system
 #. Finish up creation
+#. See if a drone
 #. Only 50% of actually taunting.
-#: dat/ai/zalek.lua:75
+#: dat/ai/zalek.lua:83
+msgctxt "taunt"
 msgid "I will show you the power of the Za'lek fleet!"
 msgstr ""
 
-#: dat/ai/zalek.lua:76
+#: dat/ai/zalek.lua:84
+msgctxt "taunt"
 msgid "Commencing battle test by eradicating outlaw pilots."
 msgstr ""
 
-#: dat/ai/zalek.lua:77
+#: dat/ai/zalek.lua:85
+msgctxt "taunt"
 msgid "Your days are over!"
 msgstr ""
 
-#: dat/ai/zalek.lua:78
+#: dat/ai/zalek.lua:86
+msgctxt "taunt"
 msgid "You interfere with the progress of science!"
 msgstr ""
 
-#: dat/ai/zalek.lua:79
+#: dat/ai/zalek.lua:87
+msgctxt "taunt"
 msgid "Feel the wrath of our combat drones!"
 msgstr ""
 
-#: dat/ai/zalek.lua:83
+#: dat/ai/zalek.lua:88
+msgctxt "taunt"
+msgid "Die, you brainless worm!"
+msgstr ""
+
+#: dat/ai/zalek.lua:92
+msgctxt "taunt_defensive"
 msgid "You just made a big mistake!"
 msgstr ""
 
-#: dat/ai/zalek.lua:84
+#: dat/ai/zalek.lua:93
+msgctxt "taunt_defensive"
 msgid "You wanna do this? Have it your way."
 msgstr ""
 
-#: dat/ai/zalek.lua:85
+#: dat/ai/zalek.lua:94
+msgctxt "taunt_defensive"
 msgid "How dare you?! I just got this ship customized!"
 msgstr ""
 
-#: dat/ai/zalek.lua:86
-msgid "Aggressor! How dare you attack the Za'lek?!"
+#: dat/ai/zalek.lua:95
+msgctxt "taunt_defensive"
+msgid "Idiots! How dare you attack the Za'lek?!"
+msgstr ""
+
+#: dat/ai/zalek.lua:96
+msgctxt "taunt_defensive"
+msgid "Attacking me was a stupid mistake!"
 msgstr ""
 
 #. We can do systems without nebula
@@ -22477,7 +22768,7 @@ msgstr ""
 #: dat/events/control/npc.lua:240
 msgid ""
 "\"I've been spending a lot of time around the Soromid lately. It's nice to "
-"be back home. Not like I really mind beïng around the Soromid, of course. "
+"be back home. Not like I really mind being around the Soromid, of course. "
 "Fine people, the Soromid. They just start giving you the creeps after a "
 "while, know what I mean?\""
 msgstr ""
@@ -26200,7 +26491,7 @@ msgstr ""
 #: dat/missions/baron/baron_baron.lua:54
 msgid ""
 "When you arrive at your ship's airlock, the chest containing the Dvaered "
-"holopainting is already beïng carted onto the Pinnacle by a pair of crewmen. "
+"holopainting is already being carted onto the Pinnacle by a pair of crewmen. "
 "\"You'll be wanting your reward, eh? Come along\", one of them yells at you. "
 "They both chuckle and head off down the corridor.\n"
 "\n"
@@ -26888,7 +27179,7 @@ msgstr ""
 #: dat/missions/dvaered/antiflf/dv_antiflf01.lua:54
 msgid ""
 "You rescued the crew of a Dvaered ship that was disabled by an FLF ship. The "
-"Dvaered officer mentioned that a campaign is beïng prepared against the FLF "
+"Dvaered officer mentioned that a campaign is being prepared against the FLF "
 "terrorists; if you are interested in joining in that operation, you can seek "
 "out a Dvaered liaison."
 msgstr ""
@@ -27644,7 +27935,7 @@ msgstr ""
 
 #: dat/missions/empire/emp_cargo00.lua:31
 msgid ""
-"You are beïng recruited to the Imperial Armada Shipping Division by "
+"You are being recruited to the Imperial Armada Shipping Division by "
 "Liutenant Czesc. Your first task is to deliver some parcels to {planet}."
 msgstr ""
 
@@ -28618,7 +28909,7 @@ msgid ""
 "if I believe them, but if there really are aliens, making allies out of them "
 "could be very helpful to our cause. Of course, we can't put too many "
 "resources into that as the so-called ghosts could maybe just be some pre-"
-"Incident artifacts that somehow survived beïng turned to dust by the nebula, "
+"Incident artifacts that somehow survived being turned to dust by the nebula, "
 "but it wouldn't hurt to do some cursory investigation and trade information "
 "with the pirates.\n"
 "\n"
@@ -29093,7 +29384,7 @@ msgid ""
 "soldiers, and we can regroup at Sindbad.\n"
 "\n"
 "\"I would recommend a very small fighter that can outrun any ships the "
-"Dvaereds throw at you. Beïng able to dodge their volleys of bullets and stay "
+"Dvaereds throw at you. Being able to dodge their volleys of bullets and stay "
 "alive is a lot more important than actually destroying them, after all. Just "
 "keep harassing them by shooting whatever weapons you have and I'm sure the "
 "Dvaereds will get angry and send reënforcements in. Also, I know I said I "
@@ -29582,7 +29873,7 @@ msgid ""
 "the Dvaereds, I'll light a fire in your ass.\" As the FLF soldiers around "
 "you chuckle at Flint's remark, you tell Flint your own name, then promise "
 "that you won't double-cross him. \"Good. I'll meet you at the landing bay. I "
-"would fly my own ship, but you beïng neutral means that we can avoid "
+"would fly my own ship, but you being neutral means that we can avoid "
 "detection from the Dvaereds and make better time. Besides, I don't trust you "
 "to have my back. At least if I'm on your ship, I can kill you and steal the "
 "ship, eh?\" You let out a nervous laugh as he turns and walks toward the "
@@ -29637,7 +29928,7 @@ msgid ""
 "\n"
 "While you work, you hear a harrowing tale from one of the workers, who "
 "appears to be an adolescent, no older than 16. Their mother, who was an "
-"official Frontier peace-keeping volunteer, was accused of beïng with the FLF "
+"official Frontier peace-keeping volunteer, was accused of being with the FLF "
 "after getting into an argument with a Dvaered pilot who was harassing a "
 "civilian, and during the argument, the Dvaered opened fire and killed her."
 msgstr ""
@@ -29646,7 +29937,7 @@ msgstr ""
 msgid ""
 "Eventually, the work is finished and you leave the site covered in some kind "
 "of sludge-like substance and feeling incredibly tired, but you see that "
-"Flint is in high spirits, despite beïng similarly dirty. \"It feels great to "
+"Flint is in high spirits, despite being similarly dirty. \"It feels great to "
 "help on the farm,\" Flint remarks. \"Knowing I'm helping save lives and "
 "protect our way of life. So many outsiders just don't appreciate the real "
 "work on the ground.\" You don't feel so sure of that statement, but "
@@ -29665,7 +29956,7 @@ msgid ""
 "Flint sighs and looks down at the oceanic world. \"Well, right now our "
 "objective is to help out at the algae farm.\"\n"
 "\n"
-"Nervous, you express concern with beïng out in the open as a part of the "
+"Nervous, you express concern with being out in the open as a part of the "
 "FLF. Flint facepalms in response. \"God damn, it's like Dvaered propaganda "
 "has a direct connection to your brain. Why the hell would you think we'd get "
 "anything other than a warm reception as a part of the FLF?\""
@@ -29696,7 +29987,7 @@ msgid ""
 "\n"
 "Among the smalltalk, you hear a harrowing tale from one of the workers, who "
 "appears to be an adolescent, no older than 16. Their mother, who was an "
-"official Frontier peace-keeping volunteer, was accused of beïng with the FLF "
+"official Frontier peace-keeping volunteer, was accused of being with the FLF "
 "after getting into an argument with a Dvaered pilot who was harassing a "
 "civilian, and during the argument, the Dvaered opened fire and killed her. "
 "Surprisingly to you, all of the workers exclusively blame the Dvaered "
@@ -29728,7 +30019,7 @@ msgid ""
 "\"But, I mean, if you want to know what this planet is to me personally? "
 "It's my home. It's that simple. And we have a lot of trouble with exports "
 "thanks to the damn Dvaereds all over the place, always harassing innocent "
-"people and accusing them of beïng 'FLF terrorists'. I don't even want to "
+"people and accusing them of being 'FLF terrorists'. I don't even want to "
 "think about what they'd do if they annexed us. Probably would destroy "
 "everything we have so they could mine that shitty ore beneath the surface.\""
 msgstr ""
@@ -29744,7 +30035,7 @@ msgid ""
 "\n"
 "While you work, you hear a harrowing tale from one of the workers, who "
 "appears to be an adolescent, no older than 16. Their mother, who was an "
-"official Frontier peace-keeping volunteer, was accused of beïng with the FLF "
+"official Frontier peace-keeping volunteer, was accused of being with the FLF "
 "after getting into an argument with a Dvaered pilot who was harassing a "
 "civilian, and during the argument, the Dvaered opened fire and killed her."
 msgstr ""
@@ -30041,7 +30332,7 @@ msgid ""
 "You do as he says and leave the group, placing yourself inconspicuously on a "
 "bench a distance away. You manage to do this not a moment too soon, it "
 "seems, as immediately afterwards the Dvaereds take notice of the group. You "
-"hear some back and forth, but can't make out what is beïng said. What you do "
+"hear some back and forth, but can't make out what is being said. What you do "
 "notice, however, is the Dvaereds drawing what appear to be laser guns."
 msgstr ""
 
@@ -30097,7 +30388,7 @@ msgid ""
 "You angered an FLF soldier called Flint when you told him that you're "
 "neutral in the conflict between the FLF and House Dvaered. In response, he "
 "offered to show you what's going on in the Frontier. He said that you will "
-"\"see soon why beïng neutral in this conflict is unacceptable\"."
+"\"see soon why being neutral in this conflict is unacceptable\"."
 msgstr ""
 
 #: dat/missions/flf/prelude/flf_pre02.lua:208
@@ -31660,7 +31951,7 @@ msgid ""
 "worry about me, the countess has covered my portion just fine!\"\n"
 "\n"
 "You check your account balance as he closes the comm channel to find "
-"yourself {credits} richer. Just beïng alive felt good, but this feels "
+"yourself {credits} richer. Just being alive felt good, but this feels "
 "better. You can't help but think that she might have given him more than "
 "just the 25% he was asking for, judging by his sunny disposition. At least "
 "you have your life, though!"
@@ -33605,7 +33896,7 @@ msgstr ""
 msgid ""
 "You almost accept a mission to fill your ship's cargo hold with garbage, but "
 "you find that your ship is packed entirely full and can't fit any of it. "
-"Thinking of your cargo hold beïng equally stuffed with garbage, you realize "
+"Thinking of your cargo hold being equally stuffed with garbage, you realize "
 "what you almost got yourself into and breathe a sigh of relief knowing that "
 "circumstances prevented you from making a decision you would regret."
 msgstr ""
@@ -34046,7 +34337,7 @@ msgstr ""
 
 #: dat/missions/pirate/pir_cargo.lua:79
 msgid ""
-"Several exotic animal species beïng trafficked from all around the galaxy."
+"Several exotic animal species being trafficked from all around the galaxy."
 msgstr ""
 
 #: dat/missions/pirate/pir_cargo.lua:82
@@ -34055,7 +34346,7 @@ msgstr ""
 
 #: dat/missions/pirate/pir_cargo.lua:83
 msgid ""
-"Highly dangerous, yet highly useful, radioactive materials beïng sold on the "
+"Highly dangerous, yet highly useful, radioactive materials being sold on the "
 "black market, outside of regulatory bodies."
 msgstr ""
 
@@ -34225,7 +34516,7 @@ msgstr ""
 
 #: dat/missions/pirate/ship_stealing.lua:57
 msgid ""
-"You pay the informant. \"Heh heh, thanks! The ship is beïng piloted by "
+"You pay the informant. \"Heh heh, thanks! The ship is being piloted by "
 "someone called {pilot}. It can be found in the {system} system and it's been "
 "damaged by a failed pirate attack. All you need to do is locate the ship, "
 "disable it, board it, and let me take care of sneaking it out of the system. "
@@ -34443,7 +34734,7 @@ msgid ""
 "to gather information and avert disaster, when we could.\n"
 "\n"
 "\"We accomplished a lot, but no one would know since they don't know how "
-"history could have turned out. We prevented nuclear weapons from ever beïng "
+"history could have turned out. We prevented nuclear weapons from ever being "
 "used on Earth when humanity discovered them in ancient times. We foiled the "
 "sabotage attempts on several of the colony ships launched during the First "
 "Growth. We ensured the Empire's success in the faction wars. That said, we "
@@ -34481,7 +34772,7 @@ msgid ""
 "\"It is my belief that one or more of my fellow captains have abandoned "
 "their mission, and are misusing their resources for a different agenda. I "
 "have been unable to find out the details of Four Winds missions that I did "
-"not command myself, which is a bad sign. I am beïng stonewalled, and I don't "
+"not command myself, which is a bad sign. I am being stonewalled, and I don't "
 "like it. I want to know what's going on, {player}, and you're going to help "
 "me do it.\n"
 "\n"
@@ -34703,7 +34994,7 @@ msgid ""
 "to gather information and avert disaster, when we could.\n"
 "\n"
 "\"We accomplished a lot, but no one would know since they don't know how "
-"history could have turned out. We prevented nuclear weapons from ever beïng "
+"history could have turned out. We prevented nuclear weapons from ever being "
 "used on Earth when humanity discovered them in ancient times. We foiled the "
 "sabotage attempts on several of the colony ships launched during the First "
 "Growth. We ensured the Empire's success in the faction wars. That said, we "
@@ -34725,7 +35016,7 @@ msgid ""
 "\"It is my belief that one or more of my fellow captains have abandoned "
 "their mission, and are misusing their resources for a different agenda. I "
 "have been unable to find out the details of Four Winds missions that I did "
-"not command myself, which is a bad sign. I am beïng stonewalled, and I don't "
+"not command myself, which is a bad sign. I am being stonewalled, and I don't "
 "like it.\""
 msgstr ""
 
@@ -34849,12 +35140,12 @@ msgid ""
 "take sides in some of them. People will take notice of you, and some of them "
 "will try to kill you.\"\n"
 "\n"
-"You explain that taking risks comes with beïng an independent pilot and that "
+"You explain that taking risks comes with being an independent pilot and that "
 "you took the captain's chair with appropriate resolve, but Rebina pins you "
 "with a piercing gaze. \"These are no ordinary pirate raids we're talking "
 "about,\" she admonishes you. \"If you take this assignment, you will be a "
 "painted target. I want you to be well aware of this.\" There is another "
-"pause, but then she continues in a milder tone of voice. \"That beïng said, "
+"pause, but then she continues in a milder tone of voice. \"That being said, "
 "I can assure you that the reward is well worth the risk. Pull this off, and "
 "you'll walk away considerably richer than you were.\"\n"
 "\n"
@@ -35831,7 +36122,7 @@ msgid ""
 "some hopefully revealing conversations between a sales manager of the new "
 "startup and representatives of the Frontier. All we need you to do is meet "
 "with the agent, get the recordings, and bring them back to me on {planet} in "
-"the {system} system. It's not exactly legal. That beïng said, you're just "
+"the {system} system. It's not exactly legal. That being said, you're just "
 "doing the delivery, so you almost certainly won't be implicated. What do you "
 "say? Is this something you can do?\""
 msgstr ""
@@ -36091,7 +36382,7 @@ msgid ""
 "stretched thin out there, trying to protect our civilians from pirates and "
 "other criminals every day. Besides, my conflict with Harja is a personal "
 "matter. I feel I should resolve this with my own resources.\" She gives you "
-"a tired smile. \"That beïng said, I wouldn't say no to a helping hand.\""
+"a tired smile. \"That being said, I wouldn't say no to a helping hand.\""
 msgstr ""
 
 #: dat/missions/sirius/achack/achack02.lua:37
@@ -36196,7 +36487,7 @@ msgid ""
 "best among its students the chance to advance to the Serra echelon. You're "
 "not Sirian so you might not understand, but it's an exceptional honor for "
 "those born into the Shaira or Fyrra echelons to rise to a higher echelon. "
-"It's extremely valuable to us. So you see, the prospect of beïng rewarded "
+"It's extremely valuable to us. So you see, the prospect of being rewarded "
 "like that is a very strong motivation for most of the students. It was no "
 "different for Harja and myself, since we were both Fyrra echelon. With our "
 "abilities, each of us had a good chance of earning the promotion. However, "
@@ -36532,7 +36823,7 @@ msgid ""
 "my piloting license yet, so I hired someone else to give me a ride. Well, "
 "turns out I started finding out that I'm transgender at the worst possible "
 "time. I started changing my appearance ever so slightly and he suddenly "
-"started beïng a transmisic asshole to me, constantly going on about how I'll "
+"started being a transmisic asshole to me, constantly going on about how I'll "
 "'never be a real woman', calling me a \"pervert\", \"sick\", and pretty much "
 "every other shitty thing you can think of for weeks on end until he dumped "
 "me here on this bar yesterday. 'Just a few minutes,' he said. Well, clearly "
@@ -36570,7 +36861,7 @@ msgstr ""
 msgid ""
 "You arrive at your first destination with C after a relatively quiët, but "
 "pleasant trip. \"Thank you for helping me with this,\" C says as you begin "
-"to approach. \"And for treating me like a human beïng,\" they add with a mix "
+"to approach. \"And for treating me like a human being,\" they add with a mix "
 "of amusement and relief. You can't help but laugh slightly at the statement "
 "as you remark on how incredibly low the bar must be for you to be thanked "
 "for that. \"I know, right? Well hey, the last guy didn't do that, so this is "
@@ -36787,7 +37078,7 @@ msgid ""
 "first ship, a Llama which is damaged and rusty, but working. As she went on "
 "to start her career as a freelance pilot, she asked you to catch up with her "
 "again sometime. She expects that she'll be sticking to Soromid space for the "
-"time beïng."
+"time being."
 msgstr ""
 
 #.
@@ -37441,7 +37732,7 @@ msgid ""
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:153
-msgid "Fly to any system which is not beïng used by a mission or event"
+msgid "Fly to any system which is not being used by a mission or event"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:154
@@ -43868,68 +44159,64 @@ msgstr ""
 msgid "Texture '%s' has no transparency map"
 msgstr ""
 
-#: src/comm.c:108
-msgid "#rTarget is out of communications range"
+#: src/comm.c:110
+msgctxt "comm_no"
+msgid "#rTarget is out of communications range."
 msgstr ""
 
-#: src/comm.c:122
+#: src/comm.c:124
 #, c-format
-msgid "#%c%s#r is jumping and can't respond"
+msgctxt "comm_no"
+msgid "#%c%s#r is jumping and cannot respond."
 msgstr ""
 
-#: src/comm.c:128
+#: src/comm.c:131
 #, c-format
-msgid "#%c%s#r does not respond"
+msgctxt "comm_no"
+msgid "#%c%s#r is disabled and cannot respond."
 msgstr ""
 
-#: src/comm.c:206
+#: src/comm.c:210 src/comm.c:264
 msgid "&Bribe"
 msgstr ""
 
-#: src/comm.c:211
+#: src/comm.c:215
 msgid "&Refuel"
 msgstr ""
 
-#: src/comm.c:235 src/comm.c:585
+#: src/comm.c:239
 #, c-format
+msgctxt "planet_comm_uninhabited"
 msgid "%s does not respond."
 msgstr ""
 
-#: src/comm.c:259
-msgid "Bribe"
-msgstr ""
-
 #. Create the window.
-#: src/comm.c:340
+#: src/comm.c:346
 msgid "Communication Channel"
 msgstr ""
 
-#: src/comm.c:381 src/console.c:678 src/dev_sysedit.c:1367
-#: src/dev_sysedit.c:1494 src/dev_sysedit.c:1561 src/dev_sysedit.c:1756
-#: src/dev_sysedit.c:1932 src/dev_sysedit.c:2017 src/dev_uniedit.c:1021
-#: src/dev_uniedit.c:1233 src/dev_uniedit.c:1491 src/info.c:269 src/info.c:354
-#: src/info.c:436 src/info.c:584 src/info.c:802 src/info.c:1019 src/info.c:1106
-#: src/info.c:1486 src/land_outfits.c:170 src/map.c:337 src/map_find.c:1065
-#: src/map_system.c:204
-msgid "Close"
+#: src/comm.c:387
+msgid "&Close"
 msgstr ""
 
-#: src/comm.c:432 src/comm.c:445 src/comm.c:453 src/comm.c:455 src/comm.c:459
-#: src/comm.c:465 src/comm.c:472 src/comm.c:474
+#: src/comm.c:441 src/comm.c:454 src/comm.c:463 src/comm.c:468 src/comm.c:473
+#: src/comm.c:480 src/comm.c:488 src/comm.c:491
 msgid "Bribe Pilot"
 msgstr ""
 
-#: src/comm.c:438
+#: src/comm.c:447
 #, c-format
 msgid "Pilot '%s' accepts bribes but doesn't give price!"
 msgstr ""
 
-#: src/comm.c:445
+#: src/comm.c:455
+msgctxt "bribe_no"
 msgid "\"Money won't save your hide now!\""
 msgstr ""
 
-#: src/comm.c:453
+#: src/comm.c:464
 #, c-format
+msgctxt "bribe_prompt"
 msgid ""
 "\"I'm gonna need at least %s to not leave you as a hunk of floating debris."
 "\"\n"
@@ -43937,67 +44224,95 @@ msgid ""
 "Pay %s?"
 msgstr ""
 
-#: src/comm.c:455
+#: src/comm.c:469
 #, c-format
+msgctxt "bribe_prompt"
 msgid ""
 "%s\n"
 "\n"
 "Pay %s?"
 msgstr ""
 
-#: src/comm.c:459 src/comm.c:525 src/comm.c:614
+#: src/comm.c:474
+msgctxt "bribe_nopay"
 msgid "You decide not to pay."
 msgstr ""
 
-#: src/comm.c:465 src/comm.c:531
-msgid "You don't have enough credits for the bribery."
+#: src/comm.c:481
+msgctxt "bribe_nocredits"
+msgid "You don't have enough credits."
 msgstr ""
 
-#: src/comm.c:472
+#: src/comm.c:489
+msgctxt "bribe_paid"
 msgid "\"Pleasure to do business with you.\""
 msgstr ""
 
 #. Yes/No input.
-#: src/comm.c:516 src/comm.c:521 src/comm.c:525 src/comm.c:531 src/comm.c:537
+#: src/comm.c:566 src/comm.c:571 src/comm.c:575 src/comm.c:582 src/comm.c:589
 msgid "Bribe Starport"
 msgstr ""
 
-#: src/comm.c:537
+#: src/comm.c:576
+msgctxt "bribe_planet_nopay"
+msgid "You decide not to pay."
+msgstr ""
+
+#: src/comm.c:583
+msgctxt "bribe_planet_nocredits"
+msgid "You don't have enough credits."
+msgstr ""
+
+#: src/comm.c:590
+msgctxt "bribe_planet_paid"
 msgid "You have permission to dock."
 msgstr ""
 
-#: src/comm.c:568 src/comm.c:574 src/comm.c:585 src/comm.c:597 src/comm.c:603
-#: src/comm.c:611 src/comm.c:614 src/comm.c:619 src/comm.c:624 src/comm.c:644
+#: src/comm.c:621 src/comm.c:627 src/comm.c:638 src/comm.c:651 src/comm.c:657
+#: src/comm.c:665 src/comm.c:669 src/comm.c:675 src/comm.c:679 src/comm.c:700
 msgid "Request Fuel"
 msgstr ""
 
-#: src/comm.c:575
+#: src/comm.c:628
 msgid "Your fuel deposits are already full."
 msgstr ""
 
-#: src/comm.c:596
+#: src/comm.c:638
+#, c-format
+msgid "%s does not respond."
+msgstr ""
+
+#: src/comm.c:650
+msgctxt "refuel_cannot"
 msgid "\"Sorry, I don't have enough fuel to spare at the moment.\""
 msgstr ""
 
-#: src/comm.c:603
+#: src/comm.c:657
 #, c-format
 msgid "%s is already refueling you."
 msgstr ""
 
-#: src/comm.c:612
+#: src/comm.c:666
 #, c-format
+msgctxt "refuel_prompt"
 msgid ""
 "%s\n"
 "\n"
 "Pay %s for %d kL of fuel?"
 msgstr ""
 
-#: src/comm.c:624
-#, c-format
-msgid "You need %s more!"
+#: src/comm.c:670
+msgctxt "refuel_nopay"
+msgid "You decide not to pay."
 msgstr ""
 
-#: src/comm.c:643
+#: src/comm.c:680
+msgctxt "refuel_nocredits"
+msgid "You don't have enough credits."
+msgstr ""
+
+#: src/comm.c:699
+msgctxt "refuel_paid"
 msgid "\"On my way.\""
 msgstr ""
 
@@ -44508,6 +44823,16 @@ msgstr ""
 #. Create the window.
 #: src/console.c:664 src/input.c:147
 msgid "Lua Console"
+msgstr ""
+
+#: src/console.c:678 src/dev_sysedit.c:1367 src/dev_sysedit.c:1494
+#: src/dev_sysedit.c:1561 src/dev_sysedit.c:1756 src/dev_sysedit.c:1932
+#: src/dev_sysedit.c:2017 src/dev_uniedit.c:1021 src/dev_uniedit.c:1233
+#: src/dev_uniedit.c:1491 src/info.c:269 src/info.c:354 src/info.c:436
+#: src/info.c:584 src/info.c:802 src/info.c:1019 src/info.c:1106
+#: src/info.c:1486 src/land_outfits.c:170 src/map.c:337 src/map_find.c:1065
+#: src/map_system.c:204
+msgid "Close"
 msgstr ""
 
 #: src/damagetype.c:106
@@ -50327,71 +50652,71 @@ msgstr ""
 msgid "Solid initialization did not specify correct update function!"
 msgstr ""
 
-#: src/pilot.c:905
+#: src/pilot.c:938
 msgid "#oActive cooldown engaged."
 msgstr ""
 
-#: src/pilot.c:963
+#: src/pilot.c:996
 msgid "#oActive cooldown completed."
 msgstr ""
 
-#: src/pilot.c:966
+#: src/pilot.c:999
 #, c-format
 msgid "#rActive cooldown aborted: %s!"
 msgstr ""
 
-#: src/pilot.c:968
+#: src/pilot.c:1001
 msgid "#rActive cooldown aborted!"
 msgstr ""
 
-#: src/pilot.c:1070
+#: src/pilot.c:1103
 msgid "#rNot enough fuel to perform escape jump."
 msgstr ""
 
-#: src/pilot.c:1199
+#: src/pilot.c:1231
 #, c-format
 msgid "#%cComm %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:1227
+#: src/pilot.c:1259
 #, c-format
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:2563 src/pilot.c:2612
+#: src/pilot.c:2595 src/pilot.c:2644
 msgid "#rJump aborted: strayed too far from jump point."
 msgstr ""
 
-#: src/pilot.c:2570
+#: src/pilot.c:2602
 msgid "#rJump aborted: afterburner active."
 msgstr ""
 
-#: src/pilot.c:2584
+#: src/pilot.c:2616
 msgid "#rJump aborted."
 msgstr ""
 
-#: src/pilot.c:2632
+#: src/pilot.c:2664
 #, c-format
 msgid "Pilot '%s' trying to jump through exit-only jump from '%s' to '%s'"
 msgstr ""
 
-#: src/pilot.c:2985
+#: src/pilot.c:3017
 #, c-format
 msgid ""
 "Pilot '%s' failed safety check:\n"
 "%s"
 msgstr ""
 
-#: src/pilot.c:2988
+#: src/pilot.c:3020
 #, c-format
 msgid "   [%d] %s"
 msgstr ""
 
-#: src/pilot.c:3083 src/pilot.c:3120
+#: src/pilot.c:3115 src/pilot.c:3152
 msgid "Unable to allocate memory"
 msgstr ""
 
-#: src/pilot.c:3208
+#: src/pilot.c:3240
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 
