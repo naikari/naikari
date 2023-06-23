@@ -839,8 +839,8 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
          && pilot_isFlag(p, PILOT_INVINC_PLAYER))
       return 0;
 
-   /* Always hit target. */
-   if (w->target == p->id)
+   /* Always hit parent's target. */
+   if ((parent != NULL) && (parent->target == p->id))
       return 1;
 
    /* Player behaves differently. */
@@ -849,17 +849,17 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
       if (pilot_isHostile(p))
          return 1;
 
-      /* Miss rest - can be neutral/ally. */
+      /* Miss rest; can be neutral/ally. */
       else
          return 0;
    }
 
    /* Let hostiles hit player. */
-   if (((p->faction == FACTION_PLAYER) || (leader_id == PLAYER_ID))
-         && (parent != NULL) && (pilot_isHostile(parent)))
+   if (((p->faction == FACTION_PLAYER) || (p->parent == PLAYER_ID))
+         && (parent != NULL) && pilot_isHostile(parent))
       return 1;
 
-   /* Hit non-allies. */
+   /* Hit enemies. */
    if (areEnemies(w->faction, p->faction))
       return 1;
 

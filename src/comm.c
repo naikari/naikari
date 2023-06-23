@@ -17,6 +17,7 @@
 #include "comm.h"
 
 #include "ai.h"
+#include "array.h"
 #include "commodity.h"
 #include "dialogue.h"
 #include "escort.h"
@@ -430,6 +431,9 @@ static void comm_bribePilot( unsigned int wid, char *unused )
    credits_t price;
    char pricestr[ECON_CRED_STRLEN];
    const char *str;
+   pilotId_t *followers;
+   Pilot *p;
+   int i;
 
    /* Unbribable. */
    str = comm_getString("bribe_no");
@@ -486,14 +490,9 @@ static void comm_bribePilot( unsigned int wid, char *unused )
    else
       dialogue_msgRaw(_("Bribe Pilot"), str);
 
-   /* Mark as bribed and don't allow bribing again. */
-   pilot_setFlag( comm_pilot, PILOT_BRIBED );
-   pilot_rmHostile( comm_pilot );
-
-   /* Stop hyperspace if necessary. */
-   pilot_rmFlag( comm_pilot, PILOT_HYP_PREP );
-   pilot_rmFlag( comm_pilot, PILOT_HYP_BRAKE );
-   pilot_rmFlag( comm_pilot, PILOT_HYP_BEGIN );
+   /* Mark as bribed and remove hostility. */
+   pilot_rmHostile(comm_pilot);
+   pilot_setFlag(comm_pilot, PILOT_BRIBED);
 
    /* Don't allow rebribe. */
    if (comm_pilot->ai != NULL) {
@@ -502,6 +501,44 @@ static void comm_bribePilot( unsigned int wid, char *unused )
       lua_setfield(naevL, -2, "bribe");
       lua_pop(naevL,1);
    }
+
+   /* Clear tasks and target to ensure the fight is stopped. */
+   ai_cleartasks(comm_pilot);
+   pilot_setTarget(comm_pilot, comm_pilot->id);
+
+   /* Also do the same for the pilot's followers. */
+   followers = pilot_getRecursiveFollowers(comm_pilot);
+   for (i=0; i<array_size(followers); i++) {
+      /* Get the actual pilot. */
+      p = pilot_get(followers[i]);
+
+      /* Mark as bribed and remove hostility. */
+      pilot_rmHostile(p);
+      pilot_setFlag(p, PILOT_BRIBED);
+
+      /* Don't allow rebribe. */
+      if (p->ai != NULL) {
+         nlua_getenv(p->ai->env, "mem");
+         lua_pushnumber(naevL, 0);
+         lua_setfield(naevL, -2, "bribe");
+         lua_pop(naevL,1);
+      }
+
+      /* Clear tasks and target to ensure the fight is stopped. */
+      ai_cleartasks(p);
+      pilot_setTarget(p, p->id);
+   }
+   array_free(followers);
+
+   /* Clear tasks and target of the player's followers as well. */
+   followers = pilot_getRecursiveFollowers(player.p);
+   for (i=0; i<array_size(followers); i++) {
+      p = pilot_get(followers[i]);
+      ai_cleartasks(p);
+      pilot_setTarget(p, p->id);
+   }
+   array_free(followers);
+   followers = NULL;
 
    /* Reopen window. */
    window_destroy( wid );

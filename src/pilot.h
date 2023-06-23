@@ -397,6 +397,7 @@ pilotId_t pilot_getNearestEnemy_heuristic(const Pilot* p,
 pilotId_t pilot_getNearestHostile(void); /* only for the player */
 pilotId_t pilot_getNearestPilot(const Pilot* p);
 pilotId_t pilot_getBoss(const Pilot* p);
+pilotId_t *pilot_getRecursiveFollowers(const Pilot *p);
 double pilot_getNearestPos(const Pilot *p, pilotId_t *tp, double x, double y,
       int disabled);
 double pilot_getNearestAng(const Pilot *p, pilotId_t *tp, double ang,

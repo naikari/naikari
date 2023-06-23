@@ -487,6 +487,39 @@ pilotId_t pilot_getBoss(const Pilot* p)
    return t;
 }
 
+
+/**
+ * @brief Get followers, followers of followers, etc recursively.
+ *
+ *    @param p Pilot to get the recursive followers of.
+ *    @return An array of followers. Caller must free.
+ */
+pilotId_t *pilot_getRecursiveFollowers(const Pilot *p)
+{
+   pilotId_t *followers, *e_followers;
+   pilotId_t e;
+   int i, j;
+
+   followers = array_create(pilotId_t);
+
+   for (i=0; i<array_size(p->escorts); i++) {
+      /* Add the escort itself. */
+      e = p->escorts[i].id;
+      array_push_back(&followers, e);
+
+      /* Add the escort's followers with a recursive call. */
+      e_followers = pilot_getRecursiveFollowers(pilot_get(e));
+      for (j=0; j<array_size(e_followers); j++) {
+         array_push_back(&followers, e_followers[j]);
+      }
+      array_free(e_followers);
+      e_followers = NULL;
+   }
+
+   return followers;
+}
+
+
 /**
  * @brief Get the nearest pilot to a pilot from a certain position.
  *
@@ -1124,16 +1157,15 @@ int pilot_localJump(Pilot *p)
  */
 void pilot_setHostile( Pilot* p )
 {
-   if ( pilot_isFriendly( p ) || pilot_isFlag( p, PILOT_BRIBED )
-         || !pilot_isFlag( p, PILOT_HOSTILE ) ) {
+   if (!pilot_isFlag(p, PILOT_HOSTILE)) {
       /* Time to play combat music. */
       music_choose("combat");
 
       player.enemies++;
       pilot_setFlag( p, PILOT_HOSTILE );
    }
-   pilot_rmFriendly( p );
-   pilot_rmFlag( p, PILOT_BRIBED );
+   pilot_rmFriendly(p);
+   pilot_rmFlag(p, PILOT_BRIBED);
 }
 
 
