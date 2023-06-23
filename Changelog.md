@@ -42,6 +42,7 @@
   affecting launched escorts (which previously couldn't be bribed).
 * Added measures taken after bribing a pilot to ensure the fight doesn't
   resume due to stray shots in most circumstances.
+* Changed the subtitle from "Imperial Storm" to "Eye of Chaos".
 
 ## 0.7.0
 
