@@ -38,6 +38,10 @@
 * The special revered class of Siriusites is now referred to as the
   "Touchèd", rather than the "Touched" (indicating that the "E" is
   pronounced, as in "learnèd" and "blessèd").
+* Bribing a pilot now bribes their followers as well, most notably
+  affecting launched escorts (which previously couldn't be bribed).
+* Added measures taken after bribing a pilot to ensure the fight doesn't
+  resume due to stray shots in most circumstances.
 
 ## 0.7.0
 
