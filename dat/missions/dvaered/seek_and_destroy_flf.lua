@@ -31,7 +31,7 @@ clue_text = {
 noclue_text = {
    _([[This person has never heard of {pilot}. It seems you will have to ask someone else.]]),
    _([["{pilot}? Who's {pilot}?"]]),
-   _([["Sorry, I have no idea where {pilot} is."]]),
+   _([["Sorry, I have no ideä where {pilot} is."]]),
    _([["I haven't a clue where {pilot} is."]]),
    _([["I don't give a damn about {pilot}. Go away."]]),
    _([["{pilot}? Don't know, don't care."]]),
@@ -92,7 +92,7 @@ noinfo_text = {
 
 misn_desc = _([[A dangerous FLF terrorist known as {pilot} is wanted dead or alive by {faction} authorities, last seen in the {system} system. Any mercenary who can track down and eliminate this terrorist will be awarded substantially.
 
-Mercenaries who accept this mission are advised to go to the indicated system and talk to others in the area, either by hailing pilots while out in space or by talking to people on planets in the system, if applicable.]])
+Mercenaries who accept this mission are advised to go to the indicated system and talk to others in the areä, either by hailing pilots while out in space or by talking to people on planets in the system, if applicable.]])
 
 misn_title = {
    _("Seek and Destroy: Small Terrorist Bounty ({system} system)"),

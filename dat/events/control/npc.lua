@@ -7,7 +7,7 @@
 --]]
 
 --[[
--- Event for creating random characters in the spaceport bar.
+-- Event for creäting random characters in the spaceport bar.
 -- The random NPCs will tell the player things about the Naikari
 -- universe in general, about their faction, or about the game itself.
 --]]
@@ -256,7 +256,7 @@ messages = {
          _([["Did you know that House Za'lek was originally a Great Project initiated by the Empire? There was also a Project Proteron, but that one didn't go so well."]]),
          _([["Don't pay attention to the naysayers. The Empire is still strong. Have you ever seen a Peacemaker up close? I doubt any ship fielded by any other power could stand up to one."]]),
          _([["I don't know who did it, but believe me, the Incident was no accident! It was definitely a terrorist attack orchestrated by those disloyal Great Houses in an effort to take down the Empire."]]),
-         _([["I wouldn't travel north of Alteris if I were you, unless you're a good fighter! That area of space has really gone down the drain since the Incident."]]),
+         _([["I wouldn't travel north of Alteris if I were you, unless you're a good fighter! That areä of space has really gone down the drain since the Incident."]]),
       },
    },
    {
@@ -277,7 +277,7 @@ messages = {
          _([["House Dvaered? House? The Empire is weak and useless, we don't need them anymore! I say we declare ourselves an independent faction today. What are they going to do, subjugate us? We all know how well that went last time! Ha!"]]),
          _([["I'm thinking about joining the military. Every time I see or hear news about those rotten FLF bastards, it makes my blood boil! They should all be pounded into space dust!"]]),
          _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
-         _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to create that nebula so they would have a place to hide. Damn criminals…"]]),
+         _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to creäte that nebula so they would have a place to hide. Damn criminals…"]]),
       },
    },
    {
@@ -673,7 +673,7 @@ function getJmpMessage(fac)
    local msg_jmp = {
       _([["Hi there, traveler. Is your system map up to date? Just in case you didn't know already, let me give you the location of the jump from here to {system}. I hope that helps."]]),
       _([["Quite a lot of people who come in here complain that they don't know how to get to {system}. I travel there often, so I know exactly where the jump point is. Here, let me show you."]]),
-      _([["So you're still getting to know about this area, huh? Tell you what, I'll give you the coördinates of the jump to {system}. Check your map next time you take off!"]]),
+      _([["So you're still getting to know about this areä, huh? Tell you what, I'll give you the coördinates of the jump to {system}. Check your map next time you take off!"]]),
       _([["True fact, there's a direct jump from here to {system}. Want to know where it is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your map."]]),
       _([["There's a system just one jump away by the name of {system}. I can tell you where the jump point is. There, I've updated your map. Don't mention it."]]),
    }
