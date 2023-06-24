@@ -43,7 +43,7 @@ require "events/tutorial/tutorial_common"
 
 ask_text = _([["Ah, {player}! Well met, and what perfect timing! Perhaps you can help me resolve another matter.
 
-"You see, it's my son. He's taken a cliënt's yacht to space without their permission, taking along his girlfriend. That boy is such a handful. I'm sure he's trying to show off his piloting skills to impress her, but like myself, he doesn't even have a pilot's license! The nerve, right? I need you to get out there, disable the yacht, and take them both back here. Can you do this for me? I'll pay you {credits} for the trouble."]])
+"You see, it's my son. He's taken a client's yacht to space without their permission, taking along his girlfriend. That boy is such a handful. I'm sure he's trying to show off his piloting skills to impress her, but like myself, he doesn't even have a pilot's license! The nerve, right? I need you to get out there, disable the yacht, and take them both back here. Can you do this for me? I'll pay you {credits} for the trouble."]])
 
 yes_text = _([["Thank you! He doesn't know how to work the hyperdrive, so they won't have left the system. It's a Gawain named Credence.
 
@@ -57,7 +57,7 @@ pay_text = _([[Terra awaits you at the spaceport. She gives her son and the youn
 
 "You've done fantastic work once again, {player}," she says. "As promised, I have deposited your payment into your account. I'm going to give my son a reprimand he'll not soon forget, so hopefully he won't repeat this little stunt anytime soon. Well then, I must be going. Thank you again, and I hope to see you again in the future!"]])
 
-misndesc = _("Terra has asked you to fetch her son and her son's girlfriend, who have taken her cliënt's yacht, the Credence, and are joyriding it in the {system} system. To fetch them, you must use non-lethal weaponry (such as ion cannons, Medusa missiles, or a weapons ionizer) to disable the Credence, then board the Credence by either #bdouble-clicking#0 it or by targeting it and pressing {board_key}.")
+misndesc = _("Terra has asked you to fetch her son and her son's girlfriend, who have taken her client's yacht, the Credence, and are joyriding it in the {system} system. To fetch them, you must use non-lethal weaponry (such as ion cannons, Medusa missiles, or a weapons ionizer) to disable the Credence, then board the Credence by either #bdouble-clicking#0 it or by targeting it and pressing {board_key}.")
 
 
 function create ()
