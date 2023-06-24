@@ -49,7 +49,7 @@ noclue_text = {
    _([[This person has never heard of {pilot}. It seems you will have to ask someone else.]]),
    _([[This pilot is also looking for {pilot}, but doesn't seem to know anything you don't.]]),
    _([["{pilot}? Nope, I haven't seen that person in years at this point."]]),
-   _([["Sorry, I have no ideä where {pilot} is."]]),
+   _([["Sorry, I have no idea where {pilot} is."]]),
    _([["Oh, hell no, I stay as far away from {pilot} as I possibly can."]]),
    _([["I haven't a clue where {pilot} is."]]),
    _([["I don't give a damn about {pilot}. Go away."]]),
@@ -142,7 +142,7 @@ bar_desc = _("This person might be an outlaw, a pirate, or even worse, a bounty 
 
 misn_desc = _([[A notorious pirate known as {pilot} is wanted dead or alive by {faction} authorities, last seen in the {system} system. Any mercenary who can track down and eliminate this pirate will be awarded substantially.
 
-Mercenaries who accept this mission are advised to go to the indicated system and talk to others in the areä, either by hailing pilots while out in space or by talking to people on planets in the system, if applicable. Pirates are more likely to know where {pilot} is, so interrogating pirates in the system is highly recommended.]])
+Mercenaries who accept this mission are advised to go to the indicated system and talk to others in the area, either by hailing pilots while out in space or by talking to people on planets in the system, if applicable. Pirates are more likely to know where {pilot} is, so interrogating pirates in the system is highly recommended.]])
 
 misn_title = {
    _("Seek and Destroy: Small Pirate Bounty ({system} system)"),

@@ -76,7 +76,7 @@ flint_artifact_textA = _([["Let's see what we have here," Flintley says as you h
 
 You feel disappointed and frustrated, but you have no choice but to deposit the "artifact" into the nearest disintegrator inlet.]])
 
-flint_artifact_textB = _([[You hand Flintley the artifact you bought on {planet}. He examines it for a few moments, then enters a few queries in the info terminal in his table. Once he has found what he was looking for, he heaves a sigh. "I'm sorry, {player}. It seems you've been had. What you've got here is little more than a trinket. It's a piece of 'art' creäted by a third-rank sculptress named Biena Gharibri who lives on Lapra. She's not very talented, I'm afraid. Her creätions have been called 'worse than Dvaered opera' by a leading art critic. I really don't think you want to present his lordship with this."
+flint_artifact_textB = _([[You hand Flintley the artifact you bought on {planet}. He examines it for a few moments, then enters a few queries in the info terminal in his table. Once he has found what he was looking for, he heaves a sigh. "I'm sorry, {player}. It seems you've been had. What you've got here is little more than a trinket. It's a piece of 'art' created by a third-rank sculptress named Biena Gharibri who lives on Lapra. She's not very talented, I'm afraid. Her creations have been called 'worse than Dvaered opera' by a leading art critic. I really don't think you want to present his lordship with this."
 
 You promptly decide to dispose of the thing, unwilling to carry it around with you a moment longer than necessary.]])
 

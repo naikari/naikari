@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>6</mass>
   <price>7000</price>
-  <description>The Plasma Blaster fires superheated plasma which is very effective at damaging armor, but less effective against shields. Plasma weapon technology was developed by the Soromid to enable the creätion of the organic weaponry Soromid ships are equipped with, but it was such a hit with bounty hunters that the Soromid continue to manufacture synthetic plasma weaponry such as this as well.</description>
+  <description>The Plasma Blaster fires superheated plasma which is very effective at damaging armor, but less effective against shields. Plasma weapon technology was developed by the Soromid to enable the creation of the organic weaponry Soromid ships are equipped with, but it was such a hit with bounty hunters that the Soromid continue to manufacture synthetic plasma weaponry such as this as well.</description>
   <gfx_store>plasma.webp</gfx_store>
   <cpu>-5</cpu>
  </general>

@@ -29,15 +29,15 @@ require "missions/dvaered/common"
 
 start_text = _([["Your arrival is timely, citizen," the Dvaered commanding officer tells you. "Listen up. We were in a firefight with a rogue terrorist, but the bastard knocked out our engines and most of our primary systems before we could nail him. Fortunately, I think we inflicted serious damage on him as well, so he should still be around here somewhere. My sensors are down, though, so I can't tell for certain."
 
-The officer draws himself up and assumes the talking-to-subordinates tone that is so typical for Dvaered commanders. "Citizen! You are hereby charged to scout the areä, dispose of the enemy ship, then deliver me and my crew to the nearest Dvaered controlled system!"]])
+The officer draws himself up and assumes the talking-to-subordinates tone that is so typical for Dvaered commanders. "Citizen! You are hereby charged to scout the area, dispose of the enemy ship, then deliver me and my crew to the nearest Dvaered controlled system!"]])
 
 land_killed_text = _([[The Dvaered crew file out of your ship. You didn't really get to know them on this trip, they kept to themselves. The commanding officer brings up the rear of the departing crew, but he stops when he passes by you.
 
-"Well done citizen," he says. "You have done your duty as an upstanding member of sociëty by rendering assistance to an official Dvaered patrol. In addition, you complied with your instructions and destroyed a terrorist that threatened the peace and stability of the region. You have been rewarded appropriately." You check your balance and see that you have indeed been paid a reasonable amount.]])
+"Well done citizen," he says. "You have done your duty as an upstanding member of society by rendering assistance to an official Dvaered patrol. In addition, you complied with your instructions and destroyed a terrorist that threatened the peace and stability of the region. You have been rewarded appropriately." You check your balance and see that you have indeed been paid a reasonable amount.]])
 
 land_spared_text = _([[The Dvaered crew file out of your ship. You didn't really get to know them on this trip, they kept to themselves. The commanding officer brings up the rear of the departing crew, but he stops when he passes by you.
 
-"Well done citizen," he says. "You have done your duty as an upstanding member of sociëty by rendering assistance to an official Dvaered patrol. However, you failed to comply with instructions, and let a potentially dangerous terrorist get away with his crimes. I will not apply any penalties in light of the situation, but consider yourself reprimanded."]])
+"Well done citizen," he says. "You have done your duty as an upstanding member of society by rendering assistance to an official Dvaered patrol. However, you failed to comply with instructions, and let a potentially dangerous terrorist get away with his crimes. I will not apply any penalties in light of the situation, but consider yourself reprimanded."]])
 
 finish_text = _([[The officer turns to leave, but then appears to have remembered something, because he turns back at you again.
 

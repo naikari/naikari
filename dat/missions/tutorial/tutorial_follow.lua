@@ -50,7 +50,7 @@ ask_text = _([[You approach Ian and wave. When he notices you, he smiles. "Ah, {
 
 "Specifically, I need an escort to {planet} in the {system} system. See, you were such an inspiration to me, I decided to get myself a pilot license so I can travel through space on my own. I'd just like some protection for the first time, and I'll pay you {credits} to escort me. Can you do it?"]])
 
-accept_text = _([["Thank you, I know it's a bit silly. The areä should be safe. It's just… you remember what happened before, right? And what if my engines fail or something and I get stuck? I just need some support for my first journey.
+accept_text = _([["Thank you, I know it's a bit silly. The area should be safe. It's just… you remember what happened before, right? And what if my engines fail or something and I get stuck? I just need some support for my first journey.
 
 "Anyway, I'll meet you out in space!"]])
 

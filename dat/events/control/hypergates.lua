@@ -60,7 +60,7 @@ function create()
             and (standing >= 20 or standing <= -20) then
          diff.apply("hypergate_zalek")
          news.add("Generic", _("Za'lek Hypergate Constructed"),
-               _([[Za'lek scientists have excitedly jumped on the hypergate bandwagon, constructing a hypergate in the Za'lek system. The team involved in the construction of the project refused to comment on the hypergate's effect on intergalactic commerce, seemingly more interested in the potential for research the technology creätes.]]),
+               _([[Za'lek scientists have excitedly jumped on the hypergate bandwagon, constructing a hypergate in the Za'lek system. The team involved in the construction of the project refused to comment on the hypergate's effect on intergalactic commerce, seemingly more interested in the potential for research the technology creates.]]),
                exp)
       end
 
@@ -78,7 +78,7 @@ function create()
       if standing >= 20 or standing <= -20 then
          diff.apply("hypergate_empire")
          news.add("Generic", _("Empire Announces Hypergate Network"),
-               _([[The Emperor has announced the creätion of a new system of mass transit: hypergates. "Unlike regular jump gates, hypergates operate through a central hub called the Hypergate Zone," a leading researcher in charge of the project explained. Currently, the only working hypergate is found in Gamma Polaris. Imperial officials state that they are working with the Great Houses to finish construction of the hypergate network.]]),
+               _([[The Emperor has announced the creation of a new system of mass transit: hypergates. "Unlike regular jump gates, hypergates operate through a central hub called the Hypergate Zone," a leading researcher in charge of the project explained. Currently, the only working hypergate is found in Gamma Polaris. Imperial officials state that they are working with the Great Houses to finish construction of the hypergate network.]]),
                exp)
       end
    end

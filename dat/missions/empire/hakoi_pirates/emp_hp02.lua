@@ -56,18 +56,18 @@ ask_text = _([["Hello again, {player}. It's good to see you. We have another mis
 
 accept_text = _([["I am happy to hear that, {player}! I knew we could count on you. According to the civilian you questioned, pirates seem to be approaching from the direction of the asteroid field. We have reason to believe there must be a hidden jump point somewhere around there which the pirates are jumping into the system through.
 
-"We want you to go to the areä of the {system} asteroid field and test this theory. You won't be able to see the jump point itself, but by observing the areä, you should be able to catch pirates jumping into the system.
+"We want you to go to the area of the {system} asteroid field and test this theory. You won't be able to see the jump point itself, but by observing the area, you should be able to catch pirates jumping into the system.
 
 "I would recommend equipping a Sensor Array or two to extend your radar range; you should be able to find those at the outfitter here. Once you have completed your objective, meet with me here on {startplanet}. Good luck!"]])
 
 decline_text = _([["That is quite understandable. Take as much time as you need to prepare and talk to me again when you change your mind."]])
 
-finish_text = _([[You notice that Commander Soldner is already waiting for you as docking procedures begin. He greets you as you exit your craft. "Good work, {player}," he says. "With this data you have gathered, we should be able to get a much better ideä of where those pirates are coming from. My subordinates are already downloading the data from your ship as we speak, and your payment has been deposited into your account.
+finish_text = _([[You notice that Commander Soldner is already waiting for you as docking procedures begin. He greets you as you exit your craft. "Good work, {player}," he says. "With this data you have gathered, we should be able to get a much better idea of where those pirates are coming from. My subordinates are already downloading the data from your ship as we speak, and your payment has been deposited into your account.
 
 "Now we must wait for the analysis of the data you have collected. I'm sure we will have a need to enlist your services again before long. I'll see you again at the bar here on {planet} when I have another mission for you. In the meantime, I would recommend purchasing a Mercenary License, if you haven't already, and giving some basic combat missions a try. I'm sure the experience will prove to be invaluable as we take on this pirate menace."]])
 
 misn_title = _("Hakoi's Hidden Jumps")
-misn_desc = _("Commander Soldner has sent you to the {system} system to scout the areä and watch as pirates jump in. He said that he expects the pirates are jumping in through a hidden jump point near the asteroid field.")
+misn_desc = _("Commander Soldner has sent you to the {system} system to scout the area and watch as pirates jump in. He said that he expects the pirates are jumping in through a hidden jump point near the asteroid field.")
 
 log_text = _([[You did some observation in the {destsys} system for Commander Soldner, watching as pirates jumped into the system. He suggested getting yourself a Mercenary License and trying some combat missions before returning to {startplanet} ({startsys} system) for another mission.]])
 
@@ -127,7 +127,7 @@ end
 
 function update_osd()
    local osd_desc = {
-      fmt.f(_("Wait in the areä around the asteroid field in Hakoi until you witness pirates jumping in ({witnessed}/{needed})"),
+      fmt.f(_("Wait in the area around the asteroid field in Hakoi until you witness pirates jumping in ({witnessed}/{needed})"),
             {witnessed=jumps_witnessed, needed=jumps_needed}),
       fmt.f(_("Land on {planet} ({system} system)"),
             {planet=startpla:name(), system=startsys:name()}),

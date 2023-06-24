@@ -45,7 +45,7 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this areä and I was hoping to find a suitable pilot. Don't worry, it's a simple job, and you will of course be paid fairly for your services. What do you say?"]])
+ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I was hoping to find a suitable pilot. Don't worry, it's a simple job, and you will of course be paid fairly for your services. What do you say?"]])
 
 ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise I won't bite, and the payment will be worth it!"]])
 

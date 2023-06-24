@@ -42,7 +42,7 @@ require "nextjump"
 require "missions/soromid/common"
 
 
-ask_text = _([[Chelsea looks at you with surprise. "Oh! {player}! It's nice to see you again! I, uh, decided to change my pronouns. I'm using they/them pronouns again." You thank them for telling you and ask what they're looking at. "Oh, information about this gang we got in hot water with. They call themselves the 'Imperyan Brotherhood' and they're a vicious anti-Soromid organization. They claim the Soromid are 'degenerating' Imperial sociëty with their gene treatments, the ones that saved them from the plague of Sorom. Really bigoted stuff.
+ask_text = _([[Chelsea looks at you with surprise. "Oh! {player}! It's nice to see you again! I, uh, decided to change my pronouns. I'm using they/them pronouns again." You thank them for telling you and ask what they're looking at. "Oh, information about this gang we got in hot water with. They call themselves the 'Imperyan Brotherhood' and they're a vicious anti-Soromid organization. They claim the Soromid are 'degenerating' Imperial society with their gene treatments, the ones that saved them from the plague of Sorom. Really bigoted stuff.
 
 "But what really troubles me is, I remember my dad talking about 'the brotherhood' on occasion. It could be a coincidence, but if there's a connection… but then again, going there myself could be pretty dangerous. Too many pirates around, and besides, if there's anything behind my hunch, this could go south real fast.
 

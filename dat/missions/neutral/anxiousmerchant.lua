@@ -23,7 +23,7 @@
 --[[
 
    Anxious Merchant
-   Author: PhoenixRiver (from an ideä on the wiki)
+   Author: PhoenixRiver (from an idea on the wiki)
 
    A merchant with a slow ship suddenly realizes he can't make the delivery and
    implores the player to do it for him. Since he has to look good with his

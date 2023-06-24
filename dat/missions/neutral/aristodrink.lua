@@ -24,7 +24,7 @@
 
   Drinking Aristocrat
   Author: geekt
-  Ideä from todo list.
+  Idea from todo list.
 
   An aristocrat wants a specific drink which he recalls from a certain planet and will pay handsomely if you bring it. When you get to said planet it turns out the drink isn't served there but the bartender gives you a hint. You are then hinted until you end up getting the drink and bringing it back.
 
