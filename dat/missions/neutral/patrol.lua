@@ -76,11 +76,8 @@ use_hidden_jumps = false
 -- Get the number of enemies in a particular system
 function get_enemies(sys)
    local enemies = 0
-   for i, j in ipairs(paying_faction:enemies()) do
-      local p = sys:presences()[j:nameRaw()]
-      if p ~= nil then
-         enemies = enemies + p
-      end
+   for i, f in ipairs(paying_faction:enemies()) do
+      enemies = enemies + sys:presence(f)
    end
    return enemies
 end
@@ -89,17 +86,12 @@ end
 function create ()
    paying_faction = planet.cur():faction()
 
-   local systems = getsysatdistance(system.cur(), 1, 2,
+   local systems = getsysatdistance(system.cur(), 0, 2,
       function(s)
-         local this_faction = s:presences()[paying_faction:nameRaw()]
+         local this_faction = s:presence(paying_faction)
          local enemies = get_enemies(s)
-         return this_faction ~= nil and enemies > 0 and enemies <= this_faction
+         return enemies > 0 and enemies <= this_faction
       end, nil, use_hidden_jumps)
-   local this_faction = system.cur():presences()[paying_faction:nameRaw()]
-   local enemies = get_enemies(system.cur())
-   if this_faction ~= nil and enemies > 0 and enemies <= this_faction then
-      systems[#systems + 1] = system.cur()
-   end
 
    if #systems <= 0 then
       misn.finish(false)

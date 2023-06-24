@@ -7,8 +7,7 @@
    planet.cur():class() ~= "0" and planet.cur():class() ~= "1"
    and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
    and planet.cur():services()["inhabited"]
-   and system.cur():presences()["Civilian"] ~= nil
-   and system.cur():presences()["Civilian"] &gt; 0
+   and system.cur():presence("Civilian") &gt; 0
    and (var.peek("tut_complete") == true
       or planet.cur():faction() ~= faction.get("Empire"))
   </cond>

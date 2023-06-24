@@ -97,10 +97,10 @@ function cargo_calculateRoute ()
    -- Determine amount of piracy along the route
    local exp = 1.5
    local jumps = system.jumpPath(system.cur(), destsys, cargo_use_hidden)
-   local risk = (system.cur():presences()["Pirate"] or 0) ^ exp
+   local risk = system.cur():presence("Pirate") ^ exp
    if jumps then
       for k, v in ipairs(jumps) do
-         local travelrisk = v:system():presences()["Pirate"] or 0
+         local travelrisk = v:system():presence("Pirate")
          risk = risk + travelrisk^exp
       end
    end

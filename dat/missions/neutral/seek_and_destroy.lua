@@ -187,8 +187,7 @@ function create ()
 
    local systems = getsysatdistance(system.cur(), 1, 5,
       function(s)
-         local p = s:presences()[target_faction:nameRaw()]
-         return p ~= nil and p > 0
+         return s:presence(target_faction) > 0
       end)
 
    -- Create the table of system the player will visit now (to claim)
