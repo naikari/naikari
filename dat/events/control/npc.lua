@@ -285,7 +285,7 @@ messages = {
       text = {
          _([["Greetings, traveler. May Sirichana's wisdom guide you as it guides me."]]),
          _([["Even though the echelons are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
-         _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has no influënce on these systems. We follow Sirichana, and no one else."]]),
+         _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has no influence on these systems. We follow Sirichana, and no one else."]]),
          _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into His plan, and He punished the Empire for having started that so-called 'Great Project'."]]),
          _([["I don't think the Incident is an isolated event. The explosion of Sol was just the first of many. Soon, all who do not follow Sirichana will fall just as Earth did, and only we, His devoted servants, will remain."]]),
       },
@@ -362,7 +362,7 @@ messages = {
       text = {
          _([["The old Empire will pay for blowing up Sol. We all know they did it on purpose."]]),
          _([["The inferior old Empire knew we were destined to replace them, so they blew up Sol in an effort to wipe us out. But they weren't thorough enough, and we won't forgive them!"]]),
-         _([["Personally I think the old Empire has been weakened by Sorofreak influënce. Those damn freaks have been a scourge on the galaxy ever since they flooded into it."]]),
+         _([["Personally I think the old Empire has been weakened by Sorofreak influence. Those damn freaks have been a scourge on the galaxy ever since they flooded into it."]]),
          _([["It is our destiny as Proteron to rule the galaxy. We are the rightful successor to the Empire. We will take what is ours."]]),
          _([["One of my coworkers was spreading lies about us Proteron causing the Incident. Naturally, I reported him to the police, and they took him away. I'd bet he was a secret Sorofreak sympathizer trying to bring down the great Proteron Empire."]]),
          _([["We must all work hard to ensure our destiny as Proteron is fulfilled."]]),

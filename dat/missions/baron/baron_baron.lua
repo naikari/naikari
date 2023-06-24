@@ -27,7 +27,7 @@ require "missions/neutral/common"
 
 hail_text = _([[Your viewscreen flashes to life. You're greeted by a nondescript pilot who doesn't seem to be affiliated with anyone you know.
 
-"Hello there! I represent a man by the name of Baron Sauterfeldt. You may have heard of him in your travels? No? Well, I suppose you can't have it all. My employer is a moderately influëntial man, you see, and… but no, I'll not bore you with the details. The bottom line is, Lord Sauterfeldt is looking for hired help, and you seem like the sort he needs, judging by the work you did for, uh, the robot terry bears guy, or whatever it was."]])
+"Hello there! I represent a man by the name of Baron Sauterfeldt. You may have heard of him in your travels? No? Well, I suppose you can't have it all. My employer is a moderately influential man, you see, and… but no, I'll not bore you with the details. The bottom line is, Lord Sauterfeldt is looking for hired help, and you seem like the sort he needs, judging by the work you did for, uh, the robot terry bears guy, or whatever it was."]])
 
 ask_text = _([[You inquire what it is exactly this Mr. Sauterfeldt needs from you. "Oh, nothing too terribly invasive, I assure you. His Lordship currently needs a courier, nothing more. Erm, well, a courier who can't be traced back to him, if you understand what I mean. So what do you think? Sounds like a suitable job for you? The pay is good, I can assure you that, much better than a bunch of junk from some toy factory."
 
