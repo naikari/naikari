@@ -847,6 +847,7 @@ static int systemL_addGatherable( lua_State *L )
  *    @luatreturn table A table indicating presences, indexed by raw
  *       (untranslated) faction name. See above for a complete
  *       explanation.
+ * @luasee presence
  * @luafunc presences
  */
 static int systemL_presences( lua_State *L )
@@ -906,20 +907,24 @@ static int systemL_planets( lua_State *L )
 
 
 /**
- * @brief Gets the presence in the system.
+ * @brief Gets a presence amount in the system.
  *
- * Possible parameters are besides a faction:<br/>
- *  - "all": Gets the sum of all the presences.<br />
- *  - "friendly": Gets the sum of all the friendly presences.<br />
- *  - "hostile": Gets the sum of all the hostile presences.<br />
- *  - "neutral": Gets the sum of all the neutral presences.<br />
+ * @usage p = sys:presence(f) -- Gets the presence of a faction f
+ * @usage p = sys:presence("all") -- Gets the sum of all the presences
+ * @usage
+ * if sys:presence("friendly") > sys:presence("hostile") then
+ *    -- System has more friendly presences than hostile presences.
+ * end
  *
- * @usage p = sys:presence( f ) -- Gets the presence of a faction f
- * @usage p = sys:presence( "all" ) -- Gets the sum of all the presences
- * @usage if sys:presence("friendly") > sys:presence("hostile") then -- Checks to see if the system is dominantly friendly
- *
- *    @luatparam System s System to get presence level of.
+ *    @luatparam System sys System to get presence level in.
+ *    @luatparam Faction|string id What to get the presence level of.
+ *       Can be a faction to get the presence of one faction; "all" to
+ *       get the total presence of all factions; "friendly" to get the
+ *       total presence of all friendly factions; "hostile" to get the
+ *       total presence of all hostile factions; or "netural" to get the
+ *       total presence of all neutral factions.
  *    @luatreturn number The presence level in sys (absolute value).
+ * @luasee presences
  * @luafunc presence
  */
 static int systemL_presence( lua_State *L )
