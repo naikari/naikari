@@ -27,7 +27,7 @@ function pilot_name ()
       p_("pilot_name", "Blizzard {number}"),
       p_("pilot_name", "Blood {number}"),
       p_("pilot_name", "Blue {number}"),
-      p_("pilot_name", "Boa {number}"),
+      p_("pilot_name", "Boä {number}"),
       p_("pilot_name", "Boulder {number}"),
       p_("pilot_name", "Bravo {number}"),
       p_("pilot_name", "Bronze {number}"),
