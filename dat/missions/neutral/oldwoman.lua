@@ -58,7 +58,7 @@ NPCdesc = _("You see a wrinkled old lady, a somewhat unusual sight in a spacepor
 misndesc = _("An aging lady has asked you to ferry her to %s.")
 misnreward = _("Fair monetary compensation")
 
-log_text = _([[You escorted an old woman to her cousin in Sirius space. She was nice, albeit somewhat overly chatty.]])
+log_text = _([[You escorted an old woman to her cousin in Sirius space. She was nice, albeït somewhat overly chatty.]])
 
 
 function create ()

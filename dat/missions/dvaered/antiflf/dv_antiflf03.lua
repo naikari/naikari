@@ -40,7 +40,7 @@ osd_desc = {}
 
 title[1] = _("One swift stroke")
 introfirst = _([[The Dvaered liaison spots you, and stands up to shake your hand.
-    "Well met, citizen %s. I have heard about your recent achievements in the fight against the FLF threat. Like many Dvaered, I am pleased that things are going so well, and in no small way thanks to your efforts! High Command apparently feels the same way, because they have given you the military clearance for the upcoming operation, and that doesn't happen to just anybody."
+    "Well met, citizen %s. I have heard about your recent achievements in the fight against the FLF threat. Like many Dvaered, I am pleased that things are goïng so well, and in no small way thanks to your efforts! High Command apparently feels the same way, because they have given you the military clearance for the upcoming operation, and that doesn't happen to just anybody."
     ]])
 
 introrepeat = _([[The Dvaered liaison greets you.
@@ -55,7 +55,7 @@ title[2] = _("The battlefield awaits")
 text[2] = _([["Excellent. Please report to the local military command center at 0400 today. You will be briefed there."
     The liaison hands you a small access card. It bears the emblem of the Dvaered military. It seems you've been granted a level of clearance that goes beyond that of a civilian volunteer.
     The liaison stands up, offers a curt greeting and walks out of the bar. You remain for a while, since you're not due for your briefing for some time yet. You reflect on your recent achievements. Your actions have drastically dipped the balance of power between the Dvaered and the FLF insurgents, and soon you will be able to see the results of your decisions with your own two eyes. You feel a sense of accomplishment to know you're making a difference in this galaxy.
-    Several hours later, you find yourself in a functional, sterile briefing room at the Dvaered military base. You are joined by several Dvaered pilots, who are clearly going to be participating in the upcoming battle as well.]])
+    Several hours later, you find yourself in a functional, sterile briefing room at the Dvaered military base. You are joined by several Dvaered pilots, who are clearly goïng to be participating in the upcoming battle as well.]])
 
 text[3] = _([["Everyone," a stern-looking but otherwise nondescript Dvaered officer addresses the room, "If I may have your attention please. I am here to brief you on the upcoming operation, which as you all know revolves around the destruction of the terrorist base known as Sindbad."
     The wall behind the officer lights up, showing a schematic representation of the %s system. In the middle sits a red glowing disc with the FLF logo superimposed over it.
@@ -428,7 +428,7 @@ function nextStage()
         hook.timer(delay, "destroyBase")
         misn.osdActive(3)
     else
-        print(_("WARNING: dv_antiflf03: going to next stage, but next stage doesn't exist!"))
+        print(_("WARNING: dv_antiflf03: goïng to next stage, but next stage doesn't exist!"))
     end
 end
 

@@ -116,7 +116,7 @@ function accept ()
       if choice == 1 then
          credits = credits_easy
          shipchoices = {
-            "Llama", "Lancelot", "Koala", "Quicksilver", "Ancestor",
+            "Llama", "Lancelot", "Koäla", "Quicksilver", "Ancestor",
          }
          tk.msg("", yes_easy_text)
       else
@@ -162,7 +162,7 @@ function takeoff()
    if choice == 1 then
       shiptype = "Goddard"
    else
-      shiptype = "Koala"
+      shiptype = "Koäla"
    end
    checkpoint[1] = pilot.add(shiptype, "Trader", location1, nil, {ai="stationary"})
    checkpoint[2] = pilot.add(shiptype, "Trader", location2, nil, {ai="stationary"})

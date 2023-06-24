@@ -47,7 +47,7 @@ end
 --]]
 function _atk_decide_zz()
    -- The situation is the following: we're out of range, facing the target,
-   -- going towards the target, and someone is shooting on us.
+   -- goïng towards the target, and someone is shooting on us.
 
    local target = ai.taskdata()
    local pilot  = ai.pilot()

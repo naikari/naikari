@@ -66,7 +66,7 @@ function accept()
       "Llama",
       "Gawain",
       "Quicksilver",
-      "Koala",
+      "Koäla",
       "Mule",
       "Rhino",
       "Hyena",
@@ -91,7 +91,7 @@ function accept()
       _("Llama (yacht)"),
       _("Gawain (luxury yacht)"),
       _("Quicksilver (courier)"),
-      _("Koala (heavy courier)"),
+      _("Koäla (heavy courier)"),
       _("Mule (freighter)"),
       _("Rhino (armored transport)"),
       _("Hyena (ultralight fighter)"),
@@ -230,7 +230,7 @@ function start_hook()
          else
             drones = fleet.add(amt, "Hyena", fac, pos, nil, nil, boss_p)
          end
-      elseif boss == "Koala" then
+      elseif boss == "Koäla" then
          if fleet_size == 3 then
             drones = fleet.add({2, 4, 4}, {"Lancelot", "Shark", "Hyena"},
                   fac, pos, nil, nil, boss_p)

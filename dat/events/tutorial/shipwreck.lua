@@ -45,7 +45,7 @@ function create()
     if r > 0.8 then
         ship = "Mule"
     elseif r > 0.5 then
-        ship = "Koala"
+        ship = "Koäla"
     else 
         ship = "Llama"
     end

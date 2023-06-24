@@ -176,7 +176,7 @@ function pilot_name ()
       p_("pilot_name", "Shield {number}"),
       p_("pilot_Name", "Shinobi {number}"),
       p_("pilot_name", "Shuriken {number}"),
-      p_("pilot_name", "Siërra {number}"),
+      p_("pilot_name", "Sierra {number}"),
       p_("pilot_name", "Sigma {number}"),
       p_("pilot_name", "Silver {number}"),
       p_("pilot_name", "Siren {number}"),

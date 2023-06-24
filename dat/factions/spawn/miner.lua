@@ -8,7 +8,7 @@ function spawn_patrol ()
    if r < 0.5 then
       scom.addPilot( pilots, "Llama", 20, {name=_("Miner Llama"), ai="miner"}  )
    elseif r < 0.8 then
-      scom.addPilot( pilots, "Koala", 40, {name=_("Miner Koala"), ai="miner"} )
+      scom.addPilot( pilots, "Koäla", 40, {name=_("Miner Koäla"), ai="miner"} )
    else
       scom.addPilot( pilots, "Mule", 45, {name=_("Miner Mule"), ai="miner"} )
    end

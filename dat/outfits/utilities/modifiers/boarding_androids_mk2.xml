@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>3</mass>
   <price>50000</price>
-  <description>The Boarding Android Mark 2 improves upon the wide variëty of implements sported by its predecessor, additionally including scissor-hands and a sewing needle.</description>
+  <description>The Boarding Android Mark 2 improves upon the wide variety of implements sported by its predecessor, additionally including scissor-hands and a sewing needle.</description>
   <gfx_store>cargopod.webp</gfx_store>
  </general>
  <specific type="modification">

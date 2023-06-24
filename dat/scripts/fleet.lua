@@ -19,7 +19,7 @@ used directly.
 
 
 
-@usage pilots = fleet.add(2, {"Rhino", "Koala"}, "Trader")
+@usage pilots = fleet.add(2, {"Rhino", "Koäla"}, "Trader")
 @usage pilots = fleet.add(1, {"Mule", "Llama"}, {"Trader", "Civilian"})
 
    @param count Number of times to repeat the pattern.

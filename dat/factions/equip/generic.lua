@@ -1252,7 +1252,7 @@ equip_typeOutfits_utilities = {}
 -- Tables of available structurals by base type.
 -- See equip_set function for more info.
 equip_typeOutfits_structurals = {
-   ["Koala"] = {
+   ["Koäla"] = {
       {
          varied = true, probability = {
             ["Cargo Pod"] = 9, ["Fuel Pod"] = 2

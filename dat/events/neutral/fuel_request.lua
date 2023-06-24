@@ -49,13 +49,13 @@ ships = {
    Trader = {
       {"Llama", _("Trader Llama")},
       {"Quicksilver", _("Trader Quicksilver")},
-      {"Koala", _("Trader Koala")},
+      {"Koäla", _("Trader Koäla")},
       {"Mule", _("Trader Mule")},
       {"Rhino", _("Trader Rhino")},
    },
    Miner = {
       {"Llama", _("Miner Llama")},
-      {"Koala", _("Miner Koala")},
+      {"Koäla", _("Miner Koäla")},
       {"Mule", _("Miner Mule")},
    },
    Independent = {

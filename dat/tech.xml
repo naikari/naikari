@@ -329,7 +329,7 @@
   <item>Gawain</item>
   <item>Drone</item>
   <item>Heavy Drone</item>
-  <item>Koala</item>
+  <item>Koäla</item>
   <item>Quicksilver</item>
   <item>Proteron Derivative</item>
   <item>Sirius Fidelity</item>
@@ -1087,7 +1087,7 @@
  <tech name="Couriers">
   <item>Llama</item>
   <item>Quicksilver</item>
-  <item>Koala</item>
+  <item>Koäla</item>
   <item>Unicorp PT-80 Core System</item>
   <item>Unicorp Hawk 300 Engine</item>
   <item>Unicorp D-4 Light Plating</item>
@@ -1860,11 +1860,11 @@
   <item>Schroedinger</item>
  </tech>
  <tech name="Basic Trade Ships">
-  <item>Koala</item>
+  <item>Koäla</item>
   <item>Llama</item>
  </tech>
  <tech name="Bulk Trade Ships">
-  <item>Koala</item>
+  <item>Koäla</item>
   <item>Quicksilver</item>
   <item>Rhino</item>
   <item>Mule</item>

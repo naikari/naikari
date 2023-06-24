@@ -34,7 +34,7 @@ nofuel_text = _([[Soon after you realize to your horror that you are out of fuel
 
 "Hail any other pilot either by #bdouble-clicking#0 on them, or by targeting them with {target_next_key} and pressing {hail_key}. You can request a refuel from there.
 
-"Anyway, I'm going to continue my search. Good luck on yours!"]])
+"Anyway, I'm goïng to continue my search. Good luck on yours!"]])
 
 
 function create()
@@ -72,9 +72,9 @@ function create()
             fac = "Trader"
             pilotname = _("Trader Quicksilver")
          elseif presences["Miner"] then
-            shiptype = "Koala"
+            shiptype = "Koäla"
             fac = "Miner"
-            pilotname = _("Miner Koala")
+            pilotname = _("Miner Koäla")
          else
             -- No compatible presences, so we skip the event.
             evt.finish()

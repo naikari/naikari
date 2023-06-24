@@ -301,7 +301,7 @@ function spawnConvoy()
             {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
             ambush_src, {nil, nil, _("Pirate Hyena")})
    elseif convoysize == 2 then
-      convoy = fleet.add(4, "Koala", "Trader", origin, _("Convoy Koala"))
+      convoy = fleet.add(4, "Koäla", "Trader", origin, _("Convoy Koäla"))
 
       ambush = fleet.add({1, rnd.rnd(1, 3), 2},
             {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",

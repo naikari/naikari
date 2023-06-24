@@ -5,7 +5,7 @@ local function add_llama( pilots )
    scom.addPilot(pilots, "Llama", 20, {name=_("Trader Llama")})
 end
 local function add_koala( pilots )
-   scom.addPilot(pilots, "Koala", 30, {name=_("Trader Koala")})
+   scom.addPilot(pilots, "Koäla", 30, {name=_("Trader Koäla")})
 end
 local function add_quicksilver( pilots )
    scom.addPilot(pilots, "Quicksilver", 40, {name=_("Trader Quicksilver")})

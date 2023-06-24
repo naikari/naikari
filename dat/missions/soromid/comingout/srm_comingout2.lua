@@ -44,13 +44,13 @@ ask_text = _([[Chelsea looks up and smiles as she sees you approaching. "{player
 
 "I finally got my pilot's license, by the way! I'm really excited to get started. Just have to get my first ship. Say, could you help me with that? See, I found a ship for a bargain at {planet} in the {system} system, but I need a transport to get there. I could pay you {credits} to take me there. Well? What do you say?"]])
 
-yes_text = _([["Thank you so much! I really appreciate it, {player}, especially because I know you're not going to treat me like shit on the way. I can't wait to start piloting for real!"]])
+yes_text = _([["Thank you so much! I really appreciate it, {player}, especially because I know you're not goïng to treat me like shit on the way. I can't wait to start piloting for real!"]])
 
 no_text = _([["Oh, okay. Let me know if you change your mind!"]])
 
 ask_again_text = _([["Oh, {player}! Are you able to help me out now? Just a transport to {planet} in the {system} system is all I need, for {credits}."]])
 
-landtext = _([[As you dock you can barely stop Chelsea from jumping out of your ship and hurting herself. She seems to know exactly where to go and before you even know what's going on, she's purchased a Llama from the shipyard which is considerably damaged and rusty, but in working order nonetheless. You express concern about the condition of the ship, but she assures you that she will fix it up as she gets enough money to do so. She gives you a friendly hug, thanks you, and hands you a credit chip. "Catch up with me again sometime, okay? I'll be hanging out in Soromid space doing my first missions as a pilot!" As you walk away, you see her getting her first close-up look at the mission computer with a look of excitement in her eyes.]])
+landtext = _([[As you dock you can barely stop Chelsea from jumping out of your ship and hurting herself. She seems to know exactly where to go and before you even know what's goïng on, she's purchased a Llama from the shipyard which is considerably damaged and rusty, but in working order nonetheless. You express concern about the condition of the ship, but she assures you that she will fix it up as she gets enough money to do so. She gives you a friendly hug, thanks you, and hands you a credit chip. "Catch up with me again sometime, okay? I'll be hanging out in Soromid space doing my first missions as a pilot!" As you walk away, you see her getting her first close-up look at the mission computer with a look of excitement in her eyes.]])
 
 misn_title = _("Coming of Age")
 misn_desc = _("Chelsea needs you to take her to {planet} ({system} system) so she can buy her first ship and kick off her piloting career.")

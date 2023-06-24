@@ -262,7 +262,7 @@ messages = {
    {
       faction = "Empire",
       text = {
-         _([["This thing with pirates showing up in Hakoi worries me. I have a feeling something bad is going to happen to the Empire, but I hope I'm wrong."]]),
+         _([["This thing with pirates showing up in Hakoi worries me. I have a feeling something bad is goïng to happen to the Empire, but I hope I'm wrong."]]),
          _([["Those damn pirates are in Hakoi now. What happened to the Empire? We used to be the strongest in all the universe, and now what, we can't stop a few criminals from getting in?"]]),
       },
       cond = function()
@@ -274,7 +274,7 @@ messages = {
       text = {
          _([["My great-great-great-grandfather fought in the Dvaered Revolts! We still have the holovids he made. I'm proud to be a Dvaered!"]]),
          _([["You'd better not mess with the Dvaered. Our military is the largest and strongest in the galaxy. Nobody can stand up to us!"]]),
-         _([["House Dvaered? House? The Empire is weak and useless, we don't need them anymore! I say we declare ourselves an independent faction today. What are they going to do, subjugate us? We all know how well that went last time! Ha!"]]),
+         _([["House Dvaered? House? The Empire is weak and useless, we don't need them anymore! I say we declare ourselves an independent faction today. What are they goïng to do, subjugate us? We all know how well that went last time! Ha!"]]),
          _([["I'm thinking about joining the military. Every time I see or hear news about those rotten FLF bastards, it makes my blood boil! They should all be pounded into space dust!"]]),
          _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
          _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to creäte that nebula so they would have a place to hide. Damn criminals…"]]),
@@ -285,7 +285,7 @@ messages = {
       text = {
          _([["Greetings, traveler. May Sirichana's wisdom guide you as it guides me."]]),
          _([["Even though the echelons are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
-         _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has no influence on these systems. We follow Sirichana, and no one else."]]),
+         _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has no influënce on these systems. We follow Sirichana, and no one else."]]),
          _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into His plan, and He punished the Empire for having started that so-called 'Great Project'."]]),
          _([["I don't think the Incident is an isolated event. The explosion of Sol was just the first of many. Soon, all who do not follow Sirichana will fall just as Earth did, and only we, His devoted servants, will remain."]]),
       },
@@ -318,7 +318,7 @@ messages = {
    {
       faction = "Soromid",
       text = {
-         _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got vaporized hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
+         _([["Can you believe it? I was goïng to visit Sorom to find my roots, and then boom! It got vaporized hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
          _([["Yes, it's true, our military ships are alive. Most civilians don't get to own bioships, though, and have to make do with synthetic constructs just like everyone else."]]),
          _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
          _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
@@ -362,7 +362,7 @@ messages = {
       text = {
          _([["The old Empire will pay for blowing up Sol. We all know they did it on purpose."]]),
          _([["The inferior old Empire knew we were destined to replace them, so they blew up Sol in an effort to wipe us out. But they weren't thorough enough, and we won't forgive them!"]]),
-         _([["Personally I think the old Empire has been weakened by Sorofreak influence. Those damn freaks have been a scourge on the galaxy ever since they flooded into it."]]),
+         _([["Personally I think the old Empire has been weakened by Sorofreak influënce. Those damn freaks have been a scourge on the galaxy ever since they flooded into it."]]),
          _([["It is our destiny as Proteron to rule the galaxy. We are the rightful successor to the Empire. We will take what is ours."]]),
          _([["One of my coworkers was spreading lies about us Proteron causing the Incident. Naturally, I reported him to the police, and they took him away. I'd bet he was a secret Sorofreak sympathizer trying to bring down the great Proteron Empire."]]),
          _([["We must all work hard to ensure our destiny as Proteron is fulfilled."]]),
