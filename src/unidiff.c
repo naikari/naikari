@@ -673,7 +673,7 @@ static int diff_patch( xmlNodePtr parent )
    xmlNodePtr node;
    char *target;
    int nfailed;
-   Pilot *const *pilots;
+   Pilot * const *pilots;
 
    /* Prepare it. */
    diff = diff_newDiff();
@@ -1113,7 +1113,7 @@ static int diff_removeDiff( UniDiff_t *diff )
 static void diff_cleanup( UniDiff_t *diff )
 {
    int i;
-   Pilot *const *pilots;
+   Pilot * const *pilots;
 
    free(diff->name);
    for (i=0; i<array_size(diff->applied); i++)

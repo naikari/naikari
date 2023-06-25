@@ -1307,7 +1307,7 @@ static int aiL_pilot( lua_State *L )
  */
 static int aiL_getrndpilot( lua_State *L )
 {
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
    int p;
 
    pilot_stack = pilot_getAll();
@@ -1336,7 +1336,7 @@ static int aiL_getnearestpilot( lua_State *L )
 {
    /*dist will be initialized to a number*/
    /*this will only seek out pilots closer than dist*/
-   Pilot *const* pilot_stack = pilot_getAll();
+   Pilot * const *pilot_stack = pilot_getAll();
    int dist=1000;
    int i;
    int candidate_id = -1;
@@ -1808,7 +1808,7 @@ static int aiL_careful_face( lua_State *L )
    double k_diff, k_goal, k_enemy, k_mult,
           d, diff, dist, factor;
    int i;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* Init some variables */
    pilot_stack = pilot_getAll();

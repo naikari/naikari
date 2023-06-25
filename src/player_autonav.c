@@ -757,7 +757,7 @@ int player_autonavShouldResetSpeed (void)
    double careful_dist;
    double their_range, my_range;
    int i, j;
-   Pilot *const*pstk;
+   Pilot * const *pstk;
    int hostiles, will_reset;
 
    if (!player_isFlag(PLAYER_AUTONAV))

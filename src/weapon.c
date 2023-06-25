@@ -885,7 +885,7 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
    AsteroidAnchor *ast;
    Asteroid *a;
    AsteroidType *at;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    gfx = NULL;
    polygon = NULL;
@@ -1108,7 +1108,7 @@ static void weapon_hitAI( Pilot *p, Pilot *shooter, double dmg )
 {
    int i;
    double d;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* Must be a valid shooter. */
    if (shooter == NULL)

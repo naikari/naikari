@@ -1950,7 +1950,7 @@ void player_brokeHyperspace (void)
    ntime_t t;
    StarSystem *sys;
    JumpPoint *jp;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
    int i, map_npath;
 
    /* First run jump hook. */
@@ -2113,7 +2113,7 @@ void player_targetHostile (void)
    pilotId_t tp;
    double d, td;
    int inRange;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    tp = PLAYER_ID;
    d  = 0;
@@ -2327,7 +2327,7 @@ static void player_checkHail (void)
 {
    int i;
    Pilot *p;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* See if a pilot is hailing. */
    pilot_stack = pilot_getAll();
@@ -2411,7 +2411,7 @@ void player_autohail (void)
 {
    int i;
    Pilot *p;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* Not under manual control or disabled. */
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ) ||

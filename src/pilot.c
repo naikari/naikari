@@ -57,7 +57,7 @@ static pilotId_t pilot_id = PLAYER_ID; /**< Stack of pilot ids to assure uniquen
 
 
 /* stack of pilots */
-static Pilot** pilot_stack = NULL; /**< All the pilots in space. (Player may have other Pilot objects, e.g. backup ships.) */
+static Pilot **pilot_stack = NULL; /**< All the pilots in space. */
 
 
 /* misc */
@@ -91,7 +91,7 @@ static int pilot_trail_generated( Pilot* p, int generator );
 /**
  * @brief Gets the pilot stack.
  */
-Pilot*const* pilot_getAll (void)
+Pilot* const* pilot_getAll(void)
 {
    return pilot_stack;
 }

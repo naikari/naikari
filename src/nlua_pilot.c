@@ -800,7 +800,7 @@ static int pilotL_getPilots( lua_State *L )
 {
    int i, j, k, d;
    LuaFaction *factions;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* Whether or not to get disabled. */
    d = lua_toboolean(L,2);
@@ -879,7 +879,7 @@ static int pilotL_getHostiles( lua_State *L )
    Pilot *p = luaL_validpilot(L,1);
    double dist = luaL_optnumber(L,2,-1.);
    int dis = lua_toboolean(L,3);
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    if (dist >= 0.)
       dd = dist*dist;
@@ -925,7 +925,7 @@ static int pilotL_getVisible( lua_State *L )
    int i, k;
    Pilot *p = luaL_validpilot(L,1);
    int dis = lua_toboolean(L,2);
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* Now put all the matching pilots in a table. */
    pilot_stack = pilot_getAll();
@@ -4651,7 +4651,7 @@ static int pilotL_leader( lua_State *L ) {
 static int pilotL_setLeader( lua_State *L ) {
    Pilot *p, *leader, *prev_leader;
    PilotOutfitSlot* dockslot;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
    int i;
 
    NLUA_CHECKRW(L);

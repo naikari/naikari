@@ -1211,7 +1211,7 @@ void space_update( const double dt )
    Pilot *pplayer;
    Solid *psolid;
    int found_something;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* Needs a current system. */
    if (cur_system == NULL)

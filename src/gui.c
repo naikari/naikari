@@ -596,7 +596,7 @@ static void gui_renderBorder( double dt )
    double rx,ry;
    double cx,cy;
    const glColour *col;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* Get player position. */
    hw    = SCREEN_W/2;
@@ -1030,7 +1030,7 @@ void gui_radarRender( double x, double y )
    Radar *radar;
    AsteroidAnchor *ast;
    gl_Matrix4 view_matrix_prev;
-   Pilot *const* pilot_stack;
+   Pilot * const *pilot_stack;
 
    /* The global radar. */
    radar = &gui_radar;

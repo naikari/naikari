@@ -36,7 +36,7 @@ static translation_t *gettext_activeTranslation = NULL; /**< Active language's c
 static uint32_t gettext_nstrings = 0;                   /**< Number of translatable strings in the game. */
 
 static void gettext_readStats (void);
-static const char* gettext_matchLanguage( const char* lang, size_t lang_len, char*const* available );
+static const char* gettext_matchLanguage( const char* lang, size_t lang_len, char*const *available );
 
 /**
  * @brief Initialize the translation system.
@@ -147,7 +147,7 @@ void gettext_setLanguage( const char* lang )
  *
  * @return The best match, if any, else NULL.
  */
-static const char* gettext_matchLanguage( const char* lang, size_t lang_len, char*const* available )
+static const char* gettext_matchLanguage( const char* lang, size_t lang_len, char*const *available )
 {
    const char *best = NULL;
 
