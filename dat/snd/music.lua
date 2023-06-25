@@ -89,7 +89,7 @@ end
 
 
 --[[
--- @brief Checks to see if a song is being played, if it is it stops it.
+-- @brief Checks to see if a song is beïng played, if it is it stops it.
 --
 --    @return true if music is playing.
 --]]

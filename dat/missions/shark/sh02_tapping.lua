@@ -42,7 +42,7 @@ ask_text = _([[You sit at Smith's table and ask him if he has a job for you. "Of
 
 "Recently, we have discovered that another small start-up has cropped up in Sirius space, planning to launch test markets in Frontier space. When we reached out to them, they refused a partnership with us. They're turning into another Krain Industries, and we cannot have that. Nexus dominance in the Fighter market must be sustained.
 
-"So we've conducted a bit of espionage. We have an agent who has recorded some hopefully revealing conversations between a sales manager of the new startup and representatives of the Frontier. All we need you to do is meet with the agent, get the recordings, and bring them back to me on {planet} in the {system} system. It's not exactly legal. That being said, you're just doïng the delivery, so you almost certainly won't be implicated. What do you say? Is this something you can do?"]])
+"So we've conducted a bit of espionage. We have an agent who has recorded some hopefully revealing conversations between a sales manager of the new startup and representatives of the Frontier. All we need you to do is meet with the agent, get the recordings, and bring them back to me on {planet} in the {system} system. It's not exactly legal. That beïng said, you're just doïng the delivery, so you almost certainly won't be implicated. What do you say? Is this something you can do?"]])
 
 refusetext = _([["OK, sorry to bother you."]])
 

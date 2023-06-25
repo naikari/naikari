@@ -77,7 +77,7 @@ function _atk_g_capital( target, dist )
 
    elseif dist > 0.3*range then
       --capital ship turning is slow
-      --emphasize facing for being able to close quickly
+      --emphasize facing for beïng able to close quickly
       aimdir = ai.aim(target)
       dir    = ai.iface(target)
       -- Only accelerate if the target is getting away.

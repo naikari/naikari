@@ -55,7 +55,7 @@ pay_text = _([[As you finish your takeoff procedures and once again enter the co
 
 "Hello again. It's Willie. I'm just here to inform you that the countess has taken care of your payment and transferred it to your account. And don't worry about me, the countess has covered my portion just fine!"
 
-You check your account balance as he closes the comm channel to find yourself {credits} richer. Just being alive felt good, but this feels better. You can't help but think that she might have given him more than just the 25% he was asking for, judging by his sunny disposition. At least you have your life, though!]])
+You check your account balance as he closes the comm channel to find yourself {credits} richer. Just beïng alive felt good, but this feels better. You can't help but think that she might have given him more than just the 25% he was asking for, judging by his sunny disposition. At least you have your life, though!]])
 
 log_text = _([[You helped some drunkard deliver goods for some countess. You thought you might get killed along the way, but you survived and got a generous payment.]])
 

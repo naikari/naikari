@@ -35,7 +35,7 @@ function create()
    if rnd.rnd() < 0.3 then
       mem.bribe = math.sqrt(p:stats().mass) * (500*rnd.rnd() + 1750)
       mem.bribe_prompt = fmt.f(
-         p_("bribe_prompt", "\"For {credits} I could forget about seeing you.\""),
+         p_("bribe_prompt", "\"For {credits} I could forget about seeïng you.\""),
          {credits=fmt.credits(mem.bribe)})
       mem.bribe_paid = p_("bribe_paid", "\"Now scram before I change my mind.\"")
    else

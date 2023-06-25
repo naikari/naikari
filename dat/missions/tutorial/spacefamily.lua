@@ -50,7 +50,7 @@ pay_text = _([[You land at your final stop in your quest to take the space famil
 
 Surveying your now deserted quarters, you see that the place is spotless, as if Harrus and Luna felt ashamed for acting like children throughout the journey while their own children remained patient all throughout.
 
-As you admire their workmanship, your eye falls on a small box that you don't remember seeing here before. Inside the box, you find a sum of credits and a note written in neat handwriting. It says simply, "Sorry for the trouble."]])
+As you admire their workmanship, your eye falls on a small box that you don't remember seeïng here before. Inside the box, you find a sum of credits and a note written in neat handwriting. It says simply, "Sorry for the trouble."]])
 
 -- Mission details
 misn_title = _("The Space Family")

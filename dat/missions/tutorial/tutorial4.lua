@@ -57,7 +57,7 @@ jump_text = _([["Thank you. As you can see, I've marked the {system} system on y
 
 target_nearest_text = _([[As you enter {system}, you see an icon indicating another ship on your radar. However, something seems off. Sirens blare as you realize that the ship is hostile!
 
-Seeing this, Ian's face goes pale. "N-no way! This is supposed to be the safe part of Empire space! Quick, {player}! Press {target_hostile_key} so you can aim your weapons at whatever that ship is!"]])
+Seeïng this, Ian's face goes pale. "N-no way! This is supposed to be the safe part of Empire space! Quick, {player}! Press {target_hostile_key} so you can aim your weapons at whatever that ship is!"]])
 
 fight_text = _([[You see that the control you engaged automatically sets your designated target to the nearest hostile ship, which is the one you noticed on your radar. With the ship targeted, your weapons swerve as much as they can to point to it. You can also see what it is now: a Pirate Hyena. The sight makes Ian hyperventilate despite your best efforts to calm him down.
 

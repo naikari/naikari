@@ -34,7 +34,7 @@ text = {}
 
 start_text = _([[A haggard-looking man emerges from the airlock. He says, "Thank goodness you're here. My name is Gregar, I'm with the Frontier Liberation Front. I mean you no harm." He lets out a sigh before continuing. "I have come under attack from a Dvaered patrol. I managed to disable their ship, but not before mine was heavily damaged. My ship is unable to fly and I would have been killed if it wasn't for you. Thank you."
 
-You help Gregar to your cockpit and install him in a vacant seat. He is obviously very tired, but he forces himself to speak. "Listen, I was on my way back from a mission when those Dvaered bastards jumped me. I know this is a lot to ask, but I have little choice seeing how my ship is a lost cause. Can you take me the rest of the way? It's not far. We have a secret base in the %s system. Fly there and contact my comrades. They will guide us."
+You help Gregar to your cockpit and install him in a vacant seat. He is obviously very tired, but he forces himself to speak. "Listen, I was on my way back from a mission when those Dvaered bastards jumped me. I know this is a lot to ask, but I have little choice seeïng how my ship is a lost cause. Can you take me the rest of the way? It's not far. We have a secret base in the %s system. Fly there and contact my comrades. They will guide us."
 
 Gregar nods off, leaving you to decide what to do next. Gregar wants you to find his friends, but harboring a known terrorist, let alone helping him, might not be looked kindly upon by the authorities.…]])
 
@@ -62,7 +62,7 @@ You exchange a few more polite words with the captain, then leave his office. As
 
 contacttext = _([[Your escorts have disappeared from your sensor grid. Unfortunately, it seems you have no way of knowing where they went.
 
-You notice that Gregar has disappeared from your cockpit. You search around your ship, but he's nowhere to be found. Seeing no other option, you give up on your search. Perhaps he'll turn up somewhere again later.]])
+You notice that Gregar has disappeared from your cockpit. You search around your ship, but he's nowhere to be found. Seeïng no other option, you give up on your search. Perhaps he'll turn up somewhere again later.]])
 
 ask_turnin_text = _([[You have arrived at a Dvaered controlled world, and you are harboring a FLF fugitive on your ship. Fortunately, Gregar is still asleep. You could choose to alert the authorities and turn him in, and possibly collect a reward. Would you like to do so?]])
 turnin_text = _([[It doesn't take Dvaered security long to arrive at your landing bay. They board your ship, seize Gregar and take him away before he even comprehends what's goïng on. They also take you in for questioning, and you inform them of what Gregar told you as regards the location of the FLF's secret base.

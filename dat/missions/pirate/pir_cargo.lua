@@ -76,11 +76,11 @@ function create()
       },
       {
          N_("Exotic Animals"),
-         N_("Several exotic animal species being trafficked from all around the galaxy.")
+         N_("Several exotic animal species beïng trafficked from all around the galaxy.")
       },
       {
          N_("Radioactive Materials"),
-         N_("Highly dangerous, yet highly useful, radioactive materials being sold on the black market, outside of regulatory bodies.")
+         N_("Highly dangerous, yet highly useful, radioactive materials beïng sold on the black market, outside of regulatory bodies.")
       },
    }
    cargo = cargoes[rnd.rnd(1, #cargoes)]

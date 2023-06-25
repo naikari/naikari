@@ -85,7 +85,7 @@ end
     - "script" : Either a mission or an event.
 
       @param current Current faction player has.
-      @param amount Amount of faction being changed.
+      @param amount Amount of faction beïng changed.
       @param source Source of the faction hit.
       @param secondary Flag that indicates whether this is a secondary (through ally or enemy) hit.
       @return The faction amount to set to.

@@ -7,7 +7,7 @@
   <rarity>1</rarity>
   <mass>18</mass>
   <price>18000</price>
-  <description>The Plasma Turret essentially takes a Plasma Blaster and mounts it on a turret. Its slow fire rate leads to it being used less commonly than other turrets, but those traders who do use it often swear by its reliability.</description>
+  <description>The Plasma Turret essentially takes a Plasma Blaster and mounts it on a turret. Its slow fire rate leads to it beïng used less commonly than other turrets, but those traders who do use it often swear by its reliability.</description>
   <gfx_store>plasma_turret.webp</gfx_store>
   <cpu>-24</cpu>
  </general>

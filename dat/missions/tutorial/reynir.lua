@@ -69,7 +69,7 @@ confirm_text = _([["Ever since I was a kid I've wanted to go to space. However, 
 
 accept_text = _([["Thank you so much! I'll wait in your ship. I think it would be too dangerous for me to enter hyperspace, so it's important that you remain in the {system} system."]])
 
-localjump_text = _([[Reynir looks at {planet} in awe, taking in the view. "I'm actually in space," he mutters to himself. He clears his throat and speaks a little more loudly to you. "This is everything I dreamed it would be. Thank you for taking me out here. Seeing my home planet from afar… it's magnificent!
+localjump_text = _([[Reynir looks at {planet} in awe, taking in the view. "I'm actually in space," he mutters to himself. He clears his throat and speaks a little more loudly to you. "This is everything I dreamed it would be. Thank you for taking me out here. Seeïng my home planet from afar… it's magnificent!
 
 "I have just one more request before we return. As I said, I don't think I can enter hyperspace, but I very much would like to experience what it's like to make a jump." He studies your ship's controls. "I believe pressing {local_jump_key} will initiate your ship's escape jump procedure. It's like a jump, but it doesn't actually take you into hyperspace; instead it just takes you a great distance away in the current system. Could you do an escape jump or two for me?"]])
 

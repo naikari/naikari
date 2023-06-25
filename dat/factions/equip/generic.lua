@@ -1447,7 +1447,7 @@ end
 -- outfit (keyed by name) to the other outfits. If unspecified, each outfit
 -- will have a relative chance of 1. So for example, if the outfits are "Foo",
 -- "Bar", and "Baz", with no "probability" table, each outfit will have a 1/3
--- chance of being selected; however, with this "probability" table:
+-- chance of beïng selected; however, with this "probability" table:
 --
 --    probability = {["Foo"] = 6, ["Bar"] = 2}
 --

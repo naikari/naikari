@@ -150,7 +150,7 @@ function accept()
    end
 
    local osd_msg = {
-      _("Fly to any system which is not being used by a mission or event"),
+      _("Fly to any system which is not beïng used by a mission or event"),
       n_("Defeat the practice drone", "Defeat the practice drones", numdrones),
    }
    misn.osdCreate(_("Combat Practice"), osd_msg)
