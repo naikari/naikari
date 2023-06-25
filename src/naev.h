@@ -38,23 +38,23 @@
 #include "ncompat.h"
 
 
-#define APPNAME            "Naikari" /**< Application name. */
+#define APPNAME "Naikari" /**< Application name. */
 
-#define ABS(x)             (((x)<0)?-(x):(x)) /**< Returns absolute value. */
-#define FABS(x)            (((x)<0.)?-(x):(x)) /**< Returns float absolute value. */
+#define ABS(x) (((x)<0)?-(x):(x)) /**< Returns absolute value. */
+#define FABS(x) (((x)<0.)?-(x):(x)) /**< Returns float absolute value. */
 
-#define MAX(x,y)           (((x)>(y))?(x):(y)) /**< Returns maximum. */
-#define MIN(x,y)           (((x)>(y))?(y):(x)) /**< Returns minimum. */
-#define CLAMP(a, b, x)     ((x)<(a)?(a):((x)>(b)?(b):(x))) /**< Clamps x between a and b: a <= x <= b. */
+#define MAX(x,y) (((x)>(y))?(x):(y)) /**< Returns maximum. */
+#define MIN(x,y) (((x)>(y))?(y):(x)) /**< Returns minimum. */
+#define CLAMP(a, b, x) ((x)<(a)?(a):((x)>(b)?(b):(x))) /**< Clamps x between a and b: a <= x <= b. */
 
-#define SIGN(x)            (((x)>0)?1:-1) /**< Returns the sign of a value. */
-#define FSIGN(x)           (((x)>0.)?1.:-1.) /**< Returns the sign of a value. */
+#define SIGN(x) (((x)>0)?1:-1) /**< Returns the sign of a value. */
+#define FSIGN(x) (((x)>0.)?1.:-1.) /**< Returns the sign of a value. */
 
-#define pow2(x)            ((x)*(x)) /**< ^2 */
+#define pow2(x) ((x)*(x)) /**< ^2 */
 
 /* maximum filename path */
 #ifndef PATH_MAX
-#  define PATH_MAX         256 /**< If not already defined. */
+#define PATH_MAX 1024
 #endif /* PATH_MAX */
 
 /* Default maximum string length */
@@ -65,13 +65,13 @@
 
 /* For inferior OS. */
 #ifndef M_PI
-#  define M_PI          3.14159265358979323846
+#define M_PI 3.14159265358979323846
 #endif /* M_PI */
 #ifndef M_SQRT1_2
-#  define M_SQRT1_2     0.70710678118654752440
+#define M_SQRT1_2 0.70710678118654752440
 #endif
 #ifndef M_SQRT2
-#  define M_SQRT2       1.41421356237309504880
+#define M_SQRT2 1.41421356237309504880
 #endif
 
 
