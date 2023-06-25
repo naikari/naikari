@@ -384,7 +384,7 @@ typedef struct Pilot_ {
 /*
  * getting pilot stuff
  */
-Pilot* const* pilot_getAll (void);
+Pilot *const * pilot_getAll (void);
 Pilot* pilot_get(const pilotId_t id);
 pilotId_t pilot_getNextID(const pilotId_t id, int mode);
 pilotId_t pilot_getPrevID(const pilotId_t id, int mode);

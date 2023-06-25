@@ -91,7 +91,7 @@ static int pilot_trail_generated( Pilot* p, int generator );
 /**
  * @brief Gets the pilot stack.
  */
-Pilot* const* pilot_getAll(void)
+Pilot *const * pilot_getAll(void)
 {
    return pilot_stack;
 }

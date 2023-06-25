@@ -245,7 +245,7 @@ static int outfitL_getAll( lua_State *L )
    const Outfit *outfits = outfit_getAll();
    lua_newtable(L); /* t */
    for (i=0; i<array_size(outfits); i++) {
-      lua_pushoutfit( L, (Outfit*) &outfits[i] );
+      lua_pushoutfit(L, &outfits[i]);
       lua_rawseti( L, -2, i+1 );
    }
    return 1;
