@@ -144,7 +144,7 @@ cond_articles = {
    },
    {
       title = _("Mercenary Registrations Skyrocket"),
-      text = _([[Many pilots are realizing just how lucrative the life of a mercenary can be. "Missions that require a Mercenary License pay a lot of money," one analyst explained. "The cost of the Mercenary License may seem high, but it will easily pay for itself ten times over by granting access to so many lucrative missions. Not to mention, doing mercenary missions for militaries around the galaxy is a quick way to gain access to restricted areäs." A Mercenary License can be obtained simply by purchasing it at any outfitter, just like all other licenses.]]),
+      text = _([[Many pilots are realizing just how lucrative the life of a mercenary can be. "Missions that require a Mercenary License pay a lot of money," one analyst explained. "The cost of the Mercenary License may seem high, but it will easily pay for itself ten times over by granting access to so many lucrative missions. Not to mention, doïng mercenary missions for militaries around the galaxy is a quick way to gain access to restricted areäs." A Mercenary License can be obtained simply by purchasing it at any outfitter, just like all other licenses.]]),
       tag = "mhint_Patrol",
       cond = function()
          return (player.numOutfit("Mercenary License") <= 0

@@ -40,7 +40,7 @@ approach_text = _([[You approach the young officer, determined to find out what 
 
 -- Mission info stuff
 harjaname = _("Fyrra Civilian")
-harjadesc = _("You see a young Fyrra man with a determined expression on his face. You wonder what he could possibly be doing in a place like this.")
+harjadesc = _("You see a young Fyrra man with a determined expression on his face. You wonder what he could possibly be doïng in a place like this.")
 joannename = _("Serra Military Officer")
 joannedesc = _("This woman matches the description Harja gave you… and she's a military officer. You'd better talk to her and find out what's goïng on; there's no way assassinating a military officer will go well for you.")
 

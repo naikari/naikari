@@ -97,7 +97,7 @@ function create()
 
    misn.setNPC(_("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
-         _("You find your old acquaintance, Ian Structure, sitting in the bar and studying his datapad. Perhaps you should greet him and see how he's doing."))
+         _("You find your old acquaintance, Ian Structure, sitting in the bar and studying his datapad. Perhaps you should greet him and see how he's doïng."))
 end
 
 

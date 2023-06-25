@@ -34,7 +34,7 @@
    bioships share the same experience points; this is done because
    there's no really reliable way to divide them up and players can
    easily game the system anyway by swapping out ships at the right
-   moment for many missions (e.g. doing a bounty mission, then swapping
+   moment for many missions (e.g. doïng a bounty mission, then swapping
    ships before landing on the faction's planet to get paid).
 
 --]]

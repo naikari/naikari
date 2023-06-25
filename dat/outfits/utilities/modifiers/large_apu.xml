@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>200</mass>
   <price>1200000</price>
-  <description>While a somewhat exotic need, some pilots find that the CPU capacity afforded to their ship by the core systems is not enough to control all of the weapons and gadgets they would like to equip. An auxiliary processing unit (APU) is the perfect solution for these pilots. APUs are hefty and induce a drain on the ship's reactors, but for those few who need that extra boost to realize their ships' capabilities, they're perfect for doing so.</description>
+  <description>While a somewhat exotic need, some pilots find that the CPU capacity afforded to their ship by the core systems is not enough to control all of the weapons and gadgets they would like to equip. An auxiliary processing unit (APU) is the perfect solution for these pilots. APUs are hefty and induce a drain on the ship's reactors, but for those few who need that extra boost to realize their ships' capabilities, they're perfect for doïng so.</description>
   <gfx_store>apu_large.png</gfx_store>
  </general>
  <specific type="modification">

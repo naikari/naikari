@@ -185,7 +185,7 @@ messages = {
    {
       text = {
          _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
-         _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
+         _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doïng it, so don't hesitate to try the mission again later."]]),
          _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's usually expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
          _([["These computer symbols can be confusing sometimes! I've figured it out, though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
          _([["I just found out why launchers have their mass listed as a range rather than a single number. It's because of the ammo. The smaller number is what it weighs if you're out of ammo, and the bigger number is what it weighs when your ammo is full."]]),
@@ -530,7 +530,7 @@ function spawnDealer()
                      _([["Hehe, thanks! I'm transferring the {outfit} to your account. You'll see it in your outfits list."]]),
                      _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {outfit} into your account now."]]),
                      _([["A wise decision. The {outfit} is now yours. You'll find it along with the rest of your outfits."]]),
-                     _([["Good, good! I've transferred the {outfit} to your account. Pleasure doing business with you!"]]),
+                     _([["Good, good! I've transferred the {outfit} to your account. Pleasure doïng business with you!"]]),
                   }
                   tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
                         {outfit=data.outfit:name()}))
@@ -568,7 +568,7 @@ function spawnDealer()
                      _([["Hehe, thanks! I'm transferring the {ship} to your account."]]),
                      _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {ship} into your account now."]]),
                      _([["A wise decision. The {ship} is now yours."]]),
-                     _([["Good, good! I've transferred the {ship} to your account. Pleasure doing business with you!"]]),
+                     _([["Good, good! I've transferred the {ship} to your account. Pleasure doïng business with you!"]]),
                   }
                   tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
                         {ship=data.ship:name()}))

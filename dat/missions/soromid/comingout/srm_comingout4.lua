@@ -67,7 +67,7 @@ home_text[2] = _([["Ah, right, I'm so sorry about that," Chelsea's mom says afte
 "It's just singular 'they', dad," Chelsea responds with a tinge of annoyance that they're clearly trying to hide. "You use it all the time without realizing it. It dates back to centuries before space travel."]])
 home_text[3] = _([[Chelsea's father shrugs. "I don't get it, but whatever makes you happy, I guess. So, tell me, son– uh, er, I mean, kid. What brings you here?"
 
-"Oh, um, I just wanted to catch up with you, is all. I'm doing real well as a pilot in Soromid space."
+"Oh, um, I just wanted to catch up with you, is all. I'm doïng real well as a pilot in Soromid space."
 
 Chelsea's father frowns. "You should be careful there. Lots of scammers, you know?"
 

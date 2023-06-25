@@ -61,7 +61,7 @@ no_text = _([[You see a defeated expression on Benito's face. "OK. Let me know i
 
 board_text = _([[You force your way onto the pirate ship and subdue the pirate on board. You seem to have had a good stroke of luck: the pirate is clearly unprepared and has a very poorly secured ship. Clearly, this pirate is new to the job.
 
-Not wanting to give away your suspicions, you order the pirate to tell you what the pirates are doing in the nebula. "What do you think we're doing? Exploring the nebula, of course!" You tell them to elaborate. "Surely you've heard the ghost stories, haven't you? They say ghosts lurk in the nebula, hiding, waiting to strike. Of course we don't believe in the supernatural, but that means there must be alien ships in there! Aliens with technology so advanced they're able to freely traverse the Nebula! If we could capture one of those ships, we'd be both rich and unstoppable!" You ask where they got into the Nebula from. "What's it to you?!" the pirate shouts back.]])
+Not wanting to give away your suspicions, you order the pirate to tell you what the pirates are doïng in the nebula. "What do you think we're doïng? Exploring the nebula, of course!" You tell them to elaborate. "Surely you've heard the ghost stories, haven't you? They say ghosts lurk in the nebula, hiding, waiting to strike. Of course we don't believe in the supernatural, but that means there must be alien ships in there! Aliens with technology so advanced they're able to freely traverse the Nebula! If we could capture one of those ships, we'd be both rich and unstoppable!" You ask where they got into the Nebula from. "What's it to you?!" the pirate shouts back.]])
 
 unboard_text = _([[Undeterred, you pull out a laser gun and put it against the pirate's head, ordering them again to tell you where they got into the Nebula from. This seems to convince the previously boisterous pirate. "W-we have a hidden jump to {system}! We come in from there! It's on my computer, you can check for yourself!"
 
@@ -90,7 +90,7 @@ pay_text = _([[Benito hands you payment on a credit chip before continuing. "I m
 "Well, I'll go discuss what we should do next regarding the pirates. I think I already have some ideäs. Thank you again, and blow up a Dvaered for me, eh?" You laugh at her quip and wave goodbye as you consider what to next.]])
 
 misn_title = _("FLF's Pirate Problem")
-misn_desc = _("Benito has tasked you with figuring out what the pirates are doing in the Nebula and doing whatever you can to ensure they don't disrupt FLF operations.")
+misn_desc = _("Benito has tasked you with figuring out what the pirates are doïng in the Nebula and doïng whatever you can to ensure they don't disrupt FLF operations.")
 
 npc_name = _("Benito")
 npc_desc = _("You see exhaustion on Benito's face. Perhaps you should see what's up.")

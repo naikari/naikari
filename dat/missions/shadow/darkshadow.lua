@@ -89,7 +89,7 @@ patrolcomm = _("All pilots, we've detected McArthy on that ship! Break and inter
 
 NPCdesc = _("The barman seems to be eyeing you in particular.")
 
-Jordesc = _("There he is, Jorek McArthy, the man you've been chasing across half the galaxy. What he's doing on this piece of junk is unclear.")
+Jordesc = _("There he is, Jorek McArthy, the man you've been chasing across half the galaxy. What he's doïng on this piece of junk is unclear.")
 
 -- Mission info stuff
 osd_title = _("Dark Shadow")

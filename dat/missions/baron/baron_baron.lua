@@ -65,7 +65,7 @@ You cough to get the Baron's attention. He looks up, clearly displeased at the d
 
 refusetext = _([["Oh. Oh well, too bad. I'll just try to find someone who will take the job, then. Sorry for taking up your time. See you around!"]])
 
-angry_confirmtext = _([[This option will lock you out of accepting this mission permanently. This cannot be undone. Are you sure you wish to permanently lock yourself out of doing this mission? (If you select "No", you will instead politely decline the offer.)]])
+angry_confirmtext = _([[This option will lock you out of accepting this mission permanently. This cannot be undone. Are you sure you wish to permanently lock yourself out of doïng this mission? (If you select "No", you will instead politely decline the offer.)]])
 
 angrytext = _([[The pilot frowns. "I see I misjudged you. I thought for sure you would be more open-minded. Get out of my sight and never show your face to me again! You are clearly useless to my employer."]])
 

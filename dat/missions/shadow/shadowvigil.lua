@@ -51,7 +51,7 @@ dock3_text = _([["You may not know this, but there are tensions between the Impe
 
 refusetext = _([[Captain Rebina sighs. "I see. I don't mind admitting that I hoped you would accept, but it's your decision. I won't force you to do anything you feel uncomfortable with. My agents will be in touch in case you change your mind." Mere minutes later you find yourself back in your cockpit, and the Seiryuu is leaving. It doesn't really come as a surprise that you can't find any reference to your rendezvous with the Seiryuu in your flight logs.
 
-Suddenly, you feel a strange headache. What were you doing just now?… You take a look at your flight logs, which say you were running away from pirates and narrowly escaped. You figure you must have hit your head during the encounter and carry on with your business, whatever that may be.]])
+Suddenly, you feel a strange headache. What were you doïng just now?… You take a look at your flight logs, which say you were running away from pirates and narrowly escaped. You figure you must have hit your head during the encounter and carry on with your business, whatever that may be.]])
 
 accepttext = _([["Excellent, {player}." Rebina smiles at you. "I've told my crew to provide your ship's computer with the necessary navigation data. Also, note that I've taken the liberty of installing a specialized IFF transponder onto your ship. Don't pay it any heed, it will only serve to identify you as one of the escorts. For various reasons, it is best that you refrain from communication with the other escorts as much as possible.
 
