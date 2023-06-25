@@ -45,7 +45,10 @@
 #include "ndata.h"
 #include "news.h"
 #include "nfile.h"
+#include "nlua.h"
 #include "nlua_misn.h"
+#include "nlua_outfit.h"
+#include "nlua_ship.h"
 #include "nlua_var.h"
 #include "nstring.h"
 #include "ntime.h"
@@ -70,7 +73,9 @@
  */
 Player_t player; /**< Local player. */
 static const Ship* player_ship      = NULL; /**< Temporary ship to hold when naming it */
-static credits_t player_creds = 0; /**< Temporary hack for when creating. */
+static credits_t player_creds = 0; /**< Temporary, for when creating. */
+static credits_t player_payback = 0; /**< Temporary, for when creating. */
+static int player_ran_updater = 0; /**< Temporary, for when creating. */
 static char *player_message_noland = NULL; /**< No landing message (when PLAYER_NOLAND is set). */
 
 /*
@@ -166,7 +171,11 @@ static void player_parseShipSlot( xmlNodePtr node, Pilot *ship, PilotOutfitSlot 
 static int player_parseShip( xmlNodePtr parent, int is_player );
 static int player_parseEscorts( xmlNodePtr parent );
 static int player_parseMetadata( xmlNodePtr parent );
-static void player_addOutfitToPilot( Pilot* pilot, Outfit* outfit, PilotOutfitSlot *s );
+static void player_addOutfitToPilot(Pilot* pilot, const Outfit* outfit,
+      PilotOutfitSlot *s);
+static int player_runUpdaterScript(const char *type, const char *name, int q);
+static const Outfit* player_tryGetOutfit(const char *name, int q);
+static const Ship* player_tryGetShip(const char *name);
 /* Misc. */
 static int player_filterSuitablePlanet( Planet *p );
 static void player_planetOutOfRangeMsg (void);
@@ -749,7 +758,8 @@ void player_cleanup (void)
    pilots_cleanAll();
 
    /* Reset some player stuff. */
-   player_creds   = 0;
+   player_creds = 0;
+   player_payback = 0;
    free( player.gui );
    player.gui = NULL;
 
@@ -2942,7 +2952,7 @@ int player_eventAlreadyDone( int id )
  *    @param license License to check to see if the player has.
  *    @return 1 if has license (or none needed), 0 if doesn't.
  */
-int player_hasLicense( char *license )
+int player_hasLicense(const char *license)
 {
    int i;
    if (license == NULL)
@@ -2961,7 +2971,7 @@ int player_hasLicense( char *license )
  *
  *    @brief license License to give the player.
  */
-void player_addLicense( char *license )
+void player_addLicense(const char *license)
 {
    if (player_hasLicense(license))
       return;
@@ -3436,6 +3446,113 @@ Planet* player_load( xmlNodePtr parent )
 
 
 /**
+ * @brief Runs the save updater script, leaving any result on the stack of naevL.
+ *
+ *    @param type Type of item to translate (corresponds to a function
+ *       in save_updater.lua).
+ *    @param name Name of the inventory item.
+ *    @param q Quantity in possession.
+ *    @return Stack depth: 1 if player got a translated item back, 0 if
+ *       they got nothing or just money.
+ */
+static int player_runUpdaterScript(const char* type, const char* name, int q)
+{
+   static nlua_env player_updater_env = LUA_NOREF;
+
+   player_ran_updater = 1;
+
+   /* Load env if necessary. */
+   if (player_updater_env == LUA_NOREF) {
+      player_updater_env = nlua_newEnv(0);
+      size_t bufsize;
+      char *buf = ndata_read(SAVE_UPDATER_PATH, &bufsize);
+      if (nlua_dobufenv(player_updater_env, buf, bufsize, SAVE_UPDATER_PATH) != 0) {
+         WARN( _("Error loading file: %s\n"
+            "%s\n"
+            "Most likely Lua file has improper syntax, please check"),
+               SAVE_UPDATER_PATH, lua_tostring(naevL, -1));
+         free(buf);
+         return 0;
+      }
+      free(buf);
+   }
+
+   /* Try to find out equivalent. */
+   nlua_getenv(player_updater_env, type);
+   lua_pushstring(naevL, name);
+   if (nlua_pcall(player_updater_env, 1, 1)) {
+      /* error has occurred */
+      WARN(_("Updater (%s): '%s'"), type, lua_tostring(naevL, -1));
+      lua_pop(naevL, 1);
+      return 0;
+   }
+   if (lua_type(naevL, -1) == LUA_TNUMBER) {
+      player_payback += q * round(lua_tonumber(naevL, -1));
+      lua_pop(naevL, 1);
+      return 0;
+   }
+
+   return 1;
+}
+
+
+/**
+ * @brief Tries to get an outfit for the player or looks for equivalents.
+ */
+static const Outfit* player_tryGetOutfit(const char *name, int q)
+{
+   const Outfit *o = outfit_getW(name);
+
+   /* Outfit was found normally. */
+   if (o != NULL)
+      return o;
+   player_ran_updater = 1;
+
+   /* Try to find out equivalent. */
+   if (player_runUpdaterScript("outfit", name, q) == 0)
+      return NULL;
+   else if (lua_type(naevL, -1) == LUA_TSTRING)
+      o = outfit_get(lua_tostring(naevL, -1));
+   else if (lua_isoutfit(naevL, -1))
+      o = lua_tooutfit(naevL, -1);
+   else
+      WARN(_("Outfit '%s' in player save not found!"), name);
+
+   lua_pop(naevL, 1);
+
+   return o;
+}
+
+
+/**
+ * @brief Tries to get an ship for the player or looks for equivalents.
+ */
+static const Ship* player_tryGetShip(const char *name)
+{
+   const Ship *s = ship_getW(name);
+
+   /* Ship was found normally. */
+   if (s != NULL)
+      return s;
+   player_ran_updater = 1;
+
+   /* Try to find out equivalent. */
+   if (player_runUpdaterScript("ship", name, 1) == 0)
+      return NULL;
+   else if (lua_type(naevL, -1) == LUA_TSTRING)
+      s = ship_get( lua_tostring(naevL, -1) );
+   else if (lua_isship(naevL, -1))
+      s = lua_toship(naevL, -1);
+   else
+      WARN(_("Ship '%s' in player save not found!"), name);
+
+   lua_pop(naevL, 1);
+
+   return s;
+}
+
+
+/**
  * @brief Parses the player node.
  *
  *    @param parent The player node.
@@ -3448,7 +3565,8 @@ static Planet* player_parse( xmlNodePtr parent )
    Planet *pnt;
    xmlNodePtr node, cur;
    int q;
-   Outfit *o;
+   const char *oname;
+   const Outfit *o;
    int i, map_overlay_enabled;
    StarSystem *sys;
    double a, r;
@@ -3459,6 +3577,7 @@ static Planet* player_parse( xmlNodePtr parent )
    double rem;
 
    xmlr_attr_strd(parent, "name", player.name);
+   player_ran_updater = 0;
 
    /* Make sure player.p is NULL. */
    player.p = NULL;
@@ -3550,19 +3669,23 @@ static Planet* player_parse( xmlNodePtr parent )
          cur = node->xmlChildrenNode;
          do {
             if (xml_isNode(cur,"outfit")) {
-               o = outfit_get( xml_get(cur) );
-               if (o == NULL) {
-                  WARN(_("Outfit '%s' was saved but does not exist!"), xml_get(cur));
+               oname = xml_get(cur);
+               if (oname == NULL) {
+                  WARN(_("Outfit was saved without name, skipping."));
                   continue;
                }
 
-               xmlr_attr_float( cur, "quantity", q );
+               xmlr_attr_float(cur, "quantity", q);
                if (q == 0) {
-                  WARN(_("Outfit '%s' was saved without quantity!"), o->name);
+                  WARN(_("Outfit '%s' was saved without quantity!"), oname);
                   continue;
                }
 
-               player_addOutfit( o, q );
+               o = player_tryGetOutfit(oname, q);
+               if (o == NULL)
+                  continue;
+
+               player_addOutfit(o, q);
             }
          } while (xml_nextNode(cur));
       }
@@ -3606,10 +3729,15 @@ static Planet* player_parse( xmlNodePtr parent )
    player.speed = 1.;
 
    /* set global thingies */
-   player.p->credits = player_creds;
+   player.p->credits = player_creds + player_payback;
    if (!time_set) {
       WARN(_("Save has no time information, setting to start information."));
       ntime_set( start_date() );
+   }
+
+   /* Updater message. */
+   if (player_ran_updater) {
+      DEBUG(_("Player save was updated."));
    }
 
    /* set player in system */
@@ -3758,18 +3886,18 @@ static int player_parseDoneEvents( xmlNodePtr parent )
 static int player_parseLicenses( xmlNodePtr parent )
 {
    xmlNodePtr node;
-   char *     name;
+   char *name;
 
    node = parent->xmlChildrenNode;
 
    do {
-      if ( xml_isNode( node, "license" ) ) {
-         name = xml_get( node );
-         if ( name == NULL ) {
-            WARN( _( "License node is missing name attribute." ) );
+      if (xml_isNode(node, "license")) {
+         name = xml_get(node);
+         if (name == NULL) {
+            WARN(_("License node is missing name attribute."));
             continue;
          }
-         player_addLicense( name );
+         player_addLicense(name);
       }
    } while (xml_nextNode(node));
 
@@ -3803,6 +3931,10 @@ static int player_parseEscorts( xmlNodePtr parent )
          free(buf);
 
          ship = xml_get(node);
+         if (ship == NULL) {
+            WARN(_("Escort is missing ship type, skipping"));
+            continue;
+         }
 
          /* Add escort to the list. */
          escort_addList( player.p, ship, type, 0, 1 );
@@ -3852,7 +3984,8 @@ static int player_parseMetadata( xmlNodePtr parent )
 /**
  * @brief Adds outfit to pilot if it can.
  */
-static void player_addOutfitToPilot( Pilot* pilot, Outfit* outfit, PilotOutfitSlot *s )
+static void player_addOutfitToPilot(Pilot* pilot, const Outfit* outfit,
+      PilotOutfitSlot *s)
 {
    int ret;
 
@@ -3881,7 +4014,7 @@ static void player_addOutfitToPilot( Pilot* pilot, Outfit* outfit, PilotOutfitSl
  */
 static void player_parseShipSlot( xmlNodePtr node, Pilot *ship, PilotOutfitSlot *slot )
 {
-   Outfit *o, *ammo;
+   const Outfit *o, *ammo;
    char *buf;
    int q;
 
@@ -3892,7 +4025,7 @@ static void player_parseShipSlot( xmlNodePtr node, Pilot *ship, PilotOutfitSlot 
    }
 
    /* Add the outfit. */
-   o = outfit_get( name );
+   o = player_tryGetOutfit(name, 1);
    if (o==NULL)
       return;
    player_addOutfitToPilot( ship, o, slot );
@@ -3931,13 +4064,13 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
    char *name, *model;
    int i, n, id;
    int fuel;
-   Ship *ship_parsed;
+   const Ship *ship_parsed;
    Pilot* ship;
    xmlNodePtr node, cur, ccur;
    int quantity;
    const Outfit *o;
    int ret;
-   /*const char *str;*/
+   const char *com_name;
    Commodity *com;
    PilotFlags flags;
    pilotId_t pid;
@@ -3953,7 +4086,7 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
    pilot_setFlagRaw( flags, PILOT_NO_OUTFITS );
 
    /* Get the ship. */
-   ship_parsed = ship_get(model);
+   ship_parsed = player_tryGetShip(model);
    if (ship_parsed == NULL) {
       WARN(_("Player ship '%s' not found!"), model);
 
@@ -4003,9 +4136,10 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
                xmlr_attr_int_def( cur, "slot", n, -1 );
                if ((n<0) || (n >= array_size(ship->outfit_structure))) {
                   name = xml_get(cur);
-                  o = outfit_get(name);
-                  player_addOutfit( o, 1 );
-                  WARN(_("Outfit slot out of range, not adding to ship."));
+                  o = player_tryGetOutfit(name, 1);
+                  if (o != NULL)
+                     player_addOutfit(o, 1);
+                  DEBUG(_("Outfit slot out of range, not adding to ship."));
                   continue;
                }
                player_parseShipSlot( cur, ship, &ship->outfit_structure[n] );
@@ -4018,7 +4152,11 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
             if (xml_isNode(cur,"outfit")) {
                xmlr_attr_int_def( cur, "slot", n, -1 );
                if ((n<0) || (n >= array_size(ship->outfit_utility))) {
-                  WARN(_("Outfit slot out of range, not adding."));
+                  name = xml_get(cur);
+                  o = player_tryGetOutfit(name, 1);
+                  if (o != NULL)
+                     player_addOutfit(o, 1);
+                  WARN(_("Outfit slot out of range, not adding to ship."));
                   continue;
                }
                player_parseShipSlot( cur, ship, &ship->outfit_utility[n] );
@@ -4031,7 +4169,11 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
             if (xml_isNode(cur,"outfit")) {
                xmlr_attr_int_def( cur, "slot", n, -1 );
                if ((n<0) || (n >= array_size(ship->outfit_weapon))) {
-                  WARN(_("Outfit slot out of range, not adding."));
+                  name = xml_get(cur);
+                  o = player_tryGetOutfit(name, 1);
+                  if (o != NULL)
+                     player_addOutfit(o, 1);
+                  WARN(_("Outfit slot out of range, not adding to ship."));
                   continue;
                }
                player_parseShipSlot( cur, ship, &ship->outfit_weapon[n] );
@@ -4046,9 +4188,14 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
                xmlr_attr_int( cur, "id", i );
 
                /* Get the commodity. */
-               com = commodity_get(xml_get(cur));
+               com_name = xml_get(cur);
+               if (com_name == NULL) {
+                  WARN(_("Commodity missing name, removing."));
+                  continue;
+               }
+               com = commodity_get(com_name);
                if (com == NULL) {
-                  WARN(_("Unknown commodity '%s' detected, removing."), xml_get(cur));
+                  WARN(_("Unknown commodity '%s' detected, removing."), com_name);
                   continue;
                }
 

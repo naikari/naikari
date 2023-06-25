@@ -244,8 +244,8 @@ int player_eventAlreadyDone( int id );
 /*
  * licenses
  */
-NONNULL( 1 ) void player_addLicense( char *license );
-int player_hasLicense( char *license );
+NONNULL(1) void player_addLicense(const char *license);
+int player_hasLicense(const char *license);
 char **player_getLicenses (void);
 
 
