@@ -50,7 +50,7 @@ require "missions/soromid/common"
 
 ask_text = _([[Chelsea gleefully waves you over. "{player}! It's nice to see you again!" she says. "And perfect timing! I was just looking for help from another pilot, but everyone I've talked to isn't up to it. With all the adventures you've been on, I'm sure it'll be a cinch for you!
 
-"See, I got a… well, I can't say exactly, but a special contract that they say is going to get me in some hot water with some sort of militant anti-Soromid gang. Not just pirates, mind; they said I can expect to be bombarded by them like there's no tomorrow, which is why I can't go alone. {planet} in the {system} system is my destination, and as soon as you finish escorting me there, you'll be paid {credits}. So, what do you think? Wanna see how good of a team we make?"]])
+"See, I got a… well, I can't say exactly, but a special contract that they say is goïng to get me in some hot water with some sort of militant anti-Soromid gang. Not just pirates, mind; they said I can expect to be bombarded by them like there's no tomorrow, which is why I can't go alone. {planet} in the {system} system is my destination, and as soon as you finish escorting me there, you'll be paid {credits}. So, what do you think? Wanna see how good of a team we make?"]])
 
 start_text = _([["Perfect! I must admit that though I'm a bit scared, I'm also kind of excited to see what my ship can do when I push it to the limit! Remember, follow my lead and make sure I jump before you do. I'll assist with combat as much as I can, but my ship is built for cargo moreso than combat, so just be prepared for that.
 

@@ -388,7 +388,7 @@ function __landgo_shoot ()
 end
 
 function __move_shoot ()
-   -- Shoot while going somewhere
+   -- Shoot while goïng somewhere
    -- The difference with run_turret is that we pick a new enemy in this one
    if ai.hasturrets() then
       enemy = ai.getenemy()

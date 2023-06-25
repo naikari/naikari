@@ -23,7 +23,7 @@ clue_text = {
    _([[The pilot tells you that {pilot} is supposed to have business in {system} soon.]]),
    _([["I've heard that {pilot} likes to hang around in {system}."]]),
    _([["You can probably catch {pilot} in {system}."]]),
-   _([["I would suggest going to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
+   _([["I would suggest goïng to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
    _([["If I was looking for {pilot}, I would look in the {system} system. That's probably a good bet."]]),
    _([["Oh, I know that terrorist scum. Bad memories. If I were you, I'd check the {system} system. Good luck!"]]),
 }

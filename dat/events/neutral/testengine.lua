@@ -34,7 +34,7 @@ require "jumpdist"
 
 teleport_text = {
    _([[You suddenly feel a huge jolt of acceleration, as if your ship was entering hyperspace, causing you to pass out. When you regain consciousness, you find that you have somehow ended up in the {system} system with an empty battery.]]),
-   _([[You are slammed into a wall and knocked unconscious from a sudden unexpected acceleration. When you regain consciousness in a daze, you slowly remember what happened and check your console to see what's going on. You find that you've somehow ended up in the {system} system and that your battery is now empty.]]),
+   _([[You are slammed into a wall and knocked unconscious from a sudden unexpected acceleration. When you regain consciousness in a daze, you slowly remember what happened and check your console to see what's goïng on. You find that you've somehow ended up in the {system} system and that your battery is now empty.]]),
 }
 
 slow_start_text = {

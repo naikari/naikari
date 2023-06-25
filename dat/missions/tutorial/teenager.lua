@@ -55,7 +55,7 @@ board_text = _([[You board the Gawain and find an enraged teenage boy and a disi
 
 pay_text = _([[Terra awaits you at the spaceport. She gives her son and the young lady a stern look and curtly commands them to wait for her in the spaceport hall. The couple droops off, and Terra turns to face you with a smile.
 
-"You've done fantastic work once again, {player}," she says. "As promised, I have deposited your payment into your account. I'm going to give my son a reprimand he'll not soon forget, so hopefully he won't repeat this little stunt anytime soon. Well then, I must be going. Thank you again, and I hope to see you again in the future!"]])
+"You've done fantastic work once again, {player}," she says. "As promised, I have deposited your payment into your account. I'm goïng to give my son a reprimand he'll not soon forget, so hopefully he won't repeat this little stunt anytime soon. Well then, I must be goïng. Thank you again, and I hope to see you again in the future!"]])
 
 misndesc = _("Terra has asked you to fetch her son and her son's girlfriend, who have taken her client's yacht, the Credence, and are joyriding it in the {system} system. To fetch them, you must use non-lethal weaponry (such as ion cannons, Medusa missiles, or a weapons ionizer) to disable the Credence, then board the Credence by either #bdouble-clicking#0 it or by targeting it and pressing {board_key}.")
 
