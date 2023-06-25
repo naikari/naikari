@@ -299,7 +299,7 @@ function pirate_name ()
       p_("pirate_name_actor", "Jinx"),
       p_("pirate_name_actor", "Kamikazé"),
       p_("pirate_name_actor", "Kappa"),
-      p_("pirate_name_actor", "Karaoké"),
+      p_("pirate_name_actor", "Karaöké"),
       p_("pirate_name_actor", "Katana"),
       p_("pirate_name_actor", "Keel"),
       p_("pirate_name_actor", "Ketchup"),
