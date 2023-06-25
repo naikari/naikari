@@ -178,13 +178,8 @@ code readable and consistent above all else.
 ### Writing Style
 
 If your contribution includes writing user-facing dialog, you should be
-aware of the writing style we use:
+aware of the writing style guidelines we use:
 
-* All user-facing text should be in U.S. English, including U.S. English
-  spelling and U.S. English grammar and vocabulary.
-* The word "OK" should always be spelled as "OK" (just the two letters,
-  fully capitalized, with no additional punctuation). This is to ensure
-  consistency.
 * Paragraphs must be separated by double-newline breaks where
   applicable.
 * Story text in dialog boxes are meant to resemble the writing of a
