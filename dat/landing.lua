@@ -196,7 +196,7 @@ end
 
 
 -- Helper function for calculating bribe availability and cost.
--- Expects the faction, the minimum standing to land, the minimum standing to bribe, and a goïng rate for bribes.
+-- Expects the faction, the minimum standing to land, the minimum standing to bribe, and a going rate for bribes.
 -- Returns whether the planet can be bribed, and the cost for doing so.
 function getcost(fct, land_floor, bribe_floor, rate)
    local standing = fct:playerStanding()

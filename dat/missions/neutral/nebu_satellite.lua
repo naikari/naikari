@@ -41,9 +41,9 @@ ask_text = _([[You approach the scientists. They seem a bit nervous and one mutt
 "Hello Captain, we're looking for a ship to take us to the margins of the Inner Nebula. Would you be willing to help us?"]])
 explain1_text = _([["We had a trip scheduled with a space trader ship, but they backed out at the last minute. So we were stuck here until you came. We've got a research probe that we have to release into the {system} system to monitor the Nebula's growth rate. The probe launch procedure is pretty straightforward and shouldn't have any complications."
 
-He takes a deep breath, "We hope to be able to find out more secrets of the Sol Nebula so mankind can once again regain its lost patrimony. So far the radiation and volatility of the deeper areäs haven't been very kind to our instruments. That's why we designed this probe we're goïng to launch."]])
+He takes a deep breath, "We hope to be able to find out more secrets of the Sol Nebula so mankind can once again regain its lost patrimony. So far the radiation and volatility of the deeper areäs haven't been very kind to our instruments. That's why we designed this probe we're going to launch."]])
 explain2_text = _([["The plan is for you to take us to {launchsystem} so we can launch the probe, and then return us to our home at {homeplanet} in the {homesystem} system. The probe will automatically send us the data we need if all goes well. You'll be paid {credits} when we arrive."]])
-pay_text = _([[The scientists thank you for your help and pay you before goïng back to their home to continue their nebula research.]])
+pay_text = _([[The scientists thank you for your help and pay you before going back to their home to continue their nebula research.]])
 
 log_text = _([[You helped a group of scientists launch a research probe into the Nebula.]])
 

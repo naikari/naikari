@@ -30,7 +30,7 @@
    Stages :
    0) Way to Toaxis
    1) Battle
-   2) Goïng to Darkshed
+   2) Going to Darkshed
 
 --]]
 
@@ -38,7 +38,7 @@ local fmt = require "fmt"
 require "missions/shark/common"
 
 
-ask_text = _([["I have another job for you. The Baron was unfortunately not as impressed as we hoped. So we need a better demonstration, and we think we know what to do: we're goïng to demonstrate that the Lancelot, our higher-end Fighter design, is more than capable of defeating Destroyer class ships.
+ask_text = _([["I have another job for you. The Baron was unfortunately not as impressed as we hoped. So we need a better demonstration, and we think we know what to do: we're going to demonstrate that the Lancelot, our higher-end Fighter design, is more than capable of defeating Destroyer class ships.
 
 "Now, one small problem we face is that pirates almost never use Destroyer class ships; they tend to stick to Fighters, Corvettes, and Cruisers. More importantly, actually sending a fighter after a Destroyer is exceedingly dangerous, even if we could find a pirate piloting one. So we have another plan: we want someone to pilot a destroyer class ship and just let another pilot disable them with ion cannons.
 

@@ -41,7 +41,7 @@ local fleet = require "fleet"
 require "missions/flf/flf_common"
 
 
-ask_text = _([[Benito smiles as you approach her. "Hello again, {player}!" she says. "I have another mission for you, should you choose to accept it. See, we've noticed that one of those Dvaered warlords is about to attack another Dvaered warlord in the {system} system, so we're goïng to take advantage of the situation and obliterate them in the chaös! These two warlords are particularly vocal about wanting to invade the Frontier, so eliminating both of them should strike a blow to invasionist sentiment, at least temporarily. Would you be interested in joining the operation?"]])
+ask_text = _([[Benito smiles as you approach her. "Hello again, {player}!" she says. "I have another mission for you, should you choose to accept it. See, we've noticed that one of those Dvaered warlords is about to attack another Dvaered warlord in the {system} system, so we're going to take advantage of the situation and obliterate them in the chaös! These two warlords are particularly vocal about wanting to invade the Frontier, so eliminating both of them should strike a blow to invasionist sentiment, at least temporarily. Would you be interested in joining the operation?"]])
 
 ask_again_text = _([["Oh, {player}, it's you again! Well, have you changed your mind? Would you like to help obliterate those Dvaered warlord fleets in the {system} system?"]])
 

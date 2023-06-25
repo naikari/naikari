@@ -32,7 +32,7 @@ board_text = _([[The airlock opens, and you are greeted by a nervous-looking man
 With a few to-the-point questions you learn that the man's name is Harrus and his wife's name is Luna. They live, or at least used to live, aboard their trading vessel. "It was a good life, you know," Harrus tells you. "You get to see the galaxy, meet people and see planets, and all that while working from home because, haha, you take your home with you!"]])
 board_text2 = _([["Some great life," Luna interjects. "I told you we needed more weapons, but no, you thought we were safe because 'there's so many patrol ships nearby'! You're lucky you didn't get us killed with your damn arrogance!"
 
-Harrus is about to launch into a retort when you defuse the situation by reminding both of them that they're safe now and offering to drop them off at a nearby planet so they can start over. At this, Harrus brightens up. "Everything's goïng to be fine now," he says cheerfully.]])
+Harrus is about to launch into a retort when you defuse the situation by reminding both of them that they're safe now and offering to drop them off at a nearby planet so they can start over. At this, Harrus brightens up. "Everything's going to be fine now," he says cheerfully.]])
 
 directions = {}
 directions[1] = _([["Thank you for your generous offer, captain. I know just the place," Harrus tells you. "Take us to {planet} in the {system} system. I'm sure a man of my caliber can find everything he needs there. Please notify me when we arrive." With a plan settled, the family makes themselves comfortable in your quarters and you cross your fingers hoping another argument doesn't break out.]])

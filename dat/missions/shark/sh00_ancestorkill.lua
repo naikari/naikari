@@ -29,7 +29,7 @@
 
    Stages :
    0) Way to Ulios in Ingot
-   1) Taking off from Ulios and goïng to Toaxis
+   1) Taking off from Ulios and going to Toaxis
    2) Fight in Toaxis
    3) Pirate ran away
    4) Pirate was killed

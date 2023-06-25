@@ -60,7 +60,7 @@ ask_text = _([[You approach and salute the Imperial Commander. He smiles and off
 
 "That's where you come in, {player}. As a native of {system}, I'm sure civilians will be more willing to talk to you than officers in uniform. Your assignment, then, will be to use your connections to question civilians. You will secretly wear a recording device so we can capture the full extent of your conversations and pick up on anything you may have missed. Well, {player}? Are you ready to perform this important duty in service of the Empire?"]])
 
-ask_again_text = _([["Hello again, {player}. Are you ready to assist the Empire in finding out what's goïng on with the pirates in {system}?"]])
+ask_again_text = _([["Hello again, {player}. Are you ready to assist the Empire in finding out what's going on with the pirates in {system}?"]])
 
 accept_text = _([[Commander Soldner smiles. "We appreciate your service, {player}. I assure you that this will take you on the path to greatness. You will of course also be paid for your efforts. Your reward will be {credits}." He hands you a tiny, plain-looking pin . "This is a listening device. You will wear it as you question the civilians. Do not draw attention to it and I assure you that no one will think anything of it.
 
@@ -76,7 +76,7 @@ finish_text = _([[You locate Commander Soldner and hand him the listening device
 
 "I will now begin to plan our next course of action. Meet me at the bar soon. I believe I will have another mission for you, if you are willing to be of service to the Empire again."]])
 
-misn_desc = _("You have been tasked by Commander Soldner with goïng on an undercover mission in {system} to try to find information on where the pirates there came from.")
+misn_desc = _("You have been tasked by Commander Soldner with going on an undercover mission in {system} to try to find information on where the pirates there came from.")
 
 log_text = _([[You assisted the Empire in an undercover operation to try to find out where the pirates in {destsys} came from. Commander Soldner, who gave you the mission, said you should meet him again soon on {startplanet} ({startsys} system) for another mission.]])
 

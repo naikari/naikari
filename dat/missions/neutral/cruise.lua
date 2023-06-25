@@ -292,7 +292,7 @@ function land()
       text = {
          _("Passengers disembark and spend some time enjoying the sights on {planet}. It seems they're having a good time."),
          _("You inform passengers that they can now disembark and explore {planet} if they like. Many passengers do so, excited to see an unexpected new location."),
-         _("Passengers step out of your ship and look in awe at the unfamiliar spaceport of {planet} before goïng off to explore some more."),
+         _("Passengers step out of your ship and look in awe at the unfamiliar spaceport of {planet} before going off to explore some more."),
       }
    end
 

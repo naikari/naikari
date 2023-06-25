@@ -38,7 +38,7 @@ You help Gregar to your cockpit and install him in a vacant seat. He is obviousl
 
 Gregar nods off, leaving you to decide what to do next. Gregar wants you to find his friends, but harboring a known terrorist, let alone helping him, might not be looked kindly upon by the authorities.…]])
 
-wake_text = _([["Wha– hey! What's goïng on?"
+wake_text = _([["Wha– hey! What's going on?"
 
 You were too busy dodging incoming fire, rebalancing your shields and generally trying to kill your attackers before they kill you to notice that Gregar, your passenger, has roused from his slumber. Clearly the noise and the rocking have jolted him awake. You snap at him not to distract you from this fight, but he desperately interrupts.
 
@@ -65,7 +65,7 @@ contacttext = _([[Your escorts have disappeared from your sensor grid. Unfortuna
 You notice that Gregar has disappeared from your cockpit. You search around your ship, but he's nowhere to be found. Seeing no other option, you give up on your search. Perhaps he'll turn up somewhere again later.]])
 
 ask_turnin_text = _([[You have arrived at a Dvaered controlled world, and you are harboring a FLF fugitive on your ship. Fortunately, Gregar is still asleep. You could choose to alert the authorities and turn him in, and possibly collect a reward. Would you like to do so?]])
-turnin_text = _([[It doesn't take Dvaered security long to arrive at your landing bay. They board your ship, seize Gregar and take him away before he even comprehends what's goïng on. They also take you in for questioning, and you inform them of what Gregar told you as regards the location of the FLF's secret base.
+turnin_text = _([[It doesn't take Dvaered security long to arrive at your landing bay. They board your ship, seize Gregar and take him away before he even comprehends what's going on. They also take you in for questioning, and you inform them of what Gregar told you as regards the location of the FLF's secret base.
 
 "You have served House Dvaered adequately, citizen," the stone-faced captain of the security detail tells you. "In recognition of your service, we may allow you to participate in other operations regarding the FLF terrorists. If you have further questions, direct them to a public liaison."
 

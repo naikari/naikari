@@ -39,7 +39,7 @@ clue_text = {
    _([[The pilot tells you that {pilot} is supposed to have business in {system} soon.]]),
    _([["I've heard that {pilot} likes to hang around in {system}."]]),
    _([["You can probably catch {pilot} in {system}."]]),
-   _([["I would suggest goïng to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
+   _([["I would suggest going to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
    _([["If I was looking for {pilot}, I would look in the {system} system. That's probably a good bet."]]),
    _([["Oh, I know that scum. Bad memories. If I were you, I'd check the {system} system. Good luck!"]]),
    _([["{pilot} is the asshole who borrowed a bunch of credits from me and never paid me back! Yeah, I know where you can find them. {system} system. Good luck."]]),
@@ -114,7 +114,7 @@ cold_text = {
 enemy_cold_text = {
    _([["Didn't you hear? {pilot} is dead! Got blown up in an asteroid field is what I heard."]]),
    _([["Ha ha, you're still looking for {pilot}? You're wasting your time; another bounty hunter beat you to it!"]]),
-   _([["Imagine goïng up to an outlaw trying to find another outlaw who's already dead! Ha! Are you trying to join {pilot} in hell?"]]),
+   _([["Imagine going up to an outlaw trying to find another outlaw who's already dead! Ha! Are you trying to join {pilot} in hell?"]]),
 }
 
 noinfo_text = {

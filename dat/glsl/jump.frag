@@ -28,7 +28,7 @@ const vec4 colour_to   = vec4( 1, 1, 1, 1 );
 
 
 /**
- * Calculates the transform that the player is goïng through.
+ * Calculates the transform that the player is going through.
  */
 vec2 calculate_transform( float size, float smoothness )
 {
