@@ -824,19 +824,18 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    /* accelerating */
    if (KEY("accel") && !repeat) {
       if (kabs >= 0.) {
-         player_restoreControl( PINPUT_MOVEMENT, NULL );
+         player_restoreControl(PINPUT_MOVEMENT, NULL);
          player_accel(kabs);
          input_accelButton = 1;
       }
       else { /* prevent it from getting stuck */
-         if (value==KEY_PRESS) {
-            player_restoreControl( PINPUT_MOVEMENT, NULL );
+         if (value == KEY_PRESS) {
+            player_restoreControl(PINPUT_MOVEMENT, NULL);
             player_setFlag(PLAYER_ACCEL);
             player_accel(1.);
             input_accelButton = 1;
          }
-
-         else if (value==KEY_RELEASE) {
+         else if (value == KEY_RELEASE) {
             player_accelOver();
             player_rmFlag(PLAYER_ACCEL);
             input_accelButton = 0;
@@ -848,332 +847,357 @@ static void input_key( int keynum, double value, double kabs, int repeat )
                && INGAME() && NOHYP() && NODEAD()
                && (t-input_accelLast <= AFTERBURNER_SENSITIVITY))
             pilot_afterburn( player.p );
-         else if (value==KEY_RELEASE)
+         else if (value == KEY_RELEASE)
             pilot_afterburnOver( player.p );
 
-         if (value==KEY_PRESS)
+         if (value == KEY_PRESS)
             input_accelLast = t;
       }
+   }
 
-   /* turning left */
-   } else if (KEY("left") && !repeat) {
-      if (kabs >= 0.) {
-         player_restoreControl( PINPUT_MOVEMENT, NULL );
-         player_setFlag(PLAYER_TURN_LEFT);
-         player_left = kabs;
-      }
-      else {
-         /* set flags for facing correction */
-         if (value==KEY_PRESS) {
-            player_restoreControl( PINPUT_MOVEMENT, NULL );
-            player_setFlag(PLAYER_TURN_LEFT);
-            player_left = 1.;
-         }
-         else if (value==KEY_RELEASE) {
-            player_rmFlag(PLAYER_TURN_LEFT);
-            player_left = 0.;
-         }
-      }
-
-   /* turning right */
-   } else if (KEY("right") && !repeat) {
-      if (kabs >= 0.) {
-         player_restoreControl( PINPUT_MOVEMENT, NULL );
-         player_setFlag(PLAYER_TURN_RIGHT);
-         player_right = kabs;
-      }
-      else {
-         /* set flags for facing correction */
-         if (value==KEY_PRESS) {
-            player_restoreControl( PINPUT_MOVEMENT, NULL );
-            player_setFlag(PLAYER_TURN_RIGHT);
-            player_right = 1.;
-         }
-         else if (value==KEY_RELEASE) {
-            player_rmFlag(PLAYER_TURN_RIGHT);
-            player_right = 0.;
-         }
-      }
-
-   /* turn around to face vel */
-   } else if (KEY("reverse") && !repeat) {
-      if (value==KEY_PRESS) {
-         player_restoreControl( PINPUT_MOVEMENT, NULL );
+   /* reversing */
+   if (KEY("reverse") && !repeat) {
+      if (value == KEY_PRESS) {
+         player_restoreControl(PINPUT_MOVEMENT, NULL);
          player_setFlag(PLAYER_REVERSE);
       }
-      else if ((value==KEY_RELEASE) && player_isFlag(PLAYER_REVERSE)) {
+      else if ((value == KEY_RELEASE) && player_isFlag(PLAYER_REVERSE)) {
          player_rmFlag(PLAYER_REVERSE);
 
          if (!player_isFlag(PLAYER_ACCEL))
             player_accelOver();
       }
+   }
 
-   /* face the target */
-   } else if (KEY("face") && !repeat) {
-      if (value==KEY_PRESS) {
+   /* turning */
+   if (KEY("left") && !repeat) {
+      if (kabs >= 0.) {
+         player_restoreControl(PINPUT_MOVEMENT, NULL);
+         player_setFlag(PLAYER_TURN_LEFT);
+         player_left = kabs;
+      }
+      else {
+         /* set flags for facing correction */
+         if (value == KEY_PRESS) {
+            player_restoreControl(PINPUT_MOVEMENT, NULL);
+            player_setFlag(PLAYER_TURN_LEFT);
+            player_left = 1.;
+         }
+         else if (value == KEY_RELEASE) {
+            player_rmFlag(PLAYER_TURN_LEFT);
+            player_left = 0.;
+         }
+      }
+   }
+   else if (KEY("right") && !repeat) {
+      if (kabs >= 0.) {
+         player_restoreControl(PINPUT_MOVEMENT, NULL);
+         player_setFlag(PLAYER_TURN_RIGHT);
+         player_right = kabs;
+      }
+      else {
+         /* set flags for facing correction */
+         if (value == KEY_PRESS) {
+            player_restoreControl(PINPUT_MOVEMENT, NULL);
+            player_setFlag(PLAYER_TURN_RIGHT);
+            player_right = 1.;
+         }
+         else if (value == KEY_RELEASE) {
+            player_rmFlag(PLAYER_TURN_RIGHT);
+            player_right = 0.;
+         }
+      }
+   }
+   else if (KEY("face") && !repeat) {
+      if (value == KEY_PRESS) {
          player_restoreControl( PINPUT_MOVEMENT, NULL );
          player_setFlag(PLAYER_FACE);
       }
-      else if ((value==KEY_RELEASE) && player_isFlag(PLAYER_FACE))
+      else if ((value == KEY_RELEASE) && player_isFlag(PLAYER_FACE))
          player_rmFlag(PLAYER_FACE);
+   }
 
 
    /*
     * Combat
     */
    /* shooting primary weapon */
-   } else if (KEY("primary") && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) {
+   if (KEY("primary") && NODEAD() && !repeat) {
+      if (value == KEY_PRESS) {
          player_setFlag(PLAYER_PRIMARY);
       }
-      else if (value==KEY_RELEASE)
+      else if (value == KEY_RELEASE)
          player_rmFlag(PLAYER_PRIMARY);
-   /* targeting */
-   } else if (INGAME() && NODEAD() && KEY("target_next")) {
-      if (value==KEY_PRESS) player_targetNext(0);
-   } else if (INGAME() && NODEAD() && KEY("target_prev")) {
-      if (value==KEY_PRESS) player_targetPrev(0);
-   } else if (INGAME() && NODEAD() && KEY("target_nearest")) {
-      if (value==KEY_PRESS) player_targetNearest();
-   } else if (INGAME() && NODEAD() && KEY("target_nextHostile")) {
-      if (value==KEY_PRESS) player_targetNext(1);
-   } else if (INGAME() && NODEAD() && KEY("target_prevHostile")) {
-      if (value==KEY_PRESS) player_targetPrev(1);
-   } else if (INGAME() && NODEAD() && KEY("target_hostile")) {
-      if (value==KEY_PRESS) player_targetHostile();
-   } else if (INGAME() && NODEAD() && KEY("target_clear")) {
-      if (value==KEY_PRESS) player_targetClear();
    }
-   /* follow target */
-   else if (KEY("follow") && INGAME() && NOHYP() && NODEAD()) {
-      if (value == KEY_PRESS) {
-         if (player.p->target == PLAYER_ID)
-            player_targetNearest();
 
-         if (player.p->target != PLAYER_ID) {
-            player_restoreControl(0, NULL);
-            player_autonavPil(player.p->target);
-         }
-         else {
-            player_message(_("#rNo targets available to follow."));
-         }
+   /* shooting secondary weapon */
+   if (KEY("secondary") && NOHYP() && NODEAD() && !repeat) {
+      if (value == KEY_PRESS) {
+         player_setFlag(PLAYER_SECONDARY);
+      }
+      else if (value == KEY_RELEASE)
+         player_rmFlag(PLAYER_SECONDARY);
+   }
+
+   /* Weapon sets. */
+   if (KEY("weapset1") && NODEAD())
+      player_weapSetPress(0, value, repeat);
+   if (KEY("weapset2") && NODEAD())
+      player_weapSetPress(1, value, repeat);
+   if (KEY("weapset3") && NODEAD())
+      player_weapSetPress(2, value, repeat);
+   if (KEY("weapset4") && NODEAD())
+      player_weapSetPress(3, value, repeat);
+   if (KEY("weapset5") && NODEAD())
+      player_weapSetPress(4, value, repeat);
+   if (KEY("weapset6") && NODEAD())
+      player_weapSetPress(5, value, repeat);
+   if (KEY("weapset7") && NODEAD())
+      player_weapSetPress(6, value, repeat);
+   if (KEY("weapset8") && NODEAD())
+      player_weapSetPress(7, value, repeat);
+   if (KEY("weapset9") && NODEAD())
+      player_weapSetPress(8, value, repeat);
+   if (KEY("weapset0") && NODEAD())
+      player_weapSetPress(9, value, repeat);
+
+   /* targeting */
+   if (KEY("target_next") && INGAME() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetNext(0);
+   else if (KEY("target_prev") && INGAME() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetPrev(0);
+   else if (KEY("target_nearest") && INGAME() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetNearest();
+   else if (KEY("target_nextHostile") && INGAME() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetNext(1);
+   else if (KEY("target_prevHostile") && INGAME() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetPrev(1);
+   else if (KEY("target_hostile") && INGAME() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetHostile();
+   else if (KEY("target_clear") && INGAME() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetClear();
+
+   /* follow target */
+   if (KEY("follow") && INGAME() && NOHYP() && NODEAD()
+         && (value == KEY_PRESS)) {
+      if (player.p->target == PLAYER_ID)
+         player_targetNearest();
+
+      if (player.p->target != PLAYER_ID) {
+         player_restoreControl(0, NULL);
+         player_autonavPil(player.p->target);
+      }
+      else {
+         player_message(_("#rNo targets available to follow."));
       }
    }
+
    /* board them ships */
-   else if (KEY("board") && INGAME() && NOHYP() && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) {
-         player_restoreControl( 0, NULL );
-         if (player_board() == PLAYER_BOARD_RETRY)
-            player_autonavBoard(player.p->target);
-      }
+   if (KEY("board") && INGAME() && NOHYP() && NODEAD() && !repeat
+         && (value == KEY_PRESS)) {
+      player_restoreControl(0, NULL);
+      if (player_board() == PLAYER_BOARD_RETRY)
+         player_autonavBoard(player.p->target);
    }
 
    /*
     * Escorts.
     */
-   else if (INGAME() && NODEAD() && KEY("e_targetNext") && !repeat) {
-      if (value==KEY_PRESS) player_targetEscort(0);
-   } else if (INGAME() && NODEAD() && KEY("e_targetPrev") && !repeat) {
-      if (value==KEY_PRESS) player_targetEscort(1);
-   } else if (INGAME() && NODEAD() && KEY("e_attack") && !repeat) {
-      if (value==KEY_PRESS) escorts_attack(player.p);
-   } else if (INGAME() && NODEAD() && KEY("e_hold") && !repeat) {
-      if (value==KEY_PRESS) escorts_hold(player.p);
-   } else if (INGAME() && NODEAD() && KEY("e_return") && !repeat) {
-      if (value==KEY_PRESS) escorts_return(player.p);
-   } else if (INGAME() && NODEAD() && KEY("e_clear") && !repeat) {
-      if (value==KEY_PRESS) escorts_clear(player.p);
+   /* escort targeting */
+   if (KEY("e_targetNext") && INGAME() && NODEAD() && !repeat
+         && (value == KEY_PRESS))
+      player_targetEscort(0);
+   else if (KEY("e_targetPrev") && INGAME() && NODEAD() && !repeat
+         && (value == KEY_PRESS))
+      player_targetEscort(1);
 
+   /* escort orders */
+   if (INGAME() && NODEAD() && KEY("e_attack") && !repeat
+         && (value == KEY_PRESS))
+      escorts_attack(player.p);
+   else if (INGAME() && NODEAD() && KEY("e_hold") && !repeat
+         && (value == KEY_PRESS))
+      escorts_hold(player.p);
+   else if (INGAME() && NODEAD() && KEY("e_return") && !repeat
+         && (value == KEY_PRESS))
+      escorts_return(player.p);
+   else if (INGAME() && NODEAD() && KEY("e_clear") && !repeat
+         && (value == KEY_PRESS))
+      escorts_clear(player.p);
 
-   /*
-    * secondary weapons
-    */
-   /* shooting secondary weapon */
-   } else if (KEY("secondary") && NOHYP() && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) {
-         player_setFlag(PLAYER_SECONDARY);
-      }
-      else if (value==KEY_RELEASE)
-         player_rmFlag(PLAYER_SECONDARY);
-
-   /* Weapon sets. */
-   } else if (NODEAD() && KEY("weapset1")) {
-      player_weapSetPress( 0, value, repeat );
-   } else if (NODEAD() && KEY("weapset2")) {
-      player_weapSetPress( 1, value, repeat );
-   } else if (NODEAD() && KEY("weapset3")) {
-      player_weapSetPress( 2, value, repeat );
-   } else if (NODEAD() && KEY("weapset4")) {
-      player_weapSetPress( 3, value, repeat );
-   } else if (NODEAD() && KEY("weapset5")) {
-      player_weapSetPress( 4, value, repeat );
-   } else if (NODEAD() && KEY("weapset6")) {
-      player_weapSetPress( 5, value, repeat );
-   } else if (NODEAD() && KEY("weapset7")) {
-      player_weapSetPress( 6, value, repeat );
-   } else if (NODEAD() && KEY("weapset8")) {
-      player_weapSetPress( 7, value, repeat );
-   } else if (NODEAD() && KEY("weapset9")) {
-      player_weapSetPress( 8, value, repeat );
-   } else if (NODEAD() && KEY("weapset0")) {
-      player_weapSetPress( 9, value, repeat );
-   }
 
    /*
     * Space
     */
-   else if (KEY("local_jump") && INGAME() && NOHYP() && NODEAD()) {
-      if (value == KEY_PRESS) {
-         if (pilot_canLocalJump(player.p, 1)) {
-            player_restoreControl(PINPUT_MOVEMENT, NULL);
-            player_localJump();
+   /* local jump */
+   if (KEY("local_jump") && INGAME() && NOHYP() && NODEAD()
+         && (value == KEY_PRESS)) {
+      if (pilot_canLocalJump(player.p, 1)) {
+         player_restoreControl(PINPUT_MOVEMENT, NULL);
+         player_localJump();
+      }
+   }
+
+   /* continue autonav */
+   if (KEY("autonav") && INGAME() && NOHYP() && NODEAD()
+         && (value == KEY_PRESS))
+      player_autonavStart();
+
+   /* target planet (cycles like target) */
+   if (KEY("target_planet") && INGAME() && NOHYP() && NOLAND() && NODEAD()
+         && (value == KEY_PRESS))
+      player_targetPlanet();
+
+   /* land */
+   if (KEY("land") && INGAME() && NOHYP() && NOLAND() && NODEAD()
+         && (value == KEY_PRESS)) {
+      /* First try player_land() in case no planet is selected. */
+      ret = player_land(0);
+      if ((ret == PLAYER_LAND_IMPOSSIBLE) || (player.p->nav_planet == -1)) {
+         /* Cannot land no matter what; report the result. */
+         player_land(1);
+      }
+      else if (ret != PLAYER_LAND_OK) {
+         pnt = cur_system->planets[player.p->nav_planet];
+
+         if (ret == PLAYER_LAND_AGAIN) {
+            /* Second player_land() attempt now using the planet
+             * selected by the previous player_land() call. */
+            ret = player_land(0);
+         }
+
+         if (((ret == PLAYER_LAND_AGAIN) || (ret == PLAYER_LAND_DENIED))
+               && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
+            player_rmFlag(PLAYER_BASICAPPROACH);
+            player_autonavPnt(pnt->name);
+            player_message(
+                  _("#oAutonav: auto-landing sequence engaged."));
          }
       }
    }
-   else if (KEY("autonav") && INGAME() && NOHYP() && NODEAD()) {
-      if (value == KEY_PRESS)
-         player_autonavStart();
-   /* target planet (cycles like target) */
-   } else if (KEY("target_planet") && INGAME() && NOHYP() && NOLAND() && NODEAD()) {
-      if (value==KEY_PRESS) player_targetPlanet();
-   /* target nearest planet or attempt to land */
-   } else if (KEY("land") && INGAME() && NOHYP() && NOLAND() && NODEAD()) {
-      if (value==KEY_PRESS) {
-         /* First try player_land() in case no planet is selected. */
-         ret = player_land(0);
-         if ((ret == PLAYER_LAND_IMPOSSIBLE)
-               || (player.p->nav_planet == -1)) {
-            /* Cannot land no matter what; report the result. */
-            player_land(1);
-         }
-         else if (ret != PLAYER_LAND_OK) {
-            pnt = cur_system->planets[player.p->nav_planet];
 
-            if (ret == PLAYER_LAND_AGAIN) {
-               /* Second player_land() attempt now using the planet
-                * selected by the previous player_land() call. */
-               ret = player_land(0);
-            }
+   /* target jump */
+   if (KEY("thyperspace") && NOHYP() && NOLAND() && NODEAD() && !repeat
+         && (value == KEY_PRESS))
+      player_targetHyperspace();
 
-            if (((ret == PLAYER_LAND_AGAIN) || (ret == PLAYER_LAND_DENIED))
-                  && planet_hasService(pnt, PLANET_SERVICE_LAND)) {
-               player_rmFlag(PLAYER_BASICAPPROACH);
-               player_autonavPnt(pnt->name);
-               player_message(
-                     _("#oAutonav: auto-landing sequence engaged."));
-            }
+   /* open starmap */
+   if (KEY("starmap") && NOHYP() && NODEAD() && !repeat
+         && (value == KEY_PRESS))
+      map_open();
+
+   /* jump */
+   if (KEY("jump") && INGAME() && !repeat
+         && (value == KEY_PRESS)) {
+      /* Frist try player_jump() in case no jump is selected. */
+      if (!player_jump(0)) {
+         if (player.p->nav_hyperspace != -1) {
+            player_hyperspacePreempt(1);
+            player_autonavStart();
+         }
+         else {
+            player_restoreControl(0, NULL);
+            player_jump(1);
          }
       }
-   } else if (KEY("thyperspace") && NOHYP() && NOLAND() && NODEAD()) {
-      if (value==KEY_PRESS)
-         player_targetHyperspace();
-   } else if (KEY("starmap") && NOHYP() && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) map_open();
-   } else if (KEY("jump") && INGAME() && !repeat) {
-      if (value==KEY_PRESS) {
-         /* Frist try player_jump() in case no jump is selected. */
-         if (!player_jump(0)) {
-            if (player.p->nav_hyperspace != -1) {
-               player_hyperspacePreempt(1);
-               player_autonavStart();
-            }
-            else {
-               player_restoreControl(0, NULL);
-               player_jump(1);
-            }
-         }
-      }
-   } else if (KEY("overlay") && NODEAD() && INGAME() && !repeat) {
-      ovr_key( value );
-   } else if (KEY("mousefly") && NODEAD() && !repeat) {
-      if (value==KEY_PRESS)
-         player_toggleMouseFly();
-   } else if (KEY("autobrake") && NOHYP() && NOLAND() && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) {
-         player_restoreControl( PINPUT_BRAKING, NULL );
-         player_brake();
-      }
+   }
+
+   /* open/close overlay */
+   if (KEY("overlay") && NODEAD() && INGAME() && !repeat)
+      ovr_key(value);
+
+   /* toggle mouse flying */
+   if (KEY("mousefly") && NODEAD() && !repeat && (value == KEY_PRESS))
+      player_toggleMouseFly();
+
+   /* autobrake */
+   if (KEY("autobrake") && NOHYP() && NOLAND() && NODEAD() && !repeat
+         && (value == KEY_PRESS)) {
+      player_restoreControl(PINPUT_BRAKING, NULL);
+      player_brake();
+   }
+
 
    /*
     * Communication.
     */
-   } else if (KEY("log_up") && INGAME() && NODEAD()) {
-      if (value==KEY_PRESS) {
-         gui_messageScrollUp(5);
-      }
-   } else if (KEY("log_down") && INGAME() && NODEAD()) {
-      if (value==KEY_PRESS) {
-         gui_messageScrollDown(5);
-      }
-   } else if (KEY("hail") && INGAME() && NOHYP() && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) {
-         player_hail();
-      }
-   } else if (KEY("autohail") && INGAME() && NOHYP() && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) {
-         player_autohail();
-      }
+   /* scroll messages */
+   if (KEY("log_up") && INGAME() && NODEAD() && (value == KEY_PRESS))
+      gui_messageScrollUp(5);
+   else if (KEY("log_down") && INGAME() && NODEAD() && (value == KEY_PRESS))
+      gui_messageScrollDown(5);
+
+   /* hailing */
+   if (KEY("autohail") && INGAME() && NOHYP() && NODEAD() && !repeat
+         && (value == KEY_PRESS))
+      player_autohail();
+   else if (KEY("hail") && INGAME() && NOHYP() && NODEAD() && !repeat
+         && (value == KEY_PRESS))
+      player_hail();
 
    /*
     * misc
     */
-   /* zooming in */
-   } else if (KEY("mapzoomin") && INGAME() && NODEAD()) {
-      if (value==KEY_PRESS) gui_setRadarRel(-1);
-   /* zooming out */
-   } else if (KEY("mapzoomout") && INGAME() && NODEAD()) {
-      if (value==KEY_PRESS) gui_setRadarRel(1);
-   /* take a screenshot */
-   } else if (KEY("screenshot")) {
-      if (value==KEY_PRESS) player_screenshot();
-   /* toggle fullscreen */
-   } else if (KEY("togglefullscreen") && !repeat) {
-      if (value==KEY_PRESS) naev_toggleFullscreen();
-   /* pause the games */
-   } else if (KEY("pause") && !repeat) {
-      if (value==KEY_PRESS) {
-         if (!toolkit_isOpen()) {
-            if (paused)
-               unpause_game();
-            else
-               pause_player();
-         }
-      }
-   /* toggle speed mode */
-   } else if (KEY("speed") && !repeat) {
-      if ((value==KEY_PRESS) && (!player_isFlag( PLAYER_CINEMATICS_2X ))) {
-         if (player.speed < 4.) {
-            player.speed *= 2.;
-         } else {
-            player.speed = 1.;
-         }
-         player_autonavResetSpeed();
-      }
-   /* opens a small menu */
-   } else if (KEY("menu") && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) menu_small();
+   /* radar zoom */
+   if (KEY("mapzoomin") && INGAME() && NODEAD() && (value == KEY_PRESS))
+      gui_setRadarRel(-1);
+   else if (KEY("mapzoomout") && INGAME() && NODEAD() && (value == KEY_PRESS))
+      gui_setRadarRel(1);
 
-   /* shows pilot information */
-   } else if (KEY("info") && NOHYP() && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) menu_info( INFO_MAIN );
+   /* take a screenshot */
+   if (KEY("screenshot") && (value == KEY_PRESS))
+      player_screenshot();
+
+   /* toggle fullscreen */
+   if (KEY("togglefullscreen") && !repeat && (value == KEY_PRESS))
+      naev_toggleFullscreen();
+
+   /* pause the games */
+   if (KEY("pause") && !repeat && (value == KEY_PRESS)) {
+      if (!toolkit_isOpen()) {
+         if (paused)
+            unpause_game();
+         else
+            pause_player();
+      }
+   }
+
+   /* toggle speed mode */
+   if (KEY("speed") && !repeat && (value == KEY_PRESS)
+         && !player_isFlag(PLAYER_CINEMATICS_2X)) {
+      if (player.speed < 4.)
+         player.speed *= 2.;
+      else
+         player.speed = 1.;
+      player_autonavResetSpeed();
+   }
+
+   /* opens a small menu */
+   if (KEY("menu") && NODEAD() && !repeat && (value == KEY_PRESS))
+      menu_small();
+
+   /* open ship computer */
+   if (KEY("info") && NOHYP() && NODEAD() && !repeat && (value == KEY_PRESS))
+      menu_info(INFO_MAIN);
 
    /* Opens the Lua console. */
-   } else if (KEY("console") && NODEAD() && !repeat) {
-      if (value==KEY_PRESS) cli_open();
-   }
-
-   /* Key press not used. */
-   else {
-      return;
-   }
+   if (KEY("console") && NODEAD() && !repeat && (value == KEY_PRESS))
+      cli_open();
 
    /* Run the hook. */
-   hparam[0].type    = HOOK_PARAM_STRING;
-   hparam[0].u.str   = input_keybinds[keynum].name;
-   hparam[1].type    = HOOK_PARAM_BOOL;
-   hparam[1].u.b     = (value > 0.);
-   hparam[2].type    = HOOK_PARAM_SENTINEL;
-   hooks_runParam( "input", hparam );
+   hparam[0].type = HOOK_PARAM_STRING;
+   hparam[0].u.str = input_keybinds[keynum].name;
+   hparam[1].type = HOOK_PARAM_BOOL;
+   hparam[1].u.b = (value > 0.);
+   hparam[2].type = HOOK_PARAM_SENTINEL;
+   hooks_runParam("input", hparam);
 }
 #undef KEY
 
