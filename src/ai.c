@@ -1039,15 +1039,21 @@ Task *ai_newtask( Pilot *p, const char *func, int subtask, int pos )
    Task *t, *curtask, *pointer;
    nlua_env env = p->ai->env;
 
+   if (p->ai == NULL) {
+      NLUA_ERROR(naevL,
+            _("Trying to create task for pilot '%s' which has no AI."), p->name);
+      return NULL;
+   }
+
    /* Check if the function is good. */
    nlua_getenv( env, func );
    luaL_checktype( naevL, -1, LUA_TFUNCTION );
 
    /* Create the new task. */
-   t           = calloc( 1, sizeof(Task) );
-   t->name     = strdup(func);
-   t->func     = luaL_ref(naevL, LUA_REGISTRYINDEX);
-   t->dat      = LUA_NOREF;
+   t = calloc(1, sizeof(Task));
+   t->name = strdup(func);
+   t->func = luaL_ref(naevL, LUA_REGISTRYINDEX);
+   t->dat = LUA_NOREF;
 
    /* Handle subtask and general task. */
    if (!subtask) {
@@ -1062,10 +1068,11 @@ Task *ai_newtask( Pilot *p, const char *func, int subtask, int pos )
    }
    else {
       /* Must have valid task. */
-      curtask = ai_curTask( p );
+      curtask = ai_curTask(p);
       if (curtask == NULL) {
-         WARN( _("Trying to add subtask '%s' to non-existent task."), func);
-         ai_freetask( t );
+         ai_freetask(t);
+         NLUA_ERROR(naevL,
+               _("Trying to add subtask '%s' to non-existent task."), func);
          return NULL;
       }
 
@@ -1123,10 +1130,15 @@ static Task* ai_createTask( lua_State *L, int subtask )
    Task *t;
 
    /* Parse basic parameters. */
-   func  = luaL_checkstring(L,1);
+   func = luaL_checkstring(L, 1);
 
    /* Creates a new AI task. */
-   t     = ai_newtask( cur_pilot, func, subtask, 0 );
+   t = ai_newtask(cur_pilot, func, subtask, 0);
+   if (t == NULL) {
+      NLUA_ERROR(L, _("Failed to create new task '%s' for pilot '%s'."),
+            (func != NULL ? func : "NULL"), cur_pilot->name);
+      return NULL;
+   }
 
    /* Set the data. */
    if (lua_gettop(L) > 1) {
