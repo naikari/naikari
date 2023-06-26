@@ -61,8 +61,7 @@ misndesc = _("Terra has asked you to fetch her son and her son's girlfriend, who
 
 
 function create ()
-    cursys = system.cur()
-    curplanet = planet.cur()
+    curplanet, cursys = planet.cur()
 
     if not misn.claim(cursys) then
         misn.finish(false)
@@ -129,7 +128,17 @@ function enter()
     if system.cur() == cursys then
         misn.osdActive(2)
 
-        local dist = rnd.rnd() * system.cur():radius()
+        -- Disable spawning of pirates and hostiles.
+        pilot.clear()
+        pilot.toggleSpawn("Pirate", false)
+        for fname, presence in pairs(system.cur():presences()) do
+            local f = faction.get(fname)
+            if f:playerStanding() < 0 then
+                pilot.toggleSpawn(f, false)
+            end
+        end
+
+        local dist = rnd.rnd() * system.cur():radius() * 0.8
         local angle = rnd.rnd() * 2 * math.pi
         local location = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
         target = pilot.add("Gawain", "Civilian", location, _("Credence"))
