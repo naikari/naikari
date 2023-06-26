@@ -1041,7 +1041,8 @@ Task *ai_newtask( Pilot *p, const char *func, int subtask, int pos )
 
    if (p->ai == NULL) {
       NLUA_ERROR(naevL,
-            _("Trying to create task for pilot '%s' which has no AI."), p->name);
+            _("Trying to create task for pilot '%s' which has no AI."),
+            p->name);
       return NULL;
    }
 
