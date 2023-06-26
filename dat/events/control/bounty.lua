@@ -54,6 +54,7 @@ nopay_factions = {
 
 
 function create()
+   hook.attacked("attacked")
    hook.death("death")
    hook.jumpout("exit")
    hook.land("exit")
@@ -66,9 +67,25 @@ function log_entry(text)
 end
 
 
+function attacked(target, attacker, damage)
+   if attacker == nil or not attacker:exists() then
+      return
+   end
+   if attacker ~= player.pilot()
+         and attacker:leader(true) ~= player.pilot() then
+      return
+   end
+   target:memory().player_bounty_claimed = true
+end
+
+
 function death(target, killer)
    if killer == nil or not killer:exists() then
-      return
+      if target:memory().player_bounty_claimed then
+         killer = player.pilot()
+      else
+         return
+      end
    end
    if killer ~= player.pilot() and killer:leader(true) ~= player.pilot() then
       return

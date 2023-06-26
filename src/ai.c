@@ -851,15 +851,31 @@ void ai_think( Pilot* pilot, const double dt )
 void ai_attacked(Pilot* attacked, const pilotId_t attacker, double dmg)
 {
    HookParam hparam[2];
+   HookParam ghparam[4];
 
-   /* Custom hook parameters. */
-   hparam[0].type       = HOOK_PARAM_PILOT;
-   hparam[0].u.lp       = attacker;
-   hparam[1].type       = HOOK_PARAM_NUMBER;
-   hparam[1].u.num      = dmg;
+   /* Run pilot attacked hook. */
+   ghparam[0].type = HOOK_PARAM_PILOT;
+   ghparam[0].u.lp = attacked->id;
+   if (pilot_get(attacker) != NULL) {
+      hparam[0].type = HOOK_PARAM_PILOT;
+      hparam[0].u.lp = attacker;
+      ghparam[1].type = HOOK_PARAM_PILOT;
+      ghparam[1].u.lp = attacker;
+   }
+   else {
+      hparam[0].type = HOOK_PARAM_NIL;
+      ghparam[1].type = HOOK_PARAM_NIL;
+   }
+   hparam[1].type = HOOK_PARAM_NUMBER;
+   hparam[1].u.num = dmg;
+   ghparam[2].type = HOOK_PARAM_NUMBER;
+   ghparam[2].u.num = dmg;
+   ghparam[3].type = HOOK_PARAM_SENTINEL;
+
+   pilot_runHookParam(attacked, PILOT_HOOK_ATTACKED, hparam, 2);
+   hooks_runParam("attacked", ghparam);
 
    /* Behaves differently if manually overridden. */
-   pilot_runHookParam( attacked, PILOT_HOOK_ATTACKED, hparam, 2 );
    if (pilot_isFlag( attacked, PILOT_MANUAL_CONTROL ))
       return;
 

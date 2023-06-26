@@ -43,6 +43,7 @@ static int hook_jumpin( lua_State *L );
 static int hook_enter( lua_State *L );
 static int hook_hail( lua_State *L );
 static int hook_death(lua_State *L);
+static int hookL_attacked(lua_State *L);
 static int hook_board( lua_State *L );
 static int hook_timer( lua_State *L );
 static int hook_date( lua_State *L );
@@ -75,6 +76,7 @@ static const luaL_Reg hook_methods[] = {
    {"enter", hook_enter},
    {"hail", hook_hail},
    {"death", hook_death},
+   {"attacked", hookL_attacked},
    {"board", hook_board},
    {"timer", hook_timer},
    {"date", hook_date},
@@ -487,6 +489,24 @@ static int hook_hail( lua_State *L )
 static int hook_death(lua_State *L)
 {
    unsigned long h = hook_generic(L, "death", 0., 1, 0);
+   lua_pushnumber(L, h);
+   return 1;
+}
+/**
+ * @brief Hooks the function to any pilot getting attacked.
+ *
+ * Hook parameters are the pilot that was attacked, the attacking pilot
+ * (or nil if not attacked by a pilot), and the damage inflicted.
+ *
+ *    @luatparam string funcname Name of function to run when hook is
+ *       triggered.
+ *    @luaparam[opt] arg Argument to pass to hook.
+ *    @luatreturn number Hook identifier.
+ * @luafunc attacked
+ */
+static int hookL_attacked(lua_State *L)
+{
+   unsigned long h = hook_generic(L, "attacked", 0., 1, 0);
    lua_pushnumber(L, h);
    return 1;
 }
@@ -940,8 +960,8 @@ static int hook_trigger( lua_State *L )
  *    <li>"exploded": triggered when the pilot has died and the final
  *       explosion has begun. Hook parameter is the exploded pilot.</li>
  *    <li>"kill": triggered when the pilot kills another pilot (before
- *       marked as dead). Hook parameters are the killing pilot and the
- *       killed pilot.</li>
+ *       marked as dead). Hook parameters are the killing pilot (or nil
+ *       if not killed by a pilot) and the killed pilot.</li>
  *    <li>"boarding": triggered when the pilot boards another pilot
  *       (start of boarding). Hook parameters are the boarding pilot and
  *       the pilot being boarded.</li>
@@ -962,8 +982,8 @@ static int hook_trigger( lua_State *L )
  *       starting land descent). Hook parameters are the landing
  *       pilot and the planet being landed on.</li>
  *    <li>"attacked": triggered when the pilot is attacked. Hook
- *       parameters are the attacked pilot, the attacking pilot, and the
- *       damage inflicted.</li>
+ *       parameters are the attacked pilot, the attacking pilot (or nil
+ *       if not attacked by a pilot), and the damage inflicted.</li>
  *    <li>"idle": triggered when the pilot becomes idle in manual
  *       control. Hook parameter is the idle pilot.</li>
  *    <li>"lockon": triggered when the pilot locked on a missile on its

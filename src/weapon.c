@@ -1276,15 +1276,17 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
    Damage dmg;
    const Damage *odmg;
    HookParam hparam[2];
+   HookParam ghparam[4];
 
    /* Get general details. */
-   odmg              = outfit_damage( w->outfit );
-   parent            = pilot_get( w->parent );
-   damage            = w->dam_mod * w->strength * odmg->damage * dt ;
-   dmg.damage        = MAX( 0., damage * (1.-w->dam_as_dis_mod) );
-   dmg.penetration   = odmg->penetration;
-   dmg.type          = odmg->type;
-   dmg.disable       = MAX( 0., w->dam_mod * w->strength * odmg->disable * dt + damage * w->dam_as_dis_mod );
+   odmg = outfit_damage(w->outfit);
+   parent = pilot_get(w->parent);
+   damage = w->dam_mod * w->strength * odmg->damage * dt ;
+   dmg.damage = MAX(0., damage * (1.-w->dam_as_dis_mod));
+   dmg.penetration = odmg->penetration;
+   dmg.type = odmg->type;
+   dmg.disable = MAX(0., w->dam_mod*w->strength*odmg->disable*dt
+         + damage*w->dam_as_dis_mod);
 
    /* Have pilot take damage and get real damage done. */
    damage = pilot_hit( p, w->solid, w->parent, &dmg, 1 );
@@ -1311,15 +1313,29 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
       weapon_hitAI( p, parent, damage );
    }
    else {
-       /* Even if we don't inform the AI, run the attacked hook,
-        * otherwise we'll have weird broken cases in Lua code that
-        * expects all damage to count. */
-      hparam[0].type = HOOK_PARAM_PILOT;
-      hparam[0].u.lp = parent->id;
+      /* Even if we don't inform the AI, run the attacked hook,
+       * otherwise we'll have weird broken cases in Lua code that
+       * expects all damage to count. */
+      ghparam[0].type = HOOK_PARAM_PILOT;
+      ghparam[0].u.lp = p->id;
+      if (parent != NULL) {
+         hparam[0].type = HOOK_PARAM_PILOT;
+         hparam[0].u.lp = parent->id;
+         ghparam[1].type = HOOK_PARAM_PILOT;
+         ghparam[1].u.lp = parent->id;
+      }
+      else {
+         hparam[0].type = HOOK_PARAM_NIL;
+         ghparam[1].type = HOOK_PARAM_NIL;
+      }
       hparam[1].type = HOOK_PARAM_NUMBER;
       hparam[1].u.num = damage;
+      ghparam[2].type = HOOK_PARAM_NUMBER;
+      ghparam[2].u.num = damage;
+      ghparam[3].type = HOOK_PARAM_SENTINEL;
 
       pilot_runHookParam(p, PILOT_HOOK_ATTACKED, hparam, 2);
+      hooks_runParam("attacked", ghparam);
    }
 }
 
