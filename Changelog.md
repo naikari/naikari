@@ -43,6 +43,13 @@
 * Added measures taken after bribing a pilot to ensure the fight doesn't
   resume due to stray shots in most circumstances.
 * Changed the subtitle from "Imperial Storm" to "Eye of Chaos".
+* Improved handling of conflicting keybinds; previously, only one of a
+  pair of conflicting keybinds would register, and which one it was
+  wasn't deliberately designed in any way (for example, the "hail" key
+  would always jam the "autohail" key). Now, most conflicting keybinds
+  will cause both actions to happen, and where it doesn't, which action
+  is taken is more deliberate (for example, the "autohail" key now takes
+  precedence over the "hail" key).
 
 ## 0.7.0
 
