@@ -198,6 +198,7 @@ static int event_create( int dataid, unsigned int *id )
 {
    Event_t *ev;
    EventData *data;
+   unsigned int eid;
 
    if (event_active==NULL)
       event_active = array_create( Event_t );
@@ -206,9 +207,10 @@ static int event_create( int dataid, unsigned int *id )
    ev = &array_grow( &event_active );
    memset( ev, 0, sizeof(Event_t) );
    if ((id != NULL) && (*id != 0))
-      ev->id = *id;
+      eid = *id;
    else
-      ev->id = event_genID();
+      eid = event_genID();
+   ev->id = eid;
 
    /* Add the data. */
    ev->data = dataid;
@@ -229,17 +231,20 @@ static int event_create( int dataid, unsigned int *id )
    /* Load file. */
    if (nlua_dobufenv(ev->env, data->lua, strlen(data->lua), data->sourcefile) != 0) {
       WARN(_("Error loading event file: %s\n"
-            "%s\n"
-            "Most likely Lua file has improper syntax, please check"),
-            data->sourcefile, lua_tostring(naevL,-1));
+               "%s\n"
+               "Most likely Lua file has improper syntax, please check"),
+            data->sourcefile, lua_tostring(naevL, -1));
       return -1;
    }
 
    /* Run Lua. */
    if ((id==NULL) || (*id==0))
-      event_run( ev->id, "create" );
+      event_run(eid, "create");
+
+   /* Pass the id parameter, using eid in case event_active was changed
+    * by the create function (which can invalidate the ev pointer). */
    if (id != NULL)
-      *id = ev->id;
+      *id = eid;
 
    return 0;
 }
