@@ -7,7 +7,7 @@ API and must be set in the XML file.
 * ontoggle is a special case that allows the player to toggle the outfit if it exists.
 * All functions take the pilot equipping the outfit 'p' and the pilot outfit 'po' as parameters.
 * They are run in a shared state. All global variables will be the same for all outfits of the same type.
-* You can use the 'mem' table to access memory for the particular outfit beïng used.
+* You can use the 'mem' table to access memory for the particular outfit being used.
 * You have access to the pilotoutfit API which is meant for manipulating po.
 * Use the <desc_extra> field in the XML when describing what the Lua does.
 --]]

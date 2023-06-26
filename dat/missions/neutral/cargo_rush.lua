@@ -204,7 +204,7 @@ function land()
             end
          end
       else
-         -- Semi-random message for beïng late.
+         -- Semi-random message for being late.
          cargo_land = {
             _("The containers of {cargotype} are carried out of your ship by a sullen group of workers. They are not happy that they have to work overtime because you were late. You are paid only half the original reward you were promised."),
             _("The containers of {cargotype} are rushed out of your vessel by a team shortly after you land. Your late arrival is stretching quite a few schedules! Your pay is only half your original pay because of that."),

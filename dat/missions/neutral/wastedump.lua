@@ -61,7 +61,7 @@ abort_landed_broke_text = _([[In your desperation to rid yourself of the garbage
 
 When you explain that you don't have enough money to pay the fine, the officials confiscate outfits and cargo you own to make up the difference.]])
 
-nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold beïng equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
+nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold being equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
 
 noland_msg = _("Get lost, waste dumping scum! We don't want you here!")
 

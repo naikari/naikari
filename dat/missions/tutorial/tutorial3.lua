@@ -48,7 +48,7 @@ require "missions/neutral/common"
 
 ask_text = _([["Hello again, {player}! Are you ready for that other job I had for you? It's a little more effort than the last job, but still not too hard, and I'll pay you a nice {credits} #n[{credits_conv}]#0 reward for it."]])
 
-accept_text = _([["Perfect! Alright, this time we will be goïng into space; I will be joining you. I'll make my way to your ship now and wait for you there. When you're ready to begin, press the Take Off button."]])
+accept_text = _([["Perfect! Alright, this time we will be going into space; I will be joining you. I'll make my way to your ship now and wait for you there. When you're ready to begin, press the Take Off button."]])
 
 overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Ore for me. Of course, I could buy it from the Commodity tab, but for my purposes I require specifically asteroid-mined Ore and most vendors don't track whether their Ore is from planetary mining or asteroid mining.
 

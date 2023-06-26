@@ -21,7 +21,7 @@ function sos ()
       p_("sos", "Taking hostile fire! Need assistance!"),
       p_("sos", "We are under attack, require support!"),
       p_("sos", "Mayday! Ship taking damage!"),
-      fmt.f(p_("sos", "Mayday! {faction} {shipclass} beïng assaulted!"),
+      fmt.f(p_("sos", "Mayday! {faction} {shipclass} being assaulted!"),
          {faction=plt:faction(), shipclass=_(plt:ship():class())}),
    }
    ai.settarget(ai.taskdata())

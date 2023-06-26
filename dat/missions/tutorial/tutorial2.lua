@@ -59,7 +59,7 @@ reminder_text = _([[You ask Ian what cargo it was that he needed again, apologiz
 
 finish_text = _([[You approach Ian and inform him that you have the cargo he needs. "Ah, perfect!" he responds. "Let's initiate that transfer, then.…" Ian Structure pushes a series of buttons on his datapad and you see that the cargo has been removed from your ship.
 
-"You saved me some trouble by doïng that for me," Ian says. "Thank you. I have transferred the payment I promised into your account. If you would be willing to do it, I have another job for you. Talk to me here at the bar again when you're ready for it."]])
+"You saved me some trouble by doing that for me," Ian says. "Thank you. I have transferred the payment I promised into your account. If you would be willing to do it, I have another job for you. Talk to me here at the bar again when you're ready for it."]])
 
 misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
 misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system} system) for another job.]])
@@ -117,7 +117,7 @@ end
 function land()
    npc = misn.npcAdd("approach", _("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
-         _("Ian is in the bar doïng some sort of work on his datapad."), 1)
+         _("Ian is in the bar doing some sort of work on his datapad."), 1)
 end
 
 

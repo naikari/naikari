@@ -42,7 +42,7 @@ local portrait = require "portrait"
 
 ask_text = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. There's a prize of {credits} if you win. Interested?"]])
 
-yes_text = _([["That's great! I'll explain how it works. Once we take off from {planet}, there will be a countdown, and then we will proceed to the various checkpoints in order, boarding them before goïng to the next checkpoint. After the last checkpoint has been boarded, head back to {planet} and land. Let's have some fun!"]])
+yes_text = _([["That's great! I'll explain how it works. Once we take off from {planet}, there will be a countdown, and then we will proceed to the various checkpoints in order, boarding them before going to the next checkpoint. After the last checkpoint has been boarded, head back to {planet} and land. Let's have some fun!"]])
 
 checkpoint_text = _("Checkpoint {prev} reached. Proceed to Checkpoint {next}.")
 

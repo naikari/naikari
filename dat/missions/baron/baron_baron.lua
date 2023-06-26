@@ -35,7 +35,7 @@ You pause for a moment before responding to this sudden offer. It's not every da
 
 accept_text = _([["Oh, that's great! Okay, here's what Baron Sauterfeldt needs you to do. You should fly to the Dvaered world {planet}. There's an art museüm dedicated to one of the greatest Warlords in recent Dvaered history. I forget his name. Drovan or something? Durvan? Uh, anyway. This museüm has a holopainting of the Warlord and his military entourage. His Lordship really wants this piece of art, but the museüm has refused to sell it to him. So, we've sent agents to… appropriate… the holopainting."
 
-You raise an eyebrow, but the pilot on the other end seems to be oblivious to the gesture. "So, right, you're goïng to {planet} to meet with our agents. You should find them in the spaceport bar. They'll get the item onto your ship, and you'll transport it out of Dvaered space. All quiet-like of course. No need for the authorities to know until you're long gone. Don't worry, our people are pros. It'll go off without a hitch, trust me."]])
+You raise an eyebrow, but the pilot on the other end seems to be oblivious to the gesture. "So, right, you're going to {planet} to meet with our agents. You should find them in the spaceport bar. They'll get the item onto your ship, and you'll transport it out of Dvaered space. All quiet-like of course. No need for the authorities to know until you're long gone. Don't worry, our people are pros. It'll go off without a hitch, trust me."]])
 
 details_text = _([[You smirk at that. You know from experience that things seldom "go off without a hitch", and this particular plan doesn't seem to be all that well thought out. Still, it doesn't seem like you'll be in a lot of danger. If things go south, they'll go south well before you are even in the picture. And even if the authorities somehow get on your case, you'll only have to deal with the planetary police, not the entirety of House Dvaered. Worst-case scenario, a simple escape jump should be able to get you out of trouble.
 
@@ -51,7 +51,7 @@ The second agent is caught by a Dvaered bullet, and topples off the docking brid
 
 baron_hail_text = _([[Your comm is answered by a communications officer on the bridge of the Pinnacle. You tell her you've got a delivery for the baron. She runs a few checks on a console off the screen, then tells you you've been cleared for docking and that the Pinnacle will be brought to a halt.]])
 
-board_text = _([[When you arrive at your ship's airlock, the chest containing the Dvaered holopainting is already beïng carted onto the Pinnacle by a pair of crewmen. "You'll be wanting your reward, eh? Come along", one of them yells at you. They both chuckle and head off down the corridor.
+board_text = _([[When you arrive at your ship's airlock, the chest containing the Dvaered holopainting is already being carted onto the Pinnacle by a pair of crewmen. "You'll be wanting your reward, eh? Come along", one of them yells at you. They both chuckle and head off down the corridor.
 
 You follow the crewmen as they push the cart through the main corridor of the ship. Soon you arrive at a door leading to a large, luxurious compartment. You can tell at a glance that these are Baron Sauterfeldt's personal quarters. The Baron himself is present. He is a large man, wearing a tailored suit that manages to make him look stately rather than pompous, a monocle, and several rings on each finger. In a word, the Baron has a taste for the extravagant.
 
@@ -65,7 +65,7 @@ You cough to get the Baron's attention. He looks up, clearly displeased at the d
 
 refusetext = _([["Oh. Oh well, too bad. I'll just try to find someone who will take the job, then. Sorry for taking up your time. See you around!"]])
 
-angry_confirmtext = _([[This option will lock you out of accepting this mission permanently. This cannot be undone. Are you sure you wish to permanently lock yourself out of doïng this mission? (If you select "No", you will instead politely decline the offer.)]])
+angry_confirmtext = _([[This option will lock you out of accepting this mission permanently. This cannot be undone. Are you sure you wish to permanently lock yourself out of doing this mission? (If you select "No", you will instead politely decline the offer.)]])
 
 angrytext = _([[The pilot frowns. "I see I misjudged you. I thought for sure you would be more open-minded. Get out of my sight and never show your face to me again! You are clearly useless to my employer."]])
 

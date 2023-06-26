@@ -54,13 +54,13 @@ misn_desc = _("You and a pirate informer have conspired to steal a vulnerable {s
 
 ask_text = _([[You approach the pirate informer. "I have a fantastic offer for you," they say. "There's a practically defenseless {shiptype} just waiting to be… taken off its pilot's hands. For just {credits}, I'll tell you the ship's location and even help you get the ship! Well? What do you say?"]])
 
-explain_text = _([[You pay the informant. "Heh heh, thanks! The ship is beïng piloted by someone called {pilot}. It can be found in the {system} system and it's been damaged by a failed pirate attack. All you need to do is locate the ship, disable it, board it, and let me take care of sneaking it out of the system. Don't forget to equip ion cannons or Medusa missiles or something like that so you don't accidentally blow the ship up. We'll meet up on a nearby planet somewhere after that; I'll let you choose which one."]])
+explain_text = _([[You pay the informant. "Heh heh, thanks! The ship is being piloted by someone called {pilot}. It can be found in the {system} system and it's been damaged by a failed pirate attack. All you need to do is locate the ship, disable it, board it, and let me take care of sneaking it out of the system. Don't forget to equip ion cannons or Medusa missiles or something like that so you don't accidentally blow the ship up. We'll meet up on a nearby planet somewhere after that; I'll let you choose which one."]])
 
 nomoney_text = _([["You don't even have enough money! Don't waste my time!"]])
 
-offer_newtarget_free_text = _([[As you prepare to board your target, the pirate informer who you paid {credits} to help you steal the {shiptype} stops you. "Wait a moment, friend. I have an offer just for you! For no additional cost, I can steal this ship for you instead of the target we were originally goïng to go after. Well? What do you say?"]])
+offer_newtarget_free_text = _([[As you prepare to board your target, the pirate informer who you paid {credits} to help you steal the {shiptype} stops you. "Wait a moment, friend. I have an offer just for you! For no additional cost, I can steal this ship for you instead of the target we were originally going to go after. Well? What do you say?"]])
 
-offer_newtarget_text = _([[As you prepare to board your target, the pirate informer who you paid {credits} to help you steal the {shiptype} stops you. "Wait a moment, friend. I have an offer just for you! For just {extracredits} more, I can steal this ship for you instead of the target we were originally goïng to go after. Well? What do you say?"]])
+offer_newtarget_text = _([[As you prepare to board your target, the pirate informer who you paid {credits} to help you steal the {shiptype} stops you. "Wait a moment, friend. I have an offer just for you! For just {extracredits} more, I can steal this ship for you instead of the target we were originally going to go after. Well? What do you say?"]])
 
 subdue_text = {
    _("You successfully infiltrate the ship. The pirate informer takes control of the ship and prepares to make the getaway."),

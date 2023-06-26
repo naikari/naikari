@@ -131,7 +131,7 @@ cond_articles = {
    },
    {
       title = _("Melendez Sponsors Race Events"),
-      text = _([[Races organized by a group of enthusiasts have really caught on all across the galaxy, leading to sponsorship of huge sums of prize money from Melendez Corporation. "It's exciting," one of the organizers said. "We still run the casual races for people who are new to the sport, but Melendez really offers a big check to the winners of the competitive races! Competition is high, and that's something I really like seeïng." Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
+      text = _([[Races organized by a group of enthusiasts have really caught on all across the galaxy, leading to sponsorship of huge sums of prize money from Melendez Corporation. "It's exciting," one of the organizers said. "We still run the casual races for people who are new to the sport, but Melendez really offers a big check to the winners of the competitive races! Competition is high, and that's something I really like seeing." Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
       tag = "mhint_Racing Skills 2",
       mission = "Racing Skills 2",
       done = "Racing Skills 1",
@@ -144,7 +144,7 @@ cond_articles = {
    },
    {
       title = _("Mercenary Registrations Skyrocket"),
-      text = _([[Many pilots are realizing just how lucrative the life of a mercenary can be. "Missions that require a Mercenary License pay a lot of money," one analyst explained. "The cost of the Mercenary License may seem high, but it will easily pay for itself ten times over by granting access to so many lucrative missions. Not to mention, doïng mercenary missions for militaries around the galaxy is a quick way to gain access to restricted areäs." A Mercenary License can be obtained simply by purchasing it at any outfitter, just like all other licenses.]]),
+      text = _([[Many pilots are realizing just how lucrative the life of a mercenary can be. "Missions that require a Mercenary License pay a lot of money," one analyst explained. "The cost of the Mercenary License may seem high, but it will easily pay for itself ten times over by granting access to so many lucrative missions. Not to mention, doing mercenary missions for militaries around the galaxy is a quick way to gain access to restricted areäs." A Mercenary License can be obtained simply by purchasing it at any outfitter, just like all other licenses.]]),
       tag = "mhint_Patrol",
       cond = function()
          return (player.numOutfit("Mercenary License") <= 0

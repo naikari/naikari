@@ -46,7 +46,7 @@ function create()
    bribe_paid = {
       p_("bribe_paid", "\"You're lucky I'm so kind.\""),
       p_("bribe_paid", "\"Life doesn't get easier than this.\""),
-      p_("bribe_paid", "\"Pleasure doïng business.\""),
+      p_("bribe_paid", "\"Pleasure doing business.\""),
       p_("bribe_paid", "\"See you again, real soon.\""),
       p_("bribe_paid", "\"I'll be around if you get generous again.\""),
       p_("bribe_paid", "\"Lucky day, lucky day!\""),

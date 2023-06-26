@@ -185,7 +185,7 @@ messages = {
    {
       text = {
          _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
-         _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doïng it, so don't hesitate to try the mission again later."]]),
+         _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
          _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's usually expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
          _([["These computer symbols can be confusing sometimes! I've figured it out, though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
          _([["I just found out why launchers have their mass listed as a range rather than a single number. It's because of the ammo. The smaller number is what it weighs if you're out of ammo, and the bigger number is what it weighs when your ammo is full."]]),
@@ -237,7 +237,7 @@ messages = {
       text = {
          _([["I won't lie, the Soromid freak me the hell out. Something's just… fishy about them. You know what I mean?"]]),
          _([["I worry about big genetics, you know? All those gene manipulators, it just isn't natural."]]),
-         _([["I've been spending a lot of time around the Soromid lately. It's nice to be back home. Not like I really mind beïng around the Soromid, of course. Fine people, the Soromid. They just start giving you the creeps after a while, know what I mean?"]]),
+         _([["I've been spending a lot of time around the Soromid lately. It's nice to be back home. Not like I really mind being around the Soromid, of course. Fine people, the Soromid. They just start giving you the creeps after a while, know what I mean?"]]),
       },
    },
    {
@@ -262,7 +262,7 @@ messages = {
    {
       faction = "Empire",
       text = {
-         _([["This thing with pirates showing up in Hakoi worries me. I have a feeling something bad is goïng to happen to the Empire, but I hope I'm wrong."]]),
+         _([["This thing with pirates showing up in Hakoi worries me. I have a feeling something bad is going to happen to the Empire, but I hope I'm wrong."]]),
          _([["Those damn pirates are in Hakoi now. What happened to the Empire? We used to be the strongest in all the universe, and now what, we can't stop a few criminals from getting in?"]]),
       },
       cond = function()
@@ -274,7 +274,7 @@ messages = {
       text = {
          _([["My great-great-great-grandfather fought in the Dvaered Revolts! We still have the holovids he made. I'm proud to be a Dvaered!"]]),
          _([["You'd better not mess with the Dvaered. Our military is the largest and strongest in the galaxy. Nobody can stand up to us!"]]),
-         _([["House Dvaered? House? The Empire is weak and useless, we don't need them anymore! I say we declare ourselves an independent faction today. What are they goïng to do, subjugate us? We all know how well that went last time! Ha!"]]),
+         _([["House Dvaered? House? The Empire is weak and useless, we don't need them anymore! I say we declare ourselves an independent faction today. What are they going to do, subjugate us? We all know how well that went last time! Ha!"]]),
          _([["I'm thinking about joining the military. Every time I see or hear news about those rotten FLF bastards, it makes my blood boil! They should all be pounded into space dust!"]]),
          _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
          _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to creäte that nebula so they would have a place to hide. Damn criminals…"]]),
@@ -318,7 +318,7 @@ messages = {
    {
       faction = "Soromid",
       text = {
-         _([["Can you believe it? I was goïng to visit Sorom to find my roots, and then boom! It got vaporized hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
+         _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got vaporized hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
          _([["Yes, it's true, our military ships are alive. Most civilians don't get to own bioships, though, and have to make do with synthetic constructs just like everyone else."]]),
          _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
          _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
@@ -530,7 +530,7 @@ function spawnDealer()
                      _([["Hehe, thanks! I'm transferring the {outfit} to your account. You'll see it in your outfits list."]]),
                      _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {outfit} into your account now."]]),
                      _([["A wise decision. The {outfit} is now yours. You'll find it along with the rest of your outfits."]]),
-                     _([["Good, good! I've transferred the {outfit} to your account. Pleasure doïng business with you!"]]),
+                     _([["Good, good! I've transferred the {outfit} to your account. Pleasure doing business with you!"]]),
                   }
                   tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
                         {outfit=data.outfit:name()}))
@@ -568,7 +568,7 @@ function spawnDealer()
                      _([["Hehe, thanks! I'm transferring the {ship} to your account."]]),
                      _([["Excellent! I'm sure you won't be disappointed. I'm transferring the {ship} into your account now."]]),
                      _([["A wise decision. The {ship} is now yours."]]),
-                     _([["Good, good! I've transferred the {ship} to your account. Pleasure doïng business with you!"]]),
+                     _([["Good, good! I've transferred the {ship} to your account. Pleasure doing business with you!"]]),
                   }
                   tk.msg("", fmt.f(sold_texts[rnd.rnd(1, #sold_texts)],
                         {ship=data.ship:name()}))

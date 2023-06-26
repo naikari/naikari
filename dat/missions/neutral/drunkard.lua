@@ -47,7 +47,7 @@ Well, occasionally she needs some things shipped that she can't just ask her dri
 
 pickup_text = _([[You land on the planet and hand the manager of the docks the crumpled claim slip that the drunkard gave you, realizing now that you don't think he even told you his name. The man looks at the slip, and then gives you an odd look before motioning for the dockworkers to load up the cargo that's brought out after he punches in a code on his electronic pad.]])
 
-deliver_text = _([[You finally arrive at your destination, bringing your ship down to land right beside a beautiful woman with long blonde locks in a long extravagant gown. You know this must be the countess, but you're unsure how she knew you were goïng to arrive, to be waiting for you. When you get out of your ship, you notice there are no dock workers anywhere in sight, only a group of heavily armed private militia that weren't there when you landed.
+deliver_text = _([[You finally arrive at your destination, bringing your ship down to land right beside a beautiful woman with long blonde locks in a long extravagant gown. You know this must be the countess, but you're unsure how she knew you were going to arrive, to be waiting for you. When you get out of your ship, you notice there are no dock workers anywhere in sight, only a group of heavily armed private militia that weren't there when you landed.
 
 You gulp as she motions to them without showing a hint of emotion. In formation, they all raise their weapons. As you think your life is about to end, every other row turns and hands off their weapon, and then marches forward and quickly unloads your cargo onto a small transport carrier, and march off. The countess smirks at you and winks before walking off. You breath a sigh of relief, only to realize you haven't been paid. As you walk back onto your ship, you see a card laying on the floor with simply her name, Countess Amelia Vollana.]])
 
@@ -55,7 +55,7 @@ pay_text = _([[As you finish your takeoff procedures and once again enter the co
 
 "Hello again. It's Willie. I'm just here to inform you that the countess has taken care of your payment and transferred it to your account. And don't worry about me, the countess has covered my portion just fine!"
 
-You check your account balance as he closes the comm channel to find yourself {credits} richer. Just beïng alive felt good, but this feels better. You can't help but think that she might have given him more than just the 25% he was asking for, judging by his sunny disposition. At least you have your life, though!]])
+You check your account balance as he closes the comm channel to find yourself {credits} richer. Just being alive felt good, but this feels better. You can't help but think that she might have given him more than just the 25% he was asking for, judging by his sunny disposition. At least you have your life, though!]])
 
 log_text = _([[You helped some drunkard deliver goods for some countess. You thought you might get killed along the way, but you survived and got a generous payment.]])
 

@@ -44,7 +44,7 @@ require "missions/soromid/common"
 
 ask_text = _([[Chelsea looks at you with surprise. "Oh! {player}! It's nice to see you again! I, uh, decided to change my pronouns. I'm using they/them pronouns again." You thank them for telling you and ask what they're looking at. "Oh, information about this gang we got in hot water with. They call themselves the 'Imperyan Brotherhood' and they're a vicious anti-Soromid organization. They claim the Soromid are 'degenerating' Imperial society with their gene treatments, the ones that saved them from the plague of Sorom. Really bigoted stuff.
 
-"But what really troubles me is, I remember my dad talking about 'the brotherhood' on occasion. It could be a coincidence, but if there's a connection… but then again, goïng there myself could be pretty dangerous. Too many pirates around, and besides, if there's anything behind my hunch, this could go south real fast.
+"But what really troubles me is, I remember my dad talking about 'the brotherhood' on occasion. It could be a coincidence, but if there's a connection… but then again, going there myself could be pretty dangerous. Too many pirates around, and besides, if there's anything behind my hunch, this could go south real fast.
 
 "Actually, maybe you could help! Could you meet me on {startplanet} in the {startsystem} system and then escort me to {destplanet} in the {destsystem} system and back, and back me up while I confront my parents? I could give you, say, {credits} in exchange."]])
 
@@ -60,14 +60,14 @@ home_text = {}
 home_text[1] = _([[You land and dock on {destplanet} with trepidation and meet up with Chelsea. It seems they're just as tense as you are. They make a phone call, presumably to their parents, asking to meet them at the bar for "some catching up". They then hang up and look at you with a serious expression. "I seriously hope my hunch is wrong. Those Imperyan Brotherhood types, you saw how dangerous they can be. Absolutely vicious and won't rest until you're dead the second they think you're a… well. I don't want to repeat the horrible thing they say about the Soromid. So be ready for anything, OK?" You nod, and you head to the bar with Chelsea.
 
 After a half hour or so of waiting, Chelsea points out a couple entering the bar, a respectable-looking man and woman. They must be her parents. When they see Chelsea, they walk over and warmly greet Chelsea, but do so using a name you don't recognize. Chelsea sighs. "I told you, that's not my name anymore. It's 'Chelsea'. And I'm using they/them pronouns now."]])
-home_text[2] = _([["Ah, right, I'm so sorry about that," Chelsea's mom says after a short pause. "This is so hard! I know I slip up sometimes, but don't you worry, I'm trying my best. I've known you as C– uh, your old name for so long, it's goïng to take awhile to get used to 'Chelsea'."
+home_text[2] = _([["Ah, right, I'm so sorry about that," Chelsea's mom says after a short pause. "This is so hard! I know I slip up sometimes, but don't you worry, I'm trying my best. I've known you as C– uh, your old name for so long, it's going to take awhile to get used to 'Chelsea'."
 
 "They pronouns?" Chelsea's father raises an eyebrow as he speaks. "That's a plural noun, how's that work?"
 
 "It's just singular 'they', dad," Chelsea responds with a tinge of annoyance that they're clearly trying to hide. "You use it all the time without realizing it. It dates back to centuries before space travel."]])
 home_text[3] = _([[Chelsea's father shrugs. "I don't get it, but whatever makes you happy, I guess. So, tell me, son– uh, er, I mean, kid. What brings you here?"
 
-"Oh, um, I just wanted to catch up with you, is all. I'm doïng real well as a pilot in Soromid space."
+"Oh, um, I just wanted to catch up with you, is all. I'm doing real well as a pilot in Soromid space."
 
 Chelsea's father frowns. "You should be careful there. Lots of scammers, you know?"
 
@@ -90,7 +90,7 @@ home_text[6] = _([["Mom, dad… I'm not your son, I never was, and I never will 
 
 end_text = _([[After finishing docking procedures on {planet}, you meet a dejected Chelsea. You offer your condolences. "Thank you, {player}," they reply. "You know, I always knew my parents weren't perfect, but I thought they were good. I thought they were telling the truth when they said they accepted me. And I never fully appreciated the gravity of the things they said, or that they had such bigoted attitudes toward the Soromid.
 
-"I've made up my mind. I'm goïng to train to become a great pilot, and I'm goïng to do whatever I can to help put an end to the Imperyan Brotherhood. Knowing that I was raised by people in that vile hate group… I can't ignore them." Chelsea hands you a credit chip. "Thank you for your help, {player}. I'm goïng to continue to improve my ship and my skills as a pilot. I hope to see you again when I'm stronger." You wish them luck and part ways.]])
+"I've made up my mind. I'm going to train to become a great pilot, and I'm going to do whatever I can to help put an end to the Imperyan Brotherhood. Knowing that I was raised by people in that vile hate group… I can't ignore them." Chelsea hands you a credit chip. "Thank you for your help, {player}. I'm going to continue to improve my ship and my skills as a pilot. I hope to see you again when I'm stronger." You wish them luck and part ways.]])
 
 left_fail_text = _("You have lost contact with Chelsea and therefore failed the mission.")
 

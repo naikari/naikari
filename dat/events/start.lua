@@ -16,7 +16,7 @@ function name()
       p_("shipname", "Enterprise"),
       p_("shipname", "Firefly"),
       p_("shipname", "Fire Hazard"),
-      p_("shipname", "Goïng Merry"),
+      p_("shipname", "Going Merry"),
       p_("shipname", "Gunboat Diplomat"),
       p_("shipname", "Heart of Lead"),
       p_("shipname", "Icarus"),
