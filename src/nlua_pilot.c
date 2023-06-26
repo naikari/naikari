@@ -140,6 +140,7 @@ static int pilotL_cargoAdd( lua_State *L );
 static int pilotL_cargoRm( lua_State *L );
 static int pilotL_cargoList( lua_State *L );
 static int pilotL_credits( lua_State *L );
+static int pilotL_value(lua_State *L);
 static int pilotL_ship( lua_State *L );
 static int pilotL_idle( lua_State *L );
 static int pilotL_control( lua_State *L );
@@ -250,13 +251,14 @@ static const luaL_Reg pilotL_methods[] = {
    { "intrinsicSet", pilotL_intrinsicSet },
    { "intrinsicGet", pilotL_intrinsicGet },
    /* Ship. */
-   { "ship", pilotL_ship },
-   { "cargoFree", pilotL_cargoFree },
-   { "cargoHas", pilotL_cargoHas },
-   { "cargoAdd", pilotL_cargoAdd },
-   { "cargoRm", pilotL_cargoRm },
-   { "cargoList", pilotL_cargoList },
-   { "credits", pilotL_credits },
+   {"ship", pilotL_ship},
+   {"cargoFree", pilotL_cargoFree},
+   {"cargoHas", pilotL_cargoHas},
+   {"cargoAdd", pilotL_cargoAdd},
+   {"cargoRm", pilotL_cargoRm},
+   {"cargoList", pilotL_cargoList},
+   {"credits", pilotL_credits},
+   {"value", pilotL_value},
    /* Manual AI control. */
    {"idle", pilotL_idle},
    {"control", pilotL_control},
@@ -3658,7 +3660,7 @@ static int pilotL_cargoList( lua_State *L )
 
 
 /**
- * @brief Handles the pilots credits
+ * @brief Handles the pilot's credits.
  *
  *    @luatparam Pilot p Pilot to manipulate credits of.
  *    @luatparam[opt=0] number cred Credits to give to the pilot.
@@ -3671,6 +3673,21 @@ static int pilotL_credits( lua_State *L )
    p->credits += luaL_optlong( L, 2, 0 );
    p->credits = MAX( 0, p->credits ); /* Make sure it's not negative. */
    lua_pushnumber( L, p->credits );
+   return 1;
+}
+
+
+/**
+ * @brief Gets the total value of the pilot's ship and equipped outfits.
+ *
+ *    @luatparam Pilot p Pilot to get the value of.
+ *    @luatreturn number Total cost of the pilot's ship and equipped
+ *       outfits in credits, excluding unique outfits.
+ */
+static int pilotL_value(lua_State *L)
+{
+   Pilot *p = luaL_validpilot(L, 1);
+   lua_pushnumber(L, pilot_worth(p));
    return 1;
 }
 
