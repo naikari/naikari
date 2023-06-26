@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-23 11:19-0400\n"
+"POT-Creation-Date: 2023-06-26 14:21-0400\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -784,7 +784,7 @@ msgstr ""
 
 #: dat/assets/aldarus.xml:29
 msgid ""
-"The spaceport bar on Aldarus offers a variëty of recreätional activities, "
+"The spaceport bar on Aldarus offers a variety of recreätional activities, "
 "such as gambling and competitive gaming. There are also walled-off booths "
 "for private conversations, in case the bar's main areä is a little too "
 "public for comfort. The music here can also be a bit grating on the ears."
@@ -875,7 +875,7 @@ msgid ""
 "Originally intended to be a trading hub and refueling stop for merchants, "
 "this station has effectively turned into a hub for both pirates and bounty "
 "hunters. Authorities have long ago given up any hope of controlling the "
-"chaos, so everyone knows to be armed and remain vigilant at all times."
+"chaös, so everyone knows to be armed and remain vigilant at all times."
 msgstr ""
 
 #: dat/assets/alleyway.xml:28
@@ -976,7 +976,7 @@ msgstr ""
 
 #: dat/assets/ambre.xml:29
 msgid ""
-"Ambre's spaceport bar is never quiët. At regular intervals all other noise "
+"Ambre's spaceport bar is never quiet. At regular intervals all other noise "
 "in the bar is drowned out by the sound of cargo pods trundling along the "
 "railway just below. The bar was built relatively late in the planet's "
 "development; the Imperial government didn't see the need for one when Ambre "
@@ -1000,7 +1000,7 @@ msgstr ""
 #: dat/assets/amhurst.xml:30
 msgid ""
 "If one didn't know better, they would assume this was a Dvaered bar. The "
-"rough aesthetic, the cliëntele, almost everything. There is little sign of "
+"rough aesthetic, the clientele, almost everything. There is little sign of "
 "the usual Za'lek trappings here."
 msgstr ""
 
@@ -1314,7 +1314,7 @@ msgstr ""
 
 #: dat/assets/arch_arai.xml:30
 msgid ""
-"This bar is a quiët place. Though it is certainly not lacking in patronage, "
+"This bar is a quiet place. Though it is certainly not lacking in patronage, "
 "the people who come here don't seem about to make a fuss over anything. The "
 "effect is contagious, making newcomers follow the example of those who are "
 "already there almost instinctively."
@@ -1517,7 +1517,7 @@ msgid ""
 "The archetype of a Za'lek bar, although a very crowded one. The crowd seems "
 "to be divided up into groups of people discussing things in hushed tones. "
 "There are also one or two people wandering about with notepads, though "
-"everyone goes quiët when they approach."
+"everyone goes quiet when they approach."
 msgstr ""
 
 #: dat/assets/atryssa_iv.xml:2
@@ -1685,7 +1685,7 @@ msgstr ""
 #: dat/assets/benteen.xml:27
 msgid ""
 "Benteen is one of the Empire's primary agriworlds. It grows most of the "
-"crops that are bound for the western systems. It is a quiët world, with "
+"crops that are bound for the western systems. It is a quiet world, with "
 "little in the way of the bustle and fuss of other, more core, planets."
 msgstr ""
 
@@ -1768,7 +1768,7 @@ msgstr ""
 #: dat/assets/bolero.xml:28
 msgid ""
 "The bar here is an old-Earth style pub, with a low ceiling, warm beer and "
-"good food. The atmosphere is warm and welcoming, the cliënts are all polite "
+"good food. The atmosphere is warm and welcoming, the clients are all polite "
 "and cheerful and the bouncers barely loom at all."
 msgstr ""
 
@@ -2135,7 +2135,7 @@ msgstr ""
 
 #: dat/assets/colley.xml:27
 msgid ""
-"Colley is a popular retirement and vacation spot due to its quiët and "
+"Colley is a popular retirement and vacation spot due to its quiet and "
 "unassuming nature. The world has mild weather and is ideally closeted away "
 "from the cares and worries of the wider galaxy."
 msgstr ""
@@ -2181,7 +2181,7 @@ msgid ""
 "Given the relative stability of this world the bar looks rather more Empire "
 "standard-issue than on many Soromid worlds. There are tables, chairs, "
 "dispensers, a barman and, most importantly, drinks. These there are in "
-"profusion, though with this being a smaller world, not in any great variëty. "
+"profusion, though with this being a smaller world, not in any great variety. "
 "If you ask for a cocktail though, you'll likely be directed to one of the "
 "local sulphurous hot-water geysers."
 msgstr ""
@@ -2254,7 +2254,7 @@ msgid ""
 "Despite bordering on a dangerous sector of space, the Corvus system, and "
 "Crow in particular, are thriving. The planet is a frontier of culture, "
 "commerce, and prosperity. Even for the Soromid, one of the youngest "
-"sociëties in the galaxy, being away from the core worlds can give people the "
+"societies in the galaxy, being away from the core worlds can give people the "
 "breathing room to live on the edge."
 msgstr ""
 
@@ -2591,7 +2591,7 @@ msgstr ""
 msgid ""
 "Dono is one of the more laid-back Soromid worlds. It is quite Earth-like and "
 "the Soromid make use of the strange properties of the local flora and fauna "
-"in their genetic experiments. It is a quiët world, with little that stands "
+"in their genetic experiments. It is a quiet world, with little that stands "
 "out about it."
 msgstr ""
 
@@ -3199,7 +3199,7 @@ msgstr ""
 
 #: dat/assets/em_5.xml:30
 msgid ""
-"Deep within Empire space, Em 5 is a quiët world. Few would have ranked it "
+"Deep within Empire space, Em 5 is a quiet world. Few would have ranked it "
 "highly in the spectrum of galactic politics, yet after the Incident it "
 "gained notability when it became a temporary refuge of the Emperor. In the "
 "time since, it's become a popular place for the aristocracy to meet."
@@ -3274,7 +3274,7 @@ msgstr ""
 #: dat/assets/emperors_fist.xml:28
 msgid ""
 "The bar is clearly designed to harken back to the lost Old Earth, containing "
-"various ancient artifacts and even old-school Earth clocks, albeit "
+"various ancient artifacts and even old-school Earth clocks, albeït "
 "recalibrated slightly to better match the day length of Emperor's Fist."
 msgstr ""
 
@@ -3689,7 +3689,7 @@ msgstr ""
 
 #: dat/assets/fuzka.xml:30
 msgid ""
-"The bar caters to its cliëntele with considerable efficiency. Since Fuzka "
+"The bar caters to its clientele with considerable efficiency. Since Fuzka "
 "has quite a high amount of civilian traffic, its bar needs to handle the "
 "many passengers who are waiting for their transport to depart."
 msgstr ""
@@ -3922,7 +3922,7 @@ msgstr ""
 #: dat/assets/ginni.xml:28
 msgid ""
 "Somewhat unusual in Dvaered space, Ginni is primarily a crop growing world. "
-"Though most Dvaered worlds trace their lineage to either mining or "
+"Though most Dvaered worlds trace their lineäge to either mining or "
 "industrial roots, Ginni was a food producer even in the days when the Empire "
 "was still in control. However, with the change in political influence "
 "throughout the region, Ginni's government wisely chose to ally with the "
@@ -3993,7 +3993,7 @@ msgstr ""
 
 #: dat/assets/golem.xml:29
 msgid ""
-"Despite being hellish, Golem has a respectably large population, albeit a "
+"Despite being hellish, Golem has a respectably large population, albeït a "
 "population restricted to hab units at the top of mountains. The gasses here "
 "are useful, and hence mined, but the world is not harsh enough to justify "
 "making it a prison planet. Many lower-class Dvaered make their homes here, "
@@ -4316,8 +4316,8 @@ msgstr ""
 #: dat/assets/hassak.xml:26
 msgid ""
 "Not exactly unhabitable and not exactly habitable, Hassak is one of those "
-"places where the less fortunate in sociëty end up. The people here have it "
-"hard, with storms of almost every variëty plaguing the landscape on a "
+"places where the less fortunate in society end up. The people here have it "
+"hard, with storms of almost every variety plaguing the landscape on a "
 "regular basis. The population feeds itself with the sale of raw minerals to "
 "the Nexus corporation, which buys well under the market price, because it "
 "can."
@@ -4530,7 +4530,7 @@ msgstr ""
 
 #: dat/assets/hs__5_1.xml:30
 msgid ""
-"This bar is even more of a mess than usual for a Za'lek world. The cliëntele "
+"This bar is even more of a mess than usual for a Za'lek world. The clientele "
 "are young, and congregate around the randomly-placed tables and chairs "
 "enthusiastically arguing over a myriad of subjects. Unlike most Za'lek "
 "worlds, there are few scientists here."
@@ -4669,7 +4669,7 @@ msgstr ""
 
 #: dat/assets/ian.xml:30
 msgid ""
-"On Ian, it's all about being seen. The bar never goes quiët, though the "
+"On Ian, it's all about being seen. The bar never goes quiet, though the "
 "level of noise also never grows to unbearable proportions. Both the gentry "
 "and the rich up-starts come to the recreätional facilities to mingle and to "
 "strut their stuff to the offworlders who come here on business."
@@ -4901,7 +4901,7 @@ msgstr ""
 
 #: dat/assets/janus_station.xml:28
 msgid ""
-"Janus Station is a quiët garrison post for the empire. It serves as a "
+"Janus Station is a quiet garrison post for the empire. It serves as a "
 "potential rallying point for imperial forces trying to defend the core, but "
 "at the moment, it is considered an acceptable post for older crewmen wanting "
 "a relaxing post before they retire to Amphion not far away."
@@ -4942,9 +4942,9 @@ msgstr ""
 msgid ""
 "Jaxheen was established in a time when the Soromid had already settled many "
 "of the worlds that make up the Soromid core today. The colonization effort "
-"was focused more on building a smoothly functioning sociëty than on "
+"was focused more on building a smoothly functioning society than on "
 "pioneering, a mentality that paid off in the long run. Jaxheen doesn't "
-"suffer from many of the inefficiencies found in sociëties that evolved by "
+"suffer from many of the inefficiencies found in societies that evolved by "
 "building on themselves. This has made the world quite powerful economically."
 msgstr ""
 
@@ -5667,7 +5667,7 @@ msgstr ""
 #: dat/assets/lugun.xml:30
 msgid ""
 "This bar is full of chatting scientists and a few military personnel; though "
-"with Za'lek's sociëty, the two are not always readily apparent. It is very "
+"with Za'lek's society, the two are not always readily apparent. It is very "
 "clean and orderly however, with server droids handing out drinks and food."
 msgstr ""
 
@@ -5737,7 +5737,7 @@ msgstr ""
 msgid ""
 "There are two spaceport bars on Madria, one for regular visitors and one for "
 "immigrants. The one for immigrants is more or less a portal into Sirius "
-"sociëty – a one way portal. Normal spacers stay away from it."
+"society – a one way portal. Normal spacers stay away from it."
 msgstr ""
 
 #: dat/assets/magellan.xml:2
@@ -6149,7 +6149,7 @@ msgid ""
 "Both Soromid and non-Soromid frequent this spaceport bar. As Wildwood "
 "Station is more of a service utility than a real community, M.K. is often "
 "the first real Soromid port most new traders visit. It is therefore here "
-"they get their first taste of a full-fledged Soromid sociëty. It's not "
+"they get their first taste of a full-fledged Soromid society. It's not "
 "uncommon to find young pilots looking at the surroundings with a mixture of "
 "wonder and nervousness."
 msgstr ""
@@ -6212,7 +6212,7 @@ msgstr ""
 #: dat/assets/monsoon_station.xml:26
 msgid ""
 "Monsoon Station is the lone bastion of Sirius law enforcement in this areä "
-"of space. Though the region is generally quiët, the soldiers here take their "
+"of space. Though the region is generally quiet, the soldiers here take their "
 "responsibility seriously."
 msgstr ""
 
@@ -6309,7 +6309,7 @@ msgstr ""
 
 #: dat/assets/mugen.xml:26
 msgid ""
-"An unusually stable hot world, Mugen has become home to a wide variëty of "
+"An unusually stable hot world, Mugen has become home to a wide variety of "
 "industrial processing companies. Using the planet's own heat via the stable "
 "magma streams that suffuse what passes for the planet's crust, smelting and "
 "refining operations can be carried out at significantly reduced cost."
@@ -6364,7 +6364,7 @@ msgstr ""
 msgid ""
 "As Myonei has quite a lot of goods to transport offworld at any given time, "
 "there is never a lull in the bustle of the spaceport bar. Freighter captains "
-"make up most of the cliëntele, as the workers tend to work continuous shifts "
+"make up most of the clientele, as the workers tend to work continuous shifts "
 "and head straight to Culex when they get off."
 msgstr ""
 
@@ -6377,7 +6377,7 @@ msgid ""
 "The Dvaered war machine relies a lot on flinging chunks of matter at enemy "
 "ships, and those chunks of matter have to come from somewhere. Myuirr "
 "Station is one of the most productive weapon production facilities in "
-"Dvaered space. It produces a wide variëty of ballistic and missile weaponry "
+"Dvaered space. It produces a wide variety of ballistic and missile weaponry "
 "for the Dvaered military and any warlord who can supply a sufficiently large "
 "bribe."
 msgstr ""
@@ -6390,7 +6390,7 @@ msgstr ""
 msgid ""
 "Naga is a purely aquatic planet. The land closest to the surface is under "
 "more than a mile of water. The planet is teeming with life of mind-boggling "
-"variëty and type. The planets scientific and aesthetic value makes it one of "
+"variety and type. The planets scientific and aesthetic value makes it one of "
 "the most favored Za'lek worlds."
 msgstr ""
 
@@ -6595,7 +6595,7 @@ msgid ""
 "The Slop and Grill is one of the nastiest taverns in the universe. The food "
 "and drink don't help matters. Most of it is brewed on New Haven and wouldn't "
 "pass any minimal health insurance tests anywhere. Some of the booze even "
-"doubles as ship fuel, in times of need. The cliënts are also deep space "
+"doubles as ship fuel, in times of need. The clients are also deep space "
 "gangsters, pirates, black marketeers, mercenaries and other shady folk that "
 "insist on keeping the ground coated with blood and broken teeth. Not a great "
 "place to bring your family."
@@ -6956,7 +6956,7 @@ msgstr ""
 
 #: dat/assets/olljan.xml:27
 msgid ""
-"Olljan is an aquatic world with a rich variëty of indigenous plant and "
+"Olljan is an aquatic world with a rich variety of indigenous plant and "
 "animal life. In particular, the ocean's chemical composition (which contains "
 "only 65% water, the rest is a mix of various chemicals) has given rise to "
 "unique and amazing single-cellular life are providing biologists and medical "
@@ -7056,7 +7056,7 @@ msgstr ""
 msgid ""
 "Oni is a harsh place to live, with a thick, toxic atmosphere, violent "
 "weather and frequent seismic activity. All of this makes it a favored "
-"dumping ground for criminals and other undesirables of Dvaered sociëty. "
+"dumping ground for criminals and other undesirables of Dvaered society. "
 "Soldiers assigned here consider it to be a punishment almost as severe as "
 "being a prisoner. It's one of the few planets controlled by the central "
 "Dvaered government, as no sensible warlord wants the place."
@@ -7298,7 +7298,7 @@ msgstr ""
 
 #: dat/assets/pauldur.xml:29
 msgid ""
-"This bar is fairly quiët. Not many people stop by Pauldur who aren't from "
+"This bar is fairly quiet. Not many people stop by Pauldur who aren't from "
 "the moon to begin with, and those who are from here don't usually stop by "
 "the spaceport bar."
 msgstr ""
@@ -7758,7 +7758,7 @@ msgstr ""
 
 #: dat/assets/qoral.xml:29
 msgid ""
-"This is a fairly typical spaceport bar. The cliëntele consists mostly of "
+"This is a fairly typical spaceport bar. The clientele consists mostly of "
 "merchants, though some locals come here also, if not for the drinks then for "
 "the chance to talk to people who come from more interesting places than "
 "Qoral."
@@ -8424,7 +8424,7 @@ msgstr ""
 
 #: dat/assets/sanchez.xml:29
 msgid ""
-"The bar is quiët and orderly, with a few deals going down in closed-off "
+"The bar is quiet and orderly, with a few deals going down in closed-off "
 "booths, nice food and only the occasional drunken brawl. The lord of "
 "Shanchez doesn't appreciate louts, it seems."
 msgstr ""
@@ -8724,7 +8724,7 @@ msgstr "상어"
 msgid ""
 "Sharak is a place where the wealthy make their homes. Rather than breathe "
 "the same air as the commoners on Edorn below, the people on this moon elect "
-"to form their own elite sociëty here on Sharak."
+"to form their own elite society here on Sharak."
 msgstr ""
 
 #: dat/assets/sharak.xml:29
@@ -8967,7 +8967,7 @@ msgstr ""
 #: dat/assets/sirou_alpha.xml:29
 msgid ""
 "The bar still smells of disinfectant and industrial equipment. Massive, yet "
-"quiët air scrubbers keep the air clean, no matter how much cigar smoke the "
+"quiet air scrubbers keep the air clean, no matter how much cigar smoke the "
 "Imperial officers here can throw at it. It's a popular stopping point for "
 "traders and Imperial soldiers alike."
 msgstr ""
@@ -9034,10 +9034,10 @@ msgstr ""
 
 #: dat/assets/slofeldt.xml:27
 msgid ""
-"Slofeldt is a floating museum and memorial to the Incident. It contains "
+"Slofeldt is a floating museüm and memorial to the Incident. It contains "
 "relics from Old Earth, as well as holos of Sol before the Incident "
 "sterilized it. It is a monument to last and remind people of days gone by. A "
-"place for quiët contemplation."
+"place for quiet contemplation."
 msgstr ""
 
 #: dat/assets/slofeldt.xml:28
@@ -9177,9 +9177,9 @@ msgid ""
 "natural abilities enhanced, diseases cured or appearances improved. All of "
 "these people need to be treated somewhere, and this is one such place. "
 "Soromid Wards Alpha is a massive medical facility, the largest of all the "
-"Soromid Wards. Thousands of cliënts can be treated here at any one time. "
+"Soromid Wards. Thousands of clients can be treated here at any one time. "
 "Most of the station's volume is taken up by personal treatment tanks, where "
-"cliënts spend anywhere from a 5 to 65 days in an artificial coma while their "
+"clients spend anywhere from a 5 to 65 days in an artificial coma while their "
 "genetic code is rewritten."
 msgstr ""
 
@@ -9191,16 +9191,16 @@ msgstr "소로미드 약탈자"
 #: dat/assets/soromid_wards_beta.xml:26
 msgid ""
 "While Soromid Wards Alpha in Shikima handles seven out of ten gene therapy "
-"cliënts, it is ill equipped for some of the more invasive operations. "
+"clients, it is ill equipped for some of the more invasive operations. "
 "Soromid Wards Beta, on the other hand, has several facilities that make such "
 "operations possible. Of course these advanced procedures come at a higher "
-"cost, so the cliënts visiting Beta tend to be from the upper classes of "
-"galactic sociëty."
+"cost, so the clients visiting Beta tend to be from the upper classes of "
+"galactic society."
 msgstr ""
 
 #: dat/assets/soromid_wards_beta.xml:27
 msgid ""
-"The spacedock bar, which doubles as a waiting room for cliënts, provides its "
+"The spacedock bar, which doubles as a waiting room for clients, provides its "
 "visitors with information on the services that are rendered on Beta, such as "
 "ocular augmentation, bone and muscle reënforcement, disease immunities and "
 "reproductive facility expansion."
@@ -9418,7 +9418,7 @@ msgstr ""
 #: dat/assets/sudra.xml:29
 msgid ""
 "This spaceport bar is unsavory. No other word will describe the place with "
-"the same accuracy. A good portion of the bar's cliëntele are wearing hoods, "
+"the same accuracy. A good portion of the bar's clientele are wearing hoods, "
 "masks, or other garments to hide their personal features. The lighting is "
 "set to quite a dim level, allowing customers to find corners as dark as they "
 "please. Despite these obvious signs, the Dvaered officials that sometimes "
@@ -9902,14 +9902,14 @@ msgid ""
 "why people say such things. The planet is uninteresting by all means, having "
 "little in the way of natural resources and lacking an atmosphere entirely. "
 "But the Soromid still live here, mainly because they can. Thymo counts as a "
-"civilian world, albeit not a very rich one."
+"civilian world, albeït not a very rich one."
 msgstr ""
 
 #: dat/assets/thymo.xml:28
 msgid ""
 "Like everything on Thymo, the spaceport bar is sober, utilitarian, "
 "efficient. Some pilots like it that way though, as the modest but content "
-"cliëntele testifies."
+"clientele testifies."
 msgstr ""
 
 #: dat/assets/tiger.xml:2
@@ -10063,7 +10063,7 @@ msgstr "투리온의 불꽃"
 #: dat/assets/trevis_station.xml:26
 msgid ""
 "Trevis Station is the local law enforcement base. It is fairly small and "
-"only has a limited number of ships available, but given how quiët this "
+"only has a limited number of ships available, but given how quiet this "
 "sector of space is most of the time it can deal with whatever incidents do "
 "occur."
 msgstr ""
@@ -10475,7 +10475,7 @@ msgid ""
 "Many people who live in the Empire think of the Dvaered as unsophisticated, "
 "brawny louts who spend all day down in the mines and all night picking "
 "fights with each other. This is a stereotype, and it's hardly a fair "
-"description of Dvaered sociëty as a whole, but it happens to be absolutely "
+"description of Dvaered society as a whole, but it happens to be absolutely "
 "accurate when it comes to the Dvaereds on Utsuwa. The colony on this planet "
 "is a full-time mining operation, and all who live on Utsuwa work in the "
 "mining industry or its peripherals. Needless to say, House Dvaered gets a "
@@ -11036,7 +11036,7 @@ msgstr ""
 #: dat/assets/vorca.xml:31
 msgid ""
 "The average space pilot would, when walking into a Pirate bar, expect utter "
-"chaos, fraught with boozing, gambling, violence and narcotic substances. "
+"chaös, fraught with boozing, gambling, violence and narcotic substances. "
 "This is an expectation the bar on Vorca does not live up to. As a matter of "
 "fact the establishment is quite tightly policed by henchmen of the clan "
 "leaders and as such is one of the most orderly places within several jumps. "
@@ -11089,7 +11089,7 @@ msgstr ""
 msgid ""
 "A small, poor colony on the edge of Sirius inhabited space, Wagenni is one "
 "of those places that are doomed to forever dangle at the bottom rung of "
-"interstellar sociëty. The locals lead a rough, underpaid existence, the kind "
+"interstellar society. The locals lead a rough, underpaid existence, the kind "
 "that sparked the Dvaered Revolts elsewhere in the galaxy. Yet, there is no "
 "sign of discontent here. The Siriusites have accepted their fate and take "
 "strength from their faith."
@@ -11199,7 +11199,7 @@ msgid ""
 "Many of the denizens of Warden's End are richer and the bar caters to this "
 "with a bit more of a posh appearance. The usually rowdy pirates are kept in "
 "check by the small armies that seem to surround every seedy merchant, "
-"keeping the place quiët and, tensely, stable."
+"keeping the place quiet and, tensely, stable."
 msgstr ""
 
 #: dat/assets/warei.xml:2
@@ -11274,7 +11274,7 @@ msgstr ""
 msgid ""
 "Waterhole's Moon wouldn't be Waterhole's Moon if its bar wasn't called The "
 "Waterhole. Though the place is open to visitors from all origins and walks "
-"of life, the majority of the cliëntele is Imperial in nature. It seems that "
+"of life, the majority of the clientele is Imperial in nature. It seems that "
 "nothing creätes a longing for home like being away from it for prolonged "
 "periods of time."
 msgstr ""
@@ -11297,7 +11297,7 @@ msgstr ""
 #: dat/assets/wellen.xml:28
 msgid ""
 "Wellen is a good example of how poor Imperial planetary management can be. "
-"Started as a prestigious project, the world was to be a perfect sociëty with "
+"Started as a prestigious project, the world was to be a perfect society with "
 "good housing and facilities for everyone, lots of greenery, and no "
 "pollution. However, the Empire never supplied ample funds to cover these "
 "ambitions. Today Wellen is a slum of run-down, oftentimes half-finished "
@@ -11405,7 +11405,7 @@ msgstr ""
 
 #: dat/assets/wonclock.xml:29
 msgid ""
-"Being such an important location for Soromid sociëty, security on Woncloak "
+"Being such an important location for Soromid society, security on Woncloak "
 "is pretty tight. In particular, visitors have their background checked to "
 "make sure they're not here with a Za'lek agenda. The spaceport bar can only "
 "be accessed after pilots have passed all the security protocols."
@@ -11514,8 +11514,8 @@ msgid ""
 "Zabween is an old station. It was first built as an outpost to fight piracy, "
 "but with the destruction of Haven it has settled into a more traditional "
 "role. It presently functions as a largely commercial station. It keeps a "
-"museum with all sorts of ships and weapons that were used in the final fight "
-"against Haven, and this museum serves as a source of advertisement for the "
+"museüm with all sorts of ships and weapons that were used in the final fight "
+"against Haven, and this museüm serves as a source of advertisement for the "
 "station's now commercialized shipyard."
 msgstr ""
 
@@ -13405,7 +13405,7 @@ msgstr ""
 msgid ""
 "For light vessel pilots who demand unparalleled performance, Tricon's Zephyr "
 "is the engine of choice. Its best-in-class handling does come with the "
-"caveat of markedly increased power consumption, but those flying with Tricon "
+"caveät of markedly increased power consumption, but those flying with Tricon "
 "engines can usually afford the requisite reactor upgrades."
 msgstr ""
 
@@ -15789,7 +15789,7 @@ msgstr ""
 
 #: dat/outfits/utilities/modifiers/boarding_androids_mk2.xml:8
 msgid ""
-"The Boarding Android Mark 2 improves upon the wide variëty of implements "
+"The Boarding Android Mark 2 improves upon the wide variety of implements "
 "sported by its predecessor, additionally including scissor-hands and a "
 "sewing needle."
 msgstr ""
@@ -16849,7 +16849,7 @@ msgid ""
 "service. However, during the Dvaered Revolts most Goddard captains sided "
 "with the insurgents, and after the establishment of House Dvaered the Empire "
 "ceded the license for the aging vessel to them. Today, House Dvaered is "
-"House Goddard's biggest cliënt, and this military grade version has been "
+"House Goddard's biggest client, and this military grade version has been "
 "developed which features better armor and weapon damage at the cost of "
 "increased mass and energy consumption."
 msgstr ""
@@ -17149,7 +17149,7 @@ msgstr ""
 "선을 만듭니다."
 
 #: dat/ships/koala.xml:2 dat/ships/koala.xml:3
-msgid "Koala"
+msgid "Koäla"
 msgstr "코알라"
 
 #: dat/ships/koala.xml:7 dat/ships/quicksilver.xml:7
@@ -17162,8 +17162,9 @@ msgid "Melendez Corp."
 msgstr "메렌데즈 회사."
 
 #: dat/ships/koala.xml:15
+#, fuzzy
 msgid ""
-"The Koala is your standard cargo vessel. It's a small ship with little "
+"The Koäla is your standard cargo vessel. It's a small ship with little "
 "weapon space but a decent amount of cargo space. Good for the entrepreneur "
 "working his way to a vast space trade empire."
 msgstr ""
@@ -17262,7 +17263,7 @@ msgstr "두개골과 뼈"
 msgid ""
 "The stock Admonisher is a powerful vessel, especially for its size. Through "
 "the usual Skull and Bones refit the Pirate Admonisher features improved "
-"manoeuvrability and better cargo capacity, at a cost of reduced armor and "
+"maneuverability and better cargo capacity, at a cost of reduced armor and "
 "shielding."
 msgstr ""
 "스톡 Admonisher는 특히 그 크기에 비해 강력한 선박입니다. 일반적인 Skull and "
@@ -19648,7 +19649,7 @@ msgid "Zylex"
 msgstr ""
 
 #: dat/start.xml:3
-msgid "Eye of Chaos"
+msgid "Eye of Chaös"
 msgstr ""
 
 #: dat/start.xml:5
@@ -22178,7 +22179,7 @@ msgstr ""
 #.
 #. -- Prowl Event for the Baron mission string. Only used when NOT doing any Baron missions.
 #. --
-#: dat/events/baron/baron_prowl.lua:24 dat/missions/baron/baron_baron.lua:164
+#: dat/events/baron/baron_prowl.lua:24 dat/missions/baron/baron_baron.lua:165
 #: dat/missions/baron/baron_prince.lua:422
 msgid "Pinnacle"
 msgstr ""
@@ -24908,8 +24909,9 @@ msgid "Trader Quicksilver"
 msgstr "수은"
 
 #: dat/events/neutral/fuel_request.lua:52 dat/factions/spawn/trader.lua:8
-msgid "Trader Koala"
-msgstr ""
+#, fuzzy
+msgid "Trader Koäla"
+msgstr "해적 코뿔소"
 
 #: dat/events/neutral/fuel_request.lua:53 dat/factions/spawn/trader.lua:14
 msgid "Trader Mule"
@@ -24936,7 +24938,7 @@ msgstr "야마"
 #: dat/events/neutral/fuel_request.lua:58
 #: dat/events/tutorial/tutorial_enter.lua:77 dat/factions/spawn/miner.lua:11
 #, fuzzy
-msgid "Miner Koala"
+msgid "Miner Koäla"
 msgstr "코알라"
 
 #: dat/events/neutral/fuel_request.lua:59 dat/factions/spawn/miner.lua:13
@@ -25031,7 +25033,7 @@ msgstr ""
 #: dat/events/neutral/testengine.lua:46
 msgid ""
 "Suddenly, you hear a loud crack from your engine, and it starts to operate "
-"more quiëtly and at its full capacity again."
+"more quietly and at its full capacity again."
 msgstr ""
 
 #: dat/events/neutral/testengine.lua:47
@@ -25043,7 +25045,7 @@ msgstr ""
 #: dat/events/neutral/testengine.lua:48
 msgid ""
 "Your engine gets even louder and you brace yourself for an explosion or "
-"something, but then it quiëts down and returns to normal, much to your "
+"something, but then it quiets down and returns to normal, much to your "
 "surprise, confusion, and relief."
 msgstr ""
 
@@ -25114,14 +25116,14 @@ msgstr ""
 #: dat/events/neutral/testengine.lua:69
 msgid ""
 "Suddenly, you see sparks coming from your console. Your lights flicker and "
-"you prepare for the worst, but then everything quiëts down and control of "
+"you prepare for the worst, but then everything quiets down and control of "
 "your ship is restored."
 msgstr ""
 
 #: dat/events/neutral/testengine.lua:73
 msgid ""
 "You prepare for the worst as your engine makes noises and refuses to jump or "
-"land, but it soon quiëts down and returns to normal. You breathe a sigh of "
+"land, but it soon quiets down and returns to normal. You breathe a sigh of "
 "relief."
 msgstr ""
 
@@ -25632,131 +25634,136 @@ msgid "Fire Hazard"
 msgstr ""
 
 #: dat/events/start.lua:19
+msgctxt "shipname"
+msgid "Going Merry"
+msgstr ""
+
+#: dat/events/start.lua:20
 #, fuzzy
 msgctxt "shipname"
 msgid "Gunboat Diplomat"
 msgstr "외교 선박"
 
-#: dat/events/start.lua:20
+#: dat/events/start.lua:21
 msgctxt "shipname"
 msgid "Heart of Lead"
 msgstr ""
 
-#: dat/events/start.lua:21
+#: dat/events/start.lua:22
 msgctxt "shipname"
 msgid "Icarus"
 msgstr ""
 
-#: dat/events/start.lua:22
+#: dat/events/start.lua:23
 msgctxt "shipname"
 msgid "Little Rascal"
 msgstr ""
 
-#: dat/events/start.lua:23
+#: dat/events/start.lua:24
 msgctxt "shipname"
 msgid "Lusitania"
 msgstr ""
 
-#: dat/events/start.lua:24
+#: dat/events/start.lua:25
 msgctxt "shipname"
 msgid "Millennium Falcon"
 msgstr ""
 
-#: dat/events/start.lua:25
+#: dat/events/start.lua:26
 msgctxt "shipname"
 msgid "Myrmidon"
 msgstr ""
 
-#: dat/events/start.lua:26
+#: dat/events/start.lua:27
 msgctxt "shipname"
 msgid "Opportunity"
 msgstr ""
 
-#: dat/events/start.lua:27
+#: dat/events/start.lua:28
 #, fuzzy
 msgctxt "shipname"
 msgid "Optimus Prime"
 msgstr "시리우스 설교자"
 
-#: dat/events/start.lua:28
+#: dat/events/start.lua:29
 msgctxt "shipname"
 msgid "Outward Bound"
 msgstr ""
 
-#: dat/events/start.lua:29
+#: dat/events/start.lua:30
 msgctxt "shipname"
 msgid "Pathfinder"
 msgstr ""
 
-#: dat/events/start.lua:30
+#: dat/events/start.lua:31
 #, fuzzy
 msgctxt "shipname"
 msgid "Planet Jumper"
 msgstr "행성"
 
-#: dat/events/start.lua:31
+#: dat/events/start.lua:32
 msgctxt "shipname"
 msgid "Rocinante"
 msgstr ""
 
-#: dat/events/start.lua:32
+#: dat/events/start.lua:33
 msgctxt "shipname"
 msgid "Rustbucket"
 msgstr ""
 
-#: dat/events/start.lua:33
+#: dat/events/start.lua:34
 msgctxt "shipname"
 msgid "Serendipity"
 msgstr ""
 
-#: dat/events/start.lua:34
+#: dat/events/start.lua:35
 msgctxt "shipname"
 msgid "Shove Off"
 msgstr ""
 
-#: dat/events/start.lua:35
+#: dat/events/start.lua:36
 msgctxt "shipname"
 msgid "Sky Cutter"
 msgstr ""
 
-#: dat/events/start.lua:36
+#: dat/events/start.lua:37
 msgctxt "shipname"
 msgid "Terminal Velocity"
 msgstr ""
 
-#: dat/events/start.lua:37
+#: dat/events/start.lua:38
 #, fuzzy
 msgctxt "shipname"
 msgid "Titanic"
 msgstr "패닉!"
 
-#: dat/events/start.lua:38
+#: dat/events/start.lua:39
 msgctxt "shipname"
 msgid "Tobermoon"
 msgstr ""
 
-#: dat/events/start.lua:39
+#: dat/events/start.lua:40
 msgctxt "shipname"
 msgid "Vagabond"
 msgstr ""
 
-#: dat/events/start.lua:40
+#: dat/events/start.lua:41
 msgctxt "shipname"
 msgid "Vindicator"
 msgstr ""
 
-#: dat/events/start.lua:41
+#: dat/events/start.lua:42
 msgctxt "shipname"
 msgid "Windjammer"
 msgstr ""
 
 #. Assign a random name to the player's ship.
-#: dat/events/start.lua:55
+#: dat/events/start.lua:56
 #, fuzzy
 msgid "Remembering the Incident"
 msgstr "그 사건을 기억하면서."
 
-#: dat/events/start.lua:56
+#: dat/events/start.lua:57
 msgid ""
 "Today marks the ten year anniversary of the Incident, where a mysterious "
 "cataclysmic explosion ripped through the heart of the Empire, destroying "
@@ -27451,17 +27458,17 @@ msgstr ""
 #: dat/missions/baron/baron_baron.lua:36
 msgid ""
 "\"Oh, that's great! Okay, here's what Baron Sauterfeldt needs you to do. You "
-"should fly to the Dvaered world {planet}. There's an art museum dedicated to "
+"should fly to the Dvaered world {planet}. There's an art museüm dedicated to "
 "one of the greatest Warlords in recent Dvaered history. I forget his name. "
-"Drovan or something? Durvan? Uh, anyway. This museum has a holopainting of "
+"Drovan or something? Durvan? Uh, anyway. This museüm has a holopainting of "
 "the Warlord and his military entourage. His Lordship really wants this piece "
-"of art, but the museum has refused to sell it to him. So, we've sent agents "
+"of art, but the museüm has refused to sell it to him. So, we've sent agents "
 "to… appropriate… the holopainting.\"\n"
 "\n"
 "You raise an eyebrow, but the pilot on the other end seems to be oblivious "
 "to the gesture. \"So, right, you're going to {planet} to meet with our "
 "agents. You should find them in the spaceport bar. They'll get the item onto "
-"your ship, and you'll transport it out of Dvaered space. All quiët-like of "
+"your ship, and you'll transport it out of Dvaered space. All quiet-like of "
 "course. No need for the authorities to know until you're long gone. Don't "
 "worry, our people are pros. It'll go off without a hitch, trust me.\""
 msgstr ""
@@ -27502,7 +27509,7 @@ msgid ""
 "rectangular chest as tall as a man and as long as two. Clearly this "
 "holopainting is fairly sizeable. As you watch them from your bridge's "
 "viewport, you can't help but wonder how they managed to get something that "
-"big out of a Dvaered museum unnoticed."
+"big out of a Dvaered museüm unnoticed."
 msgstr ""
 
 #: dat/missions/baron/baron_baron.lua:48
@@ -27659,7 +27666,7 @@ msgstr "프론티어 시스템"
 #: dat/missions/flf/flf_diversion.lua:71 dat/missions/neutral/patrol.lua:65
 #: dat/missions/pirate/patrol.lua:53 dat/missions/pirate/ship_stealing.lua:187
 #: dat/missions/pirate/ship_stealing.lua:518
-#: dat/missions/tutorial/teenager.lua:105
+#: dat/missions/tutorial/teenager.lua:104
 #, fuzzy
 msgid "Fly to the {system} system"
 msgstr "프론티어 시스템"
@@ -27685,18 +27692,24 @@ msgid ""
 "won't be contacting you again."
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:150
-#: dat/missions/baron/baron_baron.lua:152
-#: dat/missions/baron/baron_baron.lua:154
+#: dat/missions/baron/baron_baron.lua:151
+#: dat/missions/baron/baron_baron.lua:153
+#: dat/missions/baron/baron_baron.lua:155
 msgid "Sauterfeldt's agents"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:226
+#: dat/missions/baron/baron_baron.lua:227
 msgid "The Baron's holopainting"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:227
+#: dat/missions/baron/baron_baron.lua:228
 msgid "A rectangular chest containing a holopainting."
+msgstr ""
+
+#: dat/missions/baron/baron_baron.lua:240
+#: dat/missions/shadow/darkshadow.lua:261
+#: dat/missions/shadow/darkshadow.lua:287
+msgid "It's not safe to land right now."
 msgstr ""
 
 #.
@@ -28172,7 +28185,7 @@ msgid ""
 "rear of the departing crew, but he stops when he passes by you.\n"
 "\n"
 "\"Well done citizen,\" he says. \"You have done your duty as an upstanding "
-"member of sociëty by rendering assistance to an official Dvaered patrol. In "
+"member of society by rendering assistance to an official Dvaered patrol. In "
 "addition, you complied with your instructions and destroyed a terrorist that "
 "threatened the peace and stability of the region. You have been rewarded "
 "appropriately.\" You check your balance and see that you have indeed been "
@@ -28186,7 +28199,7 @@ msgid ""
 "rear of the departing crew, but he stops when he passes by you.\n"
 "\n"
 "\"Well done citizen,\" he says. \"You have done your duty as an upstanding "
-"member of sociëty by rendering assistance to an official Dvaered patrol. "
+"member of society by rendering assistance to an official Dvaered patrol. "
 "However, you failed to comply with instructions, and let a potentially "
 "dangerous terrorist get away with his crimes. I will not apply any penalties "
 "in light of the situation, but consider yourself reprimanded.\""
@@ -29065,7 +29078,7 @@ msgstr ""
 #: dat/missions/soromid/comingout/srm_comingout2.lua:101
 #: dat/missions/soromid/comingout/srm_comingout4.lua:157
 #: dat/missions/tutorial/reynir.lua:116 dat/missions/tutorial/reynir.lua:148
-#: dat/missions/tutorial/teenager.lua:109
+#: dat/missions/tutorial/teenager.lua:108
 #: dat/missions/tutorial/tutorial3.lua:114
 #: dat/missions/tutorial/tutorial4.lua:114
 #: dat/missions/tutorial/tutorial_outfits.lua:159
@@ -29161,7 +29174,7 @@ msgstr ""
 #: dat/missions/empire/es_cargo.lua:38
 #: dat/missions/empire/es_longdistancecargo.lua:38
 #: dat/missions/neutral/anxiousmerchant.lua:48
-#: dat/missions/neutral/cargo_rush.lua:33 dat/missions/neutral/cruise.lua:39
+#: dat/missions/neutral/cargo_rush.lua:33 dat/missions/neutral/cruise.lua:38
 #: dat/missions/pirate/pir_cargo.lua:30
 msgid ""
 "Land on {planet} ({system} system) before {deadline}\n"
@@ -29222,7 +29235,7 @@ msgstr ""
 #: dat/missions/empire/es_cargo.lua:150
 #: dat/missions/empire/es_longdistancecargo.lua:159
 #: dat/missions/neutral/anxiousmerchant.lua:158
-#: dat/missions/neutral/cargo_rush.lua:163 dat/missions/neutral/cruise.lua:158
+#: dat/missions/neutral/cargo_rush.lua:163 dat/missions/neutral/cruise.lua:157
 #: dat/missions/pirate/pir_cargo.lua:158
 msgid ""
 "The fastest route to {planet} is not currently known to you. Landing to buy "
@@ -29664,7 +29677,7 @@ msgid ""
 "have another mission for you, should you choose to accept it. See, we've "
 "noticed that one of those Dvaered warlords is about to attack another "
 "Dvaered warlord in the {system} system, so we're going to take advantage of "
-"the situation and obliterate them in the chaos! These two warlords are "
+"the situation and obliterate them in the chaös! These two warlords are "
 "particularly vocal about wanting to invade the Frontier, so eliminating both "
 "of them should strike a blow to invasionist sentiment, at least temporarily. "
 "Would you be interested in joining the operation?\""
@@ -32498,7 +32511,7 @@ msgstr ""
 #: dat/missions/neutral/commodity_run.lua:50
 msgid ""
 "The containers of {commodity} are unloaded by robotic drones that scan and "
-"tally the contents. The human overseer hands you {credits} when they finish."
+"tally the contents. The human overseër hands you {credits} when they finish."
 msgstr ""
 
 #: dat/missions/neutral/commodity_run.lua:52
@@ -32563,8 +32576,7 @@ msgstr ""
 #. planet.cur():class() ~= "0" and planet.cur():class() ~= "1"
 #. and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
 #. and planet.cur():services()["inhabited"]
-#. and system.cur():presences()["Civilian"] ~= nil
-#. and system.cur():presences()["Civilian"] &gt; 0
+#. and system.cur():presence("Civilian") &gt; 0
 #. and (var.peek("tut_complete") == true
 #. or planet.cur():faction() ~= faction.get("Empire"))
 #. </cond>
@@ -32585,11 +32597,11 @@ msgstr ""
 #. Take passengers on a luxury cruise to and from a destination,
 #. stopping at as many attractions as possible.
 #. --
-#: dat/missions/neutral/cruise.lua:38
+#: dat/missions/neutral/cruise.lua:37
 msgid "Cruise"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:40
+#: dat/missions/neutral/cruise.lua:39
 #, fuzzy
 msgid ""
 "Land on {planet} ({system} system) before {deadline}\n"
@@ -32604,12 +32616,12 @@ msgstr "프론티어 시스템"
 #. All that calculation was for one direction, so multiply by 2 for
 #. the return trip.
 #. And randomize the allowance a bit.
-#: dat/missions/neutral/cruise.lua:108
+#: dat/missions/neutral/cruise.lua:107
 #, fuzzy
 msgid "Cruise: Budget tour to {planet} ({system} system)"
 msgstr "프론티어 시스템"
 
-#: dat/missions/neutral/cruise.lua:109
+#: dat/missions/neutral/cruise.lua:108
 msgid ""
 "Take a group of passengers on a budget cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -32617,12 +32629,12 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:111
+#: dat/missions/neutral/cruise.lua:110
 #, fuzzy
 msgid "Cruise: Value tour to {planet} ({system} system)"
 msgstr "프론티어 시스템"
 
-#: dat/missions/neutral/cruise.lua:112
+#: dat/missions/neutral/cruise.lua:111
 msgid ""
 "Take a group of passengers on a value cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -32630,12 +32642,12 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:114
+#: dat/missions/neutral/cruise.lua:113
 #, fuzzy
 msgid "Cruise: Modest tour to {planet} ({system} system)"
 msgstr "프론티어 시스템"
 
-#: dat/missions/neutral/cruise.lua:115
+#: dat/missions/neutral/cruise.lua:114
 msgid ""
 "Take a group of passengers on a modest cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -32643,12 +32655,12 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:117
+#: dat/missions/neutral/cruise.lua:116
 #, fuzzy
 msgid "Cruise: Luxury tour to {planet} ({system} system)"
 msgstr "프론티어 시스템"
 
-#: dat/missions/neutral/cruise.lua:118
+#: dat/missions/neutral/cruise.lua:117
 msgid ""
 "Take a group of passengers on a luxury cruise to {planet} in the {system} "
 "system and back within a certain time frame, stopping at as many attractions "
@@ -32656,12 +32668,12 @@ msgid ""
 "make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:120
+#: dat/missions/neutral/cruise.lua:119
 #, fuzzy
 msgid "Cruise: Exquisite tour to {planet} ({system} system)"
 msgstr "프론티어 시스템"
 
-#: dat/missions/neutral/cruise.lua:121
+#: dat/missions/neutral/cruise.lua:120
 msgid ""
 "Take a group of passengers on an exquisite cruise to {planet} in the "
 "{system} system and back within a certain time frame, stopping at as many "
@@ -32669,207 +32681,207 @@ msgid ""
 "money you can make from tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:125
+#: dat/missions/neutral/cruise.lua:124
 msgid "Jumps: {numjumps}"
 msgid_plural "Jumps: {numjumps}"
 msgstr[0] ""
 
-#: dat/missions/neutral/cruise.lua:126 dat/scripts/cargo_common.lua:213
+#: dat/missions/neutral/cruise.lua:125 dat/scripts/cargo_common.lua:213
 msgid "Travel distance: {distance} AU"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:127 dat/scripts/cargo_common.lua:221
+#: dat/missions/neutral/cruise.lua:126 dat/scripts/cargo_common.lua:221
 #, fuzzy
 msgid "Time limit: {time}"
 msgstr "저지름: %s"
 
-#: dat/missions/neutral/cruise.lua:128
+#: dat/missions/neutral/cruise.lua:127
 msgid "Expected tips: {stop_reward} per extra stop"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:150
+#: dat/missions/neutral/cruise.lua:149
 msgid ""
 "This cruise must finish within {timelimit}, but it will take at least {time} "
 "for your ship to get to {planet} and back, missing the deadline. Accept the "
 "mission anyway?"
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:183 dat/missions/neutral/cruise.lua:316
+#: dat/missions/neutral/cruise.lua:182 dat/missions/neutral/cruise.lua:315
 msgid "Land on additional planets along the way to earn extra credits"
 msgstr ""
 
 #. Start planet gets special handling.
-#: dat/missions/neutral/cruise.lua:204
+#: dat/missions/neutral/cruise.lua:203
 msgid ""
 "Passengers rush out of your ship, clearly stressed by how much longer they "
 "were out on the cruise than they hoped. Because of the delay, you are only "
 "paid {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:205
+#: dat/missions/neutral/cruise.lua:204
 msgid ""
 "Your now upset pasengers eagerly disembark back onto {planet}, trying to "
 "make up for the lost time you caused by returning late. By the end of it, "
 "you are only paid {credits} for the botched cruise."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:206
+#: dat/missions/neutral/cruise.lua:205
 msgid ""
 "Before you know it, your passengers, angry at you for your late return, are "
 "out of your ship. There are no tips, and when you count out the total of "
 "your fares, you find that you have only been paid {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:211
+#: dat/missions/neutral/cruise.lua:210
 msgid ""
 "Your passengers disembark and return to their homeworld after a nice and "
 "enjoyable cruise. In total, you receive {credits} from the passengers in "
 "basic fares and tips."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:212
+#: dat/missions/neutral/cruise.lua:211
 msgid ""
 "Your passengers disembark back onto {planet} in high spirits. The tips are "
 "good and in total, you receive {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:213
+#: dat/missions/neutral/cruise.lua:212
 msgid ""
 "You receive a grand total of {credits} from your happy passengers as they "
 "exit your ship, talking happily to each other about the amazing experience."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:220
+#: dat/missions/neutral/cruise.lua:219
 msgid ""
-"Your passengers disembark and return to their homeworld after a nice, albeit "
+"Your passengers disembark and return to their homeworld after a nice, albeït "
 "not terribly eventful cruise. You unfortunately don't receive any tips, but "
 "you receive the promised fare of {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:221
+#: dat/missions/neutral/cruise.lua:220
 msgid ""
 "Your passengers return to {planet} content that they went on a decent cruise "
 "and you receive your promised fare of {credits}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:222
+#: dat/missions/neutral/cruise.lua:221
 msgid ""
 "Having completed the cruise, your passengers return to {planet} satisfied, "
 "and you receive your {credits} fare."
 msgstr ""
 
 #. Mark the initial tutorial as complete.
-#: dat/missions/neutral/cruise.lua:236
+#: dat/missions/neutral/cruise.lua:235
 msgid ""
 "You see that passengers are confused about the fact that you have returned "
 "to their home planet before finishing the cruise. You reassure them that "
 "it's just a temporary stop and the cruise will go underway shortly."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:237
+#: dat/missions/neutral/cruise.lua:236
 msgid ""
 "A passenger complains that they didn't go on this cruise just to land on "
 "their own home planet. You apologize and promise the cruise will begin in "
 "earnest soon."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:238
+#: dat/missions/neutral/cruise.lua:237
 msgid ""
 "Confused as to why you landed on their home planet, passengers decide to "
 "remain in your ship, uninterested in exploring a place they already know so "
 "well."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:239
+#: dat/missions/neutral/cruise.lua:238
 msgid ""
 "Passengers begin to disembark onto {planet}, but soon notice that you've "
 "landed on their homeworld and return to your ship, somewhat annoyed."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:246
+#: dat/missions/neutral/cruise.lua:245
 msgid ""
 "Your passengers are furious that you not only failed to take them to "
 "{destplanet} as promised, but were also late to return them to "
 "{startplanet}. Your passengers refuse to pay anything."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:247
+#: dat/missions/neutral/cruise.lua:246
 msgid ""
 "Everyone is furious at you for your poor performance. They hurriedly storm "
 "out of your ship, no doubt hoping to make up for the scheduling problems you "
 "caused for them by returning so late."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:258
+#: dat/missions/neutral/cruise.lua:257
 msgid ""
 "Furious that you still haven't returned them to their homeworld, your "
 "passengers storm out of your ship to seek a ferry."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:259
+#: dat/missions/neutral/cruise.lua:258
 msgid ""
 "Your passengers storm out of your ship, visibly upset that you still haven't "
 "taken them home. One passenger spits in your face as they exit."
 msgstr ""
 
 #. Duplicate planets don't impress the passengers.
-#: dat/missions/neutral/cruise.lua:271
+#: dat/missions/neutral/cruise.lua:270
 msgid ""
 "Passengers disembark onto {planet}, but as they notice they've already been "
 "here on this cruise, most of them quickly grow bored and return to your ship."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:272
+#: dat/missions/neutral/cruise.lua:271
 msgid ""
 "Passengers yawn with disinterest as you land on {planet} again. Some "
 "disembark for a short while, but most decide to just stay behind on your "
 "ship."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:273
+#: dat/missions/neutral/cruise.lua:272
 msgid ""
 "You hear a collective sigh of disapproval as you land on {planet} yet again. "
 "None of your passengers choose to visit."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:285
+#: dat/missions/neutral/cruise.lua:284
 msgid ""
 "Passengers disembark, excited to see what {planet} has to offer. They seem "
 "to be having a good time."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:286
+#: dat/missions/neutral/cruise.lua:285
 msgid ""
 "Passengers excitedly begin to explore {planet}, marveling at all the sights "
 "and sounds."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:287
+#: dat/missions/neutral/cruise.lua:286
 msgid ""
 "You can see the passengers are excited for the main event, and in mere "
 "moments, they're already out of your ship and exploring {planet}."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:294
+#: dat/missions/neutral/cruise.lua:293
 msgid ""
 "Passengers disembark and spend some time enjoying the sights on {planet}. It "
 "seems they're having a good time."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:295
+#: dat/missions/neutral/cruise.lua:294
 msgid ""
 "You inform passengers that they can now disembark and explore {planet} if "
 "they like. Many passengers do so, excited to see an unexpected new location."
 msgstr ""
 
-#: dat/missions/neutral/cruise.lua:296
+#: dat/missions/neutral/cruise.lua:295
 msgid ""
 "Passengers step out of your ship and look in awe at the unfamiliar spaceport "
 "of {planet} before going off to explore some more."
 msgstr ""
 
 #. Case missed second deadline
-#: dat/missions/neutral/cruise.lua:324
+#: dat/missions/neutral/cruise.lua:323
 msgid "You failed to complete the cruise on time."
 msgstr ""
 
@@ -33986,7 +33998,7 @@ msgstr ""
 #: dat/missions/neutral/oldwoman.lua:61
 msgid ""
 "You escorted an old woman to her cousin in Sirius space. She was nice, "
-"albeit somewhat overly chatty."
+"albeït somewhat overly chatty."
 msgstr ""
 
 #: dat/missions/neutral/oldwoman.lua:98
@@ -34097,13 +34109,13 @@ msgstr ""
 
 #. Get the number of enemies in a particular system
 #. Set mission details
-#: dat/missions/neutral/patrol.lua:159 dat/missions/neutral/patrol.lua:276
+#: dat/missions/neutral/patrol.lua:151 dat/missions/neutral/patrol.lua:268
 #, lua-format
 msgid "Go to point indicated on overlay map (%d remaining)"
 msgid_plural "Go to point indicated on overlay map (%d remaining)"
 msgstr[0] ""
 
-#: dat/missions/neutral/patrol.lua:185 dat/missions/pirate/ship_stealing.lua:77
+#: dat/missions/neutral/patrol.lua:177 dat/missions/pirate/ship_stealing.lua:77
 #, fuzzy
 msgid "You have left the {system} system."
 msgstr "프론티어 시스템"
@@ -34120,8 +34132,7 @@ msgstr "프론티어 시스템"
 #. planet.cur():class() ~= "1"
 #. and planet.cur():class() ~= "2"
 #. and planet.cur():class() ~= "3"
-#. and system.cur():presences()["Civilian"] ~= nil
-#. and system.cur():presences()["Civilian"] &gt; 0
+#. and system.cur():presence("Civilian") &gt; 0
 #. and (var.peek("tut_complete") == true
 #. or planet.cur():faction() ~= faction.get("Empire"))
 #. </cond>
@@ -34145,14 +34156,14 @@ msgstr "프론티어 시스템"
 #. -- DESCRIPTION: A person asks you to join a race, where you fly to various checkpoints and board them before landing back at the starting planet
 #. --
 #. --
-#: dat/missions/neutral/race1.lua:44
+#: dat/missions/neutral/race1.lua:43
 msgid ""
 "\"Hiya there! We're having a race around this system system soon and need a "
 "4th person to participate. There's a prize of {credits} if you win. "
 "Interested?\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:46
+#: dat/missions/neutral/race1.lua:45
 msgid ""
 "\"That's great! I'll explain how it works. Once we take off from {planet}, "
 "there will be a countdown, and then we will proceed to the various "
@@ -34161,26 +34172,26 @@ msgid ""
 "Let's have some fun!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:48 dat/missions/neutral/race2.lua:53
+#: dat/missions/neutral/race1.lua:47 dat/missions/neutral/race2.lua:52
 msgid "Checkpoint {prev} reached. Proceed to Checkpoint {next}."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:50 dat/missions/neutral/race2.lua:55
+#: dat/missions/neutral/race1.lua:49 dat/missions/neutral/race2.lua:54
 msgid "Checkpoint {prev} reached. Land on {planet}."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:52
+#: dat/missions/neutral/race1.lua:51
 msgid ""
 "The laid back person comes up to you and hands you a credit chip. \n"
 "\n"
 "\"Nice racing! Here's your prize money. Let's race again sometime soon!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:56 dat/missions/neutral/race2.lua:59
+#: dat/missions/neutral/race1.lua:55 dat/missions/neutral/race2.lua:58
 msgid "\"Because you left the race, you have been disqualified.\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:58 dat/missions/neutral/race2.lua:61
+#: dat/missions/neutral/race1.lua:57 dat/missions/neutral/race2.lua:60
 msgid ""
 "As you congratulate the winner on a great race, the laid back person comes "
 "up to you.\n"
@@ -34189,92 +34200,92 @@ msgid ""
 "you'll win next time!\""
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:62 dat/missions/neutral/race2.lua:65
+#: dat/missions/neutral/race1.lua:61 dat/missions/neutral/race2.lua:64
 msgid "A laid back person"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:63
+#: dat/missions/neutral/race1.lua:62
 msgid ""
 "You see a laid back person, who appears to be one of the locals, looking "
 "around the bar."
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:65
+#: dat/missions/neutral/race1.lua:64
 msgid "You're participating in a race!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:67 dat/missions/neutral/race2.lua:70
+#: dat/missions/neutral/race1.lua:66 dat/missions/neutral/race2.lua:69
 msgid "Racing Skills"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:69 dat/missions/neutral/race2.lua:72
+#: dat/missions/neutral/race1.lua:68 dat/missions/neutral/race2.lua:71
 msgid "Board checkpoint 1"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:70 dat/missions/neutral/race2.lua:73
+#: dat/missions/neutral/race1.lua:69 dat/missions/neutral/race2.lua:72
 msgid "Board checkpoint 2"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:71 dat/missions/neutral/race2.lua:74
+#: dat/missions/neutral/race1.lua:70 dat/missions/neutral/race2.lua:73
 msgid "Board checkpoint 3"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:72 dat/missions/neutral/race2.lua:75
+#: dat/missions/neutral/race1.lua:71 dat/missions/neutral/race2.lua:74
 #, lua-format
 msgid "Land on %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:75 dat/missions/neutral/race2.lua:78
+#: dat/missions/neutral/race1.lua:74 dat/missions/neutral/race2.lua:77
 msgid "Let's do this!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:76 dat/missions/neutral/race2.lua:79
+#: dat/missions/neutral/race1.lua:75 dat/missions/neutral/race2.lua:78
 msgid "Wooo!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:77 dat/missions/neutral/race2.lua:80
+#: dat/missions/neutral/race1.lua:76 dat/missions/neutral/race2.lua:79
 msgid "Time to Shake 'n Bake"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:78 dat/missions/neutral/race2.lua:81
+#: dat/missions/neutral/race1.lua:77 dat/missions/neutral/race2.lua:80
 #, lua-format
 msgid "Checkpoint %s baby!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:79 dat/missions/neutral/race2.lua:82
+#: dat/missions/neutral/race1.lua:78 dat/missions/neutral/race2.lua:81
 msgid "Hooyah"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:80 dat/missions/neutral/race2.lua:83
+#: dat/missions/neutral/race1.lua:79 dat/missions/neutral/race2.lua:82
 msgid "Next!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:84 dat/missions/neutral/race2.lua:87
+#: dat/missions/neutral/race1.lua:83 dat/missions/neutral/race2.lua:86
 #, lua-format
 msgid "%s just reached checkpoint %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:85 dat/missions/neutral/race2.lua:88
+#: dat/missions/neutral/race1.lua:84 dat/missions/neutral/race2.lua:87
 #, lua-format
 msgid "%s just landed at %s and finished the race"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:135 dat/missions/neutral/race2.lua:172
+#: dat/missions/neutral/race1.lua:134 dat/missions/neutral/race2.lua:171
 #, lua-format
 msgid "Checkpoint %s"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:145 dat/missions/neutral/race2.lua:198
+#: dat/missions/neutral/race1.lua:144 dat/missions/neutral/race2.lua:197
 #, lua-format
 msgid "Racer %s"
 msgstr ""
 
 #. seconds
-#: dat/missions/neutral/race1.lua:167 dat/missions/neutral/race2.lua:219
+#: dat/missions/neutral/race1.lua:166 dat/missions/neutral/race2.lua:218
 msgid "Go!"
 msgstr ""
 
-#: dat/missions/neutral/race1.lua:267 dat/missions/neutral/race2.lua:306
+#: dat/missions/neutral/race1.lua:266 dat/missions/neutral/race2.lua:305
 #, fuzzy
 msgid "You left the race."
 msgstr "프론티어 시스템"
@@ -34289,8 +34300,7 @@ msgstr "프론티어 시스템"
 #. planet.cur():class() ~= "1"
 #. and planet.cur():class() ~= "2"
 #. and planet.cur():class() ~= "3"
-#. and system.cur():presences()["Civilian"] ~= nil
-#. and system.cur():presences()["Civilian"] &gt; 0
+#. and system.cur():presence("Civilian") &gt; 0
 #. and (player.misnDone("Empire Recruitment")
 #. or (system.cur() ~= system.get("Hakoi")
 #. and system.cur() ~= system.get("Eneguoz")))
@@ -34315,13 +34325,13 @@ msgstr "프론티어 시스템"
 #. -- DESCRIPTION: A person asks you to join a race, where you fly to various checkpoints and board them before landing back at the starting planet
 #. --
 #. --
-#: dat/missions/neutral/race2.lua:42
+#: dat/missions/neutral/race2.lua:41
 msgid ""
 "\"Hey there, it looks like you've participated in our races before. Great to "
 "see you back! You want to have another race?\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:44
+#: dat/missions/neutral/race2.lua:43
 msgid ""
 "\"There are two races you can participate in: a casual one, which is like "
 "the races we had before the Melendez sponsorship, or the competitive one one "
@@ -34330,24 +34340,24 @@ msgid ""
 "{competitivecredits}. Which one do you want to do?\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:46
+#: dat/missions/neutral/race2.lua:45
 msgid ""
 "\"You want a challenge huh? We'll all be trying our best, so good luck!\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:48
+#: dat/missions/neutral/race2.lua:47
 msgid "Casual"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:49
+#: dat/missions/neutral/race2.lua:48
 msgid "Competitive"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:51
+#: dat/missions/neutral/race2.lua:50
 msgid "\"Let's go have some fun then!\""
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:57
+#: dat/missions/neutral/race2.lua:56
 msgid ""
 "A man in a suit and tie takes you up onto a stage. A large name tag on his "
 "jacket says 'Melendez Corporation'. \"Congratulations on your win,\" he "
@@ -34357,17 +34367,17 @@ msgid ""
 "credit chip with the actual prize money on it."
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:66
+#: dat/missions/neutral/race2.lua:65
 msgid ""
 "You see a laid back person, who appears to be one of the locals, looking "
 "around the bar, apparently in search of a suitable pilot."
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:68
+#: dat/missions/neutral/race2.lua:67
 msgid "You're participating in another race!"
 msgstr ""
 
-#: dat/missions/neutral/race2.lua:86
+#: dat/missions/neutral/race2.lua:85
 msgid ""
 "This race is sponsored by Melendez Corporation. Problem-free ships for "
 "problem-free voyages!"
@@ -34616,7 +34626,7 @@ msgstr "프론티어 시스템"
 #. If target is quicker, no fear
 #. Spawn NPCs at bar, that give info
 #. The player ask for clues in the bar
-#: dat/missions/neutral/seek_and_destroy.lua:616
+#: dat/missions/neutral/seek_and_destroy.lua:615
 msgid "{credits} awarded for successfully hunting down {pilot}."
 msgstr ""
 
@@ -34766,7 +34776,7 @@ msgid "Convoy Llama"
 msgstr ""
 
 #: dat/missions/neutral/trader_escort.lua:304
-msgid "Convoy Koala"
+msgid "Convoy Koäla"
 msgstr ""
 
 #: dat/missions/neutral/trader_escort.lua:311
@@ -36095,11 +36105,6 @@ msgstr ""
 #: dat/missions/shadow/darkshadow.lua:241 dat/missions/shadow/shadowrun.lua:273
 #: dat/missions/shadow/shadowvigil.lua:238
 msgid "Seiryuu"
-msgstr ""
-
-#: dat/missions/shadow/darkshadow.lua:261
-#: dat/missions/shadow/darkshadow.lua:287
-msgid "It's not safe to land right now."
 msgstr ""
 
 #: dat/missions/shadow/darkshadow.lua:265
@@ -37930,7 +37935,7 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:52
 msgid ""
-"You arrive at your first destination with C after a relatively quiët, but "
+"You arrive at your first destination with C after a relatively quiet, but "
 "pleasant trip. \"Thank you for helping me with this,\" C says as you begin "
 "to approach. \"And for treating me like a human being,\" they add with a mix "
 "of amusement and relief. You can't help but laugh slightly at the statement "
@@ -37969,7 +37974,7 @@ msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:60
 msgid ""
-"The trip to this destination was a bit quiët compared to the last one as C "
+"The trip to this destination was a bit quiet compared to the last one as C "
 "spent most of the time thinking to herself about what name she wanted to "
 "use. She muttered several names she was considering, then after some "
 "deliberation, came to an answer. \"I think I like 'Chelsea',\" she said.\n"
@@ -38018,12 +38023,12 @@ msgid ""
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:77
-msgid "Quiët stranger"
+msgid "Quiet stranger"
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:78
 msgid ""
-"A stranger is sitting quiëtly at a table alone and staring off into space."
+"A stranger is sitting quietly at a table alone and staring off into space."
 msgstr ""
 
 #: dat/missions/soromid/comingout/srm_comingout.lua:80
@@ -38375,7 +38380,7 @@ msgid ""
 "again.\" You thank them for telling you and ask what they're looking at. "
 "\"Oh, information about this gang we got in hot water with. They call "
 "themselves the 'Imperyan Brotherhood' and they're a vicious anti-Soromid "
-"organization. They claim the Soromid are 'degenerating' Imperial sociëty "
+"organization. They claim the Soromid are 'degenerating' Imperial society "
 "with their gene treatments, the ones that saved them from the plague of "
 "Sorom. Really bigoted stuff.\n"
 "\n"
@@ -38684,7 +38689,7 @@ msgid "Quicksilver (courier)"
 msgstr "수은"
 
 #: dat/missions/tutorial/combatpractice.lua:94
-msgid "Koala (heavy courier)"
+msgid "Koäla (heavy courier)"
 msgstr ""
 
 #: dat/missions/tutorial/combatpractice.lua:95
@@ -39243,7 +39248,7 @@ msgid ""
 "\"Ah, {player}! Well met, and what perfect timing! Perhaps you can help me "
 "resolve another matter.\n"
 "\n"
-"\"You see, it's my son. He's taken a cliënt's yacht to space without their "
+"\"You see, it's my son. He's taken a client's yacht to space without their "
 "permission, taking along his girlfriend. That boy is such a handful. I'm "
 "sure he's trying to show off his piloting skills to impress her, but like "
 "myself, he doesn't even have a pilot's license! The nerve, right? I need you "
@@ -39293,52 +39298,53 @@ msgstr ""
 #: dat/missions/tutorial/teenager.lua:60
 msgid ""
 "Terra has asked you to fetch her son and her son's girlfriend, who have "
-"taken her cliënt's yacht, the Credence, and are joyriding it in the {system} "
+"taken her client's yacht, the Credence, and are joyriding it in the {system} "
 "system. To fetch them, you must use non-lethal weaponry (such as ion "
 "cannons, Medusa missiles, or a weapons ionizer) to disable the Credence, "
 "then board the Credence by either #bdouble-clicking#0 it or by targeting it "
 "and pressing {board_key}."
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:89
+#: dat/missions/tutorial/teenager.lua:88
 msgid "Terra"
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:90
+#: dat/missions/tutorial/teenager.lua:89
 msgid ""
 "You see an acquaintance of yours, Terra, looking around for a suitable pilot."
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:99 dat/missions/tutorial/teenager.lua:112
+#: dat/missions/tutorial/teenager.lua:98 dat/missions/tutorial/teenager.lua:111
 msgid "Teenager's Joyride"
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:106
+#: dat/missions/tutorial/teenager.lua:105
 msgid ""
 "Disable Gawain Credence by using non-lethal weaponry (such as ion cannons, "
 "Medusa missiles, or a weapons ionizer)"
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:107
+#: dat/missions/tutorial/teenager.lua:106
 msgid ""
 "Board Gawain Credence by double-clicking on it or by targeting it and "
 "pressing {board_key}"
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:135
+#. Disable spawning of pirates and hostiles.
+#: dat/missions/tutorial/teenager.lua:144
 msgid "Credence"
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:183
+#: dat/missions/tutorial/teenager.lua:200
 #, fuzzy
 msgid "The Credence has been destroyed!"
 msgstr "탑승 준비!"
 
-#: dat/missions/tutorial/teenager.lua:202
+#: dat/missions/tutorial/teenager.lua:219
 msgid "Teenagers"
 msgstr ""
 
-#: dat/missions/tutorial/teenager.lua:202
+#: dat/missions/tutorial/teenager.lua:219
 msgid "Disillusioned teenagers."
 msgstr ""
 
@@ -40728,6 +40734,31 @@ msgstr[0] ""
 #. Ship has weapons.
 #. Ship has utility outfits.
 #. Ship has structure outfits.
+#.
+#. Script to update outfits and ships from a saved game in the case they
+#. don't exist.
+#. --
+#.
+#. The format is ["oldname"] = newvalue where newvalue can either take a
+#. string for the new name of the outfit (if there is a direct equivalent)
+#. or a number value indicating the amount of credits to refund the player.
+#. Note that opting for a refund may leave the player stranded (requiring
+#. them to be rescued by rescue.lua), so replacement is generally preferred
+#. where applicable.
+#. --
+#. --
+#. Takes an outfit name and should return either a valid new outfit name or
+#. the amount of credits to give back to the player.
+#. --
+#.
+#. The format is ["oldname"] = "newname". "newname" must be a valid ship
+#. which can be substituted for the outdated ship (in general, this should
+#. be the new name of the same ship that was renamed).
+#. --
+#. --
+#. Takes a ship name and must return a valid ship name to give to the
+#. player.
+#. --
 #. Don't use hidden jumps by default; set this to true to use hidden jumps.
 #. By default, only generate if commodities available. Set to true to always generate.
 #. Find an inhabited planet 0-3 jumps away.
@@ -40925,7 +40956,7 @@ msgstr ""
 #.
 #.
 #.
-#. @usage pilots = fleet.add(2, {"Rhino", "Koala"}, "Trader")
+#. @usage pilots = fleet.add(2, {"Rhino", "Koäla"}, "Trader")
 #. @usage pilots = fleet.add(1, {"Mule", "Llama"}, {"Trader", "Civilian"})
 #.
 #. @param count Number of times to repeat the pattern.
@@ -42337,7 +42368,7 @@ msgstr "투리온의 불꽃"
 #: dat/scripts/pilot/generic.lua:179
 #, fuzzy
 msgctxt "pilot_name"
-msgid "Siërra {number}"
+msgid "Sierra {number}"
 msgstr "투리온의 불꽃"
 
 #: dat/scripts/pilot/generic.lua:180
@@ -45010,20 +45041,6 @@ msgstr ""
 #. @treturn bool Whether or not x is a value in T.
 #. --
 #.
-#. Script to update outfits and ships from a saved game in the case they don't exist.
-#. --
-#.
-#. The format is ["oldname"] = newvalue where newvalue can either take a string
-#. for the new name of the outfit (if there is a direct equivalent) or a number
-#. value indicating the amount of credits to refund the player.
-#. --
-#. --
-#. Takes an outfit name and should return either a new outfit name or the amount of credits to give back to the player.
-#. --
-#. --
-#. Takes a license name and should return either a new license name or the amount of credits to give back to the player.
-#. --
-#.
 #. -- music will get called with a string parameter indicating status
 #. -- valid parameters:
 #. --    load - game is loading
@@ -45075,7 +45092,7 @@ msgid "Loaded %d AI Profile"
 msgid_plural "Loaded %d AI Profiles"
 msgstr[0] ""
 
-#: src/ai.c:606 src/land.c:1571
+#: src/ai.c:606 src/land.c:1571 src/player.c:3470
 #, c-format
 msgid ""
 "Error loading file: %s\n"
@@ -46834,7 +46851,7 @@ msgstr "의상"
 msgid "Are you sure you want to sell your %s for %s?"
 msgstr "Naev를 나가겠습니까?"
 
-#: src/equipment.c:2161 src/player.c:391
+#: src/equipment.c:2161 src/player.c:400
 msgid "Ship Name"
 msgstr ""
 
@@ -46847,7 +46864,7 @@ msgstr ""
 msgid "Name Collision"
 msgstr ""
 
-#: src/equipment.c:2172 src/player.c:454
+#: src/equipment.c:2172 src/player.c:463
 msgid "Please do not give the ship the same name as another of your ships."
 msgstr ""
 
@@ -47217,7 +47234,7 @@ msgstr ""
 msgid "Adding translations from %s"
 msgstr ""
 
-#: src/gui.c:449 src/input.c:1500
+#: src/gui.c:449 src/input.c:1524
 msgid "Gfx index out of range"
 msgstr ""
 
@@ -48216,15 +48233,15 @@ msgstr ""
 msgid "Unable to get keybinding description '%s', that command doesn't exist"
 msgstr ""
 
-#: src/input.c:958
+#: src/input.c:998
 msgid "#rNo targets available to follow."
 msgstr ""
 
-#: src/input.c:1063 src/input.c:1626
+#: src/input.c:1081 src/input.c:1650
 msgid "#oAutonav: auto-landing sequence engaged."
 msgstr ""
 
-#: src/input.c:1606 src/player.c:1398
+#: src/input.c:1630 src/player.c:1408
 msgid "#oAutonav: auto-landing sequence aborted."
 msgstr ""
 
@@ -48977,7 +48994,7 @@ msgid "Saved game '%s' invalid!"
 msgstr "저장된 게임 '%s'이 잘못되었습니다!"
 
 #. Welcome message - must be before space_init.
-#: src/load.c:717 src/player.c:317
+#: src/load.c:717 src/player.c:326
 #, fuzzy, c-format
 msgid "#gWelcome to %s!"
 msgstr "#g %s에 오신 것을 환영합니다!"
@@ -49579,7 +49596,7 @@ msgstr "게임 나가기."
 msgid "Death"
 msgstr ""
 
-#: src/menu.c:673 src/player.c:262 src/save.c:154 src/save.c:171 src/save.c:301
+#: src/menu.c:673 src/player.c:271 src/save.c:154 src/save.c:171 src/save.c:301
 #, c-format
 msgid "Save file name was truncated: %s"
 msgstr ""
@@ -50125,13 +50142,13 @@ msgstr "'%s'을 (를) 읽는 동안 오류 발생: %s"
 msgid "Failure to copy '%s' to '%s': %s"
 msgstr "'%s'을 (를) '%s'에 복사하지 못했습니다. %s"
 
-#: src/ndata.h:65
+#: src/ndata.h:66
 #, fuzzy
 msgid "Cabin-SemiBold.otf,NanumBarunGothicBold.ttf,SourceCodePro-Semibold.ttf"
 msgstr "fonts/Cabin-SemiBold.otf,fonts/NanumBarunGothicBold.ttf"
 
 #. *< Default font path.
-#: src/ndata.h:66
+#: src/ndata.h:67
 #, fuzzy
 msgid "SourceCodePro-Semibold.ttf,D2CodingBold.ttf"
 msgstr "fonts/SourceCodePro-Semibold.ttf,fonts/D2CodingBold.ttf"
@@ -50943,7 +50960,7 @@ msgstr ""
 msgid "No such material %s"
 msgstr ""
 
-#: src/opengl.c:119 src/player.c:2290
+#: src/opengl.c:119 src/player.c:2300
 msgid "Aborting screenshot"
 msgstr ""
 
@@ -52315,75 +52332,75 @@ msgid "Shooting unknown weapon type: %s"
 msgstr ""
 
 #. Get the name.
-#: src/player.c:251
+#: src/player.c:260
 msgid "Player Name"
 msgstr ""
 
-#: src/player.c:252
+#: src/player.c:261
 msgid "Please write your name:"
 msgstr ""
 
-#: src/player.c:264
+#: src/player.c:273
 msgid "Overwrite"
 msgstr ""
 
-#: src/player.c:265
+#: src/player.c:274
 #, c-format
 msgid "You already have a pilot named %s. Overwrite?"
 msgstr ""
 
-#: src/player.c:281
+#: src/player.c:290
 #, c-format
 msgid "Failed to run start mission '%s'."
 msgstr ""
 
-#: src/player.c:287
+#: src/player.c:296
 #, c-format
 msgid "Failed to run start event '%s'."
 msgstr ""
 
-#: src/player.c:324
+#: src/player.c:333
 msgid "Ship not properly set by module."
 msgstr ""
 
-#: src/player.c:392
+#: src/player.c:401
 msgid "Please name your new ship:"
 msgstr ""
 
-#: src/player.c:416
+#: src/player.c:425
 msgid "Player ship isn't valid... This shouldn't happen!"
 msgstr ""
 
-#: src/player.c:453
+#: src/player.c:462
 msgid "Name collision"
 msgstr ""
 
-#: src/player.c:532
+#: src/player.c:541
 msgid ""
 "Something seriously wonky went on, newly created player does not exist, "
 "bailing!"
 msgstr ""
 
-#: src/player.c:609
+#: src/player.c:618
 #, c-format
 msgid "Unable to swap player.p with ship '%s': ship does not exist!"
 msgstr ""
 
-#: src/player.c:638
+#: src/player.c:647
 #, c-format
 msgid "Unable to find price for player's ship '%s': ship does not exist!"
 msgstr ""
 
-#: src/player.c:1380
+#: src/player.c:1390
 #, c-format
 msgid "Trying to set player's planet target to invalid ID '%d'"
 msgstr ""
 
-#: src/player.c:1444
+#: src/player.c:1454
 msgid "Asteroid targeted; composition:"
 msgstr ""
 
-#: src/player.c:1448
+#: src/player.c:1458
 #, c-format
 msgid ""
 "\n"
@@ -52393,299 +52410,324 @@ msgid_plural ""
 "%s (%d parts)"
 msgstr[0] ""
 
-#: src/player.c:1455
+#: src/player.c:1465
 msgid "Asteroid targeted; composition: empty"
 msgstr ""
 
-#: src/player.c:1458
+#: src/player.c:1468
 msgid "Asteroid targeted"
 msgstr ""
 
-#: src/player.c:1531
+#: src/player.c:1541
 msgid "#rThere are no planets to land on."
 msgstr ""
 
-#: src/player.c:1546
+#: src/player.c:1556
 msgid "#rDocking stabilizers malfunctioning: cannot land."
 msgstr ""
 
-#: src/player.c:1588
+#: src/player.c:1598
 msgid "#rNo suitable planet to land on found."
 msgstr ""
 
-#: src/player.c:1599
+#: src/player.c:1609
 msgid "#rYou can't land here."
 msgstr ""
 
 #. No shoes, no shirt, no lifeforms, no service.
-#: src/player.c:1626
+#: src/player.c:1636
 #, c-format
 msgid "#oReady to land on %s."
 msgstr ""
 
-#: src/player.c:1637
+#: src/player.c:1647
 #, c-format
 msgid "#rYou are too far away to land on %s."
 msgstr ""
 
-#: src/player.c:1644
+#: src/player.c:1654
 #, c-format
 msgid "#rYou are going too fast to land on %s."
 msgstr ""
 
-#: src/player.c:1685
+#: src/player.c:1695
 msgid "Player has landing permission, but no valid planet targeted."
 msgstr ""
 
-#: src/player.c:1696
+#: src/player.c:1706
 #, c-format
 msgid "#%c%s>#0 Landing permission revoked."
 msgstr ""
 
-#: src/player.c:1723
+#: src/player.c:1733
 msgid "You are not allowed to land at this moment."
 msgstr ""
 
-#: src/player.c:1737
+#: src/player.c:1747
 #, c-format
 msgid "Trying to set player's hyperspace target to invalid ID '%d'"
 msgstr ""
 
-#: src/player.c:1841
+#: src/player.c:1851
 #, c-format
 msgid "#rReceiving hail! Press %s to respond."
 msgstr ""
 
-#: src/player.c:1883
+#: src/player.c:1893
 msgid "#rNo known jump point found."
 msgstr ""
 
-#: src/player.c:1900
+#: src/player.c:1910
 msgid "#rAborting hyperspace sequence."
 msgstr ""
 
-#: src/player.c:1909
+#: src/player.c:1919
 msgid "#rYou are too far from a jump point to initiate hyperspace."
 msgstr ""
 
-#: src/player.c:1913 src/player_autonav.c:89
+#: src/player.c:1923 src/player_autonav.c:89
 msgid "#rHyperspace drive is offline."
 msgstr ""
 
-#: src/player.c:1917
+#: src/player.c:1927
 #, fuzzy
 msgid "#rYou do not have enough fuel to hyperspace jump."
 msgstr "\"나는 여분의 연료가 없다.\""
 
-#: src/player.c:1920
+#: src/player.c:1930
 msgid "#oPreparing for hyperspace."
 msgstr ""
 
-#: src/player.c:2004
+#: src/player.c:2014
 #, c-format
 msgid "#oAutonav arrived at the %s system."
 msgstr ""
 
-#: src/player.c:2010
+#: src/player.c:2020
 #, c-format
 msgid "#oAutonav continuing until destination (%d jump left)."
 msgid_plural "#oAutonav continuing until destination (%d jumps left)."
 msgstr[0] ""
 
 #. in case the crap system breaks :)
-#: src/player.c:2302
+#: src/player.c:2312
 msgid "You have reached the maximum amount of screenshots [999]"
 msgstr ""
 
 #. now proceed to take the screenshot
-#: src/player.c:2307
+#: src/player.c:2317
 #, c-format
 msgid "Taking screenshot [%03d]..."
 msgstr ""
 
-#: src/player.c:2343
+#: src/player.c:2353
 #, c-format
 msgid "#r%s is out of comm range, unable to contact."
 msgstr ""
 
-#: src/player.c:2362 src/player.c:2391
+#: src/player.c:2372 src/player.c:2401
 msgid "#rNo target selected to hail."
 msgstr ""
 
-#: src/player.c:2429
+#: src/player.c:2439
 msgid "#rYou haven't been hailed by any pilots."
 msgstr ""
 
-#: src/player.c:2440
+#: src/player.c:2450
 msgid "#oMouse flying enabled."
 msgstr ""
 
-#: src/player.c:2446
+#: src/player.c:2456
 msgid "#rMouse flying disabled."
 msgstr ""
 
-#: src/player.c:2662
+#: src/player.c:2672
 #, c-format
 msgid "Player ship '%s' not found in stack"
 msgstr ""
 
-#: src/player.c:3086
+#: src/player.c:3096
 msgid "Escort is undeployed"
 msgstr ""
 
-#: src/player.c:3309
+#: src/player.c:3319
 msgid "Found mission cargo without associated mission."
 msgstr ""
 
-#: src/player.c:3310
+#: src/player.c:3320
 msgid "Please reload save game to remove the dead cargo."
 msgstr ""
 
-#: src/player.c:3520
+#. error has occurred
+#: src/player.c:3485
+#, c-format
+msgid "Updater (%s): '%s'"
+msgstr ""
+
+#: src/player.c:3519
+#, fuzzy, c-format
+msgid "Outfit '%s' in player save not found!"
+msgstr "의상 '%s'은 탄약 의상이 아닙니다"
+
+#: src/player.c:3547
+#, c-format
+msgid "Ship '%s' in player save not found!"
+msgstr ""
+
+#: src/player.c:3639
 msgid "Malformed time in save game!"
 msgstr ""
 
-#: src/player.c:3555
-#, c-format
-msgid "Outfit '%s' was saved but does not exist!"
+#: src/player.c:3674
+msgid "Outfit was saved without name, skipping."
 msgstr ""
 
-#: src/player.c:3561
+#: src/player.c:3680
 #, c-format
 msgid "Outfit '%s' was saved without quantity!"
 msgstr ""
 
-#: src/player.c:3581
+#: src/player.c:3704
 msgid "Player ship does not exist!"
 msgstr ""
 
-#: src/player.c:3584
+#: src/player.c:3707
 msgid "Player has no other ships, giving starting ship."
 msgstr ""
 
-#: src/player.c:3595
+#: src/player.c:3718
 #, c-format
 msgid "Giving player ship '%s'."
 msgstr ""
 
-#: src/player.c:3601
+#: src/player.c:3724
 msgid "Something went horribly wrong, player does not exist after load..."
 msgstr ""
 
-#: src/player.c:3611
+#: src/player.c:3734
 msgid "Save has no time information, setting to start information."
 msgstr ""
 
-#: src/player.c:3620
+#: src/player.c:3740
+msgid "Player save was updated."
+msgstr ""
+
+#: src/player.c:3748
 #, c-format
 msgid ""
 "Player starts out in non-existent or invalid planet '%s',trying to find a "
 "suitable one instead."
 msgstr ""
 
-#: src/player.c:3650
+#: src/player.c:3778
 #, c-format
 msgid "Could not find a planet satisfying criteria %d."
 msgstr ""
 
-#: src/player.c:3654
+#: src/player.c:3782
 msgid "Could not find a suitable planet. Choosing a random planet."
 msgstr ""
 
-#: src/player.c:3713
+#: src/player.c:3841
 #, c-format
 msgid "Mission '%s' doesn't seem to exist anymore, removing from save."
 msgstr ""
 
-#: src/player.c:3741
+#: src/player.c:3869
 #, c-format
 msgid "Event '%s' doesn't seem to exist anymore, removing from save."
 msgstr ""
 
-#: src/player.c:3769
+#: src/player.c:3897
 msgid "License node is missing name attribute."
 msgstr ""
 
-#: src/player.c:3800
+#: src/player.c:3928
 #, c-format
 msgid "Escort has invalid type '%s'."
 msgstr ""
 
-#: src/player.c:3860
+#: src/player.c:3935
+#, fuzzy
+msgid "Escort is missing ship type, skipping"
+msgstr "이벤트에 '%s'이 (가) 없습니다. 건너 뜁니다."
+
+#: src/player.c:3993
 #, c-format
 msgid ""
 "Outfit '%s' does not fit designated slot on player's pilot '%s', adding to "
 "stock."
 msgstr ""
 
-#: src/player.c:3868
+#: src/player.c:4001
 #, c-format
 msgid "Outfit '%s' does not fit on player's pilot '%s', adding to stock."
 msgstr ""
 
-#: src/player.c:3890
+#: src/player.c:4023
 msgid "Empty ship slot node found, skipping."
 msgstr ""
 
-#: src/player.c:3958
+#: src/player.c:4091
 #, c-format
 msgid "Player ship '%s' not found!"
 msgstr ""
 
-#: src/player.c:4008
+#: src/player.c:4142 src/player.c:4159 src/player.c:4176
 msgid "Outfit slot out of range, not adding to ship."
 msgstr ""
 
-#: src/player.c:4021 src/player.c:4034
-msgid "Outfit slot out of range, not adding."
-msgstr ""
+#: src/player.c:4193
+#, fuzzy
+msgid "Commodity missing name, removing."
+msgstr "상품 '%s'을 (를) 찾을 수 없습니다!"
 
-#: src/player.c:4051
+#: src/player.c:4198
 #, c-format
 msgid "Unknown commodity '%s' detected, removing."
 msgstr ""
 
-#: src/player.c:4071
+#: src/player.c:4218
 #, c-format
 msgid ""
 "Player ship '%s' failed slot validity check , removing all outfits and "
 "adding to stock."
 msgstr ""
 
-#: src/player.c:4115
+#: src/player.c:4262
 #, c-format
 msgid ""
 "Player ship '%s' has unknown node '%s' in 'weaponsets' (expected "
 "'weaponset')."
 msgstr ""
 
-#: src/player.c:4123
+#: src/player.c:4270
 #, c-format
 msgid "Player ship '%s' missing 'id' tag for weapon set."
 msgstr ""
 
-#: src/player.c:4127
+#: src/player.c:4274
 #, c-format
 msgid "Player ship '%s' has invalid weapon set id '%d' [max %d]."
 msgstr ""
 
-#: src/player.c:4142
+#: src/player.c:4289
 #, c-format
 msgid "Player ship '%s' missing 'type' tag for weapon set."
 msgstr ""
 
-#: src/player.c:4155
+#: src/player.c:4302
 #, c-format
 msgid ""
 "Player ship '%s' has unknown 'weaponset' child node '%s' (expected 'weapon')."
 msgstr ""
 
-#: src/player.c:4163
+#: src/player.c:4310
 #, c-format
 msgid "Player ship '%s' missing 'level' tag for weapon set weapon."
 msgstr ""
 
-#: src/player.c:4168
+#: src/player.c:4315
 #, c-format
 msgid "Player ship '%s' has invalid weapon id %d [max %d]."
 msgstr ""
@@ -54472,6 +54514,3 @@ msgstr ""
 #: src/weapon.c:1887
 msgid "Trying to remove beam with ID 0!"
 msgstr ""
-
-#~ msgid "El Ego de Deiz"
-#~ msgstr "데이즈의 자아"

@@ -2288,6 +2288,7 @@ dat/missions/zalek/common.lua
 dat/missions/zalek/zlk_test.lua
 dat/outfits/lua/example.lua
 dat/rescue.lua
+dat/save_updater.lua
 dat/scripts/cargo_common.lua
 dat/scripts/class.lua
 dat/scripts/debug/debug.lua
@@ -2328,7 +2329,6 @@ dat/scripts/proximity.lua
 dat/scripts/selectiveclear.lua
 dat/scripts/swapship.lua
 dat/scripts/tablehelper.lua
-dat/ship_updater.lua
 dat/snd/music.lua
 src/ai.c
 src/ai.h
