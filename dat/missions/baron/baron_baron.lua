@@ -137,6 +137,7 @@ function accept()
    misn_marker = misn.markerAdd(missys, "low")
 
    talked = false
+   tookoff = false
    stopping = false
 
    hook.land("land")
@@ -234,8 +235,10 @@ function talkthieves()
 end
 
 function takeoff()
-   if talked and system.cur() == missys then
+   if talked and not tookoff and system.cur() == missys then
       hook.timer(1, "dvtimer")
+      player.allowLand(false, _("It's not safe to land right now."))
+      tookoff = true
    end
 end
 
