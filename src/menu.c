@@ -557,11 +557,6 @@ static void menu_small_load(unsigned int wid, char *str)
    (void) str;
    (void) wid;
 
-   /* Save if landed. */
-   if (landed && planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
-      save_all();
-   }
-
    load_loadGameMenu();
 }
 
@@ -576,7 +571,7 @@ static void menu_small_exit( unsigned int wid, char* str )
    unsigned int info_wid, board_wid;
 
    /* if landed we must save anyways */
-   if (landed && planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
+   if (landed) {
       save_all();
       land_cleanup();
    }
@@ -611,7 +606,7 @@ static void menu_small_exit( unsigned int wid, char* str )
 static void exit_game (void)
 {
    /* if landed we must save */
-   if (landed && planet_hasService(land_planet, PLANET_SERVICE_REFUEL))
+   if (landed)
       save_all();
    naev_quit();
 }

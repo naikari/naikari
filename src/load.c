@@ -36,6 +36,7 @@
 #include "nxml.h"
 #include "outfit.h"
 #include "player.h"
+#include "save.h"
 #include "shiplog.h"
 #include "space.h"
 #include "toolkit.h"
@@ -513,6 +514,10 @@ static void load_menu_load( unsigned int wdw, char *str )
             save, load_saves[pos].version, VERSION))
          return;
    }
+
+   /* Save if landed. */
+   if (landed)
+      save_all();
 
    /* Close menus before loading for proper rendering. */
    load_menu_close(wdw, NULL);
