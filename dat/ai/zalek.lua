@@ -65,6 +65,7 @@ function create()
 end
 
 function taunt(target, offense)
+   local p = ai.pilot()
    -- See if a drone
    local shiptype = p:ship():nameRaw()
    if shiptype == "Za'lek Light Drone" or shiptype == "Za'lek Scout Drone"
@@ -97,7 +98,7 @@ function taunt(target, offense)
       }
    end
 
-   ai.pilot():comm(target, taunts[ rnd.rnd(1,#taunts) ])
+   p:comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 
 
