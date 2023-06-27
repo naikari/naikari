@@ -9,7 +9,7 @@ mem.land_planet = false
 
 function create ()
    local p = ai.pilot()
-   local sprice = p:ship():price()
+   local sprice = p:value()
    mem.kill_reward = rnd.rnd(0.15 * sprice, 0.25 * sprice)
 
    -- Refuel available if the player is at least neutral to them.

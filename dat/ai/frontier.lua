@@ -9,7 +9,7 @@ mem.aggressive = true
 -- Create function
 function create()
    local p = ai.pilot()
-   local sprice = p:ship():price()
+   local sprice = p:value()
    ai.setcredits(rnd.rnd(0.25 * sprice, 0.75 * sprice))
    mem.kill_reward = rnd.rnd(0.01 * sprice, 0.05 * sprice)
 
