@@ -50,6 +50,8 @@
   will cause both actions to happen, and where it doesn't, which action
   is taken is more deliberate (for example, the "autohail" key now takes
   precedence over the "hail" key).
+* Environmental damage (such as the nebula) can no longer "kill-steal"
+  from the player.
 
 ## 0.7.0
 
