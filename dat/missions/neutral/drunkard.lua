@@ -108,21 +108,14 @@ function accept ()
    marker = misn.markerAdd(pickupSys, "low")
 
    hook.land("land")
-
-   -- Extra hooks in case the player lands on the pickup system without
-   -- enough cargo space, so the player doesn't have to takeoff and
-   -- re-land.
-   hook.land("land", "bar")
-   hook.land("land", "mission")
-   hook.land("land", "commodity")
 end
 
 function land ()
    if planet.cur() == pickupWorld and not pickedup then
       if player.pilot():cargoFree() < cargoAmount then
          local required_text = n_(
-               "You don't have enough cargo space to pick up the goods. The goods weigh {required} kt. Please increase your cargo capacity and go to the Commodity tab to try again. ",
-               "You don't have enough cargo space to pick up the goods. The goods weigh {required} kt. Please increase your cargo capacity and go to the Commodity tab to try again. ",
+               "You don't have enough cargo space to pick up the goods. The goods weigh {required} kt. ",
+               "You don't have enough cargo space to pick up the goods. The goods weigh {required} kt. ",
                cargoAmount)
          local shortfall = cargoAmount - player.pilot():cargoFree()
          local shortfall_text = n_(
