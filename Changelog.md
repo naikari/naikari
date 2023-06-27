@@ -52,8 +52,6 @@
   precedence over the "hail" key).
 * Environmental damage (such as the nebula) can no longer "kill-steal"
   from the player.
-* The credits and bounty rewards for pilots is now based on the total
-  cost of their ship and outfits, not just the base cost of their ship.
 * Fixed an issue where using the Load button while landed could cause
   loss of data (as it didn't save before loading).
 * The game now auto-saves normally on planets with no refuel service.
