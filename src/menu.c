@@ -557,6 +557,11 @@ static void menu_small_load(unsigned int wid, char *str)
    (void) str;
    (void) wid;
 
+   /* Save if landed. */
+   if (landed && planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
+      save_all();
+   }
+
    load_loadGameMenu();
 }
 
