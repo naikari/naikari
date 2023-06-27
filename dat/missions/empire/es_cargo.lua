@@ -188,7 +188,7 @@ function land()
             and not player.misnDone("Undercover in Hakoi")
             and not player.misnActive("Undercover in Hakoi") then
          cargo_land = {
-            _("As the crates of {cargotype} are unloaded, the Imperial worker in charge relays a message from an Imperial Commander inviting you to Emperor's Fist for an advancement opportunity."),
+            _("As the crates of {cargotype} are unloaded, the Imperial worker in charge relays a message from an Imperial Commander inviting you to #bEmperor's Fist (Gamma Polaris system)#0 for an advancement opportunity."),
          }
       end
 
