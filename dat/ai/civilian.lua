@@ -7,7 +7,7 @@ mem.armor_localjump = 40
 
 
 function create()
-   local sprice = ai.pilot():value()
+   local sprice = ai.pilot():ship():price()
    ai.setcredits(rnd.rnd(0.5 * sprice, 1 * sprice))
 
    -- No bribe

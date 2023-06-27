@@ -11,7 +11,7 @@ mem.careful = true
 
 
 function create()
-   local sprice = ai.pilot():value()
+   local sprice = ai.pilot():ship():price()
    ai.setcredits(rnd.rnd(0.05 * sprice, 0.1 * sprice))
    mem.kill_reward = rnd.rnd(0.1 * sprice, 0.2 * sprice)
 
