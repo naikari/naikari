@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-26 14:21-0400\n"
+"POT-Creation-Date: 2023-06-26 21:03-0400\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -22327,7 +22327,7 @@ msgstr ""
 msgid "{credits} paid by local crime lord for eliminating {pilot}."
 msgstr ""
 
-#: dat/events/control/bounty.lua:64
+#: dat/events/control/bounty.lua:65
 msgctxt "log"
 msgid "Combat"
 msgstr ""
@@ -45119,64 +45119,74 @@ msgstr "임무 '%s'누락 / 잘못된 '%s'요소"
 msgid "AI Profile '%s' not found in AI stack"
 msgstr ""
 
-#: src/ai.c:876
+#: src/ai.c:892
 #, c-format
 msgid "Pilot '%s' ai -> 'attacked': %s"
 msgstr ""
 
-#: src/ai.c:893
+#: src/ai.c:909
 #, c-format
 msgid "Pilot '%s' is trying to refuel when no 'refuel' function is defined!"
 msgstr ""
 
-#: src/ai.c:948
+#: src/ai.c:964
 #, c-format
 msgid "Pilot '%s' ai -> 'distress': %s"
 msgstr ""
 
 #. Error has occurred.
-#: src/ai.c:988
+#: src/ai.c:1004
 #, c-format
 msgid "Pilot '%s' equip -> '%s': %s"
 msgstr ""
 
 #. Run function.
 #. error has occurred
-#: src/ai.c:1008
+#: src/ai.c:1024
 #, c-format
 msgid "Pilot '%s' ai -> '%s': %s"
 msgstr ""
 
-#: src/ai.c:1051
+#: src/ai.c:1044
+#, c-format
+msgid "Trying to create task for pilot '%s' which has no AI."
+msgstr ""
+
+#: src/ai.c:1076
 #, c-format
 msgid "Trying to add subtask '%s' to non-existent task."
 msgstr ""
 
-#: src/ai.c:1172 src/ai.c:1239
+#: src/ai.c:1139
+#, fuzzy, c-format
+msgid "Failed to create new task '%s' for pilot '%s'."
+msgstr "임무 '%2$s'에 대한 임무화물 '%1$d'을 제거하지 못했습니다."
+
+#: src/ai.c:1201 src/ai.c:1268
 msgid "Trying to pop task when there are no tasks on the stack."
 msgstr ""
 
-#: src/ai.c:1243
+#: src/ai.c:1272
 #, c-format
 msgid "Trying to pop subtask when there are no subtasks for the task '%s'."
 msgstr ""
 
-#: src/ai.c:2327
+#: src/ai.c:2356
 #, c-format
 msgid "Pilot '%s' has no land target"
 msgstr ""
 
-#: src/ai.c:2422
+#: src/ai.c:2451
 msgid "Jump point must be in current system."
 msgstr ""
 
-#: src/ai.c:2869 src/ai.c:3103 src/ai.c:3145 src/ai.c:3188
-#: src/nlua_pilot.c:1526
+#: src/ai.c:2898 src/ai.c:3132 src/ai.c:3174 src/ai.c:3217
+#: src/nlua_pilot.c:1530
 #, c-format
 msgid "'%s' is not a valid weapon set name."
 msgstr ""
 
-#: src/ai.c:3014
+#: src/ai.c:3043
 msgid "Invalid Bounds"
 msgstr ""
 
@@ -46883,7 +46893,7 @@ msgstr ""
 msgid "#gEscorts: #0Jumping."
 msgstr ""
 
-#: src/event.c:231
+#: src/event.c:233
 #, c-format
 msgid ""
 "Error loading event file: %s\n"
@@ -46891,116 +46901,116 @@ msgid ""
 "Most likely Lua file has improper syntax, please check"
 msgstr ""
 
-#: src/event.c:293
+#: src/event.c:298
 #, c-format
 msgid "Event ID '%u' not valid."
 msgstr ""
 
-#: src/event.c:360
+#: src/event.c:365
 #, c-format
 msgid "Conditional for event '%s' failed to run."
 msgstr ""
 
-#: src/event.c:398
+#: src/event.c:403
 #, c-format
 msgid "Event in %s has invalid or no name"
 msgstr ""
 
-#: src/event.c:411
+#: src/event.c:416
 #, c-format
 msgid "Event '%s': Null trigger type."
 msgstr ""
 
-#: src/event.c:421
+#: src/event.c:426
 #, c-format
 msgid "Event '%s' has invalid 'trigger' parameter: %s"
 msgstr ""
 
-#: src/event.c:435
+#: src/event.c:440
 #, c-format
 msgid "Event '%s' has unknown flag node '%s'."
 msgstr ""
 
-#: src/event.c:452
+#: src/event.c:457
 #, c-format
 msgid "Unknown node '%s' in event '%s'"
 msgstr ""
 
-#: src/event.c:459
+#: src/event.c:464
 #, c-format
 msgid "Event '%s' missing/invalid '%s' element"
 msgstr ""
 
-#: src/event.c:505
+#: src/event.c:510
 #, c-format
 msgid "Loaded %d Event"
 msgid_plural "Loaded %d Events"
 msgstr[0] ""
 
-#: src/event.c:531 src/faction.c:1621 src/mission.c:901 src/nxml.c:88
+#: src/event.c:536 src/faction.c:1621 src/mission.c:901 src/nxml.c:88
 #, c-format
 msgid "Unable to read data from '%s'"
 msgstr ""
 
-#: src/event.c:540
+#: src/event.c:545
 #, c-format
 msgid "Event '%s' has create function but no XML header!"
 msgstr ""
 
-#: src/event.c:549
+#: src/event.c:554
 #, c-format
 msgid "Event file '%s' has missing XML header!"
 msgstr ""
 
-#: src/event.c:556
+#: src/event.c:561
 #, c-format
 msgid "Unable to parse document XML header for Event '%s'"
 msgstr ""
 
-#: src/event.c:563 src/slots.c:67 src/spfx.c:186 src/start.c:68
+#: src/event.c:568 src/slots.c:67 src/spfx.c:186 src/start.c:68
 #, c-format
 msgid "Malformed '%s' file: missing root element '%s'"
 msgstr ""
 
-#: src/event.c:576
+#: src/event.c:581
 #, c-format
 msgid "Event Lua '%s' syntax error: %s"
 msgstr ""
 
-#: src/event.c:653
+#: src/event.c:658
 #, c-format
 msgid "No event data found matching name '%s'."
 msgstr ""
 
-#: src/event.c:692
+#: src/event.c:697
 #, fuzzy, c-format
 msgid "Trying to test claims of unknown event with id '%d'!"
 msgstr "존재하지 않는 시스템 '%s'을 (를) 로드하지 못했습니다."
 
 #. Must delete.
-#: src/event.c:716
+#: src/event.c:721
 #, c-format
 msgid ""
 "Detected event '%s' without any hooks and is therefore invalid. Removing "
 "event."
 msgstr ""
 
-#: src/event.c:810
+#: src/event.c:815
 msgid "Event has missing 'name' attribute, skipping."
 msgstr ""
 
-#: src/event.c:815
+#: src/event.c:820
 #, c-format
 msgid ""
 "Event in save has name '%s' but event data not found matching name. Skipping."
 msgstr ""
 
-#: src/event.c:822
+#: src/event.c:827
 #, c-format
 msgid "Event with data '%s' has invalid 'id' attribute, skipping."
 msgstr ""
 
-#: src/event.c:830
+#: src/event.c:835
 #, c-format
 msgid "Event with data '%s' was not created, skipping."
 msgstr ""
@@ -50405,31 +50415,31 @@ msgstr ""
 msgid "Invalid ship computer window name '%s'."
 msgstr "창 정보 이름 '%s'이 (가) 잘못되었습니다."
 
-#: src/nlua_hook.c:298
+#: src/nlua_hook.c:300
 msgid "Mission not in stack trying to hook, forgot to run misn.accept()?"
 msgstr ""
 "후크를 시도하는 스택에 임무가 없습니다. misn.accept ()를 실행하는 것을 잊었습"
 "니까?"
 
-#: src/nlua_hook.c:318
+#: src/nlua_hook.c:320
 msgid "Attempting to set a hook outside of a mission or event."
 msgstr ""
 
-#: src/nlua_hook.c:323
+#: src/nlua_hook.c:325
 msgid "No hook target was set."
 msgstr ""
 
-#: src/nlua_hook.c:923
+#: src/nlua_hook.c:943
 #, c-format
 msgid "Unsupported Lua hook paramater type '%s'!"
 msgstr ""
 
-#: src/nlua_hook.c:1001
+#: src/nlua_hook.c:1021
 msgid "Invalid parameter #1 for hook.pilot, expecting pilot or nil."
 msgstr ""
 
 #. hook_type not valid
-#: src/nlua_hook.c:1034
+#: src/nlua_hook.c:1054
 #, c-format
 msgid "Invalid pilot hook type: '%s'"
 msgstr ""
@@ -50531,83 +50541,89 @@ msgstr ""
 msgid "Outfit has invalid damage type."
 msgstr "상품이 유효하지 않습니다."
 
-#: src/nlua_pilot.c:389
+#: src/nlua_pilot.c:393
 msgid "Pilot is invalid."
 msgstr ""
 
-#: src/nlua_pilot.c:553 src/nlua_ship.c:236
+#: src/nlua_pilot.c:557 src/nlua_ship.c:236
 #, c-format
 msgid "Ship '%s' not found!"
 msgstr ""
 
-#: src/nlua_pilot.c:578
+#: src/nlua_pilot.c:582
 #, c-format
 msgid "Pilot '%s' jumping in from non-adjacent system '%s' to '%s'."
 msgstr ""
 
-#: src/nlua_pilot.c:585
+#: src/nlua_pilot.c:589
 #, c-format
 msgid ""
 "Pilot '%s' attempting to jump in from '%s', but '%s' has no jump points."
 msgstr ""
 
-#: src/nlua_pilot.c:627
+#: src/nlua_pilot.c:631
 msgid "'parameters' should be a table of options or omitted!"
 msgstr ""
 
-#: src/nlua_pilot.c:701
+#: src/nlua_pilot.c:705
 msgid "Trying to remove the bloody player!"
 msgstr ""
 
-#: src/nlua_pilot.c:1796
+#: src/nlua_pilot.c:1800
 #, fuzzy, c-format
 msgid "Unknown slot type '%s'"
 msgstr "알 수없는 Lua 데이터 유형!"
 
-#: src/nlua_pilot.c:1905
+#: src/nlua_pilot.c:1909
 #, c-format
 msgid "Pilot '%s' outfit ID '%d' is out of range!"
 msgstr ""
 
-#: src/nlua_pilot.c:3541
+#: src/nlua_pilot.c:3545
 msgid ""
 "Quantity must be positive for pilot.cargoAdd (if removing, use pilot.cargoRm)"
 msgstr ""
 
-#: src/nlua_pilot.c:3598
+#: src/nlua_pilot.c:3602
 msgid ""
 "Quantity must be positive for pilot.cargoRm (if adding, use pilot.cargoAdd)"
 msgstr ""
 
-#: src/nlua_pilot.c:3958
+#: src/nlua_pilot.c:3998
 msgid "pilot.memory requires 1 argument!"
 msgstr ""
 
-#: src/nlua_pilot.c:3967
+#: src/nlua_pilot.c:4007
 msgid "Pilot does not have AI."
 msgstr ""
 
-#: src/nlua_pilot.c:4067
-msgid "Pilot is not on manual control."
-msgstr ""
+#: src/nlua_pilot.c:4107
+#, fuzzy, c-format
+msgid "Pilot '%s' is not under manual control."
+msgstr "'%s'파일은 png가 아닙니다."
 
-#: src/nlua_pilot.c:4430
+#: src/nlua_pilot.c:4114
+#, fuzzy, c-format
+msgid "Failed to create task '%s' for pilot '%s'."
+msgstr "임무 '%2$s'에 대한 임무화물 '%1$d'을 제거하지 못했습니다."
+
+#: src/nlua_pilot.c:4475
 #, c-format
 msgid "Pilot '%s' can't jump out exit only jump '%s'"
 msgstr ""
 
 #. Not found.
-#: src/nlua_pilot.c:4442
+#: src/nlua_pilot.c:4487
 #, c-format
 msgid "System '%s' is not adjacent to current system '%s'"
 msgstr ""
 
-#: src/nlua_pilot.c:4492
+#: src/nlua_pilot.c:4537
 #, c-format
 msgid "Planet '%s' not found in system '%s'"
 msgstr ""
 
-#: src/nlua_pilot.c:4546
+#: src/nlua_pilot.c:4591
 #, c-format
 msgid "#%c%s#0 is hailing you."
 msgstr ""
@@ -54480,7 +54496,7 @@ msgstr ""
 msgid "Unknown weapon status for '%s'"
 msgstr ""
 
-#: src/weapon.c:510 src/weapon.c:667 src/weapon.c:1771
+#: src/weapon.c:510 src/weapon.c:667 src/weapon.c:1787
 msgid "Unknown weapon layer!"
 msgstr ""
 
@@ -54494,23 +54510,23 @@ msgstr ""
 msgid "Weapon of type '%s' has no render implemented yet!"
 msgstr ""
 
-#: src/weapon.c:1718
+#: src/weapon.c:1734
 #, c-format
 msgid "Weapon of type '%s' has no create implemented yet!"
 msgstr ""
 
-#: src/weapon.c:1754
+#: src/weapon.c:1770
 msgid "Trying to create a Weapon from a non-Weapon type Outfit"
 msgstr ""
 
-#: src/weapon.c:1814
+#: src/weapon.c:1830
 msgid "Trying to create a Beam Weapon from a non-beam outfit."
 msgstr ""
 
-#: src/weapon.c:1834 src/weapon.c:1881 src/weapon.c:2031
+#: src/weapon.c:1850 src/weapon.c:1897 src/weapon.c:2047
 msgid "Invalid WEAPON_LAYER specified"
 msgstr ""
 
-#: src/weapon.c:1887
+#: src/weapon.c:1903
 msgid "Trying to remove beam with ID 0!"
 msgstr ""
