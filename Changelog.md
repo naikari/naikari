@@ -57,6 +57,8 @@
 * The game now auto-saves normally on planets with no refuel service.
   (It previously did not do so as a measure to protect against getting
   stranded, but this is no longer needed in Naikari.)
+* Nerfed the Photon Dagger's damage, making it equal to the Banshee
+  Rocket.
 
 ## 0.7.0
 
