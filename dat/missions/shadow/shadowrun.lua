@@ -77,7 +77,7 @@ Rebina turns to follow her men back into the ship, but before she closes the air
 The airlock hatch closes. You stare at it, then look down at the credit chip in your hand, first marveling at the wealth it represents and then astonished to realize you can't remember how it got there.]])
 
 -- Mission details
-misn_title = _("Shadowrun")
+misn_title = _("Shadow Run")
 misn_reward = _("Unspecified riches")
 bar_desc = _("You spot a dark-haired woman sitting at the bar. Her elegant features and dress make her stand out, yet her presence here seems almost natural, as if she's in the right place at the right time, waiting for the right person. You wonder why she's all by herself.")
 misn_desc = _("You have been tasked with picking up a man named Jorek by a woman named Rebina. The exact nature of the mission has not been explained to you.")
@@ -158,7 +158,7 @@ function accept()
             fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu"),
                {system=sys2:name()}),
         }
-        misn.osdCreate(_("Shadowrun"), osd_desc)
+        misn.osdCreate(_("Shadow Run"), osd_desc)
 
         misn_marker = misn.markerAdd(sys, "high")
 

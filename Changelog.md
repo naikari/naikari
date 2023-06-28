@@ -59,6 +59,7 @@
   stranded, but this is no longer needed in Naikari.)
 * Nerfed the Photon Dagger's damage, making it equal to the Banshee
   Rocket.
+* Removed the time limit from the Shadow Run mission.
 
 ## 0.7.0
 
