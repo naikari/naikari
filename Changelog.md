@@ -60,6 +60,7 @@
 * Nerfed the Photon Dagger's damage, making it equal to the Banshee
   Rocket.
 * Removed the time limit from the Shadow Run mission.
+* Improved the Shark mission's handling of the OSD and markers.
 
 ## 0.7.0
 
