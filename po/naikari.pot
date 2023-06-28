@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: naikari 0.8.0-rc.3\n"
+"Project-Id-Version: naikari 0.8.0-rc.4\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-06-26 21:03-0400\n"
+"POT-Creation-Date: 2023-06-28 15:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7928,7 +7928,7 @@ msgstr ""
 #: src/info.c:839 src/input.c:649 src/land.c:924 src/land_outfits.c:360
 #: src/land_outfits.c:388 src/land_outfits.c:632 src/land_shipyard.c:141
 #: src/land_shipyard.c:211 src/land_trade.c:109 src/land_trade.c:111
-#: src/land_trade.c:198 src/load.c:401 src/load.c:451 src/load.c:489
+#: src/land_trade.c:198 src/load.c:402 src/load.c:452 src/load.c:490
 #: src/map.c:666 src/map.c:730 src/map.c:1965 src/map_find.c:699
 #: src/map_system.c:564 src/map_system.c:587 src/pilot_outfit.c:905
 #, c-format
@@ -21182,57 +21182,57 @@ msgstr ""
 #. Finish up creation
 #. See if a drone
 #. Only 50% of actually taunting.
-#: dat/ai/zalek.lua:83
+#: dat/ai/zalek.lua:84
 msgctxt "taunt"
 msgid "I will show you the power of the Za'lek fleet!"
 msgstr ""
 
-#: dat/ai/zalek.lua:84
+#: dat/ai/zalek.lua:85
 msgctxt "taunt"
 msgid "Commencing battle test by eradicating outlaw pilots."
 msgstr ""
 
-#: dat/ai/zalek.lua:85
+#: dat/ai/zalek.lua:86
 msgctxt "taunt"
 msgid "Your days are over!"
 msgstr ""
 
-#: dat/ai/zalek.lua:86
+#: dat/ai/zalek.lua:87
 msgctxt "taunt"
 msgid "You interfere with the progress of science!"
 msgstr ""
 
-#: dat/ai/zalek.lua:87
+#: dat/ai/zalek.lua:88
 msgctxt "taunt"
 msgid "Feel the wrath of our combat drones!"
 msgstr ""
 
-#: dat/ai/zalek.lua:88
+#: dat/ai/zalek.lua:89
 msgctxt "taunt"
 msgid "Die, you brainless worm!"
 msgstr ""
 
-#: dat/ai/zalek.lua:92
+#: dat/ai/zalek.lua:93
 msgctxt "taunt_defensive"
 msgid "You just made a big mistake!"
 msgstr ""
 
-#: dat/ai/zalek.lua:93
+#: dat/ai/zalek.lua:94
 msgctxt "taunt_defensive"
 msgid "You wanna do this? Have it your way."
 msgstr ""
 
-#: dat/ai/zalek.lua:94
+#: dat/ai/zalek.lua:95
 msgctxt "taunt_defensive"
 msgid "How dare you?! I just got this ship customized!"
 msgstr ""
 
-#: dat/ai/zalek.lua:95
+#: dat/ai/zalek.lua:96
 msgctxt "taunt_defensive"
 msgid "Idiots! How dare you attack the Za'lek?!"
 msgstr ""
 
-#: dat/ai/zalek.lua:96
+#: dat/ai/zalek.lua:97
 msgctxt "taunt_defensive"
 msgid "Attacking me was a stupid mistake!"
 msgstr ""
@@ -24212,16 +24212,14 @@ msgstr ""
 #. Create a Vendetta who hails the player after a bit
 #. 1M
 #. Meet Joe, our informant.
-#. Set deadlines
 #. Talking to Jorek
-#. Deadline stuff
 #. Empire ships around planet
 #. Handle the Seiryuu, the last stop on this mission
 #: dat/events/shadow/shadow_comm.lua:30 dat/missions/shadow/darkshadow.lua:239
 #: dat/missions/shadow/darkshadow.lua:263
 #: dat/missions/shadow/darkshadow.lua:324
 #: dat/missions/shadow/darkshadow.lua:411
-#: dat/missions/shadow/darkshadow.lua:441 dat/missions/shadow/shadowrun.lua:272
+#: dat/missions/shadow/darkshadow.lua:441 dat/missions/shadow/shadowrun.lua:231
 #: dat/missions/shadow/shadowvigil.lua:236
 #: dat/missions/shadow/shadowvigil.lua:254
 msgid "Four Winds"
@@ -28017,7 +28015,7 @@ msgstr ""
 #: dat/missions/neutral/nebu_satellite.lua:102
 #: dat/missions/pirate/hitman.lua:37 dat/missions/pirate/hitman2.lua:38
 #: dat/missions/shadow/shadowvigil.lua:158
-#: dat/missions/shark/sh00_ancestorkill.lua:78
+#: dat/missions/shark/sh00_ancestorkill.lua:104
 #: dat/missions/shark/sh02_tapping.lua:102
 #: dat/missions/sirius/animaltransport.lua:44
 #: dat/missions/soromid/comingout/srm_comingout.lua:151
@@ -28163,7 +28161,7 @@ msgstr[1] ""
 #: dat/missions/empire/es_cargo.lua:127
 #: dat/missions/empire/es_longdistancecargo.lua:136
 #: dat/missions/neutral/cargo.lua:121 dat/missions/neutral/cargo_rush.lua:140
-#: dat/missions/neutral/drunkard.lua:129 dat/missions/pirate/pir_cargo.lua:135
+#: dat/missions/neutral/drunkard.lua:122 dat/missions/pirate/pir_cargo.lua:135
 msgid "You need {shortfall} kt more of empty space."
 msgid_plural "You need {shortfall} kt more of empty space."
 msgstr[0] ""
@@ -28218,8 +28216,8 @@ msgstr ""
 #: dat/missions/empire/es_longdistancecargo.lua:200
 msgid ""
 "As the crates of {cargotype} are unloaded, the Imperial worker in charge "
-"relays a message from an Imperial Commander inviting you to Emperor's Fist "
-"for an advancement opportunity."
+"relays a message from an Imperial Commander inviting you to #bEmperor's Fist "
+"(Gamma Polaris system)#0 for an advancement opportunity."
 msgstr ""
 
 #. increase faction
@@ -31980,26 +31978,21 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#. Extra hooks in case the player lands on the pickup system without
-#. enough cargo space, so the player doesn't have to takeoff and
-#. re-land.
-#: dat/missions/neutral/drunkard.lua:124
+#: dat/missions/neutral/drunkard.lua:117
 msgid ""
 "You don't have enough cargo space to pick up the goods. The goods weigh "
-"{required} kt. Please increase your cargo capacity and go to the Commodity "
-"tab to try again. "
+"{required} kt. "
 msgid_plural ""
 "You don't have enough cargo space to pick up the goods. The goods weigh "
-"{required} kt. Please increase your cargo capacity and go to the Commodity "
-"tab to try again. "
+"{required} kt. "
 msgstr[0] ""
 msgstr[1] ""
 
-#: dat/missions/neutral/drunkard.lua:137
+#: dat/missions/neutral/drunkard.lua:130
 msgid "Goods"
 msgstr ""
 
-#: dat/missions/neutral/drunkard.lua:138
+#: dat/missions/neutral/drunkard.lua:131
 msgid "Some sort of cargo you picked up for some countess."
 msgstr ""
 
@@ -35042,7 +35035,7 @@ msgid ""
 "She said she may need your services again in the future."
 msgstr ""
 
-#: dat/missions/shadow/darkshadow.lua:241 dat/missions/shadow/shadowrun.lua:273
+#: dat/missions/shadow/darkshadow.lua:241 dat/missions/shadow/shadowrun.lua:232
 #: dat/missions/shadow/shadowvigil.lua:238
 msgid "Seiryuu"
 msgstr ""
@@ -35189,13 +35182,8 @@ msgid ""
 "discreet. Don't talk about things you don't need to; the walls have ears in "
 "that place. In particular, don't mention any names.\n"
 "\n"
-"\"You will be on a time schedule. You must take no longer than {time1} to "
-"meet Jorek, or he will assume you are not coming and go back into hiding. "
-"You must also be at the meeting point within {time2}. If you fail to meet "
-"with Jorek within the time limit or if you are prevented from taking him "
-"offworld for any other reason, make your way to the Seiryuu and report what "
-"happened. We'll take it from there. If you fail to show up at the designated "
-"time, we will assume you have failed, and the Seiryuu will leave.\"\n"
+"If you are prevented from taking Jorek offworld for any reason, make your "
+"way to the Seiryuu and report what happened. We'll take it from there.\"\n"
 "\n"
 "Rebina empties her glass and places it on the bar before rising to her feet. "
 "\"That will be all. Good luck, and keep your wits about you.\" Rebina takes "
@@ -35214,14 +35202,6 @@ msgstr ""
 
 #: dat/missions/shadow/shadowrun.lua:64
 msgid ""
-"You see a message on your ship's computer telling you that you have failed "
-"the mission given to you by Rebina because you didn't make it to your "
-"destination in time. You tell yourself that perhaps it's for the best; maybe "
-"you subconsciously didn't want to do the mission after all."
-msgstr ""
-
-#: dat/missions/shadow/shadowrun.lua:66
-msgid ""
 "You complete docking operations with the Seiryuu, well aware that you didn't "
 "even attempt to pick up the man they were expecting. At the airlock, you are "
 "greeted by a pair of crewmen in grey uniforms. You explain to them that you "
@@ -35238,7 +35218,7 @@ msgid ""
 "All custom content has been lost, including your logs of meeting the Seiryuu."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:70
+#: dat/missions/shadow/shadowrun.lua:68
 msgid ""
 "You complete docking operations with the Seiryuu, well aware that your ship "
 "isn't carrying the man they were expecting but content in the knowledge that "
@@ -35262,7 +35242,7 @@ msgid ""
 "it's not Jorek we wanted you to get. It was… that.\""
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:75
+#: dat/missions/shadow/shadowrun.lua:73
 msgid ""
 "You follow her gaze, and spot the crewmen making their way back to the "
 "airlock, carrying between them a small but apparently rather heavy crate. "
@@ -35287,16 +35267,15 @@ msgid ""
 msgstr ""
 
 #. Mission details
-#. OSD stuff
-#: dat/missions/shadow/shadowrun.lua:82 dat/missions/shadow/shadowrun.lua:123
-msgid "Shadowrun"
+#: dat/missions/shadow/shadowrun.lua:80 dat/missions/shadow/shadowrun.lua:161
+msgid "Shadow Run"
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:83
+#: dat/missions/shadow/shadowrun.lua:81
 msgid "Unspecified riches"
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:84
+#: dat/missions/shadow/shadowrun.lua:82
 msgid ""
 "You spot a dark-haired woman sitting at the bar. Her elegant features and "
 "dress make her stand out, yet her presence here seems almost natural, as if "
@@ -35304,24 +35283,24 @@ msgid ""
 "You wonder why she's all by herself."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:85
+#: dat/missions/shadow/shadowrun.lua:83
 msgid ""
 "You have been tasked with picking up a man named Jorek by a woman named "
 "Rebina. The exact nature of the mission has not been explained to you."
 msgstr ""
 
 #. NPC stuff
-#: dat/missions/shadow/shadowrun.lua:89
+#: dat/missions/shadow/shadowrun.lua:87
 msgid "An unpleasant man."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:91
+#: dat/missions/shadow/shadowrun.lua:89
 msgid ""
 "A middle-aged, cranky looking man is sitting at a table by himself. You are "
 "fairly certain that this is the fellow you're looking for."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:94
+#: dat/missions/shadow/shadowrun.lua:92
 msgid ""
 "You join the man at his table. He doesn't particularly seem to welcome your "
 "company, though, because he gives you a look most people would reserve for "
@@ -35346,7 +35325,7 @@ msgid ""
 "\""
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:99
+#: dat/missions/shadow/shadowrun.lua:97
 msgid ""
 "Jorek roars with laughter. \"Hah! Yeah, I'm sure you don't! I know what "
 "you're thinkin', I do. You'll take me outta here, pull a heroic bust past "
@@ -35366,7 +35345,7 @@ msgid ""
 "him."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:102
+#: dat/missions/shadow/shadowrun.lua:100
 msgid ""
 "Jorek exhales derisively. \"No, I thought not. Probably thought this was "
 "going to be a walk in the park, didn't you? But when the chips are down, you "
@@ -35382,71 +35361,59 @@ msgid ""
 "out of him."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:105
+#: dat/missions/shadow/shadowrun.lua:103
 msgid ""
 "Jorek pointedly ignores you. It doesn't seem like he's willing to give you "
 "the time of day any longer. You decide not to push your luck."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:108
+#: dat/missions/shadow/shadowrun.lua:106
 msgid "Officer at the bar"
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:109
+#: dat/missions/shadow/shadowrun.lua:107
 msgid ""
 "You see a military officer with a drink at the bar. He doesn't seem to be "
 "very interested in it, though.…"
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:110
+#: dat/missions/shadow/shadowrun.lua:108
 msgid ""
 "You try to strike a conversation with the officer, but he doesn't seem "
 "interested what you have to say, so you give up."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:113
+#: dat/missions/shadow/shadowrun.lua:111
 msgid "Soldier at the news kiosk"
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:114
+#: dat/missions/shadow/shadowrun.lua:112
 msgid ""
 "You see a soldier at a news kiosk. For some reason, he keeps reading the "
 "same articles over and over again."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:115
+#: dat/missions/shadow/shadowrun.lua:113
 msgid "Leave me alone. Can't you see I'm busy?"
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:118
+#: dat/missions/shadow/shadowrun.lua:116
 msgid "Card-playing soldier"
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:119
+#: dat/missions/shadow/shadowrun.lua:117
 msgid ""
 "Two soldiers are sharing a table near the exit, playing cards. Neither of "
 "them seems very into the game."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:120
+#: dat/missions/shadow/shadowrun.lua:118
 msgid ""
 "They don't seem to appreciate your company. You decide to leave them to "
 "their game."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:125
-msgid ""
-"Talk to Jorek on {planet} ({system} system) before {deadline}\n"
-"({time} remaining)"
-msgstr ""
-
-#: dat/missions/shadow/shadowrun.lua:126
-msgid ""
-"Fly to the {system} system and dock with (board) Seiryuu\n"
-"({time} remaining)"
-msgstr ""
-
-#: dat/missions/shadow/shadowrun.lua:129
+#: dat/missions/shadow/shadowrun.lua:120
 msgid ""
 "You participated in an operation for Captain Rebina. You thought you were "
 "rescuing a man named Jorek, but it turns out that you were actually helping "
@@ -35454,8 +35421,20 @@ msgid ""
 "nothing about Captain Rebina or who she works for."
 msgstr ""
 
-#: dat/missions/shadow/shadowrun.lua:145
+#: dat/missions/shadow/shadowrun.lua:134
 msgid "A dark-haired woman"
+msgstr ""
+
+#: dat/missions/shadow/shadowrun.lua:156
+msgid "Talk to Jorek at the bar on {planet} ({system} system)"
+msgstr ""
+
+#. After having accepted the mission from the hailing Vendetta
+#. Small consolation pay
+#: dat/missions/shadow/shadowrun.lua:158
+#: dat/missions/shadow/shadowvigil.lua:121
+#: dat/missions/shadow/shadowvigil.lua:374
+msgid "Fly to the {system} system and dock with (board) Seiryuu"
 msgstr ""
 
 #. player reports in without SHITMAN
@@ -35722,13 +35701,6 @@ msgid ""
 "again at a later date."
 msgstr ""
 
-#. After having accepted the mission from the hailing Vendetta
-#. Small consolation pay
-#: dat/missions/shadow/shadowvigil.lua:121
-#: dat/missions/shadow/shadowvigil.lua:374
-msgid "Fly to the {system} system and dock with (board) Seiryuu"
-msgstr ""
-
 #: dat/missions/shadow/shadowvigil.lua:160
 msgid "Escort the diplomat to {planet} ({system} system)"
 msgstr ""
@@ -35797,7 +35769,7 @@ msgstr ""
 #. <avail>
 #. <priority>20</priority>
 #. <cond>planet.cur() ~= planet.get("Ulios") and player.numOutfit("Mercenary License") &gt; 0</cond>
-#. <chance>10</chance>
+#. <chance>100</chance>
 #. <location>Bar</location>
 #. <faction>Dvaered</faction>
 #. <faction>Empire</faction>
@@ -35825,7 +35797,7 @@ msgstr ""
 #. 4) Pirate was killed
 #.
 #. --
-#: dat/missions/shark/sh00_ancestorkill.lua:44
+#: dat/missions/shark/sh00_ancestorkill.lua:45
 msgid ""
 "You approach the man and he introduces himself. \"Hello, my name is Arnold "
 "Smith; I work for Nexus Shipyards. I'm looking for a talented pilot to make "
@@ -35838,19 +35810,19 @@ msgid ""
 "Nexus will add a little extra on top of that. Would you be interested?\""
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:48
+#: dat/missions/shark/sh00_ancestorkill.lua:49
 msgid ""
 "\"That's your choice,\" the man says. \"Don't hesitate to tell me if you "
 "change your mind.\""
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:50
+#: dat/missions/shark/sh00_ancestorkill.lua:51
 msgid ""
 "\"Great! I knew I could trust you. I'll meet you on {planet} in the {system} "
 "system. I'll be with my boss and our customer, Baron Sauterfeldt.\""
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:52
+#: dat/missions/shark/sh00_ancestorkill.lua:53
 msgid ""
 "\"Nice to see you again,\" he says with a smile. \"I hope you are ready to "
 "kick that pirate's ass! Please follow me. I will introduce you to my boss, "
@@ -35866,7 +35838,7 @@ msgid ""
 "ship can do!\" Time to head back to the ship, then."
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:58
+#: dat/missions/shark/sh00_ancestorkill.lua:59
 msgid ""
 "As you step on the ground, Arnold Smith greets you. \"That was a great "
 "demonstration! Thank you. I haven't been able to speak to the Baron about "
@@ -35876,66 +35848,68 @@ msgid ""
 msgstr ""
 
 #. Mission details
-#. OSD
-#: dat/missions/shark/sh00_ancestorkill.lua:61
-#: dat/missions/shark/sh00_ancestorkill.lua:74
+#: dat/missions/shark/sh00_ancestorkill.lua:62
 msgid "A Shark Bites"
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:62
+#: dat/missions/shark/sh00_ancestorkill.lua:63
 msgid ""
 "Nexus Shipyards has hired you to demonstrate to Baron Sauterfeldt the "
 "capabilities of Nexus ship designs."
 msgstr ""
 
 #. NPC
-#: dat/missions/shark/sh00_ancestorkill.lua:67
+#: dat/missions/shark/sh00_ancestorkill.lua:68
 msgid "An honest-looking man"
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:68
+#: dat/missions/shark/sh00_ancestorkill.lua:69
 msgid "This man looks like a honest citizen. He glances in your direction."
 msgstr ""
 
 #. NPC
-#: dat/missions/shark/sh00_ancestorkill.lua:70
+#: dat/missions/shark/sh00_ancestorkill.lua:71
 #: dat/missions/shark/sh01_corvette.lua:58
 #: dat/missions/shark/sh02_tapping.lua:61
 msgid "Arnold Smith"
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:71
+#: dat/missions/shark/sh00_ancestorkill.lua:72
 msgid ""
 "The Nexus employee who recruited you for a very special demo of the \"Shark"
 "\" fighter."
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:76
+#: dat/missions/shark/sh00_ancestorkill.lua:74
+msgid ""
+"You helped Nexus Shipyards demonstrate the capabilities of their ships by "
+"destroying a Pirate Vendetta."
+msgstr ""
+
+#: dat/missions/shark/sh00_ancestorkill.lua:99
+msgid "Buy a Shark (but not a Pirate Shark)"
+msgstr ""
+
+#: dat/missions/shark/sh00_ancestorkill.lua:100
 msgid ""
 "Land on {planet} ({system} system) with a Shark (but not a Pirate Shark) and "
 "speak to Arnold Smith"
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:77
+#: dat/missions/shark/sh00_ancestorkill.lua:102
 msgid "Go to the {system} system and kill the pirate with your Shark"
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:80
-msgid "MISSION FAILED: You left the pirate."
+#: dat/missions/shark/sh00_ancestorkill.lua:163
+msgid "You left the pirate."
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:81
-msgid "MISSION FAILED: The pirate ran away."
+#: dat/missions/shark/sh00_ancestorkill.lua:173
+msgid "You were supposed to use a Shark."
 msgstr ""
 
-#: dat/missions/shark/sh00_ancestorkill.lua:82
-msgid "MISSION FAILED: You were supposed to use a Shark."
-msgstr ""
-
-#: dat/missions/shark/sh00_ancestorkill.lua:84
-msgid ""
-"You helped Nexus Shipyards demonstrate the capabilities of their ships by "
-"destroying a Pirate Vendetta."
+#: dat/missions/shark/sh00_ancestorkill.lua:210
+msgid "The pirate ran away."
 msgstr ""
 
 #.
@@ -47654,44 +47628,44 @@ msgstr ""
 msgid "No cargo space available!"
 msgstr ""
 
-#: src/load.c:113
+#: src/load.c:114
 #, c-format
 msgid "Unable to parse save path '%s'."
 msgstr ""
 
-#: src/load.c:118
+#: src/load.c:119
 #, c-format
 msgid "Unable to get child node of save '%s'."
 msgstr ""
 
-#: src/load.c:301 src/ndata.c:265
+#: src/load.c:302 src/ndata.c:265
 #, c-format
 msgid "PhysicsFS: Cannot stat %s: %s"
 msgstr ""
 
 #. window
-#: src/load.c:376
+#: src/load.c:377
 msgid "Load Game"
 msgstr ""
 
-#: src/load.c:391
+#: src/load.c:392
 #, c-format
 msgid "%s #r(Backup)#0"
 msgstr ""
 
-#: src/load.c:416
+#: src/load.c:417
 msgid "&Load"
 msgstr ""
 
-#: src/load.c:419
+#: src/load.c:420
 msgid "Delete"
 msgstr ""
 
-#: src/load.c:421
+#: src/load.c:422
 msgid "&Back"
 msgstr ""
 
-#: src/load.c:462
+#: src/load.c:463
 #, c-format
 msgid ""
 "#nName:#0 %s\n"
@@ -47709,11 +47683,11 @@ msgid ""
 "#nShip Model:#0 %s"
 msgstr ""
 
-#: src/load.c:496
+#: src/load.c:497
 msgid "Load Snapshot"
 msgstr ""
 
-#: src/load.c:497
+#: src/load.c:498
 #, c-format
 msgid ""
 "Warning: After loading a snapshot, automatic saving will continue, which "
@@ -47722,11 +47696,11 @@ msgid ""
 "Are you sure you want to load '%s'?"
 msgstr ""
 
-#: src/load.c:508
+#: src/load.c:509
 msgid "Save game version mismatch"
 msgstr ""
 
-#: src/load.c:509
+#: src/load.c:510
 #, c-format
 msgid ""
 "Save game '%s' version is newer than Naikari version:\n"
@@ -47735,31 +47709,31 @@ msgid ""
 "Are you sure you want to load this game? It may lose data."
 msgstr ""
 
-#: src/load.c:564
+#: src/load.c:569
 msgid "Permanently Delete?"
 msgstr ""
 
-#: src/load.c:565
+#: src/load.c:570
 #, c-format
 msgid "Are you sure you want to permanently delete '%s'?"
 msgstr ""
 
-#: src/load.c:633 src/load.c:701
+#: src/load.c:638 src/load.c:706
 msgid "Saved game file seems to have been deleted."
 msgstr ""
 
-#: src/load.c:656 src/load.c:780
+#: src/load.c:661 src/load.c:785
 #, c-format
 msgid "Saved game '%s' invalid!"
 msgstr ""
 
 #. Welcome message - must be before space_init.
-#: src/load.c:717 src/player.c:326
+#: src/load.c:722 src/player.c:326
 #, c-format
 msgid "#gWelcome to %s!"
 msgstr ""
 
-#: src/load.c:729
+#: src/load.c:734
 msgid "New save data detected. Sanitizing ships for slots"
 msgstr ""
 
