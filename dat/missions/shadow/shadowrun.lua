@@ -153,8 +153,10 @@ function accept()
         shadowrun = 2
 
         local osd_desc = {
-            _("Talk to Jorek at the bar on {planet} ({system} system)"),
-            _("Fly to the {system} system and dock with (board) Seiryuu"),
+            fmt.f(_("Talk to Jorek at the bar on {planet} ({system} system)"),
+               {planet=pnt:name(), system=sys:name()}),
+            fmt.f(_("Fly to the {system} system and dock with (board) Seiryuu"),
+               {system=sys2:name()}),
         }
         misn.osdCreate(_("Shadowrun"), osd_desc)
 
