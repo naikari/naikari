@@ -61,6 +61,8 @@
   Rocket.
 * Removed the time limit from the Shadow Run mission.
 * Improved the Shark mission's handling of the OSD and markers.
+* Fixed a bug which caused escort kills to never count for the player
+  like they were supposed to.
 
 ## 0.7.0
 
