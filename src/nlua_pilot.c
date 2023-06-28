@@ -4642,7 +4642,7 @@ static int pilotL_msg(lua_State *L)
 
 
 /**
- * @brief Gets a pilots leader.
+ * @brief Gets a pilot's leader.
  *
  *    @luatparam Pilot p Pilot to get the leader of.
  *    @luatparam[opt=false] boolean recursive Whether or not to recurse
@@ -4745,9 +4745,12 @@ static int pilotL_setLeader(lua_State *L) {
 
 
 /**
- * @brief Get all of a pilots followers.
+ * @brief Get all of a pilot's followers.
  *
  *    @luatparam Pilot p Pilot to get the followers of.
+ *    @luatparam boolean recursive Whether or not to recurse through
+ *       followers and return all of the pilot's followers' followers,
+ *       etc as well as your direct followers.
  *    @luatreturn {Pilot,...} Table of followers.
  * @luafunc followers
  */
@@ -4755,18 +4758,41 @@ static int pilotL_followers(lua_State *L)
 {
    int i, idx;
    Pilot *pe;
-   Pilot *p = luaL_validpilot(L, 1);
+   Pilot *p;
+   pilotId_t *rfollowers;
+   int recursive;
+
+   p = luaL_validpilot(L, 1);
+   recursive = lua_toboolean(L, 2);
 
    lua_newtable(L);
    idx = 1;
-   for (i=0; i < array_size(p->escorts); i++) {
-      /* Make sure the followers are valid. */
-      pe = pilot_get( p->escorts[i].id );
-      if ((pe==NULL) || pilot_isFlag( pe, PILOT_DEAD ) || pilot_isFlag( pe, PILOT_HIDE ))
-         continue;
-      lua_pushnumber(L, idx++);
-      lua_pushpilot(L, p->escorts[i].id);
-      lua_rawset(L, -3);
+
+   if (recursive) {
+      rfollowers = pilot_getRecursiveFollowers(p);
+      for (i=0; i<array_size(rfollowers); i++) {
+         /* Make sure the followers are valid. */
+         pe = pilot_get(rfollowers[i]);
+         if ((pe == NULL) || pilot_isFlag(pe, PILOT_DEAD)
+               || pilot_isFlag(pe, PILOT_HIDE))
+            continue;
+         lua_pushnumber(L, idx++);
+         lua_pushpilot(L, rfollowers[i]);
+         lua_rawset(L, -3);
+      }
+      array_free(rfollowers);
+   }
+   else {
+      for (i=0; i<array_size(p->escorts); i++) {
+         /* Make sure the followers are valid. */
+         pe = pilot_get(p->escorts[i].id);
+         if ((pe == NULL) || pilot_isFlag(pe, PILOT_DEAD)
+               || pilot_isFlag(pe, PILOT_HIDE))
+            continue;
+         lua_pushnumber(L, idx++);
+         lua_pushpilot(L, p->escorts[i].id);
+         lua_rawset(L, -3);
+      }
    }
 
    return 1;
