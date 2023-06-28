@@ -4654,7 +4654,7 @@ static int pilotL_msg(lua_State *L)
 static int pilotL_leader(lua_State *L) {
    Pilot *p;
    Pilot *parent;
-   LuaPilot pid;
+   LuaPilot pid, new_pid;
    int recursive;
 
    p = luaL_validpilot(L, 1);
@@ -4667,11 +4667,11 @@ static int pilotL_leader(lua_State *L) {
          && !pilot_isFlag(parent, PILOT_DEAD)
          && !pilot_isFlag(parent, PILOT_HIDE)) {
       if (recursive) {
-         while ((parent->parent != 0)
-               && ((parent = pilot_get(parent->parent)) != NULL)
+         while (((new_pid = parent->parent) != 0)
+               && ((parent = pilot_get(new_pid)) != NULL)
                && !pilot_isFlag(parent, PILOT_DEAD)
                && !pilot_isFlag(parent, PILOT_HIDE)) {
-            pid = parent->parent;
+            pid = new_pid;
          }
       }
       lua_pushpilot(L, pid);
