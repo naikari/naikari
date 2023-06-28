@@ -7,7 +7,7 @@
  <avail>
   <priority>20</priority>
   <cond>planet.cur() ~= planet.get("Ulios") and player.numOutfit("Mercenary License") &gt; 0</cond>
-  <chance>10</chance>
+  <chance>100</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -37,6 +37,7 @@
 --]]
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 require "pilot/pirate"
 require "missions/shark/common"
 
@@ -70,17 +71,6 @@ bar_desc[1] = _("This man looks like a honest citizen. He glances in your direct
 npc_desc[2] = _("Arnold Smith")
 bar_desc[2] = _([[The Nexus employee who recruited you for a very special demo of the "Shark" fighter.]])
 
--- OSD
-osd_title = _("A Shark Bites")
-osd_msg = {}
-osd_msg[1] = _("Land on {planet} ({system} system) with a Shark (but not a Pirate Shark) and speak to Arnold Smith")
-osd_msg[2] = _("Go to the {system} system and kill the pirate with your Shark")
-osd_msg[3] = _("Land on {planet} ({system} system)")
-
-leave_msg = _("MISSION FAILED: You left the pirate.")
-piratejump_msg = _("MISSION FAILED: The pirate ran away.")
-noshark_msg = _("MISSION FAILED: You were supposed to use a Shark.")
-
 log_text = _([[You helped Nexus Shipyards demonstrate the capabilities of their ships by destroying a Pirate Vendetta.]])
 
 
@@ -105,23 +95,27 @@ function accept()
       piratename = pirate_name()
       tk.msg("", fmt.f(yes_text, {planet=mispla:name(), system=missys:name()}))
 
-      osd_msg[1] = fmt.f(osd_msg[1],
-            {planet=mispla:name(), system=missys:name()})
-      osd_msg[2] = fmt.f(osd_msg[2], {system=battlesys:name()})
-      osd_msg[3] = fmt.f(osd_msg[3],
-            {planet=mispla:name(), system=missys:name()})
+      local osd_msg = {
+         _("Buy a Shark (but not a Pirate Shark)"),
+         fmt.f(_("Land on {planet} ({system} system) with a Shark (but not a Pirate Shark) and speak to Arnold Smith"),
+            {planet=mispla:name(), system=missys:name()}),
+         fmt.f(_("Go to the {system} system and kill the pirate with your Shark"),
+            {system=battlesys:name()}),
+         fmt.f(_("Land on {planet} ({system} system)"),
+            {planet=mispla:name(), system=missys:name()}),
+      }
 
       misn.setTitle(misn_title)
       misn.setReward(fmt.credits(reward))
       misn.setDesc(misn_desc)
-      misn.osdCreate(osd_title, osd_msg)
-      misn.osdActive(1)
-
-      markeri = misn.markerAdd(missys, "low")
+      misn.osdCreate(misn_title, osd_msg)
+      update_osd()
 
       jumpouthook = hook.jumpout("jumpout")
       landhook = hook.land("land")
       enterhook = hook.enter("enter")
+      hook.ship_buy("update_osd")
+      hook.ship_sell("update_osd")
    else
       tk.msg("", refusetext)
       misn.finish()
@@ -148,9 +142,25 @@ function land()
 end
 
 
+function update_osd()
+   if stage == 0 then
+      misn.markerRm(markeri)
+      for i, s in ipairs(player.ships()) do
+         if s.ship == ship.get("Shark")
+               or s.ship == ship.get("Empire Shark") then
+            misn.osdActive(2)
+            markeri = misn.markerAdd(missys, "low")
+            return
+         end
+      end
+      misn.osdActive(1)
+   end
+end
+
+
 function jumpout()
    if stage == 2 then
-      player.msg("#r" .. leave_msg .. "#0")
+      mh.showFailMsg(_("You left the pirate."))
       misn.finish(false)
    end
 end
@@ -160,9 +170,11 @@ function enter()
    if system.cur() == battlesys and stage == 1 then
       local playershipname = player.pilot():ship():nameRaw()
       if playershipname ~= "Shark" and playershipname ~= "Empire Shark" then
-         player.msg("#r" .. noshark_msg .. "#0")
+         mh.showFailMsg(_("You were supposed to use a Shark."))
          misn.finish(false)
       end
+
+      stage = 2
 
       pilot.clear()
       pilot.toggleSpawn(false)
@@ -186,7 +198,7 @@ function beginbattle()
 
    misn.markerRm(markeri)
    misn.npcRm(smith)
-   misn.osdActive(2)
+   misn.osdActive(3)
    stage = 1
 
    marker1 = misn.markerAdd(battlesys, "low")
@@ -195,7 +207,7 @@ end
 
 function pirate_jump()
    pilot.toggleSpawn(true)
-   player.msg("#r" .. piratejump_msg .. "#0")
+   mh.showFailMsg(_("The pirate ran away."))
    misn.finish(false)
 end
 
@@ -206,5 +218,10 @@ function pirate_dead()
    stage = 4
    misn.markerRm(marker1)
    marker2 = misn.markerAdd(missys, "low")
-   misn.osdActive(3)
+   misn.osdActive(4)
+end
+
+
+function abort()
+   var.pop(string.format("_escort_disable_%s", battlesys:nameRaw()))
 end
