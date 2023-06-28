@@ -55,13 +55,11 @@ Rebina takes a moment to sip from her drink. "I think you can see where this is 
 
 accept_text2 = _([["You will find Jorek in the spaceport bar on {planet}. When you see him, tell him you've come to 'see to his special needs'. Oh, and please be discreet. Don't talk about things you don't need to; the walls have ears in that place. In particular, don't mention any names.
 
-"You will be on a time schedule. You must take no longer than {time1} to meet Jorek, or he will assume you are not coming and go back into hiding. You must also be at the meeting point within {time2}. If you fail to meet with Jorek within the time limit or if you are prevented from taking him offworld for any other reason, make your way to the Seiryuu and report what happened. We'll take it from there. If you fail to show up at the designated time, we will assume you have failed, and the Seiryuu will leave."
+If you are prevented from taking Jorek offworld for any reason, make your way to the Seiryuu and report what happened. We'll take it from there."
 
 Rebina empties her glass and places it on the bar before rising to her feet. "That will be all. Good luck, and keep your wits about you." Rebina takes her leave from you and gracefully departs the spaceport bar. You order yourself another drink. You've got a feeling you're going to need it.]])
 
 refusal_text = _([["I see. What a shame." Rebina's demeanor conveys that she's disappointed but not upset. "I can understand your decision. One should not bite off more than one can chew, after all. It seems I will have to try to find another candidate." She tilts her head slightly. Then, "Although if you change your mind before I do, you're welcome to accept the mission."]])
-
-fail_notime_test = _([[You see a message on your ship's computer telling you that you have failed the mission given to you by Rebina because you didn't make it to your destination in time. You tell yourself that perhaps it's for the best; maybe you subconsciously didn't want to do the mission after all.]])
 
 fail_noattempt_text = _([[You complete docking operations with the Seiryuu, well aware that you didn't even attempt to pick up the man they were expecting. At the airlock, you are greeted by a pair of crewmen in grey uniforms. You explain to them that you were unable to bring Jorek to them, and they receive your report in a dry, businesslike manner. The meeting is short. The crewmen disappear back into their ship, closing the airlock behind them, and you return to your bridge.
 
@@ -119,13 +117,6 @@ sol2_npc["name"] = _("Card-playing soldier")
 sol2_npc["desc"] = _("Two soldiers are sharing a table near the exit, playing cards. Neither of them seems very into the game.")
 sol2_text = { _("They don't seem to appreciate your company. You decide to leave them to their game.") }
 
--- OSD stuff
-osd_title = _("Shadowrun")
-osd_msg = {}
-osd_msg1 = _("Talk to Jorek on {planet} ({system} system) before {deadline}\n({time} remaining)")
-osd_msg2 = _("Fly to the {system} system and dock with (board) Seiryuu\n({time} remaining)")
-osd_msg["__save"] = true
-
 log_text = _([[You participated in an operation for Captain Rebina. You thought you were rescuing a man named Jorek, but it turns out that you were actually helping smuggle something onto Captain Rebina's ship, the Seiryuu. You know next to nothing about Captain Rebina or who she works for.]])
 
 
@@ -138,8 +129,6 @@ function create()
     end
 
     credits = 700000
-    timelimit1 = time.create(0, 20, 0)
-    timelimit2 = time.create(0, 50, 0)
     talked = false
     
     misn.setNPC( _("A dark-haired woman"), "neutral/unique/rebina_casual.png", bar_desc )
@@ -155,13 +144,7 @@ function accept()
         misn.accept()
         tk.msg("", fmt.f(accept_text,
                 {planet=pnt:name(), system=sys:name(), destsys=sys2:name()}))
-        tk.msg("", fmt.f(accept_text2,
-                {planet=pnt:name(), time1=timelimit1:str(),
-                    time2=timelimit2:str()}))
-
-        -- Set deadlines
-        deadline1 = time.get() + timelimit1
-        deadline2 = time.get() + timelimit2
+        tk.msg("", fmt.f(accept_text2, {planet=pnt:name()}))
         
         misn.setTitle(misn_title)
         misn.setReward(misn_reward)
@@ -169,34 +152,20 @@ function accept()
 
         shadowrun = 2
 
-        gen_osd()
+        local osd_desc = {
+            _("Talk to Jorek at the bar on {planet} ({system} system)"),
+            _("Fly to the {system} system and dock with (board) Seiryuu"),
+        }
+        misn.osdCreate(_("Shadowrun"), osd_desc)
+
         misn_marker = misn.markerAdd(sys, "high")
 
-        datehook = hook.date(time.create(0, 0, 1000), "date")
         hook.land("land")
         hook.enter("enter")
     else
         tk.msg("", refusal_text)
         talked = true
         misn.finish()
-    end
-end
-
-function gen_osd()
-    local time1
-    if shadowrun <= 2 then
-        time1 = deadline1 - time.get()
-    else
-        time1 = time.create(0, 0, 1)
-    end
-    local time2 = deadline2 - time.get()
-    osd_msg[1] = fmt.f(osd_msg1,
-            {planet=pnt:name(), system=sys:name(), deadline=deadline1:str(),
-                time=time.str(time1, 2)})
-    osd_msg[2] = fmt.f(osd_msg2, {system=sys2:name(), time=time.str(time2, 2)})
-    misn.osdCreate(osd_title, osd_msg)
-    if shadowrun > 2 then
-        misn.osdActive(2)
     end
 end
 
@@ -220,7 +189,7 @@ function jorek()
             tk.msg("", jorek_text[3])
         end
         shadowrun = 3
-        gen_osd()
+        misn.osdActive(2)
         misn.markerMove(misn_marker, sys2)
     else
         tk.msg("", jorek_text[4])
@@ -237,18 +206,6 @@ function soldier2()
     tk.msg("", sol2_text[1])
 end
 
-function date()
-    -- Deadline stuff
-    if (deadline1 >= time.get() and shadowrun == 2)
-            or (deadline2 >= time.get() and shadowrun == 3) then
-        gen_osd()
-        hook.rm(datehook)
-        datehook = hook.date(time.create(0, 0, 10000), "date")
-    else
-        tk.msg("", fail_notime_text)
-        misn.finish(false)
-    end
-end
 
 function enter()
     -- Empire ships around planet
