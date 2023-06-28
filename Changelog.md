@@ -42,7 +42,7 @@
   affecting launched escorts (which previously couldn't be bribed).
 * Added measures taken after bribing a pilot to ensure the fight doesn't
   resume due to stray shots in most circumstances.
-* Changed the subtitle from "Imperial Storm" to "Eye of Chaos".
+* Changed the subtitle from "Imperial Storm" to "Eye of Chaös".
 * Improved handling of conflicting keybinds; previously, only one of a
   pair of conflicting keybinds would register, and which one it was
   wasn't deliberately designed in any way (for example, the "hail" key
