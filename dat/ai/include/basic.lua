@@ -269,8 +269,8 @@ end
 
 -- Default action for non-leader pilot in fleet
 function follow_fleet ()
-   local plt    = ai.pilot()
-   local leader = plt:leader()
+   local plt = ai.pilot()
+   local leader = plt:leader(true)
 
    if leader == nil or not leader:exists() then
       ai.poptask()
@@ -281,7 +281,7 @@ function follow_fleet ()
    ai.weapset(8, false)
 
    if mem.form_pos == nil then -- Simply follow unaccurately
-      local dir  = ai.face(leader)
+      local dir = ai.face(leader)
       local dist = ai.dist(leader)
       if dist > 300 and dir < 10 then -- Must approach
          ai.accel()

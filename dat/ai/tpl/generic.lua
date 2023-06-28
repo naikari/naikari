@@ -92,9 +92,17 @@ function _stateinfo( task )
 end
 
 function lead_fleet ()
-   if #ai.pilot():followers() ~= 0 then
+   local p = ai.pilot()
+
+   -- Leave fleet management to the highest-up pilot.
+   local leader = p:leader(true)
+   if leader ~= nil and leader:exists() then
+      return
+   end
+
+   if #p:followers(true) > 0 then
       if mem.formation == nil then
-         formation.clear(ai.pilot())
+         formation.clear(p)
          return
       end
 
@@ -102,7 +110,7 @@ function lead_fleet ()
       if form == nil then
          warn(string.format(_("Formation '%s' not found"), mem.formation))
       else
-         form(ai.pilot())
+         form(p)
       end
    end
 end
@@ -115,9 +123,10 @@ end
 function handle_messages ()
    local p = ai.pilot()
    local l = p:leader()
-   for _, v in ipairs(ai.messages()) do
+   local rl = p:leader(true)
+   for i, v in ipairs(ai.messages()) do
       local sender, msgtype, data = table.unpack(v)
-      if sender == l then
+      if sender == l or sender == rl then
          if msgtype == "form-pos" then
             mem.form_pos = data
          elseif msgtype == "hyperspace" then

@@ -13,7 +13,7 @@ end
 local formation = {}
 
 function formation.cross(leader)
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    -- Cross logic. Forms an X.
    local angle = 45 -- Spokes start rotated at a 45 degree angle.
    local radius = 100 -- First ship distance.
@@ -28,7 +28,7 @@ end
 
 function formation.buffer(leader)
    -- Buffer logic. Consecutive arcs emanating from the fleader. Stored as polar coordinates.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local class_count = count_classes(pilots)
    local angle, radius
 
@@ -77,7 +77,7 @@ end
 
 function formation.vee(leader)
    -- The vee formation forms a v, with the fleader at the apex, and the arms extending in front.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local angle = 45 -- Arms start at a 45 degree angle.
    local radius = 100 -- First ship distance.
    for i, p in ipairs(pilots) do
@@ -91,7 +91,7 @@ end
 
 function formation.wedge(leader)
    -- The wedge formation forms a v, with the fleader at the apex, and the arms extending out back.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local flip = -1
    local angle = (flip * 45) + 180
    local radius = 100 -- First ship distance.
@@ -107,7 +107,7 @@ end
       
 function formation.echelon_left(leader)
    --This formation forms a "/", with the fleader in the middle.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local radius = 100
    local flip = -1
    local angle = 135 + (90 * flip)  --Flip between 45 degrees and 225 degrees.
@@ -123,7 +123,7 @@ end
 
 function formation.echelon_right(leader)
    --This formation forms a "\", with the fleader in the middle.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local radius = 100
    local flip = 1
    local angle = 225 + (90 * flip) --Flip between 315 degrees, and 135 degrees
@@ -139,7 +139,7 @@ end
 
 function formation.column(leader)
    --This formation is a simple "|", with fleader in the middle.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local radius = 100
    local flip = -1
    local angle = 90 + (90 * flip)  --flip between 0 degrees and 180 degrees
@@ -155,7 +155,7 @@ end
 
 function formation.wall(leader)
    --This formation is a "-", with the fleader in the middle.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local radius = 100
    local flip = -1
    local angle = 180 + (90 * flip) --flip between 90 degrees and 270 degrees
@@ -170,7 +170,7 @@ function formation.wall(leader)
 end
 
 function formation.fishbone(leader)
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local radius = 500
    local flip = -1
    local orig_radius = radius
@@ -193,7 +193,7 @@ function formation.fishbone(leader)
 end
 
 function formation.chevron(leader)
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local radius = 500
    local flip = -1
    local orig_radius = radius
@@ -217,7 +217,7 @@ end
 
 function formation.circle(leader)
    -- Default to circle.
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local angle = 360 / #pilots -- The angle between each ship, in radians.
    local radius = 80 + #pilots * 25 -- Pulling these numbers out of my ass. The point being that more ships mean a bigger circle.
    for i, p in ipairs(pilots) do
@@ -236,7 +236,7 @@ formation.keys = keys
 
 -- Clear formation; not really a 'formation' so it is not in keys
 function formation.clear(leader)
-   leader:msg(leader:followers(), "form-pos", nil)
+   leader:msg(leader:followers(true), "form-pos", nil)
 end
 
 function formation.random_key()
@@ -248,7 +248,7 @@ end
 
 -- Custom large circle
 function formation.circleLarge(leader)
-   local pilots = leader:followers()
+   local pilots = leader:followers(true)
    local angle = 360 / #pilots -- The angle between each ship, in radians.
    local radius = 1500
    for i, p in ipairs(pilots) do
