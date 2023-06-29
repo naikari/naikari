@@ -73,15 +73,16 @@ Render the header portion of a weapon bar.
    @tparam number x Location X coördinate.
    @tparam number y Location Y coördinate.
    @tparam Tex icon Icon to use.
-@func render_header_raw
+@func render_bar_header_raw
 --]]
-function render_header_raw(x, y, icon)
+function render_bar_header_raw(x, y, icon)
    local w, h = tex_barHeader:dim()
    local ix = x + 2
    local iy = y + 2
    local iw = w - 4
    local ih = h - 4
 
+   gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
    gfx.renderTexRaw(icon, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1)
    gfx.renderTex(tex_barHeader, x, y)
 end
@@ -171,13 +172,5 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
    end
 
    gfx.renderTex(tex_barFrame, x, y)
-end
-
-
-function render_bar_header_raw(x, y, icon)
-   local w, h = tex_barHeader:dim()
-   gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
-   gfx.renderTexRaw(icon, x, y, w, h, 1, 1, 0, 0, 1, 1)
-   gfx.randerTex(tex_barHeader, x, y)
 end
 
