@@ -54,6 +54,7 @@ function create ()
    tex_barHeader = tex_open("barHeader.png")
    tex_barFrame = tex_open("barFrame.png")
    tex_barCircles = tex_open("barcircles.png")
+   tex_circleBar = tex_open("circleBar.png")
    tex_iconShield = tex_open("iconShield.png")
    tex_iconArmor = tex_open("iconArmor.png")
    tex_iconEnergy = tex_open("iconEnergy.png")
@@ -67,30 +68,50 @@ end
 
 
 --[[
--- Render the bar portion of a weapon bar.
---
--- If the argument passed to the text parameter is non-nil, text is
--- displayed over the bar and any arguments for the parameters that
--- follow it are ignored, so you can only use either the
--- reload/lock/icon/weapon number graphic *or* text, not both.
---
---    @tparam number x Location X coördinate.
---    @tparam number y Location Y coördinate.
---    @tparam Colour col Color of the bar.
---    @tparam Colour col_end Color of the tip of the bar.
---    @tparam number pct Percent of the bar to fill.
---    @tparam[opt] string text Text to display over the bar. Must be nil
---       to use the ricon, rpct, and wnum parameters.
---    @tparam[opt] Tex ricon Icon to show in the reload meter.
---    @tparam[opt] Colour rcol Color of the reload meter.
---    @tparam[opt] number rpct Percent of the reload meter to fill.
---       Only works if rcol is specified as well.
---    @tparam[opt] string wnum Weapon number to display. Should be
---       single digit.
---    @tparam[opt] Colour hcol Color of the lock-on meter.
---    @tparam[opt] number hpct Percent of the heat meter to fill.
---       Only works if hcol is specified as well.
--- @func render_bar_raw
+Render the header portion of a weapon bar.
+
+   @tparam number x Location X coördinate.
+   @tparam number y Location Y coördinate.
+   @tparam Tex icon Icon to use.
+@func render_header_raw
+--]]
+function render_header_raw(x, y, icon)
+   local w, h = tex_barHeader:dim()
+   local ix = x + 2
+   local iy = y + 2
+   local iw = w - 4
+   local ih = h - 4
+
+   gfx.renderTexRaw(icon, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1)
+   gfx.renderTex(tex_barHeader, x, y)
+end
+
+
+--[[
+Render the bar portion of a weapon bar.
+
+If the argument passed to the text parameter is non-nil, text is
+displayed over the bar and any arguments for the parameters that
+follow it are ignored, so you can only use either the
+reload/lock/icon/weapon number graphic *or* text, not both.
+
+   @tparam number x Location X coördinate.
+   @tparam number y Location Y coördinate.
+   @tparam Colour col Color of the bar.
+   @tparam Colour col_end Color of the tip of the bar.
+   @tparam number pct Percent of the bar to fill.
+   @tparam[opt] string text Text to display over the bar.
+   @tparam[opt] Tex ricon Icon to show in the reload meter. Must be
+      nil to use the wnum parameter.
+   @tparam[opt] Colour rcol Color of the reload meter.
+   @tparam[opt] number rpct Percent of the reload meter to fill.
+      Only works if rcol is specified as well.
+   @tparam[opt] string wnum Weapon number to display. Should be a
+      single digit.
+   @tparam[opt] Colour hcol Color of the lock-on meter.
+   @tparam[opt] number hpct Percent of the heat meter to fill.
+      Only works if hcol is specified as well.
+@func render_bar_raw
 --]]
 function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       hcol, hpct)
@@ -107,17 +128,26 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       local text_x = math.floor(x+w - gfx.printDim(true, text) - 4)
       gfx.print(true, text, text_x, text_y, col_text, w)
    end
+
    if ricon ~= nil or wnum ~= nil or (rcol ~= nil and rpct ~= nil)
          or (hcol ~= nil and hpct ~= nil) then
       local cw, ch = tex_barCircles:dim()
       local cx = math.floor(x + 4)
 
       if rcol ~= nil and rpct ~= nil then
-         -- TODO
+         local iw, ih = tex_circleBar:dim()
+         local ix = cx
+         local iy = y + 4
+         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih * rpct, 1, 1, 0, 0,
+               1, rpct, rcol)
       end
 
       if hcol != nil and hpct ~= nil then
-         -- TODO
+         local iw, ih = tex_circleBar:dim()
+         local ix = math.floor(cx + cw/2)
+         local iy = y + 4
+         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih * hpct, 1, 1, 0, 0,
+               1, hpct, hcol)
       end
 
       gfx.renderTex(tex_barCircles, cx, y)
