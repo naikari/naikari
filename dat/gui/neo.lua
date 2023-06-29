@@ -87,13 +87,13 @@ end
 --       Only works if rcol is specified as well.
 --    @tparam[opt] string wnum Weapon number to display. Should be
 --       single digit.
---    @tparam[opt] Colour lcol Color of the lock-on meter.
---    @tparam[opt] number lpct Percent of the lock-on meter to fill.
---       Only works if lcol is specified as well.
+--    @tparam[opt] Colour hcol Color of the lock-on meter.
+--    @tparam[opt] number hpct Percent of the heat meter to fill.
+--       Only works if hcol is specified as well.
 -- @func render_bar_raw
 --]]
 function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
-      lcol, lpct)
+      hcol, hpct)
    local w, h = tex_barFrame:dim()
    local bw = math.floor(w * pct)
    local centerx = math.floor(x + w/2)
@@ -104,17 +104,19 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
    gfx.renderRect(x + bw - 1, y, 1, h, col_end)
 
    if text ~= nil then
-      gfx.print(true, text, centerx, text_y, col_text, w, true)
-   elseif ricon ~= nil or wnum ~nil or (rcol ~= nil and rpct ~= nil)
-         or (lcol ~= nil and lpct ~= nil) then
+      local text_x = math.floor(x+w - gfx.printDim(true, text) - 4)
+      gfx.print(true, text, text_x, text_y, col_text, w)
+   end
+   if ricon ~= nil or wnum ~= nil or (rcol ~= nil and rpct ~= nil)
+         or (hcol ~= nil and hpct ~= nil) then
       local cw, ch = tex_barCircles:dim()
-      local cx = math.floor(x + w/2 - cw/2)
+      local cx = math.floor(x + 4)
 
       if rcol ~= nil and rpct ~= nil then
          -- TODO
       end
 
-      if lcol != nil and lpct ~= nil then
+      if hcol != nil and hpct ~= nil then
          -- TODO
       end
 
@@ -122,14 +124,19 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
 
       if ricon ~= nil then
          local iw, ih = ricon:dim()
-         local ix = math.floor(x + w/2 - cw/4 - iw/2)
+         local ix = math.floor(cx + cw/4 - iw/2)
          local iy = math.floor(y + h/2 - ih/2)
          gfx.renderTex(ricon, ix, iy)
+      elseif wnum ~= nil then
+         local tx = math.floor(cx + cw/4)
+         gfx.print(true, wnum, tx, text_y, col_text, math.floor(cw/4), true)
       end
 
-      if wnum ~= nil then
-         local tx = math.floor(x + w/2 + cw/4)
-         gfx.print(true, wnum, tx, text_y, col_text, math.floor(cw/4), true)
+      if hcol != nil and hpct ~= nil then
+         local iw, ih = tex_iconHeat:dim()
+         local ix = math.floor(cx + cw*3/4 - iw/2)
+         local iy = math.floor(y + h/2 - ih/2)
+         gfx.renderTex(tex_iconHeat, ix, iy)
       end
    end
 
