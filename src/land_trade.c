@@ -253,19 +253,18 @@ void commodity_update( unsigned int wid, char* str )
    /* modify image */
    window_modifyImage( wid, "imgStore", com->gfx_store, 192, 192 );
 
-   planet_averagePlanetPrice( land_planet, com, &mean, &std);
-   credits2str( buf_mean, mean, -1 );
-   /* TODO credit2str could learn to do this... */
-   snprintf(buf_std, sizeof(buf_std), _("%.1f ¢"), std);
-   economy_getAveragePrice( com, &globalmean, &globalstd );
-   credits2str( buf_globalmean, globalmean, -1 );
-   /* TODO credit2str could learn to do this... */
-   snprintf(buf_globalstd, sizeof(buf_globalstd), _("%.1f ¢"), globalstd);
+   planet_averagePlanetPrice(land_planet, com, &mean, &std);
+   credits2str(buf_mean, mean, -1);
+   snprintf(buf_std, sizeof(buf_std), _("%.1f ¢/kt"), std);
+   economy_getAveragePrice(com, &globalmean, &globalstd);
+   credits2str(buf_globalmean, globalmean, -1);
+   snprintf(buf_globalstd, sizeof(buf_globalstd), _("%.1f ¢/kt"), globalstd);
    /* modify text */
    strcpy(buf_purchase_price, _("N/A"));
    owned = pilot_cargoOwned(player.p, com);
    if (owned > 0)
-      credits2str(buf_purchase_price, com->lastPurchasePrice, -1);
+      snprintf(buf_purchase_price, sizeof(buf_purchase_price), _("%ld ¢/kt"),
+            com->lastPurchasePrice);
    credits2str(buf_credits, player.p->credits, 2);
    credits2str(buf_local_price, planet_commodityPrice(land_planet, com), -1);
    tonnes2str(buf_tonnes_owned, owned);
@@ -275,8 +274,8 @@ void commodity_update( unsigned int wid, char* str )
                  "#nPurchased for:#0 %s\n"
                  "#nMarket Price:#0 %s/kt\n"
                  "\n"
-                 "#nAverage price here:#0 %s/kt ± %s/kt\n"
-                 "#nAverage price all:#0 %s/kt ± %s/kt\n"
+                 "#nAverage price here:#0 %s/kt ± %s\n"
+                 "#nAverage price all:#0 %s/kt ± %s\n"
                  "\n"
                  "#nFree Space:#0 %s\n"
                  "#nMoney:#0 %s"),
