@@ -415,11 +415,11 @@ static void opt_gameplay( unsigned int wid )
          &gl_smallFont, NULL, s );
    window_addInput( wid, -50, y, 40, 20, "inpMSG", 4, 1, &gl_smallFont );
    y -= 30;
-   s = _("Max Time Compression Factor");
+   s = _("TC Max %");
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtTMax",
          &gl_smallFont, NULL, s );
-   window_addInput( wid, -50, y, 40, 20, "inpTMax", 4, 1, &gl_smallFont );
+   window_addInput(wid, -50, y, 80, 20, "inpTMax", 7, 1, &gl_smallFont);
 
    /* Restart text. */
    window_addText( wid, 20, 20 + BUTTON_HEIGHT,
@@ -464,7 +464,7 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    vmsg = window_getInput( wid, "inpMSG" );
    tmax = window_getInput( wid, "inpTMax" );
    conf.mesg_visible = atoi(vmsg);
-   conf.compression_mult = atoi(tmax);
+   conf.compression_mult = atoi(tmax) / 100.;
    if (conf.mesg_visible == 0)
       conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
 
@@ -496,7 +496,7 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    /* Input boxes. */
    snprintf( vmsg, sizeof(vmsg), "%d", INPUT_MESSAGES_DEFAULT );
    window_setInput( wid, "inpMSG", vmsg );
-   snprintf( tmax, sizeof(tmax), "%d", TIME_COMPRESSION_DEFAULT_MULT );
+   snprintf(tmax, sizeof(tmax), "%d", TIME_COMPRESSION_DEFAULT_MULT * 100);
    window_setInput( wid, "inpTMax", tmax );
 }
 
@@ -520,7 +520,7 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    /* Input boxes. */
    snprintf( vmsg, sizeof(vmsg), "%d", conf.mesg_visible );
    window_setInput( wid, "inpMSG", vmsg );
-   snprintf( tmax, sizeof(tmax), "%G", conf.compression_mult );
+   snprintf(tmax, sizeof(tmax), "%G", conf.compression_mult * 100);
    window_setInput( wid, "inpTMax", tmax );
 }
 
