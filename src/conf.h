@@ -22,7 +22,7 @@
 #define SAVE_COMPRESSION_DEFAULT 1 /**< conf.save_compress */
 #define INPUT_MESSAGES_DEFAULT 5 /**< conf.mesg_visible */
 #define TIME_COMPRESSION_DEFAULT_MAX 5000. /**< conf.compression_velocity */
-#define TIME_COMPRESSION_DEFAULT_MULT 200 /**< conf.compression_mult */
+#define TIME_COMPRESSION_DEFAULT_MULT 200. /**< conf.compression_mult */
 #define DT_MOD_DEFAULT 1. /**< conf.dt_mod */
 #define AUTONAV_RESET_SPEED_DEFAULT 1. /**< conf.autonav_reset_speed */
 /* Video option defaults */

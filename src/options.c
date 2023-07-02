@@ -408,18 +408,27 @@ static void opt_gameplay( unsigned int wid )
    y -= 25;
    window_addCheckbox( wid, x, y, cw, 20,
          "chkCompress", _("Enable saved game compression"), NULL, conf.save_compress );
+
    y -= 40;
+
    s = _("Visible Messages");
    l = gl_printWidthRaw( &gl_smallFont, s );
-   window_addText( wid, x, y, l, 20, 1, "txtSMSG",
-         &gl_smallFont, NULL, s );
-   window_addInput( wid, -50, y, 40, 20, "inpMSG", 4, 1, &gl_smallFont );
+   window_addText(wid, x, y, l, 20, 1, "txtSMSG", &gl_smallFont, NULL, s);
+   window_addInput(wid, -50, y, 40, 20, "inpMSG", 4, 1, &gl_smallFont);
+
    y -= 30;
+
    s = _("TC Max (%)");
    l = gl_printWidthRaw( &gl_smallFont, s );
-   window_addText( wid, x, y, l, 20, 1, "txtTMax",
-         &gl_smallFont, NULL, s );
+   window_addText(wid, x, y, l, 20, 1, "txtTMax", &gl_smallFont, NULL, s);
    window_addInput(wid, -50, y, 80, 20, "inpTMax", 7, 1, &gl_smallFont);
+
+   y -= 30;
+
+   s = _("TC Velocity (mAU/s)");
+   l = gl_printWidthRaw(&gl_smallFont, s);
+   window_addText(wid, x, y, l, 20, 1, "txtTVel", &gl_smallFont, NULL, s);
+   window_addInput(wid, -50, y, 80, 20, "inpTVel", 7, 1, &gl_smallFont);
 
    /* Restart text. */
    window_addText( wid, 20, 20 + BUTTON_HEIGHT,
@@ -436,7 +445,8 @@ static int opt_gameplaySave( unsigned int wid, char *str )
 {
    (void) str;
    int p, newlang;
-   char *vmsg, *tmax, *s;
+   char *s;
+   char *inp;
 
    /* List. */
    p = toolkit_getListPos( wid, "lstLanguage" );
@@ -461,12 +471,14 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
 
    /* Input boxes. */
-   vmsg = window_getInput( wid, "inpMSG" );
-   tmax = window_getInput( wid, "inpTMax" );
-   conf.mesg_visible = atoi(vmsg);
-   conf.compression_mult = atoi(tmax) / 100.;
+   inp = window_getInput(wid, "inpMSG");
+   conf.mesg_visible = atoi(inp);
    if (conf.mesg_visible == 0)
       conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
+   inp = window_getInput(wid, "inpTMax");
+   conf.compression_mult = atof(inp) / 100.;
+   inp = window_getInput(wid, "inpTVel");
+   conf.compression_velocity = atof(inp);
 
    /* Reset speed so changes take effect immediately. */
    if (!menu_isOpen(MENU_MAIN))
@@ -481,7 +493,7 @@ static int opt_gameplaySave( unsigned int wid, char *str )
 static void opt_gameplayDefaults( unsigned int wid, char *str )
 {
    (void) str;
-   char vmsg[16], tmax[16];
+   char buf[STRMAX_SHORT];
 
    /* Restore. */
    /* Checkboxes. */
@@ -494,10 +506,12 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    window_faderValue( wid, "fadGameSpeed", DT_MOD_DEFAULT );
 
    /* Input boxes. */
-   snprintf( vmsg, sizeof(vmsg), "%d", INPUT_MESSAGES_DEFAULT );
-   window_setInput( wid, "inpMSG", vmsg );
-   snprintf(tmax, sizeof(tmax), "%d", TIME_COMPRESSION_DEFAULT_MULT * 100);
-   window_setInput( wid, "inpTMax", tmax );
+   snprintf(buf, sizeof(buf), "%d", INPUT_MESSAGES_DEFAULT);
+   window_setInput(wid, "inpMSG", buf);
+   snprintf(buf, sizeof(buf), "%G", TIME_COMPRESSION_DEFAULT_MULT * 100.);
+   window_setInput(wid, "inpTMax", buf);
+   snprintf(buf, sizeof(buf), "%G", TIME_COMPRESSION_DEFAULT_MAX);
+   window_setInput(wid, "inpTVel", buf);
 }
 
 /**
@@ -506,7 +520,7 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
 static void opt_gameplayUpdate( unsigned int wid, char *str )
 {
    (void) str;
-   char vmsg[16], tmax[16];
+   char buf[STRMAX_SHORT];
 
    /* Checkboxes. */
    window_checkboxSet(wid, "chkZoomManual", conf.zoom_manual);
@@ -518,10 +532,12 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    window_faderSetBoundedValue( wid, "fadGameSpeed", conf.dt_mod );
 
    /* Input boxes. */
-   snprintf( vmsg, sizeof(vmsg), "%d", conf.mesg_visible );
-   window_setInput( wid, "inpMSG", vmsg );
-   snprintf(tmax, sizeof(tmax), "%G", conf.compression_mult * 100);
-   window_setInput( wid, "inpTMax", tmax );
+   snprintf(buf, sizeof(buf), "%d", conf.mesg_visible);
+   window_setInput(wid, "inpMSG", buf);
+   snprintf(buf, sizeof(buf), "%G", conf.compression_mult * 100);
+   window_setInput(wid, "inpTMax", buf);
+   snprintf(buf, sizeof(buf), "%G", conf.compression_velocity);
+   window_setInput(wid, "inpTVel", buf);
 }
 
 
