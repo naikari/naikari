@@ -415,7 +415,7 @@ static void opt_gameplay( unsigned int wid )
          &gl_smallFont, NULL, s );
    window_addInput( wid, -50, y, 40, 20, "inpMSG", 4, 1, &gl_smallFont );
    y -= 30;
-   s = _("TC Max %");
+   s = _("TC Max (%)");
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtTMax",
          &gl_smallFont, NULL, s );
