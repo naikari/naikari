@@ -719,7 +719,7 @@ static void weapons_fire( unsigned int wid, char *str )
 
    /* Check to see if they are all fire groups. */
    for (i=0; i<PLAYER_WEAPON_SETS; i++)
-      if (!pilot_weapSetTypeCheck(player.p, i))
+      if (pilot_weapSetTypeCheck(player.p, i) == WEAPSET_TYPE_CHANGE)
          break;
 
    /* Not able to set them all to fire groups. */
