@@ -689,7 +689,8 @@ static void weapons_fire( unsigned int wid, char *str )
 {
    int state, t, c;
    int *levels;
-   int i;
+   int change_exists;
+   int i, j;
 
    /* Set state. */
    state = window_checkboxState( wid, str );
@@ -717,24 +718,35 @@ static void weapons_fire( unsigned int wid, char *str )
       c = WEAPSET_TYPE_CHANGE;
    pilot_weapSetType(player.p, info_eq_weaps.weapons, c);
 
-   /* Check to see if they are all fire groups. */
-   for (i=0; i<PLAYER_WEAPON_SETS; i++)
-      if (pilot_weapSetTypeCheck(player.p, i) == WEAPSET_TYPE_CHANGE)
+   /* Check to see if any change groups exist and have weapons. */
+   change_exists = 0;
+   for (i=0; i<PLAYER_WEAPON_SETS; i++) {
+      if (pilot_weapSetTypeCheck(player.p, i) == WEAPSET_TYPE_CHANGE) {
+         for (j=0; j<array_size(player.p->outfit_weapon); j++) {
+            if (pilot_weapSetCheck(player.p, i, &player.p->outfit_weapon[j]) >= 0) {
+               change_exists = 1;
+               break;
+            }
+         }
+      }
+      if (change_exists)
          break;
+   }
 
    /* Not able to set them all to fire groups. */
-   if (i >= PLAYER_WEAPON_SETS) {
+   if (!change_exists) {
       pilot_weapSetType(player.p, info_eq_weaps.weapons, WEAPSET_TYPE_CHANGE);
-      window_checkboxSet(wid, str, 0);
 
       /* Reset primary/secondary settings. */
       for (i=0; i<array_size(levels); i++) {
-         pilot_weapSetAdd(player.p, info_eq_weaps.weapons,
-            &player.p->outfit_weapon[i], levels[i]);
+         if (levels[i] >= 0)
+            pilot_weapSetAdd(player.p, info_eq_weaps.weapons,
+               &player.p->outfit_weapon[i], levels[i]);
       }
 
       dialogue_alert(
          _("You cannot set all your weapon sets to instant fire."));
+      window_checkboxSet(wid, str, 0);
 
       goto err;
    }
