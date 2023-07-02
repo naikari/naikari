@@ -687,7 +687,9 @@ static void weapons_autoweap( unsigned int wid, char *str )
  */
 static void weapons_fire( unsigned int wid, char *str )
 {
-   int i, state, t, c;
+   int state, t, c;
+   int *levels;
+   int i;
 
    /* Set state. */
    state = window_checkboxState( wid, str );
@@ -697,37 +699,58 @@ static void weapons_fire( unsigned int wid, char *str )
    if (t == WEAPSET_TYPE_ACTIVE) {
       window_checkboxSet(wid, "chkFire", 0);
       dialogue_alert(
-            _("Instant mode is unavailable for activated outfit weapon"
-               " sets."));
+         _("Instant mode is unavailable for activated outfit weapon sets."));
       return;
+   }
+
+   /* Store primary/secondary settings in case we have to revert. */
+   levels = array_create_size(int, array_size(player.p->outfit_weapon));
+   for (i=0; i<array_size(player.p->outfit_weapon); i++) {
+      array_push_back(&levels,
+            pilot_weapSetCheck(player.p, info_eq_weaps.weapons,
+               &player.p->outfit_weapon[i]));
    }
 
    if (state)
       c = WEAPSET_TYPE_WEAPON;
    else
       c = WEAPSET_TYPE_CHANGE;
-   pilot_weapSetType( player.p, info_eq_weaps.weapons, c );
+   pilot_weapSetType(player.p, info_eq_weaps.weapons, c);
 
    /* Check to see if they are all fire groups. */
    for (i=0; i<PLAYER_WEAPON_SETS; i++)
-      if (!pilot_weapSetTypeCheck( player.p, i ))
+      if (!pilot_weapSetTypeCheck(player.p, i))
          break;
 
    /* Not able to set them all to fire groups. */
    if (i >= PLAYER_WEAPON_SETS) {
-      dialogue_alert(_("You cannot set all your weapon sets to fire groups!"));
-      pilot_weapSetType( player.p, info_eq_weaps.weapons, WEAPSET_TYPE_CHANGE );
-      window_checkboxSet( wid, str, 0 );
-   }
+      pilot_weapSetType(player.p, info_eq_weaps.weapons, WEAPSET_TYPE_CHANGE);
+      window_checkboxSet(wid, str, 0);
 
-   /* Set default if needs updating. */
-   pilot_weaponSetDefault( player.p );
+      /* Reset primary/secondary settings. */
+      for (i=0; i<array_size(levels); i++) {
+         pilot_weapSetAdd(player.p, info_eq_weaps.weapons,
+            &player.p->outfit_weapon[i], levels[i]);
+      }
+
+      dialogue_alert(
+         _("You cannot set all your weapon sets to instant fire."));
+
+      goto err;
+   }
 
    /* Disable automatic handling of weapons */
    player.p->autoweap = 0;
 
+err:
+
+   array_free(levels);
+
+   /* Set default if needs updating. */
+   pilot_weaponSetDefault(player.p);
+
    /* Must regen. */
-   weapons_genList( wid );
+   weapons_genList(wid);
 }
 
 
