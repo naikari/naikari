@@ -243,7 +243,7 @@ static int playerL_pay( lua_State *L )
 
    /* Update land window so credits display can update. */
    if (landed)
-      land_updateMainTab();
+      land_updateTabs();
 
    return 0;
 }
@@ -422,7 +422,7 @@ static int playerL_allowSave( lua_State *L )
 
    /* Update land window main tab for the Save Snapshot button. */
    if (landed)
-      land_updateMainTab();
+      land_updateTabs();
 
    return 0;
 }

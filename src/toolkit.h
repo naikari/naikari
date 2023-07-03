@@ -17,6 +17,10 @@
 #include "tk/widget.h"
 
 
+/* TODO: replace "unsigned int" with "wid_t" where needed. */
+typedef unsigned int wid_t;
+
+
 int toolkit_isOpen (void);
 
 

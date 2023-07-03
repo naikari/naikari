@@ -122,6 +122,7 @@ static void land_stranded (void);
 static void land_createMainTab( unsigned int wid );
 static void land_cleanupWindow( unsigned int wid, char *name );
 static void land_changeTab( unsigned int wid, char *wgt, int old, int tab );
+static void land_updateMainTab(void);
 /* spaceport */
 static void spaceport_buyMap(unsigned int wid, char *str);
 static void spaceport_saveSnapshot(unsigned int wid, char *str);
@@ -832,8 +833,8 @@ static void spaceport_buyMap( unsigned int wid, char *str )
    if (w > 0)
       outfits_regenList( w, NULL );
 
-   /* Update main tab. */
-   land_updateMainTab();
+   /* Update tabs. */
+   land_updateTabs();
 }
 
 
@@ -867,7 +868,7 @@ static void spaceport_saveSnapshot(unsigned int wid, char *str)
 /**
  * @brief Adds the "Buy Local Map" button if needed and updates info.
  */
-void land_updateMainTab (void)
+static void land_updateMainTab(void)
 {
    char buf[STRMAX], cred[ECON_CRED_STRLEN], tons[STRMAX_SHORT], pop[STRMAX_SHORT];
    Outfit *o;
@@ -955,6 +956,73 @@ void land_updateMainTab (void)
    /* Make sure player can click it. */
    if (!outfit_canBuy(LOCAL_MAP_NAME, land_planet))
       window_disableButtonSoft(land_getWid(LAND_WINDOW_MAIN), "btnMap");
+}
+
+
+void land_updateTabs(void)
+{
+   wid_t w;
+   int tab;
+   int i;
+
+   tab = window_tabWinGetActive(land_wid, "tabLand");
+
+   /* Find the currently selected tab. */
+   for (i=0; i<LAND_NUMWINDOWS; i++) {
+      if (land_windowsMap[i] == tab) {
+         last_window = i;
+         w = land_getWid(i);
+
+         /* Ensure the tab being switched to is generated (in case we're
+          * doing this during a land hook), and also regenerate lists as
+          * needed. */
+         switch (i) {
+            case LAND_WINDOW_MAIN:
+               land_updateMainTab();
+               break;
+            case LAND_WINDOW_OUTFITS:
+               if (!land_tabGenerated(i))
+                  outfits_open(w, NULL);
+               outfits_update(w, NULL);
+               break;
+            case LAND_WINDOW_SHIPYARD:
+               if (!land_tabGenerated(i))
+                  shipyard_open(w);
+               shipyard_update(w, NULL);
+               break;
+            case LAND_WINDOW_BAR:
+               if (!land_tabGenerated(i))
+                  bar_open(w);
+               bar_update(w, NULL);
+               break;
+            case LAND_WINDOW_MISSION:
+               if (!land_tabGenerated(i))
+                  misn_open(w);
+               misn_update(w, NULL);
+               break;
+            case LAND_WINDOW_COMMODITY:
+               if (!land_tabGenerated(i))
+                  commodity_exchange_open(w);
+               commodity_update(w, NULL);
+               break;
+            case LAND_WINDOW_EQUIPMENT:
+               if (!land_tabGenerated(i))
+                  equipment_open(w);
+               equipment_updateShips(w, NULL);
+               equipment_updateOutfits(w, NULL);
+               break;
+
+            default:
+               break;
+         }
+
+         /* Clear markers if not on Mission Computer tab. */
+         if (i != LAND_WINDOW_MISSION)
+            space_clearComputerMarkers();
+
+         break;
+      }
+   }
 }
 
 
@@ -1106,9 +1174,10 @@ void land_genWindows( int load, int changetab )
     */
 
    /* Create main tab. */
-   land_createMainTab( land_getWid(LAND_WINDOW_MAIN) );
+   land_createMainTab(land_getWid(LAND_WINDOW_MAIN));
 
-   /* Add local system map button. */
+   /* Update the main tab in case a modal dialog gets opened (to prevent
+    * display inconsistencies). */
    land_updateMainTab();
 
    /* Set as landed. */
@@ -1180,10 +1249,8 @@ void land_genWindows( int load, int changetab )
    if (changetab && land_windowsMap[ last_window ] != -1)
       window_tabWinSetActive( land_wid, "tabLand", land_windowsMap[ last_window ] );
 
-   /* Refresh the map button in case the player couldn't afford it prior to
-    * mission payment.
-    */
-   land_updateMainTab();
+   /* Update tabs. */
+   land_updateTabs();
 
    /* Refuel if necessary. */
    land_refuel();
@@ -1336,100 +1403,66 @@ static void land_createMainTab( unsigned int wid )
 static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
 {
    int i;
+   const char *torun_hook;
+   unsigned int to_visit;
    (void) wid;
    (void) wgt;
    (void) old;
 
-   unsigned int w;
-   const char *torun_hook;
-   unsigned int to_visit;
+   /* Update tabs. */
+   land_updateTabs();
 
    /* Safe defaults. */
    torun_hook = NULL;
-   to_visit   = 0;
+   to_visit = 0;
 
    /* Find what switched. */
    for (i=0; i<LAND_NUMWINDOWS; i++) {
       if (land_windowsMap[i] == tab) {
-         last_window = i;
-         w = land_getWid( i );
-
-         /* Ensure the tab being switched to is generated (in case we're
-          * duing this during a land hook), and also regenerate lists as
-          * needed. */
          switch (i) {
             case LAND_WINDOW_MAIN:
-               land_updateMainTab();
                break;
             case LAND_WINDOW_OUTFITS:
-               if (!land_tabGenerated(i))
-                  outfits_open(w, NULL);
-               outfits_update( w, NULL );
-               to_visit   = VISITED_OUTFITS;
+               to_visit = VISITED_OUTFITS;
                torun_hook = "outfits";
                break;
             case LAND_WINDOW_SHIPYARD:
-               if (!land_tabGenerated(i))
-                  shipyard_open(w);
-               shipyard_update( w, NULL );
-               to_visit   = VISITED_SHIPYARD;
+               to_visit = VISITED_SHIPYARD;
                torun_hook = "shipyard";
                break;
             case LAND_WINDOW_BAR:
-               if (!land_tabGenerated(i))
-                  bar_open(w);
-               bar_update( w, NULL );
-               to_visit   = VISITED_BAR;
+               to_visit = VISITED_BAR;
                torun_hook = "bar";
                break;
             case LAND_WINDOW_MISSION:
-               if (!land_tabGenerated(i))
-                  misn_open(w);
-               misn_update( w, NULL );
-               to_visit   = VISITED_MISSION;
+               to_visit = VISITED_MISSION;
                torun_hook = "mission";
                break;
             case LAND_WINDOW_COMMODITY:
-               if (!land_tabGenerated(i))
-                  commodity_exchange_open(w);
-               commodity_update( w, NULL );
-               to_visit   = VISITED_COMMODITY;
+               to_visit = VISITED_COMMODITY;
                torun_hook = "commodity";
                break;
             case LAND_WINDOW_EQUIPMENT:
-               if (!land_tabGenerated(i))
-                  equipment_open(w);
-               equipment_updateShips( w, NULL );
-               equipment_updateOutfits( w, NULL );
-               to_visit   = VISITED_EQUIPMENT;
+               to_visit = VISITED_EQUIPMENT;
                torun_hook = "equipment";
                break;
 
             default:
                break;
          }
-
-         /* Clear markers if closing Mission Computer. */
-         if (i != LAND_WINDOW_MISSION)
-            space_clearComputerMarkers();
-
          break;
       }
    }
 
-   /* Check land missions - always run hooks. */
-   /*if ((to_visit != 0) && !has_visited(to_visit)) {*/
-   {
-      /* Run hooks, run after music in case hook wants to change music. */
-      if (torun_hook != NULL)
-         if (hooks_run( torun_hook ) > 0)
-            bar_genList( land_getWid(LAND_WINDOW_BAR) );
+   /* Run hooks, run after music in case hook wants to change music. */
+   if (torun_hook != NULL)
+      if (hooks_run(torun_hook) > 0)
+         bar_genList(land_getWid(LAND_WINDOW_BAR));
 
-      visited(to_visit);
+   visited(to_visit);
 
-      if (land_takeoff)
-         takeoff(1);
-   }
+   if (land_takeoff)
+      takeoff(1);
 }
 
 
