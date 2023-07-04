@@ -37,13 +37,6 @@
 #include "utf8.h"
 
 
-typedef enum MapMode_ {
-   MAPMODE_TRAVEL,
-   MAPMODE_DISCOVER,
-   MAPMODE_TRADE,
-} MapMode;
-
-
 #define MAP_SIDEBAR_WIDTH  240 /**< Map window sidebar width. */
 
 #define BUTTON_WIDTH    140 /**< Map button width. */
@@ -2167,6 +2160,7 @@ static void map_genModeList(void)
    }
 }
 
+
 /**
  * @brief Updates the map mode list.  This is called when the map update list is clicked.
  *    Unfortunately, also called when scrolled.
@@ -2325,9 +2319,12 @@ void map_close (void)
    }
    map_modes = NULL;
 
-   /* Set to defaults for the benefit of the mission map */
+   /* Set to defaults for the benefit of embedded maps. */
    map_clear();
    map_reset();
+
+   /* Give the land window a chance to configure the map. */
+   land_updateTabs();
 
    wid = window_get(MAP_WDWNAME);
    if (wid > 0)
@@ -3137,4 +3134,71 @@ static int map_decorator_parse( MapDecorator *temp, xmlNodePtr parent ) {
    } while (xml_nextNode(node));
 
    return 0;
+}
+
+
+/**
+ * @brief Sets the map mode.
+ *
+ *    @param mode Mode to set the map to.
+ * @sa map_setCommodity
+ * @sa map_setCommodityMode
+ */
+void map_setMode(MapMode mode)
+{
+   map_mode = mode;
+}
+
+
+/**
+ * @brief Sets the commodity for the trade map mode.
+ *
+ *    @param commod Commodity to set it to, or NULL for no commodity.
+ *    @return 0 on success, -1 if the commodity is invalid.
+ */
+int map_setCommodity(const Commodity* commod)
+{
+   int i;
+
+   if (commod_known == NULL) {
+      ERR("commod_known has not been populated.");
+      return -1;
+   }
+
+   if (commod == NULL) {
+      cur_commod = -1;
+      return 0;
+   }
+
+   for (i=0; i<commodity_getN(); i++) {
+      if (strcmp(commod->name, commod_known[i]->name) == 0) {
+         cur_commod = i;
+         return 0;
+      }
+   }
+
+   cur_commod = -1;
+   return -1;
+}
+
+
+/**
+ * @brief Sets the commodity mode for the trade map mode.
+ *
+ *    @param mode 0 for price mode, 1 for comparison mode.
+ */
+void map_setCommodityMode(int mode)
+{
+   cur_commod_mode = mode;
+}
+
+
+/**
+ * @brief Sets whether the map is in minimal mode.
+ *
+ *    @param minimal 1 for minimal mode, 0 for full mode.
+ */
+void map_setMinimal(int minimal)
+{
+   map_minimal = minimal;
 }

@@ -14,12 +14,21 @@
 #define MAP_WIDTH  MAX(1280, SCREEN_W - 100) /**< Map window width. */
 #define MAP_HEIGHT  MAX(720, SCREEN_H - 100) /**< Map window height. */
 
+
+typedef enum MapMode_ {
+   MAPMODE_TRAVEL, /**< Travel mode (default). */
+   MAPMODE_DISCOVER, /**< Discover mode. */
+   MAPMODE_TRADE, /**< Trade mode. */
+} MapMode;
+
+
 typedef struct MapDecorator_ {
    glTexture* image;
    double x,y;
    int detection_radius;
    int auto_fade;
 } MapDecorator;
+
 
 /* init/exit */
 int map_init (void);
@@ -67,6 +76,12 @@ void map_renderNames( double bx, double by, double x, double y,
       double w, double h, int editor, double alpha );
 void map_updateFactionPresence( const unsigned int wid, const char *name, const StarSystem *sys, int omniscient );
 int map_load (void);
+
+/* Map mode change. */
+void map_setMode(MapMode mode);
+int map_setCommodity(const Commodity* commod);
+void map_setCommodityMode(int mode);
+void map_setMinimal(int minimal);
 
 #endif /* MAP_H */
 

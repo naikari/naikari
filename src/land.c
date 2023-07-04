@@ -605,8 +605,7 @@ static void misn_open( unsigned int wid )
          "txtDesc", &gl_defFont, NULL, NULL );
 
    /* map */
-   map_show( wid, 20, 20,
-         w/2 - 30, h/2 - 35, 0.75 );
+   map_show(wid, 20, 20, w/2 - 30, h/2 - 35, 0.75);
 
    misn_genList(wid, 1);
    /* Set default keyboard focuse to the list */
@@ -813,6 +812,9 @@ static void misn_update( unsigned int wid, char* str )
    window_modifyText( wid, "txtReward", txt );
    window_modifyText( wid, "txtDesc", misn->desc );
    window_enableButton( wid, "btnAcceptMission" );
+
+   /* Make sure the map is in minimal mode. */
+   map_setMinimal(1);
 }
 
 
