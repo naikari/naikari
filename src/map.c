@@ -1821,21 +1821,21 @@ void map_renderCommod( double bx, double by, double x, double y,
                ty = y + (sys->pos.y) * map_zoom - gl_smallFont.h*0.5;
 
                best = maxPrice - curMinPrice;
-               worst= minPrice - curMaxPrice;
-               if (best >= 0) {
+               worst = minPrice - curMaxPrice;
+               if (best > 0) {
                   /* draw circle above */
-                  gl_print(&gl_smallFont, tx, ty, &cLightBlue,
-                        _("%+.1f ¢/kt"), best);
+                  gl_print(&gl_smallFont, tx, ty, &cFontOrange,
+                        _("%+.0f ¢/kt"), best);
                   best = tanh(2*best / curMinPrice);
-                  col_blend(&ccol, &cFontBlue, &cFontYellow, best);
+                  col_blend(&ccol, &cFontYellow, &cFontOrange, best);
                   gl_drawCircle(cx, cy, r, &ccol, 1);
                }
                else {
                   /* draw circle below */
-                  gl_print(&gl_smallFont, tx, ty, &cOrange,
-                        _("%+.1f ¢/kt"), worst);
+                  gl_print(&gl_smallFont, tx, ty, &cFontBlue,
+                        _("%+.0f ¢/kt"), worst);
                   worst = tanh(-2*worst / curMaxPrice);
-                  col_blend(&ccol, &cFontOrange, &cFontYellow, worst);
+                  col_blend(&ccol, &cFontBlue, &cFontYellow, worst);
                   gl_drawCircle(cx, cy, r, &ccol, 1);
                }
             }
@@ -1896,11 +1896,11 @@ void map_renderCommod( double bx, double by, double x, double y,
                sumPrice /= sumCnt;
                if (sumPrice < commod_av_gal_price) {
                   frac = tanh(5 * (commod_av_gal_price/sumPrice - 1));
-                  col_blend(&ccol, &cFontOrange, &cFontYellow, frac);
+                  col_blend(&ccol, &cFontBlue, &cFontYellow, frac);
                }
                else {
                   frac = tanh(5 * (sumPrice/commod_av_gal_price - 1));
-                  col_blend(&ccol, &cFontBlue, &cFontYellow, frac);
+                  col_blend(&ccol, &cFontOrange, &cFontYellow, frac);
                }
                gl_print(&gl_smallFont, tx, ty, &ccol,
                      _("%.0f ¢/kt"), sumPrice);
