@@ -898,52 +898,43 @@ static void map_render( double bx, double by, double w, double h, void *data )
 {
    (void) data;
    double x,y,r;
-   double dt = naev_getrealdt();
    glColour col;
    StarSystem *sys;
 
-#define AMAX(x) (x) = MIN( 1., (x) + dt )
-#define AMIN(x) (x) = MAX( 0., (x) - dt )
-#define ATAR(x,y) \
-if ((x) < y) (x) = MIN( y, (x) + dt ); \
-else (x) = MAX( y, (x) - dt )
    switch (map_mode) {
       case MAPMODE_TRAVEL:
          if (map_minimal) {
-            AMIN(map_alpha_decorators);
-            AMIN(map_alpha_faction);
+            map_alpha_decorators = 0.;
+            map_alpha_faction = 0.;
          }
          else {
-            AMAX(map_alpha_decorators);
-            AMAX(map_alpha_faction);
+            map_alpha_decorators = 1.;
+            map_alpha_faction = 1.;
          }
-         AMAX(map_alpha_path);
-         AMAX(map_alpha_names);
-         AMAX(map_alpha_markers);
+         map_alpha_path = 1.;
+         map_alpha_names = 1.;
+         map_alpha_markers = 1.;
          break;
 
       case MAPMODE_DISCOVER:
-         AMIN(map_alpha_decorators);
+         map_alpha_decorators = 0.;
          if (map_minimal)
-            AMIN(map_alpha_faction);
+            map_alpha_faction = 0.;
          else
-            ATAR(map_alpha_faction, 0.5);
-         ATAR(map_alpha_path, 0.1);
-         AMAX(map_alpha_names);
-         ATAR(map_alpha_markers, 0.5);
+            map_alpha_faction = 0.5;
+         map_alpha_path = 0.1;
+         map_alpha_names = 1.;
+         map_alpha_markers = 0.5;
          break;
 
       case MAPMODE_TRADE:
-         AMIN(map_alpha_decorators);
-         AMIN(map_alpha_faction);
-         ATAR(map_alpha_path, 0.1);
-         AMIN(map_alpha_names);
-         ATAR(map_alpha_markers, 0.1);
+         map_alpha_decorators = 0.;
+         map_alpha_faction = 0.;
+         map_alpha_path = 0.1;
+         map_alpha_names = 0.;
+         map_alpha_markers = 0.1;
          break;
    }
-#undef AMAX
-#undef AMIN
-#undef ATAR
 
    /* Parameters. */
    map_renderParams( bx, by, map_xpos, map_ypos, w, h, map_zoom, &x, &y, &r );
