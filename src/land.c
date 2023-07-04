@@ -813,7 +813,8 @@ static void misn_update( unsigned int wid, char* str )
    window_modifyText( wid, "txtDesc", misn->desc );
    window_enableButton( wid, "btnAcceptMission" );
 
-   /* Make sure the map is in minimal mode. */
+   /* Make sure the map is in the proper mode. */
+   map_setMode(MAPMODE_TRAVEL);
    map_setMinimal(1);
 }
 

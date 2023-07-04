@@ -20,6 +20,7 @@
 #include "economy.h"
 #include "faction.h"
 #include "gui.h"
+#include "info.h"
 #include "land.h"
 #include "log.h"
 #include "mapData.h"
@@ -2316,6 +2317,9 @@ void map_close (void)
 
    /* Give the land window a chance to configure the map. */
    land_updateTabs();
+
+   /* Give the info window a chance to configure the map. */
+   info_update();
 
    wid = window_get(MAP_WDWNAME);
    if (wid > 0)

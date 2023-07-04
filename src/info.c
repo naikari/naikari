@@ -147,18 +147,21 @@ void menu_info( int window )
          INFO_WINDOWS, names, 0 );
 
    /* Open the subwindows. */
-   info_openMain(       info_windows[ INFO_WIN_MAIN ] );
-   info_openShip(       info_windows[ INFO_WIN_SHIP ] );
-   info_openWeapons(    info_windows[ INFO_WIN_WEAP ] );
-   info_openCargo(      info_windows[ INFO_WIN_CARGO ] );
-   info_openMissions(   info_windows[ INFO_WIN_MISN ] );
-   info_openStandings(  info_windows[ INFO_WIN_STAND ] );
-   info_openShipLog(    info_windows[ INFO_WIN_SHIPLOG ] );
+   info_openMain(info_windows[INFO_WIN_MAIN]);
+   info_openShip(info_windows[INFO_WIN_SHIP]);
+   info_openWeapons(info_windows[INFO_WIN_WEAP]);
+   info_openCargo(info_windows[INFO_WIN_CARGO]);
+   info_openMissions(info_windows[INFO_WIN_MISN]);
+   info_openStandings(info_windows[INFO_WIN_STAND]);
+   info_openShipLog(info_windows[INFO_WIN_SHIPLOG]);
 
    menu_Open(MENU_INFO);
 
    /* Set active window. */
    window_tabWinSetActive( info_wid, "tabInfo", CLAMP( 0, 6, window ) );
+
+   /* Update the window. */
+   info_update();
 }
 /**
  * @brief Closes the information menu.
@@ -170,8 +173,12 @@ static void info_close( unsigned int wid, char* str )
    if (info_wid > 0) {
       window_close( info_wid, str );
       info_wid = 0;
+      info_windows = NULL;
       logs = NULL;
       menu_Close(MENU_INFO);
+
+      /* Give the land window a chance to update. */
+      land_updateTabs();
    }
 }
 
@@ -181,8 +188,15 @@ static void info_close( unsigned int wid, char* str )
  */
 void info_update (void)
 {
-   if (info_windows != NULL)
-      weapons_genList( info_windows[ INFO_WIN_WEAP ] );
+   /* Info window must be open. */
+   if (info_windows == NULL)
+      return;
+
+   weapons_genList(info_windows[INFO_WIN_WEAP]);
+
+   /* Make sure the map is in the proper mode. */
+   map_setMode(MAPMODE_TRAVEL);
+   map_setMinimal(1);
 }
 
 
