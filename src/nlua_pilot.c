@@ -1195,38 +1195,46 @@ static int pilotL_activeWeapset(lua_State *L)
 /**
  * @brief Gets the weapset weapon of the pilot.
  *
- * The weapon sets have the following structure: <br />
+ * The slots have the following structure:
  * <ul>
- *    <li>name: name of the set. </li>
+ *    <li>name: Raw (untranslated) name of the outfit.</li>
  *    <li>cooldown: [0:1] value indicating if ready to shoot (1 is
  *       ready).</li>
  *    <li>charge: [0:1] charge level of beam weapon (1 is full).</li>
- *    <li>ammo: Name of the ammo or nil if not applicable.</li>
- *    <li>left: Absolute ammo left or nil if not applicable.</li>
- *    <li>left_p: Relative ammo left [0:1] or nil if not applicable</li>
- *    <li>lockon: Lock-on [0:1] for seeker weapons or nil if not
+ *    <li>ammo: Raw (untranslated) name of the ammo or nil if not
  *       applicable.</li>
- *    <li>in_arc: Whether or not the target is in targeting arc or nilif
+ *    <li>left: Absolute ammo left or nil if not applicable.</li>
+ *    <li>left_p: [0:1] Relative ammo left or nil if not applicable.</li>
+ *    <li>lockon: [0:1] Lock-on percentage for seeker weapons or nil if
  *       not applicable.</li>
+ *    <li>in_arc: Whether or not the target is in targeting arc or nil
+ *       if not applicable.</li>
  *    <li>level: Level of the weapon (1 is primary, 2 is secondary, 0
  *       is neither primary nor secondary)).</li>
  *    <li>instant: The instant mode weapon set the weapon is in if
  *       applicable, or nil if the weapon is not in an instant mode
  *       weapon set.</li>
- *    <li>temp: Temperature of the weapon.</li>
- *    <li>type: Type of the weapon.</li>
- *    <li>dtype: Damage type of the weapon.</li>
- *    <li>track: Tracking level of the weapon.</li>
+ *    <li>temp: Temperature of the weapon. The general range is [0:1],
+ *       but can actually exceed the nominal "maximum" value of 1, so
+ *       you should take care to make sure that your code can handle
+ *       values greater than 1 (e.g. by capping the value before putting
+ *       it somewhere that expects a strict [0:1] range).</li>
+ *    <li>type: Raw (untranslated) name of the outfit's type as would be
+ *       returned by outfit.type().</li>
+ *    <li>dtype: Raw (untranslated) name of the weapon's damage
+ *       type.</li>
+ *    <li>track: [0:1] How well the weapon is currently tracking its
+ *       target.</li>
  * </ul>
  *
  * An example would be:
  * @code
- * ws_name, ws = p:weapset( true )
- * print( "Weapnset Name: " .. ws_name )
+ * ws_name, ws = p:weapset(true)
+ * print("Weaponset Name: " .. ws_name)
  * for i, w in ipairs(ws) do
- *    print( "Name: " .. w.name )
- *    print( "Cooldown: " .. tostring(cooldown) )
- *    print( "Level: " .. tostring(level) )
+ *    print("Name: " .. w.name)
+ *    print("Cooldown: " .. tostring(cooldown))
+ *    print("Level: " .. tostring(level))
  * end
  * @endcode
  *
@@ -1239,7 +1247,7 @@ static int pilotL_activeWeapset(lua_State *L)
  *       of. Set to true to get all active weapons. Defaults to the
  *       current weapon set.
  *    @luatreturn string The name of the set.
- *    @luatreturn table A table with each slot's information.
+ *    @luatreturn {table,...} A table with each slot's information.
  * @luafunc weapset
  */
 static int pilotL_weapset(lua_State *L)
@@ -1453,16 +1461,14 @@ static int pilotL_weapset(lua_State *L)
          }
 
          /* Track. */
-         if (slot->outfit->type == OUTFIT_TYPE_TURRET_BOLT) {
-            lua_pushstring(L, "track");
-            if (target != NULL)
-               lua_pushnumber(L, pilot_weaponTrack(
-                     p, target, slot->outfit->u.blt.rdr_range,
+         lua_pushstring(L, "track");
+         if (target != NULL)
+            lua_pushnumber(L,
+                  pilot_weaponTrack(p, target, slot->outfit->u.blt.rdr_range,
                      slot->outfit->u.blt.rdr_range_max));
-            else
-               lua_pushnumber(L, -1);
-            lua_rawset(L,-3);
-         }
+         else
+            lua_pushnumber(L, -1);
+         lua_rawset(L,-3);
 
          /* Set table in table. */
          lua_rawset(L,-3);

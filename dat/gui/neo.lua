@@ -136,6 +136,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       local cx = math.floor(x + 4)
 
       if rcol ~= nil and rpct ~= nil then
+         rpct = math.min(0, math.max(rpct, 1))
          local iw, ih = tex_circleBar:dim()
          local ix = cx
          local iy = y + 4
@@ -144,6 +145,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       end
 
       if hcol ~= nil and hpct ~= nil then
+         hpct = math.min(0, math.max(hpct, 1))
          local iw, ih = tex_circleBar:dim()
          local ix = math.floor(cx + cw/2)
          local iy = y + 4
@@ -172,5 +174,16 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
    end
 
    gfx.renderTex(tex_barFrame, x, y)
+end
+
+
+function render_weapBar(x, y, slot)
+   local o = outfit.get(slot.name)
+   local icon = o:icon()
+   local heat = slot.temp
+end
+
+
+function render_sidebar()
 end
 
