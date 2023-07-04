@@ -965,8 +965,8 @@ static void map_render( double bx, double by, double w, double h, void *data )
    map_renderSystems( bx, by, x, y, w, h, r, 0 );
 
    /* Render system names. */
-   if (map_alpha_names > 0.)
-      map_renderNames( bx, by, x, y, w, h, 0, map_alpha_names );
+   if ((map_alpha_names > 0.) && (map_mode != MAPMODE_TRADE))
+      map_renderNames(bx, by, x, y, w, h, 0, map_alpha_names);
 
    /* Render system markers. */
    if (map_alpha_markers > 0.)
@@ -974,7 +974,7 @@ static void map_render( double bx, double by, double w, double h, void *data )
 
    /* Render commodity info. */
    if (map_mode == MAPMODE_TRADE)
-      map_renderCommod(  bx, by, x, y, w, h, r, 0 );
+      map_renderCommod(bx, by, x, y, w, h, r, 0);
 
    /* Initialize with values from cRed */
    col.r = cRed.r;
@@ -1538,7 +1538,7 @@ static void map_renderPath( double x, double y, double a, double alpha )
 void map_renderNames( double bx, double by, double x, double y,
       double w, double h, int editor, double alpha )
 {
-   double tx,ty, vx,vy, d,n;
+   double tx, ty, vx, vy, d, n;
    int textw;
    StarSystem *sys, *jsys;
    int i, j;
@@ -1582,14 +1582,14 @@ void map_renderNames( double bx, double by, double x, double y,
       for (j=0; j<array_size(sys->jumps); j++) {
          jsys = sys->jumps[j].target;
          /* Calculate offset. */
-         vx  = jsys->pos.x - sys->pos.x;
-         vy  = jsys->pos.y - sys->pos.y;
-         n   = sqrt( pow2(vx) + pow2(vy) );
+         vx = jsys->pos.x - sys->pos.x;
+         vy = jsys->pos.y - sys->pos.y;
+         n = sqrt(pow2(vx) + pow2(vy));
          vx /= n;
          vy /= n;
-         d   = MAX(n*0.3*map_zoom, 15);
-         tx  = x + map_zoom*sys->pos.x + d*vx;
-         ty  = y + map_zoom*sys->pos.y + d*vy;
+         d = MAX(n * 0.3 * map_zoom, 15);
+         tx = x + map_zoom*sys->pos.x + d*vx;
+         ty = y + map_zoom*sys->pos.y + d*vy;
          /* Display. */
          n = sys->jumps[j].rdr_range_mod*100 - 100;
          if (jp_isFlag(&sys->jumps[j], JP_EXPRESS))
@@ -1704,9 +1704,9 @@ static void map_renderSysBlack(double bx, double by, double x,double y, double w
 void map_renderCommod( double bx, double by, double x, double y,
       double w, double h, double r, int editor)
 {
+   double cx, cy, tx, ty;
    int i, j, k;
    StarSystem *sys;
-   double tx, ty;
    Planet *p;
    Commodity *c;
    glColour ccol;
@@ -1786,11 +1786,11 @@ void map_renderCommod( double bx, double by, double x, double y,
                && !space_sysReachable(sys)) && !editor)
             continue;
 
-         tx = x + sys->pos.x*map_zoom;
-         ty = y + sys->pos.y*map_zoom;
+         cx = x + sys->pos.x*map_zoom;
+         cy = y + sys->pos.y*map_zoom;
 
          /* Skip if out of bounds. */
-         if (!rectOverlap(tx - r, ty - r, r, r, bx, by, w, h))
+         if (!rectOverlap(cx - r, cy - r, r, r, bx, by, w, h))
             continue;
 
          /* If system is known fill it. */
@@ -1815,25 +1815,34 @@ void map_renderCommod( double bx, double by, double x, double y,
 
 
             /* Calculate best and worst profits */
-            if ( maxPrice > 0 ) {
+            if (maxPrice > 0) {
                /* Commodity sold at this system */
-               best = maxPrice - curMinPrice ;
-               worst= minPrice - curMaxPrice ;
-               if ( best >= 0 ) {/* draw circle above */
-                  gl_print(&gl_smallFont, x + (sys->pos.x+11) * map_zoom , y + (sys->pos.y-22)*map_zoom, &cLightBlue, "%.1f",best);
-                  best = tanh ( 2*best / curMinPrice );
-                  col_blend( &ccol, &cFontBlue, &cFontYellow, best );
-                  gl_drawCircle( tx, ty /*+ r*/ , /*(0.1 + best) **/ r, &ccol, 1 );
-               } else {/* draw circle below */
-                  gl_print(&gl_smallFont, x + (sys->pos.x+11) * map_zoom , y + (sys->pos.y-22)*map_zoom, &cOrange, "%.1f",worst);
-                  worst = tanh ( -2*worst/ curMaxPrice );
-                  col_blend( &ccol, &cFontOrange, &cFontYellow, worst );
-                  gl_drawCircle( tx, ty /*- r*/ , /*(0.1 - worst) **/ r, &ccol, 1 );
+               tx = x + (sys->pos.x+12.) * map_zoom;
+               ty = y + (sys->pos.y) * map_zoom - gl_smallFont.h*0.5;
+
+               best = maxPrice - curMinPrice;
+               worst= minPrice - curMaxPrice;
+               if (best >= 0) {
+                  /* draw circle above */
+                  gl_print(&gl_smallFont, tx, ty, &cLightBlue,
+                        _("%+.1f ¢/kt"), best);
+                  best = tanh(2*best / curMinPrice);
+                  col_blend(&ccol, &cFontBlue, &cFontYellow, best);
+                  gl_drawCircle(cx, cy, r, &ccol, 1);
                }
-            } else {
+               else {
+                  /* draw circle below */
+                  gl_print(&gl_smallFont, tx, ty, &cOrange,
+                        _("%+.1f ¢/kt"), worst);
+                  worst = tanh(-2*worst / curMaxPrice);
+                  col_blend(&ccol, &cFontOrange, &cFontYellow, worst);
+                  gl_drawCircle(cx, cy, r, &ccol, 1);
+               }
+            }
+            else {
                /* Commodity not sold here */
                ccol = cGrey10;
-               gl_drawCircle( tx, ty , r, &ccol, 1 );
+               gl_drawCircle(cx, cy , r, &ccol, 1);
 
             }
          }
@@ -1852,11 +1861,11 @@ void map_renderCommod( double bx, double by, double x, double y,
               && !space_sysReachable(sys)) && !editor)
             continue;
 
-         tx = x + sys->pos.x*map_zoom;
-         ty = y + sys->pos.y*map_zoom;
+         cx = x + sys->pos.x*map_zoom;
+         cy = y + sys->pos.y*map_zoom;
 
          /* Skip if out of bounds. */
-         if (!rectOverlap(tx - r, ty - r, r, r, bx, by, w, h))
+         if (!rectOverlap(cx - r, cy - r, r, r, bx, by, w, h))
             continue;
 
          /* If system is known fill it. */
@@ -1877,24 +1886,30 @@ void map_renderCommod( double bx, double by, double x, double y,
                }
             }
 
-            if ( sumCnt > 0 ) {
+            if (sumCnt > 0) {
                /* Commodity sold at this system */
+               tx = x + (sys->pos.x+12.) * map_zoom;
+               ty = y + (sys->pos.y) * map_zoom - gl_smallFont.h*0.5;
+
                /* Colour as a % of global average */
                double frac;
-               sumPrice/=sumCnt;
-               if ( sumPrice < commod_av_gal_price ) {
-                  frac = tanh(5*(commod_av_gal_price / sumPrice - 1));
-                  col_blend( &ccol, &cFontOrange, &cFontYellow, frac );
-               } else {
-                  frac = tanh(5*(sumPrice / commod_av_gal_price - 1));
-                  col_blend( &ccol, &cFontBlue, &cFontYellow, frac );
+               sumPrice /= sumCnt;
+               if (sumPrice < commod_av_gal_price) {
+                  frac = tanh(5 * (commod_av_gal_price/sumPrice - 1));
+                  col_blend(&ccol, &cFontOrange, &cFontYellow, frac);
                }
-               gl_print(&gl_smallFont, x + (sys->pos.x+11) * map_zoom , y + (sys->pos.y-22)*map_zoom, &ccol, "%.1f",sumPrice);
-               gl_drawCircle( tx, ty , r, &ccol, 1 );
-            } else {
+               else {
+                  frac = tanh(5 * (sumPrice/commod_av_gal_price - 1));
+                  col_blend(&ccol, &cFontBlue, &cFontYellow, frac);
+               }
+               gl_print(&gl_smallFont, tx, ty, &ccol,
+                     _("%.0f ¢/kt"), sumPrice);
+               gl_drawCircle(cx, cy , r, &ccol, 1);
+            }
+            else {
                /* Commodity not sold here */
                ccol = cGrey10;
-               gl_drawCircle( tx, ty , r, &ccol, 1 );
+               gl_drawCircle(cx, cy , r, &ccol, 1);
             }
          }
       }
