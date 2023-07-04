@@ -113,7 +113,7 @@ void commodity_exchange_open( unsigned int wid )
    bufSInfo = _(
            "#nYou have:#0\n"
            "#nPurchased for:#0\n"
-           "#nMarket Price:#0\n"
+           "#nCurrent price here:#0\n"
            "\n"
            "#nAverage price here:#0\n"
            "#nAverage price all:#0\n"
@@ -234,7 +234,7 @@ void commodity_update( unsigned int wid, char* str )
       snprintf(buf, PATH_MAX,
          _("#nYou have:#0 N/A\n"
             "#nPurchased for:#0 N/A\n"
-            "#nMarket Price:#0 N/A\n"
+            "#nCurrent price here:#0 N/A\n"
             "\n"
             "#nAverage price here:#0 N/A\n"
             "#nAverage price all:#0 N/A\n"
@@ -272,7 +272,7 @@ void commodity_update( unsigned int wid, char* str )
    snprintf(buf, sizeof(buf),
               _("#nYou have:#0 %s\n"
                  "#nPurchased for:#0 %s\n"
-                 "#nMarket Price:#0 %s/kt\n"
+                 "#nCurrent price here:#0 %s/kt\n"
                  "\n"
                  "#nAverage price here:#0 %s/kt ± %s\n"
                  "#nAverage price all:#0 %s/kt ± %s\n"
