@@ -1,5 +1,21 @@
 # NAIKARI CHANGELOG
 
+## 0.9.0
+
+* Fixed the Commodity tab showing "¢" for the purchase price indication
+  instead of the correct "¢/kt".
+* Exposed TC velocity via the options menu (which controls how much
+  faster the game gets during time compression).
+* Added a proper guard against a situation that could invisibly switch
+  your weapon set to an empty one (althô this was unlikely to actually
+  happen due to Naikari's default weapon sets).
+* The mission computer now hilights missions whose destination is your
+  currently selected system.
+* The map in the mission computer now shows the markers for all
+  unaccepted missions, not just the one you happen to have selected.
+  The one you have selected is hilighted so you can still easily see
+  where it is.
+
 ## 0.8.0
 
 * Improved generic NPC messages.
