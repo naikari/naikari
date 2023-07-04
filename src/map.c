@@ -873,16 +873,13 @@ static void map_drawMarker( double x, double y, double r, double a,
          col = cMarkerNew;
          break;
       case SYSMARKER_NEW_HILIGHT:
-         col = cWhite;
+         col = cMarkerNewHilight;
          break;
       default:
          WARN(_("Unknown marker type."));
          return;
    }
-
-   /* Override flashing for hilighted marker (to aid accessibility) */
-   if (type != SYSMARKER_NEW_HILIGHT)
-      col.a *= a;
+   col.a *= a;
 
    x = x + 3.0*r*cos(alpha);
    y = y + 3.0*r*sin(alpha);
