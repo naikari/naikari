@@ -434,6 +434,29 @@ void mission_sysComputerMark( Mission* misn )
 
 
 /**
+ * @brief Hilights new computer mission markers associated with a mission.
+ *
+ * Does not modify actual markers.
+ *
+ *    @param misn Mission to hilight markers of.
+ */
+void mission_sysComputerHilight(Mission* misn)
+{
+   StarSystem *ssys;
+   int i;
+
+   /* Set all the markers. */
+   for (i=0; i<array_size(misn->markers); i++) {
+      ssys = system_getIndex(misn->markers[i].sys);
+      if (ssys == NULL)
+         continue;
+
+      sys_setFlag(ssys, SYSTEM_CMARK_HILIGHT);
+   }
+}
+
+
+/**
  * @brief Links cargo to the mission for posterior cleanup.
  *
  *    @param misn Mission to link cargo to.

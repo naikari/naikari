@@ -624,6 +624,7 @@ static void misn_close( unsigned int wid, char *name )
 
    /* Remove computer markers just in case. */
    space_clearComputerMarkers();
+   space_clearComputerMarkerHilights();
 }
 /**
  * @brief Accepts the selected mission.
@@ -803,7 +804,11 @@ static void misn_update( unsigned int wid, char* str )
       return;
    }
 
+   /* Clear computer marker hilights. */
+   space_clearComputerMarkerHilights();
+
    misn = &mission_computer[toolkit_getListPos(wid, "lstMission")];
+   mission_sysComputerHilight(misn);
    snprintf( txt, sizeof(txt), _("#nReward:#0 %s"), misn->reward );
    window_modifyText( wid, "txtReward", txt );
    window_modifyText( wid, "txtDesc", misn->desc );
@@ -1053,8 +1058,10 @@ void land_updateTabs(void)
          }
 
          /* Clear markers if not on Mission Computer tab. */
-         if (i != LAND_WINDOW_MISSION)
+         if (i != LAND_WINDOW_MISSION) {
             space_clearComputerMarkers();
+            space_clearComputerMarkerHilights();
+         }
 
          break;
       }

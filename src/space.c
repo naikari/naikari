@@ -3551,6 +3551,7 @@ void space_clearKnown (void)
 void space_clearMarkers (void)
 {
    int i;
+
    for (i=0; i<array_size(systems_stack); i++) {
       sys_rmFlag(&systems_stack[i], SYSTEM_MARKED);
       systems_stack[i].markers_computer = 0;
@@ -3567,9 +3568,23 @@ void space_clearMarkers (void)
 void space_clearComputerMarkers (void)
 {
    int i;
+
    for (i=0; i<array_size(systems_stack); i++) {
-      sys_rmFlag(&systems_stack[i],SYSTEM_CMARKED);
+      sys_rmFlag(&systems_stack[i], SYSTEM_CMARKED);
       systems_stack[i].markers_new = 0;
+   }
+}
+
+
+/**
+ * @brief Clears all the system computer marker hilights.
+ */
+void space_clearComputerMarkerHilights(void)
+{
+   int i;
+
+   for (i=0; i<array_size(systems_stack); i++) {
+      sys_rmFlag(&systems_stack[i], SYSTEM_CMARK_HILIGHT);
    }
 }
 

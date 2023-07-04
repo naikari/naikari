@@ -872,18 +872,24 @@ static void map_drawMarker( double x, double y, double r, double a,
       case SYSMARKER_NEW:
          col = cMarkerNew;
          break;
+      case SYSMARKER_NEW_HILIGHT:
+         col = cWhite;
+         break;
       default:
          WARN(_("Unknown marker type."));
          return;
    }
-   col.a *= a;
+
+   /* Override flashing for hilighted marker (to aid accessibility) */
+   if (type != SYSMARKER_NEW_HILIGHT)
+      col.a *= a;
 
    x = x + 3.0*r*cos(alpha);
    y = y + 3.0*r*sin(alpha);
    r *= 2.0;
 
    glUseProgram(shaders.sysmarker.program);
-   if (type == SYSMARKER_NEW)
+   if ((type == SYSMARKER_NEW) || (type == SYSMARKER_NEW_HILIGHT))
       glUniform1i(shaders.sysmarker.parami, 1);
    else
       glUniform1i(shaders.sysmarker.parami, 0);
@@ -1647,7 +1653,10 @@ static void map_renderMarkers( double x, double y, double r, double a )
       /* Draw the markers. */
       j = 0;
       for (m=0; m<sys->markers_new; m++) {
-         map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_NEW);
+         if ((m == 0) && (sys_isFlag(sys, SYSTEM_CMARK_HILIGHT)))
+            map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_NEW_HILIGHT);
+         else
+            map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_NEW);
          j++;
       }
       for (m=0; m<sys->markers_plot; m++) {

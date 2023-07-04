@@ -43,7 +43,8 @@ typedef enum SysMarker_ {
    SYSMARKER_LOW, /**< Marker is for low priority mission targets. */
    SYSMARKER_HIGH, /**< Marker is for high priority mission targets. */
    SYSMARKER_PLOT, /**< Marker is for plot priority (ultra high) mission targets. */
-   SYSMARKER_NEW /**< Marker is for new (unaccepted) mission computer missions. */
+   SYSMARKER_NEW, /**< Marker is for new (unaccepted) mission computer missions. */
+   SYSMARKER_NEW_HILIGHT /**< Marker is for selected new mission computer mission. */
 } SysMarker;
 
 
@@ -154,6 +155,7 @@ MissionData* mission_getFromName( const char* name );
 int mission_addMarker( Mission *misn, int id, int sys, SysMarker type );
 void mission_sysMark (void);
 void mission_sysComputerMark( Mission* misn );
+void mission_sysComputerHilight(Mission* misn);
 
 
 /*

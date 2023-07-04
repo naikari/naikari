@@ -140,12 +140,13 @@ typedef struct Planet_ {
 /*
  * star system flags
  */
-#define SYSTEM_KNOWN       (1<<0) /**< System is known. */
-#define SYSTEM_MARKED      (1<<1) /**< System is marked by a regular mission. */
-#define SYSTEM_CMARKED     (1<<2) /**< System is marked by a computer mission. */
-#define SYSTEM_CLAIMED     (1<<3) /**< System is claimed by a mission. */
-#define SYSTEM_DISCOVERED  (1<<4) /**< System has been discovered. This is a temporary flag used by the map. */
-#define SYSTEM_HIDDEN      (1<<5) /**< System is temporarily hidden from view. */
+#define SYSTEM_KNOWN (1<<0) /**< System is known. */
+#define SYSTEM_MARKED (1<<1) /**< System is marked by a regular mission. */
+#define SYSTEM_CMARKED (1<<2) /**< System is marked by a computer mission. */
+#define SYSTEM_CLAIMED (1<<3) /**< System is claimed by a mission. */
+#define SYSTEM_DISCOVERED (1<<4) /**< System has been discovered. This is a temporary flag used by the map. */
+#define SYSTEM_HIDDEN (1<<5) /**< System is temporarily hidden from view. */
+#define SYSTEM_CMARK_HILIGHT (1<<6) /**< System includes a hilighted computer mission mark. */
 #define sys_isFlag(s,f)    ((s)->flags & (f)) /**< Checks system flag. */
 #define sys_setFlag(s,f)   ((s)->flags |= (f)) /**< Sets a system flag. */
 #define sys_rmFlag(s,f)    ((s)->flags &= ~(f)) /**< Removes a system flag. */
@@ -450,6 +451,7 @@ int space_rmMarker( int sys, SysMarker type );
 void space_clearKnown (void);
 void space_clearMarkers (void);
 void space_clearComputerMarkers (void);
+void space_clearComputerMarkerHilights(void);
 int system_hasPlanet( const StarSystem *sys );
 
 
