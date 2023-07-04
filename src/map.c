@@ -2333,7 +2333,8 @@ void map_close (void)
    /* Give the land window a chance to configure the map. */
    land_updateTabs();
 
-   /* Give the info window a chance to configure the map. */
+   /* Give the info window a chance to configure the map; must be after
+    * doing so with the land window since the info window is on top. */
    info_update();
 
    wid = window_get(MAP_WDWNAME);
@@ -2414,7 +2415,16 @@ void map_selectCur(void)
    array_free(map_path);
    map_path = NULL;
 
-   land_updateTabs();
+   /* Only update land and info windows if the full map isn't open. */
+   if (window_get(MAP_WDWNAME) <= 0) {
+      /* Give the land window a chance to configure the map. */
+      land_updateTabs();
+
+      /* Give the info window a chance to configure the map; must be
+       * after doing so with the land window since the info window is on
+       * top. */
+      info_update();
+   }
 }
 
 
@@ -2545,7 +2555,17 @@ void map_select( StarSystem *sys, char shifted )
 
    map_update(wid);
    gui_setNav();
-   land_updateTabs();
+
+   /* Only update land and info windows if the full map isn't open. */
+   if (window_get(MAP_WDWNAME) <= 0) {
+      /* Give the land window a chance to configure the map. */
+      land_updateTabs();
+
+      /* Give the info window a chance to configure the map; must be
+       * after doing so with the land window since the info window is on
+       * top. */
+      info_update();
+   }
 }
 
 
