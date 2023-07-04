@@ -15,6 +15,21 @@
   unaccepted missions, not just the one you happen to have selected.
   The one you have selected is hilighted so you can still easily see
   where it is.
+* The map in the mission computer and in the Missions tab of the ship
+  computer is now displayed in minimal mode.
+* The map no longer fades between modes and instead just instantly
+  switches to the new mode. This also fixes a problem where it would
+  always start in the default mode and then fade into the selected mode
+  when you opened the map.
+* The Commodity tab of the land window now displays a map showing the
+  "cost" view for the selected commodity.
+* The map trade views now explicitly include the unit (¢/kt) instead of
+  just displaying raw numbers.
+* Inverted the "high" and "low" colors for the map trade displays:
+  orange is now used for high prices and blue is now used for low
+  prices.
+* Improved the System Info display, improving the description text's
+  coloring and adding information that was previously missing.
 
 ## 0.8.0
 

@@ -27,6 +27,15 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
+    <release version="0.9.0">
+      <description>
+        <ul>
+          <li>Mission computer now lets you search missions by location.</li>
+          <li>Commodity tab now shows a price map.</li>
+        </ul>
+      </description>
+      <url>https://github.com/naikari/naikari/releases/tag/v0.9.0</url>
+    </release>
     <release version="0.8.0" date="2023-06-28" type="stable">
       <description>
         <ul>
