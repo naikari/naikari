@@ -869,7 +869,7 @@ static int missions_cmp( const void *a, const void *b )
  */
 int missions_load (void)
 {
-   int    i;
+   int i;
    char **mission_files;
 
    /* Allocate player missions. */

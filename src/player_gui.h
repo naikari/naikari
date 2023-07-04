@@ -7,6 +7,9 @@
 #  define PLAYER_GUI_H
 
 
+/* Initialization. */
+void player_guiInit(void);
+
 /* Clean up. */
 void player_guiCleanup (void);
 

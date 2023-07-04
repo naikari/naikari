@@ -57,15 +57,6 @@ function create()
          _([[Today marks the ten year anniversary of the Incident, where a mysterious cataclysmic explosion ripped through the heart of the Empire, destroying Earth and eradicating House Proteron. The Emperor has delivered a speech to commemorate the tragedy. "We mourn with sorrow the loss of many on that dreadful day, and the loss of our precious homeworld. We still don't know what caused the Incident for certain, but rest assured: the Empire will not let this happen again, and if terrorists are to blame, we will find them and bring them to justice."]]),
          exp)
 
-   -- Give all GUIs
-   -- XXX: Would be better to remove these outfits and the association,
-   -- but they're so tightly integrated atm (with no other way to define
-   -- GUIs as usable) that I'm implementing it this way for now.
-   player.outfitAdd( "GUI - Brushed" )
-   player.outfitAdd( "GUI - Slim" )
-   player.outfitAdd( "GUI - Slimv2" )
-   player.outfitAdd( "GUI - Legacy" )
-
    hook.timer(1.0, "timer_tutorial")
 end
 

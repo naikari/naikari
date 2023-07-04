@@ -719,11 +719,6 @@ int outfit_canBuy( const char *name, Planet *planet )
       land_errDialogueBuild( _("You already know of everything this map contains.") );
       return 0;
    }
-   /* GUI already owned */
-   if (outfit_isGUI(outfit) && player_guiCheck(outfit->u.gui.gui)) {
-      land_errDialogueBuild( _("You already own this GUI.") );
-      return 0;
-   }
    /* Already has license. */
    if (outfit_isLicense(outfit) && player_hasLicense(outfit->name)) {
       land_errDialogueBuild( _("You already have this license.") );
@@ -778,9 +773,9 @@ static void outfits_buy( unsigned int wid, char* str )
    outfit = iar_outfits[active][i];
    q = outfits_getMod();
    /* Can only get one unique item. */
-   if (outfit_isProp(outfit, OUTFIT_PROP_UNIQUE) ||
-         outfit_isMap(outfit) || outfit_isLocalMap(outfit) ||
-         outfit_isGUI(outfit) || outfit_isLicense(outfit))
+   if (outfit_isProp(outfit, OUTFIT_PROP_UNIQUE)
+         || outfit_isMap(outfit) || outfit_isLocalMap(outfit)
+         || outfit_isLicense(outfit))
       q = MIN(q,1);
 
    /* can buy the outfit? */
@@ -823,12 +818,6 @@ int outfit_canSell( const char *name )
    /* Map check. */
    if (outfit_isMap(outfit) || outfit_isLocalMap(outfit)) {
       land_errDialogueBuild(_("You can't sell a map."));
-      failure = 1;
-   }
-
-   /* GUI check. */
-   if (outfit_isGUI(outfit)) {
-      land_errDialogueBuild(_("You can't sell a GUI."));
       failure = 1;
    }
 

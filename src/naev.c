@@ -71,6 +71,7 @@
 #include "physics.h"
 #include "pilot.h"
 #include "player.h"
+#include "player_gui.h"
 #include "render.h"
 #include "rng.h"
 #include "semver.h"
@@ -662,6 +663,7 @@ void load_all (void)
    outfit_mapParse();
 
    loadscreen_render(15./LOADING_STAGES, _("Initializing Details…"));
+   player_guiInit();
    background_init();
    map_load();
    map_system_load();
@@ -677,6 +679,7 @@ void unload_all (void)
 {
    /* cleanup some stuff */
    player_cleanup(); /* cleans up the player stuff */
+   player_guiCleanup(); /* cleans up the GUI list */
    gui_free(); /* cleans up the player's GUI */
    weapon_exit(); /* destroys all active weapons */
    pilots_free(); /* frees the pilots, they were locked up :( */

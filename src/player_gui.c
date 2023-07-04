@@ -10,6 +10,7 @@
 
 
 /** @cond */
+#include "physfs.h"
 #include "physfsrwops.h"
 
 #include "naev.h"
@@ -27,6 +28,57 @@
 
 static char** gui_list = NULL; /**< List of GUIs the player has. */
 
+
+/**
+ * @brief Initializes the player's GUI list.
+ */
+void player_guiInit(void)
+{
+   int i;
+   char **gui_files;
+   char *name, *ext;
+
+   gui_files = PHYSFS_enumerateFiles(GUI_PATH);
+   if (gui_files == NULL) {
+      ERR(_("Failed to enumerate files in '%s'."), GUI_PATH);
+      return;
+   }
+
+   gui_list = array_create(char*);
+   for (i=0; gui_files[i]!=NULL; i++) {
+      if (naev_pollQuit())
+         break;
+
+      name = gui_files[i];
+      ext = strstr(name, ".lua");
+      if ((ext != NULL) && (strcmp(ext, ".lua") == 0)) {
+         /* ext is a substring of name, so this erases the ".lua" at the
+          * end of name. */
+         *ext = '\0';
+
+#ifdef DEBUGGING
+         /* Make sure the GUI is vaild. */
+         SDL_RWops *rw;
+         char buf[PATH_MAX];
+         snprintf(buf, sizeof(buf), GUI_PATH"%s.lua", name);
+         rw = PHYSFSRWOPS_openRead(buf);
+         if (rw == NULL) {
+            WARN(_("GUI '%s' does not exist as a file: '%s' not found."),
+                  name, buf);
+            return;
+         }
+         SDL_RWclose(rw);
+#endif /* DEBUGGING */
+
+         array_push_back(&gui_list, strdup(name));
+      }
+   }
+   PHYSFS_freeList(gui_files);
+   array_shrink(&gui_list);
+
+   DEBUG(n_("Loaded %d GUI", "Loaded %d GUIs", array_size(gui_list)),
+         array_size(gui_list));
+}
 
 
 /**
@@ -47,8 +99,6 @@ void player_guiCleanup (void)
  */
 int player_guiAdd( char* name )
 {
-   char **new;
-
    /* Name must not be NULL. */
    if (name == NULL)
       return -1;
@@ -75,8 +125,7 @@ int player_guiAdd( char* name )
 #endif /* DEBUGGING */
 
    /* Add. */
-   new      = &array_grow( &gui_list );
-   new[0]   = strdup(name);
+   array_push_back(&gui_list, strdup(name));
    return 0;
 }
 

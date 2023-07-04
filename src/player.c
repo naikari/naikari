@@ -541,7 +541,7 @@ static Pilot* player_newShipMake( const char* name )
       ERR(_("Something seriously wonky went on, newly created player does not exist, bailing!"));
 
    /* Add GUI. */
-   player_guiAdd( player_ship->gui );
+   player_guiAdd(player_ship->gui);
 
    /* money. */
    player.p->credits = player_creds;
@@ -726,7 +726,6 @@ void player_cleanup (void)
 
    /* Clean up gui. */
    gui_cleanup();
-   player_guiCleanup();
    ovr_setOpen(0);
 
    /* clean up the stack */
@@ -2694,11 +2693,6 @@ int player_outfitOwned( const Outfit* o )
          player_hasLicense(o->name))
       return 1;
 
-   /* Special case GUI. */
-   if (outfit_isGUI(o) &&
-         player_guiCheck(o->u.gui.gui))
-      return 1;
-
    /* Try to find it. */
    for (i=0; i<array_size(player_outfits); i++)
       if (player_outfits[i].o == o)
@@ -2816,11 +2810,6 @@ int player_addOutfit( const Outfit *o, int quantity )
    else if (outfit_isLocalMap(o)) {
       localmap_map();
       return 1;
-   }
-   /* special case if it's an outfit */
-   else if (outfit_isGUI(o)) {
-      player_guiAdd(o->u.gui.gui);
-      return 1; /* Success. */
    }
    /* special case if it's a license. */
    else if (outfit_isLicense(o)) {
@@ -3655,15 +3644,6 @@ static Planet* player_parse( xmlNodePtr parent )
          } while (xml_nextNode(cur));
       }
 
-      /* Parse GUIs. */
-      else if (xml_isNode(node,"guis")) {
-         cur = node->xmlChildrenNode;
-         do {
-            if (xml_isNode(cur,"gui"))
-               player_guiAdd( xml_get(cur) );
-         } while (xml_nextNode(cur));
-      }
-
       /* Parse outfits. */
       else if (xml_isNode(node,"outfits")) {
          cur = node->xmlChildrenNode;
@@ -4098,7 +4078,7 @@ static int player_parseShip( xmlNodePtr parent, int is_player )
    }
 
    /* Add GUI if applicable. */
-   player_guiAdd( ship_parsed->gui );
+   player_guiAdd(ship_parsed->gui);
 
    /* player is currently on this ship */
    if (is_player != 0) {
