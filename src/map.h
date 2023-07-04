@@ -34,6 +34,7 @@ int map_isOpen (void);
 StarSystem* map_getDestination( int *jumps );
 void map_setZoom( double zoom );
 void map_select( StarSystem *sys, char shifted );
+StarSystem* map_getSelected(void);
 void map_cleanup(void);
 void map_clear (void);
 void map_selectCur(void);

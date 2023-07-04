@@ -10,6 +10,7 @@
 
 
 /** @cond */
+#include <assert.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,6 +21,7 @@
 
 #include "land.h"
 
+#include "array.h"
 #include "camera.h"
 #include "conf.h"
 #include "dialogue.h"
@@ -692,44 +694,71 @@ static void misn_currentList(unsigned int wid, char* str)
  */
 static void misn_genList( unsigned int wid, int first )
 {
-   int i,j;
-   char** misn_names, *focused;
-   int w,h;
+   int i, j;
+   char **misn_names;
+   char *focused;
+   int m;
+   int w, h;
+   int hilight;
+   const StarSystem *selected_sys;
+   int list_pos;
 
    /* Save focus. */
    focused = window_getFocus(wid);
+   list_pos = 0;
 
-   if (!first)
-      window_destroyWidget( wid, "lstMission" );
+   if (!first) {
+      list_pos = toolkit_getListPos(wid, "lstMission");
+      window_destroyWidget(wid, "lstMission");
+   }
 
    /* Get window dimensions. */
    window_dimWindow( wid, &w, &h );
 
    /* list */
-   j = 1; /* make sure we don't accidentally free the memory twice. */
+   m = mission_ncomputer;
    misn_names = NULL;
    if (mission_ncomputer > 0) { /* there are missions */
+      selected_sys = map_getSelected();
       misn_names = malloc(sizeof(char*) * mission_ncomputer);
-      j = 0;
-      for (i=0; i<mission_ncomputer; i++)
-         if (mission_computer[i].title != NULL)
-            misn_names[j++] = strdup(mission_computer[i].title);
+      for (i=0; i<mission_ncomputer; i++) {
+         if (selected_sys != NULL) {
+            hilight = 0;
+            for (j=0; j<array_size(mission_computer[i].markers); j++) {
+               if (mission_computer[i].markers[j].sys == selected_sys->id) {
+                  hilight = 1;
+                  break;
+               }
+            }
+         }
+         else {
+            hilight = 1;
+         }
+
+         if (mission_computer[i].title != NULL) {
+            asprintf(&misn_names[i], "#%c%s#0",
+                  hilight ? 'w' : 'n', mission_computer[i].title);
+         }
+         else {
+            WARN(_("Available mission has NULL title."));
+            misn_names[i] = strdup("NULL");
+         }
+      }
    }
-   if ((misn_names==NULL) || (mission_ncomputer==0) || (j==0)) { /* no missions. */
-      if (j==0)
-         free(misn_names);
+   if ((misn_names == NULL) || (mission_ncomputer == 0)) {
+      /* no missions. */
+      free(misn_names);
       misn_names = malloc(sizeof(char*));
       misn_names[0] = strdup(_("No Missions"));
-      j = 1;
+      m = 1;
    }
-   window_addList( wid, 20, -40,
-         w/2 - 30, h/2 - 35,
-         "lstMission", misn_names, j, 0, misn_update, misn_accept );
+   window_addList(wid, 20, -40, w/2 - 30, h/2 - 35,
+         "lstMission", misn_names, m, 0, misn_update, misn_accept);
 
    /* Restore focus. */
-   window_setFocus( wid, focused );
+   window_setFocus(wid, focused);
    free(focused);
-   /* duplicateed the save focus functionaility from the bar */
+   toolkit_setListPos(wid, "lstMission", list_pos);
 }
 /**
  * @brief Updates the mission list.
@@ -770,8 +799,6 @@ static void misn_update( unsigned int wid, char* str )
 
    misn = &mission_computer[ toolkit_getListPos( wid, "lstMission" ) ];
    mission_sysComputerMark( misn );
-   if (misn->markers != NULL)
-      map_center( system_getIndex( misn->markers[0].sys )->name );
    snprintf( txt, sizeof(txt), _("#nReward:#0 %s"), misn->reward );
    window_modifyText( wid, "txtReward", txt );
    window_modifyText( wid, "txtDesc", misn->desc );
@@ -965,6 +992,9 @@ void land_updateTabs(void)
    int tab;
    int i;
 
+   if (!landed)
+      return;
+
    tab = window_tabWinGetActive(land_wid, "tabLand");
 
    /* Find the currently selected tab. */
@@ -998,6 +1028,7 @@ void land_updateTabs(void)
             case LAND_WINDOW_MISSION:
                if (!land_tabGenerated(i))
                   misn_open(w);
+               misn_genList(w, 0);
                misn_update(w, NULL);
                break;
             case LAND_WINDOW_COMMODITY:

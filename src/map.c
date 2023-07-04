@@ -20,6 +20,7 @@
 #include "economy.h"
 #include "faction.h"
 #include "gui.h"
+#include "land.h"
 #include "log.h"
 #include "mapData.h"
 #include "map_find.h"
@@ -2383,6 +2384,8 @@ void map_selectCur(void)
 
    array_free(map_path);
    map_path = NULL;
+
+   land_updateTabs();
 }
 
 
@@ -2513,7 +2516,24 @@ void map_select( StarSystem *sys, char shifted )
 
    map_update(wid);
    gui_setNav();
+   land_updateTabs();
 }
+
+
+/**
+ * @brief Gets the currently selected system on the map.
+ *
+ *    @return The currently selected system, or NULL is no system is
+ *       selected.
+ */
+StarSystem* map_getSelected(void)
+{
+   if (map_selected >= 0)
+      return system_getIndex(map_selected);
+
+   return NULL;
+}
+
 
 /*
  * A* algorithm for shortest path finding
