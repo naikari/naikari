@@ -143,7 +143,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
                1, rpct, rcol)
       end
 
-      if hcol != nil and hpct ~= nil then
+      if hcol ~= nil and hpct ~= nil then
          local iw, ih = tex_circleBar:dim()
          local ix = math.floor(cx + cw/2)
          local iy = y + 4
@@ -163,7 +163,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          gfx.print(true, wnum, tx, text_y, col_text, math.floor(cw/4), true)
       end
 
-      if hcol != nil and hpct ~= nil then
+      if hcol ~= nil and hpct ~= nil then
          local iw, ih = tex_iconHeat:dim()
          local ix = math.floor(cx + cw*3/4 - iw/2)
          local iy = math.floor(y + h/2 - ih/2)
