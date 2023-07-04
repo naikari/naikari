@@ -3155,24 +3155,30 @@ int map_setCommodity(const Commodity* commod)
 {
    int i;
 
+   /* Make sure the commodity list is generated. */
+   map_genModeList();
+
    if (commod_known == NULL) {
-      ERR("commod_known has not been populated.");
+      WARN(_("commod_known has not been populated."));
       return -1;
    }
 
    if (commod == NULL) {
       cur_commod = -1;
+      map_update_commod_av_price();
       return 0;
    }
 
    for (i=0; i<commodity_getN(); i++) {
       if (strcmp(commod->name, commod_known[i]->name) == 0) {
          cur_commod = i;
+         map_update_commod_av_price();
          return 0;
       }
    }
 
    cur_commod = -1;
+   map_update_commod_av_price();
    return -1;
 }
 

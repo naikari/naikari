@@ -28,6 +28,7 @@
 #include "land.h"
 #include "land_shipyard.h"
 #include "log.h"
+#include "map.h"
 #include "map_find.h"
 #include "ndata.h"
 #include "nstring.h"
@@ -42,7 +43,7 @@ static iar_data_t *iar_data = NULL; /**< Stored image array positions. */
 
 
 static void commodity_getSize(unsigned int wid, int *w, int *h,
-      int *iw, int *ih, int *dw, int *bw);
+      int *iw, int *ih, int *dw, int *bw, int *mh);
 static void commodity_genList(unsigned int wid);
 
 
@@ -50,7 +51,7 @@ static void commodity_genList(unsigned int wid);
  * @brief Gets the size of the commodities window.
  */
 static void commodity_getSize(unsigned int wid, int *w, int *h,
-      int *iw, int *ih, int *dw, int *bw)
+      int *iw, int *ih, int *dw, int *bw, int *mh)
 {
    /* Get window dimensions. */
    window_dimWindow(wid, w, h);
@@ -60,13 +61,17 @@ static void commodity_getSize(unsigned int wid, int *w, int *h,
    if (iw != NULL)
       *iw = 565 + (*w - LAND_WIDTH);
    if (ih != NULL)
-      *ih = *h - 60;
+      *ih = 306;
 
    if (dw != NULL)
       *dw = *w - (iw!=NULL?*iw:0) - 60;
 
    if (bw != NULL)
       *bw = ((dw != NULL ? *dw+20 : *w) - 2*10) / 3;
+
+   /* Map takes all space left over from the image array. */
+   if (mh != NULL)
+      *mh = *h - 40 - 306 - 10 - 10 - 20;
 }
 
 
@@ -75,13 +80,14 @@ static void commodity_getSize(unsigned int wid, int *w, int *h,
  */
 void commodity_exchange_open( unsigned int wid )
 {
-   int w, h, iw, ih, dw, bw, titleHeight, infoHeight;
+   int w, h, iw, ih, dw, bw, mh;
+   int titleHeight, infoHeight;
    const char *bufSInfo;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_COMMODITY);
 
-   commodity_getSize(wid, &w, &h, &iw, &ih, &dw, &bw);
+   commodity_getSize(wid, &w, &h, &iw, &ih, &dw, &bw, &mh);
 
    /* Initialize stored positions. */
    if (iar_data == NULL)
@@ -128,6 +134,8 @@ void commodity_exchange_open( unsigned int wid )
    window_addText( wid, 40 + iw, MIN(-60-titleHeight-infoHeight-40, -192-60),
          dw, h - (80+titleHeight+infoHeight) - (40+LAND_BUTTON_HEIGHT), 0,
          "txtDesc", &gl_smallFont, NULL, NULL );
+
+   map_show(wid, 20, 20, iw, mh, 0.75);
 
    commodity_genList(wid);
 
@@ -179,7 +187,7 @@ static void commodity_genList(unsigned int wid)
    int w, h, iw, ih;
    int iconsize;
 
-   commodity_getSize(wid, &w, &h, &iw, &ih, NULL, NULL);
+   commodity_getSize(wid, &w, &h, &iw, &ih, NULL, NULL, NULL);
 
    if (array_size(land_planet->commodities) > 0) {
       ngoods = array_size(land_planet->commodities);
@@ -200,7 +208,7 @@ static void commodity_genList(unsigned int wid)
 
    /* set up the goods to buy/sell */
    iconsize = 128;
-   window_addImageArray(wid, 20, 20,
+   window_addImageArray(wid, 20, -40,
          iw, ih, "iarTrade", iconsize, iconsize,
          cgoods, ngoods, commodity_update, commodity_update, commodity_update);
 
@@ -249,6 +257,12 @@ void commodity_update( unsigned int wid, char* str )
       return;
    }
    com = land_planet->commodities[i];
+
+   /* Set map mode. */
+   map_setMode(MAPMODE_TRADE);
+   map_setCommodity(com);
+   map_setCommodityMode(0);
+   map_setMinimal(1);
 
    /* modify image */
    window_modifyImage( wid, "imgStore", com->gfx_store, 192, 192 );
