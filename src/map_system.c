@@ -504,10 +504,11 @@ static void map_system_render( double bx, double by, double w, double h, void *d
    }
 
    /* show the trade/outfit/ship info */
-   if ( infobuf[0]!='\0' ) {
-      txtHeight=gl_printHeightRaw( &gl_smallFont, (w - nameWidth-pitch-60)/2, infobuf );
-      gl_printTextRaw( &gl_smallFont, (w - nameWidth - pitch - 60) / 2, txtHeight,
-            bx + 10 + pitch + nameWidth, by + 10, 0, &cFontGrey, -1., infobuf );
+   if (infobuf[0] != '\0') {
+      txtHeight = gl_printHeightRaw(&gl_smallFont, (w-nameWidth-pitch-60) / 2,
+            infobuf);
+      gl_printTextRaw(&gl_smallFont, (w-nameWidth-pitch-60) / 2, txtHeight,
+            bx + 10 + pitch + nameWidth, by + 10, 0, NULL, -1., infobuf);
    }
 }
 
@@ -549,6 +550,16 @@ static void map_system_array_update( unsigned int wid, char* str ) {
    Outfit *outfit;
    Ship *ship;
    char buf_price[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT];
+   Commodity *com;
+   credits_t mean;
+   double std;
+   credits_t globalmean;
+   double globalstd;
+   char buf_local_price[ECON_CRED_STRLEN];
+   char buf_mean[ECON_CRED_STRLEN], buf_globalmean[ECON_CRED_STRLEN];
+   char buf_std[ECON_CRED_STRLEN], buf_globalstd[ECON_CRED_STRLEN];
+   char buf_buy_price[ECON_CRED_STRLEN];
+   int owned;
 
    i = toolkit_getImageArrayPos( wid, str );
    if ( i < 0 ) {
@@ -594,7 +605,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
          snprintf(buf_license, sizeof(buf_license), "#r%s#0", _(ship->license));
 
       l = scnprintf(infobuf, sizeof(infobuf),
-            _("%s (%s)\n"
+            _("%s (%s)\n\n"
                "#nFabricator:#0 %s\n"
                "#nPrice:#0 %s\n"
                "#nLicense:#0 %s"),
@@ -661,46 +672,36 @@ static void map_system_array_update( unsigned int wid, char* str ) {
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
             _("\n#nJump Detect Range:#0 %.0f mAU"), ship->rdr_jump_range);
    } else if ( ( strcmp( str, MAPSYS_TRADE ) == 0 ) ) {
-      Commodity *com;
-      credits_t mean;
-      double std;
-      credits_t globalmean;
-      double globalstd;
-      char buf_mean[ECON_CRED_STRLEN], buf_globalmean[ECON_CRED_STRLEN];
-      char buf_std[ECON_CRED_STRLEN], buf_globalstd[ECON_CRED_STRLEN];
-      char buf_buy_price[ECON_CRED_STRLEN];
-      int owned;
       com = cur_planetObj_sel->commodities[i];
-      economy_getAveragePrice( com, &globalmean, &globalstd );
-      economy_getAveragePlanetPrice( com, cur_planetObj_sel, &mean, &std );
-      credits2str( buf_mean, mean, -1 );
-      /* TODO credit2str could learn to do this... */
-      snprintf(buf_std, sizeof(buf_std), "%.1f ¢", std);
-      credits2str( buf_globalmean, globalmean, -1 );
-      /* TODO credit2str could learn to do this... */
-      snprintf(buf_globalstd, sizeof(buf_globalstd), "%.1f ¢", globalstd);
+      credits2str(buf_local_price,
+            planet_commodityPrice(cur_planetObj_sel, com), -1);
+      economy_getAveragePrice(com, &globalmean, &globalstd);
+      economy_getAveragePlanetPrice(com, cur_planetObj_sel, &mean, &std);
+      credits2str(buf_mean, mean, -1);
+      snprintf(buf_std, sizeof(buf_std), _("%.1f ¢/kt"), std);
+      credits2str(buf_globalmean, globalmean, -1);
+      snprintf(buf_globalstd, sizeof(buf_globalstd), _("%.1f ¢/kt"), globalstd);
       owned=pilot_cargoOwned( player.p, com );
 
       infobuf[0] = '\0';
       i = scnprintf(infobuf, sizeof(infobuf)-i, "%s\n\n", _(com->name));
 
-      if ( owned > 0 ) {
-         credits2str( buf_buy_price, com->lastPurchasePrice, -1 );
-         i += scnprintf( &infobuf[i], sizeof(infobuf)-i, n_(
-                         "#nYou have:#0 %d kt, purchased at %s/kt\n",
-                         "#nYou have:#0 %d kt, purchased at %s/kt\n",
-                         owned), owned, buf_buy_price );
-      }
-      else
-         i += scnprintf( &infobuf[i], sizeof(infobuf)-i, n_(
-                         "#nYou have:#0 %d kt\n",
-                         "#nYou have:#0 %d kt\n",
-                         owned), owned );
+      i += scnprintf(&infobuf[i], sizeof(infobuf)-i,
+            n_("#nYou have:#0 %d kt\n", "#nYou have:#0 %d kt\n", owned),
+            owned);
 
-      i += scnprintf( &infobuf[i], sizeof(infobuf)-i,
-                      _("#nAverage price seen here:#0 %s/kt ± %s/kt\n"
-                         "#nAverage price seen everywhere:#0 %s/kt ± %s/kt\n"),
-                      buf_mean, buf_std, buf_globalmean, buf_globalstd );
+      if (owned > 0) {
+         credits2str(buf_buy_price, com->lastPurchasePrice, -1);
+         i += scnprintf(&infobuf[i], sizeof(infobuf)-i,
+               _("#nPurchased for:#0 %s/kt\n"),
+               buf_buy_price);
+      }
+
+      i += scnprintf(&infobuf[i], sizeof(infobuf)-i,
+            _("#nCurrent price here:#0 %s/kt\n"
+               "#nAverage price seen here:#0 %s/kt ± %s\n"
+               "#nAverage price seen everywhere:#0 %s/kt ± %s\n"),
+            buf_local_price, buf_mean, buf_std, buf_globalmean, buf_globalstd);
    }
    else
       WARN( _("Unexpected call to map_system_array_update\n") );
