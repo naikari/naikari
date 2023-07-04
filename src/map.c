@@ -840,10 +840,6 @@ int map_isOpen (void)
 static void map_drawMarker( double x, double y, double r, double a,
       int num, int cur, int type )
 {
-   static const glColour* colours[] = {
-      &cMarkerNew, &cMarkerPlot, &cMarkerHigh, &cMarkerLow, &cMarkerComputer
-   };
-
    double alpha;
    glColour col;
 
@@ -860,19 +856,38 @@ static void map_drawMarker( double x, double y, double r, double a,
    alpha += M_PI*2. * (double)cur/(double)num;
 
    /* Draw the marking triangle. */
-   col = *colours[type];
+   switch (type) {
+      case SYSMARKER_COMPUTER:
+         col = cMarkerComputer;
+         break;
+      case SYSMARKER_LOW:
+         col = cMarkerLow;
+         break;
+      case SYSMARKER_HIGH:
+         col = cMarkerHigh;
+         break;
+      case SYSMARKER_PLOT:
+         col = cMarkerPlot;
+         break;
+      case SYSMARKER_NEW:
+         col = cMarkerNew;
+         break;
+      default:
+         WARN(_("Unknown marker type."));
+         return;
+   }
    col.a *= a;
 
-   x = x + 3.0*r * cos(alpha);
-   y = y + 3.0*r * sin(alpha);
+   x = x + 3.0*r*cos(alpha);
+   y = y + 3.0*r*sin(alpha);
    r *= 2.0;
 
    glUseProgram(shaders.sysmarker.program);
-   if (type==0)
-      glUniform1i( shaders.sysmarker.parami, 1 );
+   if (type == SYSMARKER_NEW)
+      glUniform1i(shaders.sysmarker.parami, 1);
    else
-      glUniform1i( shaders.sysmarker.parami, 0 );
-   gl_renderShader( x, y, r, r, alpha, &shaders.sysmarker, &col, 1 );
+      glUniform1i(shaders.sysmarker.parami, 0);
+   gl_renderShader(x, y, r, r, alpha, &shaders.sysmarker, &col, 1);
 }
 
 /**
@@ -1622,7 +1637,8 @@ static void map_renderMarkers( double x, double y, double r, double a )
       ty = y + sys->pos.y*map_zoom;
 
       /* Count markers. */
-      n  = (sys_isFlag(sys, SYSTEM_CMARKED)) ? 1 : 0;
+      n = 0;
+      n += sys->markers_new;
       n += sys->markers_plot;
       n += sys->markers_high;
       n += sys->markers_low;
@@ -1630,24 +1646,24 @@ static void map_renderMarkers( double x, double y, double r, double a )
 
       /* Draw the markers. */
       j = 0;
-      if (sys_isFlag(sys, SYSTEM_CMARKED)) {
-         map_drawMarker( tx, ty, r, a, n, j, 0 );
+      for (m=0; m<sys->markers_new; m++) {
+         map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_NEW);
          j++;
       }
       for (m=0; m<sys->markers_plot; m++) {
-         map_drawMarker( tx, ty, r, a, n, j, 1 );
+         map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_PLOT);
          j++;
       }
       for (m=0; m<sys->markers_high; m++) {
-         map_drawMarker( tx, ty, r, a, n, j, 2 );
+         map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_HIGH);
          j++;
       }
       for (m=0; m<sys->markers_low; m++) {
-         map_drawMarker( tx, ty, r, a, n, j, 3 );
+         map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_LOW);
          j++;
       }
       for (m=0; m<sys->markers_computer; m++) {
-         map_drawMarker( tx, ty, r, a, n, j, 4 );
+         map_drawMarker(tx, ty, r, a, n, j, SYSMARKER_COMPUTER);
          j++;
       }
    }

@@ -701,6 +701,7 @@ static void misn_genList( unsigned int wid, int first )
    int w, h;
    int hilight;
    const StarSystem *selected_sys;
+   Mission *misn;
    int list_pos;
 
    /* Save focus. */
@@ -715,6 +716,9 @@ static void misn_genList( unsigned int wid, int first )
    /* Get window dimensions. */
    window_dimWindow( wid, &w, &h );
 
+   /* Clear computer markers. */
+   space_clearComputerMarkers();
+
    /* list */
    m = mission_ncomputer;
    misn_names = NULL;
@@ -722,10 +726,12 @@ static void misn_genList( unsigned int wid, int first )
       selected_sys = map_getSelected();
       misn_names = malloc(sizeof(char*) * mission_ncomputer);
       for (i=0; i<mission_ncomputer; i++) {
+         misn = &mission_computer[i];
+
          if (selected_sys != NULL) {
             hilight = 0;
-            for (j=0; j<array_size(mission_computer[i].markers); j++) {
-               if (mission_computer[i].markers[j].sys == selected_sys->id) {
+            for (j=0; j<array_size(misn->markers); j++) {
+               if (misn->markers[j].sys == selected_sys->id) {
                   hilight = 1;
                   break;
                }
@@ -735,14 +741,17 @@ static void misn_genList( unsigned int wid, int first )
             hilight = 1;
          }
 
-         if (mission_computer[i].title != NULL) {
+         if (misn->title != NULL) {
             asprintf(&misn_names[i], "#%c%s#0",
-                  hilight ? 'w' : 'n', mission_computer[i].title);
+                  hilight ? 'w' : 'n', misn->title);
          }
          else {
             WARN(_("Available mission has NULL title."));
             misn_names[i] = strdup("NULL");
          }
+
+         /* Add markers. */
+         mission_sysComputerMark(misn);
       }
    }
    if ((misn_names == NULL) || (mission_ncomputer == 0)) {
@@ -773,9 +782,6 @@ static void misn_update( unsigned int wid, char* str )
    char txt[STRMAX], *buf;
    char tons[STRMAX_SHORT], cred[ECON_CRED_STRLEN];
 
-   /* Clear computer markers. */
-   space_clearComputerMarkers();
-
    /* Update date stuff. */
    buf = ntime_pretty(0, 2);
    tonnes2str(tons, player.p->cargo_free);
@@ -797,8 +803,7 @@ static void misn_update( unsigned int wid, char* str )
       return;
    }
 
-   misn = &mission_computer[ toolkit_getListPos( wid, "lstMission" ) ];
-   mission_sysComputerMark( misn );
+   misn = &mission_computer[toolkit_getListPos(wid, "lstMission")];
    snprintf( txt, sizeof(txt), _("#nReward:#0 %s"), misn->reward );
    window_modifyText( wid, "txtReward", txt );
    window_modifyText( wid, "txtDesc", misn->desc );

@@ -3554,9 +3554,9 @@ void space_clearMarkers (void)
    for (i=0; i<array_size(systems_stack); i++) {
       sys_rmFlag(&systems_stack[i], SYSTEM_MARKED);
       systems_stack[i].markers_computer = 0;
-      systems_stack[i].markers_plot  = 0;
-      systems_stack[i].markers_high  = 0;
-      systems_stack[i].markers_low   = 0;
+      systems_stack[i].markers_plot = 0;
+      systems_stack[i].markers_high = 0;
+      systems_stack[i].markers_low = 0;
    }
 }
 
@@ -3567,8 +3567,10 @@ void space_clearMarkers (void)
 void space_clearComputerMarkers (void)
 {
    int i;
-   for (i=0; i<array_size(systems_stack); i++)
+   for (i=0; i<array_size(systems_stack); i++) {
       sys_rmFlag(&systems_stack[i],SYSTEM_CMARKED);
+      systems_stack[i].markers_new = 0;
+   }
 }
 
 
@@ -3582,7 +3584,6 @@ void space_clearComputerMarkers (void)
 int space_addMarker( int sys, SysMarker type )
 {
    StarSystem *ssys;
-   int *markers;
 
    /* Get the system. */
    ssys = system_getIndex(sys);
@@ -3592,25 +3593,29 @@ int space_addMarker( int sys, SysMarker type )
    /* Get the marker. */
    switch (type) {
       case SYSMARKER_COMPUTER:
-         markers = &ssys->markers_computer;
+         ssys->markers_computer++;
+         sys_setFlag(ssys, SYSTEM_MARKED);
          break;
       case SYSMARKER_LOW:
-         markers = &ssys->markers_low;
+         ssys->markers_low++;
+         sys_setFlag(ssys, SYSTEM_MARKED);
          break;
       case SYSMARKER_HIGH:
-         markers = &ssys->markers_high;
+         ssys->markers_high++;
+         sys_setFlag(ssys, SYSTEM_MARKED);
          break;
       case SYSMARKER_PLOT:
-         markers = &ssys->markers_plot;
+         ssys->markers_plot++;
+         sys_setFlag(ssys, SYSTEM_MARKED);
+         break;
+      case SYSMARKER_NEW:
+         ssys->markers_new++;
+         sys_setFlag(ssys, SYSTEM_CMARKED);
          break;
       default:
          WARN(_("Unknown marker type."));
          return -1;
    }
-
-   /* Decrement markers. */
-   (*markers)++;
-   sys_setFlag(ssys, SYSTEM_MARKED);
 
    return 0;
 }
@@ -3626,7 +3631,6 @@ int space_addMarker( int sys, SysMarker type )
 int space_rmMarker( int sys, SysMarker type )
 {
    StarSystem *ssys;
-   int *markers;
 
    /* Get the system. */
    ssys = system_getIndex(sys);
@@ -3636,28 +3640,38 @@ int space_rmMarker( int sys, SysMarker type )
    /* Get the marker. */
    switch (type) {
       case SYSMARKER_COMPUTER:
-         markers = &ssys->markers_computer;
+         ssys->markers_computer--;
+         ssys->markers_computer = MAX(0, ssys->markers_computer);
          break;
       case SYSMARKER_LOW:
-         markers = &ssys->markers_low;
+         ssys->markers_low--;
+         ssys->markers_low = MAX(0, ssys->markers_low);
          break;
       case SYSMARKER_HIGH:
-         markers = &ssys->markers_high;
+         ssys->markers_high--;
+         ssys->markers_high = MAX(0, ssys->markers_high);
          break;
       case SYSMARKER_PLOT:
-         markers = &ssys->markers_plot;
+         ssys->markers_plot--;
+         ssys->markers_plot = MAX(0, ssys->markers_plot);
+         break;
+      case SYSMARKER_NEW:
+         ssys->markers_new--;
+         ssys->markers_new = MAX(0, ssys->markers_new);
          break;
       default:
          WARN(_("Unknown marker type."));
          return -1;
    }
 
-   /* Decrement markers. */
-   (*markers)--;
-   if (*markers <= 0) {
+   /* If all markers are gone, remove marked flag. */
+   if ((ssys->markers_computer <= 0) && (ssys->markers_low <= 0)
+         && (ssys->markers_high <= 0) && (ssys->markers_plot <= 0))
       sys_rmFlag(ssys, SYSTEM_MARKED);
-      (*markers) = 0;
-   }
+
+   /* New markers are separate. */
+   if (ssys->markers_new <= 0)
+      sys_rmFlag(ssys, SYSTEM_CMARKED);
 
    return 0;
 }

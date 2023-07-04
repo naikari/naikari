@@ -423,17 +423,12 @@ void mission_sysMark (void)
  */
 void mission_sysComputerMark( Mission* misn )
 {
-   StarSystem *sys;
    int i, n;
-
-   /* Clear markers. */
-   space_clearComputerMarkers();
 
    /* Set all the markers. */
    n = array_size(misn->markers);
    for (i=0; i<n; i++) {
-      sys = system_getIndex( misn->markers[i].sys );
-      sys_setFlag( sys,SYSTEM_CMARKED );
+      space_addMarker(misn->markers[i].sys, SYSMARKER_NEW);
    }
 }
 

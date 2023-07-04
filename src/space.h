@@ -318,6 +318,7 @@ struct StarSystem_ {
    double ownerpresence; /**< Amount of presence the owning faction has in a system. */
 
    /* Markers. */
+   int markers_new; /**< Number of new mission markers. */
    int markers_computer; /**< Number of mission computer markers. */
    int markers_low; /**< Number of low mission markers. */
    int markers_high; /**< Number of high mission markers. */
