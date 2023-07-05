@@ -1478,12 +1478,9 @@ int pilot_outfitOff( Pilot *p, PilotOutfitSlot *o )
    else if (!o->active)
       /* Case of a mod we can't toggle. */
       return 0;
-   else if (outfit_isMod(o->outfit) && o->outfit->u.mod.lua_ontoggle != LUA_NOREF)
-      /* TODO toggle Lua outfit. */
-      return pilot_outfitLOntoggle( p, o, 0 );
    else {
-      o->stimer = outfit_cooldown( o->outfit );
-      o->state  = PILOT_OUTFIT_COOLDOWN;
+      o->stimer = outfit_cooldown(o->outfit);
+      o->state = PILOT_OUTFIT_COOLDOWN;
    }
 
    return 1;
@@ -1499,13 +1496,10 @@ int pilot_outfitOff( Pilot *p, PilotOutfitSlot *o )
 int pilot_outfitOn( Pilot *p, PilotOutfitSlot *o )
 {
    if (outfit_isAfterburner(o->outfit))
-      pilot_afterburn( p );
-   else if (outfit_isMod(o->outfit) && o->outfit->u.mod.lua_ontoggle != LUA_NOREF)
-      /* TODO toggle Lua outfit. */
-      return pilot_outfitLOntoggle( p, o, 1 );
+      pilot_afterburn(p);
    else {
-      o->state  = PILOT_OUTFIT_ON;
-      o->stimer = outfit_duration( o->outfit );
+      o->state = PILOT_OUTFIT_ON;
+      o->stimer = outfit_duration(o->outfit);
    }
 
    return 1;

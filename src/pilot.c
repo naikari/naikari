@@ -971,9 +971,6 @@ void pilot_cooldown( Pilot *p )
    p->ctimer = p->cdelay * p->stats.cooldown_time;
    p->heat_start = p->heat_T;
    pilot_setFlag(p, PILOT_COOLDOWN);
-
-   /* Run outfit cooldown start hook. */
-   pilot_outfitLCooldown(p, 0, 0, p->ctimer);
 }
 
 
@@ -1006,12 +1003,8 @@ void pilot_cooldownEnd( Pilot *p, const char *reason )
 
    /* Cooldown finished naturally, reset heat just in case. */
    if (p->ctimer < 0.) {
-      pilot_heatReset( p );
-      pilot_fillAmmo( p );
-      pilot_outfitLCooldown(p,1,1, 0.);
-   }
-   else {
-      pilot_outfitLCooldown(p,1,0, 0.);
+      pilot_heatReset(p);
+      pilot_fillAmmo(p);
    }
 }
 
@@ -1625,12 +1618,9 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
    if (w != NULL)
       /* knock back effect is dependent on both damage and mass of the weapon
        * should probably get turned into a partial conservative collision */
-      vect_cadd( &p->solid->vel,
+      vect_cadd(&p->solid->vel,
             knockback * (w->vel.x * (dam_mod/9. + w->mass/p->solid->mass/6.)),
-            knockback * (w->vel.y * (dam_mod/9. + w->mass/p->solid->mass/6.)) );
-
-   /* On hit Lua outfits activate. */
-   pilot_outfitLOnhit( p, tdarmour, tdshield, shooter );
+            knockback * (w->vel.y * (dam_mod/9. + w->mass/p->solid->mass/6.)));
 
    return ddmg;
 }
@@ -2295,9 +2285,7 @@ void pilot_update( Pilot* pilot, double dt )
       else if (pilot->energy < 0.) {
          pilot->energy = 0.;
          /* Stop all on outfits. */
-         nchg += pilot_outfitOffAll( pilot );
-         /* Run Lua stuff. */
-         pilot_outfitLOutfofenergy( pilot );
+         nchg += pilot_outfitOffAll(pilot);
       }
 
       /* Must recalculate stats because something changed state. */
@@ -2415,13 +2403,6 @@ void pilot_update( Pilot* pilot, double dt )
 
    /* Update the trail. */
    pilot_sample_trails( pilot, 0 );
-
-   /* Update outfits if necessary. */
-   pilot->otimer += dt;
-   while (pilot->otimer > PILOT_OUTFIT_LUA_UPDATE_DT) {
-      pilot_outfitLUpdate( pilot, PILOT_OUTFIT_LUA_UPDATE_DT );
-      pilot->otimer -= PILOT_OUTFIT_LUA_UPDATE_DT;
-   }
 }
 
 
@@ -3126,9 +3107,6 @@ pilotId_t pilot_create(const Ship* ship, const char* name,
    /* Animated trail. */
    pilot_init_trails( dyn );
 
-   /* Run Lua stuff. */
-   pilot_outfitLInitAll( dyn );
-
    return dyn->id;
 }
 
@@ -3170,9 +3148,7 @@ Pilot* pilot_replacePlayer( Pilot* after )
       spfx_trail_remove( pilot_stack[i]->trail[j] );
    array_erase( &pilot_stack[i]->trail, array_begin(pilot_stack[i]->trail), array_end(pilot_stack[i]->trail) );
    pilot_stack[i] = after;
-   pilot_init_trails( after );
-   /* Run Lua stuff. */
-   pilot_outfitLInitAll( after );
+   pilot_init_trails(after);
    return after;
 }
 
@@ -3334,9 +3310,6 @@ void pilot_destroy(Pilot* p)
    /* Stop all outfits. */
    pilot_outfitOffAll(p);
 
-   /* Handle Lua outfits. */
-   pilot_outfitLCleanup(p);
-
    /* Remove faction if necessary. */
    if (p->presence > 0) {
       system_rmCurrentPresence( cur_system, p->faction, p->presence );
@@ -3376,16 +3349,15 @@ void pilots_free (void)
    pilot_freeGlobalHooks();
 
    /* First pass to stop outfits. */
-   for (i=0; i < array_size(pilot_stack); i++) {
+   for (i=0; i<array_size(pilot_stack); i++) {
       /* Stop all outfits. */
       pilot_outfitOffAll(pilot_stack[i]);
-      /* Handle Lua outfits. */
-      pilot_outfitLCleanup(pilot_stack[i]);
    }
 
    /* Free pilots. */
-   for (i=0; i < array_size(pilot_stack); i++)
+   for (i=0; i<array_size(pilot_stack); i++) {
       pilot_free(pilot_stack[i]);
+   }
    array_free(pilot_stack);
    pilot_stack = NULL;
    player.p = NULL;
@@ -3410,8 +3382,6 @@ void pilots_clean( int persist )
          continue;
       /* Stop all outfits. */
       pilot_outfitOffAll(p);
-      /* Handle Lua outfits. */
-      pilot_outfitLCleanup(p);
    }
 
    /* Here we actually clean up stuff. */
@@ -3617,18 +3587,17 @@ void pilot_clearTimers( Pilot *pilot )
    /* Clear outfits first to not leave some outfits in dangling states. */
    pilot_outfitOffAll(pilot);
 
-   pilot->ptimer     = 0.; /* Pilot timer. */
-   pilot->tcontrol   = 0.; /* AI control timer. */
-   pilot->stimer     = 0.; /* Shield timer. */
-   pilot->dtimer     = 0.; /* Disable timer. */
-   pilot->otimer     = 0.; /* Outfit timer. */
+   pilot->ptimer = 0.; /* Pilot timer. */
+   pilot->tcontrol = 0.; /* AI control timer. */
+   pilot->stimer = 0.; /* Shield timer. */
+   pilot->dtimer = 0.; /* Disable timer. */
    for (i=0; i<MAX_AI_TIMERS; i++)
       pilot->timer[i] = 0.; /* Specific AI timers. */
    n = 0;
    for (i=0; i<array_size(pilot->outfits); i++) {
       o = pilot->outfits[i];
-      o->timer    = 0.; /* Last used timer. */
-      o->stimer   = 0.; /* State timer. */
+      o->timer = 0.; /* Last used timer. */
+      o->stimer = 0.; /* State timer. */
       if (o->state != PILOT_OUTFIT_OFF) {
          o->state    = PILOT_OUTFIT_OFF; /* Set off. */
          n++;

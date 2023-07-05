@@ -1707,45 +1707,17 @@ static int pilotL_actives(lua_State *L)
          case PILOT_OUTFIT_OFF:
             str = "off";
             break;
-         case PILOT_OUTFIT_WARMUP:
-            str = "warmup";
-            if (!outfit_isMod(o->outfit) || o->outfit->u.mod.lua_env == LUA_NOREF)
-               d = 1.; /* TODO add warmup stuff to normal active outfits (not sure if necessary though. */
-            else
-               d = o->progress;
-            lua_pushstring(L,"warmup");
-            lua_pushnumber(L, d );
-            lua_rawset(L,-3);
-            break;
          case PILOT_OUTFIT_ON:
             str = "on";
-            if (!outfit_isMod(o->outfit) || o->outfit->u.mod.lua_env == LUA_NOREF) {
-               d = outfit_duration(o->outfit);
-               if (d==0.)
-                  d = 1.;
-               else if (!isinf(o->stimer))
-                  d = o->stimer / d;
-            }
-            else
-               d = o->progress;
-            lua_pushstring(L,"duration");
-            lua_pushnumber(L, d );
-            lua_rawset(L,-3);
             break;
          case PILOT_OUTFIT_COOLDOWN:
             str = "cooldown";
-            if (!outfit_isMod(o->outfit) || o->outfit->u.mod.lua_env == LUA_NOREF) {
-               d = outfit_cooldown(o->outfit);
-               if (d==0.)
-                  d = 0.;
-               else if (!isinf(o->stimer))
-                  d = o->stimer / d;
-            }
-            else
-               d = o->progress;
+            d = outfit_cooldown(o->outfit);
+            if ((d != 0.) && !isinf(o->stimer))
+               d = o->stimer / d;
             lua_pushstring(L,"cooldown");
-            lua_pushnumber(L, d );
-            lua_rawset(L,-3);
+            lua_pushnumber(L, d);
+            lua_rawset(L, -3);
             break;
          default:
             str = "unknown";
@@ -2788,9 +2760,7 @@ static int pilotL_outfitAdd(lua_State *L)
       }
 
       /* Add outfit - already tested. */
-      ret = pilot_addOutfitRaw( p, o, p->outfits[i] );
-      if (ret==0)
-         pilot_outfitLInit( p, p->outfits[i] );
+      ret = pilot_addOutfitRaw(p, o, p->outfits[i]);
       pilot_calcStats( p );
 
       /* Add ammo if needed. */

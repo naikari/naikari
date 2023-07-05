@@ -89,9 +89,8 @@ typedef uint32_t pilotId_t; /**< Type for pilot IDs. */
  * Currently only applicable to beam weapons.
  */
 typedef enum PilotOutfitState_ {
-   PILOT_OUTFIT_OFF,    /**< Normal state. */
-   PILOT_OUTFIT_WARMUP, /**< Outfit is starting to warm up. */
-   PILOT_OUTFIT_ON,     /**< Outfit is activated and running. */
+   PILOT_OUTFIT_OFF, /**< Normal state. */
+   PILOT_OUTFIT_ON, /**< Outfit is activated and running. */
    PILOT_OUTFIT_COOLDOWN /**< Outfit is cooling down. */
 } PilotOutfitState;
 
@@ -130,7 +129,6 @@ typedef struct PilotOutfitSlot_ {
    double stimer;    /**< State timer, tracking current state. */
    double timer;     /**< Used to store when it was last used. */
    double rtimer;    /**< Used to store when a reload can happen. */
-   double progress;  /**< Used to store state progress and used by Lua outfits. */
    int level;        /**< Level in current weapon set (-1 is none). */
    int weapset;      /**< First weapon set that uses the outfit (-1 is none). */
 
@@ -139,10 +137,6 @@ typedef struct PilotOutfitSlot_ {
       unsigned int beamid;    /**< ID of the beam used in this outfit, only used for beams. */
       PilotOutfitAmmo ammo;   /**< Ammo for launchers. */
    } u; /**< Stores type specific data. */
-
-   /* In the case of Lua stuff. */
-   int lua_mem; /**< Lua reference to the memory table of the specific outfit. */
-   ShipStats lua_stats; /**< Intrinsic ship stats for the outfit calculated on the fly. Used only by Lua outfits. */
 } PilotOutfitSlot;
 
 
@@ -361,7 +355,6 @@ typedef struct Pilot_ {
    double sbonus;    /**< Shield regeneration bonus. */
    double dtimer;    /**< Disable timer. */
    double dtimer_accum; /**< Accumulated disable timer. */
-   double otimer;    /**< Lua outfit timer. */
    int hail_pos;     /**< Hail animation position. */
    int lockons;      /**< Stores how many seeking weapons are targeting pilot */
    int projectiles;      /**< Stores how many weapons are after the pilot */

@@ -766,7 +766,6 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    int pos;
    const Outfit *o;
    CstSlotWidget *wgt;
-   size_t slen;
 
    /* Get data. */
    wgt = (CstSlotWidget*) data;
@@ -839,13 +838,6 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
 
    /* Get text. */
    outfit_altText(outfit_alt, sizeof(outfit_alt), o);
-
-   /* Display temporary bonuses. */
-   if (slot->lua_mem != LUA_NOREF) {
-      slen = strlen(outfit_alt);
-      ss_statsDesc(&slot->lua_stats, &outfit_alt[slen],
-            sizeof(outfit_alt) - slen, 1, 0);
-   }
 
    asprintf(&alt, _("#n%s\n\n#nEquipped outfit:#0\n%s"),
          slot_alt, outfit_alt);
