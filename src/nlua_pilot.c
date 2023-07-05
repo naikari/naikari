@@ -1197,33 +1197,36 @@ static int pilotL_activeWeapset(lua_State *L)
  *
  * The slots have the following structure:
  * <ul>
- *    <li>name: Raw (untranslated) name of the outfit.</li>
- *    <li>cooldown: [0:1] value indicating if ready to shoot (1 is
+ *    <li>"name": Raw (untranslated) name of the outfit.</li>
+ *    <li>"cooldown": [0:1] value indicating if ready to shoot (1 is
  *       ready).</li>
- *    <li>charge: [0:1] charge level of beam weapon (1 is full).</li>
- *    <li>ammo: Raw (untranslated) name of the ammo or nil if not
+ *    <li>"charge": [0:1] Charge level of beam weapon (1 is full), or
+ *       nil if not applicable.</li>
+ *    <li>"ammo": Raw (untranslated) name of the ammo or nil if not
  *       applicable.</li>
- *    <li>left: Absolute ammo left or nil if not applicable.</li>
- *    <li>left_p: [0:1] Relative ammo left or nil if not applicable.</li>
- *    <li>lockon: [0:1] Lock-on percentage for seeker weapons or nil if
- *       not applicable.</li>
- *    <li>in_arc: Whether or not the target is in targeting arc or nil
+ *    <li>"max_ammo": Absolute max ammo or nil if not applicable.</li>
+ *    <li>"left": Absolute ammo left or nil if not applicable.</li>
+ *    <li>"left_p": [0:1] Relative ammo left or nil if not
+ *       applicable.</li>
+ *    <li>"lockon": [0:1] Lock-on percentage for seeker weapons or nil
  *       if not applicable.</li>
- *    <li>level: Level of the weapon (1 is primary, 2 is secondary, 0
+ *    <li>"in_arc": Whether or not the target is in targeting arc or nil
+ *       if not applicable.</li>
+ *    <li>"level": Level of the weapon (1 is primary, 2 is secondary, 0
  *       is neither primary nor secondary)).</li>
- *    <li>instant: The instant mode weapon set the weapon is in if
+ *    <li>"instant": The instant mode weapon set the weapon is in if
  *       applicable, or nil if the weapon is not in an instant mode
  *       weapon set.</li>
- *    <li>temp: Temperature of the weapon. The general range is [0:1],
+ *    <li>"temp": Temperature of the weapon. The general range is [0:1],
  *       but can actually exceed the nominal "maximum" value of 1, so
  *       you should take care to make sure that your code can handle
  *       values greater than 1 (e.g. by capping the value before putting
  *       it somewhere that expects a strict [0:1] range).</li>
- *    <li>type: Raw (untranslated) name of the outfit's type as would be
- *       returned by outfit.type().</li>
- *    <li>dtype: Raw (untranslated) name of the weapon's damage
+ *    <li>"type": Raw (untranslated) name of the outfit's type as would
+ *       be returned by outfit.type().</li>
+ *    <li>"dtype": Raw (untranslated) name of the weapon's damage
  *       type.</li>
- *    <li>track: [0:1] How well the weapon is currently tracking its
+ *    <li>"track": [0:1] How well the weapon is currently tracking its
  *       target.</li>
  * </ul>
  *
@@ -1397,17 +1400,24 @@ static int pilotL_weapset(lua_State *L)
             lua_rawset(L,-3);
          }
 
-         /* Ammo quantity absolute. */
          if ((is_lau || is_fb) &&
                (slot->u.ammo.outfit != NULL)) {
-            lua_pushstring(L,"left");
-            lua_pushnumber(L, slot->u.ammo.quantity);
-            lua_rawset(L,-3);
+            /* Max ammo. */
+            lua_pushstring(L, "max_ammo");
+            lua_pushnumber(L, pilot_maxAmmoO(p, slot->outfit));
+            lua_rawset(L, -3);
 
-         /* Ammo quantity relative. */
+            /* Ammo quantity absolute. */
+            lua_pushstring(L, "left");
+            lua_pushnumber(L, slot->u.ammo.quantity);
+            lua_rawset(L, -3);
+
+            /* Ammo quantity relative. */
             lua_pushstring(L,"left_p");
-            lua_pushnumber(L, (double)slot->u.ammo.quantity / (double)pilot_maxAmmoO(p,slot->outfit));
-            lua_rawset(L,-3);
+            lua_pushnumber(L,
+                  (double)slot->u.ammo.quantity
+                     / (double)pilot_maxAmmoO(p,slot->outfit));
+            lua_rawset(L, -3);
          }
 
          /* Launcher lockon. */

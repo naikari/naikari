@@ -15,7 +15,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local playerform = require "playerform"
+local eh = require "escorthelper"
+local fmt = require "fmt"
 local formation = require "formation"
 
 
@@ -32,6 +33,8 @@ function create ()
    col_outline1 = colour.new(0.1, 0.1, 0.1)
    col_outline2 = colour.new(0.25, 0.25, 0.25)
    col_text = colour.new(0.95, 0.95, 0.95)
+   col_cooldown = colour.new(76/255, 98/255, 176/255)
+   col_lockon = colour.new(150/255, 141/255, 23/255)
    col_shield = colour.new(42/255, 57/255, 162/255)
    col_armour = colour.new(80/255, 80/255, 80/255)
    col_energy = colour.new(36/255, 125/255, 51/255)
@@ -57,13 +60,34 @@ function create ()
    tex_circleBar = tex_open("circleBar.png")
    tex_iconShield = tex_open("iconShield.png")
    tex_iconArmor = tex_open("iconArmor.png")
+   tex_iconStress = tex_open("iconStress.png")
    tex_iconEnergy = tex_open("iconEnergy.png")
    tex_iconHeat = tex_open("iconHeat.png")
    tex_iconSpeed = tex_open("iconSpeed.png")
+   tex_iconWeapPrimary = tex_open("iconWeapPrimary.png")
+   tex_iconWeapSecondary = tex_open("iconWeapSecondary.png")
+   tex_iconWeapHeat = tex_open("iconWeapHeat.png")
 end
 
-
 function render(dt, dt_mod)
+end
+
+function update_target()
+end
+
+function update_nav()
+end
+
+function update_faction()
+end
+
+function update_cargo()
+end
+
+function update_ship()
+end
+
+function update_system()
 end
 
 
@@ -169,7 +193,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          local iw, ih = tex_iconHeat:dim()
          local ix = math.floor(cx + cw*3/4 - iw/2)
          local iy = math.floor(y + h/2 - ih/2)
-         gfx.renderTex(tex_iconHeat, ix, iy)
+         gfx.renderTex(tex_iconWeapHeat, ix, iy)
       end
    end
 
@@ -179,8 +203,40 @@ end
 
 function render_weapBar(x, y, slot)
    local o = outfit.get(slot.name)
-   local icon = o:icon()
-   local heat = slot.temp
+
+   local mainbar_col = col_cooldown
+   local mainbar_col_end = col_cooldown
+   local mainbar_pct = 0
+   local mainbar_txt = nil
+   if slot.left ~= nil then
+      mainbar_col = col_ammo
+      mainbar_col_end = col_ammo_end
+      mainbar_pct = slot.left_p
+      mainbar_txt = fmt.number(slot.left) .. "/" .. fmt.number(slot.max_ammo)
+   end
+
+   local reload_icon = nil
+   if slot.level == 1 then
+      reload_icon = tex_iconWeapPrimary
+   elseif slot.level == 2 then
+      reload_icon = tex_iconWeapSecondary
+   end
+
+   local reload_col
+   local reload
+   if slot.lockon ~= nil then
+      reload_col = col_lockon
+      reload = slot.lockon
+   else
+      reload_col = col_cooldown
+      reload = slot.charge or slot.cooldown
+   end
+
+   render_bar_header_raw(x, y, o:icon())
+   local w, h = tex_barHeader:dim()
+   render_bar_raw(x + w, y, mainbar_col, mainbar_col_end, mainbar_pct,
+         mainbar_txt, reload_icon, reload_col, reload, slot.instant, col_heat,
+         slot.temp)
 end
 
 
