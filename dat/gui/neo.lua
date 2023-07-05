@@ -72,6 +72,12 @@ end
 function render(dt, dt_mod)
 end
 
+function render_cooldown(percent, seconds)
+end
+
+function end_cooldown()
+end
+
 function update_target()
 end
 
@@ -90,9 +96,15 @@ end
 function update_system()
 end
 
+function mouse_move(x, y)
+end
+
+function mouse_click(button, x, y, state)
+end
+
 
 --[[
-Render the header portion of a weapon bar.
+Render the header portion of a bar.
 
    @tparam number x Location X coördinate.
    @tparam number y Location Y coördinate.
@@ -113,7 +125,7 @@ end
 
 
 --[[
-Render the bar portion of a weapon bar.
+Render the bar portion of a bar.
 
 If the argument passed to the text parameter is non-nil, text is
 displayed over the bar and any arguments for the parameters that
@@ -201,6 +213,14 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
 end
 
 
+--[[
+Render a weapon bar (including a header and a bar).
+
+   @tparam number x Location X coördinate.
+   @tparam number y Location Y coördinate.
+   @tparam table slot Slot returned by pilot.weapset() to render.
+@func render_weapBar
+--]]
 function render_weapBar(x, y, slot)
    local o = outfit.get(slot.name)
 
