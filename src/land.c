@@ -143,6 +143,7 @@ static void misn_close( unsigned int wid, char *name );
 static void misn_accept( unsigned int wid, char* str );
 static void misn_currentList(unsigned int wid, char* str);
 static void misn_genList( unsigned int wid, int first );
+static void misn_activateList(wid_t wid, char* str);
 static void misn_update( unsigned int wid, char* str );
 
 
@@ -762,13 +763,32 @@ static void misn_genList( unsigned int wid, int first )
       m = 1;
    }
    window_addList(wid, 20, -40, w/2 - 30, h/2 - 35,
-         "lstMission", misn_names, m, 0, misn_update, misn_accept);
+         "lstMission", misn_names, m, 0, misn_update, misn_activateList);
 
    /* Restore focus. */
    window_setFocus(wid, focused);
    free(focused);
    toolkit_setListPos(wid, "lstMission", list_pos);
 }
+
+
+/**
+ * @brief Handles mission list double-click.
+ *    @param wid Window of the mission computer.
+ *    @param str Unused.
+ */
+static void misn_activateList(wid_t wid, char* str)
+{
+   (void) str;
+   Mission *misn;
+
+   /* Center map on the selected mission. */
+   misn = &mission_computer[toolkit_getListPos(wid, "lstMission")];
+   if (misn->markers != NULL)
+      map_center(system_getIndex(misn->markers[0].sys)->name);
+}
+
+
 /**
  * @brief Updates the mission list.
  *    @param wid Window of the mission computer.
@@ -1483,6 +1503,11 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
             case LAND_WINDOW_MISSION:
                to_visit = VISITED_MISSION;
                torun_hook = "mission";
+
+               /* Center the map on the current system. (Done here since
+                * we only want to do this specifically when changing to
+                * the tab.) */
+               map_center(cur_system->name);
                break;
             case LAND_WINDOW_COMMODITY:
                to_visit = VISITED_COMMODITY;
