@@ -497,13 +497,15 @@ static void gui_renderPilotTarget (void)
    if (gui_target_pilot == NULL)
       return;
 
+   /* Player has no target. */
+   if (player.p->target == PLAYER_ID)
+      return;
+
    /* Get the target. */
-   if (player.p->target != PLAYER_ID)
-      p = pilot_get(player.p->target);
-   else p = NULL;
+   p = pilot_get(player.p->target);
 
    /* Make sure pilot exists and is still alive. */
-   if ((p==NULL) || pilot_isFlag(p,PILOT_DEAD)) {
+   if ((p == NULL) || pilot_isFlag(p, PILOT_DEAD)) {
       pilot_setTarget( player.p, player.p->id );
       gui_setTarget();
       return;
