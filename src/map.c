@@ -1565,6 +1565,10 @@ void map_renderNames( double bx, double by, double x, double y,
             || (map_zoom <= 0.5))
          continue;
 
+      /* There's a small chance names might get drawn over each other
+       * if they're too close. */
+      glClear(GL_DEPTH_BUFFER_BIT);
+
       font = (map_zoom >= 1.5) ? &gl_defFont : &gl_smallFont;
 
       textw = gl_printWidthRaw( font, _(sys->name) );
@@ -1821,12 +1825,14 @@ void map_renderCommod( double bx, double by, double x, double y,
                }
             }
 
-
             /* Calculate best and worst profits */
             if (maxPrice > 0) {
                /* Commodity sold at this system */
                tx = x + (sys->pos.x+12.) * map_zoom;
                ty = y + (sys->pos.y) * map_zoom - gl_smallFont.h*0.5;
+
+               /* Text might collide particularly at far zoom levels. */
+               glClear(GL_DEPTH_BUFFER_BIT);
 
                best = maxPrice - curMinPrice;
                worst = minPrice - curMaxPrice;
@@ -1898,6 +1904,9 @@ void map_renderCommod( double bx, double by, double x, double y,
                /* Commodity sold at this system */
                tx = x + (sys->pos.x+12.) * map_zoom;
                ty = y + (sys->pos.y) * map_zoom - gl_smallFont.h*0.5;
+
+               /* Text might collide particularly at far zoom levels. */
+               glClear(GL_DEPTH_BUFFER_BIT);
 
                /* Colour as a % of global average */
                double frac;
