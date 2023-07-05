@@ -1475,6 +1475,11 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
    (void) wgt;
    (void) old;
 
+   /* Center the map on the current system for the benefit of tabs that
+    * have an embedded map. (Done here since we only want to do this
+    * specifically when changing tabs.) */
+   map_center(cur_system->name);
+
    /* Update tabs. */
    land_updateTabs();
 
@@ -1503,11 +1508,6 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab )
             case LAND_WINDOW_MISSION:
                to_visit = VISITED_MISSION;
                torun_hook = "mission";
-
-               /* Center the map on the current system. (Done here since
-                * we only want to do this specifically when changing to
-                * the tab.) */
-               map_center(cur_system->name);
                break;
             case LAND_WINDOW_COMMODITY:
                to_visit = VISITED_COMMODITY;
