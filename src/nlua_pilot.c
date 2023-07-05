@@ -1613,11 +1613,11 @@ static int pilotL_weapsetHeat(lua_State *L)
  *       applicable.</li>
  *    <li>"weapset": The first weapon set that the outfit appears in, if
  *       any, or nil if not applicable.</li>
- *    <li>"state": State of the outfit, which can be "off", "warmup",
- *       "on", or "cooldown".</li>
- *    <li>"cooldown": [0:1] Cooldown percentage remaining
- *       (0 = just finished, 1 = just started cooling down), or nil if
- *       not applicable.</li>
+ *    <li>"state": State of the outfit, which can be "off", "on", or
+ *       "cooldown".</li>
+ *    <li>"cooldown": [0:1] Cooldown percentage remaining  (0 = just
+ *       finished cooling down, 1 = just started cooling down), or nil
+ *       if not applicable.</li>
  * </ul>
  *
  * An example would be:
