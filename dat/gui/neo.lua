@@ -26,6 +26,7 @@ function create ()
    player.pilot():memory().formation = savedform
 
    -- Colors
+   col_black = colour.new(0, 0, 0)
    col_bg = colour.new(0.2, 0.2, 0.2, 0.5)
    col_outline1 = colour.new(0.1, 0.1, 0.1)
    col_outline2 = colour.new(0.25, 0.25, 0.25)
@@ -68,9 +69,15 @@ function create ()
 
    -- Common sizes
    screen_w, screen_h = gfx.dim()
+   screen_padding = 8
    barHeader_w, barHeader_h = tex_barHeader:dim()
    barFrame_w, barFrame_h = tex_barFrame:dim()
    fontSize_small = gfx.fontSize(true)
+
+   -- Sidebar
+   sidebar_padding = 4
+   sidebar_w = barHeader_w + barFrame_w + 2*sidebar_padding
+   sidebar_x = screen_w - sidebar_w - screen_padding
 end
 
 function render(dt, dt_mod)
@@ -95,6 +102,9 @@ function update_cargo()
 end
 
 function update_ship()
+   local p = player.pilot()
+   player_weapons = p:weapset(true)
+   player_actives = p:actives(true)
 end
 
 function update_system()
@@ -121,7 +131,7 @@ function render_bar_header_raw(x, y, icon)
    local iw = w - 4
    local ih = h - 4
 
-   gfx.renderRect(x, y, barHeader_w, barHeader_h, colour.new(0, 0, 0))
+   gfx.renderRect(x, y, barHeader_w, barHeader_h, col_black)
    gfx.renderTexRaw(icon, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1)
    gfx.renderTex(tex_barHeader, x, y)
 end
@@ -161,7 +171,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
    local centerx = math.floor(x + w/2)
    local text_y = math.ceil(y + h/2 - fontSize_small/2)
 
-   gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
+   gfx.renderRect(x, y, w, h, col_black)
    gfx.renderRect(x, y, bw, h, col)
    gfx.renderRect(x + bw - 1, y, 1, h, col_end)
 
@@ -180,6 +190,8 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          local iw, ih = tex_circleBar:dim()
          local ix = cx
          local iy = y + 4
+         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
+               col_black)
          gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih * rpct, 1, 1, 0, 0,
                1, rpct, rcol)
       end
@@ -189,6 +201,8 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          local iw, ih = tex_circleBar:dim()
          local ix = math.floor(cx + cw/2)
          local iy = y + 4
+         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
+               col_black)
          gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih * hpct, 1, 1, 0, 0,
                1, hpct, hcol)
       end
@@ -309,5 +323,6 @@ end
 
 
 function render_sidebar()
+   local x = sidebar_x
 end
 

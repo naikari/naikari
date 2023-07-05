@@ -1247,7 +1247,7 @@ static int pilotL_activeWeapset(lua_State *L)
  *
  *    @luatparam Pilot p Pilot to get weapset weapon of.
  *    @luatparam[opt] number|boolean id ID of the set to get information
- *       of. Set to true to get all active weapons. Defaults to the
+ *       of. Set to true to get all equipped weapons. Defaults to the
  *       current weapon set.
  *    @luatreturn string The name of the set.
  *    @luatreturn {table,...} A table with each slot's information.
@@ -1633,7 +1633,10 @@ static int pilotL_weapsetHeat(lua_State *L)
  * @usage act_outfits = p:actives() -- Gets the table of active outfits
  *
  *    @luatparam Pilot p Pilot to get active outfits of.
- *    @luatparam[opt=false] boolean sort Whether or not to sort the outfits.
+ *    @luatparam[opt=false] boolean sort Whether or not to sort the
+ *       outfits. If this is set to true, outfits are sorted so that
+ *       outfits with a lower weapset are first, and outfits with no
+ *       weapset are last.
  *    @luatreturn {table,...} A table with each active outfit's
  *       information.
  * @luafunc actives
@@ -1656,7 +1659,8 @@ static int pilotL_actives(lua_State *L)
 
    if (sort) {
       outfits = array_copy( PilotOutfitSlot*, p->outfits );
-      qsort( outfits, array_size(outfits), sizeof(PilotOutfitSlot*), outfit_compareActive );
+      qsort(outfits, array_size(outfits), sizeof(PilotOutfitSlot*),
+            outfit_compareActive);
    }
    else
       outfits  = p->outfits;
@@ -1749,17 +1753,24 @@ static int outfit_compareActive( const void *slot1, const void *slot2 )
    s1 = *(const PilotOutfitSlot**) slot1;
    s2 = *(const PilotOutfitSlot**) slot2;
 
-   /* Compare weapon set indexes. */
-   if (s1->weapset < s2->weapset)
+   /* If one has a weapset and the other doesn't, put the one with a
+    * weapset first. */
+   if ((s1->weapset == -1) && (s2->weapset != -1))
       return +1;
-   else if (s1->weapset > s2->weapset)
+   else if ((s1->weapset != -1) && (s2->weapset == -1))
       return -1;
+
+   /* Put the one with the lower weapset number first. */
+   if (s1->weapset < s2->weapset)
+      return -1;
+   else if (s1->weapset > s2->weapset)
+      return +1;
 
    /* Compare positions within the outfit array. */
    if (s1->id < s2->id)
-      return +1;
-   else if (s1->id > s2->id)
       return -1;
+   else if (s1->id > s2->id)
+      return +1;
 
    return 0;
 }

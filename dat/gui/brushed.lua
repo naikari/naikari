@@ -508,7 +508,7 @@ function renderWeapBar( weapon, x, y )
       else
           width = bar_w
       end
-      if weapon.temp <= 1 then
+      if weapon.temp ~= nil and weapon.temp <= 1 then
          heatcol = col_heat
          heatcol_top = col_top_heat
       end
