@@ -226,11 +226,11 @@ void map_open (void)
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ))
       return;
 
-   /* Destroy window if exists. */
+   /* Close window if exists. */
    wid = window_get(MAP_WDWNAME);
    if (wid > 0) {
       if (window_isTop(wid))
-         window_destroy( wid );
+         map_close();
       return;
    }
 
