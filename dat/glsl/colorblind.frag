@@ -1,3 +1,13 @@
+// Colorblindness Simulator
+//
+// This colorblindness simulator is used for testing Naikari's
+// colorblind accessibility. It can simulate all types of colorblindness
+// with the most accessibility needs: protanopia ("red-blind"),
+// deuteranopia ("green-blind"), tritanopia ("blue-blind"), rod
+// monochromacy, and blue cone monochromacy. Made using help from this
+// article:
+// https://ixora.io/projects/colorblindness/color-blindness-simulation-research/
+
 #define ROD_MONOCHROMACY 0
 #define PROTANOPIA 1
 #define DEUTERANOPIA 2
