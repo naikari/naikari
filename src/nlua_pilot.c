@@ -1604,15 +1604,20 @@ static int pilotL_weapsetHeat(lua_State *L)
 /**
  * @brief Gets the active outfits and their states of the pilot.
  *
- * The active outfits have the following structure: <br />
+ * The active outfits have the following structure:
  * <ul>
- *  <li> name: Name of the set. </li>
- *  <li> type: Type of the outfit. </li>
- *  <li> temp: The heat of the outfit's slot. A value between 0 and 1, where 1 is fully overheated. </li>
- *  <li> weapset: The first weapon set that the outfit appears in, if any. </li>
- *  <li> state: State of the outfit, which can be one of { "off", "warmup", "on", "cooldown" }. </li>
- *  <li> duration: Set only if state is "on". Indicates duration value (0 = just finished, 1 = just on). </li>
- *  <li> cooldown: Set only if state is "cooldown". Indicates cooldown value (0 = just ending, 1 = just started cooling down). </li>
+ *    <li>"name": Raw (untranslated) name of the activated outfit.</li>
+ *    <li>"type": Raw (untranslated) name of the outfit's type as would
+ *       be returned by outfit.type().</li>
+ *    <li>"temp": [0:1] The heat of the outfit's slot, or nil if not
+ *       applicable.</li>
+ *    <li>"weapset": The first weapon set that the outfit appears in, if
+ *       any, or nil if not applicable.</li>
+ *    <li>"state": State of the outfit, which can be "off", "warmup",
+ *       "on", or "cooldown".</li>
+ *    <li>"cooldown": [0:1] Cooldown percentage remaining
+ *       (0 = just finished, 1 = just started cooling down), or nil if
+ *       not applicable.</li>
  * </ul>
  *
  * An example would be:
@@ -1629,7 +1634,8 @@ static int pilotL_weapsetHeat(lua_State *L)
  *
  *    @luatparam Pilot p Pilot to get active outfits of.
  *    @luatparam[opt=false] boolean sort Whether or not to sort the outfits.
- *    @luatreturn table The table with each active outfit's information.
+ *    @luatreturn {table,...} A table with each active outfit's
+ *       information.
  * @luafunc actives
  */
 static int pilotL_actives(lua_State *L)
@@ -1681,11 +1687,13 @@ static int pilotL_actives(lua_State *L)
       lua_rawset(L,-3);
 
       /* Heat. */
-      lua_pushstring(L, "temp");
-      lua_pushnumber(L, 1 - pilot_heatEfficiencyMod(o->heat_T,
-                            o->outfit->u.afb.heat_base,
-                            o->outfit->u.afb.heat_cap));
-      lua_rawset(L,-3);
+      if (outfit_isAfterburner(o->outfit)) {
+         lua_pushstring(L, "temp");
+         lua_pushnumber(L,
+               1 - pilot_heatEfficiencyMod(o->heat_T,
+                  o->outfit->u.afb.heat_base, o->outfit->u.afb.heat_cap));
+         lua_rawset(L,-3);
+      }
 
       /* Find the first weapon set containing the outfit, if any. */
       if (outfits[i]->weapset != -1) {

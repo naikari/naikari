@@ -25,9 +25,6 @@ function create ()
    local savedform = var.peek("player_formation")
    player.pilot():memory().formation = savedform
 
-   -- Get sizes
-   screen_w, screen_h = gfx.dim()
-
    -- Colors
    col_bg = colour.new(0.2, 0.2, 0.2, 0.5)
    col_outline1 = colour.new(0.1, 0.1, 0.1)
@@ -67,6 +64,12 @@ function create ()
    tex_iconWeapPrimary = tex_open("iconWeapPrimary.png")
    tex_iconWeapSecondary = tex_open("iconWeapSecondary.png")
    tex_iconWeapHeat = tex_open("iconWeapHeat.png")
+
+   -- Common sizes
+   screen_w, screen_h = gfx.dim()
+   barHeader_w, barHeader_h = tex_barHeader:dim()
+   barFrame_w, barFrame_h = tex_barFrame:dim()
+   fontSize_small = gfx.fontSize(true)
 end
 
 function render(dt, dt_mod)
@@ -112,13 +115,12 @@ Render the header portion of a bar.
 @func render_bar_header_raw
 --]]
 function render_bar_header_raw(x, y, icon)
-   local w, h = tex_barHeader:dim()
    local ix = x + 2
    local iy = y + 2
    local iw = w - 4
    local ih = h - 4
 
-   gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
+   gfx.renderRect(x, y, barHeader_w, barHeader_h, colour.new(0, 0, 0))
    gfx.renderTexRaw(icon, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1)
    gfx.renderTex(tex_barHeader, x, y)
 end
@@ -152,10 +154,11 @@ reload/lock/icon/weapon number graphic *or* text, not both.
 --]]
 function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       hcol, hpct)
-   local w, h = tex_barFrame:dim()
+   local w = barFrame_w
+   local h = barFrame_h
    local bw = math.floor(w * pct)
    local centerx = math.floor(x + w/2)
-   local text_y = math.ceil(y + h/2 - gfx.fontSize(true)/2)
+   local text_y = math.ceil(y + h/2 - fontSize_small/2)
 
    gfx.renderRect(x, y, w, h, colour.new(0, 0, 0))
    gfx.renderRect(x, y, bw, h, col)
@@ -214,7 +217,23 @@ end
 
 
 --[[
-Render a weapon bar (including a header and a bar).
+Render a core stat bar.
+
+   @tparam number x Location X coördinate.
+   @tparam number y Location Y coördinate.
+   @tparam Tex icon Icon to use for the stat.
+   @tparam number pct Percent of the bar to fill.
+   @tparam string text Text to display.
+@func render_statBar
+--]]
+function render_statBar(x, y, icon, col, col_end, pct, text)
+   render_bar_header_raw(x, y, icon)
+   render_bar_raw(x + barHeader_w, y, col, col_end, pct, text)
+end
+
+
+--[[
+Render a weapon bar.
 
    @tparam number x Location X coördinate.
    @tparam number y Location Y coördinate.
@@ -253,10 +272,22 @@ function render_weapBar(x, y, slot)
    end
 
    render_bar_header_raw(x, y, o:icon())
-   local w, h = tex_barHeader:dim()
-   render_bar_raw(x + w, y, mainbar_col, mainbar_col_end, mainbar_pct,
-         mainbar_txt, reload_icon, reload_col, reload, slot.instant, col_heat,
-         slot.temp)
+   render_bar_raw(x + barHeader_w, y, mainbar_col, mainbar_col_end,
+         mainbar_pct, mainbar_txt, reload_icon, reload_col, reload,
+         slot.instant, col_heat, slot.temp)
+end
+
+
+--[[
+Render an activated outfit bar.
+
+   @tparam number x Location X coördinate.
+   @tparam number y Location Y coördinate.
+   @tparam table active Activated outfit returned by pilot.actives() to
+      render.
+@func render_weapBar
+--]]
+function render_activeOutfitBar(x, y, active)
 end
 
 
