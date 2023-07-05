@@ -875,9 +875,17 @@ static void map_drawMarker( double x, double y, double r, double a,
    }
    col.a *= a;
 
-   x = x + 3.0*r*cos(alpha);
-   y = y + 3.0*r*sin(alpha);
-   r *= 2.0;
+   if (type == SYSMARKER_NEW) {
+      /* Display new computer markers at a smaller size. */
+      x = x + 2.5*r*cos(alpha);
+      y = y + 2.5*r*sin(alpha);
+      r *= 1.5;
+   }
+   else {
+      x = x + 3.*r*cos(alpha);
+      y = y + 3.*r*sin(alpha);
+      r *= 2.;
+   }
 
    glUseProgram(shaders.sysmarker.program);
    if ((type == SYSMARKER_NEW) || (type == SYSMARKER_NEW_HILIGHT))
