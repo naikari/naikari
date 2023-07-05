@@ -38,6 +38,7 @@ function create ()
    col_heat = colour.new(80/255, 27/255, 24/255)
    col_stress = colour.new(45/255, 48/255, 102/255)
    col_ammo = colour.new(159/255, 93/255, 15/255)
+   col_end_cooldown = colour.new(96/255, 109/255, 171/255)
    col_end_shield = colour.new(88/255, 96/255, 156/255)
    col_end_armour = colour.new(122/255, 122/255, 122/255)
    col_end_energy = colour.new(52/255, 172/255, 71/255)
@@ -244,7 +245,7 @@ function render_weapBar(x, y, slot)
    local o = outfit.get(slot.name)
 
    local mainbar_col = col_cooldown
-   local mainbar_col_end = col_cooldown
+   local mainbar_col_end = col_end_cooldown
    local mainbar_pct = 0
    local mainbar_txt = nil
    if slot.left ~= nil then
@@ -252,6 +253,8 @@ function render_weapBar(x, y, slot)
       mainbar_col_end = col_ammo_end
       mainbar_pct = slot.left_p
       mainbar_txt = fmt.number(slot.left) .. "/" .. fmt.number(slot.max_ammo)
+   elseif slot.charge ~= nil then
+      mainbar_pct = slot.charge
    end
 
    local reload_icon = nil
@@ -268,7 +271,7 @@ function render_weapBar(x, y, slot)
       reload = slot.lockon
    else
       reload_col = col_cooldown
-      reload = slot.charge or slot.cooldown
+      reload = slot.cooldown
    end
 
    render_bar_header_raw(x, y, o:icon())
@@ -288,6 +291,20 @@ Render an activated outfit bar.
 @func render_weapBar
 --]]
 function render_activeOutfitBar(x, y, active)
+   local o = outfit.get(active.name)
+
+   local pct = 0
+   local heat = 0
+   if active.state == "on" then
+      pct = 1
+   elseif active.state == "cooldown" then
+      pct = active.cooldown
+      heat = 1
+   end
+
+   render_bar_header_raw(x, y, o:icon())
+   render_bar_raw(x + barHeader_w, y, col_cooldown, col_end_cooldown, pct,
+         nil, nil, nil, nil, active.weapset, col_heat, heat)
 end
 
 
