@@ -1182,14 +1182,13 @@ static int pilotL_nav(lua_State *L)
  * @usage set_id = p:activeWeapset() -- A number from 1 to 10
  *
  *    @luatparam Pilot p Pilot to get active weapset ID of.
- *    @luatparam number current active weapset ID.
- *
+ *    @luatreturn number Current active weapset ID.
  * @luafunc activeWeapset
  */
 static int pilotL_activeWeapset(lua_State *L)
 {
-   Pilot *p = luaL_validpilot(L,1);
-   lua_pushnumber( L, p->active_set + 1 );
+   Pilot *p = luaL_validpilot(L, 1);
+   lua_pushnumber(L, p->active_set + 1);
    return 1;
 }
 

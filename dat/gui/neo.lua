@@ -103,6 +103,8 @@ end
 
 function update_ship()
    local p = player.pilot()
+
+   -- Get weapons and actives lists.
    local ws_name
    ws_name, player_weapons = p:weapset(true)
    player_actives = p:actives(true)
@@ -125,8 +127,11 @@ function update_ship()
    end
 
    -- Determine if the weapset choices will be one one or two rows.
+   player_ws_row_h = 1.5 * fontSize_small
    if #player_ws_choices > 5 then
+      player_ws_h = player_ws_h + 2*player_ws_row_h
    else
+      player_ws_h = player_ws_h + player_ws_row_h
    end
 end
 
