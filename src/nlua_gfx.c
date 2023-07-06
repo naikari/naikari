@@ -487,14 +487,18 @@ static int gfxL_fontSize( lua_State *L )
 
 
 /**
- * @brief Gets the size of the text to print.
+ * @brief Gets the width or height of the text when printed.
  *
- * @usage len = gfx.printDim( nil, _("Hello World!") ) -- Length of string with normal font
- * @usage height = gfx.printDim( true, _([["Longer text"]]), 20 ) -- Dimensions of text block
+ * @usage width = gfx.printDim(false, _("Hello World!"))
+ * @usage height = gfx.printDim(true, _("Longer and bigger text"), 20)
  *
- *    @luatparam boolean small Whether or not to use the small font.
- *    @luatparam string str Text to calculate length of.
- *    @luatparam[opt] int width Optional parameter to indicate it is a block of text and to use this width.
+ *    @luatparam boolean small true to use the normal font, or false to
+ *       use the small font.
+ *    @luatparam string str Text to calculate dimension of.
+ *    @luatparam[opt] int width Width to get height for, or nil to get
+ *       width.
+ *    @luatreturn number The width (if width is nil or 0) or height (if
+ *       width is non-nil and non-0) of the text.
  * @luafunc printDim
  */
 static int gfxL_printDim( lua_State *L )
@@ -518,11 +522,15 @@ static int gfxL_printDim( lua_State *L )
 
 
 /**
- * @brief Gets the size of the text to print.
+ * @brief Gets the width or height of the text when printed.
  *
  *    @luatparam font font Font to use.
- *    @luatparam string str Text to calculate length of.
- *    @luatparam[opt] int width Optional parameter to indicate it is a block of text and to use this width.
+ *    @luatparam string str Text to calculate dimension of.
+ *    @luatparam[opt] int width Width to get height for, or nil to get
+ *       width.
+ *    @luatreturn number The width (if width is nil or 0) or height (if
+ *       width is non-nil and non-0) of the text.
+ * @luasee printDim
  * @luafunc printfDim
  */
 static int gfxL_printfDim( lua_State *L )

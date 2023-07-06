@@ -76,7 +76,7 @@ function create ()
 
    -- Sidebar
    sidebar_padding = 4
-   sidebar_w = barHeader_w + barFrame_w + 2*sidebar_padding
+   sidebar_w = barHeader_w + barFrame_w
    sidebar_x = screen_w - sidebar_w - screen_padding
 end
 
@@ -323,6 +323,9 @@ end
 
 
 function render_sidebar()
+   local header_text = _("Weapon Set")
+   local wset_header_h = gfx.printDim(false, header_text, sidebar_w)
+
    local x = sidebar_x
 end
 
