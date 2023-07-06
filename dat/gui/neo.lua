@@ -106,6 +106,28 @@ function update_ship()
    local ws_name
    ws_name, player_weapons = p:weapset(true)
    player_actives = p:actives(true)
+
+   -- Get the height of the weapset header. This depends on how many
+   -- "change" type weapsets there are.
+
+   -- First get the height of the header plus the spacing between it and
+   -- the weapset indicators.
+   player_ws_header_text = _("Weapon Set")
+   player_ws_h = gfx.printDim(false, player_ws_header_text, sidebar_w)
+   player_ws_h = player_ws_h + fontSize_small
+
+   -- Get what choices there are for weapsets to switch to.
+   player_ws_choices = {}
+   for i = 1, 10 do
+      if p:weapsetType(i) == "change" then
+         table.insert(player_ws_choices, i)
+      end
+   end
+
+   -- Determine if the weapset choices will be one one or two rows.
+   if #player_ws_choices > 5 then
+   else
+   end
 end
 
 function update_system()
@@ -324,9 +346,6 @@ end
 
 
 function render_sidebar()
-   local header_text = _("Weapon Set")
-   local wset_header_h = gfx.printDim(false, header_text, sidebar_w)
-
    local x = sidebar_x
 end
 
