@@ -73,7 +73,7 @@ function create ()
 
    -- Common sizes
    screen_w, screen_h = gfx.dim()
-   screen_padding = 8
+   screen_padding = 20
    barHeader_w, barHeader_h = tex_barHeader:dim()
    barFrame_w, barFrame_h = tex_barFrame:dim()
    fontSize_small = gfx.fontSize(true)
