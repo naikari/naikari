@@ -103,7 +103,8 @@ end
 
 function update_ship()
    local p = player.pilot()
-   player_weapons = p:weapset(true)
+   local ws_name
+   ws_name, player_weapons = p:weapset(true)
    player_actives = p:actives(true)
 end
 

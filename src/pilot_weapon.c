@@ -403,6 +403,18 @@ const char *pilot_weapSetName( Pilot* p, int id )
 
 
 /**
+ * @brief Gets the number of slots in the weapon set.
+ */
+int pilot_weapSetSlots(Pilot *p, int id)
+{
+   PilotWeaponSet *ws;
+
+   ws = pilot_weapSet(p, id);
+   return array_size(ws->slots);
+}
+
+
+/**
  * @brief Removes slots by type from the weapon set.
  */
 void pilot_weapSetRmSlot( Pilot *p, int id, OutfitSlotType type )

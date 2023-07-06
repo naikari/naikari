@@ -74,6 +74,7 @@ static int pilotL_inrange(lua_State *L);
 static int pilotL_nav(lua_State *L);
 static int pilotL_activeWeapset(lua_State *L);
 static int pilotL_weapset(lua_State *L);
+static int pilotL_weapsetType(lua_State *L);
 static int pilotL_weapsetHeat(lua_State *L);
 static int pilotL_actives(lua_State *L);
 static int pilotL_outfits(lua_State *L);
@@ -185,6 +186,7 @@ static const luaL_Reg pilotL_methods[] = {
    {"nav", pilotL_nav},
    {"activeWeapset", pilotL_activeWeapset},
    {"weapset", pilotL_weapset},
+   {"weapsetType", pilotL_weapsetType},
    {"weapsetHeat", pilotL_weapsetHeat},
    {"actives", pilotL_actives},
    {"outfits", pilotL_outfits},
@@ -1485,6 +1487,52 @@ static int pilotL_weapset(lua_State *L)
       }
    }
    return 2;
+}
+
+
+/**
+ * @brief Gets the type of a particular weapon set.
+ *
+ *    @luatparam Pilot p Pilot to get weapon set type of.
+ *    @luatparam[opt] number id ID of the set to get type of.
+ *       Defaults to the current weapon set.
+ *    @luatreturn string|nil "change" if switched weapon type, "weapon"
+ *       if instant-fire weapon type, "active" if activated outfit type,
+ *       or nil if unused.
+ * @luafunc weapsetType
+ */
+static int pilotL_weapsetType(lua_State *L)
+{
+   Pilot *p;
+   int id;
+
+   p = luaL_validpilot(L, 1);
+   if (!lua_isnoneornil(L, 2))
+      id = luaL_checkinteger(L, 2) - 1;
+   else
+      id = p->active_set;
+   id = CLAMP(0, PILOT_WEAPON_SETS, id);
+
+   if (pilot_weapSetSlots(p, id) == 0) {
+      /* Special case: weapon set is empty. */
+      lua_pushnil(L);
+      return 1;
+   }
+
+   switch (pilot_weapSetTypeCheck(p, id)) {
+      case WEAPSET_TYPE_CHANGE:
+         lua_pushstring(L, "change");
+         break;
+      case WEAPSET_TYPE_WEAPON:
+         lua_pushstring(L, "weapon");
+         break;
+      case WEAPSET_TYPE_ACTIVE:
+         lua_pushstring(L, "active");
+         break;
+      default:
+         lua_pushnil(L);
+   }
+   return 1;
 }
 
 
