@@ -31,6 +31,7 @@ function create ()
    col_outline1 = colour.new(0.1, 0.1, 0.1)
    col_outline2 = colour.new(0.25, 0.25, 0.25)
    col_text = colour.new(0.95, 0.95, 0.95)
+   col_graytext = colour.new(0.7, 0.7, 0.7)
    col_cooldown = colour.new(76/255, 98/255, 176/255)
    col_lockon = colour.new(150/255, 141/255, 23/255)
    col_shield = colour.new(42/255, 57/255, 162/255)
@@ -107,14 +108,14 @@ function update_ship()
    ws_name, player_weapons = p:weapset(true)
    player_actives = p:actives(true)
 
-   -- Get the height of the weapset header. This depends on how many
+   -- Get the height of the weapset display. This depends on how many
    -- "change" type weapsets there are.
 
    -- First get the height of the header plus the spacing between it and
    -- the weapset indicators.
    player_ws_header_text = _("Weapon Set")
-   player_ws_h = gfx.printDim(false, player_ws_header_text, sidebar_w)
-   player_ws_h = player_ws_h + fontSize_small
+   player_ws_header_h = gfx.printDim(false, player_ws_header_text, sidebar_w)
+   player_ws_h = player_ws_header_h + fontSize_small
 
    -- Get what choices there are for weapsets to switch to.
    player_ws_choices = {}
@@ -124,12 +125,27 @@ function update_ship()
       end
    end
 
-   -- Determine if the weapset choices will be one one or two rows.
-   player_ws_row_h = 1.5 * fontSize_small
+   -- Determine if the weapset choices will be one one or two rows, and
+   -- calculate the number of weapsets per row.
+   player_ws_row_h = 2 * fontSize_small
    if #player_ws_choices > 5 then
       player_ws_h = player_ws_h + 2*player_ws_row_h
+      player_ws_toprow = math.ceil(#player_ws_choices / 2)
+      player_ws_bottomrow = #player_ws_choices - player_ws_toprow
    else
       player_ws_h = player_ws_h + player_ws_row_h
+      player_ws_toprow = #player_ws_choices
+      player_ws_bottomrow = nil
+   end
+
+   -- Calculate how much space each weapset number gets.
+   player_ws_toprow_spacing = 0
+   player_ws_bottomrow_spacing = 0
+   if player_ws_toprow ~= nil and player_ws_toprow > 0 then
+      player_ws_toprow_spacing = sidebar_w / player_ws_toprow
+   end
+   if player_ws_bottomrow ~= nil and player_ws_bottomrow > 0 then
+      player_ws_bottomrow_spacing = sidebar_w / player_ws_bottomrow
    end
 
    -- Record relevant pilot stats.
@@ -393,7 +409,7 @@ end
 function render_sidebar()
    local p = player.pilot()
    local w = sidebar_w
-   local h = (6*barFrame_h + player_ws_row_h + 2*sidebar_padding
+   local h = (6*barFrame_h + player_ws_row_h + 2*sidebar_padding + player_ws_h
          + #player_weapons*barFrame_h + #player_actives*barFrame_h)
    local x = sidebar_x
    local y = screen_h - h - screen_padding - 2*sidebar_padding
@@ -401,7 +417,7 @@ function render_sidebar()
    gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding, col_bg)
 
    x = x + sidebar_padding
-   y = y + sidebar_padding + h - barFrame_h
+   y = y + sidebar_padding + h
    local armor_pct, shield_pct, stress, disabled = p:health()
    local armor, shield = p:health(true)
    if disabled then
@@ -413,26 +429,27 @@ function render_sidebar()
    local heat = math.max(0, math.min((temp-250) / (500-250), 1))
    local speed = p:vel():mod()
 
+   y = y - barFrame_h
    render_statBar(x, y, tex_iconShield, col_shield, col_end_shield,
          shield_pct / 100, string.format(_("%.0f GJ"), shield))
-   y = y - barFrame_h
 
+   y = y - barFrame_h
    render_statBar(x, y, tex_iconArmor, col_armor, col_end_armor,
          armor_pct / 100, string.format(_("%.0f GJ"), armor))
-   y = y - barFrame_h
 
+   y = y - barFrame_h
    render_statBar(x, y, tex_iconStress, col_stress, col_end_stress,
          stress / 100, string.format(_("%.0f %%"), stress))
-   y = y - barFrame_h
 
+   y = y - barFrame_h
    render_statBar(x, y, tex_iconEnergy, col_energy, col_end_energy,
          energy_pct / 100, string.format(_("%.0f GJ"), energy))
-   y = y - barFrame_h
 
+   y = y - barFrame_h
    render_statBar(x, y, tex_iconHeat, col_heat, col_end_heat, heat,
          string.format(p_("temperature", "%.0f K"), temp))
-   y = y - barFrame_h
 
+   y = y - barFrame_h
    local col = col_speed
    local col_end = col_end_speed
    local pct = speed / player_speed_max
@@ -445,12 +462,42 @@ function render_sidebar()
    end
    render_statBar(x, y, tex_iconSpeed, col, col_end, pct,
          format_speed(speed), col_bg)
-   y = y - barFrame_h
+
+   render_weapsetDisplay(x, y)
 end
 
 
 function render_weapsetDisplay(x, y)
+   y = y - sidebar_padding - player_ws_header_h
+   gfx.print(false, player_ws_header_text, x, y, col_text,
+         sidebar_w, true)
+
+   y = y - fontSize_small - player_ws_row_h
    local current = player.pilot():activeWeapset()
+   for i, w in ipairs(player_ws_choices) do
+      local wx, wy, spacing
+      if i <= player_ws_toprow then
+         spacing = player_ws_toprow_spacing
+         wx = x + (i-1)*spacing
+         wy = y
+      else
+         spacing = player_ws_bottomrow_spacing
+         wx = x + (i-player_ws_toprow-1)*spacing
+         wy = y - player_ws_row_h
+      end
+
+      local col = col_graytext
+      if w == current then
+         col = col_text
+      end
+
+      -- Weapset 10 is printed as weapset "0".
+      if w == 10 then
+         w = 0
+      end
+
+      gfx.print(true, tostring(w), wx, wy, col, spacing, true)
+   end
 end
 
 
