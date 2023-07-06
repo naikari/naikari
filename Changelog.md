@@ -30,6 +30,10 @@
   prices.
 * Improved the System Info display, improving the description text's
   coloring and adding information that was previously missing.
+* Added some minor optimizations with GUIs.
+* Fixed an issue where pressing the Starmap key to close the starmap
+  would fail to run code that was supposed to run when the starmap
+  closed (and thus caused some display oddities).
 
 ## 0.8.0
 
