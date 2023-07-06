@@ -1218,11 +1218,7 @@ static int pilotL_activeWeapset(lua_State *L)
  *    <li>"instant": The instant mode weapon set the weapon is in if
  *       applicable, or nil if the weapon is not in an instant mode
  *       weapon set.</li>
- *    <li>"temp": Temperature of the weapon. The general range is [0:1],
- *       but can actually exceed the nominal "maximum" value of 1, so
- *       you should take care to make sure that your code can handle
- *       values greater than 1 (e.g. by capping the value before putting
- *       it somewhere that expects a strict [0:1] range).</li>
+ *    <li>"temp": [0:2] Temperature of the weapon.</li>
  *    <li>"type": Raw (untranslated) name of the outfit's type as would
  *       be returned by outfit.type().</li>
  *    <li>"dtype": Raw (untranslated) name of the weapon's damage

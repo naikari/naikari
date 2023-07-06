@@ -34,17 +34,21 @@ function create ()
    col_cooldown = colour.new(76/255, 98/255, 176/255)
    col_lockon = colour.new(150/255, 141/255, 23/255)
    col_shield = colour.new(42/255, 57/255, 162/255)
-   col_armour = colour.new(80/255, 80/255, 80/255)
+   col_armor = colour.new(80/255, 80/255, 80/255)
+   col_stress = colour.new(45/255, 48/255, 102/255)
    col_energy = colour.new(36/255, 125/255, 51/255)
    col_heat = colour.new(80/255, 27/255, 24/255)
-   col_stress = colour.new(45/255, 48/255, 102/255)
+   col_speed = colour.new(236/255, 232/255, 78/255)
+   col_overspeed = colour.new(249/255, 112/255, 62/255)
    col_ammo = colour.new(159/255, 93/255, 15/255)
    col_end_cooldown = colour.new(96/255, 109/255, 171/255)
    col_end_shield = colour.new(88/255, 96/255, 156/255)
-   col_end_armour = colour.new(122/255, 122/255, 122/255)
+   col_end_armor = colour.new(122/255, 122/255, 122/255)
+   col_end_stress = colour.new(56/255, 88/255, 156/255)
    col_end_energy = colour.new(52/255, 172/255, 71/255)
    col_end_heat = colour.new(188/255, 63/255, 56/255)
-   col_end_stress = colour.new(56/255, 88/255, 156/255)
+   col_end_speed = colour.new(247/255, 242/255, 194/255)
+   col_end_overspeed = colour.new(250/255, 174/255, 144/255)
    col_end_ammo = colour.new(233/255, 131/255, 21/255)
 
    -- Images
@@ -77,10 +81,16 @@ function create ()
    -- Sidebar
    sidebar_padding = 4
    sidebar_w = barHeader_w + barFrame_w
-   sidebar_x = screen_w - sidebar_w - screen_padding
+   sidebar_x = screen_w - sidebar_w - screen_padding - 2*sidebar_padding
+
+   -- Initial updates
+   update_ship()
+   update_cargo()
+   update_target()
 end
 
 function render(dt, dt_mod)
+   render_sidebar()
 end
 
 function render_cooldown(percent, seconds)
@@ -121,6 +131,11 @@ function update_ship()
    else
       player_ws_h = player_ws_h + player_ws_row_h
    end
+
+   -- Record relevant pilot stats.
+   local stats = p:stats()
+   player_speed_max = stats.speed_max
+   player_fuel_max = stats.fuel_max
 end
 
 function update_cargo()
@@ -164,8 +179,8 @@ Render the header portion of a bar.
 function render_bar_header_raw(x, y, icon)
    local ix = x + 2
    local iy = y + 2
-   local iw = w - 4
-   local ih = h - 4
+   local iw = barHeader_w - 4
+   local ih = barHeader_h - 4
 
    gfx.renderRect(x, y, barHeader_w, barHeader_h, col_black)
    gfx.renderTexRaw(icon, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1)
@@ -183,9 +198,10 @@ reload/lock/icon/weapon number graphic *or* text, not both.
 
    @tparam number x Location X coördinate.
    @tparam number y Location Y coördinate.
-   @tparam Colour col Color of the bar.
-   @tparam Colour col_end Color of the tip of the bar.
-   @tparam number pct Percent of the bar to fill.
+   @tparam[opt] Colour col Color of the bar.
+   @tparam[opt] Colour col_end Color of the tip of the bar.
+   @tparam[opt] number pct Percent of the bar to fill.
+      Only works if col is specified as well.
    @tparam[opt] string text Text to display over the bar.
    @tparam[opt] Tex ricon Icon to show in the reload meter. Must be
       nil to use the wnum parameter.
@@ -197,22 +213,28 @@ reload/lock/icon/weapon number graphic *or* text, not both.
    @tparam[opt] Colour hcol Color of the lock-on meter.
    @tparam[opt] number hpct Percent of the heat meter to fill.
       Only works if hcol is specified as well.
+   @tparam[opt] Colour col_bg Color of the background (black by
+      default).
 @func render_bar_raw
 --]]
 function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
-      hcol, hpct)
+      hcol, hpct, bgcol)
    local w = barFrame_w
    local h = barFrame_h
-   local bw = math.floor(w * pct)
    local centerx = math.floor(x + w/2)
    local text_y = math.ceil(y + h/2 - fontSize_small/2)
 
-   gfx.renderRect(x, y, w, h, col_black)
-   gfx.renderRect(x, y, bw, h, col)
-   gfx.renderRect(x + bw - 1, y, 1, h, col_end)
+   gfx.renderRect(x, y, w, h, bgcol or col_black)
+   if col ~= nil and pct ~= nil then
+      local bw = math.floor(w * math.min(pct, 1))
+      if bw >= 1 then
+         gfx.renderRect(x, y, bw, h, col)
+         gfx.renderRect(x + bw - 1, y, 1, h, col_end or col)
+      end
+   end
 
    if text ~= nil then
-      local text_x = math.floor(x+w - gfx.printDim(true, text) - 4)
+      local text_x = math.floor(x+w - gfx.printDim(true, text) - 8)
       gfx.print(true, text, text_x, text_y, col_text, w)
    end
 
@@ -222,25 +244,31 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       local cx = math.floor(x + 4)
 
       if rcol ~= nil and rpct ~= nil then
-         rpct = math.min(0, math.max(rpct, 1))
-         local iw, ih = tex_circleBar:dim()
+         rpct = math.min(rpct, 1)
          local ix = cx
          local iy = y + 4
+         local iw, ih = tex_circleBar:dim()
          gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
                col_black)
-         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih * rpct, 1, 1, 0, 0,
-               1, rpct, rcol)
+         local bh = ih * rpct
+         if bh >= 1 then
+            gfx.renderTexRaw(tex_circleBar, ix, iy, iw, bh, 1, 1, 0, 0, 1,
+                  rpct, rcol)
+         end
       end
 
       if hcol ~= nil and hpct ~= nil then
-         hpct = math.min(0, math.max(hpct, 1))
-         local iw, ih = tex_circleBar:dim()
+         hpct = math.min(hpct, 1)
          local ix = math.floor(cx + cw/2)
          local iy = y + 4
+         local iw, ih = tex_circleBar:dim()
          gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
                col_black)
-         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih * hpct, 1, 1, 0, 0,
-               1, hpct, hcol)
+         local bh = ih * hpct
+         if bh >= 1 then
+            gfx.renderTexRaw(tex_circleBar, ix, iy, iw, bh, 1, 1, 0, 0, 1,
+                  hpct, hcol)
+         end
       end
 
       gfx.renderTex(tex_barCircles, cx, y)
@@ -275,11 +303,13 @@ Render a core stat bar.
    @tparam Tex icon Icon to use for the stat.
    @tparam number pct Percent of the bar to fill.
    @tparam string text Text to display.
+   @tparam[opt] Colour col_bg Color of the background.
 @func render_statBar
 --]]
-function render_statBar(x, y, icon, col, col_end, pct, text)
+function render_statBar(x, y, icon, col, col_end, pct, text, col_bg)
    render_bar_header_raw(x, y, icon)
-   render_bar_raw(x + barHeader_w, y, col, col_end, pct, text)
+   render_bar_raw(x + barHeader_w, y, col, col_end, pct, text,
+         nil, nil, nil, nil, nil, nil, col_bg)
 end
 
 
@@ -294,9 +324,9 @@ Render a weapon bar.
 function render_weapBar(x, y, slot)
    local o = outfit.get(slot.name)
 
-   local mainbar_col = col_cooldown
-   local mainbar_col_end = col_end_cooldown
-   local mainbar_pct = 0
+   local mainbar_col = nil
+   local mainbar_col_end = nil
+   local mainbar_pct = nil
    local mainbar_txt = nil
    if slot.left ~= nil then
       mainbar_col = col_ammo
@@ -304,6 +334,8 @@ function render_weapBar(x, y, slot)
       mainbar_pct = slot.left_p
       mainbar_txt = fmt.number(slot.left) .. "/" .. fmt.number(slot.max_ammo)
    elseif slot.charge ~= nil then
+      mainbar_col = col_cooldown
+      mainbar_col_end = col_end_cooldown
       mainbar_pct = slot.charge
    end
 
@@ -359,6 +391,71 @@ end
 
 
 function render_sidebar()
+   local p = player.pilot()
+   local w = sidebar_w
+   local h = (6*barFrame_h + player_ws_row_h + 2*sidebar_padding
+         + #player_weapons*barFrame_h + #player_actives*barFrame_h)
    local x = sidebar_x
+   local y = screen_h - h - screen_padding - 2*sidebar_padding
+
+   gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding, col_bg)
+
+   x = x + sidebar_padding
+   y = y + sidebar_padding + h - barFrame_h
+   local armor_pct, shield_pct, stress, disabled = p:health()
+   local armor, shield = p:health(true)
+   if disabled then
+      stress = 100
+   end
+   local energy_pct = p:energy()
+   local energy = p:energy(true)
+   local temp = p:temp()
+   local heat = math.max(0, math.min((temp-250) / (500-250), 1))
+   local speed = p:vel():mod()
+
+   render_statBar(x, y, tex_iconShield, col_shield, col_end_shield,
+         shield_pct / 100, string.format(_("%.0f GJ"), shield))
+   y = y - barFrame_h
+   render_statBar(x, y, tex_iconArmor, col_armor, col_end_armor,
+         armor_pct / 100, string.format(_("%.0f GJ"), armor))
+   y = y - barFrame_h
+   render_statBar(x, y, tex_iconStress, col_stress, col_end_stress,
+         stress / 100, string.format(_("%.0f %%"), stress))
+   y = y - barFrame_h
+   render_statBar(x, y, tex_iconEnergy, col_energy, col_end_energy,
+         energy_pct / 100, string.format(_("%.0f GJ"), energy))
+   y = y - barFrame_h
+   render_statBar(x, y, tex_iconHeat, col_heat, col_end_heat, heat,
+         string.format(p_("temperature", "%.0f K"), temp))
+   y = y - barFrame_h
+   local col = col_speed
+   local col_end = col_end_speed
+   local pct = speed / player_speed_max
+   local col_bg = nil
+   if speed > player_speed_max then
+      col = col_overspeed
+      col_end = col_end_overspeed
+      pct = pct - 1
+      col_bg = col_speed
+   end
+   render_statBar(x, y, tex_iconSpeed, col, col_end, pct,
+         format_speed(speed), col_bg)
+end
+
+
+function format_speed(speed)
+   if speed < 1000 then
+      return string.format(_("%.0f mAU/s"), speed)
+   elseif speed < 1e6 then
+      return string.format(_("%.1f AU/s"), speed / 1000)
+   elseif speed < 1e9 then
+      return string.format(_("%.1f kAU/s"), speed / 1e6)
+   elseif speed < 1e12 then
+      return string.format(_("%.1f MAU/s"), speed / 1e9)
+   elseif speed < 1e15 then
+      return string.format(_("%.1f GAU/s"), speed / 1e12)
+   else
+      return string.format(_("%.1f TAU/s"), speed / 1e15)
+   end
 end
 

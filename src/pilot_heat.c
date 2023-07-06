@@ -322,6 +322,6 @@ double pilot_heatFireRateMod( double T )
  */
 double pilot_heatFirePercent( double T )
 {
-   return 2.*pilot_heatAccuracyMod(T);
+   return pilot_heatAccuracyMod(T) + (1.-pilot_heatFireRateMod(T));
 }
 
