@@ -368,7 +368,7 @@ function render_weapBar(x, y, slot)
    render_bar_header_raw(x, y, o:icon())
    render_bar_raw(x + barHeader_w, y, mainbar_col, mainbar_col_end,
          mainbar_pct, mainbar_txt, reload_icon, reload_col, reload,
-         slot.instant, col_heat, slot.temp / 2)
+         slot.instant, col_heat, slot.temp)
 end
 
 
@@ -385,11 +385,16 @@ function render_activeOutfitBar(x, y, active)
    local o = outfit.get(active.name)
 
    local pct = 0
+   local text = p_("activated_outfit", "Off")
+   local reload = 1
    local heat = 0
    if active.state == "on" then
-      pct = 1
+      pct = active.duration or 1
+      text = p_("activated_outfit", "On")
    elseif active.state == "cooldown" then
-      pct = active.cooldown
+      pct = 0
+      text = p_("activated_outfit", "Cooling")
+      reload = 1 - active.cooldown
       heat = 1
    end
 
@@ -399,7 +404,7 @@ function render_activeOutfitBar(x, y, active)
 
    render_bar_header_raw(x, y, o:icon())
    render_bar_raw(x + barHeader_w, y, col_cooldown, col_end_cooldown, pct,
-         nil, nil, col_cooldown, 1 - pct, active.weapset, col_heat, heat)
+         text, nil, col_cooldown, reload, active.weapset, col_heat, heat)
 end
 
 

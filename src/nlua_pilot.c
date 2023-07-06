@@ -1658,7 +1658,10 @@ static int pilotL_weapsetHeat(lua_State *L)
  *       any, or nil if not applicable.</li>
  *    <li>"state": State of the outfit, which can be "off", "on", or
  *       "cooldown".</li>
- *    <li>"cooldown": [0:1] Cooldown percentage remaining  (0 = just
+ *    <li>"duration": [0:1] Duration percentage remaining (0 = just
+ *       finished active duration, 1 = just activated), or nil if not
+ *       applicable.</li>
+ *    <li>"cooldown": [0:1] Cooldown percentage remaining (0 = just
  *       finished cooling down, 1 = just started cooling down), or nil
  *       if not applicable.</li>
  * </ul>
@@ -1756,6 +1759,12 @@ static int pilotL_actives(lua_State *L)
             break;
          case PILOT_OUTFIT_ON:
             str = "on";
+            d = outfit_duration(o->outfit);
+            if ((d != 0.) && !isinf(o->stimer))
+               d = o->stimer / d;
+            lua_pushstring(L, "duration");
+            lua_pushnumber(L, d);
+            lua_rawset(L, -3);
             break;
          case PILOT_OUTFIT_COOLDOWN:
             str = "cooldown";
