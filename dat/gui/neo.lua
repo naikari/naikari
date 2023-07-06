@@ -103,11 +103,6 @@ end
 function update_ship()
    local p = player.pilot()
 
-   -- Get weapons and actives lists.
-   local ws_name
-   ws_name, player_weapons = p:weapset(true)
-   player_actives = p:actives(true)
-
    -- Get the height of the weapset display. This depends on how many
    -- "change" type weapsets there are.
 
@@ -238,7 +233,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
    local w = barFrame_w
    local h = barFrame_h
    local centerx = math.floor(x + w/2)
-   local text_y = math.ceil(y + h/2 - fontSize_small/2)
+   local text_y = math.floor(y + h/2 - fontSize_small/2)
 
    gfx.renderRect(x, y, w, h, bgcol or col_black)
    if col ~= nil and pct ~= nil then
@@ -258,14 +253,14 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          or (hcol ~= nil and hpct ~= nil) then
       local cw, ch = tex_barCircles:dim()
       local cx = math.floor(x + 4)
+      local iw, ih = tex_circleBar:dim()
+      local ix = cx
+      local iy = y + 4
 
+      gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
+            col_black)
       if rcol ~= nil and rpct ~= nil then
          rpct = math.min(rpct, 1)
-         local ix = cx
-         local iy = y + 4
-         local iw, ih = tex_circleBar:dim()
-         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
-               col_black)
          local bh = ih * rpct
          if bh >= 1 then
             gfx.renderTexRaw(tex_circleBar, ix, iy, iw, bh, 1, 1, 0, 0, 1,
@@ -273,13 +268,11 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          end
       end
 
+      ix = math.floor(cx + cw/2)
+      gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
+            col_black)
       if hcol ~= nil and hpct ~= nil then
          hpct = math.min(hpct, 1)
-         local ix = math.floor(cx + cw/2)
-         local iy = y + 4
-         local iw, ih = tex_circleBar:dim()
-         gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
-               col_black)
          local bh = ih * hpct
          if bh >= 1 then
             gfx.renderTexRaw(tex_circleBar, ix, iy, iw, bh, 1, 1, 0, 0, 1,
@@ -295,12 +288,12 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          local iy = math.floor(y + h/2 - ih/2)
          gfx.renderTex(ricon, ix, iy)
       elseif wnum ~= nil then
-         local tx = math.floor(cx + cw/4)
-         gfx.print(true, wnum, tx, text_y, col_text, math.floor(cw/4), true)
+         local tx = math.floor(cx)
+         gfx.print(true, wnum, tx, text_y, col_text, cw / 2, true)
       end
 
       if hcol ~= nil and hpct ~= nil then
-         local iw, ih = tex_iconHeat:dim()
+         local iw, ih = tex_iconWeapHeat:dim()
          local ix = math.floor(cx + cw*3/4 - iw/2)
          local iy = math.floor(y + h/2 - ih/2)
          gfx.renderTex(tex_iconWeapHeat, ix, iy)
@@ -375,7 +368,7 @@ function render_weapBar(x, y, slot)
    render_bar_header_raw(x, y, o:icon())
    render_bar_raw(x + barHeader_w, y, mainbar_col, mainbar_col_end,
          mainbar_pct, mainbar_txt, reload_icon, reload_col, reload,
-         slot.instant, col_heat, slot.temp)
+         slot.instant, col_heat, slot.temp / 2)
 end
 
 
@@ -400,22 +393,30 @@ function render_activeOutfitBar(x, y, active)
       heat = 1
    end
 
+   if active.temp ~= nil then
+      heat = active.temp
+   end
+
    render_bar_header_raw(x, y, o:icon())
    render_bar_raw(x + barHeader_w, y, col_cooldown, col_end_cooldown, pct,
-         nil, nil, nil, nil, active.weapset, col_heat, heat)
+         nil, nil, col_cooldown, 1 - pct, active.weapset, col_heat, heat)
 end
 
 
 function render_sidebar()
    local p = player.pilot()
+   local ws_name, ws_list = p:weapset(true)
+   local actives_list = p:actives(true)
    local w = sidebar_w
-   local h = (6*barFrame_h + player_ws_row_h + 2*sidebar_padding + player_ws_h
-         + #player_weapons*barFrame_h + #player_actives*barFrame_h)
+   local h = (6*barFrame_h + 2*sidebar_padding + player_ws_h
+         + #ws_list*barFrame_h + #actives_list*barFrame_h)
    local x = sidebar_x
    local y = screen_h - h - screen_padding - 2*sidebar_padding
 
+   -- Render background.
    gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding, col_bg)
 
+   -- Render stat bars.
    x = x + sidebar_padding
    y = y + sidebar_padding + h
    local armor_pct, shield_pct, stress, disabled = p:health()
@@ -463,7 +464,21 @@ function render_sidebar()
    render_statBar(x, y, tex_iconSpeed, col, col_end, pct,
          format_speed(speed), col_bg)
 
+   -- Render weapset display.
    render_weapsetDisplay(x, y)
+   y = y - player_ws_h - 2*sidebar_padding
+
+   -- Render weapons.
+   for i, slot in ipairs(ws_list) do
+      y = y - barFrame_h
+      render_weapBar(x, y, slot)
+   end
+
+   -- Render activated outfits.
+   for i, slot in ipairs(actives_list) do
+      y = y - barFrame_h
+      render_activeOutfitBar(x, y, slot)
+   end
 end
 
 
