@@ -1034,6 +1034,9 @@ static int equipment_mouseColumn( unsigned int wid, SDL_Event* event,
          }
          p->autoweap = 0; /* Disable autoweap. */
          info_update(); /* Need to update weapons. */
+         
+         /* Notify GUI of modification. */
+         gui_setShip();
       }
    }
    else {

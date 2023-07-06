@@ -690,6 +690,7 @@ static void weapons_autoweap( unsigned int wid, char *str )
       player.p->autoweap = 1;
       pilot_weaponAuto( player.p );
       weapons_genList( wid );
+      gui_setShip();
    }
    else
       player.p->autoweap = 0;
@@ -768,12 +769,18 @@ static void weapons_fire( unsigned int wid, char *str )
    /* Disable automatic handling of weapons */
    player.p->autoweap = 0;
 
+   /* Notify GUI of modification. */
+   gui_setShip();
+
 err:
 
    array_free(levels);
 
    /* Set default if needs updating. */
    pilot_weaponSetDefault(player.p);
+
+   /* Notify GUI of modification. */
+   gui_setShip();
 
    /* Must regen. */
    weapons_genList(wid);
