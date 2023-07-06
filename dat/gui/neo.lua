@@ -416,18 +416,23 @@ function render_sidebar()
    render_statBar(x, y, tex_iconShield, col_shield, col_end_shield,
          shield_pct / 100, string.format(_("%.0f GJ"), shield))
    y = y - barFrame_h
+
    render_statBar(x, y, tex_iconArmor, col_armor, col_end_armor,
          armor_pct / 100, string.format(_("%.0f GJ"), armor))
    y = y - barFrame_h
+
    render_statBar(x, y, tex_iconStress, col_stress, col_end_stress,
          stress / 100, string.format(_("%.0f %%"), stress))
    y = y - barFrame_h
+
    render_statBar(x, y, tex_iconEnergy, col_energy, col_end_energy,
          energy_pct / 100, string.format(_("%.0f GJ"), energy))
    y = y - barFrame_h
+
    render_statBar(x, y, tex_iconHeat, col_heat, col_end_heat, heat,
          string.format(p_("temperature", "%.0f K"), temp))
    y = y - barFrame_h
+
    local col = col_speed
    local col_end = col_end_speed
    local pct = speed / player_speed_max
@@ -440,6 +445,12 @@ function render_sidebar()
    end
    render_statBar(x, y, tex_iconSpeed, col, col_end, pct,
          format_speed(speed), col_bg)
+   y = y - barFrame_h
+end
+
+
+function render_weapsetDisplay(x, y)
+   local current = player.pilot():activeWeapset()
 end
 
 
