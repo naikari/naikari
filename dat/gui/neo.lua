@@ -38,7 +38,8 @@ function create ()
    col_armor = colour.new(80/255, 80/255, 80/255)
    col_stress = colour.new(45/255, 48/255, 102/255)
    col_energy = colour.new(36/255, 125/255, 51/255)
-   col_heat = colour.new(80/255, 27/255, 24/255)
+   col_heat = colour.new(241/255, 88/255, 82/255)
+   col_superheat = colour.new(241/255, 210/255, 42/255)
    col_speed = colour.new(236/255, 232/255, 78/255)
    col_overspeed = colour.new(249/255, 112/255, 62/255)
    col_ammo = colour.new(159/255, 93/255, 15/255)
@@ -47,7 +48,8 @@ function create ()
    col_end_armor = colour.new(122/255, 122/255, 122/255)
    col_end_stress = colour.new(56/255, 88/255, 156/255)
    col_end_energy = colour.new(52/255, 172/255, 71/255)
-   col_end_heat = colour.new(188/255, 63/255, 56/255)
+   col_end_heat = colour.new(238/255, 136/255, 125/255)
+   col_end_superheat = colour.new(252/255, 231/255, 158/255)
    col_end_speed = colour.new(247/255, 242/255, 194/255)
    col_end_overspeed = colour.new(250/255, 174/255, 144/255)
    col_end_ammo = colour.new(233/255, 131/255, 21/255)
@@ -224,7 +226,7 @@ reload/lock/icon/weapon number graphic *or* text, not both.
    @tparam[opt] Colour hcol Color of the lock-on meter.
    @tparam[opt] number hpct Percent of the heat meter to fill.
       Only works if hcol is specified as well.
-   @tparam[opt] Colour col_bg Color of the background (black by
+   @tparam[opt] Colour bgcol Color of the background (black by
       default).
 @func render_bar_raw
 --]]
@@ -272,6 +274,12 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
             col_black)
       if hcol ~= nil and hpct ~= nil then
+         if hpct > 1 then
+            gfx.renderTexRaw(tex_circleBar, ix, iy, iw, ih, 1, 1, 0, 0, 1, 1,
+                  hcol)
+            hcol = col_superheat
+            hpct = hpct - 1
+         end
          hpct = math.min(hpct, 1)
          local bh = ih * hpct
          if bh >= 1 then
@@ -312,13 +320,13 @@ Render a core stat bar.
    @tparam Tex icon Icon to use for the stat.
    @tparam number pct Percent of the bar to fill.
    @tparam string text Text to display.
-   @tparam[opt] Colour col_bg Color of the background.
+   @tparam[opt] Colour bgcol Color of the background.
 @func render_statBar
 --]]
-function render_statBar(x, y, icon, col, col_end, pct, text, col_bg)
+function render_statBar(x, y, icon, col, col_end, pct, text, bgcol)
    render_bar_header_raw(x, y, icon)
    render_bar_raw(x + barHeader_w, y, col, col_end, pct, text,
-         nil, nil, nil, nil, nil, nil, col_bg)
+         nil, nil, nil, nil, nil, nil, bgcol)
 end
 
 
@@ -432,7 +440,7 @@ function render_sidebar()
    local energy_pct = p:energy()
    local energy = p:energy(true)
    local temp = p:temp()
-   local heat = math.max(0, math.min((temp-250) / (500-250), 1))
+   local heat = math.max(0, (temp-250) / (500-250))
    local speed = p:vel():mod()
 
    y = y - barFrame_h
@@ -452,22 +460,31 @@ function render_sidebar()
          energy_pct / 100, string.format(_("%.0f GJ"), energy))
 
    y = y - barFrame_h
-   render_statBar(x, y, tex_iconHeat, col_heat, col_end_heat, heat,
-         string.format(p_("temperature", "%.0f K"), temp))
+   local col = col_heat
+   local col_end = col_end_heat
+   local bg_col = nil
+   if heat > 1 then
+      col = col_superheat
+      col_end = col_end_superheat
+      bg_col = col_heat
+      heat = math.min(1, heat - 1)
+   end
+   render_statBar(x, y, tex_iconHeat, col, col_end, heat,
+         string.format(p_("temperature", "%.0f K"), temp), bg_col)
 
    y = y - barFrame_h
    local col = col_speed
    local col_end = col_end_speed
    local pct = speed / player_speed_max
-   local col_bg = nil
+   local bg_col = nil
    if speed > player_speed_max then
       col = col_overspeed
       col_end = col_end_overspeed
       pct = pct - 1
-      col_bg = col_speed
+      bg_col = col_speed
    end
    render_statBar(x, y, tex_iconSpeed, col, col_end, pct,
-         format_speed(speed), col_bg)
+         format_speed(speed), bg_col)
 
    -- Render weapset display.
    render_weapsetDisplay(x, y)
