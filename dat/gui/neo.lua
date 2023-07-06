@@ -99,6 +99,13 @@ function update_faction()
 end
 
 function update_cargo()
+   local p = player.pilot()
+
+   cargo_total = 0
+   cargo_free = p:cargoFree()
+   for i, c in ipairs(p:cargoList()) do
+      cargo_total = cargo_total + c.q
+   end
 end
 
 function update_ship()
