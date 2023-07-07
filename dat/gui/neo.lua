@@ -121,6 +121,9 @@ function create ()
    update_ship()
    update_cargo()
    update_target()
+   update_nav()
+   update_faction()
+   update_system()
 end
 
 function render(dt, dt_mod)
@@ -139,7 +142,6 @@ function update_ship()
 
    -- Get the height of the weapset display. This depends on how many
    -- "change" type weapsets there are.
-
    -- First get the height of the header plus the spacing between it and
    -- the weapset indicators.
    player_ws_header_text = _("Weapon Set")
@@ -186,10 +188,10 @@ end
 function update_cargo()
    local p = player.pilot()
 
-   cargo_total = 0
+   cargo_carried = 0
    cargo_free = p:cargoFree()
    for i, c in ipairs(p:cargoList()) do
-      cargo_total = cargo_total + c.q
+      cargo_carried = cargo_carried + c.q
    end
 end
 
@@ -198,6 +200,25 @@ function update_target()
 end
 
 function update_nav()
+   local p = player.pilot()
+
+   nav_planet, nav_system = p:nav()
+   nav_dest, nav_dest_jumps = player.autonavDest()
+   nav_system_display = p_("nav_system", "None")
+   nav_dest_display = p_("nav_system", "None")
+   if nav_system ~= nil then
+      if nav_system:known() or nav_system:marked() then
+         nav_system_display = nav_system:name()
+      else
+         nav_system_display = p_("system", "Unknown")
+      end
+      if nav_dest ~= nil then
+         nav_dest_display = fmt.f(
+            n_("{system} ({jumps} jump)", "{system} ({jumps} jumps)",
+               nav_dest_jumps),
+            {system=nav_dest:name(), jumps=fmt.number(nav_dest_jumps)})
+      end
+   end
 end
 
 function update_faction()
@@ -615,6 +636,43 @@ function render_bottombar()
    gfx.renderRect(0, 0, screen_w, bottombar_h, col_bottombar)
    gfx.renderRect(0, bottombar_h - 1, screen_w, 1, col_outline1)
    gfx.renderRect(0, bottombar_h - 2, screen_w, 1, col_outline2)
+
+   local credits, credits_t = player.credits(2)
+   local fuel = player.fuel()
+   local jumps = player.jumps()
+   local fueltext = fmt.f(
+      n_("{fuel:.0f}/{maxfuel:.0f} kL ({jumps} jump)",
+         "{fuel:.0f}/{maxfuel:.0f} kL ({jumps} jumps)",
+         jumps),
+      {fuel=fuel, maxfuel=player_fuel_max, jumps=fmt.number(jumps)})
+
+   local texts = {
+      fmt.f(_("#nDate:#0 {date}"), {date=time.get():str()}),
+      fmt.f(_("#nCredits:#0 {credits}"), {credits=credits_t}),
+      fmt.f(_("#nCargo:#0 {carried}/{capacity} kt"),
+         {carried=cargo_carried, capacity=cargo_carried+cargo_free}),
+      fmt.f(_("#nCurrent System:#0 {system}"), {system=system.cur():name()}),
+      fmt.f(_("#nNext System:#0 {system}"), {system=nav_system_display}),
+      fmt.f(_("#nDestination:#0 {system}"), {system=nav_dest_display}),
+      fmt.f(_("#nFuel:#0 {fuel}"), {fuel=fueltext}),
+   }
+
+   local total_text_w = 0
+   local text_w_list = {}
+   for i, s in ipairs(texts) do
+      local w = gfx.printDim(true, s)
+      text_w_list[i] = w
+      total_text_w = total_text_w + w
+   end
+   local x = 8
+   local y = math.floor(bottombar_h/2 - fontSize_small/2)
+   local free_space = screen_w - 2*x - total_text_w
+   local space_per_text = free_space / (#texts-1)
+
+   for i, s in ipairs(texts) do
+      gfx.print(true, s, x, y, col_text)
+      x = x + text_w_list[i] + space_per_text
+   end
 end
 
 
