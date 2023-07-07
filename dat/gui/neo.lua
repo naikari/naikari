@@ -28,6 +28,7 @@ function create ()
    -- Colors
    col_black = colour.new(0, 0, 0)
    col_bg = colour.new(0.2, 0.2, 0.2, 0.5)
+   col_radar = colour.new(0, 0, 0, 0.5)
    col_outline1 = colour.new(0.1, 0.1, 0.1)
    col_outline2 = colour.new(0.25, 0.25, 0.25)
    col_text = colour.new(0.95, 0.95, 0.95)
@@ -85,6 +86,16 @@ function create ()
    sidebar_padding = 4
    sidebar_w = barHeader_w + barFrame_w
    sidebar_x = screen_w - sidebar_w - screen_padding - 2*sidebar_padding
+
+   -- Radar
+   radar_w = sidebar_w + 2*sidebar_padding
+   radar_h = 120
+   gui.radarInit(false, radar_w, radar_h)
+
+   -- Overlay
+   local hbound = sidebar_w + 2*sidebar_padding
+   gui.setMapOverlayBounds(screen_padding, screen_padding + hbound,
+         screen_padding, screen_padding + hbound)
 
    -- Initial updates
    update_ship()
@@ -426,8 +437,31 @@ function render_sidebar()
    local x = sidebar_x
    local y = screen_h - h - screen_padding - 2*sidebar_padding
 
+   -- Render radar.
+   local rx = x
+   local ry = screen_h - radar_h - screen_padding
+   local should_render = true
+   if screen_h - 2*screen_padding - h >= radar_h then
+      y = y - radar_h
+   else
+      rx = x - radar_w
+      should_render = not gui.overlayOpen()
+   end
+   if should_render then
+      gfx.renderRect(rx, ry, radar_w, radar_h, col_radar)
+      gui.radarOpen()
+      gui.radarRender(rx, ry)
+      gfx.renderRect(rx, ry, radar_w, radar_h, col_outline1, true)
+      gfx.renderRect(rx + 1, ry + 1, radar_w - 2, radar_h - 2, col_outline2,
+            true)
+   end
+
    -- Render background.
    gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding, col_bg)
+   gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding,
+         col_outline1, true)
+   gfx.renderRect(x + 1, y + 1, w + 2*sidebar_padding - 2,
+         h + 2*sidebar_padding - 2, col_outline2, true)
 
    -- Render stat bars.
    x = x + sidebar_padding
@@ -534,6 +568,23 @@ function render_weapsetDisplay(x, y)
       end
 
       gfx.print(true, tostring(w), wx, wy, col, spacing, true)
+   end
+end
+
+
+function format_distance(dist)
+   if dist < 1000 then
+      return string.format(_("%.0f mAU"), dist)
+   elseif dist < 1e6 then
+      return string.format(_("%.1f AU"), dist / 1000)
+   elseif dist < 1e9 then
+      return string.format(_("%.1f kAU"), dist / 1e6)
+   elseif dist < 1e12 then
+      return string.format(_("%.1f MAU"), dist / 1e9)
+   elseif dist < 1e15 then
+      return string.format(_("%.1f GAU"), dist / 1e12)
+   else
+      return string.format(_("%.1f TAU"), dist / 1e15)
    end
 end
 

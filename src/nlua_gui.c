@@ -492,12 +492,15 @@ static int guiL_overlayOpen(lua_State *L)
 
 
 /**
- * @brief Sets map boundaries
+ * @brief Sets map boundaries.
  *
- *    @luatparam number top Top boundary in pixels
- *    @luatparam number right Right boundary in pixels
- *    @luatparam number bottom Bottom boundary in pixels
- *    @luatparam number left Left boundary in pixels
+ * Each boundary is a margin value, i.e. distance from the corresponding
+ * edge of the screen.
+ *
+ *    @luatparam number top Top boundary in pixels.
+ *    @luatparam number right Right boundary in pixels.
+ *    @luatparam number bottom Bottom boundary in pixels.
+ *    @luatparam number left Left boundary in pixels.
  * @luafunc setMapOverlayBounds
  */
 static int guiL_setMapOverlayBounds( lua_State *L )
