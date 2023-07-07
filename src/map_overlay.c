@@ -221,16 +221,22 @@ static void ovr_optimizeLayout( int items, const Vector2d** pos, MapOverlayPos**
    /* Fix radii which fit together. */
    MapOverlayRadiusConstraint cur, *fits = array_create(MapOverlayRadiusConstraint);
    uint8_t *must_shrink = malloc( items );
-   for (cur.i=0; cur.i<items; cur.i++)
+   for (cur.i=0; cur.i<items; cur.i++) {
       for (cur.j=cur.i+1; cur.j<items; cur.j++) {
          cur.dist = hypot( pos[cur.i]->x - pos[cur.j]->x, pos[cur.i]->y - pos[cur.j]->y ) / ovr_res;
          if (cur.dist < mo[cur.i]->radius + mo[cur.j]->radius)
             array_push_back( &fits, cur );
       }
+   }
    while (array_size( fits ) > 0) {
-      float shrink_factor = 0;
-      memset( must_shrink, 0, items );
-      for (i = 0; i < array_size( fits ); i++) {
+      float shrink_factor = 0.;
+      memset(must_shrink, 0, items);
+      for (i = 0; i<array_size(fits); i++) {
+         /* Abort shrinking if we're about to divide by zero. */
+         if (mo[fits[i].i]->radius + mo[fits[i].j]->radius == 0.) {
+            shrink_factor = 0.;
+            break;
+         }
          r = fits[i].dist / (mo[fits[i].i]->radius + mo[fits[i].j]->radius);
          if (r >= 1)
             array_erase( &fits, &fits[i], &fits[i+1] );
@@ -239,9 +245,14 @@ static void ovr_optimizeLayout( int items, const Vector2d** pos, MapOverlayPos**
             must_shrink[fits[i].i] = must_shrink[fits[i].j] = 1;
          }
       }
-      for (i=0; i<items; i++)
+      for (i=0; i<items; i++) {
          if (must_shrink[i])
             mo[i]->radius *= shrink_factor;
+      }
+      /* If shrink_factor is zero and we don't exit now, we're in an
+       * infinite loop condition. */
+      if (shrink_factor == 0.)
+         break;
    }
    free( must_shrink );
    array_free( fits );
