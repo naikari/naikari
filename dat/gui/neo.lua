@@ -239,10 +239,14 @@ reload/lock/icon/weapon number graphic *or* text, not both.
       Only works if hcol is specified as well.
    @tparam[opt] Colour bgcol Color of the background (black by
       default).
+   @tparam[opt] Colour subcol Color of the sub-bar.
+   @tparam[opt] Colour subcol_end Color of the tip of the sub-bar.
+   @tparam[opt] number subpct Percent of the sub-bar to fill.
+      Only works if subcol, col, and pct are specified as well.
 @func render_bar_raw
 --]]
 function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
-      hcol, hpct, bgcol)
+      hcol, hpct, bgcol, subcol, subcol_end, subpct)
    local w = barFrame_w
    local h = barFrame_h
    local centerx = math.floor(x + w/2)
@@ -254,6 +258,14 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
       if bw >= 1 then
          gfx.renderRect(x, y, bw, h, col)
          gfx.renderRect(x + bw - 1, y, 1, h, col_end or col)
+
+         if subcol ~= nil and subpct ~= nil then
+            sbw = math.floor(bw * math.min(subpct, 1))
+            if sbw >= 1 then
+               gfx.renderRect(x, y, sbw, h, subcol)
+               gfx.renderRect(x + sbw - 1, y, 1, h, subcol_end or subcol)
+            end
+         end
       end
    end
 
@@ -332,12 +344,17 @@ Render a core stat bar.
    @tparam number pct Percent of the bar to fill.
    @tparam string text Text to display.
    @tparam[opt] Colour bgcol Color of the background.
+   @tparam[opt] Colour subcol Color of the sub-bar.
+   @tparam[opt] Colour subcol_end Color of the tip of the sub-bar.
+   @tparam[opt] number subpct Percent of the sub-bar to fill.
+      Only works if subcol, col, and pct are specified as well.
 @func render_statBar
 --]]
-function render_statBar(x, y, icon, col, col_end, pct, text, bgcol)
+function render_statBar(x, y, icon, col, col_end, pct, text, bgcol,
+      subcol, subcol_end, subpct)
    render_bar_header_raw(x, y, icon)
    render_bar_raw(x + barHeader_w, y, col, col_end, pct, text,
-         nil, nil, nil, nil, nil, nil, bgcol)
+         nil, nil, nil, nil, nil, nil, bgcol, subcol, subcol_end, subpct)
 end
 
 
@@ -482,12 +499,13 @@ function render_sidebar()
          shield_pct / 100, string.format(_("%.0f GJ"), shield))
 
    y = y - barFrame_h
-   render_statBar(x, y, tex_iconArmor, col_armor, col_end_armor,
-         armor_pct / 100, string.format(_("%.0f GJ"), armor))
-
-   y = y - barFrame_h
-   render_statBar(x, y, tex_iconStress, col_stress, col_end_stress,
-         stress / 100, string.format(_("%.0f %%"), stress))
+   local icon = tex_iconArmor
+   if stress >= 100 then
+      icon = tex_iconStress
+   end
+   render_statBar(x, y, icon, col_armor, col_end_armor,
+         armor_pct / 100, string.format(_("%.0f GJ"), armor), nil,
+         col_stress, col_end_stress, stress / 100)
 
    y = y - barFrame_h
    render_statBar(x, y, tex_iconEnergy, col_energy, col_end_energy,
