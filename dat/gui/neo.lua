@@ -82,6 +82,7 @@ function create ()
    barHeader_w, barHeader_h = tex_barHeader:dim()
    barFrame_w, barFrame_h = tex_barFrame:dim()
    fontSize_small = gfx.fontSize(true)
+   fontSize_default = gfx.fontSize()
 
    -- Bottom bar and view port
    bottombar_h = 28
@@ -97,11 +98,15 @@ function create ()
    radar_h = 120
    gui.radarInit(false, radar_w, radar_h)
 
+   -- FPS counter / TC % display
+   fps_h = 3 * fontSize_default
+   gui.fpsPos(screen_padding, screen_h - screen_padding - fps_h)
+
    -- OSD
    osd_x = screen_padding
-   osd_y = screen_h - screen_padding
+   osd_y = screen_h - screen_padding - fps_h
    osd_w = 225
-   osd_h = screen_h - bottombar_h - 2*screen_padding
+   osd_h = screen_h - bottombar_h - 2*screen_padding - fps_h
    gui.osdInit(osd_x, osd_y, osd_w, osd_h)
 
    -- Overlay
