@@ -180,8 +180,8 @@ void player_autonavPos( double x, double y )
    if (!player_autonavSetup())
       return;
 
-   player.autonav    = AUTONAV_POS_APPROACH;
-   player.autonavmsg = strdup( _("position" ));
+   player.autonav = AUTONAV_POS_APPROACH;
+   player.autonavmsg = strdup(p_("autonav_target", "position"));
    player.autonavcol = '0';
    vect_cset( &player.autonav_pos, x, y );
 }
@@ -546,8 +546,8 @@ static void player_autonav (void)
             p = pilot_get( PLAYER_ID );
          if ((p->id == PLAYER_ID) || (!pilot_inRangePilot( player.p, p, NULL ))) {
             /* TODO : handle the different reasons: pilot is too far, jumped, landed or died. */
-            player_message( _("#oAutonav: following target  %s has been lost."),
-                              player.autonavmsg );
+            player_message(_("#oAutonav: following target %s has been lost."),
+                  player.autonavmsg);
             player_accel( 0. );
             player_autonavEnd();
          }
