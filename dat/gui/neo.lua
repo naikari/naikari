@@ -341,7 +341,7 @@ function render_bar_raw(x, y, col, col_end, pct, text, ricon, rcol, rpct, wnum,
          gfx.renderTex(ricon, ix, iy)
       elseif wnum ~= nil then
          local tx = math.floor(cx)
-         gfx.print(true, wnum, tx, text_y, col_text, cw / 2, true)
+         gfx.print(true, wnum, tx, text_y, col_text, cw/2 - 1, true)
       end
 
       if hcol ~= nil and hpct ~= nil then
