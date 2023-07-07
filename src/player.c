@@ -765,6 +765,10 @@ void player_cleanup (void)
    /* Clear omsg. */
    omsg_cleanup();
 
+   /* Clear autonav message. */
+   free(player.autonavmsg);
+   player.autonavmsg = NULL;
+
    /* Stop the sounds. */
    sound_stopAll();
 
