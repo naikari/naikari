@@ -29,6 +29,7 @@ function create ()
    col_black = colour.new(0, 0, 0)
    col_bg = colour.new(0.2, 0.2, 0.2, 0.5)
    col_radar = colour.new(0, 0, 0, 0.5)
+   col_bottombar = colour.new(0.2, 0.2, 0.2)
    col_outline1 = colour.new(0.1, 0.1, 0.1)
    col_outline2 = colour.new(0.25, 0.25, 0.25)
    col_text = colour.new(0.95, 0.95, 0.95)
@@ -77,10 +78,14 @@ function create ()
 
    -- Common sizes
    screen_w, screen_h = gfx.dim()
-   screen_padding = 20
+   screen_padding = 24
    barHeader_w, barHeader_h = tex_barHeader:dim()
    barFrame_w, barFrame_h = tex_barFrame:dim()
    fontSize_small = gfx.fontSize(true)
+
+   -- Bottom bar and view port
+   bottombar_h = 28
+   gui.viewport(0, bottombar_h, screen_w, screen_h - bottombar_h)
 
    -- Sidebar
    sidebar_padding = 4
@@ -92,10 +97,25 @@ function create ()
    radar_h = 120
    gui.radarInit(false, radar_w, radar_h)
 
+   -- OSD
+   osd_x = screen_padding
+   osd_y = screen_h - screen_padding
+   osd_w = 225
+   osd_h = screen_h - bottombar_h - 2*screen_padding
+   gui.osdInit(osd_x, osd_y, osd_w, osd_h)
+
    -- Overlay
-   local hbound = sidebar_w + 2*sidebar_padding
+   local hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
    gui.setMapOverlayBounds(screen_padding, screen_padding + hbound,
          screen_padding, screen_padding + hbound)
+
+   -- On-screen messages
+   gui.omsgInit(screen_w - 2*screen_padding - 2*hbound,
+         screen_w / 2, screen_h / 2)
+
+   -- Messages
+   gui.mesgInit(screen_w/2 - screen_padding, screen_padding,
+         bottombar_h + screen_padding)
 
    -- Initial updates
    update_ship()
@@ -105,6 +125,7 @@ end
 
 function render(dt, dt_mod)
    render_sidebar()
+   render_bottombar()
 end
 
 function render_cooldown(percent, seconds)
@@ -123,7 +144,7 @@ function update_ship()
    -- the weapset indicators.
    player_ws_header_text = _("Weapon Set")
    player_ws_header_h = gfx.printDim(false, player_ws_header_text, sidebar_w)
-   player_ws_h = player_ws_header_h + fontSize_small
+   player_ws_h = player_ws_header_h + sidebar_padding
 
    -- Get what choices there are for weapsets to switch to.
    player_ws_choices = {}
@@ -444,6 +465,40 @@ function render_activeOutfitBar(x, y, active)
 end
 
 
+function render_weapsetDisplay(x, y)
+   y = y - sidebar_padding - player_ws_header_h
+   gfx.print(false, player_ws_header_text, x, y, col_text,
+         sidebar_w, true)
+
+   y = y - player_ws_row_h - sidebar_padding
+   local current = player.pilot():activeWeapset()
+   for i, w in ipairs(player_ws_choices) do
+      local wx, wy, spacing
+      if i <= player_ws_toprow then
+         spacing = player_ws_toprow_spacing
+         wx = x + (i-1)*spacing
+         wy = y
+      else
+         spacing = player_ws_bottomrow_spacing
+         wx = x + (i-player_ws_toprow-1)*spacing
+         wy = y - player_ws_row_h
+      end
+
+      local col = col_graytext
+      if w == current then
+         col = col_text
+      end
+
+      -- Weapset 10 is printed as weapset "0".
+      if w == 10 then
+         w = 0
+      end
+
+      gfx.print(true, tostring(w), wx, wy, col, spacing, true)
+   end
+end
+
+
 function render_sidebar()
    local p = player.pilot()
    local ws_name, ws_list = p:weapset(true)
@@ -458,7 +513,7 @@ function render_sidebar()
    local rx = x
    local ry = screen_h - radar_h - screen_padding
    local should_render = true
-   if screen_h - 2*screen_padding - h >= radar_h then
+   if screen_h - bottombar_h - 2*screen_padding - h >= radar_h then
       y = y - radar_h
    else
       rx = x - radar_w
@@ -556,37 +611,10 @@ function render_sidebar()
 end
 
 
-function render_weapsetDisplay(x, y)
-   y = y - sidebar_padding - player_ws_header_h
-   gfx.print(false, player_ws_header_text, x, y, col_text,
-         sidebar_w, true)
-
-   y = y - fontSize_small - player_ws_row_h
-   local current = player.pilot():activeWeapset()
-   for i, w in ipairs(player_ws_choices) do
-      local wx, wy, spacing
-      if i <= player_ws_toprow then
-         spacing = player_ws_toprow_spacing
-         wx = x + (i-1)*spacing
-         wy = y
-      else
-         spacing = player_ws_bottomrow_spacing
-         wx = x + (i-player_ws_toprow-1)*spacing
-         wy = y - player_ws_row_h
-      end
-
-      local col = col_graytext
-      if w == current then
-         col = col_text
-      end
-
-      -- Weapset 10 is printed as weapset "0".
-      if w == 10 then
-         w = 0
-      end
-
-      gfx.print(true, tostring(w), wx, wy, col, spacing, true)
-   end
+function render_bottombar()
+   gfx.renderRect(0, 0, screen_w, bottombar_h, col_bottombar)
+   gfx.renderRect(0, bottombar_h - 1, screen_w, 1, col_outline1)
+   gfx.renderRect(0, bottombar_h - 2, screen_w, 1, col_outline2)
 end
 
 
