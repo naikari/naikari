@@ -449,7 +449,7 @@ function render_sidebar()
    local ws_name, ws_list = p:weapset(true)
    local actives_list = p:actives(true)
    local w = sidebar_w
-   local h = (6*barFrame_h + 2*sidebar_padding + player_ws_h
+   local h = (5*barFrame_h + 2*sidebar_padding + player_ws_h
          + #ws_list*barFrame_h + #actives_list*barFrame_h)
    local x = sidebar_x
    local y = screen_h - h - screen_padding - 2*sidebar_padding
