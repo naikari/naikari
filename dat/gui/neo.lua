@@ -491,6 +491,66 @@ function render_activeOutfitBar(x, y, active)
 end
 
 
+function render_pilotStats(x, y, p, max_speed)
+   local armor_pct, shield_pct, stress, disabled = p:health()
+   local armor, shield = p:health(true)
+   if disabled then
+      stress = 100
+   end
+   local energy_pct = p:energy()
+   local energy = p:energy(true)
+   local temp = p:temp()
+   local heat = math.max(0, (temp-250) / (500-250))
+   local speed = p:vel():mod()
+
+   y = y - barFrame_h
+   render_statBar(x, y, tex_iconShield, col_shield, col_end_shield,
+         shield_pct / 100, string.format(_("%.0f GJ"), shield))
+
+   y = y - barFrame_h
+   local icon = tex_iconArmor
+   if stress >= 100 then
+      icon = tex_iconStress
+   end
+   render_statBar(x, y, icon, col_armor, col_end_armor,
+         armor_pct / 100, string.format(_("%.0f GJ"), armor), nil,
+         col_stress, col_end_stress, stress / 100)
+
+   y = y - barFrame_h
+   render_statBar(x, y, tex_iconEnergy, col_energy, col_end_energy,
+         energy_pct / 100, string.format(_("%.0f GJ"), energy))
+
+   y = y - barFrame_h
+   local col = col_heat
+   local col_end = col_end_heat
+   local bg_col = nil
+   if heat > 1 then
+      col = col_superheat
+      col_end = col_end_superheat
+      bg_col = col_heat
+      heat = math.min(1, heat - 1)
+   end
+   render_statBar(x, y, tex_iconHeat, col, col_end, heat,
+         string.format(p_("temperature", "%.0f K"), temp), bg_col)
+
+   y = y - barFrame_h
+   local col = col_speed
+   local col_end = col_end_speed
+   local pct = speed / max_speed
+   local bg_col = nil
+   if speed > max_speed then
+      col = col_overspeed
+      col_end = col_end_overspeed
+      pct = pct - 1
+      bg_col = col_speed
+   end
+   render_statBar(x, y, tex_iconSpeed, col, col_end, pct,
+         format_speed(speed), bg_col)
+
+   return x, y
+end
+
+
 function render_weapsetDisplay(x, y)
    y = y - sidebar_padding - player_ws_header_h
    gfx.print(false, player_ws_header_text, x, y, col_text,
@@ -564,60 +624,7 @@ function render_sidebar()
    -- Render stat bars.
    x = x + sidebar_padding
    y = y + sidebar_padding + h
-   local armor_pct, shield_pct, stress, disabled = p:health()
-   local armor, shield = p:health(true)
-   if disabled then
-      stress = 100
-   end
-   local energy_pct = p:energy()
-   local energy = p:energy(true)
-   local temp = p:temp()
-   local heat = math.max(0, (temp-250) / (500-250))
-   local speed = p:vel():mod()
-
-   y = y - barFrame_h
-   render_statBar(x, y, tex_iconShield, col_shield, col_end_shield,
-         shield_pct / 100, string.format(_("%.0f GJ"), shield))
-
-   y = y - barFrame_h
-   local icon = tex_iconArmor
-   if stress >= 100 then
-      icon = tex_iconStress
-   end
-   render_statBar(x, y, icon, col_armor, col_end_armor,
-         armor_pct / 100, string.format(_("%.0f GJ"), armor), nil,
-         col_stress, col_end_stress, stress / 100)
-
-   y = y - barFrame_h
-   render_statBar(x, y, tex_iconEnergy, col_energy, col_end_energy,
-         energy_pct / 100, string.format(_("%.0f GJ"), energy))
-
-   y = y - barFrame_h
-   local col = col_heat
-   local col_end = col_end_heat
-   local bg_col = nil
-   if heat > 1 then
-      col = col_superheat
-      col_end = col_end_superheat
-      bg_col = col_heat
-      heat = math.min(1, heat - 1)
-   end
-   render_statBar(x, y, tex_iconHeat, col, col_end, heat,
-         string.format(p_("temperature", "%.0f K"), temp), bg_col)
-
-   y = y - barFrame_h
-   local col = col_speed
-   local col_end = col_end_speed
-   local pct = speed / player_speed_max
-   local bg_col = nil
-   if speed > player_speed_max then
-      col = col_overspeed
-      col_end = col_end_overspeed
-      pct = pct - 1
-      bg_col = col_speed
-   end
-   render_statBar(x, y, tex_iconSpeed, col, col_end, pct,
-         format_speed(speed), bg_col)
+   x, y = render_pilotStats(x, y, p, player_speed_max)
 
    -- Render weapset display.
    render_weapsetDisplay(x, y)
