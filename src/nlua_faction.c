@@ -44,36 +44,38 @@ static int factionL_allies( lua_State *L );
 static int factionL_logoSmall( lua_State *L );
 static int factionL_logoTiny( lua_State *L );
 static int factionL_colour( lua_State *L );
+static int factionL_getPrefix(lua_State *L);
 static int factionL_isknown( lua_State *L );
 static int factionL_setknown( lua_State *L );
 static int factionL_dynAdd( lua_State *L );
 static int factionL_dynAlly( lua_State *L );
 static int factionL_dynEnemy( lua_State *L );
 static const luaL_Reg faction_methods[] = {
-   { "get", factionL_get },
-   { "__eq", factionL_eq },
-   { "__tostring", factionL_name },
-   { "name", factionL_name },
-   { "nameRaw", factionL_nameRaw },
-   { "longname", factionL_longname },
-   { "areEnemies", factionL_areenemies },
-   { "areAllies", factionL_areallies },
-   { "modPlayer", factionL_modplayer },
-   { "modPlayerSingle", factionL_modplayersingle },
-   { "modPlayerRaw", factionL_modplayerraw },
-   { "setPlayerStanding", factionL_setplayerstanding },
-   { "playerStanding", factionL_playerstanding },
-   { "enemies", factionL_enemies },
-   { "allies", factionL_allies },
-   { "logoSmall", factionL_logoSmall },
-   { "logoTiny", factionL_logoTiny },
-   { "colour", factionL_colour },
-   { "known", factionL_isknown },
-   { "setKnown", factionL_setknown },
-   { "dynAdd", factionL_dynAdd },
-   { "dynAlly", factionL_dynAlly },
-   { "dynEnemy", factionL_dynEnemy },
-   {0,0}
+   {"get", factionL_get},
+   {"__eq", factionL_eq},
+   {"__tostring", factionL_name},
+   {"name", factionL_name},
+   {"nameRaw", factionL_nameRaw},
+   {"longname", factionL_longname},
+   {"areEnemies", factionL_areenemies},
+   {"areAllies", factionL_areallies},
+   {"modPlayer", factionL_modplayer},
+   {"modPlayerSingle", factionL_modplayersingle},
+   {"modPlayerRaw", factionL_modplayerraw},
+   {"setPlayerStanding", factionL_setplayerstanding},
+   {"playerStanding", factionL_playerstanding},
+   {"enemies", factionL_enemies},
+   {"allies", factionL_allies},
+   {"logoSmall", factionL_logoSmall},
+   {"logoTiny", factionL_logoTiny},
+   {"colour", factionL_colour},
+   {"getPrefix", factionL_getPrefix},
+   {"known", factionL_isknown},
+   {"setKnown", factionL_setknown},
+   {"dynAdd", factionL_dynAdd},
+   {"dynAlly", factionL_dynAlly},
+   {"dynEnemy", factionL_dynEnemy},
+   {0, 0}
 }; /**< Faction metatable methods. */
 
 
@@ -569,6 +571,36 @@ static int factionL_colour( lua_State *L )
    if (col == NULL)
       return 0;
    lua_pushcolour( L, *col );
+   return 1;
+}
+
+
+/**
+ * @brief Gets the faction's prefix based on relation to the player.
+ *
+ * This returns a string which can be used to prefix references to the
+ * faction. It contains a color character, plus a symbol which shows the
+ * same information for colorblind accessibility. Note that you may need
+ * to also append the string "#0" after the text you are prefixing with
+ * this to reset the text color.
+ *
+ * @usage s = f:getPrefix() .. f:name() .. "#0"
+ *
+ *    @luatparam Faction f Faction to get the prefix of.
+ *    @luatreturn string The prefix.
+ * @luafunc getPrefix
+ */
+static int factionL_getPrefix(lua_State *L)
+{
+   LuaFaction f;
+   char str[STRMAX_SHORT];
+
+   f = luaL_validfaction(L, 1);
+
+   snprintf(str, sizeof(str), "#%c%s",
+         faction_getColourChar(f), faction_getSymbol(f));
+   lua_pushstring(L, str);
+
    return 1;
 }
 

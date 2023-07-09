@@ -367,9 +367,9 @@ int planet_averagePlanetPrice( const Planet *p, const Commodity *c, credits_t *m
 /* Misc modification. */
 int planet_setFaction(Planet *p, factionId_t faction);
 /* Land related stuff. */
-char planet_getColourChar( Planet *p );
-const char *planet_getSymbol( Planet *p );
-const glColour* planet_getColour( Planet *p );
+char planet_getColourChar(const Planet *p);
+const char *planet_getSymbol(const Planet *p);
+const glColour* planet_getColour(const Planet *p);
 void planet_updateLand( Planet *p );
 
 

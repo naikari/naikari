@@ -698,6 +698,25 @@ function render_pilotIcon(x, y, d, p, tex, tex_sw, tex_sh)
 end
 
 
+function render_targetDisplay()
+   if target_p == nil then
+      return
+   end
+
+   local w = sidebar_w
+   local name = target_p:getPrefix() .. target_p:name() .. "#0"
+   local name_h = gfx.printDim(true, name, w)
+   local f_text = target_faction:name()
+   local f_text_h = gfx.printDim(true, f_text, w)
+   local icon_d = 48
+   local dist = player.pilot():pos():dist(target_p:pos())
+   local dist_text = fmt.f(p_("gui", "Distance:\n{distance}"),
+         {distance=format_distance(dist)})
+   local dist_text_h = gfx.printDim(true, dist_text,
+         w - icon_d - sidebar_padding)
+end
+
+
 function render_bottombar()
    gfx.renderRect(0, 0, screen_w, bottombar_h, col_bottombar)
    gfx.renderRect(0, bottombar_h - 1, screen_w, 1, col_outline1)

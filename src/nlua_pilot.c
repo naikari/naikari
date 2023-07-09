@@ -106,6 +106,7 @@ static int pilotL_setVisplayer(lua_State *L);
 static int pilotL_setVisible(lua_State *L);
 static int pilotL_setHilight(lua_State *L);
 static int pilotL_getColour(lua_State *L);
+static int pilotL_getPrefix(lua_State *L);
 static int pilotL_getHostile(lua_State *L);
 static int pilotL_flags(lua_State *L);
 static int pilotL_setActiveBoard(lua_State *L);
@@ -208,6 +209,7 @@ static const luaL_Reg pilotL_methods[] = {
    {"stats", pilotL_getStats},
    {"shipstat", pilotL_getShipStat},
    {"colour", pilotL_getColour},
+   {"getPrefix", pilotL_getPrefix},
    {"hostile", pilotL_getHostile},
    {"flags", pilotL_flags},
    /* System. */
@@ -3791,6 +3793,36 @@ static int pilotL_getColour(lua_State *L)
 
    col = pilot_getColour(p);
    lua_pushcolour( L, *col );
+
+   return 1;
+}
+
+
+/**
+ * @brief Gets the pilot's prefix based on relation to the player.
+ *
+ * This returns a string which can be used to prefix references to the
+ * pilot. It contains a color character, plus a symbol which shows the
+ * same information for colorblind accessibility. Note that you may need
+ * to also append the string "#0" after the text you are prefixing with
+ * this to reset the text color.
+ *
+ * @usage s = p:getPrefix() .. p:name() .. "#0"
+ *
+ *    @luatparam Pilot p Pilot to get the prefix of.
+ *    @luatreturn string The prefix.
+ * @luafunc getPrefix
+ */
+static int pilotL_getPrefix(lua_State *L)
+{
+   const Pilot *p;
+   char str[STRMAX_SHORT];
+
+   p = luaL_validpilot(L, 1);
+
+   snprintf(str, sizeof(str), "#%c%s",
+         pilot_getFactionColourChar(p), pilot_getFactionSymbol(p));
+   lua_pushstring(L, str);
 
    return 1;
 }

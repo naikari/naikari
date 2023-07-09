@@ -507,6 +507,7 @@ int pilot_isHostile( const Pilot *p );
 int pilot_isNeutral( const Pilot *p );
 int pilot_isFriendly( const Pilot *p );
 char pilot_getFactionColourChar( const Pilot *p );
+const char* pilot_getFactionSymbol(const Pilot *p);
 
 
 /*

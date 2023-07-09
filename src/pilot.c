@@ -1180,6 +1180,21 @@ char pilot_getFactionColourChar( const Pilot *p )
 
 
 /**
+ * @brief Gets the faction symbol of a pilot, similar to faction_getSymbol.
+ */
+const char* pilot_getFactionSymbol(const Pilot *p)
+{
+   if (pilot_isDisabled(p))
+      return "= ";
+   else if (pilot_isFriendly(p))
+      return "+ ";
+   else if (pilot_isHostile(p))
+      return "!! ";
+   return faction_getSymbol(p->faction);
+}
+
+
+/**
  * @brief Sets the overhead communication message of the pilot.
  */
 static void pilot_setCommMsg( Pilot *p, const char *s )

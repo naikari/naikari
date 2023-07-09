@@ -95,9 +95,9 @@ int comm_openPilot( unsigned int pilot )
    HookParam hparam[2];
 
    /* Get the pilot. */
-   p           = pilot_get( pilot );
-   comm_pilot  = p;
-   c = pilot_getFactionColourChar( p );
+   p = pilot_get(pilot);
+   comm_pilot = p;
+   c = pilot_getFactionColourChar(p);
 
    /* Make sure pilot exists. */
    if (comm_pilot == NULL)

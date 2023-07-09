@@ -48,6 +48,7 @@ static int planetL_nameRaw( lua_State *L );
 static int planetL_radius( lua_State *L );
 static int planetL_faction( lua_State *L );
 static int planetL_colour( lua_State *L );
+static int planetL_getPrefix(lua_State *L);
 static int planetL_class( lua_State *L );
 static int planetL_position( lua_State *L );
 static int planetL_services( lua_State *L );
@@ -64,34 +65,35 @@ static int planetL_getRestriction( lua_State *L );
 static int planetL_isKnown( lua_State *L );
 static int planetL_setKnown( lua_State *L );
 static const luaL_Reg planet_methods[] = {
-   { "cur", planetL_cur },
-   { "get", planetL_get },
-   { "getLandable", planetL_getLandable },
-   { "getAll", planetL_getAll },
-   { "system", planetL_system },
-   { "__eq", planetL_eq },
-   { "__tostring", planetL_name },
-   { "name", planetL_name },
-   { "nameRaw", planetL_nameRaw },
-   { "radius", planetL_radius },
-   { "faction", planetL_faction },
-   { "colour", planetL_colour },
-   { "class", planetL_class },
-   { "pos", planetL_position },
-   { "services", planetL_services },
-   { "canLand", planetL_canland },
-   { "landOverride", planetL_landOverride },
-   { "getLandOverride", planetL_getLandOverride },
-   { "gfxSpace", planetL_gfxSpace },
-   { "gfxExterior", planetL_gfxExterior },
-   { "shipsSold", planetL_shipsSold },
-   { "outfitsSold", planetL_outfitsSold },
-   { "commoditiesSold", planetL_commoditiesSold },
-   { "blackmarket", planetL_isBlackMarket },
-   { "restriction", planetL_getRestriction },
-   { "known", planetL_isKnown },
-   { "setKnown", planetL_setKnown },
-   {0,0}
+   {"cur", planetL_cur},
+   {"get", planetL_get},
+   {"getLandable", planetL_getLandable},
+   {"getAll", planetL_getAll},
+   {"system", planetL_system},
+   {"__eq", planetL_eq},
+   {"__tostring", planetL_name},
+   {"name", planetL_name},
+   {"nameRaw", planetL_nameRaw},
+   {"radius", planetL_radius},
+   {"faction", planetL_faction},
+   {"colour", planetL_colour},
+   {"getPrefix", planetL_getPrefix},
+   {"class", planetL_class},
+   {"pos", planetL_position},
+   {"services", planetL_services},
+   {"canLand", planetL_canland},
+   {"landOverride", planetL_landOverride},
+   {"getLandOverride", planetL_getLandOverride},
+   {"gfxSpace", planetL_gfxSpace},
+   {"gfxExterior", planetL_gfxExterior},
+   {"shipsSold", planetL_shipsSold},
+   {"outfitsSold", planetL_outfitsSold},
+   {"commoditiesSold", planetL_commoditiesSold},
+   {"blackmarket", planetL_isBlackMarket},
+   {"restriction", planetL_getRestriction},
+   {"known", planetL_isKnown},
+   {"setKnown", planetL_setKnown},
+   {0, 0}
 }; /**< Planet metatable methods. */
 
 
@@ -543,7 +545,7 @@ static int planetL_faction( lua_State *L )
  *
  * @usage col = p:colour()
  *
- *    @luatparam Pilot p Planet to get the colour of.
+ *    @luatparam Planet p Planet to get the colour of.
  *    @luatreturn Colour The planet's colour.
  * @luafunc colour
  */
@@ -556,6 +558,36 @@ static int planetL_colour( lua_State *L )
    col = planet_getColour( p );
 
    lua_pushcolour( L, *col );
+
+   return 1;
+}
+
+
+/**
+ * @brief Gets the planet's prefix based on relation to the player.
+ *
+ * This returns a string which can be used to prefix references to the
+ * planet. It contains a color character, plus a symbol which shows the
+ * same information for colorblind accessibility. Note that you may need
+ * to also append the string "#0" after the text you are prefixing with
+ * this to reset the text color.
+ *
+ * @usage s = p:getPrefix() .. p:name() .. "#0"
+ *
+ *    @luatparam Planet p Planet to get the prefix of.
+ *    @luatreturn string The prefix.
+ * @luafunc getPrefix
+ */
+static int planetL_getPrefix(lua_State *L)
+{
+   const Planet *p;
+   char str[STRMAX_SHORT];
+
+   p = luaL_validplanet(L, 1);
+
+   snprintf(str, sizeof(str), "#%c%s",
+         planet_getColourChar(p), planet_getSymbol(p));
+   lua_pushstring(L, str);
 
    return 1;
 }
