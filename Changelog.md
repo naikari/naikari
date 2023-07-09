@@ -34,6 +34,8 @@
 * Fixed an issue where pressing the Starmap key to close the starmap
   would fail to run code that was supposed to run when the starmap
   closed (and thus caused some display oddities).
+* Added the Neo GUI, a new GUI intended to combine the strengths of the
+  Brushed and Slim GUIs. (Currently unfinished.)
 
 ## 0.8.0
 
