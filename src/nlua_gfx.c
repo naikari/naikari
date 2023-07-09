@@ -39,8 +39,8 @@ static int gfxL_renderRect( lua_State *L );
 static int gfxL_renderRectH( lua_State *L );
 static int gfxL_renderCircle( lua_State *L );
 static int gfxL_renderCircleH( lua_State *L );
+static int gfxL_renderLine(lua_State *L);
 static int gfxL_fontSize( lua_State *L );
-/* TODO get rid of printDim and print in favour of printfDim and printf */
 static int gfxL_printfDim( lua_State *L );
 static int gfxL_printfWrap( lua_State *L );
 static int gfxL_printRestoreClear( lua_State *L );
@@ -57,13 +57,14 @@ static const luaL_Reg gfxL_methods[] = {
    /* Information. */
    { "dim", gfxL_dim },
    /* Render stuff. */
-   { "renderTex", gfxL_renderTex },
-   { "renderTexRaw", gfxL_renderTexRaw },
-   { "renderTexH", gfxL_renderTexH },
-   { "renderRect", gfxL_renderRect },
-   { "renderRectH", gfxL_renderRectH },
-   { "renderCircle", gfxL_renderCircle },
-   { "renderCircleH", gfxL_renderCircleH },
+   {"renderTex", gfxL_renderTex},
+   {"renderTexRaw", gfxL_renderTexRaw},
+   {"renderTexH", gfxL_renderTexH},
+   {"renderRect", gfxL_renderRect},
+   {"renderRectH", gfxL_renderRectH},
+   {"renderCircle", gfxL_renderCircle},
+   {"renderCircleH", gfxL_renderCircleH},
+   {"renderLine", gfxL_renderLine},
    /* Printing. */
    { "fontSize", gfxL_fontSize },
    { "printfDim", gfxL_printfDim },
@@ -465,6 +466,39 @@ static int gfxL_renderCircleH( lua_State *L )
 
    /* Render. */
    gl_drawCircleH( H, col, !empty );
+
+   return 0;
+}
+
+
+/**
+ * @brief Renders a line segment.
+ *
+ *    @luatparam number x1 X position of the first point in screen
+ *       coordinates.
+ *    @luatparam number y1 Y position of the first point in screen
+ *       coordinates.
+ *    @luatparam number x2 X position of the second point in screen
+ *       coordinates.
+ *    @luatparam number y2 Y position of the second point in screen
+ *       coordinates.
+ *    @luatparam Colour col Color to use.
+ * @luafunc renderLine
+ */
+static int gfxL_renderLine(lua_State *L)
+{
+   double x1, y1, x2, y2;
+   const glColour *col;
+
+   NLUA_CHECKRW(L);
+
+   x1 = luaL_checknumber(L, 1);
+   y1 = luaL_checknumber(L, 2);
+   x2 = luaL_checknumber(L, 3);
+   y2 = luaL_checknumber(L, 4);
+   col = luaL_checkcolour(L, 5);
+
+   gl_drawLine(x1, y1, x2, y2, col);
 
    return 0;
 }

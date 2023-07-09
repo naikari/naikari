@@ -329,9 +329,9 @@ function update_target()
             ta_gfx_draw_h = ta_gfx_sh
          end
       else
-         if ta_gfx_sh > target_h then
-            ta_gfx_draw_h = target_image_w
-            ta_gfx_draw_w = target_image_w / ta_gfx_sh * ta_gfx_sw
+         if ta_gfx_sh > target_image_h then
+            ta_gfx_draw_h = target_image_h
+            ta_gfx_draw_w = target_image_h / ta_gfx_sh * ta_gfx_sw
          else
             ta_gfx_draw_w = ta_gfx_sw
             ta_gfx_draw_h = ta_gfx_sh

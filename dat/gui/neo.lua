@@ -27,6 +27,7 @@ function create ()
 
    -- Colors
    col_black = colour.new(0, 0, 0)
+   col_white = colour.new(1, 1, 1)
    col_bg = colour.new(0.2, 0.2, 0.2, 0.5)
    col_radar = colour.new(0, 0, 0, 0.5)
    col_bottombar = colour.new(0.2, 0.2, 0.2)
@@ -202,6 +203,17 @@ end
 
 function update_target()
    target_p = player.pilot():target()
+   if target_p == nil then
+      return
+   end
+
+   target_faction = target_p:faction()
+
+   target_tex = target_p:ship():gfx()
+   target_tex_w, target_tex_h, target_tex_sw, target_tex_sh = target_tex:dim()
+
+   local stats = target_p:stats()
+   target_speed_max = stats.speed_max
 end
 
 function update_nav()
@@ -641,6 +653,48 @@ function render_sidebar()
       y = y - barFrame_h
       render_activeOutfitBar(x, y, slot)
    end
+end
+
+
+function render_pilotIcon(x, y, d, p, tex, tex_sw, tex_sh)
+   local r = d / 2
+   local ir = 0.9 * r
+   local xcenter = x + r
+   local ycenter = y + r
+   local dir = p:dir()
+
+   -- Render background.
+   gfx.renderRect(x, y, d, d, col_black)
+
+   -- Render direction line.
+   local rdir = math.rad(dir)
+   local x2 = xcenter + ir*math.cos(rdir)
+   local y2 = ycenter + ir*math.sin(rdir)
+   gfx.renderLine(xcenter, ycenter, x2, y2, col_white)
+
+   -- Render ship image.
+   local sx, sy = tex:spriteFromDir(dir)
+   local wh = 2 * ir
+   local aspect = tex_sw / tex_sh
+   local draw_w = tex_sw
+   local draw_h = tex_sh
+   if aspect >= 1 then
+      if tex_sw > wh then
+         draw_w = wh
+         draw_h = wh/tex_sw * tex_sh
+      end
+   else
+      if tex_sh > wh then
+         draw_h = wh
+         draw_w = wh/tex_sh * tex_sw
+      end
+   end
+   gfx.renderTexRaw(tex, xcenter - draw_w/2, ycenter - draw_h/2,
+         draw_w, draw_h, sx, sy, 0, 0, 1, 1)
+
+   -- Render outline.
+   gfx.renderRect(x, y, d, d, col_outline1, true)
+   gfx.renderRect(x + 1, y + 1, d - 2, d - 2, col_outline2, true)
 end
 
 
