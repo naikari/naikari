@@ -190,7 +190,7 @@ norpin_text[4] = _([[You and Flint walk out of the bar with the group. Flint spe
 You do as he says and leave the group, placing yourself inconspicuously on a bench a distance away. You manage to do this not a moment too soon, it seems, as immediately afterwards the Dvaereds take notice of the group. You hear some back and forth, but can't make out what is being said. What you do notice, however, is the Dvaereds drawing what appear to be laser guns.]])
 norpin_text[5] = _([[The FLF group immediately responds by drawing their own laser guns and before you know it, a gunfight ensues. Someone from the FLF side is hit first, taking a bolt to the leg, followed by one of the Dvaereds getting hit in the stomache, knocking him out. You immediately see a difference between the two sides as while Flint helps his now limping comrade escape while the others continue drawing attention from the uninjured Dvaered, the uninjured Dvaered continues shooting the remainder of the FLF group without so much as a glance to the injured Dvaered.
 
-Flint and his injured comrade soon escape the scene, and the others in the FLF group run off in a different direction shortly after. Seeing this, the uninjured Dvaered pursues them, leaving his comrade lying on the ground.
+Flint and his injured comrade soon escape the scene, and the others in the FLF group run off in a different direction shortly after. Seeing this, the uninjured Dvaered persues them, leaving his comrade lying on the ground.
 
 Now alone, you decide to go off on your own business, wondering how things will go the next time you meet Flint.]])
 
