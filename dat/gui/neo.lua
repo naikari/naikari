@@ -735,21 +735,21 @@ function render_targetDisplay()
 
    -- Render header text.
    y = y - name_h
-   gfx.print(false, name, x, y, col_text, w)
+   gfx.printText(false, name, x, y, w, name_h, col_text)
 
    y = y - sidebar_padding - f_text_h
-   gfx.print(true, f_text, x, y, col_text, w)
+   gfx.printText(true, f_text, x, y, w, f_text_h, col_text)
 
    -- Render icon and distance.
    y = y - sidebar_padding
    render_pilotIcon(x, y - icon_d, icon_d, target_p, target_tex,
          target_tex_sw, target_tex_sh)
 
-   gfx.print(true, dist_header_text, x + icon_d + sidebar_padding,
-         y - dist_header_text_h, col_text, dist_w)
-   gfx.print(true, dist_text, x + icon_d + sidebar_padding,
-         y - dist_header_text_h - sidebar_padding - dist_text_h, col_text,
-         dist_w)
+   gfx.printText(true, dist_header_text, x + icon_d + sidebar_padding,
+         y - dist_header_text_h, dist_w, dist_header_text_h, col_text)
+   gfx.printText(true, dist_text, x + icon_d + sidebar_padding,
+         y - dist_header_text_h - sidebar_padding - dist_text_h,
+         dist_w, dist_text_h, col_text)
    y = y - dist_h - sidebar_padding
 
    -- Render stat bars.
