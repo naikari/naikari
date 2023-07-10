@@ -114,6 +114,13 @@ int ovr_input( SDL_Event *event )
    my = event->button.y;
    gl_windowToScreenPos( &mx, &my, mx, my );
 
+   /* Click must be within overlay bounds. */
+   if ((mx < gui_getMapOverlayBoundLeft())
+         || (mx > gui_getMapOverlayBoundLeft() + map_overlay_width())
+         || (my < gui_getMapOverlayBoundBottom())
+         || (my > gui_getMapOverlayBoundBottom() + map_overlay_height()))
+      return 0;
+
    /* Translate to space coords. */
    x = ((double)mx - (double)map_overlay_center_x()) * ovr_res;
    y = ((double)my - (double)map_overlay_center_y()) * ovr_res;
