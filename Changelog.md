@@ -2,6 +2,10 @@
 
 ## 0.9.0
 
+* Fleets are now organized centrally such that if a pilot has a parent,
+  any of its own followers will go into formation with said parent. This
+  makes fleets look sleeker and more organized when some AI pilots in
+  said fleets are equipped with fighter bays.
 * Fixed the Commodity tab showing "¢" for the purchase price indication
   instead of the correct "¢/kt".
 * Exposed TC velocity via the options menu (which controls how much

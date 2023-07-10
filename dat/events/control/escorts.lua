@@ -205,7 +205,7 @@ function createPilotNPCs ()
 
       for j, o in ipairs(p:outfits()) do
          deposit = deposit + o:price()
-         newpilot.outfits[#newpilot.outfits + 1] = o:nameRaw()
+         table.insert(newpilot.outfits, o:nameRaw())
       end
 
       local mod = shipchoice.deposit_mod or 0.5
