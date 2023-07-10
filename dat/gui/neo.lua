@@ -120,7 +120,7 @@ function create ()
 
    -- Overlay
    gui.setMapOverlayBounds(16, screen_padding + sidebar_w + 2*sidebar_padding,
-         16, osd_x + osd_w)
+         15, osd_x + osd_w)
 
    -- On-screen messages
    local hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
