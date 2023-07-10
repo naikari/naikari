@@ -119,12 +119,12 @@ function create ()
    osd_w = osd_w + 10
 
    -- Overlay
-   overlay_hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
-   gui.setMapOverlayBounds(screen_padding, screen_padding + overlay_hbound,
-         screen_padding, screen_padding + overlay_hbound)
+   gui.setMapOverlayBounds(16, screen_padding + sidebar_w + 2*sidebar_padding,
+         16, osd_x + osd_w)
 
    -- On-screen messages
-   gui.omsgInit(screen_w - 2*screen_padding - 2*overlay_hbound,
+   local hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
+   gui.omsgInit(screen_w - 2*screen_padding - 2*hbound,
          screen_w / 2, screen_h / 2)
 
    -- Messages
