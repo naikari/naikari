@@ -33,6 +33,10 @@ function create ()
    col_bottombar = colour.new(0.2, 0.2, 0.2)
    col_outline1 = colour.new(0.1, 0.1, 0.1)
    col_outline2 = colour.new(0.25, 0.25, 0.25)
+   col_button = colour.new(0.25, 0.25, 0.25)
+   col_button_hover = colour.new(0.3, 0.3, 0.3)
+   col_button_click = colour.new(0.35, 0.35, 0.35)
+   col_button_outline = colour.new(0.15, 0.15, 0.15)
    col_text = colour.new(0.95, 0.95, 0.95)
    col_graytext = colour.new(0.7, 0.7, 0.7)
    col_cooldown = colour.new(76/255, 98/255, 176/255)
@@ -127,8 +131,14 @@ function create ()
    gui.mesgInit(sidebar_x - sidebar_w - 2*sidebar_padding - screen_padding,
          screen_padding, bottombar_h + screen_padding)
 
-   -- Initialize buttons list
+   -- Enable mouse
+   gui.mouseMoveEnable()
+   gui.mouseClickEnable()
+
+   -- Buttons
    buttons = {}
+   button_h = 25
+   button_padding = sidebar_padding
    update_buttons()
 
    -- Initial updates
@@ -141,6 +151,8 @@ function create ()
 end
 
 function render(dt, dt_mod)
+   update_escorts()
+   render_buttons()
    render_sidebar()
    render_targetDisplay()
    render_bottombar()
@@ -282,9 +294,48 @@ function update_system()
 end
 
 function mouse_move(x, y)
+   mouse_x = x
+   mouse_y = y
+
+   y = y + bottombar_h
+   local bx = button_x + button_padding
+   local by = button_y - button_padding
+   for i, button in ipairs(buttons_list) do
+      if x > bx and x < bx + button_w and y > by and y < by + button_h then
+         button.hover = true
+      else
+         button.hover = false
+      end
+      by = by - button_h - button_padding
+   end
 end
 
-function mouse_click(button, x, y, state)
+function mouse_click(mbutton, x, y, state)
+   mouse_move(x, y)
+
+   if mbutton ~= 2 then
+      return false
+   end
+
+   local r = false
+   local bx = button_x + button_padding
+   local by = button_y + button_padding
+   for i, button in ipairs(buttons_list) do
+      if button.hover then
+         if state then
+            button.pressed = true
+            r = true
+         elseif button.pressed then
+            button.pressed = false
+            button.func()
+            r = true
+         end
+      else
+         button.pressed = false
+      end
+   end
+
+   return r
 end
 
 
@@ -308,10 +359,63 @@ actually display as buttons.
 --]]
 function update_buttons()
    buttons_list = {}
+   button_w = 0
    for i, b in ipairs(button_types) do
       if buttons[b] ~= nil then
-         table.insert(buttons_list, buttons[b])
+         local button = buttons[b]
+         local w = gfx.printDim(true, button.text) + 16
+         button_w = math.max(w, button_w)
+         table.insert(buttons_list, button)
       end
+   end
+
+   button_x = screen_w/2 - button_w/2 - button_padding
+   button_y = screen_h - screen_padding
+
+   if mouse_x ~= nil and mouse_y ~= nil then
+      mouse_move(mouse_x, mouse_y)
+   end
+end
+
+
+function render_buttons()
+   local nbuttons = #buttons_list
+   if nbuttons <= 0 then
+      return
+   end
+
+   local w = button_w + 2*button_padding
+   local h = nbuttons*(button_h+button_padding) + button_padding
+   local x = button_x
+   local y = button_y - h
+
+   -- Render background.
+   gfx.renderRect(x, y, w, h, col_bg)
+   gfx.renderRect(x, y, w, h, col_outline1, true)
+   gfx.renderRect(x + 1, y + 1, w - 2, h - 2, col_outline2, true)
+   x = button_x + button_padding
+   y = button_y
+   w = button_w
+   h = button_h
+
+   for i, button in ipairs(buttons_list) do
+      y = y - button_h - button_padding
+
+      local col = col_button
+      if button.hover then
+         if button.pressed then
+            col = col_button_click
+         else
+            col = col_button_hover
+         end
+      end
+
+      gfx.renderRect(x, y, w, h, col)
+      gfx.renderRect(x, y, w, h, col_button_outline, true)
+      gfx.renderRect(x + 1, y + 1, w - 2, h - 2, col_button_outline, true)
+
+      local ty = math.floor(y + h/2 - fontSize_small/2)
+      gfx.print(true, button.text, x, ty, col_text, w - 1, true)
    end
 end
 
