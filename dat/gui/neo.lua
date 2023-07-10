@@ -131,6 +131,12 @@ function create ()
    gui.mesgInit(sidebar_x - sidebar_w - 2*sidebar_padding - screen_padding,
          screen_padding, bottombar_h + screen_padding)
 
+   -- Planet pane
+   planetpane_x = osd_x + osd_w + 8
+   planetpane_y = screen_h - screen_padding
+   planetpane_w = 152
+   planetpane_padding = sidebar_padding
+
    -- Enable mouse
    gui.mouseMoveEnable()
    gui.mouseClickEnable()
@@ -155,6 +161,7 @@ function render(dt, dt_mod)
    render_buttons()
    render_sidebar()
    render_targetDisplay()
+   render_planetPane()
    render_bottombar()
 end
 
@@ -285,6 +292,27 @@ function update_nav()
             {system=nav_dest:name(), jumps=fmt.number(nav_dest_jumps)})
       end
    end
+   if nav_planet ~= nil then
+      nav_planet_tex = nav_planet:gfxSpace()
+      nav_planet_tex_w, nav_planet_tex_h = nav_planet_tex:dim()
+      nav_planet_name = nav_planet:name()
+      nav_planet_pos = nav_planet:pos()
+      nav_planet_class = nav_planet:class()
+      nav_planet_faction = nav_planet:faction()
+      nav_planet_ficon = nil
+      nav_planet_ficon_w = 0
+      nav_planet_ficon_h = 0
+      if nav_planet_faction ~= nil and nav_planet_faction:known() then
+         nav_planet_ficon = nav_planet_faction:logoTiny()
+         nav_planet_ficon_w, nav_planet_ficon_h = nav_planet_ficon:dim()
+      end
+      
+      local services = nav_planet:services()
+      nav_planet_services = {}
+      for i, s in ipairs(services) do
+         table.insert(nav_planet_services, _(s))
+      end
+   end
 end
 
 function update_faction()
@@ -370,6 +398,8 @@ function update_buttons()
    end
 
    button_x = screen_w/2 - button_w/2 - button_padding
+   button_x = math.max(button_x, planetpane_x + planetpane_w)
+   button_x = math.min(button_x, sidebar_x - button_w)
    button_y = screen_h - screen_padding
 
    if mouse_x ~= nil and mouse_y ~= nil then
@@ -950,6 +980,112 @@ function render_targetDisplay()
 
    -- Render stat bars.
    x, y = render_pilotStats(x, y, target_p, target_speed_max)
+end
+
+
+function render_planetPane()
+   if nav_planet == nil then
+      return
+   end
+
+   local p = player.pilot()
+   local x = planetpane_x
+   local y = planetpane_y
+   local w = planetpane_w
+   local h = 0
+
+   -- Header sizing
+   local name_w = w
+   if nav_planet_ficon_w > 0 then
+      name_w = name_w - nav_planet_ficon_w - planetpane_padding
+   end
+   local name = nav_planet:getPrefix() .. nav_planet:name() .. "#0"
+   local name_h = gfx.printDim(false, name, name_w)
+   local header_h = name_h
+   local f_text = nil
+   local f_text_h = nil
+   if nav_planet_faction ~= nil and nav_planet_faction:known() then
+      f_text = nav_planet_faction:name()
+      f_text_h = gfx.printDim(true, f_text, name_w)
+      header_h = header_h + planetpane_padding + f_text_h
+   end
+   header_h = math.max(header_h, nav_planet_ficon_h)
+   h = h + header_h + planetpane_padding
+
+   -- Planet image sizing
+   h = h + w + planetpane_padding
+
+   -- Class sizing
+   local class_text = fmt.f(p_("planet", "Class: {class}"),
+         {class=target_planet_class})
+   local class_text_h = gfx.printDim(true, class_text, w)
+   h = h + class_text_h + planetpane_padding
+
+   -- Distance sizing
+   local dist = p:pos():dist(nav_planet_pos)
+   local dist_text = fmt.f(p_("gui", "Distance: {distance}"),
+         {distance=format_distance(dist)})
+   local dist_text_h = gfx.printDim(true, dist_text, w)
+   h = h + dist_text_h + planetpane_padding
+
+   -- Services sizing
+   local indent = 8
+   local services_w = w - indent
+   local services_h = nil
+   local services_x = x + indent
+   for i, s in ipairs(nav_planet_services) do
+      local sh = gfx.printDim(true, s, services_w)
+      h = h + sh + planetpane_padding
+   end
+
+   -- Render background.
+   gfx.renderRect(x, y, w + 2*planetpane_padding, h + 2*planetpane_padding,
+         col_bg)
+   gfx.renderRect(x, y, w + 2*planetpane_padding, h + 2*planetpane_padding,
+         col_outline1, true)
+   gfx.renderRect(x + 1, y + 1, w + 2*planetpane_padding - 2,
+         h + 2*planetpane_padding - 2, col_outline2, true)
+   x = x + planetpane_padding
+   y = y + planetpane_padding + h
+
+   -- Render header.
+   if nav_planet_ficon ~= nil then
+      gfx.renderTex(nav_planet_ficon, x + w - nav_planet_ficon_w,
+            y - nav_plant_ficon_h)
+   end
+
+   local ty = y - name_h
+   gfx.printText(false, name, x, y, w, name_h, col_text)
+
+   if f_text ~= nil then
+      ty = ty - planetpane_padding - f_text_h
+      gfx.printText(true, f_text, x, y, w, f_text_h, col_text)
+   end
+
+   y = y - header_h - planetpane_padding
+
+   -- Render planet image.
+   if w < nav_planet_tex_w or w < nav_planet_tex_h then
+      local aspect = nav_planet_tex_w / nav_planet_tex_h
+      local draw_w = nav_planet_tex_w
+      local draw_h = nav_planet_tex_h
+      if aspect >= 1 then
+         if nav_planet_tex_w > w then
+            draw_w = w
+            draw_h = w/nav_planet_tex_w * nav_planet_tex_h
+         end
+      else
+         if nav_planet_tex_h > w then
+            draw_h = w
+            draw_w = w/nav_planet_tex_h * nav_planet_tex_w
+         end
+      end
+      gfx.renderTexRaw(nav_planet_tex, x + w/2 - draw_w/2, y + w/2 - draw_h/2,
+            draw_w, draw_h, 1, 1, 0, 0, 1, 1)
+   else
+      gfx.renderTex(nav_planet_tex, x + w/2 - nav_planet_tex_w/2,
+            y + w/2 - nav_planet_tex_h/2)
+   end
 end
 
 
