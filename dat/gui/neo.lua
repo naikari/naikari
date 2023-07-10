@@ -115,12 +115,12 @@ function create ()
    osd_w = osd_w + 10
 
    -- Overlay
-   local hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
-   gui.setMapOverlayBounds(screen_padding, screen_padding + hbound,
-         screen_padding, screen_padding + hbound)
+   overlay_hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
+   gui.setMapOverlayBounds(screen_padding, screen_padding + overlay_hbound,
+         screen_padding, screen_padding + overlay_hbound)
 
    -- On-screen messages
-   gui.omsgInit(screen_w - 2*screen_padding - 2*hbound,
+   gui.omsgInit(screen_w - 2*screen_padding - 2*overlay_hbound,
          screen_w / 2, screen_h / 2)
 
    -- Messages
@@ -143,6 +143,34 @@ function render(dt, dt_mod)
 end
 
 function render_cooldown(percent, seconds)
+   local text = _("Active cooldown engaged…")
+   local text_w = gfx.printDim(false, text)
+   local text_h = gfx.printDim(false, text, text_w)
+   local w = math.max(barHeader_w + barFrame_w, text_w)
+   local h = text_h + fontSize_default + sidebar_padding + barFrame_h
+
+   -- Render background.
+   local x = screen_w/2 - w/2 - sidebar_padding
+   local y = screen_h/2 - h/2 - sidebar_padding
+   gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding, col_bg)
+   gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding,
+         col_outline1, true)
+   gfx.renderRect(x + 1, y + 1, w + 2*sidebar_padding - 2,
+         h + 2*sidebar_padding - 2, col_outline2, true)
+   x = x + sidebar_padding
+   y = y + sidebar_padding + h
+
+   -- Render text.
+   y = y - text_h
+   gfx.print(false, text, x, y, col_text, w, true)
+
+   -- Render progress bar.
+   y = y - fontSize_default - sidebar_padding - barFrame_h
+   x = x + w/2 - (barHeader_w+barFrame_w)/2
+   local remaining_text = string.format(
+      p_("cooldown_seconds_remaining", "%.1f s"), seconds)
+   render_statBar(x, y, tex_iconHeat, col_heat, col_end_heat, percent,
+         remaining_text)
 end
 
 function end_cooldown()
