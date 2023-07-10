@@ -110,6 +110,10 @@ function create ()
    osd_h = screen_h - bottombar_h - 2*screen_padding - fps_h
    gui.osdInit(osd_x, osd_y, osd_w, osd_h)
 
+   -- Compensate for the extra pixels added to the OSD in C code
+   -- (via osd_render()).
+   osd_w = osd_w + 10
+
    -- Overlay
    local hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
    gui.setMapOverlayBounds(screen_padding, screen_padding + hbound,
