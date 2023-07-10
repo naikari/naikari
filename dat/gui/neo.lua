@@ -134,6 +134,7 @@ end
 
 function render(dt, dt_mod)
    render_sidebar()
+   render_targetDisplay()
    render_bottombar()
 end
 
@@ -632,10 +633,10 @@ function render_sidebar()
          col_outline1, true)
    gfx.renderRect(x + 1, y + 1, w + 2*sidebar_padding - 2,
          h + 2*sidebar_padding - 2, col_outline2, true)
-
-   -- Render stat bars.
    x = x + sidebar_padding
    y = y + sidebar_padding + h
+
+   -- Render stat bars.
    x, y = render_pilotStats(x, y, p, player_speed_max)
 
    -- Render weapset display.
@@ -705,15 +706,54 @@ function render_targetDisplay()
 
    local w = sidebar_w
    local name = target_p:getPrefix() .. target_p:name() .. "#0"
-   local name_h = gfx.printDim(true, name, w)
+   local name_h = gfx.printDim(false, name, w)
    local f_text = target_faction:name()
    local f_text_h = gfx.printDim(true, f_text, w)
    local icon_d = 48
+   local dist_w = w - icon_d - sidebar_padding
+   local dist_header_text = p_("gui", "Distance:")
+   local dist_header_text_h = gfx.printDim(true, dist_header_text, dist_w)
    local dist = player.pilot():pos():dist(target_p:pos())
-   local dist_text = fmt.f(p_("gui", "Distance:\n{distance}"),
-         {distance=format_distance(dist)})
-   local dist_text_h = gfx.printDim(true, dist_text,
-         w - icon_d - sidebar_padding)
+   local dist_text = format_distance(dist)
+   local dist_text_h = gfx.printDim(true, dist_text, dist_w)
+   local dist_h = math.max(icon_d,
+         dist_header_text_h + sidebar_padding + dist_text_h)
+   local h = (name_h + sidebar_padding + f_text_h + sidebar_padding
+         + dist_h + sidebar_padding + 5*barFrame_h)
+
+   local x = sidebar_x - w - 2*sidebar_padding
+   local y = bottombar_h + screen_padding
+
+   -- Render background.
+   gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding, col_bg)
+   gfx.renderRect(x, y, w + 2*sidebar_padding, h + 2*sidebar_padding,
+         col_outline1, true)
+   gfx.renderRect(x + 1, y + 1, w + 2*sidebar_padding - 2,
+         h + 2*sidebar_padding - 2, col_outline2, true)
+   x = x + sidebar_padding
+   y = y + sidebar_padding + h
+
+   -- Render header text.
+   y = y - name_h
+   gfx.print(false, name, x, y, col_text, w)
+
+   y = y - sidebar_padding - f_text_h
+   gfx.print(true, f_text, x, y, col_text, w)
+
+   -- Render icon and distance.
+   y = y - sidebar_padding
+   render_pilotIcon(x, y - icon_d, icon_d, target_p, target_tex,
+         target_tex_sw, target_tex_sh)
+
+   gfx.print(true, dist_header_text, x + icon_d + sidebar_padding,
+         y - dist_header_text_h, col_text, dist_w)
+   gfx.print(true, dist_text, x + icon_d + sidebar_padding,
+         y - dist_header_text_h - sidebar_padding - dist_text_h, col_text,
+         dist_w)
+   y = y - dist_h - sidebar_padding
+
+   -- Render stat bars.
+   x, y = render_pilotStats(x, y, target_p, target_speed_max)
 end
 
 
