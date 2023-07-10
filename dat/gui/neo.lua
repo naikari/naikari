@@ -127,6 +127,10 @@ function create ()
    gui.mesgInit(sidebar_x - sidebar_w - 2*sidebar_padding - screen_padding,
          screen_padding, bottombar_h + screen_padding)
 
+   -- Initialize buttons list
+   buttons = {}
+   update_buttons()
+
    -- Initial updates
    update_ship()
    update_cargo()
@@ -281,6 +285,66 @@ function mouse_move(x, y)
 end
 
 function mouse_click(button, x, y, state)
+end
+
+
+--[[
+List of all possible button IDs in the order that they should appear, if
+visible.
+--]]
+button_types = {
+   "escort_formation",
+   "escort_orders",
+}
+
+
+--[[
+Update buttons. Must be called every time the buttons table is changed.
+
+Note: only buttons whose type ID is in button_types (defined above) will
+actually display as buttons.
+
+@func update_buttons
+--]]
+function update_buttons()
+   buttons_list = {}
+   for i, b in ipairs(button_types) do
+      if buttons[b] ~= nil then
+         table.insert(buttons_list, buttons[b])
+      end
+   end
+end
+
+
+--[[
+Update how many followers we have and add / remove buttons as necessary.
+
+@func update_followers
+--]]
+function update_escorts()
+   local p = player.pilot()
+   local followers = #p:followers()
+
+   if followers == escort_num then
+      return
+   end
+   escort_num = followers
+
+   if followers > 0 then
+      buttons.escort_formation = {
+         text = _("Set Formation"),
+         func = eh.playerform,
+      }
+      buttons.escort_orders = {
+         text = _("Issue Orders"),
+         func = eh.issue_orders,
+      }
+   else
+      buttons.escort_formation = nil
+      buttons.escort_orders = nil
+   end
+
+   update_buttons()
 end
 
 
