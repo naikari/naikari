@@ -150,11 +150,11 @@ static int gfxL_dim( lua_State *L )
  * @usage gfx.renderTex( tex, 0., 0., 4, 3, col ) -- Render sprite at position 4,3 (top-left is 1,1) with colour col
  *
  *    @luatparam Tex tex Texture to render.
- *    @luatparam number pos_x X position to render texture at.
- *    @luatparam number pos_y Y position to render texture at.
- *    @luatparam[opt=0] int sprite_x X sprite to render.
- *    @luatparam[opt=0] int sprite_y Y sprite to render.
- *    @luatparam[opt] Colour colour Colour to use when rendering.
+ *    @luatparam number x X position to render texture at.
+ *    @luatparam number y Y position to render texture at.
+ *    @luatparam[opt=0] number sp_x X sprite to render.
+ *    @luatparam[opt=0] number sp_y Y sprite to render.
+ *    @luatparam[opt] Colour color Color to use when rendering.
  * @luafunc renderTex
  */
 static int gfxL_renderTex( lua_State *L )
@@ -211,17 +211,19 @@ static int gfxL_renderTex( lua_State *L )
  * @usage gfx.renderTexRaw( tex, 0., 0., 100., 100., 1, 1, 0., 0., 0.5, 0.5 ) -- Renders the bottom quarter of the sprite 1,1 of the image.
  *
  *    @luatparam Tex tex Texture to render.
- *    @luatparam number pos_x X position to render texture at.
- *    @luatparam number pos_y Y position to render texture at.
- *    @luatparam number pos_w Width of the image on screen.
- *    @luatparam number pos_h Height of the image on screen.
- *    @luatparam number sprite_x X sprite to render.
- *    @luatparam number sprite_y Y sprite to render.
+ *    @luatparam number x X position to render texture at.
+ *    @luatparam number y Y position to render texture at.
+ *    @luatparam number w Width of the image on screen.
+ *    @luatparam number h Height of the image on screen.
+ *    @luatparam number sp_x X sprite to render.
+ *    @luatparam number sp_y Y sprite to render.
  *    @luatparam number tex_x X sprite texture offset as [0.:1.].
  *    @luatparam number tex_y Y sprite texture offset as [0.:1.].
- *    @luatparam number tex_w Sprite width to display as [-1.:1.]. Note if negative, it will flip the image horizontally.
- *    @luatparam number tex_h Sprite height to display as [-1.:1.] Note if negative, it will flip the image vertically.
- *    @luatparam[opt] Colour colour Colour to use when rendering.
+ *    @luatparam number tex_w Sprite width to display as [-1.:1.].
+ *       Note: if negative, it will flip the image horizontally.
+ *    @luatparam number tex_h Sprite height to display as [-1.:1.].
+ *       Note: if negative, it will flip the image vertically.
+ *    @luatparam[opt] Colour color Color to use when rendering.
  *    @luatparam[opt] number angle Angle to rotate in radians.
  * @luafunc renderTexRaw
  */
