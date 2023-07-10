@@ -124,8 +124,8 @@ function create ()
          screen_w / 2, screen_h / 2)
 
    -- Messages
-   gui.mesgInit(screen_w/2 - screen_padding, screen_padding,
-         bottombar_h + screen_padding)
+   gui.mesgInit(sidebar_x - sidebar_w - 2*sidebar_padding - screen_padding,
+         screen_padding, bottombar_h + screen_padding)
 
    -- Initial updates
    update_ship()
