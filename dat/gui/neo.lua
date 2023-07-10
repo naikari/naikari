@@ -692,15 +692,11 @@ function render_pilotIcon(x, y, d, p, tex, tex_sw, tex_sh)
    end
    gfx.renderTexRaw(tex, xcenter - draw_w/2, ycenter - draw_h/2,
          draw_w, draw_h, sx, sy, 0, 0, 1, 1)
-
-   -- Render outline.
-   gfx.renderRect(x, y, d, d, col_outline1, true)
-   gfx.renderRect(x + 1, y + 1, d - 2, d - 2, col_outline2, true)
 end
 
 
 function render_targetDisplay()
-   if target_p == nil then
+   if target_p == nil or not target_p:exists() then
       return
    end
 
