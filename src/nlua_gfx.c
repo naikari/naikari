@@ -795,7 +795,7 @@ static int gfxL_print( lua_State *L )
  *    @luatparam number w Width of the block of text.
  *    @luatparam number h Height of the block of text.
  *    @luatparam Colour col Colour to print text.
- *    @luatparam[opt] line_height Height of each line to print.
+ *    @luatparam[opt] number line_height Height of each line to print.
  * @luafunc printText
  */
 static int gfxL_printText( lua_State *L )
