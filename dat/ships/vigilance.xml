@@ -2,7 +2,7 @@
 <ship name="Vigilance">
  <base_type>Vigilance</base_type>
  <GFX size="95" sx="10" sy="10">vigilance</GFX>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Destroyer</class>
  <rdr_scale>1.5</rdr_scale>

@@ -3,7 +3,7 @@
  <base_type>Virtuosity</base_type>
  <GFX size="70">virtuosity</GFX>
  <rarity>4</rarity>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Corvette</class>
  <rdr_scale>1.25</rdr_scale>

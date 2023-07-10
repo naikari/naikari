@@ -2,7 +2,7 @@
 <ship name="Phalanx">
  <base_type>Phalanx</base_type>
  <GFX size="95" sx="10" sy="10">phalanx</GFX>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Corvette</class>
  <rdr_scale>1.25</rdr_scale>

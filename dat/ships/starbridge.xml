@@ -3,7 +3,7 @@
  <base_type>Archimedes</base_type>
  <GFX sx="10" sy="10">starbridge</GFX>
  <rarity>5</rarity>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Cruiser</class>
  <rdr_scale>2</rdr_scale>

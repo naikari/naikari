@@ -2,7 +2,7 @@
 <ship name="Shark">
  <base_type>Shark</base_type>
  <GFX size="54">shark</GFX>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Fighter</class>
  <rdr_scale>1</rdr_scale>

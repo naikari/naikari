@@ -3,7 +3,7 @@
  <base_type>Derivative</base_type>
  <GFX size="45">derivative</GFX>
  <rarity>5</rarity>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Fighter</class>
  <rdr_scale>1</rdr_scale>

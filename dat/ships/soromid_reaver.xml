@@ -3,7 +3,7 @@
  <base_type>Reaver</base_type>
  <GFX size="68">reaver</GFX>
  <rarity>2</rarity>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine_soromid</sound>
  <class>Fighter</class>
  <rdr_scale>1</rdr_scale>

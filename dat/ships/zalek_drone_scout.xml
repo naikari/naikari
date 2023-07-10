@@ -2,7 +2,7 @@
 <ship name="Za'lek Scout Drone">
  <base_type>Za'lek Scout Drone</base_type>
  <GFX size="38">zalek_drone_scout</GFX>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine_zalek</sound>
  <class>Scout</class>
  <rdr_scale>1</rdr_scale>

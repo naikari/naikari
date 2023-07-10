@@ -3,7 +3,7 @@
  <base_type>Ancestor</base_type>
  <GFX size="65">ancestor_dvaered</GFX>
  <rarity>2</rarity>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Bomber</class>
  <rdr_scale>1</rdr_scale>

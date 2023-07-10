@@ -2,7 +2,7 @@
 <ship name="Admonisher">
  <base_type>Admonisher</base_type>
  <GFX size="68">admonisher</GFX>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Corvette</class>
  <rdr_scale>1.25</rdr_scale>

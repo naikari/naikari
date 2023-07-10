@@ -3,7 +3,7 @@
  <base_type>Brigand</base_type>
  <GFX>brigand</GFX>
  <rarity>2</rarity>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine_soromid</sound>
  <class>Fighter</class>
  <rdr_scale>1</rdr_scale>

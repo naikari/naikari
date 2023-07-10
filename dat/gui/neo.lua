@@ -1044,7 +1044,7 @@ function render_planetPane()
    -- Services sizing
    local services_header_text = p_("planet", "Services:")
    local services_header_text_h = gfx.printDim(true, services_header_text, w)
-   local indent = 8
+   local indent = 20
    local services_w = w - indent
    local services_x = x + indent
    if #nav_planet_services > 0 then

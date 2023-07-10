@@ -2,7 +2,7 @@
 <ship name="Schroedinger">
  <base_type>Schroedinger</base_type>
  <GFX size="47">schroedinger</GFX>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Scout</class>
  <rdr_scale>1</rdr_scale>

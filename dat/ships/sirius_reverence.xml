@@ -3,7 +3,7 @@
  <base_type>Reverence</base_type>
  <GFX size="70" sx="10" sy="10">preacher</GFX>
  <rarity>6</rarity>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Corvette</class>
  <rdr_scale>1.5</rdr_scale>

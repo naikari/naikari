@@ -2,7 +2,7 @@
 <ship name="Quicksilver">
  <base_type>Quicksilver</base_type>
  <GFX size="70" sx="10" sy="10">quicksilver</GFX>
- <GUI>brushed</GUI>
+ <GUI>neo</GUI>
  <sound>engine</sound>
  <class>Courier</class>
  <rdr_scale>1</rdr_scale>
