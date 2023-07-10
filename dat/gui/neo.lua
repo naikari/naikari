@@ -309,8 +309,21 @@ function update_nav()
       
       local services = nav_planet:services()
       nav_planet_services = {}
-      for i, s in ipairs(services) do
-         table.insert(nav_planet_services, _(s))
+      local possible_services = {
+         "land",
+         "refuel",
+         "bar",
+         "missions",
+         "commodity",
+         "outfits",
+         "shipyard",
+         "blackmarket",
+      }
+      for i, s in ipairs(possible_services) do
+         local service = services[s]
+         if service then
+            table.insert(nav_planet_services, _(service))
+         end
       end
    end
 end
@@ -1017,7 +1030,7 @@ function render_planetPane()
 
    -- Class sizing
    local class_text = fmt.f(p_("planet", "Class: {class}"),
-         {class=target_planet_class})
+         {class=nav_planet_class})
    local class_text_h = gfx.printDim(true, class_text, w)
    h = h + class_text_h + planetpane_padding
 
@@ -1029,16 +1042,21 @@ function render_planetPane()
    h = h + dist_text_h + planetpane_padding
 
    -- Services sizing
+   local services_header_text = p_("planet", "Services:")
+   local services_header_text_h = gfx.printDim(true, services_header_text, w)
    local indent = 8
    local services_w = w - indent
-   local services_h = nil
    local services_x = x + indent
-   for i, s in ipairs(nav_planet_services) do
-      local sh = gfx.printDim(true, s, services_w)
-      h = h + sh + planetpane_padding
+   if #nav_planet_services > 0 then
+      h = h + services_header_text_h + planetpane_padding
+      for i, s in ipairs(nav_planet_services) do
+         local sh = gfx.printDim(true, s, services_w)
+         h = h + sh + planetpane_padding
+      end
    end
 
    -- Render background.
+   y = y - h - 2*planetpane_padding
    gfx.renderRect(x, y, w + 2*planetpane_padding, h + 2*planetpane_padding,
          col_bg)
    gfx.renderRect(x, y, w + 2*planetpane_padding, h + 2*planetpane_padding,
@@ -1051,20 +1069,21 @@ function render_planetPane()
    -- Render header.
    if nav_planet_ficon ~= nil then
       gfx.renderTex(nav_planet_ficon, x + w - nav_planet_ficon_w,
-            y - nav_plant_ficon_h)
+            y - nav_planet_ficon_h)
    end
 
    local ty = y - name_h
-   gfx.printText(false, name, x, y, w, name_h, col_text)
+   gfx.printText(false, name, x, ty, w, name_h, col_text)
 
    if f_text ~= nil then
       ty = ty - planetpane_padding - f_text_h
-      gfx.printText(true, f_text, x, y, w, f_text_h, col_text)
+      gfx.printText(true, f_text, x, ty, w, f_text_h, col_text)
    end
 
    y = y - header_h - planetpane_padding
 
    -- Render planet image.
+   y = y - w
    if w < nav_planet_tex_w or w < nav_planet_tex_h then
       local aspect = nav_planet_tex_w / nav_planet_tex_h
       local draw_w = nav_planet_tex_w
@@ -1086,6 +1105,26 @@ function render_planetPane()
       gfx.renderTex(nav_planet_tex, x + w/2 - nav_planet_tex_w/2,
             y + w/2 - nav_planet_tex_h/2)
    end
+
+   -- Render class.
+   y = y - planetpane_padding - class_text_h
+   gfx.printText(true, class_text, x, y, w, class_text_h, col_text)
+
+   -- Render distance.
+   y = y - planetpane_padding - dist_text_h
+   gfx.printText(true, dist_text, x, y, w, dist_text_h, col_text)
+
+   -- Render services.  
+   if #nav_planet_services > 0 then
+      y = y - planetpane_padding - services_header_text_h
+      gfx.printText(true, services_header_text, x, y, w,
+            services_header_text_h, col_text)
+      for i, s in ipairs(nav_planet_services) do
+         local sh = gfx.printDim(true, s, services_w)
+         y = y - planetpane_padding - sh
+         gfx.printText(true, s, services_x, y, services_w, sh, col_text)
+      end
+   end 
 end
 
 
