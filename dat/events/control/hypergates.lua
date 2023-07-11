@@ -50,6 +50,8 @@ function create()
       if not diff.isApplied("hypergate_dvaered")
             and (standing >= 20 or standing <= -20) then
          diff.apply("hypergate_dvaered")
+         jump.get("Dvaer", "Hypergate Zone"):setKnown()
+         jump.get("Hypergate Zone", "Dvaer"):setKnown()
          news.add("Generic", _("Dvaered Hypergate Constructed"),
                _([[Dvaered officials have announced today that construction of a hypergate in the Dvaer system is complete, sponsored by the Empire. Dvaered warlords have shown little interest in the project, but traders rejoice as transporting Dvaered ore out of Dvaered space has become less time-consuming.]]),
                exp)
@@ -59,6 +61,8 @@ function create()
       if not diff.isApplied("hypergate_zalek")
             and (standing >= 20 or standing <= -20) then
          diff.apply("hypergate_zalek")
+         jump.get("Za'lek", "Hypergate Zone"):setKnown()
+         jump.get("Hypergate Zone", "Za'lek"):setKnown()
          news.add("Generic", _("Za'lek Hypergate Constructed"),
                _([[Za'lek scientists have excitedly jumped on the hypergate bandwagon, constructing a hypergate in the Za'lek system. The team involved in the construction of the project refused to comment on the hypergate's effect on intergalactic commerce, seemingly more interested in the potential for research the technology creätes.]]),
                exp)
@@ -68,6 +72,8 @@ function create()
       if not diff.isApplied("hypergate_sirius")
             and (standing >= 20 or standing <= -20) then
          diff.apply("hypergate_sirius")
+         jump.get("Aesir", "Hypergate Zone"):setKnown()
+         jump.get("Hypergate Zone", "Aesir"):setKnown()
          news.add("Generic", _("Sirius Hypergate Constructed"),
                _([[Sirius officials have announced, as they call it, the "Great Hypergate of Sirichana" in the Aesir system. "It was through the will of Sirichana that the Empire developed this technology," one official stated. "Through this new interconnected galaxy, more people will learn of His might and glory."]]),
                exp)
@@ -77,6 +83,8 @@ function create()
       local standing = faction.get("Empire"):playerStanding()
       if standing >= 20 or standing <= -20 then
          diff.apply("hypergate_empire")
+         jump.get("Gamma Polaris", "Hypergate Zone"):setKnown()
+         jump.get("Hypergate Zone", "Gamma Polaris"):setKnown()
          news.add("Generic", _("Empire Announces Hypergate Network"),
                _([[The Emperor has announced the creätion of a new system of mass transit: hypergates. "Unlike regular jump gates, hypergates operate through a central hub called the Hypergate Zone," a leading researcher in charge of the project explained. Currently, the only working hypergate is found in Gamma Polaris. Imperial officials state that they are working with the Great Houses to finish construction of the hypergate network.]]),
                exp)
