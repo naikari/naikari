@@ -1213,8 +1213,8 @@ static int pilotL_activeWeapset(lua_State *L)
  *       applicable.</li>
  *    <li>"lockon": [0:1] Lock-on percentage for seeker weapons or nil
  *       if not applicable.</li>
- *    <li>"in_arc": Whether or not the target is in targeting arc or nil
- *       if not applicable.</li>
+ *    <li>"in_arc": Whether or not the target is in targeting arc for
+ *       seeker weapons or nil if not applicable.</li>
  *    <li>"level": Level of the weapon (1 is primary, 2 is secondary, 0
  *       is neither primary nor secondary)).</li>
  *    <li>"instant": The instant mode weapon set the weapon is in if
@@ -1419,8 +1419,8 @@ static int pilotL_weapset(lua_State *L)
             lua_rawset(L, -3);
          }
 
-         /* Launcher lockon. */
-         if (is_lau) {
+         if (outfit_isSeeker(o)) {
+            /* Seeker lockon. */
             t = slot->u.ammo.lockon_timer;
             lua_pushstring(L, "lockon");
             if (t <= 0.)
@@ -1429,7 +1429,7 @@ static int pilotL_weapset(lua_State *L)
                lua_pushnumber(L, 1. - (t / slot->outfit->u.lau.lockon));
             lua_rawset(L,-3);
 
-         /* Is in arc. */
+            /* Is in arc. */
             lua_pushstring(L, "in_arc");
             lua_pushboolean(L, slot->u.ammo.in_arc);
             lua_rawset(L,-3);
