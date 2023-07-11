@@ -134,7 +134,7 @@ function create ()
    -- Planet pane
    planetpane_x = osd_x + osd_w + 8
    planetpane_y = screen_h - screen_padding
-   planetpane_w = 152
+   planetpane_w = 160
    planetpane_padding = sidebar_padding
 
    -- Enable mouse
@@ -1073,11 +1073,11 @@ function render_planetPane()
    end
 
    local ty = y - name_h
-   gfx.printText(false, name, x, ty, w, name_h, col_text)
+   gfx.printText(false, name, x, ty, name_w, name_h, col_text)
 
    if f_text ~= nil then
       ty = ty - planetpane_padding - f_text_h
-      gfx.printText(true, f_text, x, ty, w, f_text_h, col_text)
+      gfx.printText(true, f_text, x, ty, name_w, f_text_h, col_text)
    end
 
    y = y - header_h - planetpane_padding
