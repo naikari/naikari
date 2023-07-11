@@ -304,7 +304,9 @@ function update_nav()
       nav_planet_ficon_h = 0
       if nav_planet_faction ~= nil and nav_planet_faction:known() then
          nav_planet_ficon = nav_planet_faction:logoTiny()
-         nav_planet_ficon_w, nav_planet_ficon_h = nav_planet_ficon:dim()
+         if nav_planet_ficon ~= nil then
+            nav_planet_ficon_w, nav_planet_ficon_h = nav_planet_ficon:dim()
+         end
       end
       
       local services = nav_planet:services()
