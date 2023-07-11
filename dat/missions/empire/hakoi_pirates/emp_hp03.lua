@@ -73,7 +73,7 @@ You consider that you might as well loot the ship while you're here. They're wan
 
 land_text = _([[You search around for Commander Soldner, but you don't see him in the immediate vicinity. Perhaps you should check at the bar.]])
 
-approach_text = _([[As you approach, you greet Commander Soldner and salute the Imperial Commodore. The Commodore speaks up with a relaxed smile that somehow feels firm at the same time. "Ah, you must be {player}! I'm Commodore Keer. Pleased to meet your acquaintance." She offers her hand for you to shake, which takes you off-guard, but you oblige her. "Commander Soldner has told me great things about you. Perhaps we will work together at some point in the future.
+approach_text = _([[As you approach, you greet Commander Soldner and salute the Imperial Commodore. The Commodore speaks up with a relaxed smile that somehow feels firm at the same time. "Ah, you must be {player}! I'm Commodore Keer. Pleased to make your acquaintance." She offers her hand, which you cautiously shake. "Commander Soldner has told me great things about you. Perhaps we will work together at some point in the future.
 
 "In any case, I must go now. Thank you for the report, Commander. It sounds like the Hakoi situation is in good hands." Commodore Keer stands and excuses herself, presumably to attend to other matters.]])
 
