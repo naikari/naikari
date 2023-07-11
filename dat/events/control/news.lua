@@ -123,6 +123,24 @@ cond_articles = {
       end,
    },
    {
+      title = _("Salvador Asserts Independence"),
+      text = _([[Amid the ongoing investigation into the recent appearance of pirates in the Hakoi system, Imperial investigators report that pirates may be passing through the Salvador system for some unknown reason. However, Salvador residents have refused to allow the Imperial investigation in Emperor's Fist to intrude on the system's independence from Imperial rule.]]),
+      tag = "mhint_Hakoi and Salvador",
+      mission = "Hakoi and Salvador",
+      done = "Hakoi's Hidden Jumps",
+      cond = function()
+         return (faction.playerStanding("Empire") >= 10
+            and faction.playerStanding("Dvaered") >= 0
+            and player.numOutfit("Mercenary License") > 0
+            and player.misnDone("The macho teenager"))
+      end,
+      delcond = function()
+         return (faction.playerStanding("Empire") < 10
+            or faction.playerStanding("Dvaered") < 0)
+      end,
+      
+   },
+   {
       title = _("Enthusiasts Organize Racing"),
       text = _([[A group of enthusiasts have begun to organize informal racing events all across the galaxy. "Just a hobby," one of the organizers said, "but there's a small prize if you win. Racing is a lot of fun!" Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
       tag = "mhint_Racing Skills 1",
