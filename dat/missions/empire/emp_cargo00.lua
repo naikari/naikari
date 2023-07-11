@@ -28,13 +28,13 @@ require "missions/empire/common"
 
 bar_desc = _("You see an Imperial Lieutenant who seems to be looking at you.")
 misn_title = _("Empire Recruitment")
-misn_desc = _("You are being recruited to the Imperial Armada Shipping Division by Liutenant Czesc. Your first task is to deliver some parcels to {planet}.")
+misn_desc = _("You are being recruited to the Imperial Armada Shipping Division by Liutenant Chesc. Your first task is to deliver some parcels to {planet}.")
 
 text = {}
 ask_text = _([[You approach the Imperial Lieutenant.
 
-"Hello, I'm Lieutenant Czesc from the Imperial Armada Shipping Division. We're having another recruitment operation and would be interested in having another skilled pilot among us. We've heard of the work you've done for Mr. Ian Structure and think you would be a perfect candidate. Would you be interested in working for the Empire?"]])
-yes_text = _([["Welcome aboard," says Czesc before giving you a firm handshake. "At first you'll just be tested with cargo missions while we gather data on your flying skills. Later on, you could get called upon for more important missions. Who knows? You could be the next Yao Pternov, greatest pilot we ever had in the armada."
+"Hello, I'm Lieutenant Chesc from the Imperial Armada Shipping Division. We're having another recruitment operation and would be interested in having another skilled pilot among us. We've heard of the work you've done for Mr. Ian Structure and think you would be a perfect candidate. Would you be interested in working for the Empire?"]])
+yes_text = _([["Welcome aboard," says Chesc before giving you a firm handshake. "At first you'll just be tested with cargo missions while we gather data on your flying skills. Later on, you could get called upon for more important missions. Who knows? You could be the next Yao Pternov, greatest pilot we ever had in the armada."
 
 He hits a couple buttons on his wrist computer, which springs into action. "It looks like we already have a simple task for you. Deliver these parcels to {planet}. The best pilots started delivering papers and ended up flying into combat against gigantic warships with the Interception Division. Good luck!"]])
 pay_text = _([[You deliver the parcels to the Empire Shipping station at the {planet} spaceport. Afterwards, they make you do some paperwork to formalise your participation with the Empire. They tell you to keep an eye out in the mission computer for missions labeled ES, which stands for Empire Shipping, to which you now have access. You can go to the mission computer by clicking on the #bMissions tab#0.
