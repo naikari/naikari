@@ -46,8 +46,11 @@
   overlay.
 * Anglicized the spelling of the name of the Empire lieutenant you are
   recruited by, changing "Czesc" to "Chesc".
-* Changed the spellings used for "though" and "through" to "thô" and
-  "thrû".
+* Changed the spellings used for some words:
+  * "Minuscule" is spelled "miniscule".
+  * "Pursue" is spelled "persue".
+  * "Though" is spelled "thô".
+  * "Through" is spelled "thrû".
 
 ## 0.8.0
 
