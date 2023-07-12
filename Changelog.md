@@ -51,6 +51,7 @@
   * "Pursue" is spelled "persue".
   * "Though" is spelled "thô".
   * "Through" is spelled "thrû".
+* Updated some NPC portraits.
 
 ## 0.8.0
 
