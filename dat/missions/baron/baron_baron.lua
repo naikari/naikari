@@ -83,7 +83,7 @@ misn_desc = _("You've been hired as a courier for one Baron Sauterfeldt. Your jo
 credits = 200000
 
 -- NPC stuff
-npc_desc = _("These must be the 'agents' hired by this Baron Sauterfeldt. They look shifty. Why must people involved in underhanded business always look shifty?")
+npc_desc = _("This must be one of the 'agents' hired by this Baron Sauterfeldt.")
 
 -- OSD stuff
 osd_title = _("Baron")
@@ -148,12 +148,12 @@ end
 
 function land()
    if planet.cur() == mispla and not talked then
-      thief1 = misn.npcAdd("talkthieves", _("Sauterfeldt's agents"),
-            portrait.get("Pirate"), npc_desc)
-      thief2 = misn.npcAdd("talkthieves", _("Sauterfeldt's agents"),
-            portrait.get("Pirate"), npc_desc)
-      thief3 = misn.npcAdd("talkthieves", _("Sauterfeldt's agents"),
-            portrait.get("Pirate"), npc_desc)
+      thief1 = misn.npcAdd("talkthieves", _("Sauterfeldt's agent"),
+            portrait.get("Thief"), npc_desc)
+      thief2 = misn.npcAdd("talkthieves", _("Sauterfeldt's agent"),
+            portrait.get("Thief"), npc_desc)
+      thief3 = misn.npcAdd("talkthieves", _("Sauterfeldt's agent"),
+            portrait.get("Thief"), npc_desc)
    end
 end
 

@@ -45,6 +45,9 @@ local portraits_m_neutral = {
    "neutral/male13.png",
    "neutral/miner1.png",
    "neutral/cyborg1.png",
+   "neutral/thief_male1.png",
+   "neutral/thief_male2.png",
+   "neutral/thief_male3.png",
 }
 local portraits_f_neutral = {
    "neutral/female1.png",
@@ -62,6 +65,20 @@ local portraits_f_neutral = {
    "neutral/female13.png",
    "neutral/female14.png",
    "neutral/miner2.png",
+   "neutral/thief_female1.png",
+   "neutral/thief_female2.png",
+   "neutral/thief_female3.png",
+}
+
+portraits_m["Thief"] = {
+   "neutral/thief_male1.png",
+   "neutral/thief_male2.png",
+   "neutral/thief_male3.png",
+}
+portraits_f["Thief"] = {
+   "neutral/thief_female1.png",
+   "neutral/thief_female2.png",
+   "neutral/thief_female3.png",
 }
 
 portraits_m["Dvaered"] = {
@@ -117,6 +134,9 @@ portraits_f["Sirius"] = {
 }
 
 portraits_m["Pirate"] = {
+   "neutral/thief_male1.png",
+   "neutral/thief_male2.png",
+   "neutral/thief_male3.png",
    "pirate/pirate1.png",
    "pirate/pirate2.png",
    "pirate/pirate3.png",
@@ -132,6 +152,9 @@ portraits_m["Pirate"] = {
    "pirate/pirate_militia2.png",
 }
 portraits_f["Pirate"] = {
+   "neutral/thief_female1.png",
+   "neutral/thief_female2.png",
+   "neutral/thief_female3.png",
    "pirate/pirate2.png",
    "pirate/pirate3.png",
    "pirate/pirate5.png",

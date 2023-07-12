@@ -586,7 +586,7 @@ function spawnDealer()
    end
 
    if npcdata ~= nil and player.credits() >= npcdata.price then
-      id = evt.npcAdd("talkNPC", _("Dealer"), portrait.get("Pirate"),
+      id = evt.npcAdd("talkNPC", _("Dealer"), portrait.get("Thief"),
             _("This seems to be a dealer in the black market."), 99)
       npcs[id] = npcdata
    end
