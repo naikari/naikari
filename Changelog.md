@@ -41,6 +41,11 @@
 * Added the Neo GUI, a new GUI intended to combine the strengths of the
   Brushed and Slim GUIs, as the new default GUI.
 * Hypergates event now adds knowledge of the hypergates.
+* Added some more missions to the Hakoi Pirates campaign.
+* Moved things around in Gamma Polaris to reduce conflicts in the
+  overlay.
+* Anglicized the spelling of the name of the Empire lieutenant you are
+  recruited by, changing "Czesc" to "Chesc".
 
 ## 0.8.0
 
