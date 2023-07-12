@@ -80,7 +80,7 @@ flint_artifact_textB = _([[You hand Flintley the artifact you bought on {planet}
 
 You promptly decide to dispose of the thing, unwilling to carry it around with you a moment longer than necessary.]])
 
-flint_artifact_textC = _([[Flintley studies the object on the table for a while, checking the online database a number of times in the process. Then, finally, he turns to you. "I hate to say this, but it seems you've bought a counterfeit. It's a good one, though! That seller on {planet} must have known their stuff. You see, this is very similar to a number plate used by hovercars on Mars at the time of the Second Growth. However, it's missing a number of vital characteristics, and some details betray its recent manufacture. Close, {player}, but no cigar."
+flint_artifact_textC = _([[Flintley studies the object on the table for a while, checking the online database a number of times in the process. Then, finally, he turns to you. "I hate to say this, but it seems you've bought a counterfeit. It's a good one, thô! That seller on {planet} must have known their stuff. You see, this is very similar to a number plate used by hovercars on Mars at the time of the Second Growth. However, it's missing a number of vital characteristics, and some details betray its recent manufacture. Close, {player}, but no cigar."
 
 You dispose of the counterfeit artifact. Hopefully the next one will be what Sauterfeldt is looking for.…]])
 
@@ -100,7 +100,7 @@ pay_text = _([[Baron Dovai Sauterfeldt turns the skate-board over in his hands, 
 
 "I was right to send you, {player}. You and the {ship} have beautifully lived up to my expectations. And I'm a man of my word, I will reward you as promised. What was it we agreed on again? What, I never promised you anything? Well, that won't do. I'll have my assistant place a suitable amount of money in your account. You will not find me ungrateful! Ah, but you must excuse me. I need time to revel in this fantastic piece of art! Goodbye, {player}, I will call on you when I have need of you again."
 
-You are seen out of the Baron's quarters, so you head back through the airlock and back into your own ship. The first thing you do is check your balance, and to your relief, it has indeed been upgraded by a substantial amount. As you undock, you wonder what kind of wild goose chase the man will send you on next time.]])
+You are seen out of the Baron's quarters, so you head back thrû the airlock and back into your own ship. The first thing you do is check your balance, and to your relief, it has indeed been upgraded by a substantial amount. As you undock, you wonder what kind of wild goose chase the man will send you on next time.]])
 
 -- Mission details
 misn_title = _("Prince")

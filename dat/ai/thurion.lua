@@ -42,7 +42,7 @@ function create ()
    mem.refuel = 0
    mem.refuel_msg = p_("refuel", "\"Sure, I can spare some fuel.\"")
 
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
    create_post()
 end
 

@@ -78,11 +78,11 @@ text[5] = _([[When you step out of your ship, a Dvaered military delegation is w
     "This is a reward for your services. The money speaks for itself, of course. As for the pin, it's a civilian commendation, the Star of Valor. Think of it as a badge of honor. It isn't a medal, but it's considered a mark of prestige among the Dvaered citizenry nonetheless. You will certainly enjoy greater respect when you wear this on your lapel, at least as long as you're in Dvaered space."]])
 
 text[6] = _([[Colonel Urnus returns to his seat.
-    "Let me tell you one thing, though. I doubt we've quite seen the last of the FLF. We may have dealt them a mortal blow by taking out their hidden base, but as long as rebel sentiment runs high among the Frontier worlds, they will rear their ugly heads again. That means my job isn't over, and maybe it means yours isn't either. Perhaps in the future we'll work together again - but this time it won't be just about removing a threat on our doorstep." Urnus smiles grimly. "It will be about rooting out the source of the problem once and for all."
+    "Let me tell you one thing, thô. I doubt we've quite seen the last of the FLF. We may have dealt them a mortal blow by taking out their hidden base, but as long as rebel sentiment runs high among the Frontier worlds, they will rear their ugly heads again. That means my job isn't over, and maybe it means yours isn't either. Perhaps in the future we'll work together again - but this time it won't be just about removing a threat on our doorstep." Urnus smiles grimly. "It will be about rooting out the source of the problem once and for all."
     As you walk the corridor that leads out of the military complex, the Star of Valor glinting on your lapel, you find yourself thinking about what your decisions might ultimately lead to. Colonel Urnus hinted at war on the Frontier, and he also indicated that you would be involved. While the Dvaered have been treating you as well as can be expected from a military regime, perhaps you might want to reconsider your allegiance when the time comes...]])
 
 refusetitle = _("Refusal")
-refusetext = _([["Understood, citizen. Keep in mind, though, that as long as the operation isn't yet underway, you may still choose to participate. Simply come back to me if you change your mind."]])
+refusetext = _([["Understood, citizen. Keep in mind, thô, that as long as the operation isn't yet underway, you may still choose to participate. Simply come back to me if you change your mind."]])
 
 failtitle[1] = _("You ran away!")
 failtext[1] = _("You have left the system without first completing your mission. This treachery will not soon be forgotten by the Dvaered authorities!")
@@ -545,7 +545,7 @@ function control()
     controller = hook.timer(0.5, "control")
 end
 
--- Replaces lost bombers. The supply is limited, though.
+-- Replaces lost bombers. The supply is limited, thô.
 function deathDVbomber()
     if DVreinforcements > 0 then
         DVreinforcements = DVreinforcements - 1

@@ -59,7 +59,7 @@ If you are prevented from taking Jorek offworld for any reason, make your way to
 
 Rebina empties her glass and places it on the bar before rising to her feet. "That will be all. Good luck, and keep your wits about you." Rebina takes her leave from you and gracefully departs the spaceport bar. You order yourself another drink. You've got a feeling you're going to need it.]])
 
-refusal_text = _([["I see. What a shame." Rebina's demeanor conveys that she's disappointed but not upset. "I can understand your decision. One should not bite off more than one can chew, after all. It seems I will have to try to find another candidate." She tilts her head slightly. Then, "Although if you change your mind before I do, you're welcome to accept the mission."]])
+refusal_text = _([["I see. What a shame." Rebina's demeanor conveys that she's disappointed but not upset. "I can understand your decision. One should not bite off more than one can chew, after all. It seems I will have to try to find another candidate." She tilts her head slightly. Then, "Althô if you change your mind before I do, you're welcome to accept the mission."]])
 
 fail_noattempt_text = _([[You complete docking operations with the Seiryuu, well aware that you didn't even attempt to pick up the man they were expecting. At the airlock, you are greeted by a pair of crewmen in grey uniforms. You explain to them that you were unable to bring Jorek to them, and they receive your report in a dry, businesslike manner. The meeting is short. The crewmen disappear back into their ship, closing the airlock behind them, and you return to your bridge.
 
@@ -69,10 +69,10 @@ succeed_text = _([[You complete docking operations with the Seiryuu, well aware 
 
 "Well met, {player}," she says. At the same time, the two crewmen that accompanied her push their way past you and disappear in the direction of your cargo hold. You open your mouth to protest, but Rebina raises a hand to forestall you. "There is no cause for concern," she says. "My men are only retrieving that which we sent you to fetch. I assure you that your ship and its cargo will be left undisturbed."
 
-You explain to Rebina that although you met Jorek, he didn't accompany you on your way here. Rebina gives you an assured smile in return. "Oh, I know that. I never expected you to bring him to us in the first place. You see, it's not Jorek we wanted you to get. It was… that."]])
+You explain to Rebina that althô you met Jorek, he didn't accompany you on your way here. Rebina gives you an assured smile in return. "Oh, I know that. I never expected you to bring him to us in the first place. You see, it's not Jorek we wanted you to get. It was… that."]])
 succeed_text2 = _([[You follow her gaze, and spot the crewmen making their way back to the airlock, carrying between them a small but apparently rather heavy crate. You are absolutely certain you've never seen it before. "That is what Jorek was keeping for us on {planet}, and that is what we need," Rebina explains. "Jorek is nothing but a decoy to draw the Empire's attention away from our real operations. While you were talking to him, his subordinates secured our cargo aboard your ship. We chose not to inform you about this because, well… It's best you didn't know what was in that crate. I'm sure we understand each other."
 
-Rebina turns to follow her men back into the ship, but before she closes the airlock hatch she looks back at you over her shoulder, shooting you a casual glance that nevertheless seems to see right through you. "I'm glad to see my trust in you was not misplaced," she remarks. "Perhaps we'll see each other again someday, and when we do, perhaps we can do some more business."
+Rebina turns to follow her men back into the ship, but before she closes the airlock hatch she looks back at you over her shoulder, shooting you a casual glance that nevertheless seems to see right thrû you. "I'm glad to see my trust in you was not misplaced," she remarks. "Perhaps we'll see each other again someday, and when we do, perhaps we can do some more business."
 
 The airlock hatch closes. You stare at it, then look down at the credit chip in your hand, first marveling at the wealth it represents and then astonished to realize you can't remember how it got there.]])
 
@@ -89,7 +89,7 @@ jorek_npc["portrait"] = "neutral/unique/jorek.png"
 jorek_npc["desc"] = _("A middle-aged, cranky looking man is sitting at a table by himself. You are fairly certain that this is the fellow you're looking for.")
 
 jorek_text = {}
-jorek_text[1] = _([[You join the man at his table. He doesn't particularly seem to welcome your company, though, because he gives you a look most people would reserve for particularly unwelcome guests. Determined not to let that get to you, you ask him if his name is indeed Jorek. "Yeah, that's me," he replies. "What'o ya want, kid?"
+jorek_text[1] = _([[You join the man at his table. He doesn't particularly seem to welcome your company, thô, because he gives you a look most people would reserve for particularly unwelcome guests. Determined not to let that get to you, you ask him if his name is indeed Jorek. "Yeah, that's me," he replies. "What'o ya want, kid?"
 
 You explain to him that you've come to see to his special needs. This earns you a sneer from Jorek. "Ha! So you're running errands for the little lady, are you? Oh don't tell me, I've got a pretty good ideä what it is you want from me." He leans onto the table, bringing his face closer to yours. "Listen, buddy. I don't know if you noticed, but people are watchin' me. And you too, now that you're talkin' to me. Those goons over there? Yeah, they're here for me. Used to be fancy undercover agents, but I've been sittin' on my ass here for a long time and they figured out I was on to them, so they replaced 'em with a bunch of grunts. Cheaper, see.
 
@@ -104,7 +104,7 @@ jorek_text[4] = _([[Jorek pointedly ignores you. It doesn't seem like he's willi
 
 off_npc = {}
 off_npc["name"] = _("Officer at the bar")
-off_npc["desc"] = _("You see a military officer with a drink at the bar. He doesn't seem to be very interested in it, though.…")
+off_npc["desc"] = _("You see a military officer with a drink at the bar. He doesn't seem to be very interested in it, thô.…")
 off_text = { _("You try to strike a conversation with the officer, but he doesn't seem interested what you have to say, so you give up.") }
 
 sol1_npc = {}

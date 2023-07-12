@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>0</mass>
   <price>75000</price>
-  <description>This device forces a surge of power through turreted weapons beyond what they're designed to handle, creäting a boost in fire rate. The process is inefficient and produces a lot of heat, but many courier pilots consider this to be a worthwhile trade-off to stretch what little damage-dealing capability they have.</description>
+  <description>This device forces a surge of power thrû turreted weapons beyond what they're designed to handle, creäting a boost in fire rate. The process is inefficient and produces a lot of heat, but many courier pilots consider this to be a worthwhile trade-off to stretch what little damage-dealing capability they have.</description>
   <gfx_store>firerate_turret.webp</gfx_store>
   <cpu>-1</cpu>
  </general>

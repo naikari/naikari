@@ -40,7 +40,7 @@ function create()
    end
 
    -- Handle misc stuff
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
 
    create_post()
 end

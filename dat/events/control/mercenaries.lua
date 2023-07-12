@@ -304,7 +304,7 @@ function spawn_timer()
       for i, jmp in ipairs(sys:jumps(true)) do
          local source = jmp:dest()
          -- Have to get the real jump that would be used to get here.
-         -- Ensures that they don't try to spawn through a jump that's
+         -- Ensures that they don't try to spawn thrû a jump that's
          -- hidden or exit-only on the other side.
          local rjump = jump.get(source, sys)
          if rjump ~= nil and not rjump:hidden() and not rjump:exitonly() then

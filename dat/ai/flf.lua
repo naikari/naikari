@@ -44,7 +44,7 @@ function create()
             {player=player.name()})
    end
 
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
 
    -- Finish up creation
    create_post()

@@ -82,7 +82,7 @@ personal_request_text = _([[You approach Lensa a second time and talk to her abo
 
 personal_request_text_2 = _([[Lensa goes silent for a moment and takes a sip of her drink before continuing. "The fact of the matter is, {player}, you and the Empire are on your own with this piracy shit. If you want to look into the piracy problem as a civilian, by all means, be my guest, just as long as you don't bring the Imperial military where it doesn't belong. But there's no chance in hell of the Dvaered warlords helping you without getting something substantial in return. Do you understand?" You hesitantly nod to Lensa indicating your understanding. "Good." She finishes her drink and leaves. It looks like you have bad news to report to Commander Soldner.]])
 
-finish_text = _([[You locate Commander Soldner and deliver the news to him. He listens patiently and nods when you finish. "I see. That's an unfortunate outcome, but through no fault of your own. You've done a great job out there, {player}. Earning the trust of a Dvaered is no easy feat, and it sounds like you may have earned Lensa's trust, but it seems that just won't be enough to get the warlords involved.
+finish_text = _([[You locate Commander Soldner and deliver the news to him. He listens patiently and nods when you finish. "I see. That's an unfortunate outcome, but thrû no fault of your own. You've done a great job out there, {player}. Earning the trust of a Dvaered is no easy feat, and it sounds like you may have earned Lensa's trust, but it seems that just won't be enough to get the warlords involved.
 
 "I'll have to think on what to do next. Meet me at the bar here on {planet} in a bit. Whatever the plan of action is, I know for sure now that we can't solve this problem without you."]])
 

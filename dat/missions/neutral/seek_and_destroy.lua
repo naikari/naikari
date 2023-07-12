@@ -58,8 +58,8 @@ noclue_text = {
    _([["I'd love to get back at {pilot} for what they did last year, but I haven't seen them in quite some time now."]]),
    _([["I've not seen {pilot}, but good luck in your search."]]),
    _([["I'd love to help, but unfortunately I haven't a clue where {pilot} is. Sorry."]]),
-   _([["I used to work with {pilot}. We haven't seen each other since they stole my favorite ship, though."]]),
-   _([["{pilot} has owed me 500 k¢ for over a decade and never paid me back! I have no clue where they are, though."]]),
+   _([["I used to work with {pilot}. We haven't seen each other since they stole my favorite ship, thô."]]),
+   _([["{pilot} has owed me 500 k¢ for over a decade and never paid me back! I have no clue where they are, thô."]]),
 }
 
 money_text = {
@@ -108,7 +108,7 @@ cold_text = {
    _([[When you ask for information about {pilot}, they tell you that this pirate has already been killed by someone else.]]),
    _([["Didn't you hear? That pirate's dead. Got blown up in an asteroid field is what I heard."]]),
    _([["Ha ha, you're still looking for {pilot}? You're wasting your time; that outlaw's already been taken care of."]]),
-   _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, though! It was glorious."]]),
+   _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, thô! It was glorious."]]),
    _([["Er, someone else already killed {pilot}, but if you like, I could show you a picture of their ship exploding! It was quite a sight to behold."]]),
 }
 enemy_cold_text = {

@@ -40,7 +40,7 @@ function create ()
       p_("refuel_prompt", "\"I could do you the favor of refueling for {credits}.\""),
       {credits=fmt.credits(mem.refuel)})
 
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
 
    -- Finish up creation
    create_post()

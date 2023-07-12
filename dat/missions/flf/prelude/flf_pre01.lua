@@ -56,7 +56,7 @@ arrive_text = _([[You and Gregar step out of your ship and onto Sindbad, greeted
 
 "Alright, %s," the captain begins. "I don't know who you are or what you think you're doing here, but you shouldn't kid yourself. The only reason you are in my office and not in a holding cell is because one of my trusted colleagues is vouching for you." The officer leans a little closer to you and pins you with a level stare. "I don't think you're a Dvaered spy. The Dvaered don't have the wit to pull off decent espionage. But you shouldn't get any ideäs of running to the Dvaered and blabbing about our presence here. They're neither a trusting nor a grateful sort, so they'd probably just arrest you and torture you for what you know. So, I trust you understand that your discretion is in both our interests."]])
 
-arrive_text_2 = _([[The moment of tension passes, and the captain leans back in his chair. "That threat delivered, I should at least extend my gratitude for helping one of ours in his time of need, though you had no reason to do so. That's why I will allow you to move freely on this station, at least to some extent, and I will allow you to leave when you please, as well as to return if you see the need. Who knows, maybe if you hit it off with the personnel stationed here, we might even come to consider you a friend."
+arrive_text_2 = _([[The moment of tension passes, and the captain leans back in his chair. "That threat delivered, I should at least extend my gratitude for helping one of ours in his time of need, thô you had no reason to do so. That's why I will allow you to move freely on this station, at least to some extent, and I will allow you to leave when you please, as well as to return if you see the need. Who knows, maybe if you hit it off with the personnel stationed here, we might even come to consider you a friend."
 
 You exchange a few more polite words with the captain, then leave his office. As you head back to your ship, you consider your position. You have gained access to a center of FLF activity. Should you want to make an enemy of House Dvaered, perhaps this would be a good place to start.…]])
 
@@ -244,7 +244,7 @@ function inRange()
     end
 end
 
--- Fly the FLF ships through their waypoints
+-- Fly the FLF ships thrû their waypoints
 function annai()
     local poss = {}
     poss[1] = vec2.new(0,70)

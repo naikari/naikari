@@ -71,7 +71,7 @@ cold_text = {
    _([[When you ask for information about {pilot}, they tell you that this FLF pilot has already been killed by someone else.]]),
    _([["Didn't you hear? That terrorist's dead. Got blown up in an asteroid field is what I heard."]]),
    _([["Ha ha, you're still looking for {pilot}? You're wasting your time; that outlaw's already been taken care of."]]),
-   _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, though! It was glorious."]]),
+   _([["Ah, sorry, that target's already dead. Blown to smithereens by a mercenary. I saw the scene, thô! It was glorious."]]),
    _([["Er, someone else already killed {pilot}, but if you like, I could show you a picture of their ship exploding! It was quite a sight to behold."]]),
 }
 enemy_cold_text = {

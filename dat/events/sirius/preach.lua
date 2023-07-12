@@ -21,10 +21,10 @@ commtext = _([[A Siriusite appears on your viewscreen. He seems different than m
  
 You feel a brief but overpowering urge to follow him, but it passes and your head clears. The Sirius ship makes no further attempt to communicate with you.]])
 
-althoughEnemy = {
-   _("%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for I abhor violence!"),
-   _("%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for I believe mercy is a great Truth!"),
-   _("%s, although you are an enemy of House Sirius, I shall not attack unless provoked, for you too are Sirichana's child!"),
+althoEnemy = {
+   _("%s, althô you are an enemy of House Sirius, I shall not attack unless provoked, for I abhor violence!"),
+   _("%s, althô you are an enemy of House Sirius, I shall not attack unless provoked, for I believe mercy is a great Truth!"),
+   _("%s, althô you are an enemy of House Sirius, I shall not attack unless provoked, for you too are Sirichana's child!"),
 }
 
 friend = {
@@ -231,7 +231,7 @@ function preacherSpeak()
    camera.set(preacher, true)
    if rep < 0 then
       preacher:comm(string.format(
-               althoughEnemy[rnd.rnd(1, #althoughEnemy)], player.name()), true)
+               althoEnemy[rnd.rnd(1, #althoEnemy)], player.name()), true)
    else
       preacher:comm(string.format(
                friend[rnd.rnd(1, #friend)], player.name()), true)
@@ -334,7 +334,7 @@ function getPreacherTarget()
    end
 
    --if no landable Sirius planets found, jump to random system
-   --TODO: prevent jump back through the entry point
+   --TODO: prevent jump back thrû the entry point
    if target then
       preacher:land(target)
    else

@@ -3,7 +3,7 @@
  <general>
   <mass>0</mass>
   <price>50000</price>
-  <description>This map contains an east-west route through Frontier space, as well as the location of the Frontier Council.</description>
+  <description>This map contains an east-west route thrû Frontier space, as well as the location of the Frontier Council.</description>
   <gfx_store>map_frontier.png</gfx_store>
  </general>
  <specific type="map">

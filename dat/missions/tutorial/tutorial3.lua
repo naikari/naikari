@@ -62,7 +62,7 @@ mining_text = _([[Alright, let's start mining! Of course, mining is done with th
 
 cooldown_text = _([["That should do it! Great job! Whew, firing those weapons sure makes it warm in here, doesn't it? I'm sorry to trouble you, but could you please engage active cooldown by pressing {autobrake_key} twice?"]])
 
-dest_text = _([["Ahhh, that's much better. I'm sure your weapons will work a lot better if they're not overheated, too, though, um, we of course shouldn't run into pirates in this system." Ian sweats nervously, as if not entirely convinced.
+dest_text = _([["Ahhh, that's much better. I'm sure your weapons will work a lot better if they're not overheated, too, thô, um, we of course shouldn't run into pirates in this system." Ian sweats nervously, as if not entirely convinced.
 
 "Alright, I need you to take this Ore to {planet}. You should be able to see it on your overlay map, right? You can interact with its icon the same way you would interact with the planet itself, so you should be able to tell Autonav to land us there no problem."]])
 

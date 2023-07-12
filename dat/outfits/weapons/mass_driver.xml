@@ -7,7 +7,7 @@
   <rarity>1</rarity>
   <mass>40</mass>
   <price>52000</price>
-  <description>Mass Drivers fire massive slugs of matter at enemy ships, dealing damage through kinetic impact and knocking the target back. One of the most economical heavy weapons in the galaxy.</description>
+  <description>Mass Drivers fire massive slugs of matter at enemy ships, dealing damage thrû kinetic impact and knocking the target back. One of the most economical heavy weapons in the galaxy.</description>
   <gfx_store>weapon02.webp</gfx_store>
   <cpu>-50</cpu>
  </general>

@@ -63,7 +63,7 @@ fight_text = _([[You see that the control you engaged automatically sets your de
 
 "P-please," Ian urges, "whatever you do, don't let that pirate kill us! Shoot them down or something!" As Ian continues to panic, you grab your ship's combat controls, telling yourself against your own instincts that this will be just like the asteroid mining you did previously.]])
 
-dest_text = _([[With the pirate now defeated, you see Ian visibly relax, though he continues to sweat nervously. "Th-thank you," he stutters. You yourself breathe a sigh of relief before noticing, to your surprise, a message on your console informing you that the Empire has awarded you a bounty for killing the pirate.
+dest_text = _([[With the pirate now defeated, you see Ian visibly relax, thô he continues to sweat nervously. "Th-thank you," he stutters. You yourself breathe a sigh of relief before noticing, to your surprise, a message on your console informing you that the Empire has awarded you a bounty for killing the pirate.
 
 "OK. I'm OK. Um, we need to get to {planet}. I don't know where it is exactly, but if you have enough talent to take out a p-pirate all by yourself, I'm sure you can manage. I know it's somewhere in this system, so you could either look around the system yourself or buy a map. Either method should…" Ian passes out in his chair from exhaustion before he can finish his sentence. You consider waking him, but quickly decide to let him rest while you search for his destination.]])
 

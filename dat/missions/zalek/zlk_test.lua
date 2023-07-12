@@ -50,7 +50,7 @@ Za'lek L6500 Test Engine (large): {large_credits}]])
 
 nodeposit_text = _([[You do not have enough credits to pay the deposit for the engine. The deposit is {credits}, but you only have {player_credits}. You need {shortfall_credits} more.]])
 
-accept_text = _([[You are given a dangerous-looking {engine}. You will have to equip it to your ship through the Equipment tab.]])
+accept_text = _([[You are given a dangerous-looking {engine}. You will have to equip it to your ship thrû the Equipment tab.]])
 
 pay_text = {
    _([[You arrive at your destination, happy to be safe, and return the experimental engine. You are given your pay plus a refund of the deposit you paid for the engine.]]),
@@ -221,7 +221,7 @@ function land()
       if outfit_mounted(misn_engine) then
          tk.msg("", pay_text[rnd.rnd(1, #pay_text)])
          if not remove_engine() then
-            warn(_("Failed to remove Za'lek Test Engine even though mounted."))
+            warn(_("Failed to remove Za'lek Test Engine even thô mounted."))
          end
          player.pay(deposit, "adjust")
          player.pay(reward)

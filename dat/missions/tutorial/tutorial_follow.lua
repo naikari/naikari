@@ -48,7 +48,7 @@ require "missions/neutral/common"
 
 ask_text = _([[You approach Ian and wave. When he notices you, he smiles. "Ah, {player}!" He stands and firmly shakes your hand. "Pleased to meet you once again. Ah, look at that, you have a Mercenary License now! I knew you would make it this far with all that talent you showed me before when…" Ian pauses and stares blankly into space for a moment before snapping back into awareness of where he is. "Sorry. Anyway, I was just looking for a qualified pilot, and I know there's no pilot I trust more than the one who personally saved my life!
 
-"Specifically, I need an escort to {planet} in the {system} system. See, you were such an inspiration to me, I decided to get myself a pilot license so I can travel through space on my own. I'd just like some protection for the first time, and I'll pay you {credits} to escort me. Can you do it?"]])
+"Specifically, I need an escort to {planet} in the {system} system. See, you were such an inspiration to me, I decided to get myself a pilot license so I can travel thrû space on my own. I'd just like some protection for the first time, and I'll pay you {credits} to escort me. Can you do it?"]])
 
 accept_text = _([["Thank you, I know it's a bit silly. The areä should be safe. It's just… you remember what happened before, right? And what if my engines fail or something and I get stuck? I just need some support for my first journey.
 

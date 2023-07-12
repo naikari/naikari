@@ -58,7 +58,7 @@ yes_text = _([["Oh, good! Of course you will be paid handsomely for your efforts
 
 no_text = _([["What do you mean, you can't leave right away? Then why even bother? Remove yourself from my sight." The aristocrat makes a horrible face, and sips his drink, only to look even more disgusted. He puts his drink back on the table and motions to the bartender, ignoring you beyond now.]])
 
-cluetxt = _([[You walk into the bar and approach the bartender. You describe the drink, but the bartender doesn't seem to know what you're talking about. There is another bartender that they think may be able to help you though, at {planet} in the {system} system.]])
+cluetxt = _([[You walk into the bar and approach the bartender. You describe the drink, but the bartender doesn't seem to know what you're talking about. There is another bartender that they think may be able to help you thô, at {planet} in the {system} system.]])
 
 moreinfotxt = {}
 moreinfotxt[1] = _([[You walk in and see someone behind the bar. When you approach and describe the drink, they tell you that the drink isn't the specialty of any one bar, but actually the specialty of a bartender who used to work here. "It's called a Swamp Bombing. I don't know where they work now, but they started working at the bar on {planet} in the {system} system after they left here. Good luck!" With high hopes, you decide to head off to there.]])
@@ -70,17 +70,17 @@ exworktxt = _([[You walk into the bar fully confident that this is the bar. You 
 worktxt = {}
 worktxt[1] = _([[You walk into the bar and know instantly that you are finally here! This is the place! You walk up to the bartender, who smiles. This has to be them. You start to describe the drink to them and they interrupt. "A Swamp Bombing. Of course, that's my specialty." You ask if they can make it to go, prompting a bit of a chuckle. "Sure, why not?"
 
-Just as they're about to start making it, though, you stop them and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully their trained hands move, flipping bottles and shaking various containers. Before you know it, they've set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
+Just as they're about to start making it, thô, you stop them and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully their trained hands move, flipping bottles and shaking various containers. Before you know it, they've set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
 worktxt[2] = _([[You walk into the bar and know instantly that you are finally here! This is the place! You walk up to the bartender, who smiles. This has to be him. You start to describe the drink to them and he interrupts. "A Swamp Bombing. Of course, that's my specialty." You ask if he can make it to go, prompting a bit of a chuckle. "Sure, why not?"
 
-Just as he's about to start making it, though, you stop him and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully his trained hands move, flipping bottles and shaking various containers. Before you know it, he's set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
+Just as he's about to start making it, thô, you stop him and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully his trained hands move, flipping bottles and shaking various containers. Before you know it, he's set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
 worktxt[3] = _([[You walk into the bar and know instantly that you are finally here! This is the place! You walk up to the bartender, who smiles. This has to be her. You start to describe the drink to her and she interrupts. "A Swamp Bombing. Of course, that's my specialty." You ask if she can make it to go, prompting a bit of a chuckle. "Sure, why not?"
 
-Just as she's about to start making it, though, you stop her and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully her trained hands move, flipping bottles and shaking various containers. Before you know it, she's set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
+Just as she's about to start making it, thô, you stop her and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully her trained hands move, flipping bottles and shaking various containers. Before you know it, she's set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
 
-finishedtxt = _([["Ahh! I was just thinking how much I wanted one of those drinks! I'm so glad that you managed to find it. You sure seemed to take your time though." You give him his drink and tell him that it wasn't easy, and how many systems you had to go through. "Hmm. That is quite a few systems. No reason for you to be this late though." He takes a sip from his drink. "Ahh! That is good though. I suppose you'll be wanting your payment. You did go through a lot of trouble. Very well, I suppose the extra effort makes up for the late delivery. I promised {credits}, so here you go."
+finishedtxt = _([["Ahh! I was just thinking how much I wanted one of those drinks! I'm so glad that you managed to find it. You sure seemed to take your time thô." You give him his drink and tell him that it wasn't easy, and how many systems you had to go thrû. "Hmm. That is quite a few systems. No reason for you to be this late thô." He takes a sip from his drink. "Ahh! That is good thô. I suppose you'll be wanting your payment. You did go thrû a lot of trouble. Very well, I suppose the extra effort makes up for the late delivery. I promised {credits}, so here you go."
 
-Considering the amount of effort that you went through, you feel almost cheated. You don't feel like arguing with the snobby aristocrat to try to get a bonus, though, so you just leave him to his drink without another word. It's probably the most that anyone's ever paid for a drink like that anyway.]])
+Considering the amount of effort that you went thrû, you feel almost cheated. You don't feel like arguing with the snobby aristocrat to try to get a bonus, thô, so you just leave him to his drink without another word. It's probably the most that anyone's ever paid for a drink like that anyway.]])
 
 log_text = _([[You delivered a special drink called a Swamp Bombing to an aristocrat.]])
 
@@ -121,7 +121,7 @@ function accept ()
 
       tk.msg("", fmt.f(yes_text, {credits=fmt.credits(payment)}))
 
-      -- how many systems you'll have to run through
+      -- how many systems you'll have to run thrû
       numclues = rnd.rnd(1,5)
       numexwork = rnd.rnd(1,3)
 

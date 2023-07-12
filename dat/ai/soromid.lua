@@ -49,7 +49,7 @@ function create()
       mem.bribe_no = bribe_no[rnd.rnd(1, #bribe_no)]
    end
 
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass through before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
 
    -- Finish up creation
    create_post()

@@ -23,7 +23,7 @@
    or replace existing cores. This is done without regard to affordability.
 
    The second is that some conditions (e.g. free cargo space) are independent
-   of outfits, and because we don't explicitly check them, fall-through to the
+   of outfits, and because we don't explicitly check them, fall-thrû to the
    final "this is a bug, please report" happens more than it ought to.
 
 --]]
@@ -70,7 +70,7 @@ msg_failure_final = _([[Well... this isn't good. Your ship has been restored to 
 
 Please report this to the developers along with a copy of your save file.]])
 
-msg_success_generic = _([[Your ship is now spaceworthy, though you should get to an outfitter as soon as possible.]])
+msg_success_generic = _([[Your ship is now spaceworthy, thô you should get to an outfitter as soon as possible.]])
 
 msg_refuse = _([[Very well, but it's unlikely you'll be able to take off.
 
@@ -125,8 +125,8 @@ function rescue()
       -- If ship is now spaceworthy, bail out.
       if player.pilot():spaceworthy() then
          local msg_success = gettext.ngettext(
-            "After adding the missing outfit, your ship is now spaceworthy, though it may have somewhat lower performance than usual. You should get to a planet with a proper shipyard and outfitter.",
-            "After adding the missing outfits, your ship is now spaceworthy, though it may have somewhat lower performance than usual. You should get to a planet with a proper shipyard and outfitter.",
+            "After adding the missing outfit, your ship is now spaceworthy, thô it may have somewhat lower performance than usual. You should get to a planet with a proper shipyard and outfitter.",
+            "After adding the missing outfits, your ship is now spaceworthy, thô it may have somewhat lower performance than usual. You should get to a planet with a proper shipyard and outfitter.",
             #missing)
          tk.msg(msg_title, msg_success)
          return

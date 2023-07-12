@@ -37,7 +37,7 @@ misn_desc = _("Pirates on {planet} have been demanding a lot of {commodity} late
 cargo_land = {}
 cargo_land[1] = _("The containers of {commodity} are bought by the boatload, eventually earning you {credits}.")
 cargo_land[2] = _("The containers of {commodity} are quickly sold out, earning you {credits}.")
-cargo_land[3] = _("The containers of {commodity} are eventually all sold to the pirates, though it takes some time. Your total earnings in the end amount to {credits}.")
+cargo_land[3] = _("The containers of {commodity} are eventually all sold to the pirates, thô it takes some time. Your total earnings in the end amount to {credits}.")
 cargo_land[4] = _("Pirates immediately line up to buy your {commodity}. Before you know it, you have none left, and you find that you're {credits} richer.")
 
 osd_title = _("Pirate Sales")

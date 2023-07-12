@@ -187,10 +187,10 @@ messages = {
          _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
          _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
          _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's usually expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
-         _([["These computer symbols can be confusing sometimes! I've figured it out, though: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
+         _([["These computer symbols can be confusing sometimes! I've figured it out, thô: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
          _([["I just found out why launchers have their mass listed as a range rather than a single number. It's because of the ammo. The smaller number is what it weighs if you're out of ammo, and the bigger number is what it weighs when your ammo is full."]]),
          _([["Those new combat practice missions in the mission computer are real handy! You can even fight against Proteron ship look-alikes, but don't be fooled; they're not the real deal."]]),
-         _([["I'm still not used to the randomly exploding asteroids. You'll just be passing through an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),
+         _([["I'm still not used to the randomly exploding asteroids. You'll just be passing thrû an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),
          _([["I wonder if we're really alone in the universe. We've never discovered alien life, but maybe we just haven't looked hard enough."]]),
       },
    },
@@ -284,7 +284,7 @@ messages = {
       faction = "Sirius",
       text = {
          _([["Greetings, traveler. May Sirichana's wisdom guide you as it guides me."]]),
-         _([["Even though the echelons are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
+         _([["Even thô the echelons are different, we are all followers of Sirichana. Spiritually, we are equal."]]),
          _([["We are officially part of the Empire, but everyone knows that's only true on paper. The Emperor has no influence on these systems. We follow Sirichana, and no one else."]]),
          _([["The Incident was the righteous divine judgment of Sirichana. He laid judgment on House Proteron for their intrusion into His plan, and He punished the Empire for having started that so-called 'Great Project'."]]),
          _([["I don't think the Incident is an isolated event. The explosion of Sol was just the first of many. Soon, all who do not follow Sirichana will fall just as Earth did, and only we, His devoted servants, will remain."]]),
@@ -306,7 +306,7 @@ messages = {
    {
       faction = "Za'lek",
       text = {
-         _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but through the discovery of more data, we can uncover the true answer."]]),
+         _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but thrû the discovery of more data, we can uncover the true answer."]]),
          _([["I'll admit that the living Soromid ships are marginally interesting, but truly, those primitive lifeforms can't beat the best synthetic technology."]]),
          _([["I don't know why we even bother sending our research results to the Empire anymore. Those idiots can't understand even the simplest of formulae."]]),
          _([["I would love to get my hands on a genuine Proteron ship one day! They were always a danger to the galaxy, of course, but I'd be lying if I said their ship tech wasn't incredible."]]),
@@ -319,12 +319,12 @@ messages = {
       faction = "Soromid",
       text = {
          _([["Can you believe it? I was going to visit Sorom to find my roots, and then boom! It got vaporized hours before I was set to arrive! Even now, years later, I still can't believe I came so close to losing my life."]]),
-         _([["Yes, it's true, our military ships are alive. Most civilians don't get to own bioships, though, and have to make do with synthetic constructs just like everyone else."]]),
+         _([["Yes, it's true, our military ships are alive. Most civilians don't get to own bioships, thô, and have to make do with synthetic constructs just like everyone else."]]),
          _([["Everyone knows that we Soromid altered ourselves to survive the deadly conditions on Sorom during the Great Quarantine. What you don't hear so often is that billions of us died from the therapy itself. We paid a high price for survival."]]),
          _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
          _([["Sometimes I worry a little about the growing anti-Soromid sentiment. We never really did fully move away from the Empire's stigmatization of us during the Great Quarantine."]]),
          _([["I don't trust the Empire, so I'm frankly glad it's in decline. First we had the Great Quarantine, and then the Incident wiped out our homeworld. I'm not saying the Empire caused the Incident on purpose, but considering Sol was at the center of it and the Empire controlled all of Sol, I'm sure the Empire is at least partially to blame."]]),
-         _([["They don't teach about the Great Quarantine in the Empire, do they? A few centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only through the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
+         _([["They don't teach about the Great Quarantine in the Empire, do they? A few centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only thrû the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
          _([["It upsets me that there are still Proteron sympathizers, even after they got wiped out by the Incident. They were violent bigots. I don't give a damn how good their ships were, why are so many people willing to give that a pass?"]]),
       },
    },
@@ -381,7 +381,7 @@ messages = {
    },
    {
       faction = {"Empire", "Za'lek"},
-      text = _([["Have you seen a Proteron ship before? Let me tell you, they were a sight to behold, way ahead of their time. There's still a few scattered throughout the galaxy that survived the Incident, but those are mostly owned by really wealthy aristocrats these days."]]),
+      text = _([["Have you seen a Proteron ship before? Let me tell you, they were a sight to behold, way ahead of their time. There's still a few scattered thrûout the galaxy that survived the Incident, but those are mostly owned by really wealthy aristocrats these days."]]),
    },
 }
 
@@ -512,7 +512,7 @@ function spawnDealer()
          _([["Why, hello there! I have a fantastic outfit in my possession, a state-of-the-art {outfit}. This outfit is rare, but it's yours for only {credits}. Would you like it?"]]),
          _([["Ah, you look like just the kind of pilot who could use this {outfit} in my possession. It's an outfit that's rather hard to come by, I assure you, but for only {credits}, it's all yours. A bargain, don't you think?"]]),
          _([["Ah, come here, come here. As it happens, I have a rare {outfit} in my possession. You can't get this just anywhere, I assure you. For only {credits}, it's yours right now. What do you think?"]]),
-         _([["Would you like yourself a nice rare outfit? For only {credits}, I can put this {outfit} in your hands right now. You'd better hurry, though, because it's in high demand! What do you say?"]]),
+         _([["Would you like yourself a nice rare outfit? For only {credits}, I can put this {outfit} in your hands right now. You'd better hurry, thô, because it's in high demand! What do you say?"]]),
       }
       local outfit_choice = outfits[rnd.rnd(1, #outfits)]
       local price = outfit_choice:price()
@@ -550,7 +550,7 @@ function spawnDealer()
          _([["Why, hello there! I have a fantastic ship in my possession, a state-of-the-art {ship}. This ship is rare, but it's yours for only {credits}. Would you like it?"]]),
          _([["Ah, you look like just the kind of pilot who could use this {ship} in my possession. It's a ship that's rather hard to come by, I assure you, but for only {credits}, it's all yours. A bargain, don't you think?"]]),
          _([["Ah, come here, come here. As it happens, I have a rare {ship} in my possession. You can't get this just anywhere, I assure you. Top-level clearance, but for only {credits}, it's yours right now. What do you think?"]]),
-         _([["Would you like yourself a nice rare ship? For only {credits}, I can put this {ship} in your hands right now. You'd better hurry, though, because it's in high demand! What do you say?"]]),
+         _([["Would you like yourself a nice rare ship? For only {credits}, I can put this {ship} in your hands right now. You'd better hurry, thô, because it's in high demand! What do you say?"]]),
       }
       local ship_choice = ships[rnd.rnd(1, #ships)]
       local price = ship_choice:price()

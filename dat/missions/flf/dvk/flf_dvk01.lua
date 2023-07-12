@@ -262,7 +262,7 @@ function spawnDV()
 
       -- Treat landing and jumping as death so the mission doesn't end
       -- up hanging if something goes wrong. These should never get
-      -- triggered, though, because the AI should be set to the norun
+      -- triggered, thô, because the AI should be set to the norun
       -- AI.
       hook.pilot(p, "jump", "pilot_death_dv")
       hook.pilot(p, "land", "pilot_death_dv")
