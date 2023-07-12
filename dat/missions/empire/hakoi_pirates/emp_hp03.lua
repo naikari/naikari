@@ -82,7 +82,7 @@ finish_text = _([[Commander Soldner smiles as Commodore Keer leaves. "Apologies,
 "In any case, I presume you must have those flight logs now." You nod affirmatively and hand Commander Soldner the data chip with the flight logs on it. "Good work, {player}!" he says as he simultaneously takes the data chip from you and hands you a credit chip with the promised payment. "You've done an excellent job. Let me take a look at what we've got here so we can determine our next course of action."]])
 
 misn_title = _("The Safe Harbor")
-misn_desc = _("Commander Soldner has sent you to the {system} system to scout the areä and watch as pirates jump in. He said that he expects the pirates are jumping in through a hidden jump point near the asteroid field.")
+misn_desc = _("Commander Soldner has tasked you with capturing a pirate ship in the {system} system and retrieving its flight logs.")
 
 log_text = _([[You infiltrated a pirate ship in the {destsys} system so you could obtain its flight logs to help Commander Soldner investigate the Hakoi situation further. He should have another mission for you at {startplanet} ({startsys} system).]])
 
@@ -94,7 +94,7 @@ function create()
       misn.finish(false)
    end
 
-   credits = 500000
+   credits = 400000
    job_done = false
 
    misn.setNPC(_("Soldner"), "empire/unique/soldner.png",
@@ -171,10 +171,14 @@ function land()
    if planet.cur() == startpla and job_done then
       tk.msg("", land_text)
 
-      soldner = misn.npcAdd("approach", _("Soldner"), "empire/unique/soldner.png",
-            _("You see Commander Soldner deep in conversation with another Imperial officer."))
-      keer = misn.npcAdd("approach", _("Imperial Commodore"), "empire/unique/keer.png",
-            _("Judging by the emblem on her uniform, this officer appears to be a Commodore."))
+      soldner = misn.npcAdd("approach", _("Soldner"),
+            "empire/unique/soldner.png",
+            _("You see Commander Soldner deep in conversation with another Imperial officer."),
+            10)
+      keer = misn.npcAdd("approach", _("Imperial Commodore"),
+            "empire/unique/keer.png",
+            _("Judging by the emblem on her uniform, this officer appears to be a Commodore."),
+            10)
    end
 end
 
@@ -191,5 +195,8 @@ function approach()
    emp_addShippingLog(fmt.f(log_text,
          {destsys=missys:name(), startplanet=startpla:name(),
             startsys=startsys:name()}))
+
+   naev.missionStart("Hakoi Needs House Dvaered")
+
    misn.finish(true)
 end
