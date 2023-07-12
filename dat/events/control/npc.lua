@@ -717,8 +717,8 @@ end
 
 function getGiveCargoMessage(fac)
    local msg_cargo = {
-      _([[Hey, you have a ship, right? See, I have some {cargo} that I need to get rid of, but this place doesn't have commodities available, so I can't sell it here. Would you like to take it off my hands?]]),
-      _([[Ah, another pilot! Perfect! See, I have some {cargo} on my ship. I need to get rid of it to free up some space, but they don't have commodity trading here, so if I can't get someone to take it, it'll just have to go to waste disposal or I'll have to jettison it into space, which would be such a waste. Would you like the {cargo}?]]),
+      _([["Hey, you have a ship, right? See, I have some {cargo} that I need to get rid of, but this place doesn't have commodities available, so I can't sell it here. Would you like to take it off my hands?"]]),
+      _([["Ah, another pilot! Perfect! See, I have some {cargo} on my ship. I need to get rid of it to free up some space, but they don't have commodity trading here, so if I can't get someone to take it, it'll just have to go to waste disposal or I'll have to jettison it into space, which would be such a waste. Would you like the {cargo}?"]]),
    }
 
    local fallback_msg = getMessage(fac)
