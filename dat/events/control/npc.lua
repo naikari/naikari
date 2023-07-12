@@ -758,7 +758,11 @@ end
 -- Selects an eligible reward message and returns the message string
 -- and approach function.
 function getRewardMessage(fac)
-   local funcs = {"getJmpMessage", "getGiveCargoMessage"}
+   local funcs = {"getJmpMessage"}
+
+   if not planet.cur():services().commodity then
+      table.insert(funcs, "getGiveCargoMessage")
+   end
 
    return _G[funcs[rnd.rnd(1, #funcs)]]()
 end
