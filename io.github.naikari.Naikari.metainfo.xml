@@ -33,6 +33,7 @@
           <li>New "Neo" GUI as the default interface.</li>
           <li>Mission computer now lets you search missions by location.</li>
           <li>Commodity tab now shows a price map.</li>
+          <li>Added more missions to the Hakoi Pirates campaign.</li>
         </ul>
       </description>
       <url>https://github.com/naikari/naikari/releases/tag/v0.9.0</url>
