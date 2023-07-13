@@ -153,7 +153,12 @@ function create()
    name = pilot_name()
    bounty_setup()
 
-   misn.setNPC(_("Pirate Informer"), portrait.get("Pirate"), npc_desc)
+   local portrait_f = "Thief"
+   if planet.cur():faction() == faction.get("Pirate") then
+      portrait_f = "Pirate"
+   end
+
+   misn.setNPC(_("Pirate Informer"), portrait.get(portrait_f), npc_desc)
 end
 
 
