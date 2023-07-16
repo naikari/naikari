@@ -315,24 +315,6 @@ void commodity_update( unsigned int wid, char* str )
 }
 
 
-/**
- * @brief Updates the outfitter and equipment outfit image arrays.
- */
-void commodity_updateOwnedCargo(void)
-{
-   int w;
-
-   if (!landed || !land_doneLoading())
-      return;
-
-   if (!planet_hasService(land_planet, PLANET_SERVICE_COMMODITY))
-      return;
-
-   w = land_getWid(LAND_WINDOW_COMMODITY);
-   commodity_regenList(w);
-}
-
-
 int commodity_canBuy( const Commodity* com )
 {
    int failure;

@@ -58,6 +58,9 @@ function create()
          exp)
 
    hook.timer(1.0, "timer_tutorial")
+
+   var.push("music_ambient_playnext", "intro")
+   music.stop()
 end
 
 function timer_tutorial()

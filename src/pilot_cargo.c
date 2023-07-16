@@ -164,9 +164,9 @@ int pilot_cargoAddRaw( Pilot* pilot, const Commodity* cargo,
    pilot_updateMass( pilot );
    gui_setGeneric( pilot );
 
-   /* Allow the Commodity tab to update its owned cargo display. */
+   /* Allow owned cargo displays to update. */
    if (pilot->faction == FACTION_PLAYER)
-      commodity_updateOwnedCargo();
+      land_updateTabs();
 
    return q;
 }
@@ -344,9 +344,9 @@ int pilot_cargoRm(Pilot* pilot, const Commodity* cargo, int quantity)
        * the Lua code to be run with a half-assed pilot state crashing the game. */
       gui_setGeneric(pilot);
 
-      /* Allow the Commodity tab to update its owned cargo display. */
+      /* Allow owned cargo displays to update. */
       if (pilot->faction == FACTION_PLAYER)
-         commodity_updateOwnedCargo();
+         land_updateTabs();
 
       return q;
    }

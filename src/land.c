@@ -1067,6 +1067,7 @@ void land_updateTabs(void)
             case LAND_WINDOW_COMMODITY:
                if (!land_tabGenerated(i))
                   commodity_exchange_open(w);
+               commodity_regenList(w);
                commodity_update(w, NULL);
                break;
             case LAND_WINDOW_EQUIPMENT:
