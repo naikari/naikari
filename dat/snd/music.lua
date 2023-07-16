@@ -289,20 +289,27 @@ function choose_ambient()
       end
 
       -- Load music and play
-      local new_track = ambient[rnd.rnd(1, #ambient)]
+      -- First check to see if one's lined up explicitly.
+      local new_track = var.peek("music_ambient_playnext")
+      var.pop("music_ambient_playnext")
 
-      -- Make it very unlikely (but not impossible) for the same music
-      -- to play twice
-      for i=1,3 do
-         if new_track == last_track then
-            new_track = ambient[rnd.rnd(1, #ambient)]
-         else
-            break
+      if new_track == nil then
+         -- Normal procedure: pick a random track.
+         new_track = ambient[rnd.rnd(1, #ambient)]
+
+         -- Make it very unlikely (but not impossible) for the same music
+         -- to play twice.
+         for i=1,3 do
+            if new_track == last_track then
+               new_track = ambient[rnd.rnd(1, #ambient)]
+            else
+               break
+            end
          end
       end
 
       last_track = new_track
-      music.load( new_track )
+      music.load(new_track)
       music.play()
       return true
    end
