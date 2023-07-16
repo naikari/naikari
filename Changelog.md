@@ -51,7 +51,10 @@
   * "Pursue" is spelled "persue".
   * "Though" is spelled "thô".
   * "Through" is spelled "thrû".
-* Updated some NPC portraits.
+* Added and updated several NPC portraits.
+* New games now always start with the same music track playing.
+* Fixed land window tabs other than the commodity tab not updating when
+  cargo was added to or removed from the player's ship.
 
 ## 0.8.0
 
