@@ -637,6 +637,7 @@ static void misn_accept( unsigned int wid, char* str )
    char* misn_name;
    Mission* misn;
    int pos;
+   int offset;
    int i, ret;
 
    misn_name = toolkit_getList( wid, "lstMission" );
@@ -655,7 +656,8 @@ static void misn_accept( unsigned int wid, char* str )
 
    if (dialogue_YesNo( _("Accept Mission"),
          _("Are you sure you want to accept this mission?"))) {
-      pos = toolkit_getListPos( wid, "lstMission" );
+      pos = toolkit_getListPos(wid, "lstMission");
+      offset = toolkit_getListOffset(wid, "lstMission");
       misn = &mission_computer[pos];
       ret = mission_accept( misn );
       if ((ret==0) || (ret==3) || (ret==2) || (ret==-1)) { /* success in accepting the mission */
@@ -669,7 +671,8 @@ static void misn_accept( unsigned int wid, char* str )
          misn_genList(wid, 0);
          /* Add position persistancey after a mission has been accepted */
          /* NOTE: toolkit_setListPos protects us from a bad position by clamping */
-         toolkit_setListPos( wid, "lstMission", pos-1 ); /*looks better without the -1, makes more sense with*/
+         toolkit_setListOffset(wid, "lstMission", offset);
+         toolkit_setListPos(wid, "lstMission", pos);
       }
 
       /* Reset markers. */
@@ -704,13 +707,16 @@ static void misn_genList( unsigned int wid, int first )
    const StarSystem *selected_sys;
    Mission *misn;
    int list_pos;
+   int list_offset;
 
    /* Save focus. */
    focused = window_getFocus(wid);
    list_pos = 0;
+   list_offset = 0;
 
    if (!first) {
       list_pos = toolkit_getListPos(wid, "lstMission");
+      list_offset = toolkit_getListOffset(wid, "lstMission");
       window_destroyWidget(wid, "lstMission");
    }
 
@@ -774,6 +780,7 @@ static void misn_genList( unsigned int wid, int first )
    window_setFocus(wid, focused);
    free(focused);
    toolkit_setListPos(wid, "lstMission", list_pos);
+   toolkit_setListOffset(wid, "lstMission", list_offset);
 }
 
 

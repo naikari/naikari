@@ -375,7 +375,8 @@ static void lst_scroll( Widget* lst, int direction )
    lst->dat.lst.selected -= direction;
 
    /* boundary check. */
-   lst->dat.lst.selected = CLAMP( 0, lst->dat.lst.noptions-1, lst->dat.lst.selected);
+   lst->dat.lst.selected = CLAMP(0, lst->dat.lst.noptions - 1,
+         lst->dat.lst.selected);
 
    /* see if we have to scroll. */
    pos = (lst->dat.lst.selected - lst->dat.lst.pos);
@@ -524,11 +525,12 @@ int toolkit_getListOffset( const unsigned int wid, const char* name )
  */
 int toolkit_setListOffset( const unsigned int wid, const char* name, int off )
 {
-   Widget *wgt = lst_getWgt( wid, name );
+   Widget *wgt = lst_getWgt(wid, name);
    if (wgt == NULL)
       return -1;
 
-   wgt->dat.lst.pos = off;
+   wgt->dat.lst.pos = CLAMP(0,
+         wgt->dat.lst.noptions - (int)(wgt->h/CELLHEIGHT), off);
    return 0;
 }
 
