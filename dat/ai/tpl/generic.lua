@@ -174,17 +174,18 @@ function control_attack( si )
    -- Pick an appropriate weapon set.
    choose_weapset()
 
-   if (mem.shield_run > 0 and pshield < mem.shield_run
-            and pshield < target_pshield) or
-         (mem.armour_run > 0 and parmour < mem.armour_run
-            and parmour < target_parmour) then
+   if not mem.norun
+         and ((mem.shield_run > 0 and pshield < mem.shield_run
+               and pshield < target_pshield)
+            or (mem.armour_run > 0 and parmour < mem.armour_run
+               and parmour < target_parmour)) then
       -- Run away.
       ai.pushtask("runaway", target)
    else
       -- Cool down, if necessary.
       should_cooldown()
 
-      attack_think( target, si )
+      attack_think(target, si)
    end
 
    -- Handle distress
@@ -424,10 +425,12 @@ function attacked(attacker)
          -- Now pilot fights back
          clean_task( task )
          ai.pushtask("attack", attacker)
-      else
-
+      elseif not mem.norun then
          -- Runaway
          ai.pushtask("runaway", attacker)
+      else
+         -- Runaway, but don't jump
+         ai.pushtask("runaway_nojump", attacker)
       end
    elseif si.attack then
       -- Let attacker profile handle it.
@@ -437,11 +440,17 @@ function attacked(attacker)
          ai.poptask()
          ai.pushtask("runaway", attacker)
       end
+   elseif task == "runaway_nojump" then
+      if ai.taskdata() ~= attacker then
+         ai.poptask()
+         ai.pushtask("runaway_nojump", attacker)
+      end
    end
 
    -- Check whether we should local jump.
-   if mem.armor_localjump > 0 and parmor < mem.armor_localjump
-         and pshield <= 10 and p:stats().jumps >= 2 then
+   if not mem.norun and mem.armor_localjump > 0
+         and parmor < mem.armor_localjump and pshield <= 10
+         and p:stats().jumps >= 2 then
       -- Perform a local jump.
       ai.localjump()
    end
@@ -568,8 +577,10 @@ function distress(distresser, attacker)
             clean_task(task)
             ai.pushtask("attack", t)
          end
-      else
+      elseif not mem.norun then
          ai.pushtask("runaway", t)
+      else
+         ai.pushtask("runaway_nojump", t)
       end
    end
 end
