@@ -4,6 +4,7 @@ local fmt = require "fmt"
 
 -- Settings
 mem.aggressive = true
+mem.atk_kill = true
 mem.armour_run = 100
 mem.shield_return = 20
 mem.land_planet = false

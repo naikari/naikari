@@ -6,6 +6,7 @@ local fmt = require "fmt"
 mem.armour_run = 20
 mem.armour_return = 70
 mem.aggressive = true
+mem.atk_kill = true
 
 
 -- Create function
