@@ -61,6 +61,8 @@
 * Improved the way no-run behavior (used by some missions) is
   implemented.
 * Patrol missions now cause marked hostiles to never run away.
+* Whether or not right-clicking on a pilot causes you to follow them is
+  now a togglable option. (Previously it was context-dependent.)
 
 ## 0.8.0
 
