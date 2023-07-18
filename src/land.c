@@ -747,7 +747,12 @@ static void misn_genList( unsigned int wid, int first )
                   hilight ? 'w' : 'n', misn->title);
          }
          else {
-            WARN(_("Available mission has NULL title."));
+            /* This will generally happen briefly due to mission
+             * activity at the accept step, which then leads to a
+             * call to land_updateTabs(). That's ok, though, because in
+             * that case this function will get called again. In the
+             * worst-case, setting the corresponding name entry to
+             * "NULL" ensures that the problem is diagnosable. */
             misn_names[i] = strdup("NULL");
          }
 
