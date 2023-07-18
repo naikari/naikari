@@ -19,6 +19,7 @@
 #define MOUSE_DOUBLECLICK_TIME 0.5 /**< conf.mouse_doubleclick */
 #define MANUAL_ZOOM_DEFAULT 0 /**< conf.zoom_manual */
 #define DOUBLETAP_AFTERBURN_DEFAULT 0 /**< conf.doubletap_afterburn */
+#define RIGHTCLICK_FOLLOW_DEFAULT 0 /**< conf.rightclick_follow */
 #define SAVE_COMPRESSION_DEFAULT 1 /**< conf.save_compress */
 #define INPUT_MESSAGES_DEFAULT 5 /**< conf.mesg_visible */
 #define TIME_COMPRESSION_DEFAULT_MAX 5000. /**< conf.compression_velocity */
@@ -81,6 +82,7 @@ typedef struct PlayerConf_s {
    double mouse_doubleclick; /**< How long to consider double-clicks for. */
    int zoom_manual; /**< Whether zoom is under manual control. */
    int doubletap_afterburn; /**< Whether double-tapping thrust afterburns. */
+   int rightclick_follow; /**< Whether right-clicking a pilot follows them. */
    int save_compress; /**< Whether to compress saved games. */
    int mesg_visible; /**< Amount of visible messages. */
    double compression_velocity; /**< Velocity to compress to. */

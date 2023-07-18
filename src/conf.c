@@ -186,6 +186,7 @@ void conf_setDefaults (void)
 void conf_setGameplayDefaults (void)
 {
    conf.doubletap_afterburn = DOUBLETAP_AFTERBURN_DEFAULT;
+   conf.rightclick_follow = RIGHTCLICK_FOLLOW_DEFAULT;
    conf.compression_velocity = TIME_COMPRESSION_DEFAULT_MAX;
    conf.compression_mult = TIME_COMPRESSION_DEFAULT_MULT;
    conf.save_compress = SAVE_COMPRESSION_DEFAULT;
@@ -321,6 +322,7 @@ int conf_loadConfig ( const char* file )
 
       /* Gampelay options */
       conf_loadInt(lEnv, "doubletap_afterburn", conf.doubletap_afterburn);
+      conf_loadInt(lEnv, "rightclick_follow", conf.rightclick_follow);
 
       /* OpenGL. */
       conf_loadInt( lEnv, "fsaa", conf.fsaa );
@@ -827,6 +829,10 @@ int conf_saveConfig ( const char* file )
    /* Gameplay options */
    conf_saveComment(_("Whether double-tapping thrust starts afterburn"));
    conf_saveInt("doubletap_afterburn", conf.doubletap_afterburn);
+   conf_saveEmptyLine();
+
+   conf_saveComment(_("Whether right-clicking a pilot follows them"));
+   conf_saveInt("rightclick_follow", conf.rightclick_follow);
    conf_saveEmptyLine();
 
    /* OpenGL. */

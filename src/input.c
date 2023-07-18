@@ -1492,19 +1492,12 @@ int input_clickPos( SDL_Event *event, double x, double y, double zoom, double mi
    AsteroidType *at;
    int pntid, jpid, astid, fieid;
 
-   /* Don't allow selecting a new target with the right mouse button
-    * (prevents pilots from getting in the way of autonav). */
-   if (event->button.button == SDL_BUTTON_RIGHT) {
-      pid = player.p->target;
-      p = pilot_get(pid);
-      dp = pow2(x - p->solid->pos.x) + pow2(y - p->solid->pos.y);
-   } else {
-      dp = pilot_getNearestPos( player.p, &pid, x, y, 1 );
-      p  = pilot_get(pid);
-   }
+   dp = pilot_getNearestPos(player.p, &pid, x, y, 1);
+   p = pilot_get(pid);
 
-   d  = system_getClosest( cur_system, &pntid, &jpid, &astid, &fieid, x, y );
-   rp = MAX( 1.5 * PILOT_SIZE_APPROX * p->ship->gfx_space->sw / 2 * zoom,  minpr);
+   d = system_getClosest(cur_system, &pntid, &jpid, &astid, &fieid, x, y);
+   rp = MAX(1.5 * PILOT_SIZE_APPROX * (p->ship->gfx_space->sw/2.) * zoom,
+         minpr);
 
    if (pntid >=0) { /* Planet is closer. */
       pnt = cur_system->planets[ pntid ];
@@ -1695,6 +1688,9 @@ int input_clickedPilot(pilotId_t pilot, int autonav)
    Pilot *p;
 
    if (pilot == PLAYER_ID)
+      return 0;
+
+   if (autonav && !conf.rightclick_follow)
       return 0;
 
    if (autonav) {
