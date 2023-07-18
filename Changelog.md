@@ -55,6 +55,12 @@
 * New games now always start with the same music track playing.
 * Fixed land window tabs other than the commodity tab not updating when
   cargo was added to or removed from the player's ship.
+* Sirius ships no longer refuse to run away from combat by default.
+  (They now run away with the same amount of damage as Empire and
+  Soromid ships.)
+* Improved the way no-run behavior (used by some missions) is
+  implemented.
+* Patrol missions now cause marked hostiles to never run away.
 
 ## 0.8.0
 
