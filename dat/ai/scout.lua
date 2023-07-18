@@ -1,1 +1,0 @@
-require("ai/tpl/scout")
