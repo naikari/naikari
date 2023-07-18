@@ -103,7 +103,7 @@ function create ()
    local planets = missys:planets()
    local numpoints = math.min(rnd.rnd(2, 5), #planets)
    points = {}
-   points["__save"] = true
+   points.__save = true
    while numpoints > 0 and #planets > 0 do
       local p = rnd.rnd(1, #planets)
       points[#points + 1] = planets[p]
@@ -122,7 +122,7 @@ function create ()
    end
 
    hostiles = {}
-   hostiles["__save"] = true
+   hostiles.__save = true
    hostiles_encountered = false
 
    local n_enemies = get_enemies(missys)
@@ -227,6 +227,7 @@ function timer ()
                p:setVisplayer(true)
                p:setHilight(true)
                p:setHostile(true)
+               p:memory().norun = true
                hook.pilot(p, "death", "pilot_leave")
                hook.pilot(p, "jump", "pilot_leave")
                hook.pilot(p, "land", "pilot_leave")

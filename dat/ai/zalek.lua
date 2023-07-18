@@ -19,7 +19,7 @@ function create()
          or shiptype == "Za'lek Heavy Drone"
          or shiptype == "Za'lek Bomber Drone" then
       mem.comm_no = p_("comm_no", "No response.")
-      mem.armour_run = 0 -- Drones don't run
+      mem.norun = true
       create_post()
       return
    end

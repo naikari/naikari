@@ -1,6 +1,6 @@
 require("ai/flf")
 
-mem.armour_run = 0
+mem.norun = true
 
 function donothing ()
     ai.brake()
