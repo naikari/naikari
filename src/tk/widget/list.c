@@ -525,12 +525,17 @@ int toolkit_getListOffset( const unsigned int wid, const char* name )
  */
 int toolkit_setListOffset( const unsigned int wid, const char* name, int off )
 {
+   int max;
    Widget *wgt = lst_getWgt(wid, name);
+
    if (wgt == NULL)
       return -1;
 
-   wgt->dat.lst.pos = CLAMP(0,
-         wgt->dat.lst.noptions - (int)(wgt->h/CELLHEIGHT), off);
+   /* wgt->dat.lst.noptions is 0 if there is no scrollbar, so we need to
+    * specifically account for that. */
+   max = MAX(0, wgt->dat.lst.noptions - (int)(wgt->h/CELLHEIGHT));
+   wgt->dat.lst.pos = CLAMP(0, max, off);
+
    return 0;
 }
 
