@@ -164,15 +164,17 @@ function takeoff()
    else
       shiptype = "Koäla"
    end
-   checkpoint[1] = pilot.add(shiptype, "Trader", location1, nil, {ai="stationary"})
-   checkpoint[2] = pilot.add(shiptype, "Trader", location2, nil, {ai="stationary"})
-   checkpoint[3] = pilot.add(shiptype, "Trader", location3, nil, {ai="stationary"})
-   for i, j in ipairs(checkpoint) do
-      j:rename(string.format(_("Checkpoint %s"), i))
-      j:setHilight(true)
-      j:setInvincible(true)
-      j:setActiveBoard(true)
-      j:setVisible(true)
+   local f = faction.dynAdd(nil, N_("Referee"), nil, {ai="stationary"})
+   checkpoint[1] = pilot.add(shiptype, f, location1)
+   checkpoint[2] = pilot.add(shiptype, f, location2)
+   checkpoint[3] = pilot.add(shiptype, f, location3)
+   for i, p in ipairs(checkpoint) do
+      p:rename(string.format(n_("Checkpoint %d", "Checkpoint %d", i), i))
+      p:setHilight()
+      p:setInvincible()
+      p:setActiveBoard()
+      p:setVisible()
+      p:setNoClear()
    end
    for i, s in ipairs(ship_list) do
       racers[i] = pilot.add(s, "Civilian", curplanet)
@@ -193,13 +195,14 @@ function takeoff()
          p:outfitAdd("Engine Reroute", 6)
       end
    end
-   for i, j in ipairs(racers) do
-      j:rename(string.format(_("Racer %s"), i))
-      j:setInvincible(true)
-      j:setVisible(true)
-      j:control()
-      j:face(checkpoint[1]:pos(), true)
-      j:broadcast(chatter[i])
+   for i, p in ipairs(racers) do
+      p:rename(string.format(n_("Racer %d", "Racer %d", i), i))
+      p:setInvincible()
+      p:setVisible()
+      p:setNoClear()
+      p:control()
+      p:face(checkpoint[1]:pos(), true)
+      p:broadcast(chatter[i])
    end
    player.pilot():control()
    player.pilot():face(checkpoint[1]:pos(), true)
