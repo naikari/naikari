@@ -242,7 +242,6 @@ function enter()
         seiryuu:setHilight()
         seiryuu:setVisplayer()
         seiryuu:setNoClear()
-        seiryuu:memory().nosteal = true
         hook.pilot(seiryuu, "board", "board")
     end
 end
@@ -251,7 +250,6 @@ end
 function spawnDiplomat()
     local diplomat = pilot.add("Gawain", "Civilian", origin,
             _("Imperial Diplomat"), {naked=true})
-    diplomat:setNoClear()
 
     local f = faction.dynAdd("Mercenary", N_("Four Winds"))
     f:dynEnemy(faction.get("Pirate"))
@@ -261,7 +259,6 @@ function spawnDiplomat()
         p:setInvincible()
         p:setVisplayer()
         p:setNoClear()
-        p:memory().nosteal = true
     end
 
     diplomat:control()
@@ -296,8 +293,8 @@ function spawnDiplomat()
     diplomat:setInvincPlayer()
     diplomat:setVisible()
     diplomat:setHilight()
+    diplomat:setNoClear()
     diplomat:setFriendly()
-    diplomat:memory().nosteal = true
 
     jumped = false
     diplomat_shutup = false

@@ -25,7 +25,6 @@ function create()
     baronship:setInvincible(true)
     baronship:setFriendly()
     baronship:setSpeedLimit(100)
-    baronship:memory().nosteal = true
     baronship:control()
     baronship:moveto(pla:pos() + vec2.new( 500, -500), false, false)
     hook.pilot(baronship, "idle", "idle")

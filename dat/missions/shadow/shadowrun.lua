@@ -237,7 +237,7 @@ function enter()
         seiryuu:setInvincible()
         seiryuu:setHilight()
         seiryuu:setVisplayer()
-        seiryuu:memory().nosteal = true
+        seiryuu:setNoClear()
         
         hook.pilot(seiryuu, "board", "board")
         hook.pilot(seiryuu, "death", "seiryuu_death")

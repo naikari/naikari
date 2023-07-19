@@ -63,9 +63,6 @@ function create()
     shipDV:setVisplayer()
     shipFLF:setVisplayer()
 
-    shipDV:memory().nosteal = true
-    shipFLF:memory().nosteal = true
-
     timerDV = hook.timer(3.0, "broadcastDV")
     timerFLF = hook.timer(12.0, "broadcastFLF")
 

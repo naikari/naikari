@@ -141,7 +141,6 @@ function theFunBegins()
    --summon a preacher from the jump point and highlight him and take control and focus on him
    preacher = pilot.add(
          "Sirius Reverence", "Sirius", curr, nil, {ai="sirius_norun"})
-   preacher:memory().nosteal = true
    preacher:setHilight()
    preacher:setVisplayer()
    preacher:control()

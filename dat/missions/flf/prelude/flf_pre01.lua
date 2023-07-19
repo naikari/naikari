@@ -146,12 +146,13 @@ function enter()
         fleetFLF = fleet.add(3, "Vendetta", "FLF", jumppos, _("FLF Vendetta"), {ai="flf_norun"})
         local c = player.pilot():ship():class()
         if c == "Cruiser" or c == "Carrier" then
-            local p = pilot.add( "Pacifier", "FLF", jumppos, _("FLF Pacifier"), {ai="flf_norun"} )
-            fleetFLF[#fleetFLF + 1] = p
+            local p = pilot.add("Pacifier", "FLF", jumppos, _("FLF Pacifier"),
+                  {ai="flf_norun"})
+            table.insert(fleetFLF, p)
         end
 
         for i, p in ipairs(fleetFLF) do
-            p:memory().nosteal = true
+            p:setNoClear()
         end
         
         local f = faction.get("FLF")

@@ -211,14 +211,14 @@ function spawnDVReinforcements ()
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta", "Dvaered Vendetta"},
          "Dvaered", pos, nil, {ai="dvaered_norun"})
-   for i, j in ipairs(reinforcements) do
-      if j:ship():class() == "Destroyer" then boss = j end
-      hook.pilot(j, "death", "pilot_death_dv")
-      j:setHostile()
-      j:setVisible(true)
-      j:setHilight(true)
-      j:memory().nosteal = true
-      fleetDV[ #fleetDV + 1 ] = j
+   for i, p in ipairs(reinforcements) do
+      if p:ship():class() == "Destroyer" then boss = p end
+      hook.pilot(p, "death", "pilot_death_dv")
+      p:setHostile()
+      p:setVisible()
+      p:setHilight()
+      p:setNoClear()
+      table.insert(fleetDV, p)
       dv_ships_left = dv_ships_left + 1
    end
 
@@ -328,9 +328,10 @@ end
 function timer_spawnFLF()
    if boss ~= nil and boss:exists() then
       spawnFLF(8)
-      for i, j in ipairs(fleetFLF) do
-         j:setFriendly()
-         j:setVisplayer(true)
+      for i, p in ipairs(fleetFLF) do
+         p:setFriendly()
+         p:setVisplayer()
+         p:setNoClear()
       end
 
       fleetFLF[1]:broadcast(flfcomm[1]:format(player.name()))
