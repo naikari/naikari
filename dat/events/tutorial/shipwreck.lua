@@ -27,10 +27,6 @@ function create()
         evt.finish()
     end
 
-    if not evt.claim(system.cur()) then
-        evt.finish()
-    end
-
     -- This non-standard way of checking chance ensures that it always
     -- shows up immediately when entering pirate-infested space at least
     -- once.
@@ -59,8 +55,9 @@ function create()
             {ai="dummy"})
     p:disable()
     -- Added extra visibility for big systems (A.)
-    p:setVisplayer(true)
-    p:setHilight(true)
+    p:setVisplayer()
+    p:setHilight()
+    p:setNoClear()
 
     hook.timer(3, "broadcast", p)
 
