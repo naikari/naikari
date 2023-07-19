@@ -33,6 +33,7 @@ mem.kill_reward = nil -- Credits rewarded by enemies for killing the pilot
 mem.formation = "circle" -- Formation to use when commanding fleet
 mem.form_pos = nil -- Position in formation (for follower)
 mem.leadermaxdist = nil -- Distance from leader to run back to leader
+mem.nocommand = false -- Whether a pilot will refuse to follow leader commands
 mem.gather_range = 1000 -- Radius in which the pilot looks for gatherables
 
 --[[Control parameters: mem.radius and mem.angle are the polar coordinates 
@@ -120,7 +121,7 @@ function control_manual ()
    lead_fleet()
 end
 
-function handle_messages ()
+function handle_messages()
    local p = ai.pilot()
    local l = p:leader()
    local rl = p:leader(true)
@@ -136,23 +137,24 @@ function handle_messages ()
             ai.pushtask("land")
          -- Escort commands
          -- Attack target
-         elseif msgtype == "e_attack" then
+         elseif msgtype == "e_attack" and not mem.nocommand then
             if data ~= nil and data:exists() then
-               if data:leader() ~= l then
-                  clean_task( ai.taskname() )
+               -- Only attack a target who isn't in the same fleet.
+               if data:leader(true) ~= rl then
+                  clean_task(ai.taskname())
                   ai.pushtask("attack_forced", data)
                end
             end
          -- Hold position
-         elseif msgtype == "e_hold" then
+         elseif msgtype == "e_hold" and not mem.nocommand then
             p:taskClear()
             ai.pushtask("hold")
          -- Return to carrier
-         elseif msgtype == "e_return" then
+         elseif msgtype == "e_return" and not mem.nocommand then
             p:taskClear()
             ai.pushtask("flyback", p:flags().carried)
          -- Clear orders
-         elseif msgtype == "e_clear" then
+         elseif msgtype == "e_clear" and not mem.nocommand then
             p:taskClear()
          end
       end
