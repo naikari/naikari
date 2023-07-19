@@ -1,10 +1,10 @@
 --[[
 <?xml version='1.0' encoding='utf8'?>
-<mission name="Trader Escort">
+<mission name="Convoy Escort">
  <avail>
-  <priority>40</priority>
+  <priority>49</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
-  <chance>360</chance>
+  <chance>540</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -28,37 +28,6 @@ require "nextjump"
 require "cargo_common"
 
 
-misn_title = {}
-misn_title[1] = _("Escort: Tiny Convoy to {planet} ({system} system)")
-misn_title[2] = _("Escort: Small Convoy to {planet} ({system} system)")
-misn_title[3] = _("Escort: Medium Convoy to {planet} ({system} system)")
-misn_title[4] = _("Escort: Large Convoy to {planet} ({system} system)")
-misn_title[5] = _("Escort: Huge Convoy to {planet} ({system} system)")
-
-misn_desc = _("A convoy of traders needs protection while they go to {planet} in the {system} system. You must stick with the convoy at all times, waiting to jump or land until the entire convoy has done so.")
-   
-piracyrisk = {}
-piracyrisk[1] = _("Piracy Risk: None")
-piracyrisk[2] = _("Piracy Risk: Low")
-piracyrisk[3] = _("Piracy Risk: Medium")
-piracyrisk[4] = _("Piracy Risk: High")
-
-osd_title = _("Convey Escort")
-osd_msg = _("Escort a convoy of traders to {planet} ({system} system)")
-
-landsuccesstext = _("You successfully escorted the trading convoy to the destination. There wasn't a single casualty and you are rewarded the full amount.")
-
-landcasualtytext = {}
-landcasualtytext[1] = _("You've arrived with the trading convoy more or less intact. Your pay is docked slightly due to the loss of part of the convoy.")
-landcasualtytext[2] = _("You arrive with what's left of the convoy. It's not much, but it's better than nothing. You are paid a steeply discounted amount.")
-
-landfailtext = _("You have landed, abandoning your mission to escort the trading convoy.")
-
-convoynolandtext = _([[You landed at the planet before ensuring that the rest of your convoy was safe. You have abandoned your duties, and failed your mission.]])
-
-traderdistress = _("Convoy ships under attack! Requesting immediate assistance!")
-
-
 function create()
    destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
    
@@ -69,99 +38,91 @@ function create()
    elseif avgrisk * numjumps <= 25 then
       misn.finish(false) -- needs to be a little bit of piracy possible along route
    end
-
-   local claimsys = {system.cur()}
-   for i, jp in ipairs(system.cur():jumpPath(destsys)) do
-      claimsys[#claimsys + 1] = jp:dest()
-   end
-   if not misn.claim(claimsys) then
-      misn.finish(false)
-   end
    
+   local piracyrisk, riskreward
    if avgrisk == 0 then
-      piracyrisk = piracyrisk[1]
+      piracyrisk = _("Piracy Risk: None")
       riskreward = 0
-      riskmod = 5
    elseif avgrisk <= 25 then
-      piracyrisk = piracyrisk[2]
-      riskreward = 20
-      riskmod = 10
-   elseif avgrisk <= 50 then
-      -- Note: duplication of piracy risk descriptions here is
-      -- intentional, for consistency with other missions that don't
-      -- have this level of granularity.
-      piracyrisk = piracyrisk[3]
-      riskreward = 30
-      riskmod = 15
-   elseif avgrisk <= 100 then
-      piracyrisk = piracyrisk[3]
-      riskreward = 50
-      riskmod = 20
+      piracyrisk = _("Piracy Risk: Low")
+      riskreward = 150
+   elseif avgrisk > 25 and avgrisk <= 100 then
+      piracyrisk = _("Piracy Risk: Medium")
+      riskreward = 300
    else
-      piracyrisk = piracyrisk[4]
-      riskreward = 100
-      riskmod = 25
+      piracyrisk = _("Piracy Risk: High")
+      riskreward = 450
    end
-    
-   convoysize = rnd.rnd(1,5)
    
-   -- Choose mission reward.
-   -- Reward depends on type of cargo hauled. Hauling expensive commodities gives a better deal.
-   if convoysize == 1 then
-      jumpreward = 6 * riskmod * commodity.price(cargo)
-      distreward = riskmod * math.log(500*commodity.price(cargo))/100
-   elseif convoysize == 2 then
-      jumpreward = 7 * riskmod * commodity.price(cargo)
-      distreward = riskmod * math.log(700*commodity.price(cargo))/100
-   elseif convoysize == 3 then
-      jumpreward = 8 * riskmod * commodity.price(cargo)
-      distreward = riskmod * math.log(800*commodity.price(cargo))/100
-   elseif convoysize == 4 then
-      jumpreward = 9 * riskmod * commodity.price(cargo)
-      distreward = riskmod * math.log(900*commodity.price(cargo))/100
-   elseif convoysize == 5 then
-      jumpreward = 10 * riskmod * commodity.price(cargo)
-      distreward = riskmod * math.log(1000*commodity.price(cargo))/100
+   -- Choose mission reward. This depends on the mission tier.
+   jumpreward = (commodity.price(cargo) * (20+riskreward)) / 100
+   distreward = math.log((50+riskreward)*commodity.price(cargo)) / 100
+   reward = (1.75^tier
+         * (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward
+            + 25000)
+         * (1 + 0.05*rnd.twosigma()))
+
+   local title
+   if tier <= 0 then
+      title = _("Escort: Tiny Convoy to {planet} ({system} system)")
+      pilots_table, pilots_min_speed = genPilots(
+         rnd.rnd(2, 3), "Mercenary", {"Llama"})
+   elseif tier <= 1 then
+      title = _("Escort: Small Convoy to {planet} ({system} system)")
+      pilots_table, pilots_min_speed = genPilots(
+         rnd.rnd(3, 4), "Trader", {"Llama"})
+   elseif tier <= 2 then
+      title = _("Escort: Medium Convoy to {planet} ({system} system)")
+      pilots_table, pilots_min_speed = genPilots(
+         rnd.rnd(4, 5), "Trader", {"Llama", "Koäla"})
+   elseif tier <= 3 then
+      title = _("Escort: Large Convoy to {planet} ({system} system)")
+      pilots_table, pilots_min_speed = genPilots(
+         rnd.rnd(5, 6), "Trader", {"Koäla", "Rhino"})
+   else
+      title = _("Escort: Huge Convoy to {planet} ({system} system)")
+      pilots_table, pilots_min_speed = genPilots(
+         rnd.rnd(5, 6), "Trader", {"Rhino", "Mule"})
    end
-   reward = (avgrisk*riskreward + numjumps*jumpreward + traveldist*distreward)
-         * (1 + 0.05*rnd.twosigma())
+
+   local desc = _("A convoy of traders needs to be escorted to {planet} in the {system} system. The convoy pilots will join your fleet and follow you, but you cannot issue orders to them. You should take care to ensure that your ship travels slow enough for the convoy to keep up with you.")
+
+   local speed_text = fmt.f(p_("escort_desc", "Speed: {speed:.0f} mAU/s"),
+         {speed=pilots_min_speed})
+   local desc_extra_lines = {piracyrisk, speed_text}
+   local desc_extra = table.concat(desc_extra_lines, "\n")
+
+   cargo_setDesc(
+      fmt.f(desc, {planet=destplanet:name(), system=destsys:name()}),
+      cargo, nil, destplanet, numjumps, nil, desc_extra)
    
-   misn.setTitle(fmt.f(misn_title[convoysize],
+   misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name()}))
-   cargo_setDesc(fmt.f(misn_desc,
-            {planet=destplanet:name(), system=destsys:name()}),
-         cargo, nil, destplanet, numjumps, nil, piracyrisk)
    misn.markerAdd(destsys, "computer")
    misn.setReward(fmt.credits(reward))
 end
 
 
 function accept()
-   local pjumps = player.jumps()
-   if pjumps ~= nil and pjumps < numjumps then
-      local needed_text = n_("The destination is {distance} jump away. ",
-            "The destination is {distance} jumps away. ", numjumps)
-      local avail_text = n_(
-            "You only have enough fuel for {range} jump. You cannot stop to refuel. Accept the mission anyway?",
-            "You only have enough fuel for {range} jumps. You cannot stop to refuel. Accept the mission anyway?",
-            pjumps)
-      if not tk.yesno("", fmt.f(needed_text .. avail_text,
-               {distance=fmt.number(numjumps), range=fmt.number(pjumps)})) then
+   local player_p = player.pilot()
+   local plspeed = player_p:stats().speed_max
+   if plspeed > pilots_min_speed then
+      local s = fmt.f(_("Your ship, the {shipname}, has a maximum speed of {plspeed:.0f} mAU/s, which is faster than the convoy's maximum speed. This may cause the convoy to struggle to keep up or even become scattered. Accept the mission anyway?"),
+            {shipname=player_p:name(), plspeed=plspeed})
+      if not tk.yesno("", s) then
          misn.finish()
+         return
       end
    end
 
-   nextsys = getNextSystem(system.cur(), destsys) -- This variable holds the system the player is supposed to jump to NEXT.
-   origin = planet.cur() -- The place where the AI ships spawn from.
-
-   orig_alive = nil
-   alive = nil
-   exited = 0
-   misnfail = false
-
    misn.accept()
-   misn.osdCreate(osd_title,
-         {fmt.f(osd_msg, {planet=destplanet:name(), system=destsys:name()})})
+
+   origin = planet.cur() -- The place where the AI ships spawn from.
+   last_planet, last_sys = planet.cur()
+
+   hook.rm(regen_desc_hook)
+
+   updateOSD()
 
    hook.takeoff("takeoff")
    hook.jumpin("jumpin")
@@ -170,371 +131,277 @@ function accept()
 end
 
 
+function genPilots(n, f, shiptypes)
+   local ptables = {}
+   ptables.__save = true
+   local min_speed = nil
+   for i = 1, n do
+      local ptable = {}
+      ptable.__save = true
+      ptable.ship = shiptypes[rnd.rnd(1, #shiptypes)]
+      ptable.alive = true
+
+      local p = pilot.add(ptable.ship, f)
+
+      local speed = p:stats().speed_max
+      if min_speed == nil or speed < min_speed then
+         min_speed = speed
+      end
+
+      ptable.outfits = {}
+      ptable.outfits.__save = true
+      for j, o in ipairs(p:outfits()) do
+         table.insert(ptable.outfits, o:nameRaw())
+      end
+
+      table.insert(ptables, ptable)
+   end
+
+   return ptables, min_speed
+end
+
+
+function updateOSD()
+   local alive = getAliveCount()
+   local total = #pilots_table
+
+   local osd_desc = {
+      fmt.f(_("Land on {planet} ({system} system)"),
+         {planet=destplanet:name(), system=destsys:name()}),
+      fmt.f(_("Protect the convoy from harm ({alive}/{total} remaining)"),
+         {alive=fmt.number(alive), total=fmt.number(total)}),
+   }
+   misn.osdCreate(_("Convoy Escort"), osd_desc)
+end
+
+
 function takeoff()
-   spawnConvoy()
+   spawnConvoy(last_planet)
 end
 
 
 function jumpin()
-   if system.cur() ~= nextsys then
-      mh.showFailMsg(_("You jumped into the wrong system."))
+   local cursys = system.cur()
+   local adjacent = false
+   for i, sys in ipairs(last_sys:adjacentSystems()) do
+      if cursys == sys then
+         adjacent = true
+      end
+   end
+   if adjacent then
+      spawnConvoy(last_sys)
    else
-      spawnConvoy()
+      mh.showFailMsg(_("You lost contact with the convoy."))
+      misn.finish(false)
    end
 end
 
 
 function jumpout()
-   if alive <= 0 or exited <= 0 then
-      mh.showFailMsg(_("You jumped before the convoy you were escorting."))
-   else
-      -- Treat those that didn't exit as dead
-      alive = math.min(alive, exited)
+   last_sys = system.cur()
+   last_planet = nil
+
+   for i, ptable in ipairs(pilots_table) do
+      if ptable.alive then
+         if ptable.pilot ~= nil and ptable.pilot:exists() then
+            ptable.temp = ptable.pilot:temp()
+            ptable.armor, ptable.shield, ptable.stress = ptable.pilot:health()
+            ptable.energy = ptable.pilot:energy()
+            ptable.pilot:rm()
+         else
+            ptable.temp = nil
+            ptable.armor = nil
+            ptable.shield = nil
+            ptable.stress = nil
+            ptable.energy = nil
+         end
+         ptable.pilot = nil
+      end
    end
-   origin = system.cur()
-   nextsys = getNextSystem(system.cur(), destsys)
 end
+
 
 function land()
-   alive = math.min(alive, exited)
-
-   if planet.cur() ~= destplanet then
-      tk.msg("", landfailtext)
-      misn.finish(false)
-   elseif alive <= 0 then
-      tk.msg("", convoynolandtext)
-      misn.finish(false)
-   else
-      if alive >= orig_alive then
-         tk.msg("", landsuccesstext)
-         player.pay(reward)
-      elseif alive / orig_alive >= 0.6 then
-         tk.msg("", landcasualtytext[1])
-         player.pay(reward * alive / orig_alive)
+   last_planet, last_sys = planet.cur()
+   if last_planet == destplanet then
+      local alive = getAliveCount()
+      local total = #pilots_table
+      local s
+      local credits = 0
+      if alive >= total then
+         s = _([[You make it to the convoy's destination without suffering any casualties. After verifying that no one from the convoy is unaccounted for, the convoy manager hands you your pay and thanks you for a job well done.]])
+         credits = reward
+      elseif alive / total >= 0.6 then
+         s = _([[You arrive with the convoy more or less intact, but not everyone from the convoy is accounted for. The convoy manager only pays you {credits} as a result.]])
+         credits = reward * alive / total
       else
-         tk.msg("", landcasualtytext[2])
-         player.pay(reward * alive / orig_alive)
+         s = _([[You make it to the convoy's destination with what's left of the convoy. It's not much, but it's better than nothing. The convoy manager hands you a steeply discounted payment of {credits} without saying a word.]])
+         credits = reward * alive / total
       end
+      tk.msg("", fmt.f(s, {credits=fmt.credits(credits)}))
+      player.pay(credits)
       misn.finish(true)
    end
-end
 
+   -- Reset convoy stats and mark missing pilots as dead.
+   for i, ptable in ipairs(pilots_table) do
+      if ptable.jump_dest ~= nil then
+         ptable.alive = false
+      end
+      if ptable.land_dest ~= nil and ptable.land_dest ~= last_planet then
+         ptable.alive = false
+      end
+      ptable.pilot = nil
+      ptable.temp = nil
+      ptable.armor = nil
+      ptable.shield = nil
+      ptable.stress = nil
+      ptable.energy = nil
+      ptable.jump_dest = nil
+      ptable.land_dest = nil
+   end
 
-function traderDeath(p)
-   alive = alive - 1
+   -- Check for fail condition.
+   if getAliveCount() <= 0 then
+      tk.msg("", _("You have lost contact with the convoy and failed the mission as a result."))
+      misn.finish(false)
+   end
+
    updateOSD()
-   if alive <= 0 then
+end
+
+
+function getAliveCount()
+   local alive = 0
+   for i, ptable in ipairs(pilots_table) do
+      if ptable.alive then
+         alive = alive + 1
+      end
+   end
+   return alive
+end
+
+
+function traderDeath(p, killer, ptable)
+   ptable.alive = false
+   player.msg(fmt.f(_("#r{pilot} has been destroyed.#0"),
+         {pilot=p:name()}))
+   updateOSD()
+
+   if getAliveCount() <= 0 then
       mh.showFailMsg(_("The convoy you were escorting has been destroyed."))
-   elseif exited >= alive then
-      -- No more left to defend, proceed to follow the rest
-      misn.osdActive(2)
-   else
-      organize_fleet(convoy)
+      misn.finish(false)
    end
 end
 
 
--- Handle the jumps of convoy.
-function traderJump(p, j)
-   if j:dest() == getNextSystem(system.cur(), destsys) then
-      exited = exited + 1
-      updateOSD()
-      if p:exists() then
-         player.msg(fmt.f(
-               _("{ship} has jumped to {system}."),
-               {ship=p:name(), system=j:dest():name()}))
-      end
-      if exited >= alive then
-         misn.osdActive(2)
-      end
-   else
-      traderDeath()
+function traderJump(p, jmp, ptable)
+   ptable.jump_dest = jmp:dest()
+   player.msg(fmt.f(_("{pilot} has fled to the {system} system."),
+         {pilot=p:name(), system=ptable.jump_dest:name()}))
+end
+
+
+function traderLand(p, plnt, ptable)
+   if plnt ~= destplanet then
+      ptable.land_dest = plnt
+      player.msg(fmt.f(_("{pilot} has fled to {planet}."),
+            {pilot=p:name(), planet=plnt:name()}))
    end
 end
 
 
---Handle landing of convoy
-function traderLand(p, plnt)
-   if plnt == destplanet then
-      exited = exited + 1
-      updateOSD()
-      if p:exists() then
-         player.msg(fmt.f(
-               _("{ship} has landed on {planet}."),
-               {ship=p:name(), planet=plnt:name()}))
+function spawnConvoy(source)
+   local cursys = system.cur()
+   local player_p = player.pilot()
+   local nspawned = 0
+   for i, ptable in ipairs(pilots_table) do
+      if ptable.land_dest ~= nil and ptable.land_dest ~= source then
+         ptable.alive = false
       end
-      if exited >= alive then
-         misn.osdActive(2)
+      if ptable.jump_dest ~= nil and ptable.jump_dest ~= cursys then
+         ptable.alive = false
       end
-   else
-      traderDeath()
-   end
-end
 
+      if ptable.alive then
+         nspawned = nspawned + 1
 
--- Handle the convoy getting attacked.
-function traderAttacked(p, attacker)
-   if not shuttingup then
-      shuttingup = true
-      p:comm(player.pilot(), traderdistress)
-      hook.timer(5, "traderShutup") -- Shuts him up for at least 5s.
-   end
-end
-
-
-function traderShutup()
-    shuttingup = false
-end
-
-
-function spawnConvoy()
-   --Make it interesting
-   local ambush_src = destplanet
-   if system.cur() ~= destsys then
-      ambush_src = getNextSystem(system.cur(), destsys)
-   end
-
-   if convoysize == 1 then
-      convoy = fleet.add(3, "Llama", "Trader", origin, _("Convoy Llama"))
-
-      ambush = fleet.add({1, 1, 2},
-            {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-            ambush_src, {nil, nil, _("Pirate Hyena")})
-   elseif convoysize == 2 then
-      convoy = fleet.add(4, "Koäla", "Trader", origin, _("Convoy Koäla"))
-
-      ambush = fleet.add({1, rnd.rnd(1, 3), 2},
-            {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-            ambush_src, {nil, nil, _("Pirate Hyena")})
-   elseif convoysize == 3 then
-      convoy = fleet.add({2, 3}, {"Rhino", "Mule"}, "Trader", origin,
-            {_("Convoy Rhino"), _("Convoy Mule")})
-
-      if rnd.rnd() < 0.5 then
-         ambush = fleet.add({1, 3, 2},
-               {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-               ambush_src, {nil, nil, _("Pirate Hyena")})
-      else
-         ambush = fleet.add({1, 2, 2},
-               {"Pirate Admonisher", "Pirate Rhino", "Pirate Shark"}, "Pirate",
-               ambush_src)
-      end
-   elseif convoysize == 4 then
-      convoy = fleet.add(3, {"Rhino", "Mule"}, "Trader", origin,
-            {_("Convoy Rhino"), _("Convoy Mule")})
-
-      local r = rnd.rnd()
-      if r < 0.33 then
-         ambush = fleet.add({1, 3, 2},
-               {"Pirate Ancestor", "Pirate Vendetta", "Hyena"}, "Pirate",
-               ambush_src, {nil, nil, _("Pirate Hyena")})
-      elseif r < 0.66 then
-         ambush = fleet.add({1, 2, 2, 2},
-               {"Pirate Admonisher", "Pirate Phalanx", "Pirate Shark",
-                  "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, _("Pirate Hyena")})
-      else
-         ambush = fleet.add({1, 2, 2},
-               {"Pirate Admonisher", "Pirate Rhino", "Pirate Shark"}, "Pirate",
-               ambush_src)
-      end
-   else
-      convoy = fleet.add(4, {"Rhino", "Mule"}, "Trader", origin,
-            {_("Convoy Rhino"), _("Convoy Mule")})
-
-      local r = rnd.rnd()
-      if r < 0.33 then
-         ambush = fleet.add({1, 2, 2, 2},
-               {"Pirate Admonisher", "Pirate Phalanx", "Pirate Shark",
-                  "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, _("Pirate Hyena")})
-      elseif r < 0.66 then
-         ambush = fleet.add({1, 1, 1, 2, 3},
-               {"Pirate Kestrel", "Pirate Admonisher", "Pirate Rhino",
-                  "Pirate Shark", "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, nil, _("Pirate Hyena")})
-      else
-         ambush = fleet.add({1, 2, 2, 2},
-               {"Pirate Admonisher", "Pirate Phalanx", "Pirate Shark",
-                  "Hyena"}, "Pirate", ambush_src,
-               {nil, nil, nil, _("Pirate Hyena")})
-      end
-   end
-
-   for i, p in ipairs(convoy) do
-      if alive ~= nil and alive < i then
-         p:rm()
-      end
-      if p:exists() then
-         for j, c in ipairs(p:cargoList()) do
-            p:cargoRm(c.name, c.q)
+         local name = fmt.f(p_("pilot_name", "Convoy {ship}"),
+               {ship=_(ptable.ship)})
+         local p = pilot.add(ptable.ship, "Trader", source, name,
+               {naked=true})
+         ptable.pilot = p
+         for j, o in ipairs(ptable.outfits) do
+            p:outfitAdd(o)
          end
+         p:fillAmmo()
+         p:setFriendly()
 
+         local temp = 250
+         local armor = 100
+         local shield = 100
+         local stress = 0
+         local energy = 100
+         if ptable.temp ~= nil then
+            temp = ptable.temp
+         end
+         if ptable.armor ~= nil then
+            armor = ptable.armor
+         end
+         if ptable.shield ~= nil then
+            shield = ptable.shield
+         end
+         if ptable.stress ~= nil then
+            -- Limit this to 99 so we don't have the weirdness of a
+            -- disabled ship warping in.
+            stress = math.min(ptable.stress, 99)
+         end
+         if ptable.energy ~= nil then
+            energy = ptable.energy
+         end
+         p:setTemp(temp, true)
+         p:setHealth(armor, shield, stress)
+         p:setEnergy(energy)
          p:setFuel(true)
          p:cargoAdd(cargo, p:cargoFree())
 
-         p:setHilight(true)
+         local mem = p:memory()
+         mem.nocommand = true
+         mem.norun = true
+
          p:setInvincPlayer()
          p:setVisplayer()
 
-         hook.pilot(p, "exploded", "traderDeath")
-         hook.pilot(p, "attacked", "traderAttacked")
-         hook.pilot(p, "land", "traderLand")
-         hook.pilot(p, "jump", "traderJump")
+         p:setLeader(player_p)
+
+         hook.pilot(p, "death", "traderDeath", ptable)
+         hook.pilot(p, "land", "traderLand", ptable)
+         hook.pilot(p, "jump", "traderJump", ptable)
       end
    end
 
-   organize_fleet(convoy)
-
-   exited = 0
-   if orig_alive == nil then
-      orig_alive = 0
-      for i, p in ipairs(convoy) do
-         if p ~= nil and p:exists() then
-            orig_alive = orig_alive + 1
-         end
-      end
-      alive = orig_alive
-
-      -- Shouldn't happen
-      if orig_alive <= 0 then
-         misn.finish(false)
-      end
+   if nspawned <= 0 then
+      mh.showFailMsg(_("You lost contact with the convoy."))
+      misn.finish(false)
    end
 
    updateOSD()
-end
-
-
-function organize_fleet(convoy)
-   local minspeed = nil
-   local leader = nil
-   for i, p in ipairs(convoy) do
-      if p:exists() then
-         -- Remove any existing speed limit (in case the leader changed).
-         p:setSpeedLimit(0)
-
-         local myspd = p:stats().speed_max
-         if minspeed == nil or myspd < minspeed then
-            minspeed = myspd
-            leader = p
-         end
-
-         -- Make sure the convoy stays close together.
-         p:memory().leadermaxdist = 1000
-
-         p:taskClear()
-         p:setNoLand()
-         p:control(false)
-      end
-   end
-
-   if minspeed == nil or leader == nil then
-      -- This should never happen, but is here as a failsafe.
-      warn(_("No minspeed or leader set for convoy, maybe the table is empty."))
-      return
-   end
-
-   local plmax = player.pilot():stats().speed_max * 0.8
-   leader:setSpeedLimit(math.min(plmax, minspeed * 0.8))
-
-   for i, p in ipairs(convoy) do
-      if p ~= leader and p:exists() then
-         p:setLeader(leader)
-      end
-   end
-
-   leader:memory().formation = "wall"
-   leader:setNoLand(false)
-   leader:control()
-
-   local dest
-   if system.cur() == destsys then
-      leader:land(destplanet, true)
-      dest = destplanet:pos()
-   else
-      local nextsys = getNextSystem(system.cur(), destsys)
-      leader:hyperspace(nextsys, true)
-      dest = jump.get(system.cur(), nextsys):pos()
-   end
-
-   hook.rm(prox_timer)
-   prox_timer = hook.timer(0.5, "prox_jump", dest)
-end
-
-
-function prox_jump(dest)
-   local nearby = false
-   for i, p in ipairs(convoy) do
-      if p:exists() and vec2.dist(p:pos(), dest) <= 1000 then
-         nearby = true
-         break
-      end
-   end
-
-   if not nearby then
-      prox_timer = hook.timer(0.5, "prox_jump", dest)
-      return
-   end
-
-   for i, p in ipairs(convoy) do
-      if p:exists() then
-         p:setNoLand(false)
-         p:control()
-         if system.cur() == destsys then
-            p:land(destplanet, true)
-         else
-            local nextsys = getNextSystem(system.cur(), destsys)
-            p:hyperspace(nextsys, true)
-         end
-      end
-   end
-end
-
-
-function updateOSD()
-   misn.osdDestroy()
-   if system.cur() == destsys then
-      local osd_desc = {}
-      osd_desc[1] = fmt.f(
-            _("Protect the convoy ships and wait for them to land on {planet} ({landed}/{remaining})"),
-            {planet=destplanet:name(), landed=fmt.number(exited),
-               remaining=fmt.number(alive)})
-      osd_desc[2] = fmt.f(_("Land on {planet}"), {planet=destplanet:name()})
-      misn.osdCreate(osd_title, osd_desc)
-   else
-      local sys = getNextSystem(system.cur(), destsys)
-      local jumps = system.cur():jumpDist(destsys)
-      local osd_desc = {
-         fmt.f(
-            _("Protect the convoy ships and wait for them to jump to {system} ({jumped}/{remaining})"),
-            {system=sys:name(), jumped=fmt.number(exited),
-               remaining=fmt.number(alive)}),
-         fmt.f(_("Jump to {system}"), {system=sys:name()}),
-      }
-      if jumps > 1 then
-         osd_desc[3] = fmt.f(
-               n_("{remaining} more jump after this one",
-                  "{remaining} more jumps after this one", jumps - 1),
-               {remaining=fmt.number(jumps - 1)})
-      end
-      misn.osdCreate(osd_title, osd_desc)
-   end
 end
 
 
 function abort()
-   if convoy ~= nil then
-      for i, p in ipairs(convoy) do
-         if p:exists() then
-            p:setHilight(false)
-            p:setInvincPlayer(false)
-            p:setVisplayer(false)
-            p:setSpeedLimit(0)
-            p:setNoLand(false)
-            p:control(false)
-            p:taskClear()
-         end
+   for i, ptable in ipairs(pilots_table) do
+      if ptable.pilot ~= nil and ptable.pilot:exists() then
+         local p = ptable.pilot
+         local mem = p:memory()
+         mem.nocommand = false
+         mem.norun = false
+         p:setLeader(nil)
+         p:setHilight(false)
+         p:setInvincPlayer(false)
+         p:setVisplayer(false)
+         p:setNoLand(false)
+         p:setNoJump(false)
       end
    end
 end

@@ -4785,24 +4785,20 @@ static int pilotL_leader(lua_State *L) {
 static int pilotL_setLeader(lua_State *L) {
    Pilot *p, *leader, *prev_leader;
    PilotOutfitSlot* dockslot;
-   Pilot * const *pilot_stack;
-   int i;
 
    NLUA_CHECKRW(L);
 
-   pilot_stack = pilot_getAll();
    p = luaL_validpilot(L, 1);
 
+   /* Remove from previous leader's follower list */
    prev_leader = pilot_get(p->parent);
+   if (prev_leader != NULL)
+      escort_rmList(prev_leader, p->id);
 
    if (lua_isnil(L, 2)) {
       p->parent = 0;
    } else {
       leader = luaL_validpilot(L, 2);
-
-      if (leader->parent != 0 && pilot_get(leader->parent) != NULL)
-         leader = pilot_get(leader->parent);
-
       p->parent = leader->id;
 
       /* Reset dock slot */
@@ -4816,17 +4812,6 @@ static int pilotL_setLeader(lua_State *L) {
 
       /* TODO: Figure out escort type */
       escort_addList(leader, p->ship->name, ESCORT_TYPE_MERCENARY, p->id, 0);
-   }
-
-   /* Remove from previous leader's follower list */
-   if (prev_leader != NULL)
-      escort_rmList(prev_leader, p->id);
-
-   /* If the pilot has followers, they should be given the new leader as well */
-   for (i = 0; i<array_size(pilot_stack); i++) {
-      if (pilot_stack[i]->parent == p->id) {
-         pilot_stack[i]->parent = p->parent;
-      }
    }
 
    return 0;

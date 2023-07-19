@@ -1638,20 +1638,23 @@ void takeoff( int delay )
    player_message( _("#oTaking off from %s on %s."), _(land_planet->name), nt);
    free(nt);
 
-   /* Hooks and stuff. */
-   land_cleanup(); /* Cleanup stuff */
-   hooks_run("takeoff"); /* Must be run after cleanup since we don't want the
-                            missions to think we are landed. */
+   land_cleanup();
+   player_addEscorts();
+
+   /* Lua stuff must be run after cleanup and after adding escorts. */
+   hooks_run("takeoff");
    if (menu_isOpen(MENU_MAIN))
       return;
-   player_addEscorts();
+
    hooks_run("enter");
    if (menu_isOpen(MENU_MAIN))
       return;
-   events_trigger( EVENT_TRIGGER_ENTER );
-   missions_run( MIS_AVAIL_SPACE, -1, NULL, NULL );
+
+   events_trigger(EVENT_TRIGGER_ENTER);
+   missions_run(MIS_AVAIL_SPACE, -1, NULL, NULL);
    if (menu_isOpen(MENU_MAIN))
       return;
+
    player.p->landing_delay = PILOT_TAKEOFF_DELAY * player_dt_default();
    player.p->ptimer = player.p->landing_delay;
    pilot_setFlag( player.p, PILOT_TAKEOFF );

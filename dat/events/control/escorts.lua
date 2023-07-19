@@ -287,7 +287,6 @@ function land ()
    new_escorts["__save"] = true
    for i, edata in ipairs(escorts) do
       if edata.alive then
-         local j = #new_escorts + 1
          edata.pilot = nil
          edata.temp = nil
          edata.armor = nil
@@ -295,7 +294,7 @@ function land ()
          edata.stress = nil
          edata.energy = nil
          spawnNPC(edata)
-         new_escorts[j] = edata
+         table.insert(new_escorts, edata)
       end
    end
    escorts = new_escorts
