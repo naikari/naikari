@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Warlords battle">
  <trigger>enter</trigger>
- <chance>20</chance>
+ <chance>100</chance>
  <cond>system.cur():faction() == faction.get("Dvaered") and not player.evtActive("Warlords battle")</cond>
 </event>
 --]]
@@ -14,9 +14,9 @@ require "proximity"
 local formation = require "formation"
 
 
-explain_text = _([["Hey, you," the captain of the ship says. "You don't seem to know what's going to happen here. A mighty warlord from {system} is going to attack {planet}. You shouldn't stay here, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship and they lose the battle, the other warlord will reward you. But if the warlord you attacked wins, you will be hunted down."]])
+local explain_text = _([["Hey, you," the captain of the ship says. "You don't seem to know what's going to happen here. A mighty warlord from {system} is going to attack {planet}. You shouldn't stay here, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship and they lose the battle, the other warlord will reward you. But if the warlord you attacked wins, you will be hunted down."]])
 
-reward_text = _([["Hello captain," a Dvaered officer from the ship that hailed you says. "You helped us in this battle. I am authorized to give you {credits} as a reward."]])
+local reward_text = _([["Hello captain," a Dvaered officer from the ship that hailed you says. "You helped us in this battle. I am authorized to give you {credits} as a reward."]])
 
 
 function create()
@@ -25,11 +25,11 @@ function create()
    hook.land("leave")
 end
 
-function begin()  
-   thissystem = system.cur()
+function begin()
+   local thissystem = system.cur()
 
    -- thissystem and source_system must be adjacent (for those who use player.teleport)
-   areAdj = false
+   local areAdj = false
    for i, s in ipairs(source_system:adjacentSystems()) do
       if thissystem == s then
          areAdj = true
@@ -62,8 +62,8 @@ function begin()
 
    hook.timer(3, "merchant")
    hook.timer(12, "attack")
-   inForm = true -- People are in formation
-   batInProcess = true -- Battle is happening
+
+   inForm = true
 
    hook.rm(jumphook)
    hook.jumpout("leave")
@@ -133,8 +133,6 @@ function attack()
    f1:dynEnemy(f2)
    f2:dynEnemy(f1)
 
-   attAttHook = {}
-
    goda = pilot.add("Dvaered Goddard", f1, source_system,
          _("Invading Warlord"))
    attackers = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
@@ -151,17 +149,14 @@ function attack()
       p:memory().aggressive = false
       p:memory().kill_reward = nil
 
-      attAttHook[i] = hook.pilot(p, "attacked", "attackerAttacked")
+      hook.pilot(p, "attacked", "attackerAttacked")
       hook.pilot(p, "death", "attackerDeath")
       hook.pilot(p, "jump", "attackerDeath")
       hook.pilot(p, "land", "attackerDeath")
    end
 
    attnum = #attackers
-   attdeath = 0
    attdamage = 0
-
-   defAttHook = {}
 
    godd = pilot.add("Dvaered Goddard", f2, source_planet, _("Local Warlord"))
    defenders = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
@@ -174,18 +169,18 @@ function attack()
 
    for i, p in ipairs(defenders) do
       p:setNoClear()
-      p:memory().formation = form
-      p:memory().aggressive = false
-      p:memory().kill_reward = nil
+      local mem = p:memory()
+      mem.formation = form
+      mem.aggressive = false
+      mem.kill_reward = nil
 
-      defAttHook[i] = hook.pilot(p, "attacked", "defenderAttacked")
+      hook.pilot(p, "attacked", "defenderAttacked")
       hook.pilot(p, "death", "defenderDeath")
       hook.pilot(p, "jump", "defenderDeath")
       hook.pilot(p, "land", "defenderDeath")
    end
 
    defnum = #defenders
-   defdeath = 0
    defdamage = 0
 
    goda:setVisible()
@@ -234,28 +229,27 @@ function defenderAttacked(victim, attacker, damage)
       return
    end
 
-   for i, p in ipairs(defenders) do
-      if p == attacker then
-         startBattle()
-         return
+   if inForm then
+      for i, p in ipairs(defenders) do
+         if p == attacker then
+            startBattle()
+            return
+         end
       end
    end
 
    if attacker == player.pilot() or attacker:leader(true) == player.pilot() then
       startBattle()
 
-      for i, p in ipairs(defenders) do
-         if p:exists() then
-            p:setHostile()
+      if not playerAttackedDefenders then
+         for i, p in ipairs(defenders) do
+            if p:exists() then
+               p:setHostile()
+            end
          end
       end
 
-      if side == "defender" then
-         side = false
-      elseif side == nil then
-         side = "attacker"
-      end
-
+      playerAttackedDefenders = true
       defdamage = defdamage + damage
    end
 end
@@ -265,103 +259,97 @@ function attackerAttacked(victim, attacker, damage)
       return
    end
 
-   for i, p in ipairs(attackers) do
-      if p == attacker then
-         startBattle()
-         return
+   if inForm then
+      for i, p in ipairs(attackers) do
+         if p == attacker then
+            startBattle()
+            return
+         end
       end
    end
 
-   if attacker == player.pilot() or attacker:leader(true) == player.pilot() then
+   local player_p = player.pilot()
+   if attacker == player_p or attacker:leader(true) == player_p then
       startBattle()
 
-      for i, p in ipairs(attackers) do
-         if p:exists() then
-            p:setHostile()
+      if not playerAttackedAttackers then
+         for i, p in ipairs(attackers) do
+            if p:exists() then
+               p:setHostile()
+            end
          end
       end
 
-      if side == "attacker" then
-         side = false
-      elseif side == nil then
-         side = "defender"
-      end
-
+      playerAttackedAttackers = true
       attdamage = attdamage + damage
    end
 end
 
 function attackerDeath(victim, attacker)
-   if batInProcess then
-      attdeath = attdeath + 1
-      if attdeath >= attnum then
-         batInProcess = false -- Battle ended
-
-         -- Make the winners into normal Dvaered pilots.
-         for i, p in ipairs(defenders) do
-            if p:exists() then
-               p:control(false)
-               p:setHilight(false)
-               p:setVisible(false)
-               p:hookClear()
-               p:taskClear()
-               p:setFaction("Dvaered")
-               p:memory().aggressive = true
-               p:memory().natural = true
-            end
+   attnum = attnum - 1
+   if attnum <= 0 then
+      -- Make the winners into normal Dvaered pilots.
+      for i, p in ipairs(defenders) do
+         if p:exists() then
+            p:control(false)
+            p:setHilight(false)
+            p:setVisible(false)
+            p:hookClear()
+            p:taskClear()
+            p:setFaction("Dvaered")
+            local mem = p:memory()
+            mem.aggressive = true
+            mem.natural = true
          end
+      end
 
-         --Time to get rewarded
-         if side == "defender" and playerIsFriendly(defenders) then
-            warrior = chooseInList(defenders)
-            local reward = computeReward(attdamage)
-            hook.timer(1.0, "hailmeagain", reward)
-         end
-      elseif victim == goda then
-         startBattle()
-         for i, p in ipairs(attackers) do
-            if p:exists() then
-               p:setHilight()
-               p:setVisible()
-            end
+      --Time to get rewarded
+      if playerAttackedAttackers and playerIsFriendly(defenders) then
+         warrior = chooseInList(defenders)
+         local reward = computeReward(attdamage)
+         hook.timer(1.0, "hailmeagain", reward)
+      end
+   elseif inForm and victim == goda then
+      startBattle()
+      for i, p in ipairs(attackers) do
+         if p:exists() then
+            p:setHilight()
+            p:setVisible()
          end
       end
    end
 end
 
 function defenderDeath(victim, attacker)
-   if batInProcess then
-      defdeath = defdeath + 1
-      if defdeath >= defnum then
-         batInProcess = false -- Battle ended
-
-         -- Make the winners into normal Dvaered pilots.
-         for i, p in ipairs(attackers) do
-            if p:exists() then
-               p:control(false)
-               p:setHilight(false)
-               p:setVisible(false)
-               p:hookClear()
-               p:taskClear()
-               p:setFaction("Dvaered")
-               p:memory().aggressive = true
-               p:memory().natural = true
-            end
+   defnum = defnum - 1
+   if defnum <= 0 then
+      -- Make the winners into normal Dvaered pilots.
+      for i, p in ipairs(attackers) do
+         if p:exists() then
+            p:control(false)
+            p:setHilight(false)
+            p:setVisible(false)
+            p:hookClear()
+            p:taskClear()
+            p:setFaction("Dvaered")
+            local mem = p:memory()
+            mem.aggressive = true
+            mem.natural = true
          end
+      end
 
-         --Time to get rewarded
-         if side == "attacker" and playerIsFriendly(attackers) then
-            warrior = chooseInList(attackers)
-            local reward = computeReward(defdamage)
-            hook.timer(1.0, "hailmeagain", reward)
-         end
-      elseif victim == godd then
-         startBattle()
-         for i, p in ipairs(defenders) do
-            if p:exists() then
-               p:setHilight()
-               p:setVisible()
-            end
+      --Time to get rewarded
+      if playerAttackedDefenders and playerIsFriendly(attackers) then
+         warrior = chooseInList(attackers)
+         local reward = computeReward(defdamage)
+         hook.timer(1.0, "hailmeagain", reward)
+      end
+   elseif inForm and victim == godd then
+      startBattle()
+      for i, p in ipairs(defenders) do
+         if p:exists() then
+            p:setHilight()
+            p:setVisible()
          end
       end
    end

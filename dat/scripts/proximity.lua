@@ -110,13 +110,3 @@ function proximityCancel( trigger )
        __proximity_tbl[ trigger.__id ] = nil
     end
 end
-
--- Make sure the proximity timer shuts itself off on land or jumpout.
-function proximityCancel( trigger )
-   if trigger ~= nil then
-       hook.rm( trigger.hook_tbl[1] )
-       __proximity_tbl[ trigger.__id ] = nil
-    end
-end
-
-
