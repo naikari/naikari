@@ -84,9 +84,6 @@ log_text = _([[You took an old man named Reynir on a ride in outer space. He was
 
 function create ()
    misn_base, misn_base_sys = planet.cur()
-   if not misn.claim(misn_base_sys) then
-      misn.finish(false)
-   end
 
    -- Override delaying of this mission once it shows up (so if the
    -- player leaves Empire space, it can now spawn in Empire space).
