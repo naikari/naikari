@@ -175,15 +175,27 @@ end
 
 
 function jumpin()
-   if system.cur() ~= missys then
+   local sys = system.cur()
+   if sys ~= missys then
       mh.showFailMsg(_("You jumped into the wrong system."))
       misn.finish(false)
    elseif not ian_jumped then
       mh.showFailMsg(_("You jumped before Ian Structure did."))
       misn.finish(false)
    end
+   local adjacent = false
+   for i, s in ipairs(startsys:adjacentSystems()) do
+      if sys == s then
+         adjacent = true
+      end
+   end
 
-   ian = spawn_ian(startsys)
+   local source = nil
+   if adjacent then
+      source = startsys
+   end
+
+   ian = spawn_ian(source)
    ian:control()
    ian:land(misplanet)
 
