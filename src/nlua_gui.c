@@ -37,8 +37,6 @@ static int guiL_radarInit( lua_State *L );
 static int guiL_radarOpen(lua_State *L);
 static int guiL_radarClose(lua_State *L);
 static int guiL_radarRender( lua_State *L );
-static int guiL_targetPlanetGFX( lua_State *L );
-static int guiL_targetPilotGFX( lua_State *L );
 static int guiL_mouseClickEnable( lua_State *L );
 static int guiL_mouseMoveEnable( lua_State *L );
 static int guiL_menuInfo( lua_State *L );
@@ -55,8 +53,6 @@ static const luaL_Reg guiL_methods[] = {
    {"radarOpen", guiL_radarOpen},
    {"radarClose", guiL_radarClose},
    {"radarRender", guiL_radarRender},
-   {"targetPlanetGFX", guiL_targetPlanetGFX},
-   {"targetPilotGFX", guiL_targetPilotGFX},
    {"mouseClickEnable", guiL_mouseClickEnable},
    {"mouseMoveEnable", guiL_mouseMoveEnable},
    {"menuInfo", guiL_menuInfo},
@@ -317,34 +313,6 @@ static int guiL_radarRender( lua_State *L )
 
    /* Render the radar. */
    gui_radarRender( x, y );
-   return 0;
-}
-
-
-/**
- * @brief Sets the Lua planet target GFX.
- *
- *    @luatparam Tex tex Texture to set for the planet targeting.
- * @luafunc targetPlanetGFX
- */
-static int guiL_targetPlanetGFX( lua_State *L )
-{
-   NLUA_CHECKRW(L);
-   gui_targetPlanetGFX( luaL_checktex( L, 1 ) );
-   return 0;
-}
-
-
-/**
- * @brief Sets the Lua pilot target GFX.
- *
- *    @luatparam Tex tex Texture to set for the pilot targeting.
- * @luafunc targetPilotGFX
- */
-static int guiL_targetPilotGFX( lua_State *L )
-{
-   NLUA_CHECKRW(L);
-   gui_targetPilotGFX( luaL_checktex( L, 1 ) );
    return 0;
 }
 

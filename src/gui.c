@@ -202,8 +202,6 @@ static double gui_bl = 0.; /**< Border bottom-left. */
 
 /* Intrinsic graphical stuff. */
 static glTexture *gui_ico_hail      = NULL; /**< Hailing icon. */
-static glTexture *gui_target_planet = NULL; /**< Planet targeting icon. */
-static glTexture *gui_target_pilot  = NULL; /**< Pilot targeting icon. */
 
 
 /*
@@ -471,9 +469,6 @@ static void gui_renderPlanetTarget (void)
 static void gui_renderTargetReticles( const SimpleShader *shd, double x, double y, double radius, double angle, const glColour* c )
 {
    double rx, ry, r;
-   /* Must not be NULL. */
-   if (gui_target_planet == NULL)
-      return;
 
    gl_gameToScreenCoords( &rx, &ry, x, y );
    r = (double)radius *  1.2 * cam_getZoom();
@@ -492,10 +487,6 @@ static void gui_renderPilotTarget (void)
 {
    Pilot *p;
    const glColour *c;
-
-   /* Player is most likely dead. */
-   if (gui_target_pilot == NULL)
-      return;
 
    /* Player has no target. */
    if (player.p->target == PLAYER_ID)
@@ -2102,10 +2093,6 @@ void gui_free (void)
 
    gl_freeTexture( gui_ico_hail );
    gui_ico_hail = NULL;
-   gl_freeTexture( gui_target_planet );
-   gui_target_planet = NULL;
-   gl_freeTexture( gui_target_pilot );
-   gui_target_pilot = NULL;
 
    omsg_cleanup();
 }
@@ -2156,25 +2143,6 @@ glTexture* gui_hailIcon (void)
    return gui_ico_hail;
 }
 
-
-/**
- * @brief Sets the planet target GFX.
- */
-void gui_targetPlanetGFX( glTexture *gfx )
-{
-   gl_freeTexture( gui_target_planet );
-   gui_target_planet = gl_dupTexture( gfx );
-}
-
-
-/**
- * @brief Sets the pilot target GFX.
- */
-void gui_targetPilotGFX( glTexture *gfx )
-{
-   gl_freeTexture( gui_target_pilot );
-   gui_target_pilot = gl_dupTexture( gfx );
-}
 
 /**
  * @brief Translates a mouse position from an SDL_Event to GUI coordinates.

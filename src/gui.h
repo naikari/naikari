@@ -97,13 +97,6 @@ void gui_renderPlayer( double res, int overlay );
 
 
 /*
- * Targeting.
- */
-void gui_targetPlanetGFX( glTexture *gfx );
-void gui_targetPilotGFX( glTexture *gfx );
-
-
-/*
  * Mouse.
  */
 int gui_handleEvent( SDL_Event *evt );
