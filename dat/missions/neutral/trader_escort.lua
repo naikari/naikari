@@ -371,6 +371,7 @@ function spawnConvoy(source)
 
          p:setInvincPlayer()
          p:setVisplayer()
+         p:setNoClear()
 
          p:setLeader(player_p)
 
