@@ -2,8 +2,8 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Fuel Request">
  <trigger>enter</trigger>
- <chance>2</chance>
- <cond>player.jumps() &gt; 1</cond>
+ <chance>5</chance>
+ <cond>player.jumps() &gt;= 2</cond>
 </event>
 --]]
 --[[
@@ -66,10 +66,6 @@ ships = {
 
 
 function create()
-   if not evt.claim(system.cur()) then
-      evt.finish(false)
-   end
-
    local sys = system.cur()
    local presences = sys:presences()
 
@@ -118,6 +114,7 @@ function create()
 
    stranded_p:memory().loiter = 100000
    stranded_p:setFuel(false)
+   stranded_p:setNoClear()
    stranded_p:control()
    stranded_p:follow(player.pilot())
    hook.timer(0.5, "proximityScan", {focus=stranded_p, funcname="prox_hail"})
