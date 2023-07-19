@@ -30,11 +30,13 @@ function begin()
 
    -- thissystem and source_system must be adjacent (for those who use player.teleport)
    areAdj = false
-   for _,s in ipairs(source_system:adjacentSystems()) do
-      if thissystem == s then areAdj = true end
+   for i, s in ipairs(source_system:adjacentSystems()) do
+      if thissystem == s then
+         areAdj = true
+      end
    end
 
-   if not evt.claim(thissystem) or not areAdj then
+   if not areAdj then
       evt.finish(false)
    end
 
@@ -77,6 +79,7 @@ function merchant()
       return
    end
    trader = pilot.add("Llama", "Civilian", source_system, _("Civilian Llama"))
+   trader:setNoClear()
    hook.timer(2, "hailme")
 end
 
@@ -143,9 +146,9 @@ function attack()
    form = formation.random_key()
 
    for i, p in ipairs(attackers) do
+      p:setNoClear()
       p:memory().formation = form
       p:memory().aggressive = false
-      p:memory().nosteal = true
       p:memory().kill_reward = nil
 
       attAttHook[i] = hook.pilot(p, "attacked", "attackerAttacked")
@@ -170,9 +173,9 @@ function attack()
    form = formation.random_key()
 
    for i, p in ipairs(defenders) do
+      p:setNoClear()
       p:memory().formation = form
       p:memory().aggressive = false
-      p:memory().nosteal = true
       p:memory().kill_reward = nil
 
       defAttHook[i] = hook.pilot(p, "attacked", "defenderAttacked")
@@ -304,7 +307,7 @@ function attackerDeath(victim, attacker)
                p:taskClear()
                p:setFaction("Dvaered")
                p:memory().aggressive = true
-               p:memory().nosteal = false
+               p:memory().natural = true
             end
          end
 
@@ -342,7 +345,7 @@ function defenderDeath(victim, attacker)
                p:taskClear()
                p:setFaction("Dvaered")
                p:memory().aggressive = true
-               p:memory().nosteal = false
+               p:memory().natural = true
             end
          end
 

@@ -123,7 +123,7 @@ function create()
     ambushsys = system.get("Herakin")
     genbusys = system.get("Anrique")
 
-    if not misn.claim({seirsys, joreksys2, ambushsys, genbusys}) then
+    if not misn.claim({joreksys2, ambushsys, genbusys}) then
         misn.finish(false)
     end
 
@@ -234,14 +234,12 @@ end
 
 function enter()
     if system.cur() == seirsys then
-        pilot.clear()
-        pilot.toggleSpawn(false)
         local f = faction.dynAdd("Mercenary", N_("Four Winds"))
         seiryuu = pilot.add("Starbridge", f,
                 vec2.new(300, 300) + seirplanet:pos(), _("Seiryuu"),
                 {ai="trader", noequip=true})
         seiryuu:setInvincible(true)
-        seiryuu:memory().nosteal = true
+        seiryuu:setNoClear()
         seiryuu:control()
         if stage == 1 or stage == 6 then
             seiryuu:setActiveBoard(true)
@@ -268,7 +266,7 @@ function enter()
             joe:setVisplayer()
             joe:setInvincible()
             joe:setActiveBoard()
-            joe:memory().nosteal = true
+            joe:setNoClear()
             spawnSquads(true)
 
             hook.pilot(joe, "board", "joeBoard")
@@ -277,21 +275,16 @@ function enter()
             hook.timer(3, "failtimer")
         end
     elseif stage == 5 then
-        if system.cur():faction() == faction.get("Sirius") and stage == 5 then
+        if system.cur():faction() == faction.get("Sirius") then
             stage = 6
         elseif genbuspawned then
-            if system.cur() == joreksys2 or system.cur() == ambushsys
-                    or system.cur() == genbusys then
-                pilot.clear()
-                pilot.toggleSpawn(false)
+            if system.cur() == joreksys2 then
                 player.allowLand(false, _("It's not safe to land right now."))
             end
             spawnGenbu(playerlastsys)
             continueAmbush()
             player.pilot():setVisible()
         elseif system.cur() == ambushsys then
-            pilot.clear()
-            pilot.toggleSpawn(false)
             player.pilot():setVisible()
             hook.timer(3, "startAmbush")
         end
@@ -328,7 +321,7 @@ function spawnSquads(highlight)
 
     for i, squad in ipairs(squads) do
         for j, p in ipairs(squad) do
-            p:memory().nosteal = true
+            p:setNoClear()
             hook.pilot(p, "attacked", "attacked")
         end
     end
@@ -361,7 +354,6 @@ function attacked()
                 p:setVisible(false)
                 p:setHostile()
                 p:setLeader(nil)
-                p:memory().nosteal = false
             end
         end
     end
@@ -416,7 +408,7 @@ function spawnGenbu(sys)
     genbu:setNoDeath()
     genbu:setNoDisable()
     genbu:setNoBoard()
-    genbu:memory().nosteal = true
+    genbu:setNoClear()
     genbuspawned = true
 end
 

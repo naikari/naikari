@@ -281,10 +281,8 @@ function board(target, arg)
       end
    end
 
-   -- Allow ships to be marked as unstealable. This check also prevents
-   -- offers when you're in the process of hunting down a target for a
-   -- specific ship stealing mission, which avoids breaking collisions.
-   if target:memory().nosteal then
+   -- Only offer to steal natural ships.
+   if not target:memory().natural then
       return
    end
 
@@ -454,6 +452,7 @@ function spawn_target(source)
 
          target_ship = pilot.add(shiptype, target_faction, source, name)
          target_ship:setHilight()
+         target_ship:setNoClear()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
          -- This causes the target to never run away from combat if
@@ -465,12 +464,6 @@ function spawn_target(source)
          -- the system. Here we set that variable to a very high number
          -- so that in practice, they will never leave.
          target_ship:memory().loiter = 10000
-         -- This might be a bit confusing, but the nosteal variable
-         -- specifically specifies that the ship can't be stolen as a
-         -- generic target, which is important because we're stealing it
-         -- as a specific target (don't want to offer stealing from
-         -- another mission as this would just be a loss).
-         target_ship:memory().nosteal = true
 
          -- Lower ammo
          for i, amm in ipairs(target_ship:ammo()) do

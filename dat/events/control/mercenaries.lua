@@ -122,6 +122,7 @@ function spawn_merc(source)
    end
 
    local merc = pilot.add(merc_ship, "Mercenary", source, names[merc_ship])
+   merc:memory().natural = true
 
    local escorts = {}
    local choices = fleet_choices[merc_ship]
@@ -134,6 +135,7 @@ function spawn_merc(source)
          local escort = pilot.add(eship, "Mercenary", source, names[eship],
                {ai="escort"})
          escort:memory().formation = form
+         escort:memory().natural = true
          escort:setLeader(merc)
          escorts[#escorts + 1] = escort
       end
@@ -204,10 +206,16 @@ function choose_target()
       return nil
    end
 
-   local choices = pilot.get(target_faction)
+   local pre_choices = pilot.get(target_faction)
+   local choices = {}
+   for i, p in ipairs(pre_choices) do
+      if p:memory().natural then
+         table.insert(choices, p)
+      end
+   end
 
    if hire_faction:playerStanding() < 0 then
-      choices[#choices + 1] = player.pilot()
+      table.insert(choices, player.pilot())
    end
 
    if #choices <= 0 then

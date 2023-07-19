@@ -143,11 +143,6 @@ function create ()
       misn.finish(false)
    end
 
-   if not misn.claim({baronsys, flintsys, artifactsysA, artifactsysB,
-            artifactsysC}) then
-      misn.finish(false)
-   end
-
    misn.setNPC(npc_desc, "neutral/unique/unfamiliarman.png", bar_desc)
 
    stage = 1
@@ -425,7 +420,7 @@ function enter()
       pinnacle:setSpeedLimit(100)
       pinnacle:control()
       pinnacle:setHilight(true)
-      pinnacle:memory().nosteal = true
+      pinnacle:setNoClear()
       pinnacle:moveto(baronpla:pos() + vec2.new(500, -500), false, false)
       idlehook = hook.pilot(pinnacle, "idle", "idle")
       hhail = hook.pilot(pinnacle, "hail", "hail")
@@ -435,10 +430,7 @@ function enter()
       misn.osdActive(3)
    elseif artifactA ~= nil or artifactB ~= nil or artifactC ~= nil
          or artifactReal ~= nil then
-      if rnd.rnd() < 0.75
-            and (system.cur() == flintsys or system.cur() == artifactsysA
-               or system.cur() == artifactsysB
-               or system.cur() == artifactsysC) then
+      if rnd.rnd() < 0.75 then
          hunterhooks = {}
          local choices = {"Llama", "Hyena", "Shark", "Lancelot", "Vendetta"}
          for i=1,10 do
@@ -467,6 +459,7 @@ function spawn_hunter(shiptype)
    local pn = fmt.f(_("Artifact Hunter {shiptype}"), {shiptype=shiptype})
    local p = pilot.add(shiptype, f, nil, pn, {ai="baddie_norun"})
    p:setHostile()
+   p:setNoClear()
 end
 
 

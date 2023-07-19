@@ -94,7 +94,7 @@ function create()
     startpla, startsys = planet.get("Amphion")
     destpla, destsys = planet.get("Praxis")
 
-    local claimsys = {rebinasys, startsys}
+    local claimsys = {startsys}
     for i, jp in ipairs(startsys:jumpPath(destsys)) do
         claimsys[#claimsys + 1] = jp:dest()
     end
@@ -241,6 +241,7 @@ function enter()
         seiryuu:setInvincible()
         seiryuu:setHilight()
         seiryuu:setVisplayer()
+        seiryuu:setNoClear()
         seiryuu:memory().nosteal = true
         hook.pilot(seiryuu, "board", "board")
     end
@@ -250,6 +251,7 @@ end
 function spawnDiplomat()
     local diplomat = pilot.add("Gawain", "Civilian", origin,
             _("Imperial Diplomat"), {naked=true})
+    diplomat:setNoClear()
 
     local f = faction.dynAdd("Mercenary", N_("Four Winds"))
     f:dynEnemy(faction.get("Pirate"))
@@ -258,6 +260,7 @@ function spawnDiplomat()
     for i, p in ipairs(escorts) do
         p:setInvincible()
         p:setVisplayer()
+        p:setNoClear()
         p:memory().nosteal = true
     end
 

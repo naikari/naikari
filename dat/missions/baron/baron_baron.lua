@@ -100,9 +100,6 @@ log_text_refuse = _([[You were offered a sketchy-looking job by a nondescript pi
 function create ()
    mispla, missys = planet.get("Varia")
    paypla, paysys = planet.get("Ulios")
-   if not misn.claim({missys, paysys}) then
-      misn.finish(false)
-   end
 
    tk.msg("", hail_text)
    local c = tk.choice("", ask_text, choice1, choice2, choice3)
@@ -168,7 +165,7 @@ function jumpin()
          pinnacle:setFriendly()
          pinnacle:setSpeedLimit(100)
          pinnacle:setHilight(true)
-         pinnacle:memory().nosteal = true
+         pinnacle:setNoClear()
          pinnacle:control()
          pinnacle:moveto(paypla:pos() + vec2.new(400, -400), false)
          idlehook = hook.pilot(pinnacle, "idle", "idle")
@@ -248,7 +245,9 @@ function dvtimer()
    vendetta2 = pilot.add("Dvaered Vendetta", "Dvaered", mispla, nil,
          {ai="dvaered_norun"})
    vendetta1:setHostile()
+   vendetta1:setNoClear()
    vendetta2:setHostile()
+   vendetta2:setNoClear()
    vendetta1:broadcast(
          fmt.f(comm1, {shipname=player.ship(), planet=mispla:name()}), true)
 end
