@@ -88,8 +88,7 @@ function create()
       end
    end
 
-   if misplanet == nil or missys == nil
-         or not misn.claim({system.cur(), missys}) then
+   if misplanet == nil or missys == nil then
       misn.finish(false)
    end
 
@@ -142,6 +141,7 @@ function spawn_ian(src)
    p:setHilight()
    p:setVisplayer()
    p:setInvincible()
+   p:setNoClear()
 
    local plmaxspeed = player.pilot():stats().speed_max * 0.75
    local maxspeed = p:stats().speed_max
