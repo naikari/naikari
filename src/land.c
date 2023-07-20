@@ -138,6 +138,8 @@ static void bar_close( unsigned int wid, char* str );
 static void bar_approach( unsigned int wid, char* str );
 static int news_load (void);
 /* mission computer */
+static void misn_getSize(wid_t wid, int *w, int *h, int *dw, int *dh, int *lh,
+      int *mw, int *bw);
 static void misn_open( unsigned int wid );
 static void misn_close( unsigned int wid, char *name );
 static void misn_accept( unsigned int wid, char* str );
@@ -555,61 +557,89 @@ static int news_load (void)
 }
 
 
+/**
+ * @brief Gets the size of the missions window.
+ */
+static void misn_getSize(wid_t wid, int *w, int *h, int *dw, int *dh, int *lh,
+      int *mw, int *bw)
+{
+   int margins;
+   int temp;
+
+   /* Get window dimensions. */
+   window_dimWindow(wid, w, h);
+
+   /* Calculate widget dimensions. */
+   /* Description and mission list statically get half of the available
+    * width minus margins there would be at 720p. Map gets the rest. */
+   margins = 20 + 20 + 20;
+   temp = (1280-margins) / 2;
+   if (dw != NULL)
+      *dw = temp;
+   if (mw != NULL)
+      *mw = *w - margins - temp;
+
+   /* Text statically gets half of the available height minus margins
+    * there would be at 720p. Mission list gets the rest. */
+   margins = 40 + 10 + 20;
+   temp = (720-margins) / 2;
+   if (dh != NULL)
+      *dh = temp;
+   if (lh != NULL)
+      *lh = *h - margins - temp;
+
+   if (bw != NULL)
+      *bw = ((mw!=NULL?*mw:*w) - 2*10) / 3;
+}
+
 
 /**
  * @brief Opens the mission computer window.
  */
 static void misn_open( unsigned int wid )
 {
-   int w, h;
-   int y;
+   int w, h, dw, dh, lh, mw, bw;
    int th;
-   int bw;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_MISSION);
 
    /* Get window dimensions. */
-   window_dimWindow( wid, &w, &h );
+   misn_getSize(wid, &w, &h, &dw, &dh, &lh, &mw, &bw);
 
    /* Set window functions. */
    window_onClose( wid, misn_close );
 
    /* buttons */
-   bw = (w/2 - 3*10) / 3;
-   window_addButtonKey(wid, -10, 20,
+   window_addButtonKey(wid, -20, 20,
          bw, LAND_BUTTON_HEIGHT, "btnCloseMission",
          _("&Take Off"), land_buttonTakeoff, SDLK_t);
-   window_addButtonKey(wid, -10 - 1*(bw+10), 20,
+   window_addButtonKey(wid, -20 - 1*(bw+10), 20,
          bw, LAND_BUTTON_HEIGHT, "btnCurrentMissions",
          _("&Current Missions"), misn_currentList, SDLK_c);
-   window_addButtonKey(wid, -10 - 2*(bw+10), 20,
+   window_addButtonKey(wid, -20 - 2*(bw+10), 20,
          bw, LAND_BUTTON_HEIGHT, "btnAcceptMission",
          _("&Accept Mission"), misn_accept, SDLK_a);
 
-   /* text */
-   y = -60;
-   th = gl_printHeightRaw(&gl_defFont, w/2 - 30,
+   /* Date text */
+   th = gl_printHeightRaw(&gl_defFont, mw,
          _("#nDate:#0 N/A\n"
             "#nFree Space:#0 N/A\n"
             "#nMoney:#0 N/A"));
-   window_addText(wid, w/2 + 10, y,
-         w/2 - 30, th, 0,
+   window_addText(wid, -20, -40, mw, th, 0,
          "txtDate", NULL, NULL, NULL);
-   y -= th + 40;
-   window_addText( wid, w/2 + 10, y,
-         w/2 - 30, 20, 0,
-         "txtReward", &gl_defFont, NULL, _("#nReward:#0 None") );
-   y -= 2 * gl_defFont.h + 20;
-   window_addText( wid, w/2 + 10, y,
-         w/2 - 30, h + y - (LAND_BUTTON_HEIGHT+20) - 10, 0,
-         "txtDesc", &gl_defFont, NULL, NULL );
 
-   /* map */
-   map_show(wid, 20, 20, w/2 - 30, h/2 - 35, 0.75);
+   /* Map */
+   map_show(wid, -20, 20 + LAND_BUTTON_HEIGHT + 10,
+         mw, h - 40 - th - 10 - (20+LAND_BUTTON_HEIGHT+10), 0.75);
+
+   /* Description text */
+   window_addText(wid, 20, -40 - lh - 10,
+         dw, dh, 0, "txtDesc", &gl_defFont, NULL, _("#nReward:#0 None"));
 
    misn_genList(wid, 1);
-   /* Set default keyboard focuse to the list */
+
+   /* Set default keyboard focus to the list */
    window_setFocus( wid , "lstMission" );
 }
 /**
@@ -621,10 +651,6 @@ static void misn_close( unsigned int wid, char *name )
 {
    (void) wid;
    (void) name;
-
-   /* Remove computer markers just in case. */
-   space_clearComputerMarkers();
-   space_clearComputerMarkerHilights();
 }
 /**
  * @brief Accepts the selected mission.
@@ -702,7 +728,7 @@ static void misn_genList( unsigned int wid, int first )
    char **misn_names;
    char *focused;
    int m;
-   int w, h;
+   int w, h, lw, lh;
    int hilight;
    const StarSystem *selected_sys;
    Mission *misn;
@@ -721,7 +747,7 @@ static void misn_genList( unsigned int wid, int first )
    }
 
    /* Get window dimensions. */
-   window_dimWindow( wid, &w, &h );
+   misn_getSize(wid, &w, &h, &lw, NULL, &lh, NULL, NULL);
 
    /* Clear computer markers. */
    space_clearComputerMarkers();
@@ -773,7 +799,7 @@ static void misn_genList( unsigned int wid, int first )
       misn_names[0] = strdup(_("No Missions"));
       m = 1;
    }
-   window_addList(wid, 20, -40, w/2 - 30, h/2 - 35,
+   window_addList(wid, 20, -40, lw, lh,
          "lstMission", misn_names, m, 0, misn_update, misn_activateList);
 
    /* Restore focus. */
@@ -828,10 +854,8 @@ static void misn_update( unsigned int wid, char* str )
 
    active_misn = toolkit_getList( wid, "lstMission" );
    if (strcmp(active_misn,_("No Missions"))==0) {
-      window_modifyText( wid, "txtReward", _("#nReward:#0 None") );
-      window_modifyText( wid, "txtDesc",
-            _("There are no missions available here.") );
-      window_disableButton( wid, "btnAcceptMission" );
+      window_modifyText(wid, "txtDesc", _("#nReward:#0 None"));
+      window_disableButton(wid, "btnAcceptMission");
       return;
    }
 
@@ -840,9 +864,12 @@ static void misn_update( unsigned int wid, char* str )
 
    misn = &mission_computer[toolkit_getListPos(wid, "lstMission")];
    mission_sysComputerHilight(misn);
-   snprintf( txt, sizeof(txt), _("#nReward:#0 %s"), misn->reward );
-   window_modifyText( wid, "txtReward", txt );
-   window_modifyText( wid, "txtDesc", misn->desc );
+   snprintf(txt, sizeof(txt),
+         _("#nReward:#0 %s\n"
+            "\n"
+            "%s"),
+         misn->reward, misn->desc);
+   window_modifyText(wid, "txtDesc", txt);
    window_enableButton( wid, "btnAcceptMission" );
 
    /* Make sure the map is in the proper mode. */
@@ -1136,6 +1163,10 @@ static void land_cleanupWindow( unsigned int wid, char *name )
       land_regen--;
       return;
    }
+
+   /* Remove computer markers just in case. */
+   space_clearComputerMarkers();
+   space_clearComputerMarkerHilights();
 
    /* Clean up possible stray graphic. */
    if (gfx_exterior != NULL) {

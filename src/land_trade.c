@@ -57,7 +57,6 @@ static void commodity_getSize(unsigned int wid, int *w, int *h,
    window_dimWindow(wid, w, h);
 
    /* Calculate image array dimensions. */
-   /* Window size minus right column size minus space on left and right */
    if (iw != NULL)
       *iw = 565;
    if (ih != NULL)
