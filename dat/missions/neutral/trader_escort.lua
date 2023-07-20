@@ -99,7 +99,7 @@ function create()
 
    cargo_setDesc(
       fmt.f(desc, {planet=destplanet:name(), system=destsys:name()}),
-      cargo, nil, destplanet, numjumps, nil, desc_extra)
+      nil, nil, destplanet, numjumps, nil, desc_extra)
    
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name()}))
