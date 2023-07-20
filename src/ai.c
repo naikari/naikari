@@ -188,6 +188,7 @@ static int aiL_getnearestplanet( lua_State *L ); /* Vec2 getnearestplanet() */
 static int aiL_getplanetfrompos( lua_State *L ); /* Vec2 getplanetfrompos() */
 static int aiL_getrndplanet( lua_State *L ); /* Vec2 getrndplanet() */
 static int aiL_getlandplanet( lua_State *L ); /* Vec2 getlandplanet() */
+static int aiL_canLand(lua_State *L);
 static int aiL_land( lua_State *L ); /* bool land() */
 static int aiL_stop( lua_State *L ); /* stop() */
 static int aiL_relvel( lua_State *L ); /* relvel( number ) */
@@ -274,24 +275,25 @@ static const luaL_Reg aiL_methods[] = {
    { "getgatherable", aiL_getGatherable },
    { "instantJump", aiL_instantJump },
    /* movement */
-   { "nearestplanet", aiL_getnearestplanet },
-   { "planetfrompos", aiL_getplanetfrompos },
-   { "rndplanet", aiL_getrndplanet },
-   { "landplanet", aiL_getlandplanet },
-   { "land", aiL_land },
-   { "accel", aiL_accel },
-   { "turn", aiL_turn },
-   { "face", aiL_face },
-   { "careful_face", aiL_careful_face },
-   { "iface", aiL_iface },
-   { "dir", aiL_dir },
-   { "idir", aiL_idir },
-   { "drift_facing", aiL_drift_facing },
-   { "brake", aiL_brake },
-   { "stop", aiL_stop },
-   { "relvel", aiL_relvel },
-   { "follow_accurate", aiL_follow_accurate },
-   { "face_accurate", aiL_face_accurate },
+   {"nearestplanet", aiL_getnearestplanet},
+   {"planetfrompos", aiL_getplanetfrompos},
+   {"rndplanet", aiL_getrndplanet},
+   {"landplanet", aiL_getlandplanet},
+   {"canLand", aiL_canLand},
+   {"land", aiL_land},
+   {"accel", aiL_accel},
+   {"turn", aiL_turn},
+   {"face", aiL_face},
+   {"careful_face", aiL_careful_face},
+   {"iface", aiL_iface},
+   {"dir", aiL_dir},
+   {"idir", aiL_idir},
+   {"drift_facing", aiL_drift_facing},
+   {"brake", aiL_brake},
+   {"stop", aiL_stop},
+   {"relvel", aiL_relvel},
+   {"follow_accurate", aiL_follow_accurate},
+   {"face_accurate", aiL_face_accurate},
    /* Hyperspace. */
    {"sethyptarget", aiL_sethyptarget},
    {"nearhyptarget", aiL_nearhyptarget},
@@ -2328,10 +2330,10 @@ static int aiL_getlandplanet( lua_State *L )
 
    /* we can actually get a random planet now */
    i = RNG(0,array_size(ind)-1);
-   p = cur_system->planets[ ind[i] ];
+   p = cur_system->planets[ind[i]];
    planet = p->id;
-   lua_pushplanet( L, planet );
-   cur_pilot->nav_planet   = ind[ i ];
+   lua_pushplanet(L, planet);
+   cur_pilot->nav_planet = ind[i];
    array_free(ind);
 
    return 1;
@@ -2339,56 +2341,102 @@ static int aiL_getlandplanet( lua_State *L )
 
 
 /**
+ * @brief Helper function for aiL_canLand() and aiL_land().
+ *
+ *    @return Whether or not the current pilot can possibly land.
+ */
+static int ai_canLand(void)
+{
+   Planet *planet;
+
+   /* Check that the pilot has a target selected. */
+   if (cur_pilot->nav_planet < 0)
+      return 0;
+
+   /* Get planet. */
+   planet = cur_system->planets[cur_pilot->nav_planet];
+
+   /* Check landability. */
+   if (!planet_hasService(planet, PLANET_SERVICE_LAND))
+      return 0;
+
+   /* Check landing functionality. */
+   if (pilot_isFlag(cur_pilot, PILOT_NOLAND))
+      return 0;
+
+   return 1;
+}
+
+
+/**
+ * @brief Checks whether or not ai.land() can be used.
+ *
+ * This function returns whether or not landing on the current planet
+ * target is possible. Use this to avoid errors with ai.land().
+ *
+ *    @luatreturn boolean 
+ * @luasee land
+ * @luafunc canLand
+ */
+static int aiL_canLand(lua_State *L)
+{
+   lua_pushboolean(L, ai_canLand());
+   return 1;
+}
+
+
+/**
  * @brief Lands on a planet.
  *
- *    @luatreturn boolean Whether landing was successful.
- *    @luafunc land
+ * Throws an error if landing on the currently selected planet is
+ * impossible.
+ *
+ *    @luatreturn boolean Whether landing was successful. (This will be
+ *       false if position or speed is incorrect.)
+ * @luasee canLand
+ * @luafunc land
  */
 static int aiL_land( lua_State *L )
 {
-   int ret;
    Planet *planet;
    HookParam hparam;
 
-   ret = 0;
-
-   if (cur_pilot->nav_planet < 0) {
-      NLUA_ERROR( L, _("Pilot '%s' has no land target"), cur_pilot->name );
+   if (!ai_canLand()) {
+      NLUA_ERROR(L, _("Pilot '%s' cannot land."), cur_pilot->name);
       return 0;
    }
 
    /* Get planet. */
-   planet = cur_system->planets[ cur_pilot->nav_planet ];
-
-   /* Check landability. */
-   if (!planet_hasService(planet, PLANET_SERVICE_LAND))
-      ret++;
+   planet = cur_system->planets[cur_pilot->nav_planet];
+   if (planet == NULL) {
+      NLUA_ERROR(L, _("Pilot '%s' has invalid planet targeted."),
+            cur_pilot->name);
+      return 0;
+   }
 
    /* Check distance. */
-   if (vect_dist2(&cur_pilot->solid->pos,&planet->pos) > pow2(planet->radius))
-      ret++;
+   if (vect_dist2(&cur_pilot->solid->pos,&planet->pos) > pow2(planet->radius)) {
+      lua_pushboolean(L, 0);
+      return 1;
+   }
 
    /* Check velocity. */
    if ((pow2(VX(cur_pilot->solid->vel)) + pow2(VY(cur_pilot->solid->vel))) >
-         (double)pow2(MAX_HYPERSPACE_VEL))
-      ret++;
-
-   /* Check landing functionality. */
-   if (pilot_isFlag(cur_pilot, PILOT_NOLAND))
-      ret++;
-
-   if (!ret) {
-      cur_pilot->landing_delay = PILOT_LANDING_DELAY * cur_pilot->ship->dt_default;
-      cur_pilot->ptimer = cur_pilot->landing_delay;
-      pilot_setFlag( cur_pilot, PILOT_LANDING );
-
-      hparam.type    = HOOK_PARAM_ASSET;
-      hparam.u.la    = planet->id;
-
-      pilot_runHookParam( cur_pilot, PILOT_HOOK_LAND, &hparam, 1 );
+         (double)pow2(MAX_HYPERSPACE_VEL)) {
+      lua_pushboolean(L, 0);
+      return 1;
    }
 
-   lua_pushboolean(L,!ret);
+   cur_pilot->landing_delay = PILOT_LANDING_DELAY * cur_pilot->ship->dt_default;
+   cur_pilot->ptimer = cur_pilot->landing_delay;
+   pilot_setFlag(cur_pilot, PILOT_LANDING);
+
+   hparam.type = HOOK_PARAM_ASSET;
+   hparam.u.la = planet->id;
+
+   pilot_runHookParam(cur_pilot, PILOT_HOOK_LAND, &hparam, 1);
+
+   lua_pushboolean(L, 1);
    return 1;
 }
 

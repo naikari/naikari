@@ -455,6 +455,14 @@ function __landgo ()
 
 end
 function __landstop ()
+   if not ai.canLand() then
+      local p = ai.pilot()
+      warn(string.format(_("'%s' cannot land. Popping '%s' task."),
+            p:name(), ai.taskname()))
+      ai.poptask()
+      return
+   end
+
    ai.brake()
    if ai.isstopped() then
       ai.stop() -- Will stop the pilot if below err vel
