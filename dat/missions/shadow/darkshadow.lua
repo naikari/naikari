@@ -275,7 +275,16 @@ function enter()
             hook.timer(3, "failtimer")
         end
     elseif stage == 5 then
-        if system.cur():faction() == faction.get("Sirius") then
+        local adjacent = false
+        if playerlastsys ~= nil then
+            for i, s in ipairs(playerlastsys:adjacentSystems()) do
+                if thissystem == s then
+                    adjacent = true
+                    break
+                end
+            end
+        end
+        if not adjacent or system.cur():faction() == faction.get("Sirius") then
             stage = 6
         elseif genbuspawned then
             if system.cur() == joreksys2 then

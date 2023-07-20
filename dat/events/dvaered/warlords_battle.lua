@@ -33,6 +33,7 @@ function begin()
    for i, s in ipairs(source_system:adjacentSystems()) do
       if thissystem == s then
          areAdj = true
+         break
       end
    end
 

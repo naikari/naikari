@@ -186,6 +186,7 @@ function jumpin()
    for i, sys in ipairs(last_sys:adjacentSystems()) do
       if cursys == sys then
          adjacent = true
+         break
       end
    end
    if adjacent then
