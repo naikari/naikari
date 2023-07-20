@@ -877,7 +877,8 @@ static int weapon_checkCanHit( const Weapon* w, const Pilot *p )
 static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
 {
    int i, j, b, psx, psy, k, n;
-   unsigned int coll, usePoly=1;
+   unsigned int coll;
+   int canPoly, usePoly;
    glTexture *gfx;
    CollPoly *plg, *polygon;
    Vector2d crash[2];
@@ -887,12 +888,13 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
    AsteroidType *at;
    Pilot * const *pilot_stack;
 
+   canPoly = 1;
    gfx = NULL;
    polygon = NULL;
    pilot_stack = pilot_getAll();
 
    /* Get the sprite direction to speed up calculations. */
-   b     = outfit_isBeam(w->outfit);
+   b = outfit_isBeam(w->outfit);
    if (!b) {
       gfx = outfit_gfx(w->outfit);
       gl_getSpriteFromDir( &w->sx, &w->sy, gfx, w->solid->dir );
@@ -903,11 +905,11 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
       /* See if the outfit has a collision polygon. */
       if (outfit_isBolt(w->outfit)) {
          if (array_size(w->outfit->u.blt.polygon) == 0)
-            usePoly = 0;
+            canPoly = 0;
       }
       else if (outfit_isAmmo(w->outfit)) {
          if (array_size(w->outfit->u.amm.polygon) == 0)
-            usePoly = 0;
+            canPoly = 0;
       }
    }
    else {
@@ -929,42 +931,46 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
    for (i=0; i<array_size(pilot_stack); i++) {
       p = pilot_stack[i];
 
-      psx = pilot_stack[i]->tsx;
-      psy = pilot_stack[i]->tsy;
+      /* Cannot collide with self. */
+      if (w->parent == p->id)
+         continue;
 
-      if (w->parent == pilot_stack[i]->id) continue; /* pilot is self */
+      /* Skip targets that the weapon cannot hit. */
+      if (!weapon_checkCanHit(w, p))
+         continue;
+
+      psx = p->tsx;
+      psy = p->tsy;
 
       /* See if the ship has a collision polygon. */
+      usePoly = canPoly;
       if (array_size(p->ship->polygon) == 0)
          usePoly = 0;
 
       /* Beam weapons have special collisions. */
       if (b) {
          /* Check for collision. */
-         if (weapon_checkCanHit(w,p)) {
-            if (usePoly) {
-               k = p->ship->gfx_space->sx * psy + psx;
-               coll = CollideLinePolygon( &w->solid->pos, w->solid->dir,
-                     w->outfit->u.bem.range, &p->ship->polygon[k],
-                     &p->solid->pos, crash);
-            }
-            else {
-               coll = CollideLineSprite( &w->solid->pos, w->solid->dir,
-                     w->outfit->u.bem.range, p->ship->gfx_space, psx, psy,
-                     &p->solid->pos, crash);
-            }
-            if (coll)
-               weapon_hitBeam( w, p, layer, crash, dt );
-               /* No return because beam can still think, it's not
-                * destroyed like the other weapons.*/
+         if (usePoly) {
+            k = p->ship->gfx_space->sx * psy + psx;
+            coll = CollideLinePolygon(&w->solid->pos, w->solid->dir,
+                  w->outfit->u.bem.range, &p->ship->polygon[k],
+                  &p->solid->pos, crash);
+         }
+         else {
+            coll = CollideLineSprite(&w->solid->pos, w->solid->dir,
+                  w->outfit->u.bem.range, p->ship->gfx_space, psx, psy,
+                  &p->solid->pos, crash);
+         }
+         if (coll) {
+            weapon_hitBeam(w, p, layer, crash, dt);
+            /* No return because beam can still think, it's not
+             * destroyed like the other weapons.*/
          }
       }
-      /* smart weapons only collide with their target */
+      /* Smart weapons only collide with their target. */
       else if (weapon_isSmart(w)) {
-
-         if ( (pilot_stack[i]->id == w->target) &&
-               (w->status == WEAPON_STATUS_OK) &&
-               weapon_checkCanHit(w,p) ) {
+         if ((p->id == w->target)
+               && (w->status == WEAPON_STATUS_OK)) {
             if (usePoly) {
                k = p->ship->gfx_space->sx * psy + psx;
                coll = CollidePolygon( &p->ship->polygon[k], &p->solid->pos,
@@ -981,24 +987,21 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
             }
          }
       }
-      /* unguided weapons hit anything not of the same faction */
+      /* Unguided weapons hit any valid pilot. */
       else {
-         if (weapon_checkCanHit(w,p)) {
-            if (usePoly) {
-               k = p->ship->gfx_space->sx * psy + psx;
-               coll = CollidePolygon( &p->ship->polygon[k], &p->solid->pos,
-                        polygon, &w->solid->pos, &crash[0] );
-            }
-            else {
-               coll = CollideSprite( gfx, w->sx, w->sy, &w->solid->pos,
-                        p->ship->gfx_space, psx, psy,
-                        &p->solid->pos, &crash[0] );
-            }
+         if (usePoly) {
+            k = p->ship->gfx_space->sx * psy + psx;
+            coll = CollidePolygon(&p->ship->polygon[k], &p->solid->pos,
+                  polygon, &w->solid->pos, &crash[0]);
+         }
+         else {
+            coll = CollideSprite(gfx, w->sx, w->sy, &w->solid->pos,
+                  p->ship->gfx_space, psx, psy, &p->solid->pos, &crash[0]);
+         }
 
-            if (coll) {
-            weapon_hit( w, p, &crash[0] );
+         if (coll) {
+            weapon_hit(w, p, &crash[0]);
             return; /* Weapon is destroyed. */
-            }
          }
       }
    }
