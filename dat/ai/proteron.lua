@@ -59,42 +59,45 @@ function create()
    create_post()
 end
 
--- taunts
-function taunt ( target, offense )
 
+-- taunts
+local taunts_offense = {
+   p_("taunt", "Animals like you don't deserve to live!"),
+   p_("taunt", "Begone from this universe, inferior scum!"),
+   p_("taunt", "We will cleanse you and all other scum from this universe!"),
+   p_("taunt", "Enemies of the state will not be tolerated!"),
+   p_("taunt", "Long live the Proteron!"),
+   p_("taunt", "War is peace!"),
+   p_("taunt", "Freedom is slavery!"),
+   p_("taunt", "Hail the great leader!"),
+   p_("taunt", "It's time to make the galaxy great again!"),
+   p_("taunt", "I will cleanse the galaxy of degenerate scum like you!"),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "How dare you attack the Proteron?!"),
+   p_("taunt_defensive", "I will have your head!"),
+   p_("taunt_defensive", "You'll regret that!"),
+   p_("taunt_defensive", "Your fate has been sealed, dissident!"),
+   p_("taunt_defensive", "You will pay for your treason!"),
+   p_("taunt_defensive", "Die along with the old Empire!"),
+   p_("taunt_defensive", "Inferior scum! How dare you attack me?!"),
+   p_("taunt_defensive", "Degenerate scum! You die!"),
+}
+function taunt(target, offense)
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
       return
    end
 
    -- some taunts
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "Animals like you don't deserve to live!"),
-         p_("taunt", "Begone from this universe, inferior scum!"),
-         p_("taunt", "We will cleanse you and all other scum from this universe!"),
-         p_("taunt", "Enemies of the state will not be tolerated!"),
-         p_("taunt", "Long live the Proteron!"),
-         p_("taunt", "War is peace!"),
-         p_("taunt", "Freedom is slavery!"),
-         p_("taunt", "Hail the great leader!"),
-         p_("taunt", "It's time to make the galaxy great again!"),
-         p_("taunt", "I will cleanse the galaxy of degenerate scum like you!"),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "How dare you attack the Proteron?!"),
-         p_("taunt_defensive", "I will have your head!"),
-         p_("taunt_defensive", "You'll regret that!"),
-         p_("taunt_defensive", "Your fate has been sealed, dissident!"),
-         p_("taunt_defensive", "You will pay for your treason!"),
-         p_("taunt_defensive", "Die along with the old Empire!"),
-         p_("taunt_defensive", "Inferior scum! How dare you attack me?!"),
-         p_("taunt_defensive", "Degenerate scum! You die!"),
-      }
+      taunts = taunts_defense
    end
 
-   ai.pilot():comm(target, taunts[ rnd.rnd(1,#taunts) ])
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 
 

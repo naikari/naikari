@@ -50,17 +50,17 @@ function _atk_decide_zz()
    -- going towards the target, and someone is shooting on us.
 
    local target = ai.taskdata()
-   local pilot  = ai.pilot()
-   local range  = ai.getweaprange("all_nonseek")
+   local plt = ai.pilot()
+   local range = ai.getweaprange("all_nonseek")
    local dir = ai.idir(target)
-   local dist  = ai.dist( target )
+   local dist = ai.dist(target)
 
-   local m, d1 = vec2.polar( pilot:vel() )
-   local m, d2 = vec2.polar( target:pos() - pilot:pos() )
+   local m, d1 = vec2.polar(plt:vel())
+   local m, d2 = vec2.polar(target:pos() - plt:pos())
    local d = d1-d2
 
-   return ( (dist > (1.1*range)) and (ai.hasprojectile())
-           and (dir < 10) and (dir > -10) and (d < 10) and (d > -10) )
+   return ((dist > (1.1*range)) and (ai.hasprojectile())
+           and (dir < 10) and (dir > -10) and (d < 10) and (d > -10))
 end
 
 

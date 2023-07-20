@@ -78,6 +78,36 @@ function create()
 end
 
 
+local taunts_offense = {
+   p_("taunt", "Prepare to be boarded!"),
+   p_("taunt", "Give me your credits or die!"),
+   p_("taunt", "Your ship's mine!"),
+   p_("taunt", "Oh ho ho, what do I see here?"),
+   p_("taunt", "You may want to send that distress signal now."),
+   p_("taunt", "It's time to die."),
+   p_("taunt", "Nothing personal, just business."),
+   p_("taunt", "Nothing personal."),
+   p_("taunt", "Just business."),
+   p_("taunt", "Sorry, but I'm a private tracker."),
+   p_("taunt", "Looks like you've picked the wrong sector of space!"),
+   p_("taunt", "Give me your credits now if you want to live!"),
+   p_("taunt", "Hey, space is a tough place where wimps eat flaming plasma death."),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "You dare attack me?!"),
+   p_("taunt_defensive", "You think that you can take me on?"),
+   p_("taunt_defensive", "Die!"),
+   p_("taunt_defensive", "You'll regret this!"),
+   p_("taunt_defensive", "You can either pray now or sit in hell later."),
+   p_("taunt_defensive", "Game over, you're dead!"),
+   p_("taunt_defensive", "Knock it off!"),
+   p_("taunt_defensive", "Now you're in for it!"),
+   p_("taunt_defensive", "Did you really think you would get away with that?"),
+   p_("taunt_defensive", "I just painted this thing!"),
+   p_("taunt_defensive", "I can't wait to see you burn!"),
+   p_("taunt_defensive", "Okay, that's enough of that!"),
+   p_("taunt_defensive", "I'm gonna torrent you to bits!"),
+}
 function taunt (target, offense)
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
@@ -85,40 +115,13 @@ function taunt (target, offense)
    end
 
    -- some taunts
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "Prepare to be boarded!"),
-         p_("taunt", "Give me your credits or die!"),
-         p_("taunt", "Your ship's mine!"),
-         p_("taunt", "Oh ho ho, what do I see here?"),
-         p_("taunt", "You may want to send that distress signal now."),
-         p_("taunt", "It's time to die."),
-         p_("taunt", "Nothing personal, just business."),
-         p_("taunt", "Nothing personal."),
-         p_("taunt", "Just business."),
-         p_("taunt", "Sorry, but I'm a private tracker."),
-         p_("taunt", "Looks like you've picked the wrong sector of space!"),
-         p_("taunt", "Give me your credits now if you want to live!"),
-         p_("taunt", "Hey, space is a tough place where wimps eat flaming plasma death."),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "You dare attack me?!"),
-         p_("taunt_defensive", "You think that you can take me on?"),
-         p_("taunt_defensive", "Die!"),
-         p_("taunt_defensive", "You'll regret this!"),
-         p_("taunt_defensive", "You can either pray now or sit in hell later."),
-         p_("taunt_defensive", "Game over, you're dead!"),
-         p_("taunt_defensive", "Knock it off!"),
-         p_("taunt_defensive", "Now you're in for it!"),
-         p_("taunt_defensive", "Did you really think you would get away with that?"),
-         p_("taunt_defensive", "I just painted this thing!"),
-         p_("taunt_defensive", "I can't wait to see you burn!"),
-         p_("taunt_defensive", "Okay, that's enough of that!"),
-         p_("taunt_defensive", "I'm gonna torrent you to bits!"),
-      }
+      taunts = taunts_defense
    end
 
-   ai.pilot():comm(target, taunts[ rnd.rnd(1,#taunts) ])
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 

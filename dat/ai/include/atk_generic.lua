@@ -35,7 +35,7 @@ end
 --]]
 function atk_generic_attacked( attacker )
    local task = ai.taskname()
-   local si = _stateinfo( ai.taskname() )
+   local si = stateinfo[task] or {}
 
    if mem.recharge then
       mem.recharge = false
@@ -52,9 +52,9 @@ function atk_generic_attacked( attacker )
       ai.pushtask("attack", attacker)
       return
    end
-   local tdist  = ai.dist(target)
-   local dist   = ai.dist(attacker)
-   local range  = ai.getweaprange("all")
+   local tdist = ai.dist(target)
+   local dist = ai.dist(attacker)
+   local range = ai.getweaprange("all")
 
    if target ~= attacker and dist < tdist and
          dist < range * mem.atk_changetarget then
@@ -241,9 +241,11 @@ end
 -- Enters ranged combat with the target
 --]]
 function _atk_g_ranged( target, dist )
+   local p = ai.pilot()
+   local tt = target:target()
    local range = ai.getweaprange("all_seek")
-   local relvel = ai.relvel( target )
-   local istargeted = (target:target()==ai.pilot())
+   local relvel = ai.relvel(target)
+   local istargeted = (tt == p)
    local wrange = math.min(ai.getweaprange("forward_nonseek"),
          ai.getweaprange("turret_nonseek"))
 
@@ -252,10 +254,9 @@ function _atk_g_ranged( target, dist )
          or ai.getweapspeed("all_seek") < target:stats().speed_max * 1.2
          or range < ai.getweaprange("forward_nonseek") * 1.5 then
       _atk_g_ranged_dogfight( target, dist )
-   elseif target:target() == ai.pilot() and dist < range
-         and ai.hasprojectile() then
+   elseif tt == p and dist < range and ai.hasprojectile() then
       local tvel = target:vel()
-      local pvel = ai.pilot():vel()
+      local pvel = p:vel()
       local vel = (tvel-pvel):polar()
       -- If will make contact soon, try to engage
       if dist < wrange+8*vel then

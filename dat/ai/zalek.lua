@@ -64,6 +64,22 @@ function create()
    create_post()
 end
 
+
+local taunts_offense = {
+   p_("taunt", "I will show you the power of the Za'lek fleet!"),
+   p_("taunt", "Commencing battle test by eradicating outlaw pilots."),
+   p_("taunt", "Your days are over!"),
+   p_("taunt", "You interfere with the progress of science!"),
+   p_("taunt", "Feel the wrath of our combat drones!"),
+   p_("taunt", "Die, you brainless worm!"),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "You just made a big mistake!"),
+   p_("taunt_defensive", "You wanna do this? Have it your way."),
+   p_("taunt_defensive", "How dare you?! I just got this ship customized!"),
+   p_("taunt_defensive", "Idiots! How dare you attack the Za'lek?!"),
+   p_("taunt_defensive", "Attacking me was a stupid mistake!"),
+}
 function taunt(target, offense)
    local p = ai.pilot()
    -- See if a drone
@@ -79,23 +95,11 @@ function taunt(target, offense)
       return
    end
 
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "I will show you the power of the Za'lek fleet!"),
-         p_("taunt", "Commencing battle test by eradicating outlaw pilots."),
-         p_("taunt", "Your days are over!"),
-         p_("taunt", "You interfere with the progress of science!"),
-         p_("taunt", "Feel the wrath of our combat drones!"),
-         p_("taunt", "Die, you brainless worm!"),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "You just made a big mistake!"),
-         p_("taunt_defensive", "You wanna do this? Have it your way."),
-         p_("taunt_defensive", "How dare you?! I just got this ship customized!"),
-         p_("taunt_defensive", "Idiots! How dare you attack the Za'lek?!"),
-         p_("taunt_defensive", "Attacking me was a stupid mistake!"),
-      }
+      taunts = taunts_defense
    end
 
    p:comm(target, taunts[rnd.rnd(1, #taunts)])

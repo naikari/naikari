@@ -41,33 +41,36 @@ function create ()
    create_post()
 end
 
--- taunts
-function taunt(target, offense)
 
+-- taunts
+local taunts_offense = {
+   p_("taunt", "Don't take this personally."),
+   p_("taunt", "It's just business."),
+   p_("taunt", "Sorry."),
+   p_("taunt", "Nothing personal."),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "Your skull will make a great hood ornament!"),
+   p_("taunt_defensive", "I've destroyed ships twice the size of yours!"),
+   p_("taunt_defensive", "I'll crush you like a grape!"),
+   p_("taunt_defensive", "This isn't what I signed up for!"),
+   p_("taunt_defensive", "Oh, now you're in for it!"),
+}
+function taunt(target, offense)
    -- Only 20% of actually taunting.
    if rnd.rnd(0,4) ~= 0 then
       return
    end
 
    -- some taunts
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "Don't take this personally."),
-         p_("taunt", "It's just business."),
-         p_("taunt", "Sorry."),
-         p_("taunt", "Nothing personal."),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "Your skull will make a great hood ornament!"),
-         p_("taunt_defensive", "I've destroyed ships twice the size of yours!"),
-         p_("taunt_defensive", "I'll crush you like a grape!"),
-         p_("taunt_defensive", "This isn't what I signed up for!"),
-         p_("taunt_defensive", "Oh, now you're in for it!"),
-      }
+      taunts = taunts_defense
    end
 
-   ai.pilot():comm(target, taunts[rnd.rnd(1,#taunts)])
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 
 

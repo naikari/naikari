@@ -40,6 +40,8 @@ end
 --]]
 function _atk_g_capital( target, dist )
    ai.weapset(mem.weapset)
+   local p = ai.pilot()
+   local energy = p:energy()
    local range = ai.getweaprange()
    local dir = 0
    local shoot = false
@@ -48,9 +50,9 @@ function _atk_g_capital( target, dist )
    ai.weapset(8, false)
 
    --capital ships tend to require heavier energy reserves and burst output for maximum effectiveness
-   if ai.pilot():energy() <= 1 then
+   if energy <= 1 then
       mem.recharge = true
-   elseif ai.pilot():energy() > 15 then
+   elseif energy > 15 then
       mem.recharge = false
    end
 
@@ -69,7 +71,7 @@ function _atk_g_capital( target, dist )
       --drifting away from target, so emphasize intercept
       --course facing and accelerate to close
       aimdir = ai.aim(target)
-      dir    = ai.iface(target)
+      dir = ai.iface(target)
       if dir < 10 and dir > -10 then
          ai.accel()
       end
@@ -79,7 +81,7 @@ function _atk_g_capital( target, dist )
       --capital ship turning is slow
       --emphasize facing for being able to close quickly
       aimdir = ai.aim(target)
-      dir    = ai.iface(target)
+      dir = ai.iface(target)
       -- Only accelerate if the target is getting away.
       if dir < 10 and dir > -10 and ai.relvel(target) > -10 then
          ai.accel()

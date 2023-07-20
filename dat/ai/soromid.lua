@@ -55,35 +55,38 @@ function create()
    create_post()
 end
 
--- taunts
-function taunt(target, offense)
 
+-- taunts
+local taunts_offense = {
+   p_("taunt", "You give humanity a bad name!"),
+   p_("taunt", "Enjoy your last moments!"),
+   p_("taunt", "You're a discrace to all of humanity! Now you die!"),
+   p_("taunt", "Enemies of Sorom do not belong here!"),
+   p_("taunt", "Prepare to feel the wrath of the warriors of Sorom!"),
+   p_("taunt", "The warriros of Sorom won't let you get away with your crimes!"),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "A reckless move!"),
+   p_("taunt_defensive", "How dare you attack the warriors of Sorom?!"),
+   p_("taunt_defensive", "You'll regret that!"),
+   p_("taunt_defensive", "That was a fatal mistake!"),
+   p_("taunt_defensive", "You dare harm my precious ship?!"),
+}
+function taunt(target, offense)
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
       return
    end
 
    -- some taunts
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "You give humanity a bad name!"),
-         p_("taunt", "Enjoy your last moments!"),
-         p_("taunt", "You're a discrace to all of humanity! Now you die!"),
-         p_("taunt", "Enemies of Sorom do not belong here!"),
-         p_("taunt", "Prepare to feel the wrath of the warriors of Sorom!"),
-         p_("taunt", "The warriros of Sorom won't let you get away with your crimes!"),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "A reckless move!"),
-         p_("taunt_defensive", "How dare you attack the warriors of Sorom?!"),
-         p_("taunt_defensive", "You'll regret that!"),
-         p_("taunt_defensive", "That was a fatal mistake!"),
-         p_("taunt_defensive", "You dare harm my precious ship?!"),
-      }
+      taunts = taunts_defense
    end
 
-   ai.pilot():comm(target, taunts[ rnd.rnd(1,#taunts) ])
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 
 

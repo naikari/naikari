@@ -42,31 +42,34 @@ function create()
    create_post()
 end
 
--- taunts
-function taunt(target, offense)
 
+-- taunts
+local taunts_offense = {
+   p_("taunt", "Die, heathen!"),
+   p_("taunt", "Sirichana wishes for your death!"),
+   p_("taunt", "Say your prayers!"),
+   p_("taunt", "Die and face Sirichana's divine judgment!"),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "Sirichana protect me!"),
+   p_("taunt_defensive", "You have made a grave error!"),
+   p_("taunt_defensive", "You do wrong in your provocations!"),
+}
+function taunt(target, offense)
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
       return
    end
 
    -- some taunts
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "Die, heathen!"),
-         p_("taunt", "Sirichana wishes for your death!"),
-         p_("taunt", "Say your prayers!"),
-         p_("taunt", "Die and face Sirichana's divine judgment!"),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "Sirichana protect me!"),
-         p_("taunt_defensive", "You have made a grave error!"),
-         p_("taunt_defensive", "You do wrong in your provocations!"),
-      }
+      taunts = taunts_defense
    end
 
-   ai.pilot():comm(target, taunts[ rnd.rnd(1,#taunts) ])
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 
 

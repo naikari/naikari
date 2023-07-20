@@ -73,6 +73,10 @@ stateinfo = {
       fighting = true,
       noattack = true,
    },
+   runaway_nojump = {
+      fighting = true,
+      noattack = true,
+   },
    refuel = {
       noattack = true,
    },
@@ -85,12 +89,6 @@ stateinfo = {
       noattack = true,
    },
 }
-function _stateinfo( task )
-   if task == nil then
-      return {}
-   end
-   return stateinfo[ task ] or {}
-end
 
 function lead_fleet ()
    local p = ai.pilot()
@@ -125,8 +123,9 @@ function handle_messages()
    local p = ai.pilot()
    local l = p:leader()
    local rl = p:leader(true)
-   for i, v in ipairs(ai.messages()) do
-      local sender, msgtype, data = table.unpack(v)
+   local messages = ai.messages()
+   for i = 1, #messages do
+      local sender, msgtype, data = table.unpack(messages[i])
       if sender == l or sender == rl then
          if msgtype == "form-pos" then
             mem.form_pos = data
@@ -206,7 +205,7 @@ function control ()
 
    -- Task information stuff
    local task = ai.taskname()
-   local si = _stateinfo( task )
+   local si = stateinfo[task] or {}
 
    -- Select new leader
    local l = p:leader()
@@ -392,7 +391,7 @@ end
 -- Required "attacked" function
 function attacked(attacker)
    local task = ai.taskname()
-   local si = _stateinfo(task)
+   local si = stateinfo[task] or {}
    if si.forced then
       return
    end
@@ -407,7 +406,7 @@ function attacked(attacker)
    if mem.cooldown then
       if pshield < 90 then
          mem.cooldown = false
-         ai.pilot():setCooldown(false)
+         p:setCooldown(false)
       else
          return
       end
@@ -560,7 +559,7 @@ function distress(distresser, attacker)
    end
 
    local task = ai.taskname()
-   local si   = _stateinfo( task )
+   local si = stateinfo[task] or {}
    -- Already fighting
    if si.attack then
       if si.noattack then return end
@@ -656,8 +655,9 @@ end
 -- Puts the pilot into cooldown mode if its weapons are overly hot and its shields are relatively high.
 -- This can happen during combat, so mem.heatthreshold should be quite high.
 function should_cooldown()
-   local mean = ai.pilot():weapsetHeat()
-   local _, pshield = ai.pilot():health()
+   local p = ai.pilot()
+   local mean = p:weapsetHeat()
+   local parmor, pshield = p:health()
 
    -- Don't want to cool down again so soon.
    -- By default, 15 ticks will be 30 seconds.
@@ -668,7 +668,7 @@ function should_cooldown()
    -- Not sure this is better...
    elseif mean > mem.heatthreshold and pshield > 50 then
       mem.cooldown = true
-      ai.pilot():setCooldown(true)
+      p:setCooldown(true)
    end
    if pshield == nil then
       player.msg("pshield = nil")

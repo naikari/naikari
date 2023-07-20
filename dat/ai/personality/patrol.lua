@@ -46,5 +46,5 @@ end
 
 
 -- Settings
-mem.waypoints     = nil
+mem.waypoints = nil
 mem.land_friendly = true -- Land on only friendly by default

@@ -1,6 +1,8 @@
 -- Default task to run when idle
 function idle ()
-   if mem.loiter == nil then mem.loiter = 3 end
+   if mem.loiter == nil then
+      mem.loiter = 3
+   end
    if mem.loiter == 0 then -- Try to leave. Civilians will always try to land on a planet if there is one.
        local planet = ai.landplanet( mem.land_friendly )
        -- planet must exist

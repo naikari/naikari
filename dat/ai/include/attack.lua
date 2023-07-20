@@ -18,8 +18,6 @@ require("ai/include/atk_fighter")
 require("ai/include/atk_bomber")
 require("ai/include/atk_corvette")
 require("ai/include/atk_capital")
---require("ai/include/atk_cruiser")
---require("ai/include/atk_carrier")
 require("ai/include/atk_drone")
 
 -- Set attack variables

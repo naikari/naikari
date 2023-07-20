@@ -56,7 +56,22 @@ function create()
    create_post()
 end
 
+
 -- taunts
+local taunts_offense = {
+   p_("taunt", "There is no room in this universe for scum like you!"),
+   p_("taunt", "The Empire will enjoy your death!"),
+   p_("taunt", "Your head will make a fine gift for the Emperor!"),
+   p_("taunt", "None survive the wrath of the Emperor!"),
+   p_("taunt", "Enjoy your last moments, criminal!"),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "You dare attack me?!"),
+   p_("taunt_defensive", "You are no match for the Empire!"),
+   p_("taunt_defensive", "The Empire will have your head!"),
+   p_("taunt_defensive", "You'll regret that!"),
+   p_("taunt_defensive", "That was a fatal mistake!"),
+}
 function taunt ( target, offense )
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
@@ -64,25 +79,14 @@ function taunt ( target, offense )
    end
 
    -- some taunts
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "There is no room in this universe for scum like you!"),
-         p_("taunt", "The Empire will enjoy your death!"),
-         p_("taunt", "Your head will make a fine gift for the Emperor!"),
-         p_("taunt", "None survive the wrath of the Emperor!"),
-         p_("taunt", "Enjoy your last moments, criminal!"),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "You dare attack me?!"),
-         p_("taunt_defensive", "You are no match for the Empire!"),
-         p_("taunt_defensive", "The Empire will have your head!"),
-         p_("taunt_defensive", "You'll regret that!"),
-         p_("taunt_defensive", "That was a fatal mistake!"),
-      }
+      taunts = taunts_defense
    end
 
-   ai.pilot():comm(target, taunts[ rnd.rnd(1,#taunts) ])
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 
 

@@ -7,19 +7,6 @@
 
 
 --[[
--- Helper function that checks to see if a value is in a table
---]]
-function __intable( t, val )
-   for k,v in ipairs(t) do
-      if v==val then
-         return true
-      end
-   end
-   return false
-end
-
-
---[[
 -- Faces the target.
 --]]
 function __face( target )
@@ -649,10 +636,10 @@ function __run_landgo ()
    -- Shoot the target
    __run_turret()
 
-   local target   = mem.land
-   local dist     = ai.dist( target )
-   local bdist    = ai.minbrakedist()
-   local plt      = ai.pilot()
+   local target = mem.land
+   local dist = ai.dist(target)
+   local bdist = ai.minbrakedist()
+   local plt = ai.pilot()
 
    if dist <= bdist then -- Need to start braking
       ai.pushsubtask( "__landstop" )
@@ -894,13 +881,13 @@ function refuel ()
 
    -- Get ready to board
    ai.settarget(target)
-   local dir   = ai.face(target)
-   local dist  = ai.dist(target)
+   local dir = ai.face(target)
+   local dist = ai.dist(target)
    local bdist = ai.minbrakedist(target)
 
    -- See if must brake or approach
    if dist <= bdist then
-      ai.pushsubtask( "__refuelstop", target )
+      ai.pushsubtask("__refuelstop", target)
    elseif dir < 10 then
       ai.accel()
    end
@@ -1119,7 +1106,7 @@ end
 -- Assumes the pilot exists!
 --]]
 function __check_seeable( target )
-   local self   = ai.pilot()
+   local self = ai.pilot()
    if not target:flags().invisible then
       -- Pilot still sees the target: continue attack
       if self:inrange( target ) then

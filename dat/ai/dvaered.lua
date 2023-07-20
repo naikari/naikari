@@ -10,7 +10,7 @@ mem.atk_kill = true
 
 
 -- Create function
-function create ()
+function create()
    local p = ai.pilot()
    local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.35 * sprice, 0.85 * sprice))
@@ -24,7 +24,7 @@ function create ()
          {credits=fmt.credits(mem.bribe)})
       mem.bribe_paid = p_("bribe_paid", "\"Good. Now get out of my face.\"")
    else
-      bribe_no = {
+      local bribe_no = {
          p_("bribe_no", "\"You insult my honor.\""),
          p_("bribe_no", "\"I find your lack of honor disturbing.\""),
          p_("bribe_no", "\"You disgust me.\""),
@@ -47,21 +47,20 @@ function create ()
    end
 
    -- Handle misc stuff
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
+   mem.loiter = 3
 
    create_post()
 end
 
 -- taunts
 function taunt(target, offense)
-
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
       return
    end
 
    -- Offense is not actually used
-   taunts = {
+   local taunts = {
       p_("taunt", "Prepare to face annihilation!"),
       p_("taunt", "I will wash my hull in your blood!"),
       p_("taunt", "Your head will make a great trophy!"),
@@ -71,9 +70,9 @@ function taunt(target, offense)
       p_("taunt", "Eat flaming death, you gravy-sucking pig!"),
    }
    if faction.get("Dvaered"):playerStanding() < 0 then
-      table.insert(taunts, p_("taunt", "Now you must pay for your crimes!"))
-      table.insert(taunts, p_("taunt", "You're no match for the Dvaered!"))
-      table.insert(taunts, p_("taunt", "Criminal scum! You die!"))
+      taunts[#taunts + 1] = p_("taunt", "Now you must pay for your crimes!")
+      taunts[#taunts + 1] = p_("taunt", "You're no match for the Dvaered!")
+      taunts[#taunts + 1] = p_("taunt", "Criminal scum! You die!")
    end
    ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end

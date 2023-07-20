@@ -46,28 +46,30 @@ function create()
 end
 
 -- taunts
+local taunts_offense = {
+   p_("taunt", "For the Frontier!"),
+   p_("taunt", "You'll make great target practice!"),
+   p_("taunt", "You won't get away with your actions!"),
+}
+local taunts_defense = {
+   p_("taunt_defensive", "Frontier vessel under attack! Requesting assistance!"),
+   p_("taunt_defensive", "You'll regret that!"),
+   p_("taunt_defensive", "I won't go down without a fight!"),
+   p_("taunt_defensive", "To hell with you!"),
+   p_("taunt_defensive", "You won't get away with this!"),
+}
 function taunt(target, offense)
-
    -- Only 50% of actually taunting.
    if rnd.rnd(0,1) == 0 then
       return
    end
 
+   local taunts
    if offense then
-      taunts = {
-         p_("taunt", "For the Frontier!"),
-         p_("taunt", "You'll make great target practice!"),
-         p_("taunt", "You won't get away with your actions!"),
-      }
+      taunts = taunts_offense
    else
-      taunts = {
-         p_("taunt_defensive", "Frontier vessel under attack! Requesting assistance!"),
-         p_("taunt_defensive", "You'll regret that!"),
-         p_("taunt_defensive", "I won't go down without a fight!"),
-         p_("taunt_defensive", "To hell with you!"),
-         p_("taunt_defensive", "You won't get away with this!"),
-      }
+      taunts = taunts_defense
    end
-   ai.pilot():comm(target, taunts[rnd.rnd(1,#taunts)])
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 

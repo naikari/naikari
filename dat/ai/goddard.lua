@@ -46,16 +46,18 @@ function create ()
    create_post()
 end
 
+
 -- taunts
+local taunts = {
+   p_("taunt", "Prepare to face annihilation!"),
+   p_("taunt", "Your head will make a great trophy!"),
+   p_("taunt", "These moments will be your last!"),
+   p_("taunt", "Parasite! You die!"),
+   p_("taunt", "Prepare to face the wrath of House Goddard!"),
+}
 function taunt(target, offense)
    -- Offense is not actually used
-   taunts = {
-      p_("taunt", "Prepare to face annihilation!"),
-      p_("taunt", "Your head will make a great trophy!"),
-      p_("taunt", "These moments will be your last!"),
-      p_("taunt", "Parasite! You die!"),
-      p_("taunt", "Prepare to face the wrath of House Goddard!"),
-   }
-   ai.pilot():comm(target, taunts[rnd.rnd(1,#taunts)])
+   local taunts = taunts
+   ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
 
