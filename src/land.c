@@ -90,6 +90,7 @@ static glTexture *gfx_exterior = NULL; /**< Exterior graphic of the landed plane
  */
 static Mission* mission_computer = NULL; /**< Missions at the computer. */
 static int mission_ncomputer = 0; /**< Number of missions at the computer. */
+static int mission_map_minimal = 1; /**< Stored minimal mode setting. */
 
 /*
  * Bar stuff.
@@ -146,6 +147,7 @@ static void misn_accept( unsigned int wid, char* str );
 static void misn_currentList(unsigned int wid, char* str);
 static void misn_genList( unsigned int wid, int first );
 static void misn_activateList(wid_t wid, char* str);
+static void misn_chkMinimal(unsigned int wid, char* str);
 static void misn_update( unsigned int wid, char* str );
 
 
@@ -599,7 +601,8 @@ static void misn_getSize(wid_t wid, int *w, int *h, int *dw, int *dh, int *lh,
 static void misn_open( unsigned int wid )
 {
    int w, h, dw, dh, lh, mw, bw;
-   int th;
+   int tw, th;
+   int mh;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_MISSION);
@@ -630,8 +633,14 @@ static void misn_open( unsigned int wid )
          "txtDate", NULL, NULL, NULL);
 
    /* Map */
-   map_show(wid, -20, 20 + LAND_BUTTON_HEIGHT + 10,
-         mw, h - 40 - th - 10 - (20+LAND_BUTTON_HEIGHT+10), 0.75);
+   mh = h - 40 - th - 10 - (20+LAND_BUTTON_HEIGHT+10);
+   map_show(wid, -20, 20 + LAND_BUTTON_HEIGHT + 10, mw, mh, 0.75);
+
+   /* Minimal mode checkbox */
+   tw = gl_printWidthRaw(&gl_smallFont, _("Minimal Mode")) + 20;
+   window_addCheckbox(wid, -20, 20 + LAND_BUTTON_HEIGHT + 10 + mh + 10,
+         tw, 20, "chkMinimal", _("Minimal Mode"),
+         misn_chkMinimal, mission_map_minimal);
 
    /* Description text */
    window_addText(wid, 20, -40 - lh - 10,
@@ -828,6 +837,19 @@ static void misn_activateList(wid_t wid, char* str)
 
 
 /**
+ * @brief Handles changes to the minimal mode checkbox.
+ *
+ *    @param wid Window sending events.
+ *    @param str Name of the checkbox causing the event.
+ */
+static void misn_chkMinimal(unsigned int wid, char* str)
+{
+   mission_map_minimal = window_checkboxState(wid, str);
+   map_setMinimal(mission_map_minimal);
+}
+
+
+/**
  * @brief Updates the mission list.
  *    @param wid Window of the mission computer.
  *    @param str Unused.
@@ -839,6 +861,7 @@ static void misn_update( unsigned int wid, char* str )
    Mission* misn;
    char txt[STRMAX], *buf;
    char tons[STRMAX_SHORT], cred[ECON_CRED_STRLEN];
+   int minimal;
 
    /* Update date stuff. */
    buf = ntime_pretty(0, 2);
@@ -874,7 +897,8 @@ static void misn_update( unsigned int wid, char* str )
 
    /* Make sure the map is in the proper mode. */
    map_setMode(MAPMODE_TRAVEL);
-   map_setMinimal(1);
+   minimal = window_checkboxState(wid, "chkMinimal");
+   map_setMinimal(minimal);
 }
 
 
