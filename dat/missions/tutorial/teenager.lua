@@ -152,33 +152,28 @@ function enter()
         target:outfitAdd("Shield Capacitor", 2)
         target:control()
         target:memory().aggressive = true
-        target:setHilight(true)
-        target:setVisplayer(true)
+        target:setHilight()
+        target:setVisplayer()
+        target:setNoClear()
 
-        hidle = hook.pilot(target, "idle", "targetIdle")
+        hook.pilot(target, "idle", "targetIdle")
         hook.pilot(target, "disable", "targetDisabled")
         hook.pilot(target, "undisable", "targetUndisabled")
         hook.pilot(target, "exploded", "targetExploded")
         hook.pilot(target, "board", "targetBoard")
-        targetIdle()
     else
         misn.osdActive(1)
     end
 end
 
 
-function targetIdle()
-    if not target:exists() then
-        hook.rm(hidle)
-        return
-    end
-    local location = target:pos()
+function targetIdle(p)
+    local location = p:pos()
     local dist = 750
     local angle = rnd.rnd() * 2 * math.pi
     local newlocation = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
-    target:taskClear()
-    target:moveto(location + newlocation, false, false)
-    hook.timer(5.0, "targetIdle")
+    p:taskClear()
+    p:moveto(location + newlocation, false, false)
 end
 
 
@@ -212,12 +207,13 @@ function targetBoard(p, boarder)
 
     tk.msg("", board_text)
 
-    target:setHilight(false)
-    target:setVisplayer(false)
-    target:disable()
+    p:setHilight(false)
+    p:setVisplayer(false)
+    p:disable()
+    p:hookClear()
 
     local c = misn.cargoNew(N_("Teenagers"), N_("Disillusioned teenagers."))
-    cargoID = misn.cargoAdd(c,0)
+    cargoID = misn.cargoAdd(c, 0)
 
     misn.osdActive(4)
 
