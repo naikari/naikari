@@ -89,7 +89,11 @@ function create()
 
    local speed_text = fmt.f(p_("escort_desc", "Speed: {speed:.0f} mAU/s"),
          {speed=pilots_min_speed})
-   local desc_extra_lines = {piracyrisk, speed_text}
+   local n = #pilots_table
+   local size_text = fmt.f(
+      n_("Convoy size: {ships:d} ship", "Convoy size: {ships:d} ships", n),
+      {ships=n})
+   local desc_extra_lines = {size_text, piracyrisk, speed_text}
    local desc_extra = table.concat(desc_extra_lines, "\n")
 
    cargo_setDesc(

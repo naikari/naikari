@@ -44,8 +44,6 @@ ask_text = _([["I have another job for you. The Baron was unfortunately not as i
 
 "What do you say? Are you interested?"]])
 
-refusetext = _([["OK, that's alright."]])
-
 accept_text = _([["Great! Go and meet our pilot in the {destsys} system. After the job is done, meet me at {payplanet} in the {paysys} system."]])
 
 pay_text = _([[As you land, you see Arnold Smith waiting for you. He explains that the Baron was so impressed by the battle that he signed an updated contract with Nexus Shipyards, solidifying Nexus as the primary supplier of ships for his fleet. As a reward, they give you twice the sum of credits they promised to you.]])
@@ -117,7 +115,6 @@ function accept()
       landhook = hook.land("land")
       enterhook = hook.enter("enter")
    else
-      tk.msg("", refusetext)
       misn.finish()
    end
 end

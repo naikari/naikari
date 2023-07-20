@@ -44,8 +44,6 @@ ask_text = _([[You sit at Smith's table and ask him if he has a job for you. "Of
 
 "So we've conducted a bit of espionage. We have an agent who has recorded some hopefully revealing conversations between a sales manager of the new startup and representatives of the Frontier. All we need you to do is meet with the agent, get the recordings, and bring them back to me on {planet} in the {system} system. It's not exactly legal. That being said, you're just doing the delivery, so you almost certainly won't be implicated. What do you say? Is this something you can do?"]])
 
-refusetext = _([["OK, sorry to bother you."]])
-
 accept_text = _([["I'm glad to hear it. Go meet our agent on {planet} in the {system} system. Oh, yes, and I suppose I should mention that I'm known as 'James Neptune' to the agent. Good luck!"]])
 
 meet_text = _([[You approach the agent and obtain the package without issue. Before you leave, he suggests that you stay vigilant. "They might come after you," he says.]])
@@ -113,7 +111,6 @@ function accept()
 
       landhook = hook.land("land")
    else
-      tk.msg("", refusetext)
       misn.finish()
    end
 end
