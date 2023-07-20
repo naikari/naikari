@@ -4,7 +4,7 @@
  <avail>
   <priority>49</priority>
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
-  <chance>540</chance>
+  <chance>640</chance>
   <location>Computer</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -33,10 +33,10 @@ function create()
    
    if destplanet == nil then
       misn.finish(false)
-   elseif numjumps == 0 then
-      misn.finish(false) -- have to escort them at least one jump!
-   elseif avgrisk * numjumps <= 25 then
-      misn.finish(false) -- needs to be a little bit of piracy possible along route
+   end
+   -- Needs at least a little bit of piracy along the route.
+   if avgrisk < 25 then
+      misn.finish(false)
    end
    
    local piracyrisk, riskreward
@@ -46,7 +46,7 @@ function create()
    elseif avgrisk <= 25 then
       piracyrisk = _("Piracy Risk: Low")
       riskreward = 150
-   elseif avgrisk > 25 and avgrisk <= 100 then
+   elseif avgrisk <= 100 then
       piracyrisk = _("Piracy Risk: Medium")
       riskreward = 300
    else
@@ -128,6 +128,12 @@ function accept()
    hook.jumpin("jumpin")
    hook.jumpout("jumpout")
    hook.land("land")
+end
+
+
+-- Escort missions have a different range than the default.
+function cargo_selectMissionDistance()
+   return rnd.rnd(1, 8)
 end
 
 
