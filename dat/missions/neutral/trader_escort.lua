@@ -41,16 +41,16 @@ function create()
    
    local piracyrisk, riskreward
    if avgrisk == 0 then
-      piracyrisk = _("Piracy Risk: None")
+      piracyrisk = _("#nPiracy Risk:#0 None")
       riskreward = 0
    elseif avgrisk <= 25 then
-      piracyrisk = _("Piracy Risk: Low")
+      piracyrisk = _("#nPiracy Risk:#0 Low")
       riskreward = 150
    elseif avgrisk <= 100 then
-      piracyrisk = _("Piracy Risk: Medium")
+      piracyrisk = _("#nPiracy Risk:#0 Medium")
       riskreward = 300
    else
-      piracyrisk = _("Piracy Risk: High")
+      piracyrisk = _("#nPiracy Risk:#0 High")
       riskreward = 450
    end
    
@@ -87,11 +87,12 @@ function create()
 
    local desc = _("A convoy of traders needs to be escorted to {planet} in the {system} system. The convoy pilots will join your fleet and follow you, but you cannot issue orders to them. You should take care to ensure that your ship travels slow enough for the convoy to keep up with you.")
 
-   local speed_text = fmt.f(p_("escort_desc", "Speed: {speed:.0f} mAU/s"),
+   local speed_text = fmt.f(p_("escort_desc", "#nSpeed:#0 {speed:.0f} mAU/s"),
          {speed=pilots_min_speed})
    local n = #pilots_table
    local size_text = fmt.f(
-      n_("Convoy size: {ships:d} ship", "Convoy size: {ships:d} ships", n),
+      n_("#nConvoy size:#0 {ships:d} ship", "#nConvoy size:#0 {ships:d} ships",
+         n),
       {ships=n})
    local desc_extra_lines = {size_text, piracyrisk, speed_text}
    local desc_extra = table.concat(desc_extra_lines, "\n")

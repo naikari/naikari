@@ -26,12 +26,6 @@ require "cargo_common"
 
 misn_desc  = _("Official long distance Empire cargo transport to {planet} in the {system} system.")
 
-piracyrisk = {}
-piracyrisk[1] = _("Piracy Risk: None")
-piracyrisk[2] = _("Piracy Risk: Low")
-piracyrisk[3] = _("Piracy Risk: Medium")
-piracyrisk[4] = _("Piracy Risk: High")
-
 msg_timeup = _("MISSION FAILED: You have failed to deliver the goods to the Empire on time!")
 
 osd_title = _("Long Distance Empire Shipping")
@@ -87,17 +81,18 @@ function create()
    end
 
    --Determine risk of piracy
+   local piracyrisk, riskreward
    if avgrisk == 0 then
-      piracyrisk = piracyrisk[1]
+      piracyrisk = _("#nPiracy Risk:#0 None")
       riskreward = 0
    elseif avgrisk <= 25 then
-      piracyrisk = piracyrisk[2]
+      piracyrisk = _("#nPiracy Risk:#0 Low")
       riskreward = 150
    elseif avgrisk > 25 and avgrisk <= 100 then
-      piracyrisk = piracyrisk[3]
+      piracyrisk = _("#nPiracy Risk:#0 Medium")
       riskreward = 300
    else
-      piracyrisk = piracyrisk[4]
+      piracyrisk = _("#nPiracy Risk:#0 High")
       riskreward = 450
    end
 

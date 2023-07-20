@@ -67,16 +67,16 @@ function create()
    
    local piracyrisk, riskreward
    if avgrisk == 0 then
-      piracyrisk = _("Piracy Risk: None")
+      piracyrisk = _("#nPiracy Risk:#0 None")
       riskreward = 0
    elseif avgrisk <= 25 then
-      piracyrisk = _("Piracy Risk: Low")
+      piracyrisk = _("#nPiracy Risk:#0 Low")
       riskreward = 150
    elseif avgrisk > 25 and avgrisk <= 100 then
-      piracyrisk = _("Piracy Risk: Medium")
+      piracyrisk = _("#nPiracy Risk:#0 Medium")
       riskreward = 300
    else
-      piracyrisk = _("Piracy Risk: High")
+      piracyrisk = _("#nPiracy Risk:#0 High")
       riskreward = 450
    end
    

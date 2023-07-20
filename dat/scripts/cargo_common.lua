@@ -197,20 +197,21 @@ function cargo_setDesc(misn_desc, cargo, amount, target, numjumps, deadline,
       notes)
    local t = {misn_desc, ""};
    if amount ~= nil then
-      table.insert(t, fmt.f(_("Cargo: {cargoname} ({amount})"),
+      table.insert(t, fmt.f(_("#nCargo:#0 {cargoname} ({amount})"),
             {cargoname=_(cargo), amount=fmt.tonnes(amount)}))
    elseif cargo ~= nil then
-      table.insert(t, fmt.f(_("Cargo: {cargoname}"), {cargoname=_(cargo)}))
+      table.insert(t, fmt.f(_("#nCargo:#0 {cargoname}"), {cargoname=_(cargo)}))
    end
 
    if numjumps ~= nil then
-      table.insert(t, fmt.f(n_("Jumps: {jumps}", "Jumps: {jumps}", numjumps),
+      table.insert(t, fmt.f(
+            n_("#nJumps:#0 {jumps}", "#nJumps:#0 {jumps}", numjumps),
             {jumps=fmt.number(numjumps)}))
    end
 
    local dist = cargo_calculateDistance(system.cur(), planet.cur():pos(),
          target:system(), target)
-   table.insert(t, fmt.f(_("Travel distance: {distance} AU"),
+   table.insert(t, fmt.f(_("#nTravel distance:#0 {distance} AU"),
             {distance=fmt.number(dist / 1000)}))
 
    if notes ~= nil then
@@ -218,7 +219,7 @@ function cargo_setDesc(misn_desc, cargo, amount, target, numjumps, deadline,
    end
 
    if deadline ~= nil then
-      table.insert(t, fmt.f(_("Time limit: {time}"),
+      table.insert(t, fmt.f(_("#nTime limit:#0 {time}"),
             {time=tostring(deadline - time.get())}))
    end
 

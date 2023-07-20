@@ -66,12 +66,6 @@ fail_land_norefund_text = _([[You have landed on your destination without the ex
 fail_msg = _("You jumped without the {engine} equipped.")
 refund_msg = _("Engine has been returned and your deposit refunded.")
 
-piracyrisk = {}
-piracyrisk[1] = _("Piracy Risk: None")
-piracyrisk[2] = _("Piracy Risk: Low")
-piracyrisk[3] = _("Piracy Risk: Medium")
-piracyrisk[4] = _("Piracy Risk: High")
-
 
 function create()
    -- Note: this mission does not make any system claims.
@@ -89,27 +83,26 @@ function create()
       misn.finish(false)
    end
 
-   local risktext, riskreward, jumpreward, distreward
-
+   local risktext, riskreward
    if risk == 0 then
-      risktext = piracyrisk[1]
+      risktext = _("#nPiracy Risk:#0 None")
       riskreward = 0
    elseif risk <= 25 then
-      risktext = piracyrisk[2]
+      risktext = _("#nPiracy Risk:#0 Low")
       riskreward = 250
    elseif risk > 25 and risk <= 100 then
-      risktext = piracyrisk[3]
+      risktext = _("#nPiracy Risk:#0 Medium")
       riskreward = 500
    else
-      risktext = piracyrisk[4]
+      risktext = _("#nPiracy Risk:#0 High")
       riskreward = 500
    end
 
    misn_engine = "Za'lek S300 Test Engine"
    deposit = outfit.price(misn_engine)
 
-   jumpreward = 10000
-   distreward = 0.1
+   local jumpreward = 10000
+   local distreward = 0.1
    reward = (1.25^tier
          * (risk*riskreward + njumps*jumpreward + dist*distreward + 75000)
          * (1 + 0.05*rnd.twosigma()))
@@ -205,9 +198,10 @@ function remove_engine()
    end
 
    if player.isLanded() and outfit_mounted(misn_engine) then
-      player.pilot():outfitRm(misn_engine)
+      local p = player.pilot()
+      p:outfitRm(misn_engine)
       if not planet.cur():services()["outfits"] then
-         player.pilot():outfitAdd("Beat Up Small Engine")
+         p:outfitAdd("Beat Up Small Engine")
       end
       return true
    end
