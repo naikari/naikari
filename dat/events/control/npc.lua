@@ -17,10 +17,7 @@ local portrait = require "portrait"
 require "jumpdist"
 
 
--- Factions which will NOT get generic texts if possible.  Factions
--- listed here not spawn generic civilian NPCs or get aftercare texts.
--- Meant for factions which are either criminal (FLF, Pirate) or unaware
--- of the main universe (Thurion, Proteron).
+-- Factions which will not get generic "Civilian" NPCs.
 nongeneric_factions = {"Pirate", "FLF", "Thurion", "Proteron"}
 
 -- Special names for certain factions' civilian NPCs (to replace the
@@ -369,6 +366,7 @@ messages = {
          _([["The Empire is weak and obsolete, and they know it. That's why they went so low as to blow Earth up to try to get rid of us."]]),
          _([["I'm thinking of enlisting in the military so I can join the fight against the Sorofreak elite and the traitorous old Empire."]]),
          _([["It's time for natural selection to take its course. We Proteron are strong, and it's time for us to crush the weak."]]),
+         _([["The Empire designed standard pilot interfaces to be colorblind-accessible. I hate it. Why should the 99.99% of normal people be expected to deal with these ugly colors and symbols just for a few cripples?"]]),
       },
    },
    {
