@@ -1,6 +1,7 @@
 require("ai/empire")
 
 mem.norun = true
+mem.noleave = true
 
 function donothing ()
     ai.brake()

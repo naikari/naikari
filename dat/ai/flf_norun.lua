@@ -1,6 +1,7 @@
 require("ai/flf")
 
 mem.norun = true
+mem.noleave = true
 
 function donothing ()
     ai.brake()

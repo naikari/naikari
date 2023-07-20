@@ -276,12 +276,10 @@ function enter()
       target_ship:setNoDeath()
       target_ship:setNoDisable()
 
-      -- Give the target a very high loiter value so it won't leave
-      -- anytime soon.
-      target_ship:memory().loiter = 10000
-
+      local mem = target_ship:memory()
+      mem.noleave = true
       -- We're overriding the kill reward.
-      target_ship:memory().kill_reward = nil
+      mem.kill_reward = nil
 
       -- Record that we haven't found or learned about the target yet.
       target_found = false

@@ -27,6 +27,7 @@ mem.distressmsgfunc = nil -- Function to call when distressing
 mem.weapset = "all_nonseek" -- Weapon set that should be used (tweaked based on heat).
 mem.tickssincecooldown = 0 -- Prevents overly-frequent cooldown attempts.
 mem.norun = false -- Do not run away.
+mem.noleave = false -- Do not leave the system.
 mem.careful = false -- Should the pilot try to avoid enemies?
 mem.kill_reward = nil -- Credits rewarded by enemies for killing the pilot
 
@@ -426,7 +427,7 @@ function attacked(attacker)
          -- Now pilot fights back
          clean_task( task )
          ai.pushtask("attack", attacker)
-      elseif not mem.norun then
+      elseif not mem.noleave then
          -- Runaway
          ai.pushtask("runaway", attacker)
       else
@@ -578,7 +579,7 @@ function distress(distresser, attacker)
             clean_task(task)
             ai.pushtask("attack", t)
          end
-      elseif not mem.norun then
+      elseif not mem.noleave then
          ai.pushtask("runaway", t)
       else
          ai.pushtask("runaway_nojump", t)

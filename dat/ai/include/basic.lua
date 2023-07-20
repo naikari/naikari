@@ -424,6 +424,11 @@ function __choose_land_target ()
 end
 
 function land ()
+   if mem.noleave then
+      ai.poptask()
+      return
+   end
+
    __choose_land_target ()
    ai.pushsubtask( "__landgo" )
 end
@@ -481,7 +486,6 @@ end
 -- Attempts to run away from the target.
 --]]
 function runaway ()
-
    -- Target must exist
    local target = ai.taskdata()
    if not target:exists() then
@@ -496,8 +500,8 @@ function runaway ()
    local t = ai.nearhyptarget()
    local p = ai.nearestplanet()
 
-   if p == nil and t == nil then
-      ai.pushsubtask( "__run_target" )
+   if (p == nil and t == nil) or mem.noleave then
+      ai.pushsubtask("__run_target")
    elseif p == nil then
       local pos = ai.sethyptarget(t)
       ai.pushsubtask( "__run_hyp", pos )
@@ -694,7 +698,12 @@ end
 --[[
 -- Starts heading away to try to hyperspace.
 --]]
-function hyperspace ()
+function hyperspace()
+   if mem.noleave then
+      ai.poptask()
+      return
+   end
+
    local target = ai.taskdata()
    if target == nil then
       target = ai.rndhyptarget()

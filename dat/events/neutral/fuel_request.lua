@@ -112,7 +112,7 @@ function create()
       evt.finish(false)
    end
 
-   stranded_p:memory().loiter = 100000
+   stranded_p:memory().noleave = true
    stranded_p:setFuel(false)
    stranded_p:setNoClear()
    stranded_p:control()
@@ -182,7 +182,10 @@ function pilot_board(p, boarder)
       p:setActiveBoard(false)
       p:setVisplayer(false)
       p:control(false)
-      p:memory().loiter = 0
+
+      local mem = p:memory()
+      mem.noleave = false
+      mem.loiter = 0
 
       evt.finish(true)
    end

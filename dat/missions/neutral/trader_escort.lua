@@ -367,7 +367,7 @@ function spawnConvoy(source)
 
          local mem = p:memory()
          mem.nocommand = true
-         mem.norun = true
+         mem.noleave = true
 
          p:setInvincPlayer()
          p:setVisplayer()
@@ -396,7 +396,8 @@ function abort()
          local p = ptable.pilot
          local mem = p:memory()
          mem.nocommand = false
-         mem.norun = false
+         mem.noleave = false
+         mem.loiter = 3
          p:setLeader(nil)
          p:setHilight(false)
          p:setInvincPlayer(false)

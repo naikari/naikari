@@ -10,18 +10,25 @@ function idle ()
       mem.radius = rnd.rnd( 70, 130 )
       ai.pushtask("follow_accurate",mem.boss)
    else  -- The pilot has no boss, he chooses his target
-      local planet = ai.landplanet( mem.land_friendly )
-      -- planet must exist.
-      if planet == nil or mem.land_planet == false then
-         ai.settimer(0, rnd.uniform(1, 3))
-         ai.pushtask("enterdelay")
+      if mem.noleave then
+         -- Not allowed to leave, so wander randomly instead.
+         local sysrad = rnd.rnd() * system.cur():radius()
+         local angle = rnd.rnd() * 2 * math.pi
+         ai.pushtask("loiter", vec2.new(math.cos(angle) * sysrad,
+               math.sin(angle) * sysrad))
       else
-         mem.land = planet:pos()
-         ai.pushtask("hyperspace")
-         if not mem.tookoff then
-            ai.pushtask("land")
+         local pnt = ai.landplanet(mem.land_friendly)
+         -- planet must exist.
+         if pnt == nil or mem.land_planet == false then
+            ai.settimer(0, rnd.uniform(1, 3))
+            ai.pushtask("enterdelay")
+         else
+            mem.land = pnt:pos()
+            ai.pushtask("hyperspace")
+            if not mem.tookoff then
+               ai.pushtask("land")
+            end
          end
       end
-
    end
 end

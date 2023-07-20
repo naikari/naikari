@@ -1,6 +1,7 @@
 require("ai/pirate")
 
 mem.norun = true
+mem.noleave = true
 
 function donothing ()
     ai.brake()

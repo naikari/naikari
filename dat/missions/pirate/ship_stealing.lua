@@ -455,15 +455,10 @@ function spawn_target(source)
          target_ship:setNoClear()
          target_ship:setHealth(25, 100)
          target_ship:setEnergy(10)
-         -- This causes the target to never run away from combat if
-         -- aggressive, or to never jump while running away if
-         -- non-aggressive.
-         target_ship:memory().norun = true
-         -- Most AIs define their idle function to decrement a "loiter"
-         -- counter to determine whether or not they're going to leave
-         -- the system. Here we set that variable to a very high number
-         -- so that in practice, they will never leave.
-         target_ship:memory().loiter = 10000
+
+         local mem = target_ship:memory()
+         mem.norun = true
+         mem.noleave = true
 
          -- Lower ammo
          for i, amm in ipairs(target_ship:ammo()) do

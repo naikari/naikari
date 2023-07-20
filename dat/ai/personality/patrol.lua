@@ -1,7 +1,9 @@
 -- Default task to run when idle
 function idle ()
-   if mem.loiter == nil then mem.loiter = 3 end
-   if mem.loiter == 0 then -- Try to leave.
+   if mem.loiter == nil then
+      mem.loiter = 3
+   end
+   if mem.loiter == 0 and not mem.noleave then -- Try to leave.
        local planet = ai.landplanet( mem.land_friendly )
        -- planet must exist
        if planet == nil or mem.land_planet == false then
@@ -36,8 +38,8 @@ function idle ()
          ai.pushtask( "loiter", mem.waypoints[ mem._waypoint_cur ] )
       else
          -- Go to a random locatioe
-         sysrad = rnd.rnd() * system.cur():radius()
-         angle = rnd.rnd() * 2 * math.pi
+         local sysrad = rnd.rnd() * system.cur():radius()
+         local angle = rnd.rnd() * 2 * math.pi
          ai.pushtask("loiter", vec2.new(math.cos(angle) * sysrad, math.sin(angle) * sysrad))
       end
       mem.loiter = mem.loiter - 1
