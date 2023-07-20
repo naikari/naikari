@@ -43,7 +43,7 @@ static iar_data_t *iar_data = NULL; /**< Stored image array positions. */
 
 
 static void commodity_getSize(unsigned int wid, int *w, int *h,
-      int *iw, int *ih, int *dw, int *bw, int *mh);
+      int *iw, int *ih, int *dw, int *bw, int *th);
 static void commodity_genList(unsigned int wid);
 
 
@@ -51,7 +51,7 @@ static void commodity_genList(unsigned int wid);
  * @brief Gets the size of the commodities window.
  */
 static void commodity_getSize(unsigned int wid, int *w, int *h,
-      int *iw, int *ih, int *dw, int *bw, int *mh)
+      int *iw, int *ih, int *mw, int *bw, int *th)
 {
    /* Get window dimensions. */
    window_dimWindow(wid, w, h);
@@ -59,19 +59,19 @@ static void commodity_getSize(unsigned int wid, int *w, int *h,
    /* Calculate image array dimensions. */
    /* Window size minus right column size minus space on left and right */
    if (iw != NULL)
-      *iw = 565 + (*w - LAND_WIDTH);
+      *iw = 565;
    if (ih != NULL)
       *ih = 306;
 
-   if (dw != NULL)
-      *dw = *w - (iw!=NULL?*iw:0) - 60;
+   if (mw != NULL)
+      *mw = *w - (iw!=NULL?*iw:0) - 60;
 
    if (bw != NULL)
-      *bw = ((dw != NULL ? *dw+20 : *w) - 2*10) / 3;
+      *bw = ((mw != NULL ? *mw + 2*10 : *w) - 2*10) / 3;
 
-   /* Map takes all space left over from the image array. */
-   if (mh != NULL)
-      *mh = *h - 40 - 306 - 10 - 10 - 20;
+   /* Text takes all space left over from the image array. */
+   if (th != NULL)
+      *th = *h - 40 - (ih!=NULL?*ih:0) - 10 - 20;
 }
 
 
@@ -80,14 +80,13 @@ static void commodity_getSize(unsigned int wid, int *w, int *h,
  */
 void commodity_exchange_open( unsigned int wid )
 {
-   int w, h, iw, ih, dw, bw, mh;
-   int titleHeight, infoHeight;
-   const char *bufSInfo;
+   int w, h, iw, ih, mw, bw, th;
+   int infoHeight;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_COMMODITY);
 
-   commodity_getSize(wid, &w, &h, &iw, &ih, &dw, &bw, &mh);
+   commodity_getSize(wid, &w, &h, &iw, &ih, &mw, &bw, &th);
 
    /* Initialize stored positions. */
    if (iar_data == NULL)
@@ -103,39 +102,34 @@ void commodity_exchange_open( unsigned int wid )
    window_addButtonKey(wid, -10 - 2*(bw+10), 20, bw, LAND_BUTTON_HEIGHT,
          "btnCommodityBuy", _("&Buy"), commodity_buy, SDLK_b);
 
-      /* cust draws the modifier : # of tons one click buys or sells */
-   window_addCust( wid, 40 + iw, 40 + LAND_BUTTON_HEIGHT, 2*bw + 20,
-         gl_smallFont.h + 6, "cstMod", 0, commodity_renderMod, NULL, NULL );
-
    /* store gfx */
    window_addRect( wid, -20, -40, 192, 192, "rctStore", &cBlack, 0 );
    window_addImage( wid, -20, -40, 192, 192, "imgStore", NULL, 1 );
 
    /* text */
-   titleHeight = gl_printHeightRaw(&gl_defFont, LAND_BUTTON_WIDTH+80, _("None"));
-   window_addText( wid, 40 + iw, -40, dw, titleHeight, 0,
-         "txtName", &gl_defFont, NULL, _("None") );
+   infoHeight = gl_printHeightRaw(&gl_defFont, iw,
+         _("#nYou have:#0\n"
+            "#nPurchased for:#0\n"
+            "#nCurrent price here:#0\n"
+            "\n"
+            "#nAverage price here:#0\n"
+            "#nAverage price all:#0\n"
+            "\n"
+            "#nFree Space:#0\n"
+            "#nMoney:#0"));
+   window_addText(wid, 20, -40 - ih - 10, iw, infoHeight,
+         0, "txtDInfo", &gl_defFont, NULL, NULL);
 
-   bufSInfo = _(
-           "#nYou have:#0\n"
-           "#nPurchased for:#0\n"
-           "#nCurrent price here:#0\n"
-           "\n"
-           "#nAverage price here:#0\n"
-           "#nAverage price all:#0\n"
-           "\n"
-           "#nFree Space:#0\n"
-           "#nMoney:#0");
-   infoHeight = gl_printHeightRaw(&gl_defFont, dw - (20+192), bufSInfo);
+   window_addText(wid, 20, -40 - ih - 10 - infoHeight - 20,
+         iw, th - infoHeight - 20,
+         0, "txtDesc", &gl_smallFont, NULL, NULL);
 
-   window_addText( wid, 40 + iw, -60 - titleHeight, dw - (20+192), infoHeight,
-         0, "txtDInfo", &gl_defFont, NULL, NULL );
+   /* Draws the modifier text. */
+   window_addCust(wid, 20, 20,
+         iw, gl_smallFont.h + 6, "cstMod", 0, commodity_renderMod, NULL, NULL);
 
-   window_addText( wid, 40 + iw, MIN(-60-titleHeight-infoHeight-40, -192-60),
-         dw, h - (80+titleHeight+infoHeight) - (40+LAND_BUTTON_HEIGHT), 0,
-         "txtDesc", &gl_smallFont, NULL, NULL );
-
-   map_show(wid, 20, 20, iw, mh, 0.75);
+   map_show(wid, -20, 20 + LAND_BUTTON_HEIGHT + 20,
+         mw, h - 40 - 20 - LAND_BUTTON_HEIGHT - 20, 0.75);
 
    commodity_genList(wid);
 
@@ -299,7 +293,6 @@ void commodity_update( unsigned int wid, char* str )
               buf_tonnes_free, buf_credits);
 
    window_modifyText( wid, "txtDInfo", buf );
-   window_modifyText( wid, "txtName", _(com->name) );
    window_modifyText( wid, "txtDesc", _(com->description) );
 
    /* Button enabling/disabling */
@@ -473,13 +466,18 @@ void commodity_renderMod( double bx, double by, double w, double h, void *data )
    (void) data;
    (void) h;
    int q;
-   char buf[8];
+   char buf[STRMAX_SHORT];
+   int tw;
+
+   /* Just in case the cust gets rendered over description text. */
+   glClear(GL_DEPTH_BUFFER_BIT);
 
    q = commodity_getMod();
    if (q != commodity_mod) {
       commodity_update( land_getWid(LAND_WINDOW_COMMODITY), NULL );
       commodity_mod = q;
    }
-   snprintf( buf, 8, "%d×", q );
-   gl_printMidRaw( &gl_smallFont, w, bx, by, &cFontWhite, -1, buf );
+   snprintf(buf, sizeof(buf), "%d×", q);
+   tw = gl_printWidthRaw(&gl_smallFont, buf);
+   gl_printRaw(&gl_smallFont, bx+w - tw, by, &cFontWhite, -1, buf);
 }
