@@ -17,5 +17,4 @@ function idle ()
    else -- Mine the asteroid
       ai.pushtask("mine", {field, ast})
    end
-
 end

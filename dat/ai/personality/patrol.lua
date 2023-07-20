@@ -40,8 +40,8 @@ function idle ()
          angle = rnd.rnd() * 2 * math.pi
          ai.pushtask("loiter", vec2.new(math.cos(angle) * sysrad, math.sin(angle) * sysrad))
       end
+      mem.loiter = mem.loiter - 1
    end
-   mem.loiter = mem.loiter - 1
 end
 
 
