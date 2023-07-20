@@ -2,31 +2,45 @@
 
 ## 0.9.0
 
+### Major Changes
+
+* Added the Neo GUI, a new GUI intended to combine the strengths of the
+  Brushed and Slim GUIs, as the new default GUI.
+* Redesigned the Commodity tab of the land window:
+  * Selected commodity information now sits below the commodity list,
+    and does not include the commodity graphic.
+  * Where the selected commodity information previously was, it now
+    displays a map showing the "cost" view for the selected commodity.
+* Redesigned the mission computer:
+  * The positions of the mission description and the map have been
+    swapped, giving the map more space.
+  * The map now shows the markers for all unaccepted missions, not just
+    the one you happen to have selected. The one you have selected is
+    hilighted so you can still easily see where it is.
+  * The mission list now hilights missions whose destination is your
+    currently selected system.
+  * The map is now displayed in minimal mode by default; this can be
+    toggled with a "Minimal Mode" checkbox.
+* Completely overhauled the trader escort mission: it now puts trader
+  pilots under your wing (like escorts), with the caveat that you cannot
+  issue orders to them. Completing the mission now only requires landing
+  at the designated planet with the convoy intact. (The plan is to
+  extend this change to unique escort missions as well, but this work
+  hasn't been done yet.)
+* Added some more missions to the Hakoi Pirates campaign.
+
+### Other Changes
+
 * Fleets are now organized centrally such that if a pilot has a parent,
   any of its own followers will go into formation with said parent. This
   makes fleets look sleeker and more organized when some AI pilots in
   said fleets are equipped with fighter bays.
-* Fixed the Commodity tab showing "¢" for the purchase price indication
-  instead of the correct "¢/kt".
 * Exposed TC velocity via the options menu (which controls how much
   faster the game gets during time compression).
-* Added a proper guard against a situation that could invisibly switch
-  your weapon set to an empty one (althô this was unlikely to actually
-  happen due to Naikari's default weapon sets).
-* The mission computer now hilights missions whose destination is your
-  currently selected system.
-* The map in the mission computer now shows the markers for all
-  unaccepted missions, not just the one you happen to have selected.
-  The one you have selected is hilighted so you can still easily see
-  where it is.
-* The map in the mission computer and in the Missions tab of the ship
-  computer is now displayed in minimal mode.
 * The map no longer fades between modes and instead just instantly
   switches to the new mode. This also fixes a problem where it would
   always start in the default mode and then fade into the selected mode
   when you opened the map.
-* The Commodity tab of the land window now displays a map showing the
-  "cost" view for the selected commodity.
 * The map trade views now explicitly include the unit (¢/kt) instead of
   just displaying raw numbers.
 * Inverted the "high" and "low" colors for the map trade displays:
@@ -34,14 +48,7 @@
   prices.
 * Improved the System Info display, improving the description text's
   coloring and adding information that was previously missing.
-* Added some minor optimizations with GUIs.
-* Fixed an issue where pressing the Starmap key to close the starmap
-  would fail to run code that was supposed to run when the starmap
-  closed (and thus caused some display oddities).
-* Added the Neo GUI, a new GUI intended to combine the strengths of the
-  Brushed and Slim GUIs, as the new default GUI.
 * Hypergates event now adds knowledge of the hypergates.
-* Added some more missions to the Hakoi Pirates campaign.
 * Moved things around in Gamma Polaris to reduce conflicts in the
   overlay.
 * Anglicized the spelling of the name of the Empire lieutenant you are
@@ -53,8 +60,6 @@
   * "Through" is spelled "thrû".
 * Added and updated several NPC portraits.
 * New games now always start with the same music track playing.
-* Fixed land window tabs other than the commodity tab not updating when
-  cargo was added to or removed from the player's ship.
 * Sirius ships no longer refuse to run away from combat by default.
   (They now run away with the same amount of damage as Empire and
   Soromid ships.)
@@ -63,6 +68,35 @@
 * Patrol missions now cause marked hostiles to never run away.
 * Whether or not right-clicking on a pilot causes you to follow them is
   now a togglable option. (Previously it was context-dependent.)
+* Most AI pilots will now stop shooting a target once it has been
+  disabled.
+* Started changing the way missions and events prevent conflicts away
+  from strict system claims and toward other methods that still allow
+  multiple missions and events to have in one system. (This is still a
+  work-in-progress.)
+* Added a simple derelict event that randomly disables some pilots when
+  entering a system.
+* Fuel request event is now more likely to appear.
+* Made some small optimizations to the code which should help a bit with
+  FPS drops in busy systems.
+* Made some small improvements to the way the AI works.
+* Removed the Sirius Preach event.
+* Made cargo mission description headers gray (the same as most
+  headers).
+
+### Bugfixes
+
+* Fixed the Commodity tab showing "¢" for the purchase price indication
+  instead of the correct "¢/kt".
+* Added a proper guard against a situation that could invisibly switch
+  your weapon set to an empty one (althô this was unlikely to actually
+  happen due to Naikari's default weapon sets).
+* Fixed an issue where pressing the Starmap key to close the starmap
+  would fail to run code that was supposed to run when the starmap
+  closed (and thus caused some display oddities).
+* Fixed land window tabs other than the commodity tab not updating when
+  cargo was added to or removed from the player's ship.
+
 
 ## 0.8.0
 

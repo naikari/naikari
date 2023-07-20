@@ -31,8 +31,9 @@
       <description>
         <ul>
           <li>New "Neo" GUI as the default interface.</li>
-          <li>Mission computer now lets you search missions by location.</li>
-          <li>Commodity tab now shows a price map.</li>
+          <li>Redesigned the Commodity tab to better enable commodity trading.</li>
+          <li>Redesigned the mission computer to better enable searching for missions by location.</li>
+          <li>Overhauled the trader escort mission to make it more fun to play.</li>
           <li>Added more missions to the Hakoi Pirates campaign.</li>
         </ul>
       </description>
