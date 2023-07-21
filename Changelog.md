@@ -92,6 +92,8 @@
   Heavy Razor Turret and Enygma Systems Spearhead Launcher a bit
   better and should also make pilots getting incidentally disabled
   during a fight a bit more commonplace).
+* Changed the mission failure messages for cargo missions to match other
+  missions better.
 
 ### Bugfixes
 
