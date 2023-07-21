@@ -19,6 +19,7 @@ typedef unsigned long factionId_t; /**< Type for pilot IDs. */
 
 
 /* get stuff */
+void factions_sort(void);
 int faction_isFaction(factionId_t f);
 int faction_exists(const char* name);
 factionId_t faction_get(const char* name);

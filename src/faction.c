@@ -88,7 +88,7 @@ typedef struct Faction_ {
    unsigned int oflags; /**< Original flags (for when new game is started). */
 } Faction;
 
-static Faction* faction_stack = NULL; /**< Faction stack. */
+static Faction **faction_stack = NULL; /**< Faction stack. */
 
 
 /* ID Generators. */
@@ -101,6 +101,7 @@ static factionId_t faction_id = FACTION_PLAYER; /**< Stack of faction ids to ass
 /* static */
 static int faction_getStackPos(const factionId_t id);
 static factionId_t faction_getRaw(const char *name);
+static int faction_sortCompare(const void *p1, const void *p2);
 static void faction_freeOne( Faction *f );
 static void faction_sanitizePlayer( Faction* faction );
 static void faction_modPlayerLua(factionId_t f, double mod,
@@ -124,7 +125,7 @@ static int faction_getStackPos(const factionId_t id)
    int i;
 
    for (i=0; i<array_size(faction_stack); i++) {
-      if (faction_stack[i].id == id)
+      if (faction_stack[i]->id == id)
          return i;
    }
 
@@ -147,11 +148,54 @@ static factionId_t faction_getRaw(const char* name)
 
    if (name != NULL) {
       for (i=0; i<array_size(faction_stack); i++) {
-         if (strcmp(faction_stack[i].name, name) == 0)
-            return faction_stack[i].id;
+         if (strcmp(faction_stack[i]->name, name) == 0)
+            return faction_stack[i]->id;
       }
    }
    return 0;
+}
+
+
+/**
+ * @brief qsort compare function for faction stack.
+ */
+static int faction_sortCompare(const void *p1, const void *p2)
+{
+   Faction *f1, *f2;
+   double presence1, presence2;
+
+   f1 = *(Faction**)p1;
+   f2 = *(Faction**)p2;
+
+   /* Sort by current system presence (higher presences first). */
+   presence1 = system_getPresence(cur_system, f1->id);
+   presence2 = system_getPresence(cur_system, f2->id);
+   if (presence1 > presence2)
+      return -1;
+   else if (presence1 < presence2)
+      return +1;
+
+   /* Don't care about any other factors. */
+   return 0;
+}
+
+
+/**
+ * @brief Sorts factions to optimize performance for current system.
+ *
+ * This prioritizes moving factions to the top of the faction stack if
+ * they have higher presence in the current system. This increases the
+ * average efficiency of faction_getStackPos().
+ */
+void factions_sort(void)
+{
+   if (cur_system == NULL) {
+      WARN(_("Attempted to sort factions with no cur_system set."));
+      return;
+   }
+
+   qsort(faction_stack, array_size(faction_stack), sizeof(Faction*),
+         faction_sortCompare);
 }
 
 
@@ -193,8 +237,8 @@ factionId_t* faction_getAll()
    f = array_create_size(factionId_t, array_size(faction_stack));
 
    for (i=0; i<array_size(faction_stack); i++)
-      if (!faction_isFlag(&faction_stack[i], FACTION_INVISIBLE))
-         array_push_back(&f, faction_stack[i].id);
+      if (!faction_isFlag(faction_stack[i], FACTION_INVISIBLE))
+         array_push_back(&f, faction_stack[i]->id);
 
    return f;
 }
@@ -212,9 +256,9 @@ factionId_t* faction_getKnown()
 
    /* Get IDs. */
    for (i=0; i<array_size(faction_stack); i++)
-      if (!faction_isFlag(&faction_stack[i], FACTION_INVISIBLE)
-            && faction_isKnown_(&faction_stack[i]))
-         array_push_back(&f, faction_stack[i].id);
+      if (!faction_isFlag(faction_stack[i], FACTION_INVISIBLE)
+            && faction_isKnown_(faction_stack[i]))
+         array_push_back(&f, faction_stack[i]->id);
 
    return f;
 }
@@ -227,8 +271,8 @@ void faction_clearKnown()
    int i;
 
    for (i=0; i<array_size(faction_stack); i++)
-      if (faction_isKnown_(&faction_stack[i]))
-         faction_rmFlag(&faction_stack[i], FACTION_KNOWN);
+      if (faction_isKnown_(faction_stack[i]))
+         faction_rmFlag(faction_stack[i], FACTION_KNOWN);
 }
 
 /**
@@ -244,7 +288,7 @@ int faction_isInvisible(factionId_t id)
       return 0;
    }
 
-   return faction_isFlag(&faction_stack[i], FACTION_INVISIBLE);
+   return faction_isFlag(faction_stack[i], FACTION_INVISIBLE);
 }
 
 /**
@@ -260,9 +304,9 @@ int faction_setInvisible(factionId_t id, int state)
       return -1;
    }
    if (state)
-      faction_setFlag(&faction_stack[i], FACTION_INVISIBLE);
+      faction_setFlag(faction_stack[i], FACTION_INVISIBLE);
    else
-      faction_rmFlag(&faction_stack[i], FACTION_INVISIBLE);
+      faction_rmFlag(faction_stack[i], FACTION_INVISIBLE);
 
    return 0;
 }
@@ -280,7 +324,7 @@ int faction_isKnown(factionId_t id)
       return 0;
    }
 
-   return faction_isKnown_(&faction_stack[i]);
+   return faction_isKnown_(faction_stack[i]);
 }
 
 
@@ -297,7 +341,7 @@ int faction_isDynamic(factionId_t id)
       return 0;
    }
 
-   return faction_isFlag(&faction_stack[i], FACTION_DYNAMIC);
+   return faction_isFlag(faction_stack[i], FACTION_DYNAMIC);
 }
 
 /**
@@ -314,9 +358,9 @@ int faction_setKnown(factionId_t id, int state)
    }
 
    if (state)
-      faction_setFlag(&faction_stack[i], FACTION_KNOWN);
+      faction_setFlag(faction_stack[i], FACTION_KNOWN);
    else
-      faction_rmFlag(&faction_stack[i], FACTION_KNOWN);
+      faction_rmFlag(faction_stack[i], FACTION_KNOWN);
 
    return 0;
 }
@@ -341,7 +385,7 @@ const char* faction_name(factionId_t f)
       return NULL;
    }
 
-   return faction_stack[i].name;
+   return faction_stack[i]->name;
 }
 
 
@@ -366,10 +410,10 @@ const char* faction_shortname(factionId_t f)
    }
 
    /* Possibly get display name. */
-   if (faction_stack[i].displayname != NULL)
-      return _(faction_stack[i].displayname);
+   if (faction_stack[i]->displayname != NULL)
+      return _(faction_stack[i]->displayname);
 
-   return _(faction_stack[i].name);
+   return _(faction_stack[i]->name);
 }
 
 
@@ -389,10 +433,10 @@ const char* faction_longname(factionId_t f)
       return NULL;
    }
 
-   if (faction_stack[i].longname != NULL)
-      return _(faction_stack[i].longname);
+   if (faction_stack[i]->longname != NULL)
+      return _(faction_stack[i]->longname);
 
-   return _(faction_stack[i].name);
+   return _(faction_stack[i]->name);
 }
 
 
@@ -412,7 +456,7 @@ const char* faction_default_ai(factionId_t f)
       return NULL;
    }
 
-   return faction_stack[i].ai;
+   return faction_stack[i]->ai;
 }
 
 
@@ -432,7 +476,7 @@ glTexture* faction_logoSmall(factionId_t f)
       return NULL;
    }
 
-   return faction_stack[i].logo_small;
+   return faction_stack[i]->logo_small;
 }
 
 
@@ -452,7 +496,7 @@ glTexture* faction_logoTiny(factionId_t f)
       return NULL;
    }
 
-   return faction_stack[i].logo_tiny;
+   return faction_stack[i]->logo_tiny;
 }
 
 
@@ -472,7 +516,7 @@ const glColour* faction_colour(factionId_t f)
       return NULL;
    }
 
-   return &faction_stack[i].colour;
+   return &faction_stack[i]->colour;
 }
 
 
@@ -500,16 +544,16 @@ factionId_t* faction_getEnemies(factionId_t f)
       enemies = array_create(factionId_t);
 
       for (i=0; i<array_size(faction_stack); i++)
-         if (faction_isPlayerEnemy(faction_stack[i].id)) {
+         if (faction_isPlayerEnemy(faction_stack[i]->id)) {
             tmp = &array_grow(&enemies);
-            *tmp = faction_stack[i].id;
+            *tmp = faction_stack[i]->id;
          }
 
-      array_free(faction_stack[fsp].enemies);
-      faction_stack[fsp].enemies = enemies;
+      array_free(faction_stack[fsp]->enemies);
+      faction_stack[fsp]->enemies = enemies;
    }
 
-   return faction_stack[fsp].enemies;
+   return faction_stack[fsp]->enemies;
 }
 
 
@@ -537,16 +581,16 @@ factionId_t* faction_getAllies(factionId_t f)
       allies = array_create(factionId_t);
 
       for (i=0; i<array_size(faction_stack); i++)
-         if (faction_isPlayerFriend(faction_stack[i].id)) {
+         if (faction_isPlayerFriend(faction_stack[i]->id)) {
             tmp = &array_grow(&allies);
-            *tmp = faction_stack[i].id;
+            *tmp = faction_stack[i]->id;
          }
 
-      array_free(faction_stack[fsp].allies);
-      faction_stack[fsp].allies = allies;
+      array_free(faction_stack[fsp]->allies);
+      faction_stack[fsp]->allies = allies;
    }
 
-   return faction_stack[fsp].allies;
+   return faction_stack[fsp]->allies;
 }
 
 
@@ -566,7 +610,7 @@ void faction_clearEnemy(factionId_t f)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   ff = &faction_stack[fsp];
+   ff = faction_stack[fsp];
 
    /* Cycle through the enemies and make sure they remove this faction
     * as an enemy first. */
@@ -609,7 +653,7 @@ void faction_addEnemy(factionId_t f, factionId_t o)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   ff = &faction_stack[fsp];
+   ff = faction_stack[fsp];
 
    for (i=0; i<array_size(ff->enemies); i++) {
       if (ff->enemies[i] == o)
@@ -641,7 +685,7 @@ void faction_rmEnemy(factionId_t f, factionId_t o)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   ff = &faction_stack[fsp];
+   ff = faction_stack[fsp];
 
    for (i=0; i<array_size(ff->enemies); i++) {
       if (ff->enemies[i] == o) {
@@ -668,7 +712,7 @@ void faction_clearAlly(factionId_t f)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   ff = &faction_stack[fsp];
+   ff = faction_stack[fsp];
 
    /* Cycle through the allies and make sure they remove this faction
     * as an ally first. */
@@ -708,7 +752,7 @@ void faction_addAlly(factionId_t f, factionId_t o)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   ff = &faction_stack[fsp];
+   ff = faction_stack[fsp];
 
    for (i=0; i<array_size(ff->allies); i++) {
       if (ff->allies[i] == o)
@@ -737,7 +781,7 @@ void faction_rmAlly(factionId_t f, factionId_t o)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   ff = &faction_stack[fsp];
+   ff = faction_stack[fsp];
 
    for (i=0; i<array_size(ff->allies); i++) {
       if (ff->allies[i] == o) {
@@ -761,7 +805,7 @@ nlua_env faction_getScheduler(factionId_t f)
       return LUA_NOREF;
    }
 
-   return faction_stack[fsp].sched_env;
+   return faction_stack[fsp]->sched_env;
 }
 
 
@@ -778,7 +822,7 @@ nlua_env faction_getEquipper(factionId_t f)
       return LUA_NOREF;
    }
 
-   return faction_stack[fsp].equip_env;
+   return faction_stack[fsp]->equip_env;
 }
 
 
@@ -812,7 +856,7 @@ static void faction_modPlayerLua(factionId_t f, double mod,
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    /* Make sure it's not static. */
    if (faction_isFlag(faction, FACTION_STATIC))
@@ -900,7 +944,7 @@ void faction_modPlayer(factionId_t f, double mod, const char *source)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    /* Modify faction standing with parent faction. */
    faction_modPlayerLua(f, mod, source, 0);
@@ -959,7 +1003,7 @@ void faction_modPlayerRaw(factionId_t f, double mod)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    faction->player += mod;
    /* Run hook if necessary. */
@@ -996,7 +1040,7 @@ void faction_setPlayer(factionId_t f, double value)
       WARN(_("Faction id '%ld' is invalid."), f);
       return;
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    mod = value - faction->player;
    faction->player = value;
@@ -1032,7 +1076,7 @@ double faction_getPlayer(factionId_t f)
       return -100;
    }
 
-   return faction_stack[fsp].player;
+   return faction_stack[fsp]->player;
 }
 
 
@@ -1052,7 +1096,7 @@ double faction_getPlayerDef(factionId_t f)
       return -100;
    }
 
-   return faction_stack[fsp].player_def;
+   return faction_stack[fsp]->player_def;
 }
 
 
@@ -1079,7 +1123,7 @@ int faction_isPlayerFriend(factionId_t f)
       //WARN(_("Faction id '%ld' is invalid."), f);
       return 0;
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    if (faction->env == LUA_NOREF)
       return 0;
@@ -1139,7 +1183,7 @@ int faction_isPlayerEnemy(factionId_t f)
       //WARN(_("Faction id '%ld' is invalid."), f);
       return 0;
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    if (faction->env == LUA_NOREF)
       return 0;
@@ -1274,7 +1318,7 @@ const char *faction_getStandingText(factionId_t f)
       WARN(_("Faction id '%ld' is invalid."), f);
       return _("???");
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    if (faction->env == LUA_NOREF)
       return _("???");
@@ -1334,7 +1378,7 @@ const char *faction_getStandingBroad(factionId_t f, int bribed, int override)
       WARN(_("Faction id '%ld' is invalid."), f);
       return _("???");
    }
-   faction = &faction_stack[fsp];
+   faction = faction_stack[fsp];
 
    if (faction->env == LUA_NOREF)
       return _("???");
@@ -1407,8 +1451,8 @@ int areEnemies(factionId_t a, factionId_t b)
       WARN(_("Faction id '%ld' is invalid."), b);
       return 0;
    }
-   fa = &faction_stack[asp];
-   fb = &faction_stack[bsp];
+   fa = faction_stack[asp];
+   fb = faction_stack[bsp];
 
    for (i=0; i<array_size(fa->enemies); i++) {
       if (fa->enemies[i] == b)
@@ -1458,8 +1502,8 @@ int areAllies(factionId_t a, factionId_t b)
       WARN(_("Faction id '%ld' is invalid."), b);
       return 0;
    }
-   fa = &faction_stack[asp];
-   fb = &faction_stack[bsp];
+   fa = faction_stack[asp];
+   fb = faction_stack[bsp];
 
    for (i=0; i<array_size(fa->allies); i++) {
       if (fa->allies[i] == b)
@@ -1679,7 +1723,7 @@ static void faction_parseSocial( xmlNodePtr parent )
             WARN(_("Faction id '%ld' is invalid."), f);
             continue;
          }
-         base = &faction_stack[fsp];
+         base = faction_stack[fsp];
          break;
       }
    } while (xml_nextNode(node));
@@ -1728,8 +1772,8 @@ void factions_reset (void)
 {
    int i;
    for (i=0; i<array_size(faction_stack); i++) {
-      faction_stack[i].player = faction_stack[i].player_def;
-      faction_stack[i].flags = faction_stack[i].oflags;
+      faction_stack[i]->player = faction_stack[i]->player_def;
+      faction_stack[i]->flags = faction_stack[i]->oflags;
    }
 }
 
@@ -1745,6 +1789,7 @@ int factions_load (void)
    int i, j, k, r;
    int fsp;
    Faction *f, *sf;
+   Faction **fp;
 
 
    /* Load the document. */
@@ -1765,8 +1810,10 @@ int factions_load (void)
    }
 
    /* player faction is hard-coded */
-   faction_stack = array_create(Faction);
-   f = &array_grow(&faction_stack);
+   faction_stack = array_create(Faction*);
+   fp = &array_grow(&faction_stack);
+   *fp = malloc(sizeof(Faction));
+   f = *fp;
    memset(f, 0, sizeof(Faction));
    f->id = FACTION_PLAYER;
    f->name = strdup("Player");
@@ -1784,7 +1831,9 @@ int factions_load (void)
          break;
 
       if (xml_isNode(node,XML_FACTION_TAG)) {
-         f = &array_grow(&faction_stack);
+         fp = &array_grow(&faction_stack);
+         *fp = malloc(sizeof(Faction));
+         f = *fp;
 
          /* Load faction. */
          faction_parse(f, node);
@@ -1807,7 +1856,7 @@ int factions_load (void)
       if (naev_pollQuit())
          break;
 
-      f = &faction_stack[i];
+      f = faction_stack[i];
 
       /* First run over allies and make sure it's mutual. */
       for (j=0; j<array_size(f->allies); j++) {
@@ -1816,7 +1865,7 @@ int factions_load (void)
             WARN(_("Faction id '%ld' is invalid."), f->allies[j]);
             continue;
          }
-         sf = &faction_stack[fsp];
+         sf = faction_stack[fsp];
 
          r = 0;
          for (k=0; k < array_size(sf->allies); k++) {
@@ -1838,7 +1887,7 @@ int factions_load (void)
             WARN(_("Faction id '%ld' is invalid."), f->enemies[j]);
             continue;
          }
-         sf = &faction_stack[fsp];
+         sf = faction_stack[fsp];
 
          r = 0;
          for (k=0; k<array_size(sf->enemies); k++) {
@@ -1893,8 +1942,10 @@ void factions_free (void)
    int i;
 
    /* free factions */
-   for (i=0; i<array_size(faction_stack); i++)
-      faction_freeOne(&faction_stack[i]);
+   for (i=0; i<array_size(faction_stack); i++) {
+      faction_freeOne(faction_stack[i]);
+      free(faction_stack[i]);
+   }
    array_free(faction_stack);
    faction_stack = NULL;
 }
@@ -1914,19 +1965,19 @@ int pfaction_save( xmlTextWriterPtr writer )
 
    for (i=0; i<array_size(faction_stack); i++) {
       /* Must not be the player. */
-      if (faction_stack[i].id == FACTION_PLAYER)
+      if (faction_stack[i]->id == FACTION_PLAYER)
          continue;
 
       /* Must not be static. */
-      if (faction_isFlag(&faction_stack[i], FACTION_STATIC))
+      if (faction_isFlag(faction_stack[i], FACTION_STATIC))
          continue;
 
       xmlw_startElem(writer,"faction");
 
-      xmlw_attr(writer, "name", "%s", faction_stack[i].name);
-      xmlw_elem(writer, "standing", "%f", faction_stack[i].player);
+      xmlw_attr(writer, "name", "%s", faction_stack[i]->name);
+      xmlw_elem(writer, "standing", "%f", faction_stack[i]->player);
 
-      if (faction_isKnown_(&faction_stack[i]))
+      if (faction_isKnown_(faction_stack[i]))
          xmlw_elemEmpty(writer, "known");
 
       xmlw_endElem(writer); /* "faction" */
@@ -1969,13 +2020,13 @@ int pfaction_load( xmlNodePtr parent )
                         if (xml_isNode(sub, "standing")) {
 
                            /* Must not be static. */
-                           if (!faction_isFlag(&faction_stack[fsp],
+                           if (!faction_isFlag(faction_stack[fsp],
                                     FACTION_STATIC))
-                              faction_stack[fsp].player = xml_getFloat(sub);
+                              faction_stack[fsp]->player = xml_getFloat(sub);
                            continue;
                         }
                         if (xml_isNode(sub,"known")) {
-                           faction_setFlag(&faction_stack[fsp], FACTION_KNOWN);
+                           faction_setFlag(faction_stack[fsp], FACTION_KNOWN);
                            continue;
                         }
                      } while (xml_nextNode(sub));
@@ -2009,32 +2060,32 @@ factionId_t *faction_getGroup(int which)
       case 0: /* 'all' */
          group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
-            array_push_back(&group, faction_stack[i].id);
+            array_push_back(&group, faction_stack[i]->id);
          }
          return group;
 
       case 1: /* 'friendly' */
          group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
-            if (faction_isPlayerFriend(faction_stack[i].id))
-               array_push_back(&group, faction_stack[i].id);
+            if (faction_isPlayerFriend(faction_stack[i]->id))
+               array_push_back(&group, faction_stack[i]->id);
          }
          return group;
 
       case 2: /* 'neutral' */
          group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
-            if (!faction_isPlayerFriend(faction_stack[i].id)
-                  && !faction_isPlayerEnemy(faction_stack[i].id))
-               array_push_back(&group, faction_stack[i].id);
+            if (!faction_isPlayerFriend(faction_stack[i]->id)
+                  && !faction_isPlayerEnemy(faction_stack[i]->id))
+               array_push_back(&group, faction_stack[i]->id);
          }
          return group;
 
       case 3: /* 'hostile' */
          group = array_create(factionId_t);
          for (i=0; i<array_size(faction_stack); i++) {
-            if (faction_isPlayerEnemy(faction_stack[i].id))
-               array_push_back(&group, faction_stack[i].id);
+            if (faction_isPlayerEnemy(faction_stack[i]->id))
+               array_push_back(&group, faction_stack[i]->id);
          }
          return group;
 
@@ -2055,7 +2106,7 @@ void factions_clearDynamic (void)
    const char *name;
 
    for (i=0; i<array_size(faction_stack); i++) {
-      f = &faction_stack[i];
+      f = faction_stack[i];
       if (faction_isFlag(f, FACTION_DYNAMIC)) {
          /* First clear allies and enemies, so that they don't keep
           * referencing this deleted faction. */
@@ -2065,14 +2116,14 @@ void factions_clearDynamic (void)
          /* Now free the dynamic faction and decrement i so we stay in
           * the right place after the array size changes. */
          faction_freeOne(f);
-         array_erase(&faction_stack, f, f+1);
+         array_erase(&faction_stack, &faction_stack[i], &faction_stack[i+1]);
          i--;
       }
    }
 
    /* Debug checks. */
    for (i=0; i<array_size(faction_stack); i++) {
-      f = &faction_stack[i];
+      f = faction_stack[i];
       name = faction_longname(f->id);
       if (faction_isFlag(f, FACTION_DYNAMIC))
          WARN(_("Failed to remove dynamic faction: %s (FID %ld)"),
@@ -2112,7 +2163,7 @@ factionId_t faction_dynAdd(factionId_t base, const char* name,
    Faction *f, *bf, *of;
    int i;
 
-   f = &array_grow(&faction_stack);
+   f = array_grow(&faction_stack);
    memset(f, 0, sizeof(Faction));
    f->id = ++faction_id;
    f->name = strdup(name);
@@ -2132,7 +2183,7 @@ factionId_t faction_dynAdd(factionId_t base, const char* name,
          WARN(_("Faction id '%ld' is invalid."), base);
          return 0;
       }
-      bf = &faction_stack[fsp];
+      bf = faction_stack[fsp];
 
       if ((bf->ai != NULL) && (f->ai == NULL))
          f->ai = strdup(bf->ai);
@@ -2147,7 +2198,7 @@ factionId_t faction_dynAdd(factionId_t base, const char* name,
             WARN(_("Faction id '%ld' is invalid."), bf->allies[i]);
             continue;
          }
-         of = &faction_stack[fsp];
+         of = faction_stack[fsp];
          faction_addAlly(f->id, of->id);
          faction_addAlly(of->id, f->id);
       }
@@ -2157,7 +2208,7 @@ factionId_t faction_dynAdd(factionId_t base, const char* name,
             WARN(_("Faction id '%ld' is invalid."), bf->enemies[i]);
             continue;
          }
-         of = &faction_stack[fsp];
+         of = faction_stack[fsp];
          faction_addEnemy(f->id, of->id);
          faction_addEnemy(of->id, f->id);
       }

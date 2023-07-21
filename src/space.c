@@ -24,6 +24,7 @@
 #include "damagetype.h"
 #include "dev_uniedit.h"
 #include "economy.h"
+#include "faction.h"
 #include "gui.h"
 #include "hook.h"
 #include "land.h"
@@ -1463,6 +1464,9 @@ void space_init( const char* sysname )
          sound_env( SOUND_ENV_NORMAL, 0. );
       }
    }
+
+   /* Sort factions. */
+   factions_sort();
 
    /* Set up planets. */
    for (i=0; i<array_size(cur_system->planets); i++) {
