@@ -48,8 +48,10 @@ function safe_disable()
       -- Reduce credits (the credits amount is based on the effort it
       -- takes to disable them, and the player doesn't have to go thrû
       -- that effort in the case of this event).
-      local credits = 0.75 * p:credits()
-      p:pay(-credits)
+      if rnd.rnd() < 0.95 then
+         local credits = rnd.uniform(0.5, 0.8) * p:credits()
+         p:pay(-credits)
+      end
 
       -- Remove followers so they don't sit there next to the wing of
       -- the empty ship.
