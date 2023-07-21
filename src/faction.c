@@ -2161,9 +2161,12 @@ factionId_t faction_dynAdd(factionId_t base, const char* name,
 {
    int fsp;
    Faction *f, *bf, *of;
+   Faction **fp;
    int i;
 
-   f = array_grow(&faction_stack);
+   fp = &array_grow(&faction_stack);
+   *fp = malloc(sizeof(Faction));
+   f = *fp;
    memset(f, 0, sizeof(Faction));
    f->id = ++faction_id;
    f->name = strdup(name);
