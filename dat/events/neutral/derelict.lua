@@ -45,6 +45,12 @@ function safe_disable()
       p:setLeader(nil)
       p:rename(fmt.f(_("Derelict {pilot}"), {pilot=p:name()}))
 
+      -- Reduce credits (the credits amount is based on the effort it
+      -- takes to disable them, and the player doesn't have to go thrû
+      -- that effort in the case of this event).
+      local credits = 0.75 * p:credits()
+      p:pay(-credits)
+
       -- Remove followers so they don't sit there next to the wing of
       -- the empty ship.
       for i, fp in ipairs(p:followers()) do
