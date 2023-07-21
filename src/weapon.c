@@ -1031,11 +1031,12 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
       }
    }
 
-   if (!b && (w->parent != PLAYER_ID) && (w->faction != FACTION_PLAYER)
-         && (((parent = pilot_get(w->parent)) == NULL)
-            || (parent->parent != PLAYER_ID))
-         && (player.p != NULL)
-         && !pilot_inRange(player.p, w->solid->pos.x, w->solid->pos.y)) {
+   if (!b && (player.p != NULL)
+         && (vect_dist2(&player.p->solid->pos, &w->solid->pos) * cam_getZoom()
+            > pow2(MAX(SCREEN_W, SCREEN_H)))
+         && (w->parent != PLAYER_ID) && (w->faction != FACTION_PLAYER)
+         && ((w->parent == 0) || ((parent = pilot_get(w->parent)) == NULL)
+            || (parent->parent != PLAYER_ID))) {
       /* If the weapon isn't visible to the player, only check for
        * collisions with its specific target, and the target of its
        * parent. This offers performance benefits at the cost of
