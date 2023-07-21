@@ -6,7 +6,7 @@
  </flags>
  <avail>
   <priority>10</priority>
-  <chance>10</chance>
+  <chance>100</chance>
   <location>Bar</location>
   <cond>system.cur() == system.get("Alteris")</cond>
   <done>Hitman</done>

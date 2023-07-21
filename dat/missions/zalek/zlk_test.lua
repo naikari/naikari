@@ -40,13 +40,9 @@ require "cargo_common"
 
 
 misn_title = _("Engine Test to {planet} ({system} system)")
-misn_desc = _([[A Za'lek student research team needs a pilot to test an experimental engine by equipping a ship with it and flying to {planet} in the {system} system. You can take however long you want and whatever route you want, but you must have the test engine equipped every time you use a jump gate or you will fail the mission.
+misn_desc = _([[A Za'lek student research team needs a pilot to test an experimental engine by equipping a ship with it and flying to {planet} in the {system} system.
 
-You will be required to pay a deposit up-front; this will be refunded when you return the engine, either by finishing the mission or by aborting it. The deposit depends on the specific engine type you are given to test, which depends on the size of your ship:
-
-Za'lek S300 Test Engine (small): {small_credits}
-Za'lek M1200 Test Engine (medium): {medium_credits}
-Za'lek L6500 Test Engine (large): {large_credits}]])
+You will be required to pay a deposit up-front: {small_credits} for a small engine, {medium_credits} for a medium engine, or {large_credits} for a large engine. The deposit will be refunded when you return the engine by either completing or aborting the mission.]])
 
 nodeposit_text = _([[You do not have enough credits to pay the deposit for the engine. The deposit is {credits}, but you only have {player_credits}. You need {shortfall_credits} more.]])
 
