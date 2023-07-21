@@ -17,13 +17,13 @@
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <delay>1.7</delay>
-  <speed>600</speed>
-  <range blowup="shield">6800</range>
+  <speed>550</speed>
+  <range blowup="shield">7200</range>
   <gfx_end>massL-end.png</gfx_end>
   <energy>153</energy>
   <heatup>60</heatup>
-  <rdr_range>3500</rdr_range>
-  <rdr_range_max>6000</rdr_range_max>
+  <rdr_range>3600</rdr_range>
+  <rdr_range_max>6200</rdr_range_max>
   <damage>
    <type>impact</type>
    <penetrate>72</penetrate>

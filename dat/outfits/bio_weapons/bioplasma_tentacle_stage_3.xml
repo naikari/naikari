@@ -17,8 +17,8 @@
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <delay>2.5</delay>
-  <speed>457</speed>
-  <range>3885</range>
+  <speed>485</speed>
+  <range>3942</range>
   <falloff>3085</falloff>
   <energy>225</energy>
   <heatup>31</heatup>

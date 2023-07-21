@@ -18,8 +18,8 @@
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <delay>1.2</delay>
-  <speed>600</speed>
-  <range blowup="shield">7600</range>
+  <speed>550</speed>
+  <range blowup="shield">8000</range>
   <gfx_end>massL-end.png</gfx_end>
   <energy>65</energy>
   <heatup>60</heatup>

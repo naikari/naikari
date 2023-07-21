@@ -23,11 +23,11 @@
         },
         "speed": {
             "min": 400,
-            "max": 600
+            "max": 700
         },
         "range": {
             "min": 2800,
-            "max": 6600
+            "max": 6800
         },
         "falloff": {
             "min": 2400,
