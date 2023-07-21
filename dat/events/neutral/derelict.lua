@@ -42,7 +42,14 @@ function safe_disable()
    if p:exists() and p:memory().natural then
       p:memory().natural = false
       p:disable()
+      p:setLeader(nil)
       p:rename(fmt.f(_("Derelict {pilot}"), {pilot=p:name()}))
+
+      -- Remove followers so they don't sit there next to the wing of
+      -- the empty ship.
+      for i, fp in ipairs(p:followers()) do
+         fp:setLeader(nil)
+      end
    end
 
    evt.finish()
