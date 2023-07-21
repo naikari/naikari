@@ -272,13 +272,13 @@ end
 function land()
    if planet.cur() == artifactplanetA and not artifactAfound then
       sellnpc = misn.npcAdd("seller", _("Artifact seller"),
-            portrait.get("Pirate"), sellerdesc, 4)
+            portrait.get("Thief"), sellerdesc, 4)
    elseif planet.cur() == artifactplanetB and not artifactBfound then
       sellnpc = misn.npcAdd("seller", _("Artifact seller"),
-            portrait.get("Pirate"), sellerdesc, 4)
+            portrait.get("Thief"), sellerdesc, 4)
    elseif planet.cur() == artifactplanetC and not artifactCfound then
       sellnpc = misn.npcAdd("seller", _("Artifact seller"),
-            portrait.get("Pirate"), sellerdesc, 4)
+            portrait.get("Thief"), sellerdesc, 4)
    elseif planet.cur() == flintplanet then
       if flintleyfirst then
          flintnpc = misn.npcAdd("flintley", flint_npc1,
