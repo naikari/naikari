@@ -77,12 +77,21 @@
 * Added a simple derelict event that randomly disables some pilots when
   entering a system.
 * Fuel request event is now more likely to appear.
-* Made some small optimizations to the code which should help a bit with
-  FPS drops in busy systems.
+* Made some optimizations to the code which should help a bit with
+  performance in busy systems.
 * Made some small improvements to the way the AI works.
 * Removed the Sirius Preach event.
 * Made cargo mission description headers gray (the same as most
   headers).
+* Tweaked capital-class weaponry to make the different weapon types
+  more differentiated (to bring them in-line with their smaller
+  counterparts).
+* Added a display of bolt weapons' "optimum range" (maximum range at
+  which they inflict their full damage amount).
+* Doubled the disable amount for all lethal weapons (which makes the
+  Heavy Razor Turret and Enygma Systems Spearhead Launcher a bit
+  better and should also make pilots getting incidentally disabled
+  during a fight a bit more commonplace).
 
 ### Bugfixes
 
