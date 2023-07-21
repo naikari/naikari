@@ -2116,6 +2116,7 @@ void factions_clearDynamic (void)
          /* Now free the dynamic faction and decrement i so we stay in
           * the right place after the array size changes. */
          faction_freeOne(f);
+         free(faction_stack[i]);
          array_erase(&faction_stack, &faction_stack[i], &faction_stack[i+1]);
          i--;
       }
