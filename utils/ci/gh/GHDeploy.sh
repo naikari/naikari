@@ -62,7 +62,7 @@ else
 fi
 
 run_gau () {
-    $GH -retry 5 -logtostderr "$@"
+    $GH -retry 10 -logtostderr "$@"
 }
 
 # Collect date and assemble the VERSION suffix
