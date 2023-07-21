@@ -341,10 +341,10 @@ void input_setDefault(int layout)
       input_setKeybind("jump", KEYBIND_KEYBOARD, SDLK_j, NMOD_NONE);
    }
    /* Communication */
-   input_setKeybind( "log_up", KEYBIND_KEYBOARD, SDLK_PAGEUP, NMOD_ANY );
-   input_setKeybind( "log_down", KEYBIND_KEYBOARD, SDLK_PAGEDOWN, NMOD_ANY );
-   input_setKeybind( "hail", KEYBIND_KEYBOARD, SDLK_y, NMOD_NONE );
-   input_setKeybind( "autohail", KEYBIND_KEYBOARD, SDLK_y, NMOD_CTRL );
+   input_setKeybind("log_up", KEYBIND_KEYBOARD, SDLK_PAGEUP, NMOD_NONE);
+   input_setKeybind("log_down", KEYBIND_KEYBOARD, SDLK_PAGEDOWN, NMOD_NONE);
+   input_setKeybind("hail", KEYBIND_KEYBOARD, SDLK_y, NMOD_NONE);
+   input_setKeybind("autohail", KEYBIND_KEYBOARD, SDLK_y, NMOD_CTRL);
    /* Misc. */
    input_setKeybind( "mapzoomin", KEYBIND_KEYBOARD, SDLK_KP_PLUS, NMOD_ANY );
    input_setKeybind( "mapzoomout", KEYBIND_KEYBOARD, SDLK_KP_MINUS, NMOD_ANY );
