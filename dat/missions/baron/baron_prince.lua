@@ -70,7 +70,7 @@ sellerA_text = _([["Hello there," the seller says to you when you approach. "Can
 
 sellerB_text = _([[The seller grins at you. "Ah, I can tell you have the eye of a connoisseur! I deal only in the finest, counterfeit-free antiques. If you're smart, and I can see that you are, you won't trust all those opportunists who will try to sell you fakes! How about it?"]])
 
-sellerC_text = _([[The seller beckons you over to the bar. "Listen, friend. I have here a unique, extremely rare remnant of prehistoric times. This is the genuine article, trust me on that. One hundred per cent legit! And you wouldn't want to spend good credits on a fake, right?"]])
+sellerC_text = _([[The seller beckons you over to the bar. "Listen, friend. I have here a unique, extremely rare remnant of prehistoric times. This is the genuine article, trust me on that. 100% legit! And you wouldn't want to spend good credits on a fake, right?"]])
 
 flint_artifact_textA = _([["Let's see what we have here," Flintley says as you hand him the artifact you bought on {planet}. "Ah, I know what this is without even looking anything up. It's a piece of an old-fashioned airlock mechanism, as used on most ships during the Faction Wars. That makes it rather old, but that also makes it worthless, I'm afraid. This is just old scrap." He gives you an apologetic look. "Don't let it get you down. Not many people would know this on first sight. Those scammers can be pretty clever."
 
@@ -253,6 +253,8 @@ function board(p, boarder)
       set_osd()
 
       hook.land("land")
+      hook.load("land")
+
       idle()
    elseif stage == 2 then
       tk.msg("", not_done_text)
