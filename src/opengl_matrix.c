@@ -109,7 +109,7 @@ gl_Matrix4 gl_Matrix4_Translate( gl_Matrix4 m, double x, double y, double z ) {
    int i;
 
    for (i = 0; i < 4; i++) {
-      m.m[3][i] += m.m[0][i] * x + m.m[1][i] * y + m.m[2][i] * z;
+      m.m[3][i] += x*m.m[0][i] + y*m.m[1][i] + z*m.m[2][i];
    }
 
    return m;

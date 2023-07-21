@@ -2920,8 +2920,18 @@ static void pilot_init(Pilot* pilot, const Ship* ship, const char* name,
 
    if (pilot_isFlagRaw(flags, PILOT_PLAYER)) /* Set player ID. TODO should probably be fixed to something better someday. */
       pilot->id = PLAYER_ID;
-   else
-      pilot->id = ++pilot_id; /* new unique pilot id based on pilot_id, can't be 0 */
+   else {
+      /* new unique pilot id based on pilot_id. */
+      pilot->id = ++pilot_id;
+
+      /* Check to see if a wraparound happened, and if it did, keep it
+       * from causing particularly egregious collisions. (PLAYER_ID and
+       * 0 cannot be used as generic pilot IDs.) */
+      if (pilot_id <= PLAYER_ID) {
+         pilot_id = PLAYER_ID;
+         pilot->id = ++pilot_id;
+      }
+   }
 
    /* Defaults. */
    inrange_default = 0;
