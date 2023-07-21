@@ -16,6 +16,8 @@ copyright_holder = 'Naikari Dev Team'
 
 # Tools
 cc = meson.get_compiler('c')
+c_args = []
+link_args = []
 subdir('utils')
 
 # Version Generation
@@ -48,6 +50,11 @@ if buildExec.disabled() == false
    debug = get_option('debug')
    debug_arrays = get_option('debug_arrays')
    paranoid = get_option('paranoid')
+   gprof = get_option('gprof')
+   if gprof == true
+      c_args += '-pg'
+      link_args += '-pg'
+   endif
    config_data.set_quoted('PACKAGE', meson.project_name())
    config_data.set_quoted('PACKAGE_NAME', meson.project_name())
    config_data.set_quoted('PACKAGE_VERSION', meson.project_version())
@@ -64,8 +71,9 @@ if buildExec.disabled() == false
    # Debug mode on Linux requires _GNU_SOURCE for use of dladdr() and
    # to give access to feenableexcept().
    config_data.set('_GNU_SOURCE', debug ? 1 : false)
-   summary('Enabled' , debug   , section: 'Debug', bool_yn: true)
+   summary('Enabled', debug, section: 'Debug', bool_yn: true)
    summary('Paranoid', paranoid, section: 'Debug', bool_yn: true)
+   summary('gprof', gprof, section: 'Debug', bool_yn: true)
 
    ### Hard deps (required: true)
 
@@ -267,6 +275,8 @@ if buildExec.disabled() == false
       include_directories: include_dirs,
       dependencies: naev_deps,
       export_dynamic: get_option('debug'),
+      c_args: c_args,
+      link_args: link_args,
       install: true)
 
    naev_sh = configure_file(

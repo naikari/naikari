@@ -1,6 +1,7 @@
 option('nightly', type: 'boolean', value: false, description: 'Label this version as a nightly build.')
 option('paranoid', type: 'boolean', value: false, description: 'Promote run-time warnings to errors.')
 option('debug_arrays', type: 'boolean', value: false, description: 'Promote run-time warnings to errors.')
+option('gprof', type: 'boolean', value: false, description: 'Compile for use with gprof.')
 option('dmg', type: 'boolean', value: true, description: 'For macOS: package as a DMG as well as an app bundle. Requires "genisoimage".')
 option('executable', type: 'feature', value: 'enabled', description: 'Enable compilation of Naikari\'s executable.')
 option('docs_c', type: 'feature', value: 'auto', description: 'Enable compilation of Naikari\'s C documentation.')
