@@ -19,12 +19,11 @@
 ]]--
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 require "cargo_common"
 
 
 misn_desc = _("Pirate cargo transport of contraband goods to {planet} in the {system} system.")
-
-msg_timeup = _("MISSION FAILED: You have failed to deliver the goods on time!")
 
 osd_title = _("Pirate Shipping")
 osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
@@ -215,7 +214,9 @@ function tick()
       misn.osdCreate(osd_title, osd_msg)
    elseif timelimit <= time.get() then
       -- Case missed deadline
-      player.msg(msg_timeup)
+      mh.showFailMsg(
+         fmt.f(_("Deadline for delivery to {planet} ({system} system) missed."),
+            {planet=destplanet:name(), system=destsys:name()}))
       misn.finish(false)
    end
 end
