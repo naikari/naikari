@@ -21,7 +21,7 @@
    <type>ion</type>
    <penetrate>12</penetrate>
    <physical>75</physical>
-   <disable>5</disable>
+   <disable>10</disable>
   </damage>
   <ai>smart</ai>
  </specific>

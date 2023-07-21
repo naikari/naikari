@@ -30,7 +30,7 @@
    <type>normal</type>
    <penetrate>24</penetrate>
    <physical>60</physical>
-   <disable>2.4</disable>
+   <disable>4.8</disable>
   </damage>
  </specific>
 </outfit>

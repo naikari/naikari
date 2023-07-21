@@ -29,7 +29,7 @@
    <type>ion</type>
    <penetrate>100</penetrate>
    <physical>245</physical>
-   <disable>34</disable>
+   <disable>68</disable>
   </damage>
  </specific>
 </outfit>

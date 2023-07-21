@@ -30,7 +30,7 @@
    <type>heat</type>
    <penetrate>12</penetrate>
    <physical>{physical}</physical>
-   <disable>2</disable>
+   <disable>4</disable>
   </damage>
  </specific>
 </outfit>
