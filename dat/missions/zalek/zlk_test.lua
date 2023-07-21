@@ -3,7 +3,12 @@
 <mission name="Za'lek Test">
  <avail>
   <priority>60</priority>
-  <cond>player.numOutfit("Mercenary License") &gt; 0 and not player.misnActive("Za'lek Test") and faction.playerStanding("Za'lek") &gt;= 5 and (planet.cur():services()["outfits"] or planet.cur():services()["shipyard"])</cond>
+  <cond>
+   player.numOutfit("Mercenary License") &gt; 0
+   and faction.playerStanding("Za'lek") &gt;= 5
+   and (planet.cur():services().outfits
+      or planet.cur():services().shipyard)
+  </cond>
   <chance>980</chance>
   <location>Computer</location>
   <faction>Za'lek</faction>
@@ -147,10 +152,10 @@ function accept()
 
    misn.accept()
 
+   tk.msg("", fmt.f(accept_text, {engine=_(misn_engine)}))
+
    player.pay(-deposit, "adjust")
    player.outfitAdd(misn_engine)
-
-   tk.msg("", fmt.f(accept_text, {engine=_(misn_engine)}))
 
    local osd_msg = {
       fmt.f(_("Equip the {engine} onto your ship"),
