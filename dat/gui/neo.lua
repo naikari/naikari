@@ -108,10 +108,11 @@ function create ()
    gui.fpsPos(screen_padding, screen_h - screen_padding - fps_h)
 
    -- OSD
+   local mesg_h = 5*1.5*fontSize_default + 10
    osd_x = screen_padding
    osd_y = screen_h - screen_padding - fps_h
    osd_w = 225
-   osd_h = screen_h - bottombar_h - 2*screen_padding - fps_h
+   osd_h = screen_h - bottombar_h - 2*screen_padding - fps_h - mesg_h
    gui.osdInit(osd_x, osd_y, osd_w, osd_h)
 
    -- Compensate for the extra pixels added to the OSD in C code
