@@ -1330,15 +1330,20 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
             _("%.1f GW Energy Loss [%G GJ/shot]\n"),
             1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy);
 
-   l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%.1f RPS Fire Rate\n"
-         "%G mAU Range\n"
-         "%G mAU/s Speed\n"
-         "%G s Heat Up"),
-         1./temp->u.blt.delay,
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%.1f RPS Fire Rate\n"),
+         1./temp->u.blt.delay);
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G mAU Range [%G mAU Optimal Range]\n"),
          temp->u.blt.range,
-         temp->u.blt.speed,
+         temp->u.blt.falloff);
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G mAU/s Speed\n"),
+         temp->u.blt.speed);
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G s Heat Up"),
          temp->u.blt.heatup);
+
    if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
             _("\n%G mAU Radar Optimal Range"),
@@ -1531,18 +1536,23 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
          temp->u.bem.dmg.disable * temp->u.bem.duration
             / (temp->u.bem.duration+temp->u.bem.delay) );
 
-   l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%G GW Energy Loss [%.0f GW avg.]\n"
-         "%G s Duration\n"
-         "%G s Cooldown\n"
-         "%G mAU Range\n"
-         "%G s heat up"),
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G GW Energy Loss [%.0f GW avg.]\n"),
          temp->u.bem.energy,
          temp->u.bem.energy * temp->u.bem.duration
-            / (temp->u.bem.duration+temp->u.bem.delay),
-         temp->u.bem.duration, temp->u.bem.delay,
-         temp->u.bem.range,
-         temp->u.bem.heatup );
+            / (temp->u.bem.duration+temp->u.bem.delay));
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G s Duration\n"),
+         temp->u.bem.duration);
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G s Cooldown\n"),
+         temp->u.bem.delay);
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G mAU Range\n"),
+         temp->u.bem.range);
+   l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+         _("%G s heat up"),
+         temp->u.bem.heatup);
 
    if (!outfit_isTurret(temp) && (temp->u.bem.swivel > 0.))
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
