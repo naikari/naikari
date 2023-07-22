@@ -707,10 +707,15 @@ function render_weapBar(x, y, slot)
       reload = slot.cooldown
    end
 
+   local instant = slot.instant
+   if instant == 10 then
+      instant = 0
+   end
+
    render_bar_header_raw(x, y, o:icon())
    render_bar_raw(x + barHeader_w, y, mainbar_col, mainbar_col_end,
          mainbar_pct, mainbar_txt, reload_icon, reload_col, reload,
-         slot.instant, col_heat, slot.temp)
+         instant, col_heat, slot.temp)
 end
 
 
@@ -740,13 +745,18 @@ function render_activeOutfitBar(x, y, active)
       heat = 1
    end
 
+   local weapset = active.weapset
+   if weapset == 10 then
+      weapset = 0
+   end
+
    if active.temp ~= nil then
       heat = active.temp
    end
 
    render_bar_header_raw(x, y, o:icon())
    render_bar_raw(x + barHeader_w, y, col_cooldown, col_end_cooldown, pct,
-         text, nil, col_cooldown, reload, active.weapset, col_heat, heat)
+         text, nil, col_cooldown, reload, weapset, col_heat, heat)
 end
 
 
