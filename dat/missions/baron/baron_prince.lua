@@ -432,10 +432,10 @@ function enter()
       misn.osdActive(3)
    elseif artifactA ~= nil or artifactB ~= nil or artifactC ~= nil
          or artifactReal ~= nil then
-      if rnd.rnd() < 0.75 then
+      if rnd.rnd() < 0.2 then
          hunterhooks = {}
          local choices = {"Llama", "Hyena", "Shark", "Lancelot", "Vendetta"}
-         for i=1,10 do
+         for i = 1, 10 do
             if rnd.rnd() < 0.6 then
                hunterhooks[i] = hook.timer(rnd.uniform(1, 60), "spawn_hunter",
                      choices[rnd.rnd(1, #choices)])
