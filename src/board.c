@@ -48,8 +48,6 @@ static void board_stealCreds( unsigned int wdw, char* str );
 static void board_stealCargo( unsigned int wdw, char* str );
 static void board_stealFuel( unsigned int wdw, char* str );
 static void board_stealAll(unsigned int wdw, char *str);
-static int board_trySteal( Pilot *p );
-static int board_fail( unsigned int wdw );
 static void board_update( unsigned int wdw );
 
 
@@ -270,8 +268,6 @@ static void board_stealCreds( unsigned int wdw, char* str )
       return;
    }
 
-   if (board_fail(wdw)) return;
-
    player_modCredits( p->credits * player.p->stats.loot_mod );
    p->credits = 0;
    board_update( wdw ); /* update the lack of credits */
@@ -301,8 +297,6 @@ static void board_stealCargo( unsigned int wdw, char* str )
       player_message(_("#rYou have no room for the ship's cargo."));
       return;
    }
-
-   if (board_fail(wdw)) return;
 
    /* steal as much as possible until full - @todo let player choose */
    q = 1;
@@ -349,9 +343,6 @@ static void board_stealFuel( unsigned int wdw, char* str )
       return;
    }
 
-   if (board_fail(wdw))
-      return;
-
    /* Steal fuel. */
    if (player.p->fuel < player.p->fuel_max) {
       stolen_fuel = MIN(p->fuel, player.p->fuel_max - player.p->fuel);
@@ -386,48 +377,6 @@ static void board_stealAll(unsigned int wdw, char *str)
       board_stealCargo(wdw, str);
 
    board_exit(wdw, str);
-}
-
-
-/**
- * @brief Checks to see if the pilot can steal from its target.
- *
- *    @param p Pilot stealing from its target.
- *    @return 0 if successful, 1 if fails, -1 if fails and kills target.
- */
-static int board_trySteal( Pilot *p )
-{
-   Pilot *target;
-
-   /* Get the target. */
-   target = pilot_get(p->target);
-   if (target == NULL)
-      return 1;
-
-   return 0;
-}
-
-
-/**
- * @brief Checks to see if the hijack attempt failed.
- *
- *    @return 1 on failure to board, otherwise 0.
- */
-static int board_fail( unsigned int wdw )
-{
-   int ret;
-
-   ret = board_trySteal( player.p );
-
-   if (ret == 0)
-      return 0;
-   else if (ret < 0) /* killed ship. */
-      player_message(_("#oYou have tripped the ship's self-destruct mechanism!"));
-   else /* you just got locked out */
-      player_message(_("#oThe ship's security system locks you out."));
-
-   board_exit( wdw, NULL);
-   return 1;
 }
 
 
@@ -554,7 +503,6 @@ int pilot_board( Pilot *p )
  */
 void pilot_boardComplete( Pilot *p )
 {
-   int ret;
    Pilot *target;
    credits_t worth;
    char creds[ ECON_CRED_STRLEN ];
@@ -566,22 +514,18 @@ void pilot_boardComplete( Pilot *p )
 
    /* In the case of the player take fewer credits. */
    if (pilot_isPlayer(target)) {
-      worth = MIN( 0.05*pilot_worth(target), target->credits );
-      p->credits       += worth * p->stats.loot_mod;
-      target->credits  -= worth;
+      worth = MIN(0.05*pilot_worth(target), target->credits);
+      p->credits += worth * p->stats.loot_mod;
+      target->credits -= worth;
       credits2str( creds, worth, 2 );
       player_message(
             _("#%c%s#0 has plundered %s from your ship!"),
-            pilot_getFactionColourChar(p), p->name, creds );
+            pilot_getFactionColourChar(p), p->name, creds);
    }
    else {
-      /* Steal stuff, we only do credits for now. */
-      ret = board_trySteal(p);
-      if (ret == 0) {
-         /* Normally just plunder it all. */
-         p->credits += target->credits * p->stats.loot_mod;
-         target->credits = 0.;
-      }
+      /* Steal credits. */
+      p->credits += target->credits * p->stats.loot_mod;
+      target->credits = 0.;
    }
 
    /* Finish the boarding. */
