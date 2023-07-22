@@ -413,8 +413,6 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
 void pilot_updateDisable(Pilot* p, const pilotId_t shooter);
 void pilot_explode( double x, double y, double radius, const Damage *dmg, const Pilot *parent );
 double pilot_face( Pilot* p, const double dir );
-int pilot_brakeCheckReverseThrusters(const Pilot *p);
-double pilot_minbrakedist(const Pilot *p);
 int pilot_brake( Pilot* p );
 double pilot_brakeDist( Pilot *p, Vector2d *pos );
 int pilot_interceptPos( Pilot *p, double x, double y );

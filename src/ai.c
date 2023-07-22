@@ -1493,18 +1493,23 @@ static int aiL_minbrakedist( lua_State *L )
       vel = MIN(cur_pilot->speed - VMOD(p->solid->vel), VMOD(vv));
       if (vel < 0.)
          vel = 0.;
-
-      /* Get distance to brake. */
-      dist = (vel*(time+1.1*M_PI/cur_pilot->turn)
-            - 0.5*(cur_pilot->thrust/cur_pilot->solid->mass)*time*time);
-
-      lua_pushnumber(L, dist);
    }
+
+   /* Simple calculation based on distance. */
    else {
-      lua_pushnumber(L, pilot_minbrakedist(cur_pilot));
-   }
+      /* Get current time to reach target. */
+      time = VMOD(cur_pilot->solid->vel) /
+            (cur_pilot->thrust / cur_pilot->solid->mass);
 
-   return 1;
+      /* Get velocity. */
+      vel = MIN(cur_pilot->speed,VMOD(cur_pilot->solid->vel));
+   }
+   /* Get distance to brake. */
+   dist = vel*(time+1.1*M_PI/cur_pilot->turn) -
+         0.5*(cur_pilot->thrust/cur_pilot->solid->mass)*time*time;
+
+   lua_pushnumber(L, dist); /* return */
+   return 1; /* returns one thing */
 }
 
 
