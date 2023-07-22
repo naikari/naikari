@@ -762,6 +762,49 @@ double pilot_face( Pilot* p, const double dir )
 
 
 /**
+ * @brief See if the pilot wants to use their reverse thrusters to brake.
+ */
+int pilot_brakeCheckReverseThrusters(const Pilot *p)
+{
+   double diff, btime, ftime, vel, t;
+
+   if (p->stats.misc_reverse_thrust) {
+      vel = MIN(VMOD(p->solid->vel), p->speed);
+      t = vel / p->thrust * p->solid->mass;
+
+      /* Calculate the time to face backward and apply forward thrust. */
+      diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel) + M_PI);
+      btime = ABS(diff) / p->turn + t;
+
+      /* Calculate the time to face forward and apply reverse thrust. */
+      diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel));
+      ftime = ABS(diff) / p->turn + t / PILOT_REVERSE_THRUST;
+
+      if (btime > ftime)
+         return 1;
+   }
+
+   return 0;
+}
+
+
+/**
+ * @brief Gets the minimum braking distance for the pilot.
+ */
+double pilot_minbrakedist(const Pilot *p)
+{
+   double vel = MIN(VMOD(p->solid->vel), p->speed);
+   double thrust = p->thrust / p->solid->mass;
+   double t = vel / thrust;
+
+   if (pilot_brakeCheckReverseThrusters(p))
+      return vel*t - 0.5*PILOT_REVERSE_THRUST*thrust*t*t;
+
+   return vel*(t+1.1*M_PI/p->turn) - 0.5*thrust*t*t;
+}
+
+
+/**
  * @brief Causes the pilot to turn around and brake.
  *
  *    @param p Pilot to brake.
