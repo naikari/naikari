@@ -81,7 +81,7 @@
 extern const double fps_min;
 void fps_setPos( double x, double y );
 void display_fps( const double dt );
-void naev_resize (void);
+void naev_resize(int force);
 void naev_toggleFullscreen (void);
 void update_routine( double dt, int enter_sys );
 char *naev_version( int long_version );

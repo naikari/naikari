@@ -1032,7 +1032,7 @@ static int toolkit_loop( int *loop_done, dialogue_update_t *du )
          }
          else if (event.type == SDL_WINDOWEVENT &&
                event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            naev_resize();
+            naev_resize(0);
             continue;
          }
 

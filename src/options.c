@@ -1502,6 +1502,9 @@ static int opt_videoSave( unsigned int wid, char *str )
    /* Fullscreen. */
    fullscreen = window_checkboxState( wid, "chkFullscreen" );
 
+   /* Scale factor must be updated before the video mode is set. */
+   conf.scalefactor = window_getFaderValue(wid, "fadScale");
+
    ret = opt_setVideoMode( w, h, fullscreen, 1 );
    window_checkboxSet( wid, "chkFullscreen", conf.fullscreen );
    if (ret != 0)
@@ -1528,7 +1531,6 @@ static int opt_videoSave( unsigned int wid, char *str )
    }
 
    /* Faders. */
-   conf.scalefactor = window_getFaderValue(wid, "fadScale");
    conf.bg_brightness = window_getFaderValue(wid, "fadBGBrightness");
    conf.map_overlay_opacity = window_getFaderValue(wid, "fadMapOverlayOpacity");
    conf.zoom_far = window_getFaderValue(wid, "fadZoomFar");
@@ -1585,7 +1587,7 @@ int opt_setVideoMode( int w, int h, int fullscreen, int confirm )
       SDL_SetWindowSize(gl_screen.window, w, h);
       SDL_SetWindowPosition(gl_screen.window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
    }
-   naev_resize();
+   naev_resize(conf.scalefactor != opt_orig_scalefactor);
 
    opt_getVideoMode(&new_w, &new_h, &new_f);
    changed_size = (new_w != old_w) || (new_h != old_h);
@@ -1678,9 +1680,6 @@ static void opt_setScalefactor( unsigned int wid, char *str )
 {
    char buf[STRMAX_SHORT];
    double scale = window_getFaderValue(wid, str);
-
-   if (FABS(conf.scalefactor - scale) > 1e-4)
-      opt_needRestart();
 
    conf.scalefactor = round(scale*100.) / 100.;
    snprintf(buf, sizeof(buf), _("%.0f%%"), conf.scalefactor * 100.);

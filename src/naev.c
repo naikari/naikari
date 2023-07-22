@@ -319,7 +319,7 @@ int main( int argc, char** argv )
    gl_fontInit( &gl_defFontMono, _(FONT_MONOSPACE_PATH), conf.font_size_def, FONT_PATH_PREFIX, 0 );
 
    /* Detect size changes that occurred after window creation. */
-   naev_resize();
+   naev_resize(0);
 
    /* Display the load screen. */
    loadscreen_load();
@@ -379,7 +379,7 @@ int main( int argc, char** argv )
    load_all();
 
    /* Detect size changes that occurred during load. */
-   naev_resize();
+   naev_resize(0);
 
    /* Unload load screen. */
    loadscreen_unload();
@@ -409,7 +409,7 @@ int main( int argc, char** argv )
          }
          else if (event.type == SDL_WINDOWEVENT &&
                event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            naev_resize();
+            naev_resize(0);
             continue;
          }
          input_handle(&event); /* handles all the events and player keybinds */
@@ -597,7 +597,7 @@ void loadscreen_render( double done, const char *msg )
 
    /* Flip buffers. HACK: Also try to catch a late-breaking resize from the WM. */
    SDL_GL_SwapWindow( gl_screen.window );
-   naev_resize();
+   naev_resize(0);
 }
 
 
@@ -752,8 +752,12 @@ void main_loop( int update )
 
 /**
  * @brief Wrapper for gl_resize that handles non-GL reinitialization.
+ *
+ *    @param force Perform the update even if the screen size didn't
+ *       change. (Used to ensure an update after conf.scalefactor is
+ *       changed.)
  */
-void naev_resize (void)
+void naev_resize(int force)
 {
    /* Auto-detect window size. */
    int w, h;
@@ -763,7 +767,7 @@ void naev_resize (void)
    opt_resize();
 
    /* Nothing to do. */
-   if ((w == gl_screen.rw) && (h == gl_screen.rh))
+   if (!force && (w == gl_screen.rw) && (h == gl_screen.rh))
       return;
 
    /* Resize the GL context, etc. */
