@@ -2575,13 +2575,13 @@ void map_select( StarSystem *sys, char shifted )
 
    /* Only update land and info windows if the full map isn't open. */
    if (window_get(MAP_WDWNAME) <= 0) {
-      /* Give the land window a chance to configure the map. */
-      land_updateTabs();
+      /* Give the land window a chance to respond to the selection. */
+      land_mapTargetSystem();
 
-      /* Give the info window a chance to configure the map; must be
-       * after doing so with the land window since the info window is on
-       * top. */
-      info_update();
+      /* Give the info window a chance to respond to the selection; must
+       * be after doing so with the land window since the info window is
+       * on top. */
+      info_mapTargetSystem();
    }
 }
 

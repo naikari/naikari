@@ -201,6 +201,15 @@ void info_update (void)
 
 
 /**
+ * @brief Responds to a system being targeted.
+ */
+void info_mapTargetSystem(void)
+{
+   info_update();
+}
+
+
+/**
  * @brief Opens the main info window.
  */
 static void info_openMain( unsigned int wid )

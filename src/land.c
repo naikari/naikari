@@ -84,6 +84,7 @@ static int land_windowsMap[LAND_NUMWINDOWS]; /**< Mapping of windows. */
 static unsigned int *land_windows = NULL; /**< Landed window ids. */
 Planet* land_planet = NULL; /**< Planet player landed at. */
 static glTexture *gfx_exterior = NULL; /**< Exterior graphic of the landed planet. */
+static int map_clicked = 0; /**< Whether the map was just clicked. */
 
 /*
  * mission computer stack
@@ -743,6 +744,8 @@ static void misn_genList( unsigned int wid, int first )
    Mission *misn;
    int list_pos;
    int list_offset;
+   int first_hilight;
+   int prev_pos;
 
    /* Save focus. */
    focused = window_getFocus(wid);
@@ -755,6 +758,8 @@ static void misn_genList( unsigned int wid, int first )
       window_destroyWidget(wid, "lstMission");
    }
 
+   prev_pos = list_pos;
+
    /* Get window dimensions. */
    misn_getSize(wid, &w, &h, &lw, NULL, &lh, NULL, NULL);
 
@@ -764,6 +769,7 @@ static void misn_genList( unsigned int wid, int first )
    /* list */
    m = mission_ncomputer;
    misn_names = NULL;
+   first_hilight = -1;
    if (mission_ncomputer > 0) { /* there are missions */
       selected_sys = map_getSelected();
       misn_names = malloc(sizeof(char*) * mission_ncomputer);
@@ -781,6 +787,16 @@ static void misn_genList( unsigned int wid, int first )
          }
          else {
             hilight = 1;
+         }
+
+         if (hilight) {
+            /* Store the first hilighted index so we can wraparound. */
+            if (first_hilight < 0)
+               first_hilight = i;
+
+            /* Select this mission if it's the next one. */
+            if ((list_pos == prev_pos) && (i > list_pos))
+               list_pos = i;
          }
 
          if (misn->title != NULL) {
@@ -801,6 +817,12 @@ static void misn_genList( unsigned int wid, int first )
          mission_sysComputerMark(misn);
       }
    }
+
+   /* If selected mission hasn't changed, select the first hilighted
+    * mission. */
+   if ((first_hilight >= 0) && (list_pos == prev_pos))
+      list_pos = first_hilight;
+
    if ((misn_names == NULL) || (mission_ncomputer == 0)) {
       /* no missions. */
       free(misn_names);
@@ -808,6 +830,7 @@ static void misn_genList( unsigned int wid, int first )
       misn_names[0] = strdup(_("No Missions"));
       m = 1;
    }
+
    window_addList(wid, 20, -40, lw, lh,
          "lstMission", misn_names, m, 0, misn_update, misn_activateList);
 
@@ -1153,6 +1176,13 @@ void land_updateTabs(void)
          break;
       }
    }
+}
+
+
+void land_mapTargetSystem(void)
+{
+   map_clicked = 1;
+   land_updateTabs();
 }
 
 

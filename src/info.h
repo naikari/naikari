@@ -21,6 +21,7 @@
  */
 void menu_info( int window );
 void info_update (void);
+void info_mapTargetSystem(void);
 
 
 #endif /* INFO_H */
