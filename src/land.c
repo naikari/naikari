@@ -705,10 +705,16 @@ static void misn_accept( unsigned int wid, char* str )
 
          /* Regenerate list. */
          misn_genList(wid, 0);
+
          /* Add position persistancey after a mission has been accepted */
          /* NOTE: toolkit_setListPos protects us from a bad position by clamping */
          toolkit_setListOffset(wid, "lstMission", offset);
          toolkit_setListPos(wid, "lstMission", pos);
+
+         /* Simulate a map click (this regenerates the list again and
+          * tries to select a mission in the currently selected
+          * system). */
+         land_mapTargetSystem();
       }
 
       /* Reset markers. */
@@ -789,7 +795,7 @@ static void misn_genList( unsigned int wid, int first )
             hilight = 1;
          }
 
-         if (hilight) {
+         if (hilight && (first || map_clicked)) {
             /* Store the first hilighted index so we can wraparound. */
             if (first_hilight < 0)
                first_hilight = i;
@@ -1183,6 +1189,7 @@ void land_mapTargetSystem(void)
 {
    map_clicked = 1;
    land_updateTabs();
+   map_clicked = 0;
 }
 
 
