@@ -50,6 +50,7 @@ function create ()
    col_speed = colour.new(236/255, 232/255, 78/255)
    col_overspeed = colour.new(249/255, 112/255, 62/255)
    col_ammo = colour.new(159/255, 93/255, 15/255)
+   col_active = colour.new(209/255, 30/255, 53/255)
    col_end_cooldown = colour.new(96/255, 109/255, 171/255)
    col_end_shield = colour.new(88/255, 96/255, 156/255)
    col_end_armor = colour.new(122/255, 122/255, 122/255)
@@ -60,6 +61,7 @@ function create ()
    col_end_speed = colour.new(247/255, 242/255, 194/255)
    col_end_overspeed = colour.new(250/255, 174/255, 144/255)
    col_end_ammo = colour.new(233/255, 131/255, 21/255)
+   col_end_active = colour.new(253/255, 80/255, 85/255)
 
    -- Images
    local function tex_open(name, sx, sy)
@@ -755,8 +757,8 @@ function render_activeOutfitBar(x, y, active)
    end
 
    render_bar_header_raw(x, y, o:icon())
-   render_bar_raw(x + barHeader_w, y, col_cooldown, col_end_cooldown, pct,
-         text, nil, col_cooldown, reload, weapset, col_heat, heat)
+   render_bar_raw(x + barHeader_w, y, col_active, col_end_active, pct, text,
+         nil, col_cooldown, reload, weapset, col_heat, heat)
 end
 
 
