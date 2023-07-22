@@ -49,6 +49,8 @@ static void board_stealCargo( unsigned int wdw, char* str );
 static void board_stealFuel( unsigned int wdw, char* str );
 static void board_stealAll(unsigned int wdw, char *str);
 static void board_update( unsigned int wdw );
+static void pilot_boardStealCargo(Pilot *p, Pilot *target);
+static void pilot_boardStealFuel(Pilot *p, Pilot *target);
 
 
 /**
@@ -177,10 +179,6 @@ int player_board(void)
       player_message( _("#rTarget ship can not be boarded.") );
       return PLAYER_BOARD_IMPOSSIBLE;
    }
-   else if (pilot_isFlag(p,PILOT_BOARDED)) {
-      player_message( _("#rYour target cannot be boarded again.") );
-      return PLAYER_BOARD_IMPOSSIBLE;
-   }
    else if (!pilot_isDisabled(p) && !pilot_isFlag(p,PILOT_BOARDABLE)) {
       player_message(_("#rYou cannot board a ship that isn't disabled!"));
       return PLAYER_BOARD_IMPOSSIBLE;
@@ -210,9 +208,7 @@ int player_board(void)
    /* Is boarded. */
    board_boarded = 1;
 
-   /* Mark pilot as boarded only if it isn't being active boarded. */
-   if (!pilot_isFlag(p,PILOT_BOARDABLE))
-      pilot_setFlag(p,PILOT_BOARDED);
+   pilot_setFlag(p, PILOT_BOARDED);
    player_message(_("#oBoarding ship #%c%s#0."), c, p->name);
 
    /* Don't unboard. */
@@ -284,7 +280,6 @@ static void board_stealCreds( unsigned int wdw, char* str )
 static void board_stealCargo( unsigned int wdw, char* str )
 {
    (void) str;
-   int q;
    Pilot* p;
 
    p = pilot_get(player.p->target);
@@ -298,22 +293,7 @@ static void board_stealCargo( unsigned int wdw, char* str )
       return;
    }
 
-   /* steal as much as possible until full - @todo let player choose */
-   q = 1;
-   while ((array_size(p->commodities) > 0) && (q > 0)) {
-      q = round(player.p->stats.loot_mod * (double)p->commodities[0].quantity);
-      if (q > 0) {
-         q = pilot_cargoAdd(player.p, p->commodities[0].commodity, q, 0);
-         pilot_cargoRm(p, p->commodities[0].commodity,
-               p->commodities[0].quantity);
-      } else {
-         /* Remove the cargo, but set q to 1 so that we don't stop
-          * looting cargo too early. */
-         pilot_cargoRm(p, p->commodities[0].commodity,
-               p->commodities[0].quantity);
-         q = 1;
-      }
-   }
+   pilot_boardStealCargo(player.p, p);
 
    board_update( wdw );
    player_message(_("#oYou manage to steal the ship's cargo."));
@@ -330,7 +310,6 @@ static void board_stealFuel( unsigned int wdw, char* str )
 {
    (void)str;
    Pilot* p;
-   double stolen_fuel;
 
    p = pilot_get(player.p->target);
 
@@ -343,13 +322,7 @@ static void board_stealFuel( unsigned int wdw, char* str )
       return;
    }
 
-   /* Steal fuel. */
-   if (player.p->fuel < player.p->fuel_max) {
-      stolen_fuel = MIN(p->fuel, player.p->fuel_max - player.p->fuel);
-      stolen_fuel *= player.p->stats.loot_mod;
-      player.p->fuel = MIN(player.p->fuel + stolen_fuel, player.p->fuel_max);
-      p->fuel = MAX(p->fuel - stolen_fuel, 0);
-   }
+   pilot_boardStealFuel(player.p, p);
 
    board_update( wdw );
    player_message(_("#oYou manage to steal the ship's fuel."));
@@ -445,6 +418,65 @@ static void board_update( unsigned int wdw )
 
 
 /**
+ * @brief Attempt to steal a target's cargo.
+ *
+ *    @param p The pilot boarding.
+ *    @param target The pilot being stolen from.
+ */
+static void pilot_boardStealCargo(Pilot *p, Pilot *target)
+{
+   int i;
+   int q;
+
+   /* Steal as much as possible until full or until target has no more
+    * non-mission cargo, whichever comes first. */
+   i = 0;
+   q = 1;
+   while ((array_size(target->commodities) > i) && (q > 0)) {
+      /* Don't loot mission cargo since that might break missions. */
+      if (target->commodities[i].id != 0) {
+         /* Cargo is not being removed, so increment the index we check
+          * so we can steal the next cargo. */
+         i++;
+         continue;
+      }
+
+      q = round(p->stats.loot_mod * (double)target->commodities[i].quantity);
+      if (q > 0) {
+         q = pilot_cargoAdd(p, target->commodities[i].commodity, q, 0);
+         pilot_cargoRm(target, target->commodities[i].commodity,
+               target->commodities[i].quantity);
+      } else {
+         /* Remove the cargo, but set q to 1 so that we don't stop
+          * looting cargo too early. */
+         pilot_cargoRm(target, target->commodities[i].commodity,
+               target->commodities[i].quantity);
+         q = 1;
+      }
+   }
+}
+
+
+/**
+ * @brief Attempt to steal a target's fuel.
+ *
+ *    @param p The pilot boarding.
+ *    @param target The pilot being stolen from.
+ */
+static void pilot_boardStealFuel(Pilot *p, Pilot *target)
+{
+   double stolen_fuel;
+
+   if (p->fuel < p->fuel_max) {
+      stolen_fuel = MIN(target->fuel, p->fuel_max - p->fuel);
+      stolen_fuel *= p->stats.loot_mod;
+      p->fuel = MIN(p->fuel + stolen_fuel, p->fuel_max);
+      target->fuel = MAX(target->fuel - stolen_fuel, 0);
+   }
+}
+
+
+/**
  * @brief Has a pilot attempt to board another pilot.
  *
  *    @param p Pilot doing the boarding.
@@ -470,8 +502,6 @@ int pilot_board( Pilot *p )
       return 0;
    else if (vect_dist(&p->solid->vel, &target->solid->vel)
          > MAX_HYPERSPACE_VEL)
-      return 0;
-   else if (pilot_isFlag(target,PILOT_BOARDED))
       return 0;
 
    /* Set speed to target's speed. */
@@ -505,7 +535,7 @@ void pilot_boardComplete( Pilot *p )
 {
    Pilot *target;
    credits_t worth;
-   char creds[ ECON_CRED_STRLEN ];
+   char creds[ECON_CRED_STRLEN];
 
    /* Make sure target is valid. */
    target = pilot_get(p->target);
@@ -526,10 +556,15 @@ void pilot_boardComplete( Pilot *p )
       /* Steal credits. */
       p->credits += target->credits * p->stats.loot_mod;
       target->credits = 0.;
+
+      /* Steal cargo. */
+      pilot_boardStealCargo(p, target);
+
+      /* Steal fuel. */
+      pilot_boardStealFuel(p, target);
    }
 
    /* Finish the boarding. */
    pilot_rmFlag(p, PILOT_BOARDING);
 }
-
 
