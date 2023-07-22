@@ -770,19 +770,18 @@ int pilot_brakeCheckReverseThrusters(const Pilot *p)
 
    if (p->stats.misc_reverse_thrust) {
       vel = MIN(VMOD(p->solid->vel), p->speed);
-      t = vel / (p->thrust/p->solid->mass);
+      t = vel / p->thrust * p->solid->mass;
 
       /* Calculate the time to face backward and apply forward thrust. */
       diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel) + M_PI);
-      btime = ABS(diff)/p->turn + t;
+      btime = ABS(diff) / p->turn + t;
 
       /* Calculate the time to face forward and apply reverse thrust. */
       diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel));
-      ftime = ABS(diff)/p->turn + t/PILOT_REVERSE_THRUST;
+      ftime = ABS(diff) / p->turn + t / PILOT_REVERSE_THRUST;
 
-      if (btime > ftime) {
+      if (btime > ftime)
          return 1;
-      }
    }
 
    return 0;
@@ -797,15 +796,11 @@ double pilot_minbrakedist(const Pilot *p)
    double vel = MIN(VMOD(p->solid->vel), p->speed);
    double thrust = p->thrust / p->solid->mass;
    double t = vel / thrust;
-   double diff;
 
-   if (pilot_brakeCheckReverseThrusters(p)) {
-      diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel));
-      return (ABS(diff)/p->turn)*vel + (t/PILOT_REVERSE_THRUST) * (vel/2.);
-   }
+   if (pilot_brakeCheckReverseThrusters(p))
+      return vel*t - 0.5*PILOT_REVERSE_THRUST*thrust*t*t;
 
-   diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel) + M_PI);
-   return (ABS(diff)/p->turn)*vel + t*(vel/2.);
+   return vel*(t+1.1*M_PI/p->turn) - 0.5*thrust*t*t;
 }
 
 
@@ -817,27 +812,35 @@ double pilot_minbrakedist(const Pilot *p)
  */
 int pilot_brake( Pilot *p )
 {
-   double dir, thrust, diff;
-   int isstopped = pilot_isStopped(p);
+   double dir, thrust, diff, ftime, btime;
 
-   if (isstopped)
-      return 1;
+   /* Face backwards by default. */
+   dir    = VANGLE(p->solid->vel) + M_PI;
+   thrust = 1.;
 
-   if (pilot_brakeCheckReverseThrusters(p)) {
-      dir = VANGLE(p->solid->vel);
-      thrust = -PILOT_REVERSE_THRUST;
-   }
-   else {
-      dir = VANGLE(p->solid->vel) + M_PI;
-      thrust = 1.;
+   if (p->stats.misc_reverse_thrust) {
+      /* Calculate the time to face backward and apply forward thrust. */
+      diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel) + M_PI);
+      btime = ABS(diff) / p->turn + MIN( VMOD(p->solid->vel), p->speed ) /
+            (p->thrust / p->solid->mass);
+
+      /* Calculate the time to face forward and apply reverse thrust. */
+      diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel));
+      ftime = ABS(diff) / p->turn + MIN( VMOD(p->solid->vel), p->speed ) /
+            (p->thrust / p->solid->mass * PILOT_REVERSE_THRUST);
+
+      if (btime > ftime) {
+         dir    = VANGLE(p->solid->vel);
+         thrust = -PILOT_REVERSE_THRUST;
+      }
    }
 
    diff = pilot_face(p, dir);
-   if (ABS(diff) < MAX_DIR_ERR && !isstopped)
+   if (ABS(diff) < MAX_DIR_ERR && !pilot_isStopped(p))
       pilot_setThrust(p, thrust);
    else {
       pilot_setThrust(p, 0.);
-      if (isstopped)
+      if (pilot_isStopped(p))
          return 1;
    }
 
@@ -854,7 +857,8 @@ int pilot_brake( Pilot *p )
  */
 double pilot_brakeDist( Pilot *p, Vector2d *pos )
 {
-   double vang, dist;
+   double fdiff, bdiff, ftime, btime;
+   double vang, speed, dist;
 
    if (pilot_isStopped(p)) {
       if (pos != NULL)
@@ -863,11 +867,29 @@ double pilot_brakeDist( Pilot *p, Vector2d *pos )
       return 0;
    }
 
-   vang = VANGLE(p->solid->vel);
-   dist = pilot_minbrakedist(p);
+   vang  = VANGLE(p->solid->vel);
+   speed = MIN( VMOD(p->solid->vel), p->speed );
+
+   /* Calculate the time to face backward and apply forward thrust. */
+   bdiff = angle_diff(p->solid->dir, vang + M_PI);
+   btime = ABS(bdiff) / p->turn + speed / (p->thrust / p->solid->mass);
+   dist  = (ABS(bdiff) / p->turn) * speed +
+         (speed / (p->thrust / p->solid->mass)) * (speed / 2.);
+
+   if (p->stats.misc_reverse_thrust) {
+      /* Calculate the time to face forward and apply reverse thrust. */
+      fdiff = angle_diff(p->solid->dir, vang);
+      ftime = ABS(fdiff) / p->turn + speed /
+            (p->thrust / p->solid->mass * PILOT_REVERSE_THRUST);
+
+      /* Faster to use reverse thrust. */
+      if (ftime < btime)
+         dist = (ABS(fdiff) / p->turn) * speed + (speed /
+               (p->thrust / p->solid->mass * PILOT_REVERSE_THRUST)) * (speed / 2.);
+   }
 
    if (pos != NULL)
-      vect_cset(pos,
+      vect_cset( pos,
             p->solid->pos.x + cos(vang) * dist,
             p->solid->pos.y + sin(vang) * dist);
 
