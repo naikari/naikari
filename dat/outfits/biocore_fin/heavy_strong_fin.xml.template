@@ -7,7 +7,7 @@
   <rarity>{rarity}</rarity>
   <mass>75</mass>
   <price>{price}</price>
-  <description>The fin is a Soromid bioship's equivalent to engines in synthetic ships. It is charged with moving the organism thrû space and comes in either a strong form (for heavy loads) or a fast form (for greater speed and agility). {potential}</description>
+  <description>The fin is a Soromid bioship's equivalent to engines in synthetic ships. It is charged with moving the organism thru space and comes in either a strong form (for heavy loads) or a fast form (for greater speed and agility). {potential}</description>
   <gfx_store>organic_engine_strong_l1.webp</gfx_store>
   <priority>3</priority>
  </general>

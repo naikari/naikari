@@ -69,7 +69,7 @@ As Chelsea's cargo is swiftly unloaded, an officer approaches her and says some 
 misn_title = _("A Friend's Aid")
 misn_desc = _("Chelsea needs you to escort her to {planet} in the {system} system. You must wait for her to jump to or land on her destination before you jump or land, and you must not deviate from her course. You will likely be attacked by gangsters.")
 
-log_text = _([[You helped escort Chelsea thrû a cargo delivery which had some connection to the Soromid government, althô you don't know the details. You encountered some kind of anti-Soromid gang along the way.]])
+log_text = _([[You helped escort Chelsea thru a cargo delivery which had some connection to the Soromid government, althô you don't know the details. You encountered some kind of anti-Soromid gang along the way.]])
 
 
 function create ()

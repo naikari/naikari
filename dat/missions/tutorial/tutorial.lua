@@ -37,7 +37,7 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase," the salesperson who sold you the {shipname} says thrû the radio. "I am sure your new ship will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
+intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase," the salesperson who sold you the {shipname} says thru the radio. "I am sure your new ship will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
 
 movement_text = _([["Now, so that your test flight goes as smoothly as possible, I will explain the controls of your state-of-the art Melendez Corporation starship! There are two basic modes: keyboard flight, and mouse flight.
 
@@ -51,7 +51,7 @@ landing_text = _([["I see you have a great handle on the controls of your new Me
 
 "You may continue to practice flying for as long as you need. When you are ready, please return to {planet} to finalize your paperwork. To do so, simply #bdouble-click#0 on the planet, or if you prefer to use your keyboard, target it with {target_planet_key} and then press {landkey}. I will be waiting for you at the spaceport!"]])
 
-land_text = _([[You watch as the ship – your ship – automatically guides you safely thrû the atmosphere and into the planet's space port, then touches down at an empty spot reserved for you. As soon as the hatch opens and you step out, an exhausted dock worker greets you and makes you sign a form. "Just the standard waiver," she explains. After you sign, she pushes some buttons and you stare as you see robotic drones immediately getting to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
+land_text = _([[You watch as the ship – your ship – automatically guides you safely thru the atmosphere and into the planet's space port, then touches down at an empty spot reserved for you. As soon as the hatch opens and you step out, an exhausted dock worker greets you and makes you sign a form. "Just the standard waiver," she explains. After you sign, she pushes some buttons and you stare as you see robotic drones immediately getting to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
 
 "Ah, there you are, {player}!" the voice of the salesperson interrupts, prompting the worker to roll her eyes and walk off. You look in the direction of the voice and see an obnoxiously dressed person with a huge grin. "I see your Melendez Corporation starship is serving you well. Now, if you would follow me, we can finalize that paperwork."]])
 

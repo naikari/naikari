@@ -48,7 +48,7 @@ Before Harrus can offer a retort, one of their kids speaks up. "Why can't we jus
 
 pay_text = _([[You land at your final stop in your quest to take the space family home. Harrus and Luna sheepishly thank you as they leave, and the kids follow behind them and also thank you.
 
-Surveying your now deserted quarters, you see that the place is spotless, as if Harrus and Luna felt ashamed for acting like children thrûout the journey while their own children remained patient all thrûout.
+Surveying your now deserted quarters, you see that the place is spotless, as if Harrus and Luna felt ashamed for acting like children thruout the journey while their own children remained patient all thruout.
 
 As you admire their workmanship, your eye falls on a small box that you don't remember seeing here before. Inside the box, you find a sum of credits and a note written in neat handwriting. It says simply, "Sorry for the trouble."]])
 

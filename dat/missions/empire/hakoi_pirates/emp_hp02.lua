@@ -54,7 +54,7 @@ require "missions/empire/common"
 
 ask_text = _([["Hello again, {player}. It's good to see you. We have another mission for you in {system}. This one will be a bit more dangerous than the last one, but we will pay a substantial sum of credits, {credits}. Are you up to the challenge?"]])
 
-accept_text = _([["I am happy to hear that, {player}! I knew we could count on you. According to the civilian you questioned, pirates seem to be approaching from the direction of the asteroid field. We have reason to believe there must be a hidden jump point somewhere around there which the pirates are jumping into the system thrû.
+accept_text = _([["I am happy to hear that, {player}! I knew we could count on you. According to the civilian you questioned, pirates seem to be approaching from the direction of the asteroid field. We have reason to believe there must be a hidden jump point somewhere around there which the pirates are jumping into the system thru.
 
 "We want you to go to the areä of the {system} asteroid field and test this theory. You won't be able to see the jump point itself, but by observing the areä, you should be able to catch pirates jumping into the system.
 
@@ -67,7 +67,7 @@ finish_text = _([[You notice that Commander Soldner is already waiting for you a
 "Now we must wait for the analysis of the data you have collected. I'm sure we will have a need to enlist your services again before long. I'll see you again at the bar here on {planet} when I have another mission for you. In the meantime, I would recommend purchasing a Mercenary License, if you haven't already, and giving some basic combat missions a try. I'm sure the experience will prove to be invaluable as we take on this pirate menace."]])
 
 misn_title = _("Hakoi's Hidden Jumps")
-misn_desc = _("Commander Soldner has sent you to the {system} system to scout the areä and watch as pirates jump in. He said that he expects the pirates are jumping in thrû a hidden jump point near the asteroid field.")
+misn_desc = _("Commander Soldner has sent you to the {system} system to scout the areä and watch as pirates jump in. He said that he expects the pirates are jumping in thru a hidden jump point near the asteroid field.")
 
 log_text = _([[You did some observation in the {destsys} system for Commander Soldner, watching as pirates jumped into the system. He suggested getting yourself a Mercenary License and trying some combat missions before returning to {startplanet} ({startsys} system) for another mission.]])
 

@@ -87,7 +87,7 @@ end
       @param current Current faction player has.
       @param amount Amount of faction being changed.
       @param source Source of the faction hit.
-      @param secondary Flag that indicates whether this is a secondary (thrû ally or enemy) hit.
+      @param secondary Flag that indicates whether this is a secondary (thru ally or enemy) hit.
       @return The faction amount to set to.
 --]]
 function default_hit( current, amount, source, secondary )

@@ -124,7 +124,7 @@ cond_articles = {
    },
    {
       title = _("Salvador Asserts Independence"),
-      text = _([[Amid the ongoing investigation into the recent appearance of pirates in the Hakoi system, Imperial investigators report that pirates may be passing thrû the Salvador system for some unknown reason. However, Salvador residents have refused to allow the Imperial investigation from Emperor's Fist to intrude on the system's independence.]]),
+      text = _([[Amid the ongoing investigation into the recent appearance of pirates in the Hakoi system, Imperial investigators report that pirates may be passing thru the Salvador system for some unknown reason. However, Salvador residents have refused to allow the Imperial investigation from Emperor's Fist to intrude on the system's independence.]]),
       tag = "mhint_Hakoi and Salvador",
       mission = "Hakoi and Salvador",
       done = "Hakoi's Hidden Jumps",

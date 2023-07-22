@@ -71,7 +71,7 @@ home_text[3] = _([[Chelsea's father shrugs. "I don't get it, but whatever makes 
 
 Chelsea's father frowns. "You should be careful there. Lots of scammers, you know?"
 
-"Oh, I'm sure he wouldn't make that mistake," Chelsea's mother says reassuringly. "I mean, look at {player} there! An Imperial thrû and thrû!" She addresses you. "You wouldn't let him– er, I mean, them get into trouble with… unsavory sorts, right?" You raise an eyebrow.]])
+"Oh, I'm sure he wouldn't make that mistake," Chelsea's mother says reassuringly. "I mean, look at {player} there! An Imperial thru and thru!" She addresses you. "You wouldn't let him– er, I mean, them get into trouble with… unsavory sorts, right?" You raise an eyebrow.]])
 home_text[4] = _([["It's the government I worry about," Chelsea's father interjects. "It's in the pocket of big genetics, you know? Those bio-augmenters, they're swindlers." He looks into Chelsea's eyes. "You haven't been working with the government, have you? That backwards Soromid government?"
 
 Chelsea frowns. "So what if I was?"

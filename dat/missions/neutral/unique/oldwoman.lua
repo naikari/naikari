@@ -38,7 +38,7 @@ text3 = _([[You help the old lady to the spacedock elevator. She keeps grumbling
 
 "Thank you, young captain, I don't know what I would have done without you. It seems there are still decent folk out there even now. Take this, as a token of my appreciation."
 
-The lady hands you a credit chip. Then she disappears thrû the terminal. Well, that was quite a passenger!]])
+The lady hands you a credit chip. Then she disappears thru the terminal. Well, that was quite a passenger!]])
 
 complaints = {}
 complaints[1] = _([["You youngsters and your newfangled triple redundancy plasma feedback shunts. In my day, we had to use simple monopole instaconductors to keep our hyperdrives running!"]])

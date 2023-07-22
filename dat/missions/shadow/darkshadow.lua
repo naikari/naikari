@@ -33,7 +33,7 @@ start_text = _([[Suddenly, out of nowhere, one of the dormant panels in your coc
 
 The screen goes dead again. You decide to make a note of this in your log. Perhaps it would be a good ideä to visit the Seiryuu once more, if only to find out how they got a private line to your ship.]])
 
-explain_text = _([[You make your way thrû the now familiar corridors of the Seiryuu. You barely notice the strange environment anymore. It seems unimportant compared to the strange events that surround your every encounter with these Four Winds.
+explain_text = _([[You make your way thru the now familiar corridors of the Seiryuu. You barely notice the strange environment anymore. It seems unimportant compared to the strange events that surround your every encounter with these Four Winds.
 
 You step onto the bridge, where Captain Rebina is waiting for you. "Welcome back, {player}," she says. "I'm pleased to see that you decided to respond to our communication. I doubt you would have come here if you weren't willing to continue to aid us. Your presence here confirms that you are a reliable partner, so I will treat you accordingly."
 
@@ -43,7 +43,7 @@ The captain motions you to take a seat at what looks like a holotable in the cen
 -- is intentional. She has been lied to; the Four Winds are actually an
 -- elaborate Proteron espionage scheme which has had a breakdown in
 -- command since the Proteron are cut off.
-fourwinds_origin_text = _([["The Four Winds are old, {player}. Ancient, even. The movement dates back to old Earth. We have been with human civilization thrûout the ages, at first only in the Eastern nations, later establishing a foothold worldwide. Our purpose was to guide humanity, prevent it from making mistakes it could not afford to make. We never came out in the open, we always worked behind the scenes, from the shadows. We were diplomats, scientists, journalists, politicians' spouses, sometimes even assassins. We used any means necessary to gather information and avert disaster, when we could.
+fourwinds_origin_text = _([["The Four Winds are old, {player}. Ancient, even. The movement dates back to old Earth. We have been with human civilization thruout the ages, at first only in the Eastern nations, later establishing a foothold worldwide. Our purpose was to guide humanity, prevent it from making mistakes it could not afford to make. We never came out in the open, we always worked behind the scenes, from the shadows. We were diplomats, scientists, journalists, politicians' spouses, sometimes even assassins. We used any means necessary to gather information and avert disaster, when we could.
 
 "We accomplished a lot, but no one would know since they don't know how history could have turned out. We prevented nuclear weapons from ever being used on Earth when humanity discovered them in ancient times. We foiled the sabotage attempts on several of the colony ships launched during the First Growth. We ensured the Empire's success in the faction wars. That said, we had our first major failure with the Incident, which took us by surprise."]])
 
@@ -67,7 +67,7 @@ That answers one question. But you still don't know why Jorek hasn't been report
 
 jorek2_text = _([["I dunno if you've seen them on your way here, but there's guys of ours hangin' around in the system. And when I say guys of ours, I mean guys of theirs, since they sure ain't our guys any more. They've been on my ass ever since I left Manis, so I think I know what they want. They want to get me and see what I know, or maybe they just want to blow me into space dust. Either way, I need you to help me get out of this rat hole."
 
-You ask Jorek why he didn't just lie low on some world until the coast was clear, instead of coming to this station. "It ain't that simple," Jorek sighs. "See, I got an inside man. A guy in their ranks who wants out. I need to get him back to the old girl so he can tell her what he knows firsthand. He's out there now, with the pack, so we need to pick him up on our way out. Now, there's two ways we can do this. We can either go in fast, grab the guy, get out fast before the wolves get us. Or we can try to fight our way thrû. Let me warn you thô, these guys mean business, and they're not your average pirates. Unless you got a really tough ship, I recommend you run.
+You ask Jorek why he didn't just lie low on some world until the coast was clear, instead of coming to this station. "It ain't that simple," Jorek sighs. "See, I got an inside man. A guy in their ranks who wants out. I need to get him back to the old girl so he can tell her what he knows firsthand. He's out there now, with the pack, so we need to pick him up on our way out. Now, there's two ways we can do this. We can either go in fast, grab the guy, get out fast before the wolves get us. Or we can try to fight our way thru. Let me warn you thô, these guys mean business, and they're not your average pirates. Unless you got a really tough ship, I recommend you run.
 
 "Well, there you have it. I'll fill you in on the details once we're spaceborne. Show me to your ship, buddy, and let's get rollin'. I've had enough of this damn place."]])
 
@@ -103,7 +103,7 @@ misn_reward = _("A sum of money")
 
 log_text_intro = _([[Captain Rebina has further explained the organization she works for. "As I've said before, we are the Four Winds. Our organization is a very secretive one, as you've experienced firsthand. Very few outside our ranks know of our existence, and now you're one of those few.
 
-"The Four Winds are old, {player}. Ancient, even. The movement dates back to old Earth. We have been with human civilization thrûout the ages, at first only in the Eastern nations, later establishing a foothold worldwide. Our purpose was to guide humanity, prevent it from making mistakes it could not afford to make. We never came out in the open, we always worked behind the scenes, from the shadows. We were diplomats, scientists, journalists, politicians' spouses, sometimes even assassins. We used any means necessary to gather information and avert disaster, when we could.
+"The Four Winds are old, {player}. Ancient, even. The movement dates back to old Earth. We have been with human civilization thruout the ages, at first only in the Eastern nations, later establishing a foothold worldwide. Our purpose was to guide humanity, prevent it from making mistakes it could not afford to make. We never came out in the open, we always worked behind the scenes, from the shadows. We were diplomats, scientists, journalists, politicians' spouses, sometimes even assassins. We used any means necessary to gather information and avert disaster, when we could.
 
 "We accomplished a lot, but no one would know since they don't know how history could have turned out. We prevented nuclear weapons from ever being used on Earth when humanity discovered them in ancient times. We foiled the sabotage attempts on several of the colony ships launched during the First Growth. We ensured the Empire's success in the faction wars. That said, we had our first major failure with the Incident, which took us by surprise."]])
 

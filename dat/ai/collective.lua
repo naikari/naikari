@@ -24,7 +24,7 @@ function create ()
       mem.comm_no = p_("comm_no", "No response.")
    end
 
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thru before leaving the system
 
    create_post()
 end

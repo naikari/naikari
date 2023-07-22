@@ -245,7 +245,7 @@ function inRange()
     end
 end
 
--- Fly the FLF ships thrû their waypoints
+-- Fly the FLF ships thru their waypoints
 function annai()
     local poss = {}
     poss[1] = vec2.new(0,70)

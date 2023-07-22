@@ -23,7 +23,7 @@
    or replace existing cores. This is done without regard to affordability.
 
    The second is that some conditions (e.g. free cargo space) are independent
-   of outfits, and because we don't explicitly check them, fall-thrû to the
+   of outfits, and because we don't explicitly check them, fall-thru to the
    final "this is a bug, please report" happens more than it ought to.
 
 --]]

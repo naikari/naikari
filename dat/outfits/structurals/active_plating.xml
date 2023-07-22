@@ -7,7 +7,7 @@
   <mass />
   <price>200000</price>
   <gfx_store>active_plating.webp</gfx_store>
-  <description>This plating developed by House Dvaered takes a unique, yet somewhat brute-force approach to increasing armor strength. By constantly pumping energy thrû electromagnetic shielding coils spread thrûout the hull, armor strength is substantially increased at the cost of dramatically increased energy usage.</description>
+  <description>This plating developed by House Dvaered takes a unique, yet somewhat brute-force approach to increasing armor strength. By constantly pumping energy thru electromagnetic shielding coils spread thruout the hull, armor strength is substantially increased at the cost of dramatically increased energy usage.</description>
   <cpu>-2</cpu>
  </general>
  <specific type="modification">

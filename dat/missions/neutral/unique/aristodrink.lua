@@ -78,9 +78,9 @@ worktxt[3] = _([[You walk into the bar and know instantly that you are finally h
 
 Just as she's about to start making it, thô, you stop her and say you'll have one here after all. As long as you've come all this way, you might as well try it. You're amazed at how quickly and gracefully her trained hands move, flipping bottles and shaking various containers. Before you know it, she's set a drink before you and closed another container to take with you. You taste it expecting something incredible. It's alright, but you doubt it was worth all this trouble.]])
 
-finishedtxt = _([["Ahh! I was just thinking how much I wanted one of those drinks! I'm so glad that you managed to find it. You sure seemed to take your time thô." You give him his drink and tell him that it wasn't easy, and how many systems you had to go thrû. "Hmm. That is quite a few systems. No reason for you to be this late thô." He takes a sip from his drink. "Ahh! That is good thô. I suppose you'll be wanting your payment. You did go thrû a lot of trouble. Very well, I suppose the extra effort makes up for the late delivery. I promised {credits}, so here you go."
+finishedtxt = _([["Ahh! I was just thinking how much I wanted one of those drinks! I'm so glad that you managed to find it. You sure seemed to take your time thô." You give him his drink and tell him that it wasn't easy, and how many systems you had to go thru. "Hmm. That is quite a few systems. No reason for you to be this late thô." He takes a sip from his drink. "Ahh! That is good thô. I suppose you'll be wanting your payment. You did go thru a lot of trouble. Very well, I suppose the extra effort makes up for the late delivery. I promised {credits}, so here you go."
 
-Considering the amount of effort that you went thrû, you feel almost cheated. You don't feel like arguing with the snobby aristocrat to try to get a bonus, thô, so you just leave him to his drink without another word. It's probably the most that anyone's ever paid for a drink like that anyway.]])
+Considering the amount of effort that you went thru, you feel almost cheated. You don't feel like arguing with the snobby aristocrat to try to get a bonus, thô, so you just leave him to his drink without another word. It's probably the most that anyone's ever paid for a drink like that anyway.]])
 
 log_text = _([[You delivered a special drink called a Swamp Bombing to an aristocrat.]])
 
@@ -121,7 +121,7 @@ function accept ()
 
       tk.msg("", fmt.f(yes_text, {credits=fmt.credits(payment)}))
 
-      -- how many systems you'll have to run thrû
+      -- how many systems you'll have to run thru
       numclues = rnd.rnd(1,5)
       numexwork = rnd.rnd(1,3)
 

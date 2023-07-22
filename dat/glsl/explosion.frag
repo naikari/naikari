@@ -148,7 +148,7 @@ vec4 effect( vec2 texture_coords )
    float inear = -b-h; /* near to camera intersection */
    float ifar  = -b+h; /* far from camera intersection */
 
-   /* Base step is equally spread out thrû the sphere. */
+   /* Base step is equally spread out thru the sphere. */
    float step_base = RADIUS / float(u_steps);
 
    /* Normalize the progress to take into account explosion delays and represent the whole animation. */
@@ -168,7 +168,7 @@ vec4 effect( vec2 texture_coords )
       if (depth > ifar)
          break;
 
-      /* Compute the density and start marching thrû it. */
+      /* Compute the density and start marching thru it. */
       vec3 pos       = eye + ray*depth; /* Move along ray. */
 
       /* See if out of range. */
@@ -205,7 +205,7 @@ vec4 effect( vec2 texture_coords )
       sum   += col*(1.0 - sum.a);
       sum.a += 0.15 * col.a;
 
-      /* Heuristics to move faster thrû low density areas. */
+      /* Heuristics to move faster thru low density areas. */
       float step_mod = 1.0 + (1.0-max(density+col.a, 0.0));
       /* March along the ray. */
       depth  += step_base * step_mod;

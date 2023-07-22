@@ -100,7 +100,7 @@ pay_text = _([[Baron Dovai Sauterfeldt turns the skate-board over in his hands, 
 
 "I was right to send you, {player}. You and the {ship} have beautifully lived up to my expectations. And I'm a man of my word, I will reward you as promised. What was it we agreed on again? What, I never promised you anything? Well, that won't do. I'll have my assistant place a suitable amount of money in your account. You will not find me ungrateful! Ah, but you must excuse me. I need time to revel in this fantastic piece of art! Goodbye, {player}, I will call on you when I have need of you again."
 
-You are seen out of the Baron's quarters, so you head back thrû the airlock and back into your own ship. The first thing you do is check your balance, and to your relief, it has indeed been upgraded by a substantial amount. As you undock, you wonder what kind of wild goose chase the man will send you on next time.]])
+You are seen out of the Baron's quarters, so you head back thru the airlock and back into your own ship. The first thing you do is check your balance, and to your relief, it has indeed been upgraded by a substantial amount. As you undock, you wonder what kind of wild goose chase the man will send you on next time.]])
 
 -- Mission details
 misn_title = _("Prince")

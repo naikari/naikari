@@ -14,7 +14,7 @@ the argument to pass to pilot.add() itself, or tables of arguments to
 pass to each ship. If a table is passed as an argument, the size of the
 table must be exactly the same as the size of the ship argument table.
 nil values are allowed in the location and pilotname tables, since they
-are indexed directly based on looping thrû the ship table rather than
+are indexed directly based on looping thru the ship table rather than
 used directly.
 
 

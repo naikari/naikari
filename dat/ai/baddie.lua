@@ -19,7 +19,7 @@ mem.refuel_no = p_("refuel_no", "Piss off. You can't have my fuel.")
 
 
 function create ()
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thru before leaving the system
 
    -- Choose attack format
    attack_choose()

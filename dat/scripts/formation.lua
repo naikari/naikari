@@ -59,7 +59,7 @@ function formation.buffer(leader)
                   ["Heavy Drone"] = 1,
                   ["Fighter"] = 1,
                   ["Drone"] = 1,
-                  ["Scout"] = 1 } -- Need to keep track of positions already iterated thrû.
+                  ["Scout"] = 1 } -- Need to keep track of positions already iterated thru.
    for i, p in ipairs(pilots) do
       if p:exists() then
          ship_class = p:ship():class() -- For readability.

@@ -57,7 +57,7 @@
   * "Minuscule" is spelled "miniscule".
   * "Pursue" is spelled "persue".
   * "Though" is spelled "thô".
-  * "Through" is spelled "thrû".
+  * "Through" is spelled "thru".
 * Added and updated several NPC portraits.
 * New games now always start with the same music track playing.
 * Sirius ships no longer refuse to run away from combat by default.

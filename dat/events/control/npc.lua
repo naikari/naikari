@@ -187,7 +187,7 @@ messages = {
          _([["These computer symbols can be confusing sometimes! I've figured it out, thô: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
          _([["I just found out why launchers have their mass listed as a range rather than a single number. It's because of the ammo. The smaller number is what it weighs if you're out of ammo, and the bigger number is what it weighs when your ammo is full."]]),
          _([["Those new combat practice missions in the mission computer are real handy! You can even fight against Proteron ship look-alikes, but don't be fooled; they're not the real deal."]]),
-         _([["I'm still not used to the randomly exploding asteroids. You'll just be passing thrû an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),
+         _([["I'm still not used to the randomly exploding asteroids. You'll just be passing thru an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),
          _([["I wonder if we're really alone in the universe. We've never discovered alien life, but maybe we just haven't looked hard enough."]]),
       },
    },
@@ -303,7 +303,7 @@ messages = {
    {
       faction = "Za'lek",
       text = {
-         _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but thrû the discovery of more data, we can uncover the true answer."]]),
+         _([["I would be delighted to discover the secrets of the Incident. Rumors abound, but thru the discovery of more data, we can uncover the true answer."]]),
          _([["I'll admit that the living Soromid ships are marginally interesting, but truly, those primitive lifeforms can't beat the best synthetic technology."]]),
          _([["I don't know why we even bother sending our research results to the Empire anymore. Those idiots can't understand even the simplest of formulae."]]),
          _([["I would love to get my hands on a genuine Proteron ship one day! They were always a danger to the galaxy, of course, but I'd be lying if I said their ship tech wasn't incredible."]]),
@@ -321,7 +321,7 @@ messages = {
          _([["Between you and me, I think House Proteron is to blame for the Incident. Think about it: they were just mobilizing their troops to attack the Empire, then poof! A huge explosion happens to occur right at their most likely invasion point. I don't know how it happened, but they must have accidentally vaporized themselves and the core of the Empire as they attempted their assault."]]),
          _([["Sometimes I worry a little about the growing anti-Soromid sentiment. We never really did fully move away from the Empire's stigmatization of us during the Great Quarantine."]]),
          _([["I don't trust the Empire, so I'm frankly glad it's in decline. First we had the Great Quarantine, and then the Incident wiped out our homeworld. I'm not saying the Empire caused the Incident on purpose, but considering Sol was at the center of it and the Empire controlled all of Sol, I'm sure the Empire is at least partially to blame."]]),
-         _([["They don't teach about the Great Quarantine in the Empire, do they? A few centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only thrû the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
+         _([["They don't teach about the Great Quarantine in the Empire, do they? A few centuries ago, there was a deadly disease outbreak on our homeworld, Sorom, and the Empire condemned us to die. It was only thru the use of dangerous experimental gene treatments that we were able to survive, and even then, the Empire tried to kill us when we returned to space disease-free."]]),
          _([["It upsets me that there are still Proteron sympathizers, even after they got wiped out by the Incident. They were violent bigots. I don't give a damn how good their ships were, why are so many people willing to give that a pass?"]]),
       },
    },
@@ -379,7 +379,7 @@ messages = {
    },
    {
       faction = {"Empire", "Za'lek"},
-      text = _([["Have you seen a Proteron ship before? Let me tell you, they were a sight to behold, way ahead of their time. There's still a few scattered thrûout the galaxy that survived the Incident, but those are mostly owned by really wealthy aristocrats these days."]]),
+      text = _([["Have you seen a Proteron ship before? Let me tell you, they were a sight to behold, way ahead of their time. There's still a few scattered thruout the galaxy that survived the Incident, but those are mostly owned by really wealthy aristocrats these days."]]),
    },
 }
 

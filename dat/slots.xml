@@ -32,7 +32,7 @@
  </slot>
  <slot name="bio_engines">
   <display>Bioship Fin</display>
-  <description>This slot is used for the fin, the biological equivalent to an engine. The fins propels the organism thrû space.</description>
+  <description>This slot is used for the fin, the biological equivalent to an engine. The fins propels the organism thru space.</description>
   <exclusive/>
   <required/>
  </slot>

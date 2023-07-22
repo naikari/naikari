@@ -75,7 +75,7 @@ function create()
          jump.get("Aesir", "Hypergate Zone"):setKnown()
          jump.get("Hypergate Zone", "Aesir"):setKnown()
          news.add("Generic", _("Sirius Hypergate Constructed"),
-               _([[Sirius officials have announced, as they call it, the "Great Hypergate of Sirichana" in the Aesir system. "It was thrû the will of Sirichana that the Empire developed this technology," one official stated. "Thrû this new interconnected galaxy, more people will learn of His might and glory."]]),
+               _([[Sirius officials have announced, as they call it, the "Great Hypergate of Sirichana" in the Aesir system. "It was thru the will of Sirichana that the Empire developed this technology," one official stated. "Thru this new interconnected galaxy, more people will learn of His might and glory."]]),
                exp)
       end
    else
@@ -86,7 +86,7 @@ function create()
          jump.get("Gamma Polaris", "Hypergate Zone"):setKnown()
          jump.get("Hypergate Zone", "Gamma Polaris"):setKnown()
          news.add("Generic", _("Empire Announces Hypergate Network"),
-               _([[The Emperor has announced the creätion of a new system of mass transit: hypergates. "Unlike regular jump gates, hypergates operate thrû a central hub called the Hypergate Zone," a leading researcher in charge of the project explained. Currently, the only working hypergate is found in Gamma Polaris. Imperial officials state that they are working with the Great Houses to finish construction of the hypergate network.]]),
+               _([[The Emperor has announced the creätion of a new system of mass transit: hypergates. "Unlike regular jump gates, hypergates operate thru a central hub called the Hypergate Zone," a leading researcher in charge of the project explained. Currently, the only working hypergate is found in Gamma Polaris. Imperial officials state that they are working with the Great Houses to finish construction of the hypergate network.]]),
                exp)
       end
    end

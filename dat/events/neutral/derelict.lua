@@ -46,7 +46,7 @@ function safe_disable()
       p:rename(fmt.f(_("Derelict {pilot}"), {pilot=p:name()}))
 
       -- Reduce credits (the credits amount is based on the effort it
-      -- takes to disable them, and the player doesn't have to go thrû
+      -- takes to disable them, and the player doesn't have to go thru
       -- that effort in the case of this event).
       if rnd.rnd() < 0.95 then
          local credits = rnd.uniform(0.5, 0.8) * p:credits()

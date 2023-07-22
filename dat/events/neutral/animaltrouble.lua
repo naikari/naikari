@@ -26,9 +26,9 @@ start_text = _([[You look at your instruments in confusion as you realize that y
 
 You frantically try to work the controls to regain control of your ship, but it's no use. You swear to yourself and hurriedly exit your cockpit to look for the problem, hoping you don't get attacked in your defenseless state while you do so.]])
 
-end_text = _([[You've found the cause of the problem. One of the little rodents you transported for that Siriusite apparently got out of the crate on the way, and gnawed thrû some of your ship's circuitry. The creature died in the ensuing short-circuit. You've fixed the damage, and your ship is under control again.]])
+end_text = _([[You've found the cause of the problem. One of the little rodents you transported for that Siriusite apparently got out of the crate on the way, and gnawed thru some of your ship's circuitry. The creature died in the ensuing short-circuit. You've fixed the damage, and your ship is under control again.]])
 
-log_text = _([[You found that one of the rodents you transported for that Siriusite got out of the crate on the way, gnawed thrû some of your ship's circuitry, and died from short-circuit caused by said gnawing, which also caused your ship to go haywire. After you fixed the damage, your ship's controls were brought back to normal.]])
+log_text = _([[You found that one of the rodents you transported for that Siriusite got out of the crate on the way, gnawed thru some of your ship's circuitry, and died from short-circuit caused by said gnawing, which also caused your ship to go haywire. After you fixed the damage, your ship's controls were brought back to normal.]])
 
 
 function create ()

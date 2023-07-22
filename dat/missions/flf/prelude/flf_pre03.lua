@@ -84,7 +84,7 @@ refusetext = _([["I see. That's a fair answer, I'm sure you have your reasons. B
 
 DVtext[1] = _([[Your viewscreen shows a Dvaered Colonel. He looks tense. Normally, a tense Dvaered would be bad news, but then this one bothered to hail you in the heat of battle, so perhaps there is more here than meets the eye.]])
 
-DVtext[2] = _([["I am Colonel Urnus of the Dvaered Fleet, anti-terrorism division. I would normally never contact an enemy of House Dvaered, but my intelligence officer has looked thrû our records and found that you were recently a law-abiding citizen, doing honest freelance missions."]])
+DVtext[2] = _([["I am Colonel Urnus of the Dvaered Fleet, anti-terrorism division. I would normally never contact an enemy of House Dvaered, but my intelligence officer has looked thru our records and found that you were recently a law-abiding citizen, doing honest freelance missions."]])
 
 DVtext[3] = _([["I know your type, %s. You take jobs where profit is to be had, and you side with the highest bidder. There are many like you in the galaxy, thô admittedly not so many with your talent. That's why I'm willing to make you this offer: you will provide us with information on their base of operations and their combat strength. In return, I will convince my superiors that you were working for me all along, so you won't face any repercussions for assaulting Dvaered ships. Furthermore, I will transfer a considerable amount of credits in your account, as well as put you into a position to make an ally out of House Dvaered. If you refuse, however, I guarantee you that you will never again be safe in Dvaered space. What say you? Surely this proposition beats anything that rabble can do for you?"]])
 

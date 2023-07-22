@@ -1430,7 +1430,7 @@ end
 --    @param p Pilot to equip to.
 --    @param set table laying out the set of outfits to equip (see below).
 --
--- ``set`` is split up into sub-tables that are iterated thrû. These
+-- ``set`` is split up into sub-tables that are iterated thru. These
 -- tables include a "num" field which indicates how many of the chosen outfit
 -- to equip before moving on to the next set; if nil, the chosen outfit will be
 -- equipped as many times as possible. For example, if you list 3 tables with

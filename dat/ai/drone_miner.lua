@@ -6,7 +6,7 @@ mem.aggressive = true
 mem.land_planet = false
 
 function create ()
-   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thrû before leaving the system
+   mem.loiter = 3 -- This is the amount of waypoints the pilot will pass thru before leaving the system
    mem.comm_no = p_("comm_no", "No response.")
    create_post()
 end
