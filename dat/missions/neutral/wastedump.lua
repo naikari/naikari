@@ -63,8 +63,6 @@ When you explain that you don't have enough money to pay the fine, the officials
 
 nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold being equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
 
-noland_msg = _("Get lost, waste dumping scum! We don't want you here!")
-
 misn_title = _("Waste Dump")
 misn_desc = _("Take as many waste containers off of here as your ship can hold and drop them off at any authorized garbage collection facility. You will be paid immediately, but any attempt to illegally jettison the waste into space will be severely punished if you are caught.")
 
@@ -86,8 +84,6 @@ function create ()
          closest_sys = sys
       end
    end
-
-   -- Note: this mission makes no system claims
 
    credits_factor = math.max(200, 1000*dist + 500*rnd.sigma())
 
@@ -200,13 +196,22 @@ function abort ()
 
    local pp = player.pilot()
    for i, p in ipairs(pilot.get()) do
-      if p ~= pp and p:leader(true) ~= pp then
+      local mem = p:memory()
+      if p ~= pp and p:leader(true) ~= pp and mem.natural then
+         mem.natural = false
          p:setHostile()
       end
    end
 
    -- No landing, filthy waste dumper!
-   player.allowLand(false, noland_msg)
+   -- XXX: This could potentially cause problems for a theoretical
+   -- mission that requires the player to land and also locks the player
+   -- out of hyperspacing. Missions really shouldn't do this, but it's
+   -- a potential pitfall to keep in mind. For now, we kind of need this
+   -- in order to prevent the player from simply cheesing the punishment
+   -- by dumping and then immediately landing.
+   player.allowLand(false,
+         _("It's not safe to land after illegally dumping garbage."))
 
    misn.finish(true)
 end
