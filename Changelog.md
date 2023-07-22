@@ -94,6 +94,10 @@
   during a fight a bit more commonplace).
 * Changed the mission failure messages for cargo missions to match other
   missions better.
+* Za'lek Test mission no longer refuses to spawn if another Za'lek Test
+  mission is active.
+* Baron Prince now spawns artifact hunters in any system you enter, but
+  is less likely to do so until you confirm you found the real artifact.
 
 ### Bugfixes
 
@@ -107,6 +111,11 @@
   closed (and thus caused some display oddities).
 * Fixed land window tabs other than the commodity tab not updating when
   cargo was added to or removed from the player's ship.
+* Fixed an issue in Baron Prince where exiting and reloading the game
+  while landed at an artifact seller NPC's planet would cause you to
+  have to takeoff reland to spawn the NPC again.
+* Fixed cinematics mode messing with the GUI viewport when it shouldn't
+  (which caused the Slim GUI to be messed up during cinematics).
 
 
 ## 0.8.0
