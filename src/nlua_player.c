@@ -626,9 +626,9 @@ static int playerL_autonavReset( lua_State *L )
  *
  * Cinematics mode aborts autonav if active, forces speed to be the
  * game's base speed (unaffected by the Time Constant of the ship the
- * player is flying), and by default hides the GUI by default. It can
- * also disable the ability of the player to speed up the game with the
- * speed key, but this is generally not recommended.<br/>
+ * player is flying), and hides the GUI by default. It can also disable
+ * the ability of the player to speed up the game with the speed key,
+ * but this is generally not recommended.<br/>
  * <br/>
  * It is important to note that this function does <em>not</em> affect
  * the player's ability to control their ship. To prevent the player
@@ -716,13 +716,12 @@ static int playerL_cinematics( lua_State *L )
       player_resetSpeed();
 
       /* Handle options. */
-      if (!f_gui)
-         player_setFlag( PLAYER_CINEMATICS_GUI );
+      if (!f_gui) {
+         player_setFlag(PLAYER_CINEMATICS_GUI);
+         gl_setDefViewport(0., 0., SCREEN_W, SCREEN_H);
+      }
       if (f_2x)
-         player_setFlag( PLAYER_CINEMATICS_2X );
-
-      /* Redo viewport. */
-      gl_setDefViewport( 0., 0., SCREEN_W, SCREEN_H );
+         player_setFlag(PLAYER_CINEMATICS_2X);
    }
    else {
       /* Clean up flags. */
