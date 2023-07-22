@@ -98,6 +98,9 @@
   mission is active.
 * Baron Prince now spawns artifact hunters in any system you enter, but
   is less likely to do so until you confirm you found the real artifact.
+* The options menu no longer (falsely) tells you that you need to
+  restart the game to change the scale factor, and it now always
+  properly updates after changing the scale factor setting.
 
 ### Bugfixes
 
