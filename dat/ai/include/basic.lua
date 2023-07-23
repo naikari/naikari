@@ -360,16 +360,23 @@ function __hyp_approach_shoot ()
 end
 
 
-function __land ()
+function __land()
    land()
 end
 
 function __land_shoot ()
-   __choose_land_target ()
-   ai.pushsubtask( "__landgo_shoot" )
+   local dest = ai.taskdata() or __choose_land_target()
+   if dest == nil then
+      warn(string.format(_("Pilot '%s' tried to land with no landable assets!"),
+            ai.pilot():name()))
+      ai.poptask()
+      return
+   end
+
+   ai.pushsubtask("__landgo_shoot", dest)
 end
 
-function __landgo_shoot ()
+function __landgo_shoot()
    __move_shoot()
    __landgo()
 end
@@ -392,51 +399,38 @@ function __move_shoot ()
 end
 
 
+function __choose_land_target()
+   local landplanet = ai.landplanet()
+   if landplanet ~= nil then
+      return landplanet:pos()
+   end
+
+   return nil
+end
+
 --[[
 -- Attempts to land on a planet.
 --]]
-function __choose_land_target ()
-   -- Only want to land once, prevents guys from never leaving.
-   if mem.landed then
-      ai.poptask()
-      return
-   end
-
-   -- Set target if necessary
-   local target = ai.taskdata()
-   if target ~= nil then
-      mem.land = target
-   end
-
-   -- Make sure mem.land is valid target
-   if mem.land == nil then
-      local landplanet = ai.landplanet()
-      if landplanet ~= nil then
-         mem.land = landplanet:pos()
-      -- Bail out if no valid planet could be found.
-      else
-         warn(string.format(_("Pilot '%s' tried to land with no landable assets!"),
-               ai.pilot():name()))
-         ai.poptask()
-         return
-      end
-   end
-end
-
 function land ()
    if mem.noleave then
       ai.poptask()
       return
    end
 
-   __choose_land_target ()
-   ai.pushsubtask( "__landgo" )
+   local dest = ai.taskdata() or __choose_land_target()
+   if dest == nil then
+      warn(string.format(_("Pilot '%s' tried to land with no landable assets!"),
+            ai.pilot():name()))
+      ai.poptask()
+      return
+   end
+
+   ai.pushsubtask("__landgo", dest)
 end
 function __landgo ()
-   local target   = mem.land
-
-   local dist     = ai.dist( target )
-   local bdist    = ai.minbrakedist()
+   local dest = ai.subtaskdata()
+   local dist = ai.dist(dest)
+   local bdist = ai.minbrakedist()
 
    -- Make sure afterburner is off, since it messes things up here.
    ai.weapset(8, false)
@@ -444,22 +438,21 @@ function __landgo ()
    -- 2 methods depending on mem.careful
    local dir
    if not mem.careful or dist < 3*bdist then
-      dir = ai.face( target )
+      dir = ai.face(dest)
    else
-      dir = ai.careful_face( target )
+      dir = ai.careful_face(dest)
    end
 
-   -- Need to get closer
    if dir < 10 and dist > bdist then
+      -- Need to get closer
       ai.accel()
-
-   -- Need to start braking
    elseif dist <= bdist then
-      ai.pushsubtask( "__landstop" )
+      -- Need to start braking
+      ai.pushsubtask("__landstop", dest)
    end
 
 end
-function __landstop ()
+function __landstop()
    if not ai.canLand() then
       local p = ai.pilot()
       warn(string.format(_("'%s' cannot land. Popping '%s' task."),
@@ -470,14 +463,16 @@ function __landstop ()
 
    ai.brake()
    if ai.isstopped() then
-      ai.stop() -- Will stop the pilot if below err vel
-      if not ai.land() then
-         ai.popsubtask()
-      else
+      local dest = ai.subtaskdata()
+
+      ai.stop()
+      if ai.land() then
          local p = ai.pilot()
-         p:msg(p:followers(), "land", mem.land)
-         ai.poptask() -- Done, pop task
+         p:msg(p:followers(), "land", dest)
       end
+
+      -- Either we're done, or landing failed; either way, pop the task.
+      ai.poptask()
    end
 end
 
@@ -485,8 +480,9 @@ end
 --[[
 -- Attempts to run away from the target.
 --]]
-function runaway ()
+function runaway()
    -- Target must exist
+   local p = ai.pilot()
    local target = ai.taskdata()
    if not target:exists() then
       -- Make sure afterburner is off.
@@ -497,34 +493,41 @@ function runaway ()
    end
 
    -- See if there's a target to use when running
-   local t = ai.nearhyptarget()
-   local p = ai.nearestplanet()
+   local hyp = ai.nearhyptarget()
+   local pnt = ai.nearestplanet()
 
-   if (p == nil and t == nil) or mem.noleave then
+   if (pnt == nil and hyp == nil) or mem.noleave or p:stats().jumps < 1 then
       ai.pushsubtask("__run_target")
-   elseif p == nil then
-      local pos = ai.sethyptarget(t)
+   elseif pnt == nil then
+      local pos = ai.sethyptarget(hyp)
       ai.pushsubtask( "__run_hyp", pos )
-   elseif t == nil then
-      mem.land = p:pos()
-      ai.pushsubtask( "__landgo" )
+   elseif hyp == nil then
+      ai.pushsubtask("__landgo", pnt:pos())
    else
       -- find which one is the closest
-      local pilpos = ai.pilot():pos()
-      local modt = vec2.mod(t:pos()-pilpos)
-      local modp = vec2.mod(p:pos()-pilpos)
+      local pilpos = p:pos()
+      local modt = vec2.mod(hyp:pos() - pilpos)
+      local modp = vec2.mod(pnt:pos() - pilpos)
       if modt < modp then
-         local pos = ai.sethyptarget(t)
-         ai.pushsubtask( "__run_hyp", pos )
+         local pos = ai.sethyptarget(hyp)
+         ai.pushsubtask("__run_hyp", pos)
       else
-         mem.land = p:pos()
-         ai.pushsubtask( "__run_landgo" )
+         ai.pushsubtask("__run_landgo", pnt:pos())
       end
    end
 end
-function runaway_nojump ()
-   if __run_target() then return end
-   __run_turret()
+function runaway_nojump()
+   -- Target must exist
+   local target = ai.taskdata()
+   if not target:exists() then
+      -- Make sure afterburner is off.
+      ai.weapset(8, false)
+
+      ai.poptask()
+      return
+   end
+
+   ai.pushsubtask("__run_target")
 end
 function __run_target ()
    local target = ai.taskdata()
@@ -559,15 +562,17 @@ function __run_target ()
       ai.weapset(8, true)
    end
 
+   -- Shoot the target
+   __run_turret(target)
+
    return false
 end
-function __run_turret ()
+function __run_turret(target)
    -- Shoot the target
-   local target   = ai.taskdata()
    if target:exists() then
       ai.hostile(target)
-      ai.settarget( target )
-      local dist    = ai.dist(target)
+      ai.settarget(target)
+      local dist = ai.dist(target)
       -- See if we have some turret to use
       if ai.hasturrets() then
          if dist < ai.getweaprange("turret_nonseek") then
@@ -582,20 +587,21 @@ function __run_turret ()
    ai.weapset("fighter_bay")
 end
 function __run_hyp ()
-   -- Shoot the target
-   __run_turret()
-
    -- Go towards jump
+   local target = ai.taskdata()
    local jump = ai.subtaskdata()
    local jdir
    local bdist = ai.minbrakedist()
    local jdist = ai.dist(jump)
    local plt = ai.pilot()
 
+   -- Shoot the target
+   __run_turret(target)
+
    if jdist > bdist then
       local dozigzag = false
-      if ai.taskdata():exists() then
-         local relspe = plt:stats().speed_max/ai.taskdata():stats().speed_max
+      if target:exists() then
+         local relspe = plt:stats().speed_max / target:stats().speed_max
          if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile()
                and not ai.hasafterburner() and jdist > 3*bdist then
             dozigzag = true
@@ -645,38 +651,39 @@ function __run_hypbrake ()
 end
 
 function __run_landgo ()
-   -- Shoot the target
-   __run_turret()
-
-   local target = mem.land
-   local dist = ai.dist(target)
+   local target = ai.taskdata()
+   local dest = ai.subtaskdata()
+   local dist = ai.dist(dest)
    local bdist = ai.minbrakedist()
    local plt = ai.pilot()
 
    if dist <= bdist then -- Need to start braking
-      ai.pushsubtask( "__landstop" )
+      ai.pushsubtask("__landstop", dest)
    else
       local dozigzag = false
-      if ai.taskdata():exists() then
-         local relspe = plt:stats().speed_max/ai.taskdata():stats().speed_max
+      if target:exists() then
+         local relspe = plt:stats().speed_max / target:stats().speed_max
          if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile() and
             (not ai.hasafterburner()) and dist > 3*bdist then
             dozigzag = true
          end
+
+         -- Shoot the target
+         __run_turret(target)
       end
 
       if dozigzag then
          -- Pilot is agile, but too slow to outrun the enemy: dodge
-         local dir = ai.dir(target)
+         local dir = ai.dir(dest)
          __zigzag(dir, 70)
       else
 
          -- 2 methods depending on mem.careful
          local dir
          if not mem.careful or dist < 3*bdist then
-            dir = ai.face( target )
+            dir = ai.face(dest)
          else
-            dir = ai.careful_face( target )
+            dir = ai.careful_face(dest)
          end
          if dir < 10 then
             ai.accel()
@@ -699,7 +706,7 @@ end
 -- Starts heading away to try to hyperspace.
 --]]
 function hyperspace()
-   if mem.noleave then
+   if mem.noleave or ai.pilot():stats().jumps < 1 then
       ai.poptask()
       return
    end
@@ -719,6 +726,11 @@ function __hyp_approach ()
    local dir
    local dist = ai.dist(target)
    local bdist = ai.minbrakedist()
+
+   if mem.noleave or ai.pilot():stats().jumps < 1 then
+      ai.poptask()
+      return
+   end
 
    -- Make sure afterburner is off, since it messes things up here.
    ai.weapset(8, false)
@@ -775,7 +787,8 @@ function __hyp_jump ()
    elseif result == -3 then
       -- Fuel too low; cannot jump.
       debug_print(
-         string.format("'%s' cannot jump (not enough fuel).", p:name()))
+         string.format("'%s' cannot jump for task '%s' (not enough fuel).",
+               p:name(), ai.taskname()))
       ai.poptask()
       return
    end

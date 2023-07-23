@@ -3,17 +3,17 @@ function idle ()
    if mem.loiter == nil then
       mem.loiter = 3
    end
+
    if mem.loiter == 0 and not mem.noleave then
       -- Try to leave. Civilians will always try to land on a planet if there is one.
-      local planet = ai.landplanet( mem.land_friendly )
-      -- planet must exist
-      if planet == nil then
-         ai.settimer(0, rnd.uniform(1, 3))
-         ai.pushtask("enterdelay")
-      else
-         mem.land = planet:pos()
+      local p = ai.pilot()
+      if p:stats().jumps >= 1 then
          ai.pushtask("hyperspace")
-         ai.pushtask("land")
+      end
+
+      local pnt = ai.landplanet(mem.land_friendly)
+      if pnt ~= nil then
+         ai.pushtask("land", pnt:pos())
       end
    else -- Stay. Have a beer.
       local sysrad = rnd.rnd() * system.cur():radius()

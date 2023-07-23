@@ -474,6 +474,10 @@ pilotId_t pilot_getBoss(const Pilot* p)
       if (pilot_stack[i]->speed > p->speed)
          continue;
 
+      /* Must not be the current pilot's follower. */
+      if (pilot_stack[i]->parent == p->id)
+         continue;
+
       /* Should not be weaker than the current pilot*/
       curpower = pilot_reldps(  pilot_stack[i], p ) * pilot_relhp(  pilot_stack[i], p );
       if (ppower >= curpower )

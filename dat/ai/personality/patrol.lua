@@ -3,19 +3,19 @@ function idle ()
    if mem.loiter == nil then
       mem.loiter = 3
    end
-   if mem.loiter == 0 and not mem.noleave then -- Try to leave.
-       local planet = ai.landplanet( mem.land_friendly )
-       -- planet must exist
-       if planet == nil or mem.land_planet == false then
-          ai.settimer(0, rnd.uniform(1, 3))
-          ai.pushtask("enterdelay")
-       else
-          mem.land = planet:pos()
-          ai.pushtask("hyperspace")
-          if not mem.tookoff then
-             ai.pushtask("land")
-          end
-       end
+   if mem.loiter == 0 and not mem.noleave then
+      local p = ai.pilot()
+      local jumps = p:stats().jumps
+
+      if jumps >= 1 then
+         ai.pushtask("hyperspace")
+      end
+
+      local pnt = ai.landplanet(mem.land_friendly)
+      if pnt ~= nil and mem.land_planet
+            and (not mem.tookoff or jumps < 1) then
+         ai.pushtask("land", pnt:pos())
+      end
    else -- Stay. Have a beer.
       -- Check to see if we want to patrol waypoints
       if mem.waypoints then

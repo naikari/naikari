@@ -123,39 +123,44 @@ end
 function handle_messages()
    local p = ai.pilot()
    local l = p:leader()
-   local rl = p:leader(true)
    local messages = ai.messages()
    for i = 1, #messages do
       local sender, msgtype, data = table.unpack(messages[i])
-      if sender == l or sender == rl then
+      if sender == l or sender == p:leader(true) then
          if msgtype == "form-pos" then
             mem.form_pos = data
          elseif msgtype == "hyperspace" then
-            ai.pushtask("hyperspace", data)
-         elseif msgtype == "land" then
-            mem.land = ai.planetfrompos(data):pos()
-            ai.pushtask("land")
-         -- Escort commands
-         -- Attack target
-         elseif msgtype == "e_attack" and not mem.nocommand then
-            if data ~= nil and data:exists() then
-               -- Only attack a target who isn't in the same fleet.
-               if data:leader(true) ~= rl then
-                  clean_task(ai.taskname())
-                  ai.pushtask("attack_forced", data)
-               end
+            if p:stats().jumps >= 1 then
+               ai.pushtask("hyperspace", data)
             end
-         -- Hold position
-         elseif msgtype == "e_hold" and not mem.nocommand then
-            p:taskClear()
-            ai.pushtask("hold")
-         -- Return to carrier
-         elseif msgtype == "e_return" and not mem.nocommand then
-            p:taskClear()
-            ai.pushtask("flyback", p:flags().carried)
-         -- Clear orders
-         elseif msgtype == "e_clear" and not mem.nocommand then
-            p:taskClear()
+         elseif msgtype == "land" then
+            -- We have to get the planet itself so that the pilot sets
+            -- it as its nav target.
+            local dest = ai.planetfrompos(data):pos()
+            ai.pushtask("land", dest)
+         -- Escort commands
+         elseif not mem.nocommand then
+            -- Attack target
+            if msgtype == "e_attack" then
+               if data ~= nil and data:exists() then
+                  -- Only attack a target who isn't in the same fleet.
+                  if data:leader(true) ~= p:leader(true) then
+                     clean_task(ai.taskname())
+                     ai.pushtask("attack_forced", data)
+                  end
+               end
+            -- Hold position
+            elseif msgtype == "e_hold" then
+               p:taskClear()
+               ai.pushtask("hold")
+            -- Return to carrier
+            elseif msgtype == "e_return" then
+               p:taskClear()
+               ai.pushtask("flyback", p:flags().carried)
+            -- Clear orders
+            elseif msgtype == "e_clear" then
+               p:taskClear()
+            end
          end
       end
    end
@@ -451,8 +456,7 @@ function attacked(attacker)
 
    -- Check whether we should local jump.
    if not mem.norun and mem.armor_localjump > 0
-         and parmor < mem.armor_localjump and pshield <= 10
-         and p:stats().jumps >= 2 then
+         and parmor < mem.armor_localjump and pshield <= 10 then
       -- Perform a local jump.
       ai.localjump()
    end
@@ -461,7 +465,12 @@ end
 -- Delays the ship when entering systems so that it doesn't leave right away
 function enterdelay ()
    if ai.timeup(0) then
-      ai.pushtask("hyperspace")
+      local p = ai.pilot()
+      if p:stats().jumps >= 1 then
+         ai.pushtask("hyperspace")
+      else
+         ai.poptask()
+      end
    end
 end
 
