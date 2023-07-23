@@ -101,6 +101,10 @@
 * The options menu no longer (falsely) tells you that you need to
   restart the game to change the scale factor, and it now always
   properly updates after changing the scale factor setting.
+* Removed the restriction that disallowed boarding a pilot multiple
+  times.
+* Trader pilots now only form groups using the standard formation;
+  they don't also randomly sit next to each other anymore.
 
 ### Bugfixes
 
@@ -119,6 +123,9 @@
   have to takeoff reland to spawn the NPC again.
 * Fixed cinematics mode messing with the GUI viewport when it shouldn't
   (which caused the Slim GUI to be messed up during cinematics).
+* Fixed AI not being able to behave properly when out of fuel.
+* Fixed a long-standing bug where AI pilots could get stuck spinning
+  around in circles while trying to land.
 
 
 ## 0.8.0
