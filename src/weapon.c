@@ -989,6 +989,7 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
    Asteroid *a;
    AsteroidType *at;
    Pilot * const *pilot_stack;
+   double x, y;
 
    canPoly = 1;
    gfx = NULL;
@@ -1031,9 +1032,8 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
       }
    }
 
-   if (!b && (player.p != NULL)
-         && (vect_dist2(&player.p->solid->pos, &w->solid->pos) * cam_getZoom()
-            > pow2(MAX(SCREEN_W, SCREEN_H)))
+   gl_gameToScreenCoords(&x, &y, w->solid->pos.x, w->solid->pos.y);
+   if (!b && ((x < 0) || (x > SCREEN_W) || (y < 0) || (y > SCREEN_H))
          && (w->parent != PLAYER_ID) && (w->faction != FACTION_PLAYER)
          && ((w->parent == 0) || ((parent = pilot_get(w->parent)) == NULL)
             || (parent->parent != PLAYER_ID))) {
