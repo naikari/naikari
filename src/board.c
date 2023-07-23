@@ -49,7 +49,7 @@ static void board_stealCargo( unsigned int wdw, char* str );
 static void board_stealFuel( unsigned int wdw, char* str );
 static void board_stealAll(unsigned int wdw, char *str);
 static void board_update( unsigned int wdw );
-static void pilot_boardStealCargo(Pilot *p, Pilot *target);
+static int pilot_boardStealCargo(Pilot *p, Pilot *target);
 static void pilot_boardStealFuel(Pilot *p, Pilot *target);
 
 
@@ -422,16 +422,16 @@ static void board_update( unsigned int wdw )
  *
  *    @param p The pilot boarding.
  *    @param target The pilot being stolen from.
+ *    @return Amount of cargo stolen.
  */
-static void pilot_boardStealCargo(Pilot *p, Pilot *target)
+static int pilot_boardStealCargo(Pilot *p, Pilot *target)
 {
-   int i;
-   int q;
+   int i = 0;
+   int q = 1;
+   int stolen = 0;
 
    /* Steal as much as possible until full or until target has no more
     * non-mission cargo, whichever comes first. */
-   i = 0;
-   q = 1;
    while ((array_size(target->commodities) > i) && (q > 0)) {
       /* Don't loot mission cargo since that might break missions. */
       if (target->commodities[i].id != 0) {
@@ -444,16 +444,23 @@ static void pilot_boardStealCargo(Pilot *p, Pilot *target)
       q = round(p->stats.loot_mod * (double)target->commodities[i].quantity);
       if (q > 0) {
          q = pilot_cargoAdd(p, target->commodities[i].commodity, q, 0);
-         pilot_cargoRm(target, target->commodities[i].commodity,
-               target->commodities[i].quantity);
-      } else {
-         /* Remove the cargo, but set q to 1 so that we don't stop
-          * looting cargo too early. */
-         pilot_cargoRm(target, target->commodities[i].commodity,
-               target->commodities[i].quantity);
+         q = pilot_cargoRm(target, target->commodities[i].commodity, q);
+         stolen += q;
+      }
+      else if (target->commodities[i].quantity > 0) {
+         /* Unlikely scenerio of a loot mod of 0. In that case, just
+          * abort, because that would mean nothing can be stolen. */
+         break;
+      }
+      else {
+         /* Pilot has phantom cargo. Remove the cargo, but set q to 1 so
+          * that we don't stop looting cargo too early. */
+         pilot_cargoRm(target, target->commodities[i].commodity, q);
          q = 1;
       }
    }
+
+   return stolen;
 }
 
 
@@ -536,21 +543,31 @@ void pilot_boardComplete( Pilot *p )
    Pilot *target;
    credits_t worth;
    char creds[ECON_CRED_STRLEN];
+   int cargo_stolen;
 
    /* Make sure target is valid. */
    target = pilot_get(p->target);
    if (target == NULL)
       return;
 
-   /* In the case of the player take fewer credits. */
    if (pilot_isPlayer(target)) {
+      /* Steal credits (just a few in the case of the player). */
       worth = MIN(0.05*pilot_worth(target), target->credits);
       p->credits += worth * p->stats.loot_mod;
       target->credits -= worth;
       credits2str( creds, worth, 2 );
-      player_message(
-            _("#%c%s#0 has plundered %s from your ship!"),
+      player_message(_("#%c%s#0 has plundered %s from your ship!"),
             pilot_getFactionColourChar(p), p->name, creds);
+
+      /* Steal cargo. */
+      cargo_stolen = pilot_boardStealCargo(p, target);
+      if (cargo_stolen > 0) {
+         player_message(
+            n_("#%c%s#0 has stolen %d kt of cargo from your ship!",
+               "#%c%s#0 has stolen %d kt of cargo from your ship!",
+               cargo_stolen),
+            pilot_getFactionColourChar(p), p->name, cargo_stolen);
+      }
    }
    else {
       /* Steal credits. */

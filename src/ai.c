@@ -3293,7 +3293,7 @@ static int aiL_canboard( lua_State *L )
    Pilot *p;
 
    /* Get parameters. */
-   p = luaL_validpilot(L,1);
+   p = luaL_validpilot(L, 1);
 
    /* Must be disabled. */
    if (!pilot_isDisabled(p)) {
