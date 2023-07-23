@@ -105,6 +105,7 @@
   times.
 * Trader pilots now only form groups using the standard formation;
   they don't also randomly sit next to each other anymore.
+* Pirates will now steal cargo in addition to credits from the player.
 
 ### Bugfixes
 
