@@ -29,12 +29,33 @@
   hasn't been done yet.)
 * Added some more missions to the Hakoi Pirates campaign.
 
-### Other Changes
+### Other Gameplay Changes
 
-* Fleets are now organized centrally such that if a pilot has a parent,
-  any of its own followers will go into formation with said parent. This
-  makes fleets look sleeker and more organized when some AI pilots in
-  said fleets are equipped with fighter bays.
+* Hypergates event now adds knowledge of the hypergates.
+* Sirius ships no longer refuse to run away from combat by default.
+  (They now run away with the same amount of damage as Empire and
+  Soromid ships.)
+* Patrol missions now cause marked hostiles to never run away.
+* Most AI pilots will now stop shooting a target once it has been
+  disabled.
+* Added a simple derelict event that randomly disables some pilots when
+  entering a system.
+* Fuel request event is now more likely to appear.
+* Tweaked capital-class weaponry to make the different weapon types
+  more differentiated (to bring them in-line with their smaller
+  counterparts).
+* Doubled the disable amount for all lethal weapons (which makes the
+  Heavy Razor Turret and Enygma Systems Spearhead Launcher a bit
+  better and should also make pilots getting incidentally disabled
+  during a fight a bit more commonplace).
+* Baron Prince now spawns artifact hunters in any system you enter, but
+  is less likely to do so until you confirm you found the real artifact.
+* Removed the restriction that disallowed boarding a pilot multiple
+  times.
+* Pirates will now steal cargo in addition to credits from the player.
+
+### Other Interface Changes
+
 * Exposed TC velocity via the options menu (which controls how much
   faster the game gets during time compression).
 * The map no longer fades between modes and instead just instantly
@@ -48,7 +69,27 @@
   prices.
 * Improved the System Info display, improving the description text's
   coloring and adding information that was previously missing.
-* Hypergates event now adds knowledge of the hypergates.
+* Whether or not right-clicking on a pilot causes you to follow them is
+  now a togglable option. (Previously it was context-dependent.)
+* Made cargo mission description headers gray (the same as most
+  headers).
+* Added a display of bolt weapons' "optimum range" (maximum range at
+  which they inflict their full damage amount).
+* Changed the mission failure messages for cargo missions to match other
+  missions better.
+* The options menu no longer (falsely) tells you that you need to
+  restart the game to change the scale factor, and it now always
+  properly updates after changing the scale factor setting.
+* Made the FPS Limit textbox in the options menu a bit bigger.
+* Moved the Reload Time stat in launchers' stat lists to a more logical
+  place.
+
+### Other Changes
+
+* Fleets are now organized centrally such that if a pilot has a parent,
+  any of its own followers will go into formation with said parent. This
+  makes fleets look sleeker and more organized when some AI pilots in
+  said fleets are equipped with fighter bays.
 * Moved things around in Gamma Polaris to reduce conflicts in the
   overlay.
 * Anglicized the spelling of the name of the Empire lieutenant you are
@@ -60,55 +101,20 @@
   * "Through" is spelled "thru".
 * Added and updated several NPC portraits.
 * New games now always start with the same music track playing.
-* Sirius ships no longer refuse to run away from combat by default.
-  (They now run away with the same amount of damage as Empire and
-  Soromid ships.)
 * Improved the way no-run behavior (used by some missions) is
   implemented.
-* Patrol missions now cause marked hostiles to never run away.
-* Whether or not right-clicking on a pilot causes you to follow them is
-  now a togglable option. (Previously it was context-dependent.)
-* Most AI pilots will now stop shooting a target once it has been
-  disabled.
 * Started changing the way missions and events prevent conflicts away
   from strict system claims and toward other methods that still allow
   multiple missions and events to have in one system. (This is still a
   work-in-progress.)
-* Added a simple derelict event that randomly disables some pilots when
-  entering a system.
-* Fuel request event is now more likely to appear.
 * Made some optimizations to the code which should help a bit with
   performance in busy systems.
 * Made some small improvements to the way the AI works.
 * Removed the Sirius Preach event.
-* Made cargo mission description headers gray (the same as most
-  headers).
-* Tweaked capital-class weaponry to make the different weapon types
-  more differentiated (to bring them in-line with their smaller
-  counterparts).
-* Added a display of bolt weapons' "optimum range" (maximum range at
-  which they inflict their full damage amount).
-* Doubled the disable amount for all lethal weapons (which makes the
-  Heavy Razor Turret and Enygma Systems Spearhead Launcher a bit
-  better and should also make pilots getting incidentally disabled
-  during a fight a bit more commonplace).
-* Changed the mission failure messages for cargo missions to match other
-  missions better.
 * Za'lek Test mission no longer refuses to spawn if another Za'lek Test
   mission is active.
-* Baron Prince now spawns artifact hunters in any system you enter, but
-  is less likely to do so until you confirm you found the real artifact.
-* The options menu no longer (falsely) tells you that you need to
-  restart the game to change the scale factor, and it now always
-  properly updates after changing the scale factor setting.
-* Removed the restriction that disallowed boarding a pilot multiple
-  times.
 * Trader pilots now only form groups using the standard formation;
   they don't also randomly sit next to each other anymore.
-* Pirates will now steal cargo in addition to credits from the player.
-* Made the FPS Limit textbox in the options menu a bit bigger.
-* Moved the Reload Time stat in launchers' stat lists to a more logical
-  place.
 
 ### Bugfixes
 
