@@ -2006,15 +2006,18 @@ void pilot_renderOverlay( Pilot* p, const double dt )
  */
 void pilot_update( Pilot* pilot, double dt )
 {
-   int i, cooling, nchg;
+   int i, cooling;
+   int changed;
    int ammo_threshold;
    unsigned int l;
    Pilot *target;
-   double a, px,py, vx,vy;
+   double px, py, vx, vy;
    char buf[16];
    PilotOutfitSlot *o;
+   double angle;
    double Q;
    Damage dmg;
+   double rtmass;
    double stress_falloff;
    double efficiency, thrust;
    double reload_time;
@@ -2036,25 +2039,25 @@ void pilot_update( Pilot* pilot, double dt )
    /*
     * Update timers.
     */
-   pilot->ptimer   -= dt;
+   pilot->ptimer -= dt;
    pilot->tcontrol -= dt;
    if (cooling) {
-      pilot->ctimer   -= dt;
+      pilot->ctimer -= dt;
       if (pilot->ctimer < 0.) {
          pilot_cooldownEnd(pilot, NULL);
          cooling = 0;
       }
    }
-   pilot->stimer   -= dt;
+   pilot->stimer -= dt;
    if (pilot->stimer <= 0.)
-      pilot->sbonus   -= dt;
+      pilot->sbonus -= dt;
    for (i=0; i<MAX_AI_TIMERS; i++)
       if (pilot->timer[i] > 0.)
          pilot->timer[i] -= dt;
    /* Update heat. */
-   a = -1.;
+   angle = -1.;
    Q = 0.;
-   nchg = 0; /* Number of outfits that change state, processed at the end. */
+   changed = 0; /* Whether state changed, processed at the end. */
    for (i=0; i<array_size(pilot->outfits); i++) {
       o = pilot->outfits[i];
       reload_time = 0;
@@ -2113,11 +2116,11 @@ void pilot_update( Pilot* pilot, double dt )
          if (o->stimer < 0.) {
             if (o->state == PILOT_OUTFIT_ON) {
                pilot_outfitOff( pilot, o );
-               nchg++;
+               changed = 1;
             }
             else if (o->state == PILOT_OUTFIT_COOLDOWN) {
                o->state  = PILOT_OUTFIT_OFF;
-               nchg++;
+               changed = 1;
             }
          }
       }
@@ -2127,7 +2130,7 @@ void pilot_update( Pilot* pilot, double dt )
          Q  += pilot_heatUpdateSlot( pilot, o, dt );
 
       /* Handle lockons. */
-      pilot_lockUpdateSlot( pilot, o, target, &a, dt );
+      pilot_lockUpdateSlot(pilot, o, target, &angle, dt);
    }
 
    /* Global heat. */
@@ -2137,22 +2140,23 @@ void pilot_update( Pilot* pilot, double dt )
       pilot_heatUpdateCooldown( pilot );
 
    /* Update stress. */
-   if (!pilot_isFlag(pilot, PILOT_DISABLED)) { /* Case pilot is not disabled. */
-      stress_falloff = 0.3*sqrt(pilot->solid->mass); /* Should be about 38 seconds for a 300 mass ship with 200 armour, and 172 seconds for a 6000 mass ship with 4000 armour. */
+   if (!pilot_isFlag(pilot, PILOT_DISABLED)) {
+      /* Should be about 38 seconds for a 300 mass ship with 200 armor,
+       * and 172 seconds for a 6000 mass ship with 4000 armor. */
+      stress_falloff = 0.3 * sqrt(pilot->solid->mass);
       pilot->stress -= stress_falloff * pilot->stats.stress_dissipation * dt;
       pilot->stress = MAX(pilot->stress, 0);
    }
    else if (!pilot_isFlag(pilot, PILOT_DISABLED_PERM)) { /* Case pilot is disabled (but not permanently so). */
       pilot->dtimer_accum += dt;
       if (pilot->dtimer_accum >= pilot->dtimer) {
-         pilot->stress       = 0.;
+         pilot->stress = 0.;
          pilot->dtimer_accum = 0;
          pilot_updateDisable(pilot, 0);
       }
    }
 
    if (pilot_isFlag(pilot,PILOT_DEAD)) {
-
       /* pilot death sound */
       if (!pilot_isFlag(pilot,PILOT_DEATH_SOUND) &&
             (pilot->ptimer < 0.050)) {
@@ -2169,14 +2173,15 @@ void pilot_update( Pilot* pilot, double dt )
             (pilot->ptimer < 0.200)) {
 
          /* Damage from explosion. */
-         a                 = sqrt(pilot->solid->mass);
-         dmg.type          = dtype_get("explosion_splash");
-         dmg.damage        = MAX(0., 2. * (a * (1. + sqrt(pilot->fuel + 1.) / 28.)));
-         dmg.penetration   = 1.; /* Full penetration. */
-         dmg.disable       = 0.;
-         expl_explode( pilot->solid->pos.x, pilot->solid->pos.y,
+         rtmass = sqrt(pilot->solid->mass);
+         dmg.type = dtype_get("explosion_splash");
+         dmg.damage = MAX(0., 2. * (rtmass * (1. + sqrt(pilot->fuel+1.)/28.)));
+         dmg.penetration = 1.; /* Full penetration. */
+         dmg.disable = 0.;
+         expl_explode(pilot->solid->pos.x, pilot->solid->pos.y,
                pilot->solid->vel.x, pilot->solid->vel.y,
-               pilot->ship->gfx_space->sw/2./PILOT_SIZE_APPROX + a, &dmg, NULL, EXPL_MODE_SHIP );
+               pilot->ship->gfx_space->sw/2./PILOT_SIZE_APPROX + rtmass,
+               &dmg, NULL, EXPL_MODE_SHIP);
          debris_add( pilot->solid->mass, pilot->ship->gfx_space->sw/2.,
                pilot->solid->pos.x, pilot->solid->pos.y,
                pilot->solid->vel.x, pilot->solid->vel.y );
@@ -2197,9 +2202,11 @@ void pilot_update( Pilot* pilot, double dt )
                pilot->ptimer;
 
          /* random position on ship */
-         a = RNGF()*2.*M_PI;
-         px = VX(pilot->solid->pos) +  cos(a)*RNGF()*pilot->ship->gfx_space->sw/2.;
-         py = VY(pilot->solid->pos) +  sin(a)*RNGF()*pilot->ship->gfx_space->sh/2.;
+         angle = RNGF()*2.*M_PI;
+         px = (VX(pilot->solid->pos)
+               + cos(angle)*RNGF()*pilot->ship->gfx_space->sw/2.);
+         py = (VY(pilot->solid->pos)
+               + sin(angle)*RNGF()*pilot->ship->gfx_space->sh/2.);
          vx = VX(pilot->solid->vel);
          vy = VY(pilot->solid->vel);
 
@@ -2265,7 +2272,6 @@ void pilot_update( Pilot* pilot, double dt )
 
    /* Healing and energy usage is only done if not disabled. */
    if (!pilot_isDisabled(pilot)) {
-      /* Pilot is still alive */
       pilot->armour += pilot->armour_regen * dt;
       if (pilot->armour > pilot->armour_max)
          pilot->armour = pilot->armour_max;
@@ -2304,12 +2310,12 @@ void pilot_update( Pilot* pilot, double dt )
       else if (pilot->energy < 0.) {
          pilot->energy = 0.;
          /* Stop all on outfits. */
-         nchg += pilot_outfitOffAll(pilot);
+         changed += pilot_outfitOffAll(pilot);
       }
 
       /* Must recalculate stats because something changed state. */
-      if (nchg > 0)
-         pilot_calcStats( pilot );
+      if (changed)
+         pilot_calcStats(pilot);
    }
 
    /* purpose fallthrough to get the movement like disabled */

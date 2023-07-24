@@ -233,14 +233,14 @@ void pilot_heatUpdateShip( Pilot *p, double Q_cond, double dt )
    double Q, Q_rad;
 
    /* Calculate radiation. */
-   Q_rad       = CONST_STEFAN_BOLTZMANN * p->heat_area * p->heat_emis *
-         (CONST_SPACE_STAR_TEMP_4 - pow(p->heat_T,4.)) * dt;
+   Q_rad = (CONST_STEFAN_BOLTZMANN * p->heat_area * p->heat_emis
+         * (CONST_SPACE_STAR_TEMP_4-pow(p->heat_T,4.)) * dt);
 
    /* Total heat movement. */
-   Q           = Q_rad - Q_cond;
+   Q = Q_rad - Q_cond;
 
    /* Update ship temperature. */
-   p->heat_T  += Q / p->heat_C;
+   p->heat_T += Q / p->heat_C;
 }
 
 
