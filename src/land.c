@@ -843,8 +843,8 @@ static void misn_genList( unsigned int wid, int first )
    /* Restore focus. */
    window_setFocus(wid, focused);
    free(focused);
-   toolkit_setListPos(wid, "lstMission", list_pos);
    toolkit_setListOffset(wid, "lstMission", list_offset);
+   toolkit_setListPos(wid, "lstMission", list_pos);
 }
 
 
