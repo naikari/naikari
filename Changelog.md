@@ -107,6 +107,8 @@
   they don't also randomly sit next to each other anymore.
 * Pirates will now steal cargo in addition to credits from the player.
 * Made the FPS Limit textbox in the options menu a bit bigger.
+* Moved the Reload Time stat in launchers' stat lists to a more logical
+  place.
 
 ### Bugfixes
 

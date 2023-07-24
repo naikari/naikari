@@ -2696,10 +2696,6 @@ static void outfit_launcherDesc( Outfit* o )
             o->u.lau.lockon);
 
    l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-         _("%.1f s/round Reload Time\n"),
-         o->u.lau.reload_time);
-
-   l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          n_("Holds %d %s:\n", "Holds %d %s:\n", o->u.lau.amount),
          o->u.lau.amount, _(o->u.lau.ammo_name));
 
@@ -2732,13 +2728,22 @@ static void outfit_launcherDesc( Outfit* o )
             1. / o->u.lau.delay * a->u.amm.energy, a->u.amm.energy );
    }
 
-   l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-         _("%.1f RPS Fire Rate\n"
-         "%.0f mAU Range [%G duration]\n"
-         "%G mAU/s Maximum Speed"),
-         1. / o->u.lau.delay,
-         outfit_range(a), a->u.amm.duration,
-         a->u.amm.speed );
+   l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+         _("%.1f RPS Fire Rate\n"),
+         1. / o->u.lau.delay);
+
+   l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+         _("%.1f s/round Reload Time\n"),
+         o->u.lau.reload_time);
+
+   l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+         _("%.0f mAU Range [%G duration]\n"),
+         outfit_range(a), a->u.amm.duration);
+
+   l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+         _("%G mAU/s Maximum Speed"),
+         a->u.amm.speed);
+
    if (o->u.lau.rdr_range > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
             _("\n%G mAU Radar Optimal Range"),
