@@ -851,15 +851,14 @@ static void misn_genList( unsigned int wid, int first )
 /**
  * @brief Handles mission list double-click.
  *    @param wid Window of the mission computer.
- *    @param str Unused.
+ *    @param str Name of the list causing the event.
  */
 static void misn_activateList(wid_t wid, char* str)
 {
-   (void) str;
    Mission *misn;
 
    /* Center map on the selected mission. */
-   misn = &mission_computer[toolkit_getListPos(wid, "lstMission")];
+   misn = &mission_computer[toolkit_getListPos(wid, str)];
    if (misn->markers != NULL)
       map_center(system_getIndex(misn->markers[0].sys)->name);
 }
