@@ -1366,7 +1366,7 @@ static void opt_video( unsigned int wid )
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText( wid, x, y, l, 20, 1, "txtSFPS",
          &gl_smallFont, NULL, s );
-   window_addInput( wid, x+l+20, y, 40, 20, "inpFPS", 4, 1, &gl_smallFont );
+   window_addInput( wid, x+l+20, y, 60, 20, "inpFPS", 4, 1, &gl_smallFont );
    window_setInputFilter( wid, "inpFPS", INPUT_FILTER_NUMBER );
    snprintf( buf, sizeof(buf), "%d", conf.fps_max );
    window_setInput( wid, "inpFPS", buf );
