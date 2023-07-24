@@ -78,7 +78,7 @@
 /*
  * Misc stuff.
  */
-extern const double fps_min;
+extern const double dt_max;
 void fps_setPos( double x, double y );
 void display_fps( const double dt );
 void naev_resize(int force);

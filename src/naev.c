@@ -100,20 +100,20 @@ static SDL_Surface *naev_icon = NULL; /**< Icon. */
 static int fps_skipped        = 0; /**< Skipped last frame? */
 /* Version stuff. */
 static semver_t version_binary; /**< Naev binary version. */
-//static semver_t version_data; /**< Naev data version. */
 static char version_human[STRMAX_SHORT]; /**< Human readable version. */
 
 /*
  * FPS stuff.
  */
-static double fps_dt    = 1.; /**< Display fps accumulator. */
-static double game_dt   = 0.; /**< Current game deltatick (uses dt_mod). */
-static double real_dt   = 0.; /**< Real deltatick. */
-static double fps     = 0.; /**< FPS to finally display. */
+static double fps_dt = 1.; /**< Display fps accumulator. */
+static double game_dt = 0.; /**< Current game deltatick (uses dt_mod). */
+static double real_dt = 0.; /**< Real deltatick. */
+static double fps = 0.; /**< FPS to finally display. */
 static double fps_cur = 0.; /**< FPS accumulator to trigger change. */
-static double fps_x     =  15.; /**< FPS X position. */
-static double fps_y     = -15.; /**< FPS Y position. */
-const double fps_min    = 1./30.; /**< Minimum fps to run at. */
+static double fps_x =  15.; /**< FPS X position. */
+static double fps_y = -15.; /**< FPS Y position. */
+
+const double dt_max = 1./30.; /**< Max dt per frame (denominator is min FPS). */
 
 /*
  * prototypes
@@ -959,10 +959,12 @@ static void update_all (void)
       fps_skipped = 1;
       return;
    }
-   else if (game_dt > fps_min) { /* we'll force a minimum FPS for physics to work alright. */
+   else if (game_dt > dt_max) {
+      /* FPS is too low to maintain accurate collision detection. To
+       * avoid problems with this, we update in increments. */
 
       /* Number of frames. */
-      nf = ceil( game_dt / fps_min );
+      nf = ceil(game_dt / dt_max);
       microdt = game_dt / nf;
       n  = (int) nf;
 

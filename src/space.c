@@ -1531,9 +1531,9 @@ void space_init( const char* sysname )
    s = sound_disabled;
    sound_disabled = 1;
    ntime_allowUpdate( 0 );
-   n = SYSTEM_SIMULATE_TIME / fps_min;
+   n = SYSTEM_SIMULATE_TIME / dt_max;
    for (i=0; i<n; i++)
-      update_routine( fps_min, 1 );
+      update_routine(dt_max, 1);
    ntime_allowUpdate( 1 );
    sound_disabled = s;
    player_messageToggle( 1 );
