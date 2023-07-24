@@ -589,10 +589,10 @@ end
 function __run_hyp ()
    -- Go towards jump
    local target = ai.taskdata()
-   local jump = ai.subtaskdata()
+   local jpos = ai.subtaskdata()
    local jdir
    local bdist = ai.minbrakedist()
-   local jdist = ai.dist(jump)
+   local jdist = ai.dist(jpos)
    local plt = ai.pilot()
 
    -- Shoot the target
@@ -610,13 +610,13 @@ function __run_hyp ()
 
       if dozigzag then
          -- Pilot is agile, but too slow to outrun the enemy: dodge
-         local dir = ai.dir(jump)
+         local dir = ai.dir(jpos)
          __zigzag(dir, 70)
       else
          if jdist > 3*bdist and plt:stats().mass < 600 then
-            jdir = ai.careful_face(jump)
+            jdir = ai.careful_face(jpos)
          else --Heavy ships should rush to jump point
-            jdir = ai.face(jump, nil, true)
+            jdir = ai.face(jpos, nil, true)
          end
          if jdir < 10 then
             ai.accel()
@@ -632,21 +632,7 @@ function __run_hyp ()
          end
       end
    else
-      if ai.instantJump() then
-         ai.pushsubtask( "__hyp_jump" )
-      else
-         ai.pushsubtask( "__run_hypbrake" )
-      end
-   end
-end
-function __run_hypbrake ()
-
-   -- The braking
-   ai.brake()
-   if ai.isstopped() then
-      ai.stop()
-      ai.popsubtask()
-      ai.pushsubtask( "__hyp_jump" )
+      ai.pushsubtask("__hyp_brake")
    end
 end
 
@@ -715,11 +701,12 @@ function hyperspace()
    if target == nil then
       target = ai.rndhyptarget()
       if target == nil then
+         ai.poptask()
          return
       end
    end
    local pos = ai.sethyptarget(target)
-   ai.pushsubtask( "__hyp_approach", pos )
+   ai.pushsubtask("__hyp_approach", pos)
 end
 function __hyp_approach ()
    local target = ai.subtaskdata()
@@ -747,52 +734,43 @@ function __hyp_approach ()
       ai.accel()
    -- Need to start braking
    elseif dist <= bdist then
-      if ai.instantJump() then
-         ai.pushsubtask("__hyp_jump")
-      else
-         ai.pushsubtask("__hyp_brake")
-      end
+      ai.pushsubtask("__hyp_brake")
    end
 end
-function __hyp_brake ()
+function __hyp_brake()
    -- Make sure afterburner is off, since it messes things up here.
    ai.weapset(8, false)
+
+   -- TODO: Come up with a way to let instant jump pilots avoid braking
+   -- without creating a possibility for potential limbo states.
 
    ai.brake()
    if ai.isstopped() then
       ai.stop()
-      ai.popsubtask()
-      ai.pushsubtask("__hyp_jump")
-   end
-end
-function __hyp_jump ()
-   -- Make sure afterburner is off, since it messes things up here.
-   ai.weapset(8, false)
-
-   local p = ai.pilot()
-   local result = ai.hyperspace()
-   if result == nil then
-      p:msg(p:followers(), "hyperspace", ai.nearhyptarget())
-   elseif result == -2 then
-      -- Hyperdrive is offline.
-      -- XXX: Special exception for if this is one of the player's
-      -- carrier fighters, since those have hyperdrive disabled on
-      -- purpose.
-      if not mem.carrier or p:leader() ~= player.pilot() then
+      local result = ai.hyperspace()
+      if result == nil then
+         local p = ai.pilot()
+         p:msg(p:followers(), "hyperspace", ai.nearhyptarget())
+      elseif result == -2 then
+         -- Hyperdrive is offline. Print a debug message to possibly
+         -- debug this, except for the player's carrier fighters
+         -- (since those have hyperdrive disabled on purpose).
+         local p = ai.pilot()
+         if not mem.carrier or p:leader() ~= player.pilot() then
+            debug_print(
+               string.format("'%s' cannot jump for task '%s' (hyperdrive disabled).",
+                     p:name(), ai.taskname()))
+         end
+      elseif result == -3 then
+         -- Fuel too low. Print a debug message to possibly debug this.
          debug_print(
-            string.format("'%s' cannot jump (hyperdrive disabled).", p:name()))
+            string.format("'%s' cannot jump for task '%s' (not enough fuel).",
+                  p:name(), ai.taskname()))
       end
+
+      -- Either we're done, or hyperspace failed; either way, pop task.
       ai.poptask()
-      return
-   elseif result == -3 then
-      -- Fuel too low; cannot jump.
-      debug_print(
-         string.format("'%s' cannot jump for task '%s' (not enough fuel).",
-               p:name(), ai.taskname()))
-      ai.poptask()
-      return
    end
-   ai.popsubtask() -- Keep the task even if succeeding in case pilot gets pushed away.
 end
 
 

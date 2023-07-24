@@ -135,7 +135,8 @@
   (which caused the Slim GUI to be messed up during cinematics).
 * Fixed AI not being able to behave properly when out of fuel.
 * Fixed a long-standing bug where AI pilots could get stuck spinning
-  around in circles while trying to land.
+  around in circles while trying to land and a similar bug when trying
+  to hyperspace.
 
 
 ## 0.8.0
