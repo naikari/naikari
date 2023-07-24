@@ -16,11 +16,15 @@ copyright_holder = 'Naikari Dev Team'
 
 # Tools
 cc = meson.get_compiler('c')
-c_args = []
+c_args = cc.get_supported_arguments([
+   '-fno-math-errno',
+   '-funsafe-math-optimizations',
+   '-fno-signaling-nans',
+])
 link_args = []
-subdir('utils')
 
 # Version Generation
+subdir('utils')
 version_result = run_command(gen_version, meson.project_version(), check: true)
 version = version_result.stdout().strip()
 meson.add_dist_script(add_to_package, 'dat/VERSION')
