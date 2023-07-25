@@ -25,7 +25,9 @@ equip_classOutfits_engines["Yacht"] = {
    "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
 }
 equip_classOutfits_hulls["Yacht"] = {
-   "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
+   "Unicorp D-2 Light Plating",
+   "Unicorp X-2 Light Plating",
+   "S&K Ultralight Stealth Plating",
    "S&K Ultralight Combat Plating",
 }
 equip_classOutfits_weapons["Yacht"] = {
@@ -34,7 +36,11 @@ equip_classOutfits_weapons["Yacht"] = {
       "Photon Dagger",
    },
    {
-      "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
+      "Laser Cannon MK1",
+      "Razor MK1",
+      "Gauss Gun",
+      "Plasma Blaster MK1",
+      "Particle Lance",
       "Ion Cannon",
    },
 }

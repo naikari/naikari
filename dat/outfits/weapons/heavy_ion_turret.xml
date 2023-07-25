@@ -6,7 +6,7 @@
   <mass>55</mass>
   <license>Heavy Weapon License</license>
   <price>150000</price>
-  <description>The Heavy Ion Turret is a Sirius military design, applying brute force to its target's internal systems. When coupled with Razor weaponry, it is terribly efficient at reducing enemy warships to tumbling hunks of junk.</description>
+  <description>The Heavy Ion Turret is the strongest less-than-lethal weapon in the galaxy, applying brute force to its target's internal systems. It is well-used by pirates all across the galaxy despite repeated attempts to restrict its sale.</description>
   <gfx_store>heavy_ionturret.webp</gfx_store>
   <cpu>-90</cpu>
  </general>

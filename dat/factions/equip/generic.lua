@@ -134,45 +134,70 @@ equip_classOutfits_engines = {
 -- none should be equipped.
 equip_classOutfits_hulls = {
    ["Yacht"] = {
-      "Unicorp D-2 Light Plating", "Unicorp D-4 Light Plating",
+      "Unicorp D-2 Light Plating",
+      "Unicorp D-4 Light Plating",
+      "Unicorp X-2 Light Plating",
+      "Unicorp X-4 Light Plating",
       "S&K Small Cargo Hull",
    },
    ["Luxury Yacht"] = {
-      "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
+      "Unicorp D-2 Light Plating",
+      "Unicorp X-2 Light Plating",
+      "S&K Ultralight Stealth Plating",
    },
    ["Scout"] = {
-      "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
+      "Unicorp D-2 Light Plating",
+      "Unicorp X-2 Light Plating",
+      "S&K Ultralight Stealth Plating",
    },
    ["Courier"] = {
-      "Unicorp D-4 Light Plating", "S&K Small Cargo Hull",
+      "Unicorp D-4 Light Plating",
+      "Unicorp X-4 Light Plating",
+      "S&K Small Cargo Hull",
    },
    ["Freighter"] = {
-      "Unicorp D-24 Medium Plating", "S&K Medium Cargo Hull",
+      "Unicorp D-24 Medium Plating",
+      "Unicorp X-24 Medium Plating",
+      "S&K Medium Cargo Hull",
    },
    ["Armored Transport"] = {
-      "Unicorp D-24 Medium Plating", "S&K Medium Cargo Hull",
+      "Unicorp D-24 Medium Plating",
+      "Unicorp X-24 Medium Plating",
+      "S&K Medium Cargo Hull",
    },
    ["Fighter"] = {
-      "Unicorp D-4 Light Plating", "S&K Light Stealth Plating",
+      "Unicorp D-4 Light Plating",
+      "Unicorp X-4 Light Plating",
+      "S&K Light Stealth Plating",
       "S&K Light Combat Plating"
    },
    ["Bomber"] = {
-      "Unicorp D-4 Light Plating", "S&K Light Stealth Plating",
+      "Unicorp D-4 Light Plating",
+      "Unicorp X-4 Light Plating",
+      "S&K Light Stealth Plating",
       "S&K Light Combat Plating"
    },
    ["Corvette"] = {
-      "Unicorp D-12 Medium Plating", "S&K Medium Stealth Plating",
+      "Unicorp D-12 Medium Plating",
+      "Unicorp X-12 Medium Plating",
+      "S&K Medium Stealth Plating",
       "S&K Medium Combat Plating"
    },
    ["Destroyer"] = {
-      "Unicorp D-24 Medium Plating", "S&K Medium-Heavy Stealth Plating",
+      "Unicorp D-24 Medium Plating",
+      "Unicorp X-24 Medium Plating",
+      "S&K Medium-Heavy Stealth Plating",
       "S&K Medium-Heavy Combat Plating"
    },
    ["Cruiser"] = {
-      "Unicorp D-72 Heavy Plating", "S&K Superheavy Combat Plating"
+      "Unicorp D-72 Heavy Plating",
+      "Unicorp X-72 Heavy Plating",
+      "S&K Superheavy Combat Plating"
    },
    ["Carrier"] = {
-      "Unicorp D-72 Heavy Plating", "S&K Superheavy Combat Plating"
+      "Unicorp D-72 Heavy Plating",
+      "Unicorp X-72 Heavy Plating",
+      "S&K Superheavy Combat Plating"
    },
    ["Drone"] = {
       "S&K Ultralight Combat Plating"
@@ -189,26 +214,46 @@ equip_classOutfits_hulls = {
 equip_classOutfits_weapons = {
    ["Yacht"] = {
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "Laser Turret MK1", "Razor Turret MK1", "Turreted Gauss Gun",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+         "Ion Cannon",
+         "Laser Turret MK1",
+         "Razor Turret MK1",
+         "Turreted Gauss Gun",
          "Plasma Turret MK1",
+         "Particle Beam",
       },
    },
    ["Luxury Yacht"] = {
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+         "Ion Cannon",
       },
    },
    ["Scout"] = {
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "TeraCom Mace Launcher", "TeraCom Banshee Launcher",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+         "Ion Cannon",
       },
    },
    ["Courier"] = {
       {
-         "Laser Turret MK1", "Razor Turret MK1", "Turreted Gauss Gun",
+         "Laser Turret MK1",
+         "Razor Turret MK1",
+         "Turreted Gauss Gun",
          "Plasma Turret MK1",
+         "Particle Beam",
       },
    },
    ["Freighter"] = {
@@ -216,107 +261,171 @@ equip_classOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
       },
       {
-         "Laser Turret MK2", "Razor Turret MK2", "Turreted Vulcan Gun",
-         "Plasma Turret MK2", "Orion Beam",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Laser Turret MK2",
+         "Razor Turret MK2",
+         "Turreted Vulcan Gun",
+         "Plasma Turret MK2",
+         "Orion Beam",
+         "EMP Grenade Launcher",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
       },
    },
    ["Armored Transport"] = {
       {
-         "Heavy Ripper Turret", "Plasma Cluster Turret",
-         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
+         "Heavy Ripper Turret",
+         "Plasma Cluster Turret",
+         "Turreted Mass Driver",
+         "Grave Beam",
+         "Heavy Ion Turret",
       },
       {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
       },
       {
-         "Laser Turret MK2", "Razor Turret MK2", "Turreted Vulcan Gun",
-         "Plasma Turret MK2", "Orion Beam", "EMP Grenade Launcher",
+         "Laser Turret MK2",
+         "Razor Turret MK2",
+         "Turreted Vulcan Gun",
+         "Plasma Turret MK2",
+         "Orion Beam",
+         "EMP Grenade Launcher",
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
       },
    },
    ["Fighter"] = {
       {
-         "Unicorp Headhunter Launcher", "Unicorp Fury Launcher",
-         "Unicorp Medusa Launcher",
+         "Unicorp Fury Launcher",
+         "Unicorp Headhunter Launcher",
       },
       {
-         "Laser Cannon MK2", "Razor MK2", "Vulcan Gun", "Plasma Blaster MK2",
-         "Orion Lance", "Ion Cannon",
+         "Laser Cannon MK2",
+         "Razor MK2",
+         "Vulcan Gun",
+         "Plasma Blaster MK2",
+         "Orion Lance",
+         "Ion Cannon",
       },
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "Unicorp Mace Launcher", "Unicorp Banshee Launcher",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+         "Unicorp Mace Launcher",
+         "Unicorp Banshee Launcher",
       },
    },
    ["Bomber"] = {
       {
          varied = true;
-         "TeraCom Fury Launcher", "TeraCom Medusa Launcher",
+         "Unicorp Fury Launcher",
+         "TeraCom Fury Launcher",
          "Unicorp Headhunter Launcher",
+         "Unicorp Medusa Launcher",
       },
       {
-         "Laser Cannon MK2", "Razor MK2", "Vulcan Gun", "Plasma Blaster MK2",
+         "Laser Cannon MK2",
+         "Razor MK2",
+         "Vulcan Gun",
+         "Plasma Blaster MK2",
+         "Orion Lance",
          "Ion Cannon",
       },
    },
    ["Corvette"] = {
       {
          varied = true;
-         "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
-         "Unicorp Medusa Launcher", "Unicorp Vengeance Launcher",
-         "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
-         "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-         "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-         "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
+         "Unicorp Fury Launcher",
+         "TeraCom Fury Launcher",
+         "Unicorp Headhunter Launcher",
+         "TeraCom Headhunter Launcher",
+         "Unicorp Medusa Launcher",
+         "TeraCom Medusa Launcher",
+         "Unicorp Vengeance Launcher",
+         "TeraCom Vengeance Launcher",
+         "Enygma Systems Spearhead Launcher",
+         "Unicorp Caesar IV Launcher",
+         "TeraCom Imperator Launcher",
+         "Enygma Systems Huntsman Launcher",
       },
       {
          probability = {
-            ["Ripper Cannon"] = 8, ["Slicer"] = 8, ["Shredder"] = 8,
-            ["Plasma Cannon"] = 8,
+            ["Ripper Cannon"] = 10,
+            ["Slicer"] = 10,
+            ["Shredder"] = 10,
+            ["Plasma Cannon"] = 10,
          };
-         "Ripper Cannon", "Slicer", "Shredder", "Plasma Cannon",
-         "Laser Cannon MK2", "Razor MK2", "Vulcan Gun", "Plasma Blaster MK2",
+         "Ripper Cannon",
+         "Slicer",
+         "Shredder",
+         "Plasma Cannon",
+         "Laser Cannon MK2",
+         "Razor MK2",
+         "Vulcan Gun",
+         "Plasma Blaster MK2",
+         "Orion Lance",
       },
    },
    ["Destroyer"] = {
       {
-         "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
-         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
+         "Railgun",
+         "Heavy Ripper Turret",
+         "Plasma Cluster Turret",
+         "Turreted Mass Driver",
+         "Grave Beam",
+         "Heavy Ion Turret",
       },
       {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
       },
       {
          num = 1;
-         "Heavy Ripper Cannon", "Mass Driver", "Plasma Cluster Cannon",
-         "Grave Lance", "Heavy Ion Cannon", "Laser Turret MK2",
-         "Razor Turret MK2", "Turreted Vulcan Gun", "Plasma Turret MK2",
-         "Orion Beam", "Enygma Systems Turreted Fury Launcher",
+         "Heavy Ripper Cannon",
+         "Mass Driver",
+         "Plasma Cluster Cannon",
+         "Grave Lance",
+         "Heavy Ion Cannon",
+         "Laser Turret MK2",
+         "Razor Turret MK2",
+         "Turreted Vulcan Gun",
+         "Plasma Turret MK2",
+         "Orion Beam",
+         "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
       },
       {
-         "Heavy Ripper Cannon", "Mass Driver", "Plasma Cluster Cannon",
-         "Grave Lance", "Heavy Ion Cannon", "Laser Turret MK2",
-         "Razor Turret MK2", "Turreted Vulcan Gun", "Plasma Turret MK2",
+         "Heavy Ripper Cannon",
+         "Mass Driver",
+         "Plasma Cluster Cannon",
+         "Grave Lance",
+         "Heavy Ion Cannon",
+         "Laser Turret MK2",
+         "Razor Turret MK2",
+         "Turreted Vulcan Gun",
+         "Plasma Turret MK2",
          "Orion Beam",
       },
    },
@@ -325,30 +434,48 @@ equip_classOutfits_weapons = {
          num = 1;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
-         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
+         "Hyena Fighter Bay",
+         "Shark Fighter Bay",
+         "Lancelot Fighter Bay",
       },
       {
-         "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
-         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
+         "Heavy Laser Turret",
+         "Railgun Turret",
+         "Ragnarok Beam",
+         "Hyena Fighter Bay",
+         "Shark Fighter Bay",
+         "Lancelot Fighter Bay",
       },
       {
-         "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
-         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
+         "Railgun",
+         "Heavy Ripper Turret",
+         "Plasma Cluster Turret",
+         "Turreted Mass Driver",
+         "Grave Beam",
+         "Heavy Ion Turret",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
       },
    },
    ["Carrier"] = {
       {
          varied = true;
-         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
+         "Hyena Fighter Bay",
+         "Shark Fighter Bay",
+         "Lancelot Fighter Bay",
       },
       {
-         "Heavy Laser Turret", "Railgun Turret", "Ragnarok Beam",
+         "Heavy Laser Turret",
+         "Railgun Turret",
+         "Ragnarok Beam",
       },
       {
-         "Heavy Ripper Turret", "Plasma Cluster Turret",
-         "Turreted Mass Driver", "Grave Beam",
+         "Heavy Ripper Turret",
+         "Plasma Cluster Turret",
+         "Turreted Mass Driver",
+         "Grave Beam",
+         "Heavy Ion Turret",
       },
    },
    ["Drone"] = {
@@ -949,139 +1076,70 @@ equip_typeOutfits_weapons = {
    ["Hyena"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
+         "Unicorp Banshee Launcher",
+         "Unicorp Mace Launcher",
       },
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
          "Ion Cannon",
       },
    },
    ["Shark"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+         "Unicorp Banshee Launcher",
+         "Unicorp Mace Launcher",
       },
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
          "Ion Cannon",
       },
    },
    ["Fidelity"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+         "Unicorp Banshee Launcher",
+         "Unicorp Mace Launcher",
       },
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
          "Ion Cannon",
       },
    },
    ["Derivative"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+         "Unicorp Banshee Launcher",
+         "Unicorp Mace Launcher",
       },
       {
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
          "Ion Cannon",
-      },
-   },
-   ["Vendetta"] = {
-      {
-         num = 2;
-         "Laser Cannon MK2", "Razor MK2", "Vulcan Gun", "Plasma Blaster MK2",
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher", "Ion Cannon",
-      },
-      {
-         num = 2;
-         "Laser Cannon MK2", "Razor MK2", "Vulcan Gun", "Plasma Blaster MK2",
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher", "Ion Cannon",
-      },
-      {
-         "Laser Cannon MK2", "Razor MK2", "Vulcan Gun", "Plasma Blaster MK2",
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher", "Ion Cannon",
-      },
-   },
-   ["Vigilance"] = {
-      {
-         num = 2;
-         "Railgun",
-      },
-      {
-         num = 1;
-         "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
-         "Mini Lancelot Fighter Bay",
-      },
-      {
-         varied = true;
-         "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-         "Heavy Ripper Cannon", "Mass Driver", "Plasma Cluster Cannon",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
-         "Mini Lancelot Fighter Bay",
-      },
-   },
-   ["Kestrel"] = {
-      {
-         "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
-         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
-      },
-      {
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
-         "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-         "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
-         "Mini Lancelot Fighter Bay",
-      },
-   },
-   ["Hawking"] = {
-      {
-         num = 1;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
-         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
-      },
-      {
-         num = 1;
-         "Heavy Ripper Turret", "Plasma Cluster Turret",
-         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
-         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
-      },
-      {
-         "Heavy Ripper Turret", "Plasma Cluster Turret",
-         "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
-      },
-   },
-   ["Goddard"] = {
-      {
-         num = 1;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
-         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
-      },
-      {
-         num = 1;
-         "Railgun", "Heavy Ripper Turret", "Railgun Turret",
-         "Hyena Fighter Bay", "Shark Fighter Bay", "Lancelot Fighter Bay",
-      },
-      {
-         "Railgun", "Heavy Ripper Turret", "Railgun Turret",
-      },
-      {
-         "TeraCom Mace Launcher",
       },
    },
    ["Brigand"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+         "Unicorp Banshee Launcher",
+         "TeraCom Banshee Launcher",
+         "Unicorp Mace Launcher",
+         "TeraCom Mace Launcher",
       },
       {
          varied = true, probability = {
