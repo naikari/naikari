@@ -41,7 +41,166 @@ equip_classOutfits_weapons["Yacht"] = {
       "Gauss Gun",
       "Plasma Blaster MK1",
       "Particle Lance",
-      "Ion Cannon",
+   },
+}
+equip_classOutfits_weapons["Fighter"] = {
+   {
+      "Unicorp Fury Launcher",
+      "Unicorp Headhunter Launcher",
+   },
+   {
+      "Laser Cannon MK2",
+      "Razor MK2",
+      "Vulcan Gun",
+      "Plasma Blaster MK2",
+      "Orion Lance",
+   },
+   {
+      "Laser Cannon MK1",
+      "Razor MK1",
+      "Gauss Gun",
+      "Plasma Blaster MK1",
+      "Particle Lance",
+      "Unicorp Mace Launcher",
+      "Unicorp Banshee Launcher",
+   },
+}
+equip_classOutfits_weapons["Bomber"] = {
+   {
+      varied = true;
+      "Unicorp Fury Launcher",
+      "TeraCom Fury Launcher",
+      "Unicorp Headhunter Launcher",
+   },
+   {
+      "Laser Cannon MK2",
+      "Razor MK2",
+      "Vulcan Gun",
+      "Plasma Blaster MK2",
+      "Orion Lance",
+   },
+}
+equip_classOutfits_weapons["Corvette"] = {
+   {
+      varied = true;
+      "Unicorp Fury Launcher",
+      "TeraCom Fury Launcher",
+      "Unicorp Headhunter Launcher",
+      "TeraCom Headhunter Launcher",
+      "Unicorp Vengeance Launcher",
+      "TeraCom Vengeance Launcher",
+      "Enygma Systems Spearhead Launcher",
+      "Unicorp Caesar IV Launcher",
+      "TeraCom Imperator Launcher",
+   },
+   {
+      probability = {
+         ["Ripper Cannon"] = 10,
+         ["Slicer"] = 10,
+         ["Shredder"] = 10,
+         ["Plasma Cannon"] = 10,
+      };
+      "Ripper Cannon",
+      "Slicer",
+      "Shredder",
+      "Plasma Cannon",
+      "Laser Cannon MK2",
+      "Razor MK2",
+      "Vulcan Gun",
+      "Plasma Blaster MK2",
+      "Orion Lance",
+   },
+}
+equip_classOutfits_weapons["Destroyer"] = {
+   {
+      "Railgun",
+      "Heavy Ripper Turret",
+      "Plasma Cluster Turret",
+      "Turreted Mass Driver",
+      "Grave Beam",
+   },
+   {
+      num = 1;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Hyena Fighter Bay",
+      "Mini Shark Fighter Bay",
+      "Mini Lancelot Fighter Bay",
+   },
+   {
+      num = 1;
+      "Heavy Ripper Cannon",
+      "Mass Driver",
+      "Plasma Cluster Cannon",
+      "Grave Lance",
+      "Laser Turret MK2",
+      "Razor Turret MK2",
+      "Turreted Vulcan Gun",
+      "Plasma Turret MK2",
+      "Orion Beam",
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Mini Hyena Fighter Bay",
+      "Mini Shark Fighter Bay",
+      "Mini Lancelot Fighter Bay",
+   },
+   {
+      "Heavy Ripper Cannon",
+      "Mass Driver",
+      "Plasma Cluster Cannon",
+      "Grave Lance",
+      "Laser Turret MK2",
+      "Razor Turret MK2",
+      "Turreted Vulcan Gun",
+      "Plasma Turret MK2",
+      "Orion Beam",
+   },
+}
+equip_classOutfits_weapons["Cruiser"] = {
+   {
+      num = 1;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Hyena Fighter Bay",
+      "Shark Fighter Bay",
+      "Lancelot Fighter Bay",
+   },
+   {
+      "Heavy Laser Turret",
+      "Railgun Turret",
+      "Ragnarok Beam",
+      "Hyena Fighter Bay",
+      "Shark Fighter Bay",
+      "Lancelot Fighter Bay",
+   },
+   {
+      "Railgun",
+      "Heavy Ripper Turret",
+      "Plasma Cluster Turret",
+      "Turreted Mass Driver",
+      "Grave Beam",
+      "Mini Hyena Fighter Bay",
+      "Mini Shark Fighter Bay",
+      "Mini Lancelot Fighter Bay",
+   },
+}
+equip_classOutfits_weapons["Carrier"] = {
+   {
+      varied = true;
+      "Hyena Fighter Bay",
+      "Shark Fighter Bay",
+      "Lancelot Fighter Bay",
+   },
+   {
+      "Heavy Laser Turret",
+      "Railgun Turret",
+      "Ragnarok Beam",
+   },
+   {
+      "Heavy Ripper Turret",
+      "Plasma Cluster Turret",
+      "Turreted Mass Driver",
+      "Grave Beam",
    },
 }
 
