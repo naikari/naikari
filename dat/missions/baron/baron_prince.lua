@@ -189,32 +189,33 @@ function set_osd()
    misn.markerRm(markerC)
    misn.markerRm(flintmarker)
 
-   local artifact_osd = _("Approach artifact seller at one of the following locations and buy the artifact:")
+   local artifacts_list = {
+      _("Approach artifact seller at one of the following locations and buy the artifact:"),
+   }
    if not artifactAfound then
-      artifact_osd = artifact_osd .. "\n"
-            .. fmt.f(_("{planet} ({system} system)"),
-               {planet=artifactplanetA:name(), system=artifactsysA:name()})
+      artifacts_list[#artifacts_list + 1] = fmt.f(
+         _("{planet} ({system} system)"),
+         {planet=artifactplanetA:name(), system=artifactsysA:name()})
       markerA = misn.markerAdd(artifactsysA, "low")
    end
    if not artifactBfound then
-      artifact_osd = artifact_osd .. "\n"
-            .. fmt.f(_("{planet} ({system} system)"),
-               {planet=artifactplanetB:name(), system=artifactsysB:name()})
+      artifacts_list[#artifacts_list + 1] = fmt.f(
+         _("{planet} ({system} system)"),
+         {planet=artifactplanetB:name(), system=artifactsysB:name()})
       markerB = misn.markerAdd(artifactsysB, "low")
    end
    if not artifactCfound then
-      artifact_osd = artifact_osd .. "\n"
-            .. fmt.f(_("{planet} ({system} system)"),
-               {planet=artifactplanetC:name(), system=artifactsysC:name()})
+      artifacts_list[#artifacts_list + 1] = fmt.f(
+         _("{planet} ({system} system)"),
+         {planet=artifactplanetC:name(), system=artifactsysC:name()})
       markerC = misn.markerAdd(artifactsysC, "low")
    end
+   local artifact_osd = table.concat(artifacts_list, "\n")
 
    local osd_msg = {
       artifact_osd,
       fmt.f(_("Take artifact to Flintley on {planet} ({system} system)"),
             {planet=flintplanet:name(), system=flintsys:name()}),
-      osd_msg_baron1,
-      osd_msg_baron2,
    }
    misn.osdCreate(misn_title, osd_msg)
 end
@@ -294,6 +295,12 @@ end
 
 
 function flintley()
+   if stage == 3 then
+      tk.msg("", fmt.f(_([["Be careful out there, {player}. I'm sure artifact hunters will be hot on your tail with an artifact as priceless as that one!"]]),
+            {player=player.name()}))
+      return
+   end
+
    local bingo = false
 
    if flintleyfirst then
@@ -301,6 +308,7 @@ function flintley()
       tk.msg("", fmt.f(flint_intro, {player=player.name()}))
    elseif artifactA == nil and artifactB == nil and artifactC == nil then
       tk.msg("", fmt.f(flintdeftext, {player=player.name()}))
+      return
    end
 
    if artifactA ~= nil then
@@ -350,7 +358,9 @@ function flintley()
       misn.markerRm(markerC)
       misn.markerRm(flintmarker)
       marker = misn.markerAdd(baronsys, "high")
-      misn.osdActive(3)
+
+      local osd_msg = {osd_msg_baron1, osd_msg_baron2}
+      misn.osdCreate(misn_title, osd_msg)
    else
       set_osd()
    end
@@ -409,10 +419,8 @@ end
 
 function enter()
    if system.cur() == baronsys then
-      if stage == 1 then
+      if stage == 1 or stage == 3 then
          misn.osdActive(2)
-      elseif stage == 3 then
-         misn.osdActive(4)
       end
 
       pinnacle = pilot.add("Proteron Kahan", "Civilian",
@@ -428,10 +436,12 @@ function enter()
       hhail = hook.pilot(pinnacle, "hail", "hail")
    elseif stage == 1 then
       misn.osdActive(1)
-   elseif stage == 3 then
-      misn.osdActive(3)
    elseif artifactA ~= nil or artifactB ~= nil or artifactC ~= nil
          or artifactReal ~= nil then
+      if stage == 3 then
+         misn.osdActive(1)
+      end
+
       local chance = 0.2
       local max = 6
       if artifactReal ~= nil then
