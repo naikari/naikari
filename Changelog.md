@@ -115,6 +115,7 @@
   mission is active.
 * Trader pilots now only form groups using the standard formation;
   they don't also randomly sit next to each other anymore.
+* Made the different factions' weapon use a bit more distinct.
 
 ### Bugfixes
 
@@ -137,6 +138,8 @@
 * Fixed a long-standing bug where AI pilots could get stuck spinning
   around in circles while trying to land and a similar bug when trying
   to hyperspace.
+* Fixed filtering for outfits always checking against English names even
+  when another language is the current language.
 
 
 ## 0.8.0
