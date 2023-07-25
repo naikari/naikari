@@ -738,12 +738,13 @@ function __hyp_approach ()
    end
 end
 function __hyp_brake()
+   local p = ai.pilot()
+
    -- Make sure afterburner is off, since it messes things up here.
    ai.weapset(8, false)
 
    -- Handle instant jump capable ships differently.
    if ai.instantJump() then
-      local p = ai.pilot()
       local hyp, hyp_pos = table.unpack(ai.subtaskdata())
 
       -- Rotate to match the jump exit angle.
@@ -758,7 +759,6 @@ function __hyp_brake()
          -- Hyperdrive is offline. Print a debug message to possibly
          -- debug this, except for the player's carrier fighters
          -- (since those have hyperdrive disabled on purpose).
-         local p = ai.pilot()
          if not mem.carrier or p:leader() ~= player.pilot() then
             debug_print(
                string.format("'%s' cannot jump for task '%s' (hyperdrive disabled).",
@@ -792,13 +792,11 @@ function __hyp_brake()
       ai.stop()
       local result = ai.hyperspace()
       if result == nil then
-         local p = ai.pilot()
          p:msg(p:followers(), "hyperspace", ai.nearhyptarget())
       elseif result == -2 then
          -- Hyperdrive is offline. Print a debug message to possibly
          -- debug this, except for the player's carrier fighters
          -- (since those have hyperdrive disabled on purpose).
-         local p = ai.pilot()
          if not mem.carrier or p:leader() ~= player.pilot() then
             debug_print(
                string.format("'%s' cannot jump for task '%s' (hyperdrive disabled).",
