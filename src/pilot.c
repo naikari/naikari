@@ -757,8 +757,8 @@ double pilot_face( Pilot* p, const double dir )
    double diff, turn;
 
    diff = angle_diff(p->solid->dir, dir);
-   turn = CLAMP(-1., 1., -10.*diff);
-   pilot_setTurn(p, -turn);
+   turn = CLAMP(-1., 1., 10.*diff);
+   pilot_setTurn(p, turn);
    p->solid->dir_dest = dir;
 
    return diff;

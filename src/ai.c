@@ -176,6 +176,7 @@ static int aiL_hasprojectile( lua_State *L ); /* boolean hasprojectile() */
 /* movement */
 static int aiL_accel( lua_State *L ); /* accel(number); number <= 1. */
 static int aiL_turn( lua_State *L ); /* turn(number); abs(number) <= 1. */
+static int aiL_rotate(lua_State *L);
 static int aiL_face( lua_State *L ); /* face( number/pointer, bool) */
 static int aiL_careful_face( lua_State *L ); /* face( number/pointer, bool) */
 static int aiL_aim( lua_State *L ); /* aim(number) */
@@ -283,6 +284,7 @@ static const luaL_Reg aiL_methods[] = {
    {"land", aiL_land},
    {"accel", aiL_accel},
    {"turn", aiL_turn},
+   {"rotate", aiL_rotate},
    {"face", aiL_face},
    {"careful_face", aiL_careful_face},
    {"iface", aiL_iface},
@@ -346,8 +348,6 @@ static const luaL_Reg aiL_methods[] = {
  * current pilot "thinking" and assorted variables
  */
 Pilot *cur_pilot           = NULL; /**< Current pilot.  All functions use this. */
-static double pilot_acc    = 0.; /**< Current pilot's acceleration. */
-static double pilot_turn   = 0.; /**< Current pilot's turning. */
 static int pilot_flags     = 0; /**< Handle stuff like weapon firing. */
 static char aiL_distressmsg[PATH_MAX]; /**< Buffer to store distress message. */
 
@@ -754,9 +754,12 @@ void ai_think( Pilot* pilot, const double dt )
    env = cur_pilot->ai->env; /* set the AI profile to the current pilot's */
 
    /* Clean up some variables */
-   pilot_acc         = 0;
-   pilot_turn        = 0.;
-   pilot_flags       = 0;
+   pilot_flags = 0;
+
+   /* Reset thrust and turn. */
+   pilot_setThrust(cur_pilot, 0.);
+   pilot_setTurn(cur_pilot, 0.);
+
    /* So the way this works is that, for other than the player, we reset all
     * the weapon sets every frame, so that the AI has to redo them over and
     * over. Now, this is a horrible hack so shit works and needs a proper fix.
@@ -819,14 +822,6 @@ void ai_think( Pilot* pilot, const double dt )
             pilot_runHook( cur_pilot, PILOT_HOOK_IDLE );
       }
    }
-
-   /* make sure pilot_acc and pilot_turn are legal */
-   pilot_acc   = CLAMP( -1., 1., pilot_acc );
-   pilot_turn  = CLAMP( -1., 1., pilot_turn );
-
-   /* Set turn and thrust. */
-   pilot_setTurn( cur_pilot, pilot_turn );
-   pilot_setThrust( cur_pilot, pilot_acc );
 
    /* fire weapons if needed */
    if (ai_isFlag(AI_PRIMARY))
@@ -1689,17 +1684,10 @@ static int aiL_hasprojectile( lua_State *L )
  */
 static int aiL_accel( lua_State *L )
 {
-   double n;
+   double thrust;
 
-   if (lua_gettop(L) > 1 && lua_isnumber(L,1)) {
-      n = (double)lua_tonumber(L,1);
-
-      if (n > 1.) n = 1.;
-      else if (n < 0.) n = 0.;
-      pilot_acc = n;
-   }
-   else
-      pilot_acc = 1.;
+   thrust = luaL_optnumber(L, 1, 1.);
+   pilot_setThrust(cur_pilot, thrust);
 
    return 0;
 }
@@ -1713,8 +1701,31 @@ static int aiL_accel( lua_State *L )
  */
 static int aiL_turn( lua_State *L )
 {
-   pilot_turn = luaL_checknumber(L,1);
+   double turn = CLAMP(0., 1., luaL_checknumber(L,1));
+   pilot_setTurn(cur_pilot, turn);
    return 0;
+}
+
+
+/**
+ * @brief Rotates to a certain direction.
+ *
+ * @usage ai.rotate(45) -- Rotate to a 45° facing.
+ *
+ *    @luatparam number angle Angle to rotate to in degrees.
+ *    @luatreturn number Angle offset in degrees.
+ * @luafunc rotate
+ */
+static int aiL_rotate(lua_State *L)
+{
+   double dir;
+   double diff;
+
+   dir = luaL_checknumber(L, 1);
+   diff = pilot_face(cur_pilot, dir*M_PI/180.);
+
+   lua_pushnumber(L, ABS(diff*180./M_PI));
+   return 1;
 }
 
 
@@ -1735,7 +1746,11 @@ static int aiL_face( lua_State *L )
 {
    Vector2d *tv; /* get the position to face */
    Pilot* p;
-   double k_diff, k_vel, d, diff, vx, vy, dx, dy;
+   int inv;
+   double k_vel;
+   double d;
+   double diff;
+   double vx, vy, dx, dy;
    int vel;
 
    /* Get first parameter, aka what to face. */
@@ -1750,14 +1765,9 @@ static int aiL_face( lua_State *L )
       NLUA_INVALID_PARAMETER(L);
 
    /* Default gain. */
-   k_diff = 10.;
    k_vel  = 100.; /* overkill gain! */
 
-   /* Check if must invert. */
-   if (lua_toboolean(L,2))
-      k_diff *= -1;
-
-   /* Third parameter. */
+   inv = lua_toboolean(L, 2);
    vel = lua_toboolean(L, 3);
 
    /* Tangential component of velocity vector
@@ -1793,7 +1803,7 @@ static int aiL_face( lua_State *L )
       }
 
       /* Compensate error and rotate. */
-      diff = angle_diff(cur_pilot->solid->dir, atan2(dy, dx));
+      diff = pilot_face(cur_pilot, atan2(dy, dx) + (inv ? M_PI : 0));
    }
    else {
       /* If pilot position is the same as target position, don't change
@@ -1802,12 +1812,9 @@ static int aiL_face( lua_State *L )
       if (vel) {
          /* Unless compensating for velocity, in which case rotate to
           * the opposite direction of velocity. */
-         diff = angle_diff(cur_pilot->solid->dir, atan2(-vx, -vy));
+         diff = pilot_face(cur_pilot, atan2(-vx, -vy) + (inv ? M_PI : 0));
       }
    }
-
-   /* Make pilot turn. */
-   pilot_turn = k_diff * diff;
 
    /* Return angle in degrees away from target. */
    lua_pushnumber(L, ABS(diff*180./M_PI));
@@ -1836,7 +1843,7 @@ static int aiL_careful_face( lua_State *L )
    Vector2d *tv, F, F1;
    Pilot* p;
    Pilot *p_i;
-   double k_diff, k_goal, k_enemy, k_mult,
+   double k_goal, k_enemy, k_mult,
           d, diff, dist, factor;
    int i;
    Pilot * const *pilot_stack;
@@ -1864,7 +1871,6 @@ static int aiL_careful_face( lua_State *L )
       NLUA_INVALID_PARAMETER(L);
 
    /* Default gains. */
-   k_diff = 10.;
    k_goal = 1.;
    k_enemy = 6000000.;
 
@@ -1901,10 +1907,7 @@ static int aiL_careful_face( lua_State *L )
    vect_cset( &F, F.x + F1.x, F.y + F1.y );
 
    /* Rotate. */
-   diff = angle_diff( cur_pilot->solid->dir, VANGLE(F) );
-
-   /* Make pilot turn. */
-   pilot_turn = k_diff * diff;
+   diff = pilot_face(cur_pilot, VANGLE(F));
 
    /* Return angle in degrees away from target. */
    lua_pushnumber(L, ABS(diff*180./M_PI));
@@ -1925,7 +1928,6 @@ static int aiL_aim( lua_State *L )
 {
    Pilot *p;
    double diff;
-   double mod;
    double angle;
 
    /* Only acceptable parameter is pilot */
@@ -1934,9 +1936,7 @@ static int aiL_aim( lua_State *L )
    angle = pilot_aimAngle( cur_pilot, p );
 
    /* Calculate what we need to turn */
-   mod = 10.;
-   diff = angle_diff(cur_pilot->solid->dir, angle);
-   pilot_turn = mod * diff;
+   diff = pilot_face(cur_pilot, angle);
 
    /* Return distance to target (in grad) */
    lua_pushnumber(L, ABS(diff*180./M_PI));
@@ -2004,13 +2004,13 @@ static int aiL_iface( lua_State *L )
       /* This indicates we're drifting to the right of the target
        * And we need to turn CCW */
       if (diff > 0)
-         pilot_turn = azimuthal_sign;
+         pilot_setTurn(cur_pilot, azimuthal_sign);
       /* This indicates we're drifting to the left of the target
        * And we need to turn CW */
       else if (diff < 0)
-         pilot_turn = -1*azimuthal_sign;
+         pilot_setTurn(cur_pilot, -1*azimuthal_sign);
       else
-         pilot_turn = 0;
+         pilot_setTurn(cur_pilot, 0);
    }
    /* turn most efficiently to face the target. If we intercept the correct quadrant in the UV plane first, then the code above will kick in */
    /* some special case logic is added to optimize turn time. Reducing this to only the else cases would speed up the operation
@@ -2022,9 +2022,9 @@ static int aiL_iface( lua_State *L )
 
 
       if (heading_offset_azimuth >0)
-         pilot_turn = azimuthal_sign;
+         pilot_setTurn(cur_pilot, azimuthal_sign);
       else
-         pilot_turn = -1*azimuthal_sign;
+         pilot_setTurn(cur_pilot, -1*azimuthal_sign);
    }
 
    /* Return angle in degrees away from target. */
@@ -2171,10 +2171,7 @@ static int aiL_brake( lua_State *L )
 {
    int ret;
 
-   ret = pilot_brake( cur_pilot );
-
-   pilot_acc = cur_pilot->solid->thrust / cur_pilot->thrust;
-   pilot_turn = cur_pilot->solid->dir_vel / cur_pilot->turn;
+   ret = pilot_brake(cur_pilot);
 
    lua_pushboolean(L, ret);
    return 1;
