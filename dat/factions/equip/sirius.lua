@@ -63,18 +63,16 @@ equip_typeOutfits_weapons["Shaman"] = {
       "Unicorp Headhunter Launcher",
    },
    {
-      "Razor MK2", "Ion Cannon",
+      "Razor MK2",
    },
 }
 equip_typeOutfits_weapons["Preacher"] = {
    {
-      varied = true;
-      "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
-      "Unicorp Medusa Launcher", "Unicorp Vengeance Launcher",
-      "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
-      "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-      "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-      "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
+      num = 1;
+      "TeraCom Fury Launcher",
+   },
+   {
+      "Enygma Systems Spearhead Launcher",
    },
    {
       probability = {
@@ -85,13 +83,7 @@ equip_typeOutfits_weapons["Preacher"] = {
 }
 equip_typeOutfits_weapons["Reverence"] = {
    {
-      varied = true;
-      "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
-      "Unicorp Medusa Launcher", "Unicorp Vengeance Launcher",
-      "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
-      "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-      "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-      "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
+      "Enygma Systems Spearhead Launcher",
    },
    {
       probability = {
@@ -103,15 +95,13 @@ equip_typeOutfits_weapons["Reverence"] = {
 equip_typeOutfits_weapons["Dogma"] = {
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
       "Fidelity Fighter Bay",
    },
    {
       "Heavy Razor Turret",
    },
    {
-      "Heavy Ion Turret",
+      "Razor Turret MK2",
    },
 }
 equip_typeOutfits_weapons["Divinity"] = {
@@ -122,7 +112,7 @@ equip_typeOutfits_weapons["Divinity"] = {
       "Heavy Razor Turret",
    },
    {
-      "Heavy Ion Turret",
+      "Razor Turret MK2",
    },
 }
 

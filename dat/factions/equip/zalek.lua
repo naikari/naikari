@@ -51,11 +51,10 @@ equip_typeOutfits_hulls["Hephaestus"] = {
 
 equip_typeOutfits_weapons["Sting"] = {
    {
-      varied = true;
-      "Enygma Systems Spearhead Launcher", "TeraCom Fury Launcher",
-      "TeraCom Headhunter Launcher", "TeraCom Medusa Launcher",
-      "TeraCom Vengeance Launcher", "Za'lek Hunter Launcher",
-      "Za'lek Reaper Launcher", "Enygma Systems Huntsman Launcher",
+      "Za'lek Reaper Launcher",
+   },
+   {
+      "TeraCom Headhunter Launcher",
    },
    {
       "Orion Lance",
@@ -67,19 +66,17 @@ equip_typeOutfits_weapons["Demon"] = {
    },
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "Za'lek Hunter Launcher",
       "Mini Za'lek Light Drone Fighter Bay",
    },
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "Za'lek Hunter Launcher",
       "Mini Za'lek Light Drone Fighter Bay",
-      "Grave Lance", "Orion Beam",
+      "Orion Beam",
    },
    {
-      "Grave Lance", "Orion Beam",
+      "Orion Beam",
    },
 }
 equip_typeOutfits_weapons["Diablo"] = {
@@ -98,9 +95,6 @@ equip_typeOutfits_weapons["Diablo"] = {
 equip_typeOutfits_weapons["Mephisto"] = {
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
-      "Za'lek Hunter Launcher",
       "Za'lek Light Drone Fighter Bay", "Za'lek Heavy Drone Fighter Bay",
       "Za'lek Bomber Drone Fighter Bay",
    },

@@ -39,36 +39,91 @@ equip_typeOutfits_engines["Rhino"] = {
    "Unicorp Falcon 1200 Engine", "Tricon Cyclone II Engine",
 }
 
+equip_typeOutfits_weapons["Hyena"] = equip_shipOutfits_weapons["Pirate Shark"]
 equip_typeOutfits_weapons["Shark"] = equip_shipOutfits_weapons["Pirate Shark"]
-equip_typeOutfits_weapons["Rhino"] = {
+equip_typeOutfits_weapons["Vendetta"] = {
    {
-      "Heavy Ripper Turret", "Plasma Cluster Turret",
-      "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
+      varied = true,
+      probability = {
+         ["Ion Cannon"] = 16,
+      };
+      "Laser Cannon MK2", "Vulcan Gun", "Plasma Blaster MK2",
+      "Laser Cannon MK1", "Gauss Gun", "Plasma Blaster MK1",
+      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "Ion Cannon",
+   },
+}
+equip_typeOutfits_weapons["Ancestor"] = {
+   {
+      varied = true;
+      "Unicorp Medusa Launcher",
    },
    {
-      num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      varied = true,
+      probability = {
+         ["Ion Cannon"] = 16,
+      };
+      "Laser Cannon MK2", "Vulcan Gun", "Plasma Blaster MK2",
+      "Laser Cannon MK1", "Gauss Gun", "Plasma Blaster MK1",
+      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "Ion Cannon",
+   },
+}
+equip_typeOutfits_weapons["Phalanx"] = {
+   {
+      varied = true;
+      "Unicorp Medusa Launcher", "TeraCom Medusa Launcher", 
+      "Enygma Systems Huntsman Launcher",
+   },
+   {
+      varied = true;
+      "Ripper Cannon", "Shredder", "Plasma Cannon",
+      "Laser Cannon MK2", "Vulcan Gun", "Plasma Blaster MK2",
+   },
+}
+equip_typeOutfits_weapons["Rhino"] = {
+   {
+      varied = true,
+      probability = {
+         ["Heavy Ion Turret"] = 6,
+      };
+      "Heavy Ripper Turret", "Plasma Cluster Turret", "Turreted Mass Driver",
+      "Heavy Ion Turret",
+   },
+   {
+      varied = true, num = 1;
       "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
    },
    {
-      "Laser Turret MK2", "Razor Turret MK2", "Turreted Vulcan Gun",
-      "Plasma Turret MK2", "Orion Beam", "EMP Grenade Launcher",
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      varied = true,
+      probability = {
+         ["EMP Grenade Launcher"] = 6,
+      };
+      "Laser Turret MK2", "Turreted Vulcan Gun", "Plasma Turret MK2",
+      "EMP Grenade Launcher",
       "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
    },
 }
 equip_typeOutfits_weapons["Kestrel"] = {
    {
-      "Railgun", "Heavy Ripper Turret", "Plasma Cluster Turret",
-      "Turreted Mass Driver", "Grave Beam", "Heavy Ion Turret",
+      varied = true,
+      probability = {
+         ["Heavy Ion Turret"] = 6,
+      };
+      "Heavy Ripper Turret", "Railgun Turret", "Plasma Cluster Turret",
+      "Heavy Ion Turret",
    },
    {
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
-      "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
+      varied = true, num = 2;
       "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
+   },
+   {
+      varied = true,
+      probability = {
+         ["EMP Grenade Launcher"] = 6,
+      };
+      "Laser Turret MK2", "Turreted Vulcan Gun", "Plasma Turret MK2",
+      "EMP Grenade Launcher",
    },
 }
 

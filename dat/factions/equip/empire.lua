@@ -52,11 +52,7 @@ equip_typeOutfits_weapons["Admonisher"] = {
    {
       varied = true;
       "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
-      "Unicorp Medusa Launcher", "Unicorp Vengeance Launcher",
-      "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
       "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-      "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-      "TeraCom Imperator Launcher", "Enygma Systems Huntsman Launcher",
    },
    {
       probability = {
@@ -67,20 +63,16 @@ equip_typeOutfits_weapons["Admonisher"] = {
 }
 equip_typeOutfits_weapons["Pacifier"] = {
    {
-      "Heavy Ripper Turret", "Heavy Ion Turret",
+      "Heavy Ripper Turret",
    },
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
       "Mini Empire Shark Fighter Bay",
       "Mini Empire Lancelot Fighter Bay",
    },
    {
       num = 1;
       "Laser Turret MK2",
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
       "Mini Empire Shark Fighter Bay",
       "Mini Empire Lancelot Fighter Bay",
    },
@@ -91,17 +83,15 @@ equip_typeOutfits_weapons["Pacifier"] = {
 equip_typeOutfits_weapons["Hawking"] = {
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
       "Empire Shark Fighter Bay", "Empire Lancelot Fighter Bay",
    },
    {
       num = 1;
-      "Heavy Ripper Turret", "Heavy Ion Turret",
+      "Heavy Ripper Turret",
       "Empire Shark Fighter Bay", "Empire Lancelot Fighter Bay",
    },
    {
-      "Heavy Ripper Turret", "Heavy Ion Turret",
+      "Heavy Ripper Turret",
    },
 }
 equip_typeOutfits_weapons["Peacemaker"] = {

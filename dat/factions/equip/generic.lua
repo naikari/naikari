@@ -495,10 +495,6 @@ equip_classOutfits_utilities = {
          "Sensor Array"
       },
       {
-         num = 1;
-         "Reverse Thrusters"
-      },
-      {
          "Reactor Class I"
       },
    }
@@ -1083,6 +1079,7 @@ equip_typeOutfits_weapons = {
    },
    ["Brigand"] = {
       {
+         num = 1;
          "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
          "Unicorp Mace Launcher", "TeraCom Mace Launcher",
       },
@@ -1096,8 +1093,7 @@ equip_typeOutfits_weapons = {
    },
    ["Reaver"] = {
       {
-         "Unicorp Headhunter Launcher", "Unicorp Fury Launcher",
-         "Unicorp Medusa Launcher",
+         "Unicorp Fury Launcher",
       },
       {
          varied = true, probability = {
@@ -1118,9 +1114,8 @@ equip_typeOutfits_weapons = {
    ["Marauder"] = {
       {
          varied = true;
-         "TeraCom Fury Launcher", "TeraCom Medusa Launcher",
-         "Unicorp Headhunter Launcher", "Unicorp Fury Launcher",
-         "Unicorp Medusa Launcher",
+         "Unicorp Fury Launcher", "TeraCom Fury Launcher",
+         "Unicorp Headhunter Launcher",
       },
       {
          varied = true, probability = {
@@ -1141,11 +1136,12 @@ equip_typeOutfits_weapons = {
    ["Odium"] = {
       {
          varied = true;
-         "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
-         "Unicorp Medusa Launcher", "Unicorp Vengeance Launcher",
-         "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
-         "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-         "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
+         "TeraCom Fury Launcher",
+         "TeraCom Headhunter Launcher",
+         "Unicorp Vengeance Launcher",
+         "TeraCom Vengeance Launcher",
+         "Enygma Systems Spearhead Launcher",
+         "Unicorp Caesar IV Launcher",
          "TeraCom Imperator Launcher",
       },
       {
@@ -1194,8 +1190,9 @@ equip_typeOutfits_weapons = {
    ["Ira"] = {
       {
          num = 1;
-         "TeraCom Fury Launcher", "Enygma Systems Turreted Fury Launcher",
+         "TeraCom Fury Launcher",
          "TeraCom Headhunter Launcher",
+         "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
       },
       {
@@ -1210,7 +1207,6 @@ equip_typeOutfits_weapons = {
    },
    ["Arx"] = {
       {
-         varied = true;
          "Brigand Fighter Bay",
       },
       {
@@ -1223,7 +1219,7 @@ equip_typeOutfits_weapons = {
          "BioPlasma Tentacle Stage 7", "BioPlasma Tentacle Stage X",
       },
       {
-         "Plasma Cluster Turret", "Grave Beam",
+         "Plasma Cluster Turret",
       },
    },
    ["Vox"] = {
@@ -1272,8 +1268,8 @@ equip_shipOutfits_coreSystems = {
    ["Empire Lancelot"] = {"Milspec Orion 3701 Core System"},
    ["Sirius Fidelity"] = {"Milspec Prometheus 2203 Core System"},
    ["Za'lek Scout Drone"] = {"Milspec Aegis 2201 Core System"},
-   ["Za'lek Light Drone"] = {"Milspec Orion 2301 Core System"},
-   ["Za'lek Heavy Drone"] = {"Milspec Orion 3701 Core System"},
+   ["Za'lek Light Drone"] = {"Milspec Aegis 2201 Core System"},
+   ["Za'lek Heavy Drone"] = {"Milspec Aegis 3601 Core System"},
    ["Za'lek Bomber Drone"] = {"Milspec Aegis 3601 Core System"},
    ["Proteron Derivative"] = {"Milspec Orion 2301 Core System"},
 }
@@ -1316,43 +1312,40 @@ equip_shipOutfits_hulls = {
 equip_shipOutfits_weapons = {
    ["Pirate Shark"] = {
       {
-         num = 2;
-         "Laser Cannon MK1", "Razor MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "Ion Cannon",
-      },
-      {
-         varied = true;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
+         varied = true,
+         probability = {
+            ["Ion Cannon"] = 10,
+         };
+         "Laser Cannon MK1", "Gauss Gun", "Plasma Blaster MK1",
          "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+         "Ion Cannon",
       },
    },
    ["Empire Shark"] = {
       {
          num = 1;
          "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
       },
       {
-         "Laser Cannon MK1", "Plasma Blaster MK1", "Ion Cannon",
+         "Laser Cannon MK1",
       },
    },
    ["Empire Lancelot"] = {
       {
          num = 1;
-         "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
-         "TeraCom Fury Launcher",
+         "Unicorp Fury Launcher", "TeraCom Fury Launcher",
       },
       {
-         "Laser Cannon MK2", "Plasma Blaster MK2",
+         "Laser Cannon MK2",
       },
    },
    ["Sirius Fidelity"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
+         "Photon Dagger",
       },
       {
-         "Razor MK1", "Ion Cannon",
+         "Razor MK1",
       },
    },
    ["Za'lek Scout Drone"] = {
@@ -1367,10 +1360,7 @@ equip_shipOutfits_weapons = {
    },
    ["Za'lek Heavy Drone"] = {
       {
-         "TeraCom Fury Launcher",
-      },
-      {
-         num = 1;
+         num = 2;
          "Electron Burst Cannon",
       },
       {
@@ -1379,15 +1369,11 @@ equip_shipOutfits_weapons = {
    },
    ["Za'lek Bomber Drone"] = {
       {
-         varied = true;
-         "Unicorp Fury Launcher", "TeraCom Fury Launcher",
-         "Unicorp Headhunter Launcher", "Unicorp Vengeance Launcher"
+         num = 2;
+         "TeraCom Fury Launcher",
       },
       {
-         "Electron Burst Cannon"
-      },
-      {
-         "Particle Lance"
+         "Orion Lance",
       },
    },
    ["Proteron Derivative"] = {
@@ -1404,11 +1390,57 @@ equip_shipOutfits_weapons = {
 
 -- Tables of available utilities by ship.
 -- See equip_set function for more info.
-equip_shipOutfits_utilities = {}
+equip_shipOutfits_utilities = {
+   ["Za'lek Scout Drone"] = {
+      {
+         "Sensor Array",
+      },
+   },
+   ["Za'lek Light Drone"] = {
+      {
+         "Small Shield Booster",
+      },
+   },
+   ["Za'lek Heavy Drone"] = {
+      {
+         num = 1;
+         "Small Shield Booster",
+      },
+      {
+         "Power Regulation Override",
+      },
+   },
+   ["Za'lek Bomber Drone"] = {
+      {
+         "Sensor Array",
+      },
+   },
+}
 
 -- Tables of available structurals by ship.
 -- See equip_set function for more info.
-equip_shipOutfits_structurals = {}
+equip_shipOutfits_structurals = {
+   ["Za'lek Scout Drone"] = {
+      {
+         "Engine Reroute",
+      },
+   },
+   ["Za'lek Light Drone"] = {
+      {
+         "Shield Capacitor",
+      },
+   },
+   ["Za'lek Heavy Drone"] = {
+      {
+         "Shield Capacitor",
+      },
+   },
+   ["Za'lek Bomber Drone"] = {
+      {
+         "Improved Stabilizer",
+      },
+   },
+}
 
 
 --[[

@@ -42,7 +42,7 @@ equip_typeOutfits_weapons["Vendetta"] = {
 }
 equip_typeOutfits_weapons["Ancestor"] = {
    {
-      num = 2, varied = true;
+      varied = true;
       "Unicorp Headhunter Launcher", "Unicorp Vengeance Launcher",
    },
    {
@@ -52,10 +52,13 @@ equip_typeOutfits_weapons["Ancestor"] = {
 }
 equip_typeOutfits_weapons["Phalanx"] = {
    {
-      num = 3, varied = true;
+      num = 1;
+      "Unicorp Caesar IV Launcher", "TeraCom Imperator Launcher",
+   },
+   {
+      varied = true;
       "Unicorp Headhunter Launcher", "Unicorp Vengeance Launcher",
       "TeraCom Headhunter Launcher", "TeraCom Vengeance Launcher",
-      "Unicorp Caesar IV Launcher", "TeraCom Imperator Launcher",
    },
    {
       probability = {
@@ -66,35 +69,31 @@ equip_typeOutfits_weapons["Phalanx"] = {
 }
 equip_typeOutfits_weapons["Vigilance"] = {
    {
-      num = 2;
       "Railgun",
    },
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
    },
    {
       num = 1;
-      "Mass Driver", "Turreted Vulcan Gun",
-      "Enygma Systems Turreted Fury Launcher",
+      "Mass Driver",
       "Enygma Systems Turreted Headhunter Launcher",
    },
    {
-      "Mass Driver", "Turreted Vulcan Gun",
+      "Mass Driver",
    },
 }
 equip_typeOutfits_weapons["Goddard"] = {
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
    },
    {
       "Repeating Railgun",
    },
    {
-      "Railgun", "Turreted Mass Driver",
+      "Railgun",
    },
 }
 
