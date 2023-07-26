@@ -20,9 +20,7 @@
 
 #include "array.h"
 #include "log.h"
-#ifdef DEBUGGING
 #include "ndata.h"
-#endif /* DEBUGGING */
 #include "nstring.h"
 
 
