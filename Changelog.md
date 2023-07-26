@@ -144,6 +144,9 @@
 * Fixed filtering for outfits always checking against English names even
   when another language is the current language.
 * Fixed the class of Marius Station.
+* Fixed the Empire Recruitment mission sometimes choosing Hakoi as its
+  destination.
+* Fixed Aillis not having common outfits available.
 
 
 ## 0.8.0
