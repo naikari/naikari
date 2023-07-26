@@ -118,6 +118,7 @@
 * Made the different factions' weapon use a bit more distinct.
 * Removed the "Baron Flintley" event which showed up after the Prince
   mission.
+* Collective drones are now universally unresponsive again.
 
 ### Bugfixes
 
