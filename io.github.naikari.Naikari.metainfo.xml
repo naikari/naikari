@@ -27,7 +27,7 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
-    <release version="0.9.0">
+    <release version="0.9.0" date="2023-07-26" type="stable">
       <description>
         <ul>
           <li>New "Neo" GUI as the default interface.</li>
