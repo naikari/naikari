@@ -2125,7 +2125,6 @@ dat/ai/trader.lua
 dat/ai/zalek.lua
 dat/bkg/default.lua
 dat/events/baron/baron_comm.lua
-dat/events/baron/baron_flintley.lua
 dat/events/baron/baron_prowl.lua
 dat/events/control/bioship_upgrade.lua
 dat/events/control/bounty.lua

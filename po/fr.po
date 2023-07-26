@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-07-23 11:40-0400\n"
+"POT-Creation-Date: 2023-07-25 22:13-0400\n"
 "PO-Revision-Date: 2021-03-17 07:18+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/naev/naev/fr/>\n"
@@ -8117,7 +8117,7 @@ msgstr ""
 #: src/dev_sysedit.c:1884 src/dev_sysedit.c:1922 src/dev_sysedit.c:1957
 #: src/dev_sysedit.c:1963 src/dev_uniedit.c:956 src/dev_uniedit.c:1135
 #: src/dev_uniedit.c:1368 src/dev_uniedit.c:1434 src/info.c:302 src/info.c:406
-#: src/info.c:904 src/input.c:649 src/land.c:1077 src/land_outfits.c:360
+#: src/info.c:904 src/input.c:649 src/land.c:1076 src/land_outfits.c:360
 #: src/land_outfits.c:388 src/land_outfits.c:632 src/land_shipyard.c:141
 #: src/land_shipyard.c:211 src/land_trade.c:199 src/load.c:402 src/load.c:452
 #: src/load.c:490 src/map.c:661 src/map.c:725 src/map.c:2005 src/map_find.c:699
@@ -14671,7 +14671,8 @@ msgid ""
 "guidance system. The grenades unleash an electromagnetic pulse, rapidly "
 "disabling the electronics of enemy ships. Useful for taking ships alive; the "
 "EM pulses rarely destroy the ship, leaving it floating disabled in space. "
-"These are favored by traders for keeping pirates at bay."
+"These are favored by traders for keeping pirates at bay, but pirates "
+"themselves are avid users as well."
 msgstr ""
 
 #: dat/outfits/launchers/enygma_systems_huntsman_launcher.xml:2
@@ -16073,9 +16074,9 @@ msgstr ""
 
 #: dat/outfits/weapons/heavy_ion_turret.xml:9
 msgid ""
-"The Heavy Ion Turret is a Sirius military design, applying brute force to "
-"its target's internal systems. When coupled with Razor weaponry, it is "
-"terribly efficient at reducing enemy warships to tumbling hunks of junk."
+"The Heavy Ion Turret is the strongest less-than-lethal weapon in the galaxy, "
+"applying brute force to its target's internal systems. It is well-used by "
+"pirates all across the galaxy despite repeated attempts to restrict its sale."
 msgstr ""
 
 #: dat/outfits/weapons/heavy_laser_turret.xml:2
@@ -16421,7 +16422,7 @@ msgid ""
 "effective at draining shields, but have less of an effect on a ship's armor. "
 "Razor weaponry is particularly popular in the military of House Sirius, "
 "which developed the technology, but it is also highly sought after by "
-"merchant ships due to how readily a sudden loss of shield scares away would-"
+"merchant ships due to how readily a sudden loss of shields scares away would-"
 "be thieves."
 msgstr ""
 
@@ -19391,22 +19392,6 @@ msgstr ""
 #. This is the amount of waypoints the pilot will pass thru before leaving the system
 #. Settings
 #. Lower control rate
-#. Refuel available if the player is at least neutral to them.
-#: dat/ai/collective.lua:19
-msgctxt "bribe_no"
-msgid "{pilot} does not respond."
-msgstr ""
-
-#: dat/ai/collective.lua:21
-msgctxt "refuel"
-msgid "\"Fuel request accepted. Approaching for fuel transfer.\""
-msgstr ""
-
-#: dat/ai/collective.lua:22
-msgctxt "refuel_cannot"
-msgid "\"Refuel request declined. Insufficient fuel available.\""
-msgstr ""
-
 #. This is the amount of waypoints the pilot will pass thru before leaving the system
 #. Settings
 #. Lower control rate
@@ -19420,7 +19405,7 @@ msgstr ""
 #. Settings
 #. Za'lek armour is pretty crap. They know this, and will dip when their shields go down.
 #. See if a drone
-#: dat/ai/collective.lua:24 dat/ai/drone_miner.lua:10 dat/ai/escort.lua:9
+#: dat/ai/collective.lua:10 dat/ai/drone_miner.lua:10 dat/ai/escort.lua:9
 #: dat/ai/zalek.lua:21
 msgctxt "comm_no"
 msgid "No response."
@@ -20373,7 +20358,6 @@ msgstr ""
 #. Pilot is agile, but too slow to outrun the enemy: dodge
 #. Heavy ships should rush to jump point
 #. Afterburner: activate while far away from jump
-#. The braking
 #. Need to start braking
 #. Shoot the target
 #. Pilot is agile, but too slow to outrun the enemy: dodge
@@ -20387,13 +20371,19 @@ msgstr ""
 #. Need to get closer
 #. Need to start braking
 #. Make sure afterburner is off, since it messes things up here.
-#. Make sure afterburner is off, since it messes things up here.
-#. Hyperdrive is offline.
-#. XXX: Special exception for if this is one of the player's
-#. carrier fighters, since those have hyperdrive disabled on
-#. purpose.
-#. Fuel too low; cannot jump.
-#. Keep the task even if succeeding in case pilot gets pushed away.
+#. Handle instant jump capable ships differently.
+#. Rotate to match the jump exit angle.
+#. Hyperdrive is offline. Print a debug message to possibly
+#. debug this, except for the player's carrier fighters
+#. (since those have hyperdrive disabled on purpose).
+#. Fuel too low. Print a debug message to possibly debug this.
+#. If we're moving away from the jump point, treat it as a
+#. failure and pop the task.
+#. Hyperdrive is offline. Print a debug message to possibly
+#. debug this, except for the player's carrier fighters
+#. (since those have hyperdrive disabled on purpose).
+#. Fuel too low. Print a debug message to possibly debug this.
+#. Either we're done, or hyperspace failed; either way, pop task.
 #.
 #. -- Performs an escape jump (called a "local jump" internally).
 #. --
@@ -20430,7 +20420,7 @@ msgstr ""
 #. make sure pilot exists
 #. Set the target
 #. See if finished refueling
-#: dat/ai/include/basic.lua:944
+#: dat/ai/include/basic.lua:963
 msgid "Finished fuel transfer."
 msgstr ""
 
@@ -21450,48 +21440,15 @@ msgstr ""
 #. Triggered when the player hails the ship
 #.
 #. <?xml version='1.0' encoding='utf8'?>
-#. <event name="Flintley">
-#. <trigger>land</trigger>
-#. <chance>100</chance>
-#. <cond>player.misnActive("Baron") == false and planet.cur() == planet.get("Tau Station") and player.misnDone("Prince")</cond>
-#. <notes>
-#. <done_misn name="Prince"/>
-#. <campaign>Baron Sauterfeldt</campaign>
-#. </notes>
-#. </event>
-#. --
-#.
-#. -- Flintley Event for the Baron mission string. Only used when NOT doing any Baron missions.
-#. --
-#. localization stuff, translators would work here
-#: dat/events/baron/baron_flintley.lua:18
-#: dat/missions/baron/baron_prince.lua:119
-msgid ""
-"Flintley is here. He nervously sips from his drink, clearly uncomfortable in "
-"this environment."
-msgstr ""
-
-#: dat/events/baron/baron_flintley.lua:19
-#: dat/missions/baron/baron_prince.lua:118
-msgid "Flintley"
-msgstr ""
-
-#: dat/events/baron/baron_flintley.lua:20
-#, lua-format
-msgid ""
-"    Flintley greets you, relieved to see a friendly face. \"Hello again, %s. "
-"What brings you here today? As you can see, I'm here on business again. "
-"Nothing too interesting, I'm afraid, just everyday stuff.\"\n"
-"    You spend some time chatting with Flintley, then you get back to work."
-msgstr ""
-
-#.
-#. <?xml version='1.0' encoding='utf8'?>
 #. <event name="Prowling baron">
 #. <trigger>enter</trigger>
 #. <priority>99</priority>
 #. <chance>100</chance>
-#. <cond>system.cur() == system.get("Ingot")</cond>
+#. <cond>
+#. system.cur() == system.get("Ingot")
+#. and not player.misnActive("Baron")
+#. and not player.misnActive("Prince")
+#. </cond>
 #. <notes>
 #. <campaign>Baron Sauterfeldt</campaign>
 #. </notes>
@@ -21500,8 +21457,8 @@ msgstr ""
 #.
 #. -- Prowl Event for the Baron mission string. Only used when NOT doing any Baron missions.
 #. --
-#: dat/events/baron/baron_prowl.lua:24 dat/missions/baron/baron_baron.lua:162
-#: dat/missions/baron/baron_prince.lua:419
+#: dat/events/baron/baron_prowl.lua:25 dat/missions/baron/baron_baron.lua:162
+#: dat/missions/baron/baron_prince.lua:427
 msgid "Pinnacle"
 msgstr ""
 
@@ -24873,7 +24830,7 @@ msgstr ""
 #.
 #. -- @brief Wrapper for pilot.outfitAdd that prints a warning if no outfits added.
 #. --
-#: dat/factions/equip/generic.lua:1421
+#: dat/factions/equip/generic.lua:1524
 #, lua-format
 msgid "Could not equip %s on pilot %s!"
 msgstr ""
@@ -25324,7 +25281,7 @@ msgstr ""
 #: dat/missions/shadow/shadowvigil.lua:84 src/gui.c:1651 src/map.c:526
 #: src/map.c:532 src/map.c:538 src/map.c:544 src/map.c:550 src/map.c:556
 #: src/map.c:2002 src/map_overlay.c:166 src/outfit.c:302 src/outfit.c:322
-#: src/outfit.c:882 src/player_autonav.c:237
+#: src/outfit.c:882 src/player_autonav.c:239
 msgid "Unknown"
 msgstr ""
 
@@ -27198,6 +27155,16 @@ msgid ""
 "here. This could be that Flintley fellow the Baron told you about."
 msgstr ""
 
+#: dat/missions/baron/baron_prince.lua:118
+msgid "Flintley"
+msgstr ""
+
+#: dat/missions/baron/baron_prince.lua:119
+msgid ""
+"Flintley is here. He nervously sips from his drink, clearly uncomfortable in "
+"this environment."
+msgstr ""
+
 #: dat/missions/baron/baron_prince.lua:121
 msgid ""
 "You spot a dodgy individual who matches one of the portraits in your ship's "
@@ -27230,7 +27197,7 @@ msgstr ""
 
 #. The price of each artifact will always be 15% of this, so at most
 #. the player will be paid 85% and at least 55%.
-#: dat/missions/baron/baron_prince.lua:192
+#: dat/missions/baron/baron_prince.lua:193
 msgid ""
 "Approach artifact seller at one of the following locations and buy the "
 "artifact:"
@@ -27239,57 +27206,63 @@ msgstr ""
 #. Note: This mission does not make system claims
 #. Make sure all planets are landable and that the player isn't on
 #. any of them.
-#: dat/missions/baron/baron_prince.lua:195
-#: dat/missions/baron/baron_prince.lua:201
-#: dat/missions/baron/baron_prince.lua:207
+#: dat/missions/baron/baron_prince.lua:197
+#: dat/missions/baron/baron_prince.lua:203
+#: dat/missions/baron/baron_prince.lua:209
 #: dat/missions/neutral/lovetrain.lua:131
 #: dat/missions/soromid/comingout/srm_comingout.lua:121
 msgid "{planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:214
+#: dat/missions/baron/baron_prince.lua:217
 msgid "Take artifact to Flintley on {planet} ({system} system)"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:276
-#: dat/missions/baron/baron_prince.lua:279
-#: dat/missions/baron/baron_prince.lua:282
+#: dat/missions/baron/baron_prince.lua:277
+#: dat/missions/baron/baron_prince.lua:280
+#: dat/missions/baron/baron_prince.lua:283
 msgid "Artifact seller"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:344
+#: dat/missions/baron/baron_prince.lua:299
+msgid ""
+"\"Be careful out there, {player}. I'm sure artifact hunters will be hot on "
+"your tail with an artifact as priceless as that one!\""
+msgstr ""
+
+#: dat/missions/baron/baron_prince.lua:352
 msgid "Skate-board"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:345
+#: dat/missions/baron/baron_prince.lua:353
 #, fuzzy
 msgid "A seemingly ancient artifact."
 msgstr "Artefact Ancien"
 
-#: dat/missions/baron/baron_prince.lua:367
+#: dat/missions/baron/baron_prince.lua:377
 msgid "Artifact? A"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:368
-#: dat/missions/baron/baron_prince.lua:383
-#: dat/missions/baron/baron_prince.lua:398
+#: dat/missions/baron/baron_prince.lua:378
+#: dat/missions/baron/baron_prince.lua:393
+#: dat/missions/baron/baron_prince.lua:408
 #, fuzzy
 msgid "An ancient artifact?"
 msgstr "Artefact Ancien"
 
-#: dat/missions/baron/baron_prince.lua:382
+#: dat/missions/baron/baron_prince.lua:392
 msgid "Artifact? B"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:397
+#: dat/missions/baron/baron_prince.lua:407
 msgid "Artifact? C"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:466
+#: dat/missions/baron/baron_prince.lua:476
 msgid "Artifact Hunter"
 msgstr ""
 
-#: dat/missions/baron/baron_prince.lua:467
+#: dat/missions/baron/baron_prince.lua:477
 msgid "Artifact Hunter {shiptype}"
 msgstr ""
 
@@ -44516,7 +44489,7 @@ msgid_plural "Loaded %d AI Profiles"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/ai.c:608 src/land.c:1781 src/player.c:3458
+#: src/ai.c:608 src/land.c:1780 src/player.c:3458
 #, c-format
 msgid ""
 "Error loading file: %s\n"
@@ -44543,79 +44516,79 @@ msgstr ""
 msgid "AI Profile '%s' not found in AI stack"
 msgstr ""
 
-#: src/ai.c:894
+#: src/ai.c:889
 #, c-format
 msgid "Pilot '%s' ai -> 'attacked': %s"
 msgstr ""
 
-#: src/ai.c:911
+#: src/ai.c:906
 #, c-format
 msgid "Pilot '%s' is trying to refuel when no 'refuel' function is defined!"
 msgstr ""
 
-#: src/ai.c:966
+#: src/ai.c:961
 #, c-format
 msgid "Pilot '%s' ai -> 'distress': %s"
 msgstr ""
 
 #. Error has occurred.
-#: src/ai.c:1006
+#: src/ai.c:1001
 #, c-format
 msgid "Pilot '%s' equip -> '%s': %s"
 msgstr ""
 
 #. Run function.
 #. error has occurred
-#: src/ai.c:1026
+#: src/ai.c:1021
 #, c-format
 msgid "Pilot '%s' ai -> '%s': %s"
 msgstr ""
 
-#: src/ai.c:1046
+#: src/ai.c:1041
 #, c-format
 msgid "Trying to create task for pilot '%s' which has no AI."
 msgstr ""
 
-#: src/ai.c:1078
+#: src/ai.c:1073
 #, c-format
 msgid "Trying to add subtask '%s' to non-existent task."
 msgstr ""
 
-#: src/ai.c:1141
+#: src/ai.c:1136
 #, c-format
 msgid "Failed to create new task '%s' for pilot '%s'."
 msgstr ""
 
-#: src/ai.c:1203 src/ai.c:1270
+#: src/ai.c:1198 src/ai.c:1265
 msgid "Trying to pop task when there are no tasks on the stack."
 msgstr ""
 
-#: src/ai.c:1274
+#: src/ai.c:1269
 #, c-format
 msgid "Trying to pop subtask when there are no subtasks for the task '%s'."
 msgstr ""
 
-#: src/ai.c:2405
+#: src/ai.c:2402
 #, c-format
 msgid "Pilot '%s' cannot land."
 msgstr ""
 
-#: src/ai.c:2412
+#: src/ai.c:2409
 #, c-format
 msgid "Pilot '%s' has invalid planet targeted."
 msgstr ""
 
-#: src/ai.c:2499
+#: src/ai.c:2496
 msgid "Jump point must be in current system."
 msgstr ""
 
-#: src/ai.c:2946 src/ai.c:3180 src/ai.c:3222 src/ai.c:3265
+#: src/ai.c:2943 src/ai.c:3177 src/ai.c:3219 src/ai.c:3262
 #: src/nlua_pilot.c:1591
 #, c-format
 msgid "'%s' is not a valid weapon set name."
 msgstr ""
 
-#: src/ai.c:3091
+#: src/ai.c:3088
 msgid "Invalid Bounds"
 msgstr ""
 
@@ -46095,7 +46068,7 @@ msgstr ""
 msgid "Planet '%s' appears to have commodity '%s' defined, but no faction."
 msgstr ""
 
-#: src/equipment.c:348 src/land.c:300 src/land.c:620 src/land.c:1551
+#: src/equipment.c:348 src/land.c:300 src/land.c:620 src/land.c:1550
 #: src/land_outfits.c:165 src/land_shipyard.c:105 src/land_trade.c:98
 msgid "&Take Off"
 msgstr ""
@@ -46807,7 +46780,7 @@ msgstr ""
 msgid "Ship"
 msgstr ""
 
-#: src/info.c:61 src/land.c:1311 src/space.c:167
+#: src/info.c:61 src/land.c:1310 src/space.c:167
 msgid "Missions"
 msgstr ""
 
@@ -46989,12 +46962,12 @@ msgstr ""
 
 #. no missions
 #. Make sure you have missions.
-#: src/info.c:1223 src/info.c:1251 src/land.c:682 src/land.c:836 src/land.c:908
+#: src/info.c:1223 src/info.c:1251 src/land.c:682 src/land.c:836 src/land.c:907
 msgid "No Missions"
 msgstr ""
 
 #: src/info.c:1252 src/info.c:1253 src/info.c:1278 src/land.c:648
-#: src/land.c:909
+#: src/land.c:908
 msgid "#nReward:#0 None"
 msgstr ""
 
@@ -47793,7 +47766,7 @@ msgstr ""
 msgid "Are you sure you want to accept this mission?"
 msgstr ""
 
-#: src/land.c:900
+#: src/land.c:899
 #, c-format
 msgid ""
 "#nDate:#0 %s\n"
@@ -47801,7 +47774,7 @@ msgid ""
 "#nMoney:#0 %s"
 msgstr ""
 
-#: src/land.c:920
+#: src/land.c:919
 #, c-format
 msgid ""
 "#nReward:#0 %s\n"
@@ -47809,25 +47782,25 @@ msgid ""
 "%s"
 msgstr ""
 
-#: src/land.c:973 src/land.c:1090
+#: src/land.c:972 src/land.c:1089
 #, c-format
 msgid "Outfit '%s' does not exist!"
 msgstr ""
 
-#: src/land.c:1004 src/land.c:1010 src/save.c:267 src/save.c:280
+#: src/land.c:1003 src/land.c:1009 src/save.c:267 src/save.c:280
 msgid "Save Snapshot"
 msgstr ""
 
-#: src/land.c:1005
+#: src/land.c:1004
 msgid ""
 "Cannot save; saving is currently being restricted by a mission or event."
 msgstr ""
 
-#: src/land.c:1011
+#: src/land.c:1010
 msgid "Please enter a name for the snapshot:"
 msgstr ""
 
-#: src/land.c:1066
+#: src/land.c:1065
 #, fuzzy, c-format
 msgid ""
 "#nStationed at#0 %s\n"
@@ -47844,60 +47817,60 @@ msgstr ""
 "Espace libre :\n"
 "Argent :"
 
-#: src/land.c:1101
+#: src/land.c:1100
 #, c-format
 msgid "&Buy Local Map (%s)"
 msgstr ""
 
-#: src/land.c:1302
+#: src/land.c:1301
 msgid "Landing Main"
 msgstr ""
 
-#: src/land.c:1306
+#: src/land.c:1305
 msgid "Spaceport Bar"
 msgstr ""
 
-#: src/land.c:1316 src/map_find.c:1076 src/space.c:169
+#: src/land.c:1315 src/map_find.c:1076 src/space.c:169
 msgid "Outfits"
 msgstr ""
 
-#: src/land.c:1321 src/space.c:170
+#: src/land.c:1320 src/space.c:170
 msgid "Shipyard"
 msgstr ""
 
-#: src/land.c:1327
+#: src/land.c:1326
 msgid "Equipment"
 msgstr "Équipement"
 
-#: src/land.c:1332 src/space.c:168
+#: src/land.c:1331 src/space.c:168
 msgid "Commodity"
 msgstr ""
 
-#: src/land.c:1554
+#: src/land.c:1553
 msgid "&Save Snapshot"
 msgstr ""
 
-#: src/land.c:1561
+#: src/land.c:1560
 msgid "No refueling services."
 msgstr ""
 
-#: src/land.c:1664
+#: src/land.c:1663
 msgid "Ship not fit for flight"
 msgstr ""
 
-#: src/land.c:1721
+#: src/land.c:1720
 msgid ""
 "Failed to save game! You should exit and check the log to see what happened "
 "and then file a bug report!"
 msgstr ""
 
-#: src/land.c:1730
+#: src/land.c:1729
 #, c-format
 msgid "#oTaking off from %s on %s."
 msgstr ""
 
 #. error has occurred
-#: src/land.c:1794
+#: src/land.c:1793
 #, c-format
 msgid "Rescue: 'rescue' : '%s'"
 msgstr ""
@@ -49467,33 +49440,33 @@ msgstr ""
 msgid "PAUSED"
 msgstr ""
 
-#: src/naev.c:1045
+#: src/naev.c:1047
 msgid "Icon (icon.png) not found!"
 msgstr ""
 
-#: src/naev.c:1050
+#: src/naev.c:1052
 msgid "Unable to load icon.png!"
 msgstr ""
 
-#: src/naev.c:1075
+#: src/naev.c:1077
 msgid " debug"
 msgstr ""
 
-#: src/naev.c:1114
+#: src/naev.c:1116
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr ""
 
-#: src/naev.c:1142
+#: src/naev.c:1144
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr ""
 
-#: src/naev.c:1152
+#: src/naev.c:1154
 msgid "SDL is newer than compiled version"
 msgstr ""
 
-#: src/naev.c:1154
+#: src/naev.c:1156
 msgid "SDL is older than compiled version."
 msgstr ""
 
@@ -51008,22 +50981,22 @@ msgstr ""
 msgid "%+.0f TFLOPS CPU\n"
 msgstr ""
 
-#: src/outfit.c:1304 src/outfit.c:1510 src/outfit.c:2708
+#: src/outfit.c:1304 src/outfit.c:1510 src/outfit.c:2704
 #, c-format
 msgid "%G%% Penetration\n"
 msgstr ""
 
-#: src/outfit.c:1311 src/outfit.c:2714
+#: src/outfit.c:1311 src/outfit.c:2710
 #, c-format
 msgid "%.2f GW Shield Damage [%.1f GJ/shot]\n"
 msgstr ""
 
-#: src/outfit.c:1315 src/outfit.c:2718
+#: src/outfit.c:1315 src/outfit.c:2714
 #, c-format
 msgid "%.2f GW Armor Damage [%.1f GJ/shot]\n"
 msgstr ""
 
-#: src/outfit.c:1319 src/outfit.c:1529 src/outfit.c:2722
+#: src/outfit.c:1319 src/outfit.c:1529 src/outfit.c:2718
 #, c-format
 msgid "%G%% Knockback\n"
 msgstr ""
@@ -51033,12 +51006,12 @@ msgstr ""
 msgid "%.2f GW Disable [%G GJ/shot]\n"
 msgstr ""
 
-#: src/outfit.c:1330 src/outfit.c:2731
+#: src/outfit.c:1330 src/outfit.c:2727
 #, c-format
 msgid "%.1f GW Energy Loss [%G GJ/shot]\n"
 msgstr ""
 
-#: src/outfit.c:1334
+#: src/outfit.c:1334 src/outfit.c:2732
 #, c-format
 msgid "%.1f RPS Fire Rate\n"
 msgstr ""
@@ -51058,21 +51031,21 @@ msgstr ""
 msgid "%G s Heat Up"
 msgstr ""
 
-#: src/outfit.c:1349 src/outfit.c:2744
+#: src/outfit.c:1349 src/outfit.c:2749
 #, c-format
 msgid ""
 "\n"
 "%G mAU Radar Optimal Range"
 msgstr ""
 
-#: src/outfit.c:1354 src/outfit.c:2749
+#: src/outfit.c:1354 src/outfit.c:2754
 #, c-format
 msgid ""
 "\n"
 "%G mAU Radar Maximum Range"
 msgstr ""
 
-#: src/outfit.c:1359 src/outfit.c:1559 src/outfit.c:2754
+#: src/outfit.c:1359 src/outfit.c:1559 src/outfit.c:2759
 #, c-format
 msgid ""
 "\n"
@@ -51316,27 +51289,29 @@ msgstr ""
 
 #: src/outfit.c:2699
 #, c-format
-msgid "%.1f s/round Reload Time\n"
-msgstr ""
-
-#: src/outfit.c:2703
-#, c-format
 msgid "Holds %d %s:\n"
 msgid_plural "Holds %d %s:\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/outfit.c:2727
+#: src/outfit.c:2723
 #, c-format
 msgid "%.1f GW Disable [%G GJ/shot]\n"
 msgstr ""
 
 #: src/outfit.c:2736
 #, c-format
-msgid ""
-"%.1f RPS Fire Rate\n"
-"%.0f mAU Range [%G duration]\n"
-"%G mAU/s Maximum Speed"
+msgid "%.1f s/round Reload Time\n"
+msgstr ""
+
+#: src/outfit.c:2740
+#, c-format
+msgid "%.0f mAU Range [%G duration]\n"
+msgstr ""
+
+#: src/outfit.c:2744
+#, c-format
+msgid "%G mAU/s Maximum Speed"
 msgstr ""
 
 #.
@@ -51426,40 +51401,40 @@ msgstr ""
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:2595 src/pilot.c:2644
+#: src/pilot.c:2601 src/pilot.c:2650
 msgid "#rJump aborted: strayed too far from jump point."
 msgstr ""
 
-#: src/pilot.c:2602
+#: src/pilot.c:2608
 msgid "#rJump aborted: afterburner active."
 msgstr ""
 
-#: src/pilot.c:2616
+#: src/pilot.c:2622
 msgid "#rJump aborted."
 msgstr ""
 
-#: src/pilot.c:2664
+#: src/pilot.c:2670
 #, c-format
 msgid "Pilot '%s' trying to jump through exit-only jump from '%s' to '%s'"
 msgstr ""
 
-#: src/pilot.c:3027
+#: src/pilot.c:3033
 #, c-format
 msgid ""
 "Pilot '%s' failed safety check:\n"
 "%s"
 msgstr ""
 
-#: src/pilot.c:3030
+#: src/pilot.c:3036
 #, c-format
 msgid "   [%d] %s"
 msgstr ""
 
-#: src/pilot.c:3125 src/pilot.c:3159
+#: src/pilot.c:3131 src/pilot.c:3165
 msgid "Unable to allocate memory"
 msgstr ""
 
-#: src/pilot.c:3245
+#: src/pilot.c:3251
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 
@@ -52056,58 +52031,58 @@ msgstr ""
 msgid "#oAutonav: auto-hyperspace sequence engaged."
 msgstr ""
 
-#: src/player_autonav.c:184
+#: src/player_autonav.c:186
 msgctxt "autonav_target"
 msgid "position"
 msgstr ""
 
-#: src/player_autonav.c:236
+#: src/player_autonav.c:238
 #, c-format
 msgid "#oAutonav: following %s."
 msgstr ""
 
-#: src/player_autonav.c:261
+#: src/player_autonav.c:263
 #, c-format
 msgid "#oAutonav: boarding %s."
 msgstr ""
 
-#: src/player_autonav.c:328
+#: src/player_autonav.c:330
 #, c-format
 msgid "#rAutonav aborted: %s"
 msgstr ""
 
-#: src/player_autonav.c:330
+#: src/player_autonav.c:332
 msgid "#rAutonav aborted"
 msgstr ""
 
-#: src/player_autonav.c:339
+#: src/player_autonav.c:341
 msgid "#oAutonav: hyperspace sequence aborted."
 msgstr ""
 
-#: src/player_autonav.c:460
+#: src/player_autonav.c:462
 msgid "#oAutonav: arrived at position."
 msgstr ""
 
-#: src/player_autonav.c:487
+#: src/player_autonav.c:489
 msgid "#oAutonav: hailing planet; please negotiate land clearance."
 msgstr ""
 
-#: src/player_autonav.c:510
+#: src/player_autonav.c:512
 #, c-format
 msgid "#oAutonav: arrived at #%c%s#0."
 msgstr ""
 
 #. TODO : handle the different reasons: pilot is too far, jumped, landed or died.
-#: src/player_autonav.c:549
+#: src/player_autonav.c:551
 #, c-format
 msgid "#oAutonav: following target %s has been lost."
 msgstr ""
 
-#: src/player_autonav.c:852
+#: src/player_autonav.c:854
 msgid "Target changed to current system"
 msgstr ""
 
-#: src/player_autonav.c:856
+#: src/player_autonav.c:858
 msgid "Not enough fuel for autonav to continue"
 msgstr "Pas assez de carburant pour continuer en pilote automatique"
 
