@@ -116,6 +116,8 @@
 * Trader pilots now only form groups using the standard formation;
   they don't also randomly sit next to each other anymore.
 * Made the different factions' weapon use a bit more distinct.
+* Removed the "Baron Flintley" event which showed up after the Prince
+  mission.
 
 ### Bugfixes
 
@@ -140,6 +142,7 @@
   to hyperspace.
 * Fixed filtering for outfits always checking against English names even
   when another language is the current language.
+* Fixed the class of Marius Station.
 
 
 ## 0.8.0
