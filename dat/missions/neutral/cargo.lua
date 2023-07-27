@@ -24,6 +24,7 @@
 --]]
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 require "cargo_common"
 
 
@@ -131,11 +132,17 @@ function accept()
    misn.osdCreate(osd_title, {
          fmt.f(osd_msg, {planet=destplanet:name(), system=destsys:name()})
       })
+
    hook.land("land")
+   hook.jumpout("hilight_clear")
+   hook.enter("hilight_next")
+   hook.discover("hilight_next")
 end
 
 -- Land hook
 function land()
+   hilight_clear()
+
    if planet.cur() == destplanet then
       -- Semi-random message.
       local cargo_land = {
@@ -165,7 +172,24 @@ function land()
    end
 end
 
-function abort ()
-   misn.finish(false)
+
+function hilight_clear()
+   hilighted_jump = nil
+   hilighted_planet = nil
 end
 
+
+function hilight_next()
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
+
+   hilighted_planet = destplanet
+   planet.hilightAdd(hilighted_planet)
+   hilighted_jump = mh.hilightNextJump(destsys)
+end
+
+
+function abort()
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
+end

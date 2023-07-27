@@ -132,6 +132,8 @@ function accept()
    hook.takeoff("takeoff")
    hook.jumpin("jumpin")
    hook.jumpout("jumpout")
+   hook.enter("hilight_next")
+   hook.discover("hilight_next")
    hook.land("land")
 end
 
@@ -210,6 +212,8 @@ end
 
 
 function jumpout()
+   hilight_clear()
+
    last_sys = system.cur()
    last_planet = nil
 
@@ -234,6 +238,8 @@ end
 
 
 function land()
+   hilight_clear()
+
    last_planet, last_sys = planet.cur()
    if last_planet == destplanet then
       local alive = getAliveCount()
@@ -402,7 +408,26 @@ function spawnConvoy(source)
 end
 
 
+function hilight_clear()
+   hilighted_jump = nil
+   hilighted_planet = nil
+end
+
+
+function hilight_next()
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
+
+   hilighted_planet = destplanet
+   planet.hilightAdd(hilighted_planet)
+   hilighted_jump = mh.hilightNextJump(destsys)
+end
+
+
 function abort()
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
+
    for i, ptable in ipairs(pilots_table) do
       if ptable.pilot ~= nil and ptable.pilot:exists() then
          local p = ptable.pilot

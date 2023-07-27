@@ -118,7 +118,7 @@ function create()
    misn.setReward(fmt.credits(reward))
 end
 
--- Mission is accepted
+
 function accept()
    if player.pilot():cargoFree() < amount then
       local required_text = n_(
@@ -168,12 +168,18 @@ function accept()
             deadline=timelimit:str(),
             time=time.str(timelimit - time.get(), 2)})
    misn.osdCreate(osd_title, osd_msg)
-   hook.land("land") -- only hook after accepting
-   hook.date(time.create(0, 0, 1000), "tick") -- 100STU per tick
+
+   hook.land("land")
+   hook.jumpout("hilight_clear")
+   hook.enter("hilight_next")
+   hook.discover("hilight_next")
+   hook.date(time.create(0, 0, 1000), "tick")
 end
 
--- Land hook
+
 function land()
+   hilight_clear()
+
    if planet.cur() == destplanet then
       local cargo_land = {
          _("The Imperial workers unload the {cargotype} at the docks."),
@@ -205,7 +211,7 @@ function land()
    end
 end
 
--- Date hook
+
 function tick()
    if timelimit >= time.get() then
       -- Case still in time
@@ -222,4 +228,26 @@ function tick()
             {planet=destplanet:name(), system=destsys:name()}))
       misn.finish(false)
    end
+end
+
+
+function hilight_clear()
+   hilighted_jump = nil
+   hilighted_planet = nil
+end
+
+
+function hilight_next()
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
+
+   hilighted_planet = destplanet
+   planet.hilightAdd(hilighted_planet)
+   hilighted_jump = mh.hilightNextJump(destsys)
+end
+
+
+function abort()
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
 end

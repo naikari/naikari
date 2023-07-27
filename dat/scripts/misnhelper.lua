@@ -68,4 +68,35 @@ function misnhelper.showFailMsg(reason)
 end
 
 
+--[[--
+Hilights the next jump in the route to a destination system.
+
+This attempts to find a known path for the player to get to the
+destination, and if one is found, hilights the jump point which will
+take the player along that path.
+
+Caller is responsible for calling jump.hilightRm() if the mission is
+aborted or the hilight is otherwise made obsolete before leaving the
+system.
+
+   @tparam System destsystem The final destination system
+   @treturn Jump|nil The jump which was hilighted, or nil if nothing was
+      hilighted.
+--]]
+function misnhelper.hilightNextJump(destsystem)
+   local hilight = nil
+   local cursys = system.cur()
+
+   if cursys ~= destsystem then
+      local path = cursys:jumpPath(destsystem, true, true)
+      if path ~= nil then
+         hilight = path[1]
+         jump.hilightAdd(hilight)
+      end
+   end
+
+   return hilight
+end
+
+
 return misnhelper
