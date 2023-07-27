@@ -1422,7 +1422,7 @@ void space_init( const char* sysname )
 
       /* Clear hilights of the new system's jump points. */
       for (j=0; j<array_size(cur_system->jumps); j++) {
-         jp_rmFlag(&cur_system->jumps[j], JP_HILIGHT);
+         cur_system->jumps[j].hilights = 0;
       }
 
       nt = ntime_pretty(0, 2);
@@ -1586,7 +1586,7 @@ static void space_clear(void)
 
    /* Un-hilight planets. */
    for (i=0; i<array_size(planet_stack); i++) {
-      planet_rmFlag(&planet_stack[i], PLANET_HILIGHT);
+      planet_stack[i].hilights = 0;
    }
 
    /* Enable spawning. */

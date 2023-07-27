@@ -55,6 +55,8 @@ static int planetL_services( lua_State *L );
 static int planetL_canland( lua_State *L );
 static int planetL_landOverride( lua_State *L );
 static int planetL_getLandOverride( lua_State *L );
+static int planetL_hilightAdd(lua_State *L);
+static int planetL_hilightRm(lua_State *L);
 static int planetL_gfxSpace( lua_State *L );
 static int planetL_gfxExterior( lua_State *L );
 static int planetL_shipsSold( lua_State *L );
@@ -84,6 +86,8 @@ static const luaL_Reg planet_methods[] = {
    {"canLand", planetL_canland},
    {"landOverride", planetL_landOverride},
    {"getLandOverride", planetL_getLandOverride},
+   {"hilightAdd", planetL_hilightAdd},
+   {"hilightRm", planetL_hilightRm},
    {"gfxSpace", planetL_gfxSpace},
    {"gfxExterior", planetL_gfxExterior},
    {"shipsSold", planetL_shipsSold},
@@ -752,6 +756,82 @@ static int planetL_getLandOverride( lua_State *L )
    Planet *p = luaL_validplanet(L,1);
    lua_pushboolean(L, p->land_override);
    return 1;
+}
+
+
+/**
+ * @brief Hilights a planet.
+ *
+ * Each planet has a stack of hilights, meaning different missions and
+ * events can add and remove their own hilights independently and the
+ * planet will show up as hilighted as long as at least one hilight
+ * remains. This function adds one hilight to the stack.
+ *
+ * All planet hilights are automatically removed when the system is
+ * exited. However, if the hilight should be removed before leaving the
+ * system (e.g. if the mission is aborted), you should explicitly remove
+ * the hilight with planet.hilightRm().
+ *
+ *    @luatparam Planet p Planet to add a hilight to. Can be nil, in
+ *       which case this function does nothing.
+ *
+ * @luasee hilightRm
+ * @luafunc hilightAdd
+ */
+static int planetL_hilightAdd(lua_State *L)
+{
+   Planet *p;
+
+   NLUA_CHECKRW(L);
+
+   if (lua_isnoneornil(L, 1))
+      return 0;
+
+   p = luaL_validplanet(L, 1);
+   p->hilights++;
+
+   return 0;
+}
+
+
+/**
+ * @brief Removes a hilight from a planet.
+ *
+ * Each planet has a stack of hilights, meaning different missions and
+ * events can add and remove their own hilights independently and the
+ * planet will show up as hilighted as long as at least one hilight
+ * remains. This function removes one hilight from the stack.
+ *
+ * The number of times you call this should not exceed the number of
+ * corresponding calls to planet.hilight() while the player was in the
+ * current system; otherwise, you could cause another mission or event's
+ * hilight to be removed.
+ *
+ *    @luatparam Planet p Planet to remove a hilight from. Can be nil,
+ *       in which case this function does nothing.
+ *
+ * @luasee hilightAdd
+ * @luafunc hilightRm
+ */
+static int planetL_hilightRm(lua_State *L)
+{
+   Planet *p;
+
+   NLUA_CHECKRW(L);
+
+   if (lua_isnoneornil(L, 1))
+      return 0;
+
+   p = luaL_validplanet(L, 1);
+   p->hilights--;
+   if (p->hilights < 0) {
+      WARN(_("Attempted to remove hilight from planet '%s', which has no"
+               " hilights."),
+            p->name);
+      p->hilights = 0;
+   }
+
+   return 0;
 }
 
 

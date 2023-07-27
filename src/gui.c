@@ -1548,7 +1548,7 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
       h *= 2.;
    }
 
-   if (planet_isFlag(planet, PLANET_HILIGHT)) {
+   if (planet->hilights > 0) {
       col_hilight = cRadar_hilight;
       col_hilight.a = 0.3;
       glUseProgram(shaders.hilight.program);
@@ -1639,7 +1639,7 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
       h *= 2.;
    }
 
-   if (jp_isFlag(jp, JP_HILIGHT)) {
+   if (jp->hilights > 0) {
       col_hilight = cRadar_hilight;
       col_hilight.a = 0.3;
       glUseProgram(shaders.hilight.program);

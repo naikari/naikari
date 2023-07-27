@@ -36,6 +36,8 @@ static int jumpL_system( lua_State *L );
 static int jumpL_dest( lua_State *L );
 static int jumpL_isKnown( lua_State *L );
 static int jumpL_setKnown( lua_State *L );
+static int jumpL_hilightAdd(lua_State *L);
+static int jumpL_hilightRm(lua_State *L);
 static const luaL_Reg jump_methods[] = {
    { "get", jumpL_get },
    { "__eq", jumpL_eq },
@@ -47,6 +49,8 @@ static const luaL_Reg jump_methods[] = {
    { "dest", jumpL_dest },
    { "known", jumpL_isKnown },
    { "setKnown", jumpL_setKnown },
+   {"hilightAdd", jumpL_hilightAdd},
+   {"hilightRm", jumpL_hilightRm},
    {0,0}
 }; /**< Jump metatable methods. */
 
@@ -434,6 +438,85 @@ static int jumpL_setKnown( lua_State *L )
    /* Update outfits image array. */
    if (changed)
       outfits_updateEquipmentOutfits();
+
+   return 0;
+}
+
+
+
+
+
+/**
+ * @brief Adds a hilight to a jump.
+ *
+ * Each jump has a stack of hilights, meaning different missions and
+ * events can add and remove their own hilights independently and the
+ * jump will show up as hilighted as long as at least one hilight
+ * remains. This function adds one hilight to the stack.
+ *
+ * All jump hilights are automatically removed when the system is
+ * exited. However, if the hilight should be removed before leaving the
+ * system (e.g. if the mission is aborted), you should explicitly remove
+ * the hilight with jump.hilightRm().
+ *
+ *    @luatparam Jump|nil p Jump to add a hilight to. Can be nil, in
+ *       which case this function does nothing.
+ *
+ * @luasee hilightRm
+ * @luafunc hilightAdd
+ */
+static int jumpL_hilightAdd(lua_State *L)
+{
+   JumpPoint *jp;
+
+   NLUA_CHECKRW(L);
+
+   if (lua_isnoneornil(L, 1))
+      return 0;
+
+   jp = luaL_validjump(L, 1);
+   jp->hilights++;
+
+   return 0;
+}
+
+
+/**
+ * @brief Removes a hilight from a jump.
+ *
+ * Each jump has a stack of hilights, meaning different missions and
+ * events can add and remove their own hilights independently and the
+ * jump will show up as hilighted as long as at least one hilight
+ * remains. This function removes one hilight from the stack.
+ *
+ * The number of times you call this should not exceed the number of
+ * corresponding calls to jump.hilight() while the player was in the
+ * current system; otherwise, you could cause another mission or event's
+ * hilight to be removed.
+ *
+ *    @luatparam Jump|nil p Jump to remove a hilight from. Can be nil,
+ *       in which case this function does nothing.
+ *
+ * @luasee hilightAdd
+ * @luafunc hilightRm
+ */
+static int jumpL_hilightRm(lua_State *L)
+{
+   JumpPoint *jp;
+
+   NLUA_CHECKRW(L);
+
+   if (lua_isnoneornil(L, 1))
+      return 0;
+
+   jp = luaL_validjump(L, 1);
+   jp->hilights--;
+   if (jp->hilights < 0) {
+      WARN(_("Attempted to remove hilight from jump from '%s' to '%s', which"
+               " has no hilights."),
+            jp->from->name, jp->target->name);
+      jp->hilights = 0;
+   }
 
    return 0;
 }
