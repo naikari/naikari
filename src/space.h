@@ -62,9 +62,10 @@ enum {
 /*
  * Planet flags.
  */
-#define PLANET_KNOWN       (1<<0) /**< Planet is known. */
+#define PLANET_KNOWN (1<<0) /**< Planet is known. */
 #define PLANET_NOMISNSPAWN (1<<1) /**< No missions spawn nor trigger on this asset. */
 #define PLANET_UNINHABITED (1<<2) /**< Force planet to be uninhabited. */
+#define PLANET_HILIGHT (1<<3) /**< Planet is hilighted. */
 #define planet_isFlag(p,f)    ((p)->flags & (f)) /**< Checks planet flag. */
 #define planet_setFlag(p,f)   ((p)->flags |= (f)) /**< Sets a planet flag. */
 #define planet_rmFlag(p,f)    ((p)->flags &= ~(f)) /**< Removes a planet flag. */
@@ -175,12 +176,13 @@ typedef struct SystemPresence_ {
 /*
  * Jump point flags.
  */
-#define JP_AUTOPOS      (1<<0) /**< Automatically position jump point based on system radius. */
-#define JP_KNOWN        (1<<1) /**< Jump point is known. */
-#define JP_HIDDEN       (1<<2) /**< Jump point is hidden. */
-#define JP_EXITONLY     (1<<3) /**< Jump point is exit only */
-#define JP_EXPRESS      (1<<4) /**< Jump point is immediately visible. */
-#define JP_LONGRANGE    (1<<5) /**< Jump point is drawn only partially, with a gap. */
+#define JP_AUTOPOS (1<<0) /**< Automatically position jump point based on system radius. */
+#define JP_KNOWN (1<<1) /**< Jump point is known. */
+#define JP_HIDDEN (1<<2) /**< Jump point is hidden. */
+#define JP_EXITONLY (1<<3) /**< Jump point is exit only */
+#define JP_EXPRESS (1<<4) /**< Jump point is immediately visible. */
+#define JP_LONGRANGE (1<<5) /**< Jump point is drawn only partially, with a gap. */
+#define JP_HILIGHT (1<<6) /**< Jump point is hilighted. */
 #define jp_isFlag(j,f)    ((j)->flags & (f)) /**< Checks jump flag. */
 #define jp_setFlag(j,f)   ((j)->flags |= (f)) /**< Sets a jump flag. */
 #define jp_rmFlag(j,f)    ((j)->flags &= ~(f)) /**< Removes a jump flag. */

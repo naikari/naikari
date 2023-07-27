@@ -1497,23 +1497,25 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
    const glColour *col;
    Planet *planet;
    char buf[STRMAX_SHORT];
+   glColour col_hilight;
+
+   planet = cur_system->planets[ind];
 
    /* Make sure is known. */
-   if ( !planet_isKnown( cur_system->planets[ind] ))
+   if (!planet_isKnown(planet))
       return;
 
    /* Default values. */
-   planet = cur_system->planets[ind];
-   r     = planet->radius / res;
-   vr    = overlay ? planet->mo.radius : MAX( r, 7.5 );
+   r = planet->radius / res;
+   vr = overlay ? planet->mo.radius : MAX( r, 7.5 );
 
    if (overlay) {
-      cx    = planet->pos.x / res;
-      cy    = planet->pos.y / res;
+      cx = planet->pos.x / res;
+      cy = planet->pos.y / res;
    }
    else {
-      cx    = (planet->pos.x - player.p->solid->pos.x) / res;
-      cy    = (planet->pos.y - player.p->solid->pos.y) / res;
+      cx = (planet->pos.x-player.p->solid->pos.x) / res;
+      cy = (planet->pos.y-player.p->solid->pos.y) / res;
    }
 
    /* Check if in range. */
@@ -1542,10 +1544,18 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
       /* Transform coordinates. */
       cx += map_overlay_center_x();
       cy += map_overlay_center_y();
-      w  *= 2.;
-      h  *= 2.;
+      w *= 2.;
+      h *= 2.;
    }
 
+   if (planet_isFlag(planet, PLANET_HILIGHT)) {
+      col_hilight = cRadar_hilight;
+      col_hilight.a = 0.3;
+      glUseProgram(shaders.hilight.program);
+      glUniform1f(shaders.hilight.dt, animation_dt);
+      gl_renderShader(cx, cy, vr * 3., vr * 3., 0., &shaders.hilight,
+            &col_hilight, 1);
+   }
 
    /* Get the colour. */
    col = gui_getPlanetColour(ind);
@@ -1582,24 +1592,24 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
    const glColour *col;
    JumpPoint *jp;
    char buf[STRMAX_SHORT];
+   glColour col_hilight;
 
-
-   /* Default values. */
-   jp    = &cur_system->jumps[ind];
-   r     = jumppoint_gfx->sw/2. / res;
-   vr    = overlay ? jp->mo.radius : MAX( r, 5. );
-   if (overlay) {
-      cx    = jp->pos.x / res;
-      cy    = jp->pos.y / res;
-   }
-   else {
-      cx    = (jp->pos.x - player.p->solid->pos.x) / res;
-      cy    = (jp->pos.y - player.p->solid->pos.y) / res;
-   }
+   jp = &cur_system->jumps[ind];
 
    /* Check if known */
    if (!jp_isKnown(jp))
       return;
+
+   r = jumppoint_gfx->sw/2. / res;
+   vr = overlay ? jp->mo.radius : MAX(r, 5.);
+   if (overlay) {
+      cx = jp->pos.x / res;
+      cy = jp->pos.y / res;
+   }
+   else {
+      cx = (jp->pos.x-player.p->solid->pos.x) / res;
+      cy = (jp->pos.y-player.p->solid->pos.y) / res;
+   }
 
    /* Check if in range. */
    if (shape == RADAR_RECT) {
@@ -1625,8 +1635,17 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
       /* Transform coordinates. */
       cx += map_overlay_center_x();
       cy += map_overlay_center_y();
-      w  *= 2.;
-      h  *= 2.;
+      w *= 2.;
+      h *= 2.;
+   }
+
+   if (jp_isFlag(jp, JP_HILIGHT)) {
+      col_hilight = cRadar_hilight;
+      col_hilight.a = 0.3;
+      glUseProgram(shaders.hilight.program);
+      glUniform1f(shaders.hilight.dt, animation_dt);
+      gl_renderShader(cx, cy, vr * 3., vr * 3., 0., &shaders.hilight,
+            &col_hilight, 1);
    }
 
    if (ind == player.p->nav_hyperspace)

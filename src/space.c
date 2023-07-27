@@ -119,6 +119,8 @@ int space_spawn = 1; /**< Spawn enabled by default. */
 /*
  * Internal Prototypes.
  */
+/* space load */
+static void space_clear(void);
 /* planet load */
 static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **stdList );
 static int space_parseAssets( xmlNodePtr parent, StarSystem* sys );
@@ -1404,20 +1406,8 @@ void space_init( const char* sysname )
    Damage dmg;
    double dshield, darmor;
 
-   /* cleanup some stuff */
-   player_clear(); /* clears targets */
-   ovr_mrkClear(); /* Clear markers when jumping. */
-   pilots_clean(1); /* destroy non-persistent pilots */
-   weapon_clear(); /* get rid of all the weapons */
-   spfx_clear(); /* get rid of the explosions */
-   gatherable_free(); /* get rid of gatherable stuff. */
-   background_clear(); /* Get rid of the background. */
-   factions_clearDynamic(); /* get rid of dynamic factions. */
-   space_spawn = 1; /* spawn is enabled by default. */
-   if (player.p != NULL) {
-      pilot_lockClear( player.p );
-      pilot_clearTimers( player.p ); /* Clear timers. */
-   }
+   /* Cleanup previous system. */
+   space_clear();
 
    if ((sysname==NULL) && (cur_system==NULL))
       ERR(_("Cannot reinit system if there is no system previously loaded"));
@@ -1429,6 +1419,11 @@ void space_init( const char* sysname )
       if (i>=array_size(systems_stack))
          ERR(_("System %s not found in stack"), sysname);
       cur_system = &systems_stack[i];
+
+      /* Clear hilights of the new system's jump points. */
+      for (j=0; j<array_size(cur_system->jumps); j++) {
+         jp_rmFlag(&cur_system->jumps[j], JP_HILIGHT);
+      }
 
       nt = ntime_pretty(0, 2);
       player_message(_("#oEntering System %s on %s."), _(sysname), nt);
@@ -1549,6 +1544,53 @@ void space_init( const char* sysname )
 
    /* Start background. */
    background_load( cur_system->background );
+}
+
+
+/**
+ * @brief Clears things that need to be cleared when leaving a system.
+ */
+static void space_clear(void)
+{
+   int i;
+
+   /* Clear player stuff. */
+   player_clear();
+
+   /* Clear markers. */
+   ovr_mrkClear();
+
+   /* Destroy non-persistent pilots. */
+   pilots_clean(1);
+
+   /* Clear weapons. */
+   weapon_clear();
+
+   /* Clear explosions and other space effects. */
+   spfx_clear();
+
+   /* Destroy gatherables. */
+   gatherable_free();
+
+   /* Clear background. */
+   background_clear();
+
+   /* Clear dynamic factions. */
+   factions_clearDynamic();
+
+   /* Clear player locks and timers. */
+   if (player.p != NULL) {
+      pilot_lockClear(player.p);
+      pilot_clearTimers(player.p);
+   }
+
+   /* Un-hilight planets. */
+   for (i=0; i<array_size(planet_stack); i++) {
+      planet_rmFlag(&planet_stack[i], PLANET_HILIGHT);
+   }
+
+   /* Enable spawning. */
+   space_spawn = 1;
 }
 
 
