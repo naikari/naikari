@@ -20,10 +20,6 @@
   <jump target="Doranthex">
    <autopos/>
   </jump>
-  <jump target="Ingot">
-   <autopos/>
-   <hidden/>
-  </jump>
   <jump target="Zacron">
    <autopos/>
   </jump>

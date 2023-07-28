@@ -18,6 +18,9 @@
   <asset>Virtual Civilian Standard</asset>
  </assets>
  <jumps>
+  <jump target="Koralis">
+   <autopos/>
+  </jump>
   <jump target="Yarn">
    <autopos/>
   </jump>

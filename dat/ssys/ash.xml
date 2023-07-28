@@ -15,6 +15,9 @@
   <asset>Blossom</asset>
  </assets>
  <jumps>
+  <jump target="Ingot">
+   <autopos/>
+  </jump>
   <jump target="Tuoladis">
    <autopos/>
   </jump>

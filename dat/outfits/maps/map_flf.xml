@@ -17,22 +17,8 @@
   <sys name="Myad">
    <jump>Gilligan's Light</jump>
   </sys>
-  <sys name="Ingot">
-   <jump>Tuoladis</jump>
-   <jump>Gilligan's Light</jump>
-  </sys>
-  <sys name="Tuoladis">
-   <jump>Ingot</jump>
-  </sys>
   <sys name="Gilligan's Light">
    <jump>Myad</jump>
-   <jump>Ingot</jump>
-  </sys>
-  <sys name="Theras">
-   <jump>Klantar</jump>
-  </sys>
-  <sys name="Klantar">
-   <jump>Theras</jump>
   </sys>
  </specific>
 </outfit>

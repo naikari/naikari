@@ -19,10 +19,6 @@
   <asset>Virtual FLF Small</asset>
  </assets>
  <jumps>
-  <jump target="Ingot">
-   <autopos/>
-   <hidden/>
-  </jump>
   <jump target="Myad">
    <autopos/>
    <hidden/>

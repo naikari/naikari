@@ -30,9 +30,5 @@
   <jump target="Haleb">
    <autopos/>
   </jump>
-  <jump target="Klantar">
-   <autopos/>
-   <hidden/>
-  </jump>
  </jumps>
 </ssys>

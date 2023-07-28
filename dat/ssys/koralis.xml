@@ -27,6 +27,9 @@
    <autopos/>
    <express/>
   </jump>
+  <jump target="Griffin">
+   <autopos/>
+  </jump>
   <jump target="Pastor">
    <autopos/>
    <express/>

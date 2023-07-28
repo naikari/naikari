@@ -26,9 +26,5 @@
   <jump target="Tarsus">
    <autopos/>
   </jump>
-  <jump target="Theras">
-   <autopos/>
-   <hidden/>
-  </jump>
  </jumps>
 </ssys>

@@ -17,16 +17,11 @@
   <asset>Virtual Pirate Unpresence</asset>
  </assets>
  <jumps>
-  <jump target="Gilligan's Light">
+  <jump target="Ash">
    <autopos/>
-   <hidden/>
   </jump>
   <jump target="Toaxis">
    <autopos/>
-  </jump>
-  <jump target="Tuoladis">
-   <autopos/>
-   <hidden/>
   </jump>
  </jumps>
 </ssys>
