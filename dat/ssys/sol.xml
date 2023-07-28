@@ -22,11 +22,6 @@
   <asset>Virtual Za'lek Unpresence</asset>
  </assets>
  <jumps>
-  <jump target="Hypergate Zone">
-   <pos x="5262.168180" y="-6711.638587"/>
-   <longrange/>
-   <rdr_range_mod>-90.000000</rdr_range_mod>
-  </jump>
   <jump target="Midoros">
    <autopos/>
   </jump>

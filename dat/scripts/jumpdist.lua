@@ -29,10 +29,9 @@
 --    @param filter Optional filter function to use for more details.
 --    @param data Data to pass to filter
 --    @param hidden Whether or not to consider hidden jumps (off by default)
---    @param hypergates Whether or not to consider hypergates (off by default)
 --    @return The table of systems n jumps away from sys
 --]]
-function getsysatdistance(sys, min, max, filter, data, hidden, hypergates)
+function getsysatdistance(sys, min, max, filter, data, hidden)
    -- Get default parameters
    if sys == nil then
       sys = system.cur()
@@ -53,8 +52,7 @@ function getsysatdistance(sys, min, max, filter, data, hidden, hypergates)
          adjsys = s:adjacentSystems(hidden) -- Get them all
          for k, a in ipairs(adjsys) do
             -- Must not have been explored previously
-            if close[a:nameRaw()] == nil
-                  and (hypergates or a ~= system.get("Hypergate Zone")) then
+            if close[a:nameRaw()] == nil then
                nopen[#nopen+1] = a
                close[a:nameRaw()] = a
                dist[a:nameRaw()] = i

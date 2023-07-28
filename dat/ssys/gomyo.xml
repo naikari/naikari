@@ -15,12 +15,7 @@
   <asset>Virtual Miner Local</asset>
   <asset>Wakomi</asset>
  </assets>
- <jumps>
-  <jump target="Hypergate Zone">
-   <autopos/>
-   <longrange/>
-  </jump>
- </jumps>
+ <jumps/>
  <asteroids>
   <asteroid>
    <type>default</type>
