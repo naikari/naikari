@@ -36,6 +36,7 @@
 --]]
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 
 --Mission Details
 misn_title = _("{commodity} Delivery")
@@ -134,10 +135,15 @@ function accept()
    marker = nil
 
    hook.land("land")
+   hook.jumpout("hilight_clear")
+   hook.enter("hilight_next")
+   hook.discover("hilight_next")
 end
 
 
 function land()
+   hilight_clear()
+
    local amount = pilot.cargoHas(player.pilot(), chosen_comm)
    local reward = amount * price
 
@@ -173,7 +179,29 @@ function safe_updateCommod()
 end
 
 
-function abort ()
+function hilight_clear()
+   hilighted_jump = nil
+   hilighted_planet = nil
+end
+
+
+function hilight_next()
+   if marker == nil then
+      return
+   end
+
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
+
+   hilighted_planet = misplanet
+   planet.hilightAdd(hilighted_planet)
+   hilighted_jump = mh.hilightNextJump(missys)
+end
+
+
+function abort()
+   planet.hilightRm(hilighted_planet)
+   jump.hilightRm(hilighted_jump)
    update_active_runs(-1)
 end
 
