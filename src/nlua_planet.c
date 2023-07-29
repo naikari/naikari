@@ -772,10 +772,14 @@ static int planetL_getLandOverride( lua_State *L )
  * system (e.g. if the mission is aborted), you should explicitly remove
  * the hilight with planet.hilightRm().
  *
+ * Note: In addition to this function, missions can also hilight a
+ * destination planet with misn.markerAdd().
+ *
  *    @luatparam Planet p Planet to add a hilight to. Can be nil, in
  *       which case this function does nothing.
  *
  * @luasee hilightRm
+ * @luasee misn.markerAdd
  * @luafunc hilightAdd
  */
 static int planetL_hilightAdd(lua_State *L)

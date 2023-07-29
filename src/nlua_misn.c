@@ -34,6 +34,7 @@
 #include "nlua_faction.h"
 #include "nlua_hook.h"
 #include "nlua_music.h"
+#include "nlua_planet.h"
 #include "nlua_player.h"
 #include "nlua_system.h"
 #include "nlua_tex.h"
@@ -367,6 +368,8 @@ static int misn_setReward( lua_State *L )
  *
  *    @luatparam System sys System to mark.
  *    @luatparam[opt="high"] string type Colouring scheme to use.
+ *    @luatparam[opt] Planet|string pnt Planet or raw (untranslated)
+ *       name of planet to hilight.
  *    @luatreturn number A marker ID to be used with markerMove and markerRm.
  * @luafunc markerAdd
  */
@@ -374,13 +377,15 @@ static int misn_markerAdd( lua_State *L )
 {
    int id;
    LuaSystem sys;
+   const Planet *planet;
+   char *planetname;
    const char *stype;
    SysMarker type;
    Mission *cur_mission;
 
    /* Check parameters. */
-   sys   = luaL_checksystem( L, 1 );
-   stype = luaL_optstring( L, 2, "high" );
+   sys = luaL_checksystem(L, 1);
+   stype = luaL_optstring(L, 2, "high");
 
    /* Handle types. */
    if (strcmp(stype, "computer")==0)
@@ -396,10 +401,17 @@ static int misn_markerAdd( lua_State *L )
       return 0;
    }
 
+   /* Get planet here to avoid memory leaks on error. */
+   planetname = NULL;
+   if (!lua_isnoneornil(L, 3)) {
+      planet = luaL_validplanet(L, 3);
+      planetname = strdup(planet->name);
+   }
+
    cur_mission = misn_getFromLua(L);
 
    /* Add the marker. */
-   id = mission_addMarker( cur_mission, -1, sys, type );
+   id = mission_addMarker(cur_mission, -1, sys, planetname, type);
 
    /* Update system markers. */
    mission_sysMark();
@@ -416,19 +428,23 @@ static int misn_markerAdd( lua_State *L )
  *
  *    @luatparam number id ID of the mission marker to move.
  *    @luatparam System sys System to move the marker to.
+ *    @luatparam[opt] Planet|string pnt Planet or raw (untranslated)
+ *       name of planet to hilight.
  * @luafunc markerMove
  */
 static int misn_markerMove( lua_State *L )
 {
    int id;
    LuaSystem sys;
+   const Planet *planet;
+   char *planetname;
    MissionMarker *marker;
    int i, n;
    Mission *cur_mission;
 
    /* Handle parameters. */
-   id    = luaL_checkinteger( L, 1 );
-   sys   = luaL_checksystem( L, 2 );
+   id = luaL_checkinteger(L, 1);
+   sys = luaL_checksystem(L, 2);
 
    cur_mission = misn_getFromLua(L);
 
@@ -446,8 +462,16 @@ static int misn_markerMove( lua_State *L )
       return 0;
    }
 
+   /* Get planet here to avoid memory leaks on error. */
+   planetname = NULL;
+   if (!lua_isnoneornil(L, 3)) {
+      planet = luaL_validplanet(L, 3);
+      planetname = strdup(planet->name);
+   }
+
    /* Update system. */
    marker->sys = sys;
+   marker->planet = planetname;
 
    /* Update system markers. */
    mission_sysMark();

@@ -460,10 +460,15 @@ static int jumpL_setKnown( lua_State *L )
  * system (e.g. if the mission is aborted), you should explicitly remove
  * the hilight with jump.hilightRm().
  *
+ * Note: This function is not needed to hilight the next jump to systems
+ * marked by misn.markerAdd(), as the next jump to marked systems is
+ * automatically hilighted.
+ *
  *    @luatparam Jump|nil p Jump to add a hilight to. Can be nil, in
  *       which case this function does nothing.
  *
  * @luasee hilightRm
+ * @luasee misn.markerAdd
  * @luafunc hilightAdd
  */
 static int jumpL_hilightAdd(lua_State *L)
@@ -495,15 +500,10 @@ static int jumpL_hilightAdd(lua_State *L)
  * current system; otherwise, you could cause another mission or event's
  * hilight to be removed.
  *
- * Note: This function is not needed to hilight the next jump to systems
- * marked by misn.markerAdd(), as the next jump to marked systems is
- * automatically hilighted.
- *
  *    @luatparam Jump|nil p Jump to remove a hilight from. Can be nil,
  *       in which case this function does nothing.
  *
  * @luasee hilightAdd
- * @luasee misn.markerAdd
  * @luafunc hilightRm
  */
 static int jumpL_hilightRm(lua_State *L)

@@ -1548,7 +1548,7 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
       h *= 2.;
    }
 
-   if (planet->hilights > 0) {
+   if (planet_isFlag(planet, PLANET_HILIGHT) || (planet->hilights > 0)) {
       col_hilight = cRadar_hilight;
       col_hilight.a = 0.3;
       glUseProgram(shaders.hilight.program);

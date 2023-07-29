@@ -79,6 +79,7 @@ static int mission_parseXML( MissionData *temp, const xmlNodePtr parent );
 static int missions_parseActive( xmlNodePtr parent );
 /* Hilighting. */
 static void mission_hilightNextJump(Mission *misn);
+static void mission_hilightPlanets(Mission *misn);
 
 
 /**
@@ -361,7 +362,8 @@ int mission_start( const char *name, unsigned int *id )
 /**
  * @brief Adds a system marker to a mission.
  */
-int mission_addMarker( Mission *misn, int id, int sys, SysMarker type )
+int mission_addMarker(Mission *misn, int id, int sys, char *planet,
+      SysMarker type)
 {
    MissionMarker *marker;
    int i, n, m;
@@ -381,9 +383,10 @@ int mission_addMarker( Mission *misn, int id, int sys, SysMarker type )
    }
 
    /* Create the marker. */
-   marker      = &array_grow( &misn->markers );
-   marker->id  = id;
+   marker = &array_grow( &misn->markers );
+   marker->id = id;
    marker->sys = sys;
+   marker->planet = planet;
    marker->type = type;
 
    return marker->id;
@@ -479,6 +482,10 @@ void mission_destHilight(void)
       jp_rmFlag(&cur_system->jumps[i], JP_HILIGHT);
    }
 
+   for (i=0; i<array_size(cur_system->planets); i++) {
+      planet_rmFlag(cur_system->planets[i], PLANET_HILIGHT);
+   }
+
    for (i=0; i<MISSION_MAX; i++) {
       misn = player_missions[i];
 
@@ -487,6 +494,7 @@ void mission_destHilight(void)
          continue;
 
       mission_hilightNextJump(misn);
+      mission_hilightPlanets(misn);
    }
 }
 
@@ -517,6 +525,21 @@ static void mission_hilightNextJump(Mission *misn)
          jp_setFlag(jp, JP_HILIGHT);
 
       array_free(path);
+   }
+}
+
+
+static void mission_hilightPlanets(Mission *misn)
+{
+   Planet *planet;
+   int i;
+
+   for (i=0; i<array_size(misn->markers); i++) {
+      if (misn->markers[i].planet == NULL)
+         continue;
+
+      planet = planet_get(misn->markers[i].planet);
+      planet_setFlag(planet, PLANET_HILIGHT);
    }
 }
 
@@ -608,7 +631,10 @@ void mission_cleanup( Mission* misn )
    free(misn->npc_desc);
 
    /* Markers. */
-   array_free( misn->markers );
+   for (i=0; i<array_size(misn->markers); i++) {
+      free(misn->markers[i].planet);
+   }
+   array_free(misn->markers);
 
    /* Claims. */
    if (misn->claims != NULL)
@@ -1085,6 +1111,8 @@ int missions_saveActive( xmlTextWriterPtr writer )
    int i,j,n;
    char **items;
    const Commodity *c;
+   Mission *misn;
+   MissionMarker *marker;
 
    /* We also save specially created cargos here. Since it can only be mission
     * cargo and can only be placed on the player's main ship, we don't have to
@@ -1102,44 +1130,48 @@ int missions_saveActive( xmlTextWriterPtr writer )
 
    xmlw_startElem(writer,"missions");
    for (i=0; i<MISSION_MAX; i++) {
-      if (player_missions[i]->id != 0) {
+      misn = player_missions[i];
+      if (misn->id != 0) {
          xmlw_startElem(writer,"mission");
 
          /* data and id are attributes because they must be loaded first */
-         xmlw_attr(writer,"data","%s",player_missions[i]->data->name);
-         xmlw_attr(writer,"id","%u",player_missions[i]->id);
+         xmlw_attr(writer, "data", "%s", misn->data->name);
+         xmlw_attr(writer, "id", "%u", misn->id);
 
-         xmlw_elem(writer,"title","%s",player_missions[i]->title);
-         xmlw_elem(writer,"desc","%s",player_missions[i]->desc);
-         xmlw_elem(writer,"reward","%s",player_missions[i]->reward);
+         xmlw_elem(writer, "title", "%s", misn->title);
+         xmlw_elem(writer, "desc", "%s", misn->desc);
+         xmlw_elem(writer, "reward", "%s", misn->reward);
 
          /* Markers. */
-         xmlw_startElem( writer, "markers" );
-         n = array_size( player_missions[i]->markers );
+         xmlw_startElem(writer, "markers");
+         n = array_size(misn->markers);
          for (j=0; j<n; j++) {
+            marker = &misn->markers[j];
             xmlw_startElem(writer,"marker");
-            xmlw_attr(writer,"id","%d",player_missions[i]->markers[j].id);
-            xmlw_attr(writer,"type","%d",player_missions[i]->markers[j].type);
-            xmlw_str(writer,"%s", system_getIndex(player_missions[i]->markers[j].sys)->name);
+            xmlw_attr(writer, "id", "%d", marker->id);
+            xmlw_attr(writer, "type", "%d", marker->type);
+            if (marker->planet != NULL)
+               xmlw_attr(writer, "planet", "%s", marker->planet);
+            xmlw_str(writer, "%s", system_getIndex(marker->sys)->name);
             xmlw_endElem(writer); /* "marker" */
          }
          xmlw_endElem( writer ); /* "markers" */
 
          /* Cargo */
          xmlw_startElem(writer,"cargos");
-         for (j=0; j<array_size(player_missions[i]->cargo); j++)
-            xmlw_elem(writer,"cargo","%u", player_missions[i]->cargo[j]);
+         for (j=0; j<array_size(misn->cargo); j++)
+            xmlw_elem(writer, "cargo", "%u", misn->cargo[j]);
          xmlw_endElem(writer); /* "cargos" */
 
          /* OSD. */
-         if (player_missions[i]->osd > 0) {
+         if (misn->osd > 0) {
             xmlw_startElem(writer,"osd");
 
             /* Save attributes. */
-            items = osd_getItems(player_missions[i]->osd);
-            xmlw_attr(writer,"title","%s",osd_getTitle(player_missions[i]->osd));
-            xmlw_attr(writer,"nitems","%d",array_size(items));
-            xmlw_attr(writer,"active","%d",osd_getActive(player_missions[i]->osd));
+            items = osd_getItems(misn->osd);
+            xmlw_attr(writer, "title", "%s", osd_getTitle(misn->osd));
+            xmlw_attr(writer, "nitems", "%d", array_size(items));
+            xmlw_attr(writer, "active", "%d", osd_getActive(misn->osd));
 
             /* Save messages. */
             for (j=0; j<array_size(items); j++)
@@ -1149,13 +1181,13 @@ int missions_saveActive( xmlTextWriterPtr writer )
          }
 
          /* Claims. */
-         xmlw_startElem(writer,"claims");
-         claim_xmlSave( writer, player_missions[i]->claims );
+         xmlw_startElem(writer, "claims");
+         claim_xmlSave(writer, misn->claims);
          xmlw_endElem(writer); /* "claims" */
 
          /* Write Lua magic */
          xmlw_startElem(writer,"lua");
-         nxml_persistLua( player_missions[i]->env, writer );
+         nxml_persistLua(misn->env, writer);
          xmlw_endElem(writer); /* "lua" */
 
          xmlw_endElem(writer); /* "mission" */
@@ -1295,6 +1327,7 @@ static int missions_parseActive( xmlNodePtr parent )
    int nitems, active;
    int id, sys, type;
    StarSystem *ssys;
+   char *planet;
 
    xmlNodePtr node, cur, nest;
 
@@ -1338,6 +1371,7 @@ static int missions_parseActive( xmlNodePtr parent )
                   if (xml_isNode(nest,"marker")) {
                      xmlr_attr_int_def( nest, "id", id, -1 );
                      xmlr_attr_int_def( nest, "type", type, -1 );
+                     xmlr_attr_strd(nest, "planet", planet);
                      /* Get system. */
                      ssys = system_get( xml_get( nest ));
                      if (ssys == NULL) {
@@ -1345,7 +1379,7 @@ static int missions_parseActive( xmlNodePtr parent )
                         continue;
                      }
                      sys = system_index( ssys );
-                     mission_addMarker( misn, id, sys, type );
+                     mission_addMarker(misn, id, sys, planet, type);
                   }
                } while (xml_nextNode(nest));
             }

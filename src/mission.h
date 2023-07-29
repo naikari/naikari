@@ -91,6 +91,7 @@ typedef struct MissionData_ {
 typedef struct MissionMarker_ {
    int id; /**< ID of the mission marker. */
    int sys; /**< ID of marked system. */
+   char *planet; /**< Planet within marked system to hilight. */
    SysMarker type; /**< Marker type. */
 } MissionMarker;
 
@@ -152,7 +153,8 @@ int mission_alreadyRunning( MissionData* misn );
 int mission_getID( const char* name );
 MissionData* mission_get( int id );
 MissionData* mission_getFromName( const char* name );
-int mission_addMarker( Mission *misn, int id, int sys, SysMarker type );
+int mission_addMarker(Mission *misn, int id, int sys, char *planet,
+      SysMarker type);
 void mission_sysMark (void);
 void mission_sysComputerMark( Mission* misn );
 void mission_sysComputerHilight(Mission* misn);

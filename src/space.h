@@ -65,6 +65,7 @@ enum {
 #define PLANET_KNOWN (1<<0) /**< Planet is known. */
 #define PLANET_NOMISNSPAWN (1<<1) /**< No missions spawn nor trigger on this asset. */
 #define PLANET_UNINHABITED (1<<2) /**< Force planet to be uninhabited. */
+#define PLANET_HILIGHT (1<<3) /**< Planet is hilighted. */
 #define planet_isFlag(p,f)    ((p)->flags & (f)) /**< Checks planet flag. */
 #define planet_setFlag(p,f)   ((p)->flags |= (f)) /**< Sets a planet flag. */
 #define planet_rmFlag(p,f)    ((p)->flags &= ~(f)) /**< Removes a planet flag. */

@@ -103,7 +103,7 @@ function create()
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name(),
             amount=fmt.number(amount)}))
-   misn.markerAdd(destsys, "computer")
+   misn.markerAdd(destsys, "computer", destplanet)
    cargo_setDesc(fmt.f(desc,
             {planet=destplanet:name(), system=destsys:name()}),
          cargo, amount, destplanet, numjumps, nil, piracyrisk)
@@ -134,7 +134,6 @@ function accept()
       })
 
    hook.land("land")
-   hook.enter("hilight_next")
 end
 
 -- Land hook
@@ -166,14 +165,4 @@ function land()
       player.pay(reward)
       misn.finish(true)
    end
-end
-
-
-function hilight_next()
-   planet.hilightAdd(destplanet)
-end
-
-
-function abort()
-   planet.hilightRm(destplanet)
 end
