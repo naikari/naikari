@@ -149,7 +149,7 @@ function input(inputname, inputpress, arg)
       return
    end
 
-   misn.markerAdd(missys, "plot")
+   misn.markerAdd(missys, "plot", misplanet)
 
    safe_hook = hook.safe(string.format("safe_%s", arg))
    hook.rm(input_hook)

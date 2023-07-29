@@ -153,7 +153,7 @@ function accept_m()
     misn.setDesc(misn_desc)
     misn.setReward(misn_reward)
 
-    marker = misn.markerAdd(startsys, "low")
+    marker = misn.markerAdd(startsys, "low", startpla)
     local osd_msg = {
         fmt.f(_("Land on {planet} ({system} system)"),
                 {planet=startpla:name(), system=startsys:name()}),

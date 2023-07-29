@@ -157,5 +157,5 @@ function launchSatellite ()
    player.msg(_("Probe launch successful."))
    misn.cargoJet(cargo)
    misn.osdActive(2)
-   misn.markerMove(misn_marker, homeworld_sys)
+   misn.markerMove(misn_marker, homeworld_sys, homeworld)
 end

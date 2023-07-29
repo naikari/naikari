@@ -195,7 +195,7 @@ function board(p)
       misplanet:setKnown()
       missys2:setKnown()
 
-      misn.markerMove(marker, missys2)
+      misn.markerMove(marker, missys2, misplanet)
 
       osd_desc[3] = fmt.f(_("Land on {planet} ({system} system)"),
             {planet=misplanet:name(), system=missys2:name()})
@@ -214,7 +214,7 @@ function land()
       tk.msg("", station_text2)
       tk.msg("", station_text3)
 
-      misn.markerMove(marker, system.get("Sigur"))
+      misn.markerMove(marker, system.get("Sigur"), "Sindbad")
 
       osd_desc[4] = _("Return to FLF base")
       misn.osdDestroy()

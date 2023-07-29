@@ -103,7 +103,7 @@ function create()
    
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name()}))
-   misn.markerAdd(destsys, "computer")
+   misn.markerAdd(destsys, "computer", destplanet)
    misn.setReward(fmt.credits(reward))
 end
 
@@ -132,7 +132,6 @@ function accept()
    hook.takeoff("takeoff")
    hook.jumpin("jumpin")
    hook.jumpout("jumpout")
-   hook.enter("hilight_next")
    hook.land("land")
 end
 
@@ -403,14 +402,7 @@ function spawnConvoy(source)
 end
 
 
-function hilight_next()
-   planet.hilightAdd(destplanet)
-end
-
-
 function abort()
-   planet.hilightRm(destplanet)
-
    for i, ptable in ipairs(pilots_table) do
       if ptable.pilot ~= nil and ptable.pilot:exists() then
          local p = ptable.pilot

@@ -155,6 +155,7 @@ function localjump_input(inputname, inputpress)
    end
 
    finished = true
+   misn.markerAdd(misn_base_sys, "high", misn_base)
 
    hook.rm(timer_hook)
    timer_hook = hook.timer(8, "localjump_timer")

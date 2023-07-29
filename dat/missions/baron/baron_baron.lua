@@ -131,7 +131,7 @@ function accept()
    osd_msg[3] = fmt.f(osd_msg[3], {planet=paypla:name()})
    misn.osdCreate(osd_title, osd_msg)
 
-   misn_marker = misn.markerAdd(missys, "low")
+   misn_marker = misn.markerAdd(missys, "low", mispla)
 
    talked = false
    tookoff = false

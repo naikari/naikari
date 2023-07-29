@@ -114,7 +114,7 @@ function accept ()
    for i, v in ipairs(dest_planets) do
       local p, sys
       p, sys = planet.get(v)
-      misn.markerAdd(sys, "computer")
+      misn.markerAdd(sys, "computer", p)
    end
 
    credits = credits_factor * q

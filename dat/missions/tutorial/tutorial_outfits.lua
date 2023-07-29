@@ -182,7 +182,7 @@ function accept()
          tk.msg("", fmt.f(load_cargo_text,
                {player=player.name(), planet=destplanet:name(),
                   system=destsys:name()}))
-         misn.markerAdd(destsys, "low")
+         misn.markerAdd(destsys, "low", destplanet)
          hook.land("land_delivery")
       end
 
@@ -226,7 +226,7 @@ function safe_checkdone()
             {player=player.name(), planet=destplanet:name(),
                system=destsys:name()}))
       misn.osdActive(5)
-      misn.markerAdd(destsys, "low")
+      misn.markerAdd(destsys, "low", destplanet)
       hook.rm(leave_hook)
       hook.land("land_delivery")
    else

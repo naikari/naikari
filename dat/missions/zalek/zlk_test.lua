@@ -122,7 +122,7 @@ function create()
    cargo_setDesc(desc, nil, nil, destpla, njumps, nil, risktext)
    misn.setReward(fmt.credits(reward))
 
-   misn.markerAdd(destsys, "computer")
+   misn.markerAdd(destsys, "computer", destpla)
 end
 
 

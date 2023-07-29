@@ -135,14 +135,10 @@ function accept()
    marker = nil
 
    hook.land("land")
-   hook.jumpout("hilight_clear")
-   hook.enter("hilight_next")
 end
 
 
 function land()
-   hilight_clear()
-
    local amount = pilot.cargoHas(player.pilot(), chosen_comm)
    local reward = amount * price
 
@@ -164,7 +160,7 @@ function safe_updateCommod()
    if pilot.cargoHas(player.pilot(), chosen_comm) > 0 then
       misn.osdActive(2)
       if marker == nil then
-         marker = misn.markerAdd(missys, "computer")
+         marker = misn.markerAdd(missys, "computer", misplanet)
       end
    else
       misn.osdActive(1)
@@ -178,23 +174,7 @@ function safe_updateCommod()
 end
 
 
-function hilight_clear()
-   hilighted_planet = nil
-end
-
-
-function hilight_next()
-   if marker == nil then
-      return
-   end
-
-   hilighted_planet = misplanet
-   planet.hilightAdd(hilighted_planet)
-end
-
-
 function abort()
-   planet.hilightRm(hilighted_planet)
    update_active_runs(-1)
 end
 

@@ -105,7 +105,7 @@ function accept ()
    pickedup = false
    droppedoff = false
 
-   marker = misn.markerAdd(pickupSys, "low")
+   marker = misn.markerAdd(pickupSys, "low", pickupWorld)
 
    hook.land("land")
 end
@@ -132,7 +132,7 @@ function land ()
          cargoID = misn.cargoAdd(c, cargoAmount)
          pickedup = true
 
-         misn.markerMove(marker, delivSys)
+         misn.markerMove(marker, delivSys, delivWorld)
 
          misn.osdActive(2)
       end

@@ -122,7 +122,7 @@ function accept()
       misn.setReward(fmt.credits(credits))
       misn.setDesc(misn_desc)
 
-      marker = misn.markerAdd(missys, "plot")
+      marker = misn.markerAdd(missys, "plot", mispla)
 
       local osd_desc = {
          fmt.f(_("Land on {planet} ({system} system) and talk to Lensa at the bar"),
@@ -181,7 +181,7 @@ function approach_lensa()
       stage = 2
       misn.osdActive(2)
 
-      misn.markerMove(marker, startsys)
+      misn.markerMove(marker, startsys, startpla)
    elseif stage == 2 then
       tk.msg("", empire_request_again_text)
    elseif stage == 3 then
@@ -192,7 +192,7 @@ function approach_lensa()
       misn.osdActive(3)
 
       misn.markerRm(marker)
-      marker = misn.markerAdd(startsys, "plot")
+      marker = misn.markerAdd(startsys, "plot", startpla)
 
       misn.npcRm(lensa)
       hook.rm(standing_hook)
@@ -236,6 +236,6 @@ function update_osd()
       misn.osdActive(1)
    else
       misn.osdActive(2)
-      marker = misn.markerAdd(missys, "plot")
+      marker = misn.markerAdd(missys, "plot", mispla)
    end
 end

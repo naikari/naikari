@@ -112,7 +112,7 @@ function accept ()
    else
       misn.accept()
 
-      landmarker = misn.markerAdd( cluesys, "low" )
+      landmarker = misn.markerAdd(cluesys, "low", clueplanet)
 
       -- mission details
       misn.setTitle(misn_title)
@@ -142,7 +142,7 @@ function land ()
 
          -- next planet
          clueplanet, cluesys = getclueplanet(1, 3)
-         misn.markerMove( landmarker, cluesys )
+         misn.markerMove(landmarker, cluesys, clueplanet)
          prevPlanets[#prevPlanets+1] = clueplanet
 
          tk.msg("", fmt.f(cluetxt,
@@ -156,7 +156,7 @@ function land ()
 
             -- next planet
             clueplanet, cluesys = getclueplanet(1, 5)
-            misn.markerMove( landmarker, cluesys )
+            misn.markerMove(landmarker, cluesys, clueplanet)
             prevPlanets[#prevPlanets+1] = clueplanet
 
             tk.msg("", fmt.f(moreinfotxt[fintendergen],
@@ -168,7 +168,7 @@ function land ()
 
                -- next planet
                clueplanet, cluesys = getclueplanet(1, 5)
-               misn.markerMove( landmarker, cluesys )
+               misn.markerMove(landmarker, cluesys, clueplanet)
                prevPlanets[#prevPlanets+1] = clueplanet
 
                tk.msg("", fmt.f(exworktxt,
@@ -179,7 +179,7 @@ function land ()
 
                tk.msg("", worktxt[fintendergen])
 
-               misn.markerMove(landmarker, startsys)
+               misn.markerMove(landmarker, startsys, startplanet)
             end
          end
       end

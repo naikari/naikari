@@ -132,7 +132,7 @@ function accept ()
 
       for i, pn in ipairs(dests) do
          local pl, sys = planet.get(pn)
-         markers[pn] = misn.markerAdd(sys, "low")
+         markers[pn] = misn.markerAdd(sys, "low", pl)
       end
 
       hook.land("land")
@@ -179,7 +179,7 @@ function land ()
             generate_osd()
 
             if #dests <= 0 then
-               home_marker = misn.markerAdd(homesys, "low")
+               home_marker = misn.markerAdd(homesys, "low", homeplanet)
             end
          end 
       end

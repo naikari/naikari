@@ -146,7 +146,7 @@ function update_osd()
          if s.ship == ship.get("Shark")
                or s.ship == ship.get("Empire Shark") then
             misn.osdActive(2)
-            markeri = misn.markerAdd(missys, "low")
+            markeri = misn.markerAdd(missys, "low", mispla)
             return
          end
       end
@@ -214,7 +214,7 @@ function pirate_dead()
    player.pilot():setVisible(false)
    stage = 4
    misn.markerRm(marker1)
-   marker2 = misn.markerAdd(missys, "low")
+   marker2 = misn.markerAdd(missys, "low", mispla)
    misn.osdActive(4)
 end
 

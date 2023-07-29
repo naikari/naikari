@@ -30,8 +30,6 @@ require "missions/flf/flf_common"
 require "missions/dvaered/common"
 
 
-text = {}
-
 start_text = _([[A haggard-looking man emerges from the airlock. He says, "Thank goodness you're here. My name is Gregar, I'm with the Frontier Liberation Front. I mean you no harm." He lets out a sigh before continuing. "I have come under attack from a Dvaered patrol. I managed to disable their ship, but not before mine was heavily damaged. My ship is unable to fly and I would have been killed if it wasn't for you. Thank you."
 
 You help Gregar to your cockpit and install him in a vacant seat. He is obviously very tired, but he forces himself to speak. "Listen, I was on my way back from a mission when those Dvaered bastards jumped me. I know this is a lot to ask, but I have little choice seeing how my ship is a lost cause. Can you take me the rest of the way? It's not far. We have a secret base in the %s system. Fly there and contact my comrades. They will guide us."
@@ -102,13 +100,13 @@ function create()
     destsysname = var.peek("flfbase_sysname")
     destsys = system.get(destsysname)
     
-    tk.msg("", start_text:format(destsysname))
+    tk.msg("", start_text:format(destsys:name()))
     
-    misn.osdCreate(misn_title, {osd_desc[1]:format(destsysname), osd_desc[2]})
+    misn.osdCreate(misn_title, {osd_desc[1]:format(destsys:name()), osd_desc[2]})
     misn.setDesc(misn_desc)
     misn.setTitle(misn_title)
     misn.setReward(misn_reward)
-    misn.markerAdd(system.get(destsysname), "high")
+    misn.markerAdd(destsys, "high")
     
     hook.enter("enter")
     hook.land("land")

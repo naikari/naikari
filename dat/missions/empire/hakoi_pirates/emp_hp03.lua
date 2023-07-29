@@ -160,7 +160,7 @@ function player_board(p)
    tk.msg("", fmt.f(board_text, {pilot_name=p:name()}))
    job_done = true
    misn.osdActive(3)
-   misn.markerMove(marker, startsys)
+   misn.markerMove(marker, startsys, startpla)
 
    hook.rm(enter_hook)
    hook.rm(board_hook)

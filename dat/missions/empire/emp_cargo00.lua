@@ -87,7 +87,7 @@ function accept ()
       misn.finish()
    end
 
-   misn.markerAdd(sys, "high")
+   misn.markerAdd(sys, "high", dest)
 
    misn.accept()
 

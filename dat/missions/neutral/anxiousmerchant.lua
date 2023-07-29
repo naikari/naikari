@@ -170,7 +170,7 @@ function accept()
    misn.setReward(fmt.credits(payment))
    misn.setDesc(fmt.f(misn_desc, {planet=dest_planet:name()}))
 
-   marker = misn.markerAdd(dest_sys, "low")
+   marker = misn.markerAdd(dest_sys, "low", dest_planet)
 
    cargo_ID = misn.cargoAdd(cargo, cargo_size)
 
@@ -188,7 +188,6 @@ function accept()
    intime = true
 
    hook.land("land")
-   hook.enter("hilight_next")
    date_hook = hook.date(time.create(0, 0, 1000), "tick")
 end
 
@@ -224,14 +223,4 @@ function tick()
       hook.rm(date_hook)
    end
    misn.osdCreate(osd_title, osd_msg)
-end
-
-
-function hilight_next()
-   planet.hilightAdd(destplanet)
-end
-
-
-function abort()
-   planet.hilightRm(destplanet)
 end

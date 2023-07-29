@@ -69,17 +69,9 @@ log_text = _([[You helped Nexus Shipyards fake a demonstration by allowing a Lan
 
 
 function create ()
-
-   --Change here to change the planet and the system
-   bsyname = "Toaxis"
-   psyname = "Alteris"
-   pplname = "Darkshed"
-   --System neighbouring Toaxis with zero pirate presence due to a "Virtual Pirate Unpresence" asset
-   esyname = "Ingot"
-   battlesys = system.get(bsyname)
-   paysys = system.get(psyname)
-   paypla = planet.get(pplname)
-   escapesys = system.get(esyname)
+   battlesys = system.get("Toaxis")
+   paypla, paysys = planet.get("Darkshed")
+   escapesys = system.get("Ingot")
 
    if not misn.claim(battlesys) then
       misn.finish(false)
@@ -203,7 +195,7 @@ function disabled(pilot, attacker)
       stage = 2
       misn.osdActive(2)
       misn.markerRm(marker)
-      marker2 = misn.markerAdd(paysys, "low")
+      marker2 = misn.markerAdd(paysys, "low", paypla)
       pilot.toggleSpawn(true)
    end
    sharkboy:control()

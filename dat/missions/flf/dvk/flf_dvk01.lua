@@ -196,7 +196,7 @@ function pilot_death_dv(dvpilot)
 
       stage = 1
       misn.osdActive(3)
-      misn.markerMove(marker, system.get("Sigur"))
+      misn.markerMove(marker, system.get("Sigur"), "Sindbad")
       pilot.toggleSpawn(true)
    end
 end

@@ -79,7 +79,7 @@ function accept()
             {planet=destplanet:name(), system=destsys:name()}),
     }
     misn.osdCreate(misn_title, osd_msg)
-    misn.markerAdd(destsys, "low")
+    misn.markerAdd(destsys, "low", destplanet)
 
     hook.land("land")
     hook.load("land")

@@ -168,7 +168,7 @@ function accept2()
     tick = {false, false, false, false, false}
     tick["__save"] = true
 
-    misn.markerMove(marker, joreksys1)
+    misn.markerMove(marker, joreksys1, jorekplanet1)
 
     hook.land("land")
     hook.load("land")
@@ -474,7 +474,7 @@ function barman()
     }
     misn.osdCreate(osd_title, osd_msg)
 
-    misn.markerMove(marker, joreksys2)
+    misn.markerMove(marker, joreksys2, jorekplanet2)
     misn.npcRm(barmanNPC)
 
     stage = 3

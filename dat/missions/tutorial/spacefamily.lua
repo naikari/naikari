@@ -95,7 +95,7 @@ function create ()
             fmt.f(osd_text,
                {planet=destplanet:name(), system=destsys:name()})
          })
-   misn_marker = misn.markerAdd(destsys, "low")
+   misn_marker = misn.markerAdd(destsys, "low", destplanet)
 
    -- Force unboard
    player.unboard()
@@ -141,7 +141,7 @@ function land()
                   fmt.f(osd_text,
                      {planet=destplanet:name(), system=destsys:name()}),
                })
-         misn.markerMove(misn_marker, destsys)
+         misn.markerMove(misn_marker, destsys, destplanet)
       end
    end
    inspace = false

@@ -84,7 +84,7 @@ function accept ()
         misn.setReward(misnreward)
         misn.osdCreate(OSDtitle, OSD)
         tk.msg("", yes_text)
-        misn.markerAdd(destsys, "high")
+        misn.markerAdd(destsys, "low", destplanet)
         hook.land("land")
     else
         misn.finish()

@@ -107,7 +107,7 @@ function accept()
       misn.osdCreate(osd_title, osd_msg)
       misn.osdActive(1)
 
-      marker = misn.markerAdd(missys, "low")
+      marker = misn.markerAdd(missys, "low", mispla)
 
       landhook = hook.land("land")
    else
@@ -143,7 +143,7 @@ function beginrun()
    stage = 1
    misn.osdActive(2)
    misn.markerRm(marker)
-   marker2 = misn.markerAdd(paysys, "high")
+   marker2 = misn.markerAdd(paysys, "high", paypla)
 
    --remove the spy
    misn.npcRm(agent)

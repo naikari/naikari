@@ -136,7 +136,7 @@ function update_osd()
 
    if jumps_witnessed >= jumps_needed then
       misn.osdActive(2)
-      misn.markerMove(marker, startsys)
+      misn.markerMove(marker, startsys, startpla)
       hook.rm(update_hook)
    end
 end

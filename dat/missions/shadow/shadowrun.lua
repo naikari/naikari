@@ -160,7 +160,7 @@ function accept()
         }
         misn.osdCreate(_("Shadow Run"), osd_desc)
 
-        misn_marker = misn.markerAdd(sys, "high")
+        misn_marker = misn.markerAdd(sys, "high", pnt)
 
         hook.land("land")
         hook.enter("enter")

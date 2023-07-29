@@ -130,7 +130,7 @@ function create()
 
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name()}))
-   marker = misn.markerAdd(destsys, "computer")
+   marker = misn.markerAdd(destsys, "computer", destplanet)
    misn.setDesc(fmt.f(desc,
          {planet=destplanet:name(), system=destsys:name(), numjumps=numjumps,
             distance=fmt.number(dist / 1000),
@@ -184,8 +184,6 @@ function accept()
    misn.osdCreate(osd_title, osd_msg)
 
    hook.land("land")
-   hook.jumpout("hilight_clear")
-   hook.enter("hilight_next")
    hook.date(time.create(0, 0, 1000), "tick")
 end
 
@@ -196,8 +194,6 @@ end
 
 
 function land()
-   hilight_clear()
-
    -- Start planet gets special handling.
    if planet.cur() == startpla then
       if dest_landed then
@@ -292,7 +288,7 @@ function land()
       }
       dest_landed = true
       misn.osdActive(2)
-      misn.markerMove(marker, startsys)
+      misn.markerMove(marker, startsys, startpla)
    else
       text = {
          _("Passengers disembark and spend some time enjoying the sights on {planet}. It seems they're having a good time."),
@@ -341,25 +337,4 @@ function tick()
       misn.osdActive(2)
       intime = false
    end
-end
-
-
-function hilight_clear()
-   hilighted_planet = nil
-end
-
-
-function hilight_next()
-   local pla = destplanet
-   if dest_landed then
-      pla = startpla
-   end
-
-   hilighted_planet = pla
-   planet.hilightAdd(hilighted_planet)
-end
-
-
-function abort()
-   planet.hilightRm(hilighted_planet)
 end

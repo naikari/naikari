@@ -222,6 +222,8 @@ function timer_cooldown()
    tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
    misn.osdActive(9)
 
+   misn.markerAdd(missys, "low", misplanet)
+
    hook.land("land")
 end
 

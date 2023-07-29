@@ -103,7 +103,7 @@ function accept ()
         misn.setReward(misnreward)
         OSD[1] = OSD[1]:format(destplanet:name(), destsys:name())
         misn.osdCreate(OSDtitle, OSD)
-        misn.markerAdd(destsys, "high")
+        misn.markerAdd(destsys, "high", destplanet)
 
         dist_total = cargo_calculateDistance(system.cur(), planet.cur():pos(), destsys, destplanet)
         complaint = 0

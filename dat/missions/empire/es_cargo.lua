@@ -102,7 +102,7 @@ function create()
    misn.setTitle(fmt.f(title,
          {planet=destplanet:name(), system=destsys:name(),
             amount=fmt.number(amount)}))
-   misn.markerAdd(destsys, "computer")
+   misn.markerAdd(destsys, "computer", destplanet)
    cargo_setDesc(fmt.f(misn_desc,
             {planet=destplanet:name(), system=destsys:name()}),
          cargo, amount, destplanet, numjumps, timelimit, piracyrisk)
@@ -161,7 +161,6 @@ function accept()
    misn.osdCreate(osd_title, osd_msg)
 
    hook.land("land")
-   hook.enter("hilight_next")
    hook.date(time.create(0, 0, 1000), "tick")
 end
 
@@ -215,14 +214,4 @@ function tick()
             {planet=destplanet:name(), system=destsys:name()}))
       misn.finish(false)
    end
-end
-
-
-function hilight_next()
-   planet.hilightAdd(destplanet)
-end
-
-
-function abort()
-   planet.hilightRm(destplanet)
 end

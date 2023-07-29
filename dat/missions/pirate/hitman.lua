@@ -125,7 +125,7 @@ function attack_finished()
       return
    end
    misn_done = true
-   misn.markerMove(misn_marker, misn_base_sys)
+   misn.markerMove(misn_marker, misn_base_sys, misn_base)
    misn.osdActive(2)
    hook.land("landed")
 end

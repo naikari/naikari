@@ -196,19 +196,19 @@ function set_osd()
       artifacts_list[#artifacts_list + 1] = fmt.f(
          _("{planet} ({system} system)"),
          {planet=artifactplanetA:name(), system=artifactsysA:name()})
-      markerA = misn.markerAdd(artifactsysA, "low")
+      markerA = misn.markerAdd(artifactsysA, "low", artifactplanetA)
    end
    if not artifactBfound then
       artifacts_list[#artifacts_list + 1] = fmt.f(
          _("{planet} ({system} system)"),
          {planet=artifactplanetB:name(), system=artifactsysB:name()})
-      markerB = misn.markerAdd(artifactsysB, "low")
+      markerB = misn.markerAdd(artifactsysB, "low", artifactplanetB)
    end
    if not artifactCfound then
       artifacts_list[#artifacts_list + 1] = fmt.f(
          _("{planet} ({system} system)"),
          {planet=artifactplanetC:name(), system=artifactsysC:name()})
-      markerC = misn.markerAdd(artifactsysC, "low")
+      markerC = misn.markerAdd(artifactsysC, "low", artifactplanetC)
    end
    local artifact_osd = table.concat(artifacts_list, "\n")
 
@@ -225,7 +225,7 @@ function osd_toflintley()
    misn.markerRm(markerA)
    misn.markerRm(markerB)
    misn.markerRm(markerC)
-   flintmarker = misn.markerAdd(flintsys, "high")
+   flintmarker = misn.markerAdd(flintsys, "high", flintplanet)
    misn.osdActive(2)
 end
 

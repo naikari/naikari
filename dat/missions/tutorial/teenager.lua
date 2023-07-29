@@ -217,6 +217,8 @@ function targetBoard(p, boarder)
 
     misn.osdActive(4)
 
+    misn.markerAdd(cursys, "low", curplanet)
+
     hook.land("land")
 end
 

@@ -342,7 +342,7 @@ function setup_osd()
 
    local osd_msg = {}
    for i, dest in ipairs(dests) do
-      markers[#markers + 1] = misn.markerAdd(dest.sys, "low")
+      markers[#markers + 1] = misn.markerAdd(dest.sys, "low", dest.pla)
       osd_msg[#osd_msg + 1] = fmt.f(
             _("Talk to lover in bar on {planet} ({system} system)"),
             {planet=dest.pla:name(), system=dest.sys:name()})
