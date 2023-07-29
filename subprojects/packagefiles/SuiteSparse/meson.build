@@ -1,4 +1,4 @@
-project('SuiteSparse', 'c', version: '5.13.0')
+project('SuiteSparse', 'c', version: '7.1.0')
 
 cc = meson.get_compiler('c')
 foreach arg: ['-Wno-implicit-const-int-float-conversion', '-Wno-implicit-fallthrough', '-Wno-sign-compare',
@@ -7,6 +7,31 @@ foreach arg: ['-Wno-implicit-const-int-float-conversion', '-Wno-implicit-fallthr
       add_project_arguments(arg, language : 'c')
    endif
 endforeach
+
+config = configuration_data()
+config.set('AMD_DATE', 'June 16, 2023')
+config.set('AMD_VERSION_MAJOR', 3)
+config.set('AMD_VERSION_MINOR', 0)
+config.set('AMD_VERSION_SUB', 4)
+config.set('CHOLMOD_DATE', 'June 16, 2023')
+config.set('CHOLMOD_VERSION_MAJOR', 4)
+config.set('CHOLMOD_VERSION_MINOR', 0)
+config.set('CHOLMOD_VERSION_SUB', 4)
+config.set('COLAMD_DATE', 'June 16, 2023')
+config.set('COLAMD_VERSION_MAJOR', 3)
+config.set('COLAMD_VERSION_MINOR', 0)
+config.set('COLAMD_VERSION_SUB', 4)
+config.set('CSPARSE_DATE', 'June 16, 2023')
+config.set('CSPARSE_VERSION_MAJOR', 4)
+config.set('CSPARSE_VERSION_MINOR', 0)
+config.set('CSPARSE_VERSION_SUB', 4)
+config.set ('FortranCInterface_GLOBAL__MACRO', '(name,NAME) name##_')
+config.set ('FortranCInterface_GLOBAL_MACRO', '(name,NAME) name##_')
+config.set('SuiteSparse_BLAS_integer', get_option('blas_integer'))
+config.set('SUITESPARSE_DATE', 'June 29, 2023')
+config.set('SUITESPARSE_VERSION_MAJOR', 7)
+config.set('SUITESPARSE_VERSION_MINOR', 1)
+config.set('SUITESPARSE_VERSION_SUB', 0)
 
 subdir('SuiteSparse_config')
 subdir('AMD')
