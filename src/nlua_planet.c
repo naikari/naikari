@@ -825,10 +825,12 @@ static int planetL_hilightRm(lua_State *L)
    p = luaL_validplanet(L, 1);
    p->hilights--;
    if (p->hilights < 0) {
-      WARN(_("Attempted to remove hilight from planet '%s', which has no"
-               " hilights."),
-            p->name);
       p->hilights = 0;
+
+      if (!landed)
+         WARN(_("Attempted to remove hilight from planet '%s', which has no"
+                  " hilights."),
+               p->name);
    }
 
    return 0;

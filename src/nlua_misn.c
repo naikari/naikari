@@ -354,6 +354,9 @@ static int misn_setReward( lua_State *L )
 /**
  * @brief Adds a new marker.
  *
+ * Mission markers are shown in the starmap and also automatically
+ * hilight the next jump point to the marked system.
+ *
  * @usage my_marker = misn.markerAdd( system.get("Gamma Polaris"), "low" )
  *
  * Valid marker types are:<br/>

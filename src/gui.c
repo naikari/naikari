@@ -1639,7 +1639,7 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
       h *= 2.;
    }
 
-   if (jp->hilights > 0) {
+   if (jp_isFlag(jp, JP_HILIGHT) || (jp->hilights > 0)) {
       col_hilight = cRadar_hilight;
       col_hilight.a = 0.3;
       glUseProgram(shaders.hilight.program);

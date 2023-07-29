@@ -156,6 +156,7 @@ int mission_addMarker( Mission *misn, int id, int sys, SysMarker type );
 void mission_sysMark (void);
 void mission_sysComputerMark( Mission* misn );
 void mission_sysComputerHilight(Mission* misn);
+void mission_destHilight(void);
 
 
 /*

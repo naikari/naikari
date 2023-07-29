@@ -19,6 +19,7 @@
 #include "nluadef.h"
 #include "nlua_vec2.h"
 #include "nlua_system.h"
+#include "land.h"
 #include "land_outfits.h"
 #include "log.h"
 
@@ -494,10 +495,15 @@ static int jumpL_hilightAdd(lua_State *L)
  * current system; otherwise, you could cause another mission or event's
  * hilight to be removed.
  *
+ * Note: This function is not needed to hilight the next jump to systems
+ * marked by misn.markerAdd(), as the next jump to marked systems is
+ * automatically hilighted.
+ *
  *    @luatparam Jump|nil p Jump to remove a hilight from. Can be nil,
  *       in which case this function does nothing.
  *
  * @luasee hilightAdd
+ * @luasee misn.markerAdd
  * @luafunc hilightRm
  */
 static int jumpL_hilightRm(lua_State *L)
@@ -512,10 +518,12 @@ static int jumpL_hilightRm(lua_State *L)
    jp = luaL_validjump(L, 1);
    jp->hilights--;
    if (jp->hilights < 0) {
-      WARN(_("Attempted to remove hilight from jump from '%s' to '%s', which"
-               " has no hilights."),
-            jp->from->name, jp->target->name);
       jp->hilights = 0;
+
+      if (!landed)
+         WARN(_("Attempted to remove hilight from jump from '%s' to '%s', which"
+                  " has no hilights."),
+               jp->from->name, jp->target->name);
    }
 
    return 0;

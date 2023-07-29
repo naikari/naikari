@@ -186,7 +186,6 @@ function accept()
    hook.land("land")
    hook.jumpout("hilight_clear")
    hook.enter("hilight_next")
-   hook.discover("hilight_next")
    hook.date(time.create(0, 0, 1000), "tick")
 end
 
@@ -346,29 +345,21 @@ end
 
 
 function hilight_clear()
-   hilighted_jump = nil
    hilighted_planet = nil
 end
 
 
 function hilight_next()
    local pla = destplanet
-   local sys = destsys
    if dest_landed then
       pla = startpla
-      sys = startsys
    end
-
-   planet.hilightRm(hilighted_planet)
-   jump.hilightRm(hilighted_jump)
 
    hilighted_planet = pla
    planet.hilightAdd(hilighted_planet)
-   hilighted_jump = mh.hilightNextJump(sys)
 end
 
 
 function abort()
    planet.hilightRm(hilighted_planet)
-   jump.hilightRm(hilighted_jump)
 end

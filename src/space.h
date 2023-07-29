@@ -182,6 +182,7 @@ typedef struct SystemPresence_ {
 #define JP_EXITONLY (1<<3) /**< Jump point is exit only */
 #define JP_EXPRESS (1<<4) /**< Jump point is immediately visible. */
 #define JP_LONGRANGE (1<<5) /**< Jump point is drawn only partially, with a gap. */
+#define JP_HILIGHT (1<<6) /**< Jump point is hilighted. */
 #define jp_isFlag(j,f)    ((j)->flags & (f)) /**< Checks jump flag. */
 #define jp_setFlag(j,f)   ((j)->flags |= (f)) /**< Sets a jump flag. */
 #define jp_rmFlag(j,f)    ((j)->flags &= ~(f)) /**< Removes a jump flag. */

@@ -25,6 +25,7 @@
 #include "hook.h"
 #include "land.h"
 #include "log.h"
+#include "map.h"
 #include "ndata.h"
 #include "nlua.h"
 #include "nlua_faction.h"
@@ -76,6 +77,8 @@ static int missions_cmp( const void *a, const void *b );
 static int mission_parseFile( const char* file );
 static int mission_parseXML( MissionData *temp, const xmlNodePtr parent );
 static int missions_parseActive( xmlNodePtr parent );
+/* Hilighting. */
+static void mission_hilightNextJump(Mission *misn);
 
 
 /**
@@ -411,6 +414,9 @@ void mission_sysMark (void)
          space_addMarker( m->sys, m->type );
       }
    }
+
+   /* Hilight next jump. */
+   mission_destHilight();
 }
 
 
@@ -452,6 +458,65 @@ void mission_sysComputerHilight(Mission* misn)
          continue;
 
       sys_setFlag(ssys, SYSTEM_CMARK_HILIGHT);
+   }
+}
+
+
+/**
+ * @brief Hilights all jumps that mission markers hilight.
+ */
+void mission_destHilight(void)
+{
+   int i;
+   Mission *misn;
+
+   if (cur_system == NULL) {
+      WARN("Attempted to hilight dests before cur_system initialized.");
+      return;
+   }
+
+   for (i=0; i<array_size(cur_system->jumps); i++) {
+      jp_rmFlag(&cur_system->jumps[i], JP_HILIGHT);
+   }
+
+   for (i=0; i<MISSION_MAX; i++) {
+      misn = player_missions[i];
+
+      /* Must be a valid player mission. */
+      if (misn->id == 0)
+         continue;
+
+      mission_hilightNextJump(misn);
+   }
+}
+
+
+/**
+ * @brief Hilights the next jump(s) to get to the marked system(s).
+ *
+ *    @param misn Mission to hilight next jump(s) for.
+ */
+static void mission_hilightNextJump(Mission *misn)
+{
+   StarSystem *ssys;
+   StarSystem **path;
+   JumpPoint *jp;
+   int i;
+
+   for (i=0; i<array_size(misn->markers); i++) {
+      ssys = system_getIndex(misn->markers[i].sys);
+      if (ssys == NULL)
+         continue;
+
+      path = map_getJumpPath(cur_system->name, ssys->name, 0, 1, NULL);
+      if (path == NULL)
+         continue;
+
+      jp = jump_getTarget(path[0], cur_system);
+      if (jp != NULL)
+         jp_setFlag(jp, JP_HILIGHT);
+
+      array_free(path);
    }
 }
 

@@ -783,7 +783,7 @@ static void map_update( unsigned int wid )
       strcpy(jumpsbuf, _("∞ jumps"));
 
    strcpy(jumpsbuf2, "");
-   path = map_getJumpPath(cur_system->name, sys->name, 1, 1, NULL);
+   path = map_getJumpPath(cur_system->name, sys->name, 0, 1, NULL);
    if (path != NULL) {
       jumps = array_size(path);
       if (jumps > 0)

@@ -1290,8 +1290,10 @@ void space_update( const double dt )
          }
       }
 
-      if (found_something)
+      if (found_something) {
+         mission_destHilight();
          ovr_refresh();
+      }
    }
 
    /* Update the gatherable objects. */
@@ -1420,11 +1422,6 @@ void space_init( const char* sysname )
          ERR(_("System %s not found in stack"), sysname);
       cur_system = &systems_stack[i];
 
-      /* Clear hilights of the new system's jump points. */
-      for (j=0; j<array_size(cur_system->jumps); j++) {
-         cur_system->jumps[j].hilights = 0;
-      }
-
       nt = ntime_pretty(0, 2);
       player_message(_("#oEntering System %s on %s."), _(sysname), nt);
       if ((player.p != NULL) && (cur_system->nebu_volatility > 0.)) {
@@ -1462,6 +1459,11 @@ void space_init( const char* sysname )
 
    /* Sort factions. */
    factions_sort();
+
+   /* Clear hilights of the new system's jump points. */
+   for (j=0; j<array_size(cur_system->jumps); j++) {
+      cur_system->jumps[j].hilights = 0;
+   }
 
    /* Set up planets. */
    for (i=0; i<array_size(cur_system->planets); i++) {
@@ -1535,6 +1537,9 @@ void space_init( const char* sysname )
    if (player.p != NULL)
       pilot_rmFlag( player.p, PILOT_HIDE );
    space_simulating = 0;
+
+   /* Hilight stuff for missions. */
+   mission_destHilight();
 
    /* Refresh overlay if necessary (player kept it open). */
    ovr_refresh();

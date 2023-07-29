@@ -176,16 +176,12 @@ function accept()
    misn.osdCreate(osd_title, osd_msg)
 
    hook.land("land")
-   hook.jumpout("hilight_clear")
    hook.enter("hilight_next")
-   hook.discover("hilight_next")
    hook.date(time.create(0, 0, 1000), "tick")
 end
 
 
 function land()
-   hilight_clear()
-
    if planet.cur() == destplanet then
       local cargo_land = {
          _("The containers of {cargotype} are unloaded at the docks."),
@@ -228,23 +224,11 @@ function tick()
 end
 
 
-function hilight_clear()
-   hilighted_jump = nil
-   hilighted_planet = nil
-end
-
-
 function hilight_next()
-   planet.hilightRm(hilighted_planet)
-   jump.hilightRm(hilighted_jump)
-
-   hilighted_planet = destplanet
-   planet.hilightAdd(hilighted_planet)
-   hilighted_jump = mh.hilightNextJump(destsys)
+   planet.hilightAdd(destplanet)
 end
 
 
 function abort()
-   planet.hilightRm(hilighted_planet)
-   jump.hilightRm(hilighted_jump)
+   planet.hilightRm(destplanet)
 end

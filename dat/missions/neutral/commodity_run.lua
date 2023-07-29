@@ -137,7 +137,6 @@ function accept()
    hook.land("land")
    hook.jumpout("hilight_clear")
    hook.enter("hilight_next")
-   hook.discover("hilight_next")
 end
 
 
@@ -180,7 +179,6 @@ end
 
 
 function hilight_clear()
-   hilighted_jump = nil
    hilighted_planet = nil
 end
 
@@ -190,18 +188,13 @@ function hilight_next()
       return
    end
 
-   planet.hilightRm(hilighted_planet)
-   jump.hilightRm(hilighted_jump)
-
    hilighted_planet = misplanet
    planet.hilightAdd(hilighted_planet)
-   hilighted_jump = mh.hilightNextJump(missys)
 end
 
 
 function abort()
    planet.hilightRm(hilighted_planet)
-   jump.hilightRm(hilighted_jump)
    update_active_runs(-1)
 end
 
