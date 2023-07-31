@@ -297,7 +297,6 @@ function attackerDeath(victim, attacker)
             p:setVisible(false)
             p:hookClear()
             p:taskClear()
-            p:setFaction("Dvaered")
             local mem = p:memory()
             mem.aggressive = true
             mem.natural = true
@@ -332,7 +331,6 @@ function defenderDeath(victim, attacker)
             p:setVisible(false)
             p:hookClear()
             p:taskClear()
-            p:setFaction("Dvaered")
             local mem = p:memory()
             mem.aggressive = true
             mem.natural = true
