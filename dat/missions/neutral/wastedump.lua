@@ -57,9 +57,9 @@ abort_text[3] = _("You dump the waste containers into space illegally, noting th
 
 abort_landed_text = _("In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of {credits}.")
 
-abort_landed_broke_text = _([[In your desperation to rid yourself of the garbage, you clumsily eject it from your cargo hold while you are still landed. Garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of {credits}.
+abort_landed_broke_text = _([[In your desperation to rid yourself of the garbage, you eject it from your cargo hold while you are still landed. You quickly regret doing this as garbage spills all over the spaceport and local officials immediately take notice. After you apologize profusely and explain the situation away as an accident, the officials let you off with a fine of {credits}.
 
-When you explain that you don't have enough money to pay the fine, the officials confiscate outfits and cargo you own to make up the difference.]])
+When you explain that you don't have enough credits to pay the fine, the officials inform you that they will confiscate outfits and cargo you own to make up the difference.]])
 
 nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold being equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
 
@@ -75,20 +75,12 @@ dest_planets = {"The Stinker", "Vaal", "Domestica", "Blossom", "Knive"}
 function create ()
    local dist = nil
    local p, sys
-   local closest_sys
-   for i, v in ipairs(dest_planets) do
-      p, sys = planet.get(v)
-      local jd = system.cur():jumpDist(sys)
-      if jd ~= nil and (dist == nil or jd < dist) then
-         dist = system.cur():jumpDist(sys)
-         closest_sys = sys
-      end
-   end
 
    credits_factor = math.max(200, 1000*dist + 500*rnd.sigma())
 
    landed = true
 
+   local closest_planet, closest_sys = get_closest_dest()
    if closest_sys ~= nil then
       tempmarker = misn.markerAdd(closest_sys, "computer")
    end
@@ -126,27 +118,46 @@ function accept ()
    cid = misn.cargoAdd(c, q)
    player.pay(credits)
 
-   local osd_msg = {
-      _("Land on any garbage collection facility (indicated on your map) to drop off the Waste Containers"),
-      _("Alternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the Ship Computer, and jump out of the system before you are discovered"),
-   }
-   misn.osdCreate(osd_title, osd_msg)
+   update_osd()
 
-   hook.takeoff("takeoff")
+   hook.jumpin("update_osd")
    hook.land("land")
 end
 
 
-function takeoff ()
-   landed = false
+function get_closest_dest()
+   local cursys = system.cur()
+   local closest_planet = nil
+   local closest_sys = nil
+   for i, v in ipairs(dest_planets) do
+      p, sys = planet.get(v)
+      local jd = cursys:jumpDist(sys)
+      if jd ~= nil and (dist == nil or jd < dist) then
+         dist = jd
+         closest_planet = p
+         closest_sys = sys
+      end
+   end
+   return closest_planet, closest_sys
 end
 
 
-function land ()
-   landed = true
+function update_osd()
+   local pnt, sys = get_closest_dest()
 
+   local osd_msg = {
+      fmt.f(_("Land on {planet} ({system} system), or any other garbage collection facility."),
+         {planet=pnt:name(), system=sys:name()}),
+      _("Alternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the Ship Computer, and jump out of the system before you are discovered"),
+   }
+   misn.osdCreate(osd_title, osd_msg)
+end
+
+
+function land()
+   local curplanet = planet.cur()
    for i, v in ipairs(dest_planets) do
-      if planet.get(v) == planet.cur() then
+      if planet.get(v) == curplanet then
          local txt = finish_text[rnd.rnd(1, #finish_text)]
          tk.msg("", txt)
          misn.finish(true)
@@ -155,10 +166,10 @@ function land ()
 end
 
 
-function abort ()
-   if landed then
+function abort()
+   if player.isLanded() then
       misn.cargoRm(cid)
-      local fine = 2 * credits
+      local fine = 1.1 * credits
       local money = player.credits()
       if money >= fine then
          tk.msg("", fmt.f(abort_landed_text, {credits=fmt.credits(fine)}))
