@@ -1068,7 +1068,7 @@ void player_render( double dt )
                gl_drawLine( x1, y1, x2, y2, &c );
 
                glUseProgram(shaders.crosshairs.program);
-               glUniform1f(shaders.crosshairs.paramf, 1.);
+               glUniform1f(shaders.crosshairs.paramf, 2.);
                gl_renderShader(x2, y2, 7, 7, 0., &shaders.crosshairs,
                      &cWhite, 1);
             }
