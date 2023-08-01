@@ -73,14 +73,14 @@ dest_planets = {"The Stinker", "Vaal", "Domestica", "Blossom", "Knive"}
 
 
 function create ()
-   local dist = nil
-   local p, sys
-
+   local closest_planet, closest_sys, dist = get_closest_dest()
+   if dist == nil then
+      return
+   end
    credits_factor = math.max(200, 1000*dist + 500*rnd.sigma())
 
    landed = true
 
-   local closest_planet, closest_sys = get_closest_dest()
    if closest_sys ~= nil then
       tempmarker = misn.markerAdd(closest_sys, "computer")
    end
@@ -127,6 +127,7 @@ end
 
 function get_closest_dest()
    local cursys = system.cur()
+   local dist = nil
    local closest_planet = nil
    local closest_sys = nil
    for i, v in ipairs(dest_planets) do
@@ -138,7 +139,7 @@ function get_closest_dest()
          closest_sys = sys
       end
    end
-   return closest_planet, closest_sys
+   return closest_planet, closest_sys, dist
 end
 
 
