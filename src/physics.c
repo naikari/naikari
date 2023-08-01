@@ -254,15 +254,17 @@ static void solid_update_euler (Solid *obj, const double dt)
 {
    double px,py, vx,vy, ax,ay, th;
    double cdir, sdir;
+   double old_dir;
    double diff, dest_diff;
 
+   old_dir = obj->dir;
    diff = obj->dir_vel * dt;
-   dest_diff = angle_diff(obj->dir, obj->dir_dest);
    obj->dir += diff;
 
-   if ((((diff < 0) && (dest_diff < 0)) || ((diff > 0) && (dest_diff > 0)))
-         && isfinite(obj->dir_dest)
-         && (ABS(diff) > ABS(dest_diff))) {
+   if (isfinite(obj->dir_dest)
+         && (((dest_diff = angle_diff(old_dir, obj->dir_dest)) == 0.)
+            || (((diff < 0.) == (dest_diff < 0.))
+               && (ABS(diff) >= ABS(dest_diff))))) {
       obj->dir = obj->dir_dest;
    }
    obj->dir_dest = INFINITY;
@@ -332,6 +334,7 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    double h, px,py, vx,vy; /* pass, and position/velocity values */
    double ix,iy, tx,ty, ax,ay, th; /* initial and temporary cartesian vector values */
    double vmod, vang;
+   double old_dir;
    double dirdiff, dirdestdiff;
    int vint;
    int limit; /* limit speed? */
@@ -343,8 +346,8 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    vy = obj->vel.y;
    limit = (obj->speed_max >= 0.);
 
+   old_dir = obj->dir;
    dirdiff = 0.;
-   dirdestdiff = angle_diff(obj->dir, obj->dir_dest);
 
    /* Initial RK parameters. */
    if (dt > RK4_MIN_H)
@@ -407,10 +410,10 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    vect_cset( &obj->vel, vx, vy );
    vect_cset( &obj->pos, px, py );
 
-   if ((((dirdiff < 0) && (dirdestdiff < 0))
-            || ((dirdiff > 0) && (dirdestdiff > 0)))
-         && isfinite(obj->dir_dest)
-         && (ABS(dirdiff) > ABS(dirdestdiff))) {
+   if (isfinite(obj->dir_dest)
+         && (((dirdestdiff = angle_diff(old_dir, obj->dir_dest)) == 0)
+            || (((dirdiff < 0) == (dirdestdiff < 0))
+               && (ABS(dirdiff) >= ABS(dirdestdiff))))) {
       obj->dir = obj->dir_dest;
    }
    obj->dir_dest = INFINITY;

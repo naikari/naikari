@@ -417,22 +417,6 @@ static void think_beam( Weapon* w, const double dt )
    /* Handle aiming. */
    t = (w->target != w->parent) ? pilot_get(w->target) : NULL;
 
-   if ((w->outfit->type != OUTFIT_TYPE_TURRET_BEAM)
-         && !p->stats.turret_conversion) {
-      w->solid->dir = p->solid->dir;
-      if (w->outfit->u.bem.swivel > 0.)
-         w->solid->dir = weapon_aimTurret(
-            p, t, &w->solid->pos, &p->solid->vel, p->solid->dir,
-            w->outfit->u.bem.swivel, 0., 0., 0.);
-      return;
-   }
-
-   /* FIXME: This code is supposed to be able to handle forward-mounted
-    * beams as well as turret beams, but it just isn't working right;
-    * the beam often wiggles between a pair of extremes. Figure out the
-    * cause of this problem, fix this code, and delete the block of code
-    * above (which continues to use the old, less ideal aiming method
-    * for forward-mounted beams for now). */
    opt_angle = p->solid->dir;
    if (t == NULL) {
       /* Move toward targeted asteroid, if any. */
@@ -454,20 +438,20 @@ static void think_beam( Weapon* w, const double dt )
    /* Calculate bounds. */
    if ((w->outfit->type != OUTFIT_TYPE_TURRET_BEAM)
          && !p->stats.turret_conversion) {
+      /* Cap rotational velocity depending on its direction. */
+      if (w->solid->dir_vel < 0.)
+         w->solid->dir_dest = p->solid->dir - w->outfit->u.bem.swivel;
+      else if (w->solid->dir_vel > 0.)
+         w->solid->dir_dest = p->solid->dir + w->outfit->u.bem.swivel;
+
+      /* If bounds have already been exceeded, force the beam within
+       * bounds. */
       diff = angle_diff(w->solid->dir, p->solid->dir);
       if (FABS(diff) > w->outfit->u.bem.swivel) {
-         /* Cap the beam direction, and if it's attempting to rotate out
-          * of bounds, pretend that the capped direction is our goal. */
-         if (diff > 0.) {
+         if (diff > 0.)
             w->solid->dir = p->solid->dir - w->outfit->u.bem.swivel;
-            if (w->solid->dir_vel < 0.)
-               w->solid->dir_dest = w->solid->dir;
-         }
-         else {
+         else
             w->solid->dir = p->solid->dir + w->outfit->u.bem.swivel;
-            if (w->solid->dir_vel > 0.)
-               w->solid->dir_dest = w->solid->dir;
-         }
       }
    }
 }
