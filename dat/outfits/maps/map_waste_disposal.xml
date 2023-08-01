@@ -7,6 +7,17 @@
   <gfx_store>map_waste.png</gfx_store>
  </general>
  <specific type="map">
+  <sys name="Knave">
+   <jump>Paradox</jump>
+   <jump>Delta Polaris</jump>
+   <asset>Knive</asset>
+  </sys>
+  <sys name="Paradox">
+   <jump>Knave</jump>
+  </sys>
+  <sys name="Delta Polaris">
+   <jump>Knave</jump>
+  </sys>
   <sys name="Ash">
    <jump>Tuoladis</jump>
    <asset>Blossom</asset>

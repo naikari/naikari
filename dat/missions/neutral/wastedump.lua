@@ -69,7 +69,7 @@ misn_desc = _("Take as many waste containers off of here as your ship can hold a
 osd_title = _("Waste Dump")
 
 -- List of possible waste dump planets.
-dest_planets = {"The Stinker", "Vaal", "Domestica", "Blossom"}
+dest_planets = {"The Stinker", "Vaal", "Domestica", "Blossom", "Knive"}
 
 
 function create ()
