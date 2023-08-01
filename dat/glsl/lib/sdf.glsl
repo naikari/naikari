@@ -38,6 +38,14 @@ float sdBox( vec2 p, vec2 b )
    return length(max(d,0.0)) + min(max(d.x,d.y),0.0);
 }
 
+/* Segment going from point a to point b with 0 width. */
+float sdSegment(in vec2 p, in vec2 a, in vec2 b)
+{
+   vec2 pa = p - a, ba = b - a;
+   float h = clamp(dot(pa,ba) / dot(ba,ba), 0.0, 1.0);
+   return length(pa - ba*h);
+}
+
 /* Equilateral triangle centered at p facing "up" */
 float sdTriangleEquilateral( vec2 p )
 {

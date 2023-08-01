@@ -630,13 +630,14 @@ static void ovr_mrkRenderAll( double res )
 
       x = mrk->u.pt.x / res + map_overlay_center_x();
       y = mrk->u.pt.y / res + map_overlay_center_y();
-      gl_renderCross( x, y, 5., &cRadar_hilight );
+      gui_renderMarker(x, y);
 
       if (mrk->text != NULL) {
          /* Marker text can render over other overlay text. */
          glClear(GL_DEPTH_BUFFER_BIT);
 
-         gl_printMarkerRaw( &gl_smallFont, x+10., y-gl_smallFont.h/2., &cRadar_hilight, mrk->text );
+         gl_printMarkerRaw(&gl_smallFont, x + 20., y - gl_smallFont.h/2.,
+               &cRadar_hilight, mrk->text);
       }
    }
 }

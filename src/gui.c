@@ -1487,6 +1487,17 @@ static void gui_renderRadarOutOfRange( RadarShape sh, int w, int h, int cx, int 
 
 
 /**
+ * @brief Draws a position marker in the minimap.
+ */
+void gui_renderMarker(double x, double y)
+{
+   glUseProgram(shaders.hilight_pos.program);
+   glUniform1f(shaders.hilight_pos.dt, animation_dt);
+   gl_renderShader(x, y, 18., 18., 0., &shaders.hilight_pos, &cRadar_hilight, 1);
+}
+
+
+/**
  * @brief Draws the planets in the minimap.
  *
  * Matrix mode is already displaced to center of the minimap.
