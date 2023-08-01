@@ -75,11 +75,9 @@ dest_planets = {"The Stinker", "Vaal", "Domestica", "Blossom", "Knive"}
 function create ()
    local closest_planet, closest_sys, dist = get_closest_dest()
    if dist == nil then
-      return
+      misn.finish(false)
    end
    credits_factor = math.max(200, 1000*dist + 500*rnd.sigma())
-
-   landed = true
 
    if closest_sys ~= nil then
       tempmarker = misn.markerAdd(closest_sys, "computer")
@@ -144,13 +142,17 @@ end
 
 
 function update_osd()
-   local pnt, sys = get_closest_dest()
-
    local osd_msg = {
-      fmt.f(_("Land on {planet} ({system} system), or any other garbage collection facility."),
-         {planet=pnt:name(), system=sys:name()}),
+      _("Land on any garbage collection facility."),
       _("Alternatively: fly to a system where you won't get caught by authorities, illegally jettison the cargo via the Ship Computer, and jump out of the system before you are discovered"),
    }
+
+   local pnt, sys = get_closest_dest()
+   if pnt ~= nil and sys ~= nil then
+      osd_msg[1] = fmt.f(_("Land on {planet} ({system} system), or any other garbage collection facility."),
+            {planet=pnt:name(), system=sys:name()})
+   end
+
    misn.osdCreate(osd_title, osd_msg)
 end
 
