@@ -122,8 +122,8 @@ function accept ()
       tk.msg("", fmt.f(yes_text, {credits=fmt.credits(payment)}))
 
       -- how many systems you'll have to run thru
-      numclues = rnd.rnd(1,5)
-      numexwork = rnd.rnd(1,3)
+      numclues = 1
+      numexwork = 2
 
       -- final bartender data
       fintendergen = rnd.rnd(1,3)
