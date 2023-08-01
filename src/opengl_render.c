@@ -165,8 +165,8 @@ void gl_renderRectH( const gl_Matrix4 *H, const glColour *c, int filled )
 void gl_renderCross( double x, double y, double r, const glColour *c )
 {
    glUseProgram(shaders.crosshairs.program);
-   glUniform1f(shaders.crosshairs.paramf, 1.); /* No outline. */
-   gl_renderShader( x, y, r, r, 0., &shaders.crosshairs, c, 1 );
+   glUniform1f(shaders.crosshairs.paramf, 2.);
+   gl_renderShader(x, y, r, r, 0., &shaders.crosshairs, c, 1);
 }
 
 
