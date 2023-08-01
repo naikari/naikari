@@ -669,9 +669,6 @@ static void ovr_mrkRenderAll( double res )
       gui_renderMarker(x, y);
 
       if (mrk->text != NULL) {
-         /* Marker text can render over other overlay text. */
-         glClear(GL_DEPTH_BUFFER_BIT);
-
          gl_printMarkerRaw(&gl_smallFont,
                x + mrk->mo.text_offx,
                y + mrk->mo.text_offy,
