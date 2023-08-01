@@ -1,5 +1,23 @@
 # NAIKARI CHANGELOG
 
+## 0.10.0
+
+* Imported the shader Naev uses to hilight things; it's now used to
+  hilight the next jump/land destination in missions.
+* Reduced the number of hidden jumps given to the FLF.
+* Removed "hypergates" (which were really just glorified jump points to
+  a hub system), since they don't really seem to be all that useful in
+  gameplay and don't make much sense lore-wise.
+* Warlords battle no longer sets the faction of the winning side to the
+  standard Dvaered faction (which means you don't risk e.g. reputation
+  loss if you find yourself on the losing side).
+* Added a garbage dump location to Empire space.
+* Slightly improved the waste dump mission.
+* Adjusted some hyperspace connections in the universe.
+* Fixed an unintendedly low power level for forward-facing railguns.
+  Their damage has been doubled, bringing them in-line with
+  capital-class weaponry.
+
 ## 0.9.0
 
 ### Major Changes
