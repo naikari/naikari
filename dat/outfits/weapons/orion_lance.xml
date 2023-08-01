@@ -15,6 +15,7 @@
   <delay>3</delay>
   <duration>4</duration>
   <range>400</range>
+  <turn>180</turn>
   <energy>10</energy>
   <heatup>35</heatup>
   <swivel>22</swivel>

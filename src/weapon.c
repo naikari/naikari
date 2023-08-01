@@ -150,9 +150,6 @@ static void think_beam( Weapon* w, const double dt );
 /* externed */
 void weapon_minimap( const double res, const double w,
       const double h, const RadarShape shape, double alpha );
-/* movement. */
-static void weapon_setThrust( Weapon *w, double thrust );
-static void weapon_setTurn( Weapon *w, double turn );
 
 
 /**
@@ -297,24 +294,6 @@ void weapon_minimap( const double res, const double w,
 
 
 /**
- * @brief Sets the weapon's thrust.
- */
-static void weapon_setThrust( Weapon *w, double thrust )
-{
-   w->solid->thrust = thrust;
-}
-
-
-/**
- * @brief Sets the weapon's turn.
- */
-static void weapon_setTurn( Weapon *w, double turn )
-{
-   w->solid->dir_vel = turn;
-}
-
-
-/**
  * @brief The AI of seeker missiles.
  *
  *    @param w Weapon to do the thinking.
@@ -327,14 +306,15 @@ static void think_seeker( Weapon* w, const double dt )
    Vector2d v;
    double t, turn_max;
    double ewtrack;
+   double opt_angle;
 
    if (w->target == w->parent)
       return; /* no self shooting */
 
    p = pilot_get(w->target); /* no null pilot */
-   if (p==NULL) {
-      weapon_setThrust(w, 0.);
-      weapon_setTurn(w, 0.);
+   if (p == NULL) {
+      w->solid->thrust = 0.;
+      w->solid->dir_vel = 0.;
       return;
    }
 
@@ -362,18 +342,19 @@ static void think_seeker( Weapon* w, const double dt )
                   v.y + t*(p->solid->vel.y - w->solid->vel.y) );
 
             /* Get the angle now. */
-            diff = angle_diff(w->solid->dir, VANGLE(v) );
+            opt_angle = VANGLE(v);
          }
          /* Other seekers are simplistic. */
          else {
-            diff = angle_diff(w->solid->dir, /* Get angle to target pos */
-                  vect_angle(&w->solid->pos, &p->solid->pos));
+            opt_angle = vect_angle(&w->solid->pos, &p->solid->pos);
          }
 
          /* Set turn. */
+         diff = angle_diff(w->solid->dir, opt_angle);
          turn_max = w->outfit->u.amm.turn * ewtrack;
-         weapon_setTurn( w, CLAMP( -turn_max, turn_max,
-                  10 * diff * w->outfit->u.amm.turn ));
+         w->solid->dir_vel = CLAMP(
+            -turn_max, turn_max, 10 * diff * w->outfit->u.amm.turn);
+         w->solid->dir_dest = opt_angle;
          break;
 
       case WEAPON_STATUS_JAMMED: /* Continue doing whatever */
@@ -403,6 +384,7 @@ static void think_beam( Weapon* w, const double dt )
    Pilot *p, *t;
    AsteroidAnchor *field;
    Asteroid *ast;
+   double opt_angle;
    double diff, mod;
    Vector2d v;
 
@@ -413,8 +395,12 @@ static void think_beam( Weapon* w, const double dt )
       return;
    }
 
-   /* Check if pilot has enough energy left to keep beam active. */
-   mod = (w->outfit->type == OUTFIT_TYPE_BEAM) ? p->stats.fwd_energy : p->stats.tur_energy;
+   /* Handle energy consumption. */
+   if ((w->outfit->type == OUTFIT_TYPE_TURRET_BEAM)
+         || p->stats.turret_conversion)
+      mod = p->stats.tur_energy;
+   else
+      mod = p->stats.fwd_energy;
    p->energy -= mod * dt*w->outfit->u.bem.energy;
    pilot_heatAddSlotTime( p, w->mount, dt );
    if (p->energy < 0.) {
@@ -430,40 +416,59 @@ static void think_beam( Weapon* w, const double dt )
 
    /* Handle aiming. */
    t = (w->target != w->parent) ? pilot_get(w->target) : NULL;
-   switch (w->outfit->type) {
-      case OUTFIT_TYPE_BEAM:
-         w->solid->dir = p->solid->dir;
-         if (w->outfit->u.bem.swivel > 0.)
-            w->solid->dir = weapon_aimTurret(
-               p, t, &w->solid->pos, &p->solid->vel, p->solid->dir,
-               w->outfit->u.bem.swivel, 0., 0., 0. );
-         break;
 
-      case OUTFIT_TYPE_TURRET_BEAM:
-         /* Get target, if target is dead beam stops moving. Targeting
-          * self is invalid so in that case we ignore the target.
-          */
-         if (t == NULL) {
-            if (p->nav_asteroid >= 0) {
-               field = &cur_system->asteroids[p->nav_anchor];
-               ast = &field->asteroids[p->nav_asteroid];
+   if ((w->outfit->type != OUTFIT_TYPE_TURRET_BEAM)
+         && !p->stats.turret_conversion) {
+      w->solid->dir = p->solid->dir;
+      if (w->outfit->u.bem.swivel > 0.)
+         w->solid->dir = weapon_aimTurret(
+            p, t, &w->solid->pos, &p->solid->vel, p->solid->dir,
+            w->outfit->u.bem.swivel, 0., 0., 0.);
+      return;
+   }
 
-               diff = angle_diff(w->solid->dir, /* Get angle to target pos */
-                     vect_angle(&w->solid->pos, &ast->pos));
-            }
-            else
-               diff = angle_diff(w->solid->dir, p->solid->dir);
+   /* FIXME: This code is supposed to be able to handle forward-mounted
+    * beams as well as turret beams, but it just isn't working right;
+    * the beam often wiggles between a pair of extremes. Figure out the
+    * cause of this problem, fix this code, and delete the block of code
+    * above (which continues to use the old, less ideal aiming method
+    * for forward-mounted beams for now). */
+   opt_angle = p->solid->dir;
+   if (t == NULL) {
+      /* Move toward targeted asteroid, if any. */
+      if (p->nav_asteroid >= 0) {
+         field = &cur_system->asteroids[p->nav_anchor];
+         ast = &field->asteroids[p->nav_asteroid];
+
+         opt_angle = vect_angle(&w->solid->pos, &ast->pos);
+      }
+   }
+   else
+      opt_angle = vect_angle(&w->solid->pos, &t->solid->pos);
+
+   diff = angle_diff(w->solid->dir, opt_angle);
+   w->solid->dir_vel = CLAMP(-w->outfit->u.bem.turn, w->outfit->u.bem.turn,
+         10 * diff * w->outfit->u.bem.turn);
+   w->solid->dir_dest = opt_angle;
+
+   /* Calculate bounds. */
+   if ((w->outfit->type != OUTFIT_TYPE_TURRET_BEAM)
+         && !p->stats.turret_conversion) {
+      diff = angle_diff(w->solid->dir, p->solid->dir);
+      if (FABS(diff) > w->outfit->u.bem.swivel) {
+         /* Cap the beam direction, and if it's attempting to rotate out
+          * of bounds, pretend that the capped direction is our goal. */
+         if (diff > 0.) {
+            w->solid->dir = p->solid->dir - w->outfit->u.bem.swivel;
+            if (w->solid->dir_vel < 0.)
+               w->solid->dir_dest = w->solid->dir;
          }
-         else
-            diff = angle_diff(w->solid->dir, /* Get angle to target pos */
-                  vect_angle(&w->solid->pos, &t->solid->pos));
-
-         weapon_setTurn( w, CLAMP( -w->outfit->u.bem.turn, w->outfit->u.bem.turn,
-                  10 * diff *  w->outfit->u.bem.turn ));
-         break;
-
-      default:
-         return;
+         else {
+            w->solid->dir = p->solid->dir + w->outfit->u.bem.swivel;
+            if (w->solid->dir_vel > 0.)
+               w->solid->dir_dest = w->solid->dir;
+         }
+      }
    }
 }
 
@@ -1504,6 +1509,10 @@ static double weapon_aimTurret(const Pilot *parent, const Pilot *pilot_target,
    }
    rdir = ANGLE(x, y);
 
+   /* Apply turret conversion if applicable. */
+   if (parent->stats.turret_conversion)
+      swivel = M_PI;
+
    /* Calculate bounds. */
    off = angle_diff(rdir, dir);
    if (FABS(off) > swivel) {
@@ -1558,7 +1567,8 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    acc =  HEAT_WORST_ACCURACY * pilot_heatAccuracyMod( T );
 
    /* Stat modifiers. */
-   if (outfit->type == OUTFIT_TYPE_TURRET_BOLT) {
+   if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
+         || parent->stats.turret_conversion) {
       w->dam_mod *= parent->stats.tur_damage;
       w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
    }
@@ -1655,7 +1665,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    w->timer = ammo->u.amm.duration * parent->stats.launch_range;
    w->solid = solid_create(mass, rdir, pos, &v, SOLID_UPDATE_RK4);
    if (w->outfit->u.amm.thrust != 0.) {
-      weapon_setThrust( w, w->outfit->u.amm.thrust * mass );
+      w->solid->thrust = w->outfit->u.amm.thrust * mass;
       w->solid->speed_max = w->outfit->u.amm.speed; /* Limit speed, we only care if it has thrust. */
    }
 
@@ -1745,7 +1755,8 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
       case OUTFIT_TYPE_BEAM:
       case OUTFIT_TYPE_TURRET_BEAM:
          rdir = dir;
-         if (outfit->type == OUTFIT_TYPE_TURRET_BEAM) {
+         if ((outfit->type == OUTFIT_TYPE_TURRET_BEAM)
+               || parent->stats.turret_conversion) {
             pilot_target = pilot_get(target);
             if ((w->parent != w->target) && (pilot_target != NULL))
                rdir = vect_angle(pos, &pilot_target->solid->pos);
@@ -1771,13 +1782,14 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
                w->solid->vel.x,
                w->solid->vel.y);
 
-         if (outfit->type == OUTFIT_TYPE_BEAM) {
-            w->dam_mod *= parent->stats.fwd_damage;
-            w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
-         }
-         else {
+         if ((outfit->type == OUTFIT_TYPE_TURRET_BEAM)
+               || parent->stats.turret_conversion) {
             w->dam_mod *= parent->stats.tur_damage;
             w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
+         }
+         else {
+            w->dam_mod *= parent->stats.fwd_damage;
+            w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
          }
          w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
 

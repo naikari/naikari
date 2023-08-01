@@ -1572,7 +1572,7 @@ if (o) WARN( _("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< 
    MELEMENT(temp->u.bem.duration==0,"duration");
    MELEMENT(temp->u.bem.min_duration < 0,"duration");
    MELEMENT(temp->u.bem.range==0,"range");
-   MELEMENT((temp->type!=OUTFIT_TYPE_BEAM) && (temp->u.bem.turn==0),"turn");
+   MELEMENT(temp->u.bem.turn == 0., "turn");
    MELEMENT(temp->u.bem.energy==0.,"energy");
    MELEMENT(temp->cpu==0.,"cpu");
    MELEMENT(temp->u.bem.dmg.damage==0,"damage");

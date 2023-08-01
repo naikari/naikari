@@ -62,8 +62,10 @@ void pilot_lockUpdateSlot( Pilot *p, PilotOutfitSlot *o, Pilot *t, double *a, do
 
    /* Check arc. */
    arc = o->outfit->u.lau.arc;
-   if (arc > 0.) {
+   if (p->stats.turret_conversion)
+      arc = 0.;
 
+   if (arc > 0.) {
       /* We use an external variable to set and update the angle if necessary. */
       if (*a < 0.) {
          x     = t->solid->pos.x - p->solid->pos.x;

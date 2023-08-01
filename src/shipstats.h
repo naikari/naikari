@@ -121,6 +121,7 @@ typedef enum ShipStatsType_ {
    SS_TYPE_B_INSTANT_JUMP,    /**< Do not require brake or chargeup to jump. */
    SS_TYPE_B_REVERSE_THRUST,  /**< Ship slows down rather than turning on reverse. */
    SS_TYPE_B_ASTEROID_SCAN,   /**< Ship can gather informations from asteroids. */
+   SS_TYPE_B_TURRET_CONVERSION, /**< Convert all weapons to turrets. */
 
    /*
     * End of list.
@@ -267,6 +268,7 @@ typedef struct ShipStats_ {
    double time_speedup;       /**< Makes the pilot operate at higher speeds. */
    double cooldown_time;      /**< Modifies cooldown time. */
    double jump_distance;      /**< Modifies how far the pilot can jump from the jump point. */
+   int turret_conversion; /**< Convert all weapons to turrets. */
 } ShipStats;
 
 

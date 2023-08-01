@@ -260,7 +260,8 @@ static void solid_update_euler (Solid *obj, const double dt)
    dest_diff = angle_diff(obj->dir, obj->dir_dest);
    obj->dir += diff;
 
-   if (((diff < 0) == (dest_diff < 0))
+   if ((((diff < 0) && (dest_diff < 0)) || ((diff > 0) && (dest_diff > 0)))
+         && isfinite(obj->dir_dest)
          && (ABS(diff) > ABS(dest_diff))) {
       obj->dir = obj->dir_dest;
    }
@@ -406,7 +407,9 @@ static void solid_update_rk4 (Solid *obj, const double dt)
    vect_cset( &obj->vel, vx, vy );
    vect_cset( &obj->pos, px, py );
 
-   if (((dirdiff < 0) == (dirdestdiff < 0))
+   if ((((dirdiff < 0) && (dirdestdiff < 0))
+            || ((dirdiff > 0) && (dirdestdiff > 0)))
+         && isfinite(obj->dir_dest)
          && (ABS(dirdiff) > ABS(dirdestdiff))) {
       obj->dir = obj->dir_dest;
    }

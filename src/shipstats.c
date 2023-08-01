@@ -328,6 +328,9 @@ static const ShipStatsLookup ss_lookup[] = {
    B_ELEM(SS_TYPE_B_ASTEROID_SCAN, misc_asteroid_scan,
       N_("Asteroid Details"),
       N_("Asteroid Details")),
+   B_ELEM(SS_TYPE_B_TURRET_CONVERSION, turret_conversion,
+      N_("Weapon Turret Conversion"),
+      N_("Weapon Turret Conversion")),
 
    /* Sentinel. */
    N_ELEM(SS_TYPE_SENTINEL)

@@ -17,7 +17,7 @@
   <sound_hit>medexp0</sound_hit>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
-  <delay>1.2</delay>
+  <delay>1.1</delay>
   <speed>550</speed>
   <range blowup="shield">8000</range>
   <gfx_end>massL-end.png</gfx_end>
@@ -29,8 +29,8 @@
   <damage>
    <type>impact</type>
    <penetrate>100</penetrate>
-   <physical>150</physical>
-   <disable>9.6</disable>
+   <physical>275</physical>
+   <disable>6.8</disable>
   </damage>
  </specific>
 </outfit>
