@@ -82,6 +82,7 @@ typedef struct MapOverlayPos_ {
    float text_offx; /**< x offset of the caption text. */
    float text_offy; /**< y offset of the caption text. */
    float text_width; /**< width of the caption text. */
+   int noshrink; /**< Whether this object is excluded from shrinking. */
 } MapOverlayPos;
 
 
