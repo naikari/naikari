@@ -2185,7 +2185,8 @@ void player_targetPrev( int mode )
 void player_targetClear (void)
 {
    gui_forceBlink();
-   if ((player.p->target == PLAYER_ID) && (player.p->nav_planet < 0)
+   if ((player.p->target == PLAYER_ID) && (player.p->nav_asteroid < 0)
+         && (player.p->nav_planet < 0)
          && (preemption == 1 || player.p->nav_planet == -1)
          && !pilot_isFlag(player.p, PILOT_HYP_PREP)) {
       player.p->nav_hyperspace = -1;
@@ -2193,10 +2194,13 @@ void player_targetClear (void)
       map_selectCur();
       map_clear();
    }
-   else if (player.p->target == PLAYER_ID)
-      player_targetPlanetSet( -1 );
-   else
-      player_targetSet( PLAYER_ID );
+   else if ((player.p->target == PLAYER_ID) && (player.p->nav_asteroid < 0)) {
+      player_targetPlanetSet(-1);
+   }
+   else {
+      player_targetSet(PLAYER_ID);
+      player_targetAsteroidSet(-1, -1);
+   }
    gui_setNav();
 }
 
