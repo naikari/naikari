@@ -14,7 +14,7 @@
   <ammo>Fury Missile</ammo>
   <delay>2</delay>
   <reload_time>60</reload_time>
-  <amount>40</amount>
+  <amount>55</amount>
   <lockon>5</lockon>
   <rdr_range>9000</rdr_range>
   <rdr_range_max>14000</rdr_range_max>

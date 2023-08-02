@@ -6,12 +6,12 @@
   <mass>200</mass>
   <price>1600000</price>
   <cpu>125</cpu>
-  <description>While many weapons on the market are available as turreted variants, some pilots wish to add this capability to weapons designed to be forward-mounted. For those pilots, the Turret Conversion Module is an excellent choice. While a bit heavy and energy-inefficient, this utility provides ful 360° rotation to all weapons onboard.</description>
+  <description>While many weapons on the market are available as turreted variants, some pilots wish to add this capability to weapons designed to be forward-mounted. For those pilots, the Turret Conversion Module is an excellent choice. While a bit heavy and energy-inefficient, this utility provides full 360° rotation to all weapons onboard, greatly increasing fitting options for larger ships.</description>
   <gfx_store>turret_conversion_module.png</gfx_store>
  </general>
  <specific type="modification">
   <turret_conversion/>
-  <tur_energy>175</tur_energy>
+  <tur_energy>25</tur_energy>
   <tur_heat>25</tur_heat>
  </specific>
 </outfit>

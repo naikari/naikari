@@ -5,7 +5,7 @@
   <size>large</size>
   <license>Heavy Weapon License</license>
   <rarity>2</rarity>
-  <mass>60</mass>
+  <mass>120</mass>
   <price>140000</price>
   <description>While the Railgun was devastating in its effects, it wasn't quite devastating enough for Dvaered High Command. They had their engineers enhance the weapon into a heavier, faster firing variant that isn't so much a gun as it is a miniature meteor shower generator.</description>
   <gfx_store>railgun.webp</gfx_store>
@@ -17,7 +17,7 @@
   <sound_hit>medexp0</sound_hit>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
-  <delay>1.1</delay>
+  <delay>0.8</delay>
   <speed>550</speed>
   <range blowup="shield">8000</range>
   <gfx_end>massL-end.png</gfx_end>
@@ -29,7 +29,7 @@
   <damage>
    <type>impact</type>
    <penetrate>100</penetrate>
-   <physical>275</physical>
+   <physical>160</physical>
    <disable>6.8</disable>
   </damage>
  </specific>

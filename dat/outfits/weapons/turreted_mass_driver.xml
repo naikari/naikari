@@ -5,7 +5,7 @@
   <size>large</size>
   <license>Medium Weapon License</license>
   <rarity>1</rarity>
-  <mass>50</mass>
+  <mass>100</mass>
   <price>90000</price>
   <description>This turret-mounted Mass Driver takes a crude approach to inflicting the large amounts of damage necessary in large-scale conflicts, showering its pilot's foes with relatively low-damage shells that start to add up rather quickly. Nonetheless, the approach is quite effective when used correctly and can give enemies of nearly any size a hard time.</description>
   <gfx_store>weapon02.webp</gfx_store>
@@ -26,7 +26,7 @@
   <damage>
    <type>impact</type>
    <penetrate>62</penetrate>
-   <physical>19.25</physical>
+   <physical>38.5</physical>
    <disable>1.05</disable>
   </damage>
  </specific>

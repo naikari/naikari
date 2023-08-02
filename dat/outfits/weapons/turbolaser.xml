@@ -5,7 +5,7 @@
   <size>large</size>
   <license>Heavy Weapon License</license>
   <rarity>2</rarity>
-  <mass>75</mass>
+  <mass>150</mass>
   <price>175000</price>
   <description>This special model of the Heavy Laser Turret is one of the heaviest weapons found in the galaxy, developed in response to House Dvaered's development of the Railgun during the Dvaered revolts. Imperial Capital ships use it to lay down devastating barrages against enemy vessels.</description>
   <gfx_store>laserturret2.webp</gfx_store>
@@ -28,7 +28,7 @@
   <damage>
    <type>normal</type>
    <penetrate>100</penetrate>
-   <physical>260</physical>
+   <physical>362</physical>
    <disable>8</disable>
   </damage>
  </specific>

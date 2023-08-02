@@ -3,9 +3,9 @@
  <general>
   <slot>weapon</slot>
   <size>large</size>
-  <mass>55</mass>
+  <mass>110</mass>
   <license>Heavy Weapon License</license>
-  <price>150000</price>
+  <price>115000</price>
   <description>The Heavy Ion Turret is the strongest less-than-lethal weapon in the galaxy, applying brute force to its target's internal systems. It is well-used by pirates all across the galaxy despite repeated attempts to restrict its sale.</description>
   <gfx_store>heavy_ionturret.webp</gfx_store>
   <cpu>-90</cpu>
@@ -27,8 +27,8 @@
   <damage>
    <type>ion</type>
    <penetrate>48</penetrate>
-   <physical>2.8</physical>
-   <disable>60</disable>
+   <physical>5.6</physical>
+   <disable>120</disable>
   </damage>
  </specific>
 </outfit>

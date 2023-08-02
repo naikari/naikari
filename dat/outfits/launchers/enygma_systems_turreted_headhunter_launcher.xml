@@ -14,7 +14,7 @@
   <ammo>Headhunter Missile</ammo>
   <delay>3.5</delay>
   <reload_time>60</reload_time>
-  <amount>35</amount>
+  <amount>45</amount>
   <lockon>7</lockon>
   <rdr_range>5400</rdr_range>
   <rdr_range_max>9400</rdr_range_max>

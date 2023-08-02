@@ -5,7 +5,7 @@
   <size>medium</size>
   <license>Medium Weapon License</license>
   <rarity>1</rarity>
-  <mass>30</mass>
+  <mass>60</mass>
   <price>65000</price>
   <description>The heavier Mark 2 Plasma Turret sees a lot more use than its smaller counterpart. It is often found on Destroyers as a supplementary weapon, particularly those deployed in task forces designed to take down larger vessels.</description>
   <gfx_store>plasma_turret2.webp</gfx_store>
@@ -28,7 +28,7 @@
   <damage>
    <type>heat</type>
    <penetrate>36</penetrate>
-   <physical>70</physical>
+   <physical>76</physical>
    <disable>5.6</disable>
   </damage>
  </specific>

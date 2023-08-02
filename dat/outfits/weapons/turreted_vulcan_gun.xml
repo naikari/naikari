@@ -3,7 +3,7 @@
  <general>
   <slot>weapon</slot>
   <size>medium</size>
-  <mass>30</mass>
+  <mass>60</mass>
   <license>Medium Weapon License</license>
   <rarity>1</rarity>
   <price>50000</price>
@@ -27,7 +27,7 @@
   <damage>
    <type>impact</type>
    <penetrate>36</penetrate>
-   <physical>12.5</physical>
+   <physical>13.5</physical>
    <disable>0.625</disable>
   </damage>
  </specific>
