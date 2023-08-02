@@ -14,9 +14,27 @@
 * Added a garbage dump location to Empire space.
 * Slightly improved the waste dump mission.
 * Adjusted some hyperspace connections in the universe.
-* Fixed an unintendedly low power level for forward-facing railguns.
-  Their damage has been doubled, bringing them in-line with
-  capital-class weaponry.
+* Removed the randomness from the Drinking Aristocrat mission which
+  could lead to needing to make as many as nine stops. The total number
+  of stops (including the correct one) is now fixed at exactly four
+  (three wrong ones plus the correct one).
+* Replaced the cross display of system position markers (as used by e.g.
+  patrol missions) with a shader based on the one Naev uses for the
+  autonav go-to position indicator. This makes these markers much easier
+  to see especially when they happen to be on top of planets (as is the
+  case for patrol missions).
+* Text of system position markers is now "optimized" to avoid collision
+  with planet/jump overlay text.
+* Removed the superfluous "TARGET" text next to the autonav go-to
+  position indicator.
+* Aiming helper crosshair now has an outline.
+* Forward-facing beams now rotate in the same manner as turret beams,
+  rather than instantly facing their target.
+* Added the "Turret Conversion Module", which enables turning all of a
+  ship's weapons into turrets.
+* Changed the balancing to give large turrets an inherent advantage over
+  large forward-facing weapons, now that forward-facing weapons can be
+  easily converted into turrets.
 
 ## 0.9.0
 
