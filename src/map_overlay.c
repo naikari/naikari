@@ -638,11 +638,11 @@ void ovr_render( double dt )
    for (i=0; i<array_size(cur_system->asteroids); i++) {
       ast = &cur_system->asteroids[i];
       for (j=0; j<ast->nb; j++)
-         gui_renderAsteroid( &ast->asteroids[j], w, h, res, 1 );
+         gui_renderAsteroid(&ast->asteroids[j], RADAR_RECT, w, h, res, 1);
    }
 
    /* Render the player. */
-   gui_renderPlayer( res, 1 );
+   gui_renderPlayer(w, h, res, 1);
 
    /* Render markers. */
    ovr_mrkRenderAll( res );

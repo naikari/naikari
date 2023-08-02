@@ -1085,11 +1085,12 @@ void gui_radarRender( double x, double y )
    for (i=0; i<array_size(cur_system->asteroids); i++) {
       ast = &cur_system->asteroids[i];
       for (j=0; j<ast->nb; j++)
-         gui_renderAsteroid( &ast->asteroids[j], radar->w, radar->h, radar->res, 0 );
+         gui_renderAsteroid(&ast->asteroids[j], radar->shape,
+               radar->w, radar->h, radar->res, 0);
    }
 
    /* Render the player cross. */
-   gui_renderPlayer( radar->res, 0 );
+   gui_renderPlayer(radar->w, radar->h, radar->res, 0);
 
    gl_view_matrix = view_matrix_prev;
    if (radar->shape==RADAR_RECT)
@@ -1264,12 +1265,11 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
    /* Get size. */
    scale = p->ship->rdr_scale * (1. + RADAR_RES_REF/res);
 
-   /* Check if pilot in range. */
-   if ( ((shape==RADAR_RECT) &&
-            ((ABS(x) > (w+scale)/2.) || (ABS(y) > (h+scale)/2.)) ) ||
-         ((shape==RADAR_CIRCLE) &&
-            ((pow2(x)+pow2(y)) > pow2(w))) ) {
-
+   /* Check if within radar bounds. */
+   if (((shape == RADAR_RECT)
+            && ((ABS(x) > (w-scale) / 2.) || (ABS(y) > (h-scale) / 2.)))
+         || ((shape == RADAR_CIRCLE)
+            && (pow2(x) + pow2(y) > pow2(w)))) {
       /* Draw little targeted symbol. */
       if (p->id == player.p->target && !overlay)
          gui_renderRadarOutOfRange( shape, w, h, x, y, &cRadar_tPilot );
@@ -1313,12 +1313,14 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
  * @brief Renders an asteroid in the GUI radar.
  *
  *    @param a Asteroid to render.
+ *    @param shape Shape of the radar (RADAR_RECT or RADAR_CIRCLE).
  *    @param w Width.
  *    @param h Height.
  *    @param res Radar resolution.
  *    @param overlay Whether to render onto the overlay.
  */
-void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int overlay )
+void gui_renderAsteroid(const Asteroid* a, RadarShape shape,
+      double w, double h, double res, int overlay)
 {
    int i, j, targeted;
    double x, y, r, sx, sy;
@@ -1337,6 +1339,8 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
    if (!pilot_inRangeAsteroid( player.p, i, j ))
       return;
 
+   targeted = ((i == player.p->nav_asteroid) && (j == player.p->nav_anchor));
+
    /* Get position. */
    if (overlay) {
       x = (a->pos.x / res);
@@ -1351,6 +1355,17 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
    sx = 1.;
    sy = 1.;
 
+   /* Check if within radar bounds. */
+   if (((shape == RADAR_RECT)
+            && ((ABS(x) > w / 2.) || (ABS(y) > h / 2.)))
+         || ((shape == RADAR_CIRCLE)
+            && (pow2(x) + pow2(y) > pow2(w)))) {
+      /* Draw little targeted symbol. */
+      if (targeted && !overlay)
+         gui_renderRadarOutOfRange(shape, w, h, x, y, &cWhite);
+      return;
+   }
+
    /* Transform coordinates into the 0,0 -> SCREEN_W, SCREEN_H range. */
    if (overlay) {
       x += map_overlay_center_x();
@@ -1363,15 +1378,12 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
    px     = MAX(x-sx, -w);
    py     = MAX(y-sy, -h);
 
-   targeted = ((i==player.p->nav_asteroid) && (j==player.p->nav_anchor));
-
    /* Colour depends if the asteroid is selected. */
    if (targeted)
       col = &cWhite;
    else
       col = &cGrey70;
 
-   //gl_renderRect( px, py, MIN( 2*sx, w-px ), MIN( 2*sy, h-py ), col );
    r = (sx+sy)/2.0+1.5;
    glUseProgram(shaders.asteroidmarker.program);
    gl_renderShader( px, py, r, r, 0., &shaders.asteroidmarker, col, 1 );
@@ -1384,22 +1396,33 @@ void gui_renderAsteroid( const Asteroid* a, double w, double h, double res, int 
 /**
  * @brief Renders the player cross on the radar or whatever.
  */
-void gui_renderPlayer( double res, int overlay )
+void gui_renderPlayer(double w, double h, double res, int overlay)
 {
-   double x, y, r;
+   double x, y;
+   double r;
 
    if (overlay) {
-      x = player.p->solid->pos.x / res + map_overlay_center_x();
-      y = player.p->solid->pos.y / res + map_overlay_center_y();
+      x = player.p->solid->pos.x / res;
+      y = player.p->solid->pos.y / res;
       r = MAX(14., 1.5 * player.p->ship->rdr_scale * (1. + RADAR_RES_REF/res));
-   } else {
+
+      /* Check if within radar bounds. */
+      if ((ABS(x) > (w-r) / 2.) || (ABS(y) > (h-r) / 2.))
+         return;
+
+      /* Transform coordinates into the 0,0 → SCREEN_W,SCREEN_H range. */
+      x += map_overlay_center_x();
+      y += map_overlay_center_y();
+   }
+   else {
       x = 0.;
       y = 0.;
       r = MAX(12., 1.25 * player.p->ship->rdr_scale * (1. + RADAR_RES_REF/res));
    }
 
    glUseProgram(shaders.playermarker.program);
-   gl_renderShader( x, y, r, r, player.p->solid->dir, &shaders.playermarker, &cRadar_player, 1 );
+   gl_renderShader(x, y, r, r, player.p->solid->dir, &shaders.playermarker,
+         &cRadar_player, 1);
 }
 
 
