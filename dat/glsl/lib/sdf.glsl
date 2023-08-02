@@ -31,11 +31,14 @@ float sdCircle( vec2 p, float r )
    return length(p)-r;
 }
 
-/* Box at given position with given border. */
-float sdBox(vec2 position, vec2 border)
+/* Box at given position with given dimensions. */
+float sdBox(vec2 position, vec2 dimensions)
 {
-   vec2 d = abs(position) - border;
-   return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
+   // Get raw distance from the shape.
+   vec2 raw_dist = abs(position) - dimensions;
+   // Convert raw distance into real distance. Negative or zero means
+   // position is inside the shape.
+   return length(max(raw_dist, 0.0)) + min(max(raw_dist.x, raw_dist.y), 0.0);
 }
 
 /* Segment going from point a to point b with 0 width. */
