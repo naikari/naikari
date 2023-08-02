@@ -26,6 +26,7 @@
 #define TIME_COMPRESSION_DEFAULT_MULT 200. /**< conf.compression_mult */
 #define DT_MOD_DEFAULT 1. /**< conf.dt_mod */
 #define AUTONAV_RESET_SPEED_DEFAULT 1. /**< conf.autonav_reset_speed */
+#define AUTONAV_IGNORE_PASSIVE_DEFAULT 1 /**< conf.autonav_ignore_passive */
 /* Video option defaults */
 #define RESOLUTION_W_DEFAULT RESOLUTION_W_MIN /**< conf.width */
 #define RESOLUTION_H_DEFAULT RESOLUTION_H_MIN /**< conf.height */
@@ -94,6 +95,7 @@ typedef struct PlayerConf_s {
     * 1 means at enemy presence, 0 means at armor damage.
     */
    double autonav_reset_speed;
+   int autonav_ignore_passive; /**< Whether to ignore passive enemies. */
 
    /* Video options */
    int width; /**< Width of the window to use. */

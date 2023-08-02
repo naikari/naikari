@@ -399,8 +399,13 @@ static void opt_gameplay( unsigned int wid )
          NULL, NULL, _("Settings") );
    y -= 25;
 
-   window_addCheckbox( wid, x, y, cw, 20,
-         "chkZoomManual", _("Enable manual zoom control"), NULL, conf.zoom_manual );
+   window_addCheckbox(wid, x, y, cw, 20,
+         "chkIgnorePassive", _("Ignore passive enemy presence"), NULL,
+         conf.autonav_ignore_passive);
+   y -= 25;
+   window_addCheckbox(wid, x, y, cw, 20,
+         "chkZoomManual", _("Enable manual zoom control"), NULL,
+         conf.zoom_manual);
    y -= 25;
    window_addCheckbox(wid, x, y, cw, 20,
          "chkAfterburn", _("Enable double-tap afterburn"), NULL,
@@ -467,6 +472,7 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    }
 
    /* Checkboxes. */
+   conf.autonav_ignore_passive = window_checkboxState(wid, "chkIgnorePassive");
    conf.zoom_manual = window_checkboxState(wid, "chkZoomManual");
    conf.doubletap_afterburn = window_checkboxState(wid, "chkAfterburn");
    conf.rightclick_follow = window_checkboxState(wid, "chkFollow");
@@ -530,6 +536,7 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    char buf[STRMAX_SHORT];
 
    /* Checkboxes. */
+   window_checkboxSet(wid, "chkIgnorePassive", conf.autonav_ignore_passive);
    window_checkboxSet(wid, "chkZoomManual", conf.zoom_manual);
    window_checkboxSet(wid, "chkAfterburn", conf.doubletap_afterburn);
    window_checkboxSet(wid, "chkFollow", conf.rightclick_follow);

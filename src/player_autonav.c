@@ -760,6 +760,7 @@ int player_autonavShouldResetSpeed (void)
    double their_range, my_range;
    int i, j;
    Pilot * const *pstk;
+   Pilot *p;
    int hostiles, will_reset;
 
    if (!player_isFlag(PLAYER_AUTONAV))
@@ -780,37 +781,54 @@ int player_autonavShouldResetSpeed (void)
 
    pstk = pilot_getAll();
    for (i=0; i<array_size(pstk); i++) {
-      if ((pstk[i]->id != PLAYER_ID) && pilot_isHostile(pstk[i])
-            && (pilot_inRangePilot(player.p, pstk[i], NULL) == 1)
-            && !pilot_isDisabled(pstk[i])) {
-         dist = vect_dist(&pstk[i]->solid->pos, &player.p->solid->pos);
+      p = pstk[i];
 
-         /* If the pilot is hostile and can see the player, be more
-          * careful and check weapon set distances against just 90% of
-          * the distance between the two. Otherwise, check against 100%
-          * of the distance. */
-         if (pilot_inRangePilot(pstk[i], player.p, NULL)
-               && pilot_isFlag(pstk[i], PILOT_HOSTILE))
-            careful_dist = dist * 0.9;
-         else
-            careful_dist = dist;
-         
-         /* Check weapon set ranges of both the hostile pilot and the
-          * player. Only count it as hostile presence if one of the two
-          * is near their weapon range. Weapon sets with infinite range
-          * (i.e. those with fighter bays) are not counted */
-         for (j=0; j<PILOT_WEAPON_SETS; j++) {
-            their_range = pilot_weapSetRange(pstk[i], j, -1);
-            my_range = pilot_weapSetRange(player.p, j, -1);
-            if ((isfinite(their_range) && (their_range >= careful_dist))
-                  || (isfinite(my_range) && (my_range >= dist))) {
-               hostiles = 1;
-               break;
-            }
-         }
-         if (hostiles)
+      /* Must not be the player. */
+      if (p->id == PLAYER_ID)
+         continue;
+
+      /* If autonav_ignore_passive is true, must be actively hostile. */
+      if (conf.autonav_ignore_passive && !pilot_isFlag(p, PILOT_HOSTILE))
+         continue;
+
+      /* Must be an enemy. */
+      if (!pilot_isHostile(p))
+         continue;
+
+      /* Must not be disabled. */
+      if (pilot_isDisabled(p))
+         continue;
+
+      /* Must be detected non-fuzzily by the player. */
+      if (pilot_inRangePilot(player.p, p, NULL) != 1)
+         continue;
+
+      dist = vect_dist(&p->solid->pos, &player.p->solid->pos);
+
+      /* If the pilot is hostile and can see the player, check
+       * against their range as well as player's range. */
+      if (pilot_inRangePilot(p, player.p, NULL)
+            && pilot_isFlag(p, PILOT_HOSTILE))
+         careful_dist = dist;
+      else
+         careful_dist = INFINITY;
+      
+      /* Check weapon set ranges of both the hostile pilot and the
+       * player. Only count it as hostile presence if one of the two
+       * is near their weapon range. Weapon sets with infinite range
+       * (i.e. those with fighter bays) are not counted */
+      for (j=0; j<PILOT_WEAPON_SETS; j++) {
+         their_range = pilot_weapSetRange(p, j, -1);
+         my_range = pilot_weapSetRange(player.p, j, -1);
+         if ((isfinite(their_range) && (their_range >= careful_dist))
+               || (isfinite(my_range) && (my_range >= dist))) {
+            hostiles = 1;
             break;
+         }
       }
+
+      if (hostiles)
+         break;
    }
 
    if (hostiles) {

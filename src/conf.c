@@ -195,6 +195,7 @@ void conf_setGameplayDefaults (void)
    conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
    conf.dt_mod = DT_MOD_DEFAULT;
    conf.autonav_reset_speed = AUTONAV_RESET_SPEED_DEFAULT;
+   conf.autonav_ignore_passive = AUTONAV_IGNORE_PASSIVE_DEFAULT;
 }
 
 
@@ -407,6 +408,7 @@ int conf_loadConfig ( const char* file )
       conf_loadBool( lEnv, "save_compress", conf.save_compress );
       conf_loadFloat( lEnv, "mouse_doubleclick", conf.mouse_doubleclick );
       conf_loadFloat( lEnv, "autonav_abort", conf.autonav_reset_speed );
+      conf_loadInt(lEnv, "autonav_ignore_passive", conf.autonav_ignore_passive);
       conf_loadBool( lEnv, "devmode", conf.devmode );
       conf_loadBool( lEnv, "devautosave", conf.devautosave );
       conf_loadBool( lEnv, "conf_nosave", conf.nosave );
@@ -1010,8 +1012,12 @@ int conf_saveConfig ( const char* file )
    conf_saveFloat("mouse_doubleclick",conf.mouse_doubleclick);
    conf_saveEmptyLine();
 
-   conf_saveComment(_("Condition under which the autonav aborts."));
+   conf_saveComment(_("Condition under which autonav time compression stops."));
    conf_saveFloat("autonav_abort",conf.autonav_reset_speed);
+   conf_saveEmptyLine();
+
+   conf_saveComment(_("Whether to have autonav ignore passive enemies."));
+   conf_saveBool("autonav_ignore_passive", conf.autonav_ignore_passive);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Enables developer mode (universe editor and the likes)"));
