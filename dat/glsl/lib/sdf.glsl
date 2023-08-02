@@ -31,11 +31,11 @@ float sdCircle( vec2 p, float r )
    return length(p)-r;
 }
 
-/* Box at position b with border b. */
-float sdBox( vec2 p, vec2 b )
+/* Box at given position with given border. */
+float sdBox(vec2 position, vec2 border)
 {
-   vec2 d = abs(p)-b;
-   return length(max(d,0.0)) + min(max(d.x,d.y),0.0);
+   vec2 d = abs(position) - border;
+   return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
 }
 
 /* Segment going from point a to point b with 0 width. */
