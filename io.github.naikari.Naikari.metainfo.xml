@@ -3,7 +3,7 @@
   <id>io.github.naikari.Naikari</id>
   <metadata_license>CC0-1.0</metadata_license>
 
-  <name>Naikari: Eye of Chaös</name>
+  <name>Naikari: Eye of Chaos</name>
   <summary>2-D freeform space trading and mercenary game</summary>
 
   <description>
@@ -27,6 +27,15 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
+    <release version="0.10.0">
+      <description>
+        <ul>
+          <li>Missions now hilight their destinations on the overlay.</li>
+          <li>Added the ability to convert forward-facing weapons to turrets.</li>
+        </ul>
+      </description>
+      <url>https://github.com/naikari/naikari/releases/tag/v0.10.0</url>
+    </release>
     <release version="0.9.0" date="2023-07-26" type="stable">
       <description>
         <ul>
