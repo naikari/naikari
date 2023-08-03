@@ -155,7 +155,7 @@ function accept ()
 
       DVplanet, DVsys = planet.get("Raelid Outpost")
 
-      reinforcements_arrived = false
+      reenforcements_arrived = false
       dv_ships_left = 0
       job_done = false
 
@@ -185,13 +185,13 @@ function leave ()
    hook.rm(spawner)
    hook.rm(hailer)
    hook.rm(rehailer)
-   reinforcements_arrived = false
+   reenforcements_arrived = false
    dv_ships_left = 0
 end
 
 
-function spawnDVReinforcements ()
-   reinforcements_arrived = true
+function spawnDVReenforcements ()
+   reenforcements_arrived = true
    local dist = 1500
    local x
    local y
@@ -207,11 +207,11 @@ function spawnDVReinforcements ()
    end
 
    local pos = player.pos() + vec2.new(x, y)
-   local reinforcements = fleet.add(1,
+   local reenforcements = fleet.add(1,
          {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
             "Dvaered Vendetta", "Dvaered Vendetta"},
          "Dvaered", pos, nil, {ai="dvaered_norun"})
-   for i, p in ipairs(reinforcements) do
+   for i, p in ipairs(reenforcements) do
       if p:ship():class() == "Destroyer" then boss = p end
       hook.pilot(p, "death", "pilot_death_dv")
       p:setHostile()
@@ -380,8 +380,8 @@ function pilot_death_dv ()
             end
          end
       end
-   elseif dv_ships_left <= 1 and not reinforcements_arrived then
-      spawnDVReinforcements()
+   elseif dv_ships_left <= 1 and not reenforcements_arrived then
+      spawnDVReenforcements()
    end
 end
 

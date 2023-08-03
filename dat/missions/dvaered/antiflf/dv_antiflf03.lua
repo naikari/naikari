@@ -164,7 +164,7 @@ function enter()
         fighterpos = {}
         basepos = vec2.new(-8700, -3000) -- NOTE: Should be the same coordinates as in asset.xml!
         DVbombers = 5 -- Amount of initial Dvaered bombers
-        DVreinforcements = 20 -- Amount of reinforcement Dvaered bombers
+        DVreenforcements = 20 -- Amount of reenforcement Dvaered bombers
         deathsFLF = 0
         deathsFLFneeded = 0
         timer = 0
@@ -547,8 +547,8 @@ end
 
 -- Replaces lost bombers. The supply is limited, thô.
 function deathDVbomber()
-    if DVreinforcements > 0 then
-        DVreinforcements = DVreinforcements - 1
+    if DVreenforcements > 0 then
+        DVreenforcements = DVreenforcements - 1
         for i, j in ipairs(bombers) do
             if not j:exists() then
                 bomber = pilot.add("Dvaered Ancestor", "Dvaered", obstinate:pos(), nil, {ai="dvaered_norun"})
