@@ -51,7 +51,7 @@ function pilot_name ()
       p_("pilot_name", "Darkness {number}"),
       p_("pilot_name", "Dart {number}"),
       p_("pilot_name", "Death {number}"),
-      p_("pilot_name", "Deïty {number}"),
+      p_("pilot_name", "Deity {number}"),
       p_("pilot_name", "Delta {number}"),
       p_("pilot_name", "Demon {number}"),
       p_("pilot_name", "Diamond {number}"),

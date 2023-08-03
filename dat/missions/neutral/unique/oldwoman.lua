@@ -44,7 +44,7 @@ complaints = {}
 complaints[1] = _([["You youngsters and your newfangled triple redundancy plasma feedback shunts. In my day, we had to use simple monopole instaconductors to keep our hyperdrives running!"]])
 complaints[2] = _([["Tell me, youngster, why is everyone so preoccupied with Soromid enhancements these days? Cybernetic implants were good enough for us, why can't they be for you?"]])
 complaints[3] = _([["My mother was from Earth, you know. She even took me there once, when I was a little girl. I still remember it like it happened yesterday. They don't make planets like that anymore these days, oh no."]])
-complaints[4] = _([["What did you say this thing was? A microblink reïnforced packet transmitter? No, no, don't try to explain how it works. I'm too old for this. Anything more complex than a subspace pseudo-echo projector is beyond my understanding."]])
+complaints[4] = _([["What did you say this thing was? A microblink reinforced packet transmitter? No, no, don't try to explain how it works. I'm too old for this. Anything more complex than a subspace pseudo-echo projector is beyond my understanding."]])
 complaints[5] = _([["You don't know how good you have it these days. When I was young, we needed to reprogram our own electronic countermeasures to deal with custom pirate tracking systems."]])
 complaints[6] = _([["Time passes by so quickly. I remember when this was all space."]])
 complaints[7] = _([["All this automation is making people lax, I tell you. My uncle ran a tight ship. If he caught you cutting corners, you'd be defragmenting the sub-ion matrix filters for a week!"]])
@@ -58,7 +58,7 @@ NPCdesc = _("You see a wrinkled old lady, a somewhat unusual sight in a spacepor
 misndesc = _("An aging lady has asked you to ferry her to %s.")
 misnreward = _("Fair monetary compensation")
 
-log_text = _([[You escorted an old woman to her cousin in Sirius space. She was nice, albeït somewhat overly chatty.]])
+log_text = _([[You escorted an old woman to her cousin in Sirius space. She was nice, albeit somewhat overly chatty.]])
 
 
 function create ()

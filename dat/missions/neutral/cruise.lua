@@ -217,7 +217,7 @@ function land()
                   + 0.1*stops*stop_reward*rnd.sigma()
          else
             pay_text = {
-               _("Your passengers disembark and return to their homeworld after a nice, albeït not terribly eventful cruise. You unfortunately don't receive any tips, but you receive the promised fare of {credits}."),
+               _("Your passengers disembark and return to their homeworld after a nice, albeit not terribly eventful cruise. You unfortunately don't receive any tips, but you receive the promised fare of {credits}."),
                _("Your passengers return to {planet} content that they went on a decent cruise and you receive your promised fare of {credits}."),
                _("Having completed the cruise, your passengers return to {planet} satisfied, and you receive your {credits} fare."),
             }
