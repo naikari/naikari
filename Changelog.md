@@ -35,6 +35,15 @@
 * Changed the balancing to give large turrets an inherent advantage over
   large forward-facing weapons, now that forward-facing weapons can be
   easily converted into turrets.
+* Autonav resets speed less aggressively, and by default (togglable with
+  an option in the Options menu) does so even less aggressively by
+  ignoring passive (not actively hostile) enemies entirely.
+* The target clear control will now clear an asteroid target as well.
+* Fixed player and asteroid radar icons being allowed outside the
+  overlay boundaries.
+* Relaxed some of our eccentric usage of diaereses. It's no longer used
+  on "ao", "ei", "eu", or "ea". This also means that the subtitle is now
+  "Eye of Chaos" instead of "Eye of Chaös".
 
 ## 0.9.0
 
