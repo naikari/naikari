@@ -253,7 +253,7 @@ messages = {
          _([["Did you know that House Za'lek was originally a Great Project initiated by the Empire? There was also a Project Proteron, but that one didn't go so well."]]),
          _([["Don't pay attention to the naysayers. The Empire is still strong. Have you ever seen a Peacemaker up close? I doubt any ship fielded by any other power could stand up to one."]]),
          _([["I don't know who did it, but believe me, the Incident was no accident! It was definitely a terrorist attack orchestrated by those disloyal Great Houses in an effort to take down the Empire."]]),
-         _([["I wouldn't travel north of Alteris if I were you, unless you're a good fighter! That areä of space has really gone down the drain since the Incident."]]),
+         _([["I wouldn't travel north of Alteris if I were you, unless you're a good fighter! That area of space has really gone down the drain since the Incident."]]),
       },
    },
    {
@@ -675,7 +675,7 @@ function getJmpMessage(fac)
    local msg_jmp = {
       _([["Hi there, traveler. Is your system map up to date? Just in case you didn't know already, let me give you the location of the jump from here to {system}. I hope that helps."]]),
       _([["Quite a lot of people who come in here complain that they don't know how to get to {system}. I travel there often, so I know exactly where the jump point is. Here, let me show you."]]),
-      _([["So you're still getting to know about this areä, huh? Tell you what, I'll give you the coördinates of the jump to {system}. Check your map next time you take off!"]]),
+      _([["So you're still getting to know about this area, huh? Tell you what, I'll give you the coördinates of the jump to {system}. Check your map next time you take off!"]]),
       _([["True fact, there's a direct jump from here to {system}. Want to know where it is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your map."]]),
       _([["There's a system just one jump away by the name of {system}. I can tell you where the jump point is. There, I've updated your map. Don't mention it."]]),
    }

@@ -31,7 +31,7 @@ start_text = _([[Suddenly, out of nowhere, one of the dormant panels in your coc
 
 "Hello {player}," the face says. "You must be wondering who I am and how it is I'm talking to you like this. Neither question is important. What is important is that Captain Rebina has urgent need of your services. You are to meet her on the Seiryuu, which is currently near {planet} in the {system} system. Please don't ask any questions now. We expect to see you as quickly as you can make your way here."
 
-The screen goes dead again. You decide to make a note of this in your log. Perhaps it would be a good ideä to visit the Seiryuu once more, if only to find out how they got a private line to your ship.]])
+The screen goes dead again. You decide to make a note of this in your log. Perhaps it would be a good idea to visit the Seiryuu once more, if only to find out how they got a private line to your ship.]])
 
 explain_text = _([[You make your way thru the now familiar corridors of the Seiryuu. You barely notice the strange environment anymore. It seems unimportant compared to the strange events that surround your every encounter with these Four Winds.
 

@@ -39,7 +39,7 @@ local fmt = require "fmt"
 
 
 text = {
-   _("The waste containers are loaded onto your ship and you are paid {credits}. You begin to wonder if accepting this job was really a good ideä."),
+   _("The waste containers are loaded onto your ship and you are paid {credits}. You begin to wonder if accepting this job was really a good idea."),
    _("Workers pack your cargo hold full of as much garbage as it can hold, then hastily hand you a credit chip containing {credits}. Smelling the garbage, you immediately regret taking the job."),
    _("Your hold is crammed full with garbage and you are summarily paid {credits}. By the time the overpowering stench emanating from your cargo hold is apparent to you, it's too late to back down; you're stuck with this garbage until you can find some place to get rid of it."),
 }

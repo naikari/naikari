@@ -1,7 +1,7 @@
 -- Poll for player proximity to a point in space.
 -- argument trigger: a table containing:
 -- location: The location, OR
--- anchor: the pilot to use as the anchor for the trigger areä
+-- anchor: the pilot to use as the anchor for the trigger area
 -- radius: The radius around the location or anchor
 -- focus: The pilot that's polled for. If omitted, defaults to the player.
 -- funcname: The name of the function to be called when the player is in proximity.
@@ -18,7 +18,7 @@ end
 
 -- This variant assumes a proximity hook between two ships, and trigger when the anchor ship scans the focus ship (fuzzy detection doesn't trigger).
 -- argument trigger: a table containing:
--- anchor: The pilot to use as the anchor for the trigger areä.  If omitted, defaults to the player.
+-- anchor: The pilot to use as the anchor for the trigger area.  If omitted, defaults to the player.
 -- focus: The pilot that's polled for.
 -- funcname: The name of the function to be called when the player is in proximity.
 --

@@ -59,13 +59,13 @@ cond_articles = {
    },
    {
       title = _("Mysterious Woman Spotted"),
-      text = _([[A mysterious woman has been spotted scouting the areä within and around the Klantar system in Dvaered space. When approached by the media and asked who or what she is searching for, she declined to comment.]]),
+      text = _([[A mysterious woman has been spotted scouting the area within and around the Klantar system in Dvaered space. When approached by the media and asked who or what she is searching for, she declined to comment.]]),
       tag = "mhint_Shadowrun",
       mission = "Shadowrun",
    },
    {
       title = _("Assassins in Alteris"),
-      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to an influx of assassins in the areä. Authorities suspect that corrupt businessmen are hiring these assassins in an effort to illegally stifle competition. An Imperial investigation is underway.]]),
+      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to an influx of assassins in the area. Authorities suspect that corrupt businessmen are hiring these assassins in an effort to illegally stifle competition. An Imperial investigation is underway.]]),
       tag = "mhint_Hitman 2",
       mission = "Hitman 2",
    },
@@ -162,7 +162,7 @@ cond_articles = {
    },
    {
       title = _("Mercenary Registrations Skyrocket"),
-      text = _([[Many pilots are realizing just how lucrative the life of a mercenary can be. "Missions that require a Mercenary License pay a lot of money," one analyst explained. "The cost of the Mercenary License may seem high, but it will easily pay for itself ten times over by granting access to so many lucrative missions. Not to mention, doing mercenary missions for militaries around the galaxy is a quick way to gain access to restricted areäs." A Mercenary License can be obtained simply by purchasing it at any outfitter, just like all other licenses.]]),
+      text = _([[Many pilots are realizing just how lucrative the life of a mercenary can be. "Missions that require a Mercenary License pay a lot of money," one analyst explained. "The cost of the Mercenary License may seem high, but it will easily pay for itself ten times over by granting access to so many lucrative missions. Not to mention, doing mercenary missions for militaries around the galaxy is a quick way to gain access to restricted areas." A Mercenary License can be obtained simply by purchasing it at any outfitter, just like all other licenses.]]),
       tag = "mhint_Patrol",
       cond = function()
          return (player.numOutfit("Mercenary License") <= 0
@@ -174,7 +174,7 @@ cond_articles = {
    },
    {
       title = _("Dvaered and FLF Clash"),
-      text = _([[An increased incidence of confrontation between Dvaered and FLF forces has been reported as of late in the north edge of Dvaered space, particularly between Frontier space and the Outer Nebula. Civilians in the areä are advised to be on high alert.]]),
+      text = _([[An increased incidence of confrontation between Dvaered and FLF forces has been reported as of late in the north edge of Dvaered space, particularly between Frontier space and the Outer Nebula. Civilians in the area are advised to be on high alert.]]),
       tag = "mhint_Take the Dvaered crew home",
       mission = "Take the Dvaered crew home",
       cond = function()
