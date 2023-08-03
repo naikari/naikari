@@ -24,7 +24,7 @@
 
 --
 
-   This event manages news articles, creäting new ones and deleting old
+   This event manages news articles, creating new ones and deleting old
    ones as needed.
 
 --]]

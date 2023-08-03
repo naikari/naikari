@@ -81,7 +81,7 @@ The pirate shifts slightly in shock. "Y-you want to work with us?" You assure hi
 
 sindbad_text = _([[As soon as you arrive at Sindbad, you locate Benito and inform her of the situation, including the location of the pirate station, the fact that your efforts seem to have been fruitful, and how you promised a chance at cooperative profit should they behave. Benito looks thankful, yet concerned.
 
-"I see," she responds. "That was certainly a good idea, mixing in an offer like that alongside intimidation. Of course, those pirates' conception that we would destroy them is absurd, but from their vantage point, we must look capable of such a feat and we may as well use that misconception to our advantage. Of course, having to live up to that promise you made creätes a complication, but I'm sure we can work something out.
+"I see," she responds. "That was certainly a good idea, mixing in an offer like that alongside intimidation. Of course, those pirates' conception that we would destroy them is absurd, but from their vantage point, we must look capable of such a feat and we may as well use that misconception to our advantage. Of course, having to live up to that promise you made creates a complication, but I'm sure we can work something out.
 
 "Thank you for your service, {player}. It sounds like we may have been clear of any real danger already if it's true that they're looking for so-called aliens in the Nebula, but that little bit of intimidation and offer of cooperation should solidify the safety of our position. We may very soon start seeing reduced hostility from pirates as a result, which helps us further."]])
 

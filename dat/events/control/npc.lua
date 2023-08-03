@@ -7,7 +7,7 @@
 --]]
 
 --[[
--- Event for creäting random characters in the spaceport bar.
+-- Event for creating random characters in the spaceport bar.
 -- The random NPCs will tell the player things about the Naikari
 -- universe in general, about their faction, or about the game itself.
 --]]
@@ -274,7 +274,7 @@ messages = {
          _([["House Dvaered? House? The Empire is weak and useless, we don't need them anymore! I say we declare ourselves an independent faction today. What are they going to do, subjugate us? We all know how well that went last time! Ha!"]]),
          _([["I'm thinking about joining the military. Every time I see or hear news about those rotten FLF bastards, it makes my blood boil! They should all be pounded into space dust!"]]),
          _([["FLF terrorists? I'm not too worried about them. You'll see, High Command will have smoked them out of their den soon enough, and then the Frontier will be ours."]]),
-         _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to creäte that nebula so they would have a place to hide. Damn criminals…"]]),
+         _([["If you ask me, those FLF terrorists caused the Incident. They have a clear motive: they wanted to create that nebula so they would have a place to hide. Damn criminals…"]]),
       },
    },
    {
