@@ -153,6 +153,7 @@ static int load_load( nsave_t *save, const char *path )
 
             /* Player info. */
             xmlr_strd(node, "location", save->planet);
+            xmlr_strd(node, "location_system", save->system);
             xmlr_ulong(node, "credits", save->credits);
 
             /* Time. */
@@ -347,6 +348,7 @@ void load_free (void)
       free(ns->version);
       free(ns->data);
       free(ns->planet);
+      free(ns->system);
       free(ns->shipname);
       free(ns->shipmodel);
    }
@@ -445,7 +447,10 @@ static void load_menu_update( unsigned int wid, char *str )
    int pos;
    nsave_t *ns;
    char *save;
-   char buf[STRMAX_SHORT], credits[ECON_CRED_STRLEN], date[64];
+   char credits[ECON_CRED_STRLEN];
+   char date[STRMAX_SHORT];
+   char buf[STRMAX_SHORT];
+   size_t l;
 
    /* Make sure list is ok. */
    save = toolkit_getList( wid, "lstSaves" );
@@ -457,19 +462,41 @@ static void load_menu_update( unsigned int wid, char *str )
    ns  = &load_saves[pos];
 
    /* Display text. */
-   credits2str( credits, ns->credits, 2 );
+   credits2str(credits, ns->credits, 2);
    ntime_prettyBuf(date, sizeof(date), ns->date, 3);
-   snprintf( buf, sizeof(buf),
-         _("#nName:#0 %s\n\n"
-            "#nVersion:#0 %s\n\n"
-            "#nDate:#0 %s\n\n"
-            "#nPlanet:#0 %s\n\n"
-            "#nCredits:#0 %s\n\n"
-            "#nShip Name:#0 %s\n\n"
-            "#nShip Model:#0 %s"),
-         ns->name, ns->version, date, ns->planet,
-         credits, ns->shipname, ns->shipmodel );
-   window_modifyText( wid, "txtPilot", buf );
+
+   l = scnprintf(buf, sizeof(buf), p_("save_name", "#nName:#0 %s"), ns->name);
+   l += scnprintf(&buf[l], sizeof(buf) - l, "%s", "\n\n");
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         p_("save_version", "#nVersion:#0 %s"), ns->version);
+   l += scnprintf(&buf[l], sizeof(buf) - l, "%s", "\n\n");
+
+   l += scnprintf(&buf[l], sizeof(buf) - l, p_("save_date", "#nDate:#0 %s"), date);
+   l += scnprintf(&buf[l], sizeof(buf) - l, "%s", "\n\n");
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         p_("save_planet", "#nPlanet:#0 %s"), ns->planet);
+   l += scnprintf(&buf[l], sizeof(buf) - l, "%s", "\n\n");
+
+   if (ns->system != NULL) {
+      l += scnprintf(&buf[l], sizeof(buf) - l,
+            p_("save_system", "#nSystem:#0 %s"), ns->system);
+      l += scnprintf(&buf[l], sizeof(buf) - l, "%s", "\n\n");
+   }
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         p_("save_credits", "#nCredits:#0 %s"), credits);
+   l += scnprintf(&buf[l], sizeof(buf) - l, "%s", "\n\n");
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         p_("save_ship_name", "#nShip Name:#0 %s"), ns->shipname);
+   l += scnprintf(&buf[l], sizeof(buf) - l, "%s", "\n\n");
+
+   l += scnprintf(&buf[l], sizeof(buf) - l,
+         p_("save_ship_model", "#nShip Model:#0 %s"), ns->shipmodel);
+
+   window_modifyText(wid, "txtPilot", buf);
 }
 /**
  * @brief Loads a new game.

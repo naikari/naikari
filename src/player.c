@@ -3156,6 +3156,9 @@ int player_save( xmlTextWriterPtr writer )
 
    /* Current ship. */
    xmlw_elem(writer, "location", "%s", land_planet->name);
+   if (planet_hasSystem(land_planet->name))
+      xmlw_elem(writer, "location_system", "%s",
+            planet_getSystem(land_planet->name));
    player_saveShip( writer, player.p ); /* current ship */
 
    /* Ships. */

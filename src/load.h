@@ -29,6 +29,7 @@ typedef struct nsave_s {
 
    /* Player info. */
    char *planet; /**< Planet player is at. */
+   char *system; /**< System player is at. */
    ntime_t date; /**< Date. */
    uint64_t credits; /**< Credits player has. */
 
