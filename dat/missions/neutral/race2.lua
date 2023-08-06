@@ -8,6 +8,7 @@
    and planet.cur():class() ~= "2"
    and planet.cur():class() ~= "3"
    and system.cur():presence("Civilian") &gt; 0
+   and system.cur():presence("Pirate") &lt;= 0
    and (player.misnDone("Empire Recruitment")
       or (system.cur() ~= system.get("Hakoi")
          and system.cur() ~= system.get("Eneguoz")))
@@ -90,9 +91,12 @@ landmsg = _("%s just landed at %s and finished the race")
 function create ()
    curplanet = planet.cur()
    missys = system.cur()
+
+   -- Must claim the system since player pilot is controlled for a time.
    if not misn.claim(missys) then
       misn.finish(false)
    end
+
    misn.setNPC(NPCname, portrait.get(curplanet:faction()), NPCdesc)
    credits_easy = rnd.rnd(20000, 100000)
    credits_hard = rnd.rnd(200000, 300000)
@@ -143,8 +147,6 @@ function takeoff()
    misn.osdActive(1) 
    checkpoint = {}
    racers = {}
-   pilot.toggleSpawn(false)
-   pilot.clear()
    local rad = system.cur():radius() / 2
    local dist1 = rnd.rnd() * rad
    local angle1 = rnd.rnd() * 2 * math.pi
@@ -204,8 +206,10 @@ function takeoff()
       p:face(checkpoint[1]:pos(), true)
       p:broadcast(chatter[i])
    end
-   player.pilot():control()
-   player.pilot():face(checkpoint[1]:pos(), true)
+   local pp = player.pilot()
+   pp:setInvincible()
+   pp:control()
+   pp:face(checkpoint[1]:pos(), true)
    countdown = 5 -- seconds
    omsg = player.omsgAdd(timermsg:format(countdown), 0, 50)
    counting = true
@@ -220,7 +224,9 @@ function counter()
    if countdown == 0 then
       player.omsgChange(omsg, _("Go!"), 1000)
       hook.timer(1, "stopcount")
-      player.pilot():control(false)
+      local pp = player.pilot()
+      pp:setInvincible(false)
+      pp:control(false)
       counting = false
       hook.rm(counterhook)
       for i, j in ipairs(racers) do
@@ -338,7 +344,8 @@ end
 function abort()
    if system.cur() == missys then
       -- Restore control in case it's currently taken away.
-      player.pilot():control(false)
+      local pp = player.pilot()
+      pp:setInvincible(false)
+      pp:control(false)
    end
-   misn.finish(false)
 end
