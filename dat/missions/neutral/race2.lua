@@ -90,8 +90,7 @@ landmsg = _("%s just landed at %s and finished the race")
 
 
 function create ()
-   curplanet = planet.cur()
-   missys = system.cur()
+   curplanet, missys = planet.cur()
 
    -- Must claim the system since player pilot is controlled for a time.
    if not misn.claim(missys) then

@@ -98,7 +98,6 @@ function create()
    end
 
    missys = systems[rnd.rnd(1, #systems)]
-   if not misn.claim(missys) then misn.finish(false) end
 
    local planets = missys:planets()
    local numpoints = math.min(rnd.rnd(2, 5), #planets)
@@ -206,11 +205,13 @@ function timer ()
    local player_pos = player.pos()
    local enemies = pilot.get(paying_faction:enemies())
 
-   for i, p in ipairs(enemies) do
-      if p:exists() then
+   for i = 1, #enemies do
+      local p = enemies[i]
+      local mem = p:memory()
+      if p:exists() and mem.natural then
          local already_in = false
-         for a, b in ipairs(hostiles) do
-            if p == b then
+         for j = 1, #hostiles do
+            if p == hostiles[j] then
                already_in = true
             end
          end
@@ -220,7 +221,8 @@ function timer ()
                p:setVisplayer(true)
                p:setHilight(true)
                p:setHostile(true)
-               p:memory().norun = true
+               mem.norun = true
+               mem.natural = false
                hook.pilot(p, "death", "pilot_leave")
                hook.pilot(p, "jump", "pilot_leave")
                hook.pilot(p, "land", "pilot_leave")
