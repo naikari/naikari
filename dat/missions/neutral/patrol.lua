@@ -83,7 +83,7 @@ function get_enemies(sys)
 end
 
 
-function create ()
+function create()
    paying_faction = planet.cur():faction()
 
    local systems = getsysatdistance(system.cur(), 0, 2,
@@ -143,7 +143,7 @@ function create ()
 end
 
 
-function accept ()
+function accept()
    misn.accept()
 
    osd_msg[1] = fmt.f(osd_msg[1], {system=missys:name()})
@@ -159,19 +159,15 @@ function accept ()
 end
 
 
-function enter ()
+function enter()
    if system.cur() == missys then
       timer()
    end
 end
 
 
-function jumpout ()
-   if mark ~= nil then
-      system.mrkRm(mark)
-      mark = nil
-   end
-
+function jumpout()
+   mark = nil
    local last_sys = system.cur()
    if last_sys == missys then
       mh.showFailMsg(fmt.f(_("You have left the {system} system."),
@@ -181,12 +177,8 @@ function jumpout ()
 end
 
 
-function land ()
-   if mark ~= nil then
-      system.mrkRm(mark)
-      mark = nil
-   end
-
+function land()
+   mark = nil
    if system.cur() == missys then
       local txt = abandon_text[rnd.rnd(1, #abandon_text)]
       tk.msg("", txt)
@@ -195,11 +187,12 @@ function land ()
 end
 
 
-function pilot_leave (pilot)
+function pilot_leave(del_pilot)
    local new_hostiles = {}
-   for i, j in ipairs(hostiles) do
-      if j ~= nil and j ~= pilot and j:exists() then
-         new_hostiles[#new_hostiles + 1] = j
+   for i = 1, #hostiles do
+      local p = hostiles[i]
+      if p ~= del_pilot and p:exists() then
+         new_hostiles[#new_hostiles + 1] = p
       end
    end
 
@@ -257,12 +250,7 @@ function timer ()
       end
 
       if player_pos:dist(point_pos) < 500 then
-         local new_points = {}
-         for i = 2, #points do
-            new_points[#new_points + 1] = points[i]
-         end
-         points = new_points
-         points["__save"] = true
+         table.remove(points, 1)
 
          player.msg(secure_msg)
          osd_msg[2] = string.format(n_(
@@ -272,10 +260,8 @@ function timer ()
             #points)
          misn.osdCreate(osd_title, osd_msg)
          misn.osdActive(2)
-         if mark ~= nil then
-            system.mrkRm(mark)
-            mark = nil
-         end
+         system.mrkRm(mark)
+         mark = nil
       end
    else
       mh.showWinMsg(fmt.f(pay_msg,
@@ -287,4 +273,9 @@ function timer ()
    end
 
    timer_hook = hook.timer(0.05, "timer")
+end
+
+
+function abort()
+   system.mrkRm(mark)
 end
