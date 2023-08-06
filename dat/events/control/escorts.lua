@@ -35,9 +35,8 @@
 --]]
 
 local fmt = require "fmt"
+local pilotname = require "pilotname"
 local portrait = require "portrait"
-require "pilot/generic"
-require "pilot/pirate"
 
 
 npctext = {
@@ -84,7 +83,7 @@ function createPilotNPCs ()
    local num_pilots = rnd.rnd(0, 5)
    local fac = faction.get("Mercenary")
    local def_ai = "mercenary"
-   local name_func = pilot_name
+   local name_func = pilotname.generic
    local portrait_func = portrait.get
    local portrait_arg = nil
 
@@ -101,7 +100,7 @@ function createPilotNPCs ()
       }
       fac = faction.get("Pirate")
       def_ai = "pirate"
-      name_func = pirate_name
+      name_func = pilotname.pirate
       portrait_arg = "Pirate"
    elseif pf == faction.get("FLF") then
       ship_choices = {

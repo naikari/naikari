@@ -38,6 +38,7 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
+local pilotname = require "pilotname"
 local portrait = require "portrait"
 
 
@@ -131,6 +132,7 @@ function takeoff()
    dist3 = rnd.rnd() * system.cur():radius()
    angle3 = rnd.rnd() * 2 * math.pi
    location3 = vec2.new(dist3 * math.cos(angle3), dist3 * math.sin(angle3))
+
    local f = faction.dynAdd(nil, N_("Referee"), nil, {ai="stationary"})
    checkpoint[1] = pilot.add("Goddard", f, location1)
    checkpoint[2] = pilot.add("Goddard", f, location2)
@@ -143,11 +145,11 @@ function takeoff()
       p:setVisible()
       p:setNoClear()
    end
-   racers[1] = pilot.add("Llama", "Civilian", curplanet)
-   racers[2] = pilot.add("Llama", "Civilian", curplanet)
-   racers[3] = pilot.add("Llama", "Civilian", curplanet)
+
+   racers[1] = pilot.add("Llama", "Civilian", curplanet, pilotname.generic())
+   racers[2] = pilot.add("Llama", "Civilian", curplanet, pilotname.generic())
+   racers[3] = pilot.add("Llama", "Civilian", curplanet, pilotname.generic())
    for i, p in ipairs(racers) do
-      p:rename(string.format(n_("Racer %d", "Racer %d", i), i))
       p:setInvincible()
       p:setVisible()
       p:setNoClear()
@@ -155,10 +157,12 @@ function takeoff()
       p:face(checkpoint[1]:pos(), true)
       p:broadcast(chatter[i])
    end
+
    local pp = player.pilot()
    pp:setInvincible()
    pp:control()
    pp:face(checkpoint[1]:pos(), true)
+
    countdown = 5 -- seconds
    omsg = player.omsgAdd(timermsg:format(countdown), 0, 50)
    counting = true

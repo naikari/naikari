@@ -36,6 +36,7 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
+local pilotname = require "pilotname"
 local portrait = require "portrait"
 
 
@@ -147,7 +148,7 @@ function takeoff()
    misn.osdActive(1) 
    checkpoint = {}
    racers = {}
-   local rad = system.cur():radius() / 2
+   local rad = system.cur():radius()
    local dist1 = rnd.rnd() * rad
    local angle1 = rnd.rnd() * 2 * math.pi
    local location1 = vec2.new(dist1 * math.cos(angle1),
@@ -179,10 +180,10 @@ function takeoff()
       p:setNoClear()
    end
    for i, s in ipairs(ship_list) do
-      racers[i] = pilot.add(s, "Civilian", curplanet)
-   end
-   if choice == 2 then
-      for i, p in ipairs(racers) do
+      local p = pilot.add(s, "Civilian", curplanet, pilotname.generic())
+      racers[i] = p
+
+      if choice == 2 then
          p:outfitRm("all")
          p:outfitRm("cores")
          
@@ -196,9 +197,7 @@ function takeoff()
          end
          p:outfitAdd("Engine Reroute", 6)
       end
-   end
-   for i, p in ipairs(racers) do
-      p:rename(string.format(n_("Racer %d", "Racer %d", i), i))
+
       p:setInvincible()
       p:setVisible()
       p:setNoClear()
@@ -206,10 +205,12 @@ function takeoff()
       p:face(checkpoint[1]:pos(), true)
       p:broadcast(chatter[i])
    end
+
    local pp = player.pilot()
    pp:setInvincible()
    pp:control()
    pp:face(checkpoint[1]:pos(), true)
+
    countdown = 5 -- seconds
    omsg = player.omsgAdd(timermsg:format(countdown), 0, 50)
    counting = true

@@ -28,11 +28,10 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
+local pilotname = require "pilotname"
 local portrait = require "portrait"
 require "jumpdist"
 require "proximity"
-require "pilot/generic"
-require "pilot/pirate"
 
 
 clue_text = {
@@ -172,7 +171,7 @@ base_reward = {
 }
 
 target_faction = faction.get("Pirate")
-name_func = pirate_name
+name_func = pilotname.pirate
 
 virtual_allies = {}
 

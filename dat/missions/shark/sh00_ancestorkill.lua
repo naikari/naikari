@@ -38,7 +38,7 @@
 
 local fmt = require "fmt"
 local mh = require "misnhelper"
-require "pilot/pirate"
+local pilotname = require "pilotname"
 require "missions/shark/common"
 
 
@@ -90,7 +90,7 @@ end
 function accept()
    if tk.yesno("", ask_text) then
       misn.accept()
-      piratename = pirate_name()
+      piratename = pilotname.pirate()
       tk.msg("", fmt.f(yes_text, {planet=mispla:name(), system=missys:name()}))
 
       local osd_msg = {

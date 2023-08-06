@@ -16,6 +16,7 @@
 
 --]]
 
+local pilotname = require "pilotname"
 require "missions/neutral/seek_and_destroy"
 
 
@@ -108,7 +109,7 @@ base_reward = {
 }
 
 target_faction = faction.get("FLF")
-name_func = pilot_name
+name_func = pilotname.generic
 
 virtual_allies = {
    "Frontier",

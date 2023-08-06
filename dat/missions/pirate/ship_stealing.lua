@@ -42,10 +42,10 @@
 --]]
 
 local fmt = require "fmt"
+local pilotname = require "pilotname"
 local portrait = require "portrait"
 local mh = require "misnhelper"
 require "missions/pirate/common"
-require "pilot/generic"
 require "jumpdist"
 
 
@@ -150,7 +150,7 @@ function create()
       jumps_permitted = jumps_permitted - 1
    end
 
-   name = pilot_name()
+   name = pilotname.generic()
    bounty_setup()
 
    local portrait_f = "Thief"
