@@ -63,6 +63,9 @@ misndesc = _("Terra has asked you to fetch her son and her son's girlfriend, who
 function create ()
     curplanet, cursys = planet.cur()
 
+    -- Must claim the system to disable spawning of hostiles and thus
+    -- guarantee that the player gets to practice disabling a ship in a
+    -- completely safe environment.
     if not misn.claim(cursys) then
         misn.finish(false)
     end

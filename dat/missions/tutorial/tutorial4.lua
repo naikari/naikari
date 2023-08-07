@@ -81,6 +81,8 @@ function create()
    misplanet, missys = planet.get("Shiarta")
    credits = 15000
 
+   -- Must claim the system to disable spawning (and make sure no Empire
+   -- ships come to the player's rescue).
    if not misn.claim(missys) then
       misn.finish(false)
    end
