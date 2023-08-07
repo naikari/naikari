@@ -1704,7 +1704,7 @@ void takeoff( int delay )
    pilot_fillAmmo( player.p );
 
    /* Clear planet target. Allows for easier autonav out of the system. */
-   player_targetPlanetSet( -1 );
+   player_targetPlanetSet(-1, 1);
 
    /* Clear pilots other than player. */
    pilots_clean(0);

@@ -772,7 +772,7 @@ static int diff_patch( xmlNodePtr parent )
          pilots[i]->nav_planet = -1;
          pilots[i]->nav_hyperspace = -1;
       }
-      player_targetPlanetSet(-1);
+      player_targetPlanetSet(-1, 1);
       player_targetHyperspaceSet(-1);
    }
 
@@ -1133,7 +1133,7 @@ static void diff_cleanup( UniDiff_t *diff )
          pilots[i]->nav_planet = -1;
          pilots[i]->nav_hyperspace = -1;
       }
-      player_targetPlanetSet(-1);
+      player_targetPlanetSet(-1, 1);
       player_targetHyperspaceSet(-1);
    }
 }

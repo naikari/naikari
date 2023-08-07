@@ -1384,8 +1384,9 @@ void player_restoreControl( int reason, const char *str )
  * @brief Sets the player's target planet.
  *
  *    @param id Target planet or -1 if none should be selected.
+ *    @param silent Whether to suppress playing a targeting sound.
  */
-void player_targetPlanetSet( int id )
+void player_targetPlanetSet(int id, int silent)
 {
    int old;
 
@@ -1411,7 +1412,7 @@ void player_targetPlanetSet( int id )
          player_message(_("#oAutonav: auto-landing sequence aborted."));
       }
 
-      if (id >= 0)
+      if (!silent && (id >= 0))
          player_soundPlayGUI(snd_nav, 1);
    }
 
@@ -1481,8 +1482,10 @@ void player_targetAsteroidSet( int field, int id )
 
 /**
  * @brief Cycle through planet targets.
+ *
+ *    @param silent Whether to suppress playing a targeting sound.
  */
-void player_targetPlanet (void)
+void player_targetPlanet(int silent)
 {
    int id, i;
 
@@ -1506,29 +1509,30 @@ void player_targetPlanet (void)
    }
 
    /* Untarget if out of range. */
-   player_targetPlanetSet( id );
+   player_targetPlanetSet(id, silent);
 }
 
 
 /**
- * @brief Try to land or target closest planet if no land target.
+ * @brief Check what the result of a land attempt should be.
+ *
+ * This does not actually cause the player to land, but may select a new
+ * planet target if none was selected.
  *
  *    @param loud Whether or not to show messages irrelevant when auto-landing.
+ *    @param silent Whether or not to avoid playing targeting sounds.
  *    @return One of PLAYER_LAND_OK, PLAYER_LAND_AGAIN, or PLAYER_LAND_DENIED.
  */
-int player_land( int loud )
+int player_checkLand(int loud, int silent)
 {
    int i;
-   int tp, silent;
-   double td, d;
+   int temp_nav;
+   double temp_dist;
+   double d;
    Planet *planet;
 
-   silent = 0; /* Whether to suppress the land ack noise. */
-
-   if (landed) { /* player is already landed */
-      takeoff(1);
+   if (landed)
       return PLAYER_LAND_IMPOSSIBLE;
-   }
 
    /* Not under manual control. */
    if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL))
@@ -1569,8 +1573,8 @@ int player_land( int loud )
       return PLAYER_LAND_AGAIN;
 
    if (player.p->nav_planet == -1) { /* get nearest planet target */
-      td = -1; /* temporary distance */
-      tp = -1; /* temporary planet */
+      temp_dist = -1;
+      temp_nav = -1;
       for (i=0; i<array_size(cur_system->planets); i++) {
          planet = cur_system->planets[i];
          d = vect_dist(&player.p->solid->pos,&planet->pos);
@@ -1581,18 +1585,18 @@ int player_land( int loud )
          if (planet_isKnown(planet)
                && planet_hasService(planet, PLANET_SERVICE_LAND)
                && planet->land_override >= 0
-               && ((tp == -1) || (td == -1)
-                  || (!cur_system->planets[tp]->can_land
-                     && (cur_system->planets[tp]->land_override <= 0)
+               && ((temp_nav == -1) || (temp_dist == -1)
+                  || (!cur_system->planets[temp_nav]->can_land
+                     && (cur_system->planets[temp_nav]->land_override <= 0)
                      && (planet->can_land || (planet->land_override > 0)
-                        || (td > d)))
+                        || (temp_dist > d)))
                   || ((planet->can_land || (planet->land_override > 0))
-                     && (td > d)))) {
-            tp = i;
-            td = d;
+                     && (temp_dist > d)))) {
+            temp_nav = i;
+            temp_dist = d;
          }
       }
-      player_targetPlanetSet(tp);
+      player_targetPlanetSet(temp_nav, silent);
       player_hyperspacePreempt(0);
 
       /* no landable planet */
@@ -1642,7 +1646,7 @@ int player_land( int loud )
       if (!silent)
          player_soundPlayGUI(snd_nav, 1);
 
-      return player_land(loud);
+      return player_checkLand(loud, 1);
    }
 
    if (vect_dist2(&player.p->solid->pos,&planet->pos) > pow2(planet->radius)) {
@@ -1658,25 +1662,44 @@ int player_land( int loud )
       return PLAYER_LAND_AGAIN;
    }
 
+   return PLAYER_LAND_OK;
+}
+
+
+/**
+ * @brief Try to land or target closest planet if no land target.
+ *
+ *    @param loud Whether or not to show messages irrelevant when auto-landing.
+ *    @param silent Whether or not to avoid playing sounds.
+ *    @return One of PLAYER_LAND_OK, PLAYER_LAND_AGAIN, or PLAYER_LAND_DENIED.
+ */
+int player_land(int loud, int silent)
+{
+   int ret;
+
+   ret = player_checkLand(loud, silent);
+   if (ret != PLAYER_LAND_OK)
+      return ret;
+
    /* End autonav. */
    player_autonavEnd();
 
    /* Stop afterburning. */
-   pilot_afterburnOver( player.p );
+   pilot_afterburnOver(player.p);
    /* Stop accelerating. */
    player_accelOver();
 
    /* Stop all on outfits. */
-   if (pilot_outfitOffAll( player.p ) > 0)
-      pilot_calcStats( player.p );
+   if (pilot_outfitOffAll(player.p) > 0)
+      pilot_calcStats(player.p);
 
    /* Start landing. */
    player_soundPause();
    player.p->landing_delay = PILOT_LANDING_DELAY * player_dt_default();
    player.p->ptimer = player.p->landing_delay;
-   pilot_setFlag( player.p, PILOT_LANDING );
-   pilot_setThrust( player.p, 0. );
-   pilot_setTurn( player.p, 0. );
+   pilot_setFlag(player.p, PILOT_LANDING);
+   pilot_setThrust(player.p, 0.);
+   pilot_setTurn(player.p, 0.);
 
    return PLAYER_LAND_OK;
 }
@@ -1962,7 +1985,7 @@ void player_brokeHyperspace (void)
    /* Prevent targeted planet # from carrying over. */
    gui_setNav();
    gui_setTarget();
-   player_targetPlanetSet( -1 );
+   player_targetPlanetSet(-1, 1);
    player_targetAsteroidSet( -1, -1 );
 
    /* calculates the time it takes, call before space_init */
@@ -2195,7 +2218,7 @@ void player_targetClear (void)
       map_clear();
    }
    else if ((player.p->target == PLAYER_ID) && (player.p->nav_asteroid < 0)) {
-      player_targetPlanetSet(-1);
+      player_targetPlanetSet(-1, 0);
    }
    else {
       player_targetSet(PLAYER_ID);
@@ -2211,7 +2234,7 @@ void player_targetClear (void)
 void player_targetClearAll (void)
 {
    player_targetHyperspaceSet( -1 );
-   player_targetPlanetSet( -1 );
+   player_targetPlanetSet(-1, 0);
    player_targetAsteroidSet( -1, -1 );
    player_targetSet( PLAYER_ID );
 }

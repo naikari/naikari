@@ -275,8 +275,8 @@ double player_dt_default (void);
 void player_targetClear (void);
 void player_targetClearAll (void);
 /* Planets. */
-void player_targetPlanetSet( int id );
-void player_targetPlanet (void);
+void player_targetPlanetSet(int id, int silent);
+void player_targetPlanet(int silent);
 /* Asteroids. */
 void player_targetAsteroidSet( int id_field, int id );
 /* Hyperspace. */
@@ -294,7 +294,8 @@ void player_targetEscort( int prev );
  * keybind actions
  */
 void player_weapSetPress( int id, double value, int repeat );
-int player_land(int loud);
+int player_checkLand(int loud, int silent);
+int player_land(int loud, int silent);
 int player_jump(int loud);
 void player_screenshot (void);
 void player_accel( double acc );

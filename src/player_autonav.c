@@ -203,7 +203,7 @@ void player_autonavPnt( char *name )
    /* Resting on the assumption that initialization of auto-landing
     * starts with an attempt to land normally (as it should), this
     * variable is here to ensure that double-messages don't happen,
-    * which otherwise occurs with planet where landing clearance was
+    * which otherwise occurs with planets where landing clearance was
     * denied due to how it works. Essentially, if we're in range,
     * that means the previous player.land call already had a chance
     * to give the player the planet faction's explanation, and so we
@@ -481,7 +481,7 @@ static void player_autonav (void)
                   else {
                      if (!informed) {
                         /* Call player_land so the player knows what's up. */
-                        player_land(0);
+                        player_land(0, 0);
                         informed = 1;
                      }
 
@@ -500,7 +500,7 @@ static void player_autonav (void)
                 * other circumstances. Not returning here in that case
                 * leads to an amusing, but harmless bug where the ship
                 * moves while landing. */
-               if (player_land(0) == PLAYER_LAND_OK)
+               if (player_land(0, 0) == PLAYER_LAND_OK)
                   return;
             }
          }
@@ -526,7 +526,7 @@ static void player_autonav (void)
 
          /* Try to land. */
          if (ret) {
-            ret = player_land(0);
+            ret = player_land(0, 0);
             if (ret == PLAYER_LAND_OK)
                return;
             else if (ret == PLAYER_LAND_AGAIN)

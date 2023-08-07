@@ -403,7 +403,7 @@ static void comm_close( unsigned int wid, char *unused )
        * bribed now: if it is, call player_land to show the player that
        * landing is now authorized; and if it isn't, abort autonav. */
       if (comm_planet->bribed)
-         player_land(0);
+         player_land(0, 0);
       else
          player_autonavAbort(NULL, 0);
    }

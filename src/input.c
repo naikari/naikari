@@ -802,6 +802,8 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    unsigned int t;
    HookParam hparam[3];
    Planet *pnt;
+   int nav;
+   int silent;
    int ret;
 
    /* Repetition stuff. */
@@ -1053,16 +1055,46 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    /* target planet (cycles like target) */
    if (KEY("target_planet") && INGAME() && NOHYP() && NOLAND() && NODEAD()
          && (value == KEY_PRESS))
-      player_targetPlanet();
+      player_targetPlanet(0);
 
    /* land */
    if (KEY("land") && INGAME() && NOHYP() && NOLAND() && NODEAD()
          && (value == KEY_PRESS)) {
-      /* First try player_land() in case no planet is selected. */
-      ret = player_land(0);
+      /* We have a somewhat delecate balance here to ensure that the
+       * targeting sound is only played once, and only if needed. This
+       * variable, silent, keeps track of whether or not any further
+       * sounds should be prevented. This is largely because of the
+       * rather complicated conditions for being able to land which the
+       * auto-land code has to navigate. */
+      silent = 0;
+
+      /* If already attempting to auto-land, target next landable
+       * planet. */
+      if (player_isFlag(PLAYER_AUTONAV)
+            && ((player.autonav == AUTONAV_PNT_APPROACH)
+               || (player.autonav == AUTONAV_PNT_BRAKE))
+            && !player_isFlag(PLAYER_BASICAPPROACH)) {
+         /* Attempt to cycle thru targets until either we come back to
+          * the original targeted planet or we find another planet that
+          * can possibly be landed on. */
+         nav = player.p->nav_planet;
+         do {
+            player_targetPlanet(1);
+            ret = player_checkLand(0, 1);
+         } while ((player.p->nav_planet != nav) && (player.p->nav_planet != -1)
+               && (ret == PLAYER_LAND_IMPOSSIBLE));
+
+         if ((player.p->nav_planet != nav) && (player.p->nav_planet != -1)) {
+            player_soundPlayGUI(snd_nav, 1);
+            silent = 1;
+         }
+      }
+
+      /* Try player_land() in case no planet is selected. */
+      ret = player_land(0, silent);
       if ((ret == PLAYER_LAND_IMPOSSIBLE) || (player.p->nav_planet == -1)) {
          /* Cannot land no matter what; report the result. */
-         player_land(1);
+         player_land(1, silent);
       }
       else if (ret != PLAYER_LAND_OK) {
          pnt = cur_system->planets[player.p->nav_planet];
@@ -1070,7 +1102,7 @@ static void input_key( int keynum, double value, double kabs, int repeat )
          if (ret == PLAYER_LAND_AGAIN) {
             /* Second player_land() attempt now using the planet
              * selected by the previous player_land() call. */
-            ret = player_land(0);
+            ret = player_land(0, silent);
          }
 
          if (((ret == PLAYER_LAND_AGAIN) || (ret == PLAYER_LAND_DENIED))
@@ -1096,7 +1128,14 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    /* jump */
    if (KEY("jump") && INGAME() && !repeat
          && (value == KEY_PRESS)) {
-      /* Frist try player_jump() in case no jump is selected. */
+      /* If already attempting to auto-hyperspace, target next jump. */
+      if (player_isFlag(PLAYER_AUTONAV)
+            && ((player.autonav == AUTONAV_JUMP_APPROACH)
+               || (player.autonav == AUTONAV_JUMP_BRAKE))) {
+         player_targetHyperspace();
+      }
+
+      /* Try player_jump() in case no jump is selected. */
       if (!player_jump(0)) {
          if (player.p->nav_hyperspace != -1) {
             player_hyperspacePreempt(1);
@@ -1623,14 +1662,14 @@ int input_clickedPlanet( int planet, int autonav )
          player_message(_("#oAutonav: auto-landing sequence aborted."));
 
       player_setFlag(PLAYER_BASICAPPROACH);
-      player_targetPlanetSet(planet);
+      player_targetPlanetSet(planet, 0);
       player_autonavPnt(pnt->name);
       return 1;
    }
 
    if (planet == player.p->nav_planet && input_isDoubleClick((void*)pnt)) {
       player_hyperspacePreempt(0);
-      ret = player_land(0);
+      ret = player_land(0, 0);
       if (ret == PLAYER_LAND_IMPOSSIBLE) {
          player_setFlag(PLAYER_BASICAPPROACH);
          player_autonavPnt(pnt->name);
@@ -1649,7 +1688,7 @@ int input_clickedPlanet( int planet, int autonav )
       }
    }
    else
-      player_targetPlanetSet( planet );
+      player_targetPlanetSet(planet, 0);
 
    input_clicked( (void*)pnt );
    return 1;
