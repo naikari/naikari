@@ -65,8 +65,7 @@ misn_title = _("Point of Sale")
 misn_desc = _("You have purchased a new ship from Melendez and are in the process of finalizing the sale.")
 
 
-function create ()
-   -- Note: This mission makes no system claims.
+function create()
    start_planet, missys = planet.get("Em 1")
    start_planet_r = 200
 

@@ -37,8 +37,6 @@ osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} rema
 
 -- Create the mission
 function create()
-   -- Note: this mission does not make any system claims.
-
    origin_p, origin_s = planet.cur()
    local routesys = origin_s
    local routepos = origin_p:pos()

@@ -55,7 +55,6 @@ log_text = _([[You rescued the crew of a Dvaered ship that was disabled by an FL
 
 
 function create()
-    -- Note: this mission makes no system claims.
     misn.accept()
 
     tk.msg("", start_text)

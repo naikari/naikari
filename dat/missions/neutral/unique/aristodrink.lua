@@ -85,10 +85,7 @@ Considering the amount of effort that you went thru, you feel almost cheated. Yo
 log_text = _([[You delivered a special drink called a Swamp Bombing to an aristocrat.]])
 
 
-function create ()
-   -- Note: this mission does not make any system claims.
-
-   -- creates the NPC at the bar to create the mission
+function create()
    misn.setNPC( _("Drinking Aristocrat"), "neutral/unique/aristocrat.png", bar_desc )
 
    startplanet, startsys = planet.cur()

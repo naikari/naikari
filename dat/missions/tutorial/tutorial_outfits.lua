@@ -81,8 +81,6 @@ cargo_always_available = true
 
 
 function create()
-   -- Note: This mission makes no system claims.
-
    -- Calculate the route, distance, jumps, risk of piracy, and cargo to take
    destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
    if destplanet == nil then

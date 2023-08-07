@@ -59,21 +59,14 @@ misn_desc = {}
 misn_desc[1] = _("A shipwrecked space family has enlisted your aid.")
 osd_text = _("Land on {planet} ({system} system) to drop off the space family")
 
--- Aborted mission
-msg_abort_space = _([[Sick of their bullshit, you unceremoniously shove the space family out of the airlock and into the coldness of space.]])
-msg_abort_landed = _([[Sick of their bullshit, you force the space family out of your ship and lock them out, leaving them to their fate on this planet.]])
-
-log_text = _([[You rescued a bad-tempered man and his family who were stranded aboard their ship. After a lot of annoying complaints, the man and his family finally left your ship, the man's wife leaving a generous payment for the trouble.]])
+log_text = _([[You rescued a family that was stranded aboard their ship. After a series of obnoxious disagreements between the two parents, they finally settled on a place suggested by their children and left a generous payment as an apology for their behavior.]])
 
 
-function create ()
-   -- Note: this mission does not make any system claims. 
-   misn.accept() -- You boarded their ship, now you're stuck with them.
+function create()
+   misn.accept()
    misn.setTitle(misn_title)
    misn.setReward(misn_reward)
    misn.setDesc(misn_desc[1])
-
-   inspace = true -- For lack of a test, we'll just have to keep track ourselves.
 
    -- Intro text, player meets family
    tk.msg("", board_text)
@@ -101,7 +94,6 @@ function create ()
    player.unboard()
 
    hook.land("land")
-   hook.takeoff("takeoff")
 end
 
 function islandable(p)
@@ -144,7 +136,6 @@ function land()
          misn.markerMove(misn_marker, destsys, destplanet)
       end
    end
-   inspace = false
 end
 
 -- Only gets landable systems
@@ -159,17 +150,4 @@ function getlandablesystems(systems)
       end
    end
    return t
-end
-
-function takeoff()
-   inspace = true
-end
-
-function abort ()
-   if inspace then
-      tk.msg("", msg_abort_space)
-   else
-      tk.msg("", msg_abort_landed)
-   end
-   misn.cargoJet(carg_id)
 end

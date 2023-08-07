@@ -54,7 +54,6 @@ end
 
 
 function create()
-   -- Note: this mission makes no system claims.
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
    misn.setReward(_("None"))

@@ -52,7 +52,6 @@ log_text = _([[A Siriusite named Harja hired you to kill a Sirius military offic
 
 function create()
     destplanet, destsys = planet.get("Racheka")
-    -- Note: this mission does not make system claims.
 
     credits = 400000
 

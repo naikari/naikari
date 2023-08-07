@@ -33,8 +33,6 @@ osd_timeup = _("Land on {planet} ({system} system) before {deadline}\n(deadline 
 
 -- Create the mission
 function create()
-   -- Note: this mission does not make any system claims. 
-   
    -- Calculate the route, distance, jumps, risk of piracy, and cargo to take
    destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
    if destplanet == nil then
@@ -45,7 +43,7 @@ function create()
    if not var.peek("tut_complete") then
       tier = rnd.rnd(0, 1)
    end
-   
+
    -- Calculate time limit. Depends on tier and distance.
    -- The second time limit is for the reduced reward.
    stuperpx = 4.6 - 0.57*tier
@@ -53,16 +51,16 @@ function create()
    stupertakeoff = 103000 - 750*tier
    allowance = traveldist*stuperpx + numjumps*stuperjump + stupertakeoff
          + 2400*numjumps
-   
+
    -- Allow extra time for refuelling stops.
    local jumpsperstop = 2 + math.min(tier-1, 2)
    if numjumps > jumpsperstop then
       allowance = allowance + math.floor((numjumps-1) / jumpsperstop) * stuperjump
    end
-   
+
    timelimit = time.get() + time.create(0, 0, allowance)
    timelimit2 = time.get() + time.create(0, 0, allowance * 1.2)
-   
+
    local piracyrisk, riskreward
    if avgrisk == 0 then
       piracyrisk = _("#nPiracy Risk:#0 None")
@@ -77,7 +75,7 @@ function create()
       piracyrisk = _("#nPiracy Risk:#0 High")
       riskreward = 450
    end
-   
+
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
    -- Note: Pay is independent from amount by design! Not all deals are equally attractive!
    amount = rnd.rnd(10 + 5 * tier, 20 + 15 * tier)

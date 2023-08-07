@@ -61,8 +61,7 @@ npc_desc = _("She seems to just be idly reading the news. It's been a while; may
 log_text = _([[You helped transport Chelsea to {planet}, where she was able to buy her first ship, a Llama which is damaged and rusty, but working. As she went on to start her career as a freelance pilot, she asked you to catch up with her again sometime. She expects that she'll be sticking to Soromid space for the time being.]])
 
 
-function create ()
-   -- Note: This mission does not make system claims
+function create()
    misplanet, missys = planet.getLandable("Crow")
    if misplanet == nil then
       misn.finish(false)

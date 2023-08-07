@@ -31,10 +31,8 @@ require "cargo_common"
 osd_title = _("Cargo")
 osd_msg = _("Land on {planet} ({system} system)")
 
--- Create the mission
+
 function create()
-   -- Note: this mission does not make any system claims. 
-   
    -- Calculate the route, distance, jumps, risk of piracy, and cargo to take
    destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
    if destplanet == nil then
@@ -45,7 +43,7 @@ function create()
    if not var.peek("tut_complete") then
       tier = rnd.rnd(0, 1)
    end
-   
+
    local piracyrisk, riskreward
    if avgrisk == 0 then
       piracyrisk = _("#nPiracy Risk:#0 None")

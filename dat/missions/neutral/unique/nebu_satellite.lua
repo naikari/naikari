@@ -48,15 +48,13 @@ pay_text = _([[The scientists thank you for your help and pay you before going b
 log_text = _([[You helped a group of scientists launch a research probe into the Nebula.]])
 
 
-function create ()
-   -- Note: this mission does not make any system claims.
-   -- Set up mission variables
-   misn_stage = 0
+function create()
    homeworld, homeworld_sys = planet.getLandable(misn.factions())
    if homeworld == nil then
       misn.finish(false)
    end
 
+   misn_stage = 0
    satellite_sys = system.get("Arandon") -- Not too unstable
    credits = 400000
    probe_mass = 3

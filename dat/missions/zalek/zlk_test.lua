@@ -69,8 +69,6 @@ refund_msg = _("Engine has been returned and your deposit refunded.")
 
 
 function create()
-   -- Note: this mission does not make any system claims.
-
    destpla, destsys, njumps, dist, cargo, risk, tier = cargo_calculateRoute()
    if destpla == nil then
       misn.finish(false)

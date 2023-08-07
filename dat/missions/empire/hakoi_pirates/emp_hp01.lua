@@ -82,7 +82,6 @@ log_text = _([[You assisted the Empire in an undercover operation to try to find
 
 
 function create()
-   -- Note: This mission makes no system claims.
    misplanet, missys = planet.getLandable("Em 1")
    startpla, startsys = planet.cur()
    if misplanet == nil then

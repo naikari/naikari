@@ -93,7 +93,6 @@ log_text = _([[Commander Soldner sent you to Imperial Dvaered Liaison Officer Le
 
 
 function create()
-   -- Note: This mission does not make system claims.
    startpla, startsys = planet.cur()
    mispla, missys = planet.getLandable("Praxis")
    if mispla == nil then

@@ -68,7 +68,6 @@ log_text = _([[You helped Nexus Shipyards gather information in an attempt to sa
 
 
 function create()
-   -- Note: this mission makes no system claims.
    mispla, missys = planet.getLandable(faction.get("Sirius"))
 
    if not mispla:services()["bar"] then

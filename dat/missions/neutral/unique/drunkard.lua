@@ -60,8 +60,7 @@ You check your account balance as he closes the comm channel to find yourself {c
 log_text = _([[You helped some drunkard deliver goods for some countess. You thought you might get killed along the way, but you survived and got a generous payment.]])
 
 
-function create ()
-   -- Note: this mission does not make any system claims.
+function create()
    pickupWorld, pickupSys = planet.getLandable("Vertigo")
    delivWorld, delivSys = planet.getLandable("Darkshed")
    if pickupWorld == nil or delivWorld == nil then -- Must be landable

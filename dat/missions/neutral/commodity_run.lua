@@ -75,10 +75,11 @@ end
 
 
 function create()
-   -- Note: this mission does not make any system claims.
- 
    misplanet, missys = planet.cur()
 
+   -- String claim prevents having multiple commodity runs on one
+   -- planet, since that would be a kind of strange situation that would
+   -- be a bit confusing to navigate.
    if not misn.claim("commodity_run_" .. misplanet:name()) then
       misn.finish(false)
    end

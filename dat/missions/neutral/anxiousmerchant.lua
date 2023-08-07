@@ -66,8 +66,6 @@ You wait to one side as the cargo is hauled off your ship at breakneck speed and
 
 
 function create()
-   -- Note: this mission does not make any system claims.
-
    -- Calculate the route, distance, jumps and cargo to take
    dest_planet, dest_sys, num_jumps, travel_dist, cargo, avgrisk, tier = cargo_calculateRoute()
    if dest_planet == nil or dest_sys == system.cur() then

@@ -80,13 +80,12 @@ npc_desc = _("A stranger is sitting quietly at a table alone and staring off int
 log_text = _([[You have met a woman, Chelsea, who recently came out as transgender. You helped transport her to complete some errands and then returned her to her homeworld. Chelsea has suggested meeting again in the future on {planet} ({system} system).]])
 
 
-function create ()
-   -- Note: This mission does not make system claims
+function create()
    homeplanet, homesys = planet.get("Durea")
    dests = {"Soromid Wards Alpha", "Tummalin", "Agino", "Neurri"}
-   dests["__save"] = true
+   dests.__save = true
    markers = {}
-   markers["__save"] = true
+   markers.__save = true
 
    -- Make sure all planets are landable and that the player isn't on
    -- any of them.

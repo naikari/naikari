@@ -44,8 +44,7 @@ You aren't too sure of what to make of your encounter with the Empire. Only time
 log_text = _([[You were recruited into the Empire's shipping division and can now do missions labeled ES, which stands for Empire Shipping. You aren't too sure of what to make of your encounter with the Empire. Only time will tell.…]])
 
 
-function create ()
-   -- Note: this mission does not make any system claims.
+function create()
    local landed, landed_sys = planet.cur()
 
    -- target destination
