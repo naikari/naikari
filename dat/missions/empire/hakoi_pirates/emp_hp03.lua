@@ -90,9 +90,6 @@ log_text = _([[You infiltrated a pirate ship in the {destsys} system so you coul
 function create()
    missys = system.get("Salvador")
    startpla, startsys = planet.cur()
-   if not misn.claim(missys) then
-      misn.finish(false)
-   end
 
    credits = 400000
    job_done = false

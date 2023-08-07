@@ -42,12 +42,15 @@ cargo_always_available = true
 
 
 function create()
-   -- Note: this mission does not make any system claims.
-
    -- Calculate the route, distance, jumps, risk of piracy, and cargo to take
    startpla, startsys = planet.cur()
    destplanet, destsys, numjumps, traveldist, cargo, avgrisk, tier = cargo_calculateRoute()
-   if destplanet == nil or not misn.claim("cruise_" .. destsys:nameRaw()) then
+
+   -- String claim prevents giving the player multiple identical
+   -- missions at once (as doing multiple identical cruises at once
+   -- only increases the reward without affecting the difficulty).
+   if destplanet == nil
+         or not misn.claim("cruise_" .. destplanet:nameRaw()) then
       misn.finish(false)
    end
 

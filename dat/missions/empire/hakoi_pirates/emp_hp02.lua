@@ -75,6 +75,8 @@ log_text = _([[You did some observation in the {destsys} system for Commander So
 function create()
    missys = system.get("Hakoi")
    startpla, startsys = planet.cur()
+
+   -- Must claim the system to ensure spawning isn't disabled.
    if not misn.claim(missys) then
       misn.finish(false)
    end
