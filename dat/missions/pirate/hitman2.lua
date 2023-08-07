@@ -46,7 +46,6 @@ log_text = _([[You assassinated some of the shifty merchant's competition and we
 
 
 function create()
-   -- Note: this mission does not make any system claims. 
    targetsystem = system.get("Delta Pavonis")
    misn.setNPC(_("Shifty Trader"), "neutral/unique/shifty_merchant.png", bar_desc)
 end
@@ -82,9 +81,10 @@ end
 
 
 function sys_enter()
-   cur_sys = system.cur()
-   if cur_sys == targetsystem then
-      hook.pilot(nil, "death", "trader_death")
+   hook.rm(death_hook)
+   death_hook = nil
+   if system.cur() == targetsystem then
+      death_hook = hook.death("trader_death")
    end
 end
 

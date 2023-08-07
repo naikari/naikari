@@ -46,7 +46,6 @@ log_text = _([[You chased away a shifty merchant's competition and were paid a s
 
 
 function create()
-   -- Note: this mission does not make any system claims. 
    targetsystem = system.get("Delta Pavonis")
    misn.setNPC(_("Shifty Trader"), "neutral/unique/shifty_merchant.png", bar_desc)
 end
@@ -80,21 +79,27 @@ end
 
 
 function sys_enter()
-   cur_sys = system.cur()
-   if cur_sys == targetsystem then
-      hook.pilot(nil, "attacked", "trader_attacked")
+   hook.rm(attacked_hook)
+   attacked_hook = nil
+   if system.cur() == targetsystem then
+      attacked_hook = hook.attacked("trader_attacked")
    end
 end
 
 
-function trader_attacked(hook_pilot, hook_attacker, hook_arg)
+function trader_attacked(hook_pilot, hook_attacker)
    if misn_done then
+      return
+   end
+   local mem = hook_pilot:memory()
+   if not mem.natural then
       return
    end
 
    if hook_pilot:faction() == faction.get("Trader") and hook_attacker ~= nil
          and (hook_attacker == player.pilot()
             or hook_attacker:leader(true) == player.pilot()) then
+      mem.natural = false
       hook_pilot:hookClear()
       hook.pilot(hook_pilot, "jump", "trader_jumped")
       hook.pilot(hook_pilot, "land", "trader_jumped")
@@ -111,7 +116,6 @@ function trader_jumped(hook_pilot, hook_arg)
    if fledTraders >= tradersNeeded then
       attack_finished()
    else
-      misn.osdDestroy()
       osd_desc[1] = fmt.f(osd_desc_1, {system=targetsystem:name(),
                done=fledTraders, needed=tradersNeeded})
       misn.osdCreate(misn_title, osd_desc)
