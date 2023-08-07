@@ -44,6 +44,14 @@
 * Relaxed some of our eccentric usage of diaereses. It's no longer used
   on "ao", "ei", "eu", or "ea". This also means that the subtitle is now
   "Eye of Chaos" instead of "Eye of Chaös".
+* New saves now include information about what system they're landed on
+  in the load screen.
+* Race missions no longer spawn in systems with pirate presence and no
+  longer clear the system of pilots.
+* Fixed some potential for conflicts with the Hitman missions.
+* Removed use of system claims for some missions.
+* Land and Jump keys will now cycle thru targets if already in the
+  process of auto-landing / auto-hyperspacing.
 
 ## 0.9.0
 
