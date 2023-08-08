@@ -26,6 +26,7 @@
 #include "nlua_ship.h"
 #include "nlua_system.h"
 #include "nlua_time.h"
+#include "nlua_vec2.h"
 #include "nluadef.h"
 #include "nstring.h"
 #include "utf8.h"
@@ -40,6 +41,10 @@ static int nxml_saveData(xmlTextWriterPtr writer, const char *type,
       const char *name, size_t name_len, const char *value, int keynum);
 static int nxml_saveJump(xmlTextWriterPtr writer, const char *name,
       size_t name_len, const char *start, const char *dest, int keynum);
+static int nxml_saveCommodity(xmlTextWriterPtr writer, const char *name,
+      size_t name_len, const Commodity* c, int keynum);
+static int nxml_saveVec2(xmlTextWriterPtr writer, const char *name,
+      size_t name_len, Vector2d vec2, int keynum);
 static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int intable );
 static int nxml_unpersistDataNode( lua_State *L, xmlNodePtr parent );
 static int nxml_canWriteString(const char *buf, size_t len);
@@ -162,6 +167,35 @@ static int nxml_saveCommodity(xmlTextWriterPtr writer, const char *name,
 
 
 /**
+ * @brief Vector2d-specific nxml_saveData derivative.
+ *
+ *    @param writer XML Writer to use to persist stuff.
+ *    @param name Name of the data to save.
+ *    @param name_len Data size of name (which is an arbitrary Lua string).
+ *    @param vec2 Vector to save.
+ *    @param keynum Whether the key is a number (not a string) and
+ *       should be read back as such.
+ *    @return 0 on success.
+ */
+static int nxml_saveVec2(xmlTextWriterPtr writer, const char *name,
+      size_t name_len, Vector2d vec2, int keynum)
+{
+   xmlw_startElem(writer, "data");
+
+   xmlw_attr(writer, "type", VECTOR_METATABLE);
+   nxml_saveNameAttribute(writer, name, name_len);
+   if (keynum)
+      xmlw_attr(writer, "keynum", "1");
+   xmlw_attr(writer, "x", "%f", VX(vec2));
+   xmlw_attr(writer, "y", "%f", VY(vec2));
+
+   xmlw_endElem(writer); /* "data" */
+
+   return 0;
+}
+
+
+/**
  * @brief Reverse of nxml_saveCommodity.
  */
 static Commodity* nxml_loadCommodity( xmlNodePtr node )
@@ -204,6 +238,7 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
    const Outfit *o;
    Planet *pnt;
    StarSystem *ss, *dest;
+   Vector2d *vec2;
    char buf[ PATH_MAX ];
    const char *name, *str, *data;
    int keynum;
@@ -355,7 +390,10 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
                break;
             nxml_saveData( writer, OUTFIT_METATABLE, name, name_len, str, keynum );
          }
-         /* TODO: Add missing types, especially Vec2. */
+         else if (lua_isvector(L, -1)) {
+            vec2 = lua_tovector(L, -1);
+            nxml_saveVec2(writer, name, name_len, *vec2, keynum);
+         }
 
          break;
 
@@ -412,6 +450,8 @@ static int nxml_unpersistDataNode( lua_State *L, xmlNodePtr parent )
    LuaJump lj;
    Planet *pnt;
    StarSystem *ss, *dest;
+   float x, y;
+   Vector2d vec2;
    xmlNodePtr node;
    char *name, *type, *buf, *num, *data;
    size_t len;
@@ -499,10 +539,16 @@ static int nxml_unpersistDataNode( lua_State *L, xmlNodePtr parent )
             lua_pushcommodity(L, nxml_loadCommodity( node ) );
          else if (strcmp(type,OUTFIT_METATABLE)==0)
             lua_pushoutfit(L,outfit_get(xml_get(node)));
+         else if (strcmp(type, VECTOR_METATABLE)) {
+            xmlr_attr_float(node, "x", x);
+            xmlr_attr_float(node, "y", y);
+            vect_cset(&vec2, x, y);
+            lua_pushvector(L, vec2);
+         }
          else {
             /* There are a few types knowingly left out above.
              * Meaningless (?): PILOT_METATABLE.
-             * Seems doable, use case unclear: ARTICLE_METATABLE, VEC_METATABLE.
+             * Seems doable, use case unclear: ARTICLE_METATABLE.
              * Seems doable, but probably GUI-only: COL_METATABLE, TEX_METATABLE.
              * */
             WARN(_("Unknown Lua data type!"));
