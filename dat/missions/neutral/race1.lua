@@ -15,7 +15,7 @@
    and (var.peek("tut_complete") == true
       or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
-  <chance>100</chance>
+  <chance>10</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>

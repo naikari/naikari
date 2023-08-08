@@ -52,6 +52,10 @@
 * Removed use of system claims for some missions.
 * Land and Jump keys will now cycle thru targets if already in the
   process of auto-landing / auto-hyperspacing.
+* Completely overhauled the race missions: instead of boarding randomly
+  placed stationary pilots, you now pass thru a random set of planets
+  and/or jump points for a certain number of laps.
+* Hilighted pilots no longer come with a text label.
 
 ## 0.9.0
 
