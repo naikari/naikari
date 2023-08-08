@@ -34,9 +34,15 @@
 /*
  * Prototypes.
  */
+static int nxml_saveNameAttribute(xmlTextWriterPtr writer, const char *name,
+      size_t name_len);
+static int nxml_saveData(xmlTextWriterPtr writer, const char *type,
+      const char *name, size_t name_len, const char *value, int keynum);
+static int nxml_saveJump(xmlTextWriterPtr writer, const char *name,
+      size_t name_len, const char *start, const char *dest, int keynum);
 static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int intable );
 static int nxml_unpersistDataNode( lua_State *L, xmlNodePtr parent );
-static int   nxml_canWriteString( const char *buf, size_t len );
+static int nxml_canWriteString(const char *buf, size_t len);
 
 /**
  * @brief Persists the key of a key/value pair.
@@ -46,7 +52,8 @@ static int   nxml_canWriteString( const char *buf, size_t len );
  *    @param name_len Data size of name (which is an arbitrary Lua string).
  *    @return 0 on success.
  */
-static int nxml_saveNameAttribute( xmlTextWriterPtr writer, const char *name, size_t name_len )
+static int nxml_saveNameAttribute(xmlTextWriterPtr writer, const char *name,
+      size_t name_len)
 {
    if ( nxml_canWriteString( name, name_len ) )
       xmlw_attr( writer, "name", "%s", name );
@@ -66,19 +73,50 @@ static int nxml_saveNameAttribute( xmlTextWriterPtr writer, const char *name, si
  *    @param name Name of the data to save.
  *    @param name_len Data size of name (which is an arbitrary Lua string).
  *    @param value Value of the data to save.
- *    @param keynum Whether the key is a number (not a string) and should be read back as such.
+ *    @param keynum Whether the key is a number (not a string) and
+ *       should be read back as such.
  *    @return 0 on success.
  */
-static int nxml_saveData( xmlTextWriterPtr writer, const char *type, const char *name, size_t name_len,
-                          const char *value, int keynum )
+static int nxml_saveData(xmlTextWriterPtr writer, const char *type,
+      const char *name, size_t name_len, const char *value, int keynum)
 {
-   xmlw_startElem(writer,"data");
+   xmlw_startElem(writer, "data");
 
-   xmlw_attr(writer,"type","%s",type);
-   nxml_saveNameAttribute( writer, name, name_len );
+   xmlw_attr(writer, "type", "%s", type);
+   nxml_saveNameAttribute(writer, name, name_len);
    if (keynum)
-      xmlw_attr(writer,"keynum","1");
-   xmlw_str(writer,"%s",value);
+      xmlw_attr(writer, "keynum", "1");
+   xmlw_str(writer, "%s", value);
+
+   xmlw_endElem(writer); /* "data" */
+
+   return 0;
+}
+
+
+/**
+ * @brief Jump-specific nxml_saveData derivative.
+ *
+ *    @param writer XML Writer to use to persist stuff.
+ *    @param name Name of the data to save.
+ *    @param name_len Data size of name (which is an arbitrary Lua string).
+ *    @param start System in which the jump is.
+ *    @param dest Jump's destination system.
+ *    @param keynum Whether the key is a number (not a string) and
+ *       should be read back as such.
+ *    @return 0 on success.
+ */
+static int nxml_saveJump(xmlTextWriterPtr writer, const char *name,
+      size_t name_len, const char *start, const char *dest, int keynum)
+{
+   xmlw_startElem(writer, "data");
+
+   xmlw_attr(writer, "type", JUMP_METATABLE);
+   nxml_saveNameAttribute(writer, name, name_len);
+   if (keynum)
+      xmlw_attr(writer, "keynum", "1");
+   xmlw_attr(writer, "dest", "%s", dest);
+   xmlw_str(writer, "%s", start);
 
    xmlw_endElem(writer); /* "data" */
 
@@ -93,9 +131,12 @@ static int nxml_saveData( xmlTextWriterPtr writer, const char *type, const char 
  *    @param name Name of the data to save.
  *    @param name_len Data size of name (which is an arbitrary Lua string).
  *    @param c Commodity to save.
+ *    @param keynum Whether the key is a number (not a string) and
+ *       should be read back as such.
  *    @return 0 on success.
  */
-static int nxml_saveCommodity( xmlTextWriterPtr writer, const char *name, size_t name_len, const Commodity* c )
+static int nxml_saveCommodity(xmlTextWriterPtr writer, const char *name,
+      size_t name_len, const Commodity* c, int keynum)
 {
    int status = 0;
    if (c->name == NULL)
@@ -105,6 +146,8 @@ static int nxml_saveCommodity( xmlTextWriterPtr writer, const char *name, size_t
 
    xmlw_attr( writer, "type", COMMODITY_METATABLE );
    nxml_saveNameAttribute( writer, name, name_len );
+   if (keynum)
+      xmlw_attr(writer, "keynum", "1");
    if (c->istemp) {
       xmlw_attr( writer, "temp", "%d", c->istemp );
       xmlw_startElem( writer, "commodity" );
@@ -140,32 +183,6 @@ static Commodity* nxml_loadCommodity( xmlNodePtr node )
       } while ( xml_nextNode( cur ) );
    }
    return c;
-}
-
-
-/**
- * @brief Jump-specific nxml_saveData derivative.
- *
- *    @param writer XML Writer to use to persist stuff.
- *    @param name Name of the data to save.
- *    @param name_len Data size of name (which is an arbitrary Lua string).
- *    @param start System in which the jump is.
- *    @param dest Jump's destination system.
- *    @return 0 on success.
- */
-static int nxml_saveJump( xmlTextWriterPtr writer, const char *name, size_t name_len, const char *start,
-                          const char *dest )
-{
-   xmlw_startElem(writer,"data");
-
-   xmlw_attr(writer,"type",JUMP_METATABLE);
-   nxml_saveNameAttribute( writer, name, name_len );
-   xmlw_attr(writer,"dest","%s",dest);
-   xmlw_str(writer,"%s",start);
-
-   xmlw_endElem(writer); /* "data" */
-
-   return 0;
 }
 
 
@@ -287,8 +304,6 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
                nxml_saveData( writer, PLANET_METATABLE, name, name_len, pnt->name, keynum );
             else
                WARN(_("Failed to save invalid planet."));
-            /* key, value */
-            break;
          }
          else if (lua_issystem(L,-1)) {
             ss = system_getIndex( lua_tosystem(L,-1) );
@@ -296,8 +311,6 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
                nxml_saveData( writer, SYSTEM_METATABLE, name, name_len, ss->name, keynum );
             else
                WARN(_("Failed to save invalid system."));
-            /* key, value */
-            break;
          }
          else if (lua_isfaction(L,-1)) {
             LuaFaction lf = lua_tofaction(L,-1);
@@ -307,8 +320,6 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
             if (str == NULL)
                break;
             nxml_saveData( writer, FACTION_METATABLE, name, name_len, str, keynum );
-            /* key, value */
-            break;
          }
          else if (lua_isship(L,-1)) {
             sh = lua_toship(L,-1);
@@ -316,33 +327,26 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
             if (str == NULL)
                break;
             nxml_saveData( writer, SHIP_METATABLE, name, name_len, str, keynum );
-            /* key, value */
-            break;
          }
          else if (lua_istime(L,-1)) {
             t = *lua_totime(L,-1);
             snprintf( buf, sizeof(buf), "%"PRId64, t );
             nxml_saveData( writer, TIME_METATABLE, name, name_len, buf, keynum );
-            /* key, value */
-            break;
          }
          else if (lua_isjump(L,-1)) {
-            /* FIXME: Jump saving is broken within an ordered table
-             * because keynum gets ignored here. */
             lj = lua_tojump(L,-1);
             ss = system_getIndex( lj->srcid );
             dest = system_getIndex( lj->destid );
             if ((ss == NULL) || (dest == NULL))
                WARN(_("Failed to save invalid jump."));
             else
-               nxml_saveJump( writer, name, name_len, ss->name, dest->name );
+               nxml_saveJump(writer, name, name_len, ss->name, dest->name,
+                     keynum);
          }
          else if (lua_iscommodity(L,-1)) {
             com = lua_tocommodity(L,-1);
-            if( nxml_saveCommodity( writer, name, name_len, com ) != 0)
-               WARN( _("Failed to save invalid commodity.") );
-            /* key, value */
-            break;
+            if(nxml_saveCommodity(writer, name, name_len, com, keynum) != 0)
+               WARN(_("Failed to save invalid commodity."));
          }
          else if (lua_isoutfit(L,-1)) {
             o = lua_tooutfit(L,-1);
@@ -350,15 +354,13 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
             if (str == NULL)
                break;
             nxml_saveData( writer, OUTFIT_METATABLE, name, name_len, str, keynum );
-            /* key, value */
-            break;
          }
          /* TODO: Add missing types, especially Vec2. */
-         /* Purpose fallthrough. */
+
+         break;
 
       /* Rest gets ignored, like functions, etc... */
       default:
-         /* key, value */
          break;
    }
    lua_pop(L,1); /* key */
