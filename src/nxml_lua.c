@@ -327,6 +327,8 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
             break;
          }
          else if (lua_isjump(L,-1)) {
+            /* FIXME: Jump saving is broken within an ordered table
+             * because keynum gets ignored here. */
             lj = lua_tojump(L,-1);
             ss = system_getIndex( lj->srcid );
             dest = system_getIndex( lj->destid );
@@ -351,6 +353,7 @@ static int nxml_persistDataNode( lua_State *L, xmlTextWriterPtr writer, int inta
             /* key, value */
             break;
          }
+         /* TODO: Add missing types, especially Vec2. */
          /* Purpose fallthrough. */
 
       /* Rest gets ignored, like functions, etc... */

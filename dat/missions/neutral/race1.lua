@@ -15,9 +15,8 @@
    and (var.peek("tut_complete") == true
       or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
-  <chance>10</chance>
+  <chance>100</chance>
   <location>Bar</location>
-  <done>The Space Family</done>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
   <faction>Frontier</faction>
@@ -44,7 +43,7 @@ local portrait = require "portrait"
 
 ask_text = _([["Hiya there! We're having a race around this system system soon and need a 4th person to participate. There's a prize of {credits} if you win. Interested?"]])
 
-yes_text = _([["That's great! I'll explain how it works. Once we take off from {planet}, there will be a countdown, and then we will proceed to the various checkpoints in order, boarding them before going to the next checkpoint. After the last checkpoint has been boarded, head back to {planet} and land. Let's have some fun!"]])
+yes_text = _([["That's great! I'll explain how it works. Once we take off from {planet}, there will be a countdown, and then we will proceed to the various checkpoints in order, finishing off by landing on {planet} at the end. Let's have some fun!"]])
 
 checkpoint_text = _("Checkpoint {prev} reached. Proceed to Checkpoint {next}.")
 
@@ -66,11 +65,6 @@ NPCdesc = _("You see a laid back person, who appears to be one of the locals, lo
 misndesc = _("You're participating in a race!")
 
 OSDtitle = _("Racing Skills")
-OSD = {}
-OSD[1] = _("Board checkpoint 1")
-OSD[2] = _("Board checkpoint 2")
-OSD[3] = _("Board checkpoint 3")
-OSD[4] = _("Land on %s")
 
 chatter = {}
 chatter[1] = _("Let's do this!")
@@ -89,25 +83,84 @@ landmsg = _("%s just landed at %s and finished the race")
 function create ()
    curplanet, missys = planet.cur()
 
-   -- Must claim the system since player pilot is controlled for a time.
-   if not misn.claim(missys) then
+   -- Get planets, excluding the current planet, and jumps.
+   local all_planets = missys:planets()
+   local planets = {}
+   for i, pnt in ipairs(all_planets) do
+      if pnt ~= curplanet then
+         planets[#planets + 1] = pnt
+      end
+   end
+   local jumps = missys:jumps()
+
+   -- Define points.
+   -- XXX: points contains a mixture of planets and jump points, since
+   -- vec2s can't be saved directly. Both planets and jumps have a pos()
+   -- member, so this is OK as long as we're extra-careful.
+   local numpoints = math.min(3, #planets + #jumps)
+   points = {}
+   points.__save = true
+   radii = {}
+   radii.__save = true
+   while #points < numpoints and #planets + #jumps > 0 do
+      local i = rnd.rnd(1, #planets + #jumps)
+      local point
+      if i <= #planets then
+         local pnt = table.remove(planets, i)
+         points[#points + 1] = {pnt:pos():get()}
+         radii[#radii + 1] = pnt:radius()
+      else
+         local jp = table.remove(jumps, i - #planets)
+         points[#points + 1] = {jp:pos():get()}
+         radii[#radii + 1] = 200
+      end
+   end
+
+   -- Add the current planet as the last point.
+   points[#points + 1] = {curplanet:pos():get()}
+   radii[#radii + 1] = curplanet:radius()
+
+   if #points < 3 then
       misn.finish(false)
    end
 
+   -- Calculate total distance.
+   local dist = 0
+   local last_pos = vec2.new(table.unpack(points[#points]))
+   for i, point in ipairs(points) do
+      local pos = vec2.new(table.unpack(point))
+      dist = dist + vec2.dist(last_pos, pos)
+      last_pos = pos
+   end
+
+   -- Choose number of laps.
+   laps = 1
+
+   -- Calculate reward.
+   credits = #points*5000 + dist*(1.75^(laps-1))
+   credits = credits * (1 + 0.05*rnd.twosigma())
+
    misn.setNPC(NPCname, portrait.get(curplanet:faction()), NPCdesc)
-   credits = rnd.rnd(20000, 100000)
 end
 
 
 function accept ()
    if tk.yesno("", fmt.f(ask_text, {credits=fmt.credits(credits)})) then
+      tk.msg("", fmt.f(yes_text, {planet=curplanet:name()}))
+
       misn.accept()
-      OSD[4] = string.format(OSD[4], curplanet:name())
+
+      race_started = false
+      next_point = 1
+      current_lap = 1
+      racers_landed = 0
+
       misn.setTitle(OSDtitle)
       misn.setDesc(misndesc)
       misn.setReward(fmt.credits(credits))
-      misn.osdCreate(OSDtitle, OSD)
-      tk.msg("", fmt.f(yes_text, {planet=curplanet:name()}))
+
+      gen_osd()
+
       hook.takeoff("takeoff")
    else
       misn.finish()
@@ -115,189 +168,277 @@ function accept ()
 end
 
 
+function gen_osd()
+   local osd_desc = {
+      fmt.f(_("Wait for Race Announcer's signal near {planet} ({system} system)"),
+         {planet=curplanet:name(), system=missys:name()}),
+      string.format(n_("Go to Checkpoint %d, indicated on overlay map",
+            "Go to Checkpoint %d, indicated on overlay map", next_point),
+         next_point),
+      fmt.f(n_("Lap {current_lap:d}/{total_laps:d}",
+            "Lap {current_lap:d}/{total_laps:d}", current_lap),
+         {current_lap=current_lap, total_laps=laps}),
+      fmt.f(_("Land on {planet} ({system} system)"),
+         {planet=curplanet:name(), system=missys:name()}),
+   }
+   misn.osdCreate(OSDtitle, osd_desc)
+
+   if race_started then
+      system.mrkRm(mark)
+      if current_lap >= laps and next_point >= #points then
+         misn.osdActive(4)
+         misn.markerAdd(missys, "high", curplanet)
+      else
+         misn.osdActive(2)
+         local pos = vec2.new(table.unpack(points[next_point]))
+         mark = system.mrkAdd(
+            string.format(n_("Checkpoint %d", "Checkpoint %d", next_point),
+               next_point),
+            pos)
+      end
+   elseif not player.isLanded() then
+      system.mrkRm(mark)
+      local ppos = player.pilot():pos()
+      local pos = vec2.new(table.unpack(points[#points]))
+      local radius = radii[#radii]
+      if vec2.dist(ppos, pos) > radius then
+         mark = system.mrkAdd(_("Starting Point"), pos)
+      else
+         local pos = vec2.new(table.unpack(points[next_point]))
+         mark = system.mrkAdd(
+            string.format(n_("Checkpoint %d", "Checkpoint %d", next_point),
+               next_point),
+            pos)
+      end
+   end
+end
+
+
 function takeoff()
-   planetvec = planet.pos(curplanet)
-   misn.osdActive(1)
-   checkpoint = {}
-   racers = {}
-   pilot.toggleSpawn(false)
-   pilot.clear()
-   dist1 = rnd.rnd() * system.cur():radius()
-   angle1 = rnd.rnd() * 2 * math.pi
-   location1 = vec2.new(dist1 * math.cos(angle1), dist1 * math.sin(angle1))
-   dist2 = rnd.rnd() * system.cur():radius()
-   angle2 = rnd.rnd() * 2 * math.pi
-   location2 = vec2.new(dist2 * math.cos(angle2), dist2 * math.sin(angle2))
-   dist3 = rnd.rnd() * system.cur():radius()
-   angle3 = rnd.rnd() * 2 * math.pi
-   location3 = vec2.new(dist3 * math.cos(angle3), dist3 * math.sin(angle3))
+   gen_osd()
 
    local f = faction.dynAdd(nil, N_("Referee"), nil, {ai="stationary"})
-   checkpoint[1] = pilot.add("Goddard", f, location1)
-   checkpoint[2] = pilot.add("Goddard", f, location2)
-   checkpoint[3] = pilot.add("Goddard", f, location3)
-   for i, p in ipairs(checkpoint) do
-      p:rename( string.format(n_("Checkpoint %d", "Checkpoint %d", i), i) )
-      p:setHilight()
-      p:setInvincible()
-      p:setActiveBoard()
-      p:setVisible()
-      p:setNoClear()
-   end
+   local angle = rnd.rnd() * 2 * math.pi
+   local radius = 1.5 * curplanet:radius()
+   local pos = (curplanet:pos()
+         + vec2.new(math.cos(angle) * radius, math.sin(angle) * radius))
+   referee = pilot.add("Llama", f, pos, _("Race Announcer"))
+   referee:setInvincible()
+   referee:setVisible()
+   referee:setNoClear()
 
-   racers[1] = pilot.add("Llama", "Civilian", curplanet, pilotname.generic())
-   racers[2] = pilot.add("Llama", "Civilian", curplanet, pilotname.generic())
-   racers[3] = pilot.add("Llama", "Civilian", curplanet, pilotname.generic())
+   racers = {
+      pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
+      pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
+      pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
+   }
+   local face_target = vec2.new(table.unpack(points))
    for i, p in ipairs(racers) do
       p:setInvincible()
       p:setVisible()
+      p:setHilight()
       p:setNoClear()
       p:control()
-      p:face(checkpoint[1]:pos(), true)
-      p:broadcast(chatter[i])
+      p:face(face_target, true)
+
+      local mem = p:memory()
+      mem.race_points = points
+      mem.race_radii = radii
+      mem.race_laps = laps
+      mem.race_next_point = next_point
+      mem.race_current_lap = current_lap
+      mem.race_land_dest = curplanet
+
+      hook.pilot(p, "land", "racer_land")
+      hook.pilot(p, "jump", "racer_jump")
+
+      if i == 1 then
+         p:broadcast(_("Let's do this!"))
+      end
    end
 
-   local pp = player.pilot()
-   pp:setInvincible()
-   pp:control()
-   pp:face(checkpoint[1]:pos(), true)
-
-   countdown = 5 -- seconds
-   omsg = player.omsgAdd(timermsg:format(countdown), 0, 50)
-   counting = true
-   counterhook = hook.timer(1, "counter") 
-   hook.board("board")
-   hook.jumpin("jumpin")
+   countdown_hook = hook.timer(3, "timer_ready")
+   hook.timer(1/20, "timer_check_status")
+   hook.custom("race_racer_next_point", "racer_next_point")
+   hook.custom("race_racer_next_lap", "racer_next_lap")
+   hook.jumpout("jumpout")
    hook.land("land")
 end
 
 
-function counter()
-   countdown = countdown - 1
-   if countdown == 0 then
-      player.omsgChange(omsg, _("Go!"), 1000)
-      hook.timer(1, "stopcount")
-      local pp = player.pilot()
-      pp:setInvincible(false)
-      pp:control(false)
-      counting = false
-      hook.rm(counterhook)
-      for i, j in ipairs(racers) do
-         j:control()
-         j:moveto(checkpoint[target[i]]:pos())
-         hook.pilot(j, "land", "racerland")
+function timer_ready()
+   referee:broadcast(_("Alright, take your places, everyone!"))
+   countdown_hook = hook.timer(3, "timer_countdown", 5)
+end
+
+
+function timer_countdown(count)
+   if count > 0 then
+      referee:broadcast(string.format(p_("race_countdown", "%d…"), count))
+      countdown_hook = hook.timer(1, "timer_countdown", count - 1)
+   else
+      referee:broadcast(p_("race_countdown", "Go!"))
+      race_started = true
+      gen_osd()
+      for i, p in ipairs(racers) do
+         local mem = p:memory()
+         local pos = vec2.new(
+            table.unpack(mem.race_points[mem.race_next_point]))
+         p:moveto(pos, false)
+
+         hook.pilot(p, "idle", "racer_idle")
       end
-      hp1 = hook.pilot(racers[1], "idle", "racer1idle")
-      hp2 = hook.pilot(racers[2], "idle", "racer2idle")
-      hp3 = hook.pilot(racers[3], "idle", "racer3idle")
-   else
-      player.omsgChange(omsg, timermsg:format(countdown), 0)
-      counterhook = hook.timer(1, "counter") 
    end
 end
 
 
-function racer1idle(p)
-   player.msg( string.format( positionmsg, p:name(),target[1]) )
-   p:broadcast(string.format( chatter[4], target[1]))
-   target[1] = target[1] + 1
-   hook.timer(2, "nexttarget1")
-end
+function timer_check_status()
+   if race_started then
+      -- Record the player's progress thru the race.
+      local npoints = #points
+      local pos = vec2.new(table.unpack(points[next_point]))
+      local radius = radii[next_point]
+      if (current_lap < laps or next_point < npoints)
+            and vec2.dist(player.pos(), pos) <= radius then
+         next_point = next_point + 1
+         if current_lap >= laps and next_point >= npoints then
+            -- Final step.
+            player.msg(fmt.f(_("Land on {planet}."),
+                  {planet=curplanet:name()}))
+         elseif next_point > npoints then
+            -- Next lap.
+            next_point = next_point - npoints
+            current_lap = current_lap + 1
 
-
-function nexttarget1()
-   if target[1] == 4 then
-      racers[1]:land(curplanet)
-      hook.rm(hp1)
-   else
-      racers[1]:moveto(checkpoint[target[1]]:pos())
-   end
-end
-
-
-function racer2idle(p)
-   player.msg( string.format( positionmsg, p:name(),target[2]) )
-   p:broadcast(chatter[5])
-   target[2] = target[2] + 1
-   hook.timer(2, "nexttarget2")
-end
-
-
-function nexttarget2()
-   if target[2] == 4 then
-      racers[2]:land(curplanet)
-      hook.rm(hp2)
-   else
-      racers[2]:moveto(checkpoint[target[2]]:pos())
-   end
-end
-
-
-function racer3idle(p)
-   player.msg( string.format( positionmsg, p:name(),target[3]) )
-   p:broadcast(chatter[6])
-   target[3] = target[3] + 1
-   hook.timer(2, "nexttarget3")
-end
-
-
-function nexttarget3()
-   if target[3] == 4 then
-      racers[3]:land(curplanet)
-      hook.rm(hp3)
-   else
-      racers[3]:moveto(checkpoint[target[3]]:pos())
-   end
-end
-
-
-function stopcount()
-   player.omsgRm(omsg)
-end
-
-
-function board(ship)
-   player.unboard()
-   for i,j in ipairs(checkpoint) do
-      if ship == j and target[4] == i then
-         ship:setHilight(false)
-         player.msg( string.format( positionmsg, player.name(),target[4]) )
-         misn.osdActive(i+1)
-         target[4] = target[4] + 1
-         if target[4] == 4 then
-            tk.msg("", fmt.f(checkpoint_final_text,
-                  {prev=i, planet=curplanet:name()}))
+            local tt = {
+               string.format(
+                  n_("Beginning Lap %d.", "Beginning Lap %d.", current_lap),
+                  current_lap),
+               string.format(
+                  n_(" Proceed to Checkpoint %d.",
+                     " Proceed to Checkpoint %d.", next_point),
+                  next_point),
+            }
+            local text = table.concat(tt)
+            player.msg(text)
          else
-            tk.msg("", fmt.f(checkpoint_text, {prev=i, next=i+1}))
+            -- Next checkpoint.
+            local tt = {
+               string.format(
+                  n_("Reached Checkpoint %d.", "Reached Checkpoint %d.",
+                     next_point - 1),
+                  next_point - 1),
+               string.format(
+                  n_(" Proceed to Checkpoint %d.",
+                     " Proceed to Checkpoint %d.", next_point),
+                  next_point),
+            }
+            local text = table.concat(tt)
+            player.msg(text)
          end
-         break
+         gen_osd()
       end
+   else
+      -- Check to see if the player has left or re-enterd the start
+      -- point and stop or restart the countdown as needed.
+      local dist = vec2.dist(player.pos(), curplanet:pos())
+      local radius = curplanet:radius()
+      if countdown_hook ~= nil and dist > radius then
+         referee:comm(player.pilot(),
+               fmt.f(_("Wait, {player}, I didn't give the signal yet! Come back to the starting point."),
+                  {player=player.name()}),
+               true)
+         hook.rm(countdown_hook)
+         countdown_hook = nil
+         gen_osd()
+      elseif countdown_hook == nil and dist <= radius then
+         referee:broadcast(_("Alright, let's try this again. Take your places, everyone!"))
+         countdown_hook = hook.timer(3, "timer_countdown", 5)
+         gen_osd()
+      end
+   end
+
+   hook.timer(1/20, "timer_check_status")
+end
+
+
+function racer_idle(p)
+   local mem = p:memory()
+
+   -- Record the racer's progress thru the race.
+   local pos = vec2.new(table.unpack(mem.race_points[mem.race_next_point]))
+   local radius = mem.race_radii[mem.race_next_point]
+   if mem.race_current_lap >= mem.race_laps
+         and mem.race_next_point >= #mem.race_points then
+      p:land(mem.race_land_dest)
+   elseif vec2.dist(p:pos(), pos) <= radius then
+      mem.race_next_point = mem.race_next_point + 1
+      if mem.race_current_lap >= mem.race_laps
+            and mem.race_next_point >= #mem.race_points then
+         -- Final step.
+         p:land(mem.race_land_dest)
+      elseif mem.race_next_point > #mem.race_points then
+         -- Next lap.
+         mem.race_next_point = mem.race_next_point - #mem.race_points
+         mem.race_current_lap = mem.race_current_lap + 1
+
+         local pos = vec2.new(
+            table.unpack(mem.race_points[mem.race_next_point]))
+         p:moveto(pos, false)
+
+         hook.trigger("race_racer_next_lap", p, mem.race_current_lap)
+      else
+         local pos = vec2.new(
+            table.unpack(mem.race_points[mem.race_next_point]))
+         p:moveto(pos, false)
+
+         hook.trigger("race_racer_next_point", p, mem.race_next_point - 1)
+      end
+   else
+      p:moveto(pos, false)
    end
 end
 
 
-function jumpin()
+function racer_land(p, land_planet)
+   local mem = p:memory()
+   if mem.race_next_point < #mem.race_points
+         or mem.race_current_lap < mem.race_laps then
+      return
+   end
+   racers_landed = racers_landed + 1
+end
+
+
+function racer_jump(p, jp)
+end
+
+
+function racer_next_point(p, point)
+end
+
+
+function racer_next_lap(p, lap)
+end
+
+
+function jumpout()
    mh.showFailMsg(_("You left the race."))
    misn.finish(false)
 end
 
 
-function racerland(p)
-   player.msg( string.format(landmsg, p:name(), curplanet:name()))
-end
-
-
 function land()
-   if target[4] == 4 then
-      if racers[1]:exists() and racers[2]:exists() and racers[3]:exists() then
+   if current_lap >= laps and next_point >= #points then
+      -- Consider the mission a "success" (meaning it generates the
+      -- race2 mission) even if the player loses.
+      if racers_landed <= 0 then
          tk.msg("", wintext)
          player.pay(credits)
-         misn.finish(true)
       else
          tk.msg("", lose_text)
-         misn.finish(false)
-         
       end
+      misn.finish(true)
    else
       tk.msg("", fail_left_text)
       misn.finish(false)
@@ -306,10 +447,4 @@ end
 
 
 function abort()
-   if system.cur() == missys then
-      -- Restore control in case it's currently taken away.
-      local pp = player.pilot()
-      pp:setInvincible(false)
-      pp:control(false)
-   end
 end
