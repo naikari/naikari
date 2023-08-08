@@ -539,7 +539,7 @@ static int nxml_unpersistDataNode( lua_State *L, xmlNodePtr parent )
             lua_pushcommodity(L, nxml_loadCommodity( node ) );
          else if (strcmp(type,OUTFIT_METATABLE)==0)
             lua_pushoutfit(L,outfit_get(xml_get(node)));
-         else if (strcmp(type, VECTOR_METATABLE)) {
+         else if (strcmp(type, VECTOR_METATABLE) == 0) {
             xmlr_attr_float(node, "x", x);
             xmlr_attr_float(node, "y", y);
             vect_cset(&vec2, x, y);
@@ -551,9 +551,8 @@ static int nxml_unpersistDataNode( lua_State *L, xmlNodePtr parent )
              * Seems doable, use case unclear: ARTICLE_METATABLE.
              * Seems doable, but probably GUI-only: COL_METATABLE, TEX_METATABLE.
              * */
-            WARN(_("Unknown Lua data type!"));
-            lua_pop(L,1);
-            return -1;
+            WARN(_("Unknown Lua data type: %s"), type);
+            lua_pushnil(L);
          }
 
          /* Set field. */

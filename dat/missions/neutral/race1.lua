@@ -15,7 +15,7 @@
    and (var.peek("tut_complete") == true
       or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
-  <chance>10</chance>
+  <chance>100</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -97,25 +97,20 @@ function create ()
    local numpoints = math.min(3, #planets + #jumps)
    points = {}
    points.__save = true
-   radii = {}
-   radii.__save = true
    while #points < numpoints and #planets + #jumps > 0 do
       local i = rnd.rnd(1, #planets + #jumps)
       local point
       if i <= #planets then
          local pnt = table.remove(planets, i)
-         points[#points + 1] = {pnt:pos():get()}
-         radii[#radii + 1] = pnt:radius()
+         points[#points + 1] = {pnt:pos(), pnt:radius()}
       else
          local jp = table.remove(jumps, i - #planets)
-         points[#points + 1] = {jp:pos():get()}
-         radii[#radii + 1] = 200
+         points[#points + 1] = {jp:pos(), 200}
       end
    end
 
    -- Add the current planet as the last point.
-   points[#points + 1] = {curplanet:pos():get()}
-   radii[#radii + 1] = curplanet:radius()
+   points[#points + 1] = {curplanet:pos(), curplanet:radius()}
 
    if #points < 3 then
       misn.finish(false)
@@ -123,9 +118,9 @@ function create ()
 
    -- Calculate total distance.
    local dist = 0
-   local last_pos = vec2.new(table.unpack(points[#points]))
+   local last_pos = points[#points][1]
    for i, point in ipairs(points) do
-      local pos = vec2.new(table.unpack(point))
+      local pos = point[1]
       dist = dist + vec2.dist(last_pos, pos)
       last_pos = pos
    end
@@ -187,7 +182,7 @@ function gen_osd()
          misn.markerAdd(missys, "high", curplanet)
       else
          misn.osdActive(2)
-         local pos = vec2.new(table.unpack(points[next_point]))
+         local pos = points[next_point][1]
          mark = system.mrkAdd(
             string.format(n_("Checkpoint %d", "Checkpoint %d", next_point),
                next_point),
@@ -196,12 +191,11 @@ function gen_osd()
    elseif not player.isLanded() then
       system.mrkRm(mark)
       local ppos = player.pilot():pos()
-      local pos = vec2.new(table.unpack(points[#points]))
-      local radius = radii[#radii]
+      local pos, radius = table.unpack(points[#points])
       if vec2.dist(ppos, pos) > radius then
          mark = system.mrkAdd(_("Starting Point"), pos)
       else
-         local pos = vec2.new(table.unpack(points[next_point]))
+         local pos = points[next_point][1]
          mark = system.mrkAdd(
             string.format(n_("Checkpoint %d", "Checkpoint %d", next_point),
                next_point),
@@ -229,7 +223,7 @@ function takeoff()
       pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
       pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
    }
-   local face_target = vec2.new(table.unpack(points))
+   local face_target = points[1][1]
    for i, p in ipairs(racers) do
       p:setInvincible()
       p:setVisible()
@@ -240,7 +234,6 @@ function takeoff()
 
       local mem = p:memory()
       mem.race_points = points
-      mem.race_radii = radii
       mem.race_laps = laps
       mem.race_next_point = next_point
       mem.race_current_lap = current_lap
@@ -279,8 +272,7 @@ function timer_countdown(count)
       gen_osd()
       for i, p in ipairs(racers) do
          local mem = p:memory()
-         local pos = vec2.new(
-            table.unpack(mem.race_points[mem.race_next_point]))
+         local pos = mem.race_points[mem.race_next_point][1]
          p:moveto(pos, false)
 
          hook.pilot(p, "idle", "racer_idle")
@@ -293,8 +285,7 @@ function timer_check_status()
    if race_started then
       -- Record the player's progress thru the race.
       local npoints = #points
-      local pos = vec2.new(table.unpack(points[next_point]))
-      local radius = radii[next_point]
+      local pos, radius = table.unpack(points[next_point])
       if (current_lap < laps or next_point < npoints)
             and vec2.dist(player.pos(), pos) <= radius then
          next_point = next_point + 1
@@ -363,8 +354,7 @@ function racer_idle(p)
    local mem = p:memory()
 
    -- Record the racer's progress thru the race.
-   local pos = vec2.new(table.unpack(mem.race_points[mem.race_next_point]))
-   local radius = mem.race_radii[mem.race_next_point]
+   local pos, radius = table.unpack(mem.race_points[mem.race_next_point])
    if mem.race_current_lap >= mem.race_laps
          and mem.race_next_point >= #mem.race_points then
       p:land(mem.race_land_dest)
@@ -379,14 +369,12 @@ function racer_idle(p)
          mem.race_next_point = mem.race_next_point - #mem.race_points
          mem.race_current_lap = mem.race_current_lap + 1
 
-         local pos = vec2.new(
-            table.unpack(mem.race_points[mem.race_next_point]))
+         local pos = mem.race_points[mem.race_next_point][1]
          p:moveto(pos, false)
 
          hook.trigger("race_racer_next_lap", p, mem.race_current_lap)
       else
-         local pos = vec2.new(
-            table.unpack(mem.race_points[mem.race_next_point]))
+         local pos = mem.race_points[mem.race_next_point][1]
          p:moveto(pos, false)
 
          hook.trigger("race_racer_next_point", p, mem.race_next_point - 1)
