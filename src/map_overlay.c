@@ -612,6 +612,16 @@ void ovr_render( double dt )
    if (player.p->nav_hyperspace > -1)
       gui_renderJumpPoint( player.p->nav_hyperspace, RADAR_RECT, w, h, res, 1 );
 
+   /* Render markers. */
+   ovr_mrkRenderAll(res);
+
+   /* Render asteroids. */
+   for (i=0; i<array_size(cur_system->asteroids); i++) {
+      ast = &cur_system->asteroids[i];
+      for (j=0; j<ast->nb; j++)
+         gui_renderAsteroid(&ast->asteroids[j], RADAR_RECT, w, h, res, 1);
+   }
+
    /* Render pilots. */
    pstk  = pilot_getAll();
    j     = 0;
@@ -634,18 +644,8 @@ void ovr_render( double dt )
       gl_renderCross(x, y, 7., &cRadar_hilight);
    }
 
-   /* render the asteroids */
-   for (i=0; i<array_size(cur_system->asteroids); i++) {
-      ast = &cur_system->asteroids[i];
-      for (j=0; j<ast->nb; j++)
-         gui_renderAsteroid(&ast->asteroids[j], RADAR_RECT, w, h, res, 1);
-   }
-
    /* Render the player. */
    gui_renderPlayer(w, h, res, 1);
-
-   /* Render markers. */
-   ovr_mrkRenderAll( res );
 }
 
 

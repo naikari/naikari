@@ -1304,8 +1304,14 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
             blink_pilot);
 
    /* Draw name. */
-   if (overlay && pilot_isFlag(p, PILOT_HILIGHT))
-      gl_printMarkerRaw( &gl_smallFont, x+scale+5., y-gl_smallFont.h/2., col, p->name );
+   if (overlay && pilot_isFlag(p, PILOT_HILIGHT)) {
+      /* Pilot names can appear on top of other overlay text including
+       * each other. */
+      glClear(GL_DEPTH_BUFFER_BIT);
+
+      gl_printMarkerRaw(&gl_smallFont, x+scale+5., y-gl_smallFont.h/2., col,
+            p->name);
+   }
 }
 
 

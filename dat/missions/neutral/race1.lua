@@ -15,7 +15,7 @@
    and (var.peek("tut_complete") == true
       or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
-  <chance>100</chance>
+  <chance>10</chance>
   <location>Bar</location>
   <faction>Dvaered</faction>
   <faction>Empire</faction>
@@ -94,9 +94,6 @@ function create ()
    local jumps = missys:jumps()
 
    -- Define points.
-   -- XXX: points contains a mixture of planets and jump points, since
-   -- vec2s can't be saved directly. Both planets and jumps have a pos()
-   -- member, so this is OK as long as we're extra-careful.
    local numpoints = math.min(3, #planets + #jumps)
    points = {}
    points.__save = true
@@ -137,7 +134,7 @@ function create ()
    laps = 1
 
    -- Calculate reward.
-   credits = #points*5000 + dist*(1.75^(laps-1))
+   credits = #points*5000 + 0.25*dist*(1.75^(laps-1))
    credits = credits * (1 + 0.05*rnd.twosigma())
 
    misn.setNPC(NPCname, portrait.get(curplanet:faction()), NPCdesc)
