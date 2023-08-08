@@ -45,10 +45,6 @@ ask_text = _([["Hiya there! We're having a race around this system system soon a
 
 yes_text = _([["That's great! I'll explain how it works. Once we take off from {planet}, there will be a countdown, and then we will proceed to the various checkpoints in order, finishing off by landing on {planet} at the end. Let's have some fun!"]])
 
-checkpoint_text = _("Checkpoint {prev} reached. Proceed to Checkpoint {next}.")
-
-checkpoint_final_text = _("Checkpoint {prev} reached. Land on {planet}.")
-
 wintext = _([[The laid back person comes up to you and hands you a credit chip. 
 
 "Nice racing! Here's your prize money. Let's race again sometime soon!"]])
@@ -66,22 +62,14 @@ misndesc = _("You're participating in a race!")
 
 OSDtitle = _("Racing Skills")
 
-chatter = {}
-chatter[1] = _("Let's do this!")
-chatter[2] = _("Wooo!")
-chatter[3] = _("Time to Shake 'n Bake")
-chatter[4] = _("Checkpoint %s baby!")
-chatter[5] = _("Hooyah")
-chatter[6] = _("Next!")
-timermsg = "%s"
-target = {1,1,1,1}
-
-positionmsg = _("%s just reached checkpoint %s")
-landmsg = _("%s just landed at %s and finished the race")
-
 
 function create ()
    curplanet, missys = planet.cur()
+
+   -- Only one race is allowed to take place at a time.
+   if not misn.claim("race") then
+      misn.finish(false)
+   end
 
    -- Get planets, excluding the current planet, and jumps.
    local all_planets = missys:planets()
@@ -162,7 +150,7 @@ end
 
 function gen_osd()
    local osd_desc = {
-      fmt.f(_("Wait for Race Announcer's signal near {planet} ({system} system)"),
+      fmt.f(_("Wait for Race Referee's signal near {planet} ({system} system)"),
          {planet=curplanet:name(), system=missys:name()}),
       string.format(n_("Go to Checkpoint %d, indicated on overlay map",
             "Go to Checkpoint %d, indicated on overlay map", next_point),
@@ -213,7 +201,7 @@ function takeoff()
    local radius = 1.5 * curplanet:radius()
    local pos = (curplanet:pos()
          + vec2.new(math.cos(angle) * radius, math.sin(angle) * radius))
-   referee = pilot.add("Llama", f, pos, _("Race Announcer"))
+   referee = pilot.add("Llama", f, pos, _("Race Referee"))
    referee:setInvincible()
    referee:setVisible()
    referee:setNoClear()
@@ -295,7 +283,7 @@ function timer_check_status()
                   {planet=curplanet:name()}))
          elseif next_point > npoints then
             -- Next lap.
-            next_point = next_point - npoints
+            next_point = 1
             current_lap = current_lap + 1
 
             local tt = {
@@ -366,7 +354,7 @@ function racer_idle(p)
          p:land(mem.race_land_dest)
       elseif mem.race_next_point > #mem.race_points then
          -- Next lap.
-         mem.race_next_point = mem.race_next_point - #mem.race_points
+         mem.race_next_point = 1
          mem.race_current_lap = mem.race_current_lap + 1
 
          local pos = mem.race_points[mem.race_next_point][1]
@@ -392,6 +380,8 @@ function racer_land(p, land_planet)
       return
    end
    racers_landed = racers_landed + 1
+   referee:broadcast(fmt.f(_("{pilot} has landed and finished the race!"),
+         {pilot=p:name()}))
 end
 
 
@@ -400,6 +390,20 @@ end
 
 
 function racer_next_point(p, point)
+   local btexts = {
+      p_("race_nextpoint", "Woo!"),
+      p_("race_nextpoint", "Booyah!"),
+      p_("race_nextpoint", "Next!"),
+      p_("race_nextpoint", "I got another one!"),
+      p_("race_nextpoint", "Let's kick it up a notch!"),
+      p_("race_nextpoint", "This is such a blast!"),
+      string.format(n_("Checkpoint %d, baby!", "Checkpoint %d, baby!", point),
+            point),
+      string.format(
+         n_("Checkpoint %d! Let's go!", "Checkpoint %d! Let's go!", point),
+         point),
+   }
+   p:broadcast(btexts[rnd.rnd(1, #btexts)])
 end
 
 
