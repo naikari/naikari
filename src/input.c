@@ -1502,9 +1502,11 @@ static void input_clickevent( SDL_Event* event )
    /* Visual (on-screen) */
    gl_screenToGameCoords( &x, &y, (double)mx, (double)my );
    zoom = res = 1. / cam_getZoom();
-   if (!input_clickPos(event, x, y, zoom, 10. * res, 15. * res))
-      player_targetClear();
-   return;
+   if (input_clickPos(event, x, y, zoom, 10. * res, 15. * res))
+      return;
+
+   /* Click was unused, so use it to clear player's target. */
+   player_targetClear();
 }
 
 
