@@ -142,7 +142,7 @@ function spawn_merc(source)
    end
 
    -- Trigger a hook to allow missions to do things with mercenaries.
-   hook.trigger("merc_spawn", merc)
+   naev.hookTrigger("merc_spawn", merc)
 
    set_target(merc, merc:memory().bounty or choose_target())
    hook.pilot(merc, "death", "leader_death")

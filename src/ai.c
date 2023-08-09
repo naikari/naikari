@@ -1737,8 +1737,8 @@ static int aiL_rotate(lua_State *L)
  * @usage ai.face( a_pilot, nil, true ) -- Compensate velocity facing a pilot
  *
  *    @luatparam Pilot|Vec2 target Target to face.
- *    @luatparam boolean invert Invert away from target.
- *    @luatparam boolean compensate Compensate for velocity?
+ *    @luatparam[opt=false] boolean invert Invert away from target.
+ *    @luatparam[opt=false] boolean compensate Compensate for velocity?
  *    @luatreturn number Angle offset in degrees.
  * @luafunc face
  */

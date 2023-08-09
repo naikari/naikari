@@ -198,7 +198,7 @@ function takeoff()
 
    local f = faction.dynAdd(nil, N_("Referee"), nil, {ai="stationary"})
    local angle = rnd.rnd() * 2 * math.pi
-   local radius = 1.5 * curplanet:radius()
+   local radius = 2 * curplanet:radius()
    local pos = (curplanet:pos()
          + vec2.new(math.cos(angle) * radius, math.sin(angle) * radius))
    referee = pilot.add("Llama", f, pos, _("Race Referee"))
@@ -206,14 +206,15 @@ function takeoff()
    referee:setVisible()
    referee:setNoClear()
 
-   racers = {
-      pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
-      pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
-      pilot.add("Llama", "Civilian", curplanet, pilotname.generic()),
-   }
+   racers = {}
+   for i = 1, 3 do
+      local p = pilot.add("Llama", "Civilian", curplanet, pilotname.generic(),
+            {ai="racer"})
+      racers[#racers + 1] = p
+   end
    local face_target = points[1][1]
    for i, p in ipairs(racers) do
-      p:setInvincible()
+      p:setInvincPlayer()
       p:setVisible()
       p:setHilight()
       p:setNoClear()
@@ -352,6 +353,8 @@ function racer_idle(p)
             and mem.race_next_point >= #mem.race_points then
          -- Final step.
          p:land(mem.race_land_dest)
+
+         naev.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
       elseif mem.race_next_point > #mem.race_points then
          -- Next lap.
          mem.race_next_point = 1
@@ -360,12 +363,12 @@ function racer_idle(p)
          local pos = mem.race_points[mem.race_next_point][1]
          p:moveto(pos, false)
 
-         hook.trigger("race_racer_next_lap", p, mem.race_current_lap)
+         naev.hookTrigger("race_racer_next_lap", p, mem.race_current_lap)
       else
          local pos = mem.race_points[mem.race_next_point][1]
          p:moveto(pos, false)
 
-         hook.trigger("race_racer_next_point", p, mem.race_next_point - 1)
+         naev.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
       end
    else
       p:moveto(pos, false)
@@ -436,4 +439,13 @@ end
 
 
 function abort()
+   system.mrkRm(mark)
+   if racers ~= nil then
+      for i, p in ipairs(racers) do
+         p:setInvincPlayer(false)
+         p:setVisible(false)
+         p:setHilight(false)
+         p:control(false)
+      end
+   end
 end

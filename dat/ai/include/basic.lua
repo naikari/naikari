@@ -205,6 +205,22 @@ end
 
 
 --[[
+-- Goes to a point as fast as possible (for racers).
+--]]
+function moveto_race()
+   local p = ai.pilot()
+   local target = ai.taskdata()
+   local dir = ai.face(target, false, true)
+   __moveto_generic(target, dir, false)
+
+   -- Afterburner handling.
+   if ai.hasafterburner() and p:energy() > 10 then
+      ai.weapset(8, true)
+   end
+end
+
+
+--[[
 -- Follows it's target.
 --]]
 function follow ()

@@ -64,7 +64,6 @@ static int hook_standing( lua_State *L );
 static int hook_discover( lua_State *L );
 static int hook_pay( lua_State *L );
 static int hook_custom( lua_State *L );
-static int hook_trigger( lua_State *L );
 static int hook_pilot( lua_State *L );
 static const luaL_Reg hook_methods[] = {
    {"rm", hookL_rm},
@@ -97,7 +96,6 @@ static const luaL_Reg hook_methods[] = {
    {"discover", hook_discover},
    {"pay", hook_pay},
    {"custom", hook_custom},
-   {"trigger", hook_trigger},
    {"pilot", hook_pilot},
    {0,0}
 }; /**< Hook Lua methods. */
@@ -869,7 +867,7 @@ static int hook_renderfg( lua_State *L )
  *       triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
- * @luasee trigger
+ * @luasee naev.hookTrigger
  * @luafunc custom
  */
 static int hook_custom( lua_State *L )
@@ -879,76 +877,8 @@ static int hook_custom( lua_State *L )
    lua_pushnumber( L, h );
    return 1;
 }
-/**
- * @brief Manually triggers a hook.
- *
- * This is run deferred (next frame) globally (i.e. it affects all
- * missions and events). Meant mainly to be used with hook.custom(), but
- * can work with other hooks too (if you know what you are doing).
- *
- *    @luatparam string hookname Name of the hook to be run.
- *    @luatparam[opt] nil|number|boolean|string|Pilot|Faction|Planet|Jump
- *       params Arguments to pass to the hook's parameters. You can pass
- *       multiple arguments, but this is limited by HOOK_MAX_PARAM
- *       (which is defined in hook.h).
- * @luasee custom
- * @luafunc trigger
- */
-static int hook_trigger( lua_State *L )
-{
-   const int param_pos = 2; /**< Position of the first hook param. */
-   int i, n;
-   HookParam hp[HOOK_MAX_PARAM], *p;
-   const char *hookname = luaL_checkstring(L, 1);
-   n = lua_gettop(L) - 1;
 
-   /* Set up hooks. */
-   for (i=0; i<MIN(n, HOOK_MAX_PARAM-1); i++) {
-      p = &hp[i];
-      switch (lua_type(L, i + param_pos)) {
-         case LUA_TNIL:
-            p->type = HOOK_PARAM_NIL;
-            break;
-         case LUA_TNUMBER:
-            p->type = HOOK_PARAM_NUMBER;
-            p->u.num = lua_tonumber(L, i + param_pos);
-            break;
-         case LUA_TBOOLEAN:
-            p->type = HOOK_PARAM_BOOL;
-            p->u.b = lua_toboolean(L, i + param_pos);
-            break;
-         case LUA_TSTRING:
-            p->type = HOOK_PARAM_STRING;
-            p->u.str = lua_tostring(L, i + param_pos);
-            break;
-         case LUA_TUSERDATA:
-            if (lua_ispilot(L, i + param_pos)) {
-               p->type = HOOK_PARAM_PILOT;
-               p->u.lp = lua_topilot(L, i + param_pos);
-            }
-            else if (lua_isfaction(L, i + param_pos)) {
-               p->type = HOOK_PARAM_FACTION;
-               p->u.lf = lua_tofaction(L, i + param_pos);
-            }
-            else if (lua_isplanet(L, i + param_pos)) {
-               p->type = HOOK_PARAM_ASSET;
-               p->u.la = *lua_toplanet(L, i + param_pos);
-            }
-            else if (lua_isjump(L, i + param_pos)) {
-               p->type = HOOK_PARAM_JUMP;
-               p->u.lj = *lua_tojump(L, i + param_pos);
-            }
-            break;
-         default:
-            NLUA_ERROR(L, _("Unsupported Lua hook paramater type '%s'!"), lua_typename(L,i+1));
-      }
-   }
-   hp[i].type = HOOK_PARAM_SENTINEL;
 
-   /* Run the deferred hooks. */
-   hooks_runParamDeferred( hookname, hp );
-   return 0;
-}
 /**
  * @brief Hooks the function to a specific pilot.
  *
