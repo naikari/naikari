@@ -39,7 +39,7 @@ local pilotname = require "pilotname"
 local portrait = require "portrait"
 
 
-npctext = {
+local npctext = {
    _([["Hi there! I'm looking to get some piloting experience. Here are my credentials. Would you be interested in hiring me?"]]),
    _([["Hello! I'm looking to join someone's fleet. Here's my credentials. What do you say, would you like me on board?"]]),
    _([["Hi! You look like you could use a pilot! I'm available and charge some of the best rates in the galaxy, and I promise you I'm perfect for the job! Here's my info. Well, what do you think? Would you like to add me to your fleet?"]]),
@@ -47,9 +47,20 @@ npctext = {
    _([["You need a co-pilot? Well, you're talking to just the one for the job! I have a fantastic track-record, having successfully dispatched hundreds of hostiles in my years of service, and as you can see, my credentials speek for themselves. Are you ready to take me on and bolster your fleet?"]]),
 }
 
-pilot_action_text = _([[Would you like to do something with this pilot?
+local pilot_action_text = _([[Would you like to do something with this pilot?
 
 Pilot credentials:]])
+
+local credentials_text = _([[
+#nPilot name:#0 {name}
+#nShip:#0 {ship}
+#nSpeed:#0 {speed} mAU/s
+#nDeposit:#0 {deposit}
+#nRoyalty:#0 {royalty:.1f}% of earnings
+
+#nYour speed:#0 {plspeed:.0f} mAU/s
+#nMoney:#0 {plmoney}
+#nCurrent total royalties:#0 {plroyalties:.1f}% of earnings]])
 
 
 function create ()
@@ -221,7 +232,7 @@ function createPilotNPCs ()
          newpilot.def_ai = def_ai
          newpilot.approachtext = npctext[rnd.rnd(1, #npctext)]
          local id = evt.npcAdd(
-               "approachPilot", _("Pilot"), newpilot.portrait,
+               "approachPilot", _("Pilot for Hire"), newpilot.portrait,
                _("This pilot seems to be looking for work."), 90)
          npcs[id] = newpilot
       end
@@ -230,19 +241,6 @@ end
 
 
 function getCredentials(edata)
-   -- This is horribly ugly, but we need to define this here for
-   -- compatibility with previously running instances of the event.
-   credentials = _([[
-#nPilot name:#0 {name}
-#nShip:#0 {ship}
-#nSpeed:#0 {speed} mAU/s
-#nDeposit:#0 {deposit}
-#nRoyalty:#0 {royalty:.1f}% of earnings
-
-#nYour speed:#0 {plspeed:.0f} mAU/s
-#nMoney:#0 {plmoney}
-#nCurrent total royalties:#0 {plroyalties:.1f}% of earnings]])
-
    local credits, scredits = player.credits(2)
    local plspeed = player.pilot():stats().speed_max
    local speed
@@ -253,7 +251,7 @@ function getCredentials(edata)
       speed = "?"
    end
 
-   return fmt.f(credentials,
+   return fmt.f(credentials_text,
          {name=edata.name, ship=edata.ship, speed=speed,
             deposit=fmt.credits(edata.deposit), royalty=edata.royalty*100,
             plspeed=plspeed, plmoney=scredits,
