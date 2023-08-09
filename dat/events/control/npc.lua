@@ -19,7 +19,7 @@ require "jumpdist"
 
 -- Special names for certain factions' civilian NPCs (to replace the
 -- generic "{faction} Civilian" naming normally used).
-civ_name = {
+local civ_name = {
    Empire = _("Imperial Civilian"),
    FLF = _("Frontier Civilian"),
    Pirate = p_("individual", "Pirate"),
@@ -30,7 +30,7 @@ civ_name = {
 -- with what NPCs on planets with those restrictions should be called.
 -- Appearance in this table also implicitly causes portrait.getMil() to
 -- be used for selecting a portrait instead of portrait.get().
-mil_name = {
+local mil_name = {
    emp_mil_restricted = _("Imperial Officer"),
    emp_mil_eye = _("Imperial Officer"),
    srs_mil_restricted = _("Sirius Officer"),
@@ -50,7 +50,7 @@ mil_name = {
 -- multiple times in one generation. Remember that any description can
 -- end up with any portrait, so don't make any assumptions about th
 -- appearance of the NPC!
-civ_desc = {
+local civ_desc = {
    _("This person seems to be here to relax."),
    _("There is a civilian sitting on one of the tables."),
    _("There is a civilian sitting there, looking somewhere else."),
@@ -69,7 +69,7 @@ civ_desc = {
 
 -- Same as civ_desc, but for particular factions (replacing the default
 -- civ_desc table), organized by faction name.
-pciv_desc = {}
+local pciv_desc = {}
 pciv_desc["Pirate"] = {
    _("This pirate seems to be here to relax."),
    _("There is a pirate sitting on one of the tables."),
@@ -87,7 +87,7 @@ pciv_desc["Pirate"] = {
 
 -- Same as civ_desc, but for land-restricted NPCs, organized by land
 -- restriction function name.
-mil_desc = {}
+local mil_desc = {}
 mil_desc.emp_mil_restricted = {
    _("An Imperial officer sits idly at one of the tables."),
    _("This Imperial officer seems somewhat spaced-out."),
@@ -175,7 +175,7 @@ NPC messages. Each is a table with the following keys:
    "cond": function returning whether the message can be used.
       (optional)
 --]]
-messages = {
+local messages = {
    {
       text = {
          _([["I'm still not used to the randomly exploding asteroids. You'll just be passing thru an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),

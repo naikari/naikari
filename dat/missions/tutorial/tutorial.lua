@@ -37,9 +37,9 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase," the salesperson who sold you the {shipname} says thru the radio. "I am sure your new ship will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
+local intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase," the salesperson who sold you the {shipname} says over the radio. "I am sure your new ship will serve you well! Here at Melendez Corporation, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
 
-movement_text = _([["Now, so that your test flight goes as smoothly as possible, I will explain the controls of your state-of-the art Melendez Corporation starship! There are two basic modes: keyboard flight, and mouse flight.
+local movement_text = _([["Now, so that your test flight goes as smoothly as possible, I will explain the controls of your state-of-the art Melendez Corporation starship! There are two basic modes: keyboard flight, and mouse flight.
 
 "To move via keyboard flight, rotate your ship with {leftkey} and {rightkey}, and thrust to move your ship forward with {accelkey}. You can also use {reversekey} to rotate your ship to the direction opposite of your current movement, which can be useful for bringing your vessel to a stop.
 
@@ -47,19 +47,19 @@ movement_text = _([["Now, so that your test flight goes as smoothly as possible,
 
 "Why don't you give both systems a try? Experiment with the flight controls as much as you'd like, then fly over to where {planet} is. You see it on your screen, right? It's the planet right next to you."]])
 
-landing_text = _([["I see you have a great handle on the controls of your new Melendez Corporation ship! It's a perfect fit for you, don't you think? Your control of the vessel is absolutely stunning, magnificent!
+local landing_text = _([["I see you have a great handle on the controls of your new Melendez Corporation ship! It's a perfect fit for you, don't you think? Your control of the vessel is absolutely stunning, magnificent!
 
-"You may continue to practice flying for as long as you need. When you are ready, please return to {planet} to finalize your paperwork. To do so, simply #bdouble-click#0 on the planet, or if you prefer to use your keyboard, target it with {target_planet_key} and then press {landkey}. I will be waiting for you at the spaceport!"]])
+"You may continue to practice flying for as long as you need. When you are ready, please land on {planet} to finalize your paperwork; you can land by pressing {landkey}. I will be waiting for you at the spaceport!"]])
 
-land_text = _([[You watch as the ship – your ship – automatically guides you safely thru the atmosphere and into the planet's space port, then touches down at an empty spot reserved for you. As soon as the hatch opens and you step out, an exhausted dock worker greets you and makes you sign a form. "Just the standard waiver," she explains. After you sign, she pushes some buttons and you stare as you see robotic drones immediately getting to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
+local land_text = _([[You watch as the ship – your ship – automatically guides you safely thru the atmosphere and into the planet's space port, then touches down at an empty spot reserved for you. As soon as the hatch opens and you step out, an exhausted dock worker greets you and makes you sign a form. "Just the standard waiver," she explains. After you sign, she pushes some buttons and you stare as you see robotic drones immediately getting to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
 
-"Ah, there you are, {player}!" the voice of the salesperson interrupts, prompting the worker to roll her eyes and walk off. You look in the direction of the voice and see an obnoxiously dressed person with a huge grin. "I see your Melendez Corporation starship is serving you well. Now, if you would follow me, we can finalize that paperwork."]])
+"Ah, there you are, {player}!" the voice of the salesperson interrupts, prompting the worker to roll her eyes and walk off. You look in the direction of the voice and see the obnoxiously dressed salesperson, wearing a huge grin. "I see your Melendez Corporation starship is serving you well. Now, if you would follow me, we can finalize that paperwork."]])
 
-finish_text = _([[The salesperson makes you sign dozens of forms: tax forms, waivers, indemnity agreements, and much more that you aren't given enough time to process. When you finish, the salesperson pats you on the back. "You have made an excellent choice, {player}! I'm sure you'll be making millions of credits in no time.
+local finish_text = _([[The salesperson makes you sign dozens of forms: tax forms, waivers, indemnity agreements, and much more that you aren't given enough time to process. When you finish, the salesperson pats you on the back. "You have made an excellent choice, {player}! I'm sure you'll be making millions of credits in no time.
 
-"In fact, I know just where to start. A gentleman at the bar is looking for a hired hand, and I assure you, he pays good rates! I've told him about you and he said he would be thrilled to hire you for a job!" The salesperson offers their hand and, not wanting to be combative, you shake it. "Good luck, {player}!" they say before swiftly escorting you out of their office.
+"In fact, I know just where to start. A gentleman at the bar is looking for a hired hand, and I assure you, he pays good rates! I've told him about you and he said he would be thrilled to hire you for a job!" The salesperson offers their hand and, not wanting to be combative, you shake it. "Good luck, {player}!" the salesperson says before swiftly escorting you out of their office.
 
-A bit dizzy and confused, you figure you might as well meet this man at the Spaceport Bar the salesperson mentioned and see if the job is worthwhile.]])
+You figure you might as well meet this man the salesperson mentioned at the #bSpaceport Bar#0 and see if the job is worthwhile.]])
 
 misn_title = _("Point of Sale")
 misn_desc = _("You have purchased a new ship from Melendez and are in the process of finalizing the sale.")
@@ -103,8 +103,9 @@ function create_osd()
             accelkey=naik.keyGet("accel"), leftkey=naik.keyGet("left"),
             reversekey=naik.keyGet("reverse"), rightkey=naik.keyGet("right"),
             mouseflykey=naik.keyGet("mousefly")}),
-      fmt.f(_("Land on {planet} ({system} system) by double-clicking on it"),
-         {planet=start_planet:name(), system=missys:name()}),
+      fmt.f(_("Land on {planet} ({system} system) by pressing {landkey}"),
+         {planet=start_planet:name(), system=missys:name(),
+            landkey=naik.keyGet("land")}),
    }
 
    misn.osdCreate(misn_title, osd_desc)
