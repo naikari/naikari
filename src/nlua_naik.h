@@ -3,8 +3,8 @@
  */
 
 
-#ifndef NLUA_NAEV_H
-#  define NLUA_NAEV_H
+#ifndef NLUA_NAIK_H
+#  define NLUA_NAIK_H
 
 
 #include "nlua.h"

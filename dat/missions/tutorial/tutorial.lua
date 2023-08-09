@@ -100,9 +100,9 @@ function create_osd()
    local osd_desc = {
       fmt.f(_("Fly to {planet} ({system} system) with the movement keys ({accelkey}, {leftkey}, {reversekey}, {rightkey}) or with mouse flight (enabled with {mouseflykey})"),
          {planet=start_planet:name(), system=missys:name(),
-            accelkey=naev.keyGet("accel"), leftkey=naev.keyGet("left"),
-            reversekey=naev.keyGet("reverse"), rightkey=naev.keyGet("right"),
-            mouseflykey=naev.keyGet("mousefly")}),
+            accelkey=naik.keyGet("accel"), leftkey=naik.keyGet("left"),
+            reversekey=naik.keyGet("reverse"), rightkey=naik.keyGet("right"),
+            mouseflykey=naik.keyGet("mousefly")}),
       fmt.f(_("Land on {planet} ({system} system) by double-clicking on it"),
          {planet=start_planet:name(), system=missys:name()}),
    }

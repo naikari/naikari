@@ -130,7 +130,7 @@ function approach()
       addMiscLog(fmt.f(misn_log,
             {planet=misplanet:name(), system=missys:name()}))
 
-      naev.missionStart("Tutorial Part 3")
+      naik.missionStart("Tutorial Part 3")
       misn.finish(true)
    else
       tk.msg("", reminder_text)

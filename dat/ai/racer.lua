@@ -46,7 +46,7 @@ function idle()
          local pnt = ai.planetfrompos(mem.race_land_dest:pos())
          ai.pushtask("land", pnt:pos())
 
-         naev.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
+         naik.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
       elseif mem.race_next_point > #mem.race_points then
          -- Next lap.
          mem.race_next_point = 1
@@ -55,12 +55,12 @@ function idle()
          local pos = mem.race_points[mem.race_next_point][1]
          ai.pushtask("moveto_race", pos)
 
-         naev.hookTrigger("race_racer_next_lap", p, mem.race_current_lap)
+         naik.hookTrigger("race_racer_next_lap", p, mem.race_current_lap)
       else
          local pos = mem.race_points[mem.race_next_point][1]
          ai.pushtask("moveto_race", pos)
 
-         naev.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
+         naik.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
       end
    else
       ai.pushtask("moveto_race", pos)

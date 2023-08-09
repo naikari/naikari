@@ -60,7 +60,7 @@ end
 -- Triggered when the player hails the ship
 function hail()
     player.commClose()
-    naev.missionStart("Baron")
+    naik.missionStart("Baron")
     evt.finish(true)
 end
 

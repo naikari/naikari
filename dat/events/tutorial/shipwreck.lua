@@ -83,7 +83,7 @@ function rescue(p, boarder)
     end
     -- Player boards the shipwreck and rescues the crew, this spawns a new mission.
     hook.rm(bctimer)
-    naev.missionStart("The Space Family")
+    naik.missionStart("The Space Family")
     evt.finish()
 end
 

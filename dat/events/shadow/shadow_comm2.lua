@@ -26,7 +26,7 @@ end
 
 
 function timer()
-    naev.missionStart("Dark Shadow")
+    naik.missionStart("Dark Shadow")
     evt.finish()
 end
 

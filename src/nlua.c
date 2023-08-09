@@ -28,7 +28,7 @@
 #include "nlua_faction.h"
 #include "nlua_file.h"
 #include "nlua_jump.h"
-#include "nlua_naev.h"
+#include "nlua_naik.h"
 #include "nlua_news.h"
 #include "nlua_outfit.h"
 #include "nlua_pilot.h"
@@ -280,9 +280,9 @@ nlua_env nlua_newEnv(int rw) {
    lua_setfield(naevL, -2, "__debugging");
 #endif /* DEBUGGING */
 
-   /* Set up naev namespace. */
+   /* Set up naik namespace. */
    lua_newtable(naevL);
-   lua_setfield(naevL, -2, "naev");
+   lua_setfield(naevL, -2, "naik");
 
    lua_pop(naevL, 1);
    return ref;
@@ -360,12 +360,13 @@ void nlua_register(nlua_env env, const char *libname,
          lua_setfield(naevL,-2,"__index");
       }
       luaL_register(naevL, NULL, l);
-   }                                /* lib */
-   nlua_getenv(env, "naev");        /* lib, naev */
-   lua_pushvalue(naevL, -2);        /* lib, naev, lib */
-   lua_setfield(naevL, -2, libname);/* lib, naev */
-   lua_pop(naevL, 1);               /* lib  */
-   nlua_setenv(env, libname);       /* */
+   }
+   /* lib */
+   nlua_getenv(env, "naik"); /* lib, naik */
+   lua_pushvalue(naevL, -2); /* lib, naik, lib */
+   lua_setfield(naevL, -2, libname); /* lib, naik */
+   lua_pop(naevL, 1); /* lib  */
+   nlua_setenv(env, libname);
 }
 
 
@@ -591,7 +592,7 @@ static int nlua_require( lua_State* L )
  * @brief Loads the standard Naev Lua API.
  *
  * Loads the modules:
- *  - naev
+ *  - naik
  *  - var
  *  - space
  *    - planet

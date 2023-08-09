@@ -64,6 +64,6 @@ function create()
 end
 
 function timer_tutorial()
-   naev.missionStart("Tutorial")
+   naik.missionStart("Tutorial")
    evt.finish(true)
 end

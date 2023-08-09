@@ -114,7 +114,7 @@ function accept()
 
       local osd_desc = {
          fmt.f(_("Follow Ian Structure by left-clicking on his ship and then pressing {followkey}, then wait for Ian Structure to jump to {system}"),
-            {followkey=naev.keyGet("follow"), system=missys:name()}),
+            {followkey=naik.keyGet("follow"), system=missys:name()}),
          fmt.f(_("Jump to {system}"), {system=missys:name()}),
          fmt.f(_("Follow Ian Structure and wait for him to land on {planet}"),
             {planet=misplanet:name()}),

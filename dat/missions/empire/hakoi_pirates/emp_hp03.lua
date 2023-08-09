@@ -193,7 +193,7 @@ function approach()
          {destsys=missys:name(), startplanet=startpla:name(),
             startsys=startsys:name()}))
 
-   naev.missionStart("Hakoi Needs House Dvaered")
+   naik.missionStart("Hakoi Needs House Dvaered")
 
    misn.finish(true)
 end

@@ -53,7 +53,7 @@ function hail(p)
     hook.rm(hailhook)
     vendetta:control(false)
 
-    naev.missionStart("Shadow Vigil")
+    naik.missionStart("Shadow Vigil")
     evt.finish()
 end
 

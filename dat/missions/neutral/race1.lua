@@ -354,7 +354,7 @@ function racer_idle(p)
          -- Final step.
          p:land(mem.race_land_dest)
 
-         naev.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
+         naik.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
       elseif mem.race_next_point > #mem.race_points then
          -- Next lap.
          mem.race_next_point = 1
@@ -363,12 +363,12 @@ function racer_idle(p)
          local pos = mem.race_points[mem.race_next_point][1]
          p:moveto(pos, false)
 
-         naev.hookTrigger("race_racer_next_lap", p, mem.race_current_lap)
+         naik.hookTrigger("race_racer_next_lap", p, mem.race_current_lap)
       else
          local pos = mem.race_points[mem.race_next_point][1]
          p:moveto(pos, false)
 
-         naev.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
+         naik.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
       end
    else
       p:moveto(pos, false)

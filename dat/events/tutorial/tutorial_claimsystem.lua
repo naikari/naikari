@@ -19,7 +19,7 @@
 function create()
    if evt.claim(system.cur()) then
       if player.misnActive("Combat Practice") then
-         naev.hookTrigger("tutcombat_start")
+         naik.hookTrigger("tutcombat_start")
       end
    end
 

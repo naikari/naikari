@@ -422,7 +422,7 @@ function enter()
 
             -- Trigger a hook to allow missions to do things with the
             -- escorts.
-            naev.hookTrigger("escort_spawn", edata.pilot)
+            naik.hookTrigger("escort_spawn", edata.pilot)
          else
             edata.alive = false
          end

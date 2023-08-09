@@ -103,7 +103,7 @@ function boardFLF(p, boarder)
     hook.rm(timerFLF)
     hook.rm(timerDV)
     player.unboard()
-    naev.missionStart("Deal with the FLF agent") 
+    naik.missionStart("Deal with the FLF agent")
     boarded = true
 end
 
@@ -127,7 +127,7 @@ function boardDV(p, boarder)
     hook.rm(timerDV)
     hook.rm(timerFLF)
     player.unboard()
-    naev.missionStart("Take the Dvaered crew home") 
+    naik.missionStart("Take the Dvaered crew home")
     boarded = true
 end
 

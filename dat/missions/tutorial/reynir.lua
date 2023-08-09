@@ -140,7 +140,7 @@ function takeoff_timer()
 
    local osd_msg = {
       fmt.f(_("Press {local_jump_key} to initiate an escape jump\nDo not leave the {system} system"),
-         {local_jump_key=naev.keyGet("local_jump"),
+         {local_jump_key=naik.keyGet("local_jump"),
             system=misn_base_sys:name()}),
       fmt.f(_("Land on {planet} ({system} system)"),
          {planet=misn_base:name(), system=misn_base_sys:name()}),

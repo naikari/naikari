@@ -107,7 +107,7 @@ function accept ()
             fmt.f(_("Fly to the {system} system"), {system=cursys:name()}),
             _("Disable Gawain Credence by using non-lethal weaponry (such as ion cannons, Medusa missiles, or a weapons ionizer)"),
             fmt.f(_("Board Gawain Credence by double-clicking on it or by targeting it and pressing {board_key}"),
-                {board_key=naev.keyGet("board")}),
+                {board_key=naik.keyGet("board")}),
             fmt.f(_("Land on {planet} ({system} system)"),
                 {planet=curplanet:name(), system=cursys:name()}),
         }

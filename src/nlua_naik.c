@@ -3,9 +3,9 @@
  */
 
 /**
- * @file nlua_naev.c
+ * @file nlua_naik.c
  *
- * @brief Contains Naev generic Lua bindings.
+ * @brief Contains Naikari generic Lua bindings.
  */
 
 /** @cond */
@@ -14,7 +14,7 @@
 #include "naev.h"
 /** @endcond */
 
-#include "nlua_naev.h"
+#include "nlua_naik.h"
 
 #include "hook.h"
 #include "input.h"
@@ -30,51 +30,51 @@
 static int cache_table = LUA_NOREF; /* No reference. */
 
 
-/* Naev methods. */
-static int naevL_version( lua_State *L );
-static int naevL_language(lua_State *L);
-static int naevL_lastplayed( lua_State *L );
-static int naevL_ticks( lua_State *L );
-static int naevL_keyGet( lua_State *L );
-static int naevL_keyEnable( lua_State *L );
-static int naevL_keyEnableAll( lua_State *L );
-static int naevL_keyDisableAll( lua_State *L );
-static int naevL_eventStart( lua_State *L );
-static int naevL_missionStart( lua_State *L );
-static int naevL_hookTrigger(lua_State *L);
-static int naevL_conf( lua_State *L );
-static int naevL_cache( lua_State *L );
-static const luaL_Reg naev_methods[] = {
-   {"version", naevL_version},
-   {"language", naevL_language},
-   {"lastplayed", naevL_lastplayed},
-   {"ticks", naevL_ticks},
-   {"keyGet", naevL_keyGet},
-   {"keyEnable", naevL_keyEnable},
-   {"keyEnableAll", naevL_keyEnableAll},
-   {"keyDisableAll", naevL_keyDisableAll},
-   {"eventStart", naevL_eventStart},
-   {"missionStart", naevL_missionStart},
-   {"hookTrigger", naevL_hookTrigger},
-   {"conf", naevL_conf},
-   {"cache", naevL_cache},
+/* Naikari methods. */
+static int naikL_version(lua_State *L);
+static int naikL_language(lua_State *L);
+static int naikL_lastplayed(lua_State *L);
+static int naikL_ticks(lua_State *L);
+static int naikL_keyGet(lua_State *L);
+static int naikL_keyEnable(lua_State *L);
+static int naikL_keyEnableAll(lua_State *L);
+static int naikL_keyDisableAll(lua_State *L);
+static int naikL_eventStart(lua_State *L);
+static int naikL_missionStart(lua_State *L);
+static int naikL_hookTrigger(lua_State *L);
+static int naikL_conf(lua_State *L);
+static int naikL_cache(lua_State *L);
+static const luaL_Reg naik_methods[] = {
+   {"version", naikL_version},
+   {"language", naikL_language},
+   {"lastplayed", naikL_lastplayed},
+   {"ticks", naikL_ticks},
+   {"keyGet", naikL_keyGet},
+   {"keyEnable", naikL_keyEnable},
+   {"keyEnableAll", naikL_keyEnableAll},
+   {"keyDisableAll", naikL_keyDisableAll},
+   {"eventStart", naikL_eventStart},
+   {"missionStart", naikL_missionStart},
+   {"hookTrigger", naikL_hookTrigger},
+   {"conf", naikL_conf},
+   {"cache", naikL_cache},
    {0, 0}
-}; /**< Naev Lua methods. */
+}; /**< Naikari Lua methods. */
 
 
 /**
- * @brief Loads the Naev Lua library.
+ * @brief Loads the Naikari Lua library.
  *
  *    @param env Lua environment.
  *    @return 0 on success.
  */
 int nlua_loadNaev( nlua_env env )
 {
-   nlua_register(env, "naev", naev_methods, 0);
+   nlua_register(env, "naik", naik_methods, 0);
 
    /* Create cache. */
    if (cache_table == LUA_NOREF) {
-      lua_newtable( naevL );
+      lua_newtable(naevL);
       cache_table = luaL_ref(naevL, LUA_REGISTRYINDEX);
    }
 
@@ -82,21 +82,21 @@ int nlua_loadNaev( nlua_env env )
 }
 
 /**
- * @brief Naev generic Lua bindings.
+ * @brief Naikari generic Lua bindings.
  *
- * @luamod naev
+ * @luamod naik
  */
 
 /**
- * @brief Gets the version of Naev and the save game.
+ * @brief Gets the version of Naikari and the save game.
  *
- * @usage game_version, save_version = naev.version()
+ * @usage game_version, save_version = naik.version()
  *
  *    @luatreturn game_version The version of the game.
  *    @luatreturn save_version Version of current loaded save or nil if not loaded.
  * @luafunc version
  */
-static int naevL_version( lua_State *L )
+static int naikL_version(lua_State *L)
 {
    lua_pushstring( L, naev_version(0) );
    if (player.loaded_version==NULL)
@@ -114,7 +114,7 @@ static int naevL_version( lua_State *L )
  *       English, "de" for German, or "ja" for Japanese).
  * @luafunc language
  */
-static int naevL_language(lua_State *L)
+static int naikL_language(lua_State *L)
 {
    lua_pushstring(L, gettext_getLanguage());
    return 1;
@@ -122,12 +122,12 @@ static int naevL_language(lua_State *L)
 
 
 /**
- * @brief Gets how many days it has been since the player last played Naev.
+ * @brief Gets how many days it has been since the player last played.
  *
  *    @luatreturn number Number of days since the player last played.
  * @luafunc lastplayed
  */
-static int naevL_lastplayed( lua_State *L )
+static int naikL_lastplayed(lua_State *L)
 {
    double d = difftime( time(NULL), player.last_played );
    lua_pushnumber(L, d/(3600.*24.)); /*< convert to days */
@@ -143,7 +143,7 @@ static int naevL_lastplayed( lua_State *L )
  *    @luatreturn number The SDL ticks since the application started running.
  * @luafunc ticks
  */
-static int naevL_ticks( lua_State *L )
+static int naikL_ticks(lua_State *L)
 {
    lua_pushinteger(L, SDL_GetTicks());
    return 1;
@@ -153,12 +153,12 @@ static int naevL_ticks( lua_State *L )
 /**
  * @brief Gets a human-readable name for the key bound to a function.
  *
- * @usage bindname = naev.keyGet( "accel" )
+ * @usage bindname = naik.keyGet("accel")
  *
  *    @luatparam string keyname Name of the keybinding to get value of. Valid values are listed in src/input.c: keybind_info.
  * @luafunc keyGet
  */
-static int naevL_keyGet( lua_State *L )
+static int naikL_keyGet(lua_State *L)
 {
    const char *keyname;
    char buf[128];
@@ -178,12 +178,12 @@ static int naevL_keyGet( lua_State *L )
  *
  * Use with caution, this can make the player get stuck.
  *
- * @usage naev.keyEnable( "accel", false ) -- Disables the acceleration key
+ * @usage naik.keyEnable("accel", false) -- Disables the acceleration key
  *    @luatparam string keyname Name of the key to disable (for example "accel").
  *    @luatparam[opt=false] boolean enable Whether to enable or disable.
  * @luafunc keyEnable
  */
-static int naevL_keyEnable( lua_State *L )
+static int naikL_keyEnable(lua_State *L)
 {
    const char *key;
    int enable;
@@ -202,10 +202,10 @@ static int naevL_keyEnable( lua_State *L )
 /**
  * @brief Enables all inputs.
  *
- * @usage naev.keyEnableAll() -- Enables all inputs
+ * @usage naik.keyEnableAll() -- Enables all inputs
  * @luafunc keyEnableAll
  */
-static int naevL_keyEnableAll( lua_State *L )
+static int naikL_keyEnableAll(lua_State *L)
 {
    NLUA_CHECKRW(L);
    input_enableAll();
@@ -216,10 +216,10 @@ static int naevL_keyEnableAll( lua_State *L )
 /**
  * @brief Disables all inputs.
  *
- * @usage naev.keyDisableAll() -- Disables all inputs
+ * @usage naik.keyDisableAll() -- Disables all inputs
  * @luafunc keyDisableAll
  */
-static int naevL_keyDisableAll( lua_State *L )
+static int naikL_keyDisableAll(lua_State *L)
 {
    NLUA_CHECKRW(L);
    input_disableAll();
@@ -230,12 +230,12 @@ static int naevL_keyDisableAll( lua_State *L )
 /**
  * @brief Starts an event, does not start check conditions.
  *
- * @usage naev.eventStart( "Some Event" )
+ * @usage naik.eventStart("Some Event")
  *    @luatparam string evtname Name of the event to start.
  *    @luatreturn boolean true on success.
  * @luafunc eventStart
  */
-static int naevL_eventStart( lua_State *L )
+static int naikL_eventStart(lua_State *L)
 {
    int ret;
    const char *str;
@@ -259,12 +259,12 @@ static int naevL_eventStart( lua_State *L )
 /**
  * @brief Starts a mission, does no check start conditions.
  *
- * @usage naev.missionStart( "Some Mission" )
+ * @usage naik.missionStart("Some Mission")
  *    @luatparam string misnname Name of the mission to start.
  *    @luatreturn boolean true on success.
  * @luafunc missionStart
  */
-static int naevL_missionStart( lua_State *L )
+static int naikL_missionStart(lua_State *L)
 {
    int ret;
    const char *str;
@@ -300,7 +300,7 @@ static int naevL_missionStart( lua_State *L )
  * @luasee hook.custom
  * @luafunc hookTrigger
  */
-static int naevL_hookTrigger(lua_State *L)
+static int naikL_hookTrigger(lua_State *L)
 {
    const int param_pos = 2; /**< Position of the first hook param. */
    int i, n;
@@ -381,7 +381,7 @@ lua_rawset( L, -3 )
  *    @luatreturn table Table of configuration values as they appear in the configuration file.
  * @luafunc conf
  */
-static int naevL_conf( lua_State *L )
+static int naikL_conf(lua_State *L)
 {
    lua_newtable(L);
    PUSH_STRING( L, "data", conf.ndata );
@@ -446,12 +446,12 @@ static int naevL_conf( lua_State *L )
  * @brief Gets the global Lua runtime cache. This is shared among all
  * environments and is cleared when the game is closed.
  *
- * @usage c = naev.cache()
+ * @usage c = naik.cache()
  *
  *    @luatreturn table The Lua global cache.
  * @luafunc cache
  */
-static int naevL_cache( lua_State *L )
+static int naikL_cache(lua_State *L)
 {
    lua_rawgeti( L, LUA_REGISTRYINDEX, cache_table );
    return 1;

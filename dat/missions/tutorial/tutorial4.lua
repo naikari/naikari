@@ -107,11 +107,11 @@ function accept()
       local osd_desc = {
          _("Fly into space"),
          fmt.f(_("Press {starmapkey} to open your starmap"),
-            {starmapkey=naev.keyGet("starmap")}),
+            {starmapkey=naik.keyGet("starmap")}),
          fmt.f(_("Select {system} by clicking on it in your starmap, then click \"Autonav\" and wait for Autonav to fly you there"),
             {system=missys:name()}),
          fmt.f(_("Press {target_hostile_key} to target the hostile ship"),
-            {target_hostile_key=naev.keyGet("target_hostile")}),
+            {target_hostile_key=naik.keyGet("target_hostile")}),
          _("Destroy the Pirate Hyena"),
          fmt.f(_("Land on {planet} ({system} system)"),
             {planet=misplanet:name(), system=missys:name()}),
