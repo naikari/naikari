@@ -17,9 +17,6 @@ local portrait = require "portrait"
 require "jumpdist"
 
 
--- Factions which will not get generic "Civilian" NPCs.
-nongeneric_factions = {"Pirate", "FLF", "Thurion", "Proteron"}
-
 -- Special names for certain factions' civilian NPCs (to replace the
 -- generic "{faction} Civilian" naming normally used).
 civ_name = {
@@ -181,12 +178,6 @@ NPC messages. Each is a table with the following keys:
 messages = {
    {
       text = {
-         _("\"Are you trading commodities? You can hold down #bctrl#0 to buy 50 of them at a time, and #bshift#0 to buy 100. And if you press them both at once, you can buy 500 at a time! You can actually do that with outfits too, but why would you want to buy 50 laser cannons?\""),
-         _([["If you're on a mission you just can't beat, you can open the ship computer and abort the mission. There's no penalty for doing it, so don't hesitate to try the mission again later."]]),
-         _([["The '¢' symbol is the official galactic symbol for credits. Supposedly it comes from the currency symbol of an ancient Earth civilization. It's usually expressed with SI prefixes: 'k¢' for thousands of credits, 'M¢' for millions of credits, and so on."]]),
-         _([["These computer symbols can be confusing sometimes! I've figured it out, thô: #F+#0 means friendly, #N~#0 means neutral, #H!!#0 means hostile, #R*#0 means restricted, and #I=#0 means uninhabited but landable."]]),
-         _([["I just found out why launchers have their mass listed as a range rather than a single number. It's because of the ammo. The smaller number is what it weighs if you're out of ammo, and the bigger number is what it weighs when your ammo is full."]]),
-         _([["Those new combat practice missions in the mission computer are real handy! You can even fight against Proteron ship look-alikes, but don't be fooled; they're not the real deal."]]),
          _([["I'm still not used to the randomly exploding asteroids. You'll just be passing thru an asteroid field, minding your own business, and then boom! The asteroid blows up. I wonder why they do that."]]),
          _([["I wonder if we're really alone in the universe. We've never discovered alien life, but maybe we just haven't looked hard enough."]]),
       },
@@ -387,7 +378,7 @@ used_messages = {}
 
 
 function create()
-   local num_npc = rnd.rnd(4, 14)
+   local num_npc = rnd.rnd(1, 4)
    npcs = {}
    for i = 0, num_npc do
       spawnNPC()
@@ -409,23 +400,9 @@ function spawnNPC()
    -- Select a faction for the NPC. NPCs may not have a specific faction.
    local npcname = _("Civilian")
 
-   local nongeneric = false
-
    local f = planet.cur():faction()
    local planfaction = f ~= nil and f:nameRaw() or nil
-   local fac = nil
-   if planfaction ~= nil then
-      for i, j in ipairs(nongeneric_factions) do
-         if j == planfaction then
-            nongeneric = true
-            break
-         end
-      end
-
-      if nongeneric or rnd.rnd() < 0.5 then
-         fac = planfaction
-      end
-   end
+   local fac = planfaction
 
    -- Append the faction to the civilian name, unless there is no faction.
    if fac ~= nil then
@@ -454,12 +431,7 @@ function spawnNPC()
    local r = rnd.rnd()
    local msg
    local func = nil
-   if r < 0.2 then
-      -- Jump point message.
-      msg, func = getRewardMessage(fac)
-   else
-      msg = getMessage(fac)
-   end
+   msg, func = getRewardMessage(fac)
    local npcdata = {msg=msg, func=func}
 
    id = evt.npcAdd("talkNPC", npcname, image, desc, 100)
@@ -719,17 +691,11 @@ end
 
 function getGiveCargoMessage(fac)
    local msg_cargo = {
-      _([["Hey, you have a ship, right? See, I have some {cargo} that I need to get rid of, but this place doesn't have commodities available, so I can't sell it here. Would you like to take it off my hands?"]]),
-      _([["Ah, another pilot! Perfect! See, I have some {cargo} on my ship. I need to get rid of it to free up some space, but they don't have commodity trading here, so if I can't get someone to take it, it'll just have to go to waste disposal or I'll have to jettison it into space, which would be such a waste. Would you like the {cargo}?"]]),
+      _([["Hey, you have a ship, right? I have some {cargo} that I need to get rid of. Would you like to take it off my hands?"]]),
+      _([["Ah, a pilot! Perfect! See, I have some {cargo} in storage and I need to get rid of it to free up some space. No charge, you can just have it for free. Would you like the {cargo}?"]]),
    }
 
    local fallback_msg = getMessage(fac)
-
-   if planet.cur():services().commodity then
-      -- Don't spawn this if there's commodity trading available here.
-      return fallback_msg, nil
-   end
-
    local commodities = commodity.getStandard()
    local commodity = commodities[rnd.rnd(1, #commodities)]
    local amount = rnd.rnd(10, 30)
@@ -760,11 +726,7 @@ end
 -- Selects an eligible reward message and returns the message string
 -- and approach function.
 function getRewardMessage(fac)
-   local funcs = {"getJmpMessage"}
-
-   if not planet.cur():services().commodity then
-      table.insert(funcs, "getGiveCargoMessage")
-   end
+   local funcs = {"getJmpMessage", "getGiveCargoMessage"}
 
    return _G[funcs[rnd.rnd(1, #funcs)]]()
 end

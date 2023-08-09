@@ -140,7 +140,7 @@ end
 
 function land()
    if planet.cur() == misplanet and not job_done then
-      misn.npcAdd("approach", _("Civilian"), portrait.get(),
+      misn.npcAdd("approach", _("Imperial Civilian"), portrait.get(),
             _("You see an exhausted civilian sipping a drink while grumbling about the Empire and pirates."),
             100)
    elseif planet.cur() == startpla and job_done then
