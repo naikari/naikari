@@ -21,10 +21,8 @@
    <land/>
    <refuel/>
    <bar/>
-   <missions/>
    <commodity/>
    <outfits/>
-   <shipyard/>
   </services>
   <commodities/>
   <description>Deep within Empire space, Em 5 is a quiet world. Few would have ranked it highly in the spectrum of galactic politics, yet after the Incident it gained notability when it became a temporary refuge of the Emperor. In the time since, it's become a popular place for the aristocracy to meet.</description>
@@ -32,8 +30,5 @@
  </general>
  <tech>
   <item>Common Outfits</item>
-  <item>Small Laser</item>
-  <item>Small Low Outfits</item>
-  <item>Couriers</item>
  </tech>
 </asset>
