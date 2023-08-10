@@ -56,6 +56,11 @@
   placed stationary pilots, you now pass thru a random set of planets
   and/or jump points for a certain number of laps.
 * Hilighted pilots no longer come with a text label.
+* Civilian NPCs are now smaller in number, but much more likely to give
+  rewards.
+* Reduced the number of services on introductory worlds, to more
+  gradually introduce planetary services to new players.
+* Clicking on empty space now clears the current target.
 
 ## 0.9.0
 
