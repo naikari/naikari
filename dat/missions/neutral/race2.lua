@@ -9,9 +9,6 @@
    and planet.cur():class() ~= "3"
    and system.cur():presence("Civilian") &gt; 0
    and system.cur():presence("Pirate") &lt;= 0
-   and (player.misnDone("Empire Recruitment")
-      or (system.cur() ~= system.get("Hakoi")
-         and system.cur() ~= system.get("Eneguoz")))
   </cond>
   <done>Racing Skills 1</done>
   <chance>20</chance>
@@ -28,10 +25,10 @@
 </mission>
 --]]
 --[[
-   --
-   -- MISSION: Racing Skills 2
-   -- DESCRIPTION: A person asks you to join a race, where you fly to various checkpoints and board them before landing back at the starting planet
-   --
+
+   MISSION: Racing Skills 2
+   DESCRIPTION: The player joins a race sponsored by Melendez.
+
 --]]
 
 local fmt = require "fmt"
@@ -40,300 +37,418 @@ local pilotname = require "pilotname"
 local portrait = require "portrait"
 
 
-ask_text = _([["Hey there, it looks like you've participated in our races before. Great to see you back! You want to have another race?"]])   
+local ask_text = _([["Hello there! Are you interested in participating in the upcoming race, sponsored by Melendez Corporation? All participants are paid {credits} for participating, and there are magnificant prizes if you perform well in the race. You can see the information for the race right here. Would you be interested?"]])
 
-ask_difficulty_text = _([["There are two races you can participate in: a casual one, which is like the races we had before the Melendez sponsorship, or the competitive one one with smaller checkpoints and stronger competition. The casual one has a prize of {casualcredits}, and the competitive one has a prize of {competitivecredits}. Which one do you want to do?"]])
+local yes_text = _([["Fantastic! Please meet the other racers out in space when you're ready. Good luck!"]])
 
-yes_hard_text = _([["You want a challenge huh? We'll all be trying our best, so good luck!"]])
+local win_text = {
+   _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says "Melendez Corporation". "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of {credits}!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money and participation payment on it.]]),
+   _([[A woman in a suit and tie takes you up onto a stage. A large name tag on her jacket says "Melendez Corporation". "Congratulations on your win," she says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of {credits}!" She hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money and participation payment on it.]]),
+}
 
-choice1 = _("Casual")
-choice2 = _("Competitive")
+local secondplace_text = {
+   _([[You congratulate the winner on a great race. While you didn't win the race, you did well to finish in second place. A man in a suit and tie wearing a tag that says "Melendez Corporation" hands you your prize of {credits} alongside your participation payment and congratulates you.]]),
+   _([[You congratulate the winner on a great race. While you didn't win the race, you did well to finish in second place. A woman in a suit and tie wearing a tag that says "Melendez Corporation" hands you your prize of {credits} alongside your participation payment and congratulates you.]]),
+   _([[You congratulate the winner on a great race and collect your prize of {credits} for second place as well as your participation payment.]]),
+}
 
-yes_easy_text = _([["Let's go have some fun then!"]])
+local thirdplace_text = {
+   _([[You congratulate the winner on a great race and collect your prize of {credits} for third place as well as your participation payment.]]),
+}
 
-checkpoint_text = _("Checkpoint {prev} reached. Proceed to Checkpoint {next}.")
+local lose_text = {
+   _([[You congratulate the winner on a great race and collect your participation payment.]]),
+}
 
-checkpoint_final_text = _("Checkpoint {prev} reached. Land on {planet}.")
+local fail_left_text = _([[Because you left the race, you have been disqualified.]])
 
-wintext = _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says 'Melendez Corporation'. "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of {credits}!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money on it.]])
+local NPCname = _("Race Organizer")
+local NPCdesc = _("This seems to be an organizer for a race that's about to take place. If you win the race, you get a prize.")
 
-fail_left_text = _([["Because you left the race, you have been disqualified."]])
+local misndesc = _("You're participating in a race sponsored by Melendez Corporation.")
 
-lose_text = _([[As you congratulate the winner on a great race, the laid back person comes up to you.
+local details_text = _([[
+Checkpoints: {checkpoints}
+Laps: {laps}
+First Place Prize: {credits1}
+Second Place Prize: {credits2}
+Third Place Prize: {credits3}]])
 
-"That was a lot of fun! If you ever have time, let's race again. Maybe you'll win next time!"]])
+local OSDtitle = _("Sponsored Race")
 
-NPCname = _("A laid back person")
-NPCdesc = _("You see a laid back person, who appears to be one of the locals, looking around the bar, apparently in search of a suitable pilot.")
-
-misndesc = _("You're participating in another race!")
-
-OSDtitle = _("Racing Skills")
-OSD = {}
-OSD[1] = _("Board checkpoint 1")
-OSD[2] = _("Board checkpoint 2")
-OSD[3] = _("Board checkpoint 3")
-OSD[4] = _("Land on %s")
-
-chatter = {}
-chatter[1] = _("Let's do this!")
-chatter[2] = _("Wooo!")
-chatter[3] = _("Time to Shake 'n Bake")
-chatter[4] = _("Checkpoint %s baby!")
-chatter[5] = _("Hooyah")
-chatter[6] = _("Next!")
-timermsg = "%s"
-target = {1,1,1,1}
-marketing = _("This race is sponsored by Melendez Corporation. Problem-free ships for problem-free voyages!")
-positionmsg = _("%s just reached checkpoint %s")
-landmsg = _("%s just landed at %s and finished the race")
+local sponsorship_msg = {
+   _("This race is sponsored by Melendez Corporation. Problem-free ships for problem-free voyages!"),
+   _("Get ready for another exciting race, sponsored by the company you trust, Melendez Corporation!"),
+}
 
 
 function create ()
    curplanet, missys = planet.cur()
 
-   -- Must claim the system since player pilot is controlled for a time.
-   if not misn.claim(missys) then
+   -- Only one race is allowed to take place at a time.
+   if not misn.claim("race") then
       misn.finish(false)
    end
 
+   -- Get planets, excluding the current planet, and jumps.
+   local all_planets = missys:planets()
+   local planets = {}
+   for i, pnt in ipairs(all_planets) do
+      if pnt ~= curplanet then
+         planets[#planets + 1] = pnt
+      end
+   end
+   local jumps = missys:jumps()
+
+   -- Define points.
+   local numpoints = math.min(rnd.rnd(3, 5), #planets + #jumps)
+   points = {}
+   points.__save = true
+   while #points < numpoints and #planets + #jumps > 0 do
+      local i = rnd.rnd(1, #planets + #jumps)
+      local point
+      if i <= #planets then
+         local pnt = table.remove(planets, i)
+         points[#points + 1] = {pnt:pos(), pnt:radius()}
+      else
+         local jp = table.remove(jumps, i - #planets)
+         points[#points + 1] = {jp:pos(), 200}
+      end
+   end
+
+   -- Add the current planet as the last point.
+   points[#points + 1] = {curplanet:pos(), curplanet:radius()}
+
+   if #points < 3 then
+      misn.finish(false)
+   end
+
+   -- Calculate total distance.
+   local dist = 0
+   local last_pos = points[#points][1]
+   for i, point in ipairs(points) do
+      local pos = point[1]
+      dist = dist + vec2.dist(last_pos, pos)
+      last_pos = pos
+   end
+
+   -- Choose number of laps.
+   laps = rnd.rnd(2, 5)
+
+   -- Calculate reward.
+   local total_points = laps * #points
+   credits = total_points * 2500
+   credits = credits * (1 + 0.05*rnd.twosigma())
+   prize1 = total_points*5000 + 0.25*dist*(1.75^(laps-1))
+   prize1 = prize1 * (1 + 0.05*rnd.twosigma())
+   prize2 = prize1 / 2
+   prize3 = prize2 / 2
+
+   -- Choose ships.
+   local shipchoices = {
+      "Llama",
+      "Gawain",
+      "Hyena",
+      "Shark",
+      "Lancelot",
+      "Ancestor",
+      "Quicksilver",
+      "Koäla",
+   }
+   ships = {}
+   ships.__save = true
+   for i = 1, 3 do
+      local shiptype = shipchoices[rnd.rnd(1, #shipchoices)]
+      local p = pilot.add(shiptype, "Civilian")
+      local outfits = p:outfits()
+      p:rm()
+      ships[#ships + 1] = {shiptype, outfits}
+   end
+
    misn.setNPC(NPCname, portrait.get(curplanet:faction()), NPCdesc)
-   credits_easy = rnd.rnd(20000, 100000)
-   credits_hard = rnd.rnd(200000, 300000)
 end
 
 
 function accept ()
-   if tk.yesno("", ask_text) then
+   local details = fmt.f(details_text,
+         {checkpoints=fmt.number(#points), laps=fmt.number(laps),
+            credits1=fmt.credits(prize1), credits2=fmt.credits(prize2),
+            credits3=fmt.credits(prize3)})
+   local ask_parts = {
+      fmt.f(ask_text, {credits=fmt.credits(credits)}),
+      details,
+   }
+   if tk.yesno("", table.concat(ask_parts, "\n\n")) then
+      tk.msg("", yes_text)
+
       misn.accept()
-      OSD[4] = string.format(OSD[4], curplanet:name())
+
+      race_started = false
+      next_point = 1
+      current_lap = 1
+      racers_landed = 0
+
       misn.setTitle(OSDtitle)
-      misn.setDesc(misndesc)
-      misn.osdCreate(OSDtitle, OSD)
-      local s = fmt.f(ask_difficulty_text,
-            {casualcredits=fmt.credits(credits_easy),
-               competitivecredits=fmt.credits(credits_hard)})
-      choice, choicetext = tk.choice("", s, choice1, choice2)
-
-      local shipchoices
-      ship_list = {}
-      if choice == 1 then
-         credits = credits_easy
-         shipchoices = {
-            "Llama", "Lancelot", "Koäla", "Quicksilver", "Ancestor",
-         }
-         tk.msg("", yes_easy_text)
-      else
-         credits = credits_hard
-         shipchoices = {
-            "Llama", "Gawain", "Hyena", "Shark", "Quicksilver",
-         }
-         tk.msg("", yes_hard_text)
-      end
-      for i=1,3 do
-         table.insert(ship_list, shipchoices[rnd.rnd(1, #shipchoices)])
-      end
-      ship_list.__save = true
-
+      misn.setDesc(table.concat({misndesc, details}, "\n\n"))
       misn.setReward(fmt.credits(credits))
+
+      gen_osd()
+
       hook.takeoff("takeoff")
    else
       misn.finish()
    end
 end
 
-function takeoff()
-   planetvec = planet.pos(curplanet)
-   misn.osdActive(1) 
-   checkpoint = {}
-   racers = {}
-   local rad = system.cur():radius()
-   local dist1 = rnd.rnd() * rad
-   local angle1 = rnd.rnd() * 2 * math.pi
-   local location1 = vec2.new(dist1 * math.cos(angle1),
-            dist1 * math.sin(angle1))
-   local dist2 = rnd.rnd() * rad
-   local angle2 = rnd.rnd() * 2 * math.pi
-   local location2 = vec2.new(dist2 * math.cos(angle2),
-            dist2 * math.sin(angle2))
-   local dist3 = rnd.rnd() * rad
-   local angle3 = rnd.rnd() * 2 * math.pi
-   local location3 = vec2.new(dist3 * math.cos(angle3),
-            dist3 * math.sin(angle3))
-   local shiptype
-   if choice == 1 then
-      shiptype = "Goddard"
-   else
-      shiptype = "Koäla"
-   end
-   local f = faction.dynAdd(nil, N_("Referee"), nil, {ai="stationary"})
-   checkpoint[1] = pilot.add(shiptype, f, location1)
-   checkpoint[2] = pilot.add(shiptype, f, location2)
-   checkpoint[3] = pilot.add(shiptype, f, location3)
-   for i, p in ipairs(checkpoint) do
-      p:rename(string.format(n_("Checkpoint %d", "Checkpoint %d", i), i))
-      p:setHilight()
-      p:setInvincible()
-      p:setActiveBoard()
-      p:setVisible()
-      p:setNoClear()
-   end
-   for i, s in ipairs(ship_list) do
-      local p = pilot.add(s, "Civilian", curplanet, pilotname.generic())
-      racers[i] = p
 
-      if choice == 2 then
+function gen_osd()
+   local osd_desc = {
+      fmt.f(_("Wait for Race Referee's signal near {planet} ({system} system)"),
+         {planet=curplanet:name(), system=missys:name()}),
+      string.format(n_("Go to Checkpoint %d, indicated on overlay map",
+            "Go to Checkpoint %d, indicated on overlay map", next_point),
+         next_point),
+      fmt.f(n_("Lap {current_lap:d}/{total_laps:d}",
+            "Lap {current_lap:d}/{total_laps:d}", current_lap),
+         {current_lap=current_lap, total_laps=laps}),
+      fmt.f(_("Land on {planet} ({system} system)"),
+         {planet=curplanet:name(), system=missys:name()}),
+   }
+   misn.osdCreate(OSDtitle, osd_desc)
+
+   if race_started then
+      system.mrkRm(mark)
+      if current_lap >= laps and next_point >= #points then
+         misn.osdActive(4)
+         misn.markerAdd(missys, "high", curplanet)
+      else
+         misn.osdActive(2)
+         local pos = points[next_point][1]
+         mark = system.mrkAdd(
+            string.format(n_("Checkpoint %d", "Checkpoint %d", next_point),
+               next_point),
+            pos)
+      end
+   elseif not player.isLanded() then
+      system.mrkRm(mark)
+      local ppos = player.pilot():pos()
+      local pos, radius = table.unpack(points[#points])
+      if vec2.dist(ppos, pos) > radius then
+         mark = system.mrkAdd(_("Starting Point"), pos)
+      else
+         local pos = points[next_point][1]
+         mark = system.mrkAdd(
+            string.format(n_("Checkpoint %d", "Checkpoint %d", next_point),
+               next_point),
+            pos)
+      end
+   end
+end
+
+
+function get_checkpoint_msg(pilot_name, checkpoint)
+   local msg_list = {
+      _("{pilot} makes it to the next checkpoint!"),
+      n_("{pilot} zooms thru Checkpoint {checkpoint:d}!",
+         "{pilot} zooms thru Checkpoint {checkpoint:d}!", checkpoint),
+      n_("{pilot} just made it to Checkpoint {checkpoint:d}, folks!",
+         "{pilot} just made it to Checkpoint {checkpoint:d}, folks!",
+         checkpoint),
+   }
+   return fmt.f(msg_list[rnd.rnd(1, #msg_list)],
+         {pilot=pilot_name, checkpoint=checkpoint})
+end
+
+
+function get_lap_msg(pilot_name, lap)
+   local msg_list = {
+      n_("{pilot} zooms thru the starting point and starts lap {lap:d}!",
+         "{pilot} zooms thru the starting point and starts lap {lap:d}!", lap),
+      n_("{pilot} just started lap {lap:d}, folks!",
+         "{pilot} just started lap {lap:d}, folks!", lap),
+   }
+   return fmt.f(msg_list[rnd.rnd(1, #msg_list)], {pilot=pilot_name, lap=lap})
+end
+
+
+function takeoff()
+   gen_osd()
+
+   local f = faction.dynAdd(nil, N_("Referee"), nil, {ai="stationary"})
+   local angle = rnd.rnd() * 2 * math.pi
+   local radius = 3 * curplanet:radius()
+   local pos = (curplanet:pos()
+         + vec2.new(math.cos(angle) * radius, math.sin(angle) * radius))
+   referee = pilot.add("Mule", f, pos, _("Race Referee"))
+   referee:setInvincible()
+   referee:setVisible()
+   referee:setNoClear()
+   referee:broadcast(sponsorship_msg[rnd.rnd(1, #sponsorship_msg)])
+
+   local face_target = points[1][1]
+   racers = {}
+   for i, t in ipairs(ships) do
+      local shiptype, outfits = table.unpack(t)
+      local p = pilot.add(shiptype, "Civilian", curplanet, pilotname.generic(),
+            {ai="racer"})
+
+      if outfits ~= nil then
          p:outfitRm("all")
          p:outfitRm("cores")
-         
-         p:outfitAdd("Milspec Prometheus 2203 Core System")
-         p:outfitAdd("Unicorp D-2 Light Plating")
-         local en_choices = {
-            "Nexus Dart 150 Engine", "Tricon Zephyr Engine" }
-         p:outfitAdd(en_choices[rnd.rnd(1, #en_choices)])
-         if rnd.rnd() < 0.5 then
-            p:outfitAdd("Improved Stabilizer")
+         for j, o in ipairs(outfits) do
+            p:outfitAdd(o)
          end
-         p:outfitAdd("Engine Reroute", 6)
       end
 
-      p:setInvincible()
+      p:setInvincPlayer()
       p:setVisible()
+      p:setHilight()
       p:setNoClear()
       p:control()
-      p:face(checkpoint[1]:pos(), true)
-      p:broadcast(chatter[i])
+      p:face(face_target, true)
+
+      local mem = p:memory()
+      mem.race_points = points
+      mem.race_laps = laps
+      mem.race_next_point = next_point
+      mem.race_current_lap = current_lap
+      mem.race_land_dest = curplanet
+
+      hook.pilot(p, "land", "racer_land")
+      hook.pilot(p, "jump", "racer_jump")
+
+      racers[#racers + 1] = p
    end
 
-   local pp = player.pilot()
-   pp:setInvincible()
-   pp:control()
-   pp:face(checkpoint[1]:pos(), true)
-
-   countdown = 5 -- seconds
-   omsg = player.omsgAdd(timermsg:format(countdown), 0, 50)
-   counting = true
-   counterhook = hook.timer(1, "counter")    
-   hook.board("board")
-   hook.jumpin("jumpin")
+   countdown_hook = hook.timer(3, "timer_ready")
+   hook.timer(1/20, "timer_check_status")
+   hook.custom("race_racer_next_point", "racer_next_point")
+   hook.custom("race_racer_next_lap", "racer_next_lap")
+   hook.jumpout("jumpout")
    hook.land("land")
 end
 
-function counter()
-   countdown = countdown - 1
-   if countdown == 0 then
-      player.omsgChange(omsg, _("Go!"), 1000)
-      hook.timer(1, "stopcount")
-      local pp = player.pilot()
-      pp:setInvincible(false)
-      pp:control(false)
-      counting = false
-      hook.rm(counterhook)
-      for i, j in ipairs(racers) do
-         j:control()
-         j:moveto(checkpoint[target[i]]:pos())
-         hook.pilot(j, "land", "racerland")
+
+function timer_ready()
+   referee:broadcast(_("Get ready for excitement! Racers, please take your places while I start the countdown."))
+   countdown_hook = hook.timer(3, "timer_countdown", 5)
+end
+
+
+function timer_countdown(count)
+   if count > 0 then
+      referee:broadcast(string.format(p_("race_countdown", "%d…"), count))
+      countdown_hook = hook.timer(1, "timer_countdown", count - 1)
+   else
+      referee:broadcast(p_("race_countdown", "Go!"))
+      race_started = true
+      gen_osd()
+      for i, p in ipairs(racers) do
+         p:control(false)
       end
-      hp1 = hook.pilot(racers[1], "idle", "racer1idle")
-      hp2 = hook.pilot(racers[2], "idle", "racer2idle")
-      hp3 = hook.pilot(racers[3], "idle", "racer3idle")
-      player.msg(marketing)
-      else
-      player.omsgChange(omsg, timermsg:format(countdown), 0)
-      counterhook = hook.timer(1, "counter")    
    end
 end
 
-function racer1idle(p)
-   player.msg(string.format(positionmsg, p:name(),target[1]))
-   p:broadcast(string.format(chatter[4], target[1]))
-   target[1] = target[1] + 1
-   hook.timer(2, "nexttarget1")
-end
-function nexttarget1()
-   if target[1] == 4 then
-      racers[1]:land(curplanet)
-      hook.rm(hp1)
-   else
-      racers[1]:moveto(checkpoint[target[1]]:pos())
-   end
-end
 
-function racer2idle(p)
-   player.msg(string.format(positionmsg, p:name(),target[2]))
-   p:broadcast(chatter[5])
-   target[2] = target[2] + 1
-   hook.timer(2, "nexttarget2")
-end
-function nexttarget2()
-   if target[2] == 4 then
-      racers[2]:land(curplanet)
-      hook.rm(hp2)
-   else
-      racers[2]:moveto(checkpoint[target[2]]:pos())
-   end
-end
-function racer3idle(p)
-   player.msg(string.format(positionmsg, p:name(),target[3]))
-   p:broadcast(chatter[6])
-   target[3] = target[3] + 1
-   hook.timer(2, "nexttarget3")
-end
-function nexttarget3()
-   if target[3] == 4 then
-      racers[3]:land(curplanet)
-      hook.rm(hp3)
-   else
-      racers[3]:moveto(checkpoint[target[3]]:pos())
-   end
-end
-function stopcount()
-   player.omsgRm(omsg)
-end
-function board(ship)
-   player.unboard()
-   for i,j in ipairs(checkpoint) do
-      if ship == j and target[4] == i then
-         ship:setHilight(false)
-         player.msg(string.format(positionmsg, player.name(),target[4]))
-         misn.osdActive(i+1)
-         target[4] = target[4] + 1
-         if target[4] == 4 then
-            tk.msg("", fmt.f(checkpoint_final_text,
-                  {prev=i, planet=curplanet:name()}))
+function timer_check_status()
+   if race_started then
+      -- Record the player's progress thru the race.
+      local npoints = #points
+      local pos, radius = table.unpack(points[next_point])
+      if (current_lap < laps or next_point < npoints)
+            and vec2.dist(player.pos(), pos) <= radius then
+         next_point = next_point + 1
+         if current_lap >= laps and next_point >= npoints then
+            -- Final step.
+            player.msg(fmt.f(_("Land on {planet}."),
+                  {planet=curplanet:name()}))
+         elseif next_point > npoints then
+            -- Next lap.
+            next_point = 1
+            current_lap = current_lap + 1
+            referee:broadcast(get_lap_msg(player.name(), current_lap))
          else
-            tk.msg("", fmt.f(checkpoint_text, {prev=i, next=i+1}))
+            -- Next checkpoint.
+            referee:broadcast(get_checkpoint_msg(player.name(), next_point - 1))
          end
-         break
+         gen_osd()
+      end
+   else
+      -- Check to see if the player has left or re-enterd the start
+      -- point and stop or restart the countdown as needed.
+      local dist = vec2.dist(player.pos(), curplanet:pos())
+      local radius = curplanet:radius()
+      if countdown_hook ~= nil and dist > radius then
+         referee:comm(player.pilot(),
+               fmt.f(_("{player}, I'm sorry, please come back to the starting point."),
+                  {player=player.name()}),
+               true)
+         hook.rm(countdown_hook)
+         countdown_hook = nil
+         gen_osd()
+      elseif countdown_hook == nil and dist <= radius then
+         referee:broadcast(_("Our apologies for the delay. Alright, take your places, racers!"))
+         countdown_hook = hook.timer(3, "timer_countdown", 5)
+         gen_osd()
       end
    end
+
+   hook.timer(1/20, "timer_check_status")
 end
 
 
-function jumpin()
+function racer_land(p, land_planet)
+   local mem = p:memory()
+   if mem.race_next_point < #mem.race_points
+         or mem.race_current_lap < mem.race_laps then
+      return
+   end
+   racers_landed = racers_landed + 1
+   referee:broadcast(fmt.f(_("{pilot} has landed and finished the race!"),
+         {pilot=p:name()}))
+end
+
+
+function racer_jump(p, jp)
+end
+
+
+function racer_next_point(p, point)
+   referee:broadcast(get_checkpoint_msg(p:name(), point))
+end
+
+
+function racer_next_lap(p, lap)
+   referee:broadcast(get_lap_msg(p:name(), lap))
+end
+
+
+function jumpout()
    mh.showFailMsg(_("You left the race."))
    misn.finish(false)
 end
 
 
-function racerland(p)
-   player.msg(string.format(landmsg, p:name(), curplanet:name()))
-end
-
-
 function land()
-   if target[4] == 4 then
-      if racers[1]:exists() and racers[2]:exists() and racers[3]:exists() then
-         tk.msg("", fmt.f(wintext, {credits=fmt.credits(credits)}))
-         player.pay(credits)
-         if choice == 2 then
-            var.push("racing_done", true)
-         end
-         misn.finish(true)
+   if current_lap >= laps and next_point >= #points then
+      -- Consider the mission a "success" even if the player loses.
+      if racers_landed <= 0 then
+         local s = win_text[rnd.rnd(1, #win_text)]
+         tk.msg("", fmt.f(s, {credits=fmt.credits(prize1)}))
+         player.pay(prize1)
+      elseif racers_landed <= 1 then
+         local s = secondplace_text[rnd.rnd(1, #secondplace_text)]
+         tk.msg("", fmt.f(s, {credits=fmt.credits(prize2)}))
+         player.pay(prize2)
+      elseif racers_landed <= 2 then
+         local s = thirdplace_text[rnd.rnd(1, #thirdplace_text)]
+         tk.msg("", fmt.f(s, {credits=fmt.credits(prize3)}))
+         player.pay(prize3)
       else
          tk.msg("", lose_text)
-         misn.finish(false)
       end
+      player.pay(credits)
+      misn.finish(true)
    else
       tk.msg("", fail_left_text)
       misn.finish(false)
@@ -342,10 +457,13 @@ end
 
 
 function abort()
-   if system.cur() == missys then
-      -- Restore control in case it's currently taken away.
-      local pp = player.pilot()
-      pp:setInvincible(false)
-      pp:control(false)
+   system.mrkRm(mark)
+   if racers ~= nil then
+      for i, p in ipairs(racers) do
+         p:setInvincPlayer(false)
+         p:setVisible(false)
+         p:setHilight(false)
+         p:control(false)
+      end
    end
 end

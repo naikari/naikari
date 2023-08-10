@@ -117,7 +117,7 @@ function create ()
    laps = 1
 
    -- Calculate reward.
-   credits = #points*5000 + 0.25*dist*(1.75^(laps-1))
+   credits = #points * 5000
    credits = credits * (1 + 0.05*rnd.twosigma())
 
    misn.setNPC(NPCname, portrait.get(curplanet:faction()), NPCdesc)
