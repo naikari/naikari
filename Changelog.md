@@ -2,8 +2,19 @@
 
 ## 0.10.0
 
-* Imported the shader Naev uses to hilight things; it's now used to
-  hilight the next jump/land destination in missions.
+### Major Changes
+
+* Planets you need to land on and jump points which lead you to systems
+  you need to go to are now hilighted (similar to the way Naev does it,
+  but a little better).
+* Added the "Turret Conversion Module", which enables turning all of a
+  ship's weapons into turrets.
+* Completely overhauled the race missions: instead of boarding randomly
+  placed stationary pilots, you now pass thru a random set of planets
+  and/or jump points for a certain number of laps.
+
+### Other Changes
+
 * Reduced the number of hidden jumps given to the FLF.
 * Removed "hypergates" (which were really just glorified jump points to
   a hub system), since they don't really seem to be all that useful in
@@ -30,8 +41,6 @@
 * Aiming helper crosshair now has an outline.
 * Forward-facing beams now rotate in the same manner as turret beams,
   rather than instantly facing their target.
-* Added the "Turret Conversion Module", which enables turning all of a
-  ship's weapons into turrets.
 * Changed the balancing to give large turrets an inherent advantage over
   large forward-facing weapons, now that forward-facing weapons can be
   easily converted into turrets.
@@ -46,15 +55,10 @@
   "Eye of Chaos" instead of "Eye of Chaös".
 * New saves now include information about what system they're landed on
   in the load screen.
-* Race missions no longer spawn in systems with pirate presence and no
-  longer clear the system of pilots.
 * Fixed some potential for conflicts with the Hitman missions.
 * Removed use of system claims for some missions.
 * Land and Jump keys will now cycle thru targets if already in the
   process of auto-landing / auto-hyperspacing.
-* Completely overhauled the race missions: instead of boarding randomly
-  placed stationary pilots, you now pass thru a random set of planets
-  and/or jump points for a certain number of laps.
 * Hilighted pilots no longer come with a text label.
 * Civilian NPCs are now smaller in number, but much more likely to give
   rewards.
