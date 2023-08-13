@@ -70,11 +70,13 @@ static unsigned int *info_windows = NULL;
 static CstSlotWidget info_eq_weaps;
 static factionId_t *info_factions;
 
+static int map_clicked = 0; /**< Whether the map was just clicked. */
+
 static int selectedLog = 0;
-static int nlogs=0;
-static char **logs=NULL;
-static int *logIDs=NULL;
-static int logWidgetsReady=0;
+static int nlogs = 0;
+static char **logs = NULL;
+static int *logIDs = NULL;
+static int logWidgetsReady = 0;
 
 /*
  * prototypes
@@ -194,9 +196,8 @@ void info_update (void)
 
    weapons_genList(info_windows[INFO_WIN_WEAP]);
 
-   /* Make sure the map is in the proper mode. */
-   map_setMode(MAPMODE_TRAVEL);
-   map_setMinimal(1);
+   mission_menu_genList(info_windows[INFO_WIN_MISN], 0);
+   mission_menu_update(info_windows[INFO_WIN_MISN], NULL);
 }
 
 
@@ -205,7 +206,9 @@ void info_update (void)
  */
 void info_mapTargetSystem(void)
 {
+   map_clicked = 1;
    info_update();
+   map_clicked = 0;
 }
 
 
@@ -1195,38 +1198,107 @@ static void info_openMissions( unsigned int wid )
    /* list */
    mission_menu_genList(wid ,1);
 }
+
+
 /**
  * @brief Creates the current mission list for the mission menu.
  *    @param first 1 if it's the first time run.
  */
 static void mission_menu_genList( unsigned int wid, int first )
 {
-   int i,j;
-   char** misn_names;
+   int i, j, m;
+   char **misn_names;
    int w, h;
+   char *focused;
+   const StarSystem *selected_sys;
+   Mission *misn;
+   int list_pos;
+   int list_offset;
+   int first_hilight;
+   int prev_pos;
+   int hilight;
+   int nmissions;
 
-   if (!first)
-      window_destroyWidget( wid, "lstMission" );
+   /* Save focus. */
+   focused = window_getFocus(wid);
+   list_pos = 0;
+   list_offset = 0;
+
+   if (!first) {
+      list_pos = toolkit_getListPos(wid, "lstMission");
+      list_offset = toolkit_getListOffset(wid, "lstMission");
+      window_destroyWidget(wid, "lstMission");
+   }
+
+   prev_pos = list_pos;
 
    /* Get the dimensions. */
    window_dimWindow( wid, &w, &h );
 
    /* list */
    misn_names = malloc(sizeof(char*) * MISSION_MAX);
-   j = 0;
-   for (i=0; i<MISSION_MAX; i++)
-      if (player_missions[i]->id != 0)
-         misn_names[j++] = (player_missions[i]->title != NULL) ?
-               strdup(player_missions[i]->title) : NULL;
+   first_hilight = -1;
+   selected_sys = map_getSelected();
+   nmissions = 0;
+   for (i=0; i<MISSION_MAX; i++) {
+      if (player_missions[i]->id == 0)
+         continue;
 
-   if (j==0) { /* no missions */
-      misn_names[0] = strdup(_("No Missions"));
-      j = 1;
+      misn = player_missions[i];
+
+      if (selected_sys != NULL) {
+         hilight = 0;
+         for (j=0; j<array_size(misn->markers); j++) {
+            if (misn->markers[j].sys == selected_sys->id) {
+               hilight = 1;
+               break;
+            }
+         }
+      }
+      else {
+         hilight = 1;
+      }
+
+      /* Store list index of this mission. */
+      m = nmissions++;
+
+      if (hilight && (first || map_clicked)) {
+         /* Store the first hilighted index so we can wraparound. */
+         if (first_hilight < 0)
+            first_hilight = m;
+
+         /* Select this mission if it's the next one. */
+         if ((list_pos == prev_pos) && (m > list_pos))
+            list_pos = m;
+      }
+
+      if (misn->title != NULL)
+         asprintf(&misn_names[m], "#%c%s#0", hilight ? 'w' : 'n', misn->title);
+      else
+         misn_names[m] = strdup("NULL");
    }
-   window_addList( wid, 20, -40,
-         300, h-340,
-         "lstMission", misn_names, j, 0, mission_menu_update, NULL );
+
+   /* If selected mission hasn't changed, select the first hilighted
+    * mission. */
+   if ((first_hilight >= 0) && (list_pos == prev_pos))
+      list_pos = first_hilight;
+
+   if (nmissions == 0) {
+      misn_names[0] = strdup(_("No Missions"));
+      nmissions = 1;
+   }
+
+   window_addList(wid, 20, -40, 300, h - 340,
+         "lstMission", misn_names, nmissions, 0, mission_menu_update, NULL);
+
+   /* Restore focus. */
+   window_setFocus(wid, focused);
+   free(focused);
+   toolkit_setListOffset(wid, "lstMission", list_offset);
+   toolkit_setListPos(wid, "lstMission", list_pos);
 }
+
+
 /**
  * @brief Updates the mission menu mission information based on what's selected.
  *    @param str Unused.
@@ -1235,7 +1307,7 @@ static void mission_menu_update( unsigned int wid, char* str )
 {
    (void)str;
    char *active_misn;
-   Mission* misn;
+   Mission *misn;
    char **osd_items;
    int osd_active;
    char buf[STRMAX];
@@ -1312,10 +1384,16 @@ static void mission_menu_update( unsigned int wid, char* str )
    else
       window_disableButtonSoft(wid, "btnAbortMission");
 
-   /* Select the system. */
-   if (misn->markers != NULL)
+   /* Make sure the map is in the proper mode. */
+   map_setMode(MAPMODE_TRAVEL);
+   map_setMinimal(1);
+
+   /* Center map on the selected mission. */
+   if ((misn->markers != NULL) && !map_clicked)
       map_center(system_getIndex(misn->markers[0].sys)->name);
 }
+
+
 /**
  * @brief Aborts a mission in the mission menu.
  *    @param str Unused.

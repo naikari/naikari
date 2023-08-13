@@ -147,7 +147,6 @@ static void misn_close( unsigned int wid, char *name );
 static void misn_accept( unsigned int wid, char* str );
 static void misn_currentList(unsigned int wid, char* str);
 static void misn_genList( unsigned int wid, int first );
-static void misn_activateList(wid_t wid, char* str);
 static void misn_chkMinimal(unsigned int wid, char* str);
 static void misn_update( unsigned int wid, char* str );
 
@@ -838,29 +837,13 @@ static void misn_genList( unsigned int wid, int first )
    }
 
    window_addList(wid, 20, -40, lw, lh,
-         "lstMission", misn_names, m, 0, misn_update, misn_activateList);
+         "lstMission", misn_names, m, 0, misn_update, NULL);
 
    /* Restore focus. */
    window_setFocus(wid, focused);
    free(focused);
    toolkit_setListOffset(wid, "lstMission", list_offset);
    toolkit_setListPos(wid, "lstMission", list_pos);
-}
-
-
-/**
- * @brief Handles mission list double-click.
- *    @param wid Window of the mission computer.
- *    @param str Name of the list causing the event.
- */
-static void misn_activateList(wid_t wid, char* str)
-{
-   Mission *misn;
-
-   /* Center map on the selected mission. */
-   misn = &mission_computer[toolkit_getListPos(wid, str)];
-   if (misn->markers != NULL)
-      map_center(system_getIndex(misn->markers[0].sys)->name);
 }
 
 
@@ -887,21 +870,24 @@ static void misn_update( unsigned int wid, char* str )
    (void) str;
    char *active_misn;
    Mission* misn;
-   char txt[STRMAX], *buf;
-   char tons[STRMAX_SHORT], cred[ECON_CRED_STRLEN];
+   char buf[STRMAX];
+   size_t l;
+   char *time_str;
+   char tons[STRMAX_SHORT];
+   char cred[ECON_CRED_STRLEN];
    int minimal;
 
    /* Update date stuff. */
-   buf = ntime_pretty(0, 2);
+   time_str = ntime_pretty(0, 2);
    tonnes2str(tons, player.p->cargo_free);
    credits2str(cred, player.p->credits, 2);
-   snprintf(txt, sizeof(txt),
+   snprintf(buf, sizeof(buf),
          _("#nDate:#0 %s\n"
             "#nFree Space:#0 %s\n"
             "#nMoney:#0 %s"),
-         buf, tons, cred);
-   free(buf);
-   window_modifyText(wid, "txtDate", txt);
+         time_str, tons, cred);
+   free(time_str);
+   window_modifyText(wid, "txtDate", buf);
 
    active_misn = toolkit_getList( wid, "lstMission" );
    if (strcmp(active_misn,_("No Missions"))==0) {
@@ -915,18 +901,19 @@ static void misn_update( unsigned int wid, char* str )
 
    misn = &mission_computer[toolkit_getListPos(wid, "lstMission")];
    mission_sysComputerHilight(misn);
-   snprintf(txt, sizeof(txt),
-         _("#nReward:#0 %s\n"
-            "\n"
-            "%s"),
-         misn->reward, misn->desc);
-   window_modifyText(wid, "txtDesc", txt);
+   l = scnprintf(buf, sizeof(buf), _("#nReward:#0 %s"), misn->reward);
+   l += scnprintf(&buf[l], sizeof(buf) - l, "\n\n%s", misn->desc);
+   window_modifyText(wid, "txtDesc", buf);
    window_enableButton( wid, "btnAcceptMission" );
 
    /* Make sure the map is in the proper mode. */
    map_setMode(MAPMODE_TRAVEL);
    minimal = window_checkboxState(wid, "chkMinimal");
    map_setMinimal(minimal);
+
+   /* Center map on the selected mission. */
+   if ((misn->markers != NULL) && !map_clicked)
+      map_center(system_getIndex(misn->markers[0].sys)->name);
 }
 
 
