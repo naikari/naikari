@@ -103,21 +103,21 @@ COLOURS = [
     Colour("SlotRequired", 0/255, 23/255, 82/255),
 
     # Font colors
-    Colour("FontRed", 1.0, 0.4, 0.4),
-    Colour("FontGreen", 0.6, 1.0, 0.4),
-    Colour("FontBlue", 0.4, 0.6, 1.0),
-    Colour("FontYellow", 1.0, 1.0, 0.5),
     Colour("FontWhite", 0.95, 0.95, 0.95),
     Colour("FontGrey", 0.7, 0.7, 0.7),
-    Colour("FontPurple", 1.0, 0.3, 1.0),
-    Colour("FontOrange", 1.0, 0.7, 0.3),
+    Colour("FontRed", 255/255, 102/255, 102/255),
+    Colour("FontGreen", 124/255, 226/255, 74/255),
+    Colour("FontBlue", 102/255, 153/255, 255/255),
+    Colour("FontYellow", 218/255, 199/255, 70/255),
+    Colour("FontPurple", 225/255, 115/255, 222/255),
+    Colour("FontOrange", 255/255, 178/255, 76/255),
 
     # Font meaning colors
     Colour("FontInert", 221/255, 221/255, 221/255),
     Colour("FontNeutral", 221/255, 204/255, 119/255),
-    Colour("FontFriend", 68/255, 170/255, 153/255),
-    Colour("FontHostile", 170/255, 68/255, 153/255),
     Colour("FontRestricted", 153/255, 153/255, 51/255),
+    Colour("FontFriend", 68/255, 170/255, 153/255),
+    Colour("FontHostile", 216/255, 111/255, 197/255),
 ]
 
 def write_header(f):

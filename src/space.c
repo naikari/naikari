@@ -1830,20 +1830,20 @@ const char *planet_getSymbol(const Planet *p)
 const glColour* planet_getColour(const Planet *p)
 {
    if (!planet_hasService(p, PLANET_SERVICE_INHABITED))
-      return &cInert;
+      return &cFontInert;
 
    if (!faction_isKnown(p->faction))
-      return &cInert;
+      return &cFontInert;
 
    if (p->can_land || p->bribed) {
       if (faction_isPlayerFriend(p->faction))
-         return &cFriend;
-      return &cNeutral;
+         return &cFontFriend;
+      return &cFontNeutral;
    }
 
    if (faction_isPlayerEnemy(p->faction))
-      return &cHostile;
-   return &cRestricted;
+      return &cFontHostile;
+   return &cFontRestricted;
 }
 
 
