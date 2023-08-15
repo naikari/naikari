@@ -109,7 +109,8 @@ const char *keybind_info[][3] = {
    {"e_hold", N_("Escort Hold Command"),
       N_("Orders escorts to hold their positions in the formation.")},
    {"e_return", N_("Escort Return Command"),
-      N_("Orders escorts to return to your ship hangars.")},
+      N_("Orders escorts to return to and (if applicable) dock onto your"
+         " ship.")},
    {"e_clear", N_("Escort Clear Commands"),
       N_("Clears your escorts of commands.")},
    /* Space Navigation */
@@ -127,12 +128,14 @@ const char *keybind_info[][3] = {
    {"autobrake", N_("Active Cooldown"),
       N_("Automatically stops the ship and begins active cooldown.")},
    /* Communication */
-   {"log_up", N_("Log Scroll Up"), N_("Scrolls the log upwards.")},
-   {"log_down", N_("Log Scroll Down"), N_("Scrolls the log downwards.")},
+   {"log_up", N_("Log Scroll Up"),
+      N_("Scrolls the message log upwards.")},
+   {"log_down", N_("Log Scroll Down"),
+      N_("Scrolls the message log downwards.")},
    {"hail", N_("Hail Target"),
       N_("Attempts to initialize communication with the targeted ship.")},
    {"autohail", N_("Autohail"),
-      N_("Automatically initialize communication with a ship that is hailing"
+      N_("Automatically initializes communication with a ship that is hailing"
          " you.")},
    /* Misc. */
    {"mapzoomin", N_("Radar Zoom In"), N_("Zooms in on the radar.")},
