@@ -32,10 +32,10 @@ local fmt = require "fmt"
 
 -- Default function. Any asset that has no landing script explicitly defined will use this.
 function land( pnt )
-   return land_civilian(pnt, 0, -30)
+   return land_civilian(pnt, 0, -100)
 end
 
--- Low-class landing function. Low class planets let you land and bribe at much lower standings.
+-- Low-class landing function. Lets you land with less standing.
 function land_lowclass( pnt )
    return land_civilian(pnt, -20, -100)
 end
