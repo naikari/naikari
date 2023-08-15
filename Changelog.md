@@ -65,6 +65,10 @@
 * Reduced the number of services on introductory worlds, to more
   gradually introduce planetary services to new players.
 * Clicking on empty space now clears the current target.
+* The Mission Computer now centers the newly selected mission again when
+  you click on a mission in the list.
+* The map in the current missions list in the Ship Computer can now be
+  interacted with just like on the Mission Computer.
 
 ## 0.9.0
 
