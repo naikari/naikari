@@ -60,7 +60,7 @@ mining_text = _([[Alright, let's start mining! Of course, mining is done with th
 
 "I just need you to mine enough ore to fill your cargo hold to capacity. I'll let you know what to do with it when your cargo hold is full."]])
 
-cooldown_text = _([["That should do it! Great job! Whew, firing those weapons sure makes it warm in here, doesn't it? I'm sorry to trouble you, but could you please engage active cooldown by pressing {autobrake_key} twice?"]])
+cooldown_text = _([["That should do it! Great job! Whew, firing those weapons sure makes it warm in here, doesn't it? I'm sorry to trouble you, but could you please engage active cooldown by pressing {autobrake_key}?"]])
 
 dest_text = _([["Ahhh, that's much better. I'm sure your weapons will work a lot better if they're not overheated, too, thô, um, we of course shouldn't run into pirates in this system." Ian sweats nervously, as if not entirely convinced.
 

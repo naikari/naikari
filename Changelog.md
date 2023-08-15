@@ -69,6 +69,16 @@
   you click on a mission in the list.
 * The map in the current missions list in the Ship Computer can now be
   interacted with just like on the Mission Computer.
+* The letter on outfits in the outfitter now indicates outfit type
+  (weapon, utility, stucture) again, instead of size.
+* Adjusted text colors to make colored text easier to read.
+* Generic planets can now always be bribed.
+* Bribe price for "low-class" planets is now lower.
+* "High-class" planets can now be bribed as long as you are not enemies
+  with their faction, but at a very high bribe cost.
+* Different factions now have different landing bribe costs.
+* Changed the autobrake key to make it engage active cooldown without a
+  second press (as in Naev).
 
 ## 0.9.0
 
