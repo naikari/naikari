@@ -654,19 +654,19 @@ ImageArrayCell *outfits_imageArrayCells( const Outfit **outfits, int *noutfits )
             outfit_altText( coutfits[i].alt, STRMAX, o );
          }
 
-         /* Slot type (outfit size). */
-         switch (o->slot.size) {
-            case OUTFIT_SLOT_SIZE_LIGHT:
-               /* Abbreviation for "Small"; must be only one character. */
-               typename = p_("outfit_size", "S");
+         /* Slot type. */
+         switch (o->slot.type) {
+            case OUTFIT_SLOT_WEAPON:
+               /* Abbreviation for "Weapon"; must be only one character. */
+               typename = p_("outfit_type", "W");
                break;
-            case OUTFIT_SLOT_SIZE_MEDIUM:
-               /* Abbreviation for "Medium"; must be only one character. */
-               typename = p_("outfit_size", "M");
+            case OUTFIT_SLOT_UTILITY:
+               /* Abbreviation for "Utility"; must be only one character. */
+               typename = p_("outfit_type", "U");
                break;
-            case OUTFIT_SLOT_SIZE_HEAVY:
-               /* Abbreviation for "Large"; must be only one character. */
-               typename = p_("outfit_size", "L");
+            case OUTFIT_SLOT_STRUCTURE:
+               /* Abbreviation for "Structure"; must be only one character. */
+               typename = p_("outfit_type", "S");
                break;
             default:
                typename = NULL;
