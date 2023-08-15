@@ -37,9 +37,9 @@ local pilotname = require "pilotname"
 local portrait = require "portrait"
 
 
-local ask_text = _([["Hello there! Are you interested in participating in the upcoming race, sponsored by Melendez Corporation? All participants are paid {credits} for participating, and there are magnificant prizes if you perform well in the race. You can see the information for the race right here. Would you be interested?"]])
+local ask_text = _([["Are you interested in participating in the upcoming race? All participants are paid {credits} for participating, and there are prizes if you perform well in the race. You can see the information for the race right here. Would you be interested?"]])
 
-local yes_text = _([["Fantastic! Please meet the other racers out in space when you're ready. Good luck!"]])
+local yes_text = _([[The race organizer signs you up for the race and instructs you to meet the other racers out in space when you're ready.]])
 
 local win_text = {
    _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says "Melendez Corporation". "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of {credits}!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money and participation payment on it.]]),
@@ -63,9 +63,9 @@ local lose_text = {
 local fail_left_text = _([[Because you left the race, you have been disqualified.]])
 
 local NPCname = _("Race Organizer")
-local NPCdesc = _("This seems to be an organizer for a race that's about to take place. If you win the race, you get a prize.")
+local NPCdesc = _("This seems to be an organizer for a race that's about to take place.")
 
-local misndesc = _("You're participating in a race sponsored by Melendez Corporation.")
+local misndesc = _("You're participating in a sponsored race.")
 
 local details_text = _([[
 Checkpoints: {checkpoints}
@@ -79,6 +79,9 @@ local OSDtitle = _("Sponsored Race")
 local sponsorship_msg = {
    _("This race is sponsored by Melendez Corporation. Problem-free ships for problem-free voyages!"),
    _("Get ready for another exciting race, sponsored by the company you trust, Melendez Corporation!"),
+   _("Melendez Corporation presents another exciting race! Get ready, folks!"),
+   _("This race is sponsored by Melendez Corporation, the civilian spacecraft company you trust!"),
+   _("This race is proudly sponsored by Melendez Corporation. Get ready, folks!"),
 }
 
 
@@ -249,11 +252,14 @@ end
 function get_checkpoint_msg(pilot_name, checkpoint)
    local msg_list = {
       _("{pilot} makes it to the next checkpoint!"),
+      _("Look at {pilot} go!"),
       n_("{pilot} zooms thru Checkpoint {checkpoint:d}!",
          "{pilot} zooms thru Checkpoint {checkpoint:d}!", checkpoint),
       n_("{pilot} just made it to Checkpoint {checkpoint:d}, folks!",
          "{pilot} just made it to Checkpoint {checkpoint:d}, folks!",
          checkpoint),
+      n_("{pilot} reached checkpoint {checkpoint:d}! Go! Go!",
+         "{pilot} reached checkpoint {checkpoint:d}! Go! Go!", checkpoint),
    }
    return fmt.f(msg_list[rnd.rnd(1, #msg_list)],
          {pilot=pilot_name, checkpoint=checkpoint})
@@ -262,10 +268,14 @@ end
 
 function get_lap_msg(pilot_name, lap)
    local msg_list = {
+      _("{Pilot} makes it to the next lap!"),
+      _("Look at {pilot} go!"),
       n_("{pilot} zooms thru the starting point and starts lap {lap:d}!",
          "{pilot} zooms thru the starting point and starts lap {lap:d}!", lap),
       n_("{pilot} just started lap {lap:d}, folks!",
          "{pilot} just started lap {lap:d}, folks!", lap),
+      n_("{pilot} reached lap {lap:d}! Go! Go!",
+         "{pilot} reached lap {lap:d}! Go! Go!", lap),
    }
    return fmt.f(msg_list[rnd.rnd(1, #msg_list)], {pilot=pilot_name, lap=lap})
 end
