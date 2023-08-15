@@ -31,18 +31,19 @@
 local fmt = require "fmt"
 
 -- Default function. Any asset that has no landing script explicitly defined will use this.
-function land( pnt )
-   return land_civilian(pnt, 0, -100)
+function land(pnt)
+   return land_civilian(pnt, 0, -100, 1000)
 end
 
 -- Low-class landing function. Lets you land with less standing.
-function land_lowclass( pnt )
-   return land_civilian(pnt, -20, -100)
+function land_lowclass(pnt)
+   return land_civilian(pnt, -20, -100, 500)
 end
 
--- High class landing function. High class planets can't be bribed.
+-- High class landing function. Higher standing requirement and
+-- restricted, higher-cost bribing.
 function land_hiclass(pnt)
-   return land_civilian(pnt, 10, 10)
+   return land_civilian(pnt, 10, 0, 50000)
 end
 
 -- Empire military assets.
@@ -210,9 +211,20 @@ end
 
 -- Civilian planet landing logic.
 -- Expects the planet, the lowest standing at which landing is allowed, and the lowest standing at which bribing is allowed.
-function land_civilian( pnt, land_floor, bribe_floor )
+function land_civilian(pnt, land_floor, bribe_floor, rate)
    local fct = pnt:faction()
    local can_land = fct:playerStanding() >= land_floor or pnt:getLandOverride()
+
+   -- Modify rate by faction.
+   if fct == faction.get("Dvaered") then
+      rate = rate / 2
+   elseif fct == faction.get("Sirius") then
+      rate = rate * 2
+   elseif fct == faction.get("Goddard") then
+      rate = rate * 2
+   elseif fct == faction.get("Soromid") then
+      rate = rate * 3
+   end
 
    -- Get land message
    local land_msg
@@ -224,7 +236,7 @@ function land_civilian( pnt, land_floor, bribe_floor )
 
    local bribe_msg, bribe_ack_msg
    -- Calculate bribe price. Note: Assumes bribe floor < land_floor.
-   local bribe_price = getcost(fct, land_floor, bribe_floor, 1000) -- TODO: different rates for different factions.
+   local bribe_price = getcost(fct, land_floor, bribe_floor, rate)
    if not can_land and type(bribe_price) == "number" then
        bribe_msg = fmt.f(
             _("\"I'll let you land for the modest price of {credits}.\"\n\nPay {credits}?"),
