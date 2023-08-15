@@ -107,6 +107,7 @@ function pilotname.generic()
       p_("pilot_name", "Ion {number}"),
       p_("pilot_name", "Iota {number}"),
       p_("pilot_name", "Iron {number}"),
+      p_("pilot_name", "Kaisar {number}"),
       p_("pilot_name", "Kappa {number}"),
       p_("pilot_name", "Katana {number}"),
       p_("pilot_name", "Kilo {number}"),
