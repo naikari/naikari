@@ -1266,11 +1266,11 @@ static const glColour* gl_fontGetColour( uint32_t ch )
       case 'p': col = &cFontPurple; break;
       case 'n': col = &cFontGrey; break;
       /* Fancy states. */
-      case 'F': col = &cFriend; break; /**< Friendly */
-      case 'H': col = &cHostile; break; /**< Hostile */
-      case 'N': col = &cNeutral; break; /**< Neutral */
-      case 'I': col = &cInert; break; /**< Inert */
-      case 'R': col = &cRestricted; break; /**< Restricted */
+      case 'F': col = &cFontFriend; break; /**< Friendly */
+      case 'H': col = &cFontHostile; break; /**< Hostile */
+      case 'N': col = &cFontNeutral; break; /**< Neutral */
+      case 'I': col = &cFontInert; break; /**< Inert */
+      case 'R': col = &cFontRestricted; break; /**< Restricted */
       case 'C': col = &cFontGreen; break; /**< Console */
       case '0': col = NULL; break;
       default:

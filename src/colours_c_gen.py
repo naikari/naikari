@@ -86,31 +86,38 @@ COLOURS = [
     Colour("MarkerHigh", 255/255, 173/255, 95/255),
     Colour("MarkerPlot", 255/255, 100/255, 108/255),
     # Radar
-    Colour( "Radar_player", 102/255, 255/255, 230/255 ),
-    Colour( "Radar_tPilot", 1.0, 1.0, 1.0 ),
-    Colour( "Radar_tPlanet", 1.0, 1.0, 1.0 ),
-    Colour( "Radar_weap", 0.8, 0.2, 0.2 ),
-    Colour( "Radar_hilight", 0.6, 1.0, 1.0 ),
+    Colour("Radar_player", 102/255, 255/255, 230/255),
+    Colour("Radar_tPilot", 1.0, 1.0, 1.0),
+    Colour("Radar_tPlanet", 1.0, 1.0, 1.0),
+    Colour("Radar_weap", 0.8, 0.2, 0.2),
+    Colour("Radar_hilight", 0.6, 1.0, 1.0),
     # Health
-    Colour( "Shield", 0.2, 0.2, 0.8 ),
-    Colour( "Armour", 0.5, 0.5, 0.5 ),
-    Colour( "Energy", 0.2, 0.8, 0.2 ),
-    Colour( "Fuel", 0.9, 0.1, 0.4 ),
+    Colour("Shield", 0.2, 0.2, 0.8),
+    Colour("Armour", 0.5, 0.5, 0.5),
+    Colour("Energy", 0.2, 0.8, 0.2),
+    Colour("Fuel", 0.9, 0.1, 0.4),
     # Slot sizes
     Colour("SlotSmall", 218/255, 167/255, 16/255),
     Colour("SlotMedium", 185/255, 79/255, 0/255),
     Colour("SlotLarge", 152/255, 4/255, 0/255),
     Colour("SlotRequired", 0/255, 23/255, 82/255),
 
-    # Deiz's Super Font Palette
-    Colour( "FontRed", 1.0, 0.4, 0.4 ),
-    Colour( "FontGreen", 0.6, 1.0, 0.4 ),
-    Colour( "FontBlue", 0.4, 0.6, 1.0 ),
-    Colour( "FontYellow", 1.0, 1.0, 0.5 ),
-    Colour( "FontWhite", 0.95, 0.95, 0.95 ),
-    Colour( "FontGrey", 0.7, 0.7, 0.7 ),
-    Colour( "FontPurple", 1.0, 0.3, 1.0 ),
-    Colour( "FontOrange", 1.0, 0.7, 0.3 ),
+    # Font colors
+    Colour("FontRed", 1.0, 0.4, 0.4),
+    Colour("FontGreen", 0.6, 1.0, 0.4),
+    Colour("FontBlue", 0.4, 0.6, 1.0),
+    Colour("FontYellow", 1.0, 1.0, 0.5),
+    Colour("FontWhite", 0.95, 0.95, 0.95),
+    Colour("FontGrey", 0.7, 0.7, 0.7),
+    Colour("FontPurple", 1.0, 0.3, 1.0),
+    Colour("FontOrange", 1.0, 0.7, 0.3),
+
+    # Font meaning colors
+    Colour("FontInert", 221/255, 221/255, 221/255),
+    Colour("FontNeutral", 221/255, 204/255, 119/255),
+    Colour("FontFriend", 68/255, 170/255, 153/255),
+    Colour("FontHostile", 170/255, 68/255, 153/255),
+    Colour("FontRestricted", 153/255, 153/255, 51/255),
 ]
 
 def write_header(f):
