@@ -49,7 +49,7 @@ local movement_text = _([["Now, so that your test flight goes as smoothly as pos
 
 local landing_text = _([["I see you have a great handle on the controls of your new Melendez Corporation ship! It's a perfect fit for you, don't you think? Your control of the vessel is absolutely stunning, magnificent!
 
-"You may continue to practice flying for as long as you need. When you are ready, please land on {planet} to finalize your paperwork; you can land by pressing {landkey}. I will be waiting for you at the spaceport!"]])
+"You may continue to practice flying for as long as you need. When you are ready, please land on {planet} to finalize your paperwork; you can land double-clicking on {planet} or by pressing {landkey}. I will be waiting for you at the spaceport!"]])
 
 local land_text = _([[You watch as the ship – your ship – automatically guides you safely thru the atmosphere and into the planet's space port, then touches down at an empty spot reserved for you. As soon as the hatch opens and you step out, an exhausted dock worker greets you and makes you sign a form. "Just the standard waiver," she explains. After you sign, she pushes some buttons and you stare as you see robotic drones immediately getting to work checking your ship for damage and ensuring your fuel tanks are full. Noticing your expression, the worker lets out a chuckle. "First time landing, eh?" she quips. "It'll all be normal to you before long."
 
@@ -103,7 +103,7 @@ function create_osd()
             accelkey=naik.keyGet("accel"), leftkey=naik.keyGet("left"),
             reversekey=naik.keyGet("reverse"), rightkey=naik.keyGet("right"),
             mouseflykey=naik.keyGet("mousefly")}),
-      fmt.f(_("Land on {planet} ({system} system) by pressing {landkey}"),
+      fmt.f(_("Land on {planet} ({system} system) by double-clicking it or pressing {landkey}"),
          {planet=start_planet:name(), system=missys:name(),
             landkey=naik.keyGet("land")}),
    }
