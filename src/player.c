@@ -2488,23 +2488,20 @@ void player_toggleMouseFly(void)
  */
 void player_brake(void)
 {
-   int stopped;
-
    if (pilot_isFlag(player.p, PILOT_TAKEOFF))
       return;
 
    /* Not under manual control or disabled. */
-   if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ) ||
-         pilot_isDisabled(player.p))
+   if (pilot_isFlag(player.p, PILOT_MANUAL_CONTROL)
+         || pilot_isDisabled(player.p))
       return;
 
-   stopped = pilot_isStopped(player.p);
-   if (stopped && !pilot_isFlag(player.p, PILOT_COOLDOWN))
-      pilot_cooldown(player.p);
-   else if (pilot_isFlag(player.p, PILOT_BRAKING))
-      pilot_setFlag(player.p, PILOT_COOLDOWN_BRAKE);
-   else if (!stopped)
-      pilot_setFlag(player.p, PILOT_BRAKING);
+   /* Don't restart cooldown if already started. */
+   if (pilot_isFlag(player.p, PILOT_COOLDOWN))
+      return;
+
+   /* pilot_cooldown contains logic to autobrake within. */
+   pilot_cooldown(player.p);
 }
 
 

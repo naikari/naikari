@@ -124,8 +124,8 @@ const char *keybind_info[][3] = {
    {"jump", N_("Initiate Jump"), N_("Attempts to jump via a jump point.")},
    {"overlay", N_("Overlay Map"), N_("Opens the in-system overlay map.")},
    {"mousefly", N_("Mouse Flight"), N_("Toggles mouse flying.")},
-   {"autobrake", N_("Autobrake / Active Cooldown"),
-      N_("Begins automatic braking or active cooldown, if stopped.")},
+   {"autobrake", N_("Active Cooldown"),
+      N_("Automatically stops the ship and begins active cooldown.")},
    /* Communication */
    {"log_up", N_("Log Scroll Up"), N_("Scrolls the log upwards.")},
    {"log_down", N_("Log Scroll Down"), N_("Scrolls the log downwards.")},
