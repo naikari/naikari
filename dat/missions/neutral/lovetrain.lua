@@ -77,7 +77,7 @@ pay_text = {
 sender_name = _("Unusual Patron")
 sender_desc = {
    _("A patron stares longingly at something with a smile on their face."),
-   _("A patron sitting alone tries to grab your attention."),
+   _("A patron sitting alone fiddles with some kind of package."),
    _("A patron sits at a table with some sort of package, grinning to themself."),
    _("You see a patron glancing around the bar, perhaps trying to find a suitable pilot."),
 }
