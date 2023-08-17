@@ -74,8 +74,10 @@ function scom.spawn( pilots, faction, guerilla )
    end
 
    local leader
-   local origin = pilot.choosePoint( faction, false, guerilla ) -- Find a suitable spawn point
-   for k,v in ipairs(pilots) do
+   -- Find a suitable spawn point.
+   local origin = pilot.choosePoint(faction, false, guerilla)
+   for i = 1, #pilots do
+      local v = pilots[i]
       local params = v.params or {}
       if not leader then
          if pilots.__formation ~= nil then
@@ -83,9 +85,13 @@ function scom.spawn( pilots, faction, guerilla )
          end
       end
       local pfact = params.faction or faction
-      local p = pilot.add( v["pilot"], pfact, origin, params.name, params )
+      local p = pilot.add(v["pilot"], pfact, origin, params.name, params)
       local mem = p:memory()
-      mem.natural = true -- mark that it was spawned naturally and not as part of a mission
+      -- Mark that it was spawned naturally.
+      mem.natural = true
+      -- TODO: Figure out a way to know and store the way the pilot
+      -- entered (jump, takeoff, or position).
+
       local presence = v["presence"]
       if not pilots.__nofleet then
          if leader == nil then
@@ -94,7 +100,7 @@ function scom.spawn( pilots, faction, guerilla )
             p:setLeader(leader)
          end
       end
-      spawned[ #spawned+1 ] = { pilot=p, presence=presence }
+      spawned[#spawned + 1] = {pilot=p, presence=presence}
    end
    return spawned
 end

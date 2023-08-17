@@ -33,14 +33,14 @@
 local fmt = require "fmt"
 
 
-pay_msg_default = _("{credits} {faction} bounty paid for killing {pilot}.")
-pay_msg_faction = {
+local pay_msg_default = _("{credits} {faction} bounty paid for killing {pilot}.")
+local pay_msg_faction = {
    Empire = _("{credits} Imperial official bounty awarded for dispatching {pilot}."),
    Dvaered = _("{credits} paid by local Dvaered warlord for killing {pilot}."),
    Pirate = _("{credits} paid by local crime lord for eliminating {pilot}."),
 }
 
-nopay_factions = {
+local nopay_factions = {
    "Civilian",
    "Trader",
    "Miner",
@@ -110,8 +110,8 @@ function death(target, killer)
          for f, presence in pairs(presences) do
             if faction.get(f):playerStanding() >= 0 or f == "Pirate" then
                local canpay = true
-               for i, f2 in ipairs(nopay_factions) do
-                  if f == f2 then
+               for i = 1, #nopay_factions do
+                  if f == nopay_factions[i] then
                      canpay = false
                      break
                   end
@@ -133,8 +133,8 @@ function death(target, killer)
          if fac:areEnemies(target_f)
                and (fac:playerStanding() >= 0 or f == "Pirate") then
             local canpay = true
-            for i, f2 in ipairs(nopay_factions) do
-               if f == f2 then
+            for i = 1, #nopay_factions do
+               if f == nopay_factions[i] then
                   canpay = false
                   break
                end
