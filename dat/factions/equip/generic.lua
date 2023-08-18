@@ -1515,7 +1515,7 @@ equip_shipOutfits_structurals = {
 
 
 --[[
--- @brief Wrapper for pilot.outfitAdd that prints a warning if no outfits added.
+Wrapper for pilot.outfitAdd() that prints a warning if no outfits added.
 --]]
 function equip_warn(p, outfit, q, bypass)
    q = q or 1
@@ -1528,38 +1528,41 @@ end
 
 
 --[[
--- @brief Choose an outfit from a table of outfits.
---
---    @param p Pilot to equip to.
---    @param set table laying out the set of outfits to equip (see below).
---
--- ``set`` is split up into sub-tables that are iterated thru. These
--- tables include a "num" field which indicates how many of the chosen outfit
--- to equip before moving on to the next set; if nil, the chosen outfit will be
--- equipped as many times as possible. For example, if you list 3 tables with
--- "num" set to 2, 1, and nil respectively, two of an outfit from the first
--- table will be equipped, followed by one of an outfit from the second table,
--- and then finally all remaining slots will be filled with an outfit from the
--- third table.
---
--- If, rather than equipping multiples of the same outfit you would like to
--- select a random outfit `num` times, you can do so by setting "varied" to
--- true.
---
--- "probability" can be set to a table specifying the relative chance of each
--- outfit (keyed by name) to the other outfits. If unspecified, each outfit
--- will have a relative chance of 1. So for example, if the outfits are "Foo",
--- "Bar", and "Baz", with no "probability" table, each outfit will have a 1/3
--- chance of being selected; however, with this "probability" table:
---
---    probability = {["Foo"] = 6, ["Bar"] = 2}
---
--- This will lead to "Foo" having a 6/9 (2/3) chance, "Bar" will have a 2/9
--- chance, and "Baz" will have a 1/9 chance
---
--- Note that there should only be one type of outfit (weapons, utilities, or
--- structurals) in ``set``; including multiple types will prevent proper
--- detection of how many are needed.
+Choose an outfit from a table of outfits.
+
+`set` is split up into sub-tables that are iterated thru. These
+tables include a "num" field which indicates how many of the chosen
+outfit to equip before moving on to the next set; if nil, the chosen
+outfit will be equipped as many times as possible. For example, if you
+list 3 tables with "num" set to 2, 1, and nil respectively, two of an
+outfit from the first table will be equipped, followed by one of an
+outfit from the second table, and then finally all remaining slots will
+be filled with an outfit from the third table.
+
+If, rather than equipping multiples of the same outfit you would like to
+select a random outfit `num` times, you can do so by setting "varied" to
+true.
+
+"probability" can be set to a table specifying the relative chance of
+each outfit (keyed by name) to the other outfits. If unspecified, each
+outfit will have a relative chance of 1. So for example, if the outfits
+are "Foo", "Bar", and "Baz", with no "probability" table, each outfit
+will have a 1/3 chance of being selected; however, with this
+"probability" table:
+
+@code
+probability = {["Foo"] = 6, ["Bar"] = 2}
+@endcode
+
+This will lead to "Foo" having a 6/9 (2/3) chance, "Bar" will have a 2/9
+chance, and "Baz" will have a 1/9 chance
+
+Note that there should only be one type of outfit (weapons, utilities,
+or structurals) in `set`; including multiple types will prevent proper
+detection of how many are needed.
+
+   @param p Pilot to equip to.
+   @param set table laying out the set of outfits to equip (see below).
 --]]
 function equip_set(p, set)
    if set == nil then return end
@@ -1618,9 +1621,10 @@ function equip_generic(p)
    p:outfitRm("all")
    p:outfitRm("cores")
 
-   local shipname = p:ship():nameRaw()
-   local basetype = p:ship():baseType()
-   local class = p:ship():class()
+   local shp = p:ship()
+   local shipname = shp:nameRaw()
+   local basetype = shp:baseType()
+   local class = shp:class()
    local success
    local o
 
@@ -1715,18 +1719,15 @@ function equip_generic(p)
    p:fillAmmo()
 
    -- Add fuel
+   local mem = p:memory()
    local stats = p:stats()
    local fcons = stats.fuel_consumption
    local fmax = stats.fuel_max
-   local maxjumps = math.floor(fmax / fcons)
-   local njumps = rnd.rnd(1, maxjumps)
-
-   -- We do this so that if the amount is uneven, it becomes too much
-   -- rather than too little, simulating what the fuel loss must have
-   -- looked like since takeoff. (For example, this will cause a ship
-   -- with 900 max fuel and a fuel consumption of 200 to have 500 fuel
-   -- instead of 400 fuel.)
-   p:setFuel(fmax - fcons*(maxjumps-njumps))
+   if mem.spawn_origin_type == "planet" then
+      p:setFuel(rnd.uniform(fcons, fmax - fcons))
+   else
+      p:setFuel(true)
+   end
 
    -- Add cargo
    local pb = equip_classCargo[class]
@@ -1741,7 +1742,7 @@ function equip_generic(p)
       local avail_cargo = commodity.getStandard()
 
       if #avail_cargo > 0 then
-         for i=1,rnd.rnd(1,3) do
+         for i = 1, rnd.rnd(1, 3) do
             -- Ensure that 0 tonnes of cargo doesn't get added.
             local freespace = p:cargoFree()
             if freespace < 1 then

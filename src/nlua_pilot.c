@@ -447,7 +447,10 @@ int lua_ispilot( lua_State *L, int ind )
  *    @luatparam Faction f Faction the pilot will belong to.
  *    @luatparam boolean i Wether to ignore rules.
  *    @luatparam boolean g Wether to behave as guerilla (spawn in deep space)
- *    @luatreturn Planet|Vec2|Jump A randomly chosen suitable spawn point.
+ *    @luatreturn Planet|System|Vec2 A randomly chosen suitable spawn
+ *       point.
+ *    @luatreturn string The type of the source returned ("planet",
+ *       "system", or "vec2")
  * @luafunc choosePoint
  */
 static int pilotL_choosePoint(lua_State *L)
@@ -468,16 +471,22 @@ static int pilotL_choosePoint(lua_State *L)
    if (lua_isboolean(L,3) && lua_toboolean(L,3))
       guerilla = 1;
 
-   pilot_choosePoint( &vp, &planet, &jump, lf, ignore_rules, guerilla );
+   pilot_choosePoint(&vp, &planet, &jump, lf, ignore_rules, guerilla);
 
-   if (planet != NULL)
-      lua_pushplanet(L, planet->id );
-   else if (jump != NULL)
+   if (planet != NULL) {
+      lua_pushplanet(L, planet->id);
+      lua_pushstring(L, "planet");
+   }
+   else if (jump != NULL) {
       lua_pushsystem(L, jump->from->id);
-   else
+      lua_pushstring(L, "system");
+   }
+   else {
       lua_pushvector(L, vp);
+      lua_pushstring(L, "vec2");
+   }
 
-   return 1;
+   return 2;
 }
 
 
