@@ -217,32 +217,31 @@ void gl_blitTexture(  const glTexture* texture,
       const double tx, const double ty,
       const double tw, const double th, const glColour *c, const double angle )
 {
-   // Half width and height
-   double hw, hh;
    gl_Matrix4 projection, tex_mat;
 
    glUseProgram(shaders.texture.program);
 
    /* Bind the texture. */
-   glBindTexture( GL_TEXTURE_2D, texture->texture);
+   glBindTexture(GL_TEXTURE_2D, texture->texture);
 
    /* Must have colour for now. */
    if (c == NULL)
       c = &cWhite;
 
-   hw = w/2.;
-   hh = h/2.;
-
    /* Set the vertex. */
    projection = gl_view_matrix;
-   if (angle==0.){
-     projection = gl_Matrix4_Translate(projection, x, y, 0);
-     projection = gl_Matrix4_Scale(projection, w, h, 1);
-   } else {
-     projection = gl_Matrix4_Translate(projection, x+hw, y+hh, 0);
-     projection = gl_Matrix4_Rotate2d(projection, angle);
-     projection = gl_Matrix4_Translate(projection, -hw, -hh, 0);
-     projection = gl_Matrix4_Scale(projection, w, h, 1);
+   if (angle == 0.) {
+      projection = gl_Matrix4_Translate(projection, x, y, 0);
+      projection = gl_Matrix4_Scale(projection, w, h, 1);
+   }
+   else {
+      /* Small optimization: store half-width and half-height. */
+      const double hw = w / 2.;
+      const double hh = h / 2.;
+      projection = gl_Matrix4_Translate(projection, x + hw, y + hh, 0);
+      projection = gl_Matrix4_Rotate2d(projection, angle);
+      projection = gl_Matrix4_Translate(projection, -hw, -hh, 0);
+      projection = gl_Matrix4_Scale(projection, w, h, 1);
    }
    glEnableVertexAttribArray( shaders.texture.vertex );
    gl_vboActivateAttribOffset( gl_squareVBO, shaders.texture.vertex,
