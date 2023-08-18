@@ -45,9 +45,9 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-local ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I was hoping to find a suitable pilot. Don't worry, it's a simple job, and you will of course be paid fairly for your services. What do you say?"]])
+local ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I was hoping to find a suitable pilot. Don't worry, it's a simple job, and you will of course be given a fair payment of {credits} #n[{credits_conv}]#0 for your services. What do you say?"]])
 
-local ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise I won't bite, and the payment will be worth it!"]])
+local ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise I won't bite, and the {credits} #n[{credits_conv}]#0 payment will be worth it!"]])
 
 local accept_text = _([["Excellent! I look forward to working with you.
 
@@ -77,11 +77,18 @@ end
 
 
 function accept()
+   local credits_conv = fmt.f(
+         n_("{credits} credit", "{credits} credits", credits),
+         {credits=fmt.number(credits)})
    local text
    if talked then
-      text = fmt.f(ask_again_text, {player=player.name()})
+      text = fmt.f(ask_again_text,
+            {player=player.name(), credits=fmt.credits(credits),
+               credits_conv=credits_conv})
    else
-      text = fmt.f(ask_text, {player=player.name()})
+      text = fmt.f(ask_text,
+            {player=player.name(), credits=fmt.credits(credits),
+               credits_conv=credits_conv})
       talked = true
    end
 
