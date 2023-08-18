@@ -46,30 +46,30 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-ask_text = _([["Hello again, {player}! Are you ready for that other job I had for you? It's a little more effort than the last job, but still not too hard, and I'll pay you a nice {credits} #n[{credits_conv}]#0 reward for it."]])
+local ask_text = _([["Hello again, {player}! Are you ready for that other job I had for you? It's a little more effort than the last job, but still not too hard, and I'll pay you a nice {credits} reward for it."]])
 
-accept_text = _([["Perfect! Alright, this time we will be going into space; I will be joining you. I'll make my way to your ship now and wait for you there. When you're ready to begin, press the Take Off button."]])
+local accept_text = _([["Perfect! Alright, this time we will be going into space; I will be joining you. I'll make my way to your ship now and wait for you there. When you're ready to begin, press the Take Off button."]])
 
-overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Ore for me. Of course, I could buy it from the Commodity tab, but for my purposes I require specifically asteroid-mined Ore and most vendors don't track whether their Ore is from planetary mining or asteroid mining.
+local overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Ore for me. Of course, I could buy it from the Commodity tab, but for my purposes I require specifically asteroid-mined Ore and most vendors don't track whether their Ore is from planetary mining or asteroid mining.
 
 "To that end, I've marked an asteroid field in this system on your ship's overlay map. Could you press {overlaykey} to open your overlay map so I can show you, please?"]])
 
-autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to #bright-click#0 that area so we can be taken there as fast as possible with Autonav. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous.]])
+local autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to #bright-click#0 that area so we can be taken there as fast as possible with Autonav. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous.]])
 
-mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, usually ore, and you can pick the commodity up simply by flying over its location.
+local mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, usually ore, and you can pick the commodity up simply by flying over its location.
 
 "I just need you to mine enough ore to fill your cargo hold to capacity. I'll let you know what to do with it when your cargo hold is full."]])
 
-cooldown_text = _([["That should do it! Great job! Whew, firing those weapons sure makes it warm in here, doesn't it? I'm sorry to trouble you, but could you please engage active cooldown by pressing {autobrake_key}?"]])
+local cooldown_text = _([["That should do it! Great job! Whew, firing those weapons sure makes it warm in here, doesn't it? I'm sorry to trouble you, but could you please engage active cooldown by pressing {autobrake_key}?"]])
 
-dest_text = _([["Ahhh, that's much better. I'm sure your weapons will work a lot better if they're not overheated, too, thô, um, we of course shouldn't run into pirates in this system." Ian sweats nervously, as if not entirely convinced.
+local dest_text = _([["Ahhh, that's much better. I'm sure your weapons will work a lot better if they're not overheated, too, thô, um, we of course shouldn't run into pirates in this system." Ian sweats nervously, as if not entirely convinced.
 
 "Alright, I need you to take this Ore to {planet}. You should be able to see it on your overlay map, right? You can interact with its icon the same way you would interact with the planet itself, so you should be able to tell Autonav to land us there no problem."]])
 
-pay_text = _([[Ian steps out of your ship and stretches his arms, seemingly happy to be back in atmosphere. "Thank you for your service once again," he says as he hands you a credit chip with your payment. "If you like, I have one more job for you. Meet me at the bar in a bit."]])
+local pay_text = _([[Ian steps out of your ship and stretches his arms, seemingly happy to be back in atmosphere. "Thank you for your service once again," he says as he hands you a credit chip with your payment. "If you like, I have one more job for you. Meet me at the bar in a bit."]])
 
-misn_desc = _("Ian Structure has hired you to mine ore from some asteroids, claiming that he needs specifically asteroid-mined Ore for his purposes.")
-misn_log = _([[You accepted another job from Ian Structure, this time mining some ore from asteroids for him. He asked you to speak with him again on {planet} ({system} system) for another job.]])
+local misn_desc = _("Ian Structure has hired you to mine ore from some asteroids, claiming that he needs specifically asteroid-mined Ore for his purposes.")
+local misn_log = _([[You accepted another job from Ian Structure, this time mining some ore from asteroids for him. He asked you to speak with him again on {planet} ({system} system) for another job.]])
 
 
 function create()
@@ -83,12 +83,8 @@ end
 
 
 function accept()
-   local credits_conv = fmt.f(
-         n_("{credits} credit", "{credits} credits", credits),
-         {credits=fmt.number(credits)})
    if tk.yesno("", fmt.f(ask_text,
-         {player=player.name(), credits=fmt.credits(credits),
-            credits_conv=credits_conv})) then
+         {player=player.name(), credits=fmt.credits(credits)})) then
       tk.msg("", fmt.f(accept_text, {player=player.name()}))
 
       misn.accept()
