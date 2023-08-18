@@ -34,10 +34,6 @@ end
 local trader_spawn_events = {
    -- Fuel request event.
    function(p)
-      if rnd.rnd() > 0.1 then
-         return
-      end
-
       local mem = p:memory()
       local shipclass = p:ship():class()
       if not p:exists() or not mem.natural or p:leader() ~= nil
@@ -48,6 +44,10 @@ local trader_spawn_events = {
 
       local stats = p:stats()
       if stats.fuel > stats.fuel_max - 2*stats.fuel_consumption then
+         return
+      end
+
+      if rnd.rnd() > 0.1 then
          return
       end
 
