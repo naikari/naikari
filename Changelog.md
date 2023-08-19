@@ -12,6 +12,8 @@
 * Completely overhauled the race missions: instead of boarding randomly
   placed stationary pilots, you now pass thru a random set of planets
   and/or jump points for a certain number of laps.
+* Traders will now sometimes broadcast requests for fuel, which the
+  player can answer by hailing them.
 
 ### Other Changes
 
@@ -34,8 +36,6 @@
   autonav go-to position indicator. This makes these markers much easier
   to see especially when they happen to be on top of planets (as is the
   case for patrol missions).
-* Text of system position markers is now "optimized" to avoid collision
-  with planet/jump overlay text.
 * Removed the superfluous "TARGET" text next to the autonav go-to
   position indicator.
 * Aiming helper crosshair now has an outline.
@@ -48,14 +48,11 @@
   an option in the Options menu) does so even less aggressively by
   ignoring passive (not actively hostile) enemies entirely.
 * The target clear control will now clear an asteroid target as well.
-* Fixed player and asteroid radar icons being allowed outside the
-  overlay boundaries.
 * Relaxed some of our eccentric usage of diaereses. It's no longer used
   on "ao", "ei", "eu", or "ea". This also means that the subtitle is now
   "Eye of Chaos" instead of "Eye of Chaös".
 * New saves now include information about what system they're landed on
   in the load screen.
-* Fixed some potential for conflicts with the Hitman missions.
 * Removed use of system claims for some missions.
 * Land and Jump keys will now cycle thru targets if already in the
   process of auto-landing / auto-hyperspacing.
@@ -79,6 +76,30 @@
 * Different factions now have different landing bribe costs.
 * Changed the autobrake key to make it engage active cooldown without a
   second press (as in Naev).
+* Added some more pilot names.
+* The first Ian Structure mission now tells you the reward up-front and
+  explains credits conversion instead of the second Ian Structure
+  mission doing so.
+* AI ships now have an amount of fuel which is matched to where they
+  spawned from (i.e. they always have full fuel when taking off, and
+  they always have no more than their max fuel minus their fuel
+  consumption when jumping in).
+* All ships in the Warlords Battle event are now hilighted, rather than
+  just hilighting the leaders.
+* The Derelict event is now less common, but hilights the derelict so
+  it's more visible.
+* The Derelict event no longer spawns in systems with volatile nebulae
+  (since the nebula would destroy them, which would be a bit weird).
+
+### Bugfixes
+
+* Text of system position markers is now "optimized" to avoid collision
+  with planet/jump overlay text.
+* Fixed player and asteroid radar icons being allowed outside the
+  overlay boundaries.
+* Fixed some potential for conflicts with the Hitman missions.
+* Fixed a typo in the Emergency Shield Booster description.
+* Fixed a potential for inconsistent text in the Love Train mission.
 
 ## 0.9.0
 
