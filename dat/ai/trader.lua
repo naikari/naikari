@@ -7,7 +7,8 @@ mem.armor_localjump = 40
 
 
 function create()
-   local sprice = ai.pilot():ship():price()
+   local p = ai.pilot()
+   local sprice = p:ship():price()
    ai.setcredits(rnd.rnd(0.25 * sprice, 0.75 * sprice))
    mem.kill_reward = rnd.rnd(0.01 * sprice, 0.05 * sprice)
 

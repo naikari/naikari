@@ -1724,9 +1724,9 @@ function equip_generic(p)
    local fcons = stats.fuel_consumption
    local fmax = stats.fuel_max
    if mem.spawn_origin_type == "planet" then
-      p:setFuel(rnd.uniform(fcons, fmax - fcons))
-   else
       p:setFuel(true)
+   else
+      p:setFuel(rnd.uniform(fcons, fmax - fcons))
    end
 
    -- Add cargo

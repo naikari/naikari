@@ -114,10 +114,10 @@ function spawn ( presence, max )
    end
 
    -- Actually spawn the pilots
-   local pilots = scom.spawn( spawn_data, "Trader" )
+   local pilots = scom.spawn(spawn_data, "Trader", false, "trader_spawn")
 
    -- Calculate spawn data
-   spawn_data = scom.choose( spawn_table )
+   spawn_data = scom.choose(spawn_table)
 
-   return scom.calcNextSpawn( presence, scom.presence(spawn_data), max ), pilots
+   return scom.calcNextSpawn(presence, scom.presence(spawn_data), max), pilots
 end

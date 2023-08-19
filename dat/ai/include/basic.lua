@@ -367,7 +367,7 @@ function __hyperspace_shoot ()
       end
    end
    local pos = ai.sethyptarget(target)
-   ai.pushsubtask( "__hyp_approach_shoot", pos )
+   ai.pushsubtask("__hyp_approach_shoot", {target, pos})
 end
 function __hyp_approach_shoot ()
    -- Shoot and approach

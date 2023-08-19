@@ -65,7 +65,7 @@ end
 
 
 -- @brief Actually spawns the pilots
-function scom.spawn( pilots, faction, guerilla )
+function scom.spawn(pilots, faction, guerilla, spawn_hook)
    local spawned = {}
 
    -- Case no pilots
@@ -73,7 +73,7 @@ function scom.spawn( pilots, faction, guerilla )
       return nil
    end
 
-   local leader
+   local leader = nil
    -- Find a suitable spawn point.
    local origin, origin_type = pilot.choosePoint(faction, false, guerilla)
    for i = 1, #pilots do
@@ -85,21 +85,24 @@ function scom.spawn( pilots, faction, guerilla )
          end
       end
       local pfact = params.faction or faction
-      local p = pilot.add(v["pilot"], pfact, origin, params.name, params)
+      local p = pilot.add(v.pilot, pfact, origin, params.name, params)
       local mem = p:memory()
       -- Mark that it was spawned naturally.
       mem.natural = true
       mem.spawn_origin_type = origin_type
 
-      local presence = v["presence"]
+      -- 
+      -- If should have a leader, set leader.
       if not pilots.__nofleet then
-         if leader == nil then
-            leader = p
-         else
-            p:setLeader(leader)
-         end
+         p:setLeader(leader)
       end
-      spawned[#spawned + 1] = {pilot=p, presence=presence}
+
+      -- Trigger spawn hook, if any.
+      if spawn_hook ~= nil then
+         naik.hookTrigger(spawn_hook, p)
+      end
+
+      spawned[#spawned + 1] = {pilot=p, presence=v.presence}
    end
    return spawned
 end
