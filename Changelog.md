@@ -90,6 +90,7 @@
   it's more visible.
 * The Derelict event no longer spawns in systems with volatile nebulae
   (since the nebula would destroy them, which would be a bit weird).
+* Mercenaries no longer protect civilians and other peaceful AI pilots.
 
 ### Bugfixes
 
@@ -100,6 +101,8 @@
 * Fixed some potential for conflicts with the Hitman missions.
 * Fixed a typo in the Emergency Shield Booster description.
 * Fixed a potential for inconsistent text in the Love Train mission.
+* Fixed a design oversight which meant player fighter bay escorts did
+  not escape jump as intended.
 
 ## 0.9.0
 
