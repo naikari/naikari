@@ -3,6 +3,7 @@ require("ai/personality/civilian")
 require("ai/include/distress_behaviour")
 local fmt = require "fmt"
 
+mem.protector = false
 mem.armor_localjump = 40
 
 
