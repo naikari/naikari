@@ -63,16 +63,16 @@ local trader_spawn_events = {
       if not p:exists() or not mem.natural or p:leader() ~= nil
             or (shipclass ~= "Yacht" and shipclass ~= "Courier")
             or mem.spawn_origin_type ~= "system" then
-         return
+         return false
       end
 
       local stats = p:stats()
       if stats.fuel > stats.fuel_max - stats.fuel_consumption then
-         return
+         return false
       end
 
       if rnd.rnd() > 0.1 then
-         return
+         return false
       end
 
       -- Choose jump destination.
@@ -86,7 +86,7 @@ local trader_spawn_events = {
          end
       end
       if #jumps <= 1 then
-         return
+         return false
       end
       local jmp = jumps[rnd.rnd(1, #jumps)]
       mem.refuel_dest = jmp:dest()
@@ -102,6 +102,8 @@ local trader_spawn_events = {
 
       hook.timer(2, "timer_trader_refuel_request", p)
       hook.pilot(p, "hail", "pilot_hail_trader_refuel_request")
+
+      return true
    end,
 }
 
@@ -110,7 +112,11 @@ function trader_spawn(p)
    if not p:exists() then
       return
    end
-   trader_spawn_events[rnd.rnd(1, #trader_spawn_events)](p)
+   for i = 1, #trader_spawn_events do
+      if trader_spawn_events[i](p) then
+         return
+      end
+   end
 end
 
 
