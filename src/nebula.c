@@ -122,8 +122,9 @@ int nebu_resize (void)
 
    /* Set up the matrices. */
    nebu_render_P = gl_Matrix4_Identity();
-   nebu_render_P = gl_Matrix4_Translate(nebu_render_P, -nebu_render_w/2., -nebu_render_h/2., 0. );
-   nebu_render_P = gl_Matrix4_Scale(nebu_render_P, nebu_render_w, nebu_render_h, 1);
+   gl_Matrix4_Translate(&nebu_render_P,
+      -nebu_render_w / 2., -nebu_render_h / 2., 0.);
+   gl_Matrix4_Scale(&nebu_render_P, nebu_render_w, nebu_render_h, 1);
    glUseProgram(shaders.nebula_background.program);
    gl_Matrix4_Uniform(shaders.nebula_background.projection, nebu_render_P);
    glUseProgram(shaders.nebula.program);

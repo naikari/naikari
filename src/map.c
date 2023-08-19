@@ -1181,8 +1181,8 @@ void map_renderSystemEnvironment( double x, double y, int editor, double alpha )
 
          /* Set the vertex. */
          projection = gl_view_matrix;
-         projection = gl_Matrix4_Translate(projection, tx-sw/2., ty-sh/2., 0);
-         projection = gl_Matrix4_Scale(projection, sw, sh, 1);
+         gl_Matrix4_Translate(&projection, tx-sw/2., ty-sh/2., 0);
+         gl_Matrix4_Scale(&projection, sw, sh, 1);
 
          /* Start the program. */
          glUseProgram(shaders.nebula_map.program);

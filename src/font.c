@@ -1198,9 +1198,10 @@ static int font_makeChar( glFontStash *stsh, font_char_t *c, uint32_t ch )
 static void gl_fontRenderStart( const glFontStash* stsh, double x, double y, const glColour *c, double outlineR )
 {
    /* OpenGL has pixel centers at 0.5 offset. */
-   gl_Matrix4 H = gl_Matrix4_Translate(gl_view_matrix,
-         round(x + 0.5*gl_screen.wscale), round(y + 0.5*gl_screen.hscale), 0);
-   gl_fontRenderStartH( stsh, &H, c, outlineR );
+   gl_Matrix4 H = gl_view_matrix;
+   gl_Matrix4_Translate(&H, round(x + 0.5*gl_screen.wscale),
+         round(y + 0.5*gl_screen.hscale), 0);
+   gl_fontRenderStartH(stsh, &H, c, outlineR);
 }
 static void gl_fontRenderStartH( const glFontStash* stsh, const gl_Matrix4 *H, const glColour *c, double outlineR )
 {
@@ -1226,7 +1227,8 @@ static void gl_fontRenderStartH( const glFontStash* stsh, const gl_Matrix4 *H, c
       gl_uniformAColor(shaders.font.outline_color, &cGrey10, a);
 
    scale = (double)stsh->h / FONT_DISTANCE_FIELD_SIZE;
-   font_projection_mat = gl_Matrix4_Scale(*H, scale, scale, 1 );
+   font_projection_mat = *H;
+   gl_Matrix4_Scale(&font_projection_mat, scale, scale, 1 );
 
    font_restoreLast = 0;
    gl_fontKernStart();
@@ -1429,8 +1431,7 @@ static int gl_fontRenderGlyph( glFontStash* stsh, uint32_t ch, const glColour *c
    scale = (double)stsh->h / FONT_DISTANCE_FIELD_SIZE;
    kern_adv_x = gl_fontKernGlyph( stsh, ch, glyph );
    if (kern_adv_x) {
-      font_projection_mat = gl_Matrix4_Translate( font_projection_mat,
-            kern_adv_x/scale, 0, 0 );
+      gl_Matrix4_Translate(&font_projection_mat, kern_adv_x / scale, 0, 0);
    }
 
    /* Activate texture. */
@@ -1443,8 +1444,7 @@ static int gl_fontRenderGlyph( glFontStash* stsh, uint32_t ch, const glColour *c
    glDrawArrays( GL_TRIANGLE_STRIP, glyph->vbo_id, 4 );
 
    /* Translate matrix. */
-   font_projection_mat = gl_Matrix4_Translate( font_projection_mat,
-         glyph->adv_x/scale, 0, 0 );
+   gl_Matrix4_Translate(&font_projection_mat, glyph->adv_x/scale, 0, 0);
 
    return 0;
 }

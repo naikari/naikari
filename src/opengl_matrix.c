@@ -93,88 +93,85 @@ gl_Matrix4 gl_Matrix4_Ortho( double left, double right,
    return mat;
 }
 
-gl_Matrix4 gl_Matrix4_Scale( gl_Matrix4 m, double x, double y, double z ) {
+void gl_Matrix4_Scale(gl_Matrix4 *m, double x, double y, double z)
+{
    int i;
 
-   for (i = 0; i < 4; i++) {
-      m.m[0][i] *= x;
-      m.m[1][i] *= y;
-      m.m[2][i] *= z;
+   for (i=0; i<4; i++) {
+      m->m[0][i] *= x;
+      m->m[1][i] *= y;
+      m->m[2][i] *= z;
    }
-
-   return m;
 }
 
-gl_Matrix4 gl_Matrix4_Translate( gl_Matrix4 m, double x, double y, double z ) {
+void gl_Matrix4_Translate(gl_Matrix4 *m, double x, double y, double z)
+{
    int i;
 
-   for (i = 0; i < 4; i++) {
-      m.m[3][i] += x*m.m[0][i] + y*m.m[1][i] + z*m.m[2][i];
+   for (i=0; i<4; i++) {
+      m->m[3][i] += x*m->m[0][i] + y*m->m[1][i] + z*m->m[2][i];
    }
-
-   return m;
 }
 
 /**
  * @brief Rotates an angle, in radians, around the z axis.
  *
- *    @param m Matrix to multiply with.
+ *    @param m Matrix to multiply.
  *    @param angle Angle in radians.
  *    @return New projection matrix.
  */
-gl_Matrix4 gl_Matrix4_Rotate2d( gl_Matrix4 m, double angle ) {
+void gl_Matrix4_Rotate2d(gl_Matrix4 *m, double angle)
+{
    double c, s, x, y;
 
    c = cos(angle);
    s = sin(angle);
-   x = m.m[0][0];
-   y = m.m[1][0];
-   m.m[0][0] =  c*x + s*y;
-   m.m[1][0] = -s*x + c*y;
+   x = m->m[0][0];
+   y = m->m[1][0];
+   m->m[0][0] = c*x + s*y;
+   m->m[1][0] = -s*x + c*y;
 
-   x = m.m[0][1];
-   y = m.m[1][1];
-   m.m[0][1] =  c*x + s*y;
-   m.m[1][1] = -s*x + c*y;
-
-   return m;
+   x = m->m[0][1];
+   y = m->m[1][1];
+   m->m[0][1] = c*x + s*y;
+   m->m[1][1] = -s*x + c*y;
 }
 
 /**
  * @brief Rotates the +x axis to the given vector.
  *
- *    @param m Matrix to multiply with.
+ *    @param m Matrix to multiply.
  *    @param c Angle cosine (or x coordinate of the vector).
  *    @param s Angle sine (or y coordinate of the vector).
  *    @return New projection matrix.
  */
-gl_Matrix4 gl_Matrix4_Rotate2dv( gl_Matrix4 m, double c, double s ) {
+void gl_Matrix4_Rotate2dv(gl_Matrix4 *m, double c, double s)
+{
    double x, y;
 
-   x = m.m[0][0];
-   y = m.m[1][0];
-   m.m[0][0] =  c*x + s*y;
-   m.m[1][0] = -s*x + c*y;
+   x = m->m[0][0];
+   y = m->m[1][0];
+   m->m[0][0] = c*x + s*y;
+   m->m[1][0] = -s*x + c*y;
 
-   x = m.m[0][1];
-   y = m.m[1][1];
-   m.m[0][1] =  c*x + s*y;
-   m.m[1][1] = -s*x + c*y;
-
-   return m;
+   x = m->m[0][1];
+   y = m->m[1][1];
+   m->m[0][1] = c*x + s*y;
+   m->m[1][1] = -s*x + c*y;
 }
 
 /**
  * @brief Multiplies the given matrix by a rotation. (Follows the right-hand rule.)
  *
- *    @param m Matrix to multiply with.
+ *    @param m Matrix to multiply.
  *    @param angle Angle in radians.
  *    @param x X component of the axis of rotation.
  *    @param y Y component of the axis of rotation.
  *    @param z Z component of the axis of rotation.
  *    @return New projection matrix.
  */
-gl_Matrix4 gl_Matrix4_Rotate( gl_Matrix4 m, double angle, double x, double y, double z )
+void gl_Matrix4_Rotate(gl_Matrix4 *m, double angle, double x, double y,
+      double z)
 {
    double norm, c, s;
    gl_Matrix4 rot;
@@ -202,7 +199,7 @@ gl_Matrix4 gl_Matrix4_Rotate( gl_Matrix4 m, double angle, double x, double y, do
    rot.m[3][2] = 0.;
    rot.m[3][3] = 1.;
 
-   return gl_Matrix4_Mult( m, rot );
+   *m = gl_Matrix4_Mult(*m, rot);
 }
 
 GLfloat *gl_Matrix4_Ptr( gl_Matrix4 *m ) {

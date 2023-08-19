@@ -104,8 +104,8 @@ void gl_renderRect( double x, double y, double w, double h, const glColour *c )
 
    /* Set the vertex. */
    projection = gl_view_matrix;
-   projection = gl_Matrix4_Translate(projection, x, y, 0);
-   projection = gl_Matrix4_Scale(projection, w, h, 1);
+   gl_Matrix4_Translate(&projection, x, y, 0);
+   gl_Matrix4_Scale(&projection, w, h, 1);
 
    gl_renderRectH( &projection, c, 1 );
 }
@@ -125,8 +125,8 @@ void gl_renderRectEmpty( double x, double y, double w, double h, const glColour 
    gl_Matrix4 projection;
 
    projection = gl_view_matrix;
-   projection = gl_Matrix4_Translate(projection, x, y, 0);
-   projection = gl_Matrix4_Scale(projection, w, h, 1);
+   gl_Matrix4_Translate(&projection, x, y, 0);
+   gl_Matrix4_Scale(&projection, w, h, 1);
 
    gl_renderRectH( &projection, c, 0 );
 }
@@ -184,10 +184,11 @@ void gl_renderTriangleEmpty( double x, double y, double a, double s, double leng
 {
    gl_Matrix4 projection;
 
-   projection = gl_Matrix4_Translate(gl_view_matrix, x, y, 0);
+   projection = gl_view_matrix;
+   gl_Matrix4_Translate(&projection, x, y, 0);
    if (a != 0.)
-      projection = gl_Matrix4_Rotate2d(projection, a);
-   projection = gl_Matrix4_Scale(projection, s*length, s, 1.);
+      gl_Matrix4_Rotate2d(&projection, a);
+   gl_Matrix4_Scale(&projection, s * length, s, 1.);
 
    gl_beginSolidProgram(projection, c);
    gl_vboActivateAttribOffset( gl_triangleVBO, shaders.solid.vertex, 0, 2, GL_FLOAT, 0 );
@@ -231,17 +232,17 @@ void gl_blitTexture(  const glTexture* texture,
    /* Set the vertex. */
    projection = gl_view_matrix;
    if (angle == 0.) {
-      projection = gl_Matrix4_Translate(projection, x, y, 0);
-      projection = gl_Matrix4_Scale(projection, w, h, 1);
+      gl_Matrix4_Translate(&projection, x, y, 0);
+      gl_Matrix4_Scale(&projection, w, h, 1);
    }
    else {
       /* Small optimization: store half-width and half-height. */
       const double hw = w / 2.;
       const double hh = h / 2.;
-      projection = gl_Matrix4_Translate(projection, x + hw, y + hh, 0);
-      projection = gl_Matrix4_Rotate2d(projection, angle);
-      projection = gl_Matrix4_Translate(projection, -hw, -hh, 0);
-      projection = gl_Matrix4_Scale(projection, w, h, 1);
+      gl_Matrix4_Translate(&projection, x + hw, y + hh, 0);
+      gl_Matrix4_Rotate2d(&projection, angle);
+      gl_Matrix4_Translate(&projection, -hw, -hh, 0);
+      gl_Matrix4_Scale(&projection, w, h, 1);
    }
    glEnableVertexAttribArray( shaders.texture.vertex );
    gl_vboActivateAttribOffset( gl_squareVBO, shaders.texture.vertex,
@@ -249,8 +250,8 @@ void gl_blitTexture(  const glTexture* texture,
 
    /* Set the texture. */
    tex_mat = (texture->flags & OPENGL_TEX_VFLIP) ? gl_Matrix4_Ortho(-1, 1, 2, 0, 1, -1) : gl_Matrix4_Identity();
-   tex_mat = gl_Matrix4_Translate(tex_mat, tx, ty, 0);
-   tex_mat = gl_Matrix4_Scale(tex_mat, tw, th, 1);
+   gl_Matrix4_Translate(&tex_mat, tx, ty, 0);
+   gl_Matrix4_Scale(&tex_mat, tw, th, 1);
 
    /* Set shader uniforms. */
    gl_uniformColor(shaders.texture.color, c);
@@ -328,15 +329,15 @@ void gl_blitTextureInterpolate(  const glTexture* ta,
 
    /* Set the vertex. */
    projection = gl_view_matrix;
-   projection = gl_Matrix4_Translate(projection, x, y, 0);
-   projection = gl_Matrix4_Scale(projection, w, h, 1);
+   gl_Matrix4_Translate(&projection, x, y, 0);
+   gl_Matrix4_Scale(&projection, w, h, 1);
    glEnableVertexAttribArray( shaders.texture_interpolate.vertex );
    gl_vboActivateAttribOffset( gl_squareVBO, shaders.texture_interpolate.vertex, 0, 2, GL_FLOAT, 0 );
 
    /* Set the texture. */
    tex_mat = (ta->flags & OPENGL_TEX_VFLIP) ? gl_Matrix4_Ortho(-1, 1, 2, 0, 1, -1) : gl_Matrix4_Identity();
-   tex_mat = gl_Matrix4_Translate(tex_mat, tx, ty, 0);
-   tex_mat = gl_Matrix4_Scale(tex_mat, tw, th, 1);
+   gl_Matrix4_Translate(&tex_mat, tx, ty, 0);
+   gl_Matrix4_Scale(&tex_mat, tw, th, 1);
 
    /* Set shader uniforms. */
    glUniform1i(shaders.texture_interpolate.sampler1, 0);
@@ -383,26 +384,22 @@ void gl_gameToScreenCoords( double *nx, double *ny, double bx, double by )
 
 
 /**
- * @brief Return a transformation which converts in-game coordinates to screen coordinates.
+ * @brief Transform matrix to convert in-game coordinates to screen coordinates.
  *
  *    @param lhs Matrix to multiply by the conversion matrix.
  */
-gl_Matrix4 gl_gameToScreenMatrix( gl_Matrix4 lhs )
+void gl_gameToScreenMatrix(gl_Matrix4 *lhs)
 {
    double cx,cy, gx,gy, z;
 
    /* Get parameters. */
-   cam_getPos( &cx, &cy );
+   cam_getPos(&cx, &cy);
    z = cam_getZoom();
-   gui_getOffset( &gx, &gy );
+   gui_getOffset(&gx, &gy);
 
-   return gl_Matrix4_Translate(
-         gl_Matrix4_Scale(
-            gl_Matrix4_Translate(
-               lhs,
-               gx + SCREEN_W/2., gy + SCREEN_H/2., 0.),
-            z, z, 1.),
-         -cx, -cy, 0.);
+   gl_Matrix4_Translate(lhs, gx + SCREEN_W/2., gy + SCREEN_H/2., 0.);
+   gl_Matrix4_Scale(lhs, z, z, 1.);
+   gl_Matrix4_Translate(lhs, -cx, -cy, 0.);
 }
 
 
@@ -700,10 +697,10 @@ void gl_blitStatic( const glTexture* texture,
 void gl_renderShader( double x, double y, double w, double h, double r, const SimpleShader *shd, const glColour *c, int center )
 {
    gl_Matrix4 projection = gl_view_matrix;
-   projection = gl_Matrix4_Translate(projection, x, y, 0);
+   gl_Matrix4_Translate(&projection, x, y, 0);
    if (r != 0.)
-      projection = gl_Matrix4_Rotate2d(projection, r);
-   projection = gl_Matrix4_Scale(projection, w, h, 1);
+      gl_Matrix4_Rotate2d(&projection, r);
+   gl_Matrix4_Scale(&projection, w, h, 1);
    glUniform2f( shd->dimensions, w, h );
    gl_renderShaderH( shd, &projection, c, center );
 }
@@ -751,8 +748,8 @@ void gl_drawCircle( const double cx, const double cy,
 
    /* Set the vertex. */
    projection = gl_view_matrix;
-   projection = gl_Matrix4_Translate(projection, cx, cy, 0);
-   projection = gl_Matrix4_Scale(projection, r, r, 1);
+   gl_Matrix4_Translate(&projection, cx, cy, 0);
+   gl_Matrix4_Scale(&projection, r, r, 1);
 
    /* Draw! */
    gl_drawCircleH( &projection, c, filled );
@@ -795,8 +792,8 @@ void gl_drawCirclePartial( const double cx, const double cy,
 
    /* Set the vertex. */
    projection = gl_view_matrix;
-   projection = gl_Matrix4_Translate(projection, cx, cy, 0);
-   projection = gl_Matrix4_Scale(projection, r, r, 1);
+   gl_Matrix4_Translate(&projection, cx, cy, 0);
+   gl_Matrix4_Scale(&projection, r, r, 1);
 
    /* Draw! */
    gl_drawCirclePartialH( &projection, c, angle, arc );

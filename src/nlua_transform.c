@@ -224,10 +224,12 @@ static int transformL_get( lua_State *L )
 static int transformL_scale( lua_State *L )
 {
    gl_Matrix4 *M = luaL_checktransform(L, 1);
+   gl_Matrix4 new_M = *M;
    double x = luaL_checknumber(L,2);
    double y = luaL_checknumber(L,3);
    double z = luaL_optnumber(L,4,1.);
-   lua_pushtransform(L, gl_Matrix4_Scale( *M, x, y, z ) );
+   gl_Matrix4_Scale(&new_M, x, y, z);
+   lua_pushtransform(L, new_M);
    return 1;
 }
 
@@ -245,10 +247,12 @@ static int transformL_scale( lua_State *L )
 static int transformL_translate( lua_State *L )
 {
    gl_Matrix4 *M = luaL_checktransform(L, 1);
+   gl_Matrix4 new_M = *M;
    double x = luaL_checknumber(L,2);
    double y = luaL_checknumber(L,3);
    double z = luaL_optnumber(L,4,0.);
-   lua_pushtransform(L, gl_Matrix4_Translate( *M, x, y, z ) );
+   gl_Matrix4_Translate(&new_M, x, y, z);
+   lua_pushtransform(L, new_M);
    return 1;
 }
 
@@ -263,8 +267,10 @@ static int transformL_translate( lua_State *L )
 static int transformL_rotate2d( lua_State *L )
 {
    gl_Matrix4 *M = luaL_checktransform(L, 1);
-   double a = luaL_checknumber(L,2);
-   lua_pushtransform(L, gl_Matrix4_Rotate2d( *M, a ) );
+   gl_Matrix4 new_M = *M;
+   double a = luaL_checknumber(L, 2);
+   gl_Matrix4_Rotate2d(&new_M, a);
+   lua_pushtransform(L, new_M);
    return 1;
 }
 

@@ -283,9 +283,9 @@ void background_renderStars(const double dt, const int is_stars)
       z = cam_getZoom();
       z = 1. * (1. - conf.zoom_stars) + z * conf.zoom_stars;
    }
-   projection = gl_Matrix4_Translate(
-         gl_view_matrix, SCREEN_W/2., SCREEN_H/2., 0);
-   projection = gl_Matrix4_Scale(projection, z, z, 1);
+   projection = gl_view_matrix;
+   gl_Matrix4_Translate(&projection, SCREEN_W/2., SCREEN_H/2., 0);
+   gl_Matrix4_Scale(&projection, z, z, 1);
 
    /* Calculate some dimensions. */
    w = (SCREEN_W + 2.*STAR_BUF);

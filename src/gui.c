@@ -871,7 +871,7 @@ void gui_render( double dt )
 
       /* Set up the projection. */
       projection = gl_view_matrix;
-      projection = gl_Matrix4_Scale(projection, gl_screen.nw, gl_screen.nh, 1. );
+      gl_Matrix4_Scale(&projection, gl_screen.nw, gl_screen.nh, 1.);
 
       /* Pass stuff over. */
       gl_Matrix4_Uniform( shaders.jump.projection, projection );
@@ -1036,14 +1036,13 @@ void gui_radarRender( double x, double y )
    /* TODO: modifying gl_view_matrix like this is a bit of a hack */
    /* TODO: use stensil test for RADAR_CIRCLE */
    view_matrix_prev = gl_view_matrix;
-   if (radar->shape==RADAR_RECT) {
+   if (radar->shape == RADAR_RECT) {
       gl_clipRect( x, y, radar->w, radar->h );
-      gl_view_matrix = gl_Matrix4_Translate(gl_view_matrix,
-            x + radar->w/2., y + radar->h/2., 0 );
+      gl_Matrix4_Translate(&gl_view_matrix,
+            x + radar->w/2., y + radar->h/2., 0);
    }
-   else if (radar->shape==RADAR_CIRCLE)
-      gl_view_matrix = gl_Matrix4_Translate(gl_view_matrix,
-            x, y, 0 );
+   else if (radar->shape == RADAR_CIRCLE)
+      gl_Matrix4_Translate(&gl_view_matrix, x, y, 0);
 
    /*
     * planets
