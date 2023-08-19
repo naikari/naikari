@@ -145,6 +145,7 @@ function attack()
    form = formation.random_key()
 
    for i, p in ipairs(attackers) do
+      p:setHilight()
       p:setNoClear()
       p:memory().formation = form
       p:memory().aggressive = false
@@ -169,6 +170,7 @@ function attack()
    form = formation.random_key()
 
    for i, p in ipairs(defenders) do
+      p:setHilight()
       p:setNoClear()
       local mem = p:memory()
       mem.formation = form
