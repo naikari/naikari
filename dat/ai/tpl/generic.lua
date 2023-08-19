@@ -15,6 +15,7 @@ mem.shield_return = 0 -- At which shield to return to combat
 mem.armor_localjump = 0 -- At which armor to perform an escape jump
 mem.aggressive = false -- Should pilot actively attack enemies?
 mem.defensive = true -- Should pilot defend itself
+mem.protector = true -- Should pilot protect non-aggressive pilots?
 mem.cooldown = false -- Whether the pilot is currently cooling down.
 mem.heatthreshold = 0.5 -- Weapon heat to enter cooldown at [0-2 or nil]
 mem.safe_distance = 1200 -- Safe distance from enemies to jump
@@ -522,47 +523,51 @@ function distress(distresser, attacker)
    local d_enemy = aifact:areEnemies(dfact)
    local a_enemy = aifact:areEnemies(afact)
 
-   -- Ships should always defend their brethren.
    if dfact == aifact then
-      -- We don't want to cause a complete breakdown in social order.
       if afact == aifact then
+         -- If both attacker and victim are our faction, stay out of it.
          return
       else
+         -- If victim is our faction and attacker isn't, assist the
+         -- victim.
          t = attacker
       end
    elseif mem.aggressive then
-      -- Aggressive ships follow their brethren into battle!
+      -- Victim is not our faction and we are aggressive.
       if afact == aifact then
+         -- If attacker is our faction, assist the attacker.
          t = distresser
       elseif d_ally then
-         -- When your allies are fighting, stay out of it.
          if a_ally then
+            -- If our allies are fighting, stay out of it.
             return
          end
 
          -- Victim is an ally, but the attacker isn't.
          t = attacker
-      -- Victim isn't an ally. Attack the victim if the attacker is our ally.
       elseif a_ally then
+         -- If victim isn't an ally and attacker is our ally, assist the
+         -- attacker.
          t = distresser
       elseif d_enemy then
-         -- If they're both enemies, may as well let them destroy each other.
          if a_enemy then
+            -- If they're both enemies, may as well let them destroy
+            -- each other.
             return
          end
 
          t = distresser
       elseif a_enemy then
          t = attacker
-      -- We'll be nice and go after the aggressor if the victim is peaceful.
-      elseif not distresser:memory().aggressive then
+      elseif mem.protector and not distresser:memory().aggressive then
+         -- If we're a protector, protect non-aggressive nutral pilots.
          t = attacker
-      -- An aggressive, neutral ship is fighting another neutral ship. Who cares?
       else
          return
       end
-   -- Non-aggressive ships will flee if their enemies attack neutral or allied vessels.
    elseif a_enemy and not d_enemy then
+      -- Non-aggressive ships will flee if their enemies attack neutral
+      -- or allied vessels.
       t = attacker
    else
       return

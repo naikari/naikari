@@ -151,7 +151,6 @@ pilotId_t escort_create(Pilot *p, char *ship, Vector2d *pos, Vector2d *vel,
    e = pilot_create(s, buf, p->faction, "escort", dir, pos, vel, f, parent,
          dockslot);
    pe = pilot_get(e);
-   pe->parent = parent;
 
    /* Compute fighter bay bonuses. */
    if (pilot_isFlagRaw( f, PILOT_CARRIED )) {

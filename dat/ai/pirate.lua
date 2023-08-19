@@ -10,6 +10,7 @@ local fmt = require "fmt"
 
 -- Settings
 mem.aggressive = true
+mem.protector = false
 mem.safe_distance = 1800
 mem.armour_run = 80
 mem.armour_return = 100

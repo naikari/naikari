@@ -132,10 +132,10 @@ function spawn_merc(source)
       merc:memory().formation = form
       for i=1,nescorts do
          local eship = choices[rnd.rnd(1, #choices)]
-         local escort = pilot.add(eship, "Mercenary", source, names[eship],
-               {ai="escort"})
-         escort:memory().formation = form
-         escort:memory().natural = true
+         local escort = pilot.add(eship, "Mercenary", source, names[eship])
+         local escortmem = escort:memory()
+         escortmem.formation = form
+         escortmem.natural = true
          escort:setLeader(merc)
          escorts[#escorts + 1] = escort
       end

@@ -4,6 +4,7 @@ require "ai.tpl.generic"
 -- Settings
 mem.distress = false
 mem.aggressive = true
+mem.protector = false
 mem.norun = true
 mem.carrier = true
 mem.comm_no = p_("comm_no", "No response.")
@@ -14,6 +15,11 @@ mem.leadermaxdist = 16000
 function create()
    local p = ai.pilot()
    local leader = p:leader()
+
+   if leader ~= nil and leader:exists() then
+      local leadermem = leader:memory()
+      mem.protector = leadermem.protector
+   end
 
    -- Player escorts perform local jumps, others don't.
    if leader == player.pilot() then
