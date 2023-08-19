@@ -663,7 +663,7 @@ function pilotname.pirate()
       p_("pirate_name_actor", "Storm"),
       p_("pirate_name_actor", "Straw"),
       p_("pirate_name_actor", "Supernova"),
-      p_("pirate_name_actor", "Surströmming"),
+      p_("pirate_name_actor", "Surstrumming"),
       p_("pirate_name_actor", "Table Saw"),
       p_("pirate_name_actor", "Taco"),
       p_("pirate_name_actor", "Terror"),
