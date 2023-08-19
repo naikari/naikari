@@ -3,7 +3,7 @@
 <event name="Derelict Event">
  <priority>100</priority>
  <trigger>enter</trigger>
- <chance>520</chance>
+ <chance>505</chance>
 </event>
 --]]
 --[[
@@ -33,6 +33,8 @@ local fmt = require "fmt"
 
 function create()
    hook.safe("safe_disable")
+   hook.jumpout("exit")
+   hook.land("exit")
 end
 
 
@@ -42,8 +44,11 @@ function safe_disable()
    if p:exists() and p:memory().natural then
       p:memory().natural = false
       p:disable()
+      p:setHilight()
       p:setLeader(nil)
       p:rename(fmt.f(_("Derelict {pilot}"), {pilot=p:name()}))
+
+      hook.pilot(p, "board", "pilot_board")
 
       -- Reduce credits (the credits amount is based on the effort it
       -- takes to disable them, and the player doesn't have to go thru
@@ -59,6 +64,18 @@ function safe_disable()
          fp:setLeader(nil)
       end
    end
+end
 
+
+function pilot_board(p, boarder)
+   if boarder ~= player.pilot() then
+      return
+   end
+   p:setHilight(false)
+   evt.finish()
+end
+
+
+function exit()
    evt.finish()
 end
