@@ -32,6 +32,13 @@ local fmt = require "fmt"
 
 
 function create()
+   local density, volatility = system.cur():nebula()
+   if volatility > 0 then
+      -- Nebula volatility will destroy derelicts, which would be a bit
+      -- weird, so skip the event if there's any nebula volatility.
+      evt.finish()
+   end
+
    hook.safe("safe_disable")
    hook.jumpout("exit")
    hook.land("exit")
