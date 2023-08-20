@@ -46,7 +46,45 @@ end
 
 
 function safe_disable()
-   local pilots = pilot.get()
+   local all_pilots = pilot.get()
+
+   local class_chances = {
+      ["Freighter"] = 0.6,
+      ["Armored Transport"] = 0.4,
+      ["Corvette"] = 0.2,
+      ["Destroyer"] = 0.1,
+      ["Cruiser"] = 0.05,
+      ["Carrier"] = 0.01,
+   }
+   local faction_chances = {
+      ["Collective"] = 0.01,
+      ["Dvaered"] = 0.4,
+      ["Empire"] = 0.2,
+      ["Proteron"] = 0.1,
+      ["Sirius"] = 0.3,
+      ["Soromid"] = 0.3,
+      ["Thurion"] = 0.5,
+      ["Za'lek"] = 0.01,
+   }
+
+   local pilots = {}
+   for i = 1, #all_pilots do
+      local p = all_pilots[i]
+      local shipclass = p:ship():class()
+      local chance = class_chances[shipclass]
+      if chance == nil or rnd.rnd() < chance then
+         local fac = p:faction()
+         local chance = faction_chances[fac]
+         if chance == nil or rnd.rnd() < chance then
+            pilots[#pilots + 1] = p
+         end
+      end
+   end
+
+   if #pilots <= 0 then
+      return
+   end
+
    local p = pilots[rnd.rnd(1, #pilots)]
    if p:exists() and p:memory().natural then
       p:memory().natural = false
