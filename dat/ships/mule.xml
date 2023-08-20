@@ -28,6 +28,7 @@
   <cargo>180</cargo>
  </characteristics>
  <slots>
+  <weapon size="medium" x="25" y="0" h="0">Laser Turret MK2</weapon>
   <weapon size="medium" prop="fighter_bay" x="15" y="0" h="4">Laser Turret MK2</weapon>
   <weapon size="medium" prop="fighter_bay" x="-15" y="0" h="4">Enygma Systems Turreted Fury Launcher</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Unicorp PT-400 Core System</utility>

@@ -28,6 +28,7 @@
  <slots>
   <weapon size="small" x="-10" y="-3" h="0">Laser Turret MK1</weapon>
   <weapon size="small" x="-10" y="3" h="0">Laser Turret MK1</weapon>
+  <weapon size="small" x="15" y="0" h="5" />
   <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-80 Core System</utility>
   <utility size="small" />
   <utility size="small" />
