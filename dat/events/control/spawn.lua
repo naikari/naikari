@@ -18,6 +18,11 @@ local pilotname = require "pilotname"
 
 local trader_refuel_broadcast = {
    _("Attention: I need some fuel and am prepared to offer {credits} in exchange. Please hail me if you're interested in selling."),
+   _("I'm in need of some fuel and prepared to offer {credits} for it. Please hail me if you have some spare fuel to sell."),
+   _("Attention all pilots: if you have some fuel to spare, please contact me. I'm willing to pay {credits} for some fuel."),
+   _("I'm offering {credits} to anyone who's willing to sell me a little fuel. Please hail me if you're interested in selling."),
+   _("Would anyone be willing to sell me some fuel for {credits}? Please hail me if you would be."),
+   _("If anyone's got fuel to spare, I could use a little, and I'm willing to pay {credits} in exchange. Please hail me if you're willing to sell me some of your fuel."),
 }
 
 local trader_refuel_cancel_broadcast = {
@@ -28,6 +33,8 @@ local trader_refuel_cancel_broadcast = {
 local trader_refuel_ask_text = {
    _([["Ah, thanks for responding to my request. I need {fuel:.0f} hL of fuel, and I'm willing to pay {credits} for it. Would you be willing to sell me some of your fuel?"]]),
    _([["Hi there! I'm on an urgent cargo delivery mission and need some fuel to make it, but don't have enough time to land. Could you help me out with {fuel:.0f} hL of fuel? I'll pay you {credits} in exchange."]]),
+   _([["Ah, perfect! See, it's not an emergency, but I need some more fuel to make it to my destination. Problem is, if I land, I'll miss my delivery deadline. Would you please sell me {fuel:.0f} hL of fuel for {credits}, so that I can make my delivery on time?"]]),
+   _([["Whew, what a relief! See, I kind of accepted a delivery mission without running the numbers properly. I don't have enough fuel to make it to my destination, and if I land, I'll certainly miss my deadline. Would you be willing to help me out by selling me {fuel:.0f} hL of fuel? I'm willing to pay {credits} in exchange."]]),
 }
 
 local trader_refuel_accept_text = {
@@ -40,6 +47,7 @@ local trader_refuel_full_text = {
 
 local trader_refuel_partial_text = {
    _([[You transfer all of the fuel from your tanks to the trader. Since it wasn't all the fuel they asked for, the trader gives you only {credits} in exchange.]]),
+   _([["Oh, wow, that's all your fuel, isn't it? Well, if you're sure it's ok. It's not all the fuel I need, but it's better than nothing. Here, I'll give you {credits} for it."]]),
 }
 
 local trader_refuel_none_text = {
