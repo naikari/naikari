@@ -15,7 +15,7 @@
 * Traders will now sometimes broadcast requests for fuel, which the
   player can answer by hailing them.
 
-### Other Changes
+### Other Gameplay Changes
 
 * Reduced the number of hidden jumps given to the FLF.
 * Removed "hypergates" (which were really just glorified jump points to
@@ -31,6 +31,31 @@
   could lead to needing to make as many as nine stops. The total number
   of stops (including the correct one) is now fixed at exactly four
   (three wrong ones plus the correct one).
+* Forward-facing beams now rotate in the same manner as turret beams,
+  rather than instantly facing their target.
+* Changed the balancing to give large turrets an inherent advantage over
+  large forward-facing weapons, now that forward-facing weapons can be
+  easily converted into turrets.
+* Civilian NPCs are now smaller in number, but much more likely to give
+  rewards.
+* Reduced the number of services on introductory worlds, to more
+  gradually introduce planetary services to new players.
+* Generic planets can now always be bribed, even with minimum standing.
+* Bribe price for "low-class" planets is now lower.
+* "High-class" planets can now be bribed as long as you are not enemies
+  with their faction, but at a very high bribe cost.
+* Different factions now have different landing bribe costs.
+* The Derelict event is now less common, but hilights the derelict so
+  it's more visible.
+* The Derelict event no longer spawns in systems with volatile nebulae
+  (since the nebula would destroy them, which would be a bit weird).
+* Mercenaries no longer protect civilians and other peaceful AI pilots.
+* Larger and factional derelicts are now rarer than smaller and
+  non-factional derelicts.
+* Quicksilver, Koäla, and Mule now all have three weapon slots.
+
+### Other Changes
+
 * Replaced the cross display of system position markers (as used by e.g.
   patrol missions) with a shader based on the one Naev uses for the
   autonav go-to position indicator. This makes these markers much easier
@@ -39,14 +64,6 @@
 * Removed the superfluous "TARGET" text next to the autonav go-to
   position indicator.
 * Aiming helper crosshair now has an outline.
-* Forward-facing beams now rotate in the same manner as turret beams,
-  rather than instantly facing their target.
-* Changed the balancing to give large turrets an inherent advantage over
-  large forward-facing weapons, now that forward-facing weapons can be
-  easily converted into turrets.
-* Autonav resets speed less aggressively, and by default (togglable with
-  an option in the Options menu) does so even less aggressively by
-  ignoring passive (not actively hostile) enemies entirely.
 * The target clear control will now clear an asteroid target as well.
 * Relaxed some of our eccentric usage of diaereses. It's no longer used
   on "ao", "ei", "eu", or "ea". This also means that the subtitle is now
@@ -54,13 +71,12 @@
 * New saves now include information about what system they're landed on
   in the load screen.
 * Removed use of system claims for some missions.
+* Autonav resets speed less aggressively, and by default (togglable with
+  an option in the Options menu) does so even less aggressively by
+  ignoring passive (not actively hostile) enemies entirely.
 * Land and Jump keys will now cycle thru targets if already in the
   process of auto-landing / auto-hyperspacing.
 * Hilighted pilots no longer come with a text label.
-* Civilian NPCs are now smaller in number, but much more likely to give
-  rewards.
-* Reduced the number of services on introductory worlds, to more
-  gradually introduce planetary services to new players.
 * Clicking on empty space now clears the current target.
 * The Mission Computer now centers the newly selected mission again when
   you click on a mission in the list.
@@ -69,11 +85,6 @@
 * The letter on outfits in the outfitter now indicates outfit type
   (weapon, utility, stucture) again, instead of size.
 * Adjusted text colors to make colored text easier to read.
-* Generic planets can now always be bribed.
-* Bribe price for "low-class" planets is now lower.
-* "High-class" planets can now be bribed as long as you are not enemies
-  with their faction, but at a very high bribe cost.
-* Different factions now have different landing bribe costs.
 * Changed the autobrake key to make it engage active cooldown without a
   second press (as in Naev).
 * Added some more pilot names.
@@ -86,11 +97,13 @@
   consumption when jumping in).
 * All ships in the Warlords Battle event are now hilighted, rather than
   just hilighting the leaders.
-* The Derelict event is now less common, but hilights the derelict so
-  it's more visible.
-* The Derelict event no longer spawns in systems with volatile nebulae
-  (since the nebula would destroy them, which would be a bit weird).
-* Mercenaries no longer protect civilians and other peaceful AI pilots.
+* Simplified and fixed the way near zoom is chosen (it was previously
+  based on velocity and didn't really follow the Zoom Near setting in
+  practice; now, the near zoom level is static).
+* Setting zoom levels no longer "requires" a restart. (It wasn't
+  entirely necessary before, but the options menu told you that it was
+  and changing the settings messed up the stars in the background
+  temporarily).
 
 ### Bugfixes
 
@@ -103,6 +116,7 @@
 * Fixed a potential for inconsistent text in the Love Train mission.
 * Fixed a design oversight which meant player fighter bay escorts did
   not escape jump as intended.
+* Fixed dust amount not being recalculated on resize events.
 
 ## 0.9.0
 
