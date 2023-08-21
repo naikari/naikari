@@ -391,7 +391,11 @@ static void cam_updateManualZoom( double dt )
  */
 static void cam_updatePilotZoom( const Pilot *follow, const Pilot *target, double dt )
 {
-   double d, x,y, z,tz, dx, dy;
+   double d;
+   double x, y;
+   double z;
+   double tz;
+   double dx, dy;
    double zfar, znear;
    double c;
 
@@ -425,13 +429,13 @@ static void cam_updatePilotZoom( const Pilot *follow, const Pilot *target, doubl
       dy = (SCREEN_H/2.) / (FABS(y) + 2*target->ship->gfx_space->sh);
 
       /* Get zoom. */
-      tz = MIN( dx, dy );
+      tz = MIN(dx, dy);
    }
    else
       tz = znear; /* Aim at in. */
 
    /* Gradually zoom in/out. */
-   d  = CLAMP(-conf.zoom_speed, conf.zoom_speed, tz - z);
+   d = CLAMP(-conf.zoom_speed, conf.zoom_speed, tz - z);
    d *= dt / dt_mod; /* Remove dt dependence. */
    if (d < 0) /** Speed up if needed. */
       d *= 2.;
