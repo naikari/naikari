@@ -779,6 +779,9 @@ void naev_resize(int force)
    else
       background_initStars( 1000. ); /* from loadscreen_load */
 
+   /* Regenerate dust. */
+   background_initDust();
+
    /* Must be before gui_reload */
    fps_setPos( 15., (double)(SCREEN_H-15-gl_defFont.h) );
 

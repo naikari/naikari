@@ -399,28 +399,16 @@ static void cam_updatePilotZoom( const Pilot *follow, const Pilot *target, doubl
    if (conf.zoom_manual || zoom_override)
       return;
 
-   /* Minimum depends on velocity normally.
-    *
-    * w*h = A, cte    area constant
-    * w/h = K, cte    proportion constant
-    * d^2 = A, cte    geometric longitud
-    *
-    * A_v = A*(1+v/d)   area of view is based on speed
-    * A_v / A = (1 + v/d)
-    *
-    * z = A / A_v = 1. / (1 + v/d)
-    */
-   d     = sqrt(SCREEN_W*SCREEN_H);
-   znear = MIN( conf.zoom_near, 1. / (0.8 + VMOD(follow->solid->vel)/d) );
+   znear = conf.zoom_near;
 
    /* Maximum is limited by nebulae. */
    if (cur_system->nebu_density > 0.) {
-      c     = MIN( SCREEN_W, SCREEN_H ) / 2;
-      zfar  = CLAMP( conf.zoom_far, conf.zoom_near, c / nebu_getSightRadius() );
+      c  = MIN(SCREEN_W, SCREEN_H) / 2;
+      zfar = CLAMP(conf.zoom_far, conf.zoom_near, c / nebu_getSightRadius());
    }
    else
       zfar = conf.zoom_far;
-   znear = MAX( znear, zfar );
+   znear = MAX(znear, zfar);
 
    /*
     * Set Zoom to pilot target.

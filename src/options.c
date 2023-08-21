@@ -20,6 +20,7 @@
 #include "options.h"
 
 #include "array.h"
+#include "background.h"
 #include "conf.h"
 #include "dialogue.h"
 #include "input.h"
@@ -1548,6 +1549,10 @@ static int opt_videoSave( unsigned int wid, char *str )
    conf.zoom_far = round(conf.zoom_far*100.) / 100.;
    conf.zoom_near = round(conf.zoom_near*100.) / 100.;
 
+   /* Reinitialize stars in case zoom changed. */
+   background_initStars(cur_system->stars);
+   background_initDust();
+
    return 0;
 }
 
@@ -1705,9 +1710,6 @@ static void opt_setZoomFar( unsigned int wid, char *str )
    char buf[STRMAX_SHORT];
    double zoom = window_getFaderValue(wid, str);
 
-   if (FABS(conf.zoom_far - zoom) > 1e-4)
-      opt_needRestart();
-
    conf.zoom_far = round(zoom*100.) / 100.;
    snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_far * 100.);
    window_modifyText(wid, "txtZoomFar", buf);
@@ -1715,6 +1717,12 @@ static void opt_setZoomFar( unsigned int wid, char *str )
    if (conf.zoom_far > conf.zoom_near) {
       window_faderSetBoundedValue(wid, "fadZoomNear", conf.zoom_far);
       opt_setZoomNear(wid, "fadZoomNear");
+   }
+
+   /* Reinitialize stars and dust. */
+   if (FABS(conf.zoom_far - zoom) > 1e-4) {
+      background_initStars(cur_system->stars);
+      background_initDust();
    }
 }
 
@@ -1729,9 +1737,6 @@ static void opt_setZoomNear( unsigned int wid, char *str )
 {
    char buf[STRMAX_SHORT];
    double zoom = window_getFaderValue(wid, str);
-
-   if (FABS(conf.zoom_near - zoom) > 1e-4)
-      opt_needRestart();
 
    conf.zoom_near = round(zoom*100.) / 100.;
    snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_near * 100.);
