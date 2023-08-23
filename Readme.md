@@ -3,24 +3,15 @@
 
 ![Naikari](https://naikari.github.io/images/logo.png)
 
-Naikari is a 2-D freeform space trading and mercenary game. Its primary
-inspirations are [Star Wraith 2](https://archive.org/details/swizzle_demu_SW2),
-[RiftSpace](https://archive.org/details/RiftSpace), and to a lesser extent,
-[Endless Sky](https://endless-sky.github.io). It may also incidentally be
-similar to the
-[Escape Velocity](https://en.wikipedia.org/wiki/Escape_Velocity_(video_game))
-series since Naev (which Naikari is a fork of) and Endless Sky are inspired by
-that, although the Escape Velocity series is not a direct influence and Naikari
-does not necessarily seek to be like it.
+Naikari: Eye of Chaos is a 2-D freeform space mystery game featuring
+exploration, trading, and combat mechanics similar to games like Endless Sky
+and Starsector, and a branching mystery storyline written in a manner
+inspired by works like Star Control 2 (The Ur-Quan Masters) and The Expanse.
 
-You pilot space ships from a top-down perspective which you can collect and
-customize more or less however you want. To get new ships, you can deliver
-cargo, hunt bounties, join and assist various factions, or even turn to piracy
-if you dare go against the Empire. Additionally, to keep the game feeling fresh
-and allow you to seek out goals beyond just getting more credits and ships,
-several storylines are available which you can proceed through if you wish.
-All storylines are optional and kept out of the way if you have no interest in
-them.
+You assume control of a space ship and are free to advance thru the game
+however you want. Uncover the cause of the mysterious Incident, discover the
+source of the pirate scourge, or make your own way in the galaxy. In the eye of
+the storm that is chaos, there is great opportunity.
 
 ## DEPENDENCIES
 
