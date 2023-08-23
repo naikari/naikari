@@ -108,8 +108,7 @@ function cargo_calculateRoute ()
    
    -- We now know where. But we don't know what yet. Randomly choose a commodity type.
    local cargo
-   local cargoes = difference(
-         planet.cur():commoditiesSold(), destplanet:commoditiesSold())
+   local cargoes = origin_p:commoditiesSold()
    if #cargoes == 0 then
       if cargo_always_available then
          cargo = nil
@@ -163,22 +162,6 @@ function cargoValidDest( targetplanet )
    return true
 end
 
---Determines the items in table a that are not in table b.
---Used to determine what cargo is sold at current planet but not at destination planet.
-function difference(a, b)
-   local ai = {}
-   local r = {}
-   for k,v in pairs(a) do
-      r[k] = v
-      ai[v] = true
-   end
-   for k,v in pairs(b) do 
-      if ai[v] ~= nil then
-         r[k] = nil
-      end
-   end
-   return r
-end
 
 --[[--
 Returns a block of mission-description text for the given cargo.
