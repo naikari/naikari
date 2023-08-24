@@ -115,11 +115,14 @@ function accept ()
       }
       misn.osdCreate(misn_title, osd_msg)
 
+      marker = misn.markerAdd(misn_base_sys, "high")
+
       hook.takeoff("takeoff")
       hook.land("landed")
       hook.jumpin("jumpin")
+   else
+      misn.finish()
    end
-
 end
 
 
@@ -155,7 +158,6 @@ function localjump_input(inputname, inputpress)
    end
 
    finished = true
-   misn.markerAdd(misn_base_sys, "high", misn_base)
 
    hook.rm(timer_hook)
    timer_hook = hook.timer(8, "localjump_timer")
@@ -167,6 +169,7 @@ function localjump_timer()
 
    tk.msg("", fmt.f(done_text, {planet=misn_base:name()}))
    misn.osdActive(2)
+   misn.markerMove(marker, misn_base_sys, misn_base)
 end
 
 
