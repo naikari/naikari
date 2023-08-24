@@ -104,7 +104,7 @@ function accept()
             {primarykey=naik.keyGet("primary"),
                secondarykey=naik.keyGet("secondary")}),
          "\t- " .. _("Fly to the location of dropped Ore to collect it"),
-         fmt.f(_("Engage Active Cooldown by pressing {autobrake_key} twice, then wait for your ship to fully cool down"),
+         fmt.f(_("Engage Active Cooldown by pressing {autobrake_key}, then wait for your ship to fully cool down"),
             {autobrake_key=naik.keyGet("autobrake")}),
          fmt.f(_("Land on {planet} ({system} system)"),
             {planet=misplanet, system=missys}),
