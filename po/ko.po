@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ofenthource\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-08-23 20:16-0400\n"
+"POT-Creation-Date: 2023-08-27 23:13-0400\n"
 "PO-Revision-Date: 2020-12-02 18:35+0900\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -29052,7 +29052,7 @@ msgstr ""
 #: dat/missions/soromid/comingout/srm_comingout.lua:154
 #: dat/missions/soromid/comingout/srm_comingout2.lua:100
 #: dat/missions/soromid/comingout/srm_comingout4.lua:157
-#: dat/missions/tutorial/reynir.lua:113 dat/missions/tutorial/reynir.lua:145
+#: dat/missions/tutorial/reynir.lua:113 dat/missions/tutorial/reynir.lua:148
 #: dat/missions/tutorial/teenager.lua:111
 #: dat/missions/tutorial/tutorial3.lua:109
 #: dat/missions/tutorial/tutorial4.lua:116
@@ -39501,14 +39501,14 @@ msgid ""
 "Do not leave the {system} system"
 msgstr "프론티어 시스템"
 
-#: dat/missions/tutorial/reynir.lua:142
+#: dat/missions/tutorial/reynir.lua:145
 #, fuzzy
 msgid ""
 "Press {local_jump_key} to initiate an escape jump\n"
 "Do not leave the {system} system"
 msgstr "프론티어 시스템"
 
-#: dat/missions/tutorial/reynir.lua:185
+#: dat/missions/tutorial/reynir.lua:188
 msgid ""
 "\"Thank you so much! My ears are ringing a bit, but that might have been the "
 "best experience of my life! As promised, I'm transferring {amount} kt of "
@@ -39519,7 +39519,7 @@ msgid_plural ""
 "robot teddy bears to your ship.\""
 msgstr[0] ""
 
-#: dat/missions/tutorial/reynir.lua:206
+#: dat/missions/tutorial/reynir.lua:209
 #, fuzzy
 msgid "You left the {system} system."
 msgstr "프론티어 시스템"
@@ -40294,8 +40294,8 @@ msgstr ""
 
 #: dat/missions/tutorial/tutorial3.lua:107
 msgid ""
-"Engage Active Cooldown by pressing {autobrake_key} twice, then wait for your "
-"ship to fully cool down"
+"Engage Active Cooldown by pressing {autobrake_key}, then wait for your ship "
+"to fully cool down"
 msgstr ""
 
 #: dat/missions/tutorial/tutorial3.lua:137 src/dev_sysedit.c:723 src/map.c:767
