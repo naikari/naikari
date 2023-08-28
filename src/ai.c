@@ -773,8 +773,8 @@ void ai_think( Pilot* pilot, const double dt )
 
    /* control function if pilot is idle or tick is up */
    if ((cur_pilot->tcontrol < 0.) || (t == NULL)) {
-      if (pilot_isFlag(pilot,PILOT_PLAYER) ||
-          pilot_isFlag(cur_pilot, PILOT_MANUAL_CONTROL)) {
+      if (pilot_isFlag(pilot,PILOT_PLAYER)
+            || pilot_isFlag(cur_pilot, PILOT_MANUAL_CONTROL)) {
          lua_rawgeti( naevL, LUA_REGISTRYINDEX, cur_pilot->ai->ref_control_manual );
          ai_run(env, 0);
       } else {
@@ -814,14 +814,12 @@ void ai_think( Pilot* pilot, const double dt )
          ai_run(env, 1);
       } else
          ai_run(env, 0);
-
-      /* Manual control must check if IDLE hook has to be run. */
-      if (pilot_isFlag(cur_pilot, PILOT_MANUAL_CONTROL)) {
-         /* We must yet check again to see if there still is a current task running. */
-         if (ai_curTask( cur_pilot ) == NULL)
-            pilot_runHook( cur_pilot, PILOT_HOOK_IDLE );
-      }
    }
+
+   /* Manual control must check if idle hook has to be run. */
+   if (pilot_isFlag(cur_pilot, PILOT_MANUAL_CONTROL)
+         && (ai_curTask(cur_pilot) == NULL))
+      pilot_runHook(cur_pilot, PILOT_HOOK_IDLE);
 
    /* fire weapons if needed */
    if (ai_isFlag(AI_PRIMARY))

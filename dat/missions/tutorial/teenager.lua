@@ -154,7 +154,10 @@ function enter()
         target:outfitAdd("Reactor Class I")
         target:outfitAdd("Shield Capacitor", 2)
         target:control()
-        target:memory().aggressive = true
+        local mem = target:memory()
+        mem.aggressive = true
+        mem.norun = true
+        mem.noleave = true
         target:setHilight()
         target:setVisplayer()
         target:setNoClear()
@@ -176,7 +179,7 @@ function targetIdle(p)
     local angle = rnd.rnd() * 2 * math.pi
     local newlocation = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
     p:taskClear()
-    p:moveto(location + newlocation, false, false)
+    p:moveto(location + newlocation, false)
 end
 
 
