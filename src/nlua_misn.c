@@ -471,6 +471,7 @@ static int misn_markerMove( lua_State *L )
 
    /* Update system. */
    marker->sys = sys;
+   free(marker->planet);
    marker->planet = planetname;
 
    /* Update system markers. */
@@ -516,7 +517,8 @@ static int misn_markerRm( lua_State *L )
    }
 
    /* Remove the marker. */
-   array_erase( &cur_mission->markers, marker, &marker[1] );
+   free(marker->planet);
+   array_erase(&cur_mission->markers, marker, &marker[1]);
 
    /* Update system markers. */
    mission_sysMark();
