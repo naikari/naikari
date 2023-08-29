@@ -1973,7 +1973,7 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
             _(temp->limit) );
 
    i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
-         _("%G t Mass Limit\n"
+         _("%G kt Mass Limit\n"
          "%G mAU/s² Acceleration\n"
          "#%c%s%+G%% Maximum Speed#0\n"
          "#%c%s%+G GW Energy Loss#0"),
