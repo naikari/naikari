@@ -36,18 +36,21 @@ hail_text = _([["Hello, {player}. I'm sorry to bother you, but I have an importa
 
 
 function create()
-   if not evt.claim(system.cur()) then
-      evt.finish(false)
-   end
-
    local pilots = pilot.get(faction.get("Empire"))
    if #pilots <= 0 then
       evt.finish(false)
    end
 
    hail_p = pilots[rnd.rnd(1, #pilots)]
+   local mem = hail_p:memory()
+
+   if not mem.natural then
+      evt.finish(false)
+   end
+
    hail_p:control()
    hail_p:follow(player.pilot())
+   mem.natural = false
    hook.timer(0.5, "proximityScan", {focus=hail_p, funcname="hailme"})
 end
 
@@ -60,7 +63,11 @@ end
 
 function hail(p)
    player.commClose()
-   hail_p:control(false)
+   p:control(false)
+
+   -- Give the pilot back as a natural pilot.
+   local mem = p:memory()
+   mem.natural = true
 
    local pnt, sys = planet.get("Emperor's Fist")
    tk.msg("", fmt.f(hail_text,
