@@ -1155,11 +1155,13 @@ int pilot_localJump(Pilot *p)
 void pilot_setHostile( Pilot* p )
 {
    if (!pilot_isFlag(p, PILOT_HOSTILE)) {
+      pilot_setFlag(p, PILOT_HOSTILE);
+      player.enemies++;
+      if (pilot_isDisabled(p))
+         player.disabled_enemies++;
+
       /* Time to play combat music. */
       music_choose("combat");
-
-      player.enemies++;
-      pilot_setFlag( p, PILOT_HOSTILE );
    }
    pilot_rmFriendly(p);
    pilot_rmFlag(p, PILOT_BRIBED);
@@ -1364,6 +1366,7 @@ void pilot_rmHostile( Pilot* p )
 {
    if (pilot_isHostile(p)) {
       if (pilot_isFlag(p, PILOT_HOSTILE)) {
+         pilot_rmFlag(p, PILOT_HOSTILE);
          player.enemies--;
          if (pilot_isDisabled(p))
             player.disabled_enemies--;
@@ -1372,8 +1375,6 @@ void pilot_rmHostile( Pilot* p )
          if (player.enemies <= player.disabled_enemies) {
             music_choose("ambient");
          }
-
-         pilot_rmFlag(p, PILOT_HOSTILE);
       }
 
       /* Set "bribed" flag if faction has poor reputation */
@@ -1655,10 +1656,9 @@ void pilot_updateDisable(Pilot* p, const pilotId_t shooter)
 {
    HookParam hparam;
 
-   if ((!pilot_isFlag(p, PILOT_DISABLED)) &&
-       (!pilot_isFlag(p, PILOT_NODISABLE) || (p->armour <= 0.)) &&
-       (p->armour <= p->stress)) { /* Pilot should be disabled. */
-
+   if ((!pilot_isFlag(p, PILOT_DISABLED))
+         && (!pilot_isFlag(p, PILOT_NODISABLE) || (p->armour <= 0.))
+         && (p->armour <= p->stress)) {
       /* Cooldown is an active process, so cancel it. */
       if (pilot_isFlag(p, PILOT_COOLDOWN))
          pilot_cooldownEnd(p, NULL);
@@ -1674,8 +1674,14 @@ void pilot_updateDisable(Pilot* p, const pilotId_t shooter)
       pilot_rmFlag(p, PILOT_HYPERSPACE);
 
       /* If hostile, must add counter. */
-      if (pilot_isHostile(p) && pilot_isFlag(p, PILOT_HOSTILE))
+      if (pilot_isHostile(p) && pilot_isFlag(p, PILOT_HOSTILE)) {
          player.disabled_enemies++;
+
+         /* Change music back to ambient if no more enemies. */
+         if (player.enemies <= player.disabled_enemies) {
+            music_choose("ambient");
+         }
+      }
 
       /* Disabled ships don't use up presence. */
       if (p->presence > 0) {
@@ -1713,6 +1719,7 @@ void pilot_updateDisable(Pilot* p, const pilotId_t shooter)
       /* If hostile, must remove counter. */
       if (pilot_isHostile(p) && pilot_isFlag(p, PILOT_HOSTILE)) {
          player.disabled_enemies--;
+
          /* Time to play combat music. */
          music_choose("combat");
       }

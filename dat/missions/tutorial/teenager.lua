@@ -113,6 +113,8 @@ function accept ()
         }
         misn.osdCreate(_("Teenager's Joyride"), osd_msg)
 
+        marker = misn.markerAdd(cursys, "low")
+
         tk.msg("", fmt.f(yes_text, {board_key=tutGetKey("board")}))
 
         hook.enter("enter")
@@ -223,7 +225,7 @@ function targetBoard(p, boarder)
 
     misn.osdActive(4)
 
-    misn.markerAdd(cursys, "low", curplanet)
+    misn.markerMove(marker, cursys, curplanet)
 
     hook.land("land")
 end
