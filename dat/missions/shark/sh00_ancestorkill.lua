@@ -142,15 +142,32 @@ end
 function update_osd()
    if stage == 0 then
       misn.markerRm(markeri)
-      for i, s in ipairs(player.ships()) do
-         if s.ship == ship.get("Shark")
-               or s.ship == ship.get("Empire Shark") then
-            misn.osdActive(2)
-            markeri = misn.markerAdd(missys, "low", mispla)
-            return
+      local curship = player.pilot():ship()
+      local shark = ship.get("Shark")
+      local em_shark = ship.get("Empire Shark")
+      local have_shark = false
+
+      -- Check to see if the current ship is a Shark.
+      if curship == shark or curship == em_shark then
+         have_shark = true
+      end
+
+      -- Check to see if any of the player's owned ships are Sharks.
+      if not have_shark then
+         for i, s in ipairs(player.ships()) do
+            if s.ship == shark or s.ship == em_shark then
+               have_shark = true
+               break
+            end
          end
       end
-      misn.osdActive(1)
+
+      if have_shark then
+         misn.osdActive(2)
+         markeri = misn.markerAdd(missys, "low", mispla)
+      else
+         misn.osdActive(1)
+      end
    end
 end
 
