@@ -117,6 +117,16 @@
 * Fixed a design oversight which meant player fighter bay escorts did
   not escape jump as intended.
 * Fixed dust amount not being recalculated on resize events.
+* Fixed Dolmen missing common outfits.
+* Fixed an issue where the Credence in the Teenager mission could get
+  stuck flying around in circles.
+* Fixed a mistake in the code which could lead to combat music playing
+  when it shouldn't.
+* Fixed the Credence in the Teenager mission not being given bad cores
+  as intended (which is meant to slow it down and make it easier to
+  catch).
+* Fixed mass limit of afterburners being listed as tonnes rather than
+  kilotonnes.
 
 ## 0.9.0
 
