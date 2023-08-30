@@ -4,7 +4,6 @@
 -- valid parameters:
 --    load - game is loading
 --    land - player landed
---    takeoff - player took off
 --    combat - player just got a hostile onscreen
 --    idle - current playing music ran out
 ]]--
@@ -38,22 +37,31 @@ function choose( str )
       ["intro"] = choose_intro,
       ["credits"] = choose_credits,
       ["land"] = choose_land,
-      ["takeoff"] = choose_ambient,
       ["ambient"] = choose_ambient,
       ["combat"] = choose_combat
    }
 
    -- Don't change or play music if a mission or event doesn't want us to
-   if var.peek( "music_off" ) then
+   if var.peek("music_off") then
+      -- Save the last music so we don't choose the wrong one when music
+      -- is turned back on.
+      if str ~= "idle" then
+         last = str
+      end
       return
    end
 
    -- Allow restricting play of music until a song finishes
-   if var.peek( "music_wait" ) then
+   if var.peek("music_wait") then
       if music.isPlaying() then
+         -- Save the last music so we don't choose the wrong one when
+         -- the music finishes playing.
+         if str ~= "idle" then
+            last = str
+         end
          return
       else
-         var.pop( "music_wait" )
+         var.pop("music_wait")
       end
    end
 
@@ -62,36 +70,32 @@ function choose( str )
       str = "ambient"
    end
 
-   local changed = false
    if str == "idle" then
-      -- If selecting for idle, choose last music or ambient if last was
-      -- takeoff music.
+      -- If selecting for idle, choose last music.
       if last ~= "idle" then
-         -- We'll play the same as last unless it was takeoff
-         if last == "takeoff" then
-            changed = choose_ambient()
-         else
-            changed = choose(last)
-         end
+         choose(last)
       else
-         changed = choose_ambient()
+         choose_ambient()
+         last = "ambient"
          warn(_("'last' variable set to 'idle'; resetting to ambient."))
       end
    else
       -- Normal case
-      changed = choose_table[str]()
+      choose_table[str]()
    end
 
-   if changed and str ~= "idle" then
-      last = str -- save the last string so we can use it
+   -- Save the last music. This ensures that we don't accidentally
+   -- change music type to the wrong one when a track finishes playing.
+   if str ~= "idle" then
+      last = str
    end
 end
 
 
 --[[
--- @brief Checks to see if a song is being played, if it is it stops it.
---
---    @return true if music is playing.
+Checks to see if a song is being played, if it is it stops it.
+
+   @treturn boolean true if music was playing.
 --]]
 function checkIfPlayingOrStop( song )
    if music.isPlaying() then
@@ -107,61 +111,43 @@ end
 --[[
 -- @brief Play a song if it's not currently playing.
 --]]
-function playIfNotPlaying( song )
-   if checkIfPlayingOrStop( song ) then
-      return true
+function playIfNotPlaying(song)
+   if checkIfPlayingOrStop(song) then
+      return
    end
    music.load( song )
    music.play()
-   return true
 end
 
 
 --[[
--- @brief Chooses Loading songs.
+Chooses Loading songs.
 --]]
-function choose_load ()
-   return playIfNotPlaying( "machina" )
+function choose_load()
+   playIfNotPlaying("machina")
 end
 
 
 --[[
--- @brief Chooses Intro songs.
+Chooses Intro songs.
 --]]
-function choose_intro ()
-   return playIfNotPlaying( "intro" )
+function choose_intro()
+   playIfNotPlaying("intro")
 end
 
 
 --[[
--- @brief Chooses Credit songs.
+Chooses Credits songs.
 --]]
-function choose_credits ()
-   return playIfNotPlaying("machina")
+function choose_credits()
+   playIfNotPlaying("machina")
 end
 
-
 --[[
--- @brief Chooses landing songs.
+Chooses Land songs.
 --]]
 function choose_land()
-   if last ~= "ambient" then
-      last = "land"
-   end
-   return choose_ambient()
-end
-
-
--- Takeoff songs
-function choose_takeoff ()
-   -- No need to restart
-   if last == "takeoff" and music.isPlaying() then
-      return true
-   end
-   takeoff = { "liftoff", "launch2", "launch3chatstart" }
-   music.load( takeoff[ rnd.rnd(1,#takeoff) ])
-   music.play()
-   return true
+   choose_ambient(true)
 end
 
 
@@ -175,21 +161,15 @@ ambient_neutral = {
 }
 ambient_nebula = {"ambient1", "ambient3"}
 --[[
--- @brief Chooses ambient songs.
+Chooses ambient songs.
 --]]
-function choose_ambient()
+function choose_ambient(landed)
    local force = true
    local add_neutral = false
 
    -- Check to see if we want to update
-   if music.isPlaying() then
-      if last == "takeoff" then
-         -- This is a lie, but say we changed the music so it becomes
-         -- the "last" value, for when music goes idle.
-         return true
-      elseif last == "ambient" then
-         force = false
-      end
+   if music.isPlaying() and (last == "ambient" or last == "land") then
+      force = false
    end
 
    -- Get information about the current system
@@ -199,7 +179,7 @@ function choose_ambient()
 
    local strongest = var.peek("music_ambient_force")
 
-   if player.isLanded() then
+   if landed then
       local pnt = planet.cur()
 
       -- Planet override
@@ -207,7 +187,7 @@ function choose_ambient()
       if override then
          music.load(override[rnd.rnd(1, #override)])
          music.play()
-         return true
+         return
       end
 
       if strongest == nil then
@@ -221,7 +201,7 @@ function choose_ambient()
       if override then
          music.load(override[rnd.rnd(1, #override)])
          music.play()
-         return true
+         return
       end
    end
 
@@ -285,7 +265,7 @@ function choose_ambient()
          end
 
          music.stop()
-         return true
+         return
       end
 
       -- Load music and play
@@ -311,10 +291,7 @@ function choose_ambient()
       last_track = new_track
       music.load(new_track)
       music.play()
-      return true
    end
-
-   return false
 end
 
 
@@ -333,9 +310,9 @@ factional_combat = {
 }
 
 --[[
--- @brief Chooses battle songs.
+Chooses battle songs.
 --]]
-function choose_combat ()
+function choose_combat()
    -- Get some data about the system
    local sys                  = system.cur()
    local nebu_dens, nebu_vol  = sys:nebula()
@@ -385,13 +362,13 @@ function choose_combat ()
       return true
    end
 
-   local new_track = combat[ rnd.rnd(1,#combat) ]
+   local new_track = combat[rnd.rnd(1, #combat)]
 
    -- Make it very unlikely (but not impossible) for the same music
    -- to play twice
-   for i=1, 3 do
+   for i = 1, 3 do
       if new_track == last_track then
-         new_track = combat[ rnd.rnd(1,#combat) ]
+         new_track = combat[rnd.rnd(1, #combat)]
       else
          break
       end

@@ -1597,9 +1597,6 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
       p->stress = 1.;
    }
 
-   /* Disabled always run before dead to ensure combat rating boost. */
-   pilot_updateDisable(p, shooter);
-
    /* Officially dead. */
    if (p->armour <= 0.) {
       p->armour = 0.;
@@ -1622,6 +1619,9 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
             player.ships_destroyed++;
          }
       }
+   }
+   else {
+      pilot_updateDisable(p, shooter);
    }
 
    /* Update player meta-data if applicable. */

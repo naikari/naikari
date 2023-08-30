@@ -1667,9 +1667,6 @@ void takeoff( int delay )
    /* In case we had paused messy sounds. */
    sound_stopAll();
 
-   /* ze music */
-   music_choose("takeoff");
-
    /* to randomize the takeoff a bit */
    a = RNGF() * 2. * M_PI;
    r = RNGF() * land_planet->radius;
