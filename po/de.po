@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-08-27 23:13-0400\n"
+"POT-Creation-Date: 2023-08-30 09:00-0400\n"
 "PO-Revision-Date: 2021-02-14 02:50+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/naev/naev/de/>\n"
@@ -29954,6 +29954,7 @@ msgid ""
 "again.\""
 msgstr ""
 
+#. Give the pilot back as a natural pilot.
 #.
 #. <?xml version='1.0' encoding='utf8'?>
 #. <event name="FLF/DV Derelicts">
@@ -45581,17 +45582,19 @@ msgstr ""
 msgid "Go to the {system} system and kill the pirate with your Shark"
 msgstr "Gehe zu %s und töte den Piraten mit deinem Hai"
 
-#: dat/missions/shark/sh00_ancestorkill.lua:160
+#. Check to see if the current ship is a Shark.
+#. Check to see if any of the player's owned ships are Sharks.
+#: dat/missions/shark/sh00_ancestorkill.lua:177
 #, fuzzy
 msgid "You left the pirate."
 msgstr "Dir fehlt: %s."
 
-#: dat/missions/shark/sh00_ancestorkill.lua:170
+#: dat/missions/shark/sh00_ancestorkill.lua:187
 #, fuzzy
 msgid "You were supposed to use a Shark."
 msgstr "MISSION FEHLGESCHLAGEN: Du hättest einen Hai benutzen sollen."
 
-#: dat/missions/shark/sh00_ancestorkill.lua:207
+#: dat/missions/shark/sh00_ancestorkill.lua:224
 #, fuzzy
 msgid "The pirate ran away."
 msgstr "MISSION FEHLGESCHLAGEN: Der Pirat ist geflohen."
@@ -48433,20 +48436,20 @@ msgid ""
 msgstr ""
 
 #. Disable spawning of pirates and hostiles.
-#: dat/missions/tutorial/teenager.lua:147
+#: dat/missions/tutorial/teenager.lua:149
 msgid "Credence"
 msgstr "Credence"
 
-#: dat/missions/tutorial/teenager.lua:198
+#: dat/missions/tutorial/teenager.lua:204
 #, fuzzy
 msgid "The Credence has been destroyed!"
 msgstr "Alle Ketzer wurden zerstört!"
 
-#: dat/missions/tutorial/teenager.lua:218
+#: dat/missions/tutorial/teenager.lua:224
 msgid "Teenagers"
 msgstr "Teenager"
 
-#: dat/missions/tutorial/teenager.lua:218
+#: dat/missions/tutorial/teenager.lua:224
 msgid "Disillusioned teenagers."
 msgstr ""
 
@@ -54497,84 +54500,84 @@ msgstr "Schiff „%s“ fehlt das „%s“-Element"
 msgid "AI Profile '%s' not found in AI stack"
 msgstr "KI-Profil „%s“ nicht im KI-Stack gefunden"
 
-#: src/ai.c:889
+#: src/ai.c:887
 #, c-format
 msgid "Pilot '%s' ai -> 'attacked': %s"
 msgstr "Pilot „%s“ KI -> „attacked“: %s"
 
-#: src/ai.c:906
+#: src/ai.c:904
 #, fuzzy, c-format
 msgid "Pilot '%s' is trying to refuel when no 'refuel' function is defined!"
 msgstr ""
 "Pilot „%s“ KI -> „%s“: Versuch, eine nicht existierende Funktion auszuführen"
 
-#: src/ai.c:961
+#: src/ai.c:959
 #, c-format
 msgid "Pilot '%s' ai -> 'distress': %s"
 msgstr "Pilot „%s“ KI -> „distress“: %s"
 
 #. Error has occurred.
-#: src/ai.c:1001
+#: src/ai.c:999
 #, c-format
 msgid "Pilot '%s' equip -> '%s': %s"
 msgstr "Pilot „%s“ equip -> „%s“ %s"
 
 #. Run function.
 #. error has occurred
-#: src/ai.c:1021
+#: src/ai.c:1019
 #, c-format
 msgid "Pilot '%s' ai -> '%s': %s"
 msgstr "Pilot „%s“ KI -> „%s“: %s"
 
-#: src/ai.c:1041
+#: src/ai.c:1039
 #, c-format
 msgid "Trying to create task for pilot '%s' which has no AI."
 msgstr ""
 
-#: src/ai.c:1073
+#: src/ai.c:1071
 #, c-format
 msgid "Trying to add subtask '%s' to non-existent task."
 msgstr "Versuch, Teilaufgabe „%s“ zu nicht-existenter Aufgabe hinzuzufügen."
 
-#: src/ai.c:1136
+#: src/ai.c:1134
 #, fuzzy, c-format
 msgid "Failed to create new task '%s' for pilot '%s'."
 msgstr "Missionsfracht „%d“ für Mission „%s“ konnte nicht entfernt werden."
 
-#: src/ai.c:1198 src/ai.c:1265
+#: src/ai.c:1196 src/ai.c:1263
 msgid "Trying to pop task when there are no tasks on the stack."
 msgstr ""
 "Versuch, Aufgabe vom Stack zu nehmen („pop“), während sich keine Aufgaben "
 "auf dem Stack befinden."
 
-#: src/ai.c:1269
+#: src/ai.c:1267
 #, c-format
 msgid "Trying to pop subtask when there are no subtasks for the task '%s'."
 msgstr ""
 "Versuch, Unteraufgabe vom Stack zu nehmen („pop“), während keine "
 "Unteraufgaben für die Aufgabe „%s“ existieren."
 
-#: src/ai.c:2402
+#: src/ai.c:2400
 #, fuzzy, c-format
 msgid "Pilot '%s' cannot land."
 msgstr "Pilot „%s“ hat kein Landeziel"
 
-#: src/ai.c:2409
+#: src/ai.c:2407
 #, fuzzy, c-format
 msgid "Pilot '%s' has invalid planet targeted."
 msgstr "Pilot „%s“ hat kein Landeziel"
 
-#: src/ai.c:2496
+#: src/ai.c:2494
 msgid "Jump point must be in current system."
 msgstr "Sprungpunkte müssen sich im aktuellen System befinden."
 
-#: src/ai.c:2943 src/ai.c:3177 src/ai.c:3219 src/ai.c:3262
+#: src/ai.c:2941 src/ai.c:3175 src/ai.c:3217 src/ai.c:3260
 #: src/nlua_pilot.c:1600
 #, fuzzy, c-format
 msgid "'%s' is not a valid weapon set name."
 msgstr "„%s“ ist kein gültiges love2d-Spiel!"
 
-#: src/ai.c:3088
+#: src/ai.c:3086
 msgid "Invalid Bounds"
 msgstr "Ungültige Grenzen"
 
@@ -60155,7 +60158,7 @@ msgstr ""
 msgid "Event '%s' -> '%s': %s"
 msgstr "Ereignis „%s“ -> „%s“ %s"
 
-#: src/nlua_evt.c:257 src/nlua_misn.c:1069
+#: src/nlua_evt.c:257 src/nlua_misn.c:1071
 msgid "Invalid NPC ID!"
 msgstr "Ungültige NPC-ID!"
 
@@ -60272,22 +60275,22 @@ msgstr "Unbekannter Markertyp: %s"
 msgid "Mission does not have a marker with id '%d'"
 msgstr "Mission hat keinen Marker mit ID „%d“"
 
-#: src/nlua_misn.c:632
+#: src/nlua_misn.c:634
 msgid "Mission already accepted!"
 msgstr "Mission wurde bereits akzeptiert!"
 
-#: src/nlua_misn.c:720
+#: src/nlua_misn.c:722
 #, c-format
 msgid ""
 "Trying to create new cargo '%s' that would shadow existing non-temporary "
 "cargo!"
 msgstr ""
 
-#: src/nlua_misn.c:877
+#: src/nlua_misn.c:879
 msgid "Can't create an OSD on an unaccepted mission!"
 msgstr "Ein OSD für eine nicht akzeptierte Mission kann nicht erzeugt werden!"
 
-#: src/nlua_misn.c:1102
+#: src/nlua_misn.c:1104
 msgid "Mission trying to claim but already has."
 msgstr "Mission versucht, zu claimen, hat es aber bereits getan."
 
@@ -61668,7 +61671,7 @@ msgstr ""
 #: src/outfit.c:1976
 #, c-format
 msgid ""
-"%G t Mass Limit\n"
+"%G kt Mass Limit\n"
 "%G mAU/s² Acceleration\n"
 "#%c%s%+G%% Maximum Speed#0\n"
 "#%c%s%+G GW Energy Loss#0"
@@ -61914,53 +61917,53 @@ msgstr "#rAktive Abkühlung abgebrochen!"
 msgid "#rNot enough fuel to perform escape jump."
 msgstr "#rNicht genügend Treibstoff für Autonav, um zu springen."
 
-#: src/pilot.c:1243
+#: src/pilot.c:1245
 #, c-format
 msgid "#%cComm %s>#0 \"%s\""
 msgstr "#%cKomm. %s>#0 „%s“"
 
-#: src/pilot.c:1271
+#: src/pilot.c:1273
 #, c-format
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr "#%cRundfunk %s>#0 „%s“"
 
-#: src/pilot.c:2601 src/pilot.c:2650
+#: src/pilot.c:2608 src/pilot.c:2657
 #, fuzzy
 msgid "#rJump aborted: strayed too far from jump point."
 msgstr "#rZu weit vom Sprungpunkt abgekommen: Sprung abgebrochen."
 
-#: src/pilot.c:2608
+#: src/pilot.c:2615
 msgid "#rJump aborted: afterburner active."
 msgstr ""
 
-#: src/pilot.c:2622
+#: src/pilot.c:2629
 #, fuzzy
 msgid "#rJump aborted."
 msgstr "#rAutonav abgebrochen!"
 
-#: src/pilot.c:2670
+#: src/pilot.c:2677
 #, c-format
 msgid "Pilot '%s' trying to jump through exit-only jump from '%s' to '%s'"
 msgstr ""
 "Pilot „%s“ versuchte, von Nur-Ausgangs-Sprung von „%s“ nach „%s“ zu springen"
 
-#: src/pilot.c:3034
+#: src/pilot.c:3041
 #, fuzzy, c-format
 msgid ""
 "Pilot '%s' failed safety check:\n"
 "%s"
 msgstr "Pilot „%s“ ist bei der Vernüftigkeitsprüfung durchgefallen: %s"
 
-#: src/pilot.c:3037
+#: src/pilot.c:3044
 #, c-format
 msgid "   [%d] %s"
 msgstr ""
 
-#: src/pilot.c:3132 src/pilot.c:3166
+#: src/pilot.c:3139 src/pilot.c:3173
 msgid "Unable to allocate memory"
 msgstr "Speicher konnte nicht alloziert werden"
 
-#: src/pilot.c:3252
+#: src/pilot.c:3259
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 "Erzeuge Pilot im System ohne Sprünge oder Planeten, von denen man abheben "
