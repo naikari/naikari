@@ -71,7 +71,7 @@ static int gl_texAdd( glTexture *tex, int sx, int sy );
  *    @param s Surface to check for transparency.
  *    @param x X position of the pixel to check.
  *    @param y Y position of the pixel to check.
- *    @return 0 if the pixel isn't transparent, 0 if it is.
+ *    @return 1 if the pixel is transparent, 0 otherwise.
  */
 static int SDL_IsTrans( SDL_Surface* s, int x, int y )
 {
