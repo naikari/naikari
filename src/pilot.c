@@ -1154,17 +1154,19 @@ int pilot_localJump(Pilot *p)
  */
 void pilot_setHostile( Pilot* p )
 {
+   pilot_rmFriendly(p);
+   pilot_rmFlag(p, PILOT_BRIBED);
    if (!pilot_isFlag(p, PILOT_HOSTILE)) {
       pilot_setFlag(p, PILOT_HOSTILE);
       player.enemies++;
       if (pilot_isDisabled(p))
          player.disabled_enemies++;
 
-      /* Time to play combat music. */
-      music_choose("combat");
+      /* Change music to combat if there are enemies. (We need this
+       * check in case the one that was just added was disabled.) */
+      if (player.enemies > player.disabled_enemies)
+         music_choose("combat");
    }
-   pilot_rmFriendly(p);
-   pilot_rmFlag(p, PILOT_BRIBED);
 }
 
 
@@ -1372,9 +1374,8 @@ void pilot_rmHostile( Pilot* p )
             player.disabled_enemies--;
 
          /* Change music back to ambient if no more enemies. */
-         if (player.enemies <= player.disabled_enemies) {
+         if (player.enemies <= player.disabled_enemies)
             music_choose("ambient");
-         }
       }
 
       /* Set "bribed" flag if faction has poor reputation */
@@ -1674,13 +1675,12 @@ void pilot_updateDisable(Pilot* p, const pilotId_t shooter)
       pilot_rmFlag(p, PILOT_HYPERSPACE);
 
       /* If hostile, must add counter. */
-      if (pilot_isHostile(p) && pilot_isFlag(p, PILOT_HOSTILE)) {
+      if (pilot_isFlag(p, PILOT_HOSTILE)) {
          player.disabled_enemies++;
 
          /* Change music back to ambient if no more enemies. */
-         if (player.enemies <= player.disabled_enemies) {
+         if (player.enemies <= player.disabled_enemies)
             music_choose("ambient");
-         }
       }
 
       /* Disabled ships don't use up presence. */
@@ -1717,11 +1717,13 @@ void pilot_updateDisable(Pilot* p, const pilotId_t shooter)
       pilot_rmFlag( p, PILOT_BOARDING ); /* Can get boarded again. */
 
       /* If hostile, must remove counter. */
-      if (pilot_isHostile(p) && pilot_isFlag(p, PILOT_HOSTILE)) {
+      if (pilot_isFlag(p, PILOT_HOSTILE)) {
          player.disabled_enemies--;
 
-         /* Time to play combat music. */
-         music_choose("combat");
+         /* Play combat music. (The check should be redundant, but is
+          * here just in case.) */
+         if (player.enemies > player.disabled_enemies)
+            music_choose("combat");
       }
 
       /* Reset the accumulated disable time. */
