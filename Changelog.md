@@ -127,6 +127,8 @@
   catch).
 * Fixed mass limit of afterburners being listed as tonnes rather than
   kilotonnes.
+* Fixed failure to update the hilighted OSD objective in the Shark
+  mission if a Shark was acquired via trade-in.
 
 ## 0.9.0
 
