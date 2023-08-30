@@ -1295,9 +1295,9 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    l = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
          "%s\n", _(outfit_getType(temp)));
 
-   if (temp->cpu != 0.)
+   if (outfit_cpu(temp) != 0.)
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%+.0f TFLOPS CPU\n"), temp->cpu);
+            _("%+.0f TFLOPS CPU\n"), outfit_cpu(temp));
 
    if (temp->u.blt.dmg.penetration > 0.)
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
@@ -1501,9 +1501,9 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    l = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
          "%s\n", _(outfit_getType(temp)));
 
-   if (temp->cpu != 0.)
+   if (outfit_cpu(temp) != 0.)
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%+.0f TFLOPS CPU\n"), temp->cpu);
+            _("%+.0f TFLOPS CPU\n"), outfit_cpu(temp));
 
    if (temp->u.bem.dmg.penetration > 0.)
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
@@ -1886,9 +1886,9 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
          (temp->u.mod.active || temp->u.mod.lua_ontoggle != LUA_NOREF)
             ? _("\nActivated Outfit") : "" );
 
-   if (temp->cpu != 0)
-      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
-            _("\n%+.0f TFLOPS CPU"), temp->cpu );
+   if (outfit_cpu(temp) != 0)
+      i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+            _("\n%+.0f TFLOPS CPU"), outfit_cpu(temp));
 
    if (temp->limit != NULL)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
@@ -1963,9 +1963,9 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
          "Activated Outfit\n"),
          _(outfit_getType(temp)));
 
-   if (temp->cpu != 0.)
+   if (outfit_cpu(temp) != 0.)
       i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
-            _("%+.0f TFLOPS CPU\n"), temp->cpu);
+            _("%+.0f TFLOPS CPU\n"), outfit_cpu(temp));
 
    if (temp->limit != NULL)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
@@ -2054,7 +2054,7 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
          "%.1f s/fighter Rebuild Time\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
-         temp->cpu,
+         outfit_cpu(temp),
          1. / temp->u.bay.delay,
          temp->u.bay.reload_time,
          temp->u.bay.amount, _(temp->u.bay.ammo_name) );
@@ -2686,9 +2686,9 @@ static void outfit_launcherDesc( Outfit* o )
          _(outfit_getType(o)),
          outfit_isSeeker(o) ? _("Seeker") : _("Unguided"));
    
-   if (o->cpu != 0.)
+   if (outfit_cpu(o) != 0.)
       l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%+.0f TFLOPS CPU\n"), o->cpu);
+            _("%+.0f TFLOPS CPU\n"), outfit_cpu(o));
 
    if (o->u.lau.lockon > 0.)
       l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
