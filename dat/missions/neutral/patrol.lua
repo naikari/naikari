@@ -99,6 +99,12 @@ function create()
 
    missys = systems[rnd.rnd(1, #systems)]
 
+   -- String claim prevents multiple patrols from being requested in
+   -- the same system at once, since that creates a weird situation.
+   if not misn.claim("patrol_" .. missys:nameRaw()) then
+      misn.finish(false)
+   end
+
    local planets = missys:planets()
    local numpoints = math.min(rnd.rnd(2, 5), #planets)
    points = {}
