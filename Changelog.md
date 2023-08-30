@@ -106,6 +106,8 @@
   temporarily).
 * CPU usage for outfits is now displayed as a positive "CPU Usage" value
   instead of a negative "CPU" value.
+* Salvador now has no Empire presence (to match the Hakoi Pirates
+  storyline).
 
 ### Bugfixes
 
