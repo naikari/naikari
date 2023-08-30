@@ -104,6 +104,8 @@
   entirely necessary before, but the options menu told you that it was
   and changing the settings messed up the stars in the background
   temporarily).
+* CPU usage for outfits is now displayed as a positive "CPU Usage" value
+  instead of a negative "CPU" value.
 
 ### Bugfixes
 
