@@ -8,7 +8,7 @@
   <price>115000</price>
   <description>The Heavy Ion Turret is the strongest less-than-lethal weapon in the galaxy, applying brute force to its target's internal systems. It is well-used by pirates all across the galaxy despite repeated attempts to restrict its sale.</description>
   <gfx_store>heavy_ionturret.webp</gfx_store>
-  <cpu>-90</cpu>
+  <cpu>90</cpu>
  </general>
  <specific type="turret bolt">
   <gfx>ionL.png</gfx>

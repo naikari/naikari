@@ -7,7 +7,7 @@
   <price>9800</price>
   <description>The Particle Lance is the smallest and weakest of the famous beam weapons developed by House Za'lek. Unlike standard bolt weaponry, beam weapons instantly create massive discharges of energy which continuously damages anything they come into contact with. Beam weapons have much shorter range than bolt weaponry, but once they do get in range, they are almost impossible do dodge and the damage output from them is enormous. It's for this reason that Za'lek drones are feared even by the most hardened of pirates.</description>
   <gfx_store>particle_lance.webp</gfx_store>
-  <cpu>-5</cpu>
+  <cpu>5</cpu>
  </general>
  <specific type="beam">
   <delay>1.5</delay>

@@ -8,7 +8,7 @@
   <description>This upscaled version of the weapons ionizer works with turrets as well as forward-mounted weapons, but the design requirements force it into a form-factor that doesn't typically fit on small ships. Like the standard weapons ionizer, it allows conventional weapons to deal ionizing damage while the outfit is active.</description>
   <gfx_store>berserk_chip.webp</gfx_store>
   <limit>Ionizer</limit>
-  <cpu>-5</cpu>
+  <cpu>5</cpu>
  </general>
  <specific type="modification" group="9">
   <active />

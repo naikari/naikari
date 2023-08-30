@@ -9,7 +9,7 @@
   <price>300000</price>
   <gfx_store>shark_pirate_fighter.webp</gfx_store>
   <description>This miniaturized fighter bay allows your ship to carry two Pirate Shark fighters. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
-  <cpu>-100</cpu>
+  <cpu>100</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Pirate Shark Fighter</ammo>

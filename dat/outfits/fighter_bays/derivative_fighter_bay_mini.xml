@@ -9,7 +9,7 @@
   <price>470000</price>
   <gfx_store>proteron_derivative_fighter.webp</gfx_store>
   <description>This bay allows your ship to carry two devastating Proteron Derivative fighters, each carrying with it the might of the Proteron Empire. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
-  <cpu>-110</cpu>
+  <cpu>110</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Derivative Fighter</ammo>

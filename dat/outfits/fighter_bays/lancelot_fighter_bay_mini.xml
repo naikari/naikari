@@ -8,7 +8,7 @@
   <price>420000</price>
   <gfx_store>lancelot_fighter.webp</gfx_store>
   <description>This miniaturized fighter bay allows your ship to carry two Lancelot fighters. It comes with all the equipment required for the maintenance and flight of the fighter.</description>
-  <cpu>-100</cpu>
+  <cpu>100</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Lancelot Fighter</ammo>

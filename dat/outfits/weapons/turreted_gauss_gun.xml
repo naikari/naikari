@@ -9,7 +9,7 @@
   <price>16500</price>
   <description>One of the more common countermeasures employed by low-budget merchant ships in Dvaered space, the turret version of the Gauss Gun provides basic defense against lone pirates. A more determined attacker is unlikely to be deterred, however.</description>
   <gfx_store>gaussturret.webp</gfx_store>
-  <cpu>-24</cpu>
+  <cpu>24</cpu>
  </general>
  <specific type="turret bolt">
   <gfx>gatling.png</gfx>

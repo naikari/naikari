@@ -6,7 +6,7 @@
   <mass>5</mass>
   <price>300000</price>
   <description>This outfit creates a series of amplification chambers which dramatically boost the damage output of a ship's forward-facing weaponry. The amplification process requires a short delay before each round can be fired, slightly lowering fire rate, while tremendously increases energy requirements. It is also notoriously difficult for heat dissipation systems to cool off, which may require more frequent Active Cooling cycles. Even with these downsides, however, the increase in damage output is well worth it for many pilots.</description>
-  <cpu>-12</cpu>
+  <cpu>12</cpu>
   <gfx_store>power_amplification_circuit.png</gfx_store>
  </general>
  <specific type="modification">

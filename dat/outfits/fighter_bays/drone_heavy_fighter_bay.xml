@@ -9,7 +9,7 @@
   <price>2250000</price>
   <gfx_store>drone_heavy_fighter.webp</gfx_store>
   <description>The Heavy Drone Fighter Bay is capable of launching three devastating Heavy Drones, the pinnacle of Collective technology. All the equipment needed to build and take care of the drones is provided with the bay.</description>
-  <cpu>-450</cpu>
+  <cpu>450</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Heavy Drone Fighter</ammo>

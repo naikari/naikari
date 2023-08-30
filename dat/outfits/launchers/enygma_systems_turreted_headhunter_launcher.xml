@@ -8,7 +8,7 @@
   <price>140000</price>
   <description>These turreted launchers are sometimes employed by cruiser captains whose ships aren't maneuverable enough to effectively combat enemy fighters and bombers. The punch of the Headhunter missile combined with Enygma Systems' swivel mounted launcher can effectively compensate for any blind spots.</description>
   <gfx_store>headhunterturret.webp</gfx_store>
-  <cpu>-14</cpu>
+  <cpu>14</cpu>
  </general>
  <specific type="turret launcher" secondary="1">
   <ammo>Headhunter Missile</ammo>

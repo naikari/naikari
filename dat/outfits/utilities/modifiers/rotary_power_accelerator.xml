@@ -6,7 +6,7 @@
   <mass>5</mass>
   <price>360000</price>
   <description>A Rotary Power Accelerator is a must-have for many users of turreted weapons, boosting their damage output tremendously. In order to do so, it draws extra power not only from the battery, but also from the ship's steering thrusters, tremendously lowering a ship's steering capability. Since turreted weapons have their own rotation, however, this is often seen as a worthwhile trade-off.</description>
-  <cpu>-16</cpu>
+  <cpu>16</cpu>
   <gfx_store>rotary_power_accelerator.png</gfx_store>
  </general>
  <specific type="modification">

@@ -8,7 +8,7 @@
   <price>30000</price>
   <description>When it comes to delivering heavy damage at a devastating rate, many seasoned pilots know to trust TeraCom's high-performance Mace launcher. Featuring enhanced fire rate, improved tracking technology, and greater capacity, no other light weapon can deliver an unrelenting barrage like the TeraCom Mace Launcher can.</description>
   <gfx_store>macelauncher.webp</gfx_store>
-  <cpu>-5</cpu>
+  <cpu>5</cpu>
  </general>
  <specific type="launcher">
   <ammo>Mace Rocket</ammo>

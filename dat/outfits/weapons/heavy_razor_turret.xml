@@ -9,7 +9,7 @@
   <price>175000</price>
   <description>House Sirius typically equips its heaviest vessels with Heavy Razor Turrets. Where the standard razor turrets are ineffective, the heavy razor turret provides the necessary firepower to batter down virtually any shielding.</description>
   <gfx_store>razorturret3.webp</gfx_store>
-  <cpu>-350</cpu>
+  <cpu>350</cpu>
  </general>
  <specific type="turret bolt">
   <gfx>razorL.png</gfx>

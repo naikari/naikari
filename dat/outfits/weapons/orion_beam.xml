@@ -9,7 +9,7 @@
   <price>72000</price>
   <description>The turret-mounted edition of the Orion design offers mid-sized ships exceptional short-duration firepower, a potent deterrent against lighter vessels.</description>
   <gfx_store>orion_beam.webp</gfx_store>
-  <cpu>-50</cpu>
+  <cpu>50</cpu>
  </general>
  <specific type="turret beam">
   <delay>4</delay>

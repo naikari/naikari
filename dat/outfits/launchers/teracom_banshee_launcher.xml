@@ -8,7 +8,7 @@
   <price>45000</price>
   <gfx_store>bansheelauncher.webp</gfx_store>
   <description>TeraCom has equipped its Banshee launcher model with high grade reload and tube cooling systems as well as AI-enhanced tracking technology, boosting reliability, accuracy, and rate of fire significantly. These unguided rockets, while slow, can do quite respectable damage even to fairly large ships and are an important staple for light fighters.</description>
-  <cpu>-5</cpu>
+  <cpu>5</cpu>
  </general>
  <specific type="launcher" secondary="1">
   <ammo>Banshee Rocket</ammo>

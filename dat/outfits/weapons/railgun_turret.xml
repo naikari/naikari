@@ -9,7 +9,7 @@
   <price>155000</price>
   <description>It is natural that one weapon turned to for adaptation to capital-class weaponry was the powerful Railgun. This effort culminated in the Railgun turret, a highly effective weapon perfectly suited to carriers.</description>
   <gfx_store>railgunturret.webp</gfx_store>
-  <cpu>-350</cpu>
+  <cpu>350</cpu>
  </general>
  <specific type="turret bolt">
   <gfx>massL.png</gfx>

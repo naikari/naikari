@@ -7,7 +7,7 @@
   <price>280000</price>
   <gfx_store>efficiency_turret.webp</gfx_store>
   <description>Improved power regulation allows your turrets to waste less power when firing, thô feeding turrets the bare minimum wattage results in a slightly decreased rate of fire.</description>
-  <cpu>-6</cpu>
+  <cpu>6</cpu>
  </general>
  <specific type="modification">
   <tur_energy>-15</tur_energy>

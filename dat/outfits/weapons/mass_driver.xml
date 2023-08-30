@@ -9,7 +9,7 @@
   <price>52000</price>
   <description>Mass Drivers fire massive slugs of matter at enemy ships, dealing damage thru kinetic impact and knocking the target back. One of the most economical heavy weapons in the galaxy.</description>
   <gfx_store>weapon02.webp</gfx_store>
-  <cpu>-50</cpu>
+  <cpu>50</cpu>
  </general>
  <specific type="bolt">
   <gfx>autocannon.png</gfx>

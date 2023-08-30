@@ -7,7 +7,7 @@
   <price>200000</price>
   <description>An improved targeting array allows your turrets to more quickly acquire targets, and minimizes accuracy losses at range. It requires a short period to compute an ideal vector, slightly slowing firing rates.</description>
   <gfx_store>accuracy_turret.webp</gfx_store>
-  <cpu>-6</cpu>
+  <cpu>6</cpu>
  </general>
  <specific type="modification">
   <tur_heat>-50</tur_heat>

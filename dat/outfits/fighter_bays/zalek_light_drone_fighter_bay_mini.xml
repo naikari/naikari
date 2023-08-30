@@ -9,7 +9,7 @@
   <price>600000</price>
   <gfx_store>zalek_drone_light_fighter.webp</gfx_store>
   <description>While they struggled to do so, House Za'lek successfully developed this miniaturized Za'lek Light Drone fighter bay. It can only carry two of the drones, but even so, their strength must not be underestimated.</description>
-  <cpu>-110</cpu>
+  <cpu>110</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Za'lek Light Drone Fighter</ammo>

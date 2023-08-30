@@ -9,7 +9,7 @@
   <price>930000</price>
   <gfx_store>empire_lancelot_fighter.webp</gfx_store>
   <description>This fighter bay allows your ship to carry three mighty Empire Lancelot fighters, equipped with top-tier military weaponry hand-picked by the Emperor himself. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
-  <cpu>-450</cpu>
+  <cpu>450</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Empire Lancelot Fighter</ammo>

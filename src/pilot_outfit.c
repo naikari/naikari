@@ -380,8 +380,7 @@ int pilot_addOutfitTest( Pilot* pilot, const Outfit* outfit, PilotOutfitSlot *s,
                pilot->name, outfit->name );
       return -1;
    }
-   else if ((outfit_cpu(outfit) < 0) &&
-         (pilot->cpu < ABS( outfit_cpu(outfit) ))) {
+   else if (pilot->cpu < outfit_cpu(outfit)) {
       if (warn)
          WARN( _("Pilot '%s': Not enough CPU to add outfit '%s'"),
                pilot->name, outfit->name );
@@ -968,10 +967,10 @@ void pilot_calcStats( Pilot* pilot )
          continue;
 
       /* Modify CPU. */
-      pilot->cpu           += outfit_cpu(o);
+      pilot->cpu -= outfit_cpu(o);
 
       /* Add mass. */
-      pilot->mass_outfit   += o->mass;
+      pilot->mass_outfit += o->mass;
 
       /* Keep a separate counter for required (core) outfits. */
       if (sp_required( o->slot.spid ))

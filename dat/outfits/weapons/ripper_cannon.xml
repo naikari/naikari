@@ -9,7 +9,7 @@
   <price>37000</price>
   <description>The Ripper Cannon is a variant on the Laser Cannon that has stronger capacitors and twin, synchronous muzzles. The result is an increase in damage per hit at a cost of tremendously increased CPU requirements. The Ripper Cannon was developed for, and is mostly used by, Imperial Corvette squadrons which need to reserve space for batteries of missiles, but also need to be able to lay devastating barrages at close range.</description>
   <gfx_store>ripper.webp</gfx_store>
-  <cpu>-100</cpu>
+  <cpu>100</cpu>
  </general>
  <specific type="bolt">
   <gfx>ripperS.png</gfx>
