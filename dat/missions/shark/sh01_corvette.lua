@@ -49,7 +49,7 @@ accept_text = _([["Great! Go and meet our pilot in the {destsys} system. After t
 pay_text = _([[As you land, you see Arnold Smith waiting for you. He explains that the Baron was so impressed by the battle that he signed an updated contract with Nexus Shipyards, solidifying Nexus as the primary supplier of ships for his fleet. As a reward, they give you twice the sum of credits they promised to you.]])
 
 -- Mission details
-misn_title = _("Sharkman is back")
+misn_title = _("Nexus False Flag")
 misn_desc = _("Nexus Shipyards wants you to fake a loss against a Lancelot while piloting a Destroyer class ship.")
 
 -- NPC
@@ -57,7 +57,6 @@ npc_desc = _("Arnold Smith")
 bar_desc = _([[The Nexus employee seems to be looking for pilots. Maybe he has an other task for you.]])
 
 -- OSD
-osd_title = _("Sharkman Is Back")
 osd_msg = {}
 osd_msg[1] = _("Fly to {system} with a Destroyer-class ship and let the Lancelot disable you")
 osd_msg[2] = _("Land on {planet} ({system} system) to collect your pay")
@@ -98,7 +97,7 @@ function accept()
       misn.setTitle(misn_title)
       misn.setReward(fmt.credits(reward/2))
       misn.setDesc(misn_desc)
-      osd = misn.osdCreate(osd_title, osd_msg)
+      osd = misn.osdCreate(misn_title, osd_msg)
       misn.osdActive(1)
 
       marker = misn.markerAdd(battlesys, "low")
