@@ -147,6 +147,9 @@
   clear orders command was given).
 * Fixed display when gathering from asteroids to show kilotonnes rather
   than tonnes.
+* Fixed derelicts giving reputation changes and kill rewards when you
+  blew them up (which didn't make much sense as they're derelicts with
+  no living occupants).
 
 ## 0.9.0
 
