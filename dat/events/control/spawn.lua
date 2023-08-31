@@ -109,6 +109,7 @@ local trader_spawn_events = {
       p:hyperspace(mem.refuel_dest, true)
 
       hook.timer(2, "timer_trader_refuel_request", p)
+      hook.pilot(p, "idle", "pilot_idle_trader_refuel_request")
       hook.pilot(p, "hail", "pilot_hail_trader_refuel_request")
 
       return true
@@ -165,6 +166,15 @@ function timer_trader_refuel_request(p)
    end
 
    hook.timer(20, "timer_trader_refuel_request", p)
+end
+
+
+function pilot_idle_trader_refuel_request(p)
+   local stats = p:stats()
+   local mem = p:memory()
+   if stats.jumps >= 1 and not mem.refuel_started then
+      p:hyperspace(mem.refuel_dest, true)
+   end
 end
 
 
