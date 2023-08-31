@@ -87,11 +87,17 @@ function safe_disable()
 
    local p = pilots[rnd.rnd(1, #pilots)]
    if p:exists() and p:memory().natural then
-      p:memory().natural = false
+      local mem = p:memory()
+      mem.natural = false
+      mem.kill_reward = nil
       p:disable()
       p:setHilight()
       p:setLeader(nil)
       p:rename(fmt.f(_("Derelict {pilot}"), {pilot=p:name()}))
+
+      -- Set to a blank faction so there's no reputation shenanigans.
+      local f = faction.dynAdd(nil, N_("Derelict"), nil, {ai="idle"})
+      p:setFaction(f)
 
       hook.pilot(p, "board", "pilot_board")
 
@@ -99,8 +105,8 @@ function safe_disable()
       -- takes to disable them, and the player doesn't have to go thru
       -- that effort in the case of this event).
       if rnd.rnd() < 0.95 then
-         local credits = rnd.uniform(0.5, 0.8) * p:credits()
-         p:pay(-credits)
+         local lost_credits = rnd.uniform(0.5, 0.9) * p:credits()
+         p:pay(-lost_credits)
       end
 
       -- Remove followers so they don't sit there next to the wing of
