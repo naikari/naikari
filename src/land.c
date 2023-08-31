@@ -85,6 +85,7 @@ static unsigned int *land_windows = NULL; /**< Landed window ids. */
 Planet* land_planet = NULL; /**< Planet player landed at. */
 static glTexture *gfx_exterior = NULL; /**< Exterior graphic of the landed planet. */
 static int map_clicked = 0; /**< Whether the map was just clicked. */
+static int updating_tabs = 0; /**< Whether land_updateTabs() is running. */
 
 /*
  * mission computer stack
@@ -702,6 +703,10 @@ static void misn_accept( unsigned int wid, char* str )
                sizeof(Mission) * (mission_ncomputer-pos-1) );
          mission_ncomputer--;
 
+         /* Pretend we're updating tabs. This will prevent map
+          * centering from occurring as we mess with the list. */
+         updating_tabs = 1;
+
          /* Regenerate list. */
          misn_genList(wid, 0);
 
@@ -709,6 +714,9 @@ static void misn_accept( unsigned int wid, char* str )
          /* NOTE: toolkit_setListPos protects us from a bad position by clamping */
          toolkit_setListOffset(wid, "lstMission", offset);
          toolkit_setListPos(wid, "lstMission", pos);
+
+         /* Turn off our pretend tabs update. */
+         updating_tabs = 0;
 
          /* Simulate a map click (this regenerates the list again and
           * tries to select a mission in the currently selected
@@ -911,8 +919,12 @@ static void misn_update( unsigned int wid, char* str )
    minimal = window_checkboxState(wid, "chkMinimal");
    map_setMinimal(minimal);
 
-   /* Center map on the selected mission. */
-   if ((misn->markers != NULL) && !map_clicked)
+   /* Center map on the selected mission unless the map is being clicked
+    * or this was called by land_updateTabs(). (These conditions prevent
+    * the map from being moved all over the place as necessary land
+    * window updates happen while still allowing clicking on the list to
+    * center the clicked mission.) */
+   if ((misn->markers != NULL) && !updating_tabs && !map_clicked)
       map_center(system_getIndex(misn->markers[0].sys)->name);
 }
 
@@ -1106,6 +1118,8 @@ void land_updateTabs(void)
    if (!landed)
       return;
 
+   updating_tabs = 1;
+
    tab = window_tabWinGetActive(land_wid, "tabLand");
 
    /* Find the currently selected tab. */
@@ -1168,6 +1182,8 @@ void land_updateTabs(void)
          break;
       }
    }
+
+   updating_tabs = 0;
 }
 
 
