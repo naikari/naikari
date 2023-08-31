@@ -140,6 +140,11 @@
   the game while landed at the destination planet.
 * Fixed Empire ships interfering in the Dvaered warlords battle event
   and attacking the player.
+* Fixed a rare bug that could cause fighter bay fighters to enter a
+  limbo state when changing systems (which would continue until the
+  clear orders command was given).
+* Fixed display when gathering from asteroids to show kilotonnes rather
+  than tonnes.
 
 ## 0.9.0
 
