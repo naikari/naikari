@@ -1957,11 +1957,8 @@ int player_jump(int loud)
       /* Stop acceleration noise. */
       player_accelOver();
       /* Stop possible shooting. */
-      pilot_shootStop( player.p, 0 );
-      pilot_shootStop( player.p, 1 );
-
-      /* Order escorts to jump; just for aesthetics (for now) */
-      escorts_jump( player.p, &cur_system->jumps[player.p->nav_hyperspace] );
+      pilot_shootStop(player.p, 0);
+      pilot_shootStop(player.p, 1);
 
       return 1;
    }

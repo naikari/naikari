@@ -333,27 +333,3 @@ int escort_playerCommand( Pilot *e )
    free(choice);
    return ret;
 }
-
-
-/**
- * @brief Have a pilot order its escorts to jump.
- *
- *    @param parent Pilot giving the order.
- *    @param jp Where to jump.
- */
-int escorts_jump( Pilot *parent, JumpPoint *jp )
-{
-   int ret;
-   LuaJump lj;
-
-   lj.destid = jp->targetid;
-   lj.srcid = cur_system->id;
-
-   lua_pushjump( naevL, lj );
-   ret = escort_command( parent, "hyperspace", -1 );
-   lua_pop(naevL, 1);
-
-   if ((ret == 0) && (parent == player.p))
-      player_message(_("#gEscorts: #0Jumping."));
-   return ret;
-}
