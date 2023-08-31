@@ -32,7 +32,7 @@ log_text = _([[You found that one of the rodents you transported for that Sirius
 
 
 function create ()
-    -- We need to claim the current system since we'll be messing around
+    -- Must claim the current system since we'll be messing around
     -- with the player's controls.
     if not evt.claim(system.cur()) then
         evt.finish(false)

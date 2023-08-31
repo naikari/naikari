@@ -83,8 +83,8 @@ function create()
    local choices = {"teleport", "slow", "nopower", "haywire", "falsealarm"}
    local choice = choices[rnd.rnd(1, #choices)]
 
-   -- We need to claim the current system since we'll be messing around
-   -- with the player's controls and such.
+   -- Must claim the current system since we'll be messing around
+   -- with the player's controls.
    if not evt.claim(system.cur()) then
       evt.finish(false)
    end
@@ -108,10 +108,6 @@ function teleport()
    if rnd.rnd() < 0.8 then
       falsealarm()
    end
-
-   -- TODO: teleportation isn't in a state where it can be used in
-   -- player-facing applications yet, so blocking it out for now.
-   falsealarm()
 
    hook.safe("do_teleport")
 end
