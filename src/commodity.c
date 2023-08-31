@@ -570,9 +570,11 @@ void gatherable_gather( int pilot )
          /* Add cargo to pilot. */
          q = pilot_cargoAdd( p, gat->type, gat->quantity, 0 );
 
-         if (q>0) {
+         if (q > 0) {
             if (pilot_isPlayer(p)) {
-               player_message( n_("%d t of %s gathered", "%d t of %s gathered", q), q, _(gat->type->name) );
+               player_message(
+                  n_("%d kt of %s gathered", "%d kt of %s gathered", q),
+                  q, _(gat->type->name));
 
                /* Run hooks. */
                hparam[0].type    = HOOK_PARAM_STRING;
