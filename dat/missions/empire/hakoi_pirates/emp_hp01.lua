@@ -131,6 +131,7 @@ function accept()
       job_done = false
 
       hook.land("land")
+      hook.load("land")
    else
       tk.msg("", decline_text)
       misn.finish()

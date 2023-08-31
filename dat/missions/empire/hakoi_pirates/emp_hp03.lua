@@ -126,6 +126,7 @@ function accept()
       enter_hook = hook.enter("enter")
       board_hook = hook.board("player_board")
       hook.land("land")
+      hook.load("land_load")
    else
       tk.msg("", fmt.f(decline_text, {player=player.name()}))
       misn.finish()
@@ -167,7 +168,13 @@ end
 function land()
    if planet.cur() == startpla and job_done then
       tk.msg("", land_text)
+      land_load()
+   end
+end
 
+
+function land_load()
+   if planet.cur() == startpla and job_done then
       soldner = misn.npcAdd("approach", _("Soldner"),
             "empire/unique/soldner.png",
             _("You see Commander Soldner deep in conversation with another Imperial officer."),

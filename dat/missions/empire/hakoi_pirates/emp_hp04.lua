@@ -132,6 +132,7 @@ function accept()
       misn.osdCreate(misn_title, osd_desc)
 
       hook.land("land")
+      hook.load("land")
    else
       tk.msg("", fmt.f(decline_text, {player=player.name()}))
       misn.finish()
