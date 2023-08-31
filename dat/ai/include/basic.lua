@@ -720,6 +720,11 @@ function hyperspace()
          ai.poptask()
          return
       end
+   elseif hyp:system() ~= system.cur() then
+      warn(string.format(_("Pilot '%s' attempted to hyperspace thru jump from '%s' to '%s', but current system is '%s'!"),
+            ai.pilot():name(), hyp:system(), hyp:dest(), system.cur()))
+      ai.poptask()
+      return
    end
    local pos = ai.sethyptarget(hyp)
    ai.pushsubtask("__hyp_approach", {hyp, pos})
