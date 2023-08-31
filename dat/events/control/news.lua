@@ -142,7 +142,7 @@ cond_articles = {
    },
    {
       title = _("Enthusiasts Organize Racing"),
-      text = _([[A group of enthusiasts have begun to organize informal racing events all across the galaxy. "Just a hobby," one of the organizers said, "but there's a small prize if you win. Racing is a lot of fun!" Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar.]]),
+      text = _([[A group of enthusiasts have begun to organize informal racing events all across the galaxy. "Just a hobby," one of the organizers said, "but there's a small prize if you win. Racing is a lot of fun!" Those wishing to attend a race are encouraged to seek out organizers at the Spaceport Bar within peaceful systems.]]),
       tag = "mhint_Racing Skills 1",
       mission = "Racing Skills 1",
       done = "The Space Family",
