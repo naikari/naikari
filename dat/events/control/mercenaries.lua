@@ -50,10 +50,6 @@ local paying_factions = {
 
 
 function create()
-   if not evt.claim(system.cur()) then
-      evt.finish()
-   end
-
    local total_presence = 0
    local presences = system.cur():presences()
    for i, s in ipairs(paying_factions) do
@@ -144,9 +140,13 @@ function spawn_merc(source)
    -- Trigger a hook to allow missions to do things with mercenaries.
    naik.hookTrigger("merc_spawn", merc)
 
-   set_target(merc, merc:memory().bounty or choose_target())
-   hook.pilot(merc, "death", "leader_death")
-   mercenaries = mercenaries + 1
+   -- Check to make sure the mercenary exists, in case the spawn trigger
+   -- was used to destroy the mercenary.
+   if merc:exists() then
+      set_target(merc, merc:memory().bounty or choose_target())
+      hook.pilot(merc, "death", "leader_death")
+      mercenaries = mercenaries + 1
+   end
 end
 
 
@@ -231,6 +231,7 @@ function set_target(merc_pilot, bounty)
       return
    end
    merc_pilot:memory().bounty = bounty
+   bounty:memory().natural = false
    hook.timer(2, "search_timer", merc_pilot)
 end
 

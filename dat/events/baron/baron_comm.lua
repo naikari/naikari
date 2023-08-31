@@ -26,10 +26,6 @@
 
 
 function create ()
-    if not evt.claim(system.cur()) then
-        evt.finish(false)
-    end
-
     local lastcomm = var.peek("baroncomm_last")
     if lastcomm == nil then
         var.push("baroncomm_last", time.get():tonumber())
@@ -42,6 +38,8 @@ function create ()
     end
 
     hyena = pilot.add("Hyena", "Civilian", true, _("Civilian Hyena"))
+
+    hyena:setNoClear()
     
     hook.pilot(hyena, "jump", "finish")
     hook.pilot(hyena, "death", "finish")

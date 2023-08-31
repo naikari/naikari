@@ -54,10 +54,6 @@ function create()
       end
 
       if not landable_planets then
-         if not evt.claim(system.cur()) then
-            evt.finish()
-         end
-
          local shiptype, fac, pilotname
          if presences["Civilian"] then
             shiptype = "Gawain"
@@ -86,6 +82,7 @@ function create()
          local p = pilot.add(shiptype, fac, pos, pilotname)
          p:setFuel(100)
          p:setVisplayer()
+         p:setNoClear()
          timer_hook = hook.timer(3, "timer_nofuel", p)
 
          return

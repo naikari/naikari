@@ -83,22 +83,9 @@ function create()
    local choices = {"teleport", "slow", "nopower", "haywire", "falsealarm"}
    local choice = choices[rnd.rnd(1, #choices)]
 
-   -- For most events, we just need to claim the current system. For the
-   -- teleport event, we need to claim a destination system as well.
-   local claimsys = system.cur()
-   if choice == "teleport" then
-      local choices = getsysatdistance(system.cur(), 1, 3)
-      if #choices > 0 then
-         dest = choices[rnd.rnd(1, #choices)]
-         claimsys = {system.cur(), dest}
-      else
-         -- Rare circumstance of a system having no nearby non-hidden-jump
-         -- systems; in this case, make it a false alarm.
-         choice = "falsealarm"
-      end
-   end
-
-   if not evt.claim(claimsys) then
+   -- We need to claim the current system since we'll be messing around
+   -- with the player's controls and such.
+   if not evt.claim(system.cur()) then
       evt.finish(false)
    end
 
