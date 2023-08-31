@@ -554,39 +554,61 @@ int sound_updateListener(double px, double py, double vx, double vy)
 /**
  * @brief Sets the speed to play the sound at.
  *
- *    @param s Speed to play sound at.
+ *    @param speed Speed to play sound at.
  */
-void sound_setSpeed( double s )
+void sound_setSpeed(double speed)
 {
-   double v;
+   double tc_min;
+   double tc_max;
+   double tc_range;
+   double tc_pct;
    int playing;
 
    if (sound_disabled)
       return;
 
-   /* We implement the brown noise here. */
-   playing = (snd_compression_gain > 0.);
-   if (player.tc_max > 2.)
-      v = CLAMP( 0, 1., MAX( (s-2)/10., (s-2) / (player.tc_max-2) ) );
-   else
-      v = CLAMP( 0, 1., (s-2)/10. );
+   /* Here we implement brown noise which slowly replaces the regular
+    * audio as maximum time compression is reached. At normal speed,
+    * brown noise is silent and regular sounds are at max volume, and
+    * at maximum time compression, regular sounds are silent and
+    * brown noise is at max volume. */
+   tc_min = player_dt_default();
+   tc_max = player_dt_max() * 0.95;
+   tc_range = tc_max - tc_min;
 
-   if (v > 0.) {
+   /* If tc_range is too small, never lower the volume or play the TC
+    * brown noise as a result of speedup. We use 4 as a baseline due to
+    * the existence of the speed-up key. This also prevents division by
+    * zero if tc_min and tc_max are exactly the same. */
+   if (tc_range <= 4.)
+      tc_pct = 0.;
+   else
+      tc_pct = CLAMP(0., 1., (speed-tc_min) / tc_range);
+
+   /* Check whether brown noise is already playing. */
+   playing = (snd_compression_gain > 0.);
+
+   if (tc_pct > 0.) {
+      /* Start brown noise and lower regular volume. */
       if (snd_compression >= 0) {
          if (!playing)
-            sound_playGroup( snd_compressionG, snd_compression, 0 ); /* Start playing only if it's not playing. */
-         sound_volumeGroup( snd_compressionG, v );
+            sound_playGroup(snd_compressionG, snd_compression, 0);
+         sound_volumeGroup(snd_compressionG, tc_pct);
       }
-      sound_al_setSpeedVolume( 1.-v );
+      sound_al_setSpeedVolume(1. - tc_pct);
    }
    else if (playing) {
+      /* Stop brown noise and restore regular volume to max. */
       if (snd_compression >= 0)
-         sound_stopGroup( snd_compressionG ); /* Stop compression sound. */
-      sound_al_setSpeedVolume( 1. ); /* Restore volume. */
+         sound_stopGroup(snd_compressionG);
+      sound_al_setSpeedVolume(1.);
    }
-   snd_compression_gain = v;
 
-   return sound_al_setSpeed( s );
+   /* Store for the next call to sound_setSpeed(). */
+   snd_compression_gain = tc_pct;
+
+   /* Actually set the audio speed. */
+   return sound_al_setSpeed(speed);
 }
 
 

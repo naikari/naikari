@@ -51,7 +51,7 @@ int sound_volume( const double vol );
 double sound_getVolume (void);
 double sound_getVolumeLog (void);
 void sound_stopAll (void);
-void sound_setSpeed( double s );
+void sound_setSpeed(double speed);
 
 
 /*

@@ -1855,12 +1855,36 @@ int player_getHypPreempt(void)
  *
  *    @return The default/minimum time delta
  */
-double player_dt_default (void)
+double player_dt_default(void)
 {
-   if (player.p != NULL && player.p->ship != NULL)
-      return player.p->stats.time_mod * player.p->ship->dt_default * conf.dt_mod;
+   if ((player.p == NULL) || (player.p->ship == NULL))
+      return conf.dt_mod;
 
-   return conf.dt_mod;
+   return player.p->stats.time_mod * player.p->ship->dt_default * conf.dt_mod;
+}
+
+
+/**
+ * @brief Returns the player's maximum time delta during TC.
+ *
+ *    @return The maximum TC time delta.
+ */
+double player_dt_max(void)
+{
+   double max_speed;
+   double dt_max;
+
+   if ((player.p == NULL) || (player.p->ship == NULL))
+      return conf.dt_mod;
+
+   max_speed = solid_maxspeed(player.p->solid, player.p->speed,
+         player.p->thrust);
+   dt_max = conf.compression_velocity / max_speed;
+   if (conf.compression_mult >= 1.)
+      dt_max = MIN(dt_max, conf.compression_mult);
+
+   /* Safe cap. */
+   return MAX(player_dt_default(), dt_max);
 }
 
 

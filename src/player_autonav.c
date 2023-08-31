@@ -105,8 +105,6 @@ void player_autonavStart (void)
  */
 static int player_autonavSetup (void)
 {
-   double max_speed;
-
    /* Not under manual control or disabled. */
    if (pilot_isFlag( player.p, PILOT_MANUAL_CONTROL ) ||
          pilot_isDisabled(player.p))
@@ -117,14 +115,7 @@ static int player_autonavSetup (void)
 
    if (!player_isFlag(PLAYER_AUTONAV)) {
       tc_mod = player_dt_default() * player.speed;
-      max_speed = solid_maxspeed(player.p->solid, player.p->speed,
-            player.p->thrust);
-      player.tc_max = conf.compression_velocity / max_speed;
-      if (conf.compression_mult >= 1.)
-         player.tc_max = MIN(player.tc_max, conf.compression_mult);
-
-      /* Safe cap. */
-      player.tc_max = MAX(1., player.tc_max);
+      player.tc_max = player_dt_max();
    }
 
    /* Safe values. */
@@ -140,7 +131,7 @@ static int player_autonavSetup (void)
    /* Set flag and tc_mod just in case. */
    player_setFlag(PLAYER_AUTONAV);
    pause_setSpeed(tc_mod);
-   sound_setSpeed(tc_mod / player_dt_default());
+   sound_setSpeed(tc_mod);
 
    /* Make sure time acceleration starts immediately. */
    player.autonav_timer = 0.;
@@ -929,7 +920,7 @@ void player_updateAutonav( double dt )
             tc_mod = MIN(dis_max, tc_mod + dis_mod*dt);
       }
       pause_setSpeed(tc_mod);
-      sound_setSpeed(tc_mod / player_dt_default());
+      sound_setSpeed(tc_mod);
       return;
    }
 
@@ -942,7 +933,7 @@ void player_updateAutonav( double dt )
       if (tc_mod != tc_base) {
          tc_mod = MAX(tc_base, tc_mod - tc_down*dt);
          pause_setSpeed(tc_mod);
-         sound_setSpeed(tc_mod / player_dt_default());
+         sound_setSpeed(tc_mod);
       }
       return;
    }
@@ -956,7 +947,7 @@ void player_updateAutonav( double dt )
    if (tc_mod > player.tc_max)
       tc_mod = player.tc_max;
    pause_setSpeed(tc_mod);
-   sound_setSpeed(tc_mod / player_dt_default());
+   sound_setSpeed(tc_mod);
 }
 
 
