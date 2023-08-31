@@ -71,6 +71,7 @@ static CstSlotWidget info_eq_weaps;
 static factionId_t *info_factions;
 
 static int map_clicked = 0; /**< Whether the map was just clicked. */
+static int updating = 0; /**< Whether info_update() is currently running. */
 
 static int selectedLog = 0;
 static int nlogs = 0;
@@ -194,10 +195,14 @@ void info_update (void)
    if (info_windows == NULL)
       return;
 
+   updating = 1;
+
    weapons_genList(info_windows[INFO_WIN_WEAP]);
 
    mission_menu_genList(info_windows[INFO_WIN_MISN], 0);
    mission_menu_update(info_windows[INFO_WIN_MISN], NULL);
+
+   updating = 0;
 }
 
 
@@ -1388,8 +1393,12 @@ static void mission_menu_update( unsigned int wid, char* str )
    map_setMode(MAPMODE_TRAVEL);
    map_setMinimal(1);
 
-   /* Center map on the selected mission. */
-   if ((misn->markers != NULL) && !map_clicked)
+   /* Center map on the selected mission unless the map is being clicked
+    * or this was called by info_update(). (These conditions prevent
+    * the map from being moved all over the place as necessary info
+    * window updates happen while still allowing clicking on the list to
+    * center the clicked mission.) */
+   if ((misn->markers != NULL) && !updating && !map_clicked)
       map_center(system_getIndex(misn->markers[0].sys)->name);
 }
 
@@ -1433,8 +1442,14 @@ static void mission_menu_abort( unsigned int wid, char* str )
       /* Reset claims. */
       claim_activateAll();
 
+      /* Pretend we're updating so map centering doesn't happen. */
+      updating = 1;
+
       /* Regenerate list. */
       mission_menu_genList(wid ,0);
+
+      /* End pretend update. */
+      updating = 0;
 
       /* Regenerate cargo list as well since the mission might have had
        * mission cargo. */
