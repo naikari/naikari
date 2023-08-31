@@ -129,8 +129,10 @@ function hailagain(p, reward)
 end
 
 function attack()
-   local f1 = faction.dynAdd("Dvaered", N_("Invaders"))
-   local f2 = faction.dynAdd("Dvaered", N_("Locals"))
+   local f1 = faction.dynAdd("Dvaered", N_("Invaders"), nil,
+         {clear_allies=true})
+   local f2 = faction.dynAdd("Dvaered", N_("Locals"), nil,
+         {clear_allies=true})
    f1:dynEnemy(f2)
    f2:dynEnemy(f1)
 
