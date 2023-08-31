@@ -108,6 +108,9 @@
   instead of a negative "CPU" value.
 * Salvador now has no Empire presence (to match the Hakoi Pirates
   storyline).
+* Adjusted some wording in the third Hakoi Pirates mission.
+* Removed mention of Arnold Smith's "boss" in the Shark mission.
+* Renamed the second Nexus mission to "Nexus False Flag".
 
 ### Bugfixes
 
@@ -133,6 +136,8 @@
   kilotonnes.
 * Fixed failure to update the hilighted OSD objective in the Shark
   mission if a Shark was acquired via trade-in.
+* Fixed the Hakoi Pirates missions not generating portraits when loading
+  the game while landed at the destination planet.
 
 ## 0.9.0
 
