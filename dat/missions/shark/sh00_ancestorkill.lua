@@ -46,7 +46,7 @@ ask_text = _([[You approach the man and he introduces himself. "Hello, my name i
 
 "Pretty simple, really: we want someone to show how great Nexus ship designs are by destroying a Pirate Vendetta with just one of our smallest ship model, the Shark. Of course, the pilot of the Vendetta has a bounty on his head, so it won't be illegal. You will take the bounty as usual, and Nexus will add a little extra on top of that. Would you be interested?"]])
 
-yes_text = _([["Great! I knew I could trust you. I'll meet you on {planet} in the {system} system. I'll be with my boss and our customer, Baron Sauterfeldt."]])
+yes_text = _([["Great! I knew I could trust you. I'll meet you on {planet} in the {system} system. I'll be with our customer, Baron Sauterfeldt."]])
 
 brief_text = _([["Nice to see you again," he says with a smile. "I hope you are ready to kick that pirate's ass! Please follow me. I will introduce you to my boss, the sales manager of Nexus Shipyards. Oh, and the Baron, too."
 
