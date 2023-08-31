@@ -50,7 +50,7 @@ static void board_stealFuel( unsigned int wdw, char* str );
 static void board_stealAll(unsigned int wdw, char *str);
 static void board_update( unsigned int wdw );
 static int pilot_boardStealCargo(Pilot *p, Pilot *target);
-static void pilot_boardStealFuel(Pilot *p, Pilot *target);
+static double pilot_boardStealFuel(Pilot *p, Pilot *target);
 
 
 /**
@@ -100,7 +100,7 @@ static int board_hook(void *data)
          BOARDING_HEIGHT);
 
    window_addButtonKey(wdw, 20, -40, BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCredits", _("Steal &Credits"),
+         BUTTON_HEIGHT, "btnStealCredits", _("Loot &Credits"),
          board_stealCreds, SDLK_c);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
@@ -109,7 +109,7 @@ static int board_hook(void *data)
          "txtDataCredits", &gl_defFont, NULL, NULL);
 
    window_addButtonKey(wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealFuel", _("Steal &Fuel"), board_stealFuel,
+         BUTTON_HEIGHT, "btnStealFuel", _("Loot &Fuel"), board_stealFuel,
          SDLK_f);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 1*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
@@ -118,7 +118,7 @@ static int board_hook(void *data)
          "txtDataFuel", &gl_defFont, NULL, NULL);
 
    window_addButtonKey(wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealCargo", _("Steal Car&go"), board_stealCargo,
+         BUTTON_HEIGHT, "btnStealCargo", _("Loot Car&go"), board_stealCargo,
          SDLK_g);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
@@ -127,7 +127,7 @@ static int board_hook(void *data)
          "txtDataCargo", &gl_defFont, NULL, NULL);
 
    window_addButtonKey(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
-         BUTTON_HEIGHT, "btnStealAll", _("Steal &All"), board_stealAll,
+         BUTTON_HEIGHT, "btnStealAll", _("Loot &All"), board_stealAll,
          SDLK_a);
 
    window_addButtonKey(wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
@@ -256,18 +256,23 @@ static void board_stealCreds( unsigned int wdw, char* str )
 {
    (void)str;
    Pilot* p;
+   credits_t credits;
+   char buf[ECON_CRED_STRLEN];
 
    p = pilot_get(player.p->target);
 
    if (p->credits==0) { /* you can't steal from the poor */
-      player_message(_("#oThe ship has no credits."));
+      player_messageRaw(_("#oThe ship has no credits."));
       return;
    }
 
-   player_modCredits( p->credits * player.p->stats.loot_mod );
+   credits = p->credits * player.p->stats.loot_mod;
+   player_modCredits(credits);
    p->credits = 0;
-   board_update( wdw ); /* update the lack of credits */
-   player_message(_("#oYou manage to steal the ship's credits."));
+   board_update(wdw); /* update the lack of credits */
+
+   credits2str(buf, credits, 2);
+   player_message(p_("loot_credits", "#oYou loot %s from the ship."), buf);
 }
 
 
@@ -285,18 +290,19 @@ static void board_stealCargo( unsigned int wdw, char* str )
    p = pilot_get(player.p->target);
 
    if (array_size(p->commodities)==0) { /* no cargo */
-      player_message(_("#oThe ship has no cargo."));
+      player_messageRaw(_("#oThe ship has no cargo."));
       return;
    }
    else if (pilot_cargoFree(player.p) <= 0) {
-      player_message(_("#rYou have no room for the ship's cargo."));
+      player_messageRaw(_("#rYou have no room for the ship's cargo."));
       return;
    }
 
+   /* TODO: Allow the player control over what cargo to steal. */
    pilot_boardStealCargo(player.p, p);
 
    board_update( wdw );
-   player_message(_("#oYou manage to steal the ship's cargo."));
+   player_messageRaw(_("#oYou loot the ship's cargo."));
 }
 
 
@@ -310,22 +316,23 @@ static void board_stealFuel( unsigned int wdw, char* str )
 {
    (void)str;
    Pilot* p;
+   double stolen_fuel;
 
    p = pilot_get(player.p->target);
 
    if (p->fuel <= 0) { /* no fuel. */
-      player_message(_("#oThe ship has no fuel."));
+      player_messageRaw(_("#oThe ship has no fuel."));
       return;
    }
-   else if (player.p->fuel == player.p->fuel_max) {
-      player_message(_("#rYour ship is at maximum fuel capacity."));
+   else if (player.p->fuel >= player.p->fuel_max) {
+      player_messageRaw(_("#rYour ship is at maximum fuel capacity."));
       return;
    }
 
-   pilot_boardStealFuel(player.p, p);
+   stolen_fuel = pilot_boardStealFuel(player.p, p);
 
-   board_update( wdw );
-   player_message(_("#oYou manage to steal the ship's fuel."));
+   board_update(wdw);
+   player_message(_("#oYou loot %.0f kL of fuel from the ship."), stolen_fuel);
 }
 
 
@@ -470,16 +477,21 @@ static int pilot_boardStealCargo(Pilot *p, Pilot *target)
  *    @param p The pilot boarding.
  *    @param target The pilot being stolen from.
  */
-static void pilot_boardStealFuel(Pilot *p, Pilot *target)
+static double pilot_boardStealFuel(Pilot *p, Pilot *target)
 {
    double stolen_fuel;
+   double fuel_free;
 
    if (p->fuel < p->fuel_max) {
+      fuel_free = p->fuel_max - p->fuel;
       stolen_fuel = MIN(target->fuel, p->fuel_max - p->fuel);
       stolen_fuel *= p->stats.loot_mod;
       p->fuel = MIN(p->fuel + stolen_fuel, p->fuel_max);
       target->fuel = MAX(target->fuel - stolen_fuel, 0);
+      return MIN(fuel_free, stolen_fuel);
    }
+
+   return 0.;
 }
 
 
