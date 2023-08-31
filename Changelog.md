@@ -138,6 +138,8 @@
   mission if a Shark was acquired via trade-in.
 * Fixed the Hakoi Pirates missions not generating portraits when loading
   the game while landed at the destination planet.
+* Fixed Empire ships interfering in the Dvaered warlords battle event
+  and attacking the player.
 
 ## 0.9.0
 
