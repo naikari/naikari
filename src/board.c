@@ -436,33 +436,35 @@ static int pilot_boardStealCargo(Pilot *p, Pilot *target)
    int i = 0;
    int q = 1;
    int stolen = 0;
+   PilotCommodity commod;
 
    /* Steal as much as possible until full or until target has no more
     * non-mission cargo, whichever comes first. */
    while ((array_size(target->commodities) > i) && (q > 0)) {
+      commod = target->commodities[i];
+
       /* Don't loot mission cargo since that might break missions. */
-      if (target->commodities[i].id != 0) {
+      if (commod.id != 0) {
          /* Cargo is not being removed, so increment the index we check
           * so we can steal the next cargo. */
          i++;
          continue;
       }
 
-      q = round(p->stats.loot_mod * (double)target->commodities[i].quantity);
+      q = round(p->stats.loot_mod * (double)commod.quantity);
       if (q > 0) {
-         q = pilot_cargoAdd(p, target->commodities[i].commodity, q, 0);
-         q = pilot_cargoRm(target, target->commodities[i].commodity, q);
+         q = pilot_cargoAdd(p, commod.commodity, q, 0);
+         q = pilot_cargoRm(target, commod.commodity, q);
          stolen += q;
       }
-      else if (target->commodities[i].quantity > 0) {
-         /* Unlikely scenerio of a loot mod of 0. In that case, just
-          * abort, because that would mean nothing can be stolen. */
+      else if (commod.quantity > 0) {
+         /* Can't loot any more cargo, so break from the loop. */
          break;
       }
       else {
          /* Pilot has phantom cargo. Remove the cargo, but set q to 1 so
           * that we don't stop looting cargo too early. */
-         pilot_cargoRm(target, target->commodities[i].commodity, q);
+         pilot_cargoRm(target, commod.commodity, q);
          q = 1;
       }
    }
