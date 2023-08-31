@@ -111,6 +111,8 @@
 * Adjusted some wording in the third Hakoi Pirates mission.
 * Removed mention of Arnold Smith's "boss" in the Shark mission.
 * Renamed the second Nexus mission to "Nexus False Flag".
+* Changed the word "steal" to "loot" in the boarding window (since it
+  fits better with boarding derelicts).
 
 ### Bugfixes
 
