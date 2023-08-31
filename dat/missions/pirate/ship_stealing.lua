@@ -125,7 +125,6 @@ function create()
    end
 
    missys = systems[rnd.rnd(1, #systems)]
-   if not misn.claim(missys) then misn.finish(false) end
 
    target_faction = nil
    while target_faction == nil and #target_factions > 0 do
@@ -446,8 +445,6 @@ end
 function spawn_target(source)
    if not job_done and system.cur() == missys then
       if jumps_permitted >= 0 then
-         pilot.clear()
-         pilot.toggleSpawn(false)
          misn.osdActive(2)
 
          target_ship = pilot.add(shiptype, target_faction, source, name)
@@ -481,9 +478,6 @@ end
 
 -- Succeed the capture, proceed to landing on the planet
 function succeed()
-   if system.cur() == missys then
-      pilot.toggleSpawn(true)
-   end
    job_done = true
    misn.osdActive(3)
    misn.markerRm(marker)
@@ -499,9 +493,6 @@ end
 
 -- Fail the mission, showing message to the player.
 function fail(reason)
-   if system.cur() == missys then
-      pilot.toggleSpawn(true)
-   end
    -- Don't show fail message after already failed.
    if failed then
       return
@@ -527,12 +518,4 @@ function fail(reason)
    hook.rm(anti_regen_hook)
 
    failed = true
-end
-
-
-function abort()
-   if system.cur() == missys then
-      pilot.toggleSpawn(true)
-   end
-   misn.finish(false)
 end
