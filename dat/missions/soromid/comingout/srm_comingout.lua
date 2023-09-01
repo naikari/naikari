@@ -42,8 +42,6 @@ local ask_text = _([[The stranger looks up at you as you approach. Their voice i
 
 "See, I was running a few errands here in Soromid space, but I don't have my piloting license yet, so I hired someone else to give me a ride. Well, turns out I started finding out that I'm transgender at the worst possible time. I started changing my appearance ever so slightly and he suddenly started being a transmisic asshole to me, constantly going on about how I'll 'never be a real woman', calling me a "pervert", "sick", and pretty much every other shitty thing you can think of for weeks on end until he dumped me here on this bar yesterday. 'Just a few minutes,' he said. Well, clearly he isn't coming back. I was going to look for a new pilot after I picked a name, but you seem really nice. Could you be my transport? I would just need you to take me to a series of points in Soromid space. I can give you the same payment I was going to give to my previous transport, {credits}. Does that sound like something you'd be interested in doing?"]])
 
-local no_text = _([["Oh, OK. I guess you must be busy. No worries, I'll try to find someone else later."]])
-
 local ask_again_text = _([["Oh! Hi again, {player}! I still could use your help getting around to some places in Soromid space in exchange for {credits}. What do you say?"]])
 
 local yes_text = _([[C seems relieved when you tell them that you'd be happy to help transport them. "Thank you so much," they say. They show you the destinations they need to go to so you can input them on your mission computer. "The order doesn't matter," they say. "I just need to get to all of these destinations, and then I need a transport to my home planet, {planet}." C shudders. "I sure hope my parents don't act like that asshole did.… Anyway, I'll be waiting on your ship."]])
@@ -76,7 +74,7 @@ Afterwards, you are to return them to their homeworld, {planet} ({system} system
 
 local log_text = _([[You have met a woman, Chelsea, who recently came out as transgender. You helped transport her to complete some errands and then returned her to her homeworld. Chelsea has suggested meeting again in the future on {planet} ({system} system).]])
 
-local credits = 300000
+local credits = 200000
 
 
 function create()
@@ -135,7 +133,6 @@ function accept ()
 
       hook.land("land")
    else
-      tk.msg("", no_text)
       misn.finish()
    end
 end

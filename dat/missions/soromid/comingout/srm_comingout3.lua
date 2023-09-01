@@ -48,28 +48,28 @@ require "nextjump"
 require "missions/soromid/common"
 
 
-ask_text = _([[Chelsea gleefully waves you over. "{player}! It's nice to see you again!" she says. "And perfect timing! I was just looking for help from another pilot, but everyone I've talked to isn't up to it. With all the adventures you've been on, I'm sure it'll be a cinch for you!
+local ask_text = _([[Chelsea gleefully waves you over. "{player}! It's nice to see you again!" she says. "And perfect timing! I was just looking for help from another pilot, but everyone I've talked to isn't up to it. With all the adventures you've been on, I'm sure it'll be a cinch for you!
 
 "See, I got a… well, I can't say exactly, but a special contract that they say is going to get me in some hot water with some sort of militant anti-Soromid gang. Not just pirates, mind; they said I can expect to be bombarded by them like there's no tomorrow, which is why I can't go alone. {planet} in the {system} system is my destination, and as soon as you finish escorting me there, you'll be paid {credits}. So, what do you think? Wanna see how good of a team we make?"]])
 
-start_text = _([["Perfect! I must admit that thô I'm a bit scared, I'm also kind of excited to see what my ship can do when I push it to the limit! Remember, follow my lead and make sure I jump before you do. I'll assist with combat as much as I can, but my ship is built for cargo moreso than combat, so just be prepared for that.
+local start_text = _([["Perfect! I must admit that thô I'm a bit scared, I'm also kind of excited to see what my ship can do when I push it to the limit! Remember, follow my lead and make sure I jump before you do. I'll assist with combat as much as I can, but my ship is built for cargo moreso than combat, so just be prepared for that.
 
 "I'll meet you out in space when you're ready. See you there!"]])
 
-no_text = _([["Dang, you would have been perfect. Oh well, I know it's a lot to ask. Let me know if you change your mind."]])
+local ask_again_text = _([["Oh, hi again, {player}! Have you changed your mind about escorting me to {planet} in the {system} system? The {credits} offer still stands."]])
 
-ask_again_text = _([["Oh, hi again, {player}! Have you changed your mind about escorting me to {planet} in the {system} system? The {credits} offer still stands."]])
+local left_fail_text = _("You have lost contact with Chelsea and therefore failed the mission.")
 
-left_fail_text = _("You have lost contact with Chelsea and therefore failed the mission.")
-
-success_text = _([[As you and Chelsea land, you notice, to your surprise, a contingent of Soromid military forces waiting. Chelsea seems to have been expecting this, however. So that's the kind of contract she got.
+local success_text = _([[As you and Chelsea land, you notice, to your surprise, a contingent of Soromid military forces waiting. Chelsea seems to have been expecting this, however. So that's the kind of contract she got.
 
 As Chelsea's cargo is swiftly unloaded, an officer approaches her and says some words to her that you can't make out, handing her a credit chip. The officer then approaches you. "{player}, yes? I must thank you for your assistance in this mission. It sounds like you've done a fantastic service. I apologize for not revealing the full scope of the mission to you, but it was a matter of national security. I trust you understand." She hands you a credit chip with the promised payment. "I hope we meet again sometime, {player}. The same goes for Chelsea." She shakes your hand and leaves as the cargo containers are taken away. You exchange a few pleasantries with Chelsea before seeing her off.]])
 
-misn_title = _("A Friend's Aid")
-misn_desc = _("Chelsea needs you to escort her to {planet} in the {system} system. You must wait for her to jump to or land on her destination before you jump or land, and you must not deviate from her course. You will likely be attacked by gangsters.")
+local misn_title = _("A Friend's Aid")
+local misn_desc = _("Chelsea needs you to escort her to {planet} in the {system} system. You must wait for her to jump to or land on her destination before you jump or land, and you must not deviate from her course. You will likely be attacked by gangsters.")
 
-log_text = _([[You helped escort Chelsea thru a cargo delivery which had some connection to the Soromid government, althô you don't know the details. You encountered some kind of anti-Soromid gang along the way.]])
+local log_text = _([[You helped escort Chelsea thru a cargo delivery which had some connection to the Soromid government, althô you don't know the details. You encountered some kind of anti-Soromid gang along the way.]])
+
+local credits = 300000
 
 
 function create ()
@@ -78,15 +78,6 @@ function create ()
       misn.finish(false)
    end
 
-   local claimsys = {system.cur()}
-   for i, jp in ipairs(system.cur():jumpPath(missys)) do
-      table.insert(claimsys, jp:dest())
-   end
-   if not misn.claim(claimsys) then
-      misn.finish(false)
-   end
-
-   credits = 500000
    started = false
 
    misn.setNPC(_("Chelsea"), "soromid/unique/chelsea.png",
@@ -135,7 +126,6 @@ function accept ()
       hook.jumpin("jumpin")
       hook.land("land")
    else
-      tk.msg("", no_text)
       misn.finish()
    end
 end
