@@ -61,15 +61,6 @@ pay_text = _([[As you step on the ground, Arnold Smith greets you. "That was a g
 misn_title = _("A Shark Bites")
 misn_desc = _("Nexus Shipyards has hired you to demonstrate to Baron Sauterfeldt the capabilities of Nexus ship designs.")
 
--- NPC
-npc_desc = {}
-bar_desc = {}
-npc_desc[1] = _("An honest-looking man")
-bar_desc[1] = _("This man looks like a honest citizen. He seems to be trying to get your attention.")
-
-npc_desc[2] = _("Arnold Smith")
-bar_desc[2] = _([[Arnold Smith is talking to a seemingly dismissive Baron Dovai Sauterfeldt. You can't make out what they're saying, but you might hear some of it if you get closer.]])
-
 log_text = _([[You helped Nexus Shipyards demonstrate the capabilities of their ships by destroying a Pirate Vendetta.]])
 
 
@@ -85,7 +76,8 @@ function create()
    stage = 0
    reward = 200000
 
-   misn.setNPC(npc_desc[1], "neutral/unique/arnoldsmith.png", bar_desc[1])
+   misn.setNPC(_("An honest-looking man"), "neutral/unique/arnoldsmith.png",
+         _("This man seems to be trying to get your attention."))
 end
 
 
@@ -128,8 +120,14 @@ function land()
    if planet.cur() == mispla and stage == 0
          and (playershipname == "Shark"
             or playershipname == "Empire Shark") then
-      smith = misn.npcAdd("beginbattle", npc_desc[2],
-            "neutral/unique/arnoldsmith.png", bar_desc[2])
+      sauterfeldt = misn.npcAdd("beginbattle", _("Baron Sauterfeldt"),
+            "neutral/unique/sauterfeldt.png",
+            _("You see Baron Dovai Sauterfeldt arguing with Arnold Smith about something. You can't make out what they're saying, but you might hear some of it if you get closer."),
+            20)
+      smith = misn.npcAdd("beginbattle", _("Arnold Smith"),
+            "neutral/unique/arnoldsmith.png",
+            _("Arnold Smith is arguing with Baron Dovai Sauterfeldt about something. You can't make out what they're saying, but you might hear some of it if you get closer."),
+            20)
    end
 
    if planet.cur() == mispla and stage == 4 then
@@ -215,6 +213,7 @@ function beginbattle()
             system=battlesys:name()}))
 
    misn.markerRm(markeri)
+   misn.npcRm(sauterfeldt)
    misn.npcRm(smith)
    misn.osdActive(3)
    stage = 1
