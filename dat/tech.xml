@@ -111,6 +111,9 @@
   <item>Hellburner</item>
   <item>Emergency Shield Booster</item>
   <item>Reverse Thrusters</item>
+  <item>Small Thrust Bracer</item>
+  <item>Medium Thrust Bracer</item>
+  <item>Large Thrust Bracer</item>
   <item>Fuel Pod</item>
   <item>Medium Fuel Pod</item>
   <item>Large Fuel Pod</item>
@@ -677,6 +680,7 @@
   <item>Generic Afterburner</item>
   <item>Battery</item>
   <item>Shield Capacitor</item>
+  <item>Small Thrust Bracer</item>
   <item>Steering Thrusters</item>
   <item>Unicorp PT-18 Core System</item>
   <item>Milspec Aegis 2201 Core System</item>
@@ -753,6 +757,7 @@
   <item>Improved Power Regulator</item>
   <item>Emergency Shield Booster</item>
   <item>Weapons Ionizer</item>
+  <item>Medium Thrust Bracer</item>
   <item>Battery</item>
   <item>Shield Capacitor</item>
   <item>Medium Fuel Pod</item>
@@ -784,6 +789,7 @@
   <item>Rotary Power Accelerator</item>
   <item>Reactor Class II</item>
   <item>Turreted Weapons Ionizer</item>
+  <item>Large Thrust Bracer</item>
   <item>Plasteel Plating</item>
   <item>Shield Capacitor II</item>
   <item>Battery II</item>
@@ -839,6 +845,7 @@
   <item>Reactor Class II</item>
   <item>Turreted Weapons Ionizer</item>
   <item>Plasteel Plating</item>
+  <item>Large Thrust Bracer</item>
   <item>Medium Fuel Pod</item>
   <item>Medium Cargo Pod</item>
   <item>Shield Capacitor II</item>

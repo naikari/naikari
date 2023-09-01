@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Small Thrust Bracer">
+ <general>
+  <slot>structure</slot>
+  <size>small</size>
+  <mass>5</mass>
+  <price>75000</price>
+  <description>In addition to rerouting some of the ship's power, a thrust bracer provides an extra buffer to the engine's cooling and matter-antimatter circulation system, enabling the engine to more easily propel loads above its weight class. While not as space-efficient or energy-efficient as using a heavier engine, and coming at the cost of poorer steering, it's a good solution for pilots who just need to be able to carry a little bit more without potentially missing a deadline.</description>
+  <gfx_store>mass_limit_small.png</gfx_store>
+ </general>
+ <specific type="modification">
+  <engine_limit>50</engine_limit>
+  <turn_mod>-10</turn_mod>
+  <energy_regen_malus>2</energy_regen_malus>
+ </specific>
+</outfit>
