@@ -1,5 +1,26 @@
 # NAIKARI CHANGELOG
 
+## 0.11.0
+
+### Major Changes
+
+* Added a trio of outfits called "Thrust Bracers" (one for each slot
+  size). These outfits boost engine mass limit in exchange for use of a
+  structural slot.
+
+### Other Changes
+
+* Enabled the teleport event which can happen when a Za'lek test engine
+  is equipped. (The code was there, but it was turned off.
+* Touched up the way audio volume and "brown noise" is handled during
+  time compression. Now, in all cases, maximum time compression leads
+  to regular audio getting muted and the compression "brown noise"
+  playing at full volume. (Previously, this was highly dependent on the
+  TC Velocity setting as well as the speed of your ship, which could
+  lead to situations with some ships and with some TC Velocity values
+  where maximum time compression would come with an obnoxious,
+  continuous high-pitched screeching noise coming from the engines.)
+
 ## 0.10.0
 
 ### Major Changes
