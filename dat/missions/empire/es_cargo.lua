@@ -77,13 +77,13 @@ function create()
       riskreward = 0
    elseif avgrisk <= 25 then
       piracyrisk = _("#nPiracy Risk:#0 Low")
-      riskreward = 150
+      riskreward = 50
    elseif avgrisk > 25 and avgrisk <= 100 then
       piracyrisk = _("#nPiracy Risk:#0 Medium")
-      riskreward = 300
+      riskreward = 100
    else
       piracyrisk = _("#nPiracy Risk:#0 High")
-      riskreward = 450
+      riskreward = 150
    end
  
    -- Choose amount of cargo and mission reward. This depends on the mission tier.
