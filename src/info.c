@@ -83,6 +83,7 @@ static int logWidgetsReady = 0;
  * prototypes
  */
 /* information menu */
+static void info_changeTab(unsigned int wid, char *wgt, int old, int tab);
 static void info_close( unsigned int wid, char* str );
 static void info_openMain( unsigned int wid );
 static void info_setGui( unsigned int wid, char* str );
@@ -161,11 +162,35 @@ void menu_info( int window )
    menu_Open(MENU_INFO);
 
    /* Set active window. */
-   window_tabWinSetActive( info_wid, "tabInfo", CLAMP( 0, 6, window ) );
+   window_tabWinSetActive(info_wid, "tabInfo", CLAMP(0, 6, window));
+
+   /* Enable tab change callback. */
+   window_tabWinOnChange(info_wid, "tabInfo", info_changeTab);
 
    /* Update the window. */
    info_update();
 }
+
+
+/**
+ * @brief Saves the last place the player was.
+ *
+ *    @param wid Unused.
+ *    @param wgt Unused.
+ *    @param old Previously-active tab. (Unused)
+ *    @param tab Tab changed to. (Unused)
+ */
+static void info_changeTab(unsigned int wid, char *wgt, int old, int tab)
+{
+   (void) wid;
+   (void) wgt;
+   (void) old;
+   (void) tab;
+
+   info_update();
+}
+
+
 /**
  * @brief Closes the information menu.
  *    @param str Unused.
@@ -191,16 +216,33 @@ static void info_close( unsigned int wid, char* str )
  */
 void info_update (void)
 {
+   int tab;
+
    /* Info window must be open. */
    if (info_windows == NULL)
       return;
 
    updating = 1;
 
-   weapons_genList(info_windows[INFO_WIN_WEAP]);
+   tab = window_tabWinGetActive(info_wid, "tabInfo");
 
-   mission_menu_genList(info_windows[INFO_WIN_MISN], 0);
-   mission_menu_update(info_windows[INFO_WIN_MISN], NULL);
+   switch (tab) {
+      case INFO_WIN_WEAP:
+         weapons_genList(info_windows[tab]);
+         break;
+
+      case INFO_WIN_CARGO:
+         cargo_update(info_windows[tab], NULL);
+         break;
+
+      case INFO_WIN_MISN:
+         mission_menu_genList(info_windows[tab], 0);
+         mission_menu_update(info_windows[tab], NULL);
+         break;
+
+      default:
+         break;
+   }
 
    updating = 0;
 }
@@ -878,15 +920,15 @@ static void info_openCargo( unsigned int wid )
          cargo_jettison );
    window_disableButton( wid, "btnJettisonCargo" );
 
-   /* Description. */
-   window_addText(wid, 20+350+20, -20,
-         w - (20+350+20) - 20, 60, 1, "txtCargoName", NULL, NULL, NULL);
-   window_addText(wid, 20+350+20, -20 - 60,
-         w - (20+350+20) - 20, h - BUTTON_HEIGHT - 20 - 60, 0,
-         "txtCargoDesc", &gl_smallFont, NULL, NULL );
+   /* Name text */
+   window_addText(wid, 20+300+20, -40,
+         w - (20+300+20) - 20, 60, 1, "txtCargoName", NULL, NULL, NULL);
+
+   map_show(wid, -20, 20 + BUTTON_HEIGHT + 20,
+         w - (20+300+20) - 20, h - 40 - 60 - 20 - BUTTON_HEIGHT - 20, 0.75);
 
    /* Generate the list. */
-   cargo_genList( wid );
+   cargo_genList(wid);
 }
 /**
  * @brief Generates the cargo list.
@@ -923,9 +965,8 @@ static void cargo_genList( unsigned int wid )
       }
       nbuf = array_size(player.p->commodities);
    }
-   window_addList( wid, 20, -40,
-         350, h - BUTTON_HEIGHT - 80,
-         "lstCargo", buf, nbuf, 0, cargo_update, NULL );
+   window_addList(wid, 20, -40, 300, h - 40 - 20,
+         "lstCargo", buf, nbuf, 0, cargo_update, NULL);
 }
 /**
  * @brief Updates the player's cargo in the cargo menu.
@@ -940,7 +981,6 @@ static void cargo_update( unsigned int wid, char* str )
 
    /* Clear text fields */
    window_modifyText(wid, "txtCargoName", "");
-   window_modifyText(wid, "txtCargoDesc", "");
 
    if (array_size(player.p->commodities) == 0) {
       window_disableButton(wid, "btnJettisonCargo");
@@ -966,8 +1006,11 @@ static void cargo_update( unsigned int wid, char* str )
          player.p->commodities[pos].quantity);
    window_modifyText(wid, "txtCargoName", buf);
 
-   if (com->description)
-      window_modifyText(wid, "txtCargoDesc", _(com->description));
+   /* Set map mode. */
+   map_setMode(MAPMODE_TRADE);
+   map_setCommodity(com);
+   map_setCommodityMode(0);
+   map_setMinimal(1);
 }
 /**
  * @brief Makes the player jettison the currently selected cargo.
@@ -1319,6 +1362,10 @@ static void mission_menu_update( unsigned int wid, char* str )
    int w, h;
    int x, y, tw, th;
 
+   /* Make sure the map is in the proper mode. */
+   map_setMode(MAPMODE_TRAVEL);
+   map_setMinimal(1);
+
    window_dimWindow(wid, &w, &h);
 
    x = 300+40;
@@ -1388,10 +1435,6 @@ static void mission_menu_update( unsigned int wid, char* str )
       window_enableButton(wid, "btnAbortMission");
    else
       window_disableButtonSoft(wid, "btnAbortMission");
-
-   /* Make sure the map is in the proper mode. */
-   map_setMode(MAPMODE_TRAVEL);
-   map_setMinimal(1);
 
    /* Center map on the selected mission unless the map is being clicked
     * or this was called by info_update(). (These conditions prevent

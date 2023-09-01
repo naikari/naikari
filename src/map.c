@@ -114,6 +114,7 @@ static void map_buttonSystemMap(unsigned int wid, char* str);
 static void map_genModeList(void);
 static void map_update_commod_av_price();
 static void map_window_close( unsigned int wid, char *str );
+static void map_destroy(void);
 
 
 /**
@@ -2323,9 +2324,12 @@ static void map_window_close( unsigned int wid, char *str )
 
 
 /**
- * @brief Closes the map.
+ * @brief Closes the system map and frees arrays used.
+ *
+ * This exists separately from map_close() because map_cleanup() cannot
+ * safely use map_close() due to the callbacks in it.
  */
-void map_close (void)
+static void map_destroy(void)
 {
    unsigned int wid;
    int i;
@@ -2333,9 +2337,11 @@ void map_close (void)
    /* Close any system map that may be open first. */
    map_system_close();
 
+   /* Free known commodities. */
    free(commod_known);
    commod_known = NULL;
 
+   /* Free map modes, if any. */
    if (map_modes != NULL) {
       for (i=0; i<array_size(map_modes); i++)
          free(map_modes[i]);
@@ -2347,16 +2353,27 @@ void map_close (void)
    map_clear();
    map_reset();
 
+   /* Destroy the window, if any. */
+   wid = window_get(MAP_WDWNAME);
+   if (wid > 0)
+      window_destroy(wid);
+}
+
+
+/**
+ * @brief Closes the map and calls land_updateTabs() and info_update().
+ */
+void map_close(void)
+{
+   /* Destroy the map. */
+   map_destroy();
+
    /* Give the land window a chance to configure the map. */
    land_updateTabs();
 
    /* Give the info window a chance to configure the map; must be after
     * doing so with the land window since the info window is on top. */
    info_update();
-
-   wid = window_get(MAP_WDWNAME);
-   if (wid > 0)
-      window_destroy(wid);
 }
 
 
@@ -2365,8 +2382,8 @@ void map_close (void)
  */
 void map_cleanup(void)
 {
-   /* Make sure the map is closed first. */
-   map_close();
+   /* Destroy the map. */
+   map_destroy();
 
    /* Free map_path; using this across play sessions will lead to
     * wierd lines being drawn on the map. */
