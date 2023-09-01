@@ -19,7 +19,7 @@
   <faction>Za'lek</faction>
  </avail>
  <notes>
-  <campaign>Nexus show their teeth</campaign>
+  <campaign>Nexus</campaign>
  </notes>
 </mission>
 --]]
@@ -82,7 +82,7 @@ end
 function accept()
 
    stage = 0
-   reward = 600000
+   reward = 300000
 
    if tk.yesno("", ask_text:format(battlesys:name(), fmt.credits(reward/2))) then
       misn.accept()
