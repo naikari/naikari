@@ -15,10 +15,11 @@
  </presence>
  <general>
   <class>A</class>
-  <population>1000</population>
+  <population>0</population>
   <services>
-   <land/>
+   <land>land_lowclass</land>
    <refuel/>
+   <uninhabited/>
   </services>
   <commodities/>
   <description>Blossom is a former Dvaered mining colony which has been stripped of everything it has to offer. However, it remains in use as a convenient and legal place to dispose of garbage. The planet's high temperatures quickly incinerate any waste thrown into it.</description>
