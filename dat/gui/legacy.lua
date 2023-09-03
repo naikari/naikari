@@ -85,8 +85,7 @@ function create()
    misc_h = 104
    misc_x, misc_y = relativize( 40, 472 )
 
-   -- Bottom bar
-   --gui.viewport( 0, 20, screen_w, screen_h-20 )
+   gui.viewport(0, 0, screen_w, screen_h)
 
    -- Overlay bounds
    gui.setMapOverlayBounds(15, 185, 15, 185)
