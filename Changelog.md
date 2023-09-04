@@ -7,6 +7,12 @@
 * Added a trio of outfits called "Thrust Bracers" (one for each slot
   size). These outfits boost engine mass limit in exchange for use of a
   structural slot.
+* Added a map to the Cargo tab in the Ship Computer which works the same
+  way as the map on the Commodity tab in the land window.
+* Added an event where a pilot is in distress and needs rescue,
+  following the Space Family mission (but these follow-up rescues have a
+  less strict completion requirement of just needing to land on an
+  inhabited planet).
 
 ### Other Changes
 
@@ -20,6 +26,15 @@
   lead to situations with some ships and with some TC Velocity values
   where maximum time compression would come with an obnoxious,
   continuous high-pitched screeching noise coming from the engines.)
+* The Nexus campaign now follows the Baron Prince mission and is
+  more directly tied into the Baron campaign.
+* Removed the third Nexus mission.
+* Added a portrait for Baron Dovai Sauterfeldt and adjusted the initial
+  description of his appearance to match. The portrait is used in the
+  Shark mission.
+* Lowered risk reward for cargo missions (which means their rewards
+  don't shoot quite as high in areas with high pirate presence).
+* Fixed an issue with radar clicking in the Legacy GUI.
 
 ## 0.10.0
 
