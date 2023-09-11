@@ -35,6 +35,7 @@
 * Lowered risk reward for cargo missions (which means their rewards
   don't shoot quite as high in areas with high pirate presence).
 * Fixed an issue with radar clicking in the Legacy GUI.
+* Jump transition shader is now black instead of white.
 
 ## 0.10.0
 

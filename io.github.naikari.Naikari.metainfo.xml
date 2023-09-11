@@ -27,6 +27,16 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
+    <release version="0.11.0">
+      <description>
+        <ul>
+          <li>New "Thrust Bracer" outfit for boosting engine mass limit.</li>
+          <li>Added a commodity prices map to the Cargo tab in the Ship Computer.</li>
+          <li>Added a pilot distress event.</li>
+        </ul>
+      </description>
+      <url>https://github.com/naikari/naikari/releases/tag/v0.11.0</url>
+    </release>
     <release version="0.10.0" date="2023-08-31" type="stable">
       <description>
         <ul>
