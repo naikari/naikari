@@ -23,8 +23,8 @@ uniform vec2 dimensions;
 in vec2 pos;
 out vec4 color_out;
 
-const vec4 colour_from = vec4( 1, 1, 1, 0 );
-const vec4 colour_to   = vec4( 1, 1, 1, 1 );
+const vec4 colour_from = vec4(0.0, 0.0, 0.0, 0.0);
+const vec4 colour_to = vec4(0.0, 0.0, 0.0, 1.0);
 
 
 /**
