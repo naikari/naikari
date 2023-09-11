@@ -151,24 +151,52 @@ static int board_hook(void *data)
 int player_board(void)
 {
    Pilot *p;
+   Pilot *const *pilots;
+   int i;
+   pilotId_t target;
+   double d, td;
    char c;
 
    /* Not disabled. */
    if (pilot_isDisabled(player.p))
       return PLAYER_BOARD_IMPOSSIBLE;
 
-   if (player.p->target==PLAYER_ID) {
-      /* We don't try to find far away targets, only nearest and see if it matches.
-       * However, perhaps looking for first boardable target within a certain range
-       * could be more interesting. */
-      player_targetNearest();
-      p = pilot_get(player.p->target);
-      if ((!pilot_isDisabled(p) && !pilot_isFlag(p,PILOT_BOARDABLE)) ||
-            pilot_isFlag(p,PILOT_NOBOARD)) {
-         player_targetClear();
-         player_message( _("#rYou need a target to board first!") );
+   if (player.p->target == PLAYER_ID) {
+      /* Attempt to find the nearest boardable pilot. */
+      target = PLAYER_ID;
+      d = 0;
+      pilots = pilot_getAll();
+      for (i=0; i<array_size(pilots); i++) {
+         if (pilots[i]->id == PLAYER_ID)
+            continue;
+
+         if (!pilot_validTarget(player.p, pilots[i]))
+            continue;
+
+         if (pilot_isFlag(pilots[i], PILOT_NOBOARD))
+            continue;
+
+         if (!pilot_isDisabled(pilots[i])
+               && !pilot_isFlag(pilots[i], PILOT_BOARDABLE))
+            continue;
+
+         td = vect_dist2(&player.p->solid->pos, &pilots[i]->solid->pos);
+         if ((target == PLAYER_ID) || (td < d)) {
+            target = pilots[i]->id;
+            d = td;
+         }
+      }
+
+      /* If no suitable target was found, abort the boarding action. */
+      if (target == PLAYER_ID) {
+         player_messageRaw(_("#rYou need a target to board first!"));
          return PLAYER_BOARD_IMPOSSIBLE;
       }
+
+      /* Suitable target found; set as the player's target and
+       * proceed with boarding. */
+      player_targetSet(target);
+      p = pilot_get(target);
    }
    else
       p = pilot_get(player.p->target);
