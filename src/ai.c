@@ -1466,9 +1466,15 @@ static int aiL_getflybydistance( lua_State *L )
  */
 static int aiL_minbrakedist( lua_State *L )
 {
-   double time, dist, vel;
+   double accel;
+   double time;
+   double dist;
+   double vel;
    Vector2d vv;
    Pilot *p;
+
+   /* Calculate acceleration. */
+   accel = cur_pilot->thrust / cur_pilot->solid->mass;
 
    /* More complicated calculation based on relative velocity. */
    if (lua_gettop(L) > 0) {
@@ -1479,8 +1485,7 @@ static int aiL_minbrakedist( lua_State *L )
             p->solid->vel.y - cur_pilot->solid->vel.y );
 
       /* Run the same calculations. */
-      time = VMOD(vv) /
-            (cur_pilot->thrust / cur_pilot->solid->mass);
+      time = VMOD(vv) / accel;
 
       /* Get relative velocity. */
       vel = MIN(cur_pilot->speed - VMOD(p->solid->vel), VMOD(vv));
@@ -1491,15 +1496,13 @@ static int aiL_minbrakedist( lua_State *L )
    /* Simple calculation based on distance. */
    else {
       /* Get current time to reach target. */
-      time = VMOD(cur_pilot->solid->vel) /
-            (cur_pilot->thrust / cur_pilot->solid->mass);
+      time = VMOD(cur_pilot->solid->vel) / accel;
 
       /* Get velocity. */
-      vel = MIN(cur_pilot->speed,VMOD(cur_pilot->solid->vel));
+      vel = MIN(cur_pilot->speed, VMOD(cur_pilot->solid->vel));
    }
    /* Get distance to brake. */
-   dist = vel*(time+1.1*M_PI/cur_pilot->turn) -
-         0.5*(cur_pilot->thrust/cur_pilot->solid->mass)*time*time;
+   dist = vel*(time+1.1*M_PI/cur_pilot->turn) - 0.5*accel*pow2(time);
 
    lua_pushnumber(L, dist); /* return */
    return 1; /* returns one thing */
