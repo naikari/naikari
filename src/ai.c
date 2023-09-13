@@ -1498,11 +1498,12 @@ static int aiL_minbrakedist( lua_State *L )
       /* Get current time to reach target. */
       time = VMOD(cur_pilot->solid->vel) / accel;
 
-      /* Get velocity. */
+      /* Get velocity, or non-thrusting speed if that is lower (since
+       * the ship will slow down to that speed when turning around). */
       vel = MIN(cur_pilot->speed, VMOD(cur_pilot->solid->vel));
    }
    /* Get distance to brake. */
-   dist = vel*(time+1.1*M_PI/cur_pilot->turn) - 0.5*accel*pow2(time);
+   dist = MAX(0., vel*(time+1.1*M_PI/cur_pilot->turn) - 0.5*accel*pow2(time));
 
    lua_pushnumber(L, dist); /* return */
    return 1; /* returns one thing */
