@@ -1145,18 +1145,18 @@ void pilot_updateMass( Pilot *pilot )
    else
       factor = 1.;
 
-   pilot->thrust  = factor * pilot->thrust_base * mass;
-   pilot->turn    = factor * pilot->turn_base;
-   pilot->speed   = factor * pilot->speed_base;
+   pilot->thrust = factor * pilot->thrust_base * mass;
+   pilot->turn = factor * pilot->turn_base;
+   pilot->speed = factor * pilot->speed_base;
 
    /* limit the maximum speed if limiter is active */
    if (pilot_isFlag(pilot, PILOT_HASSPEEDLIMIT)) {
       pilot->speed = pilot->speed_limit - pilot->thrust / (mass * 3.);
-      /* Speed must never go negative. */
-      if (pilot->speed < 0.) {
-         /* If speed DOES go negative, we have to lower thrust. */
+      /* Speed must never go negative or zero. */
+      if (pilot->speed <= 0.) {
+         /* If speed DOES go ≤ 0, we have to lower thrust. */
          pilot->thrust = 3 * pilot->speed_limit * mass;
-         pilot->speed = 0.;
+         pilot->speed = pilot->speed_limit;
       }
    }
 
