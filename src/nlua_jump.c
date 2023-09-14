@@ -31,6 +31,7 @@ static int jumpL_get( lua_State *L );
 static int jumpL_eq( lua_State *L );
 static int jumpL_position( lua_State *L );
 static int jumpL_angle( lua_State *L );
+static int jumpL_radius(lua_State *L);
 static int jumpL_hidden( lua_State *L );
 static int jumpL_exitonly( lua_State *L );
 static int jumpL_system( lua_State *L );
@@ -40,19 +41,20 @@ static int jumpL_setKnown( lua_State *L );
 static int jumpL_hilightAdd(lua_State *L);
 static int jumpL_hilightRm(lua_State *L);
 static const luaL_Reg jump_methods[] = {
-   { "get", jumpL_get },
-   { "__eq", jumpL_eq },
-   { "pos", jumpL_position },
-   { "angle", jumpL_angle },
-   { "hidden", jumpL_hidden },
-   { "exitonly", jumpL_exitonly },
-   { "system", jumpL_system },
-   { "dest", jumpL_dest },
-   { "known", jumpL_isKnown },
-   { "setKnown", jumpL_setKnown },
+   {"get", jumpL_get},
+   {"__eq", jumpL_eq},
+   {"pos", jumpL_position},
+   {"angle", jumpL_angle},
+   {"radius", jumpL_radius},
+   {"hidden", jumpL_hidden},
+   {"exitonly", jumpL_exitonly},
+   {"system", jumpL_system},
+   {"dest", jumpL_dest},
+   {"known", jumpL_isKnown},
+   {"setKnown", jumpL_setKnown},
    {"hilightAdd", jumpL_hilightAdd},
    {"hilightRm", jumpL_hilightRm},
-   {0,0}
+   {0, 0}
 }; /**< Jump metatable methods. */
 
 
@@ -314,6 +316,28 @@ static int jumpL_angle( lua_State *L )
 
    jp = luaL_validjump(L,1);
    lua_pushnumber(L, jp->angle * 180. / M_PI);
+   return 1;
+}
+
+
+/**
+ * @brief Gets the radius of the jump.
+ *
+ * Note that this is modified by pilots' "jump_distance" stat to find
+ * the actual radius for any given pilot. You can check it by using
+ * pilot.shipstat().
+ *
+ * @usage r = jp:radius()
+ *    @luatparam Jump jp Jump to get radius of.
+ *    @luatreturn number Radius of the jump point.
+ * @luafunc radius
+ */
+static int jumpL_radius(lua_State *L)
+{
+   JumpPoint *jp;
+
+   jp = luaL_validjump(L, 1);
+   lua_pushnumber(L, jp->radius);
    return 1;
 }
 
