@@ -36,6 +36,8 @@
   don't shoot quite as high in areas with high pirate presence).
 * Fixed an issue with radar clicking in the Legacy GUI.
 * Jump transition shader is now black instead of white.
+* Board key now auto-targets a boardable pilot if none is selected (like
+  the land and hyperspace keys).
 
 ## 0.10.0
 
