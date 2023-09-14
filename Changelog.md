@@ -1,5 +1,10 @@
 # NAIKARI CHANGELOG
 
+## 0.10.1
+
+* Fixed a bug which could cause speed-restricted AI pilots to be unable
+  to jump.
+
 ## 0.10.0
 
 ### Major Changes
