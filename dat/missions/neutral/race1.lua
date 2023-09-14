@@ -93,7 +93,7 @@ function create ()
          points[#points + 1] = {pnt:pos(), pnt:radius()}
       else
          local jp = table.remove(jumps, i - #planets)
-         points[#points + 1] = {jp:pos(), 200}
+         points[#points + 1] = {jp:pos(), jp:radius()}
       end
    end
 
