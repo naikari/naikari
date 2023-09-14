@@ -730,15 +730,20 @@ function hyperspace()
    ai.pushsubtask("__hyp_approach", {hyp, pos})
 end
 function __hyp_approach ()
+   local p = ai.pilot()
+
+   if mem.noleave or p:stats().jumps < 1 then
+      ai.poptask()
+      return
+   end
+
    local hyp, hyp_pos = table.unpack(ai.subtaskdata())
    local dir
    local dist = ai.dist(hyp_pos)
    local bdist = ai.minbrakedist()
-
-   if mem.noleave or ai.pilot():stats().jumps < 1 then
-      ai.poptask()
-      return
-   end
+   -- Use 80% of the actual radius to compensate for any small errors
+   -- that might mess things up.
+   local radius = hyp:radius() * p:shipstat("jump_distance", true) * 0.8
 
    -- Make sure afterburner is off, since it messes things up here.
    ai.weapset(8, false)
@@ -750,12 +755,12 @@ function __hyp_approach ()
       dir = ai.careful_face(hyp_pos)
    end
 
-   -- Need to get closer
-   if dir < 10 and dist > bdist then
-      ai.accel()
-   -- Need to start braking
-   elseif dist <= bdist then
+   if dist <= bdist or dist < radius then
+      -- Ready to brake.
       ai.pushsubtask("__hyp_brake", {hyp, hyp_pos})
+   elseif dir < 10 then
+      -- Need to get closer.
+      ai.accel()
    end
 end
 function __hyp_brake()
