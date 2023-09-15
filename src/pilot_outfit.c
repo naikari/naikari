@@ -1136,7 +1136,8 @@ void pilot_healLanded( Pilot *pilot )
  */
 void pilot_updateMass( Pilot *pilot )
 {
-   double mass, factor;
+   double mass;
+   double factor;
 
    /* Set limit. */
    mass = pilot->solid->mass;
@@ -1161,11 +1162,13 @@ void pilot_updateMass( Pilot *pilot )
        * the speed value.
        */
       pilot->speed = pilot->speed_limit - pilot->thrust/(3.*mass);
-      if (pilot->speed < 0.) {
-         /* If speed is negative, set speed to zero and then use a zero
-          * speed to calculate the thrust needed to get to the target
-          * speed limit. */
-         pilot->speed = 0.;
+
+      /* Don't allow speed to go below a threshold relative to the
+       * target speed limit. If it does, set speed to the threshold and
+       * adjust thrust to achieve the target speed limit from there. */
+      const double threshold = 0.5 * pilot->speed_limit;
+      if (pilot->speed < threshold) {
+         pilot->speed = threshold;
          pilot->thrust = 3. * mass * (pilot->speed_limit-pilot->speed);
       }
    }
