@@ -1151,12 +1151,22 @@ void pilot_updateMass( Pilot *pilot )
 
    /* limit the maximum speed if limiter is active */
    if (pilot_isFlag(pilot, PILOT_HASSPEEDLIMIT)) {
+      /* This requires a little explanation. The max speed is calculated
+       * with this formula in solid_maxspeed():
+       *
+       *    max_speed = speed + thrust/(3*mass)
+       *
+       * We can use this equation to manipulate max speed by adjusting
+       * the speed and/or thrust values. We first attempt to adjust only
+       * the speed value.
+       */
       pilot->speed = pilot->speed_limit - pilot->thrust / (mass * 3.);
-      /* Speed must never go negative or zero. */
-      if (pilot->speed <= 0.) {
-         /* If speed DOES go ≤ 0, we have to lower thrust. */
-         pilot->thrust = 3 * pilot->speed_limit * mass;
+      if (pilot->speed < 0.) {
+         /* If speed is negative, set speed to zero and then use a zero
+          * speed to calculate the thrust needed to get to the target
+          * speed limit. */
          pilot->speed = 0.;
+         pilot->thrust = 3. * mass * (pilot->speed_limit-pilot->speed);
       }
    }
 
