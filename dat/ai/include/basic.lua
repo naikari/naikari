@@ -128,15 +128,16 @@ function __moveto_precise ()
       return
    end
 
-   local bdist    = ai.minbrakedist()
+   -- Ensure there's always at least some margin. This makes it so that
+   -- pilots with 0 braking distance will be slightly inaccurate rather
+   -- than requiring perfect precision and thus likely getting stuck in
+   -- a loop. (The exact base margin chosen is arbitrary.)
+   local bdist = math.max(ai.minbrakedist(), 2)
 
-   -- Need to get closer
-   if dir < 10 and dist > bdist then
-      ai.accel()
-
-   -- Need to start braking
-   elseif dist <= bdist then
+   if dist <= bdist then
       ai.pushsubtask("__subbrake")
+   elseif dir < 10 then
+      ai.accel()
    end
 end
 
@@ -184,22 +185,23 @@ function __moveto_generic( target, dir, brake, subtask )
    local dist     = ai.dist( target )
    local bdist
    if brake then
-      bdist    = ai.minbrakedist()
+      -- Ensure there's always at least some margin. This makes it so
+      -- that pilots with 0 braking distance will be slightly inaccurate
+      -- rather than requiring perfect precision and thus likely getting
+      -- stuck in a loop. (The exact base margin chosen is arbitrary.)
+      bdist = math.max(ai.minbrakedist(), 4)
    else
-      bdist    = 50
+      bdist = 50
    end
 
-   -- Need to get closer
-   if dir < 10 and dist > bdist then
-      ai.accel()
-
-   -- Need to start braking
-   elseif dist <= bdist then
+   if dist <= bdist then
       ai.poptask()
       if brake then
          ai.pushtask("brake")
       end
       return
+   elseif dir < 10 then
+      ai.accel()
    end
 end
 
@@ -459,12 +461,10 @@ function __landgo ()
       dir = ai.careful_face(dest)
    end
 
-   if dir < 10 and dist > bdist then
-      -- Need to get closer
-      ai.accel()
-   elseif dist <= bdist then
-      -- Need to start braking
+   if dist <= bdist then
       ai.pushsubtask("__landstop", dest)
+   elseif dir < 10 then
+      ai.accel()
    end
 
 end
@@ -877,10 +877,14 @@ function board ()
    local dir = ai.face(target)
    local dist = ai.dist(target)
    local bdist = ai.minbrakedist(target)
+   local w, h, sw, sh = target:ship():gfx():dim()
+   -- The actual board code uses 80% of sw, so we'll use 60% to add more
+   -- margin for error.
+   local radius = sw * 0.6
 
    -- See if must brake or approach
-   if dist <= bdist then
-      ai.pushsubtask( "__boardstop", target )
+   if dist <= bdist or dist < radius then
+      ai.pushsubtask("__boardstop", target)
    elseif dir < 10 then
       ai.accel()
    end
@@ -959,9 +963,13 @@ function refuel ()
    local dir = ai.face(target)
    local dist = ai.dist(target)
    local bdist = ai.minbrakedist(target)
+   local w, h, sw, sh = target:ship():gfx():dim()
+   -- The actual board code uses 80% of sw, so we'll use 60% to add more
+   -- margin for error.
+   local radius = sw * 0.6
 
    -- See if must brake or approach
-   if dist <= bdist then
+   if dist <= bdist or dist < radius then
       ai.pushsubtask("__refuelstop", target)
    elseif dir < 10 then
       ai.accel()
