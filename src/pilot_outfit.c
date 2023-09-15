@@ -1156,7 +1156,7 @@ void pilot_updateMass( Pilot *pilot )
       if (pilot->speed <= 0.) {
          /* If speed DOES go ≤ 0, we have to lower thrust. */
          pilot->thrust = 3 * pilot->speed_limit * mass;
-         pilot->speed = pilot->speed_limit;
+         pilot->speed = 0.;
       }
    }
 
