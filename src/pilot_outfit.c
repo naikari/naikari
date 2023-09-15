@@ -1160,7 +1160,7 @@ void pilot_updateMass( Pilot *pilot )
        * the speed and/or thrust values. We first attempt to adjust only
        * the speed value.
        */
-      pilot->speed = pilot->speed_limit - pilot->thrust / (mass * 3.);
+      pilot->speed = pilot->speed_limit - pilot->thrust/(3.*mass);
       if (pilot->speed < 0.) {
          /* If speed is negative, set speed to zero and then use a zero
           * speed to calculate the thrust needed to get to the target
