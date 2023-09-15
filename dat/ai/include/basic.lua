@@ -960,7 +960,7 @@ function refuel ()
 
    -- Get ready to board
    ai.settarget(target)
-   local dir = ai.face(target)
+   local dir = ai.face(target, false, true)
    local dist = ai.dist(target)
    local bdist = ai.minbrakedist(target)
    local w, h, sw, sh = target:ship():gfx():dim()
