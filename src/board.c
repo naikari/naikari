@@ -546,8 +546,8 @@ int pilot_board( Pilot *p )
    /* Check if can board. */
    if (!pilot_isDisabled(target))
       return 0;
-   else if (vect_dist(&p->solid->pos, &target->solid->pos) >
-         target->ship->gfx_space->sw * PILOT_SIZE_APPROX )
+   else if (vect_dist(&p->solid->pos, &target->solid->pos)
+         > target->ship->gfx_space->sw * PILOT_SIZE_APPROX)
       return 0;
    else if (vect_dist(&p->solid->vel, &target->solid->vel)
          > MAX_HYPERSPACE_VEL)

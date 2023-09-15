@@ -874,8 +874,8 @@ function board ()
 
    -- Get ready to board
    ai.settarget(target)
-   local dir   = ai.face(target)
-   local dist  = ai.dist(target)
+   local dir = ai.face(target)
+   local dist = ai.dist(target)
    local bdist = ai.minbrakedist(target)
 
    -- See if must brake or approach

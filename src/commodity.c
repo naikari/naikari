@@ -41,10 +41,6 @@
 #define XML_COMMODITY_ID  "commodity" /**< XML document identifier */
 
 
-/* Gatherables */
-#define GATHER_DIST 30. /**< Maximum distance a gatherable can be gathered. */
-
-
 /* commodity stack */
 Commodity* commodity_stack = NULL; /**< Contains all the commodities. */
 static Commodity** commodity_temp = NULL; /**< Contains all the temporary commodities. */
@@ -561,14 +557,15 @@ void gatherable_gather( int pilot )
    Pilot* p;
    HookParam hparam[3];
 
-   p = pilot_get( pilot );
+   p = pilot_get(pilot);
 
    for (i=0; i < array_size(gatherable_stack); i++) {
       gat = &gatherable_stack[i];
 
-      if (vect_dist( &p->solid->pos, &gat->pos ) < GATHER_DIST ) {
+      if (vect_dist(&p->solid->pos, &gat->pos)
+            < p->ship->gfx_space->sw * PILOT_SIZE_APPROX) {
          /* Add cargo to pilot. */
-         q = pilot_cargoAdd( p, gat->type, gat->quantity, 0 );
+         q = pilot_cargoAdd(p, gat->type, gat->quantity, 0);
 
          if (q > 0) {
             if (pilot_isPlayer(p)) {
