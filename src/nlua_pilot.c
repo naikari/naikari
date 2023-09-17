@@ -1067,21 +1067,21 @@ static int pilotL_exists(lua_State *L)
  * @usage target = p:target()
  *
  *    @luatparam Pilot p Pilot to get target of.
- *    @luatreturn Pilot|nil nil if no target is selected, otherwise the target of the pilot.
+ *    @luatreturn Pilot|nil nil if no target is selected, otherwise the
+ *       target of the pilot.
  * @luafunc target
  */
 static int pilotL_target(lua_State *L)
 {
-   Pilot *p;
-   p = luaL_validpilot(L,1);
-   if (p->target == 0)
-      return 0;
-   /* Must be targeted. */
-   if (p->target == p->id)
-      return 0;
-   /* Must be valid. */
-   if (pilot_get(p->target) == NULL)
-      return 0;
+   Pilot *p = luaL_validpilot(L, 1);
+
+   if ((p->target == 0) || (p->target == p->id)
+         || (pilot_get(p->target) == NULL)) {
+      /* No target selected. */
+      lua_pushnil(L);
+      return 1;
+   }
+
    /* Push target. */
    lua_pushpilot(L, p->target);
    return 1;
@@ -1165,9 +1165,7 @@ static int pilotL_nav(lua_State *L)
    Pilot *p;
 
    /* Get pilot. */
-   p = luaL_validpilot(L,1);
-   if (p->target == 0)
-      return 0;
+   p = luaL_validpilot(L, 1);
 
    /* Get planet target. */
    if (p->nav_planet < 0)
