@@ -37,14 +37,14 @@ function idle()
    if mem.race_current_lap >= mem.race_laps
          and mem.race_next_point >= #mem.race_points then
       local pnt = ai.planetfrompos(mem.race_land_dest:pos())
-      ai.pushtask("land", pnt:pos())
+      ai.pushtask("land", {pnt, pnt:pos()})
    elseif vec2.dist(p:pos(), pos) <= radius then
       mem.race_next_point = mem.race_next_point + 1
       if mem.race_current_lap >= mem.race_laps
             and mem.race_next_point >= #mem.race_points then
          -- Final step.
          local pnt = ai.planetfrompos(mem.race_land_dest:pos())
-         ai.pushtask("land", pnt:pos())
+         ai.pushtask("land", {pnt, pnt:pos()})
 
          naik.hookTrigger("race_racer_next_point", p, mem.race_next_point - 1)
       elseif mem.race_next_point > #mem.race_points then

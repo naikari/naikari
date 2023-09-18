@@ -12,7 +12,7 @@ function idle ()
 
       local pnt = ai.landplanet(mem.land_friendly)
       if pnt ~= nil and mem.land_planet and not mem.tookoff then
-         ai.pushtask("land", pnt:pos())
+         ai.pushtask("land", {pnt, pnt:pos()})
       end
    end
 end

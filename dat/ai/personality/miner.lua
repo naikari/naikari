@@ -15,7 +15,7 @@ function idle ()
 
          local pnt = ai.landplanet(mem.land_friendly)
          if pnt ~= nil then
-            ai.pushtask("land", pnt:pos())
+            ai.pushtask("land", {pnt, pnt:pos()})
          end
       end
    else -- Mine the asteroid

@@ -420,7 +420,7 @@ end
 function __choose_land_target()
    local landplanet = ai.landplanet()
    if landplanet ~= nil then
-      return landplanet:pos()
+      return {landplanet, landplanet:pos()}
    end
 
    return nil
@@ -446,23 +446,27 @@ function land ()
    ai.pushsubtask("__landgo", dest)
 end
 function __landgo ()
-   local dest = ai.subtaskdata()
-   local dist = ai.dist(dest)
+   local pnt, pos = table.unpack(ai.subtaskdata())
+   local dist = ai.dist(pos)
    local bdist = ai.minbrakedist()
+   -- Use 80% of the actual radius to compensate for any small errors
+   -- that might mess things up.
+   local radius = pnt:radius() * 0.8
+   local afterburn_dist = math.max(3 * bdist, 2 * radius)
 
    -- Make sure afterburner is off, since it messes things up here.
    ai.weapset(8, false)
 
    -- 2 methods depending on mem.careful
    local dir
-   if not mem.careful or dist < 3*bdist then
-      dir = ai.face(dest)
+   if not mem.careful or dist < afterburn_dist then
+      dir = ai.face(pos)
    else
-      dir = ai.careful_face(dest)
+      dir = ai.careful_face(pos)
    end
 
-   if dist <= bdist then
-      ai.pushsubtask("__landstop", dest)
+   if dist <= bdist or dist < radius then
+      ai.pushsubtask("__landstop", {pnt, pos})
    elseif dir < 10 then
       ai.accel()
    end
@@ -518,7 +522,7 @@ function runaway()
       local pos = ai.sethyptarget(hyp)
       ai.pushsubtask("__run_hyp", {hyp, pos})
    elseif hyp == nil then
-      ai.pushsubtask("__landgo", pnt:pos())
+      ai.pushsubtask("__landgo", {pnt, pnt:pos()})
    else
       -- find which one is the closest
       local pilpos = p:pos()
@@ -528,7 +532,7 @@ function runaway()
          local pos = ai.sethyptarget(hyp)
          ai.pushsubtask("__run_hyp", {hyp, pos})
       else
-         ai.pushsubtask("__run_landgo", pnt:pos())
+         ai.pushsubtask("__run_landgo", {pnt, pnt:pos()})
       end
    end
 end
@@ -654,19 +658,23 @@ end
 
 function __run_landgo ()
    local target = ai.taskdata()
-   local dest = ai.subtaskdata()
-   local dist = ai.dist(dest)
+   local pnt, pos = table.unpack(ai.subtaskdata())
+   -- Use 80% of the actual radius to compensate for any small errors
+   -- that might mess things up.
+   local radius = pnt:radius() * 0.8
+   local dist = ai.dist(pos)
    local bdist = ai.minbrakedist()
    local plt = ai.pilot()
 
-   if dist <= bdist then -- Need to start braking
-      ai.pushsubtask("__landstop", dest)
+   if dist <= bdist or dist < radius then
+      ai.pushsubtask("__landstop", {pnt, pos})
    else
+      local afterburn_dist = math.max(3 * bdist, 2 * radius)
       local dozigzag = false
       if target:exists() then
          local relspe = plt:stats().speed_max / target:stats().speed_max
-         if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile() and
-            (not ai.hasafterburner()) and dist > 3*bdist then
+         if plt:stats().mass <= 400 and relspe <= 1.01 and ai.hasprojectile()
+               and not ai.hasafterburner() and dist > afterburn_dist then
             dozigzag = true
          end
 
@@ -676,16 +684,16 @@ function __run_landgo ()
 
       if dozigzag then
          -- Pilot is agile, but too slow to outrun the enemy: dodge
-         local dir = ai.dir(dest)
+         local dir = ai.dir(pos)
          __zigzag(dir, 70)
       else
 
          -- 2 methods depending on mem.careful
          local dir
-         if not mem.careful or dist < 3*bdist then
-            dir = ai.face(dest)
+         if not mem.careful or dist < afterburn_dist then
+            dir = ai.face(pos)
          else
-            dir = ai.careful_face(dest)
+            dir = ai.careful_face(pos)
          end
          if dir < 10 then
             ai.accel()
@@ -694,7 +702,7 @@ function __run_landgo ()
 
       -- Afterburner
       if ai.hasafterburner() and plt:energy() > 10 then
-         if dist > 3 * bdist then
+         if dist > afterburn_dist then
             ai.weapset(8, true)
          else
             ai.weapset(8, false)

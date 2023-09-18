@@ -14,7 +14,7 @@ function idle ()
       local pnt = ai.landplanet(mem.land_friendly)
       if pnt ~= nil and mem.land_planet
             and (not mem.tookoff or jumps < 1) then
-         ai.pushtask("land", pnt:pos())
+         ai.pushtask("land", {pnt, pnt:pos()})
       end
    else -- Stay. Have a beer.
       -- Check to see if we want to patrol waypoints

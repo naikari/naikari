@@ -135,10 +135,11 @@ function handle_messages()
                ai.pushtask("hyperspace", data)
             end
          elseif msgtype == "land" then
-            -- We have to get the planet itself so that the pilot sets
-            -- it as its nav target.
-            local dest = ai.planetfrompos(data):pos()
-            ai.pushtask("land", dest)
+            local pnt, pos = table.unpack(data)
+            -- We have to re-get the planet this way to make sure it's
+            -- targeted.
+            local pnt = ai.planetfrompos(pos)
+            ai.pushtask("land", {pnt, pos})
          -- Escort commands
          elseif not mem.nocommand then
             -- Attack target

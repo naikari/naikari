@@ -4646,7 +4646,16 @@ static int pilotL_land(lua_State *L)
       r = RNGF() * pnt->radius;
       vect_cadd( &v, r*cos(a), r*sin(a) );
 
-      lua_pushvector(L, v);
+      lua_newtable(L);
+
+      lua_pushnumber(L, 1); /* key */
+      lua_pushplanet(L, planet_index(pnt)); /* value */
+      lua_rawset(L, -3); /* table[key] = value */
+
+      lua_pushnumber(L, 2); /* key */
+      lua_pushvector(L, v); /* value */
+      lua_rawset(L, -3); /* table[key] = value */
+
       t->dat = luaL_ref(L, LUA_REGISTRYINDEX);
    }
 
