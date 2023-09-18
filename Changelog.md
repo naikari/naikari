@@ -38,6 +38,15 @@
 * Jump transition shader is now black instead of white.
 * Board key now auto-targets a boardable pilot if none is selected (like
   the land and hyperspace keys).
+* Distance you can gather gatherables from is based on the size of your
+  ship, rather than a constant.
+* Adjusted the AI refueling code so it's a bit more reliable when the
+  pilot it's trying to refuel is moving.
+
+### Bugfixes
+
+* Fixed a regression which caused speed limitation to not work correctly
+  at very small values.
 
 ## 0.10.1
 
