@@ -42,11 +42,16 @@
   ship, rather than a constant.
 * Adjusted the AI refueling code so it's a bit more reliable when the
   pilot it's trying to refuel is moving.
+* Changed the explanation of what a "skate-board" is in the Prince
+  mission.
 
 ### Bugfixes
 
 * Fixed a regression which caused speed limitation to not work correctly
   at very small values.
+* Fixed image arrays (e.g. outfit lists) causing mouseover alt-text to
+  show up when keyboard navigation was used even if the mouse wasn't
+  over the image array.
 
 ## 0.10.1
 
