@@ -478,10 +478,7 @@ static int iar_mmove( Widget* iar, int x, int y, int rx, int ry )
       return 1;
    }
    else {
-      if ((x < 0) || (x >= iar->w) || (y < 0) || (y >= iar->h))
-         iar->dat.iar.alt  = -1;
-      else
-         iar_setAltTextPos( iar, x, y );
+      iar_setAltTextPos(iar, x, y);
    }
 
    return 0;
@@ -645,9 +642,13 @@ static void iar_focus( Widget* iar, double bx, double by )
  */
 static void iar_setAltTextPos( Widget *iar, double bx, double by )
 {
-   iar->dat.iar.alt  = iar_focusImage( iar, bx, by );
    iar->dat.iar.altx = bx;
    iar->dat.iar.alty = by;
+
+   if ((bx < 0) || (bx >= iar->w) || (by < 0) || (by >= iar->h))
+      iar->dat.iar.alt = -1;
+   else
+      iar->dat.iar.alt = iar_focusImage(iar, bx, by);
 }
 
 
