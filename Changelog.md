@@ -44,6 +44,11 @@
   pilot it's trying to refuel is moving.
 * Changed the explanation of what a "skate-board" is in the Prince
   mission.
+* Defending yourself against pilots that attacked you without
+  provocation or joined in on an unprovoked attack no longer incurs a
+  faction standing penalty. This means that your reputation dipping
+  below 0% no longer sends your reputation on a continuous downward
+  spiral.
 
 ### Bugfixes
 
