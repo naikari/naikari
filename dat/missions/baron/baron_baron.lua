@@ -228,6 +228,8 @@ function dvtimer()
          {ai="dvaered_norun"})
    vendetta2 = pilot.add("Dvaered Vendetta", "Dvaered", mispla, nil,
          {ai="dvaered_norun"})
+   vendetta1:memory().nofactionhit = true
+   vendetta2:memory().nofactionhit = true
    vendetta1:setHostile()
    vendetta1:setNoClear()
    vendetta2:setHostile()
