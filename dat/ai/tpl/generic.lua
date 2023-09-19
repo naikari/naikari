@@ -7,6 +7,7 @@ local formation = require("scripts/formation")
 --
 -- These variables can be used to adjust the generic AI to suit other roles.
 --]]
+mem.nofactionhit = false -- Whether to disable standing hits for the pilot.
 mem.enemyclose = nil -- Distance at which an enemy is considered close
 mem.armour_run = 0 -- At which damage to run at
 mem.armour_return = 0 -- At which armour to return to combat
@@ -314,6 +315,10 @@ function control ()
 
       -- See what decision to take
       if attack then
+         if enemy == player.pilot() then
+            -- Pilot is actively hostile, so don't cause faction hits.
+            mem.nofactionhit = true
+         end
          ai.hostile(enemy) -- Should be done before taunting
          taunt(enemy, true)
          ai.pushtask("attack", enemy)
@@ -389,6 +394,10 @@ function control ()
 
       -- See if really want to attack
       if attack then
+         if enemy == player.pilot() then
+            -- Pilot is actively hostile, so don't cause faction hits.
+            mem.nofactionhit = true
+         end
          taunt(enemy, true)
          clean_task( task )
          ai.pushtask("attack", enemy)
@@ -524,6 +533,10 @@ function distress(distresser, attacker)
    local d_enemy = aifact:areEnemies(dfact)
    local a_enemy = aifact:areEnemies(afact)
 
+   -- Chosen ally and target.
+   local a
+   local t
+
    if dfact == aifact then
       if afact == aifact then
          -- If both attacker and victim are our faction, stay out of it.
@@ -531,12 +544,14 @@ function distress(distresser, attacker)
       else
          -- If victim is our faction and attacker isn't, assist the
          -- victim.
+         a = distresser
          t = attacker
       end
    elseif mem.aggressive then
       -- Victim is not our faction and we are aggressive.
       if afact == aifact then
          -- If attacker is our faction, assist the attacker.
+         a = attacker
          t = distresser
       elseif d_ally then
          if a_ally then
@@ -545,10 +560,12 @@ function distress(distresser, attacker)
          end
 
          -- Victim is an ally, but the attacker isn't.
+         a = distresser
          t = attacker
       elseif a_ally then
          -- If victim isn't an ally and attacker is our ally, assist the
          -- attacker.
+         a = attacker
          t = distresser
       elseif d_enemy then
          if a_enemy then
@@ -557,11 +574,14 @@ function distress(distresser, attacker)
             return
          end
 
+         a = attacker
          t = distresser
       elseif a_enemy then
+         a = distresser
          t = attacker
       elseif mem.protector and not distresser:memory().aggressive then
          -- If we're a protector, protect non-aggressive nutral pilots.
+         a = distresser
          t = attacker
       else
          return
@@ -569,6 +589,7 @@ function distress(distresser, attacker)
    elseif a_enemy and not d_enemy then
       -- Non-aggressive ships will flee if their enemies attack neutral
       -- or allied vessels.
+      a = distresser
       t = attacker
    else
       return
@@ -578,11 +599,18 @@ function distress(distresser, attacker)
    local si = stateinfo[task] or {}
    -- Already fighting
    if si.attack then
-      if si.noattack then return end
+      if si.noattack then
+         return
+      end
       local target = ai.taskdata()
 
       if not target:exists() or ai.dist(target) > ai.dist(t) then
          if aipilot:inrange(t) then
+            if t == player.pilot() and a:memory().nofactionhit then
+               -- We're assisting an actively hostile pilot, so count us
+               -- as actively hostile as well and exclude faction hits.
+               mem.nofactionhit = true
+            end
             ai.pushtask("attack", t)
          end
       end
@@ -591,6 +619,12 @@ function distress(distresser, attacker)
       if not si.noattack and mem.aggressive then
          -- TODO: something to help in the other case
          if aipilot:inrange(t) then
+            if t == player.pilot()
+                  and a ~= nil and a:memory().nofactionhit then
+               -- We're assisting an actively hostile pilot, so count us
+               -- as actively hostile as well and exclude faction hits.
+               mem.nofactionhit = true
+            end
             clean_task(task)
             ai.pushtask("attack", t)
          end

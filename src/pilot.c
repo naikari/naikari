@@ -1292,6 +1292,7 @@ void pilot_distress(Pilot *p, Pilot *attacker, const char *msg)
 {
    int i;
    int player_hit;
+   int nofactionhit;
 
    /* Use the victim's target if the attacker is unknown. */
    if (attacker == NULL)
@@ -1348,9 +1349,21 @@ void pilot_distress(Pilot *p, Pilot *attacker, const char *msg)
          }
       }
 
+      /* Check whether faction hits are disabled. */
+      nofactionhit = 0;
+      if (p->ai != NULL) {
+         nlua_getenv(p->ai->env, AI_MEM);
+         lua_rawgeti(naevL, -1, p->id);
+         lua_getfield(naevL, -1, "nofactionhit");
+         nofactionhit = lua_toboolean(naevL, -1);
+         lua_pop(naevL, 3);
+      }
+
       /* Modify faction, about 1 for a llama, 4.2 for a hawking */
       if (player_hit) {
-         faction_modPlayer(p->faction, -(pow(p->base_mass,0.2)-1.), "distress");
+         if (!nofactionhit)
+            faction_modPlayer(p->faction, -(pow(p->base_mass,0.2) - 1.),
+                  "distress");
 
          /* Set flag to avoid a second faction hit. */
          pilot_setFlag(p, PILOT_DISTRESSED);
@@ -1481,6 +1494,7 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
    double damage_shield, damage_armour, disable, knockback, dam_mod, ddmg, absorb, dmod, start;
    double tdshield, tdarmour;
    Pilot *pshooter;
+   int nofactionhit;
 
    /* Invincible means no damage. */
    if (pilot_isFlag( p, PILOT_INVINCIBLE ) ||
@@ -1605,15 +1619,26 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
       if (!pilot_isFlag(p, PILOT_DEAD)) {
          pilot_dead( p, shooter );
 
-         /* adjust the combat rating based on pilot mass and ditto faction */
          pshooter = pilot_get(shooter);
          if ((pshooter != NULL) && (pshooter->faction == FACTION_PLAYER)) {
+            /* Check whether faction hits are disabled. */
+            nofactionhit = 0;
+            if (p->ai != NULL) {
+               nlua_getenv(p->ai->env, AI_MEM); /* mem */
+               lua_rawgeti(naevL, -1, p->id); /* mem, table */
+               lua_getfield(naevL, -1, "nofactionhit"); /* mem, table, v */
+               nofactionhit = lua_toboolean(naevL, -1);
+               lua_pop(naevL, 3);
+            }
 
-            /* About 6 for a llama, 52 for hawking. */
-            mod = 2 * (pow(p->base_mass, 0.4) - 1.);
+            /* If faction hits aren't disabled, perform faction hit. */
+            if (!nofactionhit) {
+               /* About 6 for a llama, 52 for hawking. */
+               mod = 2 * (pow(p->base_mass, 0.4) - 1.);
 
-            /* Modify faction for him and friends. */
-            faction_modPlayer( p->faction, -mod, "kill" );
+               /* Modify faction for him and friends. */
+               faction_modPlayer(p->faction, -mod, "kill");
+            }
 
             /* Note that player destroyed the ship. */
             player.ships_destroyed++;
