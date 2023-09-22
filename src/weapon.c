@@ -39,11 +39,6 @@
 
 #define weapon_isSmart(w)     (w->think != NULL) /**< Checks if the weapon w is smart. */
 
-/* Weapon status */
-#define WEAPON_STATUS_OK         0 /**< Weapon is fine */
-#define WEAPON_STATUS_JAMMED     1 /**< Got jammed */
-#define WEAPON_STATUS_UNJAMMED   2 /**< Survived jamming */
-
 /* Weapon flags. */
 #define WEAPON_FLAG_DESTROYED    1
 #define weapon_isFlag(w,f)    ((w)->flags & (f))
@@ -87,8 +82,6 @@ typedef struct Weapon_ {
    /* position update and render */
    void (*update)(struct Weapon_*, const double, WeaponLayer); /**< Updates the weapon */
    void (*think)(struct Weapon_*, const double); /**< for the smart missiles */
-
-   char status; /**< Weapon status - to check for jamming */
 } Weapon;
 
 
@@ -322,49 +315,30 @@ static void think_seeker( Weapon* w, const double dt )
          pilot_get(w->parent), p, w->launcher->u.lau.rdr_range,
          w->launcher->u.lau.rdr_range_max);
 
-   /* Handle by status. */
-   switch (w->status) {
+   /* Smart seekers take into account ship velocity. */
+   if (w->outfit->u.amm.ai == AMMO_AI_SMART) {
+      /* Calculate time to reach target. */
+      vect_cset(&v, p->solid->pos.x - w->solid->pos.x,
+            p->solid->pos.y - w->solid->pos.y);
+      t = vect_odist(&v) / w->outfit->u.amm.speed;
 
-      case WEAPON_STATUS_OK: /* Check to see if can get jammed */
-      /* Purpose fallthrough */
-      case WEAPON_STATUS_UNJAMMED: /* Work as expected */
+      /* Calculate target's movement. */
+      vect_cset(&v, v.x + t*(p->solid->vel.x-w->solid->vel.x),
+            v.y + t*(p->solid->vel.y-w->solid->vel.y));
 
-         /* Smart seekers take into account ship velocity. */
-         if (w->outfit->u.amm.ai == AMMO_AI_SMART) {
-
-            /* Calculate time to reach target. */
-            vect_cset( &v, p->solid->pos.x - w->solid->pos.x,
-                  p->solid->pos.y - w->solid->pos.y );
-            t = vect_odist( &v ) / w->outfit->u.amm.speed;
-
-            /* Calculate target's movement. */
-            vect_cset( &v, v.x + t*(p->solid->vel.x - w->solid->vel.x),
-                  v.y + t*(p->solid->vel.y - w->solid->vel.y) );
-
-            /* Get the angle now. */
-            opt_angle = VANGLE(v);
-         }
-         /* Other seekers are simplistic. */
-         else {
-            opt_angle = vect_angle(&w->solid->pos, &p->solid->pos);
-         }
-
-         /* Set turn. */
-         diff = angle_diff(w->solid->dir, opt_angle);
-         turn_max = w->outfit->u.amm.turn * ewtrack;
-         w->solid->dir_vel = CLAMP(
-            -turn_max, turn_max, 10 * diff * w->outfit->u.amm.turn);
-         w->solid->dir_dest = opt_angle;
-         break;
-
-      case WEAPON_STATUS_JAMMED: /* Continue doing whatever */
-         /* Do nothing, dir_vel should be set already if needed */
-         break;
-
-      default:
-         WARN(_("Unknown weapon status for '%s'"), w->outfit->name);
-         break;
+      /* Get the angle now. */
+      opt_angle = VANGLE(v);
    }
+   else {
+      opt_angle = vect_angle(&w->solid->pos, &p->solid->pos);
+   }
+
+   /* Set turn. */
+   diff = angle_diff(w->solid->dir, opt_angle);
+   turn_max = w->outfit->u.amm.turn * ewtrack;
+   w->solid->dir_vel = CLAMP(-turn_max, turn_max,
+         10 * diff * w->outfit->u.amm.turn);
+   w->solid->dir_dest = opt_angle;
 
    /* Limit speed here */
    w->real_vel = MIN(w->outfit->u.amm.speed,
@@ -921,8 +895,7 @@ static int weapon_checkPilCollide(Weapon* w, const double dt,
    }
    /* Smart weapons only collide with their target. */
    else if (weapon_isSmart(w)) {
-      if ((p->id == w->target)
-            && (w->status == WEAPON_STATUS_OK)) {
+      if (p->id == w->target) {
          if (usePoly) {
             k = p->ship->gfx_space->sx * psy + psx;
             coll = CollidePolygon(&p->ship->polygon[k], &p->solid->pos,
@@ -1720,8 +1693,7 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
    }
    else
       w->outfit   = outfit; /* non-changeable */
-   w->update   = weapon_update;
-   w->status   = WEAPON_STATUS_OK;
+   w->update = weapon_update;
    w->strength = 1.;
 
    /* Inform the target. */
