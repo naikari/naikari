@@ -308,14 +308,6 @@ struct OutfitMapData_s;
 typedef struct OutfitMapData_s OutfitMapData_t;
 
 /**
- * @brief Represents a local map.
- */
-typedef struct OutfitLocalMapData_ {
-   double jump_detect;     /**< Ability to detect jumps. */
-   double asset_detect;    /**< Ability to detect assets. */
-} OutfitLocalMapData;
-
-/**
  * @brief A ship outfit, depends radically on the type.
  */
 typedef struct Outfit_ {
@@ -357,7 +349,6 @@ typedef struct Outfit_ {
       OutfitFighterBayData bay;   /**< FIGHTER_BAY */
       OutfitFighterData fig;      /**< FIGHTER */
       OutfitMapData_t *map;       /**< MAP */
-      OutfitLocalMapData lmap;    /**< LOCALMAP */
    } u; /**< Holds the type-based outfit data. */
 } Outfit;
 

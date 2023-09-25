@@ -2223,18 +2223,13 @@ static void outfit_parseSLocalMap( Outfit *temp, const xmlNodePtr parent )
    xmlNodePtr node;
    node = parent->children;
 
-   temp->slot.type         = OUTFIT_SLOT_NA;
-   temp->slot.size         = OUTFIT_SLOT_SIZE_NA;
+   temp->slot.type = OUTFIT_SLOT_NA;
+   temp->slot.size = OUTFIT_SLOT_SIZE_NA;
 
    do {
       xml_onlyNodes(node);
-      xmlr_float(node,"asset_detect",temp->u.lmap.asset_detect);
-      xmlr_float(node,"jump_detect",temp->u.lmap.jump_detect);
       WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
    } while (xml_nextNode(node));
-
-   temp->u.lmap.asset_detect = pow2( temp->u.lmap.asset_detect );
-   temp->u.lmap.jump_detect  = pow2( temp->u.lmap.jump_detect );
 
    /* Set short description. */
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
