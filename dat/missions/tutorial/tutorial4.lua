@@ -65,7 +65,7 @@ fight_text = _([[You see that the control you engaged automatically sets your de
 
 dest_text = _([[With the pirate now defeated, you see Ian visibly relax, thô he continues to sweat nervously. "Th-thank you," he stutters. You yourself breathe a sigh of relief before noticing, to your surprise, a message on your console informing you that the Empire has awarded you a bounty for killing the pirate.
 
-"OK. I'm OK. Um, we need to get to {planet}. I don't know where it is exactly, but if you have enough talent to take out a p-pirate all by yourself, I'm sure you can manage. I know it's somewhere in this system, so you could either look around the system yourself or buy a map. Either method should…" Ian passes out in his chair from exhaustion before he can finish his sentence. You consider waking him, but quickly decide to let him rest while you search for his destination.]])
+"OK. I'm OK. Um, so, the place we need to get to, {planet}, is in this system. I don't know where it is exactly, but if you have enough talent to take out a p-pirate all by yourself…" Ian faints in his chair before he can finish his sentence. You consider waking him, but decide to let him rest while you search for his destination.]])
 
 pay_text = _([[As you finish the landing procedures and arrive on the surface of {planet}, you gently wake Ian Structure. He flinches in surprise, but when he sees it's just you, he immediately relaxes. You tell him that you've arrived at his destination and upon hearing this, he breathes a sigh of relief and follows you out of your ship.
 

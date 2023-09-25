@@ -129,7 +129,6 @@ static void land_cleanupWindow( unsigned int wid, char *name );
 static void land_changeTab( unsigned int wid, char *wgt, int old, int tab );
 static void land_updateMainTab(void);
 /* spaceport */
-static void spaceport_buyMap(unsigned int wid, char *str);
 static void spaceport_saveSnapshot(unsigned int wid, char *str);
 /* spaceport bar */
 static void bar_getDim( int wid,
@@ -953,42 +952,6 @@ void land_refuel (void)
 
 
 /**
- * @brief Buys a local system map.
- */
-static void spaceport_buyMap( unsigned int wid, char *str )
-{
-   (void) wid;
-   (void) str;
-   Outfit *o;
-   unsigned int w;
-
-   /* Make sure the map isn't already known, etc. */
-   if (land_errDialogue( LOCAL_MAP_NAME, "buyOutfit" ))
-      return;
-
-   o = outfit_get( LOCAL_MAP_NAME );
-   if (o == NULL) {
-      WARN( _("Outfit '%s' does not exist!"), LOCAL_MAP_NAME);
-      return;
-   }
-
-   player_modCredits( -o->price );
-   player_addOutfit(o, 1);
-
-   /* Disable the button. */
-   window_disableButtonSoft(land_getWid(LAND_WINDOW_MAIN), "btnMap");
-
-   /* Update map quantity in outfitter. */
-   w = land_getWid( LAND_WINDOW_OUTFITS );
-   if (w > 0)
-      outfits_regenList( w, NULL );
-
-   /* Update tabs. */
-   land_updateTabs();
-}
-
-
-/**
  * @brief Saves a snapshot.
  */
 static void spaceport_saveSnapshot(unsigned int wid, char *str)
@@ -1016,7 +979,7 @@ static void spaceport_saveSnapshot(unsigned int wid, char *str)
 
 
 /**
- * @brief Adds the "Buy Local Map" button if needed and updates info.
+ * @brief Updates info on the main tab.
  */
 static void land_updateMainTab(void)
 {
@@ -1088,24 +1051,6 @@ static void land_updateMainTab(void)
       WARN( _("Outfit '%s' does not exist!"), LOCAL_MAP_NAME);
       return;
    }
-
-   /* Just enable button if it exists. */
-   if (widget_exists(land_getWid(LAND_WINDOW_MAIN), "btnMap"))
-      window_enableButton(land_getWid(LAND_WINDOW_MAIN), "btnMap");
-   /* Else create it. */
-   else {
-      /* Refuel button. */
-      credits2str( cred, o->price, 0 );
-      snprintf( buf, sizeof(buf), _("&Buy Local Map (%s)"), cred );
-      window_addButtonKey(land_getWid(LAND_WINDOW_MAIN),
-            -20, 20 + 2*(LAND_BUTTON_HEIGHT+10),
-            LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnMap",
-            buf, spaceport_buyMap, SDLK_b);
-   }
-
-   /* Make sure player can click it. */
-   if (!outfit_canBuy(LOCAL_MAP_NAME, land_planet))
-      window_disableButtonSoft(land_getWid(LAND_WINDOW_MAIN), "btnMap");
 }
 
 
