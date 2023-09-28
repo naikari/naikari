@@ -33,6 +33,8 @@
           <li>New "Thrust Bracer" outfit for boosting engine mass limit.</li>
           <li>Added a commodity prices map to the Cargo tab in the Ship Computer.</li>
           <li>Added a pilot distress event.</li>
+          <li>Removed "Buy Local Map" button from the main land tab.</li>
+          <li>Increased power of less-than-lethal weaponry.</li>
         </ul>
       </description>
       <url>https://github.com/naikari/naikari/releases/tag/v0.11.0</url>

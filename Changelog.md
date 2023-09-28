@@ -13,6 +13,13 @@
   following the Space Family mission (but these follow-up rescues have a
   less strict completion requirement of just needing to land on an
   inhabited planet).
+* Removed the "Buy Local Map" button which was previously found on every
+  planet. This means you can now only buy a local map at planets with an
+  outfitter.
+* Increased the power of less-than-lethal weaponry; damage output of
+  Heavy Ion Cannon, Heavy Ion Turret, and Medusa Missile outfits has
+  been substantially buffed, and damage penalty when using Weapons
+  Ionizers has been decreased from -70% to -20%.
 
 ### Other Changes
 
