@@ -47,6 +47,7 @@ local npctext = {
    _([["You need a co-pilot? Well, you're talking to just the one for the job! I have a fantastic track-record, having successfully dispatched hundreds of hostiles in my years of service, and as you can see, my credentials speak for themselves. Are you ready to take me on and bolster your fleet?"]]),
    _([["Hello, friend! If what you're looking for is a reliable pilot, I'm just the one for the job. I promise if you hire me, I'll never let you down. What do you say?"]]),
    _([["Ha, ha, ha! You've a good eye for a good pilot, I see! As you can see from my credentials, my rates can't be beat! Are you ready to bolster your fleet with me today?"]]),
+   _([["Do you want your fleet to swell with power? Well, am I just the pilot for you! I can assure you that by adding me to your fleet, you will be nigh-invincible! Will you make a good choice and hire me today?"]]),
 }
 
 local pilot_action_text = _([[Would you like to do something with this pilot?
