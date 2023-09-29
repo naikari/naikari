@@ -44,7 +44,9 @@ local npctext = {
    _([["Hello! I'm looking to join someone's fleet. Here's my credentials. What do you say, would you like me on board?"]]),
    _([["Hi! You look like you could use a pilot! I'm available and charge some of the best rates in the galaxy, and I promise you I'm perfect for the job! Here's my info. Well, what do you think? Would you like to add me to your fleet?"]]),
    _([["Ah, you look like you could use a pilot! Well, as it happens, I'm available to fill that need! I promise you my performance won't disappoint, and as you can see from my credentials here, I offer reasonable rates. What do you say, will you take me aboard and boost the power of your fleet today?"]]),
-   _([["You need a co-pilot? Well, you're talking to just the one for the job! I have a fantastic track-record, having successfully dispatched hundreds of hostiles in my years of service, and as you can see, my credentials speek for themselves. Are you ready to take me on and bolster your fleet?"]]),
+   _([["You need a co-pilot? Well, you're talking to just the one for the job! I have a fantastic track-record, having successfully dispatched hundreds of hostiles in my years of service, and as you can see, my credentials speak for themselves. Are you ready to take me on and bolster your fleet?"]]),
+   _([["Hello, friend! If what you're looking for is a reliable pilot, I'm just the one for the job. I promise if you hire me, I'll never let you down. What do you say?"]]),
+   _([["Ha, ha, ha! You've a good eye for a good pilot, I see! As you can see from my credentials, my rates can't be beat! Are you ready to bolster your fleet with me today?"]]),
 }
 
 local pilot_action_text = _([[Would you like to do something with this pilot?
