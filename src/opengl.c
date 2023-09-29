@@ -380,6 +380,8 @@ static int gl_defState (void)
    /* Set the blending/shading model to use. */
    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA ); /* good blend model */
 
+   gl_checkErr();
+
    return 0;
 }
 
@@ -426,6 +428,8 @@ static int gl_setupScaling (void)
    gl_screen.hscale  = (double)gl_screen.nh / (double)gl_screen.h;
    gl_screen.mxscale = (double)gl_screen.w / (double)gl_screen.rw;
    gl_screen.myscale = (double)gl_screen.h / (double)gl_screen.rh;
+
+   gl_checkErr();
 
    return 0;
 }
