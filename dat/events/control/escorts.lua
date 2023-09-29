@@ -62,6 +62,12 @@ local credentials_text = _([[
 #nMoney:#0 {plmoney}
 #nCurrent total royalties:#0 {plroyalties:.1f}% of earnings]])
 
+local explain_text = _([["Of course. There are two parts: the deposit, and the royalty.
+
+"The royalty is simply a percentage of your earnings I will take as payment each time you get paid for something like a mission or a bounty hunt. So for example, since my royalty is {royalty:.1f}%, that means if you earn {credits} from a mission while I am employed by you, you will have to pay me {payment}.
+
+"The deposit is paid up-front when you hire me. It's partially refundable if you terminate my employment while landed, with the refund amount based on how much in total I have been paid in royalties. To put it another way, after you terminate my employment, the deposit ensures that you will have paid me at least {deposit} for my services in total, and it also insures my family in the event that I die under your wing."]])
+
 
 function create ()
    lastplanet = nil
@@ -700,12 +706,6 @@ end
 
 
 function approachPilot(npc_id)
-   local explain_text = _([["Of course. There are two parts: the deposit, and the royalty.
-
-"The deposit is paid up-front when you hire me. It's partially refundable if you terminate my employment while landed, with the refund amount based on how much in total I have been paid in royalties.
-
-"The royalty is simply a percentage of your earnings I will take as payment each time you get paid for something like a mission or a bounty hunt. So for example, since my royalty is {royalty:.1f}%, that means if you earn {credits} from a mission while I am employed by you, you will have to pay me {payment}."]])
-
    local pdata = npcs[npc_id]
    if pdata == nil then
       evt.npcRm(npc_id)
@@ -729,7 +729,8 @@ function approachPilot(npc_id)
          local payment = credits * pdata.royalty
          tk.msg("", fmt.f(explain_text,
                {credits=fmt.credits(credits), payment=fmt.credits(payment),
-                  royalty=pdata.royalty*100}))
+                  royalty=pdata.royalty*100,
+                  deposit=fmt.credits(pdata.deposit)}))
       end
    until s ~= c_explain_rates
 
