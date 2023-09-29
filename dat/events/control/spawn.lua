@@ -248,7 +248,9 @@ function pilot_board_trader_refuel_request(p, boarder)
       tk.msg("", fmt.f(s, {fuel=fuel_needed, credits=fmt.credits(reward)}))
       pp:setFuel(player_fuel - fuel_needed)
       p:setFuel(fuel + fuel_needed)
-      player.pay(reward)
+      -- Since the player is selling fuel, don't count this toward
+      -- mission earnings.
+      player.pay(reward, "adjust")
       p:pay(-reward)
    elseif player_fuel >= 1 then
       local reward = mem.refuel_reward * player_fuel / mem.refuel_reward
@@ -256,7 +258,9 @@ function pilot_board_trader_refuel_request(p, boarder)
       tk.msg("", fmt.f(s, {fuel=player_fuel, credits=fmt.credits(reward)}))
       pp:setFuel(0)
       p:setFuel(fuel + player_fuel)
-      player.pay(reward)
+      -- Since the player is selling fuel, don't count this toward
+      -- mission earnings.
+      player.pay(reward, "adjust")
       p:pay(-reward)
    else
       tk.msg("", trader_refuel_none_text[rnd.rnd(1, #trader_refuel_none_text)])

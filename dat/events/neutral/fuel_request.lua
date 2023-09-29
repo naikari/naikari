@@ -177,7 +177,9 @@ function pilot_board(p, boarder)
       p:setFuel(fuel_needed)
 
       tk.msg("", board_text)
-      player.pay(reward)
+      -- Since the player is selling fuel, don't count this toward
+      -- mission earnings.
+      player.pay(reward, "adjust")
 
       p:setActiveBoard(false)
       p:setVisplayer(false)
