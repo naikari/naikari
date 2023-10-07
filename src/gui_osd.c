@@ -437,6 +437,8 @@ void osd_render (void)
       else
          strncpy( title, ll->title, sizeof(title)-1 );
       title[sizeof(title)-1] = '\0';
+      /* FIXME: This method means titles get cut off and is not what we should
+       * be doing. Title should be allowed to bleed into extra lines. */
       gl_printMaxRaw( &gl_smallFont, w, x, p, NULL, -1., title);
       p -= gl_smallFont.h + 5.;
       l++;
