@@ -270,8 +270,8 @@ void commodity_update( unsigned int wid, char* str )
    strcpy(buf_purchase_price, _("N/A"));
    owned = pilot_cargoOwned(player.p, com);
    if (owned > 0)
-      snprintf(buf_purchase_price, sizeof(buf_purchase_price), _("%ld ¢/kt"),
-            com->lastPurchasePrice);
+      snprintf(buf_purchase_price, sizeof(buf_purchase_price), _("%.0f ¢/kt"),
+            (double)com->lastPurchasePrice);
    credits2str(buf_credits, player.p->credits, 2);
    credits2str(buf_local_price, planet_commodityPrice(land_planet, com), -1);
    tonnes2str(buf_tonnes_owned, owned);
