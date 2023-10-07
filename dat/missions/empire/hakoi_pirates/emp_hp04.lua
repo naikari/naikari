@@ -16,7 +16,6 @@
   <done>Hakoi and Salvador</done>
  </avail>
  <notes>
-  <done_misn name="The macho teenager"/>
   <campaign>Hakoi Pirates</campaign>
  </notes>
 </mission>
