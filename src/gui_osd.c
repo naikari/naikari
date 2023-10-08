@@ -51,6 +51,7 @@ static int osd_lines = 0;
 static int osd_rh = 0;
 static int osd_tabLen = 0;
 static int osd_hyphenLen = 0;
+static int osd_abbreviated = 0;
 
 
 /*
@@ -58,7 +59,7 @@ static int osd_hyphenLen = 0;
  */
 static OSD_t *osd_get( unsigned int osd );
 static int osd_free( OSD_t *osd );
-static void osd_calcDimensions (void);
+static void osd_calcDimensions(int abbreviate);
 /* Sort. */
 static int osd_sortCompare( const void * arg1, const void * arg2 );
 static void osd_sort (void);
@@ -149,7 +150,7 @@ unsigned int osd_create( const char *title, int nitems, const char **items, int 
 
    osd_wordwrap( osd );
    osd_sort(); /* THIS INVALIDATES THE osd POINTER. */
-   osd_calcDimensions();
+   osd_calcDimensions(0);
 
    return id;
 }
@@ -258,7 +259,7 @@ int osd_destroy( unsigned int osd )
       array_erase( &osd_list, &osd_list[i], &osd_list[i+1] );
 
       /* Recalculate dimensions. */
-      osd_calcDimensions();
+      osd_calcDimensions(0);
 
       /* Remove the OSD, if empty. */
       if (array_size(osd_list) == 0)
@@ -294,7 +295,7 @@ int osd_active( unsigned int osd, int msg )
    }
 
    o->active = msg;
-   osd_calcDimensions();
+   osd_calcDimensions(0);
    return 0;
 }
 
@@ -343,7 +344,7 @@ int osd_setup( int x, int y, int w, int h )
    if (must_rewrap)
       for (i=0; i<array_size(osd_list); i++)
          osd_wordwrap( &osd_list[i] );
-   osd_calcDimensions();
+   osd_calcDimensions(0);
 
    return 0;
 }
@@ -375,7 +376,7 @@ void osd_render (void)
    OSD_t *ll;
    double p;
    int i, j, k, l, m;
-   int w, h;
+   int w;
    int x;
    const glColour *c;
    int *ignore;
@@ -439,9 +440,8 @@ void osd_render (void)
          strncpy(title, ll->title, sizeof(title) - 1);
          title[sizeof(title) - 1] = '\0';
       }
-      h = gl_printHeightRaw(&gl_smallFont, w, title);
-      p -= h + 5.;
-      gl_printTextRaw(&gl_smallFont, w, h, x, p, 0, NULL, -1., title);
+      p -= gl_smallFont.h + 5.;
+      gl_printMaxRaw(&gl_smallFont, w, x, p, NULL, -1., title);
       l++;
       if (l >= osd_lines) {
          free(ignore);
@@ -467,6 +467,8 @@ void osd_render (void)
                return;
             }
          }
+         if (osd_abbreviated)
+            break;
       }
    }
 
@@ -476,20 +478,23 @@ void osd_render (void)
 
 /**
  * @brief Calculates and sets the length of the OSD.
+ *
+ *    @param abbrevate Whether to set the OSD to abbreviate mode.
  */
-static void osd_calcDimensions (void)
+static void osd_calcDimensions(int abbreviate)
 {
    OSD_t *ll;
    int i, j, k, m;
    double len;
    int *ignore;
    int nignore;
-   int is_duplicate, duplicates;
-   char title[STRMAX_SHORT];
+   int is_duplicate;
 
    /* Nothing to render. */
    if (osd_list == NULL)
       return;
+
+   osd_abbreviated = abbreviate;
 
    nignore = array_size(osd_list);
    ignore  = calloc( nignore, sizeof( int ) );
@@ -502,8 +507,7 @@ static void osd_calcDimensions (void)
 
       ll = &osd_list[k];
 
-      /* Check how many duplicates we have, mark duplicates for ignoring */
-      duplicates = 0;
+      /* Mark duplicates for ignoring */
       for (m=k+1; m<array_size(osd_list); m++) {
          if ((strcmp(osd_list[m].title, ll->title) == 0) &&
                (array_size(osd_list[m].items) == array_size(ll->items)) &&
@@ -524,27 +528,35 @@ static void osd_calcDimensions (void)
                   break;
             }
             if (is_duplicate) {
-               duplicates++;
                ignore[m] = 1;
             }
          }
       }
 
       /* Print title. */
-      if (duplicates > 0)
-         snprintf(title, sizeof(title), "%s (%d)", ll->title, duplicates + 1);
-      else {
-         strncpy(title, ll->title, sizeof(title) - 1);
-         title[sizeof(title) - 1] = '\0';
-      }
-      len += gl_printHeightRaw(&gl_smallFont, osd_w, title) + 5.;
+      len += gl_smallFont.h + 5.;
 
       /* Print items. */
-      for (i=ll->active; i<array_size(ll->items); i++)
-         for (j=0; j<array_size(ll->items[i]); j++)
+      for (i=ll->active; i<array_size(ll->items); i++) {
+         for (j=0; j<array_size(ll->items[i]); j++) {
             len += gl_smallFont.h + 5.;
+         }
+         if (osd_abbreviated)
+            break;
+      }
    }
-   osd_rh = MIN( len, osd_h );
+   if (len <= osd_h) {
+      /* OSD is shorter than max height. */
+      osd_rh = len;
+   }
+   else {
+      if (abbreviate)
+         /* If already in abbreviated mode, set OSD hight to max. */
+         osd_rh = osd_h;
+      else
+         /* Calculate abbreviated dimensions. */
+         osd_calcDimensions(1);
+   }
    free(ignore);
 }
 
