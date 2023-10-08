@@ -375,12 +375,13 @@ void osd_render (void)
    OSD_t *ll;
    double p;
    int i, j, k, l, m;
-   int w, x;
+   int w, h;
+   int x;
    const glColour *c;
    int *ignore;
    int nignore;
    int is_duplicate, duplicates;
-   char title[1024];
+   char title[STRMAX_SHORT];
 
    /* Nothing to render. */
    if (osd_list == NULL)
@@ -393,7 +394,7 @@ void osd_render (void)
    gl_renderRect( osd_x-5., osd_y-(osd_rh+5.), osd_w+10., osd_rh+10, &cBlackHilight );
 
    /* Render each thingy. */
-   p = osd_y-gl_smallFont.h;
+   p = osd_y + 5.;
    l = 0;
    for (k=0; k<array_size(osd_list); k++) {
       if (ignore[k])
@@ -433,14 +434,14 @@ void osd_render (void)
 
       /* Print title. */
       if (duplicates > 0)
-         snprintf( title, sizeof(title), "%s (%d)", ll->title, duplicates + 1 );
-      else
-         strncpy( title, ll->title, sizeof(title)-1 );
-      title[sizeof(title)-1] = '\0';
-      /* FIXME: This method means titles get cut off and is not what we should
-       * be doing. Title should be allowed to bleed into extra lines. */
-      gl_printMaxRaw( &gl_smallFont, w, x, p, NULL, -1., title);
-      p -= gl_smallFont.h + 5.;
+         snprintf(title, sizeof(title), "%s (%d)", ll->title, duplicates + 1);
+      else {
+         strncpy(title, ll->title, sizeof(title) - 1);
+         title[sizeof(title) - 1] = '\0';
+      }
+      h = gl_printHeightRaw(&gl_smallFont, w, title);
+      p -= h + 5.;
+      gl_printTextRaw(&gl_smallFont, w, h, x, p, 0, NULL, -1., title);
       l++;
       if (l >= osd_lines) {
          free(ignore);
@@ -453,13 +454,13 @@ void osd_render (void)
          w = osd_w;
          c = (i == (int)ll->active) ? &cFontWhite : &cFontGrey;
          for (j=0; j<array_size(ll->items[i]); j++) {
+            p -= gl_smallFont.h + 5.;
             gl_printMaxRaw( &gl_smallFont, w, x, p,
                   c, -1., ll->items[i][j] );
             if (j==0) {
                w = osd_w - osd_hyphenLen;
                x = osd_x + osd_hyphenLen;
             }
-            p -= gl_smallFont.h + 5.;
             l++;
             if (l >= osd_lines) {
                free(ignore);
@@ -484,6 +485,7 @@ static void osd_calcDimensions (void)
    int *ignore;
    int nignore;
    int is_duplicate, duplicates;
+   char title[STRMAX_SHORT];
 
    /* Nothing to render. */
    if (osd_list == NULL)
@@ -529,7 +531,13 @@ static void osd_calcDimensions (void)
       }
 
       /* Print title. */
-      len += gl_smallFont.h + 5.;
+      if (duplicates > 0)
+         snprintf(title, sizeof(title), "%s (%d)", ll->title, duplicates + 1);
+      else {
+         strncpy(title, ll->title, sizeof(title) - 1);
+         title[sizeof(title) - 1] = '\0';
+      }
+      len += gl_printHeightRaw(&gl_smallFont, osd_w, title) + 5.;
 
       /* Print items. */
       for (i=ll->active; i<array_size(ll->items); i++)
