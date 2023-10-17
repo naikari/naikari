@@ -6,7 +6,7 @@
 
 -- Reputation settings.
 _fdelta_distress = {-1, 0} -- Maximum change constraints
-_fdelta_kill = {-5, 1} -- Maximum change constraints
+_fdelta_kill = {-10, 5} -- Maximum change constraints
 
 -- Secondary hit modifiers.
 _fmod_distress_enemy = 0 -- Distress of the faction's enemies
@@ -146,11 +146,11 @@ function default_hit( current, amount, source, secondary )
          local diff = 0
          local witness = pilot.get({_fthis})
          if witness and #witness > 0 then
-            diff = math.min(delta[2], amount * clerp(f, 0, 0.5, 100, 0.1))
+            diff = math.min(delta[2], amount * clerp(f, 0, 0.1, 100, 0.02))
             for i, p in ipairs(witness) do
                if player.pos():dist(p:pos()) < 5000 then
                   -- Witness is close by, so more reputation is gained.
-                  diff = math.min(delta[2], amount * clerp(f, 0, 1, 100, 0.2))
+                  diff = math.min(delta[2], amount * clerp(f, 0, 0.2, 100, 0.04))
                   break
                end
             end
@@ -164,7 +164,7 @@ function default_hit( current, amount, source, secondary )
       -- Faction loss.
       if source == "kill" or source == "distress" then
          -- Kill-induced or distress-induced loss.
-         local diff = math.max(delta[1], amount * clerp(f, 0, 1.8, -100, 0.2))
+         local diff = math.max(delta[1], amount * clerp(f, 100, 1, -100, 0.05))
          f = math.max(-100, f + diff)
       else
          -- Script induced change. No diminishing returns on these.

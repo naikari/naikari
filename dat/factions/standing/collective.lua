@@ -16,7 +16,7 @@ require "factions/standing/skel"
 
 
 _fdelta_distress = {-1, 0} -- Maximum change constraints
-_fdelta_kill = {-5, 0.5} -- Maximum change constraints
+_fdelta_kill = {-10, 2} -- Maximum change constraints
 
 _fthis = faction.get("Collective")
 

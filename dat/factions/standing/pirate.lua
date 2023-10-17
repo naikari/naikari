@@ -1,8 +1,8 @@
 require "factions/standing/skel"
 
 
-_fdelta_distress = {-2, 0.25} -- Maximum change constraints
-_fdelta_kill = {-5, 1} -- Maximum change constraints
+_fdelta_distress = {-0.5, 0.25} -- Maximum change constraints
+_fdelta_kill = {-8, 10} -- Maximum change constraints
 
 _fthis = faction.get("Pirate")
 
