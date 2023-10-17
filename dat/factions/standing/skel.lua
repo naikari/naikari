@@ -134,8 +134,11 @@ function default_hit( current, amount, source, secondary )
    delta[1] = mod * delta[1]
    delta[2] = mod * delta[2]
 
-   -- Faction gain
+   -- We use clerp() here to create diminishing returns. In the formula,
+   -- x represents the current reputation and y represents associated
+   -- faction change.
    if amount > 0 then
+      -- Faction gain
       if source == "kill" or source == "distress" then
          -- Positive kill, which means an enemy of this faction got
          -- killed. We need to check if this happened in the faction's
@@ -143,7 +146,7 @@ function default_hit( current, amount, source, secondary )
          local diff = 0
          local witness = pilot.get({_fthis})
          if witness and #witness > 0 then
-            diff = math.min(delta[2], 0.5 * amount * clerp(f, 0, 1, 100, 0.2))
+            diff = math.min(delta[2], amount * clerp(f, 0, 0.5, 100, 0.1))
             for i, p in ipairs(witness) do
                if player.pos():dist(p:pos()) < 5000 then
                   -- Witness is close by, so more reputation is gained.
@@ -157,10 +160,16 @@ function default_hit( current, amount, source, secondary )
          -- Script induced change. No diminishing returns on these.
          f = math.min(100, f + math.min(delta[2], amount))
       end
-   -- Faction loss.
    else
-      -- No diminishing returns on loss.
-      f = math.max(-100, f + math.max(delta[1], amount))
+      -- Faction loss.
+      if source == "kill" or source == "distress" then
+         -- Kill-induced or distress-induced loss.
+         local diff = math.max(delta[1], amount * clerp(f, 0, 1.8, -100, 0.2))
+         f = math.max(-100, f + diff)
+      else
+         -- Script induced change. No diminishing returns on these.
+         f = math.max(-100, f + math.max(delta[1], amount))
+      end
    end
    return f
 end
