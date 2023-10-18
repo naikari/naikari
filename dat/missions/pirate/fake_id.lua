@@ -3,6 +3,10 @@
 <mission name="Fake ID">
  <avail>
   <priority>99</priority>
+  <cond>
+   not player.misnActive("Fake ID")
+   and not var.peek("no_fake_id")
+  </cond>
   <chance>100</chance>
   <location>Computer</location>
   <faction>Pirate</faction>

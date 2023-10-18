@@ -9,6 +9,7 @@
   <cond>
    faction.playerStanding("Empire") &gt;= 10
    and faction.playerStanding("Dvaered") &gt;= 0
+   and faction.playerStanding("Pirate") &lt; 0
   </cond>
   <chance>100</chance>
   <location>Bar</location>
