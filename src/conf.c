@@ -186,7 +186,7 @@ void conf_setGameplayDefaults (void)
 {
    conf.doubletap_afterburn = DOUBLETAP_AFTERBURN_DEFAULT;
    conf.rightclick_follow = RIGHTCLICK_FOLLOW_DEFAULT;
-   conf.compression_velocity = TIME_COMPRESSION_DEFAULT_MAX;
+   conf.compression_velocity = TIME_COMPRESSION_DEFAULT_VEL;
    conf.compression_mult = TIME_COMPRESSION_DEFAULT_MULT;
    conf.save_compress = SAVE_COMPRESSION_DEFAULT;
    conf.mouse_doubleclick = MOUSE_DOUBLECLICK_TIME;

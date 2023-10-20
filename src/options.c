@@ -82,10 +82,12 @@ static void opt_needRestart (void);
 /* Gameplay. */
 static char** lang_list( int *n );
 static void opt_gameplay( unsigned int wid );
+static void opt_setGameSpeed(unsigned int wid, char *str);
+static void opt_setTCVelocity(unsigned int wid, char *str);
+static void opt_setTCMax(unsigned int wid, char *str);
 static void opt_setAutonavResetSpeed( unsigned int wid, char *str );
 static void opt_setMapOverlayOpacity( unsigned int wid, char *str );
 static void opt_setGamma(unsigned int wid, char *str);
-static void opt_setGameSpeed( unsigned int wid, char *str );
 static void opt_OK( unsigned int wid, char *str );
 static int opt_gameplaySave( unsigned int wid, char *str );
 static void opt_gameplayDefaults( unsigned int wid, char *str );
@@ -270,7 +272,6 @@ static void opt_gameplay( unsigned int wid )
    char **paths;
    int cw;
    int w, h, y, x, by, l, n, i;
-   const char *s;
    char **ls;
 
    /* Get size. */
@@ -378,6 +379,22 @@ static void opt_gameplay( unsigned int wid )
          conf.dt_mod, opt_setGameSpeed);
    y -= 40;
 
+   /* TC Velocity */
+   window_addText(wid, x, y, cw, 20, 1, "txtTCVelocity",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadTCVelocity", 1000., 10000.,
+         conf.compression_velocity, opt_setTCVelocity);
+   y -= 40;
+
+   /* TC Max */
+   window_addText(wid, x, y, cw, 20, 1, "txtTCMax",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadTCMax", 1., 200.,
+         conf.compression_mult, opt_setTCMax);
+   y -= 40;
+
    /* TC reset threshold */
    window_addText(wid, x, y, cw, 20, 1, "txtResetThreshold",
          &gl_smallFont, NULL, NULL);
@@ -406,20 +423,6 @@ static void opt_gameplay( unsigned int wid )
          "chkCompress", _("Enable saved game compression"), NULL,
          conf.save_compress);
 
-   y -= 40;
-
-   s = _("TC Max (%)");
-   l = gl_printWidthRaw( &gl_smallFont, s );
-   window_addText(wid, x, y, l, 20, 1, "txtTMax", &gl_smallFont, NULL, s);
-   window_addInput(wid, -50, y, 80, 20, "inpTMax", 7, 1, &gl_smallFont);
-
-   y -= 30;
-
-   s = _("TC Velocity (mAU/s)");
-   l = gl_printWidthRaw(&gl_smallFont, s);
-   window_addText(wid, x, y, l, 20, 1, "txtTVel", &gl_smallFont, NULL, s);
-   window_addInput(wid, -50, y, 80, 20, "inpTVel", 7, 1, &gl_smallFont);
-
    /* Restart text. */
    window_addText( wid, 20, 20 + BUTTON_HEIGHT,
          w - 40, 30, 0, "txtRestart", &gl_smallFont, NULL, NULL );
@@ -436,7 +439,6 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    (void) str;
    int p, newlang;
    char *s;
-   char *inp;
 
    /* List. */
    p = toolkit_getListPos( wid, "lstLanguage" );
@@ -460,13 +462,9 @@ static int opt_gameplaySave( unsigned int wid, char *str )
 
    /* Faders. */
    conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
+   conf.compression_velocity = window_getFaderValue(wid, "fadTCVelocity");
+   conf.compression_mult = window_getFaderValue(wid, "fadTCMax");
    conf.autonav_reset_speed = window_getFaderValue(wid, "fadResetThreshold");
-
-   /* Input boxes. */
-   inp = window_getInput(wid, "inpTMax");
-   conf.compression_mult = atof(inp) / 100.;
-   inp = window_getInput(wid, "inpTVel");
-   conf.compression_velocity = atof(inp);
 
    /* Reset speed so changes take effect immediately. */
    if (!menu_isOpen(MENU_MAIN))
@@ -481,7 +479,6 @@ static int opt_gameplaySave( unsigned int wid, char *str )
 static void opt_gameplayDefaults( unsigned int wid, char *str )
 {
    (void) str;
-   char buf[STRMAX_SHORT];
 
    /* Restore. */
    /* Checkboxes. */
@@ -491,14 +488,12 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    window_checkboxSet(wid, "chkCompress", SAVE_COMPRESSION_DEFAULT);
 
    /* Faders. */
-   window_faderValue(wid, "fadGameSpeed", DT_MOD_DEFAULT);
-   window_faderValue(wid, "fadResetThreshold", AUTONAV_RESET_SPEED_DEFAULT);
-
-   /* Input boxes. */
-   snprintf(buf, sizeof(buf), "%G", TIME_COMPRESSION_DEFAULT_MULT * 100.);
-   window_setInput(wid, "inpTMax", buf);
-   snprintf(buf, sizeof(buf), "%G", TIME_COMPRESSION_DEFAULT_MAX);
-   window_setInput(wid, "inpTVel", buf);
+   window_faderSetBoundedValue(wid, "fadGameSpeed", DT_MOD_DEFAULT);
+   window_faderSetBoundedValue(wid, "fadTCVelocity",
+         TIME_COMPRESSION_DEFAULT_VEL);
+   window_faderSetBoundedValue(wid, "fadTCMax", TIME_COMPRESSION_DEFAULT_MULT);
+   window_faderSetBoundedValue(wid, "fadResetThreshold",
+         AUTONAV_RESET_SPEED_DEFAULT);
 }
 
 /**
@@ -507,7 +502,6 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
 static void opt_gameplayUpdate( unsigned int wid, char *str )
 {
    (void) str;
-   char buf[STRMAX_SHORT];
 
    /* Checkboxes. */
    window_checkboxSet(wid, "chkIgnorePassive", conf.autonav_ignore_passive);
@@ -518,13 +512,70 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
 
    /* Faders. */
    window_faderSetBoundedValue(wid, "fadGameSpeed", conf.dt_mod);
-   window_faderValue(wid, "fadResetThreshold", conf.autonav_reset_speed);
+   window_faderSetBoundedValue(wid, "fadTCVelocity", conf.compression_velocity);
+   window_faderSetBoundedValue(wid, "fadTCMax", conf.compression_mult);
+   window_faderSetBoundedValue(wid, "fadResetThreshold",
+         conf.autonav_reset_speed);
+}
 
-   /* Input boxes. */
-   snprintf(buf, sizeof(buf), "%G", conf.compression_mult * 100);
-   window_setInput(wid, "inpTMax", buf);
-   snprintf(buf, sizeof(buf), "%G", conf.compression_velocity);
-   window_setInput(wid, "inpTVel", buf);
+
+/**
+ * @brief Callback to set base game speed (conf.dt_mod).
+ *
+ *    @param wid Window calling the callback.
+ *    @param str Name of the widget calling the callback.
+ */
+static void opt_setGameSpeed(unsigned int wid, char *str)
+{
+   char buf[STRMAX_SHORT];
+   double dt_mod;
+
+   /* Get fader value. */
+   dt_mod = window_getFaderValue(wid, str);
+
+   snprintf(buf, sizeof(buf), _("Base Game Speed: %.0f%%"), dt_mod * 100);
+
+   window_modifyText(wid, "txtGameSpeed", buf);
+}
+
+
+/**
+ * @brief Callback to set TC Velocity (conf.compression_velocity).
+ *
+ *    @param wid Window calling the callback.
+ *    @param str Name of the widget calling the callback.
+ */
+static void opt_setTCVelocity(unsigned int wid, char *str)
+{
+   char buf[STRMAX_SHORT];
+   double tc_vel;
+
+   /* Get fader value. */
+   tc_vel = window_getFaderValue(wid, str);
+
+   snprintf(buf, sizeof(buf), _("TC Velocity: %.0f mAU/s"), tc_vel);
+
+   window_modifyText(wid, "txtTCVelocity", buf);
+}
+
+
+/**
+ * @brief Callback to set TC Max (conf.compression_mult).
+ *
+ *    @param wid Window calling the callback.
+ *    @param str Name of the widget calling the callback.
+ */
+static void opt_setTCMax(unsigned int wid, char *str)
+{
+   char buf[STRMAX_SHORT];
+   double tc_max;
+
+   /* Get fader value. */
+   tc_max = window_getFaderValue(wid, str);
+
+   snprintf(buf, sizeof(buf), _("TC Max: %.0f%%"), tc_max * 100);
+
+   window_modifyText(wid, "txtTCMax", buf);
 }
 
 
@@ -536,7 +587,7 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
  */
 static void opt_setAutonavResetSpeed( unsigned int wid, char *str )
 {
-   char buf[PATH_MAX];
+   char buf[STRMAX_SHORT];
    double autonav_reset_speed;
 
    /* Set fader. */
@@ -1722,7 +1773,6 @@ static void opt_setBGBrightness( unsigned int wid, char *str )
 }
 
 
-
 /**
  * @brief Callback to set map overlay opacity.
  *
@@ -1740,7 +1790,6 @@ static void opt_setMapOverlayOpacity( unsigned int wid, char *str )
          map_overlay_opacity * 100);
    window_modifyText( wid, "txtMOpacity", buf );
 }
-
 
 
 /**
@@ -1761,25 +1810,4 @@ static void opt_setGamma(unsigned int wid, char *str)
    window_modifyText(wid, "txtGamma", buf);
 
    render_setGamma(conf.gamma_correction);
-}
-
-
-
-/**
- * @brief Callback to set base game speed (conf.dt_mod).
- *
- *    @param wid Window calling the callback.
- *    @param str Name of the widget calling the callback.
- */
-static void opt_setGameSpeed( unsigned int wid, char *str )
-{
-   char buf[STRMAX_SHORT];
-   double dt_mod;
-
-   /* Set fader. */
-   dt_mod = window_getFaderValue(wid, str);
-
-   snprintf(buf, sizeof(buf), _("Base Game Speed: %.0f%%"), dt_mod * 100);
-
-   window_modifyText(wid, "txtGameSpeed", buf);
 }
