@@ -311,14 +311,12 @@ static void opt_gameplay( unsigned int wid )
    by = y;
 
 
-   /* Compiletime stuff. */
    cw = (w-60)/2 - 40;
    y  = by;
    x  = 20;
-   s = _("Language");
-   l = gl_printWidthRaw( NULL, s );
-   window_addText( wid, x, y, l, 20, 0, "txtLanguage",
-         NULL, NULL, s );
+   window_addText(wid, x, y, cw, 20, 0, "txtLanguage",
+         NULL, NULL, _("Language"));
+   y -= 30;
    ls = lang_list( &n );
    i = 0;
    if (conf.language != NULL) {
@@ -328,8 +326,10 @@ static void opt_gameplay( unsigned int wid )
       if (i>=n)
          i = 0;
    }
-   window_addList( wid, x+l+20, y, cw-l-50, 70, "lstLanguage", ls, n, i, NULL, NULL );
-   y -= 90;
+   window_addList( wid, x, y, cw, 240, "lstLanguage", ls, n, i, NULL, NULL );
+   y -= 260;
+
+   /* Compiletime stuff. */
    window_addText( wid, x, y, cw, 20, 0, "txtCompile",
          NULL, NULL, _("Compilation Flags") );
    y -= 30;
@@ -371,34 +371,20 @@ static void opt_gameplay( unsigned int wid )
    cw += 80;
 
    /* Base game speed (dt_mod). */
-   window_addText( wid, x, y, cw, 20, 0, "txtAGameSpeed",
-         NULL, NULL, _("Base Game Speed") );
+   window_addText(wid, x, y, cw, 20, 1, "txtGameSpeed", &gl_smallFont,
+         NULL, NULL);
    y -= 20;
-
-   /* Base game speed fader. */
-   window_addText( wid, x, y, cw, 20, 1, "txtGameSpeed", &gl_smallFont,
-         NULL, NULL );
-   y -= 20;
-   window_addFader( wid, x, y, cw, 20, "fadGameSpeed", 0.25, 1.,
-         conf.dt_mod, opt_setGameSpeed );
+   window_addFader(wid, x, y, cw, 20, "fadGameSpeed", 0.25, 1.,
+         conf.dt_mod, opt_setGameSpeed);
    y -= 40;
 
-   /* Autonav abort. */
-   window_addText( wid, x, y, cw-130, 20, 0, "txtAAutonav",
-         NULL, NULL, _("Stop Speedup At") );
+   /* TC reset threshold */
+   window_addText(wid, x, y, cw, 20, 1, "txtResetThreshold",
+         &gl_smallFont, NULL, NULL);
    y -= 20;
-
-   /* Autonav abort fader. */
-   window_addText( wid, x, y, cw, 20, 1, "txtAutonav",
-         &gl_smallFont, NULL, NULL );
-   y -= 20;
-   window_addFader( wid, x, y, cw, 20, "fadAutonav", 0., 1.,
-         conf.autonav_reset_speed, opt_setAutonavResetSpeed );
+   window_addFader(wid, x, y, cw, 20, "fadResetThreshold", 0., 1.,
+         conf.autonav_reset_speed, opt_setAutonavResetSpeed);
    y -= 40;
-
-   window_addText( wid, x, y, cw, 20, 0, "txtSettings",
-         NULL, NULL, _("Settings") );
-   y -= 25;
 
    window_addCheckbox(wid, x, y, cw, 20,
          "chkIgnorePassive", _("Ignore passive enemy presence"), NULL,
@@ -473,8 +459,8 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    conf.save_compress = window_checkboxState(wid, "chkCompress");
 
    /* Faders. */
-   conf.autonav_reset_speed = window_getFaderValue(wid, "fadAutonav");
    conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
+   conf.autonav_reset_speed = window_getFaderValue(wid, "fadResetThreshold");
 
    /* Input boxes. */
    inp = window_getInput(wid, "inpTMax");
@@ -505,8 +491,8 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    window_checkboxSet(wid, "chkCompress", SAVE_COMPRESSION_DEFAULT);
 
    /* Faders. */
-   window_faderValue( wid, "fadAutonav", AUTONAV_RESET_SPEED_DEFAULT );
-   window_faderValue( wid, "fadGameSpeed", DT_MOD_DEFAULT );
+   window_faderValue(wid, "fadGameSpeed", DT_MOD_DEFAULT);
+   window_faderValue(wid, "fadResetThreshold", AUTONAV_RESET_SPEED_DEFAULT);
 
    /* Input boxes. */
    snprintf(buf, sizeof(buf), "%G", TIME_COMPRESSION_DEFAULT_MULT * 100.);
@@ -531,8 +517,8 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    window_checkboxSet(wid, "chkCompress", conf.save_compress);
 
    /* Faders. */
-   window_faderValue( wid, "fadAutonav", conf.autonav_reset_speed );
-   window_faderSetBoundedValue( wid, "fadGameSpeed", conf.dt_mod );
+   window_faderSetBoundedValue(wid, "fadGameSpeed", conf.dt_mod);
+   window_faderValue(wid, "fadResetThreshold", conf.autonav_reset_speed);
 
    /* Input boxes. */
    snprintf(buf, sizeof(buf), "%G", conf.compression_mult * 100);
@@ -558,13 +544,14 @@ static void opt_setAutonavResetSpeed( unsigned int wid, char *str )
 
    /* Generate message. */
    if (autonav_reset_speed >= 1.)
-      snprintf( buf, sizeof(buf), _("Enemy Presence") );
+      snprintf(buf, sizeof(buf), _("TC Reset Threshold: Enemy Presence"));
    else if (autonav_reset_speed > 0.)
-      snprintf( buf, sizeof(buf), _("%.0f%% Shield"), autonav_reset_speed * 100 );
+      snprintf(buf, sizeof(buf), _("TC Reset Threshold: %.0f%% Shield"),
+            autonav_reset_speed * 100);
    else
-      snprintf( buf, sizeof(buf), _("Armor Damage") );
+      snprintf(buf, sizeof(buf), _("TC Reset Threshold: Armor Damage"));
 
-   window_modifyText( wid, "txtAutonav", buf );
+   window_modifyText(wid, "txtResetThreshold", buf);
 }
 
 
@@ -878,7 +865,9 @@ static void opt_keyDefaults( unsigned int wid, char *str )
  */
 static void opt_setAudioLevel( unsigned int wid, char *str )
 {
-   char buf[32], *widget;
+   char *widget;
+   char buf[STRMAX_SHORT];
+   char *vol_text;
    double vol;
 
    vol = window_getFaderValue(wid, str);
@@ -886,14 +875,19 @@ static void opt_setAudioLevel( unsigned int wid, char *str )
       sound_volume(vol);
       widget = "txtSound";
       opt_audioLevelStr(buf, sizeof(buf), 0, vol);
+      asprintf(&vol_text, _("Sound: %s"), buf);
    }
    else {
       music_volume(vol);
       widget = "txtMusic";
       opt_audioLevelStr(buf, sizeof(buf), 1, vol);
+      asprintf(&vol_text, _("Music: %s"), buf);
    }
 
-   window_modifyText(wid, widget, buf);
+   if (vol_text != NULL)
+      window_modifyText(wid, widget, vol_text);
+
+   free(vol_text);
 }
 
 
@@ -958,10 +952,11 @@ static void opt_audio( unsigned int wid )
    x = 20 + cw + 20;
    y = -60;
 
-   /* Sound fader. */
    window_addText(wid, x, y, cw-40, 20, 0, "txtSSoundVolume",
-         NULL, NULL, _("Sound Volume"));
+         NULL, NULL, _("Volume Levels"));
    y -= 20;
+
+   /* Sound fader. */
    window_addText(wid, x, y, cw, 20, 1, "txtSound",
          &gl_smallFont, NULL, NULL);
    y -= 20;
@@ -971,9 +966,6 @@ static void opt_audio( unsigned int wid )
    y -= 40;
 
    /* Music fader. */
-   window_addText(wid, x, y, cw-40, 20, 0, "txtSMusicVolume",
-         NULL, NULL, _("Music Volume"));
-   y -= 20;
    window_addText(wid, x, y, cw, 20, 1, "txtMusic",
          &gl_smallFont, NULL, NULL);
    y -= 20;
@@ -1278,7 +1270,7 @@ static void opt_video( unsigned int wid )
    y = -60;
    window_addText( wid, x, y, 100, 20, 0, "txtSRes",
          NULL, NULL, _("Resolution") );
-   y -= 40;
+   y -= 30;
    window_addInput( wid, x, y, 100, 20, "inpRes", 16, 1, &gl_smallFont );
    window_setInputFilter( wid, "inpRes", INPUT_FILTER_RESOLUTION );
    y -= 30;
@@ -1326,10 +1318,6 @@ static void opt_video( unsigned int wid )
 
    y -= 120;
 
-   window_addText( wid, x, y, 100, 20, 0, "txtVideoChecksHeader",
-         NULL, NULL, _("Settings") );
-   y -= 30;
-
    window_addCheckbox( wid, x, y, 100, 20,
          "chkFullscreen", _("Fullscreen"), NULL, conf.fullscreen );
    y -= 25;
@@ -1371,20 +1359,15 @@ static void opt_video( unsigned int wid )
    /* Faders. */
    x = 20+cw+20;
    y = -60;
-   window_addText( wid, x, y, cw-20, 20, 0, "txtAScale",
-         NULL, NULL, _("Scaling") );
+
+   window_addText(wid, x, y, cw-20, 20, 1, "txtScale",
+         &gl_smallFont, NULL, NULL);
    y -= 20;
-   window_addText( wid, x, y, cw-20, 20, 1, "txtScale",
-         &gl_smallFont, NULL, NULL );
-   y -= 20;
-   window_addFader( wid, x, y, cw-20, 20, "fadScale", 1., 3.,
-         conf.scalefactor, opt_setScalefactor );
-   opt_setScalefactor( wid, "fadScale" );
+   window_addFader(wid, x, y, cw-20, 20, "fadScale", 1., 3.,
+         conf.scalefactor, opt_setScalefactor);
+   opt_setScalefactor(wid, "fadScale");
    y -= 40;
 
-   window_addText(wid, x, y, cw-20, 20, 0, "txtAGamma",
-         NULL, NULL, _("Gamma"));
-   y -= 20;
    window_addText(wid, x, y, cw-20, 20, 1, "txtGamma",
          &gl_smallFont, NULL, NULL);
    y -= 20;
@@ -1393,35 +1376,26 @@ static void opt_video( unsigned int wid )
    /* Not calling opt_setGamma since that would override values outside
     * of the slider's bounds (which are not an indication of any strict
     * limit). */
-   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.gamma_correction * 100.);
+   snprintf(buf, sizeof(buf), _("Gamma: %.0f%%"), conf.gamma_correction * 100.);
    window_modifyText(wid, "txtGamma", buf);
    y -= 40;
 
-   window_addText( wid, x, y-3, cw-20, 20, 0, "txtABGBrightness",
-         NULL, NULL, _("Background Brightness") );
+   window_addText(wid, x, y-3, cw-20, 20, 1, "txtBGBrightness",
+         &gl_smallFont, NULL, NULL);
    y -= 20;
-   window_addText( wid, x, y-3, cw-20, 20, 1, "txtBGBrightness",
-         &gl_smallFont, NULL, NULL );
-   y -= 20;
-   window_addFader( wid, x, y, cw-20, 20, "fadBGBrightness", 0., 1.,
-         conf.bg_brightness, opt_setBGBrightness );
-   opt_setBGBrightness( wid, "fadBGBrightness" );
+   window_addFader(wid, x, y, cw-20, 20, "fadBGBrightness", 0., 1.,
+         conf.bg_brightness, opt_setBGBrightness);
+   opt_setBGBrightness(wid, "fadBGBrightness");
    y -= 40;
 
-   window_addText( wid, x, y, cw-20, 20, 0, "txtAMOpacity",
-         NULL, NULL, _("Map Overlay Opacity") );
+   window_addText(wid, x, y, cw-20, 20, 1, "txtMOpacity",
+         &gl_smallFont, NULL, NULL);
    y -= 20;
-   window_addText( wid, x, y, cw-20, 20, 1, "txtMOpacity",
-         &gl_smallFont, NULL, NULL );
-   y -= 20;
-   window_addFader( wid, x, y, cw-20, 20, "fadMapOverlayOpacity", 0., 1.,
-         conf.map_overlay_opacity, opt_setMapOverlayOpacity );
-   opt_setMapOverlayOpacity( wid, "fadMapOverlayOpacity" );
+   window_addFader(wid, x, y, cw-20, 20, "fadMapOverlayOpacity", 0., 1.,
+         conf.map_overlay_opacity, opt_setMapOverlayOpacity);
+   opt_setMapOverlayOpacity(wid, "fadMapOverlayOpacity");
    y -= 40;
 
-   window_addText(wid, x, y, cw-20, 20, 0, "txtAZoomFar",
-         NULL, NULL, _("Far Zoom"));
-   y -= 20;
    window_addText(wid, x, y, cw-20, 20, 1, "txtZoomFar",
          &gl_smallFont, NULL, NULL);
    y -= 20;
@@ -1430,9 +1404,6 @@ static void opt_video( unsigned int wid )
    opt_setZoomFar(wid, "fadZoomFar");
    y -= 40;
 
-   window_addText(wid, x, y, cw-20, 20, 0, "txtAZoomNear",
-         NULL, NULL, _("Near Zoom"));
-   y -= 20;
    window_addText(wid, x, y, cw-20, 20, 1, "txtZoomNear",
          &gl_smallFont, NULL, NULL);
    y -= 20;
@@ -1679,7 +1650,7 @@ static void opt_setScalefactor( unsigned int wid, char *str )
    double scale = window_getFaderValue(wid, str);
 
    conf.scalefactor = round(scale*100.) / 100.;
-   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.scalefactor * 100.);
+   snprintf(buf, sizeof(buf), _("Scaling: %.0f%%"), conf.scalefactor * 100.);
    window_modifyText(wid, "txtScale", buf);
 }
 
@@ -1696,7 +1667,7 @@ static void opt_setZoomFar( unsigned int wid, char *str )
    double zoom = window_getFaderValue(wid, str);
 
    conf.zoom_far = round(zoom*100.) / 100.;
-   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_far * 100.);
+   snprintf(buf, sizeof(buf), _("Far Zoom: %.0f%%"), conf.zoom_far * 100.);
    window_modifyText(wid, "txtZoomFar", buf);
 
    if (conf.zoom_far > conf.zoom_near) {
@@ -1724,7 +1695,7 @@ static void opt_setZoomNear( unsigned int wid, char *str )
    double zoom = window_getFaderValue(wid, str);
 
    conf.zoom_near = round(zoom*100.) / 100.;
-   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.zoom_near * 100.);
+   snprintf(buf, sizeof(buf), _("Near Zoom: %.0f%%"), conf.zoom_near * 100.);
    window_modifyText(wid, "txtZoomNear", buf);
 
    if (conf.zoom_near < conf.zoom_far) {
@@ -1745,7 +1716,8 @@ static void opt_setBGBrightness( unsigned int wid, char *str )
    char buf[STRMAX_SHORT];
 
    conf.bg_brightness = window_getFaderValue(wid, str);
-   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.bg_brightness * 100.);
+   snprintf(buf, sizeof(buf), _("Background Brightness: %.0f%%"),
+         conf.bg_brightness * 100.);
    window_modifyText(wid, "txtBGBrightness", buf);
 }
 
@@ -1764,7 +1736,8 @@ static void opt_setMapOverlayOpacity( unsigned int wid, char *str )
 
    /* Set fader. */
    map_overlay_opacity = window_getFaderValue(wid, str);
-   snprintf( buf, sizeof(buf), _("%.0f%%"), map_overlay_opacity * 100 );
+   snprintf(buf, sizeof(buf), _("Overlay Map Opacity: %.0f%%"),
+         map_overlay_opacity * 100);
    window_modifyText( wid, "txtMOpacity", buf );
 }
 
@@ -1784,7 +1757,7 @@ static void opt_setGamma(unsigned int wid, char *str)
    /* Set fader. */
    gamma = window_getFaderValue(wid, str);
    conf.gamma_correction = round(gamma*100.) / 100.;
-   snprintf(buf, sizeof(buf), _("%.0f%%"), conf.gamma_correction * 100.);
+   snprintf(buf, sizeof(buf), _("Gamma: %.0f%%"), conf.gamma_correction * 100.);
    window_modifyText(wid, "txtGamma", buf);
 
    render_setGamma(conf.gamma_correction);
@@ -1806,7 +1779,7 @@ static void opt_setGameSpeed( unsigned int wid, char *str )
    /* Set fader. */
    dt_mod = window_getFaderValue(wid, str);
 
-   snprintf( buf, sizeof(buf), _("%.0f%%"), dt_mod * 100 );
+   snprintf(buf, sizeof(buf), _("Base Game Speed: %.0f%%"), dt_mod * 100);
 
-   window_modifyText( wid, "txtGameSpeed", buf );
+   window_modifyText(wid, "txtGameSpeed", buf);
 }
