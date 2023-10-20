@@ -407,7 +407,6 @@ static int naikL_conf(lua_State *L)
    PUSH_DOUBLE( L, "sound", conf.sound );
    PUSH_DOUBLE( L, "music", conf.music );
    /* joystick */
-   PUSH_INT( L, "mesg_visible", conf.mesg_visible );
    PUSH_DOUBLE( L, "map_overlay_opacity", conf.map_overlay_opacity );
    PUSH_INT( L, "repeat_delay", conf.repeat_delay );
    PUSH_INT( L, "repeat_freq", conf.repeat_freq );

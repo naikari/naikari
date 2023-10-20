@@ -422,13 +422,6 @@ static void opt_gameplay( unsigned int wid )
 
    y -= 40;
 
-   s = _("Visible Messages");
-   l = gl_printWidthRaw( &gl_smallFont, s );
-   window_addText(wid, x, y, l, 20, 1, "txtSMSG", &gl_smallFont, NULL, s);
-   window_addInput(wid, -50, y, 40, 20, "inpMSG", 4, 1, &gl_smallFont);
-
-   y -= 30;
-
    s = _("TC Max (%)");
    l = gl_printWidthRaw( &gl_smallFont, s );
    window_addText(wid, x, y, l, 20, 1, "txtTMax", &gl_smallFont, NULL, s);
@@ -484,10 +477,6 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
 
    /* Input boxes. */
-   inp = window_getInput(wid, "inpMSG");
-   conf.mesg_visible = atoi(inp);
-   if (conf.mesg_visible == 0)
-      conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
    inp = window_getInput(wid, "inpTMax");
    conf.compression_mult = atof(inp) / 100.;
    inp = window_getInput(wid, "inpTVel");
@@ -520,8 +509,6 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    window_faderValue( wid, "fadGameSpeed", DT_MOD_DEFAULT );
 
    /* Input boxes. */
-   snprintf(buf, sizeof(buf), "%d", INPUT_MESSAGES_DEFAULT);
-   window_setInput(wid, "inpMSG", buf);
    snprintf(buf, sizeof(buf), "%G", TIME_COMPRESSION_DEFAULT_MULT * 100.);
    window_setInput(wid, "inpTMax", buf);
    snprintf(buf, sizeof(buf), "%G", TIME_COMPRESSION_DEFAULT_MAX);
@@ -548,8 +535,6 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    window_faderSetBoundedValue( wid, "fadGameSpeed", conf.dt_mod );
 
    /* Input boxes. */
-   snprintf(buf, sizeof(buf), "%d", conf.mesg_visible);
-   window_setInput(wid, "inpMSG", buf);
    snprintf(buf, sizeof(buf), "%G", conf.compression_mult * 100);
    window_setInput(wid, "inpTMax", buf);
    snprintf(buf, sizeof(buf), "%G", conf.compression_velocity);

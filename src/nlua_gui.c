@@ -180,21 +180,25 @@ static int guiL_osdInit( lua_State *L )
  *    @luatparam number width Width of the message box.
  *    @luatparam number x X position of message box.
  *    @luatparam number y Y position of message box.
+ *    @luatparam[opt=5] number lines Number of lines visible at once.
  * @luafunc mesgInit
  */
 static int guiL_mesgInit( lua_State *L )
 {
-   int w, x, y;
+   int w;
+   int x, y;
+   int lines;
 
    NLUA_CHECKRW(L);
 
    /* Parse parameters. */
-   w = luaL_checkinteger( L, 1 );
-   x = luaL_checkinteger( L, 2 );
-   y = luaL_checkinteger( L, 3 );
+   w = luaL_checkinteger(L, 1);
+   x = luaL_checkinteger(L, 2);
+   y = luaL_checkinteger(L, 3);
+   lines = luaL_optinteger(L, 4, 5);
 
    /* Initialize. */
-   gui_messageInit( w, x, y );
+   gui_messageInit(w, x, y, lines);
    return 0;
 }
 

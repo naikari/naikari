@@ -190,9 +190,10 @@ typedef struct Mesg_ {
    glFontRestore restore; /**< Hack for font restoration. */
 } Mesg;
 static Mesg* mesg_stack = NULL; /**< Stack of messages, will be of mesg_max size. */
-static int gui_mesg_w   = 0; /**< Width of messages. */
-static int gui_mesg_x   = 0; /**< X positioning of messages. */
-static int gui_mesg_y   = 0; /**< Y positioning of messages. */
+static int gui_mesg_w = 0; /**< Width of messages. */
+static int gui_mesg_x = 0; /**< X positioning of messages. */
+static int gui_mesg_y = 0; /**< Y positioning of messages. */
+static int gui_mesg_lines = 5; /**< Number of message lines visible at once. */
 
 /* Calculations to speed up borders. */
 static double gui_tr = 0.; /**< Border top-right. */
@@ -251,12 +252,14 @@ void gui_setDefaults (void)
  *    @param width Message width.
  *    @param x X position to set at.
  *    @param y Y position to set at.
+ *    @param lines Number of lines displayed at once.
  */
-void gui_messageInit( int width, int x, int y )
+void gui_messageInit(int width, int x, int y, int lines)
 {
    gui_mesg_w = width;
    gui_mesg_x = x;
    gui_mesg_y = y;
+   gui_mesg_lines = lines;
 }
 
 
@@ -279,7 +282,7 @@ void gui_messageScrollUp( int lines )
    o  = mesg_pointer - mesg_viewpoint;
    if (o < 0)
       o += mesg_max;
-   o = mesg_max - 2*conf.mesg_visible - o;
+   o = mesg_max - 2*gui_mesg_lines - o;
 
 
    /* Calculate max line movement. */
@@ -1160,14 +1163,14 @@ static void gui_renderMessages( double dt )
    o = 0;
    if (mesg_viewpoint != -1) {
       /* Data. */
-      hs = h*(double)conf.mesg_visible/(double)mesg_max;
+      hs = h * (double)gui_mesg_lines / (double)mesg_max;
       o  = mesg_pointer - mesg_viewpoint;
       if (o < 0)
          o += mesg_max;
    }
 
    /* Render text. */
-   for (i=0; i<conf.mesg_visible; i++) {
+   for (i=0; i<gui_mesg_lines; i++) {
       /* Reference translation. */
       m  = (v - i) % mesg_max;
       if (m < 0)
@@ -1207,7 +1210,9 @@ static void gui_renderMessages( double dt )
 
       /* Inside. */
       c.a = 0.5;
-      gl_renderRect( vx + gui_mesg_w-10., vy + hs/2. + (h-hs)*((double)o/(double)(mesg_max-conf.mesg_visible)), 10, hs, &c );
+      gl_renderRect(vx + gui_mesg_w-10.,
+            vy + hs/2. + (h-hs)*((double)o/(double)(mesg_max-gui_mesg_lines)),
+            10, hs, &c);
    }
 }
 

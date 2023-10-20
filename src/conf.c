@@ -129,7 +129,6 @@ void conf_setDefaults (void)
    conf.joystick_ind = -1;
 
    /* GUI. */
-   conf.mesg_visible = 5;
    conf.map_overlay_opacity = MAP_OVERLAY_OPACITY_DEFAULT;
 
    /* Accessibility. */
@@ -192,7 +191,6 @@ void conf_setGameplayDefaults (void)
    conf.save_compress = SAVE_COMPRESSION_DEFAULT;
    conf.mouse_doubleclick = MOUSE_DOUBLECLICK_TIME;
    conf.zoom_manual = MANUAL_ZOOM_DEFAULT;
-   conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
    conf.dt_mod = DT_MOD_DEFAULT;
    conf.autonav_reset_speed = AUTONAV_RESET_SPEED_DEFAULT;
    conf.autonav_ignore_passive = AUTONAV_IGNORE_PASSIVE_DEFAULT;
@@ -374,9 +372,6 @@ int conf_loadConfig ( const char* file )
       lua_pop(naevL,1);
 
       /* GUI. */
-      conf_loadInt( lEnv, "mesg_visible", conf.mesg_visible );
-      if (conf.mesg_visible <= 0)
-         conf.mesg_visible = INPUT_MESSAGES_DEFAULT;
       conf_loadFloat( lEnv, "map_overlay_opacity", conf.map_overlay_opacity );
       conf.map_overlay_opacity = CLAMP(0, 1, conf.map_overlay_opacity);
 
@@ -944,8 +939,6 @@ int conf_saveConfig ( const char* file )
    conf_saveEmptyLine();
 
    /* GUI. */
-   conf_saveComment(_("Number of lines visible in the comm window."));
-   conf_saveInt("mesg_visible",conf.mesg_visible);
    conf_saveComment(_("Opacity fraction (0-1) for the overlay map."));
    conf_saveFloat("map_overlay_opacity", conf.map_overlay_opacity);
    conf_saveEmptyLine();

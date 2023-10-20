@@ -109,8 +109,13 @@ function create ()
    fps_h = 3 * fontSize_default
    gui.fpsPos(screen_padding, screen_h - screen_padding - fps_h)
 
+   -- Messages
+   local mesg_lines = 5
+   local mesg_h = mesg_lines*1.5*fontSize_default + 10
+   gui.mesgInit(sidebar_x - sidebar_w - 2*sidebar_padding - screen_padding,
+         screen_padding, bottombar_h + screen_padding, mesg_lines)
+
    -- OSD
-   local mesg_h = 5*1.5*fontSize_default + 10
    osd_x = screen_padding
    osd_y = screen_h - screen_padding - fps_h
    osd_w = 225
@@ -129,10 +134,6 @@ function create ()
    local hbound = math.max(osd_w, sidebar_w + 2*sidebar_padding)
    gui.omsgInit(screen_w - 2*screen_padding - 2*hbound,
          screen_w / 2, screen_h / 2)
-
-   -- Messages
-   gui.mesgInit(sidebar_x - sidebar_w - 2*sidebar_padding - screen_padding,
-         screen_padding, bottombar_h + screen_padding)
 
    -- Planet pane
    planetpane_x = osd_x + osd_w + 8
