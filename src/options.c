@@ -482,6 +482,7 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
 
    /* Restore. */
    /* Checkboxes. */
+   window_checkboxSet(wid, "chkIgnorePassive", AUTONAV_IGNORE_PASSIVE_DEFAULT);
    window_checkboxSet(wid, "chkZoomManual", MANUAL_ZOOM_DEFAULT);
    window_checkboxSet(wid, "chkAfterburn", DOUBLETAP_AFTERBURN_DEFAULT);
    window_checkboxSet(wid, "chkFollow", RIGHTCLICK_FOLLOW_DEFAULT);
