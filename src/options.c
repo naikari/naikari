@@ -439,6 +439,8 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    (void) str;
    int p, newlang;
    char *s;
+   double tc_vel;
+   double tc_max;
 
    /* List. */
    p = toolkit_getListPos( wid, "lstLanguage" );
@@ -462,9 +464,15 @@ static int opt_gameplaySave( unsigned int wid, char *str )
 
    /* Faders. */
    conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
-   conf.compression_velocity = window_getFaderValue(wid, "fadTCVelocity");
-   conf.compression_mult = window_getFaderValue(wid, "fadTCMax");
    conf.autonav_reset_speed = window_getFaderValue(wid, "fadResetThreshold");
+
+   /* Save TC Velocity in increments of 25. */
+   tc_vel = window_getFaderValue(wid, "fadTCVelocity");
+   conf.compression_velocity = round(tc_vel/25.) * 25.;
+
+   /* Save TC Max in increments of 100%. */
+   tc_max = window_getFaderValue(wid, "fadTCMax");
+   conf.compression_mult = round(tc_max/1.) * 1.;
 
    /* Reset speed so changes take effect immediately. */
    if (!menu_isOpen(MENU_MAIN))
@@ -553,6 +561,8 @@ static void opt_setTCVelocity(unsigned int wid, char *str)
 
    /* Get fader value. */
    tc_vel = window_getFaderValue(wid, str);
+   /* Adjust in increments of 25. */
+   tc_vel = round(tc_vel/25.) * 25.;
 
    snprintf(buf, sizeof(buf), _("TC Velocity: %.0f mAU/s"), tc_vel);
 
@@ -573,6 +583,8 @@ static void opt_setTCMax(unsigned int wid, char *str)
 
    /* Get fader value. */
    tc_max = window_getFaderValue(wid, str);
+   /* Adjust in increments of 100%. */
+   tc_max = round(tc_max/1.) * 1.;
 
    snprintf(buf, sizeof(buf), _("TC Max: %.0f%%"), tc_max * 100);
 
