@@ -379,34 +379,6 @@ static void opt_gameplay( unsigned int wid )
          conf.dt_mod, opt_setGameSpeed);
    y -= 40;
 
-   /* TC Velocity */
-   window_addText(wid, x, y, cw, 20, 1, "txtTCVelocity",
-         &gl_smallFont, NULL, NULL);
-   y -= 20;
-   window_addFader(wid, x, y, cw, 20, "fadTCVelocity", 1000., 10000.,
-         conf.compression_velocity, opt_setTCVelocity);
-   y -= 40;
-
-   /* TC Max */
-   window_addText(wid, x, y, cw, 20, 1, "txtTCMax",
-         &gl_smallFont, NULL, NULL);
-   y -= 20;
-   window_addFader(wid, x, y, cw, 20, "fadTCMax", 1., 200.,
-         conf.compression_mult, opt_setTCMax);
-   y -= 40;
-
-   /* TC reset threshold */
-   window_addText(wid, x, y, cw, 20, 1, "txtResetThreshold",
-         &gl_smallFont, NULL, NULL);
-   y -= 20;
-   window_addFader(wid, x, y, cw, 20, "fadResetThreshold", 0., 1.,
-         conf.autonav_reset_speed, opt_setAutonavResetSpeed);
-   y -= 40;
-
-   window_addCheckbox(wid, x, y, cw, 20,
-         "chkIgnorePassive", _("Ignore passive enemy presence"), NULL,
-         conf.autonav_ignore_passive);
-   y -= 25;
    window_addCheckbox(wid, x, y, cw, 20,
          "chkZoomManual", _("Enable manual zoom control"), NULL,
          conf.zoom_manual);
@@ -422,6 +394,37 @@ static void opt_gameplay( unsigned int wid )
    window_addCheckbox(wid, x, y, cw, 20,
          "chkCompress", _("Enable saved game compression"), NULL,
          conf.save_compress);
+   y -= 50;
+
+   /* Autonav Time Compression Settings */
+   window_addText(wid, x, y, cw-130, 20, 0, "txtAutonavTCHeader",
+         NULL, NULL, _("Autonav Time Compression"));
+   y -= 30;
+   /* TC Velocity */
+   window_addText(wid, x, y, cw, 20, 1, "txtTCVelocity",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadTCVelocity", 1000., 10000.,
+         conf.compression_velocity, opt_setTCVelocity);
+   y -= 30;
+   /* TC Max */
+   window_addText(wid, x, y, cw, 20, 1, "txtTCMax",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadTCMax", 1., 200.,
+         conf.compression_mult, opt_setTCMax);
+   y -= 30;
+   /* TC reset threshold */
+   window_addText(wid, x, y, cw, 20, 1, "txtResetThreshold",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadResetThreshold", 0., 1.,
+         conf.autonav_reset_speed, opt_setAutonavResetSpeed);
+   y -= 30;
+   window_addCheckbox(wid, x, y, cw, 20,
+         "chkIgnorePassive", _("Ignore passive enemy presence"), NULL,
+         conf.autonav_ignore_passive);
+   y -= 50;
 
    /* Restart text. */
    window_addText( wid, 20, 20 + BUTTON_HEIGHT,
@@ -564,6 +567,7 @@ static void opt_setTCVelocity(unsigned int wid, char *str)
    /* Adjust in increments of 25. */
    tc_vel = round(tc_vel/25.) * 25.;
 
+   /* Translators: "TC" is short for "Time Compression". */
    snprintf(buf, sizeof(buf), _("TC Velocity: %.0f mAU/s"), tc_vel);
 
    window_modifyText(wid, "txtTCVelocity", buf);
@@ -586,6 +590,7 @@ static void opt_setTCMax(unsigned int wid, char *str)
    /* Adjust in increments of 100%. */
    tc_max = round(tc_max/1.) * 1.;
 
+   /* Translators: "TC" is short for "Time Compression". */
    snprintf(buf, sizeof(buf), _("TC Max: %.0f%%"), tc_max * 100);
 
    window_modifyText(wid, "txtTCMax", buf);
@@ -608,11 +613,14 @@ static void opt_setAutonavResetSpeed( unsigned int wid, char *str )
 
    /* Generate message. */
    if (autonav_reset_speed >= 1.)
+      /* Translators: "TC" is short for "Time Compression". */
       snprintf(buf, sizeof(buf), _("TC Reset Threshold: Enemy Presence"));
    else if (autonav_reset_speed > 0.)
+      /* Translators: "TC" is short for "Time Compression". */
       snprintf(buf, sizeof(buf), _("TC Reset Threshold: %.0f%% Shield"),
             autonav_reset_speed * 100);
    else
+      /* Translators: "TC" is short for "Time Compression". */
       snprintf(buf, sizeof(buf), _("TC Reset Threshold: Armor Damage"));
 
    window_modifyText(wid, "txtResetThreshold", buf);
@@ -1018,8 +1026,7 @@ static void opt_audio( unsigned int wid )
 
    window_addText(wid, x, y, cw-40, 20, 0, "txtSSoundVolume",
          NULL, NULL, _("Volume Levels"));
-   y -= 20;
-
+   y -= 30;
    /* Sound fader. */
    window_addText(wid, x, y, cw, 20, 1, "txtSound",
          &gl_smallFont, NULL, NULL);
@@ -1027,15 +1034,14 @@ static void opt_audio( unsigned int wid )
    window_addFader(wid, x, y, cw, 20, "fadSound", 0., 1.,
          sound_getVolume(), opt_setAudioLevel);
    window_faderScrollDone(wid, "fadSound", opt_beep);
-   y -= 40;
-
+   y -= 30;
    /* Music fader. */
    window_addText(wid, x, y, cw, 20, 1, "txtMusic",
          &gl_smallFont, NULL, NULL);
    y -= 20;
    window_addFader(wid, x, y, cw, 20, "fadMusic", 0., 1.,
          music_getVolume(), opt_setAudioLevel);
-   y -= 40;
+   y -= 50;
 
    /* Restart text. */
    window_addText(wid, 20, 20 + BUTTON_HEIGHT,
