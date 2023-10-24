@@ -84,6 +84,8 @@ function rescue(p, boarder)
     -- Player boards the shipwreck and rescues the crew, this spawns a new mission.
     hook.rm(bctimer)
     naik.missionStart("The Space Family")
+    p:setVisplayer(false)
+    p:setHilight(false)
     evt.finish()
 end
 
