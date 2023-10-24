@@ -67,7 +67,6 @@ misn_desc = _("You have purchased a new ship from Melendez and are in the proces
 
 function create()
    start_planet, missys = planet.get("Em 1")
-   start_planet_r = 200
 
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
@@ -86,6 +85,8 @@ function accept ()
 
    stage = 1
    create_osd()
+
+   misn.markerAdd(missys, "low", start_planet)
 
    tk.msg("", fmt.f(intro_text,
          {player=player.name(), shipname=player.pilot():name()}))
@@ -121,7 +122,7 @@ function timer ()
    create_osd()
 
    if stage == 1 and system.cur() == missys
-         and player.pos():dist(start_planet:pos()) <= start_planet_r then
+         and player.pos():dist(start_planet:pos()) <= start_planet:radius() then
       stage = 2
 
       tk.msg("", fmt.f(landing_text,
