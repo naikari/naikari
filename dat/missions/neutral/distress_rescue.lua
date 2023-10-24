@@ -55,7 +55,7 @@ end
 function land()
    local pnt = planet.cur()
    local fac = pnt:faction()
-   if not p:services()["inhabited"] or fac == faction.get("Pirate") then
+   if not pnt:services()["inhabited"] or fac == faction.get("Pirate") then
       return
    end
 
