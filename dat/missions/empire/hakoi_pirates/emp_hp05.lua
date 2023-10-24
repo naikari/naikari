@@ -145,6 +145,10 @@ function accept()
       var.push("hp_rep_sirius", faction.playerStanding(f))
       f:setPlayerStanding(-16)
 
+      local f = faction.get("Soromid")
+      var.push("hp_rep_soromid", faction.playerStanding(f))
+      f:setPlayerStanding(-6)
+
       local f = faction.get("Pirate")
       var.push("hp_rep_pirate", faction.playerStanding(f))
       f:setPlayerStanding(9)
@@ -191,6 +195,11 @@ function abort()
    local f = faction.get("Sirius")
    local rep = var.peek("hp_rep_sirius") or faction.playerStanding(f)
    var.pop("hp_rep_sirius")
+   f:setPlayerStanding(rep)
+
+   local f = faction.get("Soromid")
+   local rep = var.peek("hp_rep_soromid") or faction.playerStanding(f)
+   var.pop("hp_rep_soromid")
    f:setPlayerStanding(rep)
 
    local f = faction.get("Pirate")
