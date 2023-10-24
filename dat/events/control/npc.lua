@@ -443,8 +443,10 @@ function spawnDealer()
    local outfits = {}
    local ships = {}
    local factions = {}
+   local curplanet, cursys = planet.cur()
+   local pirate_f = faction.get("Pirate")
 
-   getsysatdistance(system.cur(), 0, 8,
+   getsysatdistance(cursys, 0, 8,
       function(s)
          if s:presences()["Pirate"] then
             for i, p in ipairs(s:planets()) do
@@ -475,9 +477,78 @@ function spawnDealer()
       table.insert(outfits, outfit.get("Za'lek L6500 Test Engine"))
    end
 
-   local r = rnd.rnd()
+   -- Set up maps. Note: We want to ensure no duplicates here.
+   if dealer_maps == nil then
+      dealer_maps = {}
+      if pirate_f:playerStanding() >= 0
+            and curplanet:faction() == pirate_f then
+         local maps_list = {
+            {
+               "Map: Pirate strongholds",
+               _([["Hey, you! You're a newbie in the business, aren't you? I can tell! And let me tell you, one of the first things you need to be a successful pirate is to know where to go! So I'll give you a deal: for just {credits}, I'll give you a map of all the pirate strongholds, from New Haven to Warden's End to Sanchez! I'll even throw in some stations that you can count on to take you in while you're running from the law. What do you say?"]]),
+               _([["A good choice, kid! With this map, you'll start making it in now time. Pleasure doing business with you."]]),
+            },
+            {
+               "Map: Qorel Expanse",
+               _([["You call yourself a pirate? Ha, ha, ha! Ridiculous! I've never even seen you in the Qorel Expanse! Just a common thief as far as I'm concerned. But hey, we all gotta start somewhere, eh? I'll tell you what: I'll sell you the map to the Qorel Expanse. I suppose, say, {credits} should be sufficient. Well? Do you want the chance to become a real pirate for just {credits}?"]]),
+               _([["Hehe, now that you know where to go, I guess I'll see you in the Qorel Expanse before long, eh? You won't regret buying the map from me, I can assure you of that!"]]),
+            },
+         }
+         if cursys == system.get("New Haven") then
+            maps_list[#maps_list + 1] = {
+               "Map: New Haven's hidden jump points",
+               _([["Wait, you got here to New Haven thru the standard jump point? You'll never make it in the business that way! You need the hidden jump points; every pirate around here worth their salt uses those. How about I give you a copy for {credits}?"]]),
+               _([["There you go. See how much easier it is to travel around here with these? Now that you know, I'm sure you'll get loads of cash in no time."]]),
+            }
+         elseif cursys == system.get("Kretogg") then
+            maps_list[#maps_list + 1] = {
+               "Map: Kretogg's hidden jump points",
+               _([["Hiya there! I haven't seen you around here. You're new to the area, aren't you? Here, let a fellow pirate help you out: there's a hidden jump that'll get you into Za'lek space easily. You don't wanna miss it! I could show you where on your map for just {credits}. How about it?"]]),
+               _([["Thanks for the business!"]]),
+            }
+            maps_list[#maps_list + 1] = {
+               "Map: Sagittarius Bypass",
+               _([["Oh, hey, an unfamiliar face! You haven't been thru the Sagittarius Bypass, have you? It's a nice collection of hidden jumps that take you straight into Sirius space. How about I give you a map of it for, say, {credits}?"]]),
+               _([["There you go! I'm sure you'll be plundering Siriusites like a pro in no time!"]]),
+            }
+         end
+         for i = 1, #maps_list do
+            local T = maps_list[i]
+            if player.numOutfit(T[1], true) <= 0 then
+               dealer_maps[#dealer_maps + 1] = T
+            end
+         end
+      end
+   end
+
    local npcdata = nil
-   if r < 0.5 and #outfits > 0 then
+   if rnd.rnd() < 0.1 and #dealer_maps > 0 then
+      local map_choice = dealer_maps[rnd.rnd(1, #dealer_maps)]
+      local o_name, offer_text, sold_text = table.unpack(map_choice)
+      local outfit_choice = outfit.get(o_name)
+      local price = outfit_choice:price()
+      price = price + 0.2*price*rnd.sigma()
+      local text = fmt.f(offer_text, {credits=fmt.credits(price)})
+      npcdata = {msg=text, outfit=outfit_choice, price=price}
+      npcdata.func = function(id, data)
+            local plcredits, plcredits_str = player.credits(2)
+            local text = (data.msg .. "\n\n"
+                  .. fmt.f(_("You have {credits}."), {credits=plcredits_str}))
+            if tk.yesno("", text) then
+               if plcredits >= data.price then
+                  tk.msg("", sold_text)
+                  player.pay(-data.price, "adjust")
+                  player.outfitAdd(data.outfit:nameRaw())
+                  data.msg = getMessage("Pirate")
+                  data.func = nil
+               else
+                  local s = fmt.f(_([["You're {credits} short. Don't test my patience."]]),
+                        {credits=fmt.credits(data.price - plcredits)})
+                  tk.msg("", s)
+               end
+            end
+         end
+   elseif rnd.rnd() < 0.5 and #outfits > 0 then
       local texts = {
          _([["Why, hello there! I have a fantastic outfit in my possession, a state-of-the-art {outfit}. This outfit is rare, but it's yours for only {credits}. Would you like it?"]]),
          _([["Ah, you look like just the kind of pilot who could use this {outfit} in my possession. It's an outfit that's rather hard to come by, I assure you, but for only {credits}, it's all yours. A bargain, don't you think?"]]),
@@ -557,7 +628,7 @@ function spawnDealer()
 
    if npcdata ~= nil and player.credits() >= npcdata.price then
       local portrait_f = "Thief"
-      if planet.cur():faction() == faction.get("Pirate") then
+      if curplanet:faction() == pirate_f then
          portrait_f = "Pirate"
       end
       id = evt.npcAdd("talkNPC", _("Dealer"), portrait.get(portrait_f),
