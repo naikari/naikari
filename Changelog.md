@@ -20,6 +20,7 @@
   Heavy Ion Cannon, Heavy Ion Turret, and Medusa Missile outfits has
   been substantially buffed, and damage penalty when using Weapons
   Ionizers has been decreased from -70% to -20%.
+* Added the fifth mission in the Hakoi Pirates campaign.
 
 ### Other Changes
 
@@ -56,6 +57,20 @@
   faction standing penalty. This means that your reputation dipping
   below 0% no longer sends your reputation on a continuous downward
   spiral.
+* Removed the "Ian's Courage" mission (since its purpose is outdated and
+  it contradicts the direction we're now taking Ian Structure's
+  character).
+* OSD entries will now abbreviate themselves if there is not enough room
+  to show all OSD entries of every mission.
+* Reworked the way reputation gain and loss from combat is calculated.
+  The effect is fairly subtle, but it should make these reputation
+  changes feel less static.
+* Removed the "visible messages" option; maximum visible messages is now
+  controlled by the GUIs.
+* Reorganized the Options menu to make it more compact and intuitive.
+* Removed pirate maps from standard pirate outfitters and instead added
+  them as possible offerings from black market dealers on pirate
+  strongholds.
 
 ### Bugfixes
 
@@ -64,6 +79,11 @@
 * Fixed image arrays (e.g. outfit lists) causing mouseover alt-text to
   show up when keyboard navigation was used even if the mouse wasn't
   over the image array.
+* Fixed player selling fuel getting counted as mission earnings for the
+  purposes of hired escorts (which caused them to take a cut from the
+  sale).
+* Fixed an issue where some fighter bay shop graphics would get
+  stretched in certain contexts (such as the GUI's weapon display).
 
 ## 0.10.1
 
