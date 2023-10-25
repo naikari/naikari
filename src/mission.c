@@ -1414,7 +1414,8 @@ static int missions_parseActive( xmlNodePtr parent )
                } while (xml_nextNode(nest));
 
                /* Create the OSD. */
-               misn->osd = osd_create( title, nitems, items, data->avail.priority );
+               misn->osd = osd_create(misn, title, nitems, items,
+                     data->avail.priority);
                free(items);
                free(title);
 

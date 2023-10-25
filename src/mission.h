@@ -9,6 +9,7 @@
 
 #include "claim.h"
 #include "commodity.h"
+#include "gui_osd.h"
 #include "nlua.h"
 #include "nxml.h"
 #include "opengl.h"
@@ -120,7 +121,7 @@ typedef struct Mission_ {
    MissionMarker *markers; /**< Markers array. */
 
    /* OSD. */
-   unsigned int osd; /**< On-Screen Display ID. */
+   osdId_t osd; /**< On-Screen Display ID. */
    int osd_set; /**< OSD was set explicitly. */
 
    /* Claims. */

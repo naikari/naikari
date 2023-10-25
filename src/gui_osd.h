@@ -8,16 +8,23 @@
 #  define OSD_H
 
 
+typedef unsigned int osdId_t; /**< Type for OSD IDs. */
+
+/* Forward declaration to avoid cyclical import. */
+struct Mission_;
+typedef struct Mission_ Mission;
+
+
 /*
  * OSD usage.
  */
-unsigned int osd_create( const char *title,
-      int nitems, const char **items, int priority );
-int osd_destroy( unsigned int osd );
-int osd_active( unsigned int osd, int msg );
-int osd_getActive( unsigned int osd );
-char *osd_getTitle( unsigned int osd );
-char **osd_getItems( unsigned int osd );
+osdId_t osd_create(Mission *misn, const char *title,
+      int nitems, const char **items, int priority);
+int osd_destroy(osdId_t osd);
+int osd_active(osdId_t osd, int msg);
+int osd_getActive(osdId_t osd);
+char *osd_getTitle(osdId_t osd);
+char **osd_getItems(osdId_t osd);
 
 
 /*

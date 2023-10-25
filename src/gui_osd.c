@@ -14,15 +14,19 @@
 #include "array.h"
 #include "font.h"
 #include "log.h"
+#include "mission.h"
 #include "nstring.h"
 #include "opengl.h"
+#include "space.h"
 
 
 /**
  * @brief On Screen Display element.
  */
 typedef struct OSD_s {
-   unsigned int id; /**< OSD id. */
+   Mission *misn; /**< Mission which owns the OSD. */
+
+   osdId_t id; /**< OSD id. */
    int priority; /**< Priority level. */
    char *title; /**< Title of the OSD. */
 
@@ -36,7 +40,7 @@ typedef struct OSD_s {
 /*
  * OSD array.
  */
-static unsigned int osd_idgen = 0; /**< ID generator for OSD. */
+static osdId_t osd_idgen = 0; /**< ID generator for OSD. */
 static OSD_t *osd_list        = NULL; /**< Array (array.h) for OSD. */
 
 
@@ -57,13 +61,13 @@ static int osd_abbreviated = 0;
 /*
  * Prototypes.
  */
-static OSD_t *osd_get( unsigned int osd );
-static int osd_free( OSD_t *osd );
+static OSD_t *osd_get(osdId_t osd);
+static int osd_free(OSD_t *osd);
 static void osd_calcDimensions(int abbreviate);
 /* Sort. */
-static int osd_sortCompare( const void * arg1, const void * arg2 );
-static void osd_sort (void);
-static void osd_wordwrap( OSD_t* osd );
+static int osd_sortCompare(const void * arg1, const void * arg2);
+static void osd_sort(void);
+static void osd_wordwrap(OSD_t* osd);
 
 
 static int osd_sortCompare( const void *arg1, const void *arg2 )
@@ -125,7 +129,8 @@ static void osd_sort (void)
  *    @param items Items in the display.
  *    @return ID of newly created OSD.
  */
-unsigned int osd_create( const char *title, int nitems, const char **items, int priority )
+osdId_t osd_create(Mission *misn, const char *title, int nitems,
+      const char **items, int priority)
 {
    int i, id;
    OSD_t *osd;
@@ -138,11 +143,12 @@ unsigned int osd_create( const char *title, int nitems, const char **items, int 
    osd->id = id = ++osd_idgen;
    osd->active = 0;
 
-   /* Copy text. */
-   osd->title  = strdup(title);
+   /* Copy data. */
+   osd->misn = misn;
+   osd->title = strdup(title);
    osd->priority = priority;
-   osd->msg = array_create_size( char*, nitems );
-   osd->items = array_create_size( char**, nitems );
+   osd->msg = array_create_size(char*, nitems);
+   osd->items = array_create_size(char**, nitems);
    for (i=0; i<nitems; i++) {
       array_push_back( &osd->msg, strdup( items[i] ) );
       array_push_back( &osd->items, array_create(char*) );
@@ -199,7 +205,7 @@ void osd_wordwrap( OSD_t* osd )
  *
  *    @param osd ID of the OSD to get.
  */
-static OSD_t *osd_get( unsigned int osd )
+static OSD_t *osd_get(osdId_t osd)
 {
    int i;
    OSD_t *ll;
@@ -242,7 +248,7 @@ static int osd_free( OSD_t *osd )
  *
  *    @param osd ID of the OSD to destroy.
  */
-int osd_destroy( unsigned int osd )
+int osd_destroy(osdId_t osd)
 {
    int i;
    OSD_t *ll;
@@ -269,7 +275,7 @@ int osd_destroy( unsigned int osd )
       return 0;
    }
 
-   WARN(_("OSD '%u' not found to destroy."), osd );
+   WARN(_("OSD '%u' not found to destroy."), osd);
    return 0;
 }
 
@@ -281,7 +287,7 @@ int osd_destroy( unsigned int osd )
  *    @param msg Message to make active in OSD.
  *    @return 0 on success.
  */
-int osd_active( unsigned int osd, int msg )
+int osd_active(osdId_t osd, int msg)
 {
    OSD_t *o;
 
@@ -306,7 +312,7 @@ int osd_active( unsigned int osd, int msg )
  *    @param osd OSD to get active message.
  *    @return The active OSD message or -1 on error.
  */
-int osd_getActive( unsigned int osd )
+int osd_getActive(osdId_t osd)
 {
    OSD_t *o;
 
@@ -379,6 +385,7 @@ void osd_render (void)
    int w;
    int x;
    const glColour *c;
+   const glColour *active_c;
    int *ignore;
    int nignore;
    int is_duplicate, duplicates;
@@ -448,11 +455,23 @@ void osd_render (void)
          return;
       }
 
+      /* Choose active color: if the player is in its destination
+       * system, we choose a special hilight color; otherwise, hilight
+       * in white. */
+      active_c = &cFontWhite;
+      for (i=0; i<array_size(ll->misn->markers); i++) {
+         if (ll->misn->markers[i].sys == cur_system->id) {
+            active_c = &cFontOrange;
+            break;
+         }
+      }
+
       /* Print items. */
       for (i=ll->active; i<array_size(ll->items); i++) {
          x = osd_x;
          w = osd_w;
-         c = (i == (int)ll->active) ? &cFontWhite : &cFontGrey;
+         c = (i == (int)ll->active) ? active_c : &cFontGrey;
+
          for (j=0; j<array_size(ll->items[i]); j++) {
             p -= gl_smallFont.h + 5.;
             gl_printMaxRaw( &gl_smallFont, w, x, p,
@@ -567,7 +586,7 @@ static void osd_calcDimensions(int abbreviate)
  *    @param osd OSD to get title of.
  *    @return Title of the OSD.
  */
-char *osd_getTitle( unsigned int osd )
+char *osd_getTitle(osdId_t osd)
 {
    OSD_t *o;
 
@@ -585,7 +604,7 @@ char *osd_getTitle( unsigned int osd )
  *    @param osd OSD to get items of.
  *    @return Array (array.h) of OSD strings.
  */
-char **osd_getItems( unsigned int osd )
+char **osd_getItems(osdId_t osd)
 {
    OSD_t *o;
 
