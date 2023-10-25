@@ -71,6 +71,14 @@
 * Removed pirate maps from standard pirate outfitters and instead added
   them as possible offerings from black market dealers on pirate
   strongholds.
+* Introduction mission ("Point of Sale") now hilights the planet it
+  tells you to land on.
+* Added an explanation of what "TC" means in Ian Structure's second
+  mission.
+* Removed the "Hitman" missions in Alteris.
+* The OSD now hilights missions in the current system orange instead of
+  white (so you can see at a glance which entries are most immediately
+  relevant).
 
 ### Bugfixes
 
@@ -84,6 +92,8 @@
   sale).
 * Fixed an issue where some fighter bay shop graphics would get
   stretched in certain contexts (such as the GUI's weapon display).
+* Fixed Shipwrecked August staying hilighted after you rescued its
+  occupants.
 
 ## 0.10.1
 
