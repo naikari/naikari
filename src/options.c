@@ -477,9 +477,15 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    tc_max = window_getFaderValue(wid, "fadTCMax");
    conf.compression_mult = round(tc_max/1.) * 1.;
 
-   /* Reset speed so changes take effect immediately. */
-   if (!menu_isOpen(MENU_MAIN))
+   if (!menu_isOpen(MENU_MAIN)) {
+      /* Reset speed so changes to base speed take effect
+       * immediately. */
       player_autonavResetSpeed();
+
+      /* Recalculate player.tc_max in case autonav TC parameters have
+       * changed while autonav is active. */
+      player.tc_max = player_dt_max();
+   }
 
    return 0;
 }
