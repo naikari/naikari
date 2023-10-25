@@ -64,12 +64,6 @@ cond_articles = {
       mission = "Shadowrun",
    },
    {
-      title = _("Assassins in Alteris"),
-      text = _([[Law-abiding traders are warned to stay clear of the Alteris system due to an influx of assassins in the area. Authorities suspect that corrupt businessmen are hiring these assassins in an effort to illegally stifle competition. An Imperial investigation is underway.]]),
-      tag = "mhint_Hitman 2",
-      mission = "Hitman 2",
-   },
-   {
       title = _("Em 1 Offers Business Opportunities"),
       text = _([[Analysts have noted tremendous opportunities on Em 1 (Hakoi system). "It's a great start for new pilots," a top analyst said. "Safe, and with many business opportunities."]]),
       tag = "mhint_Tutorial Part 2",
