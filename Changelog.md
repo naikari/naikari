@@ -76,7 +76,7 @@
 * Added an explanation of what "TC" means in Ian Structure's second
   mission.
 * Removed the "Hitman" missions in Alteris.
-* The OSD now hilights missions in the current system orange instead of
+* The OSD now hilights missions in the current system green instead of
   white (so you can see at a glance which entries are most immediately
   relevant).
 
