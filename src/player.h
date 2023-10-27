@@ -75,11 +75,11 @@ enum {
  */
 typedef struct Player_s {
    /* Player intrinsics. */
-   Pilot *p;         /**< Player's pilot. */
-   char *name;       /**< Player's name. */
-   char *gui;        /**< Player's GUI. */
-   int guiOverride;  /**< GUI is overridden (not default). */
-   double radar_res;    /**< Player's radar resolution. */
+   Pilot *p; /**< Player's pilot. */
+   char *name; /**< Player's name. */
+   char *gui; /**< Player's GUI. */
+   int guiOverride; /**< GUI is overridden (not default). */
+   double radar_res; /**< Player's radar resolution. */
 
    /* Player data. */
    PlayerFlags flags; /**< Player's flags. */
