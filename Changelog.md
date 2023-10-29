@@ -20,7 +20,7 @@
   Heavy Ion Cannon, Heavy Ion Turret, and Medusa Missile outfits has
   been substantially buffed, and damage penalty when using Weapons
   Ionizers has been decreased from -70% to -20%.
-* Added the fifth mission in the Hakoi Pirates campaign.
+* Added more missions to the Hakoi Pirates campaign.
 
 ### Other Changes
 
@@ -52,11 +52,6 @@
   pilot it's trying to refuel is moving.
 * Changed the explanation of what a "skate-board" is in the Prince
   mission.
-* Defending yourself against pilots that attacked you without
-  provocation or joined in on an unprovoked attack no longer incurs a
-  faction standing penalty. This means that your reputation dipping
-  below 0% no longer sends your reputation on a continuous downward
-  spiral.
 * Removed the "Ian's Courage" mission (since its purpose is outdated and
   it contradicts the direction we're now taking Ian Structure's
   character).
