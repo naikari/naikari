@@ -15,7 +15,7 @@
   <chance>100</chance>
   <location>Bar</location>
   <planet>Emperor's Fist</planet>
-  <done>Empire Recruitment</done>
+  <done>Hakoi Needs House Dvaered</done>
  </avail>
  <notes>
   <campaign>Hakoi Pirates</campaign>
@@ -63,17 +63,16 @@ He sends in some accomplices who retrieve the package from your cargo hold. "You
 
 local misn_desc = _("You have accepted a shady job to deliver cargo to {planet} in the {system} system in an attempt to infiltrate the pirates' ranks and find out what they're up to. As a part of this mission, you have been given a false ID as a wanted pirate called {player_pirate_name}")
 
+local credits = 100000
+
 local log_text = _([[You are engaging in an undercover operation in an attempt to infiltrate the pirates' ranks. So far, it seems to have worked; you completed a job for a shady businessman called Dev Filer, who wants to speak to you again on {planet} in the {system} system.]])
 
 
 function create()
    misplanet, missys = planet.getLandable("Darkshed")
-   startpla, startsys = planet.cur()
    if misplanet == nil then
       misn.finish(false)
    end
-
-   credits = 100000
 
    misn.setNPC(_("Ian Structure"), "neutral/unique/youngbusinessman.png",
          _("You don't see Commander Soldner around anywhere, but you see Ian Structure sitting alone and gesturing to you. He looks nervous."))
@@ -131,11 +130,11 @@ function accept()
       -- faction so it looks like the profile of a real pirate.
       local f = faction.get("Empire")
       var.push("hp_rep_empire", faction.playerStanding(f))
-      f:setPlayerStanding(-22)
+      f:setPlayerStanding(-19)
 
       local f = faction.get("Dvaered")
       var.push("hp_rep_dvaered", faction.playerStanding(f))
-      f:setPlayerStanding(-13)
+      f:setPlayerStanding(-5)
 
       local f = faction.get("Za'lek")
       var.push("hp_rep_zalek", faction.playerStanding(f))
@@ -158,7 +157,6 @@ function accept()
       f:setPlayerStanding(9)
 
       hook.land("land")
-      hook.load("land")
    else
       misn.finish()
    end
@@ -171,6 +169,7 @@ function land()
       tk.msg("", fmt.f(finish_text, {player_pirate_name=pirate_name}))
 
       player.pay(credits)
+      faction.get("Pirate"):modPlayer(5)
       emp_addShippingLog(fmt.f(log_text,
             {planet=misplanet:name(), system=missys:name()}))
       misn.finish(true)
