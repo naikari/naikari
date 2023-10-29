@@ -315,10 +315,6 @@ function control ()
 
       -- See what decision to take
       if attack then
-         if enemy == player.pilot() then
-            -- Pilot is actively hostile, so don't cause faction hits.
-            mem.nofactionhit = true
-         end
          ai.hostile(enemy) -- Should be done before taunting
          taunt(enemy, true)
          ai.pushtask("attack", enemy)
@@ -394,10 +390,6 @@ function control ()
 
       -- See if really want to attack
       if attack then
-         if enemy == player.pilot() then
-            -- Pilot is actively hostile, so don't cause faction hits.
-            mem.nofactionhit = true
-         end
          taunt(enemy, true)
          clean_task( task )
          ai.pushtask("attack", enemy)
@@ -606,11 +598,6 @@ function distress(distresser, attacker)
 
       if not target:exists() or ai.dist(target) > ai.dist(t) then
          if aipilot:inrange(t) then
-            if t == player.pilot() and a:memory().nofactionhit then
-               -- We're assisting an actively hostile pilot, so count us
-               -- as actively hostile as well and exclude faction hits.
-               mem.nofactionhit = true
-            end
             ai.pushtask("attack", t)
          end
       end
@@ -619,12 +606,6 @@ function distress(distresser, attacker)
       if not si.noattack and mem.aggressive then
          -- TODO: something to help in the other case
          if aipilot:inrange(t) then
-            if t == player.pilot()
-                  and a ~= nil and a:memory().nofactionhit then
-               -- We're assisting an actively hostile pilot, so count us
-               -- as actively hostile as well and exclude faction hits.
-               mem.nofactionhit = true
-            end
             clean_task(task)
             ai.pushtask("attack", t)
          end
