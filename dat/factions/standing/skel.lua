@@ -146,11 +146,11 @@ function default_hit( current, amount, source, secondary )
          local diff = 0
          local witness = pilot.get({_fthis})
          if witness and #witness > 0 then
-            diff = math.min(delta[2], amount * clerp(f, 0, 0.1, 100, 0.02))
+            diff = math.min(delta[2], amount * clerp(f, 0, 0.2, 100, 0.04))
             for i, p in ipairs(witness) do
                if player.pos():dist(p:pos()) < 5000 then
                   -- Witness is close by, so more reputation is gained.
-                  diff = math.min(delta[2], amount * clerp(f, 0, 0.2, 100, 0.04))
+                  diff = math.min(delta[2], amount * clerp(f, 0, 0.4, 100, 0.08))
                   break
                end
             end
