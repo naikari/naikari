@@ -2,11 +2,8 @@ project('physfs', 'c', version: '3.2.0')
 
 # Contrary to Meson 0.56's documentation, specifying default_options: ['warning_level=1'] has no effect. DIY.
 cc = meson.get_compiler('c')
-foreach arg: ['-Wno-attributes', '-Wno-int-in-bool-context', '-Wno-sign-compare', '-Wno-unused-parameter']
-   if cc.has_argument(arg)
-      add_project_arguments(arg, language : 'c')
-   endif
-endforeach
+c_args = cc.get_supported_arguments(['-Wno-cast-function-type', '-Wno-pedantic', '-Wno-sign-compare', '-Wno-unused-parameter'])
+add_project_arguments(c_args, language: 'c')
 
 # Increment this if/when we break backwards compatibility.
 physfs_soversion = 1
@@ -39,6 +36,7 @@ physfs_sources += [
    'src/physfs_platform_windows.c',
    'src/physfs_platform_os2.c',
    'src/physfs_platform_qnx.c',
+   'src/physfs_platform_android.c',
    'src/physfs_archiver_dir.c',
    'src/physfs_archiver_unpacked.c',
    'src/physfs_archiver_grp.c',
