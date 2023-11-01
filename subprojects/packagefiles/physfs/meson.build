@@ -1,4 +1,4 @@
-project('physfs', 'c', version: '3.0.2')
+project('physfs', 'c', version: '3.2.0')
 
 # Contrary to Meson 0.56's documentation, specifying default_options: ['warning_level=1'] has no effect. DIY.
 cc = meson.get_compiler('c')
