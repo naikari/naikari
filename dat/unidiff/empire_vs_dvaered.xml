@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unidiff name="empire_vs_dvaered">
+ <faction name="Empire">
+  <faction name="Dvaered">enemy</faction>
+ </faction>
+</unidiff>
+

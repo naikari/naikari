@@ -111,6 +111,13 @@ function land()
 
       player.pay(credits)
       faction.get("Pirate"):modPlayer(5)
+
+      -- Dvaereds catch on to the player's true identity.
+      local f = faction.get("Dvaered")
+      local rep = var.peek("hp_rep_dvaered") or faction.playerStanding(f)
+      var.pop("hp_rep_dvaered")
+      f:setPlayerStanding(math.min(-1, rep))
+
       emp_addShippingLog(fmt.f(log_text,
             {planet=startpla:name(), system=startsys:name()}))
       misn.finish(true)
@@ -118,5 +125,6 @@ function land()
       tk.msg("", fmt.f(deliver_text,
             {planet=startpla:name(), system=startsys:name()}))
       job_done = true
+      misn.markerMove(marker, startsys, startpla)
    end
 end
