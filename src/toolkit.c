@@ -54,18 +54,19 @@ static SDL_Keymod input_mod             = 0; /**< Current pressed modifier. */
 /*
  * default outline colours
  */
-const glColour* toolkit_colLight = &cGrey25; /**< Light outline colour. */
-const glColour* toolkit_col      = &cGrey20; /**< Normal outline colour. */
-const glColour* toolkit_colDark  = &cGrey10; /**< Dark outline colour. */
+const glColour* toolkit_colLight = &cGrey25; /**< Light outline color. */
+const glColour* toolkit_col = &cGrey20; /**< Normal outline color. */
+const glColour* toolkit_colDark = &cGrey10; /**< Dark outline color. */
+const glColour* toolkit_colHilight = &cDarkBlue; /**< Hilight color. */
 
 /*
  * Tab colors
  */
-const glColour* tab_active = &cGrey20; /**< Light outline colour. */
-const glColour* tab_activeB = &cGrey10; /**< Light outline colour. */
-const glColour* tab_inactive      = &cGrey15; /**< Normal outline colour. */
-const glColour* tab_inactiveB      = &cGrey10; /**< Normal outline colour. */
-const glColour* tab_background  = &cBlack; /**< Dark outline colour. */
+const glColour* tab_active = &cGrey20; /**< Light outline color. */
+const glColour* tab_activeB = &cGrey10; /**< Light outline color. */
+const glColour* tab_inactive = &cGrey15; /**< Normal outline color. */
+const glColour* tab_inactiveB = &cGrey10; /**< Normal outline color. */
+const glColour* tab_background  = &cBlack; /**< Dark outline color. */
 
 
 /*

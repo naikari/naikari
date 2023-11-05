@@ -116,7 +116,7 @@ static void inp_render( Widget* inp, double bx, double by )
    }
    else {
       str = &inp->dat.inp.input[ inp->dat.inp.view ];
-      col = &cGreen;
+      col = &cFontWhite;
    }
 
    /* Draw text. */
@@ -129,7 +129,7 @@ static void inp_render( Widget* inp, double bx, double by )
    else {
       /* Align top-left, print with word wrapping. */
       ty = y - inp->dat.inp.font->h / 2.;
-      col = &cGreen;
+      col = &cFontWhite;
       gl_printTextRaw( inp->dat.inp.font, inp->w-10., inp->h,
             x+5., ty, 0, col, -1., str );
    }
@@ -137,23 +137,24 @@ static void inp_render( Widget* inp, double bx, double by )
    /* Draw cursor. */
    if (wgt_isFlag( inp, WGT_FLAG_FOCUSED )) {
       if (inp->dat.inp.oneline) {
-         w = inp_rangeToWidth( inp, inp->dat.inp.view, inp->dat.inp.pos );
-         toolkit_drawRect( x + 5. + w, y + (inp->h - inp->dat.inp.font->h - 4.)/2.,
-               1., inp->dat.inp.font->h + 4., &cGreen, &cGreen );
+         w = inp_rangeToWidth(inp, inp->dat.inp.view, inp->dat.inp.pos);
+         toolkit_drawRect(x + 5. + w,
+               y + (inp->h - inp->dat.inp.font->h - 4.)/2.,
+               1., inp->dat.inp.font->h + 4., &cFontWhite, &cFontWhite);
       }
       else {
          /* Wrap the cursor around if the text is longer than the width of the widget. */
-         str   = inp->dat.inp.input;
-         w     = 0;
-         p     = 0;
+         str = inp->dat.inp.input;
+         w = 0;
+         p = 0;
          lines = 0;
-         s     = 0;
+         s = 0;
          do {
-            p     += w;
+            p += w;
             if ((s != 0) && ((str[p] == '\n') || (str[p] == ' ')))
                p++;
-            s      = 1;
-            w      = inp_rangeFromWidth( inp, p, -1 );
+            s = 1;
+            w = inp_rangeFromWidth(inp, p, -1);
             lines += 1;
             if (str[p+w] == '\0')
                break;
@@ -163,8 +164,9 @@ static void inp_render( Widget* inp, double bx, double by )
          w = inp_rangeToWidth( inp, p, inp->dat.inp.pos );
 
          /* Get the actual width now. */
-         toolkit_drawRect( x + 5. + w, y + inp->h - lines * (inp->dat.inp.font->h + 5) - 3.,
-               1., inp->dat.inp.font->h + 4., &cGreen, &cGreen );
+         toolkit_drawRect(x + 5. + w,
+               y + inp->h - lines * (1.5*inp->dat.inp.font->h) - 3.,
+               1., inp->dat.inp.font->h + 4., &cFontWhite, &cFontWhite);
       }
    }
 

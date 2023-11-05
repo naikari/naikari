@@ -22,6 +22,7 @@
 extern const glColour* toolkit_colLight;
 extern const glColour* toolkit_col;
 extern const glColour* toolkit_colDark;
+extern const glColour* toolkit_colHilight;
 
 extern const glColour* tab_active;
 extern const glColour* tab_activeB;
