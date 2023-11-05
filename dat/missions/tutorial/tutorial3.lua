@@ -98,18 +98,20 @@ function accept()
          fmt.f(_("Press {overlaykey} to open your overlay map"),
             {overlaykey=naik.keyGet("overlay")}),
          _("Fly to Asteroid Field indicated on overlay map by right-clicking the area"),
-         _("Mine ore from asteroids until your cargo hold is full:"),
-         "\t- " .. _("Select an asteroid by left-clicking on it"),
-         "\t- " .. fmt.f(_("Use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid"),
+         _("Mine ore from asteroids until your cargo hold is full"),
+         "\t" .. _("Target an asteroid by left-clicking on it"),
+         "\t" .. fmt.f(_("Use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid"),
             {primarykey=naik.keyGet("primary"),
                secondarykey=naik.keyGet("secondary")}),
-         "\t- " .. _("Fly to the location of dropped Ore to collect it"),
+         "\t" .. _("Fly to the location of dropped Ore to collect it"),
          fmt.f(_("Engage Active Cooldown by pressing {autobrake_key}, then wait for your ship to fully cool down"),
             {autobrake_key=naik.keyGet("autobrake")}),
          fmt.f(_("Land on {planet} ({system} system)"),
             {planet=misplanet, system=missys}),
       }
       misn.osdCreate(_("Ian's Supplies"), osd_desc)
+
+      marker = misn.markerAdd(missys, "low")
 
       hook.enter("enter")
    else
@@ -217,7 +219,7 @@ function timer_cooldown()
    tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
    misn.osdActive(9)
 
-   misn.markerAdd(missys, "low", misplanet)
+   misn.markerMove(marker, missys, misplanet)
 
    hook.land("land")
 end

@@ -185,7 +185,7 @@ void osd_wordwrap( OSD_t* osd )
       has_tab = !!(osd->msg[i][0] == '\t');
       w = osd_w - (has_tab ? osd_tabLen : osd_hyphenLen);
       gl_printLineIteratorInit( &iter, &gl_smallFont, &osd->msg[i][has_tab], w );
-      chunk_fmt = has_tab ? "   %s" : "- %s";
+      chunk_fmt = has_tab ? "   - %s" : "- %s";
 
       while (gl_printLineIteratorNext( &iter )) {
          /* Copy text over. */
@@ -386,6 +386,7 @@ void osd_render (void)
    int x;
    const glColour *c;
    const glColour *active_c;
+   int is_sub_active;
    int *ignore;
    int nignore;
    int is_duplicate, duplicates;
@@ -467,10 +468,25 @@ void osd_render (void)
       }
 
       /* Print items. */
+      is_sub_active = 0;
       for (i=ll->active; i<array_size(ll->items); i++) {
+         if (is_sub_active && (ll->msg[i][0] != '\t'))
+            is_sub_active = 0;
+
+         if (osd_abbreviated && !is_sub_active && (i != (int)ll->active))
+            break;
+
          x = osd_x;
          w = osd_w;
-         c = (i == (int)ll->active) ? active_c : &cFontGrey;
+         c = &cFontGrey;
+         if (is_sub_active || (i == (int)ll->active)) {
+            c = active_c;
+            /* If this is an untabbed entry, set a flag so tabbed
+             * entries underneath it also get hilighted and don't get
+             * hidden. */
+            if (ll->msg[i][0] != '\t')
+               is_sub_active = 1;
+         }
 
          for (j=0; j<array_size(ll->items[i]); j++) {
             p -= gl_smallFont.h + 5.;
@@ -486,8 +502,6 @@ void osd_render (void)
                return;
             }
          }
-         if (osd_abbreviated)
-            break;
       }
    }
 
