@@ -42,7 +42,6 @@
   Shark mission.
 * Lowered risk reward for cargo missions (which means their rewards
   don't shoot quite as high in areas with high pirate presence).
-* Fixed an issue with radar clicking in the Legacy GUI.
 * Jump transition shader is now black instead of white.
 * Board key now auto-targets a boardable pilot if none is selected (like
   the land and hyperspace keys).
@@ -75,8 +74,8 @@
   white (so you can see at a glance which entries are most immediately
   relevant).
 * Use a new Ragnarok Beam shop graphic recently added to Naev.
-* The sub-entries in the OSD used by the second Ian Structure now get
-  hilighted alongside the main entry.
+* The sub-entries in the OSD used by the second Ian Structure mission
+  now get hilighted alongside the main entry.
 * Slightly changed some of the UI colors: text entry boxes now display
   white text instead of green, the Lua console now prints gray text
   instead of green, and the list hilight color has been changed from
@@ -84,6 +83,7 @@
 
 ### Bugfixes
 
+* Fixed an issue with radar clicking in the Legacy GUI.
 * Fixed a regression which caused speed limitation to not work correctly
   at very small values.
 * Fixed image arrays (e.g. outfit lists) causing mouseover alt-text to
