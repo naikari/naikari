@@ -746,8 +746,8 @@ static int load_gameInternal( const char* file, const char* version )
    player_cleanup();
 
    /* Welcome message - must be before space_init. */
-   player_message( _("#gWelcome to %s!"), APPNAME );
-   player_message( "#g v%s", naev_version(0) );
+   player_message(_("Welcome to %s!"), APPNAME);
+   player_message("v%s", naev_version(0));
 
    /* Now begin to load. */
    diff_load(node); /* Must load first to work properly. */

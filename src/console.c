@@ -651,11 +651,10 @@ void cli_open (void)
    /* Put a friendly message at first. */
    if (cli_firstOpen) {
       char *buf;
-      cli_addMessage( "" );
-      cli_addMessage( _("#gWelcome to the Lua console!") );
-      asprintf( &buf, "#g "APPNAME" v%s", naev_version(0) );
+      cli_addMessage(_("Welcome to the Lua console!"));
+      asprintf(&buf, "%s v%s", APPNAME, naev_version(0));
       cli_printCoreString( buf, 0 );
-      free( buf );
+      free(buf);
       cli_addMessage( "" );
       cli_firstOpen = 0;
    }

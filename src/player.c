@@ -321,10 +321,10 @@ static int player_newMake (void)
       player_outfits = array_create( PlayerOutfit_t );
 
    /* Time. */
-   ntime_set( start_date() );
+   ntime_set(start_date());
    /* Welcome message - must be before space_init. */
-   player_message( _("#gWelcome to %s!"), APPNAME );
-   player_message( "#g v%s", naev_version(0) );
+   player_message(_("Welcome to %s!"), APPNAME);
+   player_message("v%s", naev_version(0));
 
    /* Try to create the pilot, if fails reask for player name. */
    ship = ship_get( start_ship() );
@@ -702,15 +702,15 @@ void player_cleanup (void)
 
    /* Reset controls. */
    player_accelOver();
-   player_left  = 0.;
+   player_left = 0.;
    player_right = 0.;
 
    /* Clear player. */
    player_clear();
 
    /* Clear hail timer. */
-   player_hailCounter   = 0;
-   player_hailTimer     = 0.;
+   player_hailCounter = 0;
+   player_hailTimer = 0.;
 
    /* Clear messages. */
    gui_clearMessages();
