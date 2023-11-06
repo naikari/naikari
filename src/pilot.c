@@ -2023,7 +2023,8 @@ void pilot_renderOverlay( Pilot* p, const double dt )
          dy = y + PILOT_SIZE_APPROX*p->ship->gfx_space->sh/2.;
 
          /* Background. */
-         gl_renderRect( dx-2., dy-2., p->comm_msgWidth+4., gl_defFont.h+4., &cBlackHilight );
+         gl_renderRect(dx-2., dy-2., p->comm_msgWidth+4., gl_defFont.h+4.,
+               &cTransBack);
 
          /* Display text. */
          gl_printRaw( NULL, dx, dy, &c, -1., p->comm_msg );

@@ -400,7 +400,8 @@ void osd_render (void)
    ignore  = calloc( nignore, sizeof( int ) );
 
    /* Background. */
-   gl_renderRect( osd_x-5., osd_y-(osd_rh+5.), osd_w+10., osd_rh+10, &cBlackHilight );
+   gl_renderRect(osd_x-5., osd_y-(osd_rh+5.), osd_w+10., osd_rh+10,
+         &cTransBack);
 
    /* Render each thingy. */
    p = osd_y + 5.;

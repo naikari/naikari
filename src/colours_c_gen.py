@@ -68,16 +68,15 @@ COLOURS = [
     Colour( "Silver", 0.75, 0.75, 0.75 ),
     Colour( "Aqua", 0.00, 0.75, 1.00 ),
 
-    # Hilight colors
-    Colour( "BlackHilight", 0.0, 0.0, 0.0, 0.4 ),
-    Colour( "Hilight", 0.1, 0.9, 0.1, 0.6 ),
+    # Semi-transparent background (used for OSD etc)
+    Colour("TransBack", 0.0, 0.0, 0.0, 0.4),
 
     # Objects
-    Colour( "Inert", 221./255., 221./255., 221./255. ),
-    Colour( "Neutral", 221./255., 204./255., 119./255. ),
-    Colour( "Friend", 68./255., 170./255., 153./255. ),
-    Colour( "Hostile", 170./255., 68./255., 153./255. ),
-    Colour( "Restricted", 153./255., 153./255., 51./255. ),
+    Colour("Inert", 221./255., 221./255., 221./255.),
+    Colour("Neutral", 221./255., 204./255., 119./255.),
+    Colour("Friend", 68./255., 170./255., 153./255.),
+    Colour("Hostile", 170./255., 68./255., 153./255.),
+    Colour("Restricted", 153./255., 153./255., 51./255.),
     # Mission Markers
     Colour("MarkerNew", 142/255, 203/255, 233/255),
     Colour("MarkerNewHilight", 177/255, 113/255, 74/255),

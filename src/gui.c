@@ -599,10 +599,10 @@ static void gui_renderBorder( double dt )
    hh    = SCREEN_H/2;
 
    /* Render borders to enhance contrast. */
-   gl_renderRect( 0., 0., 15., SCREEN_H, &cBlackHilight );
-   gl_renderRect( SCREEN_W - 15., 0., 15., SCREEN_H, &cBlackHilight );
-   gl_renderRect( 15., 0., SCREEN_W - 30., 15., &cBlackHilight );
-   gl_renderRect( 15., SCREEN_H - 15., SCREEN_W - 30., 15., &cBlackHilight );
+   gl_renderRect(0., 0., 15., SCREEN_H, &cTransBack);
+   gl_renderRect(SCREEN_W - 15., 0., 15., SCREEN_H, &cTransBack);
+   gl_renderRect(15., 0., SCREEN_W - 30., 15., &cTransBack);
+   gl_renderRect(15., SCREEN_H - 15., SCREEN_W - 30., 15., &cTransBack);
 
    /* Draw planets. */
    for (i=0; i<array_size(cur_system->planets); i++) {
