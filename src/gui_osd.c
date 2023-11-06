@@ -463,7 +463,7 @@ void osd_render (void)
       active_c = &cFontWhite;
       for (i=0; i<array_size(ll->misn->markers); i++) {
          if (ll->misn->markers[i].sys == cur_system->id) {
-            active_c = &cFontBlue;
+            active_c = &cFontOrange;
             break;
          }
       }
