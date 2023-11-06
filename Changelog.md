@@ -71,9 +71,16 @@
 * Added an explanation of what "TC" means in Ian Structure's second
   mission.
 * Removed the "Hitman" missions in Alteris.
-* The OSD now hilights missions in the current system green instead of
+* The OSD now hilights missions in the current system orange instead of
   white (so you can see at a glance which entries are most immediately
   relevant).
+* Use a new Ragnarok Beam shop graphic recently added to Naev.
+* The sub-entries in the OSD used by the second Ian Structure now get
+  hilighted alongside the main entry.
+* Slightly changed some of the UI colors: text entry boxes now display
+  white text instead of green, the Lua console now prints gray text
+  instead of green, and the list hilight color has been changed from
+  green to dark blue.
 
 ### Bugfixes
 
