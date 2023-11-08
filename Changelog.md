@@ -96,6 +96,8 @@
   stretched in certain contexts (such as the GUI's weapon display).
 * Fixed Shipwrecked August staying hilighted after you rescued its
   occupants.
+* Fixed a bug which caused autonav actions to not successfully supersede
+  and cancel auto-hyperspacing.
 
 ## 0.10.1
 
