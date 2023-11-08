@@ -32,6 +32,7 @@ local sos_msg = {
    _("Attention: this is {pilot} urgently requesting rescue. All systems down. Losing air. Please hurry."),
    _("This is {pilot} calling for immediate rescue. Please hurry."),
    _("Mayday! Does anyone read me? All systems down. In urgent need of rescue."),
+   _("This is {pilot}. Mayday, mayday. All systems down. In need of rescue."),
 }
 
 
