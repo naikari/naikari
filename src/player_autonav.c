@@ -113,7 +113,14 @@ static int player_autonavSetup (void)
    /* Autonav is mutually-exclusive with other autopilot methods. */
    player_restoreControl( PINPUT_AUTONAV, NULL );
 
-   if (!player_isFlag(PLAYER_AUTONAV)) {
+   if (player_isFlag(PLAYER_AUTONAV)) {
+      /* Break possible hyperspacing. */
+      if (pilot_isFlag(player.p, PILOT_HYP_PREP)) {
+         pilot_hyperspaceAbort(player.p);
+         player_message(_("#oAutonav: auto-hyperspace sequence aborted."));
+      }
+   }
+   else {
       tc_mod = player_dt_default() * player.speed;
       player.tc_max = player_dt_max();
    }
@@ -329,7 +336,6 @@ void player_autonavAbort(const char *reason, int force)
       /* Break possible hyperspacing. */
       if (pilot_isFlag(player.p, PILOT_HYP_PREP)) {
          pilot_hyperspaceAbort(player.p);
-         player_message(_("#oAutonav: hyperspace sequence aborted."));
       }
 
       /* Reset time compression. */
