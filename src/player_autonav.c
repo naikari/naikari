@@ -45,6 +45,7 @@ static int informed;
  * Prototypes.
  */
 static int player_autonavSetup (void);
+static void player_autonavHyperspaceAbort(int show_message);
 static void player_autonav (void);
 static int player_autonavApproach( const Vector2d *pos, double *dist2, int count_target );
 static void player_autonavFollow( const Vector2d *pos, const Vector2d *vel, const int follow, double *dist2 );
@@ -113,14 +114,7 @@ static int player_autonavSetup (void)
    /* Autonav is mutually-exclusive with other autopilot methods. */
    player_restoreControl( PINPUT_AUTONAV, NULL );
 
-   if (player_isFlag(PLAYER_AUTONAV)) {
-      /* Break possible hyperspacing. */
-      if (pilot_isFlag(player.p, PILOT_HYP_PREP)) {
-         pilot_hyperspaceAbort(player.p);
-         player_message(_("#oAutonav: auto-hyperspace sequence aborted."));
-      }
-   }
-   else {
+   if (!player_isFlag(PLAYER_AUTONAV)) {
       tc_mod = player_dt_default() * player.speed;
       player.tc_max = player_dt_max();
    }
@@ -144,6 +138,21 @@ static int player_autonavSetup (void)
    player.autonav_timer = 0.;
 
    return 1;
+}
+
+
+/**
+ * @brief Aborts hyperspacing if hyperspacing is in progress.
+ *
+ *    @param show_message Whether to show a message to the player.
+ */
+static void player_autonavHyperspaceAbort(int show_message)
+{
+   if (pilot_isFlag(player.p, PILOT_HYP_PREP)) {
+      pilot_hyperspaceAbort(player.p);
+      if (show_message)
+         player_message(_("#oAutonav: auto-hyperspace sequence aborted."));
+   }
 }
 
 
@@ -180,6 +189,9 @@ void player_autonavPos( double x, double y )
    if (!player_autonavSetup())
       return;
 
+   /* Break possible hyperspacing. */
+   player_autonavHyperspaceAbort(1);
+
    player.autonav = AUTONAV_POS_APPROACH;
    player.autonavmsg = strdup(p_("autonav_target", "position"));
    player.autonavcol = '0';
@@ -197,6 +209,9 @@ void player_autonavPnt( char *name )
    p = planet_get( name );
    if (!player_autonavSetup())
       return;
+
+   /* Break possible hyperspacing. */
+   player_autonavHyperspaceAbort(1);
 
    /* Resting on the assumption that initialization of auto-landing
     * starts with an attempt to land normally (as it should), this
@@ -229,6 +244,9 @@ void player_autonavPil(pilotId_t p)
    inrange = pilot_inRangePilot(player.p, pilot, NULL);
    if (!player_autonavSetup() || !inrange)
       return;
+
+   /* Break possible hyperspacing. */
+   player_autonavHyperspaceAbort(1);
 
    player.autonav = AUTONAV_PLT_FOLLOW;
    player.autonavmsg = strdup(pilot->name);
@@ -334,9 +352,7 @@ void player_autonavAbort(const char *reason, int force)
       player_accelOver();
 
       /* Break possible hyperspacing. */
-      if (pilot_isFlag(player.p, PILOT_HYP_PREP)) {
-         pilot_hyperspaceAbort(player.p);
-      }
+      player_autonavHyperspaceAbort(0);
 
       /* Reset time compression. */
       player_autonavEnd();
@@ -866,7 +882,8 @@ void player_thinkAutonav( Pilot *pplayer, double dt )
          (player.autonav == AUTONAV_JUMP_BRAKE)) {
       /* If we're already at the target. */
       if (player.p->nav_hyperspace == -1)
-         player_autonavAbort(_("Target changed to current system"), 0);
+         player_autonavAbort(
+            _("Hyperspace target changed to current system"), 0);
 
       /* Need fuel. */
       else if (pplayer->fuel < pplayer->fuel_consumption)

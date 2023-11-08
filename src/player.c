@@ -1774,11 +1774,19 @@ void player_targetHyperspaceSet( int id )
       return;
    }
 
-   if (pilot_isFlag(player.p, PILOT_HYP_PREP) ||
-         pilot_isFlag(player.p, PILOT_HYP_BEGIN) ||
-         pilot_isFlag(player.p, PILOT_HYPERSPACE))
+   /* If already hyperspacing, changing hyperspace target would cause
+    * problems, so don't allow it. */
+   if (pilot_isFlag(player.p, PILOT_HYPERSPACE))
       return;
 
+   /* If hyperspace sequence has started and target is changing, we need
+    * to make sure the hyperspacing gets aborted so we don't run into
+    * problems. */
+   if ((pilot_isFlag(player.p, PILOT_HYP_BEGIN)
+            || pilot_isFlag(player.p, PILOT_HYP_PREP))
+         && (id != player.p->nav_hyperspace)) {
+      pilot_hyperspaceAbort(player.p);
+   }
 
    old = player.p->nav_hyperspace;
    player.p->nav_hyperspace = id;
