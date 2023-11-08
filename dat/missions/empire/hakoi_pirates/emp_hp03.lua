@@ -78,7 +78,7 @@ approach_text = _([[As you approach, you greet Commander Soldner and salute the 
 
 "In any case, I must go now. Thank you for the report, Commander. It sounds like the Hakoi situation is in good hands." Commodore Keer stands and excuses herself, presumably to attend to other matters.]])
 
-finish_text = _([[Commander Soldner smiles as Commodore Keer leaves. "Apologies, {player}. It seems the Hakoi situation is serious enough that she wanted to check on the Hakoi situation personally. With the Empire's resources stretched so thin, I can't imagine how difficult the Commodore's job must be. It's largely because of you that we have the Hakoi situation under control, and I think it's clear that the Commodore recognizes that. You should be proud, {player}.
+finish_text = _([[Commander Soldner smiles as Commodore Keer leaves. "Apologies, {player}. It seems the Hakoi situation is serious enough that she wanted to check on it personally. With the Empire's resources stretched so thin, I can't imagine how difficult the Commodore's job must be. It's largely because of you that we have the Hakoi situation under control, and I think it's clear that the Commodore recognizes that. You should be proud, {player}.
 
 "In any case, I presume you must have those flight logs now." You nod affirmatively and hand Commander Soldner the data chip with the flight logs on it. "Good work, {player}!" he says as he simultaneously takes the data chip from you and hands you a credit chip with the promised payment. "You've done an excellent job. Let me take a look at what we've got here so we can determine our next course of action."]])
 
