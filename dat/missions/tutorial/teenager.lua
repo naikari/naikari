@@ -146,6 +146,7 @@ function enter()
         local dist = rnd.rnd() * system.cur():radius() * 0.8
         local angle = rnd.rnd() * 2 * math.pi
         local location = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
+
         target = pilot.add("Gawain", "Civilian", location, _("Credence"))
         target:outfitRm("all")
         target:outfitRm("cores")
@@ -156,11 +157,19 @@ function enter()
         target:outfitAdd("Emergency Shield Booster")
         target:outfitAdd("Reactor Class I")
         target:outfitAdd("Shield Capacitor", 2)
+
+        target:setHealth(100, 100, 0)
+        target:setEnergy(100)
+        target:setFuel(true)
+        target:fillAmmo()
+
         target:control()
+
         local mem = target:memory()
         mem.aggressive = true
         mem.norun = true
         mem.noleave = true
+
         target:setHilight()
         target:setVisplayer()
         target:setNoClear()
