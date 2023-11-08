@@ -576,11 +576,17 @@ void sound_setSpeed(double speed)
    tc_max = player_dt_max() * 0.95;
    tc_range = tc_max - tc_min;
 
-   /* If tc_range is too small, never lower the volume or play the TC
-    * brown noise as a result of speedup. We use 4 as a baseline due to
-    * the existence of the speed-up key. This also prevents division by
-    * zero if tc_min and tc_max are exactly the same. */
-   if (tc_range <= 4.)
+   /* We don't want to completely silence audio when the speedup key is
+    * being used. The speedup key takes the speed from tc_min to
+    * 4×tc_min, which means its range is 3×tc_min. We therefore make
+    * sure tc_range is at least 4.5×tc_min, which is the range of the
+    * speedup key plus a 50% buffer. */
+   tc_range = MAX(tc_range, 4.5 * tc_min);
+
+   /* A tc_range of 0 should be impossible because of the previous
+    * statement, but handle it as a special case here to make sure the
+    * code is robust. */
+   if (tc_range <= 0.)
       tc_pct = 0.;
    else
       tc_pct = CLAMP(0., 1., (speed-tc_min) / tc_range);
