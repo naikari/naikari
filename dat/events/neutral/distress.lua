@@ -21,17 +21,17 @@ local fmt = require "fmt"
 local pilotname = require "pilotname"
 
 local sos_msg = {
-   _("SOS. This is {pilot}. I am shipwrecked. Please help."),
+   _("Mayday! This is {pilot}. I am shipwrecked. Please help."),
    _("This is {pilot}. If you get this message, please assist, or tell someone I'm in distress. Comm is not responding. I've no nav control. Please assist."),
    _("This is {pilot} urgently requesting rescue. All systems down. If you get this message, please assist."),
    _("Come at once. This is {pilot}. All systems down. Requesting immediate rescue."),
-   _("SOS. This is {pilot}. All systems down. Cannot last much longer. Losing power. Please rescue immediately."),
-   _("This is {pilot}. SOS. I am shipwrecked. Please help."),
+   _("Mayday! This is {pilot}. All systems down. Cannot last much longer. Losing power. Please rescue immediately."),
+   _("This is {pilot}. It's a mayday, mayday, mayday. I am shipwrecked. Please help."),
    _("Come quick. This is {pilot}. Urgently need rescue."),
    _("Attention all ships: this is {pilot}. I am in urgent need of rescue. Please hurry."),
    _("Attention: this is {pilot} urgently requesting rescue. All systems down. Losing air. Please hurry."),
    _("This is {pilot} calling for immediate rescue. Please hurry."),
-   _("SOS. Does anyone read me? All systems down. In urgent need of rescue."),
+   _("Mayday! Does anyone read me? All systems down. In urgent need of rescue."),
 }
 
 

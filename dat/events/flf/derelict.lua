@@ -23,7 +23,7 @@
 --]]
 
 
-broadcastmsgDV = _("SOS! Dvaered anti-terrorist patrol ship in need of assistance. Primary systems down. Authorization given to board us for rescue.")
+broadcastmsgDV = _("Mayday! Dvaered anti-terrorist patrol ship in need of assistance. Primary systems down. Authorization given to board us for rescue.")
 broadcastmsgFLF = _("Calling all ships! Frontier scout here. Engines down, ship damaged. Please help.")
 
 
@@ -80,13 +80,11 @@ function create()
 end
 
 function broadcastDV()
-    -- Ship broadcasts an SOS every 10 seconds, until boarded or destroyed.
     shipDV:broadcast(broadcastmsgDV, true)
     timerDV = hook.timer(20.0, "broadcastDV")
 end
 
 function broadcastFLF()
-    -- Ship broadcasts an SOS every 10 seconds, until boarded or destroyed.
     shipFLF:broadcast(broadcastmsgFLF, true)
     timerFLF = hook.timer(20.0, "broadcastFLF")
 end

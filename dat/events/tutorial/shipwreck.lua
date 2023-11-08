@@ -19,7 +19,7 @@
 --]]
 
 -- Text
-broadcastmsg = _("SOS. This is the August. We are shipwrecked. Please #bboard#0 us by #bdouble-clicking#0 on our ship.")
+broadcastmsg = _("Mayday! This is the August. We are shipwrecked. Please #bboard#0 us by #bdouble-clicking#0 on our ship.")
 
 function create()
     local nebu_dens, nebu_vol = system.cur():nebula()
@@ -69,7 +69,6 @@ function create()
 end
 
 function broadcast(p)
-    -- Ship broadcasts an SOS every 15 seconds, until boarded or destroyed.
     if p == nil or not p:exists() then
         return
     end
