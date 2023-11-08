@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Small Thrust Bracer">
  <general>
-  <slot>structure</slot>
+  <slot>utility</slot>
   <size>small</size>
   <mass>5</mass>
   <price>75000</price>
