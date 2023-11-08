@@ -118,6 +118,8 @@ function accept()
       }
       misn.osdCreate(_("Ian's Transport"), osd_desc)
 
+      marker = misn.markerAdd(missys, "plot", misplanet)
+
       enter_hook = hook.enter("enter_start")
    else
       misn.finish()
@@ -150,8 +152,6 @@ function input(inputname, inputpress, arg)
    if inputname ~= arg then
       return
    end
-
-   misn.markerAdd(missys, "plot", misplanet)
 
    safe_hook = hook.safe(string.format("safe_%s", arg))
    hook.rm(input_hook)
@@ -196,11 +196,13 @@ function enter_ambush()
 
    pirate:memory().kill_reward = 20000
 
+   misn.osdActive(4)
+
    hook.pilot(pirate, "death", "pirate_death")
    hook.pilot(pirate, "jump", "pirate_death")
    hook.pilot(pirate, "land", "pirate_land")
 
-   hook.timer(2, "timer_enter_ambush", pirate)
+   timer_hook = hook.timer(2, "timer_enter_ambush", pirate)
    input_hook = hook.input("input", "target_hostile")
 end
 
@@ -209,11 +211,12 @@ function timer_enter_ambush(pirate)
    tk.msg("", fmt.f(target_nearest_text,
          {system=missys:name(), player=player.name(),
             target_hostile_key=tutGetKey("target_hostile")}))
-   misn.osdActive(4)
 end
 
 
 function safe_target_hostile()
+   hook.rm(timer_hook)
+
    tk.msg("", fight_text)
    misn.osdActive(5)
 
