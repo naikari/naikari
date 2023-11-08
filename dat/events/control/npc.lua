@@ -378,9 +378,9 @@ used_messages = {}
 
 
 function create()
-   local num_npc = rnd.rnd(1, 4)
+   local num_npc = rnd.rnd(2, 5)
    npcs = {}
-   for i = 0, num_npc do
+   for i = 1, num_npc do
       spawnNPC()
    end
 
@@ -429,9 +429,7 @@ function spawnNPC()
 
    -- Select what this NPC should say.
    local r = rnd.rnd()
-   local msg
-   local func = nil
-   msg, func = getRewardMessage(fac)
+   local msg, func = getRewardMessage(fac)
    local npcdata = {msg=msg, func=func}
 
    id = evt.npcAdd("talkNPC", npcname, image, desc, 100)
