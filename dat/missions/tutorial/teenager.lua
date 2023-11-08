@@ -147,9 +147,8 @@ function enter()
         local angle = rnd.rnd() * 2 * math.pi
         local location = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
 
-        target = pilot.add("Gawain", "Civilian", location, _("Credence"))
-        target:outfitRm("all")
-        target:outfitRm("cores")
+        target = pilot.add("Gawain", "Civilian", location, _("Credence"),
+            {naked=true})
         target:outfitAdd("Milspec Aegis 3601 Core System")
         target:outfitAdd("Beat Up Small Engine")
         target:outfitAdd("Unicorp D-2 Light Plating")
@@ -169,6 +168,9 @@ function enter()
         mem.aggressive = true
         mem.norun = true
         mem.noleave = true
+        mem.kill_reward = nil
+
+        target:pay(-target:credits())
 
         target:setHilight()
         target:setVisplayer()
