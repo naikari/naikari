@@ -16,6 +16,11 @@ _fmod_kill_friend = 0.3 -- Kills of the faction's allies
 _fmod_misn_enemy = 0.3 -- Missions done for the faction's enemies
 _fmod_misn_friend = 0.3 -- Missions done for the faction's allies
 
+-- Minimum values that combat hits will bring you down to.
+-- nil means no floor.
+_ffloor_distress = nil
+_ffloor_kill = -20
+
 _fstanding_friendly = 70
 _fstanding_neutral = 0
 
@@ -165,6 +170,16 @@ function default_hit( current, amount, source, secondary )
       if source == "kill" or source == "distress" then
          -- Kill-induced or distress-induced loss.
          local diff = math.max(delta[1], amount * clerp(f, 100, 1, -100, 0.05))
+
+         -- Adjust diff based on floor if applicable.
+         if source == "kill" and _ffloor_kill ~= nil
+               and f + diff < _ffloor_kill then
+            diff = math.min(0, _ffloor_kill - f)
+         elseif source == "distress" and _ffloor_distress ~= nil
+               and f + diff < _ffloor_distress then
+            diff = math.min(0, _ffloor_distress - f)
+         end
+
          f = math.max(-100, f + diff)
       else
          -- Script induced change. No diminishing returns on these.
