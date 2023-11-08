@@ -4,8 +4,6 @@ require "factions/standing/skel"
 _fdelta_distress = {-0.5, 0.25} -- Maximum change constraints
 _fdelta_kill = {-8, 10} -- Maximum change constraints
 
-_fthis = faction.get("Pirate")
-
 -- Secondary hit modifiers.
 _fmod_distress_enemy = 1 -- Distress of the faction's enemies
 _fmod_distress_friend = 0 -- Distress of the faction's allies
@@ -33,6 +31,6 @@ _ftext_hostile = _("Hostile")
 _ftext_bribed = _("Paid Off")
 
 
-function faction_hit(current, amount, source, secondary)
-   return math.max(-20, default_hit(current, amount, source, secondary))
+function faction_hit(current, amount, source, secondary, fac)
+   return math.max(-20, default_hit(current, amount, source, secondary, fac))
 end

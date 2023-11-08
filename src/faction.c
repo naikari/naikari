@@ -873,15 +873,16 @@ static void faction_modPlayerLua(factionId_t f, double mod,
    else {
 
       /* Set up the function:
-       * faction_hit( current, amount, source, secondary ) */
+       * faction_hit(current, amount, source, secondary, fac) */
       nlua_getenv(faction->env, "faction_hit");
       lua_pushnumber(naevL, faction->player);
       lua_pushnumber(naevL, mod);
       lua_pushstring(naevL, source);
       lua_pushboolean(naevL, secondary);
+      lua_pushfaction(naevL, faction->id);
 
       /* Call function. */
-      if (nlua_pcall(faction->env, 4, 1)) { /* An error occurred. */
+      if (nlua_pcall(faction->env, 5, 1)) {
          WARN(_("Faction '%s': %s"), faction->name, lua_tostring(naevL, -1));
          lua_pop(naevL, 1);
          return;

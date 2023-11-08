@@ -82,20 +82,18 @@ end
 
 
 --[[
-   @brief Handles a faction hit for a faction.
+Handles a standing hit for a faction.
 
-   Possible sources:
-    - "kill" : Pilot death.
-    - "distress" : Pilot distress signal.
-    - "script" : Either a mission or an event.
-
-      @param current Current faction player has.
-      @param amount Amount of faction being changed.
-      @param source Source of the faction hit.
-      @param secondary Flag that indicates whether this is a secondary (thru ally or enemy) hit.
-      @return The faction amount to set to.
+   @tparam number current Current standing player has.
+   @tparam number amount Amount of standing change.
+   @tparam string source Source of the faction hit. Can be "kill",
+         "distress", or "script".
+   @tparam boolean secondary Whether this is a secondary hit
+         (i.e. thru ally or enemy).
+   @tparam Faction fac Faction whose standing was hit.
+   @treturn number Standing to set the faction to.
 --]]
-function default_hit( current, amount, source, secondary )
+function default_hit(current, amount, source, secondary, fac)
    -- Comfort macro
    local f = current
    local delta = {-200, 200}
@@ -149,7 +147,7 @@ function default_hit( current, amount, source, secondary )
          -- killed. We need to check if this happened in the faction's
          -- territory, otherwise it doesn't count.
          local diff = 0
-         local witness = pilot.get({_fthis})
+         local witness = pilot.get({fac})
          if witness and #witness > 0 then
             diff = math.min(delta[2], amount * clerp(f, 0, 0.2, 100, 0.04))
             for i, p in ipairs(witness) do

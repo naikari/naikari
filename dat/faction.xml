@@ -13,13 +13,12 @@
  <faction>
   <name>Independent</name>
   <ai>independent</ai>
-  <static />
   <invisible />
   <known />
-  <player>3</player>
+  <player>0</player>
   <colour>blue</colour>
   <spawn>independent</spawn>
-  <standing>static</standing>
+  <standing>civilian</standing>
   <allies>
   </allies>
   <enemies>
@@ -29,13 +28,12 @@
  <faction>
   <name>Civilian</name>
   <ai>civilian</ai>
-  <static />
   <invisible />
   <known />
   <player>0</player>
   <colour>black</colour>
   <spawn>civilian</spawn>
-  <standing>static</standing>
+  <standing>civilian</standing>
   <allies>
   </allies>
   <enemies>
@@ -45,12 +43,11 @@
  <faction>
   <name>Trader</name>
   <ai>trader</ai>
-  <static />
   <invisible />
   <known />
   <player>0</player>
   <spawn>trader</spawn>
-  <standing>static</standing>
+  <standing>civilian</standing>
   <equip>trader</equip>
   <allies>
   </allies>
@@ -61,12 +58,11 @@
  <faction>
   <name>Miner</name>
   <ai>miner</ai>
-  <static />
   <invisible />
   <known />
   <player>0</player>
   <spawn>miner</spawn>
-  <standing>static</standing>
+  <standing>civilian</standing>
   <equip>miner</equip>
   <allies>
   </allies>
@@ -78,13 +74,12 @@
   <name>Proteron Dissident</name>
   <ai>proteron_dissident</ai>
   <display>Civilian</display>
-  <static />
   <invisible />
   <known />
   <player>0</player>
   <colour>black</colour>
   <spawn>proteron_dissident</spawn>
-  <standing>static</standing>
+  <standing>civilian</standing>
   <allies>
   </allies>
   <enemies>

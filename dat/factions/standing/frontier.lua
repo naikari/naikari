@@ -18,21 +18,19 @@ require "factions/standing/skel"
 _fdelta_distress = {-1, 0} -- Maximum change constraints
 _fdelta_kill = {-10, 2} -- Maximum change constraints
 
-_fthis = faction.get("Frontier")
-
 _fmod_kill_enemy = 0.01
 
 
-function faction_hit(current, amount, source, secondary)
-    local ret = default_hit(current, amount, source, secondary)
+function faction_hit(current, amount, source, secondary, fac)
+    local new = default_hit(current, amount, source, secondary, fac)
 
     local flf = faction.get("FLF")
     local flf_rep = flf:playerStanding()
-    if ret < 0 then
+    if new < 0 then
         -- If you make enemies with the Frontier, FLF standing will
         -- drop to match.
-        flf:setPlayerStanding(math.min(flf_rep, ret))
+        flf:setPlayerStanding(math.min(flf_rep, new))
     end
 
-    return ret
+    return new
 end
