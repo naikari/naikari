@@ -33,7 +33,7 @@ function create ()
     if lastcomm == nil then
         var.push("baroncomm_last", time.get():tonumber())
     else
-        if time.get() - time.fromnumber(lastcomm) < time.create(0, 150, 0) then
+        if time.get() - time.fromnumber(lastcomm) < time.create(1, 0, 0) then
             evt.finish(false)
         else
             var.push("baroncomm_last", time.get():tonumber())
