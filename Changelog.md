@@ -21,6 +21,15 @@
   been substantially buffed, and damage penalty when using Weapons
   Ionizers has been decreased from -70% to -20%.
 * Added more missions to the Hakoi Pirates campaign.
+* Touched up the way reputation loss from combat is handled in an effort
+  to avoid punishing the player for self-defense.
+  * Killing a faction's ships alone now only drops your standing down to
+    as little as -20%. (Your standing can still go below that as a
+    result of distressing, so this only protects against further
+    standing loss for self-defense.)
+  * Attacking civilians now causes standing losses to all main factions
+    present in the current system, in a manner similar to standing losses
+    that happen when you attack a faction's allies.
 
 ### Other Changes
 
@@ -83,13 +92,6 @@
 * Dvaered reputation is no longer gained when you do Empire missions.
 * Increased the time the game will wait before spawning the Baron
   mission after declining it.
-* Killing a faction's ships alone now only drops your standing down to
-  as little as -20%. (Your standing can still go below that as a
-  result of distressing, so this only protects against further
-  standing loss for self-defense.)
-* Attacking civilians now causes standing losses to all main factions
-  present in the current system, in a manner similar to standing losses
-  that happen when you attack a faction's allies.
 * Progress toward gaining Dvaered standing is now displayed in the OSD
   for the fourth Hakoi Pirates mission.
 * Changed default value of TC Velocity from 5000 to 2500.

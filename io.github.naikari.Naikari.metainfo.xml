@@ -35,6 +35,9 @@
           <li>Removed "Buy Local Map" button from the main land tab.</li>
           <li>Increased power of less-than-lethal weaponry.</li>
           <li>Added more to the Hakoi Pirates campaign.</li>
+          <li>Touched up the way reputation loss is handled.</li>
+          <li>Several interface improvements.</li>
+          <li>Several bugfixes.</li>
         </ul>
       </description>
       <url>https://github.com/naikari/naikari/releases/tag/v0.11.0</url>
