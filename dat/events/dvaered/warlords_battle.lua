@@ -303,7 +303,6 @@ function attackerDeath(victim, attacker)
             p:taskClear()
             local mem = p:memory()
             mem.aggressive = true
-            mem.natural = true
          end
       end
 
@@ -337,7 +336,6 @@ function defenderDeath(victim, attacker)
             p:taskClear()
             local mem = p:memory()
             mem.aggressive = true
-            mem.natural = true
          end
       end
 
