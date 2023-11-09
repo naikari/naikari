@@ -144,8 +144,8 @@ osd_msg[1] = " "
 osd_msg[2] = _("Kill {pilot}")
 osd_msg["__save"] = true
 
-npc_desc = _("Shifty Person")
-bar_desc = _("This person might be an outlaw, a pirate, or even worse, a bounty hunter. You normally wouldn't want to get close to this kind of person, but they may be a useful source of information.")
+local npc_name = _("Shifty Individual")
+local npc_desc = _("This person might be an outlaw, a pirate, or even worse, a bounty hunter. You normally wouldn't want to get close to this kind of person, but they may be a useful source of information.")
 
 misn_desc = _([[A notorious pirate known as {pilot} is wanted dead or alive by {faction} authorities, last seen in the {system} system. Any mercenary who can track down and eliminate this pirate will be awarded substantially.
 
@@ -550,7 +550,7 @@ function land ()
          and planet.cur():class() ~= "1" then
       know = (rnd.rnd() < 0.7)
       tells = (rnd.rnd() < 0.2)
-      mynpc = misn.npcAdd("clue_bar", npc_desc, portrait.get("Pirate"), bar_desc)
+      mynpc = misn.npcAdd("clue_bar", npc_name, portrait.get("Thief"), npc_desc)
    end
 end
 
