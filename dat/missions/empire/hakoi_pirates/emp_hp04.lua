@@ -207,16 +207,6 @@ function approach_soldner()
 
       stage = 3
 
-      local osd_desc = {
-         fmt.f(_("Increase your Dvaered standing to at least {standing:.0f}%."),
-            {standing=standing_target}),
-         fmt.f(_("Land on {planet} ({system} system) and talk to Lensa at the bar"),
-            {planet=mispla:name(), system=missys:name()}),
-         fmt.f(_("Land on {planet} ({system} system)"),
-            {planet=startpla:name(), system=startsys:name()}),
-      }
-      misn.osdCreate(misn_title, osd_desc)
-
       update_osd()
       standing_hook = hook.standing("update_osd")
    elseif stage == 3 then
@@ -230,9 +220,21 @@ function update_osd()
       return
    end
 
+   local dvstanding = faction.get("Dvaered"):playerStanding()
+
+   local osd_desc = {
+      fmt.f(_("Increase your Dvaered standing ({standing:.1f}%/{standing_target:.0f}%)"),
+         {standing=dvstanding, standing_target=standing_target}),
+      fmt.f(_("Land on {planet} ({system} system) and talk to Lensa at the bar"),
+         {planet=mispla:name(), system=missys:name()}),
+      fmt.f(_("Land on {planet} ({system} system)"),
+         {planet=startpla:name(), system=startsys:name()}),
+   }
+   misn.osdCreate(misn_title, osd_desc)
+
    misn.markerRm(marker)
 
-   if faction.get("Dvaered"):playerStanding() < standing_target then
+   if dvstanding < standing_target then
       misn.osdActive(1)
    else
       misn.osdActive(2)
