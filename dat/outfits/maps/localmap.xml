@@ -4,7 +4,7 @@
   <mass>0</mass>
   <price>5000</price>
   <description>This map contains the locations of all planets, stations, and non-hidden jump points in the local system.</description>
-  <gfx_store>map_local.png</gfx_store>
+  <gfx_store>map.webp</gfx_store>
  </general>
  <specific type="localmap" />
 </outfit>
