@@ -90,6 +90,8 @@
 * Attacking civilians now causes standing losses to all main factions
   present in the current system, in a manner similar to standing losses
   that happen when you attack a faction's allies.
+* Progress toward gaining Dvaered standing is now displayed in the OSD
+  for the fourth Hakoi Pirates mission.
 
 ### Bugfixes
 
@@ -114,6 +116,8 @@
   cargo that you were able to loot.
 * Fixed some repetitiveness in the text of the third Hakoi Pirates
   mission.
+* Fixed Laser Turret MK1 mistakenly having twice as much mass as
+  intended.
 
 ## 0.10.1
 
