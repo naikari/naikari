@@ -1450,8 +1450,8 @@ void map_renderSystems( double bx, double by, double x, double y,
          if (editor) {
             col = (f == 0) ? &cInert : &cNeutral;
 
-            /* Radius slightly shorter. */
-            gl_drawCircle( tx, ty, 0.5 * r, col, 1 );
+            gl_drawCircle(tx, ty,  0.65 * r, &cBlack, 1);
+            gl_drawCircle(tx, ty, 0.5 * r, col, 1);
          }
          else {
             if ((services_r & PLANET_SERVICE_LAND)
@@ -1464,13 +1464,16 @@ void map_renderSystems( double bx, double by, double x, double y,
             else
                col = faction_getColour(f);
 
-            gl_drawCircle( tx, ty, 0.65 * r, col, 1 );
+            gl_drawCircle(tx, ty,  0.65 * r, &cBlack, 1);
+            gl_drawCircle(tx, ty, 0.5 * r, col, 1);
          }
       }
       else if (map_mode == MAPMODE_DISCOVER) {
-         gl_drawCircle( tx, ty, r, &cInert, 0 );
-         if (sys_isFlag( sys, SYSTEM_DISCOVERED ))
-            gl_drawCircle( tx, ty,  0.65 * r, &cGreen, 1 );
+         gl_drawCircle(tx, ty, r, &cInert, 0);
+         if (sys_isFlag(sys, SYSTEM_DISCOVERED)) {
+            gl_drawCircle(tx, ty,  0.65 * r, &cBlack, 1);
+            gl_drawCircle(tx, ty,  0.5 * r, &cGold, 1);
+         }
       }
    }
 }
