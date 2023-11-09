@@ -21,7 +21,7 @@ require "missions/neutral/seek_and_destroy"
 
 
 clue_text = {
-   _([[The pilot tells you that {pilot} is supposed to have business in {system} soon.]]),
+   _([[You are told that {pilot} is supposed to have business in {system} soon.]]),
    _([["I've heard that {pilot} likes to hang around in {system}."]]),
    _([["You can probably catch {pilot} in {system}."]]),
    _([["I would suggest going to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
@@ -49,7 +49,7 @@ money_text = {
 }
 
 payclue_text = {
-   _("The pilot tells you that {pilot} is supposed to have business in {system} soon."),
+   _([[You are told that {pilot} is supposed to have business in {system} soon.]]),
    _([["{pilot} likes to hang around in {system}. Go there and I'm sure you'll find them. Whether or not you can actually defeat {pilot}, on the other hand… heh, not my problem!"]]),
    _([["{system} is definitely your best bet. {pilot} spends a lot of time there."]]),
    _([["{system} is the last place {pilot} was heading to. Go quickly and you just might catch up."]]),
@@ -83,7 +83,7 @@ enemy_cold_text = {
 }
 
 noinfo_text = {
-   _([[The pilot asks you to give them one good reason to give you that information.]]),
+   _([[The pilot tells you to give them one good reason to give you that information.]]),
    _([["What if I know where your target is and I don't want to tell you, eh?"]]),
    _([["Piss off! I won't tell anything to the likes of you!"]]),
    _([["And why exactly should I give you that information?"]]),

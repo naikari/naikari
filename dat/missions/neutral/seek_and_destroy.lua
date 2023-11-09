@@ -35,7 +35,7 @@ require "proximity"
 
 
 clue_text = {
-   _([[The pilot tells you that {pilot} is supposed to have business in {system} soon.]]),
+   _([[You are told that {pilot} is supposed to have business in {system} soon.]]),
    _([["I've heard that {pilot} likes to hang around in {system}."]]),
    _([["You can probably catch {pilot} in {system}."]]),
    _([["I would suggest going to {system} and taking a look there. That's where {pilot} was last time I heard."]]),
@@ -54,7 +54,7 @@ clue_here_text = {
 
 noclue_text = {
    _([[This person has never heard of {pilot}. It seems you will have to ask someone else.]]),
-   _([[This pilot is also looking for {pilot}, but doesn't seem to know anything you don't.]]),
+   _([[This person is also looking for {pilot}, but doesn't seem to know anything you don't.]]),
    _([["{pilot}? Nope, I haven't seen that person in years at this point."]]),
    _([["Sorry, I have no idea where {pilot} is."]]),
    _([["Oh, hell no, I stay as far away from {pilot} as I possibly can."]]),
@@ -78,7 +78,7 @@ money_text = {
 }
 
 payclue_text = {
-   _("The pilot tells you that {pilot} is supposed to have business in {system} soon."),
+   _[[You are told that {pilot} is supposed to have business in {system} soon.]]),
    _([["{pilot} likes to hang around in {system}. Go there and I'm sure you'll find them. Whether or not you can actually defeat {pilot}, on the other hand… heh, not my problem!"]]),
    _([["{system} is definitely your best bet. {pilot} spends a lot of time there."]]),
    _([["{system} is the last place {pilot} was heading to. Go quickly and you just might catch up."]]),
@@ -125,7 +125,7 @@ enemy_cold_text = {
 }
 
 noinfo_text = {
-   _([[The pilot asks you to give them one good reason to give you that information.]]),
+   _([[The pilot tells you to give them one good reason to give you that information.]]),
    _([["What if I know where your target is and I don't want to tell you, eh?"]]),
    _([["Piss off! I won't tell anything to the likes of you!"]]),
    _([["And why exactly should I give you that information?"]]),
@@ -242,9 +242,10 @@ function accept()
    misn.accept()
 
    stage = 0
-   jumphook = hook.enter("enter")
-   hailhook = hook.hail("hail")
-   landhook = hook.land("land")
+   hook.enter("enter")
+   hook.hail("hail")
+   hook.land("land")
+   hook.load("land")
 
    osd_msg[1] = fmt.f(osd_msg1_r, {system=current_system:name()})
    osd_msg[2] = fmt.f(osd_msg[2], {pilot=name})
