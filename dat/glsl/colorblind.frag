@@ -58,8 +58,8 @@ void main (void)
    // color because both rods and cones are active. However, as we expect
    // a player to be looking at a lit screen, this simulation of high
    // light conditions is more useful.
-   l = 0.0f * L + 0.0f * M + 0.0f * S;
-   m = 0.0f * L + 0.0f * M + 0.0f * S;
+   l = 0.01775f * L + 0.10945f * M + 0.87262f * S;
+   m = 0.01775f * L + 0.10945f * M + 0.87262f * S;
    s = 0.01775f * L + 0.10945f * M + 0.87262f * S;
 #elif COLORBLIND_MODE == ROD_MONOCHROMACY
    // Rod Monochromat (Achromatopsia) - only brightness can be detected
