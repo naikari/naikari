@@ -92,6 +92,7 @@
   that happen when you attack a faction's allies.
 * Progress toward gaining Dvaered standing is now displayed in the OSD
   for the fourth Hakoi Pirates mission.
+* Changed default value of TC Velocity from 5000 to 2500.
 
 ### Bugfixes
 
