@@ -78,7 +78,7 @@ money_text = {
 }
 
 payclue_text = {
-   _[[You are told that {pilot} is supposed to have business in {system} soon.]]),
+   _([[You are told that {pilot} is supposed to have business in {system} soon.]]),
    _([["{pilot} likes to hang around in {system}. Go there and I'm sure you'll find them. Whether or not you can actually defeat {pilot}, on the other hand… heh, not my problem!"]]),
    _([["{system} is definitely your best bet. {pilot} spends a lot of time there."]]),
    _([["{system} is the last place {pilot} was heading to. Go quickly and you just might catch up."]]),
