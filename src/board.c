@@ -189,7 +189,7 @@ int player_board(void)
 
       /* If no suitable target was found, abort the boarding action. */
       if (target == PLAYER_ID) {
-         player_messageRaw(_("#rYou need a target to board first!"));
+         player_messageRaw(_("#rYou need a target to board first."));
          return PLAYER_BOARD_IMPOSSIBLE;
       }
 
@@ -203,12 +203,12 @@ int player_board(void)
    c = pilot_getFactionColourChar( p );
 
    /* More checks. */
-   if (pilot_isFlag(p,PILOT_NOBOARD)) {
-      player_message( _("#rTarget ship can not be boarded.") );
+   if (pilot_isFlag(p, PILOT_NOBOARD)) {
+      player_messageRaw(_("#rTarget ship cannot be boarded."));
       return PLAYER_BOARD_IMPOSSIBLE;
    }
-   else if (!pilot_isDisabled(p) && !pilot_isFlag(p,PILOT_BOARDABLE)) {
-      player_message(_("#rYou cannot board a ship that isn't disabled!"));
+   else if (!pilot_isDisabled(p) && !pilot_isFlag(p, PILOT_BOARDABLE)) {
+      player_messageRaw(_("#rTarget ship cannot currently be boarded."));
       return PLAYER_BOARD_IMPOSSIBLE;
    }
    else if (vect_dist(&player.p->solid->pos,&p->solid->pos)

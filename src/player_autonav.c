@@ -558,17 +558,17 @@ static void player_autonav (void)
       case AUTONAV_PLT_FOLLOW:
          p = pilot_get( player.p->target );
          if (p == NULL)
-            p = pilot_get( PLAYER_ID );
-         if ((p->id == PLAYER_ID) || (!pilot_inRangePilot( player.p, p, NULL ))) {
-            /* TODO : handle the different reasons: pilot is too far, jumped, landed or died. */
-            player_message(_("#oAutonav: following target %s has been lost."),
-                  player.autonavmsg);
-            player_accel( 0. );
-            player_autonavEnd();
+            p = pilot_get(PLAYER_ID);
+
+         if (p->id == PLAYER_ID) {
+            player_autonavAbort(NULL, 0);
+         }
+         else if (!pilot_inRangePilot(player.p, p, NULL)) {
+            player_autonavAbort(_("Follow target has been lost"), 0);
          }
          else {
-            ret = (pilot_isDisabled(p) || pilot_isFlag(p,PILOT_BOARDABLE));
-            player_autonavFollow( &p->solid->pos, &p->solid->vel, !ret, &d );
+            ret = (pilot_isDisabled(p) || pilot_isFlag(p, PILOT_BOARDABLE));
+            player_autonavFollow(&p->solid->pos, &p->solid->vel, !ret, &d);
             if (ret && (!tc_rampdown))
                player_autonavRampdown(d);
          }
@@ -578,18 +578,31 @@ static void player_autonav (void)
          p = pilot_get(player.p->target);
          if (p == NULL)
             p = pilot_get(PLAYER_ID);
-         ret = player_autonavApproachBoard(&p->solid->pos, &p->solid->vel, &d,
-               p->ship->gfx_space->sw);
-         if (!tc_rampdown)
-            player_autonavRampdown(d);
 
-         /* Try to board. */
-         if (ret) {
-            ret = player_board();
-            if (ret == PLAYER_BOARD_OK)
-               player_autonavEnd();
-            else if (ret != PLAYER_BOARD_RETRY)
-               player_autonavAbort(NULL, 0);
+         if (p->id == PLAYER_ID) {
+            player_autonavAbort(NULL, 0);
+         }
+         else if (pilot_isFlag(p, PILOT_NOBOARD)) {
+            player_autonavAbort(_("Target ship cannot be boarded."), 0);
+         }
+         else if (!pilot_isDisabled(p) && !pilot_isFlag(p, PILOT_BOARDABLE)) {
+            player_autonavAbort(
+               _("Target ship cannot currently be boarded."), 0);
+         }
+         else {
+            ret = player_autonavApproachBoard(&p->solid->pos, &p->solid->vel,
+                  &d, p->ship->gfx_space->sw);
+            if (!tc_rampdown)
+               player_autonavRampdown(d);
+
+            /* Try to board. */
+            if (ret) {
+               ret = player_board();
+               if (ret == PLAYER_BOARD_OK)
+                  player_autonavEnd();
+               else if (ret != PLAYER_BOARD_RETRY)
+                  player_autonavAbort(NULL, 0);
+            }
          }
          break;
    }
