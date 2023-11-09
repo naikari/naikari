@@ -27,8 +27,8 @@
 * Enabled the teleport event which can happen when a Za'lek test engine
   is equipped. (The code was there, but it was turned off.
 * Touched up the way audio volume and "brown noise" is handled during
-  time compression. Now, in all cases, maximum time compression leads
-  to regular audio getting muted and the compression "brown noise"
+  time compression. Now, in nearly all cases, maximum time compression
+  leads to regular audio getting muted and the compression "brown noise"
   playing at full volume. (Previously, this was highly dependent on the
   TC Velocity setting as well as the speed of your ship, which could
   lead to situations with some ships and with some TC Velocity values
@@ -80,6 +80,16 @@
   white text instead of green, the Lua console now prints gray text
   instead of green, and the list hilight color has been changed from
   green to dark blue.
+* Dvaered reputation is no longer gained when you do Empire missions.
+* Increased the time the game will wait before spawning the Baron
+  mission after declining it.
+* Killing a faction's ships alone now only drops your standing down to
+  as little as -20%. (Your standing can still go below that as a
+  result of distressing, so this only protects against further
+  standing loss for self-defense.)
+* Attacking civilians now causes standing losses to all main factions
+  present in the current system, in a manner similar to standing losses
+  that happen when you attack a faction's allies.
 
 ### Bugfixes
 
@@ -98,6 +108,12 @@
   occupants.
 * Fixed a bug which caused autonav actions to not successfully supersede
   and cancel auto-hyperspacing.
+* Fixed the Credence in the Teenager mission spawning with empty shields
+  and battery.
+* Fixed the Credence in the Teenager mission coming with credits and
+  cargo that you were able to loot.
+* Fixed some repetitiveness in the text of the third Hakoi Pirates
+  mission.
 
 ## 0.10.1
 
