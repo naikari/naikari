@@ -30,14 +30,10 @@
 
 function create ()
     local lastcomm = var.peek("baroncomm_last")
-    if lastcomm == nil then
-        var.push("baroncomm_last", time.get():tonumber())
-    else
-        if time.get() - time.fromnumber(lastcomm) < time.create(1, 0, 0) then
-            evt.finish(false)
-        else
-            var.push("baroncomm_last", time.get():tonumber())
-        end
+    local wait_time = time.create(1, 0, 0)
+    if lastcomm ~= nil
+            and time.get() - time.fromnumber(lastcomm) < wait_time then
+        evt.finish(false)
     end
 
     hyena = pilot.add("Hyena", "Civilian", true, _("Civilian Hyena"))
@@ -60,6 +56,7 @@ end
 
 -- Triggered when the player hails the ship
 function hail()
+    var.push("baroncomm_last", time.get():tonumber())
     player.commClose()
     naik.missionStart("Baron")
     evt.finish(true)
