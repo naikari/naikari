@@ -72,7 +72,7 @@ function accept()
       misn.accept()
 
       misn.setTitle(misn_title)
-      misn.setReward(p_("reward", "None"))
+      misn.setReward(_("Location information for the Qorel Expanse"))
       misn.setDesc(fmt.f(misn_desc,
             {planet=misplanet:name(), system=missys:name()}))
 
