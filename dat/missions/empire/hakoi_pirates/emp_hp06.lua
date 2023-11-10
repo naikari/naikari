@@ -37,7 +37,7 @@ local ask_text = _([["Ah, {player}! Because of your performance in the last job,
 
 local accept_text = _([[Dev Filer shakes your hand. "Good, good, I knew you would accept! Meet me back here after you've finished the delivery. I will have your payment ready for you then."
 
-You hope doing this "job" will earn some more of Dev Filer's trust before someone finds out about your true identity.]])
+You hope doing this "job" will earn some more of Dev Filer's trust before he finds out about your true intentions.]])
 
 local deliver_text = _([[You land at your destination and locate your contact, a hooded, masked figure. They seemingly pause for a moment before proceding to send accomplices into your ship to retrieve the goods without speaking a word. Looks like your job here is done and you can head back to {planet} and speak to Dev Filer.]])
 
