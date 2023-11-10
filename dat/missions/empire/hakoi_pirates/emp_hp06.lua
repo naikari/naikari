@@ -29,12 +29,11 @@
 --]]
 
 local fmt = require "fmt"
-local pilotname = require "pilotname"
 local portrait = require "portrait"
 require "missions/empire/common"
 
 
-local ask_text = _([["Ah, {player_pirate_name}! Because of your performance in the last job, I've decided to offer you another opportunity.
+local ask_text = _([["Ah, {player}! Because of your performance in the last job, I've decided to offer you another opportunity.
 
 "See, I have a customer on {planet} in the {system} system who needs a delivery. It's from the goods you brought here. All you need to do is deliver the goods to my customer, no questions asked, and I'll pay you {credits}. What do you say?"]])
 
@@ -44,7 +43,7 @@ You hope doing this "job" will earn some more of Dev Filer's trust before someon
 
 local deliver_text = _([[You land at your destination and locate your contact, a hooded, masked figure. They seemingly pause for a moment before proceding to send accomplices into your ship to retrieve the goods without speaking a word. Looks like your job here is done and you can head back to {planet} and speak to Dev Filer.]])
 
-local finish_text = _([[You meet Dev Filer at the spaceport, where he pats you on the back as he hands you your payment. "Great job, {player_pirate_name}! I like you, eager to work your way up to the big time. I'll tell you what: I'll help you with that. Meet me at the bar in a bit."]])
+local finish_text = _([[You meet Dev Filer at the spaceport, where he pats you on the back as he hands you your payment. "Great job, {player}! I like you, eager to work your way up to the big time. I'll tell you what: I'll help you with that. Meet me at the bar in a bit."]])
 
 -- Translators: "Dvfiler" is a pun based on the words "Dvaered" and
 -- "defiler", as well as Dev Filer's name.
@@ -72,13 +71,12 @@ end
 
 
 function accept()
-   local pirate_name = var.peek("hp_pirate_name") or player.name()
    local text = fmt.f(ask_text,
-         {player_pirate_name=pirate_name, planet=misplanet:name(),
+         {player=player.name(), planet=misplanet:name(),
             system=missys:name(), credits=fmt.credits(credits)})
 
    if tk.yesno("", text) then
-      tk.msg("", fmt.f(accept_text, {player_pirate_name=pirate_name}))
+      tk.msg("", fmt.f(accept_text, {player=player.name()}))
 
       misn.accept()
 
@@ -106,17 +104,10 @@ end
 
 function land()
    if job_done and planet.cur() == startpla then
-      local pirate_name = var.peek("hp_pirate_name") or player.name()
-      tk.msg("", fmt.f(finish_text, {player_pirate_name=pirate_name}))
+      tk.msg("", fmt.f(finish_text, {player=player.name()}))
 
       player.pay(credits)
-      faction.get("Pirate"):modPlayer(5)
-
-      -- Dvaereds catch on to the player's true identity.
-      local f = faction.get("Dvaered")
-      local rep = var.peek("hp_rep_dvaered") or faction.playerStanding(f)
-      var.pop("hp_rep_dvaered")
-      f:setPlayerStanding(math.min(-1, rep))
+      faction.get("Dvaered"):modPlayerSingle(-5)
 
       emp_addShippingLog(fmt.f(log_text,
             {planet=startpla:name(), system=startsys:name()}))
