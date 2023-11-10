@@ -30,6 +30,11 @@
   * Attacking civilians now causes standing losses to all main factions
     present in the current system, in a manner similar to standing losses
     that happen when you attack a faction's allies.
+* Increased the speed penalty for going over the engine mass limit.
+  Going slightly over will still be fine in general, but the situation
+  where the wrong engine was often ideal has been substantially
+  mitigated. It's also now virtually impossible to fly a large ship with
+  medium or small engines without the help of thrust bracers.
 
 ### Other Changes
 
@@ -87,14 +92,22 @@
   now get hilighted alongside the main entry.
 * Slightly changed some of the UI colors: text entry boxes now display
   white text instead of green, the Lua console now prints gray text
-  instead of green, and the list hilight color has been changed from
-  green to dark blue.
+  instead of green, the list hilight color has been changed from green
+  to dark blue, the news feed is now white instead of green, and the
+  dots indicating full knowledge of a system in the discovery mode of
+  the starmap are now gold instead of green. (In short, there's a lot
+  less of the color green.)
 * Dvaered reputation is no longer gained when you do Empire missions.
 * Increased the time the game will wait before spawning the Baron
   mission after declining it.
 * Progress toward gaining Dvaered standing is now displayed in the OSD
   for the fourth Hakoi Pirates mission.
 * Changed default value of TC Velocity from 5000 to 2500.
+* Dvaered pilots from the warlords battle event are no longer used by
+  other missions and events. (This fixes a bit of weirdness when it
+  interacts with the Seek and Destroy mission.)
+* Improved the visibility of the filled dots in the travel and discovery
+  modes of the starmap; they are now smaller, but with black outlines.
 
 ### Bugfixes
 
@@ -121,6 +134,14 @@
   mission.
 * Fixed Laser Turret MK1 mistakenly having twice as much mass as
   intended.
+* Fixed the Seek and Destroy mission not spawning an informant at load
+  time.
+* Fixed an issue where the Seek and Destroy mission could refer to bar
+  informants as "the pilot".
+* Fixed a bug where attempting to clear target while Autonav is
+  attempting to board would lead to the nearest boardable target getting
+  immediately selected. (Clearing the target while attempting to
+  auto-board now aborts Autonav.)
 
 ## 0.10.1
 
