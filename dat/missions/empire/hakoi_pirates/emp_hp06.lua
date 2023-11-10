@@ -6,9 +6,7 @@
  </flags>
  <avail>
   <priority>10</priority>
-  <cond>
-   faction.playerStanding("Pirate") &gt;= 0
-  </cond>
+  <cond>faction.playerStanding("Pirate") &lt; 0</cond>
   <chance>100</chance>
   <location>Bar</location>
   <planet>Darkshed</planet>

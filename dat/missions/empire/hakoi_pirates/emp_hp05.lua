@@ -9,8 +9,6 @@
   <cond>
    faction.playerStanding("Empire") &gt;= 10
    and faction.playerStanding("Pirate") &lt; 0
-   and not player.misnActive("Fake ID")
-   and not var.peek("no_fake_id")
   </cond>
   <chance>100</chance>
   <location>Bar</location>
@@ -44,7 +42,7 @@ local accept_text = _([[As you accept Ian Structure's offer, he trepidly nods an
 
 "In any case, you're supposed to deliver the goods to this Devin Filer on {planet} in the {system} system. I'm sure he'll offer more jobs to you afterward. Good luck, and stay safe."]])
 
-local finish_text = _([[You arrive at {planet} with the cargo and meet a man at the spaceport with a suit and tie, neat hair, and a wide grin. He offers your hand for you to shake. "You must be {player}. Well met. I trust you have the cargo I asked for." You shake his hand and ask if he's Devin Filer, the businessman who hired you. "Oh, please, call me Dev," he responds.
+local finish_text = _([[You arrive on {planet} with the cargo and meet a man at the spaceport with a suit and tie, neat hair, and a wide grin. He offers your hand for you to shake. "You must be {player}. Well met. I trust you have the cargo I asked for." You shake his hand and ask if he's Devin Filer, the businessman who hired you. "Oh, please, call me Dev," he responds.
 
 He sends in some accomplices who retrieve the package from your cargo hold. "You must be very good at your job if you were able to obtain this from the Imperial interior so quickly." You decide to impress Dev Filer by telling stories of encounters, conveniently leaving out who those encounters were with. "Ah, splendid! Why, I think you might be the perfect candidate for another… job. Meet me at the bar if you're interested." He and his accomplices leave you at the spaceport. It looks like the ruse worked. You hope this next "job" gives you a useful lead.]])
 
@@ -101,7 +99,8 @@ end
 
 function land()
    if planet.cur() == misplanet then
-      tk.msg("", fmt.f(finish_text, {player=player.name()}))
+      tk.msg("", fmt.f(finish_text,
+            {player=player.name(), planet=misplanet:name()}))
 
       player.pay(credits)
       emp_addShippingLog(fmt.f(log_text,
