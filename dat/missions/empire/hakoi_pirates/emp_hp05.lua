@@ -76,7 +76,6 @@ function accept()
       tk.msg("", fmt.f(accept_text,
             {player=playername, credits=fmt.credits(credits),
                planet=misplanet:name(), system=missys:name()}))
-      tk.msg("", fmt.f(prepare_text, {player=playername}))
 
       misn.accept()
 
