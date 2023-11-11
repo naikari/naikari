@@ -1456,7 +1456,7 @@ dat/outfits/maps/map_new_haven_hidden_jumps.xml
 dat/outfits/maps/map_pirate_strongholds.xml
 dat/outfits/maps/map_qorel.xml
 dat/outfits/maps/map_sagittarius_bypass.xml
-dat/outfits/maps/map_sirian_border_systems.xml
+dat/outfits/maps/map_sirius_border_systems.xml
 dat/outfits/maps/map_sirius_core.xml
 dat/outfits/maps/map_sol.xml
 dat/outfits/maps/map_the_frontier.xml
@@ -1517,8 +1517,10 @@ dat/outfits/utilities/modifiers/improved_power_regulator.xml
 dat/outfits/utilities/modifiers/jump_scanner.xml
 dat/outfits/utilities/modifiers/large_apu.xml
 dat/outfits/utilities/modifiers/large_shield_booster.xml
+dat/outfits/utilities/modifiers/large_thrust_bracer.xml
 dat/outfits/utilities/modifiers/medium_apu.xml
 dat/outfits/utilities/modifiers/medium_shield_booster.xml
+dat/outfits/utilities/modifiers/medium_thrust_bracer.xml
 dat/outfits/utilities/modifiers/milspec_scrambler.xml
 dat/outfits/utilities/modifiers/power_amplification_circuit.xml
 dat/outfits/utilities/modifiers/power_overdrive_module.xml
@@ -1532,6 +1534,7 @@ dat/outfits/utilities/modifiers/rotary_turbo_modulator.xml
 dat/outfits/utilities/modifiers/sensor_array.xml
 dat/outfits/utilities/modifiers/small_apu.xml
 dat/outfits/utilities/modifiers/small_shield_booster.xml
+dat/outfits/utilities/modifiers/small_thrust_bracer.xml
 dat/outfits/utilities/modifiers/solar_panel.xml
 dat/outfits/utilities/modifiers/targeting_array.xml
 dat/outfits/utilities/modifiers/turret_conversion_module.xml
@@ -2059,6 +2062,7 @@ dat/trails.xml
 dat/unidiff/FLF_base.xml
 dat/unidiff/Fury_Station.xml
 dat/unidiff/Thurion_found.xml
+dat/unidiff/empire_vs_dvaered.xml
 dat/unidiff/flf_dead.xml
 dat/unidiff/flf_pirate_ally.xml
 dat/unidiff/flf_vs_empire.xml
@@ -2136,6 +2140,7 @@ dat/events/flf/derelict.lua
 dat/events/flf/flf_catastrophe.lua
 dat/events/neutral/animaltrouble.lua
 dat/events/neutral/derelict.lua
+dat/events/neutral/distress.lua
 dat/events/neutral/fuel_request.lua
 dat/events/neutral/race2.lua
 dat/events/neutral/testengine.lua
@@ -2176,6 +2181,7 @@ dat/factions/spawn/soromid.lua
 dat/factions/spawn/thurion.lua
 dat/factions/spawn/trader.lua
 dat/factions/spawn/zalek.lua
+dat/factions/standing/civilian.lua
 dat/factions/standing/collective.lua
 dat/factions/standing/dvaered.lua
 dat/factions/standing/empire.lua
@@ -2211,6 +2217,9 @@ dat/missions/empire/hakoi_pirates/emp_hp01.lua
 dat/missions/empire/hakoi_pirates/emp_hp02.lua
 dat/missions/empire/hakoi_pirates/emp_hp03.lua
 dat/missions/empire/hakoi_pirates/emp_hp04.lua
+dat/missions/empire/hakoi_pirates/emp_hp05.lua
+dat/missions/empire/hakoi_pirates/emp_hp06.lua
+dat/missions/empire/hakoi_pirates/emp_hp07.lua
 dat/missions/flf/dvk/flf_dvk01.lua
 dat/missions/flf/dvk/flf_dvk02.lua
 dat/missions/flf/flf_commodity_run.lua
@@ -2228,6 +2237,7 @@ dat/missions/neutral/cargo_rush.lua
 dat/missions/neutral/commodity_run.lua
 dat/missions/neutral/common.lua
 dat/missions/neutral/cruise.lua
+dat/missions/neutral/distress_rescue.lua
 dat/missions/neutral/lovetrain.lua
 dat/missions/neutral/patrol.lua
 dat/missions/neutral/race1.lua
@@ -2241,8 +2251,6 @@ dat/missions/neutral/unique/oldwoman.lua
 dat/missions/neutral/wastedump.lua
 dat/missions/pirate/common.lua
 dat/missions/pirate/fake_id.lua
-dat/missions/pirate/hitman.lua
-dat/missions/pirate/hitman2.lua
 dat/missions/pirate/patrol.lua
 dat/missions/pirate/pir_cargo.lua
 dat/missions/pirate/pirate_commodity_run.lua
@@ -2254,7 +2262,6 @@ dat/missions/shadow/shadowvigil.lua
 dat/missions/shark/common.lua
 dat/missions/shark/sh00_ancestorkill.lua
 dat/missions/shark/sh01_corvette.lua
-dat/missions/shark/sh02_tapping.lua
 dat/missions/sirius/achack/achack01.lua
 dat/missions/sirius/achack/achack02.lua
 dat/missions/sirius/animaltransport.lua
@@ -2272,7 +2279,6 @@ dat/missions/tutorial/tutorial.lua
 dat/missions/tutorial/tutorial2.lua
 dat/missions/tutorial/tutorial3.lua
 dat/missions/tutorial/tutorial4.lua
-dat/missions/tutorial/tutorial_follow.lua
 dat/missions/tutorial/tutorial_outfits.lua
 dat/missions/zalek/common.lua
 dat/missions/zalek/zlk_test.lua
