@@ -98,6 +98,10 @@ end
 
 
 function land()
+   if planet.cur() ~= misplanet then
+      return
+   end
+
    local homepla, homesys = planet.get("Emperor's Fist")
    local qorellia, qorel = planet.get("Qorellia")
    tk.msg("", fmt.f(finish_text,
