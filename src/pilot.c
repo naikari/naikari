@@ -2054,7 +2054,7 @@ void pilot_update( Pilot* pilot, double dt )
    Damage dmg;
    double rtmass;
    double stress_falloff;
-   double efficiency, thrust;
+   double efficiency;
    double reload_time;
 
    /* Modify the dt with speedup. */
@@ -2413,24 +2413,27 @@ void pilot_update( Pilot* pilot, double dt )
          pilot_heatAddSlotTime(pilot, pilot->afterburner, dt);
 
          /* If the afterburner's efficiency is reduced to 0, shut it off. */
-         if (pilot_heatEfficiencyMod(pilot->afterburner->heat_T,
+         efficiency = pilot_heatEfficiencyMod(pilot->afterburner->heat_T,
                pilot->afterburner->outfit->u.afb.heat_base,
-               pilot->afterburner->outfit->u.afb.heat_cap)==0)
+               pilot->afterburner->outfit->u.afb.heat_cap);
+         if (efficiency == 0.)
             pilot_afterburnOver(pilot);
          else {
             if (pilot->id == PLAYER_ID)
                spfx_shake( 0.75*SPFX_SHAKE_DECAY * dt); /* shake goes down at quarter speed */
-            efficiency = pilot_heatEfficiencyMod( pilot->afterburner->heat_T,
-                  pilot->afterburner->outfit->u.afb.heat_base,
-                  pilot->afterburner->outfit->u.afb.heat_cap );
-            thrust = MIN( 1., pilot->afterburner->outfit->u.afb.mass_limit / pilot->solid->mass ) * efficiency;
+
+            efficiency *= MIN(1.,
+                  pow(pilot->afterburner->outfit->u.afb.mass_limit
+                        / pilot->solid->mass,
+                     3));
 
             /* Adjust speed. Speed bonus falls as heat rises. */
-            pilot->solid->speed_max = pilot->speed * (1. +
-                  pilot->afterburner->outfit->u.afb.speed * thrust);
+            pilot->solid->speed_max = (pilot->speed
+                  * (1. + pilot->afterburner->outfit->u.afb.speed*efficiency));
 
             /* Adjust thrust. Thrust bonus falls as heat rises. */
-            pilot_setThrust(pilot, 1. + pilot->afterburner->outfit->u.afb.thrust * thrust);
+            pilot_setThrust(pilot,
+                  1. + pilot->afterburner->outfit->u.afb.thrust*efficiency);
          }
       }
       else
