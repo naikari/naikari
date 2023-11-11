@@ -33,15 +33,15 @@ require "missions/empire/common"
 
 local ask_text = _([["Ah, {player}! Because of your performance in the last job, I've decided to offer you another opportunity.
 
-"See, I have a customer on {planet} in the {system} system who needs a delivery. It's from the goods you brought here. All you need to do is deliver the goods to my customer, no questions asked, and I'll pay you {credits}. What do you say?"]])
+"See, I have a customer on {planet} in the {system} system who needs a delivery. It's the goods you brought here. All you need to do is deliver the goods to my customer, no questions asked, and I'll pay you {credits}. What do you say?"]])
 
-local accept_text = _([[Dev Filer shakes your hand. "Good, good, I knew you would accept! Meet me back here after you've finished the delivery. I will have your payment ready for you then."
+local accept_text = _([[After all the work you did earning the Dvaereds' trust, you hope doing this "job" doesn't hurt it. Nonetheless, you need to earn Dev Filer's trust if you're ever going to get useful information out of him, so you accept it. Dev Filer shakes your hand. "Good, good, I knew you would accept! Meet me back here after you've finished the delivery. I will have your payment ready for you then."]])
 
-You hope doing this "job" will earn some more of Dev Filer's trust before he finds out about your true intentions.]])
+local deliver_text = _([[You land at your destination and locate your contact, a hooded, masked figure. They seemingly pause for a moment before proceeding to send accomplices into your ship to retrieve the goods without speaking a word. Looks like your job here is done and you can head back to {planet} and speak to Dev Filer.]])
 
-local deliver_text = _([[You land at your destination and locate your contact, a hooded, masked figure. They seemingly pause for a moment before proceding to send accomplices into your ship to retrieve the goods without speaking a word. Looks like your job here is done and you can head back to {planet} and speak to Dev Filer.]])
+local finish_text = _([[You meet Dev Filer at the spaceport, where he pats you on the back as he hands you your payment. "Great job, {player}! I like you, fearless and eager to work your way up to the big time. So much better than that coward I used to work with a few years back. Always backed out the moment things got hot.
 
-local finish_text = _([[You meet Dev Filer at the spaceport, where he pats you on the back as he hands you your payment. "Great job, {player}! I like you, eager to work your way up to the big time. I'll tell you what: I'll help you with that. Meet me at the bar in a bit."]])
+"I'll tell you what: I'll help you really make your way to the big time. Meet me at the bar and I'll have a nice mission lined up for you."]])
 
 -- Translators: "Dvfiler" is a pun based on the words "Dvaered" and
 -- "defiler", as well as Dev Filer's name.
@@ -50,7 +50,7 @@ local misn_desc = _([[You have accepted another sketchy "job" given to you by De
 
 local credits = 100000
 
-local log_text = _([[In an attempt to earn Dev Filer's trust, you performed a sketchy delivery for him. The ruse seems to have worked, and he's asked you to speak with him again on {planet} in the {system} system.]])
+local log_text = _([[In an attempt to earn Dev Filer's trust, you performed a sketchy delivery for him. This seems to have achieved promising results, and he's asked you to speak with him again on {planet} in the {system} system.]])
 
 
 function create()

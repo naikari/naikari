@@ -33,7 +33,7 @@ require "missions/empire/common"
 
 local ask_text = _([["Are you ready for the big time, {player}? I can get you started! Of course, you'll have to assist me in return.
 
-"It'll be an escort mission. You will meet contacts on New Haven – I'll put a word in so they know to expect you – and escort them south to the Qorel Expanse. Once you get there, I assure you that you will make your way up the ladder very quickly. How does that sound?"]])
+"It'll be an escort mission. You will meet a contact on New Haven – I'll put a word in so they know to expect you – and escort them south to the Qorel Expanse. Once you get there, I assure you that you will make your way up the ladder very quickly. How does that sound?"]])
 
 local accept_text = _([[This "Qorel Expanse" Dev Filer mentioned might be just the lead you're looking for. You agree to the mission and shake Dev Filer's hand, secretly planning to ditch it as soon as you find out where this "Qorel Expanse" is. "Good, good!" Dev Filer responds. "I trust you will do a good job out there. With your skills, I'm sure I'll see you again before long."]])
 
