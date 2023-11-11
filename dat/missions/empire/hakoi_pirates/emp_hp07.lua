@@ -37,9 +37,9 @@ local ask_text = _([["Are you ready for the big time, {player}? I can get you st
 
 local accept_text = _([[This "Qorel Expanse" Dev Filer mentioned might be just the lead you're looking for. You agree to the mission and shake Dev Filer's hand, secretly planning to ditch it as soon as you find out where this "Qorel Expanse" is. "Good, good!" Dev Filer responds. "I trust you will do a good job out there. With your skills, I'm sure I'll see you again before long."]])
 
-local finish_text = _([[You arrive on the pirate stronghold and can't help but look around in awe. You had never known prior to your adventures in space that pirates had bases as sophisticated as this. Its scale dwarfs many Imperial military stations. After a moment, you catch the eye of a pirate looking at you with a raised eyebrow. She matches the description Dev Filer gave for your contacts. You open your mouth to speak, but she speaks up first. "{player}, is it?" You confirm that it's you, but she continues staring for a moment. "Alright, newbie. Just don't slow us down, got it? You'll get your share once we make it to {planet}. You at least know where it is, right?" You indicate that you don't.
+local finish_text = _([[You arrive on the pirate stronghold and can't help but look around in awe. You had never known prior to your adventures in space that pirates had bases as sophisticated as this. Its scale easily dwarfs many Imperial stations. After a moment, you catch the eye of a pirate looking at you with a raised eyebrow. She matches the description Dev Filer gave for your contact. You open your mouth to speak, but she speaks up first. "{player}, is it?" You confirm that it's you, but she continues staring for a moment. "Alright, newbie. Just don't slow us down, got it? You'll get your share once we make it to {planet}. You at least know where it is, right?" You indicate that you don't.
 
-"God damn it." She starts inputting something on her wrist computer. "Fine, I'll send the location to you. But not the hidden jumps. If you can't get those yourself, I'm leaving you behind. I'll let you know when I'm ready to take off." She leaves, and as she does so you check and find that you indeed have the location of a {planet} in the {system} system on your map. You decide to take this opportunity to ditch the pirates and make your way back to Soldner on {homeplanet} in the {homesystem} system to report your findings.]])
+"God damn it." She starts inputting something on her wrist computer. "Fine, I'll send the location and the route we'll be going thru. Not the whole Qorel Expanse map, thô. That's worth good money and I don't do charity. I'll let you know when I'm ready to take off." She leaves, and as she does so you check and find that you indeed have the location of {planet} in the {system} system on your map, as well as a hidden jump leading to it. You decide to take this opportunity to ditch the pirates and make your way back to Soldner on {homeplanet} in the {homesystem} system to report your findings.]])
 
 local misn_title = _("Big Time")
 local misn_desc = _([[You've been given an escort mission by Dev Filer starting on {planet} in the {system} system. He claims this will help "work your way up to the big time", but it may also .]])
@@ -103,13 +103,33 @@ function land()
    end
 
    local homepla, homesys = planet.get("Emperor's Fist")
-   local qorellia, qorel = planet.get("Qorellia")
+   local destpla, destsys = planet.get("Foundation Station")
    tk.msg("", fmt.f(finish_text,
-         {player=player.name(), planet=qorellia:name(), system=qorel:name(),
+         {player=player.name(), planet=destpla:name(), system=destsys:name(),
             homeplanet=homepla:name(), homesystem=homesys:name()}))
 
-   qorel:setKnown()
-   qorellia:setKnown()
+   -- Make the destination known.
+   destpla:setKnown()
+   destsys:setKnown()
+
+   -- Make all the systems along the job's route known.
+   system.get("New Haven"):setKnown()
+   system.get("Haven"):setKnown()
+   system.get("Gamel"):setKnown()
+   system.get("Coriolis"):setKnown()
+   system.get("Alteris"):setKnown()
+   system.get("Sikh"):setKnown()
+   system.get("Acheron"):setKnown()
+
+   -- Make all the jumps along the job's route known.
+   jump.get("New Haven", "Haven"):setKnown()
+   jump.get("Haven", "Gamel"):setKnown()
+   jump.get("Gamel", "Coriolis"):setKnown()
+   jump.get("Coriolis", "Alteris"):setKnown()
+   jump.get("Alteris", "Sikh"):setKnown()
+   jump.get("Sikh", "Acheron"):setKnown()
+   jump.get("Acheron", "Terminus"):setKnown()
+   jump.get("Terminus", "Acheron"):setKnown()
 
    emp_addShippingLog(fmt.f(log_text,
          {planet=homepla:name(), system=homesys:name()}))
