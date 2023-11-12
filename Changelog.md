@@ -132,8 +132,8 @@
   cargo that you were able to loot.
 * Fixed some repetitiveness in the text of the third Hakoi Pirates
   mission.
-* Fixed Laser Turret MK1 mistakenly having twice as much mass as
-  intended.
+* Fixed Laser Turret MK1 mistakenly having twice as much mass and damage
+  output as intended.
 * Fixed the Seek and Destroy mission not spawning an informant at load
   time.
 * Fixed an issue where the Seek and Destroy mission could refer to bar
