@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>20</mass>
   <price>600000</price>
-  <description>A Power Overdrive Module forces a ship's arsenal to output substantially more damage potential than they're rated for. The process is catastrophic for the weapons' cooling and efficiency, but perfect for pilots who don't have the weapon slot space needed to achieve what their ship is truly capable of by conventional means.</description>
+  <description>A Power Overdrive Module forces a ship's arsenal to output substantially more damage potential than it's rated for. The process is catastrophic for the weapons' cooling and efficiency, but perfect for pilots who don't have the weapon slot space needed to achieve what their ship is truly capable of by conventional means.</description>
   <cpu>60</cpu>
   <gfx_store>power_overdrive_module.png</gfx_store>
  </general>
