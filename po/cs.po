@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-11-11 11:18-0500\n"
+"POT-Creation-Date: 2023-11-15 09:04-0500\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -16150,10 +16150,10 @@ msgstr ""
 #: dat/outfits/utilities/modifiers/power_overdrive_module.xml:8
 msgid ""
 "A Power Overdrive Module forces a ship's arsenal to output substantially "
-"more damage potential than they're rated for. The process is catastrophic "
-"for the weapons' cooling and efficiency, but perfect for pilots who don't "
-"have the weapon slot space needed to achieve what their ship is truly "
-"capable of by conventional means."
+"more damage potential than it's rated for. The process is catastrophic for "
+"the weapons' cooling and efficiency, but perfect for pilots who don't have "
+"the weapon slot space needed to achieve what their ship is truly capable of "
+"by conventional means."
 msgstr ""
 
 #: dat/outfits/utilities/modifiers/power_regulation_override.xml:2
@@ -50713,51 +50713,51 @@ msgstr ""
 msgid "Pilot '%s' outfit ID '%d' is out of range!"
 msgstr ""
 
-#: src/nlua_pilot.c:3611
+#: src/nlua_pilot.c:3613
 msgid ""
 "Quantity must be positive for pilot.cargoAdd (if removing, use pilot.cargoRm)"
 msgstr ""
 
-#: src/nlua_pilot.c:3668
+#: src/nlua_pilot.c:3670
 msgid ""
 "Quantity must be positive for pilot.cargoRm (if adding, use pilot.cargoAdd)"
 msgstr ""
 
-#: src/nlua_pilot.c:4094
+#: src/nlua_pilot.c:4096
 msgid "pilot.memory requires 1 argument!"
 msgstr ""
 
-#: src/nlua_pilot.c:4103
+#: src/nlua_pilot.c:4105
 msgid "Pilot does not have AI."
 msgstr ""
 
-#: src/nlua_pilot.c:4203
+#: src/nlua_pilot.c:4205
 #, c-format
 msgid "Pilot '%s' is not under manual control."
 msgstr ""
 
-#: src/nlua_pilot.c:4210
+#: src/nlua_pilot.c:4212
 #, c-format
 msgid "Failed to create task '%s' for pilot '%s'."
 msgstr ""
 
-#: src/nlua_pilot.c:4571
+#: src/nlua_pilot.c:4573
 #, c-format
 msgid "Pilot '%s' can't jump out exit only jump '%s'"
 msgstr ""
 
 #. Not found.
-#: src/nlua_pilot.c:4583
+#: src/nlua_pilot.c:4585
 #, c-format
 msgid "System '%s' is not adjacent to current system '%s'"
 msgstr ""
 
-#: src/nlua_pilot.c:4633
+#: src/nlua_pilot.c:4635
 #, c-format
 msgid "Planet '%s' not found in system '%s'"
 msgstr ""
 
-#: src/nlua_pilot.c:4696
+#: src/nlua_pilot.c:4698
 #, c-format
 msgid "#%c%s#0 is hailing you."
 msgstr ""
@@ -52195,40 +52195,40 @@ msgstr ""
 msgid "#%cBroadcast %s>#0 \"%s\""
 msgstr ""
 
-#: src/pilot.c:2636 src/pilot.c:2685
+#: src/pilot.c:2639 src/pilot.c:2688
 msgid "#rJump aborted: strayed too far from jump point."
 msgstr ""
 
-#: src/pilot.c:2643
+#: src/pilot.c:2646
 msgid "#rJump aborted: afterburner active."
 msgstr ""
 
-#: src/pilot.c:2657
+#: src/pilot.c:2660
 msgid "#rJump aborted."
 msgstr ""
 
-#: src/pilot.c:2705
+#: src/pilot.c:2708
 #, c-format
 msgid "Pilot '%s' trying to jump through exit-only jump from '%s' to '%s'"
 msgstr ""
 
-#: src/pilot.c:3069
+#: src/pilot.c:3072
 #, c-format
 msgid ""
 "Pilot '%s' failed safety check:\n"
 "%s"
 msgstr ""
 
-#: src/pilot.c:3072
+#: src/pilot.c:3075
 #, c-format
 msgid "   [%d] %s"
 msgstr ""
 
-#: src/pilot.c:3167 src/pilot.c:3201
+#: src/pilot.c:3170 src/pilot.c:3204
 msgid "Unable to allocate memory"
 msgstr ""
 
-#: src/pilot.c:3287
+#: src/pilot.c:3290
 msgid "Creating pilot in system with no jumps nor planets to take off from!"
 msgstr ""
 
