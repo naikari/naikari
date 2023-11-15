@@ -3126,9 +3126,9 @@ static int pilotL_setTemp(lua_State *L)
    NLUA_CHECKRW(L);
 
    /* Handle parameters. */
-   p  = luaL_validpilot(L,1);
-   kelvins  = luaL_checknumber(L, 2);
-   setOutfits = !lua_toboolean(L,3);
+   p = luaL_validpilot(L, 1);
+   kelvins = luaL_checknumber(L, 2);
+   setOutfits = !lua_toboolean(L, 3);
 
    /* Temperature must not go below base temp. */
    kelvins = MAX(kelvins, CONST_SPACE_STAR_TEMP);
@@ -3137,9 +3137,11 @@ static int pilotL_setTemp(lua_State *L)
    p->heat_T = kelvins;
 
    /* Handle pilot outfits (maybe). */
-   if (setOutfits)
-      for (i = 0; i < array_size(p->outfits); i++)
-         p->outfits[i]->heat_T = kelvins;
+   if (setOutfits) {
+      for (i=0; i<array_size(p->outfits); i++) {
+         p->outfits[i]->heat_T = MAX(kelvins, CONST_SPACE_STAR_TEMP);
+      }
+   }
 
    return 0;
 }
