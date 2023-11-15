@@ -142,6 +142,7 @@
   attempting to board would lead to the nearest boardable target getting
   immediately selected. (Clearing the target while attempting to
   auto-board now aborts Autonav.)
+* Fixed a grammar error in the Power Overdrive Module description.
 
 ## 0.10.1
 
