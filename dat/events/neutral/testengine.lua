@@ -114,11 +114,17 @@ end
 
 
 function do_teleport()
-   if dest == nil then
-      -- Shouldn't happen.
-      warn(_("Attempted to teleport without setting a destination."))
+   -- Select where we're going to teleport.
+   local choices = getsysatdistance(system.cur(), 1, 3)
+   if #choices <= 0 then
+      -- Rare circumstance of a system having no nearby
+      -- non-hidden-jump systems; in this case, make it a false
+      -- alarm.
       falsealarm()
+      return
    end
+
+   local dest = choices[rnd.rnd(1, #choices)]
 
    restore_exit()
    player.autonavAbort()
