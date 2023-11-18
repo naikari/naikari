@@ -39,7 +39,7 @@ teleport_text = {
 
 slow_start_text = {
    _([[Your engine sputters and bangs loudly. You notice that it has lost its ability to propel you thru space at the speed it's supposed to.]]),
-   _([[Suddenly you are dizzied as you feel a shockwave as a small explosion happens in your engine. When you recover, you realize that the engine is still working, but operating at a much slower maximum speed than it should.]]),
+   _([[Suddenly you are dizzied as you feel a shockwave from a small explosion happens in your engine. When you recover, you realize that the engine is still working, but operating at a much slower maximum speed than it should.]]),
 }
 
 slow_end_text = {
