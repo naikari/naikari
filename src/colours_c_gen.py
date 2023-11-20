@@ -72,11 +72,11 @@ COLOURS = [
     Colour("TransBack", 0.0, 0.0, 0.0, 0.4),
 
     # Objects
-    Colour("Inert", 221./255., 221./255., 221./255.),
-    Colour("Neutral", 221./255., 204./255., 119./255.),
-    Colour("Friend", 68./255., 170./255., 153./255.),
-    Colour("Hostile", 170./255., 68./255., 153./255.),
-    Colour("Restricted", 153./255., 153./255., 51./255.),
+    Colour("Inert", 221/255, 221/255, 221/255),
+    Colour("Friend", 118/255, 121/255, 255/255),
+    Colour("Neutral", 221/255, 204/255, 119/255),
+    Colour("Restricted", 153/255, 153/255, 51/255),
+    Colour("Hostile", 178/255, 50/255, 68/255),
     # Mission Markers
     Colour("MarkerNew", 142/255, 203/255, 233/255),
     Colour("MarkerNewHilight", 177/255, 113/255, 74/255),
@@ -113,10 +113,10 @@ COLOURS = [
 
     # Font meaning colors
     Colour("FontInert", 221/255, 221/255, 221/255),
+    Colour("FontFriend", 134/255, 133/255, 255/255),
     Colour("FontNeutral", 221/255, 204/255, 119/255),
     Colour("FontRestricted", 153/255, 153/255, 51/255),
-    Colour("FontFriend", 68/255, 170/255, 153/255),
-    Colour("FontHostile", 216/255, 111/255, 197/255),
+    Colour("FontHostile", 255/255, 108/255, 121/255),
 ]
 
 def write_header(f):
