@@ -108,6 +108,10 @@
   interacts with the Seek and Destroy mission.)
 * Improved the visibility of the filled dots in the travel and discovery
   modes of the starmap; they are now smaller, but with black outlines.
+* Changed the "friend" and "hostile" colors to make them more
+  colorblind-accessible, particularly with protanopia and deuteranopia.
+  (The previous colors weren't entirely terrible, but they weren't the
+  most ideal choice.)
 
 ### Bugfixes
 
