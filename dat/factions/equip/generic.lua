@@ -24,8 +24,7 @@ equip_classCargo = {
 -- none should be equipped.
 equip_classOutfits_coreSystems = {
    ["Yacht"] = {
-      "Unicorp PT-18 Core System", "Unicorp PT-80 Core System",
-      "Milspec Aegis 3601 Core System",
+      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
    },
    ["Luxury Yacht"] = {
       "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
@@ -81,8 +80,7 @@ equip_classOutfits_coreSystems = {
 -- none should be equipped.
 equip_classOutfits_engines = {
    ["Yacht"] = {
-      "Nexus Dart 150 Engine", "Unicorp Hawk 300 Engine",
-      "Tricon Zephyr II Engine",
+      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
    },
    ["Luxury Yacht"] = {
       "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
@@ -135,10 +133,7 @@ equip_classOutfits_engines = {
 equip_classOutfits_hulls = {
    ["Yacht"] = {
       "Unicorp D-2 Light Plating",
-      "Unicorp D-4 Light Plating",
       "Unicorp X-2 Light Plating",
-      "Unicorp X-4 Light Plating",
-      "S&K Small Cargo Hull",
    },
    ["Luxury Yacht"] = {
       "Unicorp D-2 Light Plating",
@@ -220,11 +215,6 @@ equip_classOutfits_weapons = {
          "Plasma Blaster MK1",
          "Particle Lance",
          "Ion Cannon",
-         "Laser Turret MK1",
-         "Razor Turret MK1",
-         "Turreted Gauss Gun",
-         "Plasma Turret MK1",
-         "Particle Beam",
       },
    },
    ["Luxury Yacht"] = {
@@ -521,7 +511,7 @@ equip_classOutfits_utilities = {
          varied = true;
          "Reactor Class I", "Unicorp Scrambler", "Jump Scanner",
          "Generic Afterburner", "Small Shield Booster", "Solar Panel",
-         "Sensor Array", "Rotary Turbo Modulator",
+         "Sensor Array",
       },
    },
    ["Luxury Yacht"] = {
