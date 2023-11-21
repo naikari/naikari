@@ -34,31 +34,36 @@ function formation.buffer(leader)
 
    -- Different radii for each class.
    local radii = {
-      ["Yacht"] = -500,
-      ["Luxury Yacht"] = -400,
-      ["Courier"] = -300,
-      ["Armored Transport"] = -200,
-      ["Freighter"] = -100,
-      ["Carrier"] = 100,
+      ["Scout"] = -700,
+      ["Yacht"] = -600,
+      ["Luxury Yacht"] = -500,
+      ["Courier"] = -400,
+      ["Armored Transport"] = -300,
+      ["Freighter"] = -200,
+      ["Carrier"] = -100,
+      ["Battleship"] = 100,
       ["Cruiser"] = 200,
-      ["Destroyer"] = 300,
-      ["Corvette"] = 400,
-      ["Bomber"] = 500,
-      ["Fighter"] = 600,
-      ["Heavy Drone"] = 700,
-      ["Light Fighter"] = 800,
-      ["Drone"] = 900,
-      ["Scout"] = 1000,
+      ["Light Cruiser"] = 300,
+      ["Destroyer"] = 400,
+      ["Corvette"] = 500,
+      ["Bomber"] = 600,
+      ["Fighter"] = 700,
+      ["Heavy Drone"] = 800,
+      ["Light Fighter"] = 900,
+      ["Drone"] = 1000,
    }
    -- Need to keep track of positions already iterated thru.
    local count = {
+      ["Scout"] = 1,
       ["Yacht"] = 1,
       ["Luxury Yacht"] = 1,
       ["Courier"] = 1,
       ["Armored Transport"] = 1,
       ["Freighter"] = 1,
       ["Carrier"] = 1,
+      ["Battleship"] = 1,
       ["Cruiser"] = 1,
+      ["Light Cruiser"] = 1,
       ["Destroyer"] = 1,
       ["Corvette"] = 1,
       ["Bomber"] = 1,
@@ -66,7 +71,6 @@ function formation.buffer(leader)
       ["Heavy Drone"] = 1,
       ["Light Fighter"] = 1,
       ["Drone"] = 1,
-      ["Scout"] = 1,
    }
    for i, p in ipairs(pilots) do
       if p:exists() then

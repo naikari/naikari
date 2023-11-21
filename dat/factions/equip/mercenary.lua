@@ -43,6 +43,20 @@ equip_classOutfits_weapons["Yacht"] = {
       "Particle Lance",
    },
 }
+equip_classOutfits_weapons["Light Fighter"] = {
+      {
+         num = 1;
+         "Unicorp Banshee Launcher",
+         "Unicorp Mace Launcher",
+      },
+      {
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+      },
+}
 equip_classOutfits_weapons["Fighter"] = {
    {
       "Unicorp Fury Launcher",
@@ -156,19 +170,35 @@ equip_classOutfits_weapons["Destroyer"] = {
       "Orion Beam",
    },
 }
-equip_classOutfits_weapons["Cruiser"] = {
+equip_classOutfits_weapons["Light Cruiser"] = {
    {
-      num = 1;
+      num = 2;
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
-      "Hyena Fighter Bay",
-      "Shark Fighter Bay",
-      "Lancelot Fighter Bay",
+      "Mini Hyena Fighter Bay",
+      "Mini Shark Fighter Bay",
+      "Mini Lancelot Fighter Bay",
    },
    {
-      "Heavy Laser Turret",
-      "Railgun Turret",
-      "Ragnarok Beam",
+      "Railgun",
+      "Heavy Ripper Turret",
+      "Plasma Cluster Turret",
+      "Turreted Mass Driver",
+      "Grave Beam",
+   },
+   {
+      "Laser Turret MK2",
+      "Razor Turret MK2",
+      "Turreted Vulcan Gun",
+      "Plasma Turret MK2",
+      "Orion Beam",
+   },
+}
+equip_classOutfits_weapons["Cruiser"] = {
+   {
+      num = 2;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
       "Hyena Fighter Bay",
       "Shark Fighter Bay",
       "Lancelot Fighter Bay",
@@ -179,9 +209,38 @@ equip_classOutfits_weapons["Cruiser"] = {
       "Plasma Cluster Turret",
       "Turreted Mass Driver",
       "Grave Beam",
+   },
+   {
+      "Laser Turret MK2",
+      "Razor Turret MK2",
+      "Turreted Vulcan Gun",
+      "Plasma Turret MK2",
+      "Orion Beam",
       "Mini Hyena Fighter Bay",
       "Mini Shark Fighter Bay",
       "Mini Lancelot Fighter Bay",
+   },
+}
+equip_classOutfits_weapons["Battleship"] = {
+   {
+      num = 2;
+      "Enygma Systems Turreted Fury Launcher",
+      "Enygma Systems Turreted Headhunter Launcher",
+      "Hyena Fighter Bay",
+      "Shark Fighter Bay",
+      "Lancelot Fighter Bay",
+   },
+   {
+      "Heavy Laser Turret",
+      "Railgun Turret",
+      "Ragnarok Beam",
+   },
+   {
+      "Railgun",
+      "Heavy Ripper Turret",
+      "Plasma Cluster Turret",
+      "Turreted Mass Driver",
+      "Grave Beam",
    },
 }
 equip_classOutfits_weapons["Carrier"] = {

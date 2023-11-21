@@ -5,7 +5,7 @@
  <rarity>1</rarity>
  <GUI>neo</GUI>
  <sound>engine</sound>
- <class>Cruiser</class>
+ <class>Light Cruiser</class>
  <rdr_scale>1.75</rdr_scale>
  <price>2700000</price>
  <time_mod>1.625</time_mod>
@@ -38,7 +38,7 @@
   <utility size="large" />
   <utility size="large" />
   <utility size="medium" />
-  <structure size="large" prop="engines" exclusive="1" required="1">Krain Remige Engine</structure>
+  <structure size="large" prop="engines" exclusive="1" required="1">Nexus Bolt 4500 Engine</structure>
   <structure size="large" prop="hull" exclusive="1" required="1">Unicorp D-48 Heavy Plating</structure>
   <structure size="large" />
   <structure size="large" />

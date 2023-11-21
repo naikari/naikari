@@ -4,7 +4,7 @@
  <GFX size="125" sx="12" sy="12">goddard</GFX>
  <GUI>neo</GUI>
  <sound>engine</sound>
- <class>Cruiser</class>
+ <class>Battleship</class>
  <rdr_scale>2</rdr_scale>
  <price>6000000</price>
  <time_mod>2</time_mod>

@@ -5,7 +5,7 @@
  <GUI>neo</GUI>
  <rarity>2</rarity>
  <sound>engine</sound>
- <class>Cruiser</class>
+ <class>Battleship</class>
  <rdr_scale>2</rdr_scale>
  <price>7000000</price>
  <time_mod>2</time_mod>

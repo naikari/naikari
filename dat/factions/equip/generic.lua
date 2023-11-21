@@ -14,7 +14,9 @@ equip_classCargo = {
    ["Bomber"] = .1,
    ["Corvette"] = .15,
    ["Destroyer"] = .2,
+   ["Light Cruiser"] = .2,
    ["Cruiser"] = .2,
+   ["Battleship"] = .2,
    ["Carrier"] = .3,
    ["Drone"] = .05,
    ["Heavy Drone"] = .05,
@@ -46,31 +48,59 @@ equip_classOutfits_coreSystems = {
    ["Light Fighter"] = {
       "Unicorp PT-18 Core System",
       "Milspec Aegis 2201 Core System",
+      "Milspec Hermes 2202 Core System",
       "Milspec Prometheus 2203 Core System",
       "Milspec Orion 2301 Core System",
    },
    ["Fighter"] = {
-      "Unicorp PT-80 Core System", "Milspec Aegis 3601 Core System",
-      "Milspec Prometheus 3603 Core System", "Milspec Orion 3701 Core System",
+      "Unicorp PT-80 Core System",
+      "Milspec Aegis 3601 Core System",
+      "Milspec Hermes 3602 Core System",
+      "Milspec Prometheus 3603 Core System",
+      "Milspec Orion 3701 Core System",
    },
    ["Bomber"] = {
-      "Unicorp PT-80 Core System", "Milspec Aegis 3601 Core System",
+      "Unicorp PT-80 Core System",
+      "Milspec Aegis 3601 Core System",
       "Milspec Orion 3701 Core System",
    },
    ["Corvette"] = {
-      "Unicorp PT-280 Core System", "Milspec Aegis 4701 Core System",
+      "Unicorp PT-280 Core System",
+      "Milspec Aegis 4701 Core System",
       "Milspec Orion 4801 Core System",
    },
    ["Destroyer"] = {
-      "Unicorp PT-400 Core System", "Milspec Aegis 5401 Core System",
-      "Milspec Prometheus 5403 Core System", "Milspec Orion 5501 Core System",
+      "Unicorp PT-400 Core System",
+      "Milspec Aegis 5401 Core System",
+      "Milspec Hermes 5402 Core System",
+      "Milspec Prometheus 5403 Core System",
+      "Milspec Orion 5501 Core System",
+   },
+   ["Light Cruiser"] = {
+      "Unicorp PT-750 Core System",
+      "Milspec Aegis 8501 Core System",
+      "Milspec Hermes 8502 Core System",
+      "Milspec Prometheus 8503 Core System",
+      "Milspec Orion 8601 Core System",
    },
    ["Cruiser"] = {
-      "Unicorp PT-3400 Core System", "Milspec Aegis 8501 Core System",
-      "Milspec Prometheus 8503 Core System", "Milspec Orion 9901 Core System",
+      "Unicorp PT-750 Core System",
+      "Milspec Aegis 8501 Core System",
+      "Milspec Hermes 8502 Core System",
+      "Milspec Prometheus 8503 Core System",
+      "Milspec Orion 8601 Core System",
+   },
+   ["Battleship"] = {
+      "Unicorp PT-3400 Core System",
+      "Milspec Aegis 9801 Core System",
+      "Milspec Hermes 9802 Core System",
+      "Milspec Prometheus 9803 Core System",
+      "Milspec Orion 9901 Core System",
    },
    ["Carrier"] = {
-      "Unicorp PT-3400 Core System", "Milspec Aegis 8501 Core System",
+      "Unicorp PT-3400 Core System",
+      "Milspec Aegis 9801 Core System",
+      "Milspec Hermes 9802 Core System",
       "Milspec Orion 9901 Core System",
    },
    ["Drone"] = {
@@ -87,46 +117,68 @@ equip_classOutfits_coreSystems = {
 -- none should be equipped.
 equip_classOutfits_engines = {
    ["Yacht"] = {
-      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
+      "Nexus Dart 150 Engine",
+      "Tricon Zephyr Engine",
    },
    ["Luxury Yacht"] = {
-      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
+      "Nexus Dart 150 Engine",
+      "Tricon Zephyr Engine",
    },
    ["Scout"] = {
-      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
+      "Nexus Dart 150 Engine",
+      "Tricon Zephyr Engine",
    },
    ["Courier"] = {
-      "Unicorp Hawk 300 Engine", "Tricon Zephyr II Engine",
+      "Unicorp Hawk 300 Engine",
+      "Tricon Zephyr II Engine",
       "Melendez Ox XL Engine",
    },
    ["Freighter"] = {
-      "Unicorp Falcon 1200 Engine", "Melendez Buffalo XL Engine",
+      "Unicorp Falcon 1200 Engine",
+      "Melendez Buffalo XL Engine",
    },
    ["Armored Transport"] = {
-      "Unicorp Falcon 1200 Engine", "Melendez Buffalo XL Engine",
+      "Unicorp Falcon 1200 Engine",
+      "Melendez Buffalo XL Engine",
    },
    ["Light Fighter"] = {
       "Nexus Dart 150 Engine",
       "Tricon Zephyr Engine",
    },
    ["Fighter"] = {
-      "Unicorp Hawk 300 Engine", "Tricon Zephyr II Engine",
+      "Unicorp Hawk 300 Engine",
+      "Tricon Zephyr II Engine",
    },
    ["Bomber"] = {
-      "Unicorp Hawk 300 Engine", "Tricon Zephyr II Engine",
+      "Unicorp Hawk 300 Engine",
+      "Tricon Zephyr II Engine",
       "Melendez Ox XL Engine",
    },
    ["Corvette"] = {
-      "Nexus Arrow 700 Engine", "Tricon Cyclone Engine",
+      "Nexus Arrow 700 Engine",
+      "Tricon Cyclone Engine",
    },
    ["Destroyer"] = {
-      "Unicorp Falcon 1200 Engine", "Tricon Cyclone II Engine",
+      "Unicorp Falcon 1200 Engine",
+      "Tricon Cyclone II Engine",
+   },
+   ["Light Cruiser"] = {
+      "Nexus Bolt 4500 Engine",
+      "Tricon Typhoon Engine",
+      "Krain Remige Engine",
    },
    ["Cruiser"] = {
-      "Unicorp Eagle 6500 Engine", "Tricon Typhoon II Engine",
+      "Nexus Bolt 4500 Engine",
+      "Tricon Typhoon Engine",
+   },
+   ["Battleship"] = {
+      "Unicorp Eagle 6500 Engine",
+      "Tricon Typhoon II Engine",
+      "Melendez Mammoth XL Engine",
    },
    ["Carrier"] = {
-      "Unicorp Eagle 6500 Engine", "Tricon Typhoon II Engine",
+      "Unicorp Eagle 6500 Engine",
+      "Tricon Typhoon II Engine",
       "Melendez Mammoth XL Engine",
    },
    ["Drone"] = {
@@ -201,7 +253,17 @@ equip_classOutfits_hulls = {
       "S&K Medium-Heavy Stealth Plating",
       "S&K Medium-Heavy Combat Plating"
    },
+   ["Light Cruiser"] = {
+      "Unicorp D-48 Heavy Plating",
+      "Unicorp X-48 Heavy Plating",
+      "S&K Heavy Combat Plating",
+   },
    ["Cruiser"] = {
+      "Unicorp D-48 Heavy Plating",
+      "Unicorp X-48 Heavy Plating",
+      "S&K Heavy Combat Plating",
+   },
+   ["Battleship"] = {
       "Unicorp D-72 Heavy Plating",
       "Unicorp X-72 Heavy Plating",
       "S&K Superheavy Combat Plating"
@@ -226,6 +288,16 @@ equip_classOutfits_hulls = {
 equip_classOutfits_weapons = {
    ["Yacht"] = {
       {
+         num = 1;
+         "Photon Dagger",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+         "Ion Cannon",
+      },
+      {
          "Laser Cannon MK1",
          "Razor MK1",
          "Gauss Gun",
@@ -235,6 +307,16 @@ equip_classOutfits_weapons = {
       },
    },
    ["Luxury Yacht"] = {
+      {
+         num = 1;
+         "Photon Dagger",
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+         "Ion Cannon",
+      },
       {
          "Laser Cannon MK1",
          "Razor MK1",
@@ -456,19 +538,37 @@ equip_classOutfits_weapons = {
          "Mini Lancelot Fighter Bay",
       },
    },
-   ["Cruiser"] = {
+   ["Light Cruiser"] = {
       {
-         num = 1;
+         num = 2;
          "Enygma Systems Turreted Fury Launcher",
          "Enygma Systems Turreted Headhunter Launcher",
-         "Hyena Fighter Bay",
-         "Shark Fighter Bay",
-         "Lancelot Fighter Bay",
+         "Mini Hyena Fighter Bay",
+         "Mini Shark Fighter Bay",
+         "Mini Lancelot Fighter Bay",
       },
       {
-         "Heavy Laser Turret",
-         "Railgun Turret",
-         "Ragnarok Beam",
+         "Railgun",
+         "Heavy Ripper Turret",
+         "Plasma Cluster Turret",
+         "Turreted Mass Driver",
+         "Grave Beam",
+         "Heavy Ion Turret",
+      },
+      {
+         "Laser Turret MK2",
+         "Razor Turret MK2",
+         "Turreted Vulcan Gun",
+         "Plasma Turret MK2",
+         "Orion Beam",
+         "EMP Grenade Launcher",
+      },
+   },
+   ["Cruiser"] = {
+      {
+         num = 2;
+         "Enygma Systems Turreted Fury Launcher",
+         "Enygma Systems Turreted Headhunter Launcher",
          "Hyena Fighter Bay",
          "Shark Fighter Bay",
          "Lancelot Fighter Bay",
@@ -491,6 +591,29 @@ equip_classOutfits_weapons = {
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
+      },
+   },
+   ["Battleship"] = {
+      {
+         num = 2;
+         "Enygma Systems Turreted Fury Launcher",
+         "Enygma Systems Turreted Headhunter Launcher",
+         "Hyena Fighter Bay",
+         "Shark Fighter Bay",
+         "Lancelot Fighter Bay",
+      },
+      {
+         "Heavy Laser Turret",
+         "Railgun Turret",
+         "Ragnarok Beam",
+      },
+      {
+         "Railgun",
+         "Heavy Ripper Turret",
+         "Plasma Cluster Turret",
+         "Turreted Mass Driver",
+         "Grave Beam",
+         "Heavy Ion Turret",
       },
    },
    ["Carrier"] = {
@@ -541,50 +664,86 @@ equip_classOutfits_utilities = {
    ["Yacht"] = {
       {
          varied = true;
-         "Reactor Class I", "Unicorp Scrambler", "Jump Scanner",
-         "Generic Afterburner", "Small Shield Booster", "Solar Panel",
+         "Small Thrust Bracer",
+         "Reactor Class I",
+         "Unicorp Scrambler",
+         "Jump Scanner",
+         "Generic Afterburner",
+         "Small Shield Booster",
+         "Solar Panel",
          "Sensor Array",
       },
    },
    ["Luxury Yacht"] = {
       {
          varied = true;
-         "Reactor Class I", "Unicorp Scrambler", "Jump Scanner",
-         "Generic Afterburner", "Small Shield Booster", "Solar Panel",
+         "Small Thrust Bracer",
+         "Reactor Class I",
+         "Unicorp Scrambler",
+         "Jump Scanner",
+         "Generic Afterburner",
+         "Small Shield Booster",
+         "Solar Panel",
          "Sensor Array",
       },
    },
    ["Scout"] = {
       {
          varied = true;
-         "Reactor Class I", "Unicorp Scrambler", "Jump Scanner",
-         "Generic Afterburner", "Small Shield Booster", "Solar Panel",
-         "Unicorp Jammer", "Reverse Thrusters", "Sensor Array",
+         "Droid Repair Crew",
+         "Small Thrust Bracer",
+         "Reactor Class I",
+         "Unicorp Scrambler",
+         "Jump Scanner",
+         "Generic Afterburner",
+         "Small Shield Booster",
+         "Solar Panel",
+         "Unicorp Jammer",
+         "Reverse Thrusters",
+         "Sensor Array",
       },
    },
    ["Courier"] = {
       {
          varied = true;
-         "Reactor Class I", "Unicorp Scrambler", "Jump Scanner",
-         "Generic Afterburner", "Small Shield Booster", "Solar Panel",
+         "Small Thrust Bracer",
+         "Reactor Class I",
+         "Small Shield Booster",
          "Rotary Turbo Modulator",
+         "Unicorp Scrambler",
+         "Jump Scanner",
+         "Generic Afterburner",
+         "Solar Panel",
       },
    },
    ["Freighter"] = {
       {
          varied = true;
-         "Reactor Class II", "Medium Shield Booster", "Droid Repair Crew",
-         "Targeting Array", "Improved Power Regulator",  "Milspec Scrambler",
-         "Milspec Jammer", "Emergency Shield Booster",
+         "Medium Thrust Bracer",
+         "Reactor Class II",
+         "Medium Shield Booster",
+         "Droid Repair Crew",
+         "Targeting Array",
+         "Improved Power Regulator",
+         "Milspec Scrambler",
+         "Milspec Jammer",
+         "Emergency Shield Booster",
          "Rotary Turbo Modulator",
       },
    },
    ["Armored Transport"] = {
       {
          varied = true;
-         "Reactor Class II", "Medium Shield Booster", "Droid Repair Crew",
-         "Targeting Array", "Improved Power Regulator",  "Milspec Scrambler",
-         "Milspec Jammer", "Emergency Shield Booster",
+         "Medium Thrust Bracer",
+         "Reactor Class II",
+         "Medium Shield Booster",
+         "Rotary Power Accelerator",
+         "Droid Repair Crew",
+         "Targeting Array",
+         "Improved Power Regulator",
+         "Milspec Scrambler",
+         "Milspec Jammer",
+         "Emergency Shield Booster",
          "Rotary Turbo Modulator",
       },
    },
@@ -607,59 +766,145 @@ equip_classOutfits_utilities = {
    ["Fighter"] = {
       {
          varied = true;
-         "Reactor Class I", "Unicorp Scrambler", "Generic Afterburner",
-         "Hellburner", "Small Shield Booster", "Solar Panel",
-         "Forward Shock Absorbers", "Power Regulation Override",
-         "Weapons Ionizer", "Reverse Thrusters", "Emergency Shield Booster",
+         "Small Thrust Bracer",
+         "Reactor Class I",
+         "Unicorp Scrambler",
+         "Generic Afterburner",
+         "Hellburner",
+         "Small Shield Booster",
+         "Solar Panel",
+         "Forward Shock Absorbers",
+         "Power Regulation Override",
+         "Weapons Ionizer",
+         "Reverse Thrusters",
+         "Emergency Shield Booster",
          "Sensor Array",
       },
    },
    ["Bomber"] = {
       {
          varied = true;
-         "Reactor Class I", "Unicorp Scrambler", "Generic Afterburner",
-         "Hellburner", "Small Shield Booster", "Solar Panel",
-         "Forward Shock Absorbers", "Power Regulation Override",
-         "Milspec Scrambler", "Milspec Jammer", "Weapons Ionizer",
-         "Reverse Thrusters", "Emergency Shield Booster", "Sensor Array",
+         "Small Thrust Bracer",
+         "Reactor Class I",
+         "Unicorp Scrambler",
+         "Generic Afterburner",
+         "Hellburner",
+         "Small Shield Booster",
+         "Solar Panel",
+         "Forward Shock Absorbers",
+         "Power Regulation Override",
+         "Milspec Scrambler",
+         "Milspec Jammer",
+         "Weapons Ionizer",
+         "Reverse Thrusters",
+         "Emergency Shield Booster",
+         "Sensor Array",
       },
    },
    ["Corvette"] = {
       {
          varied = true;
-         "Reactor Class II", "Medium Shield Booster", "Droid Repair Crew",
-         "Forward Shock Absorbers", "Power Regulation Override",
-         "Milspec Scrambler", "Milspec Jammer", "Weapons Ionizer",
-         "Solar Panel", "Reverse Thrusters", "Hellburner",
-         "Emergency Shield Booster", "Sensor Array",
+         "Medium Thrust Bracer",
+         "Reactor Class II",
+         "Medium Shield Booster",
+         "Droid Repair Crew",
+         "Forward Shock Absorbers",
+         "Power Regulation Override",
+         "Milspec Scrambler",
+         "Milspec Jammer",
+         "Weapons Ionizer",
+         "Solar Panel",
+         "Reverse Thrusters",
+         "Hellburner",
+         "Emergency Shield Booster",
+         "Sensor Array",
       },
    },
    ["Destroyer"] = {
       {
          varied = true;
-         "Reactor Class III", "Large Shield Booster", "Reactor Class II",
-         "Medium Shield Booster", "Droid Repair Crew",
-         "Forward Shock Absorbers", "Power Regulation Override",
-         "Targeting Array", "Improved Power Regulator",
-         "Turreted Weapons Ionizer", "Solar Panel", "Hellburner",
-         "Emergency Shield Booster", "Sensor Array", "Rotary Turbo Modulator",
+         "Reactor Class III",
+         "Large Shield Booster",
+         "Power Overdrive Module",
+         "Turret Conversion Module",
+         "Medium Thrust Bracer",
+         "Reactor Class II",
+         "Medium Shield Booster",
+         "Power Amplification Circuit",
+         "Rotary Power Accelerator",
+         "Droid Repair Crew",
+         "Forward Shock Absorbers",
+         "Power Regulation Override",
+         "Targeting Array",
+         "Improved Power Regulator",
+         "Turreted Weapons Ionizer",
+         "Solar Panel",
+         "Emergency Shield Booster",
+         "Sensor Array",
+      },
+   },
+   ["Light Cruiser"] = {
+      {
+         varied = true;
+         "Large Thrust Bracer",
+         "Reactor Class III",
+         "Large Shield Booster",
+         "Power Overdrive Module",
+         "Turret Conversion Module",
+         "Droid Repair Crew",
+         "Targeting Array",
+         "Improved Power Regulator",
+         "Turreted Weapons Ionizer",
+         "Solar Panel",
+         "Sensor Array",
       },
    },
    ["Cruiser"] = {
       {
          varied = true;
-         "Reactor Class III", "Large Shield Booster", "Droid Repair Crew",
-         "Targeting Array", "Improved Power Regulator",
-         "Turreted Weapons Ionizer", "Solar Panel", "Sensor Array",
-         "Rotary Turbo Modulator",
+         "Large Thrust Bracer",
+         "Reactor Class III",
+         "Large Shield Booster",
+         "Power Overdrive Module",
+         "Turret Conversion Module",
+         "Droid Repair Crew",
+         "Targeting Array",
+         "Improved Power Regulator",
+         "Turreted Weapons Ionizer",
+         "Solar Panel",
+         "Sensor Array",
+      },
+   },
+   ["Battleship"] = {
+      {
+         varied = true;
+         "Large Thrust Bracer",
+         "Reactor Class III",
+         "Large Shield Booster",
+         "Power Overdrive Module",
+         "Turret Conversion Module",
+         "Droid Repair Crew",
+         "Targeting Array",
+         "Improved Power Regulator",
+         "Turreted Weapons Ionizer",
+         "Solar Panel",
+         "Sensor Array",
       },
    },
    ["Carrier"] = {
       {
          varied = true;
-         "Reactor Class III", "Large Shield Booster", "Droid Repair Crew",
-         "Targeting Array", "Turreted Weapons Ionizer", "Sensor Array",
+         "Large Thrust Bracer",
+         "Reactor Class III",
+         "Large Shield Booster",
+         "Power Overdrive Module",
+         "Droid Repair Crew",
          "Rotary Turbo Modulator",
+         "Targeting Array",
+         "Improved Power Regulator",
+         "Turreted Weapons Ionizer",
+         "Solar Panel",
+         "Sensor Array",
       },
    },
    ["Drone"] = {
@@ -684,14 +929,21 @@ equip_classOutfits_structurals = {
    ["Yacht"] = {
       {
          varied = true;
-         "Cargo Pod", "Fuel Pod", "Battery", "Shield Capacitor",
-         "Improved Stabilizer", "Engine Reroute", "Steering Thrusters",
+         "Improved Stabilizer",
+         "Engine Reroute",
+         "Steering Thrusters",
+         "Battery",
+         "Shield Capacitor",
+         "Cargo Pod",
+         "Fuel Pod",
       },
    },
    ["Luxury Yacht"] = {
       {
          varied = true;
-         "Improved Stabilizer", "Engine Reroute", "Steering Thrusters",
+         "Improved Stabilizer",
+         "Engine Reroute",
+         "Steering Thrusters",
       },
    },
    ["Scout"] = {
@@ -699,7 +951,10 @@ equip_classOutfits_structurals = {
          varied = true, probability = {
             ["Fuel Pod"] = 4, ["Improved Stabilizer"] = 2
          };
-         "Fuel Pod", "Improved Stabilizer", "Shield Capacitor",
+         "Fuel Pod",
+         "Improved Stabilizer",
+         "Engine Reroute",
+         "Shield Capacitor",
       },
    },
    ["Courier"] = {
@@ -707,7 +962,9 @@ equip_classOutfits_structurals = {
          varied = true, probability = {
             ["Cargo Pod"] = 4,
          };
-         "Cargo Pod", "Fuel Pod", "Improved Stabilizer",
+         "Cargo Pod",
+         "Fuel Pod",
+         "Improved Stabilizer",
       },
    },
    ["Freighter"] = {
@@ -715,15 +972,20 @@ equip_classOutfits_structurals = {
          varied = true, probability = {
             ["Medium Cargo Pod"] = 6,
          };
-         "Medium Cargo Pod", "Medium Fuel Pod",
+         "Medium Cargo Pod",
+         "Medium Fuel Pod",
       },
    },
    ["Armored Transport"] = {
       {
          varied = true, probability = {
-            ["Cargo Pod"] = 15, ["Medium Fuel Pod"] = 3,
+            ["Cargo Pod"] = 15,
+            ["Medium Fuel Pod"] = 3,
          };
-         "Cargo Pod", "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+         "Cargo Pod",
+         "Medium Fuel Pod",
+         "Battery II",
+         "Shield Capacitor II",
          "Plasteel Plating",
       },
    },
@@ -735,63 +997,131 @@ equip_classOutfits_structurals = {
          };
          "Steering Thrusters",
          "Engine Reroute",
-         "Fuel Pod",
          "Battery",
          "Shield Capacitor",
+         "Fuel Pod",
       },
    },
    ["Fighter"] = {
       {
          varied = true, probability = {
-            ["Steering Thrusters"] = 4, ["Engine Reroute"] = 4,
+            ["Steering Thrusters"] = 4,
+            ["Engine Reroute"] = 4,
          };
-         "Fuel Pod", "Steering Thrusters", "Engine Reroute",
-         "Battery", "Shield Capacitor",
+         "Steering Thrusters",
+         "Engine Reroute",
+         "Battery",
+         "Shield Capacitor",
+         "Fuel Pod",
       },
    },
    ["Bomber"] = {
       {
          varied = true;
-         "Fuel Pod", "Steering Thrusters", "Engine Reroute",
+         "Steering Thrusters",
+         "Engine Reroute",
          "Shield Capacitor",
+         "Fuel Pod",
       },
    },
    ["Corvette"] = {
       {
          varied = true;
-         "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+         "Battery II",
+         "Shield Capacitor II",
          "Plasteel Plating",
+         "Medium Fuel Pod",
+         "Steering Thrusters",
+         "Engine Reroute",
       },
    },
    ["Destroyer"] = {
       {
-         varied = true;
-         "Large Fuel Pod", "Battery III", "Shield Capacitor IV",
-         "Shield Capacitor III", "Nanobond Plating",
+         varied = true, probability = {
+            ["Battery III"] = 3,
+            ["Shield Capacitor III"] = 3,
+            ["Large Fuel Pod"] = 3,
+         };
+         "Battery III",
+         "Shield Capacitor III",
+         "Large Fuel Pod",
+         "Nanobond Plating",
+         "Shield Capacitor IV",
       },
       {
          varied = true;
-         "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+         "Battery II",
+         "Shield Capacitor II",
+         "Plasteel Plating",
+         "Medium Fuel Pod",
+      },
+   },
+   ["Light Cruiser"] = {
+      {
+         varied = true, probability = {
+            ["Battery III"] = 3,
+            ["Shield Capacitor III"] = 3,
+            ["Large Fuel Pod"] = 3,
+         };
+         "Battery III",
+         "Shield Capacitor III",
+         "Large Fuel Pod",
+         "Biometal Armor",
+         "Nanobond Plating",
+         "Shield Capacitor IV",
+      },
+      {
+         varied = true;
+         "Battery II",
+         "Shield Capacitor II",
          "Plasteel Plating",
       },
    },
    ["Cruiser"] = {
       {
          varied = true, probability = {
-            ["Nanobond Plating"] = 3, ["Shield Capacitor IV"] = 2,
+            ["Battery III"] = 3,
+            ["Shield Capacitor III"] = 3,
+            ["Large Fuel Pod"] = 3,
          };
-         "Large Fuel Pod", "Biometal Armor", "Nanobond Plating",
-         "Battery III", "Shield Capacitor III", "Shield Capacitor IV",
+         "Battery III",
+         "Shield Capacitor III",
+         "Large Fuel Pod",
+         "Biometal Armor",
+         "Nanobond Plating",
+         "Shield Capacitor IV",
+      },
+   },
+   ["Battleship"] = {
+      {
+         varied = true, probability = {
+            ["Biometal Armor"] = 2,
+            ["Nanobond Plating"] = 6,
+            ["Shield Capacitor IV"] = 4,
+            ["Large Fuel Pod"] = 3,
+         };
+         "Biometal Armor",
+         "Nanobond Plating",
+         "Shield Capacitor IV",
+         "Large Fuel Pod",
+         "Battery III",
+         "Shield Capacitor III",
       },
    },
    ["Carrier"] = {
       {
          varied = true, probability = {
-            ["Nanobond Plating"] = 6, ["Shield Capacitor IV"] = 4,
-            ["Large Fuel Pod"] = 3, ["Biometal Armor"] = 2
+            ["Biometal Armor"] = 2,
+            ["Nanobond Plating"] = 6,
+            ["Shield Capacitor IV"] = 4,
+            ["Large Fuel Pod"] = 3,
          };
-         "Large Fuel Pod", "Biometal Armor", "Nanobond Plating",
-         "Battery III", "Shield Capacitor III", "Shield Capacitor IV",
+         "Biometal Armor",
+         "Nanobond Plating",
+         "Shield Capacitor IV",
+         "Large Fuel Pod",
+         "Battery III",
+         "Shield Capacitor III",
       },
    },
    ["Drone"] = {
@@ -813,24 +1143,6 @@ equip_classOutfits_structurals = {
 
 -- Table of available core systems by base type.
 equip_typeOutfits_coreSystems = {
-   ["Shark"] = {
-      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
-      "Milspec Hermes 2202 Core System", "Milspec Prometheus 2203 Core System",
-      "Milspec Orion 2301 Core System",
-   },
-   ["Vendetta"] = {
-      "Unicorp PT-80 Core System", "Milspec Aegis 3601 Core System",
-      "Milspec Hermes 3602 Core System", "Milspec Prometheus 3603 Core System",
-      "Milspec Orion 3701 Core System",
-   },
-   ["Kestrel"] = {
-      "Unicorp PT-750 Core System", "Milspec Aegis 8501 Core System",
-      "Milspec Prometheus 8503 Core System", "Milspec Orion 8601 Core System",
-   },
-   ["Hawking"] = {
-      "Unicorp PT-750 Core System", "Milspec Aegis 8501 Core System",
-      "Milspec Prometheus 8503 Core System", "Milspec Orion 8601 Core System",
-   },
    ["Brigand"] = {
       probability = {
          ["Ultralight Brain Stage X"] = 2
@@ -915,15 +1227,9 @@ equip_typeOutfits_coreSystems = {
 -- Table of available engines by base type.
 equip_typeOutfits_engines = {
    ["Vendetta"] = {
-      "Unicorp Hawk 300 Engine", "Melendez Ox XL Engine",
+      "Unicorp Hawk 300 Engine",
       "Tricon Zephyr II Engine",
-   },
-   ["Kestrel"] = {
-      "Nexus Bolt 4500 Engine", "Krain Remige Engine",
-      "Tricon Typhoon Engine",
-   },
-   ["Hawking"] = {
-      "Nexus Bolt 4500 Engine", "Tricon Typhoon Engine",
+      "Melendez Ox XL Engine",
    },
    ["Brigand"] = {
       probability = {
@@ -1009,13 +1315,9 @@ equip_typeOutfits_engines = {
 -- Table of available hulls by base type.
 equip_typeOutfits_hulls = {
    ["Hyena"] = {
-      "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
-   },
-   ["Kestrel"] = {
-      "Unicorp D-48 Heavy Plating", "S&K Heavy Combat Plating",
-   },
-   ["Hawking"] = {
-      "Unicorp D-48 Heavy Plating", "S&K Heavy Combat Plating",
+      "Unicorp D-2 Light Plating",
+      "Unicorp X-2 Light Plating",
+      "S&K Ultralight Stealth Plating",
    },
    ["Brigand"] = {
       probability = {
@@ -1277,9 +1579,11 @@ equip_typeOutfits_structurals = {
    ["Koäla"] = {
       {
          varied = true, probability = {
-            ["Cargo Pod"] = 9, ["Fuel Pod"] = 2
+            ["Cargo Pod"] = 9,
+            ["Fuel Pod"] = 2
          };
-         "Cargo Pod", "Fuel Pod",
+         "Cargo Pod",
+         "Fuel Pod",
       },
    },
 }
@@ -1288,7 +1592,8 @@ equip_typeOutfits_structurals = {
 -- Table of available core systems by ship.
 equip_shipOutfits_coreSystems = {
    ["Pirate Shark"] = {
-      "Unicorp PT-18 Core System", "Milspec Prometheus 2203 Core System",
+      "Unicorp PT-18 Core System",
+      "Milspec Prometheus 2203 Core System",
    },
    ["Empire Shark"] = {"Milspec Orion 2301 Core System"},
    ["Empire Lancelot"] = {"Milspec Orion 3701 Core System"},
