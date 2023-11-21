@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: naev 0.9.0-alpha\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2023-11-15 09:04-0500\n"
+"POT-Creation-Date: 2023-11-20 19:53-0500\n"
 "PO-Revision-Date: 2021-04-04 21:26+0000\n"
 "Last-Translator: Hahaha Nope <ruzneregistrace@email.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/naev/naev/cs/>\n"
@@ -24997,7 +24997,7 @@ msgstr ""
 
 #: dat/events/neutral/testengine.lua:42
 msgid ""
-"Suddenly you are dizzied as you feel a shockwave as a small explosion "
+"Suddenly you are dizzied as you feel a shockwave from a small explosion "
 "happens in your engine. When you recover, you realize that the engine is "
 "still working, but operating at a much slower maximum speed than it should."
 msgstr ""
@@ -25137,11 +25137,10 @@ msgid ""
 msgstr ""
 
 #. Chance to avoid this since it's quite a bad one.
-#. Shouldn't happen.
-#: dat/events/neutral/testengine.lua:119
-msgid "Attempted to teleport without setting a destination."
-msgstr ""
-
+#. Select where we're going to teleport.
+#. Rare circumstance of a system having no nearby
+#. non-hidden-jump systems; in this case, make it a false
+#. alarm.
 #. Disabling the player in a volatile nebula can be an instant
 #. death sentence, so if we're there, pivot to false alarm to
 #. avoid frustration.
