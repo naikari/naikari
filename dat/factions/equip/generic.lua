@@ -9,6 +9,7 @@ equip_classCargo = {
    ["Courier"] = .8,
    ["Freighter"] = .8,
    ["Armored Transport"] = .8,
+   ["Light Fighter"] = .1,
    ["Fighter"] = .1,
    ["Bomber"] = .1,
    ["Corvette"] = .15,
@@ -41,6 +42,12 @@ equip_classOutfits_coreSystems = {
    ["Armored Transport"] = {
       "Unicorp PT-400 Core System", "Milspec Aegis 5401 Core System",
       "Milspec Aegis 5401 Core System", "Milspec Orion 5501 Core System",
+   },
+   ["Light Fighter"] = {
+      "Unicorp PT-18 Core System",
+      "Milspec Aegis 2201 Core System",
+      "Milspec Prometheus 2203 Core System",
+      "Milspec Orion 2301 Core System",
    },
    ["Fighter"] = {
       "Unicorp PT-80 Core System", "Milspec Aegis 3601 Core System",
@@ -97,6 +104,10 @@ equip_classOutfits_engines = {
    },
    ["Armored Transport"] = {
       "Unicorp Falcon 1200 Engine", "Melendez Buffalo XL Engine",
+   },
+   ["Light Fighter"] = {
+      "Nexus Dart 150 Engine",
+      "Tricon Zephyr Engine",
    },
    ["Fighter"] = {
       "Unicorp Hawk 300 Engine", "Tricon Zephyr II Engine",
@@ -159,6 +170,12 @@ equip_classOutfits_hulls = {
       "Unicorp D-24 Medium Plating",
       "Unicorp X-24 Medium Plating",
       "S&K Medium Cargo Hull",
+   },
+   ["Light Fighter"] = {
+      "Unicorp D-2 Light Plating",
+      "Unicorp X-2 Light Plating",
+      "S&K Ultralight Stealth Plating",
+      "S&K Ultralight Combat Plating",
    },
    ["Fighter"] = {
       "Unicorp D-4 Light Plating",
@@ -295,6 +312,21 @@ equip_classOutfits_weapons = {
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
+      },
+   },
+   ["Light Fighter"] = {
+      {
+         num = 1;
+         "Unicorp Banshee Launcher",
+         "Unicorp Mace Launcher",
+      },
+      {
+         "Laser Cannon MK1",
+         "Razor MK1",
+         "Gauss Gun",
+         "Plasma Blaster MK1",
+         "Particle Lance",
+         "Ion Cannon",
       },
    },
    ["Fighter"] = {
@@ -556,6 +588,22 @@ equip_classOutfits_utilities = {
          "Rotary Turbo Modulator",
       },
    },
+   ["Light Fighter"] = {
+      {
+         varied = true;
+         "Reactor Class I",
+         "Unicorp Scrambler",
+         "Generic Afterburner",
+         "Small Shield Booster",
+         "Solar Panel",
+         "Forward Shock Absorbers",
+         "Power Regulation Override",
+         "Weapons Ionizer",
+         "Reverse Thrusters",
+         "Emergency Shield Booster",
+         "Sensor Array",
+      },
+   },
    ["Fighter"] = {
       {
          varied = true;
@@ -679,6 +727,19 @@ equip_classOutfits_structurals = {
          "Plasteel Plating",
       },
    },
+   ["Light Fighter"] = {
+      {
+         varied = true, probability = {
+            ["Steering Thrusters"] = 4,
+            ["Engine Reroute"] = 4,
+         };
+         "Steering Thrusters",
+         "Engine Reroute",
+         "Fuel Pod",
+         "Battery",
+         "Shield Capacitor",
+      },
+   },
    ["Fighter"] = {
       {
          varied = true, probability = {
@@ -752,22 +813,10 @@ equip_classOutfits_structurals = {
 
 -- Table of available core systems by base type.
 equip_typeOutfits_coreSystems = {
-   ["Hyena"] = {
-      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
-      "Milspec Prometheus 2203 Core System", "Milspec Orion 2301 Core System",
-   },
    ["Shark"] = {
       "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
       "Milspec Hermes 2202 Core System", "Milspec Prometheus 2203 Core System",
       "Milspec Orion 2301 Core System",
-   },
-   ["Fidelity"] = {
-      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
-      "Milspec Prometheus 2203 Core System", "Milspec Orion 2301 Core System",
-   },
-   ["Derivative"] = {
-      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
-      "Milspec Prometheus 2203 Core System", "Milspec Orion 2301 Core System",
    },
    ["Vendetta"] = {
       "Unicorp PT-80 Core System", "Milspec Aegis 3601 Core System",
@@ -865,18 +914,6 @@ equip_typeOutfits_coreSystems = {
 
 -- Table of available engines by base type.
 equip_typeOutfits_engines = {
-   ["Hyena"] = {
-      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
-   },
-   ["Shark"] = {
-      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
-   },
-   ["Fidelity"] = {
-      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
-   },
-   ["Derivative"] = {
-      "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
-   },
    ["Vendetta"] = {
       "Unicorp Hawk 300 Engine", "Melendez Ox XL Engine",
       "Tricon Zephyr II Engine",
@@ -974,18 +1011,6 @@ equip_typeOutfits_hulls = {
    ["Hyena"] = {
       "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
    },
-   ["Shark"] = {
-      "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
-      "S&K Ultralight Combat Plating",
-   },
-   ["Fidelity"] = {
-      "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
-      "S&K Ultralight Combat Plating",
-   },
-   ["Derivative"] = {
-      "Unicorp D-2 Light Plating", "S&K Ultralight Stealth Plating",
-      "S&K Ultralight Combat Plating",
-   },
    ["Kestrel"] = {
       "Unicorp D-48 Heavy Plating", "S&K Heavy Combat Plating",
    },
@@ -1076,66 +1101,6 @@ equip_typeOutfits_hulls = {
 -- Tables of available weapons by base type.
 -- See equip_set function for more info.
 equip_typeOutfits_weapons = {
-   ["Hyena"] = {
-      {
-         num = 1;
-         "Unicorp Banshee Launcher",
-         "Unicorp Mace Launcher",
-      },
-      {
-         "Laser Cannon MK1",
-         "Razor MK1",
-         "Gauss Gun",
-         "Plasma Blaster MK1",
-         "Particle Lance",
-         "Ion Cannon",
-      },
-   },
-   ["Shark"] = {
-      {
-         num = 1;
-         "Unicorp Banshee Launcher",
-         "Unicorp Mace Launcher",
-      },
-      {
-         "Laser Cannon MK1",
-         "Razor MK1",
-         "Gauss Gun",
-         "Plasma Blaster MK1",
-         "Particle Lance",
-         "Ion Cannon",
-      },
-   },
-   ["Fidelity"] = {
-      {
-         num = 1;
-         "Unicorp Banshee Launcher",
-         "Unicorp Mace Launcher",
-      },
-      {
-         "Laser Cannon MK1",
-         "Razor MK1",
-         "Gauss Gun",
-         "Plasma Blaster MK1",
-         "Particle Lance",
-         "Ion Cannon",
-      },
-   },
-   ["Derivative"] = {
-      {
-         num = 1;
-         "Unicorp Banshee Launcher",
-         "Unicorp Mace Launcher",
-      },
-      {
-         "Laser Cannon MK1",
-         "Razor MK1",
-         "Gauss Gun",
-         "Plasma Blaster MK1",
-         "Particle Lance",
-         "Ion Cannon",
-      },
-   },
    ["Brigand"] = {
       {
          num = 1;

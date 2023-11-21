@@ -32,34 +32,42 @@ function formation.buffer(leader)
    local class_count = count_classes(pilots)
    local angle, radius
 
-   local radii = {["Yacht"] = -500,
-                  ["Luxury Yacht"] = -400,
-                  ["Courier"] = -300,
-                  ["Armored Transport"] = -200,
-                  ["Freighter"] = -100,
-                  ["Carrier"] = 100,
-                  ["Cruiser"] = 200,
-                  ["Destroyer"] = 300,
-                  ["Corvette"] = 400,
-                  ["Bomber"] = 500,
-                  ["Heavy Drone"] = 600,
-                  ["Fighter"] = 700,
-                  ["Drone"] = 800,
-                  ["Scout"] = 900 } -- Different radii for each class.
-   local count = {["Yacht"] = 1,
-                  ["Luxury Yacht"] = 1,
-                  ["Courier"] = 1,
-                  ["Armored Transport"] = 1,
-                  ["Freighter"] = 1,
-                  ["Carrier"] = 1,
-                  ["Cruiser"] = 1,
-                  ["Destroyer"] = 1,
-                  ["Corvette"] = 1,
-                  ["Bomber"] = 1,
-                  ["Heavy Drone"] = 1,
-                  ["Fighter"] = 1,
-                  ["Drone"] = 1,
-                  ["Scout"] = 1 } -- Need to keep track of positions already iterated thru.
+   -- Different radii for each class.
+   local radii = {
+      ["Yacht"] = -500,
+      ["Luxury Yacht"] = -400,
+      ["Courier"] = -300,
+      ["Armored Transport"] = -200,
+      ["Freighter"] = -100,
+      ["Carrier"] = 100,
+      ["Cruiser"] = 200,
+      ["Destroyer"] = 300,
+      ["Corvette"] = 400,
+      ["Bomber"] = 500,
+      ["Fighter"] = 600,
+      ["Heavy Drone"] = 700,
+      ["Light Fighter"] = 800,
+      ["Drone"] = 900,
+      ["Scout"] = 1000,
+   }
+   -- Need to keep track of positions already iterated thru.
+   local count = {
+      ["Yacht"] = 1,
+      ["Luxury Yacht"] = 1,
+      ["Courier"] = 1,
+      ["Armored Transport"] = 1,
+      ["Freighter"] = 1,
+      ["Carrier"] = 1,
+      ["Cruiser"] = 1,
+      ["Destroyer"] = 1,
+      ["Corvette"] = 1,
+      ["Bomber"] = 1,
+      ["Fighter"] = 1,
+      ["Heavy Drone"] = 1,
+      ["Light Fighter"] = 1,
+      ["Drone"] = 1,
+      ["Scout"] = 1,
+   }
    for i, p in ipairs(pilots) do
       if p:exists() then
          ship_class = p:ship():class() -- For readability.
