@@ -1,5 +1,13 @@
 # NAIKARI CHANGELOG
 
+## 0.12.0
+
+* Added several more possible randomly-generated pilot names.
+* Yachts are now generally equipped more lightly.
+* Split the Fighter class into Fighter and Light Fighter classes.
+* Split the Cruiser class into Cruiser, Light Cruiser, and Battleship
+  classes.
+
 ## 0.11.0
 
 ### Major Changes
