@@ -113,7 +113,13 @@ function attack_choose ()
    elseif class == "Fighter" then
       atk_fighter_init()
 
+   elseif class == "Light Fighter" then
+      atk_fighter_init()
+
    elseif class == "Drone" then
+      atk_drone_init()
+
+   elseif class == "Heavy Drone" then
       atk_drone_init()
 
    -- Medium ships
