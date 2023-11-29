@@ -1777,9 +1777,9 @@ equip_shipOutfits_structurals = {
 --[[
 Wrapper for pilot.outfitAdd() that prints a warning if no outfits added.
 --]]
-function equip_warn(p, outfit, q, bypass)
+function equip_warn(p, outfit, q, bypass_cpu, bypass_slot)
    q = q or 1
-   local r = pilot.outfitAdd(p, outfit, q, bypass)
+   local r = pilot.outfitAdd(p, outfit, q, bypass_cpu, bypass_slot)
    if r <= 0 then
       warn(string.format(_("Could not equip %s on pilot %s!"), outfit, p:name()))
    end
@@ -1872,11 +1872,12 @@ end
 
 
 --[[
--- @brief Does generic pilot equipping
---
---    @param p Pilot to equip
+Does generic pilot equipping
+
+   @param p Pilot to equip
+   @param[opt] recursive Used internally to track recursive calls.
 --]]
-function equip_generic(p)
+function equip_generic(p, recursive)
    -- Start with an empty ship
    p:outfitRm("all")
    p:outfitRm("cores")
@@ -2012,6 +2013,24 @@ function equip_generic(p)
             local ncargo = rnd.rnd(1, freespace)
             p:cargoAdd(cargotype, ncargo)
          end
+      end
+   end
+
+   -- Check spaceworthiness.
+   if not p:spaceworthy() then
+      -- Ship is not spaceworthy, so remove cargo and re-equip the ship.
+      p:cargoRm("all")
+      if recursive then
+         -- If we already retried, fall back to default outfits.
+         p:outfitRm("all")
+         p:outfitRm("cores")
+         local slots = p:ship():setSlots()
+         for i = 1, #slots do
+            equip_warn(p, slots[i].outfit, 1, true, false)
+         end
+      else
+         -- We've only tried once, so give it another try.
+         equip_generic(p, true)
       end
    end
 end
