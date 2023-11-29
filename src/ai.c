@@ -987,8 +987,8 @@ static void ai_create( Pilot* pilot )
          && (aiL_status==AI_STATUS_CREATE)
          && !pilot_isFlag(pilot, PILOT_EMPTY)
          && (pilot->id != PLAYER_ID)) {
-      if  (faction_getEquipper( pilot->faction ) != LUA_NOREF) {
-         env = faction_getEquipper( pilot->faction );
+      if (faction_getEquipper(pilot->faction) != LUA_NOREF) {
+         env = faction_getEquipper(pilot->faction);
          func = "equip";
       }
       nlua_getenv(env, func);

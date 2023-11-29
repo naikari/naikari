@@ -1080,6 +1080,11 @@ void pilot_calcStats( Pilot* pilot )
    pilot->dmg_absorb = CLAMP(0., 1., pilot->dmg_absorb + s->absorb);
 
    /* Give the pilot his health proportion back */
+   /* XXX: This method of doing things is not ideal since it can in
+    * theory cause unwanted healing or loss of health. It's not
+    * currently a problem, but the existence of an activated outfit that
+    * manipulates e.g. max shield or max energy would lead to a likely
+    * unwanted change to current shield/energy as well. */
    pilot->armour = ac * pilot->armour_max;
    pilot->shield = sc * pilot->shield_max;
    pilot->energy = ec * pilot->energy_max;

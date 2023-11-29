@@ -119,6 +119,7 @@ static int pilotL_setNoLand(lua_State *L);
 static int pilotL_setNoClear(lua_State *L);
 static int pilotL_outfitAdd(lua_State *L);
 static int pilotL_outfitRm(lua_State *L);
+static int pilotL_outfitEquipDefaults(lua_State *L);
 static int pilotL_setFuel(lua_State *L);
 static int pilotL_intrinsicReset(lua_State *L);
 static int pilotL_intrinsicSet(lua_State *L);
@@ -249,12 +250,13 @@ static const luaL_Reg pilotL_methods[] = {
    { "broadcast", pilotL_broadcast },
    { "comm", pilotL_comm },
    /* Outfits. */
-   { "outfitAdd", pilotL_outfitAdd },
-   { "outfitRm", pilotL_outfitRm },
-   { "setFuel", pilotL_setFuel },
-   { "intrinsicReset", pilotL_intrinsicReset },
-   { "intrinsicSet", pilotL_intrinsicSet },
-   { "intrinsicGet", pilotL_intrinsicGet },
+   {"outfitAdd", pilotL_outfitAdd},
+   {"outfitRm", pilotL_outfitRm},
+   {"outfitEquipDefaults", pilotL_outfitEquipDefaults},
+   {"setFuel", pilotL_setFuel},
+   {"intrinsicReset", pilotL_intrinsicReset},
+   {"intrinsicSet", pilotL_intrinsicSet},
+   {"intrinsicGet", pilotL_intrinsicGet},
    /* Ship. */
    {"ship", pilotL_ship},
    {"cargoFree", pilotL_cargoFree},
@@ -2791,16 +2793,18 @@ static int pilotL_outfitAdd(lua_State *L)
    Pilot *p;
    const Outfit *o;
    int ret;
-   int q, added, bypass_cpu, bypass_slot;
+   int q;
+   int added;
+   int bypass_cpu, bypass_slot;
 
    NLUA_CHECKRW(L);
 
    /* Get parameters. */
-   p      = luaL_validpilot(L,1);
-   o      = luaL_validoutfit(L,2);
-   q      = luaL_optinteger(L,3,1);
-   bypass_cpu = lua_toboolean(L,4);
-   bypass_slot = lua_toboolean(L,5);
+   p = luaL_validpilot(L, 1);
+   o = luaL_validoutfit(L, 2);
+   q = luaL_optinteger(L, 3, 1);
+   bypass_cpu = lua_toboolean(L, 4);
+   bypass_slot = lua_toboolean(L, 5);
 
    /* Add outfit. */
    added = 0;
@@ -2957,6 +2961,42 @@ static int pilotL_outfitRm(lua_State *L)
 
    lua_pushnumber( L, removed );
    return 1;
+}
+
+
+/**
+ * @brief Equips the ship's default outfits to the pilot.
+ *
+ * This removes any existing outfits from the pilot and resets all slots
+ * to the defaults, as if it was a new pilot.
+ *
+ *    @luatparam Pilot p Pilot to equip default outfits to.
+ * @luafunc outfitEquipDefaults
+ */
+static int pilotL_outfitEquipDefaults(lua_State *L)
+{
+   int i;
+   Pilot *p;
+
+   NLUA_CHECKRW(L);
+
+   /* Get parameters. */
+   p = luaL_validpilot(L, 1);
+
+   for (i=0; i<array_size(p->outfits); i++) {
+      pilot_rmOutfitRaw(p, p->outfits[i]);
+      if (p->outfits[i]->sslot->data != NULL)
+         pilot_addOutfitRaw(p, p->outfits[i]->sslot->data, p->outfits[i]);
+   }
+
+   /* Recalculate stats. */
+   pilot_calcStats(p);
+
+   /* Update equipment window if operating on the player's pilot. */
+   if (player.p != NULL && player.p == p)
+      outfits_updateEquipmentOutfits();
+
+   return 0;
 }
 
 

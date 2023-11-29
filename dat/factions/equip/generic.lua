@@ -2022,12 +2022,7 @@ function equip_generic(p, recursive)
       p:cargoRm("all")
       if recursive then
          -- If we already retried, fall back to default outfits.
-         p:outfitRm("all")
-         p:outfitRm("cores")
-         local slots = p:ship():setSlots()
-         for i = 1, #slots do
-            equip_warn(p, slots[i].outfit, 1, true, false)
-         end
+         p:outfitEquipDefaults()
       else
          -- We've only tried once, so give it another try.
          equip_generic(p, true)

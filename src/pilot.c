@@ -3013,12 +3013,12 @@ static void pilot_init(Pilot* pilot, const Ship* ship, const char* name,
    pilot->armour = pilot->armour_max = 1.; /* hack to have full armour */
    pilot->shield = pilot->shield_max = 1.; /* ditto shield */
    pilot->energy = pilot->energy_max = 1.; /* ditto energy */
-   pilot->fuel   = pilot->fuel_max   = 1; /* ditto fuel */
+   pilot->fuel = pilot->fuel_max = 1; /* ditto fuel */
    pilot_calcStats(pilot);
    pilot->stress = 0.; /* No stress. */
 
    /* Allocate outfit memory. */
-   pilot->outfits  = array_create( PilotOutfitSlot* );
+   pilot->outfits = array_create(PilotOutfitSlot*);
    /* First pass copy data. */
    for (i=0; i<3; i++) {
       *pilot_list_ptr[i] = array_create_size( PilotOutfitSlot, array_size(ship_list[i]) );
