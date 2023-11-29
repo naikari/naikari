@@ -27,23 +27,29 @@ equip_classCargo = {
 -- none should be equipped.
 equip_classOutfits_coreSystems = {
    ["Yacht"] = {
-      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
+      "Unicorp PT-18 Core System",
+      "Milspec Aegis 2201 Core System",
    },
    ["Luxury Yacht"] = {
-      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
+      "Unicorp PT-18 Core System",
+      "Milspec Aegis 2201 Core System",
    },
    ["Scout"] = {
-      "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
+      "Unicorp PT-80 Core System",
    },
    ["Courier"] = {
-      "Unicorp PT-80 Core System", "Milspec Aegis 3601 Core System",
+      "Unicorp PT-80 Core System",
+      "Milspec Aegis 3601 Core System",
    },
    ["Freighter"] = {
-      "Unicorp PT-400 Core System", "Milspec Aegis 5401 Core System",
+      "Unicorp PT-400 Core System",
+      "Milspec Aegis 5401 Core System",
    },
    ["Armored Transport"] = {
-      "Unicorp PT-400 Core System", "Milspec Aegis 5401 Core System",
-      "Milspec Aegis 5401 Core System", "Milspec Orion 5501 Core System",
+      "Unicorp PT-400 Core System",
+      "Milspec Aegis 5401 Core System",
+      "Milspec Prometheus 5403 Core System",
+      "Milspec Orion 5501 Core System",
    },
    ["Light Fighter"] = {
       "Unicorp PT-18 Core System",
@@ -328,12 +334,11 @@ equip_classOutfits_weapons = {
    },
    ["Scout"] = {
       {
-         "Laser Cannon MK1",
-         "Razor MK1",
-         "Gauss Gun",
-         "Plasma Blaster MK1",
-         "Particle Lance",
-         "Ion Cannon",
+         "Laser Turret MK1",
+         "Razor Turret MK1",
+         "Turreted Gauss Gun",
+         "Plasma Turret MK1",
+         "Particle Beam",
       },
    },
    ["Courier"] = {
@@ -690,13 +695,19 @@ equip_classOutfits_utilities = {
    ["Scout"] = {
       {
          varied = true;
+         "Medium Shield Booster",
+         "Rotary Power Accelerator",
          "Droid Repair Crew",
+         "Targeting Array",
+      },
+      {
+         varied = true;
          "Small Thrust Bracer",
          "Reactor Class I",
+         "Rotary Turbo Modulator",
          "Unicorp Scrambler",
          "Jump Scanner",
          "Generic Afterburner",
-         "Small Shield Booster",
          "Solar Panel",
          "Unicorp Jammer",
          "Reverse Thrusters",
