@@ -911,7 +911,7 @@ void pilot_calcStats( Pilot* pilot )
    int i;
    const Outfit* o;
    PilotOutfitSlot *slot;
-   double ac, sc, ec, tm; /* temporary health coefficients to set */
+   double tm;
    ShipStats *s;
 
    /*
@@ -931,9 +931,6 @@ void pilot_calcStats( Pilot* pilot )
    /* fuel_consumption. */
    pilot->fuel_consumption = pilot->ship->fuel_consumption;
    /* health */
-   ac = (pilot->armour_max > 0.) ? pilot->armour / pilot->armour_max : 0.;
-   sc = (pilot->shield_max > 0.) ? pilot->shield / pilot->shield_max : 0.;
-   ec = (pilot->energy_max > 0.) ? pilot->energy / pilot->energy_max : 0.;
    pilot->armour_max = pilot->ship->armour;
    pilot->shield_max = pilot->ship->shield;
    pilot->fuel_max = pilot->ship->fuel;
@@ -1079,15 +1076,10 @@ void pilot_calcStats( Pilot* pilot )
    pilot->energy_loss += s->energy_loss;
    pilot->dmg_absorb = CLAMP(0., 1., pilot->dmg_absorb + s->absorb);
 
-   /* Give the pilot his health proportion back */
-   /* XXX: This method of doing things is not ideal since it can in
-    * theory cause unwanted healing or loss of health. It's not
-    * currently a problem, but the existence of an activated outfit that
-    * manipulates e.g. max shield or max energy would lead to a likely
-    * unwanted change to current shield/energy as well. */
-   pilot->armour = ac * pilot->armour_max;
-   pilot->shield = sc * pilot->shield_max;
-   pilot->energy = ec * pilot->energy_max;
+   /* Make sure health values are within the new max. */
+   pilot->armour = CLAMP(0., pilot->armour_max, pilot->armour);
+   pilot->shield = CLAMP(0., pilot->shield_max, pilot->shield);
+   pilot->energy = CLAMP(0., pilot->energy_max, pilot->energy);
 
    /* Dump excess fuel */
    pilot->fuel = (pilot->fuel_max >= pilot->fuel) ? pilot->fuel : pilot->fuel_max;
