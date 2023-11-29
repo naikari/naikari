@@ -2023,6 +2023,20 @@ function equip_generic(p, recursive)
       if recursive then
          -- If we already retried, fall back to default outfits.
          p:outfitEquipDefaults()
+
+         -- Fill ammo.
+         p:fillAmmo()
+
+         -- Add fuel.
+         local mem = p:memory()
+         local stats = p:stats()
+         local fcons = stats.fuel_consumption
+         local fmax = stats.fuel_max
+         if mem.spawn_origin_type == "planet" then
+            p:setFuel(true)
+         else
+            p:setFuel(rnd.uniform(fcons, fmax - fcons))
+         end
       else
          -- We've only tried once, so give it another try.
          equip_generic(p, true)
