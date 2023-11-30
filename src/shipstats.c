@@ -340,8 +340,8 @@ static const ShipStatsLookup ss_lookup[] = {
 /*
  * Prototypes.
  */
-static const char* ss_printD_colour( double d, const ShipStatsLookup *sl );
-static const char* ss_printI_colour( int i, const ShipStatsLookup *sl );
+static char ss_printD_colour(double d, const ShipStatsLookup *sl);
+static char ss_printI_colour(int i, const ShipStatsLookup *sl);
 static int ss_printD(char *buf, int len, int newline, double d,
       const ShipStatsLookup *sl, const char *display);
 static int ss_printA(char *buf, int len, int newline, double d,
@@ -637,32 +637,32 @@ ShipStatsType ss_typeFromName( const char *name )
 /**
  * @brief Some colour coding for ship stats doubles.
  */
-static const char* ss_printD_colour( double d, const ShipStatsLookup *sl )
+static char ss_printD_colour(double d, const ShipStatsLookup *sl)
 {
    if (sl->inverted) {
       if (d < 0.)
-         return "g";
-      return "r";
+         return 'G';
+      return 'B';
    }
 
    if (d > 0.)
-      return "g";
-   return "r";
+      return 'G';
+   return 'B';
 }
 /**
  * @brief Some colour coding for ship stats integers.
  */
-static const char* ss_printI_colour( int i, const ShipStatsLookup *sl )
+static char ss_printI_colour(int i, const ShipStatsLookup *sl)
 {
    if (sl->inverted) {
       if (i < 0)
-         return "g";
-      return "r";
+         return 'G';
+      return 'B';
    }
 
    if (i > 0)
-      return "g";
-   return "r";
+      return 'G';
+   return 'B';
 }
 /**
  * @brief Some colour coding for ship stats doubles.
@@ -672,12 +672,12 @@ static const char* ss_printD_symbol( double d, const ShipStatsLookup *sl )
    if (sl->inverted) {
       if (d < 0.)
          return "";
-      return "!! ";
+      return "* ";
    }
 
    if (d > 0.)
       return "";
-   return "!! ";
+   return "* ";
 }
 /**
  * @brief Some colour coding for ship stats integers.
@@ -687,12 +687,12 @@ static const char* ss_printI_symbol( int i, const ShipStatsLookup *sl )
    if (sl->inverted) {
       if (i < 0)
          return "";
-      return "!! ";
+      return "* ";
    }
 
    if (i > 0)
       return "";
-   return "!! ";
+   return "* ";
 }
 
 
@@ -709,11 +709,11 @@ static int ss_printD(char *buf, int len, int newline, double d,
 
    snprintf(buf2, sizeof(buf2), _(display), d*100);
 
-   return scnprintf( buf, len, "%s#%s%s%s#0",
+   return scnprintf(buf, len, "%s#%c%s%s#0",
          (newline) ? "\n" : "",
-         ss_printD_colour( d, sl ),
-         ss_printD_symbol( d, sl ),
-         buf2 );
+         ss_printD_colour(d, sl),
+         ss_printD_symbol(d, sl),
+         buf2);
 }
 
 
@@ -730,11 +730,11 @@ static int ss_printA(char *buf, int len, int newline, double d,
 
    snprintf(buf2, sizeof(buf2), _(display), d);
 
-   return scnprintf( buf, len, "%s#%s%s%s#0",
+   return scnprintf(buf, len, "%s#%c%s%s#0",
          (newline) ? "\n" : "",
-         ss_printD_colour( d, sl ),
-         ss_printD_symbol( d, sl ),
-         buf2 );
+         ss_printD_colour(d, sl),
+         ss_printD_symbol(d, sl),
+         buf2);
 }
 
 
@@ -751,11 +751,11 @@ static int ss_printI(char *buf, int len, int newline, int i,
 
    snprintf(buf2, sizeof(buf2), _(display), i);
 
-   return scnprintf( buf, len, "%s#%s%s%s#0",
+   return scnprintf(buf, len, "%s#%c%s%s#0",
          (newline) ? "\n" : "",
-         ss_printI_colour( i, sl ),
-         ss_printI_symbol( i, sl ),
-         buf2 );
+         ss_printI_colour(i, sl),
+         ss_printI_symbol(i, sl),
+         buf2);
 }
 
 
@@ -767,7 +767,7 @@ static int ss_printB(char *buf, int len, int newline, int b,
 {
    if (!b)
       return 0;
-   return scnprintf(buf, len, "%s#%s%s%s#0",
+   return scnprintf(buf, len, "%s#%c%s%s#0",
          newline ? "\n" : "",
          ss_printI_colour(b, sl),
          ss_printI_symbol(b, sl),

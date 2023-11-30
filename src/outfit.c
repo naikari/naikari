@@ -1982,16 +1982,16 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
          temp->u.afb.mass_limit);
    i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
          _("#%c%s%+G mAU/s² Acceleration#0\n"),
-         (temp->u.afb.thrust < 0 ? 'r' : 'g'),
-         (temp->u.afb.thrust < 0 ? "!! " : ""), temp->u.afb.thrust);
+         (temp->u.afb.thrust < 0 ? 'B' : 'G'),
+         (temp->u.afb.thrust < 0 ? "* " : ""), temp->u.afb.thrust);
    i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
          _("#%c%s%+G%% Maximum Speed#0\n"),
-         (temp->u.afb.speed < 0 ? 'r' : 'g'),
-         (temp->u.afb.speed < 0 ? "!! " : ""), temp->u.afb.speed);
+         (temp->u.afb.speed < 0 ? 'B' : 'G'),
+         (temp->u.afb.speed < 0 ? "* " : ""), temp->u.afb.speed);
    i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
          _("#%c%s%+G GW Energy Loss#0\n"),
-         (temp->u.afb.energy > 0 ? 'r' : 'g'),
-         (temp->u.afb.energy > 0 ? "!! " : ""), temp->u.afb.energy);
+         (temp->u.afb.energy > 0 ? 'B' : 'G'),
+         (temp->u.afb.energy > 0 ? "* " : ""), temp->u.afb.energy);
    i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
          _("%G s Heat Up"),
          temp->u.afb.heatup);

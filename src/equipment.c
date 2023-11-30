@@ -1603,11 +1603,11 @@ static void equipment_genOutfitList( unsigned int wid )
 static char eq_qCol(double cur, double base, int inv, int outcond)
 {
    if (outcond)
-      return 'r';
+      return 'D';
    else if (cur > base)
-      return (inv) ? 'y' : 'g';
+      return (inv) ? 'B' : 'G';
    else if (cur < base)
-      return (inv) ? 'g' : 'y';
+      return (inv) ? 'G' : 'B';
    return '0';
 }
 
@@ -1620,9 +1620,9 @@ static const char* eq_qSym(double cur, double base, int inv, int outcond)
    if (outcond)
       return "!! ";
    else if (cur > base)
-      return (inv) ? "*" : "";
+      return (inv) ? "* " : "";
    else if (cur < base)
-      return (inv) ? "" : "*";
+      return (inv) ? "" : "* ";
    return "";
 }
 
@@ -1788,7 +1788,7 @@ void equipment_updateShips( unsigned int wid, char* str )
             (ship->ship->rdr_jump_range+ship->ship->stats_array.rdr_jump_range)
                * ship->ship->stats_array.rdr_jump_range_mod,
             0, ship->rdr_jump_range < 0.),
-      problems ? 'r' : '0', errorReport);
+      problems ? 'D' : '0', errorReport);
    window_modifyText(wid, "txtDDesc", buf);
 
    /* Clean up. */
