@@ -15,9 +15,9 @@
   <sound_off>afb_disengage</sound_off>
   <thrust>180</thrust>
   <speed>30</speed>
-  <energy>30</energy>
+  <energy>10</energy>
   <mass_limit>160</mass_limit>
-  <heatup>17</heatup>
+  <heatup>30</heatup>
   <heat_base>350</heat_base>
   <heat_cap>450</heat_cap>
  </specific>
