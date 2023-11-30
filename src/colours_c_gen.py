@@ -48,17 +48,19 @@ COLOURS = [
     Colour( "PrimeRed", 1.00, 0.00, 0.00 ),
     Colour( "BrightRed", 1.00, 0.60, 0.60 ),
     # Oranges
-    Colour( "Orange", 0.90, 0.70, 0.10 ),
+    Colour("Orange", 0.90, 0.70, 0.10),
+    Colour("DarkOrange", 0.83, 0.35, 0.03),
     # Yellows
     Colour( "Gold", 1.00, 0.84, 0.00 ),
     Colour( "Yellow", 0.80, 0.80, 0.00 ),
     # Blues
-    Colour( "MidnightBlue", 0.10, 0.10, 0.4 ),
-    Colour( "DarkBlue", 0.10, 0.10, 0.60 ),
-    Colour( "Blue", 0.20, 0.20, 0.80 ),
-    Colour( "LightBlue", 0.40, 0.40, 1.00 ),
-    Colour( "PrimeBlue", 0.00, 0.00, 1.00 ),
-    Colour( "Cyan", 0.00, 1.00, 1.00 ),
+    Colour("MidnightBlue", 0.10, 0.10, 0.4),
+    Colour("DarkBlue", 0.10, 0.10, 0.60),
+    Colour("Blue", 0.20, 0.20, 0.80),
+    Colour("LightBlue", 0.40, 0.40, 1.00),
+    Colour("PrimeBlue", 0.00, 0.00, 1.00),
+    Colour("Cyan", 0.00, 1.00, 1.00),
+    Colour("DarkCyan", 0.10, 0.40, 0.60),
     # Purples.
     Colour( "Purple", 0.90, 0.10, 0.90 ),
     Colour( "DarkPurple", 0.68, 0.18, 0.64 ),

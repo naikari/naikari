@@ -620,27 +620,29 @@ static void equipment_renderMisc( double bx, double by, double bw, double bh, vo
    x = bx + 10;
    y = by + bh - 48 - 140;
 
-   gl_printMidRaw( &gl_smallFont, w,
-      x, y + h + 10., &cFontWhite, -1, _("CPU Free") );
+   gl_printMidRaw(&gl_smallFont, w,
+      x, y + h + 10., &cFontWhite, -1, _("CPU Free"));
 
    percent = (p->cpu_max > 0) ? CLAMP(0., 1., (float)p->cpu / (float)p->cpu_max) : 0.;
-   toolkit_drawRect( x, y - 2, w * percent, h + 4, &cGreen, NULL );
-   toolkit_drawRect( x + w * percent, y - 2, w * (1.-percent), h + 4, &cRed, NULL );
+   toolkit_drawRect(x, y - 2, w * percent, h + 4, &cDarkCyan, NULL);
+   toolkit_drawRect(x + w * percent, y - 2, w * (1.-percent), h + 4,
+         &cBlack, NULL);
    gl_printMid( &gl_smallFont, w,
       x, y + h / 2. - gl_smallFont.h / 2.,
       &cFontWhite, "%d / %d", p->cpu, p->cpu_max );
 
-   y -= h;
+   y -= h + 10;
 
-   gl_printMidRaw( &gl_smallFont, w,
-      x, y, &cFontWhite, -1., _("Mass Limit Left") );
+   gl_printMidRaw(&gl_smallFont, w,
+      x, y, &cFontWhite, -1., _("Mass Limit Left"));
 
    y -= gl_smallFont.h + h;
 
    percent = (p->stats.engine_limit > 0) ? CLAMP(0., 1.,
       (p->stats.engine_limit - p->solid->mass) / p->stats.engine_limit) : 0.;
-   toolkit_drawRect( x, y - 2, w * percent, h + 4, &cGreen, NULL );
-   toolkit_drawRect( x + w * percent, y - 2, w * (1.-percent), h + 4, &cOrange, NULL );
+   toolkit_drawRect(x, y - 2, w * percent, h + 4, &cDarkOrange, NULL);
+   toolkit_drawRect(x + w * percent, y - 2, w * (1.-percent), h + 4,
+         &cBlack, NULL);
    gl_printMid( &gl_smallFont, w,
       x, y + h / 2. - gl_smallFont.h / 2.,
       &cFontWhite, "%.0f / %.0f", p->stats.engine_limit - p->solid->mass, p->stats.engine_limit );
