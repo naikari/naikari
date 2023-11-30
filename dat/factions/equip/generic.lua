@@ -29,10 +29,10 @@ equip_classOutfits_coreSystems = {
    ["Yacht"] = {
       "Unicorp PT-18 Core System",
       "Milspec Aegis 2201 Core System",
+      "Milspec Prometheus 2203 Core System",
    },
    ["Luxury Yacht"] = {
-      "Unicorp PT-18 Core System",
-      "Milspec Aegis 2201 Core System",
+      "Milspec Prometheus 2203 Core System",
    },
    ["Scout"] = {
       "Unicorp PT-80 Core System",
@@ -955,6 +955,7 @@ equip_classOutfits_structurals = {
          "Improved Stabilizer",
          "Engine Reroute",
          "Steering Thrusters",
+         "Battery",
       },
    },
    ["Scout"] = {
