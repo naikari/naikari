@@ -1551,7 +1551,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
          _("%G mAU Range\n"),
          temp->u.bem.range);
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%G s heat up"),
+         _("%G s Heat Up"),
          temp->u.bem.heatup);
 
    if (!outfit_isTurret(temp) && (temp->u.bem.swivel > 0.))
@@ -1973,20 +1973,28 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
             _("%.0f TFLOPS CPU Usage\n"), outfit_cpu(temp));
 
    if (temp->limit != NULL)
-      i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
+      i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
             _("%s (limit 1 per ship)\n"),
-            _(temp->limit) );
+            _(temp->limit));
 
-   i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
-         _("%G kt Mass Limit\n"
-         "%G mAU/s² Acceleration\n"
-         "#%c%s%+G%% Maximum Speed#0\n"
-         "#%c%s%+G GW Energy Loss#0"),
-         temp->u.afb.mass_limit, temp->u.afb.thrust,
+   i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
+         _("%G kt Mass Limit\n"),
+         temp->u.afb.mass_limit);
+   i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
+         _("#%c%s%+G mAU/s² Acceleration#0\n"),
+         (temp->u.afb.thrust < 0 ? 'r' : 'g'),
+         (temp->u.afb.thrust < 0 ? "!! " : ""), temp->u.afb.thrust);
+   i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
+         _("#%c%s%+G%% Maximum Speed#0\n"),
          (temp->u.afb.speed < 0 ? 'r' : 'g'),
-         (temp->u.afb.speed < 0 ? "!! " : ""), temp->u.afb.speed,
+         (temp->u.afb.speed < 0 ? "!! " : ""), temp->u.afb.speed);
+   i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
+         _("#%c%s%+G GW Energy Loss#0\n"),
          (temp->u.afb.energy > 0 ? 'r' : 'g'),
          (temp->u.afb.energy > 0 ? "!! " : ""), temp->u.afb.energy);
+   i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
+         _("%G s Heat Up"),
+         temp->u.afb.heatup);
 
    /* Post processing. */
    temp->u.afb.thrust /= 100.;
