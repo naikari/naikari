@@ -15,6 +15,8 @@
   adjustment from "!!" to "*".
 * Changed the colors of the CPU and mass limit bars to make them easier
   to understand and more colorblind-accessible.
+* Lowered energy cost and increased heatup time for afterburners (making
+  them more widely usable).
 
 ## 0.11.0
 
