@@ -7,6 +7,14 @@
 * Split the Fighter class into Fighter and Light Fighter classes.
 * Split the Cruiser class into Cruiser, Light Cruiser, and Battleship
   classes.
+* Adjusted the way AI ships are equipped.
+* Afterburner outfits now properly display their heat up stat.
+* Changed text coloring that showed a stat to be good or bad from red
+  and green to blue and yellow, which is much better for colorblind
+  accessibility, and changed the symbol indicating a negative stat
+  adjustment from "!!" to "*".
+* Changed the colors of the CPU and mass limit bars to make them easier
+  to understand and more colorblind-accessible.
 
 ## 0.11.0
 
