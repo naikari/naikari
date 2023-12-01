@@ -49,9 +49,9 @@
   <structure size="large">Active Plating</structure>
  </slots>
  <stats>
+  <armour_mod>25</armour_mod>
   <energy_mod>20</energy_mod>
   <energy_regen_mod>5</energy_regen_mod>
-  <armour_mod>25</armour_mod>
   <heat_dissipation>25</heat_dissipation>
   <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
  </stats>

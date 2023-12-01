@@ -46,10 +46,10 @@
   <structure size="medium" />
  </slots>
  <stats>
+  <engine_limit_rel>20</engine_limit_rel>
   <shield_mod>15</shield_mod>
   <shield_regen_mod>20</shield_regen_mod>
   <heat_dissipation>15</heat_dissipation>
-  <engine_limit_rel>20</engine_limit_rel>
   <rdr_enemy_range_mod>25</rdr_enemy_range_mod>
  </stats>
 </ship>

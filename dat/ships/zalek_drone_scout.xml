@@ -35,11 +35,11 @@
   <speed_mod>15</speed_mod>
   <turn_mod>15</turn_mod>
   <thrust_mod>15</thrust_mod>
-  <cargo_mod>-50</cargo_mod>
+  <misc_instant_jump/>
   <armour_mod>-80</armour_mod>
-  <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
+  <cargo_mod>-50</cargo_mod>
   <rdr_range_mod>50</rdr_range_mod>
   <rdr_jump_range_mod>50</rdr_jump_range_mod>
-  <misc_instant_jump/>
+  <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
  </stats>
 </ship>

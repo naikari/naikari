@@ -40,10 +40,10 @@
   <structure size="medium" />
  </slots>
  <stats>
-  <armour_mod>400</armour_mod>
-  <shield_mod>400</shield_mod>
-  <shield_regen_mod>100</shield_regen_mod>
   <launch_range>20</launch_range>
   <ammo_capacity>25</ammo_capacity>
+  <shield_mod>400</shield_mod>
+  <shield_regen_mod>100</shield_regen_mod>
+  <armour_mod>400</armour_mod>
  </stats>
 </ship>

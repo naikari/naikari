@@ -54,10 +54,10 @@
   <structure size="large" />
  </slots>
  <stats>
-  <armour_mod>90</armour_mod>
+  <misc_instant_jump/>
   <shield_mod>30</shield_mod>
   <shield_regen_mod>20</shield_regen_mod>
-  <misc_instant_jump/>
+  <armour_mod>90</armour_mod>
   <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
  </stats>
 </ship>

@@ -47,10 +47,10 @@
   <launch_rate>15</launch_rate>
   <launch_range>10</launch_range>
   <ammo_capacity>50</ammo_capacity>
-  <nebu_absorb_shield>80</nebu_absorb_shield>
-  <nebu_absorb_armour>97</nebu_absorb_armour>
-  <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
   <rdr_range_mod>170</rdr_range_mod>
   <rdr_jump_range_mod>50</rdr_jump_range_mod>
+  <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
+  <nebu_absorb_shield>80</nebu_absorb_shield>
+  <nebu_absorb_armour>97</nebu_absorb_armour>
  </stats>
 </ship>

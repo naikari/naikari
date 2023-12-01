@@ -49,8 +49,8 @@
   <speed_mod>5</speed_mod>
   <turn_mod>5</turn_mod>
   <thrust_mod>5</thrust_mod>
-  <cargo_mod>15</cargo_mod>
   <armour_mod>-10</armour_mod>
+  <cargo_mod>15</cargo_mod>
   <rdr_enemy_range_mod>50</rdr_enemy_range_mod>
  </stats>
 </ship>

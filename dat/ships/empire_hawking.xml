@@ -53,12 +53,12 @@
   <structure size="large" />
  </slots>
  <stats>
+  <tur_damage>10</tur_damage>
+  <tur_energy>-5</tur_energy>
   <turn_mod>-20</turn_mod>
   <shield_mod>10</shield_mod>
   <shield_regen_mod>15</shield_regen_mod>
   <armour_mod>-5</armour_mod>
-  <tur_damage>10</tur_damage>
-  <tur_energy>-5</tur_energy>
   <heat_dissipation>20</heat_dissipation>
   <rdr_enemy_range_mod>75</rdr_enemy_range_mod>
  </stats>

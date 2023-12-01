@@ -35,12 +35,12 @@
   <structure size="small" />
  </slots>
  <stats>
-  <speed_mod>-10</speed_mod>
-  <armour_mod>-60</armour_mod>
-  <shield_mod>-40</shield_mod>
   <launch_rate>10</launch_rate>
   <launch_range>15</launch_range>
   <ammo_capacity>50</ammo_capacity>
+  <speed_mod>-10</speed_mod>
+  <shield_mod>-40</shield_mod>
+  <armour_mod>-60</armour_mod>
   <rdr_range_mod>20</rdr_range_mod>
   <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
  </stats>

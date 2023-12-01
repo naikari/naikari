@@ -40,11 +40,11 @@
   <structure size="small" />
  </slots>
  <stats>
+  <fwd_heat>-10</fwd_heat>
   <speed_mod>-10</speed_mod>
   <armour_mod>50</armour_mod>
   <energy_mod>20</energy_mod>
   <energy_regen_mod>-10</energy_regen_mod>
-  <fwd_heat>-10</fwd_heat>
   <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
  </stats>
 </ship>

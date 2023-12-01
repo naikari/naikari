@@ -46,11 +46,11 @@
   <structure size="medium" />
  </slots>
  <stats>
+  <launch_range>25</launch_range>
+  <ammo_capacity>25</ammo_capacity>
   <shield_mod>10</shield_mod>
   <shield_regen_mod>15</shield_regen_mod>
   <heat_dissipation>10</heat_dissipation>
-  <launch_range>25</launch_range>
-  <ammo_capacity>25</ammo_capacity>
   <rdr_range_mod>10</rdr_range_mod>
  </stats>
 </ship>

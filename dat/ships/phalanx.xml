@@ -44,11 +44,11 @@
   <structure size="medium" />
  </slots>
  <stats>
+  <launch_range>20</launch_range>
+  <ammo_capacity>25</ammo_capacity>
   <speed_mod>-10</speed_mod>
   <armour_mod>15</armour_mod>
   <energy_mod>20</energy_mod>
   <energy_regen_mod>-10</energy_regen_mod>
-  <launch_range>20</launch_range>
-  <ammo_capacity>25</ammo_capacity>
  </stats>
 </ship>

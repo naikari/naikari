@@ -53,11 +53,11 @@
   <structure size="large" />
  </slots>
  <stats>
-  <armour_regen_mod>-10</armour_regen_mod>
+  <misc_instant_jump/>
   <shield_mod>5</shield_mod>
   <shield_regen_mod>10</shield_regen_mod>
+  <armour_regen_mod>-10</armour_regen_mod>
   <heat_dissipation>15</heat_dissipation>
   <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
-  <misc_instant_jump/>
  </stats>
 </ship>

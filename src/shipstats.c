@@ -93,7 +93,24 @@ static const ShipStatsLookup ss_lookup[] = {
    /* Null element. */
    N_ELEM(SS_TYPE_NIL),
 
-   /* Forward weapons group. */
+   /* Core stats. */
+   A_ELEM(SS_TYPE_A_CPU_MAX, cpu_max,
+      N_("%+G TFLOPS CPU Capacity"),
+      NULL),
+   D_ELEM(SS_TYPE_D_CPU_MOD, cpu_mod,
+      N_("%+G%% CPU Capacity"),
+      NULL),
+   DI_ELEM(SS_TYPE_D_MASS, mass_mod,
+      N_("%+G%% Ship Mass"),
+      NULL),
+   A_ELEM(SS_TYPE_A_ENGINE_LIMIT, engine_limit,
+      N_("%+G kt Engine Mass Limit"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ENGINE_LIMIT_REL, engine_limit_rel,
+      N_("%+G%% Engine Mass Limit"),
+      NULL),
+
+   /* Forward weapons. */
    D_ELEM(SS_TYPE_D_FORWARD_DAMAGE, fwd_damage,
       N_("%+G%% Damage (Forward)"),
       N_("%+.0f%% Damage (Forward)")),
@@ -110,7 +127,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G pp Damage as Disable (Forward)"),
       N_("%.0f%% Damage as Disable (Forward)")),
 
-   /* Turrets group. */
+   /* Turrets. */
    B_ELEM(SS_TYPE_B_TURRET_CONVERSION, turret_conversion,
       N_("Weapon Turret Conversion"),
       N_("Weapon Turret Conversion")),
@@ -130,7 +147,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G pp Damage as Disable (Turret)"),
       N_("%.0f%% Damage as Disable (Turret)")),
 
-   /* Launchers group. */
+   /* Launchers. */
    D_ELEM(SS_TYPE_D_LAUNCH_DAMAGE, launch_damage,
       N_("%+G%% Damage (Launcher)"),
       N_("%+.0f%% Damage (Launcher)")),
@@ -150,7 +167,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G pp Damage as Disable (Launcher)"),
       N_("%.0f%% Damage as Disable (Launcher)")),
 
-   /* Fighter bays group. */
+   /* Fighter bays. */
    D_ELEM(SS_TYPE_D_FBAY_DAMAGE, fbay_damage,
       N_("%+G%% Fighter Damage"),
       N_("%+.0f%% Fighter Damage")),
@@ -170,7 +187,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Fighter Reload Rate"),
       N_("%+.0f%% Fighter Reload Rate")),
 
-   /* Speed group. */
+   /* Speed. */
    A_ELEM(SS_TYPE_A_SPEED, speed,
       N_("%+G mAU/s Maximum Speed"),
       NULL),
@@ -199,7 +216,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Speed-Up"),
       N_("%+.0f%% Speed-Up")),
 
-   /* Mobility group. */
+   /* Mobility. */
    A_ELEM(SS_TYPE_A_FUEL, fuel,
       N_("%+.0f kL Fuel"),
       NULL),
@@ -219,25 +236,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("Instant Jump"),
       N_("Instant Jump")),
 
-   /* Health group. */
-   A_ELEM(SS_TYPE_A_ENERGY, energy,
-      N_("%+G GJ Energy Capacity"),
-      NULL),
-   D_ELEM(SS_TYPE_D_ENERGY_MOD, energy_mod,
-      N_("%+G%% Energy Capacity"),
-      NULL),
-   A_ELEM(SS_TYPE_A_ENERGY_REGEN, energy_regen,
-      N_("%+G GW Energy Regeneration"),
-      NULL),
-   D_ELEM(SS_TYPE_D_ENERGY_REGEN_MOD, energy_regen_mod,
-      N_("%+G%% Energy Regeneration"),
-      NULL),
-   AI_ELEM(SS_TYPE_A_ENERGY_REGEN_MALUS, energy_regen_malus,
-      N_("%+G GW Energy Usage"),
-      NULL),
-   AI_ELEM(SS_TYPE_A_ENERGY_LOSS, energy_loss,
-      N_("%+G GW Energy Loss"),
-      N_("%+.1f GW Energy Loss")),
+   /* Health. */
    A_ELEM(SS_TYPE_A_SHIELD, shield,
       N_("%+G GJ Shield Capacity"),
       NULL),
@@ -268,6 +267,24 @@ static const ShipStatsLookup ss_lookup[] = {
    AI_ELEM(SS_TYPE_A_ARMOUR_REGEN_MALUS, armour_regen_malus,
       N_("%+G GW Armor Usage"),
       NULL),
+   A_ELEM(SS_TYPE_A_ENERGY, energy,
+      N_("%+G GJ Energy Capacity"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ENERGY_MOD, energy_mod,
+      N_("%+G%% Energy Capacity"),
+      NULL),
+   A_ELEM(SS_TYPE_A_ENERGY_REGEN, energy_regen,
+      N_("%+G GW Energy Regeneration"),
+      NULL),
+   D_ELEM(SS_TYPE_D_ENERGY_REGEN_MOD, energy_regen_mod,
+      N_("%+G%% Energy Regeneration"),
+      NULL),
+   AI_ELEM(SS_TYPE_A_ENERGY_REGEN_MALUS, energy_regen_malus,
+      N_("%+G GW Energy Usage"),
+      NULL),
+   AI_ELEM(SS_TYPE_A_ENERGY_LOSS, energy_loss,
+      N_("%+G GW Energy Loss"),
+      N_("%+.1f GW Energy Loss")),
    P_ELEM(SS_TYPE_P_ABSORB, absorb,
       N_("%+G pp Damage Absorption"),
       NULL),
@@ -281,7 +298,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Active Cooldown Time"),
       N_("%+.0f%% Active Cooldown Time")),
 
-   /* Cargo group. */
+   /* Cargo. */
    I_ELEM(SS_TYPE_I_CARGO, cargo,
       N_("%+d kt Cargo Space"),
       NULL),
@@ -298,24 +315,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Boarding Bonus"),
       N_("%+.0f%% Boarding Bonus")),
 
-   /* Limits group. */
-   A_ELEM(SS_TYPE_A_CPU_MAX, cpu_max,
-      N_("%+G TFLOPS CPU Capacity"),
-      NULL),
-   D_ELEM(SS_TYPE_D_CPU_MOD, cpu_mod,
-      N_("%+G%% CPU Capacity"),
-      NULL),
-   DI_ELEM(SS_TYPE_D_MASS, mass_mod,
-      N_("%+G%% Ship Mass"),
-      NULL),
-   A_ELEM(SS_TYPE_A_ENGINE_LIMIT, engine_limit,
-      N_("%+G kt Engine Mass Limit"),
-      NULL),
-   D_ELEM(SS_TYPE_D_ENGINE_LIMIT_REL, engine_limit_rel,
-      N_("%+G%% Engine Mass Limit"),
-      NULL),
-
-   /* Radar group. */
+   /* Radar. */
    A_ELEM(SS_TYPE_D_RDR_RANGE, rdr_range,
       N_("%+G mAU Radar Range"),
       NULL),
@@ -332,7 +332,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+G%% Enemy Radar Range"),
       N_("%+.0f%% Enemy Radar Range")),
 
-   /* Nebula group. */
+   /* Nebula. */
    P_ELEM(SS_TYPE_P_NEBULA_ABSORB_SHIELD, nebu_absorb_shield,
       N_("%+G pp Nebula Resistance (Shield)"),
       N_("%.0f%% Nebula Resistance (Shield)")),

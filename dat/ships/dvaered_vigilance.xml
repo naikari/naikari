@@ -45,14 +45,14 @@
   <structure size="medium" />
  </slots>
  <stats>
+  <fwd_damage>20</fwd_damage>
+  <fwd_energy>10</fwd_energy>
+  <fwd_heat>10</fwd_heat>
   <speed_mod>-15</speed_mod>
   <turn_mod>-10</turn_mod>
   <armour_mod>20</armour_mod>
   <energy_mod>20</energy_mod>
   <energy_regen_mod>-10</energy_regen_mod>
-  <fwd_heat>10</fwd_heat>
-  <fwd_damage>20</fwd_damage>
-  <fwd_energy>10</fwd_energy>
   <rdr_enemy_range_mod>25</rdr_enemy_range_mod>
  </stats>
 </ship>

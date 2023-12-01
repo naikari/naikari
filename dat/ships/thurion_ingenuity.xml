@@ -41,10 +41,10 @@
   <structure size="small" />
  </slots>
  <stats>
-  <nebu_absorb_shield>80</nebu_absorb_shield>
-  <nebu_absorb_armour>97</nebu_absorb_armour>
-  <rdr_enemy_range_mod>-70</rdr_enemy_range_mod>
   <rdr_range_mod>125</rdr_range_mod>
   <rdr_jump_range_mod>50</rdr_jump_range_mod>
+  <rdr_enemy_range_mod>-70</rdr_enemy_range_mod>
+  <nebu_absorb_shield>80</nebu_absorb_shield>
+  <nebu_absorb_armour>97</nebu_absorb_armour>
  </stats>
 </ship>

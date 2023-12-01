@@ -38,14 +38,14 @@
   <structure size="small" />
  </slots>
  <stats>
+  <launch_damage>-25</launch_damage>
+  <launch_range>-50</launch_range>
+  <ammo_capacity>-75</ammo_capacity>
   <speed_mod>5</speed_mod>
-  <cargo_mod>10</cargo_mod>
-  <armour_mod>-10</armour_mod>
   <shield_regen_mod>-20</shield_regen_mod>
+  <armour_mod>-10</armour_mod>
+  <cargo_mod>10</cargo_mod>
   <cargo_inertia>-20</cargo_inertia>
   <rdr_enemy_range_mod>-25</rdr_enemy_range_mod>
-  <launch_range>-50</launch_range>
-  <launch_damage>-25</launch_damage>
-  <ammo_capacity>-75</ammo_capacity>
  </stats>
 </ship>

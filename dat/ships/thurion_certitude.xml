@@ -57,13 +57,13 @@
  </slots>
  <stats>
   <turn_mod>-10</turn_mod>
+  <misc_instant_jump/>
   <shield_mod>10</shield_mod>
   <shield_regen_mod>15</shield_regen_mod>
   <heat_dissipation>10</heat_dissipation>
-  <misc_instant_jump/>
-  <nebu_absorb_shield>80</nebu_absorb_shield>
-  <nebu_absorb_armour>97</nebu_absorb_armour>
   <rdr_range_mod>125</rdr_range_mod>
   <rdr_jump_range_mod>50</rdr_jump_range_mod>
+  <nebu_absorb_shield>80</nebu_absorb_shield>
+  <nebu_absorb_armour>97</nebu_absorb_armour>
  </stats>
 </ship>

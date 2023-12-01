@@ -52,10 +52,10 @@
   <structure size="large" />
  </slots>
  <stats>
-  <cargo_mod>50</cargo_mod>
-  <cargo_inertia>-30</cargo_inertia>
   <speed_mod>-25</speed_mod>
   <turn_mod>-30</turn_mod>
+  <cargo_mod>50</cargo_mod>
+  <cargo_inertia>-30</cargo_inertia>
   <rdr_enemy_range_mod>100</rdr_enemy_range_mod>
  </stats>
 </ship>

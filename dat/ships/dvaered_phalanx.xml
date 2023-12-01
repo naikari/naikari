@@ -45,12 +45,12 @@
   <structure size="medium" />
  </slots>
  <stats>
+  <fwd_heat>-10</fwd_heat>
+  <launch_range>20</launch_range>
+  <ammo_capacity>25</ammo_capacity>
   <speed_mod>-10</speed_mod>
   <armour_mod>30</armour_mod>
   <energy_mod>20</energy_mod>
   <energy_regen_mod>-25</energy_regen_mod>
-  <fwd_heat>-10</fwd_heat>
-  <launch_range>20</launch_range>
-  <ammo_capacity>25</ammo_capacity>
  </stats>
 </ship>

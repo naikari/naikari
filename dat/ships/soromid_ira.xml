@@ -52,12 +52,12 @@
   <structure size="large" />
  </slots>
  <stats>
+  <fwd_damage>10</fwd_damage>
+  <tur_damage>-10</tur_damage>
   <speed_mod>5</speed_mod>
   <turn_mod>5</turn_mod>
   <thrust_mod>5</thrust_mod>
   <armour_mod>-20</armour_mod>
-  <fwd_damage>10</fwd_damage>
-  <tur_damage>-10</tur_damage>
   <rdr_enemy_range_mod>50</rdr_enemy_range_mod>
  </stats>
 </ship>

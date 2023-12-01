@@ -39,11 +39,11 @@
  </slots>
  <stats>
   <speed_mod>10</speed_mod>
-  <cargo_mod>-50</cargo_mod>
-  <armour_mod>-20</armour_mod>
   <misc_instant_jump/>
-  <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
+  <armour_mod>-20</armour_mod>
+  <cargo_mod>-50</cargo_mod>
   <rdr_range_mod>50</rdr_range_mod>
   <rdr_jump_range_mod>50</rdr_jump_range_mod>
+  <rdr_enemy_range_mod>-60</rdr_enemy_range_mod>
  </stats>
 </ship>
