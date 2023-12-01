@@ -23,6 +23,7 @@
    <missions/>
    <commodity/>
    <outfits/>
+   <shipyard/>
   </services>
   <commodities/>
   <description>Ambre was one of the planets that played a key role in the workers' revolts that eventually led to the establishment of House Dvaered. In those days the planet was home to a considerable percentage of the Imperial workforce in this sector of space. Without laborers to work the mines and construction yards, the Empire stood to lose astronomical amounts of money each year. This was one of the important reasons the Emperor granted House Dvaered its independence.</description>
@@ -56,5 +57,8 @@
   <item>Dvaered Civilian Medium Ships</item>
   <item>Dvaered Military Small Ships</item>
   <item>Dvaered Military Medium Ships</item>
+  <item>Freighters</item>
+  <item>Bulk Freighters</item>
+  <item>Large Mid Outfits</item>
  </tech>
 </asset>

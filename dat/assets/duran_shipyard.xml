@@ -20,6 +20,7 @@
    <land>land_hiclass</land>
    <refuel/>
    <bar/>
+   <outfits/>
    <shipyard/>
   </services>
   <commodities/>
@@ -33,5 +34,7 @@
   <item>Dvaered Civilian Medium Ships</item>
   <item>Dvaered Military Small Ships</item>
   <item>Dvaered Military Medium Ships</item>
+  <item>Bulk Freighters</item>
+  <item>Common Outfits</item>
  </tech>
 </asset>

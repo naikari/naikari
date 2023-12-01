@@ -1111,6 +1111,13 @@
   <item>Unicorp D-24 Medium Plating</item>
   <item>Large Civilian Vessel License</item>
  </tech>
+ <tech name="Bulk Freighters">
+  <item>Elephant</item>
+  <item>Unicorp PT-3400 Core System</item>
+  <item>Unicorp Eagle 6500 Engine</item>
+  <item>Unicorp D-72 Heavy Plating</item>
+  <item>Large Civilian Vessel License</item>
+ </tech>
  <tech name="Generic Light Fighters">
   <item>Llama</item>
   <item>Hyena</item>

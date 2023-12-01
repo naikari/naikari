@@ -20,6 +20,7 @@
    <land/>
    <refuel/>
    <bar/>
+   <outfits/>
    <shipyard/>
   </services>
   <commodities/>
@@ -30,5 +31,7 @@
   <item>Civilian Ships</item>
   <item>Nexus Small Ships</item>
   <item>Empire Small Ships</item>
+  <item>Bulk Freighters</item>
+  <item>Common Outfits</item>
  </tech>
 </asset>

@@ -23,6 +23,7 @@
    <missions/>
    <commodity/>
    <outfits/>
+   <shipyard/>
   </services>
   <commodities/>
   <description>Althô not a large installation by any measure, Niflheim is the main commercial station in the southwestern quadrant of Empire space. Thô it doesn't see as much traffic as the more centrally located trade hubs, it provides a good opportunity for traders between the Empire, the Za'lek and the Consortium to meet and greet. Of course, the Imperial Navy also uses this station as a base of operations.</description>
@@ -37,5 +38,8 @@
   <item>Medium Ion</item>
   <item>Small Low Outfits</item>
   <item>Medium Low Outfits</item>
+  <item>Large Low Outfits</item>
+  <item>Bulk Freighters</item>
+  <item>Heavy Laser</item>
  </tech>
 </asset>
