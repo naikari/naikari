@@ -70,7 +70,7 @@ buy_text = _([["See, easy, right? Of course, that just adds the Cargo Pod to you
 
 equipment_text = _([["See, here's where you can change what's actually equipped to your ship. Go ahead and equip the Cargo Pod, and then we can proceed to load the cargo!"]])
 
-load_cargo_text = _([[After verifying that your ship has enough cargo space, Terra pushes some buttons on her wrist computer and before you know it, the cargo is loaded onto your ship. "There we go, all set, {player}," Terra remarks. "Just deliver it to {planet} in the {system} system and my agents will deliver your payment." She shakes your hand and leaves, presumably to take care of some other matters.]])
+load_cargo_text = _([[After verifying that your ship has enough cargo space, Terra pushes some buttons on her palmtop and before you know it, the cargo is loaded onto your ship. "There we go, all set, {player}," Terra remarks. "Just deliver it to {planet} in the {system} system and my agents will deliver your payment." She shakes your hand and leaves, presumably to take care of some other matters.]])
 
 finish_text = _([[As your ship approaches the hangar, you see Terra's agents already waiting for you. When the landing finishes, they quickly get to work unloading the cargo. After tallying it and making sure everything is in order, the leader of the group approaches you with a smile and hands you a credit chip with the promised payment.]])
 

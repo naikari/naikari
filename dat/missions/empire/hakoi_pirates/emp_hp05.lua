@@ -38,7 +38,7 @@ local ask_text = _([[Since you don't see Commander Soldner around, you decide to
 
 "I don't know if you've ever been to {planet} in the {system} system. I, um… can pull some strings to get you connected with someone there. Someone on the inside, you know? They'd just think you're a… hired hand. What you do with that connection would be up to you. Would you be interested?"]])
 
-local accept_text = _([[As you accept Ian Structure's offer, he trepidly nods and immediately goes into his wrist computer. After a few minutes, he looks back at you and speaks quietly. "Alright. I've got you a job with a businessman named Devin Filer. Some kind of delivery from this planet for {credits}. Hopefully nothing too hot, but with these types, there's no guarantee of that.
+local accept_text = _([[As you accept Ian Structure's offer, he trepidly nods and immediately starts making inputs into his palmtop. After a few minutes, he looks back at you and speaks quietly. "Alright. I've got you a job with a businessman named Devin Filer. Some kind of delivery from this planet for {credits}. Hopefully nothing too hot, but with these types, there's no guarantee of that.
 
 "In any case, you're supposed to deliver the goods to this Devin Filer on {planet} in the {system} system. I'm sure he'll offer more jobs to you afterward. Good luck, and stay safe."]])
 
