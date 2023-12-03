@@ -1965,6 +1965,15 @@ static void weapon_destroy( Weapon* w )
 static void weapon_free( Weapon* w )
 {
    Pilot *pilot_target;
+   Weapon *heir;
+   Weapon *test_heir;
+   double heir_dist;
+   double test_heir_dist;
+   char *sname;
+   char *test_heir_sname;
+   double x, y;
+   Vector2d camera_pos;
+   int i;
 
    pilot_target = pilot_get( w->target );
 
@@ -1977,7 +1986,58 @@ static void weapon_free( Weapon* w )
 
    /* Stop playing sound if beam weapon. */
    if (outfit_isBeam(w->outfit)) {
-      sound_stop( w->voice );
+      if ((w->voice > 0) && sound_playing(w->voice)) {
+         /* Attempt to pass on the voice to another beam which plays the
+          * same sound effect. If there is no other beam that can take
+          * this beam's voice, stop the voice. This avoids the weirdness
+          * that can occur if one beam turning off causes all beams to
+          * be silent. */
+         gl_screenToGameCoords(&x, &y, SCREEN_W / 2., SCREEN_H / 2.);
+         vect_cset(&camera_pos, x, y);
+
+         heir = NULL;
+
+         heir_dist = INFINITY;
+         sname = sound_name(w->outfit->u.bem.sound);
+         if (sname != NULL) {
+            for (i=0; i<array_size(wfrontLayer)+array_size(wbackLayer); i++) {
+               if (i < array_size(wfrontLayer))
+                  test_heir = wfrontLayer[i];
+               else
+                  test_heir = wbackLayer[i-array_size(wfrontLayer)];
+
+               if (test_heir->voice <= 0)
+                  continue;
+
+               test_heir_sname = sound_name(test_heir->outfit->u.bem.sound);
+               if (test_heir_sname == NULL)
+                  continue;
+
+               if (strcmp(sname, test_heir_sname) != 0)
+                  continue;
+
+               if (sound_playing(test_heir->voice))
+                  continue;
+
+               test_heir_dist = vect_dist2(&camera_pos, &test_heir->solid->pos);
+
+               if (heir == NULL) {
+                  heir = test_heir;
+                  heir_dist = test_heir_dist;
+                  continue;
+               }
+
+               if (test_heir_dist < heir_dist) {
+                  heir = test_heir;
+                  heir_dist = test_heir_dist;
+               }
+            }
+         }
+         if (heir != NULL)
+            heir->voice = w->voice;
+         else
+            sound_stop(w->voice);
+      }
       sound_playPos(w->outfit->u.bem.sound_off,
             w->solid->pos.x,
             w->solid->pos.y,

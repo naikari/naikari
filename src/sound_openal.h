@@ -144,6 +144,7 @@ void sound_al_updateVoice( alVoice *v );
  */
 void sound_al_update (void);
 void sound_al_stop( alVoice *v );
+int sound_al_playing(alVoice *voice);
 void sound_al_pause (void);
 void sound_al_resume (void);
 void sound_al_setSpeed( double s );

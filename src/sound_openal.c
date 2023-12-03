@@ -1026,6 +1026,21 @@ void sound_al_stop( alVoice* voice )
 
 
 /**
+ * @brief Gets whether a voice is playing.
+ *
+ *    @param voice Voice to check playing status of.
+ *    @return 1 if the voice is playing, 0 otherwise.
+ */
+int sound_al_playing(alVoice *voice)
+{
+   if ((voice->state == VOICE_PLAYING) || (voice->state == VOICE_FADEOUT))
+      return 1;
+
+   return 0;
+}
+
+
+/**
  * @brief Pauses all sounds.
  */
 void sound_al_pause (void)

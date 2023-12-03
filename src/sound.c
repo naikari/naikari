@@ -241,6 +241,24 @@ double sound_getLength(soundId_t sound)
 
 
 /**
+ * @brief Gets the sound name of a voice.
+ *
+ *    @param sound Sound to check name of.
+ *    @return The file name of the sound, or NULL on error.
+ */
+char *sound_name(soundId_t sound)
+{
+   alSound *s;
+
+   if ((sound < 0) || (sound >= array_size(sound_list)))
+      return NULL;
+
+   s = &sound_list[sound];
+   return s->name;
+}
+
+
+/**
  * @brief Plays the sound in the first available channel.
  *
  *    @param sound Sound to play.
@@ -528,6 +546,27 @@ void sound_stop(voiceId_t voice)
       v->state = VOICE_STOPPED;
    }
 
+}
+
+
+/**
+ * @brief Gets whether a voice is playing.
+ *
+ *    @param voice Identifier of the voice to check playing status of.
+ *    @return 1 if the voice is playing, 0 otherwise.
+ */
+int sound_playing(voiceId_t voice)
+{
+   alVoice *v;
+
+   if (sound_disabled)
+      return 0;
+
+   v = voice_get(voice);
+   if (v != NULL)
+      return sound_al_playing(v);
+
+   return 0;
 }
 
 

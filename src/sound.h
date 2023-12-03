@@ -71,10 +71,12 @@ double sound_getLength(soundId_t sound);
 /*
  * voice management
  */
+char *sound_name(soundId_t sound);
 voiceId_t sound_play(soundId_t sound);
 voiceId_t sound_playPos(soundId_t sound, double px, double py,
       double vx, double vy);
 void sound_stop(voiceId_t voice);
+int sound_playing(voiceId_t voice);
 int sound_updatePos(voiceId_t voice, double px, double py,
       double vx, double vy);
 int sound_updateListener(double px, double py, double vx, double vy);
