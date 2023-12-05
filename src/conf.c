@@ -245,6 +245,7 @@ void conf_setVideoDefaults (void)
    conf.resizable = RESIZABLE_DEFAULT;
    conf.minimize = MINIMIZE_DEFAULT;
    conf.colorblind = COLORBLIND_DEFAULT;
+   conf.colorblind_mode = COLORBLIND_MODE_DEFAULT;
    conf.bg_brightness = BG_BRIGHTNESS_DEFAULT;
    conf.gamma_correction = GAMMA_CORRECTION_DEFAULT;
 
@@ -302,7 +303,7 @@ int conf_loadConfig ( const char* file )
    const char *str, *mod;
    SDL_Keycode key;
    int type;
-   int w,h;
+   int w, h;
    SDL_Keymod m;
 
    /* Check to see if file exists. */
@@ -347,6 +348,7 @@ int conf_loadConfig ( const char* file )
       conf_loadBool( lEnv, "borderless", conf.borderless );
       conf_loadBool( lEnv, "minimize", conf.minimize );
       conf_loadBool( lEnv, "colorblind", conf.colorblind );
+      conf_loadInt(lEnv, "colorblind_mode", conf.colorblind_mode);
       conf_loadFloat( lEnv, "bg_brightness", conf.bg_brightness );
       conf_loadFloat( lEnv, "gamma_correction", conf.gamma_correction );
 
@@ -884,8 +886,14 @@ int conf_saveConfig ( const char* file )
    conf_saveBool("minimize",conf.minimize);
    conf_saveEmptyLine();
 
-   conf_saveComment(_("Colorblind mode"));
-   conf_saveBool("colorblind",conf.colorblind);
+   conf_saveComment(_("Colorblind simulation toggle"));
+   conf_saveBool("colorblind", conf.colorblind);
+   conf_saveEmptyLine();
+
+   pos += scnprintf(&buf[pos], sizeof(buf)-pos,
+         _("-- Colorblind simulation mode (%d–%d)\n"),
+         ROD_MONOCHROMACY, CBMODE_SENTINEL - 1);
+   conf_saveInt("colorblind_mode", conf.colorblind_mode);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Background brightness. 1 is normal brightness while setting it to 0 would make the backgrounds pitch black."));

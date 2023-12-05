@@ -17,6 +17,7 @@
 #define COLORBLIND_MODE ROD_MONOCHROMACY
 
 uniform sampler2D MainTex;
+uniform int mode = ROD_MONOCHROMACY;
 in vec4 VaryingTexCoord;
 out vec4 color_out;
 
@@ -33,41 +34,51 @@ void main (void)
    S = (0.01775239f * color_out.r) + (0.10944209f * color_out.g) + (0.87256922f * color_out.b);
 
    // Simulate color blindness
-#if COLORBLIND_MODE == PROTANOPIA
-   // Protanope - reds are greatly reduced (1% men)
-   l = 0.0f * L + 1.05118294f * M + -0.05116099 * S;
-   m = 0.0f * L + 1.0f * M + 0.0f * S;
-   s = 0.0f * L + 0.0f * M + 1.0f * S;
-#elif COLORBLIND_MODE == DEUTERANOPIA
-   // Deuteranope - greens are greatly reduced (1% men)
-   l = 1.0f * L + 0.0f * M + 0.0f * S;
-   m = 0.9513092 * L + 0.0f * M + 0.04866992 * S;
-   s = 0.0f * L + 0.0f * M + 1.0f * S;
-#elif COLORBLIND_MODE == TRITANOPIA
-   // Tritanope - blues are greatly reduced (0.003% population)
-   l = 1.0f * L + 0.0f * M + 0.0f * S;
-   m = 0.0f * L + 1.0f * M + 0.0f * S;
-   s = -0.86744736 * L + 1.86727089f * M + 0.0f * S;
-#elif COLORBLIND_MODE == CONE_MONOCHROMACY
-   // Blue Cone Monochromat (high light conditions) - only brightness can
-   // be detected, with blues greatly increased and reds nearly invisible
-   // (0.001% population)
-   // Note: This looks different from what many colorblindness simulators
-   // show because this simulation assumes high light conditions. In low
-   // light conditions, a blue cone monochromat can see a limited range of
-   // color because both rods and cones are active. However, as we expect
-   // a player to be looking at a lit screen, this simulation of high
-   // light conditions is more useful.
-   l = 0.01775f * L + 0.10945f * M + 0.87262f * S;
-   m = 0.01775f * L + 0.10945f * M + 0.87262f * S;
-   s = 0.01775f * L + 0.10945f * M + 0.87262f * S;
-#elif COLORBLIND_MODE == ROD_MONOCHROMACY
-   // Rod Monochromat (Achromatopsia) - only brightness can be detected
-   // (0.003% population)
-   l = 0.212656f * L + 0.715158f * M + 0.072186f * S;
-   m = 0.212656f * L + 0.715158f * M + 0.072186f * S;
-   s = 0.212656f * L + 0.715158f * M + 0.072186f * S;
-#endif /* COLORBLIND_MODE */
+   if (mode == PROTANOPIA) {
+      // Protanope - reds are greatly reduced (1% men)
+      l = 0.0f * L + 1.05118294f * M + -0.05116099 * S;
+      m = 0.0f * L + 1.0f * M + 0.0f * S;
+      s = 0.0f * L + 0.0f * M + 1.0f * S;
+   }
+   else if (mode == DEUTERANOPIA) {
+      // Deuteranope - greens are greatly reduced (1% men)
+      l = 1.0f * L + 0.0f * M + 0.0f * S;
+      m = 0.9513092 * L + 0.0f * M + 0.04866992 * S;
+      s = 0.0f * L + 0.0f * M + 1.0f * S;
+   }
+   else if (mode == TRITANOPIA) {
+      // Tritanope - blues are greatly reduced (0.003% population)
+      l = 1.0f * L + 0.0f * M + 0.0f * S;
+      m = 0.0f * L + 1.0f * M + 0.0f * S;
+      s = -0.86744736 * L + 1.86727089f * M + 0.0f * S;
+   }
+   else if (mode == CONE_MONOCHROMACY) {
+      // Blue Cone Monochromat (high light conditions) - only brightness can
+      // be detected, with blues greatly increased and reds nearly invisible
+      // (0.001% population)
+      // Note: This looks different from what many colorblindness simulators
+      // show because this simulation assumes high light conditions. In low
+      // light conditions, a blue cone monochromat can see a limited range of
+      // color because both rods and cones are active. However, as we expect
+      // a player to be looking at a lit screen, this simulation of high
+      // light conditions is more useful.
+      l = 0.01775f * L + 0.10945f * M + 0.87262f * S;
+      m = 0.01775f * L + 0.10945f * M + 0.87262f * S;
+      s = 0.01775f * L + 0.10945f * M + 0.87262f * S;
+   }
+   else if (mode == ROD_MONOCHROMACY) {
+      // Rod Monochromat (Achromatopsia) - only brightness can be detected
+      // (0.003% population)
+      l = 0.212656f * L + 0.715158f * M + 0.072186f * S;
+      m = 0.212656f * L + 0.715158f * M + 0.072186f * S;
+      s = 0.212656f * L + 0.715158f * M + 0.072186f * S;
+   }
+   else {
+      // Invalid colorblindness type
+      l = 0.212656f * L + 0.715158f * M + 0.072186f * S;
+      m = 0.0f * L + 0.0f * M + 0.0f * S;
+      s = 0.0f * L + 0.0f * M + 0.0f * S;
+   }
 
    // Convert to RGB
    color_out.r = (5.47221206f * l) + (-4.6419601f * m) + (0.16963708f * s);

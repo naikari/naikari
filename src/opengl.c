@@ -494,7 +494,7 @@ int gl_init (void)
    shaders_load();
 
    /* Set colorblind shader if necessary. */
-   gl_colorblind( conf.colorblind );
+   gl_colorblind(conf.colorblind, conf.colorblind_mode);
 
    /* Set colourspace. */
    glEnable( GL_FRAMEBUFFER_SRGB );
@@ -645,19 +645,24 @@ GLint gl_stringToClamp( const char *s )
  * @brief Enables or disables the colorblind shader.
  *
  *    @param enable Whether or not to enable or disable the colorblind shader.
+ *    @param mode Which colorblind mode to use.
  */
-void gl_colorblind( int enable )
+void gl_colorblind(int enable, ColorblindMode mode)
 {
    LuaShader_t shader;
    if (enable) {
       if (colorblind_pp != 0)
          return;
-      memset( &shader, 0, sizeof(LuaShader_t) );
-      shader.program    = shaders.colorblind.program;
+      memset(&shader, 0, sizeof(LuaShader_t));
+      shader.program = shaders.colorblind.program;
       shader.VertexPosition = shaders.colorblind.VertexPosition;
       shader.ClipSpaceFromLocal = shaders.colorblind.ClipSpaceFromLocal;
-      shader.MainTex    = shaders.colorblind.MainTex;
-      colorblind_pp = render_postprocessAdd( &shader, PP_LAYER_FINAL, 99 );
+      shader.MainTex = shaders.colorblind.MainTex;
+
+      glUseProgram(shaders.colorblind.program);
+      glUniform1i(shaders.colorblind.mode, mode);
+      glUseProgram(0);
+      colorblind_pp = render_postprocessAdd(&shader, PP_LAYER_FINAL, 99);
    } else {
       if (colorblind_pp != 0)
          render_postprocessRm( colorblind_pp );

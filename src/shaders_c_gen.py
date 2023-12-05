@@ -192,7 +192,7 @@ SHADERS = [
       vs_path = "postprocess.vert",
       fs_path = "colorblind.frag",
       attributes = ["VertexPosition"],
-      uniforms = ["ClipSpaceFromLocal", "MainTex"],
+      uniforms = ["ClipSpaceFromLocal", "MainTex", "mode"],
       subroutines = {},
    ),
    Shader(

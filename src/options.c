@@ -204,7 +204,7 @@ static void opt_close( unsigned int wid, char *name )
 
    /* Set others to original values as needed. */
    conf.colorblind = opt_orig_colorblind;
-   gl_colorblind(conf.colorblind);
+   gl_colorblind(conf.colorblind, conf.colorblind_mode);
    conf.scalefactor = opt_orig_scalefactor;
    conf.bg_brightness = opt_orig_bg_brightness;
    conf.gamma_correction = opt_orig_gamma_correction;
@@ -1596,7 +1596,7 @@ static void opt_checkColorblind( unsigned int wid, char *str )
 {
    int f = window_checkboxState( wid, str );
    conf.colorblind = f;
-   gl_colorblind( f );
+   gl_colorblind(f, conf.colorblind_mode);
 }
 
 

@@ -36,6 +36,7 @@
 #define VSYNC_DEFAULT 0 /**< conf.vsync */
 #define MINIMIZE_DEFAULT 1 /**< conf.minimize */
 #define COLORBLIND_DEFAULT 0 /**< conf.colorblind */
+#define COLORBLIND_MODE_DEFAULT ROD_MONOCHROMACY /**< conf.colorblind_mode */
 #define FPS_MAX_DEFAULT 60 /**< conf.fps_max */
 #define SHOW_FPS_DEFAULT 0 /**< conf.fps_show */
 #define SHOW_PAUSE_DEFAULT 1 /**< conf.pause_show */
@@ -62,6 +63,21 @@
 #define DEV_SAVE_SYSTEM_DEFAULT "../dat/ssys/" /**< conf.dev_save_sys */
 #define DEV_SAVE_ASSET_DEFAULT "../dat/assets/" /**< conf.dev_save_asset */
 #define DEV_SAVE_MAP_DEFAULT "../dat/outfits/maps/" /**< conf.dev_save_map */
+
+
+/**
+ * @brief Colorblind mode type.
+ *
+ * This must be kept in sync with colorblind.frag's definitions.
+ */
+typedef enum ColorblindMode_ {
+   ROD_MONOCHROMACY = 0, /**< Rod monochromacy (achromatopsia) */
+   PROTANOPIA, /**< Protanopia (red-blind) */
+   DEUTERANOPIA, /**< Deuteranopia (green-blind) */
+   TRITANOPIA, /**< Tritanopia (blue-blind) */
+   CONE_MONOCHROMACY, /**< Blue cone monochromacy (high light conditions) */
+   CBMODE_SENTINEL /**< Last colorblind mode */
+} ColorblindMode;
 
 
 /**
@@ -107,6 +123,7 @@ typedef struct PlayerConf_s {
    int vsync; /**< Whether or not to use vsync. */
    int minimize; /**< Whether to minimize on focus loss. */
    int colorblind; /**< Whether to enable colorblindness simulation. */
+   ColorblindMode colorblind_mode; /**< Colorblind mode to use. */
    int fps_max; /**< Maximum FPS to limit to. */
    int fps_show; /**< Whether or not FPS should be shown */
    int pause_show; /**< Whether pause status should be shown. */

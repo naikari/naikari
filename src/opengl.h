@@ -16,6 +16,7 @@
 /** @endcond */
 
 #include "colour.h"
+#include "conf.h"
 /* We put all the other opengl stuff here to only have to include one header.  */
 #include "opengl_matrix.h"
 #include "opengl_render.h"
@@ -115,7 +116,7 @@ int gl_setupFullscreen (void);
 /*
  * misc
  */
-void gl_colorblind( int enable );
+void gl_colorblind(int enable, ColorblindMode mode);
 GLint gl_stringToFilter( const char *s );
 GLint gl_stringToClamp( const char *s );
 void gl_screenshot( const char *filename );
