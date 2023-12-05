@@ -728,7 +728,7 @@ static void shipyard_renderOverlaySlots(double bx, double by,
    }
    if (slot->slot.exclusive && (l < (int)sizeof(slot_alt)))
       l += scnprintf(&slot_alt[l], sizeof(slot_alt) - l,
-            _(" #o[Exclusive]#0"));
+            _(" #y[Exclusive]#0"));
 
    /* Slot is empty. */
    if ((o == NULL) || (o->desc_short == NULL)) {

@@ -828,7 +828,7 @@ static void equipment_renderOverlaySlots( double bx, double by, double bw, doubl
    }
    if (slot->sslot->slot.exclusive && (pos < (int)sizeof(slot_alt)))
       pos += scnprintf(&slot_alt[pos], sizeof(slot_alt)-pos,
-            _(" #o[Exclusive]#0"));
+            _(" #y[Exclusive]#0"));
 
    /* Slot is empty. */
    if ((o == NULL) || (o->desc_short == NULL)) {
