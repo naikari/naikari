@@ -414,7 +414,7 @@ static void opt_gameplay( unsigned int wid )
    window_addText(wid, x, y, cw, 20, 1, "txtTCMax",
          &gl_smallFont, NULL, NULL);
    y -= 20;
-   window_addFader(wid, x, y, cw, 20, "fadTCMax", 1., 200.,
+   window_addFader(wid, x, y, cw, 20, "fadTCMax", 1., 201.,
          conf.compression_mult, opt_setTCMax);
    y -= 30;
    /* TC reset threshold */
@@ -600,7 +600,7 @@ static void opt_setTCMax(unsigned int wid, char *str)
    tc_max = round(tc_max/1.) * 1.;
 
    /* Translators: "TC" is short for "Time Compression". */
-   snprintf(buf, sizeof(buf), _("TC Max: %.0f%%"), tc_max * 100);
+   snprintf(buf, sizeof(buf), _("TC Max: %+.0f%%"), (tc_max-1.) * 100);
 
    window_modifyText(wid, "txtTCMax", buf);
 }

@@ -22,7 +22,7 @@
 #define RIGHTCLICK_FOLLOW_DEFAULT 1 /**< conf.rightclick_follow */
 #define SAVE_COMPRESSION_DEFAULT 1 /**< conf.save_compress */
 #define TIME_COMPRESSION_DEFAULT_VEL 2500. /**< conf.compression_velocity */
-#define TIME_COMPRESSION_DEFAULT_MULT 200. /**< conf.compression_mult */
+#define TIME_COMPRESSION_DEFAULT_MULT 201. /**< conf.compression_mult */
 #define DT_MOD_DEFAULT 1. /**< conf.dt_mod */
 #define AUTONAV_RESET_SPEED_DEFAULT 1. /**< conf.autonav_reset_speed */
 #define AUTONAV_IGNORE_PASSIVE_DEFAULT 1 /**< conf.autonav_ignore_passive */
