@@ -29,7 +29,7 @@
     <release version="0.12.0">
       <description>
         <ul>
-          <li>Split the Fighter and Cruiser ship classes.</li>
+          <li>Improved text coloring and colorblind accessibility.</li>
         </ul>
       </description>
       <url>https://github.com/naikari/naikari/releases/tag/v0.12.0</url>

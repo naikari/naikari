@@ -2,6 +2,19 @@
 
 ## 0.12.0
 
+### Major Changes
+
+* Overhauled the selection of text colors used on screens related to
+  outfits and ships. The general pattern now is that coloring that
+  indicates something "good" is blue, coloring that indicates a
+  restriction or something "bad" is yellow with an asterisk, and
+  coloring that indicates something "dangerous" or "critical" is red
+  with a pair of exclamation points. This unifies the coloring better
+  and improves colorblind accessibility.
+  
+
+### Other Changes
+
 * Added several more possible randomly-generated pilot names.
 * Yachts are now generally equipped more lightly.
 * Split the Fighter class into Fighter and Light Fighter classes.
@@ -9,14 +22,21 @@
   classes.
 * Adjusted the way AI ships are equipped.
 * Afterburner outfits now properly display their heat up stat.
-* Changed text coloring that showed a stat to be good or bad from red
-  and green to blue and yellow, which is much better for colorblind
-  accessibility, and changed the symbol indicating a negative stat
-  adjustment from "!!" to "*".
 * Changed the colors of the CPU and mass limit bars to make them easier
   to understand and more colorblind-accessible.
 * Lowered energy cost and increased heatup time for afterburners (making
   them more widely usable).
+* Added the Elephant, a bulk freighter which is essentially an upsized
+  variant of the Mule.
+* Reordered stats on ships for better consistency.
+* Fixed an issue where a beam turning off would stop the sound effect
+  from playing on any beam at all which uses the same sound effect.
+* Renamed "wrist computers" to "palmtops".
+* The type of colorblindness simulated can now be configured via the
+  Options menu rather than having to edit the shader file.
+* Changed TC display to be relative instead of absolute (meaning e.g. a
+  doubling of time passage rate is displayed as "+100%" instead of
+  "200%" as it was previously).
 
 ## 0.11.0
 
