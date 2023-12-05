@@ -892,7 +892,7 @@ int conf_saveConfig ( const char* file )
 
    pos += scnprintf(&buf[pos], sizeof(buf)-pos,
          _("-- Colorblind simulation mode (%d–%d)\n"),
-         ROD_MONOCHROMACY, CBMODE_SENTINEL - 1);
+         0, CBMODE_SENTINEL - 1);
    conf_saveInt("colorblind_mode", conf.colorblind_mode);
    conf_saveEmptyLine();
 
