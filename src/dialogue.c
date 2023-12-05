@@ -1004,9 +1004,9 @@ int dialogue_customResize( int width, int height )
 static int toolkit_loop( int *loop_done, dialogue_update_t *du )
 {
    SDL_Event event;
-   unsigned int t;
+   Uint32 t;
    double dt, delay;
-   unsigned int time_ms = SDL_GetTicks();
+   Uint32 time_ms = SDL_GetTicks();
    const double fps_max = 1./30.;
    int quit_game = 0;
 
@@ -1041,7 +1041,7 @@ static int toolkit_loop( int *loop_done, dialogue_update_t *du )
 
       /* FPS Control. */
       /* Get elapsed. */
-      t  = SDL_GetTicks();
+      t = SDL_GetTicks();
       dt = (double)(t - time_ms) / 1000.;
       time_ms = t;
       /* Sleep if necessary. */

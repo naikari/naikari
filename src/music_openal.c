@@ -99,7 +99,8 @@ typedef struct MusicData_s {
    ALenum value;
    ALfloat gain;
    int fadein_start;
-   uint32_t fade, fade_timer;
+   Uint32 fade;
+   Uint32 fade_timer;
 } MusicData;
 
 

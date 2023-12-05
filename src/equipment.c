@@ -61,9 +61,9 @@
  * equipment stuff
  */
 static CstSlotWidget eq_wgt; /**< Equipment widget. */
-static double equipment_dir      = 0.; /**< Equipment dir. */
-static unsigned int equipment_lastick = 0; /**< Last tick. */
-static unsigned int equipment_wid   = 0; /**< Global wid. */
+static double equipment_dir = 0.; /**< Equipment dir. */
+static Uint32 equipment_lastick = 0; /**< Last tick. */
+static unsigned int equipment_wid = 0; /**< Global wid. */
 static iar_data_t *iar_data = NULL; /**< Stored image array positions. */
 static Outfit ***iar_outfits = NULL; /**< Outfits associated with the image array cells. */
 
@@ -336,9 +336,9 @@ void equipment_open( unsigned int wid )
    }
 
    /* Safe defaults. */
-   equipment_lastick    = SDL_GetTicks();
-   equipment_dir        = 0.;
-   eq_wgt.selected      = NULL;
+   equipment_lastick = SDL_GetTicks();
+   equipment_dir = 0.;
+   eq_wgt.selected = NULL;
 
    /* Add ammo. */
    equipment_addAmmo();
@@ -865,7 +865,7 @@ static void equipment_renderShip( double bx, double by,
       double bw, double bh, double x, double y, Pilot* p )
 {
    int sx, sy;
-   unsigned int tick;
+   Uint32 tick;
    double dt;
    double px, py;
    double pw, ph;
@@ -873,7 +873,7 @@ static void equipment_renderShip( double bx, double by,
    Vector2d v;
 
    tick = SDL_GetTicks();
-   dt   = (double)(tick - equipment_lastick)/1000.;
+   dt = (double)(tick - equipment_lastick)/1000.;
    equipment_lastick = tick;
    equipment_dir += p->turn * dt;
    if (equipment_dir > 2*M_PI)
@@ -1650,9 +1650,9 @@ void equipment_updateShips( unsigned int wid, char* str )
    int cargo, jumps;
 
    /* Clear defaults. */
-   eq_wgt.slot          = -1;
-   eq_wgt.mouseover     = -1;
-   equipment_lastick    = SDL_GetTicks();
+   eq_wgt.slot = -1;
+   eq_wgt.mouseover = -1;
+   equipment_lastick = SDL_GetTicks();
 
    /* Get the ship. */
    shipname = toolkit_getImageArray( wid, EQUIPMENT_SHIPS );

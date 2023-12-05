@@ -80,19 +80,19 @@ typedef struct mapOutfitsList_s {
 static mapOutfitsList_t *mapList = NULL; /* Array of map outfits for displaying in the Open window. */
 
 static unsigned int mapedit_wid = 0; /**< Sysedit wid. */
-static double mapedit_xpos    = 0.; /**< Viewport X position. */
-static double mapedit_ypos    = 0.; /**< Viewport Y position. */
-static double mapedit_zoom    = 1.; /**< Viewport zoom level. */
-static int mapedit_moved      = 0;  /**< Space moved since mouse down. */
-static unsigned int mapedit_dragTime = 0; /**< Tick last started to drag. */
-static int mapedit_drag       = 0;  /**< Dragging viewport around. */
+static double mapedit_xpos = 0.; /**< Viewport X position. */
+static double mapedit_ypos = 0.; /**< Viewport Y position. */
+static double mapedit_zoom = 1.; /**< Viewport zoom level. */
+static int mapedit_moved = 0;  /**< Space moved since mouse down. */
+static Uint32 mapedit_dragTime = 0; /**< Tick last started to drag. */
+static int mapedit_drag = 0;  /**< Dragging viewport around. */
 static StarSystem **mapedit_sys = NULL; /**< Selected systems. */
 static int mapedit_iLastClickedSystem = 0; /**< Last clicked system (use with system_getIndex). */
-static int mapedit_tadd       = 0;  /**< Temporarily clicked system should be added. */
-static int mapedit_nsys       = 0;  /**< Number of selected systems. */
-static int mapedit_msys       = 0;  /**< Memory allocated for selected systems. */
-static double mapedit_mx      = 0.; /**< X mouse position. */
-static double mapedit_my      = 0.; /**< Y mouse position. */
+static int mapedit_tadd = 0;  /**< Temporarily clicked system should be added. */
+static int mapedit_nsys = 0;  /**< Number of selected systems. */
+static int mapedit_msys = 0;  /**< Memory allocated for selected systems. */
+static double mapedit_mx = 0.; /**< X mouse position. */
+static double mapedit_my = 0.; /**< Y mouse position. */
 static unsigned int mapedit_widLoad = 0; /**< Load Map Outfit wid. */
 static char *mapedit_sLoadMapName = NULL; /**< Loaded Map Outfit. */
 
@@ -460,23 +460,23 @@ static int mapedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
             }
 
             /* Start dragging the viewport. */
-            mapedit_drag      = 1;
-            mapedit_dragTime  = SDL_GetTicks();
-            mapedit_moved     = 0;
+            mapedit_drag = 1;
+            mapedit_dragTime = SDL_GetTicks();
+            mapedit_moved = 0;
          }
          break;
 
       case SDL_MOUSEBUTTONUP:
          /* Handles dragging viewport around. */
          if (mapedit_drag) {
-            mapedit_drag      = 0;
+            mapedit_drag = 0;
          }
          break;
 
       case SDL_MOUSEMOTION:
          /* Update mouse positions. */
-         mapedit_mx  = mx;
-         mapedit_my  = my;
+         mapedit_mx = mx;
+         mapedit_my = my;
 
          /* Handle dragging. */
          if (mapedit_drag) {

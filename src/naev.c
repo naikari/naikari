@@ -90,14 +90,14 @@
 #define CONF_FILE       "conf.lua" /**< Configuration file by default. */
 #define VERSION_FILE    "VERSION" /**< Version file by default. */
 
-static int quit               = 0; /**< For primary loop */
-static unsigned int time_ms   = 0; /**< used to calculate FPS and movement. */
-static double loading_r       = 0.; /**< Just to provide some randomness. */
-static glTexture *loading     = NULL; /**< Loading screen. */
+static int quit = 0; /**< For primary loop */
+static Uint32 time_ms = 0; /**< used to calculate FPS and movement. */
+static double loading_r = 0.; /**< Just to provide some randomness. */
+static glTexture *loading = NULL; /**< Loading screen. */
 static glFont loading_font; /**< Loading font. */
 static char *loading_txt = NULL; /**< Loading text to display. */
 static SDL_Surface *naev_icon = NULL; /**< Icon. */
-static int fps_skipped        = 0; /**< Skipped last frame? */
+static int fps_skipped = 0; /**< Skipped last frame? */
 /* Version stuff. */
 static semver_t version_binary; /**< Naev binary version. */
 static char version_human[STRMAX_SHORT]; /**< Human readable version. */
@@ -823,7 +823,7 @@ static void fps_init (void)
    WARN( _("clock_gettime failed, disabling POSIX time.") );
    use_posix_time = 0;
 #endif /* HAS_POSIX && defined(CLOCK_MONOTONIC) */
-   time_ms  = SDL_GetTicks();
+   time_ms = SDL_GetTicks();
 }
 /**
  * @brief Gets the elapsed time.
@@ -833,26 +833,26 @@ static void fps_init (void)
 static double fps_elapsed (void)
 {
    double dt;
-   unsigned int t;
+   Uint32 t;
 
 #if HAS_POSIX && defined(CLOCK_MONOTONIC)
    struct timespec ts;
 
    if (use_posix_time) {
-      if (clock_gettime(CLOCK_MONOTONIC, &ts)==0) {
-         dt  = ts.tv_sec - global_time.tv_sec;
-         dt += (ts.tv_nsec - global_time.tv_nsec) / 1e9;
+      if (clock_gettime(CLOCK_MONOTONIC, &ts) == 0) {
+         dt = ts.tv_sec - global_time.tv_sec;
+         dt += (ts.tv_nsec-global_time.tv_nsec) / 1e9;
          global_time = ts;
          return dt;
       }
-      WARN( _("clock_gettime failed!") );
+      WARN(_("clock_gettime failed!"));
    }
 #endif /* HAS_POSIX && defined(CLOCK_MONOTONIC) */
 
-   t        = SDL_GetTicks();
-   dt       = (double)(t - time_ms); /* Get the elapsed ms. */
-   dt      /= 1000.; /* Convert to seconds. */
-   time_ms  = t;
+   t = SDL_GetTicks();
+   dt = (double)(t - time_ms); /* Get the elapsed ms. */
+   dt /= 1000.; /* Convert to seconds. */
+   time_ms = t;
 
    return dt;
 }

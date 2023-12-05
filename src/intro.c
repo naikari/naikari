@@ -326,7 +326,7 @@ int intro_display( const char *text, const char *mus )
    int sb_index; /* Position in the line array. */
    double vel  = 16.; /* velocity: speed of text. */
    int stop = 0; /* stop the intro. */
-   unsigned int tcur, tlast, tlag;/* timers. */
+   Uint32 tcur, tlast, tlag;/* timers. */
    double delta; /* time diff from last render to this one. */
    int cmd_index = 0; /* index into the big list of intro lines. */
    intro_img_t side_image; /* image to go along with the text. */

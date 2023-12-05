@@ -107,7 +107,7 @@ typedef struct alGroup_s {
    int nsources; /**< Number of sources in the group. */
 
    voice_state_t state; /**< Currently global group state. */
-   int fade_timer; /**< Fadeout timer. */
+   Uint32 fade_timer; /**< Fadeout timer. */
    int speed; /**< Whether or not pitch affects. */
    double volume; /**< Volume of the group. */
 } alGroup_t;
@@ -1462,7 +1462,7 @@ void sound_al_update (void)
    int i, j;
    alGroup_t *g;
    ALfloat d, v;
-   unsigned int t, f;
+   Uint32 t, f;
 
    t = SDL_GetTicks();
 

@@ -51,13 +51,13 @@ static char buf[NEWS_MAX_LENGTH];
 
 static int len;
 
-static unsigned int news_tick = 0; /**< Last news tick. */
-static int news_drag          = 0; /**< Is dragging news? */
-static double news_pos        = 0.; /**< Position of the news feed. */
-static glFont *news_font      = &gl_defFont; /**< Font to use. */
-static char **news_lines      = NULL; /**< Array (array.h) of each line's text. */
+static Uint32 news_tick = 0; /**< Last news tick. */
+static int news_drag = 0; /**< Is dragging news? */
+static double news_pos = 0.; /**< Position of the news feed. */
+static glFont *news_font = &gl_defFont; /**< Font to use. */
+static char **news_lines = NULL; /**< Array (array.h) of each line's text. */
 static glFontRestore *news_restores = NULL; /**< Array (array.h) of restorations. */
-static double textlength      = 0.;
+static double textlength = 0.;
 
 /**
  * Save/load
@@ -326,8 +326,8 @@ void news_widget( unsigned int wid, int x, int y, int w, int h )
    glPrintLineIterator iter;
 
    /* Safe defaults. */
-   news_pos    = h/3;
-   news_tick   = SDL_GetTicks();
+   news_pos = h / 3;
+   news_tick = SDL_GetTicks();
 
    clear_newslines();
 
@@ -433,14 +433,14 @@ static void news_render( double bx, double by, double w, double h, void *data )
 {
    (void) data;
    int i, s, m, p;
-   unsigned int t;
+   Uint32 t;
    double y, dt;
 
    t = SDL_GetTicks();
 
    /* Calculate offset. */
    if (!news_drag) {
-      dt = (double)(t-news_tick)/1000.;
+      dt = (double)(t-news_tick) / 1000.;
       news_pos += dt * 25.;
    }
    news_tick = t;

@@ -64,24 +64,24 @@
 extern StarSystem *systems_stack;
 
 
-static int uniedit_mode       = UNIEDIT_DEFAULT; /**< Editor mode. */
+static int uniedit_mode = UNIEDIT_DEFAULT; /**< Editor mode. */
 static unsigned int uniedit_wid = 0; /**< Sysedit wid. */
 static unsigned int uniedit_widEdit = 0; /**< Sysedit editor wid. */
 static unsigned int uniedit_widFind = 0; /**< Sysedit find wid. */
-static double uniedit_xpos    = 0.; /**< Viewport X position. */
-static double uniedit_ypos    = 0.; /**< Viewport Y position. */
-static double uniedit_zoom    = 1.; /**< Viewport zoom level. */
-static int uniedit_moved      = 0;  /**< Space moved since mouse down. */
-static unsigned int uniedit_dragTime = 0; /**< Tick last started to drag. */
-static int uniedit_drag       = 0;  /**< Dragging viewport around. */
-static int uniedit_dragSys    = 0;  /**< Dragging system around. */
+static double uniedit_xpos = 0.; /**< Viewport X position. */
+static double uniedit_ypos = 0.; /**< Viewport Y position. */
+static double uniedit_zoom = 1.; /**< Viewport zoom level. */
+static int uniedit_moved = 0;  /**< Space moved since mouse down. */
+static Uint32 uniedit_dragTime = 0; /**< Tick last started to drag. */
+static int uniedit_drag = 0;  /**< Dragging viewport around. */
+static int uniedit_dragSys = 0;  /**< Dragging system around. */
 static StarSystem **uniedit_sys = NULL; /**< Selected systems. */
 static StarSystem *uniedit_tsys = NULL; /**< Temporarily clicked system. */
-static int uniedit_tadd       = 0;  /**< Temporarily clicked system should be added. */
-static int uniedit_nsys       = 0;  /**< Number of selected systems. */
-static int uniedit_msys       = 0;  /**< Memory allocated for selected systems. */
-static double uniedit_mx      = 0.; /**< X mouse position. */
-static double uniedit_my      = 0.; /**< Y mouse position. */
+static int uniedit_tadd = 0;  /**< Temporarily clicked system should be added. */
+static int uniedit_nsys = 0;  /**< Number of selected systems. */
+static int uniedit_msys = 0;  /**< Memory allocated for selected systems. */
+static double uniedit_mx = 0.; /**< X mouse position. */
+static double uniedit_my = 0.; /**< Y mouse position. */
 
 
 static map_find_t *found_cur  = NULL;  /**< Pointer to found stuff. */
@@ -519,16 +519,16 @@ static int uniedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
 
                      /* Handle normal click. */
                      if (uniedit_mode == UNIEDIT_DEFAULT) {
-                        uniedit_dragSys   = 1;
-                        uniedit_tsys      = sys;
+                        uniedit_dragSys = 1;
+                        uniedit_tsys = sys;
 
                         /* Check modifier. */
                         if (mod & (KMOD_LCTRL | KMOD_RCTRL))
-                           uniedit_tadd      = 0;
+                           uniedit_tadd = 0;
                         else
-                           uniedit_tadd      = -1;
-                        uniedit_dragTime  = SDL_GetTicks();
-                        uniedit_moved     = 0;
+                           uniedit_tadd = -1;
+                        uniedit_dragTime = SDL_GetTicks();
+                        uniedit_moved = 0;
                      }
                      return 1;
                   }
@@ -536,20 +536,20 @@ static int uniedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   if (uniedit_mode == UNIEDIT_DEFAULT) {
                      /* Add the system if not selected. */
                      if (mod & (KMOD_LCTRL | KMOD_RCTRL))
-                        uniedit_selectAdd( sys );
+                        uniedit_selectAdd(sys);
                      else {
                         uniedit_deselect();
-                        uniedit_selectAdd( sys );
+                        uniedit_selectAdd(sys);
                      }
-                     uniedit_tsys      = NULL;
+                     uniedit_tsys = NULL;
 
                      /* Start dragging anyway. */
-                     uniedit_dragSys   = 1;
-                     uniedit_dragTime  = SDL_GetTicks();
-                     uniedit_moved     = 0;
+                     uniedit_dragSys = 1;
+                     uniedit_dragTime = SDL_GetTicks();
+                     uniedit_moved = 0;
                   }
                   else if (uniedit_mode == UNIEDIT_JUMP) {
-                     uniedit_toggleJump( sys );
+                     uniedit_toggleJump(sys);
                      uniedit_mode = UNIEDIT_DEFAULT;
                   }
                   return 1;
@@ -558,10 +558,10 @@ static int uniedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
 
             /* Start dragging. */
             if ((uniedit_mode == UNIEDIT_DEFAULT) && !(mod & (KMOD_LCTRL | KMOD_RCTRL))) {
-               uniedit_drag      = 1;
-               uniedit_dragTime  = SDL_GetTicks();
-               uniedit_moved     = 0;
-               uniedit_tsys      = NULL;
+               uniedit_drag = 1;
+               uniedit_dragTime = SDL_GetTicks();
+               uniedit_moved = 0;
+               uniedit_tsys = NULL;
             }
             return 1;
          }
@@ -575,7 +575,7 @@ static int uniedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                else
                   uniedit_selectAdd( uniedit_tsys );
             }
-            uniedit_drag      = 0;
+            uniedit_drag = 0;
          }
          if (uniedit_dragSys) {
             if ((SDL_GetTicks() - uniedit_dragTime < UNIEDIT_DRAG_THRESHOLD) &&

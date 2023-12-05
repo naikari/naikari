@@ -172,25 +172,25 @@ static Keybind *input_paste;
 /*
  * accel hacks
  */
-static unsigned int input_accelLast = 0; /**< Used to see if double tap */
-static int input_accelButton        = 0; /**< Used to show whether accel is pressed. */
+static Uint32 input_accelLast = 0; /**< Used to see if double tap */
+static int input_accelButton = 0; /**< Used to show whether accel is pressed. */
 
 
 /*
  * Key repeat hack.
  */
-static int repeat_key                  = -1; /**< Key to repeat. */
-static unsigned int repeat_keyTimer    = 0;  /**< Repeat timer. */
-static unsigned int repeat_keyCounter  = 0;  /**< Counter for key repeats. */
+static int repeat_key = -1; /**< Key to repeat. */
+static Uint32 repeat_keyTimer = 0;  /**< Repeat timer. */
+static unsigned int repeat_keyCounter = 0;  /**< Counter for key repeats. */
 
 
 /*
  * Mouse.
  */
-static double input_mouseTimer         = -1.; /**< Timer for hiding again. */
-static int input_mouseCounter          = 1; /**< Counter for mouse display/hiding. */
-static unsigned int input_mouseClickLast = 0; /**< Time of last click (in ms) */
-static void *input_lastClicked         = NULL; /**< Pointer to the last-clicked item. */
+static double input_mouseTimer = -1.; /**< Timer for hiding again. */
+static int input_mouseCounter = 1; /**< Counter for mouse display/hiding. */
+static Uint32 input_mouseClickLast = 0; /**< Time of last click (in ms) */
+static void *input_lastClicked = NULL; /**< Pointer to the last-clicked item. */
 
 
 /*
@@ -753,7 +753,7 @@ SDL_Keymod input_translateMod( SDL_Keymod mod )
  */
 void input_update( double dt )
 {
-   unsigned int t;
+   Uint32 t;
 
    if (input_mouseTimer > 0.) {
       input_mouseTimer -= dt;
@@ -802,7 +802,7 @@ void input_update( double dt )
  */
 static void input_key( int keynum, double value, double kabs, int repeat )
 {
-   unsigned int t;
+   Uint32 t;
    HookParam hparam[3];
    Planet *pnt;
    int nav;
@@ -812,13 +812,13 @@ static void input_key( int keynum, double value, double kabs, int repeat )
    /* Repetition stuff. */
    if (conf.repeat_delay != 0) {
       if ((value == KEY_PRESS) && !repeat) {
-         repeat_key        = keynum;
-         repeat_keyTimer   = SDL_GetTicks();
+         repeat_key = keynum;
+         repeat_keyTimer = SDL_GetTicks();
          repeat_keyCounter = 0;
       }
       else if (value == KEY_RELEASE) {
-         repeat_key        = -1;
-         repeat_keyTimer   = 0;
+         repeat_key = -1;
+         repeat_keyTimer = 0;
          repeat_keyCounter = 0;
       }
    }
@@ -1394,7 +1394,7 @@ static void input_mouseMove( SDL_Event* event )
  */
 static void input_clickevent( SDL_Event* event )
 {
-   unsigned int t;
+   Uint32 t;
    pilotId_t pid;
    int mx, my, pntid, jpid, astid, fieid;
    int res;
@@ -1781,7 +1781,7 @@ void input_clicked( void *clicked )
  */
 int input_isDoubleClick( void *clicked )
 {
-   unsigned int threshold;
+   Uint32 threshold;
 
    if (conf.mouse_doubleclick <= 0.)
       return 1;

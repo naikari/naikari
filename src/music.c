@@ -59,11 +59,11 @@ static int music_runLua( const char *situation );
 /*
  * The current music.
  */
-static char *music_name       = NULL; /**< Current music name. */
-static unsigned int music_start = 0; /**< Music start playing time. */
-static double music_timer     = 0.; /**< Music timer. */
-static int music_temp_disabled= 0; /**< Music is temporarily disabled. */
-static int music_temp_repeat  = 0; /**< Music is repeating. */
+static char *music_name = NULL; /**< Current music name. */
+static Uint32 music_start = 0; /**< Music start playing time. */
+static double music_timer = 0.; /**< Music timer. */
+static int music_temp_disabled = 0; /**< Music is temporarily disabled. */
+static int music_temp_repeat = 0; /**< Music is repeating. */
 static char *music_temp_repeatname = NULL; /**< Repeating song name. */
 
 
@@ -332,9 +332,9 @@ int music_load( const char* name )
       snprintf( filename, sizeof(filename), MUSIC_PATH"%s"MUSIC_SUFFIX, name);
 
    /* Load new music. */
-   music_name  = strdup(name);
+   music_name = strdup(name);
    music_start = SDL_GetTicks();
-   rw = PHYSFSRWOPS_openRead( filename );
+   rw = PHYSFSRWOPS_openRead(filename);
    if (rw == NULL) {
       WARN(_("Music '%s' not found."), filename);
       return -1;

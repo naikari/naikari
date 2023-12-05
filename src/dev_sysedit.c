@@ -82,20 +82,20 @@ static int  sysedit_tadd         = 0; /**< Add to selection. */
 static StarSystem *sysedit_sys = NULL; /**< Currently opened system. */
 static unsigned int sysedit_wid = 0; /**< Sysedit wid. */
 static unsigned int sysedit_widEdit = 0; /**< Planet editor wid. */
-static int sysedit_grid       = 1;  /**< Grid is visible. */
-static double sysedit_xpos    = 0.; /**< Viewport X position. */
-static double sysedit_ypos    = 0.; /**< Viewport Y position. */
-static double sysedit_zoom    = 1.; /**< Viewport zoom level. */
-static int sysedit_moved      = 0;  /**< Space moved since mouse down. */
-static unsigned int sysedit_dragTime = 0; /**< Tick last started to drag. */
-static int sysedit_drag       = 0;  /**< Dragging viewport around. */
-static int sysedit_dragSel    = 0;  /**< Dragging system around. */
-static double sysedit_mx      = 0.; /**< Cursor X position. */
-static double sysedit_my      = 0.; /**< Cursor Y position. */
+static int sysedit_grid = 1;  /**< Grid is visible. */
+static double sysedit_xpos = 0.; /**< Viewport X position. */
+static double sysedit_ypos = 0.; /**< Viewport Y position. */
+static double sysedit_zoom = 1.; /**< Viewport zoom level. */
+static int sysedit_moved = 0;  /**< Space moved since mouse down. */
+static Uint32 sysedit_dragTime = 0; /**< Tick last started to drag. */
+static int sysedit_drag = 0;  /**< Dragging viewport around. */
+static int sysedit_dragSel = 0;  /**< Dragging system around. */
+static double sysedit_mx = 0.; /**< Cursor X position. */
+static double sysedit_my = 0.; /**< Cursor Y position. */
 
 /* Stored checkbox values. */
 static int jp_hidden = 0; /**< Jump point hidden checkbox value. */
-static int jp_exit   = 0; /**< Jump point exit only checkbox value. */
+static int jp_exit = 0; /**< Jump point exit only checkbox value. */
 static int jp_longrange = 0; /**< Jump point longrange checkbox value. */
 
 
@@ -936,10 +936,10 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                               sysedit_dragSel = 0;
                               return 1;
                            }
-                           sysedit_tadd      = -1;
+                           sysedit_tadd = -1;
                         }
-                        sysedit_dragTime  = SDL_GetTicks();
-                        sysedit_moved     = 0;
+                        sysedit_dragTime = SDL_GetTicks();
+                        sysedit_moved = 0;
                         return 1;
                      }
                   }
@@ -954,9 +954,9 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   sysedit_tsel.type = SELECT_NONE;
 
                   /* Start dragging anyway. */
-                  sysedit_dragSel   = 1;
-                  sysedit_dragTime  = SDL_GetTicks();
-                  sysedit_moved     = 0;
+                  sysedit_dragSel = 1;
+                  sysedit_dragTime = SDL_GetTicks();
+                  sysedit_moved = 0;
                   return 1;
                }
             }
@@ -983,12 +983,12 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   /* Check if already selected. */
                   for (j=0; j<sysedit_nselect; j++) {
                      if (sysedit_selectCmp( &sel, &sysedit_select[j] )) {
-                        sysedit_dragSel   = 1;
-                        sysedit_tsel      = sel;
+                        sysedit_dragSel = 1;
+                        sysedit_tsel = sel;
 
                         /* Check modifier. */
                         if (mod & (KMOD_LCTRL | KMOD_RCTRL))
-                           sysedit_tadd      = 0;
+                           sysedit_tadd = 0;
                         else {
                            /* Detect double click to open planet editor. */
                            if ((SDL_GetTicks() - sysedit_dragTime < SYSEDIT_DRAG_THRESHOLD*2)
@@ -997,10 +997,10 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                               sysedit_dragSel = 0;
                               return 1;
                            }
-                           sysedit_tadd      = -1;
+                           sysedit_tadd = -1;
                         }
-                        sysedit_dragTime  = SDL_GetTicks();
-                        sysedit_moved     = 0;
+                        sysedit_dragTime = SDL_GetTicks();
+                        sysedit_moved = 0;
                         return 1;
                      }
                   }
@@ -1015,18 +1015,18 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   sysedit_tsel.type = SELECT_NONE;
 
                   /* Start dragging anyway. */
-                  sysedit_dragSel   = 1;
-                  sysedit_dragTime  = SDL_GetTicks();
-                  sysedit_moved     = 0;
+                  sysedit_dragSel = 1;
+                  sysedit_dragTime = SDL_GetTicks();
+                  sysedit_moved = 0;
                   return 1;
                }
             }
 
             /* Start dragging. */
             if (!(mod & (KMOD_LCTRL | KMOD_RCTRL))) {
-               sysedit_drag      = 1;
-               sysedit_dragTime  = SDL_GetTicks();
-               sysedit_moved     = 0;
+               sysedit_drag = 1;
+               sysedit_dragTime = SDL_GetTicks();
+               sysedit_moved = 0;
                sysedit_tsel.type = SELECT_NONE;
             }
          }
@@ -1038,9 +1038,9 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                if (sysedit_tsel.type == SELECT_NONE)
                   sysedit_deselect();
                else
-                  sysedit_selectAdd( &sysedit_tsel );
+                  sysedit_selectAdd(&sysedit_tsel);
             }
-            sysedit_drag      = 0;
+            sysedit_drag = 0;
 
             if (conf.devautosave)
                for (i=0; i<sysedit_nselect; i++)
@@ -1056,7 +1056,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   sysedit_selectAdd( &sysedit_tsel );
                }
             }
-            sysedit_dragSel   = 0;
+            sysedit_dragSel = 0;
 
 
             /* Save all planets in our selection - their positions might have changed. */
@@ -1094,7 +1094,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   }
                   /* Jump point. */
                   else if (sysedit_select[i].type == SELECT_JUMPPOINT) {
-                     jp         = &sys->jumps[ sysedit_select[i].u.jump ];
+                     jp = &sys->jumps[sysedit_select[i].u.jump];
                      jp->flags &= ~(JP_AUTOPOS);
                      jp->pos.x += xr / sysedit_zoom;
                      jp->pos.y -= yr / sysedit_zoom;
