@@ -16,6 +16,7 @@
 #include "info.h"
 
 #include "array.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "equipment.h"
 #include "gui.h"
@@ -264,9 +265,11 @@ void info_mapTargetSystem(void)
  */
 static void info_openMain( unsigned int wid )
 {
-   char str[STRMAX_SHORT], **buf, creds[ECON_CRED_STRLEN];
+   char str[STRMAX_SHORT];
+   char **buf;
+   char creds[STRMAX_SHORT];
    char str2[STRMAX_SHORT];
-   char buf_worth[ECON_CRED_STRLEN];
+   char buf_worth[STRMAX_SHORT];
    credits_t networth;
    const PlayerShip_t *ships;
    const PlayerOutfit_t *outfits;
@@ -304,8 +307,8 @@ static void info_openMain( unsigned int wid )
 
    /* pilot generics */
    nt = ntime_pretty(ntime_get(), 2);
-   credits2str(creds, player.p->credits, 2);
-   credits2str(buf_worth, networth, 2);
+   credits2str(creds, sizeof(creds), player.p->credits, 2);
+   credits2str(buf_worth, sizeof(buf_worth), networth, 2);
    snprintf(str, sizeof(str),
          _("#nPilot:#0 %s\n"
          "#nDate:#0 %s\n"
@@ -527,8 +530,9 @@ static void info_openShip( unsigned int wid )
 static void ship_update( unsigned int wid )
 {
    char *hyp_delay, *land_delay;
-   char buf[STRMAX], buf2[STRMAX_SHORT];
-   char buf_price[ECON_CRED_STRLEN];
+   char buf[STRMAX];
+   char buf2[STRMAX_SHORT];
+   char buf_price[STRMAX_SHORT];
    int cargo;
    int jumps;
 
@@ -543,7 +547,8 @@ static void ship_update( unsigned int wid )
       snprintf(buf2, sizeof(buf2), n_("%d jump", "%d jumps", jumps), jumps);
    else
       strcpy(buf2, _("∞ jumps"));
-   credits2str(buf_price, player_shipPrice(player.p->name), 2);
+   credits2str(buf_price, sizeof(buf_price),
+         player_shipPrice(player.p->name), 2);
 
    snprintf(buf, sizeof(buf),
          _("#nName:#0 %s\n"

@@ -18,6 +18,7 @@
 #include "load.h"
 
 #include "array.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "economy.h"
 #include "event.h"
@@ -447,7 +448,7 @@ static void load_menu_update( unsigned int wid, char *str )
    int pos;
    nsave_t *ns;
    char *save;
-   char credits[ECON_CRED_STRLEN];
+   char credits[STRMAX_SHORT];
    char date[STRMAX_SHORT];
    char buf[STRMAX_SHORT];
    size_t l;
@@ -462,7 +463,7 @@ static void load_menu_update( unsigned int wid, char *str )
    ns  = &load_saves[pos];
 
    /* Display text. */
-   credits2str(credits, ns->credits, 2);
+   credits2str(credits, sizeof(credits), ns->credits, 2);
    ntime_prettyBuf(date, sizeof(date), ns->date, 3);
 
    l = scnprintf(buf, sizeof(buf), p_("save_name", "#nName:#0 %s"), ns->name);

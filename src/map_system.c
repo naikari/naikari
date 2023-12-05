@@ -16,6 +16,7 @@
 #include "array.h"
 #include "background.h"
 #include "colour.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "economy.h"
 #include "faction.h"
@@ -549,16 +550,19 @@ static void map_system_array_update( unsigned int wid, char* str ) {
    int i, l;
    Outfit *outfit;
    Ship *ship;
-   char buf_price[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT];
+   char buf_price[STRMAX_SHORT];
+   char buf_license[STRMAX_SHORT];
    Commodity *com;
    credits_t mean;
    double std;
    credits_t globalmean;
    double globalstd;
-   char buf_local_price[ECON_CRED_STRLEN];
-   char buf_mean[ECON_CRED_STRLEN], buf_globalmean[ECON_CRED_STRLEN];
-   char buf_std[ECON_CRED_STRLEN], buf_globalstd[ECON_CRED_STRLEN];
-   char buf_buy_price[ECON_CRED_STRLEN];
+   char buf_local_price[STRMAX_SHORT];
+   char buf_mean[STRMAX_SHORT];
+   char buf_globalmean[STRMAX_SHORT];
+   char buf_std[STRMAX_SHORT];
+   char buf_globalstd[STRMAX_SHORT];
+   char buf_buy_price[STRMAX_SHORT];
    int owned;
 
    i = toolkit_getImageArrayPos( wid, str );
@@ -570,14 +574,16 @@ static void map_system_array_update( unsigned int wid, char* str ) {
       outfit = cur_planet_sel_outfits[i];
 
       /* new text */
-      price2str( buf_price, outfit->price, player.p->credits, 2 );
+      price2str(buf_price, sizeof(buf_price), outfit->price,
+            player.p->credits, 2);
       if (outfit->license == NULL)
-         strncpy( buf_license, _("None"), sizeof(buf_license)-1 );
+         strncpy(buf_license, _("None"), sizeof(buf_license) - 1);
       else if (player_hasLicense( outfit->license ) ||
             (cur_planetObj_sel != NULL && planet_hasService( cur_planetObj_sel, PLANET_SERVICE_BLACKMARKET )))
-         strncpy( buf_license, _(outfit->license), sizeof(buf_license)-1 );
+         strncpy(buf_license, _(outfit->license), sizeof(buf_license) - 1);
       else
-         snprintf( buf_license, sizeof( buf_license ), "#r%s#0", _(outfit->license) );
+         snprintf(buf_license, sizeof( buf_license ), "#X* %s#0",
+               _(outfit->license));
 
       snprintf(infobuf, sizeof(infobuf),
                  _("%s\n\n"
@@ -593,16 +599,18 @@ static void map_system_array_update( unsigned int wid, char* str ) {
       ship = cur_planet_sel_ships[i];
 
       /* update text */
-      price2str( buf_price, ship_buyPrice( ship ), player.p->credits, 2 );
+      price2str(buf_price, sizeof(buf_price), ship_buyPrice(ship),
+            player.p->credits, 2);
       if (ship->license == NULL)
-         strncpy( buf_license, _("None"), sizeof(buf_license)-1 );
+         strncpy(buf_license, _("None"), sizeof(buf_license) - 1);
       else if (player_hasLicense(ship->license)
             || ((cur_planetObj_sel != NULL)
                && planet_hasService(cur_planetObj_sel,
                   PLANET_SERVICE_BLACKMARKET)))
-         strncpy( buf_license, _(ship->license), sizeof(buf_license)-1 );
+         strncpy(buf_license, _(ship->license), sizeof(buf_license) - 1);
       else
-         snprintf(buf_license, sizeof(buf_license), "#r%s#0", _(ship->license));
+         snprintf(buf_license, sizeof(buf_license), "#X* %s#0",
+               _(ship->license));
 
       l = scnprintf(infobuf, sizeof(infobuf),
             _("%s (%s)\n\n"
@@ -673,13 +681,13 @@ static void map_system_array_update( unsigned int wid, char* str ) {
             _("\n#nJump Detect Range:#0 %.0f mAU"), ship->rdr_jump_range);
    } else if ( ( strcmp( str, MAPSYS_TRADE ) == 0 ) ) {
       com = cur_planetObj_sel->commodities[i];
-      credits2str(buf_local_price,
+      credits2str(buf_local_price, sizeof(buf_local_price),
             planet_commodityPrice(cur_planetObj_sel, com), -1);
       economy_getAveragePrice(com, &globalmean, &globalstd);
       economy_getAveragePlanetPrice(com, cur_planetObj_sel, &mean, &std);
-      credits2str(buf_mean, mean, -1);
+      credits2str(buf_mean, sizeof(buf_mean), mean, -1);
       snprintf(buf_std, sizeof(buf_std), _("%.1f ¢/kt"), std);
-      credits2str(buf_globalmean, globalmean, -1);
+      credits2str(buf_globalmean, sizeof(buf_globalmean), globalmean, -1);
       snprintf(buf_globalstd, sizeof(buf_globalstd), _("%.1f ¢/kt"), globalstd);
       owned=pilot_cargoOwned( player.p, com );
 
@@ -691,7 +699,8 @@ static void map_system_array_update( unsigned int wid, char* str ) {
             owned);
 
       if (owned > 0) {
-         credits2str(buf_buy_price, com->lastPurchasePrice, -1);
+         credits2str(buf_buy_price, sizeof(buf_buy_price),
+               com->lastPurchasePrice, -1);
          i += scnprintf(&infobuf[i], sizeof(infobuf)-i,
                _("#nPurchased for:#0 %s/kt\n"),
                buf_buy_price);

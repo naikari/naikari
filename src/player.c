@@ -23,6 +23,7 @@
 #include "claim.h"
 #include "comm.h"
 #include "conf.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "economy.h"
 #include "equipment.h"
@@ -249,6 +250,7 @@ void player_new (void)
 {
    int r;
    char buf[PATH_MAX], buf2[PATH_MAX];
+   int written;
 
    /* Set up new player. */
    player_newSetup();
@@ -267,7 +269,12 @@ void player_new (void)
    }
 
    str2filename(buf2, sizeof(buf2), player.name);
-   if (snprintf(buf, sizeof(buf), "saves/%s.ns", buf2) < 0)
+   written = snprintf(buf, sizeof(buf), "saves/%s.ns", buf2);
+   if (written < 0) {
+      WARN(_("Error writing save file name."));
+      return;
+   }
+   else if (written >= (int)sizeof(buf))
       WARN(_("Save file name was truncated: %s"), buf);
    if (PHYSFS_exists( buf )) {
       r = dialogue_YesNo(_("Overwrite"),

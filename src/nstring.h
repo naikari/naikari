@@ -40,5 +40,7 @@ int strsort(const void *p1, const void *p2);
 
 size_t str2filename(char *out, size_t maxlen, const char *s);
 
+int tonnes2str(char *out, size_t maxlen, int tonnes);
+
 
 #endif /* NSTRING_H */

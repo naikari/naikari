@@ -21,6 +21,7 @@
 
 #include "background.h"
 #include "conf.h"
+#include "credits.h"
 #include "damagetype.h"
 #include "dev_uniedit.h"
 #include "economy.h"

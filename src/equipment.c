@@ -21,6 +21,7 @@
 
 #include "array.h"
 #include "conf.h"
+#include "credits.h"
 #include "debug.h"
 #include "dialogue.h"
 #include "gui.h"
@@ -1639,8 +1640,10 @@ static const char* eq_qSym(double cur, double base, int inv, int outcond)
 void equipment_updateShips( unsigned int wid, char* str )
 {
    (void)str;
-   char *buf, buf2[ECON_CRED_STRLEN], buf3[STRMAX_SHORT];
-   char buf_money[ECON_CRED_STRLEN];
+   char *buf;
+   char buf_price[STRMAX_SHORT];
+   char buf_money[STRMAX_SHORT];
+   char buf_jumps[STRMAX_SHORT];
    char errorReport[STRMAX_SHORT];
    int problems;
    char *shipname;
@@ -1667,8 +1670,8 @@ void equipment_updateShips( unsigned int wid, char* str )
    eq_wgt.selected = ship;
 
    /* update text */
-   credits2str(buf2, player_shipPrice(shipname), 2); /* sell price */
-   credits2str(buf_money, player.p->credits, 2);
+   credits2str(buf_price, sizeof(buf_price), player_shipPrice(shipname), 2);
+   credits2str(buf_money, sizeof(buf_money), player.p->credits, 2);
    cargo = pilot_cargoFree(ship) + pilot_cargoUsed(ship);
    nt = ntime_pretty(pilot_hyperspaceDelay(ship), 1);
    nt2 = ntime_pretty(
@@ -1679,10 +1682,11 @@ void equipment_updateShips( unsigned int wid, char* str )
 
    if (ship->fuel_consumption != 0) {
       jumps = floor(ship->fuel_max / ship->fuel_consumption);
-      snprintf(buf3, sizeof(buf3), n_("%d jump", "%d jumps", jumps), jumps);
+      snprintf(buf_jumps, sizeof(buf_jumps),
+            n_("%d jump", "%d jumps", jumps), jumps);
    }
    else {
-      strcpy(buf3, _("∞ jumps"));
+      strcpy(buf_jumps, _("∞ jumps"));
    }
 
    /* Fill the buffer. */
@@ -1715,7 +1719,7 @@ void equipment_updateShips( unsigned int wid, char* str )
       ship->name,
       _(ship->ship->name),
       _(ship->ship->class),
-      buf2,
+      buf_price,
       buf_money,
       /* Movement. */
       ship->solid->mass,
@@ -1778,7 +1782,7 @@ void equipment_updateShips( unsigned int wid, char* str )
             0, cargo < 0.),
       EQ_COMP(ship->fuel_max, ship->ship->fuel + ship->ship->stats_array.fuel,
             0, ship->fuel_max < ship->fuel_consumption),
-      buf3,
+      buf_jumps,
       EQ_COMP(ship->fuel_regen,
             ship->ship->fuel_regen + ship->ship->stats_array.fuel_regen,
             0, ship->fuel_regen < 0.),
@@ -2036,7 +2040,9 @@ static void equipment_unequipShip( unsigned int wid, char* str )
 static void equipment_sellShip( unsigned int wid, char* str )
 {
    (void)str;
-   char *shipname, buf[ECON_CRED_STRLEN], *name;
+   char *shipname;
+   char buf[STRMAX_SHORT];
+   char *name;
    credits_t price;
    Pilot *p;
    const Ship *s;
@@ -2049,7 +2055,7 @@ static void equipment_sellShip( unsigned int wid, char* str )
 
    /* Calculate price. */
    price = player_shipPrice(shipname);
-   credits2str( buf, price, 2 );
+   credits2str(buf, sizeof(buf), price, 2);
 
    /* Check if player really wants to sell. */
    if (!dialogue_YesNo( _("Sell Ship"),
@@ -2093,7 +2099,7 @@ static void equipment_sellShip( unsigned int wid, char* str )
 static void equipment_sellOutfit( unsigned int wid, char* str )
 {
    (void) str;
-   char buf[ECON_CRED_STRLEN];
+   char buf[STRMAX_SHORT];
    Outfit* o;
    int i, active, q;
    HookParam hparam[3];
@@ -2114,7 +2120,7 @@ static void equipment_sellOutfit( unsigned int wid, char* str )
       return;
 
    /* Calculate price. */
-   credits2str( buf, o->price, 2 );
+   credits2str(buf, sizeof(buf), o->price, 2);
 
    /* TODO: Would be nice to have a quantity choice. */
    q = 1;

@@ -21,6 +21,7 @@
 #include "land_shipyard.h"
 
 #include "array.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "hook.h"
 #include "land.h"
@@ -177,8 +178,10 @@ void shipyard_update( unsigned int wid, char* str )
    int w, h, iw, bh, tw, th;
    int y;
    Ship* ship;
-   char buf[STRMAX], buf2[ECON_CRED_STRLEN], buf3[ECON_CRED_STRLEN],
-         buf_license[STRMAX_SHORT];
+   char buf[STRMAX];
+   char buf_price[STRMAX_SHORT];
+   char buf_credits[STRMAX_SHORT];
+   char buf_license[STRMAX_SHORT];
 
    /* Get dimensions. */
    window_dimWindow(wid, &w, &h);
@@ -204,16 +207,18 @@ void shipyard_update( unsigned int wid, char* str )
 
    /* update text */
    window_modifyText( wid, "txtStats", ship->desc_stats );
-   price2str( buf2, ship_buyPrice(ship), player.p->credits, 2 );
-   credits2str( buf3, player.p->credits, 2 );
+   price2str(buf_price, sizeof(buf_price), ship_buyPrice(ship),
+         player.p->credits, 2);
+   credits2str(buf_credits, sizeof(buf_credits), player.p->credits, 2);
 
    if (ship->license == NULL)
-      strncpy( buf_license, _("None"), sizeof(buf_license)-1 );
-   else if (player_hasLicense( ship->license ) ||
-         (land_planet != NULL && planet_hasService( land_planet, PLANET_SERVICE_BLACKMARKET )))
-      strncpy( buf_license, _(ship->license), sizeof(buf_license)-1 );
+      strncpy(buf_license, _("None"), sizeof(buf_license) - 1);
+   else if (player_hasLicense(ship->license)
+         || ((land_planet != NULL)
+            && planet_hasService(land_planet, PLANET_SERVICE_BLACKMARKET)))
+      strncpy(buf_license, _(ship->license), sizeof(buf_license) - 1);
    else
-      snprintf( buf_license, sizeof(buf_license), "#r%s#0", _(ship->license) );
+      snprintf(buf_license, sizeof(buf_license), "#X* %s#0", _(ship->license));
 
    l = scnprintf(buf, sizeof(buf),
          _("#nModel:#0 %s\n"
@@ -225,8 +230,8 @@ void shipyard_update( unsigned int wid, char* str )
          _(ship->name),
          _(ship->class),
          _(ship->fabricator),
-         buf2,
-         buf3,
+         buf_price,
+         buf_credits,
          buf_license);
 
    if (ship->cpu != 0.)
@@ -394,7 +399,7 @@ static void shipyard_buy( unsigned int wid, char* str )
 {
    (void)str;
    int i;
-   char buf[ECON_CRED_STRLEN];
+   char buf[STRMAX_SHORT];
    Ship* ship;
    HookParam hparam[2];
 
@@ -409,7 +414,7 @@ static void shipyard_buy( unsigned int wid, char* str )
    if (land_errDialogue( ship->name, "buyShip" ))
       return;
 
-   credits2str( buf, targetprice, 2 );
+   credits2str(buf, sizeof(buf), targetprice, 2);
    if (dialogue_YesNo(_("Are you sure?"), /* confirm */
          _("Do you really want to spend %s on a new ship?"), buf )==0)
       return;
@@ -444,6 +449,7 @@ int shipyard_canBuy( const char *shipname, Planet *planet )
    ship = ship_get( shipname );
    int failure = 0;
    credits_t price;
+   char buf[STRMAX_SHORT];
 
    price = ship_buyPrice(ship);
 
@@ -454,9 +460,8 @@ int shipyard_canBuy( const char *shipname, Planet *planet )
       land_errDialogueBuild(_("License needed: %s."), _(ship->license));
       failure = 1;
    }
-   if (!player_hasCredits( price )) {
-      char buf[ECON_CRED_STRLEN];
-      credits2str( buf, price - player.p->credits, 2 );
+   if (!player_hasCredits(price)) {
+      credits2str(buf, sizeof(buf), price - player.p->credits, 2);
       land_errDialogueBuild( _("You need %s more."), buf);
       failure = 1;
    }
@@ -512,6 +517,8 @@ int shipyard_canTrade( const char *shipname )
    Ship* ship;
    ship = ship_get( shipname );
    credits_t price;
+   credits_t creditdifference;
+   char buf[STRMAX_SHORT];
 
    price = ship_buyPrice( ship );
 
@@ -522,13 +529,12 @@ int shipyard_canTrade( const char *shipname )
       failure = 1;
    }
    if (!player_hasCredits( price - player_shipPrice(player.p->name))) {
-      credits_t creditdifference = price - (player_shipPrice(player.p->name) + player.p->credits);
-      char buf[ECON_CRED_STRLEN];
-      credits2str( buf, creditdifference, 2 );
+      creditdifference = price - (player_shipPrice(player.p->name)+player.p->credits);
+      credits2str(buf, sizeof(buf), creditdifference, 2);
       land_errDialogueBuild( _("You need %s more."), buf);
       failure = 1;
    }
-   if (!can_swap( shipname ))
+   if (!can_swap(shipname))
       failure = 1;
    return !failure;
 }
@@ -543,8 +549,8 @@ static void shipyard_trade( unsigned int wid, char* str )
 {
    (void)str;
    int i;
-   char buf[ECON_CRED_STRLEN], buf2[ECON_CRED_STRLEN],
-         buf3[ECON_CRED_STRLEN], buf4[ECON_CRED_STRLEN];
+   char buf_oldprice[STRMAX_SHORT];
+   char buf_exchange[STRMAX_SHORT];
    Ship* ship;
 
    i = toolkit_getImageArrayPos( wid, "iarShipyard" );
@@ -559,28 +565,35 @@ static void shipyard_trade( unsigned int wid, char* str )
    if (land_errDialogue( ship->name, "tradeShip" ))
       return;
 
-   credits2str( buf, targetprice, 2 );
-   credits2str( buf2, playerprice, 2 );
-   credits2str( buf3, targetprice - playerprice, 2 );
-   credits2str( buf4, playerprice - targetprice, 2 );
+   credits2str(buf_oldprice, sizeof(buf_oldprice), playerprice, 2);
 
    /* Display the correct dialogue depending on the new ship's price versus the player's. */
    if ( targetprice == playerprice ) {
-      if (dialogue_YesNo(_("Are you sure?"), /* confirm */
-         _("Your %s is worth %s, exactly as much as the new ship, so no credits need be exchanged. Are you sure you want to trade your ship in?"),
-               _(player.p->ship->name), buf2)==0)
+      if (!dialogue_YesNo(_("Trade-In Confirmation"),
+            _("Your %s is worth %s, exactly as much as the new ship, so no"
+               " credits need be exchanged. Are you sure you want to trade"
+               " your ship in?"),
+            _(player.p->ship->name), buf_oldprice))
          return;
    }
    else if ( targetprice < playerprice ) {
-      if (dialogue_YesNo(_("Are you sure?"), /* confirm */
-         _("Your %s is worth %s, more than the new ship. For your ship, you will get the new %s and %s. Are you sure you want to trade your ship in?"),
-               _(player.p->ship->name), buf2, _(ship->name), buf4)==0)
+      credits2str(buf_exchange, sizeof(buf_exchange),
+            playerprice - targetprice, 2);
+      if (!dialogue_YesNo(_("Trade-In Confirmation"),
+            _("Your %s is worth %s, more than the new ship. For your ship, you"
+               " will get the new %s and %s. Are you sure you want to trade"
+               " your ship in?"),
+            _(player.p->ship->name), buf_oldprice, _(ship->name),
+            buf_exchange))
          return;
    }
    else if ( targetprice > playerprice ) {
-      if (dialogue_YesNo(_("Are you sure?"), /* confirm */
-         _("Your %s is worth %s, so the new ship will cost %s. Are you sure you want to trade your ship in?"),
-               _(player.p->ship->name), buf2, buf3)==0)
+      credits2str(buf_exchange, sizeof(buf_exchange),
+            targetprice - playerprice, 2);
+      if (!dialogue_YesNo(_("Trade-In Confirmation"),
+            _("Your %s is worth %s, so the new ship will cost %s. Are you sure"
+               " you want to trade your ship in?"),
+            _(player.p->ship->name), buf_oldprice, buf_exchange))
          return;
    }
 

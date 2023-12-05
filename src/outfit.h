@@ -10,6 +10,7 @@
 
 #include "collision.h"
 #include "commodity.h"
+#include "credits.h"
 #include "opengl.h"
 #include "shipstats.h"
 #include "sound.h"

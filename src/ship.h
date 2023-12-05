@@ -10,6 +10,7 @@
 
 #include "collision.h"
 #include "commodity.h"
+#include "credits.h"
 #include "nxml.h"
 #include "object.h"
 #include "opengl.h"

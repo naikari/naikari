@@ -10,6 +10,7 @@
 
 #include "ai.h"
 #include "commodity.h"
+#include "credits.h"
 #include "faction.h"
 #include "ntime.h"
 #include "outfit.h"

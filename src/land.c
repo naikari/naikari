@@ -24,6 +24,7 @@
 #include "array.h"
 #include "camera.h"
 #include "conf.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "economy.h"
 #include "equipment.h"
@@ -881,13 +882,13 @@ static void misn_update( unsigned int wid, char* str )
    size_t l;
    char *time_str;
    char tons[STRMAX_SHORT];
-   char cred[ECON_CRED_STRLEN];
+   char cred[STRMAX_SHORT];
    int minimal;
 
    /* Update date stuff. */
    time_str = ntime_pretty(0, 2);
-   tonnes2str(tons, player.p->cargo_free);
-   credits2str(cred, player.p->credits, 2);
+   tonnes2str(tons, sizeof(tons), player.p->cargo_free);
+   credits2str(cred, sizeof(cred), player.p->credits, 2);
    snprintf(buf, sizeof(buf),
          _("#nDate:#0 %s\n"
             "#nFree Space:#0 %s\n"
@@ -983,7 +984,10 @@ static void spaceport_saveSnapshot(unsigned int wid, char *str)
  */
 static void land_updateMainTab(void)
 {
-   char buf[STRMAX], cred[ECON_CRED_STRLEN], tons[STRMAX_SHORT], pop[STRMAX_SHORT];
+   char buf[STRMAX];
+   char cred[STRMAX_SHORT];
+   char tons[STRMAX_SHORT];
+   char pop[STRMAX_SHORT];
    Outfit *o;
    long double p = land_planet->population;
    int w, h;
@@ -1021,8 +1025,8 @@ static void land_updateMainTab(void)
    }
 
    /* Update credits. */
-   tonnes2str(tons, player.p->cargo_free);
-   credits2str(cred, player.p->credits, 2);
+   tonnes2str(tons, sizeof(tons), player.p->cargo_free);
+   credits2str(cred, sizeof(cred), player.p->credits, 2);
    snprintf(buf, sizeof(buf),
          _("#nStationed at#0 %s\n"
          "#nSystem:#0 %s\n"

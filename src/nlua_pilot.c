@@ -20,6 +20,7 @@
 #include "ai.h"
 #include "array.h"
 #include "camera.h"
+#include "credits.h"
 #include "damagetype.h"
 #include "escort.h"
 #include "gui.h"

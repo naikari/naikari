@@ -19,6 +19,7 @@
 
 #include "array.h"
 #include "commodity.h"
+#include "credits.h"
 #include "dev_planet.h"
 #include "dev_sysedit.h"
 #include "dev_system.h"

@@ -24,6 +24,7 @@
 #include "array.h"
 #include "board.h"
 #include "camera.h"
+#include "credits.h"
 #include "damagetype.h"
 #include "debris.h"
 #include "debug.h"

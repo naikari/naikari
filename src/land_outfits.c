@@ -20,6 +20,7 @@
 #include "land_outfits.h"
 
 #include "array.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "equipment.h"
 #include "hook.h"
@@ -341,9 +342,11 @@ void outfits_update( unsigned int wid, char* str )
    (void)str;
    int i, active;
    Outfit* outfit;
-   char buf[STRMAX], buf_price[ECON_CRED_STRLEN],
-         buf_credits[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT],
-         buf_mass[STRMAX_SHORT];
+   char buf[STRMAX];
+   char buf_price[STRMAX_SHORT];
+   char buf_credits[STRMAX_SHORT];
+   char buf_license[STRMAX_SHORT];
+   char buf_mass[STRMAX_SHORT];
    int y, tw, th;
    int w, h, iw, ih, bh;
 
@@ -381,8 +384,9 @@ void outfits_update( unsigned int wid, char* str )
       window_disableButtonSoft( wid, "btnSellOutfit" );
 
    /* new text */
-   price2str( buf_price, outfit_getPrice(outfit), player.p->credits, 2 );
-   credits2str( buf_credits, player.p->credits, 2 );
+   price2str(buf_price, sizeof(buf_price), outfit_getPrice(outfit),
+         player.p->credits, 2);
+   credits2str(buf_credits, sizeof(buf_credits), player.p->credits, 2);
 
    if (outfit->license == NULL)
       strncpy(buf_license, _("None"), sizeof(buf_license)-1);
@@ -391,7 +395,8 @@ void outfits_update( unsigned int wid, char* str )
                && planet_hasService(land_planet, PLANET_SERVICE_BLACKMARKET)))
       strncpy(buf_license, _(outfit->license), sizeof(buf_license)-1);
    else
-      snprintf(buf_license, sizeof(buf_license), "#r%s#0", _(outfit->license));
+      snprintf(buf_license, sizeof(buf_license), "#X* %s#0",
+            _(outfit->license));
 
    if ((outfit_isLauncher(outfit) || outfit_isFighterBay(outfit)) &&
          (outfit_ammo(outfit) != NULL)) {
@@ -570,10 +575,10 @@ int outfit_altText( char *buf, int n, const Outfit *o )
 {
    int p;
    double mass;
-   char buf_price[ECON_CRED_STRLEN];
+   char buf_price[STRMAX_SHORT];
    char buf_mass[STRMAX_SHORT];
 
-   credits2str(buf_price, o->price, 2);
+   credits2str(buf_price, sizeof(buf_price), o->price, 2);
 
    mass = o->mass;
    if ((outfit_isLauncher(o) || outfit_isFighterBay(o)) &&
@@ -701,11 +706,11 @@ int outfit_canBuy( const char *name, Planet *planet )
    int failure;
    credits_t price;
    Outfit *outfit;
-   char buf[ECON_CRED_STRLEN];
+   char buf[STRMAX_SHORT];
 
    failure = 0;
-   outfit  = outfit_get(name);
-   price   = outfit_getPrice(outfit);
+   outfit = outfit_get(name);
+   price = outfit_getPrice(outfit);
 
    /* Unique. */
    if (outfit_isProp(outfit, OUTFIT_PROP_UNIQUE) && (player_outfitOwnedTotal(outfit)>0)) {
@@ -726,7 +731,7 @@ int outfit_canBuy( const char *name, Planet *planet )
    }
    /* not enough $$ */
    if (!player_hasCredits(price)) {
-      credits2str( buf, price - player.p->credits, 2 );
+      credits2str(buf, sizeof(buf), price - player.p->credits, 2);
       land_errDialogueBuild( _("You need %s more."), buf);
       failure = 1;
    }

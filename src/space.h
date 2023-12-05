@@ -12,6 +12,7 @@ typedef struct JumpPoint_ JumpPoint;
 
 
 #include "commodity.h"
+#include "credits.h"
 #include "explosion.h"
 #include "faction.h"
 #include "mission.h"

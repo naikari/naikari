@@ -16,6 +16,7 @@
 
 #include "array.h"
 #include "colour.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "economy.h"
 #include "faction.h"
@@ -473,7 +474,9 @@ static void map_update( unsigned int wid )
    double w;
    Commodity *c;
    int jumps;
-   char *infobuf, credbuf[ECON_CRED_STRLEN], jumpsbuf[STRMAX_SHORT];
+   char *infobuf;
+   char credbuf[STRMAX_SHORT];
+   char jumpsbuf[STRMAX_SHORT];
    char jumpsbuf2[STRMAX_SHORT];
 
    /* Needs map to update. */
@@ -793,7 +796,7 @@ static void map_update( unsigned int wid )
       array_free(path);
    }
 
-   credits2str(credbuf, player.p->credits, 2);
+   credits2str(credbuf, sizeof(credbuf), player.p->credits, 2);
 
    asprintf(&infobuf,
          _("#nCredits:#0 %s"

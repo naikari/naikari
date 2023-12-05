@@ -661,6 +661,7 @@ void menu_death (void)
    unsigned int wid;
    char buf[PATH_MAX];
    char path[PATH_MAX];
+   int written;
 
    wid = window_create("wdwRIP", _("Death"), -1, -1, MENU_WIDTH,
          50 + 3*(BUTTON_HEIGHT+20));
@@ -669,7 +670,10 @@ void menu_death (void)
    /* Allow the player to continue if the saved game exists. If not,
     * propose to restart. */
    str2filename(buf, sizeof(buf), player.name);
-   if (snprintf(path, sizeof(path), "saves/%s.ns", buf) < 0)
+   written = snprintf(path, sizeof(path), "saves/%s.ns", buf);
+   if (written < 0)
+      WARN(_("Error writing save file name."));
+   else if (written >= (int)sizeof(path))
       WARN(_("Save file name was truncated: %s"), path);
    if (PHYSFS_exists(path))
       window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),

@@ -24,6 +24,7 @@
 #include "array.h"
 #include "board.h"
 #include "comm.h"
+#include "credits.h"
 #include "event.h"
 #include "gui.h"
 #include "gui_omsg.h"
@@ -260,7 +261,7 @@ static int playerL_pay( lua_State *L )
  */
 static int playerL_credits( lua_State *L )
 {
-   char buf[ ECON_CRED_STRLEN ];
+   char buf[STRMAX_SHORT];
    int has_dec, decimals;
 
    PLAYER_CHECK();
@@ -276,7 +277,7 @@ static int playerL_credits( lua_State *L )
    /* Push return. */
    lua_pushnumber(L, player.p->credits);
    if (has_dec) {
-      credits2str( buf, player.p->credits, decimals );
+      credits2str(buf, sizeof(buf), player.p->credits, decimals);
       lua_pushstring(L, buf);
    }
 

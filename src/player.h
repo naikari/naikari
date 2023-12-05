@@ -10,6 +10,7 @@
 #include <time.h>
 
 
+#include "credits.h"
 #include "nstring.h"
 #include "pilot.h"
 

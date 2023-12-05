@@ -17,6 +17,7 @@
 
 #include "array.h"
 #include "commodity.h"
+#include "credits.h"
 #include "damagetype.h"
 #include "hook.h"
 #include "log.h"
@@ -285,7 +286,7 @@ static void board_stealCreds( unsigned int wdw, char* str )
    (void)str;
    Pilot* p;
    credits_t credits;
-   char buf[ECON_CRED_STRLEN];
+   char buf[STRMAX_SHORT];
 
    p = pilot_get(player.p->target);
 
@@ -299,7 +300,7 @@ static void board_stealCreds( unsigned int wdw, char* str )
    p->credits = 0;
    board_update(wdw); /* update the lack of credits */
 
-   credits2str(buf, credits, 2);
+   credits2str(buf, sizeof(buf), credits, 2);
    player_message(p_("loot_credits", "#oYou loot %s from the ship."), buf);
 }
 
@@ -401,13 +402,13 @@ static void board_update( unsigned int wdw )
    int ic;
    char str[STRMAX_SHORT];
    char str2[STRMAX_SHORT];
-   char cred[ECON_CRED_STRLEN];
+   char cred[STRMAX_SHORT];
    Pilot *p;
 
    p = pilot_get(player.p->target);
 
    /* Credits. */
-   credits2str( cred, p->credits * player.p->stats.loot_mod, 2 );
+   credits2str(cred, sizeof(cred), p->credits * player.p->stats.loot_mod, 2);
    window_modifyText( wdw, "txtDataCredits", cred );
 
    /* Fuel. */
@@ -584,7 +585,7 @@ void pilot_boardComplete( Pilot *p )
 {
    Pilot *target;
    credits_t worth;
-   char creds[ECON_CRED_STRLEN];
+   char creds[STRMAX_SHORT];
    int cargo_stolen;
 
    /* Make sure target is valid. */
@@ -597,7 +598,7 @@ void pilot_boardComplete( Pilot *p )
       worth = MIN(0.05*pilot_worth(target), target->credits);
       p->credits += worth * p->stats.loot_mod;
       target->credits -= worth;
-      credits2str( creds, worth, 2 );
+      credits2str(creds, sizeof(creds), worth, 2);
       player_message(_("#%c%s#0 has plundered %s from your ship!"),
             pilot_getFactionColourChar(p), p->name, creds);
 

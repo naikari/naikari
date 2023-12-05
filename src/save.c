@@ -98,6 +98,7 @@ int save_all (void)
    xmlDocPtr doc;
    xmlTextWriterPtr writer;
    int ret;
+   int written;
 
    /* Do not save if saving is off. */
    if (player_isFlag(PLAYER_NOSAVE))
@@ -150,7 +151,12 @@ int save_all (void)
       goto exit;
    }
    str2filename(buf, sizeof(buf), player.name);
-   if (snprintf(file, sizeof(file), "saves/%s.ns", buf) < 0)
+   written = snprintf(file, sizeof(file), "saves/%s.ns", buf);
+   if (written < 0) {
+      WARN(_("Error writing save file name."));
+      goto exit;
+   }
+   else if (written >= (int)sizeof(file))
       WARN(_("Save file name was truncated: %s"), file);
 
    /* Back up old saved game. */
@@ -166,9 +172,15 @@ int save_all (void)
    /* Critical section, if crashes here player's game gets corrupted.
     * Luckily we have a copy just in case... */
    /* TODO: write via physfs */
-   if (snprintf(file, sizeof(file), "%s/saves/%s.ns", PHYSFS_getWriteDir(),
-         buf) < 0)
+   written = snprintf(file, sizeof(file), "%s/saves/%s.ns",
+         PHYSFS_getWriteDir(), buf);
+   if (written < 0) {
+      WARN(_("Error writing save file name."));
+      goto exit;
+   }
+   else if (written >= (int)sizeof(file))
       WARN(_("Save file name was truncated: %s"), file);
+
    if (xmlSaveFileEnc(file, doc, "UTF-8") < 0) {
       WARN(_("Failed to write saved game! You'll most likely have to"
             " restore it by copying your backup saved game over your"
@@ -295,9 +307,15 @@ exit:
 void save_reload (void)
 {
    char path[PATH_MAX], buf[PATH_MAX];
+   int written;
 
    str2filename(buf, sizeof(buf), player.name);
-   if (snprintf(path, sizeof(path), "saves/%s.ns", buf) < 0)
+   written = snprintf(path, sizeof(path), "saves/%s.ns", buf);
+   if (written < 0) {
+      WARN(_("Error writing save file name."));
+      return;
+   }
+   else if (written >= (int)sizeof(path))
       WARN(_("Save file name was truncated: %s"), path);
    load_gameFile(path);
 }

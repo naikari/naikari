@@ -22,6 +22,7 @@
 #include "array.h"
 #include "colour.h"
 #include "conf.h"
+#include "credits.h"
 #include "log.h"
 #include "ndata.h"
 #include "nfile.h"

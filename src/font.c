@@ -1277,6 +1277,7 @@ static const glColour* gl_fontGetColour( uint32_t ch )
       case 'G': col = &cFontBlue; break; /**< Good stat change */
       case 'B': col = &cFontYellow; break; /**< Bad stat change */
       case 'D': col = &cFontRed; break; /**< Dangerous stat change */
+      case 'X': col = &cFontYellow; break; /**< Cannot buy */
       case '0': col = NULL; break;
       default:
          WARN("Unknown font escape code '%c'", ch);

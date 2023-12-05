@@ -244,7 +244,7 @@ int scnprintf( char* text, size_t maxlen, const char* fmt, ... )
 /**
  * @brief Creates a variant of a string which is safe for file names.
  *
- *    @param out Where to write the converted string.
+ *    @param[out] out Where to write the converted string.
  *    @param maxlen Maximum length of out string.
  *    @param s The string to convert.
  *    @return Number of characters written.
@@ -307,4 +307,18 @@ size_t str2filename(char *out, size_t maxlen, const char *s)
 #endif
 
    return l;
+}
+
+
+/**
+ * @brief Converts tonnes to a usable string for displaying.
+ *
+ *    @param[out] out Where to write the string.
+ *    @param maxlen Maximum length of out string.
+ *    @param tonnes Number of tonnes to display.
+ *    @return Size of attempted string or negative if an error occurred.
+ */
+int tonnes2str(char *out, size_t maxlen, int tonnes)
+{
+   return snprintf(out, maxlen, n_("%d kt", "%d kt", tonnes), tonnes);
 }

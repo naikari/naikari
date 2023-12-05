@@ -14,6 +14,7 @@
 
 #include "array.h"
 #include "conf.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "log.h"
 #include "map.h"
@@ -682,9 +683,11 @@ static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, 
 {
    (void) w;
    Outfit *outfit;
-   char buf[STRMAX], buf_price[ECON_CRED_STRLEN],
-         buf_credits[ECON_CRED_STRLEN], buf_license[STRMAX_SHORT],
-         buf_mass[STRMAX_SHORT];
+   char buf[STRMAX];
+   char buf_price[STRMAX_SHORT];
+   char buf_credits[STRMAX_SHORT];
+   char buf_license[STRMAX_SHORT];
+   char buf_mass[STRMAX_SHORT];
    int tw, th;
    int dy;
 
@@ -692,15 +695,15 @@ static void map_showOutfitDetail(unsigned int wid, char* wgtname, int x, int y, 
 
    window_modifyImage(wid, "imgOutfit", outfit->gfx_store, 128, 128);
 
-   price2str(buf_price, outfit->price, player.p->credits, 2);
-   credits2str(buf_credits, player.p->credits, 2);
+   price2str(buf_price, sizeof(buf_price), outfit->price, player.p->credits, 2);
+   credits2str(buf_credits, sizeof(buf_credits), player.p->credits, 2);
 
    if (outfit->license == NULL)
       strncpy(buf_license, _("None"), sizeof(buf_license)-1);
    else if (player_hasLicense(outfit->license))
       strncpy(buf_license, _(outfit->license), sizeof(buf_license)-1);
    else
-      snprintf(buf_license, sizeof(buf_license), "#r%s#0", _(outfit->license));
+      snprintf(buf_license, sizeof(buf_license), "#X* %s#0", _(outfit->license));
 
    if ((outfit_isLauncher(outfit) || outfit_isFighterBay(outfit)) &&
          (outfit_ammo(outfit) != NULL)) {

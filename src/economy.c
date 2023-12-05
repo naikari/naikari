@@ -29,6 +29,7 @@
 #include "economy.h"
 
 #include "array.h"
+#include "credits.h"
 #include "log.h"
 #include "ndata.h"
 #include "nstring.h"

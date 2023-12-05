@@ -22,6 +22,7 @@
 
 #include "array.h"
 #include "commodity.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "economy.h"
 #include "hook.h"
@@ -218,20 +219,26 @@ void commodity_update( unsigned int wid, char* str )
 {
    (void)str;
    char buf[PATH_MAX];
-   char buf_purchase_price[ECON_CRED_STRLEN], buf_credits[ECON_CRED_STRLEN];
+   char buf_purchase_price[STRMAX_SHORT];
+   char buf_credits[STRMAX_SHORT];
    int i;
    Commodity *com;
    credits_t mean,globalmean;
    double std, globalstd;
-   char buf_mean[ECON_CRED_STRLEN], buf_globalmean[ECON_CRED_STRLEN];
-   char buf_std[ECON_CRED_STRLEN], buf_globalstd[ECON_CRED_STRLEN];
-   char buf_local_price[ECON_CRED_STRLEN];
-   char buf_tonnes_owned[ECON_MASS_STRLEN], buf_tonnes_free[ECON_MASS_STRLEN];
+   char buf_mean[STRMAX_SHORT];
+   char buf_globalmean[STRMAX_SHORT];
+   char buf_std[STRMAX_SHORT];
+   char buf_globalstd[STRMAX_SHORT];
+   char buf_local_price[STRMAX_SHORT];
+   char buf_tonnes_owned[STRMAX_SHORT];
+   char buf_tonnes_free[STRMAX_SHORT];
    int owned;
+
    i = toolkit_getImageArrayPos( wid, "iarTrade" );
    if (i < 0 || array_size(land_planet->commodities) == 0) {
-      credits2str( buf_credits, player.p->credits, 2 );
-      tonnes2str( buf_tonnes_free, pilot_cargoFree(player.p) );
+      credits2str(buf_credits, sizeof(buf_credits), player.p->credits, 2);
+      tonnes2str(buf_tonnes_free, sizeof(buf_tonnes_free),
+            pilot_cargoFree(player.p));
       snprintf(buf, PATH_MAX,
          _("#nYou have:#0 N/A\n"
             "#nPurchased for:#0 N/A\n"
@@ -261,10 +268,10 @@ void commodity_update( unsigned int wid, char* str )
    window_modifyImage( wid, "imgStore", com->gfx_store, 192, 192 );
 
    planet_averagePlanetPrice(land_planet, com, &mean, &std);
-   credits2str(buf_mean, mean, -1);
+   credits2str(buf_mean, sizeof(buf_mean), mean, -1);
    snprintf(buf_std, sizeof(buf_std), _("%.1f ¢/kt"), std);
    economy_getAveragePrice(com, &globalmean, &globalstd);
-   credits2str(buf_globalmean, globalmean, -1);
+   credits2str(buf_globalmean, sizeof(buf_globalmean), globalmean, -1);
    snprintf(buf_globalstd, sizeof(buf_globalstd), _("%.1f ¢/kt"), globalstd);
    /* modify text */
    strcpy(buf_purchase_price, _("N/A"));
@@ -272,10 +279,12 @@ void commodity_update( unsigned int wid, char* str )
    if (owned > 0)
       snprintf(buf_purchase_price, sizeof(buf_purchase_price), _("%.0f ¢/kt"),
             (double)com->lastPurchasePrice);
-   credits2str(buf_credits, player.p->credits, 2);
-   credits2str(buf_local_price, planet_commodityPrice(land_planet, com), -1);
-   tonnes2str(buf_tonnes_owned, owned);
-   tonnes2str(buf_tonnes_free, pilot_cargoFree(player.p));
+   credits2str(buf_credits, sizeof(buf_credits), player.p->credits, 2);
+   credits2str(buf_local_price, sizeof(buf_local_price),
+         planet_commodityPrice(land_planet, com), -1);
+   tonnes2str(buf_tonnes_owned, sizeof(buf_tonnes_owned), owned);
+   tonnes2str(buf_tonnes_free, sizeof(buf_tonnes_free),
+         pilot_cargoFree(player.p));
    snprintf(buf, sizeof(buf),
               _("#nYou have:#0 %s\n"
                  "#nPurchased for:#0 %s\n"
@@ -286,10 +295,13 @@ void commodity_update( unsigned int wid, char* str )
                  "\n"
                  "#nFree Space:#0 %s\n"
                  "#nMoney:#0 %s"),
-              buf_tonnes_owned, buf_purchase_price, buf_local_price,
+              buf_tonnes_owned,
+              buf_purchase_price,
+              buf_local_price,
               buf_mean, buf_std,
               buf_globalmean, buf_globalstd,
-              buf_tonnes_free, buf_credits);
+              buf_tonnes_free,
+              buf_credits);
 
    window_modifyText( wid, "txtDInfo", buf );
    window_modifyText( wid, "txtDesc", _(com->description) );
@@ -311,14 +323,14 @@ int commodity_canBuy( const Commodity* com )
 {
    int failure;
    unsigned int q, price;
-   char buf[ECON_CRED_STRLEN];
+   char buf[STRMAX_SHORT];
 
    failure = 0;
    q = commodity_getMod();
    price = planet_commodityPrice( land_planet, com ) * q;
 
    if (!player_hasCredits( price )) {
-      credits2str( buf, price - player.p->credits, 2 );
+      credits2str(buf, sizeof(buf), price - player.p->credits, 2);
       land_errDialogueBuild(_("You need %s more."), buf );
       failure = 1;
    }

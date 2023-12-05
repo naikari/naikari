@@ -9,6 +9,7 @@
 #include <stdint.h>
 /** @endcond */
 
+#include "credits.h"
 #include "opengl.h"
 #include "space.h"
 

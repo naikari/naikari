@@ -19,11 +19,13 @@
 #include "ai.h"
 #include "array.h"
 #include "commodity.h"
+#include "credits.h"
 #include "dialogue.h"
 #include "escort.h"
 #include "hook.h"
 #include "log.h"
 #include "nlua.h"
+#include "nstring.h"
 #include "opengl.h"
 #include "pilot.h"
 #include "player.h"
@@ -429,7 +431,7 @@ static void comm_bribePilot( unsigned int wid, char *unused )
    int answer;
    double d;
    credits_t price;
-   char pricestr[ECON_CRED_STRLEN];
+   char pricestr[STRMAX_SHORT];
    const char *str;
    pilotId_t *followers;
    Pilot *p;
@@ -457,7 +459,7 @@ static void comm_bribePilot( unsigned int wid, char *unused )
    }
 
    /* Bribe message. */
-   price2str( pricestr, price, player.p->credits, -1 );
+   price2str(pricestr, sizeof(pricestr), price, player.p->credits, -1);
    str = comm_getString("bribe_prompt");
    if (str == NULL)
       answer = dialogue_YesNo(_("Bribe Pilot"),
@@ -613,7 +615,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
    int ret;
    credits_t price;
    int q;
-   char creditstr[ECON_CRED_STRLEN];
+   char creditstr[STRMAX_SHORT];
 
    /* Check to see if ship has a no refuel message. */
    msg = comm_getString("refuel_no");
@@ -661,7 +663,7 @@ static void comm_requestFuel( unsigned int wid, char *unused )
 
    /* See if player really wants to pay. */
    if (price > 0) {
-      price2str(creditstr, price, player.p->credits, -1);
+      price2str(creditstr, sizeof(creditstr), price, player.p->credits, -1);
       ret = dialogue_YesNo(_("Request Fuel"),
             p_("refuel_prompt", "%s\n\nPay %s for %d kL of fuel?"),
             msg, creditstr, q);
