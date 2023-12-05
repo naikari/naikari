@@ -59,6 +59,7 @@ static int opt_restart = 0;
 
 /* Initial values (reverted to on cancel). */
 static int opt_orig_colorblind;
+static ColorblindMode opt_orig_colorblind_mode;
 static double opt_orig_scalefactor;
 static double opt_orig_bg_brightness;
 static double opt_orig_gamma_correction;
@@ -103,6 +104,7 @@ static void opt_setZoomFar( unsigned int wid, char *str );
 static void opt_setZoomNear( unsigned int wid, char *str );
 static void opt_setBGBrightness( unsigned int wid, char *str );
 static void opt_checkColorblind( unsigned int wid, char *str );
+static void opt_videoColorblindMode(wid_t wid, char *str);
 /* Audio. */
 static void opt_audio( unsigned int wid );
 static int opt_audioSave( unsigned int wid, char *str );
@@ -204,6 +206,7 @@ static void opt_close( unsigned int wid, char *name )
 
    /* Set others to original values as needed. */
    conf.colorblind = opt_orig_colorblind;
+   conf.colorblind_mode = opt_orig_colorblind_mode;
    gl_colorblind(conf.colorblind, conf.colorblind_mode);
    conf.scalefactor = opt_orig_scalefactor;
    conf.bg_brightness = opt_orig_bg_brightness;
@@ -1309,17 +1312,20 @@ static void opt_video( unsigned int wid )
    int i, k, n;
    int display_index;
    int def_missing;
-   int nres;
    int duplicate_res;
    int res_def;
    char buf[STRMAX_SHORT];
    int cw;
    int w, h, y, x, l;
    char **res;
+   int nres;
+   char **colorblind_modes;
+   int ncolorblind_modes;
    const char *s;
 
    /* Save originals. */
    opt_orig_colorblind = conf.colorblind;
+   opt_orig_colorblind_mode = conf.colorblind_mode;
    opt_orig_scalefactor = conf.scalefactor;
    opt_orig_bg_brightness = conf.bg_brightness;
    opt_orig_gamma_correction = conf.gamma_correction;
@@ -1403,20 +1409,54 @@ static void opt_video( unsigned int wid )
     * overriding the real window size. */
    opt_resize();
 
-   /* OpenGL options. */
+   /* Checkboxes. */
    window_addCheckbox( wid, x, y, cw, 20,
          "chkVSync", _("Vertical Sync"), NULL, conf.vsync );
    y -= 25;
-
-   /* Features. */
    window_addCheckbox(wid, x, y, cw, 20,
          "chkMinimize", _("Minimize on fullscreen focus loss"),
          NULL, conf.minimize);
-   y -= 25;
+   y -= 40;
+
+   /* Colorblind simulator settings. */
    window_addCheckbox( wid, x, y, cw, 20,
          "chkColorblind", _("Colorblind simulator"), opt_checkColorblind,
          conf.colorblind );
-   y -= 40;
+   y -= 25;
+
+   ncolorblind_modes = CBMODE_SENTINEL;
+   colorblind_modes = malloc(sizeof(char*) * ncolorblind_modes);
+   for (i=0; i<CBMODE_SENTINEL; i++) {
+      switch (i) {
+         case ROD_MONOCHROMACY:
+            colorblind_modes[i] = strdup(_("Rod monochromacy"));
+            break;
+
+         case PROTANOPIA:
+            colorblind_modes[i] = strdup(_("Protanopia"));
+            break;
+
+         case DEUTERANOPIA:
+            colorblind_modes[i] = strdup(_("Deuteranopia"));
+            break;
+
+         case TRITANOPIA:
+            colorblind_modes[i] = strdup(_("Tritanopia"));
+            break;
+
+         case CONE_MONOCHROMACY:
+            colorblind_modes[i] = strdup(_("Cone monochromacy"));
+            break;
+
+         default:
+            WARN("Failed to identify colorblind mode %d.", i);
+            asprintf(&colorblind_modes[i], "%d", i);
+      }
+   }
+   window_addList(wid, x, y, cw, 100, "lstColorblindMode",
+         colorblind_modes, ncolorblind_modes, conf.colorblind_mode,
+         opt_videoColorblindMode, NULL);
+   y -= 100 + 20;
 
    /* FPS stuff. */
    s = _("FPS Limit");
@@ -1592,11 +1632,20 @@ static int opt_videoSave( unsigned int wid, char *str )
 /**
  * @brief Handles the colorblind checkbox being checked.
  */
-static void opt_checkColorblind( unsigned int wid, char *str )
+static void opt_checkColorblind(wid_t wid, char *str)
 {
-   int f = window_checkboxState( wid, str );
-   conf.colorblind = f;
-   gl_colorblind(f, conf.colorblind_mode);
+   conf.colorblind = window_checkboxState(wid, str);
+   gl_colorblind(conf.colorblind, conf.colorblind_mode);
+}
+
+
+/**
+ * @brief Callback when colorblind mode changes.
+ */
+static void opt_videoColorblindMode(wid_t wid, char *str)
+{
+   conf.colorblind_mode = toolkit_getListPos(wid, str);
+   gl_colorblind(conf.colorblind, conf.colorblind_mode);
 }
 
 
@@ -1702,6 +1751,12 @@ static void opt_videoDefaults( unsigned int wid, char *str )
    window_checkboxSet(wid, "chkVSync", VSYNC_DEFAULT);
    window_checkboxSet(wid, "chkFPS", SHOW_FPS_DEFAULT);
    window_checkboxSet(wid, "chkMinimize", MINIMIZE_DEFAULT);
+
+   /* Colorblind mode. */
+   conf.colorblind = COLORBLIND_DEFAULT;
+   conf.colorblind_mode = COLORBLIND_MODE_DEFAULT;
+   window_checkboxSet(wid, "chkColorblind", conf.colorblind);
+   toolkit_setListPos(wid, "lstColorblindMode", conf.colorblind_mode);
 
    /* Faders. */
    window_faderSetBoundedValue(wid, "fadScale", SCALE_FACTOR_DEFAULT);

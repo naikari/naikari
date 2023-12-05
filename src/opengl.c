@@ -650,9 +650,14 @@ GLint gl_stringToClamp( const char *s )
 void gl_colorblind(int enable, ColorblindMode mode)
 {
    LuaShader_t shader;
+
+   /* Disable the post-processing shader so we can either re-enable it
+    * with the new colorblind mode or simply leave it off after this. */
+   if (colorblind_pp != 0)
+      render_postprocessRm(colorblind_pp);
+   colorblind_pp = 0;
+
    if (enable) {
-      if (colorblind_pp != 0)
-         return;
       memset(&shader, 0, sizeof(LuaShader_t));
       shader.program = shaders.colorblind.program;
       shader.VertexPosition = shaders.colorblind.VertexPosition;
@@ -663,10 +668,6 @@ void gl_colorblind(int enable, ColorblindMode mode)
       glUniform1i(shaders.colorblind.mode, mode);
       glUseProgram(0);
       colorblind_pp = render_postprocessAdd(&shader, PP_LAYER_FINAL, 99);
-   } else {
-      if (colorblind_pp != 0)
-         render_postprocessRm( colorblind_pp );
-      colorblind_pp = 0;
    }
 }
 
