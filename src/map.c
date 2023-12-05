@@ -963,7 +963,7 @@ static void map_render( double bx, double by, double w, double h, void *data )
    map_renderJumps( x, y, r, 0 );
 
    /* Cause alpha to move smoothly between 0-1. */
-   const int32_t cycle_t = (int32_t)SDL_GetTicks() % (2*MAP_MARKER_CYCLE);
+   const Sint32 cycle_t = (Sint32)SDL_GetTicks() % (2*MAP_MARKER_CYCLE);
    const double cycle_pct = (double)ABS(MAP_MARKER_CYCLE - cycle_t) / MAP_MARKER_CYCLE;
    col.a = 0.5 + 0.5*cycle_pct;
 
