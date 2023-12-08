@@ -423,7 +423,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       int selected, Outfit *o, Pilot *p, CstSlotWidget *wgt )
 {
    int i, level;
-   const glColour *c, *dc;
+   const glColour *c;
    const glColour ic = { .r = 0.5, .g = 0.5, .b = 0.5, .a = 0.5 };
    glColour rc;
    int irrelevant;
@@ -442,30 +442,26 @@ static void equipment_renderColumn( double x, double y, double w, double h,
 
       /* Choose default colour. */
       if (wgt->weapons >= 0) {
-         level = pilot_weapSetCheck( p, wgt->weapons, &lst[i] );
+         level = pilot_weapSetCheck(p, wgt->weapons, &lst[i]);
          if (level == 0)
-            dc = &cWhite;
+            c = &cSlotPrimary;
          else if (level == 1)
-            dc = &cBlack;
-         else if (pilot_slotIsActive( &lst[i] ))
-            dc = &cLightBlue;
+            c = &cSlotSecondary;
+         else if (pilot_slotIsActive(&lst[i]))
+            c = &cSlotActive;
          else {
-            dc = &cLightBlue;
+            c = &cSlotIrrelevant;
             irrelevant = 1;
          }
       }
       else
-         dc = outfit_slotSizeColour( &lst[i].sslot->slot );
+         c = outfit_slotSizeColour(&lst[i].sslot->slot);
 
       /* Fallback in case slot size color is undefined. */
-      if (dc == NULL)
-         dc = &cRed;
+      if (c == NULL)
+         c = &cRed;
 
       /* Draw background. */
-      if (i==selected)
-         c = &cWhite;
-      else
-         c = dc;
       toolkit_drawRect( x, y, w, h, c, NULL );
 
       if (lst[i].outfit != NULL) {
@@ -484,19 +480,25 @@ static void equipment_renderColumn( double x, double y, double w, double h,
 
       /* Must rechoose colour based on slot properties. */
       rc = cBlack;
-      rc.a = 0.25;
+      rc.a = 0.1;
       if (wgt->canmodify) {
          if (lst[i].sslot->required)
             rc = cSlotRequired;
          else if (lst[i].sslot->slot.exclusive)
-            rc = cWhite;
+            rc = cSlotExclusive;
          else if (lst[i].sslot->slot.spid != 0)
-            rc = cBlack;
+            rc = cSlotTyped;
       }
 
-      /* Draw outline. */
+      /* Draw outer color. */
       toolkit_drawOutlineThick( x, y, w, h, 1, 3, &rc, NULL );
-      // toolkit_drawOutline( x-1, y-1, w+3, h+3, 0, &cBlack, NULL );
+
+      /* Draw outline if selected. */
+      if (i == selected) {
+         toolkit_drawOutlineThick(x, y, w, h, 3, 2, &cWhite, NULL);
+         toolkit_drawOutlineThick(x, y, w, h, 1, 1, &cBlack, NULL);
+      }
+
       /* Go to next one. */
       y -= h+20;
    }

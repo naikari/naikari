@@ -893,13 +893,13 @@ static void weapons_renderLegend( double bx, double by, double bw, double bh, vo
 
    y -= 30.;
    toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
-   toolkit_drawTriangle( x, y, x+10, y+5, x, y+10, &cWhite );
+   toolkit_drawTriangle(x, y, x+10, y+5, x, y+10, &cSlotPrimary);
    gl_print(&gl_smallFont, x+20, y, &cFontWhite,
          _("Primary Weapon / Activated Outfit (Left-click slot to toggle)"));
 
    y -= 25.;
    toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
-   toolkit_drawTriangle( x, y, x+10, y+5, x, y+10, &cBlack );
+   toolkit_drawTriangle(x, y, x+10, y+5, x, y+10, &cSlotSecondary);
    gl_print(&gl_smallFont, x+20, y, &cFontWhite,
          _("Secondary Weapon (Right-click slot to toggle)"));
 }
