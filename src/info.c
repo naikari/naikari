@@ -626,13 +626,13 @@ static void info_openWeapons( unsigned int wid )
 
    /* Custom widget for legend. */
    y = -240;
-   window_addCust( wid, 220, y, w-200-60, 100, "cstLegend", 0,
-         weapons_renderLegend, NULL, NULL );
+   window_addCust(wid, 220, y, w-200-60, 125, "cstLegend", 0,
+         weapons_renderLegend, NULL, NULL);
 
    /* Checkboxes. */
-   wlen = w - 220 - 20;
-   y -= 100;
-   window_addText( wid, 220, y, wlen, 20, 0, "txtLocal", NULL, NULL,
+   wlen = w - 220 - 20 - BUTTON_WIDTH;
+   y -= 125;
+   window_addText(wid, 220, y, wlen, 20, 0, "txtLocal", NULL, NULL,
          _("Current Set Settings"));
    y -= 30;
    window_addCheckbox(wid, 220, y, wlen, 20, "chkFire",
@@ -641,18 +641,21 @@ static void info_openWeapons( unsigned int wid )
          (pilot_weapSetTypeCheck(player.p, info_eq_weaps.weapons)
             == WEAPSET_TYPE_WEAPON));
    y -= 25;
-   window_addCheckbox( wid, 220, y, wlen, 20,
-         "chkInrange", _("Only shoot weapons that are in range"), weapons_inrange,
-         pilot_weapSetInrangeCheck( player.p, info_eq_weaps.weapons ) );
+   window_addCheckbox(wid, 220, y, wlen, 20,
+         "chkInrange", _("Only shoot weapons that are in range"),
+         weapons_inrange,
+         pilot_weapSetInrangeCheck(player.p, info_eq_weaps.weapons));
    y -= 40;
    window_addText( wid, 220, y, wlen, 20, 0, "txtGlobal", NULL, NULL,
          _("Global Settings"));
    y -= 30;
-   window_addCheckbox( wid, 220, y, wlen, 20,
-         "chkAutoweap", _("Automatically handle weapons"), weapons_autoweap, player.p->autoweap );
+   window_addCheckbox(wid, 220, y, wlen, 20,
+         "chkAutoweap", _("Automatically handle weapons"),
+         weapons_autoweap, player.p->autoweap);
    y -= 25;
-   window_addCheckbox( wid, 220, y, wlen, 20,
-         "chkHelper", _("Aiming helper"), aim_lines, player.p->aimLines );
+   window_addCheckbox(wid, 220, y, wlen, 20,
+         "chkHelper", _("Aiming helper"),
+         aim_lines, player.p->aimLines);
 
    /* List. Has to be generated after checkboxes. */
    weapons_genList( wid );
@@ -892,16 +895,22 @@ static void weapons_renderLegend( double bx, double by, double bw, double bh, vo
    gl_print( &gl_defFont, bx, y, &cFontWhite, _("Legend") );
 
    y -= 30.;
-   toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
+   toolkit_drawTriangle(x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50);
    toolkit_drawTriangle(x, y, x+10, y+5, x, y+10, &cSlotPrimary);
    gl_print(&gl_smallFont, x+20, y, &cFontWhite,
          _("Primary Weapon / Activated Outfit (Left-click slot to toggle)"));
 
    y -= 25.;
-   toolkit_drawTriangle( x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50 );
+   toolkit_drawTriangle(x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50);
    toolkit_drawTriangle(x, y, x+10, y+5, x, y+10, &cSlotSecondary);
    gl_print(&gl_smallFont, x+20, y, &cFontWhite,
          _("Secondary Weapon (Right-click slot to toggle)"));
+
+   y -= 25.;
+   toolkit_drawTriangle(x-1, y-2, x+12, y+5, x-1, y+12, &cGrey50);
+   toolkit_drawTriangle(x, y, x+10, y+5, x, y+10, &cSlotRelevant);
+   gl_print(&gl_smallFont, x+20, y, &cFontWhite,
+         _("Unused in selected weapon set"));
 }
 
 

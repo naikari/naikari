@@ -448,7 +448,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
          else if (level == 1)
             c = &cSlotSecondary;
          else if (pilot_slotIsActive(&lst[i]))
-            c = &cSlotActive;
+            c = &cSlotRelevant;
          else {
             c = &cSlotIrrelevant;
             irrelevant = 1;
@@ -459,7 +459,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
 
       /* Fallback in case slot size color is undefined. */
       if (c == NULL)
-         c = &cRed;
+         c = &cWhite;
 
       /* Draw background. */
       toolkit_drawRect( x, y, w, h, c, NULL );

@@ -104,10 +104,10 @@ COLOURS = [
     Colour("SlotRequired", 0/255, 23/255, 82/255),
     Colour("SlotExclusive", 255/255, 255/255, 255/255),
     Colour("SlotTyped", 0/255, 0/255, 0/255),
-    Colour("SlotIrrelevant", 0.4, 0.4, 1),
-    Colour("SlotPrimary", 255/255, 255/255, 255/255),
-    Colour("SlotSecondary", 0/255, 0/255, 0/255),
-    Colour("SlotActive", 0.4, 0.4, 1),
+    Colour("SlotIrrelevant", 0/255, 0/255, 0/255),
+    Colour("SlotRelevant", 71/255, 7/255, 0/255),
+    Colour("SlotPrimary", 102/255, 102/255, 255/255),
+    Colour("SlotSecondary", 37/255, 33/255, 171/255),
 
     # Font colors
     Colour("FontWhite", 0.95, 0.95, 0.95),
