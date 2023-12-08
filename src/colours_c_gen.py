@@ -102,7 +102,7 @@ COLOURS = [
     Colour("SlotMedium", 185/255, 79/255, 0/255),
     Colour("SlotLarge", 152/255, 4/255, 0/255),
     Colour("SlotRequired", 0/255, 23/255, 82/255),
-    Colour("SlotExclusive", 30/255, 52/255, 141/255),
+    Colour("SlotExclusive", 44/255, 61/255, 152/255),
     Colour("SlotExclusiveLight", 13/255, 42/255, 48/255),
     Colour("SlotTyped", 60/255, 76/255, 181/255),
     Colour("SlotTypedLight", 80/255, 222/255, 253/255),
