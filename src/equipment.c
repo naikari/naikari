@@ -426,6 +426,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
    const glColour *c;
    const glColour ic = { .r = 0.5, .g = 0.5, .b = 0.5, .a = 0.5 };
    glColour rc;
+   const glColour *lc;
    int irrelevant;
 
    /* Render text. */
@@ -459,7 +460,7 @@ static void equipment_renderColumn( double x, double y, double w, double h,
 
       /* Fallback in case slot size color is undefined. */
       if (c == NULL)
-         c = &cWhite;
+         c = &cBlack;
 
       /* Draw background. */
       toolkit_drawRect( x, y, w, h, c, NULL );
@@ -481,17 +482,22 @@ static void equipment_renderColumn( double x, double y, double w, double h,
       /* Must rechoose colour based on slot properties. */
       rc = cBlack;
       rc.a = 0.1;
+      lc = NULL;
       if (wgt->canmodify) {
          if (lst[i].sslot->required)
             rc = cSlotRequired;
-         else if (lst[i].sslot->slot.exclusive)
+         else if (lst[i].sslot->slot.exclusive) {
             rc = cSlotExclusive;
-         else if (lst[i].sslot->slot.spid != 0)
-            rc = cSlotTyped;
+            lc = &cSlotExclusiveLight;
+         }
+         else if (lst[i].sslot->slot.spid != 0) {
+            lc = &cSlotTyped;
+            rc = cSlotTypedLight;
+         }
       }
 
       /* Draw outer color. */
-      toolkit_drawOutlineThick( x, y, w, h, 1, 3, &rc, NULL );
+      toolkit_drawOutlineThick(x, y, w, h, 1, 3, &rc, lc);
 
       /* Draw outline if selected. */
       if (i == selected) {

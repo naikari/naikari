@@ -665,26 +665,30 @@ static void shipyard_renderSlotsRow(double bx, double by, double bw,
    x = bx;
 
    /* Print text. */
-   gl_printMidRaw( &gl_smallFont, 30, bx-15, by, &cFontWhite, -1, str );
+   gl_printMidRaw(&gl_smallFont, 30, bx-15, by-2, &cFontWhite, -1, str);
 
    /* Draw squares. */
    for (i=0; i<array_size(s); i++) {
-      c = outfit_slotSizeColour( &s[i].slot );
+      c = outfit_slotSizeColour(&s[i].slot);
       if (c == NULL)
          c = &cBlack;
 
-      x += 15.;
-      toolkit_drawRect( x, by, 10, 10, c, NULL );
+      x += 17.;
+      toolkit_drawRect(x, by, 10, 10, c, NULL);
 
-      /* Add colour stripe depending on required/exclusiveness. */
+      /* Draw outer color. */
       if (s[i].required)
-         toolkit_drawTriangle(x, by, x+10, by+10, x, by+10, &cSlotRequired);
+         toolkit_drawOutlineThick(x, by, 10, 10, 1, 2, &cSlotRequired, NULL);
       else if (s[i].slot.exclusive)
-         toolkit_drawTriangle( x, by, x+10, by+10, x, by+10, &cWhite );
+         toolkit_drawOutlineThick(x, by, 10, 10, 1, 2,
+               &cSlotExclusive, &cSlotExclusiveLight);
       else if (s[i].slot.spid != 0)
-         toolkit_drawTriangle( x, by, x+10, by+10, x, by+10, &cBlack );
+         toolkit_drawOutlineThick(x, by, 10, 10, 1, 2,
+               &cSlotTypedLight, &cSlotTyped);
+      else
+         toolkit_drawOutlineThick(x, by, 10, 10, 1, 2, c, NULL);
 
-      gl_renderRectEmpty( x, by, 10, 10, &cBlack );
+      toolkit_drawOutlineThick(x, by, 10, 10, 2, 1, &cBlack, NULL);
    }
 }
 
@@ -820,8 +824,8 @@ static void shipyard_mouseSlotsRow(double bx, double by, double bw,
 
    /* Draw squares. */
    for (i=0; i<array_size(s); i++) {
-      x += 15.;
-      if ((mx > x) && (mx < x + 10) && (my > by) && (my < by + 10)) {
+      x += 17.;
+      if ((mx > x - 2) && (mx < x + 12) && (my > by - 2) && (my < by + 12)) {
          shipyard_mouseover = &s[i];
          shipyard_altx = mx;
          shipyard_alty = my;
