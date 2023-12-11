@@ -73,6 +73,12 @@ COLOURS = [
     # Semi-transparent background (used for OSD etc)
     Colour("TransBack", 0.0, 0.0, 0.0, 0.4),
 
+    # Map hyperspace lines
+    Colour("HyperspaceLine", 0.4, 0.4, 1),
+    Colour("HyperspaceHiddenLine", 0.9, 0.5, 0.1),
+    Colour("HyperspacePathStart", 0.22, 0.38, 1),
+    Colour("HyperspacePathReachable", 0.46, 0.58, 1),
+    Colour("HyperspacePathUnreachable", 1, 0.48, 0.28),
     # Objects
     Colour("Inert", 221/255, 221/255, 221/255),
     Colour("Friend", 118/255, 121/255, 255/255),

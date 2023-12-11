@@ -1250,22 +1250,22 @@ void map_renderJumps( double x, double y, double r, int editor)
             continue;
 
          /* Choose colours. */
-         cole = &cLightBlue;
+         cole = &cHyperspaceLine;
          for (k = 0; k < array_size(jsys->jumps); k++) {
             if (jsys->jumps[k].target == sys) {
                if (jp_isFlag(&jsys->jumps[k], JP_EXITONLY))
                   cole = &cBlack;
                else if (jp_isFlag(&jsys->jumps[k], JP_HIDDEN))
-                  cole = &cRed;
+                  cole = &cHyperspaceHiddenLine;
                break;
             }
          }
          if (jp_isFlag(&sys->jumps[j], JP_EXITONLY))
             col = &cBlack;
          else if (jp_isFlag(&sys->jumps[j], JP_HIDDEN))
-            col = &cRed;
+            col = &cHyperspaceHiddenLine;
          else
-            col = &cLightBlue;
+            col = &cHyperspaceLine;
 
          if (jp_isFlag(&sys->jumps[j], JP_LONGRANGE)) {
             /* Draw the line for the source system. */
@@ -1505,11 +1505,11 @@ static void map_renderPath( double x, double y, double a, double alpha )
          if (sys_isFlag(sys0,SYSTEM_HIDDEN) || sys_isFlag(sys1,SYSTEM_HIDDEN))
             continue;
          if ((jcur == jmax) && (jmax != 0))
-            col = &cGreen;
+            col = &cHyperspacePathStart;
          else if ((jcur > 0) || (jmax == -1))
-            col = &cYellow;
+            col = &cHyperspacePathReachable;
          else
-            col = &cRed;
+            col = &cHyperspacePathUnreachable;
          x0 = x + sys0->pos.x * map_zoom;
          y0 = y + sys0->pos.y * map_zoom;
          x1 = x + sys1->pos.x * map_zoom;
