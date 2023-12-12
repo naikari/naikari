@@ -989,27 +989,34 @@ static void map_render( double bx, double by, double w, double h, void *data )
    if (map_mode == MAPMODE_TRADE)
       map_renderCommod(bx, by, x, y, w, h, r, 0);
 
-   /* Initialize with values from cRed */
-   col.r = cRed.r;
-   col.g = cRed.g;
-   col.b = cRed.b;
-
    /* Selected system. */
    if (map_selected != -1) {
-      sys = system_getIndex( map_selected );
-      gl_drawCircle( x + sys->pos.x * map_zoom, y + sys->pos.y * map_zoom,
-            1.5*r, &col, 0 );
+      sys = system_getIndex(map_selected);
+      col.r = cWhite.r;
+      col.g = cWhite.g;
+      col.b = cWhite.b;
+      gl_drawCircle(x + sys->pos.x*map_zoom, y + sys->pos.y*map_zoom,
+            1.5*r, &col, 0);
+      col.r = cBlack.r;
+      col.g = cBlack.g;
+      col.b = cBlack.b;
+      gl_drawCircle(x + sys->pos.x*map_zoom, y + sys->pos.y*map_zoom,
+            1.75*r, &col, 0);
    }
 
-   /* Values from cRadar_tPlanet */
-   col.r = cRadar_tPlanet.r;
-   col.g = cRadar_tPlanet.g;
-   col.b = cRadar_tPlanet.b;
-
-   /* Current planet. */
-   gl_drawCircle( x + cur_system->pos.x * map_zoom,
-         y + cur_system->pos.y * map_zoom,
-         1.5*r, &col, 0 );
+   /* Current system. */
+   col.r = cWhite.r;
+   col.g = cWhite.g;
+   col.b = cWhite.b;
+   gl_drawCircle(x + cur_system->pos.x*map_zoom,
+         y + cur_system->pos.y*map_zoom,
+         2.*r, &col, 0);
+   col.r = cBlack.r;
+   col.g = cBlack.g;
+   col.b = cBlack.b;
+   gl_drawCircle(x + cur_system->pos.x*map_zoom,
+         y + cur_system->pos.y*map_zoom,
+         2.25*r, &col, 0);
 }
 
 
