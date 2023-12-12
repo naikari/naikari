@@ -4,14 +4,28 @@
 
 ### Major Changes
 
-* Overhauled the selection of text colors used on screens related to
-  outfits and ships. The general pattern now is that coloring that
-  indicates something "good" is blue, coloring that indicates a
-  restriction or something "bad" is yellow with an asterisk, and
-  coloring that indicates something "dangerous" or "critical" is red
-  with a pair of exclamation points. This unifies the coloring better
-  and improves colorblind accessibility.
-  
+* Overhauled lots of the coloring to improve colorblind accessibility
+  and better unify the coloring schemes.
+  * Text colors on screens related to outfits and ships now generally
+    indicate something "good" with blue, something "bad" with yellow
+    and an asterisk, and something "dangerous" or "critical" with red
+    and a pair of exclamation points.
+  * Weapon sets shown in the Ship Computer are now colored black for
+    irrelevant slots, dark red for relevant but unused slots, and blue
+    at two separate brightness levels for used slots.
+  * The borders around slots which indicate that an outfit is required,
+    exclusive, or has a special type (like core slots, fighter bay
+    slots, and bio-weapon slots) are different colors, and the slot
+    indicators in the shipyard are now drawn in the same way rather than
+    with colored triangles. The color for required outfits is unchanged,
+    but for otherwise exclusive or special-typed slots, the coloring is
+    a 2-color blue gradient. (With full color vision, they just look
+    like brighter shades of blue or cyan.)
+  * Hidden jump hyperspace lanes on the starmap are now indicated as
+    orange instead of red.
+  * The selected autonav path on the starmap is now colored two shades
+    of blue and a shade of orange, rather than the previous green,
+    yellow, and red coloring.
 
 ### Other Changes
 
@@ -37,6 +51,8 @@
 * Changed TC display to be relative instead of absolute (meaning e.g. a
   doubling of time passage rate is displayed as "+100%" instead of
   "200%" as it was previously).
+* The selected ship slot in the Equipment tab is now indicated with an
+  outline, rather than replacing the color of the entire slot.
 
 ## 0.11.0
 
