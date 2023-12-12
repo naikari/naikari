@@ -1538,7 +1538,10 @@ static void map_renderPath( double x, double y, double a, double alpha )
             vertex[4*k+12] = col->r;
             vertex[4*k+13] = col->g;
             vertex[4*k+14] = col->b;
-            vertex[4*k+15] = (a/4. + .25 + h0*h1) * alpha; /* More solid in the middle for some reason. */
+            /* The animation alpha value we get is between 0.5 and 1,
+             * so we do some manipulate to re-expand the range and make
+             * the path more visible. */
+            vertex[4*k+15] = (a*1.75 - 0.75) * alpha;
          }
          gl_vboSubData( map_vbo, 0, sizeof(GLfloat) * 6*(2+4), vertex );
 
