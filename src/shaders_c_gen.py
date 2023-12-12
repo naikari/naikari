@@ -41,7 +41,11 @@ class Shader:
 
 class SimpleShader(Shader):
     def __init__(self, name, fs_path):
-        super().__init__( name=name, vs_path="project_pos.vert", fs_path=fs_path, attributes=["vertex"], uniforms=["projection","color","dimensions","dt","paramf","parami","paramv"], subroutines={} )
+        super().__init__(name=name, vs_path="project_pos.vert",
+                         fs_path=fs_path, attributes=["vertex"],
+                         uniforms=["projection", "color", "dimensions", "dt",
+                                   "paramf","parami","paramv"],
+                         subroutines={})
     def header_chunks(self):
         yield f"   SimpleShader {self.name};\n"
 
@@ -226,6 +230,10 @@ SHADERS = [
    SimpleShader(
       name = "jumpmarker",
       fs_path = "jumpmarker.frag",
+   ),
+   SimpleShader(
+      name = "jumppath",
+      fs_path = "jumppath.frag",
    ),
    SimpleShader(
       name = "pilotmarker",
