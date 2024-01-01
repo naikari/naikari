@@ -103,7 +103,7 @@ void main (void)
       // Invalid colorblindness type
       l = 0.212656f*L + 0.715158f*M + 0.072186f*S;
       m = 0.0f*L + 0.0f*M + 0.0f*S;
-      s = 0.0f*L + 0.0f*M + 0.0f*S;
+      s = 0.212656f*L + 0.715158f*M + 0.072186f*S;
    }
 
    // Convert to RGB
