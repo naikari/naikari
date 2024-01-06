@@ -21,6 +21,8 @@
     but for otherwise exclusive or special-typed slots, the coloring is
     a 2-color blue gradient. (With full color vision, they just look
     like brighter shades of blue or cyan.)
+  * CPU bar is now orange with a black background, while mass limit bar
+    bar is now blue with a black background.
   * Hidden jump hyperspace lanes on the starmap are now indicated as
     orange instead of red.
   * The selected autonav path on the starmap is now colored two shades
@@ -36,8 +38,6 @@
   classes.
 * Adjusted the way AI ships are equipped.
 * Afterburner outfits now properly display their heat up stat.
-* Changed the colors of the CPU and mass limit bars to make them easier
-  to understand and more colorblind-accessible.
 * Lowered energy cost and increased heatup time for afterburners (making
   them more widely usable).
 * Added the Elephant, a bulk freighter which is essentially an upsized
