@@ -13,6 +13,6 @@
  <specific type="modification" group="6">
   <active />
   <rdr_enemy_range_mod>-50</rdr_enemy_range_mod>
-  <energy_loss>25</energy_loss>
+  <energy_regen_malus>25</energy_regen_malus>
  </specific>
 </outfit>

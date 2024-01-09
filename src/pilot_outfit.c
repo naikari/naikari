@@ -927,7 +927,7 @@ void pilot_calcStats( Pilot* pilot )
    pilot->turn_base     = pilot->ship->turn;
    pilot->speed_base    = pilot->ship->speed;
    /* cargo */
-   pilot->cap_cargo     = pilot->ship->cap_cargo;
+   pilot->cap_cargo = pilot->ship->cap_cargo;
    /* fuel_consumption. */
    pilot->fuel_consumption = pilot->ship->fuel_consumption;
    /* health */
@@ -938,13 +938,12 @@ void pilot_calcStats( Pilot* pilot )
    pilot->shield_regen = pilot->ship->shield_regen;
    pilot->fuel_regen = pilot->ship->fuel_regen;
    /* Absorption. */
-   pilot->dmg_absorb    = pilot->ship->dmg_absorb;
+   pilot->dmg_absorb = pilot->ship->dmg_absorb;
    /* Energy. */
-   pilot->energy_max    = pilot->ship->energy;
-   pilot->energy_regen  = pilot->ship->energy_regen;
-   pilot->energy_loss   = 0.; /* Initially no net loss. */
+   pilot->energy_max = pilot->ship->energy;
+   pilot->energy_regen = pilot->ship->energy_regen;
    /* Radar. */
-   pilot->rdr_range     = pilot->ship->rdr_range;
+   pilot->rdr_range = pilot->ship->rdr_range;
    pilot->rdr_jump_range = pilot->ship->rdr_jump_range;
    /* Stats. */
    s = &pilot->stats;
@@ -997,7 +996,7 @@ void pilot_calcStats( Pilot* pilot )
          /* Add stats. */
          ss_statsModFromList( s, o->stats );
          pilot_setFlag( pilot, PILOT_AFTERBURNER ); /* We use old school flags for this still... */
-         pilot->energy_loss += pilot->afterburner->outfit->u.afb.energy; /* energy loss */
+         pilot->energy_regen -= pilot->afterburner->outfit->u.afb.energy;
       }
       else {
          /* Always add stats for non mod/afterburners. */
@@ -1073,7 +1072,6 @@ void pilot_calcStats( Pilot* pilot )
    pilot->armour_regen -= s->armour_regen_malus;
    pilot->shield_regen -= s->shield_regen_malus;
    pilot->energy_regen -= s->energy_regen_malus;
-   pilot->energy_loss += s->energy_loss;
    pilot->dmg_absorb = CLAMP(0., 1., pilot->dmg_absorb + s->absorb);
 
    /* Make sure health values are within the new max. */
@@ -1083,9 +1081,6 @@ void pilot_calcStats( Pilot* pilot )
 
    /* Dump excess fuel */
    pilot->fuel = (pilot->fuel_max >= pilot->fuel) ? pilot->fuel : pilot->fuel_max;
-
-   /* Set final energy tau. */
-   pilot->energy_tau = pilot->energy_max / pilot->energy_regen;
 
    /* Cargo has to be reset. */
    pilot_cargoCalc(pilot);

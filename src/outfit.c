@@ -1327,7 +1327,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
 
    if (temp->u.blt.energy > 0.)
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%.1f GW Energy Loss [%G GJ/shot]\n"),
+            _("%.1f GW Energy Usage [%G GJ/shot]\n"),
             1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy);
 
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
@@ -1537,7 +1537,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
             / (temp->u.bem.duration+temp->u.bem.delay) );
 
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%G GW Energy Loss [%.0f GW avg.]\n"),
+         _("%G GW Energy Usage [%.0f GW avg.]\n"),
          temp->u.bem.energy,
          temp->u.bem.energy * temp->u.bem.duration
             / (temp->u.bem.duration+temp->u.bem.delay));
@@ -1989,7 +1989,7 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
          (temp->u.afb.speed < 0 ? 'B' : 'G'),
          (temp->u.afb.speed < 0 ? "* " : ""), temp->u.afb.speed);
    i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
-         _("#%c%s%+G GW Energy Loss#0\n"),
+         _("#%c%s%+G GW Energy Usage#0\n"),
          (temp->u.afb.energy > 0 ? 'B' : 'G'),
          (temp->u.afb.energy > 0 ? "* " : ""), temp->u.afb.energy);
    i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
@@ -2737,7 +2737,7 @@ static void outfit_launcherDesc( Outfit* o )
             1. / o->u.lau.delay * a->u.amm.dmg.disable, a->u.amm.dmg.disable );
    if (a->u.amm.energy > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%.1f GW Energy Loss [%G GJ/shot]\n"),
+            _("%.1f GW Energy Usage [%G GJ/shot]\n"),
             1. / o->u.lau.delay * a->u.amm.energy, a->u.amm.energy );
    }
 
