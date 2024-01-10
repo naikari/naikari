@@ -104,8 +104,8 @@ function safe_disable()
       -- Reduce credits (the credits amount is based on the effort it
       -- takes to disable them, and the player doesn't have to go thru
       -- that effort in the case of this event).
-      if rnd.rnd() < 0.95 then
-         local lost_credits = rnd.uniform(0.5, 0.9) * p:credits()
+      if rnd.rnd() < 0.99 then
+         local lost_credits = rnd.uniform(0.9, 1) * p:credits()
          p:pay(-lost_credits)
       end
 
