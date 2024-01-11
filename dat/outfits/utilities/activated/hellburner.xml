@@ -16,7 +16,7 @@
   <thrust>300</thrust>
   <speed>45</speed>
   <energy>35</energy>
-  <mass_limit>250</mass_limit>
+  <mass_limit>350</mass_limit>
   <heatup>24</heatup>
   <heat_base>400</heat_base>
   <heat_cap>650</heat_cap>
