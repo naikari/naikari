@@ -53,6 +53,11 @@
   "200%" as it was previously).
 * The selected ship slot in the Equipment tab is now indicated with an
   outline, rather than replacing the color of the entire slot.
+* Energy regeneration is now simply linear, just like shield, armor, and
+  fuel regeneration, which also brings it in-line with the way energy
+  costs of weapons and activated outfits work.
+* Good rewards of credits from derelicts are now much more rare; most
+  derelicts now have few if any credits.
 
 ## 0.11.0
 
