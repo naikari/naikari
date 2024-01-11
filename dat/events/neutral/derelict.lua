@@ -126,6 +126,17 @@ function pilot_board(p, boarder)
    if boarder ~= player.pilot() then
       return
    end
+
+   -- For the first derelict the player ever boards, ensure that the
+   -- credits reward is good. This is to teach the player that boarding
+   -- derelicts has a chance of being very rewarding.
+   if not var.peek("derelict_boarded") then
+      var.push("derelict_boarded", true)
+      if p:credits() < 100000 then
+         p:pay(100000)
+      end
+   end
+
    p:setHilight(false)
    evt.finish()
 end
