@@ -2,7 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Fuel Request">
  <trigger>enter</trigger>
- <chance>5</chance>
+ <chance>15</chance>
  <cond>player.jumps() &gt;= 2</cond>
 </event>
 --]]
