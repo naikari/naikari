@@ -101,12 +101,14 @@ function safe_disable()
 
       hook.pilot(p, "board", "pilot_board")
 
-      -- Reduce credits (the credits amount is based on the effort it
-      -- takes to disable them, and the player doesn't have to go thru
-      -- that effort in the case of this event).
       if rnd.rnd() < 0.99 then
+         -- Credits reward is usually very heavily reduced.
          local lost_credits = rnd.uniform(0.9, 1) * p:credits()
          p:pay(-lost_credits)
+      elseif rnd.rnd() < 0.01 then
+         -- Very rarely, credits reward is inflated.
+         local extra_credits = rnd.uniform(2, 10) * p:credits()
+         p:pay(extra_credits)
       end
 
       -- Remove followers so they don't sit there next to the wing of
