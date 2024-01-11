@@ -207,7 +207,7 @@ function pilot_hail_trader_refuel_request(p)
    if mem.refuel_started then
       local msg = fmt.f(_("I'm ready for the fuel transfer. You can press {board_key} to board my ship."),
             {board_key=tutGetKey("board")})
-      p:comm(player.pilot(), _("I'm ready for the fuel transfer."), true)
+      p:comm(player.pilot(), msg, true)
       return
    end
 
