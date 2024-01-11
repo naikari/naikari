@@ -188,6 +188,12 @@ static void info_changeTab(unsigned int wid, char *wgt, int old, int tab)
    (void) old;
    (void) tab;
 
+   /* Center the map on the current system and set map zoom for the
+    * benefit of tabs that have an embedded map. (Done here since we
+    * only want to do this specifically when changing tabs.) */
+   map_setZoom(0.75);
+   map_center(cur_system->name);
+
    info_update();
 }
 
