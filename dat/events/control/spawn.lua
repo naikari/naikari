@@ -100,7 +100,12 @@ local trader_spawn_events = {
       mem.refuel_dest = jmp:dest()
 
       mem.natural = false
-      mem.refuel_reward = p:credits() * rnd.uniform(0.05, 0.15)
+      if rnd.rnd() < 0.01 then
+         -- Rare chance of someone who will fork over a ton of money.
+         mem.refuel_reward = p:credits() * rnd.uniform(0.5, 0.85)
+      else
+         mem.refuel_reward = p:credits() * rnd.uniform(0.05, 0.15)
+      end
 
       p:rename(pilotname.generic())
       p:setHilight()

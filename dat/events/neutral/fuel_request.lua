@@ -119,7 +119,7 @@ function create()
    stranded_p:follow(player.pilot())
    hook.timer(0.5, "proximityScan", {focus=stranded_p, funcname="prox_hail"})
 
-   reward = rnd.rnd(7500, 15000)
+   reward = rnd.rnd(15000, 50000)
 
    accepted = false
 
