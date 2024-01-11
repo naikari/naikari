@@ -56,8 +56,8 @@
 * Energy regeneration is now simply linear, just like shield, armor, and
   fuel regeneration, which also brings it in-line with the way energy
   costs of weapons and activated outfits work.
-* Good rewards of credits from derelicts are now much more rare; most
-  derelicts now have few if any credits.
+* Derelicts now award less credits on average, but can rarely give very
+  large rewards.
 * Increased mass limit of Hellburner a bit.
 * Emergency Shield Booster is now a medium outfit and has been made a
   bit stronger.
