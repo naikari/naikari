@@ -106,8 +106,10 @@ function safe_disable()
          local lost_credits = rnd.uniform(0.9, 1) * p:credits()
          p:pay(-lost_credits)
       elseif rnd.rnd() < 0.01 then
-         -- Very rarely, credits reward is inflated.
+         -- Very rarely, credits reward is inflated. Includes both a
+         -- proportional boost portion and a flat boost portion.
          local extra_credits = rnd.uniform(2, 10) * p:credits()
+         extra_credits = extra_credits + 600000 + 100000*rnd.threesigma()
          p:pay(extra_credits)
       end
 
