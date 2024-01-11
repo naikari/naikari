@@ -65,6 +65,17 @@ local credentials_text = _([[
 #nMoney:#0 {plmoney}
 #nCurrent total royalties:#0 {plroyalties:.1f}% of earnings]])
 
+local credentials_refundable_text = _([[
+#nPilot name:#0 {name}
+#nShip:#0 {ship}
+#nSpeed:#0 {speed} mAU/s
+#nDeposit:#0 {deposit} ({refundable} refundable)
+#nRoyalty:#0 {royalty:.1f}% of earnings
+
+#nYour speed:#0 {plspeed:.0f} mAU/s
+#nMoney:#0 {plmoney}
+#nCurrent total royalties:#0 {plroyalties:.1f}% of earnings]])
+
 local explain_text = _([["Of course. There are two parts: the deposit, and the royalty.
 
 "The royalty is simply a percentage of your earnings I will take as payment each time you get paid for something like a mission or a bounty hunt. So for example, since my royalty is {royalty:.1f}%, that means if you earn {credits} from a mission while I am employed by you, you will have to pay me {payment}.
@@ -260,11 +271,22 @@ function getCredentials(edata)
       speed = "?"
    end
 
-   return fmt.f(credentials_text,
-         {name=edata.name, ship=edata.ship, speed=speed,
-            deposit=fmt.credits(edata.deposit), royalty=edata.royalty*100,
-            plspeed=plspeed, plmoney=scredits,
-            plroyalties=getTotalRoyalties()*100})
+   if edata.total_paid ~= nil then
+      local refund = math.min(math.floor(edata.total_paid / 2), edata.deposit)
+      return fmt.f(credentials_refundable_text,
+            {name=edata.name, ship=edata.ship, speed=speed,
+               deposit=fmt.credits(edata.deposit),
+               refundable=fmt.credits(refund),
+               royalty=edata.royalty*100,
+               plspeed=plspeed, plmoney=scredits,
+               plroyalties=getTotalRoyalties()*100})
+   else
+      return fmt.f(credentials_text,
+            {name=edata.name, ship=edata.ship, speed=speed,
+               deposit=fmt.credits(edata.deposit), royalty=edata.royalty*100,
+               plspeed=plspeed, plmoney=scredits,
+               plroyalties=getTotalRoyalties()*100})
+   end
 end
 
 
