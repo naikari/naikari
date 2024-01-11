@@ -14,6 +14,7 @@
 
 local fmt = require "fmt"
 local pilotname = require "pilotname"
+require "events/tutorial/tutorial_common"
 
 
 local trader_refuel_broadcast = {
@@ -28,6 +29,13 @@ local trader_refuel_broadcast = {
 local trader_refuel_cancel_broadcast = {
    _("Actually, it looks like I have enough fuel. Sorry about that."),
    _("Nevermind on that fuel request. It looks like I've got enough."),
+}
+
+local trader_refuel_danger_broadcast = {
+   _("Nevermind on that fuel request, I need to get out of here!"),
+   _("Shit! Cancel that fuel request!"),
+   _("Ouch! Nevermind, a bit of extra fuel isn't worth dying for!"),
+   _("Crap, crap, abort! I don't need fuel that bad!"),
 }
 
 local trader_refuel_ask_text = {
@@ -116,6 +124,7 @@ local trader_spawn_events = {
       hook.timer(2, "timer_trader_refuel_request", p)
       hook.pilot(p, "idle", "pilot_idle_trader_refuel_request")
       hook.pilot(p, "hail", "pilot_hail_trader_refuel_request")
+      hook.pilot(p, "attacked", "pilot_attacked_trader_refuel_request")
 
       return true
    end,
@@ -196,6 +205,8 @@ function pilot_hail_trader_refuel_request(p)
    player.commClose()
 
    if mem.refuel_started then
+      local msg = fmt.f(_("I'm ready for the fuel transfer. You can press {board_key} to board my ship."),
+            {board_key=tutGetKey("board")})
       p:comm(player.pilot(), _("I'm ready for the fuel transfer."), true)
       return
    end
@@ -277,6 +288,17 @@ function pilot_board_trader_refuel_request(p, boarder)
    p:hookClear()
    p:taskClear()
    p:hyperspace(mem.refuel_dest, true)
+end
+
+
+function pilot_attacked_trader_refuel_request(p, attacker, damage)
+   local msg = trader_refuel_danger_broadcast[rnd.rnd(1, #trader_refuel_danger_broadcast)]
+   p:broadcast(msg)
+   p:setHilight(false)
+   p:setActiveBoard(false)
+   p:hookClear()
+   p:taskClear()
+   p:control(false)
 end
 
 
