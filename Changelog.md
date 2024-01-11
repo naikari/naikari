@@ -58,6 +58,9 @@
   costs of weapons and activated outfits work.
 * Good rewards of credits from derelicts are now much more rare; most
   derelicts now have few if any credits.
+* Increased mass limit of Hellburner a bit.
+* Emergency Shield Booster is now a medium outfit and has been made a
+  bit stronger.
 
 ## 0.11.0
 
