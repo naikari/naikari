@@ -444,11 +444,11 @@ function enter()
             mem.comm_no = nil
             edata.pilot:setVisplayer(true)
             edata.pilot:setInvincPlayer(true)
-            edata.pilot:setNoBoard(true)
             edata.pilot:setNoClear(true)
             hook.pilot(edata.pilot, "death", "pilot_death", i)
             hook.pilot(edata.pilot, "attacked", "pilot_attacked", i)
             hook.pilot(edata.pilot, "hail", "pilot_hail", i)
+            hook.pilot(edata.pilot, "board", "pilot_board", i)
 
             -- Trigger a hook to allow missions to do things with the
             -- escorts.
@@ -629,6 +629,27 @@ end
 -- Escort got killed
 function pilot_death(p, attacker, arg)
    escorts[arg].alive = false
+end
+
+
+-- Escort got boarded
+function pilot_board(p, boarder, arg)
+   if boarder ~= player.pilot() then
+      return
+   end
+
+   local edata = escorts[arg]
+   if not edata.alive then
+      return
+   end
+
+   player.unboard()
+
+   local armor, shield, stress, disabled = p:health()
+   if disabled then
+      p:setHealth(armor, shield, 0)
+      player.msg(fmt.f(_("You have rescued {pilot}."), {pilot=edata.name}))
+   end
 end
 
 
