@@ -14,10 +14,10 @@
 // https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html
 
 #define ROD_MONOCHROMACY 0
-#define PROTANOPIA 1
-#define DEUTERANOPIA 2
-#define TRITANOPIA 3
-#define CONE_MONOCHROMACY 4
+#define CONE_MONOCHROMACY 1
+#define PROTANOPIA 2
+#define DEUTERANOPIA 3
+#define TRITANOPIA 4
 #define PROTANOMALY 5
 #define DEUTERANOMALY 6
 #define TRITANOMALY 7
@@ -42,26 +42,8 @@ void main (void)
    S = 0.01775239f*color_out.r + 0.10944209f*color_out.g + 0.87256922f*color_out.b;
 
    // Simulate color blindness
-   if (mode == PROTANOPIA) {
-      // Protanope - reds are greatly reduced (1% men)
-      l = 0.0f*L + 1.05118294f*M + -0.05116099f*S;
-      m = 0.0f*L + 1.0f*M + 0.0f*S;
-      s = 0.0f*L + 0.0f*M + 1.0f*S;
-   }
-   else if (mode == DEUTERANOPIA) {
-      // Deuteranope - greens are greatly reduced (1% men)
-      l = 1.0f*L + 0.0f*M + 0.0f*S;
-      m = 0.9513092*L + 0.0f*M + 0.04866992f*S;
-      s = 0.0f*L + 0.0f*M + 1.0f*S;
-   }
-   else if (mode == TRITANOPIA) {
-      // Tritanope - blues are greatly reduced (0.003% population)
-      l = 1.0f*L + 0.0f*M + 0.0f*S;
-      m = 0.0f*L + 1.0f*M + 0.0f*S;
-      s = -0.86744736*L + 1.86727089f*M + 0.0f*S;
-   }
-   else if (mode == CONE_MONOCHROMACY) {
-      // Blue Cone Monochromat (high light conditions) - only brightness can
+   if (mode == CONE_MONOCHROMACY) {
+      // Blue Cone Monochromat (high light conditions): only brightness can
       // be detected, with blues greatly increased and reds nearly invisible
       // (0.001% population)
       // Note: This looks different from what many colorblindness simulators
@@ -75,26 +57,44 @@ void main (void)
       s = 0.01775f*L + 0.10945f*M + 0.87262f*S;
    }
    else if (mode == ROD_MONOCHROMACY) {
-      // Rod Monochromat (Achromatopsia) - only brightness can be detected
+      // Rod Monochromat (Achromatopsia): only brightness can be detected
       // (0.003% population)
       l = 0.212656f*L + 0.715158f*M + 0.072186f*S;
       m = 0.212656f*L + 0.715158f*M + 0.072186f*S;
       s = 0.212656f*L + 0.715158f*M + 0.072186f*S;
    }
+   else if (mode == PROTANOPIA) {
+      // Protanopia: reds are greatly reduced (1% men)
+      l = 0.0f*L + 1.05118294f*M + -0.05116099f*S;
+      m = 0.0f*L + 1.0f*M + 0.0f*S;
+      s = 0.0f*L + 0.0f*M + 1.0f*S;
+   }
+   else if (mode == DEUTERANOPIA) {
+      // Deuteranopia: greens are greatly reduced (1% men)
+      l = 1.0f*L + 0.0f*M + 0.0f*S;
+      m = 0.9513092*L + 0.0f*M + 0.04866992f*S;
+      s = 0.0f*L + 0.0f*M + 1.0f*S;
+   }
+   else if (mode == TRITANOPIA) {
+      // Tritanopia: blues are greatly reduced (0.003% population)
+      l = 1.0f*L + 0.0f*M + 0.0f*S;
+      m = 0.0f*L + 1.0f*M + 0.0f*S;
+      s = -0.86744736*L + 1.86727089f*M + 0.0f*S;
+   }
    else if (mode == PROTANOMALY) {
-      // Protanomaly (moderate severity)
+      // Protanomaly (moderate severity): reds are green-shifted
       l = 0.458064f*L + 0.679578f*M + -0.137642f*S;
       m = 0.092785f*L + 0.846313f*M + 0.060902f*S;
       s = -0.007494f*L + -0.016807f*M + 1.024301f*S;
    }
    else if (mode == DEUTERANOMALY) {
-      // Deuteranomaly (moderate severity)
+      // Deuteranomaly (moderate severity): greens are red-shifted
       l = 0.547494f*L + 0.607765f*M + -0.155259f*S;
       m = 0.181692f*L + 0.781742f*M + 0.036566f*S;
       s = -0.010410f*L + 0.027275f*M + 0.983136f*S;
    }
    else if (mode == TRITANOMALY) {
-      // Tritanomaly (moderate severity)
+      // Tritanomaly (moderate severity): blues are yellow-shifted
       l = 1.017277f*L + 0.027029f*M + -0.044306f*S;
       m = -0.006113f*L + 0.958479f*M + 0.047634f*S;
       s = 0.006379f*L + 0.248708f*M + 0.744913f*S;

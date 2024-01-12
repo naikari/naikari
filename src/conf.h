@@ -72,10 +72,13 @@
  */
 typedef enum ColorblindMode_ {
    ROD_MONOCHROMACY = 0, /**< Rod monochromacy (achromatopsia) */
+   CONE_MONOCHROMACY, /**< Blue cone monochromacy (high light conditions) */
    PROTANOPIA, /**< Protanopia (red-blind) */
    DEUTERANOPIA, /**< Deuteranopia (green-blind) */
    TRITANOPIA, /**< Tritanopia (blue-blind) */
-   CONE_MONOCHROMACY, /**< Blue cone monochromacy (high light conditions) */
+   PROTANOMALY, /**< Protanomaly (red-weak) */
+   DEUTERANOMALY, /**< Deuteranomaly (green-weak) */
+   TRITANOMALY, /**< Tritanomaly (blue-weak) */
    CBMODE_SENTINEL /**< Last colorblind mode */
 } ColorblindMode;
 

@@ -1432,6 +1432,10 @@ static void opt_video( unsigned int wid )
             colorblind_modes[i] = strdup(_("Rod monochromacy"));
             break;
 
+         case CONE_MONOCHROMACY:
+            colorblind_modes[i] = strdup(_("Cone monochromacy"));
+            break;
+
          case PROTANOPIA:
             colorblind_modes[i] = strdup(_("Protanopia"));
             break;
@@ -1444,8 +1448,16 @@ static void opt_video( unsigned int wid )
             colorblind_modes[i] = strdup(_("Tritanopia"));
             break;
 
-         case CONE_MONOCHROMACY:
-            colorblind_modes[i] = strdup(_("Cone monochromacy"));
+         case PROTANOMALY:
+            colorblind_modes[i] = strdup(_("Protanomaly"));
+            break;
+
+         case DEUTERANOMALY:
+            colorblind_modes[i] = strdup(_("Deuteranomaly"));
+            break;
+
+         case TRITANOMALY:
+            colorblind_modes[i] = strdup(_("Tritanomaly"));
             break;
 
          default:
