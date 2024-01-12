@@ -292,10 +292,15 @@ end
 
 
 function pilot_attacked_trader_refuel_request(p, attacker, damage)
+   local mem = p:memory()
+
    local msg = trader_refuel_danger_broadcast[rnd.rnd(1, #trader_refuel_danger_broadcast)]
    p:broadcast(msg)
+
    p:setHilight(false)
    p:setActiveBoard(false)
+   mem.refuel_finished = true
+   mem.loiter = nil
    p:hookClear()
    p:taskClear()
    p:control(false)
