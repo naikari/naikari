@@ -51,6 +51,9 @@ WORKPATH=$(readlink -mf "$(mktemp -d)")
 # Make temp directory
 mkdir -p "$WORKPATH"
 
+# Create Applications symlink for DMG installer in temp directory
+ln -s /Applications "$WORKPATH"/Applications
+
 # Copy all DMG assets to BundleDir
 cp -r "$SOURCEPATH"/extras/macos/dmg_assets/. "$WORKPATH"
 
