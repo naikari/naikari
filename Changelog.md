@@ -61,6 +61,13 @@
 * Increased mass limit of Hellburner a bit.
 * Emergency Shield Booster is now a medium outfit and has been made a
   bit stronger.
+* Ship Computer embedded maps are now centered on the current system
+  when navigating to the tabs they're in.
+* The first derelict boarded is now guaranteed to give a large sum of
+  credits.
+* Amount of deposit for hired escorts which is eligible for refunding is
+  now displayed in the escorts' credentials.
+* You can now board hired escorts to rescue them if they are disabled.
 
 ## 0.11.0
 
