@@ -85,7 +85,7 @@ COLOURS = [
     Colour("Neutral", 221/255, 204/255, 119/255),
     Colour("Restricted", 153/255, 153/255, 51/255),
     Colour("Hostile", 178/255, 50/255, 68/255),
-    Colour("Jump", 9/255, 196/255, 125/255),
+    Colour("Jump", 38/255, 189/255, 210/255),
     Colour("HiddenJump", 210/255, 42/255, 23/255),
     # Mission Markers
     Colour("MarkerNew", 142/255, 203/255, 233/255),
@@ -135,7 +135,7 @@ COLOURS = [
     Colour("FontNeutral", 221/255, 204/255, 119/255),
     Colour("FontRestricted", 153/255, 153/255, 51/255),
     Colour("FontHostile", 255/255, 108/255, 121/255),
-    Colour("FontJump", 13/255, 172/255, 110/255),
+    Colour("FontJump", 0/255, 169/255, 189/255),
     Colour("FontHiddenJump", 255/255, 100/255, 68/255),
 ]
 
