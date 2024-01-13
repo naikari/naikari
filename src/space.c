@@ -3374,11 +3374,11 @@ static void space_renderJumpPoint( const JumpPoint *jp, int i )
 
    if ((player.p != NULL) && (i==player.p->nav_hyperspace) &&
          (pilot_isFlag(player.p, PILOT_HYPERSPACE) || space_canHyperspace(player.p)))
-      c = &cGreen;
+      c = &cWhite;
    else if (jp_isFlag(jp, JP_HIDDEN))
-      c = &cRed;
+      c = &cHiddenJump;
    else
-      c = NULL;
+      c = &cJump;
 
    gl_blitSprite( jumppoint_gfx, jp->pos.x, jp->pos.y, jp->sx, jp->sy, c );
 

@@ -85,6 +85,8 @@ COLOURS = [
     Colour("Neutral", 221/255, 204/255, 119/255),
     Colour("Restricted", 153/255, 153/255, 51/255),
     Colour("Hostile", 178/255, 50/255, 68/255),
+    Colour("Jump", 0.2, 0.8, 0.2),
+    Colour("HiddenJump", 0.8, 0.2, 0.2),
     # Mission Markers
     Colour("MarkerNew", 142/255, 203/255, 233/255),
     Colour("MarkerNewHilight", 177/255, 113/255, 74/255),
@@ -133,6 +135,8 @@ COLOURS = [
     Colour("FontNeutral", 221/255, 204/255, 119/255),
     Colour("FontRestricted", 153/255, 153/255, 51/255),
     Colour("FontHostile", 255/255, 108/255, 121/255),
+    Colour("FontJump", 124/255, 226/255, 74/255),
+    Colour("FontHiddenJump", 255/255, 102/255, 102/255),
 ]
 
 def write_header(f):

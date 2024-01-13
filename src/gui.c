@@ -423,7 +423,7 @@ static void gui_renderPlanetTarget (void)
    if (player.p->nav_hyperspace >= 0) {
       jp = &cur_system->jumps[player.p->nav_hyperspace];
 
-      c = &cFontGreen;
+      c = &cFontJump;
 
       x = jp->pos.x;
       y = jp->pos.y;
@@ -644,9 +644,9 @@ static void gui_renderBorder( double dt )
          if (i==player.p->nav_hyperspace)
             col = &cRadar_tPlanet;
          else if (jp_isFlag(jp, JP_HIDDEN))
-            col = &cFontRed;
+            col = &cFontHiddenJump;
          else
-            col = &cFontGreen;
+            col = &cFontJump;
 
          gl_renderTriangleEmpty( cx, cy, -jp->angle, 10., 1., col );
       }
@@ -1685,9 +1685,9 @@ void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double 
    if (ind == player.p->nav_hyperspace)
       col = &cRadar_tPlanet;
    else if (jp_isFlag(jp, JP_HIDDEN))
-      col = &cFontRed;
+      col = &cFontHiddenJump;
    else
-      col = &cFontGreen;
+      col = &cFontJump;
 
    glUseProgram(shaders.jumpmarker.program);
    gl_renderShader(cx, cy, vr*1.5, vr*1.5, -jp->angle+M_PI,
