@@ -28,6 +28,9 @@
   * The selected autonav path on the starmap is now colored two shades
     of blue and a shade of orange, rather than the previous green,
     yellow, and red coloring.
+  * Standard jump points are now a blue-green color, while hidden jump
+    points are a slightly yellow-shifted red color.
+  * Jump trails are now green instead of magenta.
 
 ### Other Changes
 
