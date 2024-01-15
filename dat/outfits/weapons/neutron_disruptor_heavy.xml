@@ -21,7 +21,7 @@
   <range>750</range>
   <falloff>700</falloff>
   <gfx_end>neutron-end.png</gfx_end>
-  <energy>12</energy>
+  <energy>24</energy>
   <heatup>35</heatup>
   <rdr_range>7500</rdr_range>
   <rdr_range_max>9000</rdr_range_max>

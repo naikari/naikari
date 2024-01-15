@@ -21,7 +21,7 @@
   <range>6800</range>
   <falloff>4800</falloff>
   <gfx_end>razorL-end.png</gfx_end>
-  <energy>174</energy>
+  <energy>348</energy>
   <heatup>60</heatup>
   <rdr_range>3600</rdr_range>
   <rdr_range_max>6200</rdr_range_max>

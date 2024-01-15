@@ -21,7 +21,7 @@
   <range>2900</range>
   <falloff>2500</falloff>
   <gfx_end>massM-end.png</gfx_end>
-  <energy>77</energy>
+  <energy>154</energy>
   <heatup>75</heatup>
   <rdr_range>2300</rdr_range>
   <rdr_range_max>2700</rdr_range_max>

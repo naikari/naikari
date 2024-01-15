@@ -19,7 +19,7 @@
   <speed>550</speed>
   <range>750</range>
   <falloff>450</falloff>
-  <energy>5</energy>
+  <energy>10</energy>
   <heatup>25</heatup>
   <rdr_range>1400</rdr_range>
   <rdr_range_max>1800</rdr_range_max>

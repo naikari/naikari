@@ -21,7 +21,7 @@
   <range>1500</range>
   <falloff>1350</falloff>
   <gfx_end>razorS-end.png</gfx_end>
-  <energy>10</energy>
+  <energy>20</energy>
   <heatup>35</heatup>
   <rdr_range>1800</rdr_range>
   <rdr_range_max>2700</rdr_range_max>

@@ -20,7 +20,7 @@
   <range>2900</range>
   <falloff>2500</falloff>
   <gfx_end>ionL-end.png</gfx_end>
-  <energy>54</energy>
+  <energy>108</energy>
   <heatup>60</heatup>
   <rdr_range>2400</rdr_range>
   <rdr_range_max>3000</rdr_range_max>

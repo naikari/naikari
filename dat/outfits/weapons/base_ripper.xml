@@ -22,7 +22,7 @@
   <range>2800</range>
   <falloff>2200</falloff>
   <gfx_end>ripperM-end.png</gfx_end>
-  <energy>500</energy>
+  <energy>1000</energy>
   <heatup>10000</heatup>
   <rdr_range>4400</rdr_range>
   <rdr_range_max>5600</rdr_range_max>

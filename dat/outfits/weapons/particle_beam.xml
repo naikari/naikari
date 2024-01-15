@@ -16,7 +16,7 @@
   <duration>2</duration>
   <range>350</range>
   <turn>180</turn>
-  <energy>5</energy>
+  <energy>10</energy>
   <heatup>35</heatup>
   <damage>
    <type>normal</type>

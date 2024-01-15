@@ -19,7 +19,7 @@
   <speed>{speed}</speed>
   <range>{range}</range>
   <falloff>{falloff}</falloff>
-  <energy>5</energy>
+  <energy>10</energy>
   <heatup>{heatup}</heatup>
   <rdr_range>1400</rdr_range>
   <rdr_range_max>1800</rdr_range_max>

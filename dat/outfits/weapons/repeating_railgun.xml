@@ -21,7 +21,7 @@
   <speed>550</speed>
   <range blowup="shield">8000</range>
   <gfx_end>massL-end.png</gfx_end>
-  <energy>65</energy>
+  <energy>130</energy>
   <heatup>60</heatup>
   <rdr_range>3800</rdr_range>
   <rdr_range_max>6900</rdr_range_max>

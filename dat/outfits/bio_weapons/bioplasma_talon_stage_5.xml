@@ -21,7 +21,7 @@
   <speed>616</speed>
   <range>5333</range>
   <falloff>4000</falloff>
-  <energy>65</energy>
+  <energy>130</energy>
   <heatup>63</heatup>
   <rdr_range>3500</rdr_range>
   <rdr_range_max>6000</rdr_range_max>

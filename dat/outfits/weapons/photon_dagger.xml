@@ -18,7 +18,7 @@
   <delay>5</delay>
   <speed>1500</speed>
   <range blowup="shield">1200</range>
-  <energy>16</energy>
+  <energy>32</energy>
   <heatup>80</heatup>
   <rdr_range>0</rdr_range>
   <rdr_range_max>0</rdr_range_max>

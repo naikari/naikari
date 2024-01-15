@@ -20,7 +20,7 @@
   <delay>0.25</delay>
   <speed>500</speed>
   <range blowup="armour">4400</range>
-  <energy>3.75</energy>
+  <energy>7.5</energy>
   <heatup>100</heatup>
   <rdr_range>2200</rdr_range>
   <rdr_range_max>6000</rdr_range_max>

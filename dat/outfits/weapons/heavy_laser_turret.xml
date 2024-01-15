@@ -21,7 +21,7 @@
   <range>6600</range>
   <falloff>4800</falloff>
   <gfx_end>laser2L.png</gfx_end>
-  <energy>153</energy>
+  <energy>306</energy>
   <heatup>60</heatup>
   <rdr_range>3500</rdr_range>
   <rdr_range_max>6000</rdr_range_max>
