@@ -26,7 +26,7 @@ local fmt = require "fmt"
 require "jumpdist"
 require "missions/empire/common"
 
-bar_desc = _("You see an Imperial Lieutenant who seems to be looking at you.")
+bar_desc = _("You see an Imperial Lieutenant gazing at you expectantly.")
 misn_title = _("Empire Recruitment")
 misn_desc = _("You are being recruited to the Imperial Armada Shipping Division by Liutenant Chesc. Your first task is to deliver some parcels to {planet}.")
 
