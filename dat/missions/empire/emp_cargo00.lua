@@ -65,14 +65,6 @@ function create()
       misn.finish(false)
    end
 
-   -- Use a non-standard method of creating a random chance of the
-   -- mission showing up to ensure that it's guaranteed to show up at
-   -- least once.
-   if var.peek("es_initiated") and rnd.rnd() >= 0.4 then
-      misn.finish(false)
-   end
-   var.push("es_initiated", true)
-
    local index = rnd.rnd(1, #planets)
    dest = planets[index][1]
    sys = planets[index][2]
