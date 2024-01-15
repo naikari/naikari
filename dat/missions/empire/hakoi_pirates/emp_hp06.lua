@@ -39,7 +39,10 @@ local accept_text = _([[After all the work you did earning the Dvaereds' trust, 
 
 local deliver_text = _([[You land at your destination and locate your contact, a hooded, masked figure. They seemingly pause for a moment before proceeding to send accomplices into your ship to retrieve the goods without speaking a word. Looks like your job here is done and you can head back to {planet} and speak to Dev Filer.]])
 
-local finish_text = _([[You meet Dev Filer at the spaceport, where he pats you on the back as he hands you your payment. "Great job, {player}! I like you, fearless and eager to work your way up to the big time. So much better than that coward I used to work with a few years back. Always backed out the moment things got hot.
+-- Translators: Dev Filer's reference to "that coward I used to be with"
+-- is intended to be in reference to Ian Structure, and the phraseology
+-- is supposed to imply but not outright state that they were lovers.
+local finish_text = _([[You meet Dev Filer at the spaceport, where he pats you on the back as he hands you your payment. "Great job, {player}! I like you, fearless and eager to work your way up to the big time. So much better than that coward I used to be with a few years back. Always backed out the moment things got hot.
 
 "I'll tell you what: I'll help you really make your way to the big time. Meet me at the bar and I'll have a nice mission lined up for you."]])
 
