@@ -183,7 +183,7 @@ void osd_wordwrap( OSD_t* osd )
 
       /* Test if tabbed. */
       has_tab = !!(osd->msg[i][0] == '\t');
-      w = osd_w - (has_tab ? osd_tabLen : osd_hyphenLen);
+      w = osd_w - (has_tab ? osd_tabLen + osd_hyphenLen : osd_hyphenLen);
       gl_printLineIteratorInit( &iter, &gl_smallFont, &osd->msg[i][has_tab], w );
       chunk_fmt = has_tab ? "   - %s" : "- %s";
 
