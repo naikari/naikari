@@ -45,6 +45,22 @@
   </commodity>
  </asteroid>
  <asteroid>
+  <id>small_hard</id>
+  <gfx>asteroid-01.webp</gfx>
+  <gfx>asteroid-02.webp</gfx>
+  <gfx>asteroid-03.webp</gfx>
+  <gfx>asteroid-04.webp</gfx>
+  <gfx>asteroid-05.webp</gfx>
+  <gfx>asteroid-06.webp</gfx>
+  <gfx>asteroid-22.webp</gfx>
+  <gfx>asteroid-24.webp</gfx>
+  <armour>250</armour>
+  <commodity>
+   <name>Ore</name>
+   <quantity>2</quantity>
+  </commodity>
+ </asteroid>
+ <asteroid>
   <id>massive</id>
   <gfx>asteroid-00.webp</gfx>
   <gfx>asteroid-07.webp</gfx>

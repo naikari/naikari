@@ -60,9 +60,9 @@ local mining_text = _([[Alright, let's start mining! Of course, mining is done w
 
 "I just need you to mine enough ore to fill your cargo hold to capacity. I'll let you know what to do with it when your cargo hold is full."]])
 
-local cooldown_text = _([["That should do it! Great job! Whew, firing those weapons sure makes it warm in here, doesn't it? I'm sorry to trouble you, but could you please engage active cooldown by pressing {autobrake_key}?"]])
+local cooldown_text = _([[Ian Structure briefly startles you as he taps on your shoulder. "Sorry! I just noticed that your weapons are getting pretty hot. That's not doing your weapon accuracy any favors. Why don't you cool everything down by pressing {autobrake_key}?"]])
 
-local dest_text = _([["Ahhh, that's much better. I'm sure your weapons will work a lot better if they're not overheated, too, thô, um, we of course shouldn't run into pirates in this system." Ian sweats nervously, as if not entirely convinced.
+local dest_text = _([["That should do it! Good job! With those firing skills, maybe you'd even be able to handle yourself against a pirate! I sure hope you don't have to, thô. Oh, what am I saying? There's no way the Empire would let pirates get into a place like this!" Ian sweats nervously, as if not entirely convinced.
 
 "Alright, I need you to take this Ore to {planet}. You should be able to see it on your overlay map, right? You can interact with its icon the same way you would interact with the planet itself, so you should be able to tell Autonav to land us there no problem."]])
 
@@ -71,10 +71,11 @@ local pay_text = _([[Ian steps out of your ship and stretches his arms, seemingl
 local misn_desc = _("Ian Structure has hired you to mine ore from some asteroids, claiming that he needs specifically asteroid-mined Ore for his purposes.")
 local misn_log = _([[You accepted another job from Ian Structure, this time mining some ore from asteroids for him. He asked you to speak with him again on {planet} ({system} system) for another job.]])
 
+local credits = 10000
+
 
 function create()
    misplanet, missys = planet.get("Em 5")
-   credits = 10000
 
    misn.setNPC(_("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
@@ -104,7 +105,7 @@ function accept()
             {primarykey=naik.keyGet("primary"),
                secondarykey=naik.keyGet("secondary")}),
          "\t" .. _("Fly to the location of dropped Ore to collect it"),
-         fmt.f(_("Engage Active Cooldown by pressing {autobrake_key}, then wait for your ship to fully cool down"),
+         "\t" .. fmt.f(_("If your weapons overheat, engage Active Cooldown by pressing {autobrake_key}"),
             {autobrake_key=naik.keyGet("autobrake")}),
          fmt.f(_("Land on {planet} ({system} system)"),
             {planet=misplanet, system=missys}),
@@ -188,6 +189,7 @@ function asteroid_proximity()
    end
 
    hook.timer(0.5, "timer_mining")
+   overheat_timer_hook = hook.timer(0.5, "timer_overheat")
 end
 
 
@@ -199,19 +201,7 @@ function timer_mining()
 
    hook.rm(input_hook)
    system.mrkRm(mark)
-
-   tk.msg("", fmt.f(cooldown_text, {autobrake_key=tutGetKey("autobrake")}))
-   misn.osdActive(8)
-
-   hook.timer(1, "timer_cooldown")
-end
-
-
-function timer_cooldown()
-   if player.pilot():temp() > 250 then
-      hook.timer(1, "timer_cooldown")
-      return
-   end
+   hook.rm(overheat_timer_hook)
 
    player.allowLand(true)
    player.pilot():setNoJump(false)
@@ -222,6 +212,25 @@ function timer_cooldown()
    misn.markerMove(marker, missys, misplanet)
 
    hook.land("land")
+end
+
+
+function timer_overheat()
+   local p = player.pilot()
+   local overheating = false
+   for i = 1, 10 do
+      local hmean, hpeak = p:weapsetHeat(i)
+      if hpeak >= 0.5 then
+         overheating = true
+         break
+      end
+   end
+   if not overheating then
+      overheat_timer_hook = hook.timer(0.5, "timer_overheat")
+      return
+   end
+
+   tk.msg("", fmt.f(cooldown_text, {autobrake_key=tutGetKey("autobrake")}))
 end
 
 

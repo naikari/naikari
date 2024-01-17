@@ -1564,8 +1564,8 @@ static int pilotL_weapsetType(lua_State *L)
  *       identifying special weapon sets can also be used here; see
  *       ai.weapset for more information. Set to true to get
  *       information of all weapon sets.
- *    @luatreturn number Mean heat.
- *    @luatreturn number Peak heat.
+ *    @luatreturn number Mean average heat of all weapons in the set.
+ *    @luatreturn number Highest heat of any weapon in the set.
  * @luafunc weapsetHeat
  */
 static int pilotL_weapsetHeat(lua_State *L)
@@ -3147,7 +3147,8 @@ static int pilotL_changeAI(lua_State *L)
 /**
  * @brief Sets the temperature of a pilot.
  *
- * All temperatures are in Kelvins. Note that temperatures cannot go below the base temperature of the Naev galaxy, which is 250K.
+ * All temperatures are in Kelvins. Note that temperatures cannot go
+ * below the base temperature, which is 250K.
  *
  * @usage p:setTemp( 300, true ) -- Sets ship temperature to 300K, as well as all outfits.
  * @usage p:setTemp( 500, false ) -- Sets ship temperature to 500K, but leaves outfits alone.
