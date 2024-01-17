@@ -31,6 +31,13 @@
   * Standard jump points are now a blue-green color, while hidden jump
     points are a slightly yellow-shifted red color.
   * Jump trails are now green instead of magenta.
+* Added a proper hidden tutorial demonstrating weapon heat and Active
+  Cooldown: the Llama's stats have been modified so that its forward
+  weapons heat up much faster than most ships, and the asteroids in
+  Hakoi have been given much more health, pretty much guaranteeing that
+  the player's weapons overheat during the mission. When they do, Ian
+  Structure gently suggests engaging Active Cooldown to get your weapons
+  to start working better again.
 
 ### Other Changes
 
@@ -71,6 +78,17 @@
 * Amount of deposit for hired escorts which is eligible for refunding is
   now displayed in the escorts' credentials.
 * You can now board hired escorts to rescue them if they are disabled.
+* Made jammers use a bit less energy.
+* Doubled all weapon energy costs. (This is to correspond with the move
+  to linear energy regeneration.)
+* The Empire Recruitment mission is now always guaranteed to spawn after
+  you fulfill its condition (i.e. Lieutenant Chesc now follows you
+  around everywhere you go in Empire territory).
+
+### Bugfixes
+
+* Fixed a bug that caused text in the second Ian Structure mission's OSD
+  to get cut off.
 
 ## 0.11.0
 
