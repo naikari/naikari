@@ -31,7 +31,7 @@ misn_title = _("Empire Recruitment")
 misn_desc = _("You are being recruited to the Imperial Armada Shipping Division by Liutenant Chesc. Your first task is to deliver some parcels to {planet}.")
 
 text = {}
-ask_text = _([[You approach the Imperial Lieutenant.
+ask_text = _([[You approach the Imperial Lieutenant and salute him, as is the custom for greeting Imperial military officers. You catch a glimpse of him appearing to blush slightly at the gesture, but his composure does not falter.
 
 "Hello, I'm Lieutenant Chesc from the Imperial Armada Shipping Division. We're having another recruitment operation and would be interested in having another skilled pilot among us. We've heard of the work you've done for Mr. Ian Structure and think you would be a perfect candidate. Would you be interested in working for the Empire?"]])
 yes_text = _([["Welcome aboard," says Chesc before giving you a firm handshake. "At first you'll just be tested with cargo missions while we gather data on your flying skills. Later on, you could get called upon for more important missions. Who knows? You could be the next Yao Pternov, greatest pilot we ever had in the armada."
