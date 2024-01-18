@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+* Added the Elephant, a bulk freighter which is essentially an upsized
+  variant of the Mule.
 * Overhauled lots of the coloring to improve colorblind accessibility
   and better unify the coloring schemes.
   * Text colors on screens related to outfits and ships now generally
@@ -21,6 +23,8 @@
     but for otherwise exclusive or special-typed slots, the coloring is
     a 2-color blue gradient. (With full color vision, they just look
     like brighter shades of blue or cyan.)
+  * The selected ship slot in the Equipment tab is now indicated with an
+    outline, rather than replacing the color of the entire slot.
   * CPU bar is now orange with a black background, while mass limit bar
     bar is now blue with a black background.
   * Hidden jump hyperspace lanes on the starmap are now indicated as
@@ -50,8 +54,6 @@
 * Afterburner outfits now properly display their heat up stat.
 * Lowered energy cost and increased heatup time for afterburners (making
   them more widely usable).
-* Added the Elephant, a bulk freighter which is essentially an upsized
-  variant of the Mule.
 * Reordered stats on ships for better consistency.
 * Fixed an issue where a beam turning off would stop the sound effect
   from playing on any beam at all which uses the same sound effect.
@@ -61,8 +63,6 @@
 * Changed TC display to be relative instead of absolute (meaning e.g. a
   doubling of time passage rate is displayed as "+100%" instead of
   "200%" as it was previously).
-* The selected ship slot in the Equipment tab is now indicated with an
-  outline, rather than replacing the color of the entire slot.
 * Energy regeneration is now simply linear, just like shield, armor, and
   fuel regeneration, which also brings it in-line with the way energy
   costs of weapons and activated outfits work.
