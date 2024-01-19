@@ -29,7 +29,9 @@
     <release version="0.12.0">
       <description>
         <ul>
+          <li>Added a new ship, the Elephant.</li>
           <li>Improved coloring and colorblind accessibility.</li>
+          <li>Improved introduction to heat and Active Cooldown.</li>
         </ul>
       </description>
       <url>https://github.com/naikari/naikari/releases/tag/v0.12.0</url>
