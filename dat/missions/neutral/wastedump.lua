@@ -63,6 +63,12 @@ local abort_landed_broke_text = _([[In your desperation to rid yourself of the g
 
 When you explain that you don't have enough credits to pay the fine, the officials inform you that they will confiscate outfits and cargo you own to make up the difference.]])
 
+local abort_landed_uninhabited_text = {
+   _("Sick and tired of smelling garbage, you illegally dump the waste containers, hoping that no one notices."),
+   _("You decide that the nearest waste dump location is too far away for you to bother to go to and simply dump the waste containers nearby. Given the lack of people, you feel confident that you won't get caught."),
+   _("You abandon the waste containers illegally, safe in the knowledge that you're not likely to get caught by the authorities here."),
+}
+
 local nospace_text = _([[You almost accept a mission to fill your ship's cargo hold with garbage, but you find that your ship is packed entirely full and can't fit any of it. Thinking of your cargo hold being equally stuffed with garbage, you realize what you almost got yourself into and breathe a sigh of relief knowing that circumstances prevented you from making a decision you would regret.]])
 
 local misn_title = _("Waste Dump")
@@ -171,6 +177,13 @@ end
 
 function abort()
    if player.isLanded() then
+      if not planet.cur():services().inhabited then
+         -- If the planet is uninhabited, treat this as a success.
+         local txt = abort_landed_uninhabited_text[rnd.rnd(1, #abort_landed_uninhabited_text)]
+         tk.msg("", txt)
+         misn.finish(true)
+      end
+
       misn.cargoRm(cid)
       local fine = 1.1 * credits
       local money = player.credits()
