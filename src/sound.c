@@ -132,7 +132,7 @@ int sound_init (void)
       WARN(_("Sound has invalid value, clamping to [0:1]."));
       conf.sound = CLAMP( 0., 1., conf.sound );
    }
-   sound_volume(conf.sound);
+   sound_volume(conf.sound * conf.volume);
 
    /* Initialized. */
    sound_initialized = 1;
@@ -718,12 +718,12 @@ static int sound_makeList (void)
  *    @param vol Volume to set to.
  *    @return 0 on success.
  */
-int sound_volume( const double vol )
+int sound_volume(const double vol)
 {
    if (sound_disabled)
       return 0;
 
-   return sound_al_volume( vol );
+   return sound_al_volume(vol);
 }
 
 

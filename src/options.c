@@ -110,7 +110,6 @@ static void opt_audio( unsigned int wid );
 static int opt_audioSave( unsigned int wid, char *str );
 static void opt_audioDefaults( unsigned int wid, char *str );
 static void opt_audioUpdate( unsigned int wid );
-static void opt_audioLevelStr( char *buf, int max, int type, double pos );
 static void opt_setAudioLevel( unsigned int wid, char *str );
 static void opt_beep( unsigned int wid, char *str );
 /* Keybind menu. */
@@ -201,8 +200,8 @@ static void opt_close( unsigned int wid, char *name )
 
    /* At this point, set sound levels as defined in the config file.
     * This ensures that sound volumes are reset on "Cancel". */
-   sound_volume(conf.sound);
-   music_volume(conf.music);
+   sound_volume(conf.sound * conf.volume);
+   music_volume(conf.music * conf.volume);
 
    /* Set others to original values as needed. */
    conf.colorblind = opt_orig_colorblind;
@@ -947,51 +946,35 @@ static void opt_keyDefaults( unsigned int wid, char *str )
 static void opt_setAudioLevel( unsigned int wid, char *str )
 {
    char *widget;
-   char buf[STRMAX_SHORT];
    char *vol_text;
    double vol;
 
    vol = window_getFaderValue(wid, str);
-   if (strcmp(str, "fadSound") == 0) {
-      sound_volume(vol);
-      widget = "txtSound";
-      opt_audioLevelStr(buf, sizeof(buf), 0, vol);
-      asprintf(&vol_text, _("Sound: %s"), buf);
+   vol_text = NULL;
+   if (strcmp(str, "fadMaster") == 0) {
+      conf.volume = vol;
+      sound_volume(conf.sound * conf.volume);
+      music_volume(conf.music * conf.volume);
+      widget = "txtMaster";
+      asprintf(&vol_text, _("Master: %.0f%%"), vol * 100.);
    }
-   else {
-      music_volume(vol);
+   else if (strcmp(str, "fadSound") == 0) {
+      conf.sound = vol;
+      sound_volume(vol * conf.volume);
+      widget = "txtSound";
+      asprintf(&vol_text, _("Sound: %.0f%%"), vol * 100.);
+   }
+   else if (strcmp(str, "fadMusic") == 0) {
+      conf.music = vol;
+      music_volume(vol * conf.volume);
       widget = "txtMusic";
-      opt_audioLevelStr(buf, sizeof(buf), 1, vol);
-      asprintf(&vol_text, _("Music: %s"), buf);
+      asprintf(&vol_text, _("Music: %.0f%%"), vol * 100.);
    }
 
    if (vol_text != NULL)
       window_modifyText(wid, widget, vol_text);
 
    free(vol_text);
-}
-
-
-/**
- * @brief Sets the sound or music volume string based on level.
- *
- *    @param[out] buf Buffer to use.
- *    @param max Maximum length of the buffer.
- *    @param type 0 for sound, 1 for audio.
- *    @param pos Position of the fader calling the function.
- */
-static void opt_audioLevelStr( char *buf, int max, int type, double pos )
-{
-   double vol, magic;
-
-   vol = type ? music_getVolumeLog() : sound_getVolumeLog();
-
-   if (vol == 0.)
-      snprintf(buf, max, _("Muted"));
-   else {
-      magic = -48. / log(0.00390625); /* -48 dB minimum divided by logarithm of volume floor. */
-      snprintf(buf, max, _("%.0f%% (%.0f dB)"), pos * 100., log(vol) * magic);
-   }
 }
 
 
@@ -1036,12 +1019,20 @@ static void opt_audio( unsigned int wid )
    window_addText(wid, x, y, cw-40, 20, 0, "txtSSoundVolume",
          NULL, NULL, _("Volume Levels"));
    y -= 30;
+   /* Master fader. */
+   window_addText(wid, x, y, cw, 20, 1, "txtMaster",
+         &gl_smallFont, NULL, NULL);
+   y -= 20;
+   window_addFader(wid, x, y, cw, 20, "fadMaster", 0., 1.,
+         conf.volume, opt_setAudioLevel);
+   window_faderScrollDone(wid, "fadMaster", opt_beep);
+   y -= 30;
    /* Sound fader. */
    window_addText(wid, x, y, cw, 20, 1, "txtSound",
          &gl_smallFont, NULL, NULL);
    y -= 20;
    window_addFader(wid, x, y, cw, 20, "fadSound", 0., 1.,
-         sound_getVolume(), opt_setAudioLevel);
+         conf.sound, opt_setAudioLevel);
    window_faderScrollDone(wid, "fadSound", opt_beep);
    y -= 30;
    /* Music fader. */
@@ -1049,7 +1040,7 @@ static void opt_audio( unsigned int wid )
          &gl_smallFont, NULL, NULL);
    y -= 20;
    window_addFader(wid, x, y, cw, 20, "fadMusic", 0., 1.,
-         music_getVolume(), opt_setAudioLevel);
+         conf.music, opt_setAudioLevel);
    y -= 50;
 
    /* Restart text. */
@@ -1089,6 +1080,7 @@ static int opt_audioSave( unsigned int wid, char *str )
    }
 
    /* Faders. */
+   conf.volume = window_getFaderValue(wid, "fadMaster");
    conf.sound = window_getFaderValue(wid, "fadSound");
    conf.music = window_getFaderValue(wid, "fadMusic");
 
@@ -1105,12 +1097,13 @@ static void opt_audioDefaults( unsigned int wid, char *str )
 
    /* Set defaults. */
    /* Faders. */
-   window_faderValue( wid, "fadSound", SOUND_VOLUME_DEFAULT );
-   window_faderValue( wid, "fadMusic", MUSIC_VOLUME_DEFAULT );
+   window_faderValue(wid, "fadMaster", MASTER_VOLUME_DEFAULT);
+   window_faderValue(wid, "fadSound", SOUND_VOLUME_DEFAULT);
+   window_faderValue(wid, "fadMusic", MUSIC_VOLUME_DEFAULT);
 
    /* Checkboxes. */
-   window_checkboxSet( wid, "chkNosound", MUTE_SOUND_DEFAULT );
-   window_checkboxSet( wid, "chkEFX", USE_EFX_DEFAULT );
+   window_checkboxSet(wid, "chkNosound", MUTE_SOUND_DEFAULT);
+   window_checkboxSet(wid, "chkEFX", USE_EFX_DEFAULT);
 }
 
 
@@ -1120,12 +1113,13 @@ static void opt_audioDefaults( unsigned int wid, char *str )
 static void opt_audioUpdate( unsigned int wid )
 {
    /* Checkboxes. */
-   window_checkboxSet( wid, "chkNosound", conf.nosound );
-   window_checkboxSet( wid, "chkEFX", conf.al_efx );
+   window_checkboxSet(wid, "chkNosound", conf.nosound);
+   window_checkboxSet(wid, "chkEFX", conf.al_efx);
 
    /* Faders. */
-   window_faderValue( wid, "fadSound", conf.sound );
-   window_faderValue( wid, "fadMusic", conf.music );
+   window_faderValue(wid, "fadMaster", conf.volume);
+   window_faderValue(wid, "fadSound", conf.sound);
+   window_faderValue(wid, "fadMusic", conf.music);
 }
 
 

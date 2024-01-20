@@ -203,10 +203,11 @@ void conf_setGameplayDefaults (void)
 void conf_setAudioDefaults (void)
 {
    /* Sound. */
-   conf.al_efx       = USE_EFX_DEFAULT;
-   conf.nosound      = MUTE_SOUND_DEFAULT;
-   conf.sound        = SOUND_VOLUME_DEFAULT;
-   conf.music        = MUSIC_VOLUME_DEFAULT;
+   conf.al_efx = USE_EFX_DEFAULT;
+   conf.nosound = MUTE_SOUND_DEFAULT;
+   conf.volume = MASTER_VOLUME_DEFAULT;
+   conf.sound = SOUND_VOLUME_DEFAULT;
+   conf.music = MUSIC_VOLUME_DEFAULT;
 }
 
 
@@ -360,10 +361,11 @@ int conf_loadConfig ( const char* file )
       conf_loadBool( lEnv, "showpause", conf.pause_show );
 
       /* Sound. */
-      conf_loadBool( lEnv, "al_efx", conf.al_efx );
-      conf_loadBool( lEnv, "nosound", conf.nosound );
-      conf_loadFloat( lEnv, "sound", conf.sound );
-      conf_loadFloat( lEnv, "music", conf.music );
+      conf_loadBool(lEnv, "al_efx", conf.al_efx);
+      conf_loadBool(lEnv, "nosound", conf.nosound);
+      conf_loadFloat(lEnv, "volume", conf.volume);
+      conf_loadFloat(lEnv, "sound", conf.sound);
+      conf_loadFloat(lEnv, "music", conf.music);
 
       /* Joystick. */
       nlua_getenv( lEnv, "joystick" );
@@ -927,9 +929,13 @@ int conf_saveConfig ( const char* file )
    conf_saveBool("nosound",conf.nosound);
    conf_saveEmptyLine();
 
+   conf_saveComment(_("Master volume, between 0.0 and 1.0"));
+   conf_saveFloat("volume", conf.volume);
+   conf_saveEmptyLine();
+
    conf_saveComment(_("Volume of sound effects and music, between 0.0 and 1.0"));
-   conf_saveFloat("sound",(sound_disabled) ? conf.sound : sound_getVolume());
-   conf_saveFloat("music",(music_disabled) ? conf.music : music_getVolume());
+   conf_saveFloat("sound", conf.sound);
+   conf_saveFloat("music", conf.music);
    conf_saveEmptyLine();
 
    /* Joystick. */

@@ -50,6 +50,7 @@
 /* Audio option defaults */
 #define MUTE_SOUND_DEFAULT 0 /**< conf.nosound */
 #define USE_EFX_DEFAULT 1 /**< conf.al_efx */
+#define MASTER_VOLUME_DEFAULT 1 /**< conf.volume */
 #define SOUND_VOLUME_DEFAULT 0.6 /**< conf.sound */
 #define MUSIC_VOLUME_DEFAULT 0.8 /**< conf.music */
 /* Font size defaults */
@@ -141,6 +142,7 @@ typedef struct PlayerConf_s {
    /* Audio options */
    int nosound; /**< Whether to disable all audio. */
    int al_efx; /**< Whether to use EFX. */
+   double volume; /**< Master volume level. */
    double sound; /**< Volume level for sound effects. */
    double music; /**< Volume level for music. */
 

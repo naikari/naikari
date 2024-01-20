@@ -177,7 +177,7 @@ int music_init (void)
    /* Set the volume. */
    if ((conf.music > 1.) || (conf.music < 0.))
       WARN(_("Music has invalid value, clamping to [0:1]."));
-   music_volume(conf.music);
+   music_volume(conf.music * conf.volume);
 
    /* Create the lock. */
    music_lock = SDL_CreateMutex();
@@ -273,12 +273,12 @@ static int music_find (void)
  *    @param vol Volume to set to (between 0 and 1).
  *    @return 0 on success.
  */
-int music_volume( const double vol )
+int music_volume(const double vol)
 {
    if (music_disabled)
       return 0;
 
-   return music_al_volume( vol );
+   return music_al_volume(vol);
 }
 
 
