@@ -9,6 +9,7 @@
    <x>-8000</x>
    <y>-17000</y>
   </system>
+  <mission>Tutorial</mission>
   <event>start_event</event>
  </player>
  <date>

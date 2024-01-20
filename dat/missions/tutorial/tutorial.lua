@@ -45,7 +45,7 @@ local movement_text = _([["Now, so that your test flight goes as smoothly as pos
 
 "To move via mouse flight, you must first enable it by pressing {mouseflykey}. While mouse flight is enabled, your ship will automatically turn toward your #bmouse pointer#0, like magic! You can then thrust either with {accelkey}, as you would in keyboard flight, or you can alternatively use the #bmiddle mouse button#0 or either of the #bextra mouse buttons#0.
 
-"Why don't you give both systems a try? Experiment with the flight controls as much as you'd like, then fly over to where {planet} is. You see it on your screen, right? It's the planet right next to you."]])
+"Why don't you give both systems a try? Experiment with the flight controls as much as you'd like, then fly over to where {planet} is. You see it on your screen, right? It's the planet right next to you. I've hilighted it for you on your minimap."]])
 
 local landing_text = _([["I see you have a great handle on the controls of your new Melendez Corporation ship! It's a perfect fit for you, don't you think? Your control of the vessel is absolutely stunning, magnificent!
 
@@ -79,21 +79,15 @@ end
 function accept ()
    misn.accept()
 
-   timer_hook = hook.timer(5, "timer")
-   hook.land("land")
-   hook.enter("enter")
-
    stage = 1
    create_osd()
 
    misn.markerAdd(missys, "low", start_planet)
 
-   tk.msg("", fmt.f(intro_text,
-         {player=player.name(), shipname=player.pilot():name()}))
-   tk.msg("", fmt.f(movement_text,
-         {leftkey=tutGetKey("left"), rightkey=tutGetKey("right"),
-            accelkey=tutGetKey("accel"), reversekey=tutGetKey("reverse"),
-            mouseflykey=tutGetKey("mousefly"), planet=start_planet:name()}))
+   timer_greeting_hook = hook.timer(1, "timer_greeting")
+   timer_hook = hook.timer(5, "timer")
+   hook.land("land")
+   hook.enter("enter")
 end
 
 
@@ -114,7 +108,17 @@ function create_osd()
 end
 
 
-function timer ()
+function timer_greeting()
+   tk.msg("", fmt.f(intro_text,
+         {player=player.name(), shipname=player.pilot():name()}))
+   tk.msg("", fmt.f(movement_text,
+         {leftkey=tutGetKey("left"), rightkey=tutGetKey("right"),
+            accelkey=tutGetKey("accel"), reversekey=tutGetKey("reverse"),
+            mouseflykey=tutGetKey("mousefly"), planet=start_planet:name()}))
+end
+
+
+function timer()
    hook.rm(timer_hook)
    timer_hook = hook.timer(1, "timer")
 

@@ -257,7 +257,7 @@ static int naikL_eventStart(lua_State *L)
 
 
 /**
- * @brief Starts a mission, does no check start conditions.
+ * @brief Starts a mission, bypassing start conditions.
  *
  * @usage naik.missionStart("Some Mission")
  *    @luatparam string misnname Name of the mission to start.

@@ -57,13 +57,8 @@ function create()
          _([[Today marks the ten year anniversary of the Incident, where a mysterious cataclysmic explosion ripped thru the heart of the Empire, destroying Earth and eradicating House Proteron. The Emperor has delivered a speech to commemorate the tragedy. "We mourn with sorrow the loss of many on that dreadful day, and the loss of our precious homeworld. We still don't know what caused the Incident for certain, but rest assured: the Empire will not let this happen again, and if terrorists are to blame, we will find them and bring them to justice."]]),
          exp)
 
-   hook.timer(1.0, "timer_tutorial")
-
    var.push("music_ambient_playnext", "intro")
    music.stop()
-end
 
-function timer_tutorial()
-   naik.missionStart("Tutorial")
    evt.finish(true)
 end
