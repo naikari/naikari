@@ -84,6 +84,9 @@
 * The Empire Recruitment mission is now always guaranteed to spawn after
   you fulfill its condition (i.e. Lieutenant Chesc now follows you
   around everywhere you go in Empire territory).
+* Added an event following the Big Time mission where Commander Soldner
+  scolds you for going off on your own.
+* Added a master volume knob to the Options menu.
 
 ### Bugfixes
 
