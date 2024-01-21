@@ -87,11 +87,14 @@
 * Added an event following the Big Time mission where Commander Soldner
   scolds you for going off on your own.
 * Added a master volume knob to the Options menu.
+* Teddy Bears From Space now guarantees a bit more for its reward.
 
 ### Bugfixes
 
 * Fixed a bug that caused text in the second Ian Structure mission's OSD
   to get cut off.
+* Fixed a mistake in the text of the race missions that caused racer
+  names to display as "nil".
 
 ## 0.11.0
 
