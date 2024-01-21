@@ -268,7 +268,7 @@ end
 
 function get_lap_msg(pilot_name, lap)
    local msg_list = {
-      _("{Pilot} makes it to the next lap!"),
+      _("{pilot} makes it to the next lap!"),
       _("Look at {pilot} go!"),
       n_("{pilot} zooms thru the starting point and starts lap {lap:d}!",
          "{pilot} zooms thru the starting point and starts lap {lap:d}!", lap),
