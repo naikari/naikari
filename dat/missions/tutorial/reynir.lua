@@ -179,7 +179,7 @@ function landed()
 
    if finished and planet.cur() == misn_base then
       local reward = player.pilot():cargoFree()
-      local min_payment = 10
+      local min_payment = 20
       local commprice = commodity.priceAtTime("Luxury Goods", planet.cur(),
             time.get())
       local extra_credits = math.max(0, (min_payment-reward) * commprice)
@@ -191,10 +191,10 @@ function landed()
       tk.msg("", fmt.f(s, {amount=fmt.number(reward)}))
 
       if reward <= 0 then
-         tk.msg("", fmt.f(nospace_text, {credits=extra_credits}))
+         tk.msg("", fmt.f(nospace_text, {credits=fmt.credits(extra_credits)}))
          player.pay(extra_credits)
-      elseif reward < min_payment then
-         tk.msg("", fmt.f(lowspace_text, {credits=extra_credits}))
+      elseif extra_credits > 0 then
+         tk.msg("", fmt.f(lowspace_text, {credits=fmt.credits(extra_credits)}))
          player.pay(extra_credits)
       end
 
