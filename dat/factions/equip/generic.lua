@@ -9,6 +9,7 @@ equip_classCargo = {
    ["Courier"] = .8,
    ["Freighter"] = .8,
    ["Armored Transport"] = .8,
+   ["Bulk Freighter"] = 0.8,
    ["Light Fighter"] = .1,
    ["Fighter"] = .1,
    ["Bomber"] = .1,
@@ -50,6 +51,10 @@ equip_classOutfits_coreSystems = {
       "Milspec Aegis 5401 Core System",
       "Milspec Prometheus 5403 Core System",
       "Milspec Orion 5501 Core System",
+   },
+   ["Bulk Freighter"] = {
+      "Unicorp PT-3400 Core System",
+      "Milspec Aegis 9801 Core System",
    },
    ["Light Fighter"] = {
       "Unicorp PT-18 Core System",
@@ -147,6 +152,10 @@ equip_classOutfits_engines = {
       "Unicorp Falcon 1200 Engine",
       "Melendez Buffalo XL Engine",
    },
+   ["Bulk Freighter"] = {
+      "Unicorp Eagle 6500 Engine",
+      "Melendez Mammoth XL Engine",
+   },
    ["Light Fighter"] = {
       "Nexus Dart 150 Engine",
       "Tricon Zephyr Engine",
@@ -229,6 +238,11 @@ equip_classOutfits_hulls = {
       "Unicorp X-24 Medium Plating",
       "S&K Medium Cargo Hull",
    },
+   ["Bulk Freighter"] = {
+      "Unicorp D-72 Heavy Plating",
+      "Unicorp X-72 Heavy Plating",
+      "S&K Large Cargo Hull",
+   },
    ["Light Fighter"] = {
       "Unicorp D-2 Light Plating",
       "Unicorp X-2 Light Plating",
@@ -272,18 +286,18 @@ equip_classOutfits_hulls = {
    ["Battleship"] = {
       "Unicorp D-72 Heavy Plating",
       "Unicorp X-72 Heavy Plating",
-      "S&K Superheavy Combat Plating"
+      "S&K Superheavy Combat Plating",
    },
    ["Carrier"] = {
       "Unicorp D-72 Heavy Plating",
       "Unicorp X-72 Heavy Plating",
-      "S&K Superheavy Combat Plating"
+      "S&K Superheavy Combat Plating",
    },
    ["Drone"] = {
-      "S&K Ultralight Combat Plating"
+      "S&K Ultralight Combat Plating",
    },
    ["Heavy Drone"] = {
-      "S&K Light Combat Plating"
+      "S&K Light Combat Plating",
    },
    ["Station"] = false,
 }
@@ -399,6 +413,28 @@ equip_classOutfits_weapons = {
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
+      },
+   },
+   ["Bulk Freighter"] = {
+      {
+         num = 2;
+         "Enygma Systems Turreted Fury Launcher",
+         "Enygma Systems Turreted Headhunter Launcher",
+         "Hyena Fighter Bay",
+         "Shark Fighter Bay",
+         "Lancelot Fighter Bay",
+      },
+      {
+         "Heavy Laser Turret",
+         "Railgun Turret",
+         "Ragnarok Beam",
+      },
+      {
+         "Heavy Ripper Turret",
+         "Plasma Cluster Turret",
+         "Turreted Mass Driver",
+         "Grave Beam",
+         "Heavy Ion Turret",
       },
    },
    ["Light Fighter"] = {
@@ -734,11 +770,11 @@ equip_classOutfits_utilities = {
          "Reactor Class II",
          "Medium Shield Booster",
          "Droid Repair Crew",
+         "Emergency Shield Booster",
          "Targeting Array",
          "Improved Power Regulator",
          "Milspec Scrambler",
          "Milspec Jammer",
-         "Emergency Shield Booster",
          "Rotary Turbo Modulator",
       },
    },
@@ -750,12 +786,26 @@ equip_classOutfits_utilities = {
          "Medium Shield Booster",
          "Rotary Power Accelerator",
          "Droid Repair Crew",
+         "Emergency Shield Booster",
          "Targeting Array",
          "Improved Power Regulator",
          "Milspec Scrambler",
          "Milspec Jammer",
-         "Emergency Shield Booster",
          "Rotary Turbo Modulator",
+      },
+   },
+   ["Bulk Freighter"] = {
+      {
+         varied = true;
+         "Large Thrust Bracer",
+         "Reactor Class III",
+         "Large Shield Booster",
+         "Power Overdrive Module",
+         "Turret Conversion Module",
+         "Droid Repair Crew",
+         "Emergency Shield Booster",
+         "Targeting Array",
+         "Improved Power Regulator",
       },
    },
    ["Light Fighter"] = {
@@ -770,7 +820,6 @@ equip_classOutfits_utilities = {
          "Power Regulation Override",
          "Weapons Ionizer",
          "Reverse Thrusters",
-         "Emergency Shield Booster",
          "Sensor Array",
       },
    },
@@ -787,7 +836,6 @@ equip_classOutfits_utilities = {
          "Power Regulation Override",
          "Weapons Ionizer",
          "Reverse Thrusters",
-         "Emergency Shield Booster",
          "Sensor Array",
       },
    },
@@ -806,7 +854,6 @@ equip_classOutfits_utilities = {
          "Milspec Jammer",
          "Weapons Ionizer",
          "Reverse Thrusters",
-         "Emergency Shield Booster",
          "Sensor Array",
       },
    },
@@ -817,6 +864,7 @@ equip_classOutfits_utilities = {
          "Reactor Class II",
          "Medium Shield Booster",
          "Droid Repair Crew",
+         "Emergency Shield Booster",
          "Forward Shock Absorbers",
          "Power Regulation Override",
          "Milspec Scrambler",
@@ -825,7 +873,6 @@ equip_classOutfits_utilities = {
          "Solar Panel",
          "Reverse Thrusters",
          "Hellburner",
-         "Emergency Shield Booster",
          "Sensor Array",
       },
    },
@@ -842,13 +889,13 @@ equip_classOutfits_utilities = {
          "Power Amplification Circuit",
          "Rotary Power Accelerator",
          "Droid Repair Crew",
+         "Emergency Shield Booster",
          "Forward Shock Absorbers",
          "Power Regulation Override",
          "Targeting Array",
          "Improved Power Regulator",
          "Turreted Weapons Ionizer",
          "Solar Panel",
-         "Emergency Shield Booster",
          "Sensor Array",
       },
    },
@@ -861,6 +908,7 @@ equip_classOutfits_utilities = {
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
+         "Emergency Shield Booster",
          "Targeting Array",
          "Improved Power Regulator",
          "Turreted Weapons Ionizer",
@@ -877,6 +925,7 @@ equip_classOutfits_utilities = {
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
+         "Emergency Shield Booster",
          "Targeting Array",
          "Improved Power Regulator",
          "Turreted Weapons Ionizer",
@@ -893,6 +942,7 @@ equip_classOutfits_utilities = {
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
+         "Emergency Shield Booster",
          "Targeting Array",
          "Improved Power Regulator",
          "Turreted Weapons Ionizer",
@@ -997,6 +1047,15 @@ equip_classOutfits_structurals = {
          "Battery II",
          "Shield Capacitor II",
          "Plasteel Plating",
+      },
+   },
+   ["Bulk Freighter"] = {
+      {
+         varied = true, probability = {
+            ["Large Cargo Pod"] = 6,
+         };
+         "Large Cargo Pod",
+         "Large Fuel Pod",
       },
    },
    ["Light Fighter"] = {

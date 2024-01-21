@@ -8,6 +8,7 @@ equip_classCargo["Scout"] = .5
 equip_classCargo["Courier"] = .5
 equip_classCargo["Freighter"] = .5
 equip_classCargo["Armored Transport"] = .5
+equip_classCargo["Bulk Freighter"] = 0.5
 equip_classCargo["Fighter"] = .5
 equip_classCargo["Bomber"] = .5
 equip_classCargo["Corvette"] = .5
