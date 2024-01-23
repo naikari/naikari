@@ -498,15 +498,17 @@ static void map_update( unsigned int wid )
    /* Economy button */
    if (map_mode == MAPMODE_TRADE) {
       c = commod_known[cur_commod];
-      if ( cur_commod_mode == 1 ) {
-         snprintf( buf, sizeof(buf),
-                   _("%s prices trading from %s shown: Positive/blue values mean a profit\n"
-                     "while negative/orange values mean a loss when sold at the corresponding system."),
-                   _(c->name), _(sys->name) );
-         window_modifyText( wid, "txtSystemStatus", buf );
-      } else {
-         snprintf(buf, sizeof(buf), _("Known %s prices shown. Galaxy-wide average: %.2f"), _(c->name), commod_av_gal_price);
-         window_modifyText( wid, "txtSystemStatus", buf );
+      if (cur_commod_mode == 1) {
+         snprintf(buf, sizeof(buf),
+               _("#oprofit#0 or #bloss#0 selling %s bought from %s shown"),
+               _(c->name), _(sys->name));
+         window_modifyText(wid, "txtSystemStatus", buf);
+      }
+      else {
+         snprintf(buf, sizeof(buf),
+               _("%s prices shown. Galaxy-wide average: %.2f ¢/kt"),
+               _(c->name), commod_av_gal_price);
+         window_modifyText(wid, "txtSystemStatus", buf);
       }
    } else {
       window_modifyText( wid, "txtSystemStatus", NULL );
