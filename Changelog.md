@@ -88,7 +88,7 @@
   scolds you for going off on your own.
 * Added a master volume knob to the Options menu.
 * Teddy Bears From Space now guarantees a bit more for its reward.
-* Jumps that you only known one direction of are now displayed in the
+* Jumps that you only know one direction of are now displayed in the
   starmap as if they were one-way jumps.
 
 ### Bugfixes
