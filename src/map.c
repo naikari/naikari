@@ -500,13 +500,13 @@ static void map_update( unsigned int wid )
       c = commod_known[cur_commod];
       if (cur_commod_mode == 1) {
          snprintf(buf, sizeof(buf),
-               _("#oprofit#0 or #bloss#0 selling %s bought from %s shown"),
+               _("Showing #oprofit#0 or #bloss#0 selling %s bought from %s."),
                _(c->name), _(sys->name));
          window_modifyText(wid, "txtSystemStatus", buf);
       }
       else {
          snprintf(buf, sizeof(buf),
-               _("%s prices shown. Galaxy-wide average: %.2f ¢/kt"),
+               _("Showing %s prices. Galaxy-wide average: %.2f ¢/kt"),
                _(c->name), commod_av_gal_price);
          window_modifyText(wid, "txtSystemStatus", buf);
       }
@@ -1835,7 +1835,7 @@ void map_renderCommod( double bx, double by, double x, double y,
             }
 
             /* Calculate best and worst profits */
-            if (maxPrice > 0) {
+            if (maxPrice > 0.) {
                /* Commodity sold at this system */
                tx = x + (sys->pos.x+12.) * map_zoom;
                ty = y + (sys->pos.y) * map_zoom - gl_smallFont.h*0.5;
@@ -1845,7 +1845,7 @@ void map_renderCommod( double bx, double by, double x, double y,
 
                best = maxPrice - curMinPrice;
                worst = minPrice - curMaxPrice;
-               if (best > 0) {
+               if (best > 0.) {
                   /* draw circle above */
                   gl_print(&gl_smallFont, tx, ty, &cFontOrange,
                         _("%+.0f ¢/kt"), best);
