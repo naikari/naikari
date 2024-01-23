@@ -1761,56 +1761,40 @@ void map_renderCommod( double bx, double by, double x, double y,
       curMaxPrice = 0.;
       curMinPrice = 0.;
       sys = system_getIndex(map_selected);
-      if (sys == cur_system && landed) {
-         for (k=0; k<array_size(land_planet->commodities); k++) {
-            if (land_planet->commodities[k] == c) {
-               /* current planet has the commodity of interest */
-               curMinPrice = economy_getPrice(c, sys, land_planet);
-               curMaxPrice = curMinPrice;
-               break;
-            }
-         }
-         if (k == array_size(land_planet->commodities)) {
-            /* commodity of interest not found */
-            map_renderCommodIgnorance(x, y, sys, c);
-            map_renderSysBlack(bx, by, x, y, w, h, r, editor);
-            return;
-         }
-      } else {
-         /* not currently landed, so get max and min price in the
-          * selected system. */
-         if ((sys_isKnown(sys)) && (system_hasPlanet(sys))) {
-            minPrice = 0;
-            maxPrice = 0;
-            for (j=0; j<array_size(sys->planets); j++) {
-               p = sys->planets[j];
-               if (planet_isKnown(p)) {
-                  for (k=0; k<array_size(p->commodities); k++) {
-                     if (p->commodities[k] == c) {
-                        thisPrice = economy_getPrice(c, sys, p);
-                        if (thisPrice > maxPrice)
-                           maxPrice = thisPrice;
-                        if ((minPrice == 0) || (thisPrice < minPrice))
-                           minPrice = thisPrice;
-                        break;
-                     }
+      /* Get max and min price in the selected system. */
+      if ((sys_isKnown(sys)) && (system_hasPlanet(sys))) {
+         minPrice = 0;
+         maxPrice = 0;
+         for (j=0; j<array_size(sys->planets); j++) {
+            p = sys->planets[j];
+            if (planet_isKnown(p)) {
+               for (k=0; k<array_size(p->commodities); k++) {
+                  if (p->commodities[k] == c) {
+                     thisPrice = economy_getPrice(c, sys, p);
+                     if (thisPrice > maxPrice)
+                        maxPrice = thisPrice;
+                     if ((minPrice == 0) || (thisPrice < minPrice))
+                        minPrice = thisPrice;
+                     break;
                   }
                }
             }
-            if (maxPrice == 0) {
-               /* no prices are known here */
-               map_renderCommodIgnorance(x, y, sys, c);
-               map_renderSysBlack(bx, by, x, y, w, h, r, editor);
-               return;
-            }
-            curMaxPrice = maxPrice;
-            curMinPrice = minPrice;
-         } else {
+         }
+         if (maxPrice == 0) {
+            /* no prices are known here */
             map_renderCommodIgnorance(x, y, sys, c);
             map_renderSysBlack(bx, by, x, y, w, h, r, editor);
             return;
          }
+         curMaxPrice = maxPrice;
+         curMinPrice = minPrice;
       }
+      else {
+         map_renderCommodIgnorance(x, y, sys, c);
+         map_renderSysBlack(bx, by, x, y, w, h, r, editor);
+         return;
+      }
+
       for (i=0; i<array_size(systems_stack); i++) {
          sys = system_getIndex(i);
          if (sys_isFlag(sys, SYSTEM_HIDDEN))
