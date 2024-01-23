@@ -88,6 +88,8 @@
   scolds you for going off on your own.
 * Added a master volume knob to the Options menu.
 * Teddy Bears From Space now guarantees a bit more for its reward.
+* Jumps that you only known one direction of are now displayed in the
+  starmap as if they were one-way jumps.
 
 ### Bugfixes
 
@@ -95,6 +97,9 @@
   to get cut off.
 * Fixed a mistake in the text of the race missions that caused racer
   names to display as "nil".
+* Fixed and touched up text explanations for map trade modes.
+* Fixed a bug where you couldn't get trade information for a system
+  while landed on a planet without commodities.
 
 ## 0.11.0
 
