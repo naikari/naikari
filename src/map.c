@@ -1253,21 +1253,26 @@ void map_renderJumps( double x, double y, double r, int editor)
          jsys = sys->jumps[j].target;
          if (sys_isFlag(jsys,SYSTEM_HIDDEN))
             continue;
-         if (!space_sysReachableFromSys(jsys,sys) && !editor)
+         if (!editor && !space_sysReachableFromSys(jsys, sys)
+               && !space_sysReachableFromSys(sys, jsys))
             continue;
 
          /* Choose colours. */
          cole = &cHyperspaceLine;
          for (k = 0; k < array_size(jsys->jumps); k++) {
             if (jsys->jumps[k].target == sys) {
-               if (jp_isFlag(&jsys->jumps[k], JP_EXITONLY))
+               if (!editor && !space_sysReachableFromSys(sys, jsys))
+                  cole = &cBlack;
+               else if (jp_isFlag(&jsys->jumps[k], JP_EXITONLY))
                   cole = &cBlack;
                else if (jp_isFlag(&jsys->jumps[k], JP_HIDDEN))
                   cole = &cHyperspaceHiddenLine;
                break;
             }
          }
-         if (jp_isFlag(&sys->jumps[j], JP_EXITONLY))
+         if (!editor && !space_sysReachableFromSys(jsys, sys))
+            col = &cBlack;
+         else if (jp_isFlag(&sys->jumps[j], JP_EXITONLY))
             col = &cBlack;
          else if (jp_isFlag(&sys->jumps[j], JP_HIDDEN))
             col = &cHyperspaceHiddenLine;
