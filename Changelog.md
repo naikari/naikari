@@ -90,6 +90,15 @@
 * Teddy Bears From Space now guarantees a bit more for its reward.
 * Jumps that you only know one direction of are now displayed in the
   starmap as if they were one-way jumps.
+* Shrunk the blinker on selected pilot to its original size.
+* Replaced the extra blinker on hilighted pilots with the animated
+* circle which is used for hilighted planets and jumps.
+* Derelict, distress, and shipwreck events can no longer spawn on top of
+  or extremely close to planets.
+* Modernized the way the position of the Shipwrecked August is
+  determined. (The way it was previously determined was a leftover from
+  Naev's very early days, where systems were small and centered around
+  singular planets.)
 
 ### Bugfixes
 
