@@ -1027,6 +1027,8 @@ void gui_radarRender( double x, double y )
    AsteroidAnchor *ast;
    gl_Matrix4 view_matrix_prev;
    Pilot * const *pilot_stack;
+   const Pilot *p;
+   const Pilot *target;
 
    /* The global radar. */
    radar = &gui_radar;
@@ -1070,18 +1072,32 @@ void gui_radarRender( double x, double y )
     */
    weapon_minimap( radar->res, radar->w, radar->h, radar->shape, 1. );
 
-   /* render the pilot */
    pilot_stack = pilot_getAll();
-   j = 0;
-   for (i=1; i<array_size(pilot_stack); i++) { /* skip the player */
-      if (pilot_stack[i]->id == player.p->target)
-         j = i;
-      else
-         gui_renderPilot( pilot_stack[i], radar->shape, radar->w, radar->h, radar->res, 0 );
+
+   /* Render pilot hilights. */
+   for (i=0; i<array_size(pilot_stack); i++) { /* skip the player */
+      p = pilot_stack[i];
+      if (p->id == PLAYER_ID)
+         continue;
+
+      gui_renderPilotHilight(p, radar->shape, radar->w, radar->h, radar->res, 0);
    }
-   /* render the targeted pilot */
-   if (j!=0)
-      gui_renderPilot( pilot_stack[j], radar->shape, radar->w, radar->h, radar->res, 0 );
+
+   /* Render the pilots. Target (if any) is rendered separately so it's
+    * always on top. */
+   target = NULL;
+   for (i=1; i<array_size(pilot_stack); i++) { /* skip the player */
+      p = pilot_stack[i];
+      if (p->id == PLAYER_ID)
+         continue;
+
+      if (p->id == player.p->target)
+         target = p;
+      else
+         gui_renderPilot(p, radar->shape, radar->w, radar->h, radar->res, 0);
+   }
+   if (target != NULL)
+      gui_renderPilot(target, radar->shape, radar->w, radar->h, radar->res, 0);
 
    /* render the asteroids */
    for (i=0; i<array_size(cur_system->asteroids); i++) {
@@ -1248,11 +1264,12 @@ static const glColour* gui_getPilotColour( const Pilot* p )
  *    @param res Radar resolution.
  *    @param overlay Whether to render onto the overlay.
  */
-void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, double res, int overlay )
+void gui_renderPilot(const Pilot* p, RadarShape shape, double w, double h,
+      double res, int overlay)
 {
-   double x, y, scale;
+   double x, y;
+   double scale;
    const glColour *col;
-   glColour col_hilight;
 
    /* Make sure is in range. */
    if (!pilot_validTarget( player.p, p ))
@@ -1264,8 +1281,8 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
       y = (p->solid->pos.y / res);
    }
    else {
-      x = ((p->solid->pos.x - player.p->solid->pos.x) / res);
-      y = ((p->solid->pos.y - player.p->solid->pos.y) / res);
+      x = ((p->solid->pos.x-player.p->solid->pos.x) / res);
+      y = ((p->solid->pos.y-player.p->solid->pos.y) / res);
    }
    /* Get size. */
    scale = p->ship->rdr_scale * (1. + RADAR_RES_REF/res);
@@ -1277,7 +1294,7 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
             && (pow2(x) + pow2(y) > pow2(w)))) {
       /* Draw little targeted symbol. */
       if (p->id == player.p->target && !overlay)
-         gui_renderRadarOutOfRange( shape, w, h, x, y, &cRadar_tPilot );
+         gui_renderRadarOutOfRange(shape, w, h, x, y, &cRadar_tPilot);
       return;
    }
 
@@ -1290,17 +1307,7 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
    }
 
    /* Compensate scale for outline. */
-   scale = MAX(scale+2.0, 4.0);
-
-   /* Render hilight if applicable. */
-   if (pilot_isFlag(p, PILOT_HILIGHT)) {
-      col_hilight = cRadar_hilight;
-      col_hilight.a = 0.3;
-      glUseProgram(shaders.hilight.program);
-      glUniform1f(shaders.hilight.dt, animation_dt);
-      gl_renderShader(x, y, MAX(scale * 2., 7.), MAX(scale * 2., 7.), 0.,
-            &shaders.hilight, &col_hilight, 1);
-   }
+   scale = MAX(scale + 2., 4.);
 
    if (p->id == player.p->target)
       col = &cRadar_tPilot;
@@ -1308,12 +1315,79 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
       col = gui_getPilotColour(p);
 
    glUseProgram(shaders.pilotmarker.program);
-   gl_renderShader( x, y, scale, scale, p->solid->dir, &shaders.pilotmarker, col, 1 );
+   gl_renderShader(x, y, scale, scale, p->solid->dir, &shaders.pilotmarker,
+         col, 1);
 
    /* Draw selection if targeted. */
    if (p->id == player.p->target)
       gui_blink(x, y, MAX(scale * 2., 7.), &cRadar_tPilot, RADAR_BLINK_PILOT,
             blink_pilot);
+}
+
+
+/**
+ * @brief Renders a pilot's hilight in the GUI radar.
+ *
+ *    @param p Pilot to render hilight of.
+ *    @param shape Shape of the radar (RADAR_RECT or RADAR_CIRCLE).
+ *    @param w Width.
+ *    @param h Height.
+ *    @param res Radar resolution.
+ *    @param overlay Whether to render onto the overlay.
+ */
+void gui_renderPilotHilight(const Pilot* p, RadarShape shape,
+      double w, double h, double res, int overlay)
+{
+   double x, y;
+   double scale;
+   glColour col_hilight;
+
+   /* Make sure is in range. */
+   if (!pilot_validTarget(player.p, p))
+      return;
+
+   /* Skip if not hilighted. */
+   if (!pilot_isFlag(p, PILOT_HILIGHT))
+      return;
+
+   /* Get position. */
+   if (overlay) {
+      x = (p->solid->pos.x / res);
+      y = (p->solid->pos.y / res);
+   }
+   else {
+      x = ((p->solid->pos.x-player.p->solid->pos.x) / res);
+      y = ((p->solid->pos.y-player.p->solid->pos.y) / res);
+   }
+   /* Get size. */
+   scale = p->ship->rdr_scale * (1. + RADAR_RES_REF/res);
+
+   /* Check if within radar bounds. */
+   if (((shape == RADAR_RECT)
+            && ((ABS(x) > (w-scale) / 2.) || (ABS(y) > (h-scale) / 2.)))
+         || ((shape == RADAR_CIRCLE)
+            && (pow2(x) + pow2(y) > pow2(w)))) {
+      return;
+   }
+
+   /* Transform coordinates into the 0,0 -> SCREEN_W, SCREEN_H range. */
+   if (overlay) {
+      x += map_overlay_center_x();
+      y += map_overlay_center_y();
+      w *= 2.;
+      h *= 2.;
+   }
+
+   /* Compensate scale for outline. */
+   scale = MAX(scale + 2., 4.);
+
+   col_hilight = cRadar_hilight;
+   col_hilight.a = 0.3;
+
+   glUseProgram(shaders.hilight.program);
+   glUniform1f(shaders.hilight.dt, animation_dt);
+   gl_renderShader(x, y, MAX(scale * 2., 7.), MAX(scale * 2., 7.), 0.,
+         &shaders.hilight, &col_hilight, 1);
 }
 
 

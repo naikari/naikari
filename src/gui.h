@@ -92,7 +92,10 @@ int gui_radarClickEvent( SDL_Event* event );
 void gui_renderMarker(double x, double y);
 void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res, int overlay );
 void gui_renderJumpPoint( int ind, RadarShape shape, double w, double h, double res, int overlay );
-void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, double res, int overlay );
+void gui_renderPilot(const Pilot* p, RadarShape shape, double w, double h,
+      double res, int overlay);
+void gui_renderPilotHilight(const Pilot* p, RadarShape shape,
+      double w, double h, double res, int overlay);
 void gui_renderAsteroid(const Asteroid* a, RadarShape shape,
       double w, double h, double res, int overlay);
 void gui_renderPlayer(double w, double h, double res, int overlay);

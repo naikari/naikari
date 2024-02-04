@@ -565,7 +565,9 @@ void ovr_render( double dt )
 {
    (void) dt;
    int i, j;
-   Pilot * const *pstk;
+   Pilot * const *pilot_stack;
+   const Pilot *p;
+   const Pilot *target;
    AsteroidAnchor *ast;
    double w, h, res;
    double x, y;
@@ -622,20 +624,32 @@ void ovr_render( double dt )
          gui_renderAsteroid(&ast->asteroids[j], RADAR_RECT, w, h, res, 1);
    }
 
-   /* Render pilots. */
-   pstk  = pilot_getAll();
-   j     = 0;
-   for (i=0; i<array_size(pstk); i++) {
-      if (pstk[i]->id == PLAYER_ID) /* Skip player. */
+   pilot_stack = pilot_getAll();
+
+   /* Render pilot hilights. */
+   for (i=0; i<array_size(pilot_stack); i++) { /* skip the player */
+      p = pilot_stack[i];
+      if (p->id == PLAYER_ID)
          continue;
-      if (pstk[i]->id == player.p->target)
-         j = i;
-      else
-         gui_renderPilot( pstk[i], RADAR_RECT, w, h, res, 1 );
+
+      gui_renderPilotHilight(p, RADAR_RECT, w, h, res, 1);
    }
-   /* Render the targeted pilot */
-   if (j!=0)
-      gui_renderPilot( pstk[j], RADAR_RECT, w, h, res, 1 );
+
+   /* Render the pilots. Target (if any) is rendered separately so it's
+    * always on top. */
+   target = NULL;
+   for (i=0; i<array_size(pilot_stack); i++) {
+      p = pilot_stack[i];
+      if (p->id == PLAYER_ID)
+         continue;
+
+      if (p->id == player.p->target)
+         target = p;
+      else
+         gui_renderPilot(p, RADAR_RECT, w, h, res, 1);
+   }
+   if (target != NULL)
+      gui_renderPilot(target, RADAR_RECT, w, h, res, 1);
 
    /* Check if player has goto target. */
    if (player_isFlag(PLAYER_AUTONAV) && (player.autonav == AUTONAV_POS_APPROACH)) {
