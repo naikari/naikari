@@ -73,11 +73,20 @@ function create()
    end
 
    if #pilots <= 0 then
-      return
+      evt.finish()
    end
 
    local p = pilots[rnd.rnd(1, #pilots)]
    if p:exists() and p:memory().natural then
+      -- Make sure the pilot isn't too close to a planet.
+      local planets = system.cur():planets()
+      for i = 1, #planets do
+         local pnt = planets[i]
+         if vec2.dist(p:pos(), pnt:pos()) < pnt:radius() * 3 then
+            evt.finish()
+         end
+      end
+
       local mem = p:memory()
       mem.natural = false
       mem.kill_reward = nil

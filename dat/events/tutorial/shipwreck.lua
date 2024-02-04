@@ -34,6 +34,19 @@ function create()
         evt.finish()
     end
 
+    -- Choose position and make sure it's not too close to a planet.
+    local cursys = system.cur()
+    local angle = rnd.rnd() * 2 * math.pi
+    local dist = rnd.rnd(0, cursys:radius() / 2)
+    local pos = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
+    local planets = cursys:planets()
+    for i = 1, #planets do
+        local pnt = planets[i]
+        if vec2.dist(pos, pnt:pos()) < pnt:radius() * 3 then
+            evt.finish()
+        end
+    end
+
     var.push("shipwreck_repeated", true)
 
     -- The shipwreck will be a random trader vessel.
@@ -48,9 +61,6 @@ function create()
 
     -- Create the derelict.
     local f = faction.dynAdd(nil, "Derelict", N_("Trader"), {ai="trader"})
-    local angle = rnd.rnd() * 2 * math.pi
-    local dist = rnd.rnd(2000, 3000) -- place it a ways out
-    local pos = vec2.new(dist * math.cos(angle), dist * math.sin(angle))
     local p = pilot.add(ship, f, pos, _("Shipwrecked August"),
             {ai="dummy"})
     p:disable()
