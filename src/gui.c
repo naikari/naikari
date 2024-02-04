@@ -1301,10 +1301,10 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
 
    /* Draw selection if targeted. */
    if (pilot_isFlag(p, PILOT_HILIGHT))
-      gui_blink(x, y, MAX(scale * 2., 10.), &cRadar_hilight, RADAR_BLINK_PILOT,
+      gui_blink(x, y, MAX(scale * 3.5, 13.), &cRadar_hilight, RADAR_BLINK_PILOT,
             blink_pilot);
    if (p->id == player.p->target)
-      gui_blink(x, y, MAX(scale * 3., 15.), &cRadar_tPilot, RADAR_BLINK_PILOT,
+      gui_blink(x, y, MAX(scale * 2., 7.), &cRadar_tPilot, RADAR_BLINK_PILOT,
             blink_pilot);
 }
 
