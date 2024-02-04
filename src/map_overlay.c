@@ -568,6 +568,7 @@ void ovr_render( double dt )
    Pilot * const *pilot_stack;
    const Pilot *p;
    const Pilot *target;
+   Planet *planet;
    AsteroidAnchor *ast;
    double w, h, res;
    double x, y;
@@ -581,10 +582,13 @@ void ovr_render( double dt )
    if (player_isFlag( PLAYER_DESTROYED ) || (player.p == NULL))
       return;
 
+   /* Get pilot stack for pilot rendering. */
+   pilot_stack = pilot_getAll();
+
    /* Default values. */
-   w     = map_overlay_width();
-   h     = map_overlay_height();
-   res   = ovr_res;
+   w = map_overlay_width();
+   h  = map_overlay_height();
+   res = ovr_res;
 
    /* The overlay might draw text over other text, e.g. messages. */
    glClear(GL_DEPTH_BUFFER_BIT);
@@ -600,19 +604,43 @@ void ovr_render( double dt )
       gl_renderRectEmpty(x, y, w, h, &c);
    }
 
-   /* Render planets. */
-   for (i=0; i<array_size(cur_system->planets); i++)
-      if ((cur_system->planets[ i ]->real == ASSET_REAL) && (i != player.p->nav_planet))
-         gui_renderPlanet( i, RADAR_RECT, w, h, res, 1 );
-   if (player.p->nav_planet > -1)
-      gui_renderPlanet( player.p->nav_planet, RADAR_RECT, w, h, res, 1 );
+   /* Render planet hilights. */
+   for (i=0; i<array_size(cur_system->planets); i++) {
+      planet = cur_system->planets[i];
+      if (planet->real != ASSET_REAL)
+         continue;
+
+      gui_renderPlanetHilight(i, RADAR_RECT, w, h, res, 1);
+   }
+
+   /* Render pilot hilights. */
+   for (i=0; i<array_size(pilot_stack); i++) {
+      p = pilot_stack[i];
+      if (p->id == PLAYER_ID)
+         continue;
+
+      gui_renderPilotHilight(p, RADAR_RECT, w, h, res, 1);
+   }
 
    /* Render jump points. */
    for (i=0; i<array_size(cur_system->jumps); i++)
       if ((i != player.p->nav_hyperspace) && !jp_isFlag(&cur_system->jumps[i], JP_EXITONLY))
          gui_renderJumpPoint( i, RADAR_RECT, w, h, res, 1 );
-   if (player.p->nav_hyperspace > -1)
+   if (player.p->nav_hyperspace >= 0) {
       gui_renderJumpPoint( player.p->nav_hyperspace, RADAR_RECT, w, h, res, 1 );
+   }
+
+   /* Render the planets. Target (if any) is rendered separately so it's
+    * always on top. */
+   for (i=0; i<array_size(cur_system->planets); i++) {
+      planet = cur_system->planets[i];
+
+      if ((planet->real == ASSET_REAL) && (i != player.p->nav_planet))
+         gui_renderPlanet(i, RADAR_RECT, w, h, res, 1);
+   }
+   if (player.p->nav_planet >= 0) {
+      gui_renderPlanet(player.p->nav_planet, RADAR_RECT, w, h, res, 1);
+   }
 
    /* Render markers. */
    ovr_mrkRenderAll(res);
@@ -622,17 +650,6 @@ void ovr_render( double dt )
       ast = &cur_system->asteroids[i];
       for (j=0; j<ast->nb; j++)
          gui_renderAsteroid(&ast->asteroids[j], RADAR_RECT, w, h, res, 1);
-   }
-
-   pilot_stack = pilot_getAll();
-
-   /* Render pilot hilights. */
-   for (i=0; i<array_size(pilot_stack); i++) { /* skip the player */
-      p = pilot_stack[i];
-      if (p->id == PLAYER_ID)
-         continue;
-
-      gui_renderPilotHilight(p, RADAR_RECT, w, h, res, 1);
    }
 
    /* Render the pilots. Target (if any) is rendered separately so it's

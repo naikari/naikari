@@ -1024,11 +1024,12 @@ void gui_radarRender( double x, double y )
 {
    int i, j;
    Radar *radar;
-   AsteroidAnchor *ast;
    gl_Matrix4 view_matrix_prev;
    Pilot * const *pilot_stack;
    const Pilot *p;
    const Pilot *target;
+   Planet *planet;
+   AsteroidAnchor *ast;
 
    /* The global radar. */
    radar = &gui_radar;
@@ -1037,6 +1038,9 @@ void gui_radarRender( double x, double y )
 
    if (gui_radar.closed)
       return;
+
+   /* Get pilot stack for pilot rendering. */
+   pilot_stack = pilot_getAll();
 
    /* TODO: modifying gl_view_matrix like this is a bit of a hack */
    /* TODO: use stensil test for RADAR_CIRCLE */
@@ -1049,30 +1053,15 @@ void gui_radarRender( double x, double y )
    else if (radar->shape == RADAR_CIRCLE)
       gl_Matrix4_Translate(&gl_view_matrix, x, y, 0);
 
-   /*
-    * planets
-    */
-   for (i=0; i<array_size(cur_system->planets); i++)
-      if ((cur_system->planets[ i ]->real == ASSET_REAL) && (i != player.p->nav_planet))
-         gui_renderPlanet( i, radar->shape, radar->w, radar->h, radar->res, 0 );
-   if (player.p->nav_planet > -1)
-      gui_renderPlanet( player.p->nav_planet, radar->shape, radar->w, radar->h, radar->res, 0 );
+   /* Render planet hilights. */
+   for (i=0; i<array_size(cur_system->planets); i++) {
+      planet = cur_system->planets[i];
+      if (planet->real != ASSET_REAL)
+         continue;
 
-   /*
-    * Jump points.
-    */
-   for (i=0; i<array_size(cur_system->jumps); i++)
-      if (i != player.p->nav_hyperspace && jp_isUsable(&cur_system->jumps[i]))
-         gui_renderJumpPoint( i, radar->shape, radar->w, radar->h, radar->res, 0 );
-   if (player.p->nav_hyperspace > -1)
-      gui_renderJumpPoint( player.p->nav_hyperspace, radar->shape, radar->w, radar->h, radar->res, 0 );
-
-   /*
-    * weapons
-    */
-   weapon_minimap( radar->res, radar->w, radar->h, radar->shape, 1. );
-
-   pilot_stack = pilot_getAll();
+      gui_renderPlanetHilight(i, radar->shape, radar->w, radar->h,
+            radar->res, 0);
+   }
 
    /* Render pilot hilights. */
    for (i=0; i<array_size(pilot_stack); i++) { /* skip the player */
@@ -1081,6 +1070,42 @@ void gui_radarRender( double x, double y )
          continue;
 
       gui_renderPilotHilight(p, radar->shape, radar->w, radar->h, radar->res, 0);
+   }
+
+   /*
+    * Jump points.
+    */
+   for (i=0; i<array_size(cur_system->jumps); i++)
+      if (i != player.p->nav_hyperspace && jp_isUsable(&cur_system->jumps[i]))
+         gui_renderJumpPoint( i, radar->shape, radar->w, radar->h, radar->res, 0 );
+   if (player.p->nav_hyperspace >= 0) {
+      gui_renderJumpPoint( player.p->nav_hyperspace, radar->shape, radar->w, radar->h, radar->res, 0 );
+   }
+
+   /* Render the planets. Target (if any) is rendered separately so it's
+    * always on top. */
+   for (i=0; i<array_size(cur_system->planets); i++) {
+      planet = cur_system->planets[i];
+      if ((planet->real == ASSET_REAL) && (i != player.p->nav_planet))
+         gui_renderPlanet(i, radar->shape, radar->w, radar->h, radar->res, 0);
+   }
+   if (player.p->nav_planet >= 0) {
+      
+      gui_renderPlanet(player.p->nav_planet, radar->shape, radar->w, radar->h,
+            radar->res, 0);
+   }
+
+   /*
+    * weapons
+    */
+   weapon_minimap( radar->res, radar->w, radar->h, radar->shape, 1. );
+
+   /* Render the asteroids. */
+   for (i=0; i<array_size(cur_system->asteroids); i++) {
+      ast = &cur_system->asteroids[i];
+      for (j=0; j<ast->nb; j++)
+         gui_renderAsteroid(&ast->asteroids[j], radar->shape,
+               radar->w, radar->h, radar->res, 0);
    }
 
    /* Render the pilots. Target (if any) is rendered separately so it's
@@ -1098,14 +1123,6 @@ void gui_radarRender( double x, double y )
    }
    if (target != NULL)
       gui_renderPilot(target, radar->shape, radar->w, radar->h, radar->res, 0);
-
-   /* render the asteroids */
-   for (i=0; i<array_size(cur_system->asteroids); i++) {
-      ast = &cur_system->asteroids[i];
-      for (j=0; j<ast->nb; j++)
-         gui_renderAsteroid(&ast->asteroids[j], radar->shape,
-               radar->w, radar->h, radar->res, 0);
-   }
 
    /* Render the player cross. */
    gui_renderPlayer(radar->w, radar->h, radar->res, 0);
@@ -1605,17 +1622,22 @@ void gui_renderMarker(double x, double y)
 /**
  * @brief Draws the planets in the minimap.
  *
- * Matrix mode is already displaced to center of the minimap.
+ *    @param planet_ind Planet to render (index of cur_system->planets).
+ *    @param shape Shape of the radar (RADAR_RECT or RADAR_CIRCLE).
+ *    @param w Width.
+ *    @param h Height.
+ *    @param res Radar resolution.
+ *    @param overlay Whether to render onto the overlay.
  */
-void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res, int overlay )
+void gui_renderPlanet(int planet_ind, RadarShape shape, double w, double h,
+      double res, int overlay)
 {
    GLfloat cx, cy, x, y, r, vr;
    const glColour *col;
    Planet *planet;
    char buf[STRMAX_SHORT];
-   glColour col_hilight;
 
-   planet = cur_system->planets[ind];
+   planet = cur_system->planets[planet_ind];
 
    /* Make sure is known. */
    if (!planet_isKnown(planet))
@@ -1623,7 +1645,7 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
 
    /* Default values. */
    r = planet->radius / res;
-   vr = overlay ? planet->mo.radius : MAX( r, 7.5 );
+   vr = overlay ? planet->mo.radius : MAX(r, 7.5);
 
    if (overlay) {
       cx = planet->pos.x / res;
@@ -1636,21 +1658,23 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
 
    /* Check if in range. */
    if (shape == RADAR_CIRCLE) {
-      x = ABS(cx)-r;
-      y = ABS(cy)-r;
+      x = ABS(cx) - r;
+      y = ABS(cy) - r;
       /* Out of range. */
-      if (x*x + y*y > pow2(w-2*r)) {
-         if ((player.p->nav_planet == ind) && !overlay)
-            gui_renderRadarOutOfRange( RADAR_CIRCLE, w, w, cx, cy, &cRadar_tPlanet );
+      if (x*x + y*y > pow2(w - 2*r)) {
+         if ((planet_ind == player.p->nav_planet) && !overlay)
+            gui_renderRadarOutOfRange(RADAR_CIRCLE, w, w, cx, cy,
+                  &cRadar_tPlanet);
          return;
       }
    }
    else {
       if (shape == RADAR_RECT) {
          /* Out of range. */
-         if ((ABS(cx) - r > w/2.) || (ABS(cy) - r  > h/2.)) {
-            if ((player.p->nav_planet == ind) && !overlay)
-               gui_renderRadarOutOfRange( RADAR_RECT, w, h, cx, cy, &cRadar_tPlanet );
+         if ((ABS(cx) - r > w / 2.) || (ABS(cy) - r  > h / 2.)) {
+            if ((planet_ind == player.p->nav_planet) && !overlay)
+               gui_renderRadarOutOfRange(RADAR_RECT, w, h, cx, cy,
+                     &cRadar_tPlanet);
             return;
          }
       }
@@ -1664,31 +1688,106 @@ void gui_renderPlanet( int ind, RadarShape shape, double w, double h, double res
       h *= 2.;
    }
 
-   if (planet_isFlag(planet, PLANET_HILIGHT) || (planet->hilights > 0)) {
-      col_hilight = cRadar_hilight;
-      col_hilight.a = 0.3;
-      glUseProgram(shaders.hilight.program);
-      glUniform1f(shaders.hilight.dt, animation_dt);
-      gl_renderShader(cx, cy, vr * 3., vr * 3., 0., &shaders.hilight,
-            &col_hilight, 1);
-   }
-
    /* Get the colour. */
-   col = gui_getPlanetColour(ind);
+   col = gui_getPlanetColour(planet_ind);
 
    /* Do the blink. */
-   if (ind == player.p->nav_planet)
-      gui_blink( cx, cy, vr*2., col, RADAR_BLINK_PLANET, blink_planet);
+   if (planet_ind == player.p->nav_planet)
+      gui_blink(cx, cy, vr*2., col, RADAR_BLINK_PLANET, blink_planet);
 
    glUseProgram(shaders.planetmarker.program);
    glUniform1i(shaders.planetmarker.parami,
          planet_hasService(planet, PLANET_SERVICE_LAND));
-   gl_renderShader( cx, cy, vr, vr, 0., &shaders.planetmarker, col, 1 );
+   gl_renderShader(cx, cy, vr, vr, 0., &shaders.planetmarker, col, 1);
 
    if (overlay) {
-      snprintf( buf, sizeof(buf), "%s%s", planet_getSymbol(planet), _(planet->name) );
-      gl_printMarkerRaw( &gl_smallFont, cx+planet->mo.text_offx, cy+planet->mo.text_offy, col, buf );
+      snprintf(buf, sizeof(buf), "%s%s",
+            planet_getSymbol(planet), _(planet->name));
+      gl_printMarkerRaw(&gl_smallFont, cx + planet->mo.text_offx,
+            cy + planet->mo.text_offy, col, buf);
    }
+}
+
+
+/**
+ * @brief Draws planet hilights in the minimap.
+ *
+ *    @param planet_ind Planet to render hilight of.
+ *    @param shape Shape of the radar (RADAR_RECT or RADAR_CIRCLE).
+ *    @param w Width.
+ *    @param h Height.
+ *    @param res Radar resolution.
+ *    @param overlay Whether to render onto the overlay.
+ */
+void gui_renderPlanetHilight(int planet_ind, RadarShape shape,
+      double w, double h, double res, int overlay)
+{
+   GLfloat cx, cy, x, y, r, vr;
+   Planet *planet;
+   glColour col_hilight;
+
+   planet = cur_system->planets[planet_ind];
+
+   /* Make sure is known. */
+   if (!planet_isKnown(planet))
+      return;
+
+   /* Skip if not hilighted. */
+   if (!planet_isFlag(planet, PLANET_HILIGHT) && (planet->hilights <= 0))
+      return;
+
+   /* Default values. */
+   r = planet->radius / res;
+   vr = overlay ? planet->mo.radius : MAX(r, 7.5);
+
+   if (overlay) {
+      cx = planet->pos.x / res;
+      cy = planet->pos.y / res;
+   }
+   else {
+      cx = (planet->pos.x-player.p->solid->pos.x) / res;
+      cy = (planet->pos.y-player.p->solid->pos.y) / res;
+   }
+
+   /* Check if in range. */
+   if (shape == RADAR_CIRCLE) {
+      x = ABS(cx) - r;
+      y = ABS(cy) - r;
+      /* Out of range. */
+      if (x*x + y*y > pow2(w - 2*r)) {
+         if ((planet_ind == player.p->nav_planet) && !overlay)
+            gui_renderRadarOutOfRange(RADAR_CIRCLE, w, w, cx, cy,
+                  &cRadar_tPlanet);
+         return;
+      }
+   }
+   else {
+      if (shape == RADAR_RECT) {
+         /* Out of range. */
+         if ((ABS(cx) - r > w / 2.) || (ABS(cy) - r  > h / 2.)) {
+            if ((planet_ind == player.p->nav_planet) && !overlay)
+               gui_renderRadarOutOfRange(RADAR_RECT, w, h, cx, cy,
+                     &cRadar_tPlanet);
+            return;
+         }
+      }
+   }
+
+   if (overlay) {
+      /* Transform coordinates. */
+      cx += map_overlay_center_x();
+      cy += map_overlay_center_y();
+      w *= 2.;
+      h *= 2.;
+   }
+
+   col_hilight = cRadar_hilight;
+   col_hilight.a = 0.3;
+
+   glUseProgram(shaders.hilight.program);
+   glUniform1f(shaders.hilight.dt, animation_dt);
+   gl_renderShader(cx, cy, vr * 3., vr * 3., 0., &shaders.hilight,
+         &col_hilight, 1);
 }
 
 

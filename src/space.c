@@ -1685,11 +1685,11 @@ Planet *planet_new (void)
    int realloced;
 
    /* Grow and initialize memory. */
-   old_stack   = planet_stack;
-   p           = &array_grow( &planet_stack );
-   realloced   = (old_stack!=planet_stack);
-   memset( p, 0, sizeof(Planet) );
-   p->id       = array_size(planet_stack)-1;
+   old_stack = planet_stack;
+   p = &array_grow(&planet_stack);
+   realloced = (old_stack!=planet_stack);
+   memset(p, 0, sizeof(Planet));
+   p->id = array_size(planet_stack) - 1;
    p->faction = 0;
 
    /* Reconstruct the jumps. */
