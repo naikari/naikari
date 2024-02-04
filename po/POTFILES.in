@@ -1594,6 +1594,7 @@ dat/ships/dvaered_goddard.xml
 dat/ships/dvaered_phalanx.xml
 dat/ships/dvaered_vendetta.xml
 dat/ships/dvaered_vigilance.xml
+dat/ships/elephant.xml
 dat/ships/empire_admonisher.xml
 dat/ships/empire_hawking.xml
 dat/ships/empire_lancelot.xml
@@ -2136,6 +2137,7 @@ dat/events/control/shiplog.lua
 dat/events/control/spawn.lua
 dat/events/dvaered/warlords_battle.lua
 dat/events/empire/emp_hp03_comm.lua
+dat/events/empire/emp_hp07_scold.lua
 dat/events/flf/derelict.lua
 dat/events/flf/flf_catastrophe.lua
 dat/events/neutral/animaltrouble.lua
@@ -2332,6 +2334,8 @@ src/conf.c
 src/conf.h
 src/console.c
 src/console.h
+src/credits.c
+src/credits.h
 src/damagetype.c
 src/damagetype.h
 src/debris.c
