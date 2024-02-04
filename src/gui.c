@@ -1252,6 +1252,7 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
 {
    double x, y, scale;
    const glColour *col;
+   glColour col_hilight;
 
    /* Make sure is in range. */
    if (!pilot_validTarget( player.p, p ))
@@ -1288,21 +1289,28 @@ void gui_renderPilot( const Pilot* p, RadarShape shape, double w, double h, doub
       h *= 2.;
    }
 
+   /* Compensate scale for outline. */
+   scale = MAX(scale+2.0, 4.0);
+
+   /* Render hilight if applicable. */
+   if (pilot_isFlag(p, PILOT_HILIGHT)) {
+      col_hilight = cRadar_hilight;
+      col_hilight.a = 0.3;
+      glUseProgram(shaders.hilight.program);
+      glUniform1f(shaders.hilight.dt, animation_dt);
+      gl_renderShader(x, y, MAX(scale * 2., 7.), MAX(scale * 2., 7.), 0.,
+            &shaders.hilight, &col_hilight, 1);
+   }
+
    if (p->id == player.p->target)
       col = &cRadar_tPilot;
-   else if (pilot_isFlag(p, PILOT_HILIGHT))
-      col = &cRadar_hilight;
    else
       col = gui_getPilotColour(p);
 
-   scale = MAX(scale+2.0, 4.0); /* Compensate for outline. */
    glUseProgram(shaders.pilotmarker.program);
    gl_renderShader( x, y, scale, scale, p->solid->dir, &shaders.pilotmarker, col, 1 );
 
    /* Draw selection if targeted. */
-   if (pilot_isFlag(p, PILOT_HILIGHT))
-      gui_blink(x, y, MAX(scale * 3.5, 13.), &cRadar_hilight, RADAR_BLINK_PILOT,
-            blink_pilot);
    if (p->id == player.p->target)
       gui_blink(x, y, MAX(scale * 2., 7.), &cRadar_tPilot, RADAR_BLINK_PILOT,
             blink_pilot);
