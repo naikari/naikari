@@ -39,22 +39,17 @@ local fmt = require "fmt"
 local mh = require "misnhelper"
 
 --Mission Details
-misn_title = _("{commodity} Delivery")
-misn_desc = _("{planet} has an insufficient supply of {commodity} to satisfy the current demand. Go to any planet which sells this commodity and bring as much of it back as possible.")
+local misn_title = _("{commodity} Delivery")
+local misn_desc = _("{planet} has an insufficient supply of {commodity} to satisfy the current demand. Go to any planet which sells this commodity and bring as much of it back as possible.")
 
-cargo_land_title = _("Delivery success!")
+local cargo_land_title = _("Delivery success!")
 
-cargo_land = {}
-cargo_land[1] = _("The containers of {commodity} are carried out of your ship and tallied. After several different men double-check the register to confirm the amount, you are paid {credits} and summarily dismissed.")
-cargo_land[2] = _("The containers of {commodity} are quickly and efficiently unloaded, labeled, and readied for distribution. The delivery manager thanks you with a credit chip worth {credits}.")
-cargo_land[3] = _("The containers of {commodity} are unloaded from your vessel by a team of dockworkers who are in no rush to finish, eventually delivering {credits} after the number of kilotonnes is determined.")
-cargo_land[4] = _("The containers of {commodity} are unloaded by robotic drones that scan and tally the contents. The human overseër hands you {credits} when they finish.")
-
-osd_title = _("Commodity Delivery")
-osd_msg    = {}
-osd_msg[1] = _("Buy as much {commodity} as possible")
-osd_msg[2] = _("Take the {commodity} to {planet} ({system} system)")
-osd_msg["__save"] = true
+local cargo_land = {
+   _("The containers of {commodity} are carried out of your ship and tallied. After several different men double-check the register to confirm the amount, you are paid {credits} and summarily dismissed."),
+   _("The containers of {commodity} are quickly and efficiently unloaded, labeled, and readied for distribution. The delivery manager thanks you with a credit chip worth {credits}."),
+   _("The containers of {commodity} are unloaded from your vessel by a team of dockworkers who are in no rush to finish, eventually delivering {credits} after the number of kilotonnes is determined."),
+   _("The containers of {commodity} are unloaded by robotic drones that scan and tally the contents. The human overseër hands you {credits} when they finish."),
+}
 
 
 -- A script may require "missions/neutral/commodity_run" and override this
@@ -126,16 +121,20 @@ function accept()
    misn.accept()
    update_active_runs(1)
 
-   osd_msg[1] = fmt.f(osd_msg[1], {commodity=comm:name()})
-   osd_msg[2] = fmt.f(osd_msg[2],
-         {commodity=comm:name(), planet=misplanet:name(), system=missys:name()})
-   misn.osdCreate(osd_title, osd_msg)
+   local osd_msg = {
+      fmt.f(_("Buy as much {commodity} as possible"), {commodity=comm:name()}),
+      fmt.f(_("Take the {commodity} to {planet} ({system} system)"),
+            {commodity=comm:name(), planet=misplanet:name(),
+               system=missys:name()}),
+   }
+   misn.osdCreate(_("Commodity Delivery"), osd_msg)
 
    -- Don't need the mission marker until after the goods are obtained.
    misn.markerRm(marker)
    marker = nil
 
    hook.land("land")
+   hook.safe("safe_updateCommod")
 end
 
 
@@ -151,8 +150,6 @@ function land()
       player.pay(reward)
       update_active_runs(-1)
       misn.finish(true)
-   else
-      hook.safe("safe_updateCommod")
    end
 end
 
@@ -169,9 +166,7 @@ function safe_updateCommod()
       marker = nil
    end
 
-   if player.isLanded() then
-      hook.safe("safe_updateCommod")
-   end
+   hook.safe("safe_updateCommod")
 end
 
 
