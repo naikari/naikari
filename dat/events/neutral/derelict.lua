@@ -39,13 +39,9 @@ function create()
       evt.finish()
    end
 
-   hook.safe("safe_disable")
    hook.jumpout("exit")
    hook.land("exit")
-end
 
-
-function safe_disable()
    local all_pilots = pilot.get()
 
    local class_chances = {
