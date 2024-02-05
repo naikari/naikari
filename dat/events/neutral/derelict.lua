@@ -87,11 +87,20 @@ function safe_disable()
 
    local p = pilots[rnd.rnd(1, #pilots)]
    if p:exists() and p:memory().natural then
-      -- Make sure the pilot isn't too close to a planet.
-      local planets = system.cur():planets()
+      -- Make sure the pilot isn't too close to a planet or jump.
+      local cursys = system.cur()
+      local pos = p:pos()
+      local planets = cursys:planets()
       for i = 1, #planets do
          local pnt = planets[i]
-         if vec2.dist(p:pos(), pnt:pos()) < pnt:radius() * 3 then
+         if vec2.dist(pos, pnt:pos()) < pnt:radius() * 3 then
+            evt.finish()
+         end
+      end
+      local jumps = cursys:jumps()
+      for i = 1, #jumps do
+         local jmp = jumps[i]
+         if vec2.dist(pos, jmp:pos()) < jmp:radius() * 3 then
             evt.finish()
          end
       end

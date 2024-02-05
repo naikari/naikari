@@ -34,7 +34,8 @@ function create()
         evt.finish()
     end
 
-    -- Choose position and make sure it's not too close to a planet.
+    -- Choose position and make sure it's not too close to a planet or
+    -- jump.
     local cursys = system.cur()
     local angle = rnd.rnd() * 2 * math.pi
     local dist = rnd.rnd(0, cursys:radius() / 2)
@@ -43,6 +44,13 @@ function create()
     for i = 1, #planets do
         local pnt = planets[i]
         if vec2.dist(pos, pnt:pos()) < pnt:radius() * 3 then
+            evt.finish()
+        end
+    end
+    local jumps = cursys:jumps()
+    for i = 1, #jumps do
+        local jmp = jumps[i]
+        if vec2.dist(pos, jmp:pos()) < jmp:radius() * 3 then
             evt.finish()
         end
     end
