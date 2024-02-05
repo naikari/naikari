@@ -282,13 +282,13 @@ static void opt_gameplay( unsigned int wid )
    /* Close button */
    window_addButton( wid, -20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", _("OK"), opt_OK );
+         "btnClose", _("O&K"), opt_OK );
    window_addButton( wid, -20 - 1*(BUTTON_WIDTH+20), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnCancel", _("Cancel"), opt_close );
+         "btnCancel", _("&Cancel"), opt_close );
    window_addButton( wid, -20 - 2*(BUTTON_WIDTH+20), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnDefaults", _("Defaults"), opt_gameplayDefaults );
+         "btnDefaults", _("&Defaults"), opt_gameplayDefaults );
 
    /* Information. */
    cw = (w-40);
@@ -669,14 +669,14 @@ static void opt_keybinds( unsigned int wid )
    menuKeybinds_getDim( wid, &w, &h, &lw, NULL, &bw, &bh );
 
    /* Close button. */
-   window_addButton( wid, -20, 20, bw, bh,
-         "btnClose", _("OK"), opt_OK );
+   window_addButton(wid, -20, 20, bw, bh,
+         "btnClose", _("O&K"), opt_OK);
    /* Restore deafaults button. */
-   window_addButton( wid, -20, 40 + bh, bw, bh,
-         "btnDefaults", _("Defaults"), opt_keyDefaults );
+   window_addButton(wid, -20, 40 + bh, bw, bh,
+         "btnDefaults", _("&Presets"), opt_keyDefaults);
    /* Set button. */
-   window_addButton( wid, -20, 60 + 2*bh, bw, bh,
-         "btnSet", _("Set Key"), opt_setKey );
+   window_addButton(wid, -20, 60 + 2*bh, bw, bh,
+         "btnSet", _("&Set Key"), opt_setKey);
 
    /* Text stuff. */
    window_addText( wid, 20+lw+20, -40, w-(20+lw+20), 30, 1, "txtName",
@@ -873,7 +873,7 @@ static void opt_keyDefaults( unsigned int wid, char *str )
    char *ret;
    int i, ind, layout;
 
-   const int n = 4;
+   const int n = 5;
    const char *opts[] = {
       _("WASD"),
       _("Arrow Keys"),
@@ -882,13 +882,14 @@ static void opt_keyDefaults( unsigned int wid, char *str )
       _("Cancel")
    };
 
-   title = _("Restore Defaults");
-   caption = _("Which layout do you want to use?");
+   title = _("Input Presets");
+   caption = _("This will reset all controls to a chosen input preset. Which"
+         " input preset do you want to use?");
 
    dialogue_makeChoice( title, caption, n );
 
    for (i=0; i<n; i++)
-      dialogue_addChoice( title, caption, opts[i] );
+      dialogue_addChoice(title, caption, opts[i]);
 
    ret = dialogue_runChoice();
    if (ret == NULL)
@@ -933,7 +934,8 @@ static void opt_keyDefaults( unsigned int wid, char *str )
    menuKeybinds_genList( wid );
 
    /* Alert user it worked. */
-   dialogue_msgRaw( _("Defaults Restored"), _("Keybindings restored to defaults."));
+   dialogue_msg(_("Input Presets"), _("Controls reset to preset: %s"),
+         opts[ind]);
 }
 
 
@@ -991,15 +993,15 @@ static void opt_audio( unsigned int wid )
    window_dimWindow( wid, &w, &h );
 
    /* Close button */
-   window_addButton( wid, -20, 20,
+   window_addButton(wid, -20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", _("OK"), opt_OK );
-   window_addButton( wid, -20 - 1*(BUTTON_WIDTH+20), 20,
+         "btnClose", _("O&K"), opt_OK);
+   window_addButton(wid, -20 - 1*(BUTTON_WIDTH+20), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnCancel", _("Cancel"), opt_close );
+         "btnCancel", _("&Cancel"), opt_close);
    window_addButton( wid, -20 - 2*(BUTTON_WIDTH+20), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnDefaults", _("Defaults"), opt_audioDefaults );
+         "btnDefaults", _("&Defaults"), opt_audioDefaults );
 
    cw = (w-60)/2;
    x = 20;
@@ -1264,16 +1266,16 @@ static void opt_setKey( unsigned int wid, char *str )
          "will register as a modifier. To set with any modifier click the checkbox.") );
 
    /* Create button to cancel. */
-   window_addButton( new_wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnCancel", _("Cancel"), window_close );
+   window_addButton(new_wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnCancel", _("&Cancel"), window_close);
 
    /* Button to unset. */
-   window_addButton( new_wid,  20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnUnset",  _("Unset"), opt_unsetKey );
+   window_addButton(new_wid,  20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
+         "btnUnset",  _("&Unset"), opt_unsetKey);
 
    /* Checkbox to set any modifier. */
-   window_addCheckbox( new_wid, -20, 20 + BUTTON_HEIGHT + 20, w-40, 20,
-         "chkAny", _("Set any modifier"), NULL, 0 );
+   window_addCheckbox(new_wid, -20, 20 + BUTTON_HEIGHT + 20, w-40, 20,
+         "chkAny", _("Set any modifier"), NULL, 0);
 }
 
 
@@ -1332,13 +1334,13 @@ static void opt_video( unsigned int wid )
    /* Close button */
    window_addButton( wid, -20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", _("OK"), opt_OK );
+         "btnClose", _("O&K"), opt_OK );
    window_addButton( wid, -20 - 1*(BUTTON_WIDTH+20), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnCancel", _("Cancel"), opt_close );
+         "btnCancel", _("&Cancel"), opt_close );
    window_addButton( wid, -20 - 2*(BUTTON_WIDTH+20), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnDefaults", _("Defaults"), opt_videoDefaults );
+         "btnDefaults", _("&Defaults"), opt_videoDefaults );
 
    /* Resolution bits. */
    cw = (w-60)/2;
