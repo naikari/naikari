@@ -908,8 +908,9 @@ void fps_setPos( double x, double y )
  */
 void display_fps( const double dt )
 {
-   double x,y;
+   double x, y;
    double dt_mod_base = 1.;
+   double tc_diff;
 
    fps_dt  += dt;
    fps_cur += 1.;
@@ -930,15 +931,17 @@ void display_fps( const double dt )
          && !player_isFlag(PLAYER_CINEMATICS)) {
       dt_mod_base = player_dt_default();
    }
-   if (dt_mod != dt_mod_base)
+
+   tc_diff = dt_mod/dt_mod_base - 1.;
+   if (fabs(tc_diff) >= 0.01)
       /* Translators: "TC" is short for "Time Compression". Please
        * substitute "TC" for a shortened form of "Time Compression" or
        * just "Time" that makes sense for the language being translated
        * to. The number displayed is the rate of time passage as a
-       * percentage (e.g. 200% if time is passing twice as fast as
-       * normal). */
+       * relative percentage (e.g. +100% if time is passing twice as
+       * fast as normal). */
       gl_print(NULL, x, y, NULL, _("TC %+.0f%%"),
-            100. * (dt_mod/dt_mod_base - 1.));
+            100. * tc_diff);
 
    if (!paused || !player_paused || !conf.pause_show)
       return;
