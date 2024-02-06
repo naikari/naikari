@@ -36,21 +36,21 @@ ask_text = _([[As you approach the stranger, he extends his hand in greeting. He
 
 "The Baron was quite pleased with your performance in that matter," he confides. "He has asked me to try to find you again for another job not unlike the last one. The Baron is a collector, you see, and his hunger for new possessions is a hard one to satiate." He makes a face. "Of course, his methods aren't always completely respectable, as you've experienced for yourself. But I assure you that the Baron is not a bad man, he is simply very enthusiastic."
 
-You decide to keep your opinion of the aristocrat to yourself. Instead you inquire as to what the man wants from you this time. "To tell the truth, I don't actually know," the man says. "The Baron wants you to meet him so he can brief you in person. You will find his ship in the {system} system. Shall I inform his lordship that you will be paying him a visit?"]])
+You inquire as to what the Baron wants from you this time. "To tell the truth, I don't actually know," the man says. "The Baron wants you to meet him so he can brief you in person. You will find his ship in the {system} system. Shall I inform his lordship that you will be paying him a visit?"]])
 
 accept_text = _([["Splendid. Please go see his lordship at the earliest opportunity. He doesn't like to be kept waiting. I will send word that you will be coming, so contact the Pinnacle when you arrive at {system}, and they will allow you to board."]])
 
-hail_text = _([[Your comm is answered by a communications officer on the bridge of the Pinnacle. You tell her you've got a delivery for the baron. She runs a few checks on a console off the screen, then tells you you've been cleared for docking and that the Pinnacle will be brought to a halt.]])
+hail_text = _([[Your comm is answered by a communications officer on the bridge of the Pinnacle. You tell her you're here to see the Baron. She runs a few checks on a console off the screen, then tells you you've been cleared for docking and that the Pinnacle will be brought to a halt.]])
 
 -- Translation note: this text intentionally refers to the player by
 -- the name of the ship they are flying and vice-versa. By all means,
 -- include as many mentions of the player and ship names as you can to
 -- really hammer home the joke.
-brief1_text = _([[You find yourself once again aboard the Pinnacle, Baron Sauterfeldt's flag ship. After a short time, an attendant ushers you into the Baron's personal quarters, which are as extravagant as you remember them. You notice the holopainting is now firmly fixed on one of the walls.
+brief1_text = _([[You find yourself once again aboard the Pinnacle, Baron Sauterfeldt's flagship. After a short time, an attendant ushers you into the Baron's personal quarters, which are as extravagant as you remember them, with the holopainting now among his extensive collection.
 
-Baron Dovai Sauterfeldt greets you with a pompous wave of his hand. "Ahh yes, there you are at last. {player}, piloting the ship called {ship}, right? Do have a seat." He then offers you a drink, but you decline on the basis that you still have to drive. "Now then, {player}, I assume you're wondering why I've called you here. As you've no doubt heard, I have an interest in the unique, the exquisite." The Baron gestures around the room. "I have built up quite an impressive collection, as you can see, but it is still lacking something. Fortunately, news has reached me about a priceless artifact from Earth itself, dating back to before the Faction Wars. I must have it. It belongs in the hands of a connoisseur like myself."]])
+Baron Dovai Sauterfeldt greets you with a pompous wave of his hand. "Ahh yes, there you are at last. {player}, piloting the ship called {ship}, right? Do have a seat." He offers you a drink, but you decline. "Now then, {player}, I assume you're wondering why I've called you here. As you've no doubt heard, I have an interest in the unique, the exquisite." The Baron gestures around the room. "I have built up quite an impressive collection, as you can see, but it is still lacking something. Fortunately, news has reached me about a priceless artifact from Earth itself, dating back to before the Faction Wars. I must have it. It belongs in the hands of a connoisseur like myself."]])
 
-brief2_text = _([["Unfortunately, {player}, news of this artifact has reached more ears than just mine. All over the galaxy there are people who will try to sell you 'ancient artifacts', which always turn out to be imitations at best and worthless scrap they picked up from the streets at worst." The Baron snorts derisively. "Even the contacts who usually fenc– ah, I mean, supply me with new items for my collection are in on the frenzy.
+brief2_text = _([["Unfortunately, {player}, news of this artifact has reached more ears than just mine. All over the galaxy there are people who will try to sell you 'ancient artifacts', which always turn out to be imitations at best and worthless scrap they picked up from the streets at worst." The Baron snorts derisively. "Even the contacts who usually fence– ah, I mean, supply me with new items for my collection are in on the frenzy.
 
 "I've narrowed down my search to three of these people. I'm confident that one of them is selling the genuine article, while the other two are shams. And this is where you come in, {player}. I want you to visit these vendors, buy their wares off them and bring me the authentic artifact. You will have the help of a man named Flintley, who is a history buff or some such rot. You will find him on {planet} in the {system} system. Simply tell him you're working for me and show him any artifacts in your possession. He will tell you which are authentic and which are fake.
 
@@ -74,7 +74,7 @@ sellerC_text = _([[The seller beckons you over to the bar. "Listen, friend. I ha
 
 flint_artifact_textA = _([["Let's see what we have here," Flintley says as you hand him the artifact you bought on {planet}. "Ah, I know what this is without even looking anything up. It's a piece of an old-fashioned airlock mechanism, as used on most ships during the Faction Wars. That makes it rather old, but that also makes it worthless, I'm afraid. This is just old scrap." He gives you an apologetic look. "Don't let it get you down. Not many people would know this on first sight. Those scammers can be pretty clever."
 
-You feel disappointed and frustrated, but you have no choice but to deposit the "artifact" into the nearest disintegrator inlet.]])
+You feel disappointed and frustrated, but you have no choice but to deposit the "artifact" into the nearest garbage receptacle.]])
 
 flint_artifact_textB = _([[You hand Flintley the artifact you bought on {planet}. He examines it for a few moments, then enters a few queries in the info terminal in his table. Once he has found what he was looking for, he heaves a sigh. "I'm sorry, {player}. It seems you've been had. What you've got here is little more than a trinket. It's a piece of 'art' created by a third-rank sculptress named Biena Gharibri who lives on Lapra. She's not very talented, I'm afraid. Her creations have been called 'worse than Dvaered opera' by a leading art critic. I really don't think you want to present his lordship with this."
 
@@ -86,15 +86,15 @@ You dispose of the counterfeit artifact. Hopefully the next one will be what Sau
 
 flintdeftext = _([[Flintley greets you. "Do you have any objects for me to look at, {player}? No? Well, alright. I'll be here if you need me. Good luck out there."]])
 
-realartifact_text = _([[Flintley carefully studies the object in front of him, turning it around and consulting the online database via the bar table's terminal. After several minutes he leans back and whistles. "Well I never. This has to be it, {player}. I'd do a carbon dating if I could, but even without that, I'm positive. This object dates back to pre-Growth Earth. And it's in an amazingly good condition!"
+realartifact_text = _([[Flintley carefully studies the object in front of him, turning it around and consulting the online database via the bar table's terminal. After several minutes, he leans back and whistles. "Well I never. This has to be it, {player}. I'd do a carbon dating if I could, but even without that, I'm positive. This object dates back to pre-Growth Earth. And it's in an amazingly good condition!"
 
-You take another look at the thing. It resembles a planetary transportation platform, with four wheels at the bottom and a generally flat surface, but the wheels lack a turning mechanism and the surface is so small that you cannot imagine what sort of heavy equipment it could carry. You are at a loss as to the artifact's purpose.
+You take another look at the thing. It resembles a planetary transportation platform, with four wheels supporting a generally flat surface, but the wheels lack a turning mechanism and the surface is so small that you cannot imagine what sort of heavy equipment it could carry. You are at a loss as to the artifact's purpose.
 
-"It's called a skate-board," Flintley continues. "The records about it are a bit sketchy, but it appears to be an ancient mobility tool used by ancient robots. See these curves at the ends? The heavy damage implies that they touched the ground often, so it's theorized that the ancient robots would bend the skate-board backwards and forwards to simulate walking in uneven terrain."
+"It's called a skate-board," Flintley continues. "The records about it are a bit sketchy, but it appears to be an ancient mobility tool used by ancient robots. See these curves at the ends? The heavy damage implies that they touched the ground often, so it's theorized that the ancient robots would bend the skate-board backwards to enable it to climb over obstacles."
 
 Flintley seems to have a lot more to say on the subject, but you're not that interested, so you thank him and return to your ship with the ancient artifact. You can only hope that the Baron is as enthusiastic about this skate-board as his historian!]])
 
-pay_text = _([[Baron Dovai Sauterfeldt turns the skate-board over in his hands, inspecting every nick, every scratch on the surface. His eyes are gleaming with delight.
+pay_text = _([[Baron Dovai Sauterfeldt turns the skate-board over in his hands, inspecting every nick, every scratch on the surface. His eyes gleam with delight.
 
 "Oh, this is marvelous, marvelous indeed, {player}! A piece of pre-Growth history, right here in my hands! I can almost hear the echoes of that ancient civilization when I put my ear close to it! This is going to be the centerpiece in my collection of relics and artifacts. Yes indeed!
 
