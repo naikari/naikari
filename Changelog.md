@@ -94,11 +94,15 @@
 * Replaced the extra blinker on hilighted pilots with the animated
 * circle which is used for hilighted planets and jumps.
 * Derelict, distress, and shipwreck events can no longer spawn on top of
-  or extremely close to planets.
+  or extremely close to planets or jump points.
 * Modernized the way the position of the Shipwrecked August is
   determined. (The way it was previously determined was a leftover from
   Naev's very early days, where systems were small and centered around
   singular planets.)
+* Renamed the "Defaults" button in the Input tab of the Options menu to
+  "Presets".
+* Added hotkeys for buttons in the Options menu.
+* Adjusted wording of text in the Baron missions.
 
 ### Bugfixes
 
@@ -109,6 +113,12 @@
 * Fixed and touched up text explanations for map trade modes.
 * Fixed a bug where you couldn't get trade information for a system
   while landed on a planet without commodities.
+* Fixed a bug where one planet's hilight could obscure another planet
+  on the radar and overlay.
+* Fixed a possibility of the time compression display showing "TC +0%"
+  or "TC -0%".
+* Fixed asteroid mining and boarded ship looting not updating the OSD of
+  the Commodity Run mission.
 
 ## 0.11.0
 
