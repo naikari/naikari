@@ -92,7 +92,7 @@
   starmap as if they were one-way jumps.
 * Shrunk the blinker on selected pilot to its original size.
 * Replaced the extra blinker on hilighted pilots with the animated
-* circle which is used for hilighted planets and jumps.
+  circle which is used for hilighted planets and jumps.
 * Derelict, distress, and shipwreck events can no longer spawn on top of
   or extremely close to planets or jump points.
 * Modernized the way the position of the Shipwrecked August is
