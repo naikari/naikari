@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: naikari 0.12.0-rc.2\n"
+"Project-Id-Version: naikari 0.12.0-rc.3\n"
 "Report-Msgid-Bugs-To: https://github.com/naikari/naikari/issues\n"
-"POT-Creation-Date: 2024-02-04 08:40-0500\n"
+"POT-Creation-Date: 2024-02-07 23:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11835,9 +11835,11 @@ msgstr ""
 #. This non-standard way of checking chance ensures that it always
 #. shows up immediately when entering pirate-infested space at least
 #. once.
+#. Choose position and make sure it's not too close to a planet or
+#. jump.
 #. The shipwreck will be a random trader vessel.
 #. Create the derelict.
-#: dat/faction.xml:44 dat/events/tutorial/shipwreck.lua:50
+#: dat/faction.xml:44 dat/events/tutorial/shipwreck.lua:71
 msgid "Trader"
 msgstr ""
 
@@ -21349,7 +21351,7 @@ msgstr ""
 #.
 #. -- Prowl Event for the Baron mission string. Only used when NOT doing any Baron missions.
 #. --
-#: dat/events/baron/baron_prowl.lua:25 dat/missions/baron/baron_baron.lua:146
+#: dat/events/baron/baron_prowl.lua:25 dat/missions/baron/baron_baron.lua:144
 #: dat/missions/baron/baron_prince.lua:427
 msgid "Pinnacle"
 msgstr ""
@@ -21723,7 +21725,8 @@ msgid "Cl&ear Orders"
 msgstr ""
 
 #: dat/events/control/escorts.lua:569 dat/scripts/escorthelper.lua:44
-#: dat/scripts/escorthelper.lua:59 src/escort.c:296
+#: dat/scripts/escorthelper.lua:59 src/escort.c:296 src/options.c:288
+#: src/options.c:1001 src/options.c:1270 src/options.c:1340
 msgid "&Cancel"
 msgstr ""
 
@@ -24076,17 +24079,19 @@ msgstr ""
 #. --
 #. Nebula volatility will destroy derelicts, which would be a bit
 #. weird, so skip the event if there's any nebula volatility.
-#: dat/events/neutral/derelict.lua:96
+#. Make sure the pilot isn't too close to a planet or jump.
+#: dat/events/neutral/derelict.lua:110
 msgid "Derelict {pilot}"
 msgstr ""
 
 #. Set to a blank faction so there's no reputation shenanigans.
 #. Nebula volatility will destroy derelicts, which would be a bit
 #. weird, so skip the event if there's any nebula volatility.
+#. Make sure the pilot isn't too close to a planet or jump.
 #. Remove followers so they don't sit there next to the wing of
 #. the empty ship.
 #. Set to a blank faction so there's no reputation shenanigans.
-#: dat/events/neutral/derelict.lua:99 dat/events/neutral/distress.lua:119
+#: dat/events/neutral/derelict.lua:113 dat/events/neutral/distress.lua:137
 msgid "Derelict"
 msgstr ""
 
@@ -24851,8 +24856,7 @@ msgid ""
 "#bdouble-clicking#0 on our ship."
 msgstr ""
 
-#. place it a ways out
-#: dat/events/tutorial/shipwreck.lua:54
+#: dat/events/tutorial/shipwreck.lua:72
 msgid "Shipwrecked August"
 msgstr ""
 
@@ -25423,7 +25427,7 @@ msgstr ""
 #: dat/gui/brushed.lua:861 dat/gui/brushed.lua:900 dat/gui/legacy.lua:220
 #: dat/gui/legacy.lua:310 dat/gui/legacy.lua:324 dat/gui/slim.lua:391
 #: dat/gui/slim.lua:961 dat/missions/shadow/darkshadow.lua:143
-#: dat/missions/shadow/shadowvigil.lua:84 src/gui.c:1704 src/map.c:532
+#: dat/missions/shadow/shadowvigil.lua:84 src/gui.c:1885 src/map.c:532
 #: src/map.c:538 src/map.c:544 src/map.c:550 src/map.c:556 src/map.c:562
 #: src/map.c:2025 src/map_overlay.c:169 src/outfit.c:302 src/outfit.c:322
 #: src/outfit.c:882 src/player_autonav.c:255
@@ -26734,8 +26738,8 @@ msgid ""
 "\n"
 "You pause for a moment before responding to this sudden offer. It's not "
 "every day that people come to bring you work instead of making you look for "
-"it, but then again this job sounds like it could get you in trouble with the "
-"authorities if you're not careful. What will you do?"
+"it, but then again, this job sounds like it could get you in trouble with "
+"the authorities if you're not careful. What will you do?"
 msgstr ""
 
 #: dat/missions/baron/baron_baron.lua:36
@@ -26758,8 +26762,7 @@ msgstr ""
 
 #: dat/missions/baron/baron_baron.lua:40
 msgid ""
-"You smirk at that. You know from experience that things seldom \"go off "
-"without a hitch\", and this particular plan doesn't seem to be all that well "
+"Despite his assurance, this particular plan doesn't seem to be all that well "
 "thought out. Still, it doesn't seem like you'll be in a lot of danger. If "
 "things go south, they'll go south well before you are even in the picture. "
 "And even if the authorities somehow get on your case, you'll only have to "
@@ -26788,33 +26791,32 @@ msgid ""
 "while you wait for the agents to bring you your cargo.\n"
 "\n"
 "You're halfway thru your pre-flight security checks when the three appear in "
-"your docking hangar. They have a cart with them on which sits a rectangular "
-"chest as tall as a man and as long as two. Clearly this holopainting is "
-"fairly sizeable. As you watch them from your bridge's viewport, you can't "
-"help but wonder how they managed to get something that big out of a Dvaered "
-"museum unnoticed."
+"your docking hangar. They have a cart with them on which sits a chest as "
+"tall as a man and as long as two. Clearly this holopainting is fairly "
+"sizable. As you watch them from your bridge, you can't help but wonder how "
+"they managed to get something that big out of a Dvaered museum unnoticed."
 msgstr ""
 
 #: dat/missions/baron/baron_baron.lua:48
 msgid ""
-"As it turns out, they didn't. They have only just reached the docking bridge "
-"leading into your ship when several armed Dvaered security forces come "
-"bursting into the docking hangar. They spot the three agents and immediately "
-"open fire. One of them goes down, the others hurriedly push the crate over "
-"the bridge towards your ship. Despite the drastic change in the situation, "
-"you have time to note that the Dvaered seem more interested in punishing the "
-"criminals than retrieving their possession intact.\n"
+"As it turns out, they didn't. They have only just reached your ship when "
+"several armed Dvaered security forces come bursting into the docking hangar. "
+"They spot the three agents and immediately open fire. One of them goes down "
+"while the others hurriedly push the crate toward your ship. Despite the "
+"drastic change in the situation, you have time to note that the Dvaered seem "
+"more interested in punishing the criminals than retrieving their possession "
+"intact.\n"
 "\n"
-"The second agent is caught by a Dvaered bullet, and topples off the docking "
-"bridge and into the abyss below. The third manages to get the cart with the "
-"chest into your airlock before catching a round with his chest as well. As "
-"the Dvaered near your ship, you seal the airlock, fire up your engines and "
-"punch it out of the docking hangar. Once you get into space, you may want to "
-"use an escape jump to get away from Varia before the security forces blow "
-"you to bits."
+"The second agent is caught by a Dvaered bullet. The third manages to get the "
+"cart with the chest into your airlock and tries to also take refuge there, "
+"but is caught by a bullet as well before making it inside. As the Dvaered "
+"near your ship, you seal the airlock, fire up your engines and punch it out "
+"of the docking hangar. Once you get into space, you may want to use an "
+"escape jump to get away from Varia before the security forces blow you to "
+"bits."
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:52 dat/missions/baron/baron_prince.lua:43
+#: dat/missions/baron/baron_baron.lua:52
 msgid ""
 "Your comm is answered by a communications officer on the bridge of the "
 "Pinnacle. You tell her you've got a delivery for the baron. She runs a few "
@@ -26832,10 +26834,8 @@ msgid ""
 "You follow the crewmen as they push the cart thru the main corridor of the "
 "ship. Soon you arrive at a door leading to a large, luxurious compartment. "
 "You can tell at a glance that these are Baron Sauterfeldt's personal "
-"quarters. The Baron himself is present, wearing a purple suit with a golden "
-"necktie, which you suspect may be actual gold. His fingers, meanwhile, are "
-"decorated with an assortment of shiny rings. Clearly, the Baron has a taste "
-"for the extravagant.\n"
+"quarters. The Baron himself is present, expensively and extravagantly "
+"dressed.\n"
 "\n"
 "\"Ah, my holopainting,\" he coos as the chest is carried into his quarters. "
 "\"At last, I've been waiting forever.\" The Baron does not seem to be aware "
@@ -26845,71 +26845,69 @@ msgstr ""
 
 #: dat/missions/baron/baron_baron.lua:60
 msgid ""
-"You look around his quarters. All sorts of exotic blades and other \"art\" "
-"works adorn his room, along with tapestries and various other holopaintings. "
-"You notice a bowl atop a velvet rug with \"Fluffles\" on it. Hanging above "
-"it seems to be a precariously balanced ancient blade.\n"
+"You look around his quarters. All sorts of artwork and artifacts adorn his "
+"room, all appearing to be of some sort of historical significance. His "
+"collection is so extensive that you suspect its monetary value might exceed "
+"that of his ship, despite the fact that it's one of the few House Proteron "
+"ships left from before the Incident.\n"
 "\n"
-"The crewmen finally unpack the holopainting. You glance at the three-"
-"dimensional depiction of a Dvaered warlord, who seems to be discussing "
-"strategy with his staff. Unfortunately you don't seem to be able to "
-"appreciate Dvaered art, and you lose interest almost right away.\n"
-"\n"
-"You cough to get the Baron's attention. He looks up, clearly displeased at "
-"the disturbance, then notices you for the first time. \"Ah, of course,\" he "
-"grunts. \"I suppose you must be paid for your service. Here, have some "
-"credits. Now leave me alone. I have art to admire.\" The Baron tosses you a "
-"couple of credit chips, and then you are once again air to him. Nonetheless, "
-"satisfied that you got your payment, you return to your ship and undock."
+"After the crewmen finally finish unpacking the holopainting, which seems to "
+"be a depiction of a Dvaered warlord, you cough to get the Baron's attention. "
+"He looks up, clearly displeased at the disturbance, then notices you for the "
+"first time. \"Ah, of course,\" he grunts. \"I suppose you must be paid for "
+"your service. Here.\" He tosses you a couple of credit chips. \"Now leave me "
+"alone. I have art to admire.\" Immediately, you are once again air to him. "
+"Nonetheless, satisfied that you got your payment, you return to your ship "
+"and undock."
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:66
+#: dat/missions/baron/baron_baron.lua:64
 msgid ""
 "\"Oh. Oh well, too bad. I'll just try to find someone who will take the job, "
 "then. Sorry for taking up your time. See you around!\""
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:68
+#: dat/missions/baron/baron_baron.lua:66
 msgid "All troops, engage {shipname}! They have broken {planet} law!"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:70
+#: dat/missions/baron/baron_baron.lua:68
 msgid "Baron"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:71
+#: dat/missions/baron/baron_baron.lua:69
 msgid ""
 "You've been hired as a courier for one Baron Sauterfeldt. Your job is to "
 "transport a holopainting from a Dvaered world to the Baron's ship."
 msgstr ""
 
 #. NPC stuff
-#: dat/missions/baron/baron_baron.lua:76
+#: dat/missions/baron/baron_baron.lua:74
 msgid "This must be one of the 'agents' hired by this Baron Sauterfeldt."
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:78
+#: dat/missions/baron/baron_baron.lua:76
 msgid ""
 "You helped Baron Dovai Sauterfeldt steal a Dvaered holopainting and were "
 "paid a sum of credits."
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:79
+#: dat/missions/baron/baron_baron.lua:77
 msgid ""
 "You were offered a sketchy-looking job by a nondescript pilot, but you "
 "rudely refused to accept the job. It seems whoever the pilot worked for "
 "won't be contacting you again."
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:88
+#: dat/missions/baron/baron_baron.lua:86
 msgid "Accept the job"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:88
+#: dat/missions/baron/baron_baron.lua:86
 msgid "Politely decline"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:108
+#: dat/missions/baron/baron_baron.lua:106
 msgid ""
 "Land on {planet} ({system} system) and talk to Sauterfeldt's agents at the "
 "bar"
@@ -26923,7 +26921,7 @@ msgstr ""
 #. Fail the mission, showing message to the player.
 #. Don't show fail message after already failed.
 #. Change objective
-#: dat/missions/baron/baron_baron.lua:110
+#: dat/missions/baron/baron_baron.lua:108
 #: dat/missions/baron/baron_prince.lua:129
 #: dat/missions/empire/hakoi_pirates/emp_hp03.lua:120
 #: dat/missions/flf/dvk/flf_dvk01.lua:64 dat/missions/flf/dvk/flf_dvk02.lua:100
@@ -26934,29 +26932,29 @@ msgstr ""
 msgid "Fly to the {system} system"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:112
+#: dat/missions/baron/baron_baron.lua:110
 msgid "Hail Kahan Pinnacle (orbiting {planet})"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:114
+#: dat/missions/baron/baron_baron.lua:112
 msgid "Dock with (board) Kahan Pinnacle"
 msgstr ""
 
+#: dat/missions/baron/baron_baron.lua:130
 #: dat/missions/baron/baron_baron.lua:132
 #: dat/missions/baron/baron_baron.lua:134
-#: dat/missions/baron/baron_baron.lua:136
 msgid "Sauterfeldt's agent"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:208
+#: dat/missions/baron/baron_baron.lua:206
 msgid "The Baron's holopainting"
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:209
+#: dat/missions/baron/baron_baron.lua:207
 msgid "A rectangular chest containing a holopainting."
 msgstr ""
 
-#: dat/missions/baron/baron_baron.lua:221
+#: dat/missions/baron/baron_baron.lua:219
 #: dat/missions/shadow/darkshadow.lua:259
 #: dat/missions/shadow/darkshadow.lua:291
 msgid "It's not safe to land right now."
@@ -27000,11 +26998,10 @@ msgid ""
 "yourself. But I assure you that the Baron is not a bad man, he is simply "
 "very enthusiastic.\"\n"
 "\n"
-"You decide to keep your opinion of the aristocrat to yourself. Instead you "
-"inquire as to what the man wants from you this time. \"To tell the truth, I "
-"don't actually know,\" the man says. \"The Baron wants you to meet him so he "
-"can brief you in person. You will find his ship in the {system} system. "
-"Shall I inform his lordship that you will be paying him a visit?\""
+"You inquire as to what the Baron wants from you this time. \"To tell the "
+"truth, I don't actually know,\" the man says. \"The Baron wants you to meet "
+"him so he can brief you in person. You will find his ship in the {system} "
+"system. Shall I inform his lordship that you will be paying him a visit?\""
 msgstr ""
 
 #: dat/missions/baron/baron_prince.lua:41
@@ -27015,27 +27012,35 @@ msgid ""
 "to board.\""
 msgstr ""
 
+#: dat/missions/baron/baron_prince.lua:43
+msgid ""
+"Your comm is answered by a communications officer on the bridge of the "
+"Pinnacle. You tell her you're here to see the Baron. She runs a few checks "
+"on a console off the screen, then tells you you've been cleared for docking "
+"and that the Pinnacle will be brought to a halt."
+msgstr ""
+
 #. Translation note: this text intentionally refers to the player by
 #. the name of the ship they are flying and vice-versa. By all means,
 #. include as many mentions of the player and ship names as you can to
 #. really hammer home the joke.
 #: dat/missions/baron/baron_prince.lua:49
 msgid ""
-"You find yourself once again aboard the Pinnacle, Baron Sauterfeldt's flag "
-"ship. After a short time, an attendant ushers you into the Baron's personal "
-"quarters, which are as extravagant as you remember them. You notice the "
-"holopainting is now firmly fixed on one of the walls.\n"
+"You find yourself once again aboard the Pinnacle, Baron Sauterfeldt's "
+"flagship. After a short time, an attendant ushers you into the Baron's "
+"personal quarters, which are as extravagant as you remember them, with the "
+"holopainting now among his extensive collection.\n"
 "\n"
 "Baron Dovai Sauterfeldt greets you with a pompous wave of his hand. \"Ahh "
 "yes, there you are at last. {player}, piloting the ship called {ship}, "
-"right? Do have a seat.\" He then offers you a drink, but you decline on the "
-"basis that you still have to drive. \"Now then, {player}, I assume you're "
-"wondering why I've called you here. As you've no doubt heard, I have an "
-"interest in the unique, the exquisite.\" The Baron gestures around the room. "
-"\"I have built up quite an impressive collection, as you can see, but it is "
-"still lacking something. Fortunately, news has reached me about a priceless "
-"artifact from Earth itself, dating back to before the Faction Wars. I must "
-"have it. It belongs in the hands of a connoisseur like myself.\""
+"right? Do have a seat.\" He offers you a drink, but you decline. \"Now then, "
+"{player}, I assume you're wondering why I've called you here. As you've no "
+"doubt heard, I have an interest in the unique, the exquisite.\" The Baron "
+"gestures around the room. \"I have built up quite an impressive collection, "
+"as you can see, but it is still lacking something. Fortunately, news has "
+"reached me about a priceless artifact from Earth itself, dating back to "
+"before the Faction Wars. I must have it. It belongs in the hands of a "
+"connoisseur like myself.\""
 msgstr ""
 
 #: dat/missions/baron/baron_prince.lua:53
@@ -27044,8 +27049,8 @@ msgid ""
 "just mine. All over the galaxy there are people who will try to sell you "
 "'ancient artifacts', which always turn out to be imitations at best and "
 "worthless scrap they picked up from the streets at worst.\" The Baron snorts "
-"derisively. \"Even the contacts who usually fenc– ah, I mean, supply me with "
-"new items for my collection are in on the frenzy.\n"
+"derisively. \"Even the contacts who usually fence– ah, I mean, supply me "
+"with new items for my collection are in on the frenzy.\n"
 "\n"
 "\"I've narrowed down my search to three of these people. I'm confident that "
 "one of them is selling the genuine article, while the other two are shams. "
@@ -27132,7 +27137,7 @@ msgid ""
 "this on first sight. Those scammers can be pretty clever.\"\n"
 "\n"
 "You feel disappointed and frustrated, but you have no choice but to deposit "
-"the \"artifact\" into the nearest disintegrator inlet."
+"the \"artifact\" into the nearest garbage receptacle."
 msgstr ""
 
 #: dat/missions/baron/baron_prince.lua:79
@@ -27175,23 +27180,23 @@ msgstr ""
 msgid ""
 "Flintley carefully studies the object in front of him, turning it around and "
 "consulting the online database via the bar table's terminal. After several "
-"minutes he leans back and whistles. \"Well I never. This has to be it, "
+"minutes, he leans back and whistles. \"Well I never. This has to be it, "
 "{player}. I'd do a carbon dating if I could, but even without that, I'm "
 "positive. This object dates back to pre-Growth Earth. And it's in an "
 "amazingly good condition!\"\n"
 "\n"
 "You take another look at the thing. It resembles a planetary transportation "
-"platform, with four wheels at the bottom and a generally flat surface, but "
-"the wheels lack a turning mechanism and the surface is so small that you "
-"cannot imagine what sort of heavy equipment it could carry. You are at a "
-"loss as to the artifact's purpose.\n"
+"platform, with four wheels supporting a generally flat surface, but the "
+"wheels lack a turning mechanism and the surface is so small that you cannot "
+"imagine what sort of heavy equipment it could carry. You are at a loss as to "
+"the artifact's purpose.\n"
 "\n"
 "\"It's called a skate-board,\" Flintley continues. \"The records about it "
 "are a bit sketchy, but it appears to be an ancient mobility tool used by "
 "ancient robots. See these curves at the ends? The heavy damage implies that "
 "they touched the ground often, so it's theorized that the ancient robots "
-"would bend the skate-board backwards and forwards to simulate walking in "
-"uneven terrain.\"\n"
+"would bend the skate-board backwards to enable it to climb over obstacles."
+"\"\n"
 "\n"
 "Flintley seems to have a lot more to say on the subject, but you're not that "
 "interested, so you thank him and return to your ship with the ancient "
@@ -27202,8 +27207,7 @@ msgstr ""
 #: dat/missions/baron/baron_prince.lua:97
 msgid ""
 "Baron Dovai Sauterfeldt turns the skate-board over in his hands, inspecting "
-"every nick, every scratch on the surface. His eyes are gleaming with "
-"delight.\n"
+"every nick, every scratch on the surface. His eyes gleam with delight.\n"
 "\n"
 "\"Oh, this is marvelous, marvelous indeed, {player}! A piece of pre-Growth "
 "history, right here in my hands! I can almost hear the echoes of that "
@@ -32269,18 +32273,6 @@ msgid ""
 "tally the contents. The human overseër hands you {credits} when they finish."
 msgstr ""
 
-#: dat/missions/neutral/commodity_run.lua:53
-msgid "Commodity Delivery"
-msgstr ""
-
-#: dat/missions/neutral/commodity_run.lua:55
-msgid "Buy as much {commodity} as possible"
-msgstr ""
-
-#: dat/missions/neutral/commodity_run.lua:56
-msgid "Take the {commodity} to {planet} ({system} system)"
-msgstr ""
-
 #. A script may require "missions/neutral/commodity_run" and override this
 #. with a table of (raw) commodity names to choose from.
 #. Note: This causes a delay (defined in create()) after accepting,
@@ -32292,12 +32284,24 @@ msgstr ""
 #. Set Mission Details
 #. List of possible waste dump planets.
 #. Set mission details
-#: dat/missions/neutral/commodity_run.lua:118
+#: dat/missions/neutral/commodity_run.lua:113
 #: dat/missions/neutral/wastedump.lua:95
 msgid "{price} ¢/kt"
 msgid_plural "{price} ¢/kt"
 msgstr[0] ""
 msgstr[1] ""
+
+#: dat/missions/neutral/commodity_run.lua:125
+msgid "Buy as much {commodity} as possible"
+msgstr ""
+
+#: dat/missions/neutral/commodity_run.lua:126
+msgid "Take the {commodity} to {planet} ({system} system)"
+msgstr ""
+
+#: dat/missions/neutral/commodity_run.lua:130
+msgid "Commodity Delivery"
+msgstr ""
 
 #. Don't need the mission marker until after the goods are obtained.
 #.
@@ -40243,8 +40247,7 @@ msgstr ""
 #. Only "Cancel" remains, nothing to do.
 #. Run callback.
 #: dat/rescue.lua:46 dat/rescue.lua:60 dat/rescue.lua:121 dat/rescue.lua:174
-#: src/dialogue.c:480 src/dialogue.c:723 src/map_find.c:247 src/options.c:288
-#: src/options.c:882 src/options.c:999 src/options.c:1268 src/options.c:1338
+#: src/dialogue.c:480 src/dialogue.c:723 src/map_find.c:247 src/options.c:882
 msgid "Cancel"
 msgstr ""
 
@@ -44788,7 +44791,7 @@ msgstr ""
 msgid "Background -> 'background' : %s"
 msgstr ""
 
-#: src/background.c:607 src/gui.c:1895 src/nlua_evt.c:159 src/nlua_misn.c:262
+#: src/background.c:607 src/gui.c:2076 src/nlua_evt.c:159 src/nlua_misn.c:262
 #: src/nopenal.c:72
 msgid "unknown error"
 msgstr ""
@@ -46166,8 +46169,7 @@ msgstr ""
 msgid "Alert"
 msgstr ""
 
-#: src/dialogue.c:265 src/dialogue.c:323 src/dialogue.c:721 src/options.c:285
-#: src/options.c:673 src/options.c:996 src/options.c:1335
+#: src/dialogue.c:265 src/dialogue.c:323 src/dialogue.c:721
 msgid "OK"
 msgstr ""
 
@@ -46795,33 +46797,33 @@ msgstr ""
 msgid "Gfx index out of range"
 msgstr ""
 
-#: src/gui.c:1790 src/ndata.c:196 src/news.c:103 src/nfile.c:492
+#: src/gui.c:1971 src/ndata.c:196 src/news.c:103 src/nfile.c:492
 #: src/opengl_tex.c:141 src/opengl_tex.c:383 src/perlin.c:399 src/perlin.c:460
 #: src/physics.c:515
 msgid "Out of Memory"
 msgstr ""
 
-#: src/gui.c:1860
+#: src/gui.c:2041
 #, c-format
 msgid "GUI '%s': Trying to run GUI func '%s' but no GUI is loaded!"
 msgstr ""
 
-#: src/gui.c:1869
+#: src/gui.c:2050
 #, c-format
 msgid "GUI '%s': no function '%s' defined!"
 msgstr ""
 
-#: src/gui.c:1894
+#: src/gui.c:2075
 #, c-format
 msgid "GUI '%s' Lua -> '%s': %s"
 msgstr ""
 
-#: src/gui.c:2039
+#: src/gui.c:2220
 #, c-format
 msgid "Unable to find GUI '%s'."
 msgstr ""
 
-#: src/gui.c:2052
+#: src/gui.c:2233
 #, c-format
 msgid ""
 "Failed to load GUI Lua: %s\n"
@@ -46829,7 +46831,7 @@ msgid ""
 "Most likely Lua file has improper syntax, please check"
 msgstr ""
 
-#: src/gui.c:2173
+#: src/gui.c:2354
 #, c-format
 msgid "#oRadar set to %d×."
 msgstr ""
@@ -49569,7 +49571,7 @@ msgstr ""
 msgid "clock_gettime failed!"
 msgstr ""
 
-#: src/naev.c:924
+#: src/naev.c:925
 #, c-format
 msgid "%.2f FPS"
 msgstr ""
@@ -49578,44 +49580,44 @@ msgstr ""
 #. * substitute "TC" for a shortened form of "Time Compression" or
 #. * just "Time" that makes sense for the language being translated
 #. * to. The number displayed is the rate of time passage as a
-#. * percentage (e.g. 200% if time is passing twice as fast as
-#. * normal).
-#: src/naev.c:940
+#. * relative percentage (e.g. +100% if time is passing twice as
+#. * fast as normal).
+#: src/naev.c:943
 #, c-format
 msgid "TC %+.0f%%"
 msgstr ""
 
-#: src/naev.c:948
+#: src/naev.c:951
 msgid "PAUSED"
 msgstr ""
 
-#: src/naev.c:1051
+#: src/naev.c:1054
 msgid "Icon (icon.png) not found!"
 msgstr ""
 
-#: src/naev.c:1056
+#: src/naev.c:1059
 msgid "Unable to load icon.png!"
 msgstr ""
 
-#: src/naev.c:1081
+#: src/naev.c:1084
 msgid " debug"
 msgstr ""
 
-#: src/naev.c:1120
+#: src/naev.c:1123
 #, c-format
 msgid "Failed to parse version string '%s'!"
 msgstr ""
 
-#: src/naev.c:1148
+#: src/naev.c:1151
 #, c-format
 msgid "SDL: %d.%d.%d [compiled: %d.%d.%d]"
 msgstr ""
 
-#: src/naev.c:1158
+#: src/naev.c:1161
 msgid "SDL is newer than compiled version"
 msgstr ""
 
-#: src/naev.c:1160
+#: src/naev.c:1163
 msgid "SDL is older than compiled version."
 msgstr ""
 
@@ -50688,7 +50690,7 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: src/options.c:183 src/options.c:1551
+#: src/options.c:183 src/options.c:1553
 msgid "Restart Naikari for changes to take effect."
 msgstr ""
 
@@ -50696,8 +50698,12 @@ msgstr ""
 msgid "system"
 msgstr ""
 
-#: src/options.c:291 src/options.c:676 src/options.c:1002 src/options.c:1341
-msgid "Defaults"
+#: src/options.c:285 src/options.c:673 src/options.c:998 src/options.c:1337
+msgid "O&K"
+msgstr ""
+
+#: src/options.c:291 src/options.c:1004 src/options.c:1343
+msgid "&Defaults"
 msgstr ""
 
 #: src/options.c:305
@@ -50772,8 +50778,12 @@ msgstr ""
 msgid "TC Reset Threshold: Armor Damage"
 msgstr ""
 
+#: src/options.c:676
+msgid "&Presets"
+msgstr ""
+
 #: src/options.c:679
-msgid "Set Key"
+msgid "&Set Key"
 msgstr ""
 
 #: src/options.c:827
@@ -50837,195 +50847,194 @@ msgstr ""
 msgid "ZQSD"
 msgstr ""
 
-#: src/options.c:885
-msgid "Restore Defaults"
+#. Alert user it worked.
+#: src/options.c:885 src/options.c:937
+msgid "Input Presets"
 msgstr ""
 
 #: src/options.c:886
-msgid "Which layout do you want to use?"
+msgid ""
+"This will reset all controls to a chosen input preset. Which input preset do "
+"you want to use?"
 msgstr ""
 
-#. Alert user it worked.
-#: src/options.c:936
-msgid "Defaults Restored"
+#: src/options.c:937
+#, c-format
+msgid "Controls reset to preset: %s"
 msgstr ""
 
-#: src/options.c:936
-msgid "Keybindings restored to defaults."
-msgstr ""
-
-#: src/options.c:959
+#: src/options.c:961
 #, c-format
 msgid "Master: %.0f%%"
 msgstr ""
 
-#: src/options.c:965
+#: src/options.c:967
 #, c-format
 msgid "Sound: %.0f%%"
 msgstr ""
 
-#: src/options.c:971
+#: src/options.c:973
 #, c-format
 msgid "Music: %.0f%%"
 msgstr ""
 
-#: src/options.c:1008
+#: src/options.c:1010
 msgid "Disable all sound/music"
 msgstr ""
 
-#: src/options.c:1012
+#: src/options.c:1014
 msgid "EFX (More CPU)"
 msgstr ""
 
-#: src/options.c:1020
+#: src/options.c:1022
 msgid "Volume Levels"
 msgstr ""
 
-#: src/options.c:1222
+#: src/options.c:1224
 #, c-format
 msgid ""
 "Key '%s' overlaps with key '%s' that was just set. You may want to correct "
 "this."
 msgstr ""
 
-#: src/options.c:1256
+#: src/options.c:1258
 msgid "Set Keybinding"
 msgstr ""
 
-#: src/options.c:1263
+#: src/options.c:1265
 msgid ""
 "To use a modifier key hit that key twice in a row, otherwise it will "
 "register as a modifier. To set with any modifier click the checkbox."
 msgstr ""
 
-#: src/options.c:1272
-msgid "Unset"
+#: src/options.c:1274
+msgid "&Unset"
 msgstr ""
 
-#: src/options.c:1276
+#: src/options.c:1278
 msgid "Set any modifier"
 msgstr ""
 
-#: src/options.c:1348
+#: src/options.c:1350
 msgid "Resolution"
 msgstr ""
 
-#: src/options.c:1398
+#: src/options.c:1400
 msgid "Fullscreen"
 msgstr ""
 
-#: src/options.c:1408
+#: src/options.c:1410
 msgid "Vertical Sync"
 msgstr ""
 
-#: src/options.c:1411
+#: src/options.c:1413
 msgid "Minimize on fullscreen focus loss"
 msgstr ""
 
-#: src/options.c:1417
+#: src/options.c:1419
 msgid "Colorblind simulator"
 msgstr ""
 
-#: src/options.c:1426
+#: src/options.c:1428
 msgid "Rod monochromacy"
 msgstr ""
 
-#: src/options.c:1430
+#: src/options.c:1432
 msgid "Cone monochromacy"
 msgstr ""
 
-#: src/options.c:1434
+#: src/options.c:1436
 msgid "Protanopia"
 msgstr ""
 
-#: src/options.c:1438
+#: src/options.c:1440
 msgid "Deuteranopia"
 msgstr ""
 
-#: src/options.c:1442
+#: src/options.c:1444
 msgid "Tritanopia"
 msgstr ""
 
-#: src/options.c:1446
+#: src/options.c:1448
 msgid "Protanomaly"
 msgstr ""
 
-#: src/options.c:1450
+#: src/options.c:1452
 msgid "Deuteranomaly"
 msgstr ""
 
-#: src/options.c:1454
+#: src/options.c:1456
 msgid "Tritanomaly"
 msgstr ""
 
 #. FPS stuff.
-#: src/options.c:1468
+#: src/options.c:1470
 msgid "FPS Limit"
 msgstr ""
 
-#: src/options.c:1478
+#: src/options.c:1480
 msgid "Show FPS"
 msgstr ""
 
 #. Not calling opt_setGamma since that would override values outside
 #. * of the slider's bounds (which are not an indication of any strict
 #. * limit).
-#: src/options.c:1501 src/options.c:1895
+#: src/options.c:1503 src/options.c:1897
 #, c-format
 msgid "Gamma: %.0f%%"
 msgstr ""
 
-#: src/options.c:1584
+#: src/options.c:1586
 msgid "Height/Width invalid. Should be formatted like 1024x768."
 msgstr ""
 
-#: src/options.c:1697
+#: src/options.c:1699
 msgid "Keep Video Settings"
 msgstr ""
 
-#: src/options.c:1698
+#: src/options.c:1700
 #, c-format
 msgid "Do you want to keep running at %d×%d %s?"
 msgstr ""
 
-#: src/options.c:1699 src/options.c:1705
+#: src/options.c:1701 src/options.c:1707
 msgid "fullscreen"
 msgstr ""
 
-#: src/options.c:1699 src/options.c:1705
+#: src/options.c:1701 src/options.c:1707
 msgid "windowed"
 msgstr ""
 
-#: src/options.c:1703
+#: src/options.c:1705
 msgid "Video Settings Restored"
 msgstr ""
 
-#: src/options.c:1704
+#: src/options.c:1706
 #, c-format
 msgid "Resolution reset to %d×%d %s."
 msgstr ""
 
-#: src/options.c:1790
+#: src/options.c:1792
 #, c-format
 msgid "Scaling: %.0f%%"
 msgstr ""
 
-#: src/options.c:1807
+#: src/options.c:1809
 #, c-format
 msgid "Far Zoom: %.0f%%"
 msgstr ""
 
-#: src/options.c:1835
+#: src/options.c:1837
 #, c-format
 msgid "Near Zoom: %.0f%%"
 msgstr ""
 
-#: src/options.c:1856
+#: src/options.c:1858
 #, c-format
 msgid "Background Brightness: %.0f%%"
 msgstr ""
 
-#: src/options.c:1875
+#: src/options.c:1877
 #, c-format
 msgid "Overlay Map Opacity: %.0f%%"
 msgstr ""
