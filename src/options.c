@@ -972,6 +972,8 @@ static void opt_setAudioLevel( unsigned int wid, char *str )
       widget = "txtMusic";
       asprintf(&vol_text, _("Music: %.0f%%"), vol * 100.);
    }
+   else
+      return;
 
    if (vol_text != NULL)
       window_modifyText(wid, widget, vol_text);

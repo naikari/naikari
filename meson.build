@@ -1,5 +1,5 @@
 project('naikari', 'c',
-   version : '0.12.0',
+   version : '0.13.0-alpha',
    default_options : [
       'warning_level=2',
       'optimization=g',
@@ -129,8 +129,6 @@ if buildExec.disabled() == false
 
    use_system_suitesparse = ('SuiteSparse' not in forced_fallbacks and wrap_mode != 'forcefallback')
    if use_system_suitesparse
-      message('Note: Naikari needs the following SuiteSparse libraries: amd, colamd, cholmod, and either csparse or cxsparse. ' +
-              'It can use its own copies if you run "meson configure --force-fallback-for=SuiteSparse".')
       foreach csparse_name : ['cxsparse', 'csparse']
          system_csparse = cc.find_library(csparse_name, required: false)
          if system_csparse.found()
@@ -141,23 +139,8 @@ if buildExec.disabled() == false
          naev_deps += system_csparse
          config_data.set10('HAVE_SUITESPARSE_CS_H', cc.has_header('suitesparse/cs.h'))
       else
-         error('Failed to find an installation of c[x]sparse. See above note about SuiteSparse.')
+         naev_deps += subproject('SuiteSparse').get_variable('SuiteSparse_dep')
       endif
-
-      system_cholmod = cc.find_library('cholmod', required: false)
-      if system_cholmod.found()
-         naev_deps += system_cholmod
-         config_data.set10('HAVE_SUITESPARSE_CHOLMOD_H', cc.has_header('suitesparse/cholmod.h'))
-      else
-         error('Failed to find an installation of cholmod. See above note about SuiteSparse.')
-      endif
-
-      naev_deps += cc.find_library('amd', required: true)
-      naev_deps += cc.find_library('ccolamd', required: false)
-      naev_deps += cc.find_library('colamd', required: true)
-      naev_deps += cc.find_library('lapack', required: false)
-      naev_deps += cc.find_library('metis', required: false)
-      naev_deps += cc.find_library('suitesparseconfig', required: true)
    else
       naev_deps += subproject('SuiteSparse').get_variable('SuiteSparse_dep')
    endif

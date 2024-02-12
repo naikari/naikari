@@ -31,6 +31,7 @@ Naikari requires the following:
 * python3
 * ninja
 * libunibreak (included)
+* SuiteSparse (included)
 
 If you're cross-compiling for Windows, you must install this soft dependency:
 * [physfs](https://icculus.org/physfs/), example package name mingw-w64-physfs
@@ -45,7 +46,8 @@ or later, with:
 sudo apt install build-essential ninja-build libsdl2-dev libsdl2-image-dev \
     libgl1-mesa-dev libxml2-dev libfreetype6-dev libpng-dev libwebp-dev \
     libopenal-dev libvorbis-dev binutils-dev libiberty-dev autopoint intltool \
-    libfontconfig-dev python3-pip libluajit-5.1-dev libphysfs-dev
+    libfontconfig-dev python3-pip libluajit-5.1-dev libphysfs-dev \
+    libunibreak-dev libsuitesparse-dev
 sudo pip3 install meson
 ```
 
