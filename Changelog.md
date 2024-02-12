@@ -102,7 +102,9 @@
 * Renamed the "Defaults" button in the Input tab of the Options menu to
   "Presets".
 * Added hotkeys for buttons in the Options menu.
-* Adjusted wording of text in the Baron missions.
+* Adjusted wording of text in some missions.
+* Made Turret Conversion Module medium, and took away most of its
+  downsides.
 
 ### Bugfixes
 
