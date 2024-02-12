@@ -43,7 +43,7 @@ Install compile-time dependencies on Debian 10 or later, or Ubuntu 18.04
 or later, with:
 
 ```sh
-sudo apt install build-essential binutils-dev ninja-build autopoint intltool \
+sudo apt install build-essential ninja-build autopoint intltool \
     python3-pip \
     libsdl2-dev libsdl2-image-dev libgl1-mesa-dev libxml2-dev \
     libfreetype6-dev libpng-dev libwebp-dev libopenal-dev libvorbis-dev \
