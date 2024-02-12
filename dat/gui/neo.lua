@@ -1189,7 +1189,7 @@ end
 
 
 function format_distance(dist)
-   if dist < 1000 then
+   if dist < 100 then
       return string.format(_("%.0f mAU"), dist)
    elseif dist < 1e6 then
       return string.format(_("%.1f AU"), dist / 1000)
