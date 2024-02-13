@@ -286,34 +286,36 @@ void input_setDefault(int layout)
    if (layout == LAYOUT_WASD) {
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
       input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
+      input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY);
    }
    else if (layout == LAYOUT_ZQSD) {
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
       input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
+      input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY);
    }
    else if (layout == LAYOUT_IJKL) {
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_u, NMOD_ANY);
       input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_h, NMOD_ANY);
+      input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_SEMICOLON, NMOD_ANY);
    }
    else {
       input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
       input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
+      input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY);
    }
 
    input_setKeybind("follow", KEYBIND_KEYBOARD, SDLK_f, NMOD_NONE);
    input_setKeybind("board", KEYBIND_KEYBOARD, SDLK_b, NMOD_NONE);
-   /* Secondary Weapons */
-   input_setKeybind( "secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY );
-   input_setKeybind( "weapset1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ANY );
-   input_setKeybind( "weapset2", KEYBIND_KEYBOARD, SDLK_2, NMOD_ANY );
-   input_setKeybind( "weapset3", KEYBIND_KEYBOARD, SDLK_3, NMOD_ANY );
-   input_setKeybind( "weapset4", KEYBIND_KEYBOARD, SDLK_4, NMOD_ANY );
-   input_setKeybind( "weapset5", KEYBIND_KEYBOARD, SDLK_5, NMOD_ANY );
-   input_setKeybind( "weapset6", KEYBIND_KEYBOARD, SDLK_6, NMOD_ANY );
-   input_setKeybind( "weapset7", KEYBIND_KEYBOARD, SDLK_7, NMOD_ANY );
-   input_setKeybind( "weapset8", KEYBIND_KEYBOARD, SDLK_8, NMOD_ANY );
-   input_setKeybind( "weapset9", KEYBIND_KEYBOARD, SDLK_9, NMOD_ANY );
-   input_setKeybind( "weapset0", KEYBIND_KEYBOARD, SDLK_0, NMOD_ANY );
+   input_setKeybind("weapset1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ANY);
+   input_setKeybind("weapset2", KEYBIND_KEYBOARD, SDLK_2, NMOD_ANY);
+   input_setKeybind("weapset3", KEYBIND_KEYBOARD, SDLK_3, NMOD_ANY);
+   input_setKeybind("weapset4", KEYBIND_KEYBOARD, SDLK_4, NMOD_ANY);
+   input_setKeybind("weapset5", KEYBIND_KEYBOARD, SDLK_5, NMOD_ANY);
+   input_setKeybind("weapset6", KEYBIND_KEYBOARD, SDLK_6, NMOD_ANY);
+   input_setKeybind("weapset7", KEYBIND_KEYBOARD, SDLK_7, NMOD_ANY);
+   input_setKeybind("weapset8", KEYBIND_KEYBOARD, SDLK_8, NMOD_ANY);
+   input_setKeybind("weapset9", KEYBIND_KEYBOARD, SDLK_9, NMOD_ANY);
+   input_setKeybind("weapset0", KEYBIND_KEYBOARD, SDLK_0, NMOD_ANY);
    /* Escorts */
    input_setKeybind( "e_targetNext", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
    input_setKeybind( "e_targetPrev", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE );
