@@ -12,7 +12,6 @@
   <gfx_store>organic_core_l1.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>350</cpu_max>
   <shield>1700</shield>
   <shield_regen>19</shield_regen>
   <energy>3375</energy>

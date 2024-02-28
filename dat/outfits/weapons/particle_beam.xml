@@ -9,7 +9,6 @@
   <price>110000</price>
   <description>This turret-mounted beam is highly sought after by traders for its incredible defensive capability. While its range is short, its ability to nearly instantly vaporize any persuing fighter more than makes up for it.</description>
   <gfx_store>particle_beam.webp</gfx_store>
-  <cpu>24</cpu>
  </general>
  <specific type="turret beam">
   <delay>1.5</delay>

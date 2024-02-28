@@ -25,7 +25,6 @@
   <energy_regen>2000</energy_regen>
  </health>
  <characteristics>
-  <cpu>40000</cpu>
   <mass>100000</mass>
   <fuel>1000000</fuel>
   <fuel_consumption>2000</fuel_consumption>

@@ -42,7 +42,6 @@
   <structure size="small" />
  </slots>
  <stats>
-  <cpu_mod>-50</cpu_mod>
   <engine_limit_rel>5</engine_limit_rel>
   <launch_rate>15</launch_rate>
   <launch_range>10</launch_range>

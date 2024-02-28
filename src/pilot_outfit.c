@@ -307,7 +307,7 @@ void pilot_undeployAll( Pilot *p )
 
 
 /**
- * @brief Adds an outfit to the pilot, ignoring CPU or other limits.
+ * @brief Adds an outfit to the pilot, ignoring limits.
  *
  * @note Does not call pilot_calcStats().
  *
@@ -380,16 +380,10 @@ int pilot_addOutfitTest( Pilot* pilot, const Outfit* outfit, PilotOutfitSlot *s,
                pilot->name, outfit->name );
       return -1;
    }
-   else if (pilot->cpu < outfit_cpu(outfit)) {
+   else if ((str = pilot_canEquip(pilot, s, outfit)) != NULL) {
       if (warn)
-         WARN( _("Pilot '%s': Not enough CPU to add outfit '%s'"),
-               pilot->name, outfit->name );
-      return -1;
-   }
-   else if ((str = pilot_canEquip( pilot, s, outfit)) != NULL) {
-      if (warn)
-         WARN( _("Pilot '%s': Trying to add outfit but %s"),
-               pilot->name, str );
+         WARN(_("Pilot '%s': Trying to add outfit but %s cannot be equipped"),
+               pilot->name, str);
       return -1;
    }
    return 0;
@@ -561,8 +555,6 @@ int pilot_reportSpaceworthy( Pilot *p, char *buf, int bufSize )
    /* Core Slots */
    SPACEWORTHY_CHECK(!pilot_slotsCheckRequired(p),
          _("Not All Core Slots are equipped"));
-   /* CPU. */
-   SPACEWORTHY_CHECK(p->cpu < 0, _("Insufficient CPU"));
 
    /* Movement. */
    SPACEWORTHY_CHECK(p->thrust < 0., _("Insufficient Thrust"));
@@ -920,8 +912,6 @@ void pilot_calcStats( Pilot* pilot )
    /* mass */
    pilot->solid->mass   = pilot->ship->mass;
    pilot->base_mass     = pilot->solid->mass;
-   /* cpu */
-   pilot->cpu           = 0.;
    /* movement */
    pilot->thrust_base   = pilot->ship->thrust;
    pilot->turn_base     = pilot->ship->turn;
@@ -961,9 +951,6 @@ void pilot_calcStats( Pilot* pilot )
       /* Outfit must exist. */
       if (o==NULL)
          continue;
-
-      /* Modify CPU. */
-      pilot->cpu -= outfit_cpu(o);
 
       /* Add mass. */
       pilot->mass_outfit += o->mass;
@@ -1049,9 +1036,6 @@ void pilot_calcStats( Pilot* pilot )
    /* Radar. */
    pilot->rdr_range *= s->rdr_range_mod;
    pilot->rdr_jump_range *= s->rdr_jump_range_mod;
-   /* cpu */
-   pilot->cpu_max = (int)floor((float)(pilot->ship->cpu+s->cpu_max) * s->cpu_mod);
-   pilot->cpu += pilot->cpu_max; /* CPU is negative, this just sets it so it's based off of cpu_max. */
    /* Misc. */
    pilot->cap_cargo *= s->cargo_mod;
    s->engine_limit *= s->engine_limit_rel;

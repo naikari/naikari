@@ -723,7 +723,6 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
          do {
             xml_onlyNodes(cur);
             xmlr_float(cur,"mass",temp->mass);
-            xmlr_float(cur,"cpu",temp->cpu);
             xmlr_float(cur, "fuel", temp->fuel);
             xmlr_float(cur, "fuel_consumption", temp->fuel_consumption);
             xmlr_float(cur, "fuel_regen", temp->fuel_regen);
@@ -830,8 +829,7 @@ static int ship_parse( Ship *temp, xmlNodePtr parent )
    MELEMENT(temp->fuel_consumption==0,"fuel_consumption");
    MELEMENT(temp->rdr_range==0,"rdr_range");
    MELEMENT(temp->rdr_range==0,"rdr_jump_range");
-   /*MELEMENT(temp->cap_cargo==0,"cargo");
-   MELEMENT(temp->cpu==0.,"cpu");*/
+   /*MELEMENT(temp->cap_cargo==0,"cargo");*/
 #undef MELEMENT
 
    return 0;

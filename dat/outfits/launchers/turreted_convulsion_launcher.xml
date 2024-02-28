@@ -11,7 +11,6 @@
 
 This launcher is mounted on a turret and has more ammo capacity than the standard launcher.</description>
   <gfx_store>turreted_convulsion_launcher.webp</gfx_store>
-  <cpu>14</cpu>
  </general>
  <specific type="turret launcher" secondary="1">
   <ammo>Convulsion Missile</ammo>

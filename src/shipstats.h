@@ -25,8 +25,6 @@ typedef enum ShipStatsType_ {
    SS_TYPE_NIL, /**< Invalid type. */
 
    /* Core stats. */
-   SS_TYPE_A_CPU_MAX, /**< Maximum CPU modifier. */
-   SS_TYPE_D_CPU_MOD, /**< CPU multiplier. */
    SS_TYPE_D_MASS, /**< Mass multiplier. */
    SS_TYPE_A_ENGINE_LIMIT, /**< Mass limit modifier. */
    SS_TYPE_D_ENGINE_LIMIT_REL, /**< Mass limit multiplier. */
@@ -195,8 +193,6 @@ typedef struct ShipStats_ {
 
    /* General */
    double cargo_mod;          /**< Cargo space multiplier. */
-   double cpu_mod;            /**< CPU multiplier. */
-   double cpu_max;            /**< CPU modifier. */
    double absorb;             /**< Flat damage absorption. */
 
    /* Freighter-type. */

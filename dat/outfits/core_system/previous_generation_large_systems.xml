@@ -10,7 +10,6 @@
   <gfx_store>misc02.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>700</cpu_max>
   <shield>1000</shield>
   <shield_regen>11</shield_regen>
   <energy>2500</energy>

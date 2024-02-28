@@ -11,7 +11,6 @@
   <gfx_store>core_system_cpu_m2.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>550</cpu_max>
   <shield>900</shield>
   <shield_regen>10</shield_regen>
   <shield_regen_mod>5</shield_regen_mod>

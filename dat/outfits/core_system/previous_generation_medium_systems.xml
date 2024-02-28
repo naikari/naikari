@@ -10,7 +10,6 @@
   <gfx_store>reactor01.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>220</cpu_max>
   <shield>310</shield>
   <shield_regen>8</shield_regen>
   <energy>600</energy>

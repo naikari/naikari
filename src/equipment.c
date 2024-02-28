@@ -291,7 +291,7 @@ static void equipment_getDim( unsigned int wid, int *w, int *h,
    if (cw != NULL)
       *cw = 142;
    if (ch != NULL)
-      *ch = 280;
+      *ch = 250;
 
    /* Calculate button dimensions. */
    if (bw != NULL)
@@ -623,24 +623,11 @@ static void equipment_renderMisc( double bx, double by, double bw, double bh, vo
    /* Render ship graphic. */
    equipment_renderShip( bx, by, bw, bh, bx, by, p );
 
-   /* Render CPU and energy bars. */
+   /* Render mass limit bar. */
    w = 120;
    h = 20;
    x = bx + 10;
    y = by + bh - 48 - 140;
-
-   gl_printMidRaw(&gl_smallFont, w,
-      x, y + h + 10., &cFontWhite, -1, _("CPU Free"));
-
-   percent = (p->cpu_max > 0) ? CLAMP(0., 1., (float)p->cpu / (float)p->cpu_max) : 0.;
-   toolkit_drawRect(x, y - 2, w * percent, h + 4, &cDarkCyan, NULL);
-   toolkit_drawRect(x + w * percent, y - 2, w * (1.-percent), h + 4,
-         &cBlack, NULL);
-   gl_printMid( &gl_smallFont, w,
-      x, y + h / 2. - gl_smallFont.h / 2.,
-      &cFontWhite, "%d / %d", p->cpu, p->cpu_max );
-
-   y -= h + 10;
 
    gl_printMidRaw(&gl_smallFont, w,
       x, y, &cFontWhite, -1., _("Mass Limit Left"));

@@ -341,8 +341,7 @@ static int outfitL_typeBroad( lua_State *L )
  */
 static int outfitL_cpu( lua_State *L )
 {
-   const Outfit *o = luaL_validoutfit(L,1);
-   lua_pushnumber(L, outfit_cpu(o));
+   lua_pushnumber(L, 0);
    return 1;
 }
 

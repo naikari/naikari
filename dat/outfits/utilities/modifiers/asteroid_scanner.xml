@@ -8,7 +8,6 @@
   <description>Any scanner can give the mass, position and velocity of an asteroid. But miners prefer to know the asteroid's value. For that purpose, some miners add a scanner array such as this one, able to deduce the surface composition from spectroscopy and infer the internal composition via inverse electrical impedance.</description>
   <gfx_store>misc04.webp</gfx_store>
   <limit>Scanner</limit>
-  <cpu>0</cpu>
  </general>
  <specific type="modification">
   <misc_asteroid_scan/>

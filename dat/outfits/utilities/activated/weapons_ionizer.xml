@@ -8,7 +8,6 @@
   <description>The weapons ionizer works on the principle of diverting massive amounts of weapon energy to an ion field generator. While energy usage increases and damage output significantly decreases, the ion field allows conventional weapons to deal ionizing damage while the outfit is active.</description>
   <gfx_store>hive_combat_ai.webp</gfx_store>
   <limit>Ionizer</limit>
-  <cpu>1</cpu>
  </general>
  <specific type="modification" group="9">
   <active />

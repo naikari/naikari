@@ -9,7 +9,6 @@
   <price>2000000</price>
   <description>This tremendously massive, high-power variant of the Heavy Ripper Turret is far too massive and uses far too much processing power to fit on any ship, but is incredibly powerful. It is typically mounted onto armed stations as a defensive weapon.</description>
   <gfx_store>ripperturret.webp</gfx_store>
-  <cpu>8000</cpu>
   <rarity>6</rarity>
  </general>
  <specific type="turret bolt">

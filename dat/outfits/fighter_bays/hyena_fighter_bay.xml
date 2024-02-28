@@ -8,7 +8,6 @@
   <price>400000</price>
   <gfx_store>hyena_fighter.webp</gfx_store>
   <description>This fighter bay allows your ship to carry three Hyena fighters. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
-  <cpu>400</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Hyena Fighter</ammo>

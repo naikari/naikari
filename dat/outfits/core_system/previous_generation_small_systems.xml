@@ -10,7 +10,6 @@
   <gfx_store>apu.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>10</cpu_max>
   <shield>110</shield>
   <shield_regen>4</shield_regen>
   <energy>100</energy>

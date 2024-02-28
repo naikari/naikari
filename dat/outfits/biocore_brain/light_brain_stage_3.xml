@@ -12,7 +12,6 @@
   <gfx_store>organic_core_s2.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>26</cpu_max>
   <shield>273</shield>
   <shield_regen>8.67</shield_regen>
   <energy>356</energy>

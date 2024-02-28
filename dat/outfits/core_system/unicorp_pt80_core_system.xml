@@ -11,7 +11,6 @@
   <gfx_store>core_system_basic_s2.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>80</cpu_max>
   <shield>225</shield>
   <shield_regen>7</shield_regen>
   <energy>300</energy>

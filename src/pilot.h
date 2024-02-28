@@ -233,8 +233,6 @@ typedef struct Pilot_ {
    Trail_spfx** trail;  /**< Array of pointers to pilot's trails. */
 
    /* Properties. */
-   int cpu;       /**< Amount of CPU the pilot has left. */
-   int cpu_max;   /**< Maximum amount of CPU the pilot has. */
    double cap_cargo; /**< Pilot's cargo capacity. */
 
    /* Movement */

@@ -11,7 +11,6 @@
   <gfx_store>core_system_refined_m2.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cpu_max>420</cpu_max>
   <shield>1000</shield>
   <shield_regen>11</shield_regen>
   <energy>1600</energy>

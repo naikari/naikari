@@ -11,7 +11,6 @@
   <priority>3</priority>
  </general>
  <specific type="modification">
-  <cpu_max>750</cpu_max>
   <shield>1700</shield>
   <shield_regen>19</shield_regen>
   <energy>2875</energy>

@@ -9,7 +9,6 @@
   <price>17500</price>
   <description>A pair of laser cannons mounted on a rotating turret. It functions just like a Laser Cannon, but automatically turns to aim at the pilot the player is targeting, providing excellent defensive capabilities for ships that would struggle to turn and face their targets manually.</description>
   <gfx_store>laserturret.webp</gfx_store>
-  <cpu>24</cpu>
  </general>
  <specific type="turret bolt">
   <gfx>laser1M.png</gfx>

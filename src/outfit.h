@@ -320,7 +320,6 @@ typedef struct Outfit_ {
    OutfitSlot slot;  /**< Slot the outfit fits into. */
    char *license;    /**< Licenses needed to buy it. */
    double mass;      /**< How much weapon capacity is needed. */
-   double cpu;       /**< CPU usage. */
    char *limit;      /**< Name to limit to one per ship (ignored if NULL). */
 
    /* Store stuff */
@@ -416,7 +415,6 @@ Outfit* outfit_ammo( const Outfit* o );
 int outfit_amount( const Outfit* o );
 double outfit_energy( const Outfit* o );
 double outfit_heat( const Outfit* o );
-double outfit_cpu( const Outfit* o );
 double outfit_range( const Outfit* o );
 double outfit_speed( const Outfit* o );
 double outfit_spin( const Outfit* o );

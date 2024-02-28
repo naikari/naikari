@@ -671,14 +671,7 @@ double outfit_heat( const Outfit* o )
    else if (outfit_isBeam(o)) return o->u.bem.heat;
    return -1;
 }
-/**
- * @brief Gets the outfit's cpu usage.
- *    @param o Outfit to get information from.
- */
-double outfit_cpu( const Outfit* o )
-{
-   return FABS(o->cpu);
-}
+
 /**
  * @brief Gets the outfit's range.
  *    @param o Outfit to get information from.
@@ -1295,10 +1288,6 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    l = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
          "%s\n", _(outfit_getType(temp)));
 
-   if (outfit_cpu(temp) != 0.)
-      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%.0f TFLOPS CPU Usage\n"), outfit_cpu(temp));
-
    if (temp->u.blt.dmg.penetration > 0.)
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%G%% Penetration\n"), temp->u.blt.dmg.penetration*100.);
@@ -1374,7 +1363,6 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
    MELEMENT(temp->u.blt.range==0,"range");
    MELEMENT(temp->u.blt.dmg.damage==0,"damage");
    MELEMENT(temp->u.blt.energy==0.,"energy");
-   MELEMENT(temp->cpu<=0., "cpu");
    MELEMENT(temp->u.blt.falloff > temp->u.blt.range,"falloff");
    MELEMENT(temp->u.blt.heatup==0.,"heatup");
    if ((temp->u.blt.swivel > 0.) || outfit_isTurret(temp)) {
@@ -1501,10 +1489,6 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
    l = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
          "%s\n", _(outfit_getType(temp)));
 
-   if (outfit_cpu(temp) != 0.)
-      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%.0f TFLOPS CPU Usage\n"), outfit_cpu(temp));
-
    if (temp->u.bem.dmg.penetration > 0.)
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%G%% Penetration\n"), temp->u.bem.dmg.penetration*100.);
@@ -1574,7 +1558,6 @@ if (o) WARN( _("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< 
    MELEMENT(temp->u.bem.range==0,"range");
    MELEMENT(temp->u.bem.turn == 0., "turn");
    MELEMENT(temp->u.bem.energy==0.,"energy");
-   MELEMENT(temp->cpu<=0., "cpu");
    MELEMENT(temp->u.bem.dmg.damage==0,"damage");
    MELEMENT(temp->u.bem.heatup==0.,"heatup");
 #undef MELEMENT
@@ -1634,7 +1617,6 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
 if (o) WARN(_("Outfit '%s' missing '%s' element"), temp->name, s) /**< Define to help check for data errors. */
    MELEMENT(temp->u.lau.ammo_name==NULL,"ammo");
    MELEMENT(temp->u.lau.delay==0.,"delay");
-   MELEMENT(temp->cpu<=0., "cpu");
    MELEMENT(temp->u.lau.amount==0,"amount");
    MELEMENT(temp->u.lau.reload_time==0.,"reload_time");
    if ((temp->u.lau.swivel > 0.) || (temp->type == OUTFIT_TYPE_TURRET_LAUNCHER)) {
@@ -1780,12 +1762,6 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
    MELEMENT(temp->u.amm.dmg.damage==0,"damage");
    /*MELEMENT(temp->u.amm.energy==0.,"energy");*/
 #undef MELEMENT
-
-#define EXELEMENT(o,s) \
-if (o) WARN(_("Outfit '%s' should not have '%s' element"), temp->name, s)
-/**< Define to help check for data errors. */
-   EXELEMENT(temp->cpu!=0., "cpu");
-#undef EXELEMENT
 }
 
 
@@ -1891,10 +1867,6 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
          (temp->u.mod.active || temp->u.mod.lua_ontoggle != LUA_NOREF)
             ? _("\nActivated Outfit") : "" );
 
-   if (outfit_cpu(temp) != 0)
-      i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
-            _("\n%.0f TFLOPS CPU Usage"), outfit_cpu(temp));
-
    if (temp->limit != NULL)
       i += scnprintf( &temp->desc_short[i], OUTFIT_SHORTDESC_MAX-i,
             _("\n%s (limit 1 per ship)"), _(temp->limit) );
@@ -1968,10 +1940,6 @@ static void outfit_parseSAfterburner( Outfit* temp, const xmlNodePtr parent )
          "Activated Outfit\n"),
          _(outfit_getType(temp)));
 
-   if (outfit_cpu(temp) != 0.)
-      i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
-            _("%.0f TFLOPS CPU Usage\n"), outfit_cpu(temp));
-
    if (temp->limit != NULL)
       i += scnprintf(&temp->desc_short[i], OUTFIT_SHORTDESC_MAX - i,
             _("%s (limit 1 per ship)\n"),
@@ -2014,7 +1982,6 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
    MELEMENT(temp->u.afb.thrust==0.,"thrust");
    MELEMENT(temp->u.afb.speed==0.,"speed");
    MELEMENT(temp->u.afb.energy==0.,"energy");
-   MELEMENT(temp->cpu<=0., "cpu");
    MELEMENT(temp->u.afb.mass_limit==0.,"mass_limit");
    MELEMENT(temp->u.afb.heatup==0.,"heatup");
 #undef MELEMENT
@@ -2062,12 +2029,10 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
    temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
    snprintf( temp->desc_short, OUTFIT_SHORTDESC_MAX,
          _("%s\n"
-         "%.0f TFLOPS CPU Usage\n"
          "%.2f LPS Launch Rate\n"
          "%.1f s/fighter Rebuild Time\n"
          "Holds %d %s"),
          _(outfit_getType(temp)),
-         outfit_cpu(temp),
          1. / temp->u.bay.delay,
          temp->u.bay.reload_time,
          temp->u.bay.amount, _(temp->u.bay.ammo_name) );
@@ -2076,7 +2041,6 @@ static void outfit_parseSFighterBay( Outfit *temp, const xmlNodePtr parent )
 if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< Define to help check for data errors. */
    MELEMENT(temp->u.bay.delay==0,"delay");
    MELEMENT(temp->u.bay.reload_time==0.,"reload_time");
-   MELEMENT(temp->cpu<=0., "cpu");
    MELEMENT(temp->u.bay.ammo_name==NULL,"ammo");
    MELEMENT(temp->u.bay.amount==0,"amount");
 #undef MELEMENT
@@ -2113,12 +2077,6 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s)
 /**< Define to help check for data errors. */
    MELEMENT(temp->u.fig.ship==NULL, "ship");
 #undef MELEMENT
-
-#define EXELEMENT(o,s) \
-if (o) WARN(_("Outfit '%s' should not have '%s' element"), temp->name, s)
-/**< Define to help check for data errors. */
-   EXELEMENT(temp->cpu!=0., "cpu");
-#undef EXELEMENT
 }
 
 /**
@@ -2215,7 +2173,6 @@ static void outfit_parseSMap( Outfit *temp, const xmlNodePtr parent )
 if (o) WARN(_("Outfit '%s' should not have '%s' element"), temp->name, s)
 /**< Define to help check for data errors. */
    EXELEMENT(temp->mass!=0., "mass");
-   EXELEMENT(temp->cpu!=0., "cpu");
 #undef EXELEMENT
 }
 
@@ -2249,7 +2206,6 @@ static void outfit_parseSLocalMap( Outfit *temp, const xmlNodePtr parent )
 if (o) WARN(_("Outfit '%s' should not have '%s' element"), temp->name, s)
 /**< Define to help check for data errors. */
    EXELEMENT(temp->mass!=0., "mass");
-   EXELEMENT(temp->cpu!=0., "cpu");
 #undef EXELEMENT
 }
 
@@ -2283,7 +2239,6 @@ static void outfit_parseSLicense( Outfit *temp, const xmlNodePtr parent )
 if (o) WARN(_("Outfit '%s' should not have '%s' element"), temp->name, s)
 /**< Define to help check for data errors. */
    EXELEMENT(temp->mass!=0., "mass");
-   EXELEMENT(temp->cpu!=0., "cpu");
 #undef EXELEMENT
 }
 
@@ -2337,7 +2292,6 @@ static int outfit_parse( Outfit* temp, const char* file )
             xmlr_int(cur,"rarity",temp->rarity);
             xmlr_strd(cur,"license",temp->license);
             xmlr_float(cur,"mass",temp->mass);
-            xmlr_float(cur,"cpu",temp->cpu);
             xmlr_long(cur,"price",temp->price);
             xmlr_strd(cur,"limit",temp->limit);
             xmlr_strd(cur,"description",temp->description);
@@ -2698,10 +2652,6 @@ static void outfit_launcherDesc( Outfit* o )
    l = scnprintf(o->desc_short, OUTFIT_SHORTDESC_MAX, _("%s (%s)\n"),
          _(outfit_getType(o)),
          outfit_isSeeker(o) ? _("Seeker") : _("Unguided"));
-   
-   if (outfit_cpu(o) != 0.)
-      l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%.0f TFLOPS CPU Usage\n"), outfit_cpu(o));
 
    if (o->u.lau.lockon > 0.)
       l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,

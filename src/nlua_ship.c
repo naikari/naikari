@@ -520,8 +520,7 @@ static int shipL_fitsSlot( lua_State *L )
  */
 static int shipL_CPU( lua_State *L )
 {
-   const Ship *s = luaL_validship(L,1);
-   lua_pushnumber(L, s->cpu);
+   lua_pushnumber(L, 0);
    return 1;
 }
 

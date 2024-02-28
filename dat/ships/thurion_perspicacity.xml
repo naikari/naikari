@@ -42,7 +42,6 @@
   <structure size="small" />
  </slots>
  <stats>
-  <cpu_mod>10</cpu_mod>
   <rdr_range_mod>240</rdr_range_mod>
   <rdr_jump_range_mod>125</rdr_jump_range_mod>
   <rdr_enemy_range_mod>-80</rdr_enemy_range_mod>

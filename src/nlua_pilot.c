@@ -3494,8 +3494,6 @@ lua_rawset( L, -3 )
  *
  * Some of the stats are:<br />
  * <ul>
- *  <li> cpu </li>
- *  <li> cpu_max </li>
  *  <li> fuel </li>
  *  <li> fuel_max </li>
  *  <li> fuel_consumption </li>
@@ -3531,8 +3529,6 @@ static int pilotL_getStats(lua_State *L)
    /* Create table with information. */
    lua_newtable(L);
    /* Core. */
-   PUSH_INT(L, "cpu", p->cpu);
-   PUSH_INT(L, "cpu_max", p->cpu_max);
    PUSH_DOUBLE(L, "fuel", p->fuel);
    PUSH_DOUBLE(L, "fuel_max", p->fuel_max);
    PUSH_DOUBLE(L, "fuel_consumption", p->fuel_consumption);

@@ -8,7 +8,6 @@
   <price>80000</price>
   <description>The Medusa class EMP cruise missile is a nonlethal weapon designed to knock out a ship's internal systems, rendering it harmless and ready for boarding. The warhead does only limited damage, so even lightly armored targets can theoretically be disabled with this weapon. However, the Medusa is not especially agile and works best against medium-sized targets.</description>
   <gfx_store>seekerlauncher.webp</gfx_store>
-  <cpu>6</cpu>
  </general>
  <specific type="launcher" secondary="1">
   <ammo>Medusa Missile</ammo>

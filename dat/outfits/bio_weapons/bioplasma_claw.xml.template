@@ -9,7 +9,6 @@
   <price>{price}</price>
   <description>A more powerful cousin of the BioPlasma Stinger, the BioPlasma Claw uses more precious brain capacity, but features markedly increased damage output in return. {potential}</description>
   <gfx_store>organic_plasma_s2.webp</gfx_store>
-  <cpu>8</cpu>
  </general>
  <specific type="bolt">
   <gfx>plasma2.png</gfx>

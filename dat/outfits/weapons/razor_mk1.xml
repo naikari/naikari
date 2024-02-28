@@ -7,7 +7,6 @@
   <price>9000</price>
   <description>Razors fire concentrated pockets of fast, high energy ions that are very effective at draining shields, but have less of an effect on a ship's armor. Razor weaponry is particularly popular in the military of House Sirius, which developed the technology, but it is also highly sought after by merchant ships due to how readily a sudden loss of shields scares away would-be thieves.</description>
   <gfx_store>razor1.webp</gfx_store>
-  <cpu>5</cpu>
  </general>
  <specific type="bolt">
   <gfx>razorS.png</gfx>

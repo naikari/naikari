@@ -622,10 +622,6 @@ static void map_system_array_update( unsigned int wid, char* str ) {
             buf_price,
             buf_license);
 
-      if (ship->cpu != 0.)
-         l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nCPU:#0 %.0f TFLOPS"), ship->cpu);
-
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
             _("\n#nMass:#0 %.0f kt"), ship->mass);
 

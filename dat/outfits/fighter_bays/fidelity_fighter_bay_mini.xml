@@ -9,7 +9,6 @@
   <price>470000</price>
   <gfx_store>fidelity_fighter.webp</gfx_store>
   <description>This miniaturized fighter bay allows your ship to carry two Sirius Fidelity fighters, blessed by Sirichana himself. It comes with all the equipment required for the maintenance and flight of the fighters.</description>
-  <cpu>110</cpu>
  </general>
  <specific type="fighter bay" secondary="1">
   <ammo>Fidelity Fighter</ammo>

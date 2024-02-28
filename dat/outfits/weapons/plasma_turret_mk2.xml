@@ -9,7 +9,6 @@
   <price>65000</price>
   <description>The heavier Mark 2 Plasma Turret sees a lot more use than its smaller counterpart. It is often found on Destroyers as a supplementary weapon, particularly those deployed in task forces designed to take down larger vessels.</description>
   <gfx_store>plasma_turret2.webp</gfx_store>
-  <cpu>50</cpu>
  </general>
  <specific type="turret bolt">
   <gfx>plasma3.png</gfx>

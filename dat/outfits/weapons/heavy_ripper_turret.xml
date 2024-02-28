@@ -9,7 +9,6 @@
   <price>95000</price>
   <description>While limited in range compared to true capital-class weaponry, the Heavy Ripper Turret's pair of heavy ripper cannons delivers exceptional firepower for Imperial Destroyers and Cruisers.</description>
   <gfx_store>ripperturret.webp</gfx_store>
-  <cpu>75</cpu>
  </general>
  <specific type="turret bolt">
   <gfx>ripperM.png</gfx>

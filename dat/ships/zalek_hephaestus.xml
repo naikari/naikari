@@ -54,7 +54,6 @@
   <structure size="large" />
  </slots>
  <stats>
-  <cpu_mod>20</cpu_mod>
   <speed_mod>-20</speed_mod>
   <turn_mod>-20</turn_mod>
   <thrust_mod>-50</thrust_mod>

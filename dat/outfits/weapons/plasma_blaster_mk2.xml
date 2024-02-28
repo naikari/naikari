@@ -9,7 +9,6 @@
   <price>14000</price>
   <description>The Plasma Blaster MK2 is a high-powered version of the Plasma Blaster, powerful enough to blow all but the heaviest pirate ships out of the sky. Its power is substantial enough that it would even be used by the Soromid military if it weren't for their preference for purpose-built organic weaponry.</description>
   <gfx_store>plasma2.webp</gfx_store>
-  <cpu>24</cpu>
  </general>
  <specific type="bolt">
   <gfx>plasma2.png</gfx>

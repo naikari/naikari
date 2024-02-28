@@ -118,7 +118,6 @@ typedef struct Ship_ {
 
    /* characteristics */
    double mass;             /**< Mass ship has. */
-   double cpu;              /**< Amount of CPU the ship has. */
    double fuel; /**< How much fuel by default. */
    double fuel_consumption; /**< Fuel consumption by engine. */
    double fuel_regen; /**< Fuel regeneration in kL/s */

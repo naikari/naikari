@@ -234,10 +234,6 @@ void shipyard_update( unsigned int wid, char* str )
          buf_credits,
          buf_license);
 
-   if (ship->cpu != 0.)
-      l += scnprintf(&buf[l], sizeof(buf) - l,
-            p_("ship_cpu", "\n#nCPU:#0 %.0f TFLOPS"), ship->cpu);
-
    l += scnprintf(&buf[l], sizeof(buf) - l,
          p_("ship_mass", "\n#nMass:#0 %G kt"), ship->mass);
 

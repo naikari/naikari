@@ -9,7 +9,6 @@
   <price>10000</price>
   <description>The Vulcan Gun improves over the Gauss Gun with increased range and damage, achieved by using a heavier caliber ammunition. A skilled pilot can wreak some serious havoc even to medium-sized vessels with a pair of Vulcan Guns installed on their ship.</description>
   <gfx_store>vulcangun.webp</gfx_store>
-  <cpu>24</cpu>
  </general>
  <specific type="bolt">
   <gfx>gatling.png</gfx>

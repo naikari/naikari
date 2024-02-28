@@ -94,12 +94,6 @@ static const ShipStatsLookup ss_lookup[] = {
    N_ELEM(SS_TYPE_NIL),
 
    /* Core stats. */
-   A_ELEM(SS_TYPE_A_CPU_MAX, cpu_max,
-      N_("%+G TFLOPS CPU Capacity"),
-      NULL),
-   D_ELEM(SS_TYPE_D_CPU_MOD, cpu_mod,
-      N_("%+G%% CPU Capacity"),
-      NULL),
    DI_ELEM(SS_TYPE_D_MASS, mass_mod,
       N_("%+G%% Ship Mass"),
       NULL),
