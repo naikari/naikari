@@ -1201,10 +1201,10 @@ void player_think( Pilot* pplayer, const double dt )
       /*
        * If the player has reverse thrusters, fire those.
        */
-      if (player.p->stats.misc_reverse_thrust)
-         player_accel( -PILOT_REVERSE_THRUST );
+      if (player.p->stats.reverse_thrust > 0.)
+         player_accel(-player.p->stats.reverse_thrust);
       else if (!facing) {
-         pilot_face( pplayer, VANGLE(player.p->solid->vel) + M_PI );
+         pilot_face(pplayer, VANGLE(player.p->solid->vel) + M_PI);
          /* Disable turning. */
          facing = 1;
       }

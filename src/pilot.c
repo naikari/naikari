@@ -780,7 +780,7 @@ int pilot_brake( Pilot *p )
    dir    = VANGLE(p->solid->vel) + M_PI;
    thrust = 1.;
 
-   if (p->stats.misc_reverse_thrust) {
+   if (p->stats.reverse_thrust) {
       /* Calculate the time to face backward and apply forward thrust. */
       diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel) + M_PI);
       btime = ABS(diff) / p->turn + MIN( VMOD(p->solid->vel), p->speed ) /
@@ -788,12 +788,13 @@ int pilot_brake( Pilot *p )
 
       /* Calculate the time to face forward and apply reverse thrust. */
       diff = angle_diff(p->solid->dir, VANGLE(p->solid->vel));
-      ftime = ABS(diff) / p->turn + MIN( VMOD(p->solid->vel), p->speed ) /
-            (p->thrust / p->solid->mass * PILOT_REVERSE_THRUST);
+      ftime = ABS(diff)/p->turn
+            + MIN(VMOD(p->solid->vel), p->speed)
+               / (p->thrust*p->stats.reverse_thrust / p->solid->mass);
 
       if (btime > ftime) {
-         dir    = VANGLE(p->solid->vel);
-         thrust = -PILOT_REVERSE_THRUST;
+         dir = VANGLE(p->solid->vel);
+         thrust = -p->stats.reverse_thrust;
       }
    }
 
@@ -838,16 +839,17 @@ double pilot_brakeDist( Pilot *p, Vector2d *pos )
    dist  = (ABS(bdiff) / p->turn) * speed +
          (speed / (p->thrust / p->solid->mass)) * (speed / 2.);
 
-   if (p->stats.misc_reverse_thrust) {
+   if (p->stats.reverse_thrust > 0.) {
       /* Calculate the time to face forward and apply reverse thrust. */
       fdiff = angle_diff(p->solid->dir, vang);
-      ftime = ABS(fdiff) / p->turn + speed /
-            (p->thrust / p->solid->mass * PILOT_REVERSE_THRUST);
+      ftime = ABS(fdiff)/p->turn
+            + speed / (p->thrust*p->stats.reverse_thrust / p->solid->mass);
 
       /* Faster to use reverse thrust. */
       if (ftime < btime)
-         dist = (ABS(fdiff) / p->turn) * speed + (speed /
-               (p->thrust / p->solid->mass * PILOT_REVERSE_THRUST)) * (speed / 2.);
+         dist = (ABS(fdiff)/p->turn) * speed
+               + (speed / (p->thrust*p->stats.reverse_thrust / p->solid->mass))
+                  * (speed / 2.);
    }
 
    if (pos != NULL)

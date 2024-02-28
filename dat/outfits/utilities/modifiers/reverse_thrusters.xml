@@ -10,7 +10,7 @@
   <limit>Reverse Thrusters</limit>
  </general>
  <specific type="modification">
-  <misc_reverse_thrust/>
+  <reverse_thrust>40</reverse_thrust>
   <energy_regen_malus>3</energy_regen_malus>
  </specific>
 </outfit>

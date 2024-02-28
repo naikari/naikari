@@ -67,7 +67,7 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_TURN_MOD, /**< Turn multiplier. */
    SS_TYPE_A_THRUST, /**< Acceleration modifier. */
    SS_TYPE_D_THRUST_MOD, /**< Acceleration multiplier. */
-   SS_TYPE_B_REVERSE_THRUST, /**< Reverse rather than turning on reverse. */
+   SS_TYPE_P_REVERSE_THRUST, /**< Reverse acceleration modifier. */
    SS_TYPE_D_TIME_MOD, /**< Time constant multiplier. */
    SS_TYPE_D_TIME_SPEEDUP, /**< Makes the pilot operate at a higher dt. */
 
@@ -173,6 +173,7 @@ typedef struct ShipStats_ {
    double speed_mod;          /**< Speed multiplier. */
    double turn_mod;           /**< Turn multiplier. */
    double thrust_mod;         /**< Thrust multiplier. */
+   double reverse_thrust; /**< Reverse thrust modifier. */
 
    /* Health. */
    double energy;             /**< Energy modifier. */
@@ -250,7 +251,6 @@ typedef struct ShipStats_ {
    double nebu_absorb_shield; /**< Shield nebula resistance. */
    double nebu_absorb_armour; /**< Armour nebula resistance. */
    int misc_instant_jump;    /**< Do not require brake or chargeup to jump. */
-   int misc_reverse_thrust;  /**< Slows down the ship instead of turning it around. */
    int misc_asteroid_scan;   /**< Able to scan asteroids. */
    double fuel; /**< Maximum fuel modifier. */
    double fuel_regen; /**< Fuel regeneration modifier. */
