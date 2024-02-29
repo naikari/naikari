@@ -32,17 +32,19 @@ typedef enum ShipStatsType_ {
    /* Forward weapons. */
    SS_TYPE_D_FORWARD_DAMAGE, /**< Forward damage multiplier. */
    SS_TYPE_D_FORWARD_FIRERATE, /**< Forward fire rate multiplier. */
+   SS_TYPE_D_FORWARD_RANGE, /**< Forward range multiplier. */
    SS_TYPE_D_FORWARD_ENERGY, /**< Forward energy usage multiplier. */
    SS_TYPE_D_FORWARD_HEAT, /**< Forward heat generation multiplier. */
-   SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
+   SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Forward damage as disable modifier. */
 
    /* Turrets. */
    SS_TYPE_B_TURRET_CONVERSION, /**< Convert all weapons to turrets. */
    SS_TYPE_D_TURRET_DAMAGE, /**< Turret damage multiplier. */
    SS_TYPE_D_TURRET_FIRERATE, /**< Turret fire rate multiplier. */
+   SS_TYPE_D_TURRET_RANGE, /**< Forward range multiplier. */
    SS_TYPE_D_TURRET_ENERGY, /**< Turret energy usage multiplier. */
    SS_TYPE_D_TURRET_HEAT, /**< Turret heat generation multiplier. */
-   SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
+   SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Turret damage as disable modifier. */
 
    /* Launchers. */
    SS_TYPE_D_LAUNCH_DAMAGE, /**< Launcher damage multiplier. */
@@ -50,7 +52,7 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_LAUNCH_RANGE, /**< Launcher range multiplier. */
    SS_TYPE_D_AMMO_CAPACITY, /**< Launcher capacity multiplier. */
    SS_TYPE_D_LAUNCH_RELOAD, /**< Launcher reload rate multiplier. */
-   SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, /**< Damage converted to disable. */
+   SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, /**< Launcher damage as disable modifier. */
 
    /* Fighter bays. */
    SS_TYPE_D_FBAY_DAMAGE, /**< Fighter bay fighter damage multiplier. */
@@ -166,6 +168,27 @@ typedef struct ShipStatList_ {
  *  1 or 0 values wher 1 indicates property is set.
  */
 typedef struct ShipStats_ {
+   /* Core stats. */
+   double mass_mod; /**< Mass multiplier. */
+   double engine_limit; /**< Engine limit modifier. */
+   double engine_limit_rel; /**< Engine limit multiplier. */
+
+   /* Forward weapons. */
+   double fwd_damage; /**< Forward damage multiplier. */
+   double fwd_firerate; /**< Forward fire rate multiplier. */
+   double fwd_range; /**< Forward range multiplier. */
+   double fwd_energy; /**< Forward energy usage multiplier. */
+   double fwd_heat; /**< Forward heat generation multiplier. */
+   double fwd_dam_as_dis; /**< Forward damage as disable modifier. */
+
+   /* Turrets. */
+   double tur_damage; /**< Turret damage multiplier. */
+   double tur_firerate; /**< Turret fire rate multiplier. */
+   double tur_range; /**< Turret range multiplier. */
+   double tur_energy; /**< Turret energy usage multiplier. */
+   double tur_heat; /**< Turret heat generation multiplier. */
+   double tur_dam_as_dis; /**< Turret damage as disable modifier. */
+
    /* Movement. */
    double speed;              /**< Speed modifier. */
    double turn;               /**< Turn modifier. */
@@ -211,7 +234,6 @@ typedef struct ShipStats_ {
    /* Military type. */
    double heat_dissipation; /**< Global ship dissipation. */
    double stress_dissipation; /**< Global stress dissipation. */
-   double mass_mod;        /**< Relative mass modification. */
 
    /* Launchers. */
    double launch_rate;     /**< Fire rate of launchers. */
@@ -228,24 +250,6 @@ typedef struct ShipStats_ {
    double fbay_capacity;   /**< Capacity of fighter bays. */
    double fbay_rate;       /**< Launch rate of fighter bays. */
    double fbay_reload;     /**< Reload rate of fighters. */
-
-   /* Fighter/Corvette type. */
-   double fwd_heat;        /**< Heat of forward mounts. */
-   double fwd_damage;      /**< Damage of forward mounts. */
-   double fwd_firerate;    /**< Rate of fire of forward mounts. */
-   double fwd_energy;      /**< Consumption rate of forward mounts. */
-   double fwd_dam_as_dis;  /**< Damage as disable for forward mounts. */
-
-   /* Destroyer/Cruiser type. */
-   double tur_heat;        /**< Heat of turrets. */
-   double tur_damage;      /**< Damage of turrets. */
-   double tur_firerate;    /**< Rate of fire of turrets. */
-   double tur_energy;      /**< Consumption rate of turrets. */
-   double tur_dam_as_dis;  /**< Damage as disable for turrets. */
-
-   /* Engine limits. */
-   double engine_limit_rel; /**< Engine limit modifier. */
-   double engine_limit;     /**< Engine limit. */
 
    /* Misc. */
    double nebu_absorb_shield; /**< Shield nebula resistance. */
