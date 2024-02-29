@@ -1508,6 +1508,8 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
 {
    Vector2d v;
    double mass, rdir;
+   double range;
+   double speed;
    Pilot *pilot_target;
    double acc;
    glTexture *gfx;
@@ -1526,12 +1528,18 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    acc =  HEAT_WORST_ACCURACY * pilot_heatAccuracyMod( T );
 
    /* Stat modifiers. */
+   range = outfit->u.blt.range;
+   speed = outfit->u.blt.speed;
    if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
          || parent->stats.turret_conversion) {
+      range *= parent->stats.tur_range;
+      speed *= parent->stats.tur_speed;
       w->dam_mod *= parent->stats.tur_damage;
       w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
    }
    else {
+      range *= parent->stats.fwd_range;
+      speed *= parent->stats.fwd_speed;
       w->dam_mod *= parent->stats.fwd_damage;
       w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
    }
@@ -1546,15 +1554,13 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
 
    mass = 1; /* Lasers are presumed to have unitary mass */
    v = *vel;
-   vect_cadd( &v, outfit->u.blt.speed*cos(rdir), outfit->u.blt.speed*sin(rdir));
-   w->timer = outfit->u.blt.range / outfit->u.blt.speed;
-   w->falloff = w->timer - outfit->u.blt.falloff / outfit->u.blt.speed;
-   w->solid = solid_create( mass, rdir, pos, &v, SOLID_UPDATE_EULER );
-   w->voice = sound_playPos( w->outfit->u.blt.sound,
-         w->solid->pos.x,
-         w->solid->pos.y,
-         w->solid->vel.x,
-         w->solid->vel.y);
+   vect_cadd(&v, speed * cos(rdir), speed * sin(rdir));
+   w->timer = range / speed;
+   w->falloff = w->timer - outfit->u.blt.falloff / speed;
+   w->solid = solid_create(mass, rdir, pos, &v, SOLID_UPDATE_EULER);
+   w->voice = sound_playPos(w->outfit->u.blt.sound,
+         w->solid->pos.x, w->solid->pos.y,
+         w->solid->vel.x, w->solid->vel.y);
 
    /* Set facing direction. */
    gfx = outfit_gfx( w->outfit );

@@ -33,6 +33,7 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_FORWARD_DAMAGE, /**< Forward damage multiplier. */
    SS_TYPE_D_FORWARD_FIRERATE, /**< Forward fire rate multiplier. */
    SS_TYPE_D_FORWARD_RANGE, /**< Forward range multiplier. */
+   SS_TYPE_D_FORWARD_SPEED, /**< Forward bullet speed multiplier. */
    SS_TYPE_D_FORWARD_ENERGY, /**< Forward energy usage multiplier. */
    SS_TYPE_D_FORWARD_HEAT, /**< Forward heat generation multiplier. */
    SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Forward damage as disable modifier. */
@@ -41,7 +42,8 @@ typedef enum ShipStatsType_ {
    SS_TYPE_B_TURRET_CONVERSION, /**< Convert all weapons to turrets. */
    SS_TYPE_D_TURRET_DAMAGE, /**< Turret damage multiplier. */
    SS_TYPE_D_TURRET_FIRERATE, /**< Turret fire rate multiplier. */
-   SS_TYPE_D_TURRET_RANGE, /**< Forward range multiplier. */
+   SS_TYPE_D_TURRET_RANGE, /**< Turret range multiplier. */
+   SS_TYPE_D_TURRET_SPEED, /**< Turret bullet speed multiplier. */
    SS_TYPE_D_TURRET_ENERGY, /**< Turret energy usage multiplier. */
    SS_TYPE_D_TURRET_HEAT, /**< Turret heat generation multiplier. */
    SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Turret damage as disable modifier. */
@@ -177,6 +179,7 @@ typedef struct ShipStats_ {
    double fwd_damage; /**< Forward damage multiplier. */
    double fwd_firerate; /**< Forward fire rate multiplier. */
    double fwd_range; /**< Forward range multiplier. */
+   double fwd_speed; /**< Forward bullet speed multiplier. */
    double fwd_energy; /**< Forward energy usage multiplier. */
    double fwd_heat; /**< Forward heat generation multiplier. */
    double fwd_dam_as_dis; /**< Forward damage as disable modifier. */
@@ -185,6 +188,7 @@ typedef struct ShipStats_ {
    double tur_damage; /**< Turret damage multiplier. */
    double tur_firerate; /**< Turret fire rate multiplier. */
    double tur_range; /**< Turret range multiplier. */
+   double tur_speed; /**< Turret bullet speed multiplier. */
    double tur_energy; /**< Turret energy usage multiplier. */
    double tur_heat; /**< Turret heat generation multiplier. */
    double tur_dam_as_dis; /**< Turret damage as disable modifier. */
