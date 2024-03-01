@@ -1191,6 +1191,8 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          continue;
       }
       xmlr_float(node,"falloff",temp->u.blt.falloff);
+      xmlr_int(node, "spread_bolts", temp->u.blt.spread_bolts);
+      xmlr_float(node, "spread_arc", temp->u.blt.spread_arc);
 
       /* Graphics. */
       if (xml_isNode(node,"gfx")) {
