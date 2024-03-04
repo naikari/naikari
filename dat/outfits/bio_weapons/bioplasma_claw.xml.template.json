@@ -3,7 +3,7 @@
     "tags": {
         "potential": {
             "text": {
-                "default": "As with all organs, it starts out weak, but over time it grows and improves.",
+                "default": "As with all organs, it starts out weak, but it grows and improves with training.",
                 "stage": {
                     "X": "This organ has reached Stage X, its full potential."
                 }
@@ -11,7 +11,7 @@
         },
         "rarity": {
             "text": {
-                "default": "1",
+                "default": "0",
                 "stage": {
                     "X": "6"
                 }

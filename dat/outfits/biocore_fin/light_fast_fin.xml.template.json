@@ -3,7 +3,7 @@
     "tags": {
         "potential": {
             "text": {
-                "default": "All fins start off undeveloped, but over time, just like the ships themselves, they grow and improve.",
+                "default": "As with all organs, it starts out weak, but it grows and improves with training.",
                 "stage": {
                     "X": "This fin has reached Stage X, its full potential."
                 }

@@ -3,7 +3,7 @@
     "tags": {
         "potential": {
             "text": {
-                "default": "All shells start off undeveloped, but over time, just like the ships themselves, they grow and improve.",
+                "default": "As with all organs, it starts out weak, but it grows and improves with training.",
                 "stage": {
                     "X": "This shell has reached stage X, its full potential."
                 }
