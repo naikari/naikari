@@ -1800,6 +1800,8 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
    Weapon *w, **m;
    GLsizei size;
    size_t bufsize;
+   int salvo;
+   int i;
 
    if (!outfit_isBolt(outfit) &&
          !outfit_isLauncher(outfit)) {
@@ -1807,33 +1809,40 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
       return;
    }
 
+   salvo = 1;
+   if (outfit_isBolt(outfit))
+      salvo = outfit->u.blt.salvo;
+
    layer = (parent->id==PLAYER_ID) ? WEAPON_LAYER_FG : WEAPON_LAYER_BG;
-   w     = weapon_create( outfit, T, dir, pos, vel, parent, target, time );
 
-   /* set the proper layer */
-   switch (layer) {
-      case WEAPON_LAYER_BG:
-         m = &array_grow(&wbackLayer);
-         break;
-      case WEAPON_LAYER_FG:
-         m = &array_grow(&wfrontLayer);
-         break;
+   for (i=0; i<salvo; i++) {
+      w = weapon_create(outfit, T, dir, pos, vel, parent, target, time);
 
-      default:
-         WARN(_("Unknown weapon layer!"));
-         return;
-   }
-   *m = w;
+      /* set the proper layer */
+      switch (layer) {
+         case WEAPON_LAYER_BG:
+            m = &array_grow(&wbackLayer);
+            break;
+         case WEAPON_LAYER_FG:
+            m = &array_grow(&wfrontLayer);
+            break;
 
-   /* Grow the vertex stuff if needed. */
-   bufsize = array_reserved(wfrontLayer) + array_reserved(wbackLayer);
-   if (bufsize != weapon_vboSize) {
-      weapon_vboSize = bufsize;
-      size = sizeof(GLfloat) * (2+4) * weapon_vboSize;
-      weapon_vboData = realloc( weapon_vboData, size );
-      if (weapon_vbo == NULL)
-         weapon_vbo = gl_vboCreateStream( size, NULL );
-      gl_vboData( weapon_vbo, size, weapon_vboData );
+         default:
+            WARN(_("Unknown weapon layer!"));
+            return;
+      }
+      *m = w;
+
+      /* Grow the vertex stuff if needed. */
+      bufsize = array_reserved(wfrontLayer) + array_reserved(wbackLayer);
+      if (bufsize != weapon_vboSize) {
+         weapon_vboSize = bufsize;
+         size = sizeof(GLfloat) * (2+4) * weapon_vboSize;
+         weapon_vboData = realloc( weapon_vboData, size );
+         if (weapon_vbo == NULL)
+            weapon_vbo = gl_vboCreateStream( size, NULL );
+         gl_vboData( weapon_vbo, size, weapon_vboData );
+      }
    }
 }
 

@@ -1191,8 +1191,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          continue;
       }
       xmlr_float(node,"falloff",temp->u.blt.falloff);
-      xmlr_int(node, "spread_bolts", temp->u.blt.spread_bolts);
-      xmlr_float(node, "spread_arc", temp->u.blt.spread_arc);
+      xmlr_int(node, "salvo", temp->u.blt.salvo);
 
       /* Graphics. */
       if (xml_isNode(node,"gfx")) {
@@ -1265,8 +1264,12 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    if (temp->u.blt.falloff < 0.)
       temp->u.blt.falloff = temp->u.blt.range;
 
+   /* Default 1-bullet salvo. */
+   if (temp->u.blt.salvo <= 0)
+      temp->u.blt.salvo = 1;
+
    /* Post processing. */
-   temp->u.blt.swivel  *= M_PI/180.;
+   temp->u.blt.swivel *= M_PI / 180.;
    if (outfit_isTurret(temp))
       temp->u.blt.swivel = M_PI;
    /*
@@ -1334,6 +1337,12 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G s Heat Up"),
          temp->u.blt.heatup);
+
+   if (temp->u.blt.salvo > 1) {
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("\n%d-bolt salvo"),
+            temp->u.blt.salvo);
+   }
 
    if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
