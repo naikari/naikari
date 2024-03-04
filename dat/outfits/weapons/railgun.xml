@@ -11,7 +11,7 @@
  </general>
  <specific type="bolt">
   <gfx>massL.png</gfx>
-  <sound>mass</sound>
+  <sound>railgun</sound>
   <sound_hit>medexp0</sound_hit>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>

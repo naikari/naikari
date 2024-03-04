@@ -11,7 +11,7 @@
  </general>
  <specific type="turret bolt">
   <gfx>massL.png</gfx>
-  <sound>mass</sound>
+  <sound>railgun</sound>
   <spfx_shield>ShiM</spfx_shield>
   <spfx_armour>ExpM</spfx_armour>
   <delay>1.7</delay>

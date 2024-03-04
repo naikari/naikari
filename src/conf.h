@@ -50,9 +50,9 @@
 /* Audio option defaults */
 #define MUTE_SOUND_DEFAULT 0 /**< conf.nosound */
 #define USE_EFX_DEFAULT 1 /**< conf.al_efx */
-#define MASTER_VOLUME_DEFAULT 1 /**< conf.volume */
-#define SOUND_VOLUME_DEFAULT 0.6 /**< conf.sound */
-#define MUSIC_VOLUME_DEFAULT 0.8 /**< conf.music */
+#define MASTER_VOLUME_DEFAULT 0.8 /**< conf.volume */
+#define SOUND_VOLUME_DEFAULT 1 /**< conf.sound */
+#define MUSIC_VOLUME_DEFAULT 0.9 /**< conf.music */
 /* Font size defaults */
 #define FONT_SIZE_CONSOLE_DEFAULT 10 /**< conf.font_size_console */
 #define FONT_SIZE_INTRO_DEFAULT 18 /**< conf.font_size_intro */
