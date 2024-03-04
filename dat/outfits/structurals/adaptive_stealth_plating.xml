@@ -3,7 +3,6 @@
  <general>
   <slot>structure</slot>
   <size>small</size>
-  <rarity>4</rarity>
   <mass />
   <price>150000</price>
   <gfx_store>stealth_plating.webp</gfx_store>

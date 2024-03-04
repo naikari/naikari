@@ -4,7 +4,6 @@
   <slot>weapon</slot>
   <size>large</size>
   <license>Medium Weapon License</license>
-  <rarity>1</rarity>
   <mass>100</mass>
   <price>110000</price>
   <description>Not to be outdone by the Soromid, the Empire took the Plasma Cluster Cannon and modified it further to operate as a turret with 365-degree rotation. While its overall damage output is hampered by a somewhat slow fire rate, its damage per shot rivals capital class weaponry and the hot plasma easily melts holes into even the strongest plating. That combined with its relatively low operational complexity makes it a common staple for Destroyers and light Cruisers.</description>

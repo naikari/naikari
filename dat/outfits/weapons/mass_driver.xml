@@ -4,7 +4,6 @@
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
-  <rarity>1</rarity>
   <mass>40</mass>
   <price>52000</price>
   <description>Mass Drivers fire massive slugs of matter at enemy ships, dealing damage thru kinetic impact and knocking the target back. One of the most economical heavy weapons in the galaxy.</description>

@@ -4,7 +4,6 @@
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
-  <rarity>1</rarity>
   <mass>18</mass>
   <price>17500</price>
   <description>A pair of laser cannons mounted on a rotating turret. It functions just like a Laser Cannon, but automatically turns to aim at the pilot the player is targeting, providing excellent defensive capabilities for ships that would struggle to turn and face their targets manually.</description>

@@ -4,7 +4,6 @@
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
-  <rarity>1</rarity>
   <mass>14</mass>
   <price>110000</price>
   <description>This turret-mounted beam is highly sought after by traders for its incredible defensive capability. While its range is short, its ability to nearly instantly vaporize any persuing fighter more than makes up for it.</description>

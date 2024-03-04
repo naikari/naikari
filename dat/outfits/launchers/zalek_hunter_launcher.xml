@@ -4,7 +4,6 @@
   <slot>weapon</slot>
   <size>medium</size>
   <license>Heavy Weapon License</license>
-  <rarity>2</rarity>
   <mass>45</mass>
   <price>250000</price>
   <description>The Za'lek began to find conventional missiles to be woefully inadequate for their needs. Thus, they began work on kamikaze drone fabricators to replace them. The results have born deadly fruit with the hunter-killer drone. It accelerates towards its target and unleashes its ferromagnetohydraulic payload to deadly effect.</description>

@@ -4,7 +4,6 @@
   <slot>weapon</slot>
   <size>large</size>
   <license>Medium Weapon License</license>
-  <rarity>1</rarity>
   <mass>100</mass>
   <price>95000</price>
   <description>While limited in range compared to true capital-class weaponry, the Heavy Ripper Turret's pair of heavy ripper cannons delivers exceptional firepower for Imperial Destroyers and Cruisers.</description>

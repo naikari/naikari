@@ -4,7 +4,6 @@
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
-  <rarity>1</rarity>
   <mass>18</mass>
   <price>10000</price>
   <description>The Vulcan Gun improves over the Gauss Gun with increased range and damage, achieved by using a heavier caliber ammunition. A skilled pilot can wreak some serious havoc even to medium-sized vessels with a pair of Vulcan Guns installed on their ship.</description>

@@ -4,7 +4,6 @@
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
   <size>small</size>
-  <rarity>6</rarity>
   <mass>15</mass>
   <price>100000</price>
   <description>This is an experimental engine modded by students to test new propulsion techniques. It is a well-performing engine, but it is unreliable and dangerous due to its experimental nature. As such, engines like this are generally not available for sale due to safety concerns.</description>

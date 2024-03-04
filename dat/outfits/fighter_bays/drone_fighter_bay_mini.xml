@@ -4,7 +4,6 @@
   <slot prop="fighter_bay">weapon</slot>
   <size>medium</size>
   <license>Light Combat Vessel License</license>
-  <rarity>3</rarity>
   <mass>30</mass>
   <price>600000</price>
   <gfx_store>drone_fighter.webp</gfx_store>
