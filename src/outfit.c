@@ -1191,6 +1191,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          continue;
       }
       xmlr_float(node,"falloff",temp->u.blt.falloff);
+      xmlr_float(node, "spread", temp->u.blt.spread);
       xmlr_int(node, "salvo", temp->u.blt.salvo);
 
       /* Graphics. */
@@ -1269,6 +1270,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       temp->u.blt.salvo = 1;
 
    /* Post processing. */
+   temp->u.blt.spread *= M_PI / 180.;
    temp->u.blt.swivel *= M_PI / 180.;
    if (outfit_isTurret(temp))
       temp->u.blt.swivel = M_PI;
@@ -1344,6 +1346,12 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          _("%G s Heat Up"),
          temp->u.blt.heatup);
 
+   if (temp->u.blt.spread > 0.) {
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("\n%G° Spread"),
+            temp->u.blt.spread * 180. / M_PI);
+   }
+
    if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
             _("\n%G mAU Radar Optimal Range"),
@@ -1376,6 +1384,8 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
    MELEMENT(temp->u.blt.energy==0.,"energy");
    MELEMENT(temp->u.blt.falloff > temp->u.blt.range,"falloff");
    MELEMENT(temp->u.blt.heatup==0.,"heatup");
+   MELEMENT(temp->u.blt.spread<0., "spread");
+   MELEMENT(temp->u.blt.swivel<0., "swivel");
    if ((temp->u.blt.swivel > 0.) || outfit_isTurret(temp)) {
       MELEMENT(temp->u.blt.rdr_range==0.,"rdr_range");
       MELEMENT(temp->u.blt.rdr_range_max==0.,"rdr_range_max");

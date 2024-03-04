@@ -1545,7 +1545,10 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    }
    w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
 
-   /* Calculate direction. */
+   /* Calculate accuracy loss from spread. */
+   rdir += (RNGF()-0.5) * outfit->u.blt.spread;
+
+   /* Calculate heat-based accuracy loss. */
    rdir += RNG_2SIGMA() * acc;
    if (rdir < 0.)
       rdir += 2.*M_PI;

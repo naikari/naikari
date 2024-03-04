@@ -151,6 +151,7 @@ typedef struct OutfitBoltData_ {
    double rdr_range; /**< Radar Optimal Range. */
    double rdr_range_max; /**< Radar Maximum Range. */
    double swivel;    /**< Amount of swivel (semiarc in radians of deviation the weapon can correct). */
+   double spread; /**< Amount of base inaccuracy in radians. */
    int salvo; /**< Bolts per shot. */
 
    /* Sound and graphics. */
