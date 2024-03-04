@@ -1155,12 +1155,12 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    double dshield, darmor, dknockback;
 
    /* Defaults */
-   temp->u.blt.spfx_armour    = -1;
-   temp->u.blt.spfx_shield    = -1;
-   temp->u.blt.sound          = -1;
-   temp->u.blt.sound_hit      = -1;
-   temp->u.blt.falloff        = -1.;
-   temp->u.blt.ew_lockon      = 1.;
+   temp->u.blt.spfx_armour = -1;
+   temp->u.blt.spfx_shield = -1;
+   temp->u.blt.sound = -1;
+   temp->u.blt.sound_hit = -1;
+   temp->u.blt.falloff = -1.;
+   temp->u.blt.ew_lockon = 1.;
 
    tail = NULL;
 
@@ -1303,11 +1303,11 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       if (dshield > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
                _("%.2f GW Shield Damage [%.1f GJ/shot]\n"),
-               1./temp->u.blt.delay * dshield, dshield);
+               1./temp->u.blt.delay * dshield * temp->u.blt.salvo, dshield);
       if (darmor > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
                _("%.2f GW Armor Damage [%.1f GJ/shot]\n"),
-               1./temp->u.blt.delay * darmor, darmor);
+               1./temp->u.blt.delay * darmor * temp->u.blt.salvo, darmor);
       if (dknockback > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
                _("%G%% Knockback\n"), dknockback * 100.);
@@ -1324,6 +1324,12 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
             _("%.1f GW Energy Usage [%G GJ/shot]\n"),
             1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy);
 
+   if (temp->u.blt.salvo > 1) {
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("%d-Bolt Salvo\n"),
+            temp->u.blt.salvo);
+   }
+
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%.1f RPS Fire Rate\n"),
          1./temp->u.blt.delay);
@@ -1337,12 +1343,6 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G s Heat Up"),
          temp->u.blt.heatup);
-
-   if (temp->u.blt.salvo > 1) {
-      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%d-bolt salvo"),
-            temp->u.blt.salvo);
-   }
 
    if (temp->u.blt.rdr_range > 0.) {
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
