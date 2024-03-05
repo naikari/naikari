@@ -1114,7 +1114,7 @@ int sound_al_updateListener(double px, double py, double vx, double vy)
 
    pos[0] = px;
    pos[1] = py;
-   pos[2] = 100.;
+   pos[2] = 1000.;
    alListenerfv( AL_POSITION, pos );
    vel[0] = vx;
    vel[1] = vy;
