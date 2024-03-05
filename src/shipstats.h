@@ -37,6 +37,9 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_FORWARD_ENERGY, /**< Forward energy usage multiplier. */
    SS_TYPE_D_FORWARD_HEAT, /**< Forward heat generation multiplier. */
    SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Forward damage as disable modifier. */
+   SS_TYPE_P_FORWARD_DISABLE_AS_DAMAGE, /**< Forward disable as damage modifier. */
+   SS_TYPE_P_FORWARD_DAMAGE_SHIELD_AS_ARMOR, /**< Forward damage shield to armor modifier. */
+   SS_TYPE_P_FORWARD_DAMAGE_ARMOR_AS_SHIELD, /**< Forward damage shield to armor modifier. */
 
    /* Turrets. */
    SS_TYPE_B_TURRET_CONVERSION, /**< Convert all weapons to turrets. */
@@ -47,6 +50,9 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_TURRET_ENERGY, /**< Turret energy usage multiplier. */
    SS_TYPE_D_TURRET_HEAT, /**< Turret heat generation multiplier. */
    SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Turret damage as disable modifier. */
+   SS_TYPE_P_TURRET_DISABLE_AS_DAMAGE, /**< Turret disable as damage modifier. */
+   SS_TYPE_P_TURRET_DAMAGE_SHIELD_AS_ARMOR, /**< Turret damage shield to armor modifier. */
+   SS_TYPE_P_TURRET_DAMAGE_ARMOR_AS_SHIELD, /**< Turret damage shield to armor modifier. */
 
    /* Launchers. */
    SS_TYPE_D_LAUNCH_DAMAGE, /**< Launcher damage multiplier. */
@@ -55,6 +61,9 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_AMMO_CAPACITY, /**< Launcher capacity multiplier. */
    SS_TYPE_D_LAUNCH_RELOAD, /**< Launcher reload rate multiplier. */
    SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, /**< Launcher damage as disable modifier. */
+   SS_TYPE_P_LAUNCH_DISABLE_AS_DAMAGE, /**< Launcher disable as damage modifier. */
+   SS_TYPE_P_LAUNCH_DAMAGE_SHIELD_AS_ARMOR, /**< Launcher damage shield to armor modifier. */
+   SS_TYPE_P_LAUNCH_DAMAGE_ARMOR_AS_SHIELD, /**< Launcher damage shield to armor modifier. */
 
    /* Fighter bays. */
    SS_TYPE_D_FBAY_DAMAGE, /**< Fighter bay fighter damage multiplier. */
@@ -183,6 +192,9 @@ typedef struct ShipStats_ {
    double fwd_energy; /**< Forward energy usage multiplier. */
    double fwd_heat; /**< Forward heat generation multiplier. */
    double fwd_dam_as_dis; /**< Forward damage as disable modifier. */
+   double fwd_dis_as_dam; /**< Forward disable as damage modifier. */
+   double fwd_dam_shield_as_armor; /**< Forward damage shield to armor modifier. */
+   double fwd_dam_armor_as_shield; /**< Forward damage armor to shield modifier. */
 
    /* Turrets. */
    double tur_damage; /**< Turret damage multiplier. */
@@ -192,6 +204,20 @@ typedef struct ShipStats_ {
    double tur_energy; /**< Turret energy usage multiplier. */
    double tur_heat; /**< Turret heat generation multiplier. */
    double tur_dam_as_dis; /**< Turret damage as disable modifier. */
+   double tur_dis_as_dam; /**< Turret disable as damage modifier. */
+   double tur_dam_shield_as_armor; /**< Turret damage shield to armor modifier. */
+   double tur_dam_armor_as_shield; /**< Turret damage armor to shield modifier. */
+
+   /* Launchers. */
+   double launch_damage; /**< Launcher damage multiplier. */
+   double launch_rate; /**< Launcher fire rate multiplier. */
+   double launch_range; /**< Launcher range multiplier. */
+   double ammo_capacity; /**< Launcher ammo capacity multiplier. */
+   double launch_reload; /**< Launcher reload rate multiplier. */
+   double launch_dam_as_dis; /**< Launcher damage as disable modifier. */
+   double launch_dis_as_dam; /**< Launcher disable as damage modifier. */
+   double launch_dam_shield_as_armor; /**< Launcher damage shield to armor modifier. */
+   double launch_dam_armor_as_shield; /**< Launcher damage armor to shield modifier. */
 
    /* Movement. */
    double speed;              /**< Speed modifier. */
@@ -238,14 +264,6 @@ typedef struct ShipStats_ {
    /* Military type. */
    double heat_dissipation; /**< Global ship dissipation. */
    double stress_dissipation; /**< Global stress dissipation. */
-
-   /* Launchers. */
-   double launch_rate;     /**< Fire rate of launchers. */
-   double launch_range;    /**< Range of launchers. */
-   double launch_damage;   /**< Damage of launchers. */
-   double ammo_capacity;   /**< Capacity of launchers. */
-   double launch_reload;   /**< Reload rate of launchers. */
-   double launch_dam_as_dis; /**< Damage as disable for launchers. */
 
    /* Fighter bays. */
    double fbay_damage;     /**< Fighter bay fighter damage (all weapons). */

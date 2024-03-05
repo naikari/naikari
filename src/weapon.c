@@ -65,6 +65,9 @@ typedef struct Weapon_ {
    double real_vel; /**< Keeps track of the real velocity. */
    double dam_mod; /**< Damage modifier. */
    double dam_as_dis_mod; /**< Damage as disable modifier. */
+   double dis_as_dam_mod; /**< Disable as damage modifier. */
+   double dam_shield_as_armor_mod; /**< Damage shield as armor modifier. */
+   double dam_armor_as_shield_mod; /**< Damage armor as shield modifier. */
    int voice; /**< Weapon's voice. */
    double exp_timer; /**< Explosion timer for beams. */
    double life; /**< Total life. */
@@ -987,12 +990,21 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
          if (w->outfit->type == OUTFIT_TYPE_BEAM) {
             w->dam_mod = parent->stats.fwd_damage;
             w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
+            w->dis_as_dam_mod = parent->stats.fwd_dis_as_dam;
+            w->dam_shield_as_armor_mod = parent->stats.fwd_dam_shield_as_armor;
+            w->dam_armor_as_shield_mod = parent->stats.fwd_dam_armor_as_shield;
          }
          else {
             w->dam_mod = parent->stats.tur_damage;
             w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
+            w->dis_as_dam_mod = parent->stats.tur_dis_as_dam;
+            w->dam_shield_as_armor_mod = parent->stats.tur_dam_shield_as_armor;
+            w->dam_armor_as_shield_mod = parent->stats.tur_dam_armor_as_shield;
          }
          w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
+         w->dis_as_dam_mod = CLAMP(0., 1., w->dis_as_dam_mod);
+         w->dam_shield_as_armor_mod = CLAMP(0., 1., w->dam_shield_as_armor_mod);
+         w->dam_armor_as_shield_mod = CLAMP(0., 1., w->dam_armor_as_shield_mod);
       }
    }
 
@@ -1196,18 +1208,22 @@ static void weapon_hit( Weapon* w, Pilot* p, Vector2d* pos )
    Pilot *parent;
    int s, spfx;
    double damage;
+   double disable;
    WeaponLayer spfx_layer;
    Damage dmg;
    const Damage *odmg;
 
    /* Get general details. */
-   odmg              = outfit_damage( w->outfit );
-   parent            = pilot_get( w->parent );
-   damage            = w->dam_mod * w->strength * odmg->damage;
-   dmg.damage        = MAX( 0., damage * (1.-w->dam_as_dis_mod) );
-   dmg.penetration   = odmg->penetration;
-   dmg.type          = odmg->type;
-   dmg.disable       = MAX( 0., w->dam_mod * w->strength * odmg->disable + damage * w->dam_as_dis_mod );
+   odmg = outfit_damage(w->outfit);
+   parent = pilot_get(w->parent);
+   damage = w->dam_mod * w->strength * odmg->damage;
+   disable = w->dam_mod * w->strength * odmg->disable;
+   dmg.damage = MAX(0.,
+         damage*(1.-w->dam_as_dis_mod) + disable*w->dis_as_dam_mod);
+   dmg.disable = MAX(0.,
+         disable*(1.-w->dis_as_dam_mod) + damage*w->dam_as_dis_mod);
+   dmg.penetration = odmg->penetration;
+   dmg.type = odmg->type;
 
    /* Play sound if they have it. */
    s = outfit_soundHit(w->outfit);
@@ -1296,6 +1312,7 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
    Pilot *parent;
    int spfx;
    double damage;
+   double disable;
    WeaponLayer spfx_layer;
    Damage dmg;
    const Damage *odmg;
@@ -1306,11 +1323,13 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
    odmg = outfit_damage(w->outfit);
    parent = pilot_get(w->parent);
    damage = w->dam_mod * w->strength * odmg->damage * dt ;
-   dmg.damage = MAX(0., damage * (1.-w->dam_as_dis_mod));
+   disable = w->dam_mod * w->strength * odmg->disable * dt;
+   dmg.damage = MAX(0.,
+         damage*(1.-w->dam_as_dis_mod) + disable*w->dis_as_dam_mod);
+   dmg.disable = MAX(0.,
+         disable*(1.-w->dis_as_dam_mod) + damage*w->dam_as_dis_mod);
    dmg.penetration = odmg->penetration;
    dmg.type = odmg->type;
-   dmg.disable = MAX(0., w->dam_mod*w->strength*odmg->disable*dt
-         + damage*w->dam_as_dis_mod);
 
    /* Have pilot take damage and get real damage done. */
    damage = pilot_hit( p, w->solid, w->parent, &dmg, 1 );
@@ -1536,14 +1555,23 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
       speed *= parent->stats.tur_speed;
       w->dam_mod *= parent->stats.tur_damage;
       w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
+      w->dis_as_dam_mod = parent->stats.tur_dis_as_dam;
+      w->dam_shield_as_armor_mod = parent->stats.tur_dam_shield_as_armor;
+      w->dam_armor_as_shield_mod = parent->stats.tur_dam_armor_as_shield;
    }
    else {
       range *= parent->stats.fwd_range;
       speed *= parent->stats.fwd_speed;
       w->dam_mod *= parent->stats.fwd_damage;
       w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
+      w->dis_as_dam_mod = parent->stats.fwd_dis_as_dam;
+      w->dam_shield_as_armor_mod = parent->stats.fwd_dam_shield_as_armor;
+      w->dam_armor_as_shield_mod = parent->stats.fwd_dam_armor_as_shield;
    }
    w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
+   w->dis_as_dam_mod = CLAMP(0., 1., w->dis_as_dam_mod);
+   w->dam_shield_as_armor_mod = CLAMP(0., 1., w->dam_shield_as_armor_mod);
+   w->dam_armor_as_shield_mod = CLAMP(0., 1., w->dam_armor_as_shield_mod);
 
    /* Calculate accuracy loss from spread. */
    rdir += (RNGF()-0.5) * outfit->u.blt.spread;
@@ -1617,6 +1645,11 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    /* Launcher damage. */
    w->dam_mod *= parent->stats.launch_damage;
    w->dam_as_dis_mod = CLAMP(0., 1., parent->stats.launch_dam_as_dis);
+   w->dis_as_dam_mod = CLAMP(0., 1., parent->stats.launch_dis_as_dam);
+   w->dam_shield_as_armor_mod = CLAMP(0., 1.,
+         parent->stats.launch_dam_shield_as_armor);
+   w->dam_armor_as_shield_mod = CLAMP(0., 1.,
+         parent->stats.launch_dam_armor_as_shield);
    if (rdir < 0.)
       rdir += 2.*M_PI;
    else if (rdir >= 2.*M_PI)
@@ -1690,9 +1723,12 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
    Weapon* w;
 
    /* Create basic features */
-   w           = calloc( 1, sizeof(Weapon) );
+   w = calloc(1, sizeof(Weapon));
    w->dam_mod  = 1.; /* Default of 100% damage. */
    w->dam_as_dis_mod = 0.; /* Default of 0% damage to disable. */
+   w->dis_as_dam_mod = 0.;
+   w->dam_shield_as_armor_mod = 0.;
+   w->dam_armor_as_shield_mod = 0.;
    w->faction  = parent->faction; /* non-changeable */
    w->parent   = parent->id; /* non-changeable */
    w->target   = target; /* non-changeable */
@@ -1753,12 +1789,21 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
                || parent->stats.turret_conversion) {
             w->dam_mod *= parent->stats.tur_damage;
             w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
+            w->dis_as_dam_mod = parent->stats.tur_dis_as_dam;
+            w->dam_shield_as_armor_mod = parent->stats.tur_dam_shield_as_armor;
+            w->dam_armor_as_shield_mod = parent->stats.tur_dam_armor_as_shield;
          }
          else {
             w->dam_mod *= parent->stats.fwd_damage;
             w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
+            w->dis_as_dam_mod = parent->stats.fwd_dis_as_dam;
+            w->dam_shield_as_armor_mod = parent->stats.fwd_dam_shield_as_armor;
+            w->dam_armor_as_shield_mod = parent->stats.fwd_dam_armor_as_shield;
          }
          w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
+         w->dis_as_dam_mod = CLAMP(0., 1., w->dis_as_dam_mod);
+         w->dam_shield_as_armor_mod = CLAMP(0., 1., w->dam_shield_as_armor_mod);
+         w->dam_armor_as_shield_mod = CLAMP(0., 1., w->dam_armor_as_shield_mod);
 
          break;
 
