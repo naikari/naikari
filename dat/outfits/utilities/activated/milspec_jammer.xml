@@ -11,6 +11,8 @@
  </general>
  <specific type="modification" group="6">
   <active />
+  <sound_on>outfit-activation</sound_on>
+  <sound_off>outfit-deactivation</sound_off>
   <rdr_enemy_range_mod>-75</rdr_enemy_range_mod>
   <energy_regen_malus>35</energy_regen_malus>
  </specific>

@@ -1493,6 +1493,8 @@ int pilot_outfitOff( Pilot *p, PilotOutfitSlot *o )
    else {
       o->stimer = outfit_cooldown(o->outfit);
       o->state = PILOT_OUTFIT_COOLDOWN;
+      sound_playPos(o->outfit->u.mod.sound_off,
+            p->solid->pos.x, p->solid->pos.y, p->solid->vel.x, p->solid->vel.y);
    }
 
    return 1;
@@ -1512,6 +1514,8 @@ int pilot_outfitOn( Pilot *p, PilotOutfitSlot *o )
    else {
       o->state = PILOT_OUTFIT_ON;
       o->stimer = outfit_duration(o->outfit);
+      sound_playPos(o->outfit->u.mod.sound_on,
+            p->solid->pos.x, p->solid->pos.y, p->solid->vel.x, p->solid->vel.y);
    }
 
    return 1;

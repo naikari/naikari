@@ -11,6 +11,8 @@
  </general>
  <specific type="modification" group="9">
   <active />
+  <sound_on>outfit-activation</sound_on>
+  <sound_off>outfit-deactivation</sound_off>
   <fwd_dam_as_dis>100</fwd_dam_as_dis>
   <fwd_damage>-20</fwd_damage>
   <fwd_energy>20</fwd_energy>

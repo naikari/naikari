@@ -1800,6 +1800,8 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
    node = parent->children;
 
    /* Defaults. */
+   temp->u.mod.sound_on = -1;
+   temp->u.mod.sound_off = -1;
    temp->u.mod.lua_env = LUA_NOREF;
    temp->u.mod.lua_init = LUA_NOREF;
    temp->u.mod.lua_cleanup = LUA_NOREF;
@@ -1813,6 +1815,14 @@ static void outfit_parseSMod( Outfit* temp, const xmlNodePtr parent )
 
    do { /* load all the data */
       xml_onlyNodes(node);
+      if (xml_isNode(node,"sound_on")) {
+         temp->u.mod.sound_on = sound_get(xml_get(node));
+         continue;
+      }
+      if (xml_isNode(node,"sound_off")) {
+         temp->u.mod.sound_off = sound_get(xml_get(node));
+         continue;
+      }
       if (xml_isNode(node,"active")) {
          xmlr_attr_float(node, "cooldown", temp->u.mod.cooldown);
          temp->u.mod.active   = 1;

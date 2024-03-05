@@ -251,6 +251,8 @@ typedef struct OutfitAmmoData_ {
  */
 typedef struct OutfitModificationData_ {
    /* Active information (if applicable). */
+   int sound_on; /**< Sound of the outfit turning on. */
+   int sound_off; /**< Sound of the outfit turning off. */
    int active;       /**< Outfit is active. */
    double duration;  /**< Time the active outfit stays on (in seconds). */
    double cooldown;  /**< Time the active outfit stays off after it's duration (in seconds). */
