@@ -289,7 +289,7 @@ void dtype_calcDamage( double *dshield, double *darmour, double absorb, double *
    /* Set if non-nil. */
    if (dshield != NULL) {
       if ((dtype->soffset <= 0) || (s == NULL))
-         *dshield    = dtype->sdam * dmg->damage * absorb;
+         *dshield = dmg->shield_pct * dmg->damage * absorb;
       else {
          /*
           * If an offset has been specified, look for a double at that offset
@@ -299,24 +299,24 @@ void dtype_calcDamage( double *dshield, double *darmour, double absorb, double *
           * damage multiplier.
           */
          ptr = (char*) s;
-         memcpy(&multiplier, &ptr[ dtype->soffset ], sizeof(double));
-         multiplier = MAX( 0., 1. - multiplier );
-         *dshield = dtype->sdam * dmg->damage * absorb * multiplier;
+         memcpy(&multiplier, &ptr[dtype->soffset], sizeof(double));
+         multiplier = MAX(0., 1. - multiplier);
+         *dshield = dmg->shield_pct * dmg->damage * absorb * multiplier;
       }
    }
    if (darmour != NULL) {
       if ((dtype->aoffset) <= 0 || (s == NULL))
-         *darmour    = dtype->adam * dmg->damage * absorb;
+         *darmour = dmg->armor_pct * dmg->damage * absorb;
       else {
          ptr = (char*) s;
-         memcpy(&multiplier, &ptr[ dtype->aoffset ], sizeof(double));
-         multiplier = MAX( 0., 1. - multiplier );
-         *darmour = dtype->adam * dmg->damage * absorb * multiplier;
+         memcpy(&multiplier, &ptr[dtype->aoffset], sizeof(double));
+         multiplier = MAX(0., 1. - multiplier);
+         *darmour = dmg->armor_pct * dmg->damage * absorb * multiplier;
       }
    }
 
    if (knockback != NULL)
-      *knockback  = dtype->knock;
+      *knockback = dmg->knockback_pct;
 }
 
 

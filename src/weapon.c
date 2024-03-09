@@ -1209,6 +1209,8 @@ static void weapon_hit( Weapon* w, Pilot* p, Vector2d* pos )
    int s, spfx;
    double damage;
    double disable;
+   double dmg_shield;
+   double dmg_armor;
    WeaponLayer spfx_layer;
    Damage dmg;
    const Damage *odmg;
@@ -1218,12 +1220,22 @@ static void weapon_hit( Weapon* w, Pilot* p, Vector2d* pos )
    parent = pilot_get(w->parent);
    damage = w->dam_mod * w->strength * odmg->damage;
    disable = w->dam_mod * w->strength * odmg->disable;
+   dmg_shield = odmg->shield_pct;
+   dmg_armor = odmg->armor_pct;
+
+   dmg.type = odmg->type;
+   dmg.penetration = odmg->penetration;
    dmg.damage = MAX(0.,
          damage*(1.-w->dam_as_dis_mod) + disable*w->dis_as_dam_mod);
    dmg.disable = MAX(0.,
          disable*(1.-w->dis_as_dam_mod) + damage*w->dam_as_dis_mod);
-   dmg.penetration = odmg->penetration;
-   dmg.type = odmg->type;
+   dmg.shield_pct = MAX(0.,
+         dmg_shield*(1.-w->dam_shield_as_armor_mod)
+            + dmg_armor*w->dam_armor_as_shield_mod);
+   dmg.armor_pct = MAX(0.,
+         dmg_armor*(1.-w->dam_armor_as_shield_mod)
+            + dmg_shield*w->dam_shield_as_armor_mod);
+   dmg.knockback_pct = odmg->knockback_pct;
 
    /* Play sound if they have it. */
    s = outfit_soundHit(w->outfit);
@@ -1266,15 +1278,33 @@ static void weapon_hit( Weapon* w, Pilot* p, Vector2d* pos )
 static void weapon_hitAst( Weapon* w, Asteroid* a, WeaponLayer layer, Vector2d* pos )
 {
    int s, spfx;
+   double damage;
+   double disable;
+   double dmg_shield;
+   double dmg_armor;
    Damage dmg;
    const Damage *odmg;
 
    /* Get general details. */
-   odmg              = outfit_damage( w->outfit );
-   dmg.damage        = MAX( 0., w->dam_mod * w->strength * odmg->damage );
-   dmg.penetration   = odmg->penetration;
-   dmg.type          = odmg->type;
-   dmg.disable       = odmg->disable;
+   odmg = outfit_damage(w->outfit);
+   damage = w->dam_mod * w->strength * odmg->damage;
+   disable = w->dam_mod * w->strength * odmg->disable;
+   dmg_shield = odmg->shield_pct;
+   dmg_armor = odmg->armor_pct;
+
+   dmg.type = odmg->type;
+   dmg.penetration = odmg->penetration;
+   dmg.damage = MAX(0.,
+         damage*(1.-w->dam_as_dis_mod) + disable*w->dis_as_dam_mod);
+   dmg.disable = MAX(0.,
+         disable*(1.-w->dis_as_dam_mod) + damage*w->dam_as_dis_mod);
+   dmg.shield_pct = MAX(0.,
+         dmg_shield*(1.-w->dam_shield_as_armor_mod)
+            + dmg_armor*w->dam_armor_as_shield_mod);
+   dmg.armor_pct = MAX(0.,
+         dmg_armor*(1.-w->dam_armor_as_shield_mod)
+            + dmg_shield*w->dam_shield_as_armor_mod);
+   dmg.knockback_pct = odmg->knockback_pct;
 
    /* Play sound if they have it. */
    s = outfit_soundHit(w->outfit);
@@ -1311,9 +1341,11 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
    (void) layer;
    Pilot *parent;
    int spfx;
+   WeaponLayer spfx_layer;
    double damage;
    double disable;
-   WeaponLayer spfx_layer;
+   double dmg_shield;
+   double dmg_armor;
    Damage dmg;
    const Damage *odmg;
    HookParam hparam[2];
@@ -1324,12 +1356,22 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
    parent = pilot_get(w->parent);
    damage = w->dam_mod * w->strength * odmg->damage * dt ;
    disable = w->dam_mod * w->strength * odmg->disable * dt;
+   dmg_shield = odmg->shield_pct;
+   dmg_armor = odmg->armor_pct;
+
+   dmg.type = odmg->type;
+   dmg.penetration = odmg->penetration;
    dmg.damage = MAX(0.,
          damage*(1.-w->dam_as_dis_mod) + disable*w->dis_as_dam_mod);
    dmg.disable = MAX(0.,
          disable*(1.-w->dis_as_dam_mod) + damage*w->dam_as_dis_mod);
-   dmg.penetration = odmg->penetration;
-   dmg.type = odmg->type;
+   dmg.shield_pct = MAX(0.,
+         dmg_shield*(1.-w->dam_shield_as_armor_mod)
+            + dmg_armor*w->dam_armor_as_shield_mod);
+   dmg.armor_pct = MAX(0.,
+         dmg_armor*(1.-w->dam_armor_as_shield_mod)
+            + dmg_shield*w->dam_shield_as_armor_mod);
+   dmg.knockback_pct = odmg->knockback_pct;
 
    /* Have pilot take damage and get real damage done. */
    damage = pilot_hit( p, w->solid, w->parent, &dmg, 1 );
@@ -1397,15 +1439,33 @@ static void weapon_hitAstBeam( Weapon* w, Asteroid* a, WeaponLayer layer,
 {
    (void) layer;
    int spfx;
+   double damage;
+   double disable;
+   double dmg_shield;
+   double dmg_armor;
    Damage dmg;
    const Damage *odmg;
 
    /* Get general details. */
-   odmg              = outfit_damage( w->outfit );
-   dmg.damage        = MAX( 0., w->dam_mod * w->strength * odmg->damage * dt );
-   dmg.penetration   = odmg->penetration;
-   dmg.type          = odmg->type;
-   dmg.disable       = odmg->disable * dt;
+   odmg = outfit_damage(w->outfit);
+   damage = w->dam_mod * w->strength * odmg->damage * dt ;
+   disable = w->dam_mod * w->strength * odmg->disable * dt;
+   dmg_shield = odmg->shield_pct;
+   dmg_armor = odmg->armor_pct;
+
+   dmg.type = odmg->type;
+   dmg.penetration = odmg->penetration;
+   dmg.damage = MAX(0.,
+         damage*(1.-w->dam_as_dis_mod) + disable*w->dis_as_dam_mod);
+   dmg.disable = MAX(0.,
+         disable*(1.-w->dis_as_dam_mod) + damage*w->dam_as_dis_mod);
+   dmg.shield_pct = MAX(0.,
+         dmg_shield*(1.-w->dam_shield_as_armor_mod)
+            + dmg_armor*w->dam_armor_as_shield_mod);
+   dmg.armor_pct = MAX(0.,
+         dmg_armor*(1.-w->dam_armor_as_shield_mod)
+            + dmg_shield*w->dam_shield_as_armor_mod);
+   dmg.knockback_pct = odmg->knockback_pct;
 
    asteroid_hit( a, &dmg );
 

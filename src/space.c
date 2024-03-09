@@ -4149,12 +4149,13 @@ static void asteroid_explode ( Asteroid *a, AsteroidAnchor *field, int give_rewa
    char buf[16];
 
    /* Manage the explosion */
-   dmg.type          = dtype_get("explosion_splash");
-   dmg.damage        = 100.;
-   dmg.penetration   = 1.; /* Full penetration. */
-   dmg.disable       = 0.;
-   expl_explode( a->pos.x, a->pos.y, a->vel.x, a->vel.y,
-                 50., &dmg, NULL, EXPL_MODE_SHIP );
+   dmg.type = dtype_get("explosion_splash");
+   dmg.penetration = 1.; /* Full penetration. */
+   dmg.damage = 100.;
+   dmg.disable = 0.;
+   dtype_raw(dmg.type, &dmg.shield_pct, &dmg.armor_pct, &dmg.knockback_pct);
+   expl_explode(a->pos.x, a->pos.y, a->vel.x, a->vel.y,
+         50., &dmg, NULL, EXPL_MODE_SHIP);
 
    /* Play random explosion sound. */
    snprintf(buf, sizeof(buf), "explosion%d", RNG(0,2));

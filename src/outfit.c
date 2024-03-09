@@ -1028,10 +1028,13 @@ static int outfit_parseDamage( Damage *dmg, xmlNodePtr node )
    xmlNodePtr cur;
 
    /* Defaults. */
-   dmg->type         = dtype_get("normal");
-   dmg->damage       = 0.;
-   dmg->penetration  = 0.;
-   dmg->disable      = 0.;
+   dmg->type = dtype_get("normal");
+   dmg->penetration = 0.;
+   dmg->damage = 0.;
+   dmg->disable = 0.;
+   dmg->shield_pct = 1.;
+   dmg->armor_pct = 1.;
+   dmg->knockback_pct = 0.;
 
    cur = node->xmlChildrenNode;
    do {
@@ -1044,12 +1047,14 @@ static int outfit_parseDamage( Damage *dmg, xmlNodePtr node )
 
       /* Get type */
       if (xml_isNode(cur,"type")) {
-         buf         = xml_get( cur );
-         dmg->type   = dtype_get(buf);
-         if (dmg->type < 0) { /* Case damage type in outfit.xml that isn't in damagetype.xml */
+         buf = xml_get(cur);
+         dmg->type = dtype_get(buf);
+         if (dmg->type < 0) {
             dmg->type = 0;
             WARN(_("Unknown damage type '%s'"), buf);
          }
+         dtype_raw(dmg->type, &dmg->shield_pct, &dmg->armor_pct,
+               &dmg->knockback_pct);
       }
       else WARN(_("Damage has unknown node '%s'"), cur->name);
 

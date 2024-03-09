@@ -2216,6 +2216,7 @@ void pilot_update( Pilot* pilot, double dt )
          dmg.damage = MAX(0., 2. * (rtmass * (1. + sqrt(pilot->fuel+1.)/28.)));
          dmg.penetration = 1.; /* Full penetration. */
          dmg.disable = 0.;
+         dtype_raw(dmg.type, &dmg.shield_pct, &dmg.armor_pct, &dmg.knockback_pct);
          expl_explode(pilot->solid->pos.x, pilot->solid->pos.y,
                pilot->solid->vel.x, pilot->solid->vel.y,
                pilot->ship->gfx_space->sw/2./PILOT_SIZE_APPROX + rtmass,
