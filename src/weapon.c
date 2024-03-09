@@ -73,6 +73,7 @@ typedef struct Weapon_ {
    double life; /**< Total life. */
    double timer; /**< mainly used to see when the weapon was fired */
    double anim; /**< Used for beam weapon graphics and others. */
+   double length; /**< Length (used for beam range). */
    GLfloat r; /**< Unique random value . */
    int sprite; /**< Used for spinning outfits. */
    PilotOutfitSlot *mount; /**< Used for beam weapons. */
@@ -661,7 +662,7 @@ static void weapon_renderBeam( Weapon* w, const double dt ) {
    projection = gl_view_matrix;
    gl_Matrix4_Translate(&projection, x, y, 0.);
    gl_Matrix4_Rotate2d(&projection, w->solid->dir);
-   gl_Matrix4_Scale(&projection, w->outfit->u.bem.range*z,
+   gl_Matrix4_Scale(&projection, w->length*z,
          w->outfit->u.bem.width * z, 1);
    gl_Matrix4_Translate(&projection, 0., -0.5, 0.);
 
@@ -673,7 +674,7 @@ static void weapon_renderBeam( Weapon* w, const double dt ) {
    /* Set shader uniforms. */
    gl_Matrix4_Uniform(shaders.beam.projection, projection);
    gl_uniformColor(shaders.beam.color, &w->outfit->u.bem.colour);
-   glUniform2f(shaders.beam.dimensions, w->outfit->u.bem.range, w->outfit->u.bem.width);
+   glUniform2f(shaders.beam.dimensions, w->length, w->outfit->u.bem.width);
    glUniform1f(shaders.beam.dt, w->anim);
    glUniform1f(shaders.beam.r, w->r);
 
@@ -883,12 +884,12 @@ static int weapon_checkPilCollide(Weapon* w, const double dt,
       if (usePoly) {
          k = p->ship->gfx_space->sx * psy + psx;
          coll = CollideLinePolygon(&w->solid->pos, w->solid->dir,
-               w->outfit->u.bem.range, &p->ship->polygon[k],
+               w->length, &p->ship->polygon[k],
                &p->solid->pos, crash);
       }
       else {
          coll = CollideLineSprite(&w->solid->pos, w->solid->dir,
-               w->outfit->u.bem.range, p->ship->gfx_space, psx, psy,
+               w->length, p->ship->gfx_space, psx, psy,
                &p->solid->pos, crash);
       }
       if (coll) {
@@ -1078,12 +1079,11 @@ static void weapon_update( Weapon* w, const double dt, WeaponLayer layer )
          for (j=0; j<ast->nb; j++) {
             a = &ast->asteroids[j];
             at = space_getType ( a->type );
-            if ( ((a->appearing == ASTEROID_VISIBLE)||(a->appearing == ASTEROID_EXPLODING)) &&
-                  CollideLineSprite( &w->solid->pos, w->solid->dir,
-                        w->outfit->u.bem.range,
-                        at->gfxs[a->gfxID], 0, 0, &a->pos,
-                        crash ) ) {
-               weapon_hitAstBeam( w, a, layer, crash, dt );
+            if (((a->appearing == ASTEROID_VISIBLE)
+                     || (a->appearing == ASTEROID_EXPLODING))
+                  && CollideLineSprite(&w->solid->pos, w->solid->dir,
+                        w->length, at->gfxs[a->gfxID], 0, 0, &a->pos, crash)) {
+               weapon_hitAstBeam(w, a, layer, crash, dt);
                /* No return because beam can still think, it's not
                 * destroyed like the other weapons.*/
             }
@@ -1793,11 +1793,11 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
    w->parent   = parent->id; /* non-changeable */
    w->target   = target; /* non-changeable */
    if (outfit_isLauncher(outfit)) {
-      w->outfit   = outfit->u.lau.ammo; /* non-changeable */
+      w->outfit = outfit->u.lau.ammo; /* non-changeable */
       w->launcher = outfit; /* non-changeable */
    }
    else
-      w->outfit   = outfit; /* non-changeable */
+      w->outfit = outfit; /* non-changeable */
    w->update = weapon_update;
    w->strength = 1.;
 
@@ -1839,6 +1839,7 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
          w->solid = solid_create( mass, rdir, pos, vel, SOLID_UPDATE_EULER );
          w->think = think_beam;
          w->timer = outfit->u.bem.duration;
+         w->length = outfit->u.bem.range;
          w->voice = sound_playPos( w->outfit->u.bem.sound,
                w->solid->pos.x,
                w->solid->pos.y,
@@ -1852,6 +1853,7 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
             w->dis_as_dam_mod = parent->stats.tur_dis_as_dam;
             w->dam_shield_as_armor_mod = parent->stats.tur_dam_shield_as_armor;
             w->dam_armor_as_shield_mod = parent->stats.tur_dam_armor_as_shield;
+            w->length *= parent->stats.tur_range;
          }
          else {
             w->dam_mod *= parent->stats.fwd_damage;
@@ -1859,6 +1861,7 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
             w->dis_as_dam_mod = parent->stats.fwd_dis_as_dam;
             w->dam_shield_as_armor_mod = parent->stats.fwd_dam_shield_as_armor;
             w->dam_armor_as_shield_mod = parent->stats.fwd_dam_armor_as_shield;
+            w->length *= parent->stats.fwd_range;
          }
          w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
          w->dis_as_dam_mod = CLAMP(0., 1., w->dis_as_dam_mod);
