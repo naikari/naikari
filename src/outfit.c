@@ -1160,7 +1160,6 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    temp->u.blt.sound = -1;
    temp->u.blt.sound_hit = -1;
    temp->u.blt.falloff = -1.;
-   temp->u.blt.ew_lockon = 1.;
 
    tail = NULL;
 
@@ -1169,7 +1168,6 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       xml_onlyNodes(node);
       xmlr_float(node,"speed",temp->u.blt.speed);
       xmlr_float(node,"delay",temp->u.blt.delay);
-      xmlr_float(node,"ew_lockon",temp->u.blt.ew_lockon);
       xmlr_float(node,"energy",temp->u.blt.energy);
       xmlr_float(node,"heatup",temp->u.blt.heatup);
       xmlr_float(node,"rdr_range",temp->u.blt.rdr_range);
