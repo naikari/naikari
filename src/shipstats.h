@@ -33,7 +33,9 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_FORWARD_DAMAGE, /**< Forward damage multiplier. */
    SS_TYPE_D_FORWARD_FIRERATE, /**< Forward fire rate multiplier. */
    SS_TYPE_D_FORWARD_RANGE, /**< Forward range multiplier. */
-   SS_TYPE_D_FORWARD_SPEED, /**< Forward bullet speed multiplier. */
+   SS_TYPE_D_FORWARD_SPEED, /**< Forward bolt speed multiplier. */
+   SS_TYPE_I_FORWARD_SALVO, /**< Forward bolt salvo modifier. */
+   SS_TYPE_A_FORWARD_SPREAD, /**< Forward bolt spread modifier. */
    SS_TYPE_D_FORWARD_ENERGY, /**< Forward energy usage multiplier. */
    SS_TYPE_D_FORWARD_HEAT, /**< Forward heat generation multiplier. */
    SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, /**< Forward damage as disable modifier. */
@@ -46,7 +48,9 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_TURRET_DAMAGE, /**< Turret damage multiplier. */
    SS_TYPE_D_TURRET_FIRERATE, /**< Turret fire rate multiplier. */
    SS_TYPE_D_TURRET_RANGE, /**< Turret range multiplier. */
-   SS_TYPE_D_TURRET_SPEED, /**< Turret bullet speed multiplier. */
+   SS_TYPE_D_TURRET_SPEED, /**< Turret bolt speed multiplier. */
+   SS_TYPE_I_TURRET_SALVO, /**< Turret bolt salvo modifier. */
+   SS_TYPE_A_TURRET_SPREAD, /**< Turret bolt spread modifier. */
    SS_TYPE_D_TURRET_ENERGY, /**< Turret energy usage multiplier. */
    SS_TYPE_D_TURRET_HEAT, /**< Turret heat generation multiplier. */
    SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, /**< Turret damage as disable modifier. */
@@ -58,6 +62,8 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_LAUNCH_DAMAGE, /**< Launcher damage multiplier. */
    SS_TYPE_D_LAUNCH_RATE, /**< Launcher fire rate multiplier. */
    SS_TYPE_D_LAUNCH_RANGE, /**< Launcher range multiplier. */
+   SS_TYPE_I_LAUNCH_SALVO, /**< Launcher salvo modifier. */
+   SS_TYPE_A_LAUNCH_SPREAD, /**< Launcher spread modifier. */
    SS_TYPE_D_AMMO_CAPACITY, /**< Launcher capacity multiplier. */
    SS_TYPE_D_LAUNCH_RELOAD, /**< Launcher reload rate multiplier. */
    SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, /**< Launcher damage as disable modifier. */
@@ -188,7 +194,9 @@ typedef struct ShipStats_ {
    double fwd_damage; /**< Forward damage multiplier. */
    double fwd_firerate; /**< Forward fire rate multiplier. */
    double fwd_range; /**< Forward range multiplier. */
-   double fwd_speed; /**< Forward bullet speed multiplier. */
+   double fwd_speed; /**< Forward bolt speed multiplier. */
+   int fwd_salvo; /**< Forward bolt salvo modifier. */
+   double fwd_spread; /**< Forward bolt spread modifier. */
    double fwd_energy; /**< Forward energy usage multiplier. */
    double fwd_heat; /**< Forward heat generation multiplier. */
    double fwd_dam_as_dis; /**< Forward damage as disable modifier. */
@@ -200,7 +208,9 @@ typedef struct ShipStats_ {
    double tur_damage; /**< Turret damage multiplier. */
    double tur_firerate; /**< Turret fire rate multiplier. */
    double tur_range; /**< Turret range multiplier. */
-   double tur_speed; /**< Turret bullet speed multiplier. */
+   double tur_speed; /**< Turret bolt speed multiplier. */
+   int tur_salvo; /**< Turret bolt salvo modifier. */
+   double tur_spread; /**< Turret bolt spread modifier. */
    double tur_energy; /**< Turret energy usage multiplier. */
    double tur_heat; /**< Turret heat generation multiplier. */
    double tur_dam_as_dis; /**< Turret damage as disable modifier. */
@@ -212,6 +222,8 @@ typedef struct ShipStats_ {
    double launch_damage; /**< Launcher damage multiplier. */
    double launch_rate; /**< Launcher fire rate multiplier. */
    double launch_range; /**< Launcher range multiplier. */
+   int launch_salvo; /**< Launcher salvo modifier. */
+   double launch_spread; /**< Launcher spread modifier. */
    double ammo_capacity; /**< Launcher ammo capacity multiplier. */
    double launch_reload; /**< Launcher reload rate multiplier. */
    double launch_dam_as_dis; /**< Launcher damage as disable modifier. */

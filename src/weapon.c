@@ -1589,6 +1589,7 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    double mass, rdir;
    double range;
    double speed;
+   double spread;
    Pilot *pilot_target;
    double acc;
    glTexture *gfx;
@@ -1609,10 +1610,12 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    /* Stat modifiers. */
    range = outfit->u.blt.range;
    speed = outfit->u.blt.speed;
+   spread = outfit->u.blt.spread;
    if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
          || parent->stats.turret_conversion) {
       range *= parent->stats.tur_range;
       speed *= parent->stats.tur_speed;
+      spread += parent->stats.tur_spread;
       w->dam_mod *= parent->stats.tur_damage;
       w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
       w->dis_as_dam_mod = parent->stats.tur_dis_as_dam;
@@ -1622,22 +1625,25 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    else {
       range *= parent->stats.fwd_range;
       speed *= parent->stats.fwd_speed;
+      spread += parent->stats.fwd_spread;
       w->dam_mod *= parent->stats.fwd_damage;
       w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
       w->dis_as_dam_mod = parent->stats.fwd_dis_as_dam;
       w->dam_shield_as_armor_mod = parent->stats.fwd_dam_shield_as_armor;
       w->dam_armor_as_shield_mod = parent->stats.fwd_dam_armor_as_shield;
    }
+   spread = CLAMP(0., 2. * M_PI, spread);
    w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
    w->dis_as_dam_mod = CLAMP(0., 1., w->dis_as_dam_mod);
    w->dam_shield_as_armor_mod = CLAMP(0., 1., w->dam_shield_as_armor_mod);
    w->dam_armor_as_shield_mod = CLAMP(0., 1., w->dam_armor_as_shield_mod);
 
    /* Calculate accuracy loss from spread. */
-   rdir += (RNGF()-0.5) * outfit->u.blt.spread;
+   rdir += (RNGF()-0.5) * spread;
 
    /* Calculate heat-based accuracy loss. */
    rdir += RNG_2SIGMA() * acc;
+
    if (rdir < 0.)
       rdir += 2.*M_PI;
    else if (rdir >= 2.*M_PI)
@@ -1677,6 +1683,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    (void) T;
    Vector2d v;
    double mass, rdir;
+   double spread;
    Pilot *pilot_target;
    glTexture *gfx;
    Outfit* ammo;
@@ -1710,6 +1717,12 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
          parent->stats.launch_dam_shield_as_armor);
    w->dam_armor_as_shield_mod = CLAMP(0., 1.,
          parent->stats.launch_dam_armor_as_shield);
+
+   /* Calculate accuracy loss from spread. */
+   spread = launcher->u.lau.spread + parent->stats.launch_spread;
+   spread = CLAMP(0., 2. * M_PI, spread);
+   rdir += (RNGF()-0.5) * spread;
+
    if (rdir < 0.)
       rdir += 2.*M_PI;
    else if (rdir >= 2.*M_PI)
@@ -1921,8 +1934,19 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
    }
 
    salvo = 1;
-   if (outfit_isBolt(outfit))
+   if (outfit_isBolt(outfit)) {
       salvo = outfit->u.blt.salvo;
+      if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
+            || parent->stats.turret_conversion) {
+         salvo += parent->stats.tur_salvo;
+      }
+      else {
+         salvo += parent->stats.fwd_salvo;
+      }
+   }
+   else if (outfit_isLauncher(outfit)) {
+      salvo = outfit->u.lau.salvo + parent->stats.launch_salvo;
+   }
 
    layer = (parent->id==PLAYER_ID) ? WEAPON_LAYER_FG : WEAPON_LAYER_BG;
 

@@ -1329,12 +1329,6 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
             _("%.1f GW Energy Usage [%G GJ/shot]\n"),
             1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy);
 
-   if (temp->u.blt.salvo > 1) {
-      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%d-Bolt Salvo\n"),
-            temp->u.blt.salvo);
-   }
-
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%.1f RPS Fire Rate\n"),
          1./temp->u.blt.delay);
@@ -1348,6 +1342,12 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G s Heat Up"),
          temp->u.blt.heatup);
+
+   if (temp->u.blt.salvo > 1) {
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("%d-Bolt Salvo\n"),
+            temp->u.blt.salvo);
+   }
 
    if (temp->u.blt.spread > 0.) {
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
@@ -1537,7 +1537,7 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
                _("%G%% Knockback\n"), dknockback * 100.);
    }
 
-   if (temp->u.blt.dmg.disable > 0.)
+   if (temp->u.bem.dmg.disable > 0.)
       l += scnprintf( &temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G GW Disable [%.0f GW avg.]\n"),
          temp->u.bem.dmg.disable,
@@ -1611,6 +1611,8 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"lockon",temp->u.lau.lockon);
       xmlr_float(node,"rdr_range",temp->u.lau.rdr_range);
       xmlr_float(node,"rdr_range_max",temp->u.lau.rdr_range_max);
+      xmlr_float(node, "spread", temp->u.lau.spread);
+      xmlr_int(node, "salvo", temp->u.lau.salvo);
       if (!outfit_isTurret(temp)) {
          xmlr_float(node,"arc",temp->u.lau.arc); /* This is full arc in degrees, so we have to correct it to semi-arc in radians for internal usage. */
          xmlr_float(node,"swivel",temp->u.lau.swivel);
@@ -1629,7 +1631,12 @@ static void outfit_parseSLauncher( Outfit* temp, const xmlNodePtr parent )
       WARN(_("Outfit '%s' has unknown node '%s'"),temp->name, node->name);
    } while (xml_nextNode(node));
 
+   /* Default 1-rocket salvo. */
+   if (temp->u.lau.salvo <= 0)
+      temp->u.lau.salvo = 1;
+
    /* Post processing. */
+   temp->u.lau.spread *= M_PI / 180.;
    temp->u.lau.arc *= (M_PI/180.) / 2.; /* Note we convert from arc to semi-arc. */
    temp->u.lau.swivel *= M_PI/180.;
 
@@ -2740,6 +2747,18 @@ static void outfit_launcherDesc( Outfit* o )
    l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
          _("%G mAU/s Maximum Speed"),
          a->u.amm.speed);
+
+   if (o->u.lau.salvo > 1) {
+      l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("%d-Rocket Salvo\n"),
+            o->u.lau.salvo);
+   }
+
+   if (o->u.lau.spread > 0.) {
+      l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+            _("\n%G° Spread"),
+            o->u.lau.spread * 180. / M_PI);
+   }
 
    if (o->u.lau.rdr_range > 0.) {
       l += scnprintf( &o->desc_short[l], OUTFIT_SHORTDESC_MAX-l,

@@ -217,6 +217,8 @@ typedef struct OutfitLauncherData_ {
    double rdr_range; /**< Radar optimal range. */
    double rdr_range_max; /**< Radar maximum range. */
    double swivel;    /**< Amount of swivel (semiarc in radians of deviation the weapon can correct. */
+   double spread; /**< Amount of base inaccuracy in radians. */
+   int salvo; /**< Rockets per shot. */
 } OutfitLauncherData;
 
 /**
