@@ -1250,6 +1250,10 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          outfit_parseDamage( &temp->u.blt.dmg, node );
          continue;
       }
+      if (xml_isNode(node, "charged")) {
+         temp->u.blt.charged = 1;
+         continue;
+      }
 
       /* Stats. */
       ll = ss_listFromXML(node);

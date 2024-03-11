@@ -155,6 +155,7 @@ typedef struct OutfitBoltData_ {
    double swivel;    /**< Amount of swivel (semiarc in radians of deviation the weapon can correct). */
    double spread; /**< Amount of base inaccuracy in radians. */
    int salvo; /**< Bolts per shot. */
+   int charged; /**< Whether or not the shots are charged. */
 
    /* Sound and graphics. */
    glTexture* gfx_space; /**< Normal graphic. */
