@@ -126,6 +126,7 @@ typedef struct PilotOutfitSlot_ {
 
    /* Current state. */
    PilotOutfitState state; /**< State of the outfit. */
+   double charge; /**< Charge timer. */
    double stimer; /**< State timer, tracking current state. */
    double timer; /**< Used to store when it was last used. */
    double rtimer; /**< Used to store when a reload can happen. */

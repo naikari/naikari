@@ -111,13 +111,14 @@ static unsigned int beam_idgen = 0; /**< Beam identifier generator. */
 static double weapon_aimTurret( const Pilot *parent,
       const Pilot *pilot_target, const Vector2d *pos, const Vector2d *vel, double dir,
       double swivel, double time, double track, double track_max );
-static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
-      const double dir, const Vector2d* pos, const Vector2d* vel, const Pilot* parent, double time );
+static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
+      const double dir, const Vector2d* pos, const Vector2d* vel,
+      const Pilot* parent, double time);
 static void weapon_createAmmo( Weapon *w, const Outfit* outfit, double T,
       const double dir, const Vector2d* pos, const Vector2d* vel, const Pilot* parent, double time );
-static Weapon* weapon_create(const Outfit* outfit, double T,
+static Weapon* weapon_create(const PilotOutfitSlot *slot,
       const double dir, const Vector2d* pos, const Vector2d* vel,
-      const Pilot *parent, const pilotId_t target, double time);
+      const Pilot* parent, const pilotId_t target, double time);
 /* Updating. */
 static void weapon_render( Weapon* w, const double dt );
 static void weapons_updateLayer( const double dt, const WeaponLayer layer );
@@ -1578,16 +1579,16 @@ static double weapon_aimTurret(const Pilot *parent, const Pilot *pilot_target,
  * @brief Creates the bolt specific properties of a weapon.
  *
  *    @param w Weapon to create bolt specific properties of.
- *    @param outfit Outfit which spawned the weapon.
- *    @param T temperature of the shooter.
+ *    @param slot Outfit slot which spawned the weapon.
  *    @param dir Direction the shooter is facing.
  *    @param pos Position of the shooter.
  *    @param vel Velocity of the shooter.
  *    @param parent Shooter.
  *    @param time Expected flight time.
  */
-static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
-      const double dir, const Vector2d* pos, const Vector2d* vel, const Pilot* parent, double time )
+static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
+      const double dir, const Vector2d* pos, const Vector2d* vel,
+      const Pilot* parent, double time)
 {
    Vector2d v;
    double mass, rdir;
@@ -1605,22 +1606,23 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
       pilot_target = NULL;
 
    rdir = weapon_aimTurret(
-         parent, pilot_target, pos, vel, dir, outfit->u.blt.swivel,
-         time, outfit->u.blt.rdr_range, outfit->u.blt.rdr_range_max );
+      parent, pilot_target, pos, vel, dir, w->outfit->u.blt.swivel,
+      time, w->outfit->u.blt.rdr_range, w->outfit->u.blt.rdr_range_max);
 
    /* Calculate accuracy. */
-   acc =  HEAT_WORST_ACCURACY * pilot_heatAccuracyMod( T );
+   acc =  HEAT_WORST_ACCURACY * pilot_heatAccuracyMod(slot->heat_T);
 
    /* Stat modifiers. */
-   range = outfit->u.blt.range * parent->stats.blt_range;
-   speed = outfit->u.blt.speed * parent->stats.blt_speed;
-   spread = outfit->u.blt.spread + parent->stats.blt_spread;
+   range = w->outfit->u.blt.range * parent->stats.blt_range;
+   speed = w->outfit->u.blt.speed * parent->stats.blt_speed;
+   spread = w->outfit->u.blt.spread + parent->stats.blt_spread;
    w->dam_mod *= parent->stats.blt_damage;
+   w->dam_mod *= (slot->charge+w->outfit->u.blt.delay) / w->outfit->u.blt.delay;
    w->dam_as_dis_mod = parent->stats.blt_dam_as_dis;
    w->dis_as_dam_mod = parent->stats.blt_dis_as_dam;
    w->dam_shield_as_armor_mod = parent->stats.blt_dam_shield_as_armor;
    w->dam_armor_as_shield_mod = parent->stats.blt_dam_armor_as_shield;
-   if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
+   if ((w->outfit->type == OUTFIT_TYPE_TURRET_BOLT)
          || parent->stats.turret_conversion) {
       range *= parent->stats.tur_range;
       speed *= parent->stats.tur_speed;
@@ -1662,15 +1664,15 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    v = *vel;
    vect_cadd(&v, speed * cos(rdir), speed * sin(rdir));
    w->timer = range / speed;
-   w->falloff = w->timer - outfit->u.blt.falloff / speed;
+   w->falloff = w->timer - w->outfit->u.blt.falloff / speed;
    w->solid = solid_create(mass, rdir, pos, &v, SOLID_UPDATE_EULER);
    w->voice = sound_playPos(w->outfit->u.blt.sound,
          w->solid->pos.x, w->solid->pos.y,
          w->solid->vel.x, w->solid->vel.y);
 
    /* Set facing direction. */
-   gfx = outfit_gfx( w->outfit );
-   gl_getSpriteFromDir( &w->sx, &w->sy, gfx, w->solid->dir );
+   gfx = outfit_gfx(w->outfit);
+   gl_getSpriteFromDir(&w->sx, &w->sy, gfx, w->solid->dir);
 }
 
 
@@ -1814,8 +1816,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
 /**
  * @brief Creates a new weapon.
  *
- *    @param outfit Outfit which spawned the weapon.
- *    @param T temperature of the shooter.
+ *    @param slot Outfit slot which spawned the weapon.
  *    @param dir Direction the shooter is facing.
  *    @param pos Position of the shooter.
  *    @param vel Velocity of the shooter.
@@ -1824,7 +1825,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
  *    @param time Expected flight time.
  *    @return A pointer to the newly created weapon.
  */
-static Weapon* weapon_create(const Outfit* outfit, double T,
+static Weapon* weapon_create(const PilotOutfitSlot *slot,
       const double dir, const Vector2d* pos, const Vector2d* vel,
       const Pilot* parent, const pilotId_t target, double time)
 {
@@ -1837,20 +1838,20 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
 
    /* Create basic features */
    w = calloc(1, sizeof(Weapon));
-   w->dam_mod  = 1.; /* Default of 100% damage. */
-   w->dam_as_dis_mod = 0.; /* Default of 0% damage to disable. */
+   w->dam_mod = 1.;
+   w->dam_as_dis_mod = 0.;
    w->dis_as_dam_mod = 0.;
    w->dam_shield_as_armor_mod = 0.;
    w->dam_armor_as_shield_mod = 0.;
-   w->faction  = parent->faction; /* non-changeable */
-   w->parent   = parent->id; /* non-changeable */
-   w->target   = target; /* non-changeable */
-   if (outfit_isLauncher(outfit)) {
-      w->outfit = outfit->u.lau.ammo; /* non-changeable */
-      w->launcher = outfit; /* non-changeable */
+   w->faction = parent->faction; /* non-changeable */
+   w->parent = parent->id; /* non-changeable */
+   w->target = target; /* non-changeable */
+   if (outfit_isLauncher(slot->outfit)) {
+      w->outfit = slot->outfit->u.lau.ammo; /* non-changeable */
+      w->launcher = slot->outfit; /* non-changeable */
    }
    else
-      w->outfit = outfit; /* non-changeable */
+      w->outfit = slot->outfit; /* non-changeable */
    w->update = weapon_update;
    w->strength = 1.;
 
@@ -1859,19 +1860,19 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
    if (pilot_target != NULL)
       pilot_target->projectiles++;
 
-   switch (outfit->type) {
+   switch (slot->outfit->type) {
 
       /* Bolts treated together */
       case OUTFIT_TYPE_BOLT:
       case OUTFIT_TYPE_TURRET_BOLT:
-         weapon_createBolt( w, outfit, T, dir, pos, vel, parent, time );
+         weapon_createBolt(w, slot, dir, pos, vel, parent, time);
          break;
 
       /* Beam weapons are treated together. */
       case OUTFIT_TYPE_BEAM:
       case OUTFIT_TYPE_TURRET_BEAM:
          rdir = dir;
-         if ((outfit->type == OUTFIT_TYPE_TURRET_BEAM)
+         if ((slot->outfit->type == OUTFIT_TYPE_TURRET_BEAM)
                || parent->stats.turret_conversion) {
             pilot_target = pilot_get(target);
             if ((w->parent != w->target) && (pilot_target != NULL))
@@ -1898,13 +1899,13 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
                w->solid->vel.y);
 
          w->dam_mod *= parent->stats.bem_damage;
-         w->timer = outfit->u.bem.duration * parent->stats.bem_duration;
-         w->length = outfit->u.bem.range * parent->stats.bem_range;
+         w->timer = slot->outfit->u.bem.duration * parent->stats.bem_duration;
+         w->length = slot->outfit->u.bem.range * parent->stats.bem_range;
          w->dam_as_dis_mod = parent->stats.bem_dam_as_dis;
          w->dis_as_dam_mod = parent->stats.bem_dis_as_dam;
          w->dam_shield_as_armor_mod = parent->stats.bem_dam_shield_as_armor;
          w->dam_armor_as_shield_mod = parent->stats.bem_dam_armor_as_shield;
-         if ((outfit->type == OUTFIT_TYPE_TURRET_BEAM)
+         if ((slot->outfit->type == OUTFIT_TYPE_TURRET_BEAM)
                || parent->stats.turret_conversion) {
             w->dam_mod *= parent->stats.tur_damage;
             w->length *= parent->stats.tur_range;
@@ -1931,13 +1932,13 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
       /* Treat seekers together. */
       case OUTFIT_TYPE_LAUNCHER:
       case OUTFIT_TYPE_TURRET_LAUNCHER:
-         weapon_createAmmo( w, outfit, T, dir, pos, vel, parent, time );
+         weapon_createAmmo(w, slot->outfit, slot->heat_T, dir, pos, vel, parent, time);
          break;
 
       /* just dump it where the player is */
       default:
          WARN(_("Weapon of type '%s' has no create implemented yet!"),
-               w->outfit->name);
+               slot->outfit->name);
          w->solid = solid_create( 1., dir, pos, vel, SOLID_UPDATE_EULER );
          break;
    }
@@ -1952,8 +1953,7 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
 /**
  * @brief Creates a new weapon.
  *
- *    @param outfit Outfit which spawns the weapon.
- *    @param T Temperature of the shooter.
+ *    @param slot Outfit slot which spawns the weapon.
  *    @param dir Direction of the shooter.
  *    @param pos Position of the shooter.
  *    @param vel Velocity of the shooter.
@@ -1961,7 +1961,7 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
  *    @param target Target ID that is getting shot.
  *    @param time Expected flight time.
  */
-void weapon_add(const Outfit* outfit, const double T, const double dir,
+void weapon_add(const PilotOutfitSlot *slot, const double dir,
       const Vector2d* pos, const Vector2d* vel,
       const Pilot *parent, pilotId_t target, double time)
 {
@@ -1972,16 +1972,16 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
    int salvo;
    int i;
 
-   if (!outfit_isBolt(outfit) &&
-         !outfit_isLauncher(outfit)) {
+   if (!outfit_isBolt(slot->outfit) &&
+         !outfit_isLauncher(slot->outfit)) {
       ERR(_("Trying to create a Weapon from a non-Weapon type Outfit"));
       return;
    }
 
    salvo = 1;
-   if (outfit_isBolt(outfit)) {
-      salvo = outfit->u.blt.salvo + parent->stats.blt_salvo;
-      if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
+   if (outfit_isBolt(slot->outfit)) {
+      salvo = slot->outfit->u.blt.salvo + parent->stats.blt_salvo;
+      if ((slot->outfit->type == OUTFIT_TYPE_TURRET_BOLT)
             || parent->stats.turret_conversion) {
          salvo += parent->stats.tur_salvo;
       }
@@ -1989,9 +1989,9 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
          salvo += parent->stats.fwd_salvo;
       }
    }
-   else if (outfit_isLauncher(outfit)) {
-      salvo = outfit->u.lau.salvo + parent->stats.launch_salvo;
-      if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
+   else if (outfit_isLauncher(slot->outfit)) {
+      salvo = slot->outfit->u.lau.salvo + parent->stats.launch_salvo;
+      if ((slot->outfit->type == OUTFIT_TYPE_TURRET_BOLT)
             || parent->stats.turret_conversion) {
          salvo += parent->stats.tur_salvo;
       }
@@ -2003,7 +2003,7 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
    layer = (parent->id==PLAYER_ID) ? WEAPON_LAYER_FG : WEAPON_LAYER_BG;
 
    for (i=0; i<salvo; i++) {
-      w = weapon_create(outfit, T, dir, pos, vel, parent, target, time);
+      w = weapon_create(slot, dir, pos, vel, parent, target, time);
 
       /* set the proper layer */
       switch (layer) {
@@ -2037,7 +2037,7 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
 /**
  * @brief Starts a beam weapon.
  *
- *    @param outfit Outfit which spawns the weapon.
+ *    @param slot Outfit slot which spawns the weapon.
  *    @param dir Direction of the shooter.
  *    @param pos Position of the shooter.
  *    @param vel Velocity of the shooter.
@@ -2048,7 +2048,7 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
  *
  * @sa beam_end
  */
-unsigned int beam_start(const Outfit* outfit,
+unsigned int beam_start(const PilotOutfitSlot *slot,
       const double dir, const Vector2d* pos, const Vector2d* vel,
       const Pilot *parent, const pilotId_t target,
       PilotOutfitSlot *mount)
@@ -2058,13 +2058,13 @@ unsigned int beam_start(const Outfit* outfit,
    GLsizei size;
    size_t bufsize;
 
-   if (!outfit_isBeam(outfit)) {
+   if (!outfit_isBeam(slot->outfit)) {
       ERR(_("Trying to create a Beam Weapon from a non-beam outfit."));
       return -1;
    }
 
    layer = (parent->id==PLAYER_ID) ? WEAPON_LAYER_FG : WEAPON_LAYER_BG;
-   w = weapon_create( outfit, 0., dir, pos, vel, parent, target, 0. );
+   w = weapon_create(slot, dir, pos, vel, parent, target, 0.);
    w->ID = ++beam_idgen;
    w->mount = mount;
    w->exp_timer = 0.;

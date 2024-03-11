@@ -1310,7 +1310,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    dot_mod = 1. / temp->u.blt.delay;
    if (temp->u.blt.charge_max > 0.) {
       /* Charged bolt damage stats. */
-      charge_mod = temp->u.blt.charge_max + temp->u.blt.delay;
+      charge_mod = dot_mod * (temp->u.blt.charge_max+temp->u.blt.delay);
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
             _("%G s Charge Capacity\n"),
             temp->u.blt.charge_max);
@@ -1319,13 +1319,13 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
                _("%.2f GW Shield Damage [%.1f–%.1f GJ/shot]\n"),
                dot_mod * dshield * temp->u.blt.salvo,
                dshield,
-               charge_mod * dot_mod * dshield * temp->u.blt.salvo);
+               charge_mod * dshield * temp->u.blt.salvo);
       if (darmor > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
                _("%.2f GW Armor Damage [%.1f–%.1f GJ/shot]\n"),
                dot_mod * darmor * temp->u.blt.salvo,
                darmor,
-               charge_mod * dot_mod * darmor * temp->u.blt.salvo);
+               charge_mod * darmor * temp->u.blt.salvo);
       if (dknockback > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
                _("%G%% Knockback\n"), dknockback * 100.);
@@ -1334,13 +1334,13 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
                _("%.2f GW Disable [%.1f–%.1f GJ/shot]\n"),
                dot_mod * temp->u.blt.dmg.disable * temp->u.blt.salvo,
                temp->u.blt.dmg.disable,
-               charge_mod * dot_mod * temp->u.blt.dmg.disable * temp->u.blt.salvo);
+               charge_mod * temp->u.blt.dmg.disable * temp->u.blt.salvo);
       if (temp->u.blt.energy > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
                _("%.1f GW Energy Usage [%.1f–%.1f GJ/shot]\n"),
                dot_mod * temp->u.blt.energy,
                temp->u.blt.energy,
-               charge_mod * dot_mod * temp->u.blt.energy);
+               charge_mod * temp->u.blt.energy);
    }
    else {
       /* Standard bolt damage stats. */

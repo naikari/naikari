@@ -25,15 +25,15 @@ typedef enum { WEAPON_LAYER_BG, WEAPON_LAYER_FG } WeaponLayer;
 /*
  * addition
  */
-void weapon_add(const Outfit* outfit, const double T,
-      const double dir, const Vector2d* pos, const Vector2d* vel,
-      const Pilot *parent, const pilotId_t target, double time);
+void weapon_add(const PilotOutfitSlot *slot, const double dir,
+      const Vector2d* pos, const Vector2d* vel,
+      const Pilot *parent, pilotId_t target, double time);
 
 
 /*
  * Beam weapons.
  */
-unsigned int beam_start(const Outfit* outfit,
+unsigned int beam_start(const PilotOutfitSlot *slot,
       const double dir, const Vector2d* pos, const Vector2d* vel,
       const Pilot *parent, const pilotId_t target,
       PilotOutfitSlot *mount);

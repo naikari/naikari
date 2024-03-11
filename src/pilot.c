@@ -2110,6 +2110,12 @@ void pilot_update( Pilot* pilot, double dt )
       if (o->timer > 0.)
          o->timer -= dt * pilot_heatFireRateMod( o->heat_T );
 
+      /* Handle charge timer. */
+      if (outfit_isBolt(o->outfit) && (o->outfit->u.blt.charge_max > 0.)
+            && (o->timer <= 0.)) {
+         o->charge = CLAMP(0., o->outfit->u.blt.charge_max, o->charge + dt);
+      }
+
       /* Handle reload timer. (Note: this works backwards compared to
        * other timers. This helps to simplify code resetting the timer
        * elsewhere.)
@@ -3660,10 +3666,11 @@ void pilot_clearTimers( Pilot *pilot )
    n = 0;
    for (i=0; i<array_size(pilot->outfits); i++) {
       o = pilot->outfits[i];
+      o->charge = 0.;
       o->timer = 0.; /* Last used timer. */
       o->stimer = 0.; /* State timer. */
       if (o->state != PILOT_OUTFIT_OFF) {
-         o->state    = PILOT_OUTFIT_OFF; /* Set off. */
+         o->state = PILOT_OUTFIT_OFF;
          n++;
       }
    }
