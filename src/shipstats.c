@@ -45,6 +45,8 @@ typedef struct ShipStatsLookup_ {
       a ship. Can be set to NULL for no display of this stat for a
       ship's totalled stat list (should be done if the stat is redundant
       with standard ship information, e.g. mass). */
+   double min; /**< Minimum value of the stat. */
+   double max; /**< Maximum value of the stat. */
    StatDataType data;   /**< Type of data for the stat. */
    int inverted;        /**< Indicates whether the good value is inverted, by
                              default positive is good, with this set negative
@@ -56,35 +58,36 @@ typedef struct ShipStatsLookup_ {
 
 
 /* Flexible do everything macro. */
-#define ELEM(t, n, dsp, sh_dsp, d , i) \
-   {.type=t, .name=#n, .display=dsp, .ship_display=sh_dsp, .data=d, \
-      .inverted=i, .offset=offsetof(ShipStats, n)}
+#define ELEM(t, n, dsp, sh_dsp, minv, maxv, d , i) \
+   {.type=t, .name=#n, .display=dsp, .ship_display=sh_dsp, \
+      .min=minv, .max=maxv, .data=d, .inverted=i, \
+      .offset=offsetof(ShipStats, n)}
 /* Standard types. */
 #define D_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE, 0)
-#define A_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 0)
-#define P_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 0)
+   ELEM(t, n, dsp, sh_dsp, 0., 0., SS_DATA_TYPE_DOUBLE, 0)
+#define A_ELEM(t, n, dsp, sh_dsp, min, max) \
+   ELEM(t, n, dsp, sh_dsp, min, max, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 0)
+#define P_ELEM(t, n, dsp, sh_dsp, min, max) \
+   ELEM(t, n, dsp, sh_dsp, min, max, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 0)
 #define I_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_INTEGER, 0)
+   ELEM(t, n, dsp, sh_dsp, 0., 0., SS_DATA_TYPE_INTEGER, 0)
 #define B_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_BOOLEAN, 0)
+   ELEM(t, n, dsp, sh_dsp, 0., 0., SS_DATA_TYPE_BOOLEAN, 0)
 /* Inverted types. */
 #define DI_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE, 1)
-#define AI_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 1)
-#define PI_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 1)
+   ELEM(t, n, dsp, sh_dsp, 0., INFINITY, SS_DATA_TYPE_DOUBLE, 1)
+#define AI_ELEM(t, n, dsp, sh_dsp, min, max) \
+   ELEM(t, n, dsp, sh_dsp, min, max, SS_DATA_TYPE_DOUBLE_ABSOLUTE, 1)
+#define PI_ELEM(t, n, dsp, sh_dsp, min, max) \
+   ELEM(t, n, dsp, sh_dsp, min, max, SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT, 1)
 #define II_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_INTEGER, 1)
+   ELEM(t, n, dsp, sh_dsp, 0., 0., SS_DATA_TYPE_INTEGER, 1)
 #define BI_ELEM(t, n, dsp, sh_dsp) \
-   ELEM(t, n, dsp, sh_dsp, SS_DATA_TYPE_BOOLEAN, 1)
+   ELEM(t, n, dsp, sh_dsp, 0., 0., SS_DATA_TYPE_BOOLEAN, 1)
 /** Nil element. */
 #define N_ELEM(t) \
-   {.type=t, .name=NULL, .display=NULL, .ship_display=NULL, .inverted=0, \
-      .offset=0}
+   {.type=t, .name=NULL, .display=NULL, .ship_display=NULL, .min=0., .max=0., \
+      .inverted=0, .offset=0}
 
 /**
  * The ultimate look up table for ship stats, everything goes through this.
@@ -99,7 +102,8 @@ static const ShipStatsLookup ss_lookup[] = {
       NULL),
    A_ELEM(SS_TYPE_A_ENGINE_LIMIT, engine_limit,
       N_("%+G kt Engine Mass Limit"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_ENGINE_LIMIT_REL, engine_limit_rel,
       N_("%+G%% Engine Mass Limit"),
       NULL),
@@ -122,7 +126,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+d Shot Salvo (Forward)")),
    AI_ELEM(SS_TYPE_A_FORWARD_SPREAD, fwd_spread,
       N_("%+G° Shot Spread (Forward)"),
-      N_("%+.0f° Shot Spread (Forward)")),
+      N_("%+.0f° Shot Spread (Forward)"),
+      -360., 360.),
    DI_ELEM(SS_TYPE_D_FORWARD_ENERGY, fwd_energy,
       N_("%+G%% Energy Usage (Forward)"),
       N_("%+.0f%% Energy Usage (Forward)")),
@@ -131,16 +136,20 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+.0f%% Heat (Forward)")),
    P_ELEM(SS_TYPE_P_FORWARD_DAMAGE_AS_DISABLE, fwd_dam_as_dis,
       N_("%+G pp Ionization (Forward)"),
-      N_("%.0f%% Ionization (Forward)")),
+      N_("%.0f%% Ionization (Forward)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_FORWARD_DISABLE_AS_DAMAGE, fwd_dis_as_dam,
       N_("%+G pp Deionization (Forward)"),
-      N_("%.0f%% Deionization (Forward)")),
+      N_("%.0f%% Deionization (Forward)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_FORWARD_DAMAGE_SHIELD_AS_ARMOR, fwd_dam_shield_as_armor,
       N_("%+G pp Crystallization (Forward)"),
-      N_("%.0f%% Crystallization (Forward)")),
+      N_("%.0f%% Crystallization (Forward)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_FORWARD_DAMAGE_ARMOR_AS_SHIELD, fwd_dam_armor_as_shield,
       N_("%+G pp Razorization (Forward)"),
-      N_("%.0f%% Razorization (Forward)")),
+      N_("%.0f%% Razorization (Forward)"),
+      0., 1.),
 
    /* Turrets. */
    B_ELEM(SS_TYPE_B_TURRET_CONVERSION, turret_conversion,
@@ -163,7 +172,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+d Shot Salvo (Turret)")),
    AI_ELEM(SS_TYPE_A_TURRET_SPREAD, tur_spread,
       N_("%+G° Bolt Spread (Turret)"),
-      N_("%+.0f° Bolt Spread (Turret)")),
+      N_("%+.0f° Bolt Spread (Turret)"),
+      -360., 360.),
    DI_ELEM(SS_TYPE_D_TURRET_ENERGY, tur_energy,
       N_("%+G%% Energy Usage (Turret)"),
       N_("%+.0f%% Energy Usage (Turret)")),
@@ -172,21 +182,26 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+.0f%% Heat (Turret)")),
    P_ELEM(SS_TYPE_P_TURRET_DAMAGE_AS_DISABLE, tur_dam_as_dis,
       N_("%+G pp Ionization (Turret)"),
-      N_("%.0f%% Ionization (Turret)")),
+      N_("%.0f%% Ionization (Turret)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_TURRET_DISABLE_AS_DAMAGE, tur_dis_as_dam,
       N_("%+G pp Deionization (Turret)"),
-      N_("%.0f%% Deionization (Turret)")),
+      N_("%.0f%% Deionization (Turret)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_TURRET_DAMAGE_SHIELD_AS_ARMOR, tur_dam_shield_as_armor,
       N_("%+G pp Crystallization (Turret)"),
-      N_("%.0f%% Crystallization (Turret)")),
+      N_("%.0f%% Crystallization (Turret)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_TURRET_DAMAGE_ARMOR_AS_SHIELD, tur_dam_armor_as_shield,
       N_("%+G pp Razorization (Turret)"),
-      N_("%.0f%% Razorization (Turret)")),
+      N_("%.0f%% Razorization (Turret)"),
+      0., 1.),
 
    /* Bolt weapons. */
    A_ELEM(SS_TYPE_A_BOLT_CHARGE, blt_charge,
       N_("%+G s Charge Capacity (Bolt)"),
-      N_("%+.0f s Charge Capacity (Bolt)")),
+      N_("%+.0f s Charge Capacity (Bolt)"),
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_BOLT_CHARGE_MOD, blt_charge_mod,
       N_("%+G%% Charge Capacity (Bolt)"),
       N_("%+.0f%% Charge Capacity (Bolt)")),
@@ -207,7 +222,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+d Shot Salvo (Bolt)")),
    AI_ELEM(SS_TYPE_A_BOLT_SPREAD, blt_spread,
       N_("%+G° Shot Spread (Bolt)"),
-      N_("%+.0f° Shot Spread (Bolt)")),
+      N_("%+.0f° Shot Spread (Bolt)"),
+      -360., 360.),
    DI_ELEM(SS_TYPE_D_BOLT_ENERGY, blt_energy,
       N_("%+G%% Energy Usage (Bolt)"),
       N_("%+.0f%% Energy Usage (Bolt)")),
@@ -216,16 +232,20 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+.0f%% Heat (Bolt)")),
    P_ELEM(SS_TYPE_P_BOLT_DAMAGE_AS_DISABLE, blt_dam_as_dis,
       N_("%+G pp Ionization (Bolt)"),
-      N_("%.0f%% Ionization (Bolt)")),
+      N_("%.0f%% Ionization (Bolt)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_BOLT_DISABLE_AS_DAMAGE, blt_dis_as_dam,
       N_("%+G pp Deionization (Bolt)"),
-      N_("%.0f%% Deionization (Bolt)")),
+      N_("%.0f%% Deionization (Bolt)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_BOLT_DAMAGE_SHIELD_AS_ARMOR, blt_dam_shield_as_armor,
       N_("%+G pp Crystallization (Bolt)"),
-      N_("%.0f%% Crystallization (Bolt)")),
+      N_("%.0f%% Crystallization (Bolt)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_BOLT_DAMAGE_ARMOR_AS_SHIELD, blt_dam_armor_as_shield,
       N_("%+G pp Razorization (Bolt)"),
-      N_("%.0f%% Razorization (Bolt)")),
+      N_("%.0f%% Razorization (Bolt)"),
+      0., 1.),
 
    /* Beams. */
    D_ELEM(SS_TYPE_D_BEAM_DAMAGE, bem_damage,
@@ -251,16 +271,20 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+.0f%% Heat (Beam)")),
    P_ELEM(SS_TYPE_P_BEAM_DAMAGE_AS_DISABLE, bem_dam_as_dis,
       N_("%+G pp Ionization (Beam)"),
-      N_("%.0f%% Ionization (Beam)")),
+      N_("%.0f%% Ionization (Beam)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_BEAM_DISABLE_AS_DAMAGE, bem_dis_as_dam,
       N_("%+G pp Deionization (Beam)"),
-      N_("%.0f%% Deionization (Beam)")),
+      N_("%.0f%% Deionization (Beam)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_BEAM_DAMAGE_SHIELD_AS_ARMOR, bem_dam_shield_as_armor,
       N_("%+G pp Crystallization (Beam)"),
-      N_("%.0f%% Crystallization (Beam)")),
+      N_("%.0f%% Crystallization (Beam)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_BEAM_DAMAGE_ARMOR_AS_SHIELD, bem_dam_armor_as_shield,
       N_("%+G pp Razorization (Beam)"),
-      N_("%.0f%% Razorization (Beam)")),
+      N_("%.0f%% Razorization (Beam)"),
+      0., 1.),
 
    /* Launchers. */
    D_ELEM(SS_TYPE_D_LAUNCH_DAMAGE, launch_damage,
@@ -280,7 +304,8 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+d Shot Salvo (Launcher)")),
    AI_ELEM(SS_TYPE_A_LAUNCH_SPREAD, launch_spread,
       N_("%+G° Shot Spread (Launcher)"),
-      N_("%+.0f° Shot Spread (Launcher)")),
+      N_("%+.0f° Shot Spread (Launcher)"),
+      -360., 360.),
    D_ELEM(SS_TYPE_D_AMMO_CAPACITY, ammo_capacity,
       N_("%+G%% Ammo Capacity"),
       N_("%+.0f%% Ammo Capacity")),
@@ -289,16 +314,20 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%+.0f%% Ammo Reload Rate")),
    P_ELEM(SS_TYPE_P_LAUNCH_DAMAGE_AS_DISABLE, launch_dam_as_dis,
       N_("%+G pp Ionization (Launcher)"),
-      N_("%.0f%% Ionization (Launcher)")),
+      N_("%.0f%% Ionization (Launcher)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_LAUNCH_DISABLE_AS_DAMAGE, launch_dis_as_dam,
       N_("%+G pp Deionization (Launcher)"),
-      N_("%.0f%% Deionization (Launcher)")),
+      N_("%.0f%% Deionization (Launcher)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_LAUNCH_DAMAGE_SHIELD_AS_ARMOR, launch_dam_shield_as_armor,
       N_("%+G pp Crystallization (Launcher)"),
-      N_("%.0f%% Crystallization (Launcher)")),
+      N_("%.0f%% Crystallization (Launcher)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_LAUNCH_DAMAGE_ARMOR_AS_SHIELD, launch_dam_armor_as_shield,
       N_("%+G pp Razorization (Launcher)"),
-      N_("%.0f%% Razorization (Launcher)")),
+      N_("%.0f%% Razorization (Launcher)"),
+      0., 1.),
 
    /* Fighter bays. */
    D_ELEM(SS_TYPE_D_FBAY_DAMAGE, fbay_damage,
@@ -323,25 +352,29 @@ static const ShipStatsLookup ss_lookup[] = {
    /* Speed. */
    A_ELEM(SS_TYPE_A_SPEED, speed,
       N_("%+G mAU/s Maximum Speed"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_SPEED_MOD, speed_mod,
       N_("%+G%% Maximum Speed"),
       NULL),
    A_ELEM(SS_TYPE_A_TURN, turn,
       N_("%+G deg/s Turn Rate"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_TURN_MOD, turn_mod,
       N_("%+G%% Turn Rate"),
       NULL),
    A_ELEM(SS_TYPE_A_THRUST, thrust,
       N_("%+G mAU/s² Acceleration"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_THRUST_MOD, thrust_mod,
       N_("%+G%% Acceleration"),
       NULL),
    P_ELEM(SS_TYPE_P_REVERSE_THRUST, reverse_thrust,
       N_("%+G pp Reverse Thrust"),
-      N_("%.0f%% Reverse Thrust")),
+      N_("%.0f%% Reverse Thrust"),
+      0., 1.),
    DI_ELEM(SS_TYPE_D_TIME_MOD, time_mod,
       N_("%+G%% Time Constant"),
       NULL),
@@ -352,10 +385,12 @@ static const ShipStatsLookup ss_lookup[] = {
    /* Mobility. */
    A_ELEM(SS_TYPE_A_FUEL, fuel,
       N_("%+.0f kL Fuel"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    A_ELEM(SS_TYPE_A_FUEL_REGEN, fuel_regen,
       N_("%+G kL/s Fuel Regeneration"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    DI_ELEM(SS_TYPE_D_JUMP_DELAY, jump_delay,
       N_("%+G%% Jump Time"),
       NULL),
@@ -372,52 +407,62 @@ static const ShipStatsLookup ss_lookup[] = {
    /* Health. */
    A_ELEM(SS_TYPE_A_SHIELD, shield,
       N_("%+G GJ Shield Capacity"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_SHIELD_MOD, shield_mod,
       N_("%+G%% Shield Capacity"),
       NULL),
    A_ELEM(SS_TYPE_A_SHIELD_REGEN, shield_regen,
       N_("%+G GW Shield Regeneration"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_SHIELD_REGEN_MOD, shield_regen_mod,
       N_("%+G%% Shield Regeneration"),
       NULL),
    AI_ELEM(SS_TYPE_A_SHIELD_REGEN_MALUS, shield_regen_malus,
       N_("%+G GW Shield Usage"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    A_ELEM(SS_TYPE_A_ARMOUR, armour,
       N_("%+G GJ Armor Capacity"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_ARMOUR_MOD, armour_mod,
       N_("%+G%% Armor Capacity"),
       NULL),
    A_ELEM(SS_TYPE_A_ARMOUR_REGEN, armour_regen,
       N_("%+G GW Armor Regeneration"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_ARMOUR_REGEN_MOD, armour_regen_mod,
       N_("%+G%% Armor Regeneration"),
       NULL),
    AI_ELEM(SS_TYPE_A_ARMOUR_REGEN_MALUS, armour_regen_malus,
       N_("%+G GW Armor Usage"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    A_ELEM(SS_TYPE_A_ENERGY, energy,
       N_("%+G GJ Energy Capacity"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_ENERGY_MOD, energy_mod,
       N_("%+G%% Energy Capacity"),
       NULL),
    A_ELEM(SS_TYPE_A_ENERGY_REGEN, energy_regen,
       N_("%+G GW Energy Regeneration"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_ENERGY_REGEN_MOD, energy_regen_mod,
       N_("%+G%% Energy Regeneration"),
       NULL),
    AI_ELEM(SS_TYPE_A_ENERGY_REGEN_MALUS, energy_regen_malus,
       N_("%+G GW Energy Usage"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    P_ELEM(SS_TYPE_P_ABSORB, absorb,
       N_("%+G pp Damage Absorption"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_HEAT_DISSIPATION, heat_dissipation,
       N_("%+G%% Heat Dissipation"),
       N_("%+.0f%% Heat Dissipation")),
@@ -448,13 +493,15 @@ static const ShipStatsLookup ss_lookup[] = {
    /* Radar. */
    A_ELEM(SS_TYPE_D_RDR_RANGE, rdr_range,
       N_("%+G mAU Radar Range"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_RDR_RANGE_MOD, rdr_range_mod,
       N_("%+G%% Radar Range"),
       N_("%+.0f%% Radar Range")),
    A_ELEM(SS_TYPE_D_RDR_JUMP_RANGE, rdr_jump_range,
       N_("%+G mAU Jump Detect Range"),
-      NULL),
+      NULL,
+      -INFINITY, INFINITY),
    D_ELEM(SS_TYPE_D_RDR_JUMP_RANGE_MOD, rdr_jump_range_mod,
       N_("%+G%% Jump Detect Range"),
       NULL),
@@ -465,10 +512,12 @@ static const ShipStatsLookup ss_lookup[] = {
    /* Nebula. */
    P_ELEM(SS_TYPE_P_NEBULA_ABSORB_SHIELD, nebu_absorb_shield,
       N_("%+G pp Nebula Resistance (Shield)"),
-      N_("%.0f%% Nebula Resistance (Shield)")),
+      N_("%.0f%% Nebula Resistance (Shield)"),
+      0., 1.),
    P_ELEM(SS_TYPE_P_NEBULA_ABSORB_ARMOUR, nebu_absorb_armour,
       N_("%+G pp Nebula Resistance (Armor)"),
-      N_("%.0f%% Nebula Resistance (Armor)")),
+      N_("%.0f%% Nebula Resistance (Armor)"),
+      0., 1.),
 
    /* Sentinel. */
    N_ELEM(SS_TYPE_SENTINEL)
@@ -695,13 +744,13 @@ int ss_statsModSingle( ShipStats *stats, const ShipStatList* list )
       case SS_DATA_TYPE_INTEGER:
          fieldptr = &ptr[ sl->offset ];
          memcpy(&i, &fieldptr, sizeof(int*));
-         *i   += list->d.i;
+         *i += list->d.i;
          break;
 
       case SS_DATA_TYPE_BOOLEAN:
          fieldptr = &ptr[ sl->offset ];
          memcpy(&i, &fieldptr, sizeof(int*));
-         *i    = 1; /* Can only set to true. */
+         *i = 1; /* Can only set to true. */
          break;
    }
 
@@ -938,6 +987,9 @@ int ss_statsListDesc( const ShipStatList *ll, char *buf, int len, int newline )
 
       switch (sl->data) {
          case SS_DATA_TYPE_DOUBLE:
+            i += ss_printD(&buf[i], left, newl, MAX(-1., ll->d.d), sl, sl->display);
+            break;
+
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
             i += ss_printD(&buf[i], left, newl, ll->d.d, sl, sl->display);
             break;
@@ -1007,22 +1059,33 @@ int ss_statsDesc(const ShipStats *s, char *buf, int len, int newline,
          case SS_DATA_TYPE_DOUBLE:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&dbl, &fieldptr, sizeof(double*));
-            l += ss_printD(&buf[l], left, (newline||(l!=0)), ((*dbl)-1.), sl,
+            l += ss_printD(&buf[l], left, (newline || (l!=0)),
+                  MAX(-1., (*dbl)-1.), sl,
                   composite ? sl->ship_display : sl->display);
             break;
 
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE_PERCENT:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&dbl, &fieldptr, sizeof(double*));
-            l += ss_printD( &buf[l], left, (newline||(l!=0)), (*dbl), sl,
-                  composite ? sl->ship_display : sl->display);
+            if (composite)
+               l += ss_printD(&buf[l], left, (newline || (l!=0)),
+                     CLAMP(sl->min, sl->max, *dbl), sl,
+                     sl->ship_display);
+            else
+               l += ss_printD(&buf[l], left, (newline || (l!=0)),
+                     (*dbl), sl, sl->display);
             break;
 
          case SS_DATA_TYPE_DOUBLE_ABSOLUTE:
             fieldptr = &ptr[ sl->offset ];
             memcpy(&dbl, &fieldptr, sizeof(double*));
-            l += ss_printA(&buf[l], left, (newline||(l!=0)), (*dbl), sl,
-                  composite ? sl->ship_display : sl->display);
+            if (composite)
+               l += ss_printA(&buf[l], left, (newline || (l!=0)),
+                     CLAMP(sl->min, sl->max, *dbl), sl,
+                     sl->ship_display);
+            else
+               l += ss_printA(&buf[l], left, (newline || (l!=0)),
+                     (*dbl), sl, sl->display);
             break;
 
          case SS_DATA_TYPE_INTEGER:
