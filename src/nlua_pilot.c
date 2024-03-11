@@ -1213,8 +1213,8 @@ static int pilotL_activeWeapset(lua_State *L)
  *    <li>"name": Raw (untranslated) name of the outfit.</li>
  *    <li>"cooldown": [0:1] value indicating if ready to shoot (1 is
  *       ready).</li>
- *    <li>"charge": [0:1] Charge level of beam weapon (1 is full), or
- *       nil if not applicable.</li>
+ *    <li>"charge": [0:1] Charge level of weapon (1 is full), or nil if
+ *       not applicable.</li>
  *    <li>"ammo": Raw (untranslated) name of the ammo or nil if not
  *       applicable.</li>
  *    <li>"max_ammo": Absolute max ammo or nil if not applicable.</li>
@@ -1274,6 +1274,7 @@ static int pilotL_weapset(lua_State *L)
    int id, all, level, level_match;
    int is_lau, is_fb;
    const Damage *dmg;
+   double charge_max;
    int has_beamid;
    int instant;
 
@@ -1399,6 +1400,18 @@ static int pilotL_weapset(lua_State *L)
             else
                lua_pushnumber( L, 1. );
             lua_rawset(L,-3);
+
+            /* Set bolt charge. */
+            if (outfit_isBolt(slot->outfit)) {
+               charge_max = slot->outfit->u.blt.charge_max;
+               charge_max += p->stats.blt_charge;
+               charge_max *= p->stats.blt_charge_mod;
+               if (charge_max > 0.) {
+                  lua_pushstring(L, "charge");
+                  lua_pushnumber(L, slot->charge / charge_max);
+                  lua_rawset(L, -3);
+               }
+            }
          }
 
          /* Ammo name. */
