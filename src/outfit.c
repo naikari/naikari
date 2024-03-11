@@ -1182,9 +1182,9 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          xmlr_attr_strd(node,"blowup",buf);
          if (buf != NULL) {
             if (strcmp(buf,"armour")==0)
-               outfit_setProp(temp, OUTFIT_PROP_WEAP_BLOWUP_SHIELD);
-            else if (strcmp(buf,"shield")==0)
                outfit_setProp(temp, OUTFIT_PROP_WEAP_BLOWUP_ARMOUR);
+            else if (strcmp(buf,"shield")==0)
+               outfit_setProp(temp, OUTFIT_PROP_WEAP_BLOWUP_SHIELD);
             else
                WARN(_("Outfit '%s' has invalid blowup property: '%s'"),
                      temp->name, buf );
