@@ -794,19 +794,19 @@ const char* outfit_getType( const Outfit* o )
 
    switch (o->type) {
       case OUTFIT_TYPE_BOLT:
-         return N_("Bolt Cannon");
+         return N_("Forward Bolt Gun");
          break;
       case OUTFIT_TYPE_BEAM:
-         return N_("Beam");
+         return N_("Forward Beam");
          break;
       case OUTFIT_TYPE_TURRET_BOLT:
-         return N_("Bolt Turret");
+         return N_("Turret Bolt Gun");
          break;
       case OUTFIT_TYPE_TURRET_BEAM:
          return N_("Turret Beam");
          break;
       case OUTFIT_TYPE_LAUNCHER:
-         return N_("Launcher");
+         return N_("Forward Launcher");
          break;
       case OUTFIT_TYPE_TURRET_LAUNCHER:
          return N_("Turret Launcher");
