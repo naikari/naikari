@@ -1158,6 +1158,8 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    double C, area;
    int l;
    double dshield, darmor, dknockback;
+   double dot_mod;
+   double charge_mod;
 
    /* Defaults */
    temp->u.blt.spfx_armour = -1;
@@ -1196,6 +1198,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       xmlr_float(node,"falloff",temp->u.blt.falloff);
       xmlr_float(node, "spread", temp->u.blt.spread);
       xmlr_int(node, "salvo", temp->u.blt.salvo);
+      xmlr_float(node, "charge", temp->u.blt.charge_max);
 
       /* Graphics. */
       if (xml_isNode(node,"gfx")) {
@@ -1250,10 +1253,6 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          outfit_parseDamage( &temp->u.blt.dmg, node );
          continue;
       }
-      if (xml_isNode(node, "charged")) {
-         temp->u.blt.charged = 1;
-         continue;
-      }
 
       /* Stats. */
       ll = ss_listFromXML(node);
@@ -1298,7 +1297,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       outfit_setDefaultSize( temp );
 
    /* Set short description. */
-   temp->desc_short = malloc( OUTFIT_SHORTDESC_MAX );
+   temp->desc_short = malloc(OUTFIT_SHORTDESC_MAX);
    l = scnprintf(temp->desc_short, OUTFIT_SHORTDESC_MAX,
          "%s\n", _(outfit_getType(temp)));
 
@@ -1306,32 +1305,66 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%G%% Penetration\n"), temp->u.blt.dmg.penetration*100.);
 
-   if (temp->u.blt.dmg.damage > 0.) {
-      dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &temp->u.blt.dmg,
-            NULL);
+   dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &temp->u.blt.dmg,
+         NULL);
+   dot_mod = 1. / temp->u.blt.delay;
+   if (temp->u.blt.charge_max > 0.) {
+      /* Charged bolt damage stats. */
+      charge_mod = temp->u.blt.charge_max + temp->u.blt.delay;
+      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+            _("%G s Charge Capacity\n"),
+            temp->u.blt.charge_max);
       if (dshield > 0.)
-         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%.2f GW Shield Damage [%.1f GJ/shot]\n"),
-               1./temp->u.blt.delay * dshield * temp->u.blt.salvo, dshield);
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.2f GW Shield Damage [%.1f–%.1f GJ/shot]\n"),
+               dot_mod * dshield * temp->u.blt.salvo,
+               dshield,
+               charge_mod * dot_mod * dshield * temp->u.blt.salvo);
       if (darmor > 0.)
-         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-               _("%.2f GW Armor Damage [%.1f GJ/shot]\n"),
-               1./temp->u.blt.delay * darmor * temp->u.blt.salvo, darmor);
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.2f GW Armor Damage [%.1f–%.1f GJ/shot]\n"),
+               dot_mod * darmor * temp->u.blt.salvo,
+               darmor,
+               charge_mod * dot_mod * darmor * temp->u.blt.salvo);
       if (dknockback > 0.)
-         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
                _("%G%% Knockback\n"), dknockback * 100.);
+      if (temp->u.blt.dmg.disable > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.2f GW Disable [%.1f–%.1f GJ/shot]\n"),
+               dot_mod * temp->u.blt.dmg.disable * temp->u.blt.salvo,
+               temp->u.blt.dmg.disable,
+               charge_mod * dot_mod * temp->u.blt.dmg.disable * temp->u.blt.salvo);
+      if (temp->u.blt.energy > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.1f GW Energy Usage [%.1f–%.1f GJ/shot]\n"),
+               dot_mod * temp->u.blt.energy,
+               temp->u.blt.energy,
+               charge_mod * dot_mod * temp->u.blt.energy);
    }
-
-   if (temp->u.blt.dmg.disable > 0.)
-      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%.2f GW Disable [%G GJ/shot]\n"),
-            1./temp->u.blt.delay * temp->u.blt.dmg.disable,
-            temp->u.blt.dmg.disable);
-
-   if (temp->u.blt.energy > 0.)
-      l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%.1f GW Energy Usage [%G GJ/shot]\n"),
-            1./temp->u.blt.delay * temp->u.blt.energy, temp->u.blt.energy);
+   else {
+      /* Standard bolt damage stats. */
+      if (dshield > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.2f GW Shield Damage [%.1f GJ/shot]\n"),
+               dot_mod * dshield * temp->u.blt.salvo, dshield);
+      if (darmor > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.2f GW Armor Damage [%.1f GJ/shot]\n"),
+               dot_mod * darmor * temp->u.blt.salvo, darmor);
+      if (dknockback > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%G%% Knockback\n"), dknockback * 100.);
+      if (temp->u.blt.dmg.disable > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.2f GW Disable [%.1f GJ/shot]\n"),
+               dot_mod * temp->u.blt.dmg.disable * temp->u.blt.salvo,
+               temp->u.blt.dmg.disable);
+      if (temp->u.blt.energy > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%.1f GW Energy Usage [%.1f GJ/shot]\n"),
+               dot_mod * temp->u.blt.energy, temp->u.blt.energy);
+   }
 
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%.1f RPS Fire Rate\n"),
@@ -1383,19 +1416,19 @@ if (o) WARN(_("Outfit '%s' missing/invalid '%s' element"), temp->name, s) /**< D
    MELEMENT(temp->u.blt.spfx_shield==-1,"spfx_shield");
    MELEMENT(temp->u.blt.spfx_armour==-1,"spfx_armour");
    MELEMENT((sound_disabled!=0) && (temp->u.blt.sound<0),"sound");
-   MELEMENT(temp->mass==0.,"mass");
-   MELEMENT(temp->u.blt.delay==0,"delay");
-   MELEMENT(temp->u.blt.speed==0,"speed");
-   MELEMENT(temp->u.blt.range==0,"range");
-   MELEMENT(temp->u.blt.dmg.damage==0,"damage");
-   MELEMENT(temp->u.blt.energy==0.,"energy");
-   MELEMENT(temp->u.blt.falloff > temp->u.blt.range,"falloff");
-   MELEMENT(temp->u.blt.heatup==0.,"heatup");
+   MELEMENT(temp->mass<=0., "mass");
+   MELEMENT(temp->u.blt.delay<=0, "delay");
+   MELEMENT(temp->u.blt.speed<=0, "speed");
+   MELEMENT(temp->u.blt.range<=0, "range");
+   MELEMENT(temp->u.blt.dmg.damage<=0., "damage");
+   MELEMENT(temp->u.blt.energy<=0., "energy");
+   MELEMENT(temp->u.blt.falloff > temp->u.blt.range, "falloff");
+   MELEMENT(temp->u.blt.heatup<=0., "heatup");
    MELEMENT(temp->u.blt.spread<0., "spread");
    MELEMENT(temp->u.blt.swivel<0., "swivel");
    if ((temp->u.blt.swivel > 0.) || outfit_isTurret(temp)) {
-      MELEMENT(temp->u.blt.rdr_range==0.,"rdr_range");
-      MELEMENT(temp->u.blt.rdr_range_max==0.,"rdr_range_max");
+      MELEMENT(temp->u.blt.rdr_range==0., "rdr_range");
+      MELEMENT(temp->u.blt.rdr_range_max==0., "rdr_range_max");
    }
 #undef MELEMENT
 }

@@ -148,6 +148,7 @@ typedef struct OutfitBoltData_ {
    double falloff;   /**< Point at which damage falls off. */
    double energy;    /**< Energy usage */
    Damage dmg;       /**< Damage done. */
+   double charge_max; /**< Charge capacity in seconds. */
    double heatup;    /**< How long it should take for the weapon to heat up (approx). */
    double heat;      /**< Heat per shot. */
    double rdr_range; /**< Radar Optimal Range. */
@@ -155,7 +156,6 @@ typedef struct OutfitBoltData_ {
    double swivel;    /**< Amount of swivel (semiarc in radians of deviation the weapon can correct). */
    double spread; /**< Amount of base inaccuracy in radians. */
    int salvo; /**< Bolts per shot. */
-   int charged; /**< Whether or not the shots are charged. */
 
    /* Sound and graphics. */
    glTexture* gfx_space; /**< Normal graphic. */
