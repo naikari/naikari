@@ -184,6 +184,12 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%.0f%% Razorization (Turret)")),
 
    /* Bolt weapons. */
+   A_ELEM(SS_TYPE_A_BOLT_CHARGE, blt_charge,
+      N_("%+G s Charge Capacity (Bolt)"),
+      N_("%+.0f s Charge Capacity (Bolt)")),
+   D_ELEM(SS_TYPE_D_BOLT_CHARGE_MOD, blt_charge_mod,
+      N_("%+G%% Charge Capacity (Bolt)"),
+      N_("%+.0f%% Charge Capacity (Bolt)")),
    D_ELEM(SS_TYPE_D_BOLT_DAMAGE, blt_damage,
       N_("%+G%% Damage (Bolt)"),
       N_("%+.0f%% Damage (Bolt)")),

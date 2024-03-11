@@ -59,6 +59,8 @@ typedef enum ShipStatsType_ {
    SS_TYPE_P_TURRET_DAMAGE_ARMOR_AS_SHIELD, /**< Turret damage shield to armor modifier. */
 
    /* Bolt weapons. */
+   SS_TYPE_A_BOLT_CHARGE, /**< Bolt charge modifier. */
+   SS_TYPE_D_BOLT_CHARGE_MOD, /**< Bolt charge multiplier. */
    SS_TYPE_D_BOLT_DAMAGE, /**< Bolt damage multiplier. */
    SS_TYPE_D_BOLT_FIRERATE, /**< Bolt fire rate multiplier. */
    SS_TYPE_D_BOLT_RANGE, /**< Bolt range multiplier. */
@@ -247,6 +249,8 @@ typedef struct ShipStats_ {
    double tur_dam_armor_as_shield; /**< Turret damage armor to shield modifier. */
 
    /* Bolt weapons. */
+   double blt_charge; /**< Bolt charge modifier. */
+   double blt_charge_mod; /**< Bolt charge multiplier. */
    double blt_damage; /**< Bolt damage multiplier. */
    double blt_firerate; /**< Bolt fire rate multiplier. */
    double blt_range; /**< Bolt range multiplier. */

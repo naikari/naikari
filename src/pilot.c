@@ -2058,6 +2058,7 @@ void pilot_update( Pilot* pilot, double dt )
    double rtmass;
    double stress_falloff;
    double efficiency;
+   double charge_max;
    double reload_time;
 
    /* Modify the dt with speedup. */
@@ -2111,9 +2112,11 @@ void pilot_update( Pilot* pilot, double dt )
          o->timer -= dt * pilot_heatFireRateMod( o->heat_T );
 
       /* Handle charge timer. */
-      if (outfit_isBolt(o->outfit) && (o->outfit->u.blt.charge_max > 0.)
-            && (o->timer <= 0.)) {
-         o->charge = CLAMP(0., o->outfit->u.blt.charge_max, o->charge + dt);
+      if (outfit_isBolt(o->outfit) && (o->timer <= 0.)) {
+         charge_max = o->outfit->u.blt.charge_max;
+         charge_max += pilot->stats.blt_charge;
+         charge_max *= pilot->stats.blt_charge_mod;
+         o->charge = CLAMP(0., charge_max, o->charge + dt);
       }
 
       /* Handle reload timer. (Note: this works backwards compared to
