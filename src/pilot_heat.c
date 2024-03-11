@@ -122,18 +122,27 @@ void pilot_heatReset( Pilot *p )
  */
 static double pilot_heatOutfitMod( const Pilot *p, const Outfit *o )
 {
-   switch (o->type) {
-      case OUTFIT_TYPE_BOLT:
-      case OUTFIT_TYPE_BEAM:
-         return p->stats.fwd_heat;
+   double heat = 1.;
 
-      case OUTFIT_TYPE_TURRET_BOLT:
-      case OUTFIT_TYPE_TURRET_BEAM:
-         return p->stats.tur_heat;
-
-      default:
-         return 1;
+   if ((o->type == OUTFIT_TYPE_BOLT) || (o->type == OUTFIT_TYPE_BEAM)
+         || (o->type == OUTFIT_TYPE_LAUNCHER)) {
+      heat *= p->stats.fwd_heat;
    }
+   else if ((o->type == OUTFIT_TYPE_TURRET_BOLT)
+         || (o->type == OUTFIT_TYPE_TURRET_BEAM)
+         || (o->type == OUTFIT_TYPE_TURRET_LAUNCHER)) {
+      heat *= p->stats.tur_heat;
+   }
+
+   if ((o->type == OUTFIT_TYPE_BOLT) || (o->type == OUTFIT_TYPE_TURRET_BOLT)) {
+      heat *= p->stats.blt_heat;
+   }
+
+   if ((o->type == OUTFIT_TYPE_BEAM) || (o->type == OUTFIT_TYPE_TURRET_BEAM)) {
+      heat *= p->stats.bem_heat;
+   }
+
+   return heat;
 }
 
 

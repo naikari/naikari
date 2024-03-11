@@ -1244,33 +1244,38 @@ static int pilot_shootWeapon( Pilot* p, PilotOutfitSlot* w, double time )
 void pilot_getRateMod( double *rate_mod, double* energy_mod,
       const Pilot* p, const Outfit *o )
 {
-   switch (o->type) {
-      case OUTFIT_TYPE_BOLT:
-      case OUTFIT_TYPE_BEAM:
-         *rate_mod   = 1. / p->stats.fwd_firerate; /* Invert. */
-         *energy_mod = p->stats.fwd_energy;
-         break;
-      case OUTFIT_TYPE_TURRET_BOLT:
-      case OUTFIT_TYPE_TURRET_BEAM:
-         *rate_mod   = 1. / p->stats.tur_firerate; /* Invert. */
-         *energy_mod = p->stats.tur_energy;
-         break;
+   *rate_mod = 1.;
+   *energy_mod = 1.;
 
-      case OUTFIT_TYPE_LAUNCHER:
-      case OUTFIT_TYPE_TURRET_LAUNCHER:
-         *rate_mod   = 1. / p->stats.launch_rate;
-         *energy_mod = 1.;
-         break;
+   if ((o->type == OUTFIT_TYPE_BOLT) || (o->type == OUTFIT_TYPE_BEAM)
+         || (o->type == OUTFIT_TYPE_LAUNCHER)) {
+      *rate_mod /= p->stats.fwd_firerate;
+      *energy_mod *= p->stats.fwd_energy;
+   }
+   else if ((o->type == OUTFIT_TYPE_TURRET_BOLT)
+         || (o->type == OUTFIT_TYPE_TURRET_BEAM)
+         || (o->type == OUTFIT_TYPE_TURRET_LAUNCHER)) {
+      *rate_mod /= p->stats.tur_firerate;
+      *energy_mod *= p->stats.tur_energy;
+   }
 
-      case OUTFIT_TYPE_FIGHTER_BAY:
-         *rate_mod   = 1. / p->stats.fbay_rate;
-         *energy_mod = 1.;
-         break;
+   if ((o->type == OUTFIT_TYPE_BOLT) || (o->type == OUTFIT_TYPE_TURRET_BOLT)) {
+      *rate_mod /= p->stats.blt_firerate;
+      *energy_mod *= p->stats.blt_energy;
+   }
 
-      default:
-         *rate_mod   = 1.;
-         *energy_mod = 1.;
-         break;
+   if ((o->type == OUTFIT_TYPE_BEAM) || (o->type == OUTFIT_TYPE_TURRET_BEAM)) {
+      *rate_mod /= p->stats.bem_cooldown;
+      *energy_mod *= p->stats.bem_energy;
+   }
+
+   if ((o->type == OUTFIT_TYPE_LAUNCHER)
+         || (o->type == OUTFIT_TYPE_TURRET_LAUNCHER)) {
+      *rate_mod /= p->stats.launch_rate;
+   }
+
+   if (o->type == OUTFIT_TYPE_FIGHTER_BAY) {
+      *rate_mod /= p->stats.fbay_rate;
    }
 }
 

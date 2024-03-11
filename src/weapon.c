@@ -379,6 +379,7 @@ static void think_beam( Weapon* w, const double dt )
       mod = p->stats.tur_energy;
    else
       mod = p->stats.fwd_energy;
+   mod *= p->stats.bem_energy;
    p->energy -= mod * dt*w->outfit->u.bem.energy;
    pilot_heatAddSlotTime( p, w->mount, dt );
    if (p->energy < 0.) {
@@ -409,8 +410,10 @@ static void think_beam( Weapon* w, const double dt )
       opt_angle = vect_angle(&w->solid->pos, &t->solid->pos);
 
    diff = angle_diff(w->solid->dir, opt_angle);
-   w->solid->dir_vel = CLAMP(-w->outfit->u.bem.turn, w->outfit->u.bem.turn,
-         10 * diff * w->outfit->u.bem.turn);
+   mod = p->stats.bem_turn;
+   w->solid->dir_vel = CLAMP(
+      mod * -w->outfit->u.bem.turn, mod * w->outfit->u.bem.turn,
+      10 * diff * mod * w->outfit->u.bem.turn);
    w->solid->dir_dest = opt_angle;
 
    /* Calculate bounds. */
@@ -568,8 +571,9 @@ static void weapons_updateLayer( const double dt, const WeaponLayer layer )
             /* Beams don't have inherent accuracy, so we use the
              * heatAccuracyMod to modulate duration. */
             w->timer -= dt / (1.-pilot_heatAccuracyMod(w->mount->heat_T));
-            if (w->timer < 0. || (w->outfit->u.bem.min_duration > 0. &&
-                  w->mount->stimer < 0.)) {
+            if (w->timer < 0.
+                  || (w->outfit->u.bem.min_duration > 0.
+                     && w->mount->stimer < 0.)) {
                pilot_stopBeam(p, w->mount);
                weapon_destroy(w);
                break;
@@ -1608,29 +1612,34 @@ static void weapon_createBolt( Weapon *w, const Outfit* outfit, double T,
    acc =  HEAT_WORST_ACCURACY * pilot_heatAccuracyMod( T );
 
    /* Stat modifiers. */
-   range = outfit->u.blt.range;
-   speed = outfit->u.blt.speed;
-   spread = outfit->u.blt.spread;
+   range = outfit->u.blt.range * parent->stats.blt_range;
+   speed = outfit->u.blt.speed * parent->stats.blt_speed;
+   spread = outfit->u.blt.spread + parent->stats.blt_spread;
+   w->dam_mod *= parent->stats.blt_damage;
+   w->dam_as_dis_mod = parent->stats.blt_dam_as_dis;
+   w->dis_as_dam_mod = parent->stats.blt_dis_as_dam;
+   w->dam_shield_as_armor_mod = parent->stats.blt_dam_shield_as_armor;
+   w->dam_armor_as_shield_mod = parent->stats.blt_dam_armor_as_shield;
    if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
          || parent->stats.turret_conversion) {
       range *= parent->stats.tur_range;
       speed *= parent->stats.tur_speed;
       spread += parent->stats.tur_spread;
       w->dam_mod *= parent->stats.tur_damage;
-      w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
-      w->dis_as_dam_mod = parent->stats.tur_dis_as_dam;
-      w->dam_shield_as_armor_mod = parent->stats.tur_dam_shield_as_armor;
-      w->dam_armor_as_shield_mod = parent->stats.tur_dam_armor_as_shield;
+      w->dam_as_dis_mod += parent->stats.tur_dam_as_dis;
+      w->dis_as_dam_mod += parent->stats.tur_dis_as_dam;
+      w->dam_shield_as_armor_mod += parent->stats.tur_dam_shield_as_armor;
+      w->dam_armor_as_shield_mod += parent->stats.tur_dam_armor_as_shield;
    }
    else {
       range *= parent->stats.fwd_range;
       speed *= parent->stats.fwd_speed;
       spread += parent->stats.fwd_spread;
       w->dam_mod *= parent->stats.fwd_damage;
-      w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
-      w->dis_as_dam_mod = parent->stats.fwd_dis_as_dam;
-      w->dam_shield_as_armor_mod = parent->stats.fwd_dam_shield_as_armor;
-      w->dam_armor_as_shield_mod = parent->stats.fwd_dam_armor_as_shield;
+      w->dam_as_dis_mod += parent->stats.fwd_dam_as_dis;
+      w->dis_as_dam_mod += parent->stats.fwd_dis_as_dam;
+      w->dam_shield_as_armor_mod += parent->stats.fwd_dam_shield_as_armor;
+      w->dam_armor_as_shield_mod += parent->stats.fwd_dam_armor_as_shield;
    }
    spread = CLAMP(0., 2. * M_PI, spread);
    w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
@@ -1683,16 +1692,16 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    (void) T;
    Vector2d v;
    double mass, rdir;
+   double duration;
+   double speed;
    double spread;
    Pilot *pilot_target;
    glTexture *gfx;
-   Outfit* ammo;
 
    /* Aim forward by default. */   
    rdir = dir;
 
    pilot_target = NULL;
-   ammo = launcher->u.lau.ammo;
    if (w->outfit->type == OUTFIT_TYPE_AMMO) {
       if ((parent->id != w->target) && (w->target != 0))
          pilot_target = pilot_get(w->target);
@@ -1709,18 +1718,49 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
       }
    }
 
-   /* Launcher damage. */
+   /* Stat modifiers. */
+   /* Because ammo modulates its range by duration, any boost in speed
+    * has to be accompanied by a decrease in duration to avoid speed
+    * increases incidentally boosting range. */
+   duration = w->outfit->u.amm.duration * parent->stats.launch_range;
+   duration /= parent->stats.launch_speed;
+   speed = w->outfit->u.amm.speed * parent->stats.launch_speed;
+   spread = launcher->u.lau.spread + parent->stats.launch_spread;
    w->dam_mod *= parent->stats.launch_damage;
-   w->dam_as_dis_mod = CLAMP(0., 1., parent->stats.launch_dam_as_dis);
-   w->dis_as_dam_mod = CLAMP(0., 1., parent->stats.launch_dis_as_dam);
-   w->dam_shield_as_armor_mod = CLAMP(0., 1.,
-         parent->stats.launch_dam_shield_as_armor);
-   w->dam_armor_as_shield_mod = CLAMP(0., 1.,
-         parent->stats.launch_dam_armor_as_shield);
+   w->dam_as_dis_mod = parent->stats.launch_dam_as_dis;
+   w->dis_as_dam_mod = parent->stats.launch_dis_as_dam;
+   w->dam_shield_as_armor_mod = parent->stats.launch_dam_shield_as_armor;
+   w->dam_armor_as_shield_mod = parent->stats.launch_dam_armor_as_shield;
+   if ((launcher->type == OUTFIT_TYPE_TURRET_LAUNCHER)
+         || parent->stats.turret_conversion) {
+      duration *= parent->stats.tur_range;
+      duration /= parent->stats.tur_speed;
+      speed *= parent->stats.tur_speed;
+      spread += parent->stats.tur_spread;
+      w->dam_mod *= parent->stats.tur_damage;
+      w->dam_as_dis_mod += parent->stats.tur_dam_as_dis;
+      w->dis_as_dam_mod += parent->stats.tur_dis_as_dam;
+      w->dam_shield_as_armor_mod += parent->stats.tur_dam_shield_as_armor;
+      w->dam_armor_as_shield_mod += parent->stats.tur_dam_armor_as_shield;
+   }
+   else {
+      duration *= parent->stats.fwd_range;
+      duration /= parent->stats.fwd_speed;
+      speed *= parent->stats.fwd_speed;
+      spread += parent->stats.fwd_spread;
+      w->dam_mod *= parent->stats.fwd_damage;
+      w->dam_as_dis_mod += parent->stats.fwd_dam_as_dis;
+      w->dis_as_dam_mod += parent->stats.fwd_dis_as_dam;
+      w->dam_shield_as_armor_mod += parent->stats.fwd_dam_shield_as_armor;
+      w->dam_armor_as_shield_mod += parent->stats.fwd_dam_armor_as_shield;
+   }
+   spread = CLAMP(0., 2. * M_PI, spread);
+   w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
+   w->dis_as_dam_mod = CLAMP(0., 1., w->dis_as_dam_mod);
+   w->dam_shield_as_armor_mod = CLAMP(0., 1., w->dam_shield_as_armor_mod);
+   w->dam_armor_as_shield_mod = CLAMP(0., 1., w->dam_armor_as_shield_mod);
 
    /* Calculate accuracy loss from spread. */
-   spread = launcher->u.lau.spread + parent->stats.launch_spread;
-   spread = CLAMP(0., 2. * M_PI, spread);
    rdir += (RNGF()-0.5) * spread;
 
    if (rdir < 0.)
@@ -1736,7 +1776,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
 
    /* Set up ammo details. */
    mass = w->outfit->mass;
-   w->timer = ammo->u.amm.duration * parent->stats.launch_range;
+   w->timer = duration;
    w->solid = solid_create(mass, rdir, pos, &v, SOLID_UPDATE_RK4);
    if (w->outfit->u.amm.thrust != 0.) {
       w->solid->thrust = w->outfit->u.amm.thrust * mass;
@@ -1766,8 +1806,8 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    gl_getSpriteFromDir( &w->sx, &w->sy, gfx, w->solid->dir );
 
    /* Set up trails. */
-   if (ammo->u.amm.trail_spec != NULL)
-      w->trail = spfx_trail_create( ammo->u.amm.trail_spec );
+   if (w->outfit->u.amm.trail_spec != NULL)
+      w->trail = spfx_trail_create(w->outfit->u.amm.trail_spec);
 }
 
 
@@ -1848,33 +1888,38 @@ static Weapon* weapon_create(const Outfit* outfit, double T,
          else if (rdir >= 2.*M_PI)
             rdir -= 2.*M_PI;
          mass = 1.; /**< Needs a mass. */
-         w->r     = RNGF(); /* Set unique value. */
-         w->solid = solid_create( mass, rdir, pos, vel, SOLID_UPDATE_EULER );
+         w->r = RNGF(); /* Set unique value. */
+         w->solid = solid_create(mass, rdir, pos, vel, SOLID_UPDATE_EULER);
          w->think = think_beam;
-         w->timer = outfit->u.bem.duration;
-         w->length = outfit->u.bem.range;
-         w->voice = sound_playPos( w->outfit->u.bem.sound,
+         w->voice = sound_playPos(w->outfit->u.bem.sound,
                w->solid->pos.x,
                w->solid->pos.y,
                w->solid->vel.x,
                w->solid->vel.y);
 
+         w->dam_mod *= parent->stats.bem_damage;
+         w->timer = outfit->u.bem.duration * parent->stats.bem_duration;
+         w->length = outfit->u.bem.range * parent->stats.bem_range;
+         w->dam_as_dis_mod = parent->stats.bem_dam_as_dis;
+         w->dis_as_dam_mod = parent->stats.bem_dis_as_dam;
+         w->dam_shield_as_armor_mod = parent->stats.bem_dam_shield_as_armor;
+         w->dam_armor_as_shield_mod = parent->stats.bem_dam_armor_as_shield;
          if ((outfit->type == OUTFIT_TYPE_TURRET_BEAM)
                || parent->stats.turret_conversion) {
             w->dam_mod *= parent->stats.tur_damage;
-            w->dam_as_dis_mod = parent->stats.tur_dam_as_dis;
-            w->dis_as_dam_mod = parent->stats.tur_dis_as_dam;
-            w->dam_shield_as_armor_mod = parent->stats.tur_dam_shield_as_armor;
-            w->dam_armor_as_shield_mod = parent->stats.tur_dam_armor_as_shield;
             w->length *= parent->stats.tur_range;
+            w->dam_as_dis_mod += parent->stats.tur_dam_as_dis;
+            w->dis_as_dam_mod += parent->stats.tur_dis_as_dam;
+            w->dam_shield_as_armor_mod += parent->stats.tur_dam_shield_as_armor;
+            w->dam_armor_as_shield_mod += parent->stats.tur_dam_armor_as_shield;
          }
          else {
             w->dam_mod *= parent->stats.fwd_damage;
-            w->dam_as_dis_mod = parent->stats.fwd_dam_as_dis;
-            w->dis_as_dam_mod = parent->stats.fwd_dis_as_dam;
-            w->dam_shield_as_armor_mod = parent->stats.fwd_dam_shield_as_armor;
-            w->dam_armor_as_shield_mod = parent->stats.fwd_dam_armor_as_shield;
             w->length *= parent->stats.fwd_range;
+            w->dam_as_dis_mod += parent->stats.fwd_dam_as_dis;
+            w->dis_as_dam_mod += parent->stats.fwd_dis_as_dam;
+            w->dam_shield_as_armor_mod += parent->stats.fwd_dam_shield_as_armor;
+            w->dam_armor_as_shield_mod += parent->stats.fwd_dam_armor_as_shield;
          }
          w->dam_as_dis_mod = CLAMP(0., 1., w->dam_as_dis_mod);
          w->dis_as_dam_mod = CLAMP(0., 1., w->dis_as_dam_mod);
@@ -1935,7 +1980,7 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
 
    salvo = 1;
    if (outfit_isBolt(outfit)) {
-      salvo = outfit->u.blt.salvo;
+      salvo = outfit->u.blt.salvo + parent->stats.blt_salvo;
       if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
             || parent->stats.turret_conversion) {
          salvo += parent->stats.tur_salvo;
@@ -1946,6 +1991,13 @@ void weapon_add(const Outfit* outfit, const double T, const double dir,
    }
    else if (outfit_isLauncher(outfit)) {
       salvo = outfit->u.lau.salvo + parent->stats.launch_salvo;
+      if ((outfit->type == OUTFIT_TYPE_TURRET_BOLT)
+            || parent->stats.turret_conversion) {
+         salvo += parent->stats.tur_salvo;
+      }
+      else {
+         salvo += parent->stats.fwd_salvo;
+      }
    }
 
    layer = (parent->id==PLAYER_ID) ? WEAPON_LAYER_FG : WEAPON_LAYER_BG;

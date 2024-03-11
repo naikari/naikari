@@ -58,10 +58,38 @@ typedef enum ShipStatsType_ {
    SS_TYPE_P_TURRET_DAMAGE_SHIELD_AS_ARMOR, /**< Turret damage shield to armor modifier. */
    SS_TYPE_P_TURRET_DAMAGE_ARMOR_AS_SHIELD, /**< Turret damage shield to armor modifier. */
 
+   /* Bolt weapons. */
+   SS_TYPE_D_BOLT_DAMAGE, /**< Bolt damage multiplier. */
+   SS_TYPE_D_BOLT_FIRERATE, /**< Bolt fire rate multiplier. */
+   SS_TYPE_D_BOLT_RANGE, /**< Bolt range multiplier. */
+   SS_TYPE_D_BOLT_SPEED, /**< Bolt speed multiplier. */
+   SS_TYPE_I_BOLT_SALVO, /**< Bolt salvo modifier. */
+   SS_TYPE_A_BOLT_SPREAD, /**< Bolt spread modifier. */
+   SS_TYPE_D_BOLT_ENERGY, /**< Bolt energy usage multiplier. */
+   SS_TYPE_D_BOLT_HEAT, /**< Bolt heat generation multiplier. */
+   SS_TYPE_P_BOLT_DAMAGE_AS_DISABLE, /**< Bolt damage as disable modifier. */
+   SS_TYPE_P_BOLT_DISABLE_AS_DAMAGE, /**< Bolt disable as damage modifier. */
+   SS_TYPE_P_BOLT_DAMAGE_SHIELD_AS_ARMOR, /**< Bolt damage shield to armor modifier. */
+   SS_TYPE_P_BOLT_DAMAGE_ARMOR_AS_SHIELD, /**< Bolt damage shield to armor modifier. */
+
+   /* Beams. */
+   SS_TYPE_D_BEAM_DAMAGE, /**< Beam damage multiplier. */
+   SS_TYPE_D_BEAM_DURATION, /**< Beam duration multiplier. */
+   SS_TYPE_D_BEAM_COOLDOWN, /**< Beam cooldown multiplier. */
+   SS_TYPE_D_BEAM_RANGE, /**< Beam range multiplier. */
+   SS_TYPE_D_BEAM_TURN, /**< Beam turn rate multiplier. */
+   SS_TYPE_D_BEAM_ENERGY, /**< Beam energy usage multiplier. */
+   SS_TYPE_D_BEAM_HEAT, /**< Beam heat generation multiplier. */
+   SS_TYPE_P_BEAM_DAMAGE_AS_DISABLE, /**< Beam damage as disable modifier. */
+   SS_TYPE_P_BEAM_DISABLE_AS_DAMAGE, /**< Beam disable as damage modifier. */
+   SS_TYPE_P_BEAM_DAMAGE_SHIELD_AS_ARMOR, /**< Beam damage shield to armor modifier. */
+   SS_TYPE_P_BEAM_DAMAGE_ARMOR_AS_SHIELD, /**< Beam damage armor to shield modifier. */
+
    /* Launchers. */
    SS_TYPE_D_LAUNCH_DAMAGE, /**< Launcher damage multiplier. */
    SS_TYPE_D_LAUNCH_RATE, /**< Launcher fire rate multiplier. */
    SS_TYPE_D_LAUNCH_RANGE, /**< Launcher range multiplier. */
+   SS_TYPE_D_LAUNCH_SPEED, /**< Launcher speed multiplier. */
    SS_TYPE_I_LAUNCH_SALVO, /**< Launcher salvo modifier. */
    SS_TYPE_A_LAUNCH_SPREAD, /**< Launcher spread modifier. */
    SS_TYPE_D_AMMO_CAPACITY, /**< Launcher capacity multiplier. */
@@ -218,10 +246,38 @@ typedef struct ShipStats_ {
    double tur_dam_shield_as_armor; /**< Turret damage shield to armor modifier. */
    double tur_dam_armor_as_shield; /**< Turret damage armor to shield modifier. */
 
+   /* Bolt weapons. */
+   double blt_damage; /**< Bolt damage multiplier. */
+   double blt_firerate; /**< Bolt fire rate multiplier. */
+   double blt_range; /**< Bolt range multiplier. */
+   double blt_speed; /**< Bolt speed multiplier. */
+   int blt_salvo; /**< Bolt salvo modifier. */
+   double blt_spread; /**< Bolt spread modifier. */
+   double blt_energy; /**< Bolt energy usage multiplier. */
+   double blt_heat; /**< Bolt heat generation multiplier. */
+   double blt_dam_as_dis; /**< Bolt damage as disable modifier. */
+   double blt_dis_as_dam; /**< Bolt disable as damage modifier. */
+   double blt_dam_shield_as_armor; /**< Bolt damage shield to armor modifier. */
+   double blt_dam_armor_as_shield; /**< Bolt damage armor to shield modifier. */
+
+   /* Beams. */
+   double bem_damage; /**< Beam damage multiplier. */
+   double bem_duration; /**< Beam duration multiplier. */
+   double bem_cooldown; /**< Beam cooldown multiplier. */
+   double bem_range; /**< Beam range multiplier. */
+   double bem_turn; /**< Beam turn rate multiplier. */
+   double bem_energy; /**< Beam energy usage multiplier. */
+   double bem_heat; /**< Beam heat generation multiplier. */
+   double bem_dam_as_dis; /**< Beam damage as disable modifier. */
+   double bem_dis_as_dam; /**< Beam disable as damage modifier. */
+   double bem_dam_shield_as_armor; /**< Beam damage shield to armor modifier. */
+   double bem_dam_armor_as_shield; /**< Beam damage armor to shield modifier. */
+
    /* Launchers. */
    double launch_damage; /**< Launcher damage multiplier. */
    double launch_rate; /**< Launcher fire rate multiplier. */
    double launch_range; /**< Launcher range multiplier. */
+   double launch_speed; /**< Launcher rocket speed multiplier. */
    int launch_salvo; /**< Launcher salvo modifier. */
    double launch_spread; /**< Launcher spread modifier. */
    double ammo_capacity; /**< Launcher ammo capacity multiplier. */
