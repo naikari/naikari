@@ -1337,7 +1337,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          temp->u.blt.range,
          temp->u.blt.falloff);
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-         _("%G mAU/s Speed\n"),
+         _("%G mAU/s Shot Speed\n"),
          temp->u.blt.speed);
    l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
          _("%G s Heat Up"),
@@ -1345,13 +1345,13 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
 
    if (temp->u.blt.salvo > 1) {
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("%d-Bolt Salvo\n"),
+            _("%d Shot Salvo\n"),
             temp->u.blt.salvo);
    }
 
    if (temp->u.blt.spread > 0.) {
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
-            _("\n%G° Spread"),
+            _("\n%G° Shot Spread"),
             temp->u.blt.spread * 180. / M_PI);
    }
 
@@ -2750,13 +2750,13 @@ static void outfit_launcherDesc( Outfit* o )
 
    if (o->u.lau.salvo > 1) {
       l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("%d-Rocket Salvo\n"),
+            _("%d Shot Salvo\n"),
             o->u.lau.salvo);
    }
 
    if (o->u.lau.spread > 0.) {
       l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
-            _("\n%G° Spread"),
+            _("\n%G° Shot Spread"),
             o->u.lau.spread * 180. / M_PI);
    }
 
