@@ -357,27 +357,21 @@ void input_setDefault(int layout)
    input_setKeybind( "togglefullscreen", KEYBIND_KEYBOARD, SDLK_F11, NMOD_ANY );
    input_setKeybind( "pause", KEYBIND_KEYBOARD, SDLK_PAUSE, NMOD_ANY );
 
-   input_setKeybind( "speed", KEYBIND_KEYBOARD, SDLK_BACKQUOTE, NMOD_ANY );
-   input_setKeybind( "menu", KEYBIND_KEYBOARD, SDLK_ESCAPE, NMOD_ANY );
-   input_setKeybind( "console", KEYBIND_KEYBOARD, SDLK_F2, NMOD_ANY );
-   input_setKeybind( "switchtab1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ALT );
-   input_setKeybind( "switchtab2", KEYBIND_KEYBOARD, SDLK_2, NMOD_ALT );
-   input_setKeybind( "switchtab3", KEYBIND_KEYBOARD, SDLK_3, NMOD_ALT );
-   input_setKeybind( "switchtab4", KEYBIND_KEYBOARD, SDLK_4, NMOD_ALT );
-   input_setKeybind( "switchtab5", KEYBIND_KEYBOARD, SDLK_5, NMOD_ALT );
-   input_setKeybind( "switchtab6", KEYBIND_KEYBOARD, SDLK_6, NMOD_ALT );
-   input_setKeybind( "switchtab7", KEYBIND_KEYBOARD, SDLK_7, NMOD_ALT );
-   input_setKeybind( "switchtab8", KEYBIND_KEYBOARD, SDLK_8, NMOD_ALT );
-   input_setKeybind( "switchtab9", KEYBIND_KEYBOARD, SDLK_9, NMOD_ALT );
-   input_setKeybind( "switchtab0", KEYBIND_KEYBOARD, SDLK_0, NMOD_ALT );
-   input_setKeybind( "paste", KEYBIND_KEYBOARD, SDLK_v, NMOD_CTRL );
-
-   if (layout == LAYOUT_IJKL) {
-      input_setKeybind("info", KEYBIND_KEYBOARD, SDLK_c, NMOD_NONE);
-   }
-   else {
-      input_setKeybind("info", KEYBIND_KEYBOARD, SDLK_i, NMOD_NONE);
-   }
+   input_setKeybind("speed", KEYBIND_KEYBOARD, SDLK_BACKQUOTE, NMOD_ANY);
+   input_setKeybind("menu", KEYBIND_KEYBOARD, SDLK_ESCAPE, NMOD_ANY);
+   input_setKeybind("info", KEYBIND_KEYBOARD, SDLK_F1, NMOD_NONE);
+   input_setKeybind("console", KEYBIND_KEYBOARD, SDLK_F2, NMOD_NONE);
+   input_setKeybind("switchtab1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ALT);
+   input_setKeybind("switchtab2", KEYBIND_KEYBOARD, SDLK_2, NMOD_ALT);
+   input_setKeybind("switchtab3", KEYBIND_KEYBOARD, SDLK_3, NMOD_ALT);
+   input_setKeybind("switchtab4", KEYBIND_KEYBOARD, SDLK_4, NMOD_ALT);
+   input_setKeybind("switchtab5", KEYBIND_KEYBOARD, SDLK_5, NMOD_ALT);
+   input_setKeybind("switchtab6", KEYBIND_KEYBOARD, SDLK_6, NMOD_ALT);
+   input_setKeybind("switchtab7", KEYBIND_KEYBOARD, SDLK_7, NMOD_ALT);
+   input_setKeybind("switchtab8", KEYBIND_KEYBOARD, SDLK_8, NMOD_ALT);
+   input_setKeybind("switchtab9", KEYBIND_KEYBOARD, SDLK_9, NMOD_ALT);
+   input_setKeybind("switchtab0", KEYBIND_KEYBOARD, SDLK_0, NMOD_ALT);
+   input_setKeybind("paste", KEYBIND_KEYBOARD, SDLK_v, NMOD_CTRL);
 }
 
 
