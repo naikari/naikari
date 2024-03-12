@@ -1666,9 +1666,10 @@ static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
    w->timer = range / speed;
    w->falloff = w->timer - w->outfit->u.blt.falloff / speed;
    w->solid = solid_create(mass, rdir, pos, &v, SOLID_UPDATE_EULER);
-   w->voice = sound_playPos(w->outfit->u.blt.sound,
-         w->solid->pos.x, w->solid->pos.y,
-         w->solid->vel.x, w->solid->vel.y);
+   w->voice = sound_playPos(
+      slot->charge>0. ? w->outfit->u.blt.sound_charged : w->outfit->u.blt.sound,
+      w->solid->pos.x, w->solid->pos.y,
+      w->solid->vel.x, w->solid->vel.y);
 
    /* Set facing direction. */
    gfx = outfit_gfx(w->outfit);

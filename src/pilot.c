@@ -2109,14 +2109,24 @@ void pilot_update( Pilot* pilot, double dt )
 
       /* Handle firerate timer. */
       if (o->timer > 0.)
-         o->timer -= dt * pilot_heatFireRateMod( o->heat_T );
-
-      /* Handle charge timer. */
-      if (outfit_isBolt(o->outfit) && (o->timer <= 0.)) {
+         o->timer -= dt * pilot_heatFireRateMod(o->heat_T);
+      else if (outfit_isBolt(o->outfit)) {
+         /* Handle charge timer. We have to make sure this doesn't
+          * happen on the same frame as fire rate timer reaching zero,
+          * otherwise all shots will be nearly guaranteed to have at
+          * least a small amount of charge, which is not what we
+          * want. */
          charge_max = o->outfit->u.blt.charge_max;
          charge_max += pilot->stats.blt_charge;
          charge_max *= pilot->stats.blt_charge_mod;
-         o->charge = CLAMP(0., charge_max, o->charge + dt);
+         /* It's almost certain that o->timer gets reduced to a negative
+          * number, so here, we subtract the o->timer value to add the
+          * otherwise lost time to the charge timer, then set the value
+          * of o->timer to exactly zero. This means that, for the first
+          * frame of charging, we pour in the "excess" time in o->timer
+          * from the last frame. */
+         o->charge = CLAMP(0., charge_max, o->charge + dt - o->timer);
+         o->timer = 0.;
       }
 
       /* Handle reload timer. (Note: this works backwards compared to

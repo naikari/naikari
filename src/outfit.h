@@ -163,8 +163,9 @@ typedef struct OutfitBoltData_ {
    double spin;      /**< Graphic spin rate. */
    int sound;        /**< Sound to play on shoot.*/
    int sound_hit;    /**< Sound to play on hit. */
-   int spfx_armour;  /**< special effect on hit. */
-   int spfx_shield;  /**< special effect on hit. */
+   int sound_charged; /**< Sound to play on charged shoot. */
+   int spfx_armour; /**< special effect on hit. */
+   int spfx_shield; /**< special effect on hit. */
 
    /* collision polygon */
    CollPoly *polygon; /**< Array (array.h): Collision polygons. */

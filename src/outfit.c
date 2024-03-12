@@ -1166,6 +1166,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    temp->u.blt.spfx_shield = -1;
    temp->u.blt.sound = -1;
    temp->u.blt.sound_hit = -1;
+   temp->u.blt.sound_charged = -1;
    temp->u.blt.falloff = -1.;
 
    tail = NULL;
@@ -1249,6 +1250,10 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
          temp->u.blt.sound_hit = sound_get( xml_get(node) );
          continue;
       }
+      if (xml_isNode(node,"sound_charged")) {
+         temp->u.blt.sound_charged = sound_get(xml_get(node));
+         continue;
+      }
       if (xml_isNode(node,"damage")) {
          outfit_parseDamage( &temp->u.blt.dmg, node );
          continue;
@@ -1274,6 +1279,10 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    /* Default 1-bullet salvo. */
    if (temp->u.blt.salvo <= 0)
       temp->u.blt.salvo = 1;
+
+   /* Charged sound defaults to regular sound. */
+   if (temp->u.blt.sound_charged == -1)
+      temp->u.blt.sound_charged = temp->u.blt.sound;
 
    /* Post processing. */
    temp->u.blt.spread *= M_PI / 180.;
