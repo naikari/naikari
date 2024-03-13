@@ -102,49 +102,52 @@ typedef enum ShipStatsType_ {
    SS_TYPE_P_LAUNCH_DAMAGE_ARMOR_AS_SHIELD, /**< Launcher damage shield to armor modifier. */
 
    /* Fighter bays. */
+   SS_TYPE_D_FBAY_CAPACITY, /**< Fighter bay capacity multiplier. */
+   SS_TYPE_D_FBAY_RATE, /**< Fighter bay launch rate multiplier. */
+   SS_TYPE_D_FBAY_RELOAD, /**< Fighter bay reload rate multiplier. */
    SS_TYPE_D_FBAY_DAMAGE, /**< Fighter bay fighter damage multiplier. */
    SS_TYPE_D_FBAY_HEALTH, /**< Fighter bay fighter shield/armor multiplier. */
    SS_TYPE_D_FBAY_MOVEMENT, /**< Fighter bay fighter turn/thrust/speed multiplier. */
-   SS_TYPE_D_FBAY_CAPACITY, /**< Fighter bay capacity multiplier. */
-   SS_TYPE_D_FBAY_RATE,       /**< Launch rate for fighter bays. */
-   SS_TYPE_D_FBAY_RELOAD,     /**< Regeneration rate of fighters. */
 
    /* Speed. */
    SS_TYPE_A_SPEED, /**< Speed modifier. */
    SS_TYPE_D_SPEED_MOD, /**< Speed multiplier. */
-   SS_TYPE_A_TURN, /**< Turn modifier (in deg/s). */
+   SS_TYPE_A_TURN, /**< Turn modifier. */
    SS_TYPE_D_TURN_MOD, /**< Turn multiplier. */
    SS_TYPE_A_THRUST, /**< Acceleration modifier. */
    SS_TYPE_D_THRUST_MOD, /**< Acceleration multiplier. */
    SS_TYPE_P_REVERSE_THRUST, /**< Reverse acceleration modifier. */
    SS_TYPE_D_TIME_MOD, /**< Time constant multiplier. */
-   SS_TYPE_D_TIME_SPEEDUP, /**< Makes the pilot operate at a higher dt. */
+   SS_TYPE_D_TIME_SPEEDUP, /**< Time dilation multiplier. */
 
    /* Mobility. */
    SS_TYPE_A_FUEL, /**< Fuel modifier. */
    SS_TYPE_A_FUEL_REGEN, /** Fuel regeneration modifier. */
-   SS_TYPE_D_JUMP_DELAY, /**< Hyperspace jump multiplier. */
+   SS_TYPE_D_JUMP_DELAY, /**< Jump time multiplier. */
    SS_TYPE_D_LAND_DELAY, /**< Takeoff time multiplier. */
    SS_TYPE_D_JUMP_DISTANCE, /**< Jump radius multiplier. */
-   SS_TYPE_B_INSTANT_JUMP, /**< Do not require brake or chargeup to jump. */
+   SS_TYPE_B_INSTANT_JUMP, /**< Instant jump. */
 
    /* Health. */
    SS_TYPE_A_SHIELD, /**< Shield modifier. */
    SS_TYPE_D_SHIELD_MOD, /**< Shield multiplier. */
    SS_TYPE_A_SHIELD_REGEN, /**< Shield regeneration modifier. */
    SS_TYPE_D_SHIELD_REGEN_MOD, /**< Shield regeneration multiplier. */
-   SS_TYPE_A_SHIELD_REGEN_MALUS, /**< Flat shield regeneration modifier (not multiplied). */
-   SS_TYPE_A_ARMOUR, /**< Armour modifier. */
-   SS_TYPE_D_ARMOUR_MOD, /**< Armour multiplier. */
-   SS_TYPE_A_ARMOUR_REGEN, /**< Armour regeneration modifier. */
-   SS_TYPE_D_ARMOUR_REGEN_MOD, /**< Armour regeneration multiplier. */
-   SS_TYPE_A_ARMOUR_REGEN_MALUS, /**< Flat armour regeneration modifier (not multiplied). */
+   SS_TYPE_A_SHIELD_REGEN_MALUS, /**< Shield regeneration inverse modifier. */
+   SS_TYPE_P_SHIELD_DYNAMO, /**< Shield dynamo modifier. */
+   SS_TYPE_A_ARMOUR, /**< Armor modifier. */
+   SS_TYPE_D_ARMOUR_MOD, /**< Armor multiplier. */
+   SS_TYPE_A_ARMOUR_REGEN, /**< Armor regeneration modifier. */
+   SS_TYPE_D_ARMOUR_REGEN_MOD, /**< Armor regeneration multiplier. */
+   SS_TYPE_A_ARMOUR_REGEN_MALUS, /**< Armor regeneration inverse modifier. */
+   SS_TYPE_P_ARMOUR_DYNAMO, /**< Armor dynamo modifier. */
    SS_TYPE_A_ENERGY, /**< Energy modifier. */
    SS_TYPE_D_ENERGY_MOD, /**< Energy multiplier. */
    SS_TYPE_A_ENERGY_REGEN, /**< Energy regeneration modifier. */
    SS_TYPE_D_ENERGY_REGEN_MOD, /**< Energy regeneration multiplier. */
-   SS_TYPE_A_ENERGY_REGEN_MALUS, /**< Flat energy regeneration modifier (not multiplied). */
-   SS_TYPE_P_ABSORB, /**< Damage absorption. */
+   SS_TYPE_A_ENERGY_REGEN_MALUS, /**< Energy regeneration inverse modifier. */
+   SS_TYPE_P_ABSORB, /**< Absorb modifier. */
+   SS_TYPE_P_ABSORB_DYNAMO, /**< Absorb dynamo modifier. */
    SS_TYPE_D_HEAT_DISSIPATION, /**< Heat dissipation multiplier. */
    SS_TYPE_D_STRESS_DISSIPATION, /**< Stress dissipation multiplier. */
    SS_TYPE_D_COOLDOWN_TIME, /**< Active cooldown time multiplier. */
@@ -291,39 +294,61 @@ typedef struct ShipStats_ {
    double launch_dam_shield_as_armor; /**< Launcher damage shield to armor modifier. */
    double launch_dam_armor_as_shield; /**< Launcher damage armor to shield modifier. */
 
-   /* Movement. */
-   double speed;              /**< Speed modifier. */
-   double turn;               /**< Turn modifier. */
-   double thrust;             /**< Thrust modifier. */
-   double speed_mod;          /**< Speed multiplier. */
-   double turn_mod;           /**< Turn multiplier. */
-   double thrust_mod;         /**< Thrust multiplier. */
+   /* Fighter bays. */
+   double fbay_capacity; /**< Fighter bay fighter turn/thrust/speed multiplier. */
+   double fbay_rate; /**< Fighter bay launch rate multiplier. */
+   double fbay_reload; /**< Fighter bay reload rate multiplier. */
+   double fbay_damage; /**< Fighter bay fighter damage multiplier. */
+   double fbay_health; /**< Fighter bay fighter health multiplier. */
+   double fbay_movement; /**< Fighter bay fighter shield/armor multiplier. */
+
+   /* Speed. */
+   double speed; /**< Speed modifier. */
+   double speed_mod; /**< Speed multiplier. */
+   double turn; /**< Turn modifier. */
+   double turn_mod; /**< Turn multiplier. */
+   double thrust; /**< Acceleration modifier. */
+   double thrust_mod; /**< Acceleration multiplier. */
    double reverse_thrust; /**< Reverse thrust modifier. */
+   double time_mod; /**< Time constant multiplier. */
+   double time_speedup; /**< Time dilation multiplier. */
+
+   /* Mobility. */
+   double fuel; /**< Fuel modifier. */
+   double fuel_regen; /**< Fuel regeneration modifier. */
+   double jump_delay; /**< Jump time multiplier. */
+   double land_delay; /**< Takeoff time multiplier. */
+   double jump_distance; /**< Jump radius multiplier. */
+   int misc_instant_jump; /**< Instant jump. */
 
    /* Health. */
-   double energy;             /**< Energy modifier. */
-   double energy_regen;       /**< Energy regeneration modifier. */
-   double energy_mod;         /**< Energy multiplier. */
-   double energy_regen_mod;   /**< Energy regeneration multiplier. */
-   double energy_regen_malus; /**< Energy usage (flat). */
-   double shield;             /**< Shield modifier. */
-   double shield_regen;       /**< Shield regeneration modifier. */
-   double shield_mod;         /**< Shield multiplier. */
-   double shield_regen_mod;   /**< Shield regeneration multiplier. */
-   double shield_regen_malus; /**< Shield usage (flat). */
-   double armour;             /**< Armour modifier. */
-   double armour_regen;       /**< Armour regeneration modifier. */
-   double armour_mod;         /**< Armour multiplier. */
-   double armour_regen_mod;   /**< Armour regeneration multiplier. */
-   double armour_regen_malus; /**< Armour regeneration (flat). */
+   double shield; /**< Shield modifier. */
+   double shield_mod; /**< Shield multiplier. */
+   double shield_regen; /**< Shield regeneration modifier. */
+   double shield_regen_mod; /**< Shield regeneration multiplier. */
+   double shield_regen_malus; /**< Shield regeneration inverse modifier. */
+   double shield_dynamo; /**< Shield dynamo modifier. */
+   double armour; /**< Armor modifier. */
+   double armour_mod; /**< Armor multiplier. */
+   double armour_regen; /**< Armor regeneration modifier. */
+   double armour_regen_mod; /**< Armor regeneration multiplier. */
+   double armour_regen_malus; /**< Armor regeneration inverse modifier. */
+   double armour_dynamo; /**< Armor dynamo modifier. */
+   double energy; /**< Energy modifier. */
+   double energy_mod; /**< Energy multiplier. */
+   double energy_regen; /**< Energy regeneration modifier. */
+   double energy_regen_mod; /**< Energy regeneration multiplier. */
+   double energy_regen_malus; /**< Energy regeneration inverse modifier. */
+   double absorb; /**< Absorb modifier. */
+   double absorb_dynamo; /**< Absorb dynamo modifier. */
+   double heat_dissipation; /**< Heat dissipation multiplier. */
+   double stress_dissipation; /**< Stress dissipation multiplier. */
+   double cooldown_time; /**< Active cooldown time multiplier. */
 
    /* General */
    double cargo_mod;          /**< Cargo space multiplier. */
-   double absorb;             /**< Flat damage absorption. */
 
    /* Freighter-type. */
-   double jump_delay;      /**< Modulates the time that passes during a hyperspace jump. */
-   double land_delay;      /**< Modulates the time that passes during landing. */
    double cargo_inertia;   /**< Lowers the effect of cargo mass. */
 
    /* Stealth. */
@@ -333,31 +358,12 @@ typedef struct ShipStats_ {
    double rdr_jump_range_mod; /**< Jump detection range modifier. */
    double rdr_enemy_range_mod; /**< Enemy radar range modifier. */
 
-   /* Military type. */
-   double heat_dissipation; /**< Global ship dissipation. */
-   double stress_dissipation; /**< Global stress dissipation. */
-
-   /* Fighter bays. */
-   double fbay_damage;     /**< Fighter bay fighter damage (all weapons). */
-   double fbay_health;     /**< Fighter bay fighter health (armour and shield). */
-   double fbay_movement;   /**< Fighter bay fighter movement (thrust, turn, and speed). */
-   double fbay_capacity;   /**< Capacity of fighter bays. */
-   double fbay_rate;       /**< Launch rate of fighter bays. */
-   double fbay_reload;     /**< Reload rate of fighters. */
-
    /* Misc. */
    double nebu_absorb_shield; /**< Shield nebula resistance. */
    double nebu_absorb_armour; /**< Armour nebula resistance. */
-   int misc_instant_jump;    /**< Do not require brake or chargeup to jump. */
    int misc_asteroid_scan;   /**< Able to scan asteroids. */
-   double fuel; /**< Maximum fuel modifier. */
-   double fuel_regen; /**< Fuel regeneration modifier. */
    int cargo;                 /**< Maximum cargo modifier. */
    double loot_mod;           /**< Boarding loot reward bonus. */
-   double time_mod;           /**< Time dilation modifier. */
-   double time_speedup;       /**< Makes the pilot operate at higher speeds. */
-   double cooldown_time;      /**< Modifies cooldown time. */
-   double jump_distance;      /**< Modifies how far the pilot can jump from the jump point. */
    int turret_conversion; /**< Convert all weapons to turrets. */
 } ShipStats;
 

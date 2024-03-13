@@ -1496,6 +1496,9 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
    int mod;
    double damage_shield, damage_armour, disable, knockback, dam_mod, ddmg, absorb, dmod, start;
    double tdshield, tdarmour;
+   double absorb_shield;
+   double absorb_armor;
+   double dynamo;
    Pilot *pshooter;
    int nofactionhit;
 
@@ -1505,14 +1508,15 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
       return 0.;
 
    /* Defaults. */
-   pshooter       = NULL;
-   dam_mod        = 0.;
-   ddmg           = 0.;
+   pshooter = NULL;
+   dam_mod = 0.;
+   ddmg = 0.;
 
    /* Calculate the damage. */
-   absorb         = 1. - CLAMP( 0., 1., p->dmg_absorb - dmg->penetration );
-   disable        = dmg->disable;
-   dtype_calcDamage( &damage_shield, &damage_armour, absorb, &knockback, dmg, &p->stats );
+   absorb = 1. - CLAMP(0., 1., p->dmg_absorb - dmg->penetration);
+   disable = dmg->disable;
+   dtype_calcDamage(&damage_shield, &damage_armour, absorb, &knockback, dmg,
+         &p->stats);
 
    /*
     * Delay undisable if necessary. Amount varies with damage, as e.g. a
@@ -1524,10 +1528,10 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
    /* Ships that can not be disabled take raw armour damage instead of getting disabled. */
    if (pilot_isFlag( p, PILOT_NODISABLE )) {
       damage_armour += disable * absorb;
-      disable        = 0.;
+      disable = 0.;
    }
    else
-      disable       *= absorb;
+      disable *= absorb;
    tdshield = 0.;
    tdarmour = 0.;
 
@@ -1651,6 +1655,30 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
    else {
       pilot_updateDisable(p, shooter);
    }
+
+   /* Apply shield/armor dynamo boosts. */
+   p->energy += tdshield * CLAMP(0., 1., p->stats.shield_dynamo);
+   p->energy += tdarmour * CLAMP(0., 1., p->stats.armour_dynamo);
+
+   /* Apply absorb dynamo boost. This requires reverse-engineering what
+    * the total absorb modification was in the case of shield and armor,
+    * then reversing the absorb application and subtracting the final
+    * damage values to get the total exact damage avoided for each of
+    * shield damage, armor damage, and disable. */
+   dynamo = CLAMP(0., 1., p->stats.absorb_dynamo);
+   if ((absorb > 0.) && (dynamo > 0.)) {
+      absorb_shield = damage_shield / (dmg->shield_pct*dmg->damage);
+      if (absorb_shield > 0.)
+         p->energy += CLAMP(0., 1., tdshield/absorb_shield - tdshield) * dynamo;
+      absorb_armor = damage_armour / (dmg->armor_pct*dmg->damage);
+      if (absorb_armor > 0.)
+         p->energy += CLAMP(0., 1., tdarmour/absorb_armor - tdarmour) * dynamo;
+      p->energy += CLAMP(0., 1., disable/absorb - disable) * dynamo;
+   }
+
+   /* Cap energy. */
+   if (p->energy > p->energy_max)
+      p->energy = p->energy_max;
 
    /* Update player meta-data if applicable. */
    if (p->id == PLAYER_ID) {
