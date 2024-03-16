@@ -102,6 +102,7 @@
   </allies>
   <enemies>
    <enemy>Civilian</enemy>
+   <enemy>Coälition</enemy>
    <enemy>Collective</enemy>
    <enemy>Dvaered</enemy>
    <enemy>Empire</enemy>
@@ -135,6 +136,22 @@
   <enemies>
    <enemy>Pirate</enemy>
    <enemy>Collective</enemy>
+  </enemies>
+ </faction>
+ <faction>
+  <name>Coälition</name>
+  <ai>dvaered</ai>
+  <known />
+  <logo>dvaered</logo>
+  <colour>brown</colour>
+  <longname>Crimson Coälition</longname>
+  <player>1</player>
+  <spawn>dvaered</spawn>
+  <standing>dvaered</standing>
+  <equip>dvaered</equip>
+  <allies/>
+  <enemies>
+   <enemy>Pirate</enemy>
   </enemies>
  </faction>
  <faction>
