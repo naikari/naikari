@@ -1534,504 +1534,95 @@
 
  <!-- Weapon Trees -->
  <tech name="Laser 1">
-  <item>Laser Cannon MK1</item>
-  <item>Laser Turret MK1</item>
-  <item>Ripper Cannon</item>
  </tech>
  <tech name="Laser 2">
-  <item>Laser Cannon MK2</item>
-  <item>Laser Turret MK2</item>
-  <item>Heavy Ripper Cannon</item>
-  <item>Heavy Ripper Turret</item>
  </tech>
  <tech name="Laser 3">
-  <item>Heavy Ripper Turret</item>
-  <item>Heavy Laser Turret</item>
  </tech>
  <tech name="Ion 1">
-  <item>Ion Cannon</item>
-  <item>Razor MK1</item>
-  <item>Razor Turret MK1</item>
  </tech>
  <tech name="Ion 2">
-  <item>Heavy Ion Cannon</item>
-  <item>Razor MK2</item>
-  <item>Slicer</item>
-  <item>Razor Turret MK2</item>
-  <item>Weapons Ionizer</item>
  </tech>
  <tech name="Ion 3">
-  <item>Heavy Ion Turret</item>
-  <item>Weapons Ionizer</item>
-  <item>Turreted Weapons Ionizer</item>
  </tech>
  <tech name="Kinetic 1">
-  <item>Gauss Gun</item>
-  <item>Turreted Gauss Gun</item>
  </tech>
  <tech name="Plasma 1">
-  <item>Plasma Blaster MK1</item>
-  <item>Plasma Turret MK1</item>
  </tech>
  <tech name="Plasma 2">
-  <item>Plasma Blaster MK2</item>
-  <item>Plasma Cannon</item>
-  <item>Plasma Cluster Cannon</item>
-  <item>Plasma Turret MK2</item>
-  <item>Plasma Cluster Turret</item>
  </tech>
  <tech name="Beam 1">
-  <item>Orion Lance</item>
-  <item>Orion Beam</item>
  </tech>
  <tech name="Beam 2">
-  <item>Grave Lance</item>
-  <item>Grave Beam</item>
-  <item>Ragnarok Beam</item>
  </tech>
 
  <tech name="Basic Outfits 1">
-  <item>Laser Cannon MK1</item>
-  <item>Plasma Blaster MK1</item>
-  <item>Gauss Gun</item>
-  <item>Unicorp Fury Launcher</item>
-  <item>Battery</item>
-  <item>Solar Panel</item>
-  <item>Fuel Pod</item>
-  <item>Star Maps</item>
-  <item>Light Weapon License</item>
-  <item>Large Civilian Vessel License</item>
-  <item>Local System Map</item>
-  <item>Previous Generation Small Systems</item>
-  <item>Previous Generation Medium Systems</item>
-  <item>Previous Generation Large Systems</item>
-  <item>Unicorp PT-18 Core System</item>
-  <item>Unicorp PT-80 Core System</item>
-  <item>Unicorp PT-280 Core System</item>
-  <item>Unicorp PT-400 Core System</item>
-  <item>Unicorp PT-750 Core System</item>
-  <item>Unicorp PT-3400 Core System</item>
-  <item>Beat Up Small Engine</item>
-  <item>Beat Up Medium Engine</item>
-  <item>Beat Up Large Engine</item>
-  <item>Nexus Dart 150 Engine</item>
-  <item>Unicorp Hawk 300 Engine</item>
-  <item>Nexus Arrow 700 Engine</item>
-  <item>Unicorp Falcon 1200 Engine</item>
-  <item>Nexus Bolt 4500 Engine</item>
-  <item>Unicorp Eagle 6500 Engine</item>
-  <item>Patchwork Light Plating</item>
-  <item>Unicorp D-2 Light Plating</item>
-  <item>Unicorp D-4 Light Plating</item>
-  <item>Patchwork Medium Plating</item>
-  <item>Unicorp D-12 Medium Plating</item>
-  <item>Unicorp D-24 Medium Plating</item>
-  <item>Patchwork Heavy Plating</item>
-  <item>Unicorp D-48 Heavy Plating</item>
-  <item>Unicorp D-72 Heavy Plating</item>
   </tech>
  <tech name="Basic Outfits 2">
-  <item>Laser Cannon MK2</item>
-  <item>Plasma Blaster MK2</item>
-  <item>Unicorp Banshee Launcher</item>
-  <item>Reactor Class I</item>
-  <item>Shield Capacitor</item>
-  <item>Plasteel Plating</item>
-  <item>Engine Reroute</item>
-  <item>Generic Afterburner</item>
-  <item>Cargo Pod</item>
-  <item>Medium Cargo Pod</item>
-  <item>Large Cargo Pod</item>
-  <item>Star Maps</item>
-  <item>Unicorp Scrambler</item>
-  <item>Unicorp Jammer</item>
-  <item>Light Weapon License</item>
-  <item>Large Civilian Vessel License</item>
-  <item>Unicorp Medusa Launcher</item>
-  <item>Sensor Array</item>
-  <item>Jump Scanner</item>
-  <item>Local System Map</item>
-  <item>Previous Generation Small Systems</item>
-  <item>Previous Generation Medium Systems</item>
-  <item>Previous Generation Large Systems</item>
-  <item>Unicorp PT-18 Core System</item>
-  <item>Unicorp PT-80 Core System</item>
-  <item>Unicorp PT-280 Core System</item>
-  <item>Unicorp PT-400 Core System</item>
-  <item>Unicorp PT-750 Core System</item>
-  <item>Unicorp PT-3400 Core System</item>
-  <item>Beat Up Small Engine</item>
-  <item>Beat Up Medium Engine</item>
-  <item>Beat Up Large Engine</item>
-  <item>Nexus Dart 150 Engine</item>
-  <item>Unicorp Hawk 300 Engine</item>
-  <item>Nexus Arrow 700 Engine</item>
-  <item>Unicorp Falcon 1200 Engine</item>
-  <item>Nexus Bolt 4500 Engine</item>
-  <item>Unicorp Eagle 6500 Engine</item>
-  <item>Patchwork Light Plating</item>
-  <item>Unicorp D-2 Light Plating</item>
-  <item>Unicorp D-4 Light Plating</item>
-  <item>Patchwork Medium Plating</item>
-  <item>Unicorp D-12 Medium Plating</item>
-  <item>Unicorp D-24 Medium Plating</item>
-  <item>Patchwork Heavy Plating</item>
-  <item>Unicorp D-48 Heavy Plating</item>
-  <item>Unicorp D-72 Heavy Plating</item>
-  <item>Emergency Shield Booster</item>
   </tech>
  <tech name="Heavy Weapons 1">
-  <item>Laser Turret MK1</item>
-  <item>Turreted Gauss Gun</item>
-  <item>Plasma Turret MK1</item>
-  <item>Ion Cannon</item>
-  <item>Railgun</item>
-  <item>Ripper Cannon</item>
-  <item>EMP Grenade Launcher</item>
-  <item>Enygma Systems Spearhead Launcher</item>
-  <item>Light Weapon License</item>
-  <item>Medium Weapon License</item>
-  <item>Heavy Weapon License</item>
-  <item>Medium Combat Vessel License</item>
-  <item>Heavy Combat Vessel License</item>
-  <item>Mercenary License</item>
-  <item>Weapons Ionizer</item>
   </tech>
  <tech name="Heavy Weapons 2">
-  <item>Laser Turret MK2</item>
-  <item>Mass Driver</item>
-  <item>Ion Cannon</item>
-  <item>Heavy Ion Turret</item>
-  <item>Railgun Turret</item>
-  <item>Orion Lance</item>
-  <item>Light Weapon License</item>
-  <item>Medium Weapon License</item>
-  <item>Heavy Weapon License</item>
-  <item>Medium Combat Vessel License</item>
-  <item>Heavy Combat Vessel License</item>
-  <item>Mercenary License</item>
-  <item>Turreted Weapons Ionizer</item>
  </tech>
  <tech name="Low Tech Upgrades">
-  <item>Battery</item>
-  <item>Solar Panel</item>
-  <item>Reactor Class I</item>
-  <item>Shield Capacitor</item>
-  <item>Small Shield Booster</item>
-  <item>Medium Shield Booster</item>
-  <item>Plasteel Plating</item>
-  <item>Engine Reroute</item>
-  <item>Fuel Pod</item>
-  <item>Cargo Pod</item>
-  <item>Medium Cargo Pod</item>
-  <item>Large Cargo Pod</item>
-  <item>Star Maps</item>
-  <item>Unicorp Scrambler</item>
-  <item>Unicorp Jammer</item>
-  <item>Sensor Array</item>
-  <item>Jump Scanner</item>
-  <item>Light Combat Vessel License</item>
-  <item>Mercenary License</item>
  </tech>
  <tech name="High Tech Upgrades 1">
-  <item>Battery</item>
-  <item>Battery II</item>
-  <item>Solar Panel</item>
-  <item>Reactor Class I</item>
-  <item>Reactor Class II</item>
-  <item>Shield Capacitor</item>
-  <item>Shield Capacitor II</item>
-  <item>Small Shield Booster</item>
-  <item>Medium Shield Booster</item>
-  <item>Large Shield Booster</item>
-  <item>Plasteel Plating</item>
-  <item>Nanobond Plating</item>
-  <item>Engine Reroute</item>
-  <item>Improved Stabilizer</item>
-  <item>Generic Afterburner</item>
-  <item>Fuel Pod</item>
-  <item>Medium Fuel Pod</item>
-  <item>Cargo Pod</item>
-  <item>Medium Cargo Pod</item>
-  <item>Large Cargo Pod</item>
-  <item>Targeting Array</item>
-  <item>Forward Shock Absorbers</item>
-  <item>Power Regulation Override</item>
-  <item>Star Maps</item>
-  <item>Unicorp Scrambler</item>
-  <item>Unicorp Jammer</item>
-  <item>Hyena Fighter Bay</item>
-  <item>Mini Hyena Fighter Bay</item>
-  <item>Light Weapon License</item>
-  <item>Medium Weapon License</item>
-  <item>Emergency Shield Booster</item>
-  <item>Reverse Thrusters</item>
-  <item>Asteroid Scanner</item>
  </tech>
  <tech name="High Tech Upgrades 2">
-  <item>Battery III</item>
-  <item>Reactor Class II</item>
-  <item>Reactor Class III</item>
-  <item>Shield Capacitor III</item>
-  <item>Shield Capacitor IV</item>
-  <item>Biometal Armor</item>
-  <item>Droid Repair Crew</item>
-  <item>Steering Thrusters</item>
-  <item>Hellburner</item>
-  <item>Improved Power Regulator</item>
-  <item>Rotary Turbo Modulator</item>
-  <item>Star Maps</item>
-  <item>Milspec Scrambler</item>
-  <item>Milspec Jammer</item>
-  <item>Shark Fighter Bay</item>
-  <item>Mini Shark Fighter Bay</item>
-  <item>Lancelot Fighter Bay</item>
-  <item>Mini Lancelot Fighter Bay</item>
-  <item>Light Weapon License</item>
-  <item>Medium Weapon License</item>
-  <item>Emergency Shield Booster</item>
-  <item>Reverse Thrusters</item>
-  <item>Medium Fuel Pod</item>
-  <item>Large Fuel Pod</item>
-  <item>Weapons Ionizer</item>
  </tech>
  <tech name="Missiles 1">
-  <item>Unicorp Banshee Launcher</item>
-  <item>Unicorp Fury Launcher</item>
-  <item>Unicorp Medusa Launcher</item>
-  <item>Unicorp Headhunter Launcher</item>
-  <item>Unicorp Caesar IV Launcher</item>
  </tech>
  <tech name="Missiles 2">
-  <item>Unicorp Headhunter Launcher</item>
-  <item>Unicorp Mace Launcher</item>
-  <item>TeraCom Mace Launcher</item>
-  <item>Unicorp Caesar IV Launcher</item>
-  <item>TeraCom Imperator Launcher</item>
-  <item>Enygma Systems Spearhead Launcher</item>
-  <item>Enygma Systems Huntsman Launcher</item>
-  <item>TeraCom Banshee Launcher</item>
-  <item>TeraCom Medusa Launcher</item>
-  <item>TeraCom Fury Launcher</item>
-  <item>TeraCom Headhunter Launcher</item>
-  <item>TeraCom Vengeance Launcher</item>
-  <item>Enygma Systems Turreted Fury Launcher</item>
-  <item>Enygma Systems Turreted Headhunter Launcher</item>
-  <item>Unicorp Vengeance Launcher</item>
  </tech>
 
  <!-- Faction outfits -->
  <tech name="Thurion Outfits">
-  <item>Convulsion Launcher</item>
-  <item>Turreted Convulsion Launcher</item>
-  <item>Adaptive Stealth Plating</item>
-  <item>Map: Thurion Core</item>
  </tech>
 
  <!-- Bioship outfits -->
  <tech name="Bioship Outfits">
-  <item>BioPlasma Stinger Stage 1</item>
-  <item>BioPlasma Claw Stage 1</item>
-  <item>BioPlasma Fang Stage 1</item>
-  <item>BioPlasma Talon Stage 1</item>
-  <item>BioPlasma Tentacle Stage 1</item>
-  <item>Ultralight Brain Stage 1</item>
-  <item>Light Brain Stage 1</item>
-  <item>Medium Brain Stage 1</item>
-  <item>Medium-Heavy Brain Stage 1</item>
-  <item>Heavy Brain Stage 1</item>
-  <item>Superheavy Brain Stage 1</item>
-  <item>Ultralight Shell Stage 1</item>
-  <item>Light Shell Stage 1</item>
-  <item>Medium Shell Stage 1</item>
-  <item>Medium-Heavy Shell Stage 1</item>
-  <item>Heavy Shell Stage 1</item>
-  <item>Superheavy Shell Stage 1</item>
-  <item>Ultralight Fast Fin Stage 1</item>
-  <item>Light Fast Fin Stage 1</item>
-  <item>Medium Fast Fin Stage 1</item>
-  <item>Medium-Heavy Fast Fin Stage 1</item>
-  <item>Heavy Fast Fin Stage 1</item>
-  <item>Superheavy Fast Fin Stage 1</item>
-  <item>Ultralight Strong Fin Stage 1</item>
-  <item>Light Strong Fin Stage 1</item>
-  <item>Medium Strong Fin Stage 1</item>
-  <item>Medium-Heavy Strong Fin Stage 1</item>
-  <item>Heavy Strong Fin Stage 1</item>
-  <item>Superheavy Strong Fin Stage 1</item>
-  <item>Brigand Fighter Bay</item>
  </tech>
 
  <!-- Ships -->
  <tech name="Basic Civilian Ships">
-  <item>Ancestor</item>
-  <item>Gawain</item>
-  <item>Hyena</item>
-  <item>Llama</item>
-  <item>Schroedinger</item>
  </tech>
  <tech name="Basic Trade Ships">
-  <item>Koäla</item>
-  <item>Llama</item>
  </tech>
  <tech name="Bulk Trade Ships">
-  <item>Koäla</item>
-  <item>Quicksilver</item>
-  <item>Rhino</item>
-  <item>Mule</item>
  </tech>
  <tech name="Light Civilian Combat Ships">
-  <item>Ancestor</item>
-  <item>Hyena</item>
-  <item>Shark</item>
-  <item>Vendetta</item>
  </tech>
  <tech name="Heavy Civilian Combat Ships">
-  <item>Phalanx</item>
-  <item>Admonisher</item>
-  <item>Hawking</item>
-  <item>Lancelot</item>
-  <item>Pacifier</item>
-  <item>Vigilance</item>
-  <item>Kestrel</item>
  </tech>
  <tech name="Proteron Military Ships">
-  <item>Proteron Archimedes</item>
-  <item>Proteron Derivative</item>
-  <item>Proteron Kahan</item>
-  <item>Proteron Watson</item>
  </tech>
  <tech name="Thurion Civilian Ships">
-  <item>Thurion Perspicacity</item>
-  <item>Thurion Ingenuity</item>
-  <item>Thurion Taciturnity</item>
  </tech>
  <tech name="Thurion Military Ships">
-  <item>Thurion Perspicacity</item>
-  <item>Thurion Ingenuity</item>
-  <item>Thurion Scintillation</item>
-  <item>Thurion Virtuosity</item>
-  <item>Thurion Apprehension</item>
-  <item>Thurion Certitude</item>
  </tech>
 
  <tech name="Systems Low">
-  <item>Previous Generation Small Systems</item>
-  <item>Previous Generation Medium Systems</item>
-  <item>Previous Generation Large Systems</item>
-  <item>Unicorp PT-18 Core System</item>
-  <item>Unicorp PT-80 Core System</item>
-  <item>Unicorp PT-280 Core System</item>
-  <item>Unicorp PT-400 Core System</item>
-  <item>Unicorp PT-750 Core System</item>
-  <item>Unicorp PT-3400 Core System</item>
  </tech>
  <tech name="Systems Medium">
-  <item>Milspec Hermes 2202 Core System</item>
-  <item>Milspec Hermes 3602 Core System</item>
-  <item>Milspec Hermes 4702 Core System</item>
-  <item>Milspec Aegis 2201 Core System</item>
-  <item>Milspec Aegis 3601 Core System</item>
-  <item>Milspec Aegis 4701 Core System</item>
-  <item>Milspec Prometheus 2203 Core System</item>
-  <item>Milspec Prometheus 3603 Core System</item>
-  <item>Milspec Prometheus 4703 Core System</item>
  </tech>
  <tech name="Systems High">
-  <item>Milspec Orion 2301 Core System</item>
-  <item>Milspec Orion 3701 Core System</item>
-  <item>Milspec Orion 4801 Core System</item>
-  <item>Milspec Hermes 5402 Core System</item>
-  <item>Milspec Hermes 8502 Core System</item>
-  <item>Milspec Aegis 5401 Core System</item>
-  <item>Milspec Aegis 8501 Core System</item>
-  <item>Milspec Prometheus 5403 Core System</item>
-  <item>Milspec Prometheus 8503 Core System</item>
  </tech>
  <tech name="Systems Elite">
-  <item>Milspec Orion 5501 Core System</item>
-  <item>Milspec Orion 8601 Core System</item>
-  <item>Milspec Orion 9901 Core System</item>
-  <item>Milspec Hermes 8502 Core System</item>
-  <item>Milspec Hermes 9802 Core System</item>
-  <item>Milspec Aegis 8501 Core System</item>
-  <item>Milspec Aegis 9801 Core System</item>
-  <item>Milspec Prometheus 8503 Core System</item>
-  <item>Milspec Prometheus 9803 Core System</item>
  </tech>
  <tech name="Engines Low">
-  <item>Beat Up Small Engine</item>
-  <item>Beat Up Medium Engine</item>
-  <item>Beat Up Large Engine</item>
-  <item>Nexus Dart 150 Engine</item>
-  <item>Unicorp Hawk 300 Engine</item>
-  <item>Nexus Arrow 700 Engine</item>
-  <item>Unicorp Falcon 1200 Engine</item>
-  <item>Nexus Bolt 4500 Engine</item>
-  <item>Unicorp Eagle 6500 Engine</item>
  </tech>
  <tech name="Engines Cargo">
-  <item>Melendez Ox XL Engine</item>
-  <item>Melendez Buffalo XL Engine</item>
-  <item>Melendez Mammoth XL Engine</item>
  </tech>
  <tech name="Engines Medium">
-  <item>Beat Up Small Engine</item>
-  <item>Beat Up Medium Engine</item>
-  <item>Beat Up Large Engine</item>
-  <item>Nexus Dart 150 Engine</item>
-  <item>Unicorp Hawk 300 Engine</item>
-  <item>Nexus Arrow 700 Engine</item>
-  <item>Unicorp Falcon 1200 Engine</item>
-  <item>Nexus Bolt 4500 Engine</item>
-  <item>Unicorp Eagle 6500 Engine</item>
-  <item>Tricon Zephyr Engine</item>
-  <item>Tricon Zephyr II Engine</item>
-  <item>Tricon Cyclone Engine</item>
  </tech>
  <tech name="Engines High">
-  <item>Tricon Zephyr Engine</item>
-  <item>Tricon Zephyr II Engine</item>
-  <item>Tricon Cyclone Engine</item>
-  <item>Tricon Cyclone II Engine</item>
-  <item>Krain Remige Engine</item>
-  <item>Tricon Typhoon Engine</item>
-  <item>Tricon Typhoon II Engine</item>
  </tech>
  <tech name="Hulls Low">
-  <item>Patchwork Light Plating</item>
-  <item>Patchwork Medium Plating</item>
-  <item>Patchwork Heavy Plating</item>
-  <item>Unicorp D-2 Light Plating</item>
-  <item>Unicorp D-4 Light Plating</item>
-  <item>Unicorp D-12 Medium Plating</item>
-  <item>Unicorp D-24 Medium Plating</item>
-  <item>Unicorp D-48 Heavy Plating</item>
-  <item>Unicorp D-72 Heavy Plating</item>
  </tech>
  <tech name="Hulls Medium">
-  <item>Unicorp D-2 Light Plating</item>
-  <item>Unicorp D-4 Light Plating</item>
-  <item>Unicorp D-12 Medium Plating</item>
-  <item>Unicorp D-24 Medium Plating</item>
-  <item>Unicorp D-48 Heavy Plating</item>
-  <item>Unicorp D-72 Heavy Plating</item>
  </tech>
  <tech name="Hulls High">
-  <item>S&amp;K Ultralight Combat Plating</item>
-  <item>S&amp;K Ultralight Stealth Plating</item>
-  <item>S&amp;K Light Combat Plating</item>
-  <item>S&amp;K Light Stealth Plating</item>
-  <item>S&amp;K Medium Combat Plating</item>
-  <item>S&amp;K Medium-Heavy Combat Plating</item>
-  <item>S&amp;K Small Cargo Hull</item>
-  <item>S&amp;K Medium Cargo Hull</item>
-  <item>S&amp;K Large Cargo Hull</item>
  </tech>
  <tech name="Hulls Elite">
-  <item>S&amp;K Medium Stealth Plating</item>
-  <item>S&amp;K Medium-Heavy Stealth Plating</item>
-  <item>S&amp;K Heavy Combat Plating</item>
-  <item>S&amp;K Superheavy Combat Plating</item>
  </tech>
 </Techs>
