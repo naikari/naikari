@@ -140,7 +140,7 @@
  </faction>
  <faction>
   <name>Coälition</name>
-  <ai>dvaered</ai>
+  <ai>coalition</ai>
   <known />
   <logo>dvaered</logo>
   <colour>brown</colour>
