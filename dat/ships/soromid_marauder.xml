@@ -30,7 +30,7 @@
   <weapon size="medium" prop="bio_weapon" x="8" y="0" h="0">Unicorp Fury Launcher</weapon>
   <weapon size="small" prop="bio_weapon" x="-2" y="9" h="-1">BioPlasma Stinger Stage 1</weapon>
   <weapon size="small" prop="bio_weapon" x="-2" y="-9" h="-1">BioPlasma Stinger Stage 1</weapon>
-  <utility size="small" prop="bio_systems" exclusive="1" required="1">Light Brain Stage 1</utility>
+  <utility size="small" prop="bio_systems" exclusive="1" required="1">Light Heart Stage 1</utility>
   <utility size="small" />
   <utility size="small" />
   <structure size="small" prop="bio_engines" exclusive="1" required="1">Light Strong Fin Stage 1</structure>

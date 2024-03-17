@@ -271,12 +271,12 @@
   <item>S&amp;K Heavy Combat Plating</item>
   <item>S&amp;K Large Cargo Hull</item>
   <item>S&amp;K Superheavy Combat Plating</item>
-  <item>Ultralight Brain Stage 1</item>
-  <item>Light Brain Stage 1</item>
-  <item>Medium Brain Stage 1</item>
-  <item>Medium-Heavy Brain Stage 1</item>
-  <item>Heavy Brain Stage 1</item>
-  <item>Superheavy Brain Stage 1</item>
+  <item>Ultralight Heart Stage 1</item>
+  <item>Light Heart Stage 1</item>
+  <item>Medium Heart Stage 1</item>
+  <item>Medium-Heavy Heart Stage 1</item>
+  <item>Heavy Heart Stage 1</item>
+  <item>Superheavy Heart Stage 1</item>
   <item>Ultralight Shell Stage 1</item>
   <item>Light Shell Stage 1</item>
   <item>Medium Shell Stage 1</item>
@@ -295,12 +295,12 @@
   <item>Medium-Heavy Strong Fin Stage 1</item>
   <item>Heavy Strong Fin Stage 1</item>
   <item>Superheavy Strong Fin Stage 1</item>
-  <item>Ultralight Brain Stage X</item>
-  <item>Light Brain Stage X</item>
-  <item>Medium Brain Stage X</item>
-  <item>Medium-Heavy Brain Stage X</item>
-  <item>Heavy Brain Stage X</item>
-  <item>Superheavy Brain Stage X</item>
+  <item>Ultralight Heart Stage X</item>
+  <item>Light Heart Stage X</item>
+  <item>Medium Heart Stage X</item>
+  <item>Medium-Heavy Heart Stage X</item>
+  <item>Heavy Heart Stage X</item>
+  <item>Superheavy Heart Stage X</item>
   <item>Ultralight Shell Stage X</item>
   <item>Light Shell Stage X</item>
   <item>Medium Shell Stage X</item>
@@ -964,8 +964,8 @@
 
  <!-- Bioship outfits -->
  <tech name="Small Bio Cores">
-  <item>Ultralight Brain Stage 1</item>
-  <item>Light Brain Stage 1</item>
+  <item>Ultralight Heart Stage 1</item>
+  <item>Light Heart Stage 1</item>
   <item>Ultralight Fast Fin Stage 1</item>
   <item>Ultralight Strong Fin Stage 1</item>
   <item>Light Fast Fin Stage 1</item>
@@ -974,8 +974,8 @@
   <item>Light Shell Stage 1</item>
  </tech>
  <tech name="Medium Bio Cores">
-  <item>Medium Brain Stage 1</item>
-  <item>Medium-Heavy Brain Stage 1</item>
+  <item>Medium Heart Stage 1</item>
+  <item>Medium-Heavy Heart Stage 1</item>
   <item>Medium Fast Fin Stage 1</item>
   <item>Medium-Heavy Fast Fin Stage 1</item>
   <item>Medium Strong Fin Stage 1</item>
@@ -984,8 +984,8 @@
   <item>Medium-Heavy Shell Stage 1</item>
  </tech>
  <tech name="Large Bio Cores">
-  <item>Heavy Brain Stage 1</item>
-  <item>Superheavy Brain Stage 1</item>
+  <item>Heavy Heart Stage 1</item>
+  <item>Superheavy Heart Stage 1</item>
   <item>Heavy Shell Stage 1</item>
   <item>Superheavy Shell Stage 1</item>
   <item>Heavy Fast Fin Stage 1</item>

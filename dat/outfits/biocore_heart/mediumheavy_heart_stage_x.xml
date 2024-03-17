@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Medium-Heavy Heart Stage X">
+ <general>
+  <typename>Bioship Heart</typename>
+  <slot prop="bio_systems">utility</slot>
+  <size>medium</size>
+  <rarity>6</rarity>
+  <priority>7</priority>
+  <mass>200</mass>
+  <price>600000</price>
+  <description>The heart is a Soromid bioship's equivalent to APUs in synthetic ships. Possibly the most important organ, the heart provides energy to the rest of the organism and maintains the life-saving shields. This heart has reached Stage X, its full potential.</description>
+  <gfx_store>organic_core_m2.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <shield>1250</shield>
+  <shield_regen>14</shield_regen>
+  <energy>1800</energy>
+  <energy_regen>87</energy_regen>
+ </specific>
+</outfit>

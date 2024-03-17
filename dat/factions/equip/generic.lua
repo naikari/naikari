@@ -1214,81 +1214,81 @@ equip_classOutfits_structurals = {
 equip_typeOutfits_coreSystems = {
    ["Brigand"] = {
       probability = {
-         ["Ultralight Brain Stage X"] = 2
+         ["Ultralight Heart Stage X"] = 2
       };
-      "Ultralight Brain Stage 1", "Ultralight Brain Stage 2",
-      "Ultralight Brain Stage X",
+      "Ultralight Heart Stage 1", "Ultralight Heart Stage 2",
+      "Ultralight Heart Stage X",
    },
    ["Reaver"] = {
       probability = {
-         ["Light Brain Stage X"] = 3
+         ["Light Heart Stage X"] = 3
       };
-      "Light Brain Stage 1", "Light Brain Stage 2",
-      "Light Brain Stage 3", "Light Brain Stage X",
+      "Light Heart Stage 1", "Light Heart Stage 2",
+      "Light Heart Stage 3", "Light Heart Stage X",
    },
    ["Marauder"] = {
       probability = {
-         ["Light Brain Stage X"] = 3
+         ["Light Heart Stage X"] = 3
       };
-      "Light Brain Stage 1", "Light Brain Stage 2",
-      "Light Brain Stage 3", "Light Brain Stage X",
+      "Light Heart Stage 1", "Light Heart Stage 2",
+      "Light Heart Stage 3", "Light Heart Stage X",
    },
    ["Odium"] = {
       probability = {
-         ["Medium Brain Stage X"] = 4
+         ["Medium Heart Stage X"] = 4
       };
-      "Medium Brain Stage 1", "Medium Brain Stage 2",
-      "Medium Brain Stage 3", "Medium Brain Stage 4",
-      "Medium Brain Stage X",
+      "Medium Heart Stage 1", "Medium Heart Stage 2",
+      "Medium Heart Stage 3", "Medium Heart Stage 4",
+      "Medium Heart Stage X",
    },
    ["Nyx"] = {
       probability = {
-         ["Medium-Heavy Brain Stage X"] = 5
+         ["Medium-Heavy Heart Stage X"] = 5
       };
-      "Medium-Heavy Brain Stage 1",
-      "Medium-Heavy Brain Stage 2",
-      "Medium-Heavy Brain Stage 3",
-      "Medium-Heavy Brain Stage 4",
-      "Medium-Heavy Brain Stage 5",
-      "Medium-Heavy Brain Stage X",
+      "Medium-Heavy Heart Stage 1",
+      "Medium-Heavy Heart Stage 2",
+      "Medium-Heavy Heart Stage 3",
+      "Medium-Heavy Heart Stage 4",
+      "Medium-Heavy Heart Stage 5",
+      "Medium-Heavy Heart Stage X",
    },
    ["Ira"] = {
       probability = {
-         ["Heavy Brain Stage X"] = 6
+         ["Heavy Heart Stage X"] = 6
       };
-      "Heavy Brain Stage 1",
-      "Heavy Brain Stage 2",
-      "Heavy Brain Stage 3",
-      "Heavy Brain Stage 4",
-      "Heavy Brain Stage 5",
-      "Heavy Brain Stage 6",
-      "Heavy Brain Stage X",
+      "Heavy Heart Stage 1",
+      "Heavy Heart Stage 2",
+      "Heavy Heart Stage 3",
+      "Heavy Heart Stage 4",
+      "Heavy Heart Stage 5",
+      "Heavy Heart Stage 6",
+      "Heavy Heart Stage X",
    },
    ["Arx"] = {
       probability = {
-         ["Superheavy Brain Stage X"] = 7
+         ["Superheavy Heart Stage X"] = 7
       };
-      "Superheavy Brain Stage 1",
-      "Superheavy Brain Stage 2",
-      "Superheavy Brain Stage 3",
-      "Superheavy Brain Stage 4",
-      "Superheavy Brain Stage 5",
-      "Superheavy Brain Stage 6",
-      "Superheavy Brain Stage 7",
-      "Superheavy Brain Stage X",
+      "Superheavy Heart Stage 1",
+      "Superheavy Heart Stage 2",
+      "Superheavy Heart Stage 3",
+      "Superheavy Heart Stage 4",
+      "Superheavy Heart Stage 5",
+      "Superheavy Heart Stage 6",
+      "Superheavy Heart Stage 7",
+      "Superheavy Heart Stage X",
    },
    ["Vox"] = {
       probability = {
-         ["Superheavy Brain Stage X"] = 7
+         ["Superheavy Heart Stage X"] = 7
       };
-      "Superheavy Brain Stage 1",
-      "Superheavy Brain Stage 2",
-      "Superheavy Brain Stage 3",
-      "Superheavy Brain Stage 4",
-      "Superheavy Brain Stage 5",
-      "Superheavy Brain Stage 6",
-      "Superheavy Brain Stage 7",
-      "Superheavy Brain Stage X",
+      "Superheavy Heart Stage 1",
+      "Superheavy Heart Stage 2",
+      "Superheavy Heart Stage 3",
+      "Superheavy Heart Stage 4",
+      "Superheavy Heart Stage 5",
+      "Superheavy Heart Stage 6",
+      "Superheavy Heart Stage 7",
+      "Superheavy Heart Stage X",
    },
 }
 

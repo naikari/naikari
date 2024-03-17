@@ -1,0 +1,41 @@
+{
+    "stages": 4,
+    "tags": {
+        "potential": {
+            "text": {
+                "default": "All hearts start off undeveloped, but over time, just like the ships themselves, they grow and improve.",
+                "stage": {
+                    "X": "This heart has reached Stage X, its full potential."
+                }
+            }
+        },
+        "rarity": {
+            "text": {
+                "default": "0",
+                "stage": {
+                    "X": "6"
+                }
+            }
+        },
+        "price": {
+            "min": 105000,
+            "max": 210000
+        },
+        "shield": {
+            "min": 200,
+            "max": 310
+        },
+        "shield_regen": {
+            "min": 6,
+            "max": 10
+        },
+        "energy": {
+            "min": 270,
+            "max": 400
+        },
+        "energy_regen": {
+            "min": 24,
+            "max": 34
+        }
+    }
+}

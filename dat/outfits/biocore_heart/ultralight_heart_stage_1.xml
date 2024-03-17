@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Ultralight Heart Stage 1">
+ <general>
+  <typename>Bioship Heart</typename>
+  <slot prop="bio_systems">utility</slot>
+  <size>small</size>
+  <rarity>0</rarity>
+  <mass>14</mass>
+  <price>60000</price>
+  <description>The heart is a Soromid bioship's equivalent to APUs in synthetic ships. Possibly the most important organ, the heart provides energy to the rest of the organism and maintains the life-saving shields. All hearts start off undeveloped, but over time, just like the ships themselves, they grow and improve.</description>
+  <gfx_store>organic_core_s1.webp</gfx_store>
+  <priority>3</priority>
+ </general>
+ <specific type="modification">
+  <shield>160</shield>
+  <shield_regen>5</shield_regen>
+  <energy>130</energy>
+  <energy_regen>12</energy_regen>
+ </specific>
+</outfit>

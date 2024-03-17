@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Light Heart Stage {stage}">
+ <general>
+  <typename>Bioship Heart</typename>
+  <slot prop="bio_systems">utility</slot>
+  <size>small</size>
+  <rarity>{rarity}</rarity>
+  <priority>7</priority>
+  <mass>50</mass>
+  <price>{price}</price>
+  <description>The heart is a Soromid bioship's equivalent to APUs in synthetic ships. Possibly the most important organ, the heart provides energy to the rest of the organism and maintains the life-saving shields. {potential}</description>
+  <gfx_store>organic_core_s2.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <shield>{shield}</shield>
+  <shield_regen>{shield_regen}</shield_regen>
+  <energy>{energy}</energy>
+  <energy_regen>{energy_regen}</energy_regen>
+ </specific>
+</outfit>

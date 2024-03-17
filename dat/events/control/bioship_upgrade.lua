@@ -49,13 +49,13 @@ local fmt = require "fmt"
 -- in each inner table is the number of normal "stages", excluding the
 -- final stage (Stage X).
 bioship_parts = {
-   -- Brains (Core System analog)
-   {"Ultralight Brain Stage %s", 2},
-   {"Light Brain Stage %s", 3},
-   {"Medium Brain Stage %s", 4},
-   {"Medium-Heavy Brain Stage %s", 5},
-   {"Heavy Brain Stage %s", 6},
-   {"Superheavy Brain Stage %s", 7},
+   -- Hearts (APU analog)
+   {"Ultralight Heart Stage %s", 2},
+   {"Light Heart Stage %s", 3},
+   {"Medium Heart Stage %s", 4},
+   {"Medium-Heavy Heart Stage %s", 5},
+   {"Heavy Heart Stage %s", 6},
+   {"Superheavy Heart Stage %s", 7},
 
    -- Shells (Hull analog)
    {"Ultralight Shell Stage %s", 2},

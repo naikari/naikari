@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Slots>
  <slot name="systems">
-  <display>Core System</display>
-  <description>This slot is used for dedicated core system of the ship. Other subsystems rely on this system to manage them, and the bulk of the ship's power and shield generation also happens here.</description>
+  <display>APU</display>
+  <description>This slot is used for the ship's auxiliary power unit (APU). The APU provides power to the ship's battery, shield, and components.</description>
   <exclusive/>
   <required/>
  </slot>
@@ -19,8 +19,8 @@
   <required/>
  </slot>
  <slot name="bio_systems">
-  <display>Bioship Brain</display>
-  <description>This slot is used for the brain, the biological equivalent to core systems. The brain of an organism is responsible for managing the function of the rest of the organism and allocating energy reserves for the battery and shield.</description>
+  <display>Bioship Heart</display>
+  <description>This slot is used for the heart, the biological equivalent to an APU. The heart of an organism is responsible for allocating energy for the battery, shield, and other organs or components.</description>
   <exclusive/>
   <required/>
  </slot>
