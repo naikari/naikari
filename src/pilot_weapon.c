@@ -1129,14 +1129,31 @@ static int pilot_shootWeapon( Pilot* p, PilotOutfitSlot* w, double time )
     * regular bolt weapons
     */
    if (outfit_isBolt(w->outfit)) {
+      energy = outfit_energy(w->outfit) * energy_mod;
 
       /* enough energy? */
-      if (outfit_energy(w->outfit)*energy_mod > p->energy)
+      if (energy > p->energy)
          return 0;
 
-      energy = outfit_energy(w->outfit) * energy_mod;
       energy *= (w->charge+w->outfit->u.blt.delay) / w->outfit->u.blt.delay;
-      p->energy -= energy;
+      if (energy > p->energy) {
+         /* Not enough energy for this charge level; reduce the charge
+          * as needed so we use exactly the available energy. We do this
+          * by solving the formula used above for charge, so:
+          *
+          *    E = E₀ * (c+d) / d
+          *
+          * becomes:
+          *
+          *    c = (E*d)/E₀ - d
+          */
+         energy = outfit_energy(w->outfit) * energy_mod;
+         w->charge = ((p->energy*w->outfit->u.blt.delay) / energy
+               - w->outfit->u.blt.delay);
+         p->energy = 0.;
+      }
+      else
+         p->energy -= energy;
       pilot_heatAddSlot(p, w);
       weapon_add(w, p->solid->dir, &vp, &vv, p, p->target, time);
       w->charge = 0.;
