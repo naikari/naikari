@@ -504,15 +504,19 @@ static int nxml_unpersistDataNode( lua_State *L, xmlNodePtr parent )
             if (pnt != NULL) {
                lua_pushplanet(L,planet_index(pnt));
             }
-            else
+            else {
                WARN(_("Failed to load nonexistent planet '%s'"), xml_get(node));
+               lua_pushnil(L);
+            }
          }
          else if (strcmp(type,SYSTEM_METATABLE)==0) {
             ss = system_get(xml_get(node));
             if (ss != NULL)
                lua_pushsystem(L,system_index( ss ));
-            else
+            else {
                WARN(_("Failed to load nonexistent system '%s'"), xml_get(node));
+               lua_pushnil(L);
+            }
          }
          else if (strcmp(type,FACTION_METATABLE)==0) {
             lua_pushfaction(L,faction_get(xml_get(node)));
