@@ -127,27 +127,6 @@
   <item>Rotary Power Accelerator</item>
   <item>Power Overdrive Module</item>
   <item>Turret Conversion Module</item>
-  <item>Map: Nebula Edge</item>
-  <item>Map: Collective Space</item>
-  <item>Map: Dvaered-Soromid trade route</item>
-  <item>Map: Dvaered-Za'lek trade route</item>
-  <item>Map: Sirius border systems</item>
-  <item>Map: The Frontier</item>
-  <item>Map: Sol</item>
-  <item>Map: Dvaered Core</item>
-  <item>Map: Empire Core</item>
-  <item>Map: Sirius Core</item>
-  <item>Map: Za'lek Core</item>
-  <item>Map: Waste Disposal Sites</item>
-  <item>Map: Pirate strongholds</item>
-  <item>Map: Qorel Expanse</item>
-  <item>Map: New Haven's hidden jump points</item>
-  <item>Map: Kretogg's hidden jump points</item>
-  <item>Map: Sagittarius Bypass</item>
-  <item>Map: FLF Hidden Jumps</item>
-  <item>Map: FLF-Pirate Route</item>
-  <item>Map: Inner Nebula Secret Jump</item>
-  <item>Map: Thurion Core</item>
   <item>Ultra Map</item>
   <item>Local System Map</item>
   <item>Unicorp Scrambler</item>
@@ -445,14 +424,6 @@
   <item>Patchwork Heavy Plating</item>
  </tech>
  <tech name="Star Maps">
-  <item>Map: Nebula Edge</item>
-  <item>Map: Dvaered-Soromid trade route</item>
-  <item>Map: Dvaered-Za'lek trade route</item>
-  <item>Map: Sirius border systems</item>
-  <item>Map: The Frontier</item>
-  <item>Map: Sol</item>
-  <item>Map: Empire Core</item>
-  <item>Map: Waste Disposal Sites</item>
   <item>Local System Map</item>
  </tech>
 
@@ -1067,15 +1038,10 @@
   <item>Mini Pirate Shark Fighter Bay</item>
  </tech>
  <tech name="Pirate Maps">
-  <item>Map: Pirate strongholds</item>
-  <item>Map: Qorel Expanse</item>
  </tech>
  <tech name="New Haven Maps">
-  <item>Map: New Haven's hidden jump points</item>
  </tech>
  <tech name="Kretogg Maps">
-  <item>Map: Kretogg's hidden jump points</item>
-  <item>Map: Sagittarius Bypass</item>
  </tech>
 
  <!-- Generic Ships -->
