@@ -3,10 +3,10 @@
 <event name="Warlords battle">
  <trigger>enter</trigger>
  <chance>20</chance>
- <cond>system.cur():faction() == faction.get("Dvaered") and not player.evtActive("Warlords battle")</cond>
+ <cond>system.cur():faction() == faction.get("Coälition") and not player.evtActive("Warlords battle")</cond>
 </event>
 --]]
---  A battle between two Dvaered warlords. The player can join one of them and get a reward
+--  A battle between two Coälition warlords. The player can join one of them and get a reward
 
 local fmt = require "fmt"
 local fleet = require "fleet"
@@ -16,7 +16,7 @@ local formation = require "formation"
 
 local explain_text = _([["Hey, you," the captain of the ship says. "You don't seem to know what's going to happen here. A mighty warlord from {system} is going to attack {planet}. You shouldn't stay here, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship and they lose the battle, the other warlord will reward you. But if the warlord you attacked wins, you will be hunted down."]])
 
-local reward_text = _([["Hello captain," a Dvaered officer from the ship that hailed you says. "You helped us in this battle. I am authorized to give you {credits} as a reward."]])
+local reward_text = _([["Hello captain," a Crimson soldier from the ship that hailed you says. "You helped us in this battle. I am authorized to give you {credits} as a reward."]])
 
 
 function create()
@@ -46,10 +46,9 @@ function begin()
    cand = {}
    k = 1
 
-   for i, j in ipairs(plan) do  --choose only Dvaered planets (and no stations)
-      classofj = j:class()
-      if j:faction() == faction.get("Dvaered") and classofj ~= "0" and classofj ~= "1" and classofj ~= "2" then
-         cand[k] = j
+   for i, p in ipairs(plan) do
+      if p:faction() == faction.get("Coälition") then
+         cand[k] = p
          k = k+1
       end
    end
@@ -72,7 +71,7 @@ end
 
 --Spawns a merchant ship that explains what happens
 function merchant()
-   if faction.get("Dvaered"):playerStanding() < 0 then
+   if faction.get("Coälition"):playerStanding() < 0 then
       return
    end
    if var.peek("warlords_battle_explained") then
@@ -129,9 +128,9 @@ function hailagain(p, reward)
 end
 
 function attack()
-   local f1 = faction.dynAdd("Dvaered", N_("Invaders"), nil,
+   local f1 = faction.dynAdd("Coälition", N_("Invaders"), nil,
          {clear_allies=true})
-   local f2 = faction.dynAdd("Dvaered", N_("Locals"), nil,
+   local f2 = faction.dynAdd("Coälition", N_("Locals"), nil,
          {clear_allies=true})
    f1:dynEnemy(f2)
    f2:dynEnemy(f1)
@@ -293,7 +292,7 @@ end
 function attackerDeath(victim, attacker)
    attnum = attnum - 1
    if attnum <= 0 then
-      -- Make the winners into normal Dvaered pilots.
+      -- Make the winners into normal Coälition pilots.
       for i, p in ipairs(defenders) do
          if p:exists() then
             p:control(false)
@@ -326,7 +325,7 @@ end
 function defenderDeath(victim, attacker)
    defnum = defnum - 1
    if defnum <= 0 then
-      -- Make the winners into normal Dvaered pilots.
+      -- Make the winners into normal Coälition pilots.
       for i, p in ipairs(attackers) do
          if p:exists() then
             p:control(false)
@@ -392,7 +391,7 @@ end
 
 -- Returns true if player is friendly to the fleet, false otherwise
 function playerIsFriendly(list)
-   if faction.get("Dvaered"):playerStanding() < 0 then
+   if faction.get("Coälition"):playerStanding() < 0 then
       return false
    end
 
