@@ -5,9 +5,9 @@
   <ship name="Vindicator">Llama</ship>
   <credits>30000</credits>
   <system>
-   <name>Hakoi</name>
-   <x>-8000</x>
-   <y>-17000</y>
+   <name>Alpha Pyxidis</name>
+   <x>8600</x>
+   <y>-15600</y>
   </system>
   <mission>Tutorial</mission>
   <event>start_event</event>

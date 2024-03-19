@@ -66,7 +66,7 @@ misn_desc = _("You have purchased a new ship from Melendez and are in the proces
 
 
 function create()
-   start_planet, missys = planet.get("Em 1")
+   start_planet, missys = planet.get("Kikero")
 
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)

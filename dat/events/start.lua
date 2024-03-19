@@ -49,7 +49,6 @@ function create()
    local pp = player.pilot()
    pp:rename(name()) -- Assign a random name to the player's ship.
 
-   jump.setKnown("Hakoi", "Eneguoz")
    var.push("player_formation", "circle")
 
    local exp = time.get() + time.create(0, 250, 0)

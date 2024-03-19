@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asset name="Kikero">
+ <pos>
+  <x>9000.000000</x>
+  <y>-16000.000000</y>
+ </pos>
+ <GFX>
+  <space>M05.webp</space>
+  <exterior>city2.webp</exterior>
+ </GFX>
+ <presence>
+  <faction>Empire</faction>
+  <value>150.000000</value>
+  <range>0</range>
+ </presence>
+ <general>
+  <class>M</class>
+  <population>4200000000</population>
+  <services>
+   <land>land_lowclass</land>
+   <refuel/>
+   <bar/>
+   <commodity/>
+  </services>
+  <commodities/>
+  <description>(null)</description>
+  <bar>(null)</bar>
+ </general>
+</asset>
