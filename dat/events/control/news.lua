@@ -46,26 +46,8 @@ A list of conditional articles. Each is a table with the following keys:
 --]]
 cond_articles = {
    {
-      title = _("Criminal Activity Rumors in The Wringer"),
-      text = _([[Rumors abound that The Wringer, a small neglected station in Sirius space, is crawling with dangerous criminals, including crime lords and assassins. Sirius authorities, however, claim that these rumors are unfounded. "People exaggerate," one Sirius officer said. "The Wringer is a hellhole where petty criminals are common, but it's not exactly teeming with professional assassins. Any truly dangerous criminal knows that there's nothing for them at that awful place."]]),
-      tag = "mhint_Sirius Bounty",
-      mission = "Sirius Bounty",
-      cond = function()
-         return faction.get("Sirius"):playerStanding() >= 0
-      end,
-      delcond = function()
-         return faction.get("Sirius"):playerStanding() < 0
-      end,
-   },
-   {
-      title = _("Mysterious Woman Spotted"),
-      text = _([[A mysterious woman has been spotted scouting the area within and around the Klantar system in Dvaered space. When approached by the media and asked who or what she is searching for, she declined to comment.]]),
-      tag = "mhint_Shadowrun",
-      mission = "Shadowrun",
-   },
-   {
-      title = _("Em 1 Offers Business Opportunities"),
-      text = _([[Analysts have noted tremendous opportunities on Em 1 (Hakoi system). "It's a great start for new pilots," a top analyst said. "Safe, and with many business opportunities."]]),
+      title = _("Kikero Offers Business Opportunities"),
+      text = _([[Analysts have noted tremendous opportunities on Kikero (Alpha Pyxidis system). "It's a great start for new pilots," a top analyst said. "Safe, and with many business opportunities."]]),
       tag = "mhint_Tutorial Part 2",
       mission = "Tutorial Part 2",
       cond = function()
@@ -73,8 +55,8 @@ cond_articles = {
       end,
    },
    {
-      title = _("Em 1 Remains a Great Start"),
-      text = _([[Analysts continue to proudly recommend Em 1 (Hakoi system) to new pilots seeking good payment. "What better way to start your piloting journey than in a safe, prosperous system like Hakoi?" a top analyst noted.]]),
+      title = _("Kikero Remains a Great Start"),
+      text = _([[Analysts continue to proudly recommend Kikero (Alpha Pyxidis system) to new pilots seeking good payment. "What better way to start your piloting journey than in a safe, prosperous system like Alpha Pyxidis?" a top analyst noted.]]),
       tag = "mhint_Tutorial Part 3",
       mission = "Tutorial Part 3",
       done = "Tutorial Part 2",
@@ -167,24 +149,6 @@ cond_articles = {
       end,
    },
    {
-      title = _("Dvaered and FLF Clash"),
-      text = _([[An increased incidence of confrontation between Dvaered and FLF forces has been reported as of late in the north edge of Dvaered space, particularly between Frontier space and the Outer Nebula. Civilians in the area are advised to be on high alert.]]),
-      tag = "mhint_Take the Dvaered crew home",
-      mission = "Take the Dvaered crew home",
-      cond = function()
-         return (faction.get("Dvaered"):playerStanding() >= 0
-            and faction.get("Pirate"):playerStanding() < 0
-            and not player.misnDone("Deal with the FLF agent")
-            and not player.misnActive("Deal with the FLF agent")
-            and player.numOutfit("Mercenary License") > 0)
-      end,
-      delcond = function()
-         return (player.misnDone("Deal with the FLF agent")
-            or faction.get("Dvaered"):playerStanding() < 0
-            or faction.get("Pirate"):playerStanding() >= 0)
-      end,
-   },
-   {
       title = _("Za'lek Students Test Engine Technology"),
       text = _([[Students all over Za'lek space have been designing new experimental engine designs as part of a new government funded program. These students seek pilots willing to test fly their experimental engine designs for a substantial sum of credits.]]),
       tag = "mhint_Za'lek Test",
@@ -199,34 +163,11 @@ cond_articles = {
             or faction.playerStanding("Za'lek") < 5)
       end,
    },
-   {
-      title = _("Anti-Soromid Sentiment Grows"),
-      text = _([[Anti-Soromid sentiment has been surging on Durea in the Capricorn system lately, an anonymous reporter finds. Rumors abound that Durea may be harboring terrorists belonging to the notorious hate group, the Imperyan Brotherhood. An Imperial representative reassured us that the Empire does not tolerate the organization. "This criminal organization is a remnant of a shameful time in our history. While we do not have jurisdiction over the Capricorn system, the full force of the Empire will come down on any Imperyan Brotherhood members who enter Imperial space, and hate crimes will not be tolerated."]]),
-      tag = "mhint_Coming of Age",
-      mission = "Coming of Age",
-      done = "Coming Out",
-      cond = function()
-         return (var.peek("comingout_time") == nil
-            or time.get() >= time.fromnumber(var.peek("comingout_time")) + time.create(0, 20, 0))
-      end,
-   },
 }
 
 
 function create()
    -- Special event articles
-   if player.misnDone("Nebula Satellite")
-         and not var.peek("nebu_probe_published") then
-      local t = var.peek("nebu_probe_launch")
-      local delay = time.create(1, 0, 0)
-      if t == nil or time.get() - time.fromnumber(t) > delay then
-         local exp = time.get() + time.create(0, 250, 0)
-         news.add("Generic", _("Scientists Befuddled By Nebula Composition"),
-               _([[A team of scientists which launched a special probe to monitor the Nebula have finally published their results, and their research raises more questions than it answers. The research team notes that the composition of the Nebula is especially surprising. "Its composition doesn't match what we expected from that region of space," explained one of the researchers. "It's as if a whole lot of material teleported into the region out of nowhere." The researchers were unable to conclusively determine the reason for the strange composition of the Inner Nebula, and scientists now rigorously debate where this mysterious anomalous material comes from.]]),
-               exp)
-         var.push("nebu_probe_published", true)
-      end
-   end
 
    -- Generated articles
    local publish_interval = time.create(0, 30, 0)
