@@ -131,7 +131,6 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab );
 static void land_updateMainTab(void);
 /* spaceport */
 static void spaceport_saveSnapshot(unsigned int wid, char *str);
-static void spaceport_shipComputer(unsigned int wid, char *str);
 /* spaceport bar */
 static void bar_getDim( int wid,
       int *w, int *h, int *iw, int *ih, int *bw, int *bh );
@@ -977,18 +976,6 @@ static void spaceport_saveSnapshot(unsigned int wid, char *str)
 
 
 /**
- * @brief Opens ship computer.
- */
-static void spaceport_shipComputer(unsigned int wid, char *str)
-{
-   (void) wid;
-   (void) str;
-
-   menu_info(INFO_MAIN);
-}
-
-
-/**
  * @brief Updates info on the main tab.
  */
 static void land_updateMainTab(void)
@@ -1000,7 +987,6 @@ static void land_updateMainTab(void)
    char *time_str;
    Outfit *o;
    long double p = land_planet->population;
-   int w, h;
    char scratch[STRMAX_SHORT];
    const char *digits[] = {
       "\xe2\x81\xb0", "\xc2\xb9", "\xc2\xb2", "\xc2\xb3", "\xe2\x81\xb4",
@@ -1054,9 +1040,6 @@ static void land_updateMainTab(void)
          pop,
          time_str, tons, cred);
    free(time_str);
-   window_dimWidget(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", &w, &h);
-   h = gl_printHeightRaw(&gl_defFont, 200, buf );
-   window_resizeWidget(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", w, h);
    window_modifyText(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", buf);
 
    /* Maps are only offered if the planet provides fuel. */
@@ -1498,8 +1481,9 @@ static void land_createMainTab( unsigned int wid )
    window_addImage(wid, 20, -40, 400, 400, "imgPlanet", gfx_exterior, 1);
 
    /* Player stats. */
-   window_addText( wid, 20, 20, w - 2*(bw+10) - 10,
-         0, 0, "txtDInfo", &gl_defFont, NULL, NULL );
+   window_addText(wid, 20, -40 - 400 - 20,
+         400, h - 40 - 400 - 20 - 20,
+         0, "txtDInfo", &gl_defFont, NULL, NULL);
 
    /*
     * buttons
@@ -1511,9 +1495,6 @@ static void land_createMainTab( unsigned int wid )
    window_addButton(wid, -10 - 1*(bw+10), 20,
          bw, LAND_BUTTON_HEIGHT, "btnSaveSnapshot",
          _("&Save Snapshot"), spaceport_saveSnapshot);
-   window_addButton(wid, -10 - 2*(bw+10), 20,
-         bw, LAND_BUTTON_HEIGHT, "btnShipComputer",
-         _("Ship &Computer"), spaceport_shipComputer);
 
    /* Add "no refueling" notice if needed. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
