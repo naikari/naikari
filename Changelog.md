@@ -1,5 +1,32 @@
 # NAIKARI CHANGELOG
 
+## 0.13.0
+
+### Major Changes
+
+* Completely changed the vision of the game to focus on extreme
+  customization, personalization, and exploration.
+* Completely deleted and started remaking the universe.
+* Completely deleted or replaced most factions. (New factions will be
+  added as development progresses.)
+* Started writing an entirely new plot, with some elements kept.
+* Completely gutted CPU from the game; the only hard limit is now number
+  of slots.
+* Removed several missions and events.
+
+### Other Changes
+
+* Changed IJKL layout to use Semicolon for secondary weapon.
+* Removed the large stars from the background.
+* Moved the listener Z axis position further away (which fixes an issue
+  where large ships could lead to stereo audio getting separated in a
+  weird way).
+* Adjusted sound balancing and changed default volume levels to match.
+* Renamed several stats.
+* Changed the default Ship Computer control to F1.
+* Renamed bioship brains to hearts (reflecting the removal of CPUs).
+* Renamed core systems to APUs (auxiliary power units).
+
 ## 0.12.0
 
 ### Major Changes
