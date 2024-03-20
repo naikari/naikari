@@ -997,6 +997,7 @@ static void land_updateMainTab(void)
    char cred[STRMAX_SHORT];
    char tons[STRMAX_SHORT];
    char pop[STRMAX_SHORT];
+   char *time_str;
    Outfit *o;
    long double p = land_planet->population;
    int w, h;
@@ -1034,6 +1035,7 @@ static void land_updateMainTab(void)
    }
 
    /* Update credits. */
+   time_str = ntime_pretty(0, 2);
    tonnes2str(tons, sizeof(tons), player.p->cargo_free);
    credits2str(cred, sizeof(cred), player.p->credits, 2);
    snprintf(buf, sizeof(buf),
@@ -1043,13 +1045,16 @@ static void land_updateMainTab(void)
          "#nFaction:#0 %s\n"
          "#nPopulation:#0 %s\n"
          "\n"
+         "#nDate:#0 %s\n"
          "#nFree Space:#0 %s\n"
          "#nMoney:#0 %s"),
          _(land_planet->name), _(cur_system->name),
          _(land_planet->class),
          faction_isFaction(land_planet->faction) ?
             _(faction_name(land_planet->faction)) : _("None"),
-         pop, tons, cred);
+         pop,
+         time_str, tons, cred);
+   free(time_str);
    window_dimWidget(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", &w, &h);
    h = gl_printHeightRaw(&gl_defFont, 200, buf );
    window_resizeWidget(land_getWid(LAND_WINDOW_MAIN), "txtDInfo", w, h);
