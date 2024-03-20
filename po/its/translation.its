@@ -26,8 +26,6 @@
 
   <!-- Assets -->
   <its:translateRule selector="/asset/@name" translate="yes"/>
-  <its:translateRule selector="/asset/general/bar" translate="yes"/>
-  <its:translateRule selector="/asset/general/description" translate="yes"/>
 
   <!-- Ships -->
   <its:translateRule selector="/ship/@name" translate="yes"/>
