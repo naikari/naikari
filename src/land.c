@@ -279,7 +279,10 @@ static void bar_getDim( int wid,
  */
 static void bar_open( unsigned int wid )
 {
-   int w, h, iw, ih, bw, bh, dh, th;
+   int w, h;
+   int iw, ih;
+   int bw, bh;
+   int th;
 
    /* Mark as generated. */
    land_tabGenerate(LAND_WINDOW_BAR);
@@ -289,7 +292,6 @@ static void bar_open( unsigned int wid )
 
    /* Get dimensions. */
    bar_getDim( wid, &w, &h, &iw, &ih, &bw, &bh );
-   dh = gl_printHeightRaw( &gl_smallFont, w - iw - 60, _(land_planet->bar_description) );
 
    /* Approach when pressing enter */
    window_setAccept( wid, bar_approach );
@@ -302,20 +304,13 @@ static void bar_open( unsigned int wid )
          bw, bh, "btnApproach",
          _("&Approach"), bar_approach, SDLK_a);
 
-   /* Bar description. */
-   window_addText( wid, iw + 40, -40,
-         w - iw - 60, dh, 0,
-         "txtDescription", &gl_smallFont, NULL,
-         _(land_planet->bar_description) );
-
    /* Add portrait text. */
-   th = -40 - dh - 40;
-   window_addText( wid, iw + 40, th,
+   window_addText(wid, iw + 40, -40,
          w - iw - 60, gl_defFont.h, 1,
-         "txtPortrait", &gl_defFont, NULL, NULL );
+         "txtPortrait", &gl_defFont, NULL, NULL);
 
    /* Add mission description text. */
-   th -= 20 + PORTRAIT_HEIGHT + 20 + 20;
+   th = -40 - 20 - PORTRAIT_HEIGHT - 20 - 20;
    window_addText( wid, iw + 60, th,
          w - iw - 100, h + th - (2*bh+60), 0,
          "txtMission", &gl_smallFont, NULL, NULL );
@@ -429,11 +424,12 @@ static void bar_update( unsigned int wid, char* str )
 {
    (void) str;
    int pos;
-   int w, h, iw, ih, bw, bh, dh;
+   int w, h;
+   int iw, ih;
+   int bw, bh;
 
    /* Get dimensions. */
    bar_getDim( wid, &w, &h, &iw, &ih, &bw, &bh );
-   dh = gl_printHeightRaw( &gl_smallFont, w - iw - 60, _(land_planet->bar_description) );
 
    /* Get array. */
    pos = toolkit_getImageArrayPos( wid, "iarMissions" );
@@ -458,8 +454,8 @@ static void bar_update( unsigned int wid, char* str )
       window_modifyText(  wid, "txtMission",  NULL );
 
       /* Create news. */
-      news_widget( wid, iw + 60, -40 - (40 + dh),
-            w - iw - 100, h - 40 - (dh+20) - 40 - bh - 20 );
+      news_widget(wid, iw + 60, -40,
+            w - iw - 100, h - 40 - bh - 20);
       return;
    }
 
@@ -473,11 +469,11 @@ static void bar_update( unsigned int wid, char* str )
    /* Create widgets if needed. */
    if (!widget_exists(wid, "imgPortraitBG")) /* Must be first */
       window_addImage( wid, iw + 40 + (w-iw-60-PORTRAIT_WIDTH)/2,
-            -(40 + dh + 40 + gl_defFont.h + 20 + PORTRAIT_HEIGHT),
+            -40 - gl_defFont.h - 20 - PORTRAIT_HEIGHT,
             0, 0, "imgPortraitBG", NULL, 1 );
    if (!widget_exists(wid, "imgPortrait"))
       window_addImage( wid, iw + 40 + (w-iw-60-PORTRAIT_WIDTH)/2,
-            -(40 + dh + 40 + gl_defFont.h + 20 + PORTRAIT_HEIGHT),
+            -40 - gl_defFont.h - 20 - PORTRAIT_HEIGHT,
             0, 0, "imgPortrait", NULL, 1 );
 
    /* Enable button. */

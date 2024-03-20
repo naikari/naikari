@@ -141,8 +141,6 @@ int dpl_savePlanet( const Planet *p )
          }
 
          xmlw_elem( writer, "description", "%s", p->description );
-         if (planet_hasService( p, PLANET_SERVICE_BAR ))
-            xmlw_elem( writer, "bar", "%s", p->bar_description );
       }
       xmlw_endElem( writer ); /* "general" */
    }
