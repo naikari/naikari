@@ -1039,8 +1039,7 @@ static void land_updateMainTab(void)
    tonnes2str(tons, sizeof(tons), player.p->cargo_free);
    credits2str(cred, sizeof(cred), player.p->credits, 2);
    snprintf(buf, sizeof(buf),
-         _("#nStationed at#0 %s\n"
-         "#nSystem:#0 %s\n"
+         _("%s (%s)\n"
          "#nClass:#0 %s\n"
          "#nFaction:#0 %s\n"
          "#nPopulation:#0 %s\n"
