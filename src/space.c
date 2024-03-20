@@ -2054,7 +2054,6 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
          do {
             /* Direct reads. */
             xmlr_strd(cur, "class", planet->class);
-            xmlr_strd(cur, "description", planet->description);
             xmlr_ulong(cur, "population", planet->population);
             xmlr_float(cur, "rdr_range_mod", planet->rdr_range_mod);
 
@@ -2152,8 +2151,6 @@ static int planet_parse( Planet *planet, const xmlNodePtr parent, Commodity **st
       MELEMENT((flags&FLAG_XSET)==0,"x");
       MELEMENT((flags&FLAG_YSET)==0,"y");
       MELEMENT(planet->class==NULL,"class");
-      MELEMENT( planet_hasService(planet,PLANET_SERVICE_LAND) &&
-            planet->description==NULL,"description");
       MELEMENT( planet_hasService(planet,PLANET_SERVICE_INHABITED) &&
             (flags&FLAG_FACTIONSET)==0,"faction");
       MELEMENT((flags&FLAG_SERVICESSET)==0,"services");
@@ -3496,8 +3493,6 @@ void space_exit (void)
 
       free(pnt->name);
       free(pnt->class);
-      free(pnt->description);
-      free(pnt->bar_description);
 
       /* graphics */
       if (pnt->gfx_spaceName != NULL) {

@@ -125,9 +125,6 @@ static void sysedit_btnEdit( unsigned int wid_unused, char *unused );
 /* Planet editing. */
 static void sysedit_editPnt( void );
 static void sysedit_editPntClose( unsigned int wid, char *unused );
-static void sysedit_planetDesc( unsigned int wid, char *unused );
-static void sysedit_planetDescReturn( unsigned int wid, char *unused );
-static void sysedit_planetDescClose( unsigned int wid, char *unused );
 static void sysedit_genServicesList( unsigned int wid );
 static void sysedit_btnTechEdit( unsigned int wid, char *unused );
 static void sysedit_genTechList( unsigned int wid );
@@ -1357,8 +1354,6 @@ static void sysedit_editPnt( void )
          "btnAddService", _("Add Service"), sysedit_btnAddService );
    window_addButton( wid, -20 - bw - 15, 35 + BUTTON_HEIGHT, bw, BUTTON_HEIGHT,
          "btnEditTech", _("Edit Tech"), sysedit_btnTechEdit );
-   window_addButton( wid, -20 - bw*3 - 15*3, 20, bw, BUTTON_HEIGHT,
-         "btnDesc", _("Description"), sysedit_planetDesc );
    window_addButton( wid, -20 - bw*2 - 15*2, 20, bw, BUTTON_HEIGHT,
          "btnLandGFX", _("Land GFX"), sysedit_planetGFX );
    window_addButton( wid, -20 - bw - 15, 20, bw, BUTTON_HEIGHT,
@@ -1528,96 +1523,6 @@ static void sysedit_editJumpClose( unsigned int wid, char *unused )
    window_close( wid, unused );
 }
 
-/**
- * @brief Displays the planet landing description and bar description in a separate window.
- */
-static void sysedit_planetDesc( unsigned int wid, char *unused )
-{
-   (void) unused;
-   int x, y, h, w, bw;
-   Planet *p;
-   const char *desc, *bardesc;
-   char title[100];
-
-   p = sysedit_sys->planets[ sysedit_select[0].u.planet ];
-
-   /* Create the window. */
-   snprintf(title, sizeof(title), _("Planet Information - %s"), p->name);
-   wid = window_create( "wdwPlanetDesc", title, -1, -1, SYSEDIT_EDIT_WIDTH, SYSEDIT_EDIT_HEIGHT );
-   window_setCancel( wid, window_close );
-
-   x = 20;
-   y = -40;
-   w = SYSEDIT_EDIT_WIDTH - 40;
-   h = (SYSEDIT_EDIT_HEIGHT - gl_defFont.h * 2 - 30 - 60 - BUTTON_HEIGHT - 10) / 2.;
-   desc    = p->description ? p->description : _("None");
-   bardesc = p->bar_description ? p->bar_description : _("None");
-   bw = (SYSEDIT_EDIT_WIDTH - 40 - 15 * 3) / 4.;
-
-   window_addButton( wid, -20 - bw*3 - 15*3, 20, bw, BUTTON_HEIGHT,
-         "btnProperties", _("Properties"), sysedit_planetDescReturn );
-
-   window_addButton( wid, -20, 20, bw, BUTTON_HEIGHT,
-         "btnClose", _("Close"), sysedit_planetDescClose );
-
-   /* Description label and text. */
-   window_addText( wid, x, y, w, gl_defFont.h, 0, "txtDescriptionLabel", &gl_defFont, NULL,
-         _("Landing Description") );
-   y -= gl_defFont.h + 10;
-   window_addInput( wid, x, y, w, h, "txtDescription", 1024, 0,
-         NULL );
-   window_setInputFilter( wid, "txtDescription",
-         "[]{}~<>@#$^|_" );
-   y -= h + 10;
-   /* Load current values. */
-   window_setInput( wid, "txtDescription", desc );
-
-   /* Bar description label and text. */
-   window_addText( wid, x, y, w, gl_defFont.h, 0, "txtBarDescriptionLabel", &gl_defFont, NULL,
-         _("Bar Description") );
-   y -= gl_defFont.h + 10;
-   window_addInput( wid, x, y, w, h, "txtBarDescription", 1024, 0,
-         NULL );
-   window_setInputFilter( wid, "txtBarDescription",
-         "[]{}~<>@#$^|_" );
-   /* Load current values. */
-   window_setInput( wid, "txtBarDescription", bardesc );
-}
-
-/**
- * @brief Closes the planet description window and returns to the properties window.
- */
-static void sysedit_planetDescReturn( unsigned int wid, char *unused )
-{
-   Planet *p;
-   char *mydesc, *mybardesc;
-
-   p = sysedit_sys->planets[ sysedit_select[0].u.planet ];
-
-   mydesc    = window_getInput( wid, "txtDescription" );
-   mybardesc = window_getInput( wid, "txtBarDescription" );
-
-   free(p->description);
-   free(p->bar_description);
-   p->description     = NULL;
-   p->bar_description = NULL;
-
-   if (mydesc != NULL)
-      p->description     = strdup( mydesc );
-   if (mybardesc != NULL)
-      p->bar_description = strdup( mybardesc );
-
-   window_close( wid, unused );
-}
-
-/**
- * @brief Closes both the planet description window and the properties window.
- */
-static void sysedit_planetDescClose( unsigned int wid, char *unused )
-{
-   sysedit_planetDescReturn( wid, unused );
-   sysedit_editPntClose( sysedit_widEdit, unused );
-}
 
 /**
  * @brief Generates the planet services list.

@@ -139,8 +139,6 @@ int dpl_savePlanet( const Planet *p )
             }
             xmlw_endElem( writer ); /* "commodities" */
          }
-
-         xmlw_elem( writer, "description", "%s", p->description );
       }
       xmlw_endElem( writer ); /* "general" */
    }

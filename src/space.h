@@ -120,8 +120,6 @@ typedef struct Planet_ {
    int bribed; /**< If planet has been bribed. */
 
    /* Landed details. */
-   char* description; /**< planet description */
-   char* bar_description; /**< spaceport bar description */
    unsigned int services; /**< what services they offer */
    Commodity **commodities; /**< array: what commodities they sell */
    CommodityPrice *commodityPrice; /**< array: the base cost of a commodity on this planet */

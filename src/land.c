@@ -131,6 +131,7 @@ static void land_changeTab( unsigned int wid, char *wgt, int old, int tab );
 static void land_updateMainTab(void);
 /* spaceport */
 static void spaceport_saveSnapshot(unsigned int wid, char *str);
+static void spaceport_shipComputer(unsigned int wid, char *str);
 /* spaceport bar */
 static void bar_getDim( int wid,
       int *w, int *h, int *iw, int *ih, int *bw, int *bh );
@@ -455,7 +456,7 @@ static void bar_update( unsigned int wid, char* str )
 
       /* Create news. */
       news_widget(wid, iw + 60, -40,
-            w - iw - 100, h - 40 - bh - 20);
+            w - iw - 100, h - 40 - 20 - bh - 20);
       return;
    }
 
@@ -976,6 +977,18 @@ static void spaceport_saveSnapshot(unsigned int wid, char *str)
 
 
 /**
+ * @brief Opens ship computer.
+ */
+static void spaceport_shipComputer(unsigned int wid, char *str)
+{
+   (void) wid;
+   (void) str;
+
+   menu_info(INFO_MAIN);
+}
+
+
+/**
  * @brief Updates info on the main tab.
  */
 static void land_updateMainTab(void)
@@ -1458,8 +1471,8 @@ void land( Planet* p, int load )
 static void land_createMainTab( unsigned int wid )
 {
    glTexture *logo;
-   int offset;
    int w, h;
+   int bw;
 
    /* Get window dimensions. */
    window_dimWindow( wid, &w, &h );
@@ -1467,43 +1480,41 @@ static void land_createMainTab( unsigned int wid )
    /*
     * Faction logo.
     */
-   offset = 20;
    if (faction_isFaction(land_planet->faction)) {
       logo = faction_logoSmall(land_planet->faction);
       if (logo != NULL) {
          window_addImage( wid, 440 + (w-460-logo->w)/2, -20,
                0, 0, "imgFaction", logo, 0 );
-         offset = 84;
       }
    }
 
-   /*
-    * Pretty display.
-    */
-   window_addImage( wid, 20, -40, 400, 400, "imgPlanet", gfx_exterior, 1 );
-   window_addText( wid, 440, -20-offset,
-         w-460, h - 20 - offset - 20 - 3*(LAND_BUTTON_HEIGHT+10), 0,
-         "txtPlanetDesc", &gl_smallFont, NULL, _(land_planet->description) );
+   bw = LAND_BUTTON_WIDTH;
+
+   /* Land image. */
+   window_addImage(wid, 20, -40, 400, 400, "imgPlanet", gfx_exterior, 1);
 
    /* Player stats. */
-   window_addText( wid, 20, 20, w - 20 - LAND_BUTTON_WIDTH,
+   window_addText( wid, 20, 20, w - 2*(bw+10) - 10,
          0, 0, "txtDInfo", &gl_defFont, NULL, NULL );
 
    /*
     * buttons
     */
    /* first column */
-   window_addButtonKey(wid, -20, 20,
-         LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnTakeoff",
-         _("&Take Off"), land_buttonTakeoff, SDLK_t);
-   window_addButtonKey(wid, -20, 20 + (LAND_BUTTON_HEIGHT+10),
-         LAND_BUTTON_WIDTH, LAND_BUTTON_HEIGHT, "btnSaveSnapshot",
-         _("&Save Snapshot"), spaceport_saveSnapshot, SDLK_s);
+   window_addButton(wid, -10, 20,
+         bw, LAND_BUTTON_HEIGHT, "btnTakeoff",
+         _("&Take Off"), land_buttonTakeoff);
+   window_addButton(wid, -10 - 1*(bw+10), 20,
+         bw, LAND_BUTTON_HEIGHT, "btnSaveSnapshot",
+         _("&Save Snapshot"), spaceport_saveSnapshot);
+   window_addButton(wid, -10 - 2*(bw+10), 20,
+         bw, LAND_BUTTON_HEIGHT, "btnShipComputer",
+         _("Ship &Computer"), spaceport_shipComputer);
 
    /* Add "no refueling" notice if needed. */
    if (!planet_hasService(land_planet, PLANET_SERVICE_REFUEL)) {
       window_addText(land_getWid(LAND_WINDOW_MAIN),
-            -20, 20 + 2*(LAND_BUTTON_HEIGHT+10) + 20,
+            -20, 20 + LAND_BUTTON_HEIGHT + 20,
             200, gl_defFont.h, 1, "txtRefuel",
             &gl_defFont, NULL, _("No refueling services."));
    }
