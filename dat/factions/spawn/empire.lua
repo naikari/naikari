@@ -2,107 +2,37 @@ local scom = require "factions.spawn.lib.common"
 
 local formation = require "scripts.formation"
 
--- @brief Spawns a small patrol fleet.
-function spawn_patrol ()
+
+function spawn_shark()
    local pilots = {}
-   local r = rnd.rnd()
-
-   if r < 0.5 then
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-   elseif r < 0.8 then
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-      scom.addPilot(pilots, "Empire Shark", 20)
-   else
-      scom.addPilot(pilots, "Empire Pacifier", 70)
-   end
-
+   scom.addPilot(pilots, "Imperial Shark", 1)
    return pilots
 end
-
-
--- @brief Spawns a medium sized squadron.
-function spawn_squad ()
+function spawn_lancelot()
    local pilots = {}
-   local r = rnd.rnd()
-
-   if r < 0.5 then
-      scom.addPilot(pilots, "Empire Admonisher", 45)
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-      scom.addPilot(pilots, "Empire Shark", 20)
-   elseif r < 0.8 then
-      scom.addPilot(pilots, "Empire Admonisher", 45)
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-   else
-      scom.addPilot(pilots, "Empire Pacifier", 110)
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-      scom.addPilot(pilots, "Empire Shark", 20)
-   end
-
+   scom.addPilot(pilots, "Imperial Lancelot", 1)
    return pilots
 end
-
-
--- @brief Spawns a capship with escorts.
-function spawn_capship ()
+function spawn_admonisher()
    local pilots = {}
-   local r = rnd.rnd()
-
-   -- Generate the capship
-   if r < 0.7 then
-      scom.addPilot(pilots, "Empire Hawking", 215)
-   else
-      scom.addPilot(pilots, "Empire Peacemaker", 615)
-   end
-
-   -- Generate the escorts
-   r = rnd.rnd()
-   if r < 0.5 then
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-      scom.addPilot(pilots, "Empire Shark", 20)
-   elseif r < 0.8 then
-      scom.addPilot(pilots, "Empire Admonisher", 45)
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-   else
-      scom.addPilot(pilots, "Empire Pacifier", 70)
-      scom.addPilot(pilots, "Empire Lancelot", 25)
-   end
-
+   scom.addPilot(pilots, "Imperial Admonisher", 1.25)
    return pilots
 end
-
-
-
--- @brief Spawns a fleet.
-function spawn_fleet ()
+function spawn_pacifier()
    local pilots = {}
-   pilots.__formation = formation.random_key()
-
-   scom.addPilot(pilots, "Empire Peacemaker", 165)
-
-   for i=1,(3 + rnd.sigma()) do
-      scom.addPilot(pilots, "Empire Hawking", 140)
-   end
-
-   for i=1,(10 + 5 * rnd.sigma()) do
-      if rnd.rnd() < 0.5 then
-          scom.addPilot(pilots, "Empire Shark", 20)
-      else
-          scom.addPilot(pilots, "Empire Lancelot", 25)
-      end
-   end
-
-   for i=1,(7 + 3 * rnd.sigma()) do
-      if rnd.rnd() < 0.7 then
-         scom.addPilot(pilots, "Empire Admonisher", 45)
-      else
-         scom.addPilot(pilots, "Empire Pacifier", 70)
-      end
-   end
-
+   scom.addPilot(pilots, "Imperial Pacifier", 1.5)
    return pilots
 end
-
+function spawn_hawking()
+   local pilots = {}
+   scom.addPilot(pilots, "Imperial Hawking", 1.75)
+   return pilots
+end
+function spawn_peacemaker()
+   local pilots = {}
+   scom.addPilot(pilots, "Imperial Peacemaker", 2)
+   return pilots
+end
 
 
 -- @brief Creation hook.
@@ -110,10 +40,12 @@ function create (max)
    local weights = {}
 
     -- Create weights for spawn table
-    weights[ spawn_patrol  ] = 100
-    weights[ spawn_squad   ] = math.max(1, -80 + 0.80 * max)
-    weights[ spawn_capship ] = math.max(1, -500 + 1.70 * max)
-    --weights[ spawn_fleet ] = 100
+    weights[spawn_shark] = 20
+    weights[spawn_lancelot] = 16
+    weights[spawn_admonisher] = 8
+    weights[spawn_pacifier] = 4
+    weights[spawn_hawking] = 2
+    weights[spawn_peacemaker] = 1
 
    -- Create spawn table base on weights
    spawn_table = scom.createSpawnTable(weights)

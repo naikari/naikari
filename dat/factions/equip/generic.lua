@@ -24,6 +24,14 @@ equip_classCargo = {
    ["Station"] = 1,
 }
 
+
+-- Table of classes which skip equipping, retaining default outfits.
+equip_classSkip = {
+   "Drone",
+   "Station",
+}
+
+
 -- Table of available core systems by class. `false` means that
 -- none should be equipped.
 equip_classOutfits_coreSystems = {
@@ -1660,186 +1668,33 @@ equip_typeOutfits_structurals = {
 
 -- Table of available core systems by ship.
 equip_shipOutfits_coreSystems = {
-   ["Pirate Shark"] = {
-      "Unicorp PT-18 Core System",
-      "Milspec Prometheus 2203 Core System",
-   },
-   ["Empire Shark"] = {"Milspec Orion 2301 Core System"},
-   ["Empire Lancelot"] = {"Milspec Orion 3701 Core System"},
-   ["Sirius Fidelity"] = {"Milspec Prometheus 2203 Core System"},
-   ["Za'lek Scout Drone"] = {"Milspec Aegis 2201 Core System"},
-   ["Za'lek Light Drone"] = {"Milspec Aegis 2201 Core System"},
-   ["Za'lek Heavy Drone"] = {"Milspec Aegis 3601 Core System"},
-   ["Za'lek Bomber Drone"] = {"Milspec Aegis 3601 Core System"},
-   ["Proteron Derivative"] = {"Milspec Orion 2301 Core System"},
 }
 
 
 -- Table of available engines by ship.
 equip_shipOutfits_engines = {
-   ["Empire Shark"] = {"Tricon Zephyr Engine"},
-   ["Empire Lancelot"] = {"Tricon Zephyr II Engine"},
-   ["Sirius Fidelity"] = {"Tricon Zephyr Engine"},
-   ["Za'lek Scout Drone"] = {"Tricon Zephyr Engine"},
-   ["Za'lek Light Drone"] = {"Tricon Zephyr Engine"},
-   ["Za'lek Heavy Drone"] = {"Tricon Zephyr II Engine"},
-   ["Za'lek Bomber Drone"] = {"Tricon Zephyr II Engine"},
-   ["Proteron Derivative"] = {"Tricon Zephyr Engine"},
 }
 
 
 -- Table of available hulls by ship.
 equip_shipOutfits_hulls = {
-   ["Empire Shark"] = {
-      "S&K Ultralight Stealth Plating", "S&K Ultralight Combat Plating",
-   },
-   ["Empire Lancelot"] = {
-      "S&K Light Stealth Plating", "S&K Light Combat Plating",
-   },
-   ["Sirius Fidelity"] = {
-      "S&K Ultralight Stealth Plating", "S&K Ultralight Combat Plating",
-   },
-   ["Za'lek Scout Drone"] = {"S&K Ultralight Stealth Plating"},
-   ["Za'lek Light Drone"] = {"S&K Ultralight Combat Plating"},
-   ["Za'lek Heavy Drone"] = {"S&K Light Combat Plating"},
-   ["Za'lek Bomber Drone"] = {"S&K Light Stealth Plating"},
-   ["Proteron Derivative"] = {"S&K Ultralight Stealth Plating"},
 }
 
 
 -- Tables of available weapons by ship.
 -- See equip_set function for more info.
 equip_shipOutfits_weapons = {
-   ["Pirate Shark"] = {
-      {
-         varied = true,
-         probability = {
-            ["Ion Cannon"] = 10,
-         };
-         "Laser Cannon MK1", "Gauss Gun", "Plasma Blaster MK1",
-         "Unicorp Mace Launcher", "TeraCom Mace Launcher",
-         "Ion Cannon",
-      },
-   },
-   ["Empire Shark"] = {
-      {
-         num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-      },
-      {
-         "Laser Cannon MK1",
-      },
-   },
-   ["Empire Lancelot"] = {
-      {
-         num = 1;
-         "Unicorp Fury Launcher", "TeraCom Fury Launcher",
-      },
-      {
-         "Laser Cannon MK2",
-      },
-   },
-   ["Sirius Fidelity"] = {
-      {
-         num = 1;
-         "Photon Dagger",
-      },
-      {
-         "Razor MK1",
-      },
-   },
-   ["Za'lek Scout Drone"] = {
-      {
-         "Electron Burst Cannon",
-      },
-   },
-   ["Za'lek Light Drone"] = {
-      {
-         "Particle Lance",
-      },
-   },
-   ["Za'lek Heavy Drone"] = {
-      {
-         num = 2;
-         "Electron Burst Cannon",
-      },
-      {
-         "Orion Lance",
-      },
-   },
-   ["Za'lek Bomber Drone"] = {
-      {
-         num = 2;
-         "TeraCom Fury Launcher",
-      },
-      {
-         "Orion Lance",
-      },
-   },
-   ["Proteron Derivative"] = {
-      {
-         num = 1;
-         "Unicorp Banshee Launcher", "TeraCom Banshee Launcher",
-      },
-      {
-         "Laser Cannon MK1", "Plasma Blaster MK1",
-      }
-   }
 }
 
 
 -- Tables of available utilities by ship.
 -- See equip_set function for more info.
 equip_shipOutfits_utilities = {
-   ["Za'lek Scout Drone"] = {
-      {
-         "Sensor Array",
-      },
-   },
-   ["Za'lek Light Drone"] = {
-      {
-         "Small Shield Booster",
-      },
-   },
-   ["Za'lek Heavy Drone"] = {
-      {
-         num = 1;
-         "Small Shield Booster",
-      },
-      {
-         "Power Regulation Override",
-      },
-   },
-   ["Za'lek Bomber Drone"] = {
-      {
-         "Sensor Array",
-      },
-   },
 }
 
 -- Tables of available structurals by ship.
 -- See equip_set function for more info.
 equip_shipOutfits_structurals = {
-   ["Za'lek Scout Drone"] = {
-      {
-         "Engine Reroute",
-      },
-   },
-   ["Za'lek Light Drone"] = {
-      {
-         "Shield Capacitor",
-      },
-   },
-   ["Za'lek Heavy Drone"] = {
-      {
-         "Shield Capacitor",
-      },
-   },
-   ["Za'lek Bomber Drone"] = {
-      {
-         "Improved Stabilizer",
-      },
-   },
 }
 
 
@@ -1947,16 +1802,25 @@ Does generic pilot equipping
    @param[opt] recursive Used internally to track recursive calls.
 --]]
 function equip_generic(p, recursive)
-   -- Start with an empty ship
-   p:outfitRm("all")
-   p:outfitRm("cores")
-
    local shp = p:ship()
    local shipname = shp:nameRaw()
    local basetype = shp:baseType()
    local class = shp:class()
    local success
    local o
+
+   -- Check to see if equipping should be skipped.
+   -- TODO: Should still do cargo adding if applicable.
+   -- TODO: Implement type-specific and ship-specific skipping.
+   for i = 1, #equip_classSkip do
+      if equip_classSkip[i] == class then
+         return
+      end
+   end
+
+   -- Start with an empty ship
+   p:outfitRm("all")
+   p:outfitRm("cores")
 
    -- Core systems
    success = false

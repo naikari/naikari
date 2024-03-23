@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ship name="Empire Shark">
+<ship name="Imperial Shark">
  <base_type>Shark</base_type>
  <GFX size="54">shark_empire</GFX>
  <rarity>2</rarity>
