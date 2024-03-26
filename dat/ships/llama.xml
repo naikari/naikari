@@ -13,8 +13,8 @@
  <trail_generator x="-12" y="-6" h="0">fire-thin</trail_generator>
  <trail_generator x="-12" y="0" h="0">fire-thin</trail_generator>
  <trail_generator x="-12" y="6" h="0">fire-thin</trail_generator>
- <fabricator>Melendez Corp.</fabricator>
- <description>One of the most widely used ships in the galaxy. Renowned for its stability and stubbornness. The design hasn't been modified much since its creation centuries ago. It was one of the first civilian use spacecrafts, first used by aristocracy and now used by everyone who cannot afford better.</description>
+ <fabricator>Exacorp</fabricator>
+ <description>The Llama is one of the most affordable ships in the galaxy, and the oldest surviving ship design. Originally used by the aristocracy, it has been modified over the centuries and is now made with cheaper parts while nonetheless retaining its stubborn reliability. As such, it is often the first vessel any new pilot buys.</description>
  <characteristics>
   <mass>40</mass>
   <fuel_consumption>100</fuel_consumption>

@@ -12,7 +12,7 @@
  <trail_generator x="-2" y="15" h="-2">nebula</trail_generator>
  <trail_generator x="-2" y="-15" h="-2">nebula</trail_generator>
  <trail_generator x="-15" y="0" h="0" />
- <fabricator>Nexus Shipyards</fabricator>
+ <fabricator>Exacorp</fabricator>
  <description>The Gawain is hands-down the fastest ship in the galaxy, easily outpacing all other vessels. It is widely used as a sporting vessel and by civilians wishing to avoid any chance of an encounter with pirates. Its quick takeoff time can even make it an excellent choice for those who need to make large numbers of stops at planets in quick succession, or who simply want to be able to escape to nearby planets without risking falling behind schedule.</description>
  <health>
   <armour>40</armour>
