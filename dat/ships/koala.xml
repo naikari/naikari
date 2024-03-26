@@ -28,7 +28,7 @@
   <weapon size="small" x="0" y="-10" h="0">Laser Turret MK1</weapon>
   <weapon size="small" x="0" y="10" h="0">Laser Turret MK1</weapon>
   <weapon size="small" x="11" y="0" h="-7"/>
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-80 Core System</utility>
+  <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>
   <utility size="small" />
   <utility size="small" />
   <utility size="small" />

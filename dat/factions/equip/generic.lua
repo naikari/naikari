@@ -36,7 +36,7 @@ equip_classSkip = {
 -- none should be equipped.
 equip_classOutfits_coreSystems = {
    ["Yacht"] = {
-      "Unicorp PT-18 Core System",
+      "Exacorp ET-200 APU",
       "Milspec Aegis 2201 Core System",
       "Milspec Prometheus 2203 Core System",
    },
@@ -44,80 +44,80 @@ equip_classOutfits_coreSystems = {
       "Milspec Prometheus 2203 Core System",
    },
    ["Scout"] = {
-      "Unicorp PT-80 Core System",
+      "Exacorp ET-300 APU",
    },
    ["Courier"] = {
-      "Unicorp PT-80 Core System",
+      "Exacorp ET-300 APU",
       "Milspec Aegis 3601 Core System",
    },
    ["Freighter"] = {
-      "Unicorp PT-400 Core System",
+      "Exacorp ET-600 APU",
       "Milspec Aegis 5401 Core System",
    },
    ["Armored Transport"] = {
-      "Unicorp PT-400 Core System",
+      "Exacorp ET-600 APU",
       "Milspec Aegis 5401 Core System",
       "Milspec Prometheus 5403 Core System",
       "Milspec Orion 5501 Core System",
    },
    ["Bulk Freighter"] = {
-      "Unicorp PT-3400 Core System",
+      "Exacorp ET-900 APU",
       "Milspec Aegis 9801 Core System",
    },
    ["Light Fighter"] = {
-      "Unicorp PT-18 Core System",
+      "Exacorp ET-200 APU",
       "Milspec Aegis 2201 Core System",
       "Milspec Hermes 2202 Core System",
       "Milspec Prometheus 2203 Core System",
       "Milspec Orion 2301 Core System",
    },
    ["Fighter"] = {
-      "Unicorp PT-80 Core System",
+      "Exacorp ET-300 APU",
       "Milspec Aegis 3601 Core System",
       "Milspec Hermes 3602 Core System",
       "Milspec Prometheus 3603 Core System",
       "Milspec Orion 3701 Core System",
    },
    ["Bomber"] = {
-      "Unicorp PT-80 Core System",
+      "Exacorp ET-300 APU",
       "Milspec Aegis 3601 Core System",
       "Milspec Orion 3701 Core System",
    },
    ["Corvette"] = {
-      "Unicorp PT-280 Core System",
+      "Exacorp ET-500 APU",
       "Milspec Aegis 4701 Core System",
       "Milspec Orion 4801 Core System",
    },
    ["Destroyer"] = {
-      "Unicorp PT-400 Core System",
+      "Exacorp ET-600 APU",
       "Milspec Aegis 5401 Core System",
       "Milspec Hermes 5402 Core System",
       "Milspec Prometheus 5403 Core System",
       "Milspec Orion 5501 Core System",
    },
    ["Light Cruiser"] = {
-      "Unicorp PT-750 Core System",
+      "Exacorp ET-800 APU",
       "Milspec Aegis 8501 Core System",
       "Milspec Hermes 8502 Core System",
       "Milspec Prometheus 8503 Core System",
       "Milspec Orion 8601 Core System",
    },
    ["Cruiser"] = {
-      "Unicorp PT-750 Core System",
+      "Exacorp ET-800 APU",
       "Milspec Aegis 8501 Core System",
       "Milspec Hermes 8502 Core System",
       "Milspec Prometheus 8503 Core System",
       "Milspec Orion 8601 Core System",
    },
    ["Battleship"] = {
-      "Unicorp PT-3400 Core System",
+      "Exacorp ET-900 APU",
       "Milspec Aegis 9801 Core System",
       "Milspec Hermes 9802 Core System",
       "Milspec Prometheus 9803 Core System",
       "Milspec Orion 9901 Core System",
    },
    ["Carrier"] = {
-      "Unicorp PT-3400 Core System",
+      "Exacorp ET-900 APU",
       "Milspec Aegis 9801 Core System",
       "Milspec Hermes 9802 Core System",
       "Milspec Orion 9901 Core System",
@@ -1843,7 +1843,7 @@ function equip_generic(p, recursive)
       success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    if not success then
-      equip_warn(p, "Unicorp PT-18 Core System")
+      equip_warn(p, "Exacorp ET-200 APU")
    end
 
    -- Engines

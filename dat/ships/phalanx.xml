@@ -32,7 +32,7 @@
   <weapon size="medium" x="4" y="-5" h="-2">Unicorp Headhunter Launcher</weapon>
   <weapon size="small" x="0" y="10" h="-2">Shredder</weapon>
   <weapon size="small" x="0" y="-10" h="-2">Shredder</weapon>
-  <utility size="medium" prop="systems" exclusive="1" required="1">Unicorp PT-280 Core System</utility>
+  <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-500 APU</utility>
   <utility size="medium" />
   <utility size="medium" />
   <utility size="small" />

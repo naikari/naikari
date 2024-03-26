@@ -28,7 +28,7 @@
   <weapon size="medium" x="0" y="-5" h="0">Unicorp Fury Launcher</weapon>
   <weapon size="small" x="" y="9" h="-2">Laser Cannon MK2</weapon>
   <weapon size="small" x="0" y="-9" h="-2">Laser Cannon MK2</weapon>
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-80 Core System</utility>
+  <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>
   <utility size="small" />
   <structure size="small" prop="engines" exclusive="1" required="1">Unicorp Hawk 300 Engine</structure>
   <structure size="small" prop="hull" exclusive="1" required="1">Unicorp D-4 Light Plating</structure>

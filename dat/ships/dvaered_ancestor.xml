@@ -31,7 +31,7 @@
   <weapon size="medium" x="8" y="0" h="0">Unicorp Fury Launcher</weapon>
   <weapon size="small" x="-2" y="9" h="-1">Vulcan Gun</weapon>
   <weapon size="small" x="-2" y="-9" h="-1">Vulcan Gun</weapon>
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-80 Core System</utility>
+  <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>
   <utility size="small" />
   <utility size="small" />
   <structure size="small" prop="engines" exclusive="1" required="1">Unicorp Hawk 300 Engine</structure>

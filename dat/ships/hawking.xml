@@ -37,7 +37,7 @@
   <weapon size="large" x="0" y="0" h="7" />
   <weapon size="large" prop="fighter_bay" x="-15" y="0" h="7" />
   <weapon size="large" prop="fighter_bay" x="-33" y="0" h="7">Enygma Systems Turreted Fury Launcher</weapon>
-  <utility size="large" prop="systems" exclusive="1" required="1">Unicorp PT-750 Core System</utility>
+  <utility size="large" prop="systems" exclusive="1" required="1">Exacorp ET-800 APU</utility>
   <utility size="large" />
   <utility size="large" />
   <utility size="large" />

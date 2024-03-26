@@ -21,19 +21,23 @@ equip_classCargo["Heavy Drone"] = .1
 equip_typeOutfits_coreSystems["Hyena"] = equip_shipOutfits_coreSystems["Pirate Shark"]
 equip_typeOutfits_coreSystems["Shark"] = equip_shipOutfits_coreSystems["Pirate Shark"]
 equip_typeOutfits_coreSystems["Vendetta"] = {
-   "Unicorp PT-80 Core System", "Milspec Prometheus 3603 Core System",
+   "Exacorp ET-300 APU",
+   "Milspec Prometheus 3603 Core System",
 }
 equip_typeOutfits_coreSystems["Lancelot"] = equip_typeOutfits_coreSystems["Vendetta"]
 equip_typeOutfits_coreSystems["Ancestor"] = equip_typeOutfits_coreSystems["Vendetta"]
 equip_typeOutfits_coreSystems["Phalanx"] = {
-   "Unicorp PT-280 Core System", "Milspec Prometheus 4703 Core System",
+   "Exacorp ET-500 APU",
+   "Milspec Prometheus 4703 Core System",
 }
 equip_typeOutfits_coreSystems["Admonisher"] = equip_typeOutfits_coreSystems["Phalanx"]
 equip_typeOutfits_coreSystems["Pacifier"] = {
-   "Unicorp PT-400 Core System", "Milspec Prometheus 5403 Core System",
+   "Exacorp ET-600 APU",
+   "Milspec Prometheus 5403 Core System",
 }
 equip_typeOutfits_coreSystems["Kestrel"] = {
-   "Unicorp PT-3400 Core System", "Milspec Prometheus 8503 Core System",
+   "Exacorp ET-800 APU",
+   "Milspec Prometheus 8503 Core System",
 }
 
 equip_typeOutfits_engines["Rhino"] = {

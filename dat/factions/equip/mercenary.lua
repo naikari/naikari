@@ -19,7 +19,8 @@ equip_classCargo["Drone"] = .1
 equip_classCargo["Heavy Drone"] = .1
 
 equip_classOutfits_coreSystems["Yacht"] = {
-   "Unicorp PT-18 Core System", "Milspec Aegis 2201 Core System",
+   "Exacorp ET-200 APU",
+   "Milspec Aegis 2201 Core System",
    "Milspec Prometheus 2203 Core System", "Milspec Orion 2301 Core System",
 }
 equip_classOutfits_engines["Yacht"] = {

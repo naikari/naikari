@@ -12,7 +12,7 @@
  <trail_generator x="-6" y="0" h="10">nebula</trail_generator>
  <trail_generator x="5" y="13" h="-8">nebula</trail_generator>
  <trail_generator x="5" y="-13" h="-8">nebula</trail_generator>
- <fabricator>Sirius Systems</fabricator>
+ <fabricator>Exacorp</fabricator>
  <description>The Schroedinger is primarily used as a reconnaissance vessel. It requires a skeleton crew due to its advanced automation subsystems, and its proprietary fuel tanks allow it to have range much greater than most ships. The downside is that the ship is extremely vulnerable to attack due to its light armor and low amount of weapons space. It is also equipped with a pair of Eraedon engines, making it highly maneuverable.</description>
  <health>
   <armour>25</armour>
@@ -28,7 +28,7 @@
  </characteristics>
  <slots>
   <weapon size="small" x="9" y="0" h="-2">Razor MK1</weapon>
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-18 Core System</utility>
+  <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-200 APU</utility>
   <utility size="medium" />
   <utility size="small" />
   <utility size="small" />

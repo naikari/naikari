@@ -32,7 +32,7 @@
  </characteristics>
  <slots>
   <weapon size="small" x="17" y="0" h="-4">Laser Cannon MK1</weapon>
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-18 Core System</utility>
+  <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-200 APU</utility>
   <utility size="small" />
   <utility size="small" />
   <utility size="small" />

@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Unicorp PT-80 Core System">
+<outfit name="Exacorp ET-300 APU">
  <general>
-  <typename>Core System</typename>
+  <typename>APU</typename>
   <slot prop="systems">utility</slot>
   <size>small</size>
   <priority>7</priority>
   <mass>40</mass>
   <price>35000</price>
-  <description>The PT-80 is an economical core system providing decent performance to small-to-medium vessels.</description>
+  <description>A modest but to-spec auxiliary power unit offering reasonable performance at an affordable price.</description>
   <gfx_store>core_system_basic_s2.webp</gfx_store>
  </general>
  <specific type="modification">

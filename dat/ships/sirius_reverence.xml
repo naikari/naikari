@@ -30,7 +30,7 @@
   <weapon size="medium" x="15" y="-1" h="2">Unicorp Headhunter Launcher</weapon>
   <weapon size="small" x="-9" y="-3" h="2">Slicer</weapon>
   <weapon size="small" x="-9" y="3" h="2">Slicer</weapon>
-  <utility size="medium" prop="systems" exclusive="1" required="1">Unicorp PT-280 Core System</utility>
+  <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-500 APU</utility>
   <utility size="medium" />
   <utility size="medium" />
   <utility size="small" />

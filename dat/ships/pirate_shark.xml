@@ -32,7 +32,7 @@
   <weapon size="small" x="12" y="0" h="0">Laser Cannon MK1</weapon>
   <weapon size="small" x="-3" y="0" h="2">Photon Dagger</weapon>
   <weapon size="small" x="3" y="0" h="2" />
-  <utility size="small" prop="systems" exclusive="1" required="1">Unicorp PT-18 Core System</utility>
+  <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-200 APU</utility>
   <utility size="small" />
   <utility size="small" />
   <structure size="small" prop="engines" exclusive="1" required="1">Nexus Dart 150 Engine</structure>
