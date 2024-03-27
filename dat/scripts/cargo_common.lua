@@ -79,7 +79,7 @@ function cargo_calculateRoute ()
    local missdist = cargo_selectMissionDistance()
    local planets = cargo_selectPlanets(missdist, routepos)
    if #planets == 0 then
-      return
+      return nil
    end
 
    local index = rnd.rnd(1, #planets)
@@ -106,17 +106,39 @@ function cargo_calculateRoute ()
    end
    local avgrisk = (risk / (numjumps+1)) ^ (1/exp)
    
-   -- We now know where. But we don't know what yet. Randomly choose a commodity type.
-   local cargo
-   local cargoes = origin_p:commoditiesSold()
-   if #cargoes == 0 then
-      if cargo_always_available then
-         cargo = nil
-      else
-         return
+   local cargo = nil
+   if not cargo_always_available then
+      -- Determine which commodities can be shipped from the origin to the
+      -- destination. Normally, only cargo which is cheaper in the origin
+      -- than in the destination, or which is not avaijlable at the
+      -- destination, will get shipped. There is however a small chance of
+      -- this getting bypassed. This is to make it unlikely for e.g. a
+      -- desert world to ship water to an oceanic world, but not
+      -- entirely impossible.
+      local t = time.get()
+      local origin_cargoes = origin_p:commoditiesSold()
+      local dest_cargoes = destplanet:commoditiesSold()
+      local cargoes = {}
+      for i = 1, #origin_cargoes do
+         local c = origin_cargoes[i]
+         local dest_has = false
+         for j = 1, #dest_cargoes do
+            if dest_cargoes[j] == c then
+               dest_has = true
+               break
+            end
+         end
+         if not dest_has or rnd.rnd() < 0.01
+               or c:priceAtTime(origin_p, t) < c:priceAtTime(destplanet, t) then
+            cargoes[#cargoes + 1] = c
+         end
       end
-   else
-      cargo = cargoes[rnd.rnd(1,#cargoes)]:nameRaw()
+
+      if #cargoes == 0 then
+         return nil
+      else
+         cargo = cargoes[rnd.rnd(1,#cargoes)]:nameRaw()
+      end
    end
    
 
