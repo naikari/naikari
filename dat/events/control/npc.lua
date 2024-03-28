@@ -17,155 +17,6 @@ local portrait = require "portrait"
 require "jumpdist"
 
 
--- Special names for certain factions' civilian NPCs (to replace the
--- generic "{faction} Civilian" naming normally used).
-local civ_name = {
-   Empire = _("Imperial Civilian"),
-   FLF = _("Frontier Civilian"),
-   Pirate = p_("individual", "Pirate"),
-}
-
--- Land-restricted NPC names for the spaceport bar. This correlates
--- land restriction function names (returned by planet.restriction())
--- with what NPCs on planets with those restrictions should be called.
--- Appearance in this table also implicitly causes portrait.getMil() to
--- be used for selecting a portrait instead of portrait.get().
-local mil_name = {
-   emp_mil_restricted = _("Imperial Officer"),
-   emp_mil_eye = _("Imperial Officer"),
-   srs_mil_restricted = _("Sirius Officer"),
-   srs_mil_mutris = _("Sirius Officer"),
-   dv_mil_restricted = _("Dvaered Officer"),
-   dv_mil_command = _("Dvaered Officer"),
-   srm_mil_restricted = _("Soromid Officer"),
-   zlk_mil_restricted = _("Za'lek Scientist"),
-   zlk_ruadan = _("Za'lek Scientist"),
-   flf_sindbad = _("FLF Soldier"),
-   ptn_mil_restricted = _("Proteron Officer"),
-   pir_clanworld = p_("individual", "Pirate"),
-}
-
--- Civilian descriptions for the spaceport bar.
--- These descriptions will be picked at random, and may be picked
--- multiple times in one generation. Remember that any description can
--- end up with any portrait, so don't make any assumptions about th
--- appearance of the NPC!
-local civ_desc = {
-   _("This person seems to be here to relax."),
-   _("There is a civilian sitting on one of the tables."),
-   _("There is a civilian sitting there, looking somewhere else."),
-   _("A worker sits at one of the tables, wearing a name tag saying \"Go away\"."),
-   _("A civilian sits at the bar, seemingly serious about the cocktails on offer."),
-   _("There is a civilian sitting in the corner."),
-   _("A civilian feverishly concentrating on a fluorescing drink."),
-   _("A civilian drinking alone."),
-   _("This person seems friendly enough."),
-   _("A civilian sitting at the bar."),
-   _("This person is idly browsing a news terminal."),
-   _("A worker sits and drinks instead of working."),
-   _("A worker slouched against the bar, nursing a drink."),
-   _("This worker seems bored with everything but their drink."),
-}
-
--- Same as civ_desc, but for particular factions (replacing the default
--- civ_desc table), organized by faction name.
-local pciv_desc = {}
-pciv_desc["Pirate"] = {
-   _("This pirate seems to be here to relax."),
-   _("There is a pirate sitting on one of the tables."),
-   _("There is a pirate sitting there, looking somewhere else."),
-   _("A pirate sits at the bar, seemingly serious about the cocktails on offer."),
-   _("There is a pirate sitting in the corner."),
-   _("A pirate feverishly concentrating on a fluorescing drink."),
-   _("A pirate drinking alone."),
-   _("A pirate sitting at the bar."),
-   _("This pirate is idly browsing a news terminal."),
-   _("A worker sits and drinks instead of working."),
-   _("A worker slouched against the bar, nursing a drink."),
-   _("This pirate seems bored with everything but their drink."),
-}
-
--- Same as civ_desc, but for land-restricted NPCs, organized by land
--- restriction function name.
-local mil_desc = {}
-mil_desc.emp_mil_restricted = {
-   _("An Imperial officer sits idly at one of the tables."),
-   _("This Imperial officer seems somewhat spaced-out."),
-   _("An Imperial officer drinking alone."),
-   _("An Imperial officer sitting at the bar."),
-   _("This Imperial officer is idly reading the news terminal."),
-   _("This officer seems bored with everything but their drink."),
-   _("This officer seems to be relaxing after a hard day's work."),
-   _("An Imperial officer sitting in the corner."),
-}
-mil_desc.emp_mil_eye = mil_desc.emp_mil_restricted
-mil_desc.srs_mil_restricted = {
-   _("A Sirius officer sits idly at one of the tables."),
-   _("This Sirius officer seems somewhat spaced-out."),
-   _("A Sirius officer drinking alone."),
-   _("A Sirius officer sitting at the bar."),
-   _("This Sirius officer is idly reading the news terminal."),
-   _("This officer seems bored with everything but their drink."),
-   _("This officer seems to be relaxing after a hard day's work."),
-   _("A Sirius officer sitting in the corner."),
-}
-mil_desc.srs_mil_mutris = mil_desc.srs_mil_restricted
-mil_desc.dv_mil_restricted = {
-   _("A Dvaered officer sits idly at one of the tables."),
-   _("This Dvaered officer seems somewhat spaced-out."),
-   _("A Dvaered officer drinking alone."),
-   _("A Dvaered officer sitting at the bar."),
-   _("This Dvaered officer is idly reading the news terminal."),
-   _("This officer seems bored with everything but their drink."),
-   _("This officer seems to be relaxing after a hard day's work."),
-   _("A Dvaered officer sitting in the corner."),
-   _("A Dvaered officer suspiciously glancing around, as if expecting to be attacked by FLF terrorists at any moment."),
-}
-mil_desc.dv_mil_command = mil_desc.dv_mil_restricted
-mil_desc.srm_mil_restricted = {
-   _("A Soromid officer sits idly at one of the tables."),
-   _("This Soromid officer seems somewhat spaced-out."),
-   _("A Soromid officer drinking alone."),
-   _("A Soromid officer sitting at the bar."),
-   _("This Soromid officer is idly reading the news terminal."),
-   _("This officer seems bored with everything but their drink."),
-   _("This officer seems to be relaxing after a hard day's work."),
-   _("A Soromid officer sitting in the corner."),
-}
-mil_desc.zlk_mil_restricted = {
-   _("A Za'lek scientist sits idly at one of the tables."),
-   _("This Za'lek scientist seems somewhat spaced-out."),
-   _("A Za'lek scientist drinking alone."),
-   _("A Za'lek scientist sitting at the bar."),
-   _("This Za'lek scientist is idly reading the news terminal."),
-   _("This scientist seems bored with everything but their drink."),
-   _("This scientist seems to be relaxing after a hard day's work."),
-   _("A Za'lek scientist sitting in the corner."),
-}
-mil_desc.zlk_ruadan = mil_desc.zlk_mil_restricted
-mil_desc.flf_sindbad = {
-   _("An FLF soldier sits idly at one of the tables."),
-   _("This FLF soldier seems somewhat spaced-out."),
-   _("An FLF soldier drinking alone."),
-   _("An FLF soldier sitting at the bar."),
-   _("This FLF soldier is idly reading the news terminal."),
-   _("This FLF soldier seems to be relaxing for the moment."),
-   _("An FLF soldier sitting in the corner."),
-   _("An FLF soldier drinking with a group of comrades."),
-}
-mil_desc.ptn_mil_restricted = {
-   _("A Proteron officer sits idly at one of the tables."),
-   _("A Proteron officer drinking alone."),
-   _("A Proteron officer sitting at the bar."),
-   _("This Proteron officer is idly reading the news terminal."),
-   _("This officer seems bored with everything but their drink."),
-   _("This officer seems to be relaxing after a hard day's work."),
-   _("A Proteron officer sitting in the corner."),
-   _("A nervous-looking Proteron officer gently sips a drink while reading government propaganda."),
-}
-mil_desc.pir_clanworld = pciv_desc["Pirate"]
-
-
 --[[
 NPC messages. Each is a table with the following keys:
    "faction": The faction it appears with or a list of them. (optional)
@@ -378,11 +229,12 @@ used_messages = {}
 
 
 function create()
-   local num_npc = rnd.rnd(2, 5)
-   npcs = {}
-   for i = 1, num_npc do
-      spawnNPC()
-   end
+   -- Spawn bartender.
+   local fac = planet.cur():faction()
+   local facname = fac ~= nil and fac:nameRaw() or nil
+   bartender = evt.npcAdd("talkBartender", _("Bartender"),
+         portrait.get(facname),
+         _("The bartender may be a helpful source of information."), 0)
 
    if planet.cur():blackmarket() then
       local num_dealers = rnd.rnd(0, 6)
@@ -393,47 +245,6 @@ function create()
 
    -- End event on takeoff.
    hook.takeoff( "leave" )
-end
-
--- Spawns an NPC.
-function spawnNPC()
-   -- Select a faction for the NPC. NPCs may not have a specific faction.
-   local npcname = _("Civilian")
-
-   local f = planet.cur():faction()
-   local planfaction = f ~= nil and f:nameRaw() or nil
-   local fac = planfaction
-
-   -- Append the faction to the civilian name, unless there is no faction.
-   if fac ~= nil then
-      npcname = civ_name[fac] or fmt.f(_("{faction} Civilian"), {faction=_(fac)})
-   end
-
-   local restriction = planet.cur():restriction()
-   local milname = mil_name[restriction]
-   local image
-   local desc
-   if milname ~= nil then
-      npcname = milname
-
-      -- Select a military portrait and description.
-      image = portrait.getMil(planfaction)
-      local descriptions = mil_desc[restriction]
-      desc = descriptions[rnd.rnd(1, #descriptions)]
-   else
-      -- Select a civilian portrait and description.
-      image = portrait.get(fac)
-      local desclist = pciv_desc[fac] or civ_desc
-      desc = desclist[rnd.rnd(1, #desclist)]
-   end
-
-   -- Select what this NPC should say.
-   local r = rnd.rnd()
-   local msg, func = getRewardMessage(fac)
-   local npcdata = {msg=msg, func=func}
-
-   id = evt.npcAdd("talkNPC", npcname, image, desc, 100)
-   npcs[id] = npcdata
 end
 
 
@@ -630,7 +441,7 @@ function spawnDealer()
          portrait_f = "Pirate"
       end
       id = evt.npcAdd("talkNPC", _("Dealer"), portrait.get(portrait_f),
-            _("This seems to be a dealer in the black market."), 99)
+            _("This seems to be a dealer in the black market."), 100)
       npcs[id] = npcdata
    end
 end
@@ -711,93 +522,7 @@ function getMessage(fac)
 end
 
 
--- Returns a jump point message and updates jump point known status accordingly. If all jumps are known by the player, defaults to a lore message.
-function getJmpMessage(fac)
-   local msg_jmp = {
-      _([["Hi there, traveler. Is your system map up to date? Just in case you didn't know already, let me give you the location of the jump from here to {system}. I hope that helps."]]),
-      _([["Quite a lot of people who come in here complain that they don't know how to get to {system}. I travel there often, so I know exactly where the jump point is. Here, let me show you."]]),
-      _([["So you're still getting to know about this area, huh? Tell you what, I'll give you the coördinates of the jump to {system}. Check your map next time you take off!"]]),
-      _([["True fact, there's a direct jump from here to {system}. Want to know where it is? It'll cost you! Ha ha, just kidding. Here you go, I've added it to your map."]]),
-      _([["There's a system just one jump away by the name of {system}. I can tell you where the jump point is. There, I've updated your map. Don't mention it."]]),
-   }
-
-   -- Collect a table of jump points in the system the player does NOT know.
-   local mytargets = {}
-   seltargets = seltargets or {} -- We need to keep track of jump points NPCs will tell the player about so there are no duplicates.
-   for i, j in ipairs(system.cur():jumps()) do
-      if not j:known() and not j:hidden()
-            and not seltargets[j:dest():nameRaw()] then
-         table.insert(mytargets, j)
-      end
-   end
-
-   if #mytargets == 0 then -- The player already knows all jumps in this system.
-      return getMessage(fac), nil
-   end
-
-   -- All jump messages are valid always.
-   if #msg_jmp == 0 then
-      return getMessage(fac), nil
-   end
-   local retmsg =  msg_jmp[rnd.rnd(1, #msg_jmp)]
-   local sel = rnd.rnd(1, #mytargets)
-   local chosentarget = mytargets[sel]
-   local myfunc = function(id, npcdata)
-      tk.msg("", npcdata.msg)
-      chosentarget:setKnown(true)
-      chosentarget:dest():setKnown(true, false)
-
-      -- Set the NPC to a standard one.
-      npcdata.msg = getMessage(fac)
-      npcdata.func = nil
-   end
-
-   -- Don't need to remove messages from tables here, but add whatever jump point we selected to the "selected" table.
-   seltargets[chosentarget:dest():nameRaw()] = true
-   return fmt.f(retmsg, {system=chosentarget:dest():name()}), myfunc
-end
-
-
-function getGiveCargoMessage(fac)
-   local msg_cargo = {
-      _([["Hey, you have a ship, right? I have some {cargo} that I need to get rid of. Would you like to take it off my hands?"]]),
-      _([["Ah, a pilot! Perfect! See, I have some {cargo} in storage and I need to get rid of it to free up some space. No charge, you can just have it for free. Would you like the {cargo}?"]]),
-   }
-
-   local fallback_msg = getMessage(fac)
-   local commodities = commodity.getStandard()
-   local commodity = commodities[rnd.rnd(1, #commodities)]
-   local amount = rnd.rnd(10, 30)
-   local retmsg = msg_cargo[rnd.rnd(1, #msg_cargo)]
-   local myfunc = function(id, npcdata)
-      local give_amount = math.min(amount, player.pilot():cargoFree())
-      if give_amount <= 0 then
-         -- Player can't take cargo, so use the fallback message.
-         tk.msg("", fallback_msg)
-      elseif tk.yesno("", npcdata.msg) then
-         give_msg = n_("Thanks! I'll transfer the {amount} t of {cargo} to your ship.",
-               "Thanks! I'll transfer the {amount} t of {cargo} to your ship.",
-               give_amount)
-         tk.msg("", fmt.f(give_msg,
-               {cargo=commodity:name(), amount=fmt.number(give_amount)}))
-         player.pilot():cargoAdd(commodity, give_amount)
-
-         -- Set the NPC to a standard one.
-         npcdata.msg = fallback_msg
-         npcdata.func = nil
-      end
-   end
-
-   return fmt.f(retmsg, {cargo=commodity:name()}), myfunc
-end
-
-
--- Selects an eligible reward message and returns the message string
--- and approach function.
-function getRewardMessage(fac)
-   local funcs = {"getJmpMessage", "getGiveCargoMessage"}
-
-   return _G[funcs[rnd.rnd(1, #funcs)]]()
+function talkBartender(id)
 end
 
 
