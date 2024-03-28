@@ -44,7 +44,6 @@ const char *npc_getName( int i );
 glTexture *npc_getBackground( int i );
 glTexture *npc_getTexture( int i );
 const char *npc_getDesc( int i );
-int npc_isImportant( int i );
 int npc_approach( int i );
 
 
