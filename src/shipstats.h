@@ -28,6 +28,8 @@ typedef enum ShipStatsType_ {
    SS_TYPE_D_MASS, /**< Mass multiplier. */
    SS_TYPE_A_ENGINE_LIMIT, /**< Mass limit modifier. */
    SS_TYPE_D_ENGINE_LIMIT_REL, /**< Mass limit multiplier. */
+   SS_TYPE_I_SLOTS_UTILITY, /**< Bonus utility slots. */
+   SS_TYPE_I_SLOTS_STRUCTURAL, /**< Bonus structural slots. */
 
    /* Forward weapons. */
    SS_TYPE_D_FORWARD_DAMAGE, /**< Forward damage multiplier. */
@@ -222,6 +224,8 @@ typedef struct ShipStats_ {
    double mass_mod; /**< Mass multiplier. */
    double engine_limit; /**< Engine limit modifier. */
    double engine_limit_rel; /**< Engine limit multiplier. */
+   int utility_slots; /**< Bonus utility slots. */
+   int structure_slots; /**< Bonus structural slots. */
 
    /* Forward weapons. */
    double fwd_damage; /**< Forward damage multiplier. */
