@@ -26,6 +26,18 @@
 * Changed the default Ship Computer control to F1.
 * Renamed bioship brains to hearts (reflecting the removal of CPUs).
 * Renamed core systems to APUs (auxiliary power units).
+* Removed planet and bar descriptions.
+* Added a date display to the Spaceport tab of land windows.
+* "Empire" versions of ships now instead use the word "Imperial"
+  (e.g. "Imperial Shark").
+* "Melendez Corporation" and "Unicorp" (in ship fabricator designations
+  and outfit names) merged and renamed to "Exacorp".
+* Improved the method for selecting cargo missions (which should reduce
+  the occurrence of odd scenarios like a desert world shipping water to
+  a water world).
+* Removed NPC "importance" markers; how important an NPC is now has to
+  be determined by context.
+* Removed randomly generated generic NPCs.
 
 ## 0.12.0
 
