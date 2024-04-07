@@ -79,12 +79,12 @@ double min3( double v1, double v2, double v3 )
 void arrayShuffle( void** array )
 {
    void* tmp;
-   int n, k;
+   int i, k;
 
-   for (n=array_size(array)-1; n>0; n--) {
-      tmp = array[n];
-      k = RNG(0, n);
-      array[n] = array[k];
+   for (i=0; i<array_size(array); i++) {
+      tmp = array[i];
+      k = RNG(i, array_size(array) - 1);
+      array[i] = array[k];
       array[k] = tmp;
    }
 }

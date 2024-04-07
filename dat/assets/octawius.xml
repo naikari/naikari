@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asset name="Octawius">
+ <pos>
+  <x>-13288.118835</x>
+  <y>6525.366208</y>
+ </pos>
+ <GFX>
+  <space>O05.webp</space>
+  <exterior>aquatic.webp</exterior>
+ </GFX>
+ <presence>
+  <faction>Empire</faction>
+  <value>20.000000</value>
+  <range>1</range>
+ </presence>
+ <general>
+  <class>O</class>
+  <population>6800000000</population>
+  <rdr_range_mod>400.000000</rdr_range_mod>
+  <services>
+   <land/>
+   <refuel/>
+   <bar/>
+   <commodity/>
+   <shipyard/>
+  </services>
+  <commodities/>
+ </general>
+ <tech>
+  <item>Planet Mid</item>
+ </tech>
+</asset>

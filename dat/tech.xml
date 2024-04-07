@@ -374,4 +374,15 @@
   <item>Thurion Certitude</item>
   <item>Starbridge</item>
  </tech>
+
+
+ <tech name="Planet Low">
+  <item>Llama</item>
+ </tech>
+ <tech name="Planet Mid">
+  <item>Llama</item>
+ </tech>
+ <tech name="Planet High">
+  <item>Llama</item>
+ </tech>
 </Techs>

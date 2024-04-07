@@ -45,18 +45,21 @@
   </commodity>
  </asteroid>
  <asteroid>
-  <id>small_hard</id>
-  <gfx>asteroid-01.webp</gfx>
-  <gfx>asteroid-02.webp</gfx>
-  <gfx>asteroid-03.webp</gfx>
-  <gfx>asteroid-04.webp</gfx>
-  <gfx>asteroid-05.webp</gfx>
-  <gfx>asteroid-06.webp</gfx>
-  <gfx>asteroid-22.webp</gfx>
-  <gfx>asteroid-24.webp</gfx>
+  <id>small_gold</id>
+  <gfx>asteroid-00.webp</gfx>
+  <gfx>asteroid-07.webp</gfx>
+  <gfx>asteroid-08.webp</gfx>
+  <gfx>asteroid-09.webp</gfx>
+  <gfx>asteroid-10.webp</gfx>
+  <gfx>asteroid-11.webp</gfx>
+  <gfx>asteroid-12.webp</gfx>
+  <gfx>asteroid-13.webp</gfx>
+  <gfx>asteroid-14.webp</gfx>
+  <gfx>asteroid-16.webp</gfx>
+  <gfx>asteroid-21.webp</gfx>
   <armour>250</armour>
   <commodity>
-   <name>Ore</name>
+   <name>Gold</name>
    <quantity>2</quantity>
   </commodity>
  </asteroid>
