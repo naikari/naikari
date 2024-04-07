@@ -96,6 +96,7 @@ static double sysedit_my = 0.; /**< Cursor Y position. */
 /* Stored checkbox values. */
 static int jp_hidden = 0; /**< Jump point hidden checkbox value. */
 static int jp_exit = 0; /**< Jump point exit only checkbox value. */
+static int jp_express = 0; /**< Jump point express checkbox value. */
 static int jp_longrange = 0; /**< Jump point longrange checkbox value. */
 
 
@@ -1413,6 +1414,14 @@ static void jp_type_check_exit_update( unsigned int wid, char* str )
 /**
  * @brief Updates the jump point checkboxes.
  */
+static void jp_type_check_express_update(unsigned int wid, char* str)
+{
+   jp_express = window_checkboxState(wid, str);
+}
+
+/**
+ * @brief Updates the jump point checkboxes.
+ */
 static void jp_type_check_longrange_update( unsigned int wid, char* str )
 {
    (void) str;
@@ -1453,12 +1462,16 @@ static void sysedit_editJump( void )
 
    /* Initial checkbox state */
    jp_hidden = 0;
-   jp_exit   = 0;
+   jp_exit = 0;
+   jp_express = 0;
    jp_longrange = 0;
    if (jp_isFlag( j, JP_HIDDEN ))
       jp_hidden = 1;
    else if (jp_isFlag( j, JP_EXITONLY ))
-      jp_exit   = 1;
+      jp_exit = 1;
+
+   if (jp_isFlag(j, JP_EXPRESS))
+      jp_express = 1;
 
    if (jp_isFlag( j, JP_LONGRANGE ))
       jp_longrange = 1;
@@ -1469,6 +1482,10 @@ static void sysedit_editJump( void )
    y -= 20;
    window_addCheckbox( wid, x, y, 100, 20,
          "chkExit", _("Exit only"), jp_type_check_exit_update, jp_exit );
+   y -= 20;
+   window_addCheckbox(wid, x, y, 100, 20,
+         "chkExpress", _("Express"),
+         jp_type_check_express_update, jp_express);
    y -= 20;
    window_addCheckbox( wid, x, y, 100, 20,
          "chkLongRange", _("Long-Range"), jp_type_check_longrange_update, jp_longrange );
@@ -1514,6 +1531,10 @@ static void sysedit_editJumpClose( unsigned int wid, char *unused )
       jp_rmFlag( j, JP_HIDDEN );
       jp_rmFlag( j, JP_EXITONLY );
    }
+   if (jp_express)
+      jp_setFlag(j, JP_EXPRESS);
+   else
+      jp_rmFlag(j, JP_EXPRESS);
    if (jp_longrange)
       jp_setFlag( j, JP_LONGRANGE );
    else

@@ -14,6 +14,10 @@
   <asset>Octawius</asset>
  </assets>
  <jumps>
+  <jump target="Beta Pyxidis">
+   <autopos/>
+   <express/>
+  </jump>
   <jump target="Zeeman">
    <autopos/>
    <exitonly/>
