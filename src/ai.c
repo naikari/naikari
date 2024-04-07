@@ -2587,8 +2587,11 @@ static int aiL_rndhyptarget( lua_State *L )
 
    /* Check again if there's no jumps to choose (this can happen if the
     * only available jumps are exit-only or hidden). */
-   if (array_size(jumps) <= 0)
+   if (array_size(jumps) <= 0) {
+      array_free(jumps);
+      array_free(id);
       return 0;
+   }
 
    /* Choose random jump point. */
    r = RNG(0, array_size(jumps) - 1);
