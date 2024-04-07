@@ -1104,7 +1104,8 @@ void map_renderFactionDisks( double x, double y, double r, int editor, double al
    const glColour *col;
    glColour c;
    StarSystem *sys;
-   double tx, ty, sr, presence;
+   double tx, ty;
+   double sr;
 
    for (i=0; i<array_size(systems_stack); i++) {
       sys = system_getIndex( i );
@@ -1140,11 +1141,8 @@ void map_renderFactionDisks( double x, double y, double r, int editor, double al
 
       /* System has faction and is known or we are in editor. */
       if (f > 0) {
-         /* Cache to avoid repeated sqrt() */
-         presence = sqrt(sys->ownerpresence);
-
          /* draws the disk representing the faction */
-         sr = (50 + presence * 3) * map_zoom * 0.5;
+         sr = (50 + 4*sqrt(sys->ownerpresence)) * map_zoom * 0.5;
 
          col = faction_colour(f);
          c.r = col->r;
