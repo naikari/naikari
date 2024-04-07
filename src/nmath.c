@@ -81,9 +81,9 @@ void arrayShuffle( void** array )
    void* tmp;
    int n, k;
 
-   for (n = array_size( array ); n > 1; ) {
-      k        = RNG(0, n);
-      tmp      = array[--n];
+   for (n=array_size(array)-1; n>0; n--) {
+      tmp = array[n];
+      k = RNG(0, n);
       array[n] = array[k];
       array[k] = tmp;
    }
