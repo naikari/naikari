@@ -107,7 +107,7 @@ function accept()
          "\t" .. _("Fly to the location of dropped Gold to collect it"),
          "\t" .. fmt.f(_("If your weapons overheat, engage Active Cooldown by pressing {autobrake_key}"),
             {autobrake_key=naik.keyGet("autobrake")}),
-         fmt.f(_("Land on {planet} ({system} system)"),
+         fmt.f(_("Land on {planet} ({system})"),
             {planet=misplanet, system=missys}),
       }
       misn.osdCreate(_("Ian's Supplies"), osd_desc)

@@ -103,7 +103,7 @@ function accept()
       misn.setDesc(misn_desc)
 
       local osd_desc = {
-         fmt.f(_("Buy 10 kt of Food from the Commodity tab and then talk to Ian Structure at the bar on {planet} ({system} system)"),
+         fmt.f(_("Buy 10 kt of Food from the Commodity tab and then talk to Ian Structure at the bar on {planet} ({system})"),
             {planet=misplanet:name(), system=missys:name()}),
       }
       misn.osdCreate(_("Ian's Structure"), osd_desc)

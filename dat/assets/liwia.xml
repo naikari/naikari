@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asset name="Liwia">
+ <pos>
+  <x>4968.552950</x>
+  <y>15303.143087</y>
+ </pos>
+ <GFX>
+  <space>M10.webp</space>
+  <exterior>citadel.webp</exterior>
+ </GFX>
+ <presence>
+  <faction>Empire</faction>
+  <value>15.000000</value>
+  <range>1</range>
+ </presence>
+ <general>
+  <class>M</class>
+  <population>760000000000</population>
+  <services>
+   <land/>
+   <refuel/>
+   <bar/>
+   <missions/>
+   <commodity/>
+  </services>
+  <commodities/>
+ </general>
+</asset>

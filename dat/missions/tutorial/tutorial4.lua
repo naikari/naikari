@@ -8,7 +8,7 @@
   <priority>1</priority>
   <chance>100</chance>
   <location>Bar</location>
-  <planet>Em 5</planet>
+  <planet>Octawius</planet>
   <done>Tutorial Part 3</done>
  </avail>
  <notes>
@@ -47,19 +47,19 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-ask_text = _([["Ah, {player}! I was just thinking about you. I have one last job for you, if you would be willing. This one is simple: I just need you to ferry me to a neighboring system, and I'll pay you {credits} for it. Are you willing to do it?"]])
+local ask_text = _([["I have one last job for you, {player}, if you would be willing. This one is simple: I just need you to ferry me to a neighboring system, and I'll pay you {credits} for it. Are you willing to do it?"]])
 
-accept_text = _([["Thank you very much. I'll be at your ship when you're ready for me. I'll show you where we need to go once we're in space."]])
+local accept_text = _([["Thank you very much. I'll be at your ship when you're ready for me. I'll show you where we need to go once we're in space."]])
 
-starmap_text = _([["Alright, {player}, let me show you where we need to go. Could you open your starmap by pressing {starmapkey}, please?"]])
+local starmap_text = _([["Alright, {player}, let me show you where we need to go. Could you open your starmap by pressing {starmapkey}, please?"]])
 
-jump_text = _([["Thank you. As you can see, I've marked the {system} system on your starmap. That's the system we need to go to. Luckily, it seems you already know the jump point to get there, so if you just select {system} with the mouse and click the Autonav button, we should be there in no time!"]])
+local jump_text = _([["Thank you. As you can see, I've marked the {system} system on your starmap. That's the system we need to go to. Luckily, it seems you already know the jump point to get there, so if you just select {system} with the mouse and click the Autonav button, we should be there in no time!"]])
 
-target_nearest_text = _([[As you enter {system}, you see an icon indicating another ship on your radar. However, something seems off. Sirens blare as you realize that the ship is hostile!
+local target_nearest_text = _([[As you enter {system}, you see an icon indicating another ship on your radar. However, something seems off. Sirens blare as you realize that the ship is hostile!
 
 Seeing this, Ian's face goes pale. "N-no way! This is supposed to be the safe part of Empire space! Quick, {player}! Press {target_hostile_key} so you can aim your weapons at whatever that ship is!"]])
 
-fight_text = _([[You see that the control you engaged automatically sets your designated target to the nearest hostile ship, which is the one you noticed on your radar. With the ship targeted, your weapons swerve as much as they can to point to it. You can also see what it is now: a Pirate Hyena. The sight makes Ian hyperventilate despite your best efforts to calm him down.
+local fight_text = _([[You see that the control you engaged automatically sets your designated target to the nearest hostile ship, which is the one you noticed on your radar. You can see what it is now: a Pirate Hyena. The sight makes Ian hyperventilate despite your best efforts to calm him down.
 
 "P-please," Ian urges, "whatever you do, don't let that pirate kill us! Shoot them down or something!" As Ian continues to panic, you grab your ship's combat controls, telling yourself against your own instincts that this will be just like the asteroid mining you did previously.]])
 
@@ -67,19 +67,21 @@ dest_text = _([[With the pirate now defeated, you see Ian visibly relax, thô he
 
 "OK. I'm OK. Um, so, the place we need to get to, {planet}, is in this system. I don't know where it is exactly, but if you have enough talent to take out a p-pirate all by yourself…" Ian faints in his chair before he can finish his sentence. You consider waking him, but decide to let him rest while you search for his destination.]])
 
-pay_text = _([[As you finish the landing procedures and arrive on the surface of {planet}, you gently wake Ian Structure. He flinches in surprise, but when he sees it's just you, he immediately relaxes. You tell him that you've arrived at his destination and upon hearing this, he breathes a sigh of relief and follows you out of your ship.
+local pay_text = _([[As you finish the landing procedures and arrive on the surface of {planet}, you notice an Imperial Lieutenant waiting for you. Unsure what to think, you step outside of your ship and begin to salute him, as is the custom, but are interrupted by the sound of Ian's voice behind you. "Milo! Oh, Milo, I'm so happy to s-see you."
 
-"Thank you," Ian says as both of you enter the spaceport. "You've outperformed my expectations, saving me from certain death like that. I can't possibly thank you enough. As a token of my appreciation, I'm giving you double the fee I originally agreed to pay you." You take your payment and thank him for his kind words.
+With tears in his eyes, Ian rushes to Lieutenant Milo, who opens his arms and firmly embraces him. "It's OK, love," he gently whispers. "I'm here. You're safe."
 
-"Good luck on your travels, {player}, and I hope to meet you again someday!" Ian offers his hand, which you shake before he walks off.]])
+After a few minutes, Ian calms down and hands you a credit chip. "Thank you, {player}," he says.
 
-misn_desc = _("Ian Structure has hired you to give him transport to another planet.")
-misn_log = _([[You helped transport Ian Structure to another planet in another system, fighting off an unexpected pirate along the way. He thanked you for keeping him safe and said he hopes to meet you again in the future.]])
+"And thank you from me as well," Milo adds, handing you a second credit chip. "Thank you for keeping my boyfriend safe. As a token of my gratitude, I'd be willing to personally offer you a chance to climb the ranks of the Empire. Meet me at the bar if you're interested." He grabs Ian's hand, gives him a kiss, and walks off with him.]])
+
+local misn_desc = _("Ian Structure has hired you to give him transport to another planet.")
+local misn_log = _([[You helped transport Ian Structure to {planet} ({system}), fighting off an unexpected pirate along the way. He and his boyfriend, Milo, thanked you for keeping him safe. Milo also offered a chance to climb the ranks of the Empire; he said to meet him at the bar on {planet} ({system}) if you're interested.]])
 
 
 function create()
-   misplanet, missys = planet.get("Shiarta")
-   credits = 15000
+   misplanet, missys = planet.get("Liwia")
+   credits = 5000
 
    -- Must claim the system to disable spawning (and make sure no Empire
    -- ships come to the player's rescue).
@@ -179,7 +181,7 @@ function enter_ambush()
    pilot.toggleSpawn(false)
    pilot.clear()
 
-   local pos = jump.get("Eneguoz", "Hakoi"):pos() + vec2.new(1000, 1500)
+   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(1000, 1500)
    local pirate = pilot.add("Hyena", "Pirate", pos, _("Pirate Hyena"),
          {ai="pirate_norun", naked=true})
 
@@ -194,7 +196,7 @@ function enter_ambush()
    pirate:setVisible()
    pirate:setHostile()
 
-   pirate:memory().kill_reward = 20000
+   pirate:memory().kill_reward = 5000
 
    misn.osdActive(4)
 
@@ -271,11 +273,11 @@ function land()
    diff.apply("hakoi_pirates")
 
    local exp = time.get() + time.create(0, 250, 0)
-   news.add("Empire", _("Pirates in Hakoi"),
-         _([[Residents of the previously peaceful Hakoi system are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling to and from the area to be cautious. An investigation is underway.]]),
+   news.add("Empire", _("Pirates in Pyxidis"),
+         _([[Residents of the previously peaceful Pyxidis constellation are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling to and from the area to be cautious. An investigation is underway.]]),
          exp)
 
-   addMiscLog(misn_log)
+   addMiscLog(fmt.f(misn_log, {planet=misplanet:name(), system=missys:name()}))
    misn.finish(true)
 end
 
