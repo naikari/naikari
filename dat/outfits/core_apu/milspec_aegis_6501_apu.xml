@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Milspec Aegis 5401 Core System">
+<outfit name="Milspec Aegis 6501 APU">
  <general>
-  <typename>Core System</typename>
+  <typename>APU</typename>
   <slot prop="systems">utility</slot>
   <size>medium</size>
   <priority>7</priority>
   <mass>180</mass>
   <price>400000</price>
-  <description>Milspec cares about your personal safety. Your protection is our concern. The Aegis 5401 grants your ship excellent shield strength while preserving a high level of subsystem control and energy capacity. Fly safe, fly Milspec.</description>
+  <description>Milspec cares about your personal safety. Your protection is our concern. The Aegis APU grants your ship excellent shielding while preserving reasonable combat energy. Fly safe, fly Milspec.</description>
   <gfx_store>core_system_shield_m2.webp</gfx_store>
  </general>
  <specific type="modification">
