@@ -8,7 +8,7 @@
   <priority>1</priority>
   <chance>100</chance>
   <location>Bar</location>
-  <planet>Em 1</planet>
+  <planet>Kikero</planet>
   <done>Tutorial Part 2</done>
  </avail>
  <notes>
@@ -36,7 +36,7 @@
 --
 
    MISSION: Tutorial Part 3
-   DESCRIPTION: Player mines ore from asteroids, then takes it to Em 5.
+   DESCRIPTION: Player mines Gold from asteroids, then takes it to Octawius.
 
 --]]
 
@@ -50,36 +50,36 @@ local ask_text = _([["Hello again, {player}! Are you ready for that other job I 
 
 local accept_text = _([["Perfect! Alright, this time we will be going into space; I will be joining you. I'll make my way to your ship now and wait for you there. When you're ready to begin, press the Take Off button."]])
 
-local overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Ore for me. Of course, I could buy it from the Commodity tab, but for my purposes I require specifically asteroid-mined Ore and most vendors don't track whether their Ore is from planetary mining or asteroid mining.
+local overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Gold for me. Of course, I could buy it from the Commodity tab, but there happens to be a safe pure Gold asteroid field in this system, and that will be much cheaper than buying it.
 
-"To that end, I've marked an asteroid field in this system on your ship's overlay map. Could you press {overlaykey} to open your overlay map so I can show you, please?"]])
+"I've marked the asteroid field on your ship's overlay map. Could you press {overlaykey} to open your overlay map so I can show you, please?"]])
 
 local autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to use Autonav to take us to that area as fast as possible. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous. Most pilots call this phenomenon 'Time Compression', I believe, or 'TC' for short." Just #bright-click#0 on the location of the asteroid field to initialize Autonav."]])
 
-local mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, usually ore, and you can pick the commodity up simply by flying over its location.
+local mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, Gold in this case, and you can pick the commodity up simply by flying over its location.
 
-"I just need you to mine enough ore to fill your cargo hold to capacity. I'll let you know what to do with it when your cargo hold is full."]])
+"I just need you to mine enough Gold to fill your cargo hold to capacity. I'll let you know what to do with it when your cargo hold is full."]])
 
 local cooldown_text = _([[Ian Structure briefly startles you as he taps on your shoulder. "Sorry! I just noticed that your weapons are getting pretty hot. That's not doing your weapon accuracy any favors. Why don't you cool everything down by pressing {autobrake_key}?"]])
 
 local dest_text = _([["That should do it! Good job! With those firing skills, maybe you'd even be able to handle yourself against a pirate! I sure hope you don't have to, thô. Oh, what am I saying? There's no way the Empire would let pirates get into a place like this!" Ian sweats nervously, as if not entirely convinced.
 
-"Alright, I need you to take this Ore to {planet}. You should be able to see it on your overlay map, right? You can interact with its icon the same way you would interact with the planet itself, so you should be able to tell Autonav to land us there no problem."]])
+"Alright, I need you to take this Gold to {planet}. You should be able to see it on your overlay map, right? You can interact with its icon the same way you would interact with the planet itself, so you should be able to tell Autonav to land us there no problem."]])
 
 local pay_text = _([[Ian steps out of your ship and stretches his arms, seemingly happy to be back in atmosphere. "Thank you for your service once again," he says as he hands you a credit chip with your payment. "If you like, I have one more job for you. Meet me at the bar in a bit."]])
 
-local misn_desc = _("Ian Structure has hired you to mine ore from some asteroids, claiming that he needs specifically asteroid-mined Ore for his purposes.")
-local misn_log = _([[You accepted another job from Ian Structure, this time mining some ore from asteroids for him. He asked you to speak with him again on {planet} ({system} system) for another job.]])
+local misn_desc = _("Ian Structure has hired you to mine Gold from some asteroids.")
+local misn_log = _([[You accepted another job from Ian Structure, this time mining some Gold from asteroids for him. He asked you to speak with him again on {planet} ({system}) for another job.]])
 
-local credits = 10000
+local credits = 5000
 
 
 function create()
-   misplanet, missys = planet.get("Em 5")
+   misplanet, missys = planet.get("Octawius")
 
    misn.setNPC(_("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
-         _("Ian is idling at the bar. He said he has another job for you."))
+         _("Ian is at the bar. He said he has another job for you."))
 end
 
 
@@ -99,12 +99,12 @@ function accept()
          fmt.f(_("Press {overlaykey} to open your overlay map"),
             {overlaykey=naik.keyGet("overlay")}),
          _("Fly to Asteroid Field indicated on overlay map by right-clicking the area"),
-         _("Mine ore from asteroids until your cargo hold is full"),
+         _("Mine Gold from asteroids until your cargo hold is full"),
          "\t" .. _("Target an asteroid by left-clicking on it"),
          "\t" .. fmt.f(_("Use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid"),
             {primarykey=naik.keyGet("primary"),
                secondarykey=naik.keyGet("secondary")}),
-         "\t" .. _("Fly to the location of dropped Ore to collect it"),
+         "\t" .. _("Fly to the location of dropped Gold to collect it"),
          "\t" .. fmt.f(_("If your weapons overheat, engage Active Cooldown by pressing {autobrake_key}"),
             {autobrake_key=naik.keyGet("autobrake")}),
          fmt.f(_("Land on {planet} ({system} system)"),
@@ -241,8 +241,8 @@ function land()
 
    tk.msg("", pay_text)
 
-   local ftonnes = player.pilot():cargoHas("Ore")
-   player.pilot():cargoRm("Ore", ftonnes)
+   local ftonnes = player.pilot():cargoHas("Gold")
+   player.pilot():cargoRm("Gold", ftonnes)
    player.pay(credits)
 
    addMiscLog(fmt.f(misn_log,
