@@ -2160,45 +2160,22 @@ static void map_chkMinimal(unsigned int wid, char* str)
  */
 static void map_genModeList(void)
 {
-   int i,j,k,l;
-   Planet *p;
-   StarSystem *sys;
-   int totGot = 0;
+   int i;
    const char *odd_template, *even_template, *commod_text;
 
    if (commod_known == NULL)
-      commod_known = malloc(sizeof(Commodity*) * commodity_getN());
+      commod_known = standard_commodities();
 
-   memset(commod_known,0,sizeof(Commodity*)*commodity_getN());
-   for (i=0; i<array_size(systems_stack); i++) {
-      sys = system_getIndex(i);
-      for (j=0; j<array_size(sys->planets); j++) {
-         p = sys->planets[j];
-         if (planet_isKnown(p)) {
-            for (k=0; k<array_size(p->commodities); k++) {
-               /* find out which commodity this is */
-               for (l=0; l<totGot; l++) {
-                  if (p->commodities[k] == commod_known[l])
-                     break;
-               }
-               if (l == totGot) {
-                  commod_known[totGot] = p->commodities[k];
-                  totGot++;
-               }
-            }
-         }
-      }
-   }
    for (i=0; i<array_size(map_modes); i++)
-      free( map_modes[i] );
-   array_free ( map_modes );
-   map_modes = array_create_size( char*, 2*totGot + 1 );
-   array_push_back( &map_modes, strdup(_("Travel (Default)")) );
-   array_push_back( &map_modes, strdup(_("Discovery")) );
+      free(map_modes[i]);
+   array_free (map_modes);
+   map_modes = array_create(char*);
+   array_push_back(&map_modes, strdup(_("Travel (Default)")));
+   array_push_back(&map_modes, strdup(_("Discovery")));
 
    even_template = _("%s: Cost");
    odd_template = _("%s: Trade");
-   for (i=0; i<totGot; i++) {
+   for (i=0; i<array_size(commod_known); i++) {
       commod_text = _(commod_known[i]->name);
       asprintf(&array_grow(&map_modes), even_template, commod_text);
       asprintf(&array_grow(&map_modes), odd_template, commod_text);
@@ -2358,7 +2335,7 @@ static void map_destroy(void)
    map_system_close();
 
    /* Free known commodities. */
-   free(commod_known);
+   array_free(commod_known);
    commod_known = NULL;
 
    /* Free map modes, if any. */
@@ -3258,7 +3235,7 @@ int map_setCommodity(const Commodity* commod)
       return 0;
    }
 
-   for (i=0; i<commodity_getN(); i++) {
+   for (i=0; i<array_size(commod_known); i++) {
       if (strcmp(commod->name, commod_known[i]->name) == 0) {
          cur_commod = i;
          map_update_commod_av_price();
