@@ -107,12 +107,6 @@ static const ShipStatsLookup ss_lookup[] = {
    D_ELEM(SS_TYPE_D_ENGINE_LIMIT_REL, engine_limit_rel,
       N_("%+G%% Engine Mass Limit"),
       NULL),
-   I_ELEM(SS_TYPE_I_SLOTS_UTILITY, utility_slots,
-      N_("%+d Utility Slots"),
-      N_("%+d Utility Slots")),
-   I_ELEM(SS_TYPE_I_SLOTS_STRUCTURAL, structure_slots,
-      N_("%+d Structural Slots"),
-      N_("%+d Structural Slots")),
 
    /* Forward weapons. */
    D_ELEM(SS_TYPE_D_FORWARD_DAMAGE, fwd_damage,
