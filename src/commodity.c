@@ -100,31 +100,6 @@ Commodity* commodity_getW( const char* name )
    return NULL;
 }
 
-/**
- * @brief Return the number of commodities globally.
- *
- *    @return Number of commodities globally.
- */
-int commodity_getN (void)
-{
-   return array_size(econ_comm);
-}
-
-/**
- * @brief Gets a commodity by index.
- *
- *    @param indx Index of the commodity.
- *    @return Commodity at that index or NULL.
- */
-Commodity* commodity_getByIndex( const int indx )
-{
-   if ( indx < 0 || indx >= array_size(econ_comm) ) {
-      WARN(_("Commodity with index %d not found"),indx);
-      return NULL;
-   }
-   return &commodity_stack[econ_comm[indx]];
-}
-
 
 /**
  * @brief Frees a commodity.
