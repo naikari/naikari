@@ -109,7 +109,7 @@ function accept()
       misn.osdCreate(_("Ian's Structure"), osd_desc)
 
       local cost = commodity.get("Food"):priceAtTime(planet.cur(), time.get())
-      player.pay(cost * 30, "adjust")
+      player.pay(cost * 15, "adjust")
 
       land()
 

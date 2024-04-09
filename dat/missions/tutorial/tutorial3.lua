@@ -136,7 +136,7 @@ function timer_enter()
 
    misn.osdActive(2)
 
-   local pos = vec2.new(18000, -1200)
+   local pos = vec2.new(0, 0)
    mark = system.mrkAdd(_("Asteroid Field"), pos)
 
    input_hook = hook.input("input", "overlay")

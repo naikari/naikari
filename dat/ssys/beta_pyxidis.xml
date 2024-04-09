@@ -15,6 +15,7 @@
  <jumps>
   <jump target="Alpha Pyxidis">
    <autopos/>
+   <express/>
   </jump>
  </jumps>
 </ssys>

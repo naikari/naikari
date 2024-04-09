@@ -43,6 +43,7 @@
 --]]
 
 local fmt = require "fmt"
+local fleet = require "fleet"
 require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
@@ -53,7 +54,7 @@ local accept_text = _([["Thank you very much. I'll be at your ship when you're r
 
 local starmap_text = _([["Alright, {player}, let me show you where we need to go. Could you open your starmap by pressing {starmapkey}, please?"]])
 
-local jump_text = _([["Thank you. As you can see, I've marked the {system} system on your starmap. That's the system we need to go to. Luckily, it seems you already know the jump point to get there, so if you just select {system} with the mouse and click the Autonav button, we should be there in no time!"]])
+local jump_text = _([["As you can see, I've marked the {system} system on your starmap. That's the system we need to go to. Luckily, it seems you already know the jump point to get there, so if you just select {system} with the mouse and click the Autonav button, we should be there in no time!"]])
 
 local target_nearest_text = _([[As you enter {system}, you see an icon indicating another ship on your radar. However, something seems off. Sirens blare as you realize that the ship is hostile!
 
@@ -63,9 +64,7 @@ local fight_text = _([[You see that the control you engaged automatically sets y
 
 "P-please," Ian urges, "whatever you do, don't let that pirate kill us! Shoot them down or something!" As Ian continues to panic, you grab your ship's combat controls, telling yourself against your own instincts that this will be just like the asteroid mining you did previously.]])
 
-dest_text = _([[With the pirate now defeated, you see Ian visibly relax, thô he continues to sweat nervously. "Th-thank you," he stutters. You yourself breathe a sigh of relief before noticing, to your surprise, a message on your console informing you that the Empire has awarded you a bounty for killing the pirate.
-
-"OK. I'm OK. Um, so, the place we need to get to, {planet}, is in this system. I don't know where it is exactly, but if you have enough talent to take out a p-pirate all by yourself…" Ian faints in his chair before he can finish his sentence. You consider waking him, but decide to let him rest while you search for his destination.]])
+local dest_text = _([[With the pirate now defeated, you see Ian visibly relax. "Th-thank you," he stutters. "Now we just need to land on {planet} and… oh, shit! Shit, shit, shit!" You look at your radar and see the source of Ian's newfound panic: a large fleet of pirates. "There's too many of them! Oh, I knew I should've never come out here! We're gonna die! I don't wanna die!"]])
 
 local pay_text = _([[As you finish the landing procedures and arrive on the surface of {planet}, you notice an Imperial Lieutenant waiting for you. Unsure what to think, you step outside of your ship and begin to salute him, as is the custom, but are interrupted by the sound of Ian's voice behind you. "Milo! Oh, Milo, I'm so happy to s-see you."
 
@@ -115,7 +114,7 @@ function accept()
          fmt.f(_("Press {target_hostile_key} to target the hostile ship"),
             {target_hostile_key=naik.keyGet("target_hostile")}),
          _("Destroy the Pirate Hyena"),
-         fmt.f(_("Land on {planet} ({system} system)"),
+         fmt.f(_("Land on {planet} ({system})"),
             {planet=misplanet:name(), system=missys:name()}),
       }
       misn.osdCreate(_("Ian's Transport"), osd_desc)
@@ -131,7 +130,11 @@ end
 
 function enter_start()
    hook.rm(enter_hook)
-   hook.timer(1, "timer_enter_start")
+
+   misn.osdActive(2)
+
+   input_timer_hook = hook.timer(1, "timer_enter_start")
+   input_hook = hook.input("input", "starmap")
    enter_hook = hook.enter("enter_ambush")
 end
 
@@ -139,10 +142,6 @@ end
 function timer_enter_start()
    tk.msg("", fmt.f(starmap_text,
             {player=player.name(), starmapkey=tutGetKey("starmap")}))
-
-   misn.osdActive(2)
-
-   input_hook = hook.input("input", "starmap")
 end
 
 
@@ -156,6 +155,7 @@ function input(inputname, inputpress, arg)
    end
 
    safe_hook = hook.safe(string.format("safe_%s", arg))
+   hook.rm(input_timer_hook)
    hook.rm(input_hook)
 end
 
@@ -181,7 +181,7 @@ function enter_ambush()
    pilot.toggleSpawn(false)
    pilot.clear()
 
-   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(1000, 1500)
+   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(2000, 0)
    local pirate = pilot.add("Hyena", "Pirate", pos, _("Pirate Hyena"),
          {ai="pirate_norun", naked=true})
 
@@ -256,13 +256,53 @@ function timer_pirate_death()
    player.allowLand(true)
    player.pilot():setNoJump(false)
    player.pilot():setVisible(false)
-   pilot.toggleSpawn(true)
 
+   local pirates = fleet.add(1,
+         {"Pirate Kestrel", "Pirate Admonisher", "Pirate Phalanx",
+            "Pirate Ancestor", "Pirate Ancestor", "Pirate Vendetta",
+            "Pirate Vendetta", "Pirate Shark", "Pirate Shark", "Pirate Shark",
+            "Pirate Shark"},
+         faction.get("Pirate"), system.get("Alpha Pyxidis"), nil, nil, true)
+
+   police_hook = hook.timer(5, "timer_police", pirates)
+   hook.jumpout("delete_policehook_timer")
    hook.land("land")
 end
 
 
+function timer_police(pirates)
+   local police = fleet.add(1,
+         {"Imperial Pacifier", "Imperial Lancelot", "Imperial Shark"},
+         faction.get("Empire"), system.get("Alpha Pyxidis"), nil, nil, true)
+
+   local msg = fmt.f(_("All citizens, evacuate this area immediately! Press {local_jump_key} to initiate an Escape Jump!"),
+         {local_jump_key=tutGetKey("local_jump")})
+   police[1]:broadcast(msg, true)
+
+   police_broadcast_hook = hook.timer(5, "timer_rebroadcast", police[1])
+end
+
+
+function timer_rebroadcast(p)
+   if p == nil or not p:exists() then
+      return
+   end
+
+   local msg = fmt.f(_("I repeat: all citizens, initiate an Escape Jump by pressing {local_jump_key} and evacuate immediately!"),
+         {local_jump_key=tutGetKey("local_jump")})
+   p:broadcast(msg, true)
+end
+
+
+function delete_policehook_timer()
+   hook.rm(police_hook)
+   hook.rm(police_broadcast_hook)
+end
+
+
 function land()
+   delete_policehook_timer()
+
    if planet.cur() ~= misplanet then
       return
    end
@@ -274,7 +314,7 @@ function land()
 
    local exp = time.get() + time.create(0, 250, 0)
    news.add("Empire", _("Pirates in Pyxidis"),
-         _([[Residents of the previously peaceful Pyxidis constellation are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling to and from the area to be cautious. An investigation is underway.]]),
+         _([[Residents of the previously peaceful Pyxidis constellation are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling in the area to be cautious. An investigation is underway.]]),
          exp)
 
    addMiscLog(fmt.f(misn_log, {planet=misplanet:name(), system=missys:name()}))

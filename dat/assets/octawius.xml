@@ -18,15 +18,11 @@
   <population>6800000000</population>
   <rdr_range_mod>400.000000</rdr_range_mod>
   <services>
-   <land/>
+   <land>land</land>
    <refuel/>
    <bar/>
    <commodity/>
-   <shipyard/>
   </services>
   <commodities/>
  </general>
- <tech>
-  <item>Planet Mid</item>
- </tech>
 </asset>

@@ -50,6 +50,7 @@ local paying_factions = {
 
 
 function create()
+   evt.finish() -- Event disabled for now.
    local total_presence = 0
    local presences = system.cur():presences()
    for i, s in ipairs(paying_factions) do

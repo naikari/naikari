@@ -16,6 +16,7 @@
  <general>
   <class>M</class>
   <population>760000000000</population>
+  <rdr_range_mod>400.000000</rdr_range_mod>
   <services>
    <land/>
    <refuel/>

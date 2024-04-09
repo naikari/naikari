@@ -26,7 +26,7 @@
  <asteroids>
   <asteroid>
    <type>small_gold</type>
-   <radius>2000.000000</radius>
+   <radius>4000.000000</radius>
    <pos x="0.000000" y="0.000000"/>
    <density>0.500000</density>
   </asteroid>
