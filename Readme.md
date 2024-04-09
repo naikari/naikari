@@ -4,8 +4,8 @@
 
 ![Naikari](https://naikari.github.io/images/logo.png)
 
-Naikari: Eye of Chaos is a 2-D creative exploration-driven space trading and
-mercenary sandbox game.
+Naikari is a 2-D creative exploration-driven space trading and mercenary
+sandbox game.
 
 You assume control of a space ship and can customize your ship more or less
 however you want. Use your ship to explore the galaxy and uncover its secrets.
