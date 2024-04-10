@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Milspec Orion 9901 APU">
+<outfit name="Milspec Orion 8801 APU">
  <general>
   <typename>APU</typename>
   <slot prop="systems">utility</slot>
   <size>large</size>
-  <priority>7</priority>
-  <mass>1400</mass>
-  <price>4000000</price>
+  <mass>660</mass>
+  <price>3000000</price>
   <description>Milspec develops high performance hardware for your ship, to make sure you are always optimally prepared for the dangers the universe might throw at you on your travels. The Orion APU provides high-end power and shield generation so you can be ready for any situation. Fly mighty, fly Milspec.</description>
-  <gfx_store>core_system_refined_l2.webp</gfx_store>
+  <gfx_store>core_system_refined_l1.webp</gfx_store>
+  <priority>3</priority>
  </general>
  <specific type="modification">
-  <shield>1550</shield>
-  <shield_regen>18</shield_regen>
-  <energy>4800</energy>
-  <energy_regen>159</energy_regen>
+  <shield>1400</shield>
+  <shield_regen>15</shield_regen>
+  <energy>3075</energy>
+  <energy_regen>126</energy_regen>
  </specific>
 </outfit>

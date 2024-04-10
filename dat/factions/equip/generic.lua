@@ -32,16 +32,16 @@ equip_classSkip = {
 }
 
 
--- Table of available core systems by class. `false` means that
--- none should be equipped.
+-- Table of available APUs by class.
+-- `false` means that none should be equipped.
 equip_classOutfits_coreSystems = {
    ["Yacht"] = {
       "Exacorp ET-200 APU",
       "Milspec Aegis 2101 APU",
-      "Milspec Prometheus 2203 Core System",
+      "Milspec Prometheus 2102 APU",
    },
    ["Luxury Yacht"] = {
-      "Milspec Prometheus 2203 Core System",
+      "Milspec Prometheus 2102 APU",
    },
    ["Scout"] = {
       "Exacorp ET-300 APU",
@@ -57,8 +57,8 @@ equip_classOutfits_coreSystems = {
    ["Armored Transport"] = {
       "Exacorp ET-600 APU",
       "Milspec Aegis 6501 APU",
-      "Milspec Prometheus 5403 Core System",
-      "Milspec Orion 5501 Core System",
+      "Milspec Prometheus 6502 APU",
+      "Milspec Orion 6601 APU",
    },
    ["Bulk Freighter"] = {
       "Exacorp ET-900 APU",
@@ -67,59 +67,59 @@ equip_classOutfits_coreSystems = {
    ["Light Fighter"] = {
       "Exacorp ET-200 APU",
       "Milspec Aegis 2101 APU",
-      "Milspec Prometheus 2203 Core System",
-      "Milspec Orion 2301 Core System",
+      "Milspec Prometheus 2102 APU",
+      "Milspec Orion 2201 APU",
    },
    ["Fighter"] = {
       "Exacorp ET-300 APU",
       "Milspec Aegis 3201 APU",
-      "Milspec Prometheus 3603 Core System",
-      "Milspec Orion 3701 Core System",
+      "Milspec Prometheus 3202 APU",
+      "Milspec Orion 3301 APU",
    },
    ["Bomber"] = {
       "Exacorp ET-300 APU",
       "Milspec Aegis 3201 APU",
-      "Milspec Orion 3701 Core System",
+      "Milspec Orion 3301 APU",
    },
    ["Corvette"] = {
       "Exacorp ET-500 APU",
       "Milspec Aegis 5401 APU",
-      "Milspec Orion 4801 Core System",
+      "Milspec Orion 5501 APU",
    },
    ["Destroyer"] = {
       "Exacorp ET-600 APU",
       "Milspec Aegis 6501 APU",
-      "Milspec Prometheus 5403 Core System",
-      "Milspec Orion 5501 Core System",
+      "Milspec Prometheus 6502 APU",
+      "Milspec Orion 6601 APU",
    },
    ["Light Cruiser"] = {
       "Exacorp ET-800 APU",
       "Milspec Aegis 8701 APU",
-      "Milspec Prometheus 8503 Core System",
-      "Milspec Orion 8601 Core System",
+      "Milspec Prometheus 8702 APU",
+      "Milspec Orion 8801 APU",
    },
    ["Cruiser"] = {
       "Exacorp ET-800 APU",
       "Milspec Aegis 8701 APU",
-      "Milspec Prometheus 8503 Core System",
-      "Milspec Orion 8601 Core System",
+      "Milspec Prometheus 8702 APU",
+      "Milspec Orion 8801 APU",
    },
    ["Battleship"] = {
       "Exacorp ET-900 APU",
       "Milspec Aegis 9801 APU",
-      "Milspec Prometheus 9803 Core System",
-      "Milspec Orion 9901 Core System",
+      "Milspec Prometheus 9802 APU",
+      "Milspec Orion 9901 APU",
    },
    ["Carrier"] = {
       "Exacorp ET-900 APU",
       "Milspec Aegis 9801 APU",
-      "Milspec Orion 9901 Core System",
+      "Milspec Orion 9901 APU",
    },
    ["Drone"] = {
-      "Milspec Orion 2301 Core System",
+      "Milspec Orion 2201 APU",
    },
    ["Heavy Drone"] = {
-      "Milspec Orion 3701 Core System",
+      "Milspec Orion 3301 APU",
    },
    ["Station"] = false,
 }
@@ -1211,7 +1211,7 @@ equip_classOutfits_structurals = {
 }
 
 
--- Table of available core systems by base type.
+-- Table of available APUs by base type.
 equip_typeOutfits_coreSystems = {
    ["Brigand"] = {
       probability = {
@@ -1659,7 +1659,7 @@ equip_typeOutfits_structurals = {
 }
 
 
--- Table of available core systems by ship.
+-- Table of available APUs by ship.
 equip_shipOutfits_coreSystems = {
 }
 
@@ -1815,7 +1815,7 @@ function equip_generic(p, recursive)
    p:outfitRm("all")
    p:outfitRm("cores")
 
-   -- Core systems
+   -- APUs
    success = false
    o = equip_shipOutfits_coreSystems[shipname]
    if o == false then

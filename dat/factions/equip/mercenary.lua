@@ -21,7 +21,8 @@ equip_classCargo["Heavy Drone"] = .1
 equip_classOutfits_coreSystems["Yacht"] = {
    "Exacorp ET-200 APU",
    "Milspec Aegis 2101 APU",
-   "Milspec Prometheus 2203 Core System", "Milspec Orion 2301 Core System",
+   "Milspec Prometheus 2102 APU",
+   "Milspec Orion 2201 APU",
 }
 equip_classOutfits_engines["Yacht"] = {
    "Nexus Dart 150 Engine", "Tricon Zephyr Engine",

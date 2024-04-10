@@ -7,7 +7,7 @@
   <priority>7</priority>
   <mass>180</mass>
   <price>400000</price>
-  <description>Milspec cares about your personal safety. Your protection is our concern. The Aegis APU grants your ship excellent shielding while preserving reasonable combat energy. Fly safe, fly Milspec.</description>
+  <description>Milspec cares about your personal safety. Your protection is our concern. The Aegis APU grants your ship excellent shielding while preserving reasonable combat energy. Fly mighty, fly Milspec.</description>
   <gfx_store>core_system_shield_m2.webp</gfx_store>
  </general>
  <specific type="modification">

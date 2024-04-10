@@ -34,7 +34,7 @@
   <weapon size="large" x="-20" y="17" h="2">Ragnarok Beam</weapon>
   <weapon size="large" prop="fighter_bay" x="4" y="-7" h="1">Za'lek Hunter Launcher</weapon>
   <weapon size="large" prop="fighter_bay" x="4" y="7" h="1">Za'lek Hunter Launcher</weapon>
-  <utility size="large" prop="systems" exclusive="1" required="1">Milspec Orion 9901 Core System</utility>
+  <utility size="large" prop="systems" exclusive="1" required="1">Exacorp ET-900 APU</utility>
   <utility size="large">Reactor Class III</utility>
   <utility size="large">Reactor Class III</utility>
   <utility size="large">Reactor Class III</utility>

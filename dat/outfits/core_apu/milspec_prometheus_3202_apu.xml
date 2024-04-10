@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Milspec Prometheus 3603 Core System">
+<outfit name="Milspec Prometheus 3202 APU">
  <general>
-  <typename>Core System</typename>
+  <typename>APU</typename>
   <slot prop="systems">utility</slot>
   <size>small</size>
   <priority>7</priority>
   <mass>45</mass>
   <price>140000</price>
-  <description>Milspec offers solutions for pilots who believe the best defense is a good offense. The Prometheus 3603 boasts a heavy duty power generator as well as considerable shielding and subsystem control.</description>
+  <description>Milspec offers solutions for pilots who believe the best defense is a good offense. The Prometheus APU boasts a heavy duty power generator while still retaining adequate shielding. Fly mighty, fly Milspec.</description>
   <gfx_store>core_system_power_s2.webp</gfx_store>
  </general>
  <specific type="modification">
