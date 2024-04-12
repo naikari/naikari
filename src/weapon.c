@@ -25,6 +25,7 @@
 #include "ai.h"
 #include "camera.h"
 #include "collision.h"
+#include "damagetype.h"
 #include "explosion.h"
 #include "gui.h"
 #include "hook.h"
@@ -1241,6 +1242,7 @@ static void weapon_hit( Weapon* w, Pilot* p, Vector2d* pos )
          dmg_armor*(1.-w->dam_armor_as_shield_mod)
             + dmg_shield*w->dam_shield_as_armor_mod);
    dmg.knockback_pct = odmg->knockback_pct;
+   dmg.recoil_pct = odmg->recoil_pct;
 
    /* Play sound if they have it. */
    s = outfit_soundHit(w->outfit);
@@ -1310,6 +1312,7 @@ static void weapon_hitAst( Weapon* w, Asteroid* a, WeaponLayer layer, Vector2d* 
          dmg_armor*(1.-w->dam_armor_as_shield_mod)
             + dmg_shield*w->dam_shield_as_armor_mod);
    dmg.knockback_pct = odmg->knockback_pct;
+   dmg.recoil_pct = odmg->recoil_pct;
 
    /* Play sound if they have it. */
    s = outfit_soundHit(w->outfit);
@@ -1377,6 +1380,7 @@ static void weapon_hitBeam( Weapon* w, Pilot* p, WeaponLayer layer,
          dmg_armor*(1.-w->dam_armor_as_shield_mod)
             + dmg_shield*w->dam_shield_as_armor_mod);
    dmg.knockback_pct = odmg->knockback_pct;
+   dmg.recoil_pct = odmg->recoil_pct;
 
    /* Have pilot take damage and get real damage done. */
    damage = pilot_hit( p, w->solid, w->parent, &dmg, 1 );
@@ -1471,6 +1475,7 @@ static void weapon_hitAstBeam( Weapon* w, Asteroid* a, WeaponLayer layer,
          dmg_armor*(1.-w->dam_armor_as_shield_mod)
             + dmg_shield*w->dam_shield_as_armor_mod);
    dmg.knockback_pct = odmg->knockback_pct;
+   dmg.recoil_pct = odmg->recoil_pct;
 
    asteroid_hit( a, &dmg );
 
@@ -1598,6 +1603,9 @@ static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
    Pilot *pilot_target;
    double acc;
    glTexture *gfx;
+   double absorb;
+   double damage_shield, damage_armor, recoil;
+   double dam_mod;
 
    /* Only difference is the direction of fire */
    if ((w->parent!=w->target) && (w->target != 0)) /* Must have valid target */
@@ -1671,6 +1679,18 @@ static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
       w->solid->pos.x, w->solid->pos.y,
       w->solid->vel.x, w->solid->vel.y);
 
+   /* Apply recoil as applicable. */
+   absorb = 1. - CLAMP(0., 1.,
+         parent->dmg_absorb - w->outfit->u.blt.dmg.penetration);
+   dtype_calcDamage(&damage_shield, &damage_armor, NULL, &recoil, absorb,
+         &w->outfit->u.blt.dmg, &parent->stats);
+   dam_mod = ((damage_shield+damage_armor)
+         / ((parent->shield_max+parent->armour_max)/2.));
+   vect_cadd(
+      &parent->solid->vel,
+      recoil * (-w->solid->vel.x * (dam_mod/9. + mass/parent->solid->mass/6.)),
+      recoil * (-w->solid->vel.y * (dam_mod/9. + mass/parent->solid->mass/6.)));
+
    /* Set facing direction. */
    gfx = outfit_gfx(w->outfit);
    gl_getSpriteFromDir(&w->sx, &w->sy, gfx, w->solid->dir);
@@ -1700,6 +1720,9 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    double spread;
    Pilot *pilot_target;
    glTexture *gfx;
+   double absorb;
+   double damage_shield, damage_armor, recoil;
+   double dam_mod;
 
    /* Aim forward by default. */   
    rdir = dir;
@@ -1785,6 +1808,18 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
       w->solid->thrust = w->outfit->u.amm.thrust * mass;
       w->solid->speed_max = w->outfit->u.amm.speed; /* Limit speed, we only care if it has thrust. */
    }
+
+   /* Apply recoil as applicable. */
+   absorb = 1. - CLAMP(0., 1.,
+         parent->dmg_absorb - w->outfit->u.amm.dmg.penetration);
+   dtype_calcDamage(&damage_shield, &damage_armor, NULL, &recoil, absorb,
+         &w->outfit->u.amm.dmg, &parent->stats);
+   dam_mod = ((damage_shield+damage_armor)
+         / ((parent->shield_max+parent->armour_max)/2.));
+   vect_cadd(
+      &parent->solid->vel,
+      recoil * (-w->solid->vel.x * (dam_mod/9. + mass/parent->solid->mass/6.)),
+      recoil * (-w->solid->vel.y * (dam_mod/9. + mass/parent->solid->mass/6.)));
 
    /* Handle seekers. */
    if (w->outfit->u.amm.ai != AMMO_AI_UNGUIDED) {

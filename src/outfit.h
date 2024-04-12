@@ -135,6 +135,7 @@ typedef struct Damage_ {
    double shield_pct; /**< Percentage of damage applied to shield. */
    double armor_pct; /**< Percentage of damage applied to armor. */
    double knockback_pct; /**< Percentage of knockback. */
+   double recoil_pct; /**< Percentage of recoil. */
 } Damage;
 
 

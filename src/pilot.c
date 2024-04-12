@@ -1515,8 +1515,8 @@ double pilot_hit(Pilot* p, const Solid* w, const pilotId_t shooter,
    /* Calculate the damage. */
    absorb = 1. - CLAMP(0., 1., p->dmg_absorb - dmg->penetration);
    disable = dmg->disable;
-   dtype_calcDamage(&damage_shield, &damage_armour, absorb, &knockback, dmg,
-         &p->stats);
+   dtype_calcDamage(&damage_shield, &damage_armour, &knockback, NULL, absorb,
+         dmg, &p->stats);
 
    /*
     * Delay undisable if necessary. Amount varies with damage, as e.g. a
@@ -2263,7 +2263,8 @@ void pilot_update( Pilot* pilot, double dt )
          dmg.damage = MAX(0., 2. * (rtmass * (1. + sqrt(pilot->fuel+1.)/28.)));
          dmg.penetration = 1.; /* Full penetration. */
          dmg.disable = 0.;
-         dtype_raw(dmg.type, &dmg.shield_pct, &dmg.armor_pct, &dmg.knockback_pct);
+         dtype_raw(dmg.type, &dmg.shield_pct, &dmg.armor_pct,
+               &dmg.knockback_pct, &dmg.recoil_pct);
          expl_explode(pilot->solid->pos.x, pilot->solid->pos.y,
                pilot->solid->vel.x, pilot->solid->vel.y,
                pilot->ship->gfx_space->sw/2./PILOT_SIZE_APPROX + rtmass,

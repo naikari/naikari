@@ -587,7 +587,7 @@ static int outfitL_weapStats( lua_State *L )
       mod_shots = shots / (shots + mod_shots * outfit_delay(o));
       dmg = outfit_damage(o);
       /* Modulate the damage by average of damage types. */
-      if( dtype_raw( dmg->type, &sdmg, &admg, NULL ) != 0)
+      if (dtype_raw(dmg->type, &sdmg, &admg, NULL, NULL) != 0)
          NLUA_ERROR(L, _("Outfit has invalid damage type."));
       mod_damage *= 0.5*(sdmg+admg);
       /* Calculate good damage estimates. */
@@ -640,7 +640,7 @@ static int outfitL_weapStats( lua_State *L )
    if (dmg==NULL)
       return 0;
    /* Modulate the damage by average of damage types. */
-   dtype_raw( dmg->type, &sdmg, &admg, NULL );
+   dtype_raw(dmg->type, &sdmg, &admg, NULL, NULL);
    mod_damage *= 0.5*(sdmg+admg);
    /* Calculate good damage estimates. */
    dps = shots * mod_damage * dmg->damage;

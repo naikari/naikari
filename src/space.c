@@ -1431,7 +1431,8 @@ void space_init( const char* sysname )
          dmg.penetration = 1.; /* Full penetration. */
          dmg.disable = 0.;
 
-         dtype_calcDamage(&dshield, &darmor, 1., NULL, &dmg, &player.p->stats);
+         dtype_calcDamage(&dshield, &darmor, NULL, NULL, 1., &dmg,
+               &player.p->stats);
          player_message(
                _("#rWARNING: Volatile nebula (%G GW) detected in %s! Taking"
                   " damage:\n"
@@ -4113,7 +4114,8 @@ AsteroidType *space_getType ( int ID )
 void asteroid_hit( Asteroid *a, const Damage *dmg )
 {
    double darmour;
-   dtype_calcDamage( NULL, &darmour, 1, NULL, dmg, NULL );
+   /* TODO: Add knockback effect to asteroids. */
+   dtype_calcDamage(NULL, &darmour, NULL, NULL, 1., dmg, NULL);
 
    a->armour -= darmour;
    if (a->armour <= 0)
@@ -4145,7 +4147,8 @@ static void asteroid_explode ( Asteroid *a, AsteroidAnchor *field, int give_rewa
    dmg.penetration = 1.; /* Full penetration. */
    dmg.damage = 100.;
    dmg.disable = 0.;
-   dtype_raw(dmg.type, &dmg.shield_pct, &dmg.armor_pct, &dmg.knockback_pct);
+   dtype_raw(dmg.type, &dmg.shield_pct, &dmg.armor_pct, &dmg.knockback_pct,
+         &dmg.recoil_pct);
    expl_explode(a->pos.x, a->pos.y, a->vel.x, a->vel.y,
          50., &dmg, NULL, EXPL_MODE_SHIP);
 

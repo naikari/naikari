@@ -41,6 +41,7 @@ typedef struct DTYPE_ {
    double sdam;   /**< Shield damage multiplier */
    double adam;   /**< Armour damage multiplier */
    double knock;  /**< Knockback */
+   double recoil; /**< Recoil */
    size_t soffset; /**< Offset for shield modifier ship statistic. */
    size_t aoffset; /**< Offset for armour modifier ship statistic. */
 } DTYPE;
@@ -102,6 +103,7 @@ static int DTYPE_parse( DTYPE *temp, const xmlNodePtr parent )
       }
       xmlr_float(node, "armour", temp->adam);
       xmlr_float(node, "knockback", temp->knock);
+      xmlr_float(node, "recoil", temp->recoil);
 
       WARN(_("Unknown node of type '%s' in damage node '%s'."), node->name, temp->name);
    } while (xml_nextNode(node));
@@ -111,6 +113,7 @@ static int DTYPE_parse( DTYPE *temp, const xmlNodePtr parent )
    MELEMENT(temp->sdam<0.,"shield");
    MELEMENT(temp->adam<0.,"armour");
    MELEMENT(temp->knock<0.,"knockback");
+   MELEMENT(temp->recoil<0., "recoil");
 #undef MELEMENT
 
    return 0;
@@ -248,9 +251,11 @@ void dtype_free (void)
  *    @param[out] shield Shield damage modulator.
  *    @param[out] armour Armour damage modulator.
  *    @param[out] knockback Knockback modulator.
+ *    @param[out] recoil Recoil modulator.
  *    @return 0 on success.
  */
-int dtype_raw( int type, double *shield, double *armour, double *knockback )
+int dtype_raw(int type, double *shield, double *armour, double *knockback,
+      double *recoil)
 {
    DTYPE *dtype = dtype_validType( type );
    if (dtype == NULL)
@@ -261,6 +266,8 @@ int dtype_raw( int type, double *shield, double *armour, double *knockback )
       *armour = dtype->adam;
    if (knockback != NULL)
       *knockback = dtype->knock;
+   if (recoil != NULL)
+      *recoil = dtype->recoil;
    return 0;
 }
 
@@ -271,11 +278,13 @@ int dtype_raw( int type, double *shield, double *armour, double *knockback )
  *    @param[out] dshield Real shield damage.
  *    @param[out] darmour Real armour damage.
  *    @param[out] knockback Knockback modifier.
+ *    @param[out] recoil Recoil modifier.
  *    @param[in] absorb Absorption value.
  *    @param[in] dmg Damage information.
  *    @param[in] s Ship stats to use.
  */
-void dtype_calcDamage( double *dshield, double *darmour, double absorb, double *knockback, const Damage *dmg, const ShipStats *s )
+void dtype_calcDamage(double *dshield, double *darmour, double *knockback,
+      double *recoil, double absorb, const Damage *dmg, const ShipStats *s)
 {
    DTYPE *dtype;
    char *ptr;
@@ -317,6 +326,8 @@ void dtype_calcDamage( double *dshield, double *darmour, double absorb, double *
 
    if (knockback != NULL)
       *knockback = dmg->knockback_pct;
+   if (recoil != NULL)
+      *recoil = dmg->recoil_pct;
 }
 
 

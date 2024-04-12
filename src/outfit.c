@@ -1054,7 +1054,7 @@ static int outfit_parseDamage( Damage *dmg, xmlNodePtr node )
             WARN(_("Unknown damage type '%s'"), buf);
          }
          dtype_raw(dmg->type, &dmg->shield_pct, &dmg->armor_pct,
-               &dmg->knockback_pct);
+               &dmg->knockback_pct, &dmg->recoil_pct);
       }
       else WARN(_("Damage has unknown node '%s'"), cur->name);
 
@@ -1157,7 +1157,7 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
    char *buf;
    double C, area;
    int l;
-   double dshield, darmor, dknockback;
+   double dshield, darmor, dknockback, drecoil;
    double dot_mod;
    double charge_mod;
 
@@ -1314,8 +1314,8 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
             _("%G%% Penetration\n"), temp->u.blt.dmg.penetration*100.);
 
-   dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &temp->u.blt.dmg,
-         NULL);
+   dtype_calcDamage(&dshield, &darmor, &dknockback, &drecoil, 1.,
+         &temp->u.blt.dmg, NULL);
    dot_mod = 1. / temp->u.blt.delay;
    if (temp->u.blt.charge_max > 0.) {
       /* Charged bolt damage stats. */
@@ -1364,6 +1364,9 @@ static void outfit_parseSBolt( Outfit* temp, const xmlNodePtr parent )
       if (dknockback > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
                _("%G%% Knockback\n"), dknockback * 100.);
+      if (drecoil > 0.)
+         l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
+               _("%G%% Recoil\n"), drecoil * 100.);
       if (temp->u.blt.dmg.disable > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX-l,
                _("%.2f GW Disable [%.1f GJ/shot]\n"),
@@ -1564,8 +1567,8 @@ static void outfit_parseSBeam( Outfit* temp, const xmlNodePtr parent )
             _("%G%% Penetration\n"), temp->u.bem.dmg.penetration*100.);
 
    if (temp->u.bem.dmg.damage > 0.) {
-      dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &temp->u.bem.dmg,
-            NULL);
+      dtype_calcDamage(&dshield, &darmor, &dknockback, NULL, 1.,
+            &temp->u.bem.dmg, NULL);
       if (dshield > 0.)
          l += scnprintf(&temp->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
                _("%.2f GW Shield Damage [%.0f GW avg.]\n"),
@@ -2726,7 +2729,7 @@ static void outfit_launcherDesc( Outfit* o )
 {
    int l;
    Outfit *a; /* Launcher's ammo. */
-   double dshield, darmor, dknockback;
+   double dshield, darmor, dknockback, drecoil;
 
    if (o->desc_short != NULL) {
       WARN(_("Outfit '%s' already has a short description"), o->name);
@@ -2754,7 +2757,8 @@ static void outfit_launcherDesc( Outfit* o )
             _("%G%% Penetration\n"), a->u.amm.dmg.penetration * 100.);
 
    if (a->u.amm.dmg.damage > 0.) {
-      dtype_calcDamage(&dshield, &darmor, 1., &dknockback, &a->u.amm.dmg, NULL);
+      dtype_calcDamage(&dshield, &darmor, &dknockback, &drecoil, 1.,
+            &a->u.amm.dmg, NULL);
       if (dshield > 0.)
          l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
                _("%.2f GW Shield Damage [%.1f GJ/shot]\n"),
@@ -2766,6 +2770,9 @@ static void outfit_launcherDesc( Outfit* o )
       if (dknockback > 0.)
          l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
                _("%G%% Knockback\n"), dknockback * 100.);
+      if (drecoil > 0.)
+         l += scnprintf(&o->desc_short[l], OUTFIT_SHORTDESC_MAX - l,
+               _("%G%% Recoil\n"), drecoil * 100.);
    }
 
    if (a->u.amm.dmg.disable > 0.)
