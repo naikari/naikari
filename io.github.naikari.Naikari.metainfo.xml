@@ -26,6 +26,18 @@
   <launchable type="desktop-id">io.github.naikari.Naikari.desktop</launchable>
 
   <releases>
+    <release version="0.13.0">
+      <description>
+        <ul>
+          <li>Completely changed game vision focusing on customization, personalization, and exploration.</li>
+          <li>Completely new universe made from scratch.</li>
+          <li>Completely new set of factions.</li>
+          <li>Completely new plot, based on some elements of the old plot.</li>
+          <li>Major overhaul of ship outfitting and outfit choices.</li>
+        </ul>
+      </description>
+      <url>https://github.com/naikari/naikari/releases/tag/v0.13.0</url>
+    </release>
     <release version="0.12.0" date="2024-02-12" type="stable">
       <description>
         <ul>
