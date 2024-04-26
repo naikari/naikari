@@ -7,7 +7,7 @@
   <mass>100</mass>
   <price>0</price>
   <description>Clogged, corroded and cracked in every way possible while still remaining in functional condition, this engine really belongs on the scrap heap.</description>
-  <gfx_store>engine6.webp</gfx_store>
+  <gfx_store>beat_up_engine.png</gfx_store>
  </general>
  <specific type="modification">
   <engine_limit>4500</engine_limit>
