@@ -435,11 +435,11 @@ function defaultOutfit( slot )
 
    if slot.property == "Core Systems" then
       if slot.size == "Small" then
-         return "Previous Generation Small Systems"
+         return "Makeshift Small APU"
       elseif slot.size == "Medium" then
-         return "Previous Generation Medium Systems"
+         return "Makeshift Medium APU"
       elseif slot.size == "Large" then
-         return "Previous Generation Large Systems"
+         return "Makeshift Large APU"
       end
    elseif slot.property == "Hull Modifications" then
       if slot.size == "Small" then

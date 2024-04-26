@@ -185,7 +185,7 @@ function enter_ambush()
    local pirate = pilot.add("Hyena", "Pirate", pos, _("Pirate Hyena"),
          {ai="pirate_norun", naked=true})
 
-   pirate:outfitAdd("Previous Generation Small Systems")
+   pirate:outfitAdd("Makeshift Small APU")
    pirate:outfitAdd("Beat Up Small Engine")
    pirate:outfitAdd("Patchwork Light Plating")
    pirate:outfitAdd("Jump Scanner") -- Lowers energy regeneration
