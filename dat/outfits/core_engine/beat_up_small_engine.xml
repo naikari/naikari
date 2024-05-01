@@ -16,6 +16,6 @@
   <turn>85</turn>
   <fuel>200</fuel>
   <fuel_regen>0.05</fuel_regen>
-  <energy_regen_malus>10</energy_regen_malus>
+  <energy_regen_malus>8</energy_regen_malus>
  </specific>
 </outfit>
