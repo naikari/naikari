@@ -10,12 +10,12 @@
   <gfx_store>beat_up_engine.png</gfx_store>
  </general>
  <specific type="modification">
-  <engine_limit>150</engine_limit>
+  <engine_limit>300</engine_limit>
   <speed>175</speed>
   <thrust>100</thrust>
   <turn>85</turn>
   <fuel>200</fuel>
   <fuel_regen>0.05</fuel_regen>
-  <energy_regen_malus>1</energy_regen_malus>
+  <energy_regen_malus>10</energy_regen_malus>
  </specific>
 </outfit>
