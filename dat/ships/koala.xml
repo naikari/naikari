@@ -11,7 +11,7 @@
  <trail_generator x="-4" y="-21" h="0">nebula</trail_generator>
  <trail_generator x="-4" y="21" h="0">nebula</trail_generator>
  <trail_generator x="-5" y="0" h="-10" always_under="1" >fire</trail_generator>
- <fabricator>Exacorp</fabricator>
+ <fabricator>Nova Gear, Ltd.</fabricator>
  <description>The Koäla is a premium light cargo vessel which specializes in carrying heavy loads of cargo while still having enough speed to make a deadline. Since its large cargo loads and small size make it a tempting target for pirates, it's equipped with advanced electronics which give it unmatched shield for its class. However, it lacks the raw carrying capacity of its larger counterpart, the Mule.</description>
  <health>
   <armour>110</armour>
