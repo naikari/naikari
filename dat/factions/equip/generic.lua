@@ -130,19 +130,19 @@ equip_classOutfits_coreSystems = {
 equip_classOutfits_engines = {
    ["Yacht"] = {
       "Nexus Dart 150 Engine",
-      "Tricon Zephyr Engine",
+      "Flex Zephyr Engine",
    },
    ["Luxury Yacht"] = {
       "Nexus Dart 150 Engine",
-      "Tricon Zephyr Engine",
+      "Flex Zephyr Engine",
    },
    ["Scout"] = {
       "Nexus Dart 150 Engine",
-      "Tricon Zephyr Engine",
+      "Flex Zephyr Engine",
    },
    ["Courier"] = {
       "Unicorp Hawk 300 Engine",
-      "Tricon Zephyr II Engine",
+      "Flex Zephyr II Engine",
       "Melendez Ox XL Engine",
    },
    ["Freighter"] = {
@@ -159,49 +159,49 @@ equip_classOutfits_engines = {
    },
    ["Light Fighter"] = {
       "Nexus Dart 150 Engine",
-      "Tricon Zephyr Engine",
+      "Flex Zephyr Engine",
    },
    ["Fighter"] = {
       "Unicorp Hawk 300 Engine",
-      "Tricon Zephyr II Engine",
+      "Flex Zephyr II Engine",
    },
    ["Bomber"] = {
       "Unicorp Hawk 300 Engine",
-      "Tricon Zephyr II Engine",
+      "Flex Zephyr II Engine",
       "Melendez Ox XL Engine",
    },
    ["Corvette"] = {
       "Nexus Arrow 700 Engine",
-      "Tricon Cyclone Engine",
+      "Flex Cyclone Engine",
    },
    ["Destroyer"] = {
       "Unicorp Falcon 1200 Engine",
-      "Tricon Cyclone II Engine",
+      "Flex Cyclone II Engine",
    },
    ["Light Cruiser"] = {
       "Nexus Bolt 4500 Engine",
-      "Tricon Typhoon Engine",
+      "Flex Typhoon Engine",
       "Krain Remige Engine",
    },
    ["Cruiser"] = {
       "Nexus Bolt 4500 Engine",
-      "Tricon Typhoon Engine",
+      "Flex Typhoon Engine",
    },
    ["Battleship"] = {
       "Unicorp Eagle 6500 Engine",
-      "Tricon Typhoon II Engine",
+      "Flex Typhoon II Engine",
       "Melendez Mammoth XL Engine",
    },
    ["Carrier"] = {
       "Unicorp Eagle 6500 Engine",
-      "Tricon Typhoon II Engine",
+      "Flex Typhoon II Engine",
       "Melendez Mammoth XL Engine",
    },
    ["Drone"] = {
-      "Tricon Zephyr Engine",
+      "Flex Zephyr Engine",
    },
    ["Heavy Drone"] = {
-      "Tricon Zephyr II Engine",
+      "Flex Zephyr II Engine",
    },
    ["Station"] = false,
 }
@@ -1298,7 +1298,7 @@ equip_typeOutfits_coreSystems = {
 equip_typeOutfits_engines = {
    ["Vendetta"] = {
       "Unicorp Hawk 300 Engine",
-      "Tricon Zephyr II Engine",
+      "Flex Zephyr II Engine",
       "Melendez Ox XL Engine",
    },
    ["Brigand"] = {

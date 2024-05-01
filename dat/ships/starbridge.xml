@@ -41,7 +41,7 @@
   <utility size="large">Reactor Class III</utility>
   <utility size="large">Reactor Class III</utility>
   <utility size="large">Reactor Class III</utility>
-  <structure size="large" prop="engines" exclusive="1" required="1">Tricon Typhoon II Engine</structure>
+  <structure size="large" prop="engines" exclusive="1" required="1">Flex Typhoon II Engine</structure>
   <structure size="large" prop="hull" exclusive="1" required="1">S&amp;K Superheavy Combat Plating</structure>
   <structure size="large">Active Plating</structure>
   <structure size="large">Active Plating</structure>

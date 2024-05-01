@@ -163,7 +163,6 @@
   <colour>purple</colour>
   <spawn>proteron</spawn>
   <standing>proteron</standing>
-  <equip>proteron</equip>
   <allies>
   </allies>
   <enemies>
@@ -274,7 +273,6 @@
   <player>2</player>
   <spawn>zalek</spawn>
   <standing>zalek</standing>
-  <equip>zalek</equip>
   <allies>
   </allies>
   <enemies>
@@ -291,7 +289,6 @@
   <player>3</player>
   <spawn>sirius</spawn>
   <standing>sirius</standing>
-  <equip>sirius</equip>
   <allies>
   </allies>
   <enemies>
