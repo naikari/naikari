@@ -143,19 +143,19 @@ equip_classOutfits_engines = {
    ["Courier"] = {
       "Unicorp Hawk 300 Engine",
       "Flex Zephyr II Engine",
-      "Melendez Ox XL Engine",
+      "NGL Ox XL Engine",
    },
    ["Freighter"] = {
       "Unicorp Falcon 1200 Engine",
-      "Melendez Buffalo XL Engine",
+      "NGL Buffalo XL Engine",
    },
    ["Armored Transport"] = {
       "Unicorp Falcon 1200 Engine",
-      "Melendez Buffalo XL Engine",
+      "NGL Buffalo XL Engine",
    },
    ["Bulk Freighter"] = {
       "Unicorp Eagle 6500 Engine",
-      "Melendez Mammoth XL Engine",
+      "NGL Mammoth XL Engine",
    },
    ["Light Fighter"] = {
       "Nexus Dart 150 Engine",
@@ -168,7 +168,7 @@ equip_classOutfits_engines = {
    ["Bomber"] = {
       "Unicorp Hawk 300 Engine",
       "Flex Zephyr II Engine",
-      "Melendez Ox XL Engine",
+      "NGL Ox XL Engine",
    },
    ["Corvette"] = {
       "Nexus Arrow 700 Engine",
@@ -190,12 +190,12 @@ equip_classOutfits_engines = {
    ["Battleship"] = {
       "Unicorp Eagle 6500 Engine",
       "Flex Typhoon II Engine",
-      "Melendez Mammoth XL Engine",
+      "NGL Mammoth XL Engine",
    },
    ["Carrier"] = {
       "Unicorp Eagle 6500 Engine",
       "Flex Typhoon II Engine",
-      "Melendez Mammoth XL Engine",
+      "NGL Mammoth XL Engine",
    },
    ["Drone"] = {
       "Flex Zephyr Engine",
@@ -1299,7 +1299,7 @@ equip_typeOutfits_engines = {
    ["Vendetta"] = {
       "Unicorp Hawk 300 Engine",
       "Flex Zephyr II Engine",
-      "Melendez Ox XL Engine",
+      "NGL Ox XL Engine",
    },
    ["Brigand"] = {
       probability = {
