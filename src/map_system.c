@@ -665,10 +665,10 @@ static void map_system_array_update( unsigned int wid, char* str ) {
 
       if (ship->fuel != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-               _("\n#nFuel:#0 %.0f kL"), ship->fuel);
+               _("\n#nFuel:#0 %.0f kmol"), ship->fuel);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nFuel Use:#0 %.0f kL"), ship->fuel_consumption);
+            _("\n#nFuel Use:#0 %.0f kmol"), ship->fuel_consumption);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
             _("\n#nRadar Range:#0 %.0f mAU"), ship->rdr_range);

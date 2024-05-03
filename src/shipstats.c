@@ -384,11 +384,11 @@ static const ShipStatsLookup ss_lookup[] = {
 
    /* Mobility. */
    A_ELEM(SS_TYPE_A_FUEL, fuel,
-      N_("%+.0f kL Fuel"),
+      N_("%+.0f kmol Fuel"),
       NULL,
       -INFINITY, INFINITY),
    A_ELEM(SS_TYPE_A_FUEL_REGEN, fuel_regen,
-      N_("%+G kL/s Fuel Regeneration"),
+      N_("%+G kmol/s Fuel Regeneration"),
       NULL,
       -INFINITY, INFINITY),
    DI_ELEM(SS_TYPE_D_JUMP_DELAY, jump_delay,

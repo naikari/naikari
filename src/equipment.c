@@ -1704,7 +1704,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "#nArmor:#0 #%c%s%.0f#0 GJ; #nRegeneration:#0 #%c%s%.1f#0 GW\n"
          "#nEnergy:#0 #%c%s%.0f#0 GJ; #nRegeneration:#0 #%c%s%.1f#0 GW\n"
          "#nCargo:#0 %d / #%c%s%d#0 kt\n"
-         "#nFuel:#0 #%c%s%.0f#0 kL (%s); #nRegeneration:#0 #%c%s%.2f#0 kL/s\n"
+         "#nFuel:#0 #%c%s%.0f#0 kmol (%s); #nRegeneration:#0 #%c%s%.2f#0 kmol/s\n"
          "#nRadar Range:#0 #%c%s%.0f#0 mAU\n"
          "#nJump Detect Range:#0 #%c%s%.0f#0 mAU\n"
          "\n"

@@ -576,7 +576,7 @@ static void ship_update( unsigned int wid )
          "#nArmor:#0 %.0f / %.0f GJ; #nRegeneration:#0 %.1f GW\n"
          "#nEnergy:#0 %.0f / %.0f GJ; #nRegeneration:#0 %.1f GW\n"
          "#nCargo:#0 %d / %d kt\n"
-         "#nFuel:#0 %.0f / %.0f kL (%s); #nRegeneration:#0 %.2f kL/s\n"
+         "#nFuel:#0 %.0f / %.0f kmol (%s); #nRegeneration:#0 %.2f kmol/s\n"
          "#nRadar Range:#0 %.0f mAU\n"
          "#nJump Detect Range:#0 %.0f mAU\n"
          "\n"),

@@ -304,19 +304,19 @@ void shipyard_update( unsigned int wid, char* str )
 
    if (ship->fuel != 0.) {
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            p_("ship_fuel", "\n#nFuel:#0 %G kL"), ship->fuel);
+            p_("ship_fuel", "\n#nFuel:#0 %G kmol"), ship->fuel);
       if (ship->fuel_regen != 0.)
          l += scnprintf(&buf[l], sizeof(buf) - l,
-               p_("ship_fuel_regen", "; #nRegeneration:#0 %G kL/s"),
+               p_("ship_fuel_regen", "; #nRegeneration:#0 %G kmol/s"),
                ship->fuel_regen);
    }
    else if (ship->fuel_regen != 0.)
       l += scnprintf(&buf[l], sizeof(buf) - l,
-            p_("ship_fuel_regen", "\n#nFuel Regeneration:#0 %G kL/s"),
+            p_("ship_fuel_regen", "\n#nFuel Regeneration:#0 %G kmol/s"),
             ship->fuel_regen);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         p_("ship_fuel_use", "\n#nFuel Use:#0 %G kL"), ship->fuel_consumption);
+         p_("ship_fuel_use", "\n#nFuel Use:#0 %G kmol"), ship->fuel_consumption);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
          p_("ship_radar_range", "\n#nRadar Range:#0 %G mAU"), ship->rdr_range);

@@ -361,7 +361,7 @@ static void board_stealFuel( unsigned int wdw, char* str )
    stolen_fuel = pilot_boardStealFuel(player.p, p);
 
    board_update(wdw);
-   player_message(_("#oYou loot %.0f kL of fuel from the ship."), stolen_fuel);
+   player_message(_("#oYou loot %.0f kmol of fuel from the ship."), stolen_fuel);
 }
 
 
@@ -416,7 +416,7 @@ static void board_update( unsigned int wdw )
    if (fuel <= 0)
       snprintf( str, sizeof(str), _("none") );
    else
-      snprintf(str, sizeof(str), n_("%d kL", "%d kL", fuel), fuel);
+      snprintf(str, sizeof(str), n_("%d kmol", "%d kmol", fuel), fuel);
    window_modifyText( wdw, "txtDataFuel", str );
 
    /* Commodities. */

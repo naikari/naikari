@@ -802,7 +802,7 @@ static void map_update( unsigned int wid )
 
    asprintf(&infobuf,
          _("#nCredits:#0 %s"
-            "    #nFuel:#0 %.0f kL (%s)"
+            "    #nFuel:#0 %.0f kmol (%s)"
             "    #nCurrent System:#0 %s"
             "    #nTarget System:#0 %s %s"),
          credbuf,

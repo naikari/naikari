@@ -1153,8 +1153,8 @@ function render_bottombar()
    local fuel = player.fuel()
    local jumps = player.jumps()
    local fueltext = fmt.f(
-      n_("{fuel:.0f}/{maxfuel:.0f} kL ({jumps} jump)",
-         "{fuel:.0f}/{maxfuel:.0f} kL ({jumps} jumps)",
+      n_("{fuel:.0f}/{maxfuel:.0f} kmol ({jumps} jump)",
+         "{fuel:.0f}/{maxfuel:.0f} kmol ({jumps} jumps)",
          jumps),
       {fuel=fuel, maxfuel=player_fuel_max, jumps=fmt.number(jumps)})
 

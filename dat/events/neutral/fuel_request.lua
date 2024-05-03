@@ -146,8 +146,8 @@ function pilot_hail(p)
    end
 
    local needed_sentence = fmt.f(
-         n_("I need {amount} kL of fuel.",
-            "I need {amount} kL of fuel.", fuel_needed),
+         n_("I need {amount} kmol of fuel.",
+            "I need {amount} kmol of fuel.", fuel_needed),
          {amount=fuel_needed})
 
    local s = fmt.f(request_text,
