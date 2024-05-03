@@ -41,7 +41,7 @@ equip_typeOutfits_coreSystems["Kestrel"] = {
 }
 
 equip_typeOutfits_engines["Rhino"] = {
-   "Unicorp Falcon 1200 Engine",
+   "Exacorp Falcon 1200 Engine",
 }
 
 equip_typeOutfits_weapons["Hyena"] = equip_shipOutfits_weapons["Pirate Shark"]

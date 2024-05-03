@@ -141,20 +141,20 @@ equip_classOutfits_engines = {
       "Flex Zephyr Engine",
    },
    ["Courier"] = {
-      "Unicorp Hawk 300 Engine",
+      "Exacorp Hawk 300 Engine",
       "Flex Zephyr II Engine",
       "NGL Ox XL Engine",
    },
    ["Freighter"] = {
-      "Unicorp Falcon 1200 Engine",
+      "Exacorp Falcon 1200 Engine",
       "NGL Buffalo XL Engine",
    },
    ["Armored Transport"] = {
-      "Unicorp Falcon 1200 Engine",
+      "Exacorp Falcon 1200 Engine",
       "NGL Buffalo XL Engine",
    },
    ["Bulk Freighter"] = {
-      "Unicorp Eagle 6500 Engine",
+      "Exacorp Eagle 6500 Engine",
       "NGL Mammoth XL Engine",
    },
    ["Light Fighter"] = {
@@ -162,11 +162,11 @@ equip_classOutfits_engines = {
       "Flex Zephyr Engine",
    },
    ["Fighter"] = {
-      "Unicorp Hawk 300 Engine",
+      "Exacorp Hawk 300 Engine",
       "Flex Zephyr II Engine",
    },
    ["Bomber"] = {
-      "Unicorp Hawk 300 Engine",
+      "Exacorp Hawk 300 Engine",
       "Flex Zephyr II Engine",
       "NGL Ox XL Engine",
    },
@@ -175,7 +175,7 @@ equip_classOutfits_engines = {
       "Flex Cyclone Engine",
    },
    ["Destroyer"] = {
-      "Unicorp Falcon 1200 Engine",
+      "Exacorp Falcon 1200 Engine",
       "Flex Cyclone II Engine",
    },
    ["Light Cruiser"] = {
@@ -188,12 +188,12 @@ equip_classOutfits_engines = {
       "Flex Typhoon Engine",
    },
    ["Battleship"] = {
-      "Unicorp Eagle 6500 Engine",
+      "Exacorp Eagle 6500 Engine",
       "Flex Typhoon II Engine",
       "NGL Mammoth XL Engine",
    },
    ["Carrier"] = {
-      "Unicorp Eagle 6500 Engine",
+      "Exacorp Eagle 6500 Engine",
       "Flex Typhoon II Engine",
       "NGL Mammoth XL Engine",
    },
@@ -1297,7 +1297,7 @@ equip_typeOutfits_coreSystems = {
 -- Table of available engines by base type.
 equip_typeOutfits_engines = {
    ["Vendetta"] = {
-      "Unicorp Hawk 300 Engine",
+      "Exacorp Hawk 300 Engine",
       "Flex Zephyr II Engine",
       "NGL Ox XL Engine",
    },
@@ -1860,7 +1860,7 @@ function equip_generic(p, recursive)
       success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    if not success then
-      equip_warn(p, "Unicorp Hawk 300 Engine")
+      equip_warn(p, "Exacorp Hawk 300 Engine")
    end
 
    -- Hulls
