@@ -257,12 +257,17 @@ function timer_pirate_death()
    player.pilot():setNoJump(false)
    player.pilot():setVisible(false)
 
+   -- Spawn the pirates as mercenaries to given them lethal weapons,
+   -- then change faction to pirate.
    local pirates = fleet.add(1,
          {"Pirate Kestrel", "Pirate Admonisher", "Pirate Phalanx",
             "Pirate Ancestor", "Pirate Ancestor", "Pirate Vendetta",
             "Pirate Vendetta", "Pirate Shark", "Pirate Shark", "Pirate Shark",
             "Pirate Shark"},
-         faction.get("Pirate"), system.get("Alpha Pyxidis"), nil, nil, true)
+         "Mercenary", system.get("Alpha Pyxidis"), nil, nil, true)
+   for i = 1, #pirates do
+      pirates[i]:setFaction("Pirate")
+   end
 
    police_hook = hook.timer(5, "timer_police", pirates)
    hook.jumpout("delete_policehook_timer")
@@ -273,7 +278,7 @@ end
 function timer_police(pirates)
    local police = fleet.add(1,
          {"Imperial Pacifier", "Imperial Lancelot", "Imperial Shark"},
-         faction.get("Empire"), system.get("Alpha Pyxidis"), nil, nil, true)
+         "Empire", system.get("Alpha Pyxidis"), nil, nil, true)
 
    local msg = fmt.f(_("All citizens, evacuate this area immediately! Press {local_jump_key} to initiate an Escape Jump!"),
          {local_jump_key=tutGetKey("local_jump")})
