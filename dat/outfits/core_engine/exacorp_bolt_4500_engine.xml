@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Nexus Bolt 4500 Engine">
+<outfit name="Exacorp Bolt 4500 Engine">
  <general>
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
   <size>large</size>
   <mass>60</mass>
   <price>900000</price>
-  <description>The Bolt 4500 is a somewhat uncommonly used engine designed for light cruisers. Like most Nexus engines, it doesn't excel in speed, but its low power consumption makes it an attractive option for some pilots.</description>
+  <description>The Bolt 4500 is a somewhat uncommonly used engine designed for light cruisers. Like most Exacorp engines, it doesn't excel in speed, but its low power consumption makes it an attractive option for some pilots.</description>
   <gfx_store>nexus_engine_l.webp</gfx_store>
   <priority>3</priority>
  </general>

@@ -25,7 +25,8 @@ equip_classOutfits_coreSystems["Yacht"] = {
    "Milspec Orion 2201 APU",
 }
 equip_classOutfits_engines["Yacht"] = {
-   "Nexus Dart 150 Engine", "Tricon Zephyr Engine",
+   "Exacorp Dart 150 Engine",
+   "Tricon Zephyr Engine",
 }
 equip_classOutfits_hulls["Yacht"] = {
    "Unicorp D-2 Light Plating",
