@@ -7,7 +7,9 @@
   <priority>7</priority>
   <mass>65</mass>
   <price>1200000</price>
-  <description>The Eagle 6500 is Exacorp's largest and highest-capacity engine, thô perhaps not a flagship model. Its relatively low price makes it attractive to captains on a tight budget if their performance demands aren't too great, and its efficiency makes it an attractive option for heavy cruisers that need as much battery power for their weapons as possible.</description>
+  <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
+
+Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
   <gfx_store>unicorp_engine_l.webp</gfx_store>
  </general>
  <specific type="modification">

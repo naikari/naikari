@@ -7,7 +7,9 @@
   <priority>7</priority>
   <mass>12</mass>
   <price>75000</price>
-  <description>The Hawk 300 is aimed at heavy fighters and light-duty cargo vessels. Its modest energy consumption allows it to be equipped on most vessels without requiring reactor upgrades.</description>
+  <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
+
+Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
   <gfx_store>unicorp_engine_s.webp</gfx_store>
  </general>
  <specific type="modification">

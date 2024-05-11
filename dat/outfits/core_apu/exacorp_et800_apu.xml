@@ -6,7 +6,7 @@
   <size>large</size>
   <mass>540</mass>
   <price>500000</price>
-  <description>A modest but to-spec auxiliary power unit offering reasonable performance at an affordable price.</description>
+  <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.</description>
   <gfx_store>core_system_basic_l1.webp</gfx_store>
   <priority>3</priority>
  </general>
