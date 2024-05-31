@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout Naikari Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           path: source
@@ -39,21 +39,21 @@ jobs:
           cp source/dat/VERSION build/dist
 
       - name: Upload Source Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: naikari-dist
           path: ${{ github.workspace }}/build/dist/source.tar.xz
           if-no-files-found: error
 
       - name: Upload Version Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: naikari-version
           path: ${{ github.workspace }}/build/dist/VERSION
           if-no-files-found: error
 
       - name: Upload GitHub Deployment Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: naikari-github-deployment
           path: ${{ github.workspace }}/build/dist/gh/*
@@ -68,7 +68,7 @@ jobs:
 
     steps:
       - name: Get Source
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: naikari-dist
 
@@ -82,7 +82,7 @@ jobs:
           ./source/utils/buildAppImage.sh -n -s "source" -b "build"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: naikari-linux-x86-64
           path: "${{ github.workspace }}/build/dist/*"
@@ -96,7 +96,7 @@ jobs:
 
     steps:
       - name: Get Source
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: naikari-dist
 
@@ -129,7 +129,7 @@ jobs:
           meson install -C build
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: naikari-win64
           path: ${{ github.workspace }}/build/dist/*
@@ -143,7 +143,7 @@ jobs:
 
     steps:
       - name: Get Source
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: naikari-dist
 
@@ -178,7 +178,7 @@ jobs:
           rm -rf Naikari.app
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: naikari-macos
           path: ${{ github.workspace }}/build/dist/*
@@ -204,7 +204,7 @@ jobs:
 
     steps:
       - name: Checkout Naikari Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Release Staging and Output Areas
         run: |
@@ -212,7 +212,7 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: ${{ github.workspace }}/build/staging
 

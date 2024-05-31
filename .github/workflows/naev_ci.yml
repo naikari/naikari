@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout Naikari Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: source
           fetch-depth: 0
@@ -22,7 +22,7 @@ jobs:
           meson dist -C build --no-tests --include-subprojects
 
       - name: Upload Dist Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: naikari-dist-${{ github.sha }}
           path: ${{ github.workspace }}/build/meson-dist/*
@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Get Source
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: naikari-dist-${{ github.sha }}
 
@@ -71,7 +71,7 @@ jobs:
               -Ddocs_lua=disabled
 
       - name: Upload Setup Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ success() || steps.setup.outcome == 'failure' }}
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-setup-log
@@ -83,14 +83,14 @@ jobs:
           meson compile -C build
 
       - name: Upload Compile Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ success() || steps.compile.outcome == 'failure' }}
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-compile-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-buildArtifacts
           path: |
@@ -103,7 +103,7 @@ jobs:
           DESTDIR: "${{ github.workspace }}/staging"
 
       - name: Upload Install Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-install-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
@@ -114,7 +114,7 @@ jobs:
           ./source/utils/buildAppImage.sh -c -m -s source -b appImageBuild | tee appImageBuildLog.txt
 
       - name: Upload AppImage Compile Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ (success() || steps.appimageCompile.outcome == 'failure') }}
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-AppImageBuild-log
@@ -137,7 +137,7 @@ jobs:
 
     steps:
       - name: Get Source
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: naikari-dist-${{ github.sha }}
 
@@ -163,7 +163,7 @@ jobs:
               -Ddocs_lua=disabled
 
       - name: Upload Setup Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ success() || steps.setup.outcome == 'failure' }}
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-setup-log
@@ -175,14 +175,14 @@ jobs:
           meson compile -C build
 
       - name: Upload Compile Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ success() || steps.compile.outcome == 'failure' }}
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-compile-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-buildArtifacts
           path: |
@@ -194,7 +194,7 @@ jobs:
           meson install -C build
 
       - name: Upload Install Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-install-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
@@ -215,7 +215,7 @@ jobs:
 
     steps:
       - name: Get Source
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: naikari-dist-${{ github.sha }}
 
@@ -240,7 +240,7 @@ jobs:
               -Ddocs_lua=disabled
 
       - name: Upload Setup Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ success() || steps.setup.outcome == 'failure' }}
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-setup-log
@@ -252,14 +252,14 @@ jobs:
           meson compile -C build
 
       - name: Upload Compile Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ success() || steps.compile.outcome == 'failure' }}
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-compile-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-buildArtifacts
           path: |
@@ -271,7 +271,7 @@ jobs:
           meson install -C build
 
       - name: Upload Install Log
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.image }}-${{ github.sha }}-install-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
@@ -290,7 +290,7 @@ jobs:
 
     steps:
       - name: Get Source
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: naikari-dist-${{ github.sha }}
 
