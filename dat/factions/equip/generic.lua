@@ -211,86 +211,86 @@ equip_classOutfits_engines = {
 -- none should be equipped.
 equip_classOutfits_hulls = {
    ["Yacht"] = {
-      "Unicorp D-2 Light Plating",
+      "Exacorp D-2 Hull",
       "Unicorp X-2 Light Plating",
    },
    ["Luxury Yacht"] = {
-      "Unicorp D-2 Light Plating",
+      "Exacorp D-2 Hull",
       "Unicorp X-2 Light Plating",
       "S&K Ultralight Stealth Plating",
    },
    ["Scout"] = {
-      "Unicorp D-2 Light Plating",
+      "Exacorp D-2 Hull",
       "Unicorp X-2 Light Plating",
       "S&K Ultralight Stealth Plating",
    },
    ["Courier"] = {
-      "Unicorp D-4 Light Plating",
+      "Exacorp D-4 Hull",
       "Unicorp X-4 Light Plating",
       "S&K Small Cargo Hull",
    },
    ["Freighter"] = {
-      "Unicorp D-24 Medium Plating",
+      "Exacorp D-24 Hull",
       "Unicorp X-24 Medium Plating",
       "S&K Medium Cargo Hull",
    },
    ["Armored Transport"] = {
-      "Unicorp D-24 Medium Plating",
+      "Exacorp D-24 Hull",
       "Unicorp X-24 Medium Plating",
       "S&K Medium Cargo Hull",
    },
    ["Bulk Freighter"] = {
-      "Unicorp D-72 Heavy Plating",
+      "Exacorp D-72 Hull",
       "Unicorp X-72 Heavy Plating",
       "S&K Large Cargo Hull",
    },
    ["Light Fighter"] = {
-      "Unicorp D-2 Light Plating",
+      "Exacorp D-2 Hull",
       "Unicorp X-2 Light Plating",
       "S&K Ultralight Stealth Plating",
       "S&K Ultralight Combat Plating",
    },
    ["Fighter"] = {
-      "Unicorp D-4 Light Plating",
+      "Exacorp D-4 Hull",
       "Unicorp X-4 Light Plating",
       "S&K Light Stealth Plating",
       "S&K Light Combat Plating"
    },
    ["Bomber"] = {
-      "Unicorp D-4 Light Plating",
+      "Exacorp D-4 Hull",
       "Unicorp X-4 Light Plating",
       "S&K Light Stealth Plating",
       "S&K Light Combat Plating"
    },
    ["Corvette"] = {
-      "Unicorp D-12 Medium Plating",
+      "Exacorp D-12 Hull",
       "Unicorp X-12 Medium Plating",
       "S&K Medium Stealth Plating",
       "S&K Medium Combat Plating"
    },
    ["Destroyer"] = {
-      "Unicorp D-24 Medium Plating",
+      "Exacorp D-24 Hull",
       "Unicorp X-24 Medium Plating",
       "S&K Medium-Heavy Stealth Plating",
       "S&K Medium-Heavy Combat Plating"
    },
    ["Light Cruiser"] = {
-      "Unicorp D-48 Heavy Plating",
+      "Exacorp D-48 Hull",
       "Unicorp X-48 Heavy Plating",
       "S&K Heavy Combat Plating",
    },
    ["Cruiser"] = {
-      "Unicorp D-48 Heavy Plating",
+      "Exacorp D-48 Hull",
       "Unicorp X-48 Heavy Plating",
       "S&K Heavy Combat Plating",
    },
    ["Battleship"] = {
-      "Unicorp D-72 Heavy Plating",
+      "Exacorp D-72 Hull",
       "Unicorp X-72 Heavy Plating",
       "S&K Superheavy Combat Plating",
    },
    ["Carrier"] = {
-      "Unicorp D-72 Heavy Plating",
+      "Exacorp D-72 Hull",
       "Unicorp X-72 Heavy Plating",
       "S&K Superheavy Combat Plating",
    },
@@ -1384,11 +1384,6 @@ equip_typeOutfits_engines = {
 
 -- Table of available hulls by base type.
 equip_typeOutfits_hulls = {
-   ["Hyena"] = {
-      "Unicorp D-2 Light Plating",
-      "Unicorp X-2 Light Plating",
-      "S&K Ultralight Stealth Plating",
-   },
    ["Brigand"] = {
       probability = {
          ["Ultralight Shell Stage X"] = 2,
@@ -1884,7 +1879,7 @@ function equip_generic(p, recursive)
       success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    if not success then
-      equip_warn(p, "Unicorp D-2 Light Plating")
+      equip_warn(p, "Exacorp D-2 Hull")
    end
 
    -- Weapons

@@ -29,7 +29,7 @@ equip_classOutfits_engines["Yacht"] = {
    "Tricon Zephyr Engine",
 }
 equip_classOutfits_hulls["Yacht"] = {
-   "Unicorp D-2 Light Plating",
+   "Exacorp D-2 Hull",
    "Unicorp X-2 Light Plating",
    "S&K Ultralight Stealth Plating",
    "S&K Ultralight Combat Plating",

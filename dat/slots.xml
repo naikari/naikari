@@ -8,7 +8,7 @@
  </slot>
  <slot name="hull">
   <display>Hull</display>
-  <description>This slot is used for the ship's hull. It represents the base layer of armour plating and protection from the vacuum of space, and also determines the ship's baseline mass and cargo capacity.</description>
+  <description>This slot is used for the ship's hull. It provides the ship's armor – the last line of protection from hazards and the vacuum of space – as well as storage space for cargo.</description>
   <exclusive/>
   <required/>
  </slot>
