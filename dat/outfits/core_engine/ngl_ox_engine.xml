@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Exacorp Dart 150 Engine">
+ <general>
+  <typename>Engine</typename>
+  <slot prop="engines">structure</slot>
+  <size>small</size>
+  <mass>10</mass>
+  <price>60000</price>
+  <description>For those who want to extend their range and carry just a bit more, Nova Gear's Ox is a great choice.</description>
+  <gfx_store>engine1.webp</gfx_store>
+  <priority>3</priority>
+ </general>
+ <specific type="modification">
+  <engine_limit>200</engine_limit>
+  <speed>285</speed>
+  <thrust>95</thrust>
+  <turn>80</turn>
+  <fuel>500</fuel>
+  <fuel_regen>0.1</fuel_regen>
+  <energy_regen_malus>4</energy_regen_malus>
+ </specific>
+</outfit>

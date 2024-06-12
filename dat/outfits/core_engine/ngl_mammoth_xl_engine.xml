@@ -13,8 +13,8 @@
  <specific type="modification">
   <engine_limit>8000</engine_limit>
   <speed>70</speed>
-  <thrust>35</thrust>
-  <turn>45</turn>
+  <thrust>20</thrust>
+  <turn>25</turn>
   <fuel>2000</fuel>
   <fuel_regen>0.4</fuel_regen>
   <energy_regen_malus>45</energy_regen_malus>
