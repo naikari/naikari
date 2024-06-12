@@ -7,7 +7,7 @@
   <priority>7</priority>
   <mass>100</mass>
   <price>1500000</price>
-  <description>The very largest engine that Nova Gear produces, the Mammoth XL has precious little competition when it comes to moving massive amounts of mass around the galaxy, whether in the form of bulk freight or as the primary engine of a fully-equipped battlecruiser.</description>
+  <description>Nova Gear's engines are an excellent choice for those who carry heavy loads or need to travel long distances. While their agility is poor, their raw thrust power and fuel capacity is excellent. These engines are especially popular with traders and miners.</description>
   <gfx_store>engine12.webp</gfx_store>
  </general>
  <specific type="modification">

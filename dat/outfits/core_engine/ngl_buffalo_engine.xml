@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="NGL Ox XL Engine">
+<outfit name="NGL Buffalo Engine">
  <general>
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
-  <size>small</size>
-  <priority>7</priority>
-  <mass>15</mass>
-  <price>95000</price>
+  <size>medium</size>
+  <mass>25</mass>
+  <price>180000</price>
   <description>Nova Gear's engines are an excellent choice for those who carry heavy loads or need to travel long distances. While their agility is poor, their raw thrust power and fuel capacity is excellent. These engines are especially popular with traders and miners.</description>
-  <gfx_store>engine15.webp</gfx_store>
+  <gfx_store>engine6.webp</gfx_store>
+  <priority>3</priority>
  </general>
  <specific type="modification">
-  <engine_limit>400</engine_limit>
-  <speed>225</speed>
-  <thrust>80</thrust>
-  <turn>65</turn>
-  <fuel>500</fuel>
-  <fuel_regen>0.1</fuel_regen>
+  <engine_limit>900</engine_limit>
+  <speed>170</speed>
+  <thrust>65</thrust>
+  <turn>55</turn>
+  <fuel>1000</fuel>
+  <fuel_regen>0.2</fuel_regen>
   <energy_regen_malus>7</energy_regen_malus>
  </specific>
 </outfit>

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Exacorp Dart 150 Engine">
+<outfit name="NGL Ox Engine">
  <general>
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
   <size>small</size>
   <mass>10</mass>
   <price>60000</price>
-  <description>For those who want to extend their range and carry just a bit more, Nova Gear's Ox is a great choice.</description>
+  <description>Nova Gear's engines are an excellent choice for those who carry heavy loads or need to travel long distances. While their agility is poor, their raw thrust power and fuel capacity is excellent. These engines are especially popular with traders and miners.</description>
   <gfx_store>engine1.webp</gfx_store>
   <priority>3</priority>
  </general>

@@ -7,7 +7,7 @@
   <priority>7</priority>
   <mass>30</mass>
   <price>280000</price>
-  <description>The Buffalo XL is a staple among mid-sized freighters, particularly those carrying dense cargo, and one of the best-selling Nova Gear products. Its considerable power leaves it with few competitors in its size class, and more than a few combat vessels rely on it to move them and their arsenals into battle.</description>
+  <description>Nova Gear's engines are an excellent choice for those who carry heavy loads or need to travel long distances. While their agility is poor, their raw thrust power and fuel capacity is excellent. These engines are especially popular with traders and miners.</description>
   <gfx_store>engine7.webp</gfx_store>
  </general>
  <specific type="modification">
