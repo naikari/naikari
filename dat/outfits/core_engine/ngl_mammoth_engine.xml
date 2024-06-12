@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="NGL Mammoth Engine">
+ <general>
+  <typename>Engine</typename>
+  <slot prop="engines">structure</slot>
+  <size>large</size>
+  <mass>80</mass>
+  <price>1200000</price>
+  <description>Nova Gear's engines are an excellent choice for those who carry heavy loads or need to travel long distances. While their agility is poor, their raw thrust power and fuel capacity is excellent. These engines are especially popular with traders and miners.</description>
+  <gfx_store>engine11.webp</gfx_store>
+  <priority>3</priority>
+ </general>
+ <specific type="modification">
+  <engine_limit>5500</engine_limit>
+  <speed>70</speed>
+  <thrust>30</thrust>
+  <turn>35</turn>
+  <fuel>2000</fuel>
+  <fuel_regen>0.4</fuel_regen>
+  <energy_regen_malus>23</energy_regen_malus>
+ </specific>
+</outfit>
