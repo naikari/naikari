@@ -129,15 +129,15 @@ equip_classOutfits_coreSystems = {
 -- none should be equipped.
 equip_classOutfits_engines = {
    ["Yacht"] = {
-      "Exacorp Dart 150 Engine",
+      "Exacorp Hawk 150 Engine",
       "Flex Zephyr Engine",
    },
    ["Luxury Yacht"] = {
-      "Exacorp Dart 150 Engine",
+      "Exacorp Hawk 150 Engine",
       "Flex Zephyr Engine",
    },
    ["Scout"] = {
-      "Exacorp Dart 150 Engine",
+      "Exacorp Hawk 150 Engine",
       "Flex Zephyr Engine",
    },
    ["Courier"] = {
@@ -158,7 +158,7 @@ equip_classOutfits_engines = {
       "NGL Mammoth XL Engine",
    },
    ["Light Fighter"] = {
-      "Exacorp Dart 150 Engine",
+      "Exacorp Hawk 150 Engine",
       "Flex Zephyr Engine",
    },
    ["Fighter"] = {
@@ -171,7 +171,7 @@ equip_classOutfits_engines = {
       "NGL Ox XL Engine",
    },
    ["Corvette"] = {
-      "Exacorp Arrow 700 Engine",
+      "Exacorp Falcon 700 Engine",
       "Flex Cyclone Engine",
    },
    ["Destroyer"] = {
@@ -179,12 +179,12 @@ equip_classOutfits_engines = {
       "Flex Cyclone II Engine",
    },
    ["Light Cruiser"] = {
-      "Exacorp Bolt 4500 Engine",
+      "Exacorp Eagle 4500 Engine",
       "Flex Typhoon Engine",
       "Krain Remige Engine",
    },
    ["Cruiser"] = {
-      "Exacorp Bolt 4500 Engine",
+      "Exacorp Eagle 4500 Engine",
       "Flex Typhoon Engine",
    },
    ["Battleship"] = {

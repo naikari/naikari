@@ -1,24 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Exacorp Bolt 4500 Engine">
+<outfit name="Exacorp Hawk 150 Engine">
  <general>
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
-  <size>large</size>
-  <mass>60</mass>
-  <price>900000</price>
+  <size>small</size>
+  <mass>8</mass>
+  <price>45000</price>
   <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
 
 Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
-  <gfx_store>nexus_engine_l.webp</gfx_store>
+  <gfx_store>nexus_engine_s.webp</gfx_store>
   <priority>3</priority>
  </general>
  <specific type="modification">
-  <engine_limit>4500</engine_limit>
-  <speed>100</speed>
-  <thrust>57</thrust>
-  <turn>65</turn>
-  <fuel>1200</fuel>
-  <fuel_regen>0.4</fuel_regen>
-  <energy_regen_malus>17</energy_regen_malus>
+  <engine_limit>150</engine_limit>
+  <speed>300</speed>
+  <thrust>165</thrust>
+  <turn>140</turn>
+  <fuel>300</fuel>
+  <fuel_regen>0.1</fuel_regen>
+  <energy_regen_malus>2</energy_regen_malus>
  </specific>
 </outfit>

@@ -40,7 +40,7 @@
   <utility size="medium" />
   <utility size="small" />
   <utility size="small" />
-  <structure size="medium" prop="engines" exclusive="1" required="1">Exacorp Arrow 700 Engine</structure>
+  <structure size="medium" prop="engines" exclusive="1" required="1">Exacorp Falcon 700 Engine</structure>
   <structure size="medium" prop="hull" exclusive="1" required="1">Exacorp D-12 Hull</structure>
   <structure size="medium" />
   <structure size="medium" />
