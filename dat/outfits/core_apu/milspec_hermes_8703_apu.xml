@@ -6,7 +6,9 @@
   <size>large</size>
   <mass>600</mass>
   <price>2030000</price>
-  <description>Milspec provides raw power to those who want to really come out on top in an engagement. The Hermes APU offers unmatched shield and energy capacity alongside industry-standard generation capabilities. Fly mighty, fly Milspec.</description>
+  <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.
+
+Milspec Hermes APUs provide supersized energy and shield capacity alongside respectable energy and shield generation.</description>
   <gfx_store>core_system_cpu_l1.webp</gfx_store>
   <priority>3</priority>
  </general>

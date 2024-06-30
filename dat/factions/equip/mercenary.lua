@@ -30,7 +30,7 @@ equip_classOutfits_engines["Yacht"] = {
 }
 equip_classOutfits_hulls["Yacht"] = {
    "Exacorp D-2 Hull",
-   "Unicorp X-2 Light Plating",
+   "Exacorp X-2 Hull",
    "S&K Ultralight Stealth Plating",
    "S&K Ultralight Combat Plating",
 }

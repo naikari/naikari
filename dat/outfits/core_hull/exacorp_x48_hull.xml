@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Unicorp X-48 Heavy Plating">
+<outfit name="Exacorp X-48 Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
   <size>large</size>
   <mass>950</mass>
   <price>920000</price>
-  <description>The X-48 may be one of Unicorp's most popular hull options, seen by many light cruiser pilots as a good compromise between armor strength and mass.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.
+
+Exacorp X hulls provide a balance of good armor and cargo space alongside a small amount of passive cloaking.</description>
   <gfx_store>refined_hull_l.webp</gfx_store>
   <priority>3</priority>
  </general>

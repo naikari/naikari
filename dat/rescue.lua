@@ -443,11 +443,11 @@ function defaultOutfit( slot )
       end
    elseif slot.property == "Hull Modifications" then
       if slot.size == "Small" then
-         return "Patchwork Light Plating"
+         return "Patchwork Light Hull"
       elseif slot.size == "Medium" then
-         return "Patchwork Medium Plating"
+         return "Patchwork Medium Hull"
       elseif slot.size == "Large" then
-         return "Patchwork Heavy Plating"
+         return "Patchwork Heavy Hull"
       end
    elseif slot.property == "Engines" then
       if slot.size == "Small" then

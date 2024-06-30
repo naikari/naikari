@@ -187,7 +187,7 @@ function enter_ambush()
 
    pirate:outfitAdd("Makeshift Small APU")
    pirate:outfitAdd("Beat Up Small Engine")
-   pirate:outfitAdd("Patchwork Light Plating")
+   pirate:outfitAdd("Patchwork Light Hull")
    pirate:outfitAdd("Jump Scanner") -- Lowers energy regeneration
    pirate:outfitAdd("Laser Cannon MK1")
 

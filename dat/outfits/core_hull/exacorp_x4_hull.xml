@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Unicorp X-4 Light Plating">
+<outfit name="Exacorp X-4 Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
@@ -7,7 +7,9 @@
   <priority>7</priority>
   <mass>65</mass>
   <price>100000</price>
-  <description>The Unicorp X-4 Light Plating is a refinement of the original D-4 with heavier armor and crude passive radar absorption. While not the most high-performing plating on the market, it is sometimes used by pilots seeking to strike a balance between armor strength and cloaking capability, or pilots who simply cannot afford better.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.
+
+Exacorp X hulls provide a balance of good armor and cargo space alongside a small amount of passive cloaking.</description>
   <gfx_store>refined_hull_s.webp</gfx_store>
  </general>
  <specific type="modification">

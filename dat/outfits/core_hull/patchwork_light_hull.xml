@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Exacorp D-12 Hull">
+<outfit name="Patchwork Light Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
-  <size>medium</size>
-  <mass>100</mass>
-  <price>45000</price>
+  <size>small</size>
+  <priority>3</priority>
+  <mass>24</mass>
+  <price>0</price>
   <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.
 
-Exacorp D hulls provide respectable armor and cargo space for a low price.</description>
-  <gfx_store>base_hull_m.webp</gfx_store>
-  <priority>3</priority>
+While it keeps air from venting into space, hull maintenance like this should never be accepted by any pilot who can help it.</description>
+  <gfx_store>plating_patchwork.webp</gfx_store>
  </general>
  <specific type="modification">
-  <cargo>20</cargo>
-  <absorb>12</absorb>
-  <armour>200</armour>
+  <cargo>3</cargo>
+  <absorb>0</absorb>
+  <armour>35</armour>
   <armour_regen>0</armour_regen>
  </specific>
 </outfit>

@@ -7,7 +7,9 @@
   <priority>7</priority>
   <mass>200</mass>
   <price>600000</price>
-  <description>Milspec develops high performance hardware for your ship, to make sure you are always optimally prepared for the dangers the universe might throw at you on your travels. The Orion APU provides high-end power and shield generation so you can be ready for any situation. Fly mighty, fly Milspec.</description>
+  <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.
+
+Milspec Orion APUs provide a balance of great energy and shielding.</description>
   <gfx_store>core_system_refined_m2.webp</gfx_store>
  </general>
  <specific type="modification">

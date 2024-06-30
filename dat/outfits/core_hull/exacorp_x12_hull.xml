@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Unicorp X-12 Medium Plating">
+<outfit name="Exacorp X-12 Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
   <size>medium</size>
   <mass>120</mass>
   <price>110000</price>
-  <description>Featuring middling performance in both armor strength and cloaking capability, X-12 plating is sometimes used by corvette pilots who want some level of cloaking but also fear the possibility of a sudden fighter swarm ambush too much to put all of their eggs in that particular basket.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.
+
+Exacorp X hulls provide a balance of good armor and cargo space alongside a small amount of passive cloaking.</description>
   <gfx_store>refined_hull_m.webp</gfx_store>
   <priority>3</priority>
  </general>
