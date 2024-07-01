@@ -9,7 +9,7 @@
   <price>2620000</price>
   <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.
 
-Milspec Prometheus APUs provide state-of-the-art energy along with respectable shielding.</description>
+Milspec Prometheus APUs such as this one provide a state-of-the-art general energy reserve alongside respectable shielding.</description>
   <gfx_store>core_system_power_l2.webp</gfx_store>
  </general>
  <specific type="modification">

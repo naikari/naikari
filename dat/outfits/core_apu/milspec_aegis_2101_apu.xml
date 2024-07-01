@@ -6,7 +6,9 @@
   <size>small</size>
   <mass>12</mass>
   <price>80010</price>
-  <description>Milspec cares about your personal safety. Your protection is our concern. The Aegis APU grants your ship excellent shielding while preserving reasonable combat energy. Fly mighty, fly Milspec.</description>
+  <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.
+
+Milspec Aegis APUs such as this one provide state-of-the-art shielding alongside a respectable general energy reserve.</description>
   <gfx_store>core_system_shield_s1.webp</gfx_store>
   <priority>3</priority>
  </general>

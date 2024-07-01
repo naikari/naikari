@@ -8,7 +8,7 @@
   <price>80030</price>
   <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.
 
-Milspec Hermes APUs provide supersized energy and shield capacity alongside respectable energy and shield generation.</description>
+Milspec Hermes APUs such as this one provide supersized shield and energy capacity alongside respectable shield and energy generation.</description>
   <gfx_store>core_system_cpu_s1.webp</gfx_store>
   <priority>3</priority>
  </general>
