@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="S&amp;K Heavy Combat Plating">
+<outfit name="SHL Heavy Combat Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
@@ -7,7 +7,7 @@
   <priority>3</priority>
   <mass>1050</mass>
   <price>2200000</price>
-  <description>This heavy plating developed by Schafer &amp; Kane Industries can endure prolonged battle. Quite a few captains and their crews owe their lives to this armor configuration.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.</description>
   <gfx_store>combat_hull_l.webp</gfx_store>
  </general>
  <specific type="modification">

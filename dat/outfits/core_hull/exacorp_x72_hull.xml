@@ -7,9 +7,7 @@
   <priority>7</priority>
   <mass>1650</mass>
   <price>1000000</price>
-  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.
-
-Exacorp Xpanse hulls such as this one provide a balance of good armor and cargo space alongside a small amount of passive cloaking.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.</description>
   <gfx_store>refined_hull_x.webp</gfx_store>
  </general>
  <specific type="modification">

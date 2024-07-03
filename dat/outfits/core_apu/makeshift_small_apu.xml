@@ -6,9 +6,7 @@
   <size>small</size>
   <mass>21</mass>
   <price>0</price>
-  <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.
-
-More a jury-rigged mess of generators and batteries than an APU, only desperate pilots would rely on this to power their ship.</description>
+  <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.</description>
   <gfx_store>reactor01.webp</gfx_store>
  </general>
  <specific type="modification">

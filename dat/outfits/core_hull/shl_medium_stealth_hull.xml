@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="S&amp;K Medium Stealth Plating">
+<outfit name="SHL Medium Stealth Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
   <size>medium</size>
   <mass>110</mass>
   <price>270000</price>
-  <description>Medium-sized ships are usually not in the business of remaining undetected, but Schafer &amp; Kane Industries have nevertheless developed a hull modification that helps in this area.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.</description>
   <gfx_store>stealth_hull_m.webp</gfx_store>
   <priority>3</priority>
  </general>

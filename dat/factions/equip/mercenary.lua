@@ -31,8 +31,8 @@ equip_classOutfits_engines["Yacht"] = {
 equip_classOutfits_hulls["Yacht"] = {
    "Exacorp D-2 Hull",
    "Exacorp X-2 Hull",
-   "S&K Ultralight Stealth Plating",
-   "S&K Ultralight Combat Plating",
+   "SHL Ultralight Stealth Hull",
+   "SHL Ultralight Combat Hull",
 }
 equip_classOutfits_weapons["Yacht"] = {
    {

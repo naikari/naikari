@@ -2,19 +2,19 @@ require "factions/equip/generic"
 
 
 equip_typeOutfits_hulls["Vendetta"] = {
-   "S&K Light Combat Plating",
+   "SHL Light Combat Hull",
 }
 equip_typeOutfits_hulls["Ancestor"] = {
-   "S&K Light Combat Plating",
+   "SHL Light Combat Hull",
 }
 equip_typeOutfits_hulls["Phalanx"] = {
-   "S&K Medium Combat Plating",
+   "SHL Medium Combat Hull",
 }
 equip_typeOutfits_hulls["Vigilance"] = {
-   "S&K Medium-Heavy Combat Plating",
+   "SHL Medium-Heavy Combat Hull",
 }
 equip_typeOutfits_hulls["Goddard"] = {
-   "S&K Superheavy Combat Plating",
+   "SHL Superheavy Combat Hull",
 }
 
 equip_typeOutfits_weapons["Vendetta"] = {

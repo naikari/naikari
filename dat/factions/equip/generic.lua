@@ -217,88 +217,88 @@ equip_classOutfits_hulls = {
    ["Luxury Yacht"] = {
       "Exacorp D-2 Hull",
       "Exacorp X-2 Hull",
-      "S&K Ultralight Stealth Plating",
+      "SHL Ultralight Stealth Hull",
    },
    ["Scout"] = {
       "Exacorp D-2 Hull",
       "Exacorp X-2 Hull",
-      "S&K Ultralight Stealth Plating",
+      "SHL Ultralight Stealth Hull",
    },
    ["Courier"] = {
       "Exacorp D-4 Hull",
       "Exacorp X-4 Hull",
-      "S&K Small Cargo Hull",
+      "NGL Small Cargo Hull",
    },
    ["Freighter"] = {
       "Exacorp D-24 Hull",
       "Exacorp X-24 Hull",
-      "S&K Medium Cargo Hull",
+      "NGL Medium Cargo Hull",
    },
    ["Armored Transport"] = {
       "Exacorp D-24 Hull",
       "Exacorp X-24 Hull",
-      "S&K Medium Cargo Hull",
+      "NGL Medium Cargo Hull",
    },
    ["Bulk Freighter"] = {
       "Exacorp D-72 Hull",
       "Exacorp X-72 Hull",
-      "S&K Large Cargo Hull",
+      "NGL Large Cargo Hull",
    },
    ["Light Fighter"] = {
       "Exacorp D-2 Hull",
       "Exacorp X-2 Hull",
-      "S&K Ultralight Stealth Plating",
-      "S&K Ultralight Combat Plating",
+      "SHL Ultralight Stealth Hull",
+      "SHL Ultralight Combat Hull",
    },
    ["Fighter"] = {
       "Exacorp D-4 Hull",
       "Exacorp X-4 Hull",
-      "S&K Light Stealth Plating",
-      "S&K Light Combat Plating"
+      "SHL Light Stealth Hull",
+      "SHL Light Combat Hull"
    },
    ["Bomber"] = {
       "Exacorp D-4 Hull",
       "Exacorp X-4 Hull",
-      "S&K Light Stealth Plating",
-      "S&K Light Combat Plating"
+      "SHL Light Stealth Hull",
+      "SHL Light Combat Hull"
    },
    ["Corvette"] = {
       "Exacorp D-12 Hull",
       "Exacorp X-12 Hull",
-      "S&K Medium Stealth Plating",
-      "S&K Medium Combat Plating"
+      "SHL Medium Stealth Hull",
+      "SHL Medium Combat Hull"
    },
    ["Destroyer"] = {
       "Exacorp D-24 Hull",
       "Exacorp X-24 Hull",
-      "S&K Medium-Heavy Stealth Plating",
-      "S&K Medium-Heavy Combat Plating"
+      "SHL Medium-Heavy Stealth Hull",
+      "SHL Medium-Heavy Combat Hull"
    },
    ["Light Cruiser"] = {
       "Exacorp D-48 Hull",
       "Exacorp X-48 Hull",
-      "S&K Heavy Combat Plating",
+      "SHL Heavy Combat Hull",
    },
    ["Cruiser"] = {
       "Exacorp D-48 Hull",
       "Exacorp X-48 Hull",
-      "S&K Heavy Combat Plating",
+      "SHL Heavy Combat Hull",
    },
    ["Battleship"] = {
       "Exacorp D-72 Hull",
       "Exacorp X-72 Hull",
-      "S&K Superheavy Combat Plating",
+      "SHL Superheavy Combat Hull",
    },
    ["Carrier"] = {
       "Exacorp D-72 Hull",
       "Exacorp X-72 Hull",
-      "S&K Superheavy Combat Plating",
+      "SHL Superheavy Combat Hull",
    },
    ["Drone"] = {
-      "S&K Ultralight Combat Plating",
+      "SHL Ultralight Combat Hull",
    },
    ["Heavy Drone"] = {
-      "S&K Light Combat Plating",
+      "SHL Light Combat Hull",
    },
    ["Station"] = false,
 }

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="S&amp;K Ultralight Combat Plating">
+<outfit name="SHL Ultralight Combat Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
   <size>small</size>
   <mass>40</mass>
   <price>130000</price>
-  <description>Schafer &amp; Kane Industries mostly develop for larger ships, but the Ultralight Combat Plating configuration is a product made for light fighters and in-system patrol craft, providing optimum protection.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.</description>
   <gfx_store>combat_hull_t.webp</gfx_store>
   <priority>3</priority>
  </general>

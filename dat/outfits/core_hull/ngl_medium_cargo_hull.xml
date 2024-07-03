@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="S&amp;K Medium Cargo Hull">
+<outfit name="NGL Medium Cargo Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
@@ -7,7 +7,7 @@
   <priority>7</priority>
   <mass>140</mass>
   <price>320000</price>
-  <description>Schafer &amp; Kane Industries have developed a hull modification that provides both ample cargo space and protection.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.</description>
   <gfx_store>cargo_hull_m.webp</gfx_store>
  </general>
  <specific type="modification">

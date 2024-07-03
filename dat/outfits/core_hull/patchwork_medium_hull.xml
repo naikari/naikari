@@ -7,9 +7,7 @@
   <priority>3</priority>
   <mass>90</mass>
   <price>0</price>
-  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.
-
-While it keeps air from venting into space, hull maintenance like this should never be accepted by any pilot who can help it.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.</description>
   <gfx_store>plating_patchwork.webp</gfx_store>
  </general>
  <specific type="modification">

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="S&amp;K Ultralight Stealth Plating">
+<outfit name="SHL Ultralight Stealth Hull">
  <general>
   <typename>Hull</typename>
   <slot prop="hull">structure</slot>
   <size>small</size>
   <mass>30</mass>
   <price>95000</price>
-  <description>Designed for military scouting vessels, Schafer &amp; Kane's Ultralight Stealth Plating configuration features the latest in sensor-absorbing materials and geometry.</description>
+  <description>The hull provides a ship's basic structure. It determines the ship's armor, which is the last line of defense against the hazards of space, as well as cargo space. Every ship must have a hull installed to be spaceworthy.</description>
   <gfx_store>stealth_hull_t.webp</gfx_store>
   <priority>3</priority>
  </general>
