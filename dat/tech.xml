@@ -376,13 +376,195 @@
  </tech>
 
 
- <tech name="Planet Low">
+ <!-- Population centers (mostly planets), separated by faction. These
+      are widely available and have only the most basic goods. -->
+ <tech name="Population Generic">
   <item>Llama</item>
  </tech>
- <tech name="Planet Mid">
+ <tech name="Population Empire">
   <item>Llama</item>
  </tech>
- <tech name="Planet High">
-  <item>Llama</item>
+
+ <!-- Specialty stations, separated by class, merchant, and faction. -->
+ <!-- Exacorp – basic quality, widely available. -->
+ <tech name="Exacorp Fuel Generic">
+ </tech>
+ <tech name="Exacorp Sports Generic">
+ </tech>
+ <tech name="Exacorp Tourism Generic">
+ </tech>
+ <tech name="Exacorp Courier Generic">
+ </tech>
+ <tech name="Exacorp Bulk Generic">
+ </tech>
+ <tech name="Exacorp Hunting Generic">
+ </tech>
+ <tech name="Exacorp Police Generic">
+ </tech>
+ <tech name="Exacorp Warfare Generic">
+ </tech>
+ <tech name="Exacorp Fuel Empire">
+  <item>Exacorp Fuel Generic</item>
+ </tech>
+ <tech name="Exacorp Sports Empire">
+  <item>Exacorp Sports Generic</item>
+ </tech>
+ <tech name="Exacorp Tourism Empire">
+  <item>Exacorp Tourism Generic</item>
+ </tech>
+ <tech name="Exacorp Courier Empire">
+  <item>Exacorp Courier Generic</item>
+ </tech>
+ <tech name="Exacorp Bulk Empire">
+  <item>Exacorp Bulk Generic</item>
+ </tech>
+ <tech name="Exacorp Hunting Empire">
+  <item>Exacorp Hunting Generic</item>
+ </tech>
+ <tech name="Exacorp Police Empire">
+  <item>Exacorp Police Generic</item>
+ </tech>
+ <tech name="Exacorp Warfare Empire">
+  <item>Exacorp Warfare Generic</item>
+ </tech>
+ <tech name="Exacorp Fuel Frontier">
+  <item>Exacorp Fuel Generic</item>
+ </tech>
+ <tech name="Exacorp Sports Frontier">
+  <item>Exacorp Sports Generic</item>
+ </tech>
+ <tech name="Exacorp Tourism Frontier">
+  <item>Exacorp Tourism Generic</item>
+ </tech>
+ <tech name="Exacorp Courier Frontier">
+  <item>Exacorp Courier Generic</item>
+ </tech>
+ <tech name="Exacorp Bulk Frontier">
+  <item>Exacorp Bulk Generic</item>
+ </tech>
+ <tech name="Exacorp Hunting Frontier">
+  <item>Exacorp Hunting Generic</item>
+ </tech>
+ <tech name="Exacorp Police Frontier">
+  <item>Exacorp Police Generic</item>
+ </tech>
+ <tech name="Exacorp Warfare Frontier">
+  <item>Exacorp Warfare Generic</item>
+ </tech>
+ <tech name="Exacorp Fuel Coälition">
+  <item>Exacorp Fuel Generic</item>
+ </tech>
+ <tech name="Exacorp Sports Coälition">
+  <item>Exacorp Sports Generic</item>
+ </tech>
+ <tech name="Exacorp Tourism Coälition">
+  <item>Exacorp Tourism Generic</item>
+ </tech>
+ <tech name="Exacorp Courier Coälition">
+  <item>Exacorp Courier Generic</item>
+ </tech>
+ <tech name="Exacorp Bulk Coälition">
+  <item>Exacorp Bulk Generic</item>
+ </tech>
+ <tech name="Exacorp Hunting Coälition">
+  <item>Exacorp Hunting Generic</item>
+ </tech>
+ <tech name="Exacorp Police Coälition">
+  <item>Exacorp Police Generic</item>
+ </tech>
+ <tech name="Exacorp Warfare Coälition">
+  <item>Exacorp Warfare Generic</item>
+ </tech>
+
+ <!-- NGL – high-quality civilian and trade goods. -->
+ <tech name="NGL Fuel Generic">
+ </tech>
+ <tech name="NGL Sports Generic">
+ </tech>
+ <tech name="NGL Tourism Generic">
+ </tech>
+ <tech name="NGL Courier Generic">
+ </tech>
+ <tech name="NGL Bulk Generic">
+ </tech>
+ <tech name="NGL Fuel Empire">
+  <item>NGL Fuel Generic</item>
+ </tech>
+ <tech name="NGL Sports Empire">
+  <item>NGL Sports Generic</item>
+ </tech>
+ <tech name="NGL Tourism Empire">
+  <item>NGL Tourism Generic</item>
+ </tech>
+ <tech name="NGL Courier Empire">
+  <item>NGL Courier Generic</item>
+ </tech>
+ <tech name="NGL Bulk Empire">
+  <item>NGL Bulk Generic</item>
+ </tech>
+ <tech name="NGL Fuel Frontier">
+  <item>NGL Fuel Generic</item>
+ </tech>
+ <tech name="NGL Sports Frontier">
+  <item>NGL Sports Generic</item>
+ </tech>
+ <tech name="NGL Tourism Frontier">
+  <item>NGL Tourism Generic</item>
+ </tech>
+ <tech name="NGL Courier Frontier">
+  <item>NGL Courier Generic</item>
+ </tech>
+ <tech name="NGL Bulk Frontier">
+  <item>NGL Bulk Generic</item>
+ </tech>
+ <tech name="NGL Fuel Coälition">
+  <item>NGL Fuel Generic</item>
+ </tech>
+ <tech name="NGL Sports Coälition">
+  <item>NGL Sports Generic</item>
+ </tech>
+ <tech name="NGL Tourism Coälition">
+  <item>NGL Tourism Generic</item>
+ </tech>
+ <tech name="NGL Courier Coälition">
+  <item>NGL Courier Generic</item>
+ </tech>
+ <tech name="NGL Bulk Coälition">
+  <item>NGL Bulk Generic</item>
+ </tech>
+
+ <!-- Jolly's – outlaw stations. -->
+ <tech name="Jolly's Fuel Generic">
+ </tech>
+ <tech name="Jolly's Bulk Generic">
+ </tech>
+ <tech name="Jolly's Hunting Generic">
+ </tech>
+ <tech name="Jolly's Fuel Empire">
+  <item>Jolly's Fuel Generic</item>
+ </tech>
+ <tech name="Jolly's Bulk Empire">
+  <item>Jolly's Bulk Generic</item>
+ </tech>
+ <tech name="Jolly's Hunting Empire">
+  <item>Jolly's Hunting Generic</item>
+ </tech>
+ <tech name="Jolly's Fuel Frontier">
+  <item>Jolly's Fuel Generic</item>
+ </tech>
+ <tech name="Jolly's Bulk Frontier">
+  <item>Jolly's Bulk Generic</item>
+ </tech>
+ <tech name="Jolly's Hunting Frontier">
+  <item>Jolly's Hunting Generic</item>
+ </tech>
+ <tech name="Jolly's Fuel Coälition">
+  <item>Jolly's Fuel Generic</item>
+ </tech>
+ <tech name="Jolly's Bulk Coälition">
+  <item>Jolly's Bulk Generic</item>
+ </tech>
+ <tech name="Jolly's Hunting Coälition">
+  <item>Jolly's Hunting Generic</item>
  </tech>
 </Techs>
