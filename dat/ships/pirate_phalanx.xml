@@ -14,7 +14,7 @@
  <trail_generator x="-10" y="3" h="0" always_over="1" >pirate</trail_generator>
  <trail_generator x="-12" y="40" h="0">nebula</trail_generator>
  <trail_generator x="-12" y="-40" h="0">nebula</trail_generator>
- <fabricator>Skull and Bones</fabricator>
+ <fabricator>Jolly Roger's Refit</fabricator>
  <description>Building upon the already-capable Phalanx chassis, the Skull and Bones engineers have substantially improved the ship's performance, while only minorly sacrificing protection.</description>
  <health>
   <armour>190</armour>

@@ -12,7 +12,7 @@
  <trail_generator x="-2" y="29" h="0">nebula</trail_generator>
  <trail_generator x="-2" y="-29" h="0">nebula</trail_generator>
  <trail_generator x="-10" y="0" h="0">pirate</trail_generator>
- <fabricator>Skull and Bones</fabricator>
+ <fabricator>Jolly Roger's Refit</fabricator>
  <description>Ancestors were one of the first ships to be fancied by pirates. Their big intimidating wings and capacity for long-range missile barrages usually get ships to surrender without firing a shot. It is one of the least altered ships on offer from the Skull and Bones, however, with only the obligatory extra space for loot in exchange for a little less armor.</description>
  <health>
   <armour>65</armour>
