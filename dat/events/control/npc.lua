@@ -277,59 +277,6 @@ function spawnDealer()
          end
       end, nil, true)
 
-   if factions["Sirius"] then
-      table.insert(ships, ship.get("Sirius Reverence"))
-   end
-   if factions["Za'lek"] then
-      table.insert(outfits, outfit.get("Za'lek S300 Test Engine"))
-      table.insert(outfits, outfit.get("Za'lek M1200 Test Engine"))
-      table.insert(outfits, outfit.get("Za'lek L6500 Test Engine"))
-   end
-
-   -- Set up maps. Note: We want to ensure no duplicates here.
-   if dealer_maps == nil then
-      dealer_maps = {}
-      if pirate_f:playerStanding() >= 0
-            and curplanet:faction() == pirate_f then
-         local maps_list = {
-            {
-               "Map: Pirate strongholds",
-               _([["Hey, you! You're a newbie in the business, aren't you? I can tell! And let me tell you, one of the first things you need to be a successful pirate is to know where to go! So I'll give you a deal: for just {credits}, I'll give you a map of all the pirate strongholds, from New Haven to Warden's End to Sanchez! I'll even throw in some stations that you can count on to take you in while you're running from the law. What do you say?"]]),
-               _([["A good choice, kid! With this map, you'll start making it in now time. Pleasure doing business with you."]]),
-            },
-            {
-               "Map: Qorel Expanse",
-               _([["You call yourself a pirate? Ha, ha, ha! Ridiculous! I've never even seen you in the Qorel Expanse! Just a common thief as far as I'm concerned. But hey, we all gotta start somewhere, eh? I'll tell you what: I'll sell you the map to the Qorel Expanse. I suppose, say, {credits} should be sufficient. Well? Do you want the chance to become a real pirate for just {credits}?"]]),
-               _([["Hehe, now that you know where to go, I guess I'll see you in the Qorel Expanse before long, eh? You won't regret buying the map from me, I can assure you of that!"]]),
-            },
-         }
-         if cursys == system.get("New Haven") then
-            maps_list[#maps_list + 1] = {
-               "Map: New Haven's hidden jump points",
-               _([["Wait, you got here to New Haven thru the standard jump point? You'll never make it in the business that way! You need the hidden jump points; every pirate around here worth their salt uses those. How about I give you a copy for {credits}?"]]),
-               _([["There you go. See how much easier it is to travel around here with these? Now that you know, I'm sure you'll get loads of cash in no time."]]),
-            }
-         elseif cursys == system.get("Kretogg") then
-            maps_list[#maps_list + 1] = {
-               "Map: Kretogg's hidden jump points",
-               _([["Hiya there! I haven't seen you around here. You're new to the area, aren't you? Here, let a fellow pirate help you out: there's a hidden jump that'll get you into Za'lek space easily. You don't wanna miss it! I could show you where on your map for just {credits}. How about it?"]]),
-               _([["Thanks for the business!"]]),
-            }
-            maps_list[#maps_list + 1] = {
-               "Map: Sagittarius Bypass",
-               _([["Oh, hey, an unfamiliar face! You haven't been thru the Sagittarius Bypass, have you? It's a nice collection of hidden jumps that take you straight into Sirius space. How about I give you a map of it for, say, {credits}?"]]),
-               _([["There you go! I'm sure you'll be plundering Siriusites like a pro in no time!"]]),
-            }
-         end
-         for i = 1, #maps_list do
-            local T = maps_list[i]
-            if player.numOutfit(T[1], true) <= 0 then
-               dealer_maps[#dealer_maps + 1] = T
-            end
-         end
-      end
-   end
-
    local npcdata = nil
    if rnd.rnd() < 0.1 and #dealer_maps > 0 then
       local map_choice = dealer_maps[rnd.rnd(1, #dealer_maps)]
