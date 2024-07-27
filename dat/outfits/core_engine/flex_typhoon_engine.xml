@@ -6,7 +6,9 @@
   <size>large</size>
   <mass>60</mass>
   <price>2700000</price>
-  <description>Development of the Typhoon engine was something of a prestige project for Flex. Providing light cruisers with superb handling and speed, it's a favorite of many captains, thô its high power consumption limits it to ships with powerful reactors.</description>
+  <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
+
+Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
   <gfx_store>engine2.webp</gfx_store>
   <priority>3</priority>
  </general>

@@ -7,7 +7,9 @@
   <priority>7</priority>
   <mass>80</mass>
   <price>3600000</price>
-  <description>The largest Flex engine in production, the Typhoon II boasts surprisingly high performance for a capital ship engine. Its power consumption is markedly higher than anything in its class, but many captains are willing to make the trade for extra maneuverability.</description>
+  <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
+
+Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
   <gfx_store>engine5.webp</gfx_store>
  </general>
  <specific type="modification">
