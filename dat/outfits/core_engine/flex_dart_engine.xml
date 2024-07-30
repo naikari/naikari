@@ -19,6 +19,6 @@ Each engine is designed with a specific mass limit under which it can operate at
   <turn>150</turn>
   <fuel>300</fuel>
   <fuel_regen>0.1</fuel_regen>
-  <energy_regen_malus>8</energy_regen_malus>
+  <energy_regen_malus>3</energy_regen_malus>
  </specific>
 </outfit>
