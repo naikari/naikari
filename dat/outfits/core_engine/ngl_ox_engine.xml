@@ -13,7 +13,7 @@ Each engine is designed with a specific mass limit under which it can operate at
   <priority>3</priority>
  </general>
  <specific type="modification">
-  <engine_limit>200</engine_limit>
+  <engine_limit>225</engine_limit>
   <speed>285</speed>
   <thrust>95</thrust>
   <turn>80</turn>

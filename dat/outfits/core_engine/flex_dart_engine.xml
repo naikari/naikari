@@ -13,7 +13,7 @@ Each engine is designed with a specific mass limit under which it can operate at
   <gfx_store>engine4.webp</gfx_store>
  </general>
  <specific type="modification">
-  <engine_limit>250</engine_limit>
+  <engine_limit>200</engine_limit>
   <speed>315</speed>
   <thrust>170</thrust>
   <turn>150</turn>
