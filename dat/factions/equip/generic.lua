@@ -181,7 +181,7 @@ equip_classOutfits_engines = {
    ["Light Cruiser"] = {
       "Exacorp Eagle 4500 Engine",
       "Flex Typhoon Engine",
-      "Exacorp Javelin 3800 Engine",
+      "Flex Javelin Engine",
    },
    ["Cruiser"] = {
       "Exacorp Eagle 4500 Engine",
