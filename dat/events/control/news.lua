@@ -148,21 +148,6 @@ cond_articles = {
          return (player.numOutfit("Mercenary License") > 0)
       end,
    },
-   {
-      title = _("Za'lek Students Test Engine Technology"),
-      text = _([[Students all over Za'lek space have been designing new experimental engine designs as part of a new government funded program. These students seek pilots willing to test fly their experimental engine designs for a substantial sum of credits.]]),
-      tag = "mhint_Za'lek Test",
-      mission = "Za'lek Test",
-      cond = function()
-         return (player.numOutfit("Mercenary License") > 0
-            and faction.playerStanding("Za'lek") >= 5
-            and not var.peek("zalek_test_done"))
-      end,
-      delcond = function()
-         return (var.peek("zalek_test_done")
-            or faction.playerStanding("Za'lek") < 5)
-      end,
-   },
 }
 
 
