@@ -33,7 +33,7 @@
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>
   <utility size="small" />
   <utility size="small" />
-  <structure size="small" prop="engines" exclusive="1" required="1">Exacorp Hawk 300 Engine</structure>
+  <structure size="small" prop="engines" exclusive="1" required="1">Exacorp HS-300 Engine</structure>
   <structure size="small" prop="hull" exclusive="1" required="1">Exacorp D-4 Hull</structure>
   <structure size="small" />
  </slots>

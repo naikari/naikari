@@ -32,7 +32,7 @@
   <utility size="small" />
   <utility size="small" />
   <utility size="small" />
-  <structure size="small" prop="engines" exclusive="1" required="1">Exacorp Hawk 150 Engine</structure>
+  <structure size="small" prop="engines" exclusive="1" required="1">Exacorp HS-150 Engine</structure>
   <structure size="small" prop="hull" exclusive="1" required="1">Exacorp D-2 Hull</structure>
   <structure size="small" />
   <structure size="small" />

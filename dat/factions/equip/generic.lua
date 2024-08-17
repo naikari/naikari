@@ -129,71 +129,71 @@ equip_classOutfits_coreSystems = {
 -- none should be equipped.
 equip_classOutfits_engines = {
    ["Yacht"] = {
-      "Exacorp Hawk 150 Engine",
+      "Exacorp HS-150 Engine",
       "Flex Zephyr Engine",
    },
    ["Luxury Yacht"] = {
-      "Exacorp Hawk 150 Engine",
+      "Exacorp HS-150 Engine",
       "Flex Zephyr Engine",
    },
    ["Scout"] = {
-      "Exacorp Hawk 150 Engine",
+      "Exacorp HS-150 Engine",
       "Flex Zephyr Engine",
    },
    ["Courier"] = {
-      "Exacorp Hawk 300 Engine",
+      "Exacorp HS-300 Engine",
       "Flex Zephyr II Engine",
       "NGL Ox XL Engine",
    },
    ["Freighter"] = {
-      "Exacorp Falcon 1200 Engine",
+      "Exacorp HS-1200 Engine",
       "NGL Buffalo XL Engine",
    },
    ["Armored Transport"] = {
-      "Exacorp Falcon 1200 Engine",
+      "Exacorp HS-1200 Engine",
       "NGL Buffalo XL Engine",
    },
    ["Bulk Freighter"] = {
-      "Exacorp Eagle 6500 Engine",
+      "Exacorp HS-6500 Engine",
       "NGL Mammoth XL Engine",
    },
    ["Light Fighter"] = {
-      "Exacorp Hawk 150 Engine",
+      "Exacorp HS-150 Engine",
       "Flex Zephyr Engine",
    },
    ["Fighter"] = {
-      "Exacorp Hawk 300 Engine",
+      "Exacorp HS-300 Engine",
       "Flex Zephyr II Engine",
    },
    ["Bomber"] = {
-      "Exacorp Hawk 300 Engine",
+      "Exacorp HS-300 Engine",
       "Flex Zephyr II Engine",
       "NGL Ox XL Engine",
    },
    ["Corvette"] = {
-      "Exacorp Falcon 700 Engine",
+      "Exacorp HS-700 Engine",
       "Flex Cyclone Engine",
    },
    ["Destroyer"] = {
-      "Exacorp Falcon 1200 Engine",
+      "Exacorp HS-1200 Engine",
       "Flex Cyclone II Engine",
    },
    ["Light Cruiser"] = {
-      "Exacorp Eagle 4500 Engine",
+      "Exacorp HS-4500 Engine",
       "Flex Typhoon Engine",
       "Flex Javelin Engine",
    },
    ["Cruiser"] = {
-      "Exacorp Eagle 4500 Engine",
+      "Exacorp HS-4500 Engine",
       "Flex Typhoon Engine",
    },
    ["Battleship"] = {
-      "Exacorp Eagle 6500 Engine",
+      "Exacorp HS-6500 Engine",
       "Flex Typhoon II Engine",
       "NGL Mammoth XL Engine",
    },
    ["Carrier"] = {
-      "Exacorp Eagle 6500 Engine",
+      "Exacorp HS-6500 Engine",
       "Flex Typhoon II Engine",
       "NGL Mammoth XL Engine",
    },
@@ -1297,7 +1297,7 @@ equip_typeOutfits_coreSystems = {
 -- Table of available engines by base type.
 equip_typeOutfits_engines = {
    ["Vendetta"] = {
-      "Exacorp Hawk 300 Engine",
+      "Exacorp HS-300 Engine",
       "Flex Zephyr II Engine",
       "NGL Ox XL Engine",
    },
@@ -1855,7 +1855,7 @@ function equip_generic(p, recursive)
       success = equip_warn(p, o[rnd.rnd(1, #o)])
    end
    if not success then
-      equip_warn(p, "Exacorp Hawk 300 Engine")
+      equip_warn(p, "Exacorp HS-300 Engine")
    end
 
    -- Hulls

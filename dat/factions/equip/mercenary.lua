@@ -25,7 +25,7 @@ equip_classOutfits_coreSystems["Yacht"] = {
    "Milspec Orion 2201 APU",
 }
 equip_classOutfits_engines["Yacht"] = {
-   "Exacorp Hawk 150 Engine",
+   "Exacorp HS-150 Engine",
    "Tricon Zephyr Engine",
 }
 equip_classOutfits_hulls["Yacht"] = {
