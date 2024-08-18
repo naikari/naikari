@@ -1,24 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="NGL Mammoth XL Engine">
+<outfit name="NGL Caravan 400 Engine">
  <general>
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
-  <size>large</size>
+  <size>small</size>
   <priority>7</priority>
-  <mass>100</mass>
-  <price>1500000</price>
+  <mass>15</mass>
+  <price>95000</price>
   <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
 
 Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
-  <gfx_store>engine12.webp</gfx_store>
+  <gfx_store>engine15.webp</gfx_store>
  </general>
  <specific type="modification">
-  <engine_limit>8000</engine_limit>
-  <speed>70</speed>
-  <thrust>20</thrust>
-  <turn>25</turn>
-  <fuel>2000</fuel>
-  <fuel_regen>0.4</fuel_regen>
-  <energy_regen_malus>45</energy_regen_malus>
+  <engine_limit>400</engine_limit>
+  <speed>225</speed>
+  <thrust>80</thrust>
+  <turn>65</turn>
+  <fuel>500</fuel>
+  <fuel_regen>0.1</fuel_regen>
+  <energy_regen_malus>7</energy_regen_malus>
  </specific>
 </outfit>
