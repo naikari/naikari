@@ -14,9 +14,9 @@ Each engine is designed with a specific mass limit under which it can operate at
  </general>
  <specific type="modification">
   <engine_limit>150</engine_limit>
-  <speed>300</speed>
-  <thrust>165</thrust>
-  <turn>140</turn>
+  <speed>320</speed>
+  <thrust>175</thrust>
+  <turn>155</turn>
   <fuel>300</fuel>
   <fuel_regen>0.1</fuel_regen>
   <energy_regen_malus>2</energy_regen_malus>

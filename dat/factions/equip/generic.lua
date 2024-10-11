@@ -130,19 +130,19 @@ equip_classOutfits_coreSystems = {
 equip_classOutfits_engines = {
    ["Yacht"] = {
       "Exacorp HS-150 Engine",
-      "Flex Zephyr Engine",
+      "Flex Tornado 150X Engine",
    },
    ["Luxury Yacht"] = {
       "Exacorp HS-150 Engine",
-      "Flex Zephyr Engine",
+      "Flex Tornado 150X Engine",
    },
    ["Scout"] = {
       "Exacorp HS-150 Engine",
-      "Flex Zephyr Engine",
+      "Flex Tornado 150X Engine",
    },
    ["Courier"] = {
       "Exacorp HS-300 Engine",
-      "Flex Zephyr II Engine",
+      "Flex Cyclone 300X Engine",
       "NGL Caravan 400 Engine",
    },
    ["Freighter"] = {
@@ -159,49 +159,49 @@ equip_classOutfits_engines = {
    },
    ["Light Fighter"] = {
       "Exacorp HS-150 Engine",
-      "Flex Zephyr Engine",
+      "Flex Tornado 150X Engine",
    },
    ["Fighter"] = {
       "Exacorp HS-300 Engine",
-      "Flex Zephyr II Engine",
+      "Flex Cyclone 300X Engine",
    },
    ["Bomber"] = {
       "Exacorp HS-300 Engine",
-      "Flex Zephyr II Engine",
+      "Flex Cyclone 300X Engine",
       "NGL Caravan 400 Engine",
    },
    ["Corvette"] = {
       "Exacorp HS-700 Engine",
-      "Flex Cyclone Engine",
+      "Flex Tornado 700X Engine",
    },
    ["Destroyer"] = {
       "Exacorp HS-1200 Engine",
-      "Flex Cyclone II Engine",
+      "Flex Cyclone 1200X Engine",
    },
    ["Light Cruiser"] = {
       "Exacorp HS-4500 Engine",
-      "Flex Typhoon Engine",
-      "Flex Javelin Engine",
+      "Flex Tornado 4500X Engine",
+      "Flex Gust 3800S Engine",
    },
    ["Cruiser"] = {
       "Exacorp HS-4500 Engine",
-      "Flex Typhoon Engine",
+      "Flex Tornado 4500X Engine",
    },
    ["Battleship"] = {
       "Exacorp HS-6500 Engine",
-      "Flex Typhoon II Engine",
+      "Flex Cyclone 6500X Engine",
       "NGL Caravan 8000 Engine",
    },
    ["Carrier"] = {
       "Exacorp HS-6500 Engine",
-      "Flex Typhoon II Engine",
+      "Flex Cyclone 6500X Engine",
       "NGL Caravan 8000 Engine",
    },
    ["Drone"] = {
-      "Flex Zephyr Engine",
+      "Flex Tornado 150X Engine",
    },
    ["Heavy Drone"] = {
-      "Flex Zephyr II Engine",
+      "Flex Cyclone 300X Engine",
    },
    ["Station"] = false,
 }
@@ -1298,7 +1298,7 @@ equip_typeOutfits_coreSystems = {
 equip_typeOutfits_engines = {
    ["Vendetta"] = {
       "Exacorp HS-300 Engine",
-      "Flex Zephyr II Engine",
+      "Flex Cyclone 300X Engine",
       "NGL Caravan 400 Engine",
    },
    ["Brigand"] = {

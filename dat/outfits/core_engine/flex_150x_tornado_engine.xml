@@ -1,24 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Flex Dart Engine">
+<outfit name="Flex Tornado 150X Engine">
  <general>
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
   <size>small</size>
-  <priority>7</priority>
-  <mass>12</mass>
-  <price>190000</price>
+  <mass>8</mass>
+  <price>135000</price>
   <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
 
 Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
-  <gfx_store>engine4.webp</gfx_store>
+  <gfx_store>engine9.webp</gfx_store>
+  <priority>3</priority>
  </general>
  <specific type="modification">
-  <engine_limit>200</engine_limit>
-  <speed>315</speed>
-  <thrust>170</thrust>
-  <turn>150</turn>
-  <fuel>300</fuel>
+  <engine_limit>150</engine_limit>
+  <speed>360</speed>
+  <thrust>205</thrust>
+  <turn>180</turn>
+  <fuel>400</fuel>
   <fuel_regen>0.1</fuel_regen>
-  <energy_regen_malus>3</energy_regen_malus>
+  <energy_regen_malus>5</energy_regen_malus>
  </specific>
 </outfit>
