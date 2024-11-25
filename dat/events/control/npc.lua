@@ -470,6 +470,25 @@ end
 
 
 function talkBartender(id)
+   local greeting = _([["Hi! How can I help you?"]])
+
+   local choice_mission = p_("bartender", "Mission Guidance")
+
+   local choice_n, choice = tk.choice("", greeting,
+      choice_mission)
+
+   if choice == choice_mission then
+      -- To implement bartender advice in a mission: in the
+      -- bartender_mission hook, check if _bartender_ready is true, and
+      -- if so, show the advice message(s) and pop _bartender_ready.
+      var.push("_bartender_ready", true)
+      naik.hookTrigger("bartender_mission")
+
+      if var.peek("_bartender_ready") then
+         var.pop("_bartender_ready")
+         tk.msg("", _([["Hm, I'm sorry, I don't see anything in your active missions I'd be able to help you with right now. If you need to start a new mission and you don't see anything around the bar, why not take a look at the mission computer? You can find it on any planet with the Missions service by clicking on the Missions tab."]]))
+      end
+   end
 end
 
 
