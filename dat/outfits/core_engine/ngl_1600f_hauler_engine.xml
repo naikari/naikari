@@ -1,24 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="NGL Caravan 950 Engine">
+<outfit name="NGL Hauler 1600F Engine">
  <general>
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
   <size>medium</size>
-  <priority>4</priority>
-  <mass>25</mass>
-  <price>180000</price>
+  <priority>8</priority>
+  <mass>30</mass>
+  <price>280000</price>
   <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.
 
 Each engine is designed with a specific mass limit under which it can operate at its advertised speed, acceleration, and turn rate. A ship's mass exceeding its engine's mass limit will cause the ship to lose speed, acceleration, and turn rate, but as long as the engine can still move the ship, the ship will remain spaceworthy.</description>
-  <gfx_store>engine3.webp</gfx_store>
+  <gfx_store>engine6.webp</gfx_store>
  </general>
  <specific type="modification">
-  <engine_limit>950</engine_limit>
-  <speed>170</speed>
-  <thrust>65</thrust>
-  <turn>55</turn>
+  <engine_limit>1600</engine_limit>
+  <speed>135</speed>
+  <thrust>49</thrust>
+  <turn>40</turn>
   <fuel>1000</fuel>
   <fuel_regen>0.2</fuel_regen>
-  <energy_regen_malus>7</energy_regen_malus>
+  <energy_regen_malus>14</energy_regen_malus>
  </specific>
 </outfit>

@@ -4,7 +4,7 @@
   <typename>Engine</typename>
   <slot prop="engines">structure</slot>
   <size>small</size>
-  <priority>6</priority>
+  <priority>5</priority>
   <mass>12</mass>
   <price>190000</price>
   <description>The engine provides a ship's basic propulsion and hyperspace jumping systems. It provides the ship's base fuel tanks and determines its speed and handling characteristics. Every ship must have an engine installed to be spaceworthy.

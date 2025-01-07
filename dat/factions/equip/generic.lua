@@ -143,19 +143,19 @@ equip_classOutfits_engines = {
    ["Courier"] = {
       "Exacorp HS-300 Engine",
       "Flex Cyclone 300X Engine",
-      "NGL Caravan 400 Engine",
+      "NGL Hauler 400F Engine",
    },
    ["Freighter"] = {
       "Exacorp HS-1200 Engine",
-      "NGL Caravan 1600 Engine",
+      "NGL Hauler 1600F Engine",
    },
    ["Armored Transport"] = {
       "Exacorp HS-1200 Engine",
-      "NGL Caravan 1600 Engine",
+      "NGL Hauler 1600F Engine",
    },
    ["Bulk Freighter"] = {
       "Exacorp HS-6500 Engine",
-      "NGL Caravan 8000 Engine",
+      "NGL Hauler 8000F Engine",
    },
    ["Light Fighter"] = {
       "Exacorp HS-150 Engine",
@@ -168,7 +168,7 @@ equip_classOutfits_engines = {
    ["Bomber"] = {
       "Exacorp HS-300 Engine",
       "Flex Cyclone 300X Engine",
-      "NGL Caravan 400 Engine",
+      "NGL Hauler 400F Engine",
    },
    ["Corvette"] = {
       "Exacorp HS-700 Engine",
@@ -190,12 +190,12 @@ equip_classOutfits_engines = {
    ["Battleship"] = {
       "Exacorp HS-6500 Engine",
       "Flex Cyclone 6500X Engine",
-      "NGL Caravan 8000 Engine",
+      "NGL Hauler 8000F Engine",
    },
    ["Carrier"] = {
       "Exacorp HS-6500 Engine",
       "Flex Cyclone 6500X Engine",
-      "NGL Caravan 8000 Engine",
+      "NGL Hauler 8000F Engine",
    },
    ["Drone"] = {
       "Flex Tornado 150X Engine",
@@ -1299,7 +1299,7 @@ equip_typeOutfits_engines = {
    ["Vendetta"] = {
       "Exacorp HS-300 Engine",
       "Flex Cyclone 300X Engine",
-      "NGL Caravan 400 Engine",
+      "NGL Hauler 400F Engine",
    },
    ["Brigand"] = {
       probability = {
