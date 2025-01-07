@@ -384,9 +384,20 @@
       are widely available and have only the most basic goods. -->
  <tech name="Population Generic">
   <item>Llama</item>
+  <item>Jump Scanner</item>
+  <item>Fuel Pod</item>
+  <item>Makeshift Large APU</item>
+  <item>Makeshift Medium APU</item>
+  <item>Makeshift Small APU</item>
+  <item>Beat Up Large Engine</item>
+  <item>Beat Up Medium Engine</item>
+  <item>Beat Up Small Engine</item>
+  <item>Patchwork Heavy Hull</item>
+  <item>Patchwork Medium Hull</item>
+  <item>Patchwork Light Hull</item>
  </tech>
  <tech name="Population Empire">
-  <item>Llama</item>
+  <item>Population Generic</item>
  </tech>
 
  <!-- Specialty stations, separated by class, merchant, and faction. -->
