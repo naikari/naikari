@@ -32,10 +32,10 @@
   <cargo>120</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="25" y="-4" h="0">Heavy Ripper Turret</weapon>
-  <weapon size="large" x="25" y="4" h="0">Heavy Ripper Turret</weapon>
-  <weapon size="large" x="0" y="-6" h="2">Heavy Ripper Turret</weapon>
-  <weapon size="large" x="0" y="6" h="2">Heavy Ripper Turret</weapon>
+  <weapon size="large" x="25" y="-4" h="0">TL110-L Laser Turret</weapon>
+  <weapon size="large" x="25" y="4" h="0">TL110-L Laser Turret</weapon>
+  <weapon size="large" x="0" y="-6" h="2">TL110-L Laser Turret</weapon>
+  <weapon size="large" x="0" y="6" h="2">TL110-L Laser Turret</weapon>
   <weapon size="large" x="40" y="0" h="0" />
   <weapon size="large" prop="fighter_bay" x="-25" y="-8" h="3" />
   <weapon size="large" prop="fighter_bay" x="-25" y="8" h="3">Enygma Systems Turreted Fury Launcher</weapon>

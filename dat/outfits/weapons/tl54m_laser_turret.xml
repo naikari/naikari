@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Laser Turret MK2">
+<outfit name="TL54-M Laser Turret">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
   <mass>60</mass>
   <price>62000</price>
-  <description>The Laser Turret MK2 is often found on Imperial fast response fleets, for use against fleets of small to medium ships. This weapon is one of the mainstays in the Imperial space forces.</description>
+  <description>The TL54-M Laser Turret is often found on Imperial fast response fleets, for use against fleets of small to medium ships. This weapon is one of the mainstays in the Imperial space forces.</description>
   <gfx_store>laserturret2.webp</gfx_store>
  </general>
  <specific type="turret bolt">

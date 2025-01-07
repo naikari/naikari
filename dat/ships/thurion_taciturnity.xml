@@ -29,8 +29,8 @@
   <cargo>100</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="-6" y="-20" h="-4">Heavy Ripper Turret</weapon>
-  <weapon size="large" x="-6" y="20" h="-4">Heavy Ripper Turret</weapon>
+  <weapon size="large" x="-6" y="-20" h="-4">TL110-L Laser Turret</weapon>
+  <weapon size="large" x="-6" y="20" h="-4">TL110-L Laser Turret</weapon>
   <weapon size="medium" prop="fighter_bay" x="6" y="0" h="5">Enygma Systems Turreted Fury Launcher</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-600 APU</utility>
   <utility size="medium" />

@@ -40,7 +40,7 @@ equip_classOutfits_weapons["Yacht"] = {
       "Photon Dagger",
    },
    {
-      "Laser Cannon MK1",
+      "FL21-U Laser Gun",
       "Razor MK1",
       "Gauss Gun",
       "Plasma Blaster MK1",
@@ -54,7 +54,7 @@ equip_classOutfits_weapons["Light Fighter"] = {
          "Unicorp Mace Launcher",
       },
       {
-         "Laser Cannon MK1",
+         "FL21-U Laser Gun",
          "Razor MK1",
          "Gauss Gun",
          "Plasma Blaster MK1",
@@ -67,14 +67,14 @@ equip_classOutfits_weapons["Fighter"] = {
       "Unicorp Headhunter Launcher",
    },
    {
-      "Laser Cannon MK2",
+      "FL27-S Laser Gun",
       "Razor MK2",
       "Vulcan Gun",
       "Plasma Blaster MK2",
       "Orion Lance",
    },
    {
-      "Laser Cannon MK1",
+      "FL21-U Laser Gun",
       "Razor MK1",
       "Gauss Gun",
       "Plasma Blaster MK1",
@@ -91,7 +91,7 @@ equip_classOutfits_weapons["Bomber"] = {
       "Unicorp Headhunter Launcher",
    },
    {
-      "Laser Cannon MK2",
+      "FL27-S Laser Gun",
       "Razor MK2",
       "Vulcan Gun",
       "Plasma Blaster MK2",
@@ -113,16 +113,16 @@ equip_classOutfits_weapons["Corvette"] = {
    },
    {
       probability = {
-         ["Ripper Cannon"] = 10,
+         ["FL50-H Laser Gun"] = 10,
          ["Slicer"] = 10,
          ["Shredder"] = 10,
          ["Plasma Cannon"] = 10,
       };
-      "Ripper Cannon",
+      "FL50-H Laser Gun",
       "Slicer",
       "Shredder",
       "Plasma Cannon",
-      "Laser Cannon MK2",
+      "FL27-S Laser Gun",
       "Razor MK2",
       "Vulcan Gun",
       "Plasma Blaster MK2",
@@ -132,7 +132,7 @@ equip_classOutfits_weapons["Corvette"] = {
 equip_classOutfits_weapons["Destroyer"] = {
    {
       "Railgun",
-      "Heavy Ripper Turret",
+      "TL110-L Laser Turret",
       "Plasma Cluster Turret",
       "Turreted Mass Driver",
       "Grave Beam",
@@ -147,11 +147,11 @@ equip_classOutfits_weapons["Destroyer"] = {
    },
    {
       num = 1;
-      "Heavy Ripper Cannon",
+      "FL55-M Laser Gun",
       "Mass Driver",
       "Plasma Cluster Cannon",
       "Grave Lance",
-      "Laser Turret MK2",
+      "TL54-M Laser Turret",
       "Razor Turret MK2",
       "Turreted Vulcan Gun",
       "Plasma Turret MK2",
@@ -163,11 +163,11 @@ equip_classOutfits_weapons["Destroyer"] = {
       "Mini Lancelot Fighter Bay",
    },
    {
-      "Heavy Ripper Cannon",
+      "FL55-M Laser Gun",
       "Mass Driver",
       "Plasma Cluster Cannon",
       "Grave Lance",
-      "Laser Turret MK2",
+      "TL54-M Laser Turret",
       "Razor Turret MK2",
       "Turreted Vulcan Gun",
       "Plasma Turret MK2",
@@ -185,13 +185,13 @@ equip_classOutfits_weapons["Light Cruiser"] = {
    },
    {
       "Railgun",
-      "Heavy Ripper Turret",
+      "TL110-L Laser Turret",
       "Plasma Cluster Turret",
       "Turreted Mass Driver",
       "Grave Beam",
    },
    {
-      "Laser Turret MK2",
+      "TL54-M Laser Turret",
       "Razor Turret MK2",
       "Turreted Vulcan Gun",
       "Plasma Turret MK2",
@@ -209,13 +209,13 @@ equip_classOutfits_weapons["Cruiser"] = {
    },
    {
       "Railgun",
-      "Heavy Ripper Turret",
+      "TL110-L Laser Turret",
       "Plasma Cluster Turret",
       "Turreted Mass Driver",
       "Grave Beam",
    },
    {
-      "Laser Turret MK2",
+      "TL54-M Laser Turret",
       "Razor Turret MK2",
       "Turreted Vulcan Gun",
       "Plasma Turret MK2",
@@ -235,13 +235,13 @@ equip_classOutfits_weapons["Battleship"] = {
       "Lancelot Fighter Bay",
    },
    {
-      "Heavy Laser Turret",
+      "TL200-X Laser Turret",
       "Railgun Turret",
       "Ragnarok Beam",
    },
    {
       "Railgun",
-      "Heavy Ripper Turret",
+      "TL110-L Laser Turret",
       "Plasma Cluster Turret",
       "Turreted Mass Driver",
       "Grave Beam",
@@ -255,12 +255,12 @@ equip_classOutfits_weapons["Carrier"] = {
       "Lancelot Fighter Bay",
    },
    {
-      "Heavy Laser Turret",
+      "TL200-X Laser Turret",
       "Railgun Turret",
       "Ragnarok Beam",
    },
    {
-      "Heavy Ripper Turret",
+      "TL110-L Laser Turret",
       "Plasma Cluster Turret",
       "Turreted Mass Driver",
       "Grave Beam",

@@ -3,13 +3,13 @@ require "factions/equip/generic"
 
 equip_typeOutfits_weapons["Perspicacity"] = {
    {
-      "Laser Cannon MK1", "Razor MK1", "TeraCom Mace Launcher",
+      "FL21-U Laser Gun", "Razor MK1", "TeraCom Mace Launcher",
       "TeraCom Banshee Launcher", "Electron Burst Cannon",
    },
 }
 equip_typeOutfits_weapons["Ingenuity"] = {
    {
-      "Laser Cannon MK1", "Razor MK1", "TeraCom Mace Launcher",
+      "FL21-U Laser Gun", "Razor MK1", "TeraCom Mace Launcher",
       "TeraCom Banshee Launcher", "Electron Burst Cannon",
    },
 }
@@ -20,7 +20,7 @@ equip_typeOutfits_weapons["Scintillation"] = {
       "Unicorp Headhunter Launcher", "Convulsion Launcher",
    },
    {
-      "Laser Cannon MK2", "Razor MK2",
+      "FL27-S Laser Gun", "Razor MK2",
    },
 }
 equip_typeOutfits_weapons["Virtuosity"] = {
@@ -35,14 +35,14 @@ equip_typeOutfits_weapons["Virtuosity"] = {
    },
    {
       probability = {
-         ["Ripper Cannon"] = 8, ["Slicer"] = 8,
+         ["FL50-H Laser Gun"] = 8, ["Slicer"] = 8,
       };
-      "Ripper Cannon", "Slicer", "Laser Cannon MK2", "Razor MK2",
+      "FL50-H Laser Gun", "Slicer", "FL27-S Laser Gun", "Razor MK2",
    },
 }
 equip_typeOutfits_weapons["Taciturnity"] = {
    {
-      "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+      "TL110-L Laser Turret", "Grave Beam", "Heavy Ion Turret",
    },
    {
       num = 1;
@@ -50,14 +50,14 @@ equip_typeOutfits_weapons["Taciturnity"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "Laser Turret MK2", "Razor Turret MK2", "Orion Beam",
+      "TL54-M Laser Turret", "Razor Turret MK2", "Orion Beam",
       "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
       "Turreted Convulsion Launcher",
    },
 }
 equip_typeOutfits_weapons["Apprehension"] = {
    {
-      "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+      "TL110-L Laser Turret", "Grave Beam", "Heavy Ion Turret",
    },
    {
       num = 1;
@@ -65,7 +65,7 @@ equip_typeOutfits_weapons["Apprehension"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "Laser Turret MK2", "Razor Turret MK2", "Orion Beam",
+      "TL54-M Laser Turret", "Razor Turret MK2", "Orion Beam",
       "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
       "Turreted Convulsion Launcher",
    },
@@ -77,10 +77,10 @@ equip_typeOutfits_weapons["Certitude"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "Heavy Laser Turret", "Ragnarok Beam",
+      "TL200-X Laser Turret", "Ragnarok Beam",
    },
    {
-      "Heavy Ripper Turret", "Grave Beam", "Heavy Ion Turret",
+      "TL110-L Laser Turret", "Grave Beam", "Heavy Ion Turret",
    },
 }
 

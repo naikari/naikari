@@ -28,8 +28,8 @@
   <cargo>90</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="15" y="0" h="3">Turbolaser</weapon>
-  <weapon size="large" x="20" y="0" h="2">Turbolaser</weapon>
+  <weapon size="large" x="15" y="0" h="3">TL250-X Laser Turret</weapon>
+  <weapon size="large" x="20" y="0" h="2">TL250-X Laser Turret</weapon>
   <weapon size="large" x="-20" y="-17" h="2">Ragnarok Beam</weapon>
   <weapon size="large" x="-20" y="17" h="2">Ragnarok Beam</weapon>
   <weapon size="large" prop="fighter_bay" x="4" y="-7" h="1">Za'lek Hunter Launcher</weapon>

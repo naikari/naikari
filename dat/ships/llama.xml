@@ -27,7 +27,7 @@
   <armour_regen>0</armour_regen>
  </health>
  <slots>
-  <weapon size="small" x="7" y="0" h="1">Laser Cannon MK1</weapon>
+  <weapon size="small" x="7" y="0" h="1">FL21-U Laser Gun</weapon>
   <weapon size="small" x="-3" y="0" h="2">Photon Dagger</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-200 APU</utility>
   <utility size="small" />

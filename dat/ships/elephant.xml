@@ -31,8 +31,8 @@
   <cargo>540</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="28" y="18" h="-4">Heavy Laser Turret</weapon>
-  <weapon size="large" x="28" y="-18" h="-4">Heavy Laser Turret</weapon>
+  <weapon size="large" x="28" y="18" h="-4">TL200-X Laser Turret</weapon>
+  <weapon size="large" x="28" y="-18" h="-4">TL200-X Laser Turret</weapon>
   <weapon size="large" prop="fighter_bay" x="-18" y="22" h="4" />
   <weapon size="large" prop="fighter_bay" x="-18" y="-22" h="4">Enygma Systems Turreted Fury Launcher</weapon>
   <utility size="large" prop="systems" exclusive="1" required="1">Exacorp ET-900 APU</utility>

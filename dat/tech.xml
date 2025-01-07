@@ -2,15 +2,15 @@
 <Techs>
  <!-- Templates - add all new outfits, commodities and ships here! -->
  <tech name="All Outfits">
-  <item>Laser Cannon MK1</item>
-  <item>Laser Cannon MK2</item>
-  <item>Ripper Cannon</item>
-  <item>Heavy Ripper Cannon</item>
-  <item>Laser Turret MK1</item>
-  <item>Laser Turret MK2</item>
-  <item>Heavy Ripper Turret</item>
-  <item>Heavy Laser Turret</item>
-  <item>Turbolaser</item>
+  <item>FL21-U Laser Gun</item>
+  <item>FL27-S Laser Gun</item>
+  <item>FL50-H Laser Gun</item>
+  <item>FL55-M Laser Gun</item>
+  <item>TL21-S Laser Turret</item>
+  <item>TL54-M Laser Turret</item>
+  <item>TL110-L Laser Turret</item>
+  <item>TL200-X Laser Turret</item>
+  <item>TL250-X Laser Turret</item>
   <item>Razor MK1</item>
   <item>Razor MK2</item>
   <item>Slicer</item>
@@ -404,7 +404,7 @@
  <tech name="Population Empire">
   <item>Population Generic</item>
   <item>Photon Dagger</item>
-  <item>Laser Cannon MK1</item>
+  <item>FL21-U Laser Gun</item>
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
   <item>Exacorp D-2 Hull</item>

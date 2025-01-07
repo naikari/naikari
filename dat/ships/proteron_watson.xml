@@ -30,8 +30,8 @@
  <slots>
   <weapon size="large" prop="fighter_bay" exclusive="1" x="40" y="0" h="2">Derivative Fighter Bay</weapon>
   <weapon size="large" prop="fighter_bay" exclusive="1" x="25" y="0" h="2">Derivative Fighter Bay</weapon>
-  <weapon size="large" x="12" y="-6" h="0">Heavy Laser Turret</weapon>
-  <weapon size="large" x="12" y="6" h="0">Heavy Laser Turret</weapon>
+  <weapon size="large" x="12" y="-6" h="0">TL200-X Laser Turret</weapon>
+  <weapon size="large" x="12" y="6" h="0">TL200-X Laser Turret</weapon>
   <weapon size="large" prop="fighter_bay" exclusive="1" x="0" y="0" h="7" />
   <weapon size="large" prop="fighter_bay" exclusive="1" x="0" y="0" h="7" />
   <weapon size="large" prop="fighter_bay" exclusive="1" x="-15" y="0" h="7" />

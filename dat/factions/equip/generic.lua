@@ -311,7 +311,7 @@ equip_classOutfits_weapons = {
       {
          num = 1;
          "Photon Dagger",
-         "Laser Cannon MK1",
+         "FL21-U Laser Gun",
          "Razor MK1",
          "Gauss Gun",
          "Plasma Blaster MK1",
@@ -319,7 +319,7 @@ equip_classOutfits_weapons = {
          "Ion Cannon",
       },
       {
-         "Laser Cannon MK1",
+         "FL21-U Laser Gun",
          "Razor MK1",
          "Gauss Gun",
          "Plasma Blaster MK1",
@@ -331,7 +331,7 @@ equip_classOutfits_weapons = {
       {
          num = 1;
          "Photon Dagger",
-         "Laser Cannon MK1",
+         "FL21-U Laser Gun",
          "Razor MK1",
          "Gauss Gun",
          "Plasma Blaster MK1",
@@ -339,7 +339,7 @@ equip_classOutfits_weapons = {
          "Ion Cannon",
       },
       {
-         "Laser Cannon MK1",
+         "FL21-U Laser Gun",
          "Razor MK1",
          "Gauss Gun",
          "Plasma Blaster MK1",
@@ -349,7 +349,7 @@ equip_classOutfits_weapons = {
    },
    ["Scout"] = {
       {
-         "Laser Turret MK1",
+         "TL21-S Laser Turret",
          "Razor Turret MK1",
          "Turreted Gauss Gun",
          "Plasma Turret MK1",
@@ -358,7 +358,7 @@ equip_classOutfits_weapons = {
    },
    ["Courier"] = {
       {
-         "Laser Turret MK1",
+         "TL21-S Laser Turret",
          "Razor Turret MK1",
          "Turreted Gauss Gun",
          "Plasma Turret MK1",
@@ -375,7 +375,7 @@ equip_classOutfits_weapons = {
          "Mini Lancelot Fighter Bay",
       },
       {
-         "Laser Turret MK2",
+         "TL54-M Laser Turret",
          "Razor Turret MK2",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
@@ -388,7 +388,7 @@ equip_classOutfits_weapons = {
    },
    ["Armored Transport"] = {
       {
-         "Heavy Ripper Turret",
+         "TL110-L Laser Turret",
          "Plasma Cluster Turret",
          "Turreted Mass Driver",
          "Grave Beam",
@@ -403,7 +403,7 @@ equip_classOutfits_weapons = {
          "Mini Lancelot Fighter Bay",
       },
       {
-         "Laser Turret MK2",
+         "TL54-M Laser Turret",
          "Razor Turret MK2",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
@@ -426,12 +426,12 @@ equip_classOutfits_weapons = {
          "Lancelot Fighter Bay",
       },
       {
-         "Heavy Laser Turret",
+         "TL200-X Laser Turret",
          "Railgun Turret",
          "Ragnarok Beam",
       },
       {
-         "Heavy Ripper Turret",
+         "TL110-L Laser Turret",
          "Plasma Cluster Turret",
          "Turreted Mass Driver",
          "Grave Beam",
@@ -445,7 +445,7 @@ equip_classOutfits_weapons = {
          "Unicorp Mace Launcher",
       },
       {
-         "Laser Cannon MK1",
+         "FL21-U Laser Gun",
          "Razor MK1",
          "Gauss Gun",
          "Plasma Blaster MK1",
@@ -459,7 +459,7 @@ equip_classOutfits_weapons = {
          "Unicorp Headhunter Launcher",
       },
       {
-         "Laser Cannon MK2",
+         "FL27-S Laser Gun",
          "Razor MK2",
          "Vulcan Gun",
          "Plasma Blaster MK2",
@@ -467,7 +467,7 @@ equip_classOutfits_weapons = {
          "Ion Cannon",
       },
       {
-         "Laser Cannon MK1",
+         "FL21-U Laser Gun",
          "Razor MK1",
          "Gauss Gun",
          "Plasma Blaster MK1",
@@ -485,7 +485,7 @@ equip_classOutfits_weapons = {
          "Unicorp Medusa Launcher",
       },
       {
-         "Laser Cannon MK2",
+         "FL27-S Laser Gun",
          "Razor MK2",
          "Vulcan Gun",
          "Plasma Blaster MK2",
@@ -511,16 +511,16 @@ equip_classOutfits_weapons = {
       },
       {
          probability = {
-            ["Ripper Cannon"] = 10,
+            ["FL50-H Laser Gun"] = 10,
             ["Slicer"] = 10,
             ["Shredder"] = 10,
             ["Plasma Cannon"] = 10,
          };
-         "Ripper Cannon",
+         "FL50-H Laser Gun",
          "Slicer",
          "Shredder",
          "Plasma Cannon",
-         "Laser Cannon MK2",
+         "FL27-S Laser Gun",
          "Razor MK2",
          "Vulcan Gun",
          "Plasma Blaster MK2",
@@ -530,7 +530,7 @@ equip_classOutfits_weapons = {
    ["Destroyer"] = {
       {
          "Railgun",
-         "Heavy Ripper Turret",
+         "TL110-L Laser Turret",
          "Plasma Cluster Turret",
          "Turreted Mass Driver",
          "Grave Beam",
@@ -546,12 +546,12 @@ equip_classOutfits_weapons = {
       },
       {
          num = 1;
-         "Heavy Ripper Cannon",
+         "FL55-M Laser Gun",
          "Mass Driver",
          "Plasma Cluster Cannon",
          "Grave Lance",
          "Heavy Ion Cannon",
-         "Laser Turret MK2",
+         "TL54-M Laser Turret",
          "Razor Turret MK2",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
@@ -564,12 +564,12 @@ equip_classOutfits_weapons = {
          "Mini Lancelot Fighter Bay",
       },
       {
-         "Heavy Ripper Cannon",
+         "FL55-M Laser Gun",
          "Mass Driver",
          "Plasma Cluster Cannon",
          "Grave Lance",
          "Heavy Ion Cannon",
-         "Laser Turret MK2",
+         "TL54-M Laser Turret",
          "Razor Turret MK2",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
@@ -591,14 +591,14 @@ equip_classOutfits_weapons = {
       },
       {
          "Railgun",
-         "Heavy Ripper Turret",
+         "TL110-L Laser Turret",
          "Plasma Cluster Turret",
          "Turreted Mass Driver",
          "Grave Beam",
          "Heavy Ion Turret",
       },
       {
-         "Laser Turret MK2",
+         "TL54-M Laser Turret",
          "Razor Turret MK2",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
@@ -617,14 +617,14 @@ equip_classOutfits_weapons = {
       },
       {
          "Railgun",
-         "Heavy Ripper Turret",
+         "TL110-L Laser Turret",
          "Plasma Cluster Turret",
          "Turreted Mass Driver",
          "Grave Beam",
          "Heavy Ion Turret",
       },
       {
-         "Laser Turret MK2",
+         "TL54-M Laser Turret",
          "Razor Turret MK2",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
@@ -645,13 +645,13 @@ equip_classOutfits_weapons = {
          "Lancelot Fighter Bay",
       },
       {
-         "Heavy Laser Turret",
+         "TL200-X Laser Turret",
          "Railgun Turret",
          "Ragnarok Beam",
       },
       {
          "Railgun",
-         "Heavy Ripper Turret",
+         "TL110-L Laser Turret",
          "Plasma Cluster Turret",
          "Turreted Mass Driver",
          "Grave Beam",
@@ -666,12 +666,12 @@ equip_classOutfits_weapons = {
          "Lancelot Fighter Bay",
       },
       {
-         "Heavy Laser Turret",
+         "TL200-X Laser Turret",
          "Railgun Turret",
          "Ragnarok Beam",
       },
       {
-         "Heavy Ripper Turret",
+         "TL110-L Laser Turret",
          "Plasma Cluster Turret",
          "Turreted Mass Driver",
          "Grave Beam",
