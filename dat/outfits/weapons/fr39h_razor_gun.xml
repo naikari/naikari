@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Slicer">
+<outfit name="FR39-H Razor Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <license>Medium Weapon License</license>
   <mass>30</mass>
   <price>35000</price>
-  <description>The Slicer is a high-powered version of the Razor, excellent at stripping the shields from those who would stand against House Sirius. It is commonly found on Sirius Preachers and other Corvettes.</description>
+  <description>The FR39-H Razor Gun is a high-powered version of the Razor, excellent at stripping the shields from those who would stand against House Sirius. It is commonly found on Sirius Preachers and other Corvettes.</description>
   <gfx_store>razor3.webp</gfx_store>
  </general>
  <specific type="bolt">

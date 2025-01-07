@@ -25,8 +25,8 @@
   <cargo>10</cargo>
  </characteristics>
  <slots>
-  <weapon size="small" x="10" y="-2" h="0">Razor MK1</weapon>
-  <weapon size="small" x="10" y="2" h="0">Razor MK1</weapon>
+  <weapon size="small" x="10" y="-2" h="0">FR11-U Razor Gun</weapon>
+  <weapon size="small" x="10" y="2" h="0">FR11-U Razor Gun</weapon>
   <weapon size="small" x="0" y="-4" h="-3">Photon Dagger</weapon>
   <weapon size="small" x="0" y="4" h="-3" />
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-200 APU</utility>

@@ -3,13 +3,13 @@ require "factions/equip/generic"
 
 equip_typeOutfits_weapons["Perspicacity"] = {
    {
-      "FL21-U Laser Gun", "Razor MK1", "TeraCom Mace Launcher",
+      "FL21-U Laser Gun", "FR11-U Razor Gun", "TeraCom Mace Launcher",
       "TeraCom Banshee Launcher", "Electron Burst Cannon",
    },
 }
 equip_typeOutfits_weapons["Ingenuity"] = {
    {
-      "FL21-U Laser Gun", "Razor MK1", "TeraCom Mace Launcher",
+      "FL21-U Laser Gun", "FR11-U Razor Gun", "TeraCom Mace Launcher",
       "TeraCom Banshee Launcher", "Electron Burst Cannon",
    },
 }
@@ -20,7 +20,7 @@ equip_typeOutfits_weapons["Scintillation"] = {
       "Unicorp Headhunter Launcher", "Convulsion Launcher",
    },
    {
-      "FL27-S Laser Gun", "Razor MK2",
+      "FL27-S Laser Gun", "FR18-S Razor Gun",
    },
 }
 equip_typeOutfits_weapons["Virtuosity"] = {
@@ -35,9 +35,9 @@ equip_typeOutfits_weapons["Virtuosity"] = {
    },
    {
       probability = {
-         ["FL50-H Laser Gun"] = 8, ["Slicer"] = 8,
+         ["FL50-H Laser Gun"] = 8, ["FR39-H Razor Gun"] = 8,
       };
-      "FL50-H Laser Gun", "Slicer", "FL27-S Laser Gun", "Razor MK2",
+      "FL50-H Laser Gun", "FR39-H Razor Gun", "FL27-S Laser Gun", "FR18-S Razor Gun",
    },
 }
 equip_typeOutfits_weapons["Taciturnity"] = {
@@ -50,7 +50,7 @@ equip_typeOutfits_weapons["Taciturnity"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "TL54-M Laser Turret", "Razor Turret MK2", "Orion Beam",
+      "TL54-M Laser Turret", "TR42-M Razor Turret", "Orion Beam",
       "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
       "Turreted Convulsion Launcher",
    },
@@ -65,7 +65,7 @@ equip_typeOutfits_weapons["Apprehension"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "TL54-M Laser Turret", "Razor Turret MK2", "Orion Beam",
+      "TL54-M Laser Turret", "TR42-M Razor Turret", "Orion Beam",
       "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
       "Turreted Convulsion Launcher",
    },

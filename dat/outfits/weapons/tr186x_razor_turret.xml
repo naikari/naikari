@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Heavy Razor Turret">
+<outfit name="TR186-X Razor Turret">
  <general>
   <slot>weapon</slot>
   <size>large</size>
   <license>Heavy Weapon License</license>
   <mass>75</mass>
   <price>175000</price>
-  <description>House Sirius typically equips its heaviest vessels with Heavy Razor Turrets. Where the standard razor turrets are ineffective, the heavy razor turret provides the necessary firepower to batter down virtually any shielding.</description>
+  <description>House Sirius typically equips its heaviest vessels with TR186-X Razor Turrets. Where the standard razor turrets are ineffective, the heavy razor turret provides the necessary firepower to batter down virtually any shielding.</description>
   <gfx_store>razorturret3.webp</gfx_store>
  </general>
  <specific type="turret bolt">

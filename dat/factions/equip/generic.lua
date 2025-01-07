@@ -312,7 +312,7 @@ equip_classOutfits_weapons = {
          num = 1;
          "Photon Dagger",
          "FL21-U Laser Gun",
-         "Razor MK1",
+         "FR11-U Razor Gun",
          "Gauss Gun",
          "Plasma Blaster MK1",
          "Particle Lance",
@@ -320,7 +320,7 @@ equip_classOutfits_weapons = {
       },
       {
          "FL21-U Laser Gun",
-         "Razor MK1",
+         "FR11-U Razor Gun",
          "Gauss Gun",
          "Plasma Blaster MK1",
          "Particle Lance",
@@ -332,7 +332,7 @@ equip_classOutfits_weapons = {
          num = 1;
          "Photon Dagger",
          "FL21-U Laser Gun",
-         "Razor MK1",
+         "FR11-U Razor Gun",
          "Gauss Gun",
          "Plasma Blaster MK1",
          "Particle Lance",
@@ -340,7 +340,7 @@ equip_classOutfits_weapons = {
       },
       {
          "FL21-U Laser Gun",
-         "Razor MK1",
+         "FR11-U Razor Gun",
          "Gauss Gun",
          "Plasma Blaster MK1",
          "Particle Lance",
@@ -350,7 +350,7 @@ equip_classOutfits_weapons = {
    ["Scout"] = {
       {
          "TL21-S Laser Turret",
-         "Razor Turret MK1",
+         "TR14-S Razor Turret",
          "Turreted Gauss Gun",
          "Plasma Turret MK1",
          "Particle Beam",
@@ -359,7 +359,7 @@ equip_classOutfits_weapons = {
    ["Courier"] = {
       {
          "TL21-S Laser Turret",
-         "Razor Turret MK1",
+         "TR14-S Razor Turret",
          "Turreted Gauss Gun",
          "Plasma Turret MK1",
          "Particle Beam",
@@ -376,7 +376,7 @@ equip_classOutfits_weapons = {
       },
       {
          "TL54-M Laser Turret",
-         "Razor Turret MK2",
+         "TR42-M Razor Turret",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
          "Orion Beam",
@@ -404,7 +404,7 @@ equip_classOutfits_weapons = {
       },
       {
          "TL54-M Laser Turret",
-         "Razor Turret MK2",
+         "TR42-M Razor Turret",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
          "Orion Beam",
@@ -446,7 +446,7 @@ equip_classOutfits_weapons = {
       },
       {
          "FL21-U Laser Gun",
-         "Razor MK1",
+         "FR11-U Razor Gun",
          "Gauss Gun",
          "Plasma Blaster MK1",
          "Particle Lance",
@@ -460,7 +460,7 @@ equip_classOutfits_weapons = {
       },
       {
          "FL27-S Laser Gun",
-         "Razor MK2",
+         "FR18-S Razor Gun",
          "Vulcan Gun",
          "Plasma Blaster MK2",
          "Orion Lance",
@@ -468,7 +468,7 @@ equip_classOutfits_weapons = {
       },
       {
          "FL21-U Laser Gun",
-         "Razor MK1",
+         "FR11-U Razor Gun",
          "Gauss Gun",
          "Plasma Blaster MK1",
          "Particle Lance",
@@ -486,7 +486,7 @@ equip_classOutfits_weapons = {
       },
       {
          "FL27-S Laser Gun",
-         "Razor MK2",
+         "FR18-S Razor Gun",
          "Vulcan Gun",
          "Plasma Blaster MK2",
          "Orion Lance",
@@ -512,16 +512,16 @@ equip_classOutfits_weapons = {
       {
          probability = {
             ["FL50-H Laser Gun"] = 10,
-            ["Slicer"] = 10,
+            ["FR39-H Razor Gun"] = 10,
             ["Shredder"] = 10,
             ["Plasma Cannon"] = 10,
          };
          "FL50-H Laser Gun",
-         "Slicer",
+         "FR39-H Razor Gun",
          "Shredder",
          "Plasma Cannon",
          "FL27-S Laser Gun",
-         "Razor MK2",
+         "FR18-S Razor Gun",
          "Vulcan Gun",
          "Plasma Blaster MK2",
          "Orion Lance",
@@ -552,7 +552,7 @@ equip_classOutfits_weapons = {
          "Grave Lance",
          "Heavy Ion Cannon",
          "TL54-M Laser Turret",
-         "Razor Turret MK2",
+         "TR42-M Razor Turret",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
          "Orion Beam",
@@ -570,7 +570,7 @@ equip_classOutfits_weapons = {
          "Grave Lance",
          "Heavy Ion Cannon",
          "TL54-M Laser Turret",
-         "Razor Turret MK2",
+         "TR42-M Razor Turret",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
          "Orion Beam",
@@ -599,7 +599,7 @@ equip_classOutfits_weapons = {
       },
       {
          "TL54-M Laser Turret",
-         "Razor Turret MK2",
+         "TR42-M Razor Turret",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
          "Orion Beam",
@@ -625,7 +625,7 @@ equip_classOutfits_weapons = {
       },
       {
          "TL54-M Laser Turret",
-         "Razor Turret MK2",
+         "TR42-M Razor Turret",
          "Turreted Vulcan Gun",
          "Plasma Turret MK2",
          "Orion Beam",
