@@ -1,6 +1,6 @@
 /*
  * Copyright 2006–2023 Naev DevTeam
- * Copyright 2020–2024 Naikari Dev Team
+ * Copyright 2020–2025 Naikari Dev Team
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
