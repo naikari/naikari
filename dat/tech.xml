@@ -380,12 +380,7 @@
  </tech>
 
 
- <!-- Population centers (mostly planets), separated by faction. These
-      are widely available and have only the most basic goods. -->
- <tech name="Population Generic">
-  <item>Llama</item>
-  <item>Jump Scanner</item>
-  <item>Fuel Pod</item>
+ <tech name="Bad Cores">
   <item>Makeshift Large APU</item>
   <item>Makeshift Medium APU</item>
   <item>Makeshift Small APU</item>
@@ -396,27 +391,61 @@
   <item>Patchwork Medium Hull</item>
   <item>Patchwork Light Hull</item>
  </tech>
+
+
+ <!-- Population centers (mostly planets), separated by faction. These
+      are widely available and have only the most basic goods. -->
+ <tech name="Population Generic">
+  <item>Bad Cores</item>
+  <item>Llama</item>
+  <item>Solar Panel</item>
+  <item>Fuel Pod</item>
+ </tech>
  <tech name="Population Empire">
   <item>Population Generic</item>
+  <item>Photon Dagger</item>
+  <item>Laser Cannon MK1</item>
+  <item>Exacorp ET-200 APU</item>
+  <item>Exacorp HS-150 Engine</item>
+  <item>Exacorp D-2 Hull</item>
  </tech>
 
  <!-- Specialty stations, separated by class, merchant, and faction. -->
+ <!-- Station classes are as follows:
+      * Σf (Fuel): Basic refuelling station.
+      * Σr (Sports): Civilian upgrades for sports/recreation.
+      * Σt (Tourism): Civilian upgrades for tourism.
+      * Σc (Courier): Trader upgrades for time-sensitive cargo.
+      * Σb (Bulk): Trader upgrades for bulk cargo.
+      * Σh (Hunting): Mercenary upgrades for bounty hunting.
+      * Σp (Police): Mercenary upgrades for government contracts.
+      * Σw (Warfare): Military upgrades.
+ -->
+
  <!-- Exacorp – basic quality, widely available. -->
  <tech name="Exacorp Fuel Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Sports Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Tourism Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Courier Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Bulk Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Hunting Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Police Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Warfare Generic">
+  <item>Bad Cores</item>
  </tech>
  <tech name="Exacorp Fuel Empire">
   <item>Exacorp Fuel Generic</item>
