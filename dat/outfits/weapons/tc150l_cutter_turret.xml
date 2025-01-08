@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Grave Beam">
+<outfit name="TC150-L Cutter Turret">
  <general>
   <slot>weapon</slot>
   <size>large</size>
   <license>Heavy Weapon License</license>
   <mass>40</mass>
   <price>130000</price>
-  <description>The Grave Beam is a lighter, faster version of the Ragnarok Beam. It does not deal as much damage, but its lighter size and more forgiving CPU requirements makes it a competitive contender.</description>
+  <description>The TC150-L Cutter Turret is a lighter, faster version of the TC257-X Cutter Turret. It does not deal as much damage, but its lighter size and more forgiving CPU requirements makes it a competitive contender.</description>
   <gfx_store>grave_beam.webp</gfx_store>
  </general>
  <specific type="turret beam">

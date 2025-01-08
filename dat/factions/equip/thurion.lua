@@ -42,7 +42,7 @@ equip_typeOutfits_weapons["Virtuosity"] = {
 }
 equip_typeOutfits_weapons["Taciturnity"] = {
    {
-      "TL110-L Lumina Turret", "Grave Beam", "TS193-X Shackle Turret",
+      "TL110-L Lumina Turret", "TC150-L Cutter Turret", "TS193-X Shackle Turret",
    },
    {
       num = 1;
@@ -50,14 +50,14 @@ equip_typeOutfits_weapons["Taciturnity"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "TL54-M Lumina Turret", "TR42-M Razor Turret", "Orion Beam",
+      "TL54-M Lumina Turret", "TR42-M Razor Turret", "TC81-M Cutter Turret",
       "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
       "Turreted Convulsion Launcher",
    },
 }
 equip_typeOutfits_weapons["Apprehension"] = {
    {
-      "TL110-L Lumina Turret", "Grave Beam", "TS193-X Shackle Turret",
+      "TL110-L Lumina Turret", "TC150-L Cutter Turret", "TS193-X Shackle Turret",
    },
    {
       num = 1;
@@ -65,7 +65,7 @@ equip_typeOutfits_weapons["Apprehension"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "TL54-M Lumina Turret", "TR42-M Razor Turret", "Orion Beam",
+      "TL54-M Lumina Turret", "TR42-M Razor Turret", "TC81-M Cutter Turret",
       "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
       "Turreted Convulsion Launcher",
    },
@@ -77,10 +77,10 @@ equip_typeOutfits_weapons["Certitude"] = {
       "Turreted Convulsion Launcher",
    },
    {
-      "TL200-X Lumina Turret", "Ragnarok Beam",
+      "TL200-X Lumina Turret", "TC257-X Cutter Turret",
    },
    {
-      "TL110-L Lumina Turret", "Grave Beam", "TS193-X Shackle Turret",
+      "TL110-L Lumina Turret", "TC150-L Cutter Turret", "TS193-X Shackle Turret",
    },
 }
 

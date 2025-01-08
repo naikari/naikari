@@ -44,7 +44,7 @@ equip_classOutfits_weapons["Yacht"] = {
       "FR11-U Razor Gun",
       "FM22-U Meteor Gun",
       "FK21-U Katana Gun",
-      "Particle Lance",
+      "FC36-U Cutter Gun",
    },
 }
 equip_classOutfits_weapons["Light Fighter"] = {
@@ -58,7 +58,7 @@ equip_classOutfits_weapons["Light Fighter"] = {
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "FK21-U Katana Gun",
-         "Particle Lance",
+         "FC36-U Cutter Gun",
       },
 }
 equip_classOutfits_weapons["Fighter"] = {
@@ -71,14 +71,14 @@ equip_classOutfits_weapons["Fighter"] = {
       "FR18-S Razor Gun",
       "FM28-S Meteor Gun",
       "FK27-S Katana Gun",
-      "Orion Lance",
+      "FC46-S Cutter Gun",
    },
    {
       "FL21-U Lumina Gun",
       "FR11-U Razor Gun",
       "FM22-U Meteor Gun",
       "FK21-U Katana Gun",
-      "Particle Lance",
+      "FC36-U Cutter Gun",
       "Unicorp Mace Launcher",
       "Unicorp Banshee Launcher",
    },
@@ -95,7 +95,7 @@ equip_classOutfits_weapons["Bomber"] = {
       "FR18-S Razor Gun",
       "FM28-S Meteor Gun",
       "FK27-S Katana Gun",
-      "Orion Lance",
+      "FC46-S Cutter Gun",
    },
 }
 equip_classOutfits_weapons["Corvette"] = {
@@ -126,7 +126,7 @@ equip_classOutfits_weapons["Corvette"] = {
       "FR18-S Razor Gun",
       "FM28-S Meteor Gun",
       "FK27-S Katana Gun",
-      "Orion Lance",
+      "FC46-S Cutter Gun",
    },
 }
 equip_classOutfits_weapons["Destroyer"] = {
@@ -135,7 +135,7 @@ equip_classOutfits_weapons["Destroyer"] = {
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
       "TM110-L Meteor Turret",
-      "Grave Beam",
+      "TC150-L Cutter Turret",
    },
    {
       num = 1;
@@ -150,12 +150,12 @@ equip_classOutfits_weapons["Destroyer"] = {
       "FL55-M Lumina Gun",
       "FM55-M Meteor Gun",
       "FK55-M Katana Gun",
-      "Grave Lance",
+      "FC78-M Cutter Gun",
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "TK54-M Katana Turret",
-      "Orion Beam",
+      "TC81-M Cutter Turret",
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
       "Mini Hyena Fighter Bay",
@@ -166,12 +166,12 @@ equip_classOutfits_weapons["Destroyer"] = {
       "FL55-M Lumina Gun",
       "FM55-M Meteor Gun",
       "FK55-M Katana Gun",
-      "Grave Lance",
+      "FC78-M Cutter Gun",
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "TK54-M Katana Turret",
-      "Orion Beam",
+      "TC81-M Cutter Turret",
    },
 }
 equip_classOutfits_weapons["Light Cruiser"] = {
@@ -188,14 +188,14 @@ equip_classOutfits_weapons["Light Cruiser"] = {
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
       "TM110-L Meteor Turret",
-      "Grave Beam",
+      "TC150-L Cutter Turret",
    },
    {
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "TK54-M Katana Turret",
-      "Orion Beam",
+      "TC81-M Cutter Turret",
    },
 }
 equip_classOutfits_weapons["Cruiser"] = {
@@ -212,14 +212,14 @@ equip_classOutfits_weapons["Cruiser"] = {
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
       "TM110-L Meteor Turret",
-      "Grave Beam",
+      "TC150-L Cutter Turret",
    },
    {
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "TK54-M Katana Turret",
-      "Orion Beam",
+      "TC81-M Cutter Turret",
       "Mini Hyena Fighter Bay",
       "Mini Shark Fighter Bay",
       "Mini Lancelot Fighter Bay",
@@ -237,14 +237,14 @@ equip_classOutfits_weapons["Battleship"] = {
    {
       "TL200-X Lumina Turret",
       "TM200-X Meteor Turret",
-      "Ragnarok Beam",
+      "TC257-X Cutter Turret",
    },
    {
       "FM66-L Meteor Gun",
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
       "TM110-L Meteor Turret",
-      "Grave Beam",
+      "TC150-L Cutter Turret",
    },
 }
 equip_classOutfits_weapons["Carrier"] = {
@@ -257,13 +257,13 @@ equip_classOutfits_weapons["Carrier"] = {
    {
       "TL200-X Lumina Turret",
       "TM200-X Meteor Turret",
-      "Ragnarok Beam",
+      "TC257-X Cutter Turret",
    },
    {
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
       "TM110-L Meteor Turret",
-      "Grave Beam",
+      "TC150-L Cutter Turret",
    },
 }
 

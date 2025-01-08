@@ -30,8 +30,8 @@
  <slots>
   <weapon size="large" prop="fighter_bay" exclusive="1" x="40" y="-20" h="0">Za'lek Light Drone Fighter Bay</weapon>
   <weapon size="large" prop="fighter_bay" exclusive="1" x="40" y="20" h="0">Za'lek Light Drone Fighter Bay</weapon>
-  <weapon size="large" x="0" y="-20" h="0">Ragnarok Beam</weapon>
-  <weapon size="large" x="0" y="20" h="0">Ragnarok Beam</weapon>
+  <weapon size="large" x="0" y="-20" h="0">TC257-X Cutter Turret</weapon>
+  <weapon size="large" x="0" y="20" h="0">TC257-X Cutter Turret</weapon>
   <weapon size="large" prop="fighter_bay" exclusive="1" x="-20" y="-20" h="0" />
   <weapon size="large" prop="fighter_bay" exclusive="1" x="-20" y="20" h="0" />
   <weapon size="large" prop="fighter_bay" exclusive="1" x="-40" y="-20" h="0" />

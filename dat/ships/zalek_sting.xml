@@ -31,8 +31,8 @@
   <weapon size="medium" x="15" y="0" h="2">Unicorp Fury Launcher</weapon>
   <weapon size="medium" x="4" y="2" h="-5">Unicorp Headhunter Launcher</weapon>
   <weapon size="medium" x="4" y="-2" h="-5">Unicorp Headhunter Launcher</weapon>
-  <weapon size="small" x="-9" y="-5" h="-9">Orion Lance</weapon>
-  <weapon size="small" x="-9" y="5" h="-9">Orion Lance</weapon>
+  <weapon size="small" x="-9" y="-5" h="-9">FC46-S Cutter Gun</weapon>
+  <weapon size="small" x="-9" y="5" h="-9">FC46-S Cutter Gun</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-500 APU</utility>
   <utility size="medium" />
   <utility size="medium" />

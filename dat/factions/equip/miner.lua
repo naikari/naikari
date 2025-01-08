@@ -34,7 +34,7 @@ equip_classOutfits_weapons["Freighter"] = {
    {
       num = 1;
       "TL54-M Lumina Turret", "TM54-M Meteor Turret", "TK54-M Katana Turret",
-      "Orion Beam",
+      "TC81-M Cutter Turret",
    },
    {
       "Enygma Systems Turreted Fury Launcher",

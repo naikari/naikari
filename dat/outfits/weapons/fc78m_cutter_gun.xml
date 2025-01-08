@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Grave Lance">
+<outfit name="FC78-M Cutter Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
   <mass>30</mass>
   <price>78000</price>
-  <description>The Grave Lance is one of the most powerful Lance weapons around. The technology behind it is poorly understood by everyone except the Za'lek, who use it as a standard weapon.</description>
+  <description>The FC78-M Cutter Gun is one of the most powerful Lance weapons around. The technology behind it is poorly understood by everyone except the Za'lek, who use it as a standard weapon.</description>
   <gfx_store>grave_lance.webp</gfx_store>
  </general>
  <specific type="beam">
